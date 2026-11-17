@@ -1,0 +1,26 @@
+# Im Gasgesetz den Gesamtdruck und Kelvin-Temperaturen verwenden
+
+Der Druck auf die Blase am Grund ist **Atmosphäre plus Wasser darüber**. Temperaturen müssen im Gasgesetz in **Kelvin** stehen. Das Volumen folgt aus <InlineMath math="\dfrac{p_1V_1}{T_1}=\dfrac{p_2V_2}{T_2}" />, und da das Volumen mit der dritten Potenz des Radius wächst, wächst der Radius mit der **dritten Wurzel** des Volumenfaktors.
+
+<Chart
+  title={<>Volumen der Blase am Grund und an der Oberfläche</>}
+  bars="apart"
+  categories={["In 20 m Tiefe", "An der Oberfläche"]}
+  series={[
+    { label: "Volumen", mark: "bar", values: [2.0, 6.4] },
+  ]}
+  valueLabel="Volumen (cm³)"
+  description={<>Die Blase wächst von <InlineMath math="2{,}0" /> auf etwa <InlineMath math="6{,}4\text{ cm}^3" />, dreifach durch den sinkenden Druck und um weitere <InlineMath math="300/280" /> durch das wärmere Wasser.</>}
+/>
+
+<BlockMath math="p_1=1{,}0\cdot10^{5}+1000(10)(20)=3{,}0\cdot10^{5}\text{ Pa},\qquad V_2=2{,}0\cdot\frac{3{,}0}{1{,}0}\cdot\frac{300}{280}\approx6{,}4\text{ cm}^3" />
+
+<BlockMath math="\frac{r_2}{r_1}=\sqrt[3]{\frac{6{,}4}{2{,}0}}=\sqrt[3]{3{,}2}\approx1{,}5" />
+
+Der Druck fällt auf ein Drittel, was allein das Volumen verdreifachen würde. Die Erwärmung von <InlineMath math="280\text{ K}" /> auf <InlineMath math="300\text{ K}" /> bringt etwa <InlineMath math="7\%" /> dazu, zusammen etwa <InlineMath math="6{,}4\text{ cm}^3" />. Das Volumen wächst auf das <InlineMath math="3{,}2" />-Fache, der Radius also auf etwa das <InlineMath math="1{,}5" />-Fache.
+
+# Warum die anderen Antworten falsch sind
+
+- <InlineMath math="6{,}0\text{ cm}^3" /> **übersieht die Erwärmung** der Blase beim Aufsteigen.
+- <InlineMath math="23\text{ cm}^3" /> rechnet mit **Grad Celsius**, <InlineMath math="27/7" />, statt mit Kelvin.
+- <InlineMath math="4{,}3\text{ cm}^3" /> nimmt nur den **Wasserdruck von <InlineMath math="2{,}0\cdot10^{5}\text{ Pa}" />** gegen <InlineMath math="1{,}0\cdot10^{5}\text{ Pa}" /> oben und lässt die Atmosphäre am Grund weg.

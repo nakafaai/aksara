@@ -1,0 +1,26 @@
+# Biarkan graviti membekalkan daya memusat, kemudian bahagikan jisim dengan isi padu
+
+Bagi orbit rendah, tarikan planet membekalkan **daya memusat** pada jejari <InlineMath math="R" />. Itu memberi jisim dalam sebutan <InlineMath math="R" /> dan <InlineMath math="T" />, dan membahagi dengan isi padu <InlineMath math="\tfrac43\pi R^3" /> menyebabkan <InlineMath math="R" /> terbatal: ketumpatan bergantung **hanya pada tempoh**. Hukum Kepler ketiga kemudian memberi tempoh pada dua kali jejari, <InlineMath math="T\propto r^{3/2}" />.
+
+<Chart
+  title={<>Tempoh Orbit Bulat pada Setiap Jejari</>}
+  bars="apart"
+  categories={["R (hampir permukaan)", "2R", "4R"]}
+  series={[
+    { label: "Tempoh", mark: "bar", values: [1.5, 4.2, 12] },
+  ]}
+  valueLabel="Tempoh (j)"
+  description={<>Satelit yang hampir menyentuh permukaan mengambil masa <InlineMath math="1.5" /> j. Pada dua kali jejari ia mengambil <InlineMath math="4.2" /> j, dan pada empat kali jejari <InlineMath math="12" /> j, kerana tempoh bertambah mengikut jejari kuasa <InlineMath math="1.5" />.</>}
+/>
+
+<BlockMath math="\frac{GM}{R^2}=\frac{4\pi^2R}{T^2}\Rightarrow M=\frac{4\pi^2R^3}{GT^2},\qquad \rho=\frac{M}{\tfrac43\pi R^3}=\frac{3\pi}{GT^2}=\frac{3(3.14)}{6.67\times10^{-11}\times5400^2}\approx4.8\times10^{3}\text{ kg m}^{-3}" />
+
+<BlockMath math="T_{2R}=1.5\times2^{1.5}=1.5\times2.83\approx4.2\text{ j}" />
+
+Dengan <InlineMath math="T=5400\text{ s}" />, planet itu kira-kira <InlineMath math="4.8" /> kali lebih tumpat daripada air. Menggandakan jejari orbit mendarab tempoh dengan <InlineMath math="2\sqrt2" />, memberi kira-kira <InlineMath math="4.2\text{ j}" />.
+
+# Kenapa pilihan lain salah
+
+- <InlineMath math="3.0\text{ j}" /> menjadikan **tempoh berkadar dengan jejari**, tetapi hukum Kepler ketiga memberi <InlineMath math="T^2\propto r^3" />.
+- <InlineMath math="12\text{ j}" /> menjadikan **tempoh berkadar dengan <InlineMath math="r^3" />**, lupa mengambil punca kuasa dua.
+- <InlineMath math="1.2\times10^{3}\text{ kg m}^{-3}" /> menggugurkan **faktor <InlineMath math="4" />** dalam isi padu sfera, menggunakan <InlineMath math="\pi R^3" /> dan bukan <InlineMath math="\tfrac43\pi R^3" /> bersama <InlineMath math="4\pi^2" />.

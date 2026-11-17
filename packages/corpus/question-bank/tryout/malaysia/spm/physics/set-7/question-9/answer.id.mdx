@@ -1,0 +1,26 @@
+# Biarkan gravitasi memberi gaya sentripetal, lalu bagi massa dengan volume
+
+Untuk orbit rendah, tarikan planet memberi **gaya sentripetal** pada jari-jari <InlineMath math="R" />. Itu memberi massa dalam <InlineMath math="R" /> dan <InlineMath math="T" />, dan membaginya dengan volume <InlineMath math="\tfrac43\pi R^3" /> membuat <InlineMath math="R" /> saling meniadakan: massa jenisnya **hanya bergantung pada periode**. Hukum Kepler ketiga lalu memberi periode pada dua kali jari-jari, <InlineMath math="T\propto r^{3/2}" />.
+
+<Chart
+  title={<>Periode Orbit Lingkaran pada Tiap Jari-jari</>}
+  bars="apart"
+  categories={["R (dekat permukaan)", "2R", "4R"]}
+  series={[
+    { label: "Periode", mark: "bar", values: [1.5, 4.2, 12] },
+  ]}
+  valueLabel="Periode (jam)"
+  description={<>Satelit yang nyaris menyentuh permukaan butuh <InlineMath math="1{,}5" /> jam. Pada dua kali jari-jari butuh <InlineMath math="4{,}2" /> jam, dan pada empat kali jari-jari <InlineMath math="12" /> jam, karena periode bertambah menurut jari-jari pangkat <InlineMath math="1{,}5" />.</>}
+/>
+
+<BlockMath math="\frac{GM}{R^2}=\frac{4\pi^2R}{T^2}\Rightarrow M=\frac{4\pi^2R^3}{GT^2},\qquad \rho=\frac{M}{\tfrac43\pi R^3}=\frac{3\pi}{GT^2}=\frac{3(3{,}14)}{6{,}67\times10^{-11}\times5400^2}\approx4{,}8\times10^{3}\text{ kg m}^{-3}" />
+
+<BlockMath math="T_{2R}=1{,}5\times2^{1{,}5}=1{,}5\times2{,}83\approx4{,}2\text{ jam}" />
+
+Dengan <InlineMath math="T=5400\text{ s}" />, planet itu sekitar <InlineMath math="4{,}8" /> kali lebih padat dari air. Melipatduakan jari-jari orbit mengalikan periode dengan <InlineMath math="2\sqrt2" />, memberi sekitar <InlineMath math="4{,}2\text{ jam}" />.
+
+# Mengapa pilihan lain salah
+
+- <InlineMath math="3{,}0\text{ jam}" /> membuat **periode sebanding dengan jari-jari**, padahal hukum Kepler ketiga memberi <InlineMath math="T^2\propto r^3" />.
+- <InlineMath math="12\text{ jam}" /> membuat **periode sebanding dengan <InlineMath math="r^3" />**, lupa mengambil akarnya.
+- <InlineMath math="1{,}2\times10^{3}\text{ kg m}^{-3}" /> membuang **faktor <InlineMath math="4" />** pada volume bola, memakai <InlineMath math="\pi R^3" /> alih-alih <InlineMath math="\tfrac43\pi R^3" /> bersama <InlineMath math="4\pi^2" />.

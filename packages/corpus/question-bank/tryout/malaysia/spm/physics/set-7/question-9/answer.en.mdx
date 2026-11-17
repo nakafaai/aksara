@@ -1,0 +1,26 @@
+# Let gravity supply the centripetal force, then divide the mass by the volume
+
+For a low orbit, the planet's pull provides the **centripetal force** at radius <InlineMath math="R" />. That gives the mass in terms of <InlineMath math="R" /> and <InlineMath math="T" />, and dividing by the volume <InlineMath math="\tfrac43\pi R^3" /> makes <InlineMath math="R" /> cancel: the density depends **only on the period**. Kepler's third law then gives the period at twice the radius, <InlineMath math="T\propto r^{3/2}" />.
+
+<Chart
+  title={<>Period of a Circular Orbit at Each Radius</>}
+  bars="apart"
+  categories={["R (skimming)", "2R", "4R"]}
+  series={[
+    { label: "Period", mark: "bar", values: [1.5, 4.2, 12] },
+  ]}
+  valueLabel="Period (h)"
+  description={<>A satellite skimming the surface takes <InlineMath math="1.5" /> h. At twice the radius it takes <InlineMath math="4.2" /> h, and at four times the radius <InlineMath math="12" /> h, since the period grows with radius to the power <InlineMath math="1.5" />.</>}
+/>
+
+<BlockMath math="\frac{GM}{R^2}=\frac{4\pi^2R}{T^2}\Rightarrow M=\frac{4\pi^2R^3}{GT^2},\qquad \rho=\frac{M}{\tfrac43\pi R^3}=\frac{3\pi}{GT^2}=\frac{3(3.14)}{6.67\times10^{-11}\times5400^2}\approx4.8\times10^{3}\text{ kg m}^{-3}" />
+
+<BlockMath math="T_{2R}=1.5\times2^{1.5}=1.5\times2.83\approx4.2\text{ h}" />
+
+With <InlineMath math="T=5400\text{ s}" />, the planet is about <InlineMath math="4.8" /> times as dense as water. Doubling the orbit's radius multiplies the period by <InlineMath math="2\sqrt2" />, giving about <InlineMath math="4.2\text{ h}" />.
+
+# Why the other options are wrong
+
+- <InlineMath math="3.0\text{ h}" /> makes the **period proportional to the radius**, but Kepler's third law gives <InlineMath math="T^2\propto r^3" />.
+- <InlineMath math="12\text{ h}" /> makes the **period proportional to <InlineMath math="r^3" />**, forgetting to take the square root.
+- <InlineMath math="1.2\times10^{3}\text{ kg m}^{-3}" /> drops the **factor of <InlineMath math="4" />** in the volume of a sphere, using <InlineMath math="\pi R^3" /> instead of <InlineMath math="\tfrac43\pi R^3" /> together with <InlineMath math="4\pi^2" />.

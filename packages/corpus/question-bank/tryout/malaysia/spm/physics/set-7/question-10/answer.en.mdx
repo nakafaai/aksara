@@ -1,0 +1,26 @@
+# Find the heat lost per degree, then use it on the cold night
+
+On average the heater replaces exactly the heat the tank loses, so **<InlineMath math="30\%" /> of <InlineMath math="100\text{ W}" /> is the loss at a <InlineMath math="4" /> °C difference**. That gives the loss per degree. On the cold night the difference is <InlineMath math="10" /> °C, and if the heater stops, that whole loss comes out of the water's stored heat, <InlineMath math="P=mc\,\dfrac{\Delta\theta}{t}" />.
+
+<Chart
+  title={<>Heat Lost by the Tank at Each Room Temperature</>}
+  bars="apart"
+  categories={["Room at 22 °C", "Room at 16 °C"]}
+  series={[
+    { label: "Heat lost", mark: "bar", values: [30, 75] },
+  ]}
+  valueLabel="Heat lost (W)"
+  description={<>The tank at <InlineMath math="26" /> °C loses <InlineMath math="30" /> W to a room at <InlineMath math="22" /> °C and <InlineMath math="75" /> W to a room at <InlineMath math="16" /> °C, <InlineMath math="7.5" /> W for every degree of difference.</>}
+/>
+
+<BlockMath math="\frac{0.30\times100}{26-22}=7.5\text{ W °C}^{-1},\qquad P=7.5\times(26-16)=75\text{ W}\ \Rightarrow\ 75\%" />
+
+<BlockMath math="\frac{\Delta\theta}{t}=\frac{75}{50\times4200}=3.6\times10^{-4}\text{ °C s}^{-1}\times3600\approx1.3\text{ °C h}^{-1}" />
+
+The tank loses <InlineMath math="7.5\text{ W}" /> for every degree above the room. At a <InlineMath math="10" /> °C difference that is <InlineMath math="75\text{ W}" />, so the heater must be on <InlineMath math="75\%" /> of the time. Without it, <InlineMath math="75\text{ W}" /> drawn from <InlineMath math="210\,000\text{ J}" /> per degree cools the water by about <InlineMath math="1.3" /> °C each hour at first.
+
+# Why the other options are wrong
+
+- <InlineMath math="45\%" /> adds only the loss from the **extra <InlineMath math="6" /> °C** to nothing, forgetting the <InlineMath math="30\text{ W}" /> already lost at <InlineMath math="22" /> °C.
+- <InlineMath math="1.7\text{ °C h}^{-1}" /> uses the **heater's full <InlineMath math="100\text{ W}" />** as the rate of loss, not the <InlineMath math="75\text{ W}" /> the tank actually loses.
+- <InlineMath math="0.021\text{ °C h}^{-1}" /> multiplies the rate per second by **<InlineMath math="60" /> instead of <InlineMath math="3600" />**, giving the fall per minute.

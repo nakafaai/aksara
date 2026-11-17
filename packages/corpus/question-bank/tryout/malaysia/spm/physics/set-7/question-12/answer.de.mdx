@@ -1,0 +1,26 @@
+# Nur verdunstender Schweiß kühlt, also für den abtropfenden Schweiß hochrechnen
+
+Die in einer Stunde abzuführende Wärme ist **Leistung mal Zeit**. Schweiß führt Wärme nur ab, wenn er **verdunstet**, <InlineMath math="2{,}4\cdot10^{6}\text{ J}" /> pro Kilogramm, also bestimmt man zuerst die Masse, die verdunsten muss, und rechnet dann hoch, weil nur drei Viertel verdunsten. Verdunstet nichts, bleibt dieselbe Wärme im Körper und hebt seine Temperatur, <InlineMath math="Q=mc\Delta\theta" />.
+
+<Chart
+  title={<>Wohin der Schweiß des Radfahrers in einer Stunde geht</>}
+  bars="apart"
+  categories={["Verdunstet", "Tropft ab"]}
+  series={[
+    { label: "Schweiß", mark: "bar", values: [0.9, 0.3] },
+  ]}
+  valueLabel="Schweiß (kg)"
+  description={<>Von <InlineMath math="1{,}2" /> kg Schweiß verdunsten <InlineMath math="0{,}90" /> kg und führen die Wärme ab, <InlineMath math="0{,}30" /> kg tropfen ab, ohne zu kühlen.</>}
+/>
+
+<BlockMath math="Q=600\cdot3600=2{,}16\cdot10^{6}\text{ J},\qquad m_{\text{verd}}=\frac{2{,}16\cdot10^{6}}{2{,}4\cdot10^{6}}=0{,}90\text{ kg},\qquad m=\frac{0{,}90}{0{,}75}=1{,}2\text{ kg}" />
+
+<BlockMath math="\Delta\theta=\frac{2{,}16\cdot10^{6}}{70\cdot3500}\approx8{,}8\text{ °C}" />
+
+Der Körper muss in der Stunde <InlineMath math="2{,}16\text{ MJ}" /> abgeben. Das verdunstet <InlineMath math="0{,}90\text{ kg}" /> Schweiß, drei Viertel der erzeugten <InlineMath math="1{,}2\text{ kg}" />. Ohne Verdunstung würde dieselbe Wärme den Körper um fast <InlineMath math="9" /> °C erwärmen, genug, um tödlich zu sein.
+
+# Warum die anderen Antworten falsch sind
+
+- <InlineMath math="0{,}90\text{ kg}" /> ist nur der **verdunstende** Schweiß und vergisst das abtropfende Viertel.
+- <InlineMath math="0{,}68\text{ kg}" /> nimmt **<InlineMath math="75\%" /> von <InlineMath math="0{,}90\text{ kg}" />** und verringert den Schweiß, statt ihn zu erhöhen.
+- <InlineMath math="0{,}15\text{ °C}" /> nimmt die Wärme aus **einer Minute** statt aus einer Stunde.

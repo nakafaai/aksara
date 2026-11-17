@@ -1,0 +1,26 @@
+# Only evaporating sweat cools, so scale up for the sweat that drips
+
+The heat to remove in an hour is the **power times the time**. Sweat removes heat only when it **evaporates**, taking <InlineMath math="2.4\times10^{6}\text{ J}" /> per kilogram, so first find the mass that must evaporate, then scale up because only three quarters of the sweat does. If nothing evaporates, the same heat stays in the body and raises its temperature, <InlineMath math="Q=mc\Delta\theta" />.
+
+<Chart
+  title={<>Where the Cyclist's Sweat Goes in One Hour</>}
+  bars="apart"
+  categories={["Evaporates", "Drips off"]}
+  series={[
+    { label: "Sweat", mark: "bar", values: [0.9, 0.3] },
+  ]}
+  valueLabel="Sweat (kg)"
+  description={<>Of <InlineMath math="1.2" /> kg of sweat, <InlineMath math="0.90" /> kg evaporates and carries away the heat, while <InlineMath math="0.30" /> kg drips off without cooling.</>}
+/>
+
+<BlockMath math="Q=600\times3600=2.16\times10^{6}\text{ J},\qquad m_{\text{evap}}=\frac{2.16\times10^{6}}{2.4\times10^{6}}=0.90\text{ kg},\qquad m=\frac{0.90}{0.75}=1.2\text{ kg}" />
+
+<BlockMath math="\Delta\theta=\frac{2.16\times10^{6}}{70\times3500}\approx8.8\text{ °C}" />
+
+The body must lose <InlineMath math="2.16\text{ MJ}" /> in the hour. That evaporates <InlineMath math="0.90\text{ kg}" /> of sweat, which is three quarters of the <InlineMath math="1.2\text{ kg}" /> produced. With no evaporation, the same heat would warm the body by nearly <InlineMath math="9" /> °C, enough to be fatal.
+
+# Why the other options are wrong
+
+- <InlineMath math="0.90\text{ kg}" /> is only the sweat that **evaporates**, forgetting the quarter that drips off.
+- <InlineMath math="0.68\text{ kg}" /> takes **<InlineMath math="75\%" /> of <InlineMath math="0.90\text{ kg}" />**, reducing the sweat instead of increasing it.
+- <InlineMath math="0.15\text{ °C}" /> uses the heat produced in **one minute** instead of one hour.

@@ -1,0 +1,26 @@
+# Den Wärmeverlust pro Grad bestimmen und dann für die kalte Nacht nutzen
+
+Im Mittel ersetzt die Heizung genau die verlorene Wärme, also sind **<InlineMath math="30\%" /> von <InlineMath math="100\text{ W}" /> der Verlust bei <InlineMath math="4" /> °C Unterschied**. Daraus folgt der Verlust pro Grad. In der kalten Nacht beträgt der Unterschied <InlineMath math="10" /> °C, und fällt die Heizung aus, kommt dieser ganze Verlust aus der gespeicherten Wärme des Wassers, <InlineMath math="P=mc\,\dfrac{\Delta\theta}{t}" />.
+
+<Chart
+  title={<>Wärmeverlust des Beckens bei jeder Raumtemperatur</>}
+  bars="apart"
+  categories={["Raum bei 22 °C", "Raum bei 16 °C"]}
+  series={[
+    { label: "Wärmeverlust", mark: "bar", values: [30, 75] },
+  ]}
+  valueLabel="Wärmeverlust (W)"
+  description={<>Das Becken bei <InlineMath math="26" /> °C verliert <InlineMath math="30" /> W an einen Raum mit <InlineMath math="22" /> °C und <InlineMath math="75" /> W an einen Raum mit <InlineMath math="16" /> °C, <InlineMath math="7{,}5" /> W je Grad Unterschied.</>}
+/>
+
+<BlockMath math="\frac{0{,}30\cdot100}{26-22}=7{,}5\text{ W °C}^{-1},\qquad P=7{,}5\cdot(26-16)=75\text{ W}\ \Rightarrow\ 75\%" />
+
+<BlockMath math="\frac{\Delta\theta}{t}=\frac{75}{50\cdot4200}=3{,}6\cdot10^{-4}\text{ °C s}^{-1}\cdot3600\approx1{,}3\text{ °C h}^{-1}" />
+
+Das Becken verliert <InlineMath math="7{,}5\text{ W}" /> je Grad über der Raumtemperatur. Bei <InlineMath math="10" /> °C Unterschied sind das <InlineMath math="75\text{ W}" />, die Heizung muss also <InlineMath math="75\%" /> der Zeit laufen. Ohne sie kühlen <InlineMath math="75\text{ W}" /> aus <InlineMath math="210\,000\text{ J}" /> pro Grad das Wasser anfangs um etwa <InlineMath math="1{,}3" /> °C pro Stunde ab.
+
+# Warum die anderen Antworten falsch sind
+
+- <InlineMath math="45\%" /> nimmt nur den Verlust für die **zusätzlichen <InlineMath math="6" /> °C** und vergisst die <InlineMath math="30\text{ W}" />, die schon bei <InlineMath math="22" /> °C verloren gehen.
+- <InlineMath math="1{,}7\text{ °C h}^{-1}" /> nimmt die **vollen <InlineMath math="100\text{ W}" /> der Heizung** als Verlustrate statt der tatsächlichen <InlineMath math="75\text{ W}" />.
+- <InlineMath math="0{,}021\text{ °C h}^{-1}" /> multipliziert die Rate pro Sekunde mit **<InlineMath math="60" /> statt <InlineMath math="3600" />** und liefert den Abfall pro Minute.

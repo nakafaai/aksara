@@ -1,0 +1,26 @@
+# Die Gravitation die Zentripetalkraft liefern lassen und dann die Masse durch das Volumen teilen
+
+Bei einer niedrigen Bahn liefert die Anziehung des Planeten die **Zentripetalkraft** beim Radius <InlineMath math="R" />. Das ergibt die Masse aus <InlineMath math="R" /> und <InlineMath math="T" />, und beim Teilen durch das Volumen <InlineMath math="\tfrac43\pi R^3" /> kürzt sich <InlineMath math="R" />: Die Dichte hängt **nur von der Umlaufzeit** ab. Das dritte Keplersche Gesetz liefert dann die Umlaufzeit beim doppelten Radius, <InlineMath math="T\propto r^{3/2}" />.
+
+<Chart
+  title={<>Umlaufzeit einer Kreisbahn bei jedem Radius</>}
+  bars="apart"
+  categories={["R (dicht über der Oberfläche)", "2R", "4R"]}
+  series={[
+    { label: "Umlaufzeit", mark: "bar", values: [1.5, 4.2, 12] },
+  ]}
+  valueLabel="Umlaufzeit (h)"
+  description={<>Ein Satellit dicht über der Oberfläche braucht <InlineMath math="1{,}5" /> h. Beim doppelten Radius sind es <InlineMath math="4{,}2" /> h, beim vierfachen <InlineMath math="12" /> h, da die Umlaufzeit mit dem Radius hoch <InlineMath math="1{,}5" /> wächst.</>}
+/>
+
+<BlockMath math="\frac{GM}{R^2}=\frac{4\pi^2R}{T^2}\Rightarrow M=\frac{4\pi^2R^3}{GT^2},\qquad \rho=\frac{M}{\tfrac43\pi R^3}=\frac{3\pi}{GT^2}=\frac{3(3{,}14)}{6{,}67\cdot10^{-11}\cdot5400^2}\approx4{,}8\cdot10^{3}\text{ kg m}^{-3}" />
+
+<BlockMath math="T_{2R}=1{,}5\cdot2^{1{,}5}=1{,}5\cdot2{,}83\approx4{,}2\text{ h}" />
+
+Mit <InlineMath math="T=5400\text{ s}" /> ist der Planet etwa <InlineMath math="4{,}8" />-mal so dicht wie Wasser. Der doppelte Bahnradius multipliziert die Umlaufzeit mit <InlineMath math="2\sqrt2" />, das ergibt etwa <InlineMath math="4{,}2\text{ h}" />.
+
+# Warum die anderen Antworten falsch sind
+
+- <InlineMath math="3{,}0\text{ h}" /> macht die **Umlaufzeit proportional zum Radius**, doch nach Kepler gilt <InlineMath math="T^2\propto r^3" />.
+- <InlineMath math="12\text{ h}" /> macht die **Umlaufzeit proportional zu <InlineMath math="r^3" />** und vergisst die Wurzel.
+- <InlineMath math="1{,}2\cdot10^{3}\text{ kg m}^{-3}" /> lässt den **Faktor <InlineMath math="4" />** im Kugelvolumen weg und nimmt <InlineMath math="\pi R^3" /> statt <InlineMath math="\tfrac43\pi R^3" /> zusammen mit <InlineMath math="4\pi^2" />.
