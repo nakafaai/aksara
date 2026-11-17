@@ -2,6 +2,29 @@
 
 A cell's actual size does not depend on the magnification. Eight cells fill a diameter of <InlineMath math="0.40\text{ mm}" />, so one cell is <InlineMath math="0.40/8=0.050\text{ mm}" /> long. When the magnification is cut by four times, **the field of view becomes four times wider**.
 
+Switch between the two objectives and watch the field of view grow while each cell keeps its size.
+
+<MicroscopeLab
+  title={<>Cheek Cells at Two Objectives</>}
+  description={<>At <InlineMath math="\times400" /> eight cells fill the field. Switch to the <InlineMath math="\times10" /> objective and count again.</>}
+  labels={{
+    across: <>Cells across the field</>,
+    cell: <>Length of one cell</>,
+    division: <>One eyepiece division</>,
+    field: <>Field of view diameter</>,
+    magnification: <>Total magnification</>,
+    objective: "Choose an objective",
+    span: <>Cell length in divisions</>,
+    view: "Light microscope",
+    views: { eyepiece: "Eyepiece", stand: "Microscope" },
+  }}
+  cell={50}
+  eyepiece={10}
+  field={{ diameter: 0.4, magnification: 400 }}
+  objectives={[10, 40]}
+  specimen="cheek"
+/>
+
 <BlockMath math="\begin{aligned}
 \text{cell length}&=\frac{0.40}{8}=0.050\text{ mm}=50\,\mu\text{m}\\
 \text{new diameter}&=0.40\times\frac{400}{100}=1.6\text{ mm}\\
