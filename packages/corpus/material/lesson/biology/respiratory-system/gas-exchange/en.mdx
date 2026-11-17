@@ -1,0 +1,279 @@
+export const metadata = {
+  title: "Respiratory Systems in Humans and Animals Notes",
+  description:
+    "Form 4 Biology Chapter 8: explain the breathing mechanism, gas exchange in the alveoli, oxygen transport by haemoglobin and how animals breathe, with practice.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2026-11-17",
+  subject: "Respiratory Systems in Humans and Animals",
+};
+
+## The Respiratory System Brings Oxygen to the Blood
+
+The **respiratory system** carries oxygen from the air into the blood and removes carbon dioxide. Air moves in and out of the lungs because **changes in the volume of the thorax change the air pressure inside the lungs**. In the alveoli, oxygen diffuses into the blood and **haemoglobin** carries it to the body's cells. In the models here, you compress air the way the thorax does, measure the pressure of a breath out, read the haemoglobin curve and compare breathing surfaces.
+
+Don't confuse **breathing** with **cellular respiration**. Breathing is the physical process of taking air in and out. Cellular respiration is the chemical reaction in the mitochondria that releases energy from glucose.
+
+## Structure of the Human Respiratory System
+
+Air passes through the **nasal cavity, trachea, bronchi and bronchioles** before it reaches the **alveoli**. Rings of cartilage hold the trachea open so it doesn't collapse. The lungs hold about <InlineMath math="300" /> million alveoli, which give a surface area of about <InlineMath math="70\text{ m}^2" />.
+
+The alveoli are adapted for efficient gas exchange:
+
+- their walls are **one cell thick**, so the diffusion distance is short,
+- there are so many of them that the **surface area is very large**,
+- their surface is moist, so gases dissolve before they diffuse,
+- a dense **network of blood capillaries** surrounds them and keeps the concentration gradient steep.
+
+The rate at which gases diffuse follows **Fick's law**: the rate is directly proportional to the surface area and the difference in partial pressure, and inversely proportional to the thickness of the membrane. Move the surface area slider and watch the rate of diffusion fall as the membrane gets thicker.
+
+<MathVisual
+  title={<>Rate of Gas Diffusion across the Alveolar Wall</>}
+  description={
+    <>
+      Relative rate <InlineMath math="\dfrac{a}{d}" /> against membrane
+      thickness <InlineMath math="d" /> in micrometres, with{" "}
+      <InlineMath math="a" /> standing for surface area times the difference
+      in partial pressure.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 8.5 }, y: { min: 0, max: 8.5 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "a", min: 1, max: 4, value: 2, step: 0.5, label: "a" },
+    ],
+    objects: [
+      { id: "rate", kind: "function", appearance: "primary", formula: "a/x", domain: { min: 0.2, max: 8 } },
+      { id: "healthy", kind: "marker", x: "0.5", y: "a/0.5", appearance: "answer" },
+      { id: "thick", kind: "marker", x: "4", y: "a/4", appearance: "warning" },
+    ],
+    readouts: [
+      { key: "healthy", formula: "a/0.5" },
+      { key: "thick", formula: "a/4" },
+    ],
+  }}
+  labels={{
+    a: <>Surface area times pressure difference <InlineMath math="a" /></>,
+    healthy: <>Rate through a <InlineMath math="0.5\ \mu\text{m}" /> wall</>,
+    thick: <>Rate through a <InlineMath math="4\ \mu\text{m}" /> wall</>,
+  }}
+/>
+
+A wall eight times thicker cuts the rate of diffusion to one eighth. That's why diseases that thicken the alveolar walls leave patients short of breath.
+
+## The Breathing Mechanism
+
+Breathing depends on **Boyle's law**: for a fixed mass of gas at constant temperature, pressure is inversely proportional to volume. When the volume of the thorax increases, the pressure in the lungs drops below atmospheric pressure and air flows in. When the volume of the thorax decreases, the pressure rises and air flows out.
+
+| Part | Breathing in | Breathing out |
+| :--- | :--- | :--- |
+| External intercostal muscles | Contract | Relax |
+| Internal intercostal muscles | Relax | Contract during forced breathing out |
+| Rib cage | Moves up and out | Moves down and in |
+| Diaphragm | Contracts and flattens | Relaxes and curves upwards |
+| Volume of the thorax | Increases | Decreases |
+| Pressure in the lungs | Lower than atmospheric | Higher than atmospheric |
+
+This sealed syringe model shows the same principle. Push the air into a smaller volume, then warm it to body temperature, and watch the pressure rise. Air in the lungs squeezed this way flows out towards the lower atmospheric pressure.
+
+<GasPistonLab
+  title={<>Air Compressed in a Sealed Syringe</>}
+  description={
+    <>
+      Air at <InlineMath math="101\text{ kPa}" /> and{" "}
+      <InlineMath math="25^\circ\text{C}" /> is compressed to{" "}
+      <InlineMath math="0.8" /> of its starting volume, then warmed to{" "}
+      <InlineMath math="37^\circ\text{C}" />.
+    </>
+  }
+  pressure={101}
+  temperature={25}
+  volumeRatio={0.8}
+  finalTemperature={37}
+  labels={{
+    pressure: <>Air pressure</>,
+    stage: "Stage",
+    stages: {
+      start: <>Start</>,
+      compressed: <>Compressed</>,
+      heated: <>Warmed to body temperature</>,
+    },
+    temperature: <>Temperature</>,
+    viewLabel: "Air in a sealed syringe with a pressure gauge",
+    volume: <>Relative volume</>,
+  }}
+/>
+
+You can measure the pressure of a breath out with a **water manometer**. A student blows as hard as possible into one arm of a U-tube, and the difference in water levels shows how far the pressure in the lungs exceeds atmospheric pressure. Change the level difference and read the excess pressure.
+
+<ManometerLab
+  title={<>A Water Manometer Measuring a Breath Out</>}
+  description={
+    <>
+      A U-tube filled with water with one arm connected to the mouth.
+      Atmospheric pressure is <InlineMath math="76\text{ cmHg}" />.
+    </>
+  }
+  atmosphere={76}
+  difference={40}
+  liquidDensity={1}
+  referenceDensity={13.6}
+  labels={{
+    difference: <>Difference in water levels</>,
+    differenceName: "Level difference",
+    excess: <>Excess pressure in the lungs</>,
+    gas: <>Pressure of the breath out</>,
+    viewLabel: "A water manometer connected to the mouth",
+  }}
+/>
+
+### Example Pressure of a Breath Out
+
+The difference in water levels is <InlineMath math="40\text{ cm}" />. Convert **the excess pressure** to centimetres of mercury and find the pressure of the breath out.
+
+<MathContainer>
+<BlockMath math="\text{Excess pressure} = 40 \times \frac{1}{13.6} = 2.94\text{ cmHg}" />
+<BlockMath math="\text{Pressure of breath} = 76 + 2.94 = 78.94\text{ cmHg}" />
+</MathContainer>
+
+Check: water is <InlineMath math="13.6" /> times less dense than mercury, so a <InlineMath math="40\text{ cm}" /> water column has to become much shorter in mercury. The value <InlineMath math="2.94\text{ cm}" /> fits that.
+
+### Example Ventilation Rate
+
+The **ventilation rate** is the volume of air that enters the lungs in one minute:
+
+<BlockMath math="\text{Ventilation rate} = \text{tidal volume} \times \text{breathing rate}" />
+
+At rest, the tidal volume is <InlineMath math="0.5\text{ dm}^3" /> and the breathing rate is <InlineMath math="12" /> breaths a minute. After exercise, they are <InlineMath math="2.5\text{ dm}^3" /> and <InlineMath math="30" /> breaths a minute.
+
+<MathContainer>
+<BlockMath math="\text{Rest: } 0.5 \times 12 = 6\text{ dm}^3\text{ min}^{-1}" />
+<BlockMath math="\text{Exercise: } 2.5 \times 30 = 75\text{ dm}^3\text{ min}^{-1}" />
+</MathContainer>
+
+Check: <InlineMath math="75 \div 6 = 12.5" />, so ventilation rises about twelvefold to supply the muscles with extra oxygen.
+
+<BarChart
+  title={<>Ventilation Rate at Rest and during Exercise</>}
+  description={
+    <>
+      The volume of air breathed in each minute, tidal volume times breathing
+      rate, at three levels of activity.
+    </>
+  }
+  yAxisLabel="Ventilation rate (dm³ min⁻¹)"
+  data={[
+    { name: "Rest", value: 0.5 * 12 },
+    { name: "Walking", value: 1.2 * 18 },
+    { name: "Running", value: 2.5 * 30 },
+  ]}
+  chartConfig={{ value: { label: "Ventilation rate", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>
+
+## Oxygen Transport by Haemoglobin
+
+Oxygen that diffuses into the blood combines with **haemoglobin** in the red blood cells to form **oxyhaemoglobin**. In the alveoli, the partial pressure of oxygen is high, about <InlineMath math="13.3\text{ kPa}" />, so haemoglobin is almost saturated. In active tissues, the partial pressure of oxygen is low, about <InlineMath math="5.3\text{ kPa}" />, so oxyhaemoglobin breaks down and releases oxygen.
+
+The oxygen dissociation curve is S-shaped. Move the partial pressure slider to read the percentage saturation, and add carbon dioxide to watch the curve shift to the right, which is the **Bohr effect**.
+
+<MathVisual
+  title={<>The Oxygen Dissociation Curve</>}
+  description={
+    <>
+      Haemoglobin saturation in tens of percent,{" "}
+      <InlineMath math="\dfrac{10p^{2.7}}{p^{2.7} + b^{2.7}}" />, against the
+      partial pressure of oxygen <InlineMath math="p" /> in kPa. The value{" "}
+      <InlineMath math="b" /> is the partial pressure at half saturation.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 14.5 }, y: { min: 0, max: 10.5 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "p", min: 0.5, max: 14, value: 5.3, step: 0.1, label: "p" },
+      { name: "b", min: 3.5, max: 5, value: 3.5, step: 0.1, label: "b" },
+    ],
+    objects: [
+      { id: "curve", kind: "function", appearance: "primary", formula: "10x^2.7/(x^2.7 + b^2.7)", domain: { min: 0, max: 14 } },
+      { id: "normal", kind: "function", appearance: "reference", formula: "10x^2.7/(x^2.7 + 3.5^2.7)", domain: { min: 0, max: 14 } },
+      { id: "now", kind: "marker", x: "p", y: "10p^2.7/(p^2.7 + b^2.7)", appearance: "warning" },
+    ],
+    readouts: [
+      { key: "saturation", formula: "100p^2.7/(p^2.7 + b^2.7)" },
+    ],
+  }}
+  labels={{
+    p: <>Partial pressure of oxygen <InlineMath math="p" /></>,
+    b: <>Pressure at half saturation <InlineMath math="b" /></>,
+    saturation: <>Percentage saturation of haemoglobin</>,
+  }}
+/>
+
+### Example Oxygen Released to the Tissues
+
+Fully saturated blood carries <InlineMath math="20\text{ cm}^3" /> of oxygen in every <InlineMath math="100\text{ cm}^3" /> of blood. On the normal curve, saturation is <InlineMath math="97\%" /> in the alveoli and <InlineMath math="75\%" /> in the tissues. Calculate **the volume of oxygen released** by <InlineMath math="100\text{ cm}^3" /> of blood.
+
+<BlockMath math="(0.97 - 0.75) \times 20 = 0.22 \times 20 = 4.4\text{ cm}^3" />
+
+Check with the model: set the slider to <InlineMath math="p = 13.3" /> and it reads <InlineMath math="97\%" />, then to <InlineMath math="p = 5.3" /> and it reads <InlineMath math="75\%" />. When <InlineMath math="b" /> rises to <InlineMath math="4.5" />, saturation in the tissues drops to about <InlineMath math="61\%" />, so active muscle receives more oxygen.
+
+### Carbon Monoxide Takes Over Haemoglobin
+
+**Carbon monoxide** from cigarette smoke binds to haemoglobin about <InlineMath math="200" /> times more strongly than oxygen. Haemoglobin bound to carbon monoxide can't carry oxygen. If <InlineMath math="5\%" /> of a smoker's haemoglobin is bound to carbon monoxide, their saturated blood carries only <InlineMath math="0.95 \times 20 = 19\text{ cm}^3" /> of oxygen per <InlineMath math="100\text{ cm}^3" />.
+
+## Respiratory Structures in Animals
+
+Every animal has a breathing surface that is thin, moist and large, but its form depends on where the animal lives.
+
+| Animal | Respiratory structure | Adaptation |
+| :--- | :--- | :--- |
+| Protozoa | Plasma membrane | Large surface area to volume ratio |
+| Insects | Tracheal system with spiracles and tracheoles | Tracheoles deliver air straight to cells, without blood |
+| Fish | Gills with filaments and lamellae | Countercurrent flow of water and blood |
+| Amphibians | Moist skin and simple lungs | Thin skin rich in capillaries |
+| Humans | Lungs with alveoli | Surface area of about <InlineMath math="70\text{ m}^2" /> |
+
+In a fish's gills, blood in the lamellae flows **in the opposite direction** to the water. That way, the blood always meets water richer in oxygen, so the concentration gradient is kept along the whole lamella and the fish can absorb up to <InlineMath math="80\%" /> of the dissolved oxygen.
+
+## Common Mistakes about Respiratory Systems
+
+| Mistake | Why it's wrong | How to check |
+| :--- | :--- | :--- |
+| Air enters because the lungs suck it in. | The lungs have no muscle. Air enters because the pressure in the lungs falls as the thorax expands. | Follow the change in volume, then pressure. |
+| The diaphragm curves upwards when you breathe in. | The diaphragm contracts and flattens when you breathe in. | A contracting muscle increases the volume of the thorax. |
+| Exhaled air contains no oxygen. | Exhaled air still holds about <InlineMath math="16\%" /> oxygen. | Compare it with <InlineMath math="21\%" /> in inhaled air. |
+| Breathing is the same as cellular respiration. | Breathing exchanges air, while cellular respiration is a chemical reaction in the mitochondria. | Ask whether the process is physical or chemical. |
+
+The first mistake is the most common one in breathing mechanism questions. **Volume changes first, then pressure, then airflow**.
+
+## Practice on Respiratory Systems
+
+These questions move from the breathing mechanism to oxygen transport calculations. **State the pressure change** in every answer about airflow.
+
+1. Explain what happens to the diaphragm and the pressure in the lungs when you breathe in.
+
+2. A student's tidal volume is <InlineMath math="0.6\text{ dm}^3" /> and their breathing rate is <InlineMath math="15" /> breaths a minute. Calculate their ventilation rate.
+
+3. Haemoglobin saturation falls from <InlineMath math="96\%" /> to <InlineMath math="60\%" /> during exercise. Every <InlineMath math="100\text{ cm}^3" /> of saturated blood carries <InlineMath math="20\text{ cm}^3" /> of oxygen. Calculate the oxygen released by <InlineMath math="100\text{ cm}^3" /> of blood.
+
+4. Explain why emphysema, which damages the alveolar walls, makes a patient tire quickly.
+
+### Solutions
+
+**Solution 1**: The diaphragm **contracts and flattens**, and the external intercostal muscles contract. The volume of the thorax increases, so the pressure in the lungs falls below atmospheric pressure and air flows in.
+
+**Solution 2**: Multiply the tidal volume by the breathing rate:
+
+<BlockMath math="0.6 \times 15 = 9\text{ dm}^3\text{ min}^{-1}" />
+
+Check: this is a little higher than <InlineMath math="6\text{ dm}^3\text{ min}^{-1}" /> at rest, which suits light activity.
+
+**Solution 3**: Multiply the change in saturation by the oxygen content of saturated blood:
+
+<BlockMath math="(0.96 - 0.60) \times 20 = 0.36 \times 20 = 7.2\text{ cm}^3" />
+
+Check: <InlineMath math="7.2\text{ cm}^3" /> is more than the <InlineMath math="4.4\text{ cm}^3" /> at rest, because the Bohr effect releases more oxygen to the muscles.
+
+**Solution 4**: Emphysema breaks down the alveolar walls, so **the surface area for gas exchange shrinks**. By Fick's law, the rate of oxygen diffusion falls, the blood is less saturated, and muscle cells receive less oxygen for cellular respiration.

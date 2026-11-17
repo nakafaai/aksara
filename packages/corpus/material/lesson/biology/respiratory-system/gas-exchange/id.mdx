@@ -1,0 +1,278 @@
+export const metadata = {
+  title: "Sistem Pernapasan pada Manusia dan Hewan",
+  description:
+    "Jelaskan mekanisme bernapas, pertukaran gas di alveolus, pengangkutan oksigen oleh hemoglobin, dan alat pernapasan hewan lewat contoh dan latihan.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2026-11-17",
+  subject: "Sistem Pernapasan pada Manusia dan Hewan",
+};
+
+## Sistem Pernapasan Membawa Oksigen ke Darah
+
+**Sistem pernapasan** membawa oksigen dari udara ke dalam darah dan membuang karbon dioksida. Udara masuk dan keluar paru-paru karena **perubahan volume rongga dada mengubah tekanan udara di dalam paru-paru**. Di alveolus, oksigen berdifusi ke dalam darah lalu diangkut oleh **hemoglobin** ke sel tubuh. Dalam model di sini, kamu memampatkan udara seperti rongga dada, mengukur tekanan embusan napas, membaca kurva hemoglobin, dan membandingkan permukaan pernapasan.
+
+Jangan tertukar antara **bernapas** dan **respirasi sel**. Bernapas adalah proses fisik menghirup dan mengembuskan udara. Respirasi sel adalah reaksi kimia di dalam mitokondria yang melepaskan energi dari glukosa.
+
+## Struktur Sistem Pernapasan Manusia
+
+Udara melewati **rongga hidung, trakea, bronkus, dan bronkiolus** sebelum sampai ke **alveolus**. Cincin tulang rawan menjaga trakea tetap terbuka. Paru-paru berisi sekitar <InlineMath math="300" /> juta alveolus dengan luas permukaan sekitar <InlineMath math="70\text{ m}^2" />.
+
+Alveolus disesuaikan untuk pertukaran gas yang efisien:
+
+- dindingnya **setebal satu sel** sehingga jarak difusi pendek,
+- jumlahnya sangat banyak sehingga **luas permukaannya sangat besar**,
+- permukaannya lembap sehingga gas larut sebelum berdifusi,
+- dikelilingi **jaringan kapiler darah** yang rapat untuk menjaga gradien konsentrasi.
+
+Laju difusi gas mengikuti **hukum Fick**: laju berbanding lurus dengan luas permukaan dan selisih tekanan parsial, serta berbanding terbalik dengan tebal membran. Geser penggeser luas permukaan dan lihat laju difusi turun saat membran makin tebal.
+
+<MathVisual
+  title={<>Laju Difusi Gas Melintasi Dinding Alveolus</>}
+  description={
+    <>
+      Laju relatif <InlineMath math="\dfrac{a}{d}" /> terhadap tebal membran{" "}
+      <InlineMath math="d" /> dalam mikrometer, dengan <InlineMath math="a" />{" "}
+      mewakili luas permukaan dikali selisih tekanan parsial.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 8.5 }, y: { min: 0, max: 8.5 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "a", min: 1, max: 4, value: 2, step: 0.5, label: "a" },
+    ],
+    objects: [
+      { id: "rate", kind: "function", appearance: "primary", formula: "a/x", domain: { min: 0.2, max: 8 } },
+      { id: "healthy", kind: "marker", x: "0.5", y: "a/0.5", appearance: "answer" },
+      { id: "thick", kind: "marker", x: "4", y: "a/4", appearance: "warning" },
+    ],
+    readouts: [
+      { key: "healthy", formula: "a/0.5" },
+      { key: "thick", formula: "a/4" },
+    ],
+  }}
+  labels={{
+    a: <>Luas permukaan dikali selisih tekanan <InlineMath math="a" /></>,
+    healthy: <>Laju pada dinding <InlineMath math="0{,}5\ \mu\text{m}" /></>,
+    thick: <>Laju pada dinding <InlineMath math="4\ \mu\text{m}" /></>,
+  }}
+/>
+
+Dinding yang delapan kali lebih tebal menurunkan laju difusi menjadi seperdelapannya. Itulah sebabnya penyakit yang menebalkan dinding alveolus membuat penderitanya cepat sesak napas.
+
+## Mekanisme Bernapas
+
+Bernapas bergantung pada **hukum Boyle**: untuk massa gas tetap pada suhu tetap, tekanan berbanding terbalik dengan volume. Saat volume rongga dada bertambah, tekanan di dalam paru-paru turun di bawah tekanan atmosfer dan udara masuk. Saat volume rongga dada berkurang, tekanan naik dan udara keluar.
+
+| Bagian | Menghirup | Mengembuskan |
+| :--- | :--- | :--- |
+| Otot antartulang rusuk luar | Berkontraksi | Berelaksasi |
+| Otot antartulang rusuk dalam | Berelaksasi | Berkontraksi saat embusan kuat |
+| Tulang rusuk | Bergerak ke atas dan ke luar | Bergerak ke bawah dan ke dalam |
+| Diafragma | Berkontraksi dan mendatar | Berelaksasi dan melengkung ke atas |
+| Volume rongga dada | Bertambah | Berkurang |
+| Tekanan dalam paru-paru | Lebih rendah dari atmosfer | Lebih tinggi dari atmosfer |
+
+Model suntikan tertutup ini menunjukkan prinsip yang sama. Tekan udara ke volume yang lebih kecil, lalu panaskan sampai suhu tubuh, dan perhatikan tekanannya naik. Udara di paru-paru yang dimampatkan seperti ini mengalir keluar menuju tekanan atmosfer yang lebih rendah.
+
+<GasPistonLab
+  title={<>Udara dalam Suntikan Tertutup Dimampatkan</>}
+  description={
+    <>
+      Udara pada <InlineMath math="101\text{ kPa}" /> dan{" "}
+      <InlineMath math="25^\circ\text{C}" /> dimampatkan menjadi{" "}
+      <InlineMath math="0{,}8" /> kali volume awal, lalu dipanaskan sampai{" "}
+      <InlineMath math="37^\circ\text{C}" />.
+    </>
+  }
+  pressure={101}
+  temperature={25}
+  volumeRatio={0.8}
+  finalTemperature={37}
+  labels={{
+    pressure: <>Tekanan udara</>,
+    stage: "Tahap",
+    stages: {
+      start: <>Awal</>,
+      compressed: <>Dimampatkan</>,
+      heated: <>Dipanaskan sampai suhu tubuh</>,
+    },
+    temperature: <>Suhu</>,
+    viewLabel: "Udara di dalam suntikan tertutup dengan pengukur tekanan",
+    volume: <>Volume relatif</>,
+  }}
+/>
+
+Tekanan embusan napas bisa diukur dengan **manometer air**. Seorang siswa mengembus sekuat mungkin ke salah satu kaki pipa U, dan selisih tinggi air menunjukkan seberapa besar tekanan di paru-paru melebihi tekanan atmosfer. Ubah selisih tinggi dan baca tekanan lebihnya.
+
+<ManometerLab
+  title={<>Manometer Air Mengukur Tekanan Embusan</>}
+  description={
+    <>
+      Pipa U berisi air dengan satu kaki tersambung ke mulut. Tekanan atmosfer{" "}
+      <InlineMath math="76\text{ cmHg}" />.
+    </>
+  }
+  atmosphere={76}
+  difference={40}
+  liquidDensity={1}
+  referenceDensity={13.6}
+  labels={{
+    difference: <>Selisih tinggi air</>,
+    differenceName: "Selisih tinggi",
+    excess: <>Tekanan lebih dalam paru-paru</>,
+    gas: <>Tekanan udara embusan</>,
+    viewLabel: "Manometer air yang tersambung ke mulut",
+  }}
+/>
+
+### Contoh Tekanan Embusan Napas
+
+Selisih tinggi air adalah <InlineMath math="40\text{ cm}" />. Ubah **tekanan lebih** ke sentimeter raksa dan tentukan tekanan udara embusan.
+
+<MathContainer>
+<BlockMath math="\text{Tekanan lebih} = 40 \times \frac{1}{13{,}6} = 2{,}94\text{ cmHg}" />
+<BlockMath math="\text{Tekanan embusan} = 76 + 2{,}94 = 78{,}94\text{ cmHg}" />
+</MathContainer>
+
+Cek: air <InlineMath math="13{,}6" /> kali kurang rapat dibanding raksa, jadi kolom air <InlineMath math="40\text{ cm}" /> harus jauh lebih pendek saat diubah ke raksa. Nilai <InlineMath math="2{,}94\text{ cm}" /> sesuai dengan itu.
+
+### Contoh Laju Ventilasi
+
+**Laju ventilasi** adalah volume udara yang masuk ke paru-paru dalam satu menit:
+
+<BlockMath math="\text{Laju ventilasi} = \text{volume tidal} \times \text{frekuensi napas}" />
+
+Saat istirahat, volume tidal <InlineMath math="0{,}5\text{ dm}^3" /> dan frekuensi napas <InlineMath math="12" /> kali per menit. Setelah berolahraga, nilainya <InlineMath math="2{,}5\text{ dm}^3" /> dan <InlineMath math="30" /> kali per menit.
+
+<MathContainer>
+<BlockMath math="\text{Istirahat: } 0{,}5 \times 12 = 6\text{ dm}^3\text{ min}^{-1}" />
+<BlockMath math="\text{Olahraga: } 2{,}5 \times 30 = 75\text{ dm}^3\text{ min}^{-1}" />
+</MathContainer>
+
+Cek: <InlineMath math="75 \div 6 = 12{,}5" />, jadi ventilasi naik sekitar dua belas kali lipat untuk memasok oksigen tambahan ke otot.
+
+<BarChart
+  title={<>Laju Ventilasi Saat Istirahat dan Berolahraga</>}
+  description={
+    <>
+      Volume udara yang dihirup setiap menit, yaitu volume tidal dikali
+      frekuensi napas, pada tiga tingkat aktivitas.
+    </>
+  }
+  yAxisLabel="Laju ventilasi (dm³ min⁻¹)"
+  data={[
+    { name: "Istirahat", value: 0.5 * 12 },
+    { name: "Berjalan", value: 1.2 * 18 },
+    { name: "Berlari", value: 2.5 * 30 },
+  ]}
+  chartConfig={{ value: { label: "Laju ventilasi", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>
+
+## Pengangkutan Oksigen oleh Hemoglobin
+
+Oksigen yang berdifusi ke dalam darah berikatan dengan **hemoglobin** di dalam sel darah merah membentuk **oksihemoglobin**. Di alveolus, tekanan parsial oksigen tinggi, sekitar <InlineMath math="13{,}3\text{ kPa}" />, sehingga hemoglobin hampir jenuh. Di jaringan yang aktif, tekanan parsial oksigen rendah, sekitar <InlineMath math="5{,}3\text{ kPa}" />, sehingga oksihemoglobin terurai dan melepaskan oksigen.
+
+Kurva disosiasi oksihemoglobin berbentuk S. Geser penggeser tekanan parsial untuk membaca persentase kejenuhan, lalu tambahkan karbon dioksida untuk melihat kurva bergeser ke kanan, yang disebut **efek Bohr**.
+
+<MathVisual
+  title={<>Kurva Disosiasi Oksihemoglobin</>}
+  description={
+    <>
+      Kejenuhan hemoglobin dalam puluhan persen,{" "}
+      <InlineMath math="\dfrac{10p^{2{,}7}}{p^{2{,}7} + b^{2{,}7}}" />, terhadap
+      tekanan parsial oksigen <InlineMath math="p" /> dalam kPa. Nilai{" "}
+      <InlineMath math="b" /> adalah tekanan parsial saat kejenuhan setengah.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 14.5 }, y: { min: 0, max: 10.5 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "p", min: 0.5, max: 14, value: 5.3, step: 0.1, label: "p" },
+      { name: "b", min: 3.5, max: 5, value: 3.5, step: 0.1, label: "b" },
+    ],
+    objects: [
+      { id: "curve", kind: "function", appearance: "primary", formula: "10x^2.7/(x^2.7 + b^2.7)", domain: { min: 0, max: 14 } },
+      { id: "normal", kind: "function", appearance: "reference", formula: "10x^2.7/(x^2.7 + 3.5^2.7)", domain: { min: 0, max: 14 } },
+      { id: "now", kind: "marker", x: "p", y: "10p^2.7/(p^2.7 + b^2.7)", appearance: "warning" },
+    ],
+    readouts: [
+      { key: "saturation", formula: "100p^2.7/(p^2.7 + b^2.7)" },
+    ],
+  }}
+  labels={{
+    p: <>Tekanan parsial oksigen <InlineMath math="p" /></>,
+    b: <>Tekanan saat kejenuhan setengah <InlineMath math="b" /></>,
+    saturation: <>Persentase kejenuhan hemoglobin</>,
+  }}
+/>
+
+### Contoh Oksigen yang Dilepaskan ke Jaringan
+
+Darah yang jenuh penuh membawa <InlineMath math="20\text{ cm}^3" /> oksigen untuk setiap <InlineMath math="100\text{ cm}^3" /> darah. Menurut kurva normal, kejenuhan <InlineMath math="97\%" /> di alveolus dan <InlineMath math="75\%" /> di jaringan. Hitung **volume oksigen yang dilepaskan** oleh <InlineMath math="100\text{ cm}^3" /> darah.
+
+<BlockMath math="(0{,}97 - 0{,}75) \times 20 = 0{,}22 \times 20 = 4{,}4\text{ cm}^3" />
+
+Cek dengan model: letakkan penggeser di <InlineMath math="p = 13{,}3" />, bacaannya <InlineMath math="97\%" />, lalu di <InlineMath math="p = 5{,}3" />, bacaannya <InlineMath math="75\%" />. Saat <InlineMath math="b" /> dinaikkan menjadi <InlineMath math="4{,}5" />, kejenuhan di jaringan turun menjadi sekitar <InlineMath math="61\%" />, jadi otot yang aktif menerima lebih banyak oksigen.
+
+### Karbon Monoksida Merebut Hemoglobin
+
+**Karbon monoksida** dari asap rokok berikatan dengan hemoglobin sekitar <InlineMath math="200" /> kali lebih kuat daripada oksigen. Hemoglobin yang terikat karbon monoksida tidak bisa membawa oksigen. Jika <InlineMath math="5\%" /> hemoglobin perokok terikat karbon monoksida, darah jenuhnya hanya membawa <InlineMath math="0{,}95 \times 20 = 19\text{ cm}^3" /> oksigen per <InlineMath math="100\text{ cm}^3" />.
+
+## Alat Pernapasan Hewan
+
+Setiap hewan punya permukaan pernapasan yang tipis, lembap, dan luas, tetapi bentuknya berbeda menurut habitatnya.
+
+| Hewan | Alat pernapasan | Penyesuaian |
+| :--- | :--- | :--- |
+| Protozoa | Membran plasma | Perbandingan luas permukaan terhadap volume besar |
+| Serangga | Sistem trakea dengan spirakel dan trakeolus | Trakeolus langsung membawa udara ke sel, tanpa darah |
+| Ikan | Insang dengan filamen dan lamela | Aliran berlawanan arah antara air dan darah |
+| Amfibi | Kulit lembap dan paru-paru sederhana | Kulit tipis yang kaya kapiler |
+| Manusia | Paru-paru dengan alveolus | Luas permukaan sekitar <InlineMath math="70\text{ m}^2" /> |
+
+Pada insang ikan, darah di lamela mengalir **berlawanan arah** dengan air. Dengan begitu, darah selalu bertemu air yang lebih kaya oksigen, sehingga gradien konsentrasi terjaga sepanjang lamela dan ikan dapat menyerap hingga <InlineMath math="80\%" /> oksigen terlarut.
+
+## Kesalahan Umum tentang Sistem Pernapasan
+
+| Kesalahan | Mengapa salah | Cara mengecek |
+| :--- | :--- | :--- |
+| Udara masuk karena paru-paru menyedotnya. | Paru-paru tidak berotot. Udara masuk karena tekanan di paru-paru turun saat rongga dada membesar. | Ikuti perubahan volume, lalu tekanan. |
+| Diafragma melengkung ke atas saat menghirup. | Diafragma berkontraksi dan mendatar saat menghirup. | Otot yang berkontraksi menambah volume rongga dada. |
+| Udara embusan tidak mengandung oksigen. | Udara embusan masih berisi sekitar <InlineMath math="16\%" /> oksigen. | Bandingkan dengan <InlineMath math="21\%" /> pada udara hirupan. |
+| Bernapas sama dengan respirasi sel. | Bernapas adalah pertukaran udara, sedangkan respirasi sel adalah reaksi kimia di mitokondria. | Tanyakan apakah prosesnya fisik atau kimia. |
+
+Kesalahan pertama paling sering muncul dalam soal mekanisme bernapas. **Volume berubah lebih dulu, lalu tekanan, lalu aliran udara**.
+
+## Latihan Sistem Pernapasan
+
+Soal-soal ini bergerak dari mekanisme bernapas sampai perhitungan pengangkutan oksigen. **Sebutkan perubahan tekanan** di setiap jawaban tentang aliran udara.
+
+1. Jelaskan apa yang terjadi pada diafragma dan tekanan di paru-paru saat menghirup.
+
+2. Volume tidal seorang siswa <InlineMath math="0{,}6\text{ dm}^3" /> dan frekuensi napasnya <InlineMath math="15" /> kali per menit. Hitung laju ventilasinya.
+
+3. Kejenuhan hemoglobin turun dari <InlineMath math="96\%" /> menjadi <InlineMath math="60\%" /> saat berolahraga. Setiap <InlineMath math="100\text{ cm}^3" /> darah jenuh membawa <InlineMath math="20\text{ cm}^3" /> oksigen. Hitung oksigen yang dilepaskan oleh <InlineMath math="100\text{ cm}^3" /> darah.
+
+4. Jelaskan mengapa emfisema, yaitu kerusakan dinding alveolus, membuat penderitanya cepat lelah.
+
+### Pembahasan
+
+**Pembahasan 1**: Diafragma **berkontraksi dan mendatar**, dan otot antartulang rusuk luar berkontraksi. Volume rongga dada bertambah, sehingga tekanan di paru-paru turun di bawah tekanan atmosfer dan udara mengalir masuk.
+
+**Pembahasan 2**: Kalikan volume tidal dengan frekuensi napas:
+
+<BlockMath math="0{,}6 \times 15 = 9\text{ dm}^3\text{ min}^{-1}" />
+
+Cek: nilai ini sedikit lebih tinggi daripada <InlineMath math="6\text{ dm}^3\text{ min}^{-1}" /> saat istirahat, cocok untuk aktivitas ringan.
+
+**Pembahasan 3**: Kalikan perubahan kejenuhan dengan kandungan oksigen darah jenuh:
+
+<BlockMath math="(0{,}96 - 0{,}60) \times 20 = 0{,}36 \times 20 = 7{,}2\text{ cm}^3" />
+
+Cek: <InlineMath math="7{,}2\text{ cm}^3" /> lebih besar daripada <InlineMath math="4{,}4\text{ cm}^3" /> saat istirahat, karena efek Bohr melepaskan lebih banyak oksigen ke otot.
+
+**Pembahasan 4**: Emfisema merusak dinding alveolus, sehingga **luas permukaan pertukaran gas berkurang**. Menurut hukum Fick, laju difusi oksigen turun, darah kurang jenuh, dan sel otot menerima lebih sedikit oksigen untuk respirasi sel.
