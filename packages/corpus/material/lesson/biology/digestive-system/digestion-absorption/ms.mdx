@@ -1,0 +1,286 @@
+export const metadata = {
+  title: "Nota Nutrisi dan Sistem Pencernaan Manusia Tingkatan Empat",
+  description:
+    "Nota Biologi Tingkatan 4 Bab 9: kira nilai tenaga makanan, terangkan pencernaan oleh enzim, penyerapan di ileum dan isu kesihatan pemakanan dengan latihan.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2026-11-17",
+  subject: "Nutrisi dan Sistem Pencernaan Manusia",
+};
+
+## Makanan Dicerna Menjadi Molekul Kecil yang Boleh Diserap
+
+**Gizi seimbang** mengandungi tujuh kelas makanan dalam kadar yang betul: **karbohidrat, protein, lipid, vitamin, garam mineral, pelawas dan air**. Karbohidrat, protein dan lipid ialah molekul besar yang tidak dapat merentas dinding usus. **Pencernaan** menguraikan molekul besar ini kepada molekul kecil yang larut, iaitu glukosa, asid amino, asid lemak dan gliserol, dengan bantuan enzim. Molekul kecil itu kemudian **diserap di ileum** dan digunakan oleh sel. Dalam model di sini, kamu membandingkan nilai tenaga makanan, membaca aktiviti enzim pada pH berbeza dan mengikuti kanji yang dicerna oleh amilase.
+
+## Nilai Tenaga Makanan
+
+Setiap gram nutrien membebaskan tenaga yang berbeza apabila dioksidakan di dalam sel. **Lipid membekalkan lebih daripada dua kali ganda tenaga** karbohidrat atau protein.
+
+<BarChart
+  title={<>Nilai Tenaga bagi Setiap Gram Nutrien</>}
+  description={
+    <>
+      Tenaga yang dibebaskan oleh satu gram karbohidrat, protein dan lipid
+      dalam kilojoule.
+    </>
+  }
+  yAxisLabel="Nilai tenaga (kJ g⁻¹)"
+  data={[
+    { name: "Karbohidrat", value: 17 },
+    { name: "Protein", value: 17 },
+    { name: "Lipid", value: 37 },
+  ]}
+  chartConfig={{ value: { label: "Nilai tenaga", colors: { light: ["var(--chart-2)"], dark: ["var(--chart-2)"] } } }}
+/>
+
+### Contoh Tenaga dalam Satu Hidangan
+
+Satu hidangan mengandungi <InlineMath math="60\text{ g}" /> karbohidrat, <InlineMath math="20\text{ g}" /> protein dan <InlineMath math="15\text{ g}" /> lipid. Kira **jumlah tenaga** hidangan itu.
+
+<BlockMath math="60 \times 17 + 20 \times 17 + 15 \times 37 = 1020 + 340 + 555 = 1915\text{ kJ}" />
+
+Semak: lipid hanya <InlineMath math="15\text{ g}" /> tetapi membekalkan <InlineMath math="555\text{ kJ}" />, lebih daripada protein yang beratnya hampir sama. Nilai itu sepadan dengan nilai tenaga lipid yang tinggi.
+
+### Contoh Mengukur Nilai Tenaga dengan Kalorimeter Ringkas
+
+Sebiji kacang tanah <InlineMath math="1.0\text{ g}" /> dibakar di bawah tabung didih berisi <InlineMath math="20\text{ cm}^3" /> air. Suhu air naik daripada <InlineMath math="28^\circ\text{C}" /> kepada <InlineMath math="58^\circ\text{C}" />. Muatan haba tentu air ialah <InlineMath math="4.2\text{ J g}^{-1}\,{}^\circ\text{C}^{-1}" />. Kira **nilai tenaga kacang tanah**.
+
+<MathContainer>
+<BlockMath math="Q = mc\Delta\theta = 20 \times 4.2 \times 30 = 2520\text{ J}" />
+<BlockMath math="\text{Nilai tenaga} = \frac{2520}{1.0} = 2520\text{ J g}^{-1} = 2.52\text{ kJ g}^{-1}" />
+</MathContainer>
+
+Semak: nilai sebenar kacang tanah lebih kurang sepuluh kali lebih besar. Banyak haba hilang ke udara dan tabung didih, jadi kalorimeter ringkas sentiasa memberikan nilai yang terlalu rendah.
+
+Graf ini menunjukkan keputusan apabila jisim kacang yang dibakar diubah. Kecerunan garis ialah kenaikan suhu bagi setiap gram makanan.
+
+<ScatterDiagram
+  title={<>Kenaikan Suhu Air melawan Jisim Kacang yang Dibakar</>}
+  description={
+    <>
+      Setiap titik ialah satu pembakaran di bawah <InlineMath math="20\text{ cm}^3" />{" "}
+      air. Kecerunan kira-kira <InlineMath math="30^\circ\text{C}" /> bagi
+      setiap gram.
+    </>
+  }
+  xAxisLabel="Jisim kacang (g)"
+  yAxisLabel="Kenaikan suhu (°C)"
+  calculateRegressionLine
+  datasets={[
+    {
+      name: "Kacang tanah",
+      color: "var(--chart-1)",
+      points: [
+        { x: 0.2, y: 6.1 },
+        { x: 0.4, y: 11.8 },
+        { x: 0.6, y: 18.2 },
+        { x: 0.8, y: 23.9 },
+        { x: 1.0, y: 30.0 },
+      ],
+    },
+  ]}
+/>
+
+## Pencernaan dalam Sistem Pencernaan Manusia
+
+Pencernaan berlaku secara **mekanikal**, iaitu mengunyah dan pergerakan peristalsis, dan secara **kimia** oleh enzim. Setiap enzim bertindak pada substrat tertentu di bahagian salur yang tertentu.
+
+| Tempat | Rembesan | Enzim | Tindakan |
+| :--- | :--- | :--- | :--- |
+| Mulut | Air liur | Amilase liur | Kanji kepada maltosa |
+| Perut | Jus gastrik dengan asid hidroklorik | Pepsin, renin | Protein kepada polipeptida, kaseinogen kepada kasein |
+| Duodenum | Jus pankreas dan hempedu | Amilase, tripsin, lipase | Kanji kepada maltosa, polipeptida kepada peptida, lipid kepada asid lemak dan gliserol |
+| Ileum | Jus usus | Maltase, sukrase, laktase, erepsin, lipase | Disakarida kepada monosakarida, peptida kepada asid amino |
+
+**Hempedu** tidak mengandungi enzim. Hempedu mengemulsikan lipid menjadi titisan kecil supaya luas permukaan untuk tindakan lipase bertambah, dan meneutralkan kim berasid dari perut.
+
+### Enzim dan pH Optimum
+
+Setiap enzim mempunyai **pH optimum**. Pepsin bekerja dalam perut yang berasid, manakala amilase dan tripsin bekerja dalam keadaan neutral atau sedikit beralkali. Gerakkan gelangsar pH dan bandingkan aktiviti ketiga-tiga enzim.
+
+<MathVisual
+  title={<>Aktiviti Enzim Pencernaan pada pH Berbeza</>}
+  description={
+    <>
+      Aktiviti relatif pepsin dengan pH optimum <InlineMath math="2" />,
+      amilase dengan pH optimum <InlineMath math="7" /> dan tripsin dengan pH
+      optimum <InlineMath math="8" />, pada skala{" "}
+      <InlineMath math="0" /> hingga <InlineMath math="10" />.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 14 }, y: { min: 0, max: 10.5 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "p", min: 0, max: 14, value: 2, step: 0.5, label: "p" },
+    ],
+    objects: [
+      { id: "pepsin", kind: "function", appearance: "primary", formula: "10exp(-(x - 2)^2/2)", domain: { min: 0, max: 14 } },
+      { id: "amylase", kind: "function", appearance: "secondary", formula: "10exp(-(x - 7)^2/2)", domain: { min: 0, max: 14 } },
+      { id: "trypsin", kind: "function", appearance: "reference", formula: "10exp(-(x - 8)^2/2)", domain: { min: 0, max: 14 } },
+      { id: "now", kind: "marker", x: "p", y: "10exp(-(p - 2)^2/2)", appearance: "warning" },
+    ],
+    readouts: [
+      { key: "pepsin", formula: "10exp(-(p - 2)^2/2)" },
+      { key: "amylase", formula: "10exp(-(p - 7)^2/2)" },
+      { key: "trypsin", formula: "10exp(-(p - 8)^2/2)" },
+    ],
+  }}
+  labels={{
+    p: <>pH medium <InlineMath math="p" /></>,
+    pepsin: <>Aktiviti pepsin</>,
+    amylase: <>Aktiviti amilase</>,
+    trypsin: <>Aktiviti tripsin</>,
+  }}
+/>
+
+### Contoh Kanji Dicerna oleh Amilase
+
+Larutan kanji dicampurkan dengan amilase pada suhu badan. Setitik campuran diuji dengan **larutan iodin** setiap minit. Kanji tinggal menurun mengikut <InlineMath math="10e^{-km}" />, dengan <InlineMath math="m" /> dalam minit. Ubah kadar <InlineMath math="k" /> untuk meniru suhu yang berbeza, dan gerakkan masa untuk melihat kanji yang tinggal.
+
+<MathVisual
+  title={<>Kanji yang Tinggal Semasa Dicerna oleh Amilase</>}
+  description={
+    <>
+      Kanji relatif <InlineMath math="10e^{-km}" /> terhadap masa{" "}
+      <InlineMath math="m" /> dalam minit. Iodin tidak lagi bertukar biru gelap
+      apabila kanji jatuh di bawah <InlineMath math="1" />.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 14 }, y: { min: 0, max: 10.5 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "k", min: 0.1, max: 1, value: 0.5, step: 0.05, label: "k" },
+      { name: "m", min: 0, max: 14, value: 4, step: 0.5, label: "m" },
+    ],
+    objects: [
+      { id: "starch", kind: "function", appearance: "primary", formula: "10exp(-k x)", domain: { min: 0, max: 14 } },
+      { id: "limit", kind: "function", appearance: "construction", formula: "1 + 0x", domain: { min: 0, max: 14 } },
+      { id: "now", kind: "marker", x: "m", y: "10exp(-k m)", appearance: "warning" },
+    ],
+    readouts: [
+      { key: "remaining", formula: "10exp(-k m)" },
+    ],
+  }}
+  labels={{
+    k: <>Kadar pencernaan <InlineMath math="k" /></>,
+    m: <>Masa <InlineMath math="m" /> dalam minit</>,
+    remaining: <>Kanji yang tinggal</>,
+  }}
+/>
+
+Dengan <InlineMath math="k = 0.5" />, kanji jatuh kepada <InlineMath math="10e^{-0.5 \times 4} = 1.35" /> selepas <InlineMath math="4" /> minit, dan di bawah <InlineMath math="1" /> selepas kira-kira <InlineMath math="4.6" /> minit. Semak: <InlineMath math="10e^{-0.5 \times 4.6} = 1.00" />. Pada suhu yang lebih rendah, <InlineMath math="k" /> lebih kecil dan ujian iodin kekal biru gelap lebih lama.
+
+## Penyerapan dan Asimilasi
+
+Ileum disesuaikan untuk penyerapan. Dindingnya berlipat dan dipenuhi **vilus**, dan setiap sel epitelium vilus mempunyai **mikrovilus**, jadi luas permukaan sangat besar. Dinding vilus setebal satu sel, dan setiap vilus mengandungi **kapilari darah** dan **lakteal**.
+
+- Glukosa dan asid amino diserap ke dalam kapilari darah, kemudian dibawa oleh **vena portal hepar** ke hati.
+- Asid lemak dan gliserol diserap ke dalam lakteal dan dibawa oleh sistem limfa sebelum memasuki darah.
+- Air dan garam mineral yang tinggal diserap di **kolon**, dan bahan yang tidak tercerna seperti pelawas disingkirkan sebagai tinja.
+
+**Asimilasi** ialah penggunaan nutrien yang diserap oleh sel. Hati menukarkan glukosa berlebihan kepada glikogen, asid amino digunakan untuk membina protein, dan lipid membina membran plasma atau disimpan di bawah kulit.
+
+## Isu Kesihatan Pemakanan
+
+Tabiat pemakanan yang tidak seimbang menyebabkan **malnutrisi**. Pengambilan tenaga yang berlebihan membawa kepada obesiti, kekurangan protein menyebabkan kwasyiorkor, dan kekurangan pelawas menyebabkan sembelit. Gastrik pula berlaku apabila asid perut menghakis dinding perut, sering kerana makan tidak menentu.
+
+### Indeks Jisim Badan
+
+**Indeks jisim badan**, <InlineMath math="\text{IJB} = \dfrac{\text{jisim}}{\text{tinggi}^2}" />, memberi anggaran sama ada jisim badan sesuai dengan ketinggian. Model ini melukis jisim bagi setiap ketinggian pada nilai IJB yang dipilih. Lengkung rujukan menandakan sempadan <InlineMath math="18.5" /> dan <InlineMath math="25" />.
+
+<MathVisual
+  title={<>Jisim Badan bagi Setiap Ketinggian pada IJB Tertentu</>}
+  description={
+    <>
+      Paksi mendatar ialah ketinggian melebihi <InlineMath math="140\text{ cm}" /> dalam
+      desimeter, dan paksi menegak ialah jisim dalam unit{" "}
+      <InlineMath math="20\text{ kg}" />. Lengkung tengah menunjukkan jisim pada IJB{" "}
+      <InlineMath math="b" />, di antara IJB <InlineMath math="18.5" /> dan{" "}
+      <InlineMath math="25" />.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 6.8 }, y: { min: 0, max: 7.2 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "b", min: 15, max: 35, value: 22, step: 0.5, label: "b" },
+      { name: "h", min: 14, max: 20, value: 16, step: 0.1, label: "h" },
+    ],
+    objects: [
+      { id: "chosen", kind: "function", appearance: "primary", formula: "b (x + 14)^2/2000", domain: { min: 0, max: 6 } },
+      { id: "under", kind: "function", appearance: "reference", formula: "18.5(x + 14)^2/2000", domain: { min: 0, max: 6 } },
+      { id: "over", kind: "function", appearance: "reference", formula: "25(x + 14)^2/2000", domain: { min: 0, max: 6 } },
+      { id: "now", kind: "marker", x: "h - 14", y: "b h^2/2000", appearance: "warning" },
+    ],
+    labels: [
+      { key: "tag-under", objectId: "under", at: { x: 6, y: 3.7 }, placement: "right" },
+      { key: "tag-over", objectId: "over", at: { x: 6, y: 5 }, placement: "right" },
+    ],
+    readouts: [
+      { key: "mass", formula: "b h^2/100" },
+    ],
+  }}
+  labels={{
+    "tag-under": <InlineMath math="18.5" />,
+    "tag-over": <InlineMath math="25" />,
+    b: <>Indeks jisim badan <InlineMath math="b" /></>,
+    h: <>Ketinggian <InlineMath math="h" /> dalam desimeter</>,
+    mass: <>Jisim badan dalam kilogram</>,
+  }}
+/>
+
+### Contoh Mengira Indeks Jisim Badan
+
+Seorang murid setinggi <InlineMath math="1.60\text{ m}" /> mempunyai jisim <InlineMath math="72\text{ kg}" />. Kira **IJB murid itu** dan nyatakan kategorinya.
+
+<BlockMath math="\text{IJB} = \frac{72}{1.60^2} = \frac{72}{2.56} = 28.1" />
+
+IJB <InlineMath math="28.1" /> melebihi <InlineMath math="25" />, jadi murid itu berlebihan berat badan. Semak dengan model: pada <InlineMath math="h = 16" /> dan <InlineMath math="b = 28" />, bacaan jisim ialah <InlineMath math="71.7\text{ kg}" />.
+
+## Kesilapan Lazim tentang Nutrisi dan Pencernaan
+
+| Kesilapan | Sebab salah | Cara semak |
+| :--- | :--- | :--- |
+| Hempedu mencernakan lipid. | Hempedu tiada enzim. Hempedu hanya mengemulsikan lipid, dan lipase yang mencernakannya. | Tanya sama ada bahan itu enzim. |
+| Pencernaan bermula di perut. | Pencernaan kanji bermula di mulut oleh amilase liur. | Ikuti makanan dari mulut. |
+| Semua hasil pencernaan masuk ke kapilari darah. | Asid lemak dan gliserol masuk ke lakteal. | Pisahkan hasil larut air dan hasil lipid. |
+| Pepsin bekerja paling baik pada pH neutral. | Pepsin mempunyai pH optimum kira-kira <InlineMath math="2" /> dalam perut yang berasid. | Padankan enzim dengan tempat ia dirembeskan. |
+
+Kesilapan pertama paling kerap muncul dalam soalan pencernaan lipid. **Hempedu mengemulsikan, lipase mencernakan**.
+
+## Latihan Nutrisi dan Pencernaan
+
+Soalan ini bergerak dari pengiraan tenaga ke pencernaan dan penyerapan. **Namakan enzim dan hasilnya** dalam setiap jawapan tentang pencernaan.
+
+1. Sekeping roti mengandungi <InlineMath math="25\text{ g}" /> karbohidrat, <InlineMath math="4\text{ g}" /> protein dan <InlineMath math="2\text{ g}" /> lipid. Kira jumlah tenaganya.
+
+2. Terangkan mengapa protein dicerna di perut tetapi kanji tidak dicerna di situ.
+
+3. Sebiji kacang <InlineMath math="0.50\text{ g}" /> menaikkan suhu <InlineMath math="25\text{ cm}^3" /> air sebanyak <InlineMath math="12^\circ\text{C}" />. Kira nilai tenaga kacang itu.
+
+4. Terangkan bagaimana vilus disesuaikan untuk menyerap hasil pencernaan.
+
+### Penyelesaian
+
+**Penyelesaian 1**: Darabkan setiap jisim dengan nilai tenaganya:
+
+<BlockMath math="25 \times 17 + 4 \times 17 + 2 \times 37 = 425 + 68 + 74 = 567\text{ kJ}" />
+
+Semak: karbohidrat membekalkan bahagian terbesar, sesuai kerana roti kaya dengan kanji.
+
+**Penyelesaian 2**: Perut merembeskan **pepsin** yang mencernakan protein kepada polipeptida dalam keadaan berasid. Amilase liur yang tertelan bersama makanan **ternyahasli** pada pH kira-kira <InlineMath math="2" />, dan perut tidak merembeskan amilase, jadi kanji tidak dicerna di situ.
+
+**Penyelesaian 3**: Kira haba yang diserap air, kemudian bahagikan dengan jisim:
+
+<MathContainer>
+<BlockMath math="Q = 25 \times 4.2 \times 12 = 1260\text{ J}" />
+<BlockMath math="\frac{1260}{0.50} = 2520\text{ J g}^{-1} = 2.52\text{ kJ g}^{-1}" />
+</MathContainer>
+
+Semak: hasilnya sama dengan contoh kalorimeter, jadi kedua-dua sukatan konsisten.
+
+**Penyelesaian 4**: Vilus dan mikrovilus memberikan **luas permukaan yang sangat besar**. Dindingnya setebal satu sel supaya jarak resapan pendek, dan kapilari darah serta lakteal yang banyak membawa pergi hasil yang diserap supaya kecerunan kepekatan kekal.
