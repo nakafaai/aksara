@@ -67,7 +67,7 @@ export const materialManifest = Effect.fn("MaterialTest.manifest")(
         "MathVisual",
       ],
       domains: testRendererDomains({
-        chemistry: ["AtomShellLab"],
+        chemistry: ["AtomShellLab", "BohrEmissionLab", "OrbitalCloudLab"],
         mathematics,
       }),
       publishedDomains: ["chemistry", "mathematics"],

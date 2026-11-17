@@ -90,7 +90,7 @@ export const makeAcceptanceTestSources: Effect.Effect<
   const rendererManifest = yield* createRendererManifest({
     base,
     domains: testRendererDomains({
-      chemistry: ["AtomShellLab"],
+      chemistry: ["AtomShellLab", "BohrEmissionLab", "OrbitalCloudLab"],
       mathematics: ["FunctionMachine"],
       politics: [
         "KimPlusElectabilityChart",
