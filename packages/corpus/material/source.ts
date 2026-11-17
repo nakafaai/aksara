@@ -15,6 +15,7 @@ import { lessonChemistryManufacturedSubstancesMaterial } from "#corpus/material/
 import { lessonChemistryReactionRateMaterial } from "#corpus/material/lesson/chemistry/reaction-rate/source";
 import { lessonChemistryRedoxEquilibriumMaterial } from "#corpus/material/lesson/chemistry/redox-equilibrium/source";
 import { lessonChemistryStructureMatterMaterial } from "#corpus/material/lesson/chemistry/structure-matter/source";
+import { lessonChemistryThermochemistryMaterial } from "#corpus/material/lesson/chemistry/thermochemistry/source";
 import { lessonMathematicsAnalyticGeometryMaterial } from "#corpus/material/lesson/mathematics/analytic-geometry/source";
 import { lessonMathematicsCircleMaterial } from "#corpus/material/lesson/mathematics/circle/source";
 import { lessonMathematicsCircleArcSectorMaterial } from "#corpus/material/lesson/mathematics/circle-arc-sector/source";
@@ -65,6 +66,7 @@ const materialSourcePrograms = [
   lessonChemistryReactionRateMaterial,
   lessonChemistryRedoxEquilibriumMaterial,
   lessonChemistryStructureMatterMaterial,
+  lessonChemistryThermochemistryMaterial,
   lessonMathematicsAnalyticGeometryMaterial,
   lessonMathematicsCircleArcSectorMaterial,
   lessonMathematicsCircleMaterial,

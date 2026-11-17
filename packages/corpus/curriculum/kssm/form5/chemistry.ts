@@ -52,7 +52,33 @@ export const kssmForm5ChemistryTopicNodes = [
     },
   }),
   unitNode({
+    children: [
+      materialNode({
+        key: "form-5-chemistry-thermochemistry-thermochemistry",
+        level: "lesson",
+        materialKeys: ["lesson.chemistry.thermochemistry"],
+        order: 10,
+      }),
+    ],
     key: "form-5-chemistry-thermochemistry",
+    materialCard: {
+      de: {
+        description: "Berechne Reaktionswärmen und vergleiche Brennstoffe.",
+        title: "Thermochemie",
+      },
+      en: {
+        description: "Calculate heats of reaction and compare fuels.",
+        title: "Thermochemistry",
+      },
+      id: {
+        description: "Hitung kalor reaksi dan bandingkan bahan bakar.",
+        title: "Termokimia",
+      },
+      ms: {
+        description: "Kira haba tindak balas dan bandingkan bahan api.",
+        title: "Termokimia",
+      },
+    },
     order: 30,
     translations: {
       de: { routeSlug: "thermochemie", title: "Thermochemie" },

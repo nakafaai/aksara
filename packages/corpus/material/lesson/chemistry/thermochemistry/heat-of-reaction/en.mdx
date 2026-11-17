@@ -1,0 +1,258 @@
+export const metadata = {
+  title: "Thermochemistry Notes for Form Five",
+  description:
+    "Form 5 Chemistry Chapter 3: tell exothermic from endothermic reactions, calculate the heat of reaction with Q = mcθ and compare the fuel value of fuels.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2026-11-17",
+  dateModified: "2026-11-17",
+  subject: "Thermochemistry",
+};
+
+## Reactions Release or Absorb Heat
+
+**Thermochemistry** studies the heat changes in chemical reactions. An **exothermic** reaction releases heat to the surroundings, so the temperature of the mixture rises and the heat change, <InlineMath math="\Delta H" />, is negative. An **endothermic** reaction absorbs heat, so the temperature falls and <InlineMath math="\Delta H" /> is positive. You measure the heat with <InlineMath math="Q = mc\theta" />, then <InlineMath math="\Delta H = -\dfrac{Q}{n}" /> per mole. In these notes you change the heat change on an energy diagram, heat water in a kettle, and calculate the heats of neutralisation, displacement and combustion.
+
+The heat comes from **chemical bonds**. Breaking bonds in the reactants **absorbs** energy, and forming new bonds in the products **releases** energy. If more energy is released than absorbed, the reaction is exothermic.
+
+Move the <InlineMath math="\Delta H" /> slider below. When <InlineMath math="\Delta H" /> is negative, the products sit lower than the reactants. When <InlineMath math="\Delta H" /> is positive, the products sit higher.
+
+<MathVisual
+  title={<>Energy Profile of Exothermic and Endothermic Reactions</>}
+  description={
+    <>
+      The reactants sit at level <InlineMath math="50" /> and the products at
+      level <InlineMath math="50 + \Delta H" />. The hump in the middle is the
+      energy needed to break bonds before new ones form.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 10 }, y: { min: 0, max: 120 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "d", min: -40, max: 40, value: -30, step: 1, label: "d" },
+    ],
+    objects: [
+      { id: "profile", kind: "function", appearance: "primary", formula: "50 + d/(1 + exp(-4*(x - 5))) + 30*exp(-((x - 5)^2)/0.8)", domain: { min: 0, max: 10 } },
+    ],
+    readouts: [
+      { key: "reactants", formula: "50" },
+      { key: "products", formula: "50 + d" },
+      { key: "change", formula: "d" },
+    ],
+  }}
+  labels={{
+    d: <>Heat change <InlineMath math="\Delta H" /></>,
+    reactants: <>Energy level of the reactants</>,
+    products: <>Energy level of the products</>,
+    change: <>Heat change <InlineMath math="\Delta H" /></>,
+  }}
+/>
+
+You already know both kinds. Burning a fuel and neutralising an acid are exothermic. Dissolving ammonium nitrate in water is endothermic, and that's how an instant cold pack for sports injuries works.
+
+## Measuring Heat through a Temperature Change
+
+The heat released by a reaction in solution is absorbed by the water in that solution. You calculate it with:
+
+<BlockMath math="Q = mc\theta" />
+
+Here <InlineMath math="m" /> is the mass of the solution in grams, <InlineMath math="c = 4.2\text{ J g}^{-1}\,^\circ\text{C}^{-1}" /> is the **specific heat capacity of water**, and <InlineMath math="\theta" /> is the temperature change. An aqueous solution is taken to have a density of <InlineMath math="1\text{ g cm}^{-3}" />, so <InlineMath math="100\text{ cm}^3" /> of solution has a mass of <InlineMath math="100\text{ g}" />.
+
+The same formula heats water in an electric kettle. Pick a mass of water below: twice the mass needs twice the energy for the same rise in temperature.
+
+<KettleHeatingLab
+  title={<>Energy to Boil Water in a Kettle</>}
+  description={
+    <>
+      A <InlineMath math="2100\text{ W}" /> kettle heats water from{" "}
+      <InlineMath math="25^\circ\text{C}" /> to boiling. The energy is{" "}
+      <InlineMath math="Q = mc\theta" /> with{" "}
+      <InlineMath math="c = 4200\text{ J kg}^{-1}\,\text{K}^{-1}" />.
+    </>
+  }
+  labels={{
+    chooseFill: "Mass of water in the kettle",
+    energy: <>Energy needed</>,
+    power: <>Kettle power</>,
+    rise: <>Temperature rise</>,
+    time: <>Time to boil</>,
+    viewLabel: "An electric kettle heating water",
+  }}
+/>
+
+Check one reading: raising <InlineMath math="1\text{ kg}" /> of water by <InlineMath math="75\text{ K}" /> takes <InlineMath math="1 \times 4200 \times 75 = 315\,000\text{ J}" />. In a chemical reaction, that energy comes from bonds, not from a heating element.
+
+## Heat of Neutralisation and Heat of Displacement
+
+The **heat of neutralisation** is the heat change when <InlineMath math="1" /> mole of water forms from an acid and an alkali. For a strong acid and a strong alkali it's nearly the same every time, about <InlineMath math="-57.3\text{ kJ mol}^{-1}" />, because the actual reaction is always <InlineMath math="\mathrm{H^+} + \mathrm{OH^-} \rightarrow \mathrm{H_2O}" />.
+
+Try an example. <InlineMath math="50\text{ cm}^3" /> of <InlineMath math="1.0\text{ mol dm}^{-3}" /> hydrochloric acid is mixed with <InlineMath math="50\text{ cm}^3" /> of <InlineMath math="1.0\text{ mol dm}^{-3}" /> sodium hydroxide. The temperature rises by <InlineMath math="6.8^\circ\text{C}" />. Calculate the heat of neutralisation.
+
+**Work out the heat first, then divide by the moles of water**:
+
+<MathContainer>
+<BlockMath math="Q = 100 \times 4.2 \times 6.8 = 2856\text{ J}" />
+<BlockMath math="n(\mathrm{H_2O}) = 1.0 \times \frac{50}{1000} = 0.050\text{ mol}" />
+<BlockMath math="\Delta H = -\frac{2856}{0.050} = -57\,120\text{ J mol}^{-1} \approx -57.1\text{ kJ mol}^{-1}" />
+</MathContainer>
+
+Check: the answer is close to the standard value of <InlineMath math="-57.3\text{ kJ mol}^{-1}" />, and the sign is negative because the temperature rose.
+
+The temperature rise depends on the **concentration**, not the volume. If you double both volumes, the moles of water and the mass of solution both double, so <InlineMath math="\theta" /> stays the same. Change the concentration of the acid and alkali below.
+
+<MathVisual
+  title={<>Temperature Rise of Neutralisation against Concentration</>}
+  description={
+    <>
+      Equal volumes of a strong acid and a strong alkali, both of concentration{" "}
+      <InlineMath math="M" />. The temperature rise is{" "}
+      <InlineMath math="\theta = \dfrac{57\,300M}{2000 \times 4.2} \approx 6.82M" />.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 2 }, y: { min: 0, max: 15 } },
+    view: { kind: "fit", padding: 0.08 },
+    parameters: [
+      { name: "m", min: 0.1, max: 2, value: 1, step: 0.1, label: "m" },
+    ],
+    objects: [
+      { id: "rise", kind: "function", appearance: "primary", formula: "57300x/8400", domain: { min: 0, max: 2 } },
+      { id: "now", kind: "marker", x: "m", y: "57300m/8400", appearance: "warning" },
+    ],
+    readouts: [
+      { key: "temperature", formula: "57300m/8400" },
+    ],
+  }}
+  labels={{
+    m: <>Concentration <InlineMath math="M" /> in <InlineMath math="\text{mol dm}^{-3}" /></>,
+    temperature: <>Temperature rise in <InlineMath math="^\circ\text{C}" /></>,
+  }}
+/>
+
+The **heat of displacement** is the heat change when <InlineMath math="1" /> mole of a metal is displaced from a solution of its salt. Excess zinc powder is added to <InlineMath math="50\text{ cm}^3" /> of <InlineMath math="0.20\text{ mol dm}^{-3}" /> copper(II) sulfate solution, and the temperature rises by <InlineMath math="10.0^\circ\text{C}" />. The copper(II) ion is the limiting reactant, so take the moles from it:
+
+<MathContainer>
+<BlockMath math="Q = 50 \times 4.2 \times 10.0 = 2100\text{ J}" />
+<BlockMath math="n(\mathrm{Cu^{2+}}) = 0.20 \times \frac{50}{1000} = 0.010\text{ mol}" />
+<BlockMath math="\Delta H = -\frac{2100}{0.010} = -210\,000\text{ J mol}^{-1} = -210\text{ kJ mol}^{-1}" />
+</MathContainer>
+
+Check with the electrochemical series: zinc and copper sit far apart in it, so the reaction is strongly exothermic. <InlineMath math="-210\text{ kJ mol}^{-1}" /> is much bigger than the heat of neutralisation.
+
+## Heat of Combustion and Fuel Value
+
+The **heat of combustion** is the heat released when <InlineMath math="1" /> mole of a substance burns completely in excess oxygen. Burning methane breaks <InlineMath math="\mathrm{C{-}H}" /> and <InlineMath math="\mathrm{O{=}O}" /> bonds, then forms stronger <InlineMath math="\mathrm{C{=}O}" /> and <InlineMath math="\mathrm{O{-}H}" /> bonds. That's why combustion releases so much heat.
+
+<MethaneCombustionEquationLab
+  title={<>Bonds That Break and Form When Methane Burns</>}
+  description={
+    <>
+      One methane molecule reacts with two oxygen molecules to form one carbon
+      dioxide molecule and two water molecules. The heat of combustion of
+      methane is <InlineMath math="-890\text{ kJ mol}^{-1}" />.
+    </>
+  }
+  labels={{
+    moleculeView: "Model of methane combustion",
+    reactants: "Reactants",
+    products: "Products",
+    equation: (
+      <InlineMath math="\mathrm{CH_4} + 2\mathrm{O_2} \rightarrow \mathrm{CO_2} + 2\mathrm{H_2O}" />
+    ),
+  }}
+/>
+
+In the lab, the heat of combustion of an alcohol is measured by heating water in a copper can. <InlineMath math="0.46\text{ g}" /> of ethanol, <InlineMath math="\mathrm{C_2H_5OH}" />, is burned and raises the temperature of <InlineMath math="200\text{ cm}^3" /> of water by <InlineMath math="12.0^\circ\text{C}" />. The molar mass of ethanol is <InlineMath math="46\text{ g mol}^{-1}" />:
+
+<MathContainer>
+<BlockMath math="Q = 200 \times 4.2 \times 12.0 = 10\,080\text{ J}" />
+<BlockMath math="n = \frac{0.46}{46} = 0.010\text{ mol}" />
+<BlockMath math="\Delta H = -\frac{10\,080}{0.010} = -1\,008\,000\text{ J mol}^{-1} \approx -1008\text{ kJ mol}^{-1}" />
+</MathContainer>
+
+Check against the standard value, <InlineMath math="-1376\text{ kJ mol}^{-1}" />. The lab answer is smaller because **heat is lost** to the air and the can, and some ethanol burns incompletely.
+
+The heat of combustion of alcohols grows with the number of carbon atoms. The standard values for methanol to butan-1-ol are <InlineMath math="726" />, <InlineMath math="1376" />, <InlineMath math="2021" /> and <InlineMath math="2676\text{ kJ mol}^{-1}" />. Each extra <InlineMath math="\mathrm{CH_2}" /> group adds about <InlineMath math="650\text{ kJ mol}^{-1}" />, because one more carbon atom and two more hydrogen atoms burn. Change the number of carbon atoms below.
+
+<MathVisual
+  title={<>Heat of Combustion of Alcohols against Number of Carbon Atoms</>}
+  description={
+    <>
+      The straight line <InlineMath math="650n + 76" /> approximates the standard
+      heat of combustion, in <InlineMath math="\text{kJ mol}^{-1}" />, of an
+      alcohol with <InlineMath math="n" /> carbon atoms.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 5 }, y: { min: 0, max: 3500 } },
+    view: { kind: "fit", padding: 0.08 },
+    parameters: [
+      { name: "n", min: 1, max: 4, value: 2, step: 1, label: "n" },
+    ],
+    objects: [
+      { id: "fit", kind: "function", appearance: "primary", formula: "650x + 76", domain: { min: 1, max: 5 } },
+      { id: "now", kind: "marker", x: "n", y: "650n + 76", appearance: "warning" },
+    ],
+    readouts: [
+      { key: "heat", formula: "650n + 76" },
+    ],
+  }}
+  labels={{
+    n: <>Number of carbon atoms <InlineMath math="n" /></>,
+    heat: <>Heat of combustion in <InlineMath math="\text{kJ mol}^{-1}" /></>,
+  }}
+/>
+
+The **fuel value** is the energy released by <InlineMath math="1\text{ g}" /> of a fuel, in <InlineMath math="\text{kJ g}^{-1}" />. People choose a fuel by this value together with its cost, availability and the effect its combustion has on the environment.
+
+## Common Mistakes about Thermochemistry
+
+| Mistake | Why it's wrong | How to check |
+| :--- | :--- | :--- |
+| The temperature rose, so <InlineMath math="\Delta H" /> is positive. | A temperature rise means heat was released, so <InlineMath math="\Delta H" /> is negative. | An exothermic reaction always has a negative sign. |
+| The mass in <InlineMath math="Q = mc\theta" /> is the mass of the reactants. | It's the mass of the solution or water that absorbs the heat. | Use the total volume of solution in <InlineMath math="\text{cm}^3" />. |
+| Doubling the volumes of acid and alkali doubles the temperature rise. | The moles of water and the mass of solution both double, so <InlineMath math="\theta" /> stays the same. | Only the concentration changes <InlineMath math="\theta" />. |
+| In a displacement, the moles come from the excess zinc. | An excess reactant doesn't react completely, so take the moles from the limiting reactant. | Find the substance that gets used up. |
+| Breaking bonds releases energy. | Breaking bonds absorbs energy, and forming bonds releases it. | Picture the energy needed to pull two atoms apart. |
+
+The first mistake turns up most often in objective questions. Keep the chain in mind: **temperature up, heat out, <InlineMath math="\Delta H" /> negative**.
+
+## Practice on Thermochemistry
+
+These questions move from heat calculations to comparing fuels and explaining results. **Write the unit at every step** so joules and kilojoules don't get mixed up.
+
+1. <InlineMath math="25\text{ cm}^3" /> of <InlineMath math="0.50\text{ mol dm}^{-3}" /> silver nitrate solution is mixed with <InlineMath math="25\text{ cm}^3" /> of <InlineMath math="0.50\text{ mol dm}^{-3}" /> sodium chloride solution. The temperature rises by <InlineMath math="3.5^\circ\text{C}" />. Calculate the heat of precipitation of silver chloride.
+
+2. The heat of combustion of methane is <InlineMath math="-890\text{ kJ mol}^{-1}" /> and of butane <InlineMath math="-2877\text{ kJ mol}^{-1}" />. Calculate the fuel value of each and state which is higher. The molar mass of methane is <InlineMath math="16\text{ g mol}^{-1}" /> and of butane <InlineMath math="58\text{ g mol}^{-1}" />.
+
+3. The heat of neutralisation of ethanoic acid with sodium hydroxide is less than <InlineMath math="57.3\text{ kJ mol}^{-1}" />. Explain why.
+
+4. When ammonium nitrate dissolves in water, the temperature of the solution falls. State the type of heat change and the sign of <InlineMath math="\Delta H" />, and describe the energy level of the products compared with the reactants.
+
+### Solutions
+
+**Solution 1**: The total volume is <InlineMath math="50\text{ cm}^3" />, so the mass of solution is <InlineMath math="50\text{ g}" />:
+
+<MathContainer>
+<BlockMath math="Q = 50 \times 4.2 \times 3.5 = 735\text{ J}" />
+<BlockMath math="n(\mathrm{AgCl}) = 0.50 \times \frac{25}{1000} = 0.0125\text{ mol}" />
+<BlockMath math="\Delta H = -\frac{735}{0.0125} = -58\,800\text{ J mol}^{-1} = -58.8\text{ kJ mol}^{-1}" />
+</MathContainer>
+
+Check: both solutions hold the same number of moles, so neither is in excess, and the negative sign matches the rising temperature.
+
+**Solution 2**: Divide each heat of combustion by the molar mass:
+
+<MathContainer>
+<BlockMath math="\text{Methane: } \frac{890}{16} = 55.6\text{ kJ g}^{-1}" />
+<BlockMath math="\text{Butane: } \frac{2877}{58} = 49.6\text{ kJ g}^{-1}" />
+</MathContainer>
+
+**Methane has the higher fuel value**. Butane releases more heat per mole, but each mole of butane is also much heavier. Check: <InlineMath math="55.6 \times 16 = 890" />, so the ratio is right.
+
+**Solution 3**: Ethanoic acid is a **weak acid** that ionises only partly. During neutralisation, ethanoic acid molecules have to ionise to release <InlineMath math="\mathrm{H^+}" /> ions, and that ionisation **absorbs some of the heat**. So the net heat released per mole of water is less than <InlineMath math="57.3\text{ kJ}" />.
+
+**Solution 4**: A falling temperature means heat is absorbed from the surroundings, so the dissolving is **endothermic** and <InlineMath math="\Delta H" /> is **positive**. On an energy level diagram, the products sit higher than the reactants, and the gap is the heat absorbed.
