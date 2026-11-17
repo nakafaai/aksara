@@ -133,7 +133,7 @@ describe("material schema", () => {
         "**/locale/**/*.ts",
       ]);
 
-      expect(files).toHaveLength(51);
+      expect(files).toHaveLength(52);
     }).pipe(Effect.provide(NodeServices.layer))
   );
 });
