@@ -10,19 +10,43 @@ const item: ItemSource = {
     en: {
       kind: "choice",
       options: [
-        { correct: false, label: "$$\\text{XY}_4$$, $$960\\text{ cm}^3$$" },
-        { correct: false, label: "$$\\text{XY}_3$$, $$720\\text{ cm}^3$$" },
-        { correct: true, label: "$$\\text{XY}_4$$, $$720\\text{ cm}^3$$" },
-        { correct: false, label: "$$\\text{XY}_4$$, $$240\\text{ cm}^3$$" },
+        {
+          correct: false,
+          label: "$$\\text{XY}_4$$, $$720\\text{ cm}^3$$, $$0.760\\text{ g}$$",
+        },
+        {
+          correct: false,
+          label: "$$\\text{XY}_3$$, $$960\\text{ cm}^3$$, $$1.01\\text{ g}$$",
+        },
+        {
+          correct: true,
+          label: "$$\\text{XY}_4$$, $$960\\text{ cm}^3$$, $$1.01\\text{ g}$$",
+        },
+        {
+          correct: false,
+          label: "$$\\text{XY}_4$$, $$540\\text{ cm}^3$$, $$0.570\\text{ g}$$",
+        },
       ],
     },
     ms: {
       kind: "choice",
       options: [
-        { correct: false, label: "$$\\text{XY}_4$$, $$960\\text{ cm}^3$$" },
-        { correct: false, label: "$$\\text{XY}_3$$, $$720\\text{ cm}^3$$" },
-        { correct: true, label: "$$\\text{XY}_4$$, $$720\\text{ cm}^3$$" },
-        { correct: false, label: "$$\\text{XY}_4$$, $$240\\text{ cm}^3$$" },
+        {
+          correct: false,
+          label: "$$\\text{XY}_4$$, $$720\\text{ cm}^3$$, $$0.760\\text{ g}$$",
+        },
+        {
+          correct: false,
+          label: "$$\\text{XY}_3$$, $$960\\text{ cm}^3$$, $$1.01\\text{ g}$$",
+        },
+        {
+          correct: true,
+          label: "$$\\text{XY}_4$$, $$960\\text{ cm}^3$$, $$1.01\\text{ g}$$",
+        },
+        {
+          correct: false,
+          label: "$$\\text{XY}_4$$, $$540\\text{ cm}^3$$, $$0.570\\text{ g}$$",
+        },
       ],
     },
   },

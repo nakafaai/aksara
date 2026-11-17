@@ -10,27 +10,19 @@ const item: ItemSource = {
     en: {
       kind: "choice",
       options: [
-        { correct: false, label: "The first heating, $$x=6$$" },
-        { correct: true, label: "The last two heatings, $$x=7$$" },
-        {
-          correct: false,
-          label:
-            "The last two heatings for the salt and the first heating for the water, $$x=6$$",
-        },
-        { correct: false, label: "The last two heatings, $$x=14$$" },
+        { correct: false, label: "$$x=6$$, $$2.54\\text{ g}$$" },
+        { correct: true, label: "$$x=7$$, $$2.33\\text{ g}$$" },
+        { correct: false, label: "$$x=7$$, $$2.08\\text{ g}$$" },
+        { correct: false, label: "$$x=14$$, $$2.33\\text{ g}$$" },
       ],
     },
     ms: {
       kind: "choice",
       options: [
-        { correct: false, label: "Pemanasan pertama, $$x=6$$" },
-        { correct: true, label: "Dua pemanasan terakhir, $$x=7$$" },
-        {
-          correct: false,
-          label:
-            "Dua pemanasan terakhir bagi garam dan pemanasan pertama bagi air, $$x=6$$",
-        },
-        { correct: false, label: "Dua pemanasan terakhir, $$x=14$$" },
+        { correct: false, label: "$$x=6$$, $$2.54\\text{ g}$$" },
+        { correct: true, label: "$$x=7$$, $$2.33\\text{ g}$$" },
+        { correct: false, label: "$$x=7$$, $$2.08\\text{ g}$$" },
+        { correct: false, label: "$$x=14$$, $$2.33\\text{ g}$$" },
       ],
     },
   },

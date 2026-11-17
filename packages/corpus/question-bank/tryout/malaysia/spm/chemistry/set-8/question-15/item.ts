@@ -10,19 +10,19 @@ const item: ItemSource = {
     en: {
       kind: "choice",
       options: [
-        { correct: false, label: "$$50$$ tonnes" },
-        { correct: false, label: "$$12.5$$ tonnes" },
-        { correct: false, label: "$$250$$ tonnes" },
-        { correct: true, label: "$$25$$ tonnes" },
+        { correct: false, label: "$$55.6$$ tonnes, $$12\\,000\\text{ m}^3$$" },
+        { correct: false, label: "$$22.5$$ tonnes, $$6000\\text{ m}^3$$" },
+        { correct: false, label: "$$27.8$$ tonnes, $$6.0\\text{ m}^3$$" },
+        { correct: true, label: "$$27.8$$ tonnes, $$6000\\text{ m}^3$$" },
       ],
     },
     ms: {
       kind: "choice",
       options: [
-        { correct: false, label: "$$50$$ tan" },
-        { correct: false, label: "$$12.5$$ tan" },
-        { correct: false, label: "$$250$$ tan" },
-        { correct: true, label: "$$25$$ tan" },
+        { correct: false, label: "$$55.6$$ tan, $$12\\,000\\text{ m}^3$$" },
+        { correct: false, label: "$$22.5$$ tan, $$6000\\text{ m}^3$$" },
+        { correct: false, label: "$$27.8$$ tan, $$6.0\\text{ m}^3$$" },
+        { correct: true, label: "$$27.8$$ tan, $$6000\\text{ m}^3$$" },
       ],
     },
   },

@@ -10,19 +10,43 @@ const item: ItemSource = {
     en: {
       kind: "choice",
       options: [
-        { correct: true, label: "$$0.054\\text{ g}$$, $$0.648\\text{ g}$$" },
-        { correct: false, label: "$$0.081\\text{ g}$$, $$0.648\\text{ g}$$" },
-        { correct: false, label: "$$0.054\\text{ g}$$, $$0.324\\text{ g}$$" },
-        { correct: false, label: "$$0.027\\text{ g}$$, $$0.648\\text{ g}$$" },
+        {
+          correct: true,
+          label: "$$0.744\\text{ g}$$, decreases by $$0.096\\text{ g}$$",
+        },
+        {
+          correct: false,
+          label: "$$0.331\\text{ g}$$, decreases by $$0.043\\text{ g}$$",
+        },
+        {
+          correct: false,
+          label: "$$0.744\\text{ g}$$, increases by $$0.648\\text{ g}$$",
+        },
+        {
+          correct: false,
+          label: "$$0.744\\text{ g}$$, decreases by $$0.744\\text{ g}$$",
+        },
       ],
     },
     ms: {
       kind: "choice",
       options: [
-        { correct: true, label: "$$0.054\\text{ g}$$, $$0.648\\text{ g}$$" },
-        { correct: false, label: "$$0.081\\text{ g}$$, $$0.648\\text{ g}$$" },
-        { correct: false, label: "$$0.054\\text{ g}$$, $$0.324\\text{ g}$$" },
-        { correct: false, label: "$$0.027\\text{ g}$$, $$0.648\\text{ g}$$" },
+        {
+          correct: true,
+          label: "$$0.744\\text{ g}$$, berkurang sebanyak $$0.096\\text{ g}$$",
+        },
+        {
+          correct: false,
+          label: "$$0.331\\text{ g}$$, berkurang sebanyak $$0.043\\text{ g}$$",
+        },
+        {
+          correct: false,
+          label: "$$0.744\\text{ g}$$, bertambah sebanyak $$0.648\\text{ g}$$",
+        },
+        {
+          correct: false,
+          label: "$$0.744\\text{ g}$$, berkurang sebanyak $$0.744\\text{ g}$$",
+        },
       ],
     },
   },

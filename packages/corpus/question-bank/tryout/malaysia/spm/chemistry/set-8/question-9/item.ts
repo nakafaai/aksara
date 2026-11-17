@@ -10,19 +10,19 @@ const item: ItemSource = {
     en: {
       kind: "choice",
       options: [
-        { correct: false, label: "$$57.7\\text{ g}$$, $$65.0\\text{ g}$$" },
-        { correct: true, label: "$$28.8\\text{ g}$$, $$65.0\\text{ g}$$" },
-        { correct: false, label: "$$28.8\\text{ g}$$, $$130\\text{ g}$$" },
-        { correct: false, label: "$$14.4\\text{ g}$$, $$32.5\\text{ g}$$" },
+        { correct: false, label: "$$314\\text{ s}$$, $$65.0\\text{ g}$$" },
+        { correct: true, label: "$$157\\text{ s}$$, $$65.0\\text{ g}$$" },
+        { correct: false, label: "$$157\\text{ s}$$, $$130\\text{ g}$$" },
+        { correct: false, label: "$$78.4\\text{ s}$$, $$32.5\\text{ g}$$" },
       ],
     },
     ms: {
       kind: "choice",
       options: [
-        { correct: false, label: "$$57.7\\text{ g}$$, $$65.0\\text{ g}$$" },
-        { correct: true, label: "$$28.8\\text{ g}$$, $$65.0\\text{ g}$$" },
-        { correct: false, label: "$$28.8\\text{ g}$$, $$130\\text{ g}$$" },
-        { correct: false, label: "$$14.4\\text{ g}$$, $$32.5\\text{ g}$$" },
+        { correct: false, label: "$$314\\text{ s}$$, $$65.0\\text{ g}$$" },
+        { correct: true, label: "$$157\\text{ s}$$, $$65.0\\text{ g}$$" },
+        { correct: false, label: "$$157\\text{ s}$$, $$130\\text{ g}$$" },
+        { correct: false, label: "$$78.4\\text{ s}$$, $$32.5\\text{ g}$$" },
       ],
     },
   },

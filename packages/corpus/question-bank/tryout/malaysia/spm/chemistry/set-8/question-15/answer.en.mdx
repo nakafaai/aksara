@@ -1,25 +1,25 @@
-# Turn the pH into a concentration, then let each carbonate take two hydrogen ions
+# Turn the pH into hydrogen ions, halve them for the carbonate, then allow for the impurity
 
-pH <InlineMath math="4.0" /> means <InlineMath math="[\text{H}^+]=10^{-4}\text{ mol dm}^{-3}" />, so the lake holds <InlineMath math="5.0\times10^9\times10^{-4}=5.0\times10^5\text{ mol}" /> of hydrogen ions. **Each carbonate ion neutralises two hydrogen ions**, so <InlineMath math="2.5\times10^5\text{ mol}" /> of limestone is enough, <InlineMath math="2.5\times10^7\text{ g}" />.
+pH <InlineMath math="4.0" /> means <InlineMath math="[\text{H}^+]=1.0\times10^{-4}\text{ mol dm}^{-3}" />, so the lake holds <InlineMath math="5.0\times10^5\text{ mol}" /> of hydrogen ions. **Each calcium carbonate takes two hydrogen ions**, so <InlineMath math="2.5\times10^5\text{ mol}" />, <InlineMath math="25" /> tonnes of calcium carbonate, is needed. **The limestone is only <InlineMath math="90\%" /> calcium carbonate**, so <InlineMath math="25\div0.90=27.8" /> tonnes must be added. The carbon dioxide is <InlineMath math="2.5\times10^5\text{ mol}" />, <InlineMath math="6.0\times10^6\text{ dm}^3" />, which is <InlineMath math="6000\text{ m}^3" />.
 
 <Chart
-  title={<>Amounts in the lake</>}
-  description={<>The <InlineMath math="5.0\times10^5\text{ mol}" /> of hydrogen ions need <InlineMath math="2.5\times10^5\text{ mol}" /> of limestone.</>}
+  title={<>Mass needed</>}
+  description={<>The lake needs <InlineMath math="25" /> tonnes of calcium carbonate, supplied by <InlineMath math="27.8" /> tonnes of limestone.</>}
   bars="apart"
-  categories={["Hydrogen ions", "Limestone"]}
+  categories={["Calcium carbonate", "Limestone"]}
   series={[
-    { label: "Amount", mark: "bar", values: [5.0, 2.5] },
+    { label: "Mass", mark: "bar", values: [25, 27.8] },
   ]}
-  valueLabel="Amount (×10⁵ mol)"
+  valueLabel="Mass (tonnes)"
 />
 
 <BlockMath math="\begin{aligned}
-n(\text{H}^+)&=5.0\times10^9\times10^{-4.0}=5.0\times10^5\text{ mol}\\
-m(\text{CaCO}_3)&=\tfrac{5.0\times10^5}{2}\times100=2.5\times10^7\text{ g}=25\text{ tonnes}
+n(\text{CaCO}_3)&=\tfrac{1}{2}\times10^{-4}\times5.0\times10^9=2.5\times10^5\text{ mol},\quad m=\tfrac{2.5\times10^5\times100}{0.90}=2.78\times10^7\text{ g}\\
+V(\text{CO}_2)&=2.5\times10^5\times24=6.0\times10^6\text{ dm}^3=6000\text{ m}^3
 \end{aligned}" />
 
 # Why the other options are wrong
 
-- <InlineMath math="50" /> tonnes uses one carbonate for each hydrogen ion. **Each carbonate takes two**.
-- <InlineMath math="12.5" /> tonnes halves the limestone a second time.
-- <InlineMath math="250" /> tonnes reads pH <InlineMath math="4.0" /> as <InlineMath math="10^{-3}\text{ mol dm}^{-3}" />, ten times too acidic.
+- <InlineMath math="55.6" /> tonnes takes one calcium carbonate per hydrogen ion. **The equation needs two hydrogen ions for each**.
+- <InlineMath math="22.5" /> tonnes multiplies by <InlineMath math="90\%" /> instead of dividing, so it supplies too little calcium carbonate.
+- <InlineMath math="6.0\text{ m}^3" /> divides the cubic decimetres by a million, but one cubic metre is only <InlineMath math="1000\text{ dm}^3" />.

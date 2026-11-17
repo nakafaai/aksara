@@ -1,25 +1,25 @@
-# Rechne den pH-Wert in eine Konzentration um, dann nimmt jedes Carbonat zwei Wasserstoffionen
+# Mache aus dem pH die Wasserstoffionen, halbiere sie für das Carbonat und rechne dann die Verunreinigung ein
 
-pH <InlineMath math="4{,}0" /> bedeutet <InlineMath math="[\text{H}^+]=10^{-4}\text{ mol dm}^{-3}" />, also enthält der See <InlineMath math="5{,}0\times10^9\times10^{-4}=5{,}0\times10^5\text{ mol}" /> Wasserstoffionen. **Jedes Carbonation neutralisiert zwei Wasserstoffionen**, also reichen <InlineMath math="2{,}5\times10^5\text{ mol}" /> Kalkstein, <InlineMath math="2{,}5\times10^7\text{ g}" />.
+pH <InlineMath math="4{,}0" /> bedeutet <InlineMath math="[\text{H}^+]=1{,}0\times10^{-4}\text{ mol dm}^{-3}" />, also enthält der See <InlineMath math="5{,}0\times10^5\text{ mol}" /> Wasserstoffionen. **Jedes Calciumcarbonat nimmt zwei Wasserstoffionen**, also braucht man <InlineMath math="2{,}5\times10^5\text{ mol}" />, <InlineMath math="25" /> Tonnen Calciumcarbonat. **Der Kalkstein ist nur zu <InlineMath math="90\%" /> Calciumcarbonat**, also müssen <InlineMath math="25\div0{,}90=27{,}8" /> Tonnen zugegeben werden. Das Kohlenstoffdioxid sind <InlineMath math="2{,}5\times10^5\text{ mol}" />, <InlineMath math="6{,}0\times10^6\text{ dm}^3" />, also <InlineMath math="6000\text{ m}^3" />.
 
 <Chart
-  title={<>Stoffmengen im See</>}
-  description={<>Die <InlineMath math="5{,}0\times10^5\text{ mol}" /> Wasserstoffionen brauchen <InlineMath math="2{,}5\times10^5\text{ mol}" /> Kalkstein.</>}
+  title={<>Benötigte Masse</>}
+  description={<>Der See braucht <InlineMath math="25" /> Tonnen Calciumcarbonat, geliefert von <InlineMath math="27{,}8" /> Tonnen Kalkstein.</>}
   bars="apart"
-  categories={["Wasserstoffionen", "Kalkstein"]}
+  categories={["Calciumcarbonat", "Kalkstein"]}
   series={[
-    { label: "Stoffmenge", mark: "bar", values: [5.0, 2.5] },
+    { label: "Masse", mark: "bar", values: [25, 27.8] },
   ]}
-  valueLabel="Stoffmenge (×10⁵ mol)"
+  valueLabel="Masse (Tonnen)"
 />
 
 <BlockMath math="\begin{aligned}
-n(\text{H}^+)&=5{,}0\times10^9\times10^{-4{,}0}=5{,}0\times10^5\text{ mol}\\
-m(\text{CaCO}_3)&=\tfrac{5{,}0\times10^5}{2}\times100=2{,}5\times10^7\text{ g}=25\text{ tonnes}
+n(\text{CaCO}_3)&=\tfrac{1}{2}\times10^{-4}\times5{,}0\times10^9=2{,}5\times10^5\text{ mol},\quad m=\tfrac{2{,}5\times10^5\times100}{0{,}90}=2{,}78\times10^7\text{ g}\\
+V(\text{CO}_2)&=2{,}5\times10^5\times24=6{,}0\times10^6\text{ dm}^3=6000\text{ m}^3
 \end{aligned}" />
 
 # Warum die anderen Antworten falsch sind
 
-- <InlineMath math="50" /> Tonnen nimmt ein Carbonat je Wasserstoffion. **Jedes Carbonat nimmt zwei**.
-- <InlineMath math="12{,}5" /> Tonnen halbiert den Kalkstein ein zweites Mal.
-- <InlineMath math="250" /> Tonnen liest pH <InlineMath math="4{,}0" /> als <InlineMath math="10^{-3}\text{ mol dm}^{-3}" />, zehnmal zu sauer.
+- <InlineMath math="55{,}6" /> Tonnen nehmen ein Calciumcarbonat je Wasserstoffion. **Die Gleichung braucht zwei Wasserstoffionen für jedes**.
+- <InlineMath math="22{,}5" /> Tonnen multiplizieren mit <InlineMath math="90\%" />, statt zu teilen, und liefern so zu wenig Calciumcarbonat.
+- <InlineMath math="6{,}0\text{ m}^3" /> teilt die Kubikdezimeter durch eine Million, doch ein Kubikmeter sind nur <InlineMath math="1000\text{ dm}^3" />.
