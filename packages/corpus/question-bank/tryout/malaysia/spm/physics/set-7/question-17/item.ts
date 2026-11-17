@@ -13,22 +13,22 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "$$30\\text{ cm}$$, $$10\\text{ s}$$ and $$2.0\\text{ cm s}^{-1}$$ towards the lens",
+            "$$0.26\\text{ m}$$, $$38\\text{ m s}^{-1}$$, $$45°$$ and $$0.063\\text{ s}$$",
         },
         {
           correct: true,
           label:
-            "$$30\\text{ cm}$$, $$10\\text{ s}$$ and $$2.0\\text{ cm s}^{-1}$$ away from the lens",
+            "$$0.53\\text{ m}$$, $$75\\text{ m s}^{-1}$$, $$22.5°$$ and $$0.031\\text{ s}$$",
         },
         {
           correct: false,
           label:
-            "$$30\\text{ cm}$$, $$5.0\\text{ s}$$ and $$2.0\\text{ cm s}^{-1}$$ away from the lens",
+            "$$0.53\\text{ m}$$, $$38\\text{ m s}^{-1}$$, $$22.5°$$ and $$0.063\\text{ s}$$",
         },
         {
           correct: false,
           label:
-            "$$15\\text{ cm}$$, $$15\\text{ s}$$ and $$4.0\\text{ cm s}^{-1}$$ towards the lens",
+            "$$0.53\\text{ m}$$, $$12\\text{ m s}^{-1}$$, $$22.5°$$ and $$0.031\\text{ s}$$",
         },
       ],
     },
@@ -38,22 +38,22 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "$$30\\text{ cm}$$, $$10\\text{ s}$$ dan $$2.0\\text{ cm s}^{-1}$$ menghampiri kanta",
+            "$$0.26\\text{ m}$$, $$38\\text{ m s}^{-1}$$, $$45°$$ dan $$0.063\\text{ s}$$",
         },
         {
           correct: true,
           label:
-            "$$30\\text{ cm}$$, $$10\\text{ s}$$ dan $$2.0\\text{ cm s}^{-1}$$ menjauhi kanta",
+            "$$0.53\\text{ m}$$, $$75\\text{ m s}^{-1}$$, $$22.5°$$ dan $$0.031\\text{ s}$$",
         },
         {
           correct: false,
           label:
-            "$$30\\text{ cm}$$, $$5.0\\text{ s}$$ dan $$2.0\\text{ cm s}^{-1}$$ menjauhi kanta",
+            "$$0.53\\text{ m}$$, $$38\\text{ m s}^{-1}$$, $$22.5°$$ dan $$0.063\\text{ s}$$",
         },
         {
           correct: false,
           label:
-            "$$15\\text{ cm}$$, $$15\\text{ s}$$ dan $$4.0\\text{ cm s}^{-1}$$ menghampiri kanta",
+            "$$0.53\\text{ m}$$, $$12\\text{ m s}^{-1}$$, $$22.5°$$ dan $$0.031\\text{ s}$$",
         },
       ],
     },

@@ -1,28 +1,30 @@
-# Output berguna ialah angkatan ditambah pancutan, dan bekalan mesti menampung kehilangan juga
+# Ikuti tenaga dari cahaya matahari hingga simpanan, dengan sebahagian hilang pada setiap peringkat
 
-Setiap saat pam memberi <InlineMath math="2.0\text{ kg}" /> air **tenaga keupayaan** untuk kenaikan <InlineMath math="15\text{ m}" /> dan juga **tenaga kinetik**, kerana air keluar dari paip dalam keadaan masih bergerak. Bersama-sama ia ialah output berguna. Motor membazirkan <InlineMath math="40\%" /> daripada input, jadi input elektrik ialah output **dibahagi** dengan <InlineMath math="0.60" />, dan arus diperoleh daripada <InlineMath math="P=VI" />.
+Cahaya matahari pada panel ialah keamatan darab luas. Panel mengekalkan <InlineMath math="18\%" /> daripadanya sebagai kuasa elektrik. Kapasiti bateri dalam **ampere jam** ditukar kepada tenaga melalui <InlineMath math="E=VIt" />. Hanya <InlineMath math="80\%" /> daripada output panel disimpan, jadi kuasa yang disimpan lebih kecil dan masanya **lebih lama** daripada nisbah ringkas.
 
 <Chart
-  title={<>Kuasa dalam Pam</>}
+  title={<>Kuasa pada Setiap Peringkat dari Cahaya Matahari ke Bateri</>}
   bars="apart"
-  categories={["Mengangkat air", "Memberinya laju", "Diambil daripada bekalan"]}
+  categories={["Cahaya pada panel", "Output elektrik", "Disimpan dalam bateri"]}
   series={[
-    { label: "Kuasa", mark: "bar", values: [300, 16, 527] },
+    { label: "Kuasa", mark: "bar", values: [960, 173, 138] },
   ]}
   valueLabel="Kuasa (W)"
-  description={<>Mengangkat <InlineMath math="2.0\text{ kg}" /> air sesaat setinggi <InlineMath math="15\text{ m}" /> memerlukan <InlineMath math="300\text{ W}" /> dan memancutkannya pada <InlineMath math="4.0\text{ m s}^{-1}" /> <InlineMath math="16\text{ W}" /> lagi. Pada kecekapan <InlineMath math="60\%" /> motor mengambil kira-kira <InlineMath math="530\text{ W}" />.</>}
+  description={<>Daripada <InlineMath math="960\text{ W}" /> cahaya matahari, panel menukar <InlineMath math="173\text{ W}" /> kepada kuasa elektrik, dan bateri menyimpan <InlineMath math="138\text{ W}" /> daripadanya.</>}
 />
 
-<BlockMath math="P_{\text{keluar}}=2.0\times10\times15+\tfrac12(2.0)(4.0)^2=300+16\approx320\text{ W}" />
+<BlockMath math="P=0.18\times800\times1.2\approx173\text{ W}\approx170\text{ W}" />
 
-<BlockMath math="P_{\text{masuk}}=\frac{316}{0.60}\approx527\text{ W},\qquad I=\frac{527}{240}\approx2.2\text{ A}" />
+<BlockMath math="E=12\times100\times3600=4.32\times10^{6}\text{ J},\qquad t=\frac{4.32\times10^{6}}{0.80\times173}\approx3.1\times10^{4}\text{ s}\approx8.7\text{ j}" />
 
-<BlockMath math="t=\frac{1500}{2.0}=750\text{ s},\qquad E=527\times750\approx3.95\times10^{5}\text{ J}=\frac{3.95\times10^{5}}{3.6\times10^{6}}\approx0.11\text{ kW j}" />
+Panel memberi kira-kira <InlineMath math="170\text{ W}" /> kuasa elektrik, dan kira-kira <InlineMath math="138\text{ W}" /> daripadanya disimpan. Menyimpan <InlineMath math="4.32\text{ MJ}" /> pada kadar itu mengambil masa kira-kira <InlineMath math="8.7" /> jam cahaya matahari penuh.
 
-Pam memberi air kira-kira <InlineMath math="320\text{ W}" /> kuasa berguna, motor mengambil kira-kira <InlineMath math="2.2\text{ A}" />, dan mengisi tangki mengambil <InlineMath math="750\text{ s}" /> serta kira-kira <InlineMath math="0.11\text{ kW j}" />.
+<BlockMath math="E_{\text{boleh guna}}=(0.69-0.50)\times4.32\times10^{6}\approx8.3\times10^{5}\text{ J},\qquad t=\frac{8.3\times10^{5}}{60}\approx1.4\times10^{4}\text{ s}\approx3.8\text{ j}" />
+
+Hanya cas di atas paras separuh penuh yang boleh digunakan. Menjelang senja bateri <InlineMath math="69\%" /> penuh, jadi hanya <InlineMath math="19\%" /> cas penuh tersedia, cukup untuk menjalankan peti sejuk kira-kira <InlineMath math="3.8" /> jam, bukan sepanjang malam.
 
 # Kenapa pilihan lain salah
 
-- <InlineMath math="300\text{ W}" /> hanya mengira **angkatan**, lupa bahawa air keluar dari paip dengan tenaga kinetik juga.
-- <InlineMath math="0.79\text{ A}" /> **mendarab dengan kecekapan** dan bukan membahagi, seolah-olah motor mengambil kurang daripada yang diberikannya.
-- <InlineMath math="6.6\text{ kW j}" /> mendarab kilowatt dengan **minit** dan bukan jam.
+- <InlineMath math="87\%" /> dan <InlineMath math="7.4\text{ j}" /> **mengabaikan kehilangan semasa mengecas**, seolah-olah semua output panel disimpan.
+- <InlineMath math="960\text{ W}" /> ialah **cahaya matahari yang jatuh pada panel**, bukan kuasa elektrik yang dihasilkannya.
+- **Sepanjang <InlineMath math="12\text{ j}" />** menggunakan semua tenaga yang tersimpan, **mengabaikan had separuh cas**, di bawahnya bateri tidak boleh dinyahcas.

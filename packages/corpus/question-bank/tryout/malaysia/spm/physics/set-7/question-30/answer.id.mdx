@@ -1,28 +1,30 @@
-# Keluaran berguna adalah angkatan ditambah semburan, dan sumber harus menutup kerugiannya juga
+# Ikuti energi dari sinar matahari sampai tersimpan, dengan sebagian hilang di tiap tahap
 
-Tiap detik pompa memberi <InlineMath math="2{,}0\text{ kg}" /> air **energi potensial** untuk naik <InlineMath math="15\text{ m}" /> dan juga **energi kinetik**, karena air keluar dari pipa masih bergerak. Keduanya adalah keluaran berguna. Motor membuang <InlineMath math="40\%" /> dari masukannya, jadi masukan listrik adalah keluaran **dibagi** <InlineMath math="0{,}60" />, dan arus mengikuti dari <InlineMath math="P=VI" />.
+Sinar matahari pada panel adalah intensitas kali luas. Panel mempertahankan <InlineMath math="18\%" /> darinya sebagai daya listrik. Kapasitas baterai dalam **ampere jam** diubah menjadi energi lewat <InlineMath math="E=VIt" />. Hanya <InlineMath math="80\%" /> keluaran panel yang tersimpan, jadi daya yang tersimpan lebih kecil dan waktunya **lebih lama** dari perbandingan sederhana.
 
 <Chart
-  title={<>Daya dalam Pompa</>}
+  title={<>Daya pada Tiap Tahap dari Sinar Matahari ke Baterai</>}
   bars="apart"
-  categories={["Mengangkat air", "Memberinya kelajuan", "Diambil dari sumber"]}
+  categories={["Sinar pada panel", "Keluaran listrik", "Tersimpan di baterai"]}
   series={[
-    { label: "Daya", mark: "bar", values: [300, 16, 527] },
+    { label: "Daya", mark: "bar", values: [960, 173, 138] },
   ]}
   valueLabel="Daya (W)"
-  description={<>Mengangkat <InlineMath math="2{,}0\text{ kg}" /> air per detik setinggi <InlineMath math="15\text{ m}" /> butuh <InlineMath math="300\text{ W}" /> dan menyemburkannya pada <InlineMath math="4{,}0\text{ m s}^{-1}" /> butuh <InlineMath math="16\text{ W}" /> lagi. Dengan efisiensi <InlineMath math="60\%" /> motor mengambil sekitar <InlineMath math="530\text{ W}" />.</>}
+  description={<>Dari <InlineMath math="960\text{ W}" /> sinar matahari, panel mengubah <InlineMath math="173\text{ W}" /> menjadi daya listrik, dan baterai menyimpan <InlineMath math="138\text{ W}" /> darinya.</>}
 />
 
-<BlockMath math="P_{\text{keluar}}=2{,}0\times10\times15+\tfrac12(2{,}0)(4{,}0)^2=300+16\approx320\text{ W}" />
+<BlockMath math="P=0{,}18\times800\times1{,}2\approx173\text{ W}\approx170\text{ W}" />
 
-<BlockMath math="P_{\text{masuk}}=\frac{316}{0{,}60}\approx527\text{ W},\qquad I=\frac{527}{240}\approx2{,}2\text{ A}" />
+<BlockMath math="E=12\times100\times3600=4{,}32\times10^{6}\text{ J},\qquad t=\frac{4{,}32\times10^{6}}{0{,}80\times173}\approx3{,}1\times10^{4}\text{ s}\approx8{,}7\text{ jam}" />
 
-<BlockMath math="t=\frac{1500}{2{,}0}=750\text{ s},\qquad E=527\times750\approx3{,}95\times10^{5}\text{ J}=\frac{3{,}95\times10^{5}}{3{,}6\times10^{6}}\approx0{,}11\text{ kW h}" />
+Panel memberi sekitar <InlineMath math="170\text{ W}" /> daya listrik, dan sekitar <InlineMath math="138\text{ W}" /> darinya tersimpan. Menyimpan <InlineMath math="4{,}32\text{ MJ}" /> dengan laju itu butuh sekitar <InlineMath math="8{,}7" /> jam sinar matahari penuh.
 
-Pompa memberi air sekitar <InlineMath math="320\text{ W}" /> daya berguna, motor mengambil sekitar <InlineMath math="2{,}2\text{ A}" />, dan mengisi tangki butuh <InlineMath math="750\text{ s}" /> serta sekitar <InlineMath math="0{,}11\text{ kW h}" />.
+<BlockMath math="E_{\text{pakai}}=(0{,}69-0{,}50)\times4{,}32\times10^{6}\approx8{,}3\times10^{5}\text{ J},\qquad t=\frac{8{,}3\times10^{5}}{60}\approx1{,}4\times10^{4}\text{ s}\approx3{,}8\text{ jam}" />
+
+Hanya muatan di atas batas setengah penuh yang boleh dipakai. Menjelang senja baterai terisi <InlineMath math="69\%" />, jadi hanya <InlineMath math="19\%" /> dari isi penuh yang tersedia, cukup untuk menjalankan kulkas sekitar <InlineMath math="3{,}8" /> jam, bukan semalaman.
 
 # Mengapa pilihan lain salah
 
-- <InlineMath math="300\text{ W}" /> hanya menghitung **angkatan**, lupa bahwa air keluar dari pipa dengan energi kinetik juga.
-- <InlineMath math="0{,}79\text{ A}" /> **mengalikan dengan efisiensi** alih-alih membagi, seolah-olah motor mengambil lebih sedikit dari yang diberikannya.
-- <InlineMath math="6{,}6\text{ kW h}" /> mengalikan kilowatt dengan **menit**, bukan jam.
+- <InlineMath math="87\%" /> dan <InlineMath math="7{,}4\text{ jam}" /> **mengabaikan kehilangan saat mengisi**, seolah-olah semua keluaran panel tersimpan.
+- <InlineMath math="960\text{ W}" /> adalah **sinar matahari yang jatuh pada panel**, bukan daya listrik yang dihasilkannya.
+- **Semalaman <InlineMath math="12\text{ jam}" />** memakai seluruh energi tersimpan, **mengabaikan batas setengah isi**, yang tidak boleh dilewati baterai.

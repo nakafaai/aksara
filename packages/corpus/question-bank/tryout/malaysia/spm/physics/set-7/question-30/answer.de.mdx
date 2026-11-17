@@ -1,28 +1,30 @@
-# Die Nutzleistung ist Heben plus Ausstoßen, und das Netz muss die Verluste obendrauf decken
+# Die Energie vom Sonnenlicht bis zum Speicher verfolgen, mit Verlusten auf jeder Stufe
 
-Jede Sekunde gibt die Pumpe <InlineMath math="2{,}0\text{ kg}" /> Wasser **Lageenergie** für die <InlineMath math="15\text{ m}" /> und zusätzlich **Bewegungsenergie**, weil das Wasser das Rohr noch in Bewegung verlässt. Beides zusammen ist die Nutzleistung. Der Motor verliert <InlineMath math="40\%" /> seiner Aufnahme, die elektrische Leistung ist also die Nutzleistung **geteilt durch** <InlineMath math="0{,}60" />, und der Strom folgt aus <InlineMath math="P=VI" />.
+Das Licht auf dem Modul ist Intensität mal Fläche. Das Modul behält <InlineMath math="18\%" /> davon als elektrische Leistung. Die Kapazität des Akkus in **Amperestunden** wird über <InlineMath math="E=VIt" /> zur Energie. Nur <InlineMath math="80\%" /> der Modulleistung werden gespeichert, die gespeicherte Leistung ist also kleiner und die Zeit **länger**, als das einfache Verhältnis nahelegt.
 
 <Chart
-  title={<>Leistung in der Pumpe</>}
+  title={<>Leistung auf jeder Stufe vom Sonnenlicht bis zum Akku</>}
   bars="apart"
-  categories={["Wasser heben", "Geschwindigkeit geben", "Aus dem Netz"]}
+  categories={["Licht auf dem Modul", "Elektrische Leistung", "Im Akku gespeichert"]}
   series={[
-    { label: "Leistung", mark: "bar", values: [300, 16, 527] },
+    { label: "Leistung", mark: "bar", values: [960, 173, 138] },
   ]}
   valueLabel="Leistung (W)"
-  description={<><InlineMath math="2{,}0\text{ kg}" /> Wasser pro Sekunde <InlineMath math="15\text{ m}" /> zu heben kostet <InlineMath math="300\text{ W}" />, es mit <InlineMath math="4{,}0\text{ m s}^{-1}" /> auszustoßen weitere <InlineMath math="16\text{ W}" />. Bei <InlineMath math="60\%" /> Wirkungsgrad nimmt der Motor etwa <InlineMath math="530\text{ W}" /> auf.</>}
+  description={<>Von <InlineMath math="960\text{ W}" /> Sonnenlicht wandelt das Modul <InlineMath math="173\text{ W}" /> in elektrische Leistung um, davon speichert der Akku <InlineMath math="138\text{ W}" />.</>}
 />
 
-<BlockMath math="P_{\text{ab}}=2{,}0\cdot10\cdot15+\tfrac12(2{,}0)(4{,}0)^2=300+16\approx320\text{ W}" />
+<BlockMath math="P=0{,}18\cdot800\cdot1{,}2\approx173\text{ W}\approx170\text{ W}" />
 
-<BlockMath math="P_{\text{zu}}=\frac{316}{0{,}60}\approx527\text{ W},\qquad I=\frac{527}{240}\approx2{,}2\text{ A}" />
+<BlockMath math="E=12\cdot100\cdot3600=4{,}32\cdot10^{6}\text{ J},\qquad t=\frac{4{,}32\cdot10^{6}}{0{,}80\cdot173}\approx3{,}1\cdot10^{4}\text{ s}\approx8{,}7\text{ h}" />
 
-<BlockMath math="t=\frac{1500}{2{,}0}=750\text{ s},\qquad E=527\cdot750\approx3{,}95\cdot10^{5}\text{ J}=\frac{3{,}95\cdot10^{5}}{3{,}6\cdot10^{6}}\approx0{,}11\text{ kW h}" />
+Das Modul liefert etwa <InlineMath math="170\text{ W}" /> elektrische Leistung, davon werden etwa <InlineMath math="138\text{ W}" /> gespeichert. <InlineMath math="4{,}32\text{ MJ}" /> zu speichern dauert damit etwa <InlineMath math="8{,}7" /> Stunden volle Sonne.
 
-Die Pumpe gibt dem Wasser etwa <InlineMath math="320\text{ W}" /> Nutzleistung, der Motor nimmt etwa <InlineMath math="2{,}2\text{ A}" /> auf, und das Füllen des Tanks dauert <InlineMath math="750\text{ s}" /> und kostet etwa <InlineMath math="0{,}11\text{ kW h}" />.
+<BlockMath math="E_{\text{nutzbar}}=(0{,}69-0{,}50)\cdot4{,}32\cdot10^{6}\approx8{,}3\cdot10^{5}\text{ J},\qquad t=\frac{8{,}3\cdot10^{5}}{60}\approx1{,}4\cdot10^{4}\text{ s}\approx3{,}8\text{ h}" />
+
+Nur die Ladung über der Halb-voll-Marke darf genutzt werden. Bei Sonnenuntergang ist der Akku zu <InlineMath math="69\%" /> voll, verfügbar sind also nur <InlineMath math="19\%" /> einer Vollladung, genug für etwa <InlineMath math="3{,}8" /> Stunden Kühlschrank, nicht für die ganze Nacht.
 
 # Warum die anderen Antworten falsch sind
 
-- <InlineMath math="300\text{ W}" /> zählt nur das **Heben** und vergisst, dass das Wasser das Rohr mit Bewegungsenergie verlässt.
-- <InlineMath math="0{,}79\text{ A}" /> **multipliziert mit dem Wirkungsgrad**, statt zu teilen, als nähme der Motor weniger auf, als er abgibt.
-- <InlineMath math="6{,}6\text{ kW h}" /> multipliziert Kilowatt mit **Minuten** statt Stunden.
+- <InlineMath math="87\%" /> und <InlineMath math="7{,}4\text{ h}" /> **übersehen den Ladeverlust**, als würde die ganze Modulleistung gespeichert.
+- <InlineMath math="960\text{ W}" /> ist das **auf das Modul fallende Sonnenlicht**, nicht die erzeugte elektrische Leistung.
+- **Die ganzen <InlineMath math="12\text{ h}" />** verbrauchen die ganze gespeicherte Energie und **übersehen die Halbladungsgrenze**, unter die der Akku nicht darf.

@@ -13,21 +13,22 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "$$5.0\\text{ cm}$$, $$5.0\\text{ cm}$$ and $$0.25\\text{ J}$$",
+            "$$0.17\\text{ m}$$, $$10\\text{ N}$$, $$50\\text{ N}$$ and $$2.5\\text{ J}$$",
         },
         {
           correct: false,
           label:
-            "$$2.0\\text{ cm}$$, $$5.0\\text{ cm}$$ and $$0.25\\text{ J}$$",
+            "$$0.17\\text{ m}$$, $$12\\text{ N}$$, $$25\\text{ N}$$ and $$0.63\\text{ J}$$",
         },
         {
           correct: false,
-          label: "$$7.0\\text{ cm}$$, $$13\\text{ cm}$$ and $$1.7\\text{ J}$$",
+          label:
+            "$$0.040\\text{ m}$$, $$12\\text{ N}$$, $$42\\text{ N}$$ and $$1.7\\text{ J}$$",
         },
         {
           correct: true,
           label:
-            "$$2.0\\text{ cm}$$, $$8.0\\text{ cm}$$ and $$0.64\\text{ J}$$",
+            "$$0.17\\text{ m}$$, $$12\\text{ N}$$, $$63\\text{ N}$$ and $$3.9\\text{ J}$$",
         },
       ],
     },
@@ -37,21 +38,22 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "$$5.0\\text{ cm}$$, $$5.0\\text{ cm}$$ dan $$0.25\\text{ J}$$",
+            "$$0.17\\text{ m}$$, $$10\\text{ N}$$, $$50\\text{ N}$$ dan $$2.5\\text{ J}$$",
         },
         {
           correct: false,
           label:
-            "$$2.0\\text{ cm}$$, $$5.0\\text{ cm}$$ dan $$0.25\\text{ J}$$",
+            "$$0.17\\text{ m}$$, $$12\\text{ N}$$, $$25\\text{ N}$$ dan $$0.63\\text{ J}$$",
         },
         {
           correct: false,
-          label: "$$7.0\\text{ cm}$$, $$13\\text{ cm}$$ dan $$1.7\\text{ J}$$",
+          label:
+            "$$0.040\\text{ m}$$, $$12\\text{ N}$$, $$42\\text{ N}$$ dan $$1.7\\text{ J}$$",
         },
         {
           correct: true,
           label:
-            "$$2.0\\text{ cm}$$, $$8.0\\text{ cm}$$ dan $$0.64\\text{ J}$$",
+            "$$0.17\\text{ m}$$, $$12\\text{ N}$$, $$63\\text{ N}$$ dan $$3.9\\text{ J}$$",
         },
       ],
     },

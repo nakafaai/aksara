@@ -1,28 +1,30 @@
-# The useful output is lift plus launch, and the supply must cover the losses on top
+# Follow the energy from sunlight to storage, losing some at each stage
 
-Every second the pump gives <InlineMath math="2.0\text{ kg}" /> of water **potential energy** for the <InlineMath math="15\text{ m}" /> climb and also **kinetic energy**, because the water leaves the pipe still moving. Together they are the useful output. The motor wastes <InlineMath math="40\%" /> of what it takes in, so the electrical input is the output **divided by** <InlineMath math="0.60" />, and the current follows from <InlineMath math="P=VI" />.
+The sunlight on the panel is intensity times area. The panel keeps <InlineMath math="18\%" /> of it as electrical power. The battery's capacity in **ampere hours** becomes energy through <InlineMath math="E=VIt" />. Only <InlineMath math="80\%" /> of the panel's output is stored, so the stored power is smaller and the time is **longer** than the simple ratio suggests.
 
 <Chart
-  title={<>Power in the Pump</>}
+  title={<>Power at Each Stage from Sunlight to the Battery</>}
   bars="apart"
-  categories={["Lifting the water", "Giving it speed", "Taken from the supply"]}
+  categories={["Sunlight on panel", "Electrical output", "Stored in battery"]}
   series={[
-    { label: "Power", mark: "bar", values: [300, 16, 527] },
+    { label: "Power", mark: "bar", values: [960, 173, 138] },
   ]}
   valueLabel="Power (W)"
-  description={<>Lifting <InlineMath math="2.0\text{ kg}" /> of water a second by <InlineMath math="15\text{ m}" /> takes <InlineMath math="300\text{ W}" /> and launching it at <InlineMath math="4.0\text{ m s}^{-1}" /> another <InlineMath math="16\text{ W}" />. At <InlineMath math="60\%" /> efficiency the motor draws about <InlineMath math="530\text{ W}" />.</>}
+  description={<>Of <InlineMath math="960\text{ W}" /> of sunlight, the panel turns <InlineMath math="173\text{ W}" /> into electrical power, and the battery stores <InlineMath math="138\text{ W}" /> of that.</>}
 />
 
-<BlockMath math="P_{\text{out}}=2.0\times10\times15+\tfrac12(2.0)(4.0)^2=300+16\approx320\text{ W}" />
+<BlockMath math="P=0.18\times800\times1.2\approx173\text{ W}\approx170\text{ W}" />
 
-<BlockMath math="P_{\text{in}}=\frac{316}{0.60}\approx527\text{ W},\qquad I=\frac{527}{240}\approx2.2\text{ A}" />
+<BlockMath math="E=12\times100\times3600=4.32\times10^{6}\text{ J},\qquad t=\frac{4.32\times10^{6}}{0.80\times173}\approx3.1\times10^{4}\text{ s}\approx8.7\text{ h}" />
 
-<BlockMath math="t=\frac{1500}{2.0}=750\text{ s},\qquad E=527\times750\approx3.95\times10^{5}\text{ J}=\frac{3.95\times10^{5}}{3.6\times10^{6}}\approx0.11\text{ kW h}" />
+The panel gives about <InlineMath math="170\text{ W}" /> of electrical power, of which about <InlineMath math="138\text{ W}" /> is stored. Storing <InlineMath math="4.32\text{ MJ}" /> at that rate takes about <InlineMath math="8.7" /> hours of full sunlight.
 
-The pump gives the water about <InlineMath math="320\text{ W}" /> of useful power, the motor draws about <InlineMath math="2.2\text{ A}" />, and filling the tank takes <InlineMath math="750\text{ s}" /> and about <InlineMath math="0.11\text{ kW h}" />.
+<BlockMath math="E_{\text{usable}}=(0.69-0.50)\times4.32\times10^{6}\approx8.3\times10^{5}\text{ J},\qquad t=\frac{8.3\times10^{5}}{60}\approx1.4\times10^{4}\text{ s}\approx3.8\text{ h}" />
+
+Only the charge above the half-full mark may be used. By sunset the battery is <InlineMath math="69\%" /> full, so just <InlineMath math="19\%" /> of a full charge is available, enough to run the refrigerator for about <InlineMath math="3.8" /> hours, not the whole night.
 
 # Why the other options are wrong
 
-- <InlineMath math="300\text{ W}" /> counts only the **lift**, forgetting that the water leaves the pipe with kinetic energy too.
-- <InlineMath math="0.79\text{ A}" /> **multiplies by the efficiency** instead of dividing, as if the motor took in less than it gives out.
-- <InlineMath math="6.6\text{ kW h}" /> multiplies kilowatts by **minutes** instead of hours.
+- <InlineMath math="87\%" /> and <InlineMath math="7.4\text{ h}" /> **ignore the charging loss**, as if all the panel's output were stored.
+- <InlineMath math="960\text{ W}" /> is the **sunlight falling on the panel**, not the electrical power it produces.
+- **The whole <InlineMath math="12\text{ h}" />** uses all the stored energy, **ignoring the half-charge limit**, below which the battery must not go.

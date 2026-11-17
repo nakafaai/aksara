@@ -1,28 +1,28 @@
-# Work backwards: friction gives the speed after, momentum gives the speed before
+# Add or subtract the speeds, never the times
 
-The skid is easy to read backwards. Friction is <InlineMath math="0.60" /> times the weight, so the deceleration is <InlineMath math="0.60g" /> **whatever the mass**, and the skid length gives the speed just after the impact. The impact itself is a collision in which the cars stick: **momentum is conserved but kinetic energy is not**, so momentum, not energy, carries the speed back to before the crash.
+Speeds relative to the ground **add** when she walks with the escalator and **subtract** when she walks against it. Write each speed as a fraction of the escalator's length <InlineMath math="L" /> per second, combine the speeds, then turn the result back into a time.
 
 <Chart
-  title={<>Kinetic Energy of the Cars</>}
+  title={<>Time to Cover the Escalator in Each Case</>}
   bars="apart"
-  categories={["Before the impact", "Just after the impact", "After the skid"]}
+  categories={["Standing, escalator moving", "Walking, escalator stopped", "Walking up, escalator moving", "Walking down the up escalator"]}
   series={[
-    { label: "Kinetic energy", mark: "bar", values: [240, 144, 0] },
+    { label: "Time", mark: "bar", values: [60, 40, 24, 120] },
   ]}
-  valueLabel="Energy (kJ)"
-  description={<>The moving car brings <InlineMath math="240\text{ kJ}" />. Just after the impact the locked wrecks have <InlineMath math="144\text{ kJ}" />, so <InlineMath math="96\text{ kJ}" /> went into crumpling, and the skid removes the rest.</>}
+  valueLabel="Time (s)"
+  description={<>Standing on the moving escalator takes <InlineMath math="60" /> s and walking on the stopped one <InlineMath math="40" /> s. Walking up the moving escalator takes <InlineMath math="24" /> s, and walking down against it <InlineMath math="120" /> s.</>}
 />
 
-<BlockMath math="a=0.60\times10=6.0\text{ m s}^{-2},\qquad v=\sqrt{2(6.0)(12)}=12\text{ m s}^{-1}" />
+<BlockMath math="v_e=\frac{L}{60},\quad v_w=\frac{L}{40}\qquad \text{up}: \frac{L}{L/60+L/40}=\frac{1}{5/120}=24\text{ s},\qquad \text{down}: \frac{L}{L/40-L/60}=\frac{1}{1/120}=120\text{ s}" />
 
-<BlockMath math="1200u=2000\times12\Rightarrow u=20\text{ m s}^{-1}=72\text{ km h}^{-1}" />
+Walking with the escalator she covers <InlineMath math="\tfrac{1}{60}+\tfrac{1}{40}=\tfrac{5}{120}" /> of it each second, so <InlineMath math="24\text{ s}" />. Walking down against it she gains only <InlineMath math="\tfrac{1}{40}-\tfrac{1}{60}=\tfrac{1}{120}" /> of it each second, so <InlineMath math="120\text{ s}" />.
 
-<BlockMath math="\Delta E_k=\tfrac12(1200)(20)^2-\tfrac12(2000)(12)^2=240\,000-144\,000=96\text{ kJ}" />
+<BlockMath math="\text{rate}=\frac{60}{40}=1.5\text{ steps s}^{-1},\qquad 1.5\times24=36,\qquad 1.5\times120=180" />
 
-The locked cars left the impact at <InlineMath math="12\text{ m s}^{-1}" />, so the striking car was doing <InlineMath math="72\text{ km h}^{-1}" />. In the impact <InlineMath math="96\text{ kJ}" /> of kinetic energy became heat, sound and crushed metal, and the skid then removed the remaining <InlineMath math="144\text{ kJ}" />.
+She treads <InlineMath math="1.5" /> steps every second whatever the escalator does. Walking up with it she treads only <InlineMath math="36" /> steps, because the escalator carries her part of the way, and walking down against it she treads <InlineMath math="180" />.
 
 # Why the other options are wrong
 
-- <InlineMath math="56\text{ km h}^{-1}" /> and <InlineMath math="0\text{ kJ}" /> carry the speed back by **conserving kinetic energy**, but cars that lock together always lose kinetic energy.
-- <InlineMath math="9.3\text{ m s}^{-1}" /> applies the friction of **one car's weight** to both cars, but friction grows with the weight of everything skidding.
-- <InlineMath math="144\text{ kJ}" /> is the energy **removed by the skid**, after the impact, not the energy converted in the impact.
+- <InlineMath math="60" /> steps both ways assumes the **number of steps is fixed** by the escalator's length, but she treads steps for as long as she walks.
+- <InlineMath math="36" /> steps going down **adds the speeds in both directions**, but walking down against the escalator the speeds subtract.
+- <InlineMath math="50\text{ s}" /> **averages the two times**, but it is the speeds that add, not the times.

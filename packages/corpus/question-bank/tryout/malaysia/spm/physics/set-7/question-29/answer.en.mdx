@@ -1,28 +1,31 @@
-# Reaching the melting point is not enough: the wire must also be given its latent heat
+# Find which positions still have a complete path, then let the fuse limit the replacement
 
-The current heats the wire at <InlineMath math="P=I^2R" />. To blow, the wire must first be **warmed to its melting point** and then **melted**, which takes the latent heat as well, at a steady <InlineMath math="327" /> °C. A smaller steady current never melts the wire if the heat it makes can escape as fast as it is produced, so the safe limit comes from setting <InlineMath math="I^2R" /> equal to the greatest heat loss.
+At a fixed <InlineMath math="240\text{ V}" />, power is <InlineMath math="P=\dfrac{V^2}{R}" />. After the fault, current can flow only through paths that **avoid the broken coil**: the series path runs through it, MEDIUM is the broken coil itself, and only HIGH still works, through the <InlineMath math="60\,\Omega" /> coil. A replacement coil sits in parallel with the <InlineMath math="60\,\Omega" /> coil on HIGH, so the two currents add, and together they must stay within <InlineMath math="13\text{ A}" />.
 
 <Chart
-  title={<>Energy Needed to Melt the Fuse Wire</>}
+  title={<>Power on Each Switch Position Before and After the Fault</>}
   bars="apart"
-  categories={["Warm to melting point", "Melt", "Total"]}
+  categories={["LOW (series)", "MEDIUM (40 Ω)", "HIGH (parallel)"]}
   series={[
-    { label: "Energy", mark: "bar", values: [1.95, 1.25, 3.2] },
+    { label: "Before", mark: "bar", values: [576, 1440, 2400] },
+    { label: "After", mark: "bar", values: [0, 0, 960] },
   ]}
-  valueLabel="Energy (J)"
-  description={<>Warming the wire to <InlineMath math="327" /> °C takes <InlineMath math="1.95\text{ J}" /> and melting it another <InlineMath math="1.25\text{ J}" />, <InlineMath math="3.2\text{ J}" /> in all, which <InlineMath math="8.0\text{ W}" /> delivers in <InlineMath math="0.40\text{ s}" />.</>}
+  valueLabel="Power (W)"
+  description={<>Before the fault the positions give <InlineMath math="576" />, <InlineMath math="1440" /> and <InlineMath math="2400\text{ W}" />. With the <InlineMath math="40\,\Omega" /> coil open, LOW and MEDIUM give nothing and HIGH gives only the <InlineMath math="60\,\Omega" /> coil's <InlineMath math="960\text{ W}" />.</>}
 />
 
-<BlockMath math="P=I^2R=20^2\times0.020=8.0\text{ W}" />
+<BlockMath math="P_{\text{LOW}}=\frac{240^2}{60+40}=576\text{ W},\qquad\text{after the fault: }P_{\text{HIGH}}=\frac{240^2}{60}=960\text{ W}" />
 
-<BlockMath math="Q=mc\Delta\theta+mL=5.0\times10^{-5}\times130\times300+5.0\times10^{-5}\times2.5\times10^{4}=1.95+1.25=3.2\text{ J},\qquad t=\frac{3.2}{8.0}=0.40\text{ s}" />
+<BlockMath math="I_{60}=\frac{240}{60}=4.0\text{ A},\qquad I_R\le13-4.0=9.0\text{ A}\Rightarrow R\ge\frac{240}{9.0}\approx27\,\Omega" />
 
-<BlockMath math="I^2(0.020)=3.0\Rightarrow I=\sqrt{150}\approx12\text{ A}" />
+Before the fault LOW gave <InlineMath math="576\text{ W}" />. After it only HIGH works, giving <InlineMath math="960\text{ W}" />. The <InlineMath math="60\,\Omega" /> coil already takes <InlineMath math="4.0\text{ A}" /> on HIGH, so a replacement may take at most <InlineMath math="9.0\text{ A}" />, which means at least about <InlineMath math="27\,\Omega" />.
 
-The fault heats the wire at <InlineMath math="8.0\text{ W}" /> and melts it through in <InlineMath math="0.40\text{ s}" />. A steady current up to about <InlineMath math="12\text{ A}" /> never melts it, because the wire sheds the heat as fast as the current makes it.
+<BlockMath math="P_{\text{HIGH}}=VI=240\times13=3.1\text{ kW}" />
+
+With the smallest allowed replacement, HIGH draws exactly the fuse's <InlineMath math="13\text{ A}" />, so it gives about <InlineMath math="3.1\text{ kW}" />: <InlineMath math="960\text{ W}" /> from the <InlineMath math="60\,\Omega" /> coil and about <InlineMath math="2.2\text{ kW}" /> from the new one.
 
 # Why the other options are wrong
 
-- <InlineMath math="0.24\text{ s}" /> only **warms the wire to its melting point**, forgetting the latent heat needed to melt it.
-- <InlineMath math="0.40\text{ W}" /> uses **<InlineMath math="P=IR" />**, which is not a power, and the slip carries into the time and the current.
-- <InlineMath math="0.16\text{ s}" /> supplies **only the latent heat**, as if the wire were already at <InlineMath math="327" /> °C.
+- <InlineMath math="576\text{ W}" /> after the fault assumes the **series path still works**, but it runs through the broken coil, so no current flows.
+- <InlineMath math="18\,\Omega" /> gives the replacement the **whole <InlineMath math="13\text{ A}" />**, forgetting the <InlineMath math="4.0\text{ A}" /> the <InlineMath math="60\,\Omega" /> coil draws beside it on HIGH.
+- <InlineMath math="1.4\text{ kW}" /> uses the **MEDIUM position**, but that position is the broken <InlineMath math="40\,\Omega" /> coil itself.

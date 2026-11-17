@@ -12,23 +12,19 @@ const item: ItemSource = {
       options: [
         {
           correct: false,
-          label:
-            "$$12\\text{ m s}^{-1}$$, $$56\\text{ km h}^{-1}$$ and $$0\\text{ kJ}$$",
+          label: "$$24\\text{ s}$$, $$60$$ steps and $$60$$ steps",
         },
         {
           correct: false,
-          label:
-            "$$9.3\\text{ m s}^{-1}$$, $$56\\text{ km h}^{-1}$$ and $$58\\text{ kJ}$$",
+          label: "$$24\\text{ s}$$, $$36$$ steps and $$36$$ steps",
         },
         {
           correct: true,
-          label:
-            "$$12\\text{ m s}^{-1}$$, $$72\\text{ km h}^{-1}$$ and $$96\\text{ kJ}$$",
+          label: "$$24\\text{ s}$$, $$36$$ steps and $$180$$ steps",
         },
         {
           correct: false,
-          label:
-            "$$12\\text{ m s}^{-1}$$, $$72\\text{ km h}^{-1}$$ and $$144\\text{ kJ}$$",
+          label: "$$50\\text{ s}$$, $$75$$ steps and $$180$$ steps",
         },
       ],
     },
@@ -37,23 +33,19 @@ const item: ItemSource = {
       options: [
         {
           correct: false,
-          label:
-            "$$12\\text{ m s}^{-1}$$, $$56\\text{ km j}^{-1}$$ dan $$0\\text{ kJ}$$",
+          label: "$$24\\text{ s}$$, $$60$$ anak tangga dan $$60$$ anak tangga",
         },
         {
           correct: false,
-          label:
-            "$$9.3\\text{ m s}^{-1}$$, $$56\\text{ km j}^{-1}$$ dan $$58\\text{ kJ}$$",
+          label: "$$24\\text{ s}$$, $$36$$ anak tangga dan $$36$$ anak tangga",
         },
         {
           correct: true,
-          label:
-            "$$12\\text{ m s}^{-1}$$, $$72\\text{ km j}^{-1}$$ dan $$96\\text{ kJ}$$",
+          label: "$$24\\text{ s}$$, $$36$$ anak tangga dan $$180$$ anak tangga",
         },
         {
           correct: false,
-          label:
-            "$$12\\text{ m s}^{-1}$$, $$72\\text{ km j}^{-1}$$ dan $$144\\text{ kJ}$$",
+          label: "$$50\\text{ s}$$, $$75$$ anak tangga dan $$180$$ anak tangga",
         },
       ],
     },

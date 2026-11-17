@@ -1,26 +1,25 @@
-# Die Oberflächenschwere skaliert mit Masse durch Radius zum Quadrat und bestimmt Luftgewicht und Barometer
+# Die Anziehungen nach dem Abstandsquadrat ausgleichen und dann g mit dem Quadrat des Abstands skalieren
 
-Aus <InlineMath math="g=\dfrac{GM}{R^2}" /> folgt: Die Oberflächenschwere skaliert mit der **Masse geteilt durch das Quadrat des Radius**. Der Luftdruck ist das Gewicht der Luft über jedem Quadratmeter, <InlineMath math="P=\dfrac{mg}{A}" />, die Luftmasse hängt also vom <InlineMath math="g" /> des Mars ab. Ein Barometer hält der Luft mit einer Quecksilbersäule die Waage, <InlineMath math="P=\rho gh" />, und **dieselbe schwächere Schwerkraft** zieht auch am Quecksilber.
+Jede Anziehung ist proportional zu **Masse geteilt durch Abstandsquadrat**. Damit sie gleich sind, müssen die Abstände im Verhältnis der **Wurzeln** der Massen stehen, <InlineMath math="\sqrt{81}:1=9:1" />. Die Anziehung der Erde allein dort folgt aus ihrem Wert an der Oberfläche, skaliert mit <InlineMath math="(R/r)^2" />.
 
-<Chart
-  title={<>Quecksilberbarometer auf dem Mars</>}
-  bars="apart"
-  categories={["Mit Marsschwerkraft", "Mit Erdschwerkraft"]}
-  series={[
-    { label: "Säulenhöhe", mark: "bar", values: [11.9, 4.5] },
-  ]}
-  valueLabel="Höhe (mm)"
-  description={<>Auf dem Mars trägt die <InlineMath math="600\text{ Pa}" /> dünne Atmosphäre etwa <InlineMath math="12\text{ mm}" /> Quecksilber. Mit der Erdbeschleunigung <InlineMath math="9{,}8\text{ m s}^{-2}" /> erhielte man fälschlich nur <InlineMath math="4{,}5\text{ mm}" />.</>}
+<Mermaid
+  title={<>Wo sich die Anziehung von Erde und Mond aufheben</>}
+  description={<>Die Anziehungen heben sich auf, wo die Abstände im Verhältnis <InlineMath math="9:1" /> stehen, der Wurzel des Massenverhältnisses <InlineMath math="81:1" />, also bei <InlineMath math="0{,}9" /> des Weges von der Erde.</>}
+  chart={"flowchart LR\n  E[\"Erde, Masse 81 M\"] -->|\"0,9 d = 3,5 × 10⁸ m\"| P[\"Gleichgewichtspunkt\"]\n  P -->|\"0,1 d\"| M[\"Mond, Masse M\"]"}
 />
 
-<BlockMath math="g_M=9{,}8\cdot\frac{0{,}107}{0{,}532^2}\approx3{,}7\text{ m s}^{-2},\qquad m=\frac{PA}{g_M}=\frac{600\cdot1}{3{,}7}\approx160\text{ kg}" />
+<BlockMath math="\frac{81M}{r_E^2}=\frac{M}{r_M^2}\Rightarrow\frac{r_E}{r_M}=9,\qquad r_E=0{,}9\cdot3{,}84\cdot10^{8}=3{,}46\cdot10^{8}\text{ m}" />
 
-<BlockMath math="h=\frac{P}{\rho g_M}=\frac{600}{13\,600\cdot3{,}7}\approx0{,}012\text{ m}=12\text{ mm}" />
+<BlockMath math="g=9{,}8\left(\frac{6{,}4\cdot10^{6}}{3{,}46\cdot10^{8}}\right)^2=9{,}8\cdot3{,}42\cdot10^{-4}\approx3{,}4\cdot10^{-3}\text{ m s}^{-2}" />
 
-Die Schwerebeschleunigung auf dem Mars beträgt etwa <InlineMath math="3{,}7\text{ m s}^{-2}" />. Auf jedem Quadratmeter lasten etwa <InlineMath math="160\text{ kg}" /> Luft, und ein Quecksilberbarometer stünde dort nur etwa <InlineMath math="12\text{ mm}" /> hoch.
+Der Punkt liegt bei <InlineMath math="0{,}9" /> des Weges zum Mond, <InlineMath math="3{,}5\cdot10^{8}\text{ m}" /> vom Erdmittelpunkt. Das sind <InlineMath math="54" /> Erdradien, wo die Anziehung der Erde nur <InlineMath math="1/2900" /> ihres Oberflächenwerts beträgt.
+
+<BlockMath math="g_M=3{,}4\cdot10^{-3}\cdot\left(\frac{3{,}84\cdot10^{7}}{1{,}74\cdot10^{6}}\right)^2=3{,}4\cdot10^{-3}\cdot487\approx1{,}6\text{ m s}^{-2}" />
+
+Am Gleichgewichtspunkt zieht der Mond genauso stark wie die Erde, <InlineMath math="3{,}4\cdot10^{-3}\text{ m s}^{-2}" />, aus <InlineMath math="3{,}84\cdot10^{7}\text{ m}" /> Entfernung. An der Mondoberfläche, <InlineMath math="22" />-mal näher, wird das mit <InlineMath math="22^2" /> multipliziert, etwa <InlineMath math="1{,}6\text{ m s}^{-2}" />.
 
 # Warum die anderen Antworten falsch sind
 
-- <InlineMath math="4{,}5\text{ mm}" /> nimmt für das Quecksilber die **Erdbeschleunigung**, doch auf dem Mars zieht die schwächere Marsschwere an der Säule.
-- <InlineMath math="61\text{ kg}" /> teilt den Druck durch das **<InlineMath math="g" /> der Erde**, doch das Gewicht der Luft kommt von der Schwere des Planeten, auf dem sie liegt.
-- <InlineMath math="2{,}0\text{ m s}^{-2}" /> teilt durch den Radius, **ohne ihn zu quadrieren**, und der Fehler zieht sich in Luftmasse und Säulenhöhe.
+- <InlineMath math="3{,}8\cdot10^{8}\text{ m}" /> setzt die Abstände proportional zu den **Massen**, <InlineMath math="81:1" />, statt zu deren Wurzeln, <InlineMath math="9:1" />.
+- <InlineMath math="0{,}18\text{ m s}^{-2}" /> skaliert <InlineMath math="g" /> mit dem **Abstandsverhältnis** ohne Quadrat und wiederholt den Fehler am Mond.
+- <InlineMath math="0{,}074\text{ m s}^{-2}" /> hat den Gleichgewichtspunkt richtig, skaliert zur Mondoberfläche aber mit **<InlineMath math="22" /> statt <InlineMath math="22^2" />**.

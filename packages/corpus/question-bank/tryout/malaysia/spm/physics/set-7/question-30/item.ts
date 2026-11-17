@@ -12,23 +12,19 @@ const item: ItemSource = {
       options: [
         {
           correct: false,
-          label:
-            "$$300\\text{ W}$$, $$2.1\\text{ A}$$ and $$0.10\\text{ kW h}$$",
+          label: "$$170\\text{ W}$$, $$87\\%$$ and $$7.4\\text{ h}$$",
         },
         {
           correct: true,
-          label:
-            "$$320\\text{ W}$$, $$2.2\\text{ A}$$ and $$0.11\\text{ kW h}$$",
+          label: "$$170\\text{ W}$$, $$69\\%$$ and $$3.8\\text{ h}$$",
         },
         {
           correct: false,
-          label:
-            "$$320\\text{ W}$$, $$0.79\\text{ A}$$ and $$0.040\\text{ kW h}$$",
+          label: "$$960\\text{ W}$$, $$100\\%$$ and $$10\\text{ h}$$",
         },
         {
           correct: false,
-          label:
-            "$$320\\text{ W}$$, $$2.2\\text{ A}$$ and $$6.6\\text{ kW h}$$",
+          label: "$$170\\text{ W}$$, $$69\\%$$ and the whole $$12\\text{ h}$$",
         },
       ],
     },
@@ -37,23 +33,19 @@ const item: ItemSource = {
       options: [
         {
           correct: false,
-          label:
-            "$$300\\text{ W}$$, $$2.1\\text{ A}$$ dan $$0.10\\text{ kW j}$$",
+          label: "$$170\\text{ W}$$, $$87\\%$$ dan $$7.4\\text{ j}$$",
         },
         {
           correct: true,
-          label:
-            "$$320\\text{ W}$$, $$2.2\\text{ A}$$ dan $$0.11\\text{ kW j}$$",
+          label: "$$170\\text{ W}$$, $$69\\%$$ dan $$3.8\\text{ j}$$",
         },
         {
           correct: false,
-          label:
-            "$$320\\text{ W}$$, $$0.79\\text{ A}$$ dan $$0.040\\text{ kW j}$$",
+          label: "$$960\\text{ W}$$, $$100\\%$$ dan $$10\\text{ j}$$",
         },
         {
           correct: false,
-          label:
-            "$$320\\text{ W}$$, $$2.2\\text{ A}$$ dan $$6.6\\text{ kW j}$$",
+          label: "$$170\\text{ W}$$, $$69\\%$$ dan sepanjang $$12\\text{ j}$$",
         },
       ],
     },

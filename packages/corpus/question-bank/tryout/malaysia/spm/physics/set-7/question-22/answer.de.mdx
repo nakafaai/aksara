@@ -1,26 +1,35 @@
-# Reibung ist kein fester Schub: Sie wirkt hangauf oder hangab, also ruht die Kiste über einen Bereich
+# Reihe teilt die Dehnung, parallel teilt die Kraft
 
-Entlang der Rampe zieht das Gewicht die Kiste mit <InlineMath math="mg\sin30°" /> hinunter, die Feder zieht sie hinauf. Die Reibung gleicht jeden Unterschied aus, **in der jeweils nötigen Richtung**, bis <InlineMath math="6{,}0\text{ N}" />. Bei schlaffer Feder will die Kiste hinunterrutschen, die Reibung wirkt hangauf. Bei stark gedehnter Feder wird sie hinaufgezogen, die Reibung wirkt hangab. Das ergibt **zwei Grenzen**, nicht eine.
+In **Reihe** tragen beide Federn die **ganzen <InlineMath math="20\text{ N}" />**, ihre Dehnungen addieren sich. **Parallel** sorgt der Stab dafür, dass sich beide **gleich weit** dehnen, ihre Kräfte addieren sich zu <InlineMath math="20\text{ N}" />, die steifere Feder trägt also mehr.
 
 <Chart
-  title={<>Federkraft, die die Kiste ruhen lässt</>}
+  title={<>Kraft und Dehnung jeder Feder in jeder Anordnung</>}
   bars="apart"
-  categories={["Kleinste Kraft", "Gewicht hangabwärts", "Größte Kraft"]}
+  categories={["200 N/m, Reihe", "300 N/m, Reihe", "200 N/m, parallel", "300 N/m, parallel"]}
   series={[
-    { label: "Federkraft", mark: "bar", values: [4.0, 10.0, 16.0] },
+    { label: "Kraft (N)", mark: "bar", values: [20, 20, 8, 12] },
+    { label: "Dehnung (cm)", mark: "bar", values: [10, 6.7, 4.0, 4.0] },
   ]}
-  valueLabel="Kraft (N)"
-  description={<>Das Gewicht zieht mit <InlineMath math="10\text{ N}" /> hangabwärts. Die Reibung liefert bis zu <InlineMath math="6{,}0\text{ N}" /> in jede Richtung, die Feder darf also zwischen <InlineMath math="4{,}0\text{ N}" /> und <InlineMath math="16\text{ N}" /> ziehen.</>}
+  valueLabel="Wert"
+  description={<>In Reihe tragen beide Federn die vollen <InlineMath math="20\text{ N}" />, die weichere dehnt sich mehr, <InlineMath math="10" /> gegen <InlineMath math="6{,}7\text{ cm}" />. Parallel dehnen sich beide um <InlineMath math="4{,}0\text{ cm}" />, die steifere trägt mehr, <InlineMath math="12" /> gegen <InlineMath math="8\text{ N}" />.</>}
 />
 
-<BlockMath math="mg\sin30°=2{,}0\cdot10\cdot0{,}5=10\text{ N},\qquad T_{\min}=10-6{,}0=4{,}0\text{ N},\qquad T_{\max}=10+6{,}0=16\text{ N}" />
+<BlockMath math="x_{\text{Reihe}}=\frac{20}{200}+\frac{20}{300}=0{,}10+0{,}067\approx0{,}17\text{ m},\qquad E_{200}=\tfrac12(20)(0{,}10)=1{,}0\text{ J}" />
 
-<BlockMath math="x_{\min}=\frac{4{,}0}{200}=2{,}0\text{ cm},\qquad x_{\max}=\frac{16}{200}=8{,}0\text{ cm},\qquad E=\tfrac12(200)(0{,}080)^2=0{,}64\text{ J}" />
+<BlockMath math="x_{\text{parallel}}=\frac{20}{200+300}=0{,}040\text{ m},\qquad F_{300}=300\cdot0{,}040=12\text{ N}" />
 
-Die Kiste bleibt überall liegen, wo die Feder zwischen <InlineMath math="2{,}0\text{ cm}" /> und <InlineMath math="8{,}0\text{ cm}" /> gedehnt ist. An der oberen Grenze speichert die Feder <InlineMath math="0{,}64\text{ J}" />.
+In Reihe dehnt sich das Paar um etwa <InlineMath math="0{,}17\text{ m}" />, und die weichere Feder mit <InlineMath math="200\text{ N m}^{-1}" /> speichert <InlineMath math="1{,}0\text{ J}" />. Parallel dehnen sich beide um <InlineMath math="0{,}040\text{ m}" />, die Feder mit <InlineMath math="300\text{ N m}^{-1}" /> trägt also <InlineMath math="12\text{ N}" />, die andere <InlineMath math="8\text{ N}" />.
+
+<BlockMath math="\frac{F_{200}}{W}=\frac{200}{500}=0{,}40,\qquad 0{,}40\,W\le25\Rightarrow W\le\frac{25}{0{,}40}\approx63\text{ N}" />
+
+Parallel trägt die Feder mit <InlineMath math="200\text{ N m}^{-1}" /> immer <InlineMath math="40\%" /> der Last. Sie erreicht <InlineMath math="25\text{ N}" /> bei einer Last von etwa <InlineMath math="63\text{ N}" />, die steifere trägt dann <InlineMath math="38\text{ N}" />.
+
+<BlockMath math="x=\frac{62{,}5}{500}=0{,}125\text{ m},\qquad E=\tfrac12(62{,}5)(0{,}125)\approx3{,}9\text{ J}" />
+
+Bei der größten Last dehnt sich das Paar, so steif wie eine Feder mit <InlineMath math="500\text{ N m}^{-1}" />, um <InlineMath math="12{,}5\text{ cm}" /> und speichert etwa <InlineMath math="3{,}9\text{ J}" />.
 
 # Warum die anderen Antworten falsch sind
 
-- <InlineMath math="5{,}0\text{ cm}" /> für beide Grenzen **übersieht die Reibung**, die Kiste könnte dann nur an einer Stelle ruhen.
-- <InlineMath math="2{,}0\text{ cm}" /> und <InlineMath math="5{,}0\text{ cm}" /> lassen die Reibung **nur der Feder helfen**, nie gegen sie wirken, doch Reibung wirkt gegen jede Richtung, in die die Kiste rutschen will.
-- <InlineMath math="7{,}0\text{ cm}" /> und <InlineMath math="13\text{ cm}" /> nehmen das **ganze Gewicht** hangabwärts statt der Komponente <InlineMath math="mg\sin30°" />.
+- <InlineMath math="10\text{ N}" /> und <InlineMath math="50\text{ N}" /> teilen die Last parallel **gleichmäßig**, doch gleiche Dehnungen lassen die steifere Feder mehr tragen.
+- <InlineMath math="25\text{ N}" /> behandelt das Parallelpaar, **als wäre es in Reihe**, wo jede Feder die ganze Last trüge.
+- <InlineMath math="0{,}040\text{ m}" /> und <InlineMath math="42\text{ N}" /> behandeln das Paar in Reihe, **als wäre es parallel**, und geben der weicheren Feder den Anteil von <InlineMath math="60\%" /> der steiferen.

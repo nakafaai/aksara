@@ -1,28 +1,35 @@
-# Two errors push the same way, so both must come out before the heat balance
+# Read the power from the ratio for a doubling, then scale by that power
 
-A voltmeter that reads <InlineMath math="0.4\text{ V}" /> with no current has a **positive zero error**: every reading is <InlineMath math="0.4\text{ V}" /> too high, so it must be subtracted. The heater's energy also does not all stay in the oil: some leaks to the room while it warms. Only the energy the oil **keeps** equals <InlineMath math="mc\Delta\theta" />. Both mistakes make the energy look bigger than it is, so the raw value of <InlineMath math="c" /> comes out too high.
+In a power law, multiplying <InlineMath math="d" /> by a factor multiplies <InlineMath math="t" /> by **that factor raised to the power <InlineMath math="n" />**. Doubling the diameter from <InlineMath math="2.0" /> to <InlineMath math="4.0\text{ mm}" /> divides the time by <InlineMath math="320\div56.6=5.66" />, and so does the next doubling. Since <InlineMath math="2^{2.5}=5.66" />, the power is <InlineMath math="n=-2.5" />. Then scale from a known point, never by a straight-line guess between points.
 
 <Chart
-  title={<>Specific Heat Capacity Found Three Ways</>}
-  bars="apart"
-  categories={["Corrected", "Ignoring heat loss", "Raw readings"]}
+  title={<>Time for the Sand to Run Out through Each Hole</>}
+  categories={["2.0 mm", "4.0 mm", "8.0 mm"]}
   series={[
-    { label: "Value", mark: "bar", values: [2133, 2400, 2480] },
+    { label: "Time", mark: "line", values: [320, 56.6, 10.0] },
   ]}
-  valueLabel="c (J/(kg °C))"
-  description={<>With both corrections the oil's specific heat capacity is about <InlineMath math="2.1\times10^{3}" />. Ignoring the heat loss gives <InlineMath math="2.4\times10^{3}" />, and the raw readings <InlineMath math="2.5\times10^{3}" />, about <InlineMath math="16\%" /> too high.</>}
+  valueLabel="Time (s)"
+  description={<>The time falls from <InlineMath math="320" /> s for a <InlineMath math="2.0" /> mm hole to <InlineMath math="56.6" /> s for <InlineMath math="4.0" /> mm and <InlineMath math="10.0" /> s for <InlineMath math="8.0" /> mm. Each doubling of the diameter divides the time by about <InlineMath math="5.66" />.</>}
 />
 
-<BlockMath math="V=12.4-0.4=12.0\text{ V},\qquad E=VIt=12.0\times3.0\times400=14\,400\text{ J},\qquad E_{\text{lost}}=4.0\times400=1600\text{ J}" />
+<BlockMath math="2^{n}=\frac{56.6}{320}=0.177\ \Rightarrow\ n=-2.5,\qquad t_{5.0}=320\times\left(\frac{5.0}{2.0}\right)^{-2.5}=\frac{320}{2.5^{2.5}}=\frac{320}{9.88}\approx32\text{ s}" />
 
-<BlockMath math="c=\frac{14\,400-1600}{0.40\times15.0}\approx2.1\times10^{3}\text{ J kg}^{-1}\text{ °C}^{-1},\qquad c_{\text{raw}}=\frac{12.4\times3.0\times400}{0.40\times15.0}=2.48\times10^{3}\text{ J kg}^{-1}\text{ °C}^{-1}" />
+The hole is <InlineMath math="2.5" /> times as wide as the <InlineMath math="2.0\text{ mm}" /> hole, so the time is divided by <InlineMath math="2.5^{2.5}\approx9.9" />, about <InlineMath math="32\text{ s}" />.
 
-<BlockMath math="\frac{2480-2133}{2133}\approx16\%" />
+<BlockMath math="\frac{t_2}{t_1}=\left(\frac{d_2}{d_1}\right)^{-2.5}=\frac12\Rightarrow\frac{d_2}{d_1}=2^{1/2.5}=2^{0.4}\approx1.32" />
 
-The true potential difference is <InlineMath math="12.0\text{ V}" />, and the oil's specific heat capacity is about <InlineMath math="2.1\times10^{3}" /> J per kg per °C. Using the raw voltmeter reading and ignoring the heat loss would give a value about <InlineMath math="16\%" /> too high.
+Because <InlineMath math="t\propto d^{-2.5}" />, halving the time needs the diameter to grow by only <InlineMath math="2^{0.4}" />, about <InlineMath math="32\%" />, for any starting hole.
+
+<BlockMath math="\text{rate}=\frac{400\text{ g}}{32\text{ s}}=12.5\text{ g s}^{-1}" />
+
+The <InlineMath math="0.40\text{ kg}" /> of sand runs through the <InlineMath math="5.0\text{ mm}" /> hole in <InlineMath math="32\text{ s}" />, an average of <InlineMath math="12.5\text{ g}" /> every second.
+
+<BlockMath math="t_{10}=10.0\times\left(\frac{8.0}{10}\right)^{2.5}=10.0\times0.572\approx5.7\text{ s}" />
+
+Scaling from the <InlineMath math="8.0\text{ mm}" /> reading, a <InlineMath math="10\text{ mm}" /> hole empties the funnel in about <InlineMath math="5.7\text{ s}" />.
 
 # Why the other options are wrong
 
-- <InlineMath math="12.8\text{ V}" /> **adds the zero error** instead of subtracting it, as if the meter read too low.
-- <InlineMath math="2.4\times10^{3}" /> corrects the voltmeter but **ignores the heat lost** to the room, so it credits the oil with energy it never kept.
-- <InlineMath math="13\%" /> compares with a raw value that **corrects the voltmeter**, but the raw reading still carries the zero error.
+- <InlineMath math="n=-2" /> lets the time fall **fourfold for each doubling**, but <InlineMath math="320/56.6=5.66=2^{2.5}" />, and the slip carries into the rate and the factor.
+- <InlineMath math="\times2.0" /> treats the time as **inversely proportional to the diameter**, but it falls with the diameter to the power <InlineMath math="2.5" />.
+- <InlineMath math="n=-3" /> lets the time fall **eightfold for each doubling**, which the readings of <InlineMath math="56.6\text{ s}" /> and <InlineMath math="10.0\text{ s}" /> rule out.

@@ -1,26 +1,35 @@
-# Geseran bukan satu tolakan tetap: ia boleh bertindak ke atas atau ke bawah landasan, jadi kotak pegun dalam satu julat
+# Sesiri berkongsi pemanjangan, selari berkongsi daya
 
-Di sepanjang landasan, berat menarik kotak ke bawah dengan <InlineMath math="mg\sin30°" /> dan spring menariknya ke atas. Geseran menampung apa sahaja perbezaannya, **ke arah mana yang diperlukan**, hingga <InlineMath math="6.0\text{ N}" />. Dengan spring yang kendur, kotak cenderung menggelongsor ke bawah, jadi geseran bertindak ke atas landasan. Dengan spring yang teregang jauh, kotak cenderung ditarik ke atas, jadi geseran bertindak ke bawah. Itu memberi **dua had**, bukan satu.
+Secara **sesiri** kedua-dua spring menanggung **seluruh <InlineMath math="20\text{ N}" />**, dan pemanjangannya dicampur. Secara **selari** bar menyebabkan kedua-dua spring memanjang **sama banyak**, dan dayanya dicampur menjadi <InlineMath math="20\text{ N}" />, jadi spring yang lebih keras menanggung lebih.
 
 <Chart
-  title={<>Tegangan Spring yang Mengekalkan Kotak Pegun</>}
+  title={<>Daya dan Pemanjangan Setiap Spring dalam Setiap Susunan</>}
   bars="apart"
-  categories={["Tegangan terkecil", "Berat di sepanjang landasan", "Tegangan terbesar"]}
+  categories={["200 N/m, sesiri", "300 N/m, sesiri", "200 N/m, selari", "300 N/m, selari"]}
   series={[
-    { label: "Tegangan", mark: "bar", values: [4.0, 10.0, 16.0] },
+    { label: "Daya (N)", mark: "bar", values: [20, 20, 8, 12] },
+    { label: "Pemanjangan (cm)", mark: "bar", values: [10, 6.7, 4.0, 4.0] },
   ]}
-  valueLabel="Tegangan (N)"
-  description={<>Berat menarik <InlineMath math="10\text{ N}" /> ke bawah landasan. Geseran boleh membekalkan sehingga <InlineMath math="6.0\text{ N}" /> ke mana-mana arah, jadi spring boleh menarik dari <InlineMath math="4.0\text{ N}" /> hingga <InlineMath math="16\text{ N}" />.</>}
+  valueLabel="Nilai"
+  description={<>Secara sesiri kedua-dua spring menanggung <InlineMath math="20\text{ N}" /> penuh, jadi spring yang lebih lembut memanjang lebih, <InlineMath math="10" /> berbanding <InlineMath math="6.7\text{ cm}" />. Secara selari kedua-duanya memanjang <InlineMath math="4.0\text{ cm}" />, jadi spring yang lebih keras menanggung lebih, <InlineMath math="12" /> berbanding <InlineMath math="8\text{ N}" />.</>}
 />
 
-<BlockMath math="mg\sin30°=2.0\times10\times0.5=10\text{ N},\qquad T_{\min}=10-6.0=4.0\text{ N},\qquad T_{\max}=10+6.0=16\text{ N}" />
+<BlockMath math="x_{\text{sesiri}}=\frac{20}{200}+\frac{20}{300}=0.10+0.067\approx0.17\text{ m},\qquad E_{200}=\tfrac12(20)(0.10)=1.0\text{ J}" />
 
-<BlockMath math="x_{\min}=\frac{4.0}{200}=2.0\text{ cm},\qquad x_{\max}=\frac{16}{200}=8.0\text{ cm},\qquad E=\tfrac12(200)(0.080)^2=0.64\text{ J}" />
+<BlockMath math="x_{\text{selari}}=\frac{20}{200+300}=0.040\text{ m},\qquad F_{300}=300\times0.040=12\text{ N}" />
 
-Kotak kekal pegun di mana-mana kedudukan dengan spring teregang antara <InlineMath math="2.0\text{ cm}" /> dan <InlineMath math="8.0\text{ cm}" />. Pada had atas, spring menyimpan <InlineMath math="0.64\text{ J}" />.
+Secara sesiri pasangan itu memanjang kira-kira <InlineMath math="0.17\text{ m}" />, dan spring <InlineMath math="200\text{ N m}^{-1}" /> yang lebih lembut menyimpan <InlineMath math="1.0\text{ J}" />. Secara selari kedua-duanya memanjang <InlineMath math="0.040\text{ m}" />, jadi spring <InlineMath math="300\text{ N m}^{-1}" /> menanggung <InlineMath math="12\text{ N}" /> dan yang satu lagi <InlineMath math="8\text{ N}" />.
+
+<BlockMath math="\frac{F_{200}}{W}=\frac{200}{500}=0.40,\qquad 0.40\,W\le25\Rightarrow W\le\frac{25}{0.40}\approx63\text{ N}" />
+
+Secara selari spring <InlineMath math="200\text{ N m}^{-1}" /> sentiasa menanggung <InlineMath math="40\%" /> daripada beban. Ia mencapai <InlineMath math="25\text{ N}" /> apabila beban kira-kira <InlineMath math="63\text{ N}" />, manakala spring yang lebih keras ketika itu menanggung <InlineMath math="38\text{ N}" />.
+
+<BlockMath math="x=\frac{62.5}{500}=0.125\text{ m},\qquad E=\tfrac12(62.5)(0.125)\approx3.9\text{ J}" />
+
+Pada beban paling berat, pasangan itu, sekeras satu spring <InlineMath math="500\text{ N m}^{-1}" />, memanjang <InlineMath math="12.5\text{ cm}" /> dan menyimpan kira-kira <InlineMath math="3.9\text{ J}" />.
 
 # Kenapa pilihan lain salah
 
-- <InlineMath math="5.0\text{ cm}" /> bagi kedua-dua had **mengabaikan geseran**, jadi kotak hanya boleh pegun pada satu kedudukan.
-- <InlineMath math="2.0\text{ cm}" /> dan <InlineMath math="5.0\text{ cm}" /> membiarkan geseran **hanya membantu spring**, tidak pernah menentangnya, tetapi geseran menentang arah mana kotak cenderung menggelongsor.
-- <InlineMath math="7.0\text{ cm}" /> dan <InlineMath math="13\text{ cm}" /> menggunakan **seluruh berat** di sepanjang landasan dan bukan komponennya <InlineMath math="mg\sin30°" />.
+- <InlineMath math="10\text{ N}" /> dan <InlineMath math="50\text{ N}" /> membahagi beban **sama rata** secara selari, tetapi pemanjangan yang sama menyebabkan spring yang lebih keras menanggung lebih.
+- <InlineMath math="25\text{ N}" /> menganggap pasangan selari **seolah-olah sesiri**, yang menyebabkan setiap spring menanggung seluruh beban.
+- <InlineMath math="0.040\text{ m}" /> dan <InlineMath math="42\text{ N}" /> menganggap pasangan sesiri **seolah-olah selari** dan kemudian memberi spring <InlineMath math="200\text{ N m}^{-1}" /> bahagian <InlineMath math="60\%" /> milik spring yang lebih keras.

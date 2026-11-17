@@ -1,28 +1,28 @@
-# Rückwärts rechnen: Die Reibung liefert die Geschwindigkeit danach, der Impuls die davor
+# Geschwindigkeiten addieren oder abziehen, nie die Zeiten
 
-Die Rutschspur lässt sich rückwärts lesen. Die Reibung ist <InlineMath math="0{,}60" />-mal das Gewicht, die Verzögerung also <InlineMath math="0{,}60g" />, **gleich welche Masse**, und die Rutschstrecke liefert die Geschwindigkeit direkt nach dem Aufprall. Der Aufprall selbst ist ein Stoß, bei dem die Autos verkeilt bleiben: **Der Impuls bleibt erhalten, die Bewegungsenergie nicht**, also führt der Impuls, nicht die Energie, zurück zur Geschwindigkeit vor dem Unfall.
+Geschwindigkeiten gegenüber dem Boden **addieren** sich, wenn sie mit der Rolltreppe geht, und **subtrahieren** sich, wenn sie dagegen geht. Man schreibt jede Geschwindigkeit als Bruchteil der Treppenlänge <InlineMath math="L" /> pro Sekunde, kombiniert die Geschwindigkeiten und rechnet das Ergebnis in eine Zeit zurück.
 
 <Chart
-  title={<>Bewegungsenergie der Autos</>}
+  title={<>Zeit für die Rolltreppe in jedem Fall</>}
   bars="apart"
-  categories={["Vor dem Aufprall", "Direkt nach dem Aufprall", "Nach dem Rutschen"]}
+  categories={["Stehen, Rolltreppe fährt", "Gehen, Rolltreppe steht", "Hinaufgehen, Rolltreppe fährt", "Hinuntergehen auf der Aufwärtstreppe"]}
   series={[
-    { label: "Bewegungsenergie", mark: "bar", values: [240, 144, 0] },
+    { label: "Zeit", mark: "bar", values: [60, 40, 24, 120] },
   ]}
-  valueLabel="Energie (kJ)"
-  description={<>Das fahrende Auto bringt <InlineMath math="240\text{ kJ}" /> mit. Direkt nach dem Aufprall haben die verkeilten Wracks <InlineMath math="144\text{ kJ}" />, <InlineMath math="96\text{ kJ}" /> gingen also in die Verformung, und das Rutschen nimmt den Rest.</>}
+  valueLabel="Zeit (s)"
+  description={<>Stehen auf der fahrenden Rolltreppe dauert <InlineMath math="60" /> s, Gehen auf der stehenden <InlineMath math="40" /> s. Hinaufgehen auf der fahrenden dauert <InlineMath math="24" /> s, Hinuntergehen gegen ihre Richtung <InlineMath math="120" /> s.</>}
 />
 
-<BlockMath math="a=0{,}60\cdot10=6{,}0\text{ m s}^{-2},\qquad v=\sqrt{2(6{,}0)(12)}=12\text{ m s}^{-1}" />
+<BlockMath math="v_e=\frac{L}{60},\quad v_w=\frac{L}{40}\qquad \text{hinauf}: \frac{L}{L/60+L/40}=\frac{1}{5/120}=24\text{ s},\qquad \text{hinunter}: \frac{L}{L/40-L/60}=\frac{1}{1/120}=120\text{ s}" />
 
-<BlockMath math="1200u=2000\cdot12\Rightarrow u=20\text{ m s}^{-1}=72\text{ km h}^{-1}" />
+Mit der Rolltreppe schafft sie pro Sekunde <InlineMath math="\tfrac{1}{60}+\tfrac{1}{40}=\tfrac{5}{120}" /> davon, also <InlineMath math="24\text{ s}" />. Dagegen gewinnt sie pro Sekunde nur <InlineMath math="\tfrac{1}{40}-\tfrac{1}{60}=\tfrac{1}{120}" />, also <InlineMath math="120\text{ s}" />.
 
-<BlockMath math="\Delta E_k=\tfrac12(1200)(20)^2-\tfrac12(2000)(12)^2=240\,000-144\,000=96\text{ kJ}" />
+<BlockMath math="\text{Rate}=\frac{60}{40}=1{,}5\text{ Stufen s}^{-1},\qquad 1{,}5\cdot24=36,\qquad 1{,}5\cdot120=180" />
 
-Die verkeilten Autos verließen den Aufprall mit <InlineMath math="12\text{ m s}^{-1}" />, das auffahrende Auto fuhr also <InlineMath math="72\text{ km h}^{-1}" />. Beim Aufprall wurden <InlineMath math="96\text{ kJ}" /> Bewegungsenergie zu Wärme, Schall und verformtem Blech, das Rutschen nahm danach die übrigen <InlineMath math="144\text{ kJ}" />.
+Sie tritt <InlineMath math="1{,}5" /> Stufen pro Sekunde, was die Rolltreppe auch tut. Mit ihr hinauf tritt sie nur <InlineMath math="36" /> Stufen, weil die Treppe sie ein Stück trägt, gegen sie hinunter tritt sie <InlineMath math="180" />.
 
 # Warum die anderen Antworten falsch sind
 
-- <InlineMath math="56\text{ km h}^{-1}" /> und <InlineMath math="0\text{ kJ}" /> rechnen mit **erhaltener Bewegungsenergie** zurück, doch verkeilte Autos verlieren immer Bewegungsenergie.
-- <InlineMath math="9{,}3\text{ m s}^{-1}" /> setzt die Reibung vom **Gewicht eines Autos** für beide an, doch die Reibung wächst mit dem Gewicht von allem, was rutscht.
-- <InlineMath math="144\text{ kJ}" /> ist die Energie, die **das Rutschen** nach dem Aufprall aufzehrt, nicht die beim Aufprall umgewandelte.
+- <InlineMath math="60" /> Stufen in beide Richtungen nimmt an, die **Stufenzahl sei durch die Länge festgelegt**, doch sie tritt Stufen, solange sie geht.
+- <InlineMath math="36" /> Stufen hinunter **addiert die Geschwindigkeiten in beiden Richtungen**, doch gegen die Treppe subtrahieren sie sich.
+- <InlineMath math="50\text{ s}" /> **mittelt die beiden Zeiten**, doch addieren sich die Geschwindigkeiten, nicht die Zeiten.

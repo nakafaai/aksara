@@ -13,22 +13,22 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "$$0.50\\text{ mm}$$, $$3.2\\text{ mm}$$ and $$3.5\\times10^{14}\\text{ Hz}$$",
+            "$$39\\text{ °C}$$, $$0.68\\text{ s}$$, no change and $$50\\text{ m}$$",
         },
         {
           correct: false,
           label:
-            "$$0.50\\text{ mm}$$, $$4.3\\text{ mm}$$ and $$4.7\\times10^{14}\\text{ Hz}$$",
+            "$$20\\text{ °C}$$, $$0.70\\text{ s}$$, no change and $$50\\text{ m}$$",
         },
         {
           correct: true,
           label:
-            "$$0.50\\text{ mm}$$, $$2.4\\text{ mm}$$ and $$4.7\\times10^{14}\\text{ Hz}$$",
+            "$$20\\text{ °C}$$, $$0.68\\text{ s}$$, no change and $$51\\text{ m}$$",
         },
         {
           correct: false,
           label:
-            "$$0.50\\text{ mm}$$, $$2.4\\text{ mm}$$ and $$3.5\\times10^{14}\\text{ Hz}$$",
+            "$$20\\text{ °C}$$, $$0.68\\text{ s}$$, $$6\\text{ m s}^{-1}$$ higher and $$51\\text{ m}$$",
         },
       ],
     },
@@ -38,22 +38,22 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "$$0.50\\text{ mm}$$, $$3.2\\text{ mm}$$ dan $$3.5\\times10^{14}\\text{ Hz}$$",
+            "$$39\\text{ °C}$$, $$0.68\\text{ s}$$, tiada perubahan dan $$50\\text{ m}$$",
         },
         {
           correct: false,
           label:
-            "$$0.50\\text{ mm}$$, $$4.3\\text{ mm}$$ dan $$4.7\\times10^{14}\\text{ Hz}$$",
+            "$$20\\text{ °C}$$, $$0.70\\text{ s}$$, tiada perubahan dan $$50\\text{ m}$$",
         },
         {
           correct: true,
           label:
-            "$$0.50\\text{ mm}$$, $$2.4\\text{ mm}$$ dan $$4.7\\times10^{14}\\text{ Hz}$$",
+            "$$20\\text{ °C}$$, $$0.68\\text{ s}$$, tiada perubahan dan $$51\\text{ m}$$",
         },
         {
           correct: false,
           label:
-            "$$0.50\\text{ mm}$$, $$2.4\\text{ mm}$$ dan $$3.5\\times10^{14}\\text{ Hz}$$",
+            "$$20\\text{ °C}$$, $$0.68\\text{ s}$$, $$6\\text{ m s}^{-1}$$ lebih tinggi dan $$51\\text{ m}$$",
         },
       ],
     },
