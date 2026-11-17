@@ -65,10 +65,17 @@ const LessonEvidenceUrlsSchema = Schema.NonEmptyArray(
   )
 );
 
-/** One ordered localized lesson section in a material source. */
-const LessonMaterialSectionSchema = Schema.Struct({
+/** What one section's `section.ts` authors: its evidence and its localized routes. */
+export const LessonSectionModuleSchema = Schema.Struct({
   evidenceUrls: Schema.optionalKey(LessonEvidenceUrlsSchema),
   routeSlugs: localizedSourceMapSchema(PublicRouteSegmentSchema),
+});
+/** The authored form of one section, which each section's `section.ts` declares. */
+export type LessonSection = typeof LessonSectionModuleSchema.Encoded;
+
+/** One ordered localized lesson section in a material source: its module and its folder name. */
+const LessonMaterialSectionSchema = Schema.Struct({
+  ...LessonSectionModuleSchema.fields,
   slug: MaterialSlugSchema,
 });
 export type LessonMaterialSection = typeof LessonMaterialSectionSchema.Type;
@@ -85,3 +92,15 @@ export const LessonMaterialSourceSchema = Schema.Struct({
   translations: LocaleDescriptionMapSchema,
 });
 export type LessonMaterialSource = typeof LessonMaterialSourceSchema.Type;
+
+/**
+ * What one lesson's `source.ts` authors: everything but the sections' own
+ * routes and evidence, which sit in each section's `section.ts`, and the order
+ * of its section folders.
+ */
+export const LessonModuleSchema = Schema.Struct({
+  ...LessonMaterialSourceSchema.fields,
+  sections: Schema.Array(MaterialSlugSchema),
+});
+/** The authored form of one lesson, which each lesson's `source.ts` declares. */
+export type LessonModule = typeof LessonModuleSchema.Encoded;

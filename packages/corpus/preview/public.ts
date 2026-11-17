@@ -145,9 +145,9 @@ const buildMaterialEntry = Effect.fn("AksaraCorpus.buildPreviewMaterialEntry")(
       route: entry.route,
       sourcePath: entry.sourcePath,
     } satisfies MaterialPreviewDocument;
-    // A lesson registers through its own lesson file, which the material source discovers.
+    // A lesson registers through its own typed module, which the material source discovers.
     const lessonFile = CorpusSourcePathSchema.make(
-      `packages/corpus/${entry.assetRoot}/lesson.json`
+      `packages/corpus/${entry.assetRoot}/source.ts`
     );
     return {
       document,

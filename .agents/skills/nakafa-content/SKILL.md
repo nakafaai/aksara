@@ -45,7 +45,7 @@ classify. Review every candidate in the complete teaching context before editing
 | Content | Aksara source |
 | --- | --- |
 | Articles | `packages/corpus/articles/` |
-| Lessons | `packages/corpus/material/lesson/<domain>/<lesson>/`, registered by the `lesson.json` in that folder; no shared list to edit |
+| Lessons | `packages/corpus/material/lesson/<domain>/<lesson>/`, registered by the typed `source.ts` in that folder, whose `material` satisfies `LessonMaterialSourceInput`; no shared list to edit |
 | Questions, answers, and response items | `packages/corpus/question-bank/` |
 | Programs and localized routes | Owning registries under `packages/corpus/` |
 | Pinned Quran bytes and policy | `packages/corpus/quran/source/` |
