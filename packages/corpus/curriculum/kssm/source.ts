@@ -1,6 +1,7 @@
 import { kssmForm4BiologyTopicNodes } from "#corpus/curriculum/kssm/form4/biology";
 import { kssmForm4ChemistryTopicNodes } from "#corpus/curriculum/kssm/form4/chemistry";
 import { kssmForm4MathematicsTopicNodes } from "#corpus/curriculum/kssm/form4/mathematics";
+import { kssmForm4AdditionalMathematicsTopicNodes } from "#corpus/curriculum/kssm/form4/mathematics/additional";
 import { kssmForm4PhysicsTopicNodes } from "#corpus/curriculum/kssm/form4/physics";
 import { kssmForm4PhysiologyControlNodes } from "#corpus/curriculum/kssm/form4/physiology/control";
 import { kssmForm4PhysiologyExchangeNodes } from "#corpus/curriculum/kssm/form4/physiology/exchange";
@@ -8,6 +9,7 @@ import { kssmForm4PhysiologyGrowthNodes } from "#corpus/curriculum/kssm/form4/ph
 import { kssmForm5BiologyTopicNodes } from "#corpus/curriculum/kssm/form5/biology";
 import { kssmForm5ChemistryTopicNodes } from "#corpus/curriculum/kssm/form5/chemistry";
 import { kssmForm5MathematicsTopicNodes } from "#corpus/curriculum/kssm/form5/mathematics";
+import { kssmForm5AdditionalMathematicsTopicNodes } from "#corpus/curriculum/kssm/form5/mathematics/additional";
 import { kssmForm5PhysicsTopicNodes } from "#corpus/curriculum/kssm/form5/physics";
 import {
   classNode,
@@ -24,7 +26,7 @@ const UPPER_SECONDARY = {
   ms: { title: "Menengah Atas" },
 };
 
-/** The four KSSM science and mathematics subjects of Form 4. */
+/** The five KSSM science and mathematics subjects of Form 4. */
 const form4SubjectNodes = [
   subjectNode({
     children: [
@@ -68,6 +70,25 @@ const form4SubjectNodes = [
     },
   }),
   subjectNode({
+    children: kssmForm4AdditionalMathematicsTopicNodes,
+    iconKey: "mathematics",
+    key: "form-4-additional-mathematics",
+    materialDomain: "mathematics",
+    order: 35,
+    translations: {
+      de: {
+        routeSlug: "erweiterte-mathematik",
+        title: "Erweiterte Mathematik",
+      },
+      en: {
+        routeSlug: "additional-mathematics",
+        title: "Additional Mathematics",
+      },
+      id: { routeSlug: "matematika-tambahan", title: "Matematika Tambahan" },
+      ms: { routeSlug: "matematik-tambahan", title: "Matematik Tambahan" },
+    },
+  }),
+  subjectNode({
     children: kssmForm4PhysicsTopicNodes,
     key: "form-4-physics",
     materialDomain: "physics",
@@ -81,7 +102,7 @@ const form4SubjectNodes = [
   }),
 ];
 
-/** The four KSSM science and mathematics subjects of Form 5. */
+/** The five KSSM science and mathematics subjects of Form 5. */
 const form5SubjectNodes = [
   subjectNode({
     children: kssmForm5BiologyTopicNodes,
@@ -120,6 +141,25 @@ const form5SubjectNodes = [
     },
   }),
   subjectNode({
+    children: kssmForm5AdditionalMathematicsTopicNodes,
+    iconKey: "mathematics",
+    key: "form-5-additional-mathematics",
+    materialDomain: "mathematics",
+    order: 35,
+    translations: {
+      de: {
+        routeSlug: "erweiterte-mathematik",
+        title: "Erweiterte Mathematik",
+      },
+      en: {
+        routeSlug: "additional-mathematics",
+        title: "Additional Mathematics",
+      },
+      id: { routeSlug: "matematika-tambahan", title: "Matematika Tambahan" },
+      ms: { routeSlug: "matematik-tambahan", title: "Matematik Tambahan" },
+    },
+  }),
+  subjectNode({
     children: kssmForm5PhysicsTopicNodes,
     key: "form-5-physics",
     materialDomain: "physics",
@@ -135,7 +175,7 @@ const form5SubjectNodes = [
 
 /**
  * The KSSM tree of Form 4 and Form 5, with the chapters of the DSKP of
- * Matematik, Fizik, Kimia and Biologi. A chapter that a Nakafa lesson teaches
+ * Matematik, Matematik Tambahan, Fizik, Kimia and Biologi. A chapter that a Nakafa lesson teaches
  * holds that lesson; the others stand in the tree until their lesson is written.
  */
 export const kssmCurriculum = defineCurriculum({
