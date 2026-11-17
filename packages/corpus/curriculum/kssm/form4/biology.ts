@@ -1,4 +1,4 @@
-import { unitNode } from "#corpus/curriculum/schema";
+import { materialNode, unitNode } from "#corpus/curriculum/schema";
 
 /** The KSSM Form 4 Biology chapters on cells, chapters 1 to 7 of the DSKP. */
 export const kssmForm4BiologyTopicNodes = [
@@ -123,7 +123,33 @@ export const kssmForm4BiologyTopicNodes = [
     },
   }),
   unitNode({
+    children: [
+      materialNode({
+        key: "form-4-biology-cellular-respiration-cellular-respiration",
+        level: "lesson",
+        materialKeys: ["lesson.biology.cellular-respiration"],
+        order: 10,
+      }),
+    ],
     key: "form-4-biology-cellular-respiration",
+    materialCard: {
+      de: {
+        description: "Vergleiche Zellatmung, Gärung und Sauerstoffschuld.",
+        title: "Zellatmung",
+      },
+      en: {
+        description: "Compare respiration, fermentation and oxygen debt.",
+        title: "Cellular Respiration",
+      },
+      id: {
+        description: "Bandingkan respirasi, fermentasi, dan utang oksigen.",
+        title: "Respirasi Sel",
+      },
+      ms: {
+        description: "Bandingkan respirasi, fermentasi dan hutang oksigen.",
+        title: "Respirasi Sel",
+      },
+    },
     order: 70,
     translations: {
       de: { routeSlug: "zellatmung", title: "Zellatmung" },
