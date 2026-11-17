@@ -101,15 +101,8 @@ Nisbah <InlineMath math="2 : 1" /> datang daripada persamaan seimbang. Semak: du
 
 Fluorin, klorin, bromin dan iodin ialah **halogen**. Halogen wujud sebagai **molekul dwiatom**, contohnya <InlineMath math="\mathrm{Cl_2}" />, yang ditarik oleh daya van der Waals. Menuruni kumpulan, molekul menjadi lebih besar, jadi takat lebur dan takat didih bertambah. Itulah sebab fluorin dan klorin gas, bromin cecair, dan iodin pepejal pada suhu bilik.
 
-<Chart
+<ScatterDiagram
   title={<>Takat Lebur dan Takat Didih Halogen</>}
-  bars="apart"
-  categories={["Fluorin", "Klorin", "Bromin", "Iodin"]}
-  series={[
-    { label: "Takat lebur (°C)", mark: "bar", values: [-220, -101, -7, 114] },
-    { label: "Takat didih (°C)", mark: "bar", values: [-188, -34, 59, 184] },
-  ]}
-  valueLabel="Suhu (°C)"
   description={
     <>
       Takat lebur dan takat didih: fluorin <InlineMath math="-220" /> dan{" "}
@@ -119,6 +112,30 @@ Fluorin, klorin, bromin dan iodin ialah **halogen**. Halogen wujud sebagai **mol
       iodin <InlineMath math="114" /> dan <InlineMath math="184^\circ\text{C}" />.
     </>
   }
+  xAxisLabel="Nombor proton"
+  yAxisLabel="Suhu (°C)"
+  datasets={[
+    {
+      name: "Takat lebur (°C)",
+      color: "var(--chart-1)",
+      points: [
+        { x: 9, y: -220 },
+        { x: 17, y: -101 },
+        { x: 35, y: -7 },
+        { x: 53, y: 114 },
+      ],
+    },
+    {
+      name: "Takat didih (°C)",
+      color: "var(--chart-2)",
+      points: [
+        { x: 9, y: -188 },
+        { x: 17, y: -34 },
+        { x: 35, y: 59 },
+        { x: 53, y: 184 },
+      ],
+    },
+  ]}
 />
 
 Halogen bertindak balas dengan hidrogen membentuk hidrogen halida. Putar molekul klorin dan hidrogen klorida dalam model ini dan bandingkan ikatan tunggalnya.
