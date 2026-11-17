@@ -1,23 +1,21 @@
-# GGL mengikuti seberapa cepat fluks berubah
+# Periksa tiap pernyataan terhadap apa yang menghasilkan GGL
 
-GGL bergantung pada seberapa **cepat** fluks yang menembus kumparan berubah. Saat bidang kumparan sejajar medan, sisinya memotong garis medan dengan laju terbesar, jadi GGL terbesar saat itu dan pernyataan I benar. Pernyataan III mencampuradukkan fluks terbanyak dengan perubahan tercepat: saat tegak lurus fluks terbesar tetapi sesaat **tidak berubah**, jadi GGL nol.
+GGL mengikuti seberapa **cepat** fluks berubah. Pada setengah laju putaran, sisi kumparan memotong medan setengah cepat, jadi nilai puncak menjadi setengah, <InlineMath math="6{,}0" /> V, dan jumlah siklus juga setengah, <InlineMath math="25" /> Hz: pernyataan I benar. Saat garis terbanyak menembus kumparan, fluks **sesaat tidak berubah**, jadi GGL nol di sana, dan II salah.
 
 <Mermaid
-  title={<>Laju Perubahan, Bukan Jumlah, yang Menghasilkan GGL</>}
-  description={<>Sisi kumparan memotong garis medan paling cepat saat kumparan sejajar medan, walau tak ada garis yang menembusnya saat itu. Komutator mengubah keluaran bolak-balik menjadi arus yang selalu searah.</>}
+  title={<>Arti Angka-angka Generator</>}
+  description={<>Nilai puncak dan frekuensi sama-sama mengikuti laju putaran, pemanasan mengikuti nilai efektif, dan komutator hanya membalik setengah negatif tiap siklus.</>}
   chart={`
     flowchart LR
-      N0["GGL bergantung pada laju perubahan fluks"] --> N1["Bidang sejajar medan: sisi memotong garis paling cepat (I benar)"]
-      N0 --> N2["Bidang tegak lurus: fluks terbanyak, tetapi berubah paling lambat (III salah)"]
-      N0 --> N3["Dua kali lebih cepat: dua kali siklus dan dua kali laju pemotongan (II benar)"]
-      N3 --> N4["Komutator membalik sambungan tiap setengah putaran (IV benar)"]
+      N0["Setengah laju: setengah laju pemotongan dan setengah siklus (I benar)"] --> N2["Pemanasan sama dengan DC pada nilai efektif: 12 ÷ √2 = 8,5 V (III benar)"]
+      N1["Fluks terbanyak: berubah paling lambat, GGL nol (II salah)"] --> N3["Komutator: satu arah, tetapi tetap naik turun (IV salah)"]
   `}
 />
 
-Berputar dua kali lebih cepat memberi dua kali jumlah siklus tiap detik dan dua kali laju pemotongan, jadi II benar. Komutator cincin belah menukar sambungan kumparan tiap setengah putaran, jadi arus luar selalu mengalir **searah**, dan IV benar.
+Keluaran bolak-balik memanaskan seperti sumber tetap pada nilai efektifnya, <InlineMath math="12 \div \sqrt{2} = 8{,}5" /> V, jadi III benar. Komutator hanya membalik setengah negatif tiap siklus, jadi keluaran selalu searah tetapi tetap **naik turun** antara nol dan <InlineMath math="12" /> V, dan IV salah.
 
 # Kenapa pilihan lain salah
 
-- I dan II saja melupakan IV, padahal komutator memang membuat arus luar mengalir **searah**.
-- II, III dan IV menerima III, padahal fluks terbanyak adalah saat kumparan **berubah paling lambat**.
-- III dan IV membuang I dan II, padahal GGL memang memuncak saat kumparan **sejajar** medan dan bertambah seiring kecepatan.
+- I dan II saja menerima II, padahal fluks terbanyak adalah saat fluks berubah **paling lambat**.
+- II dan IV saja menerima kedua pernyataan salah dan menolak I dan III, yang mengikuti **laju** pemotongan dan nilai efektif.
+- I, III dan IV menerima IV, padahal komutator memberi keluaran searah yang **berdenyut**, bukan tetap.

@@ -10,25 +10,19 @@ const item: ItemSource = {
     en: {
       kind: "choice",
       options: [
-        {
-          correct: false,
-          label: "$$545\\text{ nm}$$, and $$0.82\\text{ mm}$$",
-        },
-        { correct: false, label: "$$600\\text{ nm}$$, and $$1.6\\text{ mm}$$" },
-        { correct: true, label: "$$600\\text{ nm}$$, and $$0.90\\text{ mm}$$" },
-        { correct: false, label: "$$600\\text{ nm}$$, and $$1.2\\text{ mm}$$" },
+        { correct: false, label: "$$545\\text{ nm}$$, and $$15$$" },
+        { correct: false, label: "$$600\\text{ nm}$$, and $$13$$" },
+        { correct: true, label: "$$600\\text{ nm}$$, and $$14$$" },
+        { correct: false, label: "$$600\\text{ nm}$$, and $$11$$" },
       ],
     },
     ms: {
       kind: "choice",
       options: [
-        {
-          correct: false,
-          label: "$$545\\text{ nm}$$, dan $$0.82\\text{ mm}$$",
-        },
-        { correct: false, label: "$$600\\text{ nm}$$, dan $$1.6\\text{ mm}$$" },
-        { correct: true, label: "$$600\\text{ nm}$$, dan $$0.90\\text{ mm}$$" },
-        { correct: false, label: "$$600\\text{ nm}$$, dan $$1.2\\text{ mm}$$" },
+        { correct: false, label: "$$545\\text{ nm}$$, dan $$15$$" },
+        { correct: false, label: "$$600\\text{ nm}$$, dan $$13$$" },
+        { correct: true, label: "$$600\\text{ nm}$$, dan $$14$$" },
+        { correct: false, label: "$$600\\text{ nm}$$, dan $$11$$" },
       ],
     },
   },

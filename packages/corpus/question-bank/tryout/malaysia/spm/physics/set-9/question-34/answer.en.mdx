@@ -1,23 +1,21 @@
-# The electromotive force follows how fast the flux changes
+# Check each statement against what makes the electromotive force
 
-The electromotive force depends on how **fast** the flux through the coil changes. When the coil’s plane lies along the field, its sides cut across the field lines at the greatest rate, so the electromotive force is greatest then and statement I is correct. Statement III confuses the most flux with the fastest change: at right angles the flux is greatest but momentarily **not changing**, so the electromotive force is zero.
+The electromotive force follows how **fast** the flux changes. At half the turning rate the sides cut the field half as fast, so the peak halves to <InlineMath math="6.0" /> V, and there are half as many cycles, <InlineMath math="25" /> Hz: statement I is correct. When the most lines pass through the coil, the flux is **momentarily not changing**, so the electromotive force is zero there, and II is wrong.
 
 <Mermaid
-  title={<>Rate of Change, Not Amount, Makes the E.M.F.</>}
-  description={<>The coil’s sides cut field lines fastest when the coil lies along the field, even though no lines then pass through it. A commutator turns the alternating output into one that always flows the same way.</>}
+  title={<>What the Generator’s Numbers Mean</>}
+  description={<>The peak and the frequency both follow the turning rate, the heating follows the r.m.s. value, and a commutator only flips the negative half of each cycle.</>}
   chart={`
     flowchart LR
-      N0["The e.m.f. depends on how fast the flux changes"] --> N1["Plane parallel to the field: sides cut lines fastest (I true)"]
-      N0 --> N2["Plane at right angles: most flux, but changing slowest (III false)"]
-      N0 --> N3["Twice as fast: twice the cycles and twice the rate of cutting (II true)"]
-      N3 --> N4["Commutator reverses the connections each half turn (IV true)"]
+      N0["Half the speed: half the rate of cutting and half the cycles (I true)"] --> N2["Same heating as d.c. at the r.m.s. value: 12 ÷ √2 = 8.5 V (III true)"]
+      N1["Most flux through the coil: changing slowest, e.m.f. zero (II false)"] --> N3["Commutator: one direction, but still rising and falling (IV false)"]
   `}
 />
 
-Turning twice as fast gives twice as many cycles each second and twice the rate of cutting, so II is correct. A split-ring commutator swaps the coil’s connections every half turn, so the outside current always flows the **same way**, and IV is correct.
+An alternating output heats like a steady supply of its r.m.s. value, <InlineMath math="12 \div \sqrt{2} = 8.5" /> V, so III is correct. A commutator only flips the negative half of each cycle, so the output always pushes one way but still **rises and falls** between zero and <InlineMath math="12" /> V, and IV is wrong.
 
 # Why the other options are wrong
 
-- I and II only leaves out IV, but a commutator does keep the outside current flowing **one way**.
-- II, III and IV accepts III, but the most flux through the coil is the moment when it is **changing slowest**.
-- III and IV drops I and II, but the electromotive force does peak with the coil **along** the field and does grow with the speed.
+- I and II only accepts II, but the most flux is the moment when the flux is changing **slowest**.
+- II and IV only accepts both wrong statements and rejects I and III, which follow from the **rate** of cutting and the r.m.s. value.
+- I, III and IV accepts IV, but a commutator gives a **pulsing** one-way output, not a steady one.

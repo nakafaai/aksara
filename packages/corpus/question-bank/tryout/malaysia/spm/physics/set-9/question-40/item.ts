@@ -13,19 +13,19 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "$$6.6 \\times 10^{-34}\\text{ J s}$$, and $$0.50\\text{ eV}$$",
+            "$$6.6 \\times 10^{-34}\\text{ J s}$$, and $$2.5\\ \\mu\\text{m}$$",
         },
         {
           correct: true,
-          label: "$$6.6 \\times 10^{-34}\\text{ J s}$$, and $$1.8\\text{ eV}$$",
+          label: "$$6.6 \\times 10^{-34}\\text{ J s}$$, and $$700\\text{ nm}$$",
         },
         {
           correct: false,
-          label: "$$4.1 \\times 10^{-15}\\text{ J s}$$, and $$1.8\\text{ eV}$$",
+          label: "$$4.1 \\times 10^{-15}\\text{ J s}$$, and $$700\\text{ nm}$$",
         },
         {
           correct: false,
-          label: "$$6.6 \\times 10^{-34}\\text{ J s}$$, and $$2.3\\text{ eV}$$",
+          label: "$$6.6 \\times 10^{-34}\\text{ J s}$$, and $$550\\text{ nm}$$",
         },
       ],
     },
@@ -35,19 +35,19 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "$$6.6 \\times 10^{-34}\\text{ J s}$$, dan $$0.50\\text{ eV}$$",
+            "$$6.6 \\times 10^{-34}\\text{ J s}$$, dan $$2.5\\ \\mu\\text{m}$$",
         },
         {
           correct: true,
-          label: "$$6.6 \\times 10^{-34}\\text{ J s}$$, dan $$1.8\\text{ eV}$$",
+          label: "$$6.6 \\times 10^{-34}\\text{ J s}$$, dan $$700\\text{ nm}$$",
         },
         {
           correct: false,
-          label: "$$4.1 \\times 10^{-15}\\text{ J s}$$, dan $$1.8\\text{ eV}$$",
+          label: "$$4.1 \\times 10^{-15}\\text{ J s}$$, dan $$700\\text{ nm}$$",
         },
         {
           correct: false,
-          label: "$$6.6 \\times 10^{-34}\\text{ J s}$$, dan $$2.3\\text{ eV}$$",
+          label: "$$6.6 \\times 10^{-34}\\text{ J s}$$, dan $$550\\text{ nm}$$",
         },
       ],
     },

@@ -10,19 +10,43 @@ const item: ItemSource = {
     en: {
       kind: "choice",
       options: [
-        { correct: true, label: "$$103\\text{ N}$$, and $$1.5$$ hours" },
-        { correct: false, label: "$$240\\text{ N}$$, and $$1.5$$ hours" },
-        { correct: false, label: "$$137\\text{ N}$$, and $$1.5$$ hours" },
-        { correct: false, label: "$$103\\text{ N}$$, and $$0.24$$ hours" },
+        {
+          correct: true,
+          label: "$$103\\text{ N}$$, and $$0.85\\text{ km s}^{-1}$$",
+        },
+        {
+          correct: false,
+          label: "$$240\\text{ N}$$, and $$3.5\\text{ km s}^{-1}$$",
+        },
+        {
+          correct: false,
+          label: "$$103\\text{ N}$$, and $$6.1\\text{ km s}^{-1}$$",
+        },
+        {
+          correct: false,
+          label: "$$103\\text{ N}$$, and $$3.5\\text{ km s}^{-1}$$",
+        },
       ],
     },
     ms: {
       kind: "choice",
       options: [
-        { correct: true, label: "$$103\\text{ N}$$, dan $$1.5$$ jam" },
-        { correct: false, label: "$$240\\text{ N}$$, dan $$1.5$$ jam" },
-        { correct: false, label: "$$137\\text{ N}$$, dan $$1.5$$ jam" },
-        { correct: false, label: "$$103\\text{ N}$$, dan $$0.24$$ jam" },
+        {
+          correct: true,
+          label: "$$103\\text{ N}$$, dan $$0.85\\text{ km s}^{-1}$$",
+        },
+        {
+          correct: false,
+          label: "$$240\\text{ N}$$, dan $$3.5\\text{ km s}^{-1}$$",
+        },
+        {
+          correct: false,
+          label: "$$103\\text{ N}$$, dan $$6.1\\text{ km s}^{-1}$$",
+        },
+        {
+          correct: false,
+          label: "$$103\\text{ N}$$, dan $$3.5\\text{ km s}^{-1}$$",
+        },
       ],
     },
   },

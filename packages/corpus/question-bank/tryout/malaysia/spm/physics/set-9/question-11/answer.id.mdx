@@ -1,24 +1,25 @@
-# Gabungkan hukum gas, dengan suhu dalam kelvin
+# Gabungkan hukum gas, dengan suhu terikat pada tekanan
 
-Untuk massa gas tetap <InlineMath math="pV \div T" /> tidak berubah. Pada <InlineMath math="50" /> kPa dan <InlineMath math="250" /> K, <InlineMath math="V = 5{,}0 \times (100 \div 50) \times (250 \div 300) = 8{,}3" /> L. Tekanan yang lebih rendah menggandakan volume, tetapi **dingin** memangkas seperenamnya.
+Untuk massa helium tetap <InlineMath math="pV \div T" /> tidak berubah. Pada <InlineMath math="50" /> kPa udara telah mendingin <InlineMath math="5 \times 6{,}5 = 32{,}5" /> K menjadi <InlineMath math="267{,}5" /> K, jadi <InlineMath math="V = 5{,}0 \times (100 \div 50) \times (267{,}5 \div 300) = 8{,}9" /> L: tekanan setengah menggandakan volume, dan **dingin** memangkas sebagian.
 
 <Mermaid
-  title={<>Tekanan Turun, tetapi Suhu Juga</>}
-  description={<>Tekanan setengah akan menggandakan volume, tetapi udara dingin menyusutkannya lagi, jadi balon harus naik ke udara lebih tipis sebelum pecah.</>}
+  title={<>Suhu Juga Bergantung pada Tekanan</>}
+  description={<>Karena udara mendingin saat tekanan turun, titik pecah tidak bisa langsung dibaca: tekanan dan suhu di sana harus memenuhi hukum gas bersama-sama.</>}
   chart={`
     flowchart LR
-      N0["Kelvin: 300 K, 250 K, 240 K"] --> N1["pV ÷ T tetap: 100 × 5,0 ÷ 300"]
-      N1 --> N2["Pada 50 kPa, 250 K: V = 5,0 × (100 ÷ 50) × (250 ÷ 300)"]
-      N2 --> N3["V = 8,3 L"]
-      N1 --> N4["Pecah: V = 10 L pada 240 K"]
-      N4 --> N5["p = 100 × 5,0 × 240 ÷ (300 × 10) = 40 kPa"]
+      N0["pV ÷ T tetap: 100 × 5,0 ÷ 300"] --> N3["V = 5,0 × (100 ÷ 50) × (267,5 ÷ 300) = 8,9 L"]
+      N1["Pada p kPa: T = 300 − 0,65(100 − p)"] --> N2["Pada 50 kPa: T = 267,5 K"]
+      N2 --> N3
+      N0 --> N4["Pecah pada 10 L: 10p ÷ (235 + 0,65p) = 500 ÷ 300"]
+      N1 --> N4
+      N4 --> N5["p = 44 kPa, dengan T = 264 K"]
   `}
 />
 
-Saat pecah, <InlineMath math="V = 10" /> L dan <InlineMath math="T = 240" /> K, jadi <InlineMath math="p = 100 \times 5{,}0 \times 240 \div (300 \times 10) = 40" /> kPa.
+Saat pecah, <InlineMath math="V = 10" /> L, tetapi suhu di sana **bergantung pada** tekanan yang belum diketahui: <InlineMath math="T = 300 - 0{,}65(100 - p) = 235 + 0{,}65p" />. Jadi <InlineMath math="10p \div (235 + 0{,}65p) = 500 \div 300" />, yang memberi <InlineMath math="p = 44" /> kPa, dengan udara pada <InlineMath math="264" /> K.
 
 # Kenapa pilihan lain salah
 
 - <InlineMath math="10\text{ L}" /> dan <InlineMath math="50\text{ kPa}" /> hanya memakai hukum Boyle, mengabaikan udara yang **lebih dingin**.
-- <InlineMath math="42\text{ kPa}" /> mempertahankan <InlineMath math="250" /> K untuk saat pecah, padahal udara di sana <InlineMath math="240" /> K.
-- <InlineMath math="12\text{ L}" /> dan <InlineMath math="63\text{ kPa}" /> **membalik** perbandingan suhu, seolah pendinginan mengembangkan gas.
+- <InlineMath math="11\text{ L}" /> dan <InlineMath math="55\text{ kPa}" /> **membalik** perbandingan suhu, seolah pendinginan mengembangkan gas.
+- <InlineMath math="50\text{ kPa}" /> untuk saat pecah membagi dua tekanan untuk volume berlipat dua, padahal udara di sana **lebih dingin** lagi.

@@ -12,21 +12,19 @@ const item: ItemSource = {
       options: [
         {
           correct: false,
-          label:
-            "$$35^\\circ$$, and they enter the deep water at $$41^\\circ$$",
+          label: "$$35^\\circ$$, and $$0.26\\text{ m s}^{-1}$$",
         },
         {
           correct: false,
-          label:
-            "$$35^\\circ$$, and they travel along the boundary at $$90^\\circ$$",
+          label: "$$35^\\circ$$, and $$0.40\\text{ m s}^{-1}$$",
         },
         {
           correct: true,
-          label: "$$35^\\circ$$, and they are totally reflected",
+          label: "$$35^\\circ$$, and $$0.35\\text{ m s}^{-1}$$",
         },
         {
           correct: false,
-          label: "$$38^\\circ$$, and they are totally reflected",
+          label: "$$38^\\circ$$, and $$0.35\\text{ m s}^{-1}$$",
         },
       ],
     },
@@ -35,20 +33,19 @@ const item: ItemSource = {
       options: [
         {
           correct: false,
-          label: "$$35^\\circ$$, dan ia memasuki air dalam pada $$41^\\circ$$",
+          label: "$$35^\\circ$$, dan $$0.26\\text{ m s}^{-1}$$",
         },
         {
           correct: false,
-          label:
-            "$$35^\\circ$$, dan ia bergerak di sepanjang sempadan pada $$90^\\circ$$",
+          label: "$$35^\\circ$$, dan $$0.40\\text{ m s}^{-1}$$",
         },
         {
           correct: true,
-          label: "$$35^\\circ$$, dan ia dipantulkan sepenuhnya",
+          label: "$$35^\\circ$$, dan $$0.35\\text{ m s}^{-1}$$",
         },
         {
           correct: false,
-          label: "$$38^\\circ$$, dan ia dipantulkan sepenuhnya",
+          label: "$$38^\\circ$$, dan $$0.35\\text{ m s}^{-1}$$",
         },
       ],
     },

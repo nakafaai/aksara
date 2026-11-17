@@ -10,19 +10,19 @@ const item: ItemSource = {
     en: {
       kind: "choice",
       options: [
-        { correct: true, label: "$$9.2\\text{ A}$$, for $$4.6\\text{ h}$$" },
-        { correct: false, label: "$$4.6\\text{ A}$$, for $$9.2\\text{ h}$$" },
-        { correct: false, label: "$$9.2\\text{ A}$$, for $$6.5\\text{ h}$$" },
-        { correct: false, label: "$$9.2\\text{ A}$$, for $$2.0\\text{ h}$$" },
+        { correct: true, label: "$$4.6\\text{ h}$$, and $$82$$ minutes" },
+        { correct: false, label: "$$4.6\\text{ h}$$, and $$63$$ minutes" },
+        { correct: false, label: "$$6.5\\text{ h}$$, and $$117$$ minutes" },
+        { correct: false, label: "$$2.0\\text{ h}$$, and $$35$$ minutes" },
       ],
     },
     ms: {
       kind: "choice",
       options: [
-        { correct: true, label: "$$9.2\\text{ A}$$, for $$4.6\\text{ h}$$" },
-        { correct: false, label: "$$4.6\\text{ A}$$, for $$9.2\\text{ h}$$" },
-        { correct: false, label: "$$9.2\\text{ A}$$, for $$6.5\\text{ h}$$" },
-        { correct: false, label: "$$9.2\\text{ A}$$, for $$2.0\\text{ h}$$" },
+        { correct: true, label: "$$4.6\\text{ h}$$, dan $$82$$ minit" },
+        { correct: false, label: "$$4.6\\text{ h}$$, dan $$63$$ minit" },
+        { correct: false, label: "$$6.5\\text{ h}$$, dan $$117$$ minit" },
+        { correct: false, label: "$$2.0\\text{ h}$$, dan $$35$$ minit" },
       ],
     },
   },

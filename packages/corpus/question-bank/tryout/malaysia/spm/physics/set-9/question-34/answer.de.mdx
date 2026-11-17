@@ -1,23 +1,21 @@
-# Die EMK folgt der Geschwindigkeit, mit der sich der Fluss ändert
+# Jede Aussage an dem prüfen, was die EMK erzeugt
 
-Die EMK hängt davon ab, wie **schnell** sich der Fluss durch die Spule ändert. Liegt die Spulenebene längs des Feldes, schneiden die Seiten die Feldlinien am schnellsten, die EMK ist dann am größten, und Aussage I ist richtig. Aussage III verwechselt den größten Fluss mit der schnellsten Änderung: Senkrecht ist der Fluss am größten, ändert sich aber kurz **nicht**, die EMK ist also null.
+Die EMK folgt der **Geschwindigkeit**, mit der sich der Fluss ändert. Bei halber Drehzahl schneiden die Seiten das Feld halb so schnell, der Spitzenwert halbiert sich auf <InlineMath math="6{,}0" /> V, und es gibt halb so viele Perioden, <InlineMath math="25" /> Hz: Aussage I stimmt. Wenn die meisten Linien die Spule durchsetzen, ändert sich der Fluss **kurz nicht**, die EMK ist dort null, und II ist falsch.
 
 <Mermaid
-  title={<>Die Änderungsrate, nicht die Menge, erzeugt die EMK</>}
-  description={<>Die Spulenseiten schneiden Feldlinien am schnellsten, wenn die Spule längs des Feldes liegt, obwohl dann keine Linie sie durchsetzt. Ein Kommutator macht aus dem Wechselstrom einen Strom gleicher Richtung.</>}
+  title={<>Was die Zahlen des Generators bedeuten</>}
+  description={<>Spitzenwert und Frequenz folgen beide der Drehzahl, die Wärme folgt dem Effektivwert, und ein Kommutator klappt nur die negative Hälfte jeder Periode um.</>}
   chart={`
     flowchart LR
-      N0["Die EMK hängt davon ab, wie schnell sich der Fluss ändert"] --> N1["Ebene parallel zum Feld: Seiten schneiden Linien am schnellsten (I richtig)"]
-      N0 --> N2["Ebene senkrecht: größter Fluss, aber langsamste Änderung (III falsch)"]
-      N0 --> N3["Doppelt so schnell: doppelt so viele Perioden und doppelte Schnittrate (II richtig)"]
-      N3 --> N4["Der Kommutator vertauscht die Anschlüsse jede halbe Drehung (IV richtig)"]
+      N0["Halbe Drehzahl: halbe Schnittrate, halb so viele Perioden (I richtig)"] --> N2["Gleiche Wärme wie Gleichstrom beim Effektivwert: 12 ÷ √2 = 8,5 V (III richtig)"]
+      N1["Größter Fluss: langsamste Änderung, EMK null (II falsch)"] --> N3["Kommutator: eine Richtung, aber weiter auf und ab (IV falsch)"]
   `}
 />
 
-Doppelt so schnell drehen gibt doppelt so viele Perioden pro Sekunde und die doppelte Schnittrate, also stimmt II. Ein Kommutator vertauscht die Anschlüsse jede halbe Drehung, der Strom außen fließt also immer **gleich herum**, und IV stimmt.
+Ein Wechselstrom heizt wie eine Gleichspannung in Höhe seines Effektivwerts, <InlineMath math="12 \div \sqrt{2} = 8{,}5" /> V, also stimmt III. Ein Kommutator klappt nur die negative Hälfte jeder Periode um, die Spannung drückt also immer in eine Richtung, **steigt und fällt** aber weiter zwischen null und <InlineMath math="12" /> V, und IV ist falsch.
 
 # Warum die anderen Antworten falsch sind
 
-- Nur I und II lässt IV weg, doch ein Kommutator hält den Strom außen wirklich in **einer Richtung**.
-- II, III und IV nimmt III an, doch der größte Fluss durch die Spule ist der Moment, in dem er sich **am langsamsten ändert**.
-- III und IV verwirft I und II, doch die EMK ist wirklich am größten, wenn die Spule **längs** des Feldes liegt, und wächst mit der Drehzahl.
+- Nur I und II nimmt II an, doch der größte Fluss ist der Moment, in dem er sich **am langsamsten** ändert.
+- Nur II und IV nimmt beide falschen Aussagen an und verwirft I und III, die aus der **Schnittrate** und dem Effektivwert folgen.
+- I, III und IV nimmt IV an, doch ein Kommutator gibt eine **pulsierende** Spannung in einer Richtung, keine gleichmäßige.

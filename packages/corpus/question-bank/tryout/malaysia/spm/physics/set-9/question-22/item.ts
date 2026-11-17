@@ -12,20 +12,19 @@ const item: ItemSource = {
       options: [
         {
           correct: false,
-          label:
-            "It stops after $$0.15\\text{ m}$$, with a greatest force of $$120\\text{ N}$$",
+          label: "$$2.2\\text{ m s}^{-1}$$, and $$2.2\\text{ m s}^{-1}$$",
         },
         {
           correct: true,
-          label: "$$2.2\\text{ m s}^{-1}$$, and $$80\\text{ N}$$",
+          label: "$$2.2\\text{ m s}^{-1}$$, and $$3.0\\text{ m s}^{-1}$$",
         },
         {
           correct: false,
-          label: "$$1.0\\text{ m s}^{-1}$$, and $$80\\text{ N}$$",
+          label: "$$1.0\\text{ m s}^{-1}$$, and $$3.0\\text{ m s}^{-1}$$",
         },
         {
           correct: false,
-          label: "$$2.2\\text{ m s}^{-1}$$, and $$120\\text{ N}$$",
+          label: "$$2.2\\text{ m s}^{-1}$$, and $$1.0\\text{ m s}^{-1}$$",
         },
       ],
     },
@@ -34,20 +33,19 @@ const item: ItemSource = {
       options: [
         {
           correct: false,
-          label:
-            "Ia berhenti selepas $$0.15\\text{ m}$$, dengan daya terbesar $$120\\text{ N}$$",
+          label: "$$2.2\\text{ m s}^{-1}$$, dan $$2.2\\text{ m s}^{-1}$$",
         },
         {
           correct: true,
-          label: "$$2.2\\text{ m s}^{-1}$$, dan $$80\\text{ N}$$",
+          label: "$$2.2\\text{ m s}^{-1}$$, dan $$3.0\\text{ m s}^{-1}$$",
         },
         {
           correct: false,
-          label: "$$1.0\\text{ m s}^{-1}$$, dan $$80\\text{ N}$$",
+          label: "$$1.0\\text{ m s}^{-1}$$, dan $$3.0\\text{ m s}^{-1}$$",
         },
         {
           correct: false,
-          label: "$$2.2\\text{ m s}^{-1}$$, dan $$120\\text{ N}$$",
+          label: "$$2.2\\text{ m s}^{-1}$$, dan $$1.0\\text{ m s}^{-1}$$",
         },
       ],
     },

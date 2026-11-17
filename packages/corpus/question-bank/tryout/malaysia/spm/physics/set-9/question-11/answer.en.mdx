@@ -1,24 +1,25 @@
-# Combine the gas laws, with temperatures in kelvin
+# Combine the gas laws, with the temperature tied to the pressure
 
-For a fixed mass of gas <InlineMath math="pV \div T" /> stays the same. At <InlineMath math="50" /> kPa and <InlineMath math="250" /> K, <InlineMath math="V = 5.0 \times (100 \div 50) \times (250 \div 300) = 8.3" /> L. The lower pressure doubles the volume, but the **cold** takes a sixth back off.
+For the fixed mass of helium <InlineMath math="pV \div T" /> stays the same. At <InlineMath math="50" /> kPa the air has cooled by <InlineMath math="5 \times 6.5 = 32.5" /> K to <InlineMath math="267.5" /> K, so <InlineMath math="V = 5.0 \times (100 \div 50) \times (267.5 \div 300) = 8.9" /> L: halving the pressure doubles the volume, and the **cold** takes some back.
 
 <Mermaid
-  title={<>Pressure Falls, but So Does the Temperature</>}
-  description={<>Halving the pressure would double the volume, but the cold air shrinks it again, so the balloon must climb into thinner air before it bursts.</>}
+  title={<>The Temperature Depends on the Pressure Too</>}
+  description={<>Because the air cools as the pressure falls, the bursting point cannot be read off directly: the pressure and the temperature there must satisfy the gas law together.</>}
   chart={`
     flowchart LR
-      N0["Kelvin: 300 K, 250 K, 240 K"] --> N1["pV ÷ T stays fixed: 100 × 5.0 ÷ 300"]
-      N1 --> N2["At 50 kPa, 250 K: V = 5.0 × (100 ÷ 50) × (250 ÷ 300)"]
-      N2 --> N3["V = 8.3 L"]
-      N1 --> N4["Burst: V = 10 L at 240 K"]
-      N4 --> N5["p = 100 × 5.0 × 240 ÷ (300 × 10) = 40 kPa"]
+      N0["pV ÷ T fixed: 100 × 5.0 ÷ 300"] --> N3["V = 5.0 × (100 ÷ 50) × (267.5 ÷ 300) = 8.9 L"]
+      N1["At p kPa: T = 300 − 0.65(100 − p)"] --> N2["At 50 kPa: T = 267.5 K"]
+      N2 --> N3
+      N0 --> N4["Burst at 10 L: 10p ÷ (235 + 0.65p) = 500 ÷ 300"]
+      N1 --> N4
+      N4 --> N5["p = 44 kPa, where T = 264 K"]
   `}
 />
 
-At bursting, <InlineMath math="V = 10" /> L and <InlineMath math="T = 240" /> K, so <InlineMath math="p = 100 \times 5.0 \times 240 \div (300 \times 10) = 40" /> kPa.
+At bursting, <InlineMath math="V = 10" /> L, but the temperature there **depends on** the unknown pressure: <InlineMath math="T = 300 - 0.65(100 - p) = 235 + 0.65p" />. So <InlineMath math="10p \div (235 + 0.65p) = 500 \div 300" />, which gives <InlineMath math="p = 44" /> kPa, where the air is at <InlineMath math="264" /> K.
 
 # Why the other options are wrong
 
 - <InlineMath math="10\text{ L}" /> and <InlineMath math="50\text{ kPa}" /> use Boyle’s law alone, ignoring the **colder** air.
-- <InlineMath math="42\text{ kPa}" /> keeps <InlineMath math="250" /> K for the burst, but the air there is at <InlineMath math="240" /> K.
-- <InlineMath math="12\text{ L}" /> and <InlineMath math="63\text{ kPa}" /> turn the temperature ratio **upside down**, as if cooling made a gas expand.
+- <InlineMath math="11\text{ L}" /> and <InlineMath math="55\text{ kPa}" /> turn the temperature ratio **upside down**, as if cooling made a gas expand.
+- <InlineMath math="50\text{ kPa}" /> for the burst halves the pressure for double the volume, but the air there is **colder** still.

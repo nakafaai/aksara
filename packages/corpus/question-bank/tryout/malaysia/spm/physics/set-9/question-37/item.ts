@@ -12,19 +12,19 @@ const item: ItemSource = {
       options: [
         {
           correct: true,
-          label: "$$0.125\\text{ mg}$$, and $$2.5 \\times 10^{18}$$",
+          label: "$$0.125\\text{ mg}$$, and $$0.10\\text{ cm}^3$$",
         },
         {
           correct: false,
-          label: "$$0.125\\text{ mg}$$, and $$3.6 \\times 10^{17}$$",
+          label: "$$0.125\\text{ mg}$$, and $$0.014\\text{ cm}^3$$",
         },
         {
           correct: false,
-          label: "$$0.33\\text{ mg}$$, and $$1.9 \\times 10^{18}$$",
+          label: "$$0.33\\text{ mg}$$, and $$0.076\\text{ cm}^3$$",
         },
         {
           correct: false,
-          label: "$$0.125\\text{ mg}$$, and $$2.9 \\times 10^{18}$$",
+          label: "$$0.125\\text{ mg}$$, and $$0.11\\text{ cm}^3$$",
         },
       ],
     },
@@ -33,19 +33,19 @@ const item: ItemSource = {
       options: [
         {
           correct: true,
-          label: "$$0.125\\text{ mg}$$, dan $$2.5 \\times 10^{18}$$",
+          label: "$$0.125\\text{ mg}$$, dan $$0.10\\text{ cm}^3$$",
         },
         {
           correct: false,
-          label: "$$0.125\\text{ mg}$$, dan $$3.6 \\times 10^{17}$$",
+          label: "$$0.125\\text{ mg}$$, dan $$0.014\\text{ cm}^3$$",
         },
         {
           correct: false,
-          label: "$$0.33\\text{ mg}$$, dan $$1.9 \\times 10^{18}$$",
+          label: "$$0.33\\text{ mg}$$, dan $$0.076\\text{ cm}^3$$",
         },
         {
           correct: false,
-          label: "$$0.125\\text{ mg}$$, dan $$2.9 \\times 10^{18}$$",
+          label: "$$0.125\\text{ mg}$$, dan $$0.11\\text{ cm}^3$$",
         },
       ],
     },

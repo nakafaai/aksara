@@ -10,19 +10,19 @@ const item: ItemSource = {
     en: {
       kind: "choice",
       options: [
-        { correct: true, label: "$$13.5\\text{ W}$$, and $$72\\text{ W}$$" },
-        { correct: false, label: "$$18\\text{ W}$$, and $$4.5\\text{ W}$$" },
-        { correct: false, label: "$$13.5\\text{ W}$$, and $$4.5\\text{ W}$$" },
-        { correct: false, label: "$$18\\text{ W}$$, and $$72\\text{ W}$$" },
+        { correct: true, label: "$$13.5\\text{ W}$$, and $$48\\text{ K}$$" },
+        { correct: false, label: "$$18\\text{ W}$$, and $$3.0\\text{ K}$$" },
+        { correct: false, label: "$$13.5\\text{ W}$$, and $$3.0\\text{ K}$$" },
+        { correct: false, label: "$$18\\text{ W}$$, and $$48\\text{ K}$$" },
       ],
     },
     ms: {
       kind: "choice",
       options: [
-        { correct: true, label: "$$13.5\\text{ W}$$, dan $$72\\text{ W}$$" },
-        { correct: false, label: "$$18\\text{ W}$$, dan $$4.5\\text{ W}$$" },
-        { correct: false, label: "$$13.5\\text{ W}$$, dan $$4.5\\text{ W}$$" },
-        { correct: false, label: "$$18\\text{ W}$$, dan $$72\\text{ W}$$" },
+        { correct: true, label: "$$13.5\\text{ W}$$, dan $$48\\text{ K}$$" },
+        { correct: false, label: "$$18\\text{ W}$$, dan $$3.0\\text{ K}$$" },
+        { correct: false, label: "$$13.5\\text{ W}$$, dan $$3.0\\text{ K}$$" },
+        { correct: false, label: "$$18\\text{ W}$$, dan $$48\\text{ K}$$" },
       ],
     },
   },

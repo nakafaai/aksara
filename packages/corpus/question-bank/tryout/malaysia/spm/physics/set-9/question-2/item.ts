@@ -13,22 +13,22 @@ const item: ItemSource = {
         {
           correct: true,
           label:
+            "$$34.7\\text{ K}$$, and $$3.6 \\times 10^3\\text{ J kg}^{-1}\\text{ K}^{-1}$$",
+        },
+        {
+          correct: false,
+          label:
+            "$$33.0\\text{ K}$$, and $$3.8 \\times 10^3\\text{ J kg}^{-1}\\text{ K}^{-1}$$",
+        },
+        {
+          correct: false,
+          label:
             "$$34.7\\text{ K}$$, and $$4.3 \\times 10^3\\text{ J kg}^{-1}\\text{ K}^{-1}$$",
         },
         {
           correct: false,
           label:
-            "$$33.0\\text{ K}$$, and $$4.5 \\times 10^3\\text{ J kg}^{-1}\\text{ K}^{-1}$$",
-        },
-        {
-          correct: false,
-          label:
-            "$$31.4\\text{ K}$$, and $$4.8 \\times 10^3\\text{ J kg}^{-1}\\text{ K}^{-1}$$",
-        },
-        {
-          correct: false,
-          label:
-            "$$30.0\\text{ K}$$, and $$5.0 \\times 10^3\\text{ J kg}^{-1}\\text{ K}^{-1}$$",
+            "$$34.7\\text{ K}$$, and $$4.0 \\times 10^3\\text{ J kg}^{-1}\\text{ K}^{-1}$$",
         },
       ],
     },
@@ -38,22 +38,22 @@ const item: ItemSource = {
         {
           correct: true,
           label:
+            "$$34.7\\text{ K}$$, dan $$3.6 \\times 10^3\\text{ J kg}^{-1}\\text{ K}^{-1}$$",
+        },
+        {
+          correct: false,
+          label:
+            "$$33.0\\text{ K}$$, dan $$3.8 \\times 10^3\\text{ J kg}^{-1}\\text{ K}^{-1}$$",
+        },
+        {
+          correct: false,
+          label:
             "$$34.7\\text{ K}$$, dan $$4.3 \\times 10^3\\text{ J kg}^{-1}\\text{ K}^{-1}$$",
         },
         {
           correct: false,
           label:
-            "$$33.0\\text{ K}$$, dan $$4.5 \\times 10^3\\text{ J kg}^{-1}\\text{ K}^{-1}$$",
-        },
-        {
-          correct: false,
-          label:
-            "$$31.4\\text{ K}$$, dan $$4.8 \\times 10^3\\text{ J kg}^{-1}\\text{ K}^{-1}$$",
-        },
-        {
-          correct: false,
-          label:
-            "$$30.0\\text{ K}$$, dan $$5.0 \\times 10^3\\text{ J kg}^{-1}\\text{ K}^{-1}$$",
+            "$$34.7\\text{ K}$$, dan $$4.0 \\times 10^3\\text{ J kg}^{-1}\\text{ K}^{-1}$$",
         },
       ],
     },

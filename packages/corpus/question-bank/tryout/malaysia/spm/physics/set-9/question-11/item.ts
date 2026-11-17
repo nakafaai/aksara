@@ -10,19 +10,19 @@ const item: ItemSource = {
     en: {
       kind: "choice",
       options: [
-        { correct: true, label: "$$8.3\\text{ L}$$, and $$40\\text{ kPa}$$" },
+        { correct: true, label: "$$8.9\\text{ L}$$, and $$44\\text{ kPa}$$" },
         { correct: false, label: "$$10\\text{ L}$$, and $$50\\text{ kPa}$$" },
-        { correct: false, label: "$$8.3\\text{ L}$$, and $$42\\text{ kPa}$$" },
-        { correct: false, label: "$$12\\text{ L}$$, and $$63\\text{ kPa}$$" },
+        { correct: false, label: "$$11\\text{ L}$$, and $$55\\text{ kPa}$$" },
+        { correct: false, label: "$$8.9\\text{ L}$$, and $$50\\text{ kPa}$$" },
       ],
     },
     ms: {
       kind: "choice",
       options: [
-        { correct: true, label: "$$8.3\\text{ L}$$, dan $$40\\text{ kPa}$$" },
+        { correct: true, label: "$$8.9\\text{ L}$$, dan $$44\\text{ kPa}$$" },
         { correct: false, label: "$$10\\text{ L}$$, dan $$50\\text{ kPa}$$" },
-        { correct: false, label: "$$8.3\\text{ L}$$, dan $$42\\text{ kPa}$$" },
-        { correct: false, label: "$$12\\text{ L}$$, dan $$63\\text{ kPa}$$" },
+        { correct: false, label: "$$11\\text{ L}$$, dan $$55\\text{ kPa}$$" },
+        { correct: false, label: "$$8.9\\text{ L}$$, dan $$50\\text{ kPa}$$" },
       ],
     },
   },

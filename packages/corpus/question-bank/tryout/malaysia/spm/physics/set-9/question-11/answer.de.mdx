@@ -1,24 +1,25 @@
-# Die Gasgesetze verbinden, Temperaturen in Kelvin
+# Die Gasgesetze verbinden, die Temperatur hängt am Druck
 
-Für eine feste Gasmenge bleibt <InlineMath math="pV \div T" /> gleich. Bei <InlineMath math="50" /> kPa und <InlineMath math="250" /> K ist <InlineMath math="V = 5{,}0 \times (100 \div 50) \times (250 \div 300) = 8{,}3" /> L. Der kleinere Druck verdoppelt das Volumen, doch die **Kälte** nimmt ein Sechstel wieder weg.
+Für die feste Heliummenge bleibt <InlineMath math="pV \div T" /> gleich. Bei <InlineMath math="50" /> kPa hat sich die Luft um <InlineMath math="5 \times 6{,}5 = 32{,}5" /> K auf <InlineMath math="267{,}5" /> K abgekühlt, also <InlineMath math="V = 5{,}0 \times (100 \div 50) \times (267{,}5 \div 300) = 8{,}9" /> L: Der halbe Druck verdoppelt das Volumen, die **Kälte** nimmt etwas zurück.
 
 <Mermaid
-  title={<>Der Druck fällt, die Temperatur aber auch</>}
-  description={<>Halber Druck würde das Volumen verdoppeln, doch die kalte Luft schrumpft es wieder, der Ballon muss also in dünnere Luft steigen, bevor er platzt.</>}
+  title={<>Auch die Temperatur hängt vom Druck ab</>}
+  description={<>Weil die Luft mit fallendem Druck abkühlt, lässt sich der Platzpunkt nicht direkt ablesen: Druck und Temperatur dort müssen zusammen das Gasgesetz erfüllen.</>}
   chart={`
     flowchart LR
-      N0["Kelvin: 300 K, 250 K, 240 K"] --> N1["pV ÷ T bleibt gleich: 100 × 5,0 ÷ 300"]
-      N1 --> N2["Bei 50 kPa, 250 K: V = 5,0 × (100 ÷ 50) × (250 ÷ 300)"]
-      N2 --> N3["V = 8,3 L"]
-      N1 --> N4["Platzen: V = 10 L bei 240 K"]
-      N4 --> N5["p = 100 × 5,0 × 240 ÷ (300 × 10) = 40 kPa"]
+      N0["pV ÷ T fest: 100 × 5,0 ÷ 300"] --> N3["V = 5,0 × (100 ÷ 50) × (267,5 ÷ 300) = 8,9 L"]
+      N1["Bei p kPa: T = 300 − 0,65(100 − p)"] --> N2["Bei 50 kPa: T = 267,5 K"]
+      N2 --> N3
+      N0 --> N4["Platzen bei 10 L: 10p ÷ (235 + 0,65p) = 500 ÷ 300"]
+      N1 --> N4
+      N4 --> N5["p = 44 kPa, mit T = 264 K"]
   `}
 />
 
-Beim Platzen sind <InlineMath math="V = 10" /> L und <InlineMath math="T = 240" /> K, also <InlineMath math="p = 100 \times 5{,}0 \times 240 \div (300 \times 10) = 40" /> kPa.
+Beim Platzen ist <InlineMath math="V = 10" /> L, doch die Temperatur dort **hängt vom** unbekannten Druck **ab**: <InlineMath math="T = 300 - 0{,}65(100 - p) = 235 + 0{,}65p" />. Also <InlineMath math="10p \div (235 + 0{,}65p) = 500 \div 300" />, das ergibt <InlineMath math="p = 44" /> kPa, bei einer Lufttemperatur von <InlineMath math="264" /> K.
 
 # Warum die anderen Antworten falsch sind
 
 - <InlineMath math="10\text{ L}" /> und <InlineMath math="50\text{ kPa}" /> nehmen nur das Gesetz von Boyle und übersehen die **kältere** Luft.
-- <InlineMath math="42\text{ kPa}" /> behält beim Platzen <InlineMath math="250" /> K, doch dort hat die Luft <InlineMath math="240" /> K.
-- <InlineMath math="12\text{ L}" /> und <InlineMath math="63\text{ kPa}" /> **drehen** das Temperaturverhältnis **um**, als würde Abkühlen ein Gas ausdehnen.
+- <InlineMath math="11\text{ L}" /> und <InlineMath math="55\text{ kPa}" /> **drehen** das Temperaturverhältnis **um**, als würde Abkühlen ein Gas ausdehnen.
+- <InlineMath math="50\text{ kPa}" /> beim Platzen halbiert den Druck für das doppelte Volumen, doch dort ist die Luft noch **kälter**.

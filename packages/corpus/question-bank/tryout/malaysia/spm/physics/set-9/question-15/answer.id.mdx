@@ -1,23 +1,24 @@
-# Bunyi keras adalah resonansi: frekuensi cocok, amplitudo tidak berpengaruh
+# Pakai jarak antar-resonansi, bukan panjang pertama saja
 
-Kolom udara berbunyi paling keras saat frekuensi alaminya sama dengan <InlineMath math="512" /> Hz garpu tala, jadi pernyataan I benar, dan saat **resonansi** garpu tala memindahkan energi ke udara paling efektif, jadi II juga benar.
+Panjang keras berurutan berbeda **setengah panjang gelombang**, jadi <InlineMath math="\lambda = 2 \times (50{,}0 - 16{,}5) = 67{,}0" /> cm dan <InlineMath math="v = 512 \times 0{,}670 = 343" /> m/s: pernyataan I benar. Kolom udara dipaksa oleh garpu tala, jadi pada <InlineMath math="50{,}0" /> cm tetap bergetar pada <InlineMath math="512" /> Hz, dalam pola yang lebih panjang, dan II salah.
 
 <Mermaid
-  title={<>Resonansi Bergantung pada Frekuensi, Bukan Kerasnya Bunyi</>}
-  description={<>Bunyi keras menandai panjang saat frekuensi alami kolom udara sama dengan garpu tala. Kerasnya pukulan hanya mengubah amplitudo.</>}
+  title={<>Dua Resonansi Memberi Panjang Gelombang</>}
+  description={<>Kedua panjang keras berjarak setengah panjang gelombang, berapa pun koreksi kecil di ujung terbuka. Kedua resonansi terjadi pada frekuensi garpu tala itu sendiri.</>}
   chart={`
     flowchart LR
-      N0["Bunyi keras = resonansi"] --> N1["Frekuensi alami kolom udara = 512 Hz (I benar)"]
-      N0 --> N2["Perpindahan energi terbesar saat resonansi (II benar)"]
-      N3["Pukulan lebih keras: amplitudo lebih besar, frekuensi sama"] --> N4["Frekuensi alami ditentukan panjang, bukan amplitudo (III salah)"]
-      N1 --> N5["Frekuensi lebih rendah butuh kolom lebih panjang (IV benar)"]
+      N0["Panjang keras berurutan berbeda setengah panjang gelombang"] --> N1["λ = 2 × (50,0 − 16,5) = 67,0 cm"]
+      N1 --> N2["v = 512 × 0,670 = 343 m/s (I benar)"]
+      N1 --> N3["Kedua bunyi keras pada 512 Hz garpu tala (II salah)"]
+      N3 --> N4["Amplitudo tidak mengubah panjang resonansi (III salah)"]
+      N2 --> N5["256 Hz: λ = 134 cm, keras pertama dekat seperempat, 33 cm (IV benar)"]
   `}
 />
 
-Pukulan lebih keras menghasilkan amplitudo lebih besar pada frekuensi yang **sama**, jadi panjang resonansi tidak berubah, dan III salah. Frekuensi lebih rendah berarti panjang gelombang lebih panjang, yang butuh kolom **lebih panjang**, jadi IV benar.
+Pukulan lebih keras menaikkan amplitudo, bukan frekuensi, jadi panjang resonansi tidak berubah dan III salah. Pada <InlineMath math="256" /> Hz panjang gelombang berlipat dua menjadi <InlineMath math="134" /> cm, dan resonansi pertama terjadi dekat **seperempatnya**, sekitar <InlineMath math="33" /> cm, jadi IV benar.
 
 # Kenapa pilihan lain salah
 
-- I dan II saja melupakan IV, padahal frekuensi lebih rendah memang butuh kolom udara **lebih panjang**.
-- I dan III saja menerima III, padahal panjang resonansi bergantung pada **frekuensi**, bukan kerasnya bunyi.
-- II, III dan IV membuang I, padahal resonansi berarti frekuensi alami **cocok** dengan garpu tala.
+- I dan II saja menerima II, padahal kolom udara yang dipaksa bergetar pada frekuensi **garpu tala** di tiap resonansi.
+- II dan III saja menolak I, padahal jarak kedua panjang adalah **setengah panjang gelombang** dan memberi <InlineMath math="343" /> m/s.
+- I, II dan IV menerima II, padahal panjang keras kedua adalah pola lebih panjang pada <InlineMath math="512" /> Hz yang **sama**.

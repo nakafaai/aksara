@@ -12,19 +12,23 @@ const item: ItemSource = {
       options: [
         {
           correct: true,
-          label: "$$1.25\\text{ km}$$, once every $$50\\text{ s}$$",
+          label:
+            "$$1.25\\text{ km}$$ apart, with one directly opposite the midpoint of the masts",
         },
         {
           correct: false,
-          label: "$$0.63\\text{ km}$$, once every $$25\\text{ s}$$",
+          label:
+            "$$1.25\\text{ km}$$ apart, the nearest $$0.63\\text{ km}$$ from the point opposite the midpoint",
         },
         {
           correct: false,
-          label: "$$50\\text{ m}$$, once every $$2.0\\text{ s}$$",
+          label:
+            "$$0.63\\text{ km}$$ apart, with one directly opposite the midpoint of the masts",
         },
         {
           correct: false,
-          label: "$$80\\text{ km}$$, once every $$53$$ minutes",
+          label:
+            "$$50\\text{ m}$$ apart, the nearest $$25\\text{ m}$$ from the point opposite the midpoint",
         },
       ],
     },
@@ -33,19 +37,23 @@ const item: ItemSource = {
       options: [
         {
           correct: true,
-          label: "$$1.25\\text{ km}$$, sekali setiap $$50\\text{ s}$$",
+          label:
+            "$$1.25\\text{ km}$$ berjarak, dengan satu tepat bertentangan titik tengah menara",
         },
         {
           correct: false,
-          label: "$$0.63\\text{ km}$$, sekali setiap $$25\\text{ s}$$",
+          label:
+            "$$1.25\\text{ km}$$ berjarak, yang terdekat $$0.63\\text{ km}$$ dari titik bertentangan titik tengah",
         },
         {
           correct: false,
-          label: "$$50\\text{ m}$$, sekali setiap $$2.0\\text{ s}$$",
+          label:
+            "$$0.63\\text{ km}$$ berjarak, dengan satu tepat bertentangan titik tengah menara",
         },
         {
           correct: false,
-          label: "$$80\\text{ km}$$, sekali setiap $$53$$ minit",
+          label:
+            "$$50\\text{ m}$$ berjarak, yang terdekat $$25\\text{ m}$$ dari titik bertentangan titik tengah",
         },
       ],
     },
