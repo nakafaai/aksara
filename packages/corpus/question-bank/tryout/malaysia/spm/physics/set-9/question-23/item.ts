@@ -10,25 +10,19 @@ const item: ItemSource = {
     en: {
       kind: "choice",
       options: [
-        { correct: true, label: "$$2.0\\text{ kN}$$, and $$3.9\\text{ cm}$$" },
-        {
-          correct: false,
-          label: "$$98\\text{ N}$$, and the wire never breaks",
-        },
-        { correct: false, label: "$$2.0\\text{ kN}$$, and $$25\\text{ cm}$$" },
-        { correct: false, label: "$$3.9\\text{ kN}$$, and $$7.8\\text{ cm}$$" },
+        { correct: true, label: "$$2.0\\text{ kN}$$, and $$1.5\\text{ kN}$$" },
+        { correct: false, label: "$$98\\text{ N}$$, and $$98\\text{ N}$$" },
+        { correct: false, label: "$$2.0\\text{ kN}$$, and $$2.0\\text{ kN}$$" },
+        { correct: false, label: "$$3.9\\text{ kN}$$, and $$2.9\\text{ kN}$$" },
       ],
     },
     ms: {
       kind: "choice",
       options: [
-        { correct: true, label: "$$2.0\\text{ kN}$$, dan $$3.9\\text{ cm}$$" },
-        {
-          correct: false,
-          label: "$$98\\text{ N}$$, dan dawai tidak pernah putus",
-        },
-        { correct: false, label: "$$2.0\\text{ kN}$$, dan $$25\\text{ cm}$$" },
-        { correct: false, label: "$$3.9\\text{ kN}$$, dan $$7.8\\text{ cm}$$" },
+        { correct: true, label: "$$2.0\\text{ kN}$$, dan $$1.5\\text{ kN}$$" },
+        { correct: false, label: "$$98\\text{ N}$$, dan $$98\\text{ N}$$" },
+        { correct: false, label: "$$2.0\\text{ kN}$$, dan $$2.0\\text{ kN}$$" },
+        { correct: false, label: "$$3.9\\text{ kN}$$, dan $$2.9\\text{ kN}$$" },
       ],
     },
   },

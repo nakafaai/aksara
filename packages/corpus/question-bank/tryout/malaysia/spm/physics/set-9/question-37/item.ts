@@ -12,19 +12,19 @@ const item: ItemSource = {
       options: [
         {
           correct: true,
-          label: "$$0.125\\text{ mg}$$, and $$0.10\\text{ cm}^3$$",
+          label: "$$0.125\\text{ mg}$$, and $$10\\text{ kPa}$$",
         },
         {
           correct: false,
-          label: "$$0.125\\text{ mg}$$, and $$0.014\\text{ cm}^3$$",
+          label: "$$0.125\\text{ mg}$$, and $$1.4\\text{ kPa}$$",
         },
         {
           correct: false,
-          label: "$$0.33\\text{ mg}$$, and $$0.076\\text{ cm}^3$$",
+          label: "$$0.33\\text{ mg}$$, and $$7.6\\text{ kPa}$$",
         },
         {
           correct: false,
-          label: "$$0.125\\text{ mg}$$, and $$0.11\\text{ cm}^3$$",
+          label: "$$0.125\\text{ mg}$$, and $$11\\text{ kPa}$$",
         },
       ],
     },
@@ -33,19 +33,19 @@ const item: ItemSource = {
       options: [
         {
           correct: true,
-          label: "$$0.125\\text{ mg}$$, dan $$0.10\\text{ cm}^3$$",
+          label: "$$0.125\\text{ mg}$$, dan $$10\\text{ kPa}$$",
         },
         {
           correct: false,
-          label: "$$0.125\\text{ mg}$$, dan $$0.014\\text{ cm}^3$$",
+          label: "$$0.125\\text{ mg}$$, dan $$1.4\\text{ kPa}$$",
         },
         {
           correct: false,
-          label: "$$0.33\\text{ mg}$$, dan $$0.076\\text{ cm}^3$$",
+          label: "$$0.33\\text{ mg}$$, dan $$7.6\\text{ kPa}$$",
         },
         {
           correct: false,
-          label: "$$0.125\\text{ mg}$$, dan $$0.11\\text{ cm}^3$$",
+          label: "$$0.125\\text{ mg}$$, dan $$11\\text{ kPa}$$",
         },
       ],
     },

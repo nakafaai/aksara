@@ -10,19 +10,28 @@ const item: ItemSource = {
     en: {
       kind: "choice",
       options: [
-        { correct: false, label: "$$2.5$$, and $$24^\\circ$$" },
-        { correct: true, label: "$$1.67$$, and $$37^\\circ$$" },
-        { correct: false, label: "$$1.67$$, and $$53^\\circ$$" },
-        { correct: false, label: "$$1.67$$, and $$31^\\circ$$" },
+        { correct: false, label: "$$2.5$$, and it is totally reflected" },
+        { correct: true, label: "$$1.67$$, and it is totally reflected" },
+        {
+          correct: false,
+          label: "$$1.67$$, and it leaves the glass at $$23^\\circ$$",
+        },
+        { correct: false, label: "$$1.67$$, and it leaves along the surface" },
       ],
     },
     ms: {
       kind: "choice",
       options: [
-        { correct: false, label: "$$2.5$$, dan $$24^\\circ$$" },
-        { correct: true, label: "$$1.67$$, dan $$37^\\circ$$" },
-        { correct: false, label: "$$1.67$$, dan $$53^\\circ$$" },
-        { correct: false, label: "$$1.67$$, dan $$31^\\circ$$" },
+        { correct: false, label: "$$2.5$$, dan ia dipantulkan sepenuhnya" },
+        { correct: true, label: "$$1.67$$, dan ia dipantulkan sepenuhnya" },
+        {
+          correct: false,
+          label: "$$1.67$$, dan ia keluar dari kaca pada $$23^\\circ$$",
+        },
+        {
+          correct: false,
+          label: "$$1.67$$, dan ia keluar di sepanjang permukaan",
+        },
       ],
     },
   },

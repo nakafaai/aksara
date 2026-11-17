@@ -13,7 +13,7 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "$$20\\text{ cm}$$ beyond the second lens, inverted and twice as tall",
+            "$$10\\text{ cm}$$ beyond the second lens, upright and $$4$$ times as tall",
         },
         {
           correct: false,
@@ -23,12 +23,12 @@ const item: ItemSource = {
         {
           correct: true,
           label:
-            "$$20\\text{ cm}$$ beyond the second lens, upright and twice as tall",
+            "$$10\\text{ cm}$$ in front of the second lens, inverted and $$4$$ times as tall",
         },
         {
           correct: false,
           label:
-            "$$20\\text{ cm}$$ beyond the second lens, upright and four times as tall",
+            "$$10\\text{ cm}$$ in front of the second lens, upright and $$4$$ times as tall",
         },
       ],
     },
@@ -38,7 +38,7 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "$$20\\text{ cm}$$ di luar kanta kedua, songsang dan dua kali tingginya",
+            "$$10\\text{ cm}$$ di luar kanta kedua, tegak dan $$4$$ kali tingginya",
         },
         {
           correct: false,
@@ -48,12 +48,12 @@ const item: ItemSource = {
         {
           correct: true,
           label:
-            "$$20\\text{ cm}$$ di luar kanta kedua, tegak dan dua kali tingginya",
+            "$$10\\text{ cm}$$ di hadapan kanta kedua, songsang dan $$4$$ kali tingginya",
         },
         {
           correct: false,
           label:
-            "$$20\\text{ cm}$$ di luar kanta kedua, tegak dan empat kali tingginya",
+            "$$10\\text{ cm}$$ di hadapan kanta kedua, tegak dan $$4$$ kali tingginya",
         },
       ],
     },

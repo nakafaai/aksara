@@ -12,23 +12,19 @@ const item: ItemSource = {
       options: [
         {
           correct: false,
-          label:
-            "$$0.70\\text{ m s}^{-2}$$ down the slope, and $$10\\text{ N}$$ up the slope",
+          label: "$$10\\text{ N}$$ up the slope, and $$3.5\\text{ kg}$$",
         },
         {
           correct: false,
-          label:
-            "$$1.0\\text{ m s}^{-2}$$ down the slope, and $$4.9\\text{ N}$$ up the slope",
+          label: "$$4.9\\text{ N}$$ up the slope, and $$1.5\\text{ kg}$$",
         },
         {
           correct: true,
-          label:
-            "$$0.70\\text{ m s}^{-2}$$ down the slope, and $$4.9\\text{ N}$$ up the slope",
+          label: "$$4.9\\text{ N}$$ up the slope, and $$3.5\\text{ kg}$$",
         },
         {
           correct: false,
-          label:
-            "$$0.70\\text{ m s}^{-2}$$ down the slope, and no friction, since the block stays at rest",
+          label: "$$4.9\\text{ N}$$ up the slope, and $$2.5\\text{ kg}$$",
         },
       ],
     },
@@ -37,23 +33,19 @@ const item: ItemSource = {
       options: [
         {
           correct: false,
-          label:
-            "$$0.70\\text{ m s}^{-2}$$ menuruni cerun, dan $$10\\text{ N}$$ ke atas cerun",
+          label: "$$10\\text{ N}$$ ke atas cerun, dan $$3.5\\text{ kg}$$",
         },
         {
           correct: false,
-          label:
-            "$$1.0\\text{ m s}^{-2}$$ menuruni cerun, dan $$4.9\\text{ N}$$ ke atas cerun",
+          label: "$$4.9\\text{ N}$$ ke atas cerun, dan $$1.5\\text{ kg}$$",
         },
         {
           correct: true,
-          label:
-            "$$0.70\\text{ m s}^{-2}$$ menuruni cerun, dan $$4.9\\text{ N}$$ ke atas cerun",
+          label: "$$4.9\\text{ N}$$ ke atas cerun, dan $$3.5\\text{ kg}$$",
         },
         {
           correct: false,
-          label:
-            "$$0.70\\text{ m s}^{-2}$$ menuruni cerun, dan tiada geseran, kerana blok kekal pegun",
+          label: "$$4.9\\text{ N}$$ ke atas cerun, dan $$2.5\\text{ kg}$$",
         },
       ],
     },

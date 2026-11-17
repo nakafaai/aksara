@@ -12,23 +12,19 @@ const item: ItemSource = {
       options: [
         {
           correct: false,
-          label:
-            "$$4.2 \\times 10^9\\text{ kg}$$, and $$2.9 \\times 10^7\\text{ kg}$$",
+          label: "$$2.9 \\times 10^7\\text{ kg}$$, and $$0.00066\\%$$",
         },
         {
           correct: false,
-          label:
-            "$$1.3 \\times 10^{18}\\text{ kg}$$, and $$1.8 \\times 10^{20}\\text{ kg}$$",
+          label: "$$4.2 \\times 10^9\\text{ kg}$$, and $$0.095\\%$$",
         },
         {
           correct: false,
-          label:
-            "$$4.2 \\times 10^9\\text{ kg}$$, and $$4.2 \\times 10^9\\text{ kg}$$",
+          label: "$$6.0 \\times 10^{11}\\text{ kg}$$, and $$9.5\\%$$",
         },
         {
           correct: true,
-          label:
-            "$$4.2 \\times 10^9\\text{ kg}$$, and $$6.0 \\times 10^{11}\\text{ kg}$$",
+          label: "$$6.0 \\times 10^{11}\\text{ kg}$$, and $$14\\%$$",
         },
       ],
     },
@@ -37,23 +33,19 @@ const item: ItemSource = {
       options: [
         {
           correct: false,
-          label:
-            "$$4.2 \\times 10^9\\text{ kg}$$, dan $$2.9 \\times 10^7\\text{ kg}$$",
+          label: "$$2.9 \\times 10^7\\text{ kg}$$, dan $$0.00066\\%$$",
         },
         {
           correct: false,
-          label:
-            "$$1.3 \\times 10^{18}\\text{ kg}$$, dan $$1.8 \\times 10^{20}\\text{ kg}$$",
+          label: "$$4.2 \\times 10^9\\text{ kg}$$, dan $$0.095\\%$$",
         },
         {
           correct: false,
-          label:
-            "$$4.2 \\times 10^9\\text{ kg}$$, dan $$4.2 \\times 10^9\\text{ kg}$$",
+          label: "$$6.0 \\times 10^{11}\\text{ kg}$$, dan $$9.5\\%$$",
         },
         {
           correct: true,
-          label:
-            "$$4.2 \\times 10^9\\text{ kg}$$, dan $$6.0 \\times 10^{11}\\text{ kg}$$",
+          label: "$$6.0 \\times 10^{11}\\text{ kg}$$, dan $$14\\%$$",
         },
       ],
     },

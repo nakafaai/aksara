@@ -13,19 +13,22 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "$$6.6 \\times 10^{-34}\\text{ J s}$$, and $$2.5\\ \\mu\\text{m}$$",
+            "$$6.6 \\times 10^{-34}\\text{ J s}$$, and $$1.0 \\times 10^6\\text{ m s}^{-1}$$",
         },
         {
           correct: true,
-          label: "$$6.6 \\times 10^{-34}\\text{ J s}$$, and $$700\\text{ nm}$$",
+          label:
+            "$$6.6 \\times 10^{-34}\\text{ J s}$$, and $$6.8 \\times 10^5\\text{ m s}^{-1}$$",
         },
         {
           correct: false,
-          label: "$$4.1 \\times 10^{-15}\\text{ J s}$$, and $$700\\text{ nm}$$",
+          label:
+            "$$4.1 \\times 10^{-15}\\text{ J s}$$, and $$6.8 \\times 10^5\\text{ m s}^{-1}$$",
         },
         {
           correct: false,
-          label: "$$6.6 \\times 10^{-34}\\text{ J s}$$, and $$550\\text{ nm}$$",
+          label:
+            "$$6.6 \\times 10^{-34}\\text{ J s}$$, and $$5.4 \\times 10^5\\text{ m s}^{-1}$$",
         },
       ],
     },
@@ -35,19 +38,22 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "$$6.6 \\times 10^{-34}\\text{ J s}$$, dan $$2.5\\ \\mu\\text{m}$$",
+            "$$6.6 \\times 10^{-34}\\text{ J s}$$, dan $$1.0 \\times 10^6\\text{ m s}^{-1}$$",
         },
         {
           correct: true,
-          label: "$$6.6 \\times 10^{-34}\\text{ J s}$$, dan $$700\\text{ nm}$$",
+          label:
+            "$$6.6 \\times 10^{-34}\\text{ J s}$$, dan $$6.8 \\times 10^5\\text{ m s}^{-1}$$",
         },
         {
           correct: false,
-          label: "$$4.1 \\times 10^{-15}\\text{ J s}$$, dan $$700\\text{ nm}$$",
+          label:
+            "$$4.1 \\times 10^{-15}\\text{ J s}$$, dan $$6.8 \\times 10^5\\text{ m s}^{-1}$$",
         },
         {
           correct: false,
-          label: "$$6.6 \\times 10^{-34}\\text{ J s}$$, dan $$550\\text{ nm}$$",
+          label:
+            "$$6.6 \\times 10^{-34}\\text{ J s}$$, dan $$5.4 \\times 10^5\\text{ m s}^{-1}$$",
         },
       ],
     },

@@ -12,19 +12,19 @@ const item: ItemSource = {
       options: [
         {
           correct: false,
-          label: "$$20\\text{ m s}^{-1}$$, and $$14\\text{ m s}^{-1}$$",
+          label: "$$14\\text{ m s}^{-1}$$, and $$33\\text{ m s}^{-1}$$",
         },
         {
           correct: false,
-          label: "$$17\\text{ m s}^{-1}$$, and $$16\\text{ m s}^{-1}$$",
+          label: "$$16\\text{ m s}^{-1}$$, and $$18\\text{ m s}^{-1}$$",
         },
         {
           correct: true,
-          label: "$$17\\text{ m s}^{-1}$$, and $$12\\text{ m s}^{-1}$$",
+          label: "$$12\\text{ m s}^{-1}$$, and $$28\\text{ m s}^{-1}$$",
         },
         {
           correct: false,
-          label: "$$17\\text{ m s}^{-1}$$, and $$0.83\\text{ m s}^{-1}$$",
+          label: "$$12\\text{ m s}^{-1}$$, and $$17\\text{ m s}^{-1}$$",
         },
       ],
     },
@@ -33,19 +33,19 @@ const item: ItemSource = {
       options: [
         {
           correct: false,
-          label: "$$20\\text{ m s}^{-1}$$, dan $$14\\text{ m s}^{-1}$$",
+          label: "$$14\\text{ m s}^{-1}$$, dan $$33\\text{ m s}^{-1}$$",
         },
         {
           correct: false,
-          label: "$$17\\text{ m s}^{-1}$$, dan $$16\\text{ m s}^{-1}$$",
+          label: "$$16\\text{ m s}^{-1}$$, dan $$18\\text{ m s}^{-1}$$",
         },
         {
           correct: true,
-          label: "$$17\\text{ m s}^{-1}$$, dan $$12\\text{ m s}^{-1}$$",
+          label: "$$12\\text{ m s}^{-1}$$, dan $$28\\text{ m s}^{-1}$$",
         },
         {
           correct: false,
-          label: "$$17\\text{ m s}^{-1}$$, dan $$0.83\\text{ m s}^{-1}$$",
+          label: "$$12\\text{ m s}^{-1}$$, dan $$17\\text{ m s}^{-1}$$",
         },
       ],
     },
