@@ -1,0 +1,23 @@
+# Der Sandsack startet mit der Aufwärtsgeschwindigkeit des Ballons
+
+Beim Loslassen **bewegt sich der Sandsack mit <InlineMath math="5{,}0\text{ m s}^{-1}" /> aufwärts**, wie der Ballon. Er steigt ein wenig, hält an und fällt dann an seinem Startpunkt vorbei zum Boden. Mit aufwärts positiv ist der Boden eine Verschiebung von <InlineMath math="-40\text{ m}" />, und man löst die quadratische Gleichung für die positive Zeit.
+
+<Chart
+  title={<>Höhe des Sandsacks nach dem Loslassen</>}
+  categories={["0 s", "0,5 s", "1,0 s", "2,0 s", "3,0 s", "3,4 s"]}
+  series={[
+    { label: "Höhe", mark: "line", values: [40, 41.25, 40, 30, 10, 0] },
+  ]}
+  valueLabel="Höhe (m)"
+  description={<>Der Sandsack steigt zuerst von <InlineMath math="40" /> m auf <InlineMath math="41{,}25" /> m bei <InlineMath math="0{,}5" /> s, fällt bei <InlineMath math="1{,}0" /> s wieder auf <InlineMath math="40" /> m und erreicht den Boden nach etwa <InlineMath math="3{,}4" /> s.</>}
+/>
+
+<BlockMath math="-40=5{,}0t-5t^2\ \Rightarrow\ t^2-t-8=0\ \Rightarrow\ t=\frac{1+\sqrt{33}}{2}\approx3{,}37\text{ s},\qquad v=5{,}0-10(3{,}37)\approx-28{,}7\text{ m s}^{-1}" />
+
+Probe über die Energie: <InlineMath math="v^2=5{,}0^2+2(10)(40)=825" />, also <InlineMath math="v\approx28{,}7\text{ m s}^{-1}" />. Der Sandsack landet nach etwa <InlineMath math="3{,}4\text{ s}" /> mit etwa <InlineMath math="29\text{ m s}^{-1}" />.
+
+# Warum die anderen Antworten falsch sind
+
+- <InlineMath math="2{,}8\text{ s}" /> und <InlineMath math="28\text{ m s}^{-1}" /> lassen den Sandsack **aus der Ruhe** starten und übersehen die Aufwärtsbewegung des Ballons.
+- <InlineMath math="2{,}4\text{ s}" /> nimmt die <InlineMath math="5{,}0\text{ m s}^{-1}" /> als **abwärts**, was die richtige Aufprallgeschwindigkeit, aber eine zu kurze Zeit ergibt.
+- <InlineMath math="34\text{ m s}^{-1}" /> nutzt **<InlineMath math="v=gt" />**, als wäre der Sandsack die ganzen <InlineMath math="3{,}4\text{ s}" /> aus der Ruhe gefallen.

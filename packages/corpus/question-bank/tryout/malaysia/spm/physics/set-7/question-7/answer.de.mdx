@@ -1,0 +1,25 @@
+# Den Flug in Antriebsphase, Ausrollen bis zum Gipfel und Fall aufteilen
+
+Die Rakete hält nicht an, wenn der Treibstoff ausgeht: Sie **steigt mit <InlineMath math="60\text{ m s}^{-1}" /> weiter** und wird nur durch die Schwerkraft langsamer. Der Flug hat also drei Abschnitte. Man bestimmt Höhe und Geschwindigkeit bei Brennschluss, dann wie viel höher sie noch steigt, dann wie lange der Fall aus der ganzen Höhe aus der Ruhe dauert.
+
+<Chart
+  title={<>Geschwindigkeit der Rakete während des Flugs</>}
+  categories={["0 s", "3 s", "9 s", "16,3 s"]}
+  series={[
+    { label: "Geschwindigkeit", mark: "line", values: [0, 60, 0, 73] },
+  ]}
+  valueLabel="Geschwindigkeit (m/s)"
+  description={<>Die Geschwindigkeit steigt bei brennendem Triebwerk bis <InlineMath math="3" /> s auf <InlineMath math="60" /> m/s, fällt bis zum Gipfel bei <InlineMath math="9" /> s auf <InlineMath math="0" /> und wächst dann beim Zurückfallen auf etwa <InlineMath math="73" /> m/s, Landung nach etwa <InlineMath math="16" /> s.</>}
+/>
+
+<BlockMath math="\text{Brennen}: v=20(3{,}0)=60,\ s=\tfrac12(20)(3{,}0)^2=90,\qquad \text{Ausrollen}: t=\frac{60}{10}=6{,}0,\ s=\frac{60^2}{2(10)}=180" />
+
+<BlockMath math="H=90+180=270\text{ m},\qquad 270=5t^2\Rightarrow t=7{,}35\text{ s},\qquad T=3{,}0+6{,}0+7{,}35\approx16\text{ s}" />
+
+Die Rakete ist bei Brennschluss <InlineMath math="90\text{ m}" /> hoch und steigt noch <InlineMath math="180\text{ m}" />, auf <InlineMath math="270\text{ m}" /> nach <InlineMath math="9{,}0\text{ s}" />. Der Fall aus <InlineMath math="270\text{ m}" /> aus der Ruhe dauert <InlineMath math="7{,}35\text{ s}" />, sie landet also etwa <InlineMath math="16\text{ s}" /> nach dem Start.
+
+# Warum die anderen Antworten falsch sind
+
+- <InlineMath math="180\text{ m}" /> ist nur das **Steigen nach Brennschluss** ohne die <InlineMath math="90\text{ m}" /> der Antriebsphase.
+- <InlineMath math="15\text{ s}" /> nimmt an, der Fall dauere so lange wie das **Steigen nach Brennschluss**, <InlineMath math="6{,}0\text{ s}" />, doch die Rakete fällt aus <InlineMath math="270\text{ m}" />, nicht aus <InlineMath math="180\text{ m}" />, und beginnt den Fall aus der Ruhe.
+- <InlineMath math="9{,}0\text{ s}" /> ist die Zeit bis zum **Gipfel**, nicht bis zum Boden.

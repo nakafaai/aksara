@@ -1,0 +1,26 @@
+# Beide Geschwindigkeiten bestimmen, eine umkehren und an das Gewicht des Balls denken
+
+Die Geschwindigkeiten folgen aus den Höhen, <InlineMath math="v=\sqrt{2gh}" />. Die Geschwindigkeit **kehrt um**, die Impulsänderung nutzt also die Summe beider Beträge. Während des Kontakts wirken zwei Kräfte auf den Ball, der Boden nach oben und das Gewicht nach unten, der Boden muss also **Kraftstoß plus Gewicht** liefern. Die kinetische Energie folgt den Höhen, da jede Geschwindigkeit aus einem Fall oder Anstieg stammt.
+
+<Chart
+  title={<>Geschwindigkeit des Balls direkt vor und nach dem Aufprall</>}
+  bars="apart"
+  categories={["Direkt davor", "Direkt danach"]}
+  series={[
+    { label: "Geschwindigkeit", mark: "bar", values: [5.0, 4.0] },
+  ]}
+  valueLabel="Geschwindigkeit (m/s)"
+  description={<>Der Ball trifft mit <InlineMath math="5{,}0" /> m/s abwärts auf den Boden und verlässt ihn mit <InlineMath math="4{,}0" /> m/s aufwärts, eine Änderung um <InlineMath math="9{,}0" /> m/s.</>}
+/>
+
+<BlockMath math="v_1=\sqrt{2(10)(1{,}25)}=5{,}0,\quad v_2=\sqrt{2(10)(0{,}80)}=4{,}0,\qquad \frac{0{,}10(5{,}0+4{,}0)}{0{,}020}=45\text{ N},\quad F=45+0{,}10(10)=46\text{ N}" />
+
+<BlockMath math="\text{Verlust}=1-\frac{0{,}80}{1{,}25}=0{,}36" />
+
+Der Impuls ändert sich in <InlineMath math="0{,}020\text{ s}" /> um <InlineMath math="0{,}90\text{ N s}" />, dafür braucht es netto <InlineMath math="45\text{ N}" /> nach oben. Der Boden muss <InlineMath math="1{,}0\text{ N}" /> mehr drücken, um das Gewicht zu tragen, insgesamt <InlineMath math="46\text{ N}" />. Der Ball behält <InlineMath math="0{,}80\div1{,}25=64\%" /> seiner Energie, <InlineMath math="36\%" /> gehen verloren.
+
+# Warum die anderen Antworten falsch sind
+
+- <InlineMath math="45\text{ N}" /> ist nur die **Nettokraft** und vergisst, dass der Boden auch das Gewicht tragen muss.
+- <InlineMath math="5\text{ N}" /> zieht die Geschwindigkeiten ab, **<InlineMath math="5{,}0-4{,}0" />**, als liefe der Ball weiter abwärts.
+- <InlineMath math="20\%" /> ist der Verlust an **Geschwindigkeit**, <InlineMath math="1\div5" />, die kinetische Energie hängt aber vom Quadrat ab.

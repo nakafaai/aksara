@@ -1,0 +1,21 @@
+# Balance the inverse-square pulls, then scale g by the square of the distance
+
+Each pull is proportional to **mass divided by distance squared**. For the pulls to be equal, the distances must be in the ratio of the **square roots** of the masses, <InlineMath math="\sqrt{81}:1=9:1" />. Then the Earth's own pull at that distance follows from its surface value, scaled by <InlineMath math="(R/r)^2" />.
+
+<Mermaid
+  title={<>Where the Pulls Balance between the Earth and the Moon</>}
+  description={<>The pulls balance where the distances are in the ratio <InlineMath math="9:1" />, the square root of the mass ratio <InlineMath math="81:1" />, so <InlineMath math="0.9" /> of the way from the Earth.</>}
+  chart={"flowchart LR\n  E[\"Earth, mass 81 M\"] -->|\"0.9 d = 3.5 × 10⁸ m\"| P[\"Balance point\"]\n  P -->|\"0.1 d\"| M[\"Moon, mass M\"]"}
+/>
+
+<BlockMath math="\frac{81M}{r_E^2}=\frac{M}{r_M^2}\Rightarrow\frac{r_E}{r_M}=9,\qquad r_E=0.9\times3.84\times10^{8}=3.46\times10^{8}\text{ m}" />
+
+<BlockMath math="g=9.8\left(\frac{6.4\times10^{6}}{3.46\times10^{8}}\right)^2=9.8\times3.42\times10^{-4}\approx3.4\times10^{-3}\text{ m s}^{-2}" />
+
+The point is <InlineMath math="0.9" /> of the way to the Moon, <InlineMath math="3.5\times10^{8}\text{ m}" /> from the Earth's centre. That is <InlineMath math="54" /> Earth radii out, where the Earth's pull is only <InlineMath math="1/2900" /> of its surface value.
+
+# Why the other options are wrong
+
+- <InlineMath math="3.8\times10^{8}\text{ m}" /> splits the distance in the ratio **<InlineMath math="81:1" /> itself**, as if the pull fell with distance, not distance squared.
+- <InlineMath math="1.9\times10^{8}\text{ m}" /> is the **midpoint**, where the Earth's pull is <InlineMath math="81" /> times the Moon's.
+- <InlineMath math="0.18\text{ m s}^{-2}" /> scales <InlineMath math="g" /> by **<InlineMath math="R/r" /> once**, not by its square.

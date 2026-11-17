@@ -1,0 +1,25 @@
+# Bagi penerbangan menjadi pendakian bertenaga, meluncur ke puncak, dan jatuh
+
+Roket tidak berhenti saat bahan bakar habis: roket **terus naik pada <InlineMath math="60\text{ m s}^{-1}" />** dan hanya melambat oleh gravitasi. Jadi penerbangannya punya tiga tahap. Temukan ketinggian dan kelajuan saat bahan bakar habis, lalu seberapa tinggi lagi roket meluncur, lalu berapa lama roket jatuh dari seluruh ketinggian mulai dari diam.
+
+<Chart
+  title={<>Kelajuan Roket selama Penerbangannya</>}
+  categories={["0 s", "3 s", "9 s", "16,3 s"]}
+  series={[
+    { label: "Kelajuan", mark: "line", values: [0, 60, 0, 73] },
+  ]}
+  valueLabel="Kelajuan (m/s)"
+  description={<>Kelajuannya naik ke <InlineMath math="60" /> m/s pada <InlineMath math="3" /> s saat mesin menyala, turun ke <InlineMath math="0" /> di puncak pada <InlineMath math="9" /> s, lalu bertambah sampai sekitar <InlineMath math="73" /> m/s saat roket jatuh kembali dan mendarat sekitar <InlineMath math="16" /> s.</>}
+/>
+
+<BlockMath math="\text{menyala}: v=20(3{,}0)=60,\ s=\tfrac12(20)(3{,}0)^2=90,\qquad \text{meluncur}: t=\frac{60}{10}=6{,}0,\ s=\frac{60^2}{2(10)}=180" />
+
+<BlockMath math="H=90+180=270\text{ m},\qquad 270=5t^2\Rightarrow t=7{,}35\text{ s},\qquad T=3{,}0+6{,}0+7{,}35\approx16\text{ s}" />
+
+Roket berada <InlineMath math="90\text{ m}" /> di atas saat mesin berhenti dan meluncur <InlineMath math="180\text{ m}" /> lagi, mencapai <InlineMath math="270\text{ m}" /> setelah <InlineMath math="9{,}0\text{ s}" />. Jatuh <InlineMath math="270\text{ m}" /> dari diam butuh <InlineMath math="7{,}35\text{ s}" />, jadi roket mendarat sekitar <InlineMath math="16\text{ s}" /> setelah peluncuran.
+
+# Mengapa pilihan lain salah
+
+- <InlineMath math="180\text{ m}" /> hanyalah **luncuran setelah bahan bakar habis**, tanpa <InlineMath math="90\text{ m}" /> yang didaki saat mesin menyala.
+- <InlineMath math="15\text{ s}" /> menganggap jatuhnya selama **pendakian setelah bahan bakar habis**, <InlineMath math="6{,}0\text{ s}" />, padahal roket jatuh dari <InlineMath math="270\text{ m}" />, bukan <InlineMath math="180\text{ m}" />, dan mulai jatuh dari diam.
+- <InlineMath math="9{,}0\text{ s}" /> adalah waktu ke **puncak**, bukan ke tanah.

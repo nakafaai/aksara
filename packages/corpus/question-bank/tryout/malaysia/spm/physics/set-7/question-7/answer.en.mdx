@@ -1,0 +1,25 @@
+# Split the flight into the powered climb, the coast to the top and the fall
+
+The rocket does not stop when the fuel runs out: it **keeps rising at <InlineMath math="60\text{ m s}^{-1}" />** and slows only under gravity. So the flight has three stages. Find the height and speed at burnout, then how much higher it coasts, then how long it takes to fall the whole height from rest.
+
+<Chart
+  title={<>Speed of the Rocket during Its Flight</>}
+  categories={["0 s", "3 s", "9 s", "16.3 s"]}
+  series={[
+    { label: "Speed", mark: "line", values: [0, 60, 0, 73] },
+  ]}
+  valueLabel="Speed (m/s)"
+  description={<>The speed rises to <InlineMath math="60" /> m/s at <InlineMath math="3" /> s while the engine burns, falls to <InlineMath math="0" /> at the top at <InlineMath math="9" /> s, then grows to about <InlineMath math="73" /> m/s as the rocket falls back and lands at about <InlineMath math="16" /> s.</>}
+/>
+
+<BlockMath math="\text{burn}: v=20(3.0)=60,\ s=\tfrac12(20)(3.0)^2=90,\qquad \text{coast}: t=\frac{60}{10}=6.0,\ s=\frac{60^2}{2(10)}=180" />
+
+<BlockMath math="H=90+180=270\text{ m},\qquad 270=5t^2\Rightarrow t=7.35\text{ s},\qquad T=3.0+6.0+7.35\approx16\text{ s}" />
+
+The rocket is <InlineMath math="90\text{ m}" /> up when the engine stops and coasts another <InlineMath math="180\text{ m}" />, reaching <InlineMath math="270\text{ m}" /> after <InlineMath math="9.0\text{ s}" />. Falling <InlineMath math="270\text{ m}" /> from rest takes <InlineMath math="7.35\text{ s}" />, so it lands about <InlineMath math="16\text{ s}" /> after launch.
+
+# Why the other options are wrong
+
+- <InlineMath math="180\text{ m}" /> is only the **coast after burnout**, leaving out the <InlineMath math="90\text{ m}" /> climbed while the engine burned.
+- <InlineMath math="15\text{ s}" /> assumes the fall takes as long as the **climb from burnout**, <InlineMath math="6.0\text{ s}" />, but the rocket falls from <InlineMath math="270\text{ m}" />, not from <InlineMath math="180\text{ m}" />, and starts the fall from rest.
+- <InlineMath math="9.0\text{ s}" /> is the time to the **top**, not to the ground.

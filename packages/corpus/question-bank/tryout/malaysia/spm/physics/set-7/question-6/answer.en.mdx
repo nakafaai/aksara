@@ -1,0 +1,23 @@
+# The sandbag starts with the balloon's upward velocity
+
+At the moment it is let go, the sandbag is **moving upwards at <InlineMath math="5.0\text{ m s}^{-1}" />**, the same as the balloon. It rises a little, stops, then falls past its starting point to the ground. Take upwards as positive, so the ground is a displacement of <InlineMath math="-40\text{ m}" />, and solve the quadratic for the positive time.
+
+<Chart
+  title={<>Height of the Sandbag after It Is Let Go</>}
+  categories={["0 s", "0.5 s", "1.0 s", "2.0 s", "3.0 s", "3.4 s"]}
+  series={[
+    { label: "Height", mark: "line", values: [40, 41.25, 40, 30, 10, 0] },
+  ]}
+  valueLabel="Height (m)"
+  description={<>The sandbag first rises from <InlineMath math="40" /> m to <InlineMath math="41.25" /> m at <InlineMath math="0.5" /> s, falls back to <InlineMath math="40" /> m at <InlineMath math="1.0" /> s and reaches the ground at about <InlineMath math="3.4" /> s.</>}
+/>
+
+<BlockMath math="-40=5.0t-5t^2\ \Rightarrow\ t^2-t-8=0\ \Rightarrow\ t=\frac{1+\sqrt{33}}{2}\approx3.37\text{ s},\qquad v=5.0-10(3.37)\approx-28.7\text{ m s}^{-1}" />
+
+Check with energy: <InlineMath math="v^2=5.0^2+2(10)(40)=825" />, so <InlineMath math="v\approx28.7\text{ m s}^{-1}" />. The sandbag lands after about <InlineMath math="3.4\text{ s}" /> at about <InlineMath math="29\text{ m s}^{-1}" />.
+
+# Why the other options are wrong
+
+- <InlineMath math="2.8\text{ s}" /> and <InlineMath math="28\text{ m s}^{-1}" /> treat the sandbag as **starting from rest**, ignoring the balloon's upward motion.
+- <InlineMath math="2.4\text{ s}" /> takes the <InlineMath math="5.0\text{ m s}^{-1}" /> as **downwards**, which gives the right landing speed but too short a time.
+- <InlineMath math="34\text{ m s}^{-1}" /> uses **<InlineMath math="v=gt" />**, as if the sandbag had fallen from rest for the whole <InlineMath math="3.4\text{ s}" />.
