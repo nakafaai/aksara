@@ -1,0 +1,27 @@
+# Die Drahtlänge im Feld addieren, dann die Kraft auf einen Leiter und das zweite Newtonsche Gesetz
+
+Im radialen Feld steht jedes Drahtstück senkrecht zum Feld, und alle Kräfte zeigen **entlang der Achse**, sie addieren sich also. Der Draht im Feld ist <InlineMath math="100 \times 2\pi \times 0{,}020 = 12{,}6" /> m lang, und <InlineMath math="F = BIL = 0{,}50 \times 0{,}20 \times 12{,}6 = 1{,}3" /> N.
+
+<Mermaid
+  title={<>Jedes Stück Draht wird in dieselbe Richtung gedrückt</>}
+  description={<>Im radialen Feld zeigt die Kraft auf jedes kurze Drahtstück entlang der Achse, die Kräfte aller Windungen addieren sich also. Die gesamte Drahtlänge ist Windungszahl mal Umfang.</>}
+  chart={`
+    flowchart LR
+      N0["Eine Windung: 2π × 0,020 = 0,126 m"] --> N1["Alle Windungen: 100 × 0,126 = 12,6 m"]
+      N1 --> N2["F = BIL = 0,50 × 0,20 × 12,6 = 1,3 N"]
+      N2 --> N4["a = 1,26 ÷ 0,010 = 130 m s⁻²"]
+      N3["Masse: 10 g = 0,010 kg"] --> N4
+  `}
+/>
+
+Mit der Masse in Kilogramm ist <InlineMath math="a = 1{,}26 \div 0{,}010 = 130\text{ m s}^{-2}" />, etwa dreizehnmal <InlineMath math="g" />, so kann die Membran schnellen Stromänderungen folgen.
+
+**Die Membran draußen halten**: Der Rand drückt bei <InlineMath math="1{,}0" /> mm mit <InlineMath math="2000 \times 0{,}0010 = 2{,}0" /> N zurück, die Spule muss also <InlineMath math="2{,}0" /> N liefern, wofür <InlineMath math="I = 2{,}0 \div (0{,}50 \times 12{,}6) = 0{,}32" /> A nötig sind, mit **derselben Drahtlänge**.
+
+**Plötzlich eingeschaltet**: Die Kraft von <InlineMath math="1{,}26" /> N würde die Membran bei <InlineMath math="1{,}26 \div 2000 = 0{,}63" /> mm halten, doch die Membran kommt dort in Bewegung an und schießt darüber hinaus. Ohne Dämpfung ist die Arbeit der Kraft am äußersten Punkt gleich der Energie im Rand, <InlineMath math="Fx = \tfrac{1}{2}kx^2" />, also <InlineMath math="x = 2F \div k = 1{,}3" /> mm, **das Doppelte** der Ruhelage.
+
+# Warum die anderen Antworten falsch sind
+
+- <InlineMath math="32\text{ A}" /> und <InlineMath math="0{,}013\text{ mm}" /> zählen den Draht **einer Windung**, nicht aller hundert.
+- <InlineMath math="0{,}16\text{ A}" /> nimmt die Kraft des Randes als <InlineMath math="1{,}0" /> N und verrutscht beim **Millimeter** um eine Zehnerpotenz.
+- <InlineMath math="0{,}63\text{ mm}" /> ist, wo die Membran **ruhen** würde, nicht wie weit sie schwingt.

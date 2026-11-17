@@ -1,0 +1,25 @@
+# Find the speed from the Earth fall, then let the Moon’s weaker gravity act on it
+
+Falling <InlineMath math="1.5" /> m on the Earth gives <InlineMath math="v = \sqrt{2 \times 10 \times 1.5} = 5.48" /> m/s. On the Moon <InlineMath math="g = 1.67\text{ m s}^{-2}" />, so the ball rises <InlineMath math="5.48^2 \div (2 \times 1.67) = 9.0" /> m, **six times** the Earth drop.
+
+<Mermaid
+  title={<>Same Speed, Weaker Gravity</>}
+  description={<>The speed is fixed by the fall on the Earth. On the Moon the same speed is lost six times more slowly, so the ball rises six times higher and stays up six times longer than the Earth fall took.</>}
+  chart={`
+    flowchart LR
+      N0["Earth: v = √(2 × 10 × 1.5) = 5.48 m s⁻¹"] --> N1["Moon: g = 10 ÷ 6 = 1.67 m s⁻²"]
+      N1 --> N2["Height = 5.48² ÷ (2 × 1.67) = 9.0 m"]
+      N2 --> N3["Time up = 5.48 ÷ 1.67 = 3.3 s"]
+      N3 --> N4["Up and down: 6.6 s"]
+  `}
+/>
+
+It takes <InlineMath math="5.48 \div 1.67 = 3.3" /> s to stop at the top and the same again to fall back, so it returns after <InlineMath math="6.6" /> s, the **whole round trip**.
+
+**Down to the ground**: the ball passes the hand at <InlineMath math="5.48" /> m/s going down, then falls <InlineMath math="1.8" /> m more: <InlineMath math="v^2 = 30 + 2 \times 1.67 \times 1.8 = 36" />, so <InlineMath math="v = 6.0" /> m/s, **only a little faster** in the weak gravity.
+
+# Why the other options are wrong
+
+- <InlineMath math="1.1\text{ s}" /> and <InlineMath math="8.1\text{ m s}^{-1}" /> use the **Earth’s** gravity, not the Moon’s.
+- <InlineMath math="3.3\text{ s}" /> is only the time to the **top**, not back to the hand.
+- <InlineMath math="5.5\text{ m s}^{-1}" /> stops at the hand and forgets the extra <InlineMath math="1.8" /> m of **falling** to the ground.

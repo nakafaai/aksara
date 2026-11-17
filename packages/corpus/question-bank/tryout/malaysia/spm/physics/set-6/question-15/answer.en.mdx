@@ -1,0 +1,23 @@
+# The delay adds its own phase shift, so the inverted copy is no longer opposite
+
+The hum’s period is <InlineMath math="5.0" /> ms, so a <InlineMath math="1.0" /> ms delay is **a fifth of a period**, a phase shift of <InlineMath math="72^\circ" />. Together with the <InlineMath math="180^\circ" /> inversion, the copy is <InlineMath math="108^\circ" /> out of step with the hum.
+
+<Mermaid
+  title={<>A Small Delay Spoils the Cancellation</>}
+  description={<>The inversion alone would make the waves exactly opposite. The delay adds its own phase shift, so the two waves are no longer opposite and their sum can even be larger than the hum.</>}
+  chart={`
+    flowchart LR
+      N0["Period: 1 ÷ 200 = 5.0 ms"] --> N1["Delay: 1.0 ÷ 5.0 = one fifth of a period = 72°"]
+      N1 --> N2["Inverted and delayed: 180° − 72° = 108° apart"]
+      N2 --> N3["Amplitude: 2A cos 54° = 1.18A"]
+      N3 --> N4["Louder than the hum alone"]
+  `}
+/>
+
+The two waves add to <InlineMath math="2A\cos 54^\circ = 1.18A" />, so the hum is **louder than before**, about <InlineMath math="1.2" /> times its amplitude. Cancellation needs the delay to be far shorter than the period.
+
+# Why the other options are wrong
+
+- An exact inverted copy cancels only if it arrives **in step**, and the delay moves it out of step.
+- A fifth of the amplitude treats the delay fraction as the **size** of the result, but the result comes from the phase difference.
+- <InlineMath math="1.6" /> times uses the delay alone and forgets the **inversion**, which adds <InlineMath math="180^\circ" />.

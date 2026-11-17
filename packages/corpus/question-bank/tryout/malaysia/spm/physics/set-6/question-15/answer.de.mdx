@@ -1,0 +1,23 @@
+# Die Verzögerung fügt eine eigene Phasenverschiebung hinzu, die umgekehrte Kopie ist nicht mehr gegenläufig
+
+Die Periode des Brummens ist <InlineMath math="5{,}0" /> ms, eine Verzögerung von <InlineMath math="1{,}0" /> ms ist also **ein Fünftel Periode**, eine Phasenverschiebung von <InlineMath math="72^\circ" />. Mit der Umkehr um <InlineMath math="180^\circ" /> liegt die Kopie <InlineMath math="108^\circ" /> neben dem Brummen.
+
+<Mermaid
+  title={<>Eine kleine Verzögerung verdirbt die Auslöschung</>}
+  description={<>Die Umkehr allein würde die Wellen genau gegenläufig machen. Die Verzögerung fügt eine eigene Phasenverschiebung hinzu, die Wellen sind nicht mehr gegenläufig, und ihre Summe kann sogar größer werden als das Brummen.</>}
+  chart={`
+    flowchart LR
+      N0["Periode: 1 ÷ 200 = 5,0 ms"] --> N1["Verzögerung: 1,0 ÷ 5,0 = ein Fünftel Periode = 72°"]
+      N1 --> N2["Umgekehrt und verzögert: 180° − 72° = 108° auseinander"]
+      N2 --> N3["Amplitude: 2A cos 54° = 1,18A"]
+      N3 --> N4["Lauter als das Brummen allein"]
+  `}
+/>
+
+Die beiden Wellen addieren sich zu <InlineMath math="2A\cos 54^\circ = 1{,}18A" />, das Brummen ist also **lauter als vorher**, etwa <InlineMath math="1{,}2" />-mal seine Amplitude. Auslöschung verlangt eine Verzögerung weit unter der Periode.
+
+# Warum die anderen Antworten falsch sind
+
+- Eine genau umgekehrte Kopie löscht nur aus, wenn sie **im Takt** ankommt, und die Verzögerung bringt sie aus dem Takt.
+- Ein Fünftel der Amplitude hält den Verzögerungsanteil für die **Größe** des Ergebnisses, doch das Ergebnis folgt aus der Phasendifferenz.
+- <InlineMath math="1{,}6" />-mal nimmt nur die Verzögerung und vergisst die **Umkehr**, die <InlineMath math="180^\circ" /> hinzufügt.

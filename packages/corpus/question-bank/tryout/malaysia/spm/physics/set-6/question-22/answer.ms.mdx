@@ -1,0 +1,26 @@
+# Samakan tenaga seluruh jatuhan dengan tenaga dalam tali yang teregang
+
+Di titik terendah penerjun pegun, jadi tenaga graviti yang hilang sepanjang **seluruh jatuhan**, <InlineMath math="15 + x" /> meter, sama dengan tenaga dalam tali: <InlineMath math="686(15 + x) = 200x^2" />.
+
+<Mermaid
+  title={<>Seluruh Jatuhan Masuk ke dalam Tali</>}
+  description={<>Di titik terendah penerjun pegun seketika, jadi semua tenaga keupayaan graviti yang hilang sepanjang jatuhan disimpan dalam tali yang teregang.</>}
+  chart={`
+    flowchart LR
+      N0["Jatuhan = 15 + x"] --> N1["Tenaga hilang: 70 × 9.8 × (15 + x) = 686(15 + x)"]
+      N1 --> N3["200x² − 686x − 10 290 = 0"]
+      N2["Disimpan: ½ × 400 × x² = 200x²"] --> N3
+      N3 --> N4["x = 9.1 m, titik terendah 24 m ke bawah"]
+      N4 --> N5["Daya terbesar: 400 × 9.1 = 3.6 kN"]
+  `}
+/>
+
+Menyelesaikan <InlineMath math="200x^2 - 686x - 10\,290 = 0" /> memberi <InlineMath math="x = 9.1" /> m, jadi titik terendah ialah <InlineMath math="15 + 9.1 = 24" /> m ke bawah. Di situ tali menarik dengan <InlineMath math="400 \times 9.1 = 3.6" /> kN, lebih daripada **lima kali** berat penerjun.
+
+**Saat paling laju**: penerjun terus memecut selepas tali menegang, sehingga tarikan tali sama dengan berat, pada <InlineMath math="x = 686 \div 400 = 1.7" /> m. Di situ <InlineMath math="\tfrac{1}{2}mv^2 = 686 \times 16.7 - \tfrac{1}{2} \times 400 \times 1.7^2 = 1.09 \times 10^4" /> J, jadi <InlineMath math="v = 17.6" /> m/s, **lebih laju** daripada <InlineMath math="17.1" /> m/s ketika tali mula menegang.
+
+# Mengapa pilihan lain salah
+
+- <InlineMath math="17\text{ m s}^{-1}" /> ialah laju ketika tali **mula menegang**, tetapi penerjun masih memecut sehingga tarikan sama dengan berat.
+- <InlineMath math="4.3\text{ kN}" /> menambah berat kepada tarikan tali, tetapi soalan hanya meminta **daya tali**.
+- <InlineMath math="0.69\text{ kN}" /> ialah tarikan ketika penerjun **tergantung pegun**, bukan di dasar jatuhan.

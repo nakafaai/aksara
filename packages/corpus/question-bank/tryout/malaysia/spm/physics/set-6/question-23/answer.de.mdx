@@ -1,0 +1,27 @@
+# Hineingesteckte Arbeit mit der Nutzarbeit vergleichen, dann den Schub für die längere Rampe neu aufbauen
+
+Das Schieben verrichtet <InlineMath math="300 \times 4{,}0 = 1200" /> J, das Anheben braucht nur <InlineMath math="784" /> J. Die übrigen <InlineMath math="416" /> J gehen über <InlineMath math="4{,}0" /> m gegen die Reibung, die Reibung ist also <InlineMath math="104" /> N, obwohl die Geschwindigkeit **konstant** ist.
+
+<Mermaid
+  title={<>Arbeit hinein, Nutzarbeit heraus, der Rest ist Reibung</>}
+  description={<>Das Schieben verrichtet mehr Arbeit, als das Anheben braucht. Die Differenz geht gegen die Reibung entlang der Rampe, und eine längere Rampe braucht einen kleineren Anteil des Gewichts.</>}
+  chart={`
+    flowchart LR
+      N0["Arbeit hinein: 300 × 4,0 = 1200 J"] --> N2["Gegen Reibung: 1200 − 784 = 416 J"]
+      N1["Nutzarbeit: 80 × 9,8 × 1,0 = 784 J"] --> N2
+      N2 --> N3["Reibung: 416 ÷ 4,0 = 104 N"]
+      N1 --> N4["Längere Rampe: Gewichtsanteil 784 ÷ 5,0 = 157 N"]
+      N3 --> N5["Schub: 157 + 104 = 261 N"]
+      N4 --> N5
+  `}
+/>
+
+Auf einer <InlineMath math="5{,}0" /> m langen Rampe ist der Gewichtsanteil längs der Schräge <InlineMath math="784 \div 5{,}0 = 157" /> N. Mit derselben Reibung muss der Schub <InlineMath math="157 + 104 = 261" /> N betragen, **weniger** als vorher, aber nicht proportional.
+
+**Zurückrutschen**: Der Gewichtsanteil längs der Rampe, <InlineMath math="784 \div 4{,}0 = 196" /> N, übertrifft die Reibung von <InlineMath math="104" /> N, die Kiste rutscht also. Von den verlorenen <InlineMath math="784" /> J nimmt die Reibung <InlineMath math="104 \times 4{,}0 = 416" /> J, es bleiben <InlineMath math="368" /> J, also <InlineMath math="v = \sqrt{2 \times 368 \div 80} = 3{,}0" /> m/s.
+
+# Warum die anderen Antworten falsch sind
+
+- <InlineMath math="157\text{ N}" /> und <InlineMath math="4{,}4\text{ m s}^{-1}" /> verwechseln gleichförmige Bewegung mit fehlender Reibung, doch gleichförmig heißt, die Kräfte sind **im Gleichgewicht**.
+- <InlineMath math="457\text{ N}" /> hält den ganzen Schub für Reibung und vergisst, dass er die Kiste auch **hebt**.
+- <InlineMath math="240\text{ N}" /> skaliert den ganzen Schub mit vier Fünfteln, doch nur der **Gewichtsanteil** ändert sich mit der Rampenlänge.

@@ -1,0 +1,27 @@
+# Shunt paralel mengambil arus tambahan, dan resistor seri mengambil tegangan tambahan
+
+Pada skala penuh kumparan bertegangan <InlineMath math="2{,}0 \times 10^{-3} \times 50 = 0{,}10" /> V. Untuk <InlineMath math="1{,}0" /> A, resistor **paralel** harus membawa sisa <InlineMath math="0{,}998" /> A pada tegangan yang sama: <InlineMath math="0{,}10 \div 0{,}998 = 0{,}10\,\Omega" />.
+
+<Mermaid
+  title={<>Jalan Pintas untuk Arus, Penahan untuk Tegangan</>}
+  description={<>Untuk amperemeter, resistor kecil di samping kumparan membawa hampir seluruh arus. Untuk voltmeter, resistor besar segaris dengan kumparan mengambil hampir seluruh tegangan.</>}
+  chart={`
+    flowchart LR
+      N0["Skala penuh: 2,0 mA × 50 Ω = 0,10 V pada kumparan"] --> N1["Amperemeter: shunt membawa 1,0 − 0,002 = 0,998 A"]
+      N1 --> N2["Shunt = 0,10 ÷ 0,998 = 0,10 Ω, paralel"]
+      N0 --> N3["Voltmeter: total = 10 ÷ 0,002 = 5000 Ω"]
+      N3 --> N4["Resistor seri = 5000 − 50 = 4950 Ω"]
+  `}
+/>
+
+Untuk <InlineMath math="10" /> V, seluruh meter harus berhambatan <InlineMath math="10 \div 2{,}0 \times 10^{-3} = 5000\,\Omega" />, jadi resistor <InlineMath math="5000 - 50 = 4950\,\Omega" /> dipasang **seri**, karena kumparan memberi sisanya.
+
+**Voltmeter dipakai**: seluruh meter berhambatan <InlineMath math="5000\,\Omega" />, jadi pada resistor <InlineMath math="5{,}0\text{ k}\Omega" /> pasangan itu menjadi <InlineMath math="2{,}5\text{ k}\Omega" />. Sumber lalu terbagi menjadi <InlineMath math="10 \times 2{,}5 \div 7{,}5 = 3{,}3" /> V, bukan <InlineMath math="5{,}0" /> V pada resistor sebelum meter dipasang, karena meter **ikut menarik arus**.
+
+**Voltmeter yang lebih baik**: agar terbaca <InlineMath math="4{,}95" /> V, meter dan resistor bersama harus mengambil <InlineMath math="4{,}95" /> dari <InlineMath math="10" /> V, jadi hambatan gabungan <InlineMath math="R_p" /> memenuhi <InlineMath math="R_p \div (5000 + R_p) = 0{,}495" />, memberi <InlineMath math="R_p = 4901\,\Omega" />. Maka <InlineMath math="1 \div R_V = 1 \div 4901 - 1 \div 5000" />, jadi <InlineMath math="R_V = 2{,}5 \times 10^5\,\Omega" />, dan skala penuh pada <InlineMath math="10" /> V butuh <InlineMath math="10 \div 2{,}5 \times 10^5 = 40\ \mu\text{A}" />.
+
+# Kenapa pilihan lain salah
+
+- <InlineMath math="5{,}0\text{ V}" /> dan <InlineMath math="2{,}0\text{ mA}" /> menganggap voltmeter tidak mengambil arus, padahal pada <InlineMath math="5000\,\Omega" /> ia **berbagi arus** dengan resistor.
+- <InlineMath math="20\ \mu\text{A}" /> membuat meter seratus kali resistor, yang **lebih** dari kebutuhan bacaan <InlineMath math="4{,}95" /> V.
+- <InlineMath math="2{,}5\text{ V}" /> membagi sumber dengan seluruh <InlineMath math="10\text{ k}\Omega" />, bukan dengan **total baru** <InlineMath math="7{,}5\text{ k}\Omega" />.

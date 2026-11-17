@@ -1,0 +1,27 @@
+# Find the speed, then remember the second buoy is not waiting for the same crest
+
+A crest every <InlineMath math="5.0" /> s is <InlineMath math="0.20" /> Hz, so <InlineMath math="v = 0.20 \times 40 = 8.0" /> m/s. A given crest takes <InlineMath math="100 \div 8.0 = 12.5" /> s to reach the second buoy.
+
+<Mermaid
+  title={<>Two and a Half Wavelengths Apart</>}
+  description={<>The buoys are two and a half wavelengths apart, so while one has a crest the other has a trough. The next crest at the second buoy comes half a period later.</>}
+  chart={`
+    flowchart LR
+      N0["f = 1 ÷ 5.0 = 0.20 Hz"] --> N1["v = 0.20 × 40 = 8.0 m s⁻¹"]
+      N1 --> N3["A crest takes 100 ÷ 8.0 = 12.5 s to cross the gap"]
+      N3 --> N4["Crests arrive every 5.0 s: 12.5 − 2 × 5.0 = 2.5 s"]
+      N2["Gap: 100 ÷ 40 = 2.5 wavelengths"] --> N4
+  `}
+/>
+
+But **other crests** reach the second buoy every <InlineMath math="5.0" /> s, so the next one comes <InlineMath math="12.5 - 2 \times 5.0 = 2.5" /> s later. The buoys are two and a half wavelengths apart, half a period out of step.
+
+**In shallower water**: the period stays <InlineMath math="5.0" /> s, so a crest now takes <InlineMath math="100 \div 6.0 = 16.7" /> s to cross the gap, and crests still arrive every <InlineMath math="5.0" /> s. The next one at the second buoy comes <InlineMath math="16.7 - 3 \times 5.0 = 1.7" /> s later, because the gap is now <InlineMath math="3.33" /> wavelengths of **only <InlineMath math="30" /> metres**.
+
+**Spacing for antiphase**: in the shallow water the wavelength is <InlineMath math="6.0 \times 5.0 = 30" /> m. The buoys move in antiphase when they are an odd number of half wavelengths apart, <InlineMath math="15, 45, 75, 105" /> m and so on, so the smallest spacing of at least <InlineMath math="100" /> m is <InlineMath math="105" /> m.
+
+# Why the other options are wrong
+
+- <InlineMath math="100\text{ m}" /> keeps the deep-water wavelength of <InlineMath math="40" /> m, but slower waves of the same period have a **shorter** wavelength.
+- <InlineMath math="2.5\text{ s}" /> is the time in the **deep water**, before the buoys were moved.
+- <InlineMath math="120\text{ m}" /> is four whole wavelengths, which puts the buoys **in phase**.

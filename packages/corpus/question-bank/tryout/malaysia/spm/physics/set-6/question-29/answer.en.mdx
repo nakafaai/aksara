@@ -1,0 +1,23 @@
+# Current from power over voltage, then divide the energy drawn, not the energy stored
+
+The charger draws <InlineMath math="7200 \div 240 = 30" /> A. Going from <InlineMath math="20\%" /> to <InlineMath math="80\%" /> adds <InlineMath math="0.60 \times 60 = 36" /> kWh to the battery.
+
+<Mermaid
+  title={<>From the Socket to the Battery</>}
+  description={<>The charger’s power and the mains voltage give the current. Only nine tenths of what it draws reaches the battery, so it must draw more energy than the battery gains.</>}
+  chart={`
+    flowchart LR
+      N1["Battery gains 0.60 × 60 = 36 kWh"] --> N2["Drawn from the mains: 36 ÷ 0.90 = 40 kWh"]
+      N2 --> N3["t = 40 ÷ 7.2 = 5.6 h"]
+  `}
+/>
+
+Only nine tenths reaches the battery, so the charger must draw <InlineMath math="36 \div 0.90 = 40" /> kWh, which takes <InlineMath math="40 \div 7.2 = 5.6" /> h. The losses make charging **slower**, not faster.
+
+**The cost of driving**: <InlineMath math="15" /> kWh in the battery means <InlineMath math="15 \div 0.90 = 16.7" /> kWh from the mains, because the charger **loses a tenth** on the way in. At RM <InlineMath math="0.50" /> per kilowatt-hour that is RM <InlineMath math="8.33" /> for each <InlineMath math="100" /> km.
+
+# Why the other options are wrong
+
+- About <InlineMath math="5.0\text{ h}" /> and RM <InlineMath math="7.50" /> ignore the **heat lost** in charging.
+- RM <InlineMath math="7.50" /> with <InlineMath math="5.6\text{ h}" /> remembers the loss for the time but forgets that the mains must also supply it for the **cost**.
+- About <InlineMath math="4.5\text{ h}" /> and RM <InlineMath math="6.75" /> multiply by the efficiency, which would make losses **save** energy.

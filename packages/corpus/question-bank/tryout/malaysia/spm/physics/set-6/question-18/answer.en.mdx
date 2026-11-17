@@ -1,0 +1,27 @@
+# Each mirror makes one image, and the two images of images coincide in the corner
+
+The first mirror makes an image <InlineMath math="60" /> cm from the lamp and the second an image <InlineMath math="80" /> cm from it. Each of these is also reflected in the other mirror, and for mirrors at right angles both land on **the same point**, so there are <InlineMath math="360^\circ \div 90^\circ - 1 = 3" /> images.
+
+<Mermaid
+  title={<>Images of Images</>}
+  description={<>Each mirror makes one image. Each of those is then reflected in the other mirror, and for mirrors at right angles both land on the same spot, the corner image.</>}
+  chart={`
+    flowchart LR
+      N0["Mirror 1: image 30 cm behind, 60 cm from the lamp"] --> N2["Each image reflects in the other mirror: one shared image"]
+      N1["Mirror 2: image 40 cm behind, 80 cm from the lamp"] --> N2
+      N2 --> N3["Count: 360° ÷ 90° − 1 = 3 images"]
+      N2 --> N4["Corner image: 2 × √(30² + 40²) = 100 cm from the lamp"]
+  `}
+/>
+
+The shared image lies diagonally opposite the lamp through the corner. The lamp is <InlineMath math="\sqrt{30^2 + 40^2} = 50" /> cm from the corner, so this image is <InlineMath math="100" /> cm away, the **farthest** of the three.
+
+**After the lamp moves**: it is now <InlineMath math="20" /> cm from the first mirror and still <InlineMath math="40" /> cm from the second, so it is <InlineMath math="\sqrt{20^2 + 40^2} = 44.7" /> cm from the corner and the corner image is <InlineMath math="89" /> cm away, **twice the distance to the corner**.
+
+**The path via both mirrors**: light that reflects once off each mirror seems to come straight from the corner image. With the corner as origin, that image sits at <InlineMath math="(-20, -40)" /> cm and the eye at <InlineMath math="(30, 40)" /> cm, so the path is <InlineMath math="\sqrt{50^2 + 80^2} = 94" /> cm, **longer** than the image’s distance from the lamp because the eye stands elsewhere.
+
+# Why the other options are wrong
+
+- <InlineMath math="80\text{ cm}" /> and <InlineMath math="81\text{ cm}" /> use the image in the **second mirror** alone, which needs only one reflection.
+- <InlineMath math="89\text{ cm}" /> twice takes the path to end at the lamp, but the eye stands at the lamp’s **first position**.
+- <InlineMath math="45\text{ cm}" /> and <InlineMath math="47\text{ cm}" /> are distances to the **corner**, half of the true ones.

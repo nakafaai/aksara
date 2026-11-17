@@ -1,0 +1,27 @@
+# A shunt in parallel takes the extra current, and a resistor in series takes the extra voltage
+
+At full scale the coil has <InlineMath math="2.0 \times 10^{-3} \times 50 = 0.10" /> V across it. For <InlineMath math="1.0" /> A, a resistor **in parallel** must carry the other <InlineMath math="0.998" /> A at that same voltage: <InlineMath math="0.10 \div 0.998 = 0.10\,\Omega" />.
+
+<Mermaid
+  title={<>A Bypass for Current, a Brake for Voltage</>}
+  description={<>For the ammeter, a small resistor beside the coil carries almost all the current. For the voltmeter, a large resistor in line with the coil takes almost all the voltage.</>}
+  chart={`
+    flowchart LR
+      N0["Full scale: 2.0 mA × 50 Ω = 0.10 V across the coil"] --> N1["Ammeter: shunt carries 1.0 − 0.002 = 0.998 A"]
+      N1 --> N2["Shunt = 0.10 ÷ 0.998 = 0.10 Ω, in parallel"]
+      N0 --> N3["Voltmeter: total = 10 ÷ 0.002 = 5000 Ω"]
+      N3 --> N4["Series resistor = 5000 − 50 = 4950 Ω"]
+  `}
+/>
+
+For <InlineMath math="10" /> V, the whole meter must have <InlineMath math="10 \div 2.0 \times 10^{-3} = 5000\,\Omega" />, so a resistor of <InlineMath math="5000 - 50 = 4950\,\Omega" /> goes **in series**, because the coil supplies the rest.
+
+**The voltmeter in use**: the whole meter is <InlineMath math="5000\,\Omega" />, so across a <InlineMath math="5.0\text{ k}\Omega" /> resistor the pair becomes <InlineMath math="2.5\text{ k}\Omega" />. The supply then divides as <InlineMath math="10 \times 2.5 \div 7.5 = 3.3" /> V, not the <InlineMath math="5.0" /> V across the resistor before the meter was added, because the meter **draws current itself**.
+
+**A better voltmeter**: to read <InlineMath math="4.95" /> V, the meter and the resistor together must take <InlineMath math="4.95" /> of the <InlineMath math="10" /> V, so their combined resistance <InlineMath math="R_p" /> obeys <InlineMath math="R_p \div (5000 + R_p) = 0.495" />, giving <InlineMath math="R_p = 4901\,\Omega" />. Then <InlineMath math="1 \div R_V = 1 \div 4901 - 1 \div 5000" />, so <InlineMath math="R_V = 2.5 \times 10^5\,\Omega" />, and full scale at <InlineMath math="10" /> V needs <InlineMath math="10 \div 2.5 \times 10^5 = 40\ \mu\text{A}" />.
+
+# Why the other options are wrong
+
+- <InlineMath math="5.0\text{ V}" /> and <InlineMath math="2.0\text{ mA}" /> treat the voltmeter as taking no current, but at <InlineMath math="5000\,\Omega" /> it **shares the current** with the resistor.
+- <InlineMath math="20\ \mu\text{A}" /> makes the meter a hundred times the resistor, which is **more** than a reading of <InlineMath math="4.95" /> V needs.
+- <InlineMath math="2.5\text{ V}" /> divides the supply by the whole <InlineMath math="10\text{ k}\Omega" /> instead of by the **new total** of <InlineMath math="7.5\text{ k}\Omega" />.

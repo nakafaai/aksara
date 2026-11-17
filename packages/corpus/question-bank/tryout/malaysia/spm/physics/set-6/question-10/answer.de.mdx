@@ -1,0 +1,23 @@
+# Den Eingang bestimmen, den Verlust nehmen, dann legt der Kühlwasseranteil beide Ströme fest
+
+Bei <InlineMath math="25\%" /> Wirkungsgrad nimmt der Motor <InlineMath math="80" /> kW auf und verschwendet <InlineMath math="60" /> kW, das Kühlwasser trägt <InlineMath math="0{,}40 \times 60 = 24" /> kW, **nicht den ganzen Eingang**.
+
+<Mermaid
+  title={<>Der verschwendeten Energie folgen</>}
+  description={<>Der Wirkungsgrad gibt die Eingangsleistung, Eingang minus Ausgang ist verloren, und der Anteil des Kühlwassers an diesem Verlust legt beide Ströme fest.</>}
+  chart={`
+    flowchart LR
+      N0["Eingang: 20 ÷ 0,25 = 80 kW"] --> N1["Verloren: 80 − 20 = 60 kW"]
+      N1 --> N2["Kühlwasser: 0,40 × 60 = 24 kW"]
+      N2 --> N3["Wasser: 24 000 ÷ (4200 × 12) = 0,48 kg s⁻¹"]
+      N2 --> N4["Luft: 24 000 ÷ (1000 × 8,0) = 3,0 kg s⁻¹"]
+  `}
+/>
+
+Bei <InlineMath math="12" /> Grad Erwärmung muss das Wasser mit <InlineMath math="24\,000 \div (4200 \times 12) = 0{,}48" /> kg/s fließen. Dieselben <InlineMath math="24" /> kW erwärmen die Luft um <InlineMath math="8{,}0" /> Grad, es müssen also <InlineMath math="3{,}0" /> kg Luft pro Sekunde durchströmen, viel mehr Masse, weil Luft **weniger Wärme pro Kilogramm** aufnimmt.
+
+# Warum die anderen Antworten falsch sind
+
+- <InlineMath math="0{,}63\text{ kg s}^{-1}" /> nimmt den Kühlwasseranteil vom **ganzen Eingang** statt vom Verlust.
+- <InlineMath math="1{,}2\text{ kg s}^{-1}" /> schickt den **ganzen** Verlust ins Kühlwasser statt vierzig Prozent.
+- <InlineMath math="0{,}12\text{ kg s}^{-1}" /> nimmt als Verlust drei Viertel des **Ausgangs** statt des Eingangs.

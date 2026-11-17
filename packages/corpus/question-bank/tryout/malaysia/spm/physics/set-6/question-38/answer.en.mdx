@@ -1,0 +1,25 @@
+# Take out the decay first, then the dilution gives the volume
+
+In <InlineMath math="15" /> hours, one half-life, the whole dose has fallen to <InlineMath math="4000" /> counts per second, **wherever it is**. Spread through the blood it gives <InlineMath math="0.80" /> per cubic centimetre, so the blood fills <InlineMath math="4000 \div 0.80 = 5000" /> cubic centimetres, <InlineMath math="5.0" /> litres.
+
+<Mermaid
+  title={<>Decay and Dilution Together</>}
+  description={<>By the time of the sample, the tracer has both decayed and spread through the blood. Taking out the decay first leaves only the dilution, which gives the volume.</>}
+  chart={`
+    flowchart LR
+      N0["After 15 h, one half-life: whole dose gives 8000 ÷ 2 = 4000 counts per second"] --> N2["Volume = 4000 ÷ 0.80 = 5000 cm³ = 5.0 L"]
+      N1["Each cm³ of blood gives 0.80"] --> N2
+      N1 --> N4["Sample: 0.80 ÷ 4 = 0.20 counts per second"]
+      N3["30 h later: two more half-lives"] --> N4
+  `}
+/>
+
+Thirty hours later is two more half-lives, so a sample then gives a quarter as much: <InlineMath math="0.80 \div 4 = 0.20" /> counts per second.
+
+**If some sodium had left**: only <InlineMath math="0.90 \times 4000 = 3600" /> counts per second would be spread through the blood, so the same <InlineMath math="0.80" /> per cubic centimetre would mean <InlineMath math="3600 \div 0.80 = 4500" /> cubic centimetres, <InlineMath math="4.5" /> litres. Ignoring the leak **overstates** the volume.
+
+# Why the other options are wrong
+
+- <InlineMath math="10\text{ L}" /> compares the dose before it decayed with the blood after, ignoring the **half-life** that passed.
+- <InlineMath math="2.5\text{ L}" /> lets the dose decay **twice** in the fifteen hours.
+- <InlineMath math="5.5\text{ L}" /> adds a tenth, but losing tracer leaves **less** to spread through the same readings.

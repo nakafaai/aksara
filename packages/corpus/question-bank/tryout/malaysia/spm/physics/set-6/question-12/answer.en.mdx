@@ -1,0 +1,26 @@
+# Subtract the control funnel’s water, then compare the two values
+
+The heater gives <InlineMath math="60 \times 300 = 18\,000" /> J. The room melts <InlineMath math="14" /> g in each funnel, so the heater alone melts <InlineMath math="48" /> g, and <InlineMath math="L = 18\,000 \div 0.048 = 3.8 \times 10^5" /> J/kg.
+
+<Mermaid
+  title={<>The Control Funnel Removes the Room’s Share</>}
+  description={<>Both funnels melt some ice from the warmth of the room. Taking the control funnel’s water away leaves only the ice the heater melted.</>}
+  chart={`
+    flowchart LR
+      N0["Heater energy: 60 × 300 = 18 000 J"] --> N2["L = 18 000 ÷ 0.048 = 3.8 × 10⁵ J kg⁻¹"]
+      N1["Melted by the heater: 62 − 14 = 48 g"] --> N2
+      N0 --> N3["Without the control: 18 000 ÷ 0.062 = 2.9 × 10⁵"]
+      N2 --> N4["Too low by (3.75 − 2.90) ÷ 3.75 = 23%"]
+      N3 --> N4
+  `}
+/>
+
+Without the control, the whole <InlineMath math="62" /> g would be put down to the heater, giving <InlineMath math="2.9 \times 10^5" /> J/kg. That is <InlineMath math="(3.75 - 2.90) \div 3.75 = 23\%" /> **below the better value**.
+
+**The heater’s real output**: melting <InlineMath math="48" /> g truly needs <InlineMath math="0.048 \times 3.34 \times 10^5 = 16\,000" /> J, delivered in <InlineMath math="300" /> s, so the ice really received <InlineMath math="53" /> W. About <InlineMath math="7" /> W of the heater’s output **escaped elsewhere**.
+
+# Why the other options are wrong
+
+- <InlineMath math="2.9 \times 10^5" /> and <InlineMath math="69\text{ W}" /> put the room’s melting down to the heater, ignoring the **control funnel**.
+- <InlineMath math="60\text{ W}" /> is only the heater’s **rating**, not what reached the ice.
+- <InlineMath math="1.3 \times 10^6" /> and <InlineMath math="16\text{ W}" /> use the **control funnel’s** <InlineMath math="14" /> g instead of the heater’s share.

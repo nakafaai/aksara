@@ -1,0 +1,24 @@
+# Nur den Anteil der Quelle halbieren, dann den Untergrund wieder dazurechnen
+
+Die Quelle allein gibt <InlineMath math="820 - 20 = 800" /> Impulse pro Minute. Eine Anzeige von <InlineMath math="45" /> heißt <InlineMath math="25" /> von der Quelle, also <InlineMath math="800 \div 25 = 32 = 2^5" />, <InlineMath math="5{,}0" /> cm Blei.
+
+<Chart
+  title={<>Blei halbiert die Gammastrahlung, nicht den Untergrund</>}
+  categories={["0 cm", "1 cm", "2 cm", "3 cm", "4 cm", "5 cm"]}
+  series={[
+    { label: "Zählerstand", mark: "line", values: [820, 420, 220, 120, 70, 45] },
+    { label: "Nur von der Quelle", mark: "line", values: [800, 400, 200, 100, 50, 25] },
+  ]}
+  valueLabel="Impulse pro Minute"
+  description={<>Jeder Zentimeter Blei halbiert die Impulse der Quelle, der Untergrund legt unabhängig vom Blei dieselben zwanzig Impulse darauf.</>}
+/>
+
+Mit <InlineMath math="3{,}0" /> cm gibt die Quelle <InlineMath math="800 \div 8 = 100" />, und der Zähler nimmt weiter die <InlineMath math="20" /> des Untergrunds auf, er zeigt <InlineMath math="120" /> Impulse pro Minute. Das Blei **kann den Untergrund nicht abhalten**.
+
+**Blei und Zerfall zusammen**: <InlineMath math="10{,}6" /> Jahre sind zwei Halbwertszeiten, die Quelle selbst gibt also <InlineMath math="800 \div 4 = 200" /> Impulse pro Minute. Zwei Zentimeter Blei halbieren das noch zweimal, auf <InlineMath math="50" />, und der Zähler addiert den Untergrund: <InlineMath math="50 + 20 = 70" /> Impulse pro Minute.
+
+# Warum die anderen Antworten falsch sind
+
+- <InlineMath math="4{,}2\text{ cm}" /> und <InlineMath math="51" /> halbieren die Rohwerte, doch der **Untergrund** geht weder durchs Blei noch zerfällt er.
+- <InlineMath math="50" /> Impulse pro Minute sind nur die Quelle, der Zähler **addiert aber den Untergrund**.
+- <InlineMath math="220" /> Impulse pro Minute berücksichtigen das Blei, vergessen aber, dass die Quelle in <InlineMath math="10{,}6" /> Jahren **zerfällt**.

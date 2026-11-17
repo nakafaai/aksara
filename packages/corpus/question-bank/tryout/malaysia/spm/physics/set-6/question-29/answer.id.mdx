@@ -1,0 +1,23 @@
+# Arus dari daya per tegangan, lalu bagi energi yang ditarik, bukan energi yang tersimpan
+
+Pengisi menarik <InlineMath math="7200 \div 240 = 30" /> A. Dari <InlineMath math="20\%" /> ke <InlineMath math="80\%" /> menambah <InlineMath math="0{,}60 \times 60 = 36" /> kWh ke baterai.
+
+<Mermaid
+  title={<>Dari Stopkontak ke Baterai</>}
+  description={<>Daya pengisi dan tegangan jala-jala memberi arusnya. Hanya sembilan per sepuluh yang ditarik sampai ke baterai, jadi pengisi harus menarik energi lebih banyak dari yang diterima baterai.</>}
+  chart={`
+    flowchart LR
+      N1["Baterai menerima 0,60 × 60 = 36 kWh"] --> N2["Ditarik dari jala-jala: 36 ÷ 0,90 = 40 kWh"]
+      N2 --> N3["t = 40 ÷ 7,2 = 5,6 jam"]
+  `}
+/>
+
+Hanya sembilan per sepuluh yang sampai ke baterai, jadi pengisi harus menarik <InlineMath math="36 \div 0{,}90 = 40" /> kWh, yang memakan <InlineMath math="40 \div 7{,}2 = 5{,}6" /> jam. Kehilangan membuat pengisian **lebih lambat**, bukan lebih cepat.
+
+**Biaya berkendara**: <InlineMath math="15" /> kWh di baterai berarti <InlineMath math="15 \div 0{,}90 = 16{,}7" /> kWh dari jaringan listrik, karena pengisi daya **kehilangan sepersepuluh** saat mengisi. Pada RM <InlineMath math="0{,}50" /> per kilowatt-jam itu RM <InlineMath math="8{,}33" /> untuk tiap <InlineMath math="100" /> km.
+
+# Kenapa pilihan lain salah
+
+- Sekitar <InlineMath math="5{,}0\text{ h}" /> dan RM <InlineMath math="7{,}50" /> mengabaikan **kalor yang hilang** saat mengisi.
+- RM <InlineMath math="7{,}50" /> dengan <InlineMath math="5{,}6\text{ h}" /> mengingat kehilangan untuk waktu tetapi lupa bahwa jaringan juga harus memasoknya untuk **biaya**.
+- Sekitar <InlineMath math="4{,}5\text{ h}" /> dan RM <InlineMath math="6{,}75" /> mengalikan dengan efisiensi, seolah kehilangan **menghemat** energi.

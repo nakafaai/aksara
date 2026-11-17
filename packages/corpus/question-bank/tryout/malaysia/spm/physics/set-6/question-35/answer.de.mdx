@@ -1,0 +1,22 @@
+# Die Zeilen aus der Wahrheitstabelle zählen, dann die Schaltung für NAND-Gatter umschreiben
+
+Die Heizung läuft in den **vier Zeilen** mit <InlineMath math="F = 1" /> und in einer weiteren mit <InlineMath math="T = W = 1" />, aber <InlineMath math="F = 0" />: <InlineMath math="5" /> der <InlineMath math="8" /> Kombinationen.
+
+<Chart
+  title={<>Die Heizung für jede Kombination</>}
+  bars="apart"
+  categories={["000", "001", "010", "011", "100", "101", "110", "111"]}
+  series={[
+    { label: "Heizung H", mark: "bar", values: [0, 1, 0, 1, 0, 1, 1, 1] },
+  ]}
+  valueLabel="Ausgang"
+  description={<>Die Eingänge stehen in der Reihenfolge T, W, F. Die Heizung läuft in den vier Zeilen mit eingeschaltetem Frostalarm und in einer weiteren, wenn es kalt und das Fenster zu ist.</>}
+/>
+
+Nach De Morgan ist <InlineMath math="H = \overline{\overline{T \cdot W} \cdot \overline{F}}" />. Ein NAND-Gatter bildet <InlineMath math="\overline{T \cdot W}" />, ein zweites mit verbundenen Eingängen bildet <InlineMath math="\overline{F}" />, ein drittes NAND verknüpft beide. **Drei** Gatter genügen also.
+
+# Warum die anderen Antworten falsch sind
+
+- <InlineMath math="5" /> Gatter ersetzt UND und ODER einzeln durch ihre NAND-Form, doch die Inverter dazwischen **heben sich auf**.
+- <InlineMath math="4" /> Kombinationen zählt nur die Frostzeilen und übersieht die Zeile **kalt und geschlossen**.
+- <InlineMath math="2" /> Gatter lässt das Gatter weg, das <InlineMath math="F" /> **invertiert**.

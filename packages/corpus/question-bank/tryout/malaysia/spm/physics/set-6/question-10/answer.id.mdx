@@ -1,0 +1,23 @@
+# Hitung masukannya, ambil yang terbuang, lalu bagian pendingin menentukan kedua aliran
+
+Pada efisiensi <InlineMath math="25\%" /> mesin mengambil <InlineMath math="80" /> kW, jadi membuang <InlineMath math="60" /> kW, dan pendingin membawa <InlineMath math="0{,}40 \times 60 = 24" /> kW, **bukan seluruh masukan**.
+
+<Mermaid
+  title={<>Mengikuti Energi yang Terbuang</>}
+  description={<>Efisiensi memberi daya masukan, masukan dikurangi keluaran terbuang, dan bagian pendingin dari energi terbuang menentukan kedua aliran.</>}
+  chart={`
+    flowchart LR
+      N0["Masukan: 20 ÷ 0,25 = 80 kW"] --> N1["Terbuang: 80 − 20 = 60 kW"]
+      N1 --> N2["Pendingin: 0,40 × 60 = 24 kW"]
+      N2 --> N3["Air: 24 000 ÷ (4200 × 12) = 0,48 kg s⁻¹"]
+      N2 --> N4["Udara: 24 000 ÷ (1000 × 8,0) = 3,0 kg s⁻¹"]
+  `}
+/>
+
+Dengan kenaikan <InlineMath math="12" /> derajat, air harus mengalir <InlineMath math="24\,000 \div (4200 \times 12) = 0{,}48" /> kg/s. <InlineMath math="24" /> kW yang sama memanaskan udara <InlineMath math="8{,}0" /> derajat, jadi <InlineMath math="3{,}0" /> kg udara harus lewat tiap detik, massa jauh lebih besar karena udara menyimpan **kalor lebih sedikit per kilogram**.
+
+# Kenapa pilihan lain salah
+
+- <InlineMath math="0{,}63\text{ kg s}^{-1}" /> mengambil bagian pendingin dari **seluruh masukan**, bukan dari yang terbuang.
+- <InlineMath math="1{,}2\text{ kg s}^{-1}" /> mengirim **semua** energi terbuang ke pendingin, bukan empat puluh persen.
+- <InlineMath math="0{,}12\text{ kg s}^{-1}" /> menganggap energi terbuang tiga perempat dari **keluaran**, bukan masukan.

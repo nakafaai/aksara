@@ -1,0 +1,27 @@
+# Bandingkan usaha yang dimasukkan dengan usaha berguna, lalu susun ulang dorongan untuk bidang yang lebih panjang
+
+Dorongan melakukan <InlineMath math="300 \times 4{,}0 = 1200" /> J, tetapi mengangkat peti hanya butuh <InlineMath math="784" /> J. Sisa <InlineMath math="416" /> J terpakai melawan gesekan sepanjang <InlineMath math="4{,}0" /> m, jadi gesekannya <InlineMath math="104" /> N, meskipun kelajuannya **tetap**.
+
+<Mermaid
+  title={<>Usaha Masuk, Usaha Berguna Keluar, Sisanya Gesekan</>}
+  description={<>Dorongan melakukan usaha lebih dari yang diperlukan untuk mengangkat peti. Selisihnya terpakai melawan gesekan sepanjang bidang miring, dan bidang yang lebih panjang butuh bagian berat yang lebih kecil.</>}
+  chart={`
+    flowchart LR
+      N0["Usaha masuk: 300 × 4,0 = 1200 J"] --> N2["Melawan gesekan: 1200 − 784 = 416 J"]
+      N1["Berguna: 80 × 9,8 × 1,0 = 784 J"] --> N2
+      N2 --> N3["Gesekan: 416 ÷ 4,0 = 104 N"]
+      N1 --> N4["Bidang lebih panjang: bagian berat 784 ÷ 5,0 = 157 N"]
+      N3 --> N5["Dorongan: 157 + 104 = 261 N"]
+      N4 --> N5
+  `}
+/>
+
+Pada bidang <InlineMath math="5{,}0" /> m, bagian berat sepanjang lereng <InlineMath math="784 \div 5{,}0 = 157" /> N. Dengan gesekan yang sama dorongan harus <InlineMath math="157 + 104 = 261" /> N, **lebih kecil** dari sebelumnya tetapi tidak sebanding.
+
+**Tergelincir turun**: komponen berat sepanjang lereng, <InlineMath math="784 \div 4{,}0 = 196" /> N, melebihi gesekan <InlineMath math="104" /> N, jadi peti memang meluncur. Dari <InlineMath math="784" /> J yang hilang, gesekan mengambil <InlineMath math="104 \times 4{,}0 = 416" /> J, sisa <InlineMath math="368" /> J, jadi <InlineMath math="v = \sqrt{2 \times 368 \div 80} = 3{,}0" /> m/s.
+
+# Kenapa pilihan lain salah
+
+- <InlineMath math="157\text{ N}" /> dan <InlineMath math="4{,}4\text{ m s}^{-1}" /> menyamakan kelajuan tetap dengan tanpa gesekan, padahal tetap berarti gaya-gaya **seimbang**.
+- <InlineMath math="457\text{ N}" /> menganggap seluruh dorongan sebagai gesekan, lupa dorongan juga **mengangkat peti**.
+- <InlineMath math="240\text{ N}" /> menskalakan seluruh dorongan dengan empat per lima, padahal hanya **komponen berat** yang berubah dengan panjang lereng.
