@@ -124,7 +124,33 @@ export const kssmForm5PhysicsTopicNodes = [
     },
   }),
   unitNode({
+    children: [
+      materialNode({
+        key: "form-5-physics-electronics-electronics",
+        level: "lesson",
+        materialKeys: ["lesson.physics.electronics"],
+        order: 10,
+      }),
+    ],
     key: "form-5-physics-electronics",
+    materialCard: {
+      de: {
+        description: "Nutze Dioden und Transistoren in Schaltungen.",
+        title: "Elektronik",
+      },
+      en: {
+        description: "Use diodes and transistors in circuits.",
+        title: "Electronics",
+      },
+      id: {
+        description: "Pakai dioda dan transistor dalam rangkaian.",
+        title: "Elektronika",
+      },
+      ms: {
+        description: "Guna diod dan transistor dalam litar.",
+        title: "Elektronik",
+      },
+    },
     order: 50,
     translations: {
       de: { routeSlug: "elektronik", title: "Elektronik" },

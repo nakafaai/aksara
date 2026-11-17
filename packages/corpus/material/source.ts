@@ -42,6 +42,7 @@ import { lessonMathematicsTrigonometryMaterial } from "#corpus/material/lesson/m
 import { lessonMathematicsVectorOperationsMaterial } from "#corpus/material/lesson/mathematics/vector-operations/source";
 import { lessonPhysicsElectricityMaterial } from "#corpus/material/lesson/physics/electricity/source";
 import { lessonPhysicsElectromagnetismMaterial } from "#corpus/material/lesson/physics/electromagnetism/source";
+import { lessonPhysicsElectronicsMaterial } from "#corpus/material/lesson/physics/electronics/source";
 import { lessonPhysicsGravitationMaterial } from "#corpus/material/lesson/physics/gravitation/source";
 import { lessonPhysicsHeatMaterial } from "#corpus/material/lesson/physics/heat/source";
 import { lessonPhysicsKinematicsMaterial } from "#corpus/material/lesson/physics/kinematics/source";
@@ -96,6 +97,7 @@ const materialSourcePrograms = [
   lessonMathematicsVectorOperationsMaterial,
   lessonPhysicsElectricityMaterial,
   lessonPhysicsElectromagnetismMaterial,
+  lessonPhysicsElectronicsMaterial,
   lessonPhysicsGravitationMaterial,
   lessonPhysicsHeatMaterial,
   lessonPhysicsKinematicsMaterial,

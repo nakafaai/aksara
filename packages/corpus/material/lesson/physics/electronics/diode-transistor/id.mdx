@@ -1,0 +1,257 @@
+export const metadata = {
+  title: "Elektronika Dasar dengan Dioda dan Transistor",
+  description:
+    "Jelaskan emisi termionik dan sinar katode, pakai dioda untuk penyearahan, dan hitung arus transistor sebagai sakelar dan penguat lewat contoh dan latihan.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2026-11-17",
+  dateModified: "2026-11-17",
+  subject: "Elektronika",
+};
+
+## Elektronika Mengendalikan Aliran Elektron
+
+**Elektronika** mempelajari cara mengendalikan aliran elektron di dalam ruang hampa dan semikonduktor. Elektron bisa dilepaskan dari logam panas lewat **emisi termionik** dan dipercepat oleh beda potensial, dengan <InlineMath math="eV = \tfrac{1}{2}mv^2" />. Dalam semikonduktor, **dioda** hanya mengalirkan arus ke satu arah, dan **transistor** memakai arus basis yang kecil untuk mengendalikan arus kolektor yang besar, <InlineMath math="I_C = \beta I_B" />. Di sini kamu membelokkan berkas elektron, membaca kurva dioda, mengubah arus bolak-balik menjadi arus searah, dan menghitung penguatan arus transistor.
+
+## Emisi Termionik dan Sinar Katode
+
+**Emisi termionik** adalah terlepasnya elektron dari permukaan logam yang dipanaskan. Dalam tabung hampa, filamen memanaskan katode, dan elektron yang terlepas dipercepat menuju anode yang positif. Berkas elektron ini disebut **sinar katode**. Ruang hampa diperlukan supaya elektron tidak bertumbukan dengan molekul udara.
+
+Sinar katode merambat lurus, bermuatan negatif, dan membuat layar berpendar. Karena sinar katode bermuatan, medan listrik dan medan magnet bisa membelokkannya. Ubah tegangan anode dan medan listrik dalam tabung di bawah, lalu perhatikan posisi titik pada layar.
+
+<CathodeRayLab
+  title={<>Membelokkan Sinar Katode dengan Medan Listrik</>}
+  description={
+    <>
+      Elektron dari katode panas dipercepat menuju anode dan melewati dua pelat
+      bermuatan. Berkasnya membelok ke arah pelat positif karena elektron
+      bermuatan negatif.
+    </>
+  }
+  labels={{
+    anode: <>Tegangan anode</>,
+    field: <>Medan listrik di antara pelat</>,
+    plates: "Pelat pembelok",
+    spot: <>Posisi titik pada layar</>,
+    view: "Tabung sinar katode dengan berkas elektron dan pelat pembelok",
+  }}
+/>
+
+Energi potensial listrik yang hilang saat elektron dipercepat berubah menjadi energi kinetik:
+
+<BlockMath math="eV = \tfrac{1}{2}mv^2 \quad \Rightarrow \quad v = \sqrt{\frac{2eV}{m}}" />
+
+Coba satu contoh. Elektron dipercepat melalui beda potensial <InlineMath math="2000\ \text{V}" />. Hitung kelajuan akhirnya. Muatan elektron <InlineMath math="1{,}6 \times 10^{-19}\ \text{C}" /> dan massanya <InlineMath math="9{,}11 \times 10^{-31}\ \text{kg}" />.
+
+<MathContainer>
+<BlockMath math="v = \sqrt{\frac{2 \times 1{,}6 \times 10^{-19} \times 2000}{9{,}11 \times 10^{-31}}}" />
+<BlockMath math="v = \sqrt{7{,}02 \times 10^{14}} = 2{,}65 \times 10^7\ \text{m/s}" />
+</MathContainer>
+
+Cek dengan grafik di bawah: pada <InlineMath math="2000\ \text{V}" />, angka kelajuannya juga sekitar <InlineMath math="2{,}65 \times 10^7\ \text{m/s}" />. Kelajuan sebanding dengan **akar kuadrat** tegangan, jadi tegangan empat kali lipat hanya menggandakan kelajuan.
+
+<MathVisual
+  title={<>Kelajuan Elektron terhadap Tegangan Pemercepat</>}
+  description={
+    <>
+      <InlineMath math="v = \sqrt{\dfrac{2eV}{m}} \approx 0{,}0593\sqrt{V}" />, dengan{" "}
+      <InlineMath math="v" /> dalam satuan <InlineMath math="10^7\ \text{m/s}" />.
+      Pada <InlineMath math="2000\ \text{V}" />, kelajuannya{" "}
+      <InlineMath math="2{,}65 \times 10^7\ \text{m/s}" />.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 5000 }, y: { min: 0, max: 4.5 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "a", min: 0, max: 5000, value: 2000, step: 100, label: "a" },
+    ],
+    objects: [
+      { id: "speed", kind: "function", appearance: "primary", formula: "0.0593*sqrt(x)", domain: { min: 0, max: 5000 } },
+      { id: "now", kind: "marker", x: "a", y: "0.0593*sqrt(a)", appearance: "warning" },
+    ],
+    readouts: [
+      { key: "velocity", formula: "0.0593*sqrt(a)" },
+    ],
+  }}
+  labels={{
+    a: <>Tegangan pemercepat <InlineMath math="V" /> dalam <InlineMath math="\text{V}" /></>,
+    velocity: <>Kelajuan dalam <InlineMath math="10^7\ \text{m/s}" /></>,
+  }}
+/>
+
+## Semikonduktor dan Dioda
+
+**Semikonduktor** seperti silikon memiliki daya hantar di antara konduktor dan isolator. Daya hantarnya dinaikkan lewat **doping**, yaitu menambahkan sedikit atom pengotor. Atom pentavalen seperti fosfor menghasilkan **semikonduktor tipe-n** dengan elektron bebas sebagai pembawa muatan mayoritas. Atom trivalen seperti boron menghasilkan **semikonduktor tipe-p** dengan hole sebagai pembawa muatan mayoritas.
+
+**Dioda** adalah sambungan antara semikonduktor tipe-p dan tipe-n. Di sambungan itu terbentuk **lapisan deplesi** tanpa pembawa muatan. Pada **bias maju**, kutub p dihubungkan ke kutub positif, lapisan deplesi menipis, dan arus mengalir setelah tegangan melewati sekitar <InlineMath math="0{,}7\ \text{V}" /> untuk silikon. Pada **bias mundur**, lapisan deplesi menebal dan hampir tidak ada arus.
+
+Geser penggeser tegangan bias maju di bawah. Arusnya hampir nol di bawah <InlineMath math="0{,}5\ \text{V}" />, lalu naik dengan cepat.
+
+<MathVisual
+  title={<>Kurva Arus Dioda Silikon pada Bias Maju</>}
+  description={
+    <>
+      Model dioda <InlineMath math="I = 0{,}0001\,e^{V/0{,}05}" /> dalam mA. Pada{" "}
+      <InlineMath math="0{,}4\ \text{V}" /> arusnya di bawah{" "}
+      <InlineMath math="0{,}3\ \text{mA}" />, dan pada{" "}
+      <InlineMath math="0{,}7\ \text{V}" /> arusnya melebihi{" "}
+      <InlineMath math="100\ \text{mA}" />.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 0.72 }, y: { min: 0, max: 200 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "d", min: 0, max: 0.72, value: 0.6, step: 0.01, label: "d" },
+    ],
+    objects: [
+      { id: "diode", kind: "function", appearance: "primary", formula: "0.0001*exp(x/0.05)", domain: { min: 0, max: 0.72 } },
+      { id: "now", kind: "marker", x: "d", y: "0.0001*exp(d/0.05)", appearance: "warning" },
+    ],
+    readouts: [
+      { key: "current", formula: "0.0001*exp(d/0.05)" },
+    ],
+  }}
+  labels={{
+    d: <>Tegangan bias maju dalam <InlineMath math="\text{V}" /></>,
+    current: <>Arus dioda dalam <InlineMath math="\text{mA}" /></>,
+  }}
+/>
+
+## Penyearahan dengan Dioda
+
+**Penyearahan** adalah pengubahan arus bolak-balik menjadi arus searah. Pada **penyearah setengah gelombang**, satu dioda hanya meloloskan setengah siklus positif, jadi setengah siklus negatif hilang. Pada **penyearah gelombang penuh**, empat dioda dalam susunan jembatan membalik setengah siklus negatif, jadi kedua setengah siklus keluar positif. Sebuah **kapasitor** yang dipasang paralel dengan beban meratakan keluaran dengan menyimpan muatan saat tegangan tinggi dan melepaskannya saat tegangan rendah.
+
+Ganti antara penyearah setengah gelombang dan gelombang penuh di bawah. Garis tipis adalah masukan arus bolak-balik, dan garis tebal adalah keluarannya.
+
+<MathVisual
+  title={<>Keluaran Penyearah Setengah Gelombang dan Gelombang Penuh</>}
+  description={
+    <>
+      Masukannya <InlineMath math="\sin(2\pi f t)" /> dengan{" "}
+      <InlineMath math="f = 2\ \text{Hz}" />. Setengah gelombang memberi{" "}
+      <InlineMath math="\max(\sin, 0)" />, dan gelombang penuh memberi{" "}
+      <InlineMath math="|\sin|" />.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 1 }, y: { min: -1.2, max: 1.2 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "w", min: 0, max: 1, value: 0, step: 1, label: "w" },
+    ],
+    objects: [
+      { id: "input", kind: "function", appearance: "secondary", formula: "sin(4*pi*x)", domain: { min: 0, max: 1 } },
+      { id: "output", kind: "function", appearance: "primary", formula: "(1 - w)*max(sin(4*pi*x), 0) + w*abs(sin(4*pi*x))", domain: { min: 0, max: 1 } },
+    ],
+    readouts: [
+      { key: "pulses", formula: "2 + 2w" },
+    ],
+  }}
+  labels={{
+    w: <>Setengah gelombang <InlineMath math="0" />, gelombang penuh <InlineMath math="1" /></>,
+    pulses: <>Denyut keluaran per detik</>,
+  }}
+/>
+
+Cek dengan frekuensinya: masukan <InlineMath math="2\ \text{Hz}" /> memberi <InlineMath math="2" /> denyut per detik untuk setengah gelombang dan <InlineMath math="4" /> denyut per detik untuk gelombang penuh. Listrik PLN berfrekuensi <InlineMath math="50\ \text{Hz}" />, jadi penyearah gelombang penuh memberi <InlineMath math="100" /> denyut per detik.
+
+## Transistor sebagai Sakelar dan Penguat
+
+**Transistor** memiliki tiga kaki: **emitor**, **basis**, dan **kolektor**. Arus basis yang kecil mengendalikan arus kolektor yang besar, dan arus emitor adalah jumlah keduanya:
+
+<MathContainer>
+<BlockMath math="I_E = I_B + I_C" />
+<BlockMath math="I_C = \beta I_B" />
+</MathContainer>
+
+Di sini <InlineMath math="\beta" /> adalah **penguatan arus**, biasanya antara <InlineMath math="50" /> dan <InlineMath math="300" />. Ubah penguatan arus dan arus basis di bawah.
+
+<MathVisual
+  title={<>Arus Kolektor terhadap Arus Basis</>}
+  description={
+    <>
+      <InlineMath math="I_C = \beta I_B" />, dengan <InlineMath math="I_B" /> dalam
+      mikroampere dan <InlineMath math="I_C" /> dalam miliampere. Pada{" "}
+      <InlineMath math="\beta = 100" /> dan{" "}
+      <InlineMath math="I_B = 50\ \mu\text{A}" />,{" "}
+      <InlineMath math="I_C = 5{,}0\ \text{mA}" />.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 100 }, y: { min: 0, max: 30 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "b", min: 50, max: 300, value: 100, step: 10, label: "b" },
+      { name: "c", min: 0, max: 100, value: 50, step: 5, label: "c" },
+    ],
+    objects: [
+      { id: "collector", kind: "function", appearance: "primary", formula: "b*x/1000", domain: { min: 0, max: 100 } },
+      { id: "now", kind: "marker", x: "c", y: "b*c/1000", appearance: "warning" },
+    ],
+    readouts: [
+      { key: "collector-current", formula: "b*c/1000" },
+      { key: "emitter-current", formula: "b*c/1000 + c/1000" },
+    ],
+  }}
+  labels={{
+    b: <>Penguatan arus <InlineMath math="\beta" /></>,
+    c: <>Arus basis <InlineMath math="I_B" /> dalam <InlineMath math="\mu\text{A}" /></>,
+    "collector-current": <>Arus kolektor dalam <InlineMath math="\text{mA}" /></>,
+    "emitter-current": <>Arus emitor dalam <InlineMath math="\text{mA}" /></>,
+  }}
+/>
+
+Cek angka awalnya: <InlineMath math="I_C = 100 \times 50\ \mu\text{A} = 5{,}0\ \text{mA}" />, dan <InlineMath math="I_E = 5{,}0 + 0{,}05 = 5{,}05\ \text{mA}" />.
+
+Transistor juga bekerja sebagai **sakelar otomatis**. Pada lampu jalan, **LDR** dan resistor tetap membentuk pembagi tegangan pada basis. Pada siang hari, hambatan LDR rendah, tegangan basis kecil, dan transistor mati. Pada malam hari, hambatannya tinggi. Misalnya, dengan sumber <InlineMath math="6\ \text{V}" />, resistor tetap <InlineMath math="10\ \text{k}\Omega" />, dan LDR <InlineMath math="90\ \text{k}\Omega" />, tegangan pada LDR adalah:
+
+<BlockMath math="V_{\text{basis}} = 6 \times \frac{90}{10 + 90} = 5{,}4\ \text{V}" />
+
+Tegangan itu di atas <InlineMath math="0{,}7\ \text{V}" />, jadi transistor menyala dan lampunya hidup. Cek: pada siang hari, jika hambatan LDR turun ke <InlineMath math="1\ \text{k}\Omega" />, tegangannya hanya <InlineMath math="6 \times \tfrac{1}{11} = 0{,}55\ \text{V}" />, di bawah <InlineMath math="0{,}7\ \text{V}" />, jadi lampunya mati.
+
+## Kesalahan Umum tentang Elektronika
+
+| Kesalahan | Alasan keliru | Cara cek |
+| :--- | :--- | :--- |
+| Sinar katode membelok ke pelat negatif. | Elektron bermuatan negatif, jadi tertarik ke pelat positif. | Muatan berlawanan saling tarik. |
+| Menggandakan tegangan pemercepat menggandakan kelajuan elektron. | <InlineMath math="v = \sqrt{\tfrac{2eV}{m}}" />, jadi kelajuannya hanya naik <InlineMath math="\sqrt{2}" /> kali. | Butuh empat kali tegangan untuk menggandakan kelajuan. |
+| Dioda bias maju mengalirkan arus pada tegangan berapa pun. | Dioda silikon butuh sekitar <InlineMath math="0{,}7\ \text{V}" /> untuk mengatasi lapisan deplesi. | Baca kurva dioda di bawah <InlineMath math="0{,}5\ \text{V}" />. |
+| Semikonduktor tipe-p bermuatan positif. | Bahannya netral secara keseluruhan. Hole hanya pembawa muatan mayoritasnya. | Hitung jumlah proton dan elektron pada atom yang didoping. |
+| Arus emitor sama dengan arus kolektor. | <InlineMath math="I_E = I_B + I_C" />, jadi arus emitor sedikit lebih besar. | Tambahkan arus basis ke arus kolektor. |
+
+Kesalahan pertama paling sering muncul. Sinar katode adalah **elektron**, jadi selalu tertarik ke **pelat positif**.
+
+## Latihan Elektronika
+
+Soal-soal ini bergerak dari sinar katode ke dioda dan transistor. **Tulis satuan mikroampere dan miliampere dengan jelas** supaya faktor seribu tidak tertukar.
+
+1. Elektron dipercepat melalui beda potensial <InlineMath math="500\ \text{V}" />. Hitung energi kinetiknya dalam joule.
+
+2. Sumber arus bolak-balik <InlineMath math="50\ \text{Hz}" /> disearahkan. Tentukan jumlah denyut keluaran per detik untuk penyearah setengah gelombang dan gelombang penuh, serta jumlah dioda yang dibutuhkan masing-masing.
+
+3. Sebuah transistor memiliki penguatan arus <InlineMath math="150" />. Hitung arus kolektor saat arus basisnya <InlineMath math="20\ \mu\text{A}" />.
+
+4. Jelaskan mengapa dioda pada bias mundur hampir tidak mengalirkan arus.
+
+### Pembahasan
+
+**Pembahasan 1**: Energi kinetik sama dengan usaha yang dilakukan medan listrik:
+
+<BlockMath math="E_k = eV = 1{,}6 \times 10^{-19} \times 500 = 8{,}0 \times 10^{-17}\ \text{J}" />
+
+Cek dengan satuan elektronvolt: elektron yang dipercepat melalui <InlineMath math="500\ \text{V}" /> mendapat <InlineMath math="500\ \text{eV}" />, dan <InlineMath math="500 \times 1{,}6 \times 10^{-19} = 8{,}0 \times 10^{-17}\ \text{J}" />.
+
+**Pembahasan 2**: Penyearah setengah gelombang butuh **satu dioda** dan memberi **<InlineMath math="50" /> denyut per detik**, satu untuk setiap siklus. Penyearah gelombang penuh butuh **empat dioda** dalam susunan jembatan dan memberi **<InlineMath math="100" /> denyut per detik**, karena setiap siklus memberi dua setengah siklus positif.
+
+**Pembahasan 3**: Pakai <InlineMath math="I_C = \beta I_B" />:
+
+<BlockMath math="I_C = 150 \times 20\ \mu\text{A} = 3000\ \mu\text{A} = 3{,}0\ \text{mA}" />
+
+Cek: arus kolektor harus jauh lebih besar daripada arus basis, dan <InlineMath math="3{,}0\ \text{mA}" /> memang <InlineMath math="150" /> kali <InlineMath math="0{,}020\ \text{mA}" />.
+
+**Pembahasan 4**: Pada bias mundur, kutub p dihubungkan ke kutub negatif sumber. Hole di tipe-p dan elektron di tipe-n ditarik **menjauhi sambungan**, jadi **lapisan deplesi menebal**. Lapisan itu tidak memiliki pembawa muatan, jadi bersifat seperti isolator dan hampir tidak ada arus yang mengalir.
