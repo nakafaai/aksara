@@ -4,7 +4,7 @@ const item: ItemSource = {
   blueprint: {
     cognitiveLevel: "analysing",
     contentDomain: "form-4",
-    topic: "matter-and-atomic-structure",
+    topic: "mole-concept",
   },
   versions: {
     en: {
@@ -12,19 +12,19 @@ const item: ItemSource = {
       options: [
         {
           correct: true,
-          label: "$$1700$$ times larger, $$1.97\\times10^{19}$$ molecules",
+          label: "$$12.2\\text{ dm}^3$$, $$4.80\\text{ dm}^3$$",
         },
         {
           correct: false,
-          label: "$$1330$$ times larger, $$2.51\\times10^{19}$$ molecules",
+          label: "$$9.60\\text{ dm}^3$$, $$4.80\\text{ dm}^3$$",
         },
         {
           correct: false,
-          label: "$$1700$$ times larger, $$3.34\\times10^{22}$$ molecules",
+          label: "$$12.2\\text{ dm}^3$$, $$9.60\\text{ dm}^3$$",
         },
         {
           correct: false,
-          label: "$$1700$$ times larger, $$5.91\\times10^{19}$$ molecules",
+          label: "$$10.7\\text{ dm}^3$$, $$3.60\\text{ dm}^3$$",
         },
       ],
     },
@@ -33,19 +33,19 @@ const item: ItemSource = {
       options: [
         {
           correct: true,
-          label: "$$1700$$ kali ganda, $$1.97\\times10^{19}$$ molekul",
+          label: "$$12.2\\text{ dm}^3$$, $$4.80\\text{ dm}^3$$",
         },
         {
           correct: false,
-          label: "$$1330$$ kali ganda, $$2.51\\times10^{19}$$ molekul",
+          label: "$$9.60\\text{ dm}^3$$, $$4.80\\text{ dm}^3$$",
         },
         {
           correct: false,
-          label: "$$1700$$ kali ganda, $$3.34\\times10^{22}$$ molekul",
+          label: "$$12.2\\text{ dm}^3$$, $$9.60\\text{ dm}^3$$",
         },
         {
           correct: false,
-          label: "$$1700$$ kali ganda, $$5.91\\times10^{19}$$ molekul",
+          label: "$$10.7\\text{ dm}^3$$, $$3.60\\text{ dm}^3$$",
         },
       ],
     },

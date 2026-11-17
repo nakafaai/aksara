@@ -10,19 +10,19 @@ const item: ItemSource = {
     en: {
       kind: "choice",
       options: [
-        { correct: false, label: "$$25.00$$, $$6.44\\times10^{21}$$" },
-        { correct: false, label: "$$24.32$$, $$2.01\\times10^{22}$$" },
-        { correct: false, label: "$$24.32$$, $$6.02\\times10^{22}$$" },
-        { correct: true, label: "$$24.32$$, $$6.62\\times10^{21}$$" },
+        { correct: false, label: "$$2.459\\text{ g}$$, $$0.281\\text{ g}$$" },
+        { correct: false, label: "$$2.432\\text{ g}$$, $$0.268\\text{ g}$$" },
+        { correct: false, label: "$$4.032\\text{ g}$$, $$0.474\\text{ g}$$" },
+        { correct: true, label: "$$2.432\\text{ g}$$, $$0.286\\text{ g}$$" },
       ],
     },
     ms: {
       kind: "choice",
       options: [
-        { correct: false, label: "$$25.00$$, $$6.44\\times10^{21}$$" },
-        { correct: false, label: "$$24.32$$, $$2.01\\times10^{22}$$" },
-        { correct: false, label: "$$24.32$$, $$6.02\\times10^{22}$$" },
-        { correct: true, label: "$$24.32$$, $$6.62\\times10^{21}$$" },
+        { correct: false, label: "$$2.459\\text{ g}$$, $$0.281\\text{ g}$$" },
+        { correct: false, label: "$$2.432\\text{ g}$$, $$0.268\\text{ g}$$" },
+        { correct: false, label: "$$4.032\\text{ g}$$, $$0.474\\text{ g}$$" },
+        { correct: true, label: "$$2.432\\text{ g}$$, $$0.286\\text{ g}$$" },
       ],
     },
   },

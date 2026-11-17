@@ -2,7 +2,7 @@ import type { ItemSource } from "#corpus/question-bank/item";
 
 const item: ItemSource = {
   blueprint: {
-    cognitiveLevel: "applying",
+    cognitiveLevel: "analysing",
     contentDomain: "form-4",
     topic: "mole-concept",
   },
@@ -10,43 +10,19 @@ const item: ItemSource = {
     en: {
       kind: "choice",
       options: [
-        {
-          correct: false,
-          label: "$$35.0\\text{ g}$$, $$1.20\\text{ mol dm}^{-3}$$",
-        },
-        {
-          correct: false,
-          label: "$$36.1\\text{ g}$$, $$0.616\\text{ mol dm}^{-3}$$",
-        },
-        {
-          correct: true,
-          label: "$$36.1\\text{ g}$$, $$1.23\\text{ mol dm}^{-3}$$",
-        },
-        {
-          correct: false,
-          label: "$$36.1\\text{ g}$$, $$2.46\\text{ mol dm}^{-3}$$",
-        },
+        { correct: false, label: "$$29.9\\text{ cm}^3$$, $$2.15\\text{ g}$$" },
+        { correct: false, label: "$$61.6\\text{ cm}^3$$, $$4.42\\text{ g}$$" },
+        { correct: true, label: "$$30.8\\text{ cm}^3$$, $$2.21\\text{ g}$$" },
+        { correct: false, label: "$$30.8\\text{ cm}^3$$, $$0.901\\text{ g}$$" },
       ],
     },
     ms: {
       kind: "choice",
       options: [
-        {
-          correct: false,
-          label: "$$35.0\\text{ g}$$, $$1.20\\text{ mol dm}^{-3}$$",
-        },
-        {
-          correct: false,
-          label: "$$36.1\\text{ g}$$, $$0.616\\text{ mol dm}^{-3}$$",
-        },
-        {
-          correct: true,
-          label: "$$36.1\\text{ g}$$, $$1.23\\text{ mol dm}^{-3}$$",
-        },
-        {
-          correct: false,
-          label: "$$36.1\\text{ g}$$, $$2.46\\text{ mol dm}^{-3}$$",
-        },
+        { correct: false, label: "$$29.9\\text{ cm}^3$$, $$2.15\\text{ g}$$" },
+        { correct: false, label: "$$61.6\\text{ cm}^3$$, $$4.42\\text{ g}$$" },
+        { correct: true, label: "$$30.8\\text{ cm}^3$$, $$2.21\\text{ g}$$" },
+        { correct: false, label: "$$30.8\\text{ cm}^3$$, $$0.901\\text{ g}$$" },
       ],
     },
   },

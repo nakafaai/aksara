@@ -10,19 +10,43 @@ const item: ItemSource = {
     en: {
       kind: "choice",
       options: [
-        { correct: true, label: "$$409\\text{ km}$$" },
-        { correct: false, label: "$$817\\text{ km}$$" },
-        { correct: false, label: "$$204\\text{ km}$$" },
-        { correct: false, label: "$$817\\,000\\text{ km}$$" },
+        {
+          correct: true,
+          label: "$$10.2^\\circ\\text{C}$$, $$1.20\\text{ dm}^3$$",
+        },
+        {
+          correct: false,
+          label: "$$20.4^\\circ\\text{C}$$, $$1.20\\text{ dm}^3$$",
+        },
+        {
+          correct: false,
+          label: "$$13.6^\\circ\\text{C}$$, $$1.20\\text{ dm}^3$$",
+        },
+        {
+          correct: false,
+          label: "$$10.2^\\circ\\text{C}$$, $$2.40\\text{ dm}^3$$",
+        },
       ],
     },
     ms: {
       kind: "choice",
       options: [
-        { correct: true, label: "$$409\\text{ km}$$" },
-        { correct: false, label: "$$817\\text{ km}$$" },
-        { correct: false, label: "$$204\\text{ km}$$" },
-        { correct: false, label: "$$817\\,000\\text{ km}$$" },
+        {
+          correct: true,
+          label: "$$10.2^\\circ\\text{C}$$, $$1.20\\text{ dm}^3$$",
+        },
+        {
+          correct: false,
+          label: "$$20.4^\\circ\\text{C}$$, $$1.20\\text{ dm}^3$$",
+        },
+        {
+          correct: false,
+          label: "$$13.6^\\circ\\text{C}$$, $$1.20\\text{ dm}^3$$",
+        },
+        {
+          correct: false,
+          label: "$$10.2^\\circ\\text{C}$$, $$2.40\\text{ dm}^3$$",
+        },
       ],
     },
   },

@@ -1,25 +1,25 @@
-# Count the moles each fuel needs for the heat, then the carbon atoms each mole carries
+# Scale up for the engine's efficiency, turn moles into mass, then divide by the density
 
-The trip needs <InlineMath math="50\,000\div1370=36.5\text{ mol}" /> of ethanol, <InlineMath math="1.68\text{ kg}" />, or <InlineMath math="50\,000\div5470=9.14\text{ mol}" /> of octane, <InlineMath math="1.04\text{ kg}" />. **Each ethanol molecule gives two carbon dioxide molecules and each octane molecule eight**, so ethanol gives <InlineMath math="73.0\text{ mol}" /> and octane <InlineMath math="73.1\text{ mol}" />. Octane gives about four times the heat per molecule and four times the carbon, so the carbon dioxide is almost the same, about <InlineMath math="3.2\text{ kg}" /> each.
+**The fuel must release four times the work**, <InlineMath math="12\,500\div0.25=50\,000\text{ kJ}" />. That is <InlineMath math="50\,000\div1370=36.5\text{ mol}" /> of ethanol, <InlineMath math="1.68\text{ kg}" />, or <InlineMath math="50\,000\div5470=9.14\text{ mol}" /> of octane, <InlineMath math="1.04\text{ kg}" />. **The question asks for volumes**, so dividing by the densities gives <InlineMath math="2.13\text{ dm}^3" /> of ethanol and <InlineMath math="1.49\text{ dm}^3" /> of octane. Ethanol has two carbon atoms and octane eight, so each gives about <InlineMath math="73\text{ mol}" /> of carbon dioxide, <InlineMath math="3.2\text{ kg}" />.
 
 <Chart
-  title={<>Masses for the trip</>}
-  description={<>The trip burns <InlineMath math="1.68\text{ kg}" /> of ethanol or <InlineMath math="1.04\text{ kg}" /> of octane, and each gives about <InlineMath math="3.2\text{ kg}" /> of carbon dioxide.</>}
+  title={<>Volume of each fuel</>}
+  description={<>Ethanol needs <InlineMath math="2.13\text{ dm}^3" /> and octane <InlineMath math="1.49\text{ dm}^3" />.</>}
   bars="apart"
-  categories={["Ethanol burned", "Octane burned", "Carbon dioxide from ethanol", "Carbon dioxide from octane"]}
+  categories={["Ethanol", "Octane"]}
   series={[
-    { label: "Mass", mark: "bar", values: [1.68, 1.04, 3.21, 3.22] },
+    { label: "Volume", mark: "bar", values: [2.13, 1.49] },
   ]}
-  valueLabel="Mass (kg)"
+  valueLabel="Volume (dm³)"
 />
 
 <BlockMath math="\begin{aligned}
-m_{\text{ethanol}}&=\tfrac{50\,000}{1370}\times46=1.68\text{ kg},\quad m_{\text{octane}}=\tfrac{50\,000}{5470}\times114=1.04\text{ kg}\\
-m(\text{CO}_2)&=36.5\times2\times44=3.21\text{ kg},\quad9.14\times8\times44=3.22\text{ kg}
+Q&=\tfrac{12\,500}{0.25}=50\,000\text{ kJ},\quad V(\text{C}_2\text{H}_5\text{OH})=\tfrac{(50\,000\div1370)\times46}{0.79}=2130\text{ cm}^3\\
+V(\text{C}_8\text{H}_{18})&=\tfrac{(50\,000\div5470)\times114}{0.70}=1490\text{ cm}^3,\quad m(\text{CO}_2)\approx73\times44=3.2\text{ kg}
 \end{aligned}" />
 
 # Why the other options are wrong
 
-- Each fuel's mass is right, so the slip is elsewhere. **Each ethanol molecule has two carbon atoms and gives two carbon dioxide molecules**, about <InlineMath math="3.2\text{ kg}" />, not <InlineMath math="1.6\text{ kg}" />.
-- The masses are swapped: ethanol releases less heat per mole, so more of it is needed.
-- <InlineMath math="0.84\text{ kg}" /> of ethanol halves the moles needed, which would supply only half the heat.
+- <InlineMath math="0.53\text{ dm}^3" /> and <InlineMath math="0.37\text{ dm}^3" /> use <InlineMath math="12\,500\text{ kJ}" /> as the heat. **Only a quarter of the heat becomes work**, so the fuel must release <InlineMath math="50\,000\text{ kJ}" />.
+- <InlineMath math="1.33\text{ dm}^3" /> and <InlineMath math="0.73\text{ dm}^3" /> multiply the mass by the density instead of dividing by it.
+- <InlineMath math="1.6\text{ kg}" /> for ethanol counts one carbon atom per molecule, but ethanol has two.

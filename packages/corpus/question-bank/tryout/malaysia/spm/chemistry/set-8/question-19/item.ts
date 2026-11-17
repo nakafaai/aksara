@@ -13,22 +13,22 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "II $$300\\text{ cm}^3$$, slower. III $$600\\text{ cm}^3$$, faster",
+            "II $$300\\text{ cm}^3$$, slower. III $$960\\text{ cm}^3$$, faster",
         },
         {
           correct: true,
+          label:
+            "II $$600\\text{ cm}^3$$, slower. III $$960\\text{ cm}^3$$, faster",
+        },
+        {
+          correct: false,
           label:
             "II $$600\\text{ cm}^3$$, slower. III $$1200\\text{ cm}^3$$, faster",
         },
         {
           correct: false,
           label:
-            "II $$600\\text{ cm}^3$$, as fast. III $$1200\\text{ cm}^3$$, as fast",
-        },
-        {
-          correct: false,
-          label:
-            "II $$600\\text{ cm}^3$$, slower. III $$600\\text{ cm}^3$$, faster",
+            "II $$600\\text{ cm}^3$$, as fast. III $$960\\text{ cm}^3$$, faster",
         },
       ],
     },
@@ -38,22 +38,22 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "II $$300\\text{ cm}^3$$, lebih perlahan. III $$600\\text{ cm}^3$$, lebih cepat",
+            "II $$300\\text{ cm}^3$$, lebih perlahan. III $$960\\text{ cm}^3$$, lebih cepat",
         },
         {
           correct: true,
+          label:
+            "II $$600\\text{ cm}^3$$, lebih perlahan. III $$960\\text{ cm}^3$$, lebih cepat",
+        },
+        {
+          correct: false,
           label:
             "II $$600\\text{ cm}^3$$, lebih perlahan. III $$1200\\text{ cm}^3$$, lebih cepat",
         },
         {
           correct: false,
           label:
-            "II $$600\\text{ cm}^3$$, sama cepat. III $$1200\\text{ cm}^3$$, sama cepat",
-        },
-        {
-          correct: false,
-          label:
-            "II $$600\\text{ cm}^3$$, lebih perlahan. III $$600\\text{ cm}^3$$, lebih cepat",
+            "II $$600\\text{ cm}^3$$, sama cepat. III $$960\\text{ cm}^3$$, lebih cepat",
         },
       ],
     },
