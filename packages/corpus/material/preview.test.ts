@@ -37,7 +37,7 @@ layer(NodeServices.layer)("material preview projection", (it) => {
       const descriptor = yield* mathematicsDomain();
       const entries = yield* decodeMaterialPreviewEntries(
         [englishPath, germanPath],
-        [lessonMaterialSource()],
+        { sources: [lessonMaterialSource()] },
         [descriptor]
       );
 
@@ -68,12 +68,12 @@ layer(NodeServices.layer)("material preview projection", (it) => {
         const descriptor = yield* mathematicsDomain();
         const selected = yield* decodeMaterialPreviewEntry(
           germanPath,
-          [lessonMaterialSource()],
+          { sources: [lessonMaterialSource()] },
           [descriptor]
         );
         const empty = yield* decodeMaterialPreviewEntries(
           [],
-          [lessonMaterialSource()],
+          { sources: [lessonMaterialSource()] },
           [descriptor]
         );
 
@@ -87,7 +87,7 @@ layer(NodeServices.layer)("material preview projection", (it) => {
         expect(selected.sourcePath).toBe(germanPath);
         expect(empty).toEqual([]);
         expect(selection.source.dependencies).toContainEqual(
-          "packages/corpus/material/lesson/mathematics/function-composition-inverse-function/source.ts"
+          "packages/corpus/material/lesson/mathematics/function-composition-inverse-function/lesson.json"
         );
       })
   );

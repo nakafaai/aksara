@@ -1,6 +1,7 @@
 import { describe, expect, it } from "@effect/vitest";
 import { ReleaseIdSchema } from "@nakafa/aksara-contracts/ids";
 import { digestProjections } from "@nakafa/aksara-contracts/projection/digest";
+import type { MaterialOrigin } from "@nakafa/aksara-corpus/material/source";
 import { Array as Arr, Effect, HashSet, MutableList, Stream } from "effect";
 import {
   PublicationActivation,
@@ -19,9 +20,9 @@ vi.mock("@nakafa/aksara-corpus/material/registry", async (importOriginal) => {
   const sourcePaths = HashSet.fromIterable<string>(materialSlicePaths);
   return {
     ...original,
-    decodeMaterialRegistry: (input?: unknown) =>
+    decodeMaterialRegistry: (origin: MaterialOrigin) =>
       original
-        .decodeMaterialRegistry(input)
+        .decodeMaterialRegistry(origin)
         .pipe(
           Effect.map((entries) =>
             Arr.filter(entries, ({ sourcePath }) =>

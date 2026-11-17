@@ -7,7 +7,7 @@ import {
   ActiveAppLocaleSchema,
   APP_LOCALE_CODES,
 } from "@nakafa/aksara-contracts/locale";
-import { Array as Arr, Effect, FileSystem, HashSet, Order, Path } from "effect";
+import { Array as Arr, Effect, FileSystem, HashSet, Order } from "effect";
 
 import {
   decodeMaterialDomains,
@@ -19,11 +19,8 @@ import {
   lessonMaterialEntries,
   lessonMaterialSource,
 } from "#corpus/test/material";
+import { CHECKOUT_ROOT } from "#corpus/test/root";
 
-/** Resolves the corpus root through the platform-neutral path service. */
-const resolveCorpusRoot = Effect.map(Path.Path, (path) =>
-  path.resolve(import.meta.dirname, "..", "..", "..")
-);
 const englishIndonesianLocales = ActiveAppLocaleListSchema.make([
   ActiveAppLocaleSchema.make("en"),
   ActiveAppLocaleSchema.make("id"),
@@ -31,7 +28,11 @@ const englishIndonesianLocales = ActiveAppLocaleListSchema.make([
 
 /** Decodes injected sources for one explicit publication locale subset. */
 function decodeEmbeddedRegistry(input: unknown) {
-  return decodeMaterialRegistry(input, undefined, englishIndonesianLocales);
+  return decodeMaterialRegistry(
+    { sources: input },
+    undefined,
+    englishIndonesianLocales
+  );
 }
 
 /** Returns one typed registry failure for native Effect test composition. */
@@ -45,11 +46,12 @@ layer(NodeServices.layer)("material registry", (it) => {
     () =>
       Effect.gen(function* () {
         const fileSystem = yield* FileSystem.FileSystem;
-        const corpusRoot = yield* resolveCorpusRoot;
-        const entries = yield* decodeMaterialRegistry();
+        const entries = yield* decodeMaterialRegistry({
+          checkoutRoot: CHECKOUT_ROOT,
+        });
         const lessonPaths = yield* fileSystem.glob(
           "packages/corpus/material/lesson/**/*.mdx",
-          { root: corpusRoot }
+          { root: CHECKOUT_ROOT }
         );
         const authoredPaths = Arr.sort(
           Arr.filter(lessonPaths, (sourcePath) =>
@@ -130,7 +132,7 @@ layer(NodeServices.layer)("material registry", (it) => {
         const source = lessonMaterialSource();
         const descriptors = yield* decodeMaterialDomains();
         const entries = yield* decodeMaterialRegistry(
-          [source],
+          { sources: [source] },
           descriptors,
           ActiveAppLocaleListSchema.make([ActiveAppLocaleSchema.make("de")])
         );
@@ -169,7 +171,7 @@ layer(NodeServices.layer)("material registry", (it) => {
         },
       ]);
       const entries = yield* decodeMaterialRegistry(
-        [source],
+        { sources: [source] },
         domains,
         englishIndonesianLocales
       );
@@ -193,7 +195,7 @@ layer(NodeServices.layer)("material registry", (it) => {
   it.effect("rejects a source whose domain has no reviewed descriptor", () =>
     Effect.gen(function* () {
       const error = yield* decodeMaterialRegistry(
-        [lessonMaterialSource()],
+        { sources: [lessonMaterialSource()] },
         [],
         englishIndonesianLocales
       ).pipe(Effect.flip);
@@ -221,7 +223,7 @@ layer(NodeServices.layer)("material registry", (it) => {
             CorpusSourcePathSchema.make(
               `packages/corpus/${invalidSource.assetRoot}/function-concept/en.mdx`
             ),
-            [invalidSource]
+            { sources: [invalidSource] }
           ).pipe(Effect.flip),
         ]);
 

@@ -110,7 +110,7 @@ layer(NodeServices.layer)("source dependencies", (it) => {
           "packages/corpus/articles/politics/dynastic-politics/asian-values/source.ts"
         );
         const materialSource = CorpusSourcePathSchema.make(
-          "packages/corpus/material/lesson/ai-ds/ai-programming/source.ts"
+          "packages/corpus/material/source.ts"
         );
         const corpusSources = yield* loadCorpusSources();
         const [article, material] = yield* Effect.all([
@@ -128,22 +128,14 @@ layer(NodeServices.layer)("source dependencies", (it) => {
         expect(material).toEqual(
           expect.arrayContaining([
             materialSource,
-            "packages/corpus/material/lesson/ai-ds/ai-programming/data.ts",
-            "packages/corpus/material/lesson/ai-ds/ai-programming/numpy.ts",
-            "packages/corpus/material/lesson/ai-ds/ai-programming/syntax.ts",
-            "packages/corpus/material/lesson/ai-ds/ai-programming/tools.ts",
             "packages/corpus/material/schema.ts",
             "packages/corpus/material/description.ts",
             "packages/corpus/route/schema.ts",
           ])
         );
         expect(
-          Arr.some(
-            material,
-            (path) =>
-              path.includes("/ai-programming/") && !path.endsWith("source.ts")
-          )
-        ).toBe(true);
+          Arr.some(material, (path) => path.includes("/material/lesson/"))
+        ).toBe(false);
       })
   );
 

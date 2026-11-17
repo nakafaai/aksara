@@ -1,3 +1,4 @@
+import { NodeServices } from "@effect/platform-node";
 import { beforeEach, expect, layer } from "@effect/vitest";
 import { PublicationScopeSchema } from "@nakafa/aksara-contracts/release/snapshot/scope";
 import { Array as Arr, Effect, HashSet } from "effect";
@@ -19,6 +20,7 @@ import {
   materialFamilyScope,
   materialManifest,
 } from "#test/material/spec";
+import { CHECKOUT_ROOT } from "#test/root";
 
 const compilerState = vi.hoisted(() => ({ calls: 0 }));
 const registryState = vi.hoisted(() => ({ changedOrder: false }));
@@ -44,8 +46,9 @@ vi.mock("@nakafa/aksara-corpus/material/registry", async (importOriginal) => {
   const sourcePaths = HashSet.fromIterable<string>(materialSlicePaths);
   return {
     ...original,
-    decodeMaterialRegistry: (input?: unknown) =>
-      original.decodeMaterialRegistry(input).pipe(
+    decodeMaterialRegistry: () =>
+      original.decodeMaterialRegistry({ checkoutRoot: CHECKOUT_ROOT }).pipe(
+        Effect.provide(NodeServices.layer),
         Effect.map((entries) =>
           Arr.map(
             Arr.filter(entries, ({ sourcePath }) =>

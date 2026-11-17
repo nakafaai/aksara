@@ -12,6 +12,7 @@ import { Array as Arr, Effect, HashSet, Path } from "effect";
 import type { AcceptanceSources } from "#publisher/acceptance/source";
 import { materialSlicePaths } from "#test/material/slice";
 import { testRendererDomains } from "#test/renderer";
+import { CHECKOUT_ROOT } from "#test/root";
 
 const repositoryRoot = Effect.map(Path.Path, (path) =>
   path.resolve(process.cwd(), "..", "..")
@@ -60,7 +61,9 @@ export const makeAcceptanceTestSources: Effect.Effect<
 > = Effect.gen(function* () {
   const checkoutRoot = yield* repositoryRoot;
   const articles = yield* decodeArticleRegistry();
-  const materials = yield* decodeMaterialRegistry();
+  const materials = yield* decodeMaterialRegistry({
+    checkoutRoot: CHECKOUT_ROOT,
+  });
   const page = yield* decodePageRegistry();
   const exams = selectTestExam(yield* decodeTryoutRegistry());
   const sets = yield* readQuestionSets(checkoutRoot, examSetPaths(exams));

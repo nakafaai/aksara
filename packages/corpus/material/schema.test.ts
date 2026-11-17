@@ -1,13 +1,7 @@
-import { NodeServices } from "@effect/platform-node";
 import { describe, expect, it } from "@effect/vitest";
-import { Array as Arr, Effect, Exit, Schema } from "effect";
+import { Effect, Exit, Schema } from "effect";
 
-import {
-  defineLessonMaterial,
-  LessonMaterialSourceSchema,
-} from "#corpus/material/schema";
-import { decodeMaterialSources } from "#corpus/material/source";
-import { importCorpusModules } from "#corpus/test/imports";
+import { LessonMaterialSourceSchema } from "#corpus/material/schema";
 
 /** Builds one exact lesson-source shape so tests change only one contract field. */
 function lessonSource() {
@@ -35,7 +29,10 @@ function lessonSource() {
 describe("material schema", () => {
   it.effect("decodes one complete authored lesson source", () =>
     Effect.gen(function* () {
-      const material = yield* defineLessonMaterial(lessonSource());
+      const material = yield* Schema.decodeEffect(LessonMaterialSourceSchema)(
+        lessonSource(),
+        { onExcessProperty: "error" }
+      );
 
       expect(material).toMatchObject({
         domain: "mathematics",
@@ -46,20 +43,6 @@ describe("material schema", () => {
             slug: "definition",
           },
         ],
-      });
-    })
-  );
-
-  it.effect("maps invalid authored input to one typed source failure", () =>
-    Effect.gen(function* () {
-      const error = yield* defineLessonMaterial({
-        ...lessonSource(),
-        slug: "Invalid Slug",
-      }).pipe(Effect.flip);
-
-      expect(error).toMatchObject({
-        _tag: "LessonMaterialError",
-        materialKey: "lesson.mathematics.function-concept",
       });
     })
   );
@@ -127,18 +110,4 @@ describe("material schema", () => {
       expect(String(result.cause)).toContain(message);
     }
   });
-
-  it.effect("loads every authored lesson material source module", () =>
-    Effect.gen(function* () {
-      const files = yield* importCorpusModules("material/lesson/**/*.ts", [
-        "**/locale/**/*.ts",
-      ]);
-
-      const sources = yield* decodeMaterialSources();
-
-      expect(
-        Arr.filter(files, ({ file }) => file.endsWith("/source.ts"))
-      ).toHaveLength(sources.length);
-    }).pipe(Effect.provide(NodeServices.layer))
-  );
 });

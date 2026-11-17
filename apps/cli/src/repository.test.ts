@@ -1,6 +1,7 @@
 import { NodeServices } from "@effect/platform-node";
 import { beforeEach, expect, layer } from "@effect/vitest";
 import { AppLocaleSchema } from "@nakafa/aksara-contracts/locale";
+import type { MaterialOrigin } from "@nakafa/aksara-corpus/material/source";
 import { Data, Effect, FileSystem, Path } from "effect";
 import { selectCatalogDocument, selectPreviewDocument } from "#cli/repository";
 import {
@@ -22,14 +23,14 @@ vi.mock("@nakafa/aksara-corpus/material/registry", async (importOriginal) => {
   return {
     ...registry,
     /** Injects one registry failure without changing its production contract. */
-    decodeMaterialRegistry: () => {
+    decodeMaterialRegistry: (origin: MaterialOrigin) => {
       if (registryControl.fail) {
         return Effect.fail(new TestRegistryError());
       }
       if (registryControl.empty) {
         return Effect.succeed([]);
       }
-      return registry.decodeMaterialRegistry();
+      return registry.decodeMaterialRegistry(origin);
     },
   };
 });

@@ -88,7 +88,9 @@ export const selectCatalogDocument: (
   PreviewRepositoryError | PreviewRestartError,
   FileSystem.FileSystem | Path.Path
 > = Effect.fn("AksaraCli.selectCatalogDocument")(function* (aksaraRoot) {
-  const entries = yield* decodeMaterialRegistry().pipe(
+  const entries = yield* decodeMaterialRegistry({
+    checkoutRoot: aksaraRoot,
+  }).pipe(
     Effect.mapError(
       () =>
         new PreviewRepositoryError({

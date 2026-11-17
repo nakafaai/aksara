@@ -1,4 +1,5 @@
-import { describe, expect, it } from "@effect/vitest";
+import { NodeServices } from "@effect/platform-node";
+import { expect, layer } from "@effect/vitest";
 import { Array as Arr, Effect, Option, Stream } from "effect";
 import { examProgramSources } from "#corpus/program/exam";
 import { schoolProgramSources } from "#corpus/program/school";
@@ -6,11 +7,14 @@ import {
   prepareProgramSnapshot,
   streamProgramRows,
 } from "#corpus/program/snapshot";
+import { CHECKOUT_ROOT } from "#corpus/test/root";
 
-describe("program snapshot preparation", () => {
+layer(NodeServices.layer)("program snapshot preparation", (it) => {
   it.effect("prepares exact programs and localized curriculum routes", () =>
     Effect.gen(function* () {
-      const prepared = yield* prepareProgramSnapshot();
+      const prepared = yield* prepareProgramSnapshot({
+        checkoutRoot: CHECKOUT_ROOT,
+      });
       const rows = yield* Stream.runCollect(prepared.rows);
 
       const programRows = Arr.filter(rows, (row) => row.kind === "program");
@@ -106,12 +110,13 @@ describe("program snapshot preparation", () => {
     () =>
       Effect.gen(function* () {
         const [first, second, firstRows] = yield* Effect.all([
-          prepareProgramSnapshot(),
-          prepareProgramSnapshot(),
-          Stream.runCollect(streamProgramRows()),
+          prepareProgramSnapshot({ checkoutRoot: CHECKOUT_ROOT }),
+          prepareProgramSnapshot({ checkoutRoot: CHECKOUT_ROOT }),
+          Stream.runCollect(streamProgramRows(CHECKOUT_ROOT)),
         ]);
         const replayRows = yield* Stream.runCollect(first.rows);
         const error = yield* prepareProgramSnapshot({
+          checkoutRoot: CHECKOUT_ROOT,
           programInput: [{ invented: true }],
         }).pipe(Effect.flip);
 
@@ -125,8 +130,11 @@ describe("program snapshot preparation", () => {
   it.effect("derives counts when source control adds another program", () =>
     Effect.gen(function* () {
       const firstExam = yield* Effect.fromNullishOr(examProgramSources[0]);
-      const base = yield* prepareProgramSnapshot();
+      const base = yield* prepareProgramSnapshot({
+        checkoutRoot: CHECKOUT_ROOT,
+      });
       const expanded = yield* prepareProgramSnapshot({
+        checkoutRoot: CHECKOUT_ROOT,
         programInput: [
           ...schoolProgramSources,
           ...examProgramSources,

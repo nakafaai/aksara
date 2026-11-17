@@ -1,4 +1,5 @@
-import { describe, expect, it } from "@effect/vitest";
+import { NodeServices } from "@effect/platform-node";
+import { expect, layer } from "@effect/vitest";
 import { LearningProgramSchema } from "@nakafa/aksara-contracts/program/spec";
 import { Array as Arr, Effect, HashSet, Option, Schema } from "effect";
 import { CurriculumRouteError } from "#corpus/curriculum/ownership";
@@ -6,6 +7,7 @@ import { projectCurriculumRoutes } from "#corpus/curriculum/route";
 import { decodeCurriculumCatalog } from "#corpus/curriculum/source";
 import { decodeMaterialSources } from "#corpus/material/source";
 import { decodeProgramCatalog } from "#corpus/program/catalog";
+import { CHECKOUT_ROOT } from "#corpus/test/root";
 
 /** Loads the complete source inputs shared by curriculum route tests. */
 const loadRouteInputs = Effect.fn(
@@ -13,13 +15,13 @@ const loadRouteInputs = Effect.fn(
 )(function* () {
   const [curricula, materials, programs] = yield* Effect.all([
     decodeCurriculumCatalog(),
-    decodeMaterialSources(),
+    decodeMaterialSources({ checkoutRoot: CHECKOUT_ROOT }),
     decodeProgramCatalog(),
   ]);
   return { curricula, materials, programs } as const;
 });
 
-describe("curriculum route projection", () => {
+layer(NodeServices.layer)("curriculum route projection", (it) => {
   it.effect("projects the exact real localized route inventory", () =>
     Effect.gen(function* () {
       const inputs = yield* loadRouteInputs();

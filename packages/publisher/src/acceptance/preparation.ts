@@ -51,7 +51,9 @@ export const prepareAcceptanceRelease: (input: {
     ...input,
     rendererManifest,
   });
-  const program = yield* prepareProgramSnapshot();
+  const program = yield* prepareProgramSnapshot({
+    checkoutRoot: input.checkoutRoot,
+  });
   const quran = yield* prepareQuranSnapshot({
     checkoutRoot: input.checkoutRoot,
   });

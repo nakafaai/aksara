@@ -1,3 +1,4 @@
+import { NodeServices } from "@effect/platform-node";
 import { expect, layer } from "@effect/vitest";
 import {
   type MaterialHead,
@@ -10,6 +11,7 @@ import {
   publishedMaterialHeads,
   rejectMaterialPublication,
 } from "#test/material/spec";
+import { CHECKOUT_ROOT } from "#test/root";
 
 vi.mock("@nakafa/aksara-corpus/material/registry", async (importOriginal) => {
   const original =
@@ -20,16 +22,15 @@ vi.mock("@nakafa/aksara-corpus/material/registry", async (importOriginal) => {
   const sourcePaths = HashSet.fromIterable<string>(materialSlicePaths);
   return {
     ...original,
-    decodeMaterialRegistry: (input?: unknown) =>
-      original
-        .decodeMaterialRegistry(input)
-        .pipe(
-          Effect.map((entries) =>
-            Arr.filter(entries, ({ sourcePath }) =>
-              HashSet.has(sourcePaths, sourcePath)
-            )
+    decodeMaterialRegistry: () =>
+      original.decodeMaterialRegistry({ checkoutRoot: CHECKOUT_ROOT }).pipe(
+        Effect.provide(NodeServices.layer),
+        Effect.map((entries) =>
+          Arr.filter(entries, ({ sourcePath }) =>
+            HashSet.has(sourcePaths, sourcePath)
           )
-        ),
+        )
+      ),
   };
 });
 

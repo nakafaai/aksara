@@ -1,3 +1,4 @@
+import { NodeServices } from "@effect/platform-node";
 import { beforeEach, expect, it } from "@effect/vitest";
 import { CompileDocumentSourceSchema } from "@nakafa/aksara-contracts/content";
 import {
@@ -16,7 +17,6 @@ import {
   Path,
   Stream,
 } from "effect";
-
 import { prepareMaterialPublication } from "#publisher/material/publication";
 import { prepareContentRelease } from "#publisher/preparation";
 import {
@@ -39,6 +39,7 @@ import {
   publishPrepared,
   testVerificationResolver,
 } from "#test/publication/run";
+import { CHECKOUT_ROOT } from "#test/root";
 import { emptySnapshotSources, snapshotPolicyBase } from "#test/snapshot";
 
 const compilerState = vi.hoisted(() => ({ calls: 0 }));
@@ -64,16 +65,15 @@ vi.mock("@nakafa/aksara-corpus/material/registry", async (importOriginal) => {
   const sourcePaths = HashSet.fromIterable<string>(materialSlicePaths);
   return {
     ...original,
-    decodeMaterialRegistry: (input?: unknown) =>
-      original
-        .decodeMaterialRegistry(input)
-        .pipe(
-          Effect.map((entries) =>
-            Arr.filter(entries, ({ sourcePath }) =>
-              HashSet.has(sourcePaths, sourcePath)
-            )
+    decodeMaterialRegistry: () =>
+      original.decodeMaterialRegistry({ checkoutRoot: CHECKOUT_ROOT }).pipe(
+        Effect.provide(NodeServices.layer),
+        Effect.map((entries) =>
+          Arr.filter(entries, ({ sourcePath }) =>
+            HashSet.has(sourcePaths, sourcePath)
           )
-        ),
+        )
+      ),
   };
 });
 
