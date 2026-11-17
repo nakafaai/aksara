@@ -1,6 +1,6 @@
-# Turn powers into focal lengths, then choose which lens does which job
+# Read the Moon's angle off the objective's image, then choose the eyepiece
 
-The power of a lens is <InlineMath math="P=\dfrac1f" /> with <InlineMath math="f" /> in metres. The **weaker lens, with the long focal length, is the objective** and the stronger one is the eyepiece. In normal adjustment the lenses are <InlineMath math="f_o+f_e" /> apart, and the angular magnification <InlineMath math="\dfrac{f_o}{f_e}" /> multiplies the angle the Moon fills.
+The objective forms a real image of the Moon at its focal plane, and the image size is the **focal length times the angle in radians**. That gives the Moon's angle. The magnification needed is the ratio of the two angles, which is also <InlineMath math="\dfrac{f_o}{f_e}" />, so it fixes the eyepiece's focal length, and its power is <InlineMath math="P=\dfrac1f" /> with <InlineMath math="f" /> **in metres**.
 
 <Chart
   title={<>Angle the Moon Fills, by Eye and Through the Telescope</>}
@@ -10,21 +10,17 @@ The power of a lens is <InlineMath math="P=\dfrac1f" /> with <InlineMath math="f
     { label: "Angle", mark: "bar", values: [0.5, 10] },
   ]}
   valueLabel="Angle (°)"
-  description={<>The Moon fills <InlineMath math="0.50°" /> by eye and <InlineMath math="10°" /> through the telescope, twenty times larger, the ratio of the focal lengths <InlineMath math="80\text{ cm}" /> and <InlineMath math="4.0\text{ cm}" />.</>}
+  description={<>The objective's <InlineMath math="7.0\text{ mm}" /> image at <InlineMath math="80\text{ cm}" /> shows that the Moon fills <InlineMath math="0.50°" />. Filling <InlineMath math="10°" /> needs a magnification of <InlineMath math="20" />, which a <InlineMath math="4.0\text{ cm}" /> eyepiece gives.</>}
 />
 
-<BlockMath math="f_o=\frac{1}{1.25}=0.80\text{ m}=80\text{ cm},\qquad f_e=\frac{1}{25}=0.040\text{ m}=4.0\text{ cm}" />
+<BlockMath math="\theta=\frac{7.0\times10^{-3}}{0.80}=8.75\times10^{-3}\text{ rad}=8.75\times10^{-3}\times\frac{180}{3.14}\approx0.50°" />
 
-<BlockMath math="L=80+4.0=84\text{ cm},\qquad M=\frac{80}{4.0}=20,\qquad \theta=20\times0.50°=10°" />
+<BlockMath math="M=\frac{10}{0.50}=20,\qquad f_e=\frac{80}{20}=4.0\text{ cm},\qquad P=\frac{1}{0.040}=+25\text{ D},\qquad L=80+4.0=84\text{ cm}" />
 
-The lenses sit <InlineMath math="84\text{ cm}" /> apart. The telescope magnifies angles <InlineMath math="20" /> times, so the Moon appears to fill <InlineMath math="10°" /> instead of <InlineMath math="0.50°" />.
-
-<BlockMath math="\theta=0.50°=0.50\times\frac{\pi}{180}=8.7\times10^{-3}\text{ rad},\qquad d=f_o\,\theta=0.80\times8.7\times10^{-3}\approx7.0\times10^{-3}\text{ m}" />
-
-The objective forms a real image of the Moon at its focal plane. An angle in radians times the focal length gives the image size: about <InlineMath math="7.0\text{ mm}" /> across, which the eyepiece then magnifies.
+The Moon fills <InlineMath math="0.50°" />. To make it fill <InlineMath math="10°" /> the eyepiece needs a focal length of <InlineMath math="4.0\text{ cm}" />, a power of <InlineMath math="+25\text{ D}" />, and in normal adjustment the lenses sit <InlineMath math="84\text{ cm}" /> apart.
 
 # Why the other options are wrong
 
+- <InlineMath math="+0.25\text{ D}" /> takes the reciprocal of the focal length **in centimetres**, but power uses metres.
 - <InlineMath math="76\text{ cm}" /> **subtracts the focal lengths**, but in normal adjustment their foci meet between the lenses, so the lengths add.
-- <InlineMath math="0.025°" /> and <InlineMath math="0.35\text{ mm}" /> **swap the lenses**, using the strong lens as the objective.
-- <InlineMath math="0.40\text{ m}" /> multiplies the focal length by the angle **in degrees**, but the image size needs the angle in radians.
+- <InlineMath math="+5.0\text{ D}" /> and <InlineMath math="100\text{ cm}" /> take the **magnification as the eyepiece's focal length**, <InlineMath math="20\text{ cm}" />.

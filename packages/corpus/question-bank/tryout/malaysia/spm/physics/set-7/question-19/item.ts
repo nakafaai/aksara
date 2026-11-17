@@ -12,19 +12,19 @@ const item: ItemSource = {
       options: [
         {
           correct: false,
-          label: "$$76\\text{ cm}$$, $$10°$$ and $$7.0\\text{ mm}$$",
+          label: "$$0.50°$$, $$+0.25\\text{ D}$$ and $$84\\text{ cm}$$",
         },
         {
           correct: false,
-          label: "$$84\\text{ cm}$$, $$0.025°$$ and $$0.35\\text{ mm}$$",
+          label: "$$0.50°$$, $$+25\\text{ D}$$ and $$76\\text{ cm}$$",
         },
         {
           correct: true,
-          label: "$$84\\text{ cm}$$, $$10°$$ and $$7.0\\text{ mm}$$",
+          label: "$$0.50°$$, $$+25\\text{ D}$$ and $$84\\text{ cm}$$",
         },
         {
           correct: false,
-          label: "$$84\\text{ cm}$$, $$10°$$ and $$0.40\\text{ m}$$",
+          label: "$$0.50°$$, $$+5.0\\text{ D}$$ and $$100\\text{ cm}$$",
         },
       ],
     },
@@ -33,19 +33,19 @@ const item: ItemSource = {
       options: [
         {
           correct: false,
-          label: "$$76\\text{ cm}$$, $$10°$$ dan $$7.0\\text{ mm}$$",
+          label: "$$0.50°$$, $$+0.25\\text{ D}$$ dan $$84\\text{ cm}$$",
         },
         {
           correct: false,
-          label: "$$84\\text{ cm}$$, $$0.025°$$ dan $$0.35\\text{ mm}$$",
+          label: "$$0.50°$$, $$+25\\text{ D}$$ dan $$76\\text{ cm}$$",
         },
         {
           correct: true,
-          label: "$$84\\text{ cm}$$, $$10°$$ dan $$7.0\\text{ mm}$$",
+          label: "$$0.50°$$, $$+25\\text{ D}$$ dan $$84\\text{ cm}$$",
         },
         {
           correct: false,
-          label: "$$84\\text{ cm}$$, $$10°$$ dan $$0.40\\text{ m}$$",
+          label: "$$0.50°$$, $$+5.0\\text{ D}$$ dan $$100\\text{ cm}$$",
         },
       ],
     },

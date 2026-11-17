@@ -1,6 +1,6 @@
-# Brechkräfte in Brennweiten umrechnen und dann jeder Linse ihre Aufgabe geben
+# Den Mondwinkel aus dem Bild des Objektivs ablesen und dann das Okular wählen
 
-Die Brechkraft einer Linse ist <InlineMath math="P=\dfrac1f" /> mit <InlineMath math="f" /> in Metern. Die **schwächere Linse mit der langen Brennweite ist das Objektiv**, die stärkere das Okular. Bei Normaleinstellung liegen die Linsen <InlineMath math="f_o+f_e" /> auseinander, und die Winkelvergrößerung <InlineMath math="\dfrac{f_o}{f_e}" /> multipliziert den Winkel des Mondes.
+Das Objektiv erzeugt in seiner Brennebene ein reelles Bild des Mondes, die Bildgröße ist **Brennweite mal Winkel im Bogenmaß**. Daraus folgt der Mondwinkel. Die nötige Vergrößerung ist das Verhältnis der beiden Winkel, zugleich <InlineMath math="\dfrac{f_o}{f_e}" />, sie legt also die Okularbrennweite fest, und deren Brechkraft ist <InlineMath math="P=\dfrac1f" /> mit <InlineMath math="f" /> **in Metern**.
 
 <Chart
   title={<>Winkel des Mondes mit bloßem Auge und durch das Fernrohr</>}
@@ -10,21 +10,17 @@ Die Brechkraft einer Linse ist <InlineMath math="P=\dfrac1f" /> mit <InlineMath 
     { label: "Winkel", mark: "bar", values: [0.5, 10] },
   ]}
   valueLabel="Winkel (°)"
-  description={<>Der Mond füllt mit bloßem Auge <InlineMath math="0{,}50°" /> und durch das Fernrohr <InlineMath math="10°" />, zwanzigmal mehr, das Verhältnis der Brennweiten <InlineMath math="80\text{ cm}" /> und <InlineMath math="4{,}0\text{ cm}" />.</>}
+  description={<>Das <InlineMath math="7{,}0\text{ mm}" /> große Bild des Objektivs bei <InlineMath math="80\text{ cm}" /> zeigt, dass der Mond <InlineMath math="0{,}50°" /> füllt. <InlineMath math="10°" /> zu füllen, braucht die Vergrößerung <InlineMath math="20" />, die ein Okular mit <InlineMath math="4{,}0\text{ cm}" /> liefert.</>}
 />
 
-<BlockMath math="f_o=\frac{1}{1{,}25}=0{,}80\text{ m}=80\text{ cm},\qquad f_e=\frac{1}{25}=0{,}040\text{ m}=4{,}0\text{ cm}" />
+<BlockMath math="\theta=\frac{7{,}0\cdot10^{-3}}{0{,}80}=8{,}75\cdot10^{-3}\text{ rad}=8{,}75\cdot10^{-3}\cdot\frac{180}{3{,}14}\approx0{,}50°" />
 
-<BlockMath math="L=80+4{,}0=84\text{ cm},\qquad M=\frac{80}{4{,}0}=20,\qquad \theta=20\cdot0{,}50°=10°" />
+<BlockMath math="M=\frac{10}{0{,}50}=20,\qquad f_e=\frac{80}{20}=4{,}0\text{ cm},\qquad P=\frac{1}{0{,}040}=+25\text{ D},\qquad L=80+4{,}0=84\text{ cm}" />
 
-Die Linsen liegen <InlineMath math="84\text{ cm}" /> auseinander. Das Fernrohr vergrößert Winkel <InlineMath math="20" />-fach, der Mond füllt also <InlineMath math="10°" /> statt <InlineMath math="0{,}50°" />.
-
-<BlockMath math="\theta=0{,}50°=0{,}50\cdot\frac{\pi}{180}=8{,}7\cdot10^{-3}\text{ rad},\qquad d=f_o\,\theta=0{,}80\cdot8{,}7\cdot10^{-3}\approx7{,}0\cdot10^{-3}\text{ m}" />
-
-Das Objektiv erzeugt in seiner Brennebene ein reelles Bild des Mondes. Winkel im Bogenmaß mal Brennweite ergibt die Bildgröße: etwa <InlineMath math="7{,}0\text{ mm}" />, die das Okular dann vergrößert.
+Der Mond füllt <InlineMath math="0{,}50°" />. Damit er <InlineMath math="10°" /> füllt, braucht das Okular <InlineMath math="4{,}0\text{ cm}" /> Brennweite, also <InlineMath math="+25\text{ D}" />, und bei Normaleinstellung liegen die Linsen <InlineMath math="84\text{ cm}" /> auseinander.
 
 # Warum die anderen Antworten falsch sind
 
+- <InlineMath math="+0{,}25\text{ D}" /> nimmt den Kehrwert der Brennweite **in Zentimetern**, doch die Brechkraft rechnet in Metern.
 - <InlineMath math="76\text{ cm}" /> **subtrahiert die Brennweiten**, doch bei Normaleinstellung treffen sich die Brennpunkte zwischen den Linsen, die Längen addieren sich.
-- <InlineMath math="0{,}025°" /> und <InlineMath math="0{,}35\text{ mm}" /> **vertauschen die Linsen** und nehmen die starke Linse als Objektiv.
-- <InlineMath math="0{,}40\text{ m}" /> multipliziert die Brennweite mit dem Winkel **in Grad**, doch die Bildgröße braucht das Bogenmaß.
+- <InlineMath math="+5{,}0\text{ D}" /> und <InlineMath math="100\text{ cm}" /> nehmen die **Vergrößerung als Brennweite des Okulars**, <InlineMath math="20\text{ cm}" />.
