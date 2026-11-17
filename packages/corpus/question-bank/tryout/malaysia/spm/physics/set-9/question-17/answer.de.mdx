@@ -1,0 +1,23 @@
+# Der größte Linsenweg gibt die größte Bildweite
+
+Eine ferne Szene wird bei <InlineMath math="v = f = 50" /> mm scharf. Ein näherer Gegenstand braucht eine **größere** Bildweite, und die Linse schafft höchstens <InlineMath math="v = 54" /> mm. Dann ist <InlineMath math="1 \div u = 1 \div 50 - 1 \div 54" />, also <InlineMath math="u = 675" /> mm, etwa <InlineMath math="0{,}68" /> m.
+
+<Mermaid
+  title={<>Der Linsenweg bestimmt den nächsten Gegenstand</>}
+  description={<>Nähere Gegenstände brauchen ein Bild weiter hinter der Linse, die größte erreichbare Bildweite entscheidet also, wie nah die Kamera scharf stellen kann.</>}
+  chart={`
+    flowchart LR
+      N0["Ferne Szene: Bild bei f = 50 mm"] --> N1["Größter Abstand zum Sensor: v = 54 mm"]
+      N1 --> N2["1/u = 1/50 − 1/54"]
+      N2 --> N3["u = 675 mm = 0,68 m"]
+      N3 --> N4["m = v ÷ u = 54 ÷ 675 = 0,080"]
+  `}
+/>
+
+Der Abbildungsmaßstab ist <InlineMath math="v \div u = 54 \div 675 = 0{,}080" />: Das Bild auf dem Sensor ist ein Zwölftel so groß wie der Gegenstand.
+
+# Warum die anderen Antworten falsch sind
+
+- <InlineMath math="12{,}5" /> teilt die Gegenstandsweite durch die Bildweite, **verkehrt herum**.
+- <InlineMath math="26\text{ mm}" /> **addiert** die Kehrwerte, doch ein reelles Bild verlangt <InlineMath math="1 \div u = 1 \div f - 1 \div v" />.
+- <InlineMath math="0{,}074" /> nimmt <InlineMath math="f \div u" />, doch der Maßstab ist die **Bildweite** durch die Gegenstandsweite.

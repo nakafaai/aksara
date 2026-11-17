@@ -1,0 +1,23 @@
+# Gerakan terjauh kanta memberi jarak imej terbesar
+
+Pemandangan jauh terfokus pada <InlineMath math="v = f = 50" /> mm. Objek yang lebih dekat memerlukan jarak imej **lebih besar**, dan kanta boleh memberi paling banyak <InlineMath math="v = 54" /> mm. Maka <InlineMath math="1 \div u = 1 \div 50 - 1 \div 54" />, jadi <InlineMath math="u = 675" /> mm, kira-kira <InlineMath math="0.68" /> m.
+
+<Mermaid
+  title={<>Gerakan Kanta Menentukan Objek Terdekat</>}
+  description={<>Objek yang lebih dekat memerlukan imej lebih jauh di belakang kanta, jadi jarak imej terbesar yang boleh dicapai kanta menentukan sedekat mana kamera boleh memfokus.</>}
+  chart={`
+    flowchart LR
+      N0["Pemandangan jauh: imej pada f = 50 mm"] --> N1["Kanta paling jauh dari sensor: v = 54 mm"]
+      N1 --> N2["1/u = 1/50 − 1/54"]
+      N2 --> N3["u = 675 mm = 0.68 m"]
+      N3 --> N4["m = v ÷ u = 54 ÷ 675 = 0.080"]
+  `}
+/>
+
+Pembesarannya <InlineMath math="v \div u = 54 \div 675 = 0.080" />: imej pada sensor satu per dua belas saiz objek.
+
+# Mengapa pilihan lain salah
+
+- <InlineMath math="12.5" /> membahagi jarak objek dengan jarak imej, **secara terbalik**.
+- <InlineMath math="26\text{ mm}" /> **menambah** salingan, tetapi imej nyata memerlukan <InlineMath math="1 \div u = 1 \div f - 1 \div v" />.
+- <InlineMath math="0.074" /> menggunakan <InlineMath math="f \div u" />, tetapi pembesaran ialah **jarak imej** dibahagi jarak objek.

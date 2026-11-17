@@ -1,0 +1,23 @@
+# Refract one way, then check the critical angle the other way
+
+Going into shallow water, <InlineMath math="\sin r = \sin 50^\circ \times 0.30 \div 0.40 = 0.575" />, so <InlineMath math="r = 35^\circ" />: the waves slow down and bend **towards** the normal.
+
+<Mermaid
+  title={<>Water Waves Have a Critical Angle Too</>}
+  description={<>Waves slowing into shallow water bend towards the normal, but waves heading into faster deep water can be turned back completely if they meet the boundary too obliquely.</>}
+  chart={`
+    flowchart LR
+      N0["Deep to shallow: sin r = sin 50° × 0.30 ÷ 0.40"] --> N1["sin r = 0.575, r = 35°"]
+      N2["Shallow to deep: waves speed up and bend away"] --> N3["Critical angle: sin c = 0.30 ÷ 0.40, c = 48.6°"]
+      N3 --> N4["60° > 48.6°"]
+      N4 --> N5["Totally reflected back into the shallow region"]
+  `}
+/>
+
+Going the other way, the waves speed up and bend away from the normal. They can just leave at the critical angle, where <InlineMath math="\sin c = 0.30 \div 0.40" />, so <InlineMath math="c = 48.6^\circ" />. At <InlineMath math="60^\circ" /> they are beyond it, so they are **totally reflected** back into the shallow region.
+
+# Why the other options are wrong
+
+- <InlineMath math="41^\circ" /> uses the deep-to-shallow ratio again, but waves entering **faster** water bend away from the normal.
+- Along the boundary happens only **at** the critical angle, <InlineMath math="48.6^\circ" />, not beyond it.
+- <InlineMath math="38^\circ" /> scales the **angle** by the speed ratio, but it is the sines that are in that ratio.
