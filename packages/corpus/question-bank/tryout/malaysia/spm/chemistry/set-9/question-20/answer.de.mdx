@@ -1,25 +1,27 @@
-# Verfolge jedes Schwefelatom in ein Säuremolekül, verliere vier Prozent im Konverter und verdünne die reine Säure dann auf achtundneunzig Prozent
+# Der Umsatz bestimmt die Säure und das übrige Gas, und die Säure bestimmt dann den Dünger
 
-Der Schwefel sind <InlineMath math="1{,}00\times10^6\div32=31{.}250\text{ mol}" />, die zu <InlineMath math="31{.}250\text{ mol}" /> Schwefeldioxid verbrennen. **Nur <InlineMath math="96\%" /> werden umgesetzt**, <InlineMath math="30{.}000\text{ mol}" /> Schwefeltrioxid, und jedes gibt eine Schwefelsäure, <InlineMath math="30{.}000\times98=2{,}94\times10^6\text{ g}" />, <InlineMath math="2{,}94" /> Tonnen. **Diese reine Säure sind nur <InlineMath math="98\%" /> des verkauften Produkts**, also <InlineMath math="2{,}94\div0{,}98=3{,}00" /> Tonnen konzentrierte Säure.
+Der Schwefel sind <InlineMath math="1{,}00\times10^6\div32=3{,}125\times10^4\text{ mol}" />, und jeder Schwefel gibt ein Schwefeldioxid. **Nur <InlineMath math="96\%" /> reagieren weiter**, <InlineMath math="3{,}00\times10^4\text{ mol}" /> Schwefeltrioxid und damit Schwefelsäure, <InlineMath math="3{,}00\times10^4\times98=2{,}94\times10^6\text{ g}" />. Das sind <InlineMath math="98\%" /> der konzentrierten Säure, also werden <InlineMath math="2{,}94\div0{,}98=3{,}00" /> Tonnen verkauft. **Die übrigen <InlineMath math="4\%" /> sind <InlineMath math="1250\text{ mol}" /> Schwefeldioxid**, die <InlineMath math="1250\times56=70{,}0\text{ kg}" /> Calciumoxid brauchen. Jede Schwefelsäure gibt ein Ammoniumsulfat, <InlineMath math="3{,}00\times10^4\times132=3{,}96\times10^6\text{ g}" />, <InlineMath math="3{,}96" /> Tonnen.
 
 <Chart
-  title={<>Stoffmengen durch die Anlage</>}
-  description={<>Die <InlineMath math="31{.}250\text{ mol}" /> Schwefeldioxid geben je <InlineMath math="30{.}000\text{ mol}" /> Schwefeltrioxid und Schwefelsäure.</>}
+  title={<>Wohin der Schwefel geht</>}
+  description={<>Von den <InlineMath math="31{,}25\text{ kmol}" /> Schwefel enden <InlineMath math="30{,}0\text{ kmol}" /> als Schwefelsäure, und <InlineMath math="1{,}25\text{ kmol}" /> werden als Calciumsulfit gebunden.</>}
   bars="apart"
-  categories={["Schwefeldioxid", "Schwefeltrioxid", "Schwefelsäure"]}
+  categories={["Verbrannter Schwefel", "Schwefelsäure", "Gebundenes Schwefeldioxid"]}
   series={[
-    { label: "Stoffmenge", mark: "bar", values: [31250, 30000, 30000] },
+    { label: "Stoffmenge", mark: "bar", values: [31.25, 30.0, 1.25] },
   ]}
-  valueLabel="Stoffmenge (mol)"
+  valueLabel="Stoffmenge (kmol)"
 />
 
 <BlockMath math="\begin{aligned}
-m(\text{H}_2\text{SO}_4)&=0{,}96\times\tfrac{1{,}00\times10^6}{32}\times98=2{,}94\times10^6\text{ g}\\
-m_{\text{sold}}&=\tfrac{2{,}94}{0{,}98}=3{,}00\text{ tonnes}
+n(\text{H}_2\text{SO}_4)&=0{,}96\times\tfrac{1{,}00\times10^6}{32}=3{,}00\times10^4\text{ mol}\\
+m_{98\%}&=\tfrac{3{,}00\times10^4\times98}{0{,}98}=3{,}00\times10^6\text{ g}\\
+m(\text{CaO})&=0{,}04\times3{,}125\times10^4\times56=7{,}00\times10^4\text{ g}\\
+m((\text{NH}_4)_2\text{SO}_4)&=3{,}00\times10^4\times132=3{,}96\times10^6\text{ g}
 \end{aligned}" />
 
 # Warum die anderen Antworten falsch sind
 
-- <InlineMath math="3{,}06" /> Tonnen übersehen den Konverter. **Nur <InlineMath math="96\%" /> des Schwefeldioxids werden zu Schwefeltrioxid**.
-- <InlineMath math="2{,}88" /> Tonnen multiplizieren mit <InlineMath math="98\%" />, doch die konzentrierte Säure wiegt mehr als die reine Säure darin.
-- <InlineMath math="1{,}47" /> Tonnen machen ein Säuremolekül je zwei Schwefelatome, doch jedes Schwefelatom gibt eines.
+- <InlineMath math="2{,}88" /> Tonnen multipliziert mit <InlineMath math="98\%" />. **Die reine Säure ist nur ein Teil der konzentrierten Säure**, also durch <InlineMath math="0{,}98" /> teilen.
+- <InlineMath math="3{,}13" /> Tonnen und <InlineMath math="0\text{ kg}" /> setzen alles Schwefeldioxid um und übersehen, dass nur <InlineMath math="96\%" /> reagieren.
+- <InlineMath math="1750\text{ kg}" /> Calciumoxid binden alles Schwefeldioxid, doch nur die nicht umgesetzten <InlineMath math="4\%" /> erreichen die Falle.

@@ -12,19 +12,19 @@ const item: ItemSource = {
       options: [
         {
           correct: false,
-          label: "$$192\\text{ dm}^3$$, $$320\\text{ g}$$, $$280\\text{ g}$$",
+          label: "$$1000$$, $$448\\text{ g}$$, $$384\\text{ dm}^3$$",
         },
         {
           correct: false,
-          label: "$$384\\text{ dm}^3$$, $$320\\text{ g}$$, $$560\\text{ g}$$",
+          label: "$$1000$$, $$560\\text{ g}$$, $$192\\text{ dm}^3$$",
         },
         {
           correct: true,
-          label: "$$384\\text{ dm}^3$$, $$640\\text{ g}$$, $$560\\text{ g}$$",
+          label: "$$1000$$, $$560\\text{ g}$$, $$384\\text{ dm}^3$$",
         },
         {
           correct: false,
-          label: "$$384\\text{ dm}^3$$, $$640\\text{ g}$$, $$358\\text{ g}$$",
+          label: "$$2230$$, $$560\\text{ g}$$, $$384\\text{ dm}^3$$",
         },
       ],
     },
@@ -33,19 +33,19 @@ const item: ItemSource = {
       options: [
         {
           correct: false,
-          label: "$$192\\text{ dm}^3$$, $$320\\text{ g}$$, $$280\\text{ g}$$",
+          label: "$$1000$$, $$448\\text{ g}$$, $$384\\text{ dm}^3$$",
         },
         {
           correct: false,
-          label: "$$384\\text{ dm}^3$$, $$320\\text{ g}$$, $$560\\text{ g}$$",
+          label: "$$1000$$, $$560\\text{ g}$$, $$192\\text{ dm}^3$$",
         },
         {
           correct: true,
-          label: "$$384\\text{ dm}^3$$, $$640\\text{ g}$$, $$560\\text{ g}$$",
+          label: "$$1000$$, $$560\\text{ g}$$, $$384\\text{ dm}^3$$",
         },
         {
           correct: false,
-          label: "$$384\\text{ dm}^3$$, $$640\\text{ g}$$, $$358\\text{ g}$$",
+          label: "$$2230$$, $$560\\text{ g}$$, $$384\\text{ dm}^3$$",
         },
       ],
     },

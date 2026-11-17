@@ -12,19 +12,23 @@ const item: ItemSource = {
       options: [
         {
           correct: true,
-          label: "$$0.762\\text{ g}$$, $$+5$$ to $$0$$, $$0.528\\text{ g}$$",
+          label:
+            "$$0.100\\text{ mol dm}^{-3}$$, $$0.158\\text{ g}$$, $$31.7\\%$$",
         },
         {
           correct: false,
-          label: "$$0.254\\text{ g}$$, $$+5$$ to $$0$$, $$0.176\\text{ g}$$",
+          label:
+            "$$0.0500\\text{ mol dm}^{-3}$$, $$0.158\\text{ g}$$, $$31.7\\%$$",
         },
         {
           correct: false,
-          label: "$$0.762\\text{ g}$$, $$+7$$ to $$0$$, $$0.528\\text{ g}$$",
+          label:
+            "$$0.100\\text{ mol dm}^{-3}$$, $$0.106\\text{ g}$$, $$21.1\\%$$",
         },
         {
           correct: false,
-          label: "$$0.762\\text{ g}$$, $$+5$$ to $$0$$, $$0.176\\text{ g}$$",
+          label:
+            "$$0.100\\text{ mol dm}^{-3}$$, $$0.264\\text{ g}$$, $$52.8\\%$$",
         },
       ],
     },
@@ -34,22 +38,22 @@ const item: ItemSource = {
         {
           correct: true,
           label:
-            "$$0.762\\text{ g}$$, $$+5$$ kepada $$0$$, $$0.528\\text{ g}$$",
+            "$$0.100\\text{ mol dm}^{-3}$$, $$0.158\\text{ g}$$, $$31.7\\%$$",
         },
         {
           correct: false,
           label:
-            "$$0.254\\text{ g}$$, $$+5$$ kepada $$0$$, $$0.176\\text{ g}$$",
+            "$$0.0500\\text{ mol dm}^{-3}$$, $$0.158\\text{ g}$$, $$31.7\\%$$",
         },
         {
           correct: false,
           label:
-            "$$0.762\\text{ g}$$, $$+7$$ kepada $$0$$, $$0.528\\text{ g}$$",
+            "$$0.100\\text{ mol dm}^{-3}$$, $$0.106\\text{ g}$$, $$21.1\\%$$",
         },
         {
           correct: false,
           label:
-            "$$0.762\\text{ g}$$, $$+5$$ kepada $$0$$, $$0.176\\text{ g}$$",
+            "$$0.100\\text{ mol dm}^{-3}$$, $$0.264\\text{ g}$$, $$52.8\\%$$",
         },
       ],
     },

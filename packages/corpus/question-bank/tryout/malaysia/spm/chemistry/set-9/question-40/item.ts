@@ -12,19 +12,13 @@ const item: ItemSource = {
       options: [
         {
           correct: false,
-          label: "$$230\\text{ g}$$, $$1.00\\times10^{21}$$ molecules",
+          label: "Ethanoic anhydride, $$50.0\\%$$, $$9$$ tablets",
         },
-        {
-          correct: true,
-          label: "$$271\\text{ g}$$, $$1.00\\times10^{21}$$ molecules",
-        },
+        { correct: true, label: "Salicylic acid, $$75.0\\%$$, $$9$$ tablets" },
+        { correct: false, label: "Salicylic acid, $$80.0\\%$$, $$9$$ tablets" },
         {
           correct: false,
-          label: "$$196\\text{ g}$$, $$1.00\\times10^{21}$$ molecules",
-        },
-        {
-          correct: false,
-          label: "$$271\\text{ g}$$, $$1.00\\times10^{24}$$ molecules",
+          label: "Salicylic acid, $$75.0\\%$$, $$12$$ tablets",
         },
       ],
     },
@@ -33,20 +27,11 @@ const item: ItemSource = {
       options: [
         {
           correct: false,
-          label: "$$230\\text{ g}$$, $$1.00\\times10^{21}$$ molekul",
+          label: "Anhidrida etanoik, $$50.0\\%$$, $$9$$ tablet",
         },
-        {
-          correct: true,
-          label: "$$271\\text{ g}$$, $$1.00\\times10^{21}$$ molekul",
-        },
-        {
-          correct: false,
-          label: "$$196\\text{ g}$$, $$1.00\\times10^{21}$$ molekul",
-        },
-        {
-          correct: false,
-          label: "$$271\\text{ g}$$, $$1.00\\times10^{24}$$ molekul",
-        },
+        { correct: true, label: "Asid salisilik, $$75.0\\%$$, $$9$$ tablet" },
+        { correct: false, label: "Asid salisilik, $$80.0\\%$$, $$9$$ tablet" },
+        { correct: false, label: "Asid salisilik, $$75.0\\%$$, $$12$$ tablet" },
       ],
     },
   },

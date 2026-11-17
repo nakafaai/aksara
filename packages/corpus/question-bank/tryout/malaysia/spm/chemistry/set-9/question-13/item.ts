@@ -13,22 +13,22 @@ const item: ItemSource = {
         {
           correct: true,
           label:
-            "$$1.81\\times10^{23}$$ electrons, $$3.60\\text{ dm}^3$$, $$3.60\\text{ g}$$",
+            "$$42.9\\%$$, $$7.22\\times10^{22}$$ electrons, $$1.26\\text{ dm}^3$$",
         },
         {
           correct: false,
           label:
-            "$$6.02\\times10^{22}$$ electrons, $$1.20\\text{ dm}^3$$, $$1.20\\text{ g}$$",
+            "$$57.1\\%$$, $$7.22\\times10^{22}$$ electrons, $$1.26\\text{ dm}^3$$",
         },
         {
           correct: false,
           label:
-            "$$1.81\\times10^{23}$$ electrons, $$3.60\\text{ dm}^3$$, $$7.20\\text{ g}$$",
+            "$$42.9\\%$$, $$3.61\\times10^{22}$$ electrons, $$1.26\\text{ dm}^3$$",
         },
         {
           correct: false,
           label:
-            "$$1.81\\times10^{23}$$ electrons, $$7.20\\text{ dm}^3$$, $$7.20\\text{ g}$$",
+            "$$42.9\\%$$, $$7.22\\times10^{22}$$ electrons, $$2.52\\text{ dm}^3$$",
         },
       ],
     },
@@ -38,22 +38,22 @@ const item: ItemSource = {
         {
           correct: true,
           label:
-            "$$1.81\\times10^{23}$$ elektron, $$3.60\\text{ dm}^3$$, $$3.60\\text{ g}$$",
+            "$$42.9\\%$$, $$7.22\\times10^{22}$$ elektron, $$1.26\\text{ dm}^3$$",
         },
         {
           correct: false,
           label:
-            "$$6.02\\times10^{22}$$ elektron, $$1.20\\text{ dm}^3$$, $$1.20\\text{ g}$$",
+            "$$57.1\\%$$, $$7.22\\times10^{22}$$ elektron, $$1.26\\text{ dm}^3$$",
         },
         {
           correct: false,
           label:
-            "$$1.81\\times10^{23}$$ elektron, $$3.60\\text{ dm}^3$$, $$7.20\\text{ g}$$",
+            "$$42.9\\%$$, $$3.61\\times10^{22}$$ elektron, $$1.26\\text{ dm}^3$$",
         },
         {
           correct: false,
           label:
-            "$$1.81\\times10^{23}$$ elektron, $$7.20\\text{ dm}^3$$, $$7.20\\text{ g}$$",
+            "$$42.9\\%$$, $$7.22\\times10^{22}$$ elektron, $$2.52\\text{ dm}^3$$",
         },
       ],
     },

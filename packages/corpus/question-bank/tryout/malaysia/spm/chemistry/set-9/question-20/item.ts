@@ -10,19 +10,43 @@ const item: ItemSource = {
     en: {
       kind: "choice",
       options: [
-        { correct: false, label: "$$3.06$$ tonnes, $$3.13$$ tonnes" },
-        { correct: false, label: "$$2.94$$ tonnes, $$2.88$$ tonnes" },
-        { correct: true, label: "$$2.94$$ tonnes, $$3.00$$ tonnes" },
-        { correct: false, label: "$$1.47$$ tonnes, $$1.50$$ tonnes" },
+        {
+          correct: false,
+          label: "$$2.88$$ tonnes, $$70.0\\text{ kg}$$, $$3.96$$ tonnes",
+        },
+        {
+          correct: false,
+          label: "$$3.13$$ tonnes, $$0\\text{ kg}$$, $$4.13$$ tonnes",
+        },
+        {
+          correct: true,
+          label: "$$3.00$$ tonnes, $$70.0\\text{ kg}$$, $$3.96$$ tonnes",
+        },
+        {
+          correct: false,
+          label: "$$3.00$$ tonnes, $$1750\\text{ kg}$$, $$3.96$$ tonnes",
+        },
       ],
     },
     ms: {
       kind: "choice",
       options: [
-        { correct: false, label: "$$3.06$$ tan, $$3.13$$ tan" },
-        { correct: false, label: "$$2.94$$ tan, $$2.88$$ tan" },
-        { correct: true, label: "$$2.94$$ tan, $$3.00$$ tan" },
-        { correct: false, label: "$$1.47$$ tan, $$1.50$$ tan" },
+        {
+          correct: false,
+          label: "$$2.88$$ tan, $$70.0\\text{ kg}$$, $$3.96$$ tan",
+        },
+        {
+          correct: false,
+          label: "$$3.13$$ tan, $$0\\text{ kg}$$, $$4.13$$ tan",
+        },
+        {
+          correct: true,
+          label: "$$3.00$$ tan, $$70.0\\text{ kg}$$, $$3.96$$ tan",
+        },
+        {
+          correct: false,
+          label: "$$3.00$$ tan, $$1750\\text{ kg}$$, $$3.96$$ tan",
+        },
       ],
     },
   },

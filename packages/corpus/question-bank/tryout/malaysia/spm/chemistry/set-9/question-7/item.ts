@@ -10,19 +10,19 @@ const item: ItemSource = {
     en: {
       kind: "choice",
       options: [
-        { correct: false, label: "$$10.6\\text{ g}$$, $$40.0\\text{ cm}^3$$" },
-        { correct: true, label: "$$12.4\\text{ g}$$, $$40.0\\text{ cm}^3$$" },
-        { correct: false, label: "$$12.4\\text{ g}$$, $$20.0\\text{ cm}^3$$" },
-        { correct: false, label: "$$12.4\\text{ g}$$, $$400\\text{ cm}^3$$" },
+        { correct: false, label: "$$x=2$$, $$6.20\\text{ g}$$" },
+        { correct: true, label: "$$x=10$$, $$3.10\\text{ g}$$" },
+        { correct: false, label: "$$x=10$$, $$2.65\\text{ g}$$" },
+        { correct: false, label: "$$x=10$$, $$0.310\\text{ g}$$" },
       ],
     },
     ms: {
       kind: "choice",
       options: [
-        { correct: false, label: "$$10.6\\text{ g}$$, $$40.0\\text{ cm}^3$$" },
-        { correct: true, label: "$$12.4\\text{ g}$$, $$40.0\\text{ cm}^3$$" },
-        { correct: false, label: "$$12.4\\text{ g}$$, $$20.0\\text{ cm}^3$$" },
-        { correct: false, label: "$$12.4\\text{ g}$$, $$400\\text{ cm}^3$$" },
+        { correct: false, label: "$$x=2$$, $$6.20\\text{ g}$$" },
+        { correct: true, label: "$$x=10$$, $$3.10\\text{ g}$$" },
+        { correct: false, label: "$$x=10$$, $$2.65\\text{ g}$$" },
+        { correct: false, label: "$$x=10$$, $$0.310\\text{ g}$$" },
       ],
     },
   },

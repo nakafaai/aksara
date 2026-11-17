@@ -1,25 +1,26 @@
-# Bestimme das Aspirin der Charge, rechne für die Ausbeute zur Säure hoch und zähle die Moleküle einer Tablette aus ihrer eigenen Masse
+# Stoffmengen, nicht Massen, entscheiden, welcher Stoff ausgeht, und nur das reine Produkt zählt für die Ausbeute
 
-Die Charge enthält <InlineMath math="1000\times0{,}300=300\text{ g}" /> Aspirin, <InlineMath math="M_r=180" />, <InlineMath math="1{,}667\text{ mol}" />. **Bei <InlineMath math="85\%" /> Ausbeute muss mehr Säure reagieren, als Aspirin entsteht**: <InlineMath math="1{,}667\div0{,}85=1{,}961\text{ mol}" /> Salicylsäure, <InlineMath math="M_r=138" />, <InlineMath math="271\text{ g}" />. Eine Tablette enthält <InlineMath math="0{,}300\div180=1{,}67\times10^{-3}\text{ mol}" />, **denn <InlineMath math="300\text{ mg}" /> sind <InlineMath math="0{,}300\text{ g}" />**, also <InlineMath math="1{,}00\times10^{21}" /> Moleküle.
+Salicylsäure hat <InlineMath math="M_r=138" />, also sind <InlineMath math="2{,}76\text{ g}" /> <InlineMath math="0{,}0200\text{ mol}" />. Essigsäureanhydrid hat <InlineMath math="M_r=102" />, also sind <InlineMath math="3{,}06\text{ g}" /> <InlineMath math="0{,}0300\text{ mol}" />. **Sie reagieren eins zu eins, also geht die Salicylsäure aus**, und höchstens entstehen <InlineMath math="0{,}0200\text{ mol}" /> Aspirin, <InlineMath math="0{,}0200\times180=3{,}60\text{ g}" />. **Der Rohstoff enthält noch Verunreinigungen**, also zählt für die Ausbeute das reine Produkt, <InlineMath math="2{,}70\div3{,}60=75{,}0\%" />. Das reine Aspirin füllt <InlineMath math="2{,}70\div0{,}300=9" /> Tabletten.
 
 <Chart
-  title={<>Stoffmengen der Charge</>}
-  description={<>Die Charge enthält <InlineMath math="1{,}67\text{ mol}" /> Aspirin, hergestellt aus <InlineMath math="1{,}96\text{ mol}" /> Salicylsäure.</>}
+  title={<>Masse an Aspirin</>}
+  description={<>Die Reaktion könnte <InlineMath math="3{,}60\text{ g}" /> geben, das Rohprodukt wiegt <InlineMath math="2{,}88\text{ g}" />, und <InlineMath math="2{,}70\text{ g}" /> sind rein.</>}
   bars="apart"
-  categories={["Aspirin in der Charge", "Benötigte Salicylsäure"]}
+  categories={["Theoretisch", "Roh", "Rein"]}
   series={[
-    { label: "Stoffmenge", mark: "bar", values: [1.67, 1.96] },
+    { label: "Masse", mark: "bar", values: [3.60, 2.88, 2.70] },
   ]}
-  valueLabel="Stoffmenge (mol)"
+  valueLabel="Masse (g)"
 />
 
 <BlockMath math="\begin{aligned}
-m(\text{C}_7\text{H}_6\text{O}_3)&=\tfrac{300\div180}{0{,}85}\times138=271\text{ g}\\
-N&=\tfrac{0{,}300}{180}\times6{,}02\times10^{23}=1{,}00\times10^{21}
+n(\text{C}_7\text{H}_6\text{O}_3)&=\tfrac{2{,}76}{138}=0{,}0200<n((\text{CH}_3\text{CO})_2\text{O})=\tfrac{3{,}06}{102}=0{,}0300\\
+\eta&=\tfrac{2{,}70}{0{,}0200\times180}\times100=75{,}0\%\\
+N&=\tfrac{2{,}70}{0{,}300}=9
 \end{aligned}" />
 
 # Warum die anderen Antworten falsch sind
 
-- <InlineMath math="230\text{ g}" /> übersieht die Ausbeute. **Nur <InlineMath math="85\%" /> der Säure werden zu Aspirin**, also braucht man mehr.
-- <InlineMath math="196\text{ g}" /> multipliziert mit <InlineMath math="85\%" />, statt zu teilen, was weniger Säure ist, als selbst eine volle Ausbeute bräuchte.
-- <InlineMath math="1{,}00\times10^{24}" /> nimmt <InlineMath math="300\text{ mg}" /> als <InlineMath math="300\text{ g}" />.
+- Essigsäureanhydrid und <InlineMath math="50{,}0\%" /> vergleichen die Stoffmengen falsch herum. **<InlineMath math="0{,}0300\text{ mol}" /> Anhydrid sind mehr als die <InlineMath math="0{,}0200\text{ mol}" /> Säure**, also ist es im Überschuss.
+- <InlineMath math="80{,}0\%" /> nimmt das Rohprodukt von <InlineMath math="2{,}88\text{ g}" />, das noch Verunreinigungen enthält.
+- <InlineMath math="12" /> Tabletten nehmen die theoretischen <InlineMath math="3{,}60\text{ g}" />, nicht das tatsächlich gewonnene Aspirin.

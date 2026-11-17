@@ -12,19 +12,23 @@ const item: ItemSource = {
       options: [
         {
           correct: true,
-          label: "$$9.6\\text{ cm}^3\\text{ s}^{-1}$$, $$2.20\\text{ g}$$",
+          label:
+            "$$480\\text{ cm}^3$$, $$6.0\\text{ cm}^3\\text{ s}^{-1}$$, $$600\\text{ cm}^3$$",
         },
         {
           correct: false,
-          label: "$$9.6\\text{ cm}^3\\text{ s}^{-1}$$, $$4.40\\text{ g}$$",
+          label:
+            "$$600\\text{ cm}^3$$, $$5.0\\text{ cm}^3\\text{ s}^{-1}$$, $$600\\text{ cm}^3$$",
         },
         {
           correct: false,
-          label: "$$17.6\\text{ cm}^3\\text{ s}^{-1}$$, $$2.20\\text{ g}$$",
+          label:
+            "$$480\\text{ cm}^3$$, $$6.0\\text{ cm}^3\\text{ s}^{-1}$$, $$960\\text{ cm}^3$$",
         },
         {
           correct: false,
-          label: "$$4.8\\text{ cm}^3\\text{ s}^{-1}$$, $$2.20\\text{ g}$$",
+          label:
+            "$$480\\text{ cm}^3$$, $$6.0\\text{ cm}^3\\text{ s}^{-1}$$, $$480\\text{ cm}^3$$",
         },
       ],
     },
@@ -33,19 +37,23 @@ const item: ItemSource = {
       options: [
         {
           correct: true,
-          label: "$$9.6\\text{ cm}^3\\text{ s}^{-1}$$, $$2.20\\text{ g}$$",
+          label:
+            "$$480\\text{ cm}^3$$, $$6.0\\text{ cm}^3\\text{ s}^{-1}$$, $$600\\text{ cm}^3$$",
         },
         {
           correct: false,
-          label: "$$9.6\\text{ cm}^3\\text{ s}^{-1}$$, $$4.40\\text{ g}$$",
+          label:
+            "$$600\\text{ cm}^3$$, $$5.0\\text{ cm}^3\\text{ s}^{-1}$$, $$600\\text{ cm}^3$$",
         },
         {
           correct: false,
-          label: "$$17.6\\text{ cm}^3\\text{ s}^{-1}$$, $$2.20\\text{ g}$$",
+          label:
+            "$$480\\text{ cm}^3$$, $$6.0\\text{ cm}^3\\text{ s}^{-1}$$, $$960\\text{ cm}^3$$",
         },
         {
           correct: false,
-          label: "$$4.8\\text{ cm}^3\\text{ s}^{-1}$$, $$2.20\\text{ g}$$",
+          label:
+            "$$480\\text{ cm}^3$$, $$6.0\\text{ cm}^3\\text{ s}^{-1}$$, $$480\\text{ cm}^3$$",
         },
       ],
     },

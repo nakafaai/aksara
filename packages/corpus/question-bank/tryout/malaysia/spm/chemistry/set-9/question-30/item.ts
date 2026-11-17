@@ -13,22 +13,22 @@ const item: ItemSource = {
         {
           correct: true,
           label:
-            "$$60\\text{ cm}^3$$, $$290\\text{ cm}^3$$, $$270\\text{ cm}^3$$",
+            "$$40\\text{ cm}^3$$, $$0.313\\text{ g}$$, $$140\\text{ cm}^3$$",
         },
         {
           correct: false,
           label:
-            "$$40\\text{ cm}^3$$, $$260\\text{ cm}^3$$, $$300\\text{ cm}^3$$",
+            "$$60\\text{ cm}^3$$, $$0.470\\text{ g}$$, $$160\\text{ cm}^3$$",
         },
         {
           correct: false,
           label:
-            "$$60\\text{ cm}^3$$, $$290\\text{ cm}^3$$, $$110\\text{ cm}^3$$",
+            "$$40\\text{ cm}^3$$, $$0.313\\text{ g}$$, $$260\\text{ cm}^3$$",
         },
         {
           correct: false,
           label:
-            "$$60\\text{ cm}^3$$, $$160\\text{ cm}^3$$, $$400\\text{ cm}^3$$",
+            "$$40\\text{ cm}^3$$, $$0.267\\text{ g}$$, $$140\\text{ cm}^3$$",
         },
       ],
     },
@@ -38,22 +38,22 @@ const item: ItemSource = {
         {
           correct: true,
           label:
-            "$$60\\text{ cm}^3$$, $$290\\text{ cm}^3$$, $$270\\text{ cm}^3$$",
+            "$$40\\text{ cm}^3$$, $$0.313\\text{ g}$$, $$140\\text{ cm}^3$$",
         },
         {
           correct: false,
           label:
-            "$$40\\text{ cm}^3$$, $$260\\text{ cm}^3$$, $$300\\text{ cm}^3$$",
+            "$$60\\text{ cm}^3$$, $$0.470\\text{ g}$$, $$160\\text{ cm}^3$$",
         },
         {
           correct: false,
           label:
-            "$$60\\text{ cm}^3$$, $$290\\text{ cm}^3$$, $$110\\text{ cm}^3$$",
+            "$$40\\text{ cm}^3$$, $$0.313\\text{ g}$$, $$260\\text{ cm}^3$$",
         },
         {
           correct: false,
           label:
-            "$$60\\text{ cm}^3$$, $$160\\text{ cm}^3$$, $$400\\text{ cm}^3$$",
+            "$$40\\text{ cm}^3$$, $$0.267\\text{ g}$$, $$140\\text{ cm}^3$$",
         },
       ],
     },

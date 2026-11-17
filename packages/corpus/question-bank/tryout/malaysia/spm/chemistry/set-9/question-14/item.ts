@@ -13,22 +13,22 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "$$1000\\text{ cm}^3$$, $$100\\text{ cm}^3$$, pH higher than $$3$$",
+            "$$100\\text{ cm}^3$$, $$5.00\\text{ cm}^3$$, $$9.00\\text{ cm}^3$$",
         },
         {
           correct: true,
           label:
-            "$$990\\text{ cm}^3$$, $$100\\text{ cm}^3$$, pH higher than $$3$$",
+            "$$90.0\\text{ cm}^3$$, $$5.00\\text{ cm}^3$$, $$9.00\\text{ cm}^3$$",
         },
         {
           correct: false,
           label:
-            "$$990\\text{ cm}^3$$, $$100\\text{ cm}^3$$, pH equal to $$3$$",
+            "$$90.0\\text{ cm}^3$$, $$50.0\\text{ cm}^3$$, $$90.0\\text{ cm}^3$$",
         },
         {
           correct: false,
           label:
-            "$$990\\text{ cm}^3$$, $$1.00\\text{ cm}^3$$, pH higher than $$3$$",
+            "$$90.0\\text{ cm}^3$$, $$5.00\\text{ cm}^3$$, $$18.0\\text{ cm}^3$$",
         },
       ],
     },
@@ -38,22 +38,22 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "$$1000\\text{ cm}^3$$, $$100\\text{ cm}^3$$, pH lebih tinggi daripada $$3$$",
+            "$$100\\text{ cm}^3$$, $$5.00\\text{ cm}^3$$, $$9.00\\text{ cm}^3$$",
         },
         {
           correct: true,
           label:
-            "$$990\\text{ cm}^3$$, $$100\\text{ cm}^3$$, pH lebih tinggi daripada $$3$$",
+            "$$90.0\\text{ cm}^3$$, $$5.00\\text{ cm}^3$$, $$9.00\\text{ cm}^3$$",
         },
         {
           correct: false,
           label:
-            "$$990\\text{ cm}^3$$, $$100\\text{ cm}^3$$, pH sama dengan $$3$$",
+            "$$90.0\\text{ cm}^3$$, $$50.0\\text{ cm}^3$$, $$90.0\\text{ cm}^3$$",
         },
         {
           correct: false,
           label:
-            "$$990\\text{ cm}^3$$, $$1.00\\text{ cm}^3$$, pH lebih tinggi daripada $$3$$",
+            "$$90.0\\text{ cm}^3$$, $$5.00\\text{ cm}^3$$, $$18.0\\text{ cm}^3$$",
         },
       ],
     },

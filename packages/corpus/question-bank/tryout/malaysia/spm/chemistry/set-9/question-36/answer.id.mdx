@@ -1,25 +1,26 @@
-# Air mendingin karena garam menyerap kalor, jadi cari kalor per mol, lalu perbesar ke kalor yang harus diserap kantong dingin
+# Cari kalor per mol dari uji kecil, lalu skalakan ke kantong dalam dua arah
 
-Air kehilangan <InlineMath math="100\times4{,}2\times6{,}3=2646\text{ J}" />, yang diserap oleh <InlineMath math="8{,}00\div80=0{,}100\text{ mol}" /> garam. **Kalor diserap, jadi kalor pelarutannya positif**: <InlineMath math="+2{,}646\div0{,}100=+26{,}5\text{ kJ mol}^{-1}" />. Kantong dingin harus menyerap <InlineMath math="250\times4{,}2\times10{,}0=10{.}500\text{ J}" />, yang perlu <InlineMath math="10{,}5\div26{,}5=0{,}396\text{ mol}" />, <InlineMath math="0{,}396\times80=31{,}7\text{ g}" />.
+Air kehilangan <InlineMath math="100\times4{,}2\times6{,}0=2520\text{ J}" />, dan garamnya <InlineMath math="8{,}00\div80=0{,}100\text{ mol}" />, jadi **kalor pelarutannya <InlineMath math="+25{,}2\text{ kJ mol}^{-1}" />**, positif karena larutan menyerap kalor. Kantong itu memuat <InlineMath math="0{,}500\text{ mol}" />, yang menyerap <InlineMath math="12{,}6\text{ kJ}" /> dari <InlineMath math="250\text{ g}" /> air, turun <InlineMath math="12{.}600\div(250\times4{,}2)=12{,}0^\circ\text{C}" />, jadi kantong berakhir pada <InlineMath math="30{,}0-12{,}0=18{,}0^\circ\text{C}" />. **Mendinginkan sebanyak <InlineMath math="20{,}0^\circ\text{C}" /> butuh <InlineMath math="250\times4{,}2\times20{,}0=21{,}0\text{ kJ}" />**, <InlineMath math="21{,}0\div25{,}2=0{,}833\text{ mol}" />, <InlineMath math="66{,}7\text{ g}" />.
 
 <Chart
-  title={<>Kalor diserap</>}
-  description={<>Uji menyerap <InlineMath math="2{,}65\text{ kJ}" /> dan kantong dingin harus menyerap <InlineMath math="10{,}5\text{ kJ}" />.</>}
+  title={<>Kalor yang diserap</>}
+  description={<>Uji itu menyerap <InlineMath math="2{,}52\text{ kJ}" />, kantong <InlineMath math="12{,}6\text{ kJ}" />, dan pendinginan ke <InlineMath math="10{,}0^\circ\text{C}" /> butuh <InlineMath math="21{,}0\text{ kJ}" />.</>}
   bars="apart"
-  categories={["Kalor diserap dalam uji", "Kalor yang harus diserap kantong dingin"]}
+  categories={["Uji kecil", "Kantong dingin", "Pendinginan lebih"]}
   series={[
-    { label: "Kalor", mark: "bar", values: [2.65, 10.5] },
+    { label: "Kalor", mark: "bar", values: [2.52, 12.6, 21.0] },
   ]}
   valueLabel="Kalor (kJ)"
 />
 
 <BlockMath math="\begin{aligned}
-\Delta H&=+\tfrac{100\times4{,}2\times6{,}3\div1000}{8{,}00\div80}=+26{,}5\text{ kJ mol}^{-1}\\
-m&=\tfrac{250\times4{,}2\times10{,}0\div1000}{26{,}5}\times80=31{,}7\text{ g}
+\Delta H&=+\tfrac{100\times4{,}2\times6{,}0}{0{,}100}=+25{.}200\text{ J mol}^{-1}=+25{,}2\text{ kJ mol}^{-1}\\
+\Delta T&=\tfrac{0{,}500\times25{.}200}{250\times4{,}2}=12{,}0^\circ\text{C}\ \Rightarrow\ T=18{,}0^\circ\text{C}\\
+m&=\tfrac{250\times4{,}2\times20{,}0}{25{.}200}\times80=66{,}7\text{ g}
 \end{aligned}" />
 
 # Kenapa pilihan lain salah
 
-- <InlineMath math="-26{,}5\text{ kJ mol}^{-1}" /> memberi tanda perubahan yang melepas kalor. **Airnya mendingin, jadi kalor diserap**.
-- <InlineMath math="12{,}7\text{ g}" /> hanya mendinginkan <InlineMath math="100\text{ g}" /> air, padahal kantongnya harus mendinginkan <InlineMath math="250\text{ g}" />.
-- <InlineMath math="+2{,}65\text{ kJ mol}^{-1}" /> membagi kalor dalam kilojoule dengan sepuluh kali mol, yang juga membuat massanya sepuluh kali terlalu besar.
+- <InlineMath math="-25{,}2\text{ kJ mol}^{-1}" /> memberi tanda perubahan yang melepas kalor, padahal suhunya turun, dan kantong akan menghangat ke <InlineMath math="42{,}0^\circ\text{C}" /> alih-alih mendingin.
+- <InlineMath math="33{,}3\text{ g}" /> mendinginkan sebanyak <InlineMath math="10{,}0^\circ\text{C}" />, padahal **air harus turun dari <InlineMath math="30{,}0^\circ\text{C}" /> ke <InlineMath math="10{,}0^\circ\text{C}" />**, sebanyak <InlineMath math="20{,}0^\circ\text{C}" />.
+- <InlineMath math="12{,}0^\circ\text{C}" /> adalah penurunannya, bukan suhu akhir, yaitu <InlineMath math="30{,}0-12{,}0=18{,}0^\circ\text{C}" />.

@@ -12,19 +12,23 @@ const item: ItemSource = {
       options: [
         {
           correct: false,
-          label: "$$-184\\text{ kJ mol}^{-1}$$, $$6.00\\text{ dm}^3$$",
+          label:
+            "$$9.20\\text{ kJ}$$, $$0.600\\text{ dm}^3$$, $$25.0\\text{ cm}^3$$",
         },
         {
           correct: false,
-          label: "$$+92\\text{ kJ mol}^{-1}$$, $$12.0\\text{ dm}^3$$",
+          label:
+            "$$23.0\\text{ kJ}$$, $$0\\text{ dm}^3$$, $$62.5\\text{ cm}^3$$",
         },
         {
           correct: false,
-          label: "$$-92\\text{ kJ mol}^{-1}$$, $$12.0\\text{ dm}^3$$",
+          label:
+            "$$18.4\\text{ kJ}$$, $$0.600\\text{ dm}^3$$, $$1000\\text{ cm}^3$$",
         },
         {
           correct: true,
-          label: "$$-92\\text{ kJ mol}^{-1}$$, $$6.00\\text{ dm}^3$$",
+          label:
+            "$$18.4\\text{ kJ}$$, $$0.600\\text{ dm}^3$$, $$50.0\\text{ cm}^3$$",
         },
       ],
     },
@@ -33,19 +37,23 @@ const item: ItemSource = {
       options: [
         {
           correct: false,
-          label: "$$-184\\text{ kJ mol}^{-1}$$, $$6.00\\text{ dm}^3$$",
+          label:
+            "$$9.20\\text{ kJ}$$, $$0.600\\text{ dm}^3$$, $$25.0\\text{ cm}^3$$",
         },
         {
           correct: false,
-          label: "$$+92\\text{ kJ mol}^{-1}$$, $$12.0\\text{ dm}^3$$",
+          label:
+            "$$23.0\\text{ kJ}$$, $$0\\text{ dm}^3$$, $$62.5\\text{ cm}^3$$",
         },
         {
           correct: false,
-          label: "$$-92\\text{ kJ mol}^{-1}$$, $$12.0\\text{ dm}^3$$",
+          label:
+            "$$18.4\\text{ kJ}$$, $$0.600\\text{ dm}^3$$, $$1000\\text{ cm}^3$$",
         },
         {
           correct: true,
-          label: "$$-92\\text{ kJ mol}^{-1}$$, $$6.00\\text{ dm}^3$$",
+          label:
+            "$$18.4\\text{ kJ}$$, $$0.600\\text{ dm}^3$$, $$50.0\\text{ cm}^3$$",
         },
       ],
     },

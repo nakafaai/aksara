@@ -10,19 +10,43 @@ const item: ItemSource = {
     en: {
       kind: "choice",
       options: [
-        { correct: false, label: "Propyl methanoate, $$6.16\\text{ g}$$" },
-        { correct: true, label: "Methyl propanoate, $$6.16\\text{ g}$$" },
-        { correct: false, label: "Methyl propanoate, $$8.80\\text{ g}$$" },
-        { correct: false, label: "Methyl propanoate, $$9.24\\text{ g}$$" },
+        {
+          correct: false,
+          label: "Propyl methanoate, $$7.92\\text{ g}$$, $$60\\%$$",
+        },
+        {
+          correct: true,
+          label: "Methyl propanoate, $$7.92\\text{ g}$$, $$60\\%$$",
+        },
+        {
+          correct: false,
+          label: "Methyl propanoate, $$9.90\\text{ g}$$, $$75\\%$$",
+        },
+        {
+          correct: false,
+          label: "Methyl propanoate, $$7.92\\text{ g}$$, $$75\\%$$",
+        },
       ],
     },
     ms: {
       kind: "choice",
       options: [
-        { correct: false, label: "Propil metanoat, $$6.16\\text{ g}$$" },
-        { correct: true, label: "Metil propanoat, $$6.16\\text{ g}$$" },
-        { correct: false, label: "Metil propanoat, $$8.80\\text{ g}$$" },
-        { correct: false, label: "Metil propanoat, $$9.24\\text{ g}$$" },
+        {
+          correct: false,
+          label: "Propil metanoat, $$7.92\\text{ g}$$, $$60\\%$$",
+        },
+        {
+          correct: true,
+          label: "Metil propanoat, $$7.92\\text{ g}$$, $$60\\%$$",
+        },
+        {
+          correct: false,
+          label: "Metil propanoat, $$9.90\\text{ g}$$, $$75\\%$$",
+        },
+        {
+          correct: false,
+          label: "Metil propanoat, $$7.92\\text{ g}$$, $$75\\%$$",
+        },
       ],
     },
   },

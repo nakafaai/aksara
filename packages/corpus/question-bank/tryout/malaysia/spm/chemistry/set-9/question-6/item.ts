@@ -12,19 +12,23 @@ const item: ItemSource = {
       options: [
         {
           correct: false,
-          label: "$$\\text{C}_3\\text{H}_6$$, $$60\\text{ cm}^3$$",
+          label:
+            "$$\\text{C}_3\\text{H}_8$$, $$60\\text{ cm}^3$$, $$70\\text{ cm}^3$$",
         },
         {
           correct: false,
-          label: "$$\\text{C}_3\\text{H}_8$$, $$110\\text{ cm}^3$$",
+          label:
+            "$$\\text{C}_3\\text{H}_4$$, $$60\\text{ cm}^3$$, $$20\\text{ cm}^3$$",
         },
         {
           correct: false,
-          label: "$$\\text{C}_3\\text{H}_8$$, $$50\\text{ cm}^3$$",
+          label:
+            "$$\\text{C}_3\\text{H}_8$$, $$60\\text{ cm}^3$$, $$120\\text{ cm}^3$$",
         },
         {
           correct: true,
-          label: "$$\\text{C}_3\\text{H}_8$$, $$60\\text{ cm}^3$$",
+          label:
+            "$$\\text{C}_3\\text{H}_8$$, $$60\\text{ cm}^3$$, $$20\\text{ cm}^3$$",
         },
       ],
     },
@@ -33,19 +37,23 @@ const item: ItemSource = {
       options: [
         {
           correct: false,
-          label: "$$\\text{C}_3\\text{H}_6$$, $$60\\text{ cm}^3$$",
+          label:
+            "$$\\text{C}_3\\text{H}_8$$, $$60\\text{ cm}^3$$, $$70\\text{ cm}^3$$",
         },
         {
           correct: false,
-          label: "$$\\text{C}_3\\text{H}_8$$, $$110\\text{ cm}^3$$",
+          label:
+            "$$\\text{C}_3\\text{H}_4$$, $$60\\text{ cm}^3$$, $$20\\text{ cm}^3$$",
         },
         {
           correct: false,
-          label: "$$\\text{C}_3\\text{H}_8$$, $$50\\text{ cm}^3$$",
+          label:
+            "$$\\text{C}_3\\text{H}_8$$, $$60\\text{ cm}^3$$, $$120\\text{ cm}^3$$",
         },
         {
           correct: true,
-          label: "$$\\text{C}_3\\text{H}_8$$, $$60\\text{ cm}^3$$",
+          label:
+            "$$\\text{C}_3\\text{H}_8$$, $$60\\text{ cm}^3$$, $$20\\text{ cm}^3$$",
         },
       ],
     },

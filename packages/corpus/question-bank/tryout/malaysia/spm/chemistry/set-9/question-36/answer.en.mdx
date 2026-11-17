@@ -1,25 +1,26 @@
-# The water cools because the salt takes in heat, so find the heat per mole, then scale it to the heat the cold pack must take
+# Find the heat per mole from the small test, then scale it to the pack in both directions
 
-The water loses <InlineMath math="100\times4.2\times6.3=2646\text{ J}" />, taken in by <InlineMath math="8.00\div80=0.100\text{ mol}" /> of salt. **Heat is absorbed, so the heat of solution is positive**: <InlineMath math="+2.646\div0.100=+26.5\text{ kJ mol}^{-1}" />. The cold pack must take <InlineMath math="250\times4.2\times10.0=10\,500\text{ J}" />, which needs <InlineMath math="10.5\div26.5=0.396\text{ mol}" />, <InlineMath math="0.396\times80=31.7\text{ g}" />.
+The water loses <InlineMath math="100\times4.2\times6.0=2520\text{ J}" />, and the salt is <InlineMath math="8.00\div80=0.100\text{ mol}" />, so **the heat of solution is <InlineMath math="+25.2\text{ kJ mol}^{-1}" />**, positive because the solution takes heat in. The pack has <InlineMath math="0.500\text{ mol}" />, which takes in <InlineMath math="12.6\text{ kJ}" /> from <InlineMath math="250\text{ g}" /> of water, a fall of <InlineMath math="12\,600\div(250\times4.2)=12.0^\circ\text{C}" />, so the pack ends at <InlineMath math="30.0-12.0=18.0^\circ\text{C}" />. **Cooling by <InlineMath math="20.0^\circ\text{C}" /> needs <InlineMath math="250\times4.2\times20.0=21.0\text{ kJ}" />**, <InlineMath math="21.0\div25.2=0.833\text{ mol}" />, <InlineMath math="66.7\text{ g}" />.
 
 <Chart
-  title={<>Heat absorbed</>}
-  description={<>The test absorbs <InlineMath math="2.65\text{ kJ}" /> and the cold pack must absorb <InlineMath math="10.5\text{ kJ}" />.</>}
+  title={<>Heat taken in</>}
+  description={<>The test takes in <InlineMath math="2.52\text{ kJ}" />, the pack <InlineMath math="12.6\text{ kJ}" />, and cooling to <InlineMath math="10.0^\circ\text{C}" /> needs <InlineMath math="21.0\text{ kJ}" />.</>}
   bars="apart"
-  categories={["Heat taken in the test", "Heat the cold pack must take"]}
+  categories={["Small test", "Cold pack", "Deeper cooling"]}
   series={[
-    { label: "Heat", mark: "bar", values: [2.65, 10.5] },
+    { label: "Heat", mark: "bar", values: [2.52, 12.6, 21.0] },
   ]}
   valueLabel="Heat (kJ)"
 />
 
 <BlockMath math="\begin{aligned}
-\Delta H&=+\tfrac{100\times4.2\times6.3\div1000}{8.00\div80}=+26.5\text{ kJ mol}^{-1}\\
-m&=\tfrac{250\times4.2\times10.0\div1000}{26.5}\times80=31.7\text{ g}
+\Delta H&=+\tfrac{100\times4.2\times6.0}{0.100}=+25\,200\text{ J mol}^{-1}=+25.2\text{ kJ mol}^{-1}\\
+\Delta T&=\tfrac{0.500\times25\,200}{250\times4.2}=12.0^\circ\text{C}\ \Rightarrow\ T=18.0^\circ\text{C}\\
+m&=\tfrac{250\times4.2\times20.0}{25\,200}\times80=66.7\text{ g}
 \end{aligned}" />
 
 # Why the other options are wrong
 
-- <InlineMath math="-26.5\text{ kJ mol}^{-1}" /> gives the sign of a change that releases heat. **The water cooled, so heat was absorbed**.
-- <InlineMath math="12.7\text{ g}" /> cools only <InlineMath math="100\text{ g}" /> of water, but the pack must cool <InlineMath math="250\text{ g}" />.
-- <InlineMath math="+2.65\text{ kJ mol}^{-1}" /> divides the heat in kilojoules by ten times the moles, which also makes the mass ten times too big.
+- <InlineMath math="-25.2\text{ kJ mol}^{-1}" /> gives the sign of a change that releases heat, but the temperature fell, and the pack would warm to <InlineMath math="42.0^\circ\text{C}" /> instead of cooling.
+- <InlineMath math="33.3\text{ g}" /> cools by <InlineMath math="10.0^\circ\text{C}" />, but **the water has to fall from <InlineMath math="30.0^\circ\text{C}" /> to <InlineMath math="10.0^\circ\text{C}" />**, by <InlineMath math="20.0^\circ\text{C}" />.
+- <InlineMath math="12.0^\circ\text{C}" /> is the fall, not the final temperature, which is <InlineMath math="30.0-12.0=18.0^\circ\text{C}" />.
