@@ -1,0 +1,23 @@
+# Telusuri input melewati tiap gerbang secara berurutan
+
+Gerbang NOT memberi <InlineMath math="1" /> saat sabuk **tidak dipasang**. Gerbang OR memberi <InlineMath math="1" /> **jika sabuk tidak dipasang atau pintu terbuka**. Gerbang AND meneruskannya **hanya saat kunci kontak menyala**. Jadi bel butuh <InlineMath math="I=1" /> bersama keluaran OR <InlineMath math="1" />. Gerbang OR sama sekali tidak menerima <InlineMath math="I" />, jadi keluarannya bisa <InlineMath math="1" /> meskipun bel diam.
+
+<Mermaid
+  title={<>Rangkaian Peringatan Sabuk Pengaman</>}
+  description={<>Sinyal sabuk melewati gerbang NOT dan bergabung dengan sinyal pintu di gerbang OR. Keluaran OR dan sinyal kunci kontak bertemu di gerbang AND, yang menggerakkan bel.</>}
+  chart={"flowchart LR\n  F[\"Sabuk F\"] --> N[\"NOT\"]\n  N --> O[\"OR\"]\n  D[\"Pintu D\"] --> O\n  O --> A[\"AND\"]\n  I[\"Kunci kontak I\"] --> A\n  A --> B[\"Bel\"]"}
+/>
+
+<BlockMath math="B=I\cdot\left(\overline F+D\right)" />
+
+<BlockMath math="I=1:\ (F,D)=(0,0),(0,1),(1,1)\Rightarrow B=1,\qquad (1,0)\Rightarrow B=0" />
+
+<BlockMath math="I=0,\ F=0,\ D=0:\ \overline F+D=1+0=1" />
+
+Saat kunci kontak mati, bel tidak pernah berbunyi. Saat menyala, bel berbunyi di setiap keadaan kecuali sabuk terpasang dan pintu tertutup, yaitu <InlineMath math="3" /> dari <InlineMath math="8" /> kombinasi. Saat semuanya <InlineMath math="0" />, gerbang OR tetap mengeluarkan <InlineMath math="1" />, karena sabuk tidak dipasang, tetapi gerbang AND menahannya.
+
+# Mengapa pilihan lain salah
+
+- <InlineMath math="0" /> untuk gerbang OR mengambil **keluaran bel** sebagai keluaran gerbang OR, padahal kunci kontak baru masuk di gerbang AND.
+- <InlineMath math="6" /> menghitung tiap kombinasi dengan **keluaran OR bernilai <InlineMath math="1" />**, lupa bahwa gerbang AND juga butuh kunci kontak menyala.
+- <InlineMath math="2" /> **mengabaikan input pintu**, hanya menghitung keadaan sabuk tidak dipasang dan kunci kontak menyala.

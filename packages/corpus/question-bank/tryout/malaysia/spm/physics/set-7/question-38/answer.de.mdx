@@ -1,0 +1,25 @@
+# Die Absorber die Strahlung bestimmen lassen und vor dem Halbieren den Nulleffekt abziehen
+
+Papier stoppt Alpha, einige Millimeter Aluminium stoppen Beta. **Ändert keines die Anzeige**, muss die Strahlung **Gamma** sein. Für die Halbwertszeit enthält die Anzeige den Nulleffekt, der nicht zerfällt, also muss er **zuerst abgezogen** werden. Dann zählt man, wie oft sich die korrigierte Rate in <InlineMath math="18" /> Stunden halbiert.
+
+<Chart
+  title={<>Korrigierte Zählrate über der Zeit</>}
+  categories={["0 h", "6 h", "12 h", "18 h"]}
+  series={[
+    { label: "Korrigierte Zählrate", mark: "line", values: [960, 480, 240, 120] },
+  ]}
+  valueLabel="Zählrate (pro Minute)"
+  description={<>Nach Abzug des Nulleffekts von <InlineMath math="40" /> pro Minute halbiert sich die Zählrate alle <InlineMath math="6{,}0\text{ h}" />: <InlineMath math="960" />, <InlineMath math="480" />, <InlineMath math="240" /> und <InlineMath math="120" /> pro Minute.</>}
+/>
+
+<BlockMath math="1000-40=960,\qquad 160-40=120,\qquad \frac{960}{120}=8=2^3" />
+
+<BlockMath math="T_{1/2}=\frac{18\text{ h}}{3}=6{,}0\text{ h}" />
+
+Die Quelle sendet Gammastrahlung aus, denn Papier und Aluminium senken die Zählrate nicht. Die eigene Zählrate der Quelle fällt von <InlineMath math="960" /> auf <InlineMath math="120" /> pro Minute, dreimal halbiert in <InlineMath math="18" /> Stunden, die Halbwertszeit beträgt also <InlineMath math="6{,}0\text{ h}" />.
+
+# Warum die anderen Antworten falsch sind
+
+- **Beta** würde von <InlineMath math="5\text{ mm}" /> Aluminium gestoppt, doch die Anzeige fiel nicht.
+- <InlineMath math="6{,}8\text{ h}" /> nimmt die **Rohwerte**, <InlineMath math="\dfrac{1000}{160}" />, ohne den nicht zerfallenden Nulleffekt abzuziehen.
+- <InlineMath math="2{,}3\text{ h}" /> teilt <InlineMath math="18\text{ h}" /> durch den **Abfallfaktor <InlineMath math="8" />** statt durch die Zahl der Halbierungen, <InlineMath math="3" />.

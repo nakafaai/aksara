@@ -1,0 +1,25 @@
+# Let the absorbers name the radiation, then subtract the background before halving
+
+Paper stops alpha, and a few millimetres of aluminium stop beta. If **neither changes the reading**, the radiation must be **gamma**. For the half-life, the detector's readings include the background, which does not decay, so it must be **subtracted first**. Then count how many times the corrected rate halves in <InlineMath math="18" /> hours.
+
+<Chart
+  title={<>Corrected Count Rate Against Time</>}
+  categories={["0 h", "6 h", "12 h", "18 h"]}
+  series={[
+    { label: "Corrected count rate", mark: "line", values: [960, 480, 240, 120] },
+  ]}
+  valueLabel="Count rate (per minute)"
+  description={<>After removing the background of <InlineMath math="40" /> per minute, the count rate halves every <InlineMath math="6.0\text{ h}" />: <InlineMath math="960" />, <InlineMath math="480" />, <InlineMath math="240" /> and <InlineMath math="120" /> per minute.</>}
+/>
+
+<BlockMath math="1000-40=960,\qquad 160-40=120,\qquad \frac{960}{120}=8=2^3" />
+
+<BlockMath math="T_{1/2}=\frac{18\text{ h}}{3}=6.0\text{ h}" />
+
+The source emits gamma rays, since paper and aluminium do not reduce the count. The source's own count rate falls from <InlineMath math="960" /> to <InlineMath math="120" /> per minute, three halvings in <InlineMath math="18" /> hours, so the half-life is <InlineMath math="6.0\text{ h}" />.
+
+# Why the other options are wrong
+
+- **Beta** would be stopped by <InlineMath math="5\text{ mm}" /> of aluminium, but the reading did not fall.
+- <InlineMath math="6.8\text{ h}" /> uses the **raw readings**, <InlineMath math="\dfrac{1000}{160}" />, without removing the background, which does not decay.
+- <InlineMath math="2.3\text{ h}" /> divides <InlineMath math="18\text{ h}" /> by the **fall factor <InlineMath math="8" />** instead of by the number of halvings, <InlineMath math="3" />.

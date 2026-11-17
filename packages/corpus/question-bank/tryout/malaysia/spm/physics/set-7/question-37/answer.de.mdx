@@ -1,0 +1,23 @@
+# Von den Eingängen Gatter für Gatter vorgehen
+
+Das NOT-Gatter gibt <InlineMath math="1" />, wenn der Gurt **nicht angelegt** ist. Das OR-Gatter gibt <InlineMath math="1" />, **wenn der Gurt nicht angelegt oder die Tür offen** ist. Das AND-Gatter gibt das **nur bei eingeschalteter Zündung** weiter. Der Summer braucht also <InlineMath math="I=1" /> zusammen mit einem OR-Ausgang von <InlineMath math="1" />. Das OR-Gatter sieht <InlineMath math="I" /> gar nicht, sein Ausgang kann also <InlineMath math="1" /> sein, auch wenn der Summer schweigt.
+
+<Mermaid
+  title={<>Die Gurtwarnschaltung</>}
+  description={<>Das Gurtsignal läuft durch ein NOT-Gatter und trifft das Türsignal an einem OR-Gatter. Der OR-Ausgang und das Zündsignal treffen sich an einem AND-Gatter, das den Summer ansteuert.</>}
+  chart={"flowchart LR\n  F[\"Gurt F\"] --> N[\"NOT\"]\n  N --> O[\"OR\"]\n  D[\"Tür D\"] --> O\n  O --> A[\"AND\"]\n  I[\"Zündung I\"] --> A\n  A --> B[\"Summer\"]"}
+/>
+
+<BlockMath math="B=I\cdot\left(\overline F+D\right)" />
+
+<BlockMath math="I=1:\ (F,D)=(0,0),(0,1),(1,1)\Rightarrow B=1,\qquad (1,0)\Rightarrow B=0" />
+
+<BlockMath math="I=0,\ F=0,\ D=0:\ \overline F+D=1+0=1" />
+
+Bei ausgeschalteter Zündung summt es nie. Bei eingeschalteter summt es in jedem Fall außer Gurt angelegt und Tür zu, also in <InlineMath math="3" /> der <InlineMath math="8" /> Kombinationen. Sind alle Eingänge <InlineMath math="0" />, gibt das OR-Gatter trotzdem <InlineMath math="1" /> aus, weil der Gurt nicht angelegt ist, doch das AND-Gatter sperrt.
+
+# Warum die anderen Antworten falsch sind
+
+- <InlineMath math="0" /> für das OR-Gatter nimmt den **Ausgang des Summers** für den des OR-Gatters, doch die Zündung kommt erst am AND-Gatter hinzu.
+- <InlineMath math="6" /> zählt jede Kombination mit **OR-Ausgang <InlineMath math="1" />** und vergisst, dass das AND-Gatter auch die Zündung braucht.
+- <InlineMath math="2" /> **übersieht den Türeingang** und zählt nur die Fälle mit offenem Gurt und eingeschalteter Zündung.

@@ -1,0 +1,23 @@
+# Ikuti input melalui setiap get secara bergilir
+
+Get NOT memberi <InlineMath math="1" /> apabila tali pinggang **tidak dipakai**. Get OR memberi <InlineMath math="1" /> **jika tali pinggang tidak dipakai atau pintu terbuka**. Get AND meneruskannya **hanya apabila penghidup dihidupkan**. Jadi pembaz memerlukan <InlineMath math="I=1" /> bersama output OR <InlineMath math="1" />. Get OR langsung tidak menerima <InlineMath math="I" />, jadi outputnya boleh menjadi <InlineMath math="1" /> walaupun pembaz senyap.
+
+<Mermaid
+  title={<>Litar Amaran Tali Pinggang Keledar</>}
+  description={<>Isyarat tali pinggang melalui get NOT dan bergabung dengan isyarat pintu di get OR. Output OR dan isyarat penghidup bertemu di get AND, yang mengendalikan pembaz.</>}
+  chart={"flowchart LR\n  F[\"Tali pinggang F\"] --> N[\"NOT\"]\n  N --> O[\"OR\"]\n  D[\"Pintu D\"] --> O\n  O --> A[\"AND\"]\n  I[\"Penghidup I\"] --> A\n  A --> B[\"Pembaz\"]"}
+/>
+
+<BlockMath math="B=I\cdot\left(\overline F+D\right)" />
+
+<BlockMath math="I=1:\ (F,D)=(0,0),(0,1),(1,1)\Rightarrow B=1,\qquad (1,0)\Rightarrow B=0" />
+
+<BlockMath math="I=0,\ F=0,\ D=0:\ \overline F+D=1+0=1" />
+
+Apabila penghidup dimatikan, pembaz tidak pernah berbunyi. Apabila dihidupkan, pembaz berbunyi dalam setiap keadaan kecuali tali pinggang dipakai dan pintu tertutup, iaitu <InlineMath math="3" /> daripada <InlineMath math="8" /> gabungan. Apabila semuanya <InlineMath math="0" />, get OR masih memberi output <InlineMath math="1" />, kerana tali pinggang tidak dipakai, tetapi get AND menghalangnya.
+
+# Kenapa pilihan lain salah
+
+- <InlineMath math="0" /> bagi get OR mengambil **output pembaz** sebagai output get OR, tetapi penghidup hanya masuk di get AND.
+- <InlineMath math="6" /> mengira setiap gabungan dengan **output OR bernilai <InlineMath math="1" />**, lupa bahawa get AND juga memerlukan penghidup dihidupkan.
+- <InlineMath math="2" /> **mengabaikan input pintu**, hanya mengira keadaan tali pinggang tidak dipakai dan penghidup dihidupkan.

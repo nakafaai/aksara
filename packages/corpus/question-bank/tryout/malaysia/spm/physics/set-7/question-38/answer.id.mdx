@@ -1,0 +1,25 @@
+# Biarkan penyerap menunjukkan jenis radiasi, lalu kurangi latar sebelum membagi dua
+
+Kertas menahan alfa, dan beberapa milimeter aluminium menahan beta. Jika **keduanya tidak mengubah pembacaan**, radiasinya pasti **gamma**. Untuk waktu paruh, pembacaan detektor mencakup latar yang tidak meluruh, jadi latar harus **dikurangkan dulu**. Lalu hitung berapa kali laju terkoreksi menjadi setengah dalam <InlineMath math="18" /> jam.
+
+<Chart
+  title={<>Laju Cacah Terkoreksi Terhadap Waktu</>}
+  categories={["0 jam", "6 jam", "12 jam", "18 jam"]}
+  series={[
+    { label: "Laju cacah terkoreksi", mark: "line", values: [960, 480, 240, 120] },
+  ]}
+  valueLabel="Laju cacah (per menit)"
+  description={<>Setelah dikurangi latar <InlineMath math="40" /> per menit, laju cacah menjadi setengah tiap <InlineMath math="6{,}0\text{ jam}" />: <InlineMath math="960" />, <InlineMath math="480" />, <InlineMath math="240" />, dan <InlineMath math="120" /> per menit.</>}
+/>
+
+<BlockMath math="1000-40=960,\qquad 160-40=120,\qquad \frac{960}{120}=8=2^3" />
+
+<BlockMath math="T_{1/2}=\frac{18\text{ jam}}{3}=6{,}0\text{ jam}" />
+
+Sumber memancarkan sinar gamma, karena kertas dan aluminium tidak mengurangi cacah. Laju cacah sumber itu sendiri turun dari <InlineMath math="960" /> ke <InlineMath math="120" /> per menit, tiga kali paruh dalam <InlineMath math="18" /> jam, jadi waktu paruhnya <InlineMath math="6{,}0\text{ jam}" />.
+
+# Mengapa pilihan lain salah
+
+- **Beta** akan tertahan oleh aluminium <InlineMath math="5\text{ mm}" />, padahal pembacaannya tidak turun.
+- <InlineMath math="6{,}8\text{ jam}" /> memakai **pembacaan mentah**, <InlineMath math="\dfrac{1000}{160}" />, tanpa mengurangi latar yang tidak meluruh.
+- <InlineMath math="2{,}3\text{ jam}" /> membagi <InlineMath math="18\text{ jam}" /> dengan **faktor penurunan <InlineMath math="8" />** alih-alih jumlah paruh, <InlineMath math="3" />.
