@@ -1,0 +1,266 @@
+export const metadata = {
+  title: "Koordination und Reaktion beim Menschen",
+  description:
+    "Erkläre Nervenzellen, Leitungsgeschwindigkeit, Synapsen, den Reflexbogen, die Reaktionszeit und das Hormonsystem mit interaktiven Modellen und Übungen.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2026-11-17",
+  subject: "Koordination und Reaktion beim Menschen",
+};
+
+## Koordination verbindet Reiz und Reaktion
+
+**Koordination** ist der Vorgang, der einen Reiz mit einer passenden Reaktion verbindet. Jede Reaktion folgt derselben Abfolge: **Reiz, Rezeptor, Verarbeitungszentrum, Effektor, Reaktion**. Der Mensch hat zwei Koordinationssysteme. Das **Nervensystem** sendet schnelle elektrische Impulse über Nervenzellen, das **Hormonsystem** gibt Hormone ins Blut ab, die langsamer, aber länger wirken. In den Modellen hier testest du deine Reaktionszeit, vergleichst Leitungsgeschwindigkeiten in Axonen und vergleichst eine nervöse mit einer hormonellen Reaktion.
+
+## Das Nervensystem des Menschen
+
+Das Nervensystem besteht aus dem **Zentralnervensystem**, also Gehirn und Rückenmark, und dem **peripheren Nervensystem**, den Nerven, die das Zentralnervensystem mit dem übrigen Körper verbinden. Seine Grundeinheit ist die **Nervenzelle**.
+
+| Nervenzelle | Richtung des Impulses | Lage |
+| :--- | :--- | :--- |
+| Sensorische Nervenzelle | Vom Rezeptor zum Zentralnervensystem | Zellkörper außerhalb des Rückenmarks |
+| Zwischennervenzelle | Innerhalb des Zentralnervensystems | Gehirn und Rückenmark |
+| Motorische Nervenzelle | Vom Zentralnervensystem zum Effektor | Zellkörper im Rückenmark |
+
+Jede Nervenzelle hat **Dendriten**, die Impulse aufnehmen, einen **Zellkörper** mit dem Zellkern und ein **Axon**, das Impulse weiterleitet. Die meisten Axone sind von einer **Myelinscheide** umhüllt, die das Axon isoliert, sodass der Impuls von einem Ranvierschen Schnürring zum nächsten springt.
+
+### Die Geschwindigkeit von Nervenimpulsen
+
+**Myelinisierte Axone leiten Impulse viel schneller** als nicht myelinisierte. Bei einem myelinisierten Axon ist die Geschwindigkeit ungefähr proportional zum Durchmesser. Bei einem nicht myelinisierten Axon ist sie nur proportional zur Wurzel des Durchmessers. Verschiebe den Regler für den Durchmesser und vergleiche die beiden Geschwindigkeiten.
+
+<MathVisual
+  title={<>Leitungsgeschwindigkeit in myelinisierten und marklosen Axonen</>}
+  description={
+    <>
+      Geschwindigkeit in Einheiten von <InlineMath math="10\text{ m s}^{-1}" />{" "}
+      gegen den Axondurchmesser in Mikrometern: <InlineMath math="0{,}6d" /> für
+      ein myelinisiertes und <InlineMath math="0{,}11\sqrt{d}" /> für ein
+      markloses Axon.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 20 }, y: { min: 0, max: 12.5 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "d", min: 1, max: 20, value: 10, step: 0.5, label: "d" },
+    ],
+    objects: [
+      { id: "myelinated", kind: "function", appearance: "primary", formula: "0.6x", domain: { min: 0, max: 20 } },
+      { id: "unmyelinated", kind: "function", appearance: "secondary", formula: "0.11sqrt(x)", domain: { min: 0, max: 20 } },
+      { id: "now", kind: "marker", x: "d", y: "0.6d", appearance: "warning" },
+    ],
+    readouts: [
+      { key: "myelinated", formula: "6d" },
+      { key: "unmyelinated", formula: "1.1sqrt(d)" },
+    ],
+  }}
+  labels={{
+    d: <>Axondurchmesser <InlineMath math="d" /> in Mikrometern</>,
+    myelinated: <>Geschwindigkeit im myelinisierten Axon in m/s</>,
+    unmyelinated: <>Geschwindigkeit im marklosen Axon in m/s</>,
+  }}
+/>
+
+### Beispiel Die Impulszeit vom Fuß zum Rückenmark
+
+Ein Impuls legt <InlineMath math="1{,}0\text{ m}" /> vom Zeh zum Rückenmark über ein myelinisiertes Axon mit <InlineMath math="10\ \mu\text{m}" /> Durchmesser zurück. Berechne **die benötigte Zeit** und vergleiche mit einem gleich dicken marklosen Axon.
+
+<MathContainer>
+<BlockMath math="v = 6 \times 10 = 60\text{ m s}^{-1}, \quad t = \frac{1{,}0}{60} = 0{,}017\text{ s}" />
+<BlockMath math="v = 1{,}1\sqrt{10} = 3{,}5\text{ m s}^{-1}, \quad t = \frac{1{,}0}{3{,}5} = 0{,}29\text{ s}" />
+</MathContainer>
+
+Prüfe mit dem Modell: Bei <InlineMath math="d = 10" /> zeigt es <InlineMath math="60" /> und <InlineMath math="3{,}48" />. Ohne Myelin ist der Impuls etwa siebzehnmal langsamer, genug, um den Fuß zu spät von einem Nagel zu ziehen.
+
+## Synapsen
+
+Eine **Synapse** ist die Verbindungsstelle zwischen zwei Nervenzellen. Erreicht ein Impuls das Ende des Axons, setzt das Endknöpfchen einen **Neurotransmitter** wie Acetylcholin in den synaptischen Spalt frei. Der Neurotransmitter diffundiert über den Spalt, bindet an Rezeptoren der nächsten Nervenzelle und löst dort einen neuen Impuls aus. Neurotransmitter wird nur auf einer Seite freigesetzt, also **laufen Impulse nur in eine Richtung**.
+
+## Willkürliche und unwillkürliche Handlungen
+
+Eine **willkürliche Handlung** geschieht bewusst und wird vom Gehirn gesteuert, zum Beispiel das Bremsen, wenn die Bremslichter des vorderen Autos aufleuchten. Teste deine Reaktionszeit in diesem Modell.
+
+<ReactionTimeLab
+  title={<>Teste deine Reaktionszeit</>}
+  description={
+    <>
+      Drück auf Bremsen, sobald die Bremslichter des vorderen Autos aufleuchten.
+      Die Karte zeichnet deine Reaktionszeit und die Strecke auf, die du bei{" "}
+      <InlineMath math="20\text{ m/s}" /> noch zurücklegst.
+    </>
+  }
+  labels={{
+    start: "Start",
+    brake: "Bremsen",
+    early: <>Zu früh, warte auf die Lichter</>,
+    lastTime: <>Deine Reaktionszeit</>,
+    reactionDistance: (
+      <>
+        Reaktionsweg bei <InlineMath math="20\text{ m/s}" />
+      </>
+    ),
+    best: <>Schnellste</>,
+    average: <>Mittel deiner letzten fünf Versuche</>,
+    viewLabel: "Blick vom Fahrersitz",
+  }}
+/>
+
+Das Signal vom Auge muss das Gehirn erreichen, verarbeitet und an die Beinmuskeln gesendet werden, also braucht eine willkürliche Handlung Zeit. Eine **unwillkürliche Handlung** geschieht ohne Bewusstsein. Ein **Reflex** wie der Kniesehnenreflex läuft über das Rückenmark, ohne auf das Gehirn zu warten, und ist deshalb viel schneller.
+
+<BarChart
+  title={<>Reaktionszeiten verschiedener Reaktionen</>}
+  description={
+    <>
+      Typische Zeit in Millisekunden vom Reiz bis zur Reaktion für einen Reflex
+      und zwei willkürliche Handlungen.
+    </>
+  }
+  yAxisLabel="Reaktionszeit (ms)"
+  data={[
+    { name: "Kniesehnenreflex", value: 50 },
+    { name: "Lineal fangen", value: 200 },
+    { name: "Bremsen", value: 700 },
+  ]}
+  chartConfig={{ value: { label: "Reaktionszeit", colors: { light: ["var(--chart-2)"], dark: ["var(--chart-2)"] } } }}
+/>
+
+### Der Reflexbogen
+
+Beim **Reflexbogen** des Kniesehnenreflexes dehnt ein Schlag auf die Sehne den Oberschenkelmuskel. Dehnungsrezeptoren senden Impulse über eine **sensorische Nervenzelle** zum Rückenmark. Der Impuls geht direkt auf eine **motorische Nervenzelle** über, und der Oberschenkelmuskel zieht sich zusammen, sodass das Bein nach vorn schnellt. Der Reflex, der die Hand von einem heißen Gegenstand wegzieht, schließt zusätzlich eine **Zwischennervenzelle** im Rückenmark ein.
+
+### Beispiel Reaktionszeit mit einem Lineal
+
+Eine Freundin lässt ohne Vorwarnung ein Lineal fallen, und du fängst es, nachdem es <InlineMath math="d" /> Zentimeter gefallen ist. Das Lineal **fällt frei**, also gilt <InlineMath math="d = \tfrac{1}{2}gt^2" />. Verschiebe die Fallstrecke und lies die Reaktionszeit ab.
+
+<MathVisual
+  title={<>Reaktionszeit aus der Fallstrecke eines Lineals</>}
+  description={
+    <>
+      Reaktionszeit in Zehntelsekunden gegen die Fallstrecke in Einheiten von{" "}
+      <InlineMath math="5\text{ cm}" />, nach{" "}
+      <InlineMath math="t = \sqrt{2d/g}" /> mit{" "}
+      <InlineMath math="g = 9{,}8\text{ m s}^{-2}" />.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 6.5 }, y: { min: 0, max: 3 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "c", min: 0.2, max: 6, value: 4, step: 0.1, label: "c" },
+    ],
+    objects: [
+      { id: "time", kind: "function", appearance: "primary", formula: "10sqrt(x/98)", domain: { min: 0, max: 6.5 } },
+      { id: "now", kind: "marker", x: "c", y: "10sqrt(c/98)", appearance: "warning" },
+    ],
+    readouts: [
+      { key: "distance", formula: "5c" },
+      { key: "time", formula: "1000sqrt(c/98)" },
+    ],
+  }}
+  labels={{
+    c: <>Fallstrecke <InlineMath math="c" /> in Einheiten von fünf Zentimetern</>,
+    distance: <>Fallstrecke in Zentimetern</>,
+    time: <>Reaktionszeit in Millisekunden</>,
+  }}
+/>
+
+Fällt das Lineal <InlineMath math="20\text{ cm}" />, also <InlineMath math="0{,}20\text{ m}" />:
+
+<BlockMath math="t = \sqrt{\frac{2 \times 0{,}20}{9{,}8}} = \sqrt{0{,}0408} = 0{,}20\text{ s}" />
+
+Prüfe mit dem Modell: Bei <InlineMath math="c = 4" /> zeigt es <InlineMath math="202" /> Millisekunden, so viel wie das Linealfangen im Diagramm.
+
+## Das Hormonsystem
+
+**Hormondrüsen** haben keinen Ausführgang und geben **Hormone** direkt ins Blut ab. Das Blut trägt die Hormone zu ihren Zielorganen.
+
+| Drüse | Hormon | Hauptwirkung |
+| :--- | :--- | :--- |
+| Hirnanhangdrüse | Wachstumshormon, ADH, FSH, LH | Steuert Wachstum und andere Drüsen |
+| Schilddrüse | Thyroxin | Steigert den Stoffwechsel |
+| Nebenniere | Adrenalin | Bereitet den Körper auf Kampf oder Flucht vor |
+| Bauchspeicheldrüse | Insulin, Glukagon | Regelt den Blutzuckerspiegel |
+| Eierstöcke und Hoden | Östrogen, Progesteron, Testosteron | Steuern die sekundären Geschlechtsmerkmale |
+
+Nervöse und hormonelle Reaktionen unterscheiden sich im zeitlichen Verlauf. Dieses Modell vergleicht eine **nervöse Reaktion**, kurz und scharf, mit einer **hormonellen Reaktion**, langsam, aber anhaltend, nach einem einzigen Reiz.
+
+<MathVisual
+  title={<>Eine nervöse und eine hormonelle Reaktion</>}
+  description={
+    <>
+      Relative Stärke der Reaktion gegen die Zeit nach einem Reiz, in
+      beliebigen Zeiteinheiten. Die nervöse Reaktion erreicht schnell ihren
+      Gipfel und klingt rasch ab.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 12 }, y: { min: 0, max: 8.5 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "s", min: 0, max: 12, value: 1, step: 0.1, label: "s" },
+    ],
+    objects: [
+      { id: "nerve", kind: "function", appearance: "primary", formula: "8exp(-((x - 1)/0.3)^2)", domain: { min: 0, max: 12 } },
+      { id: "hormone", kind: "function", appearance: "secondary", formula: "4(x/3)exp(1 - x/3)", domain: { min: 0, max: 12 } },
+      { id: "now", kind: "marker", x: "s", y: "4(s/3)exp(1 - s/3)", appearance: "warning" },
+    ],
+    readouts: [
+      { key: "nerve", formula: "8exp(-((s - 1)/0.3)^2)" },
+      { key: "hormone", formula: "4(s/3)exp(1 - s/3)" },
+    ],
+  }}
+  labels={{
+    s: <>Zeit nach dem Reiz <InlineMath math="s" /></>,
+    nerve: <>Nervöse Reaktion</>,
+    hormone: <>Hormonelle Reaktion</>,
+  }}
+/>
+
+Bei <InlineMath math="s = 3" /> ist die nervöse Reaktion schon abgeklungen, die hormonelle dagegen auf ihrem Gipfel. Deshalb klopft das Herz nach einem Schreck noch minutenlang: Adrenalin kreist noch im Blut.
+
+## Gesundheitsprobleme des Koordinationssystems
+
+Drogen und Alkohol stören die Übertragung von Impulsen an den Synapsen. Alkohol verlängert die Reaktionszeit, also braucht ein betrunkener Fahrer einen längeren Weg zum Anhalten. Die **Alzheimer-Krankheit** schädigt Nervenzellen im Gehirn und beeinträchtigt das Gedächtnis, die **Parkinson-Krankheit** entsteht, wenn Dopamin bildende Nervenzellen absterben und Bewegungen zittrig werden.
+
+## Häufige Fehler zur Koordination
+
+| Fehler | Warum er falsch ist | So prüfst du es |
+| :--- | :--- | :--- |
+| Jede Handlung wird vom Gehirn gesteuert. | Reflexe werden im Rückenmark verarbeitet, ohne auf das Gehirn zu warten. | Frag, ob dir die Handlung vorher bewusst war. |
+| Impulse können eine Synapse in beide Richtungen überqueren. | Neurotransmitter wird nur von der präsynaptischen Nervenzelle freigesetzt. | Finde heraus, wo das Endknöpfchen liegt. |
+| Hormone werden über Ausführgänge abgegeben. | Hormondrüsen haben keine Ausführgänge und geben direkt ins Blut ab. | Unterscheide Hormondrüsen von exokrinen Drüsen. |
+| Hormonelle Reaktionen sind schneller als nervöse. | Hormone müssen vom Blut transportiert werden, also ist die Reaktion langsamer, aber länger. | Vergleiche die Gipfel der beiden Kurven im Modell. |
+
+Der erste Fehler kommt in Aufgaben zum Reflexbogen am häufigsten vor. **Reflexe laufen über das Rückenmark**, und das Gehirn bemerkt sie erst danach.
+
+## Übungen zu Koordination und Reaktion
+
+Diese Aufgaben führen von Nervenzellen zu Reflexen und Hormonen. **Nenne bei Antworten zum Weg eines Impulses jede Nervenzelle**.
+
+1. Gib die Abfolge des Impulses beim Reflex an, der die Hand von einem heißen Gegenstand wegzieht.
+
+2. Ein Lineal fällt <InlineMath math="12\text{ cm}" />, bevor es gefangen wird. Berechne die Reaktionszeit.
+
+3. Ein Impuls legt <InlineMath math="0{,}80\text{ m}" /> in einem myelinisierten Axon mit <InlineMath math="80\text{ m s}^{-1}" /> zurück. Berechne die Zeit in Millisekunden.
+
+4. Erkläre, warum Adrenalin für einen Notfall geeignet ist, obwohl es langsamer wirkt als ein Nervenimpuls.
+
+### Lösungen
+
+**Lösung 1**: Der heiße Gegenstand reizt **Rezeptoren** in der Haut. Der Impuls läuft über eine **sensorische Nervenzelle** zum Rückenmark, dann über eine **Zwischennervenzelle** und eine **motorische Nervenzelle** zum Bizeps, dem Effektor, der sich zusammenzieht und die Hand wegzieht.
+
+**Lösung 2**: Rechne die Strecke in Meter um und nutze <InlineMath math="t = \sqrt{2d/g}" />:
+
+<BlockMath math="t = \sqrt{\frac{2 \times 0{,}12}{9{,}8}} = \sqrt{0{,}0245} = 0{,}16\text{ s}" />
+
+Prüfe mit dem Modell: Bei <InlineMath math="c = 2{,}4" /> zeigt es <InlineMath math="156" /> Millisekunden.
+
+**Lösung 3**: Teile die Strecke durch die Geschwindigkeit:
+
+<BlockMath math="t = \frac{0{,}80}{80} = 0{,}010\text{ s} = 10\text{ ms}" />
+
+Prüfe: <InlineMath math="80 \times 0{,}010 = 0{,}80\text{ m}" />.
+
+**Lösung 4**: Das Blut bringt Adrenalin **gleichzeitig zu vielen Organen**: Das Herz schlägt schneller, die Leber gibt Glucose ab, und die Atemwege weiten sich. Die Wirkung hält außerdem **lange an**, sodass der Körper bereit bleibt, solange der Notfall dauert.

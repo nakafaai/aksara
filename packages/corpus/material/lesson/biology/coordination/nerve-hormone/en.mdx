@@ -1,0 +1,264 @@
+export const metadata = {
+  title: "Coordination and Response in Humans Notes",
+  description:
+    "Form 4 Biology Chapter 12: explain neurones, impulse speed, synapses, the reflex arc, reaction time and the endocrine system, with worked examples and practice.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2026-11-17",
+  subject: "Coordination and Response in Humans",
+};
+
+## Coordination Links a Stimulus to a Response
+
+**Coordination** is the process that links a stimulus to a suitable response. Every response follows the same sequence: **stimulus, receptor, integration centre, effector, response**. Humans have two coordination systems. The **nervous system** sends fast electrical impulses along neurones, while the **endocrine system** secretes hormones into the blood, which act more slowly but for longer. In the models here, you test your reaction time, compare impulse speeds in axons and compare a nervous response with a hormonal one.
+
+## The Human Nervous System
+
+The nervous system has two parts. The **central nervous system** is the brain and spinal cord, and the **peripheral nervous system** is the nerves that link the central nervous system with the rest of the body. Its basic unit is the **neurone**.
+
+| Neurone | Direction of impulse | Location |
+| :--- | :--- | :--- |
+| Afferent neurone | From receptor to the central nervous system | Cell body outside the spinal cord |
+| Interneurone | Within the central nervous system | Brain and spinal cord |
+| Efferent neurone | From the central nervous system to an effector | Cell body inside the spinal cord |
+
+Every neurone has **dendrites** that receive impulses, a **cell body** that holds the nucleus and an **axon** that carries impulses away. Most axons are wrapped in a **myelin sheath** that insulates the axon, so the impulse jumps from one node of Ranvier to the next.
+
+### Speed of Nerve Impulses
+
+**Myelinated axons carry impulses much faster** than unmyelinated ones. In a myelinated axon, speed is roughly proportional to diameter. In an unmyelinated axon, speed is proportional only to the square root of the diameter. Move the diameter slider and compare the two speeds.
+
+<MathVisual
+  title={<>Impulse Speed in Myelinated and Unmyelinated Axons</>}
+  description={
+    <>
+      Speed in units of <InlineMath math="10\text{ m s}^{-1}" /> against axon
+      diameter in micrometres: <InlineMath math="0.6d" /> for a myelinated axon
+      and <InlineMath math="0.11\sqrt{d}" /> for an unmyelinated one.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 20 }, y: { min: 0, max: 12.5 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "d", min: 1, max: 20, value: 10, step: 0.5, label: "d" },
+    ],
+    objects: [
+      { id: "myelinated", kind: "function", appearance: "primary", formula: "0.6x", domain: { min: 0, max: 20 } },
+      { id: "unmyelinated", kind: "function", appearance: "secondary", formula: "0.11sqrt(x)", domain: { min: 0, max: 20 } },
+      { id: "now", kind: "marker", x: "d", y: "0.6d", appearance: "warning" },
+    ],
+    readouts: [
+      { key: "myelinated", formula: "6d" },
+      { key: "unmyelinated", formula: "1.1sqrt(d)" },
+    ],
+  }}
+  labels={{
+    d: <>Axon diameter <InlineMath math="d" /> in micrometres</>,
+    myelinated: <>Speed in a myelinated axon in m/s</>,
+    unmyelinated: <>Speed in an unmyelinated axon in m/s</>,
+  }}
+/>
+
+### Example Impulse Time from the Foot to the Spinal Cord
+
+An impulse travels <InlineMath math="1.0\text{ m}" /> from a toe to the spinal cord along a myelinated axon <InlineMath math="10\ \mu\text{m}" /> across. Calculate **the time taken**, and compare it with an unmyelinated axon of the same size.
+
+<MathContainer>
+<BlockMath math="v = 6 \times 10 = 60\text{ m s}^{-1}, \quad t = \frac{1.0}{60} = 0.017\text{ s}" />
+<BlockMath math="v = 1.1\sqrt{10} = 3.5\text{ m s}^{-1}, \quad t = \frac{1.0}{3.5} = 0.29\text{ s}" />
+</MathContainer>
+
+Check with the model: at <InlineMath math="d = 10" />, it reads <InlineMath math="60" /> and <InlineMath math="3.48" />. Without myelin the impulse is about seventeen times slower, enough to make us slow to pull a foot off a nail.
+
+## Synapses
+
+A **synapse** is the junction between two neurones. When an impulse reaches the end of an axon, the synaptic knob releases a **neurotransmitter** such as acetylcholine into the synaptic cleft. The neurotransmitter diffuses across the cleft and binds to receptors on the next neurone, triggering a new impulse. Neurotransmitter is released from one side only, so **impulses travel in one direction**.
+
+## Voluntary and Involuntary Actions
+
+A **voluntary action** is done consciously and controlled by the brain, for example pressing the brake when the brake lights of the car ahead come on. Test your reaction time in this model.
+
+<ReactionTimeLab
+  title={<>Test Your Reaction Time</>}
+  description={
+    <>
+      Press Brake as soon as the brake lights of the car ahead come on. The
+      card records your reaction time and the distance you still cover at{" "}
+      <InlineMath math="20\text{ m/s}" />.
+    </>
+  }
+  labels={{
+    start: "Start",
+    brake: "Brake",
+    early: <>Too early, wait for the lights</>,
+    lastTime: <>Your reaction time</>,
+    reactionDistance: (
+      <>
+        Reaction distance at <InlineMath math="20\text{ m/s}" />
+      </>
+    ),
+    best: <>Fastest</>,
+    average: <>Mean of your last five tries</>,
+    viewLabel: "View from the driver's seat",
+  }}
+/>
+
+The signal from the eye has to reach the brain, be processed and be sent to the leg muscles, so a voluntary action takes time. An **involuntary action** happens without awareness. A **reflex action**, such as the knee jerk, passes through the spinal cord without waiting for the brain, so it's much faster.
+
+<BarChart
+  title={<>Reaction Times for Several Responses</>}
+  description={
+    <>
+      Typical time in milliseconds from stimulus to response for one reflex
+      and two voluntary actions.
+    </>
+  }
+  yAxisLabel="Reaction time (ms)"
+  data={[
+    { name: "Knee jerk", value: 50 },
+    { name: "Catching a ruler", value: 200 },
+    { name: "Pressing the brake", value: 700 },
+  ]}
+  chartConfig={{ value: { label: "Reaction time", colors: { light: ["var(--chart-2)"], dark: ["var(--chart-2)"] } } }}
+/>
+
+### The Reflex Arc
+
+In the knee jerk **reflex arc**, a tap on the tendon stretches the thigh muscle. Stretch receptors send impulses along an **afferent neurone** to the spinal cord. The impulse passes straight to an **efferent neurone**, and the thigh muscle contracts so the leg kicks forward. The reflex that pulls a hand away from a hot object also involves an **interneurone** in the spinal cord.
+
+### Example Reaction Time with a Ruler
+
+A friend drops a ruler without warning, and you catch it after it has fallen <InlineMath math="d" /> centimetres. The ruler **falls freely**, so <InlineMath math="d = \tfrac{1}{2}gt^2" />. Move the falling distance and read the reaction time.
+
+<MathVisual
+  title={<>Reaction Time from the Distance a Ruler Falls</>}
+  description={
+    <>
+      Reaction time in tenths of a second against falling distance in units of{" "}
+      <InlineMath math="5\text{ cm}" />, from{" "}
+      <InlineMath math="t = \sqrt{2d/g}" /> with{" "}
+      <InlineMath math="g = 9.8\text{ m s}^{-2}" />.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 6.5 }, y: { min: 0, max: 3 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "c", min: 0.2, max: 6, value: 4, step: 0.1, label: "c" },
+    ],
+    objects: [
+      { id: "time", kind: "function", appearance: "primary", formula: "10sqrt(x/98)", domain: { min: 0, max: 6.5 } },
+      { id: "now", kind: "marker", x: "c", y: "10sqrt(c/98)", appearance: "warning" },
+    ],
+    readouts: [
+      { key: "distance", formula: "5c" },
+      { key: "time", formula: "1000sqrt(c/98)" },
+    ],
+  }}
+  labels={{
+    c: <>Falling distance <InlineMath math="c" /> in units of five centimetres</>,
+    distance: <>Falling distance in centimetres</>,
+    time: <>Reaction time in milliseconds</>,
+  }}
+/>
+
+If the ruler falls <InlineMath math="20\text{ cm}" />, which is <InlineMath math="0.20\text{ m}" />:
+
+<BlockMath math="t = \sqrt{\frac{2 \times 0.20}{9.8}} = \sqrt{0.0408} = 0.20\text{ s}" />
+
+Check with the model: at <InlineMath math="c = 4" />, the time reads <InlineMath math="202" /> milliseconds, the same as the ruler catch in the chart.
+
+## The Endocrine System
+
+**Endocrine glands** have no ducts and secrete **hormones** straight into the blood. The blood carries hormones to their target organs.
+
+| Gland | Hormone | Main effect |
+| :--- | :--- | :--- |
+| Pituitary | Growth hormone, ADH, FSH, LH | Controls growth and other glands |
+| Thyroid | Thyroxine | Raises the metabolic rate |
+| Adrenal | Adrenaline | Prepares the body for fight or flight |
+| Pancreas | Insulin, glucagon | Controls blood glucose level |
+| Ovaries and testes | Oestrogen, progesterone, testosterone | Control secondary sexual characteristics |
+
+Nervous and hormonal responses differ in timing. This model compares a **nervous response**, short and sharp, with a **hormonal response**, slow but long-lasting, after a single stimulus.
+
+<MathVisual
+  title={<>A Nervous Response and a Hormonal Response</>}
+  description={
+    <>
+      Relative strength of the response against time after a stimulus, in
+      arbitrary time units. The nervous response peaks and fades quickly.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 12 }, y: { min: 0, max: 8.5 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "s", min: 0, max: 12, value: 1, step: 0.1, label: "s" },
+    ],
+    objects: [
+      { id: "nerve", kind: "function", appearance: "primary", formula: "8exp(-((x - 1)/0.3)^2)", domain: { min: 0, max: 12 } },
+      { id: "hormone", kind: "function", appearance: "secondary", formula: "4(x/3)exp(1 - x/3)", domain: { min: 0, max: 12 } },
+      { id: "now", kind: "marker", x: "s", y: "4(s/3)exp(1 - s/3)", appearance: "warning" },
+    ],
+    readouts: [
+      { key: "nerve", formula: "8exp(-((s - 1)/0.3)^2)" },
+      { key: "hormone", formula: "4(s/3)exp(1 - s/3)" },
+    ],
+  }}
+  labels={{
+    s: <>Time after the stimulus <InlineMath math="s" /></>,
+    nerve: <>Nervous response</>,
+    hormone: <>Hormonal response</>,
+  }}
+/>
+
+At <InlineMath math="s = 3" />, the nervous response has already faded, but the hormonal response is at its peak. That's why your heart keeps pounding for minutes after a fright: adrenaline is still circulating in the blood.
+
+## Health Issues of the Coordination System
+
+Drug and alcohol abuse disrupt the transmission of impulses at synapses. Alcohol lengthens reaction time, so a drunk driver needs a longer distance to stop. **Alzheimer's disease** damages brain neurones and affects memory, while **Parkinson's disease** happens when neurones that make dopamine die and movement becomes shaky.
+
+## Common Mistakes about Coordination
+
+| Mistake | Why it's wrong | How to check |
+| :--- | :--- | :--- |
+| Every action is controlled by the brain. | Reflex actions are processed by the spinal cord without waiting for the brain. | Ask whether you were aware of the action first. |
+| Impulses can travel both ways across a synapse. | Neurotransmitter is released only by the presynaptic neurone. | Find where the synaptic knob is. |
+| Hormones are secreted through ducts. | Endocrine glands have no ducts and secrete straight into the blood. | Tell endocrine glands apart from exocrine glands. |
+| Hormonal responses are faster than nervous ones. | Hormones have to be carried by the blood, so the response is slower but lasts longer. | Compare the peaks of the two curves in the model. |
+
+The first mistake is the most common one in reflex arc questions. **Reflexes pass through the spinal cord**, and the brain only becomes aware afterwards.
+
+## Practice on Coordination and Response
+
+These questions move from neurones to reflexes and hormones. **Name each neurone** in answers about the path of an impulse.
+
+1. Write the sequence of the impulse's path in the reflex that pulls a hand away from a hot object.
+
+2. A ruler falls <InlineMath math="12\text{ cm}" /> before it's caught. Calculate the reaction time.
+
+3. An impulse travels <InlineMath math="0.80\text{ m}" /> along a myelinated axon at <InlineMath math="80\text{ m s}^{-1}" />. Calculate the time taken in milliseconds.
+
+4. Explain why adrenaline suits an emergency even though it acts more slowly than a nerve impulse.
+
+### Solutions
+
+**Solution 1**: The hot object stimulates **receptors** in the skin. The impulse travels along an **afferent neurone** to the spinal cord, then an **interneurone**, then an **efferent neurone** to the biceps muscle, the effector that contracts and pulls the hand away.
+
+**Solution 2**: Convert the distance to metres, then use <InlineMath math="t = \sqrt{2d/g}" />:
+
+<BlockMath math="t = \sqrt{\frac{2 \times 0.12}{9.8}} = \sqrt{0.0245} = 0.16\text{ s}" />
+
+Check with the model: at <InlineMath math="c = 2.4" />, it reads <InlineMath math="156" /> milliseconds.
+
+**Solution 3**: Divide the distance by the speed:
+
+<BlockMath math="t = \frac{0.80}{80} = 0.010\text{ s} = 10\text{ ms}" />
+
+Check: <InlineMath math="80 \times 0.010 = 0.80\text{ m}" />.
+
+**Solution 4**: The blood carries adrenaline to **many organs at once**: the heart beats faster, the liver releases glucose and the airways widen. Its effect is also **long-lasting**, so the body stays ready for as long as the emergency goes on.

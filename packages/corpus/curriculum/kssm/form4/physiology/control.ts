@@ -45,7 +45,33 @@ export const kssmForm4PhysiologyControlNodes = [
     },
   }),
   unitNode({
+    children: [
+      materialNode({
+        key: "form-4-biology-coordination-and-response-in-humans-coordination",
+        level: "lesson",
+        materialKeys: ["lesson.biology.coordination"],
+        order: 10,
+      }),
+    ],
     key: "form-4-biology-coordination-and-response-in-humans",
+    materialCard: {
+      de: {
+        description: "Erkläre Nervenzellen, Reflexe und Hormone.",
+        title: "Koordination und Reaktion beim Menschen",
+      },
+      en: {
+        description: "Explain neurones, reflexes and hormones.",
+        title: "Coordination and Response in Humans",
+      },
+      id: {
+        description: "Jelaskan neuron, refleks, dan hormon.",
+        title: "Sistem Koordinasi dan Tanggapan pada Manusia",
+      },
+      ms: {
+        description: "Terangkan neuron, refleks dan hormon.",
+        title: "Koordinasi dan Gerak Balas dalam Manusia",
+      },
+    },
     order: 120,
     translations: {
       de: {
