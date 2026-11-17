@@ -1,0 +1,24 @@
+# Bandingkan daya, bukan arus, lalu ubah daya yang hilang menjadi energi
+
+Daya masukan: <InlineMath math="240 \times 0{,}050 = 12" /> W. Daya keluaran: <InlineMath math="5{,}0 \times 2{,}0 = 10" /> W. Efisiensi: <InlineMath math="10 \div 12 = 83\%" />. Arus saja tidak berarti sampai masing-masing **dikalikan dengan tegangannya sendiri**.
+
+<Mermaid
+  title={<>Daya Masuk, Daya Keluar, Daya Hilang</>}
+  description={<>Masukan <InlineMath math="12\text{ W}" />, keluaran <InlineMath math="10\text{ W}" />, jadi efisiensi <InlineMath math="83\%" /> dan <InlineMath math="2{,}0\text{ W}" /> hilang, yaitu <InlineMath math="7{,}2\text{ kJ}" /> dalam satu jam.</>}
+  chart={`
+    flowchart LR
+      N0["P_masuk = 240 × 0,050 = 12 W"] --> N2["Efisiensi 10 ÷ 12 = 83%"]
+      N1["P_keluar = 5,0 × 2,0 = 10 W"] --> N2
+      N2 --> N3["Hilang 2,0 W × 3600 s = 7,2 kJ"]
+  `}
+/>
+
+Perbandingan lilitan mengikuti tegangan: <InlineMath math="240 : 5{,}0 = 48 : 1" />, lebih banyak lilitan di primer untuk trafo penurun. <InlineMath math="2{,}0" /> W yang hilang sebagai kalor, selama <InlineMath math="3600" /> s, adalah <InlineMath math="7200" /> J, atau <InlineMath math="7{,}2" /> kJ.
+
+**Kalor di sekunder**: kumparan sekunder dialiri seluruh <InlineMath math="2{,}0" /> A, jadi mengubah <InlineMath math="I^2 R = 2{,}0^2 \times 0{,}30 = 1{,}2" /> W menjadi kalor, lebih dari separuh <InlineMath math="2{,}0" /> W yang hilang. Sisanya hilang di kumparan primer dan inti besi.
+
+# Kenapa pilihan lain salah
+
+- <InlineMath math="100\%" /> menganggap trafo **ideal**, padahal <InlineMath math="12" /> W masuk dan hanya <InlineMath math="10" /> W keluar.
+- <InlineMath math="1 : 48" /> akan menaikkan tegangan, padahal pengisi daya ini menurunkannya.
+- <InlineMath math="0{,}60\text{ W}" /> adalah <InlineMath math="IR" />, tegangan pada kumparan, bukan daya yang diubahnya menjadi kalor.

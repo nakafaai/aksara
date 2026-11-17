@@ -1,0 +1,25 @@
+# Der Widerstand nimmt nur, was die LEDs übrig lassen, beim selben Strom
+
+Am Widerstand liegen <InlineMath math="9{,}0 - 2{,}0 = 7{,}0" /> V bei <InlineMath math="0{,}020" /> A, also <InlineMath math="R = 7{,}0 \div 0{,}020 = 350\,\Omega" />. Er setzt <InlineMath math="P = 7{,}0 \times 0{,}020 = 0{,}14" /> W um. Den Strom gibt die LED vor, also bestimmt die **übrige Spannung** den Widerstand.
+
+<Chart
+  title={<>Wie sich die <InlineMath math="9{,}0\text{ V}" /> aufteilen</>}
+  bars="apart"
+  categories={["Eine LED", "Drei LEDs"]}
+  series={[
+    { label: "LEDs", mark: "bar", values: [2.0, 6.0] },
+    { label: "Widerstand", mark: "bar", values: [7.0, 3.0] },
+  ]}
+  valueLabel="Spannung (V)"
+  description={<>Die Batteriespannung teilt sich auf LEDs und Widerstand auf. Durch alle fließen dieselben <InlineMath math="20\text{ mA}" />, der Widerstand nimmt also, was die LEDs übrig lassen.</>}
+/>
+
+Drei LEDs in Reihe brauchen <InlineMath math="6{,}0" /> V und lassen <InlineMath math="3{,}0" /> V beim selben Strom von <InlineMath math="0{,}020" /> A, der Widerstand muss also <InlineMath math="3{,}0 \div 0{,}020 = 150\,\Omega" /> haben.
+
+**Innenwiderstand, dann eine schwache Batterie**: Bei <InlineMath math="20" /> mA verliert die Batterie selbst <InlineMath math="0{,}020 \times 5{,}0 = 0{,}10" /> V, am Widerstand liegen also <InlineMath math="9{,}0 - 6{,}0 - 0{,}10 = 2{,}9" /> V, und er muss <InlineMath math="2{,}9 \div 0{,}020 = 145\,\Omega" /> haben. Bei <InlineMath math="8{,}0" /> V nehmen die LEDs weiter <InlineMath math="6{,}0" /> V, es bleiben nur <InlineMath math="2{,}0" /> V an <InlineMath math="145 + 5{,}0 = 150\,\Omega" />: <InlineMath math="I = 2{,}0 \div 150 = 0{,}013" /> A. Ein kleiner Abfall der EMK gibt einen großen Abfall des Stroms, weil die LEDs ihre Spannung behalten.
+
+# Warum die anderen Antworten falsch sind
+
+- <InlineMath math="150\,\Omega" /> übersieht den **Innenwiderstand**, der bei <InlineMath math="20" /> mA schon <InlineMath math="0{,}10" /> V nimmt.
+- <InlineMath math="18\text{ mA}" /> skaliert den Strom mit der EMK, doch die LEDs behalten ihre <InlineMath math="6{,}0" /> V, nur die übrigen <InlineMath math="2{,}0" /> V treiben den Strom.
+- <InlineMath math="155\,\Omega" /> addiert den Innenwiderstand zum Widerstand, statt ihn abzuziehen.

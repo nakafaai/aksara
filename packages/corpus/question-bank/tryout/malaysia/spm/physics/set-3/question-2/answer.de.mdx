@@ -1,0 +1,26 @@
+# Die Waage korrigieren, die Parallaxe sich aufheben lassen
+
+Die Waage zeigt ohne Last <InlineMath math="0{,}3" /> g, einen **Nullpunktfehler** von <InlineMath math="+0{,}3" /> g, also hat der Stein <InlineMath math="41{,}9 - 0{,}3 = 41{,}6" /> g.
+
+Das Volumen kommt aus einer **Differenz** zweier Ablesungen. Beide sind <InlineMath math="0{,}5\text{ cm}^3" /> zu hoch, der Fehler hebt sich also auf: <InlineMath math="58{,}5 - 42{,}5 = 16{,}0\text{ cm}^3" />.
+
+<Mermaid
+  title={<>Welche Fehler zählen</>}
+  description={<>Der Waagenfehler ändert die Masse, der Parallaxenfehler steckt aber in beiden Volumenablesungen gleich und hebt sich in der Differenz auf.</>}
+  chart={`
+    flowchart LR
+      N0["Masse: 41,9 − 0,3 = 41,6 g"] --> N3["ρ = 41,6 ÷ 16,0 = 2,60 g cm⁻³"]
+      N1["Volumen: 58,5 − 42,5 = 16,0 cm³"] --> N3
+      N2["Parallaxe +0,5 in beiden Ablesungen hebt sich auf"] --> N1
+  `}
+/>
+
+Dichte: <InlineMath math="41{,}6 \div 16{,}0 = 2{,}60\text{ g cm}^{-3}" />.
+
+**Die Flüssigkeit**: Der Stein wiegt <InlineMath math="0{,}0416 \times 10 = 0{,}416" /> N, der Auftrieb ist also die Abnahme der Anzeige, <InlineMath math="0{,}416 - 0{,}250 = 0{,}166" /> N. Er verdrängt seine eigenen <InlineMath math="16{,}0\text{ cm}^3 = 1{,}60 \times 10^{-5}\text{ m}^3" />, also <InlineMath math="\rho = 0{,}166 \div (1{,}60 \times 10^{-5} \times 10) = 1040\text{ kg m}^{-3}" />, das sind <InlineMath math="1{,}04\text{ g cm}^{-3}" />.
+
+# Warum die anderen Antworten falsch sind
+
+- <InlineMath math="1{,}06\text{ g cm}^{-3}" /> bei richtiger Steindichte nimmt das Gewicht aus <InlineMath math="41{,}9" /> g und trägt den **Nullpunktfehler** der Waage in den Auftrieb.
+- <InlineMath math="2{,}62\text{ g cm}^{-3}" /> vergisst den Nullpunktfehler in der Dichte und im Gewicht.
+- <InlineMath math="1{,}56\text{ g cm}^{-3}" /> hält die Anzeige in der Flüssigkeit für den Auftrieb, doch der Auftrieb ist die **Abnahme** des Gewichts.

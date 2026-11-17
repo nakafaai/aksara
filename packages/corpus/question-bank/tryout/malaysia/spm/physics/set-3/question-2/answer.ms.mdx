@@ -1,0 +1,26 @@
+# Betulkan penimbang, tetapi biarkan paralaks terbatal
+
+Penimbang membaca <InlineMath math="0.3" /> g tanpa apa-apa di atasnya, iaitu **ralat sifar** <InlineMath math="+0.3" /> g, jadi jisim batu ialah <InlineMath math="41.9 - 0.3 = 41.6" /> g.
+
+Isi padu datang daripada **beza** dua bacaan. Kedua-duanya <InlineMath math="0.5\text{ cm}^3" /> terlalu tinggi, jadi ralat itu terbatal: <InlineMath math="58.5 - 42.5 = 16.0\text{ cm}^3" />.
+
+<Mermaid
+  title={<>Ralat Mana yang Penting</>}
+  description={<>Ralat penimbang mengubah jisim, tetapi ralat paralaks sama dalam kedua-dua bacaan isi padu dan terbatal dalam bezanya.</>}
+  chart={`
+    flowchart LR
+      N0["Jisim: 41.9 − 0.3 = 41.6 g"] --> N3["ρ = 41.6 ÷ 16.0 = 2.60 g cm⁻³"]
+      N1["Isi padu: 58.5 − 42.5 = 16.0 cm³"] --> N3
+      N2["Paralaks +0.5 dalam kedua-dua bacaan terbatal"] --> N1
+  `}
+/>
+
+Ketumpatan: <InlineMath math="41.6 \div 16.0 = 2.60\text{ g cm}^{-3}" />.
+
+**Cecair**: berat batu ialah <InlineMath math="0.0416 \times 10 = 0.416" /> N, jadi daya apungan ialah susutan bacaan, <InlineMath math="0.416 - 0.250 = 0.166" /> N. Batu itu menyesarkan <InlineMath math="16.0\text{ cm}^3 = 1.60 \times 10^{-5}\text{ m}^3" /> cecair, jadi <InlineMath math="\rho = 0.166 \div (1.60 \times 10^{-5} \times 10) = 1040\text{ kg m}^{-3}" />, atau <InlineMath math="1.04\text{ g cm}^{-3}" />.
+
+# Mengapa pilihan lain salah
+
+- <InlineMath math="1.06\text{ g cm}^{-3}" /> dengan ketumpatan batu yang betul mengambil berat daripada <InlineMath math="41.9" /> g, membawa **ralat sifar** penimbang ke dalam daya apungan.
+- <InlineMath math="2.62\text{ g cm}^{-3}" /> terlupa ralat sifar dalam ketumpatan dan juga dalam berat.
+- <InlineMath math="1.56\text{ g cm}^{-3}" /> menganggap bacaan dalam cecair sebagai daya apungan, tetapi daya apungan ialah **susutan** berat.

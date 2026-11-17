@@ -1,0 +1,27 @@
+# Susun ekspresinya gerbang demi gerbang, lalu hitung barisnya
+
+Rangkaian itu memberi <InlineMath math="X = (A \cdot \overline{B}) + C" />. Setiap kali <InlineMath math="C = 1" /> gerbang OR mengeluarkan <InlineMath math="1" />, yang mencakup **empat baris**.
+
+<Mermaid
+  title={<>Rangkaian Alarm sebagai Logika</>}
+  description={<>Gerakan saja selalu membunyikan alarm. Tanpa gerakan, hanya pintu terbuka tanpa kunci yang bisa membunyikannya, karena gerbang NOT memblokir sinyal pintu setiap kali kunci terpasang.</>}
+  chart={`
+    flowchart LR
+      N0["B: kunci terpasang"] --> N1["NOT B"]
+      N1 --> N3["A AND NOT B"]
+      N2["A: pintu terbuka"] --> N3
+      N3 --> N5["X = (A AND NOT B) OR C"]
+      N4["C: gerakan"] --> N5
+      N5 --> N6["4 baris dengan C = 1, ditambah A = 1, B = 0, C = 0: 5 dari 8"]
+  `}
+/>
+
+Dengan <InlineMath math="C = 0" />, alarm butuh <InlineMath math="A = 1" /> dan <InlineMath math="\overline{B} = 1" />, jadi hanya baris <InlineMath math="A = 1, B = 0" /> yang menambah satu lagi. Totalnya <InlineMath math="5" /> dari <InlineMath math="8" />. Dengan pintu terbuka dan kunci terpasang, <InlineMath math="\overline{B} = 0" /> memblokir gerbang AND, jadi hanya gerakan yang bisa membunyikan alarm.
+
+**Kasus ini, lalu transistornya**: dengan kunci terpasang, <InlineMath math="\overline{B} = 0" /> dan gerbang AND memberi <InlineMath math="0" />, tetapi <InlineMath math="C = 1" /> membuat keluaran OR <InlineMath math="1" />, jadi sirene harus berbunyi. Resistor basis lalu mendapat <InlineMath math="5{,}0 - 0{,}70 = 4{,}3" /> V, dan arus basis <InlineMath math="4{,}3 \div R" /> harus paling sedikit <InlineMath math="0{,}50" /> mA, jadi <InlineMath math="R \le 4{,}3 \div 0{,}00050 = 8{,}6\text{ k}\Omega" />.
+
+# Kenapa pilihan lain salah
+
+- <InlineMath math="10\text{ k}\Omega" /> membagi seluruh <InlineMath math="5{,}0" /> V dengan arus dan melupakan **penurunan basis-emitor** <InlineMath math="0{,}70" /> V.
+- Kunci di kontak hanya memblokir cabang AND: gerakan langsung sampai ke gerbang OR dan tetap membunyikan alarm.
+- Resistor yang lebih besar memberi arus basis yang **lebih kecil**, jadi <InlineMath math="8{,}6\text{ k}\Omega" /> adalah nilai terbesar resistor, bukan terkecil.

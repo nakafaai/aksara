@@ -1,0 +1,23 @@
+# Die ganze Verzögerung addieren, Halbwertszeiten zählen, dann zurückrechnen
+
+Die Probe zerfällt während Wartezeit und Transport zusammen: <InlineMath math="3{,}0 + 24 = 27" /> h, das sind <InlineMath math="27 \div 6{,}0 = 4{,}5" /> Halbwertszeiten. Rückwärts verdoppelt sich die Aktivität einmal pro Halbwertszeit: <InlineMath math="A_0 = 50 \times 2^{4{,}5}" />.
+
+<Chart
+  title={<>Aktivität von der Herstellung bis zur Injektion</>}
+  categories={["0", "3", "6", "9", "12", "15", "18", "21", "24", "27"]}
+  series={[
+    { label: "Aktivität (MBq)", mark: "line", values: [1131, 800, 566, 400, 283, 200, 141, 100, 71, 50] },
+  ]}
+  valueLabel="Aktivität (MBq)"
+  description={<>In <InlineMath math="27\text{ h}" />, viereinhalb Halbwertszeiten, fällt die Aktivität von etwa <InlineMath math="1130\text{ MBq}" /> auf <InlineMath math="50\text{ MBq}" />. Die Kurve halbiert sich alle <InlineMath math="6\text{ h}" />, sie ist also keine Gerade. Zeit in Stunden.</>}
+/>
+
+<InlineMath math="2^{4{,}5} = 2^4 \times \sqrt{2} = 22{,}6" />, also <InlineMath math="A_0 = 50 \times 22{,}6 \approx 1130" /> MBq. Eine halbe Halbwertszeit multipliziert mit <InlineMath math="\sqrt{2}" />, **nicht mit anderthalb**.
+
+**Über <InlineMath math="1" /> MBq**: Halbieren ab <InlineMath math="50" /> MBq gibt <InlineMath math="25" />, <InlineMath math="12{,}5" />, <InlineMath math="6{,}25" />, <InlineMath math="3{,}1" /> und <InlineMath math="1{,}56" /> MBq nach fünf Halbwertszeiten, <InlineMath math="30" /> h, und <InlineMath math="0{,}78" /> MBq nach sechs, <InlineMath math="36" /> h. Die Aktivität fällt zwischen diesen beiden Zeiten unter <InlineMath math="1" /> MBq.
+
+# Warum die anderen Antworten falsch sind
+
+- <InlineMath math="800\text{ MBq}" /> zählt nur die <InlineMath math="24" /> h Transport und vergisst die **drei Stunden Wartezeit**.
+- <InlineMath math="1200\text{ MBq}" /> nimmt eine Gerade mitten zwischen <InlineMath math="800" /> und <InlineMath math="1600" />, doch der Zerfall ist exponentiell, eine halbe Halbwertszeit bedeutet also den Faktor <InlineMath math="\sqrt{2}" />.
+- Zwischen <InlineMath math="24" /> h und <InlineMath math="30" /> h hört eine Halbierung zu früh auf: Nach vier Halbwertszeiten sind es noch <InlineMath math="3{,}1" /> MBq.

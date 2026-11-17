@@ -1,0 +1,23 @@
+# Work back from the side of the core to the end of the fibre
+
+At the core-cladding boundary, <InlineMath math="\sin c = 1.40 \div 1.50 = 0.933" />, so <InlineMath math="c = 69^\circ" />. The cladding, **not air**, is the second medium here.
+
+<Mermaid
+  title={<>From the Boundary Back to the Entry</>}
+  description={<>The ray must meet the side at at least <InlineMath math="69^\circ" />, so inside the end it may tilt at most <InlineMath math="21^\circ" />, which is <InlineMath math="33^\circ" /> outside in air.</>}
+  chart={`
+    flowchart LR
+      N0["sin c = 1.40 ÷ 1.50"] --> N1["c = 69°"]
+      N1 --> N2["Angle inside the end: 90 − 69 = 21°"]
+      N2 --> N3["Snell at the end: sin θ = 1.50 sin 21°"]
+      N3 --> N4["θ = 33°"]
+  `}
+/>
+
+For total internal reflection the ray must hit the side at <InlineMath math="69^\circ" /> or more to the normal, so inside the core it makes at most <InlineMath math="90 - 69 = 21^\circ" /> with the axis. At the flat end, refraction from air: <InlineMath math="\sin \theta = 1.50 \sin 21^\circ = 0.54" />, so <InlineMath math="\theta = 33^\circ" />.
+
+# Why the other options are wrong
+
+- <InlineMath math="42^\circ" /> is the critical angle for glass against **air**, but the core is surrounded by cladding.
+- <InlineMath math="21^\circ" /> is the angle inside the core, before refraction at the end bends it out to <InlineMath math="33^\circ" /> in air.
+- <InlineMath math="21^\circ" /> is the complement of the critical angle, not the critical angle itself.

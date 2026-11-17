@@ -1,0 +1,27 @@
+# Bina ungkapan get demi get, kemudian kira baris
+
+Litar itu memberi <InlineMath math="X = (A \cdot \overline{B}) + C" />. Apabila <InlineMath math="C = 1" /> get ATAU mengeluarkan <InlineMath math="1" />, yang meliputi **empat baris**.
+
+<Mermaid
+  title={<>Litar Penggera sebagai Logik</>}
+  description={<>Gerakan sahaja sentiasa membunyikan penggera. Tanpa gerakan, hanya pintu terbuka tanpa kunci boleh membunyikannya, kerana get TAK menyekat isyarat pintu apabila kunci dimasukkan.</>}
+  chart={`
+    flowchart LR
+      N0["B: kunci dimasukkan"] --> N1["TAK B"]
+      N1 --> N3["A DAN TAK B"]
+      N2["A: pintu terbuka"] --> N3
+      N3 --> N5["X = (A DAN TAK B) ATAU C"]
+      N4["C: gerakan"] --> N5
+      N5 --> N6["4 baris dengan C = 1, tambah A = 1, B = 0, C = 0: 5 daripada 8"]
+  `}
+/>
+
+Dengan <InlineMath math="C = 0" />, penggera memerlukan <InlineMath math="A = 1" /> dan <InlineMath math="\overline{B} = 1" />, jadi hanya baris <InlineMath math="A = 1, B = 0" /> menambah satu lagi. Jumlahnya <InlineMath math="5" /> daripada <InlineMath math="8" />. Dengan pintu terbuka dan kunci dimasukkan, <InlineMath math="\overline{B} = 0" /> menyekat get DAN, jadi hanya gerakan boleh membunyikan penggera.
+
+**Keadaan ini, kemudian transistor**: dengan kunci dimasukkan, <InlineMath math="\overline{B} = 0" /> dan get DAN memberi <InlineMath math="0" />, tetapi <InlineMath math="C = 1" /> menjadikan output ATAU <InlineMath math="1" />, jadi siren mesti berbunyi. Perintang tapak kemudian mempunyai <InlineMath math="5.0 - 0.70 = 4.3" /> V merentasinya, dan arus tapak <InlineMath math="4.3 \div R" /> mesti sekurang-kurangnya <InlineMath math="0.50" /> mA, jadi <InlineMath math="R \le 4.3 \div 0.00050 = 8.6\text{ k}\Omega" />.
+
+# Mengapa pilihan lain salah
+
+- <InlineMath math="10\text{ k}\Omega" /> membahagikan seluruh <InlineMath math="5.0" /> V dengan arus dan terlupa **susutan tapak-pemancar** <InlineMath math="0.70" /> V.
+- Kunci dalam suis penghidup hanya menyekat cabang DAN: gerakan sampai terus ke get ATAU dan masih membunyikan penggera.
+- Perintang yang lebih besar memberi arus tapak yang **lebih kecil**, jadi <InlineMath math="8.6\text{ k}\Omega" /> ialah nilai paling besar bagi perintang, bukan paling kecil.

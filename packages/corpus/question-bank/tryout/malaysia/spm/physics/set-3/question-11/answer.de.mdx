@@ -1,0 +1,24 @@
+# Mit Absolutdruck und Kelvin rechnen, dann zurückrechnen
+
+Das Druckgesetz <InlineMath math="p \propto T" /> braucht den **Absolutdruck**, <InlineMath math="220 + 100 = 320" /> kPa, und Temperaturen in Kelvin: <InlineMath math="300" /> K und <InlineMath math="330" /> K.
+
+<Mermaid
+  title={<>Überdruck zu Absolutdruck und zurück</>}
+  description={<>Das Druckgesetz arbeitet mit Absolutdruck und Kelvin: <InlineMath math="320\text{ kPa}" /> bei <InlineMath math="300\text{ K}" /> werden <InlineMath math="352\text{ kPa}" /> bei <InlineMath math="330\text{ K}" />.</>}
+  chart={`
+    flowchart LR
+      N0["Überdruck 220 + 100 = 320 kPa absolut"] --> N1["27 °C = 300 K, 57 °C = 330 K"]
+      N1 --> N2["p₂ = 320 × 330 ÷ 300 = 352 kPa"]
+      N2 --> N3["Überdruck 352 − 100 = 252 kPa"]
+  `}
+/>
+
+Nach der Fahrt: <InlineMath math="320 \times 330 \div 300 = 352" /> kPa absolut. Das Messgerät zeigt den Überdruck gegenüber der Atmosphäre: <InlineMath math="352 - 100 = 252" /> kPa.
+
+**Luft im heißen Zustand abgelassen**: Eine Anzeige von <InlineMath math="220" /> kPa bei <InlineMath math="330" /> K sind absolut <InlineMath math="320" /> kPa. Abkühlen bei festem Volumen auf <InlineMath math="300" /> K ergibt <InlineMath math="320 \times 300 \div 330 = 291" /> kPa absolut, das Manometer zeigt also nur <InlineMath math="191" /> kPa, deutlich unter dem Ausgangswert.
+
+# Warum die anderen Antworten falsch sind
+
+- <InlineMath math="465\text{ kPa}" /> nimmt das Verhältnis der **Celsius**-Temperaturen, doch der Druck ist proportional zur Temperatur in Kelvin.
+- <InlineMath math="242\text{ kPa}" /> und <InlineMath math="200\text{ kPa}" /> wenden das Druckgesetz auf die Anzeige an und lassen die <InlineMath math="100" /> kPa der Atmosphäre weg.
+- <InlineMath math="352\text{ kPa}" /> und <InlineMath math="291\text{ kPa}" /> sind Absolutdrücke, doch das Manometer zeigt den Druck über dem Atmosphärendruck.

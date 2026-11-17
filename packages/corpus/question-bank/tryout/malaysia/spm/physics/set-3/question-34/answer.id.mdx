@@ -1,0 +1,26 @@
+# Putaran lebih cepat menaikkan tegangan dan frekuensi, dan daya mengikuti kuadrat tegangan
+
+Menurut hukum Faraday, GGL bergantung pada **laju pemotongan fluks**. Kecepatan dua kali lipat menggandakan laju itu, jadi puncaknya menjadi <InlineMath math="12" /> V. Satu putaran menghasilkan satu siklus, jadi dua kali lebih banyak putaran per detik memberi <InlineMath math="100" /> Hz.
+
+<Mermaid
+  title={<>Satu Perubahan, Tiga Akibat</>}
+  description={<>Berputar dua kali lebih cepat memotong fluks dua kali lebih cepat dan menuntaskan dua kali lebih banyak putaran tiap detik. Daya mengikuti kuadrat tegangan.</>}
+  chart={`
+    flowchart LR
+      N0["Kumparan diputar dua kali lebih cepat"] --> N1["Fluks terpotong dua kali lebih cepat"]
+      N1 --> N2["GGL puncak 6,0 → 12 V"]
+      N0 --> N3["Dua kali lebih banyak putaran per detik"]
+      N3 --> N4["Frekuensi 50 → 100 Hz"]
+      N2 --> N5["P = V² ÷ R: 1,5 → 6,0 W"]
+  `}
+/>
+
+Dengan <InlineMath math="P = V^2 \div R" /> dan hambatan tetap, menggandakan tegangan membuat daya empat kali lipat. Daya rata-rata naik dari <InlineMath math="(6{,}0 \div \sqrt{2})^2 \div 12 = 1{,}5" /> W menjadi <InlineMath math="6{,}0" /> W.
+
+**Lilitan berkurang, dua lampu**: membagi dua lilitan membagi dua GGL, jadi kecepatan ganda kini memberi puncak <InlineMath math="6{,}0" /> V, sedangkan frekuensi tetap <InlineMath math="100" /> Hz karena hanya bergantung pada laju putaran. Tiap lampu paralel mendapat seluruh puncak <InlineMath math="6{,}0" /> V dan mengambil <InlineMath math="(6{,}0 \div \sqrt{2})^2 \div 12 = 1{,}5" /> W, jadi generator memberi <InlineMath math="3{,}0" /> W seluruhnya.
+
+# Kenapa pilihan lain salah
+
+- <InlineMath math="0{,}38\text{ W}" /> membagi dua <InlineMath math="6{,}0" /> V semula, bukan <InlineMath math="12" /> V yang baru, seolah putaran yang lebih cepat tidak lagi dihitung.
+- Frekuensi adalah banyaknya putaran per detik, jadi tidak bisa tetap <InlineMath math="50" /> Hz.
+- <InlineMath math="0{,}75\text{ W}" /> membagi daya satu lampu untuk dua, padahal lampu **paralel** masing-masing mendapat tegangan penuh.

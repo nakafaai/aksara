@@ -1,0 +1,25 @@
+# Jumlahkan luas tiap tahap grafik kelajuan-waktu
+
+**Jatuh bebas**: setelah <InlineMath math="4{,}0" /> s kelajuannya <InlineMath math="10 \times 4{,}0 = 40\text{ m s}^{-1}" />, dan jaraknya <InlineMath math="\tfrac{1}{2} \times 10 \times 4{,}0^2 = 80" /> m.
+
+**Melambat**: kelajuan turun beraturan dari <InlineMath math="40" /> ke <InlineMath math="5\text{ m s}^{-1}" />, jadi rata-ratanya <InlineMath math="22{,}5\text{ m s}^{-1}" /> dan jaraknya <InlineMath math="22{,}5 \times 3{,}0 = 67{,}5" /> m.
+
+<Chart
+  title={<>Kelajuan Penerjun</>}
+  categories={["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10"]}
+  series={[
+    { label: "Kelajuan (m/s)", mark: "line", values: [0, 10, 20, 30, 40, 28.3, 16.7, 5, 5, 5, 5] },
+  ]}
+  valueLabel="Kelajuan (m/s)"
+  description={<>Waktu dalam detik di sumbu bawah. Kelajuan naik ke <InlineMath math="40\text{ m s}^{-1}" /> pada <InlineMath math="4\text{ s}" />, turun ke <InlineMath math="5\text{ m s}^{-1}" /> pada <InlineMath math="7\text{ s}" />, lalu tetap. Jaraknya adalah luas di bawah garis.</>}
+/>
+
+**Tetap**: dari <InlineMath math="7" /> s sampai <InlineMath math="10" /> s, <InlineMath math="5{,}0 \times 3{,}0 = 15" /> m. Total: <InlineMath math="80 + 67{,}5 + 15 = 162{,}5" /> m.
+
+**Gaya udara**: kelajuan turun dari <InlineMath math="40" /> ke <InlineMath math="5{,}0" /> m/s dalam <InlineMath math="3{,}0" /> s, perlambatan <InlineMath math="35 \div 3{,}0 = 11{,}7\text{ m s}^{-2}" />. Udara harus menahan berat sekaligus memperlambat: <InlineMath math="F - mg = ma" />, jadi <InlineMath math="F = 80 \times (10 + 11{,}7) = 1{,}73 \times 10^3" /> N.
+
+# Kenapa pilihan lain salah
+
+- <InlineMath math="155\text{ m}" /> merata-ratakan <InlineMath math="40" /> dan <InlineMath math="0" /> pada tahap perlambatan, padahal kelajuan hanya turun ke <InlineMath math="5\text{ m s}^{-1}" />.
+- <InlineMath math="930\text{ N}" /> adalah gaya resultan, <InlineMath math="80 \times 11{,}7" />, padahal udara **juga harus menahan berat**.
+- <InlineMath math="110\text{ m}" /> menurunkan kelajuan ke <InlineMath math="5\text{ m s}^{-1}" /> seketika saat parasut terbuka.

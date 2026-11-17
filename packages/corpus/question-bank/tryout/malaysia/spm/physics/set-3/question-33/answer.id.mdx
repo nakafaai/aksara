@@ -1,0 +1,23 @@
+# Cari arus kumparan di tiap tingkat cahaya, lalu ubah dengan resistor paralel
+
+Saat senja arusnya <InlineMath math="6{,}0 \div (50 + 30) = 0{,}075" /> A, di bawah <InlineMath math="0{,}10" /> A. Jangkar **lepas**, jadi kontak normal tertutup sudah menyalakan lampu.
+
+<Chart
+  title={<>Arus Kumparan pada Tiap Tingkat Cahaya</>}
+  bars="apart"
+  categories={["Terang", "Senja", "Gelap"]}
+  series={[
+    { label: "Rangkaian asli", mark: "bar", values: [0.109, 0.075, 0.024] },
+    { label: "Dengan 12 Ω paralel", mark: "bar", values: [0.113, 0.102, 0.098] },
+  ]}
+  valueLabel="Arus kumparan (A)"
+  description={<>Jangkar tertahan hanya pada atau di atas <InlineMath math="0{,}10\text{ A}" />. Rangkaian asli sudah melepasnya saat senja. Dengan <InlineMath math="12\,\Omega" /> sejajar LDR, jangkar tertahan saat senja dan lepas hanya dalam gelap.</>}
+/>
+
+Agar jangkar tertahan saat senja, cabang LDR paling besar <InlineMath math="60 - 50 = 10\,\Omega" />. Resistor <InlineMath math="12\,\Omega" /> paralel dengan <InlineMath math="30\,\Omega" /> memberi <InlineMath math="8{,}6\,\Omega" />, arusnya <InlineMath math="0{,}102" /> A dan lampu tetap padam. Dalam gelap pasangan itu <InlineMath math="12 \parallel 200 = 11{,}3\,\Omega" />, arus turun ke <InlineMath math="0{,}098" /> A, jangkar lepas dan lampu menyala.
+
+# Kenapa pilihan lain salah
+
+- Arus saat senja hanya <InlineMath math="0{,}075" /> A, jadi jangkar sudah lepas dan lampu **sudah menyala**.
+- Resistor seri dengan LDR menambah hambatan dan makin menurunkan arus, jadi lampu menyala lebih awal lagi.
+- <InlineMath math="60\,\Omega" /> paralel dengan <InlineMath math="30\,\Omega" /> adalah <InlineMath math="20\,\Omega" />, memberi <InlineMath math="0{,}086" /> A saat senja, masih terlalu kecil untuk menahan jangkar.

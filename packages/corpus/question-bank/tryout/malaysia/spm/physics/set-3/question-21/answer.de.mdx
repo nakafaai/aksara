@@ -1,0 +1,25 @@
+# Nur die Vorwärtsanteile der Züge schlagen den Widerstand
+
+Jeden Zug zerlegen. Die seitlichen Anteile, je <InlineMath math="800 \sin 30^\circ" />, **heben sich auf**. Die Vorwärtsanteile addieren sich: <InlineMath math="2 \times 800 \times 0{,}866 = 1386" /> N.
+
+<Mermaid
+  title={<>Zerlegen, abziehen, teilen</>}
+  description={<>Die seitlichen Anteile der beiden Züge heben sich auf. Vorwärts geben sie <InlineMath math="1386\text{ N}" />, das Wasser nimmt <InlineMath math="1000\text{ N}" />, und <InlineMath math="386\text{ N}" /> beschleunigen das Boot.</>}
+  chart={`
+    flowchart LR
+      N0["Vorwärts: 2 × 800 × 0,866 = 1386 N"] --> N2["Resultierende: 1386 − 1000 = 386 N"]
+      N1["Seitliche Anteile heben sich auf"] --> N2
+      N2 --> N3["a = 386 ÷ 400 = 0,96 m s⁻²"]
+      N3 --> N4["v = 0,96 × 5,0 = 4,8 m s⁻¹"]
+  `}
+/>
+
+Resultierende: <InlineMath math="1386 - 1000 = 386" /> N, also <InlineMath math="a = 386 \div 400 = 0{,}96\text{ m s}^{-2}" />. Aus der Ruhe nach <InlineMath math="5{,}0" /> s: <InlineMath math="v = 0{,}96 \times 5{,}0 = 4{,}8\text{ m s}^{-1}" />.
+
+**Ausgleiten**: Sobald die Seile los sind, wirkt nur der Widerstand von <InlineMath math="1000" /> N, eine Verzögerung von <InlineMath math="1000 \div 400 = 2{,}5\text{ m s}^{-2}" />. Das Boot hält nach <InlineMath math="4{,}8^2 \div (2 \times 2{,}5) = 4{,}6" /> m.
+
+# Warum die anderen Antworten falsch sind
+
+- <InlineMath math="1{,}5\text{ m s}^{-2}" /> addiert die vollen <InlineMath math="1600" /> N, als zögen beide Seile **geradeaus**.
+- <InlineMath math="12\text{ m}" /> behält beim Ausgleiten die alten <InlineMath math="0{,}96\text{ m s}^{-2}" />, doch ohne Seile bremst allein der Widerstand.
+- <InlineMath math="3{,}5\text{ m s}^{-2}" /> zerlegt die Zugkräfte richtig, lässt aber den Widerstand während des Ziehens weg.

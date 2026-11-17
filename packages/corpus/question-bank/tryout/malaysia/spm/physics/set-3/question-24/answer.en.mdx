@@ -1,0 +1,24 @@
+# Turn the mercury drop into pascals, then into a column of air
+
+The reading **falls** by <InlineMath math="6.0" /> cm of mercury: <InlineMath math="\Delta p = h\rho g = 0.060 \times 13\,600 \times 10 = 8160" /> Pa.
+
+<Mermaid
+  title={<>Mercury Column to Air Column</>}
+  description={<>A drop of <InlineMath math="6.0\text{ cm}" /> of mercury is <InlineMath math="8160\text{ Pa}" />, the weight of an air column <InlineMath math="680\text{ m}" /> tall.</>}
+  chart={`
+    flowchart LR
+      N0["Drop 76.0 − 70.0 = 6.0 cmHg"] --> N1["Δp = 0.060 × 13 600 × 10 = 8160 Pa"]
+      N1 --> N2["Same Δp from the air: ρ_air g h"]
+      N2 --> N3["h = 8160 ÷ (1.20 × 10) = 680 m"]
+  `}
+/>
+
+That pressure difference is the weight per square metre of the air between the foot and the top, so <InlineMath math="h = \Delta p \div (\rho_{\text{air}} g) = 8160 \div 12 = 680" /> m. Air is about <InlineMath math="11\,000" /> times less dense than mercury, so each centimetre of mercury stands for about <InlineMath math="113" /> m of air.
+
+**The sealed bag**: the flexible bag keeps its air at the outside pressure, so <InlineMath math="\dfrac{pV}{T}" /> stays the same. The lower pressure and the higher kelvin temperature both enlarge it: <InlineMath math="V = 2.00 \times \dfrac{76.0}{70.0} \times \dfrac{315}{300} = 2.28" /> L. The pressures can stay in cmHg, because only their ratio matters.
+
+# Why the other options are wrong
+
+- <InlineMath math="50\text{ m}" /> uses the density of **water** instead of mercury for the barometer.
+- <InlineMath math="1.93\text{ L}" /> turns the pressure ratio upside down, but a lower pressure lets the air **expand**.
+- <InlineMath math="3.38\text{ L}" /> takes the ratio of the Celsius temperatures, but gas volume follows the kelvin temperature.

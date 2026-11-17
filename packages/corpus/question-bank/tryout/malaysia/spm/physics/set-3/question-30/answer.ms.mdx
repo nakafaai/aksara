@@ -1,0 +1,25 @@
+# Bina semula rintangan, tambah rintangan dalam, kemudian cari kuasa
+
+Rintangan berkadar dengan panjang, jadi setiap suku ialah <InlineMath math="2.0\,\Omega" />. Setiap pasangan bersiri <InlineMath math="4.0\,\Omega" />, dan dua cabang <InlineMath math="4.0\,\Omega" /> yang sama **secara selari** memberi <InlineMath math="2.0\,\Omega" />.
+
+<Mermaid
+  title={<>Daripada Dawai yang Dipotong kepada Kuasa</>}
+  description={<>Setiap bahagian <InlineMath math="2.0\,\Omega" />, setiap pasangan <InlineMath math="4.0\,\Omega" />, dua pasangan sebelah-menyebelah <InlineMath math="2.0\,\Omega" />. Dengan rintangan dalam <InlineMath math="1.0\,\Omega" />, arus ialah <InlineMath math="2.0\text{ A}" />.</>}
+  chart={`
+    flowchart LR
+      N0["Setiap bahagian 8.0 ÷ 4 = 2.0 Ω"] --> N1["Setiap pasangan bersiri 4.0 Ω"]
+      N1 --> N2["Pasangan selari: 2.0 Ω"]
+      N2 --> N3["I = 6.0 ÷ (2.0 + 1.0) = 2.0 A"]
+      N3 --> N4["P = 2.0² × 2.0 = 8.0 W"]
+  `}
+/>
+
+Arus: <InlineMath math="I = 6.0 \div (2.0 + 1.0) = 2.0" /> A. Kuasa dalam rangkaian: <InlineMath math="I^2 R = 2.0^2 \times 2.0 = 8.0" /> W. <InlineMath math="4.0" /> W lagi dibazirkan di dalam sel.
+
+**Bahagian yang putus**: pasangan dengan bahagian yang putus tidak membawa arus, jadi rangkaian menjadi satu cabang <InlineMath math="4.0\,\Omega" />. Maka <InlineMath math="I = 6.0 \div (4.0 + 1.0) = 1.2" /> A dan rangkaian mengambil <InlineMath math="1.2^2 \times 4.0 = 5.8" /> W. Putusnya dawai menambah rintangan, jadi arus dan kuasa kedua-duanya berkurang.
+
+# Mengapa pilihan lain salah
+
+- <InlineMath math="1.5\text{ A}" /> selepas putus terlupa **rintangan dalam** sel, yang masih mengambil bahagiannya daripada d.g.e.
+- <InlineMath math="3.0\text{ A}" /> terlupa rintangan dalam dari awal.
+- <InlineMath math="12\text{ W}" /> dan <InlineMath math="7.2\text{ W}" /> ialah jumlah kuasa daripada d.g.e., <InlineMath math="EI" />, yang termasuk kehilangan di dalam sel.

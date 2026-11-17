@@ -1,0 +1,26 @@
+# Koreksi neraca, tetapi biarkan paralaks saling meniadakan
+
+Neraca membaca <InlineMath math="0{,}3" /> g tanpa beban, yaitu **kesalahan nol** <InlineMath math="+0{,}3" /> g, jadi massa batu <InlineMath math="41{,}9 - 0{,}3 = 41{,}6" /> g.
+
+Volumenya berasal dari **selisih** dua pembacaan. Keduanya <InlineMath math="0{,}5\text{ cm}^3" /> terlalu tinggi, jadi kesalahannya saling meniadakan: <InlineMath math="58{,}5 - 42{,}5 = 16{,}0\text{ cm}^3" />.
+
+<Mermaid
+  title={<>Kesalahan Mana yang Berpengaruh</>}
+  description={<>Kesalahan neraca mengubah massa, tetapi kesalahan paralaks sama pada kedua pembacaan volume dan saling meniadakan dalam selisihnya.</>}
+  chart={`
+    flowchart LR
+      N0["Massa: 41,9 − 0,3 = 41,6 g"] --> N3["ρ = 41,6 ÷ 16,0 = 2,60 g cm⁻³"]
+      N1["Volume: 58,5 − 42,5 = 16,0 cm³"] --> N3
+      N2["Paralaks +0,5 di kedua pembacaan saling meniadakan"] --> N1
+  `}
+/>
+
+Massa jenis: <InlineMath math="41{,}6 \div 16{,}0 = 2{,}60\text{ g cm}^{-3}" />.
+
+**Cairannya**: berat batu <InlineMath math="0{,}0416 \times 10 = 0{,}416" /> N, jadi gaya apung adalah penurunan bacaan, <InlineMath math="0{,}416 - 0{,}250 = 0{,}166" /> N. Batu itu memindahkan <InlineMath math="16{,}0\text{ cm}^3 = 1{,}60 \times 10^{-5}\text{ m}^3" /> cairan, jadi <InlineMath math="\rho = 0{,}166 \div (1{,}60 \times 10^{-5} \times 10) = 1040\text{ kg m}^{-3}" />, atau <InlineMath math="1{,}04\text{ g cm}^{-3}" />.
+
+# Kenapa pilihan lain salah
+
+- <InlineMath math="1{,}06\text{ g cm}^{-3}" /> dengan massa jenis batu yang benar mengambil berat dari <InlineMath math="41{,}9" /> g, membawa **kesalahan nol** neraca ke dalam gaya apung.
+- <InlineMath math="2{,}62\text{ g cm}^{-3}" /> melupakan kesalahan nol pada massa jenis dan juga pada berat.
+- <InlineMath math="1{,}56\text{ g cm}^{-3}" /> menganggap bacaan di dalam cairan sebagai gaya apung, padahal gaya apung adalah **penurunan** berat.

@@ -1,0 +1,26 @@
+# Millisekunden in Sekunden, Energie in Zeit, dann Sekunden in Tage
+
+Die Zeit muss **in Sekunden** stehen, <InlineMath math="0{,}50 \times 10^{-3}" /> s, also <InlineMath math="I = Q \div t = 20 \div 5{,}0 \times 10^{-4} = 4{,}0 \times 10^4" /> A.
+
+Energie: <InlineMath math="E = QV = 20 \times 1{,}0 \times 10^8 = 2{,}0 \times 10^9" /> J. Ein <InlineMath math="2000" /> W-Heizer verbraucht das in <InlineMath math="2{,}0 \times 10^9 \div 2000 = 1{,}0 \times 10^6" /> s.
+
+<Mermaid
+  title={<>Von einem Blitz zu Tagen Heizen</>}
+  description={<><InlineMath math="20\text{ C}" /> in <InlineMath math="0{,}50\text{ ms}" /> sind <InlineMath math="40\text{ kA}" />. Die Energie, <InlineMath math="2{,}0 \times 10^9\text{ J}" />, betreibt einen <InlineMath math="2{,}0\text{ kW}" />-Heizer <InlineMath math="10^6\text{ s}" /> lang.</>}
+  chart={`
+    flowchart LR
+      N0["t = 0,50 ms = 5,0 × 10⁻⁴ s"] --> N1["I = 20 ÷ 5,0 × 10⁻⁴ = 4,0 × 10⁴ A"]
+      N2["E = 20 × 1,0 × 10⁸ = 2,0 × 10⁹ J"] --> N3["t = 2,0 × 10⁹ ÷ 2000 = 1,0 × 10⁶ s"]
+      N3 --> N4["1,0 × 10⁶ ÷ 86 400 ≈ 12 Tage"]
+  `}
+/>
+
+Ein Tag hat <InlineMath math="86\,400" /> s, also sind <InlineMath math="1{,}0 \times 10^6" /> s etwa <InlineMath math="12" /> Tage.
+
+**Teichwasser verdampfen**: Nur <InlineMath math="0{,}050 \times 2{,}0 \times 10^9 = 1{,}0 \times 10^8" /> J erreichen das Wasser. Jedes Kilogramm braucht <InlineMath math="4200 \times 70 = 2{,}94 \times 10^5" /> J bis <InlineMath math="100^\circ\text{C}" /> und <InlineMath math="2{,}26 \times 10^6" /> J zum Verdampfen, zusammen <InlineMath math="2{,}55 \times 10^6" /> J. Also <InlineMath math="1{,}0 \times 10^8 \div 2{,}55 \times 10^6 \approx 39" /> kg.
+
+# Warum die anderen Antworten falsch sind
+
+- <InlineMath math="40\text{ A}" /> lässt die Zeit in **Millisekunden**.
+- <InlineMath math="44\text{ kg}" /> nimmt nur die Verdampfungswärme und vergisst, dass das Wasser erst von <InlineMath math="30^\circ\text{C}" /> auf <InlineMath math="100^\circ\text{C}" /> erwärmt werden muss.
+- Etwa <InlineMath math="6" /> Tage und <InlineMath math="20\text{ kg}" /> nehmen <InlineMath math="\tfrac{1}{2}QV" />, doch die Ladung durchläuft die ganze Spannung, die Energie ist also <InlineMath math="QV" />.

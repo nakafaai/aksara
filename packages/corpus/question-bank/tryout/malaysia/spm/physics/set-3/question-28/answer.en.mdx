@@ -1,0 +1,24 @@
+# A voltmeter in parallel changes the resistance it measures
+
+Without a meter, each resistor would take half the supply, <InlineMath math="6.0" /> V. But the <InlineMath math="10\text{ k}\Omega" /> voltmeter is **in parallel** with the lower resistor: <InlineMath math="(10 \times 10) \div (10 + 10) = 5\text{ k}\Omega" />.
+
+<Mermaid
+  title={<>The Meter Becomes Part of the Circuit</>}
+  description={<>The <InlineMath math="10\text{ k}\Omega" /> meter in parallel makes the lower half <InlineMath math="5\text{ k}\Omega" />, so it takes only a third of the supply. The <InlineMath math="1\text{ M}\Omega" /> meter hardly changes the circuit.</>}
+  chart={`
+    flowchart LR
+      N0["Lower 10 k ∥ meter 10 k = 5 k"] --> N1["Divider 10 k : 5 k"]
+      N1 --> N2["V = 12 × 5 ÷ 15 = 4.0 V"]
+      N3["Lower 10 k ∥ 1 M ≈ 9.9 k"] --> N4["V ≈ 12 × 9.9 ÷ 19.9 ≈ 6.0 V"]
+  `}
+/>
+
+Now the divider is <InlineMath math="10\text{ k}\Omega" /> and <InlineMath math="5\text{ k}\Omega" />, so the lower part gets <InlineMath math="12 \times 5 \div 15 = 4.0" /> V. With the <InlineMath math="1\text{ M}\Omega" /> meter the lower part is about <InlineMath math="9.9\text{ k}\Omega" />, and the reading is about <InlineMath math="6.0" /> V, because a meter much larger than the resistor draws almost no current.
+
+**Least resistance for <InlineMath math="1\%" />**: the reading must be at least <InlineMath math="5.94" /> V, so the lower pair needs <InlineMath math="12 R_p \div (10\,000 + R_p) \ge 5.94" />, which gives <InlineMath math="R_p \ge 9802\,\Omega" />. In parallel with <InlineMath math="10\text{ k}\Omega" /> that needs <InlineMath math="R_V \ge 9802 \times 10\,000 \div 198 = 4.95 \times 10^5\,\Omega" />, about <InlineMath math="0.50\text{ M}\Omega" />.
+
+# Why the other options are wrong
+
+- <InlineMath math="6.0\text{ V}" /> with either meter treats both voltmeters as **ideal**, but the first one is no larger than the resistor it is across.
+- <InlineMath math="1.0\text{ M}\Omega" /> is safe but not the least: a meter of half that resistance is already within <InlineMath math="1\%" />.
+- <InlineMath math="8.0\text{ V}" /> is the voltage across the **upper** resistor when the first meter is connected.

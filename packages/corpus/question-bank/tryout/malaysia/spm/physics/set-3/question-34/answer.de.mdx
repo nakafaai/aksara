@@ -1,0 +1,26 @@
+# Schnelleres Drehen erhöht Spannung und Frequenz, und die Leistung geht mit dem Quadrat der Spannung
+
+Nach dem Induktionsgesetz hängt die EMK von der **Geschwindigkeit der Flussänderung** ab. Doppelte Drehzahl verdoppelt sie, der Scheitelwert wird also <InlineMath math="12" /> V. Eine Umdrehung ist eine Periode, doppelt so viele Umdrehungen pro Sekunde geben <InlineMath math="100" /> Hz.
+
+<Mermaid
+  title={<>Eine Änderung, drei Folgen</>}
+  description={<>Doppelt so schnelles Drehen schneidet den Fluss doppelt so schnell und schafft doppelt so viele Umdrehungen pro Sekunde. Die Leistung folgt dem Quadrat der Spannung.</>}
+  chart={`
+    flowchart LR
+      N0["Spule doppelt so schnell gedreht"] --> N1["Fluss doppelt so schnell geschnitten"]
+      N1 --> N2["Scheitel-EMK 6,0 → 12 V"]
+      N0 --> N3["Doppelt so viele Umdrehungen pro Sekunde"]
+      N3 --> N4["Frequenz 50 → 100 Hz"]
+      N2 --> N5["P = V² ÷ R: 1,5 → 6,0 W"]
+  `}
+/>
+
+Mit <InlineMath math="P = V^2 \div R" /> und festem Widerstand wird die Leistung bei doppelter Spannung viermal so groß. Die mittlere Leistung steigt von <InlineMath math="(6{,}0 \div \sqrt{2})^2 \div 12 = 1{,}5" /> W auf <InlineMath math="6{,}0" /> W.
+
+**Weniger Windungen, zwei Lampen**: Halbe Windungszahl halbiert die EMK, die doppelte Drehzahl gibt nun also <InlineMath math="6{,}0" /> V Scheitelwert, während die Frequenz bei <InlineMath math="100" /> Hz bleibt, weil sie nur von der Drehzahl abhängt. Jede parallele Lampe erhält die vollen <InlineMath math="6{,}0" /> V Scheitelwert und nimmt <InlineMath math="(6{,}0 \div \sqrt{2})^2 \div 12 = 1{,}5" /> W auf, der Generator liefert also zusammen <InlineMath math="3{,}0" /> W.
+
+# Warum die anderen Antworten falsch sind
+
+- <InlineMath math="0{,}38\text{ W}" /> halbiert die ursprünglichen <InlineMath math="6{,}0" /> V statt der neuen <InlineMath math="12" /> V, als zählte die schnellere Drehung nicht mehr.
+- Die Frequenz ist die Zahl der Umdrehungen pro Sekunde, sie kann also nicht bei <InlineMath math="50" /> Hz bleiben.
+- <InlineMath math="0{,}75\text{ W}" /> teilt die Leistung einer Lampe auf zwei auf, doch Lampen **parallel** erhalten jede die volle Spannung.

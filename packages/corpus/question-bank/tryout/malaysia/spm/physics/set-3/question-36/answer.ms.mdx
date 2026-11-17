@@ -1,0 +1,25 @@
+# Perintang hanya mengambil baki yang ditinggalkan LED, pada arus yang sama
+
+Perintang mempunyai <InlineMath math="9.0 - 2.0 = 7.0" /> V merentasinya dan membawa <InlineMath math="0.020" /> A, jadi <InlineMath math="R = 7.0 \div 0.020 = 350\,\Omega" />. Ia melesapkan <InlineMath math="P = 7.0 \times 0.020 = 0.14" /> W. Arus ditetapkan oleh LED, jadi **baki voltan** menentukan perintang.
+
+<Chart
+  title={<>Bagaimana <InlineMath math="9.0\text{ V}" /> Dibahagikan</>}
+  bars="apart"
+  categories={["Satu LED", "Tiga LED"]}
+  series={[
+    { label: "LED", mark: "bar", values: [2.0, 6.0] },
+    { label: "Perintang", mark: "bar", values: [7.0, 3.0] },
+  ]}
+  valueLabel="Voltan (V)"
+  description={<>Voltan bateri terbahagi antara LED dan perintang. Arus <InlineMath math="20\text{ mA}" /> yang sama mengalir melalui semuanya, jadi perintang mengambil baki yang ditinggalkan oleh LED.</>}
+/>
+
+Tiga LED bersiri mengambil <InlineMath math="6.0" /> V, meninggalkan <InlineMath math="3.0" /> V pada <InlineMath math="0.020" /> A yang sama, jadi perintang mesti <InlineMath math="3.0 \div 0.020 = 150\,\Omega" />.
+
+**Rintangan dalam, kemudian bateri yang lemah**: pada <InlineMath math="20" /> mA bateri sendiri kehilangan <InlineMath math="0.020 \times 5.0 = 0.10" /> V, jadi perintang mendapat <InlineMath math="9.0 - 6.0 - 0.10 = 2.9" /> V dan mesti <InlineMath math="2.9 \div 0.020 = 145\,\Omega" />. Pada <InlineMath math="8.0" /> V LED masih mengambil <InlineMath math="6.0" /> V, hanya meninggalkan <InlineMath math="2.0" /> V merentasi <InlineMath math="145 + 5.0 = 150\,\Omega" />: <InlineMath math="I = 2.0 \div 150 = 0.013" /> A. Penurunan kecil d.g.e. menyebabkan penurunan besar arus, kerana LED mengekalkan voltannya.
+
+# Mengapa pilihan lain salah
+
+- <InlineMath math="150\,\Omega" /> mengabaikan **rintangan dalam**, yang sudah mengambil <InlineMath math="0.10" /> V pada <InlineMath math="20" /> mA.
+- <InlineMath math="18\text{ mA}" /> menskalakan arus dengan d.g.e., tetapi LED mengekalkan <InlineMath math="6.0" /> V, jadi hanya baki <InlineMath math="2.0" /> V yang memacu arus.
+- <InlineMath math="155\,\Omega" /> menambah rintangan dalam kepada perintang dan bukan menolaknya.

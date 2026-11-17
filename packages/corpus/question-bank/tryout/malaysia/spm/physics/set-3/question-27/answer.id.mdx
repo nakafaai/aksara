@@ -1,0 +1,24 @@
+# Tambahkan tekanan vena ke penurunan di selang, lalu cari ketinggiannya
+
+Cairan harus masuk ke vena yang sudah <InlineMath math="2{,}0" /> kPa di atas atmosfer, dan di jalan **kehilangan <InlineMath math="7{,}0" /> kPa** di selang sempit. Kolom harus memberi <InlineMath math="2{,}0 + 7{,}0 = 9{,}0" /> kPa.
+
+<Mermaid
+  title={<>Kolom Cairan Membayar Dua Tagihan</>}
+  description={<>Kolom harus mengalahkan <InlineMath math="2{,}0\text{ kPa}" /> di vena dan menutup <InlineMath math="7{,}0\text{ kPa}" /> yang hilang di selang: total <InlineMath math="9{,}0\text{ kPa}" />.</>}
+  chart={`
+    flowchart LR
+      N0["Vena 2,0 kPa di atas atmosfer"] --> N2["Dibutuhkan: 9,0 kPa dari kolom"]
+      N1["Penurunan selang dan jarum 7,0 kPa"] --> N2
+      N2 --> N3["h = 9000 ÷ (1050 × 10) = 0,86 m"]
+  `}
+/>
+
+Ketinggian: <InlineMath math="h = 9000 \div (1050 \times 10) = 0{,}86" /> m, atau <InlineMath math="86" /> cm.
+
+**Menaikkan kantong**: pada <InlineMath math="0{,}857 + 0{,}20 = 1{,}057" /> m kolom cairan memberi <InlineMath math="1050 \times 10 \times 1{,}057 = 11{,}1" /> kPa. Vena tetap mengambil <InlineMath math="2{,}0" /> kPa, jadi selang kini mendapat <InlineMath math="9{,}1" /> kPa, bukan <InlineMath math="7{,}0" /> kPa, dan aliran menjadi <InlineMath math="9{,}1 \div 7{,}0 = 1{,}3" /> kali lebih cepat, lebih dari yang ditunjukkan ketinggian saja.
+
+# Kenapa pilihan lain salah
+
+- <InlineMath math="19\text{ cm}" /> hanya menyamai tekanan vena, jadi tetesan **hampir tidak mengalir** lewat selang.
+- <InlineMath math="67\text{ cm}" /> menutup penurunan di selang tetapi lupa vena mendorong balik.
+- <InlineMath math="1{,}2" /> membandingkan ketinggian, padahal <InlineMath math="2{,}0" /> kPa vena adalah tekanan balik yang tetap, jadi penurunan di selang tumbuh lebih cepat daripada ketinggian.

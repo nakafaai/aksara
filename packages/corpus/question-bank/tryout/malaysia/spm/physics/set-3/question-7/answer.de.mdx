@@ -1,0 +1,25 @@
+# Die Flächen jeder Phase im Geschwindigkeit-Zeit-Diagramm addieren
+
+**Freier Fall**: nach <InlineMath math="4{,}0" /> s ist die Geschwindigkeit <InlineMath math="10 \times 4{,}0 = 40\text{ m s}^{-1}" />, der Weg <InlineMath math="\tfrac{1}{2} \times 10 \times 4{,}0^2 = 80" /> m.
+
+**Abbremsen**: die Geschwindigkeit sinkt gleichmäßig von <InlineMath math="40" /> auf <InlineMath math="5\text{ m s}^{-1}" />, im Mittel also <InlineMath math="22{,}5\text{ m s}^{-1}" />, der Weg <InlineMath math="22{,}5 \times 3{,}0 = 67{,}5" /> m.
+
+<Chart
+  title={<>Geschwindigkeit des Fallschirmspringers</>}
+  categories={["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10"]}
+  series={[
+    { label: "Geschwindigkeit (m/s)", mark: "line", values: [0, 10, 20, 30, 40, 28.3, 16.7, 5, 5, 5, 5] },
+  ]}
+  valueLabel="Geschwindigkeit (m/s)"
+  description={<>Zeit in Sekunden auf der Achse. Die Geschwindigkeit steigt bis <InlineMath math="4\text{ s}" /> auf <InlineMath math="40\text{ m s}^{-1}" />, sinkt bis <InlineMath math="7\text{ s}" /> auf <InlineMath math="5\text{ m s}^{-1}" /> und bleibt dann. Der Weg ist die Fläche unter der Linie.</>}
+/>
+
+**Gleichförmig**: von <InlineMath math="7" /> s bis <InlineMath math="10" /> s, <InlineMath math="5{,}0 \times 3{,}0 = 15" /> m. Summe: <InlineMath math="80 + 67{,}5 + 15 = 162{,}5" /> m.
+
+**Die Kraft der Luft**: Die Geschwindigkeit sinkt in <InlineMath math="3{,}0" /> s von <InlineMath math="40" /> auf <InlineMath math="5{,}0" /> m/s, eine Verzögerung von <InlineMath math="35 \div 3{,}0 = 11{,}7\text{ m s}^{-2}" />. Die Luft muss das Gewicht tragen und zugleich bremsen: <InlineMath math="F - mg = ma" />, also <InlineMath math="F = 80 \times (10 + 11{,}7) = 1{,}73 \times 10^3" /> N.
+
+# Warum die anderen Antworten falsch sind
+
+- <InlineMath math="155\text{ m}" /> mittelt im Bremsabschnitt <InlineMath math="40" /> und <InlineMath math="0" />, doch die Geschwindigkeit sinkt nur auf <InlineMath math="5\text{ m s}^{-1}" />.
+- <InlineMath math="930\text{ N}" /> ist die resultierende Kraft, <InlineMath math="80 \times 11{,}7" />, doch die Luft muss **auch das Gewicht tragen**.
+- <InlineMath math="110\text{ m}" /> senkt die Geschwindigkeit beim Öffnen sofort auf <InlineMath math="5\text{ m s}^{-1}" />.

@@ -1,0 +1,25 @@
+# The resistor takes only what the LEDs leave, at the same current
+
+The resistor has <InlineMath math="9.0 - 2.0 = 7.0" /> V across it and carries <InlineMath math="0.020" /> A, so <InlineMath math="R = 7.0 \div 0.020 = 350\,\Omega" />. It dissipates <InlineMath math="P = 7.0 \times 0.020 = 0.14" /> W. The current is set by the LED, so the **voltage left over** decides the resistor.
+
+<Chart
+  title={<>How the <InlineMath math="9.0\text{ V}" /> Is Shared</>}
+  bars="apart"
+  categories={["One LED", "Three LEDs"]}
+  series={[
+    { label: "LEDs", mark: "bar", values: [2.0, 6.0] },
+    { label: "Resistor", mark: "bar", values: [7.0, 3.0] },
+  ]}
+  valueLabel="Voltage (V)"
+  description={<>The battery voltage splits between the LEDs and the resistor. The same <InlineMath math="20\text{ mA}" /> flows through all of them, so the resistor takes whatever the LEDs leave.</>}
+/>
+
+Three LEDs in series take <InlineMath math="6.0" /> V, leaving <InlineMath math="3.0" /> V at the same <InlineMath math="0.020" /> A, so the resistor must be <InlineMath math="3.0 \div 0.020 = 150\,\Omega" />.
+
+**Internal resistance, then a run-down battery**: at <InlineMath math="20" /> mA the battery itself loses <InlineMath math="0.020 \times 5.0 = 0.10" /> V, so the resistor gets <InlineMath math="9.0 - 6.0 - 0.10 = 2.9" /> V and must be <InlineMath math="2.9 \div 0.020 = 145\,\Omega" />. At <InlineMath math="8.0" /> V the LEDs still take <InlineMath math="6.0" /> V, leaving only <InlineMath math="2.0" /> V across <InlineMath math="145 + 5.0 = 150\,\Omega" />: <InlineMath math="I = 2.0 \div 150 = 0.013" /> A. A small fall in e.m.f. makes a large fall in current, because the LEDs keep their voltage.
+
+# Why the other options are wrong
+
+- <InlineMath math="150\,\Omega" /> ignores the **internal resistance**, which already takes <InlineMath math="0.10" /> V at <InlineMath math="20" /> mA.
+- <InlineMath math="18\text{ mA}" /> scales the current with the e.m.f., but the LEDs keep their <InlineMath math="6.0" /> V, so only the leftover <InlineMath math="2.0" /> V drives the current.
+- <InlineMath math="155\,\Omega" /> adds the internal resistance to the resistor instead of taking it away.

@@ -1,0 +1,25 @@
+# Turns from the r.m.s. ratio, peak from the square root of two, ripple from the bridge
+
+The turns follow the voltage ratio: <InlineMath math="N_s = 1200 \times 12 \div 240 = 60" />. Both voltages in that ratio are r.m.s., so the ratio must use <InlineMath math="12" /> V, not the peak.
+
+The capacitor charges to the **peak**, not the r.m.s. value, less the two diodes that conduct in each half cycle: <InlineMath math="12 \times \sqrt{2} - 2 \times 0.70 = 15.6" /> V.
+
+<Chart
+  title={<>Bridge Output Over One Mains Cycle</>}
+  categories={["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20"]}
+  series={[
+    { label: "Bridge output", mark: "line", values: [0.0, 4.8, 9.2, 12.6, 14.8, 15.6, 14.8, 12.6, 9.2, 4.8, 0.0, 4.8, 9.2, 12.6, 14.8, 15.6, 14.8, 12.6, 9.2, 4.8, 0.0] },
+  ]}
+  valueLabel="Voltage (V)"
+  description={<>In one <InlineMath math="20\text{ ms}" /> mains cycle the bridge output peaks twice at <InlineMath math="15.6\text{ V}" />, so the capacitor is topped up <InlineMath math="100" /> times each second. Time is in milliseconds.</>}
+/>
+
+A bridge turns every negative half cycle positive, so each <InlineMath math="50" /> Hz cycle gives two pulses, and the ripple is at <InlineMath math="100" /> Hz.
+
+**Running the lamp**: at its rating the lamp takes <InlineMath math="6.0 \div 12 = 0.50" /> A. The resistor must drop the rest of the smoothed voltage, <InlineMath math="15.6 - 12 = 3.6" /> V, at that current, so <InlineMath math="R = 3.6 \div 0.50 = 7.2\,\Omega" />.
+
+# Why the other options are wrong
+
+- <InlineMath math="16.3\text{ V}" /> subtracts one diode drop, but in a bridge the current passes through **two diodes** in each half cycle.
+- <InlineMath math="17.0\text{ V}" /> ignores the diode drops, which the question gives as <InlineMath math="0.70" /> V each.
+- <InlineMath math="14.2\text{ V}" /> subtracts all four drops, but only two of the four diodes conduct at any moment.

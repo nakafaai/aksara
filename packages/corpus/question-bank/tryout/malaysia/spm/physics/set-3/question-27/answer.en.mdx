@@ -1,0 +1,24 @@
+# Add the vein pressure to the drop in the tube, then find the height
+
+The liquid has to enter a vein that is already <InlineMath math="2.0" /> kPa above atmospheric, and on the way it **loses <InlineMath math="7.0" /> kPa** in the narrow tube. The column must supply <InlineMath math="2.0 + 7.0 = 9.0" /> kPa.
+
+<Mermaid
+  title={<>The Liquid Column Pays Two Bills</>}
+  description={<>The column must beat the <InlineMath math="2.0\text{ kPa}" /> in the vein and cover the <InlineMath math="7.0\text{ kPa}" /> lost in the tube: <InlineMath math="9.0\text{ kPa}" /> in all.</>}
+  chart={`
+    flowchart LR
+      N0["Vein 2.0 kPa above atmospheric"] --> N2["Needed: 9.0 kPa from the column"]
+      N1["Tube and needle drop 7.0 kPa"] --> N2
+      N2 --> N3["h = 9000 ÷ (1050 × 10) = 0.86 m"]
+  `}
+/>
+
+Height: <InlineMath math="h = 9000 \div (1050 \times 10) = 0.86" /> m, or <InlineMath math="86" /> cm.
+
+**Raising the bag**: at <InlineMath math="0.857 + 0.20 = 1.057" /> m the liquid column gives <InlineMath math="1050 \times 10 \times 1.057 = 11.1" /> kPa. The vein still takes <InlineMath math="2.0" /> kPa, so the tube now has <InlineMath math="9.1" /> kPa instead of <InlineMath math="7.0" /> kPa, and the flow is <InlineMath math="9.1 \div 7.0 = 1.3" /> times as fast, more than the heights alone suggest.
+
+# Why the other options are wrong
+
+- <InlineMath math="19\text{ cm}" /> only matches the vein pressure, so the drip would **barely flow** through the tube.
+- <InlineMath math="67\text{ cm}" /> covers the tube's drop but forgets the vein pushes back.
+- <InlineMath math="1.2" /> compares the heights, but the vein's <InlineMath math="2.0" /> kPa is a fixed back pressure, so the drop across the tube grows faster than the height.

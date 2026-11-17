@@ -1,0 +1,24 @@
+# Ein paralleles Voltmeter ändert den Widerstand, den es misst
+
+Ohne Messgerät bekäme jeder Widerstand die halbe Spannung, <InlineMath math="6{,}0" /> V. Doch das <InlineMath math="10\text{ k}\Omega" />-Voltmeter liegt **parallel** zum unteren Widerstand: <InlineMath math="(10 \times 10) \div (10 + 10) = 5\text{ k}\Omega" />.
+
+<Mermaid
+  title={<>Das Messgerät wird Teil der Schaltung</>}
+  description={<>Das parallele <InlineMath math="10\text{ k}\Omega" />-Messgerät macht die untere Hälfte zu <InlineMath math="5\text{ k}\Omega" />, sie bekommt also nur ein Drittel der Spannung. Das <InlineMath math="1\text{ M}\Omega" />-Gerät ändert die Schaltung kaum.</>}
+  chart={`
+    flowchart LR
+      N0["Unten 10 k ∥ Gerät 10 k = 5 k"] --> N1["Teiler 10 k : 5 k"]
+      N1 --> N2["V = 12 × 5 ÷ 15 = 4,0 V"]
+      N3["Unten 10 k ∥ 1 M ≈ 9,9 k"] --> N4["V ≈ 12 × 9,9 ÷ 19,9 ≈ 6,0 V"]
+  `}
+/>
+
+Jetzt besteht der Teiler aus <InlineMath math="10\text{ k}\Omega" /> und <InlineMath math="5\text{ k}\Omega" />, unten liegen also <InlineMath math="12 \times 5 \div 15 = 4{,}0" /> V an. Mit dem <InlineMath math="1\text{ M}\Omega" />-Gerät ist der untere Teil etwa <InlineMath math="9{,}9\text{ k}\Omega" />, und die Anzeige ist etwa <InlineMath math="6{,}0" /> V, weil ein Gerät, viel größer als der Widerstand, kaum Strom zieht.
+
+**Kleinster Widerstand für <InlineMath math="1\%" />**: Die Anzeige muss mindestens <InlineMath math="5{,}94" /> V betragen, das untere Paar braucht also <InlineMath math="12 R_p \div (10\,000 + R_p) \ge 5{,}94" />, das gibt <InlineMath math="R_p \ge 9802\,\Omega" />. Parallel zu <InlineMath math="10\text{ k}\Omega" /> verlangt das <InlineMath math="R_V \ge 9802 \times 10\,000 \div 198 = 4{,}95 \times 10^5\,\Omega" />, etwa <InlineMath math="0{,}50\text{ M}\Omega" />.
+
+# Warum die anderen Antworten falsch sind
+
+- <InlineMath math="6{,}0\text{ V}" /> mit beiden Geräten hält beide Voltmeter für **ideal**, doch das erste ist nicht größer als der Widerstand, an dem es liegt.
+- <InlineMath math="1{,}0\text{ M}\Omega" /> ist sicher, aber nicht das Kleinste: ein Gerät mit dem halben Widerstand liegt schon innerhalb von <InlineMath math="1\%" />.
+- <InlineMath math="8{,}0\text{ V}" /> ist die Spannung am **oberen** Widerstand, solange das erste Gerät angeschlossen ist.

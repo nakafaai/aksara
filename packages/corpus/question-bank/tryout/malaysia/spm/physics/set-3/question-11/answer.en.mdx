@@ -1,0 +1,24 @@
+# Use absolute pressure and kelvin, then convert back
+
+The pressure law <InlineMath math="p \propto T" /> needs the **absolute** pressure, <InlineMath math="220 + 100 = 320" /> kPa, and temperatures in kelvin: <InlineMath math="300" /> K and <InlineMath math="330" /> K.
+
+<Mermaid
+  title={<>Gauge to Absolute and Back</>}
+  description={<>The pressure law works with absolute pressure and kelvin: <InlineMath math="320\text{ kPa}" /> at <InlineMath math="300\text{ K}" /> becomes <InlineMath math="352\text{ kPa}" /> at <InlineMath math="330\text{ K}" />.</>}
+  chart={`
+    flowchart LR
+      N0["Gauge 220 + 100 = 320 kPa absolute"] --> N1["27 °C = 300 K, 57 °C = 330 K"]
+      N1 --> N2["p₂ = 320 × 330 ÷ 300 = 352 kPa"]
+      N2 --> N3["Gauge 352 − 100 = 252 kPa"]
+  `}
+/>
+
+After the drive: <InlineMath math="320 \times 330 \div 300 = 352" /> kPa absolute. The gauge shows the excess over the atmosphere: <InlineMath math="352 - 100 = 252" /> kPa.
+
+**Air let out while hot**: a gauge reading of <InlineMath math="220" /> kPa at <InlineMath math="330" /> K is an absolute <InlineMath math="320" /> kPa. Cooling at constant volume to <InlineMath math="300" /> K gives <InlineMath math="320 \times 300 \div 330 = 291" /> kPa absolute, so the gauge reads only <InlineMath math="191" /> kPa, well below where the driver started.
+
+# Why the other options are wrong
+
+- <InlineMath math="465\text{ kPa}" /> takes the ratio of the **Celsius** temperatures, but pressure is proportional to the kelvin temperature.
+- <InlineMath math="242\text{ kPa}" /> and <InlineMath math="200\text{ kPa}" /> apply the pressure law to the gauge reading, leaving out the atmosphere's <InlineMath math="100" /> kPa.
+- <InlineMath math="352\text{ kPa}" /> and <InlineMath math="291\text{ kPa}" /> are absolute pressures, but the gauge reads the pressure above atmospheric pressure.

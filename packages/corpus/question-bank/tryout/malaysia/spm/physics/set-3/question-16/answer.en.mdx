@@ -1,0 +1,25 @@
+# One clap interval is one round trip
+
+From the first clap to the twenty-sixth there are <InlineMath math="25" /> gaps in <InlineMath math="10.0" /> s, so each interval is <InlineMath math="0.40" /> s. In that time each clap's sound goes to the wall **and back**: <InlineMath math="2 \times 68 = 136" /> m. Speed: <InlineMath math="136 \div 0.40 = 340\text{ m s}^{-1}" />.
+
+<Mermaid
+  title={<>Clap Interval Equals Echo Time</>}
+  description={<>Each gap between claps is the time for sound to reach the wall and come back: <InlineMath math="0.40\text{ s}" /> for <InlineMath math="136\text{ m}" />.</>}
+  chart={`
+    flowchart LR
+      N0["1st to 26th clap: 25 gaps in 10.0 s"] --> N1["Interval 0.40 s"]
+      N1 --> N3["v = 136 ÷ 0.40 = 340 m s⁻¹"]
+      N2["Sound goes 2 × 68 = 136 m"] --> N3
+      N3 --> N4["Wall at 85 m: 170 ÷ 340 = 0.50 s, 2.0 per s"]
+  `}
+/>
+
+At the second wall the round trip is <InlineMath math="170" /> m, which takes <InlineMath math="170 \div 340 = 0.50" /> s, so the student must clap **more slowly**, <InlineMath math="2.0" /> times per second.
+
+**A warmer afternoon**: the echo now needs only <InlineMath math="170 \div 352 = 0.483" /> s, but the claps still come every <InlineMath math="0.50" /> s. Each echo therefore arrives <InlineMath math="0.50 - 0.483 = 0.017" /> s, or <InlineMath math="17" /> ms, before the next clap. Faster sound brings the echo back sooner.
+
+# Why the other options are wrong
+
+- <InlineMath math="354\text{ m s}^{-1}" /> divides by the twenty-six claps, but twenty-six claps enclose only **twenty-five gaps**.
+- <InlineMath math="2.5" /> claps per second keeps the old rate, but a farther wall makes the echo come later.
+- An echo **after** the next clap would need slower sound, but at <InlineMath math="352\text{ m s}^{-1}" /> the round trip takes less than <InlineMath math="0.50" /> s.

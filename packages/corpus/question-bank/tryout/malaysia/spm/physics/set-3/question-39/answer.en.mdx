@@ -1,0 +1,25 @@
+# Alpha decays fix the mass number, beta decays fix the proton number
+
+Beta decay leaves the mass number unchanged, so the whole drop <InlineMath math="238 - 206 = 32" /> comes from alpha decays: <InlineMath math="32 \div 4 = 8" />. Those eight lower the proton number by <InlineMath math="16" />, to <InlineMath math="76" />.
+
+<Mermaid
+  title={<>Mass Number First, Then Proton Number</>}
+  description={<>Only alpha decay changes the mass number, so it fixes the alpha count. The beta decays then repair the proton number.</>}
+  chart={`
+    flowchart LR
+      N0["Mass 238 → 206: drop of 32"] --> N1["32 ÷ 4 = 8 alpha"]
+      N1 --> N2["8 alpha: Z 92 → 76"]
+      N2 --> N3["Lead has Z = 82: 6 beta raise Z"]
+      N3 --> N4["Neutrons 146 → 124: 22 lost"]
+  `}
+/>
+
+Lead has <InlineMath math="Z = 82" />, so <InlineMath math="82 - 76 = 6" /> beta-minus decays must **raise** <InlineMath math="Z" /> again. Neutrons go from <InlineMath math="238 - 92 = 146" /> to <InlineMath math="206 - 82 = 124" />, a loss of <InlineMath math="22" />: two in each alpha decay and one in each beta decay.
+
+**Helium in the rock**: each alpha particle is a helium nucleus, which picks up two electrons and stays trapped as a helium atom. Each chain gives eight, so <InlineMath math="1.0 \times 10^{15}" /> chains give <InlineMath math="8.0 \times 10^{15}" /> helium atoms. Beta particles are electrons and make no helium.
+
+# Why the other options are wrong
+
+- Six alpha decays would lower the mass number by only <InlineMath math="24" />, not <InlineMath math="32" />.
+- <InlineMath math="1.4 \times 10^{16}" /> counts every emitted particle as helium, but only the **alpha particles** are helium nuclei.
+- <InlineMath math="16" /> neutrons counts only the alpha decays, but each beta decay also turns a neutron into a proton.

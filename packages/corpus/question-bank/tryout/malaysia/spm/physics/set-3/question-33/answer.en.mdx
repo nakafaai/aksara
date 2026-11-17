@@ -1,0 +1,23 @@
+# Find the coil current at each light level, then reshape it with a parallel resistor
+
+At dusk the current is <InlineMath math="6.0 \div (50 + 30) = 0.075" /> A, below <InlineMath math="0.10" /> A. The armature is **released**, so the normally closed contacts already light the lamp.
+
+<Chart
+  title={<>Coil Current at Each Light Level</>}
+  bars="apart"
+  categories={["Bright", "Dusk", "Dark"]}
+  series={[
+    { label: "Original circuit", mark: "bar", values: [0.109, 0.075, 0.024] },
+    { label: "With 12 Ω in parallel", mark: "bar", values: [0.113, 0.102, 0.098] },
+  ]}
+  valueLabel="Coil current (A)"
+  description={<>The armature is held in only at or above <InlineMath math="0.10\text{ A}" />. The original circuit lets go already at dusk. With <InlineMath math="12\,\Omega" /> across the LDR it holds at dusk and lets go only in darkness.</>}
+/>
+
+To hold the armature at dusk, the LDR branch may be at most <InlineMath math="60 - 50 = 10\,\Omega" />. A <InlineMath math="12\,\Omega" /> resistor in parallel with <InlineMath math="30\,\Omega" /> gives <InlineMath math="8.6\,\Omega" />, the current is <InlineMath math="0.102" /> A and the lamp stays off. In darkness the pair is <InlineMath math="12 \parallel 200 = 11.3\,\Omega" />, the current falls to <InlineMath math="0.098" /> A, the armature drops and the lamp lights.
+
+# Why the other options are wrong
+
+- The dusk current is only <InlineMath math="0.075" /> A, so the armature is already released and the lamp is **already lit**.
+- A resistor in series with the LDR raises the resistance and lowers the current further, so the lamp would light even earlier.
+- <InlineMath math="60\,\Omega" /> in parallel with <InlineMath math="30\,\Omega" /> is <InlineMath math="20\,\Omega" />, giving <InlineMath math="0.086" /> A at dusk, still too small to hold the armature.

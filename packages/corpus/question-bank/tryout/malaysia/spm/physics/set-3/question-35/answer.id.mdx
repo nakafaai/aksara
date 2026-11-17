@@ -1,0 +1,25 @@
+# Lilitan dari perbandingan efektif, puncak dari akar dua, riak dari jembatan
+
+Lilitan mengikuti perbandingan tegangan: <InlineMath math="N_s = 1200 \times 12 \div 240 = 60" />. Kedua tegangan dalam perbandingan itu nilai efektif, jadi perbandingannya harus memakai <InlineMath math="12" /> V, bukan puncak.
+
+Kapasitor terisi sampai **puncak**, bukan nilai efektif, dikurangi dua dioda yang menghantar di tiap setengah siklus: <InlineMath math="12 \times \sqrt{2} - 2 \times 0{,}70 = 15{,}6" /> V.
+
+<Chart
+  title={<>Keluaran Jembatan dalam Satu Siklus Jala-Jala</>}
+  categories={["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20"]}
+  series={[
+    { label: "Keluaran jembatan", mark: "line", values: [0.0, 4.8, 9.2, 12.6, 14.8, 15.6, 14.8, 12.6, 9.2, 4.8, 0.0, 4.8, 9.2, 12.6, 14.8, 15.6, 14.8, 12.6, 9.2, 4.8, 0.0] },
+  ]}
+  valueLabel="Tegangan (V)"
+  description={<>Dalam satu siklus jala-jala <InlineMath math="20\text{ ms}" />, keluaran jembatan memuncak dua kali pada <InlineMath math="15{,}6\text{ V}" />, jadi kapasitor diisi ulang <InlineMath math="100" /> kali per detik. Waktu dalam milidetik.</>}
+/>
+
+Jembatan membalik tiap setengah siklus negatif menjadi positif, jadi tiap siklus <InlineMath math="50" /> Hz memberi dua pulsa, dan riaknya <InlineMath math="100" /> Hz.
+
+**Menyalakan lampu**: pada nilai nominalnya lampu mengambil <InlineMath math="6{,}0 \div 12 = 0{,}50" /> A. Resistor harus menurunkan sisa tegangan yang diratakan, <InlineMath math="15{,}6 - 12 = 3{,}6" /> V, pada arus itu, jadi <InlineMath math="R = 3{,}6 \div 0{,}50 = 7{,}2\,\Omega" />.
+
+# Kenapa pilihan lain salah
+
+- <InlineMath math="16{,}3\text{ V}" /> mengurangi satu penurunan dioda, padahal dalam jembatan arus melewati **dua dioda** di tiap setengah siklus.
+- <InlineMath math="17{,}0\text{ V}" /> mengabaikan penurunan dioda, yang di soal diberikan <InlineMath math="0{,}70" /> V tiap dioda.
+- <InlineMath math="14{,}2\text{ V}" /> mengurangi keempat penurunan, padahal hanya dua dari empat dioda yang menghantar pada satu saat.

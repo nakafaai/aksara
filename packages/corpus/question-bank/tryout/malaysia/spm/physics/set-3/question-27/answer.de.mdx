@@ -1,0 +1,24 @@
+# Venendruck und Abfall im Schlauch addieren, dann die Höhe bestimmen
+
+Die Flüssigkeit muss in eine Vene, die schon <InlineMath math="2{,}0" /> kPa über dem Luftdruck liegt, und auf dem Weg **verliert sie <InlineMath math="7{,}0" /> kPa** im engen Schlauch. Die Säule muss <InlineMath math="2{,}0 + 7{,}0 = 9{,}0" /> kPa liefern.
+
+<Mermaid
+  title={<>Die Flüssigkeitssäule zahlt zwei Rechnungen</>}
+  description={<>Die Säule muss die <InlineMath math="2{,}0\text{ kPa}" /> in der Vene überwinden und die <InlineMath math="7{,}0\text{ kPa}" /> Verlust im Schlauch decken: zusammen <InlineMath math="9{,}0\text{ kPa}" />.</>}
+  chart={`
+    flowchart LR
+      N0["Vene 2,0 kPa über Luftdruck"] --> N2["Nötig: 9,0 kPa aus der Säule"]
+      N1["Schlauch und Nadel 7,0 kPa Abfall"] --> N2
+      N2 --> N3["h = 9000 ÷ (1050 × 10) = 0,86 m"]
+  `}
+/>
+
+Höhe: <InlineMath math="h = 9000 \div (1050 \times 10) = 0{,}86" /> m, also <InlineMath math="86" /> cm.
+
+**Den Beutel anheben**: Bei <InlineMath math="0{,}857 + 0{,}20 = 1{,}057" /> m gibt die Flüssigkeitssäule <InlineMath math="1050 \times 10 \times 1{,}057 = 11{,}1" /> kPa. Die Vene nimmt weiter <InlineMath math="2{,}0" /> kPa, der Schlauch erhält also <InlineMath math="9{,}1" /> kPa statt <InlineMath math="7{,}0" /> kPa, und der Fluss wird <InlineMath math="9{,}1 \div 7{,}0 = 1{,}3" />-mal so schnell, mehr als die Höhen allein vermuten lassen.
+
+# Warum die anderen Antworten falsch sind
+
+- <InlineMath math="19\text{ cm}" /> gleicht nur den Venendruck aus, der Tropf würde also **kaum fließen**.
+- <InlineMath math="67\text{ cm}" /> deckt den Abfall im Schlauch, vergisst aber den Gegendruck der Vene.
+- <InlineMath math="1{,}2" /> vergleicht die Höhen, doch die <InlineMath math="2{,}0" /> kPa der Vene sind ein fester Gegendruck, der Abfall im Schlauch wächst also schneller als die Höhe.

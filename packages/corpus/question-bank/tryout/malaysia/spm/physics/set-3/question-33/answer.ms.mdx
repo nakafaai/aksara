@@ -1,0 +1,23 @@
+# Cari arus gegelung pada setiap aras cahaya, kemudian ubah dengan perintang selari
+
+Pada waktu senja arusnya <InlineMath math="6.0 \div (50 + 30) = 0.075" /> A, di bawah <InlineMath math="0.10" /> A. Angker **dilepaskan**, jadi sesentuh yang biasanya tertutup sudah menyalakan lampu.
+
+<Chart
+  title={<>Arus Gegelung pada Setiap Aras Cahaya</>}
+  bars="apart"
+  categories={["Terang", "Senja", "Gelap"]}
+  series={[
+    { label: "Litar asal", mark: "bar", values: [0.109, 0.075, 0.024] },
+    { label: "Dengan 12 Ω selari", mark: "bar", values: [0.113, 0.102, 0.098] },
+  ]}
+  valueLabel="Arus gegelung (A)"
+  description={<>Angker ditahan hanya pada atau melebihi <InlineMath math="0.10\text{ A}" />. Litar asal sudah melepaskannya pada waktu senja. Dengan <InlineMath math="12\,\Omega" /> merentasi PPC, angker ditahan pada waktu senja dan dilepaskan hanya dalam gelap.</>}
+/>
+
+Untuk menahan angker pada waktu senja, cabang PPC mesti paling banyak <InlineMath math="60 - 50 = 10\,\Omega" />. Perintang <InlineMath math="12\,\Omega" /> selari dengan <InlineMath math="30\,\Omega" /> memberi <InlineMath math="8.6\,\Omega" />, arusnya <InlineMath math="0.102" /> A dan lampu kekal padam. Dalam gelap pasangan itu <InlineMath math="12 \parallel 200 = 11.3\,\Omega" />, arus turun kepada <InlineMath math="0.098" /> A, angker jatuh dan lampu menyala.
+
+# Mengapa pilihan lain salah
+
+- Arus waktu senja hanya <InlineMath math="0.075" /> A, jadi angker sudah dilepaskan dan lampu **sudah menyala**.
+- Perintang bersiri dengan PPC menambah rintangan dan mengurangkan lagi arus, jadi lampu akan menyala lebih awal.
+- <InlineMath math="60\,\Omega" /> selari dengan <InlineMath math="30\,\Omega" /> ialah <InlineMath math="20\,\Omega" />, memberi <InlineMath math="0.086" /> A pada waktu senja, masih terlalu kecil untuk menahan angker.

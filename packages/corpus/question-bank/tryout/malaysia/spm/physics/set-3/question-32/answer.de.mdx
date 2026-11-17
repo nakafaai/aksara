@@ -1,0 +1,24 @@
+# Leistungen vergleichen, nicht Ströme, dann die Verlustleistung in Energie umrechnen
+
+Eingangsleistung: <InlineMath math="240 \times 0{,}050 = 12" /> W. Ausgangsleistung: <InlineMath math="5{,}0 \times 2{,}0 = 10" /> W. Wirkungsgrad: <InlineMath math="10 \div 12 = 83\%" />. Die Ströme allein sagen nichts, bis jeder **mit seiner eigenen Spannung** multipliziert ist.
+
+<Mermaid
+  title={<>Leistung hinein, heraus, verloren</>}
+  description={<>Eingang <InlineMath math="12\text{ W}" />, Ausgang <InlineMath math="10\text{ W}" />, also <InlineMath math="83\%" /> Wirkungsgrad und <InlineMath math="2{,}0\text{ W}" /> Verlust, das sind <InlineMath math="7{,}2\text{ kJ}" /> in einer Stunde.</>}
+  chart={`
+    flowchart LR
+      N0["P_ein = 240 × 0,050 = 12 W"] --> N2["Wirkungsgrad 10 ÷ 12 = 83%"]
+      N1["P_aus = 5,0 × 2,0 = 10 W"] --> N2
+      N2 --> N3["Verlust 2,0 W × 3600 s = 7,2 kJ"]
+  `}
+/>
+
+Das Windungsverhältnis folgt den Spannungen: <InlineMath math="240 : 5{,}0 = 48 : 1" />, mehr Windungen auf der Primärseite für einen Abwärtstransformator. Die <InlineMath math="2{,}0" /> W Wärmeverlust über <InlineMath math="3600" /> s sind <InlineMath math="7200" /> J, also <InlineMath math="7{,}2" /> kJ.
+
+**Wärme in der Sekundärspule**: Die Sekundärspule führt die vollen <InlineMath math="2{,}0" /> A, sie wandelt also <InlineMath math="I^2 R = 2{,}0^2 \times 0{,}30 = 1{,}2" /> W in Wärme um, mehr als die Hälfte der verlorenen <InlineMath math="2{,}0" /> W. Der Rest geht in der Primärspule und im Eisenkern verloren.
+
+# Warum die anderen Antworten falsch sind
+
+- <InlineMath math="100\%" /> nimmt einen **idealen** Transformator an, doch es gehen <InlineMath math="12" /> W hinein und nur <InlineMath math="10" /> W heraus.
+- <InlineMath math="1 : 48" /> würde die Spannung hochtransformieren, doch dieses Ladegerät senkt sie.
+- <InlineMath math="0{,}60\text{ W}" /> ist <InlineMath math="IR" />, eine Spannung an der Spule, nicht die Leistung, die sie in Wärme umsetzt.

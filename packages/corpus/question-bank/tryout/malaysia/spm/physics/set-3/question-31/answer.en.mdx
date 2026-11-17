@@ -1,0 +1,26 @@
+# Milliseconds to seconds, then energy to time, then seconds to days
+
+The time must be **in seconds**, <InlineMath math="0.50 \times 10^{-3}" /> s, so <InlineMath math="I = Q \div t = 20 \div 5.0 \times 10^{-4} = 4.0 \times 10^4" /> A.
+
+Energy: <InlineMath math="E = QV = 20 \times 1.0 \times 10^8 = 2.0 \times 10^9" /> J. A <InlineMath math="2000" /> W heater uses that in <InlineMath math="2.0 \times 10^9 \div 2000 = 1.0 \times 10^6" /> s.
+
+<Mermaid
+  title={<>From One Flash to Days of Heating</>}
+  description={<><InlineMath math="20\text{ C}" /> in <InlineMath math="0.50\text{ ms}" /> is <InlineMath math="40\text{ kA}" />. The energy, <InlineMath math="2.0 \times 10^9\text{ J}" />, runs a <InlineMath math="2.0\text{ kW}" /> heater for <InlineMath math="10^6\text{ s}" />.</>}
+  chart={`
+    flowchart LR
+      N0["t = 0.50 ms = 5.0 × 10⁻⁴ s"] --> N1["I = 20 ÷ 5.0 × 10⁻⁴ = 4.0 × 10⁴ A"]
+      N2["E = 20 × 1.0 × 10⁸ = 2.0 × 10⁹ J"] --> N3["t = 2.0 × 10⁹ ÷ 2000 = 1.0 × 10⁶ s"]
+      N3 --> N4["1.0 × 10⁶ ÷ 86 400 ≈ 12 days"]
+  `}
+/>
+
+A day is <InlineMath math="86\,400" /> s, so <InlineMath math="1.0 \times 10^6" /> s is about <InlineMath math="12" /> days.
+
+**Boiling pond water**: only <InlineMath math="0.050 \times 2.0 \times 10^9 = 1.0 \times 10^8" /> J reaches the water. Each kilogram needs <InlineMath math="4200 \times 70 = 2.94 \times 10^5" /> J to reach <InlineMath math="100^\circ\text{C}" /> and <InlineMath math="2.26 \times 10^6" /> J to vaporise, <InlineMath math="2.55 \times 10^6" /> J in all. So <InlineMath math="1.0 \times 10^8 \div 2.55 \times 10^6 \approx 39" /> kg.
+
+# Why the other options are wrong
+
+- <InlineMath math="40\text{ A}" /> leaves the time in **milliseconds**.
+- <InlineMath math="44\text{ kg}" /> uses only the latent heat and forgets the water must first be heated from <InlineMath math="30^\circ\text{C}" /> to <InlineMath math="100^\circ\text{C}" />.
+- About <InlineMath math="6" /> days and <InlineMath math="20\text{ kg}" /> use <InlineMath math="\tfrac{1}{2}QV" />, but the charge falls through the whole potential difference, so the energy is <InlineMath math="QV" />.

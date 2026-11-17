@@ -1,0 +1,27 @@
+# Den Ausdruck Gatter für Gatter aufbauen, dann die Zeilen zählen
+
+Die Schaltung liefert <InlineMath math="X = (A \cdot \overline{B}) + C" />. Sobald <InlineMath math="C = 1" /> ist, gibt das ODER-Gatter <InlineMath math="1" /> aus, das deckt **vier Zeilen** ab.
+
+<Mermaid
+  title={<>Die Alarmschaltung als Logik</>}
+  description={<>Bewegung allein löst den Alarm immer aus. Ohne Bewegung kann ihn nur eine offene Tür ohne Schlüssel auslösen, denn das NICHT-Gatter sperrt das Türsignal, sobald der Schlüssel steckt.</>}
+  chart={`
+    flowchart LR
+      N0["B: Schlüssel steckt"] --> N1["NICHT B"]
+      N1 --> N3["A UND NICHT B"]
+      N2["A: Tür offen"] --> N3
+      N3 --> N5["X = (A UND NICHT B) ODER C"]
+      N4["C: Bewegung"] --> N5
+      N5 --> N6["4 Zeilen mit C = 1, dazu A = 1, B = 0, C = 0: 5 von 8"]
+  `}
+/>
+
+Bei <InlineMath math="C = 0" /> braucht der Alarm <InlineMath math="A = 1" /> und <InlineMath math="\overline{B} = 1" />, also kommt nur die Zeile <InlineMath math="A = 1, B = 0" /> hinzu. Das sind <InlineMath math="5" /> von <InlineMath math="8" />. Bei offener Tür und steckendem Schlüssel sperrt <InlineMath math="\overline{B} = 0" /> das UND-Gatter, nur Bewegung kann dann den Alarm auslösen.
+
+**Dieser Fall, dann der Transistor**: Mit steckendem Schlüssel ist <InlineMath math="\overline{B} = 0" /> und das UND-Gatter gibt <InlineMath math="0" />, doch <InlineMath math="C = 1" /> macht den ODER-Ausgang <InlineMath math="1" />, die Sirene muss also heulen. Am Basiswiderstand liegen dann <InlineMath math="5{,}0 - 0{,}70 = 4{,}3" /> V, und der Basisstrom <InlineMath math="4{,}3 \div R" /> muss mindestens <InlineMath math="0{,}50" /> mA betragen, also <InlineMath math="R \le 4{,}3 \div 0{,}00050 = 8{,}6\text{ k}\Omega" />.
+
+# Warum die anderen Antworten falsch sind
+
+- <InlineMath math="10\text{ k}\Omega" /> teilt die vollen <InlineMath math="5{,}0" /> V durch den Strom und vergisst den **Basis-Emitter-Abfall** von <InlineMath math="0{,}70" /> V.
+- Der steckende Schlüssel sperrt nur den UND-Zweig: Bewegung erreicht das ODER-Gatter direkt und löst den Alarm weiter aus.
+- Ein größerer Widerstand gibt einen **kleineren** Basisstrom, <InlineMath math="8{,}6\text{ k}\Omega" /> ist also der größte zulässige Wert, nicht der kleinste.

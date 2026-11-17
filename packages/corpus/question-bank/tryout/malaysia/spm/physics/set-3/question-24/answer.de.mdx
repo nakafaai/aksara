@@ -1,0 +1,24 @@
+# Den Quecksilberabfall in Pascal umrechnen, dann in eine Luftsäule
+
+Die Anzeige **fällt** um <InlineMath math="6{,}0" /> cm Quecksilber: <InlineMath math="\Delta p = h\rho g = 0{,}060 \times 13\,600 \times 10 = 8160" /> Pa.
+
+<Mermaid
+  title={<>Quecksilbersäule zu Luftsäule</>}
+  description={<>Ein Abfall um <InlineMath math="6{,}0\text{ cm}" /> Quecksilber sind <InlineMath math="8160\text{ Pa}" />, das Gewicht einer <InlineMath math="680\text{ m}" /> hohen Luftsäule.</>}
+  chart={`
+    flowchart LR
+      N0["Abfall 76,0 − 70,0 = 6,0 cmHg"] --> N1["Δp = 0,060 × 13 600 × 10 = 8160 Pa"]
+      N1 --> N2["Gleiches Δp aus der Luft: ρ_Luft g h"]
+      N2 --> N3["h = 8160 ÷ (1,20 × 10) = 680 m"]
+  `}
+/>
+
+Dieser Druckunterschied ist das Gewicht je Quadratmeter der Luft zwischen Fuß und Gipfel, also <InlineMath math="h = \Delta p \div (\rho_{\text{Luft}} g) = 8160 \div 12 = 680" /> m. Luft ist etwa <InlineMath math="11\,000" />-mal weniger dicht als Quecksilber, jeder Zentimeter Quecksilber steht also für etwa <InlineMath math="113" /> m Luft.
+
+**Der verschlossene Beutel**: Der biegsame Beutel hält seine Luft beim Außendruck, also bleibt <InlineMath math="\dfrac{pV}{T}" /> gleich. Der niedrigere Druck und die höhere Kelvin-Temperatur vergrößern ihn beide: <InlineMath math="V = 2{,}00 \times \dfrac{76{,}0}{70{,}0} \times \dfrac{315}{300} = 2{,}28" /> L. Die Drücke dürfen in cmHg bleiben, denn nur ihr Verhältnis zählt.
+
+# Warum die anderen Antworten falsch sind
+
+- <InlineMath math="50\text{ m}" /> nimmt für das Barometer die Dichte von **Wasser** statt Quecksilber.
+- <InlineMath math="1{,}93\text{ L}" /> dreht das Druckverhältnis um, doch ein niedrigerer Druck lässt die Luft **sich ausdehnen**.
+- <InlineMath math="3{,}38\text{ L}" /> nimmt das Verhältnis der Celsius-Temperaturen, doch das Gasvolumen folgt der Kelvin-Temperatur.
