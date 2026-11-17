@@ -1,6 +1,6 @@
-# Work out each position, then ask which ones still have a complete path
+# Find which positions still have a complete path, then let the fuse limit the replacement
 
-At a fixed <InlineMath math="240\text{ V}" />, power is <InlineMath math="P=\dfrac{V^2}{R}" />. Series adds the resistances, and parallel gives less than either coil. After the fault, current can flow only through paths that **avoid the broken coil**: the series path runs through it, MEDIUM is the broken coil itself, and only the parallel position still has a path, through the <InlineMath math="60\,\Omega" /> coil.
+At a fixed <InlineMath math="240\text{ V}" />, power is <InlineMath math="P=\dfrac{V^2}{R}" />. After the fault, current can flow only through paths that **avoid the broken coil**: the series path runs through it, MEDIUM is the broken coil itself, and only HIGH still works, through the <InlineMath math="60\,\Omega" /> coil. A replacement coil sits in parallel with the <InlineMath math="60\,\Omega" /> coil on HIGH, so the two currents add, and together they must stay within <InlineMath math="13\text{ A}" />.
 
 <Chart
   title={<>Power on Each Switch Position Before and After the Fault</>}
@@ -14,14 +14,14 @@ At a fixed <InlineMath math="240\text{ V}" />, power is <InlineMath math="P=\dfr
   description={<>Before the fault the positions give <InlineMath math="576" />, <InlineMath math="1440" /> and <InlineMath math="2400\text{ W}" />. With the <InlineMath math="40\,\Omega" /> coil open, LOW and MEDIUM give nothing and HIGH gives only the <InlineMath math="60\,\Omega" /> coil's <InlineMath math="960\text{ W}" />.</>}
 />
 
-<BlockMath math="P_{\text{LOW}}=\frac{240^2}{60+40}=576\text{ W},\qquad P_{\text{HIGH}}=\frac{240^2}{24}=2400\text{ W}\quad\left(R=\frac{60\times40}{60+40}=24\,\Omega\right)" />
+<BlockMath math="P_{\text{LOW}}=\frac{240^2}{60+40}=576\text{ W},\qquad\text{after the fault: }P_{\text{HIGH}}=\frac{240^2}{60}=960\text{ W}" />
 
-<BlockMath math="\text{after the fault: LOW}=0,\quad\text{MEDIUM}=0,\quad\text{HIGH}=\frac{240^2}{60}=960\text{ W}" />
+<BlockMath math="I_{60}=\frac{240}{60}=4.0\text{ A},\qquad I_R\le13-4.0=9.0\text{ A}\Rightarrow R\ge\frac{240}{9.0}\approx27\,\Omega" />
 
-Before the fault the heater gave <InlineMath math="576\text{ W}" /> on LOW and <InlineMath math="2.4\text{ kW}" /> on HIGH. After it, LOW and MEDIUM are dead, and HIGH gives only <InlineMath math="960\text{ W}" /> through the <InlineMath math="60\,\Omega" /> coil, the most the heater can now give.
+Before the fault LOW gave <InlineMath math="576\text{ W}" />. After it only HIGH works, giving <InlineMath math="960\text{ W}" />. The <InlineMath math="60\,\Omega" /> coil already takes <InlineMath math="4.0\text{ A}" /> on HIGH, so a replacement may take at most <InlineMath math="9.0\text{ A}" />, which means at least about <InlineMath math="27\,\Omega" />.
 
 # Why the other options are wrong
 
 - <InlineMath math="576\text{ W}" /> after the fault assumes the **series path still works**, but it runs through the broken coil, so no current flows.
+- <InlineMath math="18\,\Omega" /> gives the replacement the **whole <InlineMath math="13\text{ A}" />**, forgetting the <InlineMath math="4.0\text{ A}" /> the <InlineMath math="60\,\Omega" /> coil draws beside it on HIGH.
 - <InlineMath math="1.4\text{ kW}" /> uses the **MEDIUM position**, but that position is the broken <InlineMath math="40\,\Omega" /> coil itself.
-- <InlineMath math="960\text{ W}" /> on LOW takes the **larger coil alone** as the lowest setting, but the series pair has more resistance and gives less power.

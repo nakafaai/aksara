@@ -1,6 +1,6 @@
-# Jede Stellung berechnen und dann fragen, welche noch einen geschlossenen Weg hat
+# Prüfen, welche Stellungen noch einen geschlossenen Weg haben, und dann die Sicherung den Ersatz begrenzen lassen
 
-Bei festen <InlineMath math="240\text{ V}" /> gilt <InlineMath math="P=\dfrac{V^2}{R}" />. Reihe addiert die Widerstände, parallel ergibt weniger als jede Spule. Nach dem Defekt kann Strom nur auf Wegen fließen, die **die kaputte Spule umgehen**: Der Reihenweg führt durch sie, MEDIUM ist die kaputte Spule selbst, und nur die Parallelstellung hat noch einen Weg, durch die <InlineMath math="60\,\Omega" />-Spule.
+Bei festen <InlineMath math="240\text{ V}" /> gilt <InlineMath math="P=\dfrac{V^2}{R}" />. Nach dem Defekt kann Strom nur auf Wegen fließen, die **die kaputte Spule umgehen**: Der Reihenweg führt durch sie, MEDIUM ist die kaputte Spule selbst, und nur HIGH funktioniert noch, über die <InlineMath math="60\,\Omega" />-Spule. Eine Ersatzspule liegt auf HIGH parallel zur <InlineMath math="60\,\Omega" />-Spule, die Ströme addieren sich also und müssen zusammen unter <InlineMath math="13\text{ A}" /> bleiben.
 
 <Chart
   title={<>Leistung jeder Schalterstellung vor und nach dem Defekt</>}
@@ -14,14 +14,14 @@ Bei festen <InlineMath math="240\text{ V}" /> gilt <InlineMath math="P=\dfrac{V^
   description={<>Vor dem Defekt liefern die Stellungen <InlineMath math="576" />, <InlineMath math="1440" /> und <InlineMath math="2400\text{ W}" />. Mit unterbrochener <InlineMath math="40\,\Omega" />-Spule liefern LOW und MEDIUM nichts, HIGH nur die <InlineMath math="960\text{ W}" /> der <InlineMath math="60\,\Omega" />-Spule.</>}
 />
 
-<BlockMath math="P_{\text{LOW}}=\frac{240^2}{60+40}=576\text{ W},\qquad P_{\text{HIGH}}=\frac{240^2}{24}=2400\text{ W}\quad\left(R=\frac{60\cdot40}{60+40}=24\,\Omega\right)" />
+<BlockMath math="P_{\text{LOW}}=\frac{240^2}{60+40}=576\text{ W},\qquad\text{nach dem Defekt: }P_{\text{HIGH}}=\frac{240^2}{60}=960\text{ W}" />
 
-<BlockMath math="\text{nach dem Defekt: LOW}=0,\quad\text{MEDIUM}=0,\quad\text{HIGH}=\frac{240^2}{60}=960\text{ W}" />
+<BlockMath math="I_{60}=\frac{240}{60}=4{,}0\text{ A},\qquad I_R\le13-4{,}0=9{,}0\text{ A}\Rightarrow R\ge\frac{240}{9{,}0}\approx27\,\Omega" />
 
-Vor dem Defekt lieferte das Gerät <InlineMath math="576\text{ W}" /> auf LOW und <InlineMath math="2{,}4\text{ kW}" /> auf HIGH. Danach sind LOW und MEDIUM tot, und HIGH liefert über die <InlineMath math="60\,\Omega" />-Spule nur <InlineMath math="960\text{ W}" />, das Höchste, was jetzt geht.
+Vor dem Defekt lieferte LOW <InlineMath math="576\text{ W}" />. Danach funktioniert nur HIGH und liefert <InlineMath math="960\text{ W}" />. Die <InlineMath math="60\,\Omega" />-Spule nimmt auf HIGH schon <InlineMath math="4{,}0\text{ A}" />, ein Ersatz darf also höchstens <InlineMath math="9{,}0\text{ A}" /> nehmen, das heißt mindestens etwa <InlineMath math="27\,\Omega" />.
 
 # Warum die anderen Antworten falsch sind
 
 - <InlineMath math="576\text{ W}" /> nach dem Defekt nimmt an, der **Reihenweg funktioniere noch**, doch er führt durch die kaputte Spule, also fließt kein Strom.
+- <InlineMath math="18\,\Omega" /> gibt dem Ersatz die **ganzen <InlineMath math="13\text{ A}" />** und vergisst die <InlineMath math="4{,}0\text{ A}" /> der <InlineMath math="60\,\Omega" />-Spule daneben auf HIGH.
 - <InlineMath math="1{,}4\text{ kW}" /> nimmt die **Stellung MEDIUM**, doch diese Stellung ist die kaputte <InlineMath math="40\,\Omega" />-Spule selbst.
-- <InlineMath math="960\text{ W}" /> auf LOW nimmt die **größere Spule allein** als niedrigste Stufe, doch das Paar in Reihe hat mehr Widerstand und liefert weniger.

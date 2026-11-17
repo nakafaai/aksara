@@ -1,30 +1,27 @@
-# Kuasa yang sama pada voltan yang lebih tinggi memerlukan arus yang lebih kecil
+# Kehilangan bergantung pada arus, dan arus bergantung pada kuasa yang mesti menampung kehilangan itu
 
-Arus dalam kabel ialah <InlineMath math="I=\dfrac PV" />. Haba yang dibazirkan dalam kabel ialah <InlineMath math="I^2R" />, yang bergantung pada **kuasa dua arus**, bukan terus pada voltan penghantaran. Menaikkan voltan <InlineMath math="25" /> kali menjadikan arus <InlineMath math="25" /> kali lebih kecil, jadi kehilangan berkurang **<InlineMath math="25^2=625" /> kali**.
+Penjana mesti menghasilkan <InlineMath math="45\text{ kW}" /> kampung **ditambah** kehilangan kabel <InlineMath math="I^2R" />, tetapi arus <InlineMath math="I=\dfrac PV" /> sendiri bergantung pada jumlah kuasa <InlineMath math="P" /> itu. Ini memberi **persamaan kuadratik** dalam <InlineMath math="P" /> dengan dua punca, dan hanya punca yang lebih kecil yang munasabah: punca yang lebih besar membazir kebanyakan kuasa dalam kabel. Pada <InlineMath math="25\text{ kV}" /> arus sangat kecil, jadi kehilangan hampir tidak mengubah jumlah.
 
 <Chart
-  title={<>Kuasa yang Hilang dalam Kabel pada Setiap Voltan Penghantaran</>}
+  title={<>Ke Mana Kuasa Penjana Pergi pada Setiap Voltan Penghantaran</>}
   bars="apart"
   categories={["1.0 kV", "25 kV"]}
   series={[
-    { label: "Kuasa hilang", mark: "bar", values: [5000, 8.0] },
+    { label: "Sampai ke kampung", mark: "bar", values: [45, 45] },
+    { label: "Hilang dalam kabel", mark: "bar", values: [5.0, 0.0065] },
   ]}
-  valueLabel="Kuasa hilang (W)"
-  description={<>Pada <InlineMath math="1.0\text{ kV}" /> kabel membazir <InlineMath math="5000\text{ W}" />, satu persepuluh daripada kuasa yang dihantar. Pada <InlineMath math="25\text{ kV}" /> ia hanya membazir <InlineMath math="8.0\text{ W}" />, kerana arus <InlineMath math="25" /> kali lebih kecil dan kehilangan bergantung pada kuasa dua arus.</>}
+  valueLabel="Kuasa (kW)"
+  description={<>Pada <InlineMath math="1.0\text{ kV}" /> penjana mesti menghasilkan <InlineMath math="50\text{ kW}" /> supaya <InlineMath math="45\text{ kW}" /> sampai, dengan <InlineMath math="5.0\text{ kW}" /> hilang dalam kabel. Pada <InlineMath math="25\text{ kV}" /> kehilangan hanya kira-kira <InlineMath math="6.5\text{ W}" />.</>}
 />
 
-<BlockMath math="I_1=\frac{50\,000}{1000}=50\text{ A},\qquad P_1=50^2\times2.0=5.0\times10^{3}\text{ W}" />
+<BlockMath math="P=45\,000+2.0\left(\frac{P}{1000}\right)^2\Rightarrow2.0\times10^{-6}P^2-P+45\,000=0\Rightarrow P=\frac{1\pm\sqrt{1-0.36}}{4.0\times10^{-6}}=50\text{ kW atau }450\text{ kW}" />
 
-<BlockMath math="I_2=\frac{50\,000}{25\,000}=2.0\text{ A},\qquad P_2=2.0^2\times2.0=8.0\text{ W}" />
+<BlockMath math="\text{kehilangan}=50-45=5.0\text{ kW}=10\%,\qquad I_{25}\approx\frac{45\,000}{25\,000}=1.8\text{ A},\qquad I^2R=1.8^2\times2.0\approx6.5\text{ W}" />
 
-Pada <InlineMath math="1.0\text{ kV}" /> kabel membazir <InlineMath math="5.0\text{ kW}" />, satu persepuluh daripada kuasa. Pada <InlineMath math="25\text{ kV}" /> ia hanya membazir <InlineMath math="8.0\text{ W}" />, sebab itulah kuasa dihantar pada voltan tinggi.
-
-<BlockMath math="I^2(2.0)\le0.010\times50\,000=500\text{ W}\Rightarrow I\le\sqrt{250}\approx15.8\text{ A},\qquad V\ge\frac{50\,000}{15.8}\approx3.2\text{ kV}" />
-
-Kehilangan paling banyak <InlineMath math="500\text{ W}" /> dalam <InlineMath math="2.0\,\Omega" /> mengehadkan arus kepada kira-kira <InlineMath math="15.8\text{ A}" />. Menghantar <InlineMath math="50\text{ kW}" /> dengan arus sekecil itu memerlukan sekurang-kurangnya kira-kira <InlineMath math="3.2\text{ kV}" />, jadi kehilangan berkurang mengikut kuasa dua voltan, bukan berkadar dengannya.
+Penjana mesti menghasilkan <InlineMath math="50\text{ kW}" /> pada <InlineMath math="1.0\text{ kV}" />, dengan <InlineMath math="5.0\text{ kW}" /> hilang, satu persepuluh daripada outputnya. Punca <InlineMath math="450\text{ kW}" /> akan kehilangan <InlineMath math="405\text{ kW}" /> dalam kabel, yang tidak akan dipilih oleh sesiapa. Pada <InlineMath math="25\text{ kV}" /> kabel hanya membazir kira-kira <InlineMath math="6.5\text{ W}" />.
 
 # Kenapa pilihan lain salah
 
-- <InlineMath math="200\text{ W}" /> dan <InlineMath math="10\text{ kV}" /> menjadikan kehilangan berkurang berkadar dengan voltan, **bukan mengikut kuasa duanya**.
-- <InlineMath math="100\text{ W}" />, <InlineMath math="4.0\text{ W}" /> dan <InlineMath math="0.20\text{ kV}" /> menggunakan **<InlineMath math="IR" />**, iaitu susutan voltan di sepanjang kabel dalam volt, bukan kuasa yang hilang.
-- <InlineMath math="2.5\text{ kW}" />, <InlineMath math="4.0\text{ W}" /> dan <InlineMath math="2.2\text{ kV}" /> **mengurangkan rintangan kabel kepada separuh**, seolah-olah hanya satu daripada dua dawai mempunyai rintangan.
+- <InlineMath math="49\text{ kW}" /> mengira arus daripada **<InlineMath math="45\text{ kW}" /> kampung** dan bukan output penjana, jadi arus dan kehilangan terkurang anggar.
+- <InlineMath math="450\text{ kW}" /> mengambil **punca yang satu lagi** bagi persamaan kuadratik, penyelesaian di mana sembilan persepuluh kuasa terbazir dalam kabel.
+- <InlineMath math="200\text{ W}" /> menjadikan kehilangan berkurang mengikut voltan, **<InlineMath math="25" /> kali dan bukan <InlineMath math="25^2" /> kali**.

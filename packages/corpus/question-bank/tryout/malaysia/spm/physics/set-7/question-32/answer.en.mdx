@@ -1,30 +1,27 @@
-# The same power at a higher voltage needs a smaller current
+# The loss depends on the current, and the current depends on the power that must cover the loss
 
-The current in the cables is <InlineMath math="I=\dfrac PV" />. The heat wasted in the cables is <InlineMath math="I^2R" />, which depends on the **current squared**, not on the transmission voltage directly. Stepping the voltage up <InlineMath math="25" /> times makes the current <InlineMath math="25" /> times smaller, so the loss falls by **<InlineMath math="25^2=625" /> times**.
+The generator must make the village's <InlineMath math="45\text{ kW}" /> **plus** the cable loss <InlineMath math="I^2R" />, but the current <InlineMath math="I=\dfrac PV" /> itself depends on that total power <InlineMath math="P" />. That gives a **quadratic** in <InlineMath math="P" /> with two roots, and only the smaller one is sensible: the larger would waste most of the power in the cables. At <InlineMath math="25\text{ kV}" /> the current is tiny, so the loss barely changes the total.
 
 <Chart
-  title={<>Power Lost in the Cables at Each Transmission Voltage</>}
+  title={<>Where the Generator's Power Goes at Each Transmission Voltage</>}
   bars="apart"
   categories={["1.0 kV", "25 kV"]}
   series={[
-    { label: "Power lost", mark: "bar", values: [5000, 8.0] },
+    { label: "Delivered to village", mark: "bar", values: [45, 45] },
+    { label: "Lost in cables", mark: "bar", values: [5.0, 0.0065] },
   ]}
-  valueLabel="Power lost (W)"
-  description={<>At <InlineMath math="1.0\text{ kV}" /> the cables waste <InlineMath math="5000\text{ W}" />, a tenth of the power sent. At <InlineMath math="25\text{ kV}" /> they waste only <InlineMath math="8.0\text{ W}" />, because the current is <InlineMath math="25" /> times smaller and the loss goes with the current squared.</>}
+  valueLabel="Power (kW)"
+  description={<>At <InlineMath math="1.0\text{ kV}" /> the generator must make <InlineMath math="50\text{ kW}" /> so that <InlineMath math="45\text{ kW}" /> arrives, losing <InlineMath math="5.0\text{ kW}" /> in the cables. At <InlineMath math="25\text{ kV}" /> the loss is only about <InlineMath math="6.5\text{ W}" />.</>}
 />
 
-<BlockMath math="I_1=\frac{50\,000}{1000}=50\text{ A},\qquad P_1=50^2\times2.0=5.0\times10^{3}\text{ W}" />
+<BlockMath math="P=45\,000+2.0\left(\frac{P}{1000}\right)^2\Rightarrow2.0\times10^{-6}P^2-P+45\,000=0\Rightarrow P=\frac{1\pm\sqrt{1-0.36}}{4.0\times10^{-6}}=50\text{ kW or }450\text{ kW}" />
 
-<BlockMath math="I_2=\frac{50\,000}{25\,000}=2.0\text{ A},\qquad P_2=2.0^2\times2.0=8.0\text{ W}" />
+<BlockMath math="\text{loss}=50-45=5.0\text{ kW}=10\%,\qquad I_{25}\approx\frac{45\,000}{25\,000}=1.8\text{ A},\qquad I^2R=1.8^2\times2.0\approx6.5\text{ W}" />
 
-At <InlineMath math="1.0\text{ kV}" /> the cables waste <InlineMath math="5.0\text{ kW}" />, a tenth of the power. At <InlineMath math="25\text{ kV}" /> they waste only <InlineMath math="8.0\text{ W}" />, which is why power is transmitted at high voltage.
-
-<BlockMath math="I^2(2.0)\le0.010\times50\,000=500\text{ W}\Rightarrow I\le\sqrt{250}\approx15.8\text{ A},\qquad V\ge\frac{50\,000}{15.8}\approx3.2\text{ kV}" />
-
-Losing at most <InlineMath math="500\text{ W}" /> in <InlineMath math="2.0\,\Omega" /> limits the current to about <InlineMath math="15.8\text{ A}" />. Sending <InlineMath math="50\text{ kW}" /> with so little current needs at least about <InlineMath math="3.2\text{ kV}" />, so the loss falls with the square of the voltage, not in proportion to it.
+The generator must produce <InlineMath math="50\text{ kW}" /> at <InlineMath math="1.0\text{ kV}" />, losing <InlineMath math="5.0\text{ kW}" />, a tenth of its output. The <InlineMath math="450\text{ kW}" /> root would lose <InlineMath math="405\text{ kW}" /> in the cables, which no designer would choose. At <InlineMath math="25\text{ kV}" /> the cables waste only about <InlineMath math="6.5\text{ W}" />.
 
 # Why the other options are wrong
 
-- <InlineMath math="200\text{ W}" /> and <InlineMath math="10\text{ kV}" /> make the loss fall in proportion to the voltage, **not with its square**.
-- <InlineMath math="100\text{ W}" />, <InlineMath math="4.0\text{ W}" /> and <InlineMath math="0.20\text{ kV}" /> use **<InlineMath math="IR" />**, which is the voltage drop along the cables in volts, not the power lost.
-- <InlineMath math="2.5\text{ kW}" />, <InlineMath math="4.0\text{ W}" /> and <InlineMath math="2.2\text{ kV}" /> **halve the cable's resistance**, as if only one of the two wires had resistance.
+- <InlineMath math="49\text{ kW}" /> works out the current from the **village's <InlineMath math="45\text{ kW}" />** instead of the generator's output, so it underestimates the current and the loss.
+- <InlineMath math="450\text{ kW}" /> takes the **other root** of the quadratic, a solution in which nine tenths of the power is wasted in the cables.
+- <InlineMath math="200\text{ W}" /> makes the loss fall in proportion to the voltage, **<InlineMath math="25" /> times instead of <InlineMath math="25^2" /> times**.

@@ -1,30 +1,27 @@
-# Daya yang sama pada tegangan lebih tinggi butuh arus lebih kecil
+# Kehilangan bergantung pada arus, dan arus bergantung pada daya yang harus menutup kehilangan itu
 
-Arus di kabel adalah <InlineMath math="I=\dfrac PV" />. Kalor yang terbuang di kabel adalah <InlineMath math="I^2R" />, yang bergantung pada **kuadrat arus**, bukan langsung pada tegangan transmisi. Menaikkan tegangan <InlineMath math="25" /> kali membuat arus <InlineMath math="25" /> kali lebih kecil, jadi kehilangannya turun **<InlineMath math="25^2=625" /> kali**.
+Generator harus menghasilkan <InlineMath math="45\text{ kW}" /> milik desa **ditambah** kehilangan kabel <InlineMath math="I^2R" />, padahal arus <InlineMath math="I=\dfrac PV" /> sendiri bergantung pada daya total <InlineMath math="P" /> itu. Ini memberi **persamaan kuadrat** dalam <InlineMath math="P" /> dengan dua akar, dan hanya akar yang lebih kecil yang masuk akal: akar yang lebih besar membuang sebagian besar daya di kabel. Pada <InlineMath math="25\text{ kV}" /> arusnya sangat kecil, jadi kehilangannya hampir tidak mengubah total.
 
 <Chart
-  title={<>Daya yang Hilang di Kabel pada Tiap Tegangan Transmisi</>}
+  title={<>Ke Mana Daya Generator Pergi pada Tiap Tegangan Transmisi</>}
   bars="apart"
   categories={["1,0 kV", "25 kV"]}
   series={[
-    { label: "Daya hilang", mark: "bar", values: [5000, 8.0] },
+    { label: "Sampai ke desa", mark: "bar", values: [45, 45] },
+    { label: "Hilang di kabel", mark: "bar", values: [5.0, 0.0065] },
   ]}
-  valueLabel="Daya hilang (W)"
-  description={<>Pada <InlineMath math="1{,}0\text{ kV}" /> kabel membuang <InlineMath math="5000\text{ W}" />, sepersepuluh dari daya yang dikirim. Pada <InlineMath math="25\text{ kV}" /> hanya terbuang <InlineMath math="8{,}0\text{ W}" />, karena arusnya <InlineMath math="25" /> kali lebih kecil dan kehilangannya mengikuti kuadrat arus.</>}
+  valueLabel="Daya (kW)"
+  description={<>Pada <InlineMath math="1{,}0\text{ kV}" /> generator harus menghasilkan <InlineMath math="50\text{ kW}" /> agar <InlineMath math="45\text{ kW}" /> sampai, dengan <InlineMath math="5{,}0\text{ kW}" /> hilang di kabel. Pada <InlineMath math="25\text{ kV}" /> kehilangannya hanya sekitar <InlineMath math="6{,}5\text{ W}" />.</>}
 />
 
-<BlockMath math="I_1=\frac{50\,000}{1000}=50\text{ A},\qquad P_1=50^2\times2{,}0=5{,}0\times10^{3}\text{ W}" />
+<BlockMath math="P=45\,000+2{,}0\left(\frac{P}{1000}\right)^2\Rightarrow2{,}0\times10^{-6}P^2-P+45\,000=0\Rightarrow P=\frac{1\pm\sqrt{1-0{,}36}}{4{,}0\times10^{-6}}=50\text{ kW atau }450\text{ kW}" />
 
-<BlockMath math="I_2=\frac{50\,000}{25\,000}=2{,}0\text{ A},\qquad P_2=2{,}0^2\times2{,}0=8{,}0\text{ W}" />
+<BlockMath math="\text{kehilangan}=50-45=5{,}0\text{ kW}=10\%,\qquad I_{25}\approx\frac{45\,000}{25\,000}=1{,}8\text{ A},\qquad I^2R=1{,}8^2\times2{,}0\approx6{,}5\text{ W}" />
 
-Pada <InlineMath math="1{,}0\text{ kV}" /> kabel membuang <InlineMath math="5{,}0\text{ kW}" />, sepersepuluh dari daya. Pada <InlineMath math="25\text{ kV}" /> hanya terbuang <InlineMath math="8{,}0\text{ W}" />, itulah sebabnya daya dikirim pada tegangan tinggi.
-
-<BlockMath math="I^2(2{,}0)\le0{,}010\times50\,000=500\text{ W}\Rightarrow I\le\sqrt{250}\approx15{,}8\text{ A},\qquad V\ge\frac{50\,000}{15{,}8}\approx3{,}2\text{ kV}" />
-
-Kehilangan paling banyak <InlineMath math="500\text{ W}" /> di <InlineMath math="2{,}0\,\Omega" /> membatasi arus sekitar <InlineMath math="15{,}8\text{ A}" />. Mengirim <InlineMath math="50\text{ kW}" /> dengan arus sekecil itu butuh paling sedikit sekitar <InlineMath math="3{,}2\text{ kV}" />, jadi kehilangannya turun menurut kuadrat tegangan, bukan sebanding dengannya.
+Generator harus menghasilkan <InlineMath math="50\text{ kW}" /> pada <InlineMath math="1{,}0\text{ kV}" />, kehilangan <InlineMath math="5{,}0\text{ kW}" />, sepersepuluh keluarannya. Akar <InlineMath math="450\text{ kW}" /> akan kehilangan <InlineMath math="405\text{ kW}" /> di kabel, yang tidak akan dipilih siapa pun. Pada <InlineMath math="25\text{ kV}" /> kabel hanya membuang sekitar <InlineMath math="6{,}5\text{ W}" />.
 
 # Mengapa pilihan lain salah
 
-- <InlineMath math="200\text{ W}" /> dan <InlineMath math="10\text{ kV}" /> membuat kehilangan turun sebanding tegangan, **bukan menurut kuadratnya**.
-- <InlineMath math="100\text{ W}" />, <InlineMath math="4{,}0\text{ W}" />, dan <InlineMath math="0{,}20\text{ kV}" /> memakai **<InlineMath math="IR" />**, yaitu penurunan tegangan sepanjang kabel dalam volt, bukan daya yang hilang.
-- <InlineMath math="2{,}5\text{ kW}" />, <InlineMath math="4{,}0\text{ W}" />, dan <InlineMath math="2{,}2\text{ kV}" /> **membagi dua hambatan kabel**, seolah-olah hanya satu dari dua kawat yang berhambatan.
+- <InlineMath math="49\text{ kW}" /> menghitung arus dari **<InlineMath math="45\text{ kW}" /> milik desa**, bukan keluaran generator, sehingga arus dan kehilangannya terlalu kecil.
+- <InlineMath math="450\text{ kW}" /> mengambil **akar yang lain** dari persamaan kuadrat, penyelesaian yang membuang sembilan persepuluh daya di kabel.
+- <InlineMath math="200\text{ W}" /> membuat kehilangan turun sebanding tegangan, **<InlineMath math="25" /> kali alih-alih <InlineMath math="25^2" /> kali**.

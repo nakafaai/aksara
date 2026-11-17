@@ -1,6 +1,6 @@
-# Hitung tiap posisi, lalu tanyakan posisi mana yang masih punya jalur lengkap
+# Temukan posisi yang masih punya jalur lengkap, lalu biarkan sekring membatasi kumparan pengganti
 
-Pada <InlineMath math="240\text{ V}" /> yang tetap, daya adalah <InlineMath math="P=\dfrac{V^2}{R}" />. Seri menjumlahkan hambatan, dan paralel memberi hambatan lebih kecil dari tiap kumparan. Setelah rusak, arus hanya bisa mengalir lewat jalur yang **menghindari kumparan yang putus**: jalur seri melewatinya, MEDIUM adalah kumparan yang putus itu sendiri, dan hanya posisi paralel yang masih punya jalur, lewat kumparan <InlineMath math="60\,\Omega" />.
+Pada <InlineMath math="240\text{ V}" /> yang tetap, daya adalah <InlineMath math="P=\dfrac{V^2}{R}" />. Setelah rusak, arus hanya bisa mengalir lewat jalur yang **menghindari kumparan yang putus**: jalur seri melewatinya, MEDIUM adalah kumparan yang putus itu sendiri, dan hanya HIGH yang masih bekerja, lewat kumparan <InlineMath math="60\,\Omega" />. Kumparan pengganti terpasang paralel dengan kumparan <InlineMath math="60\,\Omega" /> pada HIGH, jadi kedua arus dijumlahkan, dan bersama-sama harus tetap dalam <InlineMath math="13\text{ A}" />.
 
 <Chart
   title={<>Daya pada Tiap Posisi Sakelar Sebelum dan Sesudah Kerusakan</>}
@@ -14,14 +14,14 @@ Pada <InlineMath math="240\text{ V}" /> yang tetap, daya adalah <InlineMath math
   description={<>Sebelum rusak, posisi sakelar memberi <InlineMath math="576" />, <InlineMath math="1440" />, dan <InlineMath math="2400\text{ W}" />. Dengan kumparan <InlineMath math="40\,\Omega" /> terputus, LOW dan MEDIUM tidak memberi apa pun dan HIGH hanya memberi <InlineMath math="960\text{ W}" /> dari kumparan <InlineMath math="60\,\Omega" />.</>}
 />
 
-<BlockMath math="P_{\text{LOW}}=\frac{240^2}{60+40}=576\text{ W},\qquad P_{\text{HIGH}}=\frac{240^2}{24}=2400\text{ W}\quad\left(R=\frac{60\times40}{60+40}=24\,\Omega\right)" />
+<BlockMath math="P_{\text{LOW}}=\frac{240^2}{60+40}=576\text{ W},\qquad\text{setelah rusak: }P_{\text{HIGH}}=\frac{240^2}{60}=960\text{ W}" />
 
-<BlockMath math="\text{setelah rusak: LOW}=0,\quad\text{MEDIUM}=0,\quad\text{HIGH}=\frac{240^2}{60}=960\text{ W}" />
+<BlockMath math="I_{60}=\frac{240}{60}=4{,}0\text{ A},\qquad I_R\le13-4{,}0=9{,}0\text{ A}\Rightarrow R\ge\frac{240}{9{,}0}\approx27\,\Omega" />
 
-Sebelum rusak pemanas memberi <InlineMath math="576\text{ W}" /> pada LOW dan <InlineMath math="2{,}4\text{ kW}" /> pada HIGH. Setelahnya, LOW dan MEDIUM mati, dan HIGH hanya memberi <InlineMath math="960\text{ W}" /> lewat kumparan <InlineMath math="60\,\Omega" />, daya terbesar yang kini bisa diberikan.
+Sebelum rusak LOW memberi <InlineMath math="576\text{ W}" />. Setelahnya hanya HIGH yang bekerja, memberi <InlineMath math="960\text{ W}" />. Kumparan <InlineMath math="60\,\Omega" /> sudah mengambil <InlineMath math="4{,}0\text{ A}" /> pada HIGH, jadi kumparan pengganti paling banyak boleh mengambil <InlineMath math="9{,}0\text{ A}" />, yaitu paling sedikit sekitar <InlineMath math="27\,\Omega" />.
 
 # Mengapa pilihan lain salah
 
 - <InlineMath math="576\text{ W}" /> setelah rusak menganggap **jalur seri masih bekerja**, padahal jalur itu melewati kumparan yang putus, jadi tidak ada arus.
+- <InlineMath math="18\,\Omega" /> memberi kumparan pengganti **seluruh <InlineMath math="13\text{ A}" />**, lupa <InlineMath math="4{,}0\text{ A}" /> yang ditarik kumparan <InlineMath math="60\,\Omega" /> di sebelahnya pada HIGH.
 - <InlineMath math="1{,}4\text{ kW}" /> memakai **posisi MEDIUM**, padahal posisi itu adalah kumparan <InlineMath math="40\,\Omega" /> yang putus itu sendiri.
-- <InlineMath math="960\text{ W}" /> pada LOW mengambil **kumparan yang lebih besar saja** sebagai setelan terendah, padahal pasangan seri hambatannya lebih besar dan dayanya lebih kecil.
