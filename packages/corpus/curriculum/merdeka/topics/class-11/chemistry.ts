@@ -2,6 +2,7 @@ import {
   chemistryBookXI,
   merdekaLearningOutcomes,
 } from "#corpus/curriculum/merdeka/documents";
+import { merdekaClass11ChemicalEquilibriumUnit } from "#corpus/curriculum/merdeka/topics/class-11/equilibrium";
 import { materialNode, unitNode } from "#corpus/curriculum/schema";
 
 /** The Kurikulum Merdeka Kelas 11 Kimia units, in the chapter order of the Kemendikbudristek Buku Siswa Kimia SMA/MA Kelas XI (2022). */
@@ -281,4 +282,5 @@ export const merdekaClass11ChemistryTopicNodes = [
       ms: { routeSlug: "kinetik-kimia", title: "Kinetik Kimia" },
     },
   }),
+  merdekaClass11ChemicalEquilibriumUnit,
 ];
