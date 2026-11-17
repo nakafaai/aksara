@@ -1,0 +1,291 @@
+export const metadata = {
+  title: "Electricity Notes for Form Five",
+  description:
+    "Form 5 Physics Chapter 3: use Ohm's law, combine resistors in series and parallel, find e.m.f. and internal resistance, and calculate electrical power.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2026-11-17",
+  dateModified: "2026-11-17",
+  subject: "Electricity",
+};
+
+## Current Is a Flow of Charge
+
+**Electric current** is the rate of flow of charge, <InlineMath math="I = \dfrac{Q}{t}" />, measured in amperes. The **potential difference** between two points is the work done to move one coulomb of charge between them, <InlineMath math="V = \dfrac{W}{Q}" />, measured in volts. For an ohmic conductor the two are linked by **Ohm's law**, <InlineMath math="V = IR" />, as long as the conductor's temperature stays constant. In these notes you change a resistance and compare current graphs, combine resistors, find the e.m.f. of a cell, and compare the efficiency of two bulbs.
+
+In a metal wire, the moving charges are electrons. Electrons flow from the negative terminal to the positive one, but **conventional current** is defined to flow from positive to negative. One ampere means one coulomb of charge passes a point every second.
+
+Move the resistance slider below. The graph of <InlineMath math="I" /> against <InlineMath math="V" /> for an ohmic conductor is a straight line through the origin, and its gradient is <InlineMath math="\dfrac{1}{R}" />.
+
+<MathVisual
+  title={<>Current against Potential Difference for an Ohmic Conductor</>}
+  description={
+    <>
+      The current is <InlineMath math="I = \dfrac{V}{R}" />. For a{" "}
+      <InlineMath math="4\ \Omega" /> resistor, a potential difference of{" "}
+      <InlineMath math="6\text{ V}" /> gives a current of{" "}
+      <InlineMath math="1.5\text{ A}" />.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 12 }, y: { min: 0, max: 6 } },
+    view: { kind: "fit", padding: 0.08 },
+    parameters: [
+      { name: "r", min: 2, max: 12, value: 4, step: 0.5, label: "r" },
+      { name: "p", min: 0, max: 12, value: 6, step: 0.5, label: "p" },
+    ],
+    objects: [
+      { id: "ohm", kind: "function", appearance: "primary", formula: "x/r", domain: { min: 0, max: 12 } },
+      { id: "now", kind: "marker", x: "p", y: "p/r", appearance: "warning" },
+    ],
+    readouts: [
+      { key: "current", formula: "p/r" },
+    ],
+  }}
+  labels={{
+    r: <>Resistance <InlineMath math="R" /> in <InlineMath math="\Omega" /></>,
+    p: <>Potential difference <InlineMath math="V" /> in <InlineMath math="\text{V}" /></>,
+    current: <>Current <InlineMath math="I" /> in <InlineMath math="\text{A}" /></>,
+  }}
+/>
+
+Check the starting reading: <InlineMath math="I = \dfrac{6}{4} = 1.5\text{ A}" />. A bigger resistance gives a flatter line, because the same current needs a bigger potential difference.
+
+## Resistance Depends on the Wire and the Arrangement
+
+The resistance of a wire depends on its **length**, its **cross-sectional area**, its **material** and its **temperature**. At constant temperature the relation is <InlineMath math="R = \dfrac{\rho l}{A}" />, where <InlineMath math="\rho" /> is the resistivity of the material. A wire twice as long has twice the resistance, and a wire with twice the area has half the resistance.
+
+Resistors can be arranged in **series** or in **parallel**:
+
+<MathContainer>
+<BlockMath math="\text{Series: } R = R_1 + R_2" />
+<BlockMath math="\text{Parallel: } \frac{1}{R} = \frac{1}{R_1} + \frac{1}{R_2}" />
+</MathContainer>
+
+In series, the same current flows through every resistor. In parallel, every branch has the same potential difference across it, and the effective resistance is always **smaller** than the smallest resistor. Change <InlineMath math="R_2" /> below and compare the two lines for <InlineMath math="R_1 = 6\ \Omega" />.
+
+<MathVisual
+  title={<>Effective Resistance in Series and Parallel</>}
+  description={
+    <>
+      With <InlineMath math="R_1 = 6\ \Omega" />, series gives{" "}
+      <InlineMath math="6 + R_2" /> and parallel gives{" "}
+      <InlineMath math="\dfrac{6R_2}{6 + R_2}" />. The parallel line never goes
+      above <InlineMath math="6\ \Omega" />.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 20 }, y: { min: 0, max: 28 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "q", min: 1, max: 20, value: 3, step: 1, label: "q" },
+    ],
+    objects: [
+      { id: "series", kind: "function", appearance: "secondary", formula: "6 + x", domain: { min: 0, max: 20 } },
+      { id: "parallel", kind: "function", appearance: "primary", formula: "6x/(6 + x)", domain: { min: 0, max: 20 } },
+      { id: "series-now", kind: "marker", x: "q", y: "6 + q", appearance: "warning" },
+      { id: "parallel-now", kind: "marker", x: "q", y: "6q/(6 + q)", appearance: "answer" },
+    ],
+    readouts: [
+      { key: "series-total", formula: "6 + q" },
+      { key: "parallel-total", formula: "6q/(6 + q)" },
+    ],
+  }}
+  labels={{
+    q: <>Resistance <InlineMath math="R_2" /> in <InlineMath math="\Omega" /></>,
+    "series-total": <>Series resistance in <InlineMath math="\Omega" /></>,
+    "parallel-total": <>Parallel resistance in <InlineMath math="\Omega" /></>,
+  }}
+/>
+
+Try an example. A <InlineMath math="6\ \Omega" /> and a <InlineMath math="3\ \Omega" /> resistor are connected in parallel, then in series with a <InlineMath math="4\ \Omega" /> resistor across a <InlineMath math="12\text{ V}" /> battery. Calculate the current from the battery and the current in each parallel branch.
+
+**Combine the parallel branches first**, then add the series resistor:
+
+<MathContainer>
+<BlockMath math="R_{\text{parallel}} = \frac{6 \times 3}{6 + 3} = 2\ \Omega" />
+<BlockMath math="R = 2 + 4 = 6\ \Omega, \quad I = \frac{12}{6} = 2.0\text{ A}" />
+<BlockMath math="V_{\text{parallel}} = 2.0 \times 2 = 4.0\text{ V}, \quad I_6 = \frac{4.0}{6} = 0.67\text{ A}, \quad I_3 = \frac{4.0}{3} = 1.33\text{ A}" />
+</MathContainer>
+
+Check: the two branch currents add up to <InlineMath math="0.67 + 1.33 = 2.0\text{ A}" />, the same as the current from the battery. At <InlineMath math="R_2 = 3" />, the parallel graph above also gives <InlineMath math="2\ \Omega" />.
+
+## Electromotive Force and Internal Resistance
+
+The **electromotive force**, or e.m.f., <InlineMath math="E" />, is the energy a cell supplies to move one coulomb of charge round a complete circuit. A real cell has an **internal resistance**, <InlineMath math="r" />, so part of the energy is lost inside the cell itself. The potential difference across the cell's terminals is:
+
+<BlockMath math="V = E - Ir" />
+
+With no current flowing, a voltmeter reads the e.m.f. As the current grows, the terminal reading drops. Change the e.m.f. and the internal resistance below: the line crosses the vertical axis at <InlineMath math="E" />, and its gradient is <InlineMath math="-r" />.
+
+<MathVisual
+  title={<>Terminal Potential Difference against Current</>}
+  description={
+    <>
+      <InlineMath math="V = E - Ir" />. For a cell with{" "}
+      <InlineMath math="E = 3.0\text{ V}" /> and <InlineMath math="r = 0.5\ \Omega" />,
+      a current of <InlineMath math="0.5\text{ A}" /> gives a terminal potential
+      difference of <InlineMath math="2.75\text{ V}" />.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 4 }, y: { min: 0, max: 4.5 } },
+    view: { kind: "fit", padding: 0.08 },
+    parameters: [
+      { name: "a", min: 1.5, max: 4.5, value: 3, step: 0.1, label: "a" },
+      { name: "b", min: 0.1, max: 2, value: 0.5, step: 0.1, label: "b" },
+      { name: "c", min: 0, max: 4, value: 0.5, step: 0.05, label: "c" },
+    ],
+    objects: [
+      { id: "terminal", kind: "function", appearance: "primary", formula: "a - b*x", domain: { min: 0, max: 4 } },
+      { id: "now", kind: "marker", x: "c", y: "a - b*c", appearance: "warning" },
+    ],
+    readouts: [
+      { key: "voltage", formula: "a - b*c" },
+      { key: "lost", formula: "b*c" },
+    ],
+  }}
+  labels={{
+    a: <>E.m.f. <InlineMath math="E" /> in <InlineMath math="\text{V}" /></>,
+    b: <>Internal resistance <InlineMath math="r" /> in <InlineMath math="\Omega" /></>,
+    c: <>Current <InlineMath math="I" /> in <InlineMath math="\text{A}" /></>,
+    voltage: <>Terminal potential difference in <InlineMath math="\text{V}" /></>,
+    lost: <>Lost volts <InlineMath math="Ir" /> in <InlineMath math="\text{V}" /></>,
+  }}
+/>
+
+A cell with an e.m.f. of <InlineMath math="3.0\text{ V}" /> and an internal resistance of <InlineMath math="0.5\ \Omega" /> is connected to a <InlineMath math="5.5\ \Omega" /> resistor. The internal resistance is in series with the external resistor, so:
+
+<MathContainer>
+<BlockMath math="I = \frac{E}{R + r} = \frac{3.0}{5.5 + 0.5} = 0.50\text{ A}" />
+<BlockMath math="V = IR = 0.50 \times 5.5 = 2.75\text{ V}" />
+</MathContainer>
+
+Check with <InlineMath math="V = E - Ir = 3.0 - 0.50 \times 0.5 = 2.75\text{ V}" />. Both ways agree, and <InlineMath math="0.25\text{ V}" /> is lost inside the cell.
+
+## Electrical Energy and Power
+
+**Electrical power** is the rate at which electrical energy is transferred. For an appliance with current <InlineMath math="I" /> and potential difference <InlineMath math="V" />:
+
+<BlockMath math="P = VI = I^2R = \frac{V^2}{R}, \qquad E = Pt" />
+
+Electricity bills count energy in **kilowatt-hours**, <InlineMath math="\text{kWh}" />: the energy a <InlineMath math="1\text{ kW}" /> appliance uses in one hour. A <InlineMath math="2.0\text{ kW}" /> heater switched on for <InlineMath math="3" /> hours uses <InlineMath math="2.0 \times 3 = 6.0\text{ kWh}" />, which is <InlineMath math="6.0 \times 3.6 \times 10^6 = 2.16 \times 10^7\text{ J}" />.
+
+Not all electrical energy becomes useful energy. **Efficiency** is the percentage of the input energy that comes out as useful output. Pick a bulb in the flashlight below: both bulbs draw the same power, but the share that becomes light is very different.
+
+<FlashlightEfficiencyLab
+  title={<>Efficiency of a Filament Bulb and an LED</>}
+  description={
+    <>
+      Two AA cells, <InlineMath math="3\text{ V}" /> and{" "}
+      <InlineMath math="2.5\text{ A h}" />, power a <InlineMath math="1\text{ W}" />{" "}
+      bulb. A filament bulb turns about <InlineMath math="5\%" /> into light, an
+      LED about <InlineMath math="40\%" />.
+    </>
+  }
+  labels={{
+    battery: <>Energy in the cells</>,
+    bulbs: { filament: <>Filament bulb</>, led: <>LED</> },
+    chooseBulb: "Bulb type",
+    efficiency: <>Efficiency</>,
+    heat: <>Heat power</>,
+    input: <>Input power</>,
+    light: <>Light power</>,
+    runTime: <>Running time</>,
+    viewLabel: "A flashlight with its cells shown in cutaway",
+  }}
+/>
+
+Work out the energy in the cells: <InlineMath math="E = VQ = 3 \times 2.5 \times 3600 = 27\,000\text{ J}" />. At <InlineMath math="1\text{ W}" /> the flashlight shines for <InlineMath math="27\,000\text{ s}" />, which is <InlineMath math="7.5" /> hours, whichever bulb it holds. The difference is the light power: <InlineMath math="0.05\text{ W}" /> for the filament bulb against <InlineMath math="0.40\text{ W}" /> for the LED.
+
+The graph below shows the power dissipated in a resistor as the current changes. Power is proportional to the **square of the current**, so doubling the current makes the power four times bigger.
+
+<MathVisual
+  title={<>Power in a Resistor against Current</>}
+  description={
+    <>
+      <InlineMath math="P = I^2R" />. For a <InlineMath math="10\ \Omega" />{" "}
+      resistor, <InlineMath math="1\text{ A}" /> gives <InlineMath math="10\text{ W}" />{" "}
+      and <InlineMath math="2\text{ A}" /> gives <InlineMath math="40\text{ W}" />.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 3 }, y: { min: 0, max: 200 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "r", min: 2, max: 20, value: 10, step: 1, label: "r" },
+      { name: "c", min: 0, max: 3, value: 2, step: 0.1, label: "c" },
+    ],
+    objects: [
+      { id: "power", kind: "function", appearance: "primary", formula: "r*x^2", domain: { min: 0, max: 3 } },
+      { id: "now", kind: "marker", x: "c", y: "r*c^2", appearance: "warning" },
+    ],
+    readouts: [
+      { key: "watt", formula: "r*c^2" },
+    ],
+  }}
+  labels={{
+    r: <>Resistance <InlineMath math="R" /> in <InlineMath math="\Omega" /></>,
+    c: <>Current <InlineMath math="I" /> in <InlineMath math="\text{A}" /></>,
+    watt: <>Power in <InlineMath math="\text{W}" /></>,
+  }}
+/>
+
+## Common Mistakes about Electricity
+
+| Mistake | Why it's wrong | How to check |
+| :--- | :--- | :--- |
+| Current gets smaller after passing through a resistor. | Charge doesn't disappear, so the current in a series circuit is the same at every point. | Ammeters before and after the resistor read the same value. |
+| Adding a resistor in parallel raises the effective resistance. | A new branch gives an extra path, so the effective resistance falls. | A parallel combination is smaller than its smallest resistor. |
+| A voltmeter across a cell always reads the e.m.f. | When current flows it reads <InlineMath math="E - Ir" />, which is less than the e.m.f. | Compare the readings with the switch open and closed. |
+| <InlineMath math="1\text{ kWh}" /> equals <InlineMath math="1000\text{ J}" />. | <InlineMath math="1\text{ kWh} = 1000 \times 3600 = 3.6 \times 10^6\text{ J}" />. | Convert the hours to seconds. |
+| Doubling the current doubles the power in a resistor. | <InlineMath math="P = I^2R" />, so the power becomes four times bigger. | Work out <InlineMath math="2^2 = 4" />. |
+
+The first mistake comes up most often. A resistor **converts the energy** of the charge into heat, but it **doesn't use up the charge**.
+
+## Practice on Electricity
+
+These questions move from charge and resistance to e.m.f. and power. **Draw the circuit diagram** first so the series and parallel parts are clear.
+
+1. A current of <InlineMath math="0.50\text{ A}" /> flows for <InlineMath math="2" /> minutes. Calculate the charge that flows and the number of electrons involved. The charge on one electron is <InlineMath math="1.6 \times 10^{-19}\text{ C}" />.
+
+2. A copper wire <InlineMath math="10\text{ m}" /> long has a cross-sectional area of <InlineMath math="1.0 \times 10^{-6}\text{ m}^2" />. The resistivity of copper is <InlineMath math="1.7 \times 10^{-8}\ \Omega\text{ m}" />. Calculate the resistance of the wire.
+
+3. For one cell, a voltmeter reads <InlineMath math="1.4\text{ V}" /> when the current is <InlineMath math="0.2\text{ A}" />, and <InlineMath math="1.2\text{ V}" /> when the current is <InlineMath math="0.6\text{ A}" />. Calculate the internal resistance and the e.m.f. of the cell.
+
+4. A <InlineMath math="2000\text{ W}" /> kettle is connected to a <InlineMath math="240\text{ V}" /> supply. Calculate its normal current and choose a suitable fuse from <InlineMath math="3\text{ A}" />, <InlineMath math="10\text{ A}" /> and <InlineMath math="30\text{ A}" />.
+
+### Solutions
+
+**Solution 1**: Convert minutes to seconds, then use <InlineMath math="Q = It" />:
+
+<MathContainer>
+<BlockMath math="Q = 0.50 \times 120 = 60\text{ C}" />
+<BlockMath math="N = \frac{60}{1.6 \times 10^{-19}} = 3.75 \times 10^{20}\text{ electrons}" />
+</MathContainer>
+
+Check: <InlineMath math="3.75 \times 10^{20} \times 1.6 \times 10^{-19} = 60\text{ C}" />.
+
+**Solution 2**: Use <InlineMath math="R = \dfrac{\rho l}{A}" />:
+
+<BlockMath math="R = \frac{1.7 \times 10^{-8} \times 10}{1.0 \times 10^{-6}} = 0.17\ \Omega" />
+
+Check the logic: copper is a good conductor, so its resistance should be small, well under <InlineMath math="1\ \Omega" />.
+
+**Solution 3**: From <InlineMath math="V = E - Ir" />, the change in the voltmeter reading comes from the change in <InlineMath math="Ir" />:
+
+<MathContainer>
+<BlockMath math="r = \frac{1.4 - 1.2}{0.6 - 0.2} = \frac{0.2}{0.4} = 0.5\ \Omega" />
+<BlockMath math="E = V + Ir = 1.4 + 0.2 \times 0.5 = 1.5\text{ V}" />
+</MathContainer>
+
+Check with the second reading: <InlineMath math="1.5 - 0.6 \times 0.5 = 1.2\text{ V}" />. That matches the voltmeter.
+
+**Solution 4**: Use <InlineMath math="P = VI" />:
+
+<BlockMath math="I = \frac{P}{V} = \frac{2000}{240} = 8.3\text{ A}" />
+
+A fuse should be rated a little above the normal current, so choose the **<InlineMath math="10\text{ A}" /> fuse**. A <InlineMath math="3\text{ A}" /> fuse would blow even when the kettle works normally, and a <InlineMath math="30\text{ A}" /> fuse wouldn't protect the kettle if a fault happened.

@@ -1,0 +1,294 @@
+export const metadata = {
+  title: "Stromkreise mit dem ohmschen Gesetz berechnen",
+  description:
+    "Wende das ohmsche Gesetz an, kombiniere Widerstände in Reihe und parallel, bestimme Quellenspannung und Innenwiderstand und berechne elektrische Leistung.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2026-11-17",
+  dateModified: "2026-11-17",
+  subject: "Elektrizität",
+};
+
+## Strom ist fließende Ladung
+
+Die **elektrische Stromstärke** ist die pro Zeit fließende Ladung, <InlineMath math="I = \dfrac{Q}{t}" />, gemessen in Ampere. Die **Spannung** zwischen zwei Punkten ist die Arbeit, die nötig ist, um ein Coulomb Ladung zwischen ihnen zu bewegen, <InlineMath math="U = \dfrac{W}{Q}" />, gemessen in Volt. Bei einem ohmschen Leiter verbindet das **ohmsche Gesetz** beide, <InlineMath math="U = R \cdot I" />, solange die Temperatur des Leiters gleich bleibt. Hier änderst du einen Widerstand und vergleichst Stromkennlinien, kombinierst Widerstände, bestimmst die Quellenspannung einer Zelle und vergleichst den Wirkungsgrad zweier Lampen.
+
+In einem Metalldraht bewegen sich Elektronen. Sie fließen vom Minuspol zum Pluspol, die **technische Stromrichtung** ist aber vom Plus- zum Minuspol festgelegt. Ein Ampere bedeutet, dass jede Sekunde ein Coulomb Ladung an einer Stelle vorbeifließt.
+
+Verschieb den Widerstandsregler unten. Die Kennlinie <InlineMath math="I" /> gegen <InlineMath math="U" /> eines ohmschen Leiters ist eine Ursprungsgerade mit der Steigung <InlineMath math="\dfrac{1}{R}" />.
+
+<MathVisual
+  title={<>Stromstärke gegen Spannung bei einem ohmschen Leiter</>}
+  description={
+    <>
+      Die Stromstärke ist <InlineMath math="I = \dfrac{U}{R}" />. Bei einem
+      Widerstand von <InlineMath math="4\ \Omega" /> ergibt eine Spannung von{" "}
+      <InlineMath math="6\ \text{V}" /> eine Stromstärke von{" "}
+      <InlineMath math="1{,}5\ \text{A}" />.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 12 }, y: { min: 0, max: 6 } },
+    view: { kind: "fit", padding: 0.08 },
+    parameters: [
+      { name: "r", min: 2, max: 12, value: 4, step: 0.5, label: "r" },
+      { name: "p", min: 0, max: 12, value: 6, step: 0.5, label: "p" },
+    ],
+    objects: [
+      { id: "ohm", kind: "function", appearance: "primary", formula: "x/r", domain: { min: 0, max: 12 } },
+      { id: "now", kind: "marker", x: "p", y: "p/r", appearance: "warning" },
+    ],
+    readouts: [
+      { key: "current", formula: "p/r" },
+    ],
+  }}
+  labels={{
+    r: <>Widerstand <InlineMath math="R" /> in <InlineMath math="\Omega" /></>,
+    p: <>Spannung <InlineMath math="U" /> in <InlineMath math="\text{V}" /></>,
+    current: <>Stromstärke <InlineMath math="I" /> in <InlineMath math="\text{A}" /></>,
+  }}
+/>
+
+Prüf den Startwert: <InlineMath math="I = \dfrac{6}{4} = 1{,}5\ \text{A}" />. Ein größerer Widerstand ergibt eine flachere Gerade, weil dieselbe Stromstärke eine größere Spannung braucht.
+
+## Der Widerstand hängt vom Draht und der Schaltung ab
+
+Der Widerstand eines Drahts hängt von seiner **Länge**, seiner **Querschnittsfläche**, seinem **Material** und seiner **Temperatur** ab. Bei konstanter Temperatur gilt <InlineMath math="R = \dfrac{\rho \cdot l}{A}" /> mit dem spezifischen Widerstand <InlineMath math="\rho" />. Ein doppelt so langer Draht hat den doppelten Widerstand, ein Draht mit doppelter Querschnittsfläche den halben.
+
+Widerstände lassen sich **in Reihe** oder **parallel** schalten:
+
+<MathContainer>
+<BlockMath math="\text{Reihe: } R = R_1 + R_2" />
+<BlockMath math="\text{Parallel: } \frac{1}{R} = \frac{1}{R_1} + \frac{1}{R_2}" />
+</MathContainer>
+
+In Reihe fließt durch jeden Widerstand derselbe Strom. Parallel liegt an jedem Zweig dieselbe Spannung, und der Gesamtwiderstand ist immer **kleiner** als der kleinste Einzelwiderstand. Ändere unten <InlineMath math="R_2" /> und vergleich die beiden Kurven für <InlineMath math="R_1 = 6\ \Omega" />.
+
+<MathVisual
+  title={<>Gesamtwiderstand in Reihen- und Parallelschaltung</>}
+  description={
+    <>
+      Mit <InlineMath math="R_1 = 6\ \Omega" /> ergibt die Reihenschaltung{" "}
+      <InlineMath math="6 + R_2" /> und die Parallelschaltung{" "}
+      <InlineMath math="\dfrac{6R_2}{6 + R_2}" />. Die Kurve der
+      Parallelschaltung steigt nie über <InlineMath math="6\ \Omega" />.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 20 }, y: { min: 0, max: 28 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "q", min: 1, max: 20, value: 3, step: 1, label: "q" },
+    ],
+    objects: [
+      { id: "series", kind: "function", appearance: "secondary", formula: "6 + x", domain: { min: 0, max: 20 } },
+      { id: "parallel", kind: "function", appearance: "primary", formula: "6x/(6 + x)", domain: { min: 0, max: 20 } },
+      { id: "series-now", kind: "marker", x: "q", y: "6 + q", appearance: "warning" },
+      { id: "parallel-now", kind: "marker", x: "q", y: "6q/(6 + q)", appearance: "answer" },
+    ],
+    readouts: [
+      { key: "series-total", formula: "6 + q" },
+      { key: "parallel-total", formula: "6q/(6 + q)" },
+    ],
+  }}
+  labels={{
+    q: <>Widerstand <InlineMath math="R_2" /> in <InlineMath math="\Omega" /></>,
+    "series-total": <>Gesamtwiderstand in Reihe in <InlineMath math="\Omega" /></>,
+    "parallel-total": <>Gesamtwiderstand parallel in <InlineMath math="\Omega" /></>,
+  }}
+/>
+
+Probier ein Beispiel. Ein Widerstand von <InlineMath math="6\ \Omega" /> und einer von <InlineMath math="3\ \Omega" /> sind parallel geschaltet und mit einem Widerstand von <InlineMath math="4\ \Omega" /> in Reihe an eine Batterie mit <InlineMath math="12\ \text{V}" /> angeschlossen. Berechne die Stromstärke aus der Batterie und in jedem Parallelzweig.
+
+**Fass zuerst die Parallelzweige zusammen** und addiere dann den Reihenwiderstand:
+
+<MathContainer>
+<BlockMath math="R_{\text{parallel}} = \frac{6 \cdot 3}{6 + 3} = 2\ \Omega" />
+<BlockMath math="R = 2 + 4 = 6\ \Omega, \quad I = \frac{12}{6} = 2{,}0\ \text{A}" />
+<BlockMath math="U_{\text{parallel}} = 2{,}0 \cdot 2 = 4{,}0\ \text{V}, \quad I_6 = \frac{4{,}0}{6} = 0{,}67\ \text{A}, \quad I_3 = \frac{4{,}0}{3} = 1{,}33\ \text{A}" />
+</MathContainer>
+
+Prüf es: Die beiden Zweigströme ergeben zusammen <InlineMath math="0{,}67 + 1{,}33 = 2{,}0\ \text{A}" />, genau den Strom aus der Batterie. Bei <InlineMath math="R_2 = 3" /> zeigt die Kurve oben ebenfalls <InlineMath math="2\ \Omega" />.
+
+## Quellenspannung und Innenwiderstand
+
+Die **Quellenspannung** <InlineMath math="U_0" /> ist die Energie, die eine Zelle pro Coulomb Ladung für einen vollständigen Umlauf im Stromkreis liefert. Eine echte Zelle hat einen **Innenwiderstand** <InlineMath math="R_i" />, deshalb geht ein Teil der Energie in der Zelle selbst verloren. Die Spannung an den Polen der Zelle, die Klemmenspannung, ist:
+
+<BlockMath math="U = U_0 - I \cdot R_i" />
+
+Ohne Stromfluss zeigt ein Voltmeter die Quellenspannung an. Mit steigender Stromstärke sinkt die Klemmenspannung. Ändere unten Quellenspannung und Innenwiderstand: Die Gerade schneidet die senkrechte Achse bei <InlineMath math="U_0" />, und ihre Steigung ist <InlineMath math="-R_i" />.
+
+<MathVisual
+  title={<>Klemmenspannung gegen Stromstärke</>}
+  description={
+    <>
+      <InlineMath math="U = U_0 - I \cdot R_i" />. Bei einer Zelle mit{" "}
+      <InlineMath math="U_0 = 3{,}0\ \text{V}" /> und{" "}
+      <InlineMath math="R_i = 0{,}5\ \Omega" /> ergibt eine Stromstärke von{" "}
+      <InlineMath math="0{,}5\ \text{A}" /> eine Klemmenspannung von{" "}
+      <InlineMath math="2{,}75\ \text{V}" />.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 4 }, y: { min: 0, max: 4.5 } },
+    view: { kind: "fit", padding: 0.08 },
+    parameters: [
+      { name: "a", min: 1.5, max: 4.5, value: 3, step: 0.1, label: "a" },
+      { name: "b", min: 0.1, max: 2, value: 0.5, step: 0.1, label: "b" },
+      { name: "c", min: 0, max: 4, value: 0.5, step: 0.05, label: "c" },
+    ],
+    objects: [
+      { id: "terminal", kind: "function", appearance: "primary", formula: "a - b*x", domain: { min: 0, max: 4 } },
+      { id: "now", kind: "marker", x: "c", y: "a - b*c", appearance: "warning" },
+    ],
+    readouts: [
+      { key: "voltage", formula: "a - b*c" },
+      { key: "lost", formula: "b*c" },
+    ],
+  }}
+  labels={{
+    a: <>Quellenspannung <InlineMath math="U_0" /> in <InlineMath math="\text{V}" /></>,
+    b: <>Innenwiderstand <InlineMath math="R_i" /> in <InlineMath math="\Omega" /></>,
+    c: <>Stromstärke <InlineMath math="I" /> in <InlineMath math="\text{A}" /></>,
+    voltage: <>Klemmenspannung in <InlineMath math="\text{V}" /></>,
+    lost: <>Spannungsabfall innen <InlineMath math="I \cdot R_i" /> in <InlineMath math="\text{V}" /></>,
+  }}
+/>
+
+Eine Zelle mit der Quellenspannung <InlineMath math="3{,}0\ \text{V}" /> und dem Innenwiderstand <InlineMath math="0{,}5\ \Omega" /> ist an einen Widerstand von <InlineMath math="5{,}5\ \Omega" /> angeschlossen. Der Innenwiderstand liegt in Reihe mit dem äußeren Widerstand, also:
+
+<MathContainer>
+<BlockMath math="I = \frac{U_0}{R + R_i} = \frac{3{,}0}{5{,}5 + 0{,}5} = 0{,}50\ \text{A}" />
+<BlockMath math="U = R \cdot I = 5{,}5 \cdot 0{,}50 = 2{,}75\ \text{V}" />
+</MathContainer>
+
+Prüf es mit <InlineMath math="U = U_0 - I \cdot R_i = 3{,}0 - 0{,}50 \cdot 0{,}5 = 2{,}75\ \text{V}" />. Beide Wege stimmen überein, und <InlineMath math="0{,}25\ \text{V}" /> fallen in der Zelle ab.
+
+## Elektrische Energie und Leistung
+
+Die **elektrische Leistung** gibt an, wie schnell elektrische Energie übertragen wird. Für ein Gerät mit der Stromstärke <InlineMath math="I" /> und der Spannung <InlineMath math="U" /> gilt:
+
+<BlockMath math="P = U \cdot I = I^2 \cdot R = \frac{U^2}{R}, \qquad E = P \cdot t" />
+
+Stromrechnungen zählen Energie in **Kilowattstunden**, <InlineMath math="\text{kWh}" />: die Energie, die ein Gerät mit <InlineMath math="1\ \text{kW}" /> in einer Stunde umsetzt. Ein Heizlüfter mit <InlineMath math="2{,}0\ \text{kW}" />, der <InlineMath math="3" /> Stunden läuft, braucht <InlineMath math="2{,}0 \cdot 3 = 6{,}0\ \text{kWh}" />, also <InlineMath math="6{,}0 \cdot 3{,}6 \cdot 10^6 = 2{,}16 \cdot 10^7\ \text{J}" />.
+
+Nicht die ganze elektrische Energie wird nutzbar. Der **Wirkungsgrad** ist der Anteil der zugeführten Energie, der als Nutzenergie herauskommt. Wähl unten eine Lampe für die Taschenlampe: Beide Lampen nehmen dieselbe Leistung auf, aber der Anteil, der zu Licht wird, ist sehr verschieden.
+
+<FlashlightEfficiencyLab
+  title={<>Wirkungsgrad einer Glühlampe und einer LED</>}
+  description={
+    <>
+      Zwei AA-Zellen mit <InlineMath math="3\ \text{V}" /> und{" "}
+      <InlineMath math="2{,}5\ \text{Ah}" /> versorgen eine Lampe mit{" "}
+      <InlineMath math="1\ \text{W}" />. Eine Glühlampe wandelt etwa{" "}
+      <InlineMath math="5\ \%" /> in Licht um, eine LED etwa{" "}
+      <InlineMath math="40\ \%" />.
+    </>
+  }
+  labels={{
+    battery: <>Energie in den Zellen</>,
+    bulbs: { filament: <>Glühlampe</>, led: <>LED</> },
+    chooseBulb: "Lampentyp",
+    efficiency: <>Wirkungsgrad</>,
+    heat: <>Wärmeleistung</>,
+    input: <>Aufgenommene Leistung</>,
+    light: <>Lichtleistung</>,
+    runTime: <>Leuchtdauer</>,
+    viewLabel: "Eine Taschenlampe mit aufgeschnittenen Zellen",
+  }}
+/>
+
+Berechne die Energie in den Zellen: <InlineMath math="E = U \cdot Q = 3 \cdot 2{,}5 \cdot 3600 = 27\,000\ \text{J}" />. Bei <InlineMath math="1\ \text{W}" /> leuchtet die Taschenlampe <InlineMath math="27\,000\ \text{s}" />, also <InlineMath math="7{,}5" /> Stunden, egal welche Lampe drin ist. Der Unterschied liegt in der Lichtleistung: <InlineMath math="0{,}05\ \text{W}" /> bei der Glühlampe gegenüber <InlineMath math="0{,}40\ \text{W}" /> bei der LED.
+
+Der Graph unten zeigt die Leistung in einem Widerstand bei veränderter Stromstärke. Die Leistung ist proportional zum **Quadrat der Stromstärke**, also vervierfacht sich die Leistung, wenn sich die Stromstärke verdoppelt.
+
+<MathVisual
+  title={<>Leistung in einem Widerstand gegen die Stromstärke</>}
+  description={
+    <>
+      <InlineMath math="P = I^2 \cdot R" />. Bei einem Widerstand von{" "}
+      <InlineMath math="10\ \Omega" /> ergibt <InlineMath math="1\ \text{A}" />{" "}
+      eine Leistung von <InlineMath math="10\ \text{W}" /> und{" "}
+      <InlineMath math="2\ \text{A}" /> eine von <InlineMath math="40\ \text{W}" />.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 3 }, y: { min: 0, max: 200 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "r", min: 2, max: 20, value: 10, step: 1, label: "r" },
+      { name: "c", min: 0, max: 3, value: 2, step: 0.1, label: "c" },
+    ],
+    objects: [
+      { id: "power", kind: "function", appearance: "primary", formula: "r*x^2", domain: { min: 0, max: 3 } },
+      { id: "now", kind: "marker", x: "c", y: "r*c^2", appearance: "warning" },
+    ],
+    readouts: [
+      { key: "watt", formula: "r*c^2" },
+    ],
+  }}
+  labels={{
+    r: <>Widerstand <InlineMath math="R" /> in <InlineMath math="\Omega" /></>,
+    c: <>Stromstärke <InlineMath math="I" /> in <InlineMath math="\text{A}" /></>,
+    watt: <>Leistung in <InlineMath math="\text{W}" /></>,
+  }}
+/>
+
+## Typische Fehler bei Stromkreisen
+
+| Fehler | Warum er falsch ist | So prüfst du es |
+| :--- | :--- | :--- |
+| Hinter einem Widerstand ist die Stromstärke kleiner. | Ladung verschwindet nicht, also ist die Stromstärke in einer Reihenschaltung überall gleich. | Strommesser vor und hinter dem Widerstand zeigen denselben Wert. |
+| Ein zusätzlicher Parallelwiderstand erhöht den Gesamtwiderstand. | Ein neuer Zweig ist ein zusätzlicher Weg, also sinkt der Gesamtwiderstand. | Der Gesamtwiderstand parallel ist kleiner als der kleinste Einzelwiderstand. |
+| Ein Voltmeter an einer Zelle zeigt immer die Quellenspannung. | Fließt Strom, zeigt es <InlineMath math="U_0 - I \cdot R_i" />, also weniger. | Vergleich die Anzeige bei offenem und geschlossenem Schalter. |
+| <InlineMath math="1\ \text{kWh}" /> sind <InlineMath math="1000\ \text{J}" />. | <InlineMath math="1\ \text{kWh} = 1000 \cdot 3600 = 3{,}6 \cdot 10^6\ \text{J}" />. | Rechne die Stunden in Sekunden um. |
+| Doppelte Stromstärke bedeutet doppelte Leistung im Widerstand. | <InlineMath math="P = I^2 \cdot R" />, also vervierfacht sich die Leistung. | Rechne <InlineMath math="2^2 = 4" />. |
+
+Der erste Fehler kommt am häufigsten vor. Ein Widerstand **wandelt die Energie** der Ladung in Wärme um, aber er **verbraucht keine Ladung**.
+
+## Übungen zu Stromkreisen
+
+Die Aufgaben gehen von Ladung und Widerstand zu Quellenspannung und Leistung. **Zeichne zuerst den Schaltplan**, damit Reihen- und Parallelteile klar sind.
+
+1. Ein Strom von <InlineMath math="0{,}50\ \text{A}" /> fließt <InlineMath math="2" /> Minuten lang. Berechne die geflossene Ladung und die Zahl der beteiligten Elektronen. Die Ladung eines Elektrons ist <InlineMath math="1{,}6 \cdot 10^{-19}\ \text{C}" />.
+
+2. Ein Kupferdraht ist <InlineMath math="10\ \text{m}" /> lang und hat eine Querschnittsfläche von <InlineMath math="1{,}0 \cdot 10^{-6}\ \text{m}^2" />. Der spezifische Widerstand von Kupfer ist <InlineMath math="1{,}7 \cdot 10^{-8}\ \Omega\ \text{m}" />. Berechne den Widerstand des Drahts.
+
+3. An einer Zelle zeigt ein Voltmeter <InlineMath math="1{,}4\ \text{V}" /> bei <InlineMath math="0{,}2\ \text{A}" /> und <InlineMath math="1{,}2\ \text{V}" /> bei <InlineMath math="0{,}6\ \text{A}" />. Berechne Innenwiderstand und Quellenspannung der Zelle.
+
+4. Ein Wasserkocher mit <InlineMath math="2000\ \text{W}" /> hängt an einer Versorgung mit <InlineMath math="240\ \text{V}" />. Berechne seine normale Stromstärke und wähl eine passende Sicherung aus <InlineMath math="3\ \text{A}" />, <InlineMath math="10\ \text{A}" /> und <InlineMath math="30\ \text{A}" />.
+
+### Lösungen
+
+**Lösung 1**: Rechne Minuten in Sekunden um und verwende <InlineMath math="Q = I \cdot t" />:
+
+<MathContainer>
+<BlockMath math="Q = 0{,}50 \cdot 120 = 60\ \text{C}" />
+<BlockMath math="N = \frac{60}{1{,}6 \cdot 10^{-19}} = 3{,}75 \cdot 10^{20}\ \text{Elektronen}" />
+</MathContainer>
+
+Prüf es: <InlineMath math="3{,}75 \cdot 10^{20} \cdot 1{,}6 \cdot 10^{-19} = 60\ \text{C}" />.
+
+**Lösung 2**: Verwende <InlineMath math="R = \dfrac{\rho \cdot l}{A}" />:
+
+<BlockMath math="R = \frac{1{,}7 \cdot 10^{-8} \cdot 10}{1{,}0 \cdot 10^{-6}} = 0{,}17\ \Omega" />
+
+Prüf die Logik: Kupfer leitet gut, also sollte der Widerstand klein sein, weit unter <InlineMath math="1\ \Omega" />.
+
+**Lösung 3**: Nach <InlineMath math="U = U_0 - I \cdot R_i" /> kommt die Änderung der Anzeige von der Änderung von <InlineMath math="I \cdot R_i" />:
+
+<MathContainer>
+<BlockMath math="R_i = \frac{1{,}4 - 1{,}2}{0{,}6 - 0{,}2} = \frac{0{,}2}{0{,}4} = 0{,}5\ \Omega" />
+<BlockMath math="U_0 = U + I \cdot R_i = 1{,}4 + 0{,}2 \cdot 0{,}5 = 1{,}5\ \text{V}" />
+</MathContainer>
+
+Prüf es mit dem zweiten Wert: <InlineMath math="1{,}5 - 0{,}6 \cdot 0{,}5 = 1{,}2\ \text{V}" />. Das passt zur Anzeige.
+
+**Lösung 4**: Verwende <InlineMath math="P = U \cdot I" />:
+
+<BlockMath math="I = \frac{P}{U} = \frac{2000}{240} = 8{,}3\ \text{A}" />
+
+Eine Sicherung sollte etwas über der normalen Stromstärke liegen, also wählst du die **Sicherung mit <InlineMath math="10\ \text{A}" />**. Eine Sicherung mit <InlineMath math="3\ \text{A}" /> würde schon im Normalbetrieb auslösen, und eine mit <InlineMath math="30\ \text{A}" /> würde den Wasserkocher bei einem Defekt nicht schützen.
