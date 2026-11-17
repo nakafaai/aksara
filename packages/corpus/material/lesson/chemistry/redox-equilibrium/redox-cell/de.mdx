@@ -1,0 +1,324 @@
+export const metadata = {
+  title: "Redoxreaktionen in galvanischen Zellen und Elektrolyse",
+  description:
+    "Bestimme Oxidationszahlen, berechne die Spannung galvanischer Zellen und sag Elektrolyseprodukte voraus, mit Beispielen, typischen Fehlern und Übungen.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2026-11-17",
+  dateModified: "2026-11-17",
+  subject: "Redoxgleichgewicht",
+};
+
+## Redox heißt Elektronenübertragung
+
+Eine **Redoxreaktion** ist eine Reaktion, in der **Oxidation und Reduktion gleichzeitig ablaufen**. Oxidation ist die **Abgabe von Elektronen**, Reduktion die **Aufnahme von Elektronen**. Die Elektronen, die ein Stoff abgibt, muss ein anderer aufnehmen, deshalb läuft keiner der beiden Vorgänge allein ab. Die Spannung einer galvanischen Zelle ist <InlineMath math="E^\circ_{\text{Zelle}} = E^\circ_{\text{Pluspol}} - E^\circ_{\text{Minuspol}}" />. Hier baust du galvanische Zellen, vergleichst ihre Spannungen und führst Elektrolysen durch, um das Produkt an jeder Elektrode zu sehen.
+
+Stell einen Zinkstreifen in Kupfer(II)-sulfat-Lösung. Das Zink löst sich auf, und braunes Kupfer überzieht den Streifen:
+
+<BlockMath math="\mathrm{Zn(s)} + \mathrm{Cu^{2+}(aq)} \rightarrow \mathrm{Zn^{2+}(aq)} + \mathrm{Cu(s)}" />
+
+Teil die Gleichung in zwei **Teilgleichungen** auf. Jedes Zinkatom gibt zwei Elektronen ab, also wird Zink **oxidiert**. Jedes Kupfer(II)-Ion nimmt diese zwei Elektronen auf, also wird das Kupfer(II)-Ion **reduziert**:
+
+<MathContainer>
+<BlockMath math="\mathrm{Zn} \rightarrow \mathrm{Zn^{2+}} + 2e^-" />
+<BlockMath math="\mathrm{Cu^{2+}} + 2e^- \rightarrow \mathrm{Cu}" />
+</MathContainer>
+
+Der Stoff, der Elektronen aufnimmt, heißt **Oxidationsmittel**, weil er einen anderen Stoff oxidiert. Hier ist das Oxidationsmittel das Kupfer(II)-Ion, und das **Reduktionsmittel** ist Zink. Merk dir das Paar: Das Oxidationsmittel wird selbst reduziert.
+
+## Oxidationszahlen zeigen die Oxidation
+
+Die **Oxidationszahl** ist die Ladung, die ein Atom hätte, wenn alle seine Bindungen Ionenbindungen wären. Ein Element hat die Oxidationszahl <InlineMath math="0" />, Sauerstoff in den meisten Verbindungen <InlineMath math="-2" />, Wasserstoff <InlineMath math="+1" />, und in einer neutralen Verbindung ergeben alle Oxidationszahlen zusammen <InlineMath math="0" />. Ein Atom, dessen Oxidationszahl **steigt**, wird oxidiert, und ein Atom, dessen Oxidationszahl **sinkt**, wird reduziert.
+
+Probier ein Beispiel. Bestimme, was oxidiert und was reduziert wird, wenn Eisen(III)-oxid im Hochofen mit Kohlenstoffmonoxid reagiert:
+
+<BlockMath math="\mathrm{Fe_2O_3} + 3\mathrm{CO} \rightarrow 2\mathrm{Fe} + 3\mathrm{CO_2}" />
+
+Berechne die Oxidationszahlen von Eisen und Kohlenstoff auf beiden Seiten. Nenn die unbekannte Oxidationszahl jeweils <InlineMath math="x" />:
+
+<MathContainer>
+<BlockMath math="\mathrm{Fe_2O_3}: 2x + 3(-2) = 0 \Rightarrow x = +3" />
+<BlockMath math="\mathrm{CO}: x + (-2) = 0 \Rightarrow x = +2" />
+<BlockMath math="\mathrm{CO_2}: x + 2(-2) = 0 \Rightarrow x = +4" />
+</MathContainer>
+
+Eisen geht von <InlineMath math="+3" /> auf <InlineMath math="0" />, also wird Eisen(III)-oxid **reduziert**. Kohlenstoff geht von <InlineMath math="+2" /> auf <InlineMath math="+4" />, also wird Kohlenstoffmonoxid **oxidiert** und wirkt als Reduktionsmittel. Prüf es mit Elektronen: Zwei Eisenatome nehmen <InlineMath math="2 \times 3 = 6" /> Elektronen auf, und drei Kohlenstoffatome geben <InlineMath math="3 \times 2 = 6" /> Elektronen ab. Die Zahlen stimmen überein.
+
+## Standardpotenziale ordnen die Metalle
+
+Das **Standardelektrodenpotenzial** <InlineMath math="E^\circ" /> gibt an, wie leicht ein Teilchen Elektronen aufnimmt, verglichen mit der Standardwasserstoffelektrode bei <InlineMath math="0{,}00\ \text{V}" />. Ein **negativeres** <InlineMath math="E^\circ" /> bedeutet, dass das Metall leichter Elektronen abgibt, also ein stärkeres Reduktionsmittel ist. Die Metalle nach diesem Wert geordnet bilden die **elektrochemische Spannungsreihe**.
+
+<Chart
+  title={<>Standardpotenziale von fünf Metallen</>}
+  bars="apart"
+  categories={["Magnesium", "Zink", "Eisen", "Kupfer", "Silber"]}
+  series={[
+    {
+      label: "Standardelektrodenpotenzial",
+      mark: "bar",
+      values: [-2.38, -0.76, -0.44, 0.34, 0.8],
+    },
+  ]}
+  valueLabel="E° (V)"
+  valueRange={{ min: -2.5, max: 1 }}
+  description={
+    <>
+      Werte bei <InlineMath math="25\ ^\circ\text{C}" /> für{" "}
+      <InlineMath math="\mathrm{M^{n+}(aq)} + ne^- \rightleftharpoons \mathrm{M(s)}" />.
+      Magnesium <InlineMath math="-2{,}38\ \text{V}" />, Zink{" "}
+      <InlineMath math="-0{,}76\ \text{V}" />, Eisen <InlineMath math="-0{,}44\ \text{V}" />,
+      Kupfer <InlineMath math="+0{,}34\ \text{V}" />, Silber{" "}
+      <InlineMath math="+0{,}80\ \text{V}" />.
+    </>
+  }
+/>
+
+Die Reihe sagt **Verdrängungsreaktionen** voraus. Ein unedleres Metall verdrängt ein edleres Metall aus der Lösung seines Salzes. Zink verdrängt Kupfer, aber Kupfer verdrängt kein Zink, weil Zinkionen von Kupfer mit seinem positiveren <InlineMath math="E^\circ" /> keine Elektronen aufnehmen können.
+
+## Eine galvanische Zelle wandelt chemische in elektrische Energie
+
+Eine **galvanische Zelle** trennt die beiden Teilreaktionen, damit die Elektronen durch einen Draht fließen müssen. Jedes Metall taucht in eine Lösung seiner eigenen Ionen, und eine **Salzbrücke** schließt den Stromkreis, weil sich Ionen durch sie bewegen können. Das Metall mit dem negativeren <InlineMath math="E^\circ" /> wird zum **Minuspol**, an dem die Oxidation abläuft. Wähl in der Zelle unten ein anderes Metall und lies das Voltmeter ab.
+
+<ChemicalCellLab
+  title={<>Galvanische Zelle aus Zink und Kupfer</>}
+  description={
+    <>
+      Zink in Zinksulfat-Lösung und Kupfer in Kupfer(II)-sulfat-Lösung,
+      verbunden durch eine Salzbrücke. Zink löst sich am Minuspol, und Kupfer
+      scheidet sich am Pluspol ab.
+    </>
+  }
+  metals={["zinc", "copper"]}
+  electrons={0.02}
+  showProducts
+  labels={{
+    atNegative: <>Am Minuspol</>,
+    atPositive: <>Am Pluspol</>,
+    electrons: <>Übertragene Elektronen</>,
+    halfCells: <>Halbzellen</>,
+    view: "Galvanische Zelle aus Zink und Kupfer mit Salzbrücke",
+    voltage: <>Zellspannung</>,
+    voltmeter: "V",
+  }}
+/>
+
+Die Zellspannung ergibt sich aus der Differenz der beiden <InlineMath math="E^\circ" />-Werte:
+
+<BlockMath math="E^\circ_{\text{Zelle}} = E^\circ_{\text{Pluspol}} - E^\circ_{\text{Minuspol}} = 0{,}34 - (-0{,}76) = 1{,}10\ \text{V}" />
+
+Ersetz jetzt Zink durch Magnesium. Sag den Minuspol und die Zellspannung voraus und prüf beides dann am Voltmeter unten.
+
+Magnesium hat <InlineMath math="E^\circ = -2{,}38\ \text{V}" />, negativer als Kupfer, also wird Magnesium zum Minuspol:
+
+<MathContainer>
+<BlockMath math="\mathrm{Mg} \rightarrow \mathrm{Mg^{2+}} + 2e^-" />
+<BlockMath math="E^\circ_{\text{Zelle}} = 0{,}34 - (-2{,}38) = 2{,}72\ \text{V}" />
+</MathContainer>
+
+<ChemicalCellLab
+  title={<>Galvanische Zelle aus Magnesium und Kupfer</>}
+  description={
+    <>
+      Magnesium in Magnesiumsulfat-Lösung und Kupfer in Kupfer(II)-sulfat-Lösung.
+      Sag die Anzeige des Voltmeters voraus, bevor du das Ergebnis einblendest.
+    </>
+  }
+  metals={["magnesium", "copper"]}
+  labels={{
+    atNegative: <>Am Minuspol</>,
+    atPositive: <>Am Pluspol</>,
+    electrons: <>Übertragene Elektronen</>,
+    halfCells: <>Halbzellen</>,
+    view: "Galvanische Zelle aus Magnesium und Kupfer mit Salzbrücke",
+    voltage: <>Zellspannung</>,
+    voltmeter: "V",
+  }}
+/>
+
+Prüf es: Je weiter zwei Metalle in der Spannungsreihe auseinanderliegen, desto größer ist die Spannung. Von Magnesium bis Kupfer sind es <InlineMath math="2{,}72\ \text{V}" />, mehr als von Zink bis Kupfer mit <InlineMath math="1{,}10\ \text{V}" />. Eine positive Spannung zeigt außerdem, dass die Reaktion freiwillig abläuft.
+
+## Die Elektrolyse erzwingt eine Redoxreaktion
+
+Die **Elektrolyse** ist die Zerlegung eines Elektrolyten durch elektrischen Strom. Die Batterie drückt Elektronen auf die **Kathode**, an der Kationen reduziert werden, und zieht Elektronen von der **Anode** ab, an der Anionen oxidiert werden. In einer wässrigen Lösung konkurrieren auch Ionen aus dem Wasser um die Entladung. Drei Faktoren entscheiden, welches Ion gewinnt: **die Stellung des Ions in der Spannungsreihe**, **die Konzentration der Ionen** und **das Elektrodenmaterial**.
+
+Vergleich zwei Natriumchlorid-Zellen mit Kohleelektroden. In der verdünnten Lösung werden an der Anode Hydroxidionen entladen, und Sauerstoff entweicht. In der konzentrierten Lösung werden die zahlreichen Chloridionen entladen, also entweicht Chlor. An der Kathode beider Zellen werden Wasserstoffionen entladen, weil Natriumionen in der Spannungsreihe viel weiter oben stehen.
+
+<ElectrolysisLab
+  title={<>Verdünnte und konzentrierte Natriumchlorid-Lösung</>}
+  description={
+    <>
+      Zwei in Reihe geschaltete Zellen mit Kohleelektroden. Das Produkt an der
+      Anode ändert sich mit der Chloridkonzentration, während beide Kathoden
+      Wasserstoff liefern.
+    </>
+  }
+  cells={[
+    { electrode: "carbon", electrolyte: "sodium-chloride-dilute" },
+    { electrode: "carbon", electrolyte: "sodium-chloride-concentrated" },
+  ]}
+  electrons={0.1}
+  showProducts
+  labels={{
+    anode: "Anode",
+    atAnode: <>An der Anode</>,
+    atCathode: <>An der Kathode</>,
+    battery: "Batterie",
+    cathode: "Kathode",
+    cells: [<>Zelle P: verdünnte Natriumchlorid-Lösung</>, <>Zelle Q: konzentrierte Natriumchlorid-Lösung</>],
+    electrons: <>Übertragene Elektronen</>,
+    ph: <>pH-Wert des Elektrolyten</>,
+    trends: { falls: <>sinkt</>, rises: <>steigt</>, steady: <>bleibt gleich</> },
+    view: "Zwei in Reihe geschaltete Elektrolysezellen mit Natriumchlorid-Lösung",
+  }}
+/>
+
+Auch das Elektrodenmaterial ändert das Produkt an der Anode. Mit einer Kohleanode entwickelt Kupfer(II)-sulfat-Lösung Sauerstoff, und ihre blaue Farbe verblasst. Mit einer Kupferanode **löst sich die Anode selbst** als Kupfer(II)-Ionen, also bleibt die Lösung blau. Nach diesem Prinzip wird Kupfer gereinigt und Metall galvanisch beschichtet.
+
+<ElectrolysisLab
+  title={<>Kupfer(II)-sulfat mit Kupferanode und Kohleanode</>}
+  description={
+    <>
+      In Zelle P löst sich die Kupferanode so schnell, wie sich Kupfer an der
+      Kathode abscheidet. In Zelle Q entwickelt die Kohleanode Sauerstoff, und
+      die Kupfer(II)-Ionen nehmen ab.
+    </>
+  }
+  cells={[
+    { electrode: "copper", electrolyte: "copper-sulfate" },
+    { electrode: "carbon", electrolyte: "copper-sulfate" },
+  ]}
+  electrons={0.1}
+  showProducts
+  labels={{
+    anode: "Anode",
+    atAnode: <>An der Anode</>,
+    atCathode: <>An der Kathode</>,
+    battery: "Batterie",
+    cathode: "Kathode",
+    cells: [<>Zelle P: Kupferelektroden</>, <>Zelle Q: Kohleelektroden</>],
+    electrons: <>Übertragene Elektronen</>,
+    ph: <>pH-Wert des Elektrolyten</>,
+    trends: { falls: <>sinkt</>, rises: <>steigt</>, steady: <>bleibt gleich</> },
+    view: "Zwei in Reihe geschaltete Elektrolysezellen mit Kupfer(II)-sulfat-Lösung",
+  }}
+/>
+
+Elektrolysen lassen sich auch berechnen. <InlineMath math="0{,}10\ \text{mol}" /> Elektronen fließen durch eine Kupfer(II)-sulfat-Zelle und eine Silbernitrat-Zelle, die in Reihe geschaltet sind. Berechne die Masse des Metalls, das sich an jeder Kathode abscheidet. Die relative Atommasse von Kupfer ist <InlineMath math="64" />, die von Silber <InlineMath math="108" />.
+
+**Schreib zuerst die Teilgleichungen auf**, denn aus ihnen kommt das Stoffmengenverhältnis von Elektronen zu Metall:
+
+<MathContainer>
+<BlockMath math="\mathrm{Cu^{2+}} + 2e^- \rightarrow \mathrm{Cu}: \quad n(\mathrm{Cu}) = \frac{0{,}10}{2} = 0{,}050\ \text{mol}, \quad m = 0{,}050 \times 64 = 3{,}2\ \text{g}" />
+<BlockMath math="\mathrm{Ag^+} + e^- \rightarrow \mathrm{Ag}: \quad n(\mathrm{Ag}) = 0{,}10\ \text{mol}, \quad m = 0{,}10 \times 108 = 10{,}8\ \text{g}" />
+</MathContainer>
+
+Verschieb den Regler für die Stoffmenge der Elektronen und vergleich die beiden Massengeraden. Die Silbergerade ist steiler, weil jedes Silberion nur ein Elektron braucht.
+
+<MathVisual
+  title={<>Masse von Kupfer und Silber gegen die Stoffmenge der Elektronen</>}
+  description={
+    <>
+      Die Masse des Kupfers ist <InlineMath math="m = 32n" />, die des Silbers{" "}
+      <InlineMath math="m = 108n" />, mit der Stoffmenge <InlineMath math="n" />{" "}
+      der Elektronen. Bei <InlineMath math="n = 0{,}10" /> sind es{" "}
+      <InlineMath math="3{,}2\ \text{g}" /> Kupfer und{" "}
+      <InlineMath math="10{,}8\ \text{g}" /> Silber.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 0.5 }, y: { min: 0, max: 60 } },
+    view: { kind: "fit", padding: 0.08 },
+    parameters: [
+      { name: "n", min: 0, max: 0.5, value: 0.1, step: 0.01, label: "n" },
+    ],
+    objects: [
+      { id: "copper", kind: "function", appearance: "primary", formula: "32x", domain: { min: 0, max: 0.5 } },
+      { id: "silver", kind: "function", appearance: "secondary", formula: "108x", domain: { min: 0, max: 0.5 } },
+      { id: "copper-now", kind: "marker", x: "n", y: "32n", appearance: "warning" },
+      { id: "silver-now", kind: "marker", x: "n", y: "108n", appearance: "answer" },
+    ],
+    labels: [
+      { key: "copper", objectId: "copper", at: { x: 0.5, y: 16 }, placement: "above-left" },
+      { key: "silver", objectId: "silver", at: { x: 0.45, y: 48.6 }, placement: "left" },
+    ],
+    readouts: [
+      { key: "copper-mass", formula: "32n" },
+      { key: "silver-mass", formula: "108n" },
+    ],
+  }}
+  labels={{
+    n: <>Stoffmenge der Elektronen <InlineMath math="n" /></>,
+    copper: <>Kupfer</>,
+    silver: <>Silber</>,
+    "copper-mass": <>Masse Kupfer in <InlineMath math="\text{g}" /></>,
+    "silver-mass": <>Masse Silber in <InlineMath math="\text{g}" /></>,
+  }}
+/>
+
+Prüf es: Das Verhältnis der Silbermasse zur Kupfermasse ist <InlineMath math="10{,}8 \div 3{,}2 \approx 3{,}4" />, genau wie <InlineMath math="108 \div 32" /> bei jedem Wert von <InlineMath math="n" />.
+
+## Metallgewinnung und das Rosten von Eisen
+
+Metalle, die edler als Kohlenstoff sind, werden durch **Reduktion mit Kohlenstoff** gewonnen. Eisen entsteht im Hochofen, wo Kohlenstoffmonoxid Eisen(III)-oxid reduziert wie im Beispiel oben. Metalle, die unedler als Kohlenstoff sind, etwa Aluminium, lassen sich nicht mit Kohlenstoff reduzieren, deshalb wird Aluminium durch **Schmelzflusselektrolyse von Aluminiumoxid** gewonnen.
+
+**Rosten** ist die Oxidation von Eisen durch Sauerstoff und Wasser. Unter einem Wassertropfen auf einer Eisenoberfläche wird Eisen in der Mitte des Tropfens oxidiert und Sauerstoff am Rand des Tropfens reduziert:
+
+<MathContainer>
+<BlockMath math="\mathrm{Fe} \rightarrow \mathrm{Fe^{2+}} + 2e^-" />
+<BlockMath math="\mathrm{O_2} + 2\mathrm{H_2O} + 4e^- \rightarrow 4\mathrm{OH^-}" />
+</MathContainer>
+
+Eisen(II)-Ionen und Hydroxidionen bilden Eisen(II)-hydroxid, das weiter zu Rost oxidiert wird, <InlineMath math="\mathrm{Fe_2O_3 \cdot xH_2O}" />. Du kannst Eisen schützen, indem du es mit einem **unedleren** Metall wie Zink oder Magnesium verbindest. Dieses Metall wird zuerst oxidiert, also rostet das Eisen nicht. Das Verfahren heißt **Schutz durch eine Opferanode** und wird an Schiffsrümpfen und unterirdischen Rohrleitungen eingesetzt.
+
+## Typische Fehler bei Redoxreaktionen
+
+| Fehler | Warum er falsch ist | So prüfst du es |
+| :--- | :--- | :--- |
+| Das Oxidationsmittel ist der Stoff, der oxidiert wird. | Das Oxidationsmittel nimmt Elektronen auf und wird dabei selbst reduziert. | Such den Stoff, dessen Oxidationszahl sinkt. |
+| In einer galvanischen Zelle ist Kupfer der Minuspol, weil sich Kupfer abscheidet. | Am Minuspol werden Elektronen abgegeben, also ist es das Metall mit dem negativeren <InlineMath math="E^\circ" />. | Vergleich die <InlineMath math="E^\circ" />-Werte beider Metalle. |
+| Die Zellspannung ist die Summe der beiden <InlineMath math="E^\circ" />-Werte. | Die Spannung ist die Differenz, <InlineMath math="E^\circ_{\text{Pluspol}} - E^\circ_{\text{Minuspol}}" />. | Eine Zink-Kupfer-Zelle muss <InlineMath math="1{,}10\ \text{V}" /> liefern. |
+| Die Elektrolyse wässriger Natriumchlorid-Lösung liefert Natrium an der Kathode. | Wasserstoffionen werden viel leichter reduziert als Natriumionen. | Schau nach, wo Natrium in der Spannungsreihe steht. |
+| In Reihe geschaltete Zellen scheiden die gleiche Stoffmenge Metall ab. | Sie erhalten die gleiche **Stoffmenge an Elektronen**, und das Stoffmengenverhältnis des Metalls hängt von der Ionenladung ab. | Schreib die Teilgleichung an jeder Kathode auf. |
+
+Der erste Fehler taucht in Multiple-Choice-Aufgaben am häufigsten auf. Merk dir den Satz: **Das Oxidationsmittel wird reduziert, das Reduktionsmittel wird oxidiert**.
+
+## Übungen zu Redoxreaktionen
+
+Die Aufgaben gehen von Oxidationszahlen zu galvanischen Zellen und Elektrolysen. **Schreib in jeder Antwort die Teilgleichungen auf**, damit die Elektronenübertragung klar bleibt.
+
+1. Berechne die Oxidationszahl von Mangan in Kaliumpermanganat, <InlineMath math="\mathrm{KMnO_4}" />.
+
+2. Eine galvanische Zelle besteht aus Eisen in Eisen(II)-sulfat-Lösung und Kupfer in Kupfer(II)-sulfat-Lösung. Gib den Minuspol an und berechne die Zellspannung.
+
+3. Konzentrierte Natriumchlorid-Lösung wird mit Kohleelektroden elektrolysiert. Nenn die Produkte an der Anode und an der Kathode und erklär, welches Ion an der Anode entladen wird.
+
+4. An einem Schiffsrumpf aus Eisen ist ein Zinkblock befestigt. Erklär, warum das Eisen nicht rostet, auch wenn der Lack zerkratzt ist.
+
+### Lösungen
+
+**Lösung 1**: Kalium hat die Oxidationszahl <InlineMath math="+1" />, jeder Sauerstoff <InlineMath math="-2" />. In einer neutralen Verbindung ergibt die Summe <InlineMath math="0" />:
+
+<BlockMath math="(+1) + x + 4(-2) = 0 \Rightarrow x = +7" />
+
+Prüf es am Namen: Nach der Stock-Nomenklatur heißt Kaliumpermanganat auch Kaliummanganat(VII), und die römische Zahl ist tatsächlich <InlineMath math="+7" />.
+
+**Lösung 2**: Eisen hat <InlineMath math="E^\circ = -0{,}44\ \text{V}" />, negativer als Kupfer, also ist **Eisen der Minuspol** und wird oxidiert:
+
+<BlockMath math="E^\circ_{\text{Zelle}} = 0{,}34 - (-0{,}44) = 0{,}78\ \text{V}" />
+
+Prüf es mit der Spannungsreihe: Eisen steht zwischen Zink und Kupfer, also muss die Spannung kleiner als <InlineMath math="1{,}10\ \text{V}" /> sein. Und <InlineMath math="0{,}78\ \text{V}" /> ist kleiner.
+
+**Lösung 3**: An der Anode entsteht **Chlor**, an der Kathode **Wasserstoff**:
+
+<MathContainer>
+<BlockMath math="2\mathrm{Cl^-} \rightarrow \mathrm{Cl_2} + 2e^-" />
+<BlockMath math="2\mathrm{H^+} + 2e^- \rightarrow \mathrm{H_2}" />
+</MathContainer>
+
+Normalerweise werden Hydroxidionen leichter entladen, aber in der konzentrierten Lösung sind Chloridionen viel zahlreicher, deshalb werden sie entladen. An der Kathode werden Wasserstoffionen entladen, weil Natriumionen viel schwerer zu reduzieren sind.
+
+**Lösung 4**: Zink ist unedler als Eisen, <InlineMath math="-0{,}76\ \text{V}" /> gegenüber <InlineMath math="-0{,}44\ \text{V}" />. Wenn Wasser und Sauerstoff an das Metall gelangen, **wird zuerst Zink oxidiert** und gibt seine Elektronen an das Eisen ab:
+
+<BlockMath math="\mathrm{Zn} \rightarrow \mathrm{Zn^{2+}} + 2e^-" />
+
+Diese Elektronen reduzieren Sauerstoff an der Eisenoberfläche, also verliert das Eisen keine Elektronen und bildet keine Eisen(II)-Ionen. Der Zinkblock wird dabei verbraucht und muss von Zeit zu Zeit ersetzt werden.

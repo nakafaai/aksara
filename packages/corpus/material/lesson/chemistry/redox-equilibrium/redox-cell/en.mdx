@@ -1,0 +1,322 @@
+export const metadata = {
+  title: "Redox Equilibrium Notes for Form Five",
+  description:
+    "Form 5 Chemistry Chapter 1: find oxidation numbers, calculate the voltage of a chemical cell and predict electrolysis products, with examples and practice.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2026-11-17",
+  dateModified: "2026-11-17",
+  subject: "Redox Equilibrium",
+};
+
+## Redox Is a Transfer of Electrons
+
+A **redox reaction** is a reaction in which **oxidation and reduction happen together**. Oxidation is the **loss of electrons**, and reduction is the **gain of electrons**. The electrons one substance gives up must be taken by another, so neither process ever happens on its own. The voltage of a chemical cell is <InlineMath math="E^\circ_{\text{cell}} = E^\circ_{\text{positive terminal}} - E^\circ_{\text{negative terminal}}" />. In these notes you build chemical cells, compare their voltages, and run electrolysis to see the product at each electrode.
+
+Drop a strip of zinc into copper(II) sulfate solution. The zinc dissolves, and brown copper coats the strip:
+
+<BlockMath math="\mathrm{Zn(s)} + \mathrm{Cu^{2+}(aq)} \rightarrow \mathrm{Zn^{2+}(aq)} + \mathrm{Cu(s)}" />
+
+Split the equation into two **half-equations**. Each zinc atom loses two electrons, so zinc is **oxidised**. Each copper(II) ion takes those two electrons, so the copper(II) ion is **reduced**:
+
+<MathContainer>
+<BlockMath math="\mathrm{Zn} \rightarrow \mathrm{Zn^{2+}} + 2e^-" />
+<BlockMath math="\mathrm{Cu^{2+}} + 2e^- \rightarrow \mathrm{Cu}" />
+</MathContainer>
+
+The substance that takes electrons is the **oxidising agent**, because it oxidises something else. Here the oxidising agent is the copper(II) ion, and the **reducing agent** is zinc. Keep the pair in mind: the oxidising agent is itself reduced.
+
+## Oxidation Numbers Show What Is Oxidised
+
+An **oxidation number** is the charge an atom would carry if all its bonds were ionic. A free element has an oxidation number of <InlineMath math="0" />, oxygen in most compounds has <InlineMath math="-2" />, hydrogen has <InlineMath math="+1" />, and the oxidation numbers in a neutral compound add up to <InlineMath math="0" />. An atom whose oxidation number **rises** is oxidised, and an atom whose oxidation number **falls** is reduced.
+
+Try an example. Find what is oxidised and what is reduced when iron(III) oxide reacts with carbon monoxide in the blast furnace:
+
+<BlockMath math="\mathrm{Fe_2O_3} + 3\mathrm{CO} \rightarrow 2\mathrm{Fe} + 3\mathrm{CO_2}" />
+
+Work out the oxidation numbers of iron and carbon on both sides. Call each unknown oxidation number <InlineMath math="x" />:
+
+<MathContainer>
+<BlockMath math="\mathrm{Fe_2O_3}: 2x + 3(-2) = 0 \Rightarrow x = +3" />
+<BlockMath math="\mathrm{CO}: x + (-2) = 0 \Rightarrow x = +2" />
+<BlockMath math="\mathrm{CO_2}: x + 2(-2) = 0 \Rightarrow x = +4" />
+</MathContainer>
+
+Iron goes from <InlineMath math="+3" /> to <InlineMath math="0" />, so iron(III) oxide is **reduced**. Carbon goes from <InlineMath math="+2" /> to <InlineMath math="+4" />, so carbon monoxide is **oxidised** and acts as the reducing agent. Check with electrons: two iron atoms gain <InlineMath math="2 \times 3 = 6" /> electrons, and three carbon atoms lose <InlineMath math="3 \times 2 = 6" /> electrons. The numbers match.
+
+## Standard Electrode Potentials Rank the Metals
+
+The **standard electrode potential**, <InlineMath math="E^\circ" />, measures how readily a species gains electrons, compared with the standard hydrogen electrode at <InlineMath math="0.00\text{ V}" />. A **more negative** <InlineMath math="E^\circ" /> means the metal gives up electrons more easily, so it is a stronger reducing agent. The metals listed in order of this value form the **electrochemical series**.
+
+<Chart
+  title={<>Standard Electrode Potentials of Five Metals</>}
+  bars="apart"
+  categories={["Magnesium", "Zinc", "Iron", "Copper", "Silver"]}
+  series={[
+    {
+      label: "Standard electrode potential",
+      mark: "bar",
+      values: [-2.38, -0.76, -0.44, 0.34, 0.8],
+    },
+  ]}
+  valueLabel="E° (V)"
+  valueRange={{ min: -2.5, max: 1 }}
+  description={
+    <>
+      Values at <InlineMath math="25^\circ\text{C}" /> for{" "}
+      <InlineMath math="\mathrm{M^{n+}(aq)} + ne^- \rightleftharpoons \mathrm{M(s)}" />.
+      Magnesium <InlineMath math="-2.38\text{ V}" />, zinc{" "}
+      <InlineMath math="-0.76\text{ V}" />, iron <InlineMath math="-0.44\text{ V}" />,
+      copper <InlineMath math="+0.34\text{ V}" />, silver{" "}
+      <InlineMath math="+0.80\text{ V}" />.
+    </>
+  }
+/>
+
+The series predicts **displacement reactions**. A more electropositive metal displaces a less electropositive metal from a solution of its salt. Zinc displaces copper, but copper doesn't displace zinc, because zinc ions can't take electrons from copper, whose <InlineMath math="E^\circ" /> is more positive.
+
+## A Chemical Cell Turns Chemical Energy into Electrical Energy
+
+A **chemical cell**, or voltaic cell, keeps the two half-reactions apart so the electrons have to flow through a wire. Each metal dips into a solution of its own ions, and a **salt bridge** completes the circuit by letting ions move. The metal with the more negative <InlineMath math="E^\circ" /> becomes the **negative terminal**, where oxidation happens. Pick another metal in the cell below and read the voltmeter.
+
+<ChemicalCellLab
+  title={<>Zinc and Copper Chemical Cell</>}
+  description={
+    <>
+      Zinc in zinc sulfate solution and copper in copper(II) sulfate solution,
+      joined by a salt bridge. Zinc dissolves at the negative terminal and
+      copper deposits at the positive terminal.
+    </>
+  }
+  metals={["zinc", "copper"]}
+  electrons={0.02}
+  showProducts
+  labels={{
+    atNegative: <>At the negative terminal</>,
+    atPositive: <>At the positive terminal</>,
+    electrons: <>Electrons transferred</>,
+    halfCells: <>Half-cells</>,
+    view: "Zinc and copper chemical cell with a salt bridge",
+    voltage: <>Cell voltage</>,
+    voltmeter: "V",
+  }}
+/>
+
+The cell voltage comes from the difference between the two <InlineMath math="E^\circ" /> values:
+
+<BlockMath math="E^\circ_{\text{cell}} = E^\circ_{\text{positive terminal}} - E^\circ_{\text{negative terminal}} = 0.34 - (-0.76) = 1.10\text{ V}" />
+
+Now swap zinc for magnesium. Predict the negative terminal and the cell voltage, then check them on the voltmeter below.
+
+Magnesium has <InlineMath math="E^\circ = -2.38\text{ V}" />, more negative than copper, so magnesium becomes the negative terminal:
+
+<MathContainer>
+<BlockMath math="\mathrm{Mg} \rightarrow \mathrm{Mg^{2+}} + 2e^-" />
+<BlockMath math="E^\circ_{\text{cell}} = 0.34 - (-2.38) = 2.72\text{ V}" />
+</MathContainer>
+
+<ChemicalCellLab
+  title={<>Magnesium and Copper Chemical Cell</>}
+  description={
+    <>
+      Magnesium in magnesium sulfate solution and copper in copper(II) sulfate
+      solution. Predict the voltmeter reading before you show the result.
+    </>
+  }
+  metals={["magnesium", "copper"]}
+  labels={{
+    atNegative: <>At the negative terminal</>,
+    atPositive: <>At the positive terminal</>,
+    electrons: <>Electrons transferred</>,
+    halfCells: <>Half-cells</>,
+    view: "Magnesium and copper chemical cell with a salt bridge",
+    voltage: <>Cell voltage</>,
+    voltmeter: "V",
+  }}
+/>
+
+Check: the further apart two metals sit in the electrochemical series, the bigger the voltage. Magnesium to copper spans <InlineMath math="2.72\text{ V}" />, more than zinc to copper at <InlineMath math="1.10\text{ V}" />. A positive voltage also tells you the reaction happens on its own.
+
+## Electrolysis Forces a Redox Reaction
+
+**Electrolysis** is the breakdown of an electrolyte by an electric current. The battery pushes electrons onto the **cathode**, where cations are reduced, and pulls electrons from the **anode**, where anions are oxidised. In an aqueous solution, ions from water compete to be discharged too. Three factors decide which ion wins: **the ion's position in the electrochemical series**, **the concentration of the ions**, and **the type of electrode**.
+
+Compare two sodium chloride cells with carbon electrodes. In the dilute solution, hydroxide ions are discharged at the anode and oxygen gas comes off. In the concentrated solution, the plentiful chloride ions are discharged, so chlorine gas comes off. At the cathode of both cells, hydrogen ions are discharged, because sodium ions sit far higher in the electrochemical series.
+
+<ElectrolysisLab
+  title={<>Dilute and Concentrated Sodium Chloride</>}
+  description={
+    <>
+      Two cells in series with carbon electrodes. The anode product changes as
+      the chloride concentration rises, while both cathodes give off hydrogen.
+    </>
+  }
+  cells={[
+    { electrode: "carbon", electrolyte: "sodium-chloride-dilute" },
+    { electrode: "carbon", electrolyte: "sodium-chloride-concentrated" },
+  ]}
+  electrons={0.1}
+  showProducts
+  labels={{
+    anode: "Anode",
+    atAnode: <>At the anode</>,
+    atCathode: <>At the cathode</>,
+    battery: "Battery",
+    cathode: "Cathode",
+    cells: [<>Cell P: dilute sodium chloride</>, <>Cell Q: concentrated sodium chloride</>],
+    electrons: <>Electrons transferred</>,
+    ph: <>pH of the electrolyte</>,
+    trends: { falls: <>falls</>, rises: <>rises</>, steady: <>stays the same</> },
+    view: "Two sodium chloride electrolysis cells connected in series",
+  }}
+/>
+
+The type of electrode changes the anode product too. With a carbon anode, copper(II) sulfate solution gives off oxygen and its blue colour fades. With a copper anode, **the anode itself dissolves** as copper(II) ions, so the blue colour stays. That's the principle behind purifying copper and electroplating.
+
+<ElectrolysisLab
+  title={<>Copper(II) Sulfate with a Copper Anode and a Carbon Anode</>}
+  description={
+    <>
+      In cell P, the copper anode dissolves as fast as copper deposits on the
+      cathode. In cell Q, the carbon anode gives off oxygen and the copper(II)
+      ions run down.
+    </>
+  }
+  cells={[
+    { electrode: "copper", electrolyte: "copper-sulfate" },
+    { electrode: "carbon", electrolyte: "copper-sulfate" },
+  ]}
+  electrons={0.1}
+  showProducts
+  labels={{
+    anode: "Anode",
+    atAnode: <>At the anode</>,
+    atCathode: <>At the cathode</>,
+    battery: "Battery",
+    cathode: "Cathode",
+    cells: [<>Cell P: copper electrodes</>, <>Cell Q: carbon electrodes</>],
+    electrons: <>Electrons transferred</>,
+    ph: <>pH of the electrolyte</>,
+    trends: { falls: <>falls</>, rises: <>rises</>, steady: <>stays the same</> },
+    view: "Two copper(II) sulfate electrolysis cells connected in series",
+  }}
+/>
+
+You can calculate electrolysis too. <InlineMath math="0.10\text{ mol}" /> of electrons flows through a copper(II) sulfate cell and a silver nitrate cell connected in series. Calculate the mass of metal deposited on each cathode. The relative atomic mass of copper is <InlineMath math="64" /> and of silver <InlineMath math="108" />.
+
+**Write the half-equations first**, because the mole ratio of electrons to metal comes from them:
+
+<MathContainer>
+<BlockMath math="\mathrm{Cu^{2+}} + 2e^- \rightarrow \mathrm{Cu}: \quad n(\mathrm{Cu}) = \frac{0.10}{2} = 0.050\text{ mol}, \quad m = 0.050 \times 64 = 3.2\text{ g}" />
+<BlockMath math="\mathrm{Ag^+} + e^- \rightarrow \mathrm{Ag}: \quad n(\mathrm{Ag}) = 0.10\text{ mol}, \quad m = 0.10 \times 108 = 10.8\text{ g}" />
+</MathContainer>
+
+Move the slider for the moles of electrons and compare the two mass lines. The silver line is steeper because each silver ion needs only one electron.
+
+<MathVisual
+  title={<>Mass of Copper and Silver against Moles of Electrons</>}
+  description={
+    <>
+      The mass of copper is <InlineMath math="m = 32n" /> and the mass of silver
+      is <InlineMath math="m = 108n" />, where <InlineMath math="n" /> is the
+      number of moles of electrons. At <InlineMath math="n = 0.10" />, copper is{" "}
+      <InlineMath math="3.2\text{ g}" /> and silver <InlineMath math="10.8\text{ g}" />.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 0.5 }, y: { min: 0, max: 60 } },
+    view: { kind: "fit", padding: 0.08 },
+    parameters: [
+      { name: "n", min: 0, max: 0.5, value: 0.1, step: 0.01, label: "n" },
+    ],
+    objects: [
+      { id: "copper", kind: "function", appearance: "primary", formula: "32x", domain: { min: 0, max: 0.5 } },
+      { id: "silver", kind: "function", appearance: "secondary", formula: "108x", domain: { min: 0, max: 0.5 } },
+      { id: "copper-now", kind: "marker", x: "n", y: "32n", appearance: "warning" },
+      { id: "silver-now", kind: "marker", x: "n", y: "108n", appearance: "answer" },
+    ],
+    labels: [
+      { key: "copper", objectId: "copper", at: { x: 0.5, y: 16 }, placement: "above-left" },
+      { key: "silver", objectId: "silver", at: { x: 0.45, y: 48.6 }, placement: "left" },
+    ],
+    readouts: [
+      { key: "copper-mass", formula: "32n" },
+      { key: "silver-mass", formula: "108n" },
+    ],
+  }}
+  labels={{
+    n: <>Moles of electrons <InlineMath math="n" /></>,
+    copper: <>Copper</>,
+    silver: <>Silver</>,
+    "copper-mass": <>Mass of copper in <InlineMath math="\text{g}" /></>,
+    "silver-mass": <>Mass of silver in <InlineMath math="\text{g}" /></>,
+  }}
+/>
+
+Check: the ratio of silver mass to copper mass is <InlineMath math="10.8 \div 3.2 \approx 3.4" />, the same as <InlineMath math="108 \div 32" /> at every value of <InlineMath math="n" />.
+
+## Extracting Metals and the Rusting of Iron
+
+Metals less electropositive than carbon are extracted by **reduction with carbon**. Iron is extracted in the blast furnace, where carbon monoxide reduces iron(III) oxide as in the example above. Metals more electropositive than carbon, such as aluminium, can't be reduced by carbon, so aluminium is extracted by **electrolysis of molten aluminium oxide**.
+
+**Rusting** is the oxidation of iron by oxygen and water. Under a drop of water on an iron surface, iron at the centre of the drop is oxidised and oxygen at the edge of the drop is reduced:
+
+<MathContainer>
+<BlockMath math="\mathrm{Fe} \rightarrow \mathrm{Fe^{2+}} + 2e^-" />
+<BlockMath math="\mathrm{O_2} + 2\mathrm{H_2O} + 4e^- \rightarrow 4\mathrm{OH^-}" />
+</MathContainer>
+
+Iron(II) ions and hydroxide ions form iron(II) hydroxide, which is oxidised further into rust, <InlineMath math="\mathrm{Fe_2O_3 \cdot xH_2O}" />. You can protect iron by joining it to a **more electropositive** metal such as zinc or magnesium. That metal is oxidised first, so the iron doesn't rust. This method is called **sacrificial protection**, and it's used on ship hulls and underground pipes.
+
+## Common Mistakes about Redox
+
+| Mistake | Why it's wrong | How to check |
+| :--- | :--- | :--- |
+| The oxidising agent is the substance that is oxidised. | The oxidising agent gains electrons, so it is reduced itself. | Find the substance whose oxidation number falls. |
+| In a chemical cell, copper is the negative terminal because copper deposits. | The negative terminal is where electrons are released: the metal with the more negative <InlineMath math="E^\circ" />. | Compare the <InlineMath math="E^\circ" /> values of the two metals. |
+| The cell voltage is the sum of the two <InlineMath math="E^\circ" /> values. | The voltage is the difference, <InlineMath math="E^\circ_{\text{positive}} - E^\circ_{\text{negative}}" />. | A zinc and copper cell must give <InlineMath math="1.10\text{ V}" />. |
+| Electrolysis of aqueous sodium chloride gives sodium at the cathode. | Hydrogen ions are reduced far more easily than sodium ions. | Look up sodium in the electrochemical series. |
+| Cells in series receive the same number of moles of metal. | Cells in series receive the same **moles of electrons**, and the mole ratio of metal depends on the ion's charge. | Write the half-equation at each cathode. |
+
+The first mistake turns up most often in objective questions. Remember this line: **the oxidising agent is reduced, the reducing agent is oxidised**.
+
+## Practice on Redox Equilibrium
+
+These questions move from oxidation numbers to chemical cells and electrolysis. **Write the half-equations** in every answer so the electron transfer stays clear.
+
+1. Calculate the oxidation number of manganese in potassium manganate(VII), <InlineMath math="\mathrm{KMnO_4}" />.
+
+2. A chemical cell is built from iron in iron(II) sulfate solution and copper in copper(II) sulfate solution. State the negative terminal and calculate the cell voltage.
+
+3. Concentrated sodium chloride solution is electrolysed with carbon electrodes. Name the products at the anode and the cathode, and explain which ion is chosen at the anode.
+
+4. A block of zinc is fixed to an iron ship hull. Explain why the iron doesn't rust even when the paint is scratched.
+
+### Solutions
+
+**Solution 1**: Potassium has an oxidation number of <InlineMath math="+1" /> and each oxygen <InlineMath math="-2" />. In a neutral compound they add up to <InlineMath math="0" />:
+
+<BlockMath math="(+1) + x + 4(-2) = 0 \Rightarrow x = +7" />
+
+Check against the name: the Roman numeral in potassium manganate(VII) is indeed <InlineMath math="+7" />.
+
+**Solution 2**: Iron has <InlineMath math="E^\circ = -0.44\text{ V}" />, more negative than copper, so **iron is the negative terminal** and is oxidised:
+
+<BlockMath math="E^\circ_{\text{cell}} = 0.34 - (-0.44) = 0.78\text{ V}" />
+
+Check with the electrochemical series: iron sits between zinc and copper, so the voltage must be less than <InlineMath math="1.10\text{ V}" />. And <InlineMath math="0.78\text{ V}" /> is smaller.
+
+**Solution 3**: **Chlorine gas** forms at the anode and **hydrogen gas** at the cathode:
+
+<MathContainer>
+<BlockMath math="2\mathrm{Cl^-} \rightarrow \mathrm{Cl_2} + 2e^-" />
+<BlockMath math="2\mathrm{H^+} + 2e^- \rightarrow \mathrm{H_2}" />
+</MathContainer>
+
+Hydroxide ions are usually discharged more easily, but in a concentrated solution the chloride ions are far more plentiful, so chloride ions are chosen. At the cathode, hydrogen ions are chosen because sodium ions are much harder to reduce.
+
+**Solution 4**: Zinc is more electropositive than iron, <InlineMath math="-0.76\text{ V}" /> against <InlineMath math="-0.44\text{ V}" />. When water and oxygen reach the metal, **zinc is oxidised first** and passes its electrons to the iron:
+
+<BlockMath math="\mathrm{Zn} \rightarrow \mathrm{Zn^{2+}} + 2e^-" />
+
+Those electrons reduce oxygen on the iron surface, so the iron doesn't lose electrons and doesn't form iron(II) ions. The zinc gets used up, so the block has to be replaced from time to time.

@@ -1,0 +1,323 @@
+export const metadata = {
+  title: "Kesetimbangan Redoks dan Sel Elektrokimia",
+  description:
+    "Tentukan bilangan oksidasi, hitung potensial sel volta, dan ramalkan hasil elektrolisis lewat contoh lengkap, kesalahan umum, dan latihan beserta pembahasan.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2026-11-17",
+  dateModified: "2026-11-17",
+  subject: "Kesetimbangan Redoks",
+};
+
+## Redoks adalah Perpindahan Elektron
+
+**Reaksi redoks** adalah reaksi yang di dalamnya **oksidasi dan reduksi terjadi bersamaan**. Oksidasi adalah **pelepasan elektron**, dan reduksi adalah **penerimaan elektron**. Elektron yang dilepas satu zat harus diterima zat lain, jadi kedua proses tidak pernah berlangsung sendirian. Potensial sel volta dihitung dengan <InlineMath math="E^\circ_{\text{sel}} = E^\circ_{\text{kutub positif}} - E^\circ_{\text{kutub negatif}}" />. Di sini kamu merakit sel volta, membandingkan potensialnya, dan menjalankan elektrolisis untuk melihat hasil di setiap elektrode.
+
+Celupkan lempeng seng ke dalam larutan tembaga(II) sulfat. Seng larut, dan tembaga cokelat menempel pada lempeng itu:
+
+<BlockMath math="\mathrm{Zn(s)} + \mathrm{Cu^{2+}(aq)} \rightarrow \mathrm{Zn^{2+}(aq)} + \mathrm{Cu(s)}" />
+
+Pecah persamaan itu menjadi dua **setengah reaksi**. Setiap atom seng melepas dua elektron, jadi seng **teroksidasi**. Setiap ion tembaga(II) menerima dua elektron itu, jadi ion tembaga(II) **tereduksi**:
+
+<MathContainer>
+<BlockMath math="\mathrm{Zn} \rightarrow \mathrm{Zn^{2+}} + 2e^-" />
+<BlockMath math="\mathrm{Cu^{2+}} + 2e^- \rightarrow \mathrm{Cu}" />
+</MathContainer>
+
+Zat yang menerima elektron disebut **oksidator**, karena zat itu mengoksidasi zat lain. Di sini oksidatornya ion tembaga(II), dan **reduktornya** seng. Pegang pasangan ini: oksidator sendiri mengalami reduksi.
+
+## Bilangan Oksidasi Menunjukkan Zat yang Teroksidasi
+
+**Bilangan oksidasi** adalah muatan yang dimiliki atom seandainya semua ikatannya dianggap ionik. Unsur bebas memiliki bilangan oksidasi <InlineMath math="0" />, oksigen dalam kebanyakan senyawa <InlineMath math="-2" />, hidrogen <InlineMath math="+1" />, dan jumlah bilangan oksidasi dalam senyawa netral adalah <InlineMath math="0" />. Atom yang bilangan oksidasinya **naik** teroksidasi, dan atom yang bilangan oksidasinya **turun** tereduksi.
+
+Coba satu contoh. Tentukan zat yang teroksidasi dan tereduksi saat besi(III) oksida bereaksi dengan karbon monoksida di dalam tanur tinggi:
+
+<BlockMath math="\mathrm{Fe_2O_3} + 3\mathrm{CO} \rightarrow 2\mathrm{Fe} + 3\mathrm{CO_2}" />
+
+Hitung bilangan oksidasi besi dan karbon di kedua ruas. Sebut bilangan oksidasi yang belum diketahui sebagai <InlineMath math="x" />:
+
+<MathContainer>
+<BlockMath math="\mathrm{Fe_2O_3}: 2x + 3(-2) = 0 \Rightarrow x = +3" />
+<BlockMath math="\mathrm{CO}: x + (-2) = 0 \Rightarrow x = +2" />
+<BlockMath math="\mathrm{CO_2}: x + 2(-2) = 0 \Rightarrow x = +4" />
+</MathContainer>
+
+Besi berubah dari <InlineMath math="+3" /> menjadi <InlineMath math="0" />, jadi besi(III) oksida **tereduksi**. Karbon berubah dari <InlineMath math="+2" /> menjadi <InlineMath math="+4" />, jadi karbon monoksida **teroksidasi** dan berperan sebagai reduktor. Cek dengan elektron: dua atom besi menerima <InlineMath math="2 \times 3 = 6" /> elektron, dan tiga atom karbon melepas <InlineMath math="3 \times 2 = 6" /> elektron. Jumlahnya sama.
+
+## Potensial Elektrode Standar Mengurutkan Logam
+
+**Potensial elektrode standar**, <InlineMath math="E^\circ" />, mengukur kecenderungan suatu spesi menerima elektron, dibandingkan dengan elektrode hidrogen standar yang bernilai <InlineMath math="0{,}00\text{ V}" />. Nilai <InlineMath math="E^\circ" /> yang **lebih negatif** berarti logam itu lebih mudah melepas elektron, jadi logam itu reduktor yang lebih kuat. Urutan logam berdasarkan nilai ini disebut **deret elektrokimia** atau deret Volta.
+
+<Chart
+  title={<>Potensial Elektrode Standar Lima Logam</>}
+  bars="apart"
+  categories={["Magnesium", "Seng", "Besi", "Tembaga", "Perak"]}
+  series={[
+    {
+      label: "Potensial elektrode standar",
+      mark: "bar",
+      values: [-2.38, -0.76, -0.44, 0.34, 0.8],
+    },
+  ]}
+  valueLabel="E° (V)"
+  valueRange={{ min: -2.5, max: 1 }}
+  description={
+    <>
+      Nilai pada <InlineMath math="25^\circ\text{C}" /> untuk{" "}
+      <InlineMath math="\mathrm{M^{n+}(aq)} + ne^- \rightleftharpoons \mathrm{M(s)}" />.
+      Magnesium <InlineMath math="-2{,}38\text{ V}" />, seng{" "}
+      <InlineMath math="-0{,}76\text{ V}" />, besi <InlineMath math="-0{,}44\text{ V}" />,
+      tembaga <InlineMath math="+0{,}34\text{ V}" />, perak{" "}
+      <InlineMath math="+0{,}80\text{ V}" />.
+    </>
+  }
+/>
+
+Deret ini meramalkan **reaksi pendesakan**. Logam yang lebih elektropositif mendesak logam yang kurang elektropositif dari larutan garamnya. Seng mendesak tembaga, tetapi tembaga tidak mendesak seng, karena ion seng tidak bisa menerima elektron dari tembaga yang nilai <InlineMath math="E^\circ" />-nya lebih positif.
+
+## Sel Volta Mengubah Energi Kimia Menjadi Energi Listrik
+
+**Sel volta** memisahkan dua setengah reaksi sehingga elektron terpaksa mengalir lewat kawat. Setiap logam dicelupkan ke larutan ionnya sendiri, dan **jembatan garam** melengkapi rangkaian dengan membiarkan ion bergerak. Logam dengan <InlineMath math="E^\circ" /> lebih negatif menjadi **kutub negatif**, tempat oksidasi terjadi. Pilih logam lain pada sel di bawah dan baca voltmeternya.
+
+<ChemicalCellLab
+  title={<>Sel Volta Seng dan Tembaga</>}
+  description={
+    <>
+      Seng dalam larutan seng sulfat dan tembaga dalam larutan tembaga(II)
+      sulfat, dihubungkan jembatan garam. Seng larut di kutub negatif dan
+      tembaga mengendap di kutub positif.
+    </>
+  }
+  metals={["zinc", "copper"]}
+  electrons={0.02}
+  showProducts
+  labels={{
+    atNegative: <>Di kutub negatif</>,
+    atPositive: <>Di kutub positif</>,
+    electrons: <>Elektron yang mengalir</>,
+    halfCells: <>Setengah sel</>,
+    view: "Sel volta seng dan tembaga dengan jembatan garam",
+    voltage: <>Potensial sel</>,
+    voltmeter: "V",
+  }}
+/>
+
+Potensial sel dihitung dari selisih nilai <InlineMath math="E^\circ" /> kedua logam:
+
+<BlockMath math="E^\circ_{\text{sel}} = E^\circ_{\text{kutub positif}} - E^\circ_{\text{kutub negatif}} = 0{,}34 - (-0{,}76) = 1{,}10\text{ V}" />
+
+Sekarang ganti seng dengan magnesium. Ramalkan kutub negatif dan potensial selnya, lalu cek dengan voltmeter di bawah.
+
+Magnesium memiliki <InlineMath math="E^\circ = -2{,}38\text{ V}" />, lebih negatif daripada tembaga, jadi magnesium menjadi kutub negatif:
+
+<MathContainer>
+<BlockMath math="\mathrm{Mg} \rightarrow \mathrm{Mg^{2+}} + 2e^-" />
+<BlockMath math="E^\circ_{\text{sel}} = 0{,}34 - (-2{,}38) = 2{,}72\text{ V}" />
+</MathContainer>
+
+<ChemicalCellLab
+  title={<>Sel Volta Magnesium dan Tembaga</>}
+  description={
+    <>
+      Magnesium dalam larutan magnesium sulfat dan tembaga dalam larutan
+      tembaga(II) sulfat. Ramalkan angka voltmeter sebelum kamu menampilkan
+      hasilnya.
+    </>
+  }
+  metals={["magnesium", "copper"]}
+  labels={{
+    atNegative: <>Di kutub negatif</>,
+    atPositive: <>Di kutub positif</>,
+    electrons: <>Elektron yang mengalir</>,
+    halfCells: <>Setengah sel</>,
+    view: "Sel volta magnesium dan tembaga dengan jembatan garam",
+    voltage: <>Potensial sel</>,
+    voltmeter: "V",
+  }}
+/>
+
+Cek: makin jauh jarak dua logam dalam deret elektrokimia, makin besar potensialnya. Jarak magnesium ke tembaga <InlineMath math="2{,}72\text{ V}" />, lebih besar daripada jarak seng ke tembaga, <InlineMath math="1{,}10\text{ V}" />. Potensial positif juga menandakan reaksi itu berlangsung spontan.
+
+## Elektrolisis Memaksa Reaksi Redoks
+
+**Elektrolisis** adalah penguraian elektrolit oleh arus listrik. Baterai mendorong elektron ke **katode**, tempat kation direduksi, dan menarik elektron dari **anode**, tempat anion dioksidasi. Dalam larutan berair, ion dari air ikut bersaing untuk dilepaskan muatannya. Tiga faktor menentukan ion yang terpilih: **posisi ion dalam deret elektrokimia**, **konsentrasi ion**, dan **jenis elektrode**.
+
+Bandingkan dua sel natrium klorida dengan elektrode karbon. Dalam larutan encer, ion hidroksida teroksidasi di anode dan gas oksigen terbentuk. Dalam larutan pekat, ion klorida yang melimpah teroksidasi, jadi gas klorin terbentuk. Di katode kedua sel, ion hidrogen tereduksi karena ion natrium berada jauh lebih tinggi dalam deret elektrokimia.
+
+<ElectrolysisLab
+  title={<>Natrium Klorida Encer dan Pekat</>}
+  description={
+    <>
+      Dua sel tersusun seri dengan elektrode karbon. Hasil di anode berubah saat
+      konsentrasi ion klorida bertambah, sedangkan katode kedua sel menghasilkan
+      hidrogen.
+    </>
+  }
+  cells={[
+    { electrode: "carbon", electrolyte: "sodium-chloride-dilute" },
+    { electrode: "carbon", electrolyte: "sodium-chloride-concentrated" },
+  ]}
+  electrons={0.1}
+  showProducts
+  labels={{
+    anode: "Anode",
+    atAnode: <>Di anode</>,
+    atCathode: <>Di katode</>,
+    battery: "Baterai",
+    cathode: "Katode",
+    cells: [<>Sel P: natrium klorida encer</>, <>Sel Q: natrium klorida pekat</>],
+    electrons: <>Elektron yang mengalir</>,
+    ph: <>pH elektrolit</>,
+    trends: { falls: <>turun</>, rises: <>naik</>, steady: <>tetap</> },
+    view: "Dua sel elektrolisis natrium klorida yang disusun seri",
+  }}
+/>
+
+Jenis elektrode juga mengubah hasil di anode. Dengan anode karbon, larutan tembaga(II) sulfat menghasilkan oksigen dan warna birunya memudar. Dengan anode tembaga, **anode itu sendiri yang larut** sebagai ion tembaga(II), jadi warna biru tetap. Prinsip inilah yang dipakai untuk memurnikan tembaga dan menyepuh logam.
+
+<ElectrolysisLab
+  title={<>Tembaga(II) Sulfat dengan Anode Tembaga dan Anode Karbon</>}
+  description={
+    <>
+      Di sel P, anode tembaga larut secepat tembaga mengendap di katode. Di sel
+      Q, anode karbon menghasilkan oksigen dan ion tembaga(II) makin berkurang.
+    </>
+  }
+  cells={[
+    { electrode: "copper", electrolyte: "copper-sulfate" },
+    { electrode: "carbon", electrolyte: "copper-sulfate" },
+  ]}
+  electrons={0.1}
+  showProducts
+  labels={{
+    anode: "Anode",
+    atAnode: <>Di anode</>,
+    atCathode: <>Di katode</>,
+    battery: "Baterai",
+    cathode: "Katode",
+    cells: [<>Sel P: elektrode tembaga</>, <>Sel Q: elektrode karbon</>],
+    electrons: <>Elektron yang mengalir</>,
+    ph: <>pH elektrolit</>,
+    trends: { falls: <>turun</>, rises: <>naik</>, steady: <>tetap</> },
+    view: "Dua sel elektrolisis tembaga(II) sulfat yang disusun seri",
+  }}
+/>
+
+Elektrolisis juga bisa dihitung. Sebanyak <InlineMath math="0{,}10\text{ mol}" /> elektron mengalir melalui sel tembaga(II) sulfat dan sel perak nitrat yang disusun seri. Hitung massa logam yang mengendap di setiap katode. Massa atom relatif tembaga <InlineMath math="64" /> dan perak <InlineMath math="108" />.
+
+**Tulis setengah reaksinya dulu**, karena perbandingan mol elektron terhadap logam berasal dari situ:
+
+<MathContainer>
+<BlockMath math="\mathrm{Cu^{2+}} + 2e^- \rightarrow \mathrm{Cu}: \quad n(\mathrm{Cu}) = \frac{0{,}10}{2} = 0{,}050\text{ mol}, \quad m = 0{,}050 \times 64 = 3{,}2\text{ g}" />
+<BlockMath math="\mathrm{Ag^+} + e^- \rightarrow \mathrm{Ag}: \quad n(\mathrm{Ag}) = 0{,}10\text{ mol}, \quad m = 0{,}10 \times 108 = 10{,}8\text{ g}" />
+</MathContainer>
+
+Geser penggeser jumlah mol elektron dan bandingkan dua garis massa. Garis perak lebih curam karena setiap ion perak hanya butuh satu elektron.
+
+<MathVisual
+  title={<>Massa Tembaga dan Perak terhadap Mol Elektron</>}
+  description={
+    <>
+      Massa tembaga <InlineMath math="m = 32n" /> dan massa perak{" "}
+      <InlineMath math="m = 108n" />, dengan <InlineMath math="n" /> jumlah mol
+      elektron. Pada <InlineMath math="n = 0{,}10" />, tembaga{" "}
+      <InlineMath math="3{,}2\text{ g}" /> dan perak <InlineMath math="10{,}8\text{ g}" />.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 0.5 }, y: { min: 0, max: 60 } },
+    view: { kind: "fit", padding: 0.08 },
+    parameters: [
+      { name: "n", min: 0, max: 0.5, value: 0.1, step: 0.01, label: "n" },
+    ],
+    objects: [
+      { id: "copper", kind: "function", appearance: "primary", formula: "32x", domain: { min: 0, max: 0.5 } },
+      { id: "silver", kind: "function", appearance: "secondary", formula: "108x", domain: { min: 0, max: 0.5 } },
+      { id: "copper-now", kind: "marker", x: "n", y: "32n", appearance: "warning" },
+      { id: "silver-now", kind: "marker", x: "n", y: "108n", appearance: "answer" },
+    ],
+    labels: [
+      { key: "copper", objectId: "copper", at: { x: 0.5, y: 16 }, placement: "above-left" },
+      { key: "silver", objectId: "silver", at: { x: 0.45, y: 48.6 }, placement: "left" },
+    ],
+    readouts: [
+      { key: "copper-mass", formula: "32n" },
+      { key: "silver-mass", formula: "108n" },
+    ],
+  }}
+  labels={{
+    n: <>Mol elektron <InlineMath math="n" /></>,
+    copper: <>Tembaga</>,
+    silver: <>Perak</>,
+    "copper-mass": <>Massa tembaga dalam <InlineMath math="\text{g}" /></>,
+    "silver-mass": <>Massa perak dalam <InlineMath math="\text{g}" /></>,
+  }}
+/>
+
+Cek: perbandingan massa perak terhadap tembaga adalah <InlineMath math="10{,}8 \div 3{,}2 \approx 3{,}4" />, sama dengan <InlineMath math="108 \div 32" /> untuk setiap nilai <InlineMath math="n" />.
+
+## Ekstraksi Logam dan Perkaratan Besi
+
+Logam yang kurang elektropositif daripada karbon diekstraksi dengan **reduksi oleh karbon**. Besi diekstraksi di tanur tinggi, tempat karbon monoksida mereduksi besi(III) oksida seperti pada contoh tadi. Logam yang lebih elektropositif daripada karbon, seperti aluminium, tidak bisa direduksi karbon, jadi aluminium diekstraksi dengan **elektrolisis lelehan aluminium oksida**.
+
+**Perkaratan** adalah oksidasi besi oleh oksigen dan air. Pada setetes air di atas permukaan besi, besi di tengah tetesan teroksidasi dan oksigen di tepi tetesan tereduksi:
+
+<MathContainer>
+<BlockMath math="\mathrm{Fe} \rightarrow \mathrm{Fe^{2+}} + 2e^-" />
+<BlockMath math="\mathrm{O_2} + 2\mathrm{H_2O} + 4e^- \rightarrow 4\mathrm{OH^-}" />
+</MathContainer>
+
+Ion besi(II) dan ion hidroksida membentuk besi(II) hidroksida, yang teroksidasi lagi menjadi karat, <InlineMath math="\mathrm{Fe_2O_3 \cdot xH_2O}" />. Besi bisa dilindungi dengan menghubungkannya ke logam yang **lebih elektropositif**, seperti seng atau magnesium. Logam itu teroksidasi lebih dulu, jadi besi tidak berkarat. Cara ini disebut **perlindungan katodik** dengan anode korban, dan dipakai pada lambung kapal dan pipa bawah tanah.
+
+## Kesalahan Umum tentang Redoks
+
+| Kesalahan | Alasan keliru | Cara cek |
+| :--- | :--- | :--- |
+| Oksidator adalah zat yang teroksidasi. | Oksidator menerima elektron, jadi oksidator sendiri tereduksi. | Cari zat yang bilangan oksidasinya turun. |
+| Dalam sel volta, tembaga menjadi kutub negatif karena tembaga mengendap. | Kutub negatif adalah tempat elektron dilepas, yaitu logam dengan <InlineMath math="E^\circ" /> lebih negatif. | Bandingkan nilai <InlineMath math="E^\circ" /> kedua logam. |
+| Potensial sel adalah jumlah dua nilai <InlineMath math="E^\circ" />. | Potensial sel adalah selisihnya, <InlineMath math="E^\circ_{\text{positif}} - E^\circ_{\text{negatif}}" />. | Sel seng dan tembaga harus memberi <InlineMath math="1{,}10\text{ V}" />. |
+| Elektrolisis larutan natrium klorida menghasilkan natrium di katode. | Ion hidrogen jauh lebih mudah tereduksi daripada ion natrium. | Lihat posisi natrium dalam deret elektrokimia. |
+| Sel yang disusun seri menerima mol logam yang sama. | Sel seri menerima **mol elektron** yang sama, dan perbandingan mol logam bergantung pada muatan ionnya. | Tulis setengah reaksi di setiap katode. |
+
+Kesalahan pertama paling sering muncul di soal pilihan ganda. Ingat kalimat ini: **oksidator tereduksi, reduktor teroksidasi**.
+
+## Latihan Kesetimbangan Redoks
+
+Soal-soal ini bergerak dari bilangan oksidasi ke sel volta dan elektrolisis. **Tulis setengah reaksinya** di setiap jawaban supaya perpindahan elektronnya jelas.
+
+1. Hitung bilangan oksidasi mangan dalam kalium permanganat, <InlineMath math="\mathrm{KMnO_4}" />.
+
+2. Sebuah sel volta dirakit dari besi dalam larutan besi(II) sulfat dan tembaga dalam larutan tembaga(II) sulfat. Tentukan kutub negatifnya dan hitung potensial selnya.
+
+3. Larutan natrium klorida pekat dielektrolisis dengan elektrode karbon. Sebutkan hasil di anode dan di katode, lalu jelaskan ion yang terpilih di anode.
+
+4. Sebongkah seng dipasang pada lambung kapal dari besi. Jelaskan mengapa besi itu tidak berkarat meskipun catnya tergores.
+
+### Pembahasan
+
+**Pembahasan 1**: Kalium memiliki bilangan oksidasi <InlineMath math="+1" /> dan setiap oksigen <InlineMath math="-2" />. Jumlahnya dalam senyawa netral adalah <InlineMath math="0" />:
+
+<BlockMath math="(+1) + x + 4(-2) = 0 \Rightarrow x = +7" />
+
+Cek dengan namanya: dalam tata nama Stock, kalium permanganat ditulis kalium manganat(VII), dan angka Romawinya memang <InlineMath math="+7" />.
+
+**Pembahasan 2**: Besi memiliki <InlineMath math="E^\circ = -0{,}44\text{ V}" />, lebih negatif daripada tembaga, jadi **besi menjadi kutub negatif** dan teroksidasi:
+
+<BlockMath math="E^\circ_{\text{sel}} = 0{,}34 - (-0{,}44) = 0{,}78\text{ V}" />
+
+Cek dengan deret elektrokimia: besi berada di antara seng dan tembaga, jadi potensialnya harus lebih kecil daripada <InlineMath math="1{,}10\text{ V}" />. Memang <InlineMath math="0{,}78\text{ V}" /> lebih kecil.
+
+**Pembahasan 3**: Di anode terbentuk **gas klorin**, dan di katode terbentuk **gas hidrogen**:
+
+<MathContainer>
+<BlockMath math="2\mathrm{Cl^-} \rightarrow \mathrm{Cl_2} + 2e^-" />
+<BlockMath math="2\mathrm{H^+} + 2e^- \rightarrow \mathrm{H_2}" />
+</MathContainer>
+
+Biasanya ion hidroksida lebih mudah teroksidasi, tetapi dalam larutan pekat konsentrasi ion klorida jauh lebih tinggi, jadi ion klorida yang terpilih. Di katode, ion hidrogen terpilih karena ion natrium jauh lebih sulit direduksi.
+
+**Pembahasan 4**: Seng lebih elektropositif daripada besi, <InlineMath math="-0{,}76\text{ V}" /> dibandingkan <InlineMath math="-0{,}44\text{ V}" />. Saat air dan oksigen mencapai logam, **seng teroksidasi lebih dulu** dan memberikan elektronnya kepada besi:
+
+<BlockMath math="\mathrm{Zn} \rightarrow \mathrm{Zn^{2+}} + 2e^-" />
+
+Elektron itu mereduksi oksigen di permukaan besi, jadi besi tidak kehilangan elektron dan tidak membentuk ion besi(II). Seng makin habis, jadi bongkahan seng perlu diganti secara berkala.
