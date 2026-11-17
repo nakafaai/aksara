@@ -1,0 +1,40 @@
+# Maltosa yang tersisa di tabung hanyalah hasil amilase dikurangi yang diambil maltase, jadi tambahkan lagi maltosa yang sudah menjadi glukosa
+
+Setiap tabung menunjukkan apa yang **tersisa** setelah <InlineMath math="10" /> menit, bukan apa yang dikerjakan tiap enzim. Hitung mundur ke kedua laju:
+
+- Setiap maltosa yang diuraikan maltase menghasilkan **dua** glukosa, jadi maltosa yang diuraikan <InlineMath math="= \tfrac{\text{glukosa}}{2}" />.
+- Amilase membuat maltosa yang masih ada **ditambah** maltosa yang sudah diuraikan.
+
+<BlockMath math="\begin{aligned}
+\text{P}: \quad \text{maltase} = \tfrac{4}{2} = 2, &\quad \text{amilase} = 6+2 = 8\\
+\text{Q}: \quad \text{maltase} = \tfrac{4}{2} = 2, &\quad \text{amilase} = 14+2 = 16\\
+\text{R}: \quad \text{maltase} = \tfrac{8}{2} = 4, &\quad \text{amilase} = 4+4 = 8\\
+\text{S}: \quad \text{maltase} = \tfrac{8}{2} = 4, &\quad \text{amilase} = 12+4 = 16
+\end{aligned}" />
+
+Semua nilai dalam mmol maltosa per <InlineMath math="10" /> menit.
+
+<Chart
+  title={<>Maltosa yang Dibuat dan Diuraikan dalam <InlineMath math="10" /> Menit</>}
+  bars="apart"
+  categories={["P", "Q", "R", "S"]}
+  series={[
+    { label: "Dibuat amilase (mmol)", mark: "bar", values: [8, 16, 8, 16] },
+    { label: "Diuraikan maltase (mmol)", mark: "bar", values: [2, 2, 4, 4] },
+  ]}
+  valueLabel="Maltosa (mmol per 10 menit)"
+  description={<>Amilase membuat <InlineMath math="8" /> mmol maltosa dengan <InlineMath math="1" /> unit dan <InlineMath math="16" /> dengan <InlineMath math="2" /> unit, berapa pun maltasenya. Maltase menguraikan <InlineMath math="2" /> mmol dengan <InlineMath math="1" /> unit dan <InlineMath math="4" /> dengan <InlineMath math="2" /> unit, berapa pun maltosa yang ada.</>}
+/>
+
+- I: maltase menguraikan <InlineMath math="4" /> mmol di R dibanding <InlineMath math="2" /> di P, dua kali lebih cepat. Pernyataan I benar.
+- II: amilase membuat <InlineMath math="8" /> mmol di P maupun R. Tabung R hanya punya lebih sedikit maltosa yang **tersisa**, karena lebih banyak yang sudah menjadi glukosa. Pernyataan II benar.
+- III: tabung Q berisi <InlineMath math="14" /> mmol maltosa dibanding <InlineMath math="6" /> di P, tetapi maltase tetap hanya menguraikan <InlineMath math="2" /> mmol. Substrat tambahan tidak membantu, jadi semua sisi aktifnya sudah terisi. Hanya maltase tambahan, di R, yang menaikkan laju. Maltase dibatasi oleh **jumlahnya sendiri**, bukan oleh maltosa. Pernyataan III salah.
+- IV: di S, amilase membuat <InlineMath math="16" /> dan maltase menguraikan <InlineMath math="4" />, jadi amilase <InlineMath math="\tfrac{16}{4} = 4" /> kali lebih cepat, bukan dua kali. Pernyataan IV salah.
+
+Jadi pernyataan I dan II benar.
+
+# Mengapa pilihan lain salah
+
+- I, II, dan III saja membaca glukosa yang tidak berubah di Q sebagai kekurangan maltosa, **padahal Q berisi lebih dari dua kali maltosa dan tetap tidak menghasilkan glukosa tambahan**, tanda maltase sudah jenuh.
+- I, II, dan IV saja menganggap <InlineMath math="8" /> mmol glukosa di S sebagai <InlineMath math="8" /> mmol maltosa yang diuraikan, **lupa bahwa setiap maltosa menghasilkan dua glukosa**, sehingga mendapat <InlineMath math="\tfrac{16}{8} = 2" />.
+- I saja membandingkan maltosa yang tersisa di P dan R, <InlineMath math="6" /> lawan <InlineMath math="4" />, lalu menyimpulkan bahwa maltase tambahan memperlambat amilase. **Maltosa yang sudah diubah maltase menjadi glukosa harus ditambahkan kembali** sebelum menilai amilase.

@@ -1,0 +1,45 @@
+# Two things change between groups P and S, so split the gap by comparing groups that differ in one thing only
+
+Groups of different sizes can't be compared by their totals, so first turn every total into a **mean score per student**:
+
+<BlockMath math="\begin{aligned}
+\text{P}: \quad \tfrac{456}{12} &= 38\\
+\text{Q}: \quad \tfrac{340}{10} &= 34\\
+\text{R}: \quad \tfrac{248}{8} &= 31\\
+\text{S}: \quad \tfrac{270}{10} &= 27
+\end{aligned}" />
+
+Two variables are mixed in this design: what the students **actually drink** and what they **are told** they drink. To see the effect of one, keep the other fixed.
+
+<BlockMath math="\begin{aligned}
+\text{glucose, told glucose}: \quad \text{P}-\text{Q} &= 38-34 = 4\\
+\text{glucose, told sweetener}: \quad \text{R}-\text{S} &= 31-27 = 4\\
+\text{being told glucose, drink glucose}: \quad \text{P}-\text{R} &= 38-31 = 7\\
+\text{being told glucose, drink sweetener}: \quad \text{Q}-\text{S} &= 34-27 = 7\\
+\text{P}-\text{S} &= 38-27 = 11 = 4+7
+\end{aligned}" />
+
+<Chart
+  title={<>Mean Memory Score in Each Group</>}
+  bars="apart"
+  categories={["Told glucose", "Told sweetener"]}
+  series={[
+    { label: "Drank glucose", mark: "bar", values: [38, 31] },
+    { label: "Drank sweetener", mark: "bar", values: [34, 27] },
+  ]}
+  valueLabel="Mean score (out of 50)"
+  description={<>Students told glucose score <InlineMath math="38" /> after glucose and <InlineMath math="34" /> after sweetener. Students told sweetener score <InlineMath math="31" /> after glucose and <InlineMath math="27" /> after sweetener. Inside each pair, glucose adds <InlineMath math="4" /> marks, and being told glucose adds <InlineMath math="7" /> marks to either drink.</>}
+/>
+
+- I: glucose adds <InlineMath math="4" /> marks in both pairs. The gap between P and S is <InlineMath math="11" /> marks, and half of it is <InlineMath math="5.5" />, so <InlineMath math="4" /> is less than half. Statement I is correct.
+- II: group P drinks glucose **and** is told glucose, while group S drinks sweetener **and** is told sweetener. Two variables change at once, and <InlineMath math="7" /> of the <InlineMath math="11" /> marks come from what the students were told. Statement II is wrong.
+- III: group R has only <InlineMath math="8" /> students, so its total is small. Its mean, <InlineMath math="31" />, is higher than the mean of group S, <InlineMath math="27" />. Glucose raises the score here too. Statement III is wrong.
+- IV: <InlineMath math="\text{P}-\text{R} = 7" /> for students who drink glucose and <InlineMath math="\text{Q}-\text{S} = 7" /> for students who drink sweetener. Statement IV is correct.
+
+So statements I and IV are correct, and the results do support the hypothesis: glucose raises the mean score by <InlineMath math="4" /> marks whatever the students believe.
+
+# Why the other options are wrong
+
+- II and IV only takes groups P and S as a fair test because both were told the truth, and so gives all <InlineMath math="11" /> marks to glucose. **Being told glucose is a second variable that also differs between P and S**.
+- I only finds the effect of being told glucose from groups P and Q, which gives <InlineMath math="4" />. **P and Q are told the same thing and differ only in the drink**, so that gap is the glucose effect.
+- I, III and IV only compares the totals of groups R and S, <InlineMath math="248" /> against <InlineMath math="270" />, **without dividing by the different numbers of students**.

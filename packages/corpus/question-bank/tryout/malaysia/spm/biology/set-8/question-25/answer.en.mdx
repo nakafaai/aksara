@@ -1,0 +1,65 @@
+# A dwarf that grows with added gibberellin lacks the hormone, and one that does not cannot respond
+
+Adding a hormone separates two kinds of short plant. If the plant **makes too little gibberellin**, a dose replaces what is missing and the stem shoots up. If the plant **cannot respond** to gibberellin, extra hormone changes nothing.
+
+<Chart
+  title={<>Stem Height after Gibberellic Acid</>}
+  categories={["0 µg", "0.1 µg", "1 µg", "10 µg"]}
+  series={[
+    { label: "Tall", mark: "line", values: [40, 41, 42, 44] },
+    { label: "Dwarf D1", mark: "line", values: [10, 18, 32, 41] },
+    { label: "Dwarf D2", mark: "line", values: [11, 11, 12, 11] },
+  ]}
+  valueLabel="Height (cm)"
+  description={<>The tall variety rises only from <InlineMath math="40" /> to <InlineMath math="44\text{ cm}" />. D1 climbs from <InlineMath math="10" /> to <InlineMath math="41\text{ cm}" />, almost as tall as the tall variety. D2 stays between <InlineMath math="11" /> and <InlineMath math="12\text{ cm}" /> at every dose.</>}
+/>
+
+The tall variety's flat line could look like gibberellin does nothing for it. The second test settles that:
+
+<Chart
+  title={<>Tall Variety with the Gibberellin Blocker</>}
+  bars="apart"
+  categories={["Untreated", "Blocker", "Blocker and 1 µg"]}
+  series={[{ label: "Height (cm)", mark: "bar", values: [40, 12, 39] }]}
+  valueLabel="Height (cm)"
+  description={<>Untreated tall plants reach <InlineMath math="40\text{ cm}" />. With the chemical that stops gibberellin being made, they reach only <InlineMath math="12\text{ cm}" />. Adding <InlineMath math="1\,\mu\text{g}" /> of gibberellic acid brings them back to <InlineMath math="39\text{ cm}" />.</>}
+/>
+
+Without its own gibberellin, the tall plant is as short as a dwarf, and the added hormone restores it. So the tall plant **already makes enough gibberellin** to grow fully, which is why a little more adds almost nothing.
+
+## The cross between the two dwarfs
+
+The dose test now fixes each dwarf's genotype. D1 grows with gibberellic acid, so its receptor works and its fault is in making the hormone: D1 is <InlineMath math="aaBB" />. D2 ignores even <InlineMath math="10\,\mu\text{g}" />, so its receptor is faulty: D2 is <InlineMath math="AAbb" />. Their <InlineMath math="F_1" /> is <InlineMath math="AaBb" />, which makes gibberellin and responds to it, so it is tall.
+
+Selfing <InlineMath math="AaBb" /> gives the four classes <InlineMath math="A\_B\_" />, <InlineMath math="aaB\_" />, <InlineMath math="A\_bb" /> and <InlineMath math="aabb" /> in the ratio <InlineMath math="9:3:3:1" />. A dwarf grows tall when given gibberellic acid only if its **receptor works**, so it needs at least one <InlineMath math="B" /> and lacks only the hormone:
+
+| <InlineMath math="F_2" /> class | Fraction | Makes gibberellin | Responds to gibberellin | Plant |
+| --- | --- | --- | --- | --- |
+| <InlineMath math="A\_B\_" /> | <InlineMath math="\tfrac{9}{16}" /> | yes | yes | tall |
+| <InlineMath math="aaB\_" /> | <InlineMath math="\tfrac{3}{16}" /> | no | yes | dwarf, grows tall with gibberellic acid |
+| <InlineMath math="A\_bb" /> | <InlineMath math="\tfrac{3}{16}" /> | yes | no | dwarf, no response |
+| <InlineMath math="aabb" /> | <InlineMath math="\tfrac{1}{16}" /> | no | no | dwarf, no response |
+
+<Chart
+  title={<><InlineMath math="F_2" /> Plants of D1 Crossed With D2</>}
+  bars="apart"
+  categories={["Tall", "Dwarf, grows with gibberellic acid", "Dwarf, no response"]}
+  series={[{ label: "Plants out of 16", mark: "bar", values: [9, 3, 3 + 1] }]}
+  valueLabel="Plants out of 16"
+  description={<>Of every <InlineMath math="16" /> <InlineMath math="F_2" /> plants, <InlineMath math="9" /> are tall, <InlineMath math="3" /> are dwarfs that grow tall with gibberellic acid, and <InlineMath math="4" /> are dwarfs that do not respond, the <InlineMath math="A\_bb" /> and <InlineMath math="aabb" /> plants.</>}
+/>
+
+The <InlineMath math="aabb" /> plant lacks gibberellin too, but added hormone can't help it, because it has **no working receptor**.
+
+- I: D2 stays near <InlineMath math="11\text{ cm}" /> even with <InlineMath math="10\,\mu\text{g}" />. A plant short of gibberellin would grow when given it, so D2 **cannot respond** to the hormone. Statement I is wrong.
+- II: D1 grows from <InlineMath math="10" /> to <InlineMath math="41\text{ cm}" /> as the dose rises, so it responds well and was short only because it made too little. Statement II is correct.
+- III: the blocker test shows the tall stem shrinks to <InlineMath math="12\text{ cm}" /> without gibberellin, so the hormone is essential. The small response only means its own supply is already enough. Statement III is wrong.
+- IV: only the <InlineMath math="aaB\_" /> dwarfs respond, which is <InlineMath math="\tfrac{3}{16}" /> of the <InlineMath math="F_2" />. Statement IV is correct.
+
+So statements II and IV are correct.
+
+# Why the other options are wrong
+
+- I, II and IV only assumes **every dwarf lacks gibberellin**, although D2 ignores even a large dose.
+- II, III and IV only reads the tall variety's flat line as no role for gibberellin and **ignores the blocker test**.
+- II only counts the <InlineMath math="aabb" /> plants as dwarfs that respond, because they lack gibberellin, and gets <InlineMath math="\tfrac{4}{16}=\tfrac{1}{4}" />, **forgetting they have no working receptor**.

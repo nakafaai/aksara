@@ -1,0 +1,45 @@
+# Dua perkara berubah antara kumpulan P dengan kumpulan S, jadi pecahkan jurang itu dengan membandingkan kumpulan yang berbeza dalam satu perkara sahaja
+
+Kumpulan yang saiznya berbeza tidak boleh dibandingkan melalui jumlah skornya, jadi tukar dahulu setiap jumlah kepada **skor min bagi setiap murid**:
+
+<BlockMath math="\begin{aligned}
+\text{P}: \quad \tfrac{456}{12} &= 38\\
+\text{Q}: \quad \tfrac{340}{10} &= 34\\
+\text{R}: \quad \tfrac{248}{8} &= 31\\
+\text{S}: \quad \tfrac{270}{10} &= 27
+\end{aligned}" />
+
+Dua pemboleh ubah bercampur dalam reka bentuk ini: minuman yang **sebenarnya diminum** dan minuman yang **diberitahu** kepada murid. Untuk melihat kesan satu pemboleh ubah, tetapkan pemboleh ubah yang satu lagi.
+
+<BlockMath math="\begin{aligned}
+\text{glukosa, diberitahu glukosa}: \quad \text{P}-\text{Q} &= 38-34 = 4\\
+\text{glukosa, diberitahu pemanis}: \quad \text{R}-\text{S} &= 31-27 = 4\\
+\text{diberitahu glukosa, minum glukosa}: \quad \text{P}-\text{R} &= 38-31 = 7\\
+\text{diberitahu glukosa, minum pemanis}: \quad \text{Q}-\text{S} &= 34-27 = 7\\
+\text{P}-\text{S} &= 38-27 = 11 = 4+7
+\end{aligned}" />
+
+<Chart
+  title={<>Skor Min Ujian Ingatan Setiap Kumpulan</>}
+  bars="apart"
+  categories={["Diberitahu glukosa", "Diberitahu pemanis"]}
+  series={[
+    { label: "Minum glukosa", mark: "bar", values: [38, 31] },
+    { label: "Minum pemanis", mark: "bar", values: [34, 27] },
+  ]}
+  valueLabel="Skor min (daripada 50)"
+  description={<>Murid yang diberitahu glukosa mendapat <InlineMath math="38" /> selepas glukosa dan <InlineMath math="34" /> selepas pemanis. Murid yang diberitahu pemanis mendapat <InlineMath math="31" /> selepas glukosa dan <InlineMath math="27" /> selepas pemanis. Dalam setiap pasangan, glukosa menambah <InlineMath math="4" /> markah, dan diberitahu glukosa menambah <InlineMath math="7" /> markah kepada kedua-dua minuman.</>}
+/>
+
+- I: glukosa menambah <InlineMath math="4" /> markah dalam kedua-dua pasangan. Jurang antara P dengan S ialah <InlineMath math="11" /> markah, dan separuhnya ialah <InlineMath math="5.5" />, jadi <InlineMath math="4" /> kurang daripada separuh. Pernyataan I betul.
+- II: kumpulan P meminum glukosa **dan** diberitahu glukosa, manakala kumpulan S meminum pemanis **dan** diberitahu pemanis. Dua pemboleh ubah berubah serentak, dan <InlineMath math="7" /> daripada <InlineMath math="11" /> markah itu datang daripada perkara yang diberitahu kepada murid. Pernyataan II salah.
+- III: kumpulan R hanya ada <InlineMath math="8" /> orang murid, jadi jumlah skornya kecil. Skor minnya, <InlineMath math="31" />, lebih tinggi daripada skor min kumpulan S, <InlineMath math="27" />. Glukosa menaikkan skor di sini juga. Pernyataan III salah.
+- IV: <InlineMath math="\text{P}-\text{R} = 7" /> bagi murid yang meminum glukosa dan <InlineMath math="\text{Q}-\text{S} = 7" /> bagi murid yang meminum pemanis. Pernyataan IV betul.
+
+Jadi pernyataan I dan IV betul, dan keputusan ini memang menyokong hipotesis: glukosa menaikkan skor min sebanyak <InlineMath math="4" /> markah tanpa mengira apa yang dipercayai oleh murid.
+
+# Kenapa pilihan lain salah
+
+- II dan IV sahaja menganggap kumpulan P dan S sebagai ujian yang adil kerana kedua-duanya diberitahu perkara yang benar, lalu memberikan kesemua <InlineMath math="11" /> markah kepada glukosa. **Diberitahu glukosa ialah pemboleh ubah kedua yang turut berbeza antara P dengan S**.
+- I sahaja mencari kesan diberitahu glukosa daripada kumpulan P dan Q, lalu mendapat <InlineMath math="4" />. **P dan Q diberitahu perkara yang sama dan hanya berbeza dari segi minuman**, jadi jurang itu ialah kesan glukosa.
+- I, III dan IV sahaja membandingkan jumlah skor kumpulan R dan S, <InlineMath math="248" /> berbanding <InlineMath math="270" />, **tanpa membahagikannya dengan bilangan murid yang berbeza**.

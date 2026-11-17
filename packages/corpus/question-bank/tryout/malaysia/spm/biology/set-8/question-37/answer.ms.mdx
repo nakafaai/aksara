@@ -1,0 +1,58 @@
+# Ikut alel itu turun dalam setiap cabang keluarga, dengan kebarangkalian dibahagi dua pada setiap generasi
+
+Tulis <InlineMath math="A" /> untuk alel normal dan <InlineMath math="a" /> untuk alel talasemia. Satu-satunya <InlineMath math="a" /> dalam keluarga ini bermula pada datuk G. Semua orang yang berkahwin masuk ke dalam keluarga ialah <InlineMath math="AA" />, jadi alel itu boleh sampai kepada Ahmad atau Aminah **hanya dengan diwariskan daripada G**, dengan kebarangkalian <InlineMath math="\tfrac{1}{2}" /> pada setiap langkah.
+
+## Pernyataan I
+
+G ialah <InlineMath math="Aa" /> dan H ialah <InlineMath math="AA" />, jadi S mempunyai kebarangkalian <InlineMath math="\tfrac{1}{2}" /> untuk menjadi <InlineMath math="Aa" />. Jika S ialah <InlineMath math="Aa" />, dia mewariskan <InlineMath math="a" /> kepada Ahmad dengan kebarangkalian <InlineMath math="\tfrac{1}{2}" />, kerana W hanya boleh memberi <InlineMath math="A" />:
+
+<BlockMath math="P(\text{Ahmad ialah }Aa) = \tfrac{1}{2}\times\tfrac{1}{2} = \tfrac{1}{4}" />
+
+**Dua langkah yang sama** berlaku daripada G melalui T kepada Aminah, jadi kebarangkaliannya juga <InlineMath math="\tfrac{1}{4}" />. Pernyataan I betul.
+
+<Mermaid
+  title={<>Cara Alel Itu Sampai kepada Setiap Sepupu</>}
+  description={<>Daripada datuk G yang pembawa, setiap anaknya S dan T ialah pembawa dengan kebarangkalian satu perdua. Setiap sepupu, Ahmad melalui S dan Aminah melalui T, kemudian ialah pembawa dengan kebarangkalian satu perempat. Anak menghidap hanya jika kedua-dua sepupu ialah pembawa dan kedua-duanya mewariskan alel itu, jadi satu perempat darab satu perempat darab satu perempat, iaitu satu per enam puluh empat.</>}
+  chart={`flowchart TD
+  G["G: Aa"] --> S["S: Aa dengan 1/2"]
+  G --> T["T: Aa dengan 1/2"]
+  S --> A["Ahmad: Aa dengan 1/2 x 1/2 = 1/4"]
+  T --> B["Aminah: Aa dengan 1/2 x 1/2 = 1/4"]
+  A --> C["Anak aa: 1/4 x 1/4 x 1/4 = 1/64"]
+  B --> C`}
+/>
+
+## Pernyataan II
+
+Anak ialah <InlineMath math="aa" /> hanya jika **kedua-dua** induk ialah pembawa dan kemudian anak itu menerima <InlineMath math="a" /> daripada setiap induk, yang berlaku <InlineMath math="\tfrac{1}{4}" /> daripada masa. Kebarangkalian kedua-dua sepupu datang melalui induk yang berlainan, S dan T, jadi nilai itu didarab:
+
+<BlockMath math="P(\text{anak } aa) = \tfrac{1}{4}\times\tfrac{1}{4}\times\tfrac{1}{4} = \tfrac{1}{64}" />
+
+Pernyataan II betul.
+
+## Pernyataan III
+
+Sekarang kebarangkalian wanita itu menjadi pembawa ialah <InlineMath math="\tfrac{1}{20}" />, bukan <InlineMath math="\tfrac{1}{4}" />:
+
+<BlockMath math="\begin{aligned}
+P(\text{anak } aa) &= \tfrac{1}{4}\times\tfrac{1}{20}\times\tfrac{1}{4} = \tfrac{1}{320}\\
+\frac{1/320}{1/64} &= \frac{64}{320} = \frac{1}{5}
+\end{aligned}" />
+
+Pernyataan III betul. Perkahwinan sepupu meningkatkan risiko kerana kedua-dua pasangan mungkin membawa **alel yang sama daripada seorang datuk yang dikongsi**.
+
+## Pernyataan IV
+
+Jika Ahmad ialah pembawa, kebarangkaliannya menjadi <InlineMath math="1" />. **Kebarangkalian Aminah tidak berubah**: alelnya datang melalui T, dan keputusan Ahmad tidak memberitahu apa-apa tentang apa yang T terima daripada G atau wariskan kepada Aminah. Kebarangkaliannya kekal <InlineMath math="\tfrac{1}{4}" />:
+
+<BlockMath math="P(\text{anak } aa) = 1\times\tfrac{1}{4}\times\tfrac{1}{4} = \tfrac{1}{16}" />
+
+Kebarangkalian itu meningkat kepada <InlineMath math="\tfrac{1}{16}" />, bukan <InlineMath math="\tfrac{1}{4}" />. Pernyataan IV salah.
+
+Jadi pernyataan I, II dan III betul.
+
+# Kenapa pilihan lain salah
+
+- I dan II sahaja menggunakan **<InlineMath math="\tfrac{1}{20}" /> sebagai kebarangkalian wanita itu mewariskan alel**. Pembawa hanya mewariskannya separuh daripada masa, jadi kebarangkaliannya <InlineMath math="\tfrac{1}{40}" />, dan risikonya <InlineMath math="\tfrac{1}{8}\times\tfrac{1}{40}=\tfrac{1}{320}" />, bukan <InlineMath math="\tfrac{1}{160}" />.
+- I sahaja **meninggalkan <InlineMath math="\tfrac{1}{4}" /> yang terakhir** bagi dua induk pembawa mendapat anak yang menghidap, jadi pilihan ini mendapat <InlineMath math="\tfrac{1}{16}" /> bagi sepupu dan <InlineMath math="\tfrac{1}{80}" /> bagi wanita itu, lalu menolak II dan III.
+- I, II, III dan IV menganggap **jika Ahmad membawa alel itu, Aminah juga mesti membawanya**, kerana kedua-dua cabang bermula pada G. Setiap anak G menerima alel itu secara bebas, jadi ujian Ahmad mengekalkan kebarangkalian Aminah pada <InlineMath math="\tfrac{1}{4}" />.

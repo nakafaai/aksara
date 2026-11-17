@@ -1,0 +1,62 @@
+# Each polar body marks a finished meiotic division, and the second one needs a sperm
+
+An oocyte pauses twice in meiosis. A **primary oocyte** waits in meiosis I until the LH surge. It then finishes meiosis I, giving off the first polar body, and becomes a **secondary oocyte**, which pauses again in meiosis II. Meiosis II finishes, with the second polar body, **only when a sperm enters**. So the polar bodies are a record of how far each egg has gone.
+
+<Mermaid
+  title={<>From Oocyte to Eight-Cell Embryo</>}
+  description={<>A primary oocyte with <InlineMath math="46" /> chromosomes finishes meiosis I after the LH surge or hCG and becomes a secondary oocyte with <InlineMath math="23" /> chromosomes of two chromatids each, plus a first polar body. It finishes meiosis II and gives off the second polar body only after a sperm enters. The zygote with <InlineMath math="46" /> chromosomes then divides by mitosis into <InlineMath math="2" />, <InlineMath math="4" /> and <InlineMath math="8" /> cells.</>}
+  chart={"flowchart TD\n  P[Primary oocyte, 46 chromosomes] -- hCG acts like the LH surge --> S[Secondary oocyte, 23 chromosomes of 2 chromatids, first polar body]\n  S -- only after a sperm enters --> F[Meiosis II ends, second polar body]\n  F --> Z[Zygote, 46 chromosomes]\n  Z -- mitosis --> T[2 cells]\n  T -- mitosis --> Q[4 cells]\n  Q -- mitosis --> E[8 cells, 46 chromosomes each]"}
+/>
+
+First the timing. From day <InlineMath math="12" /> at 9:00 p.m. to day <InlineMath math="14" /> at 9:00 a.m. is one full day plus half a day, <InlineMath math="24+12 = 36" /> hours. Ovulation follows the LH surge after roughly <InlineMath math="36" /> to <InlineMath math="40" /> hours, so the eggs are collected **just before the follicles burst**.
+
+Now sort the <InlineMath math="12" /> eggs on day <InlineMath math="15" />. The <InlineMath math="2" /> eggs without a polar body never finished meiosis I, so they are still primary oocytes. The <InlineMath math="10" /> with a first polar body are secondary oocytes. Of those, the <InlineMath math="8" /> with two pronuclei were entered by a sperm and gave off a second polar body, while the other <InlineMath math="2" /> are still paused in meiosis II.
+
+<BlockMath math="\begin{aligned}
+\text{first polar bodies} &= 10\\
+\text{second polar bodies} &= 8\\
+\text{total} &= 10+8 = 18
+\end{aligned}" />
+
+<Chart
+  title={<>Polar Bodies on Day <InlineMath math="15" /></>}
+  bars="apart"
+  categories={["8 fertilised eggs", "2 unfertilised secondary oocytes", "2 primary oocytes"]}
+  series={[{ label: "Polar bodies", mark: "bar", values: [16, 2, 0] }]}
+  valueLabel="Number of polar bodies"
+  description={<>The <InlineMath math="8" /> fertilised eggs carry <InlineMath math="2" /> polar bodies each, <InlineMath math="16" /> in all. The <InlineMath math="2" /> unfertilised secondary oocytes carry only their first polar body, <InlineMath math="2" /> in all, and the <InlineMath math="2" /> primary oocytes carry none. That makes <InlineMath math="18" />.</>}
+/>
+
+Next, the chromatids. A secondary oocyte has finished only meiosis I, which separates the pairs of chromosomes, not the sister chromatids. So each of its <InlineMath math="23" /> chromosomes **still has two chromatids**:
+
+<BlockMath math="23\times2 = 46\text{ chromatids per oocyte}, \qquad 46\times10 = 460\text{ chromatids}" />
+
+Last, the second cycle. Work out the proportion at each step of the first cycle, counting only the eggs that could take that step. Only the <InlineMath math="10" /> secondary oocytes, the eggs with a first polar body, were mature enough to be fertilised, and only the <InlineMath math="8" /> zygotes could go on dividing:
+
+<BlockMath math="\begin{aligned}
+\text{mature eggs fertilised} &= \tfrac{8}{10} = 0.8\\
+\text{zygotes reaching 8 cells} &= \tfrac{6}{8} = 0.75\\
+\text{second cycle}: \quad 18\times0.8 &= 14.4\text{ zygotes}, \quad 14.4\times0.75 = 10.8\text{ embryos}
+\end{aligned}" />
+
+<Chart
+  title={<>Expected Eggs and Embryos in the Second Cycle</>}
+  bars="apart"
+  categories={["Collected", "Mature", "Fertilised", "8-cell stage"]}
+  series={[{ label: "Second cycle", mark: "bar", values: [20, 18, 14.4, 10.8] }]}
+  valueLabel="Expected number"
+  description={<>Of the <InlineMath math="20" /> eggs collected in the second cycle, <InlineMath math="18" /> are mature. At the first cycle's rates, about <InlineMath math="14.4" /> are fertilised and about <InlineMath math="10.8" /> reach the <InlineMath math="8" />-cell stage.</>}
+/>
+
+- I: hCG acts on the follicles like LH, and the eggs are taken <InlineMath math="36" /> hours later, before ovulation. Statement I is correct.
+- II: <InlineMath math="10" /> first polar bodies and <InlineMath math="8" /> second ones make <InlineMath math="18" />. Statement II is correct.
+- III: the <InlineMath math="10" /> secondary oocytes hold <InlineMath math="460" /> chromatids, not <InlineMath math="230" />. Statement III is wrong.
+- IV: about <InlineMath math="10.8" /> embryos are expected, which is more than <InlineMath math="10" />. Statement IV is correct.
+
+So statements I, II and IV are correct.
+
+# Why the other options are wrong
+
+- I, II, III and IV counts **one chromatid per chromosome** in a secondary oocyte, <InlineMath math="23\times10 = 230" />, forgetting that meiosis II, which splits the sister chromatids, has not happened yet.
+- I and IV only gives **all <InlineMath math="10" /> secondary oocytes a second polar body**, <InlineMath math="10\times2 = 20" />, as if meiosis II finished without a sperm.
+- I and II only takes **all <InlineMath math="12" /> collected eggs as the base**, as if the <InlineMath math="2" /> primary oocytes could have been fertilised. Then <InlineMath math="\tfrac{6}{12}" /> of the <InlineMath math="20" /> eggs gives only <InlineMath math="10" /> embryos, which is not more than <InlineMath math="10" />.

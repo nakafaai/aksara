@@ -1,0 +1,58 @@
+# Follow the allele down each line of the family, halving the chance at every generation
+
+Write <InlineMath math="A" /> for the normal allele and <InlineMath math="a" /> for the thalassaemia allele. The only <InlineMath math="a" /> in the family starts in grandfather G. Everyone who married in is <InlineMath math="AA" />, so the allele can reach Ahmad or Aminah **only by being passed down from G**, with a chance of <InlineMath math="\tfrac{1}{2}" /> at each step.
+
+## Statement I
+
+G is <InlineMath math="Aa" /> and H is <InlineMath math="AA" />, so S has a chance of <InlineMath math="\tfrac{1}{2}" /> of being <InlineMath math="Aa" />. If S is <InlineMath math="Aa" />, he passes <InlineMath math="a" /> to Ahmad with a chance of <InlineMath math="\tfrac{1}{2}" />, because W can give only <InlineMath math="A" />:
+
+<BlockMath math="P(\text{Ahmad is }Aa) = \tfrac{1}{2}\times\tfrac{1}{2} = \tfrac{1}{4}" />
+
+**The same two steps** run from G through T to Aminah, so her chance is also <InlineMath math="\tfrac{1}{4}" />. Statement I is correct.
+
+<Mermaid
+  title={<>How the Allele Can Reach Each Cousin</>}
+  description={<>From carrier grandfather G, each of his children S and T is a carrier with probability one half. Each cousin, Ahmad through S and Aminah through T, is then a carrier with probability one quarter. A child is affected only if both cousins are carriers and both pass on the allele, so one quarter times one quarter times one quarter, one sixty-fourth.</>}
+  chart={`flowchart TD
+  G["G: Aa"] --> S["S: Aa with 1/2"]
+  G --> T["T: Aa with 1/2"]
+  S --> A["Ahmad: Aa with 1/2 x 1/2 = 1/4"]
+  T --> B["Aminah: Aa with 1/2 x 1/2 = 1/4"]
+  A --> C["Child aa: 1/4 x 1/4 x 1/4 = 1/64"]
+  B --> C`}
+/>
+
+## Statement II
+
+A child is <InlineMath math="aa" /> only if **both** parents are carriers and then the child gets <InlineMath math="a" /> from each, which happens <InlineMath math="\tfrac{1}{4}" /> of the time. The two cousins' chances come through different parents, S and T, so they multiply:
+
+<BlockMath math="P(\text{child } aa) = \tfrac{1}{4}\times\tfrac{1}{4}\times\tfrac{1}{4} = \tfrac{1}{64}" />
+
+Statement II is correct.
+
+## Statement III
+
+Now the woman's chance of being a carrier is <InlineMath math="\tfrac{1}{20}" /> instead of <InlineMath math="\tfrac{1}{4}" />:
+
+<BlockMath math="\begin{aligned}
+P(\text{child } aa) &= \tfrac{1}{4}\times\tfrac{1}{20}\times\tfrac{1}{4} = \tfrac{1}{320}\\
+\frac{1/320}{1/64} &= \frac{64}{320} = \frac{1}{5}
+\end{aligned}" />
+
+Statement III is correct. Marrying a cousin raises the risk because both partners may carry **the same allele from one shared grandparent**.
+
+## Statement IV
+
+If Ahmad is a carrier, his chance becomes <InlineMath math="1" />. **Aminah's chance does not change**: her allele comes through T, and Ahmad's result tells us nothing about what T received from G or passed to Aminah. Her chance stays <InlineMath math="\tfrac{1}{4}" />:
+
+<BlockMath math="P(\text{child } aa) = 1\times\tfrac{1}{4}\times\tfrac{1}{4} = \tfrac{1}{16}" />
+
+The probability rises to <InlineMath math="\tfrac{1}{16}" />, not <InlineMath math="\tfrac{1}{4}" />. Statement IV is wrong.
+
+So statements I, II and III are correct.
+
+# Why the other options are wrong
+
+- I and II only uses **<InlineMath math="\tfrac{1}{20}" /> as the chance that the unrelated woman passes on the allele**. A carrier passes it on only half the time, so her chance is <InlineMath math="\tfrac{1}{40}" />, and the risk is <InlineMath math="\tfrac{1}{8}\times\tfrac{1}{40}=\tfrac{1}{320}" />, not <InlineMath math="\tfrac{1}{160}" />.
+- I only **leaves out the final <InlineMath math="\tfrac{1}{4}" />** for two carrier parents having an affected child, so it gets <InlineMath math="\tfrac{1}{16}" /> for the cousins and <InlineMath math="\tfrac{1}{80}" /> for the unrelated woman and rejects II and III.
+- I, II, III and IV assumes that **if Ahmad carries the allele, Aminah must carry it too**, because both lines start at G. Each of G's children got the allele independently, so Ahmad's test leaves Aminah's chance at <InlineMath math="\tfrac{1}{4}" />.

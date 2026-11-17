@@ -1,0 +1,56 @@
+# Richte jede Antwort nach den Tagen seit ihrem eigenen Kontakt aus und beurteile einen Anstieg nach seinen Verdopplungen, nicht nach seiner Dauer
+
+In dieser Tabelle stecken zwei Arten der Abwehr. Neutrophile sind Fresszellen, eine **unspezifische Abwehr**, die auf alles Fremde gleich reagiert. Antikörper stammen von Lymphozyten, einer **spezifischen Abwehr**, die Gedächtniszellen hinterlassen kann. Bakterium C, das an Tag <InlineMath math="30" /> zum ersten Mal auftaucht, zeigt, wie eine erste Antwort bei dieser Person zu dieser Zeit aussieht.
+
+Fang mit den Neutrophilen an. Nach jedem Kontakt liegen sie nach <InlineMath math="1" />, <InlineMath math="3" />, <InlineMath math="5" /> und <InlineMath math="7" /> Tagen bei <InlineMath math="12" />, <InlineMath math="8" />, <InlineMath math="5" /> und <InlineMath math="4" />, beide Male derselbe Verlauf. Der zweite Anstieg ist weder schneller noch höher, also tragen die Neutrophilen keine Erinnerung an den ersten Kontakt. Das passt zu Fresszellen, die keine Gedächtniszellen bilden.
+
+Als Nächstes richtest du jede Antikörperantwort nach den Tagen seit **ihrem eigenen** Kontakt aus, nicht nach der Tagesnummer.
+
+<BlockMath math="\begin{aligned}
+\text{B, erste Antwort, Tag } 0+7 &= \text{Tag } 7: & 2\text{ Einheiten}\\
+\text{B, zweite Antwort, Tag } 30+7 &= \text{Tag } 37: & 200\text{ Einheiten}\\
+\text{Verhältnis} &= \tfrac{200}{2} = 100
+\end{aligned}" />
+
+<Chart
+  title={<>Antikörper gegen B und gegen C</>}
+  categories={["Tag 0", "Tag 5", "Tag 7", "Tag 13", "Tag 30", "Tag 31", "Tag 32", "Tag 33", "Tag 35", "Tag 37", "Tag 43"]}
+  series={[
+    { label: "Gegen B", mark: "line", values: [0, 1, 2, 16, 4, 4, 32, 256, 240, 200, 150] },
+    { label: "Gegen C", mark: "line", values: [0, 0, 0, 0, 0, 0, 0, 0, 1, 2, 16] },
+  ]}
+  valueLabel="Antikörper (willkürliche Einheiten)"
+  description={<>Antikörper gegen B steigen langsam von <InlineMath math="1" /> an Tag <InlineMath math="5" /> auf <InlineMath math="16" /> an Tag <InlineMath math="13" />, fallen bis Tag <InlineMath math="30" /> auf <InlineMath math="4" /> und schießen dann bis Tag <InlineMath math="33" /> auf <InlineMath math="256" />. Antikörper gegen C bleiben bis Tag <InlineMath math="33" /> bei <InlineMath math="0" /> und erreichen dann an den Tagen <InlineMath math="35" />, <InlineMath math="37" /> und <InlineMath math="43" /> die Werte <InlineMath math="1" />, <InlineMath math="2" /> und <InlineMath math="16" />, denselben Verlauf wie die erste Antwort auf B.</>}
+/>
+
+Bakterium C ist die eingebaute Kontrolle. Seine Antikörper liegen <InlineMath math="5" />, <InlineMath math="7" /> und <InlineMath math="13" /> Tage nach dem ersten Kontakt bei <InlineMath math="1" />, <InlineMath math="2" /> und <InlineMath math="16" /> Einheiten, genau wie bei B zur gleichen Zeit nach dessen erstem Kontakt. Hätte die erste Infektion das ganze Immunsystem nur allgemein aktiver gemacht, wäre auch die Antwort auf C schnell. Das ist sie nicht, also braucht die schnelle zweite Antwort auf B **Gedächtniszellen, die spezifisch für B sind**.
+
+Zuletzt das Tempo jedes Anstiegs. Zähl die Verdopplungen in jeder Anstiegsphase und teile die Zeit durch sie:
+
+<BlockMath math="\begin{aligned}
+\text{erste Antwort}: \quad 1\to16 &= 2^4,\ 4\text{ Verdopplungen in } 13-5 = 8\text{ Tagen}, & \text{Verdopplungszeit} &= \tfrac{8}{4} = 2\text{ Tage} = 48\text{ h}\\
+\text{zweite Antwort}: \quad 4\to256 &= 2^6,\ 6\text{ Verdopplungen in } 33-31 = 2\text{ Tagen}, & \text{Verdopplungszeit} &= \tfrac{2}{6}\text{ Tag} = 8\text{ h}\\
+\text{Verhältnis} &= \tfrac{48}{8} = 6
+\end{aligned}" />
+
+<Chart
+  title={<>Verdopplungszeit der Antikörper gegen B</>}
+  bars="apart"
+  categories={["Erste Antwort", "Zweite Antwort"]}
+  series={[{ label: "Verdopplungszeit", mark: "bar", values: [48, 8] }]}
+  valueLabel="Verdopplungszeit (Stunden)"
+  description={<>Während des Anstiegs verdoppeln sich die Antikörper gegen B in der ersten Antwort alle <InlineMath math="48" /> Stunden und in der zweiten alle <InlineMath math="8" /> Stunden, beim zweiten Mal also sechsmal so schnell.</>}
+/>
+
+- I: Die Neutrophilen zeigen nach beiden Kontakten denselben Anstieg und Abfall. Aussage I stimmt.
+- II: <InlineMath math="7" /> Tage nach jedem Kontakt ist das Verhältnis <InlineMath math="100" />, nicht <InlineMath math="16" />. Aussage II ist falsch.
+- III: Die erste Antwort auf C kopiert die erste Antwort auf B Punkt für Punkt, also gehört der Schub allein zu B. Aussage III stimmt.
+- IV: Die Verdopplungszeit fällt von <InlineMath math="48" /> auf <InlineMath math="8" /> Stunden, sechsmal so schnell, nicht viermal. Aussage IV ist falsch.
+
+Richtig sind also die Aussagen I und III.
+
+# Warum die anderen Antworten falsch sind
+
+- Nur I, II und III vergleicht die **beiden Gipfel**, <InlineMath math="\tfrac{256}{16} = 16" />, statt der Werte zur gleichen Zeit nach jedem Kontakt.
+- Nur I, III und IV vergleicht, **wie lange jeder Anstieg dauert**, <InlineMath math="8" /> Tage gegen <InlineMath math="2" />, und nennt das viermal so schnell. Der zweite Anstieg läuft aber auch durch mehr Verdopplungen, <InlineMath math="6" /> statt <InlineMath math="4" />, also ist seine Verdopplungszeit ein Sechstel.
+- Nur III liest den schnellen Anstieg der Neutrophilen an Tag <InlineMath math="31" /> als **Erkennen von B**, aber der Anstieg nach dem ersten Kontakt war genauso schnell und genauso hoch.

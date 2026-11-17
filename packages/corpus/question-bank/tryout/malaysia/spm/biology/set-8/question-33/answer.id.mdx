@@ -1,0 +1,57 @@
+# Uji setiap pola pewarisan pada setiap orang, lalu nilai setiap pernyataan hanya di bawah pola yang disebutnya
+
+Silsilah membuktikan satu pola hanya jika pola lain gagal di suatu tempat. Jadi coba ketiga pola pada setiap orang. Pernyataan yang diawali "jika" lalu dinilai **hanya di bawah pola itu**.
+
+## Pola yang cocok dengan keluarga ini
+
+| Pola | Perempuan M, sakit | Laki-laki F, tidak sakit | Anak laki-laki S dan T, sakit | Anak perempuan D, tidak sakit | Cocok? |
+| --- | --- | --- | --- | --- | --- |
+| Resesif autosom | <InlineMath math="aa" /> | <InlineMath math="Aa" /> | <InlineMath math="aa" /> | <InlineMath math="Aa" /> | ya |
+| Dominan autosom | <InlineMath math="Aa" /> | <InlineMath math="aa" /> | <InlineMath math="Aa" /> | <InlineMath math="aa" /> | ya |
+| Resesif terpaut X | <InlineMath math="X^aX^a" /> | <InlineMath math="X^AY" /> | <InlineMath math="X^aY" /> | <InlineMath math="X^AX^a" /> | ya |
+
+Ketiga pola cocok. Hanya anak laki-laki yang sakit, dan ini **tampak seperti** pautan X, tetapi kelainan resesif autosom memberi anak-anak yang sama jika laki-laki F kebetulan pembawa. Tiga anak terlalu sedikit untuk menyingkirkan kemungkinan itu. Pernyataan I benar.
+
+## Pernyataan II
+
+Pada kedua pola resesif, perempuan M punya dua salinan alel resesif, jadi ia pasti mewariskan satu ke anak perempuan D. Anak perempuan D tidak sakit, jadi alel satunya normal: <InlineMath math="Aa" /> atau <InlineMath math="X^AX^a" />. Ia **pasti pembawa** di kedua pola. Pernyataan II benar.
+
+## Pernyataan III
+
+Pada pautan X, anak perempuan D adalah <InlineMath math="X^AX^a" /> dan suami H, yang tidak sakit, adalah <InlineMath math="X^AY" />:
+
+<Mermaid
+  title={<>Anak dari Anak Perempuan D dan Suami H pada Pautan X</>}
+  description={<>Ibu pembawa dan ayah yang tidak sakit punya empat jenis anak yang sama mungkin: anak perempuan bukan pembawa, anak perempuan pembawa, anak laki-laki tidak sakit, dan anak laki-laki sakit, masing-masing seperempat.</>}
+  chart={`flowchart TD
+  D4["Anak perempuan D: XA Xa"] --> A["Anak perempuan XA XA: 1/4, tidak sakit"]
+  H6["Suami H: XA Y"] --> A
+  D4 --> B["Anak perempuan XA Xa: 1/4, pembawa"]
+  H6 --> B
+  D4 --> C["Anak laki-laki XA Y: 1/4, tidak sakit"]
+  H6 --> C
+  D4 --> E["Anak laki-laki Xa Y: 1/4, sakit"]
+  H6 --> E`}
+/>
+
+Anak itu harus **laki-laki dan menerima <InlineMath math="X^a" /> dari ibu**:
+
+<BlockMath math="P(\text{anak laki-laki sakit}) = P(\text{laki-laki})\times P(X^a\text{ dari ibu}) = \tfrac{1}{2}\times\tfrac{1}{2} = \tfrac{1}{4}" />
+
+Pernyataan III benar.
+
+## Pernyataan IV
+
+Pada dominan autosom, setiap orang yang punya alel <InlineMath math="A" /> pasti sakit. Anak perempuan D dan suami H sama-sama tidak sakit, jadi keduanya <InlineMath math="aa" />, dan **tidak ada anak mereka yang bisa sakit**:
+
+<BlockMath math="P(\text{anak sakit}) = 0" />
+
+Pernyataan IV salah.
+
+Jadi pernyataan I, II, dan III benar.
+
+# Mengapa pilihan lain salah
+
+- II dan III saja menganggap **"hanya anak laki-laki yang sakit" sebagai bukti pautan X**. Pola resesif autosom dengan laki-laki F sebagai pembawa juga cocok untuk setiap orang, jadi silsilah ini tidak bisa memilih di antara keduanya.
+- I, II, III, dan IV memberi anak perempuan D **alel dominan tersembunyi dari ibunya**. Alel dominan selalu tampak, jadi anak perempuan yang tidak sakit tidak mungkin membawanya.
+- I dan II saja mencari peluang **di antara anak laki-laki saja**, <InlineMath math="\tfrac{1}{2}" />, lalu menolak III. Pernyataan itu menanyakan anak pertama, yang bisa saja perempuan, jadi peluangnya harus memasukkan <InlineMath math="P(\text{laki-laki})=\tfrac{1}{2}" />.

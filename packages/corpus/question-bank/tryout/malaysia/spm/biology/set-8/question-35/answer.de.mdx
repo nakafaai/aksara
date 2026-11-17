@@ -1,0 +1,51 @@
+# Verfolge die Zahl der Zellen mit dem Gen, denn der Prozentsatz verdeckt Änderungen der Gesamtzahl
+
+Die Tabelle nennt die Gesamtzahl der T-Lymphozyten und den **Prozentsatz**, der das normale Gen trägt. Für das Kind zählt aber die **Zahl** der Zellen mit dem Gen pro <InlineMath math="\mu\text{L}" />, also Gesamtzahl mal Prozentsatz. Berechne sie zuerst für jeden Monat.
+
+## T-Lymphozyten mit dem Gen pro Mikroliter
+
+<BlockMath math="\begin{aligned}
+\text{X:}\quad & 400\cdot0{,}32=128,\quad 320\cdot0{,}20=64,\quad 200\cdot0{,}08=16,\quad 100\cdot0{,}04=4\\
+\text{Y:}\quad & 300\cdot0{,}15=45,\quad 900\cdot0{,}40=360,\quad 1500\cdot0{,}60=900,\quad 1600\cdot0{,}62=992
+\end{aligned}" />
+
+<Chart
+  title={<>T-Lymphozyten mit dem Gen in jedem Kind</>}
+  categories={["Monat 0", "Monat 6", "Monat 12", "Monat 24", "Monat 36"]}
+  series={[
+    { label: "Kind X", mark: "line", values: [0, 128, 64, 16, 4] },
+    { label: "Kind Y", mark: "line", values: [0, 45, 360, 900, 992] },
+  ]}
+  valueLabel="Zellen pro µL"
+  description={<>Bei Kind X fallen die Zellen mit dem Gen von <InlineMath math="128" /> pro Mikroliter in Monat <InlineMath math="6" /> auf <InlineMath math="64" />, <InlineMath math="16" /> und <InlineMath math="4" />. Bei Kind Y steigen sie von <InlineMath math="45" /> auf <InlineMath math="360" />, <InlineMath math="900" /> und <InlineMath math="992" /> und bleiben dann etwa gleich.</>}
+/>
+
+## Aussage I
+
+Prüf die Halbierung in jedem Abschnitt bei Kind X:
+
+<BlockMath math="\begin{aligned}
+\text{Monat 6 bis 12 (ein Schritt von 6 Monaten):}\quad & 128\to64 = \tfrac{1}{2}\\
+\text{Monat 12 bis 24 (zwei Schritte):}\quad & 64\to16 = \tfrac{1}{4} = \left(\tfrac{1}{2}\right)^{2}\\
+\text{Monat 24 bis 36 (zwei Schritte):}\quad & 16\to4 = \tfrac{1}{4} = \left(\tfrac{1}{2}\right)^{2}
+\end{aligned}" />
+
+Die Zahl **halbiert sich alle <InlineMath math="6" /> Monate**. Zwei weitere Halbierungen führen von <InlineMath math="4" /> in Monat <InlineMath math="36" /> zu <InlineMath math="2" /> in Monat <InlineMath math="42" /> und <InlineMath math="1" /> in Monat <InlineMath math="48" />. Aussage I stimmt.
+
+## Aussage II
+
+Der Prozentsatz bei Kind Y steigt auf das <InlineMath math="\tfrac{60}{15}=4" />-Fache, die Gesamtzahl aber auch auf das <InlineMath math="\tfrac{1500}{300}=5" />-Fache. Die Zahl **steigt also auf das <InlineMath math="4\cdot5=20" />-Fache**: <InlineMath math="\tfrac{900}{45}=20" />. Aussage II ist falsch.
+
+## Aussagen III und IV
+
+Das Virus setzt das normale Gen **in ein Chromosom** ein, also wird es mit dem Chromosom kopiert und bei jeder Teilung an beide Tochterzellen weitergegeben. Es geht nicht verloren. Die behandelten Zellen von Kind X sind reife T-Lymphozyten, die nur begrenzt leben und nicht endlos neue Zellen ihrer Art bilden können. Während sie absterben, halbiert sich die Zahl der Zellen mit dem Gen alle <InlineMath math="6" /> Monate. Aussage III ist falsch.
+
+Die behandelten Zellen von Kind Y sind Stammzellen im Knochenmark. Sie teilen sich weiter und bilden laufend neue T-Lymphozyten mit dem Gen, also steigt die Zahl nach einer einzigen Infusion auf etwa <InlineMath math="1000" /> pro <InlineMath math="\mu\text{L}" /> und bleibt dort. Kind X hat keine solche Quelle und bräuchte wiederholte Infusionen. Aussage IV stimmt.
+
+Richtig sind also die Aussagen I und IV.
+
+# Warum die anderen Antworten falsch sind
+
+- Nur II und IV **liest den Prozentsatz, als wäre er die Zahl der Zellen**. Bei Kind X fällt der Prozentsatz in <InlineMath math="30" /> Monaten auf ein Achtel, was langsamer aussieht als eine Halbierung alle <InlineMath math="6" /> Monate, und bei Kind Y steigt er nur auf das Vierfache. Mit der sich ändernden Gesamtzahl multipliziert halbiert sich X alle <InlineMath math="6" /> Monate, und Y steigt auf das <InlineMath math="20" />-Fache.
+- Nur I, III und IV glaubt, dass **ein eingefügtes Gen bei der Zellteilung verloren geht**. Ein Gen im Chromosom wird mit ihm verdoppelt, der Rückgang bei Kind X kommt also vom Absterben der behandelten Zellen, nicht vom Verlust des Gens.
+- Nur I übersieht, dass **Stammzellen sich selbst erneuern**, und erwartet auch für Kind Y weitere Infusionen. Das Niveau von etwa <InlineMath math="1000" /> pro <InlineMath math="\mu\text{L}" /> von Monat <InlineMath math="24" /> bis Monat <InlineMath math="36" /> zeigt eine dauerhafte Quelle neuer Zellen mit dem Gen.

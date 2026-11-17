@@ -1,0 +1,57 @@
+# Die Zeiten sind laufende Summen, also erst subtrahieren, dann jede Geschwindigkeit berechnen und weiterverwenden
+
+Die letzte Spalte ist nicht die Zeit in jedem Abschnitt. Sie ist die Zeit, seit der Sinusknoten gefeuert hat, eine **laufende Summe**. Die Zeit in einem Abschnitt ist also seine Endzeit minus die Endzeit des Abschnitts davor. Erst dann kannst du Länge durch Zeit teilen.
+
+<BlockMath math="\begin{aligned}
+\text{Vorhofwand} &: 50-0 = 50\text{ ms}, & \tfrac{50\text{ mm}}{50\text{ ms}} &= 1{,}0\text{ m s}^{-1}\\
+\text{AV-Knoten} &: 150-50 = 100\text{ ms}, & \tfrac{5\text{ mm}}{100\text{ ms}} &= 0{,}05\text{ m s}^{-1}\\
+\text{His-Bündel und Purkinje-Fasern} &: 180-150 = 30\text{ ms}, & \tfrac{120\text{ mm}}{30\text{ ms}} &= 4{,}0\text{ m s}^{-1}\\
+\text{Kammermuskel} &: 210-180 = 30\text{ ms}, & \tfrac{12\text{ mm}}{30\text{ ms}} &= 0{,}4\text{ m s}^{-1}
+\end{aligned}" />
+
+Ein Millimeter pro Millisekunde ist ein Meter pro Sekunde, das hält die Einheiten einfach.
+
+<Chart
+  title={<>Geschwindigkeit des Impulses in jedem Abschnitt</>}
+  bars="apart"
+  categories={["Vorhofwand", "AV-Knoten", "Purkinje-Fasern", "Kammermuskel"]}
+  series={[{ label: "Geschwindigkeit", mark: "bar", values: [1, 0.05, 4, 0.4] }]}
+  valueLabel="Geschwindigkeit (m/s)"
+  description={<>Der Impuls läuft mit <InlineMath math="1{,}0\text{ m/s}" /> durch die Vorhofwand, mit nur <InlineMath math="0{,}05\text{ m/s}" /> durch den AV-Knoten, mit <InlineMath math="4{,}0\text{ m/s}" /> durch His-Bündel und Purkinje-Fasern und mit <InlineMath math="0{,}4\text{ m/s}" /> durch den Kammermuskel.</>}
+/>
+
+Der langsame AV-Knoten hält den Impuls <InlineMath math="100\text{ ms}" /> zurück, damit die Vorhöfe fertig kontrahieren, bevor die Kammern anfangen. Die schnellen Purkinje-Fasern verteilen ihn dann fast sofort über die Kammern, sodass sie sich gemeinsam von der Spitze aufwärts zusammenziehen.
+
+- I: <InlineMath math="\tfrac{0{,}05}{1{,}0} = \tfrac{1}{20}" />. Aussage I stimmt.
+- II: <InlineMath math="\tfrac{4{,}0}{0{,}05} = 80" />, nicht <InlineMath math="20" />. Aussage II ist falsch.
+- III: Der neue Weg beginnt dort, wo heute die Purkinje-Fasern beginnen, am Ende des AV-Knotens. Ersetzt werden also nur die <InlineMath math="30\text{ ms}" /> von His-Bündel und Purkinje-Fasern:
+
+<BlockMath math="\begin{aligned}
+\text{durch Muskel} &: \frac{120\text{ mm}}{0{,}4\text{ m s}^{-1}} = 300\text{ ms}\\
+\text{zusätzliche Verzögerung} &: 300-30 = 270\text{ ms} = 0{,}27\text{ s}
+\end{aligned}" />
+
+Das ist mehr als <InlineMath math="0{,}2\text{ s}" /> später. Aussage III stimmt.
+
+- IV: Halbiert das Medikament die Geschwindigkeit im AV-Knoten, verdoppelt sich **nur dieser Abschnitt**, von <InlineMath math="100" /> auf <InlineMath math="200\text{ ms}" />. Bei <InlineMath math="150" /> Schlägen pro Minute feuert der Sinusknoten alle <InlineMath math="\tfrac{60}{150} = 0{,}4\text{ s}" />:
+
+<BlockMath math="\begin{aligned}
+\text{Außenfläche erreicht} &: 50+200+30+30 = 310\text{ ms}\\
+\text{nächstes Feuern des Sinusknotens} &: 400\text{ ms}
+\end{aligned}" />
+
+Der Impuls erreicht die Außenfläche <InlineMath math="90\text{ ms}" /> vor dem nächsten Feuern. Aussage IV ist falsch.
+
+<Mermaid
+  title={<>Zeit in jedem Abschnitt, normal und mit Medikament</>}
+  description={<>Normal braucht der Impuls <InlineMath math="50\text{ ms}" /> in der Vorhofwand, <InlineMath math="100\text{ ms}" /> im AV-Knoten, <InlineMath math="30\text{ ms}" /> in His-Bündel und Purkinje-Fasern und <InlineMath math="30\text{ ms}" /> im Kammermuskel, zusammen <InlineMath math="210\text{ ms}" />. Das Medikament verdoppelt nur die <InlineMath math="100\text{ ms}" /> des AV-Knotens auf <InlineMath math="200\text{ ms}" />, also wird die Außenfläche bei <InlineMath math="310\text{ ms}" /> erreicht, noch vor dem nächsten Feuern bei <InlineMath math="400\text{ ms}" />.</>}
+  chart={"flowchart LR\n  SA[Sinusknoten feuert, 0 ms] -- 50 ms --> AV[AV-Knoten]\n  AV -- 100 ms, mit Medikament 200 ms --> H[His-Bündel]\n  H -- 30 ms --> I[Innenfläche an der Spitze]\n  I -- 30 ms --> O[Außenfläche, 210 ms, mit Medikament 310 ms]\n  O --> N[Nächstes Feuern bei 150 pro Minute, 400 ms]"}
+/>
+
+Richtig sind also die Aussagen I und III.
+
+# Warum die anderen Antworten falsch sind
+
+- Nur II und III nimmt die **laufenden Summen als Zeit in jedem Abschnitt**. Dann scheint der AV-Knoten <InlineMath math="150\text{ ms}" /> zu brauchen, seine Geschwindigkeit ist <InlineMath math="\tfrac{5}{150}\approx0{,}033\text{ m s}^{-1}" />, ein Dreißigstel der Vorhofgeschwindigkeit, und die Purkinje-Fasern mit <InlineMath math="\tfrac{120}{180}\approx0{,}67\text{ m s}^{-1}" /> wirken genau <InlineMath math="20" />-mal so schnell.
+- Nur I, III und IV verdoppelt die **ganzen** <InlineMath math="210\text{ ms}" /> auf <InlineMath math="420\text{ ms}" />, als würde jeder Abschnitt langsamer, sodass der Impuls scheinbar erst nach dem nächsten Feuern bei <InlineMath math="400\text{ ms}" /> ankommt.
+- Nur I vergleicht die <InlineMath math="300\text{ ms}" /> durch Muskel mit den ganzen <InlineMath math="180\text{ ms}" /> vom Sinusknoten bis zur Innenfläche, eine Verzögerung von nur <InlineMath math="120\text{ ms}" />. **Der neue Weg ersetzt nur den Abschnitt von <InlineMath math="30\text{ ms}" />**, und die ersten <InlineMath math="150\text{ ms}" /> bleiben, wie sie sind.

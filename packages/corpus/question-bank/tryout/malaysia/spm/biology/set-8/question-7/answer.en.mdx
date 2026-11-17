@@ -1,0 +1,40 @@
+# The maltose left in a tube is only what amylase made minus what maltase took, so add back the maltose that became glucose
+
+Each tube shows what is **left** after <InlineMath math="10" /> minutes, not what each enzyme did. Work back to the two rates:
+
+- Every maltose that maltase breaks down gives **two** glucose, so maltose broken down <InlineMath math="= \tfrac{\text{glucose}}{2}" />.
+- Amylase made the maltose still there **plus** the maltose already broken down.
+
+<BlockMath math="\begin{aligned}
+\text{P}: \quad \text{maltase} = \tfrac{4}{2} = 2, &\quad \text{amylase} = 6+2 = 8\\
+\text{Q}: \quad \text{maltase} = \tfrac{4}{2} = 2, &\quad \text{amylase} = 14+2 = 16\\
+\text{R}: \quad \text{maltase} = \tfrac{8}{2} = 4, &\quad \text{amylase} = 4+4 = 8\\
+\text{S}: \quad \text{maltase} = \tfrac{8}{2} = 4, &\quad \text{amylase} = 12+4 = 16
+\end{aligned}" />
+
+All values are mmol of maltose in <InlineMath math="10" /> minutes.
+
+<Chart
+  title={<>Maltose Made and Maltose Broken Down in <InlineMath math="10" /> Minutes</>}
+  bars="apart"
+  categories={["P", "Q", "R", "S"]}
+  series={[
+    { label: "Made by amylase (mmol)", mark: "bar", values: [8, 16, 8, 16] },
+    { label: "Broken down by maltase (mmol)", mark: "bar", values: [2, 2, 4, 4] },
+  ]}
+  valueLabel="Maltose (mmol in 10 min)"
+  description={<>Amylase makes <InlineMath math="8" /> mmol of maltose with <InlineMath math="1" /> unit and <InlineMath math="16" /> with <InlineMath math="2" /> units, whatever the maltase. Maltase breaks down <InlineMath math="2" /> mmol with <InlineMath math="1" /> unit and <InlineMath math="4" /> with <InlineMath math="2" /> units, whatever the maltose present.</>}
+/>
+
+- I: maltase breaks down <InlineMath math="4" /> mmol in R against <InlineMath math="2" /> in P, twice as fast. Statement I is correct.
+- II: amylase makes <InlineMath math="8" /> mmol in both P and R. Tube R simply has less maltose **left**, because more of it has turned into glucose. Statement II is correct.
+- III: tube Q holds <InlineMath math="14" /> mmol of maltose against <InlineMath math="6" /> in P, yet maltase still breaks down only <InlineMath math="2" /> mmol. Extra substrate doesn't help, so its active sites are already all busy. Only extra maltase, in R, raises the rate. Maltase is limited by **its own amount**, not by maltose. Statement III is wrong.
+- IV: in S, amylase makes <InlineMath math="16" /> and maltase breaks down <InlineMath math="4" />, so amylase is <InlineMath math="\tfrac{16}{4} = 4" /> times as fast, not twice. Statement IV is wrong.
+
+So statements I and II are correct.
+
+# Why the other options are wrong
+
+- I, II and III only reads the unchanged glucose in Q as a shortage of maltose, **when Q has more than twice the maltose and still no extra glucose**, which shows that maltase is saturated.
+- I, II and IV only takes the <InlineMath math="8" /> mmol of glucose in S as <InlineMath math="8" /> mmol of maltose broken down, **forgetting that each maltose gives two glucose**, so it finds <InlineMath math="\tfrac{16}{8} = 2" />.
+- I only compares the maltose left in P and R, <InlineMath math="6" /> against <InlineMath math="4" />, and decides that extra maltase slowed amylase. **The maltose that maltase has already turned into glucose must be added back** before judging amylase.

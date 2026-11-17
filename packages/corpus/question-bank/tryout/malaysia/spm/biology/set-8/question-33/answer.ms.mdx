@@ -1,0 +1,57 @@
+# Uji setiap corak pewarisan pada setiap individu, kemudian nilai setiap pernyataan hanya di bawah corak yang disebutnya
+
+Salasilah keluarga membuktikan satu corak hanya apabila corak lain gagal di suatu tempat. Jadi cuba setiap tiga corak itu pada setiap individu. Pernyataan yang bermula dengan "jika" kemudian dinilai **di bawah corak itu sahaja**.
+
+## Corak yang sepadan dengan keluarga ini
+
+| Corak | Wanita M, menghidap | Lelaki F, tidak menghidap | Anak lelaki S dan T, menghidap | Anak perempuan D, tidak menghidap | Sepadan? |
+| --- | --- | --- | --- | --- | --- |
+| Resesif autosom | <InlineMath math="aa" /> | <InlineMath math="Aa" /> | <InlineMath math="aa" /> | <InlineMath math="Aa" /> | ya |
+| Dominan autosom | <InlineMath math="Aa" /> | <InlineMath math="aa" /> | <InlineMath math="Aa" /> | <InlineMath math="aa" /> | ya |
+| Resesif terangkai X | <InlineMath math="X^aX^a" /> | <InlineMath math="X^AY" /> | <InlineMath math="X^aY" /> | <InlineMath math="X^AX^a" /> | ya |
+
+Ketiga-tiga corak sepadan. Hanya anak lelaki yang menghidap, dan ini **kelihatan seperti** pewarisan terangkai X, tetapi keadaan resesif autosom memberikan anak yang sama jika lelaki F kebetulan seorang pembawa. Tiga orang anak terlalu sedikit untuk menolak kemungkinan itu. Pernyataan I betul.
+
+## Pernyataan II
+
+Dalam kedua-dua corak resesif, wanita M mempunyai dua salinan alel resesif, jadi dia mesti mewariskan satu kepada anak perempuan D. Anak perempuan D tidak menghidap, jadi alelnya yang satu lagi normal: <InlineMath math="Aa" /> atau <InlineMath math="X^AX^a" />. Dia **pasti pembawa** dalam kedua-dua keadaan. Pernyataan II betul.
+
+## Pernyataan III
+
+Dalam pewarisan terangkai X, anak perempuan D ialah <InlineMath math="X^AX^a" /> dan suami H, yang tidak menghidap, ialah <InlineMath math="X^AY" />:
+
+<Mermaid
+  title={<>Anak bagi Anak Perempuan D dan Suami H dalam Pewarisan Terangkai X</>}
+  description={<>Ibu pembawa dan bapa yang tidak menghidap mempunyai empat jenis anak yang sama mungkin: anak perempuan bukan pembawa, anak perempuan pembawa, anak lelaki yang tidak menghidap dan anak lelaki yang menghidap, masing-masing satu perempat.</>}
+  chart={`flowchart TD
+  D4["Anak perempuan D: XA Xa"] --> A["Anak perempuan XA XA: 1/4, tidak menghidap"]
+  H6["Suami H: XA Y"] --> A
+  D4 --> B["Anak perempuan XA Xa: 1/4, pembawa"]
+  H6 --> B
+  D4 --> C["Anak lelaki XA Y: 1/4, tidak menghidap"]
+  H6 --> C
+  D4 --> E["Anak lelaki Xa Y: 1/4, menghidap"]
+  H6 --> E`}
+/>
+
+Anak itu mesti **lelaki dan menerima <InlineMath math="X^a" /> daripada ibu**:
+
+<BlockMath math="P(\text{anak lelaki menghidap}) = P(\text{lelaki})\times P(X^a\text{ daripada ibu}) = \tfrac{1}{2}\times\tfrac{1}{2} = \tfrac{1}{4}" />
+
+Pernyataan III betul.
+
+## Pernyataan IV
+
+Dalam pewarisan dominan autosom, setiap orang yang mempunyai alel <InlineMath math="A" /> menghidap. Anak perempuan D dan suami H kedua-duanya tidak menghidap, jadi kedua-duanya ialah <InlineMath math="aa" />, dan **tiada anak mereka yang boleh menghidap**:
+
+<BlockMath math="P(\text{anak menghidap}) = 0" />
+
+Pernyataan IV salah.
+
+Jadi pernyataan I, II dan III betul.
+
+# Kenapa pilihan lain salah
+
+- II dan III sahaja menganggap **"hanya anak lelaki yang menghidap" sebagai bukti pewarisan terangkai X**. Corak resesif autosom dengan lelaki F sebagai pembawa juga sepadan dengan setiap individu, jadi salasilah ini tidak dapat memilih antara kedua-duanya.
+- I, II, III dan IV memberikan anak perempuan D **alel dominan tersembunyi daripada ibunya**. Alel dominan sentiasa ditunjukkan, jadi anak perempuan yang tidak menghidap tidak boleh membawanya.
+- I dan II sahaja mencari kebarangkalian **dalam kalangan anak lelaki sahaja**, <InlineMath math="\tfrac{1}{2}" />, lalu menolak III. Pernyataan itu bertanya tentang anak pertama, yang mungkin perempuan, jadi kebarangkalian itu mesti termasuk <InlineMath math="P(\text{lelaki})=\tfrac{1}{2}" />.

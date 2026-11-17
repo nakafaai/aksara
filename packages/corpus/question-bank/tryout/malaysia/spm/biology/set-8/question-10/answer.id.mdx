@@ -1,0 +1,49 @@
+# Bandingkan oksigen yang benar-benar diambil tiap organisme dari satu liter mediumnya, lalu skalakan menurut volume dan massa
+
+Kandungan oksigen saja, <InlineMath math="7" /> lawan <InlineMath math="210" />, bukanlah yang didapat hewan itu. Hanya **sebagian** yang diambil saat medium melewati insang atau alveolus, jadi mulailah dari situ:
+
+<BlockMath math="\begin{aligned}
+\text{ikan}: \quad 7\times0{,}80 &= 5{,}6\text{ cm}^3\text{ oksigen per dm}^3\text{ air}\\
+\text{manusia}: \quad 210\times0{,}25 &= 52{,}5\text{ cm}^3\text{ oksigen per dm}^3\text{ udara}
+\end{aligned}" />
+
+<Chart
+  title={<>Oksigen di dalam dan yang Diambil dari <InlineMath math="1\text{ dm}^3" /> Medium</>}
+  bars="apart"
+  categories={["Ikan, air", "Manusia, udara"]}
+  series={[
+    { label: "Oksigen di medium (cm³)", mark: "bar", values: [7, 210] },
+    { label: "Oksigen yang diambil (cm³)", mark: "bar", values: [5.6, 52.5] },
+  ]}
+  valueLabel="Oksigen (cm³ per dm³)"
+  description={<>Satu <InlineMath math="\text{dm}^3" /> air berisi <InlineMath math="7\text{ cm}^3" /> oksigen dan ikan mengambil <InlineMath math="5{,}6" />. Satu <InlineMath math="\text{dm}^3" /> udara berisi <InlineMath math="210\text{ cm}^3" /> dan manusia mengambil <InlineMath math="52{,}5" />. Selisih oksigen yang diambil sekitar <InlineMath math="9{,}4" /> kali, bukan <InlineMath math="30" /> kali seperti kandungan oksigennya.</>}
+/>
+
+Sekarang ubah angka ini menjadi medium yang diperlukan untuk setiap <InlineMath math="\text{cm}^3" /> oksigen, menurut volume lalu menurut massa:
+
+<BlockMath math="\begin{aligned}
+\text{rasio volume} &= \frac{52{,}5}{5{,}6} \approx 9{,}4\\
+\text{air per cm}^3\text{ oksigen} &= \frac{1}{5{,}6}\text{ dm}^3\times1000\text{ g} \approx 179\text{ g}\\
+\text{udara per cm}^3\text{ oksigen} &= \frac{1}{52{,}5}\text{ dm}^3\times1{,}2\text{ g} \approx 0{,}023\text{ g}\\
+\text{rasio massa} &= \frac{179}{0{,}023} \approx 7800
+\end{aligned}" />
+
+- I: sekitar <InlineMath math="9{,}4" /> kali volumenya. Pernyataan I benar.
+- II: ikan menggerakkan sekitar <InlineMath math="7800" /> kali massanya, bukan <InlineMath math="830" />. Pernyataan II salah.
+- III: <InlineMath math="\tfrac{250}{52{,}5} \approx 4{,}8\text{ dm}^3" /> udara per menit. Pernyataan III benar.
+- IV: air yang hangat memberi lebih sedikit oksigen per <InlineMath math="\text{dm}^3" />, jadi ikan butuh air **lebih banyak**, bukan lebih sedikit:
+
+<BlockMath math="\begin{aligned}
+\text{sekarang}: \quad \frac{1{,}4}{5{,}6} &= 0{,}25\text{ dm}^3\text{ per menit}\\
+\text{air hangat}: \quad \frac{1{,}4}{5\times0{,}80} = \frac{1{,}4}{4{,}0} &= 0{,}35\text{ dm}^3\text{ per menit}
+\end{aligned}" />
+
+Itu <InlineMath math="40\%" /> lebih banyak air, bukan <InlineMath math="30\%" /> lebih sedikit. Pernyataan IV salah.
+
+Jadi pernyataan I dan III benar. Air adalah medium yang mahal: ikan harus mendorong aliran yang rapat dan berat melewati insangnya demi oksigen yang sangat sedikit, dan itulah sebabnya insangnya mengambil bagian yang begitu besar dari oksigen yang lewat.
+
+# Mengapa pilihan lain salah
+
+- I, II, dan III saja hanya membagi massa jenisnya, <InlineMath math="\tfrac{1000}{1{,}2} \approx 830" />, **lupa bahwa ikan juga butuh sekitar <InlineMath math="9{,}4" /> kali volumenya** untuk setiap <InlineMath math="\text{cm}^3" /> oksigen.
+- I, III, dan IV saja mengalikan air dengan <InlineMath math="\tfrac{5}{7} \approx 0{,}7" />, **seolah oksigen yang lebih sedikit di air berarti lebih sedikit air yang harus dipompa**, padahal ikan harus membagi kebutuhannya dengan angka yang lebih kecil.
+- III saja membandingkan kandungan oksigen, <InlineMath math="\tfrac{210}{7} = 30" />, lalu menolak I. **Hanya <InlineMath math="80\%" /> dan <InlineMath math="25\%" /> dari oksigen itu yang diambil**, sehingga selisihnya menyusut menjadi sekitar <InlineMath math="9{,}4" />.

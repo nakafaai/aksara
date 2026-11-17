@@ -1,0 +1,70 @@
+# Kulit yang hangat membuat setiap liter darah membawa lebih sedikit panas, jadi bagian kulit dari curah jantung yang terbatas harus membesar
+
+Untuk melepas panas, tubuh harus memindahkan panas itu ke kulit dulu, dan darahlah yang mengerjakannya. Banyaknya panas yang dibawa satu liter darah bergantung pada **selisih antara suhu inti tubuh dan suhu kulit**. Saat kulit hangat, selisih itu mengecil, jadi kulit butuh jauh lebih banyak darah untuk panas yang sama. Curah jantung terbatas, jadi kulit lalu bersaing dengan otot.
+
+**Panas yang dibawa setiap liter darah**:
+
+<BlockMath math="\begin{aligned}
+\text{Ruang P}: \quad 3{,}6\times(38{,}0-33{,}0) &= 3{,}6\times5{,}0 = 18\text{ kJ per L}\\
+\text{Ruang Q}: \quad 3{,}6\times(38{,}5-37{,}0) &= 3{,}6\times1{,}5 = 5{,}4\text{ kJ per L}
+\end{aligned}" />
+
+**Aliran darah ke kulit yang dibutuhkan untuk <InlineMath math="36\text{ kJ}" /> per menit**:
+
+<BlockMath math="\begin{aligned}
+\text{Ruang P}: \quad \frac{36}{18} &= 2{,}0\text{ L per menit}\\
+\text{Ruang Q}: \quad \frac{36}{5{,}4} &\approx 6{,}67\text{ L per menit}
+\end{aligned}" />
+
+**Darah yang tersisa untuk kulit** sesudah otot dan organ lain: <InlineMath math="20-14-3 = 3\text{ L}" /> per menit.
+
+<Chart
+  title={<>Aliran Darah yang Dibutuhkan Dibanding Batas Jantung</>}
+  bars="apart"
+  categories={["Otot", "Organ lain", "Kulit", "Total dibutuhkan", "Batas jantung"]}
+  series={[
+    { label: "Ruang P", mark: "bar", values: [14, 3, 2, 19, 20] },
+    { label: "Ruang Q", mark: "bar", values: [14, 3, 6.67, 23.67, 20] },
+  ]}
+  valueLabel="Aliran darah (L per menit)"
+  description={<>Di ruang P, otot, organ lain, dan kulit butuh <InlineMath math="14" />, <InlineMath math="3" />, dan <InlineMath math="2" /> liter per menit, total <InlineMath math="19" />, masih di bawah batas jantung <InlineMath math="20" /> liter. Di ruang Q, kulit butuh sekitar <InlineMath math="6{,}67" /> liter, jadi totalnya sekitar <InlineMath math="23{,}67" />, jauh di atas batas.</>}
+/>
+
+- I: ruang P butuh <InlineMath math="14+3+2 = 19\text{ L}" /> per menit, di dalam batas <InlineMath math="20\text{ L}" />. Pernyataan I benar.
+- II: kulit paling banyak mendapat <InlineMath math="3\text{ L}" /> dari <InlineMath math="6{,}67\text{ L}" /> yang dibutuhkannya, dan <InlineMath math="\tfrac{3}{6{,}67}\approx45\%" /> kurang dari separuh. Pernyataan II benar.
+- III: <InlineMath math="3\text{ L}" /> itu tetap membawa sebagian panas, jadi hanya sisanya yang tersimpan:
+
+<BlockMath math="\begin{aligned}
+\text{panas yang dibawa} &= 3\times5{,}4 = 16{,}2\text{ kJ per menit}\\
+\text{panas yang tersimpan} &= 36-16{,}2 = 19{,}8\text{ kJ per menit}\\
+\text{kenaikan suhu inti} &= \frac{19{,}8}{245}\approx0{,}081^\circ\text{C per menit}
+\end{aligned}" />
+
+Itu kurang dari <InlineMath math="0{,}12^\circ\text{C}" /> per menit. Pernyataan III salah.
+
+<Chart
+  title={<>Panas di Ruang Q per Menit</>}
+  bars="apart"
+  categories={["Dihasilkan", "Dibawa ke kulit", "Tersimpan"]}
+  series={[{ label: "Panas", mark: "bar", values: [36, 16.2, 19.8] }]}
+  valueLabel="Panas (kJ per menit)"
+  description={<>Di ruang Q, otot menghasilkan <InlineMath math="36\text{ kJ}" /> per menit. <InlineMath math="3\text{ L}" /> darah yang tersisa untuk kulit membawa <InlineMath math="16{,}2\text{ kJ}" />, jadi <InlineMath math="19{,}8\text{ kJ}" /> tersimpan setiap menit, yang menghangatkan tubuh sekitar <InlineMath math="0{,}081^\circ\text{C}" /> per menit.</>}
+/>
+
+- IV: kalau otot butuh <InlineMath math="16\text{ L}" />, panas naik dengan perbandingan yang sama, dan kulit juga butuh lebih banyak darah:
+
+<BlockMath math="\begin{aligned}
+\text{panas} &= 36\times\frac{16}{14}\approx41{,}1\text{ kJ per menit}\\
+\text{kulit} &= \frac{41{,}1}{18}\approx2{,}29\text{ L per menit}\\
+\text{total} &= 16+3+2{,}29\approx21{,}3\text{ L per menit}
+\end{aligned}" />
+
+Itu melebihi batas jantung <InlineMath math="20\text{ L}" />. Pernyataan IV salah.
+
+Jadi pernyataan I dan II benar. Dalam panas yang lembap, pesepeda itu harus memperlambat kayuhannya, atau suhu intinya terus naik walau jantungnya memompa sekuat mungkin.
+
+# Mengapa pilihan lain salah
+
+- I saja memberi setiap liter darah <InlineMath math="18\text{ kJ}" /> yang sama di kedua ruang. Ruang Q lalu juga hanya butuh <InlineMath math="2\text{ L}" /> untuk kulit, sisa <InlineMath math="3\text{ L}" /> tampak berlebih, dan tidak ada panas yang tampak tersimpan. **Kulit yang hangat memangkas selisih suhu dari <InlineMath math="5{,}0" /> menjadi <InlineMath math="1{,}5^\circ\text{C}" />**, jadi setiap liter hanya membawa <InlineMath math="5{,}4\text{ kJ}" />.
+- I, II, dan III saja menganggap kulit **sama sekali tidak** melepas panas begitu mendapat darah kurang dari kebutuhannya, sehingga seluruh <InlineMath math="36\text{ kJ}" /> tampak tersimpan, <InlineMath math="\tfrac{36}{245}\approx0{,}15^\circ\text{C}" /> per menit. **<InlineMath math="3\text{ L}" /> itu tetap membawa pergi <InlineMath math="16{,}2\text{ kJ}" />**.
+- I dan IV saja lupa <InlineMath math="3\text{ L}" /> untuk otak, jantung, dan organ lain. Di IV, <InlineMath math="16+2{,}29\approx18{,}3\text{ L}" /> lalu tampak muat, dan ruang Q tampak menyisakan <InlineMath math="6\text{ L}" /> untuk kulit, yaitu <InlineMath math="90\%" /> kebutuhannya. **Organ-organ itu tetap mendapat darahnya apa pun yang dilakukan otot**.

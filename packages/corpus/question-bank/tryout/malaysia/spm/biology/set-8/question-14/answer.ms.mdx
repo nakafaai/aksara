@@ -1,0 +1,55 @@
+# Reseptor pada grid: jaraknya ialah panjang, tetapi bilangan per luas mengikut kuasa duanya
+
+Ambang itu memberitahu kamu **jarak** antara reseptor dalam satu arah. Namakan jarak itu <InlineMath math="d" />, dalam milimeter. Segi empat sama kulit bersisi <InlineMath math="1\text{ cm}" /> ialah <InlineMath math="10\text{ mm}" /> panjang dan <InlineMath math="10\text{ mm}" /> lebar, jadi segi empat itu memuatkan <InlineMath math="\tfrac{10}{d}" /> reseptor di sepanjang setiap sisi. Jadi
+
+<BlockMath math="\text{reseptor per cm}^2 = \left(\frac{10}{d}\right)^2" />
+
+Darabkan dengan luas setiap kawasan untuk mendapat jumlah keseluruhannya.
+
+<BlockMath math="\begin{aligned}
+\text{pad hujung jari} &: \left(\tfrac{10}{2}\right)^2 = 25\text{ per cm}^2, & 25\times2 &= 50\\
+\text{tapak tangan} &: \left(\tfrac{10}{10}\right)^2 = 1\text{ per cm}^2, & 1\times100 &= 100\\
+\text{lengan bawah} &: \left(\tfrac{10}{40}\right)^2 = 0.0625\text{ per cm}^2, & 0.0625\times400 &= 25\\
+\text{belakang badan} &: \left(\tfrac{10}{50}\right)^2 = 0.04\text{ per cm}^2, & 0.04\times1500 &= 60
+\end{aligned}" />
+
+<Chart
+  title={<>Reseptor Sentuhan dalam Setiap Kawasan</>}
+  bars="apart"
+  categories={["Pad hujung jari", "Tapak tangan", "Lengan bawah", "Belakang badan"]}
+  series={[{ label: "Reseptor", mark: "bar", values: [50, 100, 25, 60] }]}
+  valueLabel="Bilangan reseptor sentuhan"
+  description={<>Menurut model grid, satu pad hujung jari mengandungi <InlineMath math="50" /> reseptor sentuhan, tapak tangan <InlineMath math="100" />, seluruh lengan bawah hanya <InlineMath math="25" /> dan seluruh belakang badan <InlineMath math="60" />. Kawasan besar dengan jarak yang lebar boleh mengandungi lebih sedikit reseptor berbanding kawasan kecil dengan jarak yang sempit.</>}
+/>
+
+Inilah sebabnya hujung jari dapat membaca tekstur halus dan Braille. Banyak reseptor, masing-masing dengan neuron derianya sendiri, berkumpul dalam kawasan yang kecil, jadi otak menerima maklumat yang terperinci daripadanya.
+
+- I: bagi setiap <InlineMath math="\text{cm}^2" />, <InlineMath math="\tfrac{25}{0.04} = 625" />, iaitu <InlineMath math="\left(\tfrac{50}{2}\right)^2" />. Pernyataan I betul.
+- II: <InlineMath math="100" /> reseptor dalam tapak tangan berbanding <InlineMath math="60" /> dalam belakang badan. Belakang badan <InlineMath math="15" /> kali lebih luas, tetapi reseptornya <InlineMath math="25" /> kali lebih jarang. Pernyataan II betul.
+- III: <InlineMath math="25" /> reseptor dalam seluruh lengan bawah berbanding <InlineMath math="50" /> dalam satu pad hujung jari. Pernyataan III betul.
+- IV: gunakan peraturan grid secara terbalik. Ambang <InlineMath math="3\text{ mm}" /> bermaksud jarak <InlineMath math="3\text{ mm}" />, jadi
+
+<BlockMath math="\begin{aligned}
+\text{reseptor per cm}^2 &= \left(\tfrac{10}{3}\right)^2 \approx 11.1\\
+\text{reseptor yang tinggal dalam pad} &\approx 11.1\times2 = 22.2\\
+\text{reseptor yang hilang} &\approx 50-22.2 = 27.8
+\end{aligned}" />
+
+<Chart
+  title={<>Pad Hujung Jari yang Cedera</>}
+  bars="apart"
+  categories={["Pad sebelum", "Pad selepas", "Hilang", "Seluruh lengan bawah"]}
+  series={[{ label: "Reseptor", mark: "bar", values: [50, 22.2, 27.8, 25] }]}
+  valueLabel="Bilangan reseptor sentuhan"
+  description={<>Pada ambang <InlineMath math="3\text{ mm}" />, pad itu tinggal kira-kira <InlineMath math="22.2" /> daripada <InlineMath math="50" /> reseptornya, jadi pad itu kehilangan kira-kira <InlineMath math="27.8" />, lebih daripada <InlineMath math="25" /> reseptor dalam seluruh lengan bawah.</>}
+/>
+
+Pad itu kehilangan kira-kira <InlineMath math="27.8" /> reseptor, lebih daripada <InlineMath math="25" /> reseptor dalam seluruh lengan bawah. Pernyataan IV salah.
+
+Jadi pernyataan I, II dan III betul.
+
+# Kenapa pilihan lain salah
+
+- IV sahaja **terlupa mengkuasaduakan** jarak. Pilihan ini mengira reseptor per sentimeter sebagai <InlineMath math="\tfrac{10}{d}" />, jadi hujung jari kelihatan hanya <InlineMath math="25" /> kali lebih padat daripada belakang badan, belakang badan dan lengan bawah kelihatan mengandungi reseptor paling banyak, dan pad yang cedera kelihatan kehilangan beberapa reseptor sahaja berbanding lengan bawah yang mengandungi <InlineMath math="100" />.
+- I sahaja menilai seluruh kawasan **berdasarkan luasnya sahaja**, jadi belakang badan dan lengan bawah yang luas kelihatan mengandungi lebih banyak reseptor berbanding tapak tangan dan hujung jari.
+- I, II, III dan IV mengkuasaduakan jarak untuk I hingga III tetapi kemudian membiarkan bilangan reseptor berkurang **sekadar mengikut kenaikan ambang**, kepada <InlineMath math="\tfrac{2}{3}" /> daripada <InlineMath math="50" />, jadi pad itu kelihatan kehilangan kira-kira <InlineMath math="16.7" /> reseptor sahaja dan bukannya mengikut kuasa duanya, <InlineMath math="\left(\tfrac{2}{3}\right)^2" />.

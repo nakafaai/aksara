@@ -1,0 +1,44 @@
+# Volume gelas kimia sembilan kali volume tabung, jadi setiap gram yang keluar terasa sembilan kali lebih besar di dalam tabung
+
+Tabel hanya memberimu data gelas kimia. Untuk menilai tabung, ikuti **massa glukosanya**: apa pun yang keluar dari tabung pasti muncul di gelas kimia. Gelas kimia berisi <InlineMath math="180\text{ cm}^3" />, sedangkan tabung hanya <InlineMath math="20\text{ cm}^3" />, jadi kenaikan kecil di gelas kimia berarti penurunan besar di dalam tabung.
+
+Mulai dari tabung pada menit ke-<InlineMath math="0" />: <InlineMath math="2{,}0\text{ g}" /> dalam <InlineMath math="20\text{ cm}^3" /> sama dengan <InlineMath math="10\text{ g per }100\text{ cm}^3" />. Kalau gelas kimia terbaca <InlineMath math="c" /> gram per <InlineMath math="100\text{ cm}^3" />, maka
+
+<BlockMath math="\begin{aligned}
+\text{glukosa di gelas kimia} &= c\times\frac{180}{100} = 1{,}8c\text{ g}\\
+\text{glukosa yang tersisa di tabung} &= 2{,}0-1{,}8c\text{ g}\\
+\text{konsentrasi di tabung} &= \frac{2{,}0-1{,}8c}{20}\times100 = 10-9c\text{ g per }100\text{ cm}^3
+\end{aligned}" />
+
+<Chart
+  title={<>Konsentrasi Glukosa di Dalam dan di Luar Tabung</>}
+  categories={["0 menit", "10 menit", "20 menit", "40 menit", "80 menit"]}
+  series={[
+    { label: "Di dalam tabung", mark: "line", values: [10, 6.4, 4.24, 2.17, 1.18] },
+    { label: "Gelas kimia", mark: "line", values: [0, 0.4, 0.64, 0.87, 0.98] },
+  ]}
+  valueLabel="Glukosa (g per 100 cm³)"
+  description={<>Di dalam tabung, yang dihitung sebagai <InlineMath math="10-9c" />, konsentrasi turun dari <InlineMath math="10" /> ke <InlineMath math="6{,}4" />, <InlineMath math="4{,}24" />, <InlineMath math="2{,}17" />, dan <InlineMath math="1{,}18\text{ g per }100\text{ cm}^3" />. Gelas kimia naik dari <InlineMath math="0" /> ke <InlineMath math="0{,}98" />. Kedua garis mendekati <InlineMath math="1{,}0\text{ g per }100\text{ cm}^3" />, dan jarak di antara keduanya, yaitu gradien konsentrasi, menyusut dengan cepat.</>}
+/>
+
+- I: pada menit ke-<InlineMath math="20" />, <InlineMath math="10-9\times0{,}64 = 10-5{,}76 = 4{,}24\text{ g per }100\text{ cm}^3" />. Pernyataan I benar.
+- II: pada menit ke-<InlineMath math="10" />, gelas kimia berisi <InlineMath math="1{,}8\times0{,}40 = 0{,}72\text{ g}" />, jadi <InlineMath math="\tfrac{0{,}72}{10} = 0{,}072\text{ g}" /> keluar setiap menit. Di sini kamu butuh **volume gelas kimia**, karena tabel memberi konsentrasi, bukan massa. Pernyataan II benar.
+- III: <InlineMath math="2{,}0\text{ g}" /> yang tersebar di <InlineMath math="200\text{ cm}^3" /> memang memberi <InlineMath math="1{,}0\text{ g per }100\text{ cm}^3" /> di kedua sisi. Tetapi molekulnya terus bergerak dan terus melintasi tabung ke dua arah. Yang berhenti hanya **perpindahan netonya**, karena jumlah molekul yang melintas ke tiap arah sama. Pernyataan III salah.
+- IV: gradien adalah konsentrasi di tabung dikurangi konsentrasi di gelas kimia.
+
+<BlockMath math="\begin{aligned}
+\text{gradien pada menit ke-0} &= 10-0 = 10\\
+\text{gradien pada menit ke-10} &= (10-9\times0{,}40)-0{,}40 = 6{,}4-0{,}40 = 6{,}0 = 60\%\text{ dari }10\\
+\text{laju menit ke-10 sampai ke-20} &= \frac{1{,}8\times(0{,}64-0{,}40)}{10} = \frac{0{,}432}{10} = 0{,}0432\text{ g per menit}\\
+\frac{0{,}0432}{0{,}072} &= 0{,}60 = 60\%
+\end{aligned}" />
+
+Laju turun seiring dengan gradien, persis seperti yang diramalkan difusi. Pernyataan IV benar.
+
+Jadi pernyataan I, II, dan IV benar.
+
+# Mengapa pilihan lain salah
+
+- II saja menganggap tabung dan gelas kimia bervolume sama, sehingga konsentrasi tabung pada menit ke-<InlineMath math="20" /> dihitung <InlineMath math="10-0{,}64 = 9{,}36" /> dan gradien pada menit ke-<InlineMath math="10" /> dihitung <InlineMath math="9{,}2" />. **Tabungnya sembilan kali lebih kecil**, jadi konsentrasinya turun sembilan kali lebih cepat.
+- I, II, III, dan IV mengira tidak ada molekul glukosa yang melintasi tabung saat setimbang, **padahal yang berhenti hanya perpindahan netonya**.
+- I dan IV saja membaca kenaikan <InlineMath math="0{,}40" /> di gelas kimia sebagai <InlineMath math="0{,}04\text{ g}" /> per menit, **lupa mengalikan konsentrasi dengan volume gelas kimia**.

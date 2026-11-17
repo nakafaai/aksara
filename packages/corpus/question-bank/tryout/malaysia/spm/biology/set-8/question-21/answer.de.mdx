@@ -1,0 +1,54 @@
+# Pro Sauerstoffmolekül werden zwei DCPIP-Moleküle reduziert, und die Röhrchen zeigen den begrenzenden Faktor
+
+DCPIP ersetzt NADP und fängt deshalb den Wasserstoff ab, den die **lichtabhängige Reaktion** aus Wasser löst. Die Röhrchen S und T bleiben blau, also braucht diese Reaktion Licht und Proteine der Chloroplasten, die beim Kochen zerstört werden. Die Röhrchen P und Q entfärben sich mit und ohne Hydrogencarbonat in denselben <InlineMath math="4" /> Minuten, also **braucht sie kein Kohlenstoffdioxid**. Kohlenstoffdioxid wird erst später verbraucht, in der lichtunabhängigen Reaktion.
+
+<Mermaid
+  title={<>Wohin der Wasserstoff aus dem Wasser geht</>}
+  description={<>Licht spaltet Wasser in den Grana des Chloroplasten. Sauerstoff entweicht als Gas. Wasserstoffionen und Elektronen gehen in den Röhrchen auf DCPIP über und entfärben es. Im Blatt gehen sie auf NADP über, und dessen Wasserstoff wird im Stroma zusammen mit Kohlenstoffdioxid zu Glucose verarbeitet.</>}
+  chart={"flowchart LR\n  W[Wasser] -- Licht --> PH[Photolyse in den Grana]\n  PH --> O[Sauerstoff entweicht]\n  PH --> H[Wasserstoffionen und Elektronen]\n  H -- im Röhrchen --> D[DCPIP wird farblos]\n  H -- im Blatt --> N[NADP trägt Wasserstoff]\n  N --> C[Kohlenstoffdioxid wird im Stroma gebunden]\n  C --> G[Glucose]"}
+/>
+
+## Von DCPIP zum Sauerstoff
+
+In Röhrchen P werden alle <InlineMath math="0{,}080\,\mu\text{mol}" /> DCPIP in <InlineMath math="4" /> Minuten reduziert. Die Photolyse, die ein Sauerstoffmolekül freisetzt, liefert **vier** Wasserstoffionen und vier Elektronen, jedes DCPIP-Molekül nimmt aber nur **zwei** davon auf. Auf zwei reduzierte DCPIP-Moleküle kommt also ein Sauerstoffmolekül:
+
+<BlockMath math="\begin{aligned}
+\text{reduziertes DCPIP} &= \frac{0{,}080\,\mu\text{mol}}{4\text{ min}} = 0{,}020\,\mu\text{mol pro min}\\
+\text{freigesetzter Sauerstoff} &= \frac{0{,}020}{2} = 0{,}010\,\mu\text{mol pro min}
+\end{aligned}" />
+
+## Vom Sauerstoff zur Glucose
+
+Rechne den Sauerstoff jetzt auf ein Milligramm Chlorophyll und eine Stunde um. Im Blatt setzt die Gleichung der Fotosynthese, <InlineMath math="6\text{CO}_2+12\text{H}_2\text{O}\rightarrow\text{C}_6\text{H}_{12}\text{O}_6+6\text{O}_2+6\text{H}_2\text{O}" />, **sechs Sauerstoffmoleküle pro Glucosemolekül** frei:
+
+<BlockMath math="\begin{aligned}
+\text{Sauerstoff pro mg Chlorophyll} &= \frac{0{,}010}{0{,}040}\times60 = 15\,\mu\text{mol pro Stunde}\\
+\text{Glucose} &= \frac{15}{6} = 2{,}5\,\mu\text{mol pro Stunde}\\
+\text{Masse der Glucose} &= 2{,}5\times180 = 450\,\mu\text{g} = 0{,}45\text{ mg pro Stunde}
+\end{aligned}" />
+
+## Was die Rate in Röhrchen P begrenzt
+
+<Chart
+  title={<>Rate der DCPIP-Reduktion in jedem Röhrchen</>}
+  bars="apart"
+  categories={["P, hell", "Q, ohne Hydrogencarbonat", "R, halb so hell", "S, dunkel", "T, gekocht"]}
+  series={[{ label: "Reduziertes DCPIP", mark: "bar", values: [0.08 / 4, 0.08 / 4, 0.08 / 4, 0, 0] }]}
+  valueLabel="Reduziertes DCPIP (µmol pro min)"
+  description={<>Die Röhrchen P, Q und R reduzieren <InlineMath math="0{,}020\,\mu\text{mol}" /> DCPIP pro Minute. Die Röhrchen S und T reduzieren in <InlineMath math="30" /> Minuten kein messbares DCPIP.</>}
+/>
+
+Röhrchen R bekommt nur halb so viel Licht wie Röhrchen P, sein Balken ist aber genauso hoch. Bei der Helligkeit von Röhrchen P ist **Licht also nicht mehr der begrenzende Faktor**, und mehr Licht kann die Reaktion nicht beschleunigen.
+
+- I: P und Q stimmen mit und ohne Kohlenstoffdioxid überein, und S und T bleiben ohne Licht oder mit gekochten Chloroplasten blau. Aussage I stimmt.
+- II: Sauerstoff wird mit <InlineMath math="0{,}010\,\mu\text{mol}" /> pro Minute frei, halb so schnell wie DCPIP reduziert wird, nicht mit <InlineMath math="0{,}020" />. Aussage II ist falsch.
+- III: Die Rechenkette ergibt <InlineMath math="0{,}45\text{ mg}" /> Glucose pro <InlineMath math="\text{mg}" /> Chlorophyll und Stunde. Aussage III stimmt.
+- IV: Halbes Licht in Röhrchen R ließ die Zeit bei <InlineMath math="4" /> Minuten, also verkürzt doppeltes Licht sie nicht auf <InlineMath math="2" /> Minuten. Aussage IV ist falsch.
+
+Richtig sind also die Aussagen I und III.
+
+# Warum die anderen Antworten falsch sind
+
+- Nur I und II zählt **ein Sauerstoffmolekül pro DCPIP-Molekül**. Damit verdoppeln sich der Sauerstoff auf <InlineMath math="0{,}020\,\mu\text{mol}" /> pro Minute und die Glucose auf <InlineMath math="0{,}90\text{ mg}" />, und III wird verworfen.
+- Nur I, III und IV nimmt an, dass die Rate immer dem Licht folgt, und **übersieht Röhrchen R**, wo halbes Licht dieselbe Zeit ergab.
+- Nur I vergisst, dass **sechs Sauerstoffmoleküle auf ein Glucosemolekül** kommen, erhält <InlineMath math="15\times180\,\mu\text{g}=2{,}7\text{ mg}" /> und verwirft deshalb III.

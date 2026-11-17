@@ -1,0 +1,45 @@
+# Zwischen den Gruppen P und S ändern sich zwei Dinge, also zerlegst du den Abstand mit Gruppen, die sich nur in einem Ding unterscheiden
+
+Gruppen verschiedener Größe kannst du nicht über ihre Summen vergleichen, also rechnest du zuerst jede Summe in eine **mittlere Punktzahl pro Person** um:
+
+<BlockMath math="\begin{aligned}
+\text{P}: \quad \tfrac{456}{12} &= 38\\
+\text{Q}: \quad \tfrac{340}{10} &= 34\\
+\text{R}: \quad \tfrac{248}{8} &= 31\\
+\text{S}: \quad \tfrac{270}{10} &= 27
+\end{aligned}" />
+
+In diesem Versuch sind zwei Variablen vermischt: was die Schülerinnen und Schüler **tatsächlich trinken** und was ihnen **gesagt wird**. Um die Wirkung der einen zu sehen, hältst du die andere fest.
+
+<BlockMath math="\begin{aligned}
+\text{Glucose, Ansage Glucose}: \quad \text{P}-\text{Q} &= 38-34 = 4\\
+\text{Glucose, Ansage Süßstoff}: \quad \text{R}-\text{S} &= 31-27 = 4\\
+\text{Ansage Glucose, Getränk Glucose}: \quad \text{P}-\text{R} &= 38-31 = 7\\
+\text{Ansage Glucose, Getränk Süßstoff}: \quad \text{Q}-\text{S} &= 34-27 = 7\\
+\text{P}-\text{S} &= 38-27 = 11 = 4+7
+\end{aligned}" />
+
+<Chart
+  title={<>Mittlere Punktzahl im Gedächtnistest je Gruppe</>}
+  bars="apart"
+  categories={["Ansage Glucose", "Ansage Süßstoff"]}
+  series={[
+    { label: "Glucose getrunken", mark: "bar", values: [38, 31] },
+    { label: "Süßstoff getrunken", mark: "bar", values: [34, 27] },
+  ]}
+  valueLabel="Mittlere Punktzahl (von 50)"
+  description={<>Wer Glucose angesagt bekommt, erreicht <InlineMath math="38" /> nach Glucose und <InlineMath math="34" /> nach Süßstoff. Wer Süßstoff angesagt bekommt, erreicht <InlineMath math="31" /> nach Glucose und <InlineMath math="27" /> nach Süßstoff. In jedem Paar bringt Glucose <InlineMath math="4" /> Punkte, und die Ansage Glucose bringt bei beiden Getränken <InlineMath math="7" /> Punkte.</>}
+/>
+
+- I: Glucose bringt in beiden Paaren <InlineMath math="4" /> Punkte. Der Abstand zwischen P und S beträgt <InlineMath math="11" /> Punkte, die Hälfte davon <InlineMath math="5{,}5" />, also ist <InlineMath math="4" /> weniger als die Hälfte. Aussage I stimmt.
+- II: Gruppe P trinkt Glucose **und** bekommt Glucose angesagt, Gruppe S trinkt Süßstoff **und** bekommt Süßstoff angesagt. Zwei Variablen ändern sich gleichzeitig, und <InlineMath math="7" /> der <InlineMath math="11" /> Punkte stammen aus der Ansage. Aussage II ist falsch.
+- III: Gruppe R hat nur <InlineMath math="8" /> Personen, darum ist ihre Summe klein. Ihr Mittelwert <InlineMath math="31" /> liegt über dem Mittelwert von Gruppe S, <InlineMath math="27" />. Auch hier hebt Glucose die Punktzahl. Aussage III ist falsch.
+- IV: <InlineMath math="\text{P}-\text{R} = 7" /> bei Glucose im Becher und <InlineMath math="\text{Q}-\text{S} = 7" /> bei Süßstoff im Becher. Aussage IV stimmt.
+
+Richtig sind also die Aussagen I und IV, und die Ergebnisse stützen die Hypothese tatsächlich: Glucose hebt die mittlere Punktzahl um <InlineMath math="4" /> Punkte, egal was die Personen glauben.
+
+# Warum die anderen Antworten falsch sind
+
+- Nur II und IV hält P und S für einen fairen Vergleich, weil beiden die Wahrheit gesagt wurde, und schreibt alle <InlineMath math="11" /> Punkte der Glucose zu. **Die Ansage ist eine zweite Variable, die sich zwischen P und S ebenfalls unterscheidet**.
+- Nur I bestimmt die Wirkung der Ansage aus den Gruppen P und Q und erhält <InlineMath math="4" />. **P und Q bekommen dasselbe angesagt und unterscheiden sich nur im Getränk**, also ist dieser Abstand die Wirkung der Glucose.
+- Nur I, III und IV vergleicht die Summen der Gruppen R und S, <InlineMath math="248" /> gegen <InlineMath math="270" />, **ohne durch die unterschiedlichen Gruppengrößen zu teilen**.

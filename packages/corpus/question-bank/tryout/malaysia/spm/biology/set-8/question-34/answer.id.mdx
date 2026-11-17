@@ -1,0 +1,44 @@
+# Nilai mutagen dari jumlah mutan per sel yang bertahan hidup, bukan dari jumlah koloni
+
+Dosis tinggi menghasilkan lebih banyak mutasi di setiap sel, tetapi juga membunuh sebagian besar sel. Jumlah koloni mencampur kedua efek itu. Untuk membandingkan dosis, bagi jumlah koloni dengan jumlah sel yang **bertahan hidup**.
+
+## Mutan per sel yang bertahan hidup
+
+Setiap sampel berisi <InlineMath math="1{,}0\times10^{9}" /> sel di awal, jadi jumlah sel yang bertahan adalah angka itu dikali persentasenya. Frekuensi per <InlineMath math="10^{8}" /> sel yang bertahan membuat angkanya tetap kecil:
+
+<BlockMath math="\begin{aligned}
+0\text{ J m}^{-2}:&\quad \frac{20}{1{,}0\times10^{9}} = 2\text{ per }10^{8}\\
+20\text{ J m}^{-2}:&\quad \frac{120}{6{,}0\times10^{8}} = 20\text{ per }10^{8}\\
+40\text{ J m}^{-2}:&\quad \frac{180}{3{,}0\times10^{8}} = 60\text{ per }10^{8}\\
+60\text{ J m}^{-2}:&\quad \frac{120}{1{,}0\times10^{8}} = 120\text{ per }10^{8}\\
+80\text{ J m}^{-2}:&\quad \frac{40}{2{,}0\times10^{7}} = 200\text{ per }10^{8}
+\end{aligned}" />
+
+<Chart
+  title={<>Koloni dan Frekuensi Mutasi pada Setiap Dosis UV</>}
+  bars="apart"
+  categories={["0 J/m²", "20 J/m²", "40 J/m²", "60 J/m²", "80 J/m²"]}
+  series={[
+    { label: "Koloni resisten", mark: "bar", values: [20, 120, 180, 120, 40] },
+    { label: "Per 100 juta sel hidup", mark: "line", values: [2, 20, 60, 120, 200] },
+  ]}
+  valueLabel="Jumlah"
+  description={<>Jumlah koloni memuncak di <InlineMath math="180" /> pada <InlineMath math="40\text{ J m}^{-2}" /> lalu turun menjadi <InlineMath math="40" />. Mutan resisten per <InlineMath math="10^{8}" /> sel yang bertahan naik di setiap dosis: <InlineMath math="2" />, <InlineMath math="20" />, <InlineMath math="60" />, <InlineMath math="120" />, dan <InlineMath math="200" />.</>}
+/>
+
+Jumlah koloni **memuncak lalu turun**, tetapi frekuensinya **terus naik**. Koloni yang lebih sedikit pada dosis tinggi hanya berarti lebih sedikit sel yang masih hidup.
+
+## Keempat pernyataan
+
+- I: <InlineMath math="\tfrac{120}{2} = 60" />. Pada <InlineMath math="60\text{ J m}^{-2}" />, frekuensinya <InlineMath math="60" /> kali frekuensi tanpa cahaya UV. Pernyataan I benar.
+- II: koloni terbanyak memang dari <InlineMath math="40\text{ J m}^{-2}" />, tetapi frekuensinya, <InlineMath math="60" /> per <InlineMath math="10^{8}" />, lebih rendah daripada pada <InlineMath math="60" /> dan <InlineMath math="80\text{ J m}^{-2}" />. **Dosis tertinggilah** yang paling kuat menyebabkan mutasi. Pernyataan II salah.
+- III: sebelum perlakuan, <InlineMath math="2" /> dari setiap <InlineMath math="10^{8}" /> sel sudah resisten. UV membunuh sel itu sama seringnya dengan sel lain, jadi di antara <InlineMath math="6{,}0\times10^{8}" /> sel yang bertahan, mutan lama berjumlah <InlineMath math="2\times6 = 12" />, bukan <InlineMath math="20" />. Pernyataan III salah.
+- IV: <InlineMath math="200" /> per <InlineMath math="10^{8}" /> sama dengan <InlineMath math="\tfrac{200}{10^{8}} = \tfrac{1}{500\,000}" />. Pernyataan IV benar.
+
+Jadi pernyataan I dan IV benar.
+
+# Mengapa pilihan lain salah
+
+- I, II, dan IV saja menganggap **jumlah koloni sebagai kekuatan mutagen**. Pada dosis tinggi sebagian besar sel mati, jadi jumlah yang lebih kecil tetap bisa menjadi bagian yang lebih besar dari sel yang bertahan.
+- I, III, dan IV saja mengurangkan **jumlah koloni sampel tanpa perlakuan apa adanya**. Ke-<InlineMath math="20" /> mutan itu berasal dari <InlineMath math="1{,}0\times10^{9}" /> sel, padahal hanya <InlineMath math="6{,}0\times10^{8}" /> sel yang bertahan pada <InlineMath math="20\text{ J m}^{-2}" />, jadi hanya <InlineMath math="12" /> mutan lama yang diharapkan di sana.
+- IV saja **membagi jumlah koloni secara langsung**, <InlineMath math="\tfrac{120}{20} = 6" />, lalu menolak I. Ini mengabaikan bahwa sampel yang diberi perlakuan punya sel hidup sepuluh kali lebih sedikit untuk disebar.

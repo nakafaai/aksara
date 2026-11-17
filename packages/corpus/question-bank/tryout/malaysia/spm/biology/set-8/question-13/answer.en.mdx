@@ -1,0 +1,56 @@
+# Line up each response by days after its own exposure, and judge a rise by its doublings, not by how long it lasts
+
+Two kinds of defence sit in this table. Neutrophils are phagocytes, a **non-specific defence** that reacts the same way to anything foreign. Antibodies come from lymphocytes, a **specific defence** that can leave memory cells. Bacterium C, met for the first time on day <InlineMath math="30" />, shows what a first response looks like in this person at that time.
+
+Start with the neutrophils. After each exposure they go <InlineMath math="12" />, then <InlineMath math="8" />, then <InlineMath math="5" />, then <InlineMath math="4" /> at <InlineMath math="1" />, <InlineMath math="3" />, <InlineMath math="5" /> and <InlineMath math="7" /> days, the same path both times. The second rise is no faster and no higher, so the neutrophils carry no record of the first meeting. That fits phagocytes, which form no memory cells.
+
+Next, line up each antibody response by the days since **its own** exposure, not by the day number.
+
+<BlockMath math="\begin{aligned}
+\text{B, first response, day } 0+7 &= \text{day } 7: & 2\text{ units}\\
+\text{B, second response, day } 30+7 &= \text{day } 37: & 200\text{ units}\\
+\text{ratio} &= \tfrac{200}{2} = 100
+\end{aligned}" />
+
+<Chart
+  title={<>Antibody Against B and Against C</>}
+  categories={["Day 0", "Day 5", "Day 7", "Day 13", "Day 30", "Day 31", "Day 32", "Day 33", "Day 35", "Day 37", "Day 43"]}
+  series={[
+    { label: "Against B", mark: "line", values: [0, 1, 2, 16, 4, 4, 32, 256, 240, 200, 150] },
+    { label: "Against C", mark: "line", values: [0, 0, 0, 0, 0, 0, 0, 0, 1, 2, 16] },
+  ]}
+  valueLabel="Antibody (arbitrary units)"
+  description={<>Antibody against B creeps from <InlineMath math="1" /> on day <InlineMath math="5" /> to <InlineMath math="16" /> on day <InlineMath math="13" />, falls to <InlineMath math="4" /> by day <InlineMath math="30" />, then shoots to <InlineMath math="256" /> on day <InlineMath math="33" />. Antibody against C stays at <InlineMath math="0" /> until day <InlineMath math="33" />, then reaches <InlineMath math="1" />, <InlineMath math="2" /> and <InlineMath math="16" /> on days <InlineMath math="35" />, <InlineMath math="37" /> and <InlineMath math="43" />, the same path as B's first response.</>}
+/>
+
+Bacterium C is the built-in control. Its antibody, <InlineMath math="5" />, <InlineMath math="7" /> and <InlineMath math="13" /> days after its first exposure, is <InlineMath math="1" />, <InlineMath math="2" /> and <InlineMath math="16" /> units, exactly what B gave at the same times after its first exposure. If the first infection had simply made the whole immune system more active, C's response would also be fast. It isn't, so the fast second response to B needs **memory cells specific to B**.
+
+Last, the speed of each rise. Count the doublings in each rising phase, then divide the time by them:
+
+<BlockMath math="\begin{aligned}
+\text{first response}: \quad 1\to16 &= 2^4,\ 4\text{ doublings in } 13-5 = 8\text{ days}, & \text{doubling time} &= \tfrac{8}{4} = 2\text{ days} = 48\text{ h}\\
+\text{second response}: \quad 4\to256 &= 2^6,\ 6\text{ doublings in } 33-31 = 2\text{ days}, & \text{doubling time} &= \tfrac{2}{6}\text{ day} = 8\text{ h}\\
+\text{ratio} &= \tfrac{48}{8} = 6
+\end{aligned}" />
+
+<Chart
+  title={<>Doubling Time of Antibody Against B</>}
+  bars="apart"
+  categories={["First response", "Second response"]}
+  series={[{ label: "Doubling time", mark: "bar", values: [48, 8] }]}
+  valueLabel="Doubling time (hours)"
+  description={<>While it rises, antibody against B doubles every <InlineMath math="48" /> hours in the first response and every <InlineMath math="8" /> hours in the second, so it doubles six times as fast the second time.</>}
+/>
+
+- I: the neutrophils follow the same rise and fall after both exposures. Statement I is correct.
+- II: <InlineMath math="7" /> days after each exposure, the ratio is <InlineMath math="100" />, not <InlineMath math="16" />. Statement II is wrong.
+- III: C's first response copies B's first response point by point, so the boost belongs to B alone. Statement III is correct.
+- IV: the doubling time falls from <InlineMath math="48" /> to <InlineMath math="8" /> hours, six times as fast, not four. Statement IV is wrong.
+
+So statements I and III are correct.
+
+# Why the other options are wrong
+
+- I, II and III only compares the **two peaks**, <InlineMath math="\tfrac{256}{16} = 16" />, instead of the levels at the same time after each exposure.
+- I, III and IV only compares **how long each rise lasts**, <InlineMath math="8" /> days against <InlineMath math="2" />, and calls it four times as fast. The second rise also climbs through more doublings, <InlineMath math="6" /> instead of <InlineMath math="4" />, so its doubling time is a sixth.
+- III only reads the quick neutrophil rise on day <InlineMath math="31" /> as **recognition of B**, but the rise after the first exposure was just as quick and just as high.

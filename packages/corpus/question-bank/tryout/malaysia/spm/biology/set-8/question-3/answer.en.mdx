@@ -1,0 +1,44 @@
+# The beaker holds nine times the tube's volume, so every gram that leaves counts nine times more inside the tube
+
+The table only gives you the beaker. To judge the tube, follow the **glucose mass**: whatever leaves the tube turns up in the beaker. The beaker holds <InlineMath math="180\text{ cm}^3" /> and the tube only <InlineMath math="20\text{ cm}^3" />, so a small rise in the beaker means a big fall inside the tube.
+
+Start with the tube at minute <InlineMath math="0" />: <InlineMath math="2.0\text{ g}" /> in <InlineMath math="20\text{ cm}^3" /> is <InlineMath math="10\text{ g per }100\text{ cm}^3" />. If the beaker reads <InlineMath math="c" /> grams per <InlineMath math="100\text{ cm}^3" />, then
+
+<BlockMath math="\begin{aligned}
+\text{glucose in the beaker} &= c\times\frac{180}{100} = 1.8c\text{ g}\\
+\text{glucose left in the tube} &= 2.0-1.8c\text{ g}\\
+\text{tube concentration} &= \frac{2.0-1.8c}{20}\times100 = 10-9c\text{ g per }100\text{ cm}^3
+\end{aligned}" />
+
+<Chart
+  title={<>Glucose Concentration Inside and Outside the Tube</>}
+  categories={["0 min", "10 min", "20 min", "40 min", "80 min"]}
+  series={[
+    { label: "Inside the tube", mark: "line", values: [10, 6.4, 4.24, 2.17, 1.18] },
+    { label: "Beaker", mark: "line", values: [0, 0.4, 0.64, 0.87, 0.98] },
+  ]}
+  valueLabel="Glucose (g per 100 cm³)"
+  description={<>Inside the tube, worked out as <InlineMath math="10-9c" />, the concentration falls from <InlineMath math="10" /> to <InlineMath math="6.4" />, <InlineMath math="4.24" />, <InlineMath math="2.17" /> and <InlineMath math="1.18\text{ g per }100\text{ cm}^3" />. The beaker rises from <InlineMath math="0" /> to <InlineMath math="0.98" />. Both lines close in on <InlineMath math="1.0\text{ g per }100\text{ cm}^3" />, and the gap between them, the concentration gradient, shrinks fast.</>}
+/>
+
+- I: at minute <InlineMath math="20" />, <InlineMath math="10-9\times0.64 = 10-5.76 = 4.24\text{ g per }100\text{ cm}^3" />. Statement I is correct.
+- II: by minute <InlineMath math="10" /> the beaker holds <InlineMath math="1.8\times0.40 = 0.72\text{ g}" />, so <InlineMath math="\tfrac{0.72}{10} = 0.072\text{ g}" /> leaves each minute. You need the **beaker's volume** here, because the table gives a concentration, not a mass. Statement II is correct.
+- III: <InlineMath math="2.0\text{ g}" /> spread through <InlineMath math="200\text{ cm}^3" /> does give <InlineMath math="1.0\text{ g per }100\text{ cm}^3" /> on both sides. But the molecules keep moving and keep crossing in both directions. Only the **net movement** stops, because equal numbers cross each way. Statement III is wrong.
+- IV: the gradient is the tube concentration minus the beaker concentration.
+
+<BlockMath math="\begin{aligned}
+\text{gradient at minute 0} &= 10-0 = 10\\
+\text{gradient at minute 10} &= (10-9\times0.40)-0.40 = 6.4-0.40 = 6.0 = 60\%\text{ of }10\\
+\text{rate from minute 10 to 20} &= \frac{1.8\times(0.64-0.40)}{10} = \frac{0.432}{10} = 0.0432\text{ g per minute}\\
+\frac{0.0432}{0.072} &= 0.60 = 60\%
+\end{aligned}" />
+
+The rate falls in step with the gradient, which is exactly what diffusion predicts. Statement IV is correct.
+
+So statements I, II and IV are correct.
+
+# Why the other options are wrong
+
+- II only treats the tube and the beaker as if they had the same volume, so it takes the tube to <InlineMath math="10-0.64 = 9.36" /> at minute <InlineMath math="20" /> and the gradient at minute <InlineMath math="10" /> to <InlineMath math="9.2" />. **The tube is nine times smaller**, so it loses concentration nine times faster.
+- I, II, III and IV believes that no glucose molecules cross the tubing at equilibrium, **when only the net movement stops**.
+- I and IV only reads the beaker's rise of <InlineMath math="0.40" /> as <InlineMath math="0.04\text{ g}" /> per minute, **forgetting to multiply the concentration by the beaker's volume**.

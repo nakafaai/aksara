@@ -1,0 +1,54 @@
+# Dua molekul DCPIP tereduksi untuk setiap molekul oksigen, dan tabungnya menunjukkan faktor pembatas
+
+DCPIP menggantikan NADP, jadi DCPIP menangkap hidrogen yang dilepas dari air oleh **reaksi terang**. Tabung S dan T tetap biru, jadi reaksi itu butuh cahaya dan protein kloroplas yang rusak kalau direbus. Tabung P dan Q sama-sama kehilangan warna dalam <InlineMath math="4" /> menit, dengan maupun tanpa hidrogen karbonat, jadi reaksi itu **tidak butuh karbon dioksida**. Karbon dioksida baru dipakai nanti, di reaksi gelap.
+
+<Mermaid
+  title={<>Ke Mana Hidrogen dari Air Pergi</>}
+  description={<>Cahaya memecah air di grana kloroplas. Oksigen dilepas sebagai gas. Ion hidrogen dan elektron pergi ke DCPIP di tabung dan membuatnya tidak berwarna. Di dalam daun, ion dan elektron itu pergi ke NADP, lalu hidrogen yang dibawanya dipakai bersama karbon dioksida di stroma untuk membuat glukosa.</>}
+  chart={"flowchart LR\n  W[Air] -- cahaya --> PH[Fotolisis di grana]\n  PH --> O[Gas oksigen dilepas]\n  PH --> H[Ion hidrogen dan elektron]\n  H -- di tabung --> D[DCPIP jadi tidak berwarna]\n  H -- di daun --> N[NADP membawa hidrogen]\n  N --> C[Karbon dioksida difiksasi di stroma]\n  C --> G[Glukosa]"}
+/>
+
+## Dari DCPIP ke oksigen
+
+Di tabung P, seluruh <InlineMath math="0{,}080\,\mu\text{mol}" /> DCPIP tereduksi dalam <InlineMath math="4" /> menit. Fotolisis yang melepas satu molekul oksigen menghasilkan **empat** ion hidrogen dan empat elektron, sedangkan tiap molekul DCPIP menerima **dua** dari masing-masing. Jadi satu molekul oksigen dilepas untuk setiap dua molekul DCPIP yang tereduksi:
+
+<BlockMath math="\begin{aligned}
+\text{DCPIP tereduksi} &= \frac{0{,}080\,\mu\text{mol}}{4\text{ menit}} = 0{,}020\,\mu\text{mol per menit}\\
+\text{oksigen dilepas} &= \frac{0{,}020}{2} = 0{,}010\,\mu\text{mol per menit}
+\end{aligned}" />
+
+## Dari oksigen ke glukosa
+
+Sekarang ubah laju oksigen itu ke satu miligram klorofil dan satu jam. Di dalam daun, persamaan fotosintesis, <InlineMath math="6\text{CO}_2+12\text{H}_2\text{O}\rightarrow\text{C}_6\text{H}_{12}\text{O}_6+6\text{O}_2+6\text{H}_2\text{O}" />, melepas **enam molekul oksigen untuk setiap molekul glukosa**:
+
+<BlockMath math="\begin{aligned}
+\text{oksigen per mg klorofil} &= \frac{0{,}010}{0{,}040}\times60 = 15\,\mu\text{mol per jam}\\
+\text{glukosa} &= \frac{15}{6} = 2{,}5\,\mu\text{mol per jam}\\
+\text{massa glukosa} &= 2{,}5\times180 = 450\,\mu\text{g} = 0{,}45\text{ mg per jam}
+\end{aligned}" />
+
+## Apa yang membatasi laju di tabung P
+
+<Chart
+  title={<>Laju Reduksi DCPIP di Tiap Tabung</>}
+  bars="apart"
+  categories={["P, terang", "Q, tanpa hidrogen karbonat", "R, setengah terang", "S, gelap", "T, direbus"]}
+  series={[{ label: "DCPIP tereduksi", mark: "bar", values: [0.08 / 4, 0.08 / 4, 0.08 / 4, 0, 0] }]}
+  valueLabel="DCPIP tereduksi (µmol per menit)"
+  description={<>Tabung P, Q, dan R mereduksi DCPIP dengan laju <InlineMath math="0{,}020\,\mu\text{mol}" /> per menit. Tabung S dan T tidak mereduksi DCPIP yang bisa diukur dalam <InlineMath math="30" /> menit.</>}
+/>
+
+Tabung R hanya mendapat setengah cahaya tabung P, tetapi batangnya sama tinggi. Jadi pada terang tabung P, **cahaya sudah bukan faktor pembatas**, dan tambahan cahaya tidak bisa mempercepat reaksinya.
+
+- I: P dan Q sama dengan maupun tanpa karbon dioksida, sedangkan S dan T, tanpa cahaya atau dengan kloroplas rebus, tetap biru. Pernyataan I benar.
+- II: oksigen dilepas dengan laju <InlineMath math="0{,}010\,\mu\text{mol}" /> per menit, setengah laju DCPIP, bukan <InlineMath math="0{,}020" />. Pernyataan II salah.
+- III: rantai hitungan memberi <InlineMath math="0{,}45\text{ mg}" /> glukosa per <InlineMath math="\text{mg}" /> klorofil tiap jam. Pernyataan III benar.
+- IV: setengah cahaya di tabung R tidak mengubah waktu <InlineMath math="4" /> menit, jadi menggandakan cahaya tidak akan memangkas waktunya menjadi <InlineMath math="2" /> menit. Pernyataan IV salah.
+
+Jadi pernyataan I dan III benar.
+
+# Mengapa pilihan lain salah
+
+- I dan II saja menghitung **satu molekul oksigen untuk tiap molekul DCPIP**. Itu menggandakan oksigen menjadi <InlineMath math="0{,}020\,\mu\text{mol}" /> per menit dan glukosa menjadi <InlineMath math="0{,}90\text{ mg}" />, sehingga III ditolak.
+- I, III, dan IV saja menganggap laju selalu mengikuti cahaya, **tanpa melihat tabung R**, yang memberi waktu sama dengan setengah cahaya.
+- I saja lupa bahwa **enam molekul oksigen dilepas untuk tiap molekul glukosa**, mendapat <InlineMath math="15\times180\,\mu\text{g}=2{,}7\text{ mg}" />, lalu menolak III.

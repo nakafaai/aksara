@@ -1,0 +1,46 @@
+# Turn each count into living cells in the culture, with its own dilution, before you compare them
+
+The two counts used **different dilutions**, so the raw numbers on the slide cannot be compared. Turn each into living cells per <InlineMath math="\text{cm}^3" /> of the culture first. Only the colourless cells are alive.
+
+## The volume counted
+
+<BlockMath math="5\times(0.2\times0.2\times0.1) = 5\times0.004 = 0.02\text{ mm}^3" />
+
+## Living cells in each count
+
+The first mixture is <InlineMath math="1.0" /> in <InlineMath math="1.0+3.0=4.0\text{ cm}^3" />, diluted <InlineMath math="4" /> times. The second is <InlineMath math="1.0" /> in <InlineMath math="1.0+7.0=8.0\text{ cm}^3" />, diluted <InlineMath math="8" /> times.
+
+<BlockMath math="\begin{aligned}
+\text{first count:}\quad \frac{100}{0.02}\times1000\times4 &= 2.0\times10^{7}\text{ per cm}^3\\
+\text{second count:}\quad \frac{200}{0.02}\times1000\times8 &= 8.0\times10^{7}\text{ per cm}^3
+\end{aligned}" />
+
+The blue cells give <InlineMath math="\tfrac{64}{0.02}\times1000\times4 = 1.28\times10^{7}" /> and <InlineMath math="\tfrac{32}{0.02}\times1000\times8 = 1.28\times10^{7}" /> per <InlineMath math="\text{cm}^3" />, **the same both times**, so no cells died in the <InlineMath math="6" /> hours.
+
+<Chart
+  title={<>Yeast Cells in the Culture</>}
+  bars="apart"
+  categories={["First count", "Second count"]}
+  series={[
+    { label: "Living cells", mark: "bar", values: [2, 8] },
+    { label: "Dead cells", mark: "bar", values: [1.28, 1.28] },
+  ]}
+  valueLabel="Cells (× 10⁷ per cm³)"
+  description={<>Living cells rise from <InlineMath math="2.0\times10^{7}" /> to <InlineMath math="8.0\times10^{7}" /> per cubic centimetre in <InlineMath math="6" /> hours, four times as many. Dead cells stay at <InlineMath math="1.28\times10^{7}" /> per cubic centimetre.</>}
+/>
+
+## The doubling time
+
+<BlockMath math="\frac{8.0\times10^{7}}{2.0\times10^{7}} = 4 = 2^2" />
+
+A fourfold rise is **two doublings**, and they took <InlineMath math="6" /> hours:
+
+<BlockMath math="\text{doubling time} = \frac{6\text{ hours}}{2} = 3\text{ hours}" />
+
+So the doubling time is **<InlineMath math="3" /> hours**.
+
+# Why the other options are wrong
+
+- <InlineMath math="6" /> hours compares the slide counts directly, <InlineMath math="\tfrac{200}{100} = 2" />, **as if both samples had the same dilution**, so it sees one doubling in <InlineMath math="6" /> hours. The second sample was diluted twice as much.
+- <InlineMath math="1.5" /> hours **divides the time by the fourfold rise**, <InlineMath math="\tfrac{6}{4}" />, instead of by the number of doublings, which is <InlineMath math="2" />.
+- <InlineMath math="4" /> hours **counts the blue cells too**. All cells rise from <InlineMath math="3.28\times10^{7}" /> to <InlineMath math="9.28\times10^{7}" />, about <InlineMath math="2.83" /> times, which is <InlineMath math="2^{1.5}" />, or <InlineMath math="1.5" /> doublings in <InlineMath math="6" /> hours. The dead cells do not divide, so they hide part of the growth.

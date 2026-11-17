@@ -1,0 +1,49 @@
+# Compare the oxygen each organism actually takes from a litre of its medium, then scale by volume and by mass
+
+The oxygen content alone, <InlineMath math="7" /> against <InlineMath math="210" />, is not what the animal gets. Only a **share** of it is taken up as the medium passes the gills or the alveoli, so start there:
+
+<BlockMath math="\begin{aligned}
+\text{fish}: \quad 7\times0.80 &= 5.6\text{ cm}^3\text{ of oxygen per dm}^3\text{ of water}\\
+\text{human}: \quad 210\times0.25 &= 52.5\text{ cm}^3\text{ of oxygen per dm}^3\text{ of air}
+\end{aligned}" />
+
+<Chart
+  title={<>Oxygen in and Taken From <InlineMath math="1\text{ dm}^3" /> of Medium</>}
+  bars="apart"
+  categories={["Fish, water", "Human, air"]}
+  series={[
+    { label: "Oxygen in the medium (cm³)", mark: "bar", values: [7, 210] },
+    { label: "Oxygen taken up (cm³)", mark: "bar", values: [5.6, 52.5] },
+  ]}
+  valueLabel="Oxygen (cm³ per dm³)"
+  description={<>A <InlineMath math="\text{dm}^3" /> of water holds <InlineMath math="7\text{ cm}^3" /> of oxygen and the fish takes up <InlineMath math="5.6" />. A <InlineMath math="\text{dm}^3" /> of air holds <InlineMath math="210\text{ cm}^3" /> and the human takes up <InlineMath math="52.5" />. The gap in oxygen taken up is about <InlineMath math="9.4" /> times, not the <InlineMath math="30" /> times of the oxygen content.</>}
+/>
+
+Now turn these into the medium needed for each <InlineMath math="\text{cm}^3" /> of oxygen, by volume and then by mass:
+
+<BlockMath math="\begin{aligned}
+\text{volume ratio} &= \frac{52.5}{5.6} \approx 9.4\\
+\text{water per cm}^3\text{ of oxygen} &= \frac{1}{5.6}\text{ dm}^3\times1000\text{ g} \approx 179\text{ g}\\
+\text{air per cm}^3\text{ of oxygen} &= \frac{1}{52.5}\text{ dm}^3\times1.2\text{ g} \approx 0.023\text{ g}\\
+\text{mass ratio} &= \frac{179}{0.023} \approx 7800
+\end{aligned}" />
+
+- I: about <InlineMath math="9.4" /> times the volume. Statement I is correct.
+- II: the fish moves about <InlineMath math="7800" /> times the mass, not <InlineMath math="830" />. Statement II is wrong.
+- III: <InlineMath math="\tfrac{250}{52.5} \approx 4.8\text{ dm}^3" /> of air per minute. Statement III is correct.
+- IV: warm water gives less oxygen per <InlineMath math="\text{dm}^3" />, so the fish needs **more** water, not less:
+
+<BlockMath math="\begin{aligned}
+\text{now}: \quad \frac{1.4}{5.6} &= 0.25\text{ dm}^3\text{ per minute}\\
+\text{warm water}: \quad \frac{1.4}{5\times0.80} = \frac{1.4}{4.0} &= 0.35\text{ dm}^3\text{ per minute}
+\end{aligned}" />
+
+That is <InlineMath math="40\%" /> more water, not <InlineMath math="30\%" /> less. Statement IV is wrong.
+
+So statements I and III are correct. Water is a costly medium: the fish must push a dense, heavy flow over its gills for very little oxygen, which is why its gills take up so large a share of what passes.
+
+# Why the other options are wrong
+
+- I, II and III only divides the densities alone, <InlineMath math="\tfrac{1000}{1.2} \approx 830" />, **forgetting that the fish also needs about <InlineMath math="9.4" /> times the volume** for each <InlineMath math="\text{cm}^3" /> of oxygen.
+- I, III and IV only scales the water by <InlineMath math="\tfrac{5}{7} \approx 0.7" />, **as if less oxygen in the water meant less water to pump**, when the fish must divide its need by a smaller number.
+- III only compares the oxygen contents, <InlineMath math="\tfrac{210}{7} = 30" />, and rejects I. **Only <InlineMath math="80\%" /> and <InlineMath math="25\%" /> of that oxygen are taken up**, which shrinks the gap to about <InlineMath math="9.4" />.

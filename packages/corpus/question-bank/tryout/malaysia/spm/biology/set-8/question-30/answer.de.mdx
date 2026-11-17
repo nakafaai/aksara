@@ -1,0 +1,58 @@
+# Jede Baumgruppe hebt den Schlamm mit ihrer eigenen Rate, also addierst du die Stufen einzeln
+
+Jede Stufe dieser Sukzession dauert, bis der Schlamm die untere Grenze der nächsten Gruppe erreicht. Die Rate ändert sich mit jeder Stufe, also **berechnest du jede Stufe mit ihrer eigenen Rate** und addierst die Zeiten.
+
+## Bei gleichbleibendem Meeresspiegel
+
+<BlockMath math="\begin{aligned}
+\textit{Avicennia}\text{ und }\textit{Sonneratia}: \frac{60-30}{1{,}5} &= 20\text{ Jahre}\\
+\textit{Rhizophora}: \frac{120-60}{1{,}0} &= 60\text{ Jahre, also kommt }\textit{Bruguiera}\text{ in Jahr }20+60=80\\
+\textit{Bruguiera}: \frac{180-120}{0{,}5} &= 120\text{ Jahre, also kommt der Inlandwald in Jahr }80+120=200
+\end{aligned}" />
+
+<Chart
+  title={<>Jahre, die jede Baumgruppe die Fläche besetzt</>}
+  bars="apart"
+  categories={["Avicennia und Sonneratia", "Rhizophora", "Bruguiera"]}
+  series={[{ label: "Jahre", mark: "bar", values: [(60 - 30) / 1.5, (120 - 60) / 1.0, (180 - 120) / 0.5] }]}
+  valueLabel="Jahre"
+  description={<>Die Pioniere besetzen die Fläche <InlineMath math="20" /> Jahre, <em>Rhizophora</em> <InlineMath math="60" /> Jahre und <em>Bruguiera</em> <InlineMath math="120" /> Jahre. Wer am schnellsten Schlick fängt, bleibt am kürzesten.</>}
+/>
+
+Die Pioniere fangen den Schlick am schnellsten, also **heben sie den Schlamm am frühesten aus ihrem eigenen Bereich heraus** und besetzen die Fläche am kürzesten.
+
+## Bei steigendem Meeresspiegel
+
+Steigt das mittlere Niedrigwasser um <InlineMath math="0{,}5\text{ cm}" /> pro Jahr, wächst die Höhe des Schlamms darüber in jeder Stufe um <InlineMath math="0{,}5\text{ cm}" /> pro Jahr langsamer:
+
+<BlockMath math="\begin{aligned}
+\text{Pioniere: } 1{,}5-0{,}5 = 1{,}0\text{ cm pro Jahr}, &\quad \frac{60-30}{1{,}0} = 30\text{ Jahre}\\
+\textit{Rhizophora}: 1{,}0-0{,}5 = 0{,}5\text{ cm pro Jahr}, &\quad \frac{120-60}{0{,}5} = 120\text{ Jahre, also kommt }\textit{Bruguiera}\text{ in Jahr }150\\
+\textit{Bruguiera}: 0{,}5-0{,}5 = 0\text{ cm pro Jahr}, &\quad \text{der Schlamm bleibt bei }120\text{ cm}
+\end{aligned}" />
+
+<Chart
+  title={<>Höhe der Schlammoberfläche auf der Fläche</>}
+  categories={["Jahr 0", "Jahr 25", "Jahr 50", "Jahr 75", "Jahr 100", "Jahr 125", "Jahr 150", "Jahr 175", "Jahr 200"]}
+  series={[
+    { label: "Meeresspiegel gleich", mark: "line", values: [30, 60 + 5 * 1.0, 60 + 30 * 1.0, 60 + 55 * 1.0, 120 + 20 * 0.5, 120 + 45 * 0.5, 120 + 70 * 0.5, 120 + 95 * 0.5, 120 + 120 * 0.5] },
+    { label: "Meeresspiegel steigend", mark: "line", values: [30, 30 + 25 * 1.0, 60 + 20 * 0.5, 60 + 45 * 0.5, 60 + 70 * 0.5, 60 + 95 * 0.5, 120, 120, 120] },
+  ]}
+  valueLabel="Höhe über mittlerem Niedrigwasser (cm)"
+  description={<>Bei gleichem Meeresspiegel steigt der Schlamm bis Jahr <InlineMath math="20" /> auf <InlineMath math="60\text{ cm}" />, bis Jahr <InlineMath math="80" /> auf <InlineMath math="120\text{ cm}" /> und bis Jahr <InlineMath math="200" /> auf <InlineMath math="180\text{ cm}" />. Bei steigendem Meer erreicht er <InlineMath math="120\text{ cm}" /> erst in Jahr <InlineMath math="150" /> und bleibt dann gleich.</>}
+/>
+
+Unter *Bruguiera* steigt der Schlamm jetzt genau so schnell wie das Meer, also **kommt er nie über <InlineMath math="120\text{ cm}" /> hinaus**, und die Fläche erreicht nie die <InlineMath math="180\text{ cm}" /> des Inlandwalds.
+
+- I: <InlineMath math="30\text{ cm}" /> bei <InlineMath math="1{,}5\text{ cm}" /> pro Jahr dauern <InlineMath math="20" /> Jahre. Aussage I stimmt.
+- II: <InlineMath math="20+60=80" /> Jahre. Aussage II stimmt.
+- III: <InlineMath math="30+120=150" /> Jahre bis *Bruguiera*, danach kein weiterer Anstieg. Aussage III stimmt.
+- IV: Die Pioniere bleiben <InlineMath math="20" /> Jahre, am kürzesten von allen dreien, gerade weil sie den Schlamm am schnellsten heben. Aussage IV ist falsch.
+
+Richtig sind also die Aussagen I, II und III.
+
+# Warum die anderen Antworten falsch sind
+
+- Nur I behält die Rate der Pioniere, <InlineMath math="1{,}5\text{ cm}" /> pro Jahr, für den ganzen Anstieg bei und **übersieht, dass jede Gruppe den Schlamm mit ihrer eigenen Rate hebt**. So kommen <InlineMath math="\tfrac{120-30}{1{,}5}=60" /> Jahre für II und <InlineMath math="\tfrac{120-30}{1{,}0}=90" /> Jahre für III heraus.
+- Nur I, II und IV meint, die schnellsten Schlickfänger blieben am längsten, **dabei hebt schnelles Fangen den Schlamm am frühesten aus ihrem Bereich**.
+- Nur I und II zieht den Anstieg des Meeresspiegels nur von der Rate der Pioniere ab, erhält <InlineMath math="30+60=90" /> Jahre und **vergisst, dass der Anstieg jede Stufe bremst**.

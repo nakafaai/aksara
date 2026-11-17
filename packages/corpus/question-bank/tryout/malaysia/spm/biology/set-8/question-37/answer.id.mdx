@@ -1,0 +1,58 @@
+# Ikuti alel itu turun di setiap cabang keluarga, dengan peluang dibagi dua di setiap generasi
+
+Tulis <InlineMath math="A" /> untuk alel normal dan <InlineMath math="a" /> untuk alel talasemia. Satu-satunya <InlineMath math="a" /> di keluarga ini berawal dari kakek G. Semua orang yang menikah masuk ke keluarga adalah <InlineMath math="AA" />, jadi alel itu bisa sampai ke Ahmad atau Aminah **hanya dengan diwariskan dari G**, dengan peluang <InlineMath math="\tfrac{1}{2}" /> di setiap langkah.
+
+## Pernyataan I
+
+G adalah <InlineMath math="Aa" /> dan H adalah <InlineMath math="AA" />, jadi S punya peluang <InlineMath math="\tfrac{1}{2}" /> untuk menjadi <InlineMath math="Aa" />. Jika S <InlineMath math="Aa" />, ia mewariskan <InlineMath math="a" /> ke Ahmad dengan peluang <InlineMath math="\tfrac{1}{2}" />, karena W hanya bisa memberi <InlineMath math="A" />:
+
+<BlockMath math="P(\text{Ahmad }Aa) = \tfrac{1}{2}\times\tfrac{1}{2} = \tfrac{1}{4}" />
+
+**Dua langkah yang sama** berlaku dari G melalui T ke Aminah, jadi peluangnya juga <InlineMath math="\tfrac{1}{4}" />. Pernyataan I benar.
+
+<Mermaid
+  title={<>Jalan Alel Menuju Setiap Sepupu</>}
+  description={<>Dari kakek G yang pembawa, setiap anaknya S dan T adalah pembawa dengan peluang setengah. Setiap sepupu, Ahmad melalui S dan Aminah melalui T, lalu menjadi pembawa dengan peluang seperempat. Anak sakit hanya jika kedua sepupu pembawa dan keduanya mewariskan alelnya, jadi seperempat kali seperempat kali seperempat, yaitu satu per enam puluh empat.</>}
+  chart={`flowchart TD
+  G["G: Aa"] --> S["S: Aa dengan 1/2"]
+  G --> T["T: Aa dengan 1/2"]
+  S --> A["Ahmad: Aa dengan 1/2 x 1/2 = 1/4"]
+  T --> B["Aminah: Aa dengan 1/2 x 1/2 = 1/4"]
+  A --> C["Anak aa: 1/4 x 1/4 x 1/4 = 1/64"]
+  B --> C`}
+/>
+
+## Pernyataan II
+
+Anak menjadi <InlineMath math="aa" /> hanya jika **kedua** orang tuanya pembawa, lalu anak itu menerima <InlineMath math="a" /> dari masing-masing, yang terjadi dengan peluang <InlineMath math="\tfrac{1}{4}" />. Peluang kedua sepupu datang lewat orang tua yang berbeda, S dan T, jadi dikalikan:
+
+<BlockMath math="P(\text{anak } aa) = \tfrac{1}{4}\times\tfrac{1}{4}\times\tfrac{1}{4} = \tfrac{1}{64}" />
+
+Pernyataan II benar.
+
+## Pernyataan III
+
+Sekarang peluang perempuan itu menjadi pembawa adalah <InlineMath math="\tfrac{1}{20}" />, bukan <InlineMath math="\tfrac{1}{4}" />:
+
+<BlockMath math="\begin{aligned}
+P(\text{anak } aa) &= \tfrac{1}{4}\times\tfrac{1}{20}\times\tfrac{1}{4} = \tfrac{1}{320}\\
+\frac{1/320}{1/64} &= \frac{64}{320} = \frac{1}{5}
+\end{aligned}" />
+
+Pernyataan III benar. Pernikahan sepupu menaikkan risiko karena kedua pasangan bisa membawa **alel yang sama dari satu kakek yang sama**.
+
+## Pernyataan IV
+
+Jika Ahmad pembawa, peluangnya menjadi <InlineMath math="1" />. **Peluang Aminah tidak berubah**: alelnya datang lewat T, dan hasil tes Ahmad tidak memberi tahu apa pun tentang apa yang T terima dari G atau wariskan ke Aminah. Peluangnya tetap <InlineMath math="\tfrac{1}{4}" />:
+
+<BlockMath math="P(\text{anak } aa) = 1\times\tfrac{1}{4}\times\tfrac{1}{4} = \tfrac{1}{16}" />
+
+Peluangnya naik menjadi <InlineMath math="\tfrac{1}{16}" />, bukan <InlineMath math="\tfrac{1}{4}" />. Pernyataan IV salah.
+
+Jadi pernyataan I, II, dan III benar.
+
+# Mengapa pilihan lain salah
+
+- I dan II saja memakai **<InlineMath math="\tfrac{1}{20}" /> sebagai peluang perempuan itu mewariskan alel**. Pembawa hanya mewariskannya setengah kali, jadi peluangnya <InlineMath math="\tfrac{1}{40}" />, dan risikonya <InlineMath math="\tfrac{1}{8}\times\tfrac{1}{40}=\tfrac{1}{320}" />, bukan <InlineMath math="\tfrac{1}{160}" />.
+- I saja **melewatkan <InlineMath math="\tfrac{1}{4}" /> terakhir** untuk dua orang tua pembawa yang punya anak sakit, sehingga mendapat <InlineMath math="\tfrac{1}{16}" /> untuk sepupu dan <InlineMath math="\tfrac{1}{80}" /> untuk perempuan itu, lalu menolak II dan III.
+- I, II, III, dan IV menganggap **jika Ahmad membawa alel itu, Aminah pasti juga membawanya**, karena kedua cabang berawal dari G. Setiap anak G menerima alel itu secara bebas, jadi tes Ahmad membiarkan peluang Aminah tetap <InlineMath math="\tfrac{1}{4}" />.

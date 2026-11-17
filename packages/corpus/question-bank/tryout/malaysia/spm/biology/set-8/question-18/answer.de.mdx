@@ -1,0 +1,65 @@
+# Verlorene Masse ist Volumen mal Konzentration, und entscheidend ist das Protein, das die Leber nicht ersetzt
+
+Jede Aussage braucht die **Masse, die pro Tag hinausgeht**, nicht nur die Konzentration. Rechne das Volumen zuerst in <InlineMath math="\text{dm}^3" /> um, weil die Konzentrationen pro <InlineMath math="\text{dm}^3" /> angegeben sind:
+
+<BlockMath math="\begin{aligned}
+\text{Fettverlust, Diät P} &= 1{,}5\times24 = 36\text{ g pro Tag}\\
+\text{Fettverlust, Diäten Q und R} &= 0{,}8\times3 = 2{,}4\text{ g pro Tag}\\
+\text{Proteinverlust, Diät P} &= 1{,}5\times30 = 45\text{ g pro Tag}\\
+\text{Proteinverlust, Diäten Q und R} &= 0{,}8\times30 = 24\text{ g pro Tag}
+\end{aligned}" />
+
+## Aussage I
+
+<BlockMath math="\frac{36}{80}\times100\% = 45\%,\qquad \frac{36-2{,}4}{36}\times100\% \approx 93\%" />
+
+Bei Diät P entfernt die Drainage <InlineMath math="45\%" /> des gegessenen Fetts, und Diät R senkt den täglichen Fettverlust um etwa <InlineMath math="93\%" />. **Beide Teile stimmen**, und selbst ohne die <InlineMath math="2{,}4\text{ g}" />, die auch bei fettfreier Diät ablaufen, ist der Anteil <InlineMath math="\tfrac{33{,}6}{80}=42\%" />. Aussage I stimmt.
+
+## Aussage II
+
+Die Drainage ist nicht alles, denn die Leber gibt jeden Tag <InlineMath math="15\text{ g}" /> zurück. Was das Plasmaprotein senkt, ist der **Nettoverlust**:
+
+<BlockMath math="\begin{aligned}
+\text{Nettoverlust, Diät P} &= 45-15 = 30\text{ g pro Tag}\\
+\text{Nettoverlust, Diät R} &= 24-15 = 9\text{ g pro Tag}
+\end{aligned}" />
+
+Ein Abfall von <InlineMath math="70" /> auf <InlineMath math="60\text{ g pro dm}^3" /> in <InlineMath math="3{,}0\text{ dm}^3" /> Plasma bedeutet einen Verlust von
+
+<BlockMath math="(70-60)\times3{,}0 = 30\text{ g Plasmaprotein}" />
+
+<BlockMath math="\text{Zeit bei Diät P} = \frac{30}{30} = 1\text{ Tag},\qquad \text{Zeit bei Diät R} = \frac{30}{9} \approx 3{,}3\text{ Tage}" />
+
+<Chart
+  title={<>Plasmaprotein bei den Diäten P und R</>}
+  categories={["Tag 0", "Tag 1", "Tag 2", "Tag 3", "Tag 4"]}
+  series={[
+    { label: "Diät P", mark: "line", values: [70, 60, 50, 40, 30] },
+    { label: "Diät R", mark: "line", values: [70, 67, 64, 61, 58] },
+  ]}
+  valueLabel="Plasmaprotein (g pro dm³)"
+  description={<>Bei Diät P sinkt das Plasmaprotein um <InlineMath math="10\text{ g pro dm}^3" /> pro Tag und erreicht nach einem Tag <InlineMath math="60" />. Bei Diät R sinkt es nur um <InlineMath math="3\text{ g pro dm}^3" /> pro Tag und unterschreitet <InlineMath math="60" /> zwischen Tag <InlineMath math="3" /> und Tag <InlineMath math="4" />.</>}
+/>
+
+Diät R braucht etwa <InlineMath math="3{,}3" /> Tage, also mehr als <InlineMath math="3" /> Tage und <InlineMath math="3{,}3" />-mal so lange wie Diät P. Aussage II stimmt.
+
+## Aussagen III und IV
+
+Lies jetzt Diät Q als Kontrolle. Ganz ohne Fett in der Nahrung laufen trotzdem jeden Tag <InlineMath math="800\text{ cm}^3" /> Lymphe ab, die Protein mitführen. Das ist die Gewebeflüssigkeit der anderen Organe, und des Darms zwischen den Mahlzeiten, auf dem Rückweg ins Blut. Diät R ergibt **genau** dasselbe Volumen und Fett wie Diät Q, also fügen ihre <InlineMath math="80\text{ g}" /> mittelkettiges Fett der Lymphe nichts hinzu.
+
+<Mermaid
+  title={<>Zwei Wege aus einer Darmzotte</>}
+  description={<>Langkettiges Fett wird in Chylomikronen verpackt, gelangt in die Lymphkapillare der Zotte und fließt mit der Lymphe den Milchbrustgang hinauf, der hier in die Drainage leckt. Mittelkettiges Fett geht in die Blutkapillaren der Zotte und über die Pfortader zur Leber, erreicht die Drainage also nie. Gewebeflüssigkeit anderer Organe fließt ebenfalls in den Milchbrustgang.</>}
+  chart={"flowchart LR\n  L[Langkettiges Fett] --> C[Chylomikronen]\n  C --> LA[Lymphkapillare der Zotte]\n  LA --> TD[Milchbrustgang]\n  TF[Gewebeflüssigkeit anderer Organe] --> TD\n  TD --> D[Drainage]\n  M[Mittelkettiges Fett] --> BC[Blutkapillare der Zotte]\n  BC --> HP[Pfortader zur Leber]"}
+/>
+
+- III: Bei Diät R entfernt die Drainage immer noch <InlineMath math="24\text{ g}" /> Plasmaprotein pro Tag, genau den Verlust, den Aussage II verfolgt. Aussage III ist falsch.
+- IV: Diät R gleicht der fettfreien Diät in Volumen und Fett, das mittelkettige Fett gelangt also nicht in die Lymphkapillaren. Es geht stattdessen in die Blutkapillaren der Zotten. Aussage IV ist falsch.
+
+Richtig sind also die Aussagen I und II.
+
+# Warum die anderen Antworten falsch sind
+
+- Nur I **lässt die <InlineMath math="15\text{ g}" /> pro Tag aus der Leber weg**. Dann verliert Diät R <InlineMath math="24\text{ g}" /> pro Tag und braucht <InlineMath math="\tfrac{30}{24}=1{,}25" /> Tage, Diät P braucht <InlineMath math="\tfrac{30}{45}\approx0{,}67" /> Tage, nur <InlineMath math="1{,}9" />-mal kürzer, und II wirkt falsch.
+- Nur I, II und IV wendet die Regel an, dass **alles aufgenommene Fett in die Lymphkapillaren geht**, ohne Diät R mit der Kontrolle, Diät Q, zu vergleichen, die zeigt, dass mittelkettiges Fett der Lymphe nichts hinzufügt.
+- Nur I, II und III hält den Milchbrustgang für einen Gang, der **nur Lymphe aus dem Darm** führt, doch auch Gewebeflüssigkeit aus dem größten Teil des Körpers fließt hinein, und bei Diät R führt er noch <InlineMath math="24\text{ g}" /> Protein pro Tag.

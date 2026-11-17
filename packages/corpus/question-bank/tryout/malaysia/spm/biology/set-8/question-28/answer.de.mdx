@@ -1,0 +1,49 @@
+# Eier, die nicht schlüpfen, fallen aus der nächsten Generation heraus, und genau das lässt Wolbachia sich ausbreiten
+
+Nur Mütter geben *Wolbachia* weiter, aber die Väter zählen trotzdem. Ein Weibchen ohne das Bakterium, das sich mit einem Trägermännchen paart, legt Eier, die **nicht schlüpfen**, und diese Eier fehlen in der nächsten Generation. Trägerweibchen verlieren keine Eier. Deshalb ist der Anteil der Träger unter den geschlüpften Eiern größer als unter den Müttern.
+
+## Die erste Generation
+
+Wenn je die Hälfte der Männchen und der Weibchen *Wolbachia* trägt, listest du jede Paarung und ihren Anteil an allen Eiern auf:
+
+| Paarung | Anteil der Eier | Eier schlüpfen | Nachkommen tragen *Wolbachia* |
+| --- | --- | --- | --- |
+| Trägerweibchen, beliebiges Männchen | <InlineMath math="\tfrac{1}{2}" /> | ja | ja |
+| Weibchen ohne, Trägermännchen | <InlineMath math="\tfrac{1}{2}\times\tfrac{1}{2}=\tfrac{1}{4}" /> | nein | keine schlüpfen |
+| Weibchen ohne, Männchen ohne | <InlineMath math="\tfrac{1}{2}\times\tfrac{1}{2}=\tfrac{1}{4}" /> | ja | nein |
+
+Nur geschlüpfte Eier bilden die nächste Generation, also **teilst du durch die geschlüpften Eier**, nicht durch alle gelegten:
+
+<BlockMath math="\text{Anteil mit }Wolbachia=\frac{\tfrac{1}{2}}{\tfrac{1}{2}+\tfrac{1}{4}}=\frac{2}{3}" />
+
+## Die zweite Generation
+
+Jetzt tragen <InlineMath math="\tfrac{2}{3}" /> der Männchen und Weibchen das Bakterium. Wende dieselbe Regel auf den neuen Anteil an:
+
+<BlockMath math="\text{Anteil mit }Wolbachia=\frac{\tfrac{2}{3}}{\tfrac{2}{3}+\left(\tfrac{1}{3}\right)^2}=\frac{\tfrac{6}{9}}{\tfrac{7}{9}}=\frac{6}{7}\approx86\%" />
+
+<Chart
+  title={<>Anteil der Mücken mit Wolbachia nach dem Ende der Freisetzung</>}
+  categories={["Bei der Freisetzung", "Generation 1", "Generation 2", "Generation 3"]}
+  series={[
+    { label: "Träger", mark: "line", values: [50, 100 * (2 / 3), 100 * (6 / 7), 100 * (42 / 43)] },
+    { label: "Gleicher Anstieg je Generation", mark: "line", values: [50, 100 * (2 / 3), 100 * (5 / 6), 100] },
+  ]}
+  valueLabel="Mücken mit Wolbachia (%)"
+  description={<>Der Anteil steigt von <InlineMath math="50\%" /> auf <InlineMath math="\tfrac{2}{3}" />, dann auf <InlineMath math="\tfrac{6}{7}" />, etwa <InlineMath math="86\%" />, dann auf etwa <InlineMath math="98\%" />. Mit jedes Mal demselben Anstieg kämen in Generation <InlineMath math="2" /> nur <InlineMath math="\tfrac{5}{6}" /> heraus, etwa <InlineMath math="83\%" />.</>}
+/>
+
+Der Anstieg beschleunigt sich, denn je mehr Träger es gibt, desto seltener findet ein Weibchen ohne Bakterium ein Männchen ohne.
+
+- I: Die erste Generation besteht zu <InlineMath math="\tfrac{2}{3}" /> aus Trägern. Aussage I stimmt.
+- II: Trägermännchen verhindern, dass ein Viertel aller Eier schlüpft, alle von Müttern ohne Bakterium, und **genau das treibt den Anteil nach oben**. Aussage II ist falsch.
+- III: Die zweite Generation besteht zu <InlineMath math="\tfrac{6}{7}" />, etwa <InlineMath math="86\%" />, aus Trägern. Aussage III stimmt.
+- IV: Werden nur Trägermännchen freigesetzt, ist jeder Träger männlich und kann nichts weitergeben, also breitet sich *Wolbachia* nicht aus. Jedes Weibchen, das sich mit einem paart, legt Eier, die nicht schlüpfen, also schlüpfen weniger Eier. Aussage IV stimmt.
+
+Richtig sind also die Aussagen I, III und IV.
+
+# Warum die anderen Antworten falsch sind
+
+- Nur II hält die Väter für bedeutungslos und lässt den Anteil bei <InlineMath math="50\%" />. Dabei **schlüpfen die Eier von Weibchen ohne Bakterium nach einer Paarung mit einem Träger nie**.
+- Nur I und IV addiert noch einmal denselben Anstieg von etwa <InlineMath math="17" /> Prozentpunkten und erhält <InlineMath math="\tfrac{5}{6}" />, **statt die Schlupfregel auf den neuen Anteil anzuwenden**.
+- Nur I und III verwirft IV, als könnten freigesetzte Trägermännchen allein das Bakterium verbreiten, **obwohl nur Mütter es weitergeben**.

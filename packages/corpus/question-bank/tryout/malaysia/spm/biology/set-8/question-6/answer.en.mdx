@@ -1,0 +1,50 @@
+# Count only the activity Z really has in the duodenum, then round up to whole capsules
+
+The rule counts the activity **at the pH of the duodenum**, not the <InlineMath math="25\,000" /> units printed for pH <InlineMath math="8" />. So work out what the meal needs, what one capsule really gives, and only then divide.
+
+**Step 1: what the meal needs**.
+
+<BlockMath math="36\text{ g}\times2000\text{ units per g} = 72\,000\text{ units}" />
+
+**Step 2: what one coated capsule gives**. The coat stays shut at pH <InlineMath math="2" />, so the acid never touches Z, and all of it reaches the duodenum. There, at pH <InlineMath math="6" />, Z works at only <InlineMath math="40\%" /> of its activity at pH <InlineMath math="8" />:
+
+<BlockMath math="25\,000\times0.40 = 10\,000\text{ units per coated capsule}" />
+
+**Step 3: whole coated capsules**.
+
+<BlockMath math="\frac{72\,000}{10\,000} = 7.2" />
+
+Seven capsules give only <InlineMath math="70\,000" /> units, short of <InlineMath math="72\,000" />, and nobody can swallow <InlineMath math="0.2" /> of a capsule. So the patient needs <InlineMath math="8" />.
+
+<Chart
+  title={<>Coated Capsules Against the Meal's Need</>}
+  bars="apart"
+  categories={["7 capsules", "8 capsules", "Needed"]}
+  series={[{ label: "Activity in duodenum", mark: "bar", values: [70000, 80000, 72000] }]}
+  valueLabel="Units of activity"
+  description={<>At pH <InlineMath math="6" />, each coated capsule gives <InlineMath math="10\,000" /> units, so <InlineMath math="7" /> capsules give <InlineMath math="70\,000" /> units, below the <InlineMath math="72\,000" /> units the <InlineMath math="36\text{ g}" /> of fat needs, while <InlineMath math="8" /> capsules give <InlineMath math="80\,000" /> units, enough.</>}
+/>
+
+**Step 4: plain capsules**. A plain capsule opens in the stomach, and the test shows that an hour at pH <InlineMath math="2" /> leaves only <InlineMath math="5\%" /> of the activity, **even back at pH <InlineMath math="8" />**. The rest has been denatured for good. The survivors then work at <InlineMath math="40\%" /> in the duodenum:
+
+<BlockMath math="\begin{aligned}
+25\,000\times0.05\times0.40 &= 500\text{ units per plain capsule}\\
+\frac{72\,000}{500} &= 144\text{ plain capsules}
+\end{aligned}" />
+
+<Chart
+  title={<>Activity One Capsule Gives in the Duodenum</>}
+  bars="apart"
+  categories={["Label at pH 8", "Coated capsule", "Plain capsule"]}
+  series={[{ label: "Units of activity", mark: "bar", values: [25000, 10000, 500] }]}
+  valueLabel="Units of activity"
+  description={<>A capsule is labelled <InlineMath math="25\,000" /> units at pH <InlineMath math="8" />. A coated capsule gives <InlineMath math="10\,000" /> units in the patient's duodenum at pH <InlineMath math="6" />. A plain capsule gives only <InlineMath math="500" /> units, because the acid destroys <InlineMath math="95\%" /> of its Z before the duodenum slows the rest.</>}
+/>
+
+So the meal needs <InlineMath math="8" /> coated capsules or <InlineMath math="144" /> plain ones. The coat protects Z, but the weakly acidic duodenum still costs more than half of its activity.
+
+# Why the other options are wrong
+
+- <InlineMath math="3" /> coated or <InlineMath math="58" /> plain capsules divides by the activity at pH <InlineMath math="8" />, <InlineMath math="\tfrac{72\,000}{25\,000} = 2.88" />. **The rule counts the activity at the duodenum's pH <InlineMath math="6" />**, which is only <InlineMath math="40\%" /> of it.
+- <InlineMath math="8" /> coated or <InlineMath math="8" /> plain capsules treats the acid as if it only paused Z. **The test shows that Z kept at pH <InlineMath math="2" /> stays dead even back at pH <InlineMath math="8" />**: only <InlineMath math="5\%" /> survives.
+- <InlineMath math="7" /> coated capsules rounds <InlineMath math="7.2" /> down. **Seven capsules give <InlineMath math="70\,000" /> units, less than the <InlineMath math="72\,000" /> needed**, so the count must be rounded up.

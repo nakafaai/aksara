@@ -1,0 +1,57 @@
+# Masa itu ialah jumlah terkumpul, jadi tolak dahulu, kemudian kira setiap laju dan bawa hasilnya ke langkah seterusnya
+
+Lajur terakhir bukan masa yang diambil dalam setiap bahagian. Lajur itu ialah masa sejak nodus SA mencetuskan impuls, iaitu **jumlah terkumpul**. Jadi masa dalam sesuatu bahagian ialah masa hujungnya tolak masa hujung bahagian sebelumnya. Barulah kamu boleh membahagi panjang dengan masa.
+
+<BlockMath math="\begin{aligned}
+\text{dinding atrium} &: 50-0 = 50\text{ ms}, & \tfrac{50\text{ mm}}{50\text{ ms}} &= 1.0\text{ m s}^{-1}\\
+\text{nodus AV} &: 150-50 = 100\text{ ms}, & \tfrac{5\text{ mm}}{100\text{ ms}} &= 0.05\text{ m s}^{-1}\\
+\text{berkas His dan gentian Purkinje} &: 180-150 = 30\text{ ms}, & \tfrac{120\text{ mm}}{30\text{ ms}} &= 4.0\text{ m s}^{-1}\\
+\text{otot ventrikel} &: 210-180 = 30\text{ ms}, & \tfrac{12\text{ mm}}{30\text{ ms}} &= 0.4\text{ m s}^{-1}
+\end{aligned}" />
+
+Satu milimeter per milisaat sama dengan satu meter per saat, jadi unitnya mudah.
+
+<Chart
+  title={<>Laju Impuls dalam Setiap Bahagian</>}
+  bars="apart"
+  categories={["Dinding atrium", "Nodus AV", "Gentian Purkinje", "Otot ventrikel"]}
+  series={[{ label: "Laju", mark: "bar", values: [1, 0.05, 4, 0.4] }]}
+  valueLabel="Laju (m/s)"
+  description={<>Impuls bergerak pada <InlineMath math="1.0\text{ m/s}" /> merentasi dinding atrium, hanya <InlineMath math="0.05\text{ m/s}" /> melalui nodus AV, <InlineMath math="4.0\text{ m/s}" /> dalam berkas His dan gentian Purkinje, dan <InlineMath math="0.4\text{ m/s}" /> melalui otot ventrikel.</>}
+/>
+
+Nodus AV yang perlahan menahan impuls selama <InlineMath math="100\text{ ms}" />, jadi atrium selesai mengecut sebelum ventrikel mula mengecut. Gentian Purkinje yang laju kemudian menyebarkan impuls ke seluruh ventrikel hampir serta-merta, jadi ventrikel mengecut serentak dari apeks ke atas.
+
+- I: <InlineMath math="\tfrac{0.05}{1.0} = \tfrac{1}{20}" />. Pernyataan I betul.
+- II: <InlineMath math="\tfrac{4.0}{0.05} = 80" />, bukan <InlineMath math="20" />. Pernyataan II salah.
+- III: laluan baharu bermula di tempat gentian Purkinje bermula sekarang, iaitu di hujung nodus AV, jadi hanya <InlineMath math="30\text{ ms}" /> bagi berkas His dan gentian Purkinje yang diganti:
+
+<BlockMath math="\begin{aligned}
+\text{melalui otot} &: \frac{120\text{ mm}}{0.4\text{ m s}^{-1}} = 300\text{ ms}\\
+\text{kelewatan tambahan} &: 300-30 = 270\text{ ms} = 0.27\text{ s}
+\end{aligned}" />
+
+Itu lebih daripada <InlineMath math="0.2\text{ s}" /> lewat. Pernyataan III betul.
+
+- IV: menjadikan laju separuh dalam nodus AV menggandakan masa **bahagian itu sahaja**, daripada <InlineMath math="100" /> kepada <InlineMath math="200\text{ ms}" />. Pada <InlineMath math="150" /> denyutan seminit, nodus SA mencetuskan impuls setiap <InlineMath math="\tfrac{60}{150} = 0.4\text{ s}" />:
+
+<BlockMath math="\begin{aligned}
+\text{sampai ke permukaan luar} &: 50+200+30+30 = 310\text{ ms}\\
+\text{cetusan nodus SA seterusnya} &: 400\text{ ms}
+\end{aligned}" />
+
+Impuls sampai ke permukaan luar <InlineMath math="90\text{ ms}" /> sebelum cetusan seterusnya. Pernyataan IV salah.
+
+<Mermaid
+  title={<>Masa dalam Setiap Bahagian, Normal dan dengan Dadah</>}
+  description={<>Biasanya impuls mengambil <InlineMath math="50\text{ ms}" /> dalam dinding atrium, <InlineMath math="100\text{ ms}" /> dalam nodus AV, <InlineMath math="30\text{ ms}" /> dalam berkas His dan gentian Purkinje dan <InlineMath math="30\text{ ms}" /> dalam otot ventrikel, iaitu <InlineMath math="210\text{ ms}" /> kesemuanya. Dadah itu hanya menggandakan <InlineMath math="100\text{ ms}" /> nodus AV kepada <InlineMath math="200\text{ ms}" />, jadi permukaan luar dicapai pada <InlineMath math="310\text{ ms}" />, masih sebelum cetusan seterusnya pada <InlineMath math="400\text{ ms}" />.</>}
+  chart={"flowchart LR\n  SA[Nodus SA mencetus, 0 ms] -- 50 ms --> AV[Nodus AV]\n  AV -- 100 ms, atau 200 ms dengan dadah --> H[Berkas His]\n  H -- 30 ms --> I[Permukaan dalam di apeks]\n  I -- 30 ms --> O[Permukaan luar, 210 ms, atau 310 ms dengan dadah]\n  O --> N[Cetusan seterusnya pada 150 seminit, 400 ms]"}
+/>
+
+Jadi pernyataan I dan III betul.
+
+# Kenapa pilihan lain salah
+
+- II dan III sahaja menggunakan **jumlah terkumpul sebagai masa dalam setiap bahagian**. Nodus AV kemudian seolah-olah mengambil <InlineMath math="150\text{ ms}" />, lajunya <InlineMath math="\tfrac{5}{150}\approx0.033\text{ m s}^{-1}" />, iaitu satu pertiga puluh laju atrium, dan gentian Purkinje pada <InlineMath math="\tfrac{120}{180}\approx0.67\text{ m s}^{-1}" /> kelihatan tepat <InlineMath math="20" /> kali lebih laju.
+- I, III dan IV sahaja menggandakan **keseluruhan** <InlineMath math="210\text{ ms}" /> kepada <InlineMath math="420\text{ ms}" />, seolah-olah setiap bahagian menjadi perlahan, jadi impuls kelihatan sampai selepas cetusan seterusnya pada <InlineMath math="400\text{ ms}" />.
+- I sahaja membandingkan <InlineMath math="300\text{ ms}" /> melalui otot dengan keseluruhan <InlineMath math="180\text{ ms}" /> dari nodus SA ke permukaan dalam, jadi kelewatannya hanya <InlineMath math="120\text{ ms}" />. **Laluan baharu hanya menggantikan bahagian <InlineMath math="30\text{ ms}" /> itu**, dan <InlineMath math="150\text{ ms}" /> yang pertama kekal.

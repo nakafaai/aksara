@@ -1,0 +1,56 @@
+# Mulai terlambat hanya menggeser kurva, bukan totalnya, jadi bandingkan laju dan gula per gram
+
+Parafin menahan udara masuk, jadi khamir berespirasi anaerob dan gasnya adalah karbon dioksida dari fermentasi. Tabung T tidak menghasilkan gas, jadi gas itu berasal dari enzim khamir yang hidup, bukan dari gulanya sendiri.
+
+Mulai dari tabung P dan Q. Ambil laju **setelah awal yang lambat**, dari menit ke-<InlineMath math="20" /> sampai menit ke-<InlineMath math="40" />, lalu ubah kekurangan gas di menit ke-<InlineMath math="40" /> menjadi waktu:
+
+<BlockMath math="\begin{aligned}
+\text{tabung P}: \quad \tfrac{14{,}0-7{,}0}{20} &= 0{,}35\text{ cm}^3\text{ per menit}\\
+\text{tabung Q}: \quad \tfrac{12{,}6-5{,}6}{20} &= 0{,}35\text{ cm}^3\text{ per menit}\\
+\text{kekurangan}: \quad 14{,}0-12{,}6 = 1{,}4\text{ cm}^3, \qquad \tfrac{1{,}4}{0{,}35} &= 4\text{ menit}
+\end{aligned}" />
+
+<Chart
+  title={<>Gas yang Dilepaskan Khamir di Tabung P sampai S</>}
+  categories={["10 menit", "20 menit", "30 menit", "40 menit"]}
+  series={[
+    { label: "P Glukosa", mark: "line", values: [3.5, 7, 10.5, 14] },
+    { label: "Q Sukrosa", mark: "line", values: [2.1, 5.6, 9.1, 12.6] },
+    { label: "R Sukrosa dan invertase", mark: "line", values: [3.4, 6.8, 10.2, 13.6] },
+    { label: "S Laktosa", mark: "line", values: [0, 0, 0, 0] },
+  ]}
+  valueLabel="Gas terkumpul (cm³)"
+  description={<>Tabung P dan Q sejajar pada <InlineMath math="0{,}35\text{ cm}^3" /> per menit setelah menit ke-<InlineMath math="20" />, dengan tabung Q selalu tertinggal <InlineMath math="1{,}4\text{ cm}^3" />, yaitu gas selama <InlineMath math="4" /> menit. Tabung R, yang diberi invertase, mulai hampir setara dengan tabung P, yaitu <InlineMath math="3{,}4\text{ cm}^3" /> setelah <InlineMath math="10" /> menit. Laktosa sama sekali tidak menghasilkan gas.</>}
+/>
+
+Tabung R berisi sukrosa yang sama dengan tambahan invertase. Gasnya di menit ke-<InlineMath math="10" /> adalah <InlineMath math="3{,}4\text{ cm}^3" />, hampir sama dengan <InlineMath math="3{,}5\text{ cm}^3" /> pada glukosa, jadi begitu sukrosa **dihidrolisis dengan cepat**, keterlambatannya hilang. Artinya keterlambatan di tabung Q berasal dari hidrolisis sukrosa oleh khamir itu sendiri, sedangkan fermentasi glukosa dan fruktosa berjalan secepat fermentasi glukosa.
+
+Sekarang total akhirnya. Kedua tabung berisi <InlineMath math="0{,}5\text{ g}" /> gula, tetapi satu molekul sukrosa memberi dua heksosa, dan setiap heksosa memberi dua molekul karbon dioksida:
+
+<BlockMath math="\begin{aligned}
+\mathrm{C_{12}H_{22}O_{11}} + \mathrm{H_2O} &\rightarrow \mathrm{C_6H_{12}O_6}\ (\text{glukosa}) + \mathrm{C_6H_{12}O_6}\ (\text{fruktosa})\\
+\mathrm{C_6H_{12}O_6} &\rightarrow 2\mathrm{C_2H_5OH} + 2\mathrm{CO_2}\\
+\text{tabung P}: \quad \tfrac{0{,}5}{180}\times2 &\approx 0{,}0056\text{ mol karbon dioksida}\\
+\text{tabung Q}: \quad \tfrac{0{,}5}{342}\times4 &\approx 0{,}0058\text{ mol karbon dioksida}
+\end{aligned}" />
+
+Air yang ikut masuk saat hidrolisis membuat **massa sukrosa yang sama mengandung sekitar** <InlineMath math="\tfrac{4\times180}{2\times342} = \tfrac{720}{684} \approx 1{,}05" /> kali gula yang bisa difermentasi dibanding glukosa.
+
+<Mermaid
+  title={<>Gula Mana yang Bisa Difermentasi Khamir</>}
+  description={<>Invertase menghidrolisis sukrosa menjadi glukosa dan fruktosa, lalu khamir memfermentasi keduanya menjadi etanol dan karbon dioksida. Khamir tidak punya laktase, jadi laktosa tetap utuh. Mendidihkan laktosa dengan asam klorida encer lalu menetralkannya menghidrolisis laktosa menjadi glukosa dan galaktosa, dan khamir memfermentasi glukosanya.</>}
+  chart={"flowchart LR\n  S[Sukrosa] -->|invertase| GF[Glukosa dan fruktosa]\n  GF --> E[Etanol dan karbon dioksida]\n  L[Laktosa] -.->|khamir tidak punya laktase| X[Tidak ada gas]\n  L -->|dididihkan dengan asam, lalu dinetralkan| GG[Glukosa dan galaktosa]\n  GG -->|glukosa difermentasi| E"}
+/>
+
+- I: kedua tabung melepaskan <InlineMath math="0{,}35\text{ cm}^3" /> per menit dari menit ke-<InlineMath math="20" /> sampai ke-<InlineMath math="40" />, dan kekurangan <InlineMath math="1{,}4\text{ cm}^3" /> itu sama dengan gas yang dilepaskan tabung P dalam <InlineMath math="4" /> menit. Pernyataan I benar.
+- II: <InlineMath math="0{,}5\text{ g}" /> sukrosa hanya <InlineMath math="\tfrac{0{,}5}{342} \approx 0{,}0015\text{ mol}" />, sekitar setengah dari <InlineMath math="\tfrac{0{,}5}{180} \approx 0{,}0028\text{ mol}" /> glukosa. Tetapi setiap sukrosa dihidrolisis menjadi **dua** heksosa, jadi tabung Q memfermentasi sekitar <InlineMath math="0{,}0029\text{ mol}" /> heksosa dan akhirnya memberi sekitar <InlineMath math="0{,}0058" /> dibanding <InlineMath math="0{,}0056\text{ mol}" /> karbon dioksida, sedikit lebih banyak gas daripada tabung P, bukan setengahnya. Pernyataan II salah.
+- III: dengan tambahan invertase, sukrosa melepaskan gas hampir secepat glukosa sejak awal, jadi di tabung Q pembatas di awal adalah hidrolisis sukrosa, bukan fermentasi heksosa. Pernyataan III benar.
+- IV: laktosa adalah glukosa yang terikat dengan galaktosa. Pendidihan dengan asam encer memutus ikatan itu, seperti pada uji gula nonpereduksi, dan penetralan melindungi enzim khamir. Masalah khamir ada pada **laktosanya, bukan pada glukosa**, jadi khamir memfermentasi glukosa yang terbentuk dan melepaskan gas. Pernyataan IV benar.
+
+Jadi pernyataan I, III, dan IV benar.
+
+# Mengapa pilihan lain salah
+
+- I dan III saja menganggap laktosa tetap tidak berguna meskipun sudah dihidrolisis asam, **mencampuradukkan tidak adanya laktase dengan tidak adanya enzim fermentasi**.
+- I, II, III, dan IV menerima II dengan membandingkan molekul sukrosa dengan molekul glukosa, sekitar setengahnya, **lupa bahwa setiap molekul sukrosa dihidrolisis menjadi dua heksosa**.
+- III dan IV saja membandingkan total di menit ke-<InlineMath math="40" />, yaitu <InlineMath math="12{,}6" /> dibanding <InlineMath math="14{,}0\text{ cm}^3" />, seolah sukrosa difermentasi <InlineMath math="10\%" /> lebih lambat, **bukan laju setelah menit ke-<InlineMath math="20" />**.

@@ -1,0 +1,43 @@
+# Air yang dipompa keluar per menit adalah jumlah pengosongan kali volume kali dua vakuola, dan saat volumenya tetap, nilainya sama dengan air yang masuk
+
+Vakuola yang lebih sering mengosongkan diri belum tentu membuang lebih banyak air: di larutan sukrosa, setiap pengosongan juga lebih kecil. Jadi air yang dibuang per menit adalah
+
+<BlockMath math="\text{air dibuang per menit} = 2\times(\text{pengosongan per menit})\times(\text{volume tiap pengosongan})" />
+
+<BlockMath math="\begin{aligned}
+\text{air kolam}: \quad 2\times10\times1000 &= 20\,000\,\mu\text{m}^3\text{ per menit}\\
+\text{sukrosa }40\text{ mM}: \quad 2\times4\times750 &= 6000\,\mu\text{m}^3\text{ per menit}\\
+\text{sukrosa }80\text{ mM}: \quad 2\times1\times500 &= 1000\,\mu\text{m}^3\text{ per menit}
+\end{aligned}" />
+
+Volume sel tetap di setiap cairan. Itu hanya terjadi kalau air yang masuk secara osmosis **sama** dengan air yang dibuang vakuola, jadi ketiga angka ini juga laju air yang masuk.
+
+<Chart
+  title={<>Air yang Dibuang per Menit oleh Kedua Vakuola</>}
+  bars="apart"
+  categories={["Air kolam", "Sukrosa 40 mM", "Sukrosa 80 mM"]}
+  series={[{ label: "Air dibuang (µm³ per menit)", mark: "bar", values: [20000, 6000, 1000] }]}
+  valueLabel="Air dibuang (µm³ per menit)"
+  description={<>Kedua vakuola bersama-sama membuang <InlineMath math="20\,000\,\mu\text{m}^3" /> per menit di air kolam, <InlineMath math="6000" /> di sukrosa <InlineMath math="40\text{ mM}" />, dan <InlineMath math="1000" /> di sukrosa <InlineMath math="80\text{ mM}" />. Karena volume sel tetap, air sebanyak itu pula yang masuk secara osmosis.</>}
+/>
+
+- I: <InlineMath math="\tfrac{400\,000}{20\,000} = 20" /> menit. Pernyataan I benar.
+- II: <InlineMath math="\tfrac{6000}{20\,000} = 30\%" />, jadi hasilnya turun <InlineMath math="70\%" />. Pernyataan II benar.
+- III: kalau vakuola berhenti, sel menahan air yang masuk. Supaya pecah, sel harus bertambah setengah volumenya:
+
+<BlockMath math="\begin{aligned}
+\text{volume tambahan} &= 0{,}5\times400\,000 = 200\,000\,\mu\text{m}^3\\
+\text{waktu di sukrosa }40\text{ mM} &= \frac{200\,000}{6000} \approx 33\text{ menit}
+\end{aligned}" />
+
+Itu lebih lama dari <InlineMath math="20" /> menit. Pernyataan III salah.
+
+- IV: <InlineMath math="\tfrac{20\,000}{1000} = 20" />. Air kolam yang lebih encer memberi gradien konsentrasi yang lebih curam ke arah sitoplasma, jadi air masuk <InlineMath math="20" /> kali lebih cepat. Pernyataan IV benar.
+
+Jadi pernyataan I, II, dan IV benar.
+
+# Mengapa pilihan lain salah
+
+- I dan II saja hanya membandingkan jumlah pengosongan di IV, <InlineMath math="10" /> lawan <InlineMath math="1" />, lalu mendapat <InlineMath math="10" /> kali. **Setiap pengosongan di sukrosa <InlineMath math="80\text{ mM}" /> juga hanya setengah ukurannya**.
+- I, II, III, dan IV menerima III dengan memakai laju di air kolam, <InlineMath math="\tfrac{200\,000}{20\,000} = 10" /> menit, **padahal sel berada di sukrosa <InlineMath math="40\text{ mM}" />**, tempat air hanya masuk <InlineMath math="6000\,\mu\text{m}^3" /> per menit.
+- I dan IV saja hanya membandingkan jumlah pengosongan di II, <InlineMath math="10" /> lawan <InlineMath math="4" />, turun <InlineMath math="60\%" />, **lupa bahwa setiap pengosongan juga mengecil dari <InlineMath math="1000" /> menjadi <InlineMath math="750\,\mu\text{m}^3" />**.

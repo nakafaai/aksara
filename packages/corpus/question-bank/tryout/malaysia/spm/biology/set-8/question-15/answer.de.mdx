@@ -1,0 +1,70 @@
+# Warme Haut lässt jeden Liter Blut weniger Wärme tragen, also muss der Anteil der Haut am begrenzten Herzzeitvolumen wachsen
+
+Um Wärme loszuwerden, muss der Körper sie erst zur Haut bringen, und das übernimmt das Blut. Wie viel Wärme ein Liter trägt, hängt vom **Unterschied zwischen Kern- und Hauttemperatur** ab. Ist die Haut warm, schrumpft der Unterschied, also braucht die Haut für dieselbe Wärme viel mehr Blut. Das Herzzeitvolumen ist begrenzt, also konkurriert die Haut dann mit den Muskeln.
+
+**Wärme, die jeder Liter Blut trägt**:
+
+<BlockMath math="\begin{aligned}
+\text{Raum P}: \quad 3{,}6\cdot(38{,}0-33{,}0) &= 3{,}6\cdot5{,}0 = 18\text{ kJ pro L}\\
+\text{Raum Q}: \quad 3{,}6\cdot(38{,}5-37{,}0) &= 3{,}6\cdot1{,}5 = 5{,}4\text{ kJ pro L}
+\end{aligned}" />
+
+**Hautdurchblutung, die <InlineMath math="36\text{ kJ}" /> pro Minute braucht**:
+
+<BlockMath math="\begin{aligned}
+\text{Raum P}: \quad \frac{36}{18} &= 2{,}0\text{ L pro Minute}\\
+\text{Raum Q}: \quad \frac{36}{5{,}4} &\approx 6{,}67\text{ L pro Minute}
+\end{aligned}" />
+
+**Blut, das nach Muskeln und übrigen Organen für die Haut bleibt**: <InlineMath math="20-14-3 = 3\text{ L}" /> pro Minute.
+
+<Chart
+  title={<>Nötige Durchblutung gegen die Grenze des Herzens</>}
+  bars="apart"
+  categories={["Muskeln", "Übrige Organe", "Haut", "Bedarf gesamt", "Grenze des Herzens"]}
+  series={[
+    { label: "Raum P", mark: "bar", values: [14, 3, 2, 19, 20] },
+    { label: "Raum Q", mark: "bar", values: [14, 3, 6.67, 23.67, 20] },
+  ]}
+  valueLabel="Durchblutung (L pro Minute)"
+  description={<>In Raum P brauchen Muskeln, übrige Organe und Haut <InlineMath math="14" />, <InlineMath math="3" /> und <InlineMath math="2" /> Liter pro Minute, zusammen <InlineMath math="19" />, innerhalb der <InlineMath math="20" /> Liter des Herzens. In Raum Q braucht die Haut etwa <InlineMath math="6{,}67" /> Liter, also liegt der Bedarf von etwa <InlineMath math="23{,}67" /> weit über der Grenze.</>}
+/>
+
+- I: Raum P braucht <InlineMath math="14+3+2 = 19\text{ L}" /> pro Minute, innerhalb der Grenze von <InlineMath math="20\text{ L}" />. Aussage I stimmt.
+- II: Die Haut bekommt höchstens <InlineMath math="3\text{ L}" /> der nötigen <InlineMath math="6{,}67\text{ L}" />, und <InlineMath math="\tfrac{3}{6{,}67}\approx45\,\%" /> ist weniger als die Hälfte. Aussage II stimmt.
+- III: Die <InlineMath math="3\text{ L}" /> tragen trotzdem Wärme ab, also wird nur der Rest gespeichert:
+
+<BlockMath math="\begin{aligned}
+\text{abgetragene Wärme} &= 3\cdot5{,}4 = 16{,}2\text{ kJ pro Minute}\\
+\text{gespeicherte Wärme} &= 36-16{,}2 = 19{,}8\text{ kJ pro Minute}\\
+\text{Anstieg der Kerntemperatur} &= \frac{19{,}8}{245}\approx0{,}081^\circ\text{C pro Minute}
+\end{aligned}" />
+
+Das ist weniger als <InlineMath math="0{,}12^\circ\text{C}" /> pro Minute. Aussage III ist falsch.
+
+<Chart
+  title={<>Wärme in Raum Q pro Minute</>}
+  bars="apart"
+  categories={["Erzeugt", "Zur Haut getragen", "Gespeichert"]}
+  series={[{ label: "Wärme", mark: "bar", values: [36, 16.2, 19.8] }]}
+  valueLabel="Wärme (kJ pro Minute)"
+  description={<>In Raum Q erzeugen die Muskeln <InlineMath math="36\text{ kJ}" /> pro Minute. Die <InlineMath math="3\text{ L}" /> Blut, die für die Haut bleiben, tragen <InlineMath math="16{,}2\text{ kJ}" /> ab, also werden pro Minute <InlineMath math="19{,}8\text{ kJ}" /> gespeichert, was den Körper um etwa <InlineMath math="0{,}081^\circ\text{C}" /> pro Minute erwärmt.</>}
+/>
+
+- IV: Bräuchten die Muskeln <InlineMath math="16\text{ L}" />, stiege die Wärme im gleichen Verhältnis, und auch die Haut bräuchte mehr Blut:
+
+<BlockMath math="\begin{aligned}
+\text{Wärme} &= 36\cdot\frac{16}{14}\approx41{,}1\text{ kJ pro Minute}\\
+\text{Haut} &= \frac{41{,}1}{18}\approx2{,}29\text{ L pro Minute}\\
+\text{gesamt} &= 16+3+2{,}29\approx21{,}3\text{ L pro Minute}
+\end{aligned}" />
+
+Das ist mehr als die <InlineMath math="20\text{ L}" /> des Herzens. Aussage IV ist falsch.
+
+Richtig sind also die Aussagen I und II. In feuchter Hitze muss der Radfahrer langsamer fahren, sonst steigt seine Kerntemperatur weiter, obwohl sein Herz so stark pumpt, wie es kann.
+
+# Warum die anderen Antworten falsch sind
+
+- Nur I gibt jedem Liter Blut in beiden Räumen dieselben <InlineMath math="18\text{ kJ}" />. Dann braucht auch Raum Q nur <InlineMath math="2\text{ L}" /> für die Haut, die übrigen <InlineMath math="3\text{ L}" /> scheinen reichlich, und es scheint keine Wärme gespeichert zu werden. **Die warme Haut senkt den Temperaturunterschied von <InlineMath math="5{,}0" /> auf <InlineMath math="1{,}5^\circ\text{C}" />**, also trägt jeder Liter nur <InlineMath math="5{,}4\text{ kJ}" />.
+- Nur I, II und III tut so, als gäbe die Haut **gar keine** Wärme ab, sobald sie weniger Blut bekommt, als sie braucht, sodass alle <InlineMath math="36\text{ kJ}" /> gespeichert scheinen, <InlineMath math="\tfrac{36}{245}\approx0{,}15^\circ\text{C}" /> pro Minute. **Die <InlineMath math="3\text{ L}" /> tragen trotzdem <InlineMath math="16{,}2\text{ kJ}" /> ab**.
+- Nur I und IV vergisst die <InlineMath math="3\text{ L}" /> für Gehirn, Herz und übrige Organe. Dann scheinen in IV <InlineMath math="16+2{,}29\approx18{,}3\text{ L}" /> zu passen, und Raum Q scheint der Haut <InlineMath math="6\text{ L}" /> zu lassen, <InlineMath math="90\,\%" /> ihres Bedarfs. **Diese Organe behalten ihr Blut, egal was die Muskeln tun**.

@@ -1,0 +1,43 @@
+# Das pro Minute hinausgepumpte Wasser ist Entleerungen mal Volumen mal zwei Vakuolen, und bei gleichbleibendem Volumen ist es so viel wie das hereinströmende Wasser
+
+Eine Vakuole, die sich öfter entleert, muss nicht mehr Wasser hinausbringen: In den Saccharoselösungen ist auch jede Entleerung kleiner. Das pro Minute ausgeschiedene Wasser ist also
+
+<BlockMath math="\text{Wasser pro Minute} = 2\cdot(\text{Entleerungen pro Minute})\cdot(\text{Volumen je Entleerung})" />
+
+<BlockMath math="\begin{aligned}
+\text{Teichwasser}: \quad 2\cdot10\cdot1000 &= 20\,000\,\mu\text{m}^3\text{ pro Minute}\\
+40\text{ mM Saccharose}: \quad 2\cdot4\cdot750 &= 6000\,\mu\text{m}^3\text{ pro Minute}\\
+80\text{ mM Saccharose}: \quad 2\cdot1\cdot500 &= 1000\,\mu\text{m}^3\text{ pro Minute}
+\end{aligned}" />
+
+Das Zellvolumen bleibt in jeder Flüssigkeit gleich. Das geht nur, wenn das durch Osmose einströmende Wasser **genauso viel** ist wie das, was die Vakuolen hinausbringen. Diese drei Werte sind also auch die Einstromraten.
+
+<Chart
+  title={<>Von beiden Vakuolen pro Minute ausgeschiedenes Wasser</>}
+  bars="apart"
+  categories={["Teichwasser", "40 mM Saccharose", "80 mM Saccharose"]}
+  series={[{ label: "Wasser (µm³ pro Minute)", mark: "bar", values: [20000, 6000, 1000] }]}
+  valueLabel="Wasser (µm³ pro Minute)"
+  description={<>Beide Vakuolen zusammen scheiden in Teichwasser <InlineMath math="20\,000\,\mu\text{m}^3" /> pro Minute aus, in <InlineMath math="40\text{ mM}" /> Saccharose <InlineMath math="6000" /> und in <InlineMath math="80\text{ mM}" /> Saccharose <InlineMath math="1000" />. Weil das Zellvolumen gleich bleibt, strömt durch Osmose jeweils genauso viel Wasser ein.</>}
+/>
+
+- I: <InlineMath math="\tfrac{400\,000}{20\,000} = 20" /> Minuten. Aussage I stimmt.
+- II: <InlineMath math="\tfrac{6000}{20\,000} = 30\,\%" />, die Leistung sinkt also um <InlineMath math="70\,\%" />. Aussage II stimmt.
+- III: Stehen die Vakuolen still, behält die Zelle das einströmende Wasser. Zum Platzen muss sie um die Hälfte ihres Volumens zunehmen:
+
+<BlockMath math="\begin{aligned}
+\text{Zusatzvolumen} &= 0{,}5\cdot400\,000 = 200\,000\,\mu\text{m}^3\\
+\text{Zeit in }40\text{ mM Saccharose} &= \frac{200\,000}{6000} \approx 33\text{ Minuten}
+\end{aligned}" />
+
+Das dauert länger als <InlineMath math="20" /> Minuten. Aussage III ist falsch.
+
+- IV: <InlineMath math="\tfrac{20\,000}{1000} = 20" />. Das verdünntere Teichwasser bildet ein steileres Konzentrationsgefälle zum Cytoplasma hin, also strömt das Wasser <InlineMath math="20" />-mal so schnell ein. Aussage IV stimmt.
+
+Richtig sind also die Aussagen I, II und IV.
+
+# Warum die anderen Antworten falsch sind
+
+- Nur I und II vergleicht bei IV nur die Entleerungen, <InlineMath math="10" /> gegen <InlineMath math="1" />, und kommt auf das <InlineMath math="10" />-Fache. **Jede Entleerung in <InlineMath math="80\text{ mM}" /> Saccharose ist außerdem nur halb so groß**.
+- Nur I, II, III und IV akzeptiert III mit der Rate im Teichwasser, <InlineMath math="\tfrac{200\,000}{20\,000} = 10" /> Minuten, **obwohl die Zelle in <InlineMath math="40\text{ mM}" /> Saccharose liegt**, wo nur <InlineMath math="6000\,\mu\text{m}^3" /> pro Minute einströmen.
+- Nur I und IV vergleicht bei II nur die Entleerungen, <InlineMath math="10" /> gegen <InlineMath math="4" />, also <InlineMath math="60\,\%" /> weniger, und **vergisst, dass jede Entleerung auch von <InlineMath math="1000" /> auf <InlineMath math="750\,\mu\text{m}^3" /> schrumpft**.

@@ -1,0 +1,40 @@
+# Place X first, list every order of the Y fragments, and keep the one that gives the double digest
+
+Each fragment size tells you a gap between two cuts or between a cut and an end. You have to find the **order** of the gaps, and only the digest with both enzymes can decide it.
+
+## Place the cut made by X
+
+Enzyme X cuts once and gives <InlineMath math="3\text{ kb}" /> and <InlineMath math="7\text{ kb}" />. The probe puts end L on the <InlineMath math="3\text{ kb}" /> piece, so **X cuts <InlineMath math="3\text{ kb}" /> from end L**.
+
+## List the possible Y maps
+
+Enzyme Y cuts twice and splits the <InlineMath math="10\text{ kb}" /> into pieces of <InlineMath math="5" />, <InlineMath math="3" /> and <InlineMath math="2\text{ kb}" />, in an unknown order. Each order gives two Y sites. Add the X cut at <InlineMath math="3\text{ kb}" /> and read off the fragments of the double digest:
+
+| Order of Y pieces from L | Y sites (kb from L) | All cuts with X at <InlineMath math="3" /> | Double digest (kb) |
+| --- | --- | --- | --- |
+| <InlineMath math="2, 3, 5" /> | <InlineMath math="2, 5" /> | <InlineMath math="2, 3, 5" /> | <InlineMath math="2, 1, 2, 5" /> |
+| <InlineMath math="2, 5, 3" /> | <InlineMath math="2, 7" /> | <InlineMath math="2, 3, 7" /> | <InlineMath math="2, 1, 4, 3" /> |
+| <InlineMath math="3, 2, 5" /> | <InlineMath math="3, 5" /> | Y would cut where X cuts | not allowed |
+| <InlineMath math="3, 5, 2" /> | <InlineMath math="3, 8" /> | Y would cut where X cuts | not allowed |
+| <InlineMath math="5, 2, 3" /> | <InlineMath math="5, 7" /> | <InlineMath math="3, 5, 7" /> | <InlineMath math="3, 2, 2, 3" /> |
+| <InlineMath math="5, 3, 2" /> | <InlineMath math="5, 8" /> | <InlineMath math="3, 5, 8" /> | <InlineMath math="3, 2, 3, 2" /> |
+
+Only Y sites at <InlineMath math="2" /> and <InlineMath math="5\text{ kb}" /> give the observed <InlineMath math="5" />, <InlineMath math="2" />, <InlineMath math="2" /> and <InlineMath math="1\text{ kb}" />. Check that the pieces add up: <InlineMath math="2+1+2+5=10\text{ kb}" />.
+
+<Mermaid
+  title={<>Restriction Map of the DNA</>}
+  description={<>From end L, enzyme Y cuts at <InlineMath math="2\text{ kb}" />, enzyme X at <InlineMath math="3\text{ kb}" /> and enzyme Y again at <InlineMath math="5\text{ kb}" />, and end R is at <InlineMath math="10\text{ kb}" />. The gaps are <InlineMath math="2" />, <InlineMath math="1" />, <InlineMath math="2" /> and <InlineMath math="5\text{ kb}" />. X alone gives <InlineMath math="3" /> and <InlineMath math="7\text{ kb}" />, and Y alone gives <InlineMath math="2" />, <InlineMath math="3" /> and <InlineMath math="5\text{ kb}" />.</>}
+  chart={`flowchart LR
+  L["End L, 0 kb"] -- "2 kb" --> Y1["Y site, 2 kb"]
+  Y1 -- "1 kb" --> X["X site, 3 kb"]
+  X -- "2 kb" --> Y2["Y site, 5 kb"]
+  Y2 -- "5 kb" --> R["End R, 10 kb"]`}
+/>
+
+So enzyme Y cuts **<InlineMath math="2\text{ kb}" /> and <InlineMath math="5\text{ kb}" /> from end L**.
+
+# Why the other options are wrong
+
+- <InlineMath math="5" /> and <InlineMath math="8\text{ kb}" /> **lays the Y pieces out in the order the table lists them**, <InlineMath math="5" />, <InlineMath math="3" />, <InlineMath math="2" />. With X at <InlineMath math="3\text{ kb}" /> that map gives <InlineMath math="3" />, <InlineMath math="2" />, <InlineMath math="3" /> and <InlineMath math="2\text{ kb}" />, not the observed double digest. It is the true map read from end R.
+- <InlineMath math="2" /> and <InlineMath math="7\text{ kb}" /> checks **only that a <InlineMath math="1\text{ kb}" /> piece appears**. Its double digest is <InlineMath math="2" />, <InlineMath math="1" />, <InlineMath math="4" /> and <InlineMath math="3\text{ kb}" />, with no <InlineMath math="5\text{ kb}" /> piece.
+- <InlineMath math="5" /> and <InlineMath math="7\text{ kb}" /> checks **only that two <InlineMath math="2\text{ kb}" /> pieces appear**. Its double digest is <InlineMath math="3" />, <InlineMath math="2" />, <InlineMath math="2" /> and <InlineMath math="3\text{ kb}" />, with no <InlineMath math="1" /> or <InlineMath math="5\text{ kb}" /> piece.

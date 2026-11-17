@@ -1,0 +1,61 @@
+# Every egg lets some water through its lipid bilayer, so take group P's swelling away before you judge the aquaporins
+
+All three groups swell steadily, so read each rate from any <InlineMath math="30" />-second step:
+
+<BlockMath math="\begin{aligned}
+\text{P}: \quad 101-100 &= 1\text{ percentage point per }30\text{ s}\\
+\text{Q}: \quad 108-100 &= 8\text{ percentage points per }30\text{ s}\\
+\text{R}: \quad 101.5-100 &= 1.5\text{ percentage points per }30\text{ s}
+\end{aligned}" />
+
+The eggs of group P have no aquaporins, so their <InlineMath math="1" /> point is the water that crosses the **lipid bilayer itself**. The eggs of groups Q and R have exactly the same membrane, so that same <InlineMath math="1" /> point is hidden inside their rates too. Take it away to find the flow through the aquaporins alone:
+
+<BlockMath math="\begin{aligned}
+\text{through aquaporins in Q} &= 8-1 = 7\\
+\text{through aquaporins in R} &= 1.5-1 = 0.5\\
+\text{blocked by mercury chloride} &= 7-0.5 = 6.5\\
+\text{fraction blocked} &= \frac{6.5}{7} \approx 0.93
+\end{aligned}" />
+
+<Chart
+  title={<>Water Flow Through the Aquaporins</>}
+  bars="apart"
+  categories={["Q, aquaporin", "R, aquaporin blocked"]}
+  series={[{ label: "Through aquaporins", mark: "bar", values: [7, 0.5] }]}
+  valueLabel="Swelling (points per 30 s)"
+  description={<>Once the <InlineMath math="1" /> point through the lipid bilayer is taken away, the aquaporins carry <InlineMath math="7" /> points every <InlineMath math="30" /> seconds in group Q and only <InlineMath math="0.5" /> point in group R. The mercury chloride has cut off <InlineMath math="6.5" /> of the <InlineMath math="7" /> points, about <InlineMath math="93\%" /> of the flow.</>}
+/>
+
+- I: the aquaporins carry <InlineMath math="7" /> points and the bilayer <InlineMath math="1" />, so <InlineMath math="7" /> times as fast. Statement I is correct.
+- II: the mercury chloride blocked <InlineMath math="\tfrac{6.5}{7}\approx93\%" /> of the aquaporin flow, which is more than <InlineMath math="90\%" />. Statement II is correct.
+- III: each egg must gain <InlineMath math="30" /> points to burst, and each rate is per <InlineMath math="30" /> seconds.
+
+<BlockMath math="\begin{aligned}
+\text{Q}: \quad \frac{30}{8}\times30\text{ s} &= 112.5\text{ s}\\
+\text{R}: \quad \frac{30}{1.5}\times30\text{ s} &= 600\text{ s}\\
+\frac{600}{112.5} &\approx 5.3
+\end{aligned}" />
+
+<InlineMath math="112.5\text{ s}" /> is less than <InlineMath math="2" /> minutes, and the egg of group R takes about <InlineMath math="5.3" /> times as long. Statement III is correct.
+
+<Chart
+  title={<>Volume of the Eggs in the Hypotonic Solution</>}
+  categories={["0 s", "30 s", "60 s", "90 s"]}
+  series={[
+    { label: "P, no aquaporin", mark: "line", values: [100, 101, 102, 103] },
+    { label: "Q, aquaporin", mark: "line", values: [100, 108, 116, 124] },
+    { label: "R, aquaporin blocked", mark: "line", values: [100, 101.5, 103, 104.5] },
+  ]}
+  valueLabel="Volume (% of start)"
+  description={<>Group P rises by <InlineMath math="1" /> percentage point every <InlineMath math="30" /> seconds, group Q by <InlineMath math="8" /> and group R by <InlineMath math="1.5" />. Group Q reaches <InlineMath math="124\%" /> at <InlineMath math="90" /> seconds, close to bursting at <InlineMath math="130\%" />, while group R is still near <InlineMath math="105\%" />.</>}
+/>
+
+- IV: aquaporins only make water cross the membrane **more easily**. Water still moves by osmosis, down its own concentration gradient. In an isotonic solution there is no gradient, so there is no net entry of water, and neither group swells. Statement IV is wrong.
+
+So statements I, II and III are correct.
+
+# Why the other options are wrong
+
+- III only puts all <InlineMath math="8" /> points of group Q down to the aquaporins. Then they look eight times as fast, and the mercury chloride seems to block only <InlineMath math="\tfrac{8-1.5}{8}\approx81\%" />. **The <InlineMath math="1" /> point through the bilayer is in every rate**, so the aquaporins carry <InlineMath math="7" /> and <InlineMath math="0.5" />.
+- I and II only reads the <InlineMath math="8" /> points as the rise per minute, so the egg of group Q seems to need <InlineMath math="\tfrac{30}{8} = 3.75" /> minutes. **The table gives the rise every <InlineMath math="30" /> seconds**.
+- I, II, III and IV treats aquaporins as if they pushed water in, **when they only open a path and osmosis still needs a hypotonic solution**.

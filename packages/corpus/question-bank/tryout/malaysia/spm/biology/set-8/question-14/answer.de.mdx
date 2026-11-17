@@ -1,0 +1,55 @@
+# Rezeptoren auf einem Raster: Der Abstand ist eine Länge, die Anzahl pro Fläche geht aber mit seinem Quadrat
+
+Die Schwelle verrät dir den **Abstand** der Rezeptoren in einer Richtung. Nenn ihn <InlineMath math="d" />, in Millimetern. Ein Hautquadrat mit <InlineMath math="1\text{ cm}" /> Seitenlänge ist <InlineMath math="10\text{ mm}" /> lang und <InlineMath math="10\text{ mm}" /> breit, es fasst also <InlineMath math="\tfrac{10}{d}" /> Rezeptoren entlang jeder Seite. Also gilt
+
+<BlockMath math="\text{Rezeptoren pro cm}^2 = \left(\frac{10}{d}\right)^2" />
+
+Multipliziere mit der Fläche jeder Region, um ihre Gesamtzahl zu bekommen.
+
+<BlockMath math="\begin{aligned}
+\text{Fingerkuppe} &: \left(\tfrac{10}{2}\right)^2 = 25\text{ pro cm}^2, & 25\times2 &= 50\\
+\text{Handfläche} &: \left(\tfrac{10}{10}\right)^2 = 1\text{ pro cm}^2, & 1\times100 &= 100\\
+\text{Unterarm} &: \left(\tfrac{10}{40}\right)^2 = 0{,}0625\text{ pro cm}^2, & 0{,}0625\times400 &= 25\\
+\text{Rücken} &: \left(\tfrac{10}{50}\right)^2 = 0{,}04\text{ pro cm}^2, & 0{,}04\times1500 &= 60
+\end{aligned}" />
+
+<Chart
+  title={<>Tastrezeptoren in jeder ganzen Region</>}
+  bars="apart"
+  categories={["Fingerkuppe", "Handfläche", "Unterarm", "Rücken"]}
+  series={[{ label: "Rezeptoren", mark: "bar", values: [50, 100, 25, 60] }]}
+  valueLabel="Anzahl der Tastrezeptoren"
+  description={<>Im Rastermodell fasst eine Fingerkuppe <InlineMath math="50" /> Tastrezeptoren, die Handfläche <InlineMath math="100" />, der ganze Unterarm nur <InlineMath math="25" /> und der ganze Rücken <InlineMath math="60" />. Eine große Region mit weitem Abstand kann weniger Rezeptoren haben als eine winzige Region mit engem Abstand.</>}
+/>
+
+Deshalb lesen Fingerkuppen feine Oberflächen und Blindenschrift. Viele Rezeptoren, jeder mit eigenem sensorischem Neuron, drängen sich auf kleiner Fläche, also bekommt das Gehirn von dort genaue Information.
+
+- I: Pro <InlineMath math="\text{cm}^2" /> ist <InlineMath math="\tfrac{25}{0{,}04} = 625" />, also <InlineMath math="\left(\tfrac{50}{2}\right)^2" />. Aussage I stimmt.
+- II: <InlineMath math="100" /> Rezeptoren in der Handfläche gegen <InlineMath math="60" /> im Rücken. Der Rücken ist <InlineMath math="15" />-mal so groß, seine Rezeptoren stehen aber <InlineMath math="25" />-mal so dünn. Aussage II stimmt.
+- III: <InlineMath math="25" /> Rezeptoren im ganzen Unterarm gegen <InlineMath math="50" /> in einer Fingerkuppe. Aussage III stimmt.
+- IV: Wende die Rasterregel rückwärts an. Eine Schwelle von <InlineMath math="3\text{ mm}" /> heißt ein Abstand von <InlineMath math="3\text{ mm}" />, also
+
+<BlockMath math="\begin{aligned}
+\text{Rezeptoren pro cm}^2 &= \left(\tfrac{10}{3}\right)^2 \approx 11{,}1\\
+\text{verbliebene Rezeptoren} &\approx 11{,}1\cdot2 = 22{,}2\\
+\text{verlorene Rezeptoren} &\approx 50-22{,}2 = 27{,}8
+\end{aligned}" />
+
+<Chart
+  title={<>Die verletzte Fingerkuppe</>}
+  bars="apart"
+  categories={["Vorher", "Nachher", "Verloren", "Ganzer Unterarm"]}
+  series={[{ label: "Rezeptoren", mark: "bar", values: [50, 22.2, 27.8, 25] }]}
+  valueLabel="Anzahl der Tastrezeptoren"
+  description={<>Bei einer Schwelle von <InlineMath math="3\text{ mm}" /> behält die Fingerkuppe etwa <InlineMath math="22{,}2" /> ihrer <InlineMath math="50" /> Rezeptoren, hat also etwa <InlineMath math="27{,}8" /> verloren, mehr als die <InlineMath math="25" /> Rezeptoren des ganzen Unterarms.</>}
+/>
+
+Die Fingerkuppe hat etwa <InlineMath math="27{,}8" /> Rezeptoren verloren, mehr als die <InlineMath math="25" /> im ganzen Unterarm. Aussage IV ist falsch.
+
+Richtig sind also die Aussagen I, II und III.
+
+# Warum die anderen Antworten falsch sind
+
+- Nur IV **vergisst das Quadrieren**. Es zählt die Rezeptoren pro Zentimeter als <InlineMath math="\tfrac{10}{d}" />, sodass die Fingerkuppe nur <InlineMath math="25" />-mal so dicht wirkt wie der Rücken, Rücken und Unterarm die meisten Rezeptoren zu haben scheinen und die verletzte Fingerkuppe gegen einen Unterarm mit <InlineMath math="100" /> Rezeptoren nur wenige zu verlieren scheint.
+- Nur I beurteilt die ganzen Regionen **allein nach ihrer Fläche**, sodass der große Rücken und der Unterarm mehr Rezeptoren zu haben scheinen als Handfläche und Fingerkuppe.
+- I, II, III und IV quadriert den Abstand für I bis III, lässt die Anzahl dann aber **im gleichen Maß wie den Anstieg der Schwelle** sinken, auf <InlineMath math="\tfrac{2}{3}" /> von <InlineMath math="50" />, sodass die Fingerkuppe scheinbar nur etwa <InlineMath math="16{,}7" /> Rezeptoren verliert statt mit dem Quadrat, <InlineMath math="\left(\tfrac{2}{3}\right)^2" />.

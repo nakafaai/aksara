@@ -1,0 +1,51 @@
+# Track the number of gene-carrying cells, because the percentage hides changes in the total
+
+The table gives the total T lymphocytes and the **percentage** that carry the normal gene. What matters for the child is the **number** of gene-carrying cells per <InlineMath math="\mu\text{L}" />, which is the total times the percentage. Work that out first for every month.
+
+## T lymphocytes that carry the gene in each microlitre
+
+<BlockMath math="\begin{aligned}
+\text{X:}\quad & 400\times0.32=128,\quad 320\times0.20=64,\quad 200\times0.08=16,\quad 100\times0.04=4\\
+\text{Y:}\quad & 300\times0.15=45,\quad 900\times0.40=360,\quad 1500\times0.60=900,\quad 1600\times0.62=992
+\end{aligned}" />
+
+<Chart
+  title={<>Gene-Carrying T Lymphocytes in Each Child</>}
+  categories={["Month 0", "Month 6", "Month 12", "Month 24", "Month 36"]}
+  series={[
+    { label: "Child X", mark: "line", values: [0, 128, 64, 16, 4] },
+    { label: "Child Y", mark: "line", values: [0, 45, 360, 900, 992] },
+  ]}
+  valueLabel="Cells per µL"
+  description={<>In child X the gene-carrying cells fall from <InlineMath math="128" /> per microlitre at month <InlineMath math="6" /> to <InlineMath math="64" />, <InlineMath math="16" /> and <InlineMath math="4" />. In child Y they rise from <InlineMath math="45" /> to <InlineMath math="360" />, <InlineMath math="900" /> and <InlineMath math="992" /> and level off.</>}
+/>
+
+## Statement I
+
+Check the halving in each interval of child X:
+
+<BlockMath math="\begin{aligned}
+\text{month 6 to 12 (one 6-month step):}\quad & 128\to64 = \tfrac{1}{2}\\
+\text{month 12 to 24 (two steps):}\quad & 64\to16 = \tfrac{1}{4} = \left(\tfrac{1}{2}\right)^{2}\\
+\text{month 24 to 36 (two steps):}\quad & 16\to4 = \tfrac{1}{4} = \left(\tfrac{1}{2}\right)^{2}
+\end{aligned}" />
+
+The number **halves every <InlineMath math="6" /> months**. Two more halvings take it from <InlineMath math="4" /> at month <InlineMath math="36" /> to <InlineMath math="2" /> at month <InlineMath math="42" /> and <InlineMath math="1" /> at month <InlineMath math="48" />. Statement I is correct.
+
+## Statement II
+
+The percentage in child Y rises <InlineMath math="\tfrac{60}{15}=4" /> times, but the total also rises <InlineMath math="\tfrac{1500}{300}=5" /> times, so **the number rises <InlineMath math="4\times5=20" /> times**: <InlineMath math="\tfrac{900}{45}=20" />. Statement II is wrong.
+
+## Statements III and IV
+
+The virus puts the normal gene **into a chromosome**, so it is copied with the chromosome and passed to both daughter cells at every division. It is not lost. Child X's treated cells are mature T lymphocytes, which live for a limited time and cannot make new cells of their own kind for ever. As they die, the gene-carrying cells halve every <InlineMath math="6" /> months. Statement III is wrong.
+
+Child Y's treated cells are stem cells in the bone marrow. They keep dividing and keep making new T lymphocytes that carry the gene, so the number rises to about <InlineMath math="1000" /> per <InlineMath math="\mu\text{L}" /> and stays there after a single infusion. Child X has no such source and would need repeated infusions. Statement IV is correct.
+
+So statements I and IV are correct.
+
+# Why the other options are wrong
+
+- II and IV only **reads the percentage as if it were the number of cells**. In child X the percentage falls <InlineMath math="8" /> times in <InlineMath math="30" /> months, which looks slower than halving every <InlineMath math="6" /> months, and in child Y it rises only <InlineMath math="4" /> times. Multiplying by the changing total gives halving every <InlineMath math="6" /> months in X and a <InlineMath math="20" />-fold rise in Y.
+- I, III and IV only thinks **an inserted gene is lost when a cell divides**. A gene inside a chromosome is replicated with it, so the fall in child X comes from treated cells dying, not from cells losing the gene.
+- I only misses that **stem cells renew themselves**, and expects child Y to need more infusions too. The level of about <InlineMath math="1000" /> per <InlineMath math="\mu\text{L}" /> from month <InlineMath math="24" /> to month <InlineMath math="36" /> shows a lasting source of new gene-carrying cells.

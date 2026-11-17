@@ -1,0 +1,58 @@
+# A steady level is reached when excretion catches up with intake, and the energy a predator needs sets its intake
+
+A predator's mercury intake comes from **how much food it must eat**, and that is set by its energy need. Its steady level is where the mercury absorbed each day equals the share of its body mercury excreted each day:
+
+<BlockMath math="\text{steady body mercury} = \frac{\text{mercury absorbed per day}}{\text{share excreted per day}}" />
+
+## Statement I
+
+Follow the **large fish** one step at a time:
+
+<BlockMath math="\begin{aligned}
+\text{food eaten} &= \frac{200}{5000} = 0.04\text{ kg per day}\\
+\text{mercury absorbed} &= 0.04\times0.12\times0.80 = 0.00384\text{ mg per day}\\
+\text{steady body mercury} &= \frac{0.00384}{0.005} = 0.768\text{ mg}\\
+\text{concentration} &= \frac{0.768}{4.0} = 0.192\text{ mg per kg}
+\end{aligned}" />
+
+<InlineMath math="0.192" /> is about <InlineMath math="0.19" />, and <InlineMath math="\tfrac{0.192}{0.12} = 1.6" />. Statement I is correct.
+
+## Statement II
+
+The fish eagle needs ten times the energy, so it eats ten times the food:
+
+<BlockMath math="\begin{aligned}
+\text{food eaten} &= \frac{2000}{5000} = 0.40\text{ kg per day}\\
+\text{mercury absorbed} &= 0.40\times0.12\times0.80 = 0.0384\text{ mg per day}\\
+\text{steady body mercury} &= \frac{0.0384}{0.02} = 1.92\text{ mg}\\
+\text{concentration} &= \frac{1.92}{2.0} = 0.96\text{ mg per kg}
+\end{aligned}" />
+
+<Chart
+  title={<>Steady Mercury Concentration</>}
+  bars="apart"
+  categories={["Small fish", "Large fish", "Fish eagle"]}
+  series={[{ label: "Mercury", mark: "bar", values: [0.12, 0.192, 0.96] }]}
+  valueLabel="Mercury (mg per kg)"
+  description={<>The small fish hold <InlineMath math="0.12\text{ mg per kg}" />. At their steady levels, the large fish holds <InlineMath math="0.192" /> and the fish eagle <InlineMath math="0.96\text{ mg per kg}" />, five times as much as the large fish on the same food.</>}
+/>
+
+<InlineMath math="\tfrac{0.96}{0.192} = 5" />. Per kg of body mass, the eagle eats <InlineMath math="\tfrac{0.40}{2.0} = 0.2\text{ kg}" /> a day against <InlineMath math="\tfrac{0.04}{4.0} = 0.01\text{ kg}" />, **twenty times as much**, because it burns food to keep its body warm. It also excretes four times as fast, so the two effects combine to <InlineMath math="\tfrac{20}{4} = 5" />. Statement II is correct.
+
+## Statement III
+
+<BlockMath math="\frac{1.92\text{ mg}}{0.0384\text{ mg per day}} = 50\text{ days}" />
+
+This is just <InlineMath math="\tfrac{1}{0.02}" />: excreting <InlineMath math="2\%" /> a day balances intake only when **the body holds <InlineMath math="50" /> days of absorbed mercury**. Statement III is correct.
+
+## Statement IV
+
+The large fish does excrete a smaller share, <InlineMath math="0.5\%" /> against <InlineMath math="2\%" />, but its steady concentration is the lower one, <InlineMath math="0.192" /> against <InlineMath math="0.96\text{ mg per kg}" />. The eagle's **far larger intake per kg** outweighs its faster excretion. Statement IV is wrong.
+
+So statements I, II and III are correct.
+
+# Why the other options are wrong
+
+- I and III only compares only the **food eaten per kg of body mass**, twenty times as much for the eagle, and forgets that the eagle also excretes four times as fast, so it rejects the factor of five in II.
+- II and III only **leaves out the <InlineMath math="80\%" /> absorbed**. The large fish then reaches <InlineMath math="\tfrac{0.0048}{0.005}\div4.0 = 0.24\text{ mg per kg}" />, twice its food, so I looks wrong.
+- I, II, III and IV judges by **excretion alone**, but the steady level depends on intake per kg as well, and here intake wins.

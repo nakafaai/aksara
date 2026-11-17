@@ -1,0 +1,50 @@
+# Chromosom J ist ein Chromosom, trägt aber zwei Gensätze, also zählst du Genkopien statt Chromosomen
+
+Der Haken an den Zellen dieses Mannes: **J zählt als ein Chromosom, trägt aber die Gene von <InlineMath math="14" /> und <InlineMath math="21" />**. Für jede Spermiensorte klärst du also zwei Dinge: wie viele Chromosomen sie hat und wie viele Kopien der Gene von <InlineMath math="14" /> und <InlineMath math="21" /> die Zygote bekommt, wenn die Eizelle ein normales <InlineMath math="14" /> und ein normales <InlineMath math="21" /> dazugibt.
+
+Jedes Spermium bekommt <InlineMath math="21" /> andere Chromosomen, die Hälfte der <InlineMath math="42" /> übrigen des Mannes, plus das, was es aus der Dreiergruppe erhält:
+
+| Spermium | Chromosomen im Spermium | Kopien der Gene von <InlineMath math="14" /> in der Zygote | Kopien der Gene von <InlineMath math="21" /> in der Zygote | Zygote |
+| --- | --- | --- | --- | --- |
+| <InlineMath math="14" /> und <InlineMath math="21" /> | <InlineMath math="23" /> | <InlineMath math="2" /> | <InlineMath math="2" /> | normal, <InlineMath math="46" /> Chromosomen |
+| nur J | <InlineMath math="22" /> | <InlineMath math="2" /> | <InlineMath math="2" /> | gesunder Träger, <InlineMath math="45" /> Chromosomen |
+| J und <InlineMath math="14" /> | <InlineMath math="23" /> | <InlineMath math="3" /> | <InlineMath math="2" /> | geht verloren |
+| nur <InlineMath math="21" /> | <InlineMath math="22" /> | <InlineMath math="1" /> | <InlineMath math="2" /> | geht verloren |
+| J und <InlineMath math="21" /> | <InlineMath math="23" /> | <InlineMath math="2" /> | <InlineMath math="3" /> | Down-Syndrom, <InlineMath math="46" /> Chromosomen |
+| nur <InlineMath math="14" /> | <InlineMath math="22" /> | <InlineMath math="2" /> | <InlineMath math="1" /> | geht verloren |
+
+<Mermaid
+  title={<>Was jede Spermiensorte ergibt</>}
+  description={<>Ein Spermium mit den Chromosomen <InlineMath math="14" /> und <InlineMath math="21" /> ergibt eine normale Zygote mit <InlineMath math="46" /> Chromosomen, ein Spermium nur mit J einen gesunden Träger mit <InlineMath math="45" />. Ein Spermium mit J und <InlineMath math="21" /> hat <InlineMath math="23" /> Chromosomen und ergibt Down-Syndrom mit <InlineMath math="46" /> Chromosomen. Ein Spermium mit J und <InlineMath math="14" /> hat ebenfalls <InlineMath math="23" /> Chromosomen, liefert aber drei Kopien der Gene von <InlineMath math="14" />, und die Spermien nur mit <InlineMath math="21" /> oder nur mit <InlineMath math="14" /> lassen einen Gensatz in einer Kopie zurück, also gehen diese drei Zygoten verloren.</>}
+  chart={"flowchart LR\n  A[14 und 21, 23 Chromosomen] --> A1[Normal, 46]\n  B[Nur J, 22 Chromosomen] --> B1[Gesunder Träger, 45]\n  C[J und 21, 23 Chromosomen] --> C1[Down-Syndrom, 46]\n  D[J und 14, 23 Chromosomen] --> D1[Drei Kopien von 14, verloren]\n  E[Nur 21, 22 Chromosomen] --> E1[Eine Kopie von 14, verloren]\n  F[Nur 14, 22 Chromosomen] --> F1[Eine Kopie von 21, verloren]"}
+/>
+
+Jetzt verfolgst du die <InlineMath math="1000" /> Spermien bis zur Geburt:
+
+<BlockMath math="\begin{aligned}
+\text{verloren} &= 70+60+30 = 160\\
+\text{geboren} &= 400+400+40 = 840\\
+\text{Down-Syndrom unter den Geborenen} &= \frac{40}{840} = \frac{1}{21}
+\end{aligned}" />
+
+<Chart
+  title={<>Zygoten aus <InlineMath math="1000" /> Spermien</>}
+  bars="apart"
+  categories={["Normal", "Gesunder Träger", "Down-Syndrom", "Verloren"]}
+  series={[{ label: "Zygoten", mark: "bar", values: [400, 400, 40, 160] }]}
+  valueLabel="Anzahl der Zygoten"
+  description={<>Von <InlineMath math="1000" /> Zygoten sind <InlineMath math="400" /> normal, <InlineMath math="400" /> gesunde Träger, <InlineMath math="40" /> haben Down-Syndrom und <InlineMath math="160" /> gehen früh in der Schwangerschaft verloren. Also kommen <InlineMath math="840" /> Babys zur Welt, und <InlineMath math="40" /> davon haben Down-Syndrom.</>}
+/>
+
+- I: Das Spermium mit J und <InlineMath math="14" /> hat <InlineMath math="23" /> Chromosomen, die normale Zahl, aber die Zygote bekommt drei Kopien der Gene von <InlineMath math="14" /> und geht verloren. Aussage I stimmt.
+- II: <InlineMath math="40" /> von <InlineMath math="840" /> lebend geborenen Babys sind <InlineMath math="1" /> von <InlineMath math="21" />. Aussage II stimmt.
+- III: Das Spermium mit J und <InlineMath math="21" /> hat <InlineMath math="23" /> Chromosomen, die Eizelle gibt <InlineMath math="23" /> dazu, also hat das Baby <InlineMath math="46" /> Chromosomen. Es hat trotzdem drei Kopien der Gene von <InlineMath math="21" />, weil eine Kopie auf J sitzt. Aussage III ist falsch.
+- IV: Das Spermium nur mit J hat <InlineMath math="22" /> Chromosomen, aber alle Gene von <InlineMath math="14" /> und <InlineMath math="21" />, also ergibt es einen gesunden Träger wie den Vater. Aussage IV ist falsch.
+
+Richtig sind also die Aussagen I und II.
+
+# Warum die anderen Antworten falsch sind
+
+- Nur I, II und III setzt Down-Syndrom mit <InlineMath math="47" /> Chromosomen gleich. **Hier sitzt die dritte Kopie der Gene von <InlineMath math="21" /> auf J**, also hat das Baby <InlineMath math="46" />.
+- Nur I teilt die <InlineMath math="40" /> durch alle <InlineMath math="1000" /> Zygoten und erhält <InlineMath math="1" /> von <InlineMath math="25" />. **Die <InlineMath math="160" /> verlorenen Zygoten werden nie geboren**, also ist der Anteil unter den Babys <InlineMath math="\tfrac{40}{840}" />.
+- Nur I und IV liest jedes Spermium mit <InlineMath math="22" /> Chromosomen als eines, dem Gene fehlen. **Das Spermium nur mit J hat alle Gene**, also geht seine Zygote nicht verloren. Zählst du sie als verloren, bleiben nur <InlineMath math="440" /> Geburten und <InlineMath math="1" /> von <InlineMath math="11" /> mit Down-Syndrom.

@@ -1,0 +1,58 @@
+# Each group of trees raises the mud at its own rate, so add the stages one at a time
+
+Each stage of this succession lasts until the mud reaches the bottom of the next group's range. The rate of rise changes at every stage, so **time each stage with its own rate** and add the times.
+
+## Without a change in sea level
+
+<BlockMath math="\begin{aligned}
+\textit{Avicennia}\text{ and }\textit{Sonneratia}: \frac{60-30}{1.5} &= 20\text{ years}\\
+\textit{Rhizophora}: \frac{120-60}{1.0} &= 60\text{ years, so }\textit{Bruguiera}\text{ arrives in year }20+60=80\\
+\textit{Bruguiera}: \frac{180-120}{0.5} &= 120\text{ years, so inland forest arrives in year }80+120=200
+\end{aligned}" />
+
+<Chart
+  title={<>Years Each Group of Trees Holds the Plot</>}
+  bars="apart"
+  categories={["Avicennia and Sonneratia", "Rhizophora", "Bruguiera"]}
+  series={[{ label: "Years", mark: "bar", values: [(60 - 30) / 1.5, (120 - 60) / 1.0, (180 - 120) / 0.5] }]}
+  valueLabel="Years"
+  description={<>The pioneers hold the plot for <InlineMath math="20" /> years, <em>Rhizophora</em> for <InlineMath math="60" /> years and <em>Bruguiera</em> for <InlineMath math="120" /> years. The fastest silt trappers stay the shortest time.</>}
+/>
+
+The pioneers trap silt fastest, so they **raise the mud out of their own range soonest** and hold the plot for the shortest time.
+
+## With the sea level rising
+
+If mean low tide rises <InlineMath math="0.5\text{ cm}" /> a year, the height of the mud above it rises <InlineMath math="0.5\text{ cm}" /> a year more slowly in every stage:
+
+<BlockMath math="\begin{aligned}
+\text{pioneers: } 1.5-0.5 = 1.0\text{ cm per year}, &\quad \frac{60-30}{1.0} = 30\text{ years}\\
+\textit{Rhizophora}: 1.0-0.5 = 0.5\text{ cm per year}, &\quad \frac{120-60}{0.5} = 120\text{ years, so }\textit{Bruguiera}\text{ arrives in year }150\\
+\textit{Bruguiera}: 0.5-0.5 = 0\text{ cm per year}, &\quad \text{the mud stays at }120\text{ cm}
+\end{aligned}" />
+
+<Chart
+  title={<>Height of the Mud Surface on the Plot</>}
+  categories={["Year 0", "Year 25", "Year 50", "Year 75", "Year 100", "Year 125", "Year 150", "Year 175", "Year 200"]}
+  series={[
+    { label: "Sea level steady", mark: "line", values: [30, 60 + 5 * 1.0, 60 + 30 * 1.0, 60 + 55 * 1.0, 120 + 20 * 0.5, 120 + 45 * 0.5, 120 + 70 * 0.5, 120 + 95 * 0.5, 120 + 120 * 0.5] },
+    { label: "Sea level rising", mark: "line", values: [30, 30 + 25 * 1.0, 60 + 20 * 0.5, 60 + 45 * 0.5, 60 + 70 * 0.5, 60 + 95 * 0.5, 120, 120, 120] },
+  ]}
+  valueLabel="Height above mean low tide (cm)"
+  description={<>With a steady sea level, the mud climbs to <InlineMath math="60\text{ cm}" /> in year <InlineMath math="20" />, <InlineMath math="120\text{ cm}" /> in year <InlineMath math="80" /> and <InlineMath math="180\text{ cm}" /> in year <InlineMath math="200" />. With the sea rising, it reaches <InlineMath math="120\text{ cm}" /> only in year <InlineMath math="150" /> and then stays level.</>}
+/>
+
+Under *Bruguiera*, the mud now rises exactly as fast as the sea, so it **never climbs past <InlineMath math="120\text{ cm}" />** and the plot never reaches the inland forest's <InlineMath math="180\text{ cm}" />.
+
+- I: <InlineMath math="30\text{ cm}" /> at <InlineMath math="1.5\text{ cm}" /> a year takes <InlineMath math="20" /> years. Statement I is correct.
+- II: <InlineMath math="20+60=80" /> years. Statement II is correct.
+- III: <InlineMath math="30+120=150" /> years to *Bruguiera*, then no further rise. Statement III is correct.
+- IV: the pioneers stay <InlineMath math="20" /> years, the shortest of the three, precisely because they raise the mud fastest. Statement IV is wrong.
+
+So statements I, II and III are correct.
+
+# Why the other options are wrong
+
+- I only keeps the pioneers' rate of <InlineMath math="1.5\text{ cm}" /> a year for the whole climb, **ignoring that each group raises the mud at its own rate**. It gets <InlineMath math="\tfrac{120-30}{1.5}=60" /> years for II and <InlineMath math="\tfrac{120-30}{1.0}=90" /> years for III.
+- I, II and IV only thinks the fastest silt trappers stay longest, **when fast trapping lifts the mud out of their range soonest**.
+- I and II only takes the sea-level rise away from the pioneers' rate only, gets <InlineMath math="30+60=90" /> years, and so **forgets that the rise slows every stage**.

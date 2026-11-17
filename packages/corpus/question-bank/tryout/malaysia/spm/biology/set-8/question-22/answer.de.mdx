@@ -1,0 +1,51 @@
+# Jede Gruppe verdeckt einen anderen Teil der Kohlenhydratbilanz, also kombinierst du sie
+
+Die Trockenmasse eines Blatts ändert sich aus drei Gründen gleichzeitig: Die Fotosynthese baut Kohlenhydrat auf, die Zellatmung verbraucht einen Teil davon, und das Phloem transportiert einen Teil ab. Beide Blatthälften starten mit derselben Trockenmasse pro Fläche, also zeigt die Änderung von 6 Uhr bis 14 Uhr nur, was in diesen <InlineMath math="8" /> Stunden passiert ist. Jede Gruppe schaltet einen der drei Vorgänge aus:
+
+<Chart
+  title={<>Änderung der Trockenmasse jeder Gruppe in acht Stunden</>}
+  bars="apart"
+  categories={["A, unbehandelt", "B, Phloem abgetötet", "C, Phloem abgetötet, dunkel"]}
+  series={[{ label: "Änderung der Trockenmasse", mark: "bar", values: [48, 96, -24] }]}
+  valueLabel="Änderung der Trockenmasse (mg pro dm²)"
+  description={<>Unbehandelte Blätter nehmen <InlineMath math="48\text{ mg}" /> pro <InlineMath math="\text{dm}^2" /> zu. Blätter mit abgetötetem Phloem nehmen im Licht <InlineMath math="96\text{ mg}" /> zu und verlieren im Dunkeln <InlineMath math="24\text{ mg}" />.</>}
+/>
+
+- Gruppe C stellt nichts her und exportiert nichts, ihr Verlust ist also **nur Zellatmung**: <InlineMath math="\tfrac{24}{8}=3\text{ mg}" /> pro <InlineMath math="\text{dm}^2" /> und Stunde.
+- Gruppe B exportiert nichts, ihre Zunahme ist also Fotosynthese minus Zellatmung.
+- Gruppe A exportiert zusätzlich, ihre Zunahme ist also Fotosynthese minus Zellatmung minus Export.
+
+## Bruttofotosynthese
+
+In der Zunahme von Gruppe B fehlt das Kohlenhydrat, das die Zellatmung gleichzeitig verbraucht hat, also **addierst du die Zellatmung wieder dazu**:
+
+<BlockMath math="\begin{aligned}
+\text{Bruttofotosynthese} &= \frac{96+24}{8} = 15\text{ mg Kohlenhydrat pro dm}^2\text{ und Stunde}\\
+\text{gebundenes Kohlenstoffdioxid} &= 15\times\frac{264}{180} = 22\text{ mg pro dm}^2\text{ und Stunde}
+\end{aligned}" />
+
+## Export aus den unbehandelten Blättern
+
+Die Gruppen A und B betreiben Fotosynthese und Zellatmung mit denselben Raten, der einzige Unterschied zwischen ihnen ist also **das Kohlenhydrat, das das Phloem abtransportiert**:
+
+<BlockMath math="\begin{aligned}
+\text{Export} &= \frac{96-48}{8} = 6\text{ mg pro dm}^2\text{ und Stunde}\\
+\text{Anteil an der Bruttofotosynthese} &= \frac{6}{15}\times100\% = 40\%
+\end{aligned}" />
+
+<Chart
+  title={<>Wohin das stündlich gebildete Kohlenhydrat geht</>}
+  bars="apart"
+  categories={["Durch Fotosynthese gebildet", "In der Zellatmung verbraucht", "Über das Phloem exportiert", "Im Blatt geblieben"]}
+  series={[{ label: "Kohlenhydrat", mark: "bar", values: [(96 + 24) / 8, 24 / 8, (96 - 48) / 8, 48 / 8] }]}
+  valueLabel="Kohlenhydrat (mg pro dm² und Stunde)"
+  description={<>Ein Quadratdezimeter unbehandeltes Blatt bildet pro Stunde <InlineMath math="15\text{ mg}" /> Kohlenhydrat. Davon verbraucht es <InlineMath math="3\text{ mg}" /> in der Zellatmung, exportiert <InlineMath math="6\text{ mg}" /> und behält <InlineMath math="6\text{ mg}" />, und <InlineMath math="3+6+6=15" />.</>}
+/>
+
+Die drei Teile ergeben zusammen wieder die gebildeten <InlineMath math="15\text{ mg}" />, damit ist die Bilanz geprüft. Die Blätter binden Kohlenstoffdioxid mit <InlineMath math="22\text{ mg}" /> pro <InlineMath math="\text{dm}^2" /> und Stunde, und die unbehandelten Blätter exportieren <InlineMath math="40\%" /> des Kohlenhydrats, das sie bilden.
+
+# Warum die anderen Antworten falsch sind
+
+- <InlineMath math="17{,}6\text{ mg}" /> und <InlineMath math="50\%" /> nimmt die Zunahme von Gruppe B, <InlineMath math="\tfrac{96}{8}=12\text{ mg}" />, als Bruttorate und **vergisst die Zellatmung**, die Gruppe C misst.
+- <InlineMath math="13{,}2\text{ mg}" /> und <InlineMath math="67\%" /> berechnet die Rate aus der unbehandelten Gruppe A, <InlineMath math="\tfrac{48+24}{8}=9\text{ mg}" />, und **vergisst, dass Gruppe A auch Zucker exportiert**.
+- <InlineMath math="22\text{ mg}" /> und <InlineMath math="50\%" /> hat die Rate richtig, teilt den Export aber durch die Nettozunahme von Gruppe B, <InlineMath math="12\text{ mg}" />, **statt durch die Bruttorate**.

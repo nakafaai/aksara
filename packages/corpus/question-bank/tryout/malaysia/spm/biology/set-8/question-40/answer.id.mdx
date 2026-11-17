@@ -1,0 +1,67 @@
+# Ubah laju transpirasi menjadi gram air, lalu menjadi panas yang terbawa keluar
+
+Transpirasi mendinginkan daun karena air butuh panas untuk menguap, dan panas itu diambil dari daun. Untuk membandingkannya dengan <InlineMath math="600\text{ J}" /> yang diserap daun, ubah lajunya selangkah demi selangkah: **milimol ke gram, lalu gram ke joule**.
+
+## Pernyataan I
+
+<BlockMath math="\begin{aligned}
+\text{air yang hilang dari P} &= 5{,}0\times18 = 90\text{ mg} = 0{,}090\text{ g per m}^2\text{ per detik}\\
+\text{panas yang dibuang} &= 0{,}090\times2400 = 216\text{ J per m}^2\text{ per detik}\\
+\text{bagian dari energi yang diserap} &= \frac{216}{600} = 0{,}36 = 36\%
+\end{aligned}" />
+
+<InlineMath math="36\%" /> **lebih dari sepertiga**, yaitu sekitar <InlineMath math="33\%" />. Pernyataan I benar.
+
+## Pernyataan II
+
+Pakai keseimbangan panas daun Q sendiri. Pada <InlineMath math="39^\circ\text{C}" />, transpirasinya membuang <InlineMath math="0{,}5\times18 = 9\text{ mg} = 0{,}009\text{ g}" />, yaitu <InlineMath math="0{,}009\times2400 = 21{,}6\text{ J}" /> per detik, jadi **pelepasan panas cara lain** membawa sisanya. Mendinginkan daun <InlineMath math="3^\circ\text{C}" /> mengurangi pelepasan cara lain itu, dan transpirasi harus menutup kekurangannya:
+
+<BlockMath math="\begin{aligned}
+\text{pelepasan lain pada }39^\circ\text{C} &= 600-21{,}6 = 578{,}4\text{ J}\\
+\text{pelepasan lain pada }36^\circ\text{C} &= 578{,}4-3\times32{,}4 = 481{,}2\text{ J}\\
+\text{transpirasi yang dibutuhkan} &= 600-481{,}2 = 118{,}8\text{ J}\\
+\text{air} &= \frac{118{,}8}{2400} = 0{,}0495\text{ g} = 49{,}5\text{ mg}\\
+\text{laju} &= \frac{49{,}5}{18} = 2{,}75\text{ mmol per m}^2\text{ per detik}
+\end{aligned}" />
+
+<Chart
+  title={<>Transpirasi yang Dibutuhkan untuk Tiap Suhu Daun</>}
+  categories={["33 °C", "36 °C", "39 °C"]}
+  series={[{ label: "Transpirasi yang dibutuhkan", mark: "line", values: [5, 2.75, 0.5] }]}
+  valueLabel="Transpirasi (mmol per m² per detik)"
+  description={<>Menahan daun pada <InlineMath math="39^\circ\text{C}" /> butuh <InlineMath math="0{,}5\text{ mmol}" />, pada <InlineMath math="36^\circ\text{C}" /> butuh <InlineMath math="2{,}75\text{ mmol}" />, dan pada <InlineMath math="33^\circ\text{C}" /> butuh <InlineMath math="5{,}0\text{ mmol}" /> per meter persegi per detik, sama dengan laju daun P.</>}
+/>
+
+Sebagai cek, aturan yang sama memberi pelepasan lain daun P pada <InlineMath math="33^\circ\text{C}" /> sebesar <InlineMath math="578{,}4-6\times32{,}4 = 384\text{ J}" />, dan <InlineMath math="600-384 = 216\text{ J}" /> persis sama dengan panas yang dibuang transpirasinya. Laju baru itu <InlineMath math="\tfrac{2{,}75}{0{,}5} = 5{,}5" /> kali laju sekarang, lebih dari lima kali. Pernyataan II benar.
+
+## Pernyataan III
+
+Daun Q bertranspirasi <InlineMath math="0{,}5" />, bukan <InlineMath math="5{,}0\text{ mmol}" />, jadi dengan langkah yang sama:
+
+<BlockMath math="0{,}5\times18 = 9\text{ mg} = 0{,}009\text{ g},\qquad 0{,}009\times2400 = 21{,}6\text{ J per m}^2\text{ per detik}" />
+
+<Chart
+  title={<>Energi Masuk dan Panas yang Dibuang Transpirasi</>}
+  bars="apart"
+  categories={["Daun P, stomata terbuka", "Daun Q, stomata hampir tertutup"]}
+  series={[
+    { label: "Energi diserap", mark: "bar", values: [600, 600] },
+    { label: "Dibuang lewat transpirasi", mark: "bar", values: [216, 21.6] },
+  ]}
+  valueLabel="Energi (J per m² per detik)"
+  description={<>Kedua daun menyerap <InlineMath math="600\text{ J}" /> per meter persegi per detik. Transpirasi membuang <InlineMath math="216\text{ J}" /> dari daun P tetapi hanya <InlineMath math="21{,}6\text{ J}" /> dari daun Q, sepersepuluhnya.</>}
+/>
+
+Kedua daun menerima energi yang sama, tetapi daun Q membuang <InlineMath math="216-21{,}6\approx194\text{ J}" /> lebih sedikit lewat transpirasi setiap detik. Energi lebih itu **memanaskan daun** sampai cukup panas untuk membuang sisanya dengan cara lain, jadi daun Q <InlineMath math="39-33=6^\circ\text{C}" /> lebih panas. Pernyataan III benar.
+
+## Pernyataan IV
+
+Stomata yang terbuka membiarkan uap air keluar, tetapi laju transpirasi juga bergantung pada udara di luar. Di udara yang sangat lembap dan tenang, konsentrasi uap air di luar stomata hampir sama dengan di dalam daun, jadi **air menguap jauh lebih lambat** walaupun stomata terbuka. Penguapan yang lebih sedikit membuang panas yang lebih sedikit, jadi daun P akan menjadi lebih panas dari <InlineMath math="33^\circ\text{C}" />. Pernyataan IV salah.
+
+Jadi pernyataan I, II, dan III benar.
+
+# Mengapa pilihan lain salah
+
+- III saja **membaca milimol sebagai miligram**, sehingga daun P tampak kehilangan <InlineMath math="5\text{ mg}" /> per detik, yang hanya membuang <InlineMath math="12\text{ J}" />, dan daun Q pada <InlineMath math="36^\circ\text{C}" /> tampak butuh <InlineMath math="49{,}5" />, bukan <InlineMath math="2{,}75" />. Rasio sepuluh kali di III tetap bertahan dengan kesalahan ini, tetapi I dan II tidak.
+- I, II, III, dan IV mengaitkan pendinginan dengan **stomata yang terbuka saja**. Pendinginan berasal dari penguapan, dan udara yang lembap dan tenang memperlambat penguapan walaupun stomata terbuka lebar.
+- I dan III saja **membagi selisihnya dua mulai dari nol**: setengah laju daun P adalah <InlineMath math="2{,}5\text{ mmol}" />, tepat lima kali laju daun Q, bukan lebih. Daun Q sudah bertranspirasi <InlineMath math="0{,}5\text{ mmol}" />, jadi titik tengah di antara kedua daun adalah <InlineMath math="0{,}5+\tfrac{5{,}0-0{,}5}{2} = 2{,}75\text{ mmol}" />.

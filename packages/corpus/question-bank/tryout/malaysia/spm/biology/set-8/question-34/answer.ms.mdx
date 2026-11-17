@@ -1,0 +1,44 @@
+# Nilai mutagen berdasarkan mutan bagi setiap sel yang terus hidup, bukan bilangan koloni
+
+Dos yang tinggi menghasilkan lebih banyak mutasi dalam setiap sel, tetapi dos itu juga membunuh kebanyakan sel. Bilangan koloni mencampurkan kedua-dua kesan itu. Untuk membandingkan dos, bahagikan bilangan koloni dengan bilangan sel yang **terus hidup**.
+
+## Mutan bagi setiap sel yang terus hidup
+
+Setiap sampel bermula dengan <InlineMath math="1.0\times10^{9}" /> sel, jadi bilangan sel yang terus hidup ialah nombor itu didarab dengan peratusnya. Menulis kekerapan per <InlineMath math="10^{8}" /> sel yang terus hidup memastikan nombornya kecil:
+
+<BlockMath math="\begin{aligned}
+0\text{ J m}^{-2}:&\quad \frac{20}{1.0\times10^{9}} = 2\text{ per }10^{8}\\
+20\text{ J m}^{-2}:&\quad \frac{120}{6.0\times10^{8}} = 20\text{ per }10^{8}\\
+40\text{ J m}^{-2}:&\quad \frac{180}{3.0\times10^{8}} = 60\text{ per }10^{8}\\
+60\text{ J m}^{-2}:&\quad \frac{120}{1.0\times10^{8}} = 120\text{ per }10^{8}\\
+80\text{ J m}^{-2}:&\quad \frac{40}{2.0\times10^{7}} = 200\text{ per }10^{8}
+\end{aligned}" />
+
+<Chart
+  title={<>Koloni dan Kekerapan Mutasi pada Setiap Dos UV</>}
+  bars="apart"
+  categories={["0 J/m²", "20 J/m²", "40 J/m²", "60 J/m²", "80 J/m²"]}
+  series={[
+    { label: "Koloni rintang", mark: "bar", values: [20, 120, 180, 120, 40] },
+    { label: "Per 100 juta sel hidup", mark: "line", values: [2, 20, 60, 120, 200] },
+  ]}
+  valueLabel="Bilangan"
+  description={<>Bilangan koloni memuncak pada <InlineMath math="180" /> pada <InlineMath math="40\text{ J m}^{-2}" /> dan kemudian turun kepada <InlineMath math="40" />. Mutan rintang per <InlineMath math="10^{8}" /> sel yang terus hidup meningkat pada setiap dos: <InlineMath math="2" />, <InlineMath math="20" />, <InlineMath math="60" />, <InlineMath math="120" /> dan <InlineMath math="200" />.</>}
+/>
+
+Bilangan koloni **memuncak lalu menurun**, tetapi kekerapannya **terus meningkat**. Koloni yang lebih sedikit pada dos tinggi hanya bermakna lebih sedikit sel yang masih hidup.
+
+## Empat pernyataan
+
+- I: <InlineMath math="\tfrac{120}{2} = 60" />. Pada <InlineMath math="60\text{ J m}^{-2}" />, kekerapannya <InlineMath math="60" /> kali kekerapan tanpa cahaya UV. Pernyataan I betul.
+- II: koloni paling banyak datang daripada <InlineMath math="40\text{ J m}^{-2}" />, tetapi kekerapannya, <InlineMath math="60" /> per <InlineMath math="10^{8}" />, lebih rendah daripada pada <InlineMath math="60" /> dan <InlineMath math="80\text{ J m}^{-2}" />. **Dos tertinggi** yang menyebabkan mutasi paling kuat. Pernyataan II salah.
+- III: sebelum rawatan, <InlineMath math="2" /> sel daripada setiap <InlineMath math="10^{8}" /> sel sudah rintang. UV membunuh sel itu sama kerap dengan sel lain, jadi dalam kalangan <InlineMath math="6.0\times10^{8}" /> sel yang terus hidup, mutan lama berjumlah <InlineMath math="2\times6 = 12" />, bukan <InlineMath math="20" />. Pernyataan III salah.
+- IV: <InlineMath math="200" /> per <InlineMath math="10^{8}" /> ialah <InlineMath math="\tfrac{200}{10^{8}} = \tfrac{1}{500\,000}" />. Pernyataan IV betul.
+
+Jadi pernyataan I dan IV betul.
+
+# Kenapa pilihan lain salah
+
+- I, II dan IV sahaja menganggap **bilangan koloni sebagai kekuatan mutagen**. Pada dos tinggi kebanyakan sel mati, jadi bilangan yang lebih kecil masih boleh menjadi bahagian yang lebih besar daripada sel yang terus hidup.
+- I, III dan IV sahaja menolak **bilangan koloni sampel tanpa rawatan begitu sahaja**. <InlineMath math="20" /> mutan itu datang daripada <InlineMath math="1.0\times10^{9}" /> sel, tetapi hanya <InlineMath math="6.0\times10^{8}" /> sel terus hidup selepas <InlineMath math="20\text{ J m}^{-2}" />, jadi hanya <InlineMath math="12" /> mutan lama dijangka di situ.
+- IV sahaja **membahagi bilangan koloni secara terus**, <InlineMath math="\tfrac{120}{20} = 6" />, lalu menolak I. Ini mengabaikan bahawa sampel yang dirawat mempunyai sepuluh kali lebih sedikit sel hidup untuk disebarkan.

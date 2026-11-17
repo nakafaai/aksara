@@ -1,0 +1,40 @@
+# Tempatkan X dulu, daftar setiap urutan potongan Y, lalu pilih yang menghasilkan pemotongan ganda
+
+Setiap ukuran fragmen memberi tahu satu jarak antara dua potongan atau antara potongan dan ujung. Kamu perlu menemukan **urutan** jarak itu, dan hanya pemotongan dengan kedua enzim yang bisa menentukannya.
+
+## Tempatkan potongan oleh X
+
+Enzim X memotong sekali dan menghasilkan <InlineMath math="3\text{ kb}" /> dan <InlineMath math="7\text{ kb}" />. Probe menempatkan ujung L pada fragmen <InlineMath math="3\text{ kb}" />, jadi **X memotong <InlineMath math="3\text{ kb}" /> dari ujung L**.
+
+## Daftar peta Y yang mungkin
+
+Enzim Y memotong dua kali dan membagi <InlineMath math="10\text{ kb}" /> menjadi fragmen <InlineMath math="5" />, <InlineMath math="3" />, dan <InlineMath math="2\text{ kb}" />, dengan urutan yang belum diketahui. Setiap urutan memberi dua situs Y. Tambahkan potongan X di <InlineMath math="3\text{ kb}" /> lalu baca fragmen pemotongan gandanya:
+
+| Urutan fragmen Y dari L | Situs Y (kb dari L) | Semua potongan dengan X di <InlineMath math="3" /> | Pemotongan ganda (kb) |
+| --- | --- | --- | --- |
+| <InlineMath math="2, 3, 5" /> | <InlineMath math="2, 5" /> | <InlineMath math="2, 3, 5" /> | <InlineMath math="2, 1, 2, 5" /> |
+| <InlineMath math="2, 5, 3" /> | <InlineMath math="2, 7" /> | <InlineMath math="2, 3, 7" /> | <InlineMath math="2, 1, 4, 3" /> |
+| <InlineMath math="3, 2, 5" /> | <InlineMath math="3, 5" /> | Y memotong di tempat X memotong | tidak boleh |
+| <InlineMath math="3, 5, 2" /> | <InlineMath math="3, 8" /> | Y memotong di tempat X memotong | tidak boleh |
+| <InlineMath math="5, 2, 3" /> | <InlineMath math="5, 7" /> | <InlineMath math="3, 5, 7" /> | <InlineMath math="3, 2, 2, 3" /> |
+| <InlineMath math="5, 3, 2" /> | <InlineMath math="5, 8" /> | <InlineMath math="3, 5, 8" /> | <InlineMath math="3, 2, 3, 2" /> |
+
+Hanya situs Y di <InlineMath math="2" /> dan <InlineMath math="5\text{ kb}" /> yang menghasilkan <InlineMath math="5" />, <InlineMath math="2" />, <InlineMath math="2" />, dan <InlineMath math="1\text{ kb}" /> seperti yang teramati. Cek jumlahnya: <InlineMath math="2+1+2+5=10\text{ kb}" />.
+
+<Mermaid
+  title={<>Peta Restriksi DNA Itu</>}
+  description={<>Dari ujung L, enzim Y memotong di <InlineMath math="2\text{ kb}" />, enzim X di <InlineMath math="3\text{ kb}" />, dan enzim Y lagi di <InlineMath math="5\text{ kb}" />, sedangkan ujung R ada di <InlineMath math="10\text{ kb}" />. Jaraknya <InlineMath math="2" />, <InlineMath math="1" />, <InlineMath math="2" />, dan <InlineMath math="5\text{ kb}" />. X saja menghasilkan <InlineMath math="3" /> dan <InlineMath math="7\text{ kb}" />, dan Y saja menghasilkan <InlineMath math="2" />, <InlineMath math="3" />, dan <InlineMath math="5\text{ kb}" />.</>}
+  chart={`flowchart LR
+  L["Ujung L, 0 kb"] -- "2 kb" --> Y1["Situs Y, 2 kb"]
+  Y1 -- "1 kb" --> X["Situs X, 3 kb"]
+  X -- "2 kb" --> Y2["Situs Y, 5 kb"]
+  Y2 -- "5 kb" --> R["Ujung R, 10 kb"]`}
+/>
+
+Jadi enzim Y memotong **<InlineMath math="2\text{ kb}" /> dan <InlineMath math="5\text{ kb}" /> dari ujung L**.
+
+# Mengapa pilihan lain salah
+
+- <InlineMath math="5" /> dan <InlineMath math="8\text{ kb}" /> **menyusun fragmen Y sesuai urutan di tabel**, <InlineMath math="5" />, <InlineMath math="3" />, <InlineMath math="2" />. Dengan X di <InlineMath math="3\text{ kb}" />, peta itu menghasilkan <InlineMath math="3" />, <InlineMath math="2" />, <InlineMath math="3" />, dan <InlineMath math="2\text{ kb}" />, bukan pemotongan ganda yang teramati. Itu peta yang benar jika dibaca dari ujung R.
+- <InlineMath math="2" /> dan <InlineMath math="7\text{ kb}" /> **hanya mengecek bahwa ada fragmen <InlineMath math="1\text{ kb}" />**. Pemotongan gandanya <InlineMath math="2" />, <InlineMath math="1" />, <InlineMath math="4" />, dan <InlineMath math="3\text{ kb}" />, tanpa fragmen <InlineMath math="5\text{ kb}" />.
+- <InlineMath math="5" /> dan <InlineMath math="7\text{ kb}" /> **hanya mengecek bahwa ada dua fragmen <InlineMath math="2\text{ kb}" />**. Pemotongan gandanya <InlineMath math="3" />, <InlineMath math="2" />, <InlineMath math="2" />, dan <InlineMath math="3\text{ kb}" />, tanpa fragmen <InlineMath math="1" /> atau <InlineMath math="5\text{ kb}" />.

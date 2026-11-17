@@ -1,0 +1,56 @@
+# Sejajarkan setiap respons menurut hari sesudah paparannya sendiri, dan nilai kenaikan dari jumlah penggandaannya, bukan dari lamanya
+
+Tabel ini memuat dua jenis pertahanan. Neutrofil adalah fagosit, **pertahanan nonspesifik** yang bereaksi sama terhadap benda asing apa pun. Antibodi dibuat oleh limfosit, **pertahanan spesifik** yang bisa meninggalkan sel memori. Bakteri C, yang ditemui pertama kali pada hari <InlineMath math="30" />, menunjukkan seperti apa respons pertama orang ini pada saat itu.
+
+Mulai dari neutrofil. Sesudah setiap paparan, jumlahnya menjadi <InlineMath math="12" />, lalu <InlineMath math="8" />, lalu <InlineMath math="5" />, lalu <InlineMath math="4" /> pada <InlineMath math="1" />, <InlineMath math="3" />, <InlineMath math="5" />, dan <InlineMath math="7" /> hari, jalur yang sama dua kali. Kenaikan kedua tidak lebih cepat dan tidak lebih tinggi, jadi neutrofil tidak menyimpan catatan pertemuan pertama. Itu cocok dengan fagosit, yang tidak membentuk sel memori.
+
+Berikutnya, sejajarkan setiap respons antibodi menurut hari sejak paparan **miliknya sendiri**, bukan menurut nomor hari.
+
+<BlockMath math="\begin{aligned}
+\text{B, respons pertama, hari } 0+7 &= \text{hari } 7: & 2\text{ unit}\\
+\text{B, respons kedua, hari } 30+7 &= \text{hari } 37: & 200\text{ unit}\\
+\text{rasio} &= \tfrac{200}{2} = 100
+\end{aligned}" />
+
+<Chart
+  title={<>Antibodi terhadap B dan terhadap C</>}
+  categories={["Hari 0", "Hari 5", "Hari 7", "Hari 13", "Hari 30", "Hari 31", "Hari 32", "Hari 33", "Hari 35", "Hari 37", "Hari 43"]}
+  series={[
+    { label: "Terhadap B", mark: "line", values: [0, 1, 2, 16, 4, 4, 32, 256, 240, 200, 150] },
+    { label: "Terhadap C", mark: "line", values: [0, 0, 0, 0, 0, 0, 0, 0, 1, 2, 16] },
+  ]}
+  valueLabel="Antibodi (unit arbitrer)"
+  description={<>Antibodi terhadap B naik pelan dari <InlineMath math="1" /> pada hari <InlineMath math="5" /> ke <InlineMath math="16" /> pada hari <InlineMath math="13" />, turun ke <InlineMath math="4" /> pada hari <InlineMath math="30" />, lalu melonjak ke <InlineMath math="256" /> pada hari <InlineMath math="33" />. Antibodi terhadap C tetap <InlineMath math="0" /> sampai hari <InlineMath math="33" />, lalu mencapai <InlineMath math="1" />, <InlineMath math="2" />, dan <InlineMath math="16" /> pada hari <InlineMath math="35" />, <InlineMath math="37" />, dan <InlineMath math="43" />, jalur yang sama dengan respons pertama B.</>}
+/>
+
+Bakteri C adalah kontrol bawaan. Antibodinya, <InlineMath math="5" />, <InlineMath math="7" />, dan <InlineMath math="13" /> hari sesudah paparan pertamanya, bernilai <InlineMath math="1" />, <InlineMath math="2" />, dan <InlineMath math="16" /> unit, persis seperti B pada waktu yang sama sesudah paparan pertamanya. Kalau infeksi pertama hanya membuat seluruh sistem imun lebih aktif, respons C juga akan cepat. Ternyata tidak, jadi respons kedua yang cepat terhadap B butuh **sel memori yang spesifik untuk B**.
+
+Terakhir, kecepatan setiap kenaikan. Hitung jumlah penggandaan di setiap fase naik, lalu bagi waktunya dengan jumlah itu:
+
+<BlockMath math="\begin{aligned}
+\text{respons pertama}: \quad 1\to16 &= 2^4,\ 4\text{ penggandaan dalam } 13-5 = 8\text{ hari}, & \text{waktu ganda} &= \tfrac{8}{4} = 2\text{ hari} = 48\text{ jam}\\
+\text{respons kedua}: \quad 4\to256 &= 2^6,\ 6\text{ penggandaan dalam } 33-31 = 2\text{ hari}, & \text{waktu ganda} &= \tfrac{2}{6}\text{ hari} = 8\text{ jam}\\
+\text{rasio} &= \tfrac{48}{8} = 6
+\end{aligned}" />
+
+<Chart
+  title={<>Waktu Ganda Antibodi terhadap B</>}
+  bars="apart"
+  categories={["Respons pertama", "Respons kedua"]}
+  series={[{ label: "Waktu ganda", mark: "bar", values: [48, 8] }]}
+  valueLabel="Waktu ganda (jam)"
+  description={<>Selama naik, antibodi terhadap B berlipat dua setiap <InlineMath math="48" /> jam pada respons pertama dan setiap <InlineMath math="8" /> jam pada respons kedua, jadi pada kali kedua antibodi itu berlipat dua enam kali lebih cepat.</>}
+/>
+
+- I: neutrofil mengikuti naik turun yang sama sesudah kedua paparan. Pernyataan I benar.
+- II: <InlineMath math="7" /> hari sesudah setiap paparan, rasionya <InlineMath math="100" />, bukan <InlineMath math="16" />. Pernyataan II salah.
+- III: respons pertama C meniru respons pertama B titik demi titik, jadi dorongan itu milik B saja. Pernyataan III benar.
+- IV: waktu ganda turun dari <InlineMath math="48" /> menjadi <InlineMath math="8" /> jam, enam kali lebih cepat, bukan empat. Pernyataan IV salah.
+
+Jadi pernyataan I dan III benar.
+
+# Mengapa pilihan lain salah
+
+- I, II, dan III saja membandingkan **dua puncak**, <InlineMath math="\tfrac{256}{16} = 16" />, bukan kadar pada waktu yang sama sesudah setiap paparan.
+- I, III, dan IV saja membandingkan **lamanya setiap kenaikan**, <InlineMath math="8" /> hari lawan <InlineMath math="2" /> hari, lalu menyebutnya empat kali lebih cepat. Kenaikan kedua juga melewati lebih banyak penggandaan, <InlineMath math="6" /> dan bukan <InlineMath math="4" />, jadi waktu gandanya seperenam.
+- III saja membaca kenaikan neutrofil yang cepat pada hari <InlineMath math="31" /> sebagai **pengenalan terhadap B**, padahal kenaikan sesudah paparan pertama sama cepat dan sama tinggi.

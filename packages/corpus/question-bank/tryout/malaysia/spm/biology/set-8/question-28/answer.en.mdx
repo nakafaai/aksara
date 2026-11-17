@@ -1,0 +1,49 @@
+# Eggs that don't hatch drop out of the next generation, and that is what makes Wolbachia spread
+
+Only mothers pass *Wolbachia* on, but fathers still matter. A female without it that mates with a carrier male lays eggs that **don't hatch**, so her eggs vanish from the next generation. Carrier females lose no eggs at all. So the share of carriers among the eggs that hatch rises above the share among the mothers.
+
+## The first generation
+
+With half the males and half the females carrying *Wolbachia*, list every kind of mating and the share of all eggs it produces:
+
+| Mating | Share of eggs | Eggs hatch | Offspring carry *Wolbachia* |
+| --- | --- | --- | --- |
+| carrier female, any male | <InlineMath math="\tfrac{1}{2}" /> | yes | yes |
+| non-carrier female, carrier male | <InlineMath math="\tfrac{1}{2}\times\tfrac{1}{2}=\tfrac{1}{4}" /> | no | none hatch |
+| non-carrier female, non-carrier male | <InlineMath math="\tfrac{1}{2}\times\tfrac{1}{2}=\tfrac{1}{4}" /> | yes | no |
+
+Only the hatched eggs make the next generation, so **divide by the eggs that hatch**, not by all the eggs laid:
+
+<BlockMath math="\text{share carrying }Wolbachia=\frac{\tfrac{1}{2}}{\tfrac{1}{2}+\tfrac{1}{4}}=\frac{2}{3}" />
+
+## The second generation
+
+Now <InlineMath math="\tfrac{2}{3}" /> of the males and females carry it. Repeat the same rule with the new share:
+
+<BlockMath math="\text{share carrying }Wolbachia=\frac{\tfrac{2}{3}}{\tfrac{2}{3}+\left(\tfrac{1}{3}\right)^2}=\frac{\tfrac{6}{9}}{\tfrac{7}{9}}=\frac{6}{7}\approx86\%" />
+
+<Chart
+  title={<>Share of Mosquitoes Carrying Wolbachia After the Releases Stop</>}
+  categories={["At release", "Generation 1", "Generation 2", "Generation 3"]}
+  series={[
+    { label: "Carriers", mark: "line", values: [50, 100 * (2 / 3), 100 * (6 / 7), 100 * (42 / 43)] },
+    { label: "Same rise each generation", mark: "line", values: [50, 100 * (2 / 3), 100 * (5 / 6), 100] },
+  ]}
+  valueLabel="Mosquitoes carrying Wolbachia (%)"
+  description={<>The share rises from <InlineMath math="50\%" /> to <InlineMath math="\tfrac{2}{3}" />, then to <InlineMath math="\tfrac{6}{7}" />, about <InlineMath math="86\%" />, then to about <InlineMath math="98\%" />. Adding the same rise each time would give only <InlineMath math="\tfrac{5}{6}" />, about <InlineMath math="83\%" />, in generation <InlineMath math="2" />.</>}
+/>
+
+The rise speeds up, because the more carriers there are, the fewer non-carrier females find a non-carrier mate.
+
+- I: the first generation is <InlineMath math="\tfrac{2}{3}" /> carriers. Statement I is correct.
+- II: carrier males stop a quarter of all eggs hatching, all of them from non-carrier mothers, and that is **what pushes the share up**. Statement II is wrong.
+- III: the second generation is <InlineMath math="\tfrac{6}{7}" />, about <InlineMath math="86\%" />. Statement III is correct.
+- IV: with only carrier males released, every carrier would be male and could pass nothing on, so *Wolbachia* can't spread. Every female that mates with one lays eggs that don't hatch, so fewer eggs hatch. Statement IV is correct.
+
+So statements I, III and IV are correct.
+
+# Why the other options are wrong
+
+- II only thinks fathers don't matter, so it keeps the share at <InlineMath math="50\%" />, **forgetting the eggs of non-carrier females mated with carrier males never hatch**.
+- I and IV only adds the same rise of about <InlineMath math="17" /> percentage points again and gets <InlineMath math="\tfrac{5}{6}" />, **instead of applying the hatching rule to the new share**.
+- I and III only rejects IV, as if carrier males released alone could spread the bacterium, **although only mothers pass it on**.

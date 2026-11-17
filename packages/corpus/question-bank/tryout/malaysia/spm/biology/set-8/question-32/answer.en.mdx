@@ -1,0 +1,58 @@
+# A plant breeds true only if it is homozygous for both genes, and a tall plant may still hide a dwarf allele
+
+With incomplete dominance, the colour you see tells you the colour genotype: red is <InlineMath math="RR" />, pink is <InlineMath math="RW" />, white is <InlineMath math="WW" />. Height is different. A tall plant can be <InlineMath math="TT" /> or <InlineMath math="Tt" />, so **the phenotype does not show the genotype**. Keep that difference in mind for every statement.
+
+## Statement I
+
+Group the counts by height and by colour:
+
+<BlockMath math="\begin{aligned}
+\text{tall: } & 148:304:151\approx1:2:1, \qquad \text{dwarf: } 49:98:50\approx1:2:1\\
+\text{red: } & 148:49\approx3:1,\qquad \text{pink: } 304:98\approx3:1,\qquad \text{white: } 151:50\approx3:1
+\end{aligned}" />
+
+The colour ratio **does not depend on height**, and the height ratio **does not depend on colour**. The <InlineMath math="800" /> plants follow <InlineMath math="3:6:3:1:2:1" />, which is <InlineMath math="(1:2:1)\times(3:1)" />. Statement I is correct.
+
+## Statement II
+
+A plant gives offspring that all match it only if it is **homozygous for both genes**. Pink plants are always <InlineMath math="RW" />, so they never breed true. Every dwarf plant is <InlineMath math="tt" />, so red dwarf and white dwarf plants breed true. Among tall plants, <InlineMath math="TT:Tt=1:2" />, so only one third of the red tall and white tall plants breed true:
+
+<BlockMath math="\begin{aligned}
+\text{red dwarf} + \text{white dwarf} &= 49+50 = 99\\
+\tfrac{1}{3}\times(\text{red tall} + \text{white tall}) &= \tfrac{1}{3}\times(148+151) \approx 100\\
+\text{total} &\approx 199 \approx 200
+\end{aligned}" />
+
+This matches the genotypes <InlineMath math="RRTT" />, <InlineMath math="WWTT" />, <InlineMath math="RRtt" /> and <InlineMath math="WWtt" />, each <InlineMath math="\tfrac{1}{16}" /> of the plants, so <InlineMath math="\tfrac{4}{16}\times800=200" />. Statement II is correct.
+
+<Chart
+  title={<>Second-Generation Plants That Breed True</>}
+  bars="apart"
+  categories={["Red, tall", "Pink, tall", "White, tall", "Red, dwarf", "Pink, dwarf", "White, dwarf"]}
+  series={[
+    { label: "All plants", mark: "bar", values: [148, 304, 151, 49, 98, 50] },
+    { label: "Breed true", mark: "bar", values: [49, 0, 50, 49, 0, 50] },
+  ]}
+  valueLabel="Number of plants"
+  description={<>All the red dwarf and white dwarf plants breed true, <InlineMath math="49" /> and <InlineMath math="50" />. Only about a third of the red tall and white tall plants do, about <InlineMath math="49" /> and <InlineMath math="50" />, and no pink plant does. About <InlineMath math="200" /> plants breed true in all.</>}
+/>
+
+## Statement III
+
+The first-generation plant is <InlineMath math="RWTt" /> and the white dwarf plant is <InlineMath math="WWtt" />. Every offspring gets <InlineMath math="W" /> from the white parent, so it is <InlineMath math="RW" /> (pink) or <InlineMath math="WW" /> (white), **never red**. The offspring are pink tall, pink dwarf, white tall and white dwarf in the ratio <InlineMath math="1:1:1:1" />. Statement III is wrong.
+
+## Statement IV
+
+Among red tall plants, one third are <InlineMath math="RRTT" /> and two thirds are <InlineMath math="RRTt" />. Only the <InlineMath math="RRTt" /> plants give dwarf offspring, one quarter of their offspring:
+
+<BlockMath math="P(\text{dwarf}) = \tfrac{1}{3}\times0+\tfrac{2}{3}\times\tfrac{1}{4} = \tfrac{1}{6}" />
+
+That is **one sixth, not one quarter**. Statement IV is wrong.
+
+So statements I and II are correct.
+
+# Why the other options are wrong
+
+- I only takes **every red, white or dwarf plant as true-breeding**, because their colour or height looks pure: <InlineMath math="148+151+49+50\approx400" />. That forgets that two thirds of the red tall and white tall plants are <InlineMath math="Tt" />.
+- I, II and IV only treats **every red tall plant as <InlineMath math="RRTt" />**, so it expects a <InlineMath math="3:1" /> ratio on selfing. One third of them are <InlineMath math="RRTT" /> and give no dwarf offspring.
+- I, II and III only reads the cross with the white dwarf plant like a test cross with full dominance, which gives four classes in equal numbers, **forgetting that the white parent can give only <InlineMath math="W" />**, so no offspring can be red.

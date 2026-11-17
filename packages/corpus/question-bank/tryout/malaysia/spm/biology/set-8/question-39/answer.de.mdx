@@ -1,0 +1,40 @@
+# Leg zuerst X fest, prüf jede Reihenfolge der Y-Stücke und behalte die, die den Doppelverdau ergibt
+
+Jede Fragmentgröße nennt einen Abstand zwischen zwei Schnitten oder zwischen einem Schnitt und einem Ende. Gesucht ist die **Reihenfolge** dieser Abstände, und nur der Verdau mit beiden Enzymen kann sie entscheiden.
+
+## Den Schnitt von X festlegen
+
+Enzym X schneidet einmal und liefert <InlineMath math="3\text{ kb}" /> und <InlineMath math="7\text{ kb}" />. Die Sonde legt Ende L auf das <InlineMath math="3\text{ kb}" />-Stück, also **schneidet X <InlineMath math="3\text{ kb}" /> von Ende L entfernt**.
+
+## Die möglichen Y-Karten auflisten
+
+Enzym Y schneidet zweimal und teilt die <InlineMath math="10\text{ kb}" /> in Stücke von <InlineMath math="5" />, <InlineMath math="3" /> und <InlineMath math="2\text{ kb}" />, in unbekannter Reihenfolge. Jede Reihenfolge ergibt zwei Y-Stellen. Nimm den X-Schnitt bei <InlineMath math="3\text{ kb}" /> dazu und lies die Fragmente des Doppelverdaus ab:
+
+| Reihenfolge der Y-Stücke ab L | Y-Stellen (kb ab L) | Alle Schnitte mit X bei <InlineMath math="3" /> | Doppelverdau (kb) |
+| --- | --- | --- | --- |
+| <InlineMath math="2, 3, 5" /> | <InlineMath math="2, 5" /> | <InlineMath math="2, 3, 5" /> | <InlineMath math="2, 1, 2, 5" /> |
+| <InlineMath math="2, 5, 3" /> | <InlineMath math="2, 7" /> | <InlineMath math="2, 3, 7" /> | <InlineMath math="2, 1, 4, 3" /> |
+| <InlineMath math="3, 2, 5" /> | <InlineMath math="3, 5" /> | Y schnitte an der Stelle von X | nicht erlaubt |
+| <InlineMath math="3, 5, 2" /> | <InlineMath math="3, 8" /> | Y schnitte an der Stelle von X | nicht erlaubt |
+| <InlineMath math="5, 2, 3" /> | <InlineMath math="5, 7" /> | <InlineMath math="3, 5, 7" /> | <InlineMath math="3, 2, 2, 3" /> |
+| <InlineMath math="5, 3, 2" /> | <InlineMath math="5, 8" /> | <InlineMath math="3, 5, 8" /> | <InlineMath math="3, 2, 3, 2" /> |
+
+Nur Y-Stellen bei <InlineMath math="2" /> und <InlineMath math="5\text{ kb}" /> ergeben die beobachteten <InlineMath math="5" />, <InlineMath math="2" />, <InlineMath math="2" /> und <InlineMath math="1\text{ kb}" />. Prüf die Summe: <InlineMath math="2+1+2+5=10\text{ kb}" />.
+
+<Mermaid
+  title={<>Restriktionskarte der DNA</>}
+  description={<>Ab Ende L schneidet Enzym Y bei <InlineMath math="2\text{ kb}" />, Enzym X bei <InlineMath math="3\text{ kb}" /> und Enzym Y noch einmal bei <InlineMath math="5\text{ kb}" />, Ende R liegt bei <InlineMath math="10\text{ kb}" />. Die Abstände sind <InlineMath math="2" />, <InlineMath math="1" />, <InlineMath math="2" /> und <InlineMath math="5\text{ kb}" />. X allein ergibt <InlineMath math="3" /> und <InlineMath math="7\text{ kb}" />, Y allein <InlineMath math="2" />, <InlineMath math="3" /> und <InlineMath math="5\text{ kb}" />.</>}
+  chart={`flowchart LR
+  L["Ende L, 0 kb"] -- "2 kb" --> Y1["Y-Stelle, 2 kb"]
+  Y1 -- "1 kb" --> X["X-Stelle, 3 kb"]
+  X -- "2 kb" --> Y2["Y-Stelle, 5 kb"]
+  Y2 -- "5 kb" --> R["Ende R, 10 kb"]`}
+/>
+
+Enzym Y schneidet also **<InlineMath math="2\text{ kb}" /> und <InlineMath math="5\text{ kb}" /> von Ende L entfernt**.
+
+# Warum die anderen Antworten falsch sind
+
+- <InlineMath math="5" /> und <InlineMath math="8\text{ kb}" /> **legt die Y-Stücke in der Reihenfolge der Tabelle hin**, <InlineMath math="5" />, <InlineMath math="3" />, <InlineMath math="2" />. Mit X bei <InlineMath math="3\text{ kb}" /> ergibt diese Karte <InlineMath math="3" />, <InlineMath math="2" />, <InlineMath math="3" /> und <InlineMath math="2\text{ kb}" />, nicht den beobachteten Doppelverdau. Es ist die richtige Karte, von Ende R aus gelesen.
+- <InlineMath math="2" /> und <InlineMath math="7\text{ kb}" /> prüft **nur, ob ein <InlineMath math="1\text{ kb}" />-Stück vorkommt**. Ihr Doppelverdau ist <InlineMath math="2" />, <InlineMath math="1" />, <InlineMath math="4" /> und <InlineMath math="3\text{ kb}" />, ohne <InlineMath math="5\text{ kb}" />-Stück.
+- <InlineMath math="5" /> und <InlineMath math="7\text{ kb}" /> prüft **nur, ob zwei <InlineMath math="2\text{ kb}" />-Stücke vorkommen**. Ihr Doppelverdau ist <InlineMath math="3" />, <InlineMath math="2" />, <InlineMath math="2" /> und <InlineMath math="3\text{ kb}" />, ohne <InlineMath math="1" />- oder <InlineMath math="5\text{ kb}" />-Stück.
