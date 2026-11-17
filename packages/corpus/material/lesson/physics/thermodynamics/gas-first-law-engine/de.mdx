@@ -1,0 +1,305 @@
+export const metadata = {
+  title: "Thermodynamik für die elfte Klasse",
+  description:
+    "Kurikulum Merdeka Physik Klasse 11, Thermodynamik: Rechnen mit dem idealen Gas, die Arbeit eines Gases, der erste Hauptsatz der Thermodynamik, isobare, isochore, isotherme und adiabatische Prozesse sowie der Wirkungsgrad einer Carnot-Maschine.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2026-11-17",
+  subject: "Thermodynamik",
+};
+
+## Ein Gas ändert seine Energie durch Wärme und Arbeit
+
+Die **Thermodynamik** untersucht, wie sich die Energie in einem Gas ändert, wenn das Gas Wärme aufnimmt oder Arbeit verrichtet. Ihre wichtigste Regel ist der **erste Hauptsatz der Thermodynamik**:
+
+<BlockMath math="\Delta U = Q - W" />
+
+Dabei ist <InlineMath math="Q" /> die Wärme, die in das Gas fließt, <InlineMath math="W" /> die Arbeit, die das Gas verrichtet, und <InlineMath math="\Delta U" /> die Änderung der inneren Energie. Ein ideales Gas erfüllt <InlineMath math="pV = nRT" />, und die Arbeit eines Gases bei konstantem Druck ist <InlineMath math="W = p\,\Delta V" />. Eine Wärmekraftmaschine wandelt einen Teil der Wärme in Arbeit um, und die bestmögliche Maschine, die **Carnot-Maschine**, hat den Wirkungsgrad <InlineMath math="\eta = 1 - \dfrac{T_c}{T_h}" />.
+
+Hier änderst du die Temperatur eines Gases und beobachtest seinen Druck, berechnest Arbeit als Fläche unter einem Graphen, vergleichst isotherme und adiabatische Prozesse und bestimmst den Wirkungsgrad einer Wärmekraftmaschine.
+
+## Das ideale Gas und die kinetische Gastheorie
+
+Ein ideales Gas ist ein Modellgas, dessen Teilchen winzig sind und nur elastisch zusammenstoßen. Druck, Volumen und Temperatur sind durch die **ideale Gasgleichung** verbunden:
+
+<BlockMath math="pV = nRT, \qquad R = 8{,}314\ \text{J mol}^{-1}\,\text{K}^{-1}" />
+
+Die Temperatur <InlineMath math="T" /> steht immer in Kelvin. Bei konstanter Temperatur ist der Druck umgekehrt proportional zum Volumen, also ist der Graph von <InlineMath math="p" /> gegen <InlineMath math="V" /> eine Kurve, die **Isotherme** heißt. Erhöhe unten die Temperatur: Die Isotherme wandert nach oben, weil sich die Teilchen schneller bewegen und stärker gegen die Wände prallen.
+
+<MathVisual
+  title={<>Isothermen von einem Mol idealem Gas</>}
+  description={
+    <>
+      Der Druck <InlineMath math="p = \dfrac{nRT}{V}" /> für{" "}
+      <InlineMath math="n = 1" /> Mol. Bei <InlineMath math="T = 273\text{ K}" />{" "}
+      und <InlineMath math="V = 22{,}4\text{ L}" /> beträgt der Druck etwa{" "}
+      <InlineMath math="101\text{ kPa}" />.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 40 }, y: { min: 0, max: 1300 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "k", min: 200, max: 600, value: 273, step: 1, label: "k" },
+    ],
+    objects: [
+      { id: "isotherm", kind: "function", appearance: "primary", formula: "8.314*k/x", domain: { min: 2, max: 40 } },
+      { id: "molar-volume", kind: "marker", x: "22.4", y: "8.314*k/22.4", appearance: "answer" },
+    ],
+    readouts: [
+      { key: "pressure", formula: "8.314*k/22.4" },
+    ],
+  }}
+  labels={{
+    k: <>Temperatur <InlineMath math="T" /> in <InlineMath math="\text{K}" /></>,
+    pressure: <>Druck bei <InlineMath math="22{,}4\text{ L}" /> in <InlineMath math="\text{kPa}" /></>,
+  }}
+/>
+
+Beispiel: <InlineMath math="2" /> Mol Gas bei <InlineMath math="300\text{ K}" /> füllen einen Behälter von <InlineMath math="20\text{ L}" />. Rechne das Volumen in Kubikmeter um und nutze dann die ideale Gasgleichung:
+
+<BlockMath math="p = \frac{nRT}{V} = \frac{2 \times 8{,}314 \times 300}{0{,}020} = 2{,}49 \times 10^5\text{ Pa}" />
+
+Die **kinetische Gastheorie** erklärt, was Temperatur bedeutet. Die mittlere kinetische Energie eines Teilchens eines einatomigen Gases ist <InlineMath math="\bar{E}_k = \dfrac{3}{2}kT" />, wobei <InlineMath math="k = 1{,}38 \times 10^{-23}\text{ J K}^{-1}" /> die Boltzmann-Konstante ist. Die Temperatur misst also die mittlere Bewegungsenergie der Teilchen.
+
+<MathVisual
+  title={<>Mittlere kinetische Energie eines Teilchens gegen die Temperatur</>}
+  description={
+    <>
+      Die mittlere kinetische Energie <InlineMath math="\bar{E}_k = \tfrac{3}{2}kT" />{" "}
+      ist proportional zur absoluten Temperatur. Bei{" "}
+      <InlineMath math="300\text{ K}" /> beträgt sie{" "}
+      <InlineMath math="6{,}21 \times 10^{-21}\text{ J}" />.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 1000 }, y: { min: 0, max: 22 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "k", min: 0, max: 1000, value: 300, step: 10, label: "k" },
+    ],
+    objects: [
+      { id: "kinetic", kind: "function", appearance: "primary", formula: "0.0207*x", domain: { min: 0, max: 1000 } },
+      { id: "now", kind: "marker", x: "k", y: "0.0207*k", appearance: "answer" },
+    ],
+    readouts: [
+      { key: "energy", formula: "0.0207*k" },
+    ],
+  }}
+  labels={{
+    k: <>Temperatur <InlineMath math="T" /> in <InlineMath math="\text{K}" /></>,
+    energy: <>Mittlere kinetische Energie in <InlineMath math="10^{-21}\text{ J}" /></>,
+  }}
+/>
+
+## Die Arbeit eines Gases ist die Fläche unter dem Graphen
+
+Wenn sich ein Gas ausdehnt, schiebt es einen Kolben und verrichtet **positive Arbeit**. Wird es zusammengedrückt, ist seine Arbeit negativ. Die Arbeit ist gleich **der Fläche unter dem Graphen** von <InlineMath math="p" /> gegen <InlineMath math="V" />. Bei konstantem Druck ist diese Fläche ein Rechteck:
+
+<BlockMath math="W = p\,(V_2 - V_1)" />
+
+Verschiebe unten das Endvolumen für ein Gas bei konstant <InlineMath math="200\text{ kPa}" />, das sich von <InlineMath math="2\text{ L}" /> ausdehnt. Ein Kilopascal mal ein Liter ist ein Joule.
+
+<MathVisual
+  title={<>Arbeit eines Gases bei konstantem Druck</>}
+  description={
+    <>
+      Die Fläche des Rechtecks unter der Linie <InlineMath math="p = 200\text{ kPa}" />{" "}
+      ist die Arbeit des Gases. Die Ausdehnung von <InlineMath math="2\text{ L}" />{" "}
+      auf <InlineMath math="5\text{ L}" /> ergibt <InlineMath math="W = 600\text{ J}" />.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 8 }, y: { min: 0, max: 300 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "q", min: 2.5, max: 7.5, value: 5, step: 0.5, label: "q" },
+    ],
+    objects: [
+      { id: "work-area", kind: "loop", points: [{ x: "2", y: "0" }, { x: "q", y: "0" }, { x: "q", y: "200" }, { x: "2", y: "200" }], appearance: "primary" },
+      { id: "start", kind: "point", at: { x: 2, y: 200 }, appearance: "reference" },
+      { id: "end", kind: "marker", x: "q", y: "200", appearance: "answer" },
+    ],
+    readouts: [
+      { key: "work", formula: "200*(q - 2)" },
+    ],
+  }}
+  labels={{
+    q: <>Endvolumen <InlineMath math="V_2" /> in <InlineMath math="\text{L}" /></>,
+    work: <>Arbeit des Gases in <InlineMath math="\text{J}" /></>,
+  }}
+/>
+
+Nimmt das Gas während der Ausdehnung <InlineMath math="1500\text{ J}" /> Wärme auf, liefert der erste Hauptsatz die Änderung seiner inneren Energie:
+
+<BlockMath math="\Delta U = Q - W = 1500 - 600 = 900\text{ J}" />
+
+<Chart
+  title={<>Energiebilanz einer isobaren Ausdehnung</>}
+  bars="apart"
+  categories={["Zugeführte Wärme", "Arbeit des Gases", "Zunahme der inneren Energie"]}
+  series={[
+    { label: "Energie (J)", mark: "bar", values: [1500, 600, 900] },
+  ]}
+  valueLabel="Energie (J)"
+  valueRange={{ min: 0, max: 1600 }}
+  description={
+    <>
+      Von den <InlineMath math="1500\text{ J}" /> Wärme werden{" "}
+      <InlineMath math="600\text{ J}" /> zu Arbeit am Kolben, und{" "}
+      <InlineMath math="900\text{ J}" /> erhöhen die innere Energie des Gases.
+    </>
+  }
+/>
+
+## Vier thermodynamische Prozesse
+
+Der erste Hauptsatz gilt für jeden Prozess, nimmt aber in vier besonderen Prozessen eine einfache Form an:
+
+| Prozess | Was konstant bleibt | Arbeit <InlineMath math="W" /> | Der erste Hauptsatz wird zu |
+| :--- | :--- | :--- | :--- |
+| Isobar | Druck | <InlineMath math="p\,\Delta V" /> | <InlineMath math="\Delta U = Q - p\,\Delta V" /> |
+| Isochor | Volumen | <InlineMath math="0" /> | <InlineMath math="\Delta U = Q" /> |
+| Isotherm | Temperatur | <InlineMath math="nRT \ln \dfrac{V_2}{V_1}" /> | <InlineMath math="Q = W" />, weil <InlineMath math="\Delta U = 0" /> |
+| Adiabatisch | keine Wärme | <InlineMath math="-\Delta U" /> | <InlineMath math="\Delta U = -W" /> |
+
+Bei einem **adiabatischen** Prozess tauscht das Gas keine Wärme aus, also stammt seine Arbeit aus seiner eigenen inneren Energie, und seine Temperatur sinkt. Deshalb ist die Adiabate <InlineMath math="pV^\gamma = \text{konstant}" /> steiler als die Isotherme <InlineMath math="pV = \text{konstant}" />. Ändere unten den Adiabatenexponenten <InlineMath math="\gamma" />. Für ein einatomiges Gas ist <InlineMath math="\gamma = 1{,}67" />, für Luft <InlineMath math="\gamma = 1{,}4" />.
+
+<MathVisual
+  title={<>Isotherme und Adiabate aus demselben Anfangszustand</>}
+  description={
+    <>
+      Beide beginnen bei <InlineMath math="300\text{ kPa}" /> und{" "}
+      <InlineMath math="2\text{ L}" />. Bei der Ausdehnung auf{" "}
+      <InlineMath math="10\text{ L}" /> fällt die Isotherme auf{" "}
+      <InlineMath math="60\text{ kPa}" />, die Adiabate mit{" "}
+      <InlineMath math="\gamma = 1{,}4" /> dagegen auf etwa{" "}
+      <InlineMath math="31\text{ kPa}" />.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 2, max: 10 }, y: { min: 0, max: 320 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "g", min: 1.1, max: 1.67, value: 1.4, step: 0.01, label: "g" },
+    ],
+    objects: [
+      { id: "isothermal", kind: "function", appearance: "secondary", formula: "600/x", domain: { min: 2, max: 10 } },
+      { id: "adiabatic", kind: "function", appearance: "primary", formula: "300*(2/x)^g", domain: { min: 2, max: 10 } },
+      { id: "start", kind: "point", at: { x: 2, y: 300 }, appearance: "reference" },
+    ],
+    readouts: [
+      { key: "isothermal-end", formula: "60" },
+      { key: "adiabatic-end", formula: "300*(0.2)^g" },
+    ],
+  }}
+  labels={{
+    g: <>Adiabatenexponent <InlineMath math="\gamma" /></>,
+    "isothermal-end": <>Isothermer Druck bei <InlineMath math="10\text{ L}" /> in <InlineMath math="\text{kPa}" /></>,
+    "adiabatic-end": <>Adiabatischer Druck bei <InlineMath math="10\text{ L}" /> in <InlineMath math="\text{kPa}" /></>,
+  }}
+/>
+
+Ein isothermes Beispiel: <InlineMath math="1" /> Mol Gas bei <InlineMath math="300\text{ K}" /> dehnt sich aus, bis sich sein Volumen verdoppelt.
+
+<BlockMath math="W = nRT \ln \frac{V_2}{V_1} = 1 \times 8{,}314 \times 300 \times \ln 2 = 1729\text{ J}" />
+
+Weil die Temperatur gleich bleibt, ist <InlineMath math="\Delta U = 0" />, also muss das Gas <InlineMath math="Q = 1729\text{ J}" /> Wärme aufnehmen, genau so viel, wie es an Arbeit verrichtet.
+
+## Wärmekraftmaschinen und der zweite Hauptsatz
+
+Eine **Wärmekraftmaschine** nimmt Wärme <InlineMath math="Q_h" /> aus einem heißen Reservoir auf, wandelt einen Teil davon in Arbeit <InlineMath math="W" /> um und gibt den Rest <InlineMath math="Q_c" /> an ein kaltes Reservoir ab. Ihr Wirkungsgrad ist:
+
+<BlockMath math="\eta = \frac{W}{Q_h} = 1 - \frac{Q_c}{Q_h}" />
+
+Der **zweite Hauptsatz der Thermodynamik** besagt, dass keine Maschine ihre gesamte Wärme in Arbeit umwandelt. Die Carnot-Maschine ist die ideale Maschine mit dem höchsten Wirkungsgrad für zwei gegebene Reservoirtemperaturen, <InlineMath math="\eta = 1 - \dfrac{T_c}{T_h}" />. Ändere unten die Temperaturen des heißen und des kalten Reservoirs.
+
+<MathVisual
+  title={<>Carnot-Wirkungsgrad gegen die Temperatur des kalten Reservoirs</>}
+  description={
+    <>
+      Der Wirkungsgrad <InlineMath math="\eta = 1 - \dfrac{T_c}{T_h}" />. Für{" "}
+      <InlineMath math="T_h = 600\text{ K}" /> und{" "}
+      <InlineMath math="T_c = 300\text{ K}" /> beträgt er{" "}
+      <InlineMath math="50\%" />. Er erreicht <InlineMath math="100\%" /> nur bei{" "}
+      <InlineMath math="T_c = 0\text{ K}" />, und das ist unerreichbar.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 900 }, y: { min: 0, max: 1 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "a", min: 400, max: 900, value: 600, step: 10, label: "a" },
+      { name: "c", min: 250, max: 390, value: 300, step: 5, label: "c" },
+    ],
+    objects: [
+      { id: "efficiency", kind: "function", appearance: "primary", formula: "1 - x/a", domain: { min: 0, max: 900 } },
+      { id: "now", kind: "marker", x: "c", y: "1 - c/a", appearance: "answer" },
+    ],
+    readouts: [
+      { key: "efficiency-percent", formula: "100*(1 - c/a)" },
+    ],
+  }}
+  labels={{
+    a: <>Temperatur des heißen Reservoirs <InlineMath math="T_h" /> in <InlineMath math="\text{K}" /></>,
+    c: <>Temperatur des kalten Reservoirs <InlineMath math="T_c" /> in <InlineMath math="\text{K}" /></>,
+    "efficiency-percent": <>Carnot-Wirkungsgrad in Prozent</>,
+  }}
+/>
+
+Für <InlineMath math="T_h = 600\text{ K}" /> und <InlineMath math="T_c = 300\text{ K}" /> verrichtet eine Carnot-Maschine, die <InlineMath math="2000\text{ J}" /> aufnimmt, die Arbeit <InlineMath math="W = 0{,}5 \times 2000 = 1000\text{ J}" /> und gibt <InlineMath math="1000\text{ J}" /> ab. Ein **Kühlschrank** arbeitet umgekehrt. Seine Leistung misst die Carnot-Leistungszahl <InlineMath math="K = \dfrac{T_c}{T_h - T_c}" />. Ein Kühlschrank bei <InlineMath math="273\text{ K}" /> in einem Raum mit <InlineMath math="300\text{ K}" /> erreicht höchstens <InlineMath math="K = \dfrac{273}{27} = 10{,}1" />.
+
+## Häufige Fehler in der Thermodynamik
+
+| Fehler | Warum er falsch ist | Wie du prüfst |
+| :--- | :--- | :--- |
+| Eine Celsius-Temperatur in <InlineMath math="pV = nRT" /> einsetzen. | Die ideale Gasgleichung verwendet die absolute Temperatur. | Addiere <InlineMath math="273" /> zur Celsius-Temperatur. |
+| <InlineMath math="W" /> beim Zusammendrücken als positiv ansehen. | Die Arbeit des Gases ist nur positiv, wenn sein Volumen wächst. | Prüfe, ob <InlineMath math="\Delta V" /> positiv oder negativ ist. |
+| <InlineMath math="\Delta U = Q + W" /> schreiben, mit <InlineMath math="W" /> als Arbeit des Gases. | Die Arbeit, die ein Gas verrichtet, senkt seine innere Energie. | Nutze <InlineMath math="\Delta U = Q - W" /> mit einer einzigen Vorzeichenregel. |
+| Glauben, adiabatisch bedeute konstante Temperatur. | Adiabatisch heißt ohne Wärmeaustausch, und die Temperatur ändert sich meist. | Isotherm bedeutet konstante Temperatur. |
+| Celsius im Carnot-Wirkungsgrad verwenden. | Das Verhältnis <InlineMath math="\dfrac{T_c}{T_h}" /> stimmt nur in Kelvin. | Der Wirkungsgrad erreicht nie <InlineMath math="100\%" />. |
+
+Der erste Fehler ist der häufigste. **Jede Temperatur in der Thermodynamik wird in Kelvin umgerechnet**, bevor sie in eine Formel kommt.
+
+## Übungen zur Thermodynamik
+
+Schreibe zu Beginn die Vorzeichenregel für Wärme und Arbeit auf, damit **der erste Hauptsatz richtig angewendet wird**.
+
+1. <InlineMath math="0{,}5" /> Mol ideales Gas befinden sich in einem Behälter von <InlineMath math="10\text{ L}" /> bei <InlineMath math="27^\circ\text{C}" />. Berechne den Druck.
+
+2. Ein Gas bei konstant <InlineMath math="150\text{ kPa}" /> wird von <InlineMath math="6\text{ L}" /> auf <InlineMath math="2\text{ L}" /> zusammengedrückt. Berechne die Arbeit des Gases und erkläre ihr Vorzeichen.
+
+3. Ein Gas nimmt <InlineMath math="800\text{ J}" /> Wärme auf und verrichtet <InlineMath math="300\text{ J}" /> Arbeit. Berechne die Änderung seiner inneren Energie.
+
+4. Eine Carnot-Maschine arbeitet zwischen <InlineMath math="527^\circ\text{C}" /> und <InlineMath math="127^\circ\text{C}" /> und nimmt pro Zyklus <InlineMath math="4000\text{ J}" /> Wärme auf. Berechne ihren Wirkungsgrad und ihre Arbeit.
+
+### Lösungen
+
+**Lösung 1**: Rechne die Temperatur in Kelvin und das Volumen in Kubikmeter um:
+
+<BlockMath math="p = \frac{nRT}{V} = \frac{0{,}5 \times 8{,}314 \times 300}{0{,}010} = 1{,}25 \times 10^5\text{ Pa}" />
+
+**Lösung 2**: Bei konstantem Druck gilt <InlineMath math="W = p\,\Delta V" />:
+
+<BlockMath math="W = 150 \times (2 - 6) = -600\text{ J}" />
+
+Das Vorzeichen ist negativ, weil **das Gas zusammengedrückt wird**, also verrichtet die Umgebung Arbeit am Gas.
+
+**Lösung 3**: Nutze den ersten Hauptsatz:
+
+<BlockMath math="\Delta U = Q - W = 800 - 300 = 500\text{ J}" />
+
+Die innere Energie steigt um <InlineMath math="500\text{ J}" />, also steigt die Temperatur des Gases.
+
+**Lösung 4**: Rechne die Temperaturen in Kelvin um, <InlineMath math="T_h = 800\text{ K}" /> und <InlineMath math="T_c = 400\text{ K}" />:
+
+<MathContainer>
+<BlockMath math="\eta = 1 - \frac{400}{800} = 0{,}5 = 50\%" />
+<BlockMath math="W = \eta\,Q_h = 0{,}5 \times 4000 = 2000\text{ J}" />
+</MathContainer>
+
+Probe: Mit Celsius käme <InlineMath math="1 - \tfrac{127}{527} = 76\%" /> heraus, ein zu großer und falscher Wert.
