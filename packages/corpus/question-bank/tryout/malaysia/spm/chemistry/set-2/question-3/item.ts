@@ -12,19 +12,19 @@ const item: ItemSource = {
       options: [
         {
           correct: false,
-          label: "$$25.0\\%$$, $$13.5\\text{ g}$$, $$32.4\\text{ g}$$",
+          label: "$$25.0\\%$$, $$23.8\\text{ g}$$, $$2.54\\text{ g}$$",
         },
         {
           correct: false,
-          label: "$$75.0\\%$$, $$12.7\\text{ g}$$, $$43.2\\text{ g}$$",
+          label: "$$75.0\\%$$, $$32.4\\text{ g}$$, $$0\\text{ g}$$",
         },
         {
           correct: false,
-          label: "$$75.0\\%$$, $$13.5\\text{ g}$$, $$16.2\\text{ g}$$",
+          label: "$$75.0\\%$$, $$16.2\\text{ g}$$, $$0\\text{ g}$$",
         },
         {
           correct: true,
-          label: "$$75.0\\%$$, $$13.5\\text{ g}$$, $$32.4\\text{ g}$$",
+          label: "$$75.0\\%$$, $$23.8\\text{ g}$$, $$2.54\\text{ g}$$",
         },
       ],
     },
@@ -33,19 +33,19 @@ const item: ItemSource = {
       options: [
         {
           correct: false,
-          label: "$$25.0\\%$$, $$13.5\\text{ g}$$, $$32.4\\text{ g}$$",
+          label: "$$25.0\\%$$, $$23.8\\text{ g}$$, $$2.54\\text{ g}$$",
         },
         {
           correct: false,
-          label: "$$75.0\\%$$, $$12.7\\text{ g}$$, $$43.2\\text{ g}$$",
+          label: "$$75.0\\%$$, $$32.4\\text{ g}$$, $$0\\text{ g}$$",
         },
         {
           correct: false,
-          label: "$$75.0\\%$$, $$13.5\\text{ g}$$, $$16.2\\text{ g}$$",
+          label: "$$75.0\\%$$, $$16.2\\text{ g}$$, $$0\\text{ g}$$",
         },
         {
           correct: true,
-          label: "$$75.0\\%$$, $$13.5\\text{ g}$$, $$32.4\\text{ g}$$",
+          label: "$$75.0\\%$$, $$23.8\\text{ g}$$, $$2.54\\text{ g}$$",
         },
       ],
     },

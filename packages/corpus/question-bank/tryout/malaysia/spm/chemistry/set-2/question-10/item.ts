@@ -16,15 +16,15 @@ const item: ItemSource = {
         },
         {
           correct: false,
-          label: "$$61.5\\%$$, $$840\\text{ cm}^3$$, $$3.95\\text{ g}$$",
+          label: "$$61.6\\%$$, $$840\\text{ cm}^3$$, $$3.95\\text{ g}$$",
         },
         {
           correct: true,
-          label: "$$61.5\\%$$, $$420\\text{ cm}^3$$, $$3.95\\text{ g}$$",
+          label: "$$61.6\\%$$, $$420\\text{ cm}^3$$, $$3.95\\text{ g}$$",
         },
         {
           correct: false,
-          label: "$$61.5\\%$$, $$420\\text{ cm}^3$$, $$2.51\\text{ g}$$",
+          label: "$$61.6\\%$$, $$420\\text{ cm}^3$$, $$2.51\\text{ g}$$",
         },
       ],
     },
@@ -37,15 +37,15 @@ const item: ItemSource = {
         },
         {
           correct: false,
-          label: "$$61.5\\%$$, $$840\\text{ cm}^3$$, $$3.95\\text{ g}$$",
+          label: "$$61.6\\%$$, $$840\\text{ cm}^3$$, $$3.95\\text{ g}$$",
         },
         {
           correct: true,
-          label: "$$61.5\\%$$, $$420\\text{ cm}^3$$, $$3.95\\text{ g}$$",
+          label: "$$61.6\\%$$, $$420\\text{ cm}^3$$, $$3.95\\text{ g}$$",
         },
         {
           correct: false,
-          label: "$$61.5\\%$$, $$420\\text{ cm}^3$$, $$2.51\\text{ g}$$",
+          label: "$$61.6\\%$$, $$420\\text{ cm}^3$$, $$2.51\\text{ g}$$",
         },
       ],
     },

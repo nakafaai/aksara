@@ -1,26 +1,25 @@
-# Bestimme in jedem Versuch, was ausgeht, bevor du ein Volumen abliest, und teile dann durch die Zeit dieses Versuchs
+# Bestimme für die Volumen, was in jedem Lauf ausgeht, und multipliziere für die Zeit die beiden Beschleunigungen
 
-In Versuch I sind es <InlineMath math="0{,}240\div24=0{,}0100\text{ mol}" /> Magnesium und <InlineMath math="0{,}0100\text{ mol}" /> Säure, doch **jedes Magnesium nimmt zwei Säure**, also geht die Säure aus, es entstehen <InlineMath math="0{,}00500\text{ mol}" /> Wasserstoff, <InlineMath math="120\text{ cm}^3" />. In Versuch II sind es <InlineMath math="0{,}00500\text{ mol}" /> Magnesium und <InlineMath math="0{,}0200\text{ mol}" /> Säure, mehr als genug, also **geht jetzt das Magnesium aus**, wieder <InlineMath math="0{,}00500\text{ mol}" />, <InlineMath math="120\text{ cm}^3" />. Das entsteht in <InlineMath math="30\text{ s}" />, <InlineMath math="120\div30=4{,}0\text{ cm}^3\text{ s}^{-1}" />.
+In Versuch I sind es <InlineMath math="0{,}0100\text{ mol}" /> Magnesium und <InlineMath math="0{,}0100\text{ mol}" /> Säure, doch **jedes Magnesium nimmt zwei Säure**, also geht die Säure aus, <InlineMath math="0{,}00500\text{ mol}" /> Wasserstoff, <InlineMath math="120\text{ cm}^3" />. In Versuch II sind es <InlineMath math="0{,}00500\text{ mol}" /> Magnesium und <InlineMath math="0{,}0200\text{ mol}" /> Säure, also **geht jetzt das Magnesium aus**, wieder <InlineMath math="120\text{ cm}^3" />. Die doppelte Konzentration verdoppelt die Geschwindigkeit, und die zusätzlichen <InlineMath math="10^\circ\text{C}" /> verdoppeln sie noch einmal, **viermal so schnell**, also <InlineMath math="60\div4=15\text{ s}" />.
 
 <Chart
-  title={<>Endvolumen an Wasserstoff</>}
-  description={<>Beide Versuche enden bei <InlineMath math="120\text{ cm}^3" />, der erste, wenn die Säure ausgeht, der zweite, wenn das Magnesium ausgeht.</>}
+  title={<>Benötigte Zeit</>}
+  description={<>Versuch I dauert <InlineMath math="60\text{ s}" />, Versuch II, viermal so schnell, <InlineMath math="15\text{ s}" />.</>}
   bars="apart"
   categories={["Versuch I", "Versuch II"]}
   series={[
-    { label: "Volumen", mark: "bar", values: [120, 120] },
+    { label: "Zeit", mark: "bar", values: [60, 15] },
   ]}
-  valueLabel="Volumen (cm³)"
+  valueLabel="Zeit (s)"
 />
 
 <BlockMath math="\begin{aligned}
-V_{\text{I}}&=\tfrac{1}{2}\times0{,}0100\times24{.}000=120\text{ cm}^3\\
-V_{\text{II}}&=0{,}00500\times24{.}000=120\text{ cm}^3\\
-\bar r&=\tfrac{120}{30}=4{,}0\text{ cm}^3\text{ s}^{-1}
+V_{\text{I}}&=\tfrac{1}{2}\times0{,}0100\times24{.}000=120\text{ cm}^3,\quad V_{\text{II}}=0{,}00500\times24{.}000=120\text{ cm}^3\\
+t_{\text{II}}&=\tfrac{60}{2\times2}=15\text{ s}
 \end{aligned}" />
 
 # Warum die anderen Antworten falsch sind
 
 - <InlineMath math="240\text{ cm}^3" /> lässt in Versuch I alles Magnesium reagieren, doch <InlineMath math="0{,}0100\text{ mol}" /> Säure lösen nur die Hälfte davon.
 - <InlineMath math="240\text{ cm}^3" /> in Versuch II lässt die Säure entscheiden, doch **nur <InlineMath math="0{,}00500\text{ mol}" /> Magnesium sind da**.
-- <InlineMath math="2{,}0\text{ cm}^3\text{ s}^{-1}" /> teilt durch die <InlineMath math="60\text{ s}" /> des ersten Versuchs, doch Versuch II dauerte <InlineMath math="30\text{ s}" />.
+- <InlineMath math="30\text{ s}" /> berücksichtigt nur die Konzentration, doch die höhere Temperatur verdoppelt die Geschwindigkeit ebenfalls.

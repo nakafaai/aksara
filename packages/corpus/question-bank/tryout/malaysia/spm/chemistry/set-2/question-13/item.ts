@@ -12,22 +12,23 @@ const item: ItemSource = {
       options: [
         {
           correct: false,
-          label: "$$\\text{FeO}$$, $$960\\text{ cm}^3$$, $$4.00\\text{ g}$$",
+          label:
+            "$$\\text{Fe}_2\\text{O}_3$$, $$4.00\\text{ g}$$, $$30.0\\text{ cm}^3$$",
         },
         {
           correct: false,
           label:
-            "$$\\text{Fe}_3\\text{O}_4$$, $$480\\text{ cm}^3$$, $$2.00\\text{ g}$$",
+            "$$\\text{Fe}_3\\text{O}_4$$, $$3.00\\text{ g}$$, $$30.0\\text{ cm}^3$$",
         },
         {
           correct: true,
           label:
-            "$$\\text{Fe}_3\\text{O}_4$$, $$960\\text{ cm}^3$$, $$4.00\\text{ g}$$",
+            "$$\\text{Fe}_3\\text{O}_4$$, $$4.00\\text{ g}$$, $$30.0\\text{ cm}^3$$",
         },
         {
           correct: false,
           label:
-            "$$\\text{Fe}_3\\text{O}_4$$, $$960\\text{ cm}^3$$, $$1.76\\text{ g}$$",
+            "$$\\text{Fe}_3\\text{O}_4$$, $$4.00\\text{ g}$$, $$150\\text{ cm}^3$$",
         },
       ],
     },
@@ -36,22 +37,23 @@ const item: ItemSource = {
       options: [
         {
           correct: false,
-          label: "$$\\text{FeO}$$, $$960\\text{ cm}^3$$, $$4.00\\text{ g}$$",
+          label:
+            "$$\\text{Fe}_2\\text{O}_3$$, $$4.00\\text{ g}$$, $$30.0\\text{ cm}^3$$",
         },
         {
           correct: false,
           label:
-            "$$\\text{Fe}_3\\text{O}_4$$, $$480\\text{ cm}^3$$, $$2.00\\text{ g}$$",
+            "$$\\text{Fe}_3\\text{O}_4$$, $$3.00\\text{ g}$$, $$30.0\\text{ cm}^3$$",
         },
         {
           correct: true,
           label:
-            "$$\\text{Fe}_3\\text{O}_4$$, $$960\\text{ cm}^3$$, $$4.00\\text{ g}$$",
+            "$$\\text{Fe}_3\\text{O}_4$$, $$4.00\\text{ g}$$, $$30.0\\text{ cm}^3$$",
         },
         {
           correct: false,
           label:
-            "$$\\text{Fe}_3\\text{O}_4$$, $$960\\text{ cm}^3$$, $$1.76\\text{ g}$$",
+            "$$\\text{Fe}_3\\text{O}_4$$, $$4.00\\text{ g}$$, $$150\\text{ cm}^3$$",
         },
       ],
     },

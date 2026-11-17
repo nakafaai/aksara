@@ -12,19 +12,19 @@ const item: ItemSource = {
       options: [
         {
           correct: true,
-          label: "$$12.0\\%$$, $$100\\text{ cm}^3$$, $$500\\text{ cm}^3$$",
+          label: "$$35.5$$, $$3.01\\times10^{22}$$, $$12.7\\text{ g}$$",
         },
         {
           correct: false,
-          label: "$$9.0\\%$$, $$100\\text{ cm}^3$$, $$500\\text{ cm}^3$$",
+          label: "$$36.0$$, $$3.01\\times10^{22}$$, $$12.7\\text{ g}$$",
         },
         {
           correct: false,
-          label: "$$12.0\\%$$, $$300\\text{ cm}^3$$, $$700\\text{ cm}^3$$",
+          label: "$$35.5$$, $$4.52\\times10^{22}$$, $$0\\text{ g}$$",
         },
         {
           correct: false,
-          label: "$$12.0\\%$$, $$100\\text{ cm}^3$$, $$300\\text{ cm}^3$$",
+          label: "$$35.5$$, $$3.01\\times10^{22}$$, $$6.35\\text{ g}$$",
         },
       ],
     },
@@ -33,19 +33,19 @@ const item: ItemSource = {
       options: [
         {
           correct: true,
-          label: "$$12.0\\%$$, $$100\\text{ cm}^3$$, $$500\\text{ cm}^3$$",
+          label: "$$35.5$$, $$3.01\\times10^{22}$$, $$12.7\\text{ g}$$",
         },
         {
           correct: false,
-          label: "$$9.0\\%$$, $$100\\text{ cm}^3$$, $$500\\text{ cm}^3$$",
+          label: "$$36.0$$, $$3.01\\times10^{22}$$, $$12.7\\text{ g}$$",
         },
         {
           correct: false,
-          label: "$$12.0\\%$$, $$300\\text{ cm}^3$$, $$700\\text{ cm}^3$$",
+          label: "$$35.5$$, $$4.52\\times10^{22}$$, $$0\\text{ g}$$",
         },
         {
           correct: false,
-          label: "$$12.0\\%$$, $$100\\text{ cm}^3$$, $$300\\text{ cm}^3$$",
+          label: "$$35.5$$, $$3.01\\times10^{22}$$, $$6.35\\text{ g}$$",
         },
       ],
     },
