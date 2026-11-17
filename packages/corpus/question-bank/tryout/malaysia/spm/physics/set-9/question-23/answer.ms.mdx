@@ -1,0 +1,24 @@
+# Hanya komponen menegak tegangan yang menyokong papan tanda
+
+Setiap separuh dawai merentang <InlineMath math="2.0" /> m melintang dan <InlineMath math="0.10" /> m ke bawah, jadi <InlineMath math="\sin\theta \approx 0.050" />. Kedua-dua separuh bersama mengangkat papan tanda <InlineMath math="196" /> N: <InlineMath math="2T \times 0.050 = 196" />, jadi <InlineMath math="T = 2.0" /> kN, sepuluh kali beratnya.
+
+<Mermaid
+  title={<>Dawai yang Lebih Tegang Menarik Lebih Kuat</>}
+  description={<>Hanya komponen menegak yang kecil pada setiap separuh dawai menyokong papan tanda, jadi semakin rata dawai, semakin besar tegangan yang diperlukan.</>}
+  chart={`
+    flowchart LR
+      N1["Setiap separuh: 2.0 m melintang, 0.10 m ke bawah"] --> N2["sin θ ≈ 0.10 ÷ 2.0 = 0.050"]
+      N0["Berat = 20 × 9.8 = 196 N"] --> N3["Dua separuh menyokong: 2T sin θ = 196, T = 2.0 kN"]
+      N2 --> N3
+      N0 --> N4["Pada 5.0 kN: sin θ = 196 ÷ (2 × 5000) = 0.0196"]
+      N4 --> N5["Lendutan = 2.0 × 0.0196 = 0.039 m = 3.9 cm"]
+  `}
+/>
+
+Dawai yang **lebih rata** memerlukan tegangan lebih besar. Pada <InlineMath math="5.0" /> kN, <InlineMath math="\sin\theta = 196 \div 10\,000 = 0.0196" />, jadi lendutan mesti sekurang-kurangnya <InlineMath math="2.0 \times 0.0196 = 0.039" /> m, kira-kira <InlineMath math="3.9" /> cm.
+
+# Mengapa pilihan lain salah
+
+- <InlineMath math="98\text{ N}" /> membahagikan berat antara dua separuh seolah-olah kedua-duanya menarik **tegak ke atas**.
+- <InlineMath math="25\text{ cm}" /> menganggap lendutan lebih besar lebih berbahaya, tetapi dawai yang melendut memerlukan tegangan **lebih kecil**.
+- <InlineMath math="3.9\text{ kN}" /> membiarkan satu separuh menampung seluruh papan, terlupa bahawa **dua** separuh menarik ke atas.

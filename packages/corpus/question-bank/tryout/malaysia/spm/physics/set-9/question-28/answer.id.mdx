@@ -1,0 +1,23 @@
+# Tiap sambungan mengukur gabungan yang berbeda
+
+Dengan voltmeter melintasi resistor saja, amperemeter membawa arus **keduanya**, jadi perbandingan bacaan adalah gabungan paralel, <InlineMath math="2{,}0 \times 20 \div 22 = 1{,}8\,\Omega" />.
+
+<Mermaid
+  title={<>Meter Nyata Menjadi Bagian Rangkaian</>}
+  description={<>Voltmeter berhambatan sedang mengambil arusnya sendiri, dan amperemeter berhambatan mengambil tegangannya sendiri, jadi tiap sambungan mengukur hal yang sedikit berbeda.</>}
+  chart={`
+    flowchart LR
+      N0["Pertama: voltmeter paralel dengan resistor"] --> N1["2,0 × 20 ÷ 22 = 1,82 Ω, yang diukur V ÷ I"]
+      N1 --> N2["R hasil hitung = 1,8 Ω"]
+      N3["Kedua: (2,0 + 0,50) = 2,5 Ω paralel dengan 20 Ω"] --> N4["2,5 × 20 ÷ 22,5 = 2,22 Ω, total 2,72 Ω dengan baterai"]
+      N4 --> N5["I = 6,0 ÷ 2,72 = 2,20 A, V = 2,20 × 2,22 = 4,9 V"]
+  `}
+/>
+
+Dengan voltmeter melintasi resistor dan amperemeter, cabang <InlineMath math="2{,}5\,\Omega" /> paralel dengan <InlineMath math="20\,\Omega" />, memberi <InlineMath math="2{,}22\,\Omega" />. Arus baterai <InlineMath math="6{,}0 \div (2{,}22 + 0{,}50) = 2{,}20" /> A, dan voltmeter membaca <InlineMath math="2{,}20 \times 2{,}22 = 4{,}9" /> V.
+
+# Kenapa pilihan lain salah
+
+- <InlineMath math="2{,}0\,\Omega" /> dan <InlineMath math="5{,}0\text{ V}" /> menganggap meter **ideal**, padahal meter ini mengubah rangkaian.
+- <InlineMath math="3{,}9\text{ V}" /> adalah tegangan pada resistor **saja**, padahal voltmeter kedua juga melintasi amperemeter.
+- <InlineMath math="2{,}5\,\Omega" /> adalah hasil sambungan **kedua**, resistor ditambah amperemeter.

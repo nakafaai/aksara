@@ -1,0 +1,24 @@
+# Lower pressure outside, slightly lower pressure inside
+
+Climbing <InlineMath math="150" /> m leaves a column of air <InlineMath math="1.2 \times 9.8 \times 150 = 1764" /> Pa lighter above the manometer, about <InlineMath math="1.8" /> kPa. The sealed flask keeps its volume, but cooling by <InlineMath math="1.0" /> K lowers its pressure by <InlineMath math="100\,000 \div 300 = 333" /> Pa.
+
+<Mermaid
+  title={<>Two Changes Pull the Manometer Opposite Ways</>}
+  description={<>Climbing lowers the outside pressure, which drives the water towards the open arm, while cooling lowers the flask’s pressure and takes back part of that.</>}
+  chart={`
+    flowchart LR
+      N0["Air column: 1.2 × 9.8 × 150 = 1764 Pa less outside"] --> N3["Flask exceeds outside by 1764 − 333 = 1431 Pa"]
+      N1["Flask cools 300 → 299 K at fixed volume"] --> N2["Flask: 100 000 × 299 ÷ 300, down by 333 Pa"]
+      N2 --> N3
+      N3 --> N4["Water: h = 1431 ÷ (1000 × 9.8) = 0.15 m"]
+      N3 --> N5["Higher pressure in the flask pushes the open arm up"]
+  `}
+/>
+
+The flask is now <InlineMath math="1764 - 333 = 1431" /> Pa **above** the outside air, so it pushes the water towards the open arm: the open arm stands <InlineMath math="1431 \div 9800 = 0.15" /> m higher.
+
+# Why the other options are wrong
+
+- <InlineMath math="18\text{ cm}" /> ignores the **cooling** of the air in the flask.
+- The flask arm higher reverses the push, but the flask is at the **higher** pressure.
+- <InlineMath math="21\text{ cm}" /> adds the cooling effect, but a cooler flask pushes **less**, not more.

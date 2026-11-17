@@ -1,0 +1,24 @@
+# Bandingkan air yang tersesar sebelum dan selepas
+
+Di dalam bot, batu menyesarkan air seberat **beratnya** sendiri: <InlineMath math="30 \div 1000 = 0.030\text{ m}^3" />. Di dasar ia hanya menyesarkan **isi padunya** sendiri, <InlineMath math="30 \div 3000 = 0.010\text{ m}^3" />. Air yang tersesar berkurang <InlineMath math="0.020\text{ m}^3" />, jadi aras kolam turun <InlineMath math="0.020 \div 20 = 1.0" /> mm.
+
+<Mermaid
+  title={<>Terapung Menyesarkan Berat, Tenggelam Menyesarkan Isi Padu</>}
+  description={<>Semasa batu berada dalam bot ia menyesarkan air yang sama dengan beratnya. Di dasar ia hanya menyesarkan isi padunya sendiri, iaitu satu pertiga daripada itu.</>}
+  chart={`
+    flowchart LR
+      N0["Batu dalam bot: menyesarkan beratnya, 30 ÷ 1000 = 0.030 m³"] --> N2["Air tersesar berkurang 0.020 m³"]
+      N1["Batu di dasar: menyesarkan isi padunya, 30 ÷ 3000 = 0.010 m³"] --> N2
+      N2 --> N3["Aras kolam turun 0.020 ÷ 20 = 1.0 mm"]
+      N0 --> N4["Bot menyesarkan 0.030 m³ kurang"]
+      N4 --> N5["Bot naik 0.030 ÷ 2.0 = 1.5 cm relatif kepada air"]
+  `}
+/>
+
+Bot itu sendiri kini menyesarkan <InlineMath math="0.030\text{ m}^3" /> kurang, jadi ia naik <InlineMath math="0.030 \div 2.0 = 1.5" /> cm relatif kepada air di sekelilingnya.
+
+# Mengapa pilihan lain salah
+
+- Naik menambah isi padu batu ke dalam kolam, terlupa bahawa batu **telah menyesarkan** tiga kali ganda semasa terapung.
+- <InlineMath math="1.5\text{ mm}" /> terlupa bahawa batu di dasar **masih menyesarkan** isi padunya sendiri.
+- Tidak berubah menganggap air tersesar tetap, tetapi batu yang tenggelam menyesarkan isi padunya, **bukan beratnya**.

@@ -1,0 +1,24 @@
+# Compare the water displaced before and after
+
+In the boat, the stone displaces water of its own **weight**: <InlineMath math="30 \div 1000 = 0.030\text{ m}^3" />. On the bottom it displaces only its own **volume**, <InlineMath math="30 \div 3000 = 0.010\text{ m}^3" />. The displaced water falls by <InlineMath math="0.020\text{ m}^3" />, so the pool level falls by <InlineMath math="0.020 \div 20 = 1.0" /> mm.
+
+<Mermaid
+  title={<>Floating Displaces Weight, Sinking Displaces Volume</>}
+  description={<>While the stone rides in the boat it displaces water equal to its weight. On the bottom it displaces only its own volume, which is a third as much.</>}
+  chart={`
+    flowchart LR
+      N0["Stone in the boat: displaces its weight, 30 ÷ 1000 = 0.030 m³"] --> N2["Displaced water falls by 0.020 m³"]
+      N1["Stone on the bottom: displaces its volume, 30 ÷ 3000 = 0.010 m³"] --> N2
+      N2 --> N3["Pool level falls 0.020 ÷ 20 = 1.0 mm"]
+      N0 --> N4["Boat displaces 0.030 m³ less"]
+      N4 --> N5["Boat rises 0.030 ÷ 2.0 = 1.5 cm relative to the water"]
+  `}
+/>
+
+The boat itself now displaces <InlineMath math="0.030\text{ m}^3" /> less, so it rises <InlineMath math="0.030 \div 2.0 = 1.5" /> cm relative to the water around it.
+
+# Why the other options are wrong
+
+- Rising adds the stone’s volume to the pool, forgetting that it **already displaced** three times as much while it floated.
+- <InlineMath math="1.5\text{ mm}" /> forgets that the stone on the bottom **still displaces** its own volume.
+- Staying the same treats the displaced water as fixed, but a sunk stone displaces its volume, **not its weight**.

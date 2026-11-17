@@ -1,0 +1,24 @@
+# Luft und Säule teilen sich den Luftdruck, Boyle verbindet sie
+
+Zuerst hat die eingeschlossene Luft <InlineMath math="76{,}0 - 72{,}0 = 4{,}0" /> cmHg in einem Raum von <InlineMath math="8{,}0" /> cm. Bei einer Säulenhöhe <InlineMath math="h" /> hat die Luft <InlineMath math="74{,}0 - h" /> und füllt <InlineMath math="80{,}0 - h" /> cm, weil das obere Rohrende **fest** ist. Boyle liefert <InlineMath math="(74{,}0 - h)(80{,}0 - h) = 32" />.
+
+<Mermaid
+  title={<>Die eingeschlossene Luft dehnt sich, wenn die Säule fällt</>}
+  description={<>Fällt die Säule, wächst der Luftraum, der Druck der eingeschlossenen Luft sinkt mit, und die Säule fällt weniger als der Luftdruck.</>}
+  chart={`
+    flowchart LR
+      N0["Luft zuerst: 76,0 − 72,0 = 4,0 cmHg, 8,0 cm lang"] --> N1["Säule h: Luft hat 74,0 − h, Länge 80,0 − h"]
+      N1 --> N2["Boyle: (74,0 − h)(80,0 − h) = 4,0 × 8,0 = 32"]
+      N2 --> N3["h² − 154h + 5888 = 0"]
+      N3 --> N4["h = 70,6 cm"]
+      N4 --> N5["Luft: 74,0 − 70,6 = 3,4 cmHg, 9,4 cm lang"]
+  `}
+/>
+
+Das ist <InlineMath math="h^2 - 154h + 5888 = 0" />, also <InlineMath math="h = 70{,}6" /> cm, und die Luft hat <InlineMath math="3{,}4" /> cmHg. Die Säule fällt nur um <InlineMath math="1{,}4" /> cm, **weniger** als der Druck um <InlineMath math="2{,}0" /> cmHg, weil die sich ausdehnende Luft schwächer nach unten drückt.
+
+# Warum die anderen Antworten falsch sind
+
+- <InlineMath math="70{,}0\text{ cm}" /> lässt die Säule volle <InlineMath math="2{,}0" /> cm fallen und übersieht, dass sich die Luft **ausdehnt** und Druck verliert.
+- <InlineMath math="4{,}0\text{ cmHg}" /> bei <InlineMath math="70{,}6" /> cm behält den Luftdruck, doch mehr Raum heißt **weniger** Druck.
+- <InlineMath math="70{,}1\text{ cm}" /> hält die Anzeige als festen **Bruchteil** des wahren Drucks, was Boyle nicht hergibt.

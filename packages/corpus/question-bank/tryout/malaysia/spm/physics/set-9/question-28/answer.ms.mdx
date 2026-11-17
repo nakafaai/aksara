@@ -1,0 +1,23 @@
+# Setiap sambungan mengukur gabungan yang berbeza
+
+Dengan voltmeter merentasi perintang sahaja, ammeter membawa arus **kedua-duanya**, jadi nisbah bacaan ialah gabungan selari, <InlineMath math="2.0 \times 20 \div 22 = 1.8\,\Omega" />.
+
+<Mermaid
+  title={<>Meter Sebenar Menjadi Sebahagian Litar</>}
+  description={<>Voltmeter berintangan sederhana mengambil arusnya sendiri, dan ammeter berintangan mengambil voltannya sendiri, jadi setiap sambungan mengukur sesuatu yang sedikit berbeza.</>}
+  chart={`
+    flowchart LR
+      N0["Pertama: voltmeter selari dengan perintang"] --> N1["2.0 × 20 ÷ 22 = 1.82 Ω, yang diukur oleh V ÷ I"]
+      N1 --> N2["R dikira = 1.8 Ω"]
+      N3["Kedua: (2.0 + 0.50) = 2.5 Ω selari dengan 20 Ω"] --> N4["2.5 × 20 ÷ 22.5 = 2.22 Ω, jumlah 2.72 Ω dengan bateri"]
+      N4 --> N5["I = 6.0 ÷ 2.72 = 2.20 A, V = 2.20 × 2.22 = 4.9 V"]
+  `}
+/>
+
+Dengan voltmeter merentasi perintang dan ammeter, cabang <InlineMath math="2.5\,\Omega" /> selari dengan <InlineMath math="20\,\Omega" />, memberi <InlineMath math="2.22\,\Omega" />. Arus bateri ialah <InlineMath math="6.0 \div (2.22 + 0.50) = 2.20" /> A, dan voltmeter membaca <InlineMath math="2.20 \times 2.22 = 4.9" /> V.
+
+# Mengapa pilihan lain salah
+
+- <InlineMath math="2.0\,\Omega" /> dan <InlineMath math="5.0\text{ V}" /> menganggap meter **unggul**, tetapi meter ini mengubah litar.
+- <InlineMath math="3.9\text{ V}" /> ialah voltan merentasi perintang **sahaja**, tetapi voltmeter kedua juga merentasi ammeter.
+- <InlineMath math="2.5\,\Omega" /> ialah hasil sambungan **kedua**, perintang ditambah ammeter.

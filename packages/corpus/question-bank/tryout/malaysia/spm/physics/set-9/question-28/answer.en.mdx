@@ -1,0 +1,23 @@
+# Each connection measures a different combination
+
+With the voltmeter across the resistor alone, the ammeter carries the currents of **both**, so the ratio of the readings is the parallel combination, <InlineMath math="2.0 \times 20 \div 22 = 1.8\,\Omega" />.
+
+<Mermaid
+  title={<>Real Meters Become Part of the Circuit</>}
+  description={<>A voltmeter with modest resistance takes current of its own, and an ammeter with resistance takes voltage of its own, so each connection measures a slightly different thing.</>}
+  chart={`
+    flowchart LR
+      N0["First: voltmeter in parallel with the resistor"] --> N1["2.0 × 20 ÷ 22 = 1.82 Ω, which V ÷ I measures"]
+      N1 --> N2["Calculated R = 1.8 Ω"]
+      N3["Second: (2.0 + 0.50) = 2.5 Ω in parallel with 20 Ω"] --> N4["2.5 × 20 ÷ 22.5 = 2.22 Ω, total 2.72 Ω with the battery"]
+      N4 --> N5["I = 6.0 ÷ 2.72 = 2.20 A, V = 2.20 × 2.22 = 4.9 V"]
+  `}
+/>
+
+With the voltmeter across the resistor and ammeter, the <InlineMath math="2.5\,\Omega" /> branch is in parallel with <InlineMath math="20\,\Omega" />, giving <InlineMath math="2.22\,\Omega" />. The battery’s current is <InlineMath math="6.0 \div (2.22 + 0.50) = 2.20" /> A, and the voltmeter reads <InlineMath math="2.20 \times 2.22 = 4.9" /> V.
+
+# Why the other options are wrong
+
+- <InlineMath math="2.0\,\Omega" /> and <InlineMath math="5.0\text{ V}" /> treat the meters as **ideal**, but these meters change the circuit.
+- <InlineMath math="3.9\text{ V}" /> is the voltage across the resistor **alone**, but the second voltmeter also spans the ammeter.
+- <InlineMath math="2.5\,\Omega" /> is what the **second** connection gives, the resistor plus the ammeter.

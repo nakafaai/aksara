@@ -1,0 +1,23 @@
+# Jede Schaltung misst eine andere Kombination
+
+Liegt das Voltmeter nur am Widerstand, führt der Strommesser die Ströme **beider**, das Verhältnis der Anzeigen ist also die Parallelschaltung, <InlineMath math="2{,}0 \times 20 \div 22 = 1{,}8\,\Omega" />.
+
+<Mermaid
+  title={<>Echte Messgeräte werden Teil der Schaltung</>}
+  description={<>Ein Voltmeter mit mäßigem Widerstand zieht eigenen Strom, ein Strommesser mit Widerstand nimmt eigene Spannung, jede Schaltung misst also etwas anderes.</>}
+  chart={`
+    flowchart LR
+      N0["Erstens: Voltmeter parallel zum Widerstand"] --> N1["2,0 × 20 ÷ 22 = 1,82 Ω, das misst V ÷ I"]
+      N1 --> N2["Berechnetes R = 1,8 Ω"]
+      N3["Zweitens: (2,0 + 0,50) = 2,5 Ω parallel zu 20 Ω"] --> N4["2,5 × 20 ÷ 22,5 = 2,22 Ω, mit Batterie 2,72 Ω"]
+      N4 --> N5["I = 6,0 ÷ 2,72 = 2,20 A, V = 2,20 × 2,22 = 4,9 V"]
+  `}
+/>
+
+Liegt das Voltmeter an Widerstand und Strommesser, ist der Zweig von <InlineMath math="2{,}5\,\Omega" /> parallel zu <InlineMath math="20\,\Omega" />, zusammen <InlineMath math="2{,}22\,\Omega" />. Die Batterie liefert <InlineMath math="6{,}0 \div (2{,}22 + 0{,}50) = 2{,}20" /> A, und das Voltmeter zeigt <InlineMath math="2{,}20 \times 2{,}22 = 4{,}9" /> V.
+
+# Warum die anderen Antworten falsch sind
+
+- <InlineMath math="2{,}0\,\Omega" /> und <InlineMath math="5{,}0\text{ V}" /> behandeln die Messgeräte als **ideal**, doch diese verändern die Schaltung.
+- <InlineMath math="3{,}9\text{ V}" /> ist die Spannung am Widerstand **allein**, doch das zweite Voltmeter überbrückt auch den Strommesser.
+- <InlineMath math="2{,}5\,\Omega" /> liefert die **zweite** Schaltung, Widerstand plus Strommesser.

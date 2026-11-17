@@ -1,0 +1,24 @@
+# Hanya komponen tegak tegangan yang menahan papan
+
+Tiap setengah kawat membentang <InlineMath math="2{,}0" /> m mendatar dan <InlineMath math="0{,}10" /> m ke bawah, jadi <InlineMath math="\sin\theta \approx 0{,}050" />. Kedua setengah bersama mengangkat papan <InlineMath math="196" /> N: <InlineMath math="2T \times 0{,}050 = 196" />, jadi <InlineMath math="T = 2{,}0" /> kN, sepuluh kali beratnya.
+
+<Mermaid
+  title={<>Kawat yang Lebih Kencang Menarik Lebih Kuat</>}
+  description={<>Hanya komponen tegak yang kecil pada tiap setengah kawat menahan papan, jadi makin datar kawat, makin besar tegangan yang dibutuhkan.</>}
+  chart={`
+    flowchart LR
+      N1["Tiap setengah: 2,0 m mendatar, 0,10 m ke bawah"] --> N2["sin θ ≈ 0,10 ÷ 2,0 = 0,050"]
+      N0["Berat = 20 × 9,8 = 196 N"] --> N3["Dua setengah menahan: 2T sin θ = 196, T = 2,0 kN"]
+      N2 --> N3
+      N0 --> N4["Pada 5,0 kN: sin θ = 196 ÷ (2 × 5000) = 0,0196"]
+      N4 --> N5["Lendutan = 2,0 × 0,0196 = 0,039 m = 3,9 cm"]
+  `}
+/>
+
+Kawat yang **lebih datar** butuh tegangan lebih besar. Pada <InlineMath math="5{,}0" /> kN, <InlineMath math="\sin\theta = 196 \div 10\,000 = 0{,}0196" />, jadi lendutan harus paling sedikit <InlineMath math="2{,}0 \times 0{,}0196 = 0{,}039" /> m, sekitar <InlineMath math="3{,}9" /> cm.
+
+# Kenapa pilihan lain salah
+
+- <InlineMath math="98\text{ N}" /> membagi berat ke kedua setengah seolah keduanya menarik **lurus ke atas**.
+- <InlineMath math="25\text{ cm}" /> menganggap lendutan lebih besar lebih berbahaya, padahal kawat yang melendut butuh tegangan **lebih kecil**.
+- <InlineMath math="3{,}9\text{ kN}" /> membiarkan satu setengah menahan seluruh papan, lupa bahwa **dua** setengah menarik ke atas.
