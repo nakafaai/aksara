@@ -52,7 +52,33 @@ export const kssmForm5PhysicsTopicNodes = [
     },
   }),
   unitNode({
+    children: [
+      materialNode({
+        key: "form-5-physics-electricity-electricity",
+        level: "lesson",
+        materialKeys: ["lesson.physics.electricity"],
+        order: 10,
+      }),
+    ],
     key: "form-5-physics-electricity",
+    materialCard: {
+      de: {
+        description: "Berechne Widerstände, Quellenspannung und Leistung.",
+        title: "Elektrizität",
+      },
+      en: {
+        description: "Work out resistance, e.m.f. and electrical power.",
+        title: "Electricity",
+      },
+      id: {
+        description: "Hitung hambatan, GGL, dan daya listrik.",
+        title: "Listrik",
+      },
+      ms: {
+        description: "Kira rintangan, d.g.e. dan kuasa elektrik.",
+        title: "Elektrik",
+      },
+    },
     order: 30,
     translations: {
       de: { routeSlug: "elektrizitaet", title: "Elektrizität" },
