@@ -1,4 +1,4 @@
-import { unitNode } from "#corpus/curriculum/schema";
+import { materialNode, unitNode } from "#corpus/curriculum/schema";
 
 /** The KSSM Form 5 Biology chapters on inheritance, variation and genetic technology, Bab 11 to Bab 13. */
 export const kssmForm5BiologyGeneticsNodes = [
@@ -23,7 +23,33 @@ export const kssmForm5BiologyGeneticsNodes = [
     },
   }),
   unitNode({
+    children: [
+      materialNode({
+        key: "form-5-biology-genetic-technology-genetic-technology",
+        level: "lesson",
+        materialKeys: ["lesson.biology.genetic-technology"],
+        order: 10,
+      }),
+    ],
     key: "form-5-biology-genetic-technology",
+    materialCard: {
+      de: {
+        description: "Stell Insulin mit Bakterien her und lies DNA-Profile.",
+        title: "Gentechnik",
+      },
+      en: {
+        description: "Make insulin with bacteria and read DNA profiles.",
+        title: "Genetic Technology",
+      },
+      id: {
+        description: "Buat insulin dengan bakteri dan baca profil DNA.",
+        title: "Teknologi Genetika",
+      },
+      ms: {
+        description: "Hasilkan insulin dengan bakteria dan baca profil DNA.",
+        title: "Teknologi Genetik",
+      },
+    },
     order: 130,
     translations: {
       de: { routeSlug: "gentechnik", title: "Gentechnik" },
