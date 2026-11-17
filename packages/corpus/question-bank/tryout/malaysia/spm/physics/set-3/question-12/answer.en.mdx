@@ -1,0 +1,27 @@
+# Subtract the two runs so the unknown loss cancels
+
+Let <InlineMath math="h" /> watts be lost. In each run the solid receives <InlineMath math="(P - h)t" />: run <InlineMath math="1" /> gives <InlineMath math="(50 - h) \times 300 = 0.0375L" />, run <InlineMath math="2" /> gives <InlineMath math="(80 - h) \times 300 = 0.0643L" />.
+
+**Subtracting** removes <InlineMath math="h" />: <InlineMath math="30 \times 300 = 0.0268L" />, so <InlineMath math="L = 9000 \div 0.0268 = 3.36 \times 10^5\text{ J kg}^{-1}" />.
+
+<Mermaid
+  title={<>Two Runs Cancel the Loss</>}
+  description={<>Subtracting run <InlineMath math="1" /> from run <InlineMath math="2" /> removes the unknown loss: <InlineMath math="30\text{ W}" /> more for <InlineMath math="300\text{ s}" /> melts <InlineMath math="26.8\text{ g}" /> more.</>}
+  chart={`
+    flowchart LR
+      N0["Run 1: (50 − h) × 300 = 0.0375 L"] --> N2["Subtract: 30 × 300 = 0.0268 L"]
+      N1["Run 2: (80 − h) × 300 = 0.0643 L"] --> N2
+      N2 --> N3["L = 3.36 × 10⁵ J kg⁻¹"]
+      N3 --> N4["h = 50 − 0.0375L ÷ 300 = 8 W"]
+  `}
+/>
+
+Back in run <InlineMath math="1" />: <InlineMath math="(50 - h) \times 300 = 0.0375 \times 3.36 \times 10^5 = 12\,600" />, so <InlineMath math="50 - h = 42" /> and <InlineMath math="h = 8" /> W.
+
+**A third run**: at <InlineMath math="100" /> W for <InlineMath math="300" /> s the heater supplies <InlineMath math="30\,000" /> J, and <InlineMath math="8 \times 300 = 2400" /> J is lost, leaving <InlineMath math="27\,600" /> J to melt <InlineMath math="27\,600 \div 3.36 \times 10^5 = 0.082" /> kg, about <InlineMath math="82" /> g. Twice the power of the first run melts more than twice the mass, because the loss stays the same.
+
+# Why the other options are wrong
+
+- <InlineMath math="4.0 \times 10^5\text{ J kg}^{-1}" /> uses run <InlineMath math="1" /> alone and ignores the loss, so the third run would simply scale to <InlineMath math="75" /> g.
+- <InlineMath math="3.73 \times 10^5\text{ J kg}^{-1}" /> uses run <InlineMath math="2" /> alone, again with **no loss** taken into account.
+- <InlineMath math="16\text{ W}" /> doubles the loss, which leaves exactly <InlineMath math="75" /> g for the third run.

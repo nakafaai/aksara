@@ -1,0 +1,23 @@
+# Spulenstrom bei jeder Helligkeit bestimmen, dann mit einem Parallelwiderstand formen
+
+In der Dämmerung fließen <InlineMath math="6{,}0 \div (50 + 30) = 0{,}075" /> A, weniger als <InlineMath math="0{,}10" /> A. Der Anker ist **abgefallen**, die Ruhekontakte schalten die Lampe also schon ein.
+
+<Chart
+  title={<>Spulenstrom bei jeder Helligkeit</>}
+  bars="apart"
+  categories={["Hell", "Dämmerung", "Dunkel"]}
+  series={[
+    { label: "Ursprüngliche Schaltung", mark: "bar", values: [0.109, 0.075, 0.024] },
+    { label: "Mit 12 Ω parallel", mark: "bar", values: [0.113, 0.102, 0.098] },
+  ]}
+  valueLabel="Spulenstrom (A)"
+  description={<>Der Anker hält nur ab <InlineMath math="0{,}10\text{ A}" />. Die ursprüngliche Schaltung lässt ihn schon in der Dämmerung los. Mit <InlineMath math="12\,\Omega" /> parallel zum LDR hält er in der Dämmerung und fällt erst bei Dunkelheit ab.</>}
+/>
+
+Damit der Anker in der Dämmerung hält, darf der LDR-Zweig höchstens <InlineMath math="60 - 50 = 10\,\Omega" /> haben. Ein <InlineMath math="12\,\Omega" />-Widerstand parallel zu <InlineMath math="30\,\Omega" /> ergibt <InlineMath math="8{,}6\,\Omega" />, der Strom ist <InlineMath math="0{,}102" /> A und die Lampe bleibt aus. Bei Dunkelheit hat das Paar <InlineMath math="12 \parallel 200 = 11{,}3\,\Omega" />, der Strom sinkt auf <InlineMath math="0{,}098" /> A, der Anker fällt ab und die Lampe leuchtet.
+
+# Warum die anderen Antworten falsch sind
+
+- In der Dämmerung fließen nur <InlineMath math="0{,}075" /> A, der Anker ist also schon abgefallen und die Lampe **leuchtet bereits**.
+- Ein Widerstand in Reihe zum LDR erhöht den Widerstand und senkt den Strom weiter, die Lampe ginge also noch früher an.
+- <InlineMath math="60\,\Omega" /> parallel zu <InlineMath math="30\,\Omega" /> sind <InlineMath math="20\,\Omega" />, das gibt in der Dämmerung <InlineMath math="0{,}086" /> A, immer noch zu wenig, um den Anker zu halten.

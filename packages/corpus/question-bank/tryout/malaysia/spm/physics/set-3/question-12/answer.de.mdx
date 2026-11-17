@@ -1,0 +1,27 @@
+# Beide Versuche voneinander abziehen, damit sich der Verlust aufhebt
+
+Es gehen <InlineMath math="h" /> Watt verloren. In jedem Versuch erhält der Feststoff <InlineMath math="(P - h)t" />: Versuch <InlineMath math="1" /> gibt <InlineMath math="(50 - h) \times 300 = 0{,}0375L" />, Versuch <InlineMath math="2" /> gibt <InlineMath math="(80 - h) \times 300 = 0{,}0643L" />.
+
+**Abziehen** entfernt <InlineMath math="h" />: <InlineMath math="30 \times 300 = 0{,}0268L" />, also <InlineMath math="L = 9000 \div 0{,}0268 = 3{,}36 \times 10^5\text{ J kg}^{-1}" />.
+
+<Mermaid
+  title={<>Zwei Versuche heben den Verlust auf</>}
+  description={<>Versuch <InlineMath math="2" /> minus Versuch <InlineMath math="1" /> entfernt den unbekannten Verlust: <InlineMath math="30\text{ W}" /> mehr für <InlineMath math="300\text{ s}" /> schmelzen <InlineMath math="26{,}8\text{ g}" /> mehr.</>}
+  chart={`
+    flowchart LR
+      N0["Versuch 1: (50 − h) × 300 = 0,0375 L"] --> N2["Differenz: 30 × 300 = 0,0268 L"]
+      N1["Versuch 2: (80 − h) × 300 = 0,0643 L"] --> N2
+      N2 --> N3["L = 3,36 × 10⁵ J kg⁻¹"]
+      N3 --> N4["h = 50 − 0,0375L ÷ 300 = 8 W"]
+  `}
+/>
+
+Zurück in Versuch <InlineMath math="1" />: <InlineMath math="(50 - h) \times 300 = 0{,}0375 \times 3{,}36 \times 10^5 = 12\,600" />, also <InlineMath math="50 - h = 42" /> und <InlineMath math="h = 8" /> W.
+
+**Ein dritter Versuch**: Bei <InlineMath math="100" /> W über <InlineMath math="300" /> s liefert der Heizer <InlineMath math="30\,000" /> J, und <InlineMath math="8 \times 300 = 2400" /> J gehen verloren, es bleiben <InlineMath math="27\,600" /> J zum Schmelzen von <InlineMath math="27\,600 \div 3{,}36 \times 10^5 = 0{,}082" /> kg, etwa <InlineMath math="82" /> g. Die doppelte Leistung des ersten Versuchs schmilzt mehr als die doppelte Masse, weil der Verlust gleich bleibt.
+
+# Warum die anderen Antworten falsch sind
+
+- <InlineMath math="4{,}0 \times 10^5\text{ J kg}^{-1}" /> nimmt nur Versuch <InlineMath math="1" /> und übersieht den Verlust, der dritte Versuch skalierte dann einfach auf <InlineMath math="75" /> g.
+- <InlineMath math="3{,}73 \times 10^5\text{ J kg}^{-1}" /> nimmt nur Versuch <InlineMath math="2" />, wieder **ohne Verlust**.
+- <InlineMath math="16\text{ W}" /> verdoppelt den Verlust, was für den dritten Versuch genau <InlineMath math="75" /> g lässt.

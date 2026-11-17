@@ -1,0 +1,25 @@
+# Der Luftdruck wirkt auf beiden Seiten, also zählt nur das Wasser
+
+Außen herrscht Luftdruck plus Wasser: <InlineMath math="1{,}0 \times 10^5 + h\rho g" />. Innen herrscht Luftdruck. Die Luftdruckanteile **heben sich auf**, der Nettodruck ist also <InlineMath math="50 \times 1030 \times 10 = 515\,000" /> Pa.
+
+<Mermaid
+  title={<>Der Luftdruck hebt sich auf</>}
+  description={<>Die Luft innen entspricht der Luft über dem Meer, netto drückt also nur die Wassersäule: <InlineMath math="515\text{ kPa}" /> auf <InlineMath math="0{,}50\text{ m}^2" />. Die Nettokraft wächst proportional zur Tiefe.</>}
+  chart={`
+    flowchart LR
+      N0["Außen: 1,0 × 10⁵ + hρg"] --> N2["Netto Δp = 50 × 1030 × 10 = 515 kPa"]
+      N1["Innen: 1,0 × 10⁵"] --> N2
+      N2 --> N3["F = 515 000 × 0,50 = 2,6 × 10⁵ N"]
+      N3 --> N4["F ∝ h: doppelt bei 100 m"]
+  `}
+/>
+
+Nettokraft: <InlineMath math="515\,000 \times 0{,}50 = 2{,}6 \times 10^5" /> N. Weil der Nettodruck allein <InlineMath math="h\rho g" /> ist, ist er proportional zur Tiefe und verdoppelt sich bei <InlineMath math="100" /> m.
+
+**Größte sichere Tiefe, dann die Luke öffnen**: Der Nettodruck darf <InlineMath math="6{,}0 \times 10^5 \div 0{,}50 = 1{,}2 \times 10^6" /> Pa erreichen, den die Wassersäule bei <InlineMath math="h = 1{,}2 \times 10^6 \div (1030 \times 10) = 117" /> m liefert. Das Wasser außen drückt dann samt der Atmosphäre darüber mit <InlineMath math="1{,}0 \times 10^5 + 1{,}2 \times 10^6 = 1{,}3 \times 10^6" /> Pa, die Luft innen muss also diesen Druck erreichen, damit keine Nettokraft bleibt.
+
+# Warum die anderen Antworten falsch sind
+
+- <InlineMath math="3{,}1 \times 10^5\text{ N}" /> und <InlineMath math="107\text{ m}" /> zählen die Atmosphäre außen, vergessen aber, dass die Luft innen mit **einer Atmosphäre** zurückdrückt.
+- <InlineMath math="1{,}2 \times 10^6\text{ Pa}" /> bei richtiger Tiefe gleicht nur die Wassersäule aus und vergisst, dass auch die **Atmosphäre über dem Meer** auf die Luke drückt.
+- <InlineMath math="5{,}2 \times 10^5\text{ N}" /> und <InlineMath math="58\text{ m}" /> lassen die Fläche der Luke weg, einen halben Quadratmeter.

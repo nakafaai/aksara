@@ -1,0 +1,27 @@
+# Build the expression gate by gate, then count the rows
+
+The circuit gives <InlineMath math="X = (A \cdot \overline{B}) + C" />. Whenever <InlineMath math="C = 1" /> the OR gate outputs <InlineMath math="1" />, which covers **four rows**.
+
+<Mermaid
+  title={<>The Alarm Circuit as Logic</>}
+  description={<>Motion alone always sounds the alarm. Without motion, only an open door with no key can sound it, because the NOT gate blocks the door signal whenever the key is in.</>}
+  chart={`
+    flowchart LR
+      N0["B: key in"] --> N1["NOT B"]
+      N1 --> N3["A AND NOT B"]
+      N2["A: door open"] --> N3
+      N3 --> N5["X = (A AND NOT B) OR C"]
+      N4["C: motion"] --> N5
+      N5 --> N6["4 rows with C = 1, plus A = 1, B = 0, C = 0: 5 of 8"]
+  `}
+/>
+
+With <InlineMath math="C = 0" />, the alarm needs <InlineMath math="A = 1" /> and <InlineMath math="\overline{B} = 1" />, so only the row <InlineMath math="A = 1, B = 0" /> adds one more. That makes <InlineMath math="5" /> of the <InlineMath math="8" />. With the door open and the key in, <InlineMath math="\overline{B} = 0" /> blocks the AND gate, so only motion can sound the alarm.
+
+**This case, then the transistor**: with the key in, <InlineMath math="\overline{B} = 0" /> and the AND gate gives <InlineMath math="0" />, but <InlineMath math="C = 1" /> makes the OR output <InlineMath math="1" />, so the siren must sound. The base resistor then has <InlineMath math="5.0 - 0.70 = 4.3" /> V across it, and the base current <InlineMath math="4.3 \div R" /> must be at least <InlineMath math="0.50" /> mA, so <InlineMath math="R \le 4.3 \div 0.00050 = 8.6\text{ k}\Omega" />.
+
+# Why the other options are wrong
+
+- <InlineMath math="10\text{ k}\Omega" /> divides the full <InlineMath math="5.0" /> V by the current and forgets the <InlineMath math="0.70" /> V **base-emitter drop**.
+- The key in the ignition blocks only the AND branch: motion reaches the OR gate directly and still sounds the alarm.
+- A larger resistor gives a **smaller** base current, so <InlineMath math="8.6\text{ k}\Omega" /> is the most the resistor may be, not the least.

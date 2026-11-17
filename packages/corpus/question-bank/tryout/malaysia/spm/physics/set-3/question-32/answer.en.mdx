@@ -1,0 +1,24 @@
+# Compare powers, not currents, then turn the lost power into energy
+
+Input power: <InlineMath math="240 \times 0.050 = 12" /> W. Output power: <InlineMath math="5.0 \times 2.0 = 10" /> W. Efficiency: <InlineMath math="10 \div 12 = 83\%" />. The currents alone mean nothing until each is **multiplied by its own voltage**.
+
+<Mermaid
+  title={<>Power In, Power Out, Power Lost</>}
+  description={<>Input <InlineMath math="12\text{ W}" />, output <InlineMath math="10\text{ W}" />, so <InlineMath math="83\%" /> efficient and <InlineMath math="2.0\text{ W}" /> lost, which is <InlineMath math="7.2\text{ kJ}" /> in an hour.</>}
+  chart={`
+    flowchart LR
+      N0["P_in = 240 × 0.050 = 12 W"] --> N2["Efficiency 10 ÷ 12 = 83%"]
+      N1["P_out = 5.0 × 2.0 = 10 W"] --> N2
+      N2 --> N3["Lost 2.0 W × 3600 s = 7.2 kJ"]
+  `}
+/>
+
+The turns ratio follows the voltages: <InlineMath math="240 : 5.0 = 48 : 1" />, more turns on the primary for a step-down transformer. The <InlineMath math="2.0" /> W lost as heat, for <InlineMath math="3600" /> s, is <InlineMath math="7200" /> J, or <InlineMath math="7.2" /> kJ.
+
+**Heat in the secondary**: the secondary coil carries the full <InlineMath math="2.0" /> A, so it turns <InlineMath math="I^2 R = 2.0^2 \times 0.30 = 1.2" /> W into heat, more than half of the <InlineMath math="2.0" /> W lost. The rest is lost in the primary coil and the iron core.
+
+# Why the other options are wrong
+
+- <InlineMath math="100\%" /> assumes an **ideal** transformer, but <InlineMath math="12" /> W goes in and only <InlineMath math="10" /> W comes out.
+- <InlineMath math="1 : 48" /> would step the voltage up, but this charger steps it down.
+- <InlineMath math="0.60\text{ W}" /> is <InlineMath math="IR" />, a voltage across the coil, not the power it turns into heat.

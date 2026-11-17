@@ -1,0 +1,24 @@
+# Halve each echo time, then subtract the two depths
+
+An echo travels **down and back**, so each distance uses half the time. Seabed: <InlineMath math="1500 \times 0.40 = 600" /> m. Shoal: <InlineMath math="1500 \times 0.15 = 225" /> m below the ship.
+
+<Chart
+  title={<>Distances from the Echoes</>}
+  bars="apart"
+  categories={["Depth of seabed", "Depth of shoal", "Shoal above seabed"]}
+  series={[
+    { label: "Distance (m)", mark: "bar", values: [600, 225, 375] },
+  ]}
+  valueLabel="Distance (m)"
+  description={<>Seabed <InlineMath math="600\text{ m}" /> down, shoal <InlineMath math="225\text{ m}" /> down, so the shoal is <InlineMath math="375\text{ m}" /> above the seabed.</>}
+/>
+
+The shoal sits <InlineMath math="600 - 225 = 375" /> m above the seabed. Wavelength: <InlineMath math="\lambda = v \div f = 1500 \div 50\,000 = 0.030" /> m, or <InlineMath math="3.0" /> cm.
+
+**The moving shoal**: the extra <InlineMath math="0.04" /> s is a round trip, so the shoal is <InlineMath math="1500 \times 0.04 \div 2 = 30" /> m deeper than before. Over <InlineMath math="10" /> s that is an average of <InlineMath math="3.0" /> m/s downwards.
+
+# Why the other options are wrong
+
+- <InlineMath math="225\text{ m}" /> is the shoal's depth **below the surface**, not its height above the seabed.
+- <InlineMath math="6.0\text{ m s}^{-1}" /> forgets that the extra <InlineMath math="0.04" /> s covers the extra distance twice, down and back.
+- <InlineMath math="30\text{ m}" /> divides the speed by <InlineMath math="50" /> Hz instead of <InlineMath math="50\,000" /> Hz.

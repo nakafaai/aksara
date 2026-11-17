@@ -1,0 +1,25 @@
+# Widerstand neu aufbauen, Innenwiderstand addieren, dann die Leistung
+
+Der Widerstand ist proportional zur Länge, jedes Viertel hat also <InlineMath math="2{,}0\,\Omega" />. Jedes Paar in Reihe hat <InlineMath math="4{,}0\,\Omega" />, und zwei gleiche <InlineMath math="4{,}0\,\Omega" />-Zweige **parallel** geben <InlineMath math="2{,}0\,\Omega" />.
+
+<Mermaid
+  title={<>Vom zerschnittenen Draht zur Leistung</>}
+  description={<>Jedes Stück hat <InlineMath math="2{,}0\,\Omega" />, jedes Paar <InlineMath math="4{,}0\,\Omega" />, die beiden Paare nebeneinander <InlineMath math="2{,}0\,\Omega" />. Mit dem Innenwiderstand <InlineMath math="1{,}0\,\Omega" /> fließen <InlineMath math="2{,}0\text{ A}" />.</>}
+  chart={`
+    flowchart LR
+      N0["Jedes Stück 8,0 ÷ 4 = 2,0 Ω"] --> N1["Jedes Paar in Reihe 4,0 Ω"]
+      N1 --> N2["Paare parallel: 2,0 Ω"]
+      N2 --> N3["I = 6,0 ÷ (2,0 + 1,0) = 2,0 A"]
+      N3 --> N4["P = 2,0² × 2,0 = 8,0 W"]
+  `}
+/>
+
+Strom: <InlineMath math="I = 6{,}0 \div (2{,}0 + 1{,}0) = 2{,}0" /> A. Leistung im Netz: <InlineMath math="I^2 R = 2{,}0^2 \times 2{,}0 = 8{,}0" /> W. Die übrigen <InlineMath math="4{,}0" /> W gehen in der Zelle verloren.
+
+**Ein gerissenes Stück**: Das Paar mit dem gerissenen Stück führt keinen Strom, das Netz ist also ein einzelner <InlineMath math="4{,}0\,\Omega" />-Zweig. Dann ist <InlineMath math="I = 6{,}0 \div (4{,}0 + 1{,}0) = 1{,}2" /> A, und das Netz nimmt <InlineMath math="1{,}2^2 \times 4{,}0 = 5{,}8" /> W auf. Der Riss erhöht den Widerstand, Strom und Leistung sinken also beide.
+
+# Warum die anderen Antworten falsch sind
+
+- <InlineMath math="1{,}5\text{ A}" /> nach dem Riss vergisst den **Innenwiderstand**, der weiter seinen Anteil der EMK nimmt.
+- <InlineMath math="3{,}0\text{ A}" /> vergisst den Innenwiderstand von Anfang an.
+- <InlineMath math="12\text{ W}" /> und <InlineMath math="7{,}2\text{ W}" /> sind die Gesamtleistung der Quelle, <InlineMath math="EI" />, einschließlich des Verlusts in der Zelle.

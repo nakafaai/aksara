@@ -1,0 +1,23 @@
+# Jumlahkan seluruh penundaan, hitung waktu paruh, lalu hitung mundur
+
+Sampel meluruh selama menunggu dan perjalanan: <InlineMath math="3{,}0 + 24 = 27" /> jam, yaitu <InlineMath math="27 \div 6{,}0 = 4{,}5" /> waktu paruh. Dihitung mundur, aktivitas berlipat dua sekali tiap waktu paruh: <InlineMath math="A_0 = 50 \times 2^{4{,}5}" />.
+
+<Chart
+  title={<>Aktivitas dari Penyiapan hingga Injeksi</>}
+  categories={["0", "3", "6", "9", "12", "15", "18", "21", "24", "27"]}
+  series={[
+    { label: "Aktivitas (MBq)", mark: "line", values: [1131, 800, 566, 400, 283, 200, 141, 100, 71, 50] },
+  ]}
+  valueLabel="Aktivitas (MBq)"
+  description={<>Selama <InlineMath math="27\text{ jam}" />, empat setengah waktu paruh, aktivitas turun dari sekitar <InlineMath math="1130\text{ MBq}" /> ke <InlineMath math="50\text{ MBq}" />. Kurvanya menjadi setengah tiap <InlineMath math="6\text{ jam}" />, jadi bukan garis lurus. Waktu dalam jam.</>}
+/>
+
+<InlineMath math="2^{4{,}5} = 2^4 \times \sqrt{2} = 22{,}6" />, jadi <InlineMath math="A_0 = 50 \times 22{,}6 \approx 1130" /> MBq. Setengah waktu paruh mengalikan dengan <InlineMath math="\sqrt{2}" />, **bukan dengan satu setengah**.
+
+**Di atas <InlineMath math="1" /> MBq**: membagi dua dari <InlineMath math="50" /> MBq memberi <InlineMath math="25" />, <InlineMath math="12{,}5" />, <InlineMath math="6{,}25" />, <InlineMath math="3{,}1" /> dan <InlineMath math="1{,}56" /> MBq setelah lima waktu paruh, <InlineMath math="30" /> jam, dan <InlineMath math="0{,}78" /> MBq setelah enam, <InlineMath math="36" /> jam. Aktivitas turun melewati <InlineMath math="1" /> MBq di antara kedua waktu itu.
+
+# Kenapa pilihan lain salah
+
+- <InlineMath math="800\text{ MBq}" /> hanya menghitung perjalanan <InlineMath math="24" /> jam dan melupakan **waktu tunggu tiga jam**.
+- <InlineMath math="1200\text{ MBq}" /> memakai garis lurus di tengah antara <InlineMath math="800" /> dan <InlineMath math="1600" />, padahal peluruhan eksponensial, jadi setengah waktu paruh berarti faktor <InlineMath math="\sqrt{2}" />.
+- Antara <InlineMath math="24" /> dan <InlineMath math="30" /> jam berhenti satu kali pembagian terlalu awal: setelah empat waktu paruh aktivitasnya masih <InlineMath math="3{,}1" /> MBq.

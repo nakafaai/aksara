@@ -1,0 +1,25 @@
+# Atmospheric pressure acts on both sides, so only the water counts
+
+Outside, the pressure is atmospheric plus the water: <InlineMath math="1.0 \times 10^5 + h\rho g" />. Inside it is atmospheric. The atmospheric parts **cancel**, so the net pressure is <InlineMath math="50 \times 1030 \times 10 = 515\,000" /> Pa.
+
+<Mermaid
+  title={<>Atmospheric Pressure Cancels</>}
+  description={<>The air inside matches the air above the sea, so only the water column pushes net: <InlineMath math="515\text{ kPa}" /> on <InlineMath math="0.50\text{ m}^2" />. The net force grows in step with depth.</>}
+  chart={`
+    flowchart LR
+      N0["Outside: 1.0 × 10⁵ + hρg"] --> N2["Net Δp = 50 × 1030 × 10 = 515 kPa"]
+      N1["Inside: 1.0 × 10⁵"] --> N2
+      N2 --> N3["F = 515 000 × 0.50 = 2.6 × 10⁵ N"]
+      N3 --> N4["F ∝ h: twice at 100 m"]
+  `}
+/>
+
+Net force: <InlineMath math="515\,000 \times 0.50 = 2.6 \times 10^5" /> N. Because the net pressure is <InlineMath math="h\rho g" /> alone, it is proportional to depth, and doubles at <InlineMath math="100" /> m.
+
+**Deepest safe depth, then opening the hatch**: the net pressure may reach <InlineMath math="6.0 \times 10^5 \div 0.50 = 1.2 \times 10^6" /> Pa, which the water column gives at <InlineMath math="h = 1.2 \times 10^6 \div (1030 \times 10) = 117" /> m. The water outside then presses with the atmosphere above it as well, <InlineMath math="1.0 \times 10^5 + 1.2 \times 10^6 = 1.3 \times 10^6" /> Pa, so the air inside must reach that pressure for no net force.
+
+# Why the other options are wrong
+
+- <InlineMath math="3.1 \times 10^5\text{ N}" /> and <InlineMath math="107\text{ m}" /> count the atmosphere outside but forget the air inside pushes back with **one atmosphere**.
+- <InlineMath math="1.2 \times 10^6\text{ Pa}" /> with the right depth matches only the water column and forgets the **atmosphere above the sea** also presses on the hatch.
+- <InlineMath math="5.2 \times 10^5\text{ N}" /> and <InlineMath math="58\text{ m}" /> leave out the area of the hatch, which is half a square metre.

@@ -1,0 +1,24 @@
+# Arus paralel dijumlahkan, jadi bandingkan tiap total dengan sekring
+
+Tiap peralatan menarik <InlineMath math="I = P \div V" />: ketel <InlineMath math="2200 \div 240 = 9{,}17" /> A, pemanggang <InlineMath math="5{,}0" /> A, microwave <InlineMath math="3{,}33" /> A. Dalam paralel **arusnya dijumlahkan** lewat sekring.
+
+<Chart
+  title={<>Arus Total Tiap Kombinasi</>}
+  bars="apart"
+  categories={["Ketel + pemanggang", "Ketel + microwave", "Pemanggang + microwave", "Ketiganya"]}
+  series={[
+    { label: "Arus (A)", mark: "bar", values: [14.2, 12.5, 8.3, 17.5] },
+  ]}
+  valueLabel="Arus (A)"
+  description={<>Ketel dan pemanggang <InlineMath math="14{,}2\text{ A}" />, ketel dan microwave <InlineMath math="12{,}5\text{ A}" />, pemanggang dan microwave <InlineMath math="8{,}3\text{ A}" />, ketiganya <InlineMath math="17{,}5\text{ A}" />, dibanding sekring <InlineMath math="13\text{ A}" />.</>}
+/>
+
+Ketel dan pemanggang: <InlineMath math="14{,}2" /> A, di atas <InlineMath math="13" /> A, jadi sekring putus. Ketel dan microwave: <InlineMath math="12{,}5" /> A, sedikit di bawah, jadi bertahan. Pemanggang dan microwave: <InlineMath math="8{,}3" /> A, aman.
+
+**Kabelnya**: dengan ketel dan microwave menyala, <InlineMath math="12{,}5" /> A mengalir lewat kabel, jadi kabel membuang <InlineMath math="I^2 R = 12{,}5^2 \times 0{,}40 = 63" /> W sambil menurunkan <InlineMath math="12{,}5 \times 0{,}40 = 5{,}0" /> V dari sumber.
+
+# Kenapa pilihan lain salah
+
+- Pemanggang dan microwave bersama hanya menarik <InlineMath math="8{,}3" /> A, jadi **tidak setiap pasangan** memutus sekring.
+- <InlineMath math="5\text{ W}" /> memakai <InlineMath math="IR" />, yaitu penurunan <InlineMath math="5{,}0" /> V, seolah itu dayanya.
+- Ketel dengan pemanggang sudah mencapai <InlineMath math="14{,}2" /> A, jadi sekring tidak butuh ketiganya.

@@ -1,0 +1,24 @@
+# Voltmeter paralel mengubah hambatan yang diukurnya
+
+Tanpa meteran, tiap resistor mengambil separuh tegangan sumber, <InlineMath math="6{,}0" /> V. Tetapi voltmeter <InlineMath math="10\text{ k}\Omega" /> terpasang **paralel** dengan resistor bawah: <InlineMath math="(10 \times 10) \div (10 + 10) = 5\text{ k}\Omega" />.
+
+<Mermaid
+  title={<>Meteran Menjadi Bagian Rangkaian</>}
+  description={<>Meteran <InlineMath math="10\text{ k}\Omega" /> yang paralel membuat bagian bawah menjadi <InlineMath math="5\text{ k}\Omega" />, jadi hanya mengambil sepertiga tegangan sumber. Meteran <InlineMath math="1\text{ M}\Omega" /> hampir tidak mengubah rangkaian.</>}
+  chart={`
+    flowchart LR
+      N0["Bawah 10 k ∥ meteran 10 k = 5 k"] --> N1["Pembagi 10 k : 5 k"]
+      N1 --> N2["V = 12 × 5 ÷ 15 = 4,0 V"]
+      N3["Bawah 10 k ∥ 1 M ≈ 9,9 k"] --> N4["V ≈ 12 × 9,9 ÷ 19,9 ≈ 6,0 V"]
+  `}
+/>
+
+Kini pembaginya <InlineMath math="10\text{ k}\Omega" /> dan <InlineMath math="5\text{ k}\Omega" />, jadi bagian bawah mendapat <InlineMath math="12 \times 5 \div 15 = 4{,}0" /> V. Dengan meteran <InlineMath math="1\text{ M}\Omega" /> bagian bawah sekitar <InlineMath math="9{,}9\text{ k}\Omega" />, dan pembacaannya sekitar <InlineMath math="6{,}0" /> V, karena meteran yang jauh lebih besar dari resistor hampir tidak menarik arus.
+
+**Hambatan terkecil untuk <InlineMath math="1\%" />**: bacaan harus paling sedikit <InlineMath math="5{,}94" /> V, jadi pasangan bawah butuh <InlineMath math="12 R_p \div (10\,000 + R_p) \ge 5{,}94" />, yang memberi <InlineMath math="R_p \ge 9802\,\Omega" />. Paralel dengan <InlineMath math="10\text{ k}\Omega" />, itu butuh <InlineMath math="R_V \ge 9802 \times 10\,000 \div 198 = 4{,}95 \times 10^5\,\Omega" />, sekitar <InlineMath math="0{,}50\text{ M}\Omega" />.
+
+# Kenapa pilihan lain salah
+
+- <InlineMath math="6{,}0\text{ V}" /> dengan meter mana pun menganggap kedua voltmeter **ideal**, padahal yang pertama tidak lebih besar daripada resistor yang diukurnya.
+- <InlineMath math="1{,}0\text{ M}\Omega" /> aman tetapi bukan yang terkecil: meter dengan separuh hambatan itu sudah dalam batas <InlineMath math="1\%" />.
+- <InlineMath math="8{,}0\text{ V}" /> adalah tegangan pada resistor **atas** saat meter pertama dipasang.

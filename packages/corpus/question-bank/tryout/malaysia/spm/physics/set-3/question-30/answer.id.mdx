@@ -1,0 +1,25 @@
+# Bangun ulang hambatannya, tambahkan hambatan dalam, lalu cari dayanya
+
+Hambatan sebanding panjang, jadi tiap seperempat <InlineMath math="2{,}0\,\Omega" />. Tiap pasangan seri <InlineMath math="4{,}0\,\Omega" />, dan dua cabang <InlineMath math="4{,}0\,\Omega" /> yang sama **paralel** memberi <InlineMath math="2{,}0\,\Omega" />.
+
+<Mermaid
+  title={<>Dari Kawat yang Dipotong ke Daya</>}
+  description={<>Tiap potongan <InlineMath math="2{,}0\,\Omega" />, tiap pasangan <InlineMath math="4{,}0\,\Omega" />, dua pasangan berdampingan <InlineMath math="2{,}0\,\Omega" />. Dengan hambatan dalam <InlineMath math="1{,}0\,\Omega" />, arusnya <InlineMath math="2{,}0\text{ A}" />.</>}
+  chart={`
+    flowchart LR
+      N0["Tiap potongan 8,0 ÷ 4 = 2,0 Ω"] --> N1["Tiap pasangan seri 4,0 Ω"]
+      N1 --> N2["Pasangan paralel: 2,0 Ω"]
+      N2 --> N3["I = 6,0 ÷ (2,0 + 1,0) = 2,0 A"]
+      N3 --> N4["P = 2,0² × 2,0 = 8,0 W"]
+  `}
+/>
+
+Arus: <InlineMath math="I = 6{,}0 \div (2{,}0 + 1{,}0) = 2{,}0" /> A. Daya dalam rangkaian: <InlineMath math="I^2 R = 2{,}0^2 \times 2{,}0 = 8{,}0" /> W. <InlineMath math="4{,}0" /> W sisanya terbuang di dalam sel.
+
+**Potongan yang putus**: pasangan dengan potongan yang putus tidak dialiri arus, jadi rangkaian menjadi satu cabang <InlineMath math="4{,}0\,\Omega" />. Maka <InlineMath math="I = 6{,}0 \div (4{,}0 + 1{,}0) = 1{,}2" /> A dan rangkaian mengambil <InlineMath math="1{,}2^2 \times 4{,}0 = 5{,}8" /> W. Putusnya kawat menambah hambatan, jadi arus dan daya sama-sama turun.
+
+# Kenapa pilihan lain salah
+
+- <InlineMath math="1{,}5\text{ A}" /> setelah putus melupakan **hambatan dalam** sel, yang tetap mengambil bagiannya dari GGL.
+- <InlineMath math="3{,}0\text{ A}" /> melupakan hambatan dalam sejak awal.
+- <InlineMath math="12\text{ W}" /> dan <InlineMath math="7{,}2\text{ W}" /> adalah daya total dari GGL, <InlineMath math="EI" />, yang termasuk kerugian di dalam sel.

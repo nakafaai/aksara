@@ -1,0 +1,27 @@
+# Kurangi dengan kesalahan nol yang negatif, lalu pangkat tigakan jari-jari
+
+Pembacaan yang benar adalah pembacaan **dikurangi kesalahan nol**: <InlineMath math="6{,}38 - (-0{,}02) = 6{,}40" /> mm. Kesalahan nol di bawah nol berarti setiap pembacaan terlalu kecil.
+
+Jari-jari <InlineMath math="0{,}320" /> cm, jadi <InlineMath math="V = \tfrac{4}{3}\pi (0{,}320)^3 = 0{,}1373\text{ cm}^3" /> dan <InlineMath math="\rho = 1{,}070 \div 0{,}1373 = 7{,}80\text{ g cm}^{-3}" />, massa jenis baja.
+
+<Mermaid
+  title={<>Dari Pembacaan ke Massa Jenis</>}
+  description={<>Diameter terkoreksi adalah <InlineMath math="6{,}40\text{ mm}" />. Pangkat tiganya menentukan volume, jadi kesalahan kecil pada diameter membesar sekitar tiga kali pada massa jenis.</>}
+  chart={`
+    flowchart LR
+      N0["Pembacaan 6,38 mm"] --> N1["Koreksi: 6,38 − (−0,02) = 6,40 mm"]
+      N1 --> N2["r = 0,320 cm, V = 0,1373 cm³"]
+      N2 --> N3["ρ = 1,070 ÷ 0,1373 = 7,80 g cm⁻³"]
+      N3 --> N4["Tanpa koreksi 6,38 mm: ρ = 7,87, 0,9% lebih tinggi"]
+  `}
+/>
+
+Tanpa koreksi, diameternya <InlineMath math="6{,}38" /> mm, volumenya lebih kecil, dan massa jenisnya menjadi <InlineMath math="7{,}87\text{ g cm}^{-3}" />: <InlineMath math="(7{,}87 - 7{,}80) \div 7{,}80 = 0{,}9\%" /> terlalu tinggi. Diameter yang kurang hanya <InlineMath math="0{,}3\%" /> memberi kesalahan massa jenis sekitar tiga kali lipat, karena volume bergantung pada pangkat tiga.
+
+**Rongga tersembunyi**: baja pejal bermassa itu akan mengisi <InlineMath math="1{,}070 \div 7{,}85 = 0{,}1363\text{ cm}^3" />. Bola itu mengisi <InlineMath math="0{,}1373\text{ cm}^3" />, jadi sekitar <InlineMath math="0{,}00095\text{ cm}^3" />, atau <InlineMath math="0{,}95\text{ mm}^3" />, kosong. Dengan <InlineMath math="6{,}38" /> mm tanpa koreksi, bola itu hanya mengisi <InlineMath math="0{,}1360\text{ cm}^3" />, lebih kecil dari bajanya sendiri, yang mustahil.
+
+# Kenapa pilihan lain salah
+
+- <InlineMath math="7{,}94\text{ g cm}^{-3}" /> menambahkan kesalahan nol secara terbalik, membaca <InlineMath math="6{,}36" /> mm, sehingga bola tampak **lebih rapat daripada baja pejal**.
+- <InlineMath math="0{,}975\text{ g cm}^{-3}" /> memakai diameter sebagai jari-jari, delapan kali volumenya, jadi sebagian besar bola seolah kosong.
+- <InlineMath math="7{,}87\text{ g cm}^{-3}" /> mengabaikan kesalahan nol, dan volume bola menjadi lebih kecil daripada volume bajanya sendiri.

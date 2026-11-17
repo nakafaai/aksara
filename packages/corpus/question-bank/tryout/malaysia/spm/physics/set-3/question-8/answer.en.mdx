@@ -1,0 +1,26 @@
+# Turn g and R into GM, then compare three speeds
+
+From <InlineMath math="g = GM \div R^2" />, <InlineMath math="GM = gR^2" />. So the orbital speed just above the surface is <InlineMath math="\sqrt{GM \div R} = \sqrt{gR} = \sqrt{3.7 \times 3.4 \times 10^6} = 3.5\text{ km s}^{-1}" />.
+
+Escape speed: <InlineMath math="\sqrt{2GM \div R} = \sqrt{2gR} = 5.0\text{ km s}^{-1}" />, which is <InlineMath math="\sqrt{2}" /> times the orbital speed.
+
+<Chart
+  title={<>Three Speeds Compared</>}
+  bars="apart"
+  categories={["Low orbit", "Probe", "Escape"]}
+  series={[
+    { label: "Speed (km/s)", mark: "bar", values: [3.5, 4.0, 5.0] },
+  ]}
+  valueLabel="Speed (km/s)"
+  description={<>Low orbit <InlineMath math="3.5\text{ km s}^{-1}" />, probe <InlineMath math="4.0\text{ km s}^{-1}" />, escape <InlineMath math="5.0\text{ km s}^{-1}" />. The probe lies between the two.</>}
+/>
+
+The probe's <InlineMath math="4.0\text{ km s}^{-1}" /> is **more than** the low-orbit speed, so it does not fall back at once and swings out above a low circular orbit. It is **less than** the escape speed, so gravity holds it, and it stays bound to the planet.
+
+**Period of a low orbit**: one lap is <InlineMath math="2\pi R = 2\pi \times 3.4 \times 10^6 = 2.14 \times 10^7" /> m at the orbital speed <InlineMath math="3.55 \times 10^3" /> m/s, so <InlineMath math="T = 2.14 \times 10^7 \div 3.55 \times 10^3 = 6.0 \times 10^3" /> s, about <InlineMath math="100" /> minutes.
+
+# Why the other options are wrong
+
+- Escape speed is **always larger** than orbital speed, by a factor of <InlineMath math="\sqrt{2}" />, so the two cannot be the other way round.
+- A probe faster than the low-orbit speed does not fall straight back, because it already has more than enough speed to go round.
+- <InlineMath math="71" /> minutes divides the lap by the escape speed, but a body in a circular orbit moves at the **orbital** speed.

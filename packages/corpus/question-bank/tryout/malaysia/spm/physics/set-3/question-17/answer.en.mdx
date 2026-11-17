@@ -1,0 +1,26 @@
+# Fix the total distance, solve for u, then compare the two images
+
+The object and screen are fixed, so <InlineMath math="v = 90 - u" />. Then <InlineMath math="\dfrac{1}{u} + \dfrac{1}{90 - u} = \dfrac{1}{20}" />, which gives <InlineMath math="u^2 - 90u + 1800 = 0" />, so <InlineMath math="u = 30" /> cm or <InlineMath math="u = 60" /> cm.
+
+<Mermaid
+  title={<>Two Positions, Swapped Distances</>}
+  description={<>With <InlineMath math="u + v = 90\text{ cm}" />, the lens equation gives <InlineMath math="u = 30" /> or <InlineMath math="60\text{ cm}" />. At each position u and v swap, so the magnifications are reciprocals.</>}
+  chart={`
+    flowchart LR
+      N0["u + v = 90, 1/u + 1/v = 1/20"] --> N1["u² − 90u + 1800 = 0"]
+      N1 --> N2["u = 30 cm, v = 60 cm: m = 2.0"]
+      N1 --> N3["u = 60 cm, v = 30 cm: m = 0.5"]
+      N2 --> N4["Product of magnifications 1"]
+      N3 --> N4
+  `}
+/>
+
+At <InlineMath math="u = 30" /> cm, <InlineMath math="v = 60" /> cm and <InlineMath math="m = 60 \div 30 = 2.0" />. At <InlineMath math="u = 60" /> cm the distances **swap**: <InlineMath math="v = 30" /> cm and <InlineMath math="m = 0.5" />. One image is magnified, the other diminished.
+
+**Image heights**: at the first position <InlineMath math="m = 2.0" />, so the object is <InlineMath math="6.0 \div 2.0 = 3.0" /> cm tall. At the second, <InlineMath math="m = 0.5" />, so the image is only <InlineMath math="3.0 \times 0.5 = 1.5" /> cm. The two magnifications multiply to one, because the object and image distances simply swap.
+
+# Why the other options are wrong
+
+- A single position at <InlineMath math="45" /> cm would need <InlineMath math="f = 22.5" /> cm, the largest focal length that works for <InlineMath math="90" /> cm.
+- At the second position the object is **farther** than the image, so that image is diminished, not the same size.
+- <InlineMath math="40" /> cm gives <InlineMath math="v = 50" /> cm, and <InlineMath math="\tfrac{1}{40} + \tfrac{1}{50}" /> is not <InlineMath math="\tfrac{1}{20}" />.

@@ -1,0 +1,24 @@
+# Beide Phasen addieren, dann durch die Nutzleistung teilen
+
+**Erwärmen**: <InlineMath math="1{,}5 \times 4200 \times 75 = 472\,500" /> J. **Sieden**: nur der Dampf nimmt latente Wärme auf, <InlineMath math="0{,}15 \times 2{,}26 \times 10^6 = 339\,000" /> J. Das Wasser braucht insgesamt <InlineMath math="811\,500" /> J.
+
+<Chart
+  title={<>Energie je Phase</>}
+  bars="apart"
+  categories={["Erwärmen", "Sieden", "Wasser gesamt", "Elektrisch"]}
+  series={[
+    { label: "Energie (kJ)", mark: "bar", values: [472.5, 339, 811.5, 1014] },
+  ]}
+  valueLabel="Energie (kJ)"
+  description={<>Erwärmen <InlineMath math="472{,}5\text{ kJ}" />, Sieden <InlineMath math="339\text{ kJ}" />, Wasser gesamt <InlineMath math="811{,}5\text{ kJ}" />, elektrische Energie <InlineMath math="1014\text{ kJ}" />.</>}
+/>
+
+Nur <InlineMath math="80\%" /> von <InlineMath math="2000" /> W erreichen das Wasser, die **Nutzleistung ist also <InlineMath math="1600" /> W**. Zeit: <InlineMath math="811\,500 \div 1600 = 507" /> s, etwa <InlineMath math="8{,}5" /> Minuten.
+
+**Bei niedrigerer Spannung**: Das Heizelement behält seinen Widerstand, <InlineMath math="R = 240^2 \div 2000 = 28{,}8\,\Omega" />, an <InlineMath math="220" /> V liefert es also nur <InlineMath math="220^2 \div 28{,}8 = 1681" /> W. Das Wasser braucht weiter <InlineMath math="811{,}5 \div 0{,}80 = 1014" /> kJ elektrische Energie, das dauert <InlineMath math="1\,014\,000 \div 1681 = 604" /> s.
+
+# Warum die anderen Antworten falsch sind
+
+- <InlineMath math="406\text{ s}" /> und <InlineMath math="483\text{ s}" /> vergessen, dass nur <InlineMath math="80\%" /> der Energie **das Wasser erreichen**.
+- <InlineMath math="553\text{ s}" /> senkt die Leistung im Verhältnis der Spannung, doch bei festem Widerstand geht die Leistung mit dem Quadrat der Spannung.
+- Gleichbleibende <InlineMath math="507\text{ s}" /> halten die Nennleistung von <InlineMath math="2{,}0" /> kW für fest, sie gilt aber nur bei <InlineMath math="240" /> V.

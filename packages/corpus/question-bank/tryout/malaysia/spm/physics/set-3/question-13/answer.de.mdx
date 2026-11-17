@@ -1,0 +1,24 @@
+# Jede Echozeit halbieren, dann die beiden Tiefen abziehen
+
+Ein Echo läuft **hin und zurück**, jede Entfernung nutzt also die halbe Zeit. Meeresboden: <InlineMath math="1500 \times 0{,}40 = 600" /> m. Schwarm: <InlineMath math="1500 \times 0{,}15 = 225" /> m unter dem Schiff.
+
+<Chart
+  title={<>Entfernungen aus den Echos</>}
+  bars="apart"
+  categories={["Tiefe des Bodens", "Tiefe des Schwarms", "Schwarm über Boden"]}
+  series={[
+    { label: "Entfernung (m)", mark: "bar", values: [600, 225, 375] },
+  ]}
+  valueLabel="Entfernung (m)"
+  description={<>Meeresboden <InlineMath math="600\text{ m}" /> tief, Fischschwarm <InlineMath math="225\text{ m}" /> tief, der Schwarm ist also <InlineMath math="375\text{ m}" /> über dem Boden.</>}
+/>
+
+Der Schwarm ist <InlineMath math="600 - 225 = 375" /> m über dem Boden. Wellenlänge: <InlineMath math="\lambda = v \div f = 1500 \div 50\,000 = 0{,}030" /> m, also <InlineMath math="3{,}0" /> cm.
+
+**Der wandernde Schwarm**: Die zusätzlichen <InlineMath math="0{,}04" /> s sind Hin- und Rückweg, der Schwarm ist also <InlineMath math="1500 \times 0{,}04 \div 2 = 30" /> m tiefer als zuvor. In <InlineMath math="10" /> s sind das im Mittel <InlineMath math="3{,}0" /> m/s nach unten.
+
+# Warum die anderen Antworten falsch sind
+
+- <InlineMath math="225\text{ m}" /> ist die Tiefe des Schwarms **unter der Oberfläche**, nicht seine Höhe über dem Meeresboden.
+- <InlineMath math="6{,}0\text{ m s}^{-1}" /> vergisst, dass die zusätzlichen <InlineMath math="0{,}04" /> s die zusätzliche Strecke zweimal enthalten, hin und zurück.
+- <InlineMath math="30\text{ m}" /> teilt die Geschwindigkeit durch <InlineMath math="50" /> Hz statt durch <InlineMath math="50\,000" /> Hz.

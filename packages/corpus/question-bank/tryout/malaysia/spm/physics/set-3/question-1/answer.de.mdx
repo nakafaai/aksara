@@ -1,0 +1,27 @@
+# Einen negativen Nullpunktfehler abziehen, dann den Radius hoch drei
+
+Der richtige Wert ist die Ablesung **minus den Nullpunktfehler**: <InlineMath math="6{,}38 - (-0{,}02) = 6{,}40" /> mm. Ein Nullpunktfehler unter null heißt, jede Ablesung fällt zu klein aus.
+
+Radius <InlineMath math="0{,}320" /> cm, also <InlineMath math="V = \tfrac{4}{3}\pi (0{,}320)^3 = 0{,}1373\text{ cm}^3" /> und <InlineMath math="\rho = 1{,}070 \div 0{,}1373 = 7{,}80\text{ g cm}^{-3}" />, die Dichte von Stahl.
+
+<Mermaid
+  title={<>Von der Ablesung zur Dichte</>}
+  description={<>Der korrigierte Durchmesser ist <InlineMath math="6{,}40\text{ mm}" />. Seine dritte Potenz bestimmt das Volumen, ein kleiner Fehler im Durchmesser wächst in der Dichte also etwa auf das Dreifache.</>}
+  chart={`
+    flowchart LR
+      N0["Ablesung 6,38 mm"] --> N1["Korrektur: 6,38 − (−0,02) = 6,40 mm"]
+      N1 --> N2["r = 0,320 cm, V = 0,1373 cm³"]
+      N2 --> N3["ρ = 1,070 ÷ 0,1373 = 7,80 g cm⁻³"]
+      N3 --> N4["Unkorrigiert 6,38 mm: ρ = 7,87, 0,9% zu hoch"]
+  `}
+/>
+
+Ohne Korrektur ist der Durchmesser <InlineMath math="6{,}38" /> mm, das Volumen kleiner, und die Dichte kommt auf <InlineMath math="7{,}87\text{ g cm}^{-3}" />: <InlineMath math="(7{,}87 - 7{,}80) \div 7{,}80 = 0{,}9\%" /> zu hoch. Ein nur <InlineMath math="0{,}3\%" /> zu kleiner Durchmesser gibt einen etwa dreimal so großen Dichtefehler, weil das Volumen mit der dritten Potenz geht.
+
+**Verborgener Hohlraum**: Massiver Stahl dieser Masse füllte <InlineMath math="1{,}070 \div 7{,}85 = 0{,}1363\text{ cm}^3" />. Die Kugel füllt <InlineMath math="0{,}1373\text{ cm}^3" />, also sind etwa <InlineMath math="0{,}00095\text{ cm}^3" />, das heißt <InlineMath math="0{,}95\text{ mm}^3" />, leer. Mit den unkorrigierten <InlineMath math="6{,}38" /> mm füllte die Kugel nur <InlineMath math="0{,}1360\text{ cm}^3" />, weniger als ihr eigener Stahl, und das ist unmöglich.
+
+# Warum die anderen Antworten falsch sind
+
+- <InlineMath math="7{,}94\text{ g cm}^{-3}" /> rechnet den Nullpunktfehler falsch herum ein, liest <InlineMath math="6{,}36" /> mm, und die Kugel wirkt **dichter als massiver Stahl**.
+- <InlineMath math="0{,}975\text{ g cm}^{-3}" /> nimmt den Durchmesser als Radius, das achtfache Volumen, die Kugel wäre also größtenteils leer.
+- <InlineMath math="7{,}87\text{ g cm}^{-3}" /> lässt den Nullpunktfehler weg, dann ist das Kugelvolumen kleiner als das Volumen ihres eigenen Stahls.

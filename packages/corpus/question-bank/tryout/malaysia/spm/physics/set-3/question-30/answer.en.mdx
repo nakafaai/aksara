@@ -1,0 +1,25 @@
+# Rebuild the resistance, add the internal resistance, then find the power
+
+Resistance is proportional to length, so each quarter is <InlineMath math="2.0\,\Omega" />. Each pair in series is <InlineMath math="4.0\,\Omega" />, and two equal <InlineMath math="4.0\,\Omega" /> branches **in parallel** give <InlineMath math="2.0\,\Omega" />.
+
+<Mermaid
+  title={<>From the Cut Wire to the Power</>}
+  description={<>Each piece is <InlineMath math="2.0\,\Omega" />, each pair <InlineMath math="4.0\,\Omega" />, the two pairs side by side <InlineMath math="2.0\,\Omega" />. With the internal resistance <InlineMath math="1.0\,\Omega" /> the current is <InlineMath math="2.0\text{ A}" />.</>}
+  chart={`
+    flowchart LR
+      N0["Each piece 8.0 ÷ 4 = 2.0 Ω"] --> N1["Each pair in series 4.0 Ω"]
+      N1 --> N2["Pairs in parallel: 2.0 Ω"]
+      N2 --> N3["I = 6.0 ÷ (2.0 + 1.0) = 2.0 A"]
+      N3 --> N4["P = 2.0² × 2.0 = 8.0 W"]
+  `}
+/>
+
+Current: <InlineMath math="I = 6.0 \div (2.0 + 1.0) = 2.0" /> A. Power in the network: <InlineMath math="I^2 R = 2.0^2 \times 2.0 = 8.0" /> W. The other <InlineMath math="4.0" /> W is wasted inside the cell.
+
+**A broken piece**: the pair with the broken piece carries nothing, so the network is a single <InlineMath math="4.0\,\Omega" /> branch. Then <InlineMath math="I = 6.0 \div (4.0 + 1.0) = 1.2" /> A and the network takes <InlineMath math="1.2^2 \times 4.0 = 5.8" /> W. A break raises the resistance, so the current and the power both fall.
+
+# Why the other options are wrong
+
+- <InlineMath math="1.5\text{ A}" /> after the break forgets the cell's **internal resistance**, which still takes its share of the e.m.f.
+- <InlineMath math="3.0\text{ A}" /> forgets the internal resistance from the start.
+- <InlineMath math="12\text{ W}" /> and <InlineMath math="7.2\text{ W}" /> are the total power from the e.m.f., <InlineMath math="EI" />, which includes the loss inside the cell.

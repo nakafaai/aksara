@@ -1,0 +1,25 @@
+# Resistor hanya mengambil sisa yang ditinggalkan LED, pada arus yang sama
+
+Resistor mendapat <InlineMath math="9{,}0 - 2{,}0 = 7{,}0" /> V dan dialiri <InlineMath math="0{,}020" /> A, jadi <InlineMath math="R = 7{,}0 \div 0{,}020 = 350\,\Omega" />. Dayanya <InlineMath math="P = 7{,}0 \times 0{,}020 = 0{,}14" /> W. Arus ditetapkan oleh LED, jadi **sisa tegangan** menentukan resistornya.
+
+<Chart
+  title={<>Pembagian <InlineMath math="9{,}0\text{ V}" /></>}
+  bars="apart"
+  categories={["Satu LED", "Tiga LED"]}
+  series={[
+    { label: "LED", mark: "bar", values: [2.0, 6.0] },
+    { label: "Resistor", mark: "bar", values: [7.0, 3.0] },
+  ]}
+  valueLabel="Tegangan (V)"
+  description={<>Tegangan baterai terbagi antara LED dan resistor. Arus <InlineMath math="20\text{ mA}" /> yang sama mengalir lewat semuanya, jadi resistor mengambil sisa yang ditinggalkan LED.</>}
+/>
+
+Tiga LED seri mengambil <InlineMath math="6{,}0" /> V, menyisakan <InlineMath math="3{,}0" /> V pada <InlineMath math="0{,}020" /> A yang sama, jadi resistornya harus <InlineMath math="3{,}0 \div 0{,}020 = 150\,\Omega" />.
+
+**Hambatan dalam, lalu baterai yang melemah**: pada <InlineMath math="20" /> mA baterai sendiri kehilangan <InlineMath math="0{,}020 \times 5{,}0 = 0{,}10" /> V, jadi resistor mendapat <InlineMath math="9{,}0 - 6{,}0 - 0{,}10 = 2{,}9" /> V dan harus <InlineMath math="2{,}9 \div 0{,}020 = 145\,\Omega" />. Pada <InlineMath math="8{,}0" /> V LED tetap mengambil <InlineMath math="6{,}0" /> V, hanya menyisakan <InlineMath math="2{,}0" /> V pada <InlineMath math="145 + 5{,}0 = 150\,\Omega" />: <InlineMath math="I = 2{,}0 \div 150 = 0{,}013" /> A. Penurunan kecil GGL membuat penurunan besar arus, karena LED mempertahankan tegangannya.
+
+# Kenapa pilihan lain salah
+
+- <InlineMath math="150\,\Omega" /> mengabaikan **hambatan dalam**, yang sudah mengambil <InlineMath math="0{,}10" /> V pada <InlineMath math="20" /> mA.
+- <InlineMath math="18\text{ mA}" /> menskalakan arus dengan GGL, padahal LED mempertahankan <InlineMath math="6{,}0" /> V, jadi hanya sisa <InlineMath math="2{,}0" /> V yang mendorong arus.
+- <InlineMath math="155\,\Omega" /> menambahkan hambatan dalam ke resistor, bukan menguranginya.

@@ -1,0 +1,25 @@
+# Lilitan daripada nisbah p.m.k.d., puncak daripada punca kuasa dua bagi dua, riak daripada tetimbang
+
+Lilitan mengikut nisbah voltan: <InlineMath math="N_s = 1200 \times 12 \div 240 = 60" />. Kedua-dua voltan dalam nisbah itu ialah p.m.k.d., jadi nisbah mesti menggunakan <InlineMath math="12" /> V, bukan puncak.
+
+Kapasitor dicas hingga **puncak**, bukan nilai p.m.k.d., tolak dua diod yang mengalirkan arus dalam setiap separuh kitar: <InlineMath math="12 \times \sqrt{2} - 2 \times 0.70 = 15.6" /> V.
+
+<Chart
+  title={<>Output Tetimbang dalam Satu Kitar Bekalan Utama</>}
+  categories={["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20"]}
+  series={[
+    { label: "Output tetimbang", mark: "line", values: [0.0, 4.8, 9.2, 12.6, 14.8, 15.6, 14.8, 12.6, 9.2, 4.8, 0.0, 4.8, 9.2, 12.6, 14.8, 15.6, 14.8, 12.6, 9.2, 4.8, 0.0] },
+  ]}
+  valueLabel="Voltan (V)"
+  description={<>Dalam satu kitar bekalan utama <InlineMath math="20\text{ ms}" />, output tetimbang memuncak dua kali pada <InlineMath math="15.6\text{ V}" />, jadi kapasitor dicas semula <InlineMath math="100" /> kali sesaat. Masa dalam milisaat.</>}
+/>
+
+Tetimbang menukar setiap separuh kitar negatif kepada positif, jadi setiap kitar <InlineMath math="50" /> Hz memberi dua denyut, dan riaknya pada <InlineMath math="100" /> Hz.
+
+**Menghidupkan lampu**: pada kadarnya lampu mengambil <InlineMath math="6.0 \div 12 = 0.50" /> A. Perintang mesti menyusutkan baki voltan yang diratakan, <InlineMath math="15.6 - 12 = 3.6" /> V, pada arus itu, jadi <InlineMath math="R = 3.6 \div 0.50 = 7.2\,\Omega" />.
+
+# Mengapa pilihan lain salah
+
+- <InlineMath math="16.3\text{ V}" /> menolak satu susutan diod, tetapi dalam tetimbang arus melalui **dua diod** dalam setiap separuh kitar.
+- <InlineMath math="17.0\text{ V}" /> mengabaikan susutan diod, yang diberi dalam soalan sebanyak <InlineMath math="0.70" /> V setiap satu.
+- <InlineMath math="14.2\text{ V}" /> menolak keempat-empat susutan, tetapi hanya dua daripada empat diod mengalirkan arus pada sesuatu masa.

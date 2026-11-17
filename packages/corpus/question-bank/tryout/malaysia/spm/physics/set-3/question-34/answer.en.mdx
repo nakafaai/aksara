@@ -1,0 +1,26 @@
+# Faster turning raises both the voltage and the frequency, and power goes as voltage squared
+
+By Faraday's law the e.m.f. depends on the **rate of cutting flux**. Twice the speed doubles that rate, so the peak becomes <InlineMath math="12" /> V. One turn makes one cycle, so twice as many turns each second gives <InlineMath math="100" /> Hz.
+
+<Mermaid
+  title={<>One Change, Three Effects</>}
+  description={<>Turning twice as fast cuts the flux twice as fast and completes twice as many turns each second. The power follows the square of the voltage.</>}
+  chart={`
+    flowchart LR
+      N0["Coil turned twice as fast"] --> N1["Flux cut twice as fast"]
+      N1 --> N2["Peak e.m.f. 6.0 → 12 V"]
+      N0 --> N3["Twice as many turns per second"]
+      N3 --> N4["Frequency 50 → 100 Hz"]
+      N2 --> N5["P = V² ÷ R: 1.5 → 6.0 W"]
+  `}
+/>
+
+With <InlineMath math="P = V^2 \div R" /> and a fixed resistance, doubling the voltage makes the power four times as large. The average power rises from <InlineMath math="(6.0 \div \sqrt{2})^2 \div 12 = 1.5" /> W to <InlineMath math="6.0" /> W.
+
+**Fewer turns, two lamps**: halving the turns halves the e.m.f., so the doubled speed now gives a <InlineMath math="6.0" /> V peak, while the frequency stays <InlineMath math="100" /> Hz because it depends only on the turning rate. Each lamp in parallel gets the whole <InlineMath math="6.0" /> V peak and takes <InlineMath math="(6.0 \div \sqrt{2})^2 \div 12 = 1.5" /> W, so the generator supplies <InlineMath math="3.0" /> W in all.
+
+# Why the other options are wrong
+
+- <InlineMath math="0.38\text{ W}" /> halves the original <InlineMath math="6.0" /> V instead of the new <InlineMath math="12" /> V, as if the faster turning no longer counted.
+- The frequency is the number of turns each second, so it cannot stay at <InlineMath math="50" /> Hz.
+- <InlineMath math="0.75\text{ W}" /> shares one lamp's power between two, but lamps **in parallel** each get the full voltage.

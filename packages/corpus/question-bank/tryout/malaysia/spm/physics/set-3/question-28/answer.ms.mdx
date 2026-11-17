@@ -1,0 +1,24 @@
+# Voltmeter selari mengubah rintangan yang diukurnya
+
+Tanpa meter, setiap perintang mengambil separuh bekalan, <InlineMath math="6.0" /> V. Tetapi voltmeter <InlineMath math="10\text{ k}\Omega" /> berada **secara selari** dengan perintang bawah: <InlineMath math="(10 \times 10) \div (10 + 10) = 5\text{ k}\Omega" />.
+
+<Mermaid
+  title={<>Meter Menjadi Sebahagian Litar</>}
+  description={<>Meter <InlineMath math="10\text{ k}\Omega" /> secara selari menjadikan separuh bawah <InlineMath math="5\text{ k}\Omega" />, jadi ia hanya mengambil satu pertiga bekalan. Meter <InlineMath math="1\text{ M}\Omega" /> hampir tidak mengubah litar.</>}
+  chart={`
+    flowchart LR
+      N0["Bawah 10 k ∥ meter 10 k = 5 k"] --> N1["Pembahagi 10 k : 5 k"]
+      N1 --> N2["V = 12 × 5 ÷ 15 = 4.0 V"]
+      N3["Bawah 10 k ∥ 1 M ≈ 9.9 k"] --> N4["V ≈ 12 × 9.9 ÷ 19.9 ≈ 6.0 V"]
+  `}
+/>
+
+Kini pembahagi ialah <InlineMath math="10\text{ k}\Omega" /> dan <InlineMath math="5\text{ k}\Omega" />, jadi bahagian bawah mendapat <InlineMath math="12 \times 5 \div 15 = 4.0" /> V. Dengan meter <InlineMath math="1\text{ M}\Omega" /> bahagian bawah kira-kira <InlineMath math="9.9\text{ k}\Omega" />, dan bacaannya kira-kira <InlineMath math="6.0" /> V, kerana meter yang jauh lebih besar daripada perintang hampir tidak menarik arus.
+
+**Rintangan terkecil bagi <InlineMath math="1\%" />**: bacaan mesti sekurang-kurangnya <InlineMath math="5.94" /> V, jadi pasangan bawah memerlukan <InlineMath math="12 R_p \div (10\,000 + R_p) \ge 5.94" />, yang memberi <InlineMath math="R_p \ge 9802\,\Omega" />. Selari dengan <InlineMath math="10\text{ k}\Omega" />, ini memerlukan <InlineMath math="R_V \ge 9802 \times 10\,000 \div 198 = 4.95 \times 10^5\,\Omega" />, kira-kira <InlineMath math="0.50\text{ M}\Omega" />.
+
+# Mengapa pilihan lain salah
+
+- <InlineMath math="6.0\text{ V}" /> dengan mana-mana meter menganggap kedua-dua voltmeter **unggul**, tetapi yang pertama tidak lebih besar daripada perintang yang direntasinya.
+- <InlineMath math="1.0\text{ M}\Omega" /> selamat tetapi bukan yang terkecil: meter separuh rintangan itu sudah dalam lingkungan <InlineMath math="1\%" />.
+- <InlineMath math="8.0\text{ V}" /> ialah voltan merentasi perintang **atas** apabila meter pertama disambung.

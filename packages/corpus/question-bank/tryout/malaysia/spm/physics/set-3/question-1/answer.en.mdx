@@ -1,0 +1,27 @@
+# Subtract a negative zero error, then cube the radius
+
+The correct reading is the reading **minus the zero error**: <InlineMath math="6.38 - (-0.02) = 6.40" /> mm. A zero error below zero means every reading comes out too small.
+
+Radius <InlineMath math="0.320" /> cm, so <InlineMath math="V = \tfrac{4}{3}\pi (0.320)^3 = 0.1373\text{ cm}^3" /> and <InlineMath math="\rho = 1.070 \div 0.1373 = 7.80\text{ g cm}^{-3}" />, the density of steel.
+
+<Mermaid
+  title={<>From the Reading to the Density</>}
+  description={<>The corrected diameter is <InlineMath math="6.40\text{ mm}" />. Its cube sets the volume, so a small error in the diameter grows about three times in the density.</>}
+  chart={`
+    flowchart LR
+      N0["Reading 6.38 mm"] --> N1["Correct: 6.38 − (−0.02) = 6.40 mm"]
+      N1 --> N2["r = 0.320 cm, V = 0.1373 cm³"]
+      N2 --> N3["ρ = 1.070 ÷ 0.1373 = 7.80 g cm⁻³"]
+      N3 --> N4["Uncorrected 6.38 mm: ρ = 7.87, 0.9% high"]
+  `}
+/>
+
+Without the correction the diameter is <InlineMath math="6.38" /> mm, the volume is smaller, and the density comes out at <InlineMath math="7.87\text{ g cm}^{-3}" />: <InlineMath math="(7.87 - 7.80) \div 7.80 = 0.9\%" /> too high. A diameter only <InlineMath math="0.3\%" /> short gives a density about three times that error, because the volume goes as the cube.
+
+**Hidden cavity**: solid steel of that mass would fill <InlineMath math="1.070 \div 7.85 = 0.1363\text{ cm}^3" />. The ball fills <InlineMath math="0.1373\text{ cm}^3" />, so about <InlineMath math="0.00095\text{ cm}^3" />, or <InlineMath math="0.95\text{ mm}^3" />, is empty. With the uncorrected <InlineMath math="6.38" /> mm the ball would fill only <InlineMath math="0.1360\text{ cm}^3" />, less than its own steel, which is impossible.
+
+# Why the other options are wrong
+
+- <InlineMath math="7.94\text{ g cm}^{-3}" /> adds the zero error the wrong way round, reading <InlineMath math="6.36" /> mm, which makes the ball look **denser than solid steel**.
+- <InlineMath math="0.975\text{ g cm}^{-3}" /> uses the diameter as the radius, eight times the volume, so most of the ball would seem empty.
+- <InlineMath math="7.87\text{ g cm}^{-3}" /> leaves out the zero error, and then the ball's volume is smaller than the volume of its own steel.

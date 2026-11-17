@@ -1,0 +1,24 @@
+# Add both stages, then divide by the useful power
+
+**Heating**: <InlineMath math="1.5 \times 4200 \times 75 = 472\,500" /> J. **Boiling**: only the steam takes latent heat, <InlineMath math="0.15 \times 2.26 \times 10^6 = 339\,000" /> J. The water needs <InlineMath math="811\,500" /> J in all.
+
+<Chart
+  title={<>Energy at Each Stage</>}
+  bars="apart"
+  categories={["Heating", "Boiling", "Water total", "Electrical"]}
+  series={[
+    { label: "Energy (kJ)", mark: "bar", values: [472.5, 339, 811.5, 1014] },
+  ]}
+  valueLabel="Energy (kJ)"
+  description={<>Heating <InlineMath math="472.5\text{ kJ}" />, boiling <InlineMath math="339\text{ kJ}" />, water total <InlineMath math="811.5\text{ kJ}" />, electrical supply <InlineMath math="1014\text{ kJ}" />.</>}
+/>
+
+Only <InlineMath math="80\%" /> of <InlineMath math="2000" /> W reaches the water, so the **useful power is <InlineMath math="1600" /> W**. Time: <InlineMath math="811\,500 \div 1600 = 507" /> s, about <InlineMath math="8.5" /> minutes.
+
+**On a lower voltage**: the element keeps its resistance, <InlineMath math="R = 240^2 \div 2000 = 28.8\,\Omega" />, so on <InlineMath math="220" /> V it gives only <InlineMath math="220^2 \div 28.8 = 1681" /> W. The water still needs <InlineMath math="811.5 \div 0.80 = 1014" /> kJ of electrical energy, which takes <InlineMath math="1\,014\,000 \div 1681 = 604" /> s.
+
+# Why the other options are wrong
+
+- <InlineMath math="406\text{ s}" /> and <InlineMath math="483\text{ s}" /> forget that only <InlineMath math="80\%" /> of the energy **reaches the water**.
+- <InlineMath math="553\text{ s}" /> lowers the power in step with the voltage, but with a fixed resistance the power goes as the voltage squared.
+- An unchanged <InlineMath math="507\text{ s}" /> treats the <InlineMath math="2.0" /> kW rating as fixed, but it holds only on <InlineMath math="240" /> V.

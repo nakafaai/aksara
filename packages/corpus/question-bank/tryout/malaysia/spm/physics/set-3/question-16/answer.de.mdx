@@ -1,0 +1,25 @@
+# Ein Klatschabstand ist ein Hin- und Rückweg
+
+Vom ersten bis zum sechsundzwanzigsten Klatscher liegen <InlineMath math="25" /> Abstände in <InlineMath math="10{,}0" /> s, jeder Abstand also <InlineMath math="0{,}40" /> s. In dieser Zeit läuft der Schall jedes Klatschers zur Wand **und zurück**: <InlineMath math="2 \times 68 = 136" /> m. Geschwindigkeit: <InlineMath math="136 \div 0{,}40 = 340\text{ m s}^{-1}" />.
+
+<Mermaid
+  title={<>Klatschabstand gleich Echozeit</>}
+  description={<>Jeder Abstand zwischen zwei Klatschern ist die Zeit, in der der Schall zur Wand und zurück läuft: <InlineMath math="0{,}40\text{ s}" /> für <InlineMath math="136\text{ m}" />.</>}
+  chart={`
+    flowchart LR
+      N0["1. bis 26. Klatscher: 25 Abstände in 10,0 s"] --> N1["Abstand 0,40 s"]
+      N1 --> N3["v = 136 ÷ 0,40 = 340 m s⁻¹"]
+      N2["Schall läuft 2 × 68 = 136 m"] --> N3
+      N3 --> N4["Wand bei 85 m: 170 ÷ 340 = 0,50 s, 2,0 je s"]
+  `}
+/>
+
+An der zweiten Wand ist der Hin- und Rückweg <InlineMath math="170" /> m, das dauert <InlineMath math="170 \div 340 = 0{,}50" /> s, also muss man **langsamer** klatschen, <InlineMath math="2{,}0" />-mal je Sekunde.
+
+**Ein wärmerer Nachmittag**: Das Echo braucht jetzt nur <InlineMath math="170 \div 352 = 0{,}483" /> s, die Klatscher kommen aber weiter alle <InlineMath math="0{,}50" /> s. Jedes Echo kommt also <InlineMath math="0{,}50 - 0{,}483 = 0{,}017" /> s, das heißt <InlineMath math="17" /> ms, vor dem nächsten Klatscher. Schnellerer Schall bringt das Echo früher zurück.
+
+# Warum die anderen Antworten falsch sind
+
+- <InlineMath math="354\text{ m s}^{-1}" /> teilt durch sechsundzwanzig Klatscher, doch sechsundzwanzig Klatscher schließen nur **fünfundzwanzig Abstände** ein.
+- <InlineMath math="2{,}5" /> Klatscher je Sekunde behalten den alten Takt, doch eine fernere Wand lässt das Echo später kommen.
+- Ein Echo **nach** dem nächsten Klatscher bräuchte langsameren Schall, doch bei <InlineMath math="352\text{ m s}^{-1}" /> dauert der Hin- und Rückweg weniger als <InlineMath math="0{,}50" /> s.

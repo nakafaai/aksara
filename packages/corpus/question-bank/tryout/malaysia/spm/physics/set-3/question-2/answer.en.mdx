@@ -1,0 +1,26 @@
+# Correct the balance, but let the parallax cancel
+
+The balance reads <InlineMath math="0.3" /> g with nothing on it, a **zero error** of <InlineMath math="+0.3" /> g, so the stone's mass is <InlineMath math="41.9 - 0.3 = 41.6" /> g.
+
+The volume comes from a **difference** of two readings. Both are <InlineMath math="0.5\text{ cm}^3" /> too high, so the error cancels: <InlineMath math="58.5 - 42.5 = 16.0\text{ cm}^3" />.
+
+<Mermaid
+  title={<>Which Errors Matter</>}
+  description={<>The balance error changes the mass, but the parallax error is the same in both volume readings and cancels in the difference.</>}
+  chart={`
+    flowchart LR
+      N0["Mass: 41.9 − 0.3 = 41.6 g"] --> N3["ρ = 41.6 ÷ 16.0 = 2.60 g cm⁻³"]
+      N1["Volume: 58.5 − 42.5 = 16.0 cm³"] --> N3
+      N2["Parallax +0.5 in both readings cancels"] --> N1
+  `}
+/>
+
+Density: <InlineMath math="41.6 \div 16.0 = 2.60\text{ g cm}^{-3}" />.
+
+**The liquid**: the stone weighs <InlineMath math="0.0416 \times 10 = 0.416" /> N, so the upthrust is the loss in the reading, <InlineMath math="0.416 - 0.250 = 0.166" /> N. It pushes aside its own <InlineMath math="16.0\text{ cm}^3 = 1.60 \times 10^{-5}\text{ m}^3" />, so <InlineMath math="\rho = 0.166 \div (1.60 \times 10^{-5} \times 10) = 1040\text{ kg m}^{-3}" />, or <InlineMath math="1.04\text{ g cm}^{-3}" />.
+
+# Why the other options are wrong
+
+- <InlineMath math="1.06\text{ g cm}^{-3}" /> with the right stone density takes the weight from <InlineMath math="41.9" /> g, carrying the balance's **zero error** into the upthrust.
+- <InlineMath math="2.62\text{ g cm}^{-3}" /> forgets the zero error in the density as well as in the weight.
+- <InlineMath math="1.56\text{ g cm}^{-3}" /> treats the reading in the liquid as the upthrust, but the upthrust is the **loss** of weight.

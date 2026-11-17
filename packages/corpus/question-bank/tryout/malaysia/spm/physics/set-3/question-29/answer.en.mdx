@@ -1,0 +1,24 @@
+# Parallel currents add, so compare each total with the fuse
+
+Each appliance draws <InlineMath math="I = P \div V" />: kettle <InlineMath math="2200 \div 240 = 9.17" /> A, toaster <InlineMath math="5.0" /> A, microwave <InlineMath math="3.33" /> A. In parallel their **currents add** through the fuse.
+
+<Chart
+  title={<>Total Current of Each Combination</>}
+  bars="apart"
+  categories={["Kettle + toaster", "Kettle + microwave", "Toaster + microwave", "All three"]}
+  series={[
+    { label: "Current (A)", mark: "bar", values: [14.2, 12.5, 8.3, 17.5] },
+  ]}
+  valueLabel="Current (A)"
+  description={<>Kettle and toaster <InlineMath math="14.2\text{ A}" />, kettle and microwave <InlineMath math="12.5\text{ A}" />, toaster and microwave <InlineMath math="8.3\text{ A}" />, all three <InlineMath math="17.5\text{ A}" />, against a <InlineMath math="13\text{ A}" /> fuse.</>}
+/>
+
+Kettle and toaster: <InlineMath math="14.2" /> A, over <InlineMath math="13" /> A, so the fuse blows. Kettle and microwave: <InlineMath math="12.5" /> A, just under, so it holds. Toaster and microwave: <InlineMath math="8.3" /> A, safe.
+
+**The cable**: with the kettle and the microwave oven on, <InlineMath math="12.5" /> A flows through the cable, so it wastes <InlineMath math="I^2 R = 12.5^2 \times 0.40 = 63" /> W while dropping <InlineMath math="12.5 \times 0.40 = 5.0" /> V of the supply.
+
+# Why the other options are wrong
+
+- The toaster and microwave together draw only <InlineMath math="8.3" /> A, so **not every pair** blows the fuse.
+- <InlineMath math="5\text{ W}" /> takes <InlineMath math="IR" />, which is the <InlineMath math="5.0" /> V drop, as if it were the power.
+- The kettle with the toaster already reaches <InlineMath math="14.2" /> A, so the fuse does not need all three.

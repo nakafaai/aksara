@@ -1,0 +1,24 @@
+# Parallele Ströme addieren sich, also jede Summe mit der Sicherung vergleichen
+
+Jedes Gerät zieht <InlineMath math="I = P \div V" />: Wasserkocher <InlineMath math="2200 \div 240 = 9{,}17" /> A, Toaster <InlineMath math="5{,}0" /> A, Mikrowelle <InlineMath math="3{,}33" /> A. Parallel **addieren sich die Ströme** durch die Sicherung.
+
+<Chart
+  title={<>Gesamtstrom jeder Kombination</>}
+  bars="apart"
+  categories={["Kocher + Toaster", "Kocher + Mikrowelle", "Toaster + Mikrowelle", "Alle drei"]}
+  series={[
+    { label: "Strom (A)", mark: "bar", values: [14.2, 12.5, 8.3, 17.5] },
+  ]}
+  valueLabel="Strom (A)"
+  description={<>Wasserkocher und Toaster <InlineMath math="14{,}2\text{ A}" />, Wasserkocher und Mikrowelle <InlineMath math="12{,}5\text{ A}" />, Toaster und Mikrowelle <InlineMath math="8{,}3\text{ A}" />, alle drei <InlineMath math="17{,}5\text{ A}" />, gegen eine <InlineMath math="13\text{ A}" />-Sicherung.</>}
+/>
+
+Wasserkocher und Toaster: <InlineMath math="14{,}2" /> A, über <InlineMath math="13" /> A, die Sicherung brennt durch. Wasserkocher und Mikrowelle: <InlineMath math="12{,}5" /> A, knapp darunter, sie hält. Toaster und Mikrowelle: <InlineMath math="8{,}3" /> A, sicher.
+
+**Das Kabel**: Mit Wasserkocher und Mikrowelle fließen <InlineMath math="12{,}5" /> A durch das Kabel, es verschwendet also <InlineMath math="I^2 R = 12{,}5^2 \times 0{,}40 = 63" /> W und nimmt der Versorgung <InlineMath math="12{,}5 \times 0{,}40 = 5{,}0" /> V weg.
+
+# Warum die anderen Antworten falsch sind
+
+- Toaster und Mikrowelle ziehen zusammen nur <InlineMath math="8{,}3" /> A, also brennt **nicht jedes Paar** die Sicherung durch.
+- <InlineMath math="5\text{ W}" /> nimmt <InlineMath math="IR" />, also den Spannungsabfall von <InlineMath math="5{,}0" /> V, als wäre es die Leistung.
+- Wasserkocher und Toaster erreichen schon <InlineMath math="14{,}2" /> A, es braucht also nicht alle drei.

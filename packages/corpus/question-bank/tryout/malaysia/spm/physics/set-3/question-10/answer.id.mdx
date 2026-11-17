@@ -1,0 +1,24 @@
+# Jumlahkan kedua tahap, lalu bagi dengan daya berguna
+
+**Pemanasan**: <InlineMath math="1{,}5 \times 4200 \times 75 = 472\,500" /> J. **Pendidihan**: hanya uap yang mengambil kalor laten, <InlineMath math="0{,}15 \times 2{,}26 \times 10^6 = 339\,000" /> J. Air butuh <InlineMath math="811\,500" /> J seluruhnya.
+
+<Chart
+  title={<>Energi Tiap Tahap</>}
+  bars="apart"
+  categories={["Pemanasan", "Pendidihan", "Total air", "Listrik"]}
+  series={[
+    { label: "Energi (kJ)", mark: "bar", values: [472.5, 339, 811.5, 1014] },
+  ]}
+  valueLabel="Energi (kJ)"
+  description={<>Pemanasan <InlineMath math="472{,}5\text{ kJ}" />, pendidihan <InlineMath math="339\text{ kJ}" />, total air <InlineMath math="811{,}5\text{ kJ}" />, pasokan listrik <InlineMath math="1014\text{ kJ}" />.</>}
+/>
+
+Hanya <InlineMath math="80\%" /> dari <InlineMath math="2000" /> W yang sampai ke air, jadi **daya bergunanya <InlineMath math="1600" /> W**. Waktu: <InlineMath math="811\,500 \div 1600 = 507" /> s, sekitar <InlineMath math="8{,}5" /> menit.
+
+**Pada tegangan lebih rendah**: elemen tetap berhambatan <InlineMath math="R = 240^2 \div 2000 = 28{,}8\,\Omega" />, jadi pada <InlineMath math="220" /> V dayanya hanya <InlineMath math="220^2 \div 28{,}8 = 1681" /> W. Air tetap butuh <InlineMath math="811{,}5 \div 0{,}80 = 1014" /> kJ energi listrik, yang memakan <InlineMath math="1\,014\,000 \div 1681 = 604" /> s.
+
+# Kenapa pilihan lain salah
+
+- <InlineMath math="406\text{ s}" /> dan <InlineMath math="483\text{ s}" /> melupakan bahwa hanya <InlineMath math="80\%" /> energi yang **sampai ke air**.
+- <InlineMath math="553\text{ s}" /> menurunkan daya sebanding tegangan, padahal dengan hambatan tetap daya sebanding kuadrat tegangan.
+- <InlineMath math="507\text{ s}" /> yang tetap menganggap daya <InlineMath math="2{,}0" /> kW tidak berubah, padahal itu hanya berlaku pada <InlineMath math="240" /> V.

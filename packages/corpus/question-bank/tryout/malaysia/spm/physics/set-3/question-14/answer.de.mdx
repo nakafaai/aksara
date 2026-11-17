@@ -1,0 +1,25 @@
+# Die Quelle legt die Frequenz fest, die Tiefe die Geschwindigkeit
+
+Tiefer Ozean: <InlineMath math="v = \sqrt{10 \times 4000} = 200\text{ m s}^{-1}" />, und bei einer Periode von <InlineMath math="900" /> s ist die Wellenlänge <InlineMath math="200 \times 900 = 180\,000" /> m, also <InlineMath math="180" /> km.
+
+<Mermaid
+  title={<>Gleiche Periode, langsamere Welle</>}
+  description={<>Die Quelle legt die Periode fest, also ändern sich nur Geschwindigkeit und Wellenlänge: <InlineMath math="200" /> auf <InlineMath math="10\text{ m s}^{-1}" />, <InlineMath math="180" /> auf <InlineMath math="9{,}0\text{ km}" />.</>}
+  chart={`
+    flowchart LR
+      N0["Tief: v = √(10 × 4000) = 200 m s⁻¹"] --> N1["λ = 200 × 900 s = 180 km"]
+      N2["Flach: v = √(10 × 10) = 10 m s⁻¹"] --> N4["λ = 10 × 900 = 9,0 km"]
+      N3["Periode bleibt 900 s"] --> N4
+      N3 --> N1
+  `}
+/>
+
+Die Frequenz legt die Quelle fest, sie **ändert sich nicht**, wenn die Welle in flacheres Wasser läuft. Vor der Küste ist <InlineMath math="v = \sqrt{10 \times 10} = 10\text{ m s}^{-1}" />, also <InlineMath math="\lambda = 10 \times 900 = 9{,}0" /> km. Die Geschwindigkeit sinkt um den Faktor <InlineMath math="20" />, die Wurzel aus der <InlineMath math="400" />-fach kleineren Tiefe, und die Wellenlänge ebenso.
+
+**Laufzeit**: Der tiefe Ozean dauert <InlineMath math="1\,800\,000 \div 200 = 9000" /> s. Auf dem Schelf ist die Geschwindigkeit <InlineMath math="\sqrt{10 \times 40} = 20" /> m/s, seine <InlineMath math="30" /> km dauern also weitere <InlineMath math="1500" /> s. Zusammen <InlineMath math="10\,500" /> s, etwa <InlineMath math="2{,}9" /> h: Der kurze, flache Schelf fügt fast eine halbe Stunde hinzu.
+
+# Warum die anderen Antworten falsch sind
+
+- Die Frequenz legt die **Quelle** der Wellen fest, sie kann sich nicht ändern, also muss sich die Wellenlänge mit der Geschwindigkeit ändern.
+- <InlineMath math="0{,}45\text{ km}" /> skaliert die Wellenlänge mit der Tiefe, doch die Geschwindigkeit geht mit der Wurzel der Tiefe.
+- <InlineMath math="2{,}5\text{ h}" /> zählt nur den tiefen Ozean und lässt die langsame Überquerung des Schelfs weg.

@@ -1,0 +1,27 @@
+# Tolak kedua-dua ujian supaya kehilangan yang tidak diketahui terbatal
+
+Katakan <InlineMath math="h" /> watt hilang. Dalam setiap ujian pepejal menerima <InlineMath math="(P - h)t" />: ujian <InlineMath math="1" /> memberi <InlineMath math="(50 - h) \times 300 = 0.0375L" />, ujian <InlineMath math="2" /> memberi <InlineMath math="(80 - h) \times 300 = 0.0643L" />.
+
+**Penolakan** menghapuskan <InlineMath math="h" />: <InlineMath math="30 \times 300 = 0.0268L" />, jadi <InlineMath math="L = 9000 \div 0.0268 = 3.36 \times 10^5\text{ J kg}^{-1}" />.
+
+<Mermaid
+  title={<>Dua Ujian Membatalkan Kehilangan</>}
+  description={<>Menolak ujian <InlineMath math="1" /> daripada ujian <InlineMath math="2" /> menghapuskan kehilangan yang tidak diketahui: <InlineMath math="30\text{ W}" /> lebih selama <InlineMath math="300\text{ s}" /> meleburkan <InlineMath math="26.8\text{ g}" /> lebih.</>}
+  chart={`
+    flowchart LR
+      N0["Ujian 1: (50 − h) × 300 = 0.0375 L"] --> N2["Tolak: 30 × 300 = 0.0268 L"]
+      N1["Ujian 2: (80 − h) × 300 = 0.0643 L"] --> N2
+      N2 --> N3["L = 3.36 × 10⁵ J kg⁻¹"]
+      N3 --> N4["h = 50 − 0.0375L ÷ 300 = 8 W"]
+  `}
+/>
+
+Kembali kepada ujian <InlineMath math="1" />: <InlineMath math="(50 - h) \times 300 = 0.0375 \times 3.36 \times 10^5 = 12\,600" />, jadi <InlineMath math="50 - h = 42" /> dan <InlineMath math="h = 8" /> W.
+
+**Larian ketiga**: pada <InlineMath math="100" /> W selama <InlineMath math="300" /> s pemanas membekalkan <InlineMath math="30\,000" /> J, dan <InlineMath math="8 \times 300 = 2400" /> J hilang, meninggalkan <InlineMath math="27\,600" /> J untuk meleburkan <InlineMath math="27\,600 \div 3.36 \times 10^5 = 0.082" /> kg, kira-kira <InlineMath math="82" /> g. Dua kali kuasa larian pertama meleburkan lebih daripada dua kali jisim, kerana kehilangan haba tetap sama.
+
+# Mengapa pilihan lain salah
+
+- <InlineMath math="4.0 \times 10^5\text{ J kg}^{-1}" /> menggunakan larian <InlineMath math="1" /> sahaja dan mengabaikan kehilangan, jadi larian ketiga hanya berskala kepada <InlineMath math="75" /> g.
+- <InlineMath math="3.73 \times 10^5\text{ J kg}^{-1}" /> menggunakan larian <InlineMath math="2" /> sahaja, sekali lagi **tanpa kehilangan** diambil kira.
+- <InlineMath math="16\text{ W}" /> menggandakan kehilangan, yang meninggalkan tepat <InlineMath math="75" /> g bagi larian ketiga.

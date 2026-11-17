@@ -1,0 +1,23 @@
+# Jumlahkan seluruh kelewatan, kira separuh hayat, kemudian kira ke belakang
+
+Sampel mereput sepanjang masa menunggu dan perjalanan: <InlineMath math="3.0 + 24 = 27" /> j, iaitu <InlineMath math="27 \div 6.0 = 4.5" /> separuh hayat. Mengira ke belakang, keaktifan berganda sekali bagi setiap separuh hayat: <InlineMath math="A_0 = 50 \times 2^{4.5}" />.
+
+<Chart
+  title={<>Keaktifan daripada Penyediaan hingga Suntikan</>}
+  categories={["0", "3", "6", "9", "12", "15", "18", "21", "24", "27"]}
+  series={[
+    { label: "Keaktifan (MBq)", mark: "line", values: [1131, 800, 566, 400, 283, 200, 141, 100, 71, 50] },
+  ]}
+  valueLabel="Keaktifan (MBq)"
+  description={<>Dalam <InlineMath math="27\text{ j}" />, empat setengah separuh hayat, keaktifan jatuh daripada kira-kira <InlineMath math="1130\text{ MBq}" /> kepada <InlineMath math="50\text{ MBq}" />. Lengkung menjadi separuh setiap <InlineMath math="6\text{ j}" />, jadi ia bukan garis lurus. Masa dalam jam.</>}
+/>
+
+<InlineMath math="2^{4.5} = 2^4 \times \sqrt{2} = 22.6" />, jadi <InlineMath math="A_0 = 50 \times 22.6 \approx 1130" /> MBq. Separuh daripada satu separuh hayat mendarab dengan <InlineMath math="\sqrt{2}" />, **bukan dengan satu setengah**.
+
+**Melebihi <InlineMath math="1" /> MBq**: menyeparuhkan daripada <InlineMath math="50" /> MBq memberi <InlineMath math="25" />, <InlineMath math="12.5" />, <InlineMath math="6.25" />, <InlineMath math="3.1" /> dan <InlineMath math="1.56" /> MBq selepas lima separuh hayat, <InlineMath math="30" /> j, dan <InlineMath math="0.78" /> MBq selepas enam, <InlineMath math="36" /> j. Keaktifan jatuh melepasi <InlineMath math="1" /> MBq di antara kedua-dua masa itu.
+
+# Mengapa pilihan lain salah
+
+- <InlineMath math="800\text{ MBq}" /> hanya mengira perjalanan <InlineMath math="24" /> j dan terlupa **masa menunggu tiga jam**.
+- <InlineMath math="1200\text{ MBq}" /> mengambil garis lurus di tengah antara <InlineMath math="800" /> dan <InlineMath math="1600" />, tetapi reputan adalah eksponen, jadi separuh daripada satu separuh hayat ialah faktor <InlineMath math="\sqrt{2}" />.
+- Antara <InlineMath math="24" /> j dengan <InlineMath math="30" /> j berhenti satu penyeparuhan terlalu awal: selepas empat separuh hayat keaktifan masih <InlineMath math="3.1" /> MBq.

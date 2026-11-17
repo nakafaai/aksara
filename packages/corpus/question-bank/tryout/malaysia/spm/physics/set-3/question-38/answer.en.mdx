@@ -1,0 +1,23 @@
+# Add up the whole delay, count half-lives, then work backwards
+
+The sample decays for the wait and the journey together: <InlineMath math="3.0 + 24 = 27" /> h, which is <InlineMath math="27 \div 6.0 = 4.5" /> half-lives. Working backwards, the activity doubles once for each half-life: <InlineMath math="A_0 = 50 \times 2^{4.5}" />.
+
+<Chart
+  title={<>Activity from Preparation to Injection</>}
+  categories={["0", "3", "6", "9", "12", "15", "18", "21", "24", "27"]}
+  series={[
+    { label: "Activity (MBq)", mark: "line", values: [1131, 800, 566, 400, 283, 200, 141, 100, 71, 50] },
+  ]}
+  valueLabel="Activity (MBq)"
+  description={<>Over <InlineMath math="27\text{ h}" />, which is <InlineMath math="4.5" /> half-lives, the activity falls from about <InlineMath math="1130\text{ MBq}" /> to <InlineMath math="50\text{ MBq}" />. The curve halves every <InlineMath math="6\text{ h}" />, so it is not a straight line. Time is in hours.</>}
+/>
+
+<InlineMath math="2^{4.5} = 2^4 \times \sqrt{2} = 22.6" />, so <InlineMath math="A_0 = 50 \times 22.6 \approx 1130" /> MBq. Half of one half-life multiplies by <InlineMath math="\sqrt{2}" />, **not by one and a half**.
+
+**Above <InlineMath math="1" /> MBq**: halving from <InlineMath math="50" /> MBq gives <InlineMath math="25" />, <InlineMath math="12.5" />, <InlineMath math="6.25" />, <InlineMath math="3.1" /> and <InlineMath math="1.56" /> MBq after five half-lives, <InlineMath math="30" /> h, and <InlineMath math="0.78" /> MBq after six, <InlineMath math="36" /> h. The activity falls through <InlineMath math="1" /> MBq between those two times.
+
+# Why the other options are wrong
+
+- <InlineMath math="800\text{ MBq}" /> counts only the <InlineMath math="24" /> h journey and forgets the **three-hour wait**.
+- <InlineMath math="1200\text{ MBq}" /> takes a straight line halfway between <InlineMath math="800" /> and <InlineMath math="1600" />, but decay is exponential, so half a half-life is a factor of <InlineMath math="\sqrt{2}" />.
+- Between <InlineMath math="24" /> h and <InlineMath math="30" /> h stops one halving early: after four half-lives the activity is still <InlineMath math="3.1" /> MBq.
