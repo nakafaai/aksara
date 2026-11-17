@@ -1,4 +1,4 @@
-import { unitNode } from "#corpus/curriculum/schema";
+import { materialNode, unitNode } from "#corpus/curriculum/schema";
 
 /** The KSSM Form 4 Biology chapters on how the body defends and regulates itself: immunity, coordination and homeostasis, chapters 11 to 13 of the DSKP. */
 export const kssmForm4PhysiologyControlNodes = [
@@ -41,7 +41,33 @@ export const kssmForm4PhysiologyControlNodes = [
     },
   }),
   unitNode({
+    children: [
+      materialNode({
+        key: "form-4-biology-homeostasis-and-the-human-urinary-system-homeostasis",
+        level: "lesson",
+        materialKeys: ["lesson.biology.homeostasis"],
+        order: 10,
+      }),
+    ],
     key: "form-4-biology-homeostasis-and-the-human-urinary-system",
+    materialCard: {
+      de: {
+        description: "Erkläre Rückkopplung, Blutzucker und Nephron.",
+        title: "Homöostase und Harnsystem des Menschen",
+      },
+      en: {
+        description: "Explain feedback, blood glucose and the nephron.",
+        title: "Homeostasis and the Human Urinary System",
+      },
+      id: {
+        description: "Jelaskan umpan balik, glukosa darah, dan nefron.",
+        title: "Homeostasis dan Sistem Ekskresi Manusia",
+      },
+      ms: {
+        description: "Terangkan suap balik, glukosa darah dan nefron.",
+        title: "Homeostasis dan Sistem Urinari Manusia",
+      },
+    },
     order: 130,
     translations: {
       de: {
