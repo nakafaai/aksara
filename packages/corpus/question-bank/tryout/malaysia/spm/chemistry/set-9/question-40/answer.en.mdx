@@ -1,0 +1,25 @@
+# Find the aspirin the batch needs, scale it up for the yield to find the acid, and count one tablet's molecules from its own mass
+
+The batch holds <InlineMath math="1000\times0.300=300\text{ g}" /> of aspirin, <InlineMath math="M_r=180" />, <InlineMath math="1.667\text{ mol}" />. **At <InlineMath math="85\%" /> yield more acid must react than aspirin forms**: <InlineMath math="1.667\div0.85=1.961\text{ mol}" /> of salicylic acid, <InlineMath math="M_r=138" />, <InlineMath math="271\text{ g}" />. One tablet holds <InlineMath math="0.300\div180=1.67\times10^{-3}\text{ mol}" />, **remembering that <InlineMath math="300\text{ mg}" /> is <InlineMath math="0.300\text{ g}" />**, which is <InlineMath math="1.00\times10^{21}" /> molecules.
+
+<Chart
+  title={<>Moles in the batch</>}
+  description={<>The batch holds <InlineMath math="1.67\text{ mol}" /> of aspirin, made from <InlineMath math="1.96\text{ mol}" /> of salicylic acid.</>}
+  bars="apart"
+  categories={["Aspirin in the batch", "Salicylic acid needed"]}
+  series={[
+    { label: "Amount", mark: "bar", values: [1.67, 1.96] },
+  ]}
+  valueLabel="Amount (mol)"
+/>
+
+<BlockMath math="\begin{aligned}
+m(\text{C}_7\text{H}_6\text{O}_3)&=\tfrac{300\div180}{0.85}\times138=271\text{ g}\\
+N&=\tfrac{0.300}{180}\times6.02\times10^{23}=1.00\times10^{21}
+\end{aligned}" />
+
+# Why the other options are wrong
+
+- <InlineMath math="230\text{ g}" /> ignores the yield. **Only <InlineMath math="85\%" /> of the acid becomes aspirin**, so more is needed.
+- <InlineMath math="196\text{ g}" /> multiplies by <InlineMath math="85\%" /> instead of dividing, which gives less acid than even a full yield would need.
+- <InlineMath math="1.00\times10^{24}" /> takes <InlineMath math="300\text{ mg}" /> as <InlineMath math="300\text{ g}" />.
