@@ -1,42 +1,26 @@
-# Dua kelimpahan yang tidak diketahui memerlukan dua persamaan
+# Jisim atom menetapkan bagaimana bahagian yang hilang terbahagi, sampel menetapkan atom, dan oksida menggunakan sebahagian asid berlebihan yang diukur
 
-Dengan tiga isotop dan satu kelimpahan diberi, dua kelimpahan tidak diketahui. **Satu persamaan datang daripada jumlah peratus iaitu <InlineMath math="100" />, satu lagi daripada purata berpemberat**.
-
-Biar <InlineMath math="x" /> ialah peratus magnesium-25 dan <InlineMath math="y" /> peratus magnesium-26.
-
-- Peratus: <InlineMath math="x + y = 100 - 79 = 21" />.
-- Purata berpemberat: <InlineMath math="\dfrac{79(24) + 25x + 26y}{100} = 24.32" />, jadi <InlineMath math="25x + 26y = 2432 - 1896 = 536" />.
-- Tolak <InlineMath math="25(x + y) = 525" />: <InlineMath math="y = 536 - 525 = 11" />, dan <InlineMath math="x = 10" />.
+Dengan pecahan <InlineMath math="x" /> bagi <InlineMath math="^{25}\text{Mg}" />, <InlineMath math="24\times0.79+25x+26(0.21-x)=24.3" />, jadi <InlineMath math="24.42-x=24.3" /> dan <InlineMath math="x=0.120" />, <InlineMath math="12.0\%" />, meninggalkan <InlineMath math="9.0\%" /> bagi <InlineMath math="^{26}\text{Mg}" />. Sampel itu <InlineMath math="4.86\div24.3=0.200\text{ mol}" />, jadi <InlineMath math="0.0180\text{ mol}" /> <InlineMath math="^{26}\text{Mg}" />, <InlineMath math="1.08\times10^{22}" />. Ia memberi <InlineMath math="0.200\text{ mol}" /> oksida, dan **setiap oksida mengambil dua asid**, <InlineMath math="0.400\text{ mol}" /> daripada <InlineMath math="0.500\text{ mol}" /> yang ditambah. **Baki <InlineMath math="0.100\text{ mol}" />** memerlukan <InlineMath math="0.100\text{ dm}^3" />, <InlineMath math="100\text{ cm}^3" /> alkali.
 
 <Chart
-  title={<>Kelimpahan Isotop Magnesium</>}
+  title={<>Asid dalam kelalang</>}
+  description={<>Daripada <InlineMath math="0.500\text{ mol}" /> asid, oksida mengambil <InlineMath math="0.400\text{ mol}" /> dan alkali meneutralkan <InlineMath math="0.100\text{ mol}" /> yang berbaki.</>}
   bars="apart"
-  categories={["Magnesium-24", "Magnesium-25", "Magnesium-26"]}
+  categories={["Asid ditambah", "Diambil oleh oksida", "Berbaki untuk alkali"]}
   series={[
-    { label: "Kelimpahan (%)", mark: "bar", values: [79, 10, 11] },
+    { label: "Bilangan mol", mark: "bar", values: [0.500, 0.400, 0.100] },
   ]}
-  valueLabel="Kelimpahan (%)"
-  description={<>Magnesium-24 membentuk <InlineMath math="79\%" />, magnesium-25 <InlineMath math="10\%" /> dan magnesium-26 <InlineMath math="11\%" /> daripada atom.</>}
+  valueLabel="Bilangan mol (mol)"
 />
 
-<MassSpectrometerLab
-  title={<>Magnesium dalam Spektrometer Jisim</>}
-  description={<>Tiga isotop membelok pada tiga lintasan, dan tinggi puncak memberi kelimpahannya.</>}
-  samples={["magnesium"]}
-  labels={{
-    average: <>Purata jisim atom relatif</>,
-    choose: "Pilih unsur",
-    isotopes: <>Isotop dan kelimpahannya</>,
-    north: "U",
-    radius: <>Jejari lintasan</>,
-    ratio: <>Nisbah jejari</>,
-    south: "S",
-    view: "Spektrometer jisim",
-  }}
-/>
+<BlockMath math="\begin{aligned}
+24\times0.79+25x+26(0.21-x)&=24.3\ \Rightarrow\ x=0.120\\
+N(^{26}\text{Mg})&=0.090\times\tfrac{4.86}{24.3}\times6.02\times10^{23}=1.08\times10^{22}\\
+V(\text{NaOH})&=\tfrac{0.500-2\times0.200}{1.00}=0.100\text{ dm}^3=100\text{ cm}^3
+\end{aligned}" />
 
 # Kenapa pilihan lain salah
 
-- <InlineMath math="10\%" /> ialah kelimpahan magnesium-25: **dua pemboleh ubah tertukar** pada akhirnya.
-- <InlineMath math="21\%" /> menggabungkan kedua-dua isotop yang lebih berat, seolah-olah magnesium-26 satu-satunya isotop lain.
-- <InlineMath math="5.5\%" /> membahagi dua baki <InlineMath math="11\%" />, seolah-olah ia perlu dikongsi lagi.
+- <InlineMath math="9.0\%" /> menukar dua isotop berat itu. **Purata berada di bawah <InlineMath math="24.42" />, jadi yang lebih ringan antara keduanya lebih banyak**.
+- <InlineMath math="1.10\times10^{22}" /> dan <InlineMath math="95.0\text{ cm}^3" /> menggunakan <InlineMath math="24" /> bagi magnesium, walhal jisim atom sampel ialah <InlineMath math="24.3" />.
+- <InlineMath math="300\text{ cm}^3" /> memberi setiap oksida satu asid, walhal magnesium oksida mengambil dua.

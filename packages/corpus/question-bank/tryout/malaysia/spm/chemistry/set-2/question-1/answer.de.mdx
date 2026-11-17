@@ -1,25 +1,26 @@
-# Mittle die übereinstimmenden Titer und nutze das Verhältnis <InlineMath math="2" /> : <InlineMath math="1" />
+# Verfolge das Chlorid durch die Verdünnung in die Portion und lass dann das überschüssige Silber bestimmen, wie viel Thiocyanat nötig ist
 
-Drei verknüpfte Schritte: Titer ablesen, **nur die übereinstimmenden mitteln**, dann die Stoffmenge der Lauge in die einer zweiprotonigen Säure umrechnen.
+Das Salz sind <InlineMath math="5{,}85\div58{,}5=0{,}100\text{ mol}" /> in <InlineMath math="0{,}250\text{ dm}^3" />, <InlineMath math="0{,}400\text{ mol dm}^{-3}" />, und **das Verdünnen von <InlineMath math="25{,}0\text{ cm}^3" /> auf <InlineMath math="100\text{ cm}^3" /> teilt durch vier**, <InlineMath math="0{,}100\text{ mol dm}^{-3}" />. Die Portion enthält <InlineMath math="0{,}0200\times0{,}100=0{,}00200\text{ mol}" /> Chlorid, die <InlineMath math="0{,}00200\times143{,}5=0{,}287\text{ g}" /> ausfällen. Zugegeben wurden <InlineMath math="0{,}0500\times0{,}0500=0{,}00250\text{ mol}" /> Silber, also **bleiben <InlineMath math="0{,}000500\text{ mol}" /> übrig**, die <InlineMath math="0{,}000500\div0{,}0400=0{,}0125\text{ dm}^3" /> brauchen, <InlineMath math="12{,}5\text{ cm}^3" /> Thiocyanat.
 
 <Chart
-  title={<>Titer jeder Titration</>}
+  title={<>Silber im Kolben</>}
+  description={<>Von den <InlineMath math="2{,}50\text{ mmol}" /> zugegebenem Silber nimmt das Chlorid <InlineMath math="2{,}00\text{ mmol}" /> und das Thiocyanat die übrigen <InlineMath math="0{,}50\text{ mmol}" />.</>}
   bars="apart"
-  categories={["Grob", "Titration 2", "Titration 3", "Titration 4"]}
+  categories={["Zugegebenes Silber", "Vom Chlorid verbraucht", "Rest für Thiocyanat"]}
   series={[
-    { label: "Titer (cm³)", mark: "bar", values: [24.6, 24.2, 24.25, 24.3] },
+    { label: "Stoffmenge", mark: "bar", values: [2.50, 2.00, 0.50] },
   ]}
-  valueLabel="Titer (cm³)"
-  description={<>Titer: <InlineMath math="24{,}60" /> (grob), <InlineMath math="24{,}20" />, <InlineMath math="24{,}25" /> und <InlineMath math="24{,}30\text{ cm}^3" />.</>}
+  valueLabel="Stoffmenge (mmol)"
 />
 
-- Titer: <InlineMath math="24{,}60" /> (grob), <InlineMath math="24{,}20" />, <InlineMath math="24{,}25" /> und <InlineMath math="24{,}30\text{ cm}^3" />. Die letzten drei stimmen auf <InlineMath math="0{,}10\text{ cm}^3" /> überein, der mittlere Titer ist also <InlineMath math="\dfrac{24{,}20 + 24{,}25 + 24{,}30}{3} = 24{,}25\text{ cm}^3" />.
-- Stoffmenge NaOH: <InlineMath math="0{,}100 \times \dfrac{25{,}0}{1000} = 0{,}00250\text{ mol}" />.
-- <InlineMath math="\text{H}_2\text{SO}_4 + 2\text{NaOH} \rightarrow \text{Na}_2\text{SO}_4 + 2\text{H}_2\text{O}" />, also Stoffmenge Säure <InlineMath math="= \dfrac{0{,}00250}{2} = 0{,}00125\text{ mol}" />.
-- Konzentration: <InlineMath math="\dfrac{0{,}00125}{24{,}25/1000} = 0{,}0515\text{ mol dm}^{-3}" />.
+<BlockMath math="\begin{aligned}
+c&=\tfrac{5{,}85\div58{,}5}{0{,}250}\times\tfrac{25{,}0}{100}=0{,}100\text{ mol dm}^{-3}\\
+m(\text{AgCl})&=0{,}0200\times0{,}100\times143{,}5=0{,}287\text{ g}\\
+V(\text{SCN}^-)&=\tfrac{0{,}00250-0{,}00200}{0{,}0400}=0{,}0125\text{ dm}^3=12{,}5\text{ cm}^3
+\end{aligned}" />
 
 # Warum die anderen Antworten falsch sind
 
-- <InlineMath math="0{,}103\text{ mol dm}^{-3}" /> nimmt ein Verhältnis von <InlineMath math="1 : 1" />, **als gäbe Schwefelsäure ein Wasserstoffion ab**.
-- <InlineMath math="0{,}206\text{ mol dm}^{-3}" /> wendet die <InlineMath math="2" /> verkehrt an und verdoppelt die Stoffmenge der Säure.
-- <InlineMath math="0{,}0258\text{ mol dm}^{-3}" /> halbiert die Stoffmenge zweimal.
+- <InlineMath math="0{,}400\text{ mol dm}^{-3}" /> überspringt die Verdünnung, sodass die Portion <InlineMath math="0{,}00800\text{ mol}" /> Chlorid zu enthalten scheint, mehr als das Silber aufnehmen kann.
+- <InlineMath math="62{,}5\text{ cm}^3" /> titriert das ganze zugegebene Silber, doch **das Chlorid hat schon <InlineMath math="0{,}00200\text{ mol}" /> davon genommen**.
+- <InlineMath math="0{,}117\text{ g}" /> wiegt den Niederschlag als Natriumchlorid, doch es ist Silberchlorid, <InlineMath math="M_r=143{,}5" />.

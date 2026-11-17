@@ -10,19 +10,51 @@ const item: ItemSource = {
     en: {
       kind: "choice",
       options: [
-        { correct: true, label: "$$2.50\\text{ mol dm}^{-3}$$" },
-        { correct: false, label: "$$1.25\\text{ mol dm}^{-3}$$" },
-        { correct: false, label: "$$0.250\\text{ mol dm}^{-3}$$" },
-        { correct: false, label: "$$0.0250\\text{ mol dm}^{-3}$$" },
+        {
+          correct: true,
+          label:
+            "$$0.625\\text{ mol dm}^{-3}$$, $$8.05\\text{ g}$$, $$80.0\\%$$",
+        },
+        {
+          correct: false,
+          label:
+            "$$1.25\\text{ mol dm}^{-3}$$, $$8.05\\text{ g}$$, $$80.0\\%$$",
+        },
+        {
+          correct: false,
+          label:
+            "$$0.625\\text{ mol dm}^{-3}$$, $$8.05\\text{ g}$$, $$125\\%$$",
+        },
+        {
+          correct: false,
+          label:
+            "$$0.625\\text{ mol dm}^{-3}$$, $$16.1\\text{ g}$$, $$40.0\\%$$",
+        },
       ],
     },
     ms: {
       kind: "choice",
       options: [
-        { correct: true, label: "$$2.50\\text{ mol dm}^{-3}$$" },
-        { correct: false, label: "$$1.25\\text{ mol dm}^{-3}$$" },
-        { correct: false, label: "$$0.250\\text{ mol dm}^{-3}$$" },
-        { correct: false, label: "$$0.0250\\text{ mol dm}^{-3}$$" },
+        {
+          correct: true,
+          label:
+            "$$0.625\\text{ mol dm}^{-3}$$, $$8.05\\text{ g}$$, $$80.0\\%$$",
+        },
+        {
+          correct: false,
+          label:
+            "$$1.25\\text{ mol dm}^{-3}$$, $$8.05\\text{ g}$$, $$80.0\\%$$",
+        },
+        {
+          correct: false,
+          label:
+            "$$0.625\\text{ mol dm}^{-3}$$, $$8.05\\text{ g}$$, $$125\\%$$",
+        },
+        {
+          correct: false,
+          label:
+            "$$0.625\\text{ mol dm}^{-3}$$, $$16.1\\text{ g}$$, $$40.0\\%$$",
+        },
       ],
     },
   },
