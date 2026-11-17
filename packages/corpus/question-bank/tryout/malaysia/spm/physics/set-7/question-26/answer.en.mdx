@@ -1,0 +1,26 @@
+# The depth below the tower's water surface sets the pressure
+
+The water at a tap is under the column of water from the tap **up to the tower's surface**, so the depth is <InlineMath math="25\text{ m}" /> minus the tap's height. A gauge reads only the pressure **above atmospheric**, <InlineMath math="\rho gh" />. The machine needs a depth of at least <InlineMath math="5.0\text{ m}" />, so its tap may be at most <InlineMath math="20\text{ m}" /> high, and the floor must be **at or below** that height.
+
+<Chart
+  title={<>Water Pressure at the Taps on Each Floor</>}
+  bars="apart"
+  categories={["Floor 3 (9 m)", "Floor 6 (18 m)", "Floor 7 (21 m)"]}
+  series={[
+    { label: "Gauge pressure", mark: "bar", values: [160, 70, 40] },
+  ]}
+  valueLabel="Gauge pressure (kPa)"
+  description={<>The gauge pressure falls by <InlineMath math="30\text{ kPa}" /> for every floor: <InlineMath math="160\text{ kPa}" /> on floor 3, <InlineMath math="70\text{ kPa}" /> on floor 6 and only <InlineMath math="40\text{ kPa}" /> on floor 7, below the <InlineMath math="50\text{ kPa}" /> the machine needs.</>}
+/>
+
+<BlockMath math="p_3=1000(10)(25-9.0)=1.6\times10^{5}\text{ Pa}" />
+
+<BlockMath math="h_{\min}=\frac{5.0\times10^{4}}{1000\times10}=5.0\text{ m}\Rightarrow\text{tap at most }20\text{ m high},\qquad \frac{20}{3.0}=6.7\Rightarrow\text{floor }6" />
+
+The tap on floor <InlineMath math="3" /> reads <InlineMath math="1.6\times10^{5}\text{ Pa}" />. Floor <InlineMath math="6" /> is at <InlineMath math="18\text{ m}" />, giving <InlineMath math="7.0\times10^{4}\text{ Pa}" />, while floor <InlineMath math="7" /> at <InlineMath math="21\text{ m}" /> would give only <InlineMath math="4.0\times10^{4}\text{ Pa}" />. Floor <InlineMath math="6" /> is the highest that works.
+
+# Why the other options are wrong
+
+- <InlineMath math="2.6\times10^{5}\text{ Pa}" /> adds **atmospheric pressure**, but a gauge reads only the pressure above atmospheric.
+- Floor <InlineMath math="7" /> **rounds <InlineMath math="6.7" /> up**, but floor <InlineMath math="7" /> is above <InlineMath math="20\text{ m}" /> and gets too little pressure.
+- <InlineMath math="9.0\times10^{4}\text{ Pa}" /> uses the **tap's height above the ground**, <InlineMath math="9.0\text{ m}" />, as if it were the depth of water above the tap.

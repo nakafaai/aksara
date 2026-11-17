@@ -1,0 +1,26 @@
+# Kedalaman di bawah permukaan air menara menentukan tekanan
+
+Air di keran berada di bawah kolom air dari keran **sampai permukaan menara**, jadi kedalamannya adalah <InlineMath math="25\text{ m}" /> dikurangi tinggi keran. Pengukur hanya membaca tekanan **di atas atmosfer**, <InlineMath math="\rho gh" />. Mesin butuh kedalaman paling sedikit <InlineMath math="5{,}0\text{ m}" />, jadi kerannya paling tinggi <InlineMath math="20\text{ m}" />, dan lantainya harus **pada atau di bawah** ketinggian itu.
+
+<Chart
+  title={<>Tekanan Air pada Keran di Tiap Lantai</>}
+  bars="apart"
+  categories={["Lantai 3 (9 m)", "Lantai 6 (18 m)", "Lantai 7 (21 m)"]}
+  series={[
+    { label: "Tekanan terukur", mark: "bar", values: [160, 70, 40] },
+  ]}
+  valueLabel="Tekanan terukur (kPa)"
+  description={<>Tekanan terukur turun <InlineMath math="30\text{ kPa}" /> untuk tiap lantai: <InlineMath math="160\text{ kPa}" /> di lantai 3, <InlineMath math="70\text{ kPa}" /> di lantai 6, dan hanya <InlineMath math="40\text{ kPa}" /> di lantai 7, di bawah <InlineMath math="50\text{ kPa}" /> yang dibutuhkan mesin.</>}
+/>
+
+<BlockMath math="p_3=1000(10)(25-9{,}0)=1{,}6\times10^{5}\text{ Pa}" />
+
+<BlockMath math="h_{\min}=\frac{5{,}0\times10^{4}}{1000\times10}=5{,}0\text{ m}\Rightarrow\text{keran paling tinggi }20\text{ m},\qquad \frac{20}{3{,}0}=6{,}7\Rightarrow\text{lantai }6" />
+
+Keran di lantai <InlineMath math="3" /> membaca <InlineMath math="1{,}6\times10^{5}\text{ Pa}" />. Lantai <InlineMath math="6" /> ada di <InlineMath math="18\text{ m}" />, memberi <InlineMath math="7{,}0\times10^{4}\text{ Pa}" />, sedangkan lantai <InlineMath math="7" /> di <InlineMath math="21\text{ m}" /> hanya memberi <InlineMath math="4{,}0\times10^{4}\text{ Pa}" />. Lantai <InlineMath math="6" /> adalah lantai tertinggi yang berfungsi.
+
+# Mengapa pilihan lain salah
+
+- <InlineMath math="2{,}6\times10^{5}\text{ Pa}" /> menambahkan **tekanan atmosfer**, padahal pengukur hanya membaca tekanan di atas atmosfer.
+- Lantai <InlineMath math="7" /> **membulatkan <InlineMath math="6{,}7" /> ke atas**, padahal lantai <InlineMath math="7" /> berada di atas <InlineMath math="20\text{ m}" /> dan tekanannya kurang.
+- <InlineMath math="9{,}0\times10^{4}\text{ Pa}" /> memakai **tinggi keran dari tanah**, <InlineMath math="9{,}0\text{ m}" />, seolah-olah itu kedalaman air di atas keran.

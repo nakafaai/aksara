@@ -1,0 +1,26 @@
+# Ein ausgefallener Zweig erhöht den Gesamtwiderstand und verschiebt die Spannung
+
+Arbeiten beide Zweige, hat das Parallelpaar <InlineMath math="2{,}0\,\Omega" />. Fällt der <InlineMath math="3{,}0\,\Omega" />-Widerstand aus, bleibt vom Paar nur der <InlineMath math="6{,}0\,\Omega" />-Widerstand, der **Gesamtwiderstand steigt**, und der Strom sinkt. Doch der <InlineMath math="6{,}0\,\Omega" />-Widerstand bekommt nun einen **größeren Teil der <InlineMath math="12\text{ V}" />**, seine Leistung steigt also, statt zu sinken.
+
+<Chart
+  title={<>Leistung im Widerstand von <InlineMath math="6{,}0\ \Omega" /> vorher und nachher</>}
+  bars="apart"
+  categories={["Vorher", "Nach Ausfall des Widerstands von 3,0 Ω"]}
+  series={[
+    { label: "Leistung", mark: "bar", values: [2.67, 8.64] },
+  ]}
+  valueLabel="Leistung (W)"
+  description={<>Die Leistung im <InlineMath math="6{,}0\,\Omega" />-Widerstand steigt von etwa <InlineMath math="2{,}7\text{ W}" /> auf etwa <InlineMath math="8{,}6\text{ W}" />, wenn der <InlineMath math="3{,}0\,\Omega" />-Widerstand ausfällt, weil seine Spannung von <InlineMath math="4{,}0" /> auf <InlineMath math="7{,}2\text{ V}" /> steigt.</>}
+/>
+
+<BlockMath math="\text{Vorher: } R=4{,}0+\frac{6{,}0\cdot3{,}0}{6{,}0+3{,}0}=6{,}0\,\Omega,\quad I=2{,}0\text{ A},\quad V_6=2{,}0\cdot2{,}0=4{,}0\text{ V},\quad P_6=\frac{4{,}0^2}{6{,}0}\approx2{,}7\text{ W}" />
+
+<BlockMath math="\text{Nachher: } R'=4{,}0+6{,}0=10\,\Omega,\quad I'=\frac{12}{10}=1{,}2\text{ A},\quad P_6'=1{,}2^2\cdot6{,}0\approx8{,}6\text{ W}" />
+
+Der Versorgungsstrom fällt von <InlineMath math="2{,}0\text{ A}" /> auf <InlineMath math="1{,}2\text{ A}" />. Die Spannung am <InlineMath math="6{,}0\,\Omega" />-Widerstand steigt von <InlineMath math="4{,}0\text{ V}" /> auf <InlineMath math="7{,}2\text{ V}" />, seine Leistung wächst also auf mehr als das Dreifache, etwa <InlineMath math="8{,}6\text{ W}" />.
+
+# Warum die anderen Antworten falsch sind
+
+- <InlineMath math="2{,}0\text{ A}" /> mit <InlineMath math="2{,}7\text{ W}" /> ist die Schaltung **vor dem Ausfall**.
+- <InlineMath math="24\text{ W}" /> legt die **vollen <InlineMath math="12\text{ V}" />** an den <InlineMath math="6{,}0\,\Omega" />-Widerstand und vergisst den <InlineMath math="4{,}0\,\Omega" />-Widerstand in Reihe.
+- <InlineMath math="2{,}7\text{ W}" /> mit <InlineMath math="1{,}2\text{ A}" /> nimmt an, der **<InlineMath math="6{,}0\,\Omega" />-Widerstand bleibe unberührt** vom Ausfall des Zweigs daneben.

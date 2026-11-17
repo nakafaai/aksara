@@ -1,0 +1,26 @@
+# Gaya apung tetap sama dengan berat, jadi volume yang dipindahkan harus berubah
+
+Kapal yang mengapung selalu memindahkan air seberat **beratnya sendiri**. Air tawar kurang rapat, jadi kapal harus memindahkan **volume lebih besar** dan tenggelam lebih dalam. Volume tambahan dibagi luas garis air memberi perubahan kedalaman. Agar mengapung pada kedalaman laut di sungai, berat kapal hanya boleh sebesar **air sungai yang mengisi volume kedalaman laut**.
+
+<Chart
+  title={<>Volume Air yang Dipindahkan Kapal</>}
+  bars="apart"
+  categories={["Air laut", "Air sungai", "Sungai, setelah bongkar muatan"]}
+  series={[
+    { label: "Volume dipindahkan", mark: "bar", values: [19417, 20000, 19417] },
+  ]}
+  valueLabel="Volume (m³)"
+  description={<>Kapal memindahkan <InlineMath math="19\,400\text{ m}^3" /> air laut tetapi <InlineMath math="20\,000\text{ m}^3" /> air sungai. Membongkar <InlineMath math="5{,}8\times10^{5}\text{ kg}" /> mengembalikannya ke <InlineMath math="19\,400\text{ m}^3" />.</>}
+/>
+
+<BlockMath math="V_{\text{laut}}=\frac{2{,}0\times10^{7}}{1030}\approx19\,417\text{ m}^3,\qquad V_{\text{sungai}}=\frac{2{,}0\times10^{7}}{1000}=20\,000\text{ m}^3,\qquad \Delta d=\frac{583}{4000}\approx0{,}15\text{ m}" />
+
+<BlockMath math="m=1000\times19\,417\approx1{,}942\times10^{7}\text{ kg},\qquad \Delta m=2{,}0\times10^{7}-1{,}942\times10^{7}\approx5{,}8\times10^{5}\text{ kg}" />
+
+Di sungai kapal tenggelam sekitar <InlineMath math="0{,}15\text{ m}" /> lebih dalam. Membongkar sekitar <InlineMath math="5{,}8\times10^{5}\text{ kg}" /> muatan mengembalikannya ke kedalaman saat di laut.
+
+# Mengapa pilihan lain salah
+
+- **Lebih dangkal** arahnya terbalik: air yang kurang rapat memberi topangan lebih kecil tiap meter kubik, jadi kapal duduk lebih dalam.
+- <InlineMath math="6{,}0\times10^{5}\text{ kg}" /> mengambil **<InlineMath math="3\%" /> dari massa kapal** karena massa jenisnya berbeda <InlineMath math="3\%" /> dari massa jenis sungai, padahal pecahannya <InlineMath math="\dfrac{30}{1030}" />, sedikit lebih kecil.
+- <InlineMath math="4{,}9\text{ m}" /> adalah **seluruh kedalaman tenggelam** di laut, <InlineMath math="\dfrac{19\,417}{4000}" />, bukan perubahannya.

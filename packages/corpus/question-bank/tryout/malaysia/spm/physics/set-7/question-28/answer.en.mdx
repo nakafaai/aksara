@@ -1,0 +1,26 @@
+# A failed branch raises the total resistance and shifts the voltage
+
+With both branches working, the parallel pair is <InlineMath math="2.0\,\Omega" />. When the <InlineMath math="3.0\,\Omega" /> resistor fails, the pair becomes just the <InlineMath math="6.0\,\Omega" /> resistor, so the **total resistance rises** and the current falls. But the <InlineMath math="6.0\,\Omega" /> resistor now takes a **larger share of the <InlineMath math="12\text{ V}" />**, so its power goes up, not down.
+
+<Chart
+  title={<>Power in the <InlineMath math="6.0\ \Omega" /> Resistor Before and After</>}
+  bars="apart"
+  categories={["Before", "After the 3.0 Ω fails"]}
+  series={[
+    { label: "Power", mark: "bar", values: [2.67, 8.64] },
+  ]}
+  valueLabel="Power (W)"
+  description={<>The power in the <InlineMath math="6.0\,\Omega" /> resistor rises from about <InlineMath math="2.7\text{ W}" /> to about <InlineMath math="8.6\text{ W}" /> once the <InlineMath math="3.0\,\Omega" /> resistor fails, because the voltage across it rises from <InlineMath math="4.0" /> to <InlineMath math="7.2\text{ V}" />.</>}
+/>
+
+<BlockMath math="\text{Before: } R=4.0+\frac{6.0\times3.0}{6.0+3.0}=6.0\,\Omega,\quad I=2.0\text{ A},\quad V_6=2.0\times2.0=4.0\text{ V},\quad P_6=\frac{4.0^2}{6.0}\approx2.7\text{ W}" />
+
+<BlockMath math="\text{After: } R'=4.0+6.0=10\,\Omega,\quad I'=\frac{12}{10}=1.2\text{ A},\quad P_6'=1.2^2\times6.0\approx8.6\text{ W}" />
+
+The supply current drops from <InlineMath math="2.0\text{ A}" /> to <InlineMath math="1.2\text{ A}" />. The voltage across the <InlineMath math="6.0\,\Omega" /> resistor rises from <InlineMath math="4.0\text{ V}" /> to <InlineMath math="7.2\text{ V}" />, so its power more than triples, to about <InlineMath math="8.6\text{ W}" />.
+
+# Why the other options are wrong
+
+- <InlineMath math="2.0\text{ A}" /> with <InlineMath math="2.7\text{ W}" /> is the circuit **before the failure**.
+- <InlineMath math="24\text{ W}" /> puts the **full <InlineMath math="12\text{ V}" />** across the <InlineMath math="6.0\,\Omega" /> resistor, forgetting the <InlineMath math="4.0\,\Omega" /> resistor in series.
+- <InlineMath math="2.7\text{ W}" /> with <InlineMath math="1.2\text{ A}" /> assumes the **<InlineMath math="6.0\,\Omega" /> resistor is unaffected** by the failure of the branch beside it.

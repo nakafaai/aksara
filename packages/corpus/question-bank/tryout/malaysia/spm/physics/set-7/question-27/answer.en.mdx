@@ -1,0 +1,26 @@
+# The buoyant force stays equal to the weight, so the displaced volume must change
+
+A floating ship always displaces its **own weight** of water. Fresh water is less dense, so the ship must displace **more volume** and sinks deeper. The extra volume spread over the waterline area gives the change in depth. To float at the sea depth in the river, the ship may only weigh as much as the **sea-depth volume of river water**.
+
+<Chart
+  title={<>Volume of Water the Ship Displaces</>}
+  bars="apart"
+  categories={["Sea water", "River water", "River, after unloading"]}
+  series={[
+    { label: "Displaced volume", mark: "bar", values: [19417, 20000, 19417] },
+  ]}
+  valueLabel="Volume (m³)"
+  description={<>The ship displaces <InlineMath math="19\,400\text{ m}^3" /> of sea water but <InlineMath math="20\,000\text{ m}^3" /> of river water. Unloading <InlineMath math="5.8\times10^{5}\text{ kg}" /> brings it back to <InlineMath math="19\,400\text{ m}^3" />.</>}
+/>
+
+<BlockMath math="V_{\text{sea}}=\frac{2.0\times10^{7}}{1030}\approx19\,417\text{ m}^3,\qquad V_{\text{river}}=\frac{2.0\times10^{7}}{1000}=20\,000\text{ m}^3,\qquad \Delta d=\frac{583}{4000}\approx0.15\text{ m}" />
+
+<BlockMath math="m=1000\times19\,417\approx1.942\times10^{7}\text{ kg},\qquad \Delta m=2.0\times10^{7}-1.942\times10^{7}\approx5.8\times10^{5}\text{ kg}" />
+
+In the river the ship sinks about <InlineMath math="0.15\text{ m}" /> deeper. Unloading about <InlineMath math="5.8\times10^{5}\text{ kg}" /> of cargo brings it back to the depth it had at sea.
+
+# Why the other options are wrong
+
+- **Shallower** has the direction reversed: less dense water gives less support per cubic metre, so the ship sits deeper.
+- <InlineMath math="6.0\times10^{5}\text{ kg}" /> takes **<InlineMath math="3\%" /> of the ship's mass** because the densities differ by <InlineMath math="3\%" /> of the river's, but the fraction is <InlineMath math="\dfrac{30}{1030}" />, slightly less.
+- <InlineMath math="4.9\text{ m}" /> is the **whole submerged depth** at sea, <InlineMath math="\dfrac{19\,417}{4000}" />, not the change.

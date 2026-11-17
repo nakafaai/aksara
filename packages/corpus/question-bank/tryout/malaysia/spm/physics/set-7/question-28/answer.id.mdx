@@ -1,0 +1,26 @@
+# Cabang yang rusak menaikkan hambatan total dan menggeser tegangan
+
+Saat kedua cabang bekerja, pasangan paralel bernilai <InlineMath math="2{,}0\,\Omega" />. Saat resistor <InlineMath math="3{,}0\,\Omega" /> rusak, pasangan itu tinggal resistor <InlineMath math="6{,}0\,\Omega" /> saja, jadi **hambatan total naik** dan arus turun. Tetapi resistor <InlineMath math="6{,}0\,\Omega" /> kini mengambil **bagian lebih besar dari <InlineMath math="12\text{ V}" />**, jadi dayanya naik, bukan turun.
+
+<Chart
+  title={<>Daya pada Resistor <InlineMath math="6{,}0\ \Omega" /> Sebelum dan Sesudah</>}
+  bars="apart"
+  categories={["Sebelum", "Setelah resistor 3,0 Ω rusak"]}
+  series={[
+    { label: "Daya", mark: "bar", values: [2.67, 8.64] },
+  ]}
+  valueLabel="Daya (W)"
+  description={<>Daya pada resistor <InlineMath math="6{,}0\,\Omega" /> naik dari sekitar <InlineMath math="2{,}7\text{ W}" /> menjadi sekitar <InlineMath math="8{,}6\text{ W}" /> setelah resistor <InlineMath math="3{,}0\,\Omega" /> rusak, karena tegangannya naik dari <InlineMath math="4{,}0" /> ke <InlineMath math="7{,}2\text{ V}" />.</>}
+/>
+
+<BlockMath math="\text{Sebelum: } R=4{,}0+\frac{6{,}0\times3{,}0}{6{,}0+3{,}0}=6{,}0\,\Omega,\quad I=2{,}0\text{ A},\quad V_6=2{,}0\times2{,}0=4{,}0\text{ V},\quad P_6=\frac{4{,}0^2}{6{,}0}\approx2{,}7\text{ W}" />
+
+<BlockMath math="\text{Sesudah: } R'=4{,}0+6{,}0=10\,\Omega,\quad I'=\frac{12}{10}=1{,}2\text{ A},\quad P_6'=1{,}2^2\times6{,}0\approx8{,}6\text{ W}" />
+
+Arus sumber turun dari <InlineMath math="2{,}0\text{ A}" /> menjadi <InlineMath math="1{,}2\text{ A}" />. Tegangan pada resistor <InlineMath math="6{,}0\,\Omega" /> naik dari <InlineMath math="4{,}0\text{ V}" /> ke <InlineMath math="7{,}2\text{ V}" />, jadi dayanya naik lebih dari tiga kali, menjadi sekitar <InlineMath math="8{,}6\text{ W}" />.
+
+# Mengapa pilihan lain salah
+
+- <InlineMath math="2{,}0\text{ A}" /> dengan <InlineMath math="2{,}7\text{ W}" /> adalah rangkaian **sebelum kerusakan**.
+- <InlineMath math="24\text{ W}" /> menaruh **<InlineMath math="12\text{ V}" /> penuh** pada resistor <InlineMath math="6{,}0\,\Omega" />, lupa resistor <InlineMath math="4{,}0\,\Omega" /> yang seri.
+- <InlineMath math="2{,}7\text{ W}" /> dengan <InlineMath math="1{,}2\text{ A}" /> menganggap **resistor <InlineMath math="6{,}0\,\Omega" /> tidak terpengaruh** oleh rusaknya cabang di sebelahnya.

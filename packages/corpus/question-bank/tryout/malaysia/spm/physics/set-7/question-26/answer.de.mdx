@@ -1,0 +1,26 @@
+# Die Tiefe unter der Wasseroberfläche des Turms legt den Druck fest
+
+Das Wasser am Hahn steht unter der Wassersäule vom Hahn **bis zur Oberfläche im Turm**, die Tiefe ist also <InlineMath math="25\text{ m}" /> minus Höhe des Hahns. Ein Manometer zeigt nur den Druck **über dem Luftdruck**, <InlineMath math="\rho gh" />. Die Maschine braucht mindestens <InlineMath math="5{,}0\text{ m}" /> Tiefe, ihr Hahn darf also höchstens <InlineMath math="20\text{ m}" /> hoch liegen, und das Stockwerk muss **auf oder unter** dieser Höhe sein.
+
+<Chart
+  title={<>Wasserdruck an den Hähnen jedes Stockwerks</>}
+  bars="apart"
+  categories={["Stock 3 (9 m)", "Stock 6 (18 m)", "Stock 7 (21 m)"]}
+  series={[
+    { label: "Überdruck", mark: "bar", values: [160, 70, 40] },
+  ]}
+  valueLabel="Überdruck (kPa)"
+  description={<>Der Überdruck sinkt je Stockwerk um <InlineMath math="30\text{ kPa}" />: <InlineMath math="160\text{ kPa}" /> im <InlineMath math="3" />. Stock, <InlineMath math="70\text{ kPa}" /> im <InlineMath math="6" />. und nur <InlineMath math="40\text{ kPa}" /> im <InlineMath math="7" />., unter den <InlineMath math="50\text{ kPa}" />, die die Maschine braucht.</>}
+/>
+
+<BlockMath math="p_3=1000(10)(25-9{,}0)=1{,}6\cdot10^{5}\text{ Pa}" />
+
+<BlockMath math="h_{\min}=\frac{5{,}0\cdot10^{4}}{1000\cdot10}=5{,}0\text{ m}\Rightarrow\text{Hahn höchstens }20\text{ m hoch},\qquad \frac{20}{3{,}0}=6{,}7\Rightarrow\text{Stock }6" />
+
+Der Hahn im <InlineMath math="3" />. Stock zeigt <InlineMath math="1{,}6\cdot10^{5}\text{ Pa}" />. Der <InlineMath math="6" />. Stock liegt bei <InlineMath math="18\text{ m}" /> und hat <InlineMath math="7{,}0\cdot10^{4}\text{ Pa}" />, der <InlineMath math="7" />. Stock bei <InlineMath math="21\text{ m}" /> hätte nur <InlineMath math="4{,}0\cdot10^{4}\text{ Pa}" />. Der <InlineMath math="6" />. Stock ist der höchste, in dem die Maschine läuft.
+
+# Warum die anderen Antworten falsch sind
+
+- <InlineMath math="2{,}6\cdot10^{5}\text{ Pa}" /> addiert den **Luftdruck**, doch ein Manometer zeigt nur den Druck über dem Luftdruck.
+- Stock <InlineMath math="7" /> **rundet <InlineMath math="6{,}7" /> auf**, doch der <InlineMath math="7" />. Stock liegt über <InlineMath math="20\text{ m}" /> und bekommt zu wenig Druck.
+- <InlineMath math="9{,}0\cdot10^{4}\text{ Pa}" /> nimmt die **Höhe des Hahns über dem Boden**, <InlineMath math="9{,}0\text{ m}" />, als wäre sie die Wassertiefe über dem Hahn.

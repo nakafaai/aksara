@@ -1,0 +1,26 @@
+# Daya apungan kekal sama dengan berat, jadi isi padu tersesar mesti berubah
+
+Kapal yang terapung sentiasa menyesarkan air seberat **beratnya sendiri**. Air tawar kurang tumpat, jadi kapal mesti menyesarkan **lebih banyak isi padu** dan tenggelam lebih dalam. Isi padu tambahan dibahagi dengan luas garis air memberi perubahan kedalaman. Untuk terapung pada kedalaman laut di sungai, berat kapal hanya boleh sama dengan **air sungai yang mengisi isi padu kedalaman laut**.
+
+<Chart
+  title={<>Isi Padu Air yang Disesarkan Kapal</>}
+  bars="apart"
+  categories={["Air laut", "Air sungai", "Sungai, selepas memunggah"]}
+  series={[
+    { label: "Isi padu tersesar", mark: "bar", values: [19417, 20000, 19417] },
+  ]}
+  valueLabel="Isi padu (m³)"
+  description={<>Kapal menyesarkan <InlineMath math="19\,400\text{ m}^3" /> air laut tetapi <InlineMath math="20\,000\text{ m}^3" /> air sungai. Memunggah <InlineMath math="5.8\times10^{5}\text{ kg}" /> mengembalikannya kepada <InlineMath math="19\,400\text{ m}^3" />.</>}
+/>
+
+<BlockMath math="V_{\text{laut}}=\frac{2.0\times10^{7}}{1030}\approx19\,417\text{ m}^3,\qquad V_{\text{sungai}}=\frac{2.0\times10^{7}}{1000}=20\,000\text{ m}^3,\qquad \Delta d=\frac{583}{4000}\approx0.15\text{ m}" />
+
+<BlockMath math="m=1000\times19\,417\approx1.942\times10^{7}\text{ kg},\qquad \Delta m=2.0\times10^{7}-1.942\times10^{7}\approx5.8\times10^{5}\text{ kg}" />
+
+Di sungai kapal tenggelam kira-kira <InlineMath math="0.15\text{ m}" /> lebih dalam. Memunggah kira-kira <InlineMath math="5.8\times10^{5}\text{ kg}" /> kargo mengembalikannya ke kedalaman semasa di laut.
+
+# Kenapa pilihan lain salah
+
+- **Lebih cetek** mempunyai arah yang terbalik: air yang kurang tumpat memberi sokongan yang kurang bagi setiap meter padu, jadi kapal duduk lebih dalam.
+- <InlineMath math="6.0\times10^{5}\text{ kg}" /> mengambil **<InlineMath math="3\%" /> daripada jisim kapal** kerana ketumpatan berbeza <InlineMath math="3\%" /> daripada ketumpatan sungai, tetapi pecahannya ialah <InlineMath math="\dfrac{30}{1030}" />, sedikit kurang.
+- <InlineMath math="4.9\text{ m}" /> ialah **seluruh kedalaman tenggelam** di laut, <InlineMath math="\dfrac{19\,417}{4000}" />, bukan perubahannya.
