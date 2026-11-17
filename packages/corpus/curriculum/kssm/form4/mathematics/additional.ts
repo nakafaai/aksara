@@ -80,7 +80,33 @@ export const kssmForm4AdditionalMathematicsTopicNodes = [
     },
   }),
   unitNode({
+    children: [
+      materialNode({
+        key: "form-4-additional-mathematics-systems-of-equations-simultaneous-equation",
+        level: "lesson",
+        materialKeys: ["lesson.mathematics.simultaneous-equation"],
+        order: 10,
+      }),
+    ],
     key: "form-4-additional-mathematics-systems-of-equations",
+    materialCard: {
+      de: {
+        description: "Löse Systeme mit drei Variablen und Kurven.",
+        title: "Gleichungssysteme",
+      },
+      en: {
+        description: "Solve three-variable and line-curve systems.",
+        title: "Systems of Equations",
+      },
+      id: {
+        description: "Selesaikan sistem tiga variabel dan garis-kurva.",
+        title: "Sistem Persamaan",
+      },
+      ms: {
+        description: "Selesaikan sistem tiga pemboleh ubah dan tak linear.",
+        title: "Sistem Persamaan",
+      },
+    },
     order: 30,
     translations: {
       de: { routeSlug: "gleichungssysteme", title: "Gleichungssysteme" },
