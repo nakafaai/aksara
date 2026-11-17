@@ -1,27 +1,26 @@
-# Das Glas bremst das Licht und verkürzt die Wellenlänge, doch die Frequenz bleibt
+# Den Strahl ins Glas und entlang seines schrägen Wegs verfolgen und prüfen, was das Glas ändern kann
 
-Brechung ändert die **Geschwindigkeit** des Lichts, <InlineMath math="v=\dfrac cn" />. Die Frequenz legt die Quelle fest, und sie **ändert sich an einer Grenze nicht**, die Wellenlänge schrumpft also im selben Verhältnis wie die Geschwindigkeit. Laufzeit und Zahl der Wellenlängen im Block folgen aus diesen Werten im Glas.
+Das Snelliussche Gesetz liefert den Winkel im Glas. Der Strahl durchquert den Block dann **schräg**, sein Weg ist also länger als die <InlineMath math="6{,}0\text{ cm}" /> Dicke, und die Laufzeit braucht diesen längeren Weg und die **kleinere Geschwindigkeit** im Glas. Das Glas ändert Geschwindigkeit und Wellenlänge, aber nicht die **Frequenz**, die die Farbe bestimmt.
 
 <Chart
-  title={<>Laserlicht in Luft und in Glas</>}
+  title={<>Der Strahl in Luft und im Glas</>}
   bars="apart"
-  categories={["Geschwindigkeit (×10⁸ m/s)", "Wellenlänge (×100 nm)", "Frequenz (×10¹⁴ Hz)"]}
+  categories={["Winkel zum Lot (°)", "Weglänge (cm)", "Zeit (×10⁻¹⁰ s)"]}
   series={[
-    { label: "In Luft", mark: "bar", values: [3.0, 6.33, 4.74] },
-    { label: "In Glas", mark: "bar", values: [2.0, 4.22, 4.74] },
+    { label: "Wert", mark: "bar", values: [25.4, 6.64, 3.32] },
   ]}
   valueLabel="Wert"
-  description={<>Im Glas sinkt die Geschwindigkeit von <InlineMath math="3{,}0" /> auf <InlineMath math="2{,}0\cdot10^{8}\text{ m s}^{-1}" /> und die Wellenlänge von <InlineMath math="633" /> auf <InlineMath math="422\text{ nm}" />, die Frequenz bleibt <InlineMath math="4{,}7\cdot10^{14}\text{ Hz}" />.</>}
+  description={<>In Luft trifft der Strahl unter <InlineMath math="40°" /> auf den Block. Innen wird er auf etwa <InlineMath math="25°" /> gebrochen, durchläuft <InlineMath math="6{,}6\text{ cm}" /> Glas und braucht etwa <InlineMath math="3{,}3\cdot10^{-10}\text{ s}" />.</>}
 />
 
-<BlockMath math="v=\frac{3{,}0\cdot10^{8}}{1{,}50}=2{,}0\cdot10^{8}\text{ m s}^{-1},\qquad t_g-t_a=\frac{0{,}060}{2{,}0\cdot10^{8}}-\frac{0{,}060}{3{,}0\cdot10^{8}}=1{,}0\cdot10^{-10}\text{ s}" />
+<BlockMath math="\sin r=\frac{\sin40°}{1{,}50}=\frac{0{,}643}{1{,}50}=0{,}429\Rightarrow r\approx25{,}4°,\qquad L=\frac{6{,}0}{\cos25{,}4°}\approx6{,}6\text{ cm}" />
 
-<BlockMath math="\lambda_g=\frac{633}{1{,}50}=422\text{ nm},\qquad N=\frac{0{,}060}{422\cdot10^{-9}}\approx1{,}4\cdot10^{5}" />
+<BlockMath math="v=\frac{3{,}0\cdot10^{8}}{1{,}50}=2{,}0\cdot10^{8}\text{ m s}^{-1},\qquad t=\frac{0{,}066}{2{,}0\cdot10^{8}}\approx3{,}3\cdot10^{-10}\text{ s},\qquad \lambda_g=\frac{633}{1{,}50}=422\text{ nm}" />
 
-Die Aussagen I, II und III stimmen. Aussage IV ist falsch: Die Frequenz bleibt <InlineMath math="\dfrac{3{,}0\cdot10^{8}}{633\cdot10^{-9}}\approx4{,}7\cdot10^{14}\text{ Hz}" />, das Licht ist im Glas also weiterhin rot.
+Die Aussagen I, II und III stimmen, jede baut auf der vorigen auf. Aussage IV hat die <InlineMath math="422\text{ nm}" /> richtig, **die Farbe aber falsch**: Die Frequenz bleibt, der Strahl ist also weiterhin rot. Seine kürzere Wellenlänge im Glas entspricht nur der Wellenlänge von violettem Licht **in Luft**.
 
 # Warum die anderen Antworten falsch sind
 
-- **I, II, III und IV** akzeptiert Aussage IV, doch eine Grenze ändert die Frequenz nicht, und die Farbe folgt der Frequenz.
-- **Nur I und II** verwirft Aussage III, die die Wellenlänge **im Glas** braucht, <InlineMath math="422\text{ nm}" />: Mit <InlineMath math="633\text{ nm}" /> ergeben sich nur <InlineMath math="9{,}5\cdot10^{4}" />.
-- **Nur I, III und IV** verwirft Aussage II, obwohl das Glas <InlineMath math="3{,}0\cdot10^{-10}\text{ s}" /> braucht, Luft nur <InlineMath math="2{,}0\cdot10^{-10}\text{ s}" />.
+- **I, II, III und IV** akzeptiert Aussage IV, doch die Farbe folgt der Frequenz, die keine Grenzfläche ändern kann.
+- **Nur I und II** verwirft Aussage III, die den **schrägen Weg von <InlineMath math="6{,}6\text{ cm}" />** braucht: Mit der Dicke von <InlineMath math="6{,}0\text{ cm}" /> ergeben sich nur <InlineMath math="3{,}0\cdot10^{-10}\text{ s}" />.
+- **Nur I, III und IV** verwirft Aussage II, obwohl ein unter <InlineMath math="25°" /> laufender Strahl weiter als die Blockdicke gehen muss.

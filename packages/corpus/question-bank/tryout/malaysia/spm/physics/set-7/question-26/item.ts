@@ -16,7 +16,7 @@ const item: ItemSource = {
         },
         {
           correct: false,
-          label: "$$1.6\\times10^{5}\\text{ Pa}$$, floor $$7$$ and floor $$6$$",
+          label: "$$1.6\\times10^{5}\\text{ Pa}$$, floor $$6$$ and floor $$6$$",
         },
         {
           correct: false,
@@ -39,7 +39,7 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "$$1.6\\times10^{5}\\text{ Pa}$$, tingkat $$7$$ dan tingkat $$6$$",
+            "$$1.6\\times10^{5}\\text{ Pa}$$, tingkat $$6$$ dan tingkat $$6$$",
         },
         {
           correct: false,
