@@ -1,0 +1,259 @@
+export const metadata = {
+  title: "Movement of Substances across a Plasma Membrane Notes",
+  description:
+    "Form 4 Biology Chapter 3: tell simple diffusion, facilitated diffusion, osmosis and active transport apart, and find an isotonic solution, with practice.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2026-11-17",
+  dateModified: "2026-11-17",
+  subject: "Movement of Substances across a Plasma Membrane",
+};
+
+## The Plasma Membrane Controls What Goes In and Out
+
+The **plasma membrane** is **partially permeable**: it lets some substances through and blocks others. Substances cross the membrane in two ways. **Passive transport** follows the concentration gradient, from high concentration to low, with no energy needed. **Active transport** works against the concentration gradient and needs energy from ATP. In the models here, you watch molecules diffuse, compare simple and facilitated diffusion, and soak potato strips in sucrose solutions.
+
+The membrane's structure is described by the **fluid mosaic model**: a phospholipid bilayer with proteins embedded in it. Small, non-polar molecules such as oxygen pass straight through the bilayer. Ions and large molecules such as glucose need a carrier protein or a channel protein.
+
+## Simple Diffusion
+
+**Simple diffusion** is the net movement of molecules from a region of high concentration to a region of low concentration until dynamic equilibrium is reached. Oxygen diffuses from the alveoli into the blood, and carbon dioxide diffuses the other way. This model shows the concentration of molecules released at one point. Move the time slider and watch the peak get lower and wider as the molecules spread out.
+
+<MathVisual
+  title={<>Molecules Spreading by Diffusion</>}
+  description={
+    <>
+      Relative concentration <InlineMath math="\dfrac{5}{\sqrt{4\pi s}}e^{-x^2/4s}" />{" "}
+      against the distance <InlineMath math="x" /> from the release point, at
+      time <InlineMath math="s" />. The area under the curve stays the same
+      because no molecules are lost.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -6, max: 6 }, y: { min: 0, max: 3.5 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "s", min: 0.2, max: 4, value: 0.5, step: 0.1, label: "s" },
+    ],
+    objects: [
+      { id: "profile", kind: "function", appearance: "primary", formula: "5exp(-x^2/(4s))/sqrt(4pi s)", domain: { min: -6, max: 6 } },
+    ],
+    readouts: [
+      { key: "peak", formula: "5/sqrt(4pi s)" },
+    ],
+  }}
+  labels={{
+    s: <>Time <InlineMath math="s" /></>,
+    peak: <>Concentration at the release point</>,
+  }}
+/>
+
+The rate of diffusion rises with **a steeper concentration gradient**, a higher temperature, a larger surface area and smaller molecules. That's why alveoli and villi have a large surface area and thin walls.
+
+## Facilitated Diffusion and Active Transport
+
+**Facilitated diffusion** uses carrier proteins or channel proteins to move substances such as glucose and ions down their concentration gradient. It's still passive, but there's only a limited number of carrier proteins. When every carrier is busy, the rate of diffusion **reaches a maximum** even if the concentration keeps rising. Compare the two curves and change the number of carrier proteins.
+
+<MathVisual
+  title={<>Simple Diffusion against Facilitated Diffusion</>}
+  description={
+    <>
+      The straight line is simple diffusion, <InlineMath math="0.5c" />. The
+      curve is facilitated diffusion, <InlineMath math="\dfrac{ac}{2 + c}" />,
+      with <InlineMath math="a" /> proportional to the number of carrier
+      proteins.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 10 }, y: { min: 0, max: 5.5 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "a", min: 1, max: 5, value: 3, step: 0.5, label: "a" },
+    ],
+    objects: [
+      { id: "simple", kind: "function", appearance: "reference", formula: "0.5x", domain: { min: 0, max: 10 } },
+      { id: "facilitated", kind: "function", appearance: "primary", formula: "a x/(2 + x)", domain: { min: 0, max: 10 } },
+      { id: "maximum", kind: "function", appearance: "construction", formula: "a + 0x", domain: { min: 0, max: 10 } },
+    ],
+    readouts: [
+      { key: "limit", formula: "a" },
+    ],
+  }}
+  labels={{
+    a: <>Number of carrier proteins <InlineMath math="a" /></>,
+    limit: <>Maximum rate of facilitated diffusion</>,
+  }}
+/>
+
+**Active transport** moves substances against the concentration gradient using carrier proteins and energy from ATP. For example, the **sodium-potassium pump** pumps sodium ions out of nerve cells and potassium ions in. Root hair cells also absorb mineral ions actively from the more dilute soil.
+
+| Process | Direction | Energy | Protein |
+| :--- | :--- | :--- | :--- |
+| Simple diffusion | Down the gradient | No | No |
+| Facilitated diffusion | Down the gradient | No | Carrier or channel |
+| Osmosis | Water down its gradient | No | Sometimes through aquaporins |
+| Active transport | Against the gradient | Yes, ATP | Carrier |
+
+## Osmosis and the Concentration of Solutions
+
+**Osmosis** is the net movement of water molecules from a **hypotonic** solution (less concentrated) to a **hypertonic** solution (more concentrated) through a partially permeable membrane. If the two solutions are **isotonic**, there's no net movement of water.
+
+In a classic experiment, potato strips of the same mass are soaked in sucrose solutions of different concentrations for an hour. Pick each tube in this model and compare the change in the strip's mass.
+
+<OsmosisLab
+  title={<>Potato Strips in Sucrose Solutions</>}
+  description={
+    <>
+      Six tubes from <InlineMath math="0" /> to{" "}
+      <InlineMath math="0.5\text{ mol dm}^{-3}" /> sucrose. A strip gains mass in
+      a hypotonic solution and loses mass in a hypertonic one.
+    </>
+  }
+  strips={[
+    { concentration: 0, change: 20 },
+    { concentration: 0.1, change: 12 },
+    { concentration: 0.2, change: 5 },
+    { concentration: 0.3, change: 0 },
+    { concentration: 0.4, change: -6 },
+    { concentration: 0.5, change: -11 },
+  ]}
+  labels={{
+    change: <>Change in mass</>,
+    concentration: "Sucrose concentration",
+    isotonic: <>Isotonic solution</>,
+    mass: <>Strip mass</>,
+    none: <>No change</>,
+    solution: <>Solution</>,
+    tonicities: {
+      hypertonic: <>hypertonic</>,
+      hypotonic: <>hypotonic</>,
+      isotonic: <>isotonic</>,
+    },
+    view: "Potato strips in tubes of sucrose solution",
+  }}
+/>
+
+Plot the same results as a graph. The line of best fit crosses the horizontal axis at the concentration that is **isotonic with the potato's cell sap**.
+
+<ScatterDiagram
+  title={<>Percentage Change in Mass of Potato Strips</>}
+  description={
+    <>
+      Percentage change in mass against sucrose concentration. The line of best
+      fit crosses zero at about <InlineMath math="0.30\text{ mol dm}^{-3}" />.
+    </>
+  }
+  xAxisLabel="Sucrose concentration (mol dm⁻³)"
+  yAxisLabel="Change in mass (%)"
+  calculateRegressionLine
+  datasets={[
+    {
+      name: "Potato strips",
+      color: "var(--chart-1)",
+      points: [
+        { x: 0, y: 20 },
+        { x: 0.1, y: 12 },
+        { x: 0.2, y: 5 },
+        { x: 0.3, y: 0 },
+        { x: 0.4, y: -6 },
+        { x: 0.5, y: -11 },
+      ],
+    },
+  ]}
+/>
+
+### Example Finding the Isotonic Solution
+
+From the potato strip data, find **the concentration of the potato's cell sap**. The line of best fit is about <InlineMath math="y = -61.1x + 18.6" />. Where the change in mass is zero:
+
+<BlockMath math="0 = -61.1x + 18.6 \quad\Rightarrow\quad x = \frac{18.6}{61.1} = 0.30\text{ mol dm}^{-3}" />
+
+Check with the raw data: the <InlineMath math="0.3\text{ mol dm}^{-3}" /> tube shows zero change in mass. The potato's cell sap is about <InlineMath math="0.30\text{ mol dm}^{-3}" />.
+
+### Example Working Out the Final Mass
+
+A <InlineMath math="2.50\text{ g}" /> potato strip is soaked in the <InlineMath math="0.5\text{ mol dm}^{-3}" /> solution, which gives a change of <InlineMath math="-11\%" />. Find **its final mass**.
+
+<BlockMath math="2.50 \times (1 - 0.11) = 2.50 \times 0.89 = 2.23\text{ g}" />
+
+The mass drops because water leaves the cells into the hypertonic solution by osmosis. Check: <InlineMath math="2.50 - 2.23 = 0.27\text{ g}" />, which is about <InlineMath math="11\%" /> of <InlineMath math="2.50" />.
+
+## Effects of Osmosis on Animal and Plant Cells
+
+Animal cells have no cell wall. In a hypotonic solution, a red blood cell takes in water, swells and eventually bursts, which is **haemolysis**. In a hypertonic solution, the cell loses water and shrinks, which is **crenation**. This ideal-cell model shows the relative volume of a cell whose sap is equivalent to <InlineMath math="0.3" /> mol of solute, with the volume inversely proportional to the outside concentration.
+
+<MathVisual
+  title={<>Relative Cell Volume in Different Solutions</>}
+  description={
+    <>
+      The horizontal axis is the outside concentration in units of{" "}
+      <InlineMath math="0.1\text{ mol dm}^{-3}" />. The curve{" "}
+      <InlineMath math="V/V_0 = 3/k" /> equals <InlineMath math="1" /> when the
+      solution is isotonic, at <InlineMath math="k = 3" />.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 6.5 }, y: { min: 0, max: 3.5 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "k", min: 1, max: 6, value: 3, step: 0.25, label: "k" },
+    ],
+    objects: [
+      { id: "volume", kind: "function", appearance: "primary", formula: "3/x", domain: { min: 0.9, max: 6.5 } },
+      { id: "isotonic", kind: "point", appearance: "answer", at: { x: 3, y: 1 } },
+      { id: "now", kind: "marker", x: "k", y: "3/k", appearance: "warning" },
+    ],
+    labels: [
+      { key: "isotonic", objectId: "isotonic", at: { x: 3, y: 1 }, placement: "above-right" },
+    ],
+    readouts: [
+      { key: "relative", formula: "3/k" },
+    ],
+  }}
+  labels={{
+    k: <>Outside concentration <InlineMath math="k" /></>,
+    isotonic: <>Isotonic</>,
+    relative: <>Relative volume <InlineMath math="V/V_0" /></>,
+  }}
+/>
+
+Plant cells are different because they have a cell wall. In a hypotonic solution, the cell becomes **turgid** and the wall stops it from bursting. In a hypertonic solution, the vacuole shrinks and the plasma membrane pulls away from the cell wall, which is **plasmolysis**. If the cell is moved into distilled water, it becomes turgid again, which is **deplasmolysis**.
+
+## Common Mistakes about Movement across Membranes
+
+| Mistake | Why it's wrong | How to check |
+| :--- | :--- | :--- |
+| Osmosis is the movement of solute. | Osmosis is the movement of water molecules only. | Ask which molecule moves. |
+| Water moves from a concentrated solution to a dilute one. | Water moves from a hypotonic to a hypertonic solution, from dilute to concentrated. | Follow the water, not the solute. |
+| Facilitated diffusion needs ATP. | Facilitated diffusion is passive. Only active transport needs ATP. | Check the direction of the concentration gradient. |
+| A plant cell bursts in distilled water. | The cell wall resists the pressure, so the cell becomes turgid. | Separate animal cells from plant cells. |
+
+The second mistake is the most common one in osmosis questions. **Water moves towards the more concentrated solution**.
+
+## Practice on Movement across Membranes
+
+These questions move from naming a process to an osmosis calculation. **State the direction of the gradient** in every answer.
+
+1. Name the process that moves potassium ions into a nerve cell that already has a high potassium concentration.
+
+2. Explain why the rate of facilitated diffusion levels off at high concentrations.
+
+3. A <InlineMath math="3.00\text{ g}" /> potato strip is soaked in distilled water and its mass rises by <InlineMath math="20\%" />. Calculate its final mass.
+
+4. A leaf cell is soaked in concentrated salt solution for half an hour. Explain the state of the cell.
+
+### Solutions
+
+**Solution 1**: The potassium ions move from low to high concentration, which is **against the concentration gradient**, so the process is **active transport**, using a carrier protein and ATP.
+
+**Solution 2**: Facilitated diffusion depends on carrier proteins, and **there's only a limited number of them**. At high concentrations every carrier is already in use, so raising the concentration doesn't raise the rate. The curve levels off at the maximum rate.
+
+**Solution 3**: Distilled water is hypotonic, so water enters the cells:
+
+<BlockMath math="3.00 \times (1 + 0.20) = 3.60\text{ g}" />
+
+Check: the gain of <InlineMath math="0.60\text{ g}" /> is <InlineMath math="20\%" /> of <InlineMath math="3.00\text{ g}" />.
+
+**Solution 4**: Concentrated salt solution is hypertonic to the cell sap. Water leaves the vacuole by osmosis, the vacuole shrinks, and the plasma membrane pulls away from the cell wall. The cell is **plasmolysed** and the leaf wilts.

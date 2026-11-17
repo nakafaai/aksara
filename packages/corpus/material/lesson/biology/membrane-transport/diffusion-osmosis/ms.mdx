@@ -1,0 +1,259 @@
+export const metadata = {
+  title: "Nota Pergerakan Bahan Merentas Membran Plasma Tingkatan Empat",
+  description:
+    "Nota Biologi Tingkatan 4 Bab 3: bezakan resapan ringkas, resapan berbantu, osmosis dan pengangkutan aktif, dan tentukan larutan isotonik dengan contoh dan latihan.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2026-11-17",
+  dateModified: "2026-11-17",
+  subject: "Pergerakan Bahan Merentas Membran Plasma",
+};
+
+## Membran Plasma Mengawal Keluar Masuk Bahan
+
+**Membran plasma** ialah lapisan **separa telap**: membran membenarkan sesetengah bahan melaluinya dan menghalang bahan lain. Bahan bergerak merentas membran dengan dua cara. **Pengangkutan pasif** mengikut kecerunan kepekatan, dari kepekatan tinggi ke kepekatan rendah, tanpa tenaga. **Pengangkutan aktif** melawan kecerunan kepekatan dan memerlukan tenaga daripada ATP. Dalam model di sini, kamu melihat molekul meresap, membandingkan resapan ringkas dengan resapan berbantu, dan merendam jalur kentang dalam larutan sukrosa.
+
+Struktur membran diterangkan oleh **model mozek bendalir**: dwilapisan fosfolipid dengan protein yang terbenam di dalamnya. Molekul kecil dan tidak berkutub seperti oksigen melalui dwilapisan terus. Ion dan molekul besar seperti glukosa memerlukan protein pembawa atau protein liang.
+
+## Resapan Ringkas
+
+**Resapan ringkas** ialah pergerakan bersih molekul dari kawasan berkepekatan tinggi ke kawasan berkepekatan rendah sehingga keseimbangan dinamik tercapai. Oksigen meresap dari alveolus ke dalam darah, dan karbon dioksida meresap ke arah sebaliknya. Model ini menunjukkan kepekatan molekul yang dilepaskan di satu titik. Gerakkan gelangsar masa dan lihat puncak semakin rendah dan lebar apabila molekul tersebar.
+
+<MathVisual
+  title={<>Molekul Tersebar Melalui Resapan</>}
+  description={
+    <>
+      Kepekatan relatif <InlineMath math="\dfrac{5}{\sqrt{4\pi s}}e^{-x^2/4s}" />{" "}
+      melawan jarak <InlineMath math="x" /> dari titik pelepasan, pada masa{" "}
+      <InlineMath math="s" />. Luas di bawah lengkung kekal sama kerana tiada
+      molekul hilang.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -6, max: 6 }, y: { min: 0, max: 3.5 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "s", min: 0.2, max: 4, value: 0.5, step: 0.1, label: "s" },
+    ],
+    objects: [
+      { id: "profile", kind: "function", appearance: "primary", formula: "5exp(-x^2/(4s))/sqrt(4pi s)", domain: { min: -6, max: 6 } },
+    ],
+    readouts: [
+      { key: "peak", formula: "5/sqrt(4pi s)" },
+    ],
+  }}
+  labels={{
+    s: <>Masa <InlineMath math="s" /></>,
+    peak: <>Kepekatan di titik pelepasan</>,
+  }}
+/>
+
+Kadar resapan bertambah apabila **kecerunan kepekatan lebih curam**, suhu lebih tinggi, luas permukaan lebih besar dan molekul lebih kecil. Itulah sebab alveolus dan vilus mempunyai luas permukaan yang besar dan dinding yang nipis.
+
+## Resapan Berbantu dan Pengangkutan Aktif
+
+**Resapan berbantu** menggunakan protein pembawa atau protein liang untuk menggerakkan bahan seperti glukosa dan ion mengikut kecerunan kepekatan. Proses ini masih pasif, tetapi bilangan protein pembawa terhad. Apabila semua protein pembawa sibuk, kadar resapan **mencapai maksimum** walaupun kepekatan terus bertambah. Bandingkan kedua-dua lengkung dan ubah bilangan protein pembawa.
+
+<MathVisual
+  title={<>Resapan Ringkas Melawan Resapan Berbantu</>}
+  description={
+    <>
+      Garis lurus ialah resapan ringkas, <InlineMath math="0.5c" />. Lengkung
+      ialah resapan berbantu, <InlineMath math="\dfrac{ac}{2 + c}" />, dengan{" "}
+      <InlineMath math="a" /> berkadar dengan bilangan protein pembawa.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 10 }, y: { min: 0, max: 5.5 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "a", min: 1, max: 5, value: 3, step: 0.5, label: "a" },
+    ],
+    objects: [
+      { id: "simple", kind: "function", appearance: "reference", formula: "0.5x", domain: { min: 0, max: 10 } },
+      { id: "facilitated", kind: "function", appearance: "primary", formula: "a x/(2 + x)", domain: { min: 0, max: 10 } },
+      { id: "maximum", kind: "function", appearance: "construction", formula: "a + 0x", domain: { min: 0, max: 10 } },
+    ],
+    readouts: [
+      { key: "limit", formula: "a" },
+    ],
+  }}
+  labels={{
+    a: <>Bilangan protein pembawa <InlineMath math="a" /></>,
+    limit: <>Kadar maksimum resapan berbantu</>,
+  }}
+/>
+
+**Pengangkutan aktif** menggerakkan bahan melawan kecerunan kepekatan menggunakan protein pembawa dan tenaga ATP. Contohnya, **pam natrium-kalium** mengepam ion natrium keluar dan ion kalium masuk ke dalam sel saraf. Sel rerambut akar juga menyerap ion mineral secara aktif daripada tanah yang lebih cair.
+
+| Proses | Arah | Tenaga | Protein |
+| :--- | :--- | :--- | :--- |
+| Resapan ringkas | Mengikut kecerunan | Tidak | Tidak |
+| Resapan berbantu | Mengikut kecerunan | Tidak | Pembawa atau liang |
+| Osmosis | Air mengikut kecerunan | Tidak | Kadang-kadang melalui akuaporin |
+| Pengangkutan aktif | Melawan kecerunan | Ya, ATP | Pembawa |
+
+## Osmosis dan Kepekatan Larutan
+
+**Osmosis** ialah pergerakan bersih molekul air dari larutan **hipotonik** (kurang pekat) ke larutan **hipertonik** (lebih pekat) melalui membran separa telap. Jika kedua-dua larutan **isotonik**, tiada pergerakan bersih air.
+
+Dalam eksperimen klasik, jalur kentang yang sama jisim direndam dalam larutan sukrosa berlainan kepekatan selama satu jam. Pilih setiap tabung dalam model ini dan bandingkan perubahan jisim jalur.
+
+<OsmosisLab
+  title={<>Jalur Kentang dalam Larutan Sukrosa</>}
+  description={
+    <>
+      Enam tabung daripada <InlineMath math="0" /> hingga{" "}
+      <InlineMath math="0.5\text{ mol dm}^{-3}" /> sukrosa. Jalur bertambah
+      jisim dalam larutan hipotonik dan berkurang dalam larutan hipertonik.
+    </>
+  }
+  strips={[
+    { concentration: 0, change: 20 },
+    { concentration: 0.1, change: 12 },
+    { concentration: 0.2, change: 5 },
+    { concentration: 0.3, change: 0 },
+    { concentration: 0.4, change: -6 },
+    { concentration: 0.5, change: -11 },
+  ]}
+  labels={{
+    change: <>Perubahan jisim</>,
+    concentration: "Kepekatan sukrosa",
+    isotonic: <>Larutan isotonik</>,
+    mass: <>Jisim jalur</>,
+    none: <>Tiada perubahan</>,
+    solution: <>Larutan</>,
+    tonicities: {
+      hypertonic: <>hipertonik</>,
+      hypotonic: <>hipotonik</>,
+      isotonic: <>isotonik</>,
+    },
+    view: "Jalur kentang dalam tabung larutan sukrosa",
+  }}
+/>
+
+Plot keputusan yang sama sebagai graf. Garis penyesuaian terbaik memotong paksi mengufuk pada kepekatan yang **isotonik dengan sap sel kentang**.
+
+<ScatterDiagram
+  title={<>Peratus Perubahan Jisim Jalur Kentang</>}
+  description={
+    <>
+      Peratus perubahan jisim melawan kepekatan sukrosa. Garis penyesuaian
+      terbaik melintasi sifar pada kira-kira{" "}
+      <InlineMath math="0.30\text{ mol dm}^{-3}" />.
+    </>
+  }
+  xAxisLabel="Kepekatan sukrosa (mol dm⁻³)"
+  yAxisLabel="Perubahan jisim (%)"
+  calculateRegressionLine
+  datasets={[
+    {
+      name: "Jalur kentang",
+      color: "var(--chart-1)",
+      points: [
+        { x: 0, y: 20 },
+        { x: 0.1, y: 12 },
+        { x: 0.2, y: 5 },
+        { x: 0.3, y: 0 },
+        { x: 0.4, y: -6 },
+        { x: 0.5, y: -11 },
+      ],
+    },
+  ]}
+/>
+
+### Contoh Menentukan Larutan Isotonik
+
+Daripada data jalur kentang, tentukan **kepekatan sap sel kentang**. Garis penyesuaian terbaik ialah lebih kurang <InlineMath math="y = -61.1x + 18.6" />. Pada titik perubahan jisim sifar:
+
+<BlockMath math="0 = -61.1x + 18.6 \quad\Rightarrow\quad x = \frac{18.6}{61.1} = 0.30\text{ mol dm}^{-3}" />
+
+Semak dengan data mentah: tabung <InlineMath math="0.3\text{ mol dm}^{-3}" /> menunjukkan perubahan jisim sifar. Sap sel kentang kira-kira <InlineMath math="0.30\text{ mol dm}^{-3}" />.
+
+### Contoh Mengira Jisim Akhir
+
+Jalur kentang berjisim <InlineMath math="2.50\text{ g}" /> direndam dalam larutan <InlineMath math="0.5\text{ mol dm}^{-3}" />, yang memberi perubahan <InlineMath math="-11\%" />. Hitung **jisim akhirnya**.
+
+<BlockMath math="2.50 \times (1 - 0.11) = 2.50 \times 0.89 = 2.23\text{ g}" />
+
+Jisim berkurang kerana air keluar dari sel ke larutan hipertonik melalui osmosis. Semak: <InlineMath math="2.50 - 2.23 = 0.27\text{ g}" />, iaitu kira-kira <InlineMath math="11\%" /> daripada <InlineMath math="2.50" />.
+
+## Kesan Osmosis pada Sel Haiwan dan Tumbuhan
+
+Sel haiwan tidak mempunyai dinding sel. Dalam larutan hipotonik, sel darah merah menyerap air, membengkak dan akhirnya pecah, iaitu **hemolisis**. Dalam larutan hipertonik, sel kehilangan air dan mengecut, iaitu **krenasi**. Model sel ideal ini menunjukkan isi padu relatif sel yang sap dalamnya bersamaan <InlineMath math="0.3" /> mol bahan terlarut, dengan isi padu berkadar songsang dengan kepekatan luar.
+
+<MathVisual
+  title={<>Isi Padu Relatif Sel dalam Larutan Berlainan</>}
+  description={
+    <>
+      Paksi mengufuk ialah kepekatan larutan luar dalam unit{" "}
+      <InlineMath math="0.1\text{ mol dm}^{-3}" />. Lengkung{" "}
+      <InlineMath math="V/V_0 = 3/k" /> menyamai <InlineMath math="1" /> apabila
+      larutan isotonik, iaitu <InlineMath math="k = 3" />.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 6.5 }, y: { min: 0, max: 3.5 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "k", min: 1, max: 6, value: 3, step: 0.25, label: "k" },
+    ],
+    objects: [
+      { id: "volume", kind: "function", appearance: "primary", formula: "3/x", domain: { min: 0.9, max: 6.5 } },
+      { id: "isotonic", kind: "point", appearance: "answer", at: { x: 3, y: 1 } },
+      { id: "now", kind: "marker", x: "k", y: "3/k", appearance: "warning" },
+    ],
+    labels: [
+      { key: "isotonic", objectId: "isotonic", at: { x: 3, y: 1 }, placement: "above-right" },
+    ],
+    readouts: [
+      { key: "relative", formula: "3/k" },
+    ],
+  }}
+  labels={{
+    k: <>Kepekatan luar <InlineMath math="k" /></>,
+    isotonic: <>Isotonik</>,
+    relative: <>Isi padu relatif <InlineMath math="V/V_0" /></>,
+  }}
+/>
+
+Sel tumbuhan berbeza kerana mempunyai dinding sel. Dalam larutan hipotonik, sel menjadi **segah** dan dinding sel menghalangnya daripada pecah. Dalam larutan hipertonik, vakuol mengecut dan membran plasma tertarik dari dinding sel, iaitu **plasmolisis**. Jika sel itu dipindahkan ke air suling, sel kembali segah, iaitu **deplasmolisis**.
+
+## Kesilapan Lazim tentang Pergerakan Bahan
+
+| Kesilapan | Sebab salah | Cara semak |
+| :--- | :--- | :--- |
+| Osmosis ialah pergerakan bahan terlarut. | Osmosis ialah pergerakan molekul air sahaja. | Tanya: molekul apa yang bergerak? |
+| Air bergerak dari larutan pekat ke larutan cair. | Air bergerak dari larutan hipotonik ke hipertonik, iaitu dari cair ke pekat. | Ikut air, bukan bahan terlarut. |
+| Resapan berbantu memerlukan ATP. | Resapan berbantu pasif. Hanya pengangkutan aktif memerlukan ATP. | Semak arah kecerunan kepekatan. |
+| Sel tumbuhan pecah dalam air suling. | Dinding sel menahan tekanan, jadi sel menjadi segah. | Bezakan sel haiwan dengan sel tumbuhan. |
+
+Kesilapan kedua paling kerap dalam soalan osmosis. **Air bergerak ke arah larutan yang lebih pekat**.
+
+## Latihan Pergerakan Bahan
+
+Soalan ini bergerak daripada mengenal pasti proses kepada pengiraan osmosis. **Nyatakan arah kecerunan** dalam setiap jawapan.
+
+1. Namakan proses yang menggerakkan ion kalium masuk ke dalam sel saraf yang sudah berkepekatan kalium tinggi.
+
+2. Terangkan sebab kadar resapan berbantu menjadi malar pada kepekatan tinggi.
+
+3. Jalur kentang berjisim <InlineMath math="3.00\text{ g}" /> direndam dalam air suling dan jisimnya bertambah <InlineMath math="20\%" />. Hitung jisim akhirnya.
+
+4. Sel daun direndam dalam larutan garam pekat selama setengah jam. Terangkan keadaan sel itu.
+
+### Penyelesaian
+
+**Penyelesaian 1**: Ion kalium bergerak dari kepekatan rendah ke kepekatan tinggi, iaitu **melawan kecerunan kepekatan**, jadi prosesnya **pengangkutan aktif** yang menggunakan protein pembawa dan ATP.
+
+**Penyelesaian 2**: Resapan berbantu bergantung pada protein pembawa yang **bilangannya terhad**. Pada kepekatan tinggi, semua protein pembawa sudah digunakan, jadi menambah kepekatan tidak menambah kadar. Lengkung mendatar pada kadar maksimum.
+
+**Penyelesaian 3**: Air suling hipotonik, jadi air masuk ke dalam sel:
+
+<BlockMath math="3.00 \times (1 + 0.20) = 3.60\text{ g}" />
+
+Semak: pertambahan <InlineMath math="0.60\text{ g}" /> ialah <InlineMath math="20\%" /> daripada <InlineMath math="3.00\text{ g}" />.
+
+**Penyelesaian 4**: Larutan garam pekat hipertonik berbanding sap sel. Air keluar dari vakuol melalui osmosis, vakuol mengecut, dan membran plasma tertarik dari dinding sel. Sel itu mengalami **plasmolisis** dan daun menjadi layu.
