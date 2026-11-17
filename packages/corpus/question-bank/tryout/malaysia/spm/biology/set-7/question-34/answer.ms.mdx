@@ -1,0 +1,44 @@
+# Tukarkan kes setiap kumpulan kepada kadar bagi setiap sperma, kemudian uji dengan pembahagian sel dan campuran umur baharu
+
+Setiap mutasi baharu di sini datang daripada bapa, dan setiap bayi terhasil daripada tepat satu sperma. Jadi dalam setiap kumpulan umur, **bahagian bayi yang membawa mutasi baharu ialah bahagian sperma yang mensenyawakan ovum yang membawa mutasi itu**:
+
+<BlockMath math="\text{bawah }30:\ \frac{40}{2\,000\,000}=\frac{2}{100\,000},\qquad 30\text{ hingga }39:\ \frac{60}{1\,500\,000}=\frac{4}{100\,000},\qquad 40\text{ ke atas}:\ \frac{60}{500\,000}=\frac{12}{100\,000}" />
+
+- I: bandingkan kadar, bukan bilangan kes: <InlineMath math="\tfrac{12}{2}=6" />. Bilangan kes, <InlineMath math="60" /> berbanding <InlineMath math="40" />, kelihatan hanya <InlineMath math="1.5" /> kali ganda, tetapi kumpulan yang lebih tua hanya mempunyai satu perempat bilangan kelahiran. Pernyataan I betul.
+- II: kira pembahagian sel di sebalik satu sperma pada setiap umur min:
+
+<BlockMath math="\text{umur }25:\ 30+23\times10=260,\qquad \text{umur }45:\ 30+23\times30=720,\qquad \frac{720}{260}\approx2.8" />
+
+Dengan peluang yang sama bagi setiap pembahagian, bapa yang lebih tua hanya akan bermutasi kira-kira <InlineMath math="2.8" /> kali lebih kerap, bukan <InlineMath math="6" /> kali. Peluang bagi setiap pembahagian itu sendiri mesti kira-kira <InlineMath math="\tfrac{6}{2.8}\approx2.2" /> kali lebih tinggi pada lelaki yang lebih tua. Pernyataan II salah.
+
+- III: gunakan kadar setiap kumpulan pada bahagian kelahiran baharunya:
+
+<BlockMath math="\begin{aligned}
+1\,600\,000\times\tfrac{2}{100\,000} &= 32 \\
+1\,600\,000\times\tfrac{4}{100\,000} &= 64 \\
+800\,000\times\tfrac{12}{100\,000} &= 96
+\end{aligned}\qquad 32+64+96=192" />
+
+Jadual mempunyai <InlineMath math="4\,000\,000" /> kelahiran yang sama dengan <InlineMath math="40+60+60=160" /> kes, dan <InlineMath math="\tfrac{192}{160}=1.2" />, jadi <InlineMath math="20\%" /> lebih banyak. Hanya peralihan kepada bapa yang lebih tua yang menaikkan bilangan itu. Pernyataan III betul.
+
+- IV: dua ibu bapa yang terjejas kedua-duanya <InlineMath math="Aa" />, kerana <InlineMath math="AA" /> tidak terus hidup. Anak mereka ialah <InlineMath math="AA" />, <InlineMath math="Aa" /> dan <InlineMath math="aa" /> dalam nisbah <InlineMath math="1:2:1" />, tetapi anak <InlineMath math="AA" /> mati, jadi dalam kalangan yang terus hidup <InlineMath math="P(\text{akondroplasia})=\tfrac{2}{2+1}=\tfrac{2}{3}" />. Pernyataan IV salah.
+
+<Chart
+  title={<>Mutasi Akondroplasia Baharu bagi Setiap Sperma</>}
+  bars="apart"
+  categories={["Bawah 30", "30 hingga 39", "40 ke atas"]}
+  series={[
+    { label: "Diukur", mark: "bar", values: [40 / 2000000 * 100000, 60 / 1500000 * 100000, 60 / 500000 * 100000] },
+    { label: "Daripada pembahagian sahaja", mark: "bar", values: [2, 2 * (30 + 23 * 20) / (30 + 23 * 10), 2 * (30 + 23 * 30) / (30 + 23 * 10)] },
+  ]}
+  valueLabel="Bagi setiap 100 000 sperma"
+  description={<>Kadar yang diukur ialah <InlineMath math="2" />, <InlineMath math="4" /> dan <InlineMath math="12" /> bagi setiap <InlineMath math="100\,000" /> sperma. Jika hanya bilangan pembahagian yang penting, bermula daripada <InlineMath math="2" /> dalam kumpulan paling muda, kadarnya kira-kira <InlineMath math="3.8" /> dan <InlineMath math="5.5" />, jauh di bawah <InlineMath math="12" /> yang diukur pada bapa paling tua.</>}
+/>
+
+Jadi pernyataan I dan III betul.
+
+# Kenapa pilihan lain salah
+
+- I sahaja mengambil purata tiga kadar itu, <InlineMath math="\tfrac{2+4+12}{3}=6" /> bagi setiap <InlineMath math="100\,000" />, dan meramalkan <InlineMath math="240" /> kes. **Setiap kadar mesti diberi pemberat mengikut bahagian kelahirannya sendiri**, yang memberi <InlineMath math="192" />.
+- I, II dan III sahaja membiarkan pembahagian tambahan menerangkan keseluruhan peningkatan. **Bilangan pembahagian hanya meningkat kira-kira <InlineMath math="2.8" /> kali dari umur <InlineMath math="25" /> ke <InlineMath math="45" />**, sedangkan kadarnya meningkat <InlineMath math="6" /> kali.
+- I, III dan IV sahaja menggunakan nisbah <InlineMath math="3:1" /> bagi kacukan dominan biasa. **Anak <InlineMath math="AA" /> mati**, jadi dalam kalangan yang terus hidup, bahagian yang berakondroplasia ialah <InlineMath math="\tfrac{2}{3}" />.

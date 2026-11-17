@@ -1,0 +1,53 @@
+# Taruh kebocoran, pembakaran, dan penghematan listrik jaringan pada satu skala karbon dioksida
+
+Penutup itu menahan sebagian besar metana, tetapi karbonnya tidak lenyap begitu saja. Metana yang dibakar kembali sebagai karbon dioksida, sepersepuluh metana tetap lolos, dan listrik yang dihasilkan menghemat sebagian karbon dioksida di pembangkit. Jadi taruh semuanya pada satu skala, yaitu ton karbon dioksida, sebelum dan sesudah kolam ditutup.
+
+Pertama, bagi <InlineMath math="800" /> ton metana per tahun itu:
+
+<BlockMath math="\begin{aligned}
+\text{lolos} &= 0{,}10\times800 = 80\text{ t} \\
+\text{dibakar} &= 800-80 = 720\text{ t}
+\end{aligned}" />
+
+Sekarang ubah tiap bagian dengan aturan di soal. Metana yang lolos dihitung <InlineMath math="28" /> kali massanya. Metana yang dibakar menjadi karbon dioksida dengan perbandingan <InlineMath math="44:16" />:
+
+<BlockMath math="\begin{aligned}
+\text{sebelum ditutup} &= 800\times28 = 22{.}400\text{ t} \\
+\text{lolos sesudah ditutup} &= 80\times28 = 2240\text{ t} \\
+\text{dari pembakaran} &= 720\times\tfrac{44}{16} = 720\times2{,}75 = 1980\text{ t} \\
+\text{sesudah ditutup} &= 2240+1980 = 4220\text{ t}
+\end{aligned}" />
+
+Lalu bawa metana yang dibakar ke jaringan listrik. Hanya <InlineMath math="720" /> ton yang dibakar yang menghasilkan listrik:
+
+<BlockMath math="\begin{aligned}
+\text{listrik} &= 720\times5{,}5 = 3960\text{ MWh} \\
+\text{dihemat di pembangkit} &= 3960\times0{,}75 = 2970\text{ t} \\
+\text{sesudah ditutup, dengan jaringan} &= 4220-2970 = 1250\text{ t}
+\end{aligned}" />
+
+<BlockMath math="\text{tanpa jaringan: }\frac{22{.}400-4220}{22{.}400}\approx81\%,\qquad \text{dengan jaringan: }\frac{22{.}400-1250}{22{.}400}\approx94\%" />
+
+- I: tanpa jaringan listrik, pemangkasannya sekitar <InlineMath math="81\%" />, bukan <InlineMath math="90\%" />. Angka <InlineMath math="90\%" /> hanya bagian metana yang tertangkap, dan angka itu melupakan <InlineMath math="1980" /> ton **karbon dioksida hasil pembakaran**. Pernyataan I salah.
+- II: metana yang lolos setara dengan <InlineMath math="2240" /> ton, sedangkan pembakaran memberi <InlineMath math="1980" /> ton. Jadi kebocoran kecil itu **masih lebih berat** daripada semua karbon dioksida dari mesin. Pernyataan II benar.
+- III: dengan memperhitungkan jaringan listrik, kolam itu sekarang menyebabkan <InlineMath math="1250" /> ton per tahun, bukan <InlineMath math="22{.}400" />, pemangkasan sekitar <InlineMath math="94\%" />, lebih dari <InlineMath math="90\%" />. Pernyataan III benar.
+- IV: metana dibuat oleh bakteri **anaerob**, yang hanya bekerja kalau oksigen tidak ada. Kalau udara dipompa masuk, pengurai aerob menguraikan bahan organik itu menjadi karbon dioksida, jadi metana yang terbentuk berkurang. Pernyataan IV salah.
+
+<Chart
+  title={<>Efek Pemanasan Tahunan Kolam</>}
+  bars="apart"
+  categories={["Sebelum ditutup", "Sesudah, tanpa jaringan", "Sesudah, dengan jaringan"]}
+  series={[
+    { label: "Efek pemanasan", mark: "bar", values: [800 * 28, 80 * 28 + 720 * 2.75, 80 * 28 + 720 * 2.75 - 720 * 5.5 * 0.75] },
+  ]}
+  valueLabel="Ton setara CO₂ per tahun"
+  description={<>Sebelum ditutup, kolam menimbulkan efek pemanasan setara <InlineMath math="22{.}400" /> ton karbon dioksida per tahun. Sesudah ditutup, kebocoran dan pembakaran memberi <InlineMath math="4220" /> ton. Dengan memperhitungkan <InlineMath math="2970" /> ton yang tidak lagi dilepas di pembangkit, totalnya turun menjadi <InlineMath math="1250" /> ton.</>}
+/>
+
+Jadi pernyataan II dan III benar.
+
+# Mengapa pilihan lain salah
+
+- III saja menolak II karena mengubah dengan <InlineMath math="\tfrac{44}{12}" />, perbandingan untuk karbon dan bukan untuk metana, sehingga mendapat <InlineMath math="720\times\tfrac{44}{12}=2640" /> ton, **lebih dari** <InlineMath math="2240" /> **ton kebocoran itu**. Dengan kekeliruan itu, III tetap benar, sekitar <InlineMath math="91\%" />.
+- I, II, dan III saja menerima I, menganggap <InlineMath math="90\%" /> yang tertangkap sebagai pemangkasan dan **melupakan karbon dioksida hasil pembakaran**.
+- II, III, dan IV saja menerima IV, mengira metana dibuat oleh bakteri yang butuh oksigen, **padahal metana berasal dari penguraian anaerob**.

@@ -1,0 +1,41 @@
+# Bawa dua nombor ke hadapan setiap generasi, ulat dan tebuan
+
+Tebuan daripada satu generasi menentukan bilangan ulat generasi berikutnya yang diparasit, dan ulat yang terlepas menentukan saiz generasi seterusnya. Jadi setiap langkah memerlukan kedua-dua nombor daripada langkah sebelumnya:
+
+<BlockMath math="\begin{aligned}
+\text{diparasit} &= \text{yang lebih kecil antara } 4\times\text{tebuan sebelumnya dan bilangan ulat} \\
+\text{ulat berikutnya} &= 5\times(\text{ulat}-\text{diparasit}) \\
+\text{tebuan yang keluar} &= \text{diparasit}
+\end{aligned}" />
+
+| Generasi | Ulat | Diparasit | Terlepas | Tebuan yang keluar |
+| --- | --- | --- | --- | --- |
+| <InlineMath math="1" /> | <InlineMath math="200" /> | <InlineMath math="0.40\times200=80" /> | <InlineMath math="120" /> | <InlineMath math="80" /> |
+| <InlineMath math="2" /> | <InlineMath math="5\times120=600" /> | <InlineMath math="4\times80=320" /> | <InlineMath math="280" /> | <InlineMath math="320" /> |
+| <InlineMath math="3" /> | <InlineMath math="5\times280=1400" /> | <InlineMath math="4\times320=1280" /> | <InlineMath math="120" /> | <InlineMath math="1280" /> |
+| <InlineMath math="4" /> | <InlineMath math="5\times120=600" /> | kesemua <InlineMath math="600" />, kerana <InlineMath math="4\times1280=5120" /> | <InlineMath math="0" /> | <InlineMath math="600" /> |
+| <InlineMath math="5" /> | <InlineMath math="0" /> | <InlineMath math="0" /> | <InlineMath math="0" /> | <InlineMath math="0" /> |
+
+- I: generasi <InlineMath math="3" /> mempunyai <InlineMath math="1400" /> ekor ulat. Pernyataan I betul.
+- II: sesuatu generasi diganti tepat apabila <InlineMath math="(1-p)\times5=1" />, iaitu apabila bahagian <InlineMath math="p=80\%" /> diparasit. Generasi <InlineMath math="2" /> hanya <InlineMath math="\tfrac{320}{600}\approx53\%" /> diparasit, jadi ulat masih meningkat kepada <InlineMath math="1400" />. Generasi <InlineMath math="3" /> diparasit <InlineMath math="\tfrac{1280}{1400}\approx91\%" />, melebihi <InlineMath math="80\%" />, jadi bilangannya menurun buat kali pertama, kepada <InlineMath math="600" />. Pernyataan II betul.
+- III: <InlineMath math="1280" /> ekor tebuan daripada generasi <InlineMath math="3" /> membawa <InlineMath math="5120" /> biji telur, tetapi generasi <InlineMath math="4" /> hanya mempunyai <InlineMath math="600" /> ekor ulat. **Setiap ulat menghasilkan paling banyak seekor tebuan**, jadi hanya <InlineMath math="600" /> ekor tebuan keluar, kurang daripada <InlineMath math="1280" />. Pernyataan III salah.
+- IV: setiap ulat generasi <InlineMath math="4" /> diparasit, jadi tiada yang terlepas untuk membiak, dan generasi <InlineMath math="5" /> mempunyai <InlineMath math="5\times0=0" />. Pernyataan IV betul.
+
+<Chart
+  title={<>Ulat dan Tebuan dalam Setiap Generasi</>}
+  categories={["Generasi 1", "Generasi 2", "Generasi 3", "Generasi 4", "Generasi 5"]}
+  series={[
+    { label: "Ulat", mark: "line", values: [200, 5 * (200 - 80), 5 * (600 - 320), 5 * (1400 - 1280), 0] },
+    { label: "Tebuan", mark: "line", values: [80, 4 * 80, 4 * 320, 600, 0] },
+  ]}
+  valueLabel="Bilangan bagi setiap pokok sawit"
+  description={<>Ulat meningkat daripada <InlineMath math="200" /> kepada <InlineMath math="600" /> dan <InlineMath math="1400" />, kemudian menurun kepada <InlineMath math="600" /> dan <InlineMath math="0" />. Tebuan meningkat daripada <InlineMath math="80" /> kepada <InlineMath math="320" /> dan <InlineMath math="1280" />, kemudian menurun kepada <InlineMath math="600" />, kerana generasi <InlineMath math="4" /> hanya mempunyai <InlineMath math="600" /> perumah, dan kepada <InlineMath math="0" />.</>}
+/>
+
+Jadi pernyataan I, II dan IV betul.
+
+# Kenapa pilihan lain salah
+
+- III sahaja mengekalkan bahagian yang diparasit pada <InlineMath math="40\%" /> dalam setiap generasi, jadi ulat bertambah kepada <InlineMath math="1800" /> dan seterusnya. **Tebuan juga bertambah**, dan setiap ekor memparasit <InlineMath math="4" /> ekor ulat generasi berikutnya.
+- I, II, III dan IV mengira seekor tebuan bagi setiap telur, <InlineMath math="5120" />, dalam generasi <InlineMath math="4" />. **Hanya ada <InlineMath math="600" /> ekor ulat untuk menerima telur itu**, jadi hanya <InlineMath math="600" /> ekor tebuan keluar.
+- I dan II sahaja membawa bahagian yang diparasit, <InlineMath math="91\%" />, ke generasi <InlineMath math="4" />, jadi sebahagian ulat terlepas dan generasi <InlineMath math="5" /> tidak kosong. **Bilangan tebuan, bukan bahagiannya, yang menentukan pemparasitan**, dan <InlineMath math="1280" /> ekor tebuan memparasit kesemua <InlineMath math="600" /> ekor ulat.

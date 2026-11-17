@@ -1,0 +1,40 @@
+# Suatu zat memulihkan galur hanya jika zat itu ada setelah langkah yang hilang
+
+Suatu galur tumbuh jika diberi zat yang dibuat **setelah langkah yang terblok**, karena enzim lainnya bisa mengubah zat itu menjadi Z. Zat yang dibuat sebelum blok menumpuk di blok itu dan tidak pernah sampai ke Z.
+
+## Menempatkan blok
+
+Makin banyak zat yang memulihkan suatu galur, **makin awal bloknya**.
+
+- X dipulihkan oleh P, Q, dan Z, tetapi tidak oleh R. Bloknya ada setelah R dan sebelum P.
+- Y dipulihkan oleh Q dan Z saja. Bloknya ada setelah P dan sebelum Q.
+- W dipulihkan oleh Z saja. Bloknya adalah langkah terakhir, dari Q ke Z.
+
+Jadi jalurnya adalah prekursor, R, P, Q, Z.
+
+<Mermaid
+  title={<>Jalur Menuju Z dan Langkah yang Hilang pada Tiap Galur</>}
+  description={<>Prekursor menjadi R, lalu P, lalu Q, lalu Z. Galur X tidak punya enzim dari R ke P, galur Y enzim dari P ke Q, dan galur W enzim dari Q ke Z.</>}
+  chart={"flowchart LR\n  S[Prekursor] --> R[R]\n  R -->|hilang pada X| P[P]\n  P -->|hilang pada Y| Q[Q]\n  Q -->|hilang pada W| Z[Z]"}
+/>
+
+## Zat yang ditimbun tiap galur
+
+Suatu galur menimbun zat yang **seharusnya diolah enzim yang hilang**, yaitu zat tepat sebelum blok.
+
+- X menimbun R, Y menimbun P, dan W menimbun Q.
+
+## Menilai tiap pernyataan
+
+- I: urutan R, lalu P, lalu Q mengikuti posisi blok. Pernyataan I benar.
+- II: Y tidak punya enzim yang mengubah P menjadi Q, jadi P menumpuk. Pernyataan II benar.
+- III: galur yang terblok di kedua langkah tidak bisa mengubah P menjadi Q. Hanya zat setelah **blok yang belakangan** yang bisa memulihkannya, yaitu Q atau Z. Pernyataan III salah.
+- IV: W menimbun Q, dan Q ada setelah blok X maupun blok Y, itulah sebabnya keduanya tumbuh saat diberi Q. Pernyataan IV benar.
+
+Jadi pernyataan I, II, dan IV benar.
+
+# Mengapa pilihan lain salah
+
+- I, II, III, dan IV menganggap P memulihkan galur X, jadi P pasti memulihkan galur ganda juga, **lupa bahwa blok kedua menghentikan P sebelum sampai ke Z**.
+- I dan IV saja menganggap zat yang menumpuk adalah produk enzim yang hilang, jadi menyebut Y menimbun Q, **padahal enzim yang hilang meninggalkan substratnya**, bukan produknya.
+- I dan II saja menaruh enzim yang hilang pada W di langkah pertama karena tidak ada zat antara yang memulihkan W. Blok di langkah pertama justru dipulihkan oleh semua zat antara, jadi **blok W pasti di langkah terakhir**, dan Q yang ditimbunnya bisa dipakai X dan Y.

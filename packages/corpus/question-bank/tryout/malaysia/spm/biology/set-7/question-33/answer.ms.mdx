@@ -1,0 +1,39 @@
+# Kucing tortoiseshell memerlukan dua kromosom X yang berbeza, jadi jejaki setiap X kepada induknya
+
+Hanya kucing yang mempunyai **kedua-dua <InlineMath math="X^{O}" /> dan <InlineMath math="X^{o}" />** boleh menjadi tortoiseshell. Kucing jantan biasa hanya ada satu X, jadi ia tidak boleh. Ingat perkara ini untuk setiap pernyataan.
+
+- I: kacukan <InlineMath math="1" /> ialah <InlineMath math="X^{O}X^{o}\times X^{O}Y" />. Setiap anak betina mendapat <InlineMath math="X^{O}" /> daripada bapanya, dan <InlineMath math="X^{O}" /> atau <InlineMath math="X^{o}" /> daripada ibunya. Jadi separuh anak betina berwarna jingga, <InlineMath math="X^{O}X^{O}" />, dan separuh lagi tortoiseshell, <InlineMath math="X^{O}X^{o}" />. Setiap anak jantan mendapat satu-satunya X daripada ibunya, jadi ia berwarna jingga atau hitam. Pernyataan I betul.
+- II: ibu yang hitam ialah <InlineMath math="X^{o}X^{o}" />, jadi ia hanya boleh memberikan <InlineMath math="X^{o}" />. <InlineMath math="X^{O}" /> anak kucing itu mesti datang daripada bapa, dan kromosom Y-nya juga hanya boleh datang daripada bapa. Jadi satu sperma membawa <InlineMath math="X^{O}" /> dan Y bersama-sama. X dan Y ialah pasangan homolog, dan kromosom homolog berpisah semasa meiosis I. Jika kegagalan berpisah berlaku semasa meiosis II, sperma akan mendapat dua salinan kromosom yang sama, iaitu XX atau YY. Pernyataan II betul.
+- III: anak kucing daripada kacukan <InlineMath math="1" /> hanya tortoiseshell jika ia betina dan mendapat <InlineMath math="X^{o}" /> daripada ibunya:
+
+<BlockMath math="P(\text{tortoiseshell})=\tfrac{1}{2}\times\tfrac{1}{2}=\tfrac{1}{4},\qquad P(\text{kedua-dua anak pertama})=\tfrac{1}{4}\times\tfrac{1}{4}=\tfrac{1}{16}" />
+
+Pernyataan III salah.
+
+- IV: bawa anak betina daripada I. Seekor anak kucing betina daripada kacukan <InlineMath math="1" /> ialah jingga, <InlineMath math="X^{O}X^{O}" />, atau tortoiseshell, <InlineMath math="X^{O}X^{o}" />, masing-masing dengan kebarangkalian <InlineMath math="\tfrac{1}{2}" />. Setiap jenis ibu memberi kebarangkalian yang berbeza dengan kucing jantan hitam, <InlineMath math="X^{o}Y" />:
+  - Ibu jingga memberi <InlineMath math="X^{O}" /> kepada setiap anak. Anak betinanya juga mendapat <InlineMath math="X^{o}" /> daripada bapa dan menjadi tortoiseshell, tetapi setiap anak jantan berwarna jingga, jadi <InlineMath math="P(\text{jingga})=\tfrac{1}{2}" />.
+  - Anak betina ibu tortoiseshell mendapat <InlineMath math="X^{o}" /> daripada bapa, jadi tidak pernah jingga. Hanya anak jantan yang mendapat <InlineMath math="X^{O}" /> berwarna jingga, jadi <InlineMath math="P(\text{jingga})=\tfrac{1}{2}\times\tfrac{1}{2}=\tfrac{1}{4}" />.
+
+<BlockMath math="P(\text{jingga})=\tfrac{1}{2}\times\tfrac{1}{2}+\tfrac{1}{2}\times\tfrac{1}{4}=\tfrac{2}{8}+\tfrac{1}{8}=\tfrac{3}{8}" />
+
+Pernyataan IV betul.
+
+<Chart
+  title={<>Anak Kucing yang Dijangka daripada Kacukan Pertama dan Kacukan Berikutnya</>}
+  bars="apart"
+  categories={["Betina jingga", "Betina tortoiseshell", "Betina hitam", "Jantan jingga", "Jantan hitam"]}
+  series={[
+    { label: "Kacukan 1", mark: "bar", values: [2, 2, 0, 2, 2] },
+    { label: "Anak betina × jantan hitam", mark: "bar", values: [0, 2 + 1, 1, 2 + 1, 1] },
+  ]}
+  valueLabel="Kebarangkalian dalam perlapan"
+  description={<>Dalam kacukan <InlineMath math="1" />, seekor anak kucing ialah betina jingga, betina tortoiseshell, jantan jingga atau jantan hitam, masing-masing dengan kebarangkalian dua perlapan. Apabila anak betina yang dipilih secara rawak dikacukkan dengan kucing jantan hitam, anak kucingnya ialah betina tortoiseshell atau jantan jingga dengan kebarangkalian tiga perlapan setiap satu, dan betina hitam atau jantan hitam dengan satu perlapan setiap satu, jadi tiga perlapan anak kucing berwarna jingga.</>}
+/>
+
+Jadi pernyataan I, II dan IV betul.
+
+# Kenapa pilihan lain salah
+
+- I dan II sahaja menganggap anak betina itu pasti tortoiseshell, yang memberi <InlineMath math="\tfrac{1}{4}" />. **Separuh daripada anak betina kacukan <InlineMath math="1" /> berwarna jingga**, dan ibu jingga sentiasa memberi anak jantan jingga, jadi kebarangkaliannya naik kepada <InlineMath math="\tfrac{3}{8}" />.
+- II dan IV sahaja menyangka anak kucing jantan boleh menjadi tortoiseshell dalam kacukan <InlineMath math="1" />. **Anak jantan hanya mempunyai satu kromosom X, daripada ibunya**, jadi ia sama ada jingga atau hitam.
+- I, II, III dan IV menggunakan <InlineMath math="\tfrac{1}{2}" /> sebagai kebarangkalian seekor anak kucing tortoiseshell, iaitu kebarangkalian dalam kalangan anak betina sahaja. **Anak kucing itu mesti betina dahulu**, jadi kebarangkaliannya <InlineMath math="\tfrac{1}{4}" /> setiap satu dan <InlineMath math="\tfrac{1}{16}" /> bagi dua berturut-turut.

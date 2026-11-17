@@ -1,0 +1,40 @@
+# Cari pasangan sinyal yang menutup perangkap, lalu hitung dari sinyal pertama pasangan itu
+
+Perangkap ini menanggapi sentuhan dengan menghitung sinyal, jadi seluruh soal bergantung pada **pasangan sinyal mana yang menutupnya**. Semua sesudahnya dihitung dari sinyal pertama pasangan itu, dan waktu menutupnya kamu bawa ke pernyataan berikutnya.
+
+- I: periksa jeda di perangkap X. Dari <InlineMath math="0" /> ke <InlineMath math="40\text{ s}" /> jedanya <InlineMath math="40\text{ s}" />, lebih dari <InlineMath math="30\text{ s}" />, jadi sinyal pada <InlineMath math="0" /> dilupakan. Dari <InlineMath math="40" /> ke <InlineMath math="65\text{ s}" /> jedanya hanya <InlineMath math="25\text{ s}" />, jadi perangkap menutup pada <InlineMath math="65\text{ s}" />. Pernyataan I benar.
+- II: hitung dari sinyal pertama pasangan penutup, yaitu pada <InlineMath math="40\text{ s}" />:
+
+<BlockMath math="40\,(1),\quad 65\,(2),\quad 80\,(3),\quad 140\,(4),\quad 150\,(5)" />
+
+Sinyal kelima datang pada <InlineMath math="150\text{ s}" />, jadi pencernaan mulai saat itu. Sekarang bawa waktu menutup dari I:
+
+<BlockMath math="150-65=85\text{ s sesudah menutup}" />
+
+Pernyataan II benar.
+
+- III: di perangkap Y jedanya <InlineMath math="20\text{ s}" />, jadi perangkap menutup pada <InlineMath math="20\text{ s}" />. Kedua sinyal pasangan penutup ikut dihitung, jadi ia sudah punya <InlineMath math="2" /> dari <InlineMath math="5" />. Lalu ranting itu diam dan tidak ada rambut lain yang tertekuk, jadi perangkap tidak membuang enzim untuk benda yang tidak bergerak seperti mangsa. Ia butuh <InlineMath math="5-2=3" /> sinyal lagi, dan jeda sesudah menutup tidak berpengaruh, jadi <InlineMath math="3" /> tekukan lagi kapan pun akan memulai pencernaan. Pernyataan III benar.
+- IV: kalau sinyal pertama pada <InlineMath math="20\text{ s}" />, jeda ke <InlineMath math="40\text{ s}" /> hanya <InlineMath math="20\text{ s}" />. Sekarang perangkap menutup pada <InlineMath math="40\text{ s}" />, lebih awal dari <InlineMath math="65\text{ s}" />, dan hitungan mulai pada <InlineMath math="20\text{ s}" />:
+
+<BlockMath math="20\,(1),\quad 40\,(2),\quad 65\,(3),\quad 80\,(4),\quad 140\,(5)" />
+
+Pencernaan akan mulai pada <InlineMath math="140\text{ s}" />, bukan <InlineMath math="150\text{ s}" />, jadi waktunya ikut berubah. Pernyataan IV salah.
+
+<Chart
+  title={<>Sinyal yang Dihitung Perangkap X</>}
+  categories={["0 s", "40 s", "65 s", "80 s", "140 s", "150 s"]}
+  series={[
+    { label: "Sesuai catatan", mark: "line", values: [1, 1, 2, 3, 4, 5] },
+    { label: "Rambut pertama pada 20 s", mark: "line", values: [null, 2, 3, 4, 5, 6] },
+  ]}
+  valueLabel="Sinyal yang dihitung"
+  description={<>Sesuai catatan, hitungan kembali ke <InlineMath math="1" /> pada <InlineMath math="40\text{ s}" /> karena sinyal pada <InlineMath math="0" /> dilupakan. Hitungan mencapai <InlineMath math="2" />, dan perangkap menutup, pada <InlineMath math="65\text{ s}" />, lalu mencapai <InlineMath math="5" /> pada <InlineMath math="150\text{ s}" />, <InlineMath math="85\text{ s}" /> kemudian. Kalau rambut pertama ditekuk pada <InlineMath math="20\text{ s}" />, hitungannya sudah <InlineMath math="2" /> pada <InlineMath math="40\text{ s}" /> dan mencapai <InlineMath math="5" /> pada <InlineMath math="140\text{ s}" />.</>}
+/>
+
+Jadi pernyataan I, II, dan III benar.
+
+# Mengapa pilihan lain salah
+
+- I, III, dan IV saja menghitung lima sinyal dari tekukan paling awal, pada <InlineMath math="0\text{ s}" />, yang memberi <InlineMath math="140\text{ s}" />, hanya <InlineMath math="75\text{ s}" /> sesudah menutup, lalu mendapat <InlineMath math="140\text{ s}" /> yang sama ketika tekukan pertama pindah ke <InlineMath math="20\text{ s}" />. **Sinyal pada <InlineMath math="0\text{ s}" /> dilupakan**, jadi hitungan mulai pada <InlineMath math="40\text{ s}" />.
+- I saja menghitung lima sinyal sesudah perangkap menutup, tanpa pasangan penutup, sehingga mendapat <InlineMath math="230\text{ s}" /> untuk perangkap X dan <InlineMath math="5" /> tekukan lagi untuk perangkap Y, **padahal dua sinyal yang menutup perangkap ikut dihitung dalam <InlineMath math="5" /> itu**.
+- I, II, III, dan IV tetap menghitung dari <InlineMath math="40\text{ s}" /> sesudah tekukan pertama pindah ke <InlineMath math="20\text{ s}" />. **Tekukan itu tidak lagi dilupakan**, jadi ia berpasangan dengan sinyal pada <InlineMath math="40\text{ s}" /> dan hitungan mencapai <InlineMath math="5" /> satu sinyal lebih cepat, pada <InlineMath math="140\text{ s}" />.

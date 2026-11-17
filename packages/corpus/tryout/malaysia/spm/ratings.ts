@@ -50,4 +50,5 @@ export const biologyRatings: readonly SetRating[] = [
   { items: 40, level: 3.98, raters: 2 },
   { items: 40, level: 4.07, raters: 2 },
   { items: 40, level: 3.97, raters: 2 },
+  { items: 40, level: 3.93, raters: 2 },
 ];

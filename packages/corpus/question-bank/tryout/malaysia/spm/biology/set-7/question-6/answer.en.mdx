@@ -1,0 +1,40 @@
+# A substance rescues a strain only if it comes after the missing step
+
+A strain grows when it is given a substance made **after its blocked step**, because its other enzymes can turn that substance into Z. A substance made before the block piles up at the block and never reaches Z.
+
+## Placing the blocks
+
+The more substances rescue a strain, **the earlier its block**.
+
+- X is rescued by P, Q and Z, but not R. Its block lies after R and before P.
+- Y is rescued by Q and Z only. Its block lies after P and before Q.
+- W is rescued by Z alone. Its block is the last step, from Q to Z.
+
+So the pathway runs precursor, R, P, Q, Z.
+
+<Mermaid
+  title={<>The Pathway to Z and the Step Each Strain Lacks</>}
+  description={<>The precursor becomes R, then P, then Q, then Z. Strain X lacks the enzyme from R to P, strain Y the enzyme from P to Q, and strain W the enzyme from Q to Z.</>}
+  chart={"flowchart LR\n  S[Precursor] --> R[R]\n  R -->|missing in X| P[P]\n  P -->|missing in Y| Q[Q]\n  Q -->|missing in W| Z[Z]"}
+/>
+
+## What each strain builds up
+
+A strain builds up the substance that its **missing enzyme would act on**, the one just before the block.
+
+- X builds up R, Y builds up P and W builds up Q.
+
+## Judging each statement
+
+- I: the order R, then P, then Q follows from the blocks. Statement I is correct.
+- II: Y lacks the enzyme that turns P into Q, so P builds up. Statement II is correct.
+- III: a strain blocked at both steps can't turn P into Q. Only a substance after the **later block** can rescue it, that is Q or Z. Statement III is wrong.
+- IV: W builds up Q, and Q lies after the blocks of both X and Y, which is why both grow when Q is added. Statement IV is correct.
+
+So statements I, II and IV are correct.
+
+# Why the other options are wrong
+
+- I, II, III and IV reasons that P rescues strain X, so it must rescue the double strain too, **forgetting that the second block stops P on its way to Z**.
+- I and IV only takes the built-up substance to be the product of the missing enzyme, so it says Y builds up Q, **but a blocked enzyme leaves its substrate behind**, not its product.
+- I and II only puts W's missing enzyme at the first step because no intermediate rescues W. A first-step block would be rescued by every intermediate, so **W's block must be the last step**, and the Q it builds up feeds X and Y.

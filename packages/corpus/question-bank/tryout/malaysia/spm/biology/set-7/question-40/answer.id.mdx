@@ -1,0 +1,58 @@
+# Ubah pertumbuhan buah dan karbon dioksidanya menjadi sukrosa, sukrosa menjadi getah, dan getah menjadi kecepatan
+
+Buah butuh sukrosa untuk dua hal: massa kering yang dibangunnya dan sukrosa yang direspirasikannya. Mulai dari massa kering, selama <InlineMath math="10" /> hari itu, yaitu <InlineMath math="240" /> jam:
+
+<BlockMath math="\text{untuk massa kering} = \frac{1250-398}{240}\text{ g per jam} = \frac{852}{240} = 3{,}55\text{ g per jam}" />
+
+Ruang itu memberi respirasi sebagai karbon dioksida, bukan sebagai sukrosa, jadi ubah dengan perbandingan massa <InlineMath math="342:528" />:
+
+<BlockMath math="\begin{aligned}
+\text{sukrosa direspirasi} &= 35{,}2\times\tfrac{342}{528} = 22{,}8\text{ g per hari} = \tfrac{22{,}8}{24} = 0{,}95\text{ g per jam} \\
+\text{total sukrosa} &= 3{,}55+0{,}95 = 4{,}5\text{ g per jam}
+\end{aligned}" />
+
+Getah membawa <InlineMath math="15\text{ g}" /> dalam <InlineMath math="100\text{ cm}^3" />, yaitu <InlineMath math="0{,}15\text{ g}" /> di tiap <InlineMath math="\text{cm}^3" />. Semua pembuluh tapis bersama-sama memberi luas yang dilewati getah:
+
+<BlockMath math="\begin{aligned}
+\text{volume getah} &= \tfrac{4{,}5\text{ g per jam}}{0{,}15\text{ g per cm}^3} = 30\text{ cm}^3\text{ per jam} \\
+\text{luas} &= 20{.}000\times1{,}5\times10^{-5} = 0{,}30\text{ cm}^2 \\
+\text{kecepatan} &= \tfrac{30\text{ cm}^3\text{ per jam}}{0{,}30\text{ cm}^2} = 100\text{ cm per jam}
+\end{aligned}" />
+
+<Chart
+  title={<>Sukrosa yang Masuk ke Buah Tiap Jam</>}
+  bars="apart"
+  categories={["Untuk massa kering", "Untuk respirasi", "Total"]}
+  series={[
+    { label: "Sukrosa", mark: "bar", values: [852 / 240, (35.2 * 342) / 528 / 24, 852 / 240 + (35.2 * 342) / 528 / 24] },
+  ]}
+  valueLabel="Gram per jam"
+  description={<>Buah menerima <InlineMath math="3{,}55\text{ g}" /> sukrosa per jam untuk massa keringnya dan <InlineMath math="0{,}95\text{ g}" /> untuk respirasi, total <InlineMath math="4{,}5\text{ g}" />. Pada <InlineMath math="0{,}15\text{ g}" /> per <InlineMath math="\text{cm}^3" />, itu sama dengan <InlineMath math="30\text{ cm}^3" /> getah per jam.</>}
+/>
+
+- I: <InlineMath math="30\text{ cm}^3" /> getah per jam lewat <InlineMath math="0{,}30\text{ cm}^2" /> bergerak dengan kecepatan <InlineMath math="100\text{ cm}" /> per jam. Pernyataan I benar.
+
+Untuk II sampai IV, pegang kecepatan sebagai **volume getah per jam dibagi luas total pembuluh**, lalu ubah satu hal setiap kali.
+
+- II: buah tetap butuh <InlineMath math="30\text{ cm}^3" /> getah per jam, tetapi separuh pembuluh hanya memberi <InlineMath math="0{,}15\text{ cm}^2" />, jadi kecepatannya naik dua kali menjadi <InlineMath math="200\text{ cm}" /> per jam. Pernyataan II benar.
+- III: luas lingkaran bertambah sebanding kuadrat diameternya, jadi diameter dua kali memberi luas <InlineMath math="2^2=4" /> kali. <InlineMath math="30\text{ cm}^3" /> per jam yang sama lalu bergerak dengan kecepatan <InlineMath math="\tfrac{100}{4}=25\text{ cm}" /> per jam, bukan <InlineMath math="50\text{ cm}" />. Pernyataan III salah.
+- IV: sukrosa dua kali lebih banyak di tiap <InlineMath math="\text{cm}^3" /> berarti **separuh** volume getah sudah membawa <InlineMath math="4{,}5\text{ g}" /> yang sama, jadi getah bergerak dengan separuh kecepatan, <InlineMath math="50\text{ cm}" /> per jam. Pernyataan IV salah.
+
+<Chart
+  title={<>Kecepatan Getah di Tiap Keadaan</>}
+  bars="apart"
+  categories={["Sesuai ukuran", "Separuh pembuluh", "Dua kali lebar", "Dua kali gula"]}
+  series={[
+    { label: "Kecepatan", mark: "bar", values: [30 / 0.3, 30 / 0.15, 30 / (0.3 * 4), 15 / 0.3] },
+  ]}
+  valueLabel="Kecepatan getah (cm per jam)"
+  description={<>Sesuai hasil pengukuran, getah bergerak <InlineMath math="100\text{ cm}" /> per jam. Dengan separuh pembuluh, getah akan bergerak <InlineMath math="200\text{ cm}" /> per jam, dengan pembuluh dua kali lebar <InlineMath math="25\text{ cm}" /> per jam, dan dengan sukrosa dua kali lebih banyak di getah <InlineMath math="50\text{ cm}" /> per jam.</>}
+/>
+
+Jadi pernyataan I dan II benar.
+
+# Mengapa pilihan lain salah
+
+- II saja menolak I karena menjumlahkan <InlineMath math="35{,}2\text{ g}" /> karbon dioksida seolah-olah itu sukrosa, <InlineMath math="\tfrac{852+352}{240}\approx5{,}0\text{ g}" /> per jam, yang memberi sekitar <InlineMath math="111\text{ cm}" /> per jam, **padahal respirasi <InlineMath math="342\text{ g}" /> sukrosa melepaskan <InlineMath math="528\text{ g}" /> karbon dioksida**, jadi buah hanya merespirasikan <InlineMath math="22{,}8\text{ g}" /> sukrosa per hari.
+- I, II, dan IV saja menerima IV, menganggap kecepatan **naik bersama konsentrasi**, padahal getah yang lebih pekat butuh volume lebih kecil untuk membawa sukrosa yang sama.
+- I, II, dan III saja menerima III, menganggap luas naik dua kali saat diameter naik dua kali, **padahal luas sebanding kuadrat diameter**, yaitu naik empat kali, jadi kecepatan turun menjadi seperempat.

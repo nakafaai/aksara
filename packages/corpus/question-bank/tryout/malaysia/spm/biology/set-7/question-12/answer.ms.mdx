@@ -1,0 +1,48 @@
+# Cari tempat ketepuan melonjak, kemudian gunakan percampuran dalam ventrikel kanan untuk membandingkan dua peredaran
+
+Mula dengan membaca jadual mengikut arah aliran darah. Ketepuan kekal <InlineMath math="70\%" /> dari vena kava hingga atrium kanan, kemudian **melonjak ke** <InlineMath math="84\%" /> **dalam ventrikel kanan**. Darah yang kaya dengan oksigen mesti masuk ke ventrikel kanan, dan satu-satunya jalan masuk tambahan ialah lubang itu. Di sebelah kiri, ketepuan kekal <InlineMath math="98\%" /> dari vena pulmonari hingga aorta, jadi tiada darah lain yang bercampur di situ.
+
+<Chart
+  title={<>Ketepuan Sepanjang Peredaran Kanak-kanak Itu</>}
+  categories={["Vena kava", "Atrium kanan", "Ventrikel kanan", "Arteri pulm.", "Vena pulm.", "Atrium kiri", "Ventrikel kiri", "Aorta"]}
+  series={[{ label: "Ketepuan", mark: "line", values: [70, 70, 84, 84, 98, 98, 98, 98] }]}
+  valueLabel="Ketepuan hemoglobin (%)"
+  description={<>Ketepuan ialah <InlineMath math="70\%" /> dalam vena kava dan atrium kanan, naik ke <InlineMath math="84\%" /> dalam ventrikel kanan dan arteri pulmonari, dan <InlineMath math="98\%" /> dari vena pulmonari hingga aorta.</>}
+/>
+
+- III: kenaikan dalam ventrikel kanan, tanpa penurunan dalam ventrikel kiri, menunjukkan darah mengalir **dari ventrikel kiri ke dalam ventrikel kanan**. Tekanan juga sepadan: ventrikel kiri mencapai <InlineMath math="14.0\text{ kPa}" /> dan ventrikel kanan hanya <InlineMath math="4.0\text{ kPa}" />, dan darah mengalir dari tekanan tinggi ke tekanan rendah. Pernyataan III salah.
+- I: ventrikel kanan mencampurkan dua aliran. Namakan aliran darah yang pulang dari badan <InlineMath math="Q_s" /> (tiba pada <InlineMath math="70\%" />) dan aliran melalui lubang <InlineMath math="S" /> (tiba pada <InlineMath math="98\%" />). Campurannya keluar pada <InlineMath math="84\%" />.
+
+<BlockMath math="\begin{aligned}
+70Q_s + 98S &= 84(Q_s + S) \\
+14S &= 14Q_s \\
+S &= Q_s
+\end{aligned}" />
+
+Semua darah yang dipam oleh ventrikel kanan pergi ke peparu, jadi aliran melalui peparu ialah
+
+<BlockMath math="Q_p = Q_s + S = 2Q_s" />
+
+Mudah untuk menyangka bahawa dalam peredaran ganda dua, peparu dan badan mesti menerima aliran yang sama. Itu hanya benar apabila septum tidak berlubang. Di sini **darah tambahan itu melalui peparu sekali lagi** tanpa ke badan. Pernyataan I betul.
+
+- II: semua darah dari peparu pulang melalui atrium kiri ke ventrikel kiri, jadi ventrikel kiri mengepam <InlineMath math="Q_p" />. Aorta hanya membawa bahagian yang pergi ke badan, <InlineMath math="Q_s" />.
+
+<BlockMath math="Q_s = 3.0\text{ dm}^3/\text{min} \;\Rightarrow\; Q_p = 2 \times 3.0 = 6.0\text{ dm}^3/\text{min}" />
+
+Jadi ventrikel kiri mengepam <InlineMath math="6.0\text{ dm}^3" /> seminit: <InlineMath math="3.0" /> ke dalam aorta dan <InlineMath math="3.0" /> kembali melalui lubang. Pernyataan II betul.
+
+<Mermaid
+  title={<>Aliran Darah Seminit Melalui Jantung Kanak-kanak Itu</>}
+  description={<>Badan memulangkan <InlineMath math="3.0\text{ dm}^3" /> seminit ke sebelah kanan. Ventrikel kiri menghantar <InlineMath math="3.0\text{ dm}^3" /> melalui lubang, jadi ventrikel kanan menghantar <InlineMath math="6.0\text{ dm}^3" /> ke peparu. Ventrikel kiri menerima <InlineMath math="6.0\text{ dm}^3" /> dan mengepam <InlineMath math="3.0\text{ dm}^3" /> ke dalam aorta.</>}
+  chart={"flowchart LR\n  B[Badan] -->|3.0 pada 70%| RV[Ventrikel kanan]\n  RV -->|6.0 pada 84%| L[Peparu]\n  L -->|6.0 pada 98%| LV[Ventrikel kiri]\n  LV -->|3.0 melalui lubang| RV\n  LV -->|3.0 pada 98%| B"}
+/>
+
+- IV: aorta dan vena pulmonari sama-sama berisi darah pada <InlineMath math="98\%" />, dan kepekatan hemoglobin sama di mana-mana, jadi **setiap** <InlineMath math="100\text{ cm}^3" /> **membawa oksigen yang sama banyak**. Tiada darah dari sebelah kanan sampai ke sebelah kiri, kerana lubang itu hanya membenarkan darah mengalir dari kiri ke kanan. Pernyataan IV salah.
+
+Jadi pernyataan I dan II betul.
+
+# Kenapa pilihan lain salah
+
+- I dan IV sahaja menerima percampuran di sebelah yang salah, **sedangkan sebelah kiri kekal** <InlineMath math="98\%" /> dari vena pulmonari hingga aorta.
+- II dan III sahaja membiarkan darah melintas dari kanan ke kiri, **walaupun ketepuan naik dalam ventrikel kanan** dan tekanannya lebih rendah.
+- I, II dan III sahaja betul tentang kedua-dua aliran tetapi masih menghantar darah dari kanan ke kiri, **melawan tekanan yang lebih tinggi dalam ventrikel kiri**.

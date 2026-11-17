@@ -1,0 +1,58 @@
+# Get the gamete shares from the test cross before you self the plant
+
+The colourless shrunken parent is <InlineMath math="ccss" />, so it only ever gives <InlineMath math="cs" /> gametes. Each seed therefore shows exactly **which gamete came from the heterozygous plant**. Start with the total:
+
+<BlockMath math="380+26+22+372=800\text{ seeds}" />
+
+If the genes assorted independently, the four kinds of gamete would be equally common, and each class would hold <InlineMath math="\tfrac{800}{4}=200" /> seeds.
+
+<Chart
+  title={<>Seeds Counted Against Independent Assortment</>}
+  bars="apart"
+  categories={["Coloured, full", "Coloured, shrunken", "Colourless, full", "Colourless, shrunken"]}
+  series={[
+    { label: "Counted", mark: "bar", values: [380, 26, 22, 372] },
+    { label: "Expected if independent", mark: "bar", values: [200, 200, 200, 200] },
+  ]}
+  valueLabel="Number of seeds"
+  description={<>The counts are <InlineMath math="380" />, <InlineMath math="26" />, <InlineMath math="22" /> and <InlineMath math="372" />. Independent assortment would give <InlineMath math="200" /> in every class. Coloured full and colourless shrunken are far above <InlineMath math="200" />, and the other two classes are far below it.</>}
+/>
+
+Two classes are huge and two are tiny, so the alleles mostly travel together: the genes are **linked**. The big classes show the chromosomes the plant already had, and the small classes are the new combinations made by crossing over. Turn the counts into gamete shares:
+
+<BlockMath math="\begin{aligned}
+\text{new combinations} &= \tfrac{26+22}{800}\times100\% = 6\% \\
+Cs\text{ and }cS &= \tfrac{6\%}{2} = 3\%\text{ each} \\
+CS\text{ and }cs &= \tfrac{100\%-6\%}{2} = 47\%\text{ each}
+\end{aligned}" />
+
+A colourless shrunken seed from selfing needs a <InlineMath math="cs" /> pollen grain **and** a <InlineMath math="cs" /> egg cell, and the question says both are made the same way:
+
+<BlockMath math="\begin{aligned}
+P(ccss) &= 0.47\times0.47 = 0.2209 \\
+\text{expected seeds} &= 0.2209\times2000 \approx 442
+\end{aligned}" />
+
+<Chart
+  title={<>Colourless Shrunken Seeds Out of 2000</>}
+  bars="apart"
+  categories={["Linked, as measured", "If independent"]}
+  series={[
+    { label: "Expected seeds", mark: "bar", values: [442, 125] },
+  ]}
+  valueLabel="Number of seeds"
+  description={<>With <InlineMath math="47\%" /> of each kind of gamete carrying <InlineMath math="cs" />, about <InlineMath math="442" /> of <InlineMath math="2000" /> seeds are colourless and shrunken. Independent assortment, with a ratio of <InlineMath math="9:3:3:1" />, would give only <InlineMath math="\tfrac{1}{16}\times2000=125" />.</>}
+/>
+
+- I: the commonest seeds show coloured with full and colourless with shrunken, so the plant has <InlineMath math="C" /> with <InlineMath math="S" /> on one chromosome and <InlineMath math="c" /> with <InlineMath math="s" /> on the other. The arrangement in the statement is the one made by **crossing over**, which shows up in only <InlineMath math="6\%" /> of the gametes. Statement I is wrong.
+- II: the genes are linked, and <InlineMath math="6\%" /> of the gametes carry a new combination. Statement II is correct.
+- III: <InlineMath math="0.47^2\times2000\approx442" />, which is about <InlineMath math="440" />. Statement III is correct.
+- IV: the <InlineMath math="ccss" /> plant has the **same alleles on both homologues**. Swapping pieces between them still gives <InlineMath math="cs" /> every time, so crossing over there makes nothing new. Statement IV is wrong.
+
+So statements II and III are correct.
+
+# Why the other options are wrong
+
+- II only rejects III by using <InlineMath math="\tfrac{1}{16}\times2000=125" />, **a ratio that holds only for genes on different chromosomes**.
+- II, III and IV only accepts IV, forgetting that crossing over in a plant that is **homozygous for both genes** can't change its gametes.
+- I and II only reads the arrangement from the **rarest** classes. That also makes <InlineMath math="cs" /> a rare gamete of <InlineMath math="3\%" />, giving only about <InlineMath math="0.03^2\times2000\approx2" /> colourless shrunken seeds, so III gets rejected too.

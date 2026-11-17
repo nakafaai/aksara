@@ -1,0 +1,68 @@
+# Zeiten in Drücke umrechnen, dann bestimmt der Herzschlagabstand das Tempo für alles Weitere
+
+Die Manschette fällt um <InlineMath math="3\text{ mmHg}" /> pro Sekunde, also **ist jede Zeit auf der Stoppuhr ein Manschettendruck**. Der Abstand zwischen den Klopfgeräuschen ist die Zeit zwischen zwei Herzschlägen, und er bestimmt, wie schnell die Manschette fallen darf.
+
+## Die drei Drücke
+
+<BlockMath math="\begin{aligned}
+\text{systolisch} &= 180-3\times14=138\text{ mmHg} \\
+\text{diastolisch} &= 180-3\times30=90\text{ mmHg} \\
+\text{mittlerer arterieller Druck} &= 90+\tfrac{138-90}{3}=90+16=106\text{ mmHg}
+\end{aligned}" />
+
+## Herzschlagabstand und schnellstes genaues Tempo
+
+<BlockMath math="\begin{aligned}
+\text{Zeit zwischen Schlägen} &: \ \tfrac{30{,}0-14{,}0}{20}=0{,}8\text{ s} \\
+\text{schnellster genauer Abfall} &: \ \tfrac{2\text{ mmHg}}{0{,}8\text{ s}}=2{,}5\text{ mmHg pro Sekunde}
+\end{aligned}" />
+
+Die <InlineMath math="3\text{ mmHg}" /> pro Sekunde der Pflegekraft ergeben <InlineMath math="3\times0{,}8=2{,}4\text{ mmHg}" /> zwischen zwei Schlägen, **zu schnell für eine genaue Messung**.
+
+## Mit diesem Tempo rechnen
+
+Das automatische Gerät findet den größten Puls, wenn die Manschette den mittleren arteriellen Druck erreicht. Bei der Wiederholung liegen die Klopfgeräusche vom systolischen bis zum diastolischen Druck <InlineMath math="2\text{ mmHg}" /> auseinander, mit **einem Klopfen an beiden Enden**.
+
+<BlockMath math="\begin{aligned}
+\text{größter Puls} &: \ \tfrac{180-106}{2{,}5}=\tfrac{74}{2{,}5}=29{,}6\text{ s} \\
+\text{Klopfgeräusche bei der Wiederholung} &: \ \tfrac{138-90}{2}=24\text{ Abstände}\ \Rightarrow\ 24+1=25\text{ Klopfgeräusche}
+\end{aligned}" />
+
+<Chart
+  title={<>Manschettendruck beim schnellsten genauen Tempo</>}
+  categories={["0 s", "16,8 s", "29,6 s", "36 s"]}
+  series={[{ label: "Manschettendruck", mark: "line", values: [180, 138, 106, 90] }]}
+  valueLabel="Manschettendruck (mmHg)"
+  description={<>Bei einem Abfall von <InlineMath math="2{,}5\text{ mmHg}" /> pro Sekunde erreicht die Manschette den systolischen Druck von <InlineMath math="138" /> nach <InlineMath math="16{,}8\text{ s}" />, den mittleren arteriellen Druck von <InlineMath math="106" /> nach <InlineMath math="29{,}6\text{ s}" /> und den diastolischen Druck von <InlineMath math="90\text{ mmHg}" /> nach <InlineMath math="36\text{ s}" />.</>}
+/>
+
+## Wenn der diastolische Druck um sechs fällt
+
+<BlockMath math="84+\tfrac{138-84}{3}=84+18=102\text{ mmHg}" />
+
+<Chart
+  title={<>Blutdruck jetzt und mit niedrigerem diastolischem Druck</>}
+  bars="apart"
+  categories={["Systolisch", "Mitteldruck", "Diastolisch"]}
+  series={[
+    { label: "Jetzt", mark: "bar", values: [138, 106, 90] },
+    { label: "Diastolisch 6 tiefer", mark: "bar", values: [138, 102, 84] },
+  ]}
+  valueLabel="Druck (mmHg)"
+  description={<>Jetzt betragen die Drücke <InlineMath math="138" />, <InlineMath math="106" /> und <InlineMath math="90\text{ mmHg}" />. Fällt der diastolische Druck um <InlineMath math="6" /> auf <InlineMath math="84" />, sinkt der Mitteldruck nur um <InlineMath math="4" /> auf <InlineMath math="102\text{ mmHg}" />, weil ein Drittel der größeren Differenz wieder dazukommt.</>}
+/>
+
+## Die Aussagen im Einzelnen
+
+- I: Der systolische Druck ist <InlineMath math="138" />, unter <InlineMath math="140" />, aber der diastolische Druck ist <InlineMath math="90" /> und erreicht die Grenze. Aussage I stimmt.
+- II: Der größte Puls kommt nach <InlineMath math="29{,}6\text{ s}" />, nicht nach <InlineMath math="26{,}4\text{ s}" />, weil der mittlere arterielle Druck <InlineMath math="106\text{ mmHg}" /> beträgt. Aussage II ist falsch.
+- III: Ein Schlag alle <InlineMath math="0{,}8\text{ s}" /> erlaubt höchstens <InlineMath math="2{,}5\text{ mmHg}" /> pro Sekunde, und bei diesem Tempo klopft es bei <InlineMath math="138" />, <InlineMath math="136" /> und so weiter bis <InlineMath math="90" />: <InlineMath math="25" /> Klopfgeräusche. Aussage III stimmt.
+- IV: Mit diastolisch <InlineMath math="84" /> und systolisch <InlineMath math="138" /> gilt der Wert nicht mehr als hoch. Der Mitteldruck fällt aber von <InlineMath math="106" /> auf <InlineMath math="102" />, **nur um <InlineMath math="4\text{ mmHg}" />**. Aussage IV ist falsch.
+
+Richtig sind also die Aussagen I und III.
+
+# Warum die anderen Antworten falsch sind
+
+- Nur I, II und III nimmt den einfachen Mittelwert, <InlineMath math="\tfrac{138+90}{2}=114" />, sodass der größte Puls scheinbar nach <InlineMath math="\tfrac{180-114}{2{,}5}=26{,}4\text{ s}" /> kommt. **Der Mitteldruck addiert ein Drittel der Differenz zum diastolischen Druck**, weil das Herz mehr Zeit in der Diastole verbringt.
+- Nur I, III und IV lässt den Mitteldruck um die vollen <InlineMath math="6\text{ mmHg}" /> fallen **und vergisst, dass ein niedrigerer diastolischer Druck die Differenz vergrößert, von der ein Drittel wieder dazukommt**.
+- Nur I teilt die <InlineMath math="48\text{ mmHg}" /> zwischen systolischem und diastolischem Druck durch <InlineMath math="2\text{ mmHg}" /> und zählt <InlineMath math="24" /> Klopfgeräusche. **Das sind die Abstände**, und mit einem Klopfen an beiden Enden gibt es eins mehr als Abstände, so wie die <InlineMath math="21" /> Klopfgeräusche der Pflegekraft <InlineMath math="20" /> Abstände hatten.

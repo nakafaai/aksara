@@ -1,0 +1,59 @@
+# Spätere Hüte folgen den Kernen, und der erste Hut zählt den Vorrat im Stiel als einen Kern mehr
+
+Der Zellkern schickt Stoffe aus, die bestimmen, wie ein Hut gebaut wird. Ein Stiel ohne Kern enthält noch einen Teil davon, aber **er kann keine neuen bilden**. Such also zwei Regeln in der Tabelle: eine für die Hüte nach dem ersten und eine für den ersten Hut.
+
+## Spätere Hüte folgen dem Anteil der C-Kerne
+
+Vergleich jeden späteren Wert mit **dem Anteil der Kerne, die von C stammen**.
+
+<BlockMath math="\text{R}: \tfrac{1}{3}\approx33,\qquad \text{S}: \tfrac{1}{2}=50,\qquad \text{T}: \tfrac{2}{3}\approx67,\qquad \text{Q}: \tfrac{1}{1}=100" />
+
+U hat einen Stiel von C, aber dieselben Basen wie S, und seine späteren Hüte haben ebenfalls den Wert <InlineMath math="50" />. **Nach dem ersten Hut spielt der Stiel also keine Rolle mehr**. Stiel P hat gar keinen Kern und bildet keinen zweiten Hut.
+
+## Der erste Hut zählt den Vorrat im Stiel
+
+Verlockend ist die Idee, der Stiel liefere immer ein festes Drittel des ersten Huts. Das passt zu S und U, aber nicht zu den anderen Zeilen:
+
+<BlockMath math="\text{R}: \tfrac{2}{3}\times33\approx22\neq25,\qquad \text{Q}: \tfrac{2}{3}\times100\approx67\neq50" />
+
+Zu jeder Zeile passt dagegen: **Zähl den Vorrat im Stiel als einen weiteren Kern der Art, von der der Stiel stammt**, und zwar nur für den ersten Hut.
+
+<BlockMath math="\begin{aligned}
+\text{P} &: \ \tfrac{0}{1}=0,\qquad \text{Q}: \ \tfrac{1}{2}=50,\qquad \text{R}: \ \tfrac{1}{4}=25 \\
+\text{S} &: \ \tfrac{1}{3}\approx33,\qquad \text{T}: \ \tfrac{2}{4}=50,\qquad \text{U}: \ \tfrac{1+1}{3}\approx67
+\end{aligned}" />
+
+## Beide Regeln anwenden
+
+<BlockMath math="\begin{aligned}
+\text{II, Stiel M auf 1 M und 3 C} &: \ \text{erster Hut }\tfrac{3}{5}=60 \\
+\text{III, Stiel C auf 2 M und 2 C} &: \ \text{erster Hut }\tfrac{2+1}{5}=60,\quad \text{spätere Hüte }\tfrac{2}{4}=50 \\
+\text{IV, beliebiger Stiel auf 3 M und 1 C} &: \ \text{spätere Hüte }\tfrac{1}{4}=25
+\end{aligned}" />
+
+<Chart
+  title={<>Werte des ersten und der späteren Hüte</>}
+  bars="apart"
+  categories={["Q", "R", "S", "T", "U", "III"]}
+  series={[
+    { label: "Erster Hut", mark: "bar", values: [50, 25, 33, 50, 67, 60] },
+    { label: "Spätere Hüte", mark: "bar", values: [100, 33, 50, 67, 50, 50] },
+  ]}
+  valueLabel="Hutwert"
+  description={<>Bei den Pfropfen Q bis U passt der erste Hut zum Anteil von C, wenn der Vorrat im Stiel als ein Kern mehr zählt, und die späteren Hüte passen zum Anteil der C-Kerne allein. Das letzte Paar ist die Vorhersage für Aussage III: <InlineMath math="60" /> für den ersten Hut und <InlineMath math="50" /> danach.</>}
+/>
+
+## Die Aussagen im Einzelnen
+
+- I: Stiel P bildet ohne Kern einen M-Hut und dann keinen mehr, und in jedem Pfropf ist die Wirkung des Stiels nach dem ersten Hut verschwunden. Der Vorrat entstand unter dem Kern von M, und ein Hut verbraucht ihn. Aussage I stimmt.
+- II: Der erste Hut zählt <InlineMath math="3" /> C-Einheiten von <InlineMath math="5" />, hat also den Wert <InlineMath math="60" />, **nicht <InlineMath math="75" />**. Aussage II ist falsch.
+- III: Der erste Hut hat den Wert <InlineMath math="60" />, die späteren Hüte <InlineMath math="50" />. Aussage III stimmt.
+- IV: Spätere Hüte hängen nur von den Kernen ab, <InlineMath math="1" /> C-Kern von <InlineMath math="4" />, egal welcher Stiel. Aussage IV stimmt.
+
+Richtig sind also die Aussagen I, III und IV.
+
+# Warum die anderen Antworten falsch sind
+
+- Nur I, II und IV vergisst den Vorrat im Stiel beim ersten Hut. Dann hätte der erste Hut in II den Wert <InlineMath math="75" /> und der in III nur <InlineMath math="50" />, **als trüge der Stiel nichts**, obwohl die Zeilen Q bis U zeigen, dass der erste Hut von den späteren abweicht.
+- Nur I und IV gibt dem Stiel ein festes Drittel jedes ersten Huts, was nur zu S und U passt. Damit kämen in II <InlineMath math="50" /> und in III etwa <InlineMath math="67" /> heraus, **obwohl die Zeilen Q und R diese Regel ausschließen**.
+- Nur I und III setzt die späteren Werte mit einem festen Schritt von etwa <InlineMath math="17" /> pro Basis fort und erwartet für <InlineMath math="3" /> M-Basen und <InlineMath math="1" /> C-Basis etwa <InlineMath math="16" />, **statt den Anteil der C-Kerne zu nehmen, <InlineMath math="\tfrac{1}{4}" />**.

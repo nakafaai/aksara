@@ -1,0 +1,29 @@
+# Übersetze das Leben jeder Blüte in Kalendertage und prüfe dann beide Enden der Ähre
+
+Blüte <InlineMath math="k" /> öffnet sich an Tag <InlineMath math="k" />, an Tag <InlineMath math="d" /> ist sie also an Tag <InlineMath math="d-k+1" /> ihres Lebens. Damit hat jede Blüte zwei Zeitfenster im Kalender:
+
+<BlockMath math="\text{Blüte }k\text{ gibt an den Tagen }k\text{ und }k+1\text{ Pollen ab},\qquad \text{ihre Narbe ist an den Tagen }k+2\text{ und }k+3\text{ empfängnisbereit}" />
+
+- I: Blüte <InlineMath math="10" /> welkt an ihrem fünften Tag, also an Tag <InlineMath math="14" />. Die Ähre hat daher von Tag <InlineMath math="1" /> bis Tag <InlineMath math="13" /> offene Blüten, das sind <InlineMath math="13" /> Tage. Pollen gibt es von Tag <InlineMath math="1" /> (Blüte <InlineMath math="1" />) bis Tag <InlineMath math="11" /> (Blüte <InlineMath math="10" />). Eine empfängnisbereite Narbe gibt es von Tag <InlineMath math="3" /> (Blüte <InlineMath math="1" />) bis Tag <InlineMath math="13" /> (Blüte <InlineMath math="10" />). Beides zusammen gibt es an den Tagen <InlineMath math="3" /> bis <InlineMath math="11" />, also <InlineMath math="11-3+1=9" /> Tage. Aussage I stimmt.
+- II: Blüte <InlineMath math="1" /> gibt an den Tagen <InlineMath math="1" /> und <InlineMath math="2" /> Pollen ab, bevor irgendeine Narbe der Ähre empfängnisbereit ist. Blüte <InlineMath math="10" /> ist an den Tagen <InlineMath math="12" /> und <InlineMath math="13" /> empfängnisbereit, nach dem letzten Pollen der Ähre an Tag <InlineMath math="11" />. **Der Weg der Bienen spielt hier keine Rolle**, weil die passenden Blüten einfach nie gleichzeitig offen sind. Aussage II stimmt.
+- III: Auf dem Weg nach unten nimmt eine Biene oben Pollen auf und erreicht dann die empfängnisbereiten Blüten weiter unten. Blüte <InlineMath math="k" /> bekommt Pollen von der eigenen Ähre, wenn an Tag <InlineMath math="k+2" /> eine Blüte über ihr Pollen abgibt, nämlich Blüte <InlineMath math="k+1" /> oder <InlineMath math="k+2" />. Das klappt bis Blüte <InlineMath math="9" />, aber über Blüte <InlineMath math="10" /> sitzt keine Blüte mehr, und II hat schon gezeigt, dass sie keinen Pollen von der eigenen Ähre bekommen kann. Aussage III ist falsch.
+- IV: Öffnet sich nur alle <InlineMath math="3" /> Tage eine neue Blüte, geschieht das an den Tagen <InlineMath math="1, 4, 7, \ldots" />. An Tag <InlineMath math="4" /> ist Blüte <InlineMath math="1" /> empfängnisbereit und Blüte <InlineMath math="2" /> gibt Pollen ab. An Tag <InlineMath math="5" /> ist Blüte <InlineMath math="1" /> verwelkt. An Tag <InlineMath math="6" /> ist Blüte <InlineMath math="2" /> empfängnisbereit, aber Blüte <InlineMath math="3" /> ist noch zu. Die Überlappung kommt erst an Tag <InlineMath math="7" /> wieder, dann an Tag <InlineMath math="10" />, nie an zwei Tagen hintereinander. Aussage IV stimmt.
+
+<Chart
+  title={<>Blüten in jedem Zustand an einer Ähre mit zehn Blüten</>}
+  categories={["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14"]}
+  series={[
+    { label: "Gibt Pollen ab", mark: "line", values: [1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 1, 0, 0, 0] },
+    { label: "Empfängnisbereit", mark: "line", values: [0, 0, 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 1, 0] },
+  ]}
+  valueLabel="Anzahl der Blüten"
+  description={<>Unten stehen die Tage. Pollen gibt es von Tag <InlineMath math="1" /> bis Tag <InlineMath math="11" />, empfängnisbereite Narben von Tag <InlineMath math="3" /> bis Tag <InlineMath math="13" />. Beide Linien liegen nur von Tag <InlineMath math="3" /> bis Tag <InlineMath math="11" /> gemeinsam über null, also an <InlineMath math="9" /> Tagen. An den Tagen <InlineMath math="12" /> und <InlineMath math="13" /> ist nur Blüte <InlineMath math="10" /> empfängnisbereit, und keine Blüte gibt Pollen ab.</>}
+/>
+
+Also stimmen die Aussagen I, II und IV.
+
+# Warum die anderen Antworten falsch sind
+
+- I und II verwirft IV, etwa weil die Tage <InlineMath math="4" /> und <InlineMath math="5" /> zusammen gezählt werden. **An Tag <InlineMath math="5" /> ist Blüte <InlineMath math="1" /> schon verwelkt**, also dauert jede Überlappung nur einen Tag.
+- I, II, III und IV vergisst die Spitze der Ähre. **Über Blüte <InlineMath math="10" /> sitzt keine Blüte mehr**, also bekommt sie auch bei Bienen, die nach unten laufen, nur Pollen von anderen Pflanzen.
+- II und IV verzählt sich bei I, zum Beispiel mit einer Überlappung von Tag <InlineMath math="3" /> bis <InlineMath math="12" />. **Der letzte Pollen wird an Tag <InlineMath math="11" /> abgegeben**, dem zweiten Tag von Blüte <InlineMath math="10" />.

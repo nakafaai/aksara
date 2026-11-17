@@ -1,0 +1,50 @@
+# Lies die Fragmente jedes Allels, erschließ die ungetestete Mutter über ihre Kinder und teil dann die Zukunft von Kind Z nach seinem Genotyp auf
+
+Fang bei den Schnittstellen an. Ein Schnitt bei <InlineMath math="200" /> und bei <InlineMath math="380\text{ bp}" /> teilt die <InlineMath math="500\text{ bp}" /> lange Kopie von <InlineMath math="\text{Hb}^A" /> in drei Stücke. Bei <InlineMath math="\text{Hb}^S" /> bleibt nur der Schnitt bei <InlineMath math="200\text{ bp}" />:
+
+<BlockMath math="\begin{aligned}
+\text{Hb}^A &: \quad 200,\quad 380-200=180,\quad 500-380=120\text{ bp} \\
+\text{Hb}^S &: \quad 200,\quad 500-200=300\text{ bp}
+\end{aligned}" />
+
+Eine Bande bei <InlineMath math="300\text{ bp}" /> zeigt also <InlineMath math="\text{Hb}^S" />, die Banden bei <InlineMath math="180" /> und <InlineMath math="120\text{ bp}" /> zeigen <InlineMath math="\text{Hb}^A" />, und die Bande bei <InlineMath math="200\text{ bp}" /> stammt von **beiden** Allelen. Der Vater zeigt alle vier Banden, er ist also <InlineMath math="\text{Hb}^A\text{Hb}^S" />.
+
+- I: Kind X zeigt nur <InlineMath math="300" /> und <InlineMath math="200\text{ bp}" />, die Stücke von <InlineMath math="\text{Hb}^S" />. X ist also <InlineMath math="\text{Hb}^S\text{Hb}^S" /> und hat Sichelzellenanämie. Erschließ jetzt die Mutter über ihre Kinder. X bekam von jedem Elternteil ein <InlineMath math="\text{Hb}^S" />, die Mutter hat also ein <InlineMath math="\text{Hb}^S" />. Kind Y zeigt nur die Stücke von <InlineMath math="\text{Hb}^A" />, ist also <InlineMath math="\text{Hb}^A\text{Hb}^A" /> und bekam auch von der Mutter ein <InlineMath math="\text{Hb}^A" />. Sie muss <InlineMath math="\text{Hb}^A\text{Hb}^S" /> sein. Aussage I stimmt.
+- II: Die Stelle bei <InlineMath math="200\text{ bp}" /> gibt es in beiden Allelen, also müsste jede Kopie dort geschnitten werden. Eine einzelne Bande bei <InlineMath math="500\text{ bp}" /> heißt, dass nicht einmal diese gemeinsame Stelle geschnitten wurde, das Enzym hat also versagt. Ein Mensch mit Sichelzellenanämie zeigt trotzdem <InlineMath math="300" /> und <InlineMath math="200\text{ bp}" />. Aussage II stimmt.
+- III: Trag den Genotyp der Mutter aus I weiter. Beide Eltern sind Träger, also ist ein Kind von ihnen <InlineMath math="\text{Hb}^A\text{Hb}^A" />, <InlineMath math="\text{Hb}^A\text{Hb}^S" /> oder <InlineMath math="\text{Hb}^S\text{Hb}^S" /> im Verhältnis <InlineMath math="1:2:1" />. Z hat die Krankheit aber nicht, also fällt <InlineMath math="\text{Hb}^S\text{Hb}^S" /> weg, und nur die ersten beiden bleiben:
+
+<BlockMath math="P(\text{Z ist Träger, mit vier Banden})=\frac{2}{1+2}=\frac{2}{3}" />
+
+Aussage III stimmt.
+
+<Chart
+  title={<>Genotypen eines Kindes zweier Träger</>}
+  bars="apart"
+  categories={["HbAHbA", "HbAHbS", "HbSHbS"]}
+  series={[
+    { label: "Beliebiges Kind", mark: "bar", values: [1 / 4, 2 / 4, 1 / 4] },
+    { label: "Kind Z", mark: "bar", values: [1 / 3, 2 / 3, 0] },
+  ]}
+  valueLabel="Wahrscheinlichkeit"
+  description={<>Bei einem beliebigen Kind zweier Träger treten die drei Genotypen im Verhältnis <InlineMath math="1:2:1" /> auf. Bei Kind Z, das die Krankheit nicht hat, fällt der Balken für <InlineMath math="\text{Hb}^S\text{Hb}^S" /> auf null, und die anderen beiden teilen sich die ganze Wahrscheinlichkeit. Ein Träger mit vier Banden hat also die Wahrscheinlichkeit <InlineMath math="\tfrac{2}{3}" />.</>}
+/>
+
+- IV: Die Frau zeigt nur die Stücke von <InlineMath math="\text{Hb}^S" />, ist also <InlineMath math="\text{Hb}^S\text{Hb}^S" /> und gibt jedem Kind ein <InlineMath math="\text{Hb}^S" />. Ob ein Kind krank wird, hängt jetzt nur noch von Z ab, und **beide Kinder teilen sich den einen Genotyp von Z**. Teil deshalb zuerst nach diesem Genotyp auf:
+
+<Mermaid
+  title={<>Zwei Kinder von Kind Z</>}
+  description={<>Kind Z ist mit der Wahrscheinlichkeit zwei Drittel Träger. Dann ist jedes Kind mit der Wahrscheinlichkeit ein halb krank, und eines oder beide Kinder sind mit der Wahrscheinlichkeit drei Viertel krank. Mit der Wahrscheinlichkeit ein Drittel hat Z zwei normale Allele, und dann ist jedes Kind Träger und keines krank.</>}
+  chart={"flowchart LR\n  Z[\"Kind Z, ohne Krankheit\"] -->|2/3| C[\"Z ist HbAHbS\"]\n  Z -->|1/3| N[\"Z ist HbAHbA\"]\n  C --> P[\"Jedes Kind 1/2 krank, eines oder beide krank: 3/4\"]\n  N --> Q[\"Jedes Kind HbAHbS, keines krank\"]"}
+/>
+
+<BlockMath math="P(\text{mindestens eines krank})=\tfrac{2}{3}\times\left(1-\tfrac{1}{2}\times\tfrac{1}{2}\right)+\tfrac{1}{3}\times0=\tfrac{2}{3}\times\tfrac{3}{4}=\tfrac{1}{2}" />
+
+Das ist <InlineMath math="\tfrac{1}{2}" />, nicht <InlineMath math="\tfrac{5}{9}" />. Aussage IV ist falsch.
+
+Also stimmen die Aussagen I, II und III.
+
+# Warum die anderen Antworten falsch sind
+
+- I und II nimmt für Kind Z <InlineMath math="\tfrac{1}{2}" />, die Wahrscheinlichkeit für ein Kind, über das du nichts weißt. **Von Z ist bekannt, dass es die Krankheit nicht hat**, also fällt <InlineMath math="\text{Hb}^S\text{Hb}^S" /> weg, und es bleiben <InlineMath math="\tfrac{2}{3}" />.
+- I und III liest eine einzelne Bande bei <InlineMath math="500\text{ bp}" /> als zwei Kopien von <InlineMath math="\text{Hb}^S" />. **Die Stelle bei <InlineMath math="200\text{ bp}" /> wird in beiden Allelen geschnitten**, eine ungeschnittene Kopie zeigt also, dass das Enzym versagt hat.
+- I, II, III und IV gibt jedem Kind eine eigene Wahrscheinlichkeit von <InlineMath math="\tfrac{2}{3}\times\tfrac{1}{2}=\tfrac{1}{3}" /> und rechnet <InlineMath math="1-\left(\tfrac{2}{3}\right)^2=\tfrac{5}{9}" />, als wären die beiden Kinder unabhängig. **Beide Kinder haben denselben Vater, Z**: Hat er kein <InlineMath math="\text{Hb}^S" />, kann keines krank sein, und die Wahrscheinlichkeit ist <InlineMath math="\tfrac{1}{2}" />.

@@ -1,0 +1,50 @@
+# Jede Base über die Stoffe, die nur eine Nukleinsäure hat, DNA oder RNA zuordnen
+
+Der Extrakt enthält zwei Nukleinsäuren, und drei Basen teilen sich beide. Der Zugang führt über das, was nur zu einer Säure gehört: **Desoxyribose und Thymin kommen nur in DNA vor**, Ribose und Uracil nur in RNA.
+
+## Die DNA
+
+Jedes Nukleotid hat einen Zucker, also hat die DNA <InlineMath math="1000\text{ nmol}" /> Nukleotide, das sind <InlineMath math="500\text{ nmol}" /> Basenpaare. Im Doppelstrang **paart jedes Adenin mit einem Thymin** und jedes Guanin mit einem Cytosin.
+
+<BlockMath math="\begin{aligned}
+\text{A}=\text{T} &= 280\text{ nmol} \\
+\text{G}=\text{C} &= \tfrac{1000-280-280}{2}=220\text{ nmol} \\
+\text{Paare aus A und T} &: \ \tfrac{280}{500}=56\%\ \text{der Basenpaare}
+\end{aligned}" />
+
+## Die RNA
+
+Die RNA hat <InlineMath math="3000\text{ nmol}" /> Nukleotide. Adenin und Guanin wurden für die ganze Mischung gemessen, also **zieh zuerst den Anteil der DNA ab**. Ein Einzelstrang hat keine Paarungsregel, also ist Cytosin der Rest.
+
+<BlockMath math="\begin{aligned}
+\text{A} &= 1000-280=720\text{ nmol} \\
+\text{G} &= 1260-220=1040\text{ nmol} \\
+\text{C} &= 3000-720-1040-750=490\text{ nmol}
+\end{aligned}" />
+
+<Chart
+  title={<>Basen der DNA und der RNA</>}
+  bars="apart"
+  categories={["Adenin", "Guanin", "Cytosin", "Thymin", "Uracil"]}
+  series={[
+    { label: "DNA", mark: "bar", values: [280, 220, 220, 280, 0] },
+    { label: "RNA", mark: "bar", values: [720, 1040, 490, 0, 750] },
+  ]}
+  valueLabel="Menge (nmol)"
+  description={<>Die DNA enthält <InlineMath math="280" /> Adenin, <InlineMath math="220" /> Guanin, <InlineMath math="220" /> Cytosin und <InlineMath math="280" /> Thymin, in <InlineMath math="\text{nmol}" />. Die RNA enthält <InlineMath math="720" /> Adenin, <InlineMath math="1040" /> Guanin, <InlineMath math="490" /> Cytosin und <InlineMath math="750" /> Uracil. Die Basen jeder Säure ergeben zusammen ihren Zucker.</>}
+/>
+
+## Die Aussagen im Einzelnen
+
+- I: Die DNA hat <InlineMath math="220\text{ nmol}" /> Guanin, die RNA die übrigen <InlineMath math="1040\text{ nmol}" />. Aussage I stimmt.
+- II: Die RNA hat <InlineMath math="720\text{ nmol}" /> Adenin, **weniger als ihre** <InlineMath math="750\text{ nmol}" /> **Uracil**. Aussage II ist falsch.
+- III: <InlineMath math="280" /> der <InlineMath math="500\text{ nmol}" /> Basenpaare sind Paare aus Adenin und Thymin, also <InlineMath math="56\%" />. Aussage III stimmt.
+- IV: Die RNA hat <InlineMath math="490\text{ nmol}" /> Cytosin. Aussage IV stimmt.
+
+Richtig sind also die Aussagen I, III und IV.
+
+# Warum die anderen Antworten falsch sind
+
+- Nur I, II und III gibt alle <InlineMath math="1000\text{ nmol}" /> Adenin der RNA. Dann liegt Adenin über Uracil, und für Cytosin bleiben nur <InlineMath math="3000-1000-1040-750=210\text{ nmol}" />, **weil vergessen wird, dass die DNA** <InlineMath math="280\text{ nmol}" /> **des Adenins enthält**.
+- Nur I und IV teilt die <InlineMath math="280" /> Paare aus Adenin und Thymin durch die <InlineMath math="1000\text{ nmol}" /> Nukleotide und kommt auf <InlineMath math="28\%" />, **es verwechselt Nukleotide mit Basenpaaren**.
+- I, II, III und IV rechnet das Cytosin richtig, beurteilt Aussage II aber, indem es das gesamte Adenin neben das Uracil stellt, **ohne das Adenin der DNA abzutrennen**.

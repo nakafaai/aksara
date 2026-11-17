@@ -1,0 +1,65 @@
+# Equal oxygen from the gas breathed in does not mean equal energy, because the RQ changes the yield
+
+Each reading covers <InlineMath math="30\text{ s}" />. The fall during one breath in is the tidal volume, and **pulmonary ventilation is the tidal volume times the number of breaths**. The slow fall of the level at the end of each breath out is the oxygen taken up, because the soda lime removes the carbon dioxide breathed back.
+
+## Ventilation and oxygen uptake
+
+<BlockMath math="\begin{aligned}
+\text{at rest} &: \ 6\times0.5=3\text{ dm}^3,\quad \text{oxygen }6.00-5.85=0.15\text{ dm}^3\quad(\text{per }30\text{ s}) \\
+\text{after exercise} &: \ 10\times1.5=15\text{ dm}^3,\quad \text{oxygen }6.00-5.25=0.75\text{ dm}^3\quad(\text{per }30\text{ s}) \\
+\text{oxygen per dm}^3\text{ breathed in} &: \ \tfrac{0.15}{3}=0.05,\qquad \tfrac{0.75}{15}=0.05
+\end{aligned}" />
+
+## Energy from the oxygen
+
+Now bring in the second table. The RQ picks **how much energy each <InlineMath math="\text{dm}^3" /> of oxygen gives**: <InlineMath math="20.1\text{ kJ}" /> at rest and <InlineMath math="21.1\text{ kJ}" /> just after exercise.
+
+<BlockMath math="\begin{aligned}
+\text{after exercise, per minute} &: \ 2\times0.75=1.50\text{ dm}^3\text{ oxygen},\quad 1.50\times21.1=31.65\text{ kJ} \\
+\text{per dm}^3\text{ breathed in, at rest} &: \ 0.05\times20.1=1.005\text{ kJ} \\
+\text{per dm}^3\text{ breathed in, after exercise} &: \ 0.05\times21.1=1.055\text{ kJ}
+\end{aligned}" />
+
+<Chart
+  title={<>Energy From the Gas Breathed In</>}
+  bars="apart"
+  categories={["At rest", "After exercise"]}
+  series={[{ label: "Energy (kJ)", mark: "bar", values: [1.005, 1.055] }]}
+  valueLabel="Energy per dm³ breathed in (kJ)"
+  description={<>Each <InlineMath math="\text{dm}^3" /> of gas breathed in gives up <InlineMath math="0.05\text{ dm}^3" /> of oxygen in both conditions, but it releases <InlineMath math="1.005\text{ kJ}" /> at rest and <InlineMath math="1.055\text{ kJ}" /> after exercise, because the RQ rises from <InlineMath math="0.80" /> to <InlineMath math="1.00" />.</>}
+/>
+
+## How long the chamber allows full breaths
+
+A full breath in takes <InlineMath math="1.5\text{ dm}^3" /> below the level at the end of a breath out. So **the end of a breath in stays at <InlineMath math="1.00\text{ dm}^3" /> or more only while the end of a breath out stays at <InlineMath math="1.00+1.5=2.50\text{ dm}^3" /> or more**.
+
+<BlockMath math="\begin{aligned}
+\text{fall allowed} &: \ 6.00-2.50=3.50\text{ dm}^3 \\
+\text{time} &: \ \tfrac{3.50}{0.75}\times30\text{ s}=140\text{ s}
+\end{aligned}" />
+
+<Chart
+  title={<>Chamber Volume Just After Exercise</>}
+  categories={["0 s", "30 s", "60 s", "90 s", "120 s", "140 s"]}
+  series={[
+    { label: "End of breath out", mark: "line", values: [6.0, 5.25, 4.5, 3.75, 3.0, 2.5] },
+    { label: "End of breath in", mark: "line", values: [4.5, 3.75, 3.0, 2.25, 1.5, 1.0] },
+  ]}
+  valueLabel="Chamber volume (dm³)"
+  description={<>The level at the end of a breath out falls by <InlineMath math="0.75\text{ dm}^3" /> every <InlineMath math="30\text{ s}" />, and the level at the end of a breath in stays <InlineMath math="1.5\text{ dm}^3" /> lower. The end of a breath in reaches the limit of <InlineMath math="1.00\text{ dm}^3" /> at <InlineMath math="140\text{ s}" />.</>}
+/>
+
+## Judging each statement
+
+- I: the ventilation rises from <InlineMath math="3" /> to <InlineMath math="15\text{ dm}^3" /> per <InlineMath math="30\text{ s}" />, five times, and each <InlineMath math="\text{dm}^3" /> gives up <InlineMath math="0.05\text{ dm}^3" /> of oxygen in both conditions. Statement I is correct.
+- II: <InlineMath math="1.50\text{ dm}^3" /> of oxygen per minute at <InlineMath math="21.1\text{ kJ}" /> each gives <InlineMath math="31.65\text{ kJ}" /> per minute. Statement II is correct.
+- III: <InlineMath math="1.005\text{ kJ}" /> holds only at rest. Just after exercise **the same oxygen gives <InlineMath math="1.055\text{ kJ}" />**, because the RQ is higher. Statement III is wrong.
+- IV: full breaths last <InlineMath math="140\text{ s}" />, not <InlineMath math="280\text{ s}" />. Statement IV is wrong.
+
+So statements I and II are correct.
+
+# Why the other options are wrong
+
+- I, II and III only sees the same <InlineMath math="0.05\text{ dm}^3" /> of oxygen per <InlineMath math="\text{dm}^3" /> and assumes the same energy, **forgetting that the energy from each <InlineMath math="\text{dm}^3" /> of oxygen depends on the RQ**.
+- I and IV only reads the fall of <InlineMath math="0.75\text{ dm}^3" /> in <InlineMath math="30\text{ s}" /> **as if it were per minute**. Then the energy is only <InlineMath math="0.75\times21.1\approx15.8\text{ kJ}" /> per minute, and the chamber seems to last <InlineMath math="\tfrac{3.50}{0.75}" /> minutes, <InlineMath math="280\text{ s}" />.
+- II only compares the oxygen taken up per breath, <InlineMath math="\tfrac{0.15}{6}=0.025" /> against <InlineMath math="\tfrac{0.75}{10}=0.075\text{ dm}^3" />, and so rejects statement I. Statement I asks about **each <InlineMath math="\text{dm}^3" /> breathed in**, and the deeper breaths hold three times the gas.

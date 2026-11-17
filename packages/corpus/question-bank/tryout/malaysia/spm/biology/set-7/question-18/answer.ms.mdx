@@ -1,0 +1,68 @@
+# Tukar masa kepada tekanan, kemudian biarkan sela denyutan menetapkan kelajuan bagi semua langkah seterusnya
+
+Manset menurun <InlineMath math="3\text{ mmHg}" /> setiap saat, jadi **setiap masa pada jam randik ialah satu tekanan manset**. Jarak antara ketukan ialah masa antara denyutan jantung, dan jarak itu menentukan sepantas mana manset boleh menurun.
+
+## Tiga tekanan
+
+<BlockMath math="\begin{aligned}
+\text{sistolik} &= 180-3\times14=138\text{ mmHg} \\
+\text{diastolik} &= 180-3\times30=90\text{ mmHg} \\
+\text{tekanan arteri min} &= 90+\tfrac{138-90}{3}=90+16=106\text{ mmHg}
+\end{aligned}" />
+
+## Sela denyutan dan kelajuan terpantas yang tepat
+
+<BlockMath math="\begin{aligned}
+\text{masa antara denyutan} &: \ \tfrac{30.0-14.0}{20}=0.8\text{ s} \\
+\text{penurunan terpantas yang tepat} &: \ \tfrac{2\text{ mmHg}}{0.8\text{ s}}=2.5\text{ mmHg sesaat}
+\end{aligned}" />
+
+Kadar <InlineMath math="3\text{ mmHg}" /> sesaat yang digunakan jururawat itu menurunkan <InlineMath math="3\times0.8=2.4\text{ mmHg}" /> antara denyutan, **iaitu terlalu cepat untuk bacaan yang tepat**.
+
+## Menggunakan kelajuan itu
+
+Monitor automatik menemui denyut terbesar apabila manset mencapai tekanan arteri min. Dalam ulangan, ketukan berlaku dari tekanan sistolik hingga tekanan diastolik, berjarak <InlineMath math="2\text{ mmHg}" />, dengan **satu ketukan di setiap hujung**.
+
+<BlockMath math="\begin{aligned}
+\text{denyut terbesar} &: \ \tfrac{180-106}{2.5}=\tfrac{74}{2.5}=29.6\text{ s} \\
+\text{ketukan dalam ulangan} &: \ \tfrac{138-90}{2}=24\text{ sela}\ \Rightarrow\ 24+1=25\text{ ketukan}
+\end{aligned}" />
+
+<Chart
+  title={<>Tekanan Manset pada Kelajuan Terpantas yang Tepat</>}
+  categories={["0 s", "16.8 s", "29.6 s", "36 s"]}
+  series={[{ label: "Tekanan manset", mark: "line", values: [180, 138, 106, 90] }]}
+  valueLabel="Tekanan manset (mmHg)"
+  description={<>Dengan penurunan <InlineMath math="2.5\text{ mmHg}" /> sesaat, manset mencapai tekanan sistolik <InlineMath math="138" /> pada <InlineMath math="16.8\text{ s}" />, tekanan arteri min <InlineMath math="106" /> pada <InlineMath math="29.6\text{ s}" />, dan tekanan diastolik <InlineMath math="90\text{ mmHg}" /> pada <InlineMath math="36\text{ s}" />.</>}
+/>
+
+## Jika tekanan diastolik menurun sebanyak enam
+
+<BlockMath math="84+\tfrac{138-84}{3}=84+18=102\text{ mmHg}" />
+
+<Chart
+  title={<>Tekanan Darah Sekarang dan dengan Tekanan Diastolik yang Lebih Rendah</>}
+  bars="apart"
+  categories={["Sistolik", "Arteri min", "Diastolik"]}
+  series={[
+    { label: "Sekarang", mark: "bar", values: [138, 106, 90] },
+    { label: "Diastolik 6 lebih rendah", mark: "bar", values: [138, 102, 84] },
+  ]}
+  valueLabel="Tekanan (mmHg)"
+  description={<>Sekarang tekanannya ialah <InlineMath math="138" />, <InlineMath math="106" /> dan <InlineMath math="90\text{ mmHg}" />. Jika tekanan diastolik menurun <InlineMath math="6" /> kepada <InlineMath math="84" />, tekanan min hanya menurun <InlineMath math="4" /> kepada <InlineMath math="102\text{ mmHg}" />, kerana satu pertiga daripada jurang yang lebih lebar ditambah semula.</>}
+/>
+
+## Menilai setiap pernyataan
+
+- I: tekanan sistolik ialah <InlineMath math="138" />, di bawah <InlineMath math="140" />, tetapi tekanan diastolik ialah <InlineMath math="90" />, yang mencapai had. Pernyataan I betul.
+- II: denyut terbesar berlaku pada <InlineMath math="29.6\text{ s}" />, bukan <InlineMath math="26.4\text{ s}" />, kerana tekanan arteri min ialah <InlineMath math="106\text{ mmHg}" />. Pernyataan II salah.
+- III: satu denyutan setiap <InlineMath math="0.8\text{ s}" /> membenarkan paling banyak <InlineMath math="2.5\text{ mmHg}" /> sesaat, dan pada kelajuan itu ketukan berlaku pada <InlineMath math="138" />, <InlineMath math="136" />, dan seterusnya hingga <InlineMath math="90" />: <InlineMath math="25" /> ketukan. Pernyataan III betul.
+- IV: dengan tekanan diastolik <InlineMath math="84" /> dan sistolik <InlineMath math="138" />, bacaan itu tidak lagi tinggi. Tetapi tekanan min menurun daripada <InlineMath math="106" /> kepada <InlineMath math="102" />, **hanya <InlineMath math="4\text{ mmHg}" />**. Pernyataan IV salah.
+
+Jadi pernyataan I dan III betul.
+
+# Kenapa pilihan lain salah
+
+- I, II dan III sahaja mengambil purata biasa, <InlineMath math="\tfrac{138+90}{2}=114" />, jadi denyut terbesar seolah-olah berlaku pada <InlineMath math="\tfrac{180-114}{2.5}=26.4\text{ s}" />. **Tekanan min menambah satu pertiga beza kepada tekanan diastolik**, kerana jantung berada lebih lama dalam diastole.
+- I, III dan IV sahaja membiarkan tekanan min menurun penuh <InlineMath math="6\text{ mmHg}" />, **terlupa bahawa tekanan diastolik yang lebih rendah melebarkan jurang, dan satu pertiga daripadanya ditambah semula**.
+- I sahaja membahagikan <InlineMath math="48\text{ mmHg}" /> antara tekanan sistolik dengan diastolik dengan <InlineMath math="2\text{ mmHg}" /> lalu mengira <InlineMath math="24" /> ketukan. **Itu bilangan sela**, dan dengan satu ketukan di setiap hujung, bilangan ketukan ialah satu lebih daripada sela, sama seperti <InlineMath math="21" /> ketukan jururawat itu mempunyai <InlineMath math="20" /> sela.

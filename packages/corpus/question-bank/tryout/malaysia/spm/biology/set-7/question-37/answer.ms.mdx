@@ -1,0 +1,49 @@
+# Bayi berisiko hanya selepas kelahiran bayi Rh positif yang lebih awal
+
+Dua perkara menentukan risiko: bayi itu mesti **Rh positif**, dan ibu mesti **sudah mempunyai anti-D**, iaitu hanya selepas dia melahirkan bayi Rh positif. Jadi mula dengan genotip bapa, kemudian ikut urutan kelahiran.
+
+Bapa itu Rh positif, tetapi ibunya <InlineMath math="dd" /> dan memberinya satu <InlineMath math="d" />. Jadi dia <InlineMath math="Dd" />, dan dengan ibu <InlineMath math="dd" />, setiap anak:
+
+<BlockMath math="P(\text{Rh positif})=P(Dd)=\tfrac{1}{2},\qquad P(\text{Rh negatif})=P(dd)=\tfrac{1}{2}" />
+
+<Mermaid
+  title={<>Kenapa Setiap Anak Mempunyai Kebarangkalian Separuh</>}
+  description={<>Ibu kepada bapa itu Rh negatif, dd, jadi bapa itu Dd. Ibu ialah dd. Setiap anak ialah Dd, Rh positif, atau dd, Rh negatif, dengan kebarangkalian separuh setiap satu, tanpa mengira anak-anak sebelumnya.</>}
+  chart={"flowchart TD\n  GM[\"Ibu kepada bapa: dd\"] --> F[\"Bapa: Dd\"]\n  F --> C[\"Setiap anak: Dd atau dd, 1/2 setiap satu\"]\n  M[\"Ibu: dd\"] --> C"}
+/>
+
+**Anak kedua.** Anak pertama tidak pernah berisiko, kerana ibu belum mempunyai anti-D. Anak kedua berisiko hanya jika anak pertama Rh positif dan anak kedua juga Rh positif:
+
+<BlockMath math="P(\text{anak kedua berisiko})=\tfrac{1}{2}\times\tfrac{1}{2}=\tfrac{1}{4}" />
+
+**Tiga anak pertama.** Seorang anak berisiko apabila dia Rh positif dan ada anak sebelumnya yang Rh positif. Jadi **tiada anak yang berisiko** tepat apabila paling banyak seorang daripada tiga anak itu Rh positif. Senaraikan kesemua <InlineMath math="2^3=8" /> urutan yang sama berkemungkinan, dengan <InlineMath math="+" /> untuk Rh positif:
+
+| Urutan tiga anak | Anak yang berisiko |
+| --- | --- |
+| <InlineMath math="-\;-\;-" /> | tiada |
+| <InlineMath math="+\;-\;-" />, <InlineMath math="-\;+\;-" />, <InlineMath math="-\;-\;+" /> | tiada |
+| <InlineMath math="+\;+\;-" /> | anak kedua |
+| <InlineMath math="+\;-\;+" />, <InlineMath math="-\;+\;+" /> | anak ketiga |
+| <InlineMath math="+\;+\;+" /> | anak kedua dan anak ketiga |
+
+<BlockMath math="P(\text{sekurang-kurangnya seorang berisiko})=1-\tfrac{1+3}{8}=\tfrac{4}{8}=\tfrac{1}{2}" />
+
+<Chart
+  title={<>Anak Rh Positif dalam Tiga Anak Pertama</>}
+  bars="apart"
+  categories={["Tiada", "Seorang", "Dua orang", "Tiga orang"]}
+  series={[
+    { label: "Tiada anak berisiko", mark: "bar", values: [1, 3, 0, 0] },
+    { label: "Sekurang-kurangnya seorang berisiko", mark: "bar", values: [0, 0, 3, 1] },
+  ]}
+  valueLabel="Bilangan kes daripada 8"
+  description={<>Daripada <InlineMath math="8" />, tiga anak itu tiada anak Rh positif sekali dan tepat seorang anak Rh positif sebanyak <InlineMath math="3" /> kali, dan dalam keadaan itu tiada anak yang berisiko. Dua anak Rh positif berlaku <InlineMath math="3" /> kali dan tiga anak berlaku sekali, dan dalam keadaan itu sekurang-kurangnya seorang anak berisiko: <InlineMath math="4" /> daripada <InlineMath math="8" />.</>}
+/>
+
+Jadi kebarangkalian anak kedua berisiko ialah <InlineMath math="\tfrac{1}{4}" />, dan kebarangkalian sekurang-kurangnya seorang daripada tiga anak pertama berisiko ialah <InlineMath math="\tfrac{1}{2}" />.
+
+# Kenapa pilihan lain salah
+
+- <InlineMath math="\tfrac{1}{2}" /> dan <InlineMath math="\tfrac{7}{8}" /> menganggap **setiap bayi Rh positif berisiko**, terlupa bahawa ibu menghasilkan anti-D hanya selepas kelahiran bayi Rh positif yang lebih awal.
+- <InlineMath math="\tfrac{1}{4}" /> dan <InlineMath math="\tfrac{5}{8}" /> menambah kebarangkalian bagi anak kedua, <InlineMath math="\tfrac{1}{4}" />, dengan kebarangkalian bagi anak ketiga, <InlineMath math="\tfrac{3}{8}" />, lalu **mengira urutan** <InlineMath math="+\;+\;+" /> **dua kali**.
+- <InlineMath math="\tfrac{1}{4}" /> dan <InlineMath math="\tfrac{3}{8}" /> hanya mengira kebarangkalian **anak ketiga** berisiko, <InlineMath math="\tfrac{1}{2}\times\tfrac{3}{4}" />, dan tidak mengambil kira anak kedua.

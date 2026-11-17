@@ -1,0 +1,41 @@
+# Count on the reliable plate, then start the doubling clock only after each lag
+
+Start with the count. Only the plate from the <InlineMath math="10" /> times dilution has **between <InlineMath math="30" /> and <InlineMath math="300" /> colonies**. Its <InlineMath math="125" /> colonies grew from <InlineMath math="0.1\text{ cm}^3" />, so scale up to <InlineMath math="1\text{ cm}^3" />, then undo the dilution to get back to <InlineMath math="1\text{ g}" /> of rice:
+
+<BlockMath math="125\times\frac{1}{0.1}\times10=1.25\times10^{4}\text{ bacteria per g}" />
+
+Statement I is correct.
+
+Next, find how many doublings it takes. The rice must reach <InlineMath math="1.0\times10^{6}" /> per gram:
+
+<BlockMath math="\frac{1.0\times10^{6}}{1.25\times10^{4}}=80,\qquad 2^{6}=64<80<2^{7}=128" />
+
+So the level is reached after more than <InlineMath math="6" /> doublings but no more than <InlineMath math="7" />.
+
+- II: the doubling starts only at 13:00, after the one-hour lag. Six doublings take <InlineMath math="3" /> hours, to 16:00, when the rice holds <InlineMath math="1.25\times10^{4}\times64=8.0\times10^{5}" /> per gram, still short. The seventh ends at 16:30 with <InlineMath math="1.6\times10^{6}" />. So the level is reached after 16:00 but no later than 16:30. Statement II is correct.
+- III: carry the count to 14:00. One hour of doubling is <InlineMath math="2" /> doublings, so the rice goes into the refrigerator with <InlineMath math="1.25\times10^{4}\times4=5.0\times10^{4}" /> per gram, and it still has that at 18:00. Warmed again, the bacteria wait until 19:00 before they divide. Then:
+
+<BlockMath math="\frac{1.0\times10^{6}}{5.0\times10^{4}}=20,\qquad 2^{4}=16<20<2^{5}=32" />
+
+That's after <InlineMath math="4" /> doublings, at 21:00, but no later than <InlineMath math="5" />, at 21:30. The window from 20:00 to 20:30 comes from leaving out the second lag. Statement III is wrong.
+
+- IV: half as many bacteria need <InlineMath math="160" /> times growth instead of <InlineMath math="80" />, and <InlineMath math="2^{7}=128<160<2^{8}=256" />. Halving the start costs exactly one more doubling, so every time in the chain moves <InlineMath math="30" /> minutes later. Statement IV is correct.
+
+<Chart
+  title={<>Bacteria in the Rice on the Buffet</>}
+  categories={["12:00", "12:30", "13:00", "13:30", "14:00", "14:30", "15:00", "15:30", "16:00", "16:30"]}
+  series={[
+    { label: "Bacteria", mark: "line", values: [12.5, 12.5, 12.5, 12.5 * 2, 12.5 * 4, 12.5 * 8, 12.5 * 16, 12.5 * 32, 12.5 * 64, 12.5 * 128] },
+    { label: "Vomiting level", mark: "line", values: [1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000] },
+  ]}
+  valueLabel="Bacteria per g (thousands)"
+  description={<>The count stays at <InlineMath math="12.5" /> thousand per gram until 13:00, then doubles every half hour. At 16:00 it is <InlineMath math="800" /> thousand, under the vomiting level of <InlineMath math="1000" /> thousand, and at 16:30 it is <InlineMath math="1600" /> thousand, above it.</>}
+/>
+
+So statements I, II and IV are correct.
+
+# Why the other options are wrong
+
+- I, II, III and IV lets the bacteria double from 18:00 as soon as the rice is back on the buffet, which gives the window from 20:00 to 20:30. **Warmed bacteria wait another hour before they divide**, so the window is 21:00 to 21:30.
+- I and IV only starts the doubling at 12:00, skipping the first lag, so the level comes after 15:00 instead of 16:00. **The bacteria do not divide for the first hour**, which moves every later time one hour on.
+- II and IV only counts the plate from the <InlineMath math="100" /> times dilution, <InlineMath math="14\times10\times100=1.4\times10^{4}" /> per gram. **That plate has fewer than <InlineMath math="30" /> colonies**, too few for a reliable count.

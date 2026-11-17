@@ -1,0 +1,44 @@
+# Turn each group's cases into a rate per sperm, then test it against divisions and a new age mix
+
+Every new mutation here came from the father, and each baby comes from exactly one sperm. So in each age group **the share of babies with a new mutation is the share of fertilising sperm that carried one**:
+
+<BlockMath math="\text{under }30:\ \frac{40}{2\,000\,000}=\frac{2}{100\,000},\qquad 30\text{ to }39:\ \frac{60}{1\,500\,000}=\frac{4}{100\,000},\qquad 40\text{ and over}:\ \frac{60}{500\,000}=\frac{12}{100\,000}" />
+
+- I: compare the rates, not the case counts: <InlineMath math="\tfrac{12}{2}=6" />. The counts, <InlineMath math="60" /> against <InlineMath math="40" />, look like only <InlineMath math="1.5" /> times, but the older group has a quarter as many births. Statement I is correct.
+- II: count the divisions behind a sperm at each mean age:
+
+<BlockMath math="\text{age }25:\ 30+23\times10=260,\qquad \text{age }45:\ 30+23\times30=720,\qquad \frac{720}{260}\approx2.8" />
+
+With the same chance per division, the older fathers would mutate only about <InlineMath math="2.8" /> times as often, not <InlineMath math="6" /> times. The chance per division must itself be about <InlineMath math="\tfrac{6}{2.8}\approx2.2" /> times higher in the older men. Statement II is wrong.
+
+- III: apply each group's rate to its share of the new births:
+
+<BlockMath math="\begin{aligned}
+1\,600\,000\times\tfrac{2}{100\,000} &= 32 \\
+1\,600\,000\times\tfrac{4}{100\,000} &= 64 \\
+800\,000\times\tfrac{12}{100\,000} &= 96
+\end{aligned}\qquad 32+64+96=192" />
+
+The table had the same <InlineMath math="4\,000\,000" /> births with <InlineMath math="40+60+60=160" /> cases, and <InlineMath math="\tfrac{192}{160}=1.2" />, so <InlineMath math="20\%" /> more. Only the shift towards older fathers raises the count. Statement III is correct.
+
+- IV: two affected parents are both <InlineMath math="Aa" />, since <InlineMath math="AA" /> doesn't survive. Their children are <InlineMath math="AA" />, <InlineMath math="Aa" /> and <InlineMath math="aa" /> in the ratio <InlineMath math="1:2:1" />, but the <InlineMath math="AA" /> child dies, so among survivors <InlineMath math="P(\text{achondroplasia})=\tfrac{2}{2+1}=\tfrac{2}{3}" />. Statement IV is wrong.
+
+<Chart
+  title={<>New Achondroplasia Mutations per Sperm</>}
+  bars="apart"
+  categories={["Under 30", "30 to 39", "40 and over"]}
+  series={[
+    { label: "Measured", mark: "bar", values: [40 / 2000000 * 100000, 60 / 1500000 * 100000, 60 / 500000 * 100000] },
+    { label: "From divisions alone", mark: "bar", values: [2, 2 * (30 + 23 * 20) / (30 + 23 * 10), 2 * (30 + 23 * 30) / (30 + 23 * 10)] },
+  ]}
+  valueLabel="Per 100 000 sperm"
+  description={<>The measured rate is <InlineMath math="2" />, <InlineMath math="4" /> and <InlineMath math="12" /> per <InlineMath math="100\,000" /> sperm. If only the number of divisions mattered, starting from <InlineMath math="2" /> in the youngest group, the rates would be about <InlineMath math="3.8" /> and <InlineMath math="5.5" />, far below the <InlineMath math="12" /> measured in the oldest fathers.</>}
+/>
+
+So statements I and III are correct.
+
+# Why the other options are wrong
+
+- I only averages the three rates, <InlineMath math="\tfrac{2+4+12}{3}=6" /> per <InlineMath math="100\,000" />, and predicts <InlineMath math="240" /> cases. **Each rate must be weighted by its own share of the births**, which gives <InlineMath math="192" />.
+- I, II and III only lets the extra divisions explain the whole rise. **The divisions grow only about <InlineMath math="2.8" /> times from age <InlineMath math="25" /> to <InlineMath math="45" />**, while the rate grows <InlineMath math="6" /> times.
+- I, III and IV only uses the <InlineMath math="3:1" /> ratio of a normal dominant cross. **The <InlineMath math="AA" /> children die**, so among survivors the share with achondroplasia is <InlineMath math="\tfrac{2}{3}" />.

@@ -1,0 +1,46 @@
+# Den Tauchgang dort teilen, wo ein Speicher den anderen ablöst
+
+Die Muskeln leben vom Myoglobin, bis es leer ist, und haben dann zu wenig Sauerstoff, bis der Blutfluss in Minute <InlineMath math="16" /> wieder öffnet. **Ab Minute <InlineMath math="16" /> versorgt das Blut die Muskeln und die Organe**, es leert sich also schneller.
+
+## Wie lange jeder Speicher reicht
+
+<BlockMath math="\begin{aligned}
+\text{Myoglobin} &: \ \tfrac{10\text{ L}}{1{,}0\text{ L/min}}=10\text{ min} \\
+\text{Blut in Minute }16 &: \ 20-0{,}5\times16=12\text{ L} \\
+\text{Blut nach Minute }16 &: \ \tfrac{12\text{ L}}{0{,}5+1{,}0\text{ L/min}}=8\text{ min, also leer in Minute }24
+\end{aligned}" />
+
+## Milchsäure in den Muskeln
+
+Bei einem Tauchgang von <InlineMath math="22" /> Minuten fehlt den Muskeln Sauerstoff nur **zwischen Minute <InlineMath math="10" /> und Minute <InlineMath math="16" />**. Danach versorgt sie das Blut, und in Minute <InlineMath math="22" /> enthält es noch <InlineMath math="12-1{,}5\times6=3\text{ L}" />.
+
+<BlockMath math="\begin{aligned}
+\text{Fluss geöffnet} &: \ (16-10)\times1{,}0=6\text{ L fehlen}\ \Rightarrow\ 6\times20=120\text{ g} \\
+\text{Fluss bleibt zu} &: \ (22-10)\times1{,}0=12\text{ L fehlen}\ \Rightarrow\ 12\times20=240\text{ g}
+\end{aligned}" />
+
+<Chart
+  title={<>Restlicher Sauerstoff in jedem Speicher während des Tauchgangs</>}
+  categories={["0 min", "10 min", "16 min", "22 min", "24 min"]}
+  series={[
+    { label: "Blut", mark: "line", values: [20, 15, 12, 3, 0] },
+    { label: "Myoglobin", mark: "line", values: [10, 0, 0, 0, 0] },
+  ]}
+  valueLabel="Restlicher Sauerstoff (L)"
+  description={<>Das Myoglobin fällt bis Minute <InlineMath math="10" /> von <InlineMath math="10" /> auf <InlineMath math="0\text{ L}" />. Das Blut fällt langsam, auf <InlineMath math="12\text{ L}" /> in Minute <InlineMath math="16" />, dann schneller, sobald auch die Muskeln davon zehren, auf <InlineMath math="3\text{ L}" /> in Minute <InlineMath math="22" /> und <InlineMath math="0" /> in Minute <InlineMath math="24" />.</>}
+/>
+
+## Die Aussagen im Einzelnen
+
+- I: Das Blut reicht bis Minute <InlineMath math="16+8=24" />. Aussage I stimmt.
+- II: Den Muskeln fehlen <InlineMath math="6\text{ L}" />, nicht <InlineMath math="12\text{ L}" />, also bilden sie <InlineMath math="120\text{ g}" />. Aussage II ist falsch.
+- III: Bliebe der Fluss zu, fehlten <InlineMath math="12\text{ L}" />, und es entstünden <InlineMath math="240\text{ g}" />, also <InlineMath math="\tfrac{240}{120}=2" />-mal so viel. Aussage III stimmt.
+- IV: Ab Minute <InlineMath math="16" /> fließt wieder Blut durch die Muskeln, der Tauchgang dauert aber bis Minute <InlineMath math="22" />. **Die seit Minute <InlineMath math="10" /> gebildete Milchsäure wird mit diesem Blut fortgetragen**, bevor die Robbe auftaucht. Aussage IV stimmt.
+
+Richtig sind also die Aussagen I, III und IV.
+
+# Warum die anderen Antworten falsch sind
+
+- Nur II behandelt die Muskeln den ganzen Tauchgang über als abgeschnitten **und übersieht, dass der Blutfluss in Minute <InlineMath math="16" /> öffnet**. So kommen <InlineMath math="240\text{ g}" /> Milchsäure heraus, kein Unterschied für Aussage III, Blut für <InlineMath math="\tfrac{20}{0{,}5}=40" /> Minuten und keine Milchsäure im Blut während des Tauchgangs.
+- Nur I und III erwartet, dass alle Milchsäure bis zum Auftauchen in den Muskeln bleibt. Das gilt für einen Tauchgang mit geschlossenem Fluss, **nicht für einen, bei dem ab Minute <InlineMath math="16" /> Blut die Muskeln erreicht**.
+- Nur III und IV teilt den ganzen Blutvorrat von Anfang an durch den gemeinsamen Verbrauch, <InlineMath math="\tfrac{20}{1{,}5}\approx13" /> Minuten, **und vergisst, dass die Muskeln erst ab Minute <InlineMath math="16" /> vom Blut zehren**.

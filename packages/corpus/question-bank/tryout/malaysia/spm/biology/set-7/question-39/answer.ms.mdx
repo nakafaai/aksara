@@ -1,0 +1,62 @@
+# Bina peluang sepadan lokus demi lokus, tukarkan kepada bilangan orang, kemudian tukarkan bilangan itu kepada peluang bagi Y
+
+DNA seseorang sama dalam setiap sel, jadi punca sebenar kesan darah itu mesti sepadan pada **setiap lokus**. Satu ketidaksepadanan sudah mengecualikan seseorang. Kesepadanan penuh hanya meletakkan seseorang dalam senarai orang yang mungkin meninggalkannya, jadi soalan sebenarnya ialah berapa panjang senarai itu.
+
+Bandingkan setiap suspek dengan kesan darah, lokus demi lokus. Z berbeza pada keempat-empat lokus. X sepadan pada lokus <InlineMath math="1" />, <InlineMath math="2" /> dan <InlineMath math="4" /> tetapi mempunyai <InlineMath math="21" /> dan bukan <InlineMath math="20" /> pada lokus <InlineMath math="3" />. Y sepadan pada keempat-empatnya.
+
+Sekarang cari betapa biasanya pasangan alel kesan darah itu pada setiap lokus. Pada lokus <InlineMath math="2" />, kesan darah mempunyai dua salinan alel <InlineMath math="8" />, jadi gunakan <InlineMath math="p\times p" />. Pada tiga lokus lagi, kesan darah mempunyai dua alel berlainan, jadi gunakan <InlineMath math="2\times p\times q" />:
+
+<BlockMath math="\begin{aligned}
+\text{lokus }1 &: \quad 2\times0.10\times0.25 = 0.05 \\
+\text{lokus }2 &: \quad 0.20\times0.20 = 0.04 \\
+\text{lokus }3 &: \quad 2\times0.50\times0.20 = 0.20 \\
+\text{lokus }4 &: \quad 2\times0.10\times0.10 = 0.02
+\end{aligned}" />
+
+<Chart
+  title={<>Penduduk yang Berkongsi Pasangan Alel Kesan Darah</>}
+  bars="apart"
+  categories={["Lokus 1", "Lokus 2", "Lokus 3", "Lokus 4"]}
+  series={[
+    { label: "Pecahan", mark: "bar", values: [2 * 0.1 * 0.25, 0.2 * 0.2, 2 * 0.5 * 0.2, 2 * 0.1 * 0.1] },
+  ]}
+  valueLabel="Pecahan penduduk tanpa pertalian darah"
+  description={<>Pecahan penduduk yang tiada pertalian darah yang berkongsi pasangan alel kesan darah ialah <InlineMath math="0.05" /> pada lokus <InlineMath math="1" />, <InlineMath math="0.04" /> pada lokus <InlineMath math="2" />, <InlineMath math="0.20" /> pada lokus <InlineMath math="3" /> dan <InlineMath math="0.02" /> pada lokus <InlineMath math="4" />. Pasangan pada lokus <InlineMath math="4" /> paling jarang, dan pasangan pada lokus <InlineMath math="3" /> paling biasa.</>}
+/>
+
+Empat lokus itu terletak pada kromosom yang berlainan, jadi lokus itu diwarisi secara bebas, dan pecahannya didarab. Kemudian bawa kebarangkalian itu ke dalam peraturan untuk bilangan orang dan untuk Y:
+
+<BlockMath math="\begin{aligned}
+P(\text{sepadan pada keempat-empat}) &= 0.05\times0.04\times0.20\times0.02 = 0.000008 = \tfrac{1}{125\,000} \\
+\text{orang lain yang sepadan} &= 1\,000\,000\times\tfrac{1}{125\,000} = 8 \\
+P(\text{Y meninggalkan kesan darah}) &= \tfrac{1}{1+8} = \tfrac{1}{9}\approx11\%
+\end{aligned}" />
+
+- I: Y ialah satu-satunya suspek yang sepadan pada keempat-empat lokus. X gagal pada lokus <InlineMath math="3" />, dan oleh sebab punca itu mesti sepadan pada setiap lokus, **satu ketidaksepadanan sudah mengecualikan** X. Pernyataan I betul.
+- II: kira-kira <InlineMath math="8" /> orang yang tiada pertalian darah, selain punca itu, berkongsi profil tersebut. Pernyataan II betul.
+- III: kebarangkalian seorang sepadan masih <InlineMath math="\tfrac{1}{125\,000}" />, tetapi pekan itu hanya mempunyai satu persepuluh penduduk, jadi jauh lebih sedikit orang lain yang dijangka sepadan:
+
+<BlockMath math="100\,000\times\tfrac{1}{125\,000}=0.8,\qquad P(\text{Y meninggalkan kesan darah})=\tfrac{1}{1+0.8}=\tfrac{5}{9}\approx56\%" />
+
+Nilainya kira-kira <InlineMath math="\tfrac{5}{9}" />, iaitu lima kali <InlineMath math="\tfrac{1}{9}" />. Pernyataan III salah.
+
+- IV: dengan DNA sebagai satu-satunya bukti, Y ialah salah seorang daripada kira-kira <InlineMath math="9" /> orang di bandar itu yang sepadan, jadi kebarangkaliannya kira-kira <InlineMath math="\tfrac{1}{9}" />. Nilai <InlineMath math="\tfrac{1}{125\,000}" /> yang sangat kecil itu ialah kebarangkalian **seorang yang dipilih secara rawak** sepadan, bukan kebarangkalian orang yang sepadan itu tidak bersalah. Pernyataan IV betul.
+
+<Chart
+  title={<>Kebarangkalian Suspek Y Meninggalkan Kesan Darah</>}
+  bars="apart"
+  categories={["Bandar", "Pekan"]}
+  series={[
+    { label: "DNA sahaja", mark: "bar", values: [1 / (1 + 1000000 / 125000), 1 / (1 + 100000 / 125000)] },
+  ]}
+  valueLabel="Kebarangkalian"
+  description={<>Di bandar yang mempunyai <InlineMath math="1\,000\,000" /> penduduk, kira-kira <InlineMath math="8" /> orang lain sepadan, jadi kebarangkalian Y meninggalkan kesan darah ialah <InlineMath math="\tfrac{1}{9}" />. Di pekan yang mempunyai <InlineMath math="100\,000" /> penduduk, hanya kira-kira <InlineMath math="0.8" /> orang lain sepadan, jadi kebarangkaliannya naik kepada <InlineMath math="\tfrac{5}{9}" />.</>}
+/>
+
+Jadi pernyataan I, II dan IV betul.
+
+# Kenapa pilihan lain salah
+
+- I dan II sahaja menolak IV kerana membaca <InlineMath math="\tfrac{1}{125\,000}" /> sebagai kebarangkalian Y tidak bersalah, **walhal kira-kira** <InlineMath math="8" /> **orang lain di bandar itu juga sepadan**.
+- I, II, III dan IV menerima III kerana mengekalkan <InlineMath math="\tfrac{1}{9}" /> atas alasan kebarangkalian seorang sepadan tidak berubah, **sedangkan bilangan orang lain yang sepadan turun bersama bilangan penduduk**, kepada kira-kira <InlineMath math="0.8" /> di pekan itu, jadi peluang Y naik kepada <InlineMath math="\tfrac{5}{9}" />.
+- II dan IV sahaja menolak I kerana menganggap X yang sepadan pada tiga lokus sudah cukup hampir, **walhal punca itu mesti sepadan pada setiap lokus**.

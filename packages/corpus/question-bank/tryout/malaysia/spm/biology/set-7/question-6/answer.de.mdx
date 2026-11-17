@@ -1,0 +1,40 @@
+# Ein Stoff rettet einen Stamm nur, wenn er nach dem fehlenden Schritt liegt
+
+Ein Stamm wächst, wenn er einen Stoff bekommt, der **nach seinem blockierten Schritt** entsteht, denn seine übrigen Enzyme können diesen Stoff in Z umwandeln. Ein Stoff, der vor der Blockade entsteht, staut sich dort und erreicht Z nie.
+
+## Die Blockaden einordnen
+
+Je mehr Stoffe einen Stamm retten, **desto früher liegt seine Blockade**.
+
+- X wird durch P, Q und Z gerettet, aber nicht durch R. Seine Blockade liegt nach R und vor P.
+- Y wird nur durch Q und Z gerettet. Seine Blockade liegt nach P und vor Q.
+- W wird nur durch Z gerettet. Seine Blockade ist der letzte Schritt, von Q zu Z.
+
+Der Stoffwechselweg lautet also Vorstufe, R, P, Q, Z.
+
+<Mermaid
+  title={<>Der Weg zu Z und der Schritt, der jedem Stamm fehlt</>}
+  description={<>Die Vorstufe wird zu R, dann zu P, dann zu Q, dann zu Z. Stamm X fehlt das Enzym von R zu P, Stamm Y das Enzym von P zu Q und Stamm W das Enzym von Q zu Z.</>}
+  chart={"flowchart LR\n  S[Vorstufe] --> R[R]\n  R -->|fehlt bei X| P[P]\n  P -->|fehlt bei Y| Q[Q]\n  Q -->|fehlt bei W| Z[Z]"}
+/>
+
+## Was jeder Stamm anhäuft
+
+Ein Stamm häuft den Stoff an, **an dem das fehlende Enzym arbeiten würde**, also den Stoff direkt vor der Blockade.
+
+- X häuft R an, Y häuft P an und W häuft Q an.
+
+## Die Aussagen im Einzelnen
+
+- I: Die Reihenfolge R, dann P, dann Q folgt aus den Blockaden. Aussage I stimmt.
+- II: Y fehlt das Enzym, das P in Q umwandelt, also staut sich P. Aussage II stimmt.
+- III: Ein Stamm, der an beiden Schritten blockiert ist, kann P nicht in Q umwandeln. Retten kann ihn nur ein Stoff nach der **späteren Blockade**, also Q oder Z. Aussage III ist falsch.
+- IV: W häuft Q an, und Q liegt nach den Blockaden von X und von Y. Darum wachsen beide, wenn Q zugegeben wird. Aussage IV stimmt.
+
+Richtig sind also die Aussagen I, II und IV.
+
+# Warum die anderen Antworten falsch sind
+
+- I, II, III und IV schließt, dass P den Stamm X rettet und darum auch den doppelt blockierten Stamm retten muss, **und übersieht, dass die zweite Blockade P auf dem Weg zu Z aufhält**.
+- Nur I und IV hält den angehäuften Stoff für das Produkt des fehlenden Enzyms und sagt, Y häufe Q an, **doch ein fehlendes Enzym lässt sein Substrat zurück**, nicht sein Produkt.
+- Nur I und II setzt das fehlende Enzym von W an den ersten Schritt, weil kein Zwischenprodukt W rettet. Eine Blockade am ersten Schritt würde aber jedes Zwischenprodukt retten, also **muss W am letzten Schritt blockiert sein**, und das angehäufte Q versorgt X und Y.

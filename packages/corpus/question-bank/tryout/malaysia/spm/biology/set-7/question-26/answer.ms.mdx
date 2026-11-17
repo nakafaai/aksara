@@ -1,0 +1,29 @@
+# Tukar hayat setiap bunga kepada hari kalendar, kemudian semak kedua-dua hujung jambak
+
+Bunga <InlineMath math="k" /> kembang pada hari <InlineMath math="k" />, jadi pada hari <InlineMath math="d" /> ia berada pada hari <InlineMath math="d-k+1" /> hayatnya. Ini memberi setiap bunga dua tempoh kalendar:
+
+<BlockMath math="\text{bunga }k\text{ membebaskan debunga pada hari }k\text{ dan }k+1,\qquad \text{stigmanya reseptif pada hari }k+2\text{ dan }k+3" />
+
+- I: bunga <InlineMath math="10" /> layu pada hari kelimanya, iaitu hari <InlineMath math="14" />, jadi jambak itu mempunyai bunga terbuka dari hari <InlineMath math="1" /> hingga hari <InlineMath math="13" />, iaitu <InlineMath math="13" /> hari. Debunga dibebaskan dari hari <InlineMath math="1" /> (bunga <InlineMath math="1" />) hingga hari <InlineMath math="11" /> (bunga <InlineMath math="10" />). Stigma reseptif dari hari <InlineMath math="3" /> (bunga <InlineMath math="1" />) hingga hari <InlineMath math="13" /> (bunga <InlineMath math="10" />). Kedua-duanya berlaku pada hari <InlineMath math="3" /> hingga <InlineMath math="11" />, iaitu <InlineMath math="11-3+1=9" /> hari. Pernyataan I betul.
+- II: bunga <InlineMath math="1" /> membebaskan debunga pada hari <InlineMath math="1" /> dan <InlineMath math="2" />, sebelum mana-mana stigma pada jambak itu reseptif. Bunga <InlineMath math="10" /> reseptif pada hari <InlineMath math="12" /> dan <InlineMath math="13" />, selepas debunga terakhir pada jambak itu, iaitu pada hari <InlineMath math="11" />. **Laluan lebah tidak penting di sini**, kerana bunga yang berkaitan memang tidak terbuka pada masa yang sama. Pernyataan II betul.
+- III: apabila bergerak ke bawah, lebah mengambil debunga di atas dan kemudian sampai ke bunga reseptif di bawah. Bunga <InlineMath math="k" /> mendapat debunga daripada jambaknya sendiri jika ada bunga di atasnya yang membebaskan debunga pada hari <InlineMath math="k+2" />, iaitu bunga <InlineMath math="k+1" /> atau <InlineMath math="k+2" />. Ini berlaku hingga bunga <InlineMath math="9" />, tetapi bunga <InlineMath math="10" /> tiada bunga di atasnya, dan II sudah menunjukkan ia tidak boleh mendapat debunga daripada jambaknya sendiri. Pernyataan III salah.
+- IV: jika bunga baharu kembang setiap <InlineMath math="3" /> hari, bunga kembang pada hari <InlineMath math="1, 4, 7, \ldots" />. Pada hari <InlineMath math="4" />, bunga <InlineMath math="1" /> reseptif dan bunga <InlineMath math="2" /> membebaskan debunga. Pada hari <InlineMath math="5" />, bunga <InlineMath math="1" /> sudah layu. Pada hari <InlineMath math="6" />, bunga <InlineMath math="2" /> reseptif tetapi bunga <InlineMath math="3" /> belum kembang. Pertindihan hanya berlaku semula pada hari <InlineMath math="7" />, kemudian hari <InlineMath math="10" />, tidak pernah dua hari berturut-turut. Pernyataan IV betul.
+
+<Chart
+  title={<>Bilangan Bunga dalam Setiap Keadaan pada Jambak Sepuluh Bunga</>}
+  categories={["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14"]}
+  series={[
+    { label: "Membebaskan debunga", mark: "line", values: [1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 1, 0, 0, 0] },
+    { label: "Reseptif", mark: "line", values: [0, 0, 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 1, 0] },
+  ]}
+  valueLabel="Bilangan bunga"
+  description={<>Hari ditunjukkan di sepanjang paksi bawah. Debunga dibebaskan dari hari <InlineMath math="1" /> hingga hari <InlineMath math="11" />, dan stigma reseptif ada dari hari <InlineMath math="3" /> hingga hari <InlineMath math="13" />. Kedua-dua garis berada di atas sifar bersama-sama hanya dari hari <InlineMath math="3" /> hingga hari <InlineMath math="11" />, iaitu <InlineMath math="9" /> hari. Pada hari <InlineMath math="12" /> dan <InlineMath math="13" />, hanya bunga <InlineMath math="10" /> yang reseptif dan tiada bunga yang membebaskan debunga.</>}
+/>
+
+Jadi pernyataan I, II dan IV betul.
+
+# Kenapa pilihan lain salah
+
+- I dan II sahaja menolak IV, mungkin kerana mengira hari <InlineMath math="4" /> dan <InlineMath math="5" /> bersama-sama. **Pada hari <InlineMath math="5" /> bunga <InlineMath math="1" /> sudah layu**, jadi setiap pertindihan hanya berlangsung sehari.
+- I, II, III dan IV terlupa bahagian atas jambak. **Bunga <InlineMath math="10" /> tiada bunga di atasnya**, jadi walaupun lebah bergerak ke bawah, ia hanya boleh menerima debunga daripada tumbuhan lain.
+- II dan IV sahaja tersilap mengira hari dalam I, contohnya mengambil pertindihan dari hari <InlineMath math="3" /> hingga <InlineMath math="12" />. **Debunga terakhir dibebaskan pada hari <InlineMath math="11" />**, iaitu hari kedua bunga <InlineMath math="10" />.

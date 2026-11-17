@@ -1,0 +1,40 @@
+# Find the pair of signals that shuts the trap, then count from the first of that pair
+
+The trap responds to touch by counting signals, so the whole item hangs on **which pair of signals shuts it**. Everything after that is counted from the first signal of that pair, and the shutting time is carried into the next statements.
+
+- I: check the gaps in trap X. From <InlineMath math="0" /> to <InlineMath math="40\text{ s}" /> is <InlineMath math="40\text{ s}" />, more than <InlineMath math="30\text{ s}" />, so the signal at <InlineMath math="0" /> is forgotten. From <InlineMath math="40" /> to <InlineMath math="65\text{ s}" /> is only <InlineMath math="25\text{ s}" />, so the trap shuts at <InlineMath math="65\text{ s}" />. Statement I is correct.
+- II: count from the first signal of the closing pair, at <InlineMath math="40\text{ s}" />:
+
+<BlockMath math="40\,(1),\quad 65\,(2),\quad 80\,(3),\quad 140\,(4),\quad 150\,(5)" />
+
+The fifth signal comes at <InlineMath math="150\text{ s}" />, so digestion starts then. Now carry the shutting time from I:
+
+<BlockMath math="150-65=85\text{ s after it shuts}" />
+
+Statement II is correct.
+
+- III: in trap Y the gap is <InlineMath math="20\text{ s}" />, so the trap shuts at <InlineMath math="20\text{ s}" />. Both signals of the closing pair count, so it already has <InlineMath math="2" /> of the <InlineMath math="5" />. Then the twig lies still and no more hairs bend, so it doesn't waste enzymes on something that isn't moving like prey. It needs <InlineMath math="5-2=3" /> more signals, and the gaps after shutting don't matter, so <InlineMath math="3" /> more bends at any time would start digestion. Statement III is correct.
+- IV: with the first signal at <InlineMath math="20\text{ s}" />, the gap to <InlineMath math="40\text{ s}" /> is only <InlineMath math="20\text{ s}" />. Now the trap shuts at <InlineMath math="40\text{ s}" />, earlier than <InlineMath math="65\text{ s}" />, and the count starts at <InlineMath math="20\text{ s}" />:
+
+<BlockMath math="20\,(1),\quad 40\,(2),\quad 65\,(3),\quad 80\,(4),\quad 140\,(5)" />
+
+Digestion would start at <InlineMath math="140\text{ s}" />, not at <InlineMath math="150\text{ s}" />, so the time changes too. Statement IV is wrong.
+
+<Chart
+  title={<>Signals Counted by Trap X</>}
+  categories={["0 s", "40 s", "65 s", "80 s", "140 s", "150 s"]}
+  series={[
+    { label: "As recorded", mark: "line", values: [1, 1, 2, 3, 4, 5] },
+    { label: "First hair at 20 s", mark: "line", values: [null, 2, 3, 4, 5, 6] },
+  ]}
+  valueLabel="Signals counted"
+  description={<>As recorded, the count goes back to <InlineMath math="1" /> at <InlineMath math="40\text{ s}" /> because the signal at <InlineMath math="0" /> is forgotten. It reaches <InlineMath math="2" />, and the trap shuts, at <InlineMath math="65\text{ s}" />, and <InlineMath math="5" /> at <InlineMath math="150\text{ s}" />, <InlineMath math="85\text{ s}" /> later. If the first hair is bent at <InlineMath math="20\text{ s}" />, the count is already <InlineMath math="2" /> at <InlineMath math="40\text{ s}" /> and reaches <InlineMath math="5" /> at <InlineMath math="140\text{ s}" />.</>}
+/>
+
+So statements I, II and III are correct.
+
+# Why the other options are wrong
+
+- I, III and IV only counts the five signals from the very first bend, at <InlineMath math="0\text{ s}" />, which gives <InlineMath math="140\text{ s}" />, only <InlineMath math="75\text{ s}" /> after shutting, and then finds the same <InlineMath math="140\text{ s}" /> when the first bend moves to <InlineMath math="20\text{ s}" />. **The signal at <InlineMath math="0\text{ s}" /> is forgotten**, so the count starts at <InlineMath math="40\text{ s}" />.
+- I only counts five signals after the trap has shut, leaving out the closing pair, which gives <InlineMath math="230\text{ s}" /> for trap X and <InlineMath math="5" /> more bends for trap Y, **but the two signals that shut the trap count towards the <InlineMath math="5" />**.
+- I, II, III and IV keeps counting from <InlineMath math="40\text{ s}" /> after the first bend moves to <InlineMath math="20\text{ s}" />. **That bend is no longer forgotten**, so it pairs with the one at <InlineMath math="40\text{ s}" /> and the count reaches <InlineMath math="5" /> one signal sooner, at <InlineMath math="140\text{ s}" />.

@@ -1,0 +1,54 @@
+# Compare each extract tube with the ethanol tube that holds the same ethanol
+
+The extract was diluted with water, not with ethanol, so **every dilution also dilutes the ethanol**. "The same tube without garlic" is the ethanol-only tube with the same ethanol concentration, and the extract's own cloudiness must come off first.
+
+## Ethanol in each extract tube
+
+The undiluted extract holds <InlineMath math="40\%" /> ethanol. Tube T is <InlineMath math="1" /> part extract in <InlineMath math="4" />, and tube U is <InlineMath math="1" /> part in <InlineMath math="2" />, so **their ethanol is diluted by the same factor**.
+
+<BlockMath math="\text{T}:\ \tfrac{1}{4}\times40\%=10\%\ (\text{matches Q}),\qquad \text{U}:\ \tfrac{1}{2}\times40\%=20\%\ (\text{matches R}),\qquad \text{V}:\ 40\%\ (\text{matches S})" />
+
+## Absorbance caused by the bacteria
+
+**Take away each liquid's absorbance without bacteria**. The ethanol tubes read <InlineMath math="0.00" /> without bacteria, so their values stay as they are.
+
+<BlockMath math="\text{T}:\ 0.51-0.03=0.48,\qquad \text{U}:\ 0.38-0.06=0.32,\qquad \text{V}:\ 0.22-0.12=0.10" />
+
+## Effect of the garlic
+
+Divide by the matching ethanol tube to find **the share of bacteria left**, then subtract from <InlineMath math="100\%" />.
+
+<BlockMath math="\begin{aligned}
+\text{T} &: \ \tfrac{0.48}{0.80}=0.60 \ \Rightarrow\ \text{lowered by } 40\% \\
+\text{U} &: \ \tfrac{0.32}{0.64}=0.50 \ \Rightarrow\ \text{lowered by } 50\% \\
+\text{V} &: \ \tfrac{0.10}{0.40}=0.25 \ \Rightarrow\ \text{lowered by } 75\%
+\end{aligned}" />
+
+<Chart
+  title={<>Bacteria in Each Extract Tube Against Its Matching Ethanol Tube</>}
+  bars="apart"
+  categories={["T: 10% ethanol", "U: 20% ethanol", "V: 40% ethanol"]}
+  series={[
+    { label: "Extract tube", mark: "bar", values: [0.48, 0.32, 0.1] },
+    { label: "Same ethanol, no garlic", mark: "bar", values: [0.8, 0.64, 0.4] },
+  ]}
+  valueLabel="Absorbance due to bacteria"
+  description={<>After the extract's own cloudiness is taken away, tubes T, U and V read <InlineMath math="0.48" />, <InlineMath math="0.32" /> and <InlineMath math="0.10" />. The ethanol tubes with the same ethanol read <InlineMath math="0.80" />, <InlineMath math="0.64" /> and <InlineMath math="0.40" />. So the garlic leaves <InlineMath math="60\%" />, <InlineMath math="50\%" /> and <InlineMath math="25\%" /> of the bacteria.</>}
+/>
+
+## Judging each statement
+
+- I: tube T holds <InlineMath math="10\%" /> ethanol, the same as tube Q. The bacteria in T read <InlineMath math="0.48" /> against <InlineMath math="0.80" /> in Q, so <InlineMath math="60\%" /> are left and the garlic lowers them by <InlineMath math="40\%" />. Statement I is correct.
+- II: tube S holds <InlineMath math="40\%" /> ethanol, four times the ethanol in tube T, so it is **not a fair control for tube T**. Against its matching tube Q, tube T clearly has fewer bacteria. Statement II is wrong.
+- III: tube U holds <InlineMath math="20\%" /> ethanol, so its control is tube R. The garlic leaves <InlineMath math="50\%" /> of the bacteria and lowers them by <InlineMath math="50\%" />, not <InlineMath math="60\%" />. Statement III is wrong.
+- IV: tube V holds <InlineMath math="40\%" /> ethanol, so its control is tube S. The garlic leaves <InlineMath math="25\%" /> and lowers the bacteria by <InlineMath math="75\%" />. Statement IV is correct.
+
+So statements I and IV are correct.
+
+If you forget to take away the extract's own cloudiness, tube T gives <InlineMath math="\tfrac{0.51}{0.80}\approx64\%" /> left and tube V gives <InlineMath math="\tfrac{0.22}{0.40}=55\%" /> left, and no option fits. That is your sign to go back and use the tubes without bacteria.
+
+# Why the other options are wrong
+
+- I and III only uses the distilled water tube as "the same tube without garlic" for every tube. Tube T still gives <InlineMath math="40\%" /> because Q reads the same as P, but tube U then gives <InlineMath math="1-\tfrac{0.32}{0.80}=60\%" /> and tube V <InlineMath math="87.5\%" />, **ignoring the ethanol in tubes U and V**.
+- I, II and IV only matches T with Q in statement I, yet judges statement II from the raw readings, <InlineMath math="0.51" /> against <InlineMath math="0.40" />, **without asking how much ethanol each tube holds**.
+- II and IV only uses the <InlineMath math="40\%" /> ethanol tube as the control for every extract tube. That works for tube V only, because **the water in T and U also diluted their ethanol**. With S as the control, tube T even seems to hold more bacteria than "without garlic".

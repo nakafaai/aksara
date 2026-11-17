@@ -1,0 +1,44 @@
+# Mach aus den Fällen jeder Gruppe eine Rate pro Spermium und prüf sie dann an den Zellteilungen und an einer neuen Altersmischung
+
+Jede neue Mutation stammt hier vom Vater, und jedes Baby entsteht aus genau einem Spermium. In jeder Altersgruppe ist also **der Anteil der Babys mit neuer Mutation gleich dem Anteil der befruchtenden Spermien, die eine trugen**:
+
+<BlockMath math="\text{unter }30:\ \frac{40}{2\,000\,000}=\frac{2}{100\,000},\qquad 30\text{ bis }39:\ \frac{60}{1\,500\,000}=\frac{4}{100\,000},\qquad 40\text{ und älter}:\ \frac{60}{500\,000}=\frac{12}{100\,000}" />
+
+- I: Vergleich die Raten, nicht die Fallzahlen: <InlineMath math="\tfrac{12}{2}=6" />. Die Fallzahlen, <InlineMath math="60" /> gegen <InlineMath math="40" />, sehen nur nach dem <InlineMath math="1{,}5" />-Fachen aus, aber die ältere Gruppe hat nur ein Viertel so viele Geburten. Aussage I stimmt.
+- II: Zähl die Teilungen hinter einem Spermium beim jeweiligen Durchschnittsalter:
+
+<BlockMath math="\text{Alter }25:\ 30+23\times10=260,\qquad \text{Alter }45:\ 30+23\times30=720,\qquad \frac{720}{260}\approx2{,}8" />
+
+Bei gleicher Wahrscheinlichkeit pro Teilung würden die älteren Väter nur etwa <InlineMath math="2{,}8" />-mal so oft mutieren, nicht <InlineMath math="6" />-mal. Die Wahrscheinlichkeit pro Teilung muss bei den älteren Männern selbst etwa <InlineMath math="\tfrac{6}{2{,}8}\approx2{,}2" />-mal höher sein. Aussage II ist falsch.
+
+- III: Wende die Rate jeder Gruppe auf ihren Anteil an den neuen Geburten an:
+
+<BlockMath math="\begin{aligned}
+1\,600\,000\times\tfrac{2}{100\,000} &= 32 \\
+1\,600\,000\times\tfrac{4}{100\,000} &= 64 \\
+800\,000\times\tfrac{12}{100\,000} &= 96
+\end{aligned}\qquad 32+64+96=192" />
+
+Die Tabelle hatte dieselben <InlineMath math="4\,000\,000" /> Geburten mit <InlineMath math="40+60+60=160" /> Fällen, und <InlineMath math="\tfrac{192}{160}=1{,}2" />, also <InlineMath math="20\,\%" /> mehr. Allein die Verschiebung zu älteren Vätern hebt die Zahl. Aussage III stimmt.
+
+- IV: Zwei betroffene Eltern sind beide <InlineMath math="Aa" />, weil <InlineMath math="AA" /> nicht überlebt. Ihre Kinder sind <InlineMath math="AA" />, <InlineMath math="Aa" /> und <InlineMath math="aa" /> im Verhältnis <InlineMath math="1:2:1" />, doch das <InlineMath math="AA" />-Kind stirbt, also gilt unter den Überlebenden <InlineMath math="P(\text{Achondroplasie})=\tfrac{2}{2+1}=\tfrac{2}{3}" />. Aussage IV ist falsch.
+
+<Chart
+  title={<>Neue Achondroplasie-Mutationen pro Spermium</>}
+  bars="apart"
+  categories={["Unter 30", "30 bis 39", "40 und älter"]}
+  series={[
+    { label: "Gemessen", mark: "bar", values: [40 / 2000000 * 100000, 60 / 1500000 * 100000, 60 / 500000 * 100000] },
+    { label: "Nur aus Teilungen", mark: "bar", values: [2, 2 * (30 + 23 * 20) / (30 + 23 * 10), 2 * (30 + 23 * 30) / (30 + 23 * 10)] },
+  ]}
+  valueLabel="Pro 100 000 Spermien"
+  description={<>Die gemessene Rate beträgt <InlineMath math="2" />, <InlineMath math="4" /> und <InlineMath math="12" /> pro <InlineMath math="100\,000" /> Spermien. Zählte nur die Zahl der Teilungen, ausgehend von <InlineMath math="2" /> in der jüngsten Gruppe, lägen die Raten bei etwa <InlineMath math="3{,}8" /> und <InlineMath math="5{,}5" />, weit unter den <InlineMath math="12" />, die bei den ältesten Vätern gemessen wurden.</>}
+/>
+
+Also stimmen die Aussagen I und III.
+
+# Warum die anderen Antworten falsch sind
+
+- Nur I mittelt die drei Raten, <InlineMath math="\tfrac{2+4+12}{3}=6" /> pro <InlineMath math="100\,000" />, und sagt <InlineMath math="240" /> Fälle voraus. **Jede Rate muss mit ihrem eigenen Anteil an den Geburten gewichtet werden**, und das ergibt <InlineMath math="192" />.
+- Nur I, II und III lässt die zusätzlichen Teilungen den ganzen Anstieg erklären. **Die Teilungen nehmen von Alter <InlineMath math="25" /> bis <InlineMath math="45" /> nur etwa um das <InlineMath math="2{,}8" />-Fache zu**, die Rate aber um das <InlineMath math="6" />-Fache.
+- Nur I, III und IV nutzt das Verhältnis <InlineMath math="3:1" /> einer normalen dominanten Kreuzung. **Die <InlineMath math="AA" />-Kinder sterben**, also liegt der Anteil mit Achondroplasie unter den Überlebenden bei <InlineMath math="\tfrac{2}{3}" />.

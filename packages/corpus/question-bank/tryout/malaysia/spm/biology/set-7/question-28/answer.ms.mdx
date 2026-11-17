@@ -1,0 +1,41 @@
+# Kira pada piring yang boleh dipercayai, kemudian mulakan pengiraan gandaan hanya selepas setiap fasa lag
+
+Mulakan dengan kiraan. Hanya piring daripada pencairan <InlineMath math="10" /> kali yang mempunyai **antara <InlineMath math="30" /> dan <InlineMath math="300" /> koloni**. <InlineMath math="125" /> koloninya tumbuh daripada <InlineMath math="0.1\text{ cm}^3" />, jadi skalakan kepada <InlineMath math="1\text{ cm}^3" />, kemudian batalkan pencairan untuk kembali kepada <InlineMath math="1\text{ g}" /> nasi:
+
+<BlockMath math="125\times\frac{1}{0.1}\times10=1.25\times10^{4}\text{ bakteria per g}" />
+
+Pernyataan I betul.
+
+Seterusnya, cari berapa kali bakteria perlu berganda. Nasi itu mesti mencapai <InlineMath math="1.0\times10^{6}" /> per gram:
+
+<BlockMath math="\frac{1.0\times10^{6}}{1.25\times10^{4}}=80,\qquad 2^{6}=64<80<2^{7}=128" />
+
+Jadi paras itu dicapai selepas lebih daripada <InlineMath math="6" /> gandaan tetapi tidak lebih daripada <InlineMath math="7" />.
+
+- II: gandaan hanya bermula pada pukul 13.00, selepas fasa lag selama satu jam. Enam gandaan mengambil masa <InlineMath math="3" /> jam, hingga pukul 16.00, apabila nasi mengandungi <InlineMath math="1.25\times10^{4}\times64=8.0\times10^{5}" /> per gram, masih belum cukup. Gandaan ketujuh tamat pada pukul 16.30 dengan <InlineMath math="1.6\times10^{6}" />. Jadi paras itu dicapai selepas pukul 16.00 tetapi tidak lewat daripada pukul 16.30. Pernyataan II betul.
+- III: bawa kiraan hingga pukul 14.00. Satu jam gandaan ialah <InlineMath math="2" /> gandaan, jadi nasi masuk ke dalam peti sejuk dengan <InlineMath math="1.25\times10^{4}\times4=5.0\times10^{4}" /> per gram, dan masih mempunyai bilangan itu pada pukul 18.00. Selepas dipanaskan semula, bakteria menunggu hingga pukul 19.00 sebelum membahagi. Kemudian:
+
+<BlockMath math="\frac{1.0\times10^{6}}{5.0\times10^{4}}=20,\qquad 2^{4}=16<20<2^{5}=32" />
+
+Itu selepas <InlineMath math="4" /> gandaan, pada pukul 21.00, tetapi tidak lewat daripada <InlineMath math="5" /> gandaan, pada pukul 21.30. Tempoh pukul 20.00 hingga 20.30 datang daripada mengabaikan fasa lag kedua. Pernyataan III salah.
+
+- IV: separuh bilangan bakteria memerlukan pertambahan <InlineMath math="160" /> kali dan bukan <InlineMath math="80" /> kali, dan <InlineMath math="2^{7}=128<160<2^{8}=256" />. Mengurangkan bilangan awal kepada separuh menambah tepat satu gandaan, jadi setiap masa dalam rantaian itu beralih <InlineMath math="30" /> minit lebih lewat. Pernyataan IV betul.
+
+<Chart
+  title={<>Bakteria dalam Nasi di Atas Meja Bufet</>}
+  categories={["12.00", "12.30", "13.00", "13.30", "14.00", "14.30", "15.00", "15.30", "16.00", "16.30"]}
+  series={[
+    { label: "Bakteria", mark: "line", values: [12.5, 12.5, 12.5, 12.5 * 2, 12.5 * 4, 12.5 * 8, 12.5 * 16, 12.5 * 32, 12.5 * 64, 12.5 * 128] },
+    { label: "Paras muntah", mark: "line", values: [1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000] },
+  ]}
+  valueLabel="Bakteria per g (ribu)"
+  description={<>Kiraan kekal pada <InlineMath math="12.5" /> ribu per gram hingga pukul 13.00, kemudian berganda setiap setengah jam. Pada pukul 16.00 kiraan ialah <InlineMath math="800" /> ribu, di bawah paras muntah <InlineMath math="1000" /> ribu, dan pada pukul 16.30 ialah <InlineMath math="1600" /> ribu, di atasnya.</>}
+/>
+
+Jadi pernyataan I, II dan IV betul.
+
+# Kenapa pilihan lain salah
+
+- I, II, III dan IV membiarkan bakteria berganda dari pukul 18.00 sebaik sahaja nasi kembali ke meja bufet, yang memberi tempoh pukul 20.00 hingga 20.30. **Bakteria yang dipanaskan semula menunggu satu jam lagi sebelum membahagi**, jadi tempohnya ialah pukul 21.00 hingga 21.30.
+- I dan IV sahaja memulakan gandaan pada pukul 12.00 tanpa fasa lag pertama, jadi paras itu dicapai selepas pukul 15.00 dan bukan pukul 16.00. **Bakteria tidak membahagi pada satu jam pertama**, dan ini menolak setiap masa seterusnya satu jam ke hadapan.
+- II dan IV sahaja mengira piring daripada pencairan <InlineMath math="100" /> kali, <InlineMath math="14\times10\times100=1.4\times10^{4}" /> per gram. **Piring itu mempunyai kurang daripada <InlineMath math="30" /> koloni**, terlalu sedikit untuk kiraan yang boleh dipercayai.

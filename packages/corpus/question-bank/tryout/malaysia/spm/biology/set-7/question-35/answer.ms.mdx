@@ -1,0 +1,50 @@
+# Baca serpihan setiap alel, kenal pasti ibu yang tidak diuji melalui anak-anaknya, kemudian bahagikan masa depan anak Z mengikut genotipnya
+
+Mula dengan tapak pemotongan. Potongan pada <InlineMath math="200" /> dan <InlineMath math="380\text{ bp}" /> membahagikan salinan <InlineMath math="\text{Hb}^A" /> sepanjang <InlineMath math="500\text{ bp}" /> kepada tiga serpihan. Dalam <InlineMath math="\text{Hb}^S" />, hanya potongan pada <InlineMath math="200\text{ bp}" /> yang tinggal:
+
+<BlockMath math="\begin{aligned}
+\text{Hb}^A &: \quad 200,\quad 380-200=180,\quad 500-380=120\text{ bp} \\
+\text{Hb}^S &: \quad 200,\quad 500-200=300\text{ bp}
+\end{aligned}" />
+
+Jadi jalur <InlineMath math="300\text{ bp}" /> menandakan <InlineMath math="\text{Hb}^S" />, jalur <InlineMath math="180" /> dan <InlineMath math="120\text{ bp}" /> menandakan <InlineMath math="\text{Hb}^A" />, dan jalur <InlineMath math="200\text{ bp}" /> datang daripada **kedua-dua** alel. Bapa menunjukkan keempat-empat jalur, jadi dia <InlineMath math="\text{Hb}^A\text{Hb}^S" />.
+
+- I: anak X hanya menunjukkan <InlineMath math="300" /> dan <InlineMath math="200\text{ bp}" />, iaitu serpihan <InlineMath math="\text{Hb}^S" />, jadi X ialah <InlineMath math="\text{Hb}^S\text{Hb}^S" /> dan menghidap anemia sel sabit. Sekarang kenal pasti ibu melalui anak-anaknya. X menerima satu <InlineMath math="\text{Hb}^S" /> daripada setiap induk, jadi ibu mempunyai <InlineMath math="\text{Hb}^S" />. Anak Y hanya menunjukkan serpihan <InlineMath math="\text{Hb}^A" />, jadi Y ialah <InlineMath math="\text{Hb}^A\text{Hb}^A" /> dan juga menerima <InlineMath math="\text{Hb}^A" /> daripada ibu. Ibu mesti <InlineMath math="\text{Hb}^A\text{Hb}^S" />. Pernyataan I betul.
+- II: tapak pada <InlineMath math="200\text{ bp}" /> ada dalam kedua-dua alel, jadi setiap salinan sepatutnya dipotong di situ. Jalur <InlineMath math="500\text{ bp}" /> yang tunggal bermakna tapak bersama ini pun tidak dipotong, jadi enzim itu gagal. Orang yang menghidap anemia sel sabit tetap menunjukkan <InlineMath math="300" /> dan <InlineMath math="200\text{ bp}" />. Pernyataan II betul.
+- III: bawa genotip ibu daripada I. Kedua-dua ibu bapa ialah pembawa, jadi anak mereka ialah <InlineMath math="\text{Hb}^A\text{Hb}^A" />, <InlineMath math="\text{Hb}^A\text{Hb}^S" /> atau <InlineMath math="\text{Hb}^S\text{Hb}^S" /> dalam nisbah <InlineMath math="1:2:1" />. Tetapi Z tidak menghidap penyakit itu, jadi <InlineMath math="\text{Hb}^S\text{Hb}^S" /> tersingkir, dan hanya dua yang pertama tinggal:
+
+<BlockMath math="P(\text{Z pembawa, dengan empat jalur})=\frac{2}{1+2}=\frac{2}{3}" />
+
+Pernyataan III betul.
+
+<Chart
+  title={<>Genotip Anak kepada Dua Pembawa</>}
+  bars="apart"
+  categories={["HbAHbA", "HbAHbS", "HbSHbS"]}
+  series={[
+    { label: "Mana-mana anak", mark: "bar", values: [1 / 4, 2 / 4, 1 / 4] },
+    { label: "Anak Z", mark: "bar", values: [1 / 3, 2 / 3, 0] },
+  ]}
+  valueLabel="Kebarangkalian"
+  description={<>Bagi mana-mana anak kepada dua pembawa, tiga genotip itu muncul dalam nisbah <InlineMath math="1:2:1" />. Bagi anak Z, yang tidak menghidap penyakit itu, bar <InlineMath math="\text{Hb}^S\text{Hb}^S" /> jatuh kepada sifar dan dua genotip lagi berkongsi seluruh kebarangkalian, jadi pembawa dengan empat jalur mempunyai kebarangkalian <InlineMath math="\tfrac{2}{3}" />.</>}
+/>
+
+- IV: wanita itu hanya menunjukkan serpihan <InlineMath math="\text{Hb}^S" />, jadi dia <InlineMath math="\text{Hb}^S\text{Hb}^S" /> dan mewariskan <InlineMath math="\text{Hb}^S" /> kepada setiap anak. Sama ada seorang anak menghidap penyakit itu kini bergantung pada Z sahaja, dan **kedua-dua anak berkongsi satu genotip Z yang sama**, jadi bahagikan mengikut genotip itu dahulu:
+
+<Mermaid
+  title={<>Dua Anak kepada Anak Z</>}
+  description={<>Anak Z ialah pembawa dengan kebarangkalian dua pertiga. Dalam kes itu, setiap anak menghidap penyakit dengan kebarangkalian separuh, dan seorang atau kedua-dua anak menghidapnya dengan kebarangkalian tiga perempat. Z mempunyai dua alel normal dengan kebarangkalian satu pertiga, dan dalam kes itu setiap anak ialah pembawa dan tiada yang menghidap penyakit.</>}
+  chart={"flowchart LR\n  Z[\"Anak Z, tiada penyakit\"] -->|2/3| C[\"Z ialah HbAHbS\"]\n  Z -->|1/3| N[\"Z ialah HbAHbA\"]\n  C --> P[\"Setiap anak 1/2 sakit, seorang atau dua sakit: 3/4\"]\n  N --> Q[\"Setiap anak HbAHbS, tiada yang sakit\"]"}
+/>
+
+<BlockMath math="P(\text{sekurang-kurangnya seorang sakit})=\tfrac{2}{3}\times\left(1-\tfrac{1}{2}\times\tfrac{1}{2}\right)+\tfrac{1}{3}\times0=\tfrac{2}{3}\times\tfrac{3}{4}=\tfrac{1}{2}" />
+
+Nilainya <InlineMath math="\tfrac{1}{2}" />, bukan <InlineMath math="\tfrac{5}{9}" />. Pernyataan IV salah.
+
+Jadi pernyataan I, II dan III betul.
+
+# Kenapa pilihan lain salah
+
+- I dan II sahaja menggunakan <InlineMath math="\tfrac{1}{2}" /> bagi anak Z, iaitu kebarangkalian bagi anak yang langsung tidak diketahui apa-apa tentangnya. **Z diketahui tidak menghidap penyakit itu**, jadi <InlineMath math="\text{Hb}^S\text{Hb}^S" /> tersingkir dan kebarangkaliannya menjadi <InlineMath math="\tfrac{2}{3}" />.
+- I dan III sahaja membaca jalur <InlineMath math="500\text{ bp}" /> yang tunggal sebagai dua salinan <InlineMath math="\text{Hb}^S" />. **Tapak pada <InlineMath math="200\text{ bp}" /> dipotong dalam kedua-dua alel**, jadi salinan yang tidak dipotong menunjukkan enzim itu gagal.
+- I, II, III dan IV memberi setiap anak kebarangkalian berasingan <InlineMath math="\tfrac{2}{3}\times\tfrac{1}{2}=\tfrac{1}{3}" /> dan mengira <InlineMath math="1-\left(\tfrac{2}{3}\right)^2=\tfrac{5}{9}" />, seolah-olah kedua-dua anak itu tidak bersandar antara satu sama lain. **Kedua-dua anak mempunyai bapa yang sama, iaitu Z**, jadi jika dia tiada <InlineMath math="\text{Hb}^S" />, tiada anak yang boleh menghidap penyakit itu, dan kebarangkaliannya ialah <InlineMath math="\tfrac{1}{2}" />.

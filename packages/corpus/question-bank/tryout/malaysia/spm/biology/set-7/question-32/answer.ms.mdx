@@ -1,0 +1,58 @@
+# Dapatkan bahagian setiap gamet daripada kacukan uji sebelum tumbuhan didebungakan sendiri
+
+Induk tidak berwarna dan kecut ialah <InlineMath math="ccss" />, jadi induk ini hanya menghasilkan gamet <InlineMath math="cs" />. Maka setiap biji menunjukkan dengan tepat **gamet mana yang datang daripada tumbuhan heterozigot**. Mula dengan jumlahnya:
+
+<BlockMath math="380+26+22+372=800\text{ biji}" />
+
+Jika gen mengalami penyusunan bebas, keempat-empat jenis gamet akan sama banyak, dan setiap kelas mempunyai <InlineMath math="\tfrac{800}{4}=200" /> biji.
+
+<Chart
+  title={<>Biji yang Dibilang Berbanding Penyusunan Bebas</>}
+  bars="apart"
+  categories={["Berwarna, penuh", "Berwarna, kecut", "Tidak berwarna, penuh", "Tidak berwarna, kecut"]}
+  series={[
+    { label: "Dibilang", mark: "bar", values: [380, 26, 22, 372] },
+    { label: "Jangkaan jika bebas", mark: "bar", values: [200, 200, 200, 200] },
+  ]}
+  valueLabel="Bilangan biji"
+  description={<>Bilangan yang dibilang ialah <InlineMath math="380" />, <InlineMath math="26" />, <InlineMath math="22" /> dan <InlineMath math="372" />. Penyusunan bebas akan memberi <InlineMath math="200" /> dalam setiap kelas. Berwarna penuh dan tidak berwarna kecut jauh melebihi <InlineMath math="200" />, manakala dua kelas lagi jauh di bawahnya.</>}
+/>
+
+Dua kelas sangat besar dan dua kelas sangat kecil, jadi alel itu kebanyakannya diwarisi bersama: gen itu **terangkai**. Kelas besar menunjukkan kromosom yang memang ada pada tumbuhan itu, dan kelas kecil ialah gabungan baharu hasil pindah silang. Tukar bilangan itu kepada bahagian gamet:
+
+<BlockMath math="\begin{aligned}
+\text{gabungan baharu} &= \tfrac{26+22}{800}\times100\% = 6\% \\
+Cs\text{ dan }cS &= \tfrac{6\%}{2} = 3\%\text{ setiap satu} \\
+CS\text{ dan }cs &= \tfrac{100\%-6\%}{2} = 47\%\text{ setiap satu}
+\end{aligned}" />
+
+Biji tidak berwarna kecut hasil pendebungaan sendiri memerlukan debunga <InlineMath math="cs" /> **dan** sel telur <InlineMath math="cs" />, dan soalan menyatakan kedua-duanya terhasil dengan cara yang sama:
+
+<BlockMath math="\begin{aligned}
+P(ccss) &= 0.47\times0.47 = 0.2209 \\
+\text{jangkaan bilangan biji} &= 0.2209\times2000 \approx 442
+\end{aligned}" />
+
+<Chart
+  title={<>Biji Tidak Berwarna Kecut daripada 2000 Biji</>}
+  bars="apart"
+  categories={["Terangkai, seperti diukur", "Jika bebas"]}
+  series={[
+    { label: "Jangkaan bilangan biji", mark: "bar", values: [442, 125] },
+  ]}
+  valueLabel="Bilangan biji"
+  description={<>Dengan <InlineMath math="47\%" /> daripada setiap jenis gamet membawa <InlineMath math="cs" />, kira-kira <InlineMath math="442" /> daripada <InlineMath math="2000" /> biji tidak berwarna dan kecut. Penyusunan bebas, dengan nisbah <InlineMath math="9:3:3:1" />, hanya memberi <InlineMath math="\tfrac{1}{16}\times2000=125" />.</>}
+/>
+
+- I: biji yang paling banyak ialah berwarna dengan penuh dan tidak berwarna dengan kecut, jadi tumbuhan itu mempunyai <InlineMath math="C" /> bersama <InlineMath math="S" /> pada satu kromosom dan <InlineMath math="c" /> bersama <InlineMath math="s" /> pada kromosom yang satu lagi. Susunan dalam pernyataan itu ialah susunan hasil **pindah silang**, yang muncul dalam <InlineMath math="6\%" /> gamet sahaja. Pernyataan I salah.
+- II: gen itu terangkai, dan <InlineMath math="6\%" /> daripada gamet membawa gabungan baharu. Pernyataan II betul.
+- III: <InlineMath math="0.47^2\times2000\approx442" />, iaitu kira-kira <InlineMath math="440" />. Pernyataan III betul.
+- IV: tumbuhan <InlineMath math="ccss" /> mempunyai **alel yang sama pada kedua-dua homolog**. Pertukaran segmen antara kedua-duanya tetap memberi <InlineMath math="cs" /> setiap kali, jadi pindah silang dalam tumbuhan ini tidak menghasilkan apa-apa yang baharu. Pernyataan IV salah.
+
+Jadi pernyataan II dan III betul.
+
+# Kenapa pilihan lain salah
+
+- II sahaja menolak III kerana menggunakan <InlineMath math="\tfrac{1}{16}\times2000=125" />, **nisbah yang hanya sah bagi gen pada kromosom berlainan**.
+- II, III dan IV sahaja menerima IV, terlupa bahawa pindah silang dalam tumbuhan yang **homozigot bagi kedua-dua gen** tidak boleh mengubah gametnya.
+- I dan II sahaja membaca susunan alel daripada kelas yang **paling sedikit**. Cara ini juga menjadikan <InlineMath math="cs" /> gamet jarang sebanyak <InlineMath math="3\%" />, lalu memberi kira-kira <InlineMath math="0.03^2\times2000\approx2" /> biji tidak berwarna kecut sahaja, jadi III turut ditolak.

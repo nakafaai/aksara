@@ -1,0 +1,52 @@
+# Den Zyklus von einer Prophase zur nächsten messen, dann die DNA durch ihn verfolgen
+
+Die Zellen wurden **am Anfang der S-Phase** freigegeben, nicht am Anfang eines Zyklus. Die ersten <InlineMath math="10" /> Stunden umfassen also nur S und <InlineMath math="\text{G}_2" />, und ein ganzer Zyklus ist der Abstand zwischen zwei Prophasen.
+
+## Die Dauer jeder Phase
+
+<BlockMath math="\begin{aligned}
+\text{S}+\text{G}_2 &= 10\ \Rightarrow\ \text{G}_2=10-7=3\text{ h} \\
+\text{Mitose und Cytokinese} &= 11-10=1\text{ h} \\
+\text{ein Zyklus} &= 32-10=22\text{ h} \\
+\text{G}_1 &= 22-7-3-1=11\text{ h}
+\end{aligned}" />
+
+## Der Zeitplan nach der ersten Teilung
+
+Die Tochterzellen beginnen <InlineMath math="\text{G}_1" /> nach <InlineMath math="11" /> Stunden, also **beginnt jede spätere Phase dort, wo die vorige endet**.
+
+<BlockMath math="\text{G}_1:\ 11\text{ bis }22\text{ h},\qquad \text{S}:\ 22\text{ bis }29\text{ h},\qquad \text{G}_2:\ 29\text{ bis }32\text{ h}" />
+
+## DNA in der Kultur
+
+Nenn die DNA einer Zelle zur Zeit <InlineMath math="0" /> eine Einheit. **Eine Zelle verdoppelt ihre DNA in S und teilt sie bei der Cytokinese auf zwei Zellen auf**.
+
+- Nach <InlineMath math="9" /> Stunden ist die eine Zelle in <InlineMath math="\text{G}_2" /> und enthält <InlineMath math="2" /> Einheiten.
+- Ab <InlineMath math="11" /> Stunden gibt es <InlineMath math="2" /> Zellen mit je <InlineMath math="1" /> Einheit.
+- Nach <InlineMath math="30" /> Stunden haben beide Zellen die zweite S-Phase hinter sich und sind in <InlineMath math="\text{G}_2" />, die Kultur enthält also <InlineMath math="2\times2=4" /> Einheiten pro Zelle der Zeit <InlineMath math="0" />.
+
+<Chart
+  title={<>DNA in der Kultur nach der Freigabe</>}
+  categories={["0 h", "7 h", "11 h", "15 h", "22 h", "29 h", "30 h"]}
+  series={[
+    { label: "Zellen", mark: "line", values: [1, 1, 2, 2, 2, 2, 2] },
+    { label: "DNA in allen Zellen", mark: "line", values: [1, 2, 2, 2, 2, 4, 4] },
+  ]}
+  valueLabel="Menge pro Zelle der Zeit 0"
+  description={<>Die DNA verdoppelt sich in der ersten S-Phase, von Stunde <InlineMath math="0" /> bis <InlineMath math="7" />. Nach <InlineMath math="11" /> Stunden teilt sich die Zelle, es gibt also <InlineMath math="2" /> Zellen mit derselben Gesamt-DNA. Die zweite S-Phase, von Stunde <InlineMath math="22" /> bis <InlineMath math="29" />, verdoppelt die Gesamtmenge erneut auf <InlineMath math="4" /> Einheiten, die nach <InlineMath math="30" /> Stunden noch vorliegen.</>}
+/>
+
+## Die Aussagen im Einzelnen
+
+- I: <InlineMath math="\text{G}_1" /> dauert <InlineMath math="22-7-3-1=11" /> Stunden. Aussage I stimmt.
+- II: Nach <InlineMath math="30" /> Stunden enthält die Kultur <InlineMath math="4" /> Einheiten gegenüber <InlineMath math="1" /> Einheit zur Zeit <InlineMath math="0" />. Aussage II stimmt.
+- III: Nach <InlineMath math="15" /> Stunden sind die beiden Tochterzellen in <InlineMath math="\text{G}_1" />. Sie laufen weiter, bis sie nach <InlineMath math="22" /> Stunden den Anfang von S erreichen, und werden dort festgehalten, **bevor sie ihre DNA kopieren**. Jede enthält <InlineMath math="1" /> Einheit, die Hälfte der <InlineMath math="2" /> Einheiten nach <InlineMath math="9" /> Stunden, und auf jede Zelle der Zeit <InlineMath math="0" /> kommen <InlineMath math="2" /> Zellen. Aussage III stimmt.
+- IV: Die <InlineMath math="32" /> Stunden beginnen mitten im Zyklus und **enthalten deshalb ein zusätzliches S und <InlineMath math="\text{G}_2" />**. Ein Zyklus dauert <InlineMath math="22" /> Stunden. Aussage IV ist falsch.
+
+Richtig sind also die Aussagen I, II und III.
+
+# Warum die anderen Antworten falsch sind
+
+- Nur III und IV misst den Zyklus von der Freigabe bis zur zweiten Prophase, <InlineMath math="32" /> Stunden, **und vergisst, dass die Freigabe am Anfang von S lag**. Dadurch wird <InlineMath math="\text{G}_1" /> auf <InlineMath math="21" /> Stunden gedehnt, die zweite S-Phase rückt auf Stunde <InlineMath math="32" />, und nach <InlineMath math="30" /> Stunden blieben nur <InlineMath math="2" /> Einheiten DNA.
+- Nur II und III rechnet <InlineMath math="\text{G}_1" /> als <InlineMath math="22-7-3=12" /> Stunden **und lässt die Stunde für Mitose und Cytokinese weg**. Die Aussagen II und III stimmen trotzdem, aber Aussage I scheint falsch.
+- Nur I und II glaubt, eine am Anfang von S festgehaltene Zelle habe ihre DNA schon kopiert wie nach <InlineMath math="9" /> Stunden. **Die Substanz hält die Zelle fest, bevor DNA kopiert wird**, sie enthält also nur die Hälfte.

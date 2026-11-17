@@ -1,0 +1,59 @@
+# Tudung berikutnya mengikuti nukleus, dan tudung pertama menghitung simpanan tangkai sebagai satu nukleus tambahan
+
+Nukleus mengirim zat yang mengarahkan cara tudung dibangun. Tangkai yang dipisahkan dari nukleusnya masih menyimpan sebagian zat itu, tetapi **tangkai tidak bisa membuatnya lagi**. Jadi cari dua aturan di tabel: satu untuk tudung sesudah tudung pertama, dan satu untuk tudung pertama.
+
+## Tudung berikutnya mengikuti bagian nukleus C
+
+Bandingkan tiap skor tudung berikutnya dengan **bagian nukleus yang berasal dari C**.
+
+<BlockMath math="\text{R}: \tfrac{1}{3}\approx33,\qquad \text{S}: \tfrac{1}{2}=50,\qquad \text{T}: \tfrac{2}{3}\approx67,\qquad \text{Q}: \tfrac{1}{1}=100" />
+
+U punya tangkai C tetapi pangkal yang sama dengan S, dan tudung berikutnya juga mendapat <InlineMath math="50" />. Jadi **sesudah tudung pertama, tangkai tidak lagi berpengaruh**. Tangkai P sama sekali tidak punya nukleus dan tidak menumbuhkan tudung kedua.
+
+## Tudung pertama menghitung simpanan tangkai
+
+Ide yang menggoda adalah tangkai selalu menyumbang sepertiga tetap dari tudung pertama. Ide itu cocok untuk S dan U, tetapi tidak untuk baris lain:
+
+<BlockMath math="\text{R}: \tfrac{2}{3}\times33\approx22\neq25,\qquad \text{Q}: \tfrac{2}{3}\times100\approx67\neq50" />
+
+Yang cocok untuk semua baris adalah **menghitung simpanan di tangkai sebagai satu nukleus tambahan dari spesies tangkai itu sendiri**, hanya untuk tudung pertama.
+
+<BlockMath math="\begin{aligned}
+\text{P} &: \ \tfrac{0}{1}=0,\qquad \text{Q}: \ \tfrac{1}{2}=50,\qquad \text{R}: \ \tfrac{1}{4}=25 \\
+\text{S} &: \ \tfrac{1}{3}\approx33,\qquad \text{T}: \ \tfrac{2}{4}=50,\qquad \text{U}: \ \tfrac{1+1}{3}\approx67
+\end{aligned}" />
+
+## Memakai kedua aturan
+
+<BlockMath math="\begin{aligned}
+\text{II, tangkai M pada 1 M dan 3 C} &: \ \text{tudung pertama }\tfrac{3}{5}=60 \\
+\text{III, tangkai C pada 2 M dan 2 C} &: \ \text{tudung pertama }\tfrac{2+1}{5}=60,\quad \text{tudung berikutnya }\tfrac{2}{4}=50 \\
+\text{IV, tangkai apa pun pada 3 M dan 1 C} &: \ \text{tudung berikutnya }\tfrac{1}{4}=25
+\end{aligned}" />
+
+<Chart
+  title={<>Skor Tudung Pertama dan Tudung Berikutnya</>}
+  bars="apart"
+  categories={["Q", "R", "S", "T", "U", "III"]}
+  series={[
+    { label: "Tudung pertama", mark: "bar", values: [50, 25, 33, 50, 67, 60] },
+    { label: "Tudung berikutnya", mark: "bar", values: [100, 33, 50, 67, 50, 50] },
+  ]}
+  valueLabel="Skor tudung"
+  description={<>Untuk cangkokan Q sampai U, tudung pertama cocok dengan bagian C jika simpanan tangkai dihitung sebagai satu nukleus tambahan, dan tudung berikutnya cocok dengan bagian nukleus C saja. Pasangan terakhir adalah ramalan untuk pernyataan III: <InlineMath math="60" /> untuk tudung pertama dan <InlineMath math="50" /> sesudahnya.</>}
+/>
+
+## Menilai tiap pernyataan
+
+- I: tangkai P menumbuhkan satu tudung M tanpa nukleus lalu berhenti, dan di setiap cangkokan pengaruh tangkai hilang sesudah tudung pertama. Simpanan itu dibuat di bawah nukleus M dan satu tudung menghabiskannya. Pernyataan I benar.
+- II: tudung pertama menghitung <InlineMath math="3" /> unit C dari <InlineMath math="5" />, jadi skornya <InlineMath math="60" />, **bukan <InlineMath math="75" />**. Pernyataan II salah.
+- III: tudung pertama mendapat <InlineMath math="60" /> dan tudung berikutnya <InlineMath math="50" />. Pernyataan III benar.
+- IV: tudung berikutnya hanya bergantung pada nukleus, <InlineMath math="1" /> nukleus C dari <InlineMath math="4" />, apa pun tangkainya. Pernyataan IV benar.
+
+Jadi pernyataan I, III, dan IV benar.
+
+# Mengapa pilihan lain salah
+
+- I, II, dan IV saja melupakan simpanan di tangkai saat menilai tudung pertama. Tudung pertama di II lalu mendapat <InlineMath math="75" /> dan tudung pertama di III hanya <InlineMath math="50" />, **seolah tangkai tidak membawa apa-apa**, padahal baris Q sampai U menunjukkan tudung pertama berbeda dari tudung berikutnya.
+- I dan IV saja memberi tangkai sepertiga tetap dari setiap tudung pertama, yang hanya cocok untuk S dan U. Ramalannya <InlineMath math="50" /> di II dan sekitar <InlineMath math="67" /> di III, **padahal baris Q dan R menolak aturan itu**.
+- I dan III saja memperpanjang skor tudung berikutnya dengan langkah tetap sekitar <InlineMath math="17" /> per pangkal, jadi mengharapkan sekitar <InlineMath math="16" /> untuk <InlineMath math="3" /> pangkal M dan <InlineMath math="1" /> pangkal C, **bukan bagian nukleus C, <InlineMath math="\tfrac{1}{4}" />**.

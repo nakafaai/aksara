@@ -1,0 +1,44 @@
+# Find which runs out first for each plant, the water or the month
+
+Each plant stops for one of two reasons: its <InlineMath math="15\text{ kg}" /> of water runs out, or the <InlineMath math="30" /> days end. So first find **the water each plant spends per gram of carbon dioxide**, then check which limit each plant hits.
+
+<BlockMath math="\text{cactus: }\frac{75}{1.5}=50\text{ g},\qquad \text{shrub: }\frac{2000}{4.0}=500\text{ g},\qquad \frac{50}{500}=\frac{1}{10}" />
+
+Statement I is correct. The cactus opens its stomata in the cool, humid night, when water vapour diffuses out of the leaf more slowly, while carbon dioxide still diffuses in.
+
+Now check the limits. The water lasts each plant:
+
+<BlockMath math="\text{shrub: }\frac{15\,000}{2000}=7.5\text{ days},\qquad \text{cactus: }\frac{15\,000}{75}=200\text{ days}" />
+
+The shrub runs dry after <InlineMath math="7.5" /> days, but the cactus still has water when the month ends. So **only the shrub is limited by water**, and the cactus is limited by the <InlineMath math="30" /> days:
+
+<BlockMath math="\text{shrub: }7.5\times4.0=30\text{ g},\qquad \text{cactus: }30\times1.5=45\text{ g of carbon dioxide}" />
+
+- II: the cactus fixes <InlineMath math="\tfrac{45}{30}=1.5" /> times as much, not ten times. Ten times would need the cactus to spend all <InlineMath math="15\text{ kg}" />, <InlineMath math="\tfrac{15\,000}{50}=300\text{ g}" />, but it uses only <InlineMath math="30\times75=2250\text{ g}" /> of water in the month. Statement II is wrong.
+- III: convert each mass of carbon dioxide into glucose:
+
+<BlockMath math="\text{cactus: }45\times\frac{180}{264}\approx30.7\text{ g},\qquad \text{shrub: }30\times\frac{180}{264}\approx20.5\text{ g},\qquad \frac{30.7}{20.5}=1.5" />
+
+Statement III is correct.
+
+- IV: with <InlineMath math="30\text{ kg}" />, the shrub's water lasts <InlineMath math="\tfrac{30\,000}{2000}=15" /> days, so it fixes <InlineMath math="15\times4.0=60\text{ g}" />. The cactus was never short of water, so it still fixes <InlineMath math="45\text{ g}" />. Now the shrub fixes more. Statement IV is correct.
+
+<Chart
+  title={<>Carbon Dioxide Fixed in the Dry Month</>}
+  bars="apart"
+  categories={["Cactus", "Shrub"]}
+  series={[
+    { label: "15 kg of water", mark: "bar", values: [30 * 1.5, (15000 / 2000) * 4] },
+    { label: "30 kg of water", mark: "bar", values: [30 * 1.5, (30000 / 2000) * 4] },
+  ]}
+  valueLabel="Carbon dioxide for each square metre (g)"
+  description={<>With <InlineMath math="15\text{ kg}" /> of water, the cactus fixes <InlineMath math="45\text{ g}" /> of carbon dioxide and the shrub <InlineMath math="30\text{ g}" />. With <InlineMath math="30\text{ kg}" />, the cactus still fixes <InlineMath math="45\text{ g}" />, because the month ends first, while the shrub fixes <InlineMath math="60\text{ g}" />.</>}
+/>
+
+So statements I, III and IV are correct.
+
+# Why the other options are wrong
+
+- I and II only treats the cactus as limited by water too, so it fixes <InlineMath math="300\text{ g}" /> and makes about <InlineMath math="205\text{ g}" /> of glucose. **At <InlineMath math="75\text{ g}" /> a day, the cactus uses only <InlineMath math="2250\text{ g}" /> of water in <InlineMath math="30" /> days**, so the month, not the water, stops it at <InlineMath math="45\text{ g}" />.
+- III and IV only compares the daily water losses, <InlineMath math="\tfrac{75}{2000}" />, **without dividing each by the carbon dioxide fixed**, so it misses the <InlineMath math="50\text{ g}" /> against <InlineMath math="500\text{ g}" /> per gram.
+- I and III only doubles both plants' totals when the water doubles, giving the cactus <InlineMath math="90\text{ g}" /> against <InlineMath math="60\text{ g}" />. **More water helps only the plant that ran out of it**, so the cactus stays at <InlineMath math="45\text{ g}" />.

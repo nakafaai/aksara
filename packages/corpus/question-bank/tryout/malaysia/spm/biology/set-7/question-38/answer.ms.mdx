@@ -1,0 +1,51 @@
+# Simpan jumlah larian nitrogen yang dimasukkan, dengan hanya mengira penambahan sebelum setiap bacaan
+
+Nitrifikasi berlaku dalam dua langkah, dan **setiap langkah mempunyai bakterianya sendiri**. Susun laluannya dahulu, kerana laluan ini menerangkan turutan puncak.
+
+<Mermaid
+  title={<>Dua Langkah Nitrifikasi dalam Akuarium</>}
+  description={<>Nitrosomonas menukarkan ammonium kepada nitrit. Nitrobacter kemudian menukarkan nitrit kepada nitrat. Kedua-duanya memerlukan oksigen, dan kedua-duanya bermula sebagai populasi yang sangat kecil pada batu kelikir.</>}
+  chart={"flowchart LR\n  A[Ammonium] -->|Nitrosomonas| B[Nitrit]\n  B -->|Nitrobacter| C[Nitrat]"}
+/>
+
+Setiap bacaan diambil sejurus sebelum dos hari itu, jadi pada hari ke-<InlineMath math="d" /> hanya dos hari ke-<InlineMath math="1" /> hingga hari ke-<InlineMath math="d-1" /> yang berada dalam air:
+
+<BlockMath math="\text{ditambah sebelum bacaan hari }d=2\times(d-1)\text{ mg per dm}^3" />
+
+Ini memberi <InlineMath math="8" />, <InlineMath math="18" />, <InlineMath math="28" />, <InlineMath math="38" />, <InlineMath math="48" /> dan <InlineMath math="58" /> pada hari ke-<InlineMath math="5" /> hingga ke-<InlineMath math="30" />, dan setiap lajur jadual berjumlah tepat sebanyak itu. Tiada nitrogen yang bertambah atau hilang.
+
+<Chart
+  title={<>Nitrogen dalam Akuarium Baharu</>}
+  categories={["Hari 0", "Hari 5", "Hari 10", "Hari 15", "Hari 20", "Hari 25", "Hari 30"]}
+  series={[
+    { label: "Ammonium", mark: "line", values: [0, 8, 15, 6, 1, 0.5, 0.5] },
+    { label: "Nitrit", mark: "line", values: [0, 0, 2.5, 15, 8, 0.5, 0.5] },
+    { label: "Nitrat", mark: "line", values: [0, 0, 0.5, 7, 29, 47, 57] },
+    { label: "Jumlah ditambah", mark: "line", values: [0, 2 * 4, 2 * 9, 2 * 14, 2 * 19, 2 * 24, 2 * 29] },
+  ]}
+  valueLabel="Nitrogen (mg per dm³)"
+  description={<>Ammonium memuncak pada <InlineMath math="15" /> pada hari ke-<InlineMath math="10" />, nitrit memuncak pada <InlineMath math="15" /> pada hari ke-<InlineMath math="15" />, dan nitrat naik hingga <InlineMath math="57" /> menjelang hari ke-<InlineMath math="30" />. Jumlah yang ditambah sebelum setiap bacaan naik <InlineMath math="10" /> setiap lima hari hingga <InlineMath math="58" />, dan ketiga-tiga bentuk itu sentiasa berjumlah sebanyak itu.</>}
+/>
+
+- I: ammonium memuncak pada hari ke-<InlineMath math="10" /> dan nitrit pada hari ke-<InlineMath math="15" />, lima hari kemudian. Antara bacaan pada hari ke-<InlineMath math="15" /> dengan hari ke-<InlineMath math="20" />, dos hari ke-<InlineMath math="15" /> hingga ke-<InlineMath math="19" /> dimasukkan, <InlineMath math="5\times2=10\text{ mg}" />. Nitrat hanya dihasilkan daripada nitrit, dan jumlahnya menunjukkan tiada yang hilang, jadi kenaikan nitrat ialah nitrogen yang ditukar daripada nitrit kepada nitrat:
+
+<BlockMath math="29-7=22\text{ mg},\qquad \frac{22}{10}=2.2" />
+
+Penurunan nitrit, <InlineMath math="15-8=7" />, jauh lebih kecil kerana *Nitrosomonas* terus menghasilkan nitrit baharu daripada ammonium sementara *Nitrobacter*, yang kini banyak, menggunakannya. Pernyataan I betul.
+
+- II: pada hari ke-<InlineMath math="30" />, <InlineMath math="29" /> dos berada dalam air, iaitu <InlineMath math="58\text{ mg}" />, dan <InlineMath math="57" /> daripadanya ialah nitrat:
+
+<BlockMath math="\frac{57}{58}\times100\%\approx98\%" />
+
+Pernyataan II betul.
+
+- III: antara bacaan hari ke-<InlineMath math="25" /> dan hari ke-<InlineMath math="30" />, dos hari ke-<InlineMath math="25" /> hingga ke-<InlineMath math="29" /> dimasukkan, iaitu <InlineMath math="5\times2=10\text{ mg}" />. Ammonium dan nitrit kekal pada <InlineMath math="0.5" />, dan nitrat naik sebanyak <InlineMath math="57-47=10" />. **Setiap miligram yang ditambah menjadi nitrat**, jadi bakteria kini mampu mengendalikan sekurang-kurangnya <InlineMath math="2\text{ mg}" /> sehari, dan ikan yang menambah <InlineMath math="2\text{ mg}" /> yang sama sehari tidak akan menyebabkan ammonium terkumpul. Pernyataan III betul.
+- IV: <InlineMath math="\tfrac{57}{15}=3.8" />, jadi perbandingan itu sendiri betul. Tetapi bacaan ammonium tertinggi hanyalah baki pada satu ketika. Menjelang hari ke-<InlineMath math="30" />, <InlineMath math="58\text{ mg}" /> telah ditambah dan tepat <InlineMath math="58\text{ mg}" /> ditemui, jadi tiada nitrogen yang datang daripada udara. Pernyataan IV salah.
+
+Jadi pernyataan I, II dan III betul.
+
+# Kenapa pilihan lain salah
+
+- I dan III sahaja membahagi dengan <InlineMath math="30\times2=60" /> dan mendapat <InlineMath math="95\%" />. **Dos hari ke-<InlineMath math="30" /> dimasukkan selepas bacaan**, jadi hanya <InlineMath math="58\text{ mg}" /> yang telah ditambah.
+- II dan III sahaja menolak I kerana mengambil penurunan nitrit, <InlineMath math="15-8=7\text{ mg}" />, sebagai nitrit yang ditukar kepada nitrat. **Nitrit sedang dihasilkan daripada ammonium pada masa yang sama**, jadi penukarannya ialah kenaikan nitrat, <InlineMath math="22\text{ mg}" />.
+- I, II, III dan IV membandingkan nitrat dengan satu bacaan ammonium. **Perbandingan yang betul adalah dengan <InlineMath math="58\text{ mg}" /> yang ditambah**, dan nitrogen yang ditemui sama tepat dengannya.

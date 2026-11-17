@@ -1,0 +1,68 @@
+# Ubah waktu menjadi tekanan, lalu biarkan jarak antardenyut menetapkan laju untuk semua langkah berikutnya
+
+Manset turun <InlineMath math="3\text{ mmHg}" /> tiap detik, jadi **tiap waktu di stopwatch adalah satu tekanan manset**. Jarak antarketukan adalah waktu antardenyut jantung, dan jarak itu menentukan seberapa cepat manset boleh turun.
+
+## Tiga tekanan
+
+<BlockMath math="\begin{aligned}
+\text{sistolik} &= 180-3\times14=138\text{ mmHg} \\
+\text{diastolik} &= 180-3\times30=90\text{ mmHg} \\
+\text{tekanan arteri rata-rata} &= 90+\tfrac{138-90}{3}=90+16=106\text{ mmHg}
+\end{aligned}" />
+
+## Jarak antardenyut dan laju tercepat yang akurat
+
+<BlockMath math="\begin{aligned}
+\text{waktu antardenyut} &: \ \tfrac{30{,}0-14{,}0}{20}=0{,}8\text{ s} \\
+\text{penurunan tercepat yang akurat} &: \ \tfrac{2\text{ mmHg}}{0{,}8\text{ s}}=2{,}5\text{ mmHg per detik}
+\end{aligned}" />
+
+Laju <InlineMath math="3\text{ mmHg}" /> per detik yang dipakai perawat itu menurunkan <InlineMath math="3\times0{,}8=2{,}4\text{ mmHg}" /> antardenyut, **yang terlalu cepat untuk bacaan yang akurat**.
+
+## Memakai laju itu
+
+Monitor otomatis menemukan denyut terbesar saat manset mencapai tekanan arteri rata-rata. Pada pengulangan, ketukan terjadi dari tekanan sistolik sampai tekanan diastolik, berjarak <InlineMath math="2\text{ mmHg}" />, dengan **satu ketukan di tiap ujung**.
+
+<BlockMath math="\begin{aligned}
+\text{denyut terbesar} &: \ \tfrac{180-106}{2{,}5}=\tfrac{74}{2{,}5}=29{,}6\text{ s} \\
+\text{ketukan saat pengulangan} &: \ \tfrac{138-90}{2}=24\text{ jarak}\ \Rightarrow\ 24+1=25\text{ ketukan}
+\end{aligned}" />
+
+<Chart
+  title={<>Tekanan Manset pada Laju Tercepat yang Akurat</>}
+  categories={["0 s", "16,8 s", "29,6 s", "36 s"]}
+  series={[{ label: "Tekanan manset", mark: "line", values: [180, 138, 106, 90] }]}
+  valueLabel="Tekanan manset (mmHg)"
+  description={<>Dengan penurunan <InlineMath math="2{,}5\text{ mmHg}" /> per detik, manset mencapai tekanan sistolik <InlineMath math="138" /> pada <InlineMath math="16{,}8\text{ s}" />, tekanan arteri rata-rata <InlineMath math="106" /> pada <InlineMath math="29{,}6\text{ s}" />, dan tekanan diastolik <InlineMath math="90\text{ mmHg}" /> pada <InlineMath math="36\text{ s}" />.</>}
+/>
+
+## Kalau tekanan diastolik turun enam
+
+<BlockMath math="84+\tfrac{138-84}{3}=84+18=102\text{ mmHg}" />
+
+<Chart
+  title={<>Tekanan Darah Sekarang dan dengan Tekanan Diastolik Lebih Rendah</>}
+  bars="apart"
+  categories={["Sistolik", "Arteri rata-rata", "Diastolik"]}
+  series={[
+    { label: "Sekarang", mark: "bar", values: [138, 106, 90] },
+    { label: "Diastolik 6 lebih rendah", mark: "bar", values: [138, 102, 84] },
+  ]}
+  valueLabel="Tekanan (mmHg)"
+  description={<>Sekarang tekanannya <InlineMath math="138" />, <InlineMath math="106" />, dan <InlineMath math="90\text{ mmHg}" />. Kalau tekanan diastolik turun <InlineMath math="6" /> menjadi <InlineMath math="84" />, tekanan rata-rata hanya turun <InlineMath math="4" /> menjadi <InlineMath math="102\text{ mmHg}" />, karena sepertiga dari selisih yang lebih lebar ditambahkan kembali.</>}
+/>
+
+## Menilai tiap pernyataan
+
+- I: tekanan sistolik <InlineMath math="138" />, di bawah <InlineMath math="140" />, tetapi tekanan diastolik <InlineMath math="90" />, yang mencapai batas. Pernyataan I benar.
+- II: denyut terbesar muncul pada <InlineMath math="29{,}6\text{ s}" />, bukan <InlineMath math="26{,}4\text{ s}" />, karena tekanan arteri rata-rata adalah <InlineMath math="106\text{ mmHg}" />. Pernyataan II salah.
+- III: satu denyut tiap <InlineMath math="0{,}8\text{ s}" /> membolehkan paling banyak <InlineMath math="2{,}5\text{ mmHg}" /> per detik, dan pada laju itu ketukan terjadi di <InlineMath math="138" />, <InlineMath math="136" />, dan seterusnya sampai <InlineMath math="90" />: <InlineMath math="25" /> ketukan. Pernyataan III benar.
+- IV: dengan tekanan diastolik <InlineMath math="84" /> dan sistolik <InlineMath math="138" />, bacaan itu tidak lagi tinggi. Tetapi tekanan rata-rata turun dari <InlineMath math="106" /> ke <InlineMath math="102" />, **hanya <InlineMath math="4\text{ mmHg}" />**. Pernyataan IV salah.
+
+Jadi pernyataan I dan III benar.
+
+# Mengapa pilihan lain salah
+
+- I, II, dan III saja memakai rata-rata biasa, <InlineMath math="\tfrac{138+90}{2}=114" />, sehingga denyut terbesar seolah muncul pada <InlineMath math="\tfrac{180-114}{2{,}5}=26{,}4\text{ s}" />. **Tekanan rata-rata menambahkan sepertiga selisih ke tekanan diastolik**, karena jantung lebih lama berada di diastole.
+- I, III, dan IV saja membiarkan tekanan rata-rata turun penuh <InlineMath math="6\text{ mmHg}" />, **lupa bahwa tekanan diastolik yang lebih rendah melebarkan selisih, dan sepertiganya ditambahkan kembali**.
+- I saja membagi <InlineMath math="48\text{ mmHg}" /> antara tekanan sistolik dan diastolik dengan <InlineMath math="2\text{ mmHg}" /> lalu menghitung <InlineMath math="24" /> ketukan. **Itu jumlah jaraknya**, dan dengan satu ketukan di tiap ujung, jumlah ketukan satu lebih banyak dari jarak, sama seperti <InlineMath math="21" /> ketukan perawat itu punya <InlineMath math="20" /> jarak.

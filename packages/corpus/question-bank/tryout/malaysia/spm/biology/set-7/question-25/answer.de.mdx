@@ -1,0 +1,40 @@
+# Finde das Signalpaar, das die Falle schließt, und zähle ab dem ersten Signal dieses Paars
+
+Die Falle reagiert auf Berührung, indem sie Signale zählt. Alles hängt also davon ab, **welches Signalpaar sie schließt**. Danach zählst du ab dem ersten Signal dieses Paars, und den Schließzeitpunkt nimmst du in die nächsten Aussagen mit.
+
+- I: Prüf die Abstände bei Falle X. Von <InlineMath math="0" /> bis <InlineMath math="40\text{ s}" /> sind es <InlineMath math="40\text{ s}" />, mehr als <InlineMath math="30\text{ s}" />, also wird das Signal bei <InlineMath math="0" /> vergessen. Von <InlineMath math="40" /> bis <InlineMath math="65\text{ s}" /> sind es nur <InlineMath math="25\text{ s}" />, also schließt die Falle bei <InlineMath math="65\text{ s}" />. Aussage I stimmt.
+- II: Zähl ab dem ersten Signal des schließenden Paars, bei <InlineMath math="40\text{ s}" />:
+
+<BlockMath math="40\,(1),\quad 65\,(2),\quad 80\,(3),\quad 140\,(4),\quad 150\,(5)" />
+
+Das fünfte Signal kommt bei <InlineMath math="150\text{ s}" />, dann beginnt die Verdauung. Jetzt nimm den Schließzeitpunkt aus I mit:
+
+<BlockMath math="150-65=85\text{ s nach dem Schließen}" />
+
+Aussage II stimmt.
+
+- III: Bei Falle Y beträgt der Abstand <InlineMath math="20\text{ s}" />, also schließt sie bei <InlineMath math="20\text{ s}" />. Beide Signale des schließenden Paars zählen, sie hat also schon <InlineMath math="2" /> von <InlineMath math="5" />. Dann liegt der Zweig still, und kein Haar wird mehr gebogen, also verschwendet die Falle keine Enzyme an etwas, das sich nicht wie Beute bewegt. Ihr fehlen <InlineMath math="5-2=3" /> Signale, und die Abstände nach dem Schließen spielen keine Rolle, also würden <InlineMath math="3" /> weitere Biegungen zu jeder Zeit die Verdauung starten. Aussage III stimmt.
+- IV: Liegt das erste Signal bei <InlineMath math="20\text{ s}" />, beträgt der Abstand bis <InlineMath math="40\text{ s}" /> nur <InlineMath math="20\text{ s}" />. Jetzt schließt die Falle bei <InlineMath math="40\text{ s}" />, früher als bei <InlineMath math="65\text{ s}" />, und gezählt wird ab <InlineMath math="20\text{ s}" />:
+
+<BlockMath math="20\,(1),\quad 40\,(2),\quad 65\,(3),\quad 80\,(4),\quad 140\,(5)" />
+
+Die Verdauung begänne bei <InlineMath math="140\text{ s}" />, nicht bei <InlineMath math="150\text{ s}" />, also ändert sich auch dieser Zeitpunkt. Aussage IV ist falsch.
+
+<Chart
+  title={<>Von Falle X gezählte Signale</>}
+  categories={["0 s", "40 s", "65 s", "80 s", "140 s", "150 s"]}
+  series={[
+    { label: "Wie gemessen", mark: "line", values: [1, 1, 2, 3, 4, 5] },
+    { label: "Erstes Haar bei 20 s", mark: "line", values: [null, 2, 3, 4, 5, 6] },
+  ]}
+  valueLabel="Gezählte Signale"
+  description={<>Wie gemessen fällt die Zählung bei <InlineMath math="40\text{ s}" /> auf <InlineMath math="1" /> zurück, weil das Signal bei <InlineMath math="0" /> vergessen wird. Sie erreicht <InlineMath math="2" />, und die Falle schließt, bei <InlineMath math="65\text{ s}" />, und <InlineMath math="5" /> bei <InlineMath math="150\text{ s}" />, <InlineMath math="85\text{ s}" /> später. Wird das erste Haar bei <InlineMath math="20\text{ s}" /> gebogen, steht die Zählung bei <InlineMath math="40\text{ s}" /> schon auf <InlineMath math="2" /> und erreicht <InlineMath math="5" /> bei <InlineMath math="140\text{ s}" />.</>}
+/>
+
+Also stimmen die Aussagen I, II und III.
+
+# Warum die anderen Antworten falsch sind
+
+- Nur I, III und IV zählt die fünf Signale ab der allerersten Biegung bei <InlineMath math="0\text{ s}" />. Das ergibt <InlineMath math="140\text{ s}" />, nur <InlineMath math="75\text{ s}" /> nach dem Schließen, und nach dem Verschieben der ersten Biegung auf <InlineMath math="20\text{ s}" /> wieder <InlineMath math="140\text{ s}" />. **Das Signal bei <InlineMath math="0\text{ s}" /> wird vergessen**, also beginnt die Zählung bei <InlineMath math="40\text{ s}" />.
+- Nur I zählt fünf Signale nach dem Schließen, ohne das schließende Paar, und kommt so auf <InlineMath math="230\text{ s}" /> für Falle X und <InlineMath math="5" /> weitere Biegungen für Falle Y, **doch die zwei Signale, die die Falle schließen, zählen zu den <InlineMath math="5" /> dazu**.
+- Nur I, II, III und IV zählt nach dem Verschieben der ersten Biegung auf <InlineMath math="20\text{ s}" /> weiter ab <InlineMath math="40\text{ s}" />. **Diese Biegung wird nicht mehr vergessen**, sie bildet mit dem Signal bei <InlineMath math="40\text{ s}" /> ein Paar, und die Zählung erreicht <InlineMath math="5" /> ein Signal früher, bei <InlineMath math="140\text{ s}" />.

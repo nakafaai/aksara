@@ -1,0 +1,48 @@
+# Temukan tempat saturasi melonjak, lalu pakai pencampuran di bilik kanan untuk membandingkan dua peredaran
+
+Mulailah dengan membaca tabel sesuai arah aliran darah. Saturasi tetap <InlineMath math="70\%" /> dari vena kava sampai serambi kanan, lalu **melonjak ke** <InlineMath math="84\%" /> **di bilik kanan**. Darah kaya oksigen pasti masuk ke bilik kanan, dan satu-satunya jalan masuk tambahan adalah lubang itu. Di sisi kiri, saturasi tetap <InlineMath math="98\%" /> dari vena pulmonalis sampai aorta, jadi tidak ada darah lain yang bergabung di sana.
+
+<Chart
+  title={<>Saturasi Sepanjang Peredaran Anak Itu</>}
+  categories={["Vena kava", "Serambi kanan", "Bilik kanan", "Arteri pulm.", "Vena pulm.", "Serambi kiri", "Bilik kiri", "Aorta"]}
+  series={[{ label: "Saturasi", mark: "line", values: [70, 70, 84, 84, 98, 98, 98, 98] }]}
+  valueLabel="Saturasi hemoglobin (%)"
+  description={<>Saturasinya <InlineMath math="70\%" /> di vena kava dan serambi kanan, naik ke <InlineMath math="84\%" /> di bilik kanan dan arteri pulmonalis, dan <InlineMath math="98\%" /> dari vena pulmonalis sampai aorta.</>}
+/>
+
+- III: kenaikan di bilik kanan, tanpa penurunan di bilik kiri, menunjukkan darah mengalir **dari bilik kiri ke bilik kanan**. Tekanannya juga cocok: bilik kiri mencapai <InlineMath math="14{,}0\text{ kPa}" /> dan bilik kanan hanya <InlineMath math="4{,}0\text{ kPa}" />, dan darah mengalir dari tekanan tinggi ke rendah. Pernyataan III salah.
+- I: bilik kanan mencampur dua aliran. Sebut aliran darah yang kembali dari tubuh <InlineMath math="Q_s" /> (datang dengan <InlineMath math="70\%" />) dan aliran lewat lubang <InlineMath math="S" /> (datang dengan <InlineMath math="98\%" />). Campurannya keluar dengan <InlineMath math="84\%" />.
+
+<BlockMath math="\begin{aligned}
+70Q_s + 98S &= 84(Q_s + S) \\
+14S &= 14Q_s \\
+S &= Q_s
+\end{aligned}" />
+
+Semua darah yang dipompa bilik kanan pergi ke paru-paru, jadi aliran lewat paru-paru adalah
+
+<BlockMath math="Q_p = Q_s + S = 2Q_s" />
+
+Gampang mengira bahwa dalam peredaran ganda, paru-paru dan tubuh pasti dilewati aliran yang sama. Itu hanya benar kalau sekatnya utuh. Di sini **darah tambahan itu melewati paru-paru sekali lagi** tanpa mampir ke tubuh. Pernyataan I benar.
+
+- II: semua darah dari paru-paru kembali lewat serambi kiri ke bilik kiri, jadi bilik kiri memompa <InlineMath math="Q_p" />. Aorta hanya membawa bagian yang pergi ke tubuh, <InlineMath math="Q_s" />.
+
+<BlockMath math="Q_s = 3{,}0\text{ dm}^3/\text{min} \;\Rightarrow\; Q_p = 2 \times 3{,}0 = 6{,}0\text{ dm}^3/\text{min}" />
+
+Jadi bilik kiri memompa <InlineMath math="6{,}0\text{ dm}^3" /> per menit: <InlineMath math="3{,}0" /> ke aorta dan <InlineMath math="3{,}0" /> kembali lewat lubang. Pernyataan II benar.
+
+<Mermaid
+  title={<>Aliran Darah per Menit di Jantung Anak Itu</>}
+  description={<>Tubuh mengembalikan <InlineMath math="3{,}0\text{ dm}^3" /> per menit ke sisi kanan. Bilik kiri mengirim <InlineMath math="3{,}0\text{ dm}^3" /> lewat lubang, jadi bilik kanan mengirim <InlineMath math="6{,}0\text{ dm}^3" /> ke paru-paru. Bilik kiri menerima <InlineMath math="6{,}0\text{ dm}^3" /> dan memompa <InlineMath math="3{,}0\text{ dm}^3" /> ke aorta.</>}
+  chart={"flowchart LR\n  B[Tubuh] -->|3,0 pada 70%| RV[Bilik kanan]\n  RV -->|6,0 pada 84%| L[Paru-paru]\n  L -->|6,0 pada 98%| LV[Bilik kiri]\n  LV -->|3,0 lewat lubang| RV\n  LV -->|3,0 pada 98%| B"}
+/>
+
+- IV: aorta dan vena pulmonalis sama-sama berisi darah dengan saturasi <InlineMath math="98\%" />, dan kadar hemoglobinnya sama di mana-mana, jadi **setiap** <InlineMath math="100\text{ cm}^3" /> **membawa oksigen yang sama banyak**. Tidak ada darah dari sisi kanan yang sampai ke sisi kiri, karena lubang itu hanya mengalirkan darah dari kiri ke kanan. Pernyataan IV salah.
+
+Jadi pernyataan I dan II benar.
+
+# Mengapa pilihan lain salah
+
+- I dan IV saja menerima pencampuran di sisi yang salah, **padahal sisi kiri tetap** <InlineMath math="98\%" /> dari vena pulmonalis sampai aorta.
+- II dan III saja membuat darah menyeberang dari kanan ke kiri, **padahal saturasi naik di bilik kanan** dan tekanannya yang lebih rendah.
+- I, II, dan III saja benar soal kedua aliran tetapi tetap mengirim darah dari kanan ke kiri, **melawan tekanan bilik kiri yang lebih tinggi**.

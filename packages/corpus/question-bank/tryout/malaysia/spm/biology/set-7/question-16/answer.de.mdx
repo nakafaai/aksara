@@ -1,0 +1,48 @@
+# Knochen weit weg von der Mitte trägt mehr gegen Biegung, als seine Menge vermuten lässt
+
+Die Fläche des kompakten Knochens ist der äußere Kreis minus die Markhöhle. Da <InlineMath math="\tfrac{\pi}{4}" /> in jeder Fläche steckt, **vergleichst du nur <InlineMath math="D^2-d^2" />**. Die Biegefestigkeit ist diese Fläche mal den Außendurchmesser <InlineMath math="D" />.
+
+## Flächen und Biegefestigkeit
+
+<BlockMath math="\begin{aligned}
+\text{links} &: \ 25^2-15^2=625-225=400,\qquad 400\times25=10\,000 \\
+\text{rechts, Karriere} &: \ 27^2-15^2=729-225=504,\qquad 504\times27=13\,608 \\
+\text{rechts, zehn Jahre später} &: \ 27^2-18^2=729-324=405,\qquad 405\times27=10\,935
+\end{aligned}" />
+
+## Der Vergleich
+
+<BlockMath math="\begin{aligned}
+\text{Karriere, gegen links} &: \ \tfrac{504}{400}=1{,}26,\qquad \tfrac{13\,608}{10\,000}\approx1{,}36 \\
+\text{zehn Jahre später, gegen links} &: \ \tfrac{405}{400}\approx1{,}01,\qquad \tfrac{10\,935}{10\,000}\approx1{,}09 \\
+\text{eigener Verlust rechts} &: \ \tfrac{504-405}{504}=\tfrac{99}{504}\approx0{,}196,\qquad \tfrac{13\,608-10\,935}{13\,608}\approx0{,}196
+\end{aligned}" />
+
+**Der Außendurchmesser des rechten Humerus bleibt bei <InlineMath math="27\text{ mm}" />**, also sinkt seine Biegefestigkeit genau im selben Verhältnis wie seine Fläche.
+
+<Chart
+  title={<>Kompakter Knochen und Biegefestigkeit im Vergleich zum linken Humerus</>}
+  bars="apart"
+  categories={["Links", "Rechts, Karriere", "Rechts, zehn Jahre später"]}
+  series={[
+    { label: "Kompakter Knochen (%)", mark: "bar", values: [100, 126, 101] },
+    { label: "Biegefestigkeit (%)", mark: "bar", values: [100, 136, 109] },
+  ]}
+  valueLabel="Prozent des linken Humerus"
+  description={<>Gegen Ende der Karriere hat der rechte Humerus <InlineMath math="126\%" /> des kompakten Knochens des linken und <InlineMath math="136\%" /> seiner Biegefestigkeit. Zehn Jahre später hat er <InlineMath math="101\%" /> des Knochens, aber noch <InlineMath math="109\%" /> der Festigkeit, weil sein Knochen weiter in einem breiteren Rohr liegt.</>}
+/>
+
+## Die Aussagen im Einzelnen
+
+- I: <InlineMath math="26\%" /> mehr Knochen und etwa <InlineMath math="36\%" /> mehr Biegefestigkeit. Aussage I stimmt.
+- II: Etwa <InlineMath math="1\%" /> mehr Knochen, aber etwa <InlineMath math="9\%" /> mehr Festigkeit, weil das rechte Rohr noch breiter ist. Aussage II stimmt.
+- III: Der rechte Humerus verliert <InlineMath math="99" /> seiner eigenen <InlineMath math="504" /> Einheiten, also <InlineMath math="19{,}6\%" />, **nicht <InlineMath math="25\%" />**. Aussage III ist falsch.
+- IV: Beide sinken um dieselben <InlineMath math="\tfrac{99}{504}\approx19{,}6\%" />, weil sich **der Außendurchmesser nicht ändert**. Aussage IV ist falsch.
+
+Richtig sind also die Aussagen I und II.
+
+# Warum die anderen Antworten falsch sind
+
+- Nur I, II und III teilt den Verlust von <InlineMath math="99" /> durch die <InlineMath math="400" /> des linken Humerus und kommt auf <InlineMath math="24{,}75\%" />, fast <InlineMath math="25\%" />. **Der Verlust ist ein Anteil an den eigenen <InlineMath math="504" /> des rechten Humerus**.
+- Nur I, II und IV vergleicht, wie stark der Vorsprung gegenüber links schrumpft, <InlineMath math="36-9=27" /> Punkte Festigkeit gegen <InlineMath math="26-1=25" /> Punkte Knochen. **Gefragt ist der prozentuale Verlust des rechten Humerus selbst**, und der ist für beide gleich.
+- Nur I beurteilt den rechten Humerus nach zehn Jahren nur nach seiner Fläche und sieht keinen Vorsprung mehr, **es vergisst, dass die Biegefestigkeit auch mit dem Außendurchmesser wächst**.

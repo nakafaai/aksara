@@ -1,0 +1,53 @@
+# Letakkan kebocoran, pembakaran dan penjimatan grid pada satu skala karbon dioksida
+
+Penutup itu menghalang kebanyakan metana, tetapi karbonnya tidak hilang begitu sahaja. Metana yang dibakar kembali sebagai karbon dioksida, sepersepuluh metana masih terlepas, dan elektrik yang dijana menjimatkan sedikit karbon dioksida di stesen janakuasa. Jadi letakkan semuanya pada satu skala, iaitu tan karbon dioksida, sebelum dan selepas kolam ditutup.
+
+Mula-mula bahagikan <InlineMath math="800" /> tan metana setahun itu:
+
+<BlockMath math="\begin{aligned}
+\text{terlepas} &= 0.10\times800 = 80\text{ t} \\
+\text{dibakar} &= 800-80 = 720\text{ t}
+\end{aligned}" />
+
+Sekarang tukar setiap bahagian menggunakan peraturan dalam soalan. Metana yang terlepas dikira <InlineMath math="28" /> kali jisimnya. Metana yang dibakar menjadi karbon dioksida dalam nisbah <InlineMath math="44:16" />:
+
+<BlockMath math="\begin{aligned}
+\text{sebelum ditutup} &= 800\times28 = 22\,400\text{ t} \\
+\text{terlepas selepas ditutup} &= 80\times28 = 2240\text{ t} \\
+\text{daripada pembakaran} &= 720\times\tfrac{44}{16} = 720\times2.75 = 1980\text{ t} \\
+\text{selepas ditutup} &= 2240+1980 = 4220\text{ t}
+\end{aligned}" />
+
+Kemudian bawa metana yang dibakar ke grid. Hanya <InlineMath math="720" /> tan yang dibakar menjana elektrik:
+
+<BlockMath math="\begin{aligned}
+\text{elektrik} &= 720\times5.5 = 3960\text{ MWh} \\
+\text{dijimatkan di stesen janakuasa} &= 3960\times0.75 = 2970\text{ t} \\
+\text{selepas ditutup, dengan grid} &= 4220-2970 = 1250\text{ t}
+\end{aligned}" />
+
+<BlockMath math="\text{tanpa grid: }\frac{22\,400-4220}{22\,400}\approx81\%,\qquad \text{dengan grid: }\frac{22\,400-1250}{22\,400}\approx94\%" />
+
+- I: tanpa grid, pengurangannya kira-kira <InlineMath math="81\%" />, bukan <InlineMath math="90\%" />. Nilai <InlineMath math="90\%" /> hanyalah bahagian metana yang diperangkap, dan nilai itu tidak mengambil kira <InlineMath math="1980" /> tan **karbon dioksida daripada pembakaran**. Pernyataan I salah.
+- II: metana yang terlepas setara dengan <InlineMath math="2240" /> tan, manakala pembakaran memberi <InlineMath math="1980" /> tan. Jadi kebocoran kecil itu **masih lebih berat** daripada semua karbon dioksida dari enjin. Pernyataan II betul.
+- III: dengan mengambil kira grid, kolam itu kini menyebabkan <InlineMath math="1250" /> tan setahun dan bukan <InlineMath math="22\,400" />, iaitu pengurangan kira-kira <InlineMath math="94\%" />, lebih daripada <InlineMath math="90\%" />. Pernyataan III betul.
+- IV: metana dihasilkan oleh bakteria **anaerob**, yang hanya bekerja apabila oksigen tiada. Jika udara dipam masuk, pengurai aerob mengurai bahan organik itu kepada karbon dioksida, jadi kurang metana terbentuk. Pernyataan IV salah.
+
+<Chart
+  title={<>Kesan Pemanasan Tahunan Kolam</>}
+  bars="apart"
+  categories={["Sebelum ditutup", "Selepas, tanpa grid", "Selepas, dengan grid"]}
+  series={[
+    { label: "Kesan pemanasan", mark: "bar", values: [800 * 28, 80 * 28 + 720 * 2.75, 80 * 28 + 720 * 2.75 - 720 * 5.5 * 0.75] },
+  ]}
+  valueLabel="Tan setara CO₂ setahun"
+  description={<>Sebelum ditutup, kolam menyebabkan kesan pemanasan yang setara dengan <InlineMath math="22\,400" /> tan karbon dioksida setahun. Selepas ditutup, kebocoran dan pembakaran memberi <InlineMath math="4220" /> tan. Dengan mengambil kira <InlineMath math="2970" /> tan yang tidak lagi dibebaskan di stesen janakuasa, jumlahnya turun kepada <InlineMath math="1250" /> tan.</>}
+/>
+
+Jadi pernyataan II dan III betul.
+
+# Kenapa pilihan lain salah
+
+- III sahaja menolak II kerana menukar dengan <InlineMath math="\tfrac{44}{12}" />, iaitu nisbah untuk karbon dan bukan untuk metana, lalu mendapat <InlineMath math="720\times\tfrac{44}{12}=2640" /> tan, **lebih daripada** <InlineMath math="2240" /> **tan kebocoran itu**. Dengan kesilapan itu, III masih benar, pada kira-kira <InlineMath math="91\%" />.
+- I, II dan III sahaja menerima I, menganggap <InlineMath math="90\%" /> yang diperangkap sebagai pengurangan dan **terlupa karbon dioksida daripada pembakaran**.
+- II, III dan IV sahaja menerima IV, menyangka metana dihasilkan oleh bakteria yang memerlukan oksigen, **walhal metana datang daripada penguraian anaerob**.

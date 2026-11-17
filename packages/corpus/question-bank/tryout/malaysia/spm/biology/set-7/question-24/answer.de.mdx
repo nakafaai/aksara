@@ -1,0 +1,41 @@
+# Rechne jeden Messwert in eine Segmentsumme um, bevor du dem Kalium folgst
+
+Die Tabelle gibt Einheiten pro Gramm an, aber Rinde und Holz haben verschiedene Massen. **Multipliziere also zuerst jeden Wert mit der Trockenmasse seines Gewebes**, dann hast du die Summe in jedem Gewebe:
+
+| Segment | Rinde (Einheiten) | Holz (Einheiten) | Ganzes Segment (Einheiten) |
+| --- | --- | --- | --- |
+| P | <InlineMath math="60\times0{,}5=30" /> | <InlineMath math="96\times1{,}5=144" /> | <InlineMath math="174" /> |
+| Q | <InlineMath math="12\times0{,}5=6" /> | <InlineMath math="120\times1{,}5=180" /> | <InlineMath math="186" /> |
+| R | <InlineMath math="0" /> | <InlineMath math="180" /> | <InlineMath math="180" /> |
+| S | <InlineMath math="0" /> | <InlineMath math="180" /> | <InlineMath math="180" /> |
+| T | <InlineMath math="96\times0{,}5=48" /> | <InlineMath math="84\times1{,}5=126" /> | <InlineMath math="174" /> |
+
+- I: Im gewachsten Abschnitt trägt das Holz in jedem Segment <InlineMath math="180" /> Einheiten, die Rinde von R und S dagegen nichts. Das Kalium ist also durch das Holz aufgestiegen, im Xylem. Aussage I stimmt.
+- II: In T liegt die Rinde pro Gramm höher, <InlineMath math="96" /> gegen <InlineMath math="84" />, sie enthält aber nur <InlineMath math="48" /> Einheiten gegen <InlineMath math="126" /> im Holz. Aussage II ist falsch.
+- III: R und S zeigen, was das Xylem liefert, wenn nichts seitlich austreten kann, nämlich <InlineMath math="180" /> Einheiten pro Segment. P hat dieselben <InlineMath math="180" /> bekommen, sein Holz behielt aber nur <InlineMath math="144" />. Der Rest hat das Xylem seitlich verlassen:
+
+<BlockMath math="180-144=36\text{ Einheiten}" />
+
+Kalium, das das Xylem von P verlässt, kann nur in die Rinde von P gelangen, also kamen alle <InlineMath math="36" /> Einheiten dort an. Diese Rinde enthält jetzt nur <InlineMath math="30" />, also sind <InlineMath math="36-30=6" /> Einheiten im Phloem weiter nach unten aus P hinausgewandert, und das sind genau die <InlineMath math="6" /> Einheiten in der Rinde von Q. Deshalb hat P insgesamt <InlineMath math="180-6=174" /> und Q <InlineMath math="180+6=186" />. Aussage III stimmt.
+
+- IV: Die Rinde von Q kann kein Kalium aus ihrem eigenen Holz bekommen haben, denn das Wachspapier sperrt den seitlichen Weg. Kalium in der Rinde wandert nur nach unten, also kam es aus der Rinde darüber, aus P. Aussage IV stimmt.
+
+<Chart
+  title={<>Radioaktives Kalium in jedem Segment</>}
+  bars="apart"
+  categories={["P", "Q", "R", "S", "T"]}
+  series={[
+    { label: "Rinde", mark: "bar", values: [60 * 0.5, 12 * 0.5, 0, 0, 96 * 0.5] },
+    { label: "Holz", mark: "bar", values: [96 * 1.5, 120 * 1.5, 120 * 1.5, 120 * 1.5, 84 * 1.5] },
+  ]}
+  valueLabel="Radioaktivität pro Segment (Einheiten)"
+  description={<>Das Holz von Q, R und S enthält <InlineMath math="180" /> Einheiten, ihre Rinde fast nichts. In P enthält das Holz nur <InlineMath math="144" /> Einheiten und die Rinde <InlineMath math="30" />. In T enthält die Rinde <InlineMath math="48" /> Einheiten und das Holz <InlineMath math="126" />, also auch dort mehr im Holz.</>}
+/>
+
+Also stimmen die Aussagen I, III und IV.
+
+# Warum die anderen Antworten falsch sind
+
+- I und IV nimmt als seitlichen Fluss in P nur das, was die Rinde von P enthält, <InlineMath math="30" /> Einheiten, oder den Rückgang pro Gramm, <InlineMath math="120-96=24" />. **Das Xylem von P hat <InlineMath math="180-144=36" /> Einheiten verloren**, und <InlineMath math="6" /> davon sind schon in die Rinde von Q gewandert.
+- I, II, III und IV vergleicht T pro Gramm, <InlineMath math="96" /> gegen <InlineMath math="84" />. **Das Holz hat die dreifache Masse der Rinde**, also enthält es <InlineMath math="126" /> Einheiten gegen <InlineMath math="48" />.
+- I und III hält das Kalium in der Rinde von Q für seitlich aus dem eigenen Holz gekommen. **Das Wachspapier verhindert in Q jede seitliche Bewegung**, also kann es nur im Phloem aus P heruntergekommen sein.

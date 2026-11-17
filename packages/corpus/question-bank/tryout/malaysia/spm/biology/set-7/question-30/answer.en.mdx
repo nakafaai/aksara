@@ -1,0 +1,43 @@
+# Put every flow in tonnes of carbon before you add or compare them
+
+The table is in carbon, but the diesel saving is in carbon dioxide. So the first job is to **convert the <InlineMath math="11" /> tonnes of carbon dioxide into carbon**:
+
+<BlockMath math="11\times\frac{12}{44}=3\text{ t of carbon saved each year}" />
+
+- I: new plant material is photosynthesis minus the plants' own respiration, <InlineMath math="34-18=16\text{ t}" /> for the oil palm and <InlineMath math="30-18=12\text{ t}" /> for the forest. Now take away everything else that leaves:
+
+<BlockMath math="\text{forest: }12-11-0-0=+1\text{ t},\qquad \text{oil palm: }16-12-12-4=-12\text{ t}" />
+
+The oil palm grows faster, yet its hectare loses carbon. Statement I is correct.
+
+- II: the oil palm hectare loses <InlineMath math="12\text{ t}" /> of carbon a year, and <InlineMath math="12\times\tfrac{44}{12}=44\text{ t}" /> of carbon dioxide. Statement II is correct.
+- III: all <InlineMath math="12\text{ t}" /> lost by the hectare reach the air, the harvested carbon included. The biodiesel keeps <InlineMath math="3\text{ t}" /> of fossil carbon in the ground, so the hectare still adds
+
+<BlockMath math="12-3=9\text{ t of carbon}=33\text{ t of carbon dioxide a year}" />
+
+Taking <InlineMath math="12-11=1" /> mixes carbon with carbon dioxide. Statement III is wrong.
+
+- IV: on mineral soil the peat flow is gone, so the hectare's carbon stays level, <InlineMath math="16-12-4=0" />, and the only thing that builds up is the fossil carbon the biodiesel keeps in the ground, <InlineMath math="3\text{ t}" /> a year:
+
+<BlockMath math="\frac{200\text{ t}}{3\text{ t per year}}\approx67\text{ years},\qquad 2\times25=50\text{ years},\qquad 3\times25=75\text{ years}" />
+
+The third rotation runs from year <InlineMath math="50" /> to year <InlineMath math="75" />, and year <InlineMath math="67" /> falls inside it. Statement IV is correct.
+
+<Chart
+  title={<>Carbon Removed From the Air Each Year</>}
+  bars="apart"
+  categories={["Peat swamp forest", "Oil palm, drained peat", "Oil palm, mineral soil"]}
+  series={[
+    { label: "Net removal", mark: "bar", values: [30 - 18 - 11, 34 - 18 - 12 - 12 - 4 + 11 * 12 / 44, 34 - 18 - 12 - 4 + 11 * 12 / 44] },
+  ]}
+  valueLabel="Carbon (t per hectare per year)"
+  description={<>Counting the fossil diesel the biodiesel replaces, the forest removes <InlineMath math="1\text{ t}" /> of carbon from the air a year. Oil palm on drained peat adds <InlineMath math="9\text{ t}" />, shown as minus <InlineMath math="9" />. Oil palm on mineral soil removes <InlineMath math="3\text{ t}" />, far too little to repay <InlineMath math="200\text{ t}" /> within one or two rotations.</>}
+/>
+
+So statements I, II and IV are correct.
+
+# Why the other options are wrong
+
+- I, II and III only subtracts <InlineMath math="11" /> tonnes of carbon dioxide from <InlineMath math="12" /> tonnes of carbon. **The diesel saving is only <InlineMath math="3\text{ t}" /> of carbon**, so the hectare still adds <InlineMath math="9\text{ t}" /> a year, and on mineral soil the payback takes about <InlineMath math="67" /> years, not <InlineMath math="\tfrac{200}{11}\approx18" />.
+- I and IV only converts the wrong way, <InlineMath math="12\times\tfrac{12}{44}\approx3.3\text{ t}" />. **Carbon dioxide is heavier than the carbon it holds**, so <InlineMath math="12\text{ t}" /> of carbon makes <InlineMath math="44\text{ t}" /> of carbon dioxide.
+- I and II only adds up the saving in carbon dioxide over two rotations, <InlineMath math="50\times11=550" />, and compares it with <InlineMath math="200" /> tonnes of carbon. **Both sides must be in carbon**: <InlineMath math="50\times3=150\text{ t}" />, still short of <InlineMath math="200\text{ t}" />.

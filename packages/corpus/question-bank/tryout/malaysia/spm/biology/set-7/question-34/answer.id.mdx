@@ -1,0 +1,44 @@
+# Ubah kasus tiap kelompok menjadi laju per sperma, lalu uji dengan pembelahan sel dan campuran usia baru
+
+Setiap mutasi baru di sini berasal dari ayah, dan setiap bayi berasal dari tepat satu sperma. Jadi di tiap kelompok usia, **bagian bayi yang membawa mutasi baru sama dengan bagian sperma pembuah yang membawanya**:
+
+<BlockMath math="\text{di bawah }30:\ \frac{40}{2\,000\,000}=\frac{2}{100\,000},\qquad 30\text{ sampai }39:\ \frac{60}{1\,500\,000}=\frac{4}{100\,000},\qquad 40\text{ ke atas}:\ \frac{60}{500\,000}=\frac{12}{100\,000}" />
+
+- I: bandingkan lajunya, bukan jumlah kasusnya: <InlineMath math="\tfrac{12}{2}=6" />. Jumlah kasus, <InlineMath math="60" /> lawan <InlineMath math="40" />, tampak hanya <InlineMath math="1{,}5" /> kali, padahal kelompok yang lebih tua hanya punya seperempat jumlah kelahiran. Pernyataan I benar.
+- II: hitung pembelahan sel di balik satu sperma pada tiap usia rata-rata:
+
+<BlockMath math="\text{usia }25:\ 30+23\times10=260,\qquad \text{usia }45:\ 30+23\times30=720,\qquad \frac{720}{260}\approx2{,}8" />
+
+Dengan peluang yang sama per pembelahan, ayah yang lebih tua hanya akan bermutasi sekitar <InlineMath math="2{,}8" /> kali lebih sering, bukan <InlineMath math="6" /> kali. Peluang per pembelahan itu sendiri harus sekitar <InlineMath math="\tfrac{6}{2{,}8}\approx2{,}2" /> kali lebih tinggi pada pria yang lebih tua. Pernyataan II salah.
+
+- III: terapkan laju tiap kelompok pada bagian kelahiran barunya:
+
+<BlockMath math="\begin{aligned}
+1\,600\,000\times\tfrac{2}{100\,000} &= 32 \\
+1\,600\,000\times\tfrac{4}{100\,000} &= 64 \\
+800\,000\times\tfrac{12}{100\,000} &= 96
+\end{aligned}\qquad 32+64+96=192" />
+
+Tabel punya <InlineMath math="4\,000\,000" /> kelahiran yang sama dengan <InlineMath math="40+60+60=160" /> kasus, dan <InlineMath math="\tfrac{192}{160}=1{,}2" />, jadi <InlineMath math="20\%" /> lebih banyak. Hanya pergeseran ke ayah yang lebih tua yang menaikkan jumlahnya. Pernyataan III benar.
+
+- IV: dua orang tua yang mengalami akondroplasia sama-sama <InlineMath math="Aa" />, karena <InlineMath math="AA" /> tidak bertahan hidup. Anak mereka <InlineMath math="AA" />, <InlineMath math="Aa" />, dan <InlineMath math="aa" /> dengan rasio <InlineMath math="1:2:1" />, tetapi anak <InlineMath math="AA" /> meninggal, jadi di antara yang bertahan hidup <InlineMath math="P(\text{akondroplasia})=\tfrac{2}{2+1}=\tfrac{2}{3}" />. Pernyataan IV salah.
+
+<Chart
+  title={<>Mutasi Akondroplasia Baru per Sperma</>}
+  bars="apart"
+  categories={["Di bawah 30", "30 sampai 39", "40 ke atas"]}
+  series={[
+    { label: "Terukur", mark: "bar", values: [40 / 2000000 * 100000, 60 / 1500000 * 100000, 60 / 500000 * 100000] },
+    { label: "Dari pembelahan saja", mark: "bar", values: [2, 2 * (30 + 23 * 20) / (30 + 23 * 10), 2 * (30 + 23 * 30) / (30 + 23 * 10)] },
+  ]}
+  valueLabel="Per 100.000 sperma"
+  description={<>Laju terukur adalah <InlineMath math="2" />, <InlineMath math="4" />, dan <InlineMath math="12" /> per <InlineMath math="100\,000" /> sperma. Kalau hanya jumlah pembelahan yang berpengaruh, mulai dari <InlineMath math="2" /> pada kelompok termuda, lajunya sekitar <InlineMath math="3{,}8" /> dan <InlineMath math="5{,}5" />, jauh di bawah <InlineMath math="12" /> yang terukur pada ayah tertua.</>}
+/>
+
+Jadi pernyataan I dan III benar.
+
+# Mengapa pilihan lain salah
+
+- I saja merata-ratakan ketiga laju, <InlineMath math="\tfrac{2+4+12}{3}=6" /> per <InlineMath math="100\,000" />, dan memperkirakan <InlineMath math="240" /> kasus. **Tiap laju harus diberi bobot sesuai bagian kelahirannya sendiri**, sehingga hasilnya <InlineMath math="192" />.
+- I, II, dan III saja membiarkan pembelahan tambahan menjelaskan seluruh kenaikan. **Jumlah pembelahan hanya naik sekitar <InlineMath math="2{,}8" /> kali dari usia <InlineMath math="25" /> ke <InlineMath math="45" />**, sedangkan lajunya naik <InlineMath math="6" /> kali.
+- I, III, dan IV saja memakai rasio <InlineMath math="3:1" /> dari persilangan dominan biasa. **Anak <InlineMath math="AA" /> meninggal**, jadi di antara anak yang bertahan hidup, bagian yang mengalami akondroplasia adalah <InlineMath math="\tfrac{2}{3}" />.

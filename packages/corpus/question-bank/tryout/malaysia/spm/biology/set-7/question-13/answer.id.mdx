@@ -1,0 +1,51 @@
+# Klon baru berlipat ganda setelah masa tunggunya, dan selalu berhenti pada ukuran yang sama
+
+Masa tunggu sebelum sel membelah menambah hari tetapi **tidak menambah penggandaan**. Tiap <InlineMath math="12" /> jam membelah menggandakan klon, jadi satu hari membelah sama dengan dua penggandaan.
+
+## Paparan pertama
+
+<BlockMath math="\begin{aligned}
+\text{sampai terdeteksi} &: \ \tfrac{20\,480}{20}=1024=2^{10}\ \Rightarrow\ 10\text{ penggandaan}=5\text{ hari} \\
+\text{antibodi terdeteksi} &: \ 2+5=\text{hari ke-}7 \\
+\text{antigen tersingkir} &: \ \text{hari ke-}9,\ \text{setelah }4\text{ penggandaan lagi: }20\,480\times2^4=327\,680\text{ sel} \\
+\text{sel memori} &: \ \tfrac{327\,680}{512}=640
+\end{aligned}" />
+
+## Paparan kedua
+
+Sebanyak <InlineMath math="640" /> sel memori menunggu <InlineMath math="1" /> hari, lalu berlipat ganda.
+
+<BlockMath math="\begin{aligned}
+\text{sampai terdeteksi} &: \ \tfrac{20\,480}{640}=32=2^5\ \Rightarrow\ 5\text{ penggandaan}=2{,}5\text{ hari} \\
+\text{antibodi terdeteksi} &: \ 1+2{,}5=\text{hari ke-}3{,}5 \\
+\text{antigen tersingkir} &: \ \text{hari ke-}5{,}5,\ \text{lagi-lagi }20\,480\times2^4=327\,680\text{ sel}
+\end{aligned}" />
+
+**Tiap klon terdeteksi pada <InlineMath math="20\,480" /> sel lalu membelah tepat <InlineMath math="2" /> hari**, jadi klon selalu berhenti di <InlineMath math="327\,680" /> sel, berapa pun jumlah awalnya. Awal yang lebih besar hanya sampai lebih cepat.
+
+<Chart
+  title={<>Kapan Antibodi Muncul dan Kapan Antigen Tersingkir</>}
+  bars="apart"
+  categories={["Paparan pertama", "Paparan kedua"]}
+  series={[
+    { label: "Antibodi mulai terdeteksi", mark: "bar", values: [7, 3.5] },
+    { label: "Antigen tersingkir", mark: "bar", values: [9, 5.5] },
+  ]}
+  valueLabel="Hari setelah antigen masuk"
+  description={<>Pada paparan pertama, antibodi terdeteksi pada hari ke-<InlineMath math="7" /> dan antigen tersingkir pada hari ke-<InlineMath math="9" />. Pada paparan kedua, keduanya terjadi pada hari ke-<InlineMath math="3{,}5" /> dan hari ke-<InlineMath math="5{,}5" />, <InlineMath math="3{,}5" /> hari lebih cepat. Kedua klon berisi <InlineMath math="327\,680" /> sel saat antigen tersingkir.</>}
+/>
+
+## Menilai tiap pernyataan
+
+- I: terdeteksi pada hari ke-<InlineMath math="7" /> dan <InlineMath math="327\,680" /> sel saat tersingkir. Pernyataan I benar.
+- II: paparan pertama menyisakan <InlineMath math="\tfrac{327\,680}{512}=640" /> sel memori, bukan <InlineMath math="10\,240" />. Pernyataan II salah.
+- III: sel memori tetap menunggu <InlineMath math="1" /> hari sebelum membelah, jadi antibodi muncul pada hari ke-<InlineMath math="3{,}5" />, bukan hari ke-<InlineMath math="2{,}5" />. Pernyataan III salah.
+- IV: **kedua klon berisi <InlineMath math="327\,680" /> sel saat tersingkir**, dan penyingkiran terjadi pada hari ke-<InlineMath math="5{,}5" />, bukan hari ke-<InlineMath math="9" />, <InlineMath math="3{,}5" /> hari lebih cepat. Pernyataan IV benar.
+
+Jadi pernyataan I dan IV benar.
+
+# Mengapa pilihan lain salah
+
+- II saja membiarkan klon berlipat ganda selama <InlineMath math="2" /> hari tunggu juga, **menghitung <InlineMath math="18" /> penggandaan dalam <InlineMath math="9" /> hari, bukan <InlineMath math="14" />**. Klon lalu mencapai <InlineMath math="20\times2^{18}" /> sel, yang menyisakan <InlineMath math="10\,240" /> sel memori dan merusak tiga pernyataan lainnya.
+- I dan III saja membuang masa tunggu <InlineMath math="1" /> hari pada paparan kedua, **seolah sel memori langsung membelah**. Hasilnya deteksi pada hari ke-<InlineMath math="2{,}5" /> dan penyingkiran pada hari ke-<InlineMath math="4{,}5" />, yaitu <InlineMath math="4{,}5" /> hari lebih cepat, bukan <InlineMath math="3{,}5" />.
+- I saja mengira klon yang mulai dengan sel <InlineMath math="32" /> kali lebih banyak akan berakhir <InlineMath math="32" /> kali lebih besar. **Deteksi selalu terjadi pada ukuran yang sama**, dan klon membelah selama <InlineMath math="2" /> hari yang sama sesudahnya, jadi kedua klon berakhir sama besar.

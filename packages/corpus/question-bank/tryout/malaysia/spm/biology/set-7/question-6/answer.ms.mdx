@@ -1,0 +1,40 @@
+# Satu bahan memulihkan strain hanya jika bahan itu terletak selepas langkah yang tersekat
+
+Satu strain tumbuh apabila diberi bahan yang dihasilkan **selepas langkah yang tersekat**, kerana enzim lain strain itu dapat menukarkan bahan tersebut kepada Z. Bahan yang dihasilkan sebelum sekatan terkumpul di sekatan itu dan tidak pernah sampai kepada Z.
+
+## Menentukan kedudukan sekatan
+
+Semakin banyak bahan yang memulihkan satu strain, **semakin awal sekatannya**.
+
+- X dipulihkan oleh P, Q dan Z, tetapi tidak oleh R. Sekatannya terletak selepas R dan sebelum P.
+- Y dipulihkan oleh Q dan Z sahaja. Sekatannya terletak selepas P dan sebelum Q.
+- W dipulihkan oleh Z sahaja. Sekatannya ialah langkah terakhir, daripada Q kepada Z.
+
+Jadi laluan itu ialah bahan pemula, R, P, Q, Z.
+
+<Mermaid
+  title={<>Laluan kepada Z dan Langkah yang Tiada pada Setiap Strain</>}
+  description={<>Bahan pemula menjadi R, kemudian P, kemudian Q, kemudian Z. Strain X kekurangan enzim daripada R kepada P, strain Y enzim daripada P kepada Q, dan strain W enzim daripada Q kepada Z.</>}
+  chart={"flowchart LR\n  S[Bahan pemula] --> R[R]\n  R -->|tiada pada X| P[P]\n  P -->|tiada pada Y| Q[Q]\n  Q -->|tiada pada W| Z[Z]"}
+/>
+
+## Bahan yang dikumpul oleh setiap strain
+
+Satu strain mengumpul bahan yang **sepatutnya ditindakkan oleh enzim yang tiada**, iaitu bahan sejurus sebelum sekatan.
+
+- X mengumpul R, Y mengumpul P dan W mengumpul Q.
+
+## Menilai setiap pernyataan
+
+- I: urutan R, kemudian P, kemudian Q terhasil daripada kedudukan sekatan. Pernyataan I betul.
+- II: Y kekurangan enzim yang menukarkan P kepada Q, jadi P terkumpul. Pernyataan II betul.
+- III: strain yang tersekat pada kedua-dua langkah tidak dapat menukarkan P kepada Q. Hanya bahan selepas **sekatan yang kemudian** dapat memulihkannya, iaitu Q atau Z. Pernyataan III salah.
+- IV: W mengumpul Q, dan Q terletak selepas sekatan X dan sekatan Y, sebab itulah kedua-duanya tumbuh apabila Q ditambah. Pernyataan IV betul.
+
+Jadi pernyataan I, II dan IV betul.
+
+# Kenapa pilihan lain salah
+
+- I, II, III dan IV menganggap bahawa P memulihkan strain X, jadi P mesti memulihkan strain berganda juga, **terlupa bahawa sekatan kedua menghalang P daripada sampai kepada Z**.
+- I dan IV sahaja menganggap bahan yang terkumpul ialah hasil enzim yang tiada, jadi mengatakan Y mengumpul Q, **tetapi enzim yang tiada meninggalkan substratnya**, bukan hasilnya.
+- I dan II sahaja meletakkan enzim yang tiada pada W di langkah pertama kerana tiada bahan perantara yang memulihkan W. Sekatan di langkah pertama akan dipulihkan oleh setiap bahan perantara, jadi **sekatan W mesti di langkah terakhir**, dan Q yang dikumpulnya membekalkan X dan Y.

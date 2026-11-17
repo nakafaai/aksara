@@ -1,0 +1,56 @@
+# Membrane goes with area, fluid goes with volume
+
+Every secretory vesicle that fuses adds its whole surface to the plasma membrane. Endocytosis must take the **same area** back, but the fluid each vesicle carries depends on its **volume**. Area grows with <InlineMath math="d^2" /> and volume with <InlineMath math="d^3" />, so the two don't scale alike.
+
+## Membrane added by exocytosis
+
+<BlockMath math="\begin{aligned}
+\text{one secretory vesicle} &: \ 3.14\times1.0^2=3.14\,\mu\text{m}^2 \\
+\text{per minute} &: \ 10\times3.14=31.4\,\mu\text{m}^2 \\
+\text{in 10 minutes} &: \ 10\times31.4=314\,\mu\text{m}^2,\quad \tfrac{314}{785}=0.40=40\%
+\end{aligned}" />
+
+## Coated vesicles needed to take it back
+
+One coated vesicle has **one hundredth of the area**, because its diameter is one tenth and area goes with the square.
+
+<BlockMath math="\begin{aligned}
+\text{one coated vesicle} &: \ 3.14\times0.10^2=0.0314\,\mu\text{m}^2 \\
+\text{per minute} &: \ \tfrac{31.4}{0.0314}=1000 \\
+\text{if } d=0.05\,\mu\text{m} &: \ 3.14\times0.05^2=0.00785\,\mu\text{m}^2,\quad \tfrac{31.4}{0.00785}=4000
+\end{aligned}" />
+
+## Fluid moved each minute
+
+<BlockMath math="\begin{aligned}
+\text{released by secretion} &: \ 10\times\tfrac{3.14\times1.0^3}{6}\approx5.23\,\mu\text{m}^3 \\
+\text{taken in by coated vesicles} &: \ 1000\times\tfrac{3.14\times0.10^3}{6}\approx0.523\,\mu\text{m}^3
+\end{aligned}" />
+
+The coated vesicles bring back the same membrane but only **one tenth of the volume**.
+
+<Chart
+  title={<>Area of the Plasma Membrane During Secretion</>}
+  categories={["0 min", "2 min", "4 min", "6 min", "8 min", "10 min"]}
+  series={[
+    { label: "No endocytosis", mark: "line", values: [785, 847.8, 910.6, 973.4, 1036.2, 1099] },
+    { label: "1000 coated vesicles per minute", mark: "line", values: [785, 785, 785, 785, 785, 785] },
+  ]}
+  valueLabel="Area of plasma membrane (µm²)"
+  description={<>Without endocytosis the membrane gains <InlineMath math="31.4\,\mu\text{m}^2" /> a minute and grows from <InlineMath math="785" /> to <InlineMath math="1099\,\mu\text{m}^2" /> in <InlineMath math="10" /> minutes, <InlineMath math="40\%" /> larger. With <InlineMath math="1000" /> coated vesicles a minute, it stays at <InlineMath math="785\,\mu\text{m}^2" />.</>}
+/>
+
+## Judging each statement
+
+- I: the membrane gains <InlineMath math="314\,\mu\text{m}^2" />, which is <InlineMath math="40\%" /> of <InlineMath math="785\,\mu\text{m}^2" />. Statement I is correct.
+- II: <InlineMath math="1000" /> coated vesicles a minute take back the <InlineMath math="31.4\,\mu\text{m}^2" /> added. Statement II is correct.
+- III: **equal area does not mean equal volume**. The coated vesicles take in <InlineMath math="0.523\,\mu\text{m}^3" /> a minute, a tenth of the <InlineMath math="5.23\,\mu\text{m}^3" /> released. Statement III is wrong.
+- IV: halving the diameter quarters the area, so the cell needs <InlineMath math="4000" /> vesicles a minute, not <InlineMath math="2000" />. Statement IV is wrong.
+
+So statements I and II are correct.
+
+# Why the other options are wrong
+
+- I, II and III only assumes that vesicles carrying the same membrane area also carry the same volume, but **volume shrinks faster than area** as vesicles get smaller.
+- I and IV only scales the number of vesicles with the diameter instead of its square. That gives <InlineMath math="10\times10=100" /> coated vesicles a minute and twice as many at half the size, **forgetting that area goes with** <InlineMath math="d^2" />.
+- I, II and IV only gets the ratio of areas right for statement II, then **halves the diameter but only doubles the count** in statement IV.

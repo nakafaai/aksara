@@ -1,0 +1,56 @@
+# Bakteri terus membelah selama fag sedang dirakit
+
+Satu bercak bening mewakili **satu bakteri terinfeksi atau satu fag bebas**, tidak pernah keduanya. Jadi hitungannya baru melonjak ketika bakteri terinfeksi pecah dan melepaskan fag barunya.
+
+<Chart
+  title={<>Bercak Bening Setelah Infeksi</>}
+  categories={["0 min", "10 min", "20 min", "30 min", "40 min", "50 min"]}
+  series={[
+    { label: "Bercak bening", mark: "line", values: [2, 2, 2, 2, 150, 200] },
+  ]}
+  valueLabel="Bercak per cm³ (ratusan ribu)"
+  description={<>Hitungannya tetap <InlineMath math="2{,}0\times10^5" /> per <InlineMath math="\text{cm}^3" /> dari menit ke-<InlineMath math="0" /> sampai menit ke-<InlineMath math="30" />, melonjak ke <InlineMath math="1{,}5\times10^7" /> pada menit ke-<InlineMath math="40" />, dan mendatar di <InlineMath math="2{,}0\times10^7" /> pada menit ke-<InlineMath math="50" />.</>}
+/>
+
+Mulai dari jumlah fag yang dilepaskan tiap bakteri. Tiap fag menginfeksi bakteri yang berbeda, jadi <InlineMath math="2{,}0\times10^5" /> bakteri terinfeksi. Setelah semuanya pecah, hitungannya mendatar di <InlineMath math="2{,}0\times10^7" />:
+
+<BlockMath math="\frac{2{,}0\times10^7}{2{,}0\times10^5}=100\text{ fag per bakteri}" />
+
+Berikutnya, cari bagian bakteri yang terinfeksi pada putaran kedua. Selama fag pertama dirakit, bakteri yang tidak terinfeksi terus membelah. Dalam <InlineMath math="40" /> menit, bakteri itu membelah <InlineMath math="\tfrac{40}{20}=2" /> kali:
+
+<BlockMath math="\begin{aligned}
+\text{tak terinfeksi pada menit ke-40} &\approx 1{,}0\times10^8\times2^2 = 4{,}0\times10^8 \\
+\text{bagian yang terinfeksi} &= \frac{2{,}0\times10^7}{4{,}0\times10^8} = 0{,}05 = 5\%
+\end{aligned}" />
+
+Lalu bandingkan fag dan bakteri setelah pecah kedua. Sebanyak <InlineMath math="4{,}0\times10^8-2{,}0\times10^7=3{,}8\times10^8" /> bakteri yang masih tak terinfeksi membelah dua kali lagi sampai menit ke-<InlineMath math="80" />, sedangkan tiap bakteri yang baru terinfeksi melepaskan <InlineMath math="100" /> fag:
+
+<BlockMath math="\begin{aligned}
+\text{tak terinfeksi pada menit ke-80} &= 3{,}8\times10^8\times2^2 \approx 1{,}5\times10^9 \\
+\text{fag yang dilepaskan} &= 2{,}0\times10^7\times100 = 2{,}0\times10^9
+\end{aligned}" />
+
+<Chart
+  title={<>Fag yang Dilepaskan dan Bakteri yang Tersisa</>}
+  bars="apart"
+  categories={["Menit ke-40", "Menit ke-80"]}
+  series={[
+    { label: "Fag dilepaskan", mark: "bar", values: [2, 200] },
+    { label: "Bakteri tak terinfeksi", mark: "bar", values: [40, 152] },
+  ]}
+  valueLabel="Jumlah per cm³ (puluhan juta)"
+  description={<>Pada menit ke-<InlineMath math="40" />, <InlineMath math="2{,}0\times10^7" /> fag bertemu <InlineMath math="4{,}0\times10^8" /> bakteri tak terinfeksi. Pada menit ke-<InlineMath math="80" />, <InlineMath math="2{,}0\times10^9" /> fag dilepaskan, lebih banyak daripada <InlineMath math="1{,}5\times10^9" /> bakteri tak terinfeksi yang tersisa.</>}
+/>
+
+- I: tiap bakteri melepaskan <InlineMath math="100" /> fag. Angka <InlineMath math="1{,}0\times10^8" /> bakteri mencakup banyak bakteri yang **tidak pernah terinfeksi**, jadi angka itu bukan pembagi yang tepat. Pernyataan I benar.
+- II: fag putaran pertama bertemu bakteri **setelah dua kali pembelahan**, jadi <InlineMath math="2{,}0\times10^7" /> dari <InlineMath math="4{,}0\times10^8" /> terinfeksi, yaitu <InlineMath math="5\%" />. Pernyataan II benar.
+- III: virus tidak punya sitoplasma, ribosom, atau metabolisme sendiri, jadi virus tidak bisa membelah. Fag baru **dirakit dari komponen buatan sel inang** selama bagian kurva yang mendatar. Pernyataan III salah.
+- IV: <InlineMath math="2{,}0\times10^9" /> fag dibandingkan sekitar <InlineMath math="1{,}5\times10^9" /> bakteri, jadi fag lebih banyak. Pernyataan IV benar.
+
+Jadi pernyataan I, II, dan IV benar.
+
+# Mengapa pilihan lain salah
+
+- I dan IV saja menolak II karena membagi dengan <InlineMath math="1{,}0\times10^8" /> bakteri di awal, sehingga mendapat <InlineMath math="20\%" />, **lupa bahwa bakteri itu sudah berlipat dua sebanyak dua kali dalam** <InlineMath math="40" /> **menit**.
+- I, II, III, dan IV menerima III, memberi fag **cara berkembang biak sebuah sel**, padahal virus tidak bisa membelah.
+- II dan IV saja menolak I karena membagi <InlineMath math="2{,}0\times10^7" /> dengan semua <InlineMath math="1{,}0\times10^8" /> bakteri, **yang sebagian besar tidak pernah terinfeksi**, lalu mendapat <InlineMath math="0{,}2" />.

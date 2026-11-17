@@ -1,0 +1,53 @@
+# Bring Leck, Verbrennung und Netzeinsparung auf eine Kohlendioxid-Skala
+
+Die Abdeckung hält das meiste Methan zurück, aber der Kohlenstoff verschwindet dadurch nicht. Das verbrannte Methan kommt als Kohlendioxid zurück, ein Zehntel des Methans entweicht weiter, und der erzeugte Strom spart in den Kraftwerken etwas Kohlendioxid. Bring also alles auf eine Skala, Tonnen Kohlendioxid, vorher und nachher.
+
+Teile zuerst die <InlineMath math="800" /> Tonnen Methan pro Jahr auf:
+
+<BlockMath math="\begin{aligned}
+\text{entweicht} &= 0{,}10\times800 = 80\text{ t} \\
+\text{verbrannt} &= 800-80 = 720\text{ t}
+\end{aligned}" />
+
+Rechne jetzt jeden Teil mit den Regeln aus der Aufgabe um. Entweichendes Methan zählt das <InlineMath math="28" />-Fache seiner Masse. Verbranntes Methan wird im Verhältnis <InlineMath math="44:16" /> zu Kohlendioxid:
+
+<BlockMath math="\begin{aligned}
+\text{vor dem Abdecken} &= 800\times28 = 22{.}400\text{ t} \\
+\text{entweicht danach} &= 80\times28 = 2240\text{ t} \\
+\text{aus der Verbrennung} &= 720\times\tfrac{44}{16} = 720\times2{,}75 = 1980\text{ t} \\
+\text{nach dem Abdecken} &= 2240+1980 = 4220\text{ t}
+\end{aligned}" />
+
+Dann trägst du das verbrannte Methan zum Stromnetz weiter. Nur die <InlineMath math="720" /> verbrannten Tonnen liefern Strom:
+
+<BlockMath math="\begin{aligned}
+\text{Strom} &= 720\times5{,}5 = 3960\text{ MWh} \\
+\text{in Kraftwerken gespart} &= 3960\times0{,}75 = 2970\text{ t} \\
+\text{nach dem Abdecken, mit Netz} &= 4220-2970 = 1250\text{ t}
+\end{aligned}" />
+
+<BlockMath math="\text{ohne Netz: }\frac{22{.}400-4220}{22{.}400}\approx81\%,\qquad \text{mit Netz: }\frac{22{.}400-1250}{22{.}400}\approx94\%" />
+
+- I: Ohne das Netz liegt die Senkung bei etwa <InlineMath math="81\%" />, nicht bei <InlineMath math="90\%" />. Die <InlineMath math="90\%" /> sind nur der aufgefangene Anteil des Methans und lassen die <InlineMath math="1980" /> Tonnen **Kohlendioxid aus der Verbrennung** weg. Aussage I ist falsch.
+- II: Das entweichende Methan entspricht <InlineMath math="2240" /> Tonnen, die Verbrennung liefert <InlineMath math="1980" /> Tonnen. Das kleine Leck **wiegt also schwerer** als das gesamte Kohlendioxid aus dem Motor. Aussage II stimmt.
+- III: Mit dem Netz verursachen die Teiche jetzt <InlineMath math="1250" /> Tonnen im Jahr statt <InlineMath math="22{.}400" />, eine Senkung um etwa <InlineMath math="94\%" />, also mehr als <InlineMath math="90\%" />. Aussage III stimmt.
+- IV: Methan entsteht durch **anaerobe** Bakterien, die nur arbeiten, wo Sauerstoff fehlt. Pumpst du Luft hinein, bauen aerobe Zersetzer die organischen Stoffe zu Kohlendioxid ab, und es entsteht weniger Methan. Aussage IV ist falsch.
+
+<Chart
+  title={<>Jährliche Erwärmungswirkung der Teiche</>}
+  bars="apart"
+  categories={["Vor dem Abdecken", "Danach, ohne Netz", "Danach, mit Netz"]}
+  series={[
+    { label: "Erwärmungswirkung", mark: "bar", values: [800 * 28, 80 * 28 + 720 * 2.75, 80 * 28 + 720 * 2.75 - 720 * 5.5 * 0.75] },
+  ]}
+  valueLabel="Tonnen CO₂-Äquivalent pro Jahr"
+  description={<>Vor dem Abdecken verursachen die Teiche eine Erwärmungswirkung von <InlineMath math="22{.}400" /> Tonnen Kohlendioxid im Jahr. Nach dem Abdecken ergeben Leck und Verbrennung <InlineMath math="4220" /> Tonnen. Mit den <InlineMath math="2970" /> Tonnen, die die Kraftwerke nicht mehr ausstoßen, sinkt die Summe auf <InlineMath math="1250" /> Tonnen.</>}
+/>
+
+Also stimmen die Aussagen II und III.
+
+# Warum die anderen Antworten falsch sind
+
+- Nur III lehnt II ab, weil mit <InlineMath math="\tfrac{44}{12}" /> umgerechnet wird, dem Verhältnis für Kohlenstoff statt für Methan. Das ergibt <InlineMath math="720\times\tfrac{44}{12}=2640" /> Tonnen, **mehr als die** <InlineMath math="2240" /> **Tonnen des Lecks**. Mit diesem Fehler gilt III trotzdem, bei etwa <InlineMath math="91\%" />.
+- Nur I, II und III nimmt I an, liest die aufgefangenen <InlineMath math="90\%" /> als Senkung und **vergisst das Kohlendioxid aus der Verbrennung**.
+- Nur II, III und IV nimmt IV an und schreibt das Methan Bakterien zu, die Sauerstoff brauchen, **obwohl Methan beim anaeroben Abbau entsteht**.

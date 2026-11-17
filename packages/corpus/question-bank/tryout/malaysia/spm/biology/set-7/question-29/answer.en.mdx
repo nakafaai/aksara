@@ -1,0 +1,41 @@
+# Carry two numbers forward each generation, the caterpillars and the wasps
+
+The wasps of one generation set how many caterpillars of the next are parasitised, and the caterpillars that escape set the size of the next generation. So each step needs both numbers from the step before:
+
+<BlockMath math="\begin{aligned}
+\text{parasitised} &= \text{the smaller of } 4\times\text{wasps from before and the caterpillars} \\
+\text{next caterpillars} &= 5\times(\text{caterpillars}-\text{parasitised}) \\
+\text{wasps that come out} &= \text{parasitised}
+\end{aligned}" />
+
+| Generation | Caterpillars | Parasitised | Escape | Wasps that come out |
+| --- | --- | --- | --- | --- |
+| <InlineMath math="1" /> | <InlineMath math="200" /> | <InlineMath math="0.40\times200=80" /> | <InlineMath math="120" /> | <InlineMath math="80" /> |
+| <InlineMath math="2" /> | <InlineMath math="5\times120=600" /> | <InlineMath math="4\times80=320" /> | <InlineMath math="280" /> | <InlineMath math="320" /> |
+| <InlineMath math="3" /> | <InlineMath math="5\times280=1400" /> | <InlineMath math="4\times320=1280" /> | <InlineMath math="120" /> | <InlineMath math="1280" /> |
+| <InlineMath math="4" /> | <InlineMath math="5\times120=600" /> | all <InlineMath math="600" />, since <InlineMath math="4\times1280=5120" /> | <InlineMath math="0" /> | <InlineMath math="600" /> |
+| <InlineMath math="5" /> | <InlineMath math="0" /> | <InlineMath math="0" /> | <InlineMath math="0" /> | <InlineMath math="0" /> |
+
+- I: generation <InlineMath math="3" /> has <InlineMath math="1400" /> caterpillars. Statement I is correct.
+- II: a generation is replaced exactly when <InlineMath math="(1-p)\times5=1" />, so when a share <InlineMath math="p=80\%" /> is parasitised. Generation <InlineMath math="2" /> has only <InlineMath math="\tfrac{320}{600}\approx53\%" /> parasitised, so the caterpillars still rise to <InlineMath math="1400" />. Generation <InlineMath math="3" /> has <InlineMath math="\tfrac{1280}{1400}\approx91\%" />, past <InlineMath math="80\%" />, so the number falls for the first time, to <InlineMath math="600" />. Statement II is correct.
+- III: the <InlineMath math="1280" /> wasps from generation <InlineMath math="3" /> carry <InlineMath math="5120" /> eggs, but generation <InlineMath math="4" /> has only <InlineMath math="600" /> caterpillars. **Each caterpillar yields at most one wasp**, so only <InlineMath math="600" /> wasps come out, fewer than <InlineMath math="1280" />. Statement III is wrong.
+- IV: every caterpillar of generation <InlineMath math="4" /> is parasitised, so none escape to breed, and generation <InlineMath math="5" /> has <InlineMath math="5\times0=0" />. Statement IV is correct.
+
+<Chart
+  title={<>Caterpillars and Wasps in Each Generation</>}
+  categories={["Generation 1", "Generation 2", "Generation 3", "Generation 4", "Generation 5"]}
+  series={[
+    { label: "Caterpillars", mark: "line", values: [200, 5 * (200 - 80), 5 * (600 - 320), 5 * (1400 - 1280), 0] },
+    { label: "Wasps", mark: "line", values: [80, 4 * 80, 4 * 320, 600, 0] },
+  ]}
+  valueLabel="Number per palm"
+  description={<>The caterpillars go from <InlineMath math="200" /> to <InlineMath math="600" /> and <InlineMath math="1400" />, then fall to <InlineMath math="600" /> and <InlineMath math="0" />. The wasps rise from <InlineMath math="80" /> to <InlineMath math="320" /> and <InlineMath math="1280" />, then drop to <InlineMath math="600" />, because generation <InlineMath math="4" /> has only <InlineMath math="600" /> hosts, and to <InlineMath math="0" />.</>}
+/>
+
+So statements I, II and IV are correct.
+
+# Why the other options are wrong
+
+- III only keeps the share parasitised at <InlineMath math="40\%" /> in every generation, so the caterpillars grow to <InlineMath math="1800" /> and beyond. **The wasps multiply too**, and each one parasitises <InlineMath math="4" /> caterpillars of the next generation.
+- I, II, III and IV counts a wasp for every egg, <InlineMath math="5120" />, in generation <InlineMath math="4" />. **Only <InlineMath math="600" /> caterpillars are there to hold the eggs**, so only <InlineMath math="600" /> wasps come out.
+- I and II only carries the share parasitised, <InlineMath math="91\%" />, into generation <InlineMath math="4" />, so some caterpillars escape and generation <InlineMath math="5" /> is not empty. **The number of wasps, not the share, sets the parasitism**, and <InlineMath math="1280" /> wasps parasitise all <InlineMath math="600" /> caterpillars.

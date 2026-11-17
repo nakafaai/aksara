@@ -1,0 +1,56 @@
+# Ikut air melalui kolon yang sudah penuh, kerana separuh daripada setiap minuman tambahan juga hilang
+
+Sasarannya ialah **air bersih yang diperoleh badan daripada salur pencernaan**: air yang dimakan dan diminum tolak air yang hilang dalam najis. Sebelum jangkitan, nilainya ialah
+
+<BlockMath math="2.0 - 0.1 = 1.9\text{ dm}^3 \text{ sehari}" />
+
+Jus pencernaan tidak dikira sebagai perolehan. Badan merembeskannya dan mengambilnya semula, tetapi hanya jika salur pencernaan menyerapnya kembali. Jadi kira dulu berapa banyak cecair yang benar-benar melalui salur pencernaan.
+
+<BlockMath math="2.0 + 1.5 + 2.0 + 0.5 + 1.5 + 1.5 = 9.0\text{ dm}^3 \text{ sehari}" />
+
+Usus kecil yang rosak hanya menyerap separuh daripadanya, jadi **separuh lagi sampai ke kolon**:
+
+<BlockMath math="0.50 \times 9.0 = 4.5\text{ dm}^3" />
+
+Kolon cuba menyerap semua kecuali <InlineMath math="0.1\text{ dm}^3" />, iaitu <InlineMath math="4.4\text{ dm}^3" />. Tetapi kolon hanya boleh menyerap **paling banyak** <InlineMath math="4.0\text{ dm}^3" />, jadi kolon sudah bekerja pada hadnya.
+
+<BlockMath math="\text{air dalam najis} = 4.5 - 4.0 = 0.5\text{ dm}^3" />
+
+<Mermaid
+  title={<>Air Melalui Salur Pencernaan yang Dijangkiti Setiap Hari</>}
+  description={<>Cecair yang memasuki salur pencernaan, <InlineMath math="9.0\text{ dm}^3" />, diserap separuh sahaja oleh usus kecil yang rosak, jadi <InlineMath math="4.5\text{ dm}^3" /> sampai ke kolon. Kolon menyerap had maksimumnya, <InlineMath math="4.0\text{ dm}^3" />, dan <InlineMath math="0.5\text{ dm}^3" /> keluar dalam najis.</>}
+  chart={"flowchart LR\n  G[Cecair masuk 9.0] --> S[Usus kecil menyerap 4.5]\n  G --> C[Kolon menerima 4.5]\n  C --> A[Kolon menyerap had maksimum 4.0]\n  C --> F[Najis 0.5]"}
+/>
+
+Sekarang perolehan bersih ialah <InlineMath math="2.0 - 0.5 = 1.5\text{ dm}^3" />, iaitu kurang <InlineMath math="0.4\text{ dm}^3" /> daripada <InlineMath math="1.9\text{ dm}^3" /> sebelumnya.
+
+Mudah untuk terfikir minum <InlineMath math="0.4\text{ dm}^3" /> lagi sahaja. Tetapi **minuman tambahan itu melalui salur pencernaan yang sama rosaknya**. Daripada isi padu tambahan <InlineMath math="V" />, usus kecil hanya menyerap separuh. Separuh lagi sampai ke kolon yang sudah menyerap had maksimumnya, jadi semua separuh itu berakhir dalam najis.
+
+<BlockMath math="\begin{aligned}
+\text{najis} &= 0.5 + 0.50V \\
+\text{perolehan bersih} &= (2.0 + V) - (0.5 + 0.50V) = 1.5 + 0.50V \\
+1.5 + 0.50V &= 1.9 \\
+V &= \frac{0.4}{0.50} = 0.8\text{ dm}^3
+\end{aligned}" />
+
+<Chart
+  title={<>Air Harian dalam Salur Pencernaan yang Dijangkiti</>}
+  bars="apart"
+  categories={["Masuk salur", "Sampai ke kolon", "Diserap kolon", "Dalam najis"]}
+  series={[
+    { label: "Tanpa minuman tambahan", mark: "bar", values: [9.0, 4.5, 4.0, 0.5] },
+    { label: "Dengan minuman tambahan", mark: "bar", values: [9.8, 4.9, 4.0, 0.9] },
+  ]}
+  valueLabel="Air sehari (liter)"
+  description={<>Tanpa minuman tambahan, <InlineMath math="9.0\text{ dm}^3" /> masuk, <InlineMath math="4.5\text{ dm}^3" /> sampai ke kolon, kolon menyerap <InlineMath math="4.0\text{ dm}^3" /> dan <InlineMath math="0.5\text{ dm}^3" /> hilang. Dengan <InlineMath math="0.8\text{ dm}^3" /> tambahan, <InlineMath math="9.8\text{ dm}^3" /> masuk, <InlineMath math="4.9\text{ dm}^3" /> sampai ke kolon, kolon masih menyerap <InlineMath math="4.0\text{ dm}^3" /> sahaja, dan <InlineMath math="0.9\text{ dm}^3" /> hilang.</>}
+/>
+
+Semakan: dengan <InlineMath math="0.8\text{ dm}^3" /> tambahan, orang itu mengambil <InlineMath math="2.8\text{ dm}^3" /> dan kehilangan <InlineMath math="0.9\text{ dm}^3" />, jadi perolehan bersih ialah <InlineMath math="2.8 - 0.9 = 1.9\text{ dm}^3" />, sama seperti sebelumnya.
+
+Jadi orang itu mesti minum <InlineMath math="0.8\text{ dm}^3" /> air tambahan sehari.
+
+# Kenapa pilihan lain salah
+
+- Tiada air tambahan mengira <InlineMath math="2.0\text{ dm}^3" /> makanan dan minuman sahaja sebagai cecair dalam salur pencernaan, jadi kolon nampak seperti menerima <InlineMath math="1.0\text{ dm}^3" /> sahaja, **sedangkan** <InlineMath math="7.0\text{ dm}^3" /> **jus pencernaan juga melalui salur itu**.
+- <InlineMath math="0.4\text{ dm}^3" /> menggantikan kekurangan itu satu lawan satu, **lupa bahawa separuh daripada minuman tambahan juga hilang** melalui kolon yang sudah penuh.
+- <InlineMath math="1.0\text{ dm}^3" /> menganggap semua <InlineMath math="0.5\text{ dm}^3" /> air dalam najis sebagai kekurangan, **sedangkan** <InlineMath math="0.1\text{ dm}^3" /> **memang hilang sebelum jangkitan juga**.

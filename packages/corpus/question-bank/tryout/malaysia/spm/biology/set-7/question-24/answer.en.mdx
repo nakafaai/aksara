@@ -1,0 +1,41 @@
+# Turn every reading into a segment total before you track the potassium
+
+The table gives units per gram, but the bark and the wood have different masses. So first **multiply each reading by its tissue's dry mass** to get the total in each tissue:
+
+| Segment | Bark (units) | Wood (units) | Whole segment (units) |
+| --- | --- | --- | --- |
+| P | <InlineMath math="60\times0.5=30" /> | <InlineMath math="96\times1.5=144" /> | <InlineMath math="174" /> |
+| Q | <InlineMath math="12\times0.5=6" /> | <InlineMath math="120\times1.5=180" /> | <InlineMath math="186" /> |
+| R | <InlineMath math="0" /> | <InlineMath math="180" /> | <InlineMath math="180" /> |
+| S | <InlineMath math="0" /> | <InlineMath math="180" /> | <InlineMath math="180" /> |
+| T | <InlineMath math="96\times0.5=48" /> | <InlineMath math="84\times1.5=126" /> | <InlineMath math="174" /> |
+
+- I: in the waxed section the wood carries <InlineMath math="180" /> units in every segment while the bark of R and S carries none, so the potassium rose through the wood, in the xylem. Statement I is correct.
+- II: in T the bark reads higher per gram, <InlineMath math="96" /> against <InlineMath math="84" />, but it holds only <InlineMath math="48" /> units against the wood's <InlineMath math="126" />. Statement II is wrong.
+- III: R and S show what the xylem delivers when nothing can leave it sideways, <InlineMath math="180" /> units per segment. P received the same <InlineMath math="180" />, yet its wood kept only <InlineMath math="144" />, so the rest left the xylem sideways:
+
+<BlockMath math="180-144=36\text{ units}" />
+
+Potassium leaving P's xylem can only enter P's bark, so all <InlineMath math="36" /> units went there. That bark now holds only <InlineMath math="30" />, so <InlineMath math="36-30=6" /> units moved on down the phloem out of P, and they're exactly the <InlineMath math="6" /> units in the bark of Q. That's also why P's total is <InlineMath math="180-6=174" /> and Q's is <InlineMath math="180+6=186" />. Statement III is correct.
+
+- IV: the bark of Q can't have taken potassium from its own wood, because the waxed paper blocks the sideways path. Bark potassium moves only downwards, so it came from the bark above, in P. Statement IV is correct.
+
+<Chart
+  title={<>Radioactive Potassium in Each Segment</>}
+  bars="apart"
+  categories={["P", "Q", "R", "S", "T"]}
+  series={[
+    { label: "Bark", mark: "bar", values: [60 * 0.5, 12 * 0.5, 0, 0, 96 * 0.5] },
+    { label: "Wood", mark: "bar", values: [96 * 1.5, 120 * 1.5, 120 * 1.5, 120 * 1.5, 84 * 1.5] },
+  ]}
+  valueLabel="Radioactivity per segment (units)"
+  description={<>The wood of Q, R and S holds <InlineMath math="180" /> units, and their bark almost none. In P the wood holds only <InlineMath math="144" /> units and the bark <InlineMath math="30" />. In T the bark holds <InlineMath math="48" /> units and the wood <InlineMath math="126" />, so the wood holds more there too.</>}
+/>
+
+So statements I, III and IV are correct.
+
+# Why the other options are wrong
+
+- I and IV only takes the sideways flow in P as just what P's bark holds, <InlineMath math="30" /> units, or as the drop per gram, <InlineMath math="120-96=24" />. **The xylem of P lost <InlineMath math="180-144=36" /> units**, and <InlineMath math="6" /> of them have already moved down into the bark of Q.
+- I, II, III and IV compares T per gram, <InlineMath math="96" /> against <InlineMath math="84" />. **The wood has three times the mass of the bark**, so it holds <InlineMath math="126" /> units against <InlineMath math="48" />.
+- I and III only thinks the potassium in Q's bark came sideways from Q's own wood. **The waxed paper stops any sideways movement in Q**, so it can only have come down the phloem from P.
