@@ -39,7 +39,11 @@ import { chanceVisuals } from "#contracts/visual/mathematics/chance";
 import { chartVisuals } from "#contracts/visual/mathematics/charts";
 import { functionVisuals } from "#contracts/visual/mathematics/function";
 import { geometryVisuals } from "#contracts/visual/mathematics/geometry";
+import { journeyVisuals } from "#contracts/visual/mathematics/journey";
+import { logicVisuals } from "#contracts/visual/mathematics/logic";
+import { networkVisuals } from "#contracts/visual/mathematics/network";
 import { numeralVisuals } from "#contracts/visual/mathematics/numeral";
+import { setVisuals } from "#contracts/visual/mathematics/sets";
 import { brakingVisuals } from "#contracts/visual/physics/braking";
 import { circuitVisuals } from "#contracts/visual/physics/circuit";
 import { circularVisuals } from "#contracts/visual/physics/circular";
@@ -66,6 +70,7 @@ import { readingVisuals } from "#contracts/visual/physics/reading";
 import { recordVisuals } from "#contracts/visual/physics/record";
 import { relativeVisuals } from "#contracts/visual/physics/relative";
 import { solarVisuals } from "#contracts/visual/physics/solar";
+import { thermodynamicsVisuals } from "#contracts/visual/physics/thermodynamics";
 import { vectorVisuals } from "#contracts/visual/physics/vector";
 import { velocityVisuals } from "#contracts/visual/physics/velocity";
 import { waveVisuals } from "#contracts/visual/physics/wave";
@@ -99,7 +104,11 @@ export function visualCatalog<E>(rich: RichSlot<E>) {
     ...chartVisuals(rich),
     ...functionVisuals(rich),
     ...geometryVisuals(rich),
+    ...journeyVisuals(rich),
+    ...logicVisuals(rich),
+    ...networkVisuals(rich),
     ...numeralVisuals(rich),
+    ...setVisuals(rich),
     ...measurementVisuals(rich),
     ...motionVisuals(rich),
     ...parabolicVisuals(rich),
@@ -143,6 +152,7 @@ export function visualCatalog<E>(rich: RichSlot<E>) {
     ...fluidVisuals(rich),
     ...gravityVisuals(rich),
     ...heatVisuals(rich),
+    ...thermodynamicsVisuals(rich),
     ...lightVisuals(rich),
     ...nuclearVisuals(rich),
     ...readingVisuals(rich),

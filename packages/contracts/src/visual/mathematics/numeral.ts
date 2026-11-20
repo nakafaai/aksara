@@ -102,10 +102,76 @@ function binaryLampLab<E>(rich: RichSlot<E>) {
   );
 }
 
+/**
+ * How many trays the bundling desk has room for. A tray holds b boxes, so the
+ * highest place, b^3, shows a digit of at most this.
+ */
+const DESK_TRAYS = 1;
+
+/** The most sticks one heap on the bundling desk holds. */
+const HEAP_STICKS = 300;
+
+/** A base the desk can bundle in: two to nine sticks to a bundle, as the KSSM bases are. */
+const BundleBaseSchema = Schema.Int.check(
+  Schema.isBetween({ maximum: 9, minimum: 2 })
+);
+
+/** The bases a bundling desk offers and the count of sticks it starts from. */
+const BundleStartSchema = Schema.Struct({
+  bases: Schema.NonEmptyArray(BundleBaseSchema),
+  value: Schema.Int.check(
+    Schema.isBetween({ maximum: HEAP_STICKS, minimum: 1 })
+  ),
+});
+
+/**
+ * Whether each base is offered once and the first base's desk holds the count:
+ * loose sticks, bundles and boxes below b each, and at most one full tray.
+ */
+function fitsDesk({ bases, value }: typeof BundleStartSchema.Type) {
+  const [first] = bases;
+  return (
+    Arr.dedupe(bases).length === bases.length &&
+    value <= (DESK_TRAYS + 1) * first ** 3 - 1
+  );
+}
+
+/**
+ * Props of `BundleCountLab`: a desk where a heap of `value` sticks is tied
+ * into bundles of b, the bundles boxed b to a box and the boxes set b to a
+ * tray (one tray fits the desk), one division by b per round, in the base the learner picks from
+ * `bases`. With `showReadout`, the slider shows the count, each place shows
+ * its digit, a caption reads each division, and the footer reads the
+ * division ladder and the numeral, so it is answer state.
+ */
+function bundleCountLab<E>(rich: RichSlot<E>) {
+  return figure(
+    Schema.Struct({
+      ...cardFields(rich),
+      ...BundleStartSchema.fields,
+      labels: Schema.Struct({
+        base: TextSchema,
+        count: TextSchema,
+        ladder: rich,
+        numeral: rich,
+        viewLabel: TextSchema,
+      }),
+      showReadout: Schema.optionalKey(Schema.Boolean),
+    }).check(
+      Schema.makeFilter(fitsDesk, {
+        message:
+          "Expected each base once and a count the first base's desk holds with one tray.",
+      })
+    ),
+    answerAt(["showReadout"])
+  );
+}
+
 /** The place-value labs, where a number is written in a base. */
 export function numeralVisuals<E>(rich: RichSlot<E>) {
   return {
     AbacusBaseLab: abacusBaseLab(rich),
     BinaryLampLab: binaryLampLab(rich),
+    BundleCountLab: bundleCountLab(rich),
   };
 }
