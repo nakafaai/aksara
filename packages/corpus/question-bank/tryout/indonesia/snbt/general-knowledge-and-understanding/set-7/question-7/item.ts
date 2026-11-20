@@ -13,24 +13,21 @@ const item: ItemSource = {
       options: [
         {
           correct: false,
-          label: "puncak",
+          label: "Para pendaki beristirahat di *puncak* bukit sebelum turun.",
         },
         {
           correct: false,
-          label: "mata air",
+          label: "Air sungai itu berasal dari *mata air* di lereng gunung.",
         },
         {
           correct: false,
-          label: "tepian",
+          label: "Perahu-perahu ditambatkan di *tepian* sungai.",
         },
         {
           correct: true,
-          label: "hilir",
+          label: "Banjir kiriman merendam permukiman di *hilir* sungai.",
         },
-        {
-          correct: false,
-          label: "dasar",
-        },
+        { correct: false, label: "Ia menggenggam *hulu* keris itu erat-erat." },
       ],
     },
   },

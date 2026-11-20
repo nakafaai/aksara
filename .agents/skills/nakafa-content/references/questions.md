@@ -199,8 +199,8 @@ to reduce line count.
   uses single-choice, multiple-choice multiple-answer, and category responses,
   with single or grouped stimuli. It measures knowledge and understanding,
   application, and reasoning through mathematical and everyday contexts.
-- The [official SNPMB information page](https://snpmb.id/utbk-snbt/informasi-umum)
-  and
+- The [official SNPMB framework](https://snpmb.id/fr/) (subtests, scope, item
+  counts and minutes) and the
   [2026 SNPMB launch deck](https://files.snpmb.id/web2026/Paparan%20Informasi%20SNPMB%202026%20untuk%20Peluncuran.pdf)
   define UTBK-SNBT as a separate university-selection test with TPS and
   literacy sections. Never use one framework's subject name or item contract as

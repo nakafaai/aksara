@@ -13,23 +13,25 @@ const item: ItemSource = {
       options: [
         {
           correct: true,
-          label: "kuat",
+          label:
+            "Tali ijuk itu masih *kuat* meskipun sudah bertahun-tahun dipakai menimba air.",
         },
         {
           correct: false,
-          label: "lapuk",
+          label: "Tiang kayu rumah panggung itu sudah *lapuk* dimakan rayap.",
         },
         {
           correct: false,
-          label: "tipis",
+          label: "Lembaran daun lontar dipotong *tipis* sebelum ditulisi.",
         },
         {
           correct: false,
-          label: "usang",
+          label:
+            "Meski kalah di final, ia tetap *tegar* di depan para pendukungnya.",
         },
         {
           correct: false,
-          label: "kering",
+          label: "Rumput di lapangan itu *kering* karena kemarau panjang.",
         },
       ],
     },
