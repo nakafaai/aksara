@@ -1,0 +1,417 @@
+export const metadata = {
+  title: "Cellular Respiration and Fermentation",
+  description:
+    "Form 4 Biology Chapter 7: see how cells break down glucose with and without oxygen, balance the equation, work out a respirometer rate and compare ATP.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2026-11-20",
+  subject: "Cellular Respiration",
+};
+
+## Glucose Pays for Cell Work
+
+Every living cell needs energy to do its jobs. It gets that energy by breaking down a sugar called glucose, its main fuel. That breaking down is **cellular respiration**. The cell doesn't spend the energy straight away. It first stores it in small molecules called **ATP** (adenosine triphosphate), the cell's ready-to-spend energy.
+
+There are two ways to break glucose down. With oxygen, the cell takes glucose apart completely, all the way to carbon dioxide and water. That's **aerobic respiration**. Without oxygen, it takes glucose apart only partly and makes far less ATP. That's **fermentation**. In the mitochondrion model, you switch the oxygen off and see for yourself which steps stop.
+
+Why store the energy in ATP first? The energy in glucose sits in its chemical bonds, and from there it can't push or pump anything. So the cell moves it into ATP. Then it breaks ATP down, a little at a time, right where a job needs doing:
+
+| Cell job | Example | What ATP does |
+| :--- | :--- | :--- |
+| Contracting | Skeletal muscle fibre | Gives the muscle the energy to contract |
+| Pumping ions | Nerve cell | Pumps sodium ions out and potassium ions in |
+| Building proteins | Any cell with ribosomes | Joins amino acids into protein chains |
+| Starting glycolysis | Every cell | Two ATP are spent first so glucose can be split |
+
+Pumping ions is uphill work. The sodium-potassium pump pushes ions from where there are few to where there are many, which means against their concentration gradient. It's one example of [active transport across the plasma membrane](/en/subjects/biology/membrane-transport/diffusion-osmosis-and-active-transport), and **each cycle of the pump breaks down one ATP molecule**. Building proteins is one of the largest energy costs of a growing cell.
+
+People often mix up respiration and breathing. **Breathing** is air moving in and out of your lungs, the [mechanism of breathing and gas exchange](/en/subjects/biology/respiratory-system/breathing-and-gas-exchange) that brings oxygen into your blood. **Cellular respiration** is what each cell then does with that oxygen: a chemical reaction that uses it to break down glucose.
+
+A tree has no lungs, yet its leaf cells have mitochondria. At night there's no light, so photosynthesis stops, but the leaf cells keep taking in oxygen and giving out carbon dioxide. To tell the two apart, ask one question: **is glucose being broken down to make ATP**? If it is, that's cellular respiration.
+
+## Cytoplasm to Mitochondrion
+
+The breaking down starts in the **cytoplasm**, the jelly-like fluid that fills the cell. There, one glucose molecule, which has six carbon atoms, is split in half. You get two molecules of **pyruvic acid**, each with three carbon atoms. This splitting step is called glycolysis. It doesn't need oxygen, and it gives a net gain of <InlineMath math="2" /> ATP per glucose.
+
+If oxygen is there, the pyruvic acid moves into a [mitochondrion, the organelle wrapped in two membranes](/en/subjects/biology/cell-and-organisation/cell-structure-and-specialised-cells). In the space inside, the matrix, the carbon atoms of pyruvic acid come off as carbon dioxide. By the end, all six carbon atoms of the glucose have left as six <InlineMath math="\mathrm{CO_2}" /> molecules.
+
+The hydrogen pulled off along the way is carried to the folded inner membrane, the cristae. There, **oxygen takes up the hydrogen and forms water**. The energy released at this last step makes about <InlineMath math="90\%" /> of all the ATP from aerobic respiration.
+
+Without oxygen, nothing takes the hydrogen at the end of the inner membrane, so the steps in the mitochondrion stop. Pyruvic acid stays in the cytoplasm. A muscle cell turns it into lactic acid. A yeast cell turns it into ethanol and carbon dioxide. That change frees the hydrogen carriers again, so glycolysis can keep going, but **ATP stays at <InlineMath math="2" /> per glucose**.
+
+In this model, set the oxygen to No, then compare the ATP and carbon dioxide readings for a muscle cell and a yeast cell.
+
+<MitochondrionLab
+  title={<>Glucose in the Cytoplasm and a Mitochondrion</>}
+  description={
+    <>
+      A mitochondrion cut open lengthwise, next to the cytoplasm. Switch the
+      oxygen and follow where pyruvic acid goes, how much{" "}
+      <InlineMath math="\mathrm{CO_2}" /> comes out and how much ATP you get.
+    </>
+  }
+  footer={<>See the folds inside? That inner membrane is where most of the ATP gets made.</>}
+  atp={36}
+  cells={["muscle", "yeast"]}
+  labels={{
+    atp: <>ATP from one glucose</>,
+    carbonDioxide: <><InlineMath math="\mathrm{CO_2}" /> from one glucose</>,
+    energy: <>Energy from a mole of glucose</>,
+    cell: "Cell with no oxygen",
+    cells: { muscle: "Muscle cell", yeast: "Yeast cell" },
+    oxygen: "Oxygen",
+    oxygens: { present: "Yes", absent: "No" },
+    products: {
+      aerobic: <>Carbon dioxide and water</>,
+      lactic: <>Lactic acid</>,
+      alcoholic: <>Ethanol and carbon dioxide</>,
+    },
+    product: <>What glucose ends up as</>,
+    parts: {
+      cytoplasm: "Cytoplasm",
+      outer: "Outer membrane",
+      inner: "Inner membrane",
+      cristae: "Cristae, the folds",
+      matrix: "Matrix, the inside",
+    },
+    view: "A mitochondrion cut open lengthwise in the cytoplasm of a cell",
+  }}
+/>
+
+One kind of cell in your body never carries out aerobic respiration. **A mature red blood cell has no mitochondria**, so all its ATP comes from glycolysis, and it makes lactic acid. It carries oxygen around your whole body but uses none of it itself. So none of the oxygen it carries gets used up on the way.
+
+## Gas Balance of Respiration
+
+For each glucose, aerobic respiration takes in a fixed amount of oxygen and gives out a fixed amount of carbon dioxide. The equation tells you how much: **six oxygen for six carbon dioxide**. You'll use that ratio twice: first to work out the mass of the products, then to predict how the coloured liquid moves in a respirometer, a sealed tube that measures how much oxygen living things take in.
+
+### Atoms and Kilojoules
+
+In words, glucose reacts with oxygen:
+
+<BlockMath math="\text{glucose} + \text{oxygen} \rightarrow \text{carbon dioxide} + \text{water} + \text{energy}" />
+
+The balanced chemical equation says the same thing with numbers. It gives the number of molecules of each substance and the energy from one mole of glucose:
+
+<BlockMath math="\mathrm{C_6H_{12}O_6} + 6\mathrm{O_2} \rightarrow 6\mathrm{CO_2} + 6\mathrm{H_2O} + 2{,}898\text{ kJ}" />
+
+Count the atoms on both sides: carbon <InlineMath math="6 = 6" />, hydrogen <InlineMath math="12 = 12" />, and oxygen <InlineMath math="6 + 12 = 12 + 6 = 18" />. Of the <InlineMath math="2{,}898\text{ kJ}" />, **less than half ends up stored in ATP**. The rest leaves as heat.
+
+Books also give different numbers of ATP per glucose: <InlineMath math="38" /> as the theoretical maximum, <InlineMath math="36" /> in many school books, and fewer in real cells, because the number of hydrogen ions pumped across the inner membrane varies. We'll use <InlineMath math="36" /> in every calculation.
+
+The cells of a leg muscle break down <InlineMath math="45\text{ g}" /> of glucose with oxygen, which means they oxidise it aerobically. How much carbon dioxide comes out? Change the mass of glucose into moles, use the **<InlineMath math="1 : 6" /> ratio in the equation**, then change back to a mass. The molar masses are glucose <InlineMath math="180" />, oxygen <InlineMath math="32" />, carbon dioxide <InlineMath math="44" /> and water <InlineMath math="18\text{ g mol}^{-1}" />.
+
+<MathContainer>
+<BlockMath math="\text{Glucose} = \frac{45}{180} = 0.25\text{ mol}" />
+<BlockMath math="\mathrm{CO_2} = 6 \times 0.25 = 1.5\text{ mol} = 1.5 \times 44 = 66\text{ g}" />
+<BlockMath math="\text{Energy} = 0.25 \times 2{,}898 = 724.5\text{ kJ}" />
+</MathContainer>
+
+Check with the conservation of mass: no atoms appear or vanish, so the mass before must equal the mass after. The oxygen used is <InlineMath math="1.5 \times 32 = 48\text{ g}" /> and the water formed is <InlineMath math="1.5 \times 18 = 27\text{ g}" />. The reactants add up to <InlineMath math="45 + 48 = 93\text{ g}" />, the same as the products, <InlineMath math="66 + 27 = 93\text{ g}" />.
+
+### Reading a Respirometer
+
+Oxygen is invisible, but a liquid moves when gas disappears from a sealed tube. A respirometer uses that liquid to measure the rate of aerobic respiration through the **volume of oxygen taken in**.
+
+The model shows one respirometer design. Germinating seeds sit on a wire gauze inside a sealed boiling tube. Under the gauze, **potassium hydroxide** solution or soda lime soaks up the carbon dioxide the seeds give off. So the gas in the tube shrinks only by the oxygen taken in, and a drop of coloured liquid in a capillary tube creeps towards the seeds.
+
+The tube sits in a water bath, because warm gas expands and could push the drop even with no respiration at all.
+
+A second tube is set up the same way but holds water. Water doesn't soak up carbon dioxide, so its drop moves by the difference between the oxygen taken in and the carbon dioxide given off. A control set with no living things shows whether a change in temperature or air pressure moves the drop on its own.
+
+The KSSM practical on aerobic respiration uses a different design built on the same idea. A small living animal, such as a cockroach, sits on a wire gauze above soda lime in a sealed boiling tube. A capillary tube leads out and dips straight down into coloured liquid, usually eosin. The soda lime soaks up the carbon dioxide, so the gas shrinks only because the animal takes in oxygen, and **the eosin rises up the capillary**.
+
+A second tube with soda lime but no animal is the control. Both tubes stand in a water bath, so they stay at the same temperature.
+
+Make a prediction before you move the time in the model. In <InlineMath math="20" /> minutes, seeds oxidising glucose take in enough oxygen to move the drop in the potassium hydroxide tube <InlineMath math="30\text{ mm}" />. **Where is the drop in the water tube** at minute <InlineMath math="20" />?
+
+<RespirometerLab
+  title={<>Two Respirometers with Germinating Seeds</>}
+  description={
+    <>
+      The same seeds over potassium hydroxide and over water, in one water
+      bath for <InlineMath math="20" /> minutes. Move the time and check your
+      prediction in both capillaries.
+    </>
+  }
+  footer={<>Watch the red drop in each capillary: it moves only when the gas in its tube shrinks.</>}
+  oxygen={30}
+  carbonDioxide={30}
+  minutes={20}
+  labels={{
+    potash: <>Drop in the potassium hydroxide tube</>,
+    water: <>Drop in the water tube</>,
+    quotient: <>Respiratory quotient</>,
+    substrate: <>What the seeds break down</>,
+    substrates: {
+      fat: <>Fat</>,
+      protein: <>Protein</>,
+      carbohydrate: <>Carbohydrate</>,
+      anaerobic: <>Partly without oxygen</>,
+    },
+    time: "Time",
+    view: "Two respirometers holding seeds in a water bath",
+  }}
+/>
+
+The drop in the water tube **doesn't move**. For glucose, every six oxygen molecules taken in are swapped for six carbon dioxide molecules given off. Equal numbers of gas molecules at the same temperature and pressure take up equal volumes, so the gas lost and the gas gained cancel out: <InlineMath math="30 - 30 = 0\text{ mm}" />. Carbon dioxide given off divided by oxygen taken in is called the respiratory quotient. The respiratory quotient in the model shows <InlineMath math="1.0" />, the value for carbohydrate.
+
+Now turn the potassium hydroxide reading into a rate. The missing gas fills the capillary like a thin rod, so it's a **cylinder with the radius of the capillary bore**. The bore is <InlineMath math="1\text{ mm}" /> across, so its radius is <InlineMath math="0.5\text{ mm}" />. The cylinder is <InlineMath math="30\text{ mm}" /> long, the distance the drop moved.
+
+<MathContainer>
+<BlockMath math="V = \pi r^2 h = \pi \times 0.5^2 \times 30 = 7.5\pi \approx 23.6\text{ mm}^3" />
+<BlockMath math="\text{Rate} = \frac{7.5\pi\text{ mm}^3}{20\text{ min}} = 0.375\pi \approx 1.18\text{ mm}^3\text{ min}^{-1}" />
+</MathContainer>
+
+Check the units: <InlineMath math="\text{mm}^2 \times \text{mm} = \text{mm}^3" />, and a volume divided by a time gives <InlineMath math="\text{mm}^3\text{ min}^{-1}" />. Check the value: <InlineMath math="0.375\pi \times 20 = 7.5\pi" />, the volume you started from.
+
+## Sprinting Short of Oxygen
+
+When you sprint, your muscle fibres use ATP faster than your blood can bring them oxygen. So the fibres make ATP without oxygen. They carry out **lactic acid fermentation** in the cytoplasm. One glucose becomes two molecules of lactic acid, and no carbon dioxide comes out:
+
+<MathContainer>
+<BlockMath math="\text{glucose} \rightarrow \text{lactic acid} + \text{energy } (150\text{ kJ})" />
+<BlockMath math="\mathrm{C_6H_{12}O_6} \rightarrow 2\mathrm{C_3H_6O_3}" />
+</MathContainer>
+
+That's not much energy. One mole of glucose releases only about <InlineMath math="150\text{ kJ}" />, and the cell gets <InlineMath math="2" /> ATP per glucose. Glycolysis on its own can keep hard muscle work going for only about a minute. As lactic acid builds up, the inside of the fibre turns more acidic, so **the pH inside the fibre drops**. A low pH affects enzymes, so lactic acid can add to muscle fatigue.
+
+When you stop, you keep breathing fast and deeply for a while. That extra oxygen pays back what the sprint ran short of. It's the **oxygen debt**: the oxygen needed to make up for the ATP produced without oxygen. Your blood carries the lactic acid to the liver. There, part of it is turned into glucose or glycogen. The rest is turned back into pyruvic acid and oxidised to carbon dioxide and water.
+
+In this muscle model, set the extra oxygen the sprint needs, then play it. Watch the lactic acid gauge climb while the oxygen you take in is still below what your muscles need. Follow the arrow that carries lactic acid to the liver, and read how much force the muscle still gives.
+
+<OxygenDebtLab
+  title={<>Muscle Fibres during and after a Sprint</>}
+  description={
+    <>
+      Rest until minute <InlineMath math="2" />, sprint until minute{" "}
+      <InlineMath math="8" />, then recover. At rest you take in{" "}
+      <InlineMath math="0.3" /> litres of oxygen a minute.
+    </>
+  }
+  footer={<>Orange is oxygen the muscle missed while sprinting. Blue is that oxygen paid back.</>}
+  demand={{ min: 1, max: 2.5, value: 2 }}
+  rest={0.3}
+  labels={{
+    demand: "Extra oxygen the sprint needs, litres a minute",
+    need: <>Oxygen your muscles need now</>,
+    uptake: <>Oxygen you take in now</>,
+    shortfall: <>Oxygen shortfall so far</>,
+    debt: <>Oxygen debt paid back so far</>,
+    lactic: <>Lactic acid in the fibres</>,
+    force: <>Force the muscle still gives</>,
+    time: "Time",
+    parts: {
+      fibre: "Muscle fibre",
+      capillary: "Capillary",
+      cell: "Red blood cell",
+      liver: "Lactic acid to the liver",
+    },
+    view: "A bundle of skeletal muscle fibres with capillaries between them",
+  }}
+/>
+
+At the start of the sprint, oxygen uptake rises slowly. So a gap opens between the demand line and the uptake curve, and that gap is the **oxygen shortfall**. After minute <InlineMath math="8" /> the sprint is over, yet oxygen uptake stays above the resting rate. The area above the resting rate is the oxygen debt being repaid. Raise the demand and both areas grow. The curves in this model are simplified, so real values differ from person to person.
+
+Sore muscles a day or two after hard exercise often get blamed on lactic acid. The timing doesn't fit. **Lactic acid in the blood is back to its pre-exercise level within about an hour**, but that soreness peaks <InlineMath math="24" /> to <InlineMath math="72" /> hours later.
+
+The late soreness comes from tiny damage to muscle fibres and the inflammation that follows, especially after exercise that stretches a muscle while it contracts, such as running downhill. So when your legs ache on day two, the lactic acid was cleared long ago.
+
+## Fermentation beyond Muscle
+
+Yeast, rice roots and *Lactobacillus* bacteria ferment too when oxygen is short or missing. Yeast and rice roots make **ethanol and carbon dioxide**. *Lactobacillus* makes lactic acid, just as your muscle fibres do. Each one runs short of oxygen in a different place: yeast in a tube sealed with oil, rice roots in waterlogged mud, and *Lactobacillus* in milk.
+
+### Yeast in a Sealed Tube
+
+Yeast is a tiny fungus, the one that makes bread dough rise. Without oxygen, it carries out **alcoholic fermentation**. One glucose becomes two molecules of ethanol and two of carbon dioxide:
+
+<MathContainer>
+<BlockMath math="\text{glucose} \rightarrow \text{ethanol} + \text{carbon dioxide} + \text{energy } (210\text{ kJ})" />
+<BlockMath math="\mathrm{C_6H_{12}O_6} \rightarrow 2\mathrm{C_2H_5OH} + 2\mathrm{CO_2}" />
+</MathContainer>
+
+A common school experiment tests for these products with two boiling tubes. Tube A holds <InlineMath math="15\text{ cm}^3" /> of <InlineMath math="5\%" /> glucose solution that was boiled and then cooled, <InlineMath math="5\text{ cm}^3" /> of <InlineMath math="5\%" /> yeast suspension, and a **layer of paraffin oil** on top. A delivery tube carries the gas from tube A into limewater. Tube B, the control, is set up the same way but without the yeast suspension.
+
+| Step | Reason |
+| :--- | :--- |
+| Boil the glucose solution | Drives out dissolved oxygen, so there's no oxygen left |
+| Cool it before adding yeast | Heat denatures yeast enzymes and kills the yeast |
+| Pour on paraffin oil | Stops oxygen from the air dissolving back in |
+| Bubble the gas into limewater | Limewater turns cloudy with carbon dioxide |
+
+In the model, run the experiment and compare the bubbles, the limewater and the thermometer in both tubes. Then change the water bath temperature and watch how fast tube A bubbles.
+
+<YeastFermentationLab
+  title={<>Yeast Fermenting Glucose under Paraffin Oil</>}
+  description={
+    <>
+      Tube A has <InlineMath math="5\%" /> glucose and yeast. Tube B has only
+      glucose. Both sit in a water bath. Set the bath anywhere from{" "}
+      <InlineMath math="10^\circ\text{C}" /> to{" "}
+      <InlineMath math="60^\circ\text{C}" /> and compare the limewater.
+    </>
+  }
+  footer={<>Look at the limewater beside each tube: carbon dioxide turns clear limewater milky.</>}
+  glucose={5}
+  temperature={{ min: 10, max: 60, value: 30 }}
+  labels={{
+    temperature: "Water bath temperature",
+    rate: <>Bubbles per minute</>,
+    collected: <>Carbon dioxide collected</>,
+    limewater: <>Limewater</>,
+    clear: <>clear</>,
+    milky: <>cloudy</>,
+    time: "Time",
+    smell: <>What tube A smells of</>,
+    ethanol: <>alcohol (ethanol)</>,
+    none: <>nothing</>,
+    yeast: "Tube A, with yeast",
+    control: "Tube B, no yeast",
+    warmth: <>How warm each tube is</>,
+    parts: {
+      paraffin: "Paraffin oil",
+      limewater: "Limewater",
+      bath: "Water bath",
+      thermometer: "Thermometer",
+    },
+    view: "Two boiling tubes in a water bath with delivery tubes into limewater",
+  }}
+/>
+
+At the end, the limewater from tube A has turned cloudy, the mixture is a little warmer, and it smells of alcohol. Tube B hasn't changed. Before you read on, decide **which observation proves fermentation**, and what tube B rules out.
+
+Cloudy limewater shows carbon dioxide. But aerobic respiration gives off carbon dioxide too, so that observation alone isn't enough. The smell of alcohol shows ethanol, and only fermentation makes ethanol. So **the ethanol smell is the proof of fermentation**. The rise in temperature shows that some of the energy is released as heat. Tube B's limewater stays clear, so the carbon dioxide in tube A came from the yeast, not from the air or the glucose solution.
+
+### Rice Roots under Water
+
+Plants ferment too. Roots normally get their oxygen from the air in the tiny spaces between soil grains. In a waterlogged paddy field, water fills those spaces, and **oxygen diffuses through water about <InlineMath math="10{,}000" /> times more slowly** than through air. So the oxygen in the mud soon runs out. Root cells short of oxygen switch to alcoholic fermentation and make ethanol and carbon dioxide.
+
+So how does rice survive in a paddy? Its roots have **aerenchyma**, large air spaces in the cortex of the root and stem that work like air pipes. Oxygen diffuses from the shoot through the aerenchyma all the way to the root tip.
+
+Rice roots form aerenchyma even in drained soil, and form more when the soil is waterlogged. The older, upper parts of rice roots also build a layer that stops oxygen leaking out into the mud, so more of it reaches the root tip.
+
+Dryland crops such as maize, wheat and barley don't build that barrier, and waterlogging damages them. When fermentation goes on for a long time, the roots get too little ATP to stay alive, and toxic by-products build up until the root cells die. In the paddy model, flood the soil, then compare rice with a dryland crop: the soil oxygen at the roots, the share of root energy from fermentation, and the ethanol in the roots.
+
+<PaddyRootLab
+  title={<>Rice and a Dryland Crop in Waterlogged Mud</>}
+  description={
+    <>
+      A paddy field with an X-ray view into the mud and a lens on one root.
+      Flood or drain the soil and follow the oxygen down the aerenchyma to the
+      root tip.
+    </>
+  }
+  footer={<>Follow the blue dots down the air channels: that is oxygen reaching the root tip.</>}
+  atp={36}
+  plants={["rice", "dryland"]}
+  labels={{
+    water: "Field",
+    waters: { drained: "Drained", flooded: "Waterlogged" },
+    plant: "Plant",
+    plants: { rice: "Rice", dryland: "Dryland crop" },
+    oxygen: <>Soil oxygen at the roots</>,
+    fermentation: <>Root energy from fermentation</>,
+    ethanol: <>Ethanol in the root</>,
+    roots: <>How the roots are doing</>,
+    healthy: <>healthy</>,
+    damaged: <>damaged</>,
+    parts: {
+      water: "Floodwater",
+      mud: "Mud",
+      root: "Root",
+      aerenchyma: "Aerenchyma, the air spaces",
+    },
+    view: "A paddy field with an X-ray view of the rice roots in the mud",
+  }}
+/>
+
+When the soil drains again, air comes back into the spaces between the soil grains. The root cells of both plants go back to aerobic respiration and get about <InlineMath math="36" /> ATP per glucose again.
+
+### Fermented Food and Fuel
+
+*Lactobacillus* bacteria carry out lactic acid fermentation the same way as muscle fibres short of oxygen. They turn the sugar in milk into lactic acid. The milk turns sour and thick, because **the acid makes the milk proteins set**. That's how yogurt and cheese are made. Other fermentation products end up in food and fuel too:
+
+| Product | Organism | Fermentation product used |
+| :--- | :--- | :--- |
+| Yogurt and cheese | *Lactobacillus* | Lactic acid sets the milk proteins |
+| Bread | Yeast | Carbon dioxide makes the dough rise |
+| Tapai | Moulds and yeasts in ragi | Moulds turn starch into sugar, yeasts make a little alcohol |
+| Bioethanol | Yeast | Ethanol from sugarcane or maize starch becomes fuel |
+
+## One Glucose on Three Paths
+
+All three paths start the same way, with glycolysis in the cytoplasm. They split over one question: what happens to pyruvic acid next? **What happens to pyruvic acid decides how much energy is released**.
+
+| Feature | Aerobic respiration | Lactic acid fermentation | Alcoholic fermentation |
+| :--- | :--- | :--- | :--- |
+| Oxygen | Needed | Not needed | Not needed |
+| Where it happens | Cytoplasm and mitochondria | Cytoplasm | Cytoplasm |
+| Products | <InlineMath math="\mathrm{CO_2}" /> and water | Lactic acid | Ethanol and <InlineMath math="\mathrm{CO_2}" /> |
+| Energy per mole of glucose | <InlineMath math="2{,}898\text{ kJ}" /> | <InlineMath math="150\text{ kJ}" /> | <InlineMath math="210\text{ kJ}" /> |
+| ATP per glucose | About <InlineMath math="36" /> | <InlineMath math="2" /> | <InlineMath math="2" /> |
+| Examples | Most cells | Muscle cells, *Lactobacillus* | Yeast, rice roots |
+
+Fermentation leaves most of the energy of glucose still inside lactic acid or ethanol. Ethanol shows it: it still burns as bioethanol, and the energy that burning releases is energy the yeast never got. So **for the same ATP, a fermenting cell breaks down more glucose**. In this graph, slide the amount of ATP needed and compare the heights of the two points.
+
+<MathVisual
+  title={<>How Much Glucose a Cell Needs for Its ATP</>}
+  description={
+    <>
+      Aerobic respiration makes about <InlineMath math="36" /> ATP per glucose.
+      Fermentation makes only <InlineMath math="2" />. Along the bottom is the
+      ATP the cell needs, and up the side is the number of glucose molecules
+      it uses.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 76 }, y: { min: 0, max: 38 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "a", min: 2, max: 72, value: 36, step: 2, label: "a" },
+    ],
+    objects: [
+      { id: "aerobic", kind: "function", appearance: "primary", formula: "x/36", domain: { min: 0, max: 72 } },
+      { id: "ferment", kind: "function", appearance: "warning", formula: "x/2", domain: { min: 0, max: 72 } },
+      { id: "aerobic-now", kind: "marker", x: "a", y: "a/36", appearance: "primary" },
+      { id: "ferment-now", kind: "marker", x: "a", y: "a/2", appearance: "warning" },
+    ],
+    labels: [
+      { key: "aer", objectId: "aerobic", at: { x: 60, y: 60 / 36 }, placement: "above" },
+      { key: "fer", objectId: "ferment", at: { x: 30, y: 15 }, placement: "above-left" },
+    ],
+    readouts: [
+      { key: "aerobic-glucose", formula: "a/36" },
+      { key: "ferment-glucose", formula: "a/2" },
+    ],
+  }}
+  labels={{
+    a: <>ATP needed</>,
+    aer: <>Aerobic respiration</>,
+    fer: <>Fermentation</>,
+    "aerobic-glucose": <>Glucose for aerobic respiration</>,
+    "ferment-glucose": <>Glucose for fermentation</>,
+  }}
+/>
+
+Say a muscle cell needs <InlineMath math="72" /> ATP. How many glucose molecules does each path use? **Divide the ATP needed by the ATP per glucose**:
+
+<MathContainer>
+<BlockMath math="\text{Aerobic respiration} = \frac{72}{36} = 2\text{ glucose}" />
+<BlockMath math="\text{Fermentation} = \frac{72}{2} = 36\text{ glucose}" />
+</MathContainer>
+
+Check by multiplying back: <InlineMath math="2 \times 36 = 72" /> and <InlineMath math="36 \times 2 = 72" />. Fermentation uses <InlineMath math="36 \div 2 = 18" /> times as much glucose, which is why a muscle's glucose store runs down so fast in a sprint. Set the slider to <InlineMath math="72" />, and the graph shows the same numbers.
+
+Now try one yourself before you read the working. A sprinter's leg muscle and a yeast culture each make <InlineMath math="0.6\text{ mol}" /> of ATP by fermentation. Work out the mass of glucose each one uses. Name each one's products with their masses. Then find the mass of glucose the muscle would need to make the same ATP aerobically. The molar mass of lactic acid is <InlineMath math="90" /> and of ethanol <InlineMath math="46\text{ g mol}^{-1}" />.
+
+Both kinds of fermentation give <InlineMath math="2" /> ATP per glucose, so **the muscle and the yeast use the same amount of glucose**:
+
+<BlockMath math="\text{Glucose} = \frac{0.6}{2} = 0.3\text{ mol} = 0.3 \times 180 = 54\text{ g}" />
+
+Their products differ. The muscle turns each glucose into two lactic acid molecules. The yeast turns each glucose into two ethanol and two carbon dioxide molecules:
+
+<MathContainer>
+<BlockMath math="\text{Muscle: lactic acid} = 0.6\text{ mol} = 0.6 \times 90 = 54\text{ g}" />
+<BlockMath math="\text{Yeast: ethanol} = 0.6 \times 46 = 27.6\text{ g}, \quad \mathrm{CO_2} = 0.6 \times 44 = 26.4\text{ g}" />
+</MathContainer>
+
+Check: the yeast's products add up to <InlineMath math="27.6 + 26.4 = 54\text{ g}" />, the same as the glucose. In fermentation the products weigh the same as the glucose because no oxygen is added, unlike in aerobic respiration. Aerobically, the muscle would need <InlineMath math="\dfrac{0.6}{36} = \dfrac{1}{60}\text{ mol}" />, which is just <InlineMath math="\dfrac{180}{60} = 3\text{ g}" /> of glucose. The ratio <InlineMath math="54 \div 3 = 18" /> matches the graph, so this answer agrees with the <InlineMath math="72" /> ATP example.
