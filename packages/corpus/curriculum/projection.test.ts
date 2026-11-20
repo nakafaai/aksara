@@ -89,7 +89,7 @@ layer(NodeServices.layer)("curriculum node projection", (it) => {
         ).toBe(true);
         expect(Option.getOrThrow(Arr.head(nodes))).toMatchObject({
           curriculumKey: "cambridge-international",
-          key: "early-years",
+          key: "upper-secondary",
           parentKey: undefined,
         });
       })

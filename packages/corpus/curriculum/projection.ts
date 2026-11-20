@@ -16,6 +16,7 @@ import {
 } from "effect";
 
 import { resolveCurriculumMaterial } from "#corpus/curriculum/material";
+import { publishedNodes } from "#corpus/curriculum/published";
 import type { CurriculumSource } from "#corpus/curriculum/schema";
 import {
   CurriculumDisplayGroupMapSchema,
@@ -167,7 +168,7 @@ const projectCurriculum = Effect.fn("AksaraCorpus.projectCurriculum")(
       }
       next = MutableList.take(pending);
     }
-    return MutableList.toArray(nodes);
+    return publishedNodes(MutableList.toArray(nodes));
   }
 );
 
