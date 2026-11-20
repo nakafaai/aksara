@@ -1,4 +1,4 @@
-import { igcseMathematicsUnitNodes } from "#corpus/curriculum/cambridge-international/igcse/units/mathematics";
+import { igcseMathematicsUnitNodes } from "#corpus/curriculum/cambridge-international/igcse/units/mathematics/mathematics";
 import {
   igcseBiologyUnitNodes,
   igcseChemistryUnitNodes,
