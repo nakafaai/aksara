@@ -1,0 +1,28 @@
+# A heater with its own off switch
+
+An electric iron clicks off by itself once it is hot enough. The hand warmer has that switch built into the chemistry: above <InlineMath math="54\text{ °C}" /> crystals melt again, so crystallisation cannot push the pack any hotter. Warming the whole pack from <InlineMath math="20" /> to <InlineMath math="54\text{ °C}" /> takes <InlineMath math="mc\Delta\theta=0.10\times2600\times34=8840\text{ J}" />, and one full crystallisation would release <InlineMath math="0.10\times2.6\times10^{5}=26000\text{ J}" />. **So only <InlineMath math="8840/26000=0.34" /> of the pack, <InlineMath math="34\%" />, crystallises at the click**. If all of it crystallised at once, the pack would have to reach <InlineMath math="20+26000/260=120\text{ °C}" />, which the built-in switch forbids.
+
+# A long, steady plateau
+
+An ice cube keeps a drink at <InlineMath math="0\text{ °C}" /> until its last bit melts. Here crystallising keeps the pack at <InlineMath math="54\text{ °C}" /> until the last bit of liquid is gone. **The liquid left, <InlineMath math="66\%" /> of the pack, still holds <InlineMath math="0.66\times26000=17160\text{ J}" />**, and at <InlineMath math="5.0\text{ W}" /> that lasts <InlineMath math="17160/5.0=3432\text{ s}" />, about <InlineMath math="57\text{ min}" />. Dividing the full <InlineMath math="26000\text{ J}" /> by <InlineMath math="5.0\text{ W}" /> gives <InlineMath math="87\text{ min}" />, but the first <InlineMath math="34\%" /> was already spent on warming the pack.
+
+<Chart
+  title={<>Where the crystallisation heat goes</>}
+  description={<>Energies in kilojoules. The first <InlineMath math="34\%" /> to crystallise only warms the pack. The other <InlineMath math="66\%" /> feeds the hands at <InlineMath math="54\text{ °C}" />, and the warm-up heat comes back to the hands as the pack cools. The last bar is everything the hands receive.</>}
+  bars="apart"
+  categories={["Warming to 54 °C", "Held at 54 °C", "Cooling to 20 °C", "Total to the hands"]}
+  series={[
+    { label: "Energy", mark: "bar", values: [8.84, 17.16, 8.84, 26.0] },
+  ]}
+  valueLabel="Energy (kJ)"
+/>
+
+# What goes round comes round
+
+Walk out of your front door, climb a hill, come back down and go inside, and your height has not changed at all. The pack starts at <InlineMath math="20\text{ °C}" /> and ends at <InlineMath math="20\text{ °C}" />, so none of the released heat stays in it. **The hands get <InlineMath math="17160+8840=26000\text{ J}=26\text{ kJ}" />, exactly the heat of crystallising the whole <InlineMath math="0.10\text{ kg}" />**. Counting only the <InlineMath math="8.8\text{ kJ}" /> of warm-up misses the long middle stage. Adding a full <InlineMath math="26\text{ kJ}" /> to the <InlineMath math="8.8\text{ kJ}" /> of cooling counts the warm-up twice and gives <InlineMath math="35\text{ kJ}" />.
+
+<BlockMath math="\begin{aligned}
+f\times0.10\times2.6\times10^{5}&=0.10\times2600\times(54-20)=8840\text{ J}\ \Rightarrow\ f=0.34\\
+t&=\frac{0.66\times0.10\times2.6\times10^{5}}{5.0}=3432\text{ s}=57\text{ min}\\
+Q&=17160+8840=26000\text{ J}=0.10\times2.6\times10^{5}\text{ J}
+\end{aligned}" />

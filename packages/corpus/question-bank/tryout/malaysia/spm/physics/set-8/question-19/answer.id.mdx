@@ -1,0 +1,97 @@
+# Aturan setengah jalan
+
+Pantulkan bola ke dinding kepada teman yang berdiri sama jauh dari dinding seperti kamu, dan bola itu mengenai dinding tepat di tengah antara tanganmu dan tangannya. Cahaya mengikuti aturan yang sama, karena cahaya meninggalkan cermin dengan sudut yang sama seperti saat datang. Bagi orang dewasa, cahaya dari kepala mengenai cermin di tengah antara kepala dan mata, dan cahaya dari kaki mengenainya di tengah antara kaki dan mata. Si anak melihat kakinya hanya jika tepi bawah tidak lebih tinggi dari separuh <InlineMath math="1{,}00\text{ m}" />.
+
+<BlockMath math="\begin{aligned}
+y_1&=\frac{1{,}70+1{,}60}{2}=1{,}65\text{ m},\qquad y_2=\frac{1{,}60}{2}=0{,}80\text{ m}\\
+\frac{1{,}00}{2}&=0{,}50\text{ m},\qquad 0{,}80-0{,}50=0{,}30\text{ m}
+\end{aligned}" />
+
+**Cermin digeser turun <InlineMath math="0{,}30\text{ m}" />**. Menggesernya sejauh <InlineMath math="0{,}60\text{ m}" />, yaitu seluruh selisih tinggi mata keduanya, melupakan bahwa tepi cermin ada di separuh tinggi mata, jadi geserannya cukup separuh dari itu, dan orang dewasa itu lalu tidak bisa melihat apa pun di atas <InlineMath math="0{,}50\text{ m}" />.
+
+# Yang hilang dari orang dewasa di bagian atas
+
+Turunkan kerai jendela dan pucuk pohon hilang lebih dulu, sementara taman di bawah masih terlihat. Tepi atas sekarang berada pada <InlineMath math="1{,}65-0{,}30=1{,}35\text{ m}" />. Dengan aturan setengah jalan yang dibalik, mata pada <InlineMath math="1{,}60\text{ m}" /> dan tepi pada <InlineMath math="1{,}35\text{ m}" /> menjangkau satu titik di tubuh pada <InlineMath math="2\times1{,}35-1{,}60" />. **Titik tertinggi yang bisa dilihat orang dewasa itu ada <InlineMath math="1{,}10\text{ m}" /> di atas lantai**, jadi geseran itu menghilangkan <InlineMath math="0{,}60\text{ m}" /> bagian atas tubuhnya. Titik yang terlihat bergeser dua kali sejauh cermin. Menurunkannya sejauh <InlineMath math="0{,}30\text{ m}" /> milik cermin saja memberi <InlineMath math="1{,}40\text{ m}" />, terlalu murah hati.
+
+<MathVisual
+  title={<>Cermin yang diturunkan, dilihat dari samping</>}
+  description={<>Ketinggian dalam meter, dengan lantai di bawah. Sinar anak mengenai tepi bawah pada <InlineMath math="0{,}50\text{ m}" /> dan tepat sampai ke kakinya. Sinar orang dewasa mengenai tepi atas, sekarang pada <InlineMath math="1{,}35\text{ m}" />, dan kembali ke tubuhnya <InlineMath math="1{,}10\text{ m}" /> di atas lantai.</>}
+  labels={{
+    mirror: <>cermin</>,
+    adult: <>dewasa</>,
+    child: <>anak</>,
+    seen: <><InlineMath math="1{,}10\text{ m}" /></>,
+    edge: <><InlineMath math="0{,}50\text{ m}" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1.2, max: 2.6 }, y: { min: -0.3, max: 2.1 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "floor", kind: "segment", appearance: "reference", from: { x: 0, y: 0 }, to: { x: 2.2, y: 0 } },
+      { id: "wall", kind: "segment", appearance: "reference", from: { x: 0, y: 0 }, to: { x: 0, y: 2 } },
+      { id: "mirror", kind: "polygon", appearance: "secondary", vertices: [{ x: -0.06, y: 0.5 }, { x: 0, y: 0.5 }, { x: 0, y: 1.35 }, { x: -0.06, y: 1.35 }] },
+      { id: "adult", kind: "segment", appearance: "secondary", from: { x: 1.6, y: 0 }, to: { x: 1.6, y: 1.7 } },
+      { id: "child", kind: "segment", appearance: "secondary", from: { x: 0.9, y: 0 }, to: { x: 0.9, y: 1.1 } },
+      { id: "adult-ray", kind: "polyline", appearance: "highlight", vertices: [{ x: 1.6, y: 1.6 }, { x: 0, y: 1.35 }, { x: 1.6, y: 1.1 }] },
+      { id: "child-ray", kind: "polyline", appearance: "primary", vertices: [{ x: 0.9, y: 1 }, { x: 0, y: 0.5 }, { x: 0.9, y: 0 }] },
+      { id: "seen", kind: "point", appearance: "highlight", at: { x: 1.6, y: 1.1 } },
+      { id: "edge", kind: "segment", appearance: "construction", from: { x: -0.4, y: 0 }, to: { x: -0.4, y: 0.5 } },
+    ],
+    labels: [
+      { key: "mirror", objectId: "mirror", at: { x: -0.06, y: 0.95 }, placement: "left" },
+      { key: "adult", objectId: "adult", at: { x: 1.6, y: 1.7 }, placement: "above" },
+      { key: "child", objectId: "child", at: { x: 0.9, y: 1.1 }, placement: "above" },
+      { key: "seen", objectId: "seen", at: { x: 1.6, y: 1.1 }, placement: "right" },
+      { key: "edge", objectId: "edge", at: { x: -0.4, y: 0.25 }, placement: "left" },
+    ],
+  }}
+/>
+
+# Satu cermin untuk dua orang
+
+Keluarga yang berbagi satu cermin kamar mandi butuh cermin yang menjangkau kepala orang tua yang tinggi dan kaki anak yang kecil, bukan sekadar setengah tinggi seseorang. Tiap orang butuh jalur dindingnya sendiri, yang ditentukan aturan setengah jalan. Kepala si anak butuh cermin sampai setengah jalan antara <InlineMath math="1{,}10" /> dan <InlineMath math="1{,}00\text{ m}" />.
+
+<BlockMath math="\begin{aligned}
+\text{dewasa}&:\ 0{,}80\text{ m sampai }1{,}65\text{ m},\qquad \text{anak}:\ 0{,}50\text{ m sampai }\frac{1{,}10+1{,}00}{2}=1{,}05\text{ m}\\
+L&=1{,}65-0{,}50=1{,}15\text{ m}
+\end{aligned}" />
+
+**Cermin bersama yang paling pendek panjangnya <InlineMath math="1{,}15\text{ m}" />, dari <InlineMath math="0{,}50" /> sampai <InlineMath math="1{,}65\text{ m}" /> di atas lantai**. Aturan setengah tinggi memberi tahu panjang jalur tiap orang, <InlineMath math="0{,}85\text{ m}" /> dan <InlineMath math="0{,}55\text{ m}" />, tetapi tidak letaknya. Memilih <InlineMath math="0{,}85\text{ m}" />, setengah tinggi orang yang lebih tinggi, membuat kaki si anak tidak terlihat, karena kedua jalur dimulai pada ketinggian yang berbeda.
+
+<MathVisual
+  title={<>Satu cermin untuk berdua</>}
+  description={<>Ketinggian dalam meter. Sinar tiap orang ke kepala dan kakinya sendiri menandai jalur dinding yang dibutuhkan orang itu. Jalur orang dewasa dari <InlineMath math="0{,}80" /> sampai <InlineMath math="1{,}65\text{ m}" /> dan jalur anak dari <InlineMath math="0{,}50" /> sampai <InlineMath math="1{,}05\text{ m}" />, jadi cermin bersama harus menutupi <InlineMath math="0{,}50" /> sampai <InlineMath math="1{,}65\text{ m}" />.</>}
+  labels={{
+    mirror: <>cermin bersama</>,
+    adult: <>dewasa</>,
+    child: <>anak</>,
+    high: <><InlineMath math="1{,}65\text{ m}" /></>,
+    low: <><InlineMath math="0{,}50\text{ m}" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1.2, max: 2.6 }, y: { min: -0.3, max: 2.1 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "floor", kind: "segment", appearance: "reference", from: { x: 0, y: 0 }, to: { x: 2.2, y: 0 } },
+      { id: "wall", kind: "segment", appearance: "reference", from: { x: 0, y: 0 }, to: { x: 0, y: 2 } },
+      { id: "mirror", kind: "polygon", appearance: "secondary", vertices: [{ x: -0.06, y: 0.5 }, { x: 0, y: 0.5 }, { x: 0, y: 1.65 }, { x: -0.06, y: 1.65 }] },
+      { id: "adult", kind: "segment", appearance: "secondary", from: { x: 1.6, y: 0 }, to: { x: 1.6, y: 1.7 } },
+      { id: "child", kind: "segment", appearance: "secondary", from: { x: 0.9, y: 0 }, to: { x: 0.9, y: 1.1 } },
+      { id: "adult-head", kind: "polyline", appearance: "highlight", vertices: [{ x: 1.6, y: 1.7 }, { x: 0, y: 1.65 }, { x: 1.6, y: 1.6 }] },
+      { id: "adult-feet", kind: "polyline", appearance: "highlight", vertices: [{ x: 1.6, y: 0 }, { x: 0, y: 0.8 }, { x: 1.6, y: 1.6 }] },
+      { id: "child-head", kind: "polyline", appearance: "primary", vertices: [{ x: 0.9, y: 1.1 }, { x: 0, y: 1.05 }, { x: 0.9, y: 1 }] },
+      { id: "child-feet", kind: "polyline", appearance: "primary", vertices: [{ x: 0.9, y: 0 }, { x: 0, y: 0.5 }, { x: 0.9, y: 1 }] },
+      { id: "high", kind: "point", appearance: "reference", at: { x: 0, y: 1.65 } },
+      { id: "low", kind: "point", appearance: "reference", at: { x: 0, y: 0.5 } },
+    ],
+    labels: [
+      { key: "mirror", objectId: "mirror", at: { x: -0.06, y: 1.1 }, placement: "left" },
+      { key: "adult", objectId: "adult", at: { x: 1.6, y: 1.7 }, placement: "above" },
+      { key: "child", objectId: "child", at: { x: 0.9, y: 1.1 }, placement: "above" },
+      { key: "high", objectId: "high", at: { x: 0, y: 1.65 }, placement: "above" },
+      { key: "low", objectId: "low", at: { x: 0, y: 0.5 }, placement: "below" },
+    ],
+  }}
+/>

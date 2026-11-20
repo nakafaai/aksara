@@ -1,0 +1,37 @@
+# Biarkan tiap baris memberi suara
+
+Kalau empat timbangan dapur sepakat soal berat sekantong beras dan yang kelima menunjukkan angka lain, kamu percaya pada yang empat. Tiap baris tabel memberi nilai <InlineMath math="1/u+1/v" /> sendiri, dan baris yang benar harus memberi <InlineMath math="1/f" />.
+
+<BlockMath math="\begin{aligned}
+\frac{1}{15}+\frac{1}{60}&=\frac{1}{20}+\frac{1}{30}=\frac{1}{24}+\frac{1}{24}=\frac{1}{36}+\frac{1}{18}=\frac{1}{12}\\
+\frac{1}{30}+\frac{1}{22}&=\frac{1}{12{,}7}\neq\frac{1}{12}
+\end{aligned}" />
+
+**Jarak fokusnya <InlineMath math="12\text{ cm}" />, dan bacaan pada <InlineMath math="u=30\text{ cm}" /> adalah yang salah**, karena seharusnya <InlineMath math="v=20\text{ cm}" />. Angka <InlineMath math="22" /> itu duduk begitu mulus di antara <InlineMath math="24" /> dan <InlineMath math="18" /> sehingga menilai dari kecenderungan malah menunjuk baris <InlineMath math="60\text{ cm}" />, yang besar tetapi tepat.
+
+# Kapan bayangan lebih tinggi daripada lampu?
+
+Proyektor slide membuat gambar raksasa karena slidenya berada sedikit di luar fokus lensa dan dindingnya jauh. Bayangan lebih tinggi daripada benda jika <InlineMath math="v" /> lebih besar daripada <InlineMath math="u" />. Baris dengan <InlineMath math="u=v=24\text{ cm}" /> menunjukkan tempat keduanya sama, yaitu di <InlineMath math="2f" />. **Lebih dekat dari <InlineMath math="24\text{ cm}" /> bayangannya lebih tinggi, dan lebih jauh bayangannya lebih pendek**. Lampu di dalam <InlineMath math="12\text{ cm}" /> memberi bayangan maya, yang tidak bisa ditangkap layar. Itulah rentang di buku pelajaran, antara <InlineMath math="12\text{ cm}" /> dan <InlineMath math="24\text{ cm}" />. Mengambil setiap posisi lampu yang diizinkan bangku, sampai <InlineMath math="40\text{ cm}" />, melupakan syarat lebih tinggi ini dan berujung pada pilihan <InlineMath math="40\text{ cm}" />.
+
+# Bangkunya kehabisan tempat
+
+Kamera di atas tripod pendek tidak bisa mundur cukup jauh untuk foto bersama, sebagus apa pun lensanya. Di sini bagian layar pada bangku hanya <InlineMath math="100-40=60\text{ cm}" /> panjangnya. Saat lampu merayap mendekati <InlineMath math="12\text{ cm}" />, bayangan tajam melesat sangat jauh, dan lewat dari <InlineMath math="60\text{ cm}" /> layar harus keluar dari bangku.
+
+<BlockMath math="\begin{aligned}
+v&\le100-40=60\text{ cm}\\
+\frac{1}{u}&=\frac{1}{12}-\frac{1}{v}\le\frac{1}{12}-\frac{1}{60}=\frac{1}{15}\ \Rightarrow\ u\ge15\text{ cm}
+\end{aligned}" />
+
+**Layar menunjukkan bayangan yang lebih tinggi hanya untuk jarak lampu antara <InlineMath math="15\text{ cm}" /> dan <InlineMath math="24\text{ cm}" />**, dengan bayangan setinggi lampu tepat di <InlineMath math="24\text{ cm}" />. Baris pertama tabel, <InlineMath math="u=15\text{ cm}" /> dengan layar di ujung bangku, adalah batas bangku itu sendiri. Menyebut <InlineMath math="12\text{ cm}" /> sampai <InlineMath math="24\text{ cm}" /> adalah jawaban buku pelajaran untuk bangku tanpa ujung, bukan untuk bangku ini.
+
+<Chart
+  title={<>Di mana bayangan lebih tinggi dan masih di bangku</>}
+  description={<>Jarak lampu dari lensa di sumbu bawah, dalam sentimeter. Bayangan lebih tinggi daripada lampu di mana garis bayangan ada di atas garis lampu, dan itu berhenti di <InlineMath math="24\text{ cm}" />. Layar bisa menangkapnya hanya di mana garis bayangan ada di atau di bawah <InlineMath math="60\text{ cm}" />, dan itu dimulai dari <InlineMath math="15\text{ cm}" />.</>}
+  categories={["14", "15", "16", "18", "20", "22", "24", "27", "30", "36", "40"]}
+  series={[
+    { label: "Jarak bayangan v", mark: "line", values: [84.0, 60.0, 48.0, 36.0, 30.0, 26.4, 24.0, 21.6, 20.0, 18.0, 17.1] },
+    { label: "Jarak lampu u", mark: "line", values: [14, 15, 16, 18, 20, 22, 24, 27, 30, 36, 40] },
+    { label: "Posisi layar paling jauh", mark: "line", values: [60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60] },
+  ]}
+  valueLabel="Jarak dari lensa (cm)"
+/>

@@ -1,0 +1,36 @@
+# Out along one wire, back along the other
+
+A rider who delivers a parcel <InlineMath math="25\text{ m}" /> down the street rides <InlineMath math="50\text{ m}" /> in all, because the trip includes the way back. The current reaches the tool along the live conductor and returns along the neutral, so it passes through <InlineMath math="2\times25=50\text{ m}" /> of copper. With <InlineMath math="R=\rho L/A" />, that is <InlineMath math="1.7\times10^{-8}\times50/(1.0\times10^{-6})" /> ohms. **The cable adds <InlineMath math="0.850\,\Omega" /> to the circuit**. Counting one conductor only gives <InlineMath math="0.425\,\Omega" /> and leaves the current with no way home.
+
+# The tool gets less than its label
+
+A sprinkler at the end of a long, thin hose sprays more weakly than one fixed straight to the tap. The rating tells you the tool's resistance, <InlineMath math="R_t=240^2/2000=28.8\,\Omega" />, and that resistance stays put. In series with the cable it draws a smaller current, so the tool itself gets only <InlineMath math="8.094\times28.8=233\text{ V}" />.
+
+<BlockMath math="\begin{aligned}
+R_t&=\frac{240^2}{2000}=28.8\,\Omega,\qquad I=\frac{240}{28.8+0.85}=8.094\text{ A}\\
+P&=I^2R_t=8.094^2\times28.8=1.89\times10^{3}\text{ W}
+\end{aligned}" />
+
+**The tool actually takes <InlineMath math="1.89\text{ kW}" />**. Multiplying the current by the socket's <InlineMath math="240\text{ V}" /> gives <InlineMath math="1.94\text{ kW}" />, but that also counts the heat made in the cable.
+
+# Choosing thick enough copper
+
+A wider road carries the same traffic with less queueing. The cable and the tool share the socket's voltage in proportion to their resistances, so the cable's share is <InlineMath math="R_c/(R_c+28.8)" />, and that may be at most <InlineMath math="0.02" />. Notice that the cable's own resistance sits in the total too.
+
+<BlockMath math="\begin{aligned}
+\frac{R_c}{R_c+28.8}&\le0.02\ \Rightarrow\ R_c\le\frac{0.02\times28.8}{0.98}=0.588\,\Omega\\
+A&\ge\frac{1.7\times10^{-8}\times50}{0.588}=1.45\times10^{-6}\text{ m}^2=1.45\text{ mm}^2
+\end{aligned}" />
+
+**Each conductor needs a cross-sectional area of at least <InlineMath math="1.45\text{ mm}^2" />**. Setting <InlineMath math="R_c=0.02\times28.8=0.576\,\Omega" /> gives <InlineMath math="1.48\text{ mm}^2" />. That compares the cable with the tool alone, as if the current stayed at the rated <InlineMath math="8.33\text{ A}" />.
+
+<Chart
+  title={<>Share of the socket voltage lost in the cable</>}
+  description={<>Area of each conductor in square millimetres along the bottom. The loss falls as the copper gets thicker. It crosses the <InlineMath math="2\%" /> line at <InlineMath math="1.45\text{ mm}^2" />, just short of <InlineMath math="1.5\text{ mm}^2" />, while the <InlineMath math="1.0\text{ mm}^2" /> cable in use loses <InlineMath math="2.87\%" />.</>}
+  categories={["0.75", "1.0", "1.25", "1.5", "2", "2.5"]}
+  series={[
+    { label: "Voltage lost in the cable", mark: "line", values: [3.79, 2.87, 2.31, 1.93, 1.45, 1.17] },
+    { label: "Limit of 2 %", mark: "line", values: [2, 2, 2, 2, 2, 2] },
+  ]}
+  valueLabel="Share of socket voltage (%)"
+/>

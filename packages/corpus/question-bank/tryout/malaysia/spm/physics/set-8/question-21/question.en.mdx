@@ -1,0 +1,29 @@
+A removal worker pushes a <InlineMath math="50\text{ kg}" /> crate up a straight loading ramp inclined at <InlineMath math="30^\circ" /> to the horizontal. The push is horizontal, and the crate moves up the ramp at a steady speed. The friction force on the crate, whenever it slides or is just about to slide, is <InlineMath math="0.40" /> times the normal force between the crate and the ramp. Take <InlineMath math="g=10\text{ m s}^{-2}" />, <InlineMath math="\sin30^\circ=0.500" /> and <InlineMath math="\cos30^\circ=0.866" />.
+
+<MathVisual
+  title={<>The crate on the loading ramp</>}
+  description={<>The ramp rises at <InlineMath math="30^\circ" /> to the horizontal. The worker's push on the crate is horizontal. The drawing is not to scale.</>}
+  labels={{
+    crate: <>crate, <InlineMath math="50\text{ kg}" /></>,
+    push: <>horizontal push</>,
+    angle: <><InlineMath math="30^\circ" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1, max: 9 }, y: { min: -0.8, max: 5.2 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "ramp", kind: "polygon", appearance: "reference", vertices: [{ x: 0, y: 0 }, { x: 8, y: 0 }, { x: 8, y: 4.619 }] },
+      { id: "crate", kind: "polygon", appearance: "primary", vertices: [{ x: 3.031, y: 1.75 }, { x: 4.33, y: 2.5 }, { x: 3.58, y: 3.799 }, { x: 2.281, y: 3.049 }] },
+      { id: "push", kind: "vector", appearance: "highlight", from: { x: -0.4, y: 2.4 }, to: { x: 2.6, y: 2.4 } },
+      { id: "arc", kind: "arc", appearance: "construction", center: { x: 0, y: 0 }, radius: 1.6, startDegrees: 0, sweepDegrees: 30 },
+    ],
+    labels: [
+      { key: "crate", objectId: "crate", at: { x: 3.58, y: 3.8 }, placement: "above" },
+      { key: "push", objectId: "push", at: { x: 0.6, y: 2.4 }, placement: "above" },
+      { key: "angle", objectId: "arc", at: { x: 1.9, y: 0.45 }, placement: "right" },
+    ],
+  }}
+/>
+
+What horizontal push moves the crate up the ramp at a steady speed, what is the friction force on the crate while it moves, and above what ramp angle could no horizontal push, however large, move the crate up the ramp?

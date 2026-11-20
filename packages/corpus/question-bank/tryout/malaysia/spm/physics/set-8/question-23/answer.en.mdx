@@ -1,0 +1,29 @@
+# Half the coils, twice as stiff
+
+Pull on a long chain of paper clips and every link opens a little, so a chain half as long stretches half as far under the same pull. The coils of a spring behave like those links. Under a given load every coil stretches by the same amount, so a half spring, with half the coils, stretches half as far as the whole spring did. Half the extension for the same force means double the spring constant, and <InlineMath math="4.0\text{ N}" /> per centimetre is <InlineMath math="400\text{ N m}^{-1}" />, so each half has <InlineMath math="800\text{ N m}^{-1}" />. Side by side, each half carries only half the load, so the pair needs twice the force of one half for the same stretch. **Together the halves have a spring constant of <InlineMath math="1600\text{ N m}^{-1}" />**.
+
+<BlockMath math="\begin{aligned}
+k_1&=2\times400=800\text{ N m}^{-1},\qquad k=800+800=1600\text{ N m}^{-1}\\
+x&=\frac{100}{1600}=0.0625\text{ m}=6.25\text{ cm}\ \Rightarrow\ 6.25\times4.0=25\text{ N}
+\end{aligned}" />
+
+Keeping <InlineMath math="400\text{ N m}^{-1}" /> for each half gives only <InlineMath math="800\text{ N m}^{-1}" /> for the pair, as if cutting a spring left each piece as soft as the whole.
+
+# A scale that now reads a quarter
+
+A bathroom scale with a stiffer spring hidden inside would flatter everyone who stepped on it. The marks beside the pointer still assume the old spring, <InlineMath math="4.0\text{ N}" /> for each centimetre. The <InlineMath math="100\text{ N}" /> suitcase stretches the stiff pair by only <InlineMath math="100/1600=0.0625\text{ m}=6.25\text{ cm}" />. **The pointer stops at <InlineMath math="6.25\times4.0=25\text{ N}" />, a quarter of the true weight**. The softer <InlineMath math="800\text{ N m}^{-1}" /> pair from the slip above would stretch <InlineMath math="12.5\text{ cm}" /> and read <InlineMath math="50\text{ N}" />.
+
+# The limit belongs to each coil
+
+Open one paper clip too far and it stays bent, whichever link of the chain it is. The whole spring reaches the end of Hooke's law at <InlineMath math="15\text{ cm}" />, which is when each coil has stretched as far as it safely can. A half spring has half the coils, so it gets there at <InlineMath math="7.5\text{ cm}" />, and the force on it then is <InlineMath math="800\times0.075=60\text{ N}" />, the same <InlineMath math="60\text{ N}" /> that took the whole spring to its limit. **With two halves sharing the load, the repaired scale can carry <InlineMath math="120\text{ N}" />**, and at that load its pointer shows only <InlineMath math="30\text{ N}" />, well inside the marks. Allowing each half the full <InlineMath math="15\text{ cm}" /> gives <InlineMath math="240\text{ N}" />, which would stretch every coil past its limit. Believing that a half spring is weaker, so that each half takes only <InlineMath math="30\text{ N}" />, gives <InlineMath math="60\text{ N}" />.
+
+<Chart
+  title={<>Force against extension before and after the repair</>}
+  description={<>Extension in centimetres along the bottom. The whole spring needs <InlineMath math="4.0\text{ N}" /> per centimetre and reaches its limit at <InlineMath math="15\text{ cm}" /> with <InlineMath math="60\text{ N}" />. The pair of halves needs four times as much force per centimetre and reaches its limit at <InlineMath math="7.5\text{ cm}" /> with <InlineMath math="120\text{ N}" />.</>}
+  categories={["0", "2.5", "5.0", "7.5", "10", "12.5", "15"]}
+  series={[
+    { label: "Whole spring", mark: "line", values: [0, 10, 20, 30, 40, 50, 60] },
+    { label: "Two halves side by side", mark: "line", values: [0, 40, 80, 120, null, null, null] },
+  ]}
+  valueLabel="Force (N)"
+/>

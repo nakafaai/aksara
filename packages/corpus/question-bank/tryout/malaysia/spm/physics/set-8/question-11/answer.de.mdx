@@ -1,0 +1,28 @@
+# Zähl die Luft, nicht die Stöße
+
+Stell dir ein Glas vor, in dem schon ein paar Bonbons liegen. Um es voll zu machen, legst du nur die fehlenden dazu. Bei fester Temperatur zählt das Produkt <InlineMath math="pV" />, wie viel Luft da ist, also startet der Ball mit <InlineMath math="100\times5{,}0=500\text{ kPa L}" /> und muss mit <InlineMath math="160\times5{,}0=800\text{ kPa L}" /> enden. Ein Pumpstoß bringt <InlineMath math="100\times0{,}20=20\text{ kPa L}" /> und hebt den Druck im Ball um <InlineMath math="4\text{ kPa}" />. **Die Pumpe muss <InlineMath math="300\text{ kPa L}" /> liefern, also braucht es <InlineMath math="15" /> Stöße**. Wer die Luft vergisst, die schon drin war, kommt auf <InlineMath math="800/20=40" /> Stöße, als wäre der Ball anfangs leer gewesen.
+
+# Der letzte Stoß beginnt mit Zusammendrücken
+
+Ein Tor mit einer starken Feder bleibt zu, bis du fester drückst, als die Feder zurückdrückt. Das Ventil ist dieses Tor. Nach <InlineMath math="14" /> Stößen hat der Ball <InlineMath math="100+14\times4=156\text{ kPa}" />, also muss die Luft im Pumpenzylinder erst von <InlineMath math="100" /> auf <InlineMath math="156\text{ kPa}" /> zusammengedrückt werden. Nach dem Gesetz von Boyle-Mariotte schrumpft ihre Säule auf <InlineMath math="30\times100/156=19{,}2\text{ cm}" />. **Der Kolben ist schon <InlineMath math="10{,}8\text{ cm}" /> weit gelaufen, bevor die erste Luft in den Ball strömt**. Die <InlineMath math="19{,}2\text{ cm}" /> sind die Luft, die in diesem Moment noch im Zylinder steckt, nicht der Weg des Kolbens.
+
+<BlockMath math="\begin{aligned}
+n&=\frac{(160-100)\times5{,}0}{100\times0{,}20}=\frac{300}{20}=15\\
+\ell&=30\times\frac{100}{156}=19{,}2\text{ cm},\qquad 30-19{,}2=10{,}8\text{ cm}
+\end{aligned}" />
+
+# Oben auf dem kalten Platz
+
+Ein Luftballon, den du aus einem warmen Zimmer in ein kaltes Auto trägst, wird etwas schlaff. Bei festem Volumen folgt der Druck im Ball seiner Temperatur in Kelvin, <InlineMath math="160\times270/300=144\text{ kPa}" />. Mit <InlineMath math="27" /> und <InlineMath math="-3" /> in Grad Celsius käme in diesem Verhältnis sogar ein negativer Druck heraus. Die Pumpe saugt jetzt dünnere Luft an, also bringt jeder Stoß nur <InlineMath math="90\times0{,}20=18\text{ kPa L}" />, ein Anstieg um <InlineMath math="3{,}6\text{ kPa}" />. **Vier Stöße erreichen nur <InlineMath math="158{,}4\text{ kPa}" />, also braucht der Ball <InlineMath math="5" /> Stöße**. Wer für die Pumpenluft bei <InlineMath math="100\text{ kPa}" /> bleibt, erhält genau <InlineMath math="4" /> Stöße, aber die Bergluft füllt den Zylinder nicht so dicht.
+
+<Chart
+  title={<>Druck im Ball auf dem Bergplatz, Stoß für Stoß</>}
+  description={<>Pumpstöße auf der unteren Achse, von keinem bis fünf. Mit der dünnen Bergluft bringt jeder Stoß <InlineMath math="3{,}6\text{ kPa}" />, also überschreitet der Ball das Ziel von <InlineMath math="160\text{ kPa}" /> erst beim fünften Stoß. Mit Pumpenluft von angeblich <InlineMath math="100\text{ kPa}" /> wäre es einen Stoß früher erreicht.</>}
+  categories={["0", "1", "2", "3", "4", "5"]}
+  series={[
+    { label: "Bergluft mit 90 kPa", mark: "line", values: [144, 147.6, 151.2, 154.8, 158.4, 162] },
+    { label: "Pumpenluft als 100 kPa gerechnet", mark: "line", values: [144, 148, 152, 156, 160, 164] },
+    { label: "Ziel", mark: "line", values: [160, 160, 160, 160, 160, 160] },
+  ]}
+  valueLabel="Druck (kPa)"
+/>

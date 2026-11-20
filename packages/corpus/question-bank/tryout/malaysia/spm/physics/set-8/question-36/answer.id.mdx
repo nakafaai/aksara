@@ -1,0 +1,35 @@
+# Menyala penuh berarti matras yang menentukan arus
+
+Buka keran taman sepenuhnya, maka aliran air kini ditentukan oleh selang, bukan lagi oleh keran. Transistor yang menyala penuh adalah keran yang terbuka itu: matras mendapat <InlineMath math="12-0{,}20=11{,}8\text{ V}" />, dan basis harus memasok paling sedikit seperlima puluh dari arus yang lalu ditarik matras. Resistor basis membawa arus basis itu dengan <InlineMath math="3{,}3-0{,}70\text{ V}" /> di ujung-ujungnya.
+
+<BlockMath math="\begin{aligned}
+I_C&=\frac{12-0{,}20}{24}=0{,}492\text{ A},\qquad I_B=\frac{0{,}492}{50}=9{,}83\times10^{-3}\text{ A}\\
+R_B&\le\frac{3{,}3-0{,}70}{9{,}83\times10^{-3}}=264\,\Omega
+\end{aligned}" />
+
+**Resistor basis terbesar yang masih membuat transistor menyala penuh adalah <InlineMath math="264\,\Omega" />**. Menaruh seluruh <InlineMath math="3{,}3\text{ V}" /> di <InlineMath math="R_B" /> memberi <InlineMath math="336\,\Omega" />, padahal basis menyimpan <InlineMath math="0{,}70\text{ V}" /> untuk dirinya, jadi resistor itu hanya melewatkan <InlineMath math="7{,}75\text{ mA}" /> dan transistor tidak sampai menyala penuh.
+
+# Sakelar yang menyala penuh nyaris tidak hangat
+
+Pintu yang terbuka lebar membiarkan kerumunan lewat tanpa ada yang bergesekan dengan kusennya. Panas yang timbul di transistor adalah tegangan di ujung-ujungnya dikali arus yang melewatinya, dan saat menyala penuh tegangannya hanya <InlineMath math="0{,}20\text{ V}" />. **Saat menyala penuh, transistor mengubah <InlineMath math="0{,}20\times0{,}492=0{,}0983\text{ W}" /> menjadi panas**, sedangkan matras mendapat <InlineMath math="11{,}8\times0{,}492=5{,}80\text{ W}" />. Transistor kecil sanggup menanganinya tanpa pendingin.
+
+# Setengah menyala adalah titik terpanas
+
+Tahan pintu setengah terbuka saat orang-orang terburu-buru, maka mereka akan berdesakan menabraknya. Dengan <InlineMath math="1{,}0\text{ k}\Omega" /> arus basis hanya <InlineMath math="2{,}60\text{ mA}" />, jadi arus kolektor lima puluh kalinya, <InlineMath math="0{,}130\text{ A}" />, jauh di bawah <InlineMath math="0{,}492\text{ A}" /> saat menyala penuh. Sekarang matras hanya mengambil <InlineMath math="0{,}130\times24=3{,}12\text{ V}" />, dan sisanya ditanggung transistor.
+
+<BlockMath math="\begin{aligned}
+I_C&=50\times\frac{3{,}3-0{,}70}{1000}=0{,}130\text{ A}\\
+P&=I_C\,(12-24I_C)=0{,}130\times8{,}88=1{,}15\text{ W}
+\end{aligned}" />
+
+**Transistor kini mengubah <InlineMath math="1{,}15\text{ W}" /> menjadi panas**, sekitar dua belas kali lipat dibanding saat menyala penuh, sementara matras sendiri hanya mendapat <InlineMath math="0{,}406\text{ W}" />. Tetap memakai <InlineMath math="0{,}0983\text{ W}" /> menganggap resistor yang lebih besar itu masih membuatnya menyala penuh. Jawaban <InlineMath math="0{,}406\text{ W}" /> adalah panas di matras, bukan di transistor.
+
+<Chart
+  title={<>Panas di transistor untuk tiap resistor basis</>}
+  description={<>Resistor basis dalam ohm di sumbu bawah. Sampai <InlineMath math="264\,\Omega" /> transistor menyala penuh dan tetap dingin. Lewat dari itu transistor hanya setengah menyala, dan panasnya memuncak di <InlineMath math="1{,}5\text{ W}" /> sekitar <InlineMath math="520\,\Omega" />, saat matras dan transistor berbagi <InlineMath math="12\text{ V}" /> sama rata. Dengan resistor yang sangat besar, transistor hampir mati dan panasnya turun lagi.</>}
+  categories={["200", "300", "400", "500", "700", "1000", "2000", "4000"]}
+  series={[
+    { label: "Panas di transistor", mark: "line", values: [0.098, 0.693, 1.365, 1.498, 1.401, 1.154, 0.679, 0.365] },
+  ]}
+  valueLabel="Daya (W)"
+/>

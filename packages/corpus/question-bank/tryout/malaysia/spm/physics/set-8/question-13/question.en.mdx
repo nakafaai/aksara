@@ -1,0 +1,42 @@
+A radio transmitter T and a receiver R stand on flat ground <InlineMath math="600\text{ km}" /> apart. R picks up a ground wave, which travels straight along the ground, and a sky wave, which is reflected once by a horizontal layer of the upper atmosphere at the point halfway between T and R. During the day the sky wave arrives <InlineMath math="0.50\text{ ms}" /> after the ground wave. Radio waves travel at <InlineMath math="3.0\times10^{8}\text{ m s}^{-1}" />, and the layer reflects a wave only if the wave meets it at an angle of incidence of at least <InlineMath math="40°" />. A wave that meets it more steeply passes through and is lost. Treat the Earth as flat.
+
+<MathVisual
+  title={<>The ground wave and the sky wave by day</>}
+  description={<>The sky wave is reflected at the point of the layer halfway between T and R. The height of the layer is not to scale.</>}
+  labels={{
+    t: <>T</>,
+    r: <>R</>,
+    span: <><InlineMath math="600\text{ km}" /></>,
+    h: <><InlineMath math="h" /></>,
+    layer: <>reflecting layer</>,
+    sky: <>sky wave</>,
+    ground: <>ground wave</>,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1.6, max: 7.6 }, y: { min: -1.6, max: 3 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "ground", kind: "segment", appearance: "reference", from: { x: -0.8, y: 0 }, to: { x: 6.8, y: 0 } },
+      { id: "layer", kind: "segment", appearance: "secondary", from: { x: -0.8, y: 2.25 }, to: { x: 6.8, y: 2.25 } },
+      { id: "sky", kind: "polyline", appearance: "primary", vertices: [{ x: 0, y: 0 }, { x: 3, y: 2.25 }, { x: 6, y: 0 }] },
+      { id: "height", kind: "segment", appearance: "construction", from: { x: 3, y: 0 }, to: { x: 3, y: 2.25 } },
+      { id: "span", kind: "segment", appearance: "construction", from: { x: 0, y: -0.9 }, to: { x: 6, y: -0.9 } },
+      { id: "t", kind: "point", appearance: "highlight", at: { x: 0, y: 0 } },
+      { id: "r", kind: "point", appearance: "highlight", at: { x: 6, y: 0 } },
+    ],
+    labels: [
+      { key: "t", objectId: "t", at: { x: 0, y: 0 }, placement: "left" },
+      { key: "r", objectId: "r", at: { x: 6, y: 0 }, placement: "right" },
+      { key: "span", objectId: "span", at: { x: 3, y: -0.9 }, placement: "below" },
+      { key: "h", objectId: "height", at: { x: 3, y: 1.1 }, placement: "right" },
+      { key: "layer", objectId: "layer", at: { x: 5.6, y: 2.25 }, placement: "above" },
+      { key: "sky", objectId: "sky", at: { x: 1.5, y: 1.125 }, placement: "left" },
+      { key: "ground", objectId: "ground", at: { x: 4.6, y: 0 }, placement: "above" },
+    ],
+  }}
+/>
+
+At night the layer rises to a height of <InlineMath math="400\text{ km}" />.
+
+How high is the layer during the day, what happens to the sky wave at R at night, and what is the least distance from T at which a sky wave can reach the ground at night?

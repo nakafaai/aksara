@@ -1,0 +1,48 @@
+# Pengecasan menaikkan bacaan terminal
+
+Pintu dengan engsel yang ketat lebih susah ditolak buka dan lebih perlahan apabila berayun balik, kerana keketatan itu sentiasa melawan gerakan. Rintangan dalam bertindak dengan cara yang sama. Semasa pengecas mengalirkan arus masuk, terminal mesti berada di atas d.g.e. sebanyak <InlineMath math="Ir" />, jadi <InlineMath math="E+5.0r=12.5" />. Semasa bateri mengalirkan arus keluar ke lampu, terminal berada di bawahnya, jadi <InlineMath math="E-2.0r=11.8" />.
+
+<BlockMath math="\begin{aligned}
+E+5.0r&=12.5\\
+E-2.0r&=11.8\ \Rightarrow\ 7.0r=0.70,\quad r=0.10\,\Omega,\quad E=12.0\text{ V}
+\end{aligned}" />
+
+**Rintangan dalam bateri ialah <InlineMath math="0.10\,\Omega" />, dan d.g.e. bateri itu ialah <InlineMath math="12.0\text{ V}" />**. Menganggap bacaan <InlineMath math="12.5\text{ V}" /> sebagai d.g.e. itu sendiri memberi <InlineMath math="0.70/2.0=0.35\,\Omega" />, sedangkan bacaan itu ditolak naik oleh arus pengecasan.
+
+<Chart
+  title={<>Bacaan terminal melawan arus keluar dari bateri</>}
+  description={<>Arus dalam ampere di sepanjang paksi bawah, negatif semasa bateri dicas dan positif semasa ia membekalkan arus. Kedua-dua bacaan terletak pada satu garis lurus melalui d.g.e. <InlineMath math="12.0\text{ V}" /> yang turun <InlineMath math="0.10\text{ V}" /> bagi setiap ampere yang ditarik, dan garis itu bertemu had <InlineMath math="10.0\text{ V}" /> penyongsang pada <InlineMath math="20\text{ A}" />.</>}
+  categories={["-5", "0", "2", "5", "10", "15", "20", "25"]}
+  series={[
+    { label: "Bacaan terminal bateri", mark: "line", values: [12.5, 12.0, 11.8, 11.5, 11.0, 10.5, 10.0, 9.5] },
+    { label: "Had mati penyongsang", mark: "line", values: [10.0, 10.0, 10.0, 10.0, 10.0, 10.0, 10.0, 10.0] },
+  ]}
+  valueLabel="Bacaan (V)"
+/>
+
+# Pengecas kehilangan sedikit tolakan di dalam dirinya
+
+Pam air yang menolak melalui paip keluarnya sendiri yang sempit perlu menghasilkan tekanan lebih tinggi daripada yang sampai ke hujung. Terminal pengecas disambung ke terminal bateri oleh wayar tanpa rintangan, jadi bacaannya juga <InlineMath math="12.5\text{ V}" />, dan d.g.e. pengecas mesti lebih tinggi sebanyak susutan dalam dirinya, <InlineMath math="5.0\times0.50=2.5\text{ V}" />. **D.g.e. pengecas ialah <InlineMath math="15.0\text{ V}" />**. Bermula daripada <InlineMath math="12.0\text{ V}" /> bateri dan bukan <InlineMath math="12.5\text{ V}" /> pada terminal memberi <InlineMath math="14.5\text{ V}" />, yang terlupa susutan di dalam bateri.
+
+# Had bawah penyongsang menetapkan batas
+
+Banyak telefon mematikan dirinya ketika masih ada sedikit cas, untuk melindungi bateri. Penyongsang melakukan perkara yang serupa dengan voltan. Setiap ampere tambahan yang ditariknya menurunkan terminal <InlineMath math="0.10\text{ V}" />, jadi meminta lebih banyak kuasa akhirnya menarik bacaan di bawah <InlineMath math="10.0\text{ V}" />, dan penyongsang terputus.
+
+<BlockMath math="\begin{aligned}
+12.0-0.10\,I&\ge10.0\ \Rightarrow\ I\le20\text{ A}\\
+P&=10.0\times20=200\text{ W}
+\end{aligned}" />
+
+**Bateri boleh membekalkan paling banyak <InlineMath math="200\text{ W}" /> kepada penyongsang**. Mendarab d.g.e. dengan arus memberi <InlineMath math="12.0\times20=240\text{ W}" />, tetapi <InlineMath math="20^2\times0.10=40\text{ W}" /> daripadanya menjadi haba di dalam bateri dan tidak pernah sampai ke penyongsang.
+
+<Chart
+  title={<>Kuasa yang boleh ditarik oleh penyongsang</>}
+  description={<>Arus yang ditarik dari bateri dalam ampere di sepanjang paksi bawah. Kuasa sampai ke penyongsang pada bacaan terminal, jadi ia naik hingga <InlineMath math="200\text{ W}" /> pada <InlineMath math="20\text{ A}" />, ketika penyongsang mati. Garis paling atas, d.g.e. darab arus, turut mengira haba yang terhasil di dalam bateri.</>}
+  categories={["0", "5", "10", "15", "20", "25", "30"]}
+  series={[
+    { label: "Kuasa yang sampai ke penyongsang", mark: "line", values: [0.0, 57.5, 110.0, 157.5, 200.0, null, null] },
+    { label: "Melepasi had mati", mark: "line", values: [null, null, null, null, 200.0, 237.5, 270.0] },
+    { label: "D.g.e. darab arus", mark: "line", values: [0.0, 60.0, 120.0, 180.0, 240.0, 300.0, 360.0] },
+  ]}
+  valueLabel="Kuasa (W)"
+/>

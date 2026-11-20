@@ -1,0 +1,40 @@
+Seorang tukang kebun mengosongkan sebuah tangki air melepasi tembok taman dengan sifon yang dibuat daripada hos yang lubangnya seragam. Permukaan air di dalam tangki berada <InlineMath math="2.0\text{ m}" /> di atas salur keluar hos yang terbuka di seberang tembok, dan titik tertinggi hos, di atas tembok, berada <InlineMath math="3.0\text{ m}" /> di atas permukaan air tangki. Anggap air mengalir tanpa geseran, supaya di sepanjang hos <InlineMath math="p+\rho gh+\tfrac12\rho v^2" /> kekal sama, dengan <InlineMath math="h" /> ialah ketinggian. Permukaan air di dalam tangki luas, jadi air di situ hampir pegun. Tekanan atmosfera ialah <InlineMath math="1.0\times10^{5}\text{ Pa}" />, ketumpatan air ialah <InlineMath math="1000\text{ kg m}^{-3}" />, dan sifon berhenti berfungsi jika tekanan di mana-mana bahagian air turun kepada sifar. Ambil <InlineMath math="g=10\text{ m s}^{-2}" />.
+
+<MathVisual
+  title={<>Sifon melepasi tembok taman</>}
+  description={<>Hos bermula dari bawah permukaan air di dalam tangki, naik melepasi tembok dan turun ke salur keluarnya yang terbuka di seberang. Lukisan ini tidak mengikut skala.</>}
+  labels={{
+    tank: <>tangki</>,
+    wall: <>tembok</>,
+    outlet: <>salur keluar</>,
+    up: <><InlineMath math="3.0\text{ m}" /></>,
+    down: <><InlineMath math="2.0\text{ m}" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.8, max: 13.6 }, y: { min: -0.8, max: 8 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "ground", kind: "segment", appearance: "reference", from: { x: -0.5, y: 0 }, to: { x: 12.5, y: 0 } },
+      { id: "tank", kind: "polygon", appearance: "secondary", vertices: [{ x: 0, y: 0 }, { x: 4, y: 0 }, { x: 4, y: 5 }, { x: 0, y: 5 }] },
+      { id: "surface", kind: "segment", appearance: "reference", from: { x: 0, y: 4 }, to: { x: 4, y: 4 } },
+      { id: "wall", kind: "polygon", appearance: "reference", vertices: [{ x: 6, y: 0 }, { x: 7, y: 0 }, { x: 7, y: 6.8 }, { x: 6, y: 6.8 }] },
+      { id: "hose", kind: "polyline", appearance: "primary", vertices: [{ x: 3.2, y: 1.5 }, { x: 3.2, y: 6.5 }, { x: 4.5, y: 7 }, { x: 8.5, y: 7 }, { x: 9.5, y: 6.5 }, { x: 9.5, y: 2 }] },
+      { id: "outlet", kind: "segment", appearance: "highlight", from: { x: 9.2, y: 2 }, to: { x: 9.8, y: 2 } },
+      { id: "toplevel", kind: "segment", appearance: "construction", from: { x: 8.5, y: 7 }, to: { x: 11.5, y: 7 } },
+      { id: "surflevel", kind: "segment", appearance: "construction", from: { x: 4, y: 4 }, to: { x: 11.5, y: 4 } },
+      { id: "outlevel", kind: "segment", appearance: "construction", from: { x: 9.8, y: 2 }, to: { x: 11.5, y: 2 } },
+      { id: "up", kind: "segment", appearance: "construction", from: { x: 11.2, y: 4 }, to: { x: 11.2, y: 7 } },
+      { id: "down", kind: "segment", appearance: "construction", from: { x: 11.2, y: 2 }, to: { x: 11.2, y: 4 } },
+    ],
+    labels: [
+      { key: "tank", objectId: "tank", at: { x: 2, y: 2 }, placement: "center" },
+      { key: "wall", objectId: "wall", at: { x: 6.5, y: 3 }, placement: "center" },
+      { key: "outlet", objectId: "outlet", at: { x: 9.5, y: 2 }, placement: "below" },
+      { key: "up", objectId: "up", at: { x: 11.2, y: 5.5 }, placement: "right" },
+      { key: "down", objectId: "down", at: { x: 11.2, y: 3 }, placement: "right" },
+    ],
+  }}
+/>
+
+Berapakah laju air yang keluar dari salur keluar, berapakah tekanan dalam air di atas tembok, dan jika sebuah muncung yang mengecilkan luas salur keluar kepada separuh dipasang, berapakah ketinggian maksimum titik tertinggi hos di atas permukaan air tangki sebelum sifon berhenti berfungsi?

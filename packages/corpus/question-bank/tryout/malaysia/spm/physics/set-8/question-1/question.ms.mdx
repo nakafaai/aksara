@@ -1,0 +1,49 @@
+Untuk mencari diameter seutas dawai halus, seorang murid melilit <InlineMath math="40" /> lilitan dawai itu bersebelahan, tanpa ruang, pada sebatang pensel dan mengukur panjang gegelung itu dengan angkup vernier. Angkup itu membaca <InlineMath math="2.86\text{ cm}" />, tetapi apabila rahangnya dirapatkan tanpa apa-apa di antaranya, bacaannya <InlineMath math="-0.02\text{ cm}" />. Dawai yang sama sepanjang <InlineMath math="2.00\text{ m}" /> mempunyai rintangan <InlineMath math="2.4\,\Omega" />. Angkup itu boleh dibaca hingga <InlineMath math="\pm0.01\text{ cm}" />, dan inilah satu-satunya ketidakpastian dalam panjang gegelung. Ambil <InlineMath math="\pi=3.14" />.
+
+<MathVisual
+  title={<>Gegelung dawai di antara rahang angkup</>}
+  description={<>Dawai itu dililit bersebelahan pada sebatang pensel, tanpa ruang. Rahang angkup vernier menyentuh kedua-dua hujung gegelung dan membaca <InlineMath math="2.86\text{ cm}" />. Hanya sebahagian daripada <InlineMath math="40" /> lilitan dilukis.</>}
+  labels={{
+    pencil: <>pensel</>,
+    coil: <><InlineMath math="40" /> lilitan</>,
+    jaws: <>rahang angkup</>,
+    reading: <><InlineMath math="2.86\text{ cm}" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 20.5 }, y: { min: -5, max: 6.5 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "pencil", kind: "polygon", appearance: "reference", vertices: [{ x: 0, y: -0.5 }, { x: 20, y: -0.5 }, { x: 20, y: 0.5 }, { x: 0, y: 0.5 }] },
+      { id: "turn-0", kind: "segment", appearance: "primary", from: { x: 6, y: -0.8 }, to: { x: 6, y: 0.8 } },
+      { id: "turn-1", kind: "segment", appearance: "primary", from: { x: 6.5, y: -0.8 }, to: { x: 6.5, y: 0.8 } },
+      { id: "turn-2", kind: "segment", appearance: "primary", from: { x: 7, y: -0.8 }, to: { x: 7, y: 0.8 } },
+      { id: "turn-3", kind: "segment", appearance: "primary", from: { x: 7.5, y: -0.8 }, to: { x: 7.5, y: 0.8 } },
+      { id: "turn-4", kind: "segment", appearance: "primary", from: { x: 8, y: -0.8 }, to: { x: 8, y: 0.8 } },
+      { id: "turn-5", kind: "segment", appearance: "primary", from: { x: 8.5, y: -0.8 }, to: { x: 8.5, y: 0.8 } },
+      { id: "turn-6", kind: "segment", appearance: "primary", from: { x: 9, y: -0.8 }, to: { x: 9, y: 0.8 } },
+      { id: "turn-7", kind: "segment", appearance: "primary", from: { x: 9.5, y: -0.8 }, to: { x: 9.5, y: 0.8 } },
+      { id: "turn-8", kind: "segment", appearance: "primary", from: { x: 10, y: -0.8 }, to: { x: 10, y: 0.8 } },
+      { id: "turn-9", kind: "segment", appearance: "primary", from: { x: 10.5, y: -0.8 }, to: { x: 10.5, y: 0.8 } },
+      { id: "turn-10", kind: "segment", appearance: "primary", from: { x: 11, y: -0.8 }, to: { x: 11, y: 0.8 } },
+      { id: "turn-11", kind: "segment", appearance: "primary", from: { x: 11.5, y: -0.8 }, to: { x: 11.5, y: 0.8 } },
+      { id: "turn-12", kind: "segment", appearance: "primary", from: { x: 12, y: -0.8 }, to: { x: 12, y: 0.8 } },
+      { id: "turn-13", kind: "segment", appearance: "primary", from: { x: 12.5, y: -0.8 }, to: { x: 12.5, y: 0.8 } },
+      { id: "turn-14", kind: "segment", appearance: "primary", from: { x: 13, y: -0.8 }, to: { x: 13, y: 0.8 } },
+      { id: "turn-15", kind: "segment", appearance: "primary", from: { x: 13.5, y: -0.8 }, to: { x: 13.5, y: 0.8 } },
+      { id: "turn-16", kind: "segment", appearance: "primary", from: { x: 14, y: -0.8 }, to: { x: 14, y: 0.8 } },
+      { id: "jaw-left", kind: "polyline", appearance: "secondary", vertices: [{ x: 6, y: -1 }, { x: 6, y: 2.6 }, { x: 5.2, y: 2.6 }] },
+      { id: "jaw-right", kind: "polyline", appearance: "secondary", vertices: [{ x: 14, y: -1 }, { x: 14, y: 2.6 }, { x: 17.5, y: 2.6 }] },
+      { id: "beam", kind: "segment", appearance: "secondary", from: { x: 5.2, y: 3.2 }, to: { x: 17.5, y: 3.2 } },
+      { id: "reading", kind: "segment", appearance: "construction", from: { x: 6, y: -1.7 }, to: { x: 14, y: -1.7 } },
+    ],
+    labels: [
+      { key: "pencil", objectId: "pencil", at: { x: 2.5, y: -0.5 }, placement: "below" },
+      { key: "coil", objectId: "turn-8", at: { x: 10, y: 0.8 }, placement: "above" },
+      { key: "jaws", objectId: "beam", at: { x: 11.35, y: 3.2 }, placement: "above" },
+      { key: "reading", objectId: "reading", at: { x: 10, y: -1.7 }, placement: "below" },
+    ],
+  }}
+/>
+
+Berapakah diameter dawai itu, berapakah kerintangan logamnya, dan berapakah bilangan lilitan paling sedikit yang mesti dililit oleh murid itu supaya ketidakpastian dalam panjang gegelung menambah tidak lebih daripada <InlineMath math="0.50\%" /> kepada ketidakpastian dalam kerintangan?

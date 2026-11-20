@@ -1,0 +1,28 @@
+# Apa yang menahan atap
+
+Tutup panci tetap di tempatnya karena beratnya sendiri, dan pada panci presto ada penjepitnya juga. Atap ditahan dengan dua cara yang sama, oleh beratnya <InlineMath math="12\text{ kN}" /> dan oleh pengikat yang sanggup menahan paling banyak <InlineMath math="30\text{ kN}" />, totalnya <InlineMath math="42\text{ kN}" />. Tersebar pada <InlineMath math="8{,}0\times10=80\text{ m}^2" />, nilainya <InlineMath math="42000/80" /> pascal. **Atap terangkat begitu udara di bawahnya mendorong <InlineMath math="525\text{ Pa}" /> lebih kuat daripada udara di atasnya**. Melupakan berat atap memberi <InlineMath math="375\text{ Pa}" />, seakan-akan hanya pengikat yang menahan atap.
+
+# Udara cepat di atas atap
+
+Pegang secarik kertas di bawah bibir bawahmu lalu tiup di atasnya, maka kertas itu terangkat, karena udara yang bergerak cepat menekan lebih lemah. Di atas atap udara bergerak dengan <InlineMath math="1{,}5u" />, jadi saat jendela tertutup atap merasakan selisih tekanan <InlineMath math="\tfrac12\rho\,(1{,}5u)^2" />. Menyamakannya dengan <InlineMath math="525\text{ Pa}" /> memberi <InlineMath math="u=19{,}7\text{ m s}^{-1}" />, dan dikali <InlineMath math="3{,}6" /> menjadi kilometer per jam. **Dengan semua jendela tertutup, atap terangkat pada angin <InlineMath math="71{,}0\text{ km h}^{-1}" />**. Memakai kecepatan angin itu sendiri untuk udara di atas atap memberi <InlineMath math="106\text{ km h}^{-1}" />, karena melewatkan percepatan udara di tepi atap.
+
+<BlockMath math="\begin{aligned}
+\tfrac12\rho\,(1{,}5u)^2&=525\ \Rightarrow\ u^2=\frac{525}{0{,}6\times2{,}25}=389\ \Rightarrow\ u=19{,}7\text{ m s}^{-1}=71{,}0\text{ km h}^{-1}\\
+\tfrac12\rho u^2\,(2{,}25+1)&=525\ \Rightarrow\ u^2=\frac{525}{0{,}6\times3{,}25}=269\ \Rightarrow\ u=16{,}4\text{ m s}^{-1}=59{,}1\text{ km h}^{-1}
+\end{aligned}" />
+
+# Jendela pecah mendorong dari dalam
+
+Tiup kantong kertas lewat mulutnya yang terbuka, dan kantong itu menggembung. Jendela yang pecah melakukan hal yang sama pada bengkel. Angin yang berhenti di dalam menaikkan tekanan di dalam sebesar <InlineMath math="\tfrac12\rho u^2" />, sementara udara di atas atap tetap menarik <InlineMath math="\tfrac12\rho\,(1{,}5u)^2" /> dari sisi atas. Keduanya sekarang dijumlahkan, <InlineMath math="\tfrac12\rho u^2\,(2{,}25+1)=525" />, jadi <InlineMath math="u=16{,}4\text{ m s}^{-1}" />. **Dengan jendela yang menghadap angin pecah, atap terangkat pada <InlineMath math="59{,}1\text{ km h}^{-1}" />**. Mengira jendela pecah membuat angin mengisap udara keluar dari bengkel, sehingga tekanan di dalam turun, memberi <InlineMath math="95{,}2\text{ km h}^{-1}" />, dan itu terbalik sama sekali untuk jendela yang menghadap angin.
+
+<Chart
+  title={<>Selisih tekanan pada atap terhadap kecepatan angin</>}
+  description={<>Kecepatan angin di tempat terbuka, dalam kilometer per jam, di sumbu bawah. Kedua kurva naik sebanding kuadrat kecepatan. Saat jendela pecah, dorongan dari dalam ikut ditambahkan, jadi kurva itu memotong garis <InlineMath math="525\text{ Pa}" /> lebih awal, sekitar <InlineMath math="59\text{ km h}^{-1}" /> alih-alih <InlineMath math="71\text{ km h}^{-1}" />.</>}
+  categories={["0", "10", "20", "30", "40", "50", "60", "70", "80"]}
+  series={[
+    { label: "Semua jendela tertutup", mark: "line", values: [0, 10, 42, 94, 167, 260, 375, 510, 667] },
+    { label: "Jendela menghadap angin pecah", mark: "line", values: [0, 15, 60, 135, 241, 376, 542, 737, 963] },
+    { label: "Dibutuhkan untuk mengangkat atap", mark: "line", values: [525, 525, 525, 525, 525, 525, 525, 525, 525] },
+  ]}
+  valueLabel="Selisih tekanan (Pa)"
+/>

@@ -1,0 +1,32 @@
+A wooden barrel <InlineMath math="1.0\text{ m}" /> tall is filled completely with water and closed with a flat lid. The lid and the flat base each have an area of <InlineMath math="0.20\text{ m}^2" />. A long, thin vertical tube with an inside cross-sectional area of <InlineMath math="0.50\text{ cm}^2" /> is sealed through the lid, with its lower end open to the water just under the lid. Water is then poured slowly into the top of the tube. The lid's fixings can hold it on against an outward force of at most <InlineMath math="12\text{ kN}" />, and the base's fixings can hold it on against at most <InlineMath math="13\text{ kN}" />. Atmospheric pressure acts on the outside of the barrel and on the water surface in the tube. Take the density of water as <InlineMath math="1000\text{ kg m}^{-3}" /> and <InlineMath math="g=10\text{ m s}^{-2}" />.
+
+<MathVisual
+  title={<>The barrel with the tube through its lid</>}
+  description={<>The barrel is full of water, and the thin tube stands upright through the lid with its top open. The drawing is not to scale.</>}
+  labels={{
+    lid: <>lid, <InlineMath math="0.20\text{ m}^2" /></>,
+    base: <>base, <InlineMath math="0.20\text{ m}^2" /></>,
+    height: <><InlineMath math="1.0\text{ m}" /></>,
+    tube: <>tube, <InlineMath math="0.50\text{ cm}^2" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -2.6, max: 8.2 }, y: { min: -0.8, max: 9.6 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "barrel", kind: "polygon", appearance: "reference", vertices: [{ x: 0, y: 0 }, { x: 4, y: 0 }, { x: 4, y: 3 }, { x: 0, y: 3 }] },
+      { id: "lid", kind: "segment", appearance: "highlight", from: { x: -0.2, y: 3 }, to: { x: 4.2, y: 3 } },
+      { id: "base", kind: "segment", appearance: "primary", from: { x: 0, y: 0 }, to: { x: 4, y: 0 } },
+      { id: "tube", kind: "polygon", appearance: "secondary", vertices: [{ x: 1.85, y: 3 }, { x: 2.15, y: 3 }, { x: 2.15, y: 9 }, { x: 1.85, y: 9 }] },
+      { id: "height", kind: "segment", appearance: "construction", from: { x: -0.8, y: 0 }, to: { x: -0.8, y: 3 } },
+    ],
+    labels: [
+      { key: "lid", objectId: "lid", at: { x: 4.2, y: 3 }, placement: "right" },
+      { key: "base", objectId: "base", at: { x: 4, y: 0 }, placement: "right" },
+      { key: "height", objectId: "height", at: { x: -0.8, y: 1.5 }, placement: "left" },
+      { key: "tube", objectId: "tube", at: { x: 2.15, y: 7 }, placement: "right" },
+    ],
+  }}
+/>
+
+Which gives way first, the lid or the base, how high above the lid does the water in the tube stand at that moment, and what outward force does the water's pressure above atmospheric pressure then exert on the lid?

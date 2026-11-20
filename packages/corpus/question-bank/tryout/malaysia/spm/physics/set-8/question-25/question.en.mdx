@@ -1,0 +1,32 @@
+A marker buoy in a reservoir is a sealed, upright cylinder <InlineMath math="1.2\text{ m}" /> tall, with a cross-sectional area of <InlineMath math="0.50\text{ m}^2" /> and a mass of <InlineMath math="150\text{ kg}" />. A light steel cable <InlineMath math="4.0\text{ m}" /> long joins the middle of its flat base to an anchor on the flat bed of the reservoir. The cable does not stretch, and the buoy always floats upright. The density of the water is <InlineMath math="1000\text{ kg m}^{-3}" />. Take <InlineMath math="g=10\text{ m s}^{-2}" />.
+
+<MathVisual
+  title={<>The marker buoy and its cable</>}
+  description={<>The buoy floats upright above its anchor, shown here with the cable tight. The drawing is not to scale.</>}
+  labels={{
+    buoy: <>buoy, <InlineMath math="1.2\text{ m}" /> tall, <InlineMath math="0.50\text{ m}^2" /></>,
+    cable: <>cable, <InlineMath math="4.0\text{ m}" /></>,
+    anchor: <>anchor</>,
+    surface: <>water surface</>,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -3.4, max: 8.6 }, y: { min: -1, max: 8.2 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "bed", kind: "segment", appearance: "reference", from: { x: -3, y: 0 }, to: { x: 6, y: 0 } },
+      { id: "anchor", kind: "point", appearance: "highlight", at: { x: 1.5, y: 0 } },
+      { id: "cable", kind: "segment", appearance: "secondary", from: { x: 1.5, y: 0 }, to: { x: 1.5, y: 5 } },
+      { id: "buoy", kind: "polygon", appearance: "primary", vertices: [{ x: 0.6, y: 5 }, { x: 2.4, y: 5 }, { x: 2.4, y: 7 }, { x: 0.6, y: 7 }] },
+      { id: "surface", kind: "segment", appearance: "reference", from: { x: -3, y: 6.2 }, to: { x: 6, y: 6.2 } },
+    ],
+    labels: [
+      { key: "buoy", objectId: "buoy", at: { x: 2.4, y: 6.6 }, placement: "right" },
+      { key: "cable", objectId: "cable", at: { x: 1.5, y: 2.5 }, placement: "left" },
+      { key: "anchor", objectId: "anchor", at: { x: 1.5, y: 0 }, placement: "below" },
+      { key: "surface", objectId: "surface", at: { x: -1.8, y: 6.2 }, placement: "above" },
+    ],
+  }}
+/>
+
+After heavy rain the water rises. At what depth of water does the cable first become tight, what is the tension in the cable when the water is <InlineMath math="4.8\text{ m}" /> deep, and what is the tension when, at that depth, a <InlineMath math="60\text{ kg}" /> worker climbs onto the top of the buoy?

@@ -1,0 +1,30 @@
+# The spring also pays for the ride on the plunger
+
+Squeeze a toy spring behind a marble and let go, and the marble does not get all of the spring's energy, because it is already climbing and rubbing while the spring is still pushing. The holding force grows in a straight line from <InlineMath math="0" /> to <InlineMath math="10\text{ N}" /> over the <InlineMath math="10\text{ cm}" /> pull, so the spring stores the area under that line, <InlineMath math="\tfrac12\times10\times0.10=0.50\text{ J}" />. Up the lane the ball loses the weight component <InlineMath math="0.080\times10\times0.10=0.080\text{ N}" /> plus the <InlineMath math="0.020\text{ N}" /> resistive force, <InlineMath math="0.10\text{ N}" /> in all, and it already pays that over the <InlineMath math="0.10\text{ m}" /> it rides on the plunger. **The ball leaves with <InlineMath math="0.49\text{ J}" /> of kinetic energy, so <InlineMath math="v=\sqrt{2\times0.49/0.080}=3.50\text{ m s}^{-1}" />**. Handing the whole <InlineMath math="0.50\text{ J}" /> to the ball gives <InlineMath math="3.54\text{ m s}^{-1}" />, as if the ride on the plunger were free.
+
+# A toll on every metre
+
+A cyclist freewheeling up a gentle hill slows by the same amount on each stretch, because the hill and the air take a fixed share of energy per metre. The ball pays <InlineMath math="0.10\text{ J}" /> for every metre of lane, so the <InlineMath math="2.0\text{ m}" /> to the bumper costs <InlineMath math="0.20\text{ J}" /> and leaves <InlineMath math="0.29\text{ J}" />. **It reaches the bumper at <InlineMath math="v=\sqrt{2\times0.29/0.080}=2.69\text{ m s}^{-1}" />**. Dropping the resistive force on this stretch keeps <InlineMath math="0.33\text{ J}" /> and gives <InlineMath math="2.87\text{ m s}^{-1}" />, but the rubbing does not stop when the spring lets go.
+
+# Pulling back just far enough
+
+To score, the ball must still carry <InlineMath math="\tfrac12\times0.080\times1.0^2=0.040\text{ J}" /> when it reaches the bumper. With <InlineMath math="k=10/0.10=100\text{ N m}^{-1}" />, a pull of <InlineMath math="x" /> stores <InlineMath math="\tfrac12\times100\,x^2=50x^2" /> joules. The catch is that <InlineMath math="x" /> also turns up on the cost side, because the ball rides the plunger for that distance before its <InlineMath math="2.0\text{ m}" /> run, so the costs come to <InlineMath math="0.10\,(x+2.0)" /> joules. That makes a quadratic.
+
+<BlockMath math="\begin{aligned}
+50x^2&=0.10\,(x+2.0)+0.040\\
+50x^2-0.10x-0.24&=0\ \Rightarrow\ x=\frac{0.10+\sqrt{0.010+48}}{100}=0.0703\text{ m}
+\end{aligned}" />
+
+**The least pull that still scores is <InlineMath math="7.03\text{ cm}" />**. Leaving out the score speed gives <InlineMath math="6.43\text{ cm}" />, which only brings the ball to rest at the bumper, and dropping the <InlineMath math="x" /> on the cost side gives <InlineMath math="6.93\text{ cm}" />.
+
+<Chart
+  title={<>Kinetic energy of the ball along the lane</>}
+  description={<>Distance up the lane in metres, measured from where the ball leaves the plunger. Each line falls by <InlineMath math="0.10\text{ J}" /> per metre. The <InlineMath math="10\text{ cm}" /> pull arrives with plenty to spare, while the <InlineMath math="7.03\text{ cm}" /> pull arrives with exactly the <InlineMath math="0.040\text{ J}" /> the bumper needs.</>}
+  categories={["0", "0.5", "1.0", "1.5", "2.0"]}
+  series={[
+    { label: "Pulled back 10 cm", mark: "line", values: [0.49, 0.44, 0.39, 0.34, 0.29] },
+    { label: "Pulled back 7.03 cm", mark: "line", values: [0.24, 0.19, 0.14, 0.09, 0.04] },
+    { label: "Needed to score", mark: "line", values: [0.04, 0.04, 0.04, 0.04, 0.04] },
+  ]}
+  valueLabel="Kinetic energy (J)"
+/>

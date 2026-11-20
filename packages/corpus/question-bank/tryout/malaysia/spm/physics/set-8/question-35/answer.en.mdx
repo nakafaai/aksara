@@ -1,0 +1,30 @@
+# Guess, then test the guess
+
+Two rain tanks fill one garden trough through one-way flaps, and the flap from the lower tank only opens if the trough level drops below that tank. Since <InlineMath math="9.0\text{ V}" /> beats <InlineMath math="7.5\text{ V}" />, it is tempting to let the adapter work alone. Then the current is <InlineMath math="(9.0-0.70)/(10+40)=0.166\text{ A}" />, and the panel sits at <InlineMath math="0.166\times40=6.64\text{ V}" />. But <InlineMath math="D_2" /> is forward biased whenever the panel is below <InlineMath math="7.5-0.70=6.80\text{ V}" />, and <InlineMath math="6.64\text{ V}" /> is below that. **The battery cannot stay idle**, so <InlineMath math="0.166\text{ A}" /> with <InlineMath math="0\text{ A}" /> from the battery is the guess, not the answer. The adapter's <InlineMath math="10\,\Omega" /> wastes enough voltage to let the lower supply in.
+
+# The battery props the panel up
+
+A step stool under a sagging shelf takes part of the load once the shelf sinks onto it, and the shelf then sinks no further. With <InlineMath math="D_2" /> conducting, the panel is held at the battery's <InlineMath math="7.5\text{ V}" /> minus its diode's <InlineMath math="0.70\text{ V}" />. Ohm's law gives the panel current, and the adapter's current follows from the voltage left across its own <InlineMath math="10\,\Omega" />.
+
+<BlockMath math="\begin{aligned}
+I&=\frac{6.80}{40}=0.170\text{ A}\\
+I_1&=\frac{9.0-0.70-6.80}{10}=0.150\text{ A},\qquad I_2=0.170-0.150=0.0200\text{ A}
+\end{aligned}" />
+
+**The panel draws <InlineMath math="0.170\text{ A}" />, and the battery supplies <InlineMath math="0.0200\text{ A}" /> of it**. Leaving out <InlineMath math="D_2" />'s <InlineMath math="0.70\text{ V}" /> puts the full <InlineMath math="7.5\text{ V}" /> on the panel and gives <InlineMath math="0.188\text{ A}" />, <InlineMath math="0.108\text{ A}" /> and <InlineMath math="0.0800\text{ A}" />, as if the battery's diode cost nothing.
+
+# How much the adapter can carry by itself
+
+A tiring cyclist stays ahead of a steady walker only while their speed is still above the walker's. The adapter holds the panel at <InlineMath math="8.30-10I" /> volts, and the battery stays out only while that is at least <InlineMath math="6.80\text{ V}" />. That is <InlineMath math="10I\le1.50" />. **A panel drawing up to <InlineMath math="0.150\text{ A}" /> would run on the adapter alone**. The two diode drops cancel here, so the limit is simply <InlineMath math="(9.0-7.5)/10" />. Forgetting <InlineMath math="D_1" /> and working from <InlineMath math="9.0-6.80" /> gives <InlineMath math="0.220\text{ A}" />, which leaves the adapter's own diode out of its path.
+
+<Chart
+  title={<>Voltage each path can hold at the panel</>}
+  description={<>Panel current in amperes along the bottom. The adapter's line sags as its current grows, the battery's line stays at <InlineMath math="6.80\text{ V}" />, and the panel's own line climbs. The adapter line meets the panel line at <InlineMath math="6.64\text{ V}" />, below the battery's level, so the battery joins in and the panel sits at <InlineMath math="6.80\text{ V}" />. The adapter manages alone only left of <InlineMath math="0.150\text{ A}" />.</>}
+  categories={["0.00", "0.05", "0.10", "0.15", "0.20", "0.25"]}
+  series={[
+    { label: "Adapter through its diode", mark: "line", values: [8.3, 7.8, 7.3, 6.8, 6.3, 5.8] },
+    { label: "Battery through its diode", mark: "line", values: [6.8, 6.8, 6.8, 6.8, 6.8, 6.8] },
+    { label: "Voltage the panel needs", mark: "line", values: [0.0, 2.0, 4.0, 6.0, 8.0, 10.0] },
+  ]}
+  valueLabel="Voltage (V)"
+/>

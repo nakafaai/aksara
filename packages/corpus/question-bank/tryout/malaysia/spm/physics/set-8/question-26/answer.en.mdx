@@ -1,0 +1,28 @@
+# What holds the roof down
+
+A saucepan lid stays on because of its own weight and, on a pressure cooker, a clamp as well. The roof is held down the same two ways, by its weight of <InlineMath math="12\text{ kN}" /> and by fixings worth at most <InlineMath math="30\text{ kN}" />, <InlineMath math="42\text{ kN}" /> in all. Spread over <InlineMath math="8.0\times10=80\text{ m}^2" />, that is <InlineMath math="42000/80" /> pascals. **The roof lifts once the air underneath pushes <InlineMath math="525\text{ Pa}" /> harder than the air on top**. Leaving out the weight gives <InlineMath math="375\text{ Pa}" />, as if only the fixings held the roof.
+
+# Fast air over the top
+
+Hold a strip of paper under your lower lip and blow across its top, and the strip rises, because fast-moving air presses less. Over the roof the air moves at <InlineMath math="1.5u" />, so with the windows shut the roof feels a pressure difference of <InlineMath math="\tfrac12\rho\,(1.5u)^2" />. Setting that equal to <InlineMath math="525\text{ Pa}" /> gives <InlineMath math="u=19.7\text{ m s}^{-1}" />, and multiplying by <InlineMath math="3.6" /> turns it into kilometres per hour. **With every window shut, the roof lifts in a wind of <InlineMath math="71.0\text{ km h}^{-1}" />**. Using the wind speed itself for the air over the roof gives <InlineMath math="106\text{ km h}^{-1}" />, because it skips the speeding up over the roof edge.
+
+<BlockMath math="\begin{aligned}
+\tfrac12\rho\,(1.5u)^2&=525\ \Rightarrow\ u^2=\frac{525}{0.6\times2.25}=389\ \Rightarrow\ u=19.7\text{ m s}^{-1}=71.0\text{ km h}^{-1}\\
+\tfrac12\rho u^2\,(2.25+1)&=525\ \Rightarrow\ u^2=\frac{525}{0.6\times3.25}=269\ \Rightarrow\ u=16.4\text{ m s}^{-1}=59.1\text{ km h}^{-1}
+\end{aligned}" />
+
+# A broken window pushes from inside
+
+Blow into a paper bag through its open mouth and it puffs out. The broken window does that to the workshop. Wind brought to rest inside raises the inside pressure by <InlineMath math="\tfrac12\rho u^2" />, while the air over the roof still pulls <InlineMath math="\tfrac12\rho\,(1.5u)^2" /> off the top. The two now add up, <InlineMath math="\tfrac12\rho u^2\,(2.25+1)=525" />, so <InlineMath math="u=16.4\text{ m s}^{-1}" />. **With the window facing the wind broken, the roof lifts at <InlineMath math="59.1\text{ km h}^{-1}" />**. Thinking that the broken window lets the wind suck air out of the workshop, so that the inside pressure falls, gives <InlineMath math="95.2\text{ km h}^{-1}" />, and that is exactly backwards for a window that faces the wind.
+
+<Chart
+  title={<>Pressure difference across the roof against wind speed</>}
+  description={<>Wind speed in the open, in kilometres per hour, along the bottom. Both curves grow with the square of the speed. With the window broken, the push from inside is added, so that curve meets the <InlineMath math="525\text{ Pa}" /> line sooner, near <InlineMath math="59\text{ km h}^{-1}" /> instead of <InlineMath math="71\text{ km h}^{-1}" />.</>}
+  categories={["0", "10", "20", "30", "40", "50", "60", "70", "80"]}
+  series={[
+    { label: "Every window shut", mark: "line", values: [0, 10, 42, 94, 167, 260, 375, 510, 667] },
+    { label: "Window facing the wind broken", mark: "line", values: [0, 15, 60, 135, 241, 376, 542, 737, 963] },
+    { label: "Needed to lift the roof", mark: "line", values: [525, 525, 525, 525, 525, 525, 525, 525, 525] },
+  ]}
+  valueLabel="Pressure difference (Pa)"
+/>

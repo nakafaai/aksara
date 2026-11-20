@@ -1,0 +1,52 @@
+# Jendela menyempitkan pandangan
+
+Troli belanja yang menggelinding miring dari lantai keramik ke karpet akan berbelok karena satu roda depannya melambat lebih dulu. Cahaya yang melintasi jendela berbelok dengan cara yang sama. Kamera di dalam tetap menerima cahaya sampai <InlineMath math="30°" /> di udara, jadi sinar tepi pasti datang lewat air dengan sudut yang lebih kecil, dengan <InlineMath math="1{,}33\sin r=\sin30°" />. Hasilnya <InlineMath math="\sin r=0{,}376" /> dan <InlineMath math="r=22{,}1°" />. **Di dalam air sudut pandang penuhnya <InlineMath math="2\times22{,}1°=44°" />**. Mengabaikan air mempertahankan <InlineMath math="60°" />, dan mengalikan dengan <InlineMath math="1{,}33" /> alih-alih membagi melebarkan pandangan menjadi <InlineMath math="83°" />, arah yang salah untuk cahaya yang keluar dari air.
+
+# Lebih dekat daripada aslinya
+
+Kolam renang selalu tampak lebih dangkal daripada aslinya saat kamu melihat lurus ke bawah. Melihat lurus ke luar lewat jendela datar sama saja, dengan jarak di dalam air diperpendek oleh indeks bias. **Ikan itu tampak berjarak <InlineMath math="2{,}0/1{,}33=1{,}5\text{ m}" />**. Mengabaikan jendela membiarkannya di <InlineMath math="2{,}0\text{ m}" />, dan mengalikan dengan <InlineMath math="1{,}33" /> mendorongnya ke <InlineMath math="2{,}7\text{ m}" />.
+
+# Mundur agar dinding muat
+
+Untuk memuat seluruh kelas dalam satu foto, kamu mundur sampai orang di kedua ujung mencapai tepi bingkai. Tiap ujung dinding berada <InlineMath math="1{,}5\text{ m}" /> dari tengah, dan harus terletak pada garis tepi <InlineMath math="22{,}1°" /> di dalam air. **Penyelam harus berada <InlineMath math="1{,}5/\tan22{,}1°=3{,}7\text{ m}" /> dari jendela**. Memakai <InlineMath math="30°" /> milik udara memberi <InlineMath math="2{,}6\text{ m}" />, cukup dekat sampai kedua ujung dinding keluar dari gambar.
+
+<MathVisual
+  title={<>Tepi gambar di dalam air</>}
+  description={<>Dilihat dari atas, jarak dalam meter dari jendela. Di dalam air garis tepi hanya terbuka <InlineMath math="22°" /> dari arah lurus ke depan, jadi garis itu mencapai ujung dinding <InlineMath math="3{,}0\text{ m}" /> pada <InlineMath math="3{,}7\text{ m}" />. Garis putus-putus pada <InlineMath math="30°" /> akan mencapainya pada <InlineMath math="2{,}6\text{ m}" />.</>}
+  labels={{
+    wall: <>dinding terumbu, <InlineMath math="3{,}0\text{ m}" /></>,
+    angle: <><InlineMath math="22°" /></>,
+    dist: <><InlineMath math="3{,}7\text{ m}" /></>,
+    dry: <>tepi di udara, <InlineMath math="30°" /></>,
+    window: <>jendela</>,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1, max: 5.6 }, y: { min: -2.8, max: 2.4 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "window", kind: "segment", appearance: "secondary", from: { x: 0, y: -0.6 }, to: { x: 0, y: 0.6 } },
+      { id: "axis", kind: "segment", appearance: "reference", from: { x: 0, y: 0 }, to: { x: 4.4, y: 0 } },
+      { id: "wall", kind: "segment", appearance: "highlight", from: { x: 3.697, y: -1.5 }, to: { x: 3.697, y: 1.5 } },
+      { id: "ray-up", kind: "segment", appearance: "primary", from: { x: 0, y: 0 }, to: { x: 3.697, y: 1.5 } },
+      { id: "ray-down", kind: "segment", appearance: "primary", from: { x: 0, y: 0 }, to: { x: 3.697, y: -1.5 } },
+      { id: "dry", kind: "segment", appearance: "construction", from: { x: 0, y: 0 }, to: { x: 2.598, y: 1.5 } },
+      { id: "dry-down", kind: "segment", appearance: "construction", from: { x: 0, y: 0 }, to: { x: 2.598, y: -1.5 } },
+      { id: "angle", kind: "arc", appearance: "construction", center: { x: 0, y: 0 }, radius: 1.2, startDegrees: 0, sweepDegrees: 22.08 },
+      { id: "dist", kind: "segment", appearance: "construction", from: { x: 0, y: -2.1 }, to: { x: 3.697, y: -2.1 } },
+    ],
+    labels: [
+      { key: "wall", objectId: "wall", at: { x: 3.697, y: 1.5 }, placement: "above" },
+      { key: "angle", objectId: "angle", at: { x: 1.25, y: 0.25 }, placement: "right" },
+      { key: "dist", objectId: "dist", at: { x: 1.8485, y: -2.1 }, placement: "below" },
+      { key: "dry", objectId: "dry", at: { x: 2.598, y: 1.5 }, placement: "above" },
+      { key: "window", objectId: "window", at: { x: 0, y: -0.6 }, placement: "below" },
+    ],
+  }}
+/>
+
+<BlockMath math="\begin{aligned}
+\sin r&=\frac{\sin30°}{1{,}33}=0{,}376\ \Rightarrow\ r=22{,}1°,\qquad 2r=44°\\
+d'&=\frac{2{,}0}{1{,}33}=1{,}5\text{ m}\\
+d&=\frac{1{,}5}{\tan22{,}1°}=3{,}7\text{ m}
+\end{aligned}" />

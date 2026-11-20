@@ -1,0 +1,35 @@
+# Hidup sepenuhnya bermakna tikar menentukan arus
+
+Buka pili taman sepenuhnya, dan aliran air kini ditentukan oleh hos, bukan oleh pili lagi. Transistor yang hidup sepenuhnya ialah pili yang terbuka itu: tikar mendapat <InlineMath math="12-0.20=11.8\text{ V}" />, dan tapak perlu membekalkan sekurang-kurangnya satu perlima puluh daripada arus yang kemudian diambil oleh tikar. Perintang tapak membawa arus tapak itu dengan <InlineMath math="3.3-0.70\text{ V}" /> merentasinya.
+
+<BlockMath math="\begin{aligned}
+I_C&=\frac{12-0.20}{24}=0.492\text{ A},\qquad I_B=\frac{0.492}{50}=9.83\times10^{-3}\text{ A}\\
+R_B&\le\frac{3.3-0.70}{9.83\times10^{-3}}=264\,\Omega
+\end{aligned}" />
+
+**Perintang tapak paling besar yang masih menghidupkan transistor sepenuhnya ialah <InlineMath math="264\,\Omega" />**. Meletakkan seluruh <InlineMath math="3.3\text{ V}" /> merentasi <InlineMath math="R_B" /> memberi <InlineMath math="336\,\Omega" />, tetapi tapak menyimpan <InlineMath math="0.70\text{ V}" /> untuk dirinya, jadi perintang itu hanya mengalirkan <InlineMath math="7.75\text{ mA}" /> dan transistor tidak sampai hidup sepenuhnya.
+
+# Suis yang hidup sepenuhnya hampir tidak panas
+
+Pintu yang terbuka luas membolehkan orang ramai lalu tanpa sesiapa bergesel dengan bingkainya. Haba yang terhasil dalam transistor ialah voltan merentasinya didarab dengan arus yang melaluinya, dan apabila hidup sepenuhnya, voltan merentasinya hanya <InlineMath math="0.20\text{ V}" />. **Apabila hidup sepenuhnya, transistor menukar <InlineMath math="0.20\times0.492=0.0983\text{ W}" /> kepada haba**, manakala tikar mendapat <InlineMath math="11.8\times0.492=5.80\text{ W}" />. Transistor kecil mampu menanganinya tanpa sink haba.
+
+# Separa hidup ialah keadaan paling panas
+
+Tahan pintu separuh terbuka ketika orang ramai tergesa-gesa, dan mereka akan berasak-asak melanggarnya. Dengan <InlineMath math="1.0\text{ k}\Omega" />, arus tapak hanya <InlineMath math="2.60\text{ mA}" />, jadi arus pengumpul ialah lima puluh kali ganda, <InlineMath math="0.130\text{ A}" />, jauh di bawah <InlineMath math="0.492\text{ A}" /> ketika hidup sepenuhnya. Kini tikar hanya mengambil <InlineMath math="0.130\times24=3.12\text{ V}" />, dan bakinya ditanggung oleh transistor.
+
+<BlockMath math="\begin{aligned}
+I_C&=50\times\frac{3.3-0.70}{1000}=0.130\text{ A}\\
+P&=I_C\,(12-24I_C)=0.130\times8.88=1.15\text{ W}
+\end{aligned}" />
+
+**Transistor kini menukar <InlineMath math="1.15\text{ W}" /> kepada haba**, kira-kira dua belas kali ganda berbanding ketika hidup sepenuhnya, manakala tikar sendiri hanya mendapat <InlineMath math="0.406\text{ W}" />. Mengekalkan <InlineMath math="0.0983\text{ W}" /> menganggap perintang yang lebih besar itu masih menghidupkannya sepenuhnya. Jawapan <InlineMath math="0.406\text{ W}" /> ialah haba dalam tikar, bukan dalam transistor.
+
+<Chart
+  title={<>Haba dalam transistor bagi setiap perintang tapak</>}
+  description={<>Perintang tapak dalam ohm di sepanjang paksi bawah. Sehingga <InlineMath math="264\,\Omega" /> transistor hidup sepenuhnya dan kekal sejuk. Selepas itu ia hanya separa hidup, dan habanya mencapai puncak <InlineMath math="1.5\text{ W}" /> berhampiran <InlineMath math="520\,\Omega" />, apabila tikar dan transistor berkongsi <InlineMath math="12\text{ V}" /> sama banyak. Dengan perintang yang sangat besar, transistor hampir mati dan habanya berkurang semula.</>}
+  categories={["200", "300", "400", "500", "700", "1000", "2000", "4000"]}
+  series={[
+    { label: "Haba dalam transistor", mark: "line", values: [0.098, 0.693, 1.365, 1.498, 1.401, 1.154, 0.679, 0.365] },
+  ]}
+  valueLabel="Kuasa (W)"
+/>

@@ -1,0 +1,38 @@
+A lorry travels at <InlineMath math="20\text{ m s}^{-1}" /> with an unsecured crate on its flat bed, <InlineMath math="14\text{ m}" /> behind the back wall of the cab. In an emergency stop the lorry decelerates uniformly at <InlineMath math="10\text{ m s}^{-2}" /> until it stops. Friction between the crate and the bed can slow the crate by at most <InlineMath math="4.0\text{ m s}^{-2}" />, and that is the crate's deceleration whenever it slides.
+
+<MathVisual
+  title={<>The crate on the lorry's flat bed</>}
+  description={<>The lorry moves to the right. The front of the crate is <InlineMath math="14\text{ m}" /> behind the back wall of the cab. The drawing is not to scale.</>}
+  labels={{
+    bed: <>flat bed</>,
+    crate: <>crate</>,
+    cab: <>cab</>,
+    gap: <><InlineMath math="14\text{ m}" /></>,
+    speed: <><InlineMath math="20\text{ m s}^{-1}" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1.5, max: 25.5 }, y: { min: -4, max: 10.5 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "road", kind: "segment", appearance: "reference", from: { x: -1, y: 0 }, to: { x: 25, y: 0 } },
+      { id: "bed", kind: "polygon", appearance: "secondary", vertices: [{ x: 0, y: 1 }, { x: 18, y: 1 }, { x: 18, y: 1.6 }, { x: 0, y: 1.6 }] },
+      { id: "cab", kind: "polygon", appearance: "secondary", vertices: [{ x: 18, y: 1 }, { x: 22, y: 1 }, { x: 22, y: 5 }, { x: 18, y: 5 }] },
+      { id: "crate", kind: "polygon", appearance: "primary", vertices: [{ x: 2, y: 1.6 }, { x: 4, y: 1.6 }, { x: 4, y: 3.4 }, { x: 2, y: 3.4 }] },
+      { id: "wheel-a", kind: "circle", appearance: "reference", center: { x: 3, y: 0.5 }, radius: 0.5 },
+      { id: "wheel-b", kind: "circle", appearance: "reference", center: { x: 15, y: 0.5 }, radius: 0.5 },
+      { id: "wheel-c", kind: "circle", appearance: "reference", center: { x: 20, y: 0.5 }, radius: 0.5 },
+      { id: "gap", kind: "segment", appearance: "construction", from: { x: 4, y: 4.2 }, to: { x: 18, y: 4.2 } },
+      { id: "speed", kind: "vector", appearance: "highlight", from: { x: 19, y: 6 }, to: { x: 23.5, y: 6 } },
+    ],
+    labels: [
+      { key: "bed", objectId: "bed", at: { x: 9, y: 1 }, placement: "below" },
+      { key: "crate", objectId: "crate", at: { x: 3, y: 3.4 }, placement: "above" },
+      { key: "cab", objectId: "cab", at: { x: 20, y: 5 }, placement: "above" },
+      { key: "gap", objectId: "gap", at: { x: 11, y: 4.2 }, placement: "above" },
+      { key: "speed", objectId: "speed", at: { x: 21.25, y: 6 }, placement: "above" },
+    ],
+  }}
+/>
+
+How far does the lorry travel while stopping, how long after the braking begins does the crate hit the cab, and how fast is the crate moving relative to the lorry when it does?

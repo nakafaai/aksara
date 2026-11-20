@@ -1,0 +1,29 @@
+# Every hop starts from rest
+
+A ball that stops dead on each step of a staircase lands on every step at the same speed, however many steps it has already come down. An electron that strikes the sixth dynode was knocked out of the fifth almost at rest, so it has fallen through only <InlineMath math="600-500=100\text{ V}" />. Its kinetic energy is <InlineMath math="e\times100" /> joules.
+
+<BlockMath math="\begin{aligned}
+\frac{1}{2}mv^2&=e\,(600-500)=1.6\times10^{-19}\times100=1.6\times10^{-17}\text{ J}\\
+v&=\sqrt{\frac{2\times1.6\times10^{-17}}{9.11\times10^{-31}}}=5.93\times10^{6}\text{ m s}^{-1}
+\end{aligned}" />
+
+**Each electron strikes the sixth dynode at <InlineMath math="5.93\times10^{6}\text{ m s}^{-1}" />**. Using the full <InlineMath math="600\text{ V}" /> from the cathode gives <InlineMath math="1.45\times10^{7}\text{ m s}^{-1}" />, but no electron makes that whole journey. The ones that left the cathode stopped at the first dynode.
+
+# Tripling at every dynode
+
+A rumour spreads fast when each person who hears it tells three new people: three, then nine, then twenty-seven. One electron from the cathode becomes <InlineMath math="3" /> at the first dynode, <InlineMath math="3^2" /> at the second, and so on through all six. **For each electron that leaves the cathode, <InlineMath math="3^6=729" /> reach the anode**. Adding three at each dynode gives only <InlineMath math="18" />, which forgets that every new electron does its own knocking. Counting the anode as a seventh tripling gives <InlineMath math="2187" />, yet the anode only collects.
+
+# From electrons to a current
+
+A current is just charge counted per second, like water counted in buckets per minute. The anode receives <InlineMath math="5.0\times10^{6}\times729=3.65\times10^{9}" /> electrons each second, each carrying <InlineMath math="1.6\times10^{-19}\text{ C}" />. **About <InlineMath math="5.83\times10^{-10}\text{ A}" /> flows into the anode**. That is still tiny, yet a sensitive meter can read it, while the <InlineMath math="8.0\times10^{-13}\text{ A}" /> leaving the cathode alone would be lost in the noise.
+
+<Chart
+  title={<>Electrons arriving each second at each stage</>}
+  description={<>Every bar stands three times as tall as the one before it, because every electron that lands on a dynode knocks out three. The anode collects <InlineMath math="3.65\times10^{9}" /> electrons each second and adds no tripling of its own.</>}
+  bars="apart"
+  categories={["Dynode 1", "Dynode 2", "Dynode 3", "Dynode 4", "Dynode 5", "Dynode 6", "Anode"]}
+  series={[
+    { label: "Electrons arriving", mark: "bar", values: [5, 15, 45, 135, 405, 1215, 3645] },
+  ]}
+  valueLabel="Electrons per second (millions)"
+/>

@@ -1,0 +1,59 @@
+# Hinauf zur Schicht und wieder herunter
+
+Prellst du einem Freund einen Ball über den Boden zu, kommt er auf einer Schräge herunter und auf einer gleich langen wieder hoch, also liegt der Aufprallpunkt genau in der Mitte. Die Bodenwelle legt <InlineMath math="600\text{ km}" /> zurück. In <InlineMath math="0{,}50\text{ ms}" /> schafft Funk weitere <InlineMath math="150\text{ km}" />, also läuft die Raumwelle <InlineMath math="750\text{ km}" />, das sind <InlineMath math="375\text{ km}" /> auf jedem schrägen Teilstück über <InlineMath math="300\text{ km}" /> Boden. **Nach Pythagoras liegt die Schicht <InlineMath math="\sqrt{375^2-300^2}=225\text{ km}" /> hoch**. Wer die ganzen <InlineMath math="600\text{ km}" /> unter ein einziges Teilstück von <InlineMath math="750\text{ km}" /> legt, erhält <InlineMath math="450\text{ km}" />, aber jedes Teilstück überspannt nur den halben Boden.
+
+<BlockMath math="\begin{aligned}
+\Delta s&=3{,}0\times10^{8}\times0{,}50\times10^{-3}=1{,}5\times10^{5}\text{ m}=150\text{ km}\\
+h&=\sqrt{375^2-300^2}=225\text{ km}
+\end{aligned}" />
+
+# Zu steil zum Abprallen
+
+Ein flacher Stein hüpft nur dann über einen Teich, wenn du ihn flach und streifend wirfst. Wirfst du ihn steil, taucht er ein. Der Einfallswinkel wird zur Senkrechten gemessen, dem Lot auf die Schicht, und die Schicht verhält sich wie dieser Teich. Nachts steigt die Welle in Richtung R um <InlineMath math="400\text{ km}" />, während sie <InlineMath math="300\text{ km}" /> seitwärts läuft, also <InlineMath math="\tan i=300/400" /> und <InlineMath math="i=36{,}9°" />, unter der Grenze von <InlineMath math="40°" />. **Diese Welle geht durch die Schicht hindurch, also erreicht nachts keine Raumwelle R**. Wer aus einem Weg von <InlineMath math="1000\text{ km}" /> eine Verspätung von <InlineMath math="1{,}33\text{ ms}" /> ausrechnet, setzt eine Reflexion voraus, die nie stattfindet.
+
+# Ein stiller Ring um den Sender
+
+Ein Rasensprenger, der Wasser in hohem Bogen wirft, lässt dicht an seinem Fuß eine trockene Stelle. Den nächsten Landepunkt der nächtlichen Raumwelle legt die steilste Welle fest, die gerade noch reflektiert wird, also die, die die Schicht unter genau <InlineMath math="40°" /> trifft. Sie läuft beim Aufstieg <InlineMath math="400\tan40°=336\text{ km}" /> seitwärts und beim Abstieg noch einmal so weit. **Also landet keine Raumwelle näher als <InlineMath math="671\text{ km}" /> an T**. Wer bei <InlineMath math="336\text{ km}" /> aufhört, markiert nur den Punkt unter der Reflexion, wo die Welle noch hoch am Himmel ist.
+
+<MathVisual
+  title={<>Die Schicht in der Nacht</>}
+  description={<>Die Schicht liegt <InlineMath math="400\text{ km}" /> hoch. Die Welle in Richtung R trifft sie unter <InlineMath math="36{,}9°" /> zur Senkrechten und geht hindurch. Die Welle, die sie unter genau <InlineMath math="40°" /> trifft, kommt <InlineMath math="671\text{ km}" /> von T entfernt herunter, der nächste Landepunkt.</>}
+  labels={{
+    t: <>T</>,
+    r: <>R</>,
+    span: <><InlineMath math="671\text{ km}" /></>,
+    limit: <><InlineMath math="40°" /></>,
+    through: <>geht hindurch</>,
+    layer: <>Schicht in <InlineMath math="400\text{ km}" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1.6, max: 8.2 }, y: { min: -2, max: 5.4 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "ground", kind: "segment", appearance: "reference", from: { x: -0.8, y: 0 }, to: { x: 7.6, y: 0 } },
+      { id: "layer", kind: "segment", appearance: "secondary", from: { x: -0.8, y: 4 }, to: { x: 7.6, y: 4 } },
+      { id: "to-r", kind: "segment", appearance: "primary", from: { x: 0, y: 0 }, to: { x: 3, y: 4 } },
+      { id: "through", kind: "segment", appearance: "construction", from: { x: 3, y: 4 }, to: { x: 3.6, y: 4.8 } },
+      { id: "limit-ray", kind: "polyline", appearance: "highlight", vertices: [{ x: 0, y: 0 }, { x: 3.3565, y: 4 }, { x: 6.713, y: 0 }] },
+      { id: "normal", kind: "segment", appearance: "construction", from: { x: 3.3565, y: 4 }, to: { x: 3.3565, y: 2.8 } },
+      { id: "limit", kind: "arc", appearance: "construction", center: { x: 3.3565, y: 4 }, radius: 0.7, startDegrees: 230, sweepDegrees: 40 },
+      { id: "span", kind: "segment", appearance: "construction", from: { x: 0, y: -1.2 }, to: { x: 6.713, y: -1.2 } },
+      { id: "t", kind: "point", appearance: "reference", at: { x: 0, y: 0 } },
+      { id: "r", kind: "point", appearance: "reference", at: { x: 6, y: 0 } },
+    ],
+    labels: [
+      { key: "t", objectId: "t", at: { x: 0, y: 0 }, placement: "left" },
+      { key: "r", objectId: "r", at: { x: 6, y: 0 }, placement: "below" },
+      { key: "span", objectId: "span", at: { x: 3.3565, y: -1.2 }, placement: "below" },
+      { key: "limit", objectId: "limit", at: { x: 3.1, y: 3.2 }, placement: "left" },
+      { key: "through", objectId: "through", at: { x: 3.6, y: 4.8 }, placement: "left" },
+      { key: "layer", objectId: "layer", at: { x: 6.4, y: 4 }, placement: "above" },
+    ],
+  }}
+/>
+
+<BlockMath math="\begin{aligned}
+\tan i&=\frac{300}{400}\ \Rightarrow\ i=36{,}9°<40°\\
+x&=2\times400\times\tan40°=671\text{ km}
+\end{aligned}" />

@@ -1,0 +1,40 @@
+Di sebatang jalan lurus dua lorong, sebuah kereta sepanjang <InlineMath math="4.0\text{ m}" /> mengekori sebuah lori sepanjang <InlineMath math="16\text{ m}" />. Kedua-duanya bergerak pada laju tetap <InlineMath math="20\text{ m s}^{-1}" />, dan bahagian hadapan kereta berada <InlineMath math="8.0\text{ m}" /> di belakang bahagian belakang lori. Pemandu kereta itu masuk ke lorong sebelah dan memecut secara seragam pada <InlineMath math="2.0\text{ m s}^{-2}" /> sehingga bahagian belakang kereta berada <InlineMath math="8.0\text{ m}" /> di hadapan bahagian hadapan lori, kemudian kembali ke lorongnya. Lori mengekalkan lajunya. Di lorong sebelah, sebuah kereta dari arah bertentangan datang pada laju tetap <InlineMath math="20\text{ m s}^{-1}" />. Anggap kedua-dua pertukaran lorong tidak mengambil masa.
+
+<MathVisual
+  title={<>Pandangan atas jalan ketika pemotongan bermula</>}
+  description={<>Kereta dan lori bergerak ke kanan di lorong bawah. Kereta dari arah bertentangan bergerak ke kiri di lorong atas. Lukisan ini tidak mengikut skala.</>}
+  labels={{
+    car: <>kereta <InlineMath math="4.0\text{ m}" /></>,
+    gap: <><InlineMath math="8.0\text{ m}" /></>,
+    lorry: <>lori <InlineMath math="16\text{ m}" /></>,
+    both: <><InlineMath math="20\text{ m s}^{-1}" /></>,
+    oncoming: <>kereta dari arah bertentangan</>,
+    back: <><InlineMath math="20\text{ m s}^{-1}" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -2.5, max: 52.5 }, y: { min: -11.5, max: 17.5 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "edge-low", kind: "segment", appearance: "reference", from: { x: -2, y: 0 }, to: { x: 52, y: 0 } },
+      { id: "edge-high", kind: "segment", appearance: "reference", from: { x: -2, y: 6 }, to: { x: 52, y: 6 } },
+      { id: "centre", kind: "segment", appearance: "construction", from: { x: -2, y: 3 }, to: { x: 52, y: 3 } },
+      { id: "car", kind: "polygon", appearance: "primary", vertices: [{ x: 0, y: 0.9 }, { x: 4, y: 0.9 }, { x: 4, y: 2.1 }, { x: 0, y: 2.1 }] },
+      { id: "gap", kind: "segment", appearance: "construction", from: { x: 4, y: 1.5 }, to: { x: 12, y: 1.5 } },
+      { id: "lorry", kind: "polygon", appearance: "secondary", vertices: [{ x: 12, y: 0.6 }, { x: 28, y: 0.6 }, { x: 28, y: 2.4 }, { x: 12, y: 2.4 }] },
+      { id: "both", kind: "vector", appearance: "highlight", from: { x: 29, y: 1.5 }, to: { x: 34, y: 1.5 } },
+      { id: "oncoming", kind: "polygon", appearance: "warning", vertices: [{ x: 44, y: 3.9 }, { x: 48, y: 3.9 }, { x: 48, y: 5.1 }, { x: 44, y: 5.1 }] },
+      { id: "back", kind: "vector", appearance: "highlight", from: { x: 43, y: 4.5 }, to: { x: 38, y: 4.5 } },
+    ],
+    labels: [
+      { key: "car", objectId: "car", at: { x: 2, y: 0.9 }, placement: "below" },
+      { key: "gap", objectId: "gap", at: { x: 8, y: 1.5 }, placement: "above" },
+      { key: "lorry", objectId: "lorry", at: { x: 20, y: 0.6 }, placement: "below" },
+      { key: "both", objectId: "both", at: { x: 31.5, y: 1.5 }, placement: "above" },
+      { key: "oncoming", objectId: "oncoming", at: { x: 46, y: 5.1 }, placement: "above" },
+      { key: "back", objectId: "back", at: { x: 40.5, y: 4.5 }, placement: "below" },
+    ],
+  }}
+/>
+
+Berapa lamakah masa untuk memotong, berapa jauhkah kereta yang memotong itu bergerak di sepanjang jalan dalam masa itu, dan berapakah jarak paling kecil antara bahagian hadapan kedua-dua kereta pada permulaan supaya mereka tidak bertemu sebelum kereta yang memotong kembali ke lorongnya?

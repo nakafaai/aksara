@@ -1,0 +1,29 @@
+# Halbe Windungszahl, doppelt so steif
+
+Zieh an einer langen Kette aus Büroklammern, und jedes Glied öffnet sich ein wenig, also dehnt sich eine halb so lange Kette unter demselben Zug nur halb so weit. Die Windungen einer Feder verhalten sich wie diese Glieder. Unter einer bestimmten Last dehnt sich jede Windung gleich weit, also dehnt sich eine halbe Feder mit der halben Zahl von Windungen nur halb so weit wie die ganze. Halbe Verlängerung bei gleicher Kraft heißt doppelte Federkonstante, und <InlineMath math="4{,}0\text{ N}" /> pro Zentimeter sind <InlineMath math="400\text{ N m}^{-1}" />, also hat jede Hälfte <InlineMath math="800\text{ N m}^{-1}" />. Nebeneinander trägt jede Hälfte nur die halbe Last, also braucht das Paar für dieselbe Dehnung doppelt so viel Kraft wie eine Hälfte. **Zusammen haben die Hälften die Federkonstante <InlineMath math="1600\text{ N m}^{-1}" />**.
+
+<BlockMath math="\begin{aligned}
+k_1&=2\times400=800\text{ N m}^{-1},\qquad k=800+800=1600\text{ N m}^{-1}\\
+x&=\frac{100}{1600}=0{,}0625\text{ m}=6{,}25\text{ cm}\ \Rightarrow\ 6{,}25\times4{,}0=25\text{ N}
+\end{aligned}" />
+
+Wer jeder Hälfte die alten <InlineMath math="400\text{ N m}^{-1}" /> lässt, erhält für das Paar nur <InlineMath math="800\text{ N m}^{-1}" />, als wäre jedes Stück einer zerschnittenen Feder so weich wie die ganze.
+
+# Eine Waage, die nur noch ein Viertel anzeigt
+
+Eine Personenwaage mit einer heimlich steiferen Feder würde allen schmeicheln, die sich daraufstellen. Die Striche neben dem Zeiger gehen noch von der alten Feder aus, <InlineMath math="4{,}0\text{ N}" /> pro Zentimeter. Der Koffer mit <InlineMath math="100\text{ N}" /> dehnt das steife Paar nur um <InlineMath math="100/1600=0{,}0625\text{ m}=6{,}25\text{ cm}" />. **Der Zeiger bleibt bei <InlineMath math="6{,}25\times4{,}0=25\text{ N}" /> stehen, einem Viertel des wahren Gewichts**. Das weichere Paar mit <InlineMath math="800\text{ N m}^{-1}" /> aus dem Fehler oben würde sich um <InlineMath math="12{,}5\text{ cm}" /> dehnen und <InlineMath math="50\text{ N}" /> anzeigen.
+
+# Die Grenze gehört jeder einzelnen Windung
+
+Bieg eine Büroklammer zu weit auf, und sie bleibt verbogen, egal an welcher Stelle der Kette sie hängt. Die ganze Feder erreicht das Ende des Hookeschen Gesetzes bei <InlineMath math="15\text{ cm}" />, also dann, wenn jede Windung so weit gedehnt ist, wie sie es schadlos aushält. Eine halbe Feder hat halb so viele Windungen und kommt deshalb schon bei <InlineMath math="7{,}5\text{ cm}" /> dort an, und die Kraft auf sie beträgt dann <InlineMath math="800\times0{,}075=60\text{ N}" />, dieselben <InlineMath math="60\text{ N}" />, die auch die ganze Feder an ihre Grenze brachten. **Da sich zwei Hälften die Last teilen, trägt die reparierte Waage <InlineMath math="120\text{ N}" />**, und ihr Zeiger zeigt dabei nur <InlineMath math="30\text{ N}" />, gut innerhalb der Striche. Wer jeder Hälfte die vollen <InlineMath math="15\text{ cm}" /> zugesteht, kommt auf <InlineMath math="240\text{ N}" /> und würde jede Windung überdehnen. Wer glaubt, eine halbe Feder sei schwächer und trage nur <InlineMath math="30\text{ N}" />, kommt auf <InlineMath math="60\text{ N}" />.
+
+<Chart
+  title={<>Kraft gegen Verlängerung vor und nach der Reparatur</>}
+  description={<>Verlängerung in Zentimetern auf der unteren Achse. Die ganze Feder braucht <InlineMath math="4{,}0\text{ N}" /> pro Zentimeter und erreicht ihre Grenze bei <InlineMath math="15\text{ cm}" /> mit <InlineMath math="60\text{ N}" />. Das Paar aus beiden Hälften braucht viermal so viel Kraft pro Zentimeter und erreicht seine Grenze bei <InlineMath math="7{,}5\text{ cm}" /> mit <InlineMath math="120\text{ N}" />.</>}
+  categories={["0", "2,5", "5,0", "7,5", "10", "12,5", "15"]}
+  series={[
+    { label: "Ganze Feder", mark: "line", values: [0, 10, 20, 30, 40, 50, 60] },
+    { label: "Zwei Hälften nebeneinander", mark: "line", values: [0, 40, 80, 120, null, null, null] },
+  ]}
+  valueLabel="Kraft (N)"
+/>

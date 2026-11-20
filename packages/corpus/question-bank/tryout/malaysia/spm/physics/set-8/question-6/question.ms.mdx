@@ -1,0 +1,38 @@
+Sebuah lori bergerak pada <InlineMath math="20\text{ m s}^{-1}" /> dengan sebuah peti yang tidak diikat di atas dek ratanya, <InlineMath math="14\text{ m}" /> di belakang dinding belakang kabin. Dalam satu hentian kecemasan, lori itu mengalami nyahpecutan seragam <InlineMath math="10\text{ m s}^{-2}" /> sehingga ia berhenti. Geseran antara peti dengan dek boleh memperlahankan peti paling banyak <InlineMath math="4.0\text{ m s}^{-2}" />, dan itulah nyahpecutan peti setiap kali ia menggelongsor.
+
+<MathVisual
+  title={<>Peti di atas dek rata lori</>}
+  description={<>Lori bergerak ke kanan. Bahagian hadapan peti berada <InlineMath math="14\text{ m}" /> di belakang dinding belakang kabin. Lukisan ini tidak mengikut skala.</>}
+  labels={{
+    bed: <>dek rata</>,
+    crate: <>peti</>,
+    cab: <>kabin</>,
+    gap: <><InlineMath math="14\text{ m}" /></>,
+    speed: <><InlineMath math="20\text{ m s}^{-1}" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1.5, max: 25.5 }, y: { min: -4, max: 10.5 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "road", kind: "segment", appearance: "reference", from: { x: -1, y: 0 }, to: { x: 25, y: 0 } },
+      { id: "bed", kind: "polygon", appearance: "secondary", vertices: [{ x: 0, y: 1 }, { x: 18, y: 1 }, { x: 18, y: 1.6 }, { x: 0, y: 1.6 }] },
+      { id: "cab", kind: "polygon", appearance: "secondary", vertices: [{ x: 18, y: 1 }, { x: 22, y: 1 }, { x: 22, y: 5 }, { x: 18, y: 5 }] },
+      { id: "crate", kind: "polygon", appearance: "primary", vertices: [{ x: 2, y: 1.6 }, { x: 4, y: 1.6 }, { x: 4, y: 3.4 }, { x: 2, y: 3.4 }] },
+      { id: "wheel-a", kind: "circle", appearance: "reference", center: { x: 3, y: 0.5 }, radius: 0.5 },
+      { id: "wheel-b", kind: "circle", appearance: "reference", center: { x: 15, y: 0.5 }, radius: 0.5 },
+      { id: "wheel-c", kind: "circle", appearance: "reference", center: { x: 20, y: 0.5 }, radius: 0.5 },
+      { id: "gap", kind: "segment", appearance: "construction", from: { x: 4, y: 4.2 }, to: { x: 18, y: 4.2 } },
+      { id: "speed", kind: "vector", appearance: "highlight", from: { x: 19, y: 6 }, to: { x: 23.5, y: 6 } },
+    ],
+    labels: [
+      { key: "bed", objectId: "bed", at: { x: 9, y: 1 }, placement: "below" },
+      { key: "crate", objectId: "crate", at: { x: 3, y: 3.4 }, placement: "above" },
+      { key: "cab", objectId: "cab", at: { x: 20, y: 5 }, placement: "above" },
+      { key: "gap", objectId: "gap", at: { x: 11, y: 4.2 }, placement: "above" },
+      { key: "speed", objectId: "speed", at: { x: 21.25, y: 6 }, placement: "above" },
+    ],
+  }}
+/>
+
+Berapakah jarak yang dilalui lori semasa berhenti, berapa lamakah selepas brek mula ditekan peti itu melanggar kabin, dan berapakah laju peti relatif kepada lori ketika itu?

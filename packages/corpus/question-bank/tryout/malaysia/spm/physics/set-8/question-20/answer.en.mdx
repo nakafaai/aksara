@@ -1,0 +1,52 @@
+# The window narrows the view
+
+A shopping trolley rolling at a slant from smooth tiles onto carpet swings round as one front wheel slows first. Light crossing the window turns in the same way. The camera inside still takes in light up to <InlineMath math="30°" /> in the air, so the edge rays must have come through the water at a smaller angle, with <InlineMath math="1.33\sin r=\sin30°" />. So <InlineMath math="\sin r=0.376" />, and each edge ray in the water runs at <InlineMath math="r=22.1°" /> to straight ahead. **Under water the full field of view is <InlineMath math="2\times22.1°=44°" />**. Leaving out the water keeps <InlineMath math="60°" />, and multiplying by <InlineMath math="1.33" /> instead of dividing widens the view to <InlineMath math="83°" />, the wrong way for light leaving water.
+
+# Closer than it really is
+
+A swimming pool always looks shallower than it is when you look straight down into it. Looking straight out through a flat window works the same way, with distances in the water shrunk by the refractive index. **The fish looks <InlineMath math="2.0/1.33=1.5\text{ m}" /> away**. Ignoring the window leaves it at <InlineMath math="2.0\text{ m}" />, and multiplying by <InlineMath math="1.33" /> pushes it out to <InlineMath math="2.7\text{ m}" />.
+
+# Backing off to fit the wall
+
+To fit a whole class into a photo, you step back until the people at the ends reach the edges of the frame. Each end of the wall sits <InlineMath math="1.5\text{ m}" /> from the middle, and it must lie on an edge line at <InlineMath math="22.1°" /> in the water. **The diver must be <InlineMath math="1.5/\tan22.1°=3.7\text{ m}" /> from the window**. Using the <InlineMath math="30°" /> of the air gives <InlineMath math="2.6\text{ m}" />, close enough that both ends of the wall would fall outside the picture.
+
+<MathVisual
+  title={<>Edge of the picture in the water</>}
+  description={<>Seen from above, distances in metres from the window. In the water the edge lines open at only <InlineMath math="22°" /> from straight ahead, so they reach the ends of a <InlineMath math="3.0\text{ m}" /> wall at <InlineMath math="3.7\text{ m}" />. The dashed lines at <InlineMath math="30°" /> would reach them at <InlineMath math="2.6\text{ m}" />.</>}
+  labels={{
+    wall: <>reef wall, <InlineMath math="3.0\text{ m}" /></>,
+    angle: <><InlineMath math="22°" /></>,
+    dist: <><InlineMath math="3.7\text{ m}" /></>,
+    dry: <>edge in air, <InlineMath math="30°" /></>,
+    window: <>window</>,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1, max: 5.6 }, y: { min: -2.8, max: 2.4 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "window", kind: "segment", appearance: "secondary", from: { x: 0, y: -0.6 }, to: { x: 0, y: 0.6 } },
+      { id: "axis", kind: "segment", appearance: "reference", from: { x: 0, y: 0 }, to: { x: 4.4, y: 0 } },
+      { id: "wall", kind: "segment", appearance: "highlight", from: { x: 3.697, y: -1.5 }, to: { x: 3.697, y: 1.5 } },
+      { id: "ray-up", kind: "segment", appearance: "primary", from: { x: 0, y: 0 }, to: { x: 3.697, y: 1.5 } },
+      { id: "ray-down", kind: "segment", appearance: "primary", from: { x: 0, y: 0 }, to: { x: 3.697, y: -1.5 } },
+      { id: "dry", kind: "segment", appearance: "construction", from: { x: 0, y: 0 }, to: { x: 2.598, y: 1.5 } },
+      { id: "dry-down", kind: "segment", appearance: "construction", from: { x: 0, y: 0 }, to: { x: 2.598, y: -1.5 } },
+      { id: "angle", kind: "arc", appearance: "construction", center: { x: 0, y: 0 }, radius: 1.2, startDegrees: 0, sweepDegrees: 22.08 },
+      { id: "dist", kind: "segment", appearance: "construction", from: { x: 0, y: -2.1 }, to: { x: 3.697, y: -2.1 } },
+    ],
+    labels: [
+      { key: "wall", objectId: "wall", at: { x: 3.697, y: 1.5 }, placement: "above" },
+      { key: "angle", objectId: "angle", at: { x: 1.25, y: 0.25 }, placement: "right" },
+      { key: "dist", objectId: "dist", at: { x: 1.8485, y: -2.1 }, placement: "below" },
+      { key: "dry", objectId: "dry", at: { x: 2.598, y: 1.5 }, placement: "above" },
+      { key: "window", objectId: "window", at: { x: 0, y: -0.6 }, placement: "below" },
+    ],
+  }}
+/>
+
+<BlockMath math="\begin{aligned}
+\sin r&=\frac{\sin30°}{1.33}=0.376\ \Rightarrow\ r=22.1°,\qquad 2r=44°\\
+d'&=\frac{2.0}{1.33}=1.5\text{ m}\\
+d&=\frac{1.5}{\tan22.1°}=3.7\text{ m}
+\end{aligned}" />

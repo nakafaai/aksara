@@ -1,0 +1,36 @@
+# A zero that is not on the line
+
+Each photon pays an electron's way out like a banknote at a ticket booth. Part of it covers a fixed entry fee, the work function, and the change is the electron's kinetic energy. So <InlineMath math="eV_s=hf-\phi" />, and a graph of <InlineMath math="V_s" /> against frequency is a straight line with slope <InlineMath math="h/e" />. A note smaller than the fee buys no ticket and gets no change, so that line only holds for light that frees electrons. With <InlineMath math="750\text{ nm}" /> light no current flows even at zero reverse voltage, which means no electron came out at all. That <InlineMath math="0.00" /> is a shut door, not a point on the line. If you take the two end rows, <InlineMath math="400" /> and <InlineMath math="750\text{ nm}" />, for the widest spread, you count it as one and get <InlineMath math="5.03\times10^{-34}\text{ J s}" />, <InlineMath math="1.26\text{ eV}" /> and <InlineMath math="750\text{ nm}" />. That line predicts <InlineMath math="0.63\text{ V}" /> at <InlineMath math="500\text{ nm}" />, where the meter read <InlineMath math="0.48\text{ V}" />. Only the <InlineMath math="400" /> and <InlineMath math="500\text{ nm}" /> rows fix the line, once their wavelengths become frequencies.
+
+<BlockMath math="\begin{aligned}
+f_1&=\frac{3.0\times10^{8}}{400\times10^{-9}}=7.5\times10^{14}\text{ Hz},\qquad f_2=\frac{3.0\times10^{8}}{500\times10^{-9}}=6.0\times10^{14}\text{ Hz}\\
+h&=e\,\frac{1.10-0.48}{(7.5-6.0)\times10^{14}}=\frac{1.6\times10^{-19}\times0.62}{1.5\times10^{14}}=6.61\times10^{-34}\text{ J s}
+\end{aligned}" />
+
+**These results give <InlineMath math="h=6.61\times10^{-34}\text{ J s}" />**, close to the accepted value.
+
+# Paying the entry fee
+
+Pay a fixed fee from a banknote and the change is what you keep, so the fee is the note minus the change. At <InlineMath math="400\text{ nm}" /> each photon brings <InlineMath math="hf/e=(0.62/1.5\times10^{14})\times7.5\times10^{14}=3.10" /> electronvolts, and the fastest electrons keep <InlineMath math="1.10\text{ eV}" />. **The work function is <InlineMath math="3.10-1.10=2.00\text{ eV}" />**, and the <InlineMath math="500\text{ nm}" /> result agrees, since <InlineMath math="2.48-0.48=2.00" />. Adding the two to get <InlineMath math="4.20\text{ eV}" /> treats the electron's leftover energy as part of the fee, and it then leads to <InlineMath math="295\text{ nm}" />.
+
+# The longest wavelength that still works
+
+A coin worth less than the entry fee buys nothing, however many such coins you bring. Electrons only come out when one photon carries at least <InlineMath math="2.00\text{ eV}" />, so the threshold frequency satisfies <InlineMath math="hf_0=\phi" />.
+
+<BlockMath math="\begin{aligned}
+f_0&=\frac{2.00\times1.6\times10^{-19}}{6.61\times10^{-34}}=4.84\times10^{14}\text{ Hz}\\
+\lambda_0&=\frac{3.0\times10^{8}}{4.84\times10^{14}}=6.20\times10^{-7}\text{ m}=620\text{ nm}
+\end{aligned}" />
+
+**Light of wavelength longer than <InlineMath math="620\text{ nm}" /> releases no electrons**. The <InlineMath math="750\text{ nm}" /> row now makes sense, since each of its photons carries only <InlineMath math="4.13\times10^{-15}\times4.0\times10^{14}=1.65\text{ eV}" />. Drawing a straight line of <InlineMath math="V_s" /> against wavelength through the <InlineMath math="400" /> and <InlineMath math="500\text{ nm}" /> results reaches zero at <InlineMath math="577\text{ nm}" />, but the stopping potential is straight only against frequency, which goes as <InlineMath math="1/\lambda" />.
+
+<Chart
+  title={<>Stopping potential against frequency</>}
+  description={<>Frequency in units of <InlineMath math="10^{14}\text{ Hz}" /> along the bottom. The three rows sit at <InlineMath math="4.0" />, <InlineMath math="6.0" /> and <InlineMath math="7.5" />. The stopping potential stays at zero up to the threshold at <InlineMath math="4.84" />, then climbs along a line of slope <InlineMath math="h/e" /> through the <InlineMath math="500" /> and <InlineMath math="400\text{ nm}" /> results. The line drawn from the <InlineMath math="750\text{ nm}" /> zero to the <InlineMath math="400\text{ nm}" /> result passes above the <InlineMath math="500\text{ nm}" /> result.</>}
+  categories={["4.0", "4.5", "5.0", "5.5", "6.0", "6.5", "7.0", "7.5"]}
+  series={[
+    { label: "Stopping potential", mark: "line", values: [0, 0, 0.067, 0.273, 0.48, 0.687, 0.893, 1.1] },
+    { label: "Line through the two end rows", mark: "line", values: [0.0, 0.157, 0.314, 0.471, 0.629, 0.786, 0.943, 1.1] },
+  ]}
+  valueLabel="Stopping potential (V)"
+/>

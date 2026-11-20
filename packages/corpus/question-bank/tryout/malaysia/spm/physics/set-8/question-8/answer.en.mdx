@@ -1,0 +1,27 @@
+# Gravity has a second job here
+
+On a merry-go-round you have to hold on, because something must keep pulling you towards the middle to bend your path into a circle. At the equator the visitor rides a giant merry-go-round, and gravity does that pulling. The spin rate is <InlineMath math="\omega=2\pi/10800=5.81\times10^{-4}\text{ rad s}^{-1}" />, and the circle needs <InlineMath math="\omega^2R=1.69\text{ m s}^{-2}" /> of the <InlineMath math="8.0\text{ m s}^{-2}" />. **Only the rest presses the visitor onto the scale, so it reads <InlineMath math="60\times(8.0-1.69)=379\text{ N}" />, about <InlineMath math="380\text{ N}" />**. Adding the <InlineMath math="1.69" /> instead gives <InlineMath math="580\text{ N}" />, as if the spin pushed the visitor down, and ignoring the spin gives <InlineMath math="480\text{ N}" />.
+
+# The pendulum feels the same weaker pull
+
+When a lift starts to go down, you feel lighter for a moment, and a swing hanging in that lift would sway more slowly. The pendulum hangs in the same spinning place as the scale, so it swings under the same left-over pull, <InlineMath math="g'=8.0-1.69=6.31\text{ m s}^{-2}" />. **Its period is <InlineMath math="T=2\pi\sqrt{L/g'}=2\times3.14\times\sqrt{0.80/6.31}=2.2\text{ s}" />**. With the full <InlineMath math="8.0\text{ m s}^{-2}" /> it would be <InlineMath math="2.0\text{ s}" />, and with <InlineMath math="9.69\text{ m s}^{-2}" /> it would be <InlineMath math="1.8\text{ s}" />.
+
+<Chart
+  title={<>Scale reading at the equator against the length of the day</>}
+  description={<>The reading for the <InlineMath math="60\text{ kg}" /> visitor if the planet spun with each day length. A <InlineMath math="3.0\text{ h}" /> day gives <InlineMath math="379\text{ N}" />. A very slow spin gives nearly the full <InlineMath math="480\text{ N}" />, and at a <InlineMath math="1.38\text{ h}" /> day the reading reaches zero.</>}
+  categories={["1.379 h", "2 h", "3 h", "6 h", "12 h", "24 h"]}
+  series={[
+    { label: "Scale reading", mark: "line", values: [0.0, 251.8, 378.6, 454.6, 473.7, 478.4] },
+  ]}
+  valueLabel="Reading (N)"
+/>
+
+# Spin fast enough to float
+
+Swing a bucket of water fast enough and the water stays in even at the top, because gravity is used up bending its path. The visitor floats when all of gravity is needed for the circle, <InlineMath math="\omega^2R=g" />. **That gives <InlineMath math="\omega=\sqrt{8.0/(5.0\times10^{6})}=1.26\times10^{-3}\text{ rad s}^{-1}" /> and a day of <InlineMath math="2\pi/\omega=4.97\times10^{3}\text{ s}=1.4\text{ h}" />**. Stopping at <InlineMath math="1/\omega=791\text{ s}=0.22\text{ h}" /> forgets that one turn is <InlineMath math="2\pi" /> radians.
+
+<BlockMath math="\begin{aligned}
+\omega^2R&=\left(\frac{2\times3.14}{10800}\right)^2\times5.0\times10^{6}=1.69\text{ m s}^{-2}\\
+N&=60\times(8.0-1.69)=3.8\times10^{2}\text{ N},\qquad T=2\pi\sqrt{\frac{0.80}{6.31}}=2.2\text{ s}\\
+\omega^2R&=g\ \Rightarrow\ \frac{2\pi}{\omega}=2\times3.14\times\sqrt{\frac{5.0\times10^{6}}{8.0}}=4.97\times10^{3}\text{ s}=1.4\text{ h}
+\end{aligned}" />

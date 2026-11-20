@@ -1,0 +1,28 @@
+# Hitung udaranya, bukan dorongannya
+
+Bayangkan toples yang sudah berisi beberapa permen. Untuk membuatnya penuh, kamu hanya menambah yang masih kurang. Pada suhu tetap, hasil kali <InlineMath math="pV" /> menghitung banyaknya udara, jadi bola mulai dengan <InlineMath math="100\times5{,}0=500\text{ kPa L}" /> dan harus berakhir dengan <InlineMath math="160\times5{,}0=800\text{ kPa L}" />. Satu langkah pompa membawa <InlineMath math="100\times0{,}20=20\text{ kPa L}" />, yang menaikkan tekanan bola <InlineMath math="4\text{ kPa}" />. **Pompa harus memasok <InlineMath math="300\text{ kPa L}" />, jadi dibutuhkan <InlineMath math="15" /> langkah**. Melupakan udara yang sudah ada di dalam memberi <InlineMath math="800/20=40" /> langkah, seakan-akan bola mulai dalam keadaan kosong.
+
+# Langkah terakhir dimulai dengan pemampatan
+
+Gerbang dengan pegas kuat tetap tertutup sampai kamu mendorongnya lebih kuat daripada pegas itu. Katup itulah gerbangnya. Setelah <InlineMath math="14" /> langkah, bola berada pada <InlineMath math="100+14\times4=156\text{ kPa}" />, jadi udara di tabung pompa harus dimampatkan dulu dari <InlineMath math="100" /> ke <InlineMath math="156\text{ kPa}" />. Menurut hukum Boyle, kolom udaranya memendek menjadi <InlineMath math="30\times100/156=19{,}2\text{ cm}" />. **Piston sudah bergerak <InlineMath math="10{,}8\text{ cm}" /> sebelum udara pertama masuk ke bola**. Angka <InlineMath math="19{,}2\text{ cm}" /> adalah panjang udara yang masih tersisa di tabung saat itu, bukan jarak tempuh piston.
+
+<BlockMath math="\begin{aligned}
+n&=\frac{(160-100)\times5{,}0}{100\times0{,}20}=\frac{300}{20}=15\\
+\ell&=30\times\frac{100}{156}=19{,}2\text{ cm},\qquad 30-19{,}2=10{,}8\text{ cm}
+\end{aligned}" />
+
+# Di lapangan yang dingin
+
+Balon yang dibawa dari ruangan hangat ke dalam mobil yang dingin menjadi agak kempis. Dengan volume tetap, tekanan bola mengikuti suhu kelvinnya, <InlineMath math="160\times270/300=144\text{ kPa}" />. Memasukkan <InlineMath math="27" /> dan <InlineMath math="-3" /> dalam derajat Celsius ke perbandingan itu bahkan membuat tekanannya negatif. Pompa sekarang mengisap udara yang lebih tipis, jadi tiap langkah hanya membawa <InlineMath math="90\times0{,}20=18\text{ kPa L}" />, kenaikan <InlineMath math="3{,}6\text{ kPa}" />. **Empat langkah hanya mencapai <InlineMath math="158{,}4\text{ kPa}" />, jadi bola butuh <InlineMath math="5" /> langkah**. Tetap memakai <InlineMath math="100\text{ kPa}" /> untuk udara pompa memberi tepat <InlineMath math="4" /> langkah, padahal udara di bukit tidak bisa mengisi tabung sepadat itu.
+
+<Chart
+  title={<>Tekanan bola di lapangan bukit, langkah demi langkah</>}
+  description={<>Langkah pompa di sumbu bawah, dari nol sampai lima. Dengan udara bukit yang tipis tiap langkah menambah <InlineMath math="3{,}6\text{ kPa}" />, jadi bola baru melewati target <InlineMath math="160\text{ kPa}" /> pada langkah kelima. Udara pompa yang dianggap <InlineMath math="100\text{ kPa}" /> akan mencapainya satu langkah lebih cepat.</>}
+  categories={["0", "1", "2", "3", "4", "5"]}
+  series={[
+    { label: "Udara bukit 90 kPa", mark: "line", values: [144, 147.6, 151.2, 154.8, 158.4, 162] },
+    { label: "Udara pompa dianggap 100 kPa", mark: "line", values: [144, 148, 152, 156, 160, 164] },
+    { label: "Target", mark: "line", values: [160, 160, 160, 160, 160, 160] },
+  ]}
+  valueLabel="Tekanan (kPa)"
+/>

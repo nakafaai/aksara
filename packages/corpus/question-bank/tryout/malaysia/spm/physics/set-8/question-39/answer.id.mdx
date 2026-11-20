@@ -1,0 +1,30 @@
+# Dua jalan keluar dari tubuh
+
+Kolam karet anak yang sedikit bocor lebih cepat kosong di hari yang terik, karena matahari ikut mengeringkannya. Dalam <InlineMath math="24" /> hari, peluruhan saja membuat iodin tinggal separuh sebanyak tiga kali, faktor <InlineMath math="\tfrac18" />, dan urine membuat sisanya tinggal separuh sekali lagi. Bersama-sama nilainya <InlineMath math="\tfrac18\times\tfrac12=\tfrac1{16}" />, yaitu empat kali separuh dalam <InlineMath math="24" /> hari. **Aktivitas di dalam tubuh tinggal separuh tiap <InlineMath math="6{,}0" /> hari**. Tetap memakai <InlineMath math="8{,}0" /> hari hanya menghitung peluruhan, seakan-akan tidak ada yang keluar dari tubuh, dan kekeliruan itu berlanjut ke <InlineMath math="32" /> hari dan tangki yang kosong.
+
+# Menghitung separuh demi separuh sampai batas
+
+Lipat selembar kertas menjadi dua sebanyak empat kali, maka kertas itu enam belas kali lebih kecil. Aktivitas di tubuh harus turun dari <InlineMath math="1600\text{ MBq}" /> ke <InlineMath math="100\text{ MBq}" />, melewati <InlineMath math="800" />, <InlineMath math="400" />, dan <InlineMath math="200\text{ MBq}" />.
+
+<BlockMath math="\begin{aligned}
+1600\times\left(\frac{1}{2}\right)^{n}&=100\ \Rightarrow\ 2^{n}=16,\quad n=4\\
+t&=4\times6{,}0=24
+\end{aligned}" />
+
+**Pasien boleh pulang <InlineMath math="24" /> hari setelah dosis**, tepat saat empat kali paruh <InlineMath math="6{,}0" /> hari sudah lewat.
+
+# Tangki itu masih radioaktif
+
+Keluar dari tubuh tidak mematikan iodin, sama seperti memindahkan lilin ke ruangan lain tidak memadamkan apinya. Setiap inti iodin-131 meluruh dengan waktu paruh <InlineMath math="8{,}0" /> hari yang sama di mana pun ia berada, jadi seluruh iodin bersama-sama tinggal <InlineMath math="1600\times\tfrac18=200\text{ MBq}" /> pada hari ke-<InlineMath math="24" />. Tubuh menyimpan <InlineMath math="100\text{ MBq}" /> darinya. **Tangki penampung punya aktivitas <InlineMath math="100\text{ MBq}" />**, sama besar dengan yang dibawa pulang pasien. Jawaban <InlineMath math="1{,}50\text{ GBq}" /> mengurangkan <InlineMath math="100\text{ MBq}" /> di tubuh dari dosis awal, seakan-akan iodin di tangki berhenti meluruh. Jawaban <InlineMath math="200\text{ MBq}" /> menaruh seluruh iodin yang tersisa di tangki dan lupa separuh yang masih ada di tubuh pasien.
+
+<Chart
+  title={<>Iodin-131 di tubuh, di tangki, dan seluruhnya</>}
+  description={<>Hari setelah dosis di sumbu bawah. Aktivitas di tubuh berkurang separuh tiap <InlineMath math="6{,}0" /> hari dan mencapai <InlineMath math="100\text{ MBq}" /> pada hari ke-<InlineMath math="24" />. Seluruh iodin bersama-sama hanya berkurang separuh tiap <InlineMath math="8{,}0" /> hari, jadi pada hari itu jumlahnya masih <InlineMath math="200\text{ MBq}" />, dan separuh lainnya ada di tangki.</>}
+  categories={["0", "6", "12", "18", "24", "30"]}
+  series={[
+    { label: "Di dalam tubuh", mark: "line", values: [1600, 800, 400, 200, 100, 50] },
+    { label: "Seluruh iodin", mark: "line", values: [1600, 951, 566, 336, 200, 119] },
+    { label: "Di tangki penampung", mark: "line", values: [0, 151, 166, 136, 100, 69] },
+  ]}
+  valueLabel="Aktivitas (MBq)"
+/>

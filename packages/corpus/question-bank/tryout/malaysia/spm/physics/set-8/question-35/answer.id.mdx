@@ -1,0 +1,30 @@
+# Tebak dulu, lalu uji tebakannya
+
+Dua tangki air hujan mengisi satu bak taman lewat katup satu arah, dan katup dari tangki yang lebih rendah baru terbuka kalau permukaan air di bak turun di bawah tangki itu. Karena <InlineMath math="9{,}0\text{ V}" /> lebih tinggi daripada <InlineMath math="7{,}5\text{ V}" />, rasanya wajar membiarkan adaptor bekerja sendirian. Maka arusnya <InlineMath math="(9{,}0-0{,}70)/(10+40)=0{,}166\text{ A}" />, dan panel berada di <InlineMath math="0{,}166\times40=6{,}64\text{ V}" />. Namun <InlineMath math="D_2" /> terbias maju setiap kali panel di bawah <InlineMath math="7{,}5-0{,}70=6{,}80\text{ V}" />, dan <InlineMath math="6{,}64\text{ V}" /> ada di bawah nilai itu. **Baterai tidak bisa tetap menganggur**, jadi <InlineMath math="0{,}166\text{ A}" /> dengan <InlineMath math="0\text{ A}" /> dari baterai hanyalah tebakan, bukan jawaban. Hambatan <InlineMath math="10\,\Omega" /> milik adaptor membuang cukup banyak tegangan sehingga sumber yang lebih rendah ikut masuk.
+
+# Baterai menopang tegangan panel
+
+Bangku kecil di bawah rak yang melengkung ikut menanggung beban begitu rak turun menyentuhnya, dan rak tidak turun lagi. Saat <InlineMath math="D_2" /> menghantar, panel tertahan di <InlineMath math="7{,}5\text{ V}" /> baterai dikurangi <InlineMath math="0{,}70\text{ V}" /> diodenya. Hukum Ohm memberi arus panel, dan arus adaptor didapat dari tegangan yang tersisa di <InlineMath math="10\,\Omega" /> miliknya sendiri.
+
+<BlockMath math="\begin{aligned}
+I&=\frac{6{,}80}{40}=0{,}170\text{ A}\\
+I_1&=\frac{9{,}0-0{,}70-6{,}80}{10}=0{,}150\text{ A},\qquad I_2=0{,}170-0{,}150=0{,}0200\text{ A}
+\end{aligned}" />
+
+**Panel menarik <InlineMath math="0{,}170\text{ A}" />, dan baterai menyumbang <InlineMath math="0{,}0200\text{ A}" /> darinya**. Melupakan <InlineMath math="0{,}70\text{ V}" /> pada <InlineMath math="D_2" /> menaruh <InlineMath math="7{,}5\text{ V}" /> penuh di panel dan memberi <InlineMath math="0{,}188\text{ A}" />, <InlineMath math="0{,}108\text{ A}" />, dan <InlineMath math="0{,}0800\text{ A}" />, seakan-akan dioda baterai tidak memakan tegangan sama sekali.
+
+# Seberapa jauh adaptor sanggup sendirian
+
+Pesepeda yang mulai lelah hanya tetap di depan pejalan kaki yang berjalan tenang selama lajunya masih di atas laju pejalan kaki itu. Adaptor menahan panel di <InlineMath math="8{,}30-10I" /> volt, dan baterai tetap diam hanya selama nilai itu paling sedikit <InlineMath math="6{,}80\text{ V}" />. Syaratnya <InlineMath math="10I\le1{,}50" />. **Panel yang menarik sampai <InlineMath math="0{,}150\text{ A}" /> akan berjalan dengan adaptor saja**. Dua tegangan dioda saling menghapus di sini, jadi batasnya cukup <InlineMath math="(9{,}0-7{,}5)/10" />. Melupakan <InlineMath math="D_1" /> dan menghitung dari <InlineMath math="9{,}0-6{,}80" /> memberi <InlineMath math="0{,}220\text{ A}" />, yang membuang dioda adaptor dari jalurnya sendiri.
+
+<Chart
+  title={<>Tegangan yang sanggup dijaga tiap jalur di panel</>}
+  description={<>Arus panel dalam ampere di sumbu bawah. Garis adaptor turun saat arusnya membesar, garis baterai tetap di <InlineMath math="6{,}80\text{ V}" />, dan garis panel sendiri naik. Garis adaptor bertemu garis panel di <InlineMath math="6{,}64\text{ V}" />, di bawah tingkat baterai, jadi baterai ikut menyumbang dan panel berada di <InlineMath math="6{,}80\text{ V}" />. Adaptor sanggup sendirian hanya di kiri <InlineMath math="0{,}150\text{ A}" />.</>}
+  categories={["0,00", "0,05", "0,10", "0,15", "0,20", "0,25"]}
+  series={[
+    { label: "Adaptor lewat diodenya", mark: "line", values: [8.3, 7.8, 7.3, 6.8, 6.3, 5.8] },
+    { label: "Baterai lewat diodenya", mark: "line", values: [6.8, 6.8, 6.8, 6.8, 6.8, 6.8] },
+    { label: "Tegangan yang dibutuhkan panel", mark: "line", values: [0.0, 2.0, 4.0, 6.0, 8.0, 10.0] },
+  ]}
+  valueLabel="Tegangan (V)"
+/>

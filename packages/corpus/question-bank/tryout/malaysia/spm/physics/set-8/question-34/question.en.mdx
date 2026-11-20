@@ -1,0 +1,38 @@
+An aluminium ring rests on top of a coil, around a vertical iron rod that passes through the coil. The coil is connected through a switch to a d.c. supply. In a first trial, when the switch is closed, the magnetic flux through the ring rises steadily from zero to <InlineMath math="3.0\times10^{-4}\text{ Wb}" /> in <InlineMath math="15\text{ ms}" /> and then stays steady. The average e.m.f. induced around a loop equals the change in the magnetic flux through it divided by the time the change takes. The ring has a mean radius of <InlineMath math="2.5\text{ cm}" />, a cross-sectional area of <InlineMath math="8.0\text{ mm}^2" /> and a mass of <InlineMath math="3.4\text{ g}" />, and aluminium has a resistivity of <InlineMath math="2.8\times10^{-8}\,\Omega\text{ m}" />. While the flux rises, the coil pushes the ring upwards with a force of <InlineMath math="2.5\text{ mN}" /> for every ampere of current in the ring. In a second trial, a resistor added in series with the coil makes the flux rise steadily to the same <InlineMath math="3.0\times10^{-4}\text{ Wb}" /> in <InlineMath math="60\text{ ms}" />. Take <InlineMath math="g=10\text{ m s}^{-2}" />, and ignore the effect of the ring's own current on the flux.
+
+<MathVisual
+  title={<>The ring on the coil</>}
+  description={<>The aluminium ring rests on the coil around the iron rod. The coil is joined to the d.c. supply through a switch, shown open. The drawing is not to scale.</>}
+  labels={{
+    rod: <>iron rod</>,
+    coil: <>coil</>,
+    ring: <>aluminium ring</>,
+    switch: <>switch</>,
+    supply: <>d.c. supply</>,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -7.6, max: 7.2 }, y: { min: -0.6, max: 8.8 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "rod", kind: "polygon", appearance: "reference", vertices: [{ x: -0.4, y: 0 }, { x: 0.4, y: 0 }, { x: 0.4, y: 8 }, { x: -0.4, y: 8 }] },
+      { id: "coil", kind: "polygon", appearance: "secondary", vertices: [{ x: -1.6, y: 0.6 }, { x: 1.6, y: 0.6 }, { x: 1.6, y: 3.6 }, { x: -1.6, y: 3.6 }] },
+      { id: "ring", kind: "polygon", appearance: "primary", vertices: [{ x: -1.4, y: 3.6 }, { x: 1.4, y: 3.6 }, { x: 1.4, y: 4 }, { x: -1.4, y: 4 }] },
+      { id: "lead-a", kind: "segment", appearance: "secondary", from: { x: -1.6, y: 1.2 }, to: { x: -5.2, y: 1.2 } },
+      { id: "lead-b", kind: "segment", appearance: "secondary", from: { x: -1.6, y: 3 }, to: { x: -4.6, y: 3 } },
+      { id: "switch", kind: "segment", appearance: "highlight", from: { x: -4.6, y: 3 }, to: { x: -5.6, y: 3.7 } },
+      { id: "contact", kind: "point", appearance: "secondary", at: { x: -5.8, y: 3 } },
+      { id: "drop", kind: "segment", appearance: "secondary", from: { x: -5.8, y: 3 }, to: { x: -5.8, y: 2.4 } },
+      { id: "supply", kind: "polygon", appearance: "secondary", vertices: [{ x: -6.6, y: 1.2 }, { x: -5, y: 1.2 }, { x: -5, y: 2.4 }, { x: -6.6, y: 2.4 }] },
+    ],
+    labels: [
+      { key: "rod", objectId: "rod", at: { x: 0, y: 8 }, placement: "above" },
+      { key: "coil", objectId: "coil", at: { x: 1.6, y: 2.1 }, placement: "right" },
+      { key: "ring", objectId: "ring", at: { x: 1.4, y: 3.8 }, placement: "right" },
+      { key: "switch", objectId: "switch", at: { x: -5.1, y: 3.4 }, placement: "above" },
+      { key: "supply", objectId: "supply", at: { x: -5.8, y: 1.2 }, placement: "below" },
+    ],
+  }}
+/>
+
+What average current flows in the ring in the first trial, how much charge flows round the ring while the flux rises in the second trial, and does the ring leave the coil in the second trial?

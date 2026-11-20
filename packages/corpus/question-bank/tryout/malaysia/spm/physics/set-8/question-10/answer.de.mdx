@@ -1,0 +1,28 @@
+# Eine Heizung mit eingebautem Ausschalter
+
+Ein Bügeleisen klickt von selbst aus, sobald es heiß genug ist. Der Handwärmer hat diesen Schalter in seiner Chemie: Über <InlineMath math="54\text{ °C}" /> schmelzen die Kristalle wieder, also kann die Kristallisation das Kissen nicht heißer machen. Das ganze Kissen von <InlineMath math="20" /> auf <InlineMath math="54\text{ °C}" /> zu erwärmen kostet <InlineMath math="mc\Delta\theta=0{,}10\times2600\times34=8840\text{ J}" />, und eine vollständige Kristallisation würde <InlineMath math="0{,}10\times2{,}6\times10^{5}=26000\text{ J}" /> freisetzen. **Also kristallisiert beim Klick nur <InlineMath math="8840/26000=0{,}34" /> des Kissens, das sind <InlineMath math="34\%" />**. Würde alles auf einmal kristallisieren, müsste das Kissen <InlineMath math="20+26000/260=120\text{ °C}" /> erreichen, was der eingebaute Schalter verbietet.
+
+# Lange auf gleicher Temperatur
+
+Ein Eiswürfel hält ein Getränk auf <InlineMath math="0\text{ °C}" />, bis sein letztes Stück geschmolzen ist. Hier hält die Kristallisation das Kissen auf <InlineMath math="54\text{ °C}" />, bis der letzte Tropfen Flüssigkeit fest geworden ist. **Die übrige Flüssigkeit, <InlineMath math="66\%" /> des Kissens, steckt noch <InlineMath math="0{,}66\times26000=17160\text{ J}" />**, und bei <InlineMath math="5{,}0\text{ W}" /> reicht das <InlineMath math="17160/5{,}0=3432\text{ s}" />, etwa <InlineMath math="57\text{ min}" />. Wer die vollen <InlineMath math="26000\text{ J}" /> durch <InlineMath math="5{,}0\text{ W}" /> teilt, kommt auf <InlineMath math="87\text{ min}" />, aber die ersten <InlineMath math="34\%" /> sind schon fürs Aufwärmen verbraucht.
+
+<Chart
+  title={<>Wohin die Kristallisationswärme geht</>}
+  description={<>Energien in Kilojoule. Die ersten <InlineMath math="34\%" />, die kristallisieren, wärmen nur das Kissen. Die übrigen <InlineMath math="66\%" /> wärmen die Hände bei <InlineMath math="54\text{ °C}" />, und die Aufwärmwärme kommt beim Abkühlen zu den Händen zurück. Der letzte Balken ist alles, was die Hände bekommen.</>}
+  bars="apart"
+  categories={["Aufwärmen auf 54 °C", "Halten bei 54 °C", "Abkühlen auf 20 °C", "Gesamt an die Hände"]}
+  series={[
+    { label: "Energie", mark: "bar", values: [8.84, 17.16, 8.84, 26.0] },
+  ]}
+  valueLabel="Energie (kJ)"
+/>
+
+# Was hinausgeht, kommt zurück
+
+Geh aus der Haustür, steig auf einen Hügel, komm wieder herunter und geh hinein, und deine Höhe hat sich überhaupt nicht verändert. Das Kissen beginnt bei <InlineMath math="20\text{ °C}" /> und endet bei <InlineMath math="20\text{ °C}" />, also bleibt keine der freigesetzten Wärme darin. **Die Hände bekommen <InlineMath math="17160+8840=26000\text{ J}=26\text{ kJ}" />, genau die Kristallisationswärme der ganzen <InlineMath math="0{,}10\text{ kg}" />**. Wer nur die <InlineMath math="8{,}8\text{ kJ}" /> des Aufwärmens zählt, übersieht die lange mittlere Phase. Wer die vollen <InlineMath math="26\text{ kJ}" /> zu den <InlineMath math="8{,}8\text{ kJ}" /> des Abkühlens addiert, zählt das Aufwärmen doppelt und erhält <InlineMath math="35\text{ kJ}" />.
+
+<BlockMath math="\begin{aligned}
+f\times0{,}10\times2{,}6\times10^{5}&=0{,}10\times2600\times(54-20)=8840\text{ J}\ \Rightarrow\ f=0{,}34\\
+t&=\frac{0{,}66\times0{,}10\times2{,}6\times10^{5}}{5{,}0}=3432\text{ s}=57\text{ min}\\
+Q&=17160+8840=26000\text{ J}=0{,}10\times2{,}6\times10^{5}\text{ J}
+\end{aligned}" />

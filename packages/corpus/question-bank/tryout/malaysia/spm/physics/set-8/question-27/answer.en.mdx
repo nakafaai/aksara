@@ -1,0 +1,36 @@
+# The outlet speed comes from the drop
+
+A roller coaster car that rolls over a hump and then dives reaches the bottom with a speed set by how far below its start it ends up, not by the humps on the way. Both the tank's surface and the outlet are open to the air, so the pressure terms cancel, and the water leaves as if it had fallen <InlineMath math="2.0\text{ m}" />, with <InlineMath math="\tfrac12\rho v^2=\rho g\times2.0" />. **The water leaves the outlet at <InlineMath math="v=\sqrt{2\times10\times2.0}=6.32\text{ m s}^{-1}" />**. The <InlineMath math="3.0\text{ m}" /> climb over the wall does not change this speed, because the water gets that height back on the way down.
+
+# At the top, height and speed share the budget
+
+Picture the <InlineMath math="100\text{ kPa}" /> at the still surface as pocket money for the trip. The water spends <InlineMath math="\rho gh=30\text{ kPa}" /> climbing <InlineMath math="3.0\text{ m}" />, and because the hose has the same bore everywhere, the same volume passes each point every second, so the water at the top already moves at <InlineMath math="6.32\text{ m s}^{-1}" /> and has spent <InlineMath math="\tfrac12\rho v^2=20\text{ kPa}" /> on speed. **What is left is a pressure of <InlineMath math="50\text{ kPa}" /> at the top of the wall**.
+
+<BlockMath math="\begin{aligned}
+p&=1.0\times10^{5}-1000\times10\times3.0-\tfrac12\times1000\times40\\
+&=100000-30000-20000=50000\text{ Pa}
+\end{aligned}" />
+
+Leaving out the speed term gives <InlineMath math="70\text{ kPa}" />, as if the water sat still at the top. Measuring the height from the outlet, <InlineMath math="5.0\text{ m}" />, gives <InlineMath math="30\text{ kPa}" />, but the budget starts at the tank's surface, so heights count from there.
+
+# A nozzle frees pressure for height
+
+Put your thumb over the end of a garden hose and the jet speeds up, while the water further back in the hose moves gently. The nozzle does not change the outlet speed, which is still set by the <InlineMath math="2.0\text{ m}" /> drop. But the same volume per second now leaves through half the area, so inside the hose the water moves at half that speed, <InlineMath math="3.16\text{ m s}^{-1}" />, and the speed share at the top falls to a quarter, <InlineMath math="5\text{ kPa}" />. The siphon fails when the pressure at the top reaches zero.
+
+<BlockMath math="\begin{aligned}
+1.0\times10^{5}-1000\times10\,z-\tfrac12\times1000\times\left(\tfrac{6.32}{2}\right)^2&=0\ \Rightarrow\ z=\frac{100000-5000}{10000}=9.5\text{ m}
+\end{aligned}" />
+
+**With the nozzle, the top of the hose could be <InlineMath math="9.5\text{ m}" /> above the tank's water surface**. Keeping the <InlineMath math="20\text{ kPa}" /> speed share gives only <InlineMath math="8.0\text{ m}" />, which misses that the water inside the hose has slowed down.
+
+<Chart
+  title={<>Sharing atmospheric pressure at the top of the hose</>}
+  description={<>The three parts at the top of the wall always add up to the <InlineMath math="100\text{ kPa}" /> of the still water surface. The nozzle slows the water inside the hose, so the share spent on speed drops from <InlineMath math="20" /> to <InlineMath math="5\text{ kPa}" />, and that spare pressure is what lets the top go higher.</>}
+  bars="apart"
+  categories={["Pressure left in the water", "Spent on height", "Spent on speed"]}
+  series={[
+    { label: "Uniform hose", mark: "bar", values: [50, 30, 20] },
+    { label: "With the nozzle", mark: "bar", values: [65, 30, 5] },
+  ]}
+  valueLabel="Pressure (kPa)"
+/>

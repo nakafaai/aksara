@@ -1,0 +1,28 @@
+# Count the air, not the pushes
+
+Think of a jar that already holds some sweets. To fill it you only add the ones that are missing. At a fixed temperature the product <InlineMath math="pV" /> counts how much air there is, so the ball starts with <InlineMath math="100\times5.0=500\text{ kPa L}" /> and must end with <InlineMath math="160\times5.0=800\text{ kPa L}" />. One stroke brings <InlineMath math="100\times0.20=20\text{ kPa L}" />, which raises the ball by <InlineMath math="4\text{ kPa}" />. **The pump must supply <InlineMath math="300\text{ kPa L}" />, so it takes <InlineMath math="15" /> strokes**. Forgetting the air that was already inside gives <InlineMath math="800/20=40" /> strokes, as if the ball had started empty.
+
+# The last stroke starts with a squeeze
+
+A gate with a strong spring stays shut until you lean on it harder than the spring pushes back. The valve is that gate. After <InlineMath math="14" /> strokes the ball is at <InlineMath math="100+14\times4=156\text{ kPa}" />, so the air in the barrel must first be squeezed from <InlineMath math="100" /> to <InlineMath math="156\text{ kPa}" />. By Boyle's law its column shrinks to <InlineMath math="30\times100/156=19.2\text{ cm}" />. **The plunger has moved <InlineMath math="10.8\text{ cm}" /> before the first air enters the ball**. The <InlineMath math="19.2\text{ cm}" /> is the air still left in the barrel at that moment, not the distance the plunger has travelled.
+
+<BlockMath math="\begin{aligned}
+n&=\frac{(160-100)\times5.0}{100\times0.20}=\frac{300}{20}=15\\
+\ell&=30\times\frac{100}{156}=19.2\text{ cm},\qquad 30-19.2=10.8\text{ cm}
+\end{aligned}" />
+
+# Up on the cold pitch
+
+A balloon carried from a warm room into a cold car turns a little soft. With its volume fixed, the ball's pressure follows its kelvin temperature, <InlineMath math="160\times270/300=144\text{ kPa}" />. Putting <InlineMath math="27" /> and <InlineMath math="-3" /> in degrees Celsius into that ratio would even make the pressure negative. The pump now draws in thinner air, so each stroke brings only <InlineMath math="90\times0.20=18\text{ kPa L}" />, a rise of <InlineMath math="3.6\text{ kPa}" />. **Four strokes reach only <InlineMath math="158.4\text{ kPa}" />, so the ball needs <InlineMath math="5" /> strokes**. Keeping <InlineMath math="100\text{ kPa}" /> for the pump air gives exactly <InlineMath math="4" /> strokes, but the hill air cannot fill the barrel that densely.
+
+<Chart
+  title={<>Ball pressure on the hill pitch, stroke by stroke</>}
+  description={<>Strokes along the bottom, from none to five. With the thin hill air each stroke adds <InlineMath math="3.6\text{ kPa}" />, so the ball first passes the <InlineMath math="160\text{ kPa}" /> target on the fifth stroke. Pump air taken as <InlineMath math="100\text{ kPa}" /> would reach it one stroke sooner.</>}
+  categories={["0", "1", "2", "3", "4", "5"]}
+  series={[
+    { label: "Hill air at 90 kPa", mark: "line", values: [144, 147.6, 151.2, 154.8, 158.4, 162] },
+    { label: "Pump air taken as 100 kPa", mark: "line", values: [144, 148, 152, 156, 160, 164] },
+    { label: "Target", mark: "line", values: [160, 160, 160, 160, 160, 160] },
+  ]}
+  valueLabel="Pressure (kPa)"
+/>

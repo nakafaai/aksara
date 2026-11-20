@@ -1,0 +1,39 @@
+Sebiji bola sepak ditambah angin dengan pam tangan. Anggap bola itu tegar, dengan isi padu <InlineMath math="5.0\text{ L}" />. Pada mulanya ia berisi udara pada <InlineMath math="100\text{ kPa}" /> dan <InlineMath math="27\text{ °C}" />, sama seperti udara di luar. Silinder pam panjangnya <InlineMath math="30\text{ cm}" /> dan memuatkan <InlineMath math="0.20\text{ L}" /> udara luar apabila omboh ditarik habis ke belakang. Pada setiap lejang omboh ditolak sepenuhnya ke dalam, dan sebuah injap hanya membenarkan udara masuk ke dalam bola apabila udara dalam silinder berada pada tekanan yang lebih tinggi daripada udara dalam bola. Hos dan injap tidak menyimpan udara, dan udara kekal pada suhu udara luar semasa dipam. Semua tekanan ialah tekanan mutlak.
+
+<MathVisual
+  title={<>Pam tangan dan bola sepak</>}
+  description={<>Omboh ditarik habis ke belakang, jadi silinder penuh dengan udara luar. Injap terletak pada hos di antara silinder dan bola. Lukisan ini tidak mengikut skala.</>}
+  labels={{
+    barrel: <>silinder, <InlineMath math="0.20\text{ L}" /></>,
+    plunger: <>omboh</>,
+    valve: <>injap</>,
+    ball: <>bola, <InlineMath math="5.0\text{ L}" /></>,
+    length: <><InlineMath math="30\text{ cm}" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -2.5, max: 12 }, y: { min: -3.5, max: 4.5 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "barrel", kind: "polygon", appearance: "secondary", vertices: [{ x: 0, y: 0 }, { x: 6, y: 0 }, { x: 6, y: 1.2 }, { x: 0, y: 1.2 }] },
+      { id: "head", kind: "polygon", appearance: "primary", vertices: [{ x: 0.2, y: 0.05 }, { x: 0.5, y: 0.05 }, { x: 0.5, y: 1.15 }, { x: 0.2, y: 1.15 }] },
+      { id: "rod", kind: "segment", appearance: "secondary", from: { x: -1.6, y: 0.6 }, to: { x: 0.2, y: 0.6 } },
+      { id: "handle", kind: "segment", appearance: "primary", from: { x: -1.6, y: -0.3 }, to: { x: -1.6, y: 1.5 } },
+      { id: "hose", kind: "segment", appearance: "secondary", from: { x: 6, y: 0.6 }, to: { x: 8.6, y: 0.6 } },
+      { id: "valve", kind: "point", appearance: "highlight", at: { x: 7.3, y: 0.6 } },
+      { id: "ball", kind: "circle", appearance: "primary", center: { x: 10, y: 0.6 }, radius: 1.4 },
+      { id: "length", kind: "segment", appearance: "construction", from: { x: 0, y: -0.9 }, to: { x: 6, y: -0.9 } },
+    ],
+    labels: [
+      { key: "barrel", objectId: "barrel", at: { x: 3, y: 1.2 }, placement: "above" },
+      { key: "plunger", objectId: "handle", at: { x: -1.6, y: 1.5 }, placement: "above" },
+      { key: "valve", objectId: "valve", at: { x: 7.3, y: 0.6 }, placement: "above" },
+      { key: "ball", objectId: "ball", at: { x: 10, y: 2 }, placement: "above" },
+      { key: "length", objectId: "length", at: { x: 3, y: -0.9 }, placement: "below" },
+    ],
+  }}
+/>
+
+Bola itu dipam hingga <InlineMath math="160\text{ kPa}" /> dan kemudian dibawa ke sebuah padang yang tinggi di kawasan bukit, dengan udara pada <InlineMath math="90\text{ kPa}" /> dan <InlineMath math="-3\text{ °C}" />. Setelah bola menyejuk ke <InlineMath math="-3\text{ °C}" />, ia dipam semula hingga sekurang-kurangnya <InlineMath math="160\text{ kPa}" /> dengan pam yang sama, yang kini menyedut udara luar di situ.
+
+Berapakah bilangan lejang yang membawa bola ke <InlineMath math="160\text{ kPa}" /> pada mulanya, sejauh manakah omboh bergerak pada lejang terakhir itu sebelum udara masuk ke dalam bola, dan berapakah bilangan lejang paling sedikit yang diperlukan di padang bukit itu?

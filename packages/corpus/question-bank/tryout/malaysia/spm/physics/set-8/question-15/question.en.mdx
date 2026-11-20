@@ -1,0 +1,46 @@
+Waves from the open sea reach a straight breakwater with a gap <InlineMath math="60\text{ m}" /> wide that leads into a harbour. The open sea and the water in the gap have the same depth, and there the waves travel at <InlineMath math="10\text{ m s}^{-1}" />. The harbour behind the gap is shallower, and waves travel there at <InlineMath math="6.0\text{ m s}^{-1}" />. On a calm day the waves have a period of <InlineMath math="3.0\text{ s}" />, and during a storm they have a period of <InlineMath math="9.0\text{ s}" />.
+
+<MathVisual
+  title={<>The breakwater and its gap, seen from above</>}
+  description={<>Straight wave crests from the open sea move towards the breakwater. The harbour lies on the other side of the gap. The drawing is not to scale.</>}
+  labels={{
+    sea: <>open sea</>,
+    harbour: <>harbour</>,
+    wall: <>breakwater</>,
+    gap: <><InlineMath math="60\text{ m}" /></>,
+    travel: <>waves</>,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -6.6, max: 6.6 }, y: { min: -3.4, max: 4.6 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "wall-left", kind: "polygon", appearance: "secondary", vertices: [{ x: -6, y: -0.25 }, { x: -0.6, y: -0.25 }, { x: -0.6, y: 0.25 }, { x: -6, y: 0.25 }] },
+      { id: "wall-right", kind: "polygon", appearance: "secondary", vertices: [{ x: 0.6, y: -0.25 }, { x: 6, y: -0.25 }, { x: 6, y: 0.25 }, { x: 0.6, y: 0.25 }] },
+      { id: "gap", kind: "segment", appearance: "construction", from: { x: -0.6, y: 0 }, to: { x: 0.6, y: 0 } },
+      { id: "crest-1", kind: "segment", appearance: "reference", from: { x: -5.5, y: 1.2 }, to: { x: 5.5, y: 1.2 } },
+      { id: "crest-2", kind: "segment", appearance: "reference", from: { x: -5.5, y: 2 }, to: { x: 5.5, y: 2 } },
+      { id: "crest-3", kind: "segment", appearance: "reference", from: { x: -5.5, y: 2.8 }, to: { x: 5.5, y: 2.8 } },
+      { id: "travel", kind: "vector", appearance: "primary", from: { x: 4.6, y: 3.8 }, to: { x: 4.6, y: 1.6 } },
+      { id: "sea", kind: "point", appearance: "reference", at: { x: -3.5, y: 3.6 } },
+      { id: "harbour", kind: "point", appearance: "reference", at: { x: 0, y: -2.4 } },
+    ],
+    labels: [
+      { key: "sea", objectId: "sea", at: { x: -3.5, y: 3.6 }, placement: "above" },
+      { key: "harbour", objectId: "harbour", at: { x: 0, y: -2.4 }, placement: "below" },
+      { key: "wall", objectId: "wall-left", at: { x: -3.3, y: -0.25 }, placement: "below" },
+      { key: "gap", objectId: "gap", at: { x: 0, y: -0.25 }, placement: "below" },
+      { key: "travel", objectId: "travel", at: { x: 4.6, y: 3.3 }, placement: "right" },
+    ],
+  }}
+/>
+
+Which of the following statements are correct?
+
+I. The storm waves spread more widely behind the breakwater than the calm-day waves.
+
+II. Widening the gap to <InlineMath math="120\text{ m}" /> would make the calm-day waves spread more widely behind the breakwater.
+
+III. Inside the harbour, the storm waves have the same wavelength as in the open sea.
+
+IV. Through a gap <InlineMath math="20\text{ m}" /> wide, the calm-day waves would spread about as widely as the storm waves do through the <InlineMath math="60\text{ m}" /> gap.

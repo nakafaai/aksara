@@ -1,0 +1,30 @@
+# Zwei Wege aus dem Körper
+
+Ein Planschbecken mit einem kleinen Leck ist an einem heißen Tag schneller leer, weil die Sonne es zusätzlich austrocknet. In <InlineMath math="24" /> Tagen halbiert der Zerfall allein das Iod dreimal, also um den Faktor <InlineMath math="\tfrac18" />, und der Urin halbiert den Rest noch einmal. Zusammen ist das <InlineMath math="\tfrac18\times\tfrac12=\tfrac1{16}" />, also vier Halbierungen in <InlineMath math="24" /> Tagen. **Die Aktivität im Körper halbiert sich alle <InlineMath math="6{,}0" /> Tage**. Wer bei <InlineMath math="8{,}0" /> Tagen bleibt, zählt nur den Zerfall, als verließe nichts den Körper, und kommt so auf <InlineMath math="32" /> Tage und einen leeren Tank.
+
+# Halbierungen bis zur Grenze zählen
+
+Falte ein Blatt Papier viermal in der Mitte, und es wird sechzehnmal kleiner. Die Aktivität im Körper muss von <InlineMath math="1600\text{ MBq}" /> auf <InlineMath math="100\text{ MBq}" /> sinken, über <InlineMath math="800" />, <InlineMath math="400" /> und <InlineMath math="200\text{ MBq}" />.
+
+<BlockMath math="\begin{aligned}
+1600\times\left(\frac{1}{2}\right)^{n}&=100\ \Rightarrow\ 2^{n}=16,\quad n=4\\
+t&=4\times6{,}0=24
+\end{aligned}" />
+
+**Der Patient darf <InlineMath math="24" /> Tage nach der Gabe nach Hause**, sobald vier Halbierungen von je <InlineMath math="6{,}0" /> Tagen vorbei sind.
+
+# Der Tank strahlt weiter
+
+Den Körper zu verlassen, schaltet das Iod nicht ab, so wenig wie eine Kerze ausgeht, wenn man sie in ein anderes Zimmer trägt. Jeder Iod-131-Kern zerfällt überall mit derselben Halbwertszeit von <InlineMath math="8{,}0" /> Tagen, also ist das gesamte Iod am Tag <InlineMath math="24" /> auf <InlineMath math="1600\times\tfrac18=200\text{ MBq}" /> gesunken. Davon trägt der Körper <InlineMath math="100\text{ MBq}" />. **Der Sammeltank hat eine Aktivität von <InlineMath math="100\text{ MBq}" />**, genauso viel, wie der Patient mit nach Hause nimmt. Die Antwort <InlineMath math="1{,}50\text{ GBq}" /> zieht die <InlineMath math="100\text{ MBq}" /> im Körper von der ursprünglichen Dosis ab, als hörte das Iod im Tank auf zu zerfallen. Die Antwort <InlineMath math="200\text{ MBq}" /> steckt alles verbliebene Iod in den Tank und vergisst die Hälfte, die noch im Patienten ist.
+
+<Chart
+  title={<>Iod-131 im Körper, im Tank und insgesamt</>}
+  description={<>Tage nach der Gabe auf der unteren Achse. Die Aktivität im Körper halbiert sich alle <InlineMath math="6{,}0" /> Tage und erreicht am Tag <InlineMath math="24" /> den Wert <InlineMath math="100\text{ MBq}" />. Das gesamte Iod halbiert sich nur alle <InlineMath math="8{,}0" /> Tage, also sind an diesem Tag insgesamt noch <InlineMath math="200\text{ MBq}" /> da, und die andere Hälfte liegt im Tank.</>}
+  categories={["0", "6", "12", "18", "24", "30"]}
+  series={[
+    { label: "Im Körper", mark: "line", values: [1600, 800, 400, 200, 100, 50] },
+    { label: "Gesamtes Iod", mark: "line", values: [1600, 951, 566, 336, 200, 119] },
+    { label: "Im Sammeltank", mark: "line", values: [0, 151, 166, 136, 100, 69] },
+  ]}
+  valueLabel="Aktivität (MBq)"
+/>

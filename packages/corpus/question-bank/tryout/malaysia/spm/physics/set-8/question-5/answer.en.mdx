@@ -1,0 +1,27 @@
+# Push air down to stay up
+
+A garden hose kicks back against your hand when water rushes out of it. The drone hovers on that same kick. Each second it throws a mass <InlineMath math="\rho Av" /> of air down at speed <InlineMath math="v" />, so it gives the air momentum <InlineMath math="\rho Av^2" /> every second, and the air pushes back with that force. **Hovering needs <InlineMath math="\rho Av^2=mg=12\text{ N}" />**, so at sea level <InlineMath math="v^2=12/(1.2\times0.20)=50" /> and <InlineMath math="v=7.1\text{ m s}^{-1}" />.
+
+# Thin air costs more power
+
+To knock over a tin can with a ping-pong ball, you have to throw it much faster than a tennis ball, and that fast throw tires your arm more. Thin air is the ping-pong ball. On the plateau the drone must throw the air faster to get the same <InlineMath math="12\text{ N}" />: <InlineMath math="v^2=12/(0.90\times0.20)=66.7" />, so <InlineMath math="v=8.16\text{ m s}^{-1}" />. Kinetic energy grows with the square of the speed, so the faster air carries more of it. **The rate is <InlineMath math="P=\tfrac12(\rho Av)v^2=\tfrac12\times0.90\times0.20\times8.16^3=49\text{ W}" />**, up from <InlineMath math="42\text{ W}" /> at sea level. Keeping <InlineMath math="42\text{ W}" /> misses that cost, and dropping the <InlineMath math="\tfrac12" /> from the kinetic energy doubles the answer to <InlineMath math="98\text{ W}" />.
+
+<Chart
+  title={<>Power the drone gives the air against air density</>}
+  description={<>The rate of giving kinetic energy to the air needed to hold up <InlineMath math="12\text{ N}" />, for air of different densities. Sea level at <InlineMath math="1.2\text{ kg m}^{-3}" /> needs <InlineMath math="42\text{ W}" />, and the plateau at <InlineMath math="0.90\text{ kg m}^{-3}" /> needs <InlineMath math="49\text{ W}" />. Thinner air always costs more.</>}
+  categories={["0.60 kg/m³", "0.75 kg/m³", "0.90 kg/m³", "1.05 kg/m³", "1.20 kg/m³"]}
+  series={[
+    { label: "Power to the air", mark: "line", values: [60.0, 53.7, 49.0, 45.4, 42.4] },
+  ]}
+  valueLabel="Power (W)"
+/>
+
+# How long the battery lasts
+
+If only half of your pocket money reaches the shop and the rest drops out of a hole in your pocket, you can buy only half as much. A full battery holds <InlineMath math="36\text{ Wh}=36\times3600=1.30\times10^{5}\text{ J}" />. **Only half of it, <InlineMath math="6.48\times10^{4}\text{ J}" />, reaches the air**, and the air takes it at <InlineMath math="49\text{ W}" />, so the drone hovers for <InlineMath math="6.48\times10^{4}/49=1.32\times10^{3}\text{ s}" />, about <InlineMath math="22\text{ min}" />. Spending the whole battery on the air gives <InlineMath math="44\text{ min}" />, twice too long.
+
+<BlockMath math="\begin{aligned}
+\rho Av^2&=mg\ \Rightarrow\ v=\sqrt{\frac{12}{1.2\times0.20}}=7.1\text{ m s}^{-1}\\
+P&=\tfrac12(\rho Av)v^2=\tfrac12\times0.90\times0.20\times8.16^3=49\text{ W}\\
+t&=\frac{\tfrac12\times36\times3600}{49}=1.32\times10^{3}\text{ s}=22\text{ min}
+\end{aligned}" />

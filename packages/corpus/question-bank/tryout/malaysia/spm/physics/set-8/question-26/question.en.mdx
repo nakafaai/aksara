@@ -1,0 +1,32 @@
+A workshop has a flat roof <InlineMath math="8.0\text{ m}" /> by <InlineMath math="10\text{ m}" /> with a mass of <InlineMath math="1200\text{ kg}" />. Its fixings can hold it down with a force of at most <InlineMath math="30\text{ kN}" /> in addition to its weight. In a storm, wind blows across the roof. Over the roof the air moves <InlineMath math="1.5" /> times as fast as the wind in the open, and its pressure there is below atmospheric pressure by <InlineMath math="\tfrac12\rho v^2" />, where <InlineMath math="v" /> is the speed of the air over the roof and <InlineMath math="\rho=1.2\text{ kg m}^{-3}" />. With every door and window shut, the air inside stays still at atmospheric pressure. If a window in the wall facing the wind breaks, the wind blowing in brings the air inside to rest and raises its pressure above atmospheric pressure by <InlineMath math="\tfrac12\rho u^2" />, where <InlineMath math="u" /> is the speed of the wind in the open. Take <InlineMath math="g=10\text{ m s}^{-2}" />.
+
+<MathVisual
+  title={<>The workshop in the storm, seen from the side</>}
+  description={<>The wind blows from the left, across the flat roof and against the wall with the window. The drawing is not to scale.</>}
+  labels={{
+    wind: <>wind</>,
+    roof: <>roof, <InlineMath math="1200\text{ kg}" /></>,
+    window: <>window</>,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -6.5, max: 12.5 }, y: { min: -2, max: 8 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "ground", kind: "segment", appearance: "reference", from: { x: -6, y: 0 }, to: { x: 12, y: 0 } },
+      { id: "leftwall", kind: "segment", appearance: "secondary", from: { x: 0, y: 0 }, to: { x: 0, y: 4 } },
+      { id: "rightwall", kind: "segment", appearance: "secondary", from: { x: 10, y: 0 }, to: { x: 10, y: 4 } },
+      { id: "roof", kind: "polygon", appearance: "primary", vertices: [{ x: -0.3, y: 4 }, { x: 10.3, y: 4 }, { x: 10.3, y: 4.5 }, { x: -0.3, y: 4.5 }] },
+      { id: "window", kind: "segment", appearance: "highlight", from: { x: 0, y: 1.4 }, to: { x: 0, y: 2.8 } },
+      { id: "windtop", kind: "vector", appearance: "primary", from: { x: -5.5, y: 5.4 }, to: { x: -1, y: 5.4 } },
+      { id: "windlow", kind: "vector", appearance: "primary", from: { x: -5.5, y: 2.1 }, to: { x: -1, y: 2.1 } },
+    ],
+    labels: [
+      { key: "wind", objectId: "windtop", at: { x: -3.2, y: 5.4 }, placement: "above" },
+      { key: "roof", objectId: "roof", at: { x: 5, y: 4.5 }, placement: "above" },
+      { key: "window", objectId: "window", at: { x: 0.1, y: 2.1 }, placement: "right" },
+    ],
+  }}
+/>
+
+What pressure difference across the roof would just lift it, at what wind speed in the open does the roof lift with every window shut, and at what wind speed does it lift once the window facing the wind has broken? Give the speeds in kilometres per hour.

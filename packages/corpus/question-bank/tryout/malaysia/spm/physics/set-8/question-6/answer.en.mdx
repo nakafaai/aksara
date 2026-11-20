@@ -1,0 +1,28 @@
+# The lorry is done after two seconds
+
+When a bus brakes hard, a bag on the seat slides forward, because the seat can only grip it so hard. The crate is that bag. The lorry loses <InlineMath math="10\text{ m s}^{-1}" /> every second, so it stops after <InlineMath math="2.0\text{ s}" />. **It travels <InlineMath math="v^2/(2a)=20^2/(2\times10)=20\text{ m}" />**, its average speed <InlineMath math="10\text{ m s}^{-1}" /> for <InlineMath math="2.0\text{ s}" />. Leaving out the <InlineMath math="2" /> in <InlineMath math="v^2/(2a)" /> doubles this to <InlineMath math="40\text{ m}" />. Friction slows the crate by only <InlineMath math="4.0\text{ m s}^{-2}" />, so after <InlineMath math="2.0\text{ s}" /> it still moves at <InlineMath math="12\text{ m s}^{-1}" /> and has gone <InlineMath math="32\text{ m}" />. It has gained <InlineMath math="12\text{ m}" /> on the lorry, short of the <InlineMath math="14\text{ m}" /> gap. A crate with no friction would gain <InlineMath math="14\text{ m}" /> already at <InlineMath math="1.7\text{ s}" /> and hit at <InlineMath math="17\text{ m s}^{-1}" />, but this one is held back.
+
+# The last two metres
+
+A parked lorry does not start rolling backwards just because the driver keeps the brake pressed. From <InlineMath math="2.0\text{ s}" /> on, the lorry stands still and only the crate moves. **The crate must cover the last <InlineMath math="2\text{ m}" /> while slowing from <InlineMath math="12\text{ m s}^{-1}" /> at <InlineMath math="4.0\text{ m s}^{-2}" />**: <InlineMath math="12\tau-2\tau^2=2" />, so <InlineMath math="\tau=3-2\sqrt2=0.172\text{ s}" /> and it hits at <InlineMath math="2.17\text{ s}" />, about <InlineMath math="2.2\text{ s}" />. Using a relative deceleration of <InlineMath math="6\text{ m s}^{-2}" /> the whole way pretends the lorry keeps braking below zero. It also lands near <InlineMath math="2.2\text{ s}" />, but its crate speed comes out wrong.
+
+<Chart
+  title={<>Speeds of the lorry and the crate during the stop</>}
+  description={<>The lorry's speed falls to zero at <InlineMath math="2.0\text{ s}" /> and stays there. The crate slows more gently and is still at <InlineMath math="11.3\text{ m s}^{-1}" /> when it reaches the cab at <InlineMath math="2.17\text{ s}" />. The area between the two lines is how far the crate slides along the bed.</>}
+  categories={["0 s", "0.5 s", "1 s", "1.5 s", "2 s", "2.17 s"]}
+  series={[
+    { label: "Lorry", mark: "line", values: [20.0, 15.0, 10.0, 5.0, 0.0, 0.0] },
+    { label: "Crate", mark: "line", values: [20.0, 18.0, 16.0, 14.0, 12.0, 11.3] },
+  ]}
+  valueLabel="Speed (m/s)"
+/>
+
+# How hard the crate hits
+
+A sledge on sand stops sooner than one on ice, because the sand keeps taking speed away. The crate loses <InlineMath math="4.0\times0.172=0.69\text{ m s}^{-1}" /> in the last stretch. **It meets the cab at <InlineMath math="12-0.69=11\text{ m s}^{-1}" />, and since the lorry is at rest that is also its speed relative to the lorry**. The false steady <InlineMath math="6\text{ m s}^{-2}" /> would give <InlineMath math="6\times2.16=13\text{ m s}^{-1}" />.
+
+<BlockMath math="\begin{aligned}
+s_L&=\frac{20^2}{2\times10}=20\text{ m},\qquad s_C=20\times2.0-\tfrac12\times4.0\times2.0^2=32\text{ m}\\
+12\tau-2\tau^2&=2\ \Rightarrow\ \tau=3-2\sqrt2=0.172\text{ s},\qquad t=2.0+0.172=2.2\text{ s}\\
+v&=12-4.0\times0.172=11\text{ m s}^{-1}
+\end{aligned}" />

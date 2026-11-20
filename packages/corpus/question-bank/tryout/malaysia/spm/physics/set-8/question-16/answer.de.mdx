@@ -1,0 +1,28 @@
+# Zwei Wände, zwei Hin- und Rückwege
+
+Ruf in einen Brunnen, und das Echo ist der Weg hinunter plus der Weg wieder herauf. Jedes der ersten beiden Echos ist ein Hin- und Rückweg zu einer Wand, also ist die nahe Wand <InlineMath math="340\times1{,}2/2=204\text{ m}" /> entfernt und die ferne <InlineMath math="340\times2{,}0/2=340\text{ m}" />. **Die Wanderin steht dazwischen, also ist die Schlucht <InlineMath math="204+340=544\text{ m}" /> breit**. Wer die beiden Hin- und Rückwege addiert, erhält <InlineMath math="1088\text{ m}" />, die doppelte Breite, denn jeden Meter hat der Schall in beide Richtungen zurückgelegt.
+
+# Das Echo, das beide Wände besucht
+
+Ein Squashball, der gegen eine Wand geschlagen wird, kann quer über den Platz fliegen, die andere Wand treffen und zu dir zurückkommen. Das dritte Echo läuft <InlineMath math="204\text{ m}" /> zur nahen Wand, <InlineMath math="544\text{ m}" /> quer zur fernen Wand und <InlineMath math="340\text{ m}" /> zurück, zusammen <InlineMath math="1088\text{ m}" />, und mit der fernen Wand zuerst ergibt sich derselbe Weg. **Es kommt <InlineMath math="1088/340=3{,}2\text{ s}" /> nach dem Klatschen an**, also auch nach <InlineMath math="1{,}2+2{,}0" />. Die <InlineMath math="0{,}8\text{ s}" /> zwischen den ersten beiden Echos sind nur eine Pause, kein Echo.
+
+# Ein Schritt aus der Mitte
+
+Stell dich genau zwischen zwei Freunde und mach einen Schritt auf einen zu: Du kommst ihm näher und entfernst dich vom anderen, beides zugleich. In der Mitte laufen beide Echos <InlineMath math="544\text{ m}" /> und kommen gleichzeitig an. Ein Schritt <InlineMath math="x" /> zu einer Wand verkürzt diesen Hin- und Rückweg um <InlineMath math="2x" /> und verlängert den anderen um <InlineMath math="2x" />, also unterscheiden sich die Wege um <InlineMath math="4x" />. **Die Echos verschmelzen, solange <InlineMath math="4x/340<0{,}10\text{ s}" /> gilt, also muss die Wanderin weniger als <InlineMath math="8{,}5\text{ m}" /> von der Mitte entfernt stehen**. Wer nur einen Weg ändert, kommt auf <InlineMath math="17\text{ m}" /> und zählt damit nur den halben Unterschied.
+
+<Chart
+  title={<>Abstand der ersten beiden Echos, wenn die Wanderin die Mitte verlässt</>}
+  description={<>Abstand von der Mitte auf der unteren Achse. Jeder Meter ändert den Abstand um <InlineMath math="4/340\text{ s}" />, also erreicht er die Grenze von <InlineMath math="0{,}10\text{ s}" /> bei <InlineMath math="8{,}5\text{ m}" />.</>}
+  categories={["0 m", "5 m", "8,5 m", "10 m", "15 m", "20 m"]}
+  series={[
+    { label: "Abstand der Echos", mark: "line", values: [0, 0.059, 0.1, 0.118, 0.176, 0.235] },
+    { label: "Grenze für einen Klang", mark: "line", values: [0.1, 0.1, 0.1, 0.1, 0.1, 0.1] },
+  ]}
+  valueLabel="Abstand (s)"
+/>
+
+<BlockMath math="\begin{aligned}
+d_1&=\frac{340\times1{,}2}{2}=204\text{ m},\qquad d_2=\frac{340\times2{,}0}{2}=340\text{ m}\\
+t_3&=\frac{204+544+340}{340}=\frac{1088}{340}=3{,}2\text{ s}\\
+\frac{4x}{340}&<0{,}10\ \Rightarrow\ x<8{,}5\text{ m}
+\end{aligned}" />

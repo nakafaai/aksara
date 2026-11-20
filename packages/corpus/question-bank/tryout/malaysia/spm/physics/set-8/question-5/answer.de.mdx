@@ -1,0 +1,27 @@
+# Luft nach unten drücken, um oben zu bleiben
+
+Ein Gartenschlauch zuckt in deiner Hand zurück, wenn das Wasser herausschießt. Die Drohne schwebt auf genau diesem Rückstoß. Jede Sekunde wirft sie eine Luftmasse <InlineMath math="\rho Av" /> mit der Geschwindigkeit <InlineMath math="v" /> nach unten, gibt der Luft also pro Sekunde den Impuls <InlineMath math="\rho Av^2" />, und die Luft drückt mit dieser Kraft zurück. **Schweben verlangt <InlineMath math="\rho Av^2=mg=12\text{ N}" />**, also gilt auf Meereshöhe <InlineMath math="v^2=12/(1{,}2\times0{,}20)=50" /> und <InlineMath math="v=7{,}1\text{ m s}^{-1}" />.
+
+# Dünne Luft kostet mehr Leistung
+
+Um eine Dose mit einem Tischtennisball umzuwerfen, musst du viel schneller werfen als mit einem Tennisball, und dieser schnelle Wurf ermüdet deinen Arm mehr. Dünne Luft ist der Tischtennisball. Auf der Hochebene muss die Drohne die Luft schneller werfen, um dieselben <InlineMath math="12\text{ N}" /> zu bekommen: <InlineMath math="v^2=12/(0{,}90\times0{,}20)=66{,}7" />, also <InlineMath math="v=8{,}16\text{ m s}^{-1}" />. Die Bewegungsenergie wächst mit dem Quadrat der Geschwindigkeit, also trägt die schnellere Luft mehr davon. **Die Rate ist <InlineMath math="P=\tfrac12(\rho Av)v^2=\tfrac12\times0{,}90\times0{,}20\times8{,}16^3=49\text{ W}" />**, mehr als die <InlineMath math="42\text{ W}" /> auf Meereshöhe. Wer bei <InlineMath math="42\text{ W}" /> bleibt, übersieht diese Kosten, und wer das <InlineMath math="\tfrac12" /> der Bewegungsenergie weglässt, verdoppelt das Ergebnis auf <InlineMath math="98\text{ W}" />.
+
+<Chart
+  title={<>Leistung an die Luft gegen die Luftdichte</>}
+  description={<>Die Rate, mit der die Drohne der Luft Bewegungsenergie geben muss, um <InlineMath math="12\text{ N}" /> zu tragen, für Luft verschiedener Dichte. Auf Meereshöhe mit <InlineMath math="1{,}2\text{ kg m}^{-3}" /> braucht sie <InlineMath math="42\text{ W}" />, auf der Hochebene mit <InlineMath math="0{,}90\text{ kg m}^{-3}" /> braucht sie <InlineMath math="49\text{ W}" />. Dünnere Luft kostet immer mehr.</>}
+  categories={["0,60 kg/m³", "0,75 kg/m³", "0,90 kg/m³", "1,05 kg/m³", "1,20 kg/m³"]}
+  series={[
+    { label: "Leistung an die Luft", mark: "line", values: [60.0, 53.7, 49.0, 45.4, 42.4] },
+  ]}
+  valueLabel="Leistung (W)"
+/>
+
+# Wie lange der Akku reicht
+
+Wenn nur die Hälfte deines Taschengelds im Laden ankommt und der Rest durch ein Loch in der Tasche fällt, kannst du nur halb so viel kaufen. Ein voller Akku speichert <InlineMath math="36\text{ Wh}=36\times3600=1{,}30\times10^{5}\text{ J}" />. **Nur die Hälfte davon, <InlineMath math="6{,}48\times10^{4}\text{ J}" />, erreicht die Luft**, und die Luft nimmt sie mit <InlineMath math="49\text{ W}" /> auf, also schwebt die Drohne <InlineMath math="6{,}48\times10^{4}/49=1{,}32\times10^{3}\text{ s}" /> lang, etwa <InlineMath math="22\text{ min}" />. Wer den ganzen Akku in die Luft steckt, kommt auf <InlineMath math="44\text{ min}" />, doppelt so lang wie möglich.
+
+<BlockMath math="\begin{aligned}
+\rho Av^2&=mg\ \Rightarrow\ v=\sqrt{\frac{12}{1{,}2\times0{,}20}}=7{,}1\text{ m s}^{-1}\\
+P&=\tfrac12(\rho Av)v^2=\tfrac12\times0{,}90\times0{,}20\times8{,}16^3=49\text{ W}\\
+t&=\frac{\tfrac12\times36\times3600}{49}=1{,}32\times10^{3}\text{ s}=22\text{ min}
+\end{aligned}" />

@@ -1,0 +1,48 @@
+# Charging lifts the terminal reading
+
+A door on a stiff hinge is harder to push open and gentler when it swings back, because the stiffness always works against the motion. Internal resistance acts the same way. While the charger drives current in, the terminals must sit above the e.m.f. by <InlineMath math="Ir" />, so <InlineMath math="E+5.0r=12.5" />. While the battery drives current out to the lamp, they sit below it, so <InlineMath math="E-2.0r=11.8" />.
+
+<BlockMath math="\begin{aligned}
+E+5.0r&=12.5\\
+E-2.0r&=11.8\ \Rightarrow\ 7.0r=0.70,\quad r=0.10\,\Omega,\quad E=12.0\text{ V}
+\end{aligned}" />
+
+**The battery's internal resistance is <InlineMath math="0.10\,\Omega" />, and its e.m.f. is <InlineMath math="12.0\text{ V}" />**. Treating the <InlineMath math="12.5\text{ V}" /> reading as the e.m.f. itself gives <InlineMath math="0.70/2.0=0.35\,\Omega" />, but that reading was pushed up by the charging current.
+
+<Chart
+  title={<>Terminal reading against current out of the battery</>}
+  description={<>Current in amperes along the bottom, negative while the battery is being charged and positive while it supplies current. Both readings sit on one straight line through the e.m.f. of <InlineMath math="12.0\text{ V}" /> that falls <InlineMath math="0.10\text{ V}" /> for every ampere drawn, and it meets the inverter's <InlineMath math="10.0\text{ V}" /> floor at <InlineMath math="20\text{ A}" />.</>}
+  categories={["-5", "0", "2", "5", "10", "15", "20", "25"]}
+  series={[
+    { label: "Battery's terminal reading", mark: "line", values: [12.5, 12.0, 11.8, 11.5, 11.0, 10.5, 10.0, 9.5] },
+    { label: "Inverter cut-off", mark: "line", values: [10.0, 10.0, 10.0, 10.0, 10.0, 10.0, 10.0, 10.0] },
+  ]}
+  valueLabel="Reading (V)"
+/>
+
+# The charger loses some push inside itself
+
+A water pump that pushes through its own narrow outlet pipe has to make more pressure than reaches the far end. The charger's terminals are joined to the battery's by leads with no resistance, so they also read <InlineMath math="12.5\text{ V}" />, and the charger's e.m.f. must be higher by its own drop, <InlineMath math="5.0\times0.50=2.5\text{ V}" />. **The charger's e.m.f. is <InlineMath math="15.0\text{ V}" />**. Starting from the battery's <InlineMath math="12.0\text{ V}" /> instead of the <InlineMath math="12.5\text{ V}" /> at the terminals gives <InlineMath math="14.5\text{ V}" />, which forgets the drop inside the battery.
+
+# The inverter's floor sets the limit
+
+Many phones switch themselves off while a little charge is still left, to protect the battery. The inverter does something similar with voltage. Every extra ampere it draws pulls the terminals <InlineMath math="0.10\text{ V}" /> lower, so asking for more power eventually drags them under <InlineMath math="10.0\text{ V}" />, and the inverter cuts out.
+
+<BlockMath math="\begin{aligned}
+12.0-0.10\,I&\ge10.0\ \Rightarrow\ I\le20\text{ A}\\
+P&=10.0\times20=200\text{ W}
+\end{aligned}" />
+
+**The battery can deliver at most <InlineMath math="200\text{ W}" /> to the inverter**. Multiplying the e.m.f. by the current gives <InlineMath math="12.0\times20=240\text{ W}" />, but <InlineMath math="20^2\times0.10=40\text{ W}" /> of that is heat inside the battery and never reaches the inverter.
+
+<Chart
+  title={<>Power the inverter can draw</>}
+  description={<>Current drawn from the battery in amperes along the bottom. Power reaches the inverter at the terminal reading, so it climbs to <InlineMath math="200\text{ W}" /> at <InlineMath math="20\text{ A}" />, where the inverter switches off. The top line, e.m.f. times current, also counts the heat made inside the battery.</>}
+  categories={["0", "5", "10", "15", "20", "25", "30"]}
+  series={[
+    { label: "Power reaching the inverter", mark: "line", values: [0.0, 57.5, 110.0, 157.5, 200.0, null, null] },
+    { label: "Beyond the cut-off", mark: "line", values: [null, null, null, null, 200.0, 237.5, 270.0] },
+    { label: "E.m.f. times current", mark: "line", values: [0.0, 60.0, 120.0, 180.0, 240.0, 300.0, 360.0] },
+  ]}
+  valueLabel="Power (W)"
+/>

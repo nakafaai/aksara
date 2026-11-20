@@ -1,0 +1,46 @@
+Ombak dari laut lepas sampai ke sebuah pemecah ombak yang lurus dengan satu celah selebar <InlineMath math="60\text{ m}" /> yang menuju ke pelabuhan. Laut lepas dan air di dalam celah mempunyai kedalaman yang sama, dan di situ ombak bergerak pada <InlineMath math="10\text{ m s}^{-1}" />. Pelabuhan di belakang celah itu lebih cetek, dan ombak bergerak di situ pada <InlineMath math="6.0\text{ m s}^{-1}" />. Pada hari yang tenang ombak mempunyai tempoh <InlineMath math="3.0\text{ s}" />, dan semasa ribut ombak mempunyai tempoh <InlineMath math="9.0\text{ s}" />.
+
+<MathVisual
+  title={<>Pemecah ombak dan celahnya, dilihat dari atas</>}
+  description={<>Puncak ombak yang lurus dari laut lepas bergerak ke arah pemecah ombak. Pelabuhan terletak di seberang celah itu. Lukisan ini tidak mengikut skala.</>}
+  labels={{
+    sea: <>laut lepas</>,
+    harbour: <>pelabuhan</>,
+    wall: <>pemecah ombak</>,
+    gap: <><InlineMath math="60\text{ m}" /></>,
+    travel: <>ombak</>,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -6.6, max: 6.6 }, y: { min: -3.4, max: 4.6 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "wall-left", kind: "polygon", appearance: "secondary", vertices: [{ x: -6, y: -0.25 }, { x: -0.6, y: -0.25 }, { x: -0.6, y: 0.25 }, { x: -6, y: 0.25 }] },
+      { id: "wall-right", kind: "polygon", appearance: "secondary", vertices: [{ x: 0.6, y: -0.25 }, { x: 6, y: -0.25 }, { x: 6, y: 0.25 }, { x: 0.6, y: 0.25 }] },
+      { id: "gap", kind: "segment", appearance: "construction", from: { x: -0.6, y: 0 }, to: { x: 0.6, y: 0 } },
+      { id: "crest-1", kind: "segment", appearance: "reference", from: { x: -5.5, y: 1.2 }, to: { x: 5.5, y: 1.2 } },
+      { id: "crest-2", kind: "segment", appearance: "reference", from: { x: -5.5, y: 2 }, to: { x: 5.5, y: 2 } },
+      { id: "crest-3", kind: "segment", appearance: "reference", from: { x: -5.5, y: 2.8 }, to: { x: 5.5, y: 2.8 } },
+      { id: "travel", kind: "vector", appearance: "primary", from: { x: 4.6, y: 3.8 }, to: { x: 4.6, y: 1.6 } },
+      { id: "sea", kind: "point", appearance: "reference", at: { x: -3.5, y: 3.6 } },
+      { id: "harbour", kind: "point", appearance: "reference", at: { x: 0, y: -2.4 } },
+    ],
+    labels: [
+      { key: "sea", objectId: "sea", at: { x: -3.5, y: 3.6 }, placement: "above" },
+      { key: "harbour", objectId: "harbour", at: { x: 0, y: -2.4 }, placement: "below" },
+      { key: "wall", objectId: "wall-left", at: { x: -3.3, y: -0.25 }, placement: "below" },
+      { key: "gap", objectId: "gap", at: { x: 0, y: -0.25 }, placement: "below" },
+      { key: "travel", objectId: "travel", at: { x: 4.6, y: 3.3 }, placement: "right" },
+    ],
+  }}
+/>
+
+Antara pernyataan berikut, yang manakah betul?
+
+I. Ombak ribut tersebar lebih luas di belakang pemecah ombak berbanding ombak hari tenang.
+
+II. Melebarkan celah kepada <InlineMath math="120\text{ m}" /> akan menjadikan ombak hari tenang tersebar lebih luas di belakang pemecah ombak.
+
+III. Di dalam pelabuhan, ombak ribut mempunyai panjang gelombang yang sama seperti di laut lepas.
+
+IV. Melalui celah selebar <InlineMath math="20\text{ m}" />, ombak hari tenang akan tersebar kira-kira seluas ombak ribut yang melalui celah <InlineMath math="60\text{ m}" />.

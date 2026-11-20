@@ -1,0 +1,30 @@
+# Teka, kemudian uji tekaan itu
+
+Dua tangki air hujan mengisi satu palung taman melalui injap sehala, dan injap dari tangki yang lebih rendah hanya terbuka jika aras air dalam palung turun di bawah tangki itu. Oleh sebab <InlineMath math="9.0\text{ V}" /> lebih tinggi daripada <InlineMath math="7.5\text{ V}" />, mudah untuk membiarkan penyesuai bekerja bersendirian. Maka arusnya ialah <InlineMath math="(9.0-0.70)/(10+40)=0.166\text{ A}" />, dan panel berada pada <InlineMath math="0.166\times40=6.64\text{ V}" />. Tetapi <InlineMath math="D_2" /> dipincang ke depan setiap kali voltan panel di bawah <InlineMath math="7.5-0.70=6.80\text{ V}" />, dan <InlineMath math="6.64\text{ V}" /> berada di bawah nilai itu. **Bateri tidak boleh kekal tidak aktif**, jadi <InlineMath math="0.166\text{ A}" /> dengan <InlineMath math="0\text{ A}" /> daripada bateri hanyalah tekaan, bukan jawapan. Rintangan <InlineMath math="10\,\Omega" /> penyesuai membazirkan voltan yang cukup untuk membolehkan bekalan yang lebih rendah turut masuk.
+
+# Bateri menyokong voltan panel
+
+Bangku kecil di bawah rak yang melendut akan menanggung sebahagian beban apabila rak itu turun menyentuhnya, dan rak tidak turun lagi. Apabila <InlineMath math="D_2" /> mengalirkan arus, panel ditahan pada <InlineMath math="7.5\text{ V}" /> bateri ditolak <InlineMath math="0.70\text{ V}" /> diodnya. Hukum Ohm memberi arus panel, dan arus penyesuai diperoleh daripada voltan yang tinggal merentasi <InlineMath math="10\,\Omega" />nya sendiri.
+
+<BlockMath math="\begin{aligned}
+I&=\frac{6.80}{40}=0.170\text{ A}\\
+I_1&=\frac{9.0-0.70-6.80}{10}=0.150\text{ A},\qquad I_2=0.170-0.150=0.0200\text{ A}
+\end{aligned}" />
+
+**Panel mengambil <InlineMath math="0.170\text{ A}" />, dan bateri membekalkan <InlineMath math="0.0200\text{ A}" /> daripadanya**. Meninggalkan <InlineMath math="0.70\text{ V}" /> pada <InlineMath math="D_2" /> meletakkan <InlineMath math="7.5\text{ V}" /> penuh pada panel dan memberi <InlineMath math="0.188\text{ A}" />, <InlineMath math="0.108\text{ A}" /> dan <InlineMath math="0.0800\text{ A}" />, seolah-olah diod bateri tidak mengambil apa-apa voltan.
+
+# Sejauh mana penyesuai mampu bersendirian
+
+Penunggang basikal yang semakin letih hanya kekal di hadapan pejalan kaki yang mantap selagi lajunya masih melebihi laju pejalan kaki itu. Penyesuai menahan panel pada <InlineMath math="8.30-10I" /> volt, dan bateri kekal tidak aktif hanya selagi nilai itu sekurang-kurangnya <InlineMath math="6.80\text{ V}" />. Syaratnya <InlineMath math="10I\le1.50" />. **Panel yang mengambil sehingga <InlineMath math="0.150\text{ A}" /> akan berfungsi dengan penyesuai sahaja**. Dua susutan voltan diod saling membatalkan di sini, jadi hadnya hanyalah <InlineMath math="(9.0-7.5)/10" />. Melupakan <InlineMath math="D_1" /> dan mengira daripada <InlineMath math="9.0-6.80" /> memberi <InlineMath math="0.220\text{ A}" />, iaitu meninggalkan diod penyesuai itu sendiri daripada laluannya.
+
+<Chart
+  title={<>Voltan yang dapat dikekalkan oleh setiap laluan pada panel</>}
+  description={<>Arus panel dalam ampere di sepanjang paksi bawah. Garis penyesuai menurun apabila arusnya bertambah, garis bateri kekal pada <InlineMath math="6.80\text{ V}" />, dan garis panel sendiri naik. Garis penyesuai bertemu garis panel pada <InlineMath math="6.64\text{ V}" />, di bawah aras bateri, jadi bateri turut membekalkan arus dan panel berada pada <InlineMath math="6.80\text{ V}" />. Penyesuai mampu bersendirian hanya di sebelah kiri <InlineMath math="0.150\text{ A}" />.</>}
+  categories={["0.00", "0.05", "0.10", "0.15", "0.20", "0.25"]}
+  series={[
+    { label: "Penyesuai melalui diodnya", mark: "line", values: [8.3, 7.8, 7.3, 6.8, 6.3, 5.8] },
+    { label: "Bateri melalui diodnya", mark: "line", values: [6.8, 6.8, 6.8, 6.8, 6.8, 6.8] },
+    { label: "Voltan yang diperlukan panel", mark: "line", values: [0.0, 2.0, 4.0, 6.0, 8.0, 10.0] },
+  ]}
+  valueLabel="Voltan (V)"
+/>

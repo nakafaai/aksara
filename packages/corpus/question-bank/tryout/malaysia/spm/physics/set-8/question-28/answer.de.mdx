@@ -1,0 +1,48 @@
+# Laden hebt die Klemmenspannung an
+
+Eine Tür mit schwergängigem Scharnier lässt sich schwer aufdrücken und schwingt sanfter zurück, weil die Reibung immer gegen die Bewegung arbeitet. Der Innenwiderstand wirkt genauso. Während das Ladegerät Strom hineintreibt, müssen die Klemmen um <InlineMath math="Ir" /> über der Quellenspannung liegen, also <InlineMath math="E+5{,}0r=12{,}5" />. Während die Batterie Strom zur Lampe treibt, liegen sie darunter, also <InlineMath math="E-2{,}0r=11{,}8" />.
+
+<BlockMath math="\begin{aligned}
+E+5{,}0r&=12{,}5\\
+E-2{,}0r&=11{,}8\ \Rightarrow\ 7{,}0r=0{,}70,\quad r=0{,}10\,\Omega,\quad E=12{,}0\text{ V}
+\end{aligned}" />
+
+**Der Innenwiderstand der Batterie beträgt <InlineMath math="0{,}10\,\Omega" />, ihre Quellenspannung <InlineMath math="12{,}0\text{ V}" />**. Wer die <InlineMath math="12{,}5\text{ V}" /> selbst für die Quellenspannung hält, erhält <InlineMath math="0{,}70/2{,}0=0{,}35\,\Omega" />, doch diese Ablesung hat der Ladestrom nach oben gedrückt.
+
+<Chart
+  title={<>Klemmenspannung gegen den Strom aus der Batterie</>}
+  description={<>Stromstärke in Ampere auf der unteren Achse, negativ, solange die Batterie geladen wird, und positiv, solange sie Strom liefert. Beide Messwerte liegen auf einer Geraden durch die Quellenspannung von <InlineMath math="12{,}0\text{ V}" />, die pro entnommenem Ampere um <InlineMath math="0{,}10\text{ V}" /> fällt und die Abschaltgrenze des Wechselrichters von <InlineMath math="10{,}0\text{ V}" /> bei <InlineMath math="20\text{ A}" /> erreicht.</>}
+  categories={["-5", "0", "2", "5", "10", "15", "20", "25"]}
+  series={[
+    { label: "Klemmenspannung der Batterie", mark: "line", values: [12.5, 12.0, 11.8, 11.5, 11.0, 10.5, 10.0, 9.5] },
+    { label: "Abschaltgrenze", mark: "line", values: [10.0, 10.0, 10.0, 10.0, 10.0, 10.0, 10.0, 10.0] },
+  ]}
+  valueLabel="Spannung (V)"
+/>
+
+# Das Ladegerät verliert innen etwas Antrieb
+
+Eine Wasserpumpe, die durch ihr eigenes enges Auslassrohr drückt, muss mehr Druck erzeugen, als am Ende ankommt. Die Klemmen des Ladegeräts sind über widerstandslose Leitungen mit denen der Batterie verbunden, zeigen also auch <InlineMath math="12{,}5\text{ V}" />, und die Quellenspannung des Ladegeräts muss um seinen eigenen Abfall höher sein, <InlineMath math="5{,}0\times0{,}50=2{,}5\text{ V}" />. **Die Quellenspannung des Ladegeräts beträgt <InlineMath math="15{,}0\text{ V}" />**. Wer bei den <InlineMath math="12{,}0\text{ V}" /> der Batterie startet statt bei den <InlineMath math="12{,}5\text{ V}" /> an den Klemmen, erhält <InlineMath math="14{,}5\text{ V}" /> und vergisst den Abfall in der Batterie.
+
+# Die Untergrenze des Wechselrichters setzt das Limit
+
+Viele Handys schalten sich ab, solange noch etwas Ladung übrig ist, um den Akku zu schonen. Der Wechselrichter macht etwas Ähnliches mit der Spannung. Jedes zusätzliche Ampere, das er zieht, drückt die Klemmen um <InlineMath math="0{,}10\text{ V}" /> tiefer, also zieht mehr Leistung sie irgendwann unter <InlineMath math="10{,}0\text{ V}" />, und der Wechselrichter schaltet ab.
+
+<BlockMath math="\begin{aligned}
+12{,}0-0{,}10\,I&\ge10{,}0\ \Rightarrow\ I\le20\text{ A}\\
+P&=10{,}0\times20=200\text{ W}
+\end{aligned}" />
+
+**Die Batterie kann dem Wechselrichter höchstens <InlineMath math="200\text{ W}" /> liefern**. Quellenspannung mal Strom ergibt <InlineMath math="12{,}0\times20=240\text{ W}" />, doch <InlineMath math="20^2\times0{,}10=40\text{ W}" /> davon werden in der Batterie zu Wärme und erreichen den Wechselrichter nie.
+
+<Chart
+  title={<>Leistung, die der Wechselrichter ziehen kann</>}
+  description={<>Aus der Batterie entnommener Strom in Ampere auf der unteren Achse. Die Leistung erreicht den Wechselrichter bei der Klemmenspannung, steigt also bis <InlineMath math="200\text{ W}" /> bei <InlineMath math="20\text{ A}" />, wo er abschaltet. Die oberste Linie, Quellenspannung mal Strom, zählt auch die Wärme in der Batterie mit.</>}
+  categories={["0", "5", "10", "15", "20", "25", "30"]}
+  series={[
+    { label: "Leistung am Wechselrichter", mark: "line", values: [0.0, 57.5, 110.0, 157.5, 200.0, null, null] },
+    { label: "Jenseits der Abschaltung", mark: "line", values: [null, null, null, null, 200.0, 237.5, 270.0] },
+    { label: "Quellenspannung mal Strom", mark: "line", values: [0.0, 60.0, 120.0, 180.0, 240.0, 300.0, 360.0] },
+  ]}
+  valueLabel="Leistung (W)"
+/>

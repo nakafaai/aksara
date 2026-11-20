@@ -1,0 +1,36 @@
+# Pergi melalui satu wayar, balik melalui yang lain
+
+Penghantar yang menghantar bungkusan sejauh <InlineMath math="25\text{ m}" /> di jalan itu menunggang <InlineMath math="50\text{ m}" /> semuanya, kerana perjalanannya termasuk jalan balik. Arus sampai ke alat melalui konduktor hidup dan kembali melalui konduktor neutral, jadi ia melalui <InlineMath math="2\times25=50\text{ m}" /> kuprum. Dengan <InlineMath math="R=\rho L/A" />, nilainya <InlineMath math="1.7\times10^{-8}\times50/(1.0\times10^{-6})" /> ohm. **Kabel menambah <InlineMath math="0.850\,\Omega" /> kepada litar**. Mengira satu konduktor sahaja memberi <InlineMath math="0.425\,\Omega" /> dan menyebabkan arus tiada jalan pulang.
+
+# Alat mendapat kurang daripada labelnya
+
+Pemercik air di hujung hos yang panjang dan halus memancut lebih lemah daripada pemercik yang dipasang terus pada pili. Kadar alat itu memberitahu rintangannya, <InlineMath math="R_t=240^2/2000=28.8\,\Omega" />, dan rintangan itu kekal. Apabila sesiri dengan kabel, arusnya menjadi lebih kecil, jadi alat itu sendiri hanya mendapat <InlineMath math="8.094\times28.8=233\text{ V}" />.
+
+<BlockMath math="\begin{aligned}
+R_t&=\frac{240^2}{2000}=28.8\,\Omega,\qquad I=\frac{240}{28.8+0.85}=8.094\text{ A}\\
+P&=I^2R_t=8.094^2\times28.8=1.89\times10^{3}\text{ W}
+\end{aligned}" />
+
+**Alat itu sebenarnya mengambil <InlineMath math="1.89\text{ kW}" />**. Mendarab arus dengan <InlineMath math="240\text{ V}" /> soket memberi <InlineMath math="1.94\text{ kW}" />, tetapi nilai itu turut mengira haba yang terhasil dalam kabel.
+
+# Memilih kuprum yang cukup tebal
+
+Jalan yang lebih lebar membawa kenderaan yang sama dengan kurang kesesakan. Kabel dan alat berkongsi voltan soket mengikut nisbah rintangan masing-masing, jadi bahagian kabel ialah <InlineMath math="R_c/(R_c+28.8)" />, dan nilai itu tidak boleh melebihi <InlineMath math="0.02" />. Perhatikan bahawa rintangan kabel sendiri juga berada dalam jumlah itu.
+
+<BlockMath math="\begin{aligned}
+\frac{R_c}{R_c+28.8}&\le0.02\ \Rightarrow\ R_c\le\frac{0.02\times28.8}{0.98}=0.588\,\Omega\\
+A&\ge\frac{1.7\times10^{-8}\times50}{0.588}=1.45\times10^{-6}\text{ m}^2=1.45\text{ mm}^2
+\end{aligned}" />
+
+**Setiap konduktor memerlukan luas keratan rentas sekurang-kurangnya <InlineMath math="1.45\text{ mm}^2" />**. Menetapkan <InlineMath math="R_c=0.02\times28.8=0.576\,\Omega" /> memberi <InlineMath math="1.48\text{ mm}^2" />. Itu membandingkan kabel dengan alat sahaja, seolah-olah arus kekal pada kadar <InlineMath math="8.33\text{ A}" />.
+
+<Chart
+  title={<>Bahagian voltan soket yang hilang dalam kabel</>}
+  description={<>Luas setiap konduktor dalam milimeter persegi di sepanjang paksi bawah. Kehilangan berkurang apabila kuprum semakin tebal. Ia melintasi garis <InlineMath math="2\%" /> pada <InlineMath math="1.45\text{ mm}^2" />, sedikit sebelum <InlineMath math="1.5\text{ mm}^2" />, manakala kabel <InlineMath math="1.0\text{ mm}^2" /> yang digunakan kehilangan <InlineMath math="2.87\%" />.</>}
+  categories={["0.75", "1.0", "1.25", "1.5", "2", "2.5"]}
+  series={[
+    { label: "Voltan yang hilang dalam kabel", mark: "line", values: [3.79, 2.87, 2.31, 1.93, 1.45, 1.17] },
+    { label: "Had 2 %", mark: "line", values: [2, 2, 2, 2, 2, 2] },
+  ]}
+  valueLabel="Bahagian voltan soket (%)"
+/>

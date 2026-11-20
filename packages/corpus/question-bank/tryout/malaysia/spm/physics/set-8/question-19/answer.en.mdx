@@ -1,0 +1,97 @@
+# The halfway rule
+
+Bounce a ball off a wall to a friend who stands as far from the wall as you do, and it hits the wall halfway between your hand and theirs. Light obeys the same rule, because it leaves a mirror at the angle it arrived. For the adult, light from the head meets the mirror halfway between head and eyes, and light from the feet meets it halfway between feet and eyes. The child sees their feet only if the lower edge is no higher than half of <InlineMath math="1.00\text{ m}" />.
+
+<BlockMath math="\begin{aligned}
+y_1&=\frac{1.70+1.60}{2}=1.65\text{ m},\qquad y_2=\frac{1.60}{2}=0.80\text{ m}\\
+\frac{1.00}{2}&=0.50\text{ m},\qquad 0.80-0.50=0.30\text{ m}
+\end{aligned}" />
+
+**The mirror moves down <InlineMath math="0.30\text{ m}" />**. Moving it by the whole <InlineMath math="0.60\text{ m}" /> gap between the two pairs of eyes forgets that the edge sits at half the eye height, so it only needs half that move, and then the adult would see nothing above <InlineMath math="0.50\text{ m}" />.
+
+# What the adult loses at the top
+
+Pull a window blind down and the treetops vanish first, while the garden below stays in view. The top edge is now at <InlineMath math="1.65-0.30=1.35\text{ m}" />. Running the halfway rule backwards, the eyes at <InlineMath math="1.60\text{ m}" /> and the edge at <InlineMath math="1.35\text{ m}" /> reach a point on the body at <InlineMath math="2\times1.35-1.60" />. **The highest point the adult can see is <InlineMath math="1.10\text{ m}" /> above the floor**, so the move costs the top <InlineMath math="0.60\text{ m}" /> of the body. The visible point slides twice as far as the mirror. Lowering it by the mirror's own <InlineMath math="0.30\text{ m}" /> gives <InlineMath math="1.40\text{ m}" />, too generous.
+
+<MathVisual
+  title={<>The lowered mirror, seen from the side</>}
+  description={<>Heights in metres, the floor at the bottom. The child's ray hits the lower edge at <InlineMath math="0.50\text{ m}" /> and just reaches the child's feet. The adult's ray hits the top edge, now at <InlineMath math="1.35\text{ m}" />, and comes back to the adult's body <InlineMath math="1.10\text{ m}" /> above the floor.</>}
+  labels={{
+    mirror: <>mirror</>,
+    adult: <>adult</>,
+    child: <>child</>,
+    seen: <><InlineMath math="1.10\text{ m}" /></>,
+    edge: <><InlineMath math="0.50\text{ m}" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1.2, max: 2.6 }, y: { min: -0.3, max: 2.1 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "floor", kind: "segment", appearance: "reference", from: { x: 0, y: 0 }, to: { x: 2.2, y: 0 } },
+      { id: "wall", kind: "segment", appearance: "reference", from: { x: 0, y: 0 }, to: { x: 0, y: 2 } },
+      { id: "mirror", kind: "polygon", appearance: "secondary", vertices: [{ x: -0.06, y: 0.5 }, { x: 0, y: 0.5 }, { x: 0, y: 1.35 }, { x: -0.06, y: 1.35 }] },
+      { id: "adult", kind: "segment", appearance: "secondary", from: { x: 1.6, y: 0 }, to: { x: 1.6, y: 1.7 } },
+      { id: "child", kind: "segment", appearance: "secondary", from: { x: 0.9, y: 0 }, to: { x: 0.9, y: 1.1 } },
+      { id: "adult-ray", kind: "polyline", appearance: "highlight", vertices: [{ x: 1.6, y: 1.6 }, { x: 0, y: 1.35 }, { x: 1.6, y: 1.1 }] },
+      { id: "child-ray", kind: "polyline", appearance: "primary", vertices: [{ x: 0.9, y: 1 }, { x: 0, y: 0.5 }, { x: 0.9, y: 0 }] },
+      { id: "seen", kind: "point", appearance: "highlight", at: { x: 1.6, y: 1.1 } },
+      { id: "edge", kind: "segment", appearance: "construction", from: { x: -0.4, y: 0 }, to: { x: -0.4, y: 0.5 } },
+    ],
+    labels: [
+      { key: "mirror", objectId: "mirror", at: { x: -0.06, y: 0.95 }, placement: "left" },
+      { key: "adult", objectId: "adult", at: { x: 1.6, y: 1.7 }, placement: "above" },
+      { key: "child", objectId: "child", at: { x: 0.9, y: 1.1 }, placement: "above" },
+      { key: "seen", objectId: "seen", at: { x: 1.6, y: 1.1 }, placement: "right" },
+      { key: "edge", objectId: "edge", at: { x: -0.4, y: 0.25 }, placement: "left" },
+    ],
+  }}
+/>
+
+# One mirror for two people
+
+A family that shares one bathroom mirror needs it to reach the tall parent's head and the small child's feet, not just to be half as tall as someone. Each person needs their own strip of wall, set by the halfway rule. The child's head needs the mirror up to halfway between <InlineMath math="1.10" /> and <InlineMath math="1.00\text{ m}" />.
+
+<BlockMath math="\begin{aligned}
+\text{adult}&:\ 0.80\text{ m to }1.65\text{ m},\qquad \text{child}:\ 0.50\text{ m to }\frac{1.10+1.00}{2}=1.05\text{ m}\\
+L&=1.65-0.50=1.15\text{ m}
+\end{aligned}" />
+
+**The shortest shared mirror is <InlineMath math="1.15\text{ m}" /> long, from <InlineMath math="0.50" /> to <InlineMath math="1.65\text{ m}" /> above the floor**. The half-height rule tells each person how long their own strip is, <InlineMath math="0.85\text{ m}" /> and <InlineMath math="0.55\text{ m}" />, but not where it sits. Picking <InlineMath math="0.85\text{ m}" />, the taller person's half height, leaves the child's feet out, because the two strips start at different heights.
+
+<MathVisual
+  title={<>One mirror that serves both</>}
+  description={<>Heights in metres. Each person's rays to their own head and feet mark the strip of wall that person needs. The adult's strip runs from <InlineMath math="0.80" /> to <InlineMath math="1.65\text{ m}" /> and the child's from <InlineMath math="0.50" /> to <InlineMath math="1.05\text{ m}" />, so a shared mirror must cover <InlineMath math="0.50" /> to <InlineMath math="1.65\text{ m}" />.</>}
+  labels={{
+    mirror: <>shared mirror</>,
+    adult: <>adult</>,
+    child: <>child</>,
+    high: <><InlineMath math="1.65\text{ m}" /></>,
+    low: <><InlineMath math="0.50\text{ m}" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1.2, max: 2.6 }, y: { min: -0.3, max: 2.1 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "floor", kind: "segment", appearance: "reference", from: { x: 0, y: 0 }, to: { x: 2.2, y: 0 } },
+      { id: "wall", kind: "segment", appearance: "reference", from: { x: 0, y: 0 }, to: { x: 0, y: 2 } },
+      { id: "mirror", kind: "polygon", appearance: "secondary", vertices: [{ x: -0.06, y: 0.5 }, { x: 0, y: 0.5 }, { x: 0, y: 1.65 }, { x: -0.06, y: 1.65 }] },
+      { id: "adult", kind: "segment", appearance: "secondary", from: { x: 1.6, y: 0 }, to: { x: 1.6, y: 1.7 } },
+      { id: "child", kind: "segment", appearance: "secondary", from: { x: 0.9, y: 0 }, to: { x: 0.9, y: 1.1 } },
+      { id: "adult-head", kind: "polyline", appearance: "highlight", vertices: [{ x: 1.6, y: 1.7 }, { x: 0, y: 1.65 }, { x: 1.6, y: 1.6 }] },
+      { id: "adult-feet", kind: "polyline", appearance: "highlight", vertices: [{ x: 1.6, y: 0 }, { x: 0, y: 0.8 }, { x: 1.6, y: 1.6 }] },
+      { id: "child-head", kind: "polyline", appearance: "primary", vertices: [{ x: 0.9, y: 1.1 }, { x: 0, y: 1.05 }, { x: 0.9, y: 1 }] },
+      { id: "child-feet", kind: "polyline", appearance: "primary", vertices: [{ x: 0.9, y: 0 }, { x: 0, y: 0.5 }, { x: 0.9, y: 1 }] },
+      { id: "high", kind: "point", appearance: "reference", at: { x: 0, y: 1.65 } },
+      { id: "low", kind: "point", appearance: "reference", at: { x: 0, y: 0.5 } },
+    ],
+    labels: [
+      { key: "mirror", objectId: "mirror", at: { x: -0.06, y: 1.1 }, placement: "left" },
+      { key: "adult", objectId: "adult", at: { x: 1.6, y: 1.7 }, placement: "above" },
+      { key: "child", objectId: "child", at: { x: 0.9, y: 1.1 }, placement: "above" },
+      { key: "high", objectId: "high", at: { x: 0, y: 1.65 }, placement: "above" },
+      { key: "low", objectId: "low", at: { x: 0, y: 0.5 }, placement: "below" },
+    ],
+  }}
+/>

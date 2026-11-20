@@ -1,0 +1,28 @@
+# Put the zero error back first
+
+A bathroom scale that shows <InlineMath math="-1\text{ kg}" /> with nobody on it weighs everyone <InlineMath math="1\text{ kg}" /> too light, so you add that kilogram back. The closed calipers show <InlineMath math="-0.02\text{ cm}" />, so every reading is <InlineMath math="0.02\text{ cm}" /> too small. **The coil is really <InlineMath math="2.86+0.02=2.88\text{ cm}" /> long**. The <InlineMath math="40" /> turns lie side by side, and each turn adds one wire's thickness, so the diameter is <InlineMath math="2.88/40=0.0720\text{ cm}" />, which is <InlineMath math="0.720\text{ mm}" />. Subtracting the <InlineMath math="0.02\text{ cm}" /> instead gives <InlineMath math="2.84\text{ cm}" /> and a wire of <InlineMath math="0.710\text{ mm}" />, too thin.
+
+# From resistance to resistivity
+
+Water flows more easily through a fat hose than a thin one, and what counts is the size of the hole. The wire's cross-section is a circle whose radius is half the diameter, <InlineMath math="0.360\text{ mm}" />. **Its area is <InlineMath math="A=\pi r^2=3.14\times(0.360\times10^{-3})^2=4.07\times10^{-7}\text{ m}^2" />**. Resistivity is the resistance the metal would have as a piece <InlineMath math="1\text{ m}" /> long with <InlineMath math="1\text{ m}^2" /> of cross-section, so <InlineMath math="\rho=RA/L=2.4\times4.07\times10^{-7}/2.00=4.9\times10^{-7}\,\Omega\text{ m}" />. Putting the diameter in place of the radius makes the area four times too big and gives <InlineMath math="2.0\times10^{-6}\,\Omega\text{ m}" />.
+
+# More turns shrink the error
+
+To find the thickness of one sheet of paper you measure a thick stack, because the ruler's small error is then shared by many sheets. The coil works the same way. The <InlineMath math="\pm0.01\text{ cm}" /> is spread over <InlineMath math="N" /> turns, so the diameter is uncertain by <InlineMath math="0.01/(0.0720N)" /> of itself. **The diameter is squared in the area, so its percentage uncertainty counts twice in the resistivity**. With <InlineMath math="40" /> turns that is <InlineMath math="2\times0.01/2.88=0.69\%" />, more than allowed. Asking for <InlineMath math="2\times0.01/(0.0720N)\le0.0050" /> gives <InlineMath math="N\ge55.6" />. Turns come whole, and <InlineMath math="55" /> turns still give <InlineMath math="0.505\%" />, so the student needs <InlineMath math="56" />. Forgetting the factor of two halves the answer to <InlineMath math="28" /> turns.
+
+<Chart
+  title={<>Uncertainty in the resistivity against the number of turns</>}
+  description={<>The share of the resistivity's percentage uncertainty that comes from the <InlineMath math="\pm0.01\text{ cm}" /> reading, for coils of different numbers of turns. The flat line is the <InlineMath math="0.50\%" /> limit. <InlineMath math="40" /> turns give <InlineMath math="0.69\%" />, and <InlineMath math="56" /> turns are the first to fall below the limit.</>}
+  categories={["20 turns", "28 turns", "40 turns", "56 turns", "80 turns"]}
+  series={[
+    { label: "From the length reading", mark: "line", values: [1.389, 0.992, 0.694, 0.496, 0.347] },
+    { label: "Limit", mark: "line", values: [0.5, 0.5, 0.5, 0.5, 0.5] },
+  ]}
+  valueLabel="Uncertainty (%)"
+/>
+
+<BlockMath math="\begin{aligned}
+L&=2.86-(-0.02)=2.88\text{ cm},\quad d=\frac{2.88}{40}=0.0720\text{ cm}\\
+\rho&=\frac{RA}{L}=\frac{2.4\times3.14\times(0.360\times10^{-3})^2}{2.00}=4.9\times10^{-7}\,\Omega\text{ m}\\
+2\times\frac{0.01}{0.0720N}&\le0.0050\ \Rightarrow\ N\ge55.6\ \Rightarrow\ N=56
+\end{aligned}" />

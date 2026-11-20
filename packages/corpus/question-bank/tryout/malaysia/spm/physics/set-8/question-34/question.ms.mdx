@@ -1,0 +1,38 @@
+Sebentuk cincin aluminium terletak di atas sebuah gegelung, mengelilingi sebatang rod besi tegak yang melalui gegelung itu. Gegelung disambung melalui suis kepada bekalan a.t. Dalam cubaan pertama, apabila suis ditutup, fluks magnet melalui cincin meningkat secara seragam daripada sifar hingga <InlineMath math="3.0\times10^{-4}\text{ Wb}" /> dalam masa <InlineMath math="15\text{ ms}" />, kemudian kekal tetap. Purata d.g.e. yang diaruhkan di sekeliling satu gelung sama dengan perubahan fluks magnet melaluinya dibahagi dengan masa yang diambil untuk perubahan itu. Cincin itu mempunyai jejari min <InlineMath math="2.5\text{ cm}" />, luas keratan rentas <InlineMath math="8.0\text{ mm}^2" /> dan jisim <InlineMath math="3.4\text{ g}" />, dan keberintangan aluminium ialah <InlineMath math="2.8\times10^{-8}\,\Omega\text{ m}" />. Semasa fluks meningkat, gegelung menolak cincin ke atas dengan daya <InlineMath math="2.5\text{ mN}" /> bagi setiap ampere arus dalam cincin. Dalam cubaan kedua, satu perintang yang ditambah secara sesiri dengan gegelung menyebabkan fluks meningkat secara seragam ke <InlineMath math="3.0\times10^{-4}\text{ Wb}" /> yang sama dalam masa <InlineMath math="60\text{ ms}" />. Ambil <InlineMath math="g=10\text{ m s}^{-2}" />, dan abaikan kesan arus cincin itu sendiri terhadap fluks.
+
+<MathVisual
+  title={<>Cincin di atas gegelung</>}
+  description={<>Cincin aluminium terletak di atas gegelung, mengelilingi rod besi. Gegelung disambung kepada bekalan a.t. melalui suis yang ditunjukkan terbuka. Lukisan ini tidak mengikut skala.</>}
+  labels={{
+    rod: <>rod besi</>,
+    coil: <>gegelung</>,
+    ring: <>cincin aluminium</>,
+    switch: <>suis</>,
+    supply: <>bekalan a.t.</>,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -7.6, max: 7.2 }, y: { min: -0.6, max: 8.8 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "rod", kind: "polygon", appearance: "reference", vertices: [{ x: -0.4, y: 0 }, { x: 0.4, y: 0 }, { x: 0.4, y: 8 }, { x: -0.4, y: 8 }] },
+      { id: "coil", kind: "polygon", appearance: "secondary", vertices: [{ x: -1.6, y: 0.6 }, { x: 1.6, y: 0.6 }, { x: 1.6, y: 3.6 }, { x: -1.6, y: 3.6 }] },
+      { id: "ring", kind: "polygon", appearance: "primary", vertices: [{ x: -1.4, y: 3.6 }, { x: 1.4, y: 3.6 }, { x: 1.4, y: 4 }, { x: -1.4, y: 4 }] },
+      { id: "lead-a", kind: "segment", appearance: "secondary", from: { x: -1.6, y: 1.2 }, to: { x: -5.2, y: 1.2 } },
+      { id: "lead-b", kind: "segment", appearance: "secondary", from: { x: -1.6, y: 3 }, to: { x: -4.6, y: 3 } },
+      { id: "switch", kind: "segment", appearance: "highlight", from: { x: -4.6, y: 3 }, to: { x: -5.6, y: 3.7 } },
+      { id: "contact", kind: "point", appearance: "secondary", at: { x: -5.8, y: 3 } },
+      { id: "drop", kind: "segment", appearance: "secondary", from: { x: -5.8, y: 3 }, to: { x: -5.8, y: 2.4 } },
+      { id: "supply", kind: "polygon", appearance: "secondary", vertices: [{ x: -6.6, y: 1.2 }, { x: -5, y: 1.2 }, { x: -5, y: 2.4 }, { x: -6.6, y: 2.4 }] },
+    ],
+    labels: [
+      { key: "rod", objectId: "rod", at: { x: 0, y: 8 }, placement: "above" },
+      { key: "coil", objectId: "coil", at: { x: 1.6, y: 2.1 }, placement: "right" },
+      { key: "ring", objectId: "ring", at: { x: 1.4, y: 3.8 }, placement: "right" },
+      { key: "switch", objectId: "switch", at: { x: -5.1, y: 3.4 }, placement: "above" },
+      { key: "supply", objectId: "supply", at: { x: -5.8, y: 1.2 }, placement: "below" },
+    ],
+  }}
+/>
+
+Berapakah arus purata yang mengalir dalam cincin dalam cubaan pertama, berapakah cas yang mengalir mengelilingi cincin semasa fluks meningkat dalam cubaan kedua, dan adakah cincin itu meninggalkan gegelung dalam cubaan kedua?

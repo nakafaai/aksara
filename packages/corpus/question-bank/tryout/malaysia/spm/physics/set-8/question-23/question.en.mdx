@@ -1,0 +1,39 @@
+A hanging luggage scale contains one spring, which obeys Hooke's law until its extension reaches <InlineMath math="15\text{ cm}" />. The scale beside its pointer is marked so that each <InlineMath math="1.0\text{ cm}" /> of extension reads <InlineMath math="4.0\text{ N}" />, and the marks run from <InlineMath math="0" /> to <InlineMath math="50\text{ N}" />. When the spring stretches, all of its coils stretch by the same amount. The spring snaps exactly in the middle. The owner fixes the two halves side by side between the top handle and the pointer bar, from which the load hangs, so that the halves share the load equally and the pointer moves by the extension of each half. The masses of the springs are negligible.
+
+<MathVisual
+  title={<>The repaired luggage scale</>}
+  description={<>The two halves of the snapped spring hang side by side from the top handle and hold the pointer bar, from which the load hangs. The marks beside the pointer are the old ones. The drawing is not to scale.</>}
+  labels={{
+    handle: <>top handle</>,
+    lefthalf: <>half spring</>,
+    righthalf: <>half spring</>,
+    pointer: <>pointer bar</>,
+    marks: <><InlineMath math="4.0\text{ N}" /> per <InlineMath math="1.0\text{ cm}" />, <InlineMath math="0" /> to <InlineMath math="50\text{ N}" /></>,
+    load: <>load</>,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -4.2, max: 8.4 }, y: { min: 0.2, max: 8 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "handle", kind: "segment", appearance: "primary", from: { x: 0, y: 6.4 }, to: { x: 0, y: 7.4 } },
+      { id: "topbar", kind: "segment", appearance: "secondary", from: { x: -1.6, y: 6.4 }, to: { x: 1.6, y: 6.4 } },
+      { id: "lefthalf", kind: "polyline", appearance: "secondary", vertices: [{ x: -0.8, y: 6.4 }, { x: -0.45, y: 6.089 }, { x: -1.15, y: 5.778 }, { x: -0.45, y: 5.467 }, { x: -1.15, y: 5.156 }, { x: -0.45, y: 4.844 }, { x: -1.15, y: 4.533 }, { x: -0.45, y: 4.222 }, { x: -1.15, y: 3.911 }, { x: -0.8, y: 3.6 }] },
+      { id: "righthalf", kind: "polyline", appearance: "secondary", vertices: [{ x: 0.8, y: 6.4 }, { x: 1.15, y: 6.089 }, { x: 0.45, y: 5.778 }, { x: 1.15, y: 5.467 }, { x: 0.45, y: 5.156 }, { x: 1.15, y: 4.844 }, { x: 0.45, y: 4.533 }, { x: 1.15, y: 4.222 }, { x: 0.45, y: 3.911 }, { x: 0.8, y: 3.6 }] },
+      { id: "pointer", kind: "segment", appearance: "highlight", from: { x: -1.6, y: 3.6 }, to: { x: 2.7, y: 3.6 } },
+      { id: "marks", kind: "segment", appearance: "reference", from: { x: 3, y: 1.6 }, to: { x: 3, y: 6.2 } },
+      { id: "hook", kind: "segment", appearance: "secondary", from: { x: 0, y: 3.6 }, to: { x: 0, y: 2.6 } },
+      { id: "load", kind: "polygon", appearance: "primary", vertices: [{ x: -1, y: 0.6 }, { x: 1, y: 0.6 }, { x: 1, y: 2.6 }, { x: -1, y: 2.6 }] },
+    ],
+    labels: [
+      { key: "handle", objectId: "handle", at: { x: 0, y: 7.4 }, placement: "above" },
+      { key: "lefthalf", objectId: "lefthalf", at: { x: -1.15, y: 5 }, placement: "left" },
+      { key: "righthalf", objectId: "righthalf", at: { x: 1.15, y: 4.4 }, placement: "right" },
+      { key: "pointer", objectId: "pointer", at: { x: 2.7, y: 3.6 }, placement: "below" },
+      { key: "marks", objectId: "marks", at: { x: 3, y: 6.2 }, placement: "right" },
+      { key: "load", objectId: "load", at: { x: 0, y: 1.6 }, placement: "center" },
+    ],
+  }}
+/>
+
+What is the spring constant of the two halves together, what does the repaired scale read when a suitcase that truly weighs <InlineMath math="100\text{ N}" /> hangs from it, and what is the heaviest load the repaired scale can carry before the halves stop obeying Hooke's law?

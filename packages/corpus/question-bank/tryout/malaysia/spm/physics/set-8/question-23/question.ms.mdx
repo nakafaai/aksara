@@ -1,0 +1,39 @@
+Sebuah penimbang bagasi gantung mengandungi satu spring yang mematuhi hukum Hooke sehingga pemanjangannya mencapai <InlineMath math="15\text{ cm}" />. Skala di sebelah penunjuknya ditanda supaya setiap <InlineMath math="1.0\text{ cm}" /> pemanjangan memberi bacaan <InlineMath math="4.0\text{ N}" />, dan tanda skala itu bermula dari <InlineMath math="0" /> hingga <InlineMath math="50\text{ N}" />. Apabila spring meregang, semua gegelungnya meregang dengan jumlah yang sama. Spring itu putus tepat di tengah-tengahnya. Pemiliknya memasang kedua-dua separuh spring itu bersebelahan di antara pemegang atas dengan palang penunjuk, tempat beban digantung, supaya kedua-duanya berkongsi beban sama rata dan penunjuk bergerak sejauh pemanjangan setiap separuh spring. Jisim spring boleh diabaikan.
+
+<MathVisual
+  title={<>Penimbang bagasi yang dibaiki</>}
+  description={<>Dua separuh spring yang putus tergantung bersebelahan dari pemegang atas dan memegang palang penunjuk, tempat beban digantung. Tanda di sebelah penunjuk ialah tanda yang lama. Lukisan ini tidak mengikut skala.</>}
+  labels={{
+    handle: <>pemegang atas</>,
+    lefthalf: <>separuh spring</>,
+    righthalf: <>separuh spring</>,
+    pointer: <>palang penunjuk</>,
+    marks: <><InlineMath math="1.0\text{ cm}" /> = <InlineMath math="4.0\text{ N}" />, <InlineMath math="0" /> hingga <InlineMath math="50\text{ N}" /></>,
+    load: <>beban</>,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -4.2, max: 8.4 }, y: { min: 0.2, max: 8 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "handle", kind: "segment", appearance: "primary", from: { x: 0, y: 6.4 }, to: { x: 0, y: 7.4 } },
+      { id: "topbar", kind: "segment", appearance: "secondary", from: { x: -1.6, y: 6.4 }, to: { x: 1.6, y: 6.4 } },
+      { id: "lefthalf", kind: "polyline", appearance: "secondary", vertices: [{ x: -0.8, y: 6.4 }, { x: -0.45, y: 6.089 }, { x: -1.15, y: 5.778 }, { x: -0.45, y: 5.467 }, { x: -1.15, y: 5.156 }, { x: -0.45, y: 4.844 }, { x: -1.15, y: 4.533 }, { x: -0.45, y: 4.222 }, { x: -1.15, y: 3.911 }, { x: -0.8, y: 3.6 }] },
+      { id: "righthalf", kind: "polyline", appearance: "secondary", vertices: [{ x: 0.8, y: 6.4 }, { x: 1.15, y: 6.089 }, { x: 0.45, y: 5.778 }, { x: 1.15, y: 5.467 }, { x: 0.45, y: 5.156 }, { x: 1.15, y: 4.844 }, { x: 0.45, y: 4.533 }, { x: 1.15, y: 4.222 }, { x: 0.45, y: 3.911 }, { x: 0.8, y: 3.6 }] },
+      { id: "pointer", kind: "segment", appearance: "highlight", from: { x: -1.6, y: 3.6 }, to: { x: 2.7, y: 3.6 } },
+      { id: "marks", kind: "segment", appearance: "reference", from: { x: 3, y: 1.6 }, to: { x: 3, y: 6.2 } },
+      { id: "hook", kind: "segment", appearance: "secondary", from: { x: 0, y: 3.6 }, to: { x: 0, y: 2.6 } },
+      { id: "load", kind: "polygon", appearance: "primary", vertices: [{ x: -1, y: 0.6 }, { x: 1, y: 0.6 }, { x: 1, y: 2.6 }, { x: -1, y: 2.6 }] },
+    ],
+    labels: [
+      { key: "handle", objectId: "handle", at: { x: 0, y: 7.4 }, placement: "above" },
+      { key: "lefthalf", objectId: "lefthalf", at: { x: -1.15, y: 5 }, placement: "left" },
+      { key: "righthalf", objectId: "righthalf", at: { x: 1.15, y: 4.4 }, placement: "right" },
+      { key: "pointer", objectId: "pointer", at: { x: 2.7, y: 3.6 }, placement: "below" },
+      { key: "marks", objectId: "marks", at: { x: 3, y: 6.2 }, placement: "right" },
+      { key: "load", objectId: "load", at: { x: 0, y: 1.6 }, placement: "center" },
+    ],
+  }}
+/>
+
+Berapakah pemalar spring bagi kedua-dua separuh spring itu bersama, berapakah bacaan penimbang yang dibaiki apabila sebuah beg pakaian yang beratnya sebenarnya <InlineMath math="100\text{ N}" /> digantung padanya, dan berapakah beban paling berat yang boleh ditampung oleh penimbang yang dibaiki itu sebelum separuh-separuh spring berhenti mematuhi hukum Hooke?

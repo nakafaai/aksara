@@ -1,0 +1,40 @@
+On a straight two-lane road, a car of length <InlineMath math="4.0\text{ m}" /> follows a lorry of length <InlineMath math="16\text{ m}" />. Both move at a steady <InlineMath math="20\text{ m s}^{-1}" />, and the front of the car is <InlineMath math="8.0\text{ m}" /> behind the back of the lorry. The driver of the car moves into the other lane and accelerates uniformly at <InlineMath math="2.0\text{ m s}^{-2}" /> until the back of the car is <InlineMath math="8.0\text{ m}" /> ahead of the front of the lorry, and then moves back. The lorry keeps its speed. In the other lane, an oncoming car approaches at a steady <InlineMath math="20\text{ m s}^{-1}" />. Treat both lane changes as taking no time.
+
+<MathVisual
+  title={<>Plan view of the road as the overtaking starts</>}
+  description={<>The car and the lorry move to the right in the lower lane. The oncoming car moves to the left in the upper lane. The drawing is not to scale.</>}
+  labels={{
+    car: <>car <InlineMath math="4.0\text{ m}" /></>,
+    gap: <><InlineMath math="8.0\text{ m}" /></>,
+    lorry: <>lorry <InlineMath math="16\text{ m}" /></>,
+    both: <><InlineMath math="20\text{ m s}^{-1}" /></>,
+    oncoming: <>oncoming car</>,
+    back: <><InlineMath math="20\text{ m s}^{-1}" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -2.5, max: 52.5 }, y: { min: -11.5, max: 17.5 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "edge-low", kind: "segment", appearance: "reference", from: { x: -2, y: 0 }, to: { x: 52, y: 0 } },
+      { id: "edge-high", kind: "segment", appearance: "reference", from: { x: -2, y: 6 }, to: { x: 52, y: 6 } },
+      { id: "centre", kind: "segment", appearance: "construction", from: { x: -2, y: 3 }, to: { x: 52, y: 3 } },
+      { id: "car", kind: "polygon", appearance: "primary", vertices: [{ x: 0, y: 0.9 }, { x: 4, y: 0.9 }, { x: 4, y: 2.1 }, { x: 0, y: 2.1 }] },
+      { id: "gap", kind: "segment", appearance: "construction", from: { x: 4, y: 1.5 }, to: { x: 12, y: 1.5 } },
+      { id: "lorry", kind: "polygon", appearance: "secondary", vertices: [{ x: 12, y: 0.6 }, { x: 28, y: 0.6 }, { x: 28, y: 2.4 }, { x: 12, y: 2.4 }] },
+      { id: "both", kind: "vector", appearance: "highlight", from: { x: 29, y: 1.5 }, to: { x: 34, y: 1.5 } },
+      { id: "oncoming", kind: "polygon", appearance: "warning", vertices: [{ x: 44, y: 3.9 }, { x: 48, y: 3.9 }, { x: 48, y: 5.1 }, { x: 44, y: 5.1 }] },
+      { id: "back", kind: "vector", appearance: "highlight", from: { x: 43, y: 4.5 }, to: { x: 38, y: 4.5 } },
+    ],
+    labels: [
+      { key: "car", objectId: "car", at: { x: 2, y: 0.9 }, placement: "below" },
+      { key: "gap", objectId: "gap", at: { x: 8, y: 1.5 }, placement: "above" },
+      { key: "lorry", objectId: "lorry", at: { x: 20, y: 0.6 }, placement: "below" },
+      { key: "both", objectId: "both", at: { x: 31.5, y: 1.5 }, placement: "above" },
+      { key: "oncoming", objectId: "oncoming", at: { x: 46, y: 5.1 }, placement: "above" },
+      { key: "back", objectId: "back", at: { x: 40.5, y: 4.5 }, placement: "below" },
+    ],
+  }}
+/>
+
+How long does the overtaking take, how far along the road does the overtaking car travel in that time, and what is the least distance between the fronts of the two cars at the start if they are not to meet before the overtaking car moves back?

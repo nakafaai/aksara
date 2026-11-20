@@ -1,0 +1,36 @@
+# Kecepatan di ujung keluar berasal dari penurunan
+
+Kereta roller coaster yang melewati punuk lalu menukik tiba di bawah dengan kecepatan yang ditentukan oleh seberapa jauh ia berakhir di bawah titik awalnya, bukan oleh punuk di sepanjang jalan. Permukaan air tangki dan ujung keluar sama-sama terbuka ke udara, jadi suku tekanannya saling menghapus, dan air keluar seolah-olah jatuh <InlineMath math="2{,}0\text{ m}" />, dengan <InlineMath math="\tfrac12\rho v^2=\rho g\times2{,}0" />. **Air keluar dari ujung selang dengan <InlineMath math="v=\sqrt{2\times10\times2{,}0}=6{,}32\text{ m s}^{-1}" />**. Tanjakan <InlineMath math="3{,}0\text{ m}" /> di atas tembok tidak mengubah kecepatan ini, karena air mendapatkan kembali ketinggian itu saat turun.
+
+# Di puncak, ketinggian dan kecepatan berbagi anggaran
+
+Bayangkan <InlineMath math="100\text{ kPa}" /> di permukaan yang tenang sebagai uang saku untuk perjalanan. Air memakai <InlineMath math="\rho gh=30\text{ kPa}" /> untuk naik <InlineMath math="3{,}0\text{ m}" />, dan karena lubang selang sama di mana-mana, volume yang sama melewati tiap titik setiap detik, jadi air di puncak sudah bergerak <InlineMath math="6{,}32\text{ m s}^{-1}" /> dan sudah memakai <InlineMath math="\tfrac12\rho v^2=20\text{ kPa}" /> untuk kecepatan. **Sisanya adalah tekanan <InlineMath math="50\text{ kPa}" /> di atas tembok**.
+
+<BlockMath math="\begin{aligned}
+p&=1{,}0\times10^{5}-1000\times10\times3{,}0-\tfrac12\times1000\times40\\
+&=100000-30000-20000=50000\text{ Pa}
+\end{aligned}" />
+
+Melupakan suku kecepatan memberi <InlineMath math="70\text{ kPa}" />, seakan-akan air diam di puncak. Mengukur ketinggian dari ujung keluar, <InlineMath math="5{,}0\text{ m}" />, memberi <InlineMath math="30\text{ kPa}" />, padahal anggaran dimulai di permukaan air tangki, jadi ketinggian dihitung dari sana.
+
+# Nosel membebaskan tekanan untuk ketinggian
+
+Tutup ujung selang taman dengan ibu jarimu, maka semburannya jadi cepat, sementara air di bagian belakang selang bergerak pelan. Nosel tidak mengubah kecepatan di ujung keluar, yang tetap ditentukan oleh penurunan <InlineMath math="2{,}0\text{ m}" />. Tetapi volume yang sama tiap detik sekarang keluar lewat separuh luas, jadi di dalam selang air bergerak setengah kecepatan itu, <InlineMath math="3{,}16\text{ m s}^{-1}" />, dan bagian kecepatan di puncak turun menjadi seperempat, <InlineMath math="5\text{ kPa}" />. Sifon gagal saat tekanan di puncak mencapai nol.
+
+<BlockMath math="\begin{aligned}
+1{,}0\times10^{5}-1000\times10\,z-\tfrac12\times1000\times\left(\tfrac{6{,}32}{2}\right)^2&=0\ \Rightarrow\ z=\frac{100000-5000}{10000}=9{,}5\text{ m}
+\end{aligned}" />
+
+**Dengan nosel, puncak selang bisa berada <InlineMath math="9{,}5\text{ m}" /> di atas permukaan air tangki**. Tetap memakai bagian kecepatan <InlineMath math="20\text{ kPa}" /> hanya memberi <InlineMath math="8{,}0\text{ m}" />, karena melewatkan fakta bahwa air di dalam selang sudah melambat.
+
+<Chart
+  title={<>Pembagian tekanan atmosfer di puncak selang</>}
+  description={<>Tiga bagian di atas tembok selalu berjumlah <InlineMath math="100\text{ kPa}" /> seperti di permukaan air yang tenang. Nosel memperlambat air di dalam selang, jadi bagian untuk kecepatan turun dari <InlineMath math="20" /> menjadi <InlineMath math="5\text{ kPa}" />, dan sisa tekanan itulah yang memungkinkan puncak selang dinaikkan lagi.</>}
+  bars="apart"
+  categories={["Tekanan yang tersisa di air", "Terpakai untuk ketinggian", "Terpakai untuk kecepatan"]}
+  series={[
+    { label: "Selang seragam", mark: "bar", values: [50, 30, 20] },
+    { label: "Dengan nosel", mark: "bar", values: [65, 30, 5] },
+  ]}
+  valueLabel="Tekanan (kPa)"
+/>

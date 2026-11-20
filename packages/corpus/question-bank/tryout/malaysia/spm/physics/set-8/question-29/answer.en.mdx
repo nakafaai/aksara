@@ -1,0 +1,38 @@
+# Two paths from the case to earth
+
+Rain on a roof pours mostly down the wide drainpipe, and only a trickle soaks through a sponge lying beside it. From the case, the earth wire and the person both lead to earth, side by side. Together they make <InlineMath math="0.49975\,\Omega" />, almost exactly the earth wire's <InlineMath math="0.50\,\Omega" />, and the live wire's <InlineMath math="0.30\,\Omega" /> comes before them in series.
+
+<BlockMath math="\begin{aligned}
+R&=0.30+\frac{0.50\times1000}{0.50+1000}=0.30+0.49975=0.79975\,\Omega\\
+I&=\frac{240}{0.79975}=300\text{ A}
+\end{aligned}" />
+
+**About <InlineMath math="300\text{ A}" /> flows through the fuse, more than twenty times its rating, so it melts quickly**. Leaving out the live wire's <InlineMath math="0.30\,\Omega" /> gives <InlineMath math="480\text{ A}" />, as if the fault sat right at the socket.
+
+# For a moment the case is live
+
+Even a wide drainpipe only carries a downpour when some water piles up at its top. Pushing <InlineMath math="300\text{ A}" /> through the earth wire's <InlineMath math="0.50\,\Omega" /> needs <InlineMath math="300\times0.50=150\text{ V}" /> across it, so the case sits at about <InlineMath math="150\text{ V}" /> until the fuse melts. The person has that same <InlineMath math="150\text{ V}" /> across them. **About <InlineMath math="150/1000=0.150\text{ A}" /> flows through the person in the moment before the fuse melts**. Answering <InlineMath math="0\text{ A}" /> assumes the earth wire holds the case at <InlineMath math="0\text{ V}" />. It cannot do that while a large current flows through it. Its job is to make the fault current so large that the fuse melts within a fraction of a second.
+
+<Mermaid
+  title={<>Where the fault current goes</>}
+  description={<>With the earth wire connected, almost all of the current takes the earth wire, and the case sits at about <InlineMath math="150\text{ V}" /> until the fuse melts. With the earth wire loose, only the person joins the case to earth.</>}
+  chart={`
+    flowchart TD
+      N0["Supply, 240 V"]
+      N1["Fuse and live wire, 0.30 Ω"]
+      N2["Metal case, about 150 V"]
+      N3["Earth wire, 0.50 Ω, about 300 A"]
+      N4["Person and wet floor, 1000 Ω, 0.150 A"]
+      N5["Earth, 0 V"]
+      N0 --> N1
+      N1 --> N2
+      N2 --> N3
+      N2 --> N4
+      N3 --> N5
+      N4 --> N5
+  `}
+/>
+
+# Without the earth wire, the fuse never notices
+
+A smoke alarm that only reacts to a bonfire would sleep through a smouldering candle. With the earth wire loose, the only path from the case to earth runs through the person, so the current is <InlineMath math="240/(0.30+1000)=0.240\text{ A}" />. **About <InlineMath math="0.240\text{ A}" /> flows through the person, and the fuse does not melt**, because <InlineMath math="0.240\text{ A}" /> is far below <InlineMath math="13\text{ A}" />. The shock simply goes on. Expecting the fuse to melt mixes up its job, which is to stop currents large enough to overheat the wiring, with protecting people. A current far too small to trouble a fuse can still be very dangerous to a person.

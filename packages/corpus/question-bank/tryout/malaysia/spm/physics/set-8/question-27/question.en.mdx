@@ -1,0 +1,40 @@
+A gardener drains a water tank over a garden wall with a siphon made from a hose of uniform bore. The water surface in the tank is <InlineMath math="2.0\text{ m}" /> above the open outlet of the hose on the other side of the wall, and the highest point of the hose, on top of the wall, is <InlineMath math="3.0\text{ m}" /> above the tank's water surface. Treat the water as flowing without friction, so that along the hose <InlineMath math="p+\rho gh+\tfrac12\rho v^2" /> stays the same, where <InlineMath math="h" /> is height. The water surface in the tank is wide, so the water there is almost still. Atmospheric pressure is <InlineMath math="1.0\times10^{5}\text{ Pa}" />, the density of water is <InlineMath math="1000\text{ kg m}^{-3}" />, and the siphon stops working if the pressure anywhere in the water falls to zero. Take <InlineMath math="g=10\text{ m s}^{-2}" />.
+
+<MathVisual
+  title={<>The siphon over the garden wall</>}
+  description={<>The hose runs from under the water in the tank, up over the wall and down to its open outlet on the far side. The drawing is not to scale.</>}
+  labels={{
+    tank: <>tank</>,
+    wall: <>wall</>,
+    outlet: <>outlet</>,
+    up: <><InlineMath math="3.0\text{ m}" /></>,
+    down: <><InlineMath math="2.0\text{ m}" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.8, max: 13.6 }, y: { min: -0.8, max: 8 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "ground", kind: "segment", appearance: "reference", from: { x: -0.5, y: 0 }, to: { x: 12.5, y: 0 } },
+      { id: "tank", kind: "polygon", appearance: "secondary", vertices: [{ x: 0, y: 0 }, { x: 4, y: 0 }, { x: 4, y: 5 }, { x: 0, y: 5 }] },
+      { id: "surface", kind: "segment", appearance: "reference", from: { x: 0, y: 4 }, to: { x: 4, y: 4 } },
+      { id: "wall", kind: "polygon", appearance: "reference", vertices: [{ x: 6, y: 0 }, { x: 7, y: 0 }, { x: 7, y: 6.8 }, { x: 6, y: 6.8 }] },
+      { id: "hose", kind: "polyline", appearance: "primary", vertices: [{ x: 3.2, y: 1.5 }, { x: 3.2, y: 6.5 }, { x: 4.5, y: 7 }, { x: 8.5, y: 7 }, { x: 9.5, y: 6.5 }, { x: 9.5, y: 2 }] },
+      { id: "outlet", kind: "segment", appearance: "highlight", from: { x: 9.2, y: 2 }, to: { x: 9.8, y: 2 } },
+      { id: "toplevel", kind: "segment", appearance: "construction", from: { x: 8.5, y: 7 }, to: { x: 11.5, y: 7 } },
+      { id: "surflevel", kind: "segment", appearance: "construction", from: { x: 4, y: 4 }, to: { x: 11.5, y: 4 } },
+      { id: "outlevel", kind: "segment", appearance: "construction", from: { x: 9.8, y: 2 }, to: { x: 11.5, y: 2 } },
+      { id: "up", kind: "segment", appearance: "construction", from: { x: 11.2, y: 4 }, to: { x: 11.2, y: 7 } },
+      { id: "down", kind: "segment", appearance: "construction", from: { x: 11.2, y: 2 }, to: { x: 11.2, y: 4 } },
+    ],
+    labels: [
+      { key: "tank", objectId: "tank", at: { x: 2, y: 2 }, placement: "center" },
+      { key: "wall", objectId: "wall", at: { x: 6.5, y: 3 }, placement: "center" },
+      { key: "outlet", objectId: "outlet", at: { x: 9.5, y: 2 }, placement: "below" },
+      { key: "up", objectId: "up", at: { x: 11.2, y: 5.5 }, placement: "right" },
+      { key: "down", objectId: "down", at: { x: 11.2, y: 3 }, placement: "right" },
+    ],
+  }}
+/>
+
+How fast does the water leave the outlet, what is the pressure in the water at the top of the wall, and if a nozzle that halves the area of the outlet is fitted, how high above the tank's water surface could the top of the hose then be before the siphon stops working?

@@ -1,0 +1,29 @@
+# Die Bremsleistung schrumpft, während das Auto langsamer wird
+
+Zieh bei voller Fahrt an einer Fahrradbremse, und die Felge wird schnell heiß, während derselbe Griff im Schritttempo sie kaum erwärmt. Die Bremskraft des Autos bleibt die ganze Zeit bei <InlineMath math="F=ma=1500\times4{,}0=6000\text{ N}" />, doch die Leistung dafür ist <InlineMath math="Fv" />. Am Anfang sind das <InlineMath math="6000\times20=120\text{ kW}" />, dreimal so viel, wie die Batterie aufnehmen darf. Alles schlucken kann die Batterie erst, sobald <InlineMath math="6000\,v\le40\,000" /> gilt. **Die ganze Bremsleistung fließt nur unterhalb von <InlineMath math="6{,}67\text{ m s}^{-1}" /> in die Batterie**. Wer das schon ab <InlineMath math="20\text{ m s}^{-1}" /> annimmt, vergisst die Grenze von <InlineMath math="40\text{ kW}" />, und derselbe Fehler liefert danach <InlineMath math="300\text{ kJ}" /> und <InlineMath math="150\text{ A}" />.
+
+# Ein schneller und ein langsamer Abschnitt
+
+Ein Trichter schluckt nur eine bestimmte Menge Wasser pro Sekunde, und was du schneller hineingießt, läuft über den Rand. Von <InlineMath math="20" /> bis <InlineMath math="6{,}67\text{ m s}^{-1}" /> nimmt die Batterie gleichmäßig <InlineMath math="40\text{ kW}" /> auf, und bei <InlineMath math="4{,}0\text{ m s}^{-2}" /> dauert dieser Abschnitt <InlineMath math="(20-6{,}67)/4{,}0=3{,}33\text{ s}" />. Unter <InlineMath math="6{,}67\text{ m s}^{-1}" /> läuft nichts mehr über, also landet die ganze restliche Bewegungsenergie in der Batterie.
+
+<BlockMath math="\begin{aligned}
+E&=40\,000\times3{,}33+\frac{1}{2}\times1500\times6{,}67^2\\
+&=1{,}333\times10^{5}+0{,}333\times10^{5}=1{,}67\times10^{5}\text{ J}
+\end{aligned}" />
+
+**Die Batterie gewinnt beim Anhalten <InlineMath math="167\text{ kJ}" />**, etwas mehr als die Hälfte der <InlineMath math="300\text{ kJ}" />, die das Auto hatte. Endet die Rechnung bei <InlineMath math="133\text{ kJ}" />, fehlt der langsame Abschnitt, und am Ende stehen <InlineMath math="66{,}7\text{ A}" />. Rechnet man <InlineMath math="40\text{ kW}" /> mal die ganzen <InlineMath math="5{,}0\text{ s}" />, kommt man auf <InlineMath math="200\text{ kJ}" />, als nähme die Batterie auch kurz vor dem Stillstand noch volle <InlineMath math="40\text{ kW}" /> auf, obwohl das Auto dann viel weniger Bremsleistung braucht.
+
+<Chart
+  title={<>Bremsleistung und der Anteil der Batterie</>}
+  description={<>Zeit in Sekunden auf der unteren Achse. Die Bremsleistung fällt geradlinig von <InlineMath math="120\text{ kW}" /> auf null. Die Batterie folgt bis <InlineMath math="3{,}33\text{ s}" /> der flachen Grenze von <InlineMath math="40\text{ kW}" /> und danach der fallenden Linie. Die Lücke zwischen beiden Linien ist die Wärme der Reibungsbremsen.</>}
+  categories={["0,0", "0,5", "1,0", "1,5", "2,0", "2,5", "3,0", "3,5", "4,0", "4,5", "5,0"]}
+  series={[
+    { label: "Nötige Bremsleistung", mark: "line", values: [120, 108, 96, 84, 72, 60, 48, 36, 24, 12, 0] },
+    { label: "Leistung in die Batterie", mark: "line", values: [40, 40, 40, 40, 40, 40, 40, 36, 24, 12, 0] },
+  ]}
+  valueLabel="Leistung (kW)"
+/>
+
+# Von Joule zu Coulomb
+
+Jedes Coulomb, das in eine Batterie mit <InlineMath math="400\text{ V}" /> fließt, lässt dort <InlineMath math="400\text{ J}" /> zurück, so wie ein Aufzug für jeden Fahrgast, den er in dasselbe Stockwerk bringt, dieselbe Energie speichert. Die Ladung beträgt <InlineMath math="166\,700/400=417\text{ C}" />, verteilt auf die <InlineMath math="5{,}0\text{ s}" /> des Bremsens. **Der mittlere Ladestrom beträgt <InlineMath math="417/5{,}0=83{,}3\text{ A}" />**. Gleichmäßig ist der Strom allerdings nicht. Im schnellen Abschnitt bleibt er bei <InlineMath math="40\,000/400=100\text{ A}" />, danach klingt er bis zum Stillstand auf null ab.

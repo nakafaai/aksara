@@ -1,0 +1,30 @@
+# Ein Teil der Kraft drückt in die Rampe
+
+Schieb einen schweren Koffer mit waagerechten Armen eine schräge Einfahrt hinauf, und du spürst, wie ein Teil deiner Mühe ihn nur gegen den Boden presst, statt ihn nach oben zu bringen. Die waagerechte Kraft <InlineMath math="P" /> des Arbeiters teilt sich genauso auf. Der Anteil <InlineMath math="P\cos30^\circ" /> wirkt die Rampe hinauf, und der Anteil <InlineMath math="P\sin30^\circ" /> drückt die Kiste in die Rampe. Die Normalkraft ist also <InlineMath math="mg\cos30^\circ+P\sin30^\circ" />, nicht bloß <InlineMath math="433\text{ N}" />, und die Reibung ist <InlineMath math="0{,}40" />-mal so groß. Bei konstanter Geschwindigkeit gleichen sich die Kräfte entlang der Rampe aus. **Die Kraft, mit der die Kiste gleichmäßig hinaufgleitet, beträgt <InlineMath math="635\text{ N}" />**.
+
+<BlockMath math="\begin{aligned}
+P\cos30^\circ&=mg\sin30^\circ+0{,}40\,(mg\cos30^\circ+P\sin30^\circ)\\
+0{,}866P-0{,}200P&=250+173{,}2\ \Rightarrow\ P=\frac{423{,}2}{0{,}666}=635\text{ N}\\
+f&=0{,}40\,(433+0{,}500\times635)=0{,}40\times751=300\text{ N}
+\end{aligned}" />
+
+Wer die Normalkraft bei <InlineMath math="mg\cos30^\circ" /> lässt, erhält nur <InlineMath math="489\text{ N}" /> und vergisst, dass die Kraft selbst die Kiste stärker reiben lässt. Wer <InlineMath math="P\sin30^\circ" /> umdreht, als würde die Kraft die Kiste von der Rampe heben, kommt auf <InlineMath math="397\text{ N}" />.
+
+# Die Reibung wächst mit der Kraft
+
+Drück ein Buch mit der flachen Hand auf den Tisch, und es lässt sich viel schwerer verschieben. Hier legt die Kraft <InlineMath math="0{,}500\times635=318\text{ N}" /> zu den <InlineMath math="433\text{ N}" /> dazu, mit denen das Gewicht der Kiste ohnehin in die Rampe drückt, also beträgt die Normalkraft <InlineMath math="751\text{ N}" />. **Die Reibung auf die gleitende Kiste ist <InlineMath math="0{,}40\times751=300\text{ N}" />**. Das ist weit mehr als die <InlineMath math="173\text{ N}" />, die bei einer Kraft parallel zur Rampe aufträten.
+
+# Wenn mehr Kraft nichts mehr bringt
+
+Drück ein Spielzeugauto senkrecht auf den Boden, und es rollt nie los, egal wie fest du drückst. Auf einer steileren Rampe zeigt eine waagerechte Kraft mehr in die Rampe hinein und weniger an ihr entlang. Jedes zusätzliche Newton liefert <InlineMath math="\cos\theta" /> Newton Vortrieb die Rampe hinauf, bringt aber <InlineMath math="0{,}40\sin\theta" /> Newton Reibung dagegen mit. Sobald <InlineMath math="0{,}40\sin\theta" /> den Wert <InlineMath math="\cos\theta" /> erreicht, gewinnt eine größere Kraft nichts mehr, und das geschieht bei <InlineMath math="\tan\theta=1/0{,}40=2{,}5" />. **Oberhalb von <InlineMath math="68{,}2^\circ" /> kann keine waagerechte Kraft die Kiste hinaufschieben**. Der Winkel <InlineMath math="21{,}8^\circ" /> aus <InlineMath math="\tan\theta=0{,}40" /> ist eine andere Grenze. Bei dieser Neigung würde die Kiste ganz ohne Kraft von selbst hinabzurutschen beginnen.
+
+<Chart
+  title={<>Nötige Schubkraft, wenn die Rampe steiler wird</>}
+  description={<>Rampenwinkel in Grad auf der unteren Achse. Eine Kraft entlang der Rampe wächst gemächlich, die waagerechte Kraft dagegen immer schneller, weil immer mehr von ihr in die Rampe drückt. Bei <InlineMath math="68{,}2^\circ" /> müsste sie unendlich groß sein.</>}
+  categories={["0", "10", "20", "30", "40", "50", "60"]}
+  series={[
+    { label: "Waagerechte Kraft", mark: "line", values: [200, 310, 447, 635, 933, 1521, 3470] },
+    { label: "Kraft entlang der Rampe", mark: "line", values: [200, 284, 359, 423, 475, 512, 533] },
+  ]}
+  valueLabel="Kraft (N)"
+/>

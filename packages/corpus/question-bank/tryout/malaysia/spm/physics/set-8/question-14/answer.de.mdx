@@ -1,0 +1,37 @@
+# Eine beladene Brücke schwingt langsamer
+
+Ein Sprungbrett wippt unter einem schweren Springer langsamer als unter einem kleinen Kind. Eine Brücke macht es genauso. Die <InlineMath math="1{,}08\text{ Hz}" /> gehören zum leeren Steg, aber die Gruppe vergrößert beim Gehen die mitschwingende Masse um <InlineMath math="44\%" />, und die Frequenz sinkt um den Faktor <InlineMath math="\sqrt{1{,}44}=1{,}2" />.
+
+<BlockMath math="\begin{aligned}
+f&=\frac{1{,}08}{\sqrt{1{,}44}}=\frac{1{,}08}{1{,}2}=0{,}90\text{ Hz}
+\end{aligned}" />
+
+**Mit der Gruppe darauf schwankt die Brücke mit <InlineMath math="0{,}90\text{ Hz}" />**. Wer den Gang auf die <InlineMath math="1{,}08\text{ Hz}" /> der Ingenieure abstimmt, erhält <InlineMath math="1{,}62\text{ m s}^{-1}" />, ein Tempo, das die leere Brücke ins Schwanken brächte, nicht die, auf der die Gruppe gerade steht.
+
+# Links, rechts, links
+
+Auf einer Schaukel gibst du pro ganzem Schwung einen Stoß. Der Körper eines Fußgängers kippt beim linken Schritt nach links und beim rechten nach rechts, also braucht ein ganzer seitlicher Stoß zwei Schritte. Um <InlineMath math="0{,}90\text{ Hz}" /> zu treffen, muss die Gruppe mit <InlineMath math="1{,}8\text{ Hz}" /> gehen.
+
+<BlockMath math="\begin{aligned}
+f_{\text{step}}&=2\times0{,}90=1{,}8\text{ Hz},\qquad v=0{,}75\times1{,}8=1{,}35\text{ m s}^{-1}\\
+N&=0{,}90\times\frac{54}{1{,}35}=0{,}90\times40=36
+\end{aligned}" />
+
+**Die Gruppe regt das Schwanken bei <InlineMath math="1{,}35\text{ m s}^{-1}" /> an, und die Brücke schwankt in den <InlineMath math="40\text{ s}" /> der Überquerung <InlineMath math="36" /> Mal**. Jede Schwankung braucht zwei Schritte, also ergeben <InlineMath math="54\text{ m}" /> aus Schritten von <InlineMath math="0{,}75\text{ m}" /> dieselben <InlineMath math="36" />. Wer mit <InlineMath math="0{,}90\text{ Hz}" /> geht, als wäre jeder Schritt ein ganzer Stoß, halbiert das Tempo auf <InlineMath math="0{,}68\text{ m s}^{-1}" /> und dehnt die Überquerung auf <InlineMath math="72" /> Schwankungen.
+
+# Ein Läufer trifft auf eine leere Brücke
+
+Jede Landung auf einem Trampolin drückt das Tuch nach unten, egal mit welchem Fuß. Auf und ab kommt der Stoß mit jedem Schritt. Ein einzelner Läufer bringt kaum Masse mit, also behält das Federn die <InlineMath math="2{,}4\text{ Hz}" /> der leeren Brücke, und seine Füße müssen <InlineMath math="2{,}4" /> Mal pro Sekunde aufsetzen. **Der Läufer braucht <InlineMath math="1{,}20\times2{,}4=2{,}88\text{ m s}^{-1}" />, also etwa <InlineMath math="2{,}9\text{ m s}^{-1}" />**. Wer durch den Faktor <InlineMath math="1{,}2" /> der Gruppe teilt, senkt das Federn auf <InlineMath math="2{,}0\text{ Hz}" /> und das Tempo auf <InlineMath math="2{,}4\text{ m s}^{-1}" />, obwohl an diesem Tag keine Gruppe auf der Brücke ist.
+
+<Chart
+  title={<>Wessen Takt der Stoß treffen muss</>}
+  description={<>Frequenzen in Hertz. Der seitliche Stoß der Gruppe passt nur zur Brücke, solange die Gruppe sie belastet, also bei <InlineMath math="0{,}90\text{ Hz}" />. Der einzelne Läufer trifft auf eine leere Brücke, also muss sein Stoß die <InlineMath math="2{,}4\text{ Hz}" /> der leeren Brücke treffen.</>}
+  bars="apart"
+  categories={["Gruppe, seitliches Schwanken", "Einzelner Läufer, Federn"]}
+  series={[
+    { label: "Eigenfrequenz, leere Brücke", mark: "bar", values: [1.08, 2.4] },
+    { label: "Eigenfrequenz, Brücke mit der Gruppe", mark: "bar", values: [0.9, 2.0] },
+    { label: "Frequenz der Stöße", mark: "bar", values: [0.9, 2.4] },
+  ]}
+  valueLabel="Frequenz (Hz)"
+/>
