@@ -1,30 +1,15 @@
 import { CatalogRevisionSchema } from "@nakafa/aksara-contracts/assessment/catalog";
 import { KebabKeySchema } from "@nakafa/aksara-contracts/assessment/identity";
-import { MarksSchema } from "@nakafa/aksara-contracts/assessment/scoring";
 import { DateOnlySchema } from "@nakafa/aksara-contracts/date";
 import { isHttpsUrl } from "@nakafa/aksara-contracts/text/syntax";
 import { Array as Arr, Effect, HashSet, Schema } from "effect";
-
-/**
- * The response formats of the official frameworks: a single choice, a choice
- * of several answers, a category table, and a short answer. An authored choice
- * with one correct option is a single choice, with several a multiple choice, a
- * matrix is a category table, and a typed number is a short answer.
- */
-export const ResponseFormatSchema = Schema.Literals([
-  "category",
-  "multiple-choice",
-  "short-answer",
-  "single-choice",
-]);
-export type ResponseFormat = typeof ResponseFormatSchema.Type;
-
-const PositiveCountSchema = Schema.Int.pipe(
-  Schema.check(Schema.isGreaterThan(0))
-);
-const NonNegativeCountSchema = Schema.Int.pipe(
-  Schema.check(Schema.isGreaterThanOrEqualTo(0))
-);
+import {
+  ExcludedPartSchema,
+  hasWholeWeights,
+  isCited,
+  ReadinessSectionSchema,
+  readinessExpectations,
+} from "#corpus/tryout/readiness/section";
 
 const ReadinessEvidenceSchema = Schema.Struct({
   key: KebabKeySchema,
@@ -33,70 +18,16 @@ const ReadinessEvidenceSchema = Schema.Struct({
   url: Schema.String.pipe(Schema.check(Schema.makeFilter(isHttpsUrl))),
 });
 
-const OfficialProvenanceSchema = Schema.Struct({
-  evidenceKey: KebabKeySchema,
-  kind: Schema.Literal("official"),
-});
-const ExpectationProvenanceSchema = Schema.Union([
-  OfficialProvenanceSchema,
-  Schema.Struct({ kind: Schema.Literal("editorial") }),
-]);
-const ScheduleExpectationSchema = Schema.Struct({
-  provenance: ExpectationProvenanceSchema,
-  value: PositiveCountSchema,
-});
 /**
- * Penalized marks change a learner's score, so only official evidence may set
- * them.
+ * The readiness of one track: the evidence it cites, its scheduled sections,
+ * and the parts of the official exam that the try-out leaves out, such as the
+ * oral exam, each with its weight.
  */
-const MarksExpectationSchema = Schema.Struct({
-  provenance: OfficialProvenanceSchema,
-  value: MarksSchema,
-});
-const CoverageMinimumSchema = Schema.Struct({
-  editorialMinimum: PositiveCountSchema,
-  key: KebabKeySchema,
-});
-const ResponseMinimumSchema = Schema.Struct({
-  editorialMinimum: PositiveCountSchema,
-  kind: ResponseFormatSchema,
-});
-/**
- * One topic a section may ask, with the levels and domains it belongs to. A
- * topic with a minimum of zero is allowed in every set without being required,
- * because a section such as a reading test varies its topics from set to set.
- */
-const TopicMinimumSchema = Schema.Struct({
-  cognitiveLevels: Schema.NonEmptyArray(KebabKeySchema),
-  contentDomains: Schema.NonEmptyArray(KebabKeySchema),
-  editorialMinimum: NonNegativeCountSchema,
-  key: KebabKeySchema,
-});
-
-const SectionBlueprintSchema = Schema.Struct({
-  cognitiveLevels: Schema.NonEmptyArray(CoverageMinimumSchema),
-  contentDomains: Schema.NonEmptyArray(CoverageMinimumSchema),
-  evidenceKey: KebabKeySchema,
-  groupedStimulusEditorialMinimum: NonNegativeCountSchema,
-  responseMinimums: Schema.NonEmptyArray(ResponseMinimumSchema),
-  topics: Schema.NonEmptyArray(TopicMinimumSchema),
-});
-/**
- * Expected facts for one scheduled section. `marks` records the official
- * evidence for the correct, wrong, and blank marks of a penalized section.
- */
-const ReadinessSectionSchema = Schema.Struct({
-  blueprint: Schema.optionalKey(SectionBlueprintSchema),
-  key: KebabKeySchema,
-  marks: Schema.optionalKey(MarksExpectationSchema),
-  order: PositiveCountSchema,
-  questionCount: ScheduleExpectationSchema,
-  timeLimitSeconds: ScheduleExpectationSchema,
-});
 const AssessmentReadinessFieldsSchema = Schema.Struct({
   countryKey: KebabKeySchema,
   evidence: Schema.NonEmptyArray(ReadinessEvidenceSchema),
   examKey: KebabKeySchema,
+  excluded: Schema.optionalKey(Schema.NonEmptyArray(ExcludedPartSchema)),
   sections: Schema.NonEmptyArray(ReadinessSectionSchema),
   sourceRevision: CatalogRevisionSchema,
   trackKey: KebabKeySchema,
@@ -121,48 +52,43 @@ function hasCanonicalReadiness(readiness: AssessmentReadinessFields) {
   if (!uniqueBy(readiness.evidence, ({ key }) => key)) {
     return false;
   }
-  return Arr.every(readiness.sections, (section, index) => {
-    const { blueprint } = section;
-    const expectations = [
-      section.questionCount,
-      section.timeLimitSeconds,
-      ...(section.marks === undefined ? [] : [section.marks]),
-    ];
-    const evidenceExists = Arr.every(
-      expectations,
-      ({ provenance }) =>
-        provenance.kind === "editorial" ||
-        HashSet.has(evidenceKeys, provenance.evidenceKey)
-    );
-    return (
-      section.order === index + 1 &&
-      evidenceExists &&
-      (blueprint === undefined ||
-        (HashSet.has(evidenceKeys, blueprint.evidenceKey) &&
-          uniqueBy(blueprint.contentDomains, ({ key }) => key) &&
-          uniqueBy(blueprint.cognitiveLevels, ({ key }) => key) &&
-          uniqueBy(blueprint.responseMinimums, ({ kind }) => kind) &&
-          uniqueBy(blueprint.topics, ({ key }) => key) &&
-          Arr.every(
-            blueprint.topics,
-            ({ cognitiveLevels, contentDomains }) =>
-              uniqueBy(cognitiveLevels, (cognitiveLevel) => cognitiveLevel) &&
-              Arr.every(cognitiveLevels, (cognitiveLevel) =>
-                Arr.some(
-                  blueprint.cognitiveLevels,
-                  ({ key }) => key === cognitiveLevel
+  const evidenceExists = Arr.every(
+    readinessExpectations(readiness.sections, readiness.excluded),
+    (expectation) => isCited(evidenceKeys, expectation)
+  );
+  return (
+    evidenceExists &&
+    Arr.every(readiness.sections, (section, index) => {
+      const { blueprint } = section;
+      return (
+        section.order === index + 1 &&
+        (blueprint === undefined ||
+          (HashSet.has(evidenceKeys, blueprint.evidenceKey) &&
+            uniqueBy(blueprint.contentDomains, ({ key }) => key) &&
+            uniqueBy(blueprint.cognitiveLevels, ({ key }) => key) &&
+            uniqueBy(blueprint.responseMinimums, ({ kind }) => kind) &&
+            uniqueBy(blueprint.topics, ({ key }) => key) &&
+            Arr.every(
+              blueprint.topics,
+              ({ cognitiveLevels, contentDomains }) =>
+                uniqueBy(cognitiveLevels, (cognitiveLevel) => cognitiveLevel) &&
+                Arr.every(cognitiveLevels, (cognitiveLevel) =>
+                  Arr.some(
+                    blueprint.cognitiveLevels,
+                    ({ key }) => key === cognitiveLevel
+                  )
+                ) &&
+                uniqueBy(contentDomains, (contentDomain) => contentDomain) &&
+                Arr.every(contentDomains, (contentDomain) =>
+                  Arr.some(
+                    blueprint.contentDomains,
+                    ({ key }) => key === contentDomain
+                  )
                 )
-              ) &&
-              uniqueBy(contentDomains, (contentDomain) => contentDomain) &&
-              Arr.every(contentDomains, (contentDomain) =>
-                Arr.some(
-                  blueprint.contentDomains,
-                  ({ key }) => key === contentDomain
-                )
-              )
-          )))
-    );
-  });
+            )))
+      );
+    })
+  );
 }
 
 /** Unversioned source-backed release gate for one active assessment track. */
@@ -171,7 +97,15 @@ export const AssessmentReadinessSchema = AssessmentReadinessFieldsSchema.pipe(
     Schema.makeFilter(hasCanonicalReadiness, {
       message:
         "Assessment readiness must be ordered, unique, and evidence-complete.",
-    })
+    }),
+    Schema.makeFilter(
+      (readiness: AssessmentReadinessFields) =>
+        hasWholeWeights(readiness.sections, readiness.excluded),
+      {
+        message:
+          "Expected a weight on every section once the result is weighed, and each part left out named once, apart from the sections.",
+      }
+    )
   )
 );
 export type AssessmentReadinessInput = typeof AssessmentReadinessSchema.Encoded;

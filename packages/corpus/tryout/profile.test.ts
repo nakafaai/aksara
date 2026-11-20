@@ -70,6 +70,32 @@ describe("makeExamProfile", () => {
     })
   );
 
+  it.effect("offers the aids of a section beside the review mark", () =>
+    Effect.gen(function* () {
+      const exam = yield* testExam;
+      const [subject] = exam.tracks;
+      if (subject === undefined) {
+        return yield* Effect.die("Expected the subject track.");
+      }
+      const [section] = subject.profile.sections;
+      const profile = yield* makeExamProfile(exam, {
+        ...subject,
+        profile: {
+          ...subject.profile,
+          sections: [
+            { ...section, tools: ["calculator-scientific", "formula-sheet"] },
+          ],
+        },
+      });
+
+      expect(profile.sections[0]?.tools).toEqual([
+        "mark-for-review",
+        "calculator-scientific",
+        "formula-sheet",
+      ]);
+    })
+  );
+
   it.effect("refuses a track whose names miss a locale", () =>
     Effect.gen(function* () {
       const exam = yield* testExam;

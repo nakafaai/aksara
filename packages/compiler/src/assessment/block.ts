@@ -12,6 +12,7 @@ import type {
 import { Array as Arr, Effect, Option, Predicate } from "effect";
 import type { BlockSite } from "#compiler/assessment/error";
 import { sourceError } from "#compiler/assessment/error";
+import { blockField, FIELD_COMPONENT } from "#compiler/assessment/field";
 import { figureComponent, figureNode } from "#compiler/assessment/figure";
 import { inlineContent } from "#compiler/assessment/inline";
 
@@ -215,6 +216,14 @@ function blockElement(
 ): Effect.Effect<readonly BlockNode[], BlockError> {
   if (element.name === "fragment") {
     return blockChildren(element.children, site);
+  }
+  if (element.name === FIELD_COMPONENT) {
+    return blockField(element, site.fields).pipe(
+      Effect.mapError((error) =>
+        sourceError(site, error.element, error.reason)
+      ),
+      Effect.map((node) => [node])
+    );
   }
   const component = figureComponent(element);
   if (Option.isSome(component)) {

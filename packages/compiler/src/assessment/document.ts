@@ -8,6 +8,10 @@ import remarkMath from "remark-math";
 import { blockChildren } from "#compiler/assessment/block";
 import type { BlockSite } from "#compiler/assessment/error";
 import { AssessmentSiteSchema, sourceError } from "#compiler/assessment/error";
+import {
+  FIELD_COMPONENT,
+  requirePlacedFields,
+} from "#compiler/assessment/field";
 import { MDX_PROVIDER_SOURCE } from "#compiler/config";
 import { MdxCompilationError } from "#compiler/errors";
 import { createSourcePolicy } from "#compiler/policy/source";
@@ -28,6 +32,12 @@ export const ASSESSMENT_COMPONENTS = [
   ...FIGURE_NAMES,
 ];
 
+/**
+ * The components a prompt may use: those of every assessment source, and the
+ * `Field` that places each part of an item with parts.
+ */
+const PROMPT_COMPONENTS = [...ASSESSMENT_COMPONENTS, FIELD_COMPONENT];
+
 /** One authored assessment source: a prompt, a shared reading, or an explanation. */
 export const AssessmentSourceSchema = Schema.Struct({
   ...AssessmentSiteSchema.fields,
@@ -36,24 +46,28 @@ export const AssessmentSourceSchema = Schema.Struct({
 export type AssessmentSource = typeof AssessmentSourceSchema.Type;
 
 /**
- * Compiles one trusted assessment source into the blocks of a document. The
- * MDX is evaluated once, under the same source policy as every other authored
- * document, and its element tree becomes the nodes of the Assessment Document.
- * The source holds no module code, not even metadata: a document is data.
+ * Compiles one trusted assessment source into the blocks of a document, with
+ * the components it may use and the fields it may place. The MDX is evaluated
+ * once, under the same source policy as every other authored document, and
+ * its element tree becomes the nodes of the Assessment Document. The source
+ * holds no module code, not even metadata: a document is data.
  */
 const compileBlocks = Effect.fn("AksaraCompiler.compileBlocks")(function* (
   source: AssessmentSource,
-  answers: BlockSite["answers"]
+  answers: BlockSite["answers"],
+  fields: BlockSite["fields"],
+  components: readonly string[]
 ) {
   const site: BlockSite = {
     answers,
     contentKey: source.contentKey,
+    fields,
     sourcePath: source.sourcePath,
   };
   const policy = createSourcePolicy(
     source.contentKey,
     source.sourcePath,
-    HashSet.fromIterable(ASSESSMENT_COMPONENTS)
+    HashSet.fromIterable(components)
   );
   const file = yield* Effect.tryPromise({
     catch: (cause) =>
@@ -78,7 +92,7 @@ const compileBlocks = Effect.fn("AksaraCompiler.compileBlocks")(function* (
   yield* policy.validate();
   const tree = yield* evaluateContentTree({
     compiledCode: String(file),
-    componentNames: ASSESSMENT_COMPONENTS,
+    componentNames: components,
     contentKey: source.contentKey,
     sourcePath: source.sourcePath,
   });
@@ -91,11 +105,23 @@ const compileBlocks = Effect.fn("AksaraCompiler.compileBlocks")(function* (
 
 /**
  * Compiles the prompt of an item into its blocks. A learner reads it before
- * answering, so its figures hold no answer state.
+ * answering, so its figures hold no answer state. The prompt of an item with
+ * parts places each field exactly once, where its `Field` stands; the prompt
+ * of a single interaction places none, because publication puts that
+ * interaction after it.
  */
 export const compileAssessmentBlocks = Effect.fn(
   "AksaraCompiler.compileAssessmentBlocks"
-)((source: AssessmentSource) => compileBlocks(source, "hidden"));
+)(function* (source: AssessmentSource, fields: BlockSite["fields"]) {
+  const blocks = yield* compileBlocks(
+    source,
+    "hidden",
+    fields,
+    PROMPT_COMPONENTS
+  );
+  yield* requirePlacedFields(blocks, fields, source);
+  return blocks;
+});
 
 /**
  * Compiles a source that places no interaction into its document, which the
@@ -105,7 +131,12 @@ const compileDocument = Effect.fn("AksaraCompiler.compileDocument")(function* (
   source: AssessmentSource,
   answers: BlockSite["answers"]
 ) {
-  const content = yield* compileBlocks(source, answers);
+  const content = yield* compileBlocks(
+    source,
+    answers,
+    [],
+    ASSESSMENT_COMPONENTS
+  );
   const site = { contentKey: source.contentKey, sourcePath: source.sourcePath };
   return yield* Schema.decodeEffect(ContentDocumentSchema)(
     { content, type: "doc" },

@@ -94,6 +94,36 @@ describe("exam source", () => {
     ).toBe(true);
   });
 
+  it("offers the aids of a section, each once, apart from the review mark", () => {
+    const withTools = (tools: readonly string[]) => ({
+      ...testExamInput,
+      tracks: [
+        subject,
+        {
+          ...year,
+          profile: {
+            ...year.profile,
+            sections: [{ ...reasoning, tools }, english],
+          },
+        },
+      ],
+    });
+
+    expect(
+      Exit.isSuccess(
+        decode(withTools(["calculator-scientific", "formula-sheet"]))
+      )
+    ).toBe(true);
+    for (const tools of [
+      [],
+      ["mark-for-review"],
+      ["formula-sheet", "formula-sheet"],
+      ["calculator-basic", "calculator-scientific"],
+    ]) {
+      expect(Exit.isFailure(decode(withTools(tools)))).toBe(true);
+    }
+  });
+
   it.effect("names the first failure of a strict decode", () =>
     Effect.gen(function* () {
       const error = yield* defineExamSource({

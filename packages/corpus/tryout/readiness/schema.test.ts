@@ -155,6 +155,41 @@ describe("assessment readiness schema", () => {
     })
   );
 
+  it("weighs the sections against the parts the try-out leaves out", () => {
+    const [section] = readinessInput.sections;
+    /** The readiness input with the given weight and parts left out. */
+    const weighed = (weight: object, excluded: readonly object[]) =>
+      Schema.decodeUnknownExit(AssessmentReadinessSchema)({
+        ...readinessInput,
+        excluded,
+        sections: [{ ...section, ...weight }],
+      });
+
+    expect(
+      Exit.isSuccess(
+        weighed({ weight: official(2) }, [
+          { key: "oral-exam", weight: official(1) },
+        ])
+      )
+    ).toBe(true);
+    expect(
+      Exit.isFailure(weighed({}, [{ key: "oral-exam", weight: official(1) }]))
+    ).toBe(true);
+    expect(
+      Exit.isFailure(
+        weighed({ weight: official(2) }, [
+          {
+            key: "oral-exam",
+            weight: {
+              provenance: { evidenceKey: "missing-source", kind: "official" },
+              value: 1,
+            },
+          },
+        ])
+      )
+    ).toBe(true);
+  });
+
   it.effect("rejects unordered, duplicate, or unresolved evidence", () =>
     Effect.gen(function* () {
       const [section] = readinessInput.sections;

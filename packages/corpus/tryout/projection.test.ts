@@ -1,5 +1,6 @@
 import { describe, expect, it } from "@effect/vitest";
 import { Array as Arr, Effect } from "effect";
+import type { TaskSource } from "#corpus/question-bank/item";
 import type { QuestionSet } from "#corpus/question-bank/source";
 import { readQuestionSets } from "#corpus/question-bank/source";
 import {
@@ -96,7 +97,7 @@ describe("planTryoutPapers", () => {
   );
 
   it.effect(
-    "refuses a missing set, a wrong item count, a missing language, and a kind its section does not allow",
+    "refuses a missing set, a wrong item count, a missing language, and a kind or a part kind its section does not allow",
     () =>
       Effect.gen(function* () {
         const sets = yield* readSets(testExamFiles);
@@ -122,25 +123,44 @@ describe("planTryoutPapers", () => {
           )
         ).pipe(Effect.flip);
 
-        const interaction = yield* plan(
-          yield* readSets(
-            withSubject([
-              ...questionFiles(1, TEST_ITEM, "Satu.", subjectSet),
-              ...questionFiles(
-                2,
-                { versions: { id: { kind: "numericEntry", value: "2" } } },
-                "Dua.",
-                subjectSet
+        const kinds = yield* Effect.forEach(
+          [
+            { kind: "numericEntry", value: "2" },
+            {
+              kind: "parts",
+              parts: [
+                { expression: "2", kind: "mathEntry", label: "a", points: 1 },
+              ],
+            },
+          ] satisfies TaskSource[],
+          (task) =>
+            Effect.flatMap(
+              readSets(
+                withSubject([
+                  ...questionFiles(1, TEST_ITEM, "Satu.", subjectSet),
+                  ...questionFiles(
+                    2,
+                    { versions: { id: task } },
+                    "Dua.",
+                    subjectSet
+                  ),
+                ])
               ),
-            ])
-          )
-        ).pipe(Effect.flip);
+              (read) => Effect.flip(plan(read))
+            )
+        );
 
         expect(
-          Arr.map([missing, items, language, interaction], (error) =>
+          Arr.map([missing, items, language, ...kinds], (error) =>
             "reason" in error ? error.reason : error._tag
           )
-        ).toEqual(["missing", "items", "language", "interaction"]);
+        ).toEqual([
+          "missing",
+          "items",
+          "language",
+          "interaction",
+          "interaction",
+        ]);
       })
   );
 

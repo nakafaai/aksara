@@ -1,14 +1,6 @@
 import { NodeServices } from "@effect/platform-node";
 import { describe, expect, it } from "@effect/vitest";
-import {
-  Array as Arr,
-  Effect,
-  FileSystem,
-  HashMap,
-  Option,
-  Path,
-  Record as Rec,
-} from "effect";
+import { Array as Arr, Effect, HashMap, Option, Record as Rec } from "effect";
 import {
   answerSection,
   checkExplanations,
@@ -17,7 +9,11 @@ import {
   holdsFigure,
   meetsKind,
 } from "#scripts/check/explanations";
-import { inDirectory, makeRepository } from "#scripts/check/fixture";
+import {
+  inDirectory,
+  makeRepository,
+  writeFiles,
+} from "#scripts/check/fixture";
 import { runGit } from "#scripts/git";
 
 /** A physics answer folder, a figure section of the real registry. */
@@ -41,21 +37,6 @@ const gitIn = (root: string, args: readonly string[]) =>
     ["-c", "user.name=Test", "-c", "user.email=test@example.com", ...args],
     { cwd: root }
   );
-
-/** Writes each file below root, creating its folders. */
-const writeFiles = Effect.fn("ExplanationsTest.writeFiles")(function* (
-  root: string,
-  files: Record<string, string>
-) {
-  const fileSystem = yield* FileSystem.FileSystem;
-  const path = yield* Path.Path;
-  for (const [file, source] of Rec.toEntries(files)) {
-    yield* fileSystem.makeDirectory(path.dirname(path.join(root, file)), {
-      recursive: true,
-    });
-    yield* fileSystem.writeFileString(path.join(root, file), source);
-  }
-});
 
 /** An explanations check over a fixture: the report alone or the whole gate. */
 type Check =

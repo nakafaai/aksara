@@ -21,8 +21,9 @@ import {
   Record as Rec,
   Schema,
 } from "effect";
-import type { AssessmentSite } from "#compiler/assessment/error";
+import type { BlockSite, Field } from "#compiler/assessment/error";
 import { InlineError, sourceError } from "#compiler/assessment/error";
+import { FIELD_COMPONENT, inlineField } from "#compiler/assessment/field";
 
 /** The mark each authored element adds to its text. */
 const ELEMENT_MARKS: Readonly<
@@ -91,13 +92,17 @@ function highlightMark(element: ContentTreeElement) {
   return attributeMark(element, mark, "props");
 }
 
-/** Converts the inline children of one element under the marks around them. */
+/**
+ * Converts the inline children of one element under the marks around them,
+ * with the fields their line may place.
+ */
 function inlineChildren(
   children: readonly ContentTreeChild[],
-  marks: readonly Mark[]
+  marks: readonly Mark[],
+  fields: readonly Field[]
 ): Effect.Effect<readonly InlineNode[], InlineError> {
   return Effect.map(
-    Effect.forEach(children, (child) => inlineChild(child, marks)),
+    Effect.forEach(children, (child) => inlineChild(child, marks, fields)),
     Arr.flatten
   );
 }
@@ -106,17 +111,22 @@ function inlineChildren(
 function markedChildren(
   element: ContentTreeElement,
   marks: readonly Mark[],
-  mark: Effect.Effect<Mark, InlineError>
+  mark: Effect.Effect<Mark, InlineError>,
+  fields: readonly Field[]
 ) {
   return Effect.flatMap(mark, (added) =>
-    inlineChildren(element.children, withMark(marks, added))
+    inlineChildren(element.children, withMark(marks, added), fields)
   );
 }
 
-/** Converts one inline child: text, a formula, a break, a link, or a marked run. */
+/**
+ * Converts one inline child: text, a formula, a break, a field, a link, or a
+ * marked run.
+ */
 function inlineChild(
   child: ContentTreeChild,
-  marks: readonly Mark[]
+  marks: readonly Mark[],
+  fields: readonly Field[]
 ): Effect.Effect<readonly InlineNode[], InlineError> {
   if (Predicate.isString(child)) {
     return Effect.succeed([textNode(child.replace(SOFT_BREAK, " "), marks)]);
@@ -129,21 +139,25 @@ function inlineChild(
   if (child.name === "br") {
     return Effect.succeed([{ type: "hardBreak" }]);
   }
+  if (child.name === FIELD_COMPONENT) {
+    return Effect.map(inlineField(child, fields), (node) => [node]);
+  }
   if (child.name === "fragment") {
-    return inlineChildren(child.children, marks);
+    return inlineChildren(child.children, marks, fields);
   }
   if (child.name === "a") {
-    return markedChildren(child, marks, linkMark(child));
+    return markedChildren(child, marks, linkMark(child), fields);
   }
   if (child.name === "Highlight") {
-    return markedChildren(child, marks, highlightMark(child));
+    return markedChildren(child, marks, highlightMark(child), fields);
   }
   return Option.match(Rec.get(ELEMENT_MARKS, child.name), {
     onNone: () =>
       Effect.fail(
         new InlineError({ element: child.name, reason: "placement" })
       ),
-    onSome: (type) => inlineChildren(child.children, withMark(marks, { type })),
+    onSome: (type) =>
+      inlineChildren(child.children, withMark(marks, { type }), fields),
   });
 }
 
@@ -213,20 +227,27 @@ function withoutEmptyRuns(nodes: readonly InlineNode[]) {
   return Arr.filter(nodes, (node) => node.type !== "text" || node.text !== "");
 }
 
-/** Converts inline children into merged runs, trimmed lines, and no empty text. */
-function inlineNodes(children: readonly ContentTreeChild[]) {
-  return Effect.map(inlineChildren(children, []), (nodes) =>
+/**
+ * Converts inline children into merged runs, trimmed lines, and no empty
+ * text, placing the given fields.
+ */
+function inlineNodes(
+  children: readonly ContentTreeChild[],
+  fields: readonly Field[]
+) {
+  return Effect.map(inlineChildren(children, [], fields), (nodes) =>
     mergeRuns(withoutEmptyRuns(trimLines(mergeRuns(nodes))))
   );
 }
 
 /**
  * Converts the children of a paragraph, a heading, or a cell into the inline
- * content of a document: merged runs, trimmed lines, and no empty text.
+ * content of a document: merged runs, trimmed lines, no empty text, and the
+ * fields its site may place.
  */
 export const inlineContent = Effect.fn("AksaraCompiler.inlineContent")(
-  (children: readonly ContentTreeChild[], site: AssessmentSite) =>
-    inlineNodes(children).pipe(
+  (children: readonly ContentTreeChild[], site: BlockSite) =>
+    inlineNodes(children, site.fields).pipe(
       Effect.mapError(({ element, reason }) =>
         sourceError(site, element, reason)
       )
@@ -244,7 +265,7 @@ export const treeRichText = Effect.fn("AksaraCompiler.treeRichText")(function* (
   const children = Predicate.isString(value)
     ? [value]
     : Arr.filter([value], isTreeElement);
-  const content = yield* inlineNodes(children);
+  const content = yield* inlineNodes(children, []);
   if (!Schema.is(RichTextSchema)(content)) {
     return yield* new InlineError({ element: "rich text", reason: "props" });
   }

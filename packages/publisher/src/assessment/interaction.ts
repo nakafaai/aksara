@@ -6,9 +6,9 @@ import { Array as Arr, Effect, Result, String as Str } from "effect";
 
 /**
  * What a screen reader calls the one interaction of an item, in the language
- * the item is asked in.
+ * the item is asked in. The field of a part adds the part's label.
  */
-const ANSWER_LABELS = {
+export const ANSWER_LABELS = {
   de: "Antwort",
   en: "Answer",
   id: "Jawaban",

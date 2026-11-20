@@ -11,6 +11,7 @@ import {
 } from "effect";
 
 import { trackedFiles } from "#scripts/check/files";
+import { partReport } from "#scripts/check/parts";
 import { changedFiles } from "#scripts/check/visuals";
 import { runEntry } from "#scripts/entry";
 
@@ -153,13 +154,17 @@ export const explanationReport = Effect.fn("AksaraPolicy.explanationReport")(
   }
 );
 
-/** The gate's check: every answer this change touches, measured from `ref`, meets its kind. */
+/**
+ * The gate's check: every answer this change touches, measured from `ref`,
+ * meets its kind, and every answer of an item with parts names its parts.
+ */
 export const checkExplanations = Effect.fn("AksaraPolicy.checkExplanations")(
   function* (ref: string) {
     const files = yield* trackedFiles();
     const changed = yield* changedFiles(ref);
     const kinds = yield* explanationKinds();
-    return yield* explanationReport(files, changed, kinds);
+    yield* explanationReport(files, changed, kinds);
+    return yield* partReport(files, changed);
   }
 );
 

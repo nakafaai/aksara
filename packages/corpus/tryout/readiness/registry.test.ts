@@ -197,24 +197,22 @@ layer(realRegistry, { timeout: 120_000 })(
           for (const set of sets) {
             const positions = MutableHashMap.empty<string, number[]>();
             for (const { item } of set.questions) {
-              for (const { interaction, language } of itemVersions(
-                item.versions
-              )) {
-                if (interaction.kind !== "choice") {
+              for (const { language, task } of itemVersions(item.versions)) {
+                if (task.kind !== "choice") {
                   continue;
                 }
                 const correct = Arr.filterMap(
-                  interaction.options,
+                  task.options,
                   ({ correct: is }, index) =>
                     is ? Result.succeed(index) : Result.failVoid
                 );
                 if (correct.length !== 1) {
                   continue;
                 }
-                const key = `${language}:${interaction.options.length}`;
+                const key = `${language}:${task.options.length}`;
                 const counts = Option.getOrElse(
                   MutableHashMap.get(positions, key),
-                  () => Arr.makeBy(interaction.options.length, () => 0)
+                  () => Arr.makeBy(task.options.length, () => 0)
                 );
                 MutableHashMap.set(
                   positions,

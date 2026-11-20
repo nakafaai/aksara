@@ -1,3 +1,4 @@
+import { LocalIdSchema } from "@nakafa/aksara-contracts/assessment/identity";
 import {
   ContentKeySchema,
   CorpusSourcePathSchema,
@@ -46,13 +47,29 @@ export const AssessmentSiteSchema = Schema.Struct({
 export type AssessmentSite = typeof AssessmentSiteSchema.Type;
 
 /**
- * A document being converted, and whether its figures may show answer state:
- * `shown` in an explanation, `hidden` in a prompt, a reading, or an option
- * label, which a learner reads before answering.
+ * One field that a prompt places with `<Field part="a" />`: the label of the
+ * part it answers, the interaction it places, and whether that interaction
+ * may sit inside a line of text, as a text, number, or math entry may. Every
+ * field may also sit as a block of its own.
+ */
+export const FieldSchema = Schema.Struct({
+  inline: Schema.Boolean,
+  interaction: LocalIdSchema,
+  part: Schema.String.check(Schema.isNonEmpty()),
+});
+export type Field = typeof FieldSchema.Type;
+
+/**
+ * A document being converted, whether its figures may show answer state, and
+ * the fields it may place. Figures show answer state in an explanation
+ * (`shown`) and never in a prompt, a reading, or an option label (`hidden`),
+ * which a learner reads before answering. Only the prompt of an item with
+ * parts places fields.
  */
 export const BlockSiteSchema = Schema.Struct({
   ...AssessmentSiteSchema.fields,
   answers: Schema.Literals(["hidden", "shown"]),
+  fields: Schema.Array(FieldSchema),
 });
 export type BlockSite = typeof BlockSiteSchema.Type;
 

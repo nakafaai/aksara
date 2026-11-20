@@ -9,7 +9,7 @@ import {
   Record as Rec,
   Schema,
 } from "effect";
-import type { InteractionSource } from "#corpus/question-bank/item";
+import type { TaskSource } from "#corpus/question-bank/item";
 import { itemVersions } from "#corpus/question-bank/item";
 import type { QuestionPrompt } from "#corpus/question-bank/prompt";
 import { readQuestionPrompts } from "#corpus/question-bank/prompt";
@@ -97,19 +97,17 @@ function paragraphs(rawMdx: string) {
 
 /**
  * Lists every option, column, and statement a learner reads with the prompt. A
- * numeric entry shows only its unit, which is no wording of its own.
+ * numeric entry shows only its unit, which is no wording of its own, and the
+ * parts of an item word themselves in the prompt.
  */
-function labels(interaction: InteractionSource): readonly string[] {
-  if (interaction.kind === "numericEntry") {
+function labels(task: TaskSource): readonly string[] {
+  if (task.kind === "numericEntry" || task.kind === "parts") {
     return [];
   }
-  if (interaction.kind === "matrix") {
-    return [
-      ...interaction.columns,
-      ...Arr.map(interaction.statements, ({ label }) => label),
-    ];
+  if (task.kind === "matrix") {
+    return [...task.columns, ...Arr.map(task.statements, ({ label }) => label)];
   }
-  return Arr.map(interaction.options, ({ label }) => label);
+  return Arr.map(task.options, ({ label }) => label);
 }
 
 /** Names the set directory that owns one question directory. */
@@ -146,7 +144,7 @@ function units(prompts: readonly QuestionPrompt[]) {
     return Arr.map(read, ({ list, prompt }): Omit<Unit, "id"> => {
       const answers = Arr.flatMap(
         itemVersions(prompt.source.item.versions),
-        ({ interaction }) => labels(interaction)
+        ({ task }) => labels(task)
       );
       const own = Arr.filter(list, (part) => !isShared(part));
       return {
