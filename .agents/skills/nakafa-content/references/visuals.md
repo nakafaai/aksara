@@ -88,8 +88,11 @@ publishes once Nakafa's production renderer draws it.
   an actions band, and its footer, separated by full-width lines. The
   actions band holds the shared scene actions (Play, Reset, Full screen, and
   Grid on a coordinate scene). Do not add a gizmo or overlay controls on the
-  mathematical subject. The footer is written, never generated: see
-  [the card footer](#the-card-footer).
+  mathematical subject. The toolbar and the actions band hold only controls,
+  each with its own short label: never a legend, a key such as
+  "A = {red objects}", a readout or a note. Write those words in the footer,
+  and what the reader should try in the description. The footer is written,
+  never generated: see [the card footer](#the-card-footer).
   Use the established EvilCharts components, tables, and diagrams when their
   axes, values, comparisons, or structure explain real data more clearly. The
   chart library's own renderer is a data display, not a hand-drawn
