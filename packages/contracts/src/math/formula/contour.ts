@@ -7,12 +7,8 @@ import {
   Result,
   Schema,
 } from "effect";
-
-import {
-  type SampleBox,
-  type SamplePoint,
-  SamplePointSchema,
-} from "#contracts/math/formula/box";
+import type { SampleBox, SamplePoint } from "#contracts/math/formula/box";
+import { SamplePointSchema } from "#contracts/math/formula/box";
 import type { SampleBranch } from "#contracts/math/formula/sample";
 
 /** A field over the plane: its value at one point, NaN where it is undefined. */

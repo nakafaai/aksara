@@ -1,7 +1,5 @@
-import {
-  type SigningKeyId,
-  SigningKeyIdSchema,
-} from "@nakafa/aksara-contracts/ids";
+import type { SigningKeyId } from "@nakafa/aksara-contracts/ids";
+import { SigningKeyIdSchema } from "@nakafa/aksara-contracts/ids";
 import { ContentVerificationKeyResolver } from "@nakafa/aksara-contracts/signature/spec";
 import { Effect, Schema } from "effect";
 

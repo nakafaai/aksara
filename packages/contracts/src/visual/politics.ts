@@ -1,6 +1,6 @@
 import { Schema } from "effect";
-
-import { cardFields, type RichSlot, TextSchema } from "#contracts/visual/card";
+import type { RichSlot } from "#contracts/visual/card";
+import { cardFields, TextSchema } from "#contracts/visual/card";
 import { figure } from "#contracts/visual/entry";
 
 /** The card, the source footnote, and the words of a sourced politics chart. */

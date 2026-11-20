@@ -7,10 +7,8 @@ import type {
   ContentSnapshotManifest,
   ContentSnapshotRow,
 } from "#contracts/release/snapshot/data";
-import {
-  requireSnapshotEvidence,
-  type SnapshotRowSource,
-} from "#contracts/release/snapshot/evidence/requirement";
+import type { SnapshotRowSource } from "#contracts/release/snapshot/evidence/requirement";
+import { requireSnapshotEvidence } from "#contracts/release/snapshot/evidence/requirement";
 
 /** Selects and binds current Quran rows to the manifest identity. */
 function quranRows<E, R>(

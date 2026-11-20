@@ -4,14 +4,10 @@ import {
   ArtifactRendererDomainUnpublishedError,
 } from "#contracts/artifact/spec";
 import type { CompiledContentPayload } from "#contracts/content";
-import {
-  RendererComponentNameSchema,
-  type RendererComponents,
-} from "#contracts/renderer/component";
-import {
-  type RendererManifestEnvelope,
-  selectRendererDomainCapability,
-} from "#contracts/renderer/contract";
+import type { RendererComponents } from "#contracts/renderer/component";
+import { RendererComponentNameSchema } from "#contracts/renderer/component";
+import type { RendererManifestEnvelope } from "#contracts/renderer/contract";
+import { selectRendererDomainCapability } from "#contracts/renderer/contract";
 import { RendererDomainSchema } from "#contracts/renderer/domain";
 import { validateRendererManifestHash } from "#contracts/renderer/manifest";
 

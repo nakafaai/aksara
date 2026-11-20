@@ -1,7 +1,5 @@
-import {
-  type AppLocaleCode,
-  AppLocaleCodeSchema,
-} from "@nakafa/aksara-contracts/locale";
+import type { AppLocaleCode } from "@nakafa/aksara-contracts/locale";
+import { AppLocaleCodeSchema } from "@nakafa/aksara-contracts/locale";
 import { Schema } from "effect";
 import type { TeachingSectionReview } from "#nakafa-content/body/review";
 

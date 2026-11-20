@@ -1,20 +1,18 @@
-import {
-  type FigureNode,
-  FigureNodeSchema,
-} from "@nakafa/aksara-contracts/assessment/figure";
+import type { FigureNode } from "@nakafa/aksara-contracts/assessment/figure";
+import { FigureNodeSchema } from "@nakafa/aksara-contracts/assessment/figure";
 import type { RichText } from "@nakafa/aksara-contracts/assessment/inline";
 import type { ContentTreeElement } from "@nakafa/aksara-contracts/tree";
+import type { VisualName } from "@nakafa/aksara-contracts/visual/catalog";
 import {
   answerState,
   FigureNameSchema,
-  type VisualName,
 } from "@nakafa/aksara-contracts/visual/catalog";
 import { Array as Arr, Effect, Option, Predicate, Schema } from "effect";
-import {
-  type AssessmentSourceError,
-  type BlockSite,
-  sourceError,
+import type {
+  AssessmentSourceError,
+  BlockSite,
 } from "#compiler/assessment/error";
+import { sourceError } from "#compiler/assessment/error";
 import { plainText } from "#compiler/assessment/inline";
 import { decodeTreeProps } from "#compiler/tree/catalog";
 

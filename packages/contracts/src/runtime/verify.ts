@@ -7,11 +7,13 @@ import { verifyContentReleaseBundle } from "#contracts/release/verify";
 import { verifyContentRendererCompatibility } from "#contracts/renderer/compatibility";
 import { validateRendererManifestHash } from "#contracts/renderer/manifest";
 import { ContentRuntimeMismatchError } from "#contracts/runtime/error";
+import type {
+  PublicContentRuntimeFound,
+  PublicContentRuntimeRequest,
+} from "#contracts/runtime/spec";
 import {
   decodePublicContentRuntimeRequest,
   decodePublicContentRuntimeResponse,
-  type PublicContentRuntimeFound,
-  type PublicContentRuntimeRequest,
 } from "#contracts/runtime/spec";
 
 /** Checks one article path preserves its pair-grouped physical source identity. */

@@ -24,10 +24,8 @@ import {
   createInstallRunner,
 } from "#scripts/consumer/tools";
 import { parseOptions } from "#scripts/options";
-import {
-  type InstallInspection,
-  verifyInstalledPackage,
-} from "#scripts/verify/install";
+import type { InstallInspection } from "#scripts/verify/install";
+import { verifyInstalledPackage } from "#scripts/verify/install";
 
 const ConsumerVerificationInputSchema = Schema.Struct({
   ...ConsumerPackageInputSchema.fields,

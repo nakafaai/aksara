@@ -1,12 +1,14 @@
+import type {
+  ArticleHead,
+  ContentHead,
+  MaterialHead,
+  PageHead,
+} from "@nakafa/aksara-contracts/release/head";
 import {
-  type ArticleHead,
   ArticleHeadSchema,
-  type ContentHead,
   ContentHeadSchema,
   canonicalizeContentHead,
-  type MaterialHead,
   MaterialHeadSchema,
-  type PageHead,
   PageHeadSchema,
 } from "@nakafa/aksara-contracts/release/head";
 import type { ActiveCatalogIdentity } from "@nakafa/aksara-contracts/release/identity";

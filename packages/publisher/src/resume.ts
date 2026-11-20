@@ -5,20 +5,20 @@ import { verifyContentReleaseBundle } from "@nakafa/aksara-contracts/release/ver
 import type { ContentVerificationKeyResolver } from "@nakafa/aksara-contracts/signature/spec";
 import { Effect } from "effect";
 import { allContentCacheChanges } from "#publisher/cache";
+import type {
+  PublicationActivationError,
+  PublicationStatusMismatchError,
+} from "#publisher/publication/spec";
 import {
   PublicationActivation,
-  type PublicationActivationError,
   PublicationReleaseAbortedError,
   PublicationResumePhaseError,
-  type PublicationStatusMismatchError,
   PublicationTarget,
 } from "#publisher/publication/spec";
 import { validatePublicationStatus } from "#publisher/publication/verification";
 import type { PublicationTargetFailure } from "#publisher/target/errors";
-import {
-  type PublicationReceiptMismatchError,
-  validateManifestReceipt,
-} from "#publisher/validation";
+import type { PublicationReceiptMismatchError } from "#publisher/validation";
+import { validateManifestReceipt } from "#publisher/validation";
 
 type BundleVerificationError = Effect.Error<
   ReturnType<typeof verifyContentReleaseBundle>

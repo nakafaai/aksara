@@ -1,13 +1,13 @@
 import { assert } from "@effect/vitest";
 import { JsonTextSchema } from "@nakafa/aksara-utilities/text/json";
-import { type Effect, MutableList, Schema } from "effect";
-import {
-  HttpClient,
-  type HttpClientError,
-  type HttpClientRequest,
-  type HttpClientResponse,
-  HttpClientResponse as Response,
+import type { Effect } from "effect";
+import { MutableList, Schema } from "effect";
+import type {
+  HttpClientError,
+  HttpClientRequest,
+  HttpClientResponse,
 } from "effect/http";
+import { HttpClient, HttpClientResponse as Response } from "effect/http";
 
 /** Builds one official Effect HTTP response around an explicit web body. */
 export function webResponse(

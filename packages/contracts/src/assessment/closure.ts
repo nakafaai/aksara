@@ -16,11 +16,11 @@ import {
   verifyPaperStimuli,
 } from "#contracts/assessment/paper";
 import type { ExamProfile } from "#contracts/assessment/profile";
+import type { Rows } from "#contracts/assessment/rows";
 import {
   explanationIdentity,
   indexRows,
   placedHashes,
-  type Rows,
   stimulusIdentity,
 } from "#contracts/assessment/rows";
 import type { AssessmentRecord } from "#contracts/assessment/snapshot";

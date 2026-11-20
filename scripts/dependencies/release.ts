@@ -7,23 +7,43 @@ import {
   Schema,
   String as Str,
 } from "effect";
-import {
-  type BunRunner,
-  type CommandOutput,
-  DependencyCommandError,
-} from "#scripts/dependencies/command";
+import type { BunRunner, CommandOutput } from "#scripts/dependencies/command";
+import { DependencyCommandError } from "#scripts/dependencies/command";
 import { DependencyPolicyError } from "#scripts/dependencies/manifest";
 
-/** A release number such as 0.28.10, with its prerelease channel after a hyphen, such as ts7.1.0-beta. */
+/** A release number such as 0.28.10, with its prerelease after a hyphen, such as ts7.1.0-beta or beta.tsrs3. */
 const RELEASE_PATTERN = /^\d+\.\d+\.\d+(?:-.+)?$/u;
-/** The prerelease channel of a release, from its first hyphen on. */
-const CHANNEL_SUFFIX = /-.*$/u;
+/** The prerelease of a release, from its first hyphen on. */
+const PRERELEASE_SUFFIX = /-.*$/u;
+/** A prerelease that ends in a revision number: `beta.tsrs` and `3` of `beta.tsrs3`. */
+const PRERELEASE_REVISION = /^(?<channel>.*?)(?<revision>\d+)$/u;
 
-/** Pads every numeric part of the release number to twelve digits, so string order matches release order: 0.28.10 follows 0.28.9. */
+/** The prerelease of a release, or none for a stable release. */
+function prereleaseOf(version: string): Option.Option<string> {
+  const hyphen = version.indexOf("-");
+  return hyphen < 0 ? Option.none() : Option.some(version.slice(hyphen + 1));
+}
+
+/** The revision number that ends a prerelease, or 0: `3` of `7.1.0-beta.tsrs3`. */
+function revisionOf(version: string): string {
+  return Option.match(prereleaseOf(version), {
+    onNone: () => "0",
+    onSome: (prerelease) =>
+      PRERELEASE_REVISION.exec(prerelease)?.groups?.revision ?? "0",
+  });
+}
+
+/**
+ * Pads every numeric part of the release number, and the revision that ends
+ * its prerelease, to twelve digits, so string order matches release order:
+ * 0.28.10 follows 0.28.9, and 7.1.0-beta.tsrs10 follows 7.1.0-beta.tsrs9.
+ */
 function releaseSortKey(version: string): string {
-  const number = version.replace(CHANNEL_SUFFIX, "");
+  const number = version.replace(PRERELEASE_SUFFIX, "");
   return Arr.join(
-    Arr.map(number.split("."), (part) => part.padStart(12, "0")),
+    Arr.map([...number.split("."), revisionOf(version)], (part) =>
+      part.padStart(12, "0")
+    ),
     "."
   );
 }
@@ -32,12 +52,18 @@ function releaseSortKey(version: string): string {
 const sameChannel = Option.makeEquivalence(Str.Equivalence);
 
 /**
- * Returns the prerelease channel of a release: `ts7.1.0-beta` for
- * `0.23.0-ts7.1.0-beta`, and none for a stable release.
+ * Returns the prerelease channel of a release, without the revision number
+ * that ends it: `ts7.1.0-beta` for `0.23.0-ts7.1.0-beta`, `beta.tsrs` for
+ * `7.1.0-beta.tsrs3`, and none for a stable release. So the revisions of one
+ * prerelease line, such as the tsrs builds of one TypeScript beta, are one
+ * channel.
  */
 export function releaseChannel(version: string): Option.Option<string> {
-  const hyphen = version.indexOf("-");
-  return hyphen < 0 ? Option.none() : Option.some(version.slice(hyphen + 1));
+  return Option.map(
+    prereleaseOf(version),
+    (prerelease) =>
+      PRERELEASE_REVISION.exec(prerelease)?.groups?.channel ?? prerelease
+  );
 }
 
 const ReleaseOrder = Order.mapInput(Order.String, releaseSortKey);

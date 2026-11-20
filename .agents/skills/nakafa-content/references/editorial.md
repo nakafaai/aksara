@@ -66,9 +66,9 @@ For every authored target document or localized metadata record:
    Then hide the siblings and read each locale on its own. A sentence fails if
    its meaning becomes clear only after consulting another language.
 10. Compile the exact document through Aksara and preview it through Nakafa's
-   real renderer.
+    real renderer.
 11. Keep the resulting authored bytes in their domain-owned Aksara source. Git
-   provenance and the publication contracts authenticate those bytes.
+    provenance and the publication contracts authenticate those bytes.
 
 ## Assessed language
 

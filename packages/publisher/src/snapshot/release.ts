@@ -3,22 +3,18 @@ import type {
   ContentSnapshotRow,
 } from "@nakafa/aksara-contracts/release/snapshot/data";
 import { PublicationScopeSchema } from "@nakafa/aksara-contracts/release/snapshot/scope";
-import {
-  type ContentSnapshotSet,
-  ContentSnapshotSetSchema,
-} from "@nakafa/aksara-contracts/release/snapshot/spec";
-import {
-  type ProgramRowError,
-  type ProgramSnapshotError,
-  prepareProgramSnapshot,
+import type { ContentSnapshotSet } from "@nakafa/aksara-contracts/release/snapshot/spec";
+import { ContentSnapshotSetSchema } from "@nakafa/aksara-contracts/release/snapshot/spec";
+import type {
+  ProgramRowError,
+  ProgramSnapshotError,
 } from "@nakafa/aksara-corpus/program/snapshot";
-import {
-  type PreparedQuranSnapshot,
-  prepareQuranSnapshot,
-} from "@nakafa/aksara-corpus/quran/snapshot";
+import { prepareProgramSnapshot } from "@nakafa/aksara-corpus/program/snapshot";
+import type { PreparedQuranSnapshot } from "@nakafa/aksara-corpus/quran/snapshot";
+import { prepareQuranSnapshot } from "@nakafa/aksara-corpus/quran/snapshot";
 import { loadTryoutContent } from "@nakafa/aksara-corpus/tryout/content";
-import type { FileSystem, Path } from "effect";
-import { Array as Arr, Effect, Schema, type Scope, Stream } from "effect";
+import type { FileSystem, Path, Scope } from "effect";
+import { Array as Arr, Effect, Schema, Stream } from "effect";
 import { prepareAssessmentSnapshot } from "#publisher/assessment/snapshot";
 
 const ReleaseSnapshotInputSchema = Schema.Struct({

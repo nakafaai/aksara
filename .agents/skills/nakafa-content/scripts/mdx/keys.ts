@@ -9,7 +9,8 @@
  * of deriving one from another.
  */
 
-import { type EstreeNode, estreeChildren } from "#nakafa-content/mdx/parse";
+import type { EstreeNode } from "#nakafa-content/mdx/parse";
+import { estreeChildren } from "#nakafa-content/mdx/parse";
 
 /** Child fields traversed when collecting rendered learner copy. */
 export const RENDERED_COPY_KEYS: Readonly<Record<string, readonly string[]>> = {

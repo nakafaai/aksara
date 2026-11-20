@@ -9,9 +9,9 @@ import {
   walkKeyedChildren,
 } from "#nakafa-content/mdx/keys";
 import { renderedStaticStringRange } from "#nakafa-content/mdx/offset";
+import type { EstreeNode } from "#nakafa-content/mdx/parse";
 import {
   asEstreeNode,
-  type EstreeNode,
   estreeChildren,
   estreeRange,
   jsxComponentName,
@@ -20,10 +20,10 @@ import {
 import { renderedSourceRange } from "#nakafa-content/mdx/rendered";
 import { expectShape } from "#nakafa-content/mdx/shape";
 import { staticStringCandidates } from "#nakafa-content/mdx/static";
+import type { SemicolonScanOptions } from "#nakafa-content/semicolon/source";
 import {
   addRenderedSemicolonsInRange,
   addSemicolonsInRange,
-  type SemicolonScanOptions,
 } from "#nakafa-content/semicolon/source";
 
 type BlockStatementNode = EstreeNode & {

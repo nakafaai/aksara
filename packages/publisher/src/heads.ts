@@ -1,23 +1,19 @@
-import {
-  type ContentFamily,
-  compareContentHeads,
-} from "@nakafa/aksara-contracts/content";
+import type { ContentFamily } from "@nakafa/aksara-contracts/content";
+import { compareContentHeads } from "@nakafa/aksara-contracts/content";
 import type { ReleaseId, Sha256Hash } from "@nakafa/aksara-contracts/ids";
-import {
-  type ArticleHead,
-  type ContentHead,
-  ContentHeadSchema,
-  type HeadPage,
-  type MaterialHead,
-  type PageHead,
+import type {
+  ArticleHead,
+  ContentHead,
+  HeadPage,
+  MaterialHead,
+  PageHead,
 } from "@nakafa/aksara-contracts/release/head";
+import { ContentHeadSchema } from "@nakafa/aksara-contracts/release/head";
 import { MAX_HEAD_PAGE_COUNT } from "@nakafa/aksara-contracts/transport/limits";
 import { Array as Arr, Effect, Option, Schema, Stream, Tuple } from "effect";
 import { PublicationTarget } from "#publisher/publication/spec";
-import {
-  type PublicationTargetFailure,
-  PublicationTargetProtocolError,
-} from "#publisher/target/errors";
+import type { PublicationTargetFailure } from "#publisher/target/errors";
+import { PublicationTargetProtocolError } from "#publisher/target/errors";
 
 const HeadPageStateSchema = Schema.Struct({
   cursor: Schema.NullOr(Schema.String),

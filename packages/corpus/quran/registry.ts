@@ -4,7 +4,8 @@ import {
   QuranSurahNumberSchema,
 } from "@nakafa/aksara-contracts/quran/spec";
 import { Array as Arr, Effect, HashSet, Option, Schema, Stream } from "effect";
-import { type QuranSurah, QuranSurahSchema } from "#corpus/quran/schema";
+import type { QuranSurah } from "#corpus/quran/schema";
+import { QuranSurahSchema } from "#corpus/quran/schema";
 
 const QuranRegistryStateSchema = Schema.Struct({
   nextSurah: Schema.Finite,

@@ -11,10 +11,8 @@ import type {
   ContentSnapshotManifest,
   ContentSnapshotRow,
 } from "#contracts/release/snapshot/data";
-import {
-  requireSnapshotEvidence,
-  type SnapshotRowSource,
-} from "#contracts/release/snapshot/evidence/requirement";
+import type { SnapshotRowSource } from "#contracts/release/snapshot/evidence/requirement";
+import { requireSnapshotEvidence } from "#contracts/release/snapshot/evidence/requirement";
 
 /** Selects the assessment records of a row stream while preserving source failures. */
 function assessmentRecords<E, R>(

@@ -1,12 +1,12 @@
 import type { ItemSource } from "#corpus/question-bank/item";
 import { SetPathSchema } from "#corpus/question-bank/path";
 import { questionFiles, TEST_ITEM } from "#corpus/test/bank";
-import {
-  defineExamSource,
-  type ExamSourceInput,
-  type SectionSourceInput,
-  type TrackSourceInput,
+import type {
+  ExamSourceInput,
+  SectionSourceInput,
+  TrackSourceInput,
 } from "#corpus/tryout/schema";
+import { defineExamSource } from "#corpus/tryout/schema";
 
 /** One title in every app locale, so each route spells it in each locale. */
 export function titled(title: string) {

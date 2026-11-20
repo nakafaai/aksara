@@ -1,8 +1,6 @@
 import { expect, layer } from "@effect/vitest";
-import {
-  type ActiveAppLocaleList,
-  ActiveAppLocaleListSchema,
-} from "@nakafa/aksara-contracts/locale";
+import type { ActiveAppLocaleList } from "@nakafa/aksara-contracts/locale";
+import { ActiveAppLocaleListSchema } from "@nakafa/aksara-contracts/locale";
 import {
   Array as Arr,
   Effect,
@@ -15,11 +13,8 @@ import {
 } from "effect";
 
 import { loadPinnedQuranSources } from "#corpus/quran/source/load";
-import {
-  fixtureLayer,
-  QuranSourceFixture,
-  type QuranSourceFixtureValue,
-} from "#corpus/test/quran/pinned";
+import type { QuranSourceFixtureValue } from "#corpus/test/quran/pinned";
+import { fixtureLayer, QuranSourceFixture } from "#corpus/test/quran/pinned";
 
 const germanOnly = Schema.decodeEffect(ActiveAppLocaleListSchema)(["de"]);
 

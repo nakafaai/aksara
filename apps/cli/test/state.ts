@@ -4,15 +4,11 @@ import {
   GitCommitShaSchema,
   Sha256HashSchema,
 } from "@nakafa/aksara-contracts/ids";
-import {
-  type ContentReleaseManifest,
-  SignedContentReleaseSchema,
-} from "@nakafa/aksara-contracts/release";
+import type { ContentReleaseManifest } from "@nakafa/aksara-contracts/release";
+import { SignedContentReleaseSchema } from "@nakafa/aksara-contracts/release";
 import type { ActiveContentRelease } from "@nakafa/aksara-contracts/release/current/evidence";
-import {
-  type ContentReleaseCurrent,
-  ContentReleaseCurrentSchema,
-} from "@nakafa/aksara-contracts/release/current/state";
+import type { ContentReleaseCurrent } from "@nakafa/aksara-contracts/release/current/state";
+import { ContentReleaseCurrentSchema } from "@nakafa/aksara-contracts/release/current/state";
 import { hashContentReleaseManifest } from "@nakafa/aksara-contracts/release/hash";
 import { EMPTY_RESULT_CATALOG_DIGEST } from "@nakafa/aksara-contracts/release/result/spec";
 import { canonicalizeContentReleaseSigningInput } from "@nakafa/aksara-contracts/release/signing";

@@ -1,9 +1,7 @@
 import { Effect, Stream } from "effect";
 import { DigestStream } from "#contracts/hash/stream";
-import {
-  type ContentRouteItem,
-  canonicalizeContentRouteItem,
-} from "#contracts/release/route/spec";
+import type { ContentRouteItem } from "#contracts/release/route/spec";
+import { canonicalizeContentRouteItem } from "#contracts/release/route/spec";
 
 const CONTENT_ROUTE_DIGEST_DOMAIN = "nakafa.aksara.content-routes";
 

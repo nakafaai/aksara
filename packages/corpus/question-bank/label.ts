@@ -6,11 +6,8 @@ import remarkMath from "remark-math";
 import remarkParse from "remark-parse";
 import { unified } from "unified";
 import { EXIT, visit } from "unist-util-visit";
-import {
-  type InteractionSource,
-  type ItemSource,
-  itemVersions,
-} from "#corpus/question-bank/item";
+import type { InteractionSource, ItemSource } from "#corpus/question-bank/item";
+import { itemVersions } from "#corpus/question-bank/item";
 
 const markdown = unified()
   .use(remarkParse)

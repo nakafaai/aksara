@@ -11,10 +11,8 @@ import { ContentReleaseCurrentSchema } from "@nakafa/aksara-contracts/release/cu
 import { MaterialHeadSchema } from "@nakafa/aksara-contracts/release/head";
 import { ContentReleaseBundleSchema } from "@nakafa/aksara-contracts/release/lifecycle";
 import { RendererManifestEnvelopeSchema } from "@nakafa/aksara-contracts/renderer/contract";
-import {
-  PublicationRetentionSchema,
-  type PublicationTarget,
-} from "@nakafa/aksara-publisher/publication/spec";
+import type { PublicationTarget } from "@nakafa/aksara-publisher/publication/spec";
+import { PublicationRetentionSchema } from "@nakafa/aksara-publisher/publication/spec";
 import { Effect, Layer, Redacted, Schema, Stream } from "effect";
 import { RENDERER_MANIFEST } from "#test/real";
 import { makeProductionTarget } from "#test/target";

@@ -1,7 +1,5 @@
-import {
-  type CorpusSourcePath,
-  CorpusSourcePathSchema,
-} from "@nakafa/aksara-contracts/ids";
+import type { CorpusSourcePath } from "@nakafa/aksara-contracts/ids";
+import { CorpusSourcePathSchema } from "@nakafa/aksara-contracts/ids";
 import { TypeScriptParser } from "@nakafa/aksara-utilities/typescript/parse";
 import {
   Array as Arr,
@@ -12,6 +10,7 @@ import {
   Path,
   Schema,
 } from "effect";
+import type { Node, SourceFile } from "tsrs/ast";
 import {
   isCallExpression,
   isExportDeclaration,
@@ -21,8 +20,6 @@ import {
   isImportTypeNode,
   isLiteralTypeNode,
   isStringLiteral,
-  type Node,
-  type SourceFile,
   SyntaxKind,
 } from "tsrs/ast";
 

@@ -1,18 +1,18 @@
-import {
-  type LearningGraphIdentityError,
-  makeLearningGraphIdentity,
-} from "@nakafa/aksara-contracts/graph/identity";
+import type { LearningGraphIdentityError } from "@nakafa/aksara-contracts/graph/identity";
+import { makeLearningGraphIdentity } from "@nakafa/aksara-contracts/graph/identity";
 import { PublicPathSchema } from "@nakafa/aksara-contracts/ids";
+import type {
+  ActiveAppLocale,
+  ActiveAppLocaleList,
+} from "@nakafa/aksara-contracts/locale";
 import {
   ACTIVE_APP_LOCALES,
-  type ActiveAppLocale,
-  type ActiveAppLocaleList,
   AppLocaleSchema,
   activeAppLocaleCode,
 } from "@nakafa/aksara-contracts/locale";
+import type { QuranRowPayload } from "@nakafa/aksara-contracts/quran/snapshot/row";
 import {
   QuranChunkRowSchema,
-  type QuranRowPayload,
   QuranRuntimeVerseSchema,
   QuranSearchRowSchema,
 } from "@nakafa/aksara-contracts/quran/snapshot/row";
@@ -21,14 +21,10 @@ import {
   QuranSurahRowSchema,
 } from "@nakafa/aksara-contracts/quran/spec";
 import { Array as Arr, Effect, MutableList, Stream } from "effect";
-import {
-  requireSourceLocale,
-  type SourceLocaleUnavailableError,
-} from "#corpus/locale/source";
-import {
-  type QuranCatalogError,
-  quranAttributionRowFor,
-} from "#corpus/quran/catalog/select";
+import type { SourceLocaleUnavailableError } from "#corpus/locale/source";
+import { requireSourceLocale } from "#corpus/locale/source";
+import type { QuranCatalogError } from "#corpus/quran/catalog/select";
+import { quranAttributionRowFor } from "#corpus/quran/catalog/select";
 import type {
   QuranCountError,
   QuranRevelationError,

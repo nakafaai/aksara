@@ -30,11 +30,11 @@ References:
 
 Convex owns one authoritative publication singleton with three slots:
 
-| Slot | Meaning |
-|---|---|
-| `active` | Completed release currently visible to reads |
-| `candidate` | Invisible release being staged or verified |
-| `recovery` | Signed, verified inverse protecting candidate or active |
+| Slot        | Meaning                                                 |
+| ----------- | ------------------------------------------------------- |
+| `active`    | Completed release currently visible to reads            |
+| `candidate` | Invisible release being staged or verified              |
+| `recovery`  | Signed, verified inverse protecting candidate or active |
 
 A staged slot has only `staging`, `verifying`, `verified`, or `aborting`
 phase. Historical status may additionally be `missing`, `aborted`, or
@@ -62,11 +62,11 @@ second release protocol.
 
 Every signed release declares one transition for each family:
 
-| Mode | Meaning | Rows staged |
-|---|---|---|
-| `inherit` | Preserve the base snapshot identity | Zero |
-| `replace` | Select one new complete immutable snapshot | All rows |
-| `restore` | Forward rollback to an existing or absent snapshot | Zero |
+| Mode      | Meaning                                            | Rows staged |
+| --------- | -------------------------------------------------- | ----------- |
+| `inherit` | Preserve the base snapshot identity                | Zero        |
+| `replace` | Select one new complete immutable snapshot         | All rows    |
+| `restore` | Forward rollback to an existing or absent snapshot | Zero        |
 
 The transition signs the base and result snapshot IDs, row count, and row
 digest. A replacement separately stages the domain manifest and bounded rows.

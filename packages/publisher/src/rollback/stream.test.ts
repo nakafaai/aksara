@@ -16,13 +16,15 @@ import {
   ArtifactLocaleSchema,
 } from "@nakafa/aksara-contracts/locale";
 import { MaterialLessonProjectionSchema } from "@nakafa/aksara-contracts/projection/material";
+import type {
+  RollbackPageRequest,
+  RollbackRecord,
+} from "@nakafa/aksara-contracts/release/rollback/spec";
 import {
   MAX_ROLLBACK_PAGE_BYTES,
   MAX_ROLLBACK_PAGE_RECORDS,
   RollbackDeleteStateSchema,
-  type RollbackPageRequest,
   RollbackPageSchema,
-  type RollbackRecord,
   RollbackRecordSchema,
   RollbackUpsertStateSchema,
 } from "@nakafa/aksara-contracts/release/rollback/spec";

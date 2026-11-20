@@ -1,7 +1,12 @@
 import { Array as Arr } from "effect";
+import type {
+  ExportDeclaration,
+  ImportDeclaration,
+  Node,
+  SourceFile,
+  StringLiteralLikeNode,
+} from "tsrs/ast";
 import {
-  type ExportDeclaration,
-  type ImportDeclaration,
   isCallExpression,
   isExportDeclaration,
   isExternalModuleReference,
@@ -14,9 +19,6 @@ import {
   isNamespaceImport,
   isStringLiteral,
   isStringLiteralLikeNode,
-  type Node,
-  type SourceFile,
-  type StringLiteralLikeNode,
   SyntaxKind,
 } from "tsrs/ast";
 import { syntaxNodes } from "#scripts/check/syntax";

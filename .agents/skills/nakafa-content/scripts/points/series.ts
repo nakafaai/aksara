@@ -1,6 +1,6 @@
+import type { EstreeNode } from "#nakafa-content/mdx/parse";
 import {
   asEstreeNode,
-  type EstreeNode,
   estreeChildren,
   estreeRange,
   staticFieldName,
@@ -9,7 +9,8 @@ import {
   isArrayExpressionNode,
   isCallExpressionNode,
 } from "#nakafa-content/points/ast";
-import { findingAt, type PointsFinding } from "#nakafa-content/points/finding";
+import type { PointsFinding } from "#nakafa-content/points/finding";
+import { findingAt } from "#nakafa-content/points/finding";
 import { isLiteralPoint } from "#nakafa-content/points/numeric";
 
 /**

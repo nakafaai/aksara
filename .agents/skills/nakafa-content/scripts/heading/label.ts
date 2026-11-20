@@ -1,9 +1,6 @@
 import { Predicate } from "effect";
-import {
-  type EstreeNode,
-  estreeChildren,
-  type MdxNode,
-} from "#nakafa-content/mdx/parse";
+import type { EstreeNode, MdxNode } from "#nakafa-content/mdx/parse";
+import { estreeChildren } from "#nakafa-content/mdx/parse";
 
 /** Reads visible JSX children without including attributes or expression identifiers. */
 export function expressionText(node: EstreeNode): string {

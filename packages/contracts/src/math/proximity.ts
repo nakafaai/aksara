@@ -6,10 +6,9 @@ import {
   Order,
   Schema,
 } from "effect";
-
+import type { ExactRatio } from "#contracts/math/rational";
 import {
   compareRatios,
-  type ExactRatio,
   ExactRatioSchema,
   makeRatio,
 } from "#contracts/math/rational";

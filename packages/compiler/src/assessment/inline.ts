@@ -1,9 +1,11 @@
+import type {
+  InlineNode,
+  Mark,
+  RichText,
+} from "@nakafa/aksara-contracts/assessment/inline";
 import {
-  type InlineNode,
-  type Mark,
   MarkOrder,
   MarkSchema,
-  type RichText,
   RichTextSchema,
 } from "@nakafa/aksara-contracts/assessment/inline";
 import type {
@@ -19,11 +21,8 @@ import {
   Record as Rec,
   Schema,
 } from "effect";
-import {
-  type AssessmentSite,
-  InlineError,
-  sourceError,
-} from "#compiler/assessment/error";
+import type { AssessmentSite } from "#compiler/assessment/error";
+import { InlineError, sourceError } from "#compiler/assessment/error";
 
 /** The mark each authored element adds to its text. */
 const ELEMENT_MARKS: Readonly<

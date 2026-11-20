@@ -1,11 +1,6 @@
 import { Schema } from "effect";
-
-import {
-  byIds,
-  cardFields,
-  type RichSlot,
-  TextSchema,
-} from "#contracts/visual/card";
+import type { RichSlot } from "#contracts/visual/card";
+import { byIds, cardFields, TextSchema } from "#contracts/visual/card";
 import { figure } from "#contracts/visual/entry";
 
 /** Props of `GlassBlockLab`: a ray box aims a narrow beam at the top face of a rectangular glass block. */

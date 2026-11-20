@@ -1,9 +1,6 @@
 import { Array as Arr, Schema } from "effect";
-import {
-  type ContentFamily,
-  ContentFamilySchema,
-  compareContentHeads,
-} from "#contracts/content";
+import type { ContentFamily } from "#contracts/content";
+import { ContentFamilySchema, compareContentHeads } from "#contracts/content";
 import { ContentDeliveryClassSchema } from "#contracts/delivery";
 import {
   ContentKeySchema,

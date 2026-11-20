@@ -2,7 +2,8 @@ import { spawn } from "node:child_process";
 import { terminateProcessGroup } from "@nakafa/aksara-utilities/process/group";
 import { Context, Deferred, Effect, Layer, Schema } from "effect";
 import type * as Scope from "effect/Scope";
-import { makeNakafaAppError, type NakafaAppError } from "#cli/error";
+import type { NakafaAppError } from "#cli/error";
+import { makeNakafaAppError } from "#cli/error";
 
 const TERMINATION_GRACE = "2 seconds";
 const TERMINATION_LIMIT = "1 second";

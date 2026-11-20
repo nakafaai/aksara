@@ -11,11 +11,11 @@ import { ReleaseIdSchema } from "#contracts/ids";
 import { ReleaseCountSchema } from "#contracts/release/count";
 import { digestItems } from "#contracts/release/digest";
 import { ReleaseDigestMismatchFields } from "#contracts/release/mismatch";
-import {
-  type ContentReleaseItem,
-  ContentReleaseItemSchema,
-  type ContentReleaseManifest,
+import type {
+  ContentReleaseItem,
+  ContentReleaseManifest,
 } from "#contracts/release/spec";
+import { ContentReleaseItemSchema } from "#contracts/release/spec";
 
 /** One release item failed strict wire decoding. */
 export class ReleaseItemDecodeError extends Schema.TaggedError<

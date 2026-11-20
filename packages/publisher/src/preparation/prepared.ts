@@ -9,7 +9,8 @@ import type {
 import { RendererPreflightSchema } from "@nakafa/aksara-contracts/release/policy";
 import type { ContentRouteItem } from "@nakafa/aksara-contracts/release/route/spec";
 import type { RendererManifestEnvelope } from "@nakafa/aksara-contracts/renderer/contract";
-import { Schema, type Stream } from "effect";
+import type { Stream } from "effect";
+import { Schema } from "effect";
 
 import type { PreparedSnapshotSources } from "#publisher/preparation/snapshot";
 

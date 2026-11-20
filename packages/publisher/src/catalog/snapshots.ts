@@ -7,8 +7,8 @@ import {
   decodeContentSnapshotManifests,
   verifyContentSnapshots,
 } from "@nakafa/aksara-contracts/release/snapshot/verify";
-import type { FileSystem, Path } from "effect";
-import { Array as Arr, Effect, Schema, type Scope, Stream } from "effect";
+import type { FileSystem, Path, Scope } from "effect";
+import { Array as Arr, Effect, Schema, Stream } from "effect";
 import { prepareReleaseSnapshots } from "#publisher/snapshot/release";
 
 const CountSchema = Schema.Int.pipe(

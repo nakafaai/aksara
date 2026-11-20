@@ -10,10 +10,8 @@ import {
 import { PageKeySchema } from "@nakafa/aksara-contracts/projection/page";
 import { PublicationScopeSchema } from "@nakafa/aksara-contracts/release/snapshot/scope";
 import { createRendererManifest } from "@nakafa/aksara-contracts/renderer/manifest";
-import {
-  decodePageRegistry,
-  type PageEntry,
-} from "@nakafa/aksara-corpus/pages/registry";
+import type { PageEntry } from "@nakafa/aksara-corpus/pages/registry";
+import { decodePageRegistry } from "@nakafa/aksara-corpus/pages/registry";
 import {
   Array as Arr,
   Context,

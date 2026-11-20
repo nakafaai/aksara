@@ -1,7 +1,7 @@
 import { NodeServices } from "@effect/platform-node";
 import { ItemFamilyIdSchema } from "@nakafa/aksara-contracts/assessment/identity";
+import type { AssessmentRow } from "@nakafa/aksara-contracts/assessment/snapshot";
 import {
-  type AssessmentRow,
   digestAssessmentRows,
   hashAssessmentRow,
   makeAssessmentSnapshot,
@@ -15,15 +15,13 @@ import {
   ACTIVE_APP_LOCALES,
   AppLocaleSchema,
 } from "@nakafa/aksara-contracts/locale";
+import type { QuranSnapshotRow } from "@nakafa/aksara-contracts/quran/snapshot/row";
 import {
   QuranSearchRowSchema,
-  type QuranSnapshotRow,
   QuranSnapshotRowSchema,
 } from "@nakafa/aksara-contracts/quran/snapshot/row";
-import {
-  type QuranSnapshot,
-  QuranSnapshotSchema,
-} from "@nakafa/aksara-contracts/quran/snapshot/spec";
+import type { QuranSnapshot } from "@nakafa/aksara-contracts/quran/snapshot/spec";
+import { QuranSnapshotSchema } from "@nakafa/aksara-contracts/quran/snapshot/spec";
 import { quranSourceFileCount } from "@nakafa/aksara-contracts/quran/source";
 import {
   QURAN_SURAH_COUNT,
@@ -33,8 +31,8 @@ import type {
   ContentSnapshotManifest,
   ContentSnapshotRow,
 } from "@nakafa/aksara-contracts/release/snapshot/data";
+import type { ContentSnapshotSet } from "@nakafa/aksara-contracts/release/snapshot/spec";
 import {
-  type ContentSnapshotSet,
   inheritContentSnapshots,
   replaceContentSnapshot,
 } from "@nakafa/aksara-contracts/release/snapshot/spec";

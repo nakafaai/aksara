@@ -1,13 +1,10 @@
 import { Array as Arr, Effect, pipe, Record as Rec, Schema } from "effect";
-import {
-  type BunRunner,
-  DependencyCommandError,
-  runBun,
-} from "#scripts/dependencies/command";
+import type { BunRunner } from "#scripts/dependencies/command";
+import { DependencyCommandError, runBun } from "#scripts/dependencies/command";
 import { holdProblems, reviewHold } from "#scripts/dependencies/hold";
+import type { RootManifest } from "#scripts/dependencies/manifest";
 import {
   DependencyPolicyError,
-  type RootManifest,
   readManifest,
   writeManifest,
 } from "#scripts/dependencies/manifest";

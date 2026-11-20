@@ -1,7 +1,6 @@
 import { Array as Arr, HashMap, Match, Option } from "effect";
-
+import type { CatalogRow } from "#contracts/assessment/catalog";
 import {
-  type CatalogRow,
   catalogNodeIdentity,
   catalogRowIdentity,
 } from "#contracts/assessment/catalog";

@@ -1,15 +1,14 @@
 import type { ReleaseId } from "@nakafa/aksara-contracts/ids";
-import {
-  type ContentProjection,
-  canonicalizeContentProjection,
-} from "@nakafa/aksara-contracts/projection/spec";
+import type { ContentProjection } from "@nakafa/aksara-contracts/projection/spec";
+import { canonicalizeContentProjection } from "@nakafa/aksara-contracts/projection/spec";
 import type { StageProjectionBatchInput } from "@nakafa/aksara-contracts/transport/batch";
 import {
   MAX_PROJECTION_BATCH_BYTES,
   MAX_PROJECTION_BATCH_COUNT,
 } from "@nakafa/aksara-contracts/transport/limits";
 import { encodeJsonText } from "@nakafa/aksara-utilities/text/json";
-import { Array as Arr, type Stream } from "effect";
+import type { Stream } from "effect";
+import { Array as Arr } from "effect";
 import { streamBatches } from "#publisher/batch/core";
 
 /** Serializes one projection batch in deterministic wire field order. */

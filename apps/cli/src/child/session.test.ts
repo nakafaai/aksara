@@ -1,6 +1,7 @@
 import { afterEach, assert, describe, expect, it } from "@effect/vitest";
 import { Array as Arr, Effect, Order, Record as Rec, Redacted } from "effect";
-import { NakafaProcess, type NakafaProcessInput } from "#cli/child/process";
+import type { NakafaProcessInput } from "#cli/child/process";
+import { NakafaProcess } from "#cli/child/process";
 import { startNakafa } from "#cli/child/session";
 import { makeNakafaAppError } from "#cli/error";
 import { inheritedEnvironment } from "#test/environment";

@@ -1,28 +1,26 @@
+import type { ReleaseId } from "@nakafa/aksara-contracts/ids";
 import {
   Ed25519SignatureSchema,
   GitCommitShaSchema,
-  type ReleaseId,
   ReleaseIdSchema,
   Sha256HashSchema,
   SigningKeyIdSchema,
 } from "@nakafa/aksara-contracts/ids";
 import { ACTIVE_APP_LOCALES } from "@nakafa/aksara-contracts/locale";
+import type {
+  ContentReleaseManifest,
+  PublicationReceipt,
+} from "@nakafa/aksara-contracts/release";
 import {
-  type ContentReleaseManifest,
   ContentReleaseManifestSchema,
-  type PublicationReceipt,
   SignedContentReleaseSchema,
 } from "@nakafa/aksara-contracts/release";
 import type { ActiveContentRelease } from "@nakafa/aksara-contracts/release/current/evidence";
-import {
-  type ContentReleaseCurrent,
-  ContentReleaseCurrentSchema,
-} from "@nakafa/aksara-contracts/release/current/state";
+import type { ContentReleaseCurrent } from "@nakafa/aksara-contracts/release/current/state";
+import { ContentReleaseCurrentSchema } from "@nakafa/aksara-contracts/release/current/state";
 import { hashContentReleaseManifest } from "@nakafa/aksara-contracts/release/hash";
-import {
-  type ContentReleaseBundle,
-  ContentReleaseBundleSchema,
-} from "@nakafa/aksara-contracts/release/lifecycle";
+import type { ContentReleaseBundle } from "@nakafa/aksara-contracts/release/lifecycle";
+import { ContentReleaseBundleSchema } from "@nakafa/aksara-contracts/release/lifecycle";
 import { EMPTY_RESULT_CATALOG_DIGEST } from "@nakafa/aksara-contracts/release/result/spec";
 import type { PublicationScope } from "@nakafa/aksara-contracts/release/snapshot/scope";
 import {

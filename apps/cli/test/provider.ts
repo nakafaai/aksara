@@ -9,15 +9,13 @@ import {
   Schema,
   Stream,
 } from "effect";
-import {
-  FetchHttpClient,
-  HttpClient,
-  HttpClientRequest,
-  type HttpClientResponse,
-} from "effect/http";
+import type { HttpClientResponse } from "effect/http";
+import { FetchHttpClient, HttpClient, HttpClientRequest } from "effect/http";
 import { isInetAddress } from "effect/net/NetAddress";
-import { openPreviewProvider, type PreviewProvider } from "#cli/provider";
-import { makePreviewHttp, type PreviewHttpState } from "#cli/provider/http";
+import type { PreviewProvider } from "#cli/provider";
+import { openPreviewProvider } from "#cli/provider";
+import type { PreviewHttpState } from "#cli/provider/http";
+import { makePreviewHttp } from "#cli/provider/http";
 import { makePreviewReady, PREVIEW_REPOSITORIES } from "#test/preview";
 import { makeRepositoryTracker } from "#test/real";
 

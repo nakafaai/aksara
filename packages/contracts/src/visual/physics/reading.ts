@@ -1,11 +1,6 @@
 import { Schema } from "effect";
-
-import {
-  byIds,
-  cardFields,
-  type RichSlot,
-  TextSchema,
-} from "#contracts/visual/card";
+import type { RichSlot } from "#contracts/visual/card";
+import { byIds, cardFields, TextSchema } from "#contracts/visual/card";
 import { figure } from "#contracts/visual/entry";
 
 /** Props of `MotionAreaLab`: a car drives a straight road through stretches of steady speeding up, steady speed and slowing down, and its velocity-time graph fills in below it. */

@@ -3,10 +3,8 @@ import { indonesiaTryoutCountry } from "#corpus/tryout/indonesia/country";
 import { snbtRatings } from "#corpus/tryout/indonesia/snbt/ratings";
 import { snbtReadiness } from "#corpus/tryout/indonesia/snbt/readiness";
 import { validateAssessmentSourceReadiness } from "#corpus/tryout/readiness/validation";
-import {
-  defineExamSource,
-  type SectionSourceInput,
-} from "#corpus/tryout/schema";
+import type { SectionSourceInput } from "#corpus/tryout/schema";
+import { defineExamSource } from "#corpus/tryout/schema";
 
 const snbtSections: Arr.NonEmptyReadonlyArray<SectionSourceInput> = [
   {

@@ -1,7 +1,5 @@
-import {
-  CompiledContentPayloadSchema,
-  type decodeCompileDocumentRequest,
-} from "@nakafa/aksara-contracts/content";
+import type { decodeCompileDocumentRequest } from "@nakafa/aksara-contracts/content";
+import { CompiledContentPayloadSchema } from "@nakafa/aksara-contracts/content";
 import type { selectRendererDomainCapability } from "@nakafa/aksara-contracts/renderer/contract";
 import type { validateRendererManifestHash } from "@nakafa/aksara-contracts/renderer/manifest";
 import { Effect, Schema } from "effect";

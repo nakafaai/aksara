@@ -1,8 +1,6 @@
 import { beforeEach, expect, layer } from "@effect/vitest";
-import {
-  type ArticleHead,
-  ArticleHeadSchema,
-} from "@nakafa/aksara-contracts/release/head";
+import type { ArticleHead } from "@nakafa/aksara-contracts/release/head";
+import { ArticleHeadSchema } from "@nakafa/aksara-contracts/release/head";
 import {
   Array as Arr,
   Context,

@@ -7,10 +7,8 @@ import {
   ActiveAppLocaleListSchema,
 } from "#contracts/locale";
 import { digestQuranRows } from "#contracts/quran/snapshot/digest";
-import {
-  QuranChunkRowSchema,
-  type QuranSnapshotRow,
-} from "#contracts/quran/snapshot/row";
+import type { QuranSnapshotRow } from "#contracts/quran/snapshot/row";
+import { QuranChunkRowSchema } from "#contracts/quran/snapshot/row";
 import { bindQuranRow } from "#contracts/quran/snapshot/row/hash";
 import { QuranAttributionRowSchema } from "#contracts/quran/source";
 import { QuranSurahRowSchema } from "#contracts/quran/spec";

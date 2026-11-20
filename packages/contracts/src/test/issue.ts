@@ -1,4 +1,5 @@
-import { Predicate, type Schema, type SchemaIssue } from "effect";
+import type { Schema, SchemaIssue } from "effect";
+import { Predicate } from "effect";
 
 /** One authored filter issue that carries both a path and its message. */
 export type AuthoredIssue = Exclude<

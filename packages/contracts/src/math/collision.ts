@@ -1,12 +1,12 @@
+import type { BigDecimal } from "effect";
 import {
   Array as Arr,
-  type BigDecimal,
   MutableHashMap,
   MutableHashSet,
   Record as Rec,
 } from "effect";
-
-import { type SceneAxis, SceneAxisSchema } from "#contracts/math/base";
+import type { SceneAxis } from "#contracts/math/base";
+import { SceneAxisSchema } from "#contracts/math/base";
 import type { SceneCoordinate, ScenePath } from "#contracts/math/coordinate";
 import type { PlaneMathObject } from "#contracts/math/plane";
 import { unresolvedProximityIndexes } from "#contracts/math/proximity";

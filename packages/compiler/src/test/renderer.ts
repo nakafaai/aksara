@@ -1,8 +1,6 @@
 import type { RendererComponentName } from "@nakafa/aksara-contracts/renderer/component";
-import {
-  RENDERER_DOMAINS,
-  type RendererDomain,
-} from "@nakafa/aksara-contracts/renderer/domain";
+import type { RendererDomain } from "@nakafa/aksara-contracts/renderer/domain";
+import { RENDERER_DOMAINS } from "@nakafa/aksara-contracts/renderer/domain";
 import { Array as Arr } from "effect";
 
 /** Expands sparse compiler fixtures into every canonical renderer domain. */

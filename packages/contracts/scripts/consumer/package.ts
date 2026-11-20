@@ -2,9 +2,9 @@ import { Effect, FileSystem, Path, Schema } from "effect";
 import { runConsumerCommand } from "#scripts/consumer/command";
 import { consumerEnvironment } from "#scripts/consumer/environment";
 import { validatePackedManifest } from "#scripts/consumer/packed";
+import type { ConsumerPackageInput } from "#scripts/consumer/tools";
 import {
   CONSUMER_PACKAGE_MANAGER,
-  type ConsumerPackageInput,
   consumerPnpmArguments,
   consumerFailure as failure,
   selectPackedArchive,

@@ -1,8 +1,8 @@
 import { describe, expect, it } from "@effect/vitest";
 import { Array as Arr, Effect, Number as Num, Order, Schema } from "effect";
+import type { ContentHeadIdentity } from "#contracts/content";
 import {
   CompiledContentPayloadSchema,
-  type ContentHeadIdentity,
   canonicalizeCompiledContentPayload,
   canonicalizeContentArtifactSigningInput,
   canonicalizeSignedContentArtifact,

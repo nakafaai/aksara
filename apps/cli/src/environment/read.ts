@@ -1,15 +1,13 @@
 import { SigningKeyIdSchema } from "@nakafa/aksara-contracts/ids";
 import { ed25519PublicKeyPem } from "@nakafa/aksara-contracts/signature/key";
 import { Config, Effect, Option, Redacted, Schema } from "effect";
+import type { ReleaseDispatch } from "#cli/dispatch/activation";
 import {
-  type ReleaseDispatch,
   ReleaseDispatchSchema,
   ReleaseSurfaceSchema,
 } from "#cli/dispatch/activation";
-import {
-  ProductionEnvironmentError,
-  type ProductionVariable,
-} from "#cli/environment/error";
+import type { ProductionVariable } from "#cli/environment/error";
+import { ProductionEnvironmentError } from "#cli/environment/error";
 
 const PreviewEnvironmentSchema = Schema.Struct({
   nakafaAppDir: Schema.optional(Schema.Trimmed.check(Schema.isNonEmpty())),

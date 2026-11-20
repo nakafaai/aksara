@@ -1,18 +1,18 @@
 import { Effect, Schema } from "effect";
 import type { ReleaseId, Sha256Hash } from "#contracts/ids";
 import { hashContentReleaseManifest } from "#contracts/release/hash";
+import type {
+  ContentReleaseBundle,
+  RollbackContentReleaseBundle,
+} from "#contracts/release/lifecycle";
 import {
-  type ContentReleaseBundle,
   ContentReleaseBundleSchema,
-  type RollbackContentReleaseBundle,
   RollbackContentReleaseBundleSchema,
 } from "#contracts/release/lifecycle";
 import { ReleaseHashMismatchFields } from "#contracts/release/mismatch";
 import { canonicalizeContentReleaseSigningInput } from "#contracts/release/signing";
-import {
-  type SignedContentRelease,
-  SignedContentReleaseSchema,
-} from "#contracts/release/spec";
+import type { SignedContentRelease } from "#contracts/release/spec";
+import { SignedContentReleaseSchema } from "#contracts/release/spec";
 import { validateRendererManifestHash } from "#contracts/renderer/manifest";
 import { verifyEd25519Signature } from "#contracts/signature/verify";
 

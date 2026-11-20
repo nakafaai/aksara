@@ -2,15 +2,10 @@ import { KebabKeySchema } from "@nakafa/aksara-contracts/assessment/identity";
 import { AppLocaleCodeSchema } from "@nakafa/aksara-contracts/locale";
 import { Array as Arr, Effect, Option, Result, Schema } from "effect";
 import { itemVersions } from "#corpus/question-bank/item";
-import {
-  type SetPath,
-  SetPathSchema,
-  setPath,
-} from "#corpus/question-bank/path";
-import {
-  type QuestionSet,
-  QuestionSetSchema,
-} from "#corpus/question-bank/source";
+import type { SetPath } from "#corpus/question-bank/path";
+import { SetPathSchema, setPath } from "#corpus/question-bank/path";
+import type { QuestionSet } from "#corpus/question-bank/source";
+import { QuestionSetSchema } from "#corpus/question-bank/source";
 import { profileId } from "#corpus/tryout/profile";
 import type {
   ExamSource,

@@ -6,11 +6,13 @@ import {
   ArtifactTreeComponentUnlistedError,
   ArtifactVerificationDecodeError,
 } from "#contracts/artifact/spec";
+import type {
+  CompiledContentPayload,
+  SignedContentArtifact,
+} from "#contracts/content";
 import {
-  type CompiledContentPayload,
   canonicalizeCompiledContentPayload,
   canonicalizeContentArtifactSigningInput,
-  type SignedContentArtifact,
   SignedContentArtifactSchema,
 } from "#contracts/content";
 import { hashText } from "#contracts/hash/text";

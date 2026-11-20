@@ -1,6 +1,6 @@
 import type { ReleaseIdSchema } from "@nakafa/aksara-contracts/ids";
+import type { ReleaseAbortReceipt } from "@nakafa/aksara-contracts/release/lifecycle";
 import {
-  type ReleaseAbortReceipt,
   ReleaseAbortReceiptSchema,
   ReleaseAcceptRequestSchema,
 } from "@nakafa/aksara-contracts/release/lifecycle";

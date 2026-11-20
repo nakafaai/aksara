@@ -1,5 +1,6 @@
 import { Array as Arr } from "effect";
-import { GEOMETRY_TOLERANCE, type SpacePoint } from "#contracts/math/base";
+import type { SpacePoint } from "#contracts/math/base";
+import { GEOMETRY_TOLERANCE } from "#contracts/math/base";
 
 /** Checks a space polygon is planar and has non-zero area. */
 export function hasCoplanarArea(

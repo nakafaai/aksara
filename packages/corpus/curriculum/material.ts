@@ -19,10 +19,8 @@ import type {
   CurriculumSource,
 } from "#corpus/curriculum/schema";
 import { sourceLocaleValue } from "#corpus/locale/source";
-import {
-  type MaterialDomainDescriptor,
-  requireMaterialDomain,
-} from "#corpus/material/domain";
+import type { MaterialDomainDescriptor } from "#corpus/material/domain";
+import { requireMaterialDomain } from "#corpus/material/domain";
 import type { LessonMaterialSource } from "#corpus/material/schema";
 
 /** One curriculum material mapping conflicts with reviewed source ownership. */

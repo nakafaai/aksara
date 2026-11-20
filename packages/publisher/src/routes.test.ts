@@ -7,12 +7,8 @@ import {
 import { AppLocaleSchema } from "@nakafa/aksara-contracts/locale";
 import { canonicalizeContentRouteItem } from "@nakafa/aksara-contracts/release/route/spec";
 import { Array as Arr, Effect, Stream } from "effect";
-import {
-  makeRouteItems,
-  RoutePlanConflictError,
-  type RouteTransition,
-  type RouteVersion,
-} from "#publisher/routes";
+import type { RouteTransition, RouteVersion } from "#publisher/routes";
+import { makeRouteItems, RoutePlanConflictError } from "#publisher/routes";
 
 const releaseId = ReleaseIdSchema.make("test-routes");
 

@@ -59,20 +59,20 @@ needs and has exactly the intended answers.
 
 ## Bar per section
 
-| Section | Official budget | What the hard item looks like | Avoid |
-| --- | --- | --- | --- |
-| SNBT Penalaran Umum | 30 items, 60 s each, three 10-item blocks | Arrangements with interacting constraints and several cases to count; exactly-one-true puzzles; integer optimisation with thresholds; data inference whose tempting reading overreaches; Benar/Salah sets that need every valid case checked | Options unrelated to the stem; one-step arithmetic; a pattern visible at a glance |
-| SNBT Pengetahuan dan Pemahaman Umum | 20 items, 45 s each | Analogies whose wrong options share one feature with the key; figurative versus literal sense; reverse logic where four options read the argument and one misreads it | Labeling connectives or head nouns; definitions a dictionary answers |
-| SNBT Pemahaman Bacaan dan Menulis | 20 items, 75 s each | Reference chains for sentence order; concision that keeps a named nuance; deletion or insertion by repetition or reference; diction that changes meaning | Title items that are off topic; spelling trivia |
-| SNBT Pengetahuan Kuantitatif | 20 items, 60 s each | Exact counts or extremes on a restricted domain; hidden sign or domain conditions; ordered versus unordered and with versus without replacement; data sufficiency where a single statement almost suffices; numeric entries with four steps and no options to check against | One-substitution algebra; plain percent or intercept lookups |
-| SNBT Literasi dalam Bahasa Indonesia | 30 items, 85 s each | Category verdicts that each need their own evidence; causal claims that the data cannot settle; denominator and scope of a percentage; implied intent across paragraphs | Main-idea items with absolute wording; facts stated in one sentence |
-| SNBT Literasi dalam Bahasa Inggris | 20 items, 60 s each | Figurative phrases with literal traps; relations between two texts (qualify versus reject, shared versus one-sided view); the tempting naive reading the passage itself corrects | Attitude items with extreme distractors; echo answers |
-| SNBT Penalaran Matematika | 20 items, 127.5 s each | Capped stock or battery where order matters; whole packs after a reserve or fee; the first time a running total crosses a target; claims true only under a hidden condition; integer entries limited by a floor or bottleneck | Single-operation items; options one unit apart |
-| TKA Matematika | 25 items, 180 s each | Certainty over all consistent data; integer optimum away from the corner, with sensitivity statements; strict thresholds; dependent stages in probability; composed transformations; similarity scaling of area and volume | Frequency-table means; one-formula plug-ins |
-| TKA Matematika Tingkat Lanjut | 25 items, 144 s each | Hidden polynomial structure; limit existence that sets parameter conditions; composed transformations with clipping; case splits from domain conditions | One-substitution determinants or derivatives |
-| TKA Bahasa Indonesia | 25 items, 180 s each | Two-text synthesis where distractors keep half of the shared ground; select-all overreach; non-linear chronology; projected data read as records | Absurd distractors around one real contrast |
-| TKA Bahasa Inggris | 25 items, 180 s each | Numeric reading with unit or partial-sum traps; select-all with condition or category errors; evidence status (supported, contradicted, not stated); multi-paragraph conclusions and infographics | Echo answers; absolute distractors |
-| Aufnahmeprüfung TU Darmstadt | 8 tasks, 300 s each, no aids | A hidden condition that prunes one candidate answer (extraneous or lost roots, isolated points, quadrant); parameter cases; unstated geometric auxiliaries; moving-base percentages and exponential thresholds; nested roots | One-formula plug-ins; arithmetic that a calculator would decide |
+| Section                              | Official budget                           | What the hard item looks like                                                                                                                                                                                                                                               | Avoid                                                                             |
+| ------------------------------------ | ----------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- |
+| SNBT Penalaran Umum                  | 30 items, 60 s each, three 10-item blocks | Arrangements with interacting constraints and several cases to count; exactly-one-true puzzles; integer optimisation with thresholds; data inference whose tempting reading overreaches; Benar/Salah sets that need every valid case checked                                | Options unrelated to the stem; one-step arithmetic; a pattern visible at a glance |
+| SNBT Pengetahuan dan Pemahaman Umum  | 20 items, 45 s each                       | Analogies whose wrong options share one feature with the key; figurative versus literal sense; reverse logic where four options read the argument and one misreads it                                                                                                       | Labeling connectives or head nouns; definitions a dictionary answers              |
+| SNBT Pemahaman Bacaan dan Menulis    | 20 items, 75 s each                       | Reference chains for sentence order; concision that keeps a named nuance; deletion or insertion by repetition or reference; diction that changes meaning                                                                                                                    | Title items that are off topic; spelling trivia                                   |
+| SNBT Pengetahuan Kuantitatif         | 20 items, 60 s each                       | Exact counts or extremes on a restricted domain; hidden sign or domain conditions; ordered versus unordered and with versus without replacement; data sufficiency where a single statement almost suffices; numeric entries with four steps and no options to check against | One-substitution algebra; plain percent or intercept lookups                      |
+| SNBT Literasi dalam Bahasa Indonesia | 30 items, 85 s each                       | Category verdicts that each need their own evidence; causal claims that the data cannot settle; denominator and scope of a percentage; implied intent across paragraphs                                                                                                     | Main-idea items with absolute wording; facts stated in one sentence               |
+| SNBT Literasi dalam Bahasa Inggris   | 20 items, 60 s each                       | Figurative phrases with literal traps; relations between two texts (qualify versus reject, shared versus one-sided view); the tempting naive reading the passage itself corrects                                                                                            | Attitude items with extreme distractors; echo answers                             |
+| SNBT Penalaran Matematika            | 20 items, 127.5 s each                    | Capped stock or battery where order matters; whole packs after a reserve or fee; the first time a running total crosses a target; claims true only under a hidden condition; integer entries limited by a floor or bottleneck                                               | Single-operation items; options one unit apart                                    |
+| TKA Matematika                       | 25 items, 180 s each                      | Certainty over all consistent data; integer optimum away from the corner, with sensitivity statements; strict thresholds; dependent stages in probability; composed transformations; similarity scaling of area and volume                                                  | Frequency-table means; one-formula plug-ins                                       |
+| TKA Matematika Tingkat Lanjut        | 25 items, 144 s each                      | Hidden polynomial structure; limit existence that sets parameter conditions; composed transformations with clipping; case splits from domain conditions                                                                                                                     | One-substitution determinants or derivatives                                      |
+| TKA Bahasa Indonesia                 | 25 items, 180 s each                      | Two-text synthesis where distractors keep half of the shared ground; select-all overreach; non-linear chronology; projected data read as records                                                                                                                            | Absurd distractors around one real contrast                                       |
+| TKA Bahasa Inggris                   | 25 items, 180 s each                      | Numeric reading with unit or partial-sum traps; select-all with condition or category errors; evidence status (supported, contradicted, not stated); multi-paragraph conclusions and infographics                                                                           | Echo answers; absolute distractors                                                |
+| Aufnahmeprüfung TU Darmstadt         | 8 tasks, 300 s each, no aids              | A hidden condition that prunes one candidate answer (extraneous or lost roots, isolated points, quadrant); parameter cases; unstated geometric auxiliaries; moving-base percentages and exponential thresholds; nested roots                                                | One-formula plug-ins; arithmetic that a calculator would decide                   |
 
 ## Calibration from the pilot
 
@@ -81,10 +81,10 @@ old and new items together in blinded panels (two raters, items mixed and
 unlabeled, keys shown). Mean estimated success of real test takers and mean
 level against the real exam:
 
-| Set | Old | Rewrite |
-| --- | --- | --- |
-| Aufnahmeprüfung set 1, final | 79 percent, level 1.9 | 34 percent, level 3.9, every item at least 3.5 |
-| TKA Matematika set 1, second round | 47 percent, level 2.8 | 34 percent, level 3.4, still under the bar |
+| Set                                | Old                   | Rewrite                                        |
+| ---------------------------------- | --------------------- | ---------------------------------------------- |
+| Aufnahmeprüfung set 1, final       | 79 percent, level 1.9 | 34 percent, level 3.9, every item at least 3.5 |
+| TKA Matematika set 1, second round | 47 percent, level 2.8 | 34 percent, level 3.4, still under the bar     |
 
 For Aufnahmeprüfung set 1 the odds of a wrong answer rose from 0.27 to 1.92,
 seven times the old odds, and a well-prepared candidate needs 2.4 times as long.
@@ -128,11 +128,11 @@ the same skill show the step:
   times the old set's odds in the same panel. Rewrite every item that misses
   its own bar and rate the set again.
 
-| Sections | Mean success at most | No item above |
-| --- | --- | --- |
-| Mathematics and quantitative sections, Penalaran Umum | 25 percent | 40 percent |
-| TKA Bahasa Inggris | 20 percent | 35 percent |
-| Other literacy, reading and language sections | 35 percent | 50 percent |
+| Sections                                              | Mean success at most | No item above |
+| ----------------------------------------------------- | -------------------- | ------------- |
+| Mathematics and quantitative sections, Penalaran Umum | 25 percent           | 40 percent    |
+| TKA Bahasa Inggris                                    | 20 percent           | 35 percent    |
+| Other literacy, reading and language sections         | 35 percent           | 50 percent    |
 
 - Run the similarity check on every set: it reports items that read alike,
   reused passages, and formula pairs, the same formulas with new numbers in

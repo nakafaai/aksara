@@ -1,9 +1,7 @@
 import { NodeServices } from "@effect/platform-node";
 import { hashContentProjection } from "@nakafa/aksara-contracts/projection/hash";
-import {
-  type ArticleHead,
-  ArticleHeadSchema,
-} from "@nakafa/aksara-contracts/release/head";
+import type { ArticleHead } from "@nakafa/aksara-contracts/release/head";
+import { ArticleHeadSchema } from "@nakafa/aksara-contracts/release/head";
 import { createRendererManifest } from "@nakafa/aksara-contracts/renderer/manifest";
 import { decodeArticleRegistry } from "@nakafa/aksara-corpus/articles/registry";
 import {

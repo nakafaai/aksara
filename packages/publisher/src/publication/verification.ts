@@ -1,8 +1,8 @@
-import {
-  PublicationReceiptSchema,
-  type ReleaseVerificationEvidence,
-  type SignedContentRelease,
+import type {
+  ReleaseVerificationEvidence,
+  SignedContentRelease,
 } from "@nakafa/aksara-contracts/release";
+import { PublicationReceiptSchema } from "@nakafa/aksara-contracts/release";
 import type { ContentReleaseStatus } from "@nakafa/aksara-contracts/release/lifecycle";
 import type { ContentVerificationKeyResolver } from "@nakafa/aksara-contracts/signature/spec";
 import { Duration, Effect, Schedule, Schema } from "effect";

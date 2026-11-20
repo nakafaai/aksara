@@ -1,17 +1,14 @@
 import { Effect, Exit, Schema } from "effect";
+import type { CompiledContentPayload } from "#contracts/content";
 import {
-  type CompiledContentPayload,
   CompiledContentPayloadSchema,
   canonicalizeCompiledContentPayload,
   canonicalizeContentArtifactSigningInput,
   SignedContentArtifactSchema,
 } from "#contracts/content";
 import { hashText } from "#contracts/hash/text";
-import {
-  type ContentKey,
-  type Sha256Hash,
-  SigningKeyIdSchema,
-} from "#contracts/ids";
+import type { ContentKey, Sha256Hash } from "#contracts/ids";
+import { SigningKeyIdSchema } from "#contracts/ids";
 import { hashContentReleaseManifest } from "#contracts/release/hash";
 import { canonicalizeContentReleaseSigningInput } from "#contracts/release/signing";
 import { SignedContentReleaseSchema } from "#contracts/release/spec";

@@ -1,9 +1,7 @@
 import { beforeEach, expect, layer } from "@effect/vitest";
 import { CorpusSourcePathSchema } from "@nakafa/aksara-contracts/ids";
-import {
-  type PageHead,
-  PageHeadSchema,
-} from "@nakafa/aksara-contracts/release/head";
+import type { PageHead } from "@nakafa/aksara-contracts/release/head";
+import { PageHeadSchema } from "@nakafa/aksara-contracts/release/head";
 import { PublicationScopeSchema } from "@nakafa/aksara-contracts/release/snapshot/scope";
 import { Array as Arr, Effect, Schema } from "effect";
 import {

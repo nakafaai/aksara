@@ -2,12 +2,12 @@ import { Effect, FileSystem, Path, Result, Schema } from "effect";
 
 import { downloadGermanQuranSource } from "#corpus/quran/source/download";
 import { GermanQuranSourceSyncError } from "#corpus/quran/source/error";
+import type { PinnedQuranFile } from "#corpus/quran/source/policy";
 import {
   GERMAN_QURAN_EDITION_URL,
   GERMAN_QURAN_PUBLICATION_URL,
   GERMAN_QURAN_SOURCE_URL,
   GERMAN_QURAN_TERMS_URL,
-  type PinnedQuranFile,
   QURAN_SOURCE_POLICY,
 } from "#corpus/quran/source/policy";
 

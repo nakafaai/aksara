@@ -1,19 +1,19 @@
 import type { CompileDocumentSource } from "@nakafa/aksara-contracts/content";
 import type { PreviewSource } from "@nakafa/aksara-corpus/preview/source";
 import { Effect } from "effect";
+import type { InspectedArticleDocument } from "#publisher/article/document";
 import {
-  type InspectedArticleDocument,
   loadArticleDocument,
   makeArticleProjectionFromSource,
 } from "#publisher/article/document";
 import { makeCompileSource } from "#publisher/compilation";
+import type { InspectedMaterialDocument } from "#publisher/material/document";
 import {
-  type InspectedMaterialDocument,
   loadMaterialDocument,
   makeMaterialProjection,
 } from "#publisher/material/document";
+import type { InspectedPageDocument } from "#publisher/page/document";
 import {
-  type InspectedPageDocument,
   loadPageDocument,
   makePageProjectionFromSource,
 } from "#publisher/page/document";

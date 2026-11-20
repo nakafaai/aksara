@@ -37,7 +37,7 @@ the marker surface provides the emphasis without making the text heavier.
   of four or more words ending in a sentence mark. It preserves assessed prompts,
   quotations, code, and short abbreviations. Whole sentences without that
   punctuation, headings, and mathematics still need the [final
-  review](review.md#final-language-review).
+review](review.md#final-language-review).
 - Let each locale choose its own phrase instead of translating a sibling's
   marked words. Every lesson locale carries at least one marked phrase using
   either syntax (`lesson-without-highlight`), and its opening section marks at

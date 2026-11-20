@@ -1,5 +1,6 @@
 import { Effect, Schema } from "effect";
-import { type Document, isMap, isScalar, isSeq, type YAMLMap } from "yaml";
+import type { Document, YAMLMap } from "yaml";
+import { isMap, isScalar, isSeq } from "yaml";
 
 /** A fact that a workflow verifier requires does not hold, so the workflow is refused with its reason. */
 export class WorkflowError extends Schema.TaggedError<

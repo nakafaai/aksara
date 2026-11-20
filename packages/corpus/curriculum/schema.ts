@@ -1,9 +1,9 @@
 import { MaterialDomainSchema } from "@nakafa/aksara-contracts/material/domain";
 import { CurriculumNodeKeySchema } from "@nakafa/aksara-contracts/program/curriculum";
+import type { ProgramNavigationLevel } from "@nakafa/aksara-contracts/program/spec";
 import {
   LearningProgramKeySchema,
   ProgramNavigationIconKeySchema,
-  type ProgramNavigationLevel,
   ProgramNavigationLevelSchema,
 } from "@nakafa/aksara-contracts/program/spec";
 import { MaterialKeySchema } from "@nakafa/aksara-contracts/projection/material";

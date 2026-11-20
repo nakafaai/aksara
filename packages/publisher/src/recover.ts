@@ -7,10 +7,8 @@ import {
   PublicationActivation,
   PublicationTarget,
 } from "#publisher/publication/spec";
-import {
-  type RetainedRecoveryInput,
-  selectRetainedRecovery,
-} from "#publisher/retention";
+import type { RetainedRecoveryInput } from "#publisher/retention";
+import { selectRetainedRecovery } from "#publisher/retention";
 import { validateManifestReceipt } from "#publisher/validation";
 
 type RecoverContentRelease = (

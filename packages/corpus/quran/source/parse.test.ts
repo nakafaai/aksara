@@ -10,9 +10,9 @@ import {
   Schema,
   Struct,
 } from "effect";
-
 import { loadPinnedQuranSources } from "#corpus/quran/source/load";
-import { type RawSources, RawSourcesSchema } from "#corpus/quran/source/model";
+import type { RawSources } from "#corpus/quran/source/model";
+import { RawSourcesSchema } from "#corpus/quran/source/model";
 import { parseQuranSources } from "#corpus/quran/source/parse";
 
 const QuranParseFixtureValueSchema = Schema.Struct({

@@ -1,5 +1,5 @@
+import type { ReleaseId } from "@nakafa/aksara-contracts/ids";
 import {
-  type ReleaseId,
   ReleaseIdSchema,
   Sha256HashSchema,
 } from "@nakafa/aksara-contracts/ids";
@@ -15,8 +15,8 @@ import { RollbackSnapshotEntrySchema } from "@nakafa/aksara-contracts/release/ro
 import { Effect, Schema, Stream } from "effect";
 import type { ReplaySpoolError } from "#publisher/replay/error";
 import { RollbackProofIdentityError } from "#publisher/rollback/errors";
+import type { DerivedRollbackRecord } from "#publisher/rollback/records";
 import {
-  type DerivedRollbackRecord,
   isDerivedRollbackUpsert,
   snapshotRollbackState,
 } from "#publisher/rollback/records";

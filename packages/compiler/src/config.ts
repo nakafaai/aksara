@@ -4,10 +4,8 @@ import {
 } from "@nakafa/aksara-contracts/content";
 import { hashText } from "@nakafa/aksara-contracts/hash/text";
 import { sortRendererComponents } from "@nakafa/aksara-contracts/renderer/component";
-import {
-  type RendererManifestEnvelope,
-  selectRendererDomainCapability,
-} from "@nakafa/aksara-contracts/renderer/contract";
+import type { RendererManifestEnvelope } from "@nakafa/aksara-contracts/renderer/contract";
+import { selectRendererDomainCapability } from "@nakafa/aksara-contracts/renderer/contract";
 import type { RendererDomain } from "@nakafa/aksara-contracts/renderer/domain";
 import { Effect, Schema } from "effect";
 

@@ -6,7 +6,8 @@ import {
   readText,
 } from "@nakafa/aksara-utilities/http/response";
 import { JsonTextSchema } from "@nakafa/aksara-utilities/text/json";
-import { Effect, type Redacted, Schema } from "effect";
+import type { Redacted } from "effect";
+import { Effect, Schema } from "effect";
 import { FetchHttpClient, HttpClient, HttpClientRequest } from "effect/http";
 import { makeNakafaAppError } from "#cli/error";
 

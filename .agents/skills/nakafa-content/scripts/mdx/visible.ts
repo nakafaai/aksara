@@ -1,14 +1,16 @@
 import { Predicate } from "effect";
 import { isProtectedLineComponent } from "#nakafa-content/mdx/fields";
 import { MATH_LABEL_KEYS, walkKeyedChildren } from "#nakafa-content/mdx/keys";
+import type {
+  EstreeNode,
+  MdxAttribute,
+  MdxNode,
+  SourceRange,
+} from "#nakafa-content/mdx/parse";
 import {
   attributeEstree,
-  type EstreeNode,
   estreeChildren,
   jsxComponentName,
-  type MdxAttribute,
-  type MdxNode,
-  type SourceRange,
 } from "#nakafa-content/mdx/parse";
 import { directAttributeRange } from "#nakafa-content/mdx/rendered";
 import { expectShape } from "#nakafa-content/mdx/shape";

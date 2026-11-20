@@ -1,7 +1,5 @@
-import {
-  type ContentKey,
-  ContentKeySchema,
-} from "@nakafa/aksara-contracts/ids";
+import type { ContentKey } from "@nakafa/aksara-contracts/ids";
+import { ContentKeySchema } from "@nakafa/aksara-contracts/ids";
 import {
   Array as Arr,
   Effect,

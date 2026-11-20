@@ -11,16 +11,18 @@ import {
   walkKeyedChildren,
 } from "#nakafa-content/mdx/keys";
 import { renderedStaticStringRange } from "#nakafa-content/mdx/offset";
+import type {
+  EstreeNode,
+  MdxAttribute,
+  MdxNode,
+  SourceRange,
+} from "#nakafa-content/mdx/parse";
 import {
   asEstreeNode,
   attributeEstree,
-  type EstreeNode,
   estreeChildren,
   estreeRange,
   jsxComponentName,
-  type MdxAttribute,
-  type MdxNode,
-  type SourceRange,
   staticFieldName,
 } from "#nakafa-content/mdx/parse";
 import {

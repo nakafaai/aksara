@@ -1,12 +1,8 @@
 import { Predicate } from "effect";
 import { issueAtOffset } from "#nakafa-content/math/finding";
 import { sourceOffsetForStaticMatch } from "#nakafa-content/mdx/offset";
-import {
-  attributeEstree,
-  type MdxAttribute,
-  type MdxNode,
-  visitMdxNodes,
-} from "#nakafa-content/mdx/parse";
+import type { MdxAttribute, MdxNode } from "#nakafa-content/mdx/parse";
+import { attributeEstree, visitMdxNodes } from "#nakafa-content/mdx/parse";
 import { staticStringCandidates } from "#nakafa-content/mdx/static";
 import type {
   LessonVoiceIssue,

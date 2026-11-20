@@ -3,11 +3,8 @@ import { Context, Effect, Layer } from "effect";
 import { HttpClient } from "effect/http";
 import type * as Scope from "effect/Scope";
 import { NakafaProcess, NakafaProcessLive } from "#cli/child/process";
-import {
-  type NakafaStartInput,
-  type RunningNakafa,
-  startNakafa,
-} from "#cli/child/session";
+import type { NakafaStartInput, RunningNakafa } from "#cli/child/session";
+import { startNakafa } from "#cli/child/session";
 import type { RendererCredentials } from "#cli/credentials";
 import type { NakafaAppError } from "#cli/error";
 import { waitForRenderer } from "#cli/renderer/manifest";

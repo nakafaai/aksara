@@ -1,9 +1,7 @@
 import { CorpusSourcePathSchema } from "@nakafa/aksara-contracts/ids";
 import type { AppLocale } from "@nakafa/aksara-contracts/locale";
-import {
-  type LearningProgram,
-  LearningProgramKeySchema,
-} from "@nakafa/aksara-contracts/program/spec";
+import type { LearningProgram } from "@nakafa/aksara-contracts/program/spec";
+import { LearningProgramKeySchema } from "@nakafa/aksara-contracts/program/spec";
 import { Array as Arr, Effect, HashMap, Option, Schema } from "effect";
 
 /** Curriculum routes cannot be derived from the supplied source ownership. */

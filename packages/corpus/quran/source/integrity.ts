@@ -1,7 +1,5 @@
-import {
-  ACTIVE_APP_LOCALES,
-  type ActiveAppLocaleList,
-} from "@nakafa/aksara-contracts/locale";
+import type { ActiveAppLocaleList } from "@nakafa/aksara-contracts/locale";
+import { ACTIVE_APP_LOCALES } from "@nakafa/aksara-contracts/locale";
 import type { QuranSourceArtifact } from "@nakafa/aksara-contracts/quran/source";
 import { Effect, Stream } from "effect";
 

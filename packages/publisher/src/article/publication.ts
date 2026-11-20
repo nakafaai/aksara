@@ -12,39 +12,30 @@ import type { RendererDomain } from "@nakafa/aksara-contracts/renderer/domain";
 import type { validateRendererManifestHash } from "@nakafa/aksara-contracts/renderer/manifest";
 import { validateRendererManifestHash as validateRenderer } from "@nakafa/aksara-contracts/renderer/manifest";
 import { decodeArticleRegistry } from "@nakafa/aksara-corpus/articles/registry";
-import type { FileSystem, Path } from "effect";
-import {
-  Effect,
-  MutableHashMap,
-  Option,
-  Result,
-  Schema,
-  type Scope,
-  Stream,
-} from "effect";
+import type { FileSystem, Path, Scope } from "effect";
+import { Effect, MutableHashMap, Option, Result, Schema, Stream } from "effect";
 import { constUndefined } from "effect/Function";
-import {
-  type ArticleMetadataError,
-  type ArticleSourceError,
-  mapArticleSourceError,
+import type {
+  ArticleMetadataError,
+  ArticleSourceError,
 } from "#publisher/article/document";
-import { type ArticleHeadOwner, headOwnerKey } from "#publisher/article/head";
+import { mapArticleSourceError } from "#publisher/article/document";
+import type { ArticleHeadOwner } from "#publisher/article/head";
+import { headOwnerKey } from "#publisher/article/head";
 import {
   ArticlePublicationPlanSchema,
   planArticlePublication,
 } from "#publisher/article/plan";
 import type { PreparedContentTransition } from "#publisher/preparation/spec";
+import type { HeadOrderState } from "#publisher/publication/order";
 import {
-  type HeadOrderState,
   orderPublishedHeads,
   validateHeadOrder,
 } from "#publisher/publication/order";
 import type { ReplaySpoolError } from "#publisher/replay/error";
 import { createReplaySpool } from "#publisher/replay/spool";
-import {
-  type RouteTransition,
-  routeTransitionForContent,
-} from "#publisher/routes";
+import type { RouteTransition } from "#publisher/routes";
+import { routeTransitionForContent } from "#publisher/routes";
 
 const ArticleFamilyFieldSchema = Schema.Literals([
   "contentKey",

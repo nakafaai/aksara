@@ -1,17 +1,13 @@
 import { PublicPathSchema } from "@nakafa/aksara-contracts/ids";
-import {
-  type AppLocale,
-  AppLocaleSchema,
-} from "@nakafa/aksara-contracts/locale";
+import type { AppLocale } from "@nakafa/aksara-contracts/locale";
+import { AppLocaleSchema } from "@nakafa/aksara-contracts/locale";
 import {
   CurriculumRouteDraftSchema,
   curriculumNamespace,
   isRenderableCurriculumLevel,
 } from "@nakafa/aksara-contracts/program/curriculum";
-import {
-  type LearningProgram,
-  LearningProgramSchema,
-} from "@nakafa/aksara-contracts/program/spec";
+import type { LearningProgram } from "@nakafa/aksara-contracts/program/spec";
+import { LearningProgramSchema } from "@nakafa/aksara-contracts/program/spec";
 import { Array as Arr, Effect, HashMap, HashSet, Option, Schema } from "effect";
 import {
   curriculumSourcePath,
@@ -20,8 +16,8 @@ import {
 } from "#corpus/curriculum/ownership";
 import type { ProjectedCurriculumNode } from "#corpus/curriculum/projection";
 import { requireSourceLocale } from "#corpus/locale/source";
+import type { MaterialDomainDescriptor } from "#corpus/material/domain";
 import {
-  type MaterialDomainDescriptor,
   MaterialDomainDescriptorSchema,
   requireMaterialDomain,
 } from "#corpus/material/domain";

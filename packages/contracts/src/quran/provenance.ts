@@ -2,9 +2,11 @@ import { Array as Arr, Effect, MutableList, Schema } from "effect";
 
 import { hashText } from "#contracts/hash/text";
 import { Sha256HashSchema } from "#contracts/ids";
+import type {
+  ActiveAppLocaleCode,
+  ActiveAppLocaleList,
+} from "#contracts/locale";
 import {
-  type ActiveAppLocaleCode,
-  type ActiveAppLocaleList,
   ActiveAppLocaleListSchema,
   activeAppLocaleCode,
   ENGLISH_APP_LOCALE_CODE,
@@ -13,9 +15,9 @@ import {
   MALAY_APP_LOCALE_CODE,
 } from "#contracts/locale";
 import { canonicalizeQuranAttribution } from "#contracts/quran/attribution";
+import type { QuranSourceId } from "#contracts/quran/identity";
 import {
   QuranNameProvenanceScopeSchema,
-  type QuranSourceId,
   QuranTranslationProvenanceScopeSchema,
   quranNameProvenanceScope,
   quranNameSourceForScope,
@@ -23,10 +25,8 @@ import {
   quranTranslationProvenanceScope,
   quranTranslationSourceForScope,
 } from "#contracts/quran/identity";
-import {
-  type QuranProvenanceStatus,
-  QuranProvenanceStatusSchema,
-} from "#contracts/quran/snapshot/spec";
+import type { QuranProvenanceStatus } from "#contracts/quran/snapshot/spec";
+import { QuranProvenanceStatusSchema } from "#contracts/quran/snapshot/spec";
 import {
   hasCompleteQuranSourceCopy,
   QuranSourceAttributionSchema,

@@ -9,17 +9,17 @@ import {
 import { invertContentSnapshots } from "@nakafa/aksara-contracts/release/snapshot/spec";
 import { ContentVerificationKeyResolver } from "@nakafa/aksara-contracts/signature/spec";
 import { Effect, Layer, Path, Redacted, Schema, Stream } from "effect";
-import {
-  makePreparedRollbackRelease,
-  type PreparedGitRelease,
-  type PreparedRollbackRelease,
+import type {
+  PreparedGitRelease,
+  PreparedRollbackRelease,
 } from "#publisher/preparation/prepared";
+import { makePreparedRollbackRelease } from "#publisher/preparation/prepared";
 import { publishGitRelease } from "#publisher/publication";
 import { preparePublicationPlan } from "#publisher/publication/plan";
+import type { PublicationRetentionDecision } from "#publisher/publication/spec";
 import {
   PublicationActivation,
   PublicationRetention,
-  type PublicationRetentionDecision,
   PublicationSigningKey,
   PublicationSource,
   PublicationTarget,

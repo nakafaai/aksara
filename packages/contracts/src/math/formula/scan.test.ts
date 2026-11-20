@@ -1,12 +1,10 @@
 import { assert, describe, it } from "@effect/vitest";
 import { Array as Arr } from "effect";
 import type { SampleBox } from "#contracts/math/formula/box";
-import {
-  contourFill,
-  contourLines,
-  type SampleField,
-} from "#contracts/math/formula/contour";
-import { type CellValues, someCell } from "#contracts/math/formula/scan";
+import type { SampleField } from "#contracts/math/formula/contour";
+import { contourFill, contourLines } from "#contracts/math/formula/contour";
+import type { CellValues } from "#contracts/math/formula/scan";
+import { someCell } from "#contracts/math/formula/scan";
 
 const box: SampleBox = { x: { max: 3, min: -3 }, y: { max: 3, min: -3 } };
 const cells = 24;

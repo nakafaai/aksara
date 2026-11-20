@@ -5,14 +5,13 @@ import {
   failsStrict,
   text,
 } from "#contracts/test/assessment/document";
+import type { FigureName, VisualName } from "#contracts/visual/catalog";
 import {
   answerState,
   assessmentVisuals,
   FIGURE_NAMES,
-  type FigureName,
   FigureNameSchema,
   VISUAL_NAMES,
-  type VisualName,
   VisualNameSchema,
 } from "#contracts/visual/catalog";
 

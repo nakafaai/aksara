@@ -17,10 +17,12 @@ import {
   attributeExpression,
   inspectRichAttribute,
 } from "#compiler/ast/attribute";
+import type {
+  StaticLiteral,
+  StaticLiteralSyntaxReason,
+} from "#compiler/ast/literal";
 import {
   decodeConstantLiteral,
-  type StaticLiteral,
-  type StaticLiteralSyntaxReason,
   staticPropertyName,
 } from "#compiler/ast/literal";
 import type {

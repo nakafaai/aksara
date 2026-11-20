@@ -1,14 +1,10 @@
-import {
-  canonicalizeSignedContentArtifact,
-  type SignedContentArtifact,
-} from "@nakafa/aksara-contracts/content";
+import type { SignedContentArtifact } from "@nakafa/aksara-contracts/content";
+import { canonicalizeSignedContentArtifact } from "@nakafa/aksara-contracts/content";
 import type { ReleaseId } from "@nakafa/aksara-contracts/ids";
 import type { ContentReleaseItem } from "@nakafa/aksara-contracts/release";
 import { canonicalizeContentReleaseItem } from "@nakafa/aksara-contracts/release/canonical";
-import {
-  type ContentRouteItem,
-  canonicalizeContentRouteItem,
-} from "@nakafa/aksara-contracts/release/route/spec";
+import type { ContentRouteItem } from "@nakafa/aksara-contracts/release/route/spec";
+import { canonicalizeContentRouteItem } from "@nakafa/aksara-contracts/release/route/spec";
 import type {
   StageArtifactBatchInput,
   StageItemBatchInput,
@@ -23,7 +19,8 @@ import {
   MAX_ROUTE_BATCH_COUNT,
 } from "@nakafa/aksara-contracts/transport/limits";
 import { encodeJsonText } from "@nakafa/aksara-utilities/text/json";
-import { Array as Arr, type Stream } from "effect";
+import type { Stream } from "effect";
+import { Array as Arr } from "effect";
 import { streamBatches } from "#publisher/batch/core";
 
 /** Serializes one complete release-item batch in deterministic wire order. */

@@ -1,8 +1,6 @@
 import { Effect, Schema } from "effect";
-import {
-  type SignedContentArtifact,
-  SignedContentArtifactSchema,
-} from "#contracts/content";
+import type { SignedContentArtifact } from "#contracts/content";
+import { SignedContentArtifactSchema } from "#contracts/content";
 import { decodeContract } from "#contracts/decode";
 import {
   CorpusSourcePathSchema,
@@ -11,10 +9,8 @@ import {
   Sha256HashSchema,
 } from "#contracts/ids";
 import { AppLocaleSchema } from "#contracts/locale";
-import {
-  type ContentProjection,
-  ContentProjectionSchema,
-} from "#contracts/projection/spec";
+import type { ContentProjection } from "#contracts/projection/spec";
+import { ContentProjectionSchema } from "#contracts/projection/spec";
 import { SignedContentReleaseSchema } from "#contracts/release/spec";
 import { RendererManifestEnvelopeSchema } from "#contracts/renderer/contract";
 import {

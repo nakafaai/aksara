@@ -1,7 +1,5 @@
-import {
-  type MaterialDomain,
-  MaterialDomainSchema,
-} from "@nakafa/aksara-contracts/material/domain";
+import type { MaterialDomain } from "@nakafa/aksara-contracts/material/domain";
+import { MaterialDomainSchema } from "@nakafa/aksara-contracts/material/domain";
 import { CurriculumNodeKeySchema } from "@nakafa/aksara-contracts/program/curriculum";
 import {
   LearningProgramKeySchema,
@@ -18,16 +16,16 @@ import {
 } from "effect";
 
 import { resolveCurriculumMaterial } from "#corpus/curriculum/material";
+import type { CurriculumSource } from "#corpus/curriculum/schema";
 import {
   CurriculumDisplayGroupMapSchema,
   CurriculumMaterialCardMapSchema,
   CurriculumNodeTranslationMapSchema,
-  type CurriculumSource,
   CurriculumTreeNodeSchema,
 } from "#corpus/curriculum/schema";
+import type { MaterialDomainDescriptor } from "#corpus/material/domain";
 import {
   decodeMaterialDomains,
-  type MaterialDomainDescriptor,
   requireMaterialDomain,
 } from "#corpus/material/domain";
 import type { LessonMaterialSource } from "#corpus/material/schema";

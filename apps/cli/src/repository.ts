@@ -1,14 +1,14 @@
 import type { AppLocale } from "@nakafa/aksara-contracts/locale";
 import { decodeMaterialRegistry } from "@nakafa/aksara-corpus/material/registry";
 import { selectPreviewDocument as selectCorpusDocument } from "@nakafa/aksara-corpus/preview/selection";
-import { Array as Arr, Effect, type FileSystem, Path } from "effect";
-import {
-  captureSelectedFiles,
-  PreviewRepositoryError,
-  type PreviewRestartError,
-  type SelectedDocument,
-  type SelectedFileCandidate,
+import type { FileSystem } from "effect";
+import { Array as Arr, Effect, Path } from "effect";
+import type {
+  PreviewRestartError,
+  SelectedDocument,
+  SelectedFileCandidate,
 } from "#cli/integrity";
+import { captureSelectedFiles, PreviewRepositoryError } from "#cli/integrity";
 
 /** Selects only an exact realpath-backed document and its registry closure. */
 export const selectPreviewDocument: (

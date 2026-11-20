@@ -4,11 +4,13 @@ import { ReleaseIdSchema, SigningKeyIdSchema } from "#contracts/ids";
 import { hashContentReleaseManifest } from "#contracts/release/hash";
 import { canonicalizeContentReleaseSigningInput } from "#contracts/release/signing";
 import { inheritContentSnapshots } from "#contracts/release/snapshot/spec";
+import type {
+  ContentReleaseManifest,
+  SignedContentRelease,
+} from "#contracts/release/spec";
 import {
   CONTENT_RELEASE_FORMAT,
-  type ContentReleaseManifest,
   ContentReleaseManifestSchema,
-  type SignedContentRelease,
   SignedContentReleaseSchema,
 } from "#contracts/release/spec";
 import { createRendererManifest } from "#contracts/renderer/manifest";

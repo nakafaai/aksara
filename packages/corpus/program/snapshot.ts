@@ -1,15 +1,13 @@
 import { ACTIVE_APP_LOCALES } from "@nakafa/aksara-contracts/locale";
-import {
-  digestProgramRows,
-  type ProgramDigestError,
-} from "@nakafa/aksara-contracts/program/snapshot/digest";
+import type { ProgramDigestError } from "@nakafa/aksara-contracts/program/snapshot/digest";
+import { digestProgramRows } from "@nakafa/aksara-contracts/program/snapshot/digest";
 import {
   makeCurriculumSnapshotRow,
   makeProgramSnapshot,
   makeProgramSnapshotRow,
 } from "@nakafa/aksara-contracts/program/snapshot/hash";
+import type { ProgramCounts } from "@nakafa/aksara-contracts/program/snapshot/spec";
 import {
-  type ProgramCounts,
   ProgramCountsSchema,
   ProgramSnapshotFactsSchema,
 } from "@nakafa/aksara-contracts/program/snapshot/spec";

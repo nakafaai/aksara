@@ -3,11 +3,13 @@ import {
   ArtifactPayloadFieldByteLimitError,
   ArtifactVerificationByteLimitError,
 } from "#contracts/artifact/spec";
+import type {
+  CompiledContentPayload,
+  SignedContentArtifact,
+} from "#contracts/content";
 import {
-  type CompiledContentPayload,
   canonicalizeCompiledContentPayload,
   canonicalizeSignedContentArtifact,
-  type SignedContentArtifact,
 } from "#contracts/content";
 import {
   MAX_CANONICAL_PAYLOAD_BYTES,

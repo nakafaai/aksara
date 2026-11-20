@@ -1,9 +1,7 @@
 import { NodeServices } from "@effect/platform-node";
 import { expect, layer } from "@effect/vitest";
-import {
-  type Sha256Hash,
-  Sha256HashSchema,
-} from "@nakafa/aksara-contracts/ids";
+import type { Sha256Hash } from "@nakafa/aksara-contracts/ids";
+import { Sha256HashSchema } from "@nakafa/aksara-contracts/ids";
 import type { ContentSnapshotManifest } from "@nakafa/aksara-contracts/release/snapshot/data";
 import type { PublicationScope } from "@nakafa/aksara-contracts/release/snapshot/scope";
 import {
@@ -12,11 +10,10 @@ import {
 } from "@nakafa/aksara-contracts/release/snapshot/spec";
 import { Array as Arr, Effect, Path, Stream } from "effect";
 import { prepareReleaseSnapshots } from "#publisher/snapshot/release";
+import type { AssessmentFixture, QuranFixture } from "#test/snapshot";
 import {
-  type AssessmentFixture,
   assessmentSnapshotFixture,
   makeQuranSnapshotFixture,
-  type QuranFixture,
 } from "#test/snapshot";
 
 const repositoryRoot = Effect.map(Path.Path, (path) =>

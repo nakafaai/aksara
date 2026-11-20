@@ -1,14 +1,11 @@
 import { Schema } from "effect";
-
+import type { ActiveContentRelease } from "#contracts/release/current/evidence";
 import {
-  type ActiveContentRelease,
   ActiveContentReleaseSchema,
   hasSameAppLocales,
 } from "#contracts/release/current/evidence";
-import {
-  ContentReleaseBundleSchema,
-  type RollbackContentReleaseBundle,
-} from "#contracts/release/lifecycle";
+import type { RollbackContentReleaseBundle } from "#contracts/release/lifecycle";
+import { ContentReleaseBundleSchema } from "#contracts/release/lifecycle";
 import { EMPTY_RESULT_CATALOG_DIGEST } from "#contracts/release/result/spec";
 import {
   hasSameContentSnapshots,

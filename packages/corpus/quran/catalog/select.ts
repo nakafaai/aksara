@@ -1,28 +1,21 @@
-import {
-  type ActiveAppLocaleList,
-  AppLocaleSchema,
-} from "@nakafa/aksara-contracts/locale";
-import {
-  type QuranSourceId,
-  QuranSourceIdSchema,
-} from "@nakafa/aksara-contracts/quran/identity";
+import type { ActiveAppLocaleList } from "@nakafa/aksara-contracts/locale";
+import { AppLocaleSchema } from "@nakafa/aksara-contracts/locale";
+import type { QuranSourceId } from "@nakafa/aksara-contracts/quran/identity";
+import { QuranSourceIdSchema } from "@nakafa/aksara-contracts/quran/identity";
 import {
   QuranProvenanceRecordSchema,
   QuranProvenanceScopeSchema,
   quranProvenanceScopes,
 } from "@nakafa/aksara-contracts/quran/provenance";
+import type { QuranSourceCopy } from "@nakafa/aksara-contracts/quran/source";
 import {
   QuranAttributionRowSchema,
   QuranSourceAttributionSchema,
-  type QuranSourceCopy,
   quranSourceIds,
 } from "@nakafa/aksara-contracts/quran/source";
 import { Array as Arr, Effect, Schema } from "effect";
-
-import {
-  type QuranCatalogEntry,
-  quranCatalog,
-} from "#corpus/quran/catalog/registry";
+import type { QuranCatalogEntry } from "#corpus/quran/catalog/registry";
+import { quranCatalog } from "#corpus/quran/catalog/registry";
 
 /** A catalog source, locale copy, access record, or provenance record is invalid. */
 export class QuranCatalogError extends Schema.TaggedError<

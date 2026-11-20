@@ -1,14 +1,15 @@
 import { Effect, Schema } from "effect";
 import { decodeContract } from "#contracts/decode";
+import type { PublicPath } from "#contracts/ids";
 import {
   ContentKeySchema,
   CorpusSourcePathSchema,
   Ed25519SignatureSchema,
-  type PublicPath,
   Sha256HashSchema,
   SigningKeyIdSchema,
 } from "#contracts/ids";
-import { type AppLocale, ArtifactLocaleSchema } from "#contracts/locale";
+import type { AppLocale } from "#contracts/locale";
+import { ArtifactLocaleSchema } from "#contracts/locale";
 import { RendererComponentsSchema } from "#contracts/renderer/component";
 import { RendererManifestEnvelopeSchema } from "#contracts/renderer/contract";
 import { RendererDomainSchema } from "#contracts/renderer/domain";

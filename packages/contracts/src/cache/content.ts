@@ -1,10 +1,7 @@
 import { Schema } from "effect";
 import { ContentFamilySchema } from "#contracts/content";
-import {
-  ReleaseIdSchema,
-  type Sha256Hash,
-  Sha256HashSchema,
-} from "#contracts/ids";
+import type { Sha256Hash } from "#contracts/ids";
+import { ReleaseIdSchema, Sha256HashSchema } from "#contracts/ids";
 import { ContentSnapshotKindSchema } from "#contracts/release/snapshot/scope";
 
 const ARTIFACT_CACHE_PREFIX = "content-artifact:";

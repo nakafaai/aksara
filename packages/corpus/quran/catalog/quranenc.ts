@@ -1,8 +1,6 @@
 import { AppLocaleSchema } from "@nakafa/aksara-contracts/locale";
-import {
-  type QuranEmbeddedSourceAttribution,
-  QuranEmbeddedSourceAttributionSchema,
-} from "@nakafa/aksara-contracts/quran/source";
+import type { QuranEmbeddedSourceAttribution } from "@nakafa/aksara-contracts/quran/source";
+import { QuranEmbeddedSourceAttributionSchema } from "@nakafa/aksara-contracts/quran/source";
 
 import { QURAN_SOURCE_POLICY } from "#corpus/quran/source/policy";
 

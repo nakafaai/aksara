@@ -10,7 +10,8 @@ import { SecureRandom } from "effect/crypto";
 import { Base64Url } from "effect/encoding";
 import type { HttpClient } from "effect/http";
 import type { RendererCredentials } from "#cli/credentials";
-import { makeNakafaAppError, type NakafaAppError } from "#cli/error";
+import type { NakafaAppError } from "#cli/error";
+import { makeNakafaAppError } from "#cli/error";
 import { isNakafaOrigin } from "#cli/origin";
 import { fetchRendererBody } from "#cli/renderer/http";
 

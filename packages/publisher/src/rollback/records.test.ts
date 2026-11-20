@@ -1,7 +1,7 @@
 import { describe, expect, it } from "@effect/vitest";
 import { Sha256HashSchema } from "@nakafa/aksara-contracts/ids";
+import type { RollbackRecord } from "@nakafa/aksara-contracts/release/rollback/spec";
 import {
-  type RollbackRecord,
   RollbackRecordSchema,
   RollbackUpsertStateSchema,
 } from "@nakafa/aksara-contracts/release/rollback/spec";

@@ -10,7 +10,8 @@ import remarkMath from "remark-math";
 import remarkParse from "remark-parse";
 import { unified } from "unified";
 import { blockChildren } from "#compiler/assessment/block";
-import { type AssessmentSite, sourceError } from "#compiler/assessment/error";
+import type { AssessmentSite } from "#compiler/assessment/error";
+import { sourceError } from "#compiler/assessment/error";
 
 const markdown = unified()
   .use(remarkParse)

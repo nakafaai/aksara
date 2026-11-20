@@ -1,9 +1,11 @@
 import type { ReleaseId, Sha256Hash } from "@nakafa/aksara-contracts/ids";
+import type {
+  RoutePage,
+  RouteRollbackRecord,
+} from "@nakafa/aksara-contracts/release/route/page";
 import {
   MAX_ROUTE_PAGE_RECORDS,
-  type RoutePage,
   RoutePageSchema,
-  type RouteRollbackRecord,
 } from "@nakafa/aksara-contracts/release/route/page";
 import { Effect, Option, Schema, Stream, Tuple } from "effect";
 import { PublicationTarget } from "#publisher/publication/spec";

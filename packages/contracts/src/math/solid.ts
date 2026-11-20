@@ -1,9 +1,8 @@
 import { Schema } from "effect";
-
+import type { SpacePoint } from "#contracts/math/base";
 import {
   hasUniquePositions,
   MathAxisRangeSchema,
-  type SpacePoint,
   SpacePointSchema,
   sameSpacePoint,
 } from "#contracts/math/base";

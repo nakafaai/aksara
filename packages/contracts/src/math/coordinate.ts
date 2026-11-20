@@ -1,25 +1,19 @@
-import { Array as Arr, type BigDecimal, Schema } from "effect";
-
-import {
-  type PlanePoint,
-  type SceneAxis,
-  SceneAxisSchema,
-  type SpacePoint,
-} from "#contracts/math/base";
+import type { BigDecimal } from "effect";
+import { Array as Arr, Schema } from "effect";
+import type { PlanePoint, SceneAxis, SpacePoint } from "#contracts/math/base";
+import { SceneAxisSchema } from "#contracts/math/base";
 import type { AxisRange } from "#contracts/math/extent";
+import type { InfinitePathKind } from "#contracts/math/intersection";
 import {
   AxisTraversalSchema,
-  type InfinitePathKind,
   infinitePathInterval,
 } from "#contracts/math/intersection";
 import type { PlaneMathFrame } from "#contracts/math/plane";
-import {
-  type RenderThreshold,
-  visiblePathResolvable,
-} from "#contracts/math/precision";
+import type { RenderThreshold } from "#contracts/math/precision";
+import { visiblePathResolvable } from "#contracts/math/precision";
+import type { ExactRatio } from "#contracts/math/rational";
 import {
   affineRatio,
-  type ExactRatio,
   ExactRatioSchema,
   numberRatio,
 } from "#contracts/math/rational";

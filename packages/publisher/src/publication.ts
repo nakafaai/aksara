@@ -9,10 +9,8 @@ import {
   activateCandidateRelease,
   verifyCandidateActivation,
 } from "#publisher/publication/lifecycle";
-import {
-  type PublicationInvocation,
-  preparePublicationPlan,
-} from "#publisher/publication/plan";
+import type { PublicationInvocation } from "#publisher/publication/plan";
+import { preparePublicationPlan } from "#publisher/publication/plan";
 import type { PublishGitRelease } from "#publisher/publication/program";
 import { stageRecoveryRelease } from "#publisher/publication/recovery";
 import {

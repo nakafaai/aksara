@@ -7,15 +7,16 @@ import { findLessonHighlightIssues } from "#nakafa-content/highlight/presence";
 import { parseLessonMdx } from "#nakafa-content/mdx/parse";
 import { findDocumentIssues } from "#nakafa-content/voice/document";
 import { LessonVoiceCheckError } from "#nakafa-content/voice/error";
-import { type CliOptions, parseArguments } from "#nakafa-content/voice/options";
+import type { CliOptions } from "#nakafa-content/voice/options";
+import { parseArguments } from "#nakafa-content/voice/options";
 import { findSiblingRepresentationIssues } from "#nakafa-content/voice/parity";
 import { isBlockingLessonVoiceIssue } from "#nakafa-content/voice/policy";
 import { documentProfile } from "#nakafa-content/voice/profile";
-import {
-  isLessonVoiceLocale,
-  type LessonVoiceLocale,
-  type LessonVoiceReport,
+import type {
+  LessonVoiceLocale,
+  LessonVoiceReport,
 } from "#nakafa-content/voice/types";
+import { isLessonVoiceLocale } from "#nakafa-content/voice/types";
 
 /** One locale-qualified content file and its locale. */
 export interface LessonFile {

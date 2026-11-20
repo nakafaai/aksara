@@ -1,6 +1,7 @@
 import { Array as Arr, Effect, HashSet, Order, Path, Schema } from "effect";
 import { computeLineStarts } from "tsrs/ast";
-import { API, type Diagnostic } from "tsrs/sync";
+import type { Diagnostic } from "tsrs/sync";
+import { API } from "tsrs/sync";
 
 import {
   enforceViolations,

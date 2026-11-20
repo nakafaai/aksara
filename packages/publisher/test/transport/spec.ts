@@ -1,8 +1,10 @@
 import { ReleaseIdSchema } from "@nakafa/aksara-contracts/ids";
+import type {
+  RollbackSignedContentRelease,
+  SignedContentRelease,
+} from "@nakafa/aksara-contracts/release";
 import {
-  type RollbackSignedContentRelease,
   RollbackSignedContentReleaseSchema,
-  type SignedContentRelease,
   SignedContentReleaseSchema,
 } from "@nakafa/aksara-contracts/release";
 import { EMPTY_RESULT_CATALOG_DIGEST } from "@nakafa/aksara-contracts/release/result/spec";
@@ -10,14 +12,10 @@ import { ContentRouteItemSchema } from "@nakafa/aksara-contracts/release/route/s
 import { inheritContentSnapshots } from "@nakafa/aksara-contracts/release/snapshot/spec";
 import { createRendererManifest } from "@nakafa/aksara-contracts/renderer/manifest";
 import { StageOperationSchema } from "@nakafa/aksara-contracts/transport/group";
-import {
-  type PublicationRequest,
-  PublicationRequestSchema,
-} from "@nakafa/aksara-contracts/transport/request";
-import {
-  type PublicationResponse,
-  PublicationResponseSchema,
-} from "@nakafa/aksara-contracts/transport/response";
+import type { PublicationRequest } from "@nakafa/aksara-contracts/transport/request";
+import { PublicationRequestSchema } from "@nakafa/aksara-contracts/transport/request";
+import type { PublicationResponse } from "@nakafa/aksara-contracts/transport/response";
+import { PublicationResponseSchema } from "@nakafa/aksara-contracts/transport/response";
 import { Effect, Schema } from "effect";
 import {
   transportArtifactHash,

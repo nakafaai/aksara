@@ -2,14 +2,14 @@ import {
   TypeScriptParser,
   TypeScriptSourceError,
 } from "@nakafa/aksara-utilities/typescript/parse";
-import { Array as Arr, Effect, type FileSystem, HashSet } from "effect";
+import type { FileSystem } from "effect";
+import { Array as Arr, Effect, HashSet } from "effect";
+import type { Node, SourceFile } from "tsrs/ast";
 import {
   isBinaryExpression,
   isStringLiteralLikeNode,
   isTryStatement,
   isTypeOfExpression,
-  type Node,
-  type SourceFile,
   SyntaxKind,
 } from "tsrs/ast";
 

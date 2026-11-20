@@ -1,11 +1,8 @@
-import {
-  type ContentHeadIdentity,
-  compareContentHeads,
-} from "@nakafa/aksara-contracts/content";
+import type { ContentHeadIdentity } from "@nakafa/aksara-contracts/content";
+import { compareContentHeads } from "@nakafa/aksara-contracts/content";
+import type { AppLocale, AppLocaleCode } from "@nakafa/aksara-contracts/locale";
 import {
   APP_LOCALE_CODES,
-  type AppLocale,
-  type AppLocaleCode,
   AppLocaleCodeSchema,
   AppLocaleSchema,
 } from "@nakafa/aksara-contracts/locale";

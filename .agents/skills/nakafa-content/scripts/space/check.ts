@@ -1,10 +1,9 @@
 import { issueAtOffset } from "#nakafa-content/math/finding";
+import type { EstreeNode, MdxNode } from "#nakafa-content/mdx/parse";
 import {
   asEstreeNode,
   attributeEstree,
-  type EstreeNode,
   estreeChildren,
-  type MdxNode,
   visitMdxNodes,
   walkEstreeDeep,
 } from "#nakafa-content/mdx/parse";

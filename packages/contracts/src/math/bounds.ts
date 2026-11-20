@@ -1,4 +1,5 @@
-import { Array as Arr, Option, Result, type Schema } from "effect";
+import type { Schema } from "effect";
+import { Array as Arr, Option, Result } from "effect";
 import {
   arcContained,
   axisContains,
@@ -8,8 +9,8 @@ import {
 } from "#contracts/math/extent";
 import type { FormulaScope } from "#contracts/math/formula/compile";
 import { isPlaneFormulaPoint } from "#contracts/math/formula/field";
+import type { FormulaGeometry } from "#contracts/math/formula/plane";
 import {
-  type FormulaGeometry,
   implicitVisible,
   planeFormulaGeometry,
   planeFormulaPoint,

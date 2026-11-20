@@ -1,9 +1,8 @@
 import { Predicate } from "effect";
+import type { MdxAttribute, MdxNode } from "#nakafa-content/mdx/parse";
 import {
   asEstreeNode,
   attributeEstree,
-  type MdxAttribute,
-  type MdxNode,
   parseLessonMdx,
   visitMdxNodes,
 } from "#nakafa-content/mdx/parse";

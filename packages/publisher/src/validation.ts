@@ -3,7 +3,8 @@ import type {
   SignedContentArtifact,
 } from "@nakafa/aksara-contracts/content";
 import { Sha256MismatchFields } from "@nakafa/aksara-contracts/errors";
-import { ReleaseIdSchema, type Sha256Hash } from "@nakafa/aksara-contracts/ids";
+import type { Sha256Hash } from "@nakafa/aksara-contracts/ids";
+import { ReleaseIdSchema } from "@nakafa/aksara-contracts/ids";
 import type { VerifiedContentProjections } from "@nakafa/aksara-contracts/projection/verify";
 import type {
   ContentReleaseItem,

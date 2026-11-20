@@ -65,42 +65,43 @@ export const DEPENDENCY_HOLDS: readonly DependencyHold[] = [
     source: "override",
   },
   {
-    approvedCurrent: "5.1.0",
+    approvedCurrent: "5.1.1",
     cohort: "Effect testing",
     dependency: "vitest",
     reason:
-      "The Effect 4 test adapter requires Vitest version 5; @effect/vitest 4.1.2 admits >=5.0.0 <6.0.0, and nakafa.com runs the same 5.1.0.",
+      "The Effect 4 test adapter requires Vitest version 5; @effect/vitest 4.1.4 admits >=5.0.0 <6.0.0, and nakafa.com runs the same 5.1.1.",
     registry: "vitest@latest",
-    reviewedLatest: "5.1.0",
+    reviewedLatest: "5.1.1",
     source: "catalog",
   },
   {
-    approvedCurrent: "5.1.0",
+    approvedCurrent: "5.1.1",
     cohort: "Effect testing",
     dependency: "@vitest/coverage-istanbul",
-    reason: "Coverage instrumentation must match the supported Vitest runner.",
+    reason:
+      "Coverage instrumentation must match the supported Vitest runner; 5.1.1 peers vitest 5.1.1 exactly.",
     registry: "@vitest/coverage-istanbul@latest",
-    reviewedLatest: "5.1.0",
+    reviewedLatest: "5.1.1",
     source: "catalog",
   },
   {
-    approvedCurrent: "0.69.0",
+    approvedCurrent: "0.73.2",
     cohort: "Effect tooling",
     dependency: "@effect/tsgo",
     reason:
-      "Compiler patching is reviewed with tsrs and Effect. Every rule is decided in packages/typescript-config/base.json, and that rule block matches nakafa.com's (docs/adr/compiler.md), whose rule record, docs/adr/0021-rules.md, gives each reason. 0.69.0 patches tsrs 0.25.0-ts7.1.0-beta (the version table of its README), which replaces the TypeScript package: prepare runs effect-tsgo patch --tsrs --no-typescript. base.json decides onExitFailureToOnError, the one rule 0.68 added, which no Aksara module reaches, and missingConcurrencyOption, the one rule 0.69 added, which stays off as in nakafa.com: a missing option means sequential, which is what the sequential calls mean, and upstream ships the rule off. Every later version must decide its new rules in base.json in the same change.",
+      "Compiler patching is reviewed with tsrs and Effect. Every rule is decided in packages/typescript-config/base.json, and that rule block matches nakafa.com's (docs/adr/compiler.md), whose rule record, docs/adr/0021-rules.md, gives each reason. 0.73.2 patches tsrs 7.1.0-beta.tsrs2 and 7.1.0-beta.tsrs3 (the version table of its README), which replaces the TypeScript package: prepare runs effect-tsgo patch --tsrs --no-typescript. base.json decides the five rules 0.70 to 0.73 add as nakafa.com does: flatMapMapToZipWith, flatMapProvideServiceToProvideServiceEffect, promiseAllInEffect and promiseRaceInEffect are errors, which no Aksara module reaches, and forLoopPushToForEach stays off, because the source check that forbids a native push owns it. Every later version must decide its new rules in base.json in the same change.",
     registry: "@effect/tsgo@latest",
-    reviewedLatest: "0.69.0",
+    reviewedLatest: "0.73.2",
     source: "root-dev-dependency",
   },
   {
-    approvedCurrent: "0.25.0-ts7.1.0-beta",
+    approvedCurrent: "7.1.0-beta.tsrs3",
     cohort: "TypeScript",
     dependency: "tsrs",
     reason:
-      "tsrs is the Rust port of the TypeScript 7.1 compiler: every typecheck, package build, language server, and AST reader runs it, pinned to 0.25.0-ts7.1.0-beta, the latest release and the one @effect/tsgo 0.69.0 patches. 0.25.0 adds concurrent headless lint and a Windows ARM64 package with the same checker.",
+      "tsrs is the Rust port of the TypeScript 7.1 compiler: every typecheck, package build, language server, and AST reader runs it, pinned to 7.1.0-beta.tsrs3, the latest release and one of the two that @effect/tsgo 0.73.2 patches. Its version now names the TypeScript release it targets and a tsrs revision, so a newer revision of the same beta is one release channel (scripts/dependencies/release.ts), and its JavaScript API and tsdk are unchanged from 0.25.0-ts7.1.0-beta.",
     registry: "tsrs@latest",
-    reviewedLatest: "0.25.0-ts7.1.0-beta",
+    reviewedLatest: "7.1.0-beta.tsrs3",
     source: "catalog",
   },
   {
@@ -123,13 +124,13 @@ export const DEPENDENCY_HOLDS: readonly DependencyHold[] = [
     source: "root-dev-dependency",
   },
   {
-    approvedCurrent: "1.4.4",
+    approvedCurrent: "1.4.5",
     cohort: "Bun",
     dependency: "bun",
     reason:
-      "Bun is the package manager and writes bun.lock, which records every resolved version. 1.4.4 is the newest Bun release and the version installed on the maintainers' machine, so packageManager pins it exactly.",
+      "Bun is the package manager and writes bun.lock, which records every resolved version. 1.4.5 is the newest Bun release, a security release (lsquic, c-ares, SQLite, llhttp and BoringSSL) that changes no install, lockfile, or catalog behavior, so packageManager pins it exactly.",
     registry: "bun@latest",
-    reviewedLatest: "1.4.4",
+    reviewedLatest: "1.4.5",
     source: "package-manager",
   },
   {

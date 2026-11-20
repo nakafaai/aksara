@@ -1,7 +1,5 @@
-import {
-  ACTIVE_APP_LOCALE_CODES,
-  type AppLocaleCode,
-} from "@nakafa/aksara-contracts/locale";
+import type { AppLocaleCode } from "@nakafa/aksara-contracts/locale";
+import { ACTIVE_APP_LOCALE_CODES } from "@nakafa/aksara-contracts/locale";
 import {
   Array as Arr,
   Effect,
@@ -13,16 +11,10 @@ import {
   Result,
   Schema,
 } from "effect";
-import {
-  type ItemSource,
-  ItemSourceSchema,
-  itemVersions,
-} from "#corpus/question-bank/item";
-import {
-  type SetPath,
-  SetPathSchema,
-  setSourcePath,
-} from "#corpus/question-bank/path";
+import type { ItemSource } from "#corpus/question-bank/item";
+import { ItemSourceSchema, itemVersions } from "#corpus/question-bank/item";
+import type { SetPath } from "#corpus/question-bank/path";
+import { SetPathSchema, setSourcePath } from "#corpus/question-bank/path";
 
 /** The root of every virtual checkout the tests read. */
 export const CHECKOUT = "/checkout";

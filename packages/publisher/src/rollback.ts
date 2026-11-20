@@ -6,32 +6,30 @@ import { RouteRollbackRecordSchema } from "@nakafa/aksara-contracts/release/rout
 import { invertContentSnapshots } from "@nakafa/aksara-contracts/release/snapshot/spec";
 import { verifyContentReleaseBundle } from "@nakafa/aksara-contracts/release/verify";
 import { validateRendererManifestHash } from "@nakafa/aksara-contracts/renderer/manifest";
-import type { FileSystem, Path } from "effect";
-import { Effect, Schema, type Scope, Stream } from "effect";
+import type { FileSystem, Path, Scope } from "effect";
+import { Effect, Schema, Stream } from "effect";
 import { streamContentHeads } from "#publisher/heads";
 import type { PreparedRollbackRelease } from "#publisher/preparation/prepared";
 import type { ReplaySpoolError } from "#publisher/replay/error";
 import { createReplaySpool } from "#publisher/replay/spool";
 import { mergeRollbackResult } from "#publisher/rollback/catalog";
+import type { RollbackProofIdentityError } from "#publisher/rollback/errors";
+import { RollbackIdentityError } from "#publisher/rollback/errors";
+import type {
+  RollbackProofMode,
+  RollbackProofSelection,
+} from "#publisher/rollback/proof";
 import {
-  RollbackIdentityError,
-  type RollbackProofIdentityError,
-} from "#publisher/rollback/errors";
-import {
-  type RollbackProofMode,
-  type RollbackProofSelection,
   selectRollbackProof,
   verifyRollbackProof,
 } from "#publisher/rollback/proof";
+import type { RollbackArtifactPolicy } from "#publisher/rollback/records";
 import {
   DerivedRollbackRecordSchema,
   deriveRollbackRecords,
-  type RollbackArtifactPolicy,
 } from "#publisher/rollback/records";
-import {
-  buildRollbackRelease,
-  type RollbackTargetPolicy,
-} from "#publisher/rollback/release";
+import type { RollbackTargetPolicy } from "#publisher/rollback/release";
+import { buildRollbackRelease } from "#publisher/rollback/release";
 import { streamRouteRecords } from "#publisher/rollback/route/page";
 import {
   inverseRouteStream,

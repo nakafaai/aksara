@@ -1,18 +1,11 @@
 import { Array as Arr, HashSet } from "effect";
-
-import {
-  type AssessmentDocument,
-  documentPlacements,
-} from "#contracts/assessment/document";
+import type { AssessmentDocument } from "#contracts/assessment/document";
+import { documentPlacements } from "#contracts/assessment/document";
 import { hasDistinctIds, hasUniqueIds } from "#contracts/assessment/identity";
-import {
-  canSitInText,
-  type Interaction,
-} from "#contracts/assessment/interaction";
-import {
-  type ScoringOverride,
-  supportsRule,
-} from "#contracts/assessment/scoring";
+import type { Interaction } from "#contracts/assessment/interaction";
+import { canSitInText } from "#contracts/assessment/interaction";
+import type { ScoringOverride } from "#contracts/assessment/scoring";
+import { supportsRule } from "#contracts/assessment/scoring";
 
 type Place = ReturnType<typeof documentPlacements>[number];
 

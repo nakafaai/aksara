@@ -1,9 +1,7 @@
 import { Effect, Stream } from "effect";
 import { DigestStream } from "#contracts/hash/stream";
-import {
-  type ContentProjection,
-  canonicalizeContentProjection,
-} from "#contracts/projection/spec";
+import type { ContentProjection } from "#contracts/projection/spec";
+import { canonicalizeContentProjection } from "#contracts/projection/spec";
 
 const CONTENT_PROJECTION_DIGEST_DOMAIN = "nakafa.aksara.content-projections";
 

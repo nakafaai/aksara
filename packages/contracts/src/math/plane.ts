@@ -1,5 +1,5 @@
 import { Array as Arr, Schema } from "effect";
-
+import type { PlanePoint } from "#contracts/math/base";
 import {
   ArcStartDegreesSchema,
   ArcSweepDegreesSchema,
@@ -8,7 +8,6 @@ import {
   MathAxisRangeSchema,
   MathViewPaddingSchema,
   mathVisualIdentityIssues,
-  type PlanePoint,
   PlanePointSchema,
   PositiveMeasureSchema,
   samePlanePoint,

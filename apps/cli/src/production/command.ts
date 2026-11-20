@@ -32,7 +32,8 @@ import {
   readRecoveryEnvironment,
 } from "#cli/environment/read";
 import { readCleanAksaraRevision } from "#cli/evidence";
-import { mapProductionError, type ProductionError } from "#cli/failure";
+import type { ProductionError } from "#cli/failure";
+import { mapProductionError } from "#cli/failure";
 import { verifySigningKey } from "#cli/keys";
 import type { ReleaseArguments } from "#cli/production/arguments";
 import { prepareProductionGit } from "#cli/production/preparation";
@@ -43,10 +44,8 @@ import {
   PUBLICATION_TARGET_TIMEOUT,
   retryPublicationTarget,
 } from "#cli/retry";
-import {
-  type ProductionRebuildAction,
-  selectProductionAction,
-} from "#cli/state";
+import type { ProductionRebuildAction } from "#cli/state";
+import { selectProductionAction } from "#cli/state";
 
 type ProductionServices =
   | FileSystem.FileSystem

@@ -74,11 +74,11 @@ The user authorized the Drive folder
 as a supplementary research source. The following stored PDFs were the bounded
 mandatory-subject examples used for format and difficulty comparison:
 
-| Subject | Drive file | Revision | Bytes |
-|---|---|---|---:|
+| Subject     | Drive file                                                                                                    | Revision                                              |     Bytes |
+| ----------- | ------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------- | --------: |
 | Mathematics | [`1RvtDXS4a5f09m-unfIbtSJuhIzrrna3W`](https://drive.google.com/file/d/1RvtDXS4a5f09m-unfIbtSJuhIzrrna3W/view) | `0B86GzB1cQEvKTFdidWp5L2pjRk40T2tJMXorMHp3Tis1bzlrPQ` | 1,568,001 |
-| Indonesian | [`1_tRcadyeUsWMZpTAcsVHmL1KB6Fzp3F5`](https://drive.google.com/file/d/1_tRcadyeUsWMZpTAcsVHmL1KB6Fzp3F5/view) | `0B86GzB1cQEvKRkNjNTVKdmdTTEFOZ1BhQUdRem5sRVN6MmUwPQ` | 1,529,576 |
-| English | [`1IathGpAW4EVs0ntwxR8C00LCXUYizOKy`](https://drive.google.com/file/d/1IathGpAW4EVs0ntwxR8C00LCXUYizOKy/view) | `0B86GzB1cQEvKU29LSm1BeTFFeS94UHY4T0JTdVBwTUxON01jPQ` | 1,528,564 |
+| Indonesian  | [`1_tRcadyeUsWMZpTAcsVHmL1KB6Fzp3F5`](https://drive.google.com/file/d/1_tRcadyeUsWMZpTAcsVHmL1KB6Fzp3F5/view) | `0B86GzB1cQEvKRkNjNTVKdmdTTEFOZ1BhQUdRem5sRVN6MmUwPQ` | 1,529,576 |
+| English     | [`1IathGpAW4EVs0ntwxR8C00LCXUYizOKy`](https://drive.google.com/file/d/1IathGpAW4EVs0ntwxR8C00LCXUYizOKy/view) | `0B86GzB1cQEvKU29LSm1BeTFFeS94UHY4T0JTdVBwTUxON01jPQ` | 1,528,564 |
 
 The connected Drive metadata was checked on 2026-09-01 and returned one current
 revision for each file, dated 2026-07-08. It did not expose a checksum, and the

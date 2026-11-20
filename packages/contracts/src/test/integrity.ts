@@ -1,7 +1,7 @@
 import { Effect, Schema } from "effect";
 import { hashCompiledContentPayload } from "#contracts/artifact/integrity";
+import type { CompiledContentPayload } from "#contracts/content";
 import {
-  type CompiledContentPayload,
   CompiledContentPayloadSchema,
   canonicalizeContentArtifactSigningInput,
   SignedContentArtifactSchema,

@@ -7,11 +7,8 @@ import {
   Stream,
 } from "effect";
 import { ChildProcess } from "effect/process";
-import {
-  type ContractIdentity,
-  packageIdentity,
-  releaseError,
-} from "#scripts/release/identity";
+import type { ContractIdentity } from "#scripts/release/identity";
+import { packageIdentity, releaseError } from "#scripts/release/identity";
 
 const MULTILINE_PATTERN = /[\r\n]/u;
 

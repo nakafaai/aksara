@@ -33,18 +33,16 @@ import { verifyContentRoutes } from "@nakafa/aksara-contracts/release/route/veri
 import type { PublicationScope } from "@nakafa/aksara-contracts/release/snapshot/scope";
 import type { RendererManifestEnvelope } from "@nakafa/aksara-contracts/renderer/contract";
 import { Effect, Stream } from "effect";
-import {
-  makePreparedRollbackRelease,
-  type PreparedRollbackRelease,
-} from "#publisher/preparation/prepared";
+import type { PreparedRollbackRelease } from "#publisher/preparation/prepared";
+import { makePreparedRollbackRelease } from "#publisher/preparation/prepared";
 import type { ReplaySpoolError } from "#publisher/replay/error";
 import {
   rollbackItemStream,
   rollbackProjectionStream,
   rollbackSnapshotStream,
 } from "#publisher/rollback/proof";
+import type { DerivedRollbackRecord } from "#publisher/rollback/records";
 import {
-  type DerivedRollbackRecord,
   isDerivedRollbackUpsert,
   snapshotRollbackState,
 } from "#publisher/rollback/records";

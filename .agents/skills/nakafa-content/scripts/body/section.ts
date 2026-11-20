@@ -1,5 +1,6 @@
 import { Predicate } from "effect";
-import { type MdxNode, parseLessonMdx } from "#nakafa-content/mdx/parse";
+import type { MdxNode } from "#nakafa-content/mdx/parse";
+import { parseLessonMdx } from "#nakafa-content/mdx/parse";
 import type { LessonVoiceIssue } from "#nakafa-content/voice/types";
 
 const THIN_SECTION_WORD_LIMIT = 25;

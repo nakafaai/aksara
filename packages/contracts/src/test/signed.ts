@@ -1,10 +1,12 @@
 import { Effect, Schema } from "effect";
 import { hashCompiledContentPayload } from "#contracts/artifact/integrity";
+import type {
+  CompiledContentPayload,
+  SignedContentArtifact,
+} from "#contracts/content";
 import {
-  type CompiledContentPayload,
   CompiledContentPayloadSchema,
   canonicalizeContentArtifactSigningInput,
-  type SignedContentArtifact,
   SignedContentArtifactSchema,
 } from "#contracts/content";
 import { hashText } from "#contracts/hash/text";

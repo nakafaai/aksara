@@ -1,8 +1,8 @@
-import {
-  type ContentKey,
-  ContentKeySchema,
-  type CorpusSourcePath,
+import type {
+  ContentKey,
+  CorpusSourcePath,
 } from "@nakafa/aksara-contracts/ids";
+import { ContentKeySchema } from "@nakafa/aksara-contracts/ids";
 import { Effect, MutableList, Predicate, Schema, Struct } from "effect";
 import { visit as visitEstree } from "estree-util-visit";
 import type { Heading, Root } from "mdast";

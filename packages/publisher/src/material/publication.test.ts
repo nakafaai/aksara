@@ -1,9 +1,7 @@
 import { NodeServices } from "@effect/platform-node";
 import { expect, layer } from "@effect/vitest";
-import {
-  type MaterialHead,
-  MaterialHeadSchema,
-} from "@nakafa/aksara-contracts/release/head";
+import type { MaterialHead } from "@nakafa/aksara-contracts/release/head";
+import { MaterialHeadSchema } from "@nakafa/aksara-contracts/release/head";
 import { Array as Arr, Context, Effect, HashSet, Layer, Schema } from "effect";
 import {
   collectMaterialRoutes,

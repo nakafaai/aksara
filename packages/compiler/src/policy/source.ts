@@ -2,26 +2,27 @@ import type {
   ContentKey,
   CorpusSourcePath,
 } from "@nakafa/aksara-contracts/ids";
-import { Effect, type HashSet, MutableList } from "effect";
+import type { HashSet } from "effect";
+import { Effect, MutableList } from "effect";
+import type {
+  DiagramPolicyError,
+  ExecutablePolicyViolation,
+  MathVisualPolicyError,
+  UnsupportedMdxModuleOccurrence,
+} from "#compiler/errors";
 import {
-  type DiagramPolicyError,
   ExecutablePolicyError,
-  type ExecutablePolicyViolation,
-  type MathVisualPolicyError,
-  type UnsupportedMdxModuleOccurrence,
   UnsupportedMdxModuleSyntaxError,
 } from "#compiler/errors";
 import { enforceExecutablePolicy } from "#compiler/policy";
-import {
-  type AuthoredHeadingAnchorError,
-  createAnchorPolicy,
-} from "#compiler/policy/anchor";
+import type { AuthoredHeadingAnchorError } from "#compiler/policy/anchor";
+import { createAnchorPolicy } from "#compiler/policy/anchor";
 import { createDiagramPolicy } from "#compiler/policy/diagram";
-import {
-  type AuthoredHeadingDepthError,
-  type AuthoredListHeadingError,
-  createHeadingPolicy,
+import type {
+  AuthoredHeadingDepthError,
+  AuthoredListHeadingError,
 } from "#compiler/policy/heading";
+import { createHeadingPolicy } from "#compiler/policy/heading";
 import { createMathVisualPolicy } from "#compiler/policy/math";
 
 /** Every expected failure surfaced by authored-source policy validation. */

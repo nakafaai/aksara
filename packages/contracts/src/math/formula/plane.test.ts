@@ -1,8 +1,8 @@
 import { assert, describe, it } from "@effect/vitest";
 import { Array as Arr, Result } from "effect";
 import type { SampleBox } from "#contracts/math/formula/box";
+import type { FormulaGeometry } from "#contracts/math/formula/plane";
 import {
-  type FormulaGeometry,
   implicitVisible,
   planeFormulaGeometry,
 } from "#contracts/math/formula/plane";

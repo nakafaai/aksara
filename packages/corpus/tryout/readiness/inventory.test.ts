@@ -1,11 +1,8 @@
 import { NodeServices } from "@effect/platform-node";
 import { describe, expect, it } from "@effect/vitest";
 import { Array as Arr, Effect, Option } from "effect";
-import {
-  type QuestionSet,
-  type QuestionSource,
-  readQuestionSets,
-} from "#corpus/question-bank/source";
+import type { QuestionSet, QuestionSource } from "#corpus/question-bank/source";
+import { readQuestionSets } from "#corpus/question-bank/source";
 import { corpusRoot } from "#corpus/test/root";
 import { tkaCompulsoryMathematicsReadiness } from "#corpus/tryout/indonesia/tka/readiness/compulsory";
 import { tkaTryoutSource } from "#corpus/tryout/indonesia/tka/source";

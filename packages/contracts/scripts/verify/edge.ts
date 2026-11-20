@@ -10,12 +10,12 @@ import {
   Path,
   Schema,
 } from "effect";
+import type { Node } from "tsrs/ast";
 import {
   isCallExpression,
   isExportDeclaration,
   isImportDeclaration,
   isStringLiteral,
-  type Node,
   SyntaxKind,
 } from "tsrs/ast";
 import { parseInstalledManifest } from "#scripts/manifest";

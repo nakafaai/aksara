@@ -1,7 +1,8 @@
 import { assert, it } from "@effect/vitest";
 
 import { findUndefinedHeadingAbbreviationIssues } from "#nakafa-content/heading/abbreviation";
-import { type MdxNode, parseLessonMdx } from "#nakafa-content/mdx/parse";
+import type { MdxNode } from "#nakafa-content/mdx/parse";
+import { parseLessonMdx } from "#nakafa-content/mdx/parse";
 
 /** Wraps a lesson body in the static metadata declaration. */
 const lesson = (body: string): string =>

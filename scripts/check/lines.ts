@@ -2,14 +2,10 @@ import {
   TypeScriptParser,
   TypeScriptSourceError,
 } from "@nakafa/aksara-utilities/typescript/parse";
-import {
-  Array as Arr,
-  Effect,
-  type FileSystem,
-  MutableHashMap,
-  MutableHashSet,
-} from "effect";
-import { isJSDoc, type SourceFile } from "tsrs/ast";
+import type { FileSystem } from "effect";
+import { Array as Arr, Effect, MutableHashMap, MutableHashSet } from "effect";
+import type { SourceFile } from "tsrs/ast";
+import { isJSDoc } from "tsrs/ast";
 
 import {
   enforceViolations,

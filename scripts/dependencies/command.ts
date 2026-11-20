@@ -1,5 +1,6 @@
 import { Effect, Schema, Stream } from "effect";
-import { ChildProcess, type ChildProcessSpawner } from "effect/process";
+import type { ChildProcessSpawner } from "effect/process";
+import { ChildProcess } from "effect/process";
 
 const CommandOutputSchema = Schema.Struct({
   exitCode: Schema.Finite,

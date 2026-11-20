@@ -1,4 +1,5 @@
-import { type MdxNode, parseLessonMdx } from "#nakafa-content/mdx/parse";
+import type { MdxNode } from "#nakafa-content/mdx/parse";
+import { parseLessonMdx } from "#nakafa-content/mdx/parse";
 import type { LessonVoiceIssue } from "#nakafa-content/voice/types";
 
 const ABBREVIATION_PATTERN = /\b[A-Z]{2,5}s?\b/gu;

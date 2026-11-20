@@ -9,11 +9,11 @@ import { renderedNodeRange } from "#nakafa-content/mdx/rendered";
 import { expectShape } from "#nakafa-content/mdx/shape";
 import { germanAntecedentState } from "#nakafa-content/voice/address";
 import { collectJsxChildAddressIssues } from "#nakafa-content/voice/child";
+import type { ProseState } from "#nakafa-content/voice/copy";
 import {
   collectAttributeIssues,
   collectParagraphIssues,
   collectRenderedExpressionIssues,
-  type ProseState,
 } from "#nakafa-content/voice/copy";
 import { collectLinkLabelIssues } from "#nakafa-content/voice/link";
 import {

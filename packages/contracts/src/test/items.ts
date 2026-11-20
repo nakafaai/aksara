@@ -8,15 +8,18 @@ import {
 } from "effect";
 
 import { compareContentHeads } from "#contracts/content";
-import { type ReleaseId, ReleaseIdSchema } from "#contracts/ids";
+import type { ReleaseId } from "#contracts/ids";
+import { ReleaseIdSchema } from "#contracts/ids";
 import { ACTIVE_APP_LOCALES } from "#contracts/locale";
 import { digestItems } from "#contracts/release/digest";
 import { verifyContentReleaseItems } from "#contracts/release/items";
 import { inheritContentSnapshots } from "#contracts/release/snapshot/spec";
+import type {
+  ContentChange,
+  ContentReleaseItem,
+} from "#contracts/release/spec";
 import {
-  type ContentChange,
   ContentChangeSchema,
-  type ContentReleaseItem,
   ContentReleaseItemSchema,
   ContentReleaseManifestSchema,
 } from "#contracts/release/spec";

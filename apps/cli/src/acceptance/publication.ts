@@ -13,7 +13,8 @@ import {
 } from "@nakafa/aksara-publisher/publication/spec";
 import { makeHttpPublicationTarget } from "@nakafa/aksara-publisher/target/http";
 import type { ExactProcess } from "@nakafa/aksara-utilities/process/exact";
-import { Effect, FileSystem, type Path, Stream } from "effect";
+import type { Path } from "effect";
+import { Effect, FileSystem, Stream } from "effect";
 import type { HttpClient } from "effect/http";
 import {
   AcceptanceEnvironmentError,
@@ -24,7 +25,8 @@ import {
   readCleanAksaraRevision,
   validateStableAksaraRevision,
 } from "#cli/evidence";
-import { mapProductionError, type ProductionError } from "#cli/failure";
+import type { ProductionError } from "#cli/failure";
+import { mapProductionError } from "#cli/failure";
 import {
   PUBLICATION_ACTIVATION_TIMEOUT,
   PUBLICATION_TARGET_TIMEOUT,

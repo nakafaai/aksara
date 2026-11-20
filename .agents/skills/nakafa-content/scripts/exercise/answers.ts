@@ -5,12 +5,8 @@ import {
 } from "#nakafa-content/exercise/context";
 import { headingText } from "#nakafa-content/heading/label";
 import { issueAtOffset } from "#nakafa-content/math/finding";
-import {
-  type EstreeNode,
-  estreeChildren,
-  jsxComponentName,
-  type MdxNode,
-} from "#nakafa-content/mdx/parse";
+import type { EstreeNode, MdxNode } from "#nakafa-content/mdx/parse";
+import { estreeChildren, jsxComponentName } from "#nakafa-content/mdx/parse";
 import type {
   LessonVoiceIssue,
   LessonVoiceLocale,

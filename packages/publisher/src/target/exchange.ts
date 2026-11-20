@@ -8,17 +8,15 @@ import {
   MAX_SNAPSHOT_BATCH_BYTES,
   MAX_STAGE_GROUP_BYTES,
 } from "@nakafa/aksara-contracts/transport/limits";
-import {
-  type PublicationRequest,
-  PublicationRequestSchema,
-} from "@nakafa/aksara-contracts/transport/request";
+import type { PublicationRequest } from "@nakafa/aksara-contracts/transport/request";
+import { PublicationRequestSchema } from "@nakafa/aksara-contracts/transport/request";
 import type { PublicationSuccess } from "@nakafa/aksara-contracts/transport/response";
 import { encodeJsonText } from "@nakafa/aksara-utilities/text/json";
 import { Array as Arr, Effect, HashSet, Schema } from "effect";
 import { FetchHttpClient, HttpClient, HttpClientRequest } from "effect/http";
 import type { ValidatedHttpConfig } from "#publisher/target/config";
+import type { PublicationTargetFailure } from "#publisher/target/errors";
 import {
-  type PublicationTargetFailure,
   PublicationTargetProtocolError,
   PublicationTargetRejectedError,
   PublicationTargetTransportError,

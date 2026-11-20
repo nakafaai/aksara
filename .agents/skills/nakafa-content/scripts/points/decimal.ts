@@ -1,16 +1,14 @@
+import type { EstreeNode } from "#nakafa-content/mdx/parse";
 import {
   asEstreeNode,
-  type EstreeNode,
   estreeChildren,
   staticFieldName,
 } from "#nakafa-content/mdx/parse";
 import type { ArrayExpressionNode } from "#nakafa-content/points/ast";
-import { findingAt, type PointsFinding } from "#nakafa-content/points/finding";
-import {
-  type NumericLiteral,
-  numericLiteral,
-  tupleLiterals,
-} from "#nakafa-content/points/numeric";
+import type { PointsFinding } from "#nakafa-content/points/finding";
+import { findingAt } from "#nakafa-content/points/finding";
+import type { NumericLiteral } from "#nakafa-content/points/numeric";
+import { numericLiteral, tupleLiterals } from "#nakafa-content/points/numeric";
 
 /**
  * Fewest fractional digits that make a coordinate a long decimal. An exact

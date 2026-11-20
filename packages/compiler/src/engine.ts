@@ -1,7 +1,7 @@
 import { compile } from "@mdx-js/mdx";
+import type { CompileDocumentRequest } from "@nakafa/aksara-contracts/content";
 import {
   AKSARA_COMPILER_VERSION,
-  type CompileDocumentRequest,
   CompiledContentPayloadSchema,
   canonicalizeCompiledContentPayload,
   decodeCompileDocumentRequest,

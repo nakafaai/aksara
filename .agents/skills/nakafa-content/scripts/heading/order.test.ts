@@ -1,7 +1,8 @@
 import { assert, it } from "@effect/vitest";
 
 import { findHeadingOrderIssues } from "#nakafa-content/heading/order";
-import { type MdxNode, parseLessonMdx } from "#nakafa-content/mdx/parse";
+import type { MdxNode } from "#nakafa-content/mdx/parse";
+import { parseLessonMdx } from "#nakafa-content/mdx/parse";
 
 const AUTHORED = "export const metadata = {};\n\n";
 

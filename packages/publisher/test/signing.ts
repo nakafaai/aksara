@@ -4,9 +4,10 @@ import {
   CompileDocumentSourceSchema,
   compareContentHeads,
 } from "@nakafa/aksara-contracts/content";
-import { type ReleaseId, ReleaseIdSchema } from "@nakafa/aksara-contracts/ids";
+import type { ReleaseId } from "@nakafa/aksara-contracts/ids";
+import { ReleaseIdSchema } from "@nakafa/aksara-contracts/ids";
+import type { ContentChange } from "@nakafa/aksara-contracts/release";
 import {
-  type ContentChange,
   ContentChangeSchema,
   ContentReleaseItemSchema,
   ContentReleaseManifestSchema,

@@ -5,14 +5,11 @@ import { Console, Effect, FileSystem, Path } from "effect";
 import { issueAtOffset } from "#nakafa-content/math/finding";
 import { findPlainNumbers } from "#nakafa-content/math/number";
 import { wrapNumbers } from "#nakafa-content/math/wrap";
-import {
-  type MdxNode,
-  parseLessonMdx,
-  visitMdxNodes,
-} from "#nakafa-content/mdx/parse";
+import type { MdxNode } from "#nakafa-content/mdx/parse";
+import { parseLessonMdx, visitMdxNodes } from "#nakafa-content/mdx/parse";
+import type { LessonFile } from "#nakafa-content/voice/check";
 import {
   collectLocaleFiles,
-  type LessonFile,
   localeFromFile,
 } from "#nakafa-content/voice/check";
 import { LessonVoiceCheckError } from "#nakafa-content/voice/error";

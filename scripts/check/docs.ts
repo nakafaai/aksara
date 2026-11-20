@@ -2,9 +2,10 @@ import {
   TypeScriptParser,
   TypeScriptSourceError,
 } from "@nakafa/aksara-utilities/typescript/parse";
-import { Array as Arr, Effect, type FileSystem } from "effect";
+import type { FileSystem } from "effect";
+import { Array as Arr, Effect } from "effect";
+import type { Expression, Node, SourceFile } from "tsrs/ast";
 import {
-  type Expression,
   isArrowFunction,
   isCallExpression,
   isConstructorDeclaration,
@@ -22,8 +23,6 @@ import {
   isPropertySignatureDeclaration,
   isSetAccessorDeclaration,
   isVariableDeclaration,
-  type Node,
-  type SourceFile,
 } from "tsrs/ast";
 
 import {

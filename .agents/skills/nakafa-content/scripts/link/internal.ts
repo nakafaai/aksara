@@ -1,10 +1,7 @@
 import { Predicate } from "effect";
 import { linkDefinitions, linkUrl } from "#nakafa-content/link/reference";
-import {
-  type MdxNode,
-  parseLessonMdx,
-  visitMdxNodes,
-} from "#nakafa-content/mdx/parse";
+import type { MdxNode } from "#nakafa-content/mdx/parse";
+import { parseLessonMdx, visitMdxNodes } from "#nakafa-content/mdx/parse";
 import { renderedNodeRange } from "#nakafa-content/mdx/rendered";
 import type { LessonVoiceIssue } from "#nakafa-content/voice/types";
 

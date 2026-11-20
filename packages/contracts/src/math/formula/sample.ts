@@ -1,14 +1,15 @@
 import { Array as Arr, MutableList, Order, Schema } from "effect";
-
+import type {
+  AXES,
+  SampleBox,
+  SamplePoint,
+  SampleRange,
+} from "#contracts/math/formula/box";
 import {
-  type AXES,
   clipSegment,
   finite,
   insideBox,
-  type SampleBox,
-  type SamplePoint,
   SamplePointSchema,
-  type SampleRange,
   spanDistance,
 } from "#contracts/math/formula/box";
 

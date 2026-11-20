@@ -3,7 +3,8 @@ import { Duration, Effect } from "effect";
 import { HttpClient } from "effect/http";
 
 import { GermanQuranSourceSyncError } from "#corpus/quran/source/error";
-import { type PinnedQuranFile, sha256Hex } from "#corpus/quran/source/policy";
+import type { PinnedQuranFile } from "#corpus/quran/source/policy";
+import { sha256Hex } from "#corpus/quran/source/policy";
 
 const SOURCE_DOWNLOAD_TIMEOUT = Duration.seconds(60);
 

@@ -4,12 +4,14 @@ import {
   CorpusSourcePathSchema,
   PublicPathSchema,
 } from "@nakafa/aksara-contracts/ids";
+import type {
+  ActiveAppLocaleList,
+  AppLocale,
+  AppLocaleCode,
+} from "@nakafa/aksara-contracts/locale";
 import {
   ACTIVE_APP_LOCALES,
-  type ActiveAppLocaleList,
   APP_LOCALE_CODES,
-  type AppLocale,
-  type AppLocaleCode,
   AppLocaleSchema,
 } from "@nakafa/aksara-contracts/locale";
 import {
@@ -30,7 +32,8 @@ import {
   Order,
   Schema,
 } from "effect";
-import { ArticleRootSchema, type ArticleSource } from "#corpus/articles/schema";
+import type { ArticleSource } from "#corpus/articles/schema";
+import { ArticleRootSchema } from "#corpus/articles/schema";
 import { decodeArticleSources } from "#corpus/articles/source";
 import {
   appLocaleCode,

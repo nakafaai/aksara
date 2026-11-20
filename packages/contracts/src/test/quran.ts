@@ -10,9 +10,9 @@ import {
   MALAY_APP_LOCALE_CODE,
   makeAppLocale,
 } from "#contracts/locale";
+import type { QuranRowPayload } from "#contracts/quran/snapshot/row";
 import {
   QuranChunkRowSchema,
-  type QuranRowPayload,
   QuranRuntimeVerseSchema,
   QuranSearchRowSchema,
 } from "#contracts/quran/snapshot/row";

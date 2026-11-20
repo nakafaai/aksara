@@ -9,7 +9,8 @@ import { makeHttpPublicationTarget } from "@nakafa/aksara-publisher/target/http"
 import { Effect, Schema } from "effect";
 import type { HttpClient } from "effect/http";
 import { readPublicationEnvironment } from "#cli/environment/read";
-import { mapProductionError, type ProductionError } from "#cli/failure";
+import type { ProductionError } from "#cli/failure";
+import { mapProductionError } from "#cli/failure";
 import type { CleanupArguments } from "#cli/production/arguments";
 import { retryPublicationTarget } from "#cli/retry";
 

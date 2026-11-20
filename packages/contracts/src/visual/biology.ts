@@ -1,6 +1,6 @@
 import { Schema } from "effect";
-
-import { type RichSlot, TextSchema } from "#contracts/visual/card";
+import type { RichSlot } from "#contracts/visual/card";
+import { TextSchema } from "#contracts/visual/card";
 import { answerAt, figure } from "#contracts/visual/entry";
 
 /** The ways a virus replicates that the replication lab can show. */

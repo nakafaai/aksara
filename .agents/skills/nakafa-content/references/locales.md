@@ -150,35 +150,35 @@ forms it can see, and the reader owns the rest.
 
 ### Words that differ
 
-| Indonesian | Malaysian Malay | Indonesian | Malaysian Malay |
-| --- | --- | --- | --- |
-| soal | soalan | pengaturan | tetapan |
-| jawaban | jawapan | masuk, keluar | log masuk, log keluar |
-| nilai ujian | markah | hapus | padam |
-| ujian | peperiksaan | kata sandi | kata laluan |
-| uji coba, try out | percubaan | tautan | pautan |
-| kelas 10 | Tingkatan 4 | bagikan | kongsi |
-| pembahasan | penyelesaian, jalan kerja | kesalahan | ralat |
-| persentase | peratus | berhasil | berjaya |
-| unduh, unggah | muat turun, muat naik | daring, luring | dalam talian, luar talian |
-| materi | bahan, nota | gratis | percuma |
-| jurusan | aliran | beasiswa | biasiswa |
-| karena | kerana | bisa | boleh |
-| saja | sahaja | mau | mahu |
-| kualitas, aktivitas | kualiti, aktiviti | universitas | universiti |
-| matematika, fisika | matematik, fizik | genetika | genetik |
-| kuadrat | kuasa dua | akar kuadrat | punca kuasa dua |
-| gradien | kecerunan | garis singgung | tangen |
-| turunan (kalkulus) | pembezaan, terbitan | limit | had |
-| pertidaksamaan | ketaksamaan | peluang (statistika) | kebarangkalian |
-| himpunan (matematika) | set | pangkat | kuasa, indeks |
-| energi | tenaga | listrik | elektrik |
-| gaya (fisika) | daya | massa | jisim |
-| kalor | haba | lensa (optik) | kanta |
-| percepatan (fisika) | pecutan | kecepatan (vektor) | halaju |
-| senyawa | sebatian | asam | asid |
-| reaksi kimia | tindak balas kimia | laju reaksi | kadar tindak balas |
-| jaringan (biologi) | tisu | pernapasan | pernafasan, respirasi |
+| Indonesian            | Malaysian Malay           | Indonesian           | Malaysian Malay           |
+| --------------------- | ------------------------- | -------------------- | ------------------------- |
+| soal                  | soalan                    | pengaturan           | tetapan                   |
+| jawaban               | jawapan                   | masuk, keluar        | log masuk, log keluar     |
+| nilai ujian           | markah                    | hapus                | padam                     |
+| ujian                 | peperiksaan               | kata sandi           | kata laluan               |
+| uji coba, try out     | percubaan                 | tautan               | pautan                    |
+| kelas 10              | Tingkatan 4               | bagikan              | kongsi                    |
+| pembahasan            | penyelesaian, jalan kerja | kesalahan            | ralat                     |
+| persentase            | peratus                   | berhasil             | berjaya                   |
+| unduh, unggah         | muat turun, muat naik     | daring, luring       | dalam talian, luar talian |
+| materi                | bahan, nota               | gratis               | percuma                   |
+| jurusan               | aliran                    | beasiswa             | biasiswa                  |
+| karena                | kerana                    | bisa                 | boleh                     |
+| saja                  | sahaja                    | mau                  | mahu                      |
+| kualitas, aktivitas   | kualiti, aktiviti         | universitas          | universiti                |
+| matematika, fisika    | matematik, fizik          | genetika             | genetik                   |
+| kuadrat               | kuasa dua                 | akar kuadrat         | punca kuasa dua           |
+| gradien               | kecerunan                 | garis singgung       | tangen                    |
+| turunan (kalkulus)    | pembezaan, terbitan       | limit                | had                       |
+| pertidaksamaan        | ketaksamaan               | peluang (statistika) | kebarangkalian            |
+| himpunan (matematika) | set                       | pangkat              | kuasa, indeks             |
+| energi                | tenaga                    | listrik              | elektrik                  |
+| gaya (fisika)         | daya                      | massa                | jisim                     |
+| kalor                 | haba                      | lensa (optik)        | kanta                     |
+| percepatan (fisika)   | pecutan                   | kecepatan (vektor)   | halaju                    |
+| senyawa               | sebatian                  | asam                 | asid                      |
+| reaksi kimia          | tindak balas kimia        | laju reaksi          | kadar tindak balas        |
+| jaringan (biologi)    | tisu                      | pernapasan           | pernafasan, respirasi     |
 
 ### Words that look the same but mean something else
 

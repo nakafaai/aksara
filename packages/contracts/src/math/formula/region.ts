@@ -6,20 +6,12 @@ import {
   Result,
   Schema,
 } from "effect";
-import {
-  type SampleBox,
-  type SamplePoint,
-  SamplePointSchema,
-} from "#contracts/math/formula/box";
-import {
-  compileFormula,
-  type FormulaScope,
-} from "#contracts/math/formula/compile";
-import {
-  contourFill,
-  contourLines,
-  type SampleField,
-} from "#contracts/math/formula/contour";
+import type { SampleBox, SamplePoint } from "#contracts/math/formula/box";
+import { SamplePointSchema } from "#contracts/math/formula/box";
+import type { FormulaScope } from "#contracts/math/formula/compile";
+import { compileFormula } from "#contracts/math/formula/compile";
+import type { SampleField } from "#contracts/math/formula/contour";
+import { contourFill, contourLines } from "#contracts/math/formula/contour";
 import { readRelation } from "#contracts/math/formula/parse";
 import type { FormulaGeometry } from "#contracts/math/formula/plane";
 import { someCell } from "#contracts/math/formula/scan";

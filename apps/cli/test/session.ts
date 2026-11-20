@@ -1,24 +1,19 @@
 import type { AppLocale } from "@nakafa/aksara-contracts/locale";
-import {
-  ExactProcess,
-  type ExactProcessInput,
-} from "@nakafa/aksara-utilities/process/exact";
-import {
-  Array as Arr,
-  Effect,
-  FileSystem,
-  Path,
-  type PlatformError,
-  type Stream,
-} from "effect";
+import type { ExactProcessInput } from "@nakafa/aksara-utilities/process/exact";
+import { ExactProcess } from "@nakafa/aksara-utilities/process/exact";
+import type { PlatformError, Stream } from "effect";
+import { Array as Arr, Effect, FileSystem, Path } from "effect";
 import type { RunningNakafa } from "#cli/child/session";
 import type { SelectedDocument } from "#cli/integrity";
 import { NakafaApp } from "#cli/nakafa";
 import { NAKAFA_LOOPBACK_HOST } from "#cli/origin";
-import { type PreviewProvider, PreviewProviderError } from "#cli/provider";
-import { type LocalPreviewSession, openLocalPreview } from "#cli/session";
+import type { PreviewProvider } from "#cli/provider";
+import { PreviewProviderError } from "#cli/provider";
+import type { LocalPreviewSession } from "#cli/session";
+import { openLocalPreview } from "#cli/session";
 import { openSelectedWatcher } from "#cli/watch";
-import { RENDERER_MANIFEST, type TestRepositories } from "#test/real";
+import type { TestRepositories } from "#test/real";
+import { RENDERER_MANIFEST } from "#test/real";
 
 /** Returns deterministic clean Git evidence for both test repositories. */
 const exactProcess = ExactProcess.of({

@@ -74,7 +74,7 @@ See:
 ## Requirements
 
 - Node 26
-- Bun 1.4.4
+- Bun 1.4.5
 
 The exact supported runtime and package-manager versions live in
 [`package.json`](package.json). Install the frozen workspace from the repository

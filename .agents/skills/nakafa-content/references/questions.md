@@ -79,8 +79,8 @@ New try-out sets also follow [try-out sets](sets.md).
   `Pemahaman Bacaan dan Menulis`, `Pengetahuan Kuantitatif`,
   `Literasi dalam Bahasa Indonesia`, `Literasi dalam Bahasa Inggris`, and
   `Penalaran Matematika`. English and German titles are faithful translations
-  that render the same official word the same way everywhere, so *Penalaran*
-  is *Reasoning* and *Schlussfolgern* in both reasoning sections. Never publish
+  that render the same official word the same way everywhere, so _Penalaran_
+  is _Reasoning_ and _Schlussfolgern_ in both reasoning sections. Never publish
   an abbreviation such as `MTK`, `PU`, or `PPU` as a title.
 - When the official name leaves a distinction implicit, add the official
   qualifier: `Matematika Wajib` for the compulsory subject beside

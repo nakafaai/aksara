@@ -8,30 +8,28 @@ import type { validateRendererManifestHash } from "@nakafa/aksara-contracts/rend
 import { validateRendererManifestHash as validateRenderer } from "@nakafa/aksara-contracts/renderer/manifest";
 import { isLowerKebab } from "@nakafa/aksara-contracts/text/syntax";
 import { decodePageRegistry } from "@nakafa/aksara-corpus/pages/registry";
-import type { FileSystem, Path } from "effect";
-import { Effect, Result, Schema, type Scope, Stream } from "effect";
+import type { FileSystem, Path, Scope } from "effect";
+import { Effect, Result, Schema, Stream } from "effect";
 import { constUndefined } from "effect/Function";
-import {
-  mapPageSourceError,
-  type PageMetadataError,
-  type PageSourceError,
+import type {
+  PageMetadataError,
+  PageSourceError,
 } from "#publisher/page/document";
+import { mapPageSourceError } from "#publisher/page/document";
 import {
   PagePublicationPlanSchema,
   planPagePublication,
 } from "#publisher/page/plan";
 import type { PreparedContentTransition } from "#publisher/preparation/spec";
+import type { HeadOrderState } from "#publisher/publication/order";
 import {
-  type HeadOrderState,
   orderPublishedHeads,
   validateHeadOrder,
 } from "#publisher/publication/order";
 import type { ReplaySpoolError } from "#publisher/replay/error";
 import { createReplaySpool } from "#publisher/replay/spool";
-import {
-  type RouteTransition,
-  routeTransitionForContent,
-} from "#publisher/routes";
+import type { RouteTransition } from "#publisher/routes";
+import { routeTransitionForContent } from "#publisher/routes";
 
 const PageFamilyFieldSchema = Schema.Literals([
   "contentKey",

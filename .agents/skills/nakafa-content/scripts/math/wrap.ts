@@ -3,10 +3,8 @@ import { findNumbers, PLAIN_NUMBER_SCAN } from "#nakafa-content/math/number";
 import { quantityMath } from "#nakafa-content/math/quantity";
 import type { MdxNode } from "#nakafa-content/mdx/parse";
 import { expectShape } from "#nakafa-content/mdx/shape";
-import {
-  type VisibleTextRange,
-  visibleTextRanges,
-} from "#nakafa-content/mdx/visible";
+import type { VisibleTextRange } from "#nakafa-content/mdx/visible";
+import { visibleTextRanges } from "#nakafa-content/mdx/visible";
 
 /** One replacement of a source range. */
 interface Edit {

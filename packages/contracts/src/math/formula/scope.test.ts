@@ -8,10 +8,8 @@ import {
   planeFormulaFields,
   spaceFormulaFields,
 } from "#contracts/math/formula/scope";
-import {
-  type PlaneMathObject,
-  PlaneMathObjectSchema,
-} from "#contracts/math/plane";
+import type { PlaneMathObject } from "#contracts/math/plane";
+import { PlaneMathObjectSchema } from "#contracts/math/plane";
 import { SpaceMathObjectSchema } from "#contracts/math/space";
 
 const fields = { appearance: "primary", id: "object" } as const;

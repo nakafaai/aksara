@@ -8,8 +8,10 @@ import {
 } from "#contracts/math/base";
 import { MathVisualSchema, mathVisualLabelKeys } from "#contracts/math/visual";
 import { NoPropsSchema } from "#contracts/visual/base/layout";
-import { cardFields, type RichSlot } from "#contracts/visual/card";
-import { type AnswerReader, figure, markup } from "#contracts/visual/entry";
+import type { RichSlot } from "#contracts/visual/card";
+import { cardFields } from "#contracts/visual/card";
+import type { AnswerReader } from "#contracts/visual/entry";
+import { figure, markup } from "#contracts/visual/entry";
 import { visibleLength } from "#contracts/visual/length";
 
 /** A scene and the keys of the rich labels it anchors, as the check reads them. */

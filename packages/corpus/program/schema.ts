@@ -1,8 +1,6 @@
 import { ACTIVE_APP_LOCALES } from "@nakafa/aksara-contracts/locale";
-import {
-  type LearningProgram,
-  LearningProgramSchema,
-} from "@nakafa/aksara-contracts/program/spec";
+import type { LearningProgram } from "@nakafa/aksara-contracts/program/spec";
+import { LearningProgramSchema } from "@nakafa/aksara-contracts/program/spec";
 import { Array as Arr, Schema } from "effect";
 
 /** Checks exact active locale closure for one program source. */

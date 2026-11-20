@@ -1,7 +1,8 @@
 import { Schema } from "effect";
 
 import { hasCanonicalOrder } from "#contracts/canonical";
-import { type ContentFamily, ContentFamilySchema } from "#contracts/content";
+import type { ContentFamily } from "#contracts/content";
+import { ContentFamilySchema } from "#contracts/content";
 
 /** Fixed structured families selected by the one global release pointer. */
 export const ContentSnapshotKindSchema = Schema.Literals([

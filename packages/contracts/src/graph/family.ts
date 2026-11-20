@@ -1,7 +1,6 @@
 import { Effect, Schema } from "effect";
-
+import type { LearningGraphIdentity } from "#contracts/graph/spec";
 import {
-  type LearningGraphIdentity,
   LearningGraphIdentitySchema,
   LearningGraphIdSchema,
 } from "#contracts/graph/spec";

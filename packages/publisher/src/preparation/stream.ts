@@ -12,20 +12,22 @@ import {
 import { ContentReleaseItemSchema } from "@nakafa/aksara-contracts/release";
 import { RollbackSnapshotEntrySchema } from "@nakafa/aksara-contracts/release/rollback/spec";
 import { Effect, Schema, Stream } from "effect";
+import type { CoherenceFieldSchema } from "#publisher/preparation/errors";
 import {
-  type CoherenceFieldSchema,
   PreparedContentCoherenceError,
   PreparedContentDecodeError,
   PreparedContentOrderError,
 } from "#publisher/preparation/errors";
+import type {
+  PreparedContentRecord,
+  PreparedContentStreamError,
+  PreparedContentTransition,
+  PreparedContentTransitionSource,
+  PreparedContentUpsert,
+} from "#publisher/preparation/spec";
 import {
-  type PreparedContentRecord,
   PreparedContentRecordSchema,
-  type PreparedContentStreamError,
-  type PreparedContentTransition,
   PreparedContentTransitionSchema,
-  type PreparedContentTransitionSource,
-  type PreparedContentUpsert,
 } from "#publisher/preparation/spec";
 
 const RecordStateSchema = Schema.Struct({

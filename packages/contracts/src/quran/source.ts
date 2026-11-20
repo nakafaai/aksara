@@ -2,17 +2,17 @@ import { Array as Arr, Schema } from "effect";
 
 import { hasCanonicalOrder } from "#contracts/canonical";
 import { Sha256HashSchema } from "#contracts/ids";
+import type { ActiveAppLocaleList } from "#contracts/locale";
 import {
-  type ActiveAppLocaleList,
   ActiveAppLocaleListSchema,
   AppLocaleSchema,
   appLocaleLiteral,
 } from "#contracts/locale";
+import type { QuranSourceId } from "#contracts/quran/identity";
 import {
   QURAN_SOURCE_IDS,
   QuranEmbeddedSourceIdSchema,
   QuranExternalSourceIdSchema,
-  type QuranSourceId,
   quranNameSourceId,
   quranTafsirSourceId,
   quranTranslationSourceId,

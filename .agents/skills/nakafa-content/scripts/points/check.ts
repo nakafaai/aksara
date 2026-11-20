@@ -17,24 +17,16 @@ import {
   resolveBase,
   touchedFiles,
 } from "#nakafa-content/points/base";
-import {
-  type DocumentParts,
-  inspectDocument,
-} from "#nakafa-content/points/document";
+import type { DocumentParts } from "#nakafa-content/points/document";
+import { inspectDocument } from "#nakafa-content/points/document";
 import { PointsCheckError, unreadable } from "#nakafa-content/points/error";
 import { collectFiles } from "#nakafa-content/points/files";
 import type { PointsFinding } from "#nakafa-content/points/finding";
 import { findLiteralPoints } from "#nakafa-content/points/literal";
-import {
-  type CheckOptions,
-  parseOptions,
-} from "#nakafa-content/points/options";
-import {
-  type FileFinding,
-  type PointsReport,
-  printReport,
-  shortRevision,
-} from "#nakafa-content/points/report";
+import type { CheckOptions } from "#nakafa-content/points/options";
+import { parseOptions } from "#nakafa-content/points/options";
+import type { FileFinding, PointsReport } from "#nakafa-content/points/report";
+import { printReport, shortRevision } from "#nakafa-content/points/report";
 import {
   lessonOf,
   lessonScenes,

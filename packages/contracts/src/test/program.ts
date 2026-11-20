@@ -2,11 +2,8 @@ import { assert } from "@effect/vitest";
 import { Array as Arr, Effect, Number as Num, Option, Order } from "effect";
 
 import { CorpusSourcePathSchema, PublicPathSchema } from "#contracts/ids";
-import {
-  ACTIVE_APP_LOCALES,
-  type AppLocale,
-  AppLocaleSchema,
-} from "#contracts/locale";
+import type { AppLocale } from "#contracts/locale";
+import { ACTIVE_APP_LOCALES, AppLocaleSchema } from "#contracts/locale";
 import {
   CurriculumRouteSchema,
   curriculumNamespace,

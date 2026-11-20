@@ -1,7 +1,6 @@
 import { Match, Schema } from "effect";
-
+import type { ActiveAppLocaleCode } from "#contracts/locale";
 import {
-  type ActiveAppLocaleCode,
   ActiveAppLocaleCodeSchema,
   ENGLISH_APP_LOCALE_CODE,
   GERMAN_APP_LOCALE_CODE,

@@ -6,8 +6,8 @@ import {
   Record as Rec,
   Schema,
 } from "effect";
+import type { Expression, PropertyName, SourceFile, Statement } from "tsrs/ast";
 import {
-  type Expression,
   isArrayLiteralExpression,
   isExportAssignment,
   isIdentifier,
@@ -21,9 +21,6 @@ import {
   isTypeReferenceNode,
   isVariableStatement,
   NodeFlags,
-  type PropertyName,
-  type SourceFile,
-  type Statement,
   SyntaxKind,
 } from "tsrs/ast";
 

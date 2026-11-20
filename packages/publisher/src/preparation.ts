@@ -49,10 +49,8 @@ import type {
   PrepareContentReleaseInput,
   PreparedReleaseStreamError,
 } from "#publisher/preparation/spec";
-import {
-  type DerivedContentRecord,
-  derivePreparedRecords,
-} from "#publisher/preparation/stream";
+import type { DerivedContentRecord } from "#publisher/preparation/stream";
+import { derivePreparedRecords } from "#publisher/preparation/stream";
 import { makeRouteItems } from "#publisher/routes";
 
 /** Narrows one derived record to the material projection it owns. */

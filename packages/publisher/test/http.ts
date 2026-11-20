@@ -2,11 +2,8 @@ import { PublicationRequestSchema } from "@nakafa/aksara-contracts/transport/req
 import type { PublicationResponse } from "@nakafa/aksara-contracts/transport/response";
 import { encodeJsonText } from "@nakafa/aksara-utilities/text/json";
 import { Effect, Match, MutableList, Redacted, Schema } from "effect";
-import {
-  HttpClient,
-  type HttpClientRequest,
-  HttpClientResponse,
-} from "effect/http";
+import type { HttpClientRequest } from "effect/http";
+import { HttpClient, HttpClientResponse } from "effect/http";
 import type { PublicationTarget } from "#publisher/publication/spec";
 import type { HttpPublicationTargetConfig } from "#publisher/target/config";
 import { makeHttpPublicationTarget } from "#publisher/target/http";

@@ -1,5 +1,5 @@
 import { Array as Arr, MutableList, Option, Result, Schema } from "effect";
-
+import type { Reader } from "#contracts/math/formula/reader";
 import {
   at,
   expect,
@@ -7,17 +7,16 @@ import {
   here,
   peek,
   problemAt,
-  type Reader,
   startReader,
 } from "#contracts/math/formula/reader";
-import {
-  type FormulaComparison,
-  type FormulaError,
-  type FormulaFunction,
-  FormulaFunctionSchema,
-  type FormulaNode,
-  type FormulaRelation,
+import type {
+  FormulaComparison,
+  FormulaError,
+  FormulaFunction,
+  FormulaNode,
+  FormulaRelation,
 } from "#contracts/math/formula/syntax";
+import { FormulaFunctionSchema } from "#contracts/math/formula/syntax";
 
 /** How tightly each operator holds its operands; implicit products bind like `*`. */
 const SUM = 10;

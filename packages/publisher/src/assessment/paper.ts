@@ -9,8 +9,8 @@ import {
   StimulusIdSchema,
 } from "@nakafa/aksara-contracts/assessment/identity";
 import type { StimulusReference } from "@nakafa/aksara-contracts/assessment/item";
+import type { Paper } from "@nakafa/aksara-contracts/assessment/paper";
 import {
-  type Paper,
   PaperSchema,
   verifyPaperPlaces,
   verifyPaperStimuli,

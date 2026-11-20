@@ -1,10 +1,9 @@
 import { Schema } from "effect";
-
+import type { RichSlot } from "#contracts/visual/card";
 import {
   byIds,
   cardFields,
   DecimalSeparatorSchema,
-  type RichSlot,
   TextSchema,
 } from "#contracts/visual/card";
 import { figure } from "#contracts/visual/entry";

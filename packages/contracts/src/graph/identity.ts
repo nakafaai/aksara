@@ -1,8 +1,6 @@
 import { Array as Arr, Effect, Schema } from "effect";
-import {
-  type LearningGraphIdentity,
-  LearningGraphIdentitySchema,
-} from "#contracts/graph/spec";
+import type { LearningGraphIdentity } from "#contracts/graph/spec";
+import { LearningGraphIdentitySchema } from "#contracts/graph/spec";
 import { AppLocaleSchema } from "#contracts/locale";
 import { isLowerKebab } from "#contracts/text/syntax";
 

@@ -1,6 +1,6 @@
 import { NodeServices } from "@effect/platform-node";
+import type { CorpusSourcePath } from "@nakafa/aksara-contracts/ids";
 import {
-  type CorpusSourcePath,
   CorpusSourcePathSchema,
   GitCommitShaSchema,
 } from "@nakafa/aksara-contracts/ids";
@@ -9,10 +9,10 @@ import {
   GIT_EXECUTABLE,
   makeExactGitInput,
 } from "@nakafa/aksara-utilities/git/exact";
+import type { ExactProcessInput } from "@nakafa/aksara-utilities/process/exact";
 import {
   ExactProcess,
   ExactProcessError,
-  type ExactProcessInput,
 } from "@nakafa/aksara-utilities/process/exact";
 import {
   Array as Arr,

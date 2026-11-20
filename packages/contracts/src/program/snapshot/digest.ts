@@ -10,15 +10,11 @@ import {
 
 import { DigestStream } from "#contracts/hash/stream";
 import type { ActiveAppLocaleList } from "#contracts/locale";
-import {
-  type CurriculumRoute,
-  curriculumNamespace,
-} from "#contracts/program/curriculum";
+import type { CurriculumRoute } from "#contracts/program/curriculum";
+import { curriculumNamespace } from "#contracts/program/curriculum";
 import { verifyProgramSnapshotRowHash } from "#contracts/program/snapshot/hash";
-import {
-  canonicalizeProgramSnapshotRow,
-  type ProgramSnapshotRow,
-} from "#contracts/program/snapshot/row";
+import type { ProgramSnapshotRow } from "#contracts/program/snapshot/row";
+import { canonicalizeProgramSnapshotRow } from "#contracts/program/snapshot/row";
 import type { ProgramCounts } from "#contracts/program/snapshot/spec";
 import type { LearningProgram } from "#contracts/program/spec";
 import { encodeJsonText } from "#contracts/text/json";

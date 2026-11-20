@@ -1,10 +1,7 @@
 import { Array as Arr, Console, Effect } from "effect";
 import type { PointsFinding } from "#nakafa-content/points/finding";
-import {
-  FEWEST_SCENES,
-  type SceneShortfall,
-  TARGET_SCENES,
-} from "#nakafa-content/points/scene";
+import type { SceneShortfall } from "#nakafa-content/points/scene";
+import { FEWEST_SCENES, TARGET_SCENES } from "#nakafa-content/points/scene";
 
 const SHORT_REVISION_LENGTH = 7;
 

@@ -1,10 +1,12 @@
 import { Effect } from "effect";
 
 import { hashText } from "#contracts/hash/text";
+import type {
+  QuranSnapshot,
+  QuranSnapshotFacts,
+} from "#contracts/quran/snapshot/spec";
 import {
   QURAN_SNAPSHOT_FORMAT,
-  type QuranSnapshot,
-  type QuranSnapshotFacts,
   QuranSnapshotSchema,
 } from "#contracts/quran/snapshot/spec";
 import { encodeJsonText } from "#contracts/text/json";

@@ -1,23 +1,19 @@
-import {
-  type CompiledContentResult,
-  compileContent,
-} from "@nakafa/aksara-compiler/compile";
+import type { CompiledContentResult } from "@nakafa/aksara-compiler/compile";
+import { compileContent } from "@nakafa/aksara-compiler/compile";
 import { inspectContentSource } from "@nakafa/aksara-compiler/inspect";
 import { hashCompiledContentPayload } from "@nakafa/aksara-contracts/artifact/integrity";
 import { CorpusSourcePathSchema } from "@nakafa/aksara-contracts/ids";
+import type { ArticleProjection } from "@nakafa/aksara-contracts/projection/article";
 import {
   ArticleMetadataSchema,
-  type ArticleProjection,
   makeArticleProjection,
 } from "@nakafa/aksara-contracts/projection/article";
 import { hashContentProjection } from "@nakafa/aksara-contracts/projection/hash";
 import { ContentUpsertSchema } from "@nakafa/aksara-contracts/release";
 import type { RendererManifestEnvelope } from "@nakafa/aksara-contracts/renderer/contract";
 import type { ArticleEntry } from "@nakafa/aksara-corpus/articles/registry";
-import {
-  type ArticleDocumentSource,
-  readArticleDocument,
-} from "@nakafa/aksara-corpus/articles/source";
+import type { ArticleDocumentSource } from "@nakafa/aksara-corpus/articles/source";
+import { readArticleDocument } from "@nakafa/aksara-corpus/articles/source";
 import { teams } from "@nakafa/aksara-corpus/team/source";
 import type { FileSystem, Path } from "effect";
 import { Array as Arr, Effect, MutableHashSet, Schema } from "effect";

@@ -254,22 +254,22 @@ graph teaches the wrong mathematics on an education platform.
   cosh cot csc exp floor ln log sec sign sin sinh sqrt tan tanh`, plus `min`,
   `max`, and `log_b(x)`. Angles are in radians.
 
-  | Scene | `kind` | Fields | Draws |
-  | --- | --- | --- | --- |
-  | plane | `function` | `formula`, optional `domain`, optional `inputAxis: "y"` | `y = f(x)`, or `x = f(y)` |
-  | plane | `parametric` | `x`, `y` in `t`, `parameter: { min, max }` | a curve traced by `t` |
-  | plane | `polar` | `radius` in `theta`, `angle: { min, max }` | `r = f(theta)` |
-  | plane | `implicit` | `equation`, such as `"x^2 + y^2 = 4"` | every point where it holds, such as a conic |
-  | plane | `region` | `inequalities`, such as `["x + y <= 10", "y > 0"]` | the shaded part where all hold, past the frame; `<=` and `>=` edges solid, `<` and `>` dashed |
-  | space | `function` | `formula` in `x` and `y`, optional `domain: { x, y }` | the surface `z = f(x, y)` |
-  | space | `parametric` | `x`, `y`, `z` in `t`, `parameter` | a space curve, such as a helix |
-  | space | `surface` | `x`, `y`, `z` in `u` and `v`, `u`, `v` | a parametric surface, such as a sphere or torus |
-  | space | `revolution` | `axis`, `formula` (the radius, in that axis's variable), `domain` | the solid a profile sweeps around the axis |
-  | space | `prism` | `base` (coplanar corners), `offset` | the base moved along the offset |
-  | space | `pyramid` | `base`, `apex` | a pyramid or a cone of straight edges |
-  | plane | `marker` | `x`, `y` formulas | a point the sliders move, such as `(cos(a), sin(a))` |
-  | plane | `path` | `points`, at least two `{ x, y }` formula points | open segments through them, such as a moving radius |
-  | plane | `loop` | `points`, at least three formula points | a closed outline, such as a right triangle of angle `a` |
+  | Scene | `kind`       | Fields                                                            | Draws                                                                                         |
+  | ----- | ------------ | ----------------------------------------------------------------- | --------------------------------------------------------------------------------------------- |
+  | plane | `function`   | `formula`, optional `domain`, optional `inputAxis: "y"`           | `y = f(x)`, or `x = f(y)`                                                                     |
+  | plane | `parametric` | `x`, `y` in `t`, `parameter: { min, max }`                        | a curve traced by `t`                                                                         |
+  | plane | `polar`      | `radius` in `theta`, `angle: { min, max }`                        | `r = f(theta)`                                                                                |
+  | plane | `implicit`   | `equation`, such as `"x^2 + y^2 = 4"`                             | every point where it holds, such as a conic                                                   |
+  | plane | `region`     | `inequalities`, such as `["x + y <= 10", "y > 0"]`                | the shaded part where all hold, past the frame; `<=` and `>=` edges solid, `<` and `>` dashed |
+  | space | `function`   | `formula` in `x` and `y`, optional `domain: { x, y }`             | the surface `z = f(x, y)`                                                                     |
+  | space | `parametric` | `x`, `y`, `z` in `t`, `parameter`                                 | a space curve, such as a helix                                                                |
+  | space | `surface`    | `x`, `y`, `z` in `u` and `v`, `u`, `v`                            | a parametric surface, such as a sphere or torus                                               |
+  | space | `revolution` | `axis`, `formula` (the radius, in that axis's variable), `domain` | the solid a profile sweeps around the axis                                                    |
+  | space | `prism`      | `base` (coplanar corners), `offset`                               | the base moved along the offset                                                               |
+  | space | `pyramid`    | `base`, `apex`                                                    | a pyramid or a cone of straight edges                                                         |
+  | plane | `marker`     | `x`, `y` formulas                                                 | a point the sliders move, such as `(cos(a), sin(a))`                                          |
+  | plane | `path`       | `points`, at least two `{ x, y }` formula points                  | open segments through them, such as a moving radius                                           |
+  | plane | `loop`       | `points`, at least three formula points                           | a closed outline, such as a right triangle of angle `a`                                       |
 
   A scene's `parameters` add sliders: `{ name, min, max, value, step?,
   label? }`, with a one-letter name other than `e`, `t`, `u`, `v`, `x`, `y`,

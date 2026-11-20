@@ -1,8 +1,7 @@
 import { Array as Arr, Option, Predicate, Schema } from "effect";
+import type { MdxAttribute, MdxNode } from "#nakafa-content/mdx/parse";
 import {
   attributeEstree,
-  type MdxAttribute,
-  type MdxNode,
   parseLessonMdx,
   visitMdxNodes,
   walkEstreeDeep,

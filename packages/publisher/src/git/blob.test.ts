@@ -2,9 +2,9 @@ import { NodeServices } from "@effect/platform-node";
 import { describe, expect, it } from "@effect/vitest";
 import { MAX_RAW_MDX_BYTES } from "@nakafa/aksara-contracts/limits";
 import { makeExactGitInput } from "@nakafa/aksara-utilities/git/exact";
+import type { ExactProcessInput } from "@nakafa/aksara-utilities/process/exact";
 import {
   ExactProcessError,
-  type ExactProcessInput,
   ExactProcessLive,
 } from "@nakafa/aksara-utilities/process/exact";
 import {

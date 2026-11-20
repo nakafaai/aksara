@@ -10,25 +10,22 @@ import { verifyContentReleaseBundle } from "@nakafa/aksara-contracts/release/ver
 
 import { validateRendererManifestHash } from "@nakafa/aksara-contracts/renderer/manifest";
 import type { ContentVerificationKeyResolver } from "@nakafa/aksara-contracts/signature/spec";
-import {
-  type ContentCatalogPublication,
-  prepareContentCatalog,
-} from "@nakafa/aksara-publisher/catalog/publication";
+import type { ContentCatalogPublication } from "@nakafa/aksara-publisher/catalog/publication";
+import { prepareContentCatalog } from "@nakafa/aksara-publisher/catalog/publication";
 import { prepareContentRelease } from "@nakafa/aksara-publisher/preparation";
 import { reuseStoredGitRelease } from "@nakafa/aksara-publisher/preparation/recovery";
 import type { PublicationTarget } from "@nakafa/aksara-publisher/publication/spec";
-import {
-  type PreparedReleaseSnapshots,
-  prepareReleaseSnapshots,
-} from "@nakafa/aksara-publisher/snapshot/release";
+import type { PreparedReleaseSnapshots } from "@nakafa/aksara-publisher/snapshot/release";
+import { prepareReleaseSnapshots } from "@nakafa/aksara-publisher/snapshot/release";
 import type { ExactProcess } from "@nakafa/aksara-utilities/process/exact";
-import type { FileSystem, Path } from "effect";
-import { Effect, Schema, type Scope, Stream } from "effect";
+import type { FileSystem, Path, Scope } from "effect";
+import { Effect, Schema, Stream } from "effect";
 import {
   readCleanAksaraRevision,
   validateStableAksaraRevision,
 } from "#cli/evidence";
-import { mapProductionError, type ProductionError } from "#cli/failure";
+import type { ProductionError } from "#cli/failure";
+import { mapProductionError } from "#cli/failure";
 import {
   selectRecoveryBase,
   selectSourceBase,

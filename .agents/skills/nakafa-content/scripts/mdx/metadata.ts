@@ -1,8 +1,10 @@
+import type {
+  EstreeNode,
+  MdxNode,
+  SourceRange,
+} from "#nakafa-content/mdx/parse";
 import {
   asEstreeNode,
-  type EstreeNode,
-  type MdxNode,
-  type SourceRange,
   staticFieldName,
   visitMdxNodes,
 } from "#nakafa-content/mdx/parse";

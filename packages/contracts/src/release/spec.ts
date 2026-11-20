@@ -9,9 +9,9 @@ import {
   Sha256HashSchema,
   SigningKeyIdSchema,
 } from "#contracts/ids";
+import type { AppLocale } from "#contracts/locale";
 import {
   ActiveAppLocaleListSchema,
-  type AppLocale,
   ArtifactLocaleSchema,
 } from "#contracts/locale";
 import { ReleaseCountSchema } from "#contracts/release/count";
@@ -22,8 +22,8 @@ import {
 } from "#contracts/release/origin";
 import { EMPTY_RESULT_CATALOG_DIGEST } from "#contracts/release/result/spec";
 import { PublicationScopeSchema } from "#contracts/release/snapshot/scope";
+import type { ContentSnapshotSet } from "#contracts/release/snapshot/spec";
 import {
-  type ContentSnapshotSet,
   ContentSnapshotSetSchema,
   hasEmptySnapshotBases,
   hasGitSnapshotModes,
