@@ -1,291 +1,102 @@
 import {
-  advancedMathematicsBookXII,
-  mathematicsBookXI,
+  mathematicsBookXII,
   merdekaLearningOutcomes,
 } from "#corpus/curriculum/merdeka/documents";
-import {
-  merdekaClass12CombinatoricsUnit,
-  merdekaClass12DataAnalysisProbabilityUnit,
-} from "#corpus/curriculum/merdeka/topics/class-12/statistics";
 import { materialNode, unitNode } from "#corpus/curriculum/schema";
 
+/** Kurikulum Merdeka Kelas 12 Matematika, Bab 1 Barisan dan Deret. */
+const merdekaClass12SequenceSeriesUnit = unitNode({
+  children: [
+    materialNode({
+      key: "class-12-mathematics-sequence-series-material",
+      level: "lesson",
+      materialKeys: ["lesson.mathematics.sequence-series"],
+      order: 10,
+      outcomes: [
+        {
+          code: "Matematika, Fase F, elemen Bilangan",
+          ...merdekaLearningOutcomes,
+        },
+        { code: "Bab 1 Barisan dan Deret", ...mathematicsBookXII },
+      ],
+    }),
+  ],
+  key: "class-12-mathematics-sequence-series",
+  materialCard: {
+    de: {
+      description: "Nutze Formeln für das n-te Glied und Teilsummen.",
+      title: "Folgen und Reihen",
+    },
+    en: {
+      description: "Apply nth-term and partial-sum formulas.",
+      title: "Sequences and Series",
+    },
+    id: {
+      description: "Pakai rumus suku ke-n dan jumlah n suku pertama.",
+      title: "Barisan dan Deret",
+    },
+    ms: {
+      description: "Guna rumus sebutan ke-n dan hasil tambah n sebutan.",
+      title: "Jujukan dan Siri",
+    },
+  },
+  order: 10,
+  translations: {
+    de: { routeSlug: "folgen-und-reihen", title: "Folgen und Reihen" },
+    en: { routeSlug: "sequence-series", title: "Sequences and Series" },
+    id: { routeSlug: "barisan-dan-deret", title: "Barisan dan Deret" },
+    ms: { routeSlug: "jujukan-dan-siri", title: "Jujukan dan Siri" },
+  },
+});
+
+/** Kurikulum Merdeka Kelas 12 Matematika, Bab 3 Kaidah Pencacahan (the lesson also teaches Bab 4 until it splits). */
+const merdekaClass12CountingUnit = unitNode({
+  children: [
+    materialNode({
+      key: "class-12-mathematics-combinatorics-material",
+      level: "lesson",
+      materialKeys: ["lesson.mathematics.combinatorics"],
+      order: 10,
+      outcomes: [
+        {
+          code: "Matematika, Fase F, elemen Analisis Data dan Peluang",
+          ...merdekaLearningOutcomes,
+        },
+        { code: "Bab 3 Kaidah Pencacahan", ...mathematicsBookXII },
+        { code: "Bab 4 Peluang", ...mathematicsBookXII },
+      ],
+    }),
+  ],
+  key: "class-12-mathematics-combinatorics",
+  materialCard: {
+    de: {
+      description: "Zähle Anordnungen mit Permutationen und Kombinationen.",
+      title: "Abzählregeln",
+    },
+    en: {
+      description: "Count arrangements with permutations and combinations.",
+      title: "Counting Rules",
+    },
+    id: {
+      description: "Hitung susunan dengan permutasi dan kombinasi.",
+      title: "Kaidah Pencacahan",
+    },
+    ms: {
+      description: "Kira susunan dengan pilih atur dan gabungan.",
+      title: "Kaedah Pembilangan",
+    },
+  },
+  order: 30,
+  translations: {
+    de: { routeSlug: "abzaehlregeln", title: "Abzählregeln" },
+    en: { routeSlug: "counting-rules", title: "Counting Rules" },
+    id: { routeSlug: "kaidah-pencacahan", title: "Kaidah Pencacahan" },
+    ms: { routeSlug: "kaedah-pembilangan", title: "Kaedah Pembilangan" },
+  },
+});
+
+/** The units of Kelas 12 Matematika, in the chapter order of its revised book. */
 export const merdekaClass12MathematicsTopicNodes = [
-  unitNode({
-    children: [
-      materialNode({
-        key: "class-12-mathematics-analytic-geometry-material",
-        level: "lesson",
-        materialKeys: ["lesson.mathematics.analytic-geometry"],
-        order: 10,
-        outcomes: [
-          {
-            code: "Matematika Tingkat Lanjut, Fase F, elemen Geometri",
-            ...merdekaLearningOutcomes,
-          },
-          {
-            code: "Bab 1 Lingkaran, Elips, dan Garis Singgung Lingkaran",
-            ...advancedMathematicsBookXII,
-          },
-        ],
-      }),
-    ],
-    key: "class-12-mathematics-analytic-geometry",
-    materialCard: {
-      de: {
-        description: "Leite Kreisgleichungen aus der Geometrie her.",
-        title: "Analytische Geometrie",
-      },
-      en: {
-        description: "Derive circle equations from geometry.",
-        title: "Analytic Geometry",
-      },
-      id: {
-        description: "Turunkan persamaan lingkaran dari geometri.",
-        title: "Geometri Analitik",
-      },
-      ms: {
-        description: "Terbitkan persamaan bulatan daripada geometri.",
-        title: "Geometri Analitik",
-      },
-    },
-    order: 10,
-    translations: {
-      de: {
-        routeSlug: "analytische-geometrie",
-        title: "Analytische Geometrie",
-      },
-      en: { routeSlug: "analytic-geometry", title: "Analytic Geometry" },
-      id: { routeSlug: "geometri-analitik", title: "Geometri Analitik" },
-      ms: { routeSlug: "geometri-analitik", title: "Geometri Analitik" },
-    },
-  }),
-  unitNode({
-    children: [
-      materialNode({
-        key: "class-12-mathematics-circle-arc-sector-material",
-        level: "lesson",
-        materialKeys: ["lesson.mathematics.circle-arc-sector"],
-        order: 10,
-        outcomes: [
-          {
-            code: "Matematika, Fase F, elemen Geometri",
-            ...merdekaLearningOutcomes,
-          },
-          {
-            code: "Bab 4 Lingkaran, A Lingkaran dan Busur Lingkaran",
-            ...mathematicsBookXI,
-          },
-        ],
-      }),
-    ],
-    key: "class-12-mathematics-circle-arc-sector",
-    materialCard: {
-      de: {
-        description: "Verbinde Bogenlänge, Winkel und Sektorfläche.",
-        title: "Kreisbögen und Kreissektoren",
-      },
-      en: {
-        description: "Relate arcs, angles, and sector area.",
-        title: "Arcs and Sectors",
-      },
-      id: {
-        description: "Hubungkan busur, sudut, dan luas juring.",
-        title: "Busur dan Juring",
-      },
-      ms: {
-        description: "Kaitkan lengkok, sudut dan luas sektor.",
-        title: "Lengkok dan Sektor",
-      },
-    },
-    order: 20,
-    translations: {
-      de: {
-        routeSlug: "kreisboegen-und-kreissektoren",
-        title: "Kreisbögen und Kreissektoren",
-      },
-      en: { routeSlug: "circle-arc-sector", title: "Arcs and Sectors" },
-      id: {
-        routeSlug: "busur-dan-juring-lingkaran",
-        title: "Busur dan Juring",
-      },
-      ms: { routeSlug: "lengkok-dan-sektor", title: "Lengkok dan Sektor" },
-    },
-  }),
-  merdekaClass12CombinatoricsUnit,
-  merdekaClass12DataAnalysisProbabilityUnit,
-  unitNode({
-    children: [
-      materialNode({
-        key: "class-12-mathematics-derivative-function-material",
-        level: "lesson",
-        materialKeys: ["lesson.mathematics.derivative-function"],
-        order: 10,
-        outcomes: [
-          {
-            code: "Matematika Tingkat Lanjut, Fase F, elemen Kalkulus",
-            ...merdekaLearningOutcomes,
-          },
-          {
-            code: "Bab 2 Turunan Fungsi",
-            ...advancedMathematicsBookXII,
-          },
-        ],
-      }),
-    ],
-    key: "class-12-mathematics-derivative-function",
-    materialCard: {
-      de: {
-        description: "Nutze Ableitungen für Änderungsraten und Extremwerte.",
-        title: "Ableitungen",
-      },
-      en: {
-        description: "Use derivatives for rates and height.",
-        title: "Derivatives",
-      },
-      id: {
-        description: "Gunakan turunan untuk laju dan tinggi.",
-        title: "Turunan",
-      },
-      ms: {
-        description: "Guna pembezaan untuk kadar perubahan dan ketinggian.",
-        title: "Pembezaan",
-      },
-    },
-    order: 50,
-    translations: {
-      de: { routeSlug: "ableitungen", title: "Ableitungen" },
-      en: { routeSlug: "derivative-function", title: "Derivatives" },
-      id: { routeSlug: "turunan-fungsi", title: "Turunan" },
-      ms: { routeSlug: "pembezaan", title: "Pembezaan" },
-    },
-  }),
-  unitNode({
-    children: [
-      materialNode({
-        key: "class-12-mathematics-function-transformation-material",
-        level: "lesson",
-        materialKeys: ["lesson.mathematics.function-transformation"],
-        order: 10,
-        outcomes: [
-          {
-            code: "Matematika, Fase F, elemen Aljabar dan Fungsi",
-            ...merdekaLearningOutcomes,
-          },
-          { code: "Bab 3 Transformasi Fungsi", ...mathematicsBookXI },
-        ],
-      }),
-    ],
-    key: "class-12-mathematics-function-transformation",
-    materialCard: {
-      de: {
-        description: "Verschiebe, strecke und spiegle Funktionsgraphen.",
-        title: "Funktionstransformationen",
-      },
-      en: {
-        description: "Shift, stretch, and reflect function graphs.",
-        title: "Function Transformations",
-      },
-      id: {
-        description: "Geser, regang, dan cerminkan grafik fungsi.",
-        title: "Transformasi Fungsi",
-      },
-      ms: {
-        description: "Gerakkan, regangkan dan pantulkan graf fungsi.",
-        title: "Transformasi Fungsi",
-      },
-    },
-    order: 60,
-    translations: {
-      de: {
-        routeSlug: "funktionstransformationen",
-        title: "Funktionstransformationen",
-      },
-      en: {
-        routeSlug: "function-transformation",
-        title: "Function Transformations",
-      },
-      id: { routeSlug: "transformasi-fungsi", title: "Transformasi Fungsi" },
-      ms: { routeSlug: "transformasi-fungsi", title: "Transformasi Fungsi" },
-    },
-  }),
-  unitNode({
-    children: [
-      materialNode({
-        key: "class-12-mathematics-integral-material",
-        level: "lesson",
-        materialKeys: ["lesson.mathematics.integral"],
-        order: 10,
-        outcomes: [
-          {
-            code: "Matematika Tingkat Lanjut, Fase F, elemen Kalkulus",
-            ...merdekaLearningOutcomes,
-          },
-          { code: "Bab 3 Integral", ...advancedMathematicsBookXII },
-        ],
-      }),
-    ],
-    key: "class-12-mathematics-integral",
-    materialCard: {
-      de: {
-        description: "Bestimme Flächeninhalte mit bestimmten Integralen.",
-        title: "Integrale",
-      },
-      en: {
-        description: "Find areas from definite integrals.",
-        title: "Integrals",
-      },
-      id: { description: "Cari luas dari integral tentu.", title: "Integral" },
-      ms: {
-        description: "Cari luas daripada kamiran tentu.",
-        title: "Kamiran",
-      },
-    },
-    order: 70,
-    translations: {
-      de: { routeSlug: "integrale", title: "Integrale" },
-      en: { routeSlug: "integral", title: "Integrals" },
-      id: { routeSlug: "integral", title: "Integral" },
-      ms: { routeSlug: "kamiran", title: "Kamiran" },
-    },
-  }),
-  unitNode({
-    children: [
-      materialNode({
-        key: "class-12-mathematics-limit-material",
-        level: "lesson",
-        materialKeys: ["lesson.mathematics.limit"],
-        order: 10,
-        outcomes: [
-          {
-            code: "Matematika Tingkat Lanjut, elemen Kalkulus (deskripsi elemen)",
-            ...merdekaLearningOutcomes,
-          },
-          {
-            code: "Bab 2 Turunan Fungsi, A.1 Limit dan Kontinuitas Fungsi",
-            ...advancedMathematicsBookXII,
-          },
-        ],
-      }),
-    ],
-    key: "class-12-mathematics-limit",
-    materialCard: {
-      de: {
-        description: "Untersuche Veränderungen mithilfe von Grenzwerten.",
-        title: "Grenzwerte",
-      },
-      en: { description: "Use limits to read change.", title: "Limits" },
-      id: {
-        description: "Gunakan limit untuk membaca perubahan.",
-        title: "Limit",
-      },
-      ms: { description: "Guna had untuk membaca perubahan.", title: "Had" },
-    },
-    order: 80,
-    translations: {
-      de: { routeSlug: "grenzwerte", title: "Grenzwerte" },
-      en: { routeSlug: "limit", title: "Limits" },
-      id: { routeSlug: "limit", title: "Limit" },
-      ms: { routeSlug: "had", title: "Had" },
-    },
-  }),
+  merdekaClass12SequenceSeriesUnit,
+  merdekaClass12CountingUnit,
 ];
