@@ -1,0 +1,261 @@
+export const metadata = {
+  title: "Indexzahlen für Form Vier",
+  description:
+    "Notizen zu KSSM Zusatzmathematik Form 4 Kapitel 10: Berechne einen Preisindex, bestimme den Preis im Basisjahr, berechne einen gewichteten zusammengesetzten Index und verkette Indizes, um das Basisjahr zu wechseln.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2026-11-17",
+  subject: "Indexzahlen",
+};
+
+## Ein Index vergleicht zwei Zeitpunkte
+
+Eine **Indexzahl** misst die Veränderung einer Größe, etwa eines Preises, gegenüber ihrem Wert im **Basisjahr**:
+
+<BlockMath math="I = \frac{Q_1}{Q_0} \cdot 100" />
+
+Dabei ist <InlineMath math="Q_0" /> der Wert im Basisjahr und <InlineMath math="Q_1" /> der Wert im betrachteten Jahr. Ein Index von <InlineMath math="100" /> bedeutet keine Veränderung, ein Index von <InlineMath math="125" /> einen Anstieg um <InlineMath math="25\,\%" /> und ein Index von <InlineMath math="90" /> einen Rückgang um <InlineMath math="10\,\%" />. Bei mehreren Gütern fasst ein **zusammengesetzter Index** die Indizes der einzelnen Güter nach ihren Gewichten zusammen.
+
+In diesen Notizen änderst du den aktuellen Preis und siehst den Index mitwandern, vergleichst die Indizes mehrerer Güter, stellst die Gewichte eines zusammengesetzten Index ein und verkettest zwei Indizes, um das Basisjahr zu wechseln. Alle Preise in diesen Notizen sind Beispielpreise aus Malaysia in Ringgit (RM) zum Üben.
+
+## Der Preisindex eines Guts
+
+Ein Sack Reis zu <InlineMath math="10\text{ kg}" /> kostet **RM26,00** im Jahr <InlineMath math="2020" /> und **RM32,50** im Jahr <InlineMath math="2024" />. Mit <InlineMath math="2020" /> als Basisjahr:
+
+<BlockMath math="I_{2024/2020} = \frac{32{,}50}{26{,}00} \cdot 100 = 125" />
+
+Der Reispreis ist in dieser Zeit um <InlineMath math="25\,\%" /> gestiegen. Ändere unten den aktuellen Preis. Der Index ändert sich linear, weil der Preis im Basisjahr fest ist.
+
+<MathVisual
+  title={<>Der Preisindex von Reis mit Basisjahr 2020</>}
+  description={
+    <>
+      Der Index <InlineMath math="I = \dfrac{Q_1}{26{,}00} \cdot 100" />. Ein Preis
+      von <InlineMath math="\text{RM}32{,}50" /> ergibt den Index{" "}
+      <InlineMath math="125" />, ein Preis von{" "}
+      <InlineMath math="\text{RM}26{,}00" /> den Index <InlineMath math="100" />.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 20, max: 40 }, y: { min: 70, max: 160 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "p", min: 20, max: 40, value: 32.5, step: 0.1, label: "p" },
+    ],
+    objects: [
+      { id: "index-line", kind: "function", appearance: "primary", formula: "x/26*100", domain: { min: 20, max: 40 } },
+      { id: "base", kind: "point", at: { x: 26, y: 100 }, appearance: "reference" },
+      { id: "now", kind: "marker", x: "p", y: "p/26*100", appearance: "warning" },
+    ],
+    readouts: [
+      { key: "index", formula: "p/26*100" },
+      { key: "change", formula: "p/26*100 - 100" },
+    ],
+  }}
+  labels={{
+    p: <>Aktueller Preis <InlineMath math="Q_1" /> in RM</>,
+    index: <>Preisindex <InlineMath math="I" /></>,
+    change: <>Preisänderung in Prozent</>,
+  }}
+/>
+
+Dieselbe Formel lässt sich umstellen, um den Preis im Basisjahr zu bestimmen. Ist der Reisindex <InlineMath math="125" /> und der Preis jetzt <InlineMath math="\text{RM}32{,}50" />, dann gilt <InlineMath math="Q_0 = \dfrac{32{,}50 \cdot 100}{125} = 26{,}00" />.
+
+## Die Indizes mehrerer Güter vergleichen
+
+Diese Tabelle enthält Beispielpreise von vier Küchengütern mit ihren Indizes und Gewichten. Die Gewichte zeigen, wie stark jedes Gut die Haushaltsausgaben prägt.
+
+| Gut | Preis 2020 (RM) | Preis 2024 (RM) | Index <InlineMath math="I" /> | Gewicht <InlineMath math="w" /> |
+| :--- | :--- | :--- | :--- | :--- |
+| Reis <InlineMath math="10\text{ kg}" /> | <InlineMath math="26{,}00" /> | <InlineMath math="32{,}50" /> | <InlineMath math="125" /> | <InlineMath math="4" /> |
+| Makrele <InlineMath math="1\text{ kg}" /> | <InlineMath math="12{,}00" /> | <InlineMath math="16{,}80" /> | <InlineMath math="140" /> | <InlineMath math="3" /> |
+| Gemüse <InlineMath math="1\text{ kg}" /> | <InlineMath math="5{,}00" /> | <InlineMath math="5{,}50" /> | <InlineMath math="110" /> | <InlineMath math="2" /> |
+| Speiseöl <InlineMath math="5\text{ kg}" /> | <InlineMath math="25{,}00" /> | <InlineMath math="30{,}00" /> | <InlineMath math="120" /> | <InlineMath math="1" /> |
+
+<Chart
+  title={<>Preisindizes von vier Gütern mit Basisjahr 2020</>}
+  bars="apart"
+  categories={["Reis", "Makrele", "Gemüse", "Speiseöl"]}
+  series={[
+    { label: "Index 2024", mark: "bar", values: [125, 140, 110, 120] },
+    { label: "Basisjahr", mark: "line", values: [100, 100, 100, 100] },
+  ]}
+  valueLabel="Preisindex"
+  valueRange={{ min: 0, max: 150 }}
+  description={
+    <>
+      Jeder Balken überragt die Linie bei <InlineMath math="100" />, alle Preise
+      sind also gestiegen. Makrele ist am stärksten gestiegen, um{" "}
+      <InlineMath math="40\,\%" />, Gemüse am wenigsten, um{" "}
+      <InlineMath math="10\,\%" />.
+    </>
+  }
+/>
+
+Ein Index hat keine Einheit. Du kannst einen Sack Reis mit einem Kilogramm Gemüse vergleichen, weil **jeder Index ein Gut mit sich selbst vergleicht**.
+
+## Der gewichtete zusammengesetzte Index
+
+Der **zusammengesetzte Index** <InlineMath math="\bar{I}" /> ist das gewichtete Mittel der Indizes aller Güter:
+
+<BlockMath math="\bar{I} = \frac{\sum I_i w_i}{\sum w_i}" />
+
+Für die vier Güter oben:
+
+<MathContainer>
+<BlockMath math="\sum I_i w_i = 125 \cdot 4 + 140 \cdot 3 + 110 \cdot 2 + 120 \cdot 1 = 1260" />
+<BlockMath math="\bar{I} = \frac{1260}{4 + 3 + 2 + 1} = 126{,}0" />
+</MathContainer>
+
+Die Gesamtkosten dieses Warenkorbs sind um <InlineMath math="26\,\%" /> gestiegen. Hat eine Familie im Jahr <InlineMath math="2020" /> <InlineMath math="\text{RM}800" /> für diese Güter ausgegeben, kostet derselbe Einkauf im Jahr <InlineMath math="2024" /> <InlineMath math="800 \cdot \dfrac{126}{100} = \text{RM}1008" />.
+
+Die Gewichte verändern den zusammengesetzten Index. Stell das Gewicht der Makrele ein, des Guts mit dem stärksten Anstieg, und beobachte, wie der zusammengesetzte Index in Richtung <InlineMath math="140" /> wandert.
+
+<MathVisual
+  title={<>Der zusammengesetzte Index in Abhängigkeit vom Gewicht der Makrele</>}
+  description={
+    <>
+      Der zusammengesetzte Index{" "}
+      <InlineMath math="\bar{I} = \dfrac{840 + 140w}{7 + w}" />, die übrigen
+      Gewichte bleiben fest. Das Gewicht <InlineMath math="w = 3" /> ergibt{" "}
+      <InlineMath math="126{,}0" />, ein großes Gewicht zieht den Index in Richtung{" "}
+      <InlineMath math="140" />.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 12 }, y: { min: 115, max: 145 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "w", min: 0, max: 12, value: 3, step: 1, label: "w" },
+    ],
+    objects: [
+      { id: "composite", kind: "function", appearance: "primary", formula: "(840 + 140*x)/(7 + x)", domain: { min: 0, max: 12 } },
+      { id: "ceiling", kind: "function", appearance: "reference", formula: "140", domain: { min: 0, max: 12 } },
+      { id: "now", kind: "marker", x: "w", y: "(840 + 140*w)/(7 + w)", appearance: "warning" },
+    ],
+    readouts: [
+      { key: "composite-index", formula: "(840 + 140*w)/(7 + w)" },
+    ],
+  }}
+  labels={{
+    w: <>Gewicht der Makrele <InlineMath math="w" /></>,
+    "composite-index": <>Zusammengesetzter Index <InlineMath math="\bar{I}" /></>,
+  }}
+/>
+
+Bei <InlineMath math="w = 0" /> zählt die Makrele nicht mit, und der zusammengesetzte Index beträgt <InlineMath math="\dfrac{840}{7} = 120" />.
+
+## Verkettete Indizes und ein neues Basisjahr
+
+Kennst du den Index von Jahr <InlineMath math="0" /> bis Jahr <InlineMath math="1" /> und von Jahr <InlineMath math="1" /> bis Jahr <InlineMath math="2" />, verbindest du beide durch **Multiplikation**:
+
+<BlockMath math="I_{2/0} = \frac{I_{2/1} \cdot I_{1/0}}{100}" />
+
+Beispielsweise ist der Preisindex eines Busfahrpreises <InlineMath math="115" /> für <InlineMath math="2022" /> mit Basis <InlineMath math="2020" /> und <InlineMath math="110" /> für <InlineMath math="2024" /> mit Basis <InlineMath math="2022" />. Dann ist <InlineMath math="I_{2024/2020} = \dfrac{110 \cdot 115}{100} = 126{,}5" />, nicht <InlineMath math="115 + 10 = 125" />. Ändere die beiden Indizes unten.
+
+<MathVisual
+  title={<>Ein verketteter Index aus zwei Zeiträumen</>}
+  description={
+    <>
+      Der Gesamtindex{" "}
+      <InlineMath math="I_{2024/2020} = \dfrac{I_{2024/2022} \cdot I_{2022/2020}}{100}" />.
+      Für <InlineMath math="115" /> und <InlineMath math="110" /> beträgt der
+      Gesamtindex <InlineMath math="126{,}5" />.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 100, max: 130 }, y: { min: 95, max: 160 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "a", min: 100, max: 130, value: 115, step: 1, label: "a" },
+      { name: "b", min: 100, max: 120, value: 110, step: 1, label: "b" },
+    ],
+    objects: [
+      { id: "chain", kind: "function", appearance: "primary", formula: "x*b/100", domain: { min: 100, max: 130 } },
+      { id: "now", kind: "marker", x: "a", y: "a*b/100", appearance: "warning" },
+    ],
+    readouts: [
+      { key: "overall", formula: "a*b/100" },
+    ],
+  }}
+  labels={{
+    a: <>Index <InlineMath math="I_{2022/2020}" /></>,
+    b: <>Index <InlineMath math="I_{2024/2022}" /></>,
+    overall: <>Gesamtindex <InlineMath math="I_{2024/2020}" /></>,
+  }}
+/>
+
+Du multiplizierst, weil der zweite Anstieg auf einen bereits gestiegenen Preis berechnet wird. Ein Anstieg um <InlineMath math="10\,\%" /> auf einen Preis, der schon um <InlineMath math="15\,\%" /> gestiegen ist, ergibt insgesamt <InlineMath math="26{,}5\,\%" />.
+
+## Indizes im Zeitverlauf
+
+Ein Index zeigt auch einen Trend von Jahr zu Jahr. Die Beispielpreise für Reis sind RM26,00, RM27,30, RM29,90, RM31,20 und RM32,50 für die Jahre <InlineMath math="2020" /> bis <InlineMath math="2024" />. Mit <InlineMath math="2020" /> als Basisjahr wird jeder Preis durch <InlineMath math="26{,}00" /> geteilt.
+
+<Chart
+  title={<>Der Preisindex von Reis von 2020 bis 2024</>}
+  categories={["2020", "2021", "2022", "2023", "2024"]}
+  series={[
+    { label: "Preisindex von Reis", mark: "line", values: [100, 105, 115, 120, 125] },
+  ]}
+  valueLabel="Preisindex"
+  valueRange={{ min: 90, max: 130 }}
+  description={
+    <>
+      Der Index steigt von <InlineMath math="100" /> auf <InlineMath math="125" />.
+      Der größte Anstieg liegt zwischen <InlineMath math="2021" /> und{" "}
+      <InlineMath math="2022" />, mit <InlineMath math="10" /> Indexpunkten.
+    </>
+  }
+/>
+
+Der Anstieg von <InlineMath math="2021" /> auf <InlineMath math="2022" /> beträgt <InlineMath math="10" /> Indexpunkte, der prozentuale Preisanstieg aber <InlineMath math="\dfrac{29{,}90 - 27{,}30}{27{,}30} \cdot 100 = 9{,}5\,\%" />. **Indexpunkte entsprechen Prozenten** nur im Vergleich mit dem Basisjahr.
+
+## Häufige Fehler bei Indexzahlen
+
+| Fehler | Warum er falsch ist | So prüfst du |
+| :--- | :--- | :--- |
+| <InlineMath math="\dfrac{Q_0}{Q_1} \cdot 100" /> berechnen. | Der Wert des Basisjahrs gehört in den Nenner. | Ein gestiegener Preis muss einen Index über <InlineMath math="100" /> ergeben. |
+| Indizes ohne Gewichte mitteln. | Ein wichtigeres Gut muss stärker wirken. | Multipliziere zuerst jeden Index mit seinem Gewicht. |
+| Verkettete Indizes addieren, etwa <InlineMath math="115 + 110" />. | Verkettete Indizes werden multipliziert und dann durch <InlineMath math="100" /> geteilt. | Der Gesamtindex muss nahe <InlineMath math="126{,}5" /> liegen, nicht bei <InlineMath math="225" />. |
+| Einen Index von <InlineMath math="126" /> als Preis von RM126 lesen. | Ein Index ist ein Verhältnis ohne Einheit. | Ein Index hat nur im Vergleich mit <InlineMath math="100" /> eine Bedeutung. |
+| Vergessen, mit <InlineMath math="100" /> zu multiplizieren. | Indizes werden auf der Basis <InlineMath math="100" /> angegeben, nicht <InlineMath math="1" />. | Das Basisjahr muss den Index <InlineMath math="100" /> ergeben. |
+
+Der dritte Fehler kommt am häufigsten vor. **Verkettete Indizes werden immer multipliziert**, weil jeder Anstieg auf einen bereits veränderten Wert berechnet wird.
+
+## Übungen zu Indexzahlen
+
+Schreib vor dem Rechnen das Basisjahr jedes Index auf, damit **Zähler und Nenner nicht vertauscht werden**.
+
+1. Ein Buch kostet RM40,00 im Jahr <InlineMath math="2021" /> und RM46,00 im Jahr <InlineMath math="2024" />. Berechne den Preisindex des Buchs für <InlineMath math="2024" /> mit Basis <InlineMath math="2021" />.
+
+2. Der Preisindex eines Guts für <InlineMath math="2024" /> mit Basis <InlineMath math="2020" /> ist <InlineMath math="130" />. Sein Preis im Jahr <InlineMath math="2024" /> beträgt RM19,50. Bestimme seinen Preis im Jahr <InlineMath math="2020" />.
+
+3. Drei Güter haben die Indizes <InlineMath math="120" />, <InlineMath math="105" /> und <InlineMath math="140" /> mit den Gewichten <InlineMath math="5" />, <InlineMath math="3" /> und <InlineMath math="2" />. Berechne den zusammengesetzten Index.
+
+4. Gegeben sind <InlineMath math="I_{2021/2019} = 125" /> und <InlineMath math="I_{2023/2021} = 108" />. Berechne <InlineMath math="I_{2023/2019}" />.
+
+### Lösungen
+
+**Lösung 1**: Das Basisjahr ist <InlineMath math="2021" />, der Preis von RM40,00 steht also im Nenner:
+
+<BlockMath math="I = \frac{46{,}00}{40{,}00} \cdot 100 = 115" />
+
+Der Preis des Buchs ist um <InlineMath math="15\,\%" /> gestiegen.
+
+**Lösung 2**: Stell die Indexformel nach <InlineMath math="Q_0" /> um:
+
+<BlockMath math="Q_0 = \frac{Q_1 \cdot 100}{I} = \frac{19{,}50 \cdot 100}{130} = 15{,}00" />
+
+Sein Preis im Jahr <InlineMath math="2020" /> betrug RM15,00. **Probe**: <InlineMath math="\dfrac{19{,}50}{15{,}00} \cdot 100 = 130" />.
+
+**Lösung 3**: Nutze das gewichtete Mittel:
+
+<BlockMath math="\bar{I} = \frac{120 \cdot 5 + 105 \cdot 3 + 140 \cdot 2}{5 + 3 + 2} = \frac{600 + 315 + 280}{10} = 119{,}5" />
+
+**Lösung 4**: Multipliziere die beiden Indizes und teile durch <InlineMath math="100" />:
+
+<BlockMath math="I_{2023/2019} = \frac{108 \cdot 125}{100} = 135" />
+
+Der Preis ist von <InlineMath math="2019" /> bis <InlineMath math="2023" /> um <InlineMath math="35\,\%" /> gestiegen.
