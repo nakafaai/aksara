@@ -1,4 +1,5 @@
 import { assert, describe, it } from "@effect/vitest";
+import type { AppLocaleCode } from "@nakafa/aksara-contracts/locale";
 import { HashSet } from "effect";
 import type { CorpusPage } from "#nakafa-content/heading/identity";
 import { parseLessonMdx } from "#nakafa-content/mdx/parse";
@@ -10,7 +11,7 @@ function page(
   source: string,
   options: {
     readonly kind?: "article" | "lesson";
-    readonly locale?: "en" | "id";
+    readonly locale?: AppLocaleCode;
   } = {}
 ): CorpusPage {
   return {
