@@ -1,49 +1,46 @@
-# Massa sama bukan berarti mol sama
+# Seberapa panjang rantainya
 
-Kedua molekul punya enam atom karbon, tetapi heks-1-ena kurang dua atom hidrogen, jadi lebih ringan, <InlineMath math="84" /> dibanding <InlineMath math="86" />. **Satu gram heks-1-ena berisi lebih banyak molekul, jadi lebih banyak karbon**. Karbon ekstra itu muncul dua kali: sebagai jelaga saat udara kurang, dan sebagai karbon dioksida yang lebih banyak saat oksigen berlebih.
+Satu molekul <InlineMath math="\text{C}_n\text{H}_{2n+1}\text{OH}" /> terbakar menjadi <InlineMath math="n" /> molekul karbon dioksida, dan massa molekul relatifnya <InlineMath math="14n+18" />. Gasnya <InlineMath math="0{,}0800\text{ mol}" />, jadi **satu persamaan dalam <InlineMath math="n" /> sudah memastikan alkoholnya**.
 
-Putar kedua rantai, lalu bandingkan produk yang dihitung diagram untuk satu gram masing-masing.
+<BlockMath math="\begin{aligned}
+n\times\tfrac{1{,}48}{14n+18}&=\tfrac{1{,}92}{24}=0{,}0800\ \Rightarrow\ 0{,}36n=1{,}44,\quad n=4,\quad \text{C}_4\text{H}_9\text{OH},\ M_r=74
+\end{aligned}" />
 
-<MoleculeShapeLab
-  title={<>Heksana dan heks-1-ena</>}
-  description={<>Kedua rantai punya enam atom karbon. Heks-1-ena punya ikatan rangkap di ujung rantai dan dua atom hidrogen lebih sedikit.</>}
-  molecules={[
-    { id: "hexane", name: "heksana" },
-    { id: "hexene", name: "heks-1-ena" },
-  ]}
-  labels={{
-    atoms: <>Atom</>,
-    choose: "Pilih molekul",
-    fill: <>Model ruang terisi</>,
-    formula: <>Rumus</>,
-    mass: <>Massa molekul relatif</>,
-    shape: <>Sudut ikatan</>,
-    view: "Heksana dan heks-1-ena",
-  }}
-/>
+Alkoholnya butanol, dan sampelnya <InlineMath math="0{,}0200\text{ mol}" />. Keempat pilihan sudah menyebut <InlineMath math="\text{C}_4\text{H}_9\text{OH}" />, jadi nilainya ditentukan di dua langkah berikutnya.
 
-<Chart
-  title={<>Produk dari <InlineMath math="1{,}00\text{ g}" /> tiap bahan bakar</>}
-  description={<>Heks-1-ena menghasilkan <InlineMath math="3{,}14\text{ g}" /> karbon dioksida dibanding <InlineMath math="3{,}07\text{ g}" /> dari heksana, dan <InlineMath math="1{,}29\text{ g}" /> air dibanding <InlineMath math="1{,}47\text{ g}" />.</>}
-  bars="apart"
-  categories={["Heksana", "Heks-1-ena"]}
-  series={[
-    { label: "Karbon dioksida", mark: "bar", values: [3.07, 3.14] },
-    { label: "Air", mark: "bar", values: [1.47, 1.29] },
-  ]}
-  valueLabel="Massa (g)"
+# Dari mana atom oksigen datang
+
+Pembakaran memberi <InlineMath math="0{,}0800\text{ mol}" /> karbon dioksida dan <InlineMath math="0{,}100\text{ mol}" /> air, yang bersama-sama memuat <InlineMath math="0{,}260\text{ mol}" /> atom oksigen. **Tiap molekul alkohol datang dengan satu atom oksigennya sendiri**, jadi gasnya cukup memasok <InlineMath math="0{,}240\text{ mol}" /> atom sisanya.
+
+<Mermaid
+  title={<>Menyeimbangkan atom oksigen pada pembakaran</>}
+  description={<>Produknya butuh <InlineMath math="0{,}260\text{ mol}" /> atom oksigen, dan alkohol itu sendiri membawa <InlineMath math="0{,}0200\text{ mol}" /> di antaranya.</>}
+  chart={`
+    flowchart LR
+      N0["0,0200 mol C₄H₉OH membawa 0,0200 mol O"]
+      N1["0,120 mol O₂ membawa 0,240 mol O"]
+      N2["0,260 mol atom O"]
+      N3["0,0800 mol CO₂ memuat 0,160 mol O"]
+      N4["0,100 mol H₂O memuat 0,100 mol O"]
+      N0 --> N2
+      N1 --> N2
+      N2 --> N3
+      N2 --> N4
+  `}
 />
 
 <BlockMath math="\begin{aligned}
-\text{C}_6\text{H}_{14}:\ n&=\frac{1{,}00}{86}=0{,}0116\text{ mol},\ m(\text{CO}_2)=6\times0{,}0116\times44=3{,}07\text{ g}\\
-\text{C}_6\text{H}_{12}:\ n&=\frac{1{,}00}{84}=0{,}0119\text{ mol},\ m(\text{CO}_2)=6\times0{,}0119\times44=3{,}14\text{ g}\\
-\%{.}\text{C}&=\frac{72}{86}\times100\%=83{,}7\%\ \text{dibanding}\ \frac{72}{84}\times100\%=85{,}7\%
+n(\text{O}_2)&=\tfrac{2\times0{,}0800+0{,}100-0{,}0200}{2}=0{,}120\text{ mol},\quad V(\text{O}_2)=0{,}120\times24=2{,}88\text{ dm}^3
 \end{aligned}" />
 
-Jadi heks-1-ena menghasilkan lebih banyak karbon dioksida karena lebih banyak massanya berupa karbon.
+Membebankan seluruh <InlineMath math="0{,}260\text{ mol}" /> atom ke gas memberi <InlineMath math="3{,}12\text{ dm}^3" />, yaitu oksigen yang dibutuhkan butana, yang jumlah karbon dan hidrogennya sama tetapi tidak membawa oksigen.
 
-# Kenapa pilihan lain salah
+# Dua hidrogen keluar, satu oksigen masuk
 
-- Ikatan rangkap tidak menyimpan hidrogen ekstra. Heks-1-ena punya lebih sedikit atom hidrogen, jadi air yang terbentuk lebih sedikit, <InlineMath math="1{,}29\text{ g}" /> dibanding <InlineMath math="1{,}47\text{ g}" />.
-- Enam atom karbon per molekul baru memberi karbon dioksida yang sama kalau jumlah molnya sama. **Massa yang sama dari kedua bahan bakar berisi jumlah molekul yang berbeda**.
-- Atom ekstra heksana adalah hidrogen, yang menjadi air, bukan karbon dioksida. Per gram, heksana membawa lebih sedikit karbon.
+Kalium dikromat(VI) dalam asam mengubah ujung <InlineMath math="\text{CH}_2\text{OH}" /> menjadi <InlineMath math="\text{COOH}" />: dua atom hidrogen keluar dalam satu molekul air dan satu atom oksigen masuk. **Jadi asam butanoat punya <InlineMath math="M_r=88" />, lebih besar <InlineMath math="14" /> dari alkoholnya**, dan tiap molekul alkohol menjadi satu molekul asam.
+
+<BlockMath math="\begin{aligned}
+m(\text{C}_3\text{H}_7\text{COOH})&=0{,}0200\times88=1{,}76\text{ g}
+\end{aligned}" />
+
+Menulis <InlineMath math="1{,}48\text{ g}" /> untuk asamnya menganggap molekulnya tidak berubah. Menambahkan dua atom oksigen tetapi menahan airnya di dalam produk memberi <InlineMath math="M_r=106" /> dan <InlineMath math="2{,}12\text{ g}" />.

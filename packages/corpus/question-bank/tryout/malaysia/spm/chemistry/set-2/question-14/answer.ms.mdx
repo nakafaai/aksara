@@ -1,26 +1,42 @@
-# Tukar semula pH kepada kepekatan ion hidrogen
+# Ion kuprum habis dahulu dalam bikar
 
-pH ialah <InlineMath math="-\log[\text{H}^+]" />, jadi <InlineMath math="[\text{H}^+] = 10^{-\text{pH}}" />. Setiap molekul asid etanoik yang mengion memberi **satu ion hidrogen**, jadi kepekatan ion hidrogen ialah kepekatan molekul yang mengion.
+Bikar itu menerima <InlineMath math="0.0200\text{ mol}" /> kuprum(II) sulfat dan <InlineMath math="0.0240\text{ mol}" /> natrium karbonat, dan persamaan memadankan kedua-duanya satu lawan satu. **Ion kuprum yang habis dahulu**, jadi <InlineMath math="0.0200\text{ mol}" /> kuprum(II) karbonat, <InlineMath math="M_r=123.5" />, termendak sebanyak <InlineMath math="2.47\text{ g}" />, dan <InlineMath math="0.00400\text{ mol}" /> karbonat kekal terlarut.
 
-<Chart
-  title={<>pH Dua Asid pada Dua Kepekatan</>}
-  bars="apart"
-  categories={["0.100 mol dm⁻³", "0.010 mol dm⁻³"]}
-  series={[
-    { label: "Asid hidroklorik", mark: "bar", values: [1.0, 2.0] },
-    { label: "Asid etanoik", mark: "bar", values: [2.87, 3.37] },
-  ]}
-  valueLabel="pH"
-  description={<>Nilai pH. Asid hidroklorik: <InlineMath math="1.00" /> pada <InlineMath math="0.100\text{ mol dm}^{-3}" /> dan <InlineMath math="2.00" /> pada <InlineMath math="0.010\text{ mol dm}^{-3}" />. Asid etanoik: <InlineMath math="2.87" /> dan <InlineMath math="3.37" />.</>}
+Mendakan <InlineMath math="2.96\text{ g}" /> memerlukan <InlineMath math="0.0240\text{ mol}" /> kuprum, lebih banyak daripada yang dibekalkan kuprum(II) sulfat. Kekeliruan yang sama memberi hasil turasan tanpa karbonat, <InlineMath math="0\text{ cm}^3" /> gas, dan hasil <InlineMath math="70.8\%" /> yang diukur terhadap hablur yang mustahil terbentuk.
+
+<Mermaid
+  title={<>Karbonat terbahagi antara kertas turas dan hasil turasan</>}
+  description={<>Ion kuprum membawa <InlineMath math="20.0\text{ mmol}" /> karbonat ke dalam mendakan. Bakinya kekal dalam hasil turasan dan hanya karbonat itu yang pernah bertemu asid.</>}
+  chart={`
+    flowchart TD
+      N0["20.0 mmol Cu²⁺"]
+      N1["24.0 mmol CO₃²⁻"]
+      N2["20.0 mmol CuCO₃: 2.47 g"]
+      N3["4.00 mmol CO₃²⁻ dalam hasil turasan"]
+      N4["4.00 mmol CO₂: 96.0 cm³"]
+      N5["20.0 mmol CuO"]
+      N6["Paling banyak 20.0 mmol CuSO₄·5H₂O: 4.99 g"]
+      N0 --> N2
+      N1 --> N2
+      N1 --> N3
+      N3 --> N4
+      N2 --> N5
+      N5 --> N6
+  `}
 />
 
-- <InlineMath math="[\text{H}^+] = 10^{-2.87} = 0.00135\text{ mol dm}^{-3}" />.
-- Peratus yang mengion: <InlineMath math="\dfrac{0.00135}{0.100} \times 100\% = 1.35\%" />.
+# Hanya karbonat yang berbaki membuak
 
-Asid hidroklorik pada kepekatan yang sama mempunyai pH <InlineMath math="1.00" />, jadi <InlineMath math="[\text{H}^+] = 0.100\text{ mol dm}^{-3}" />: ia mengion lengkap. Itulah perbezaan antara asid kuat dan asid lemah.
+Mendakan tertinggal di atas kertas turas, jadi asid hanya bertemu <InlineMath math="0.00400\text{ mol}" /> dalam hasil turasan. **Satu ion karbonat memberi satu karbon dioksida**, jadi gasnya <InlineMath math="96.0\text{ cm}^3" />. Pekali dua itu milik asid, dan membahagi dengannya menghasilkan pilihan <InlineMath math="48.0\text{ cm}^3" />. Menghantar kesemua <InlineMath math="0.0240\text{ mol}" /> karbonat kepada asid memberi <InlineMath math="576\text{ cm}^3" />, walhal kebanyakan karbonat itu sudah meninggalkan larutan bersama mendakan.
 
-# Kenapa pilihan lain salah
+# Menjejak kuprum hingga ke hablur
 
-- <InlineMath math="2.87\%" /> **membaca nilai pH sebagai peratus**.
-- <InlineMath math="13.5\%" /> membahagi dengan <InlineMath math="0.0100" />, bukan <InlineMath math="0.100" />, menggunakan kepekatan larutan yang lebih cair.
-- <InlineMath math="0.135\%" /> tersilap faktor <InlineMath math="10" />, membahagi dengan <InlineMath math="1.00" />, bukan <InlineMath math="0.100" />.
+Pemanasan, pelarutan dan penghabluran tidak menghilangkan satu atom kuprum pun dalam pengiraan, jadi **setiap mol kuprum(II) karbonat boleh menjadi satu mol <InlineMath math="\text{CuSO}_4\cdot5\text{H}_2\text{O}" />**, <InlineMath math="M_r=249.5" />. Hadnya <InlineMath math="4.99\text{ g}" />, dan <InlineMath math="4.24\text{ g}" /> yang dikumpul ialah <InlineMath math="85.0\%" /> daripadanya.
+
+<BlockMath math="\begin{aligned}
+n(\text{Cu}^{2+})&=0.0200<n(\text{CO}_3^{2-})=0.0240\ \Rightarrow\ m(\text{CuCO}_3)=0.0200\times123.5=2.47\text{ g}\\
+V(\text{CO}_2)&=(0.0240-0.0200)\times24\,000=96.0\text{ cm}^3\\
+m_{\max}&=0.0200\times249.5=4.99\text{ g},\quad \tfrac{4.24}{4.99}\times100=85.0\%
+\end{aligned}" />
+
+Lima molekul air itu penting di sini. Tanpa air dalam jisim formula, hadnya jatuh kepada <InlineMath math="3.19\text{ g}" />, lebih rendah daripada yang benar-benar dikumpul murid itu, tanda jelas ada yang tidak kena.

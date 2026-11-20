@@ -1,49 +1,46 @@
-# Gleiche Masse heißt nicht gleiche Stoffmenge
+# Wie lang ist die Kette
 
-Beide Moleküle haben sechs Kohlenstoffatome, doch Hex-1-en hat zwei Wasserstoffatome weniger und ist leichter, <InlineMath math="84" /> gegen <InlineMath math="86" />. **Ein Gramm Hex-1-en enthält mehr Moleküle und damit mehr Kohlenstoff**. Dieser zusätzliche Kohlenstoff zeigt sich zweimal: als Ruß, wenn Luft fehlt, und als mehr Kohlenstoffdioxid, wenn reichlich Sauerstoff da ist.
+Ein Molekül <InlineMath math="\text{C}_n\text{H}_{2n+1}\text{OH}" /> verbrennt zu <InlineMath math="n" /> Molekülen Kohlenstoffdioxid, und seine relative Molekülmasse ist <InlineMath math="14n+18" />. Das Gas sind <InlineMath math="0{,}0800\text{ mol}" />, also **legt eine einzige Gleichung in <InlineMath math="n" /> den Alkohol fest**.
 
-Dreh die beiden Ketten und vergleich dann die Produkte, die das Diagramm für je ein Gramm ausrechnet.
+<BlockMath math="\begin{aligned}
+n\times\tfrac{1{,}48}{14n+18}&=\tfrac{1{,}92}{24}=0{,}0800\ \Rightarrow\ 0{,}36n=1{,}44,\quad n=4,\quad \text{C}_4\text{H}_9\text{OH},\ M_r=74
+\end{aligned}" />
 
-<MoleculeShapeLab
-  title={<>Hexan und Hex-1-en</>}
-  description={<>Beide Ketten haben sechs Kohlenstoffatome. Hex-1-en hat eine Doppelbindung am Kettenende und zwei Wasserstoffatome weniger.</>}
-  molecules={[
-    { id: "hexane", name: "Hexan" },
-    { id: "hexene", name: "Hex-1-en" },
-  ]}
-  labels={{
-    atoms: <>Atome</>,
-    choose: "Molekül wählen",
-    fill: <>Kalottenmodell</>,
-    formula: <>Formel</>,
-    mass: <>Relative Molekülmasse</>,
-    shape: <>Bindungswinkel</>,
-    view: "Hexan und Hex-1-en",
-  }}
-/>
+Der Alkohol ist Butanol, und die Probe sind <InlineMath math="0{,}0200\text{ mol}" />. Alle vier Antworten nennen schon <InlineMath math="\text{C}_4\text{H}_9\text{OH}" />, also entscheiden die nächsten beiden Schritte.
 
-<Chart
-  title={<>Produkte aus <InlineMath math="1{,}00\text{ g}" /> jedes Brennstoffs</>}
-  description={<>Hex-1-en liefert <InlineMath math="3{,}14\text{ g}" /> Kohlenstoffdioxid gegen <InlineMath math="3{,}07\text{ g}" /> aus Hexan, und <InlineMath math="1{,}29\text{ g}" /> Wasser gegen <InlineMath math="1{,}47\text{ g}" />.</>}
-  bars="apart"
-  categories={["Hexan", "Hex-1-en"]}
-  series={[
-    { label: "Kohlenstoffdioxid", mark: "bar", values: [3.07, 3.14] },
-    { label: "Wasser", mark: "bar", values: [1.47, 1.29] },
-  ]}
-  valueLabel="Masse (g)"
+# Woher die Sauerstoffatome kommen
+
+Die Verbrennung liefert <InlineMath math="0{,}0800\text{ mol}" /> Kohlenstoffdioxid und <InlineMath math="0{,}100\text{ mol}" /> Wasser, die zusammen <InlineMath math="0{,}260\text{ mol}" /> Sauerstoffatome enthalten. **Jedes Alkoholmolekül bringt ein eigenes Sauerstoffatom mit**, also muss das Gas nur die übrigen <InlineMath math="0{,}240\text{ mol}" /> Atome liefern.
+
+<Mermaid
+  title={<>Die Sauerstoffatome der Verbrennung bilanzieren</>}
+  description={<>Die Produkte brauchen <InlineMath math="0{,}260\text{ mol}" /> Sauerstoffatome, und der Alkohol bringt <InlineMath math="0{,}0200\text{ mol}" /> davon selbst mit.</>}
+  chart={`
+    flowchart LR
+      N0["0,0200 mol C₄H₉OH bringt 0,0200 mol O"]
+      N1["0,120 mol O₂ bringt 0,240 mol O"]
+      N2["0,260 mol O-Atome"]
+      N3["0,0800 mol CO₂ enthält 0,160 mol O"]
+      N4["0,100 mol H₂O enthält 0,100 mol O"]
+      N0 --> N2
+      N1 --> N2
+      N2 --> N3
+      N2 --> N4
+  `}
 />
 
 <BlockMath math="\begin{aligned}
-\text{C}_6\text{H}_{14}:\ n&=\frac{1{,}00}{86}=0{,}0116\text{ mol},\ m(\text{CO}_2)=6\times0{,}0116\times44=3{,}07\text{ g}\\
-\text{C}_6\text{H}_{12}:\ n&=\frac{1{,}00}{84}=0{,}0119\text{ mol},\ m(\text{CO}_2)=6\times0{,}0119\times44=3{,}14\text{ g}\\
-\%{.}\text{C}&=\frac{72}{86}\times100\%=83{,}7\%\ \text{gegen}\ \frac{72}{84}\times100\%=85{,}7\%
+n(\text{O}_2)&=\tfrac{2\times0{,}0800+0{,}100-0{,}0200}{2}=0{,}120\text{ mol},\quad V(\text{O}_2)=0{,}120\times24=2{,}88\text{ dm}^3
 \end{aligned}" />
 
-Hex-1-en liefert also mehr Kohlenstoffdioxid, weil ein größerer Teil seiner Masse Kohlenstoff ist.
+Wer alle <InlineMath math="0{,}260\text{ mol}" /> Atome dem Gas anrechnet, kommt auf <InlineMath math="3{,}12\text{ dm}^3" />, den Sauerstoff, den Butan mit gleich vielen Kohlenstoff- und Wasserstoffatomen, aber ohne eigenen Sauerstoff, bräuchte.
 
-# Warum die anderen Antworten falsch sind
+# Zwei Wasserstoff raus, ein Sauerstoff rein
 
-- Die Doppelbindung hält keinen zusätzlichen Wasserstoff. Hex-1-en hat weniger Wasserstoffatome und bildet daher weniger Wasser, <InlineMath math="1{,}29\text{ g}" /> gegen <InlineMath math="1{,}47\text{ g}" />.
-- Sechs Kohlenstoffatome pro Molekül ergeben nur bei gleicher Stoffmenge gleich viel Kohlenstoffdioxid. **Gleiche Massen der beiden Brennstoffe enthalten unterschiedlich viele Moleküle**.
-- Die zusätzlichen Atome von Hexan sind Wasserstoff, der Wasser bildet, kein Kohlenstoffdioxid. Pro Gramm trägt Hexan weniger Kohlenstoff.
+Angesäuertes Dichromat(VI) macht aus dem <InlineMath math="\text{CH}_2\text{OH}" />-Ende ein <InlineMath math="\text{COOH}" />: Zwei Wasserstoffatome gehen als Wasser, ein Sauerstoffatom kommt dazu. **Butansäure hat daher <InlineMath math="M_r=88" />, also <InlineMath math="14" /> mehr als der Alkohol**, und jedes Alkoholmolekül wird zu einem Säuremolekül.
+
+<BlockMath math="\begin{aligned}
+m(\text{C}_3\text{H}_7\text{COOH})&=0{,}0200\times88=1{,}76\text{ g}
+\end{aligned}" />
+
+Wer <InlineMath math="1{,}48\text{ g}" /> für die Säure schreibt, tut so, als hätte sich das Molekül nicht verändert. Zwei Sauerstoffatome dazuzählen, das Wasser aber im Produkt lassen, ergibt <InlineMath math="M_r=106" /> und <InlineMath math="2{,}12\text{ g}" />.

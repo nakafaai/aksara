@@ -1,19 +1,31 @@
-# Work back from the product's carbon skeleton
+# Bromine in, bromine out
 
-Hydrogen adds across the double bond without moving any carbon atom, so P has the same skeleton as 2-methylbutane: a chain of four carbon atoms with a methyl branch on the second one. **Every distinct place for the double bond on that skeleton gives one possible P**.
+The bromine water starts with <InlineMath math="0.0750\text{ mol}" /> of bromine. Whatever the alkene leaves goes on to the iodide, and <InlineMath math="6.35\text{ g}" /> of iodine is <InlineMath math="0.0250\text{ mol}" /> at <InlineMath math="M_r=254" />, so that much bromine was spare. **The iodine measures the leftover, not the reaction**, which means the alkene took <InlineMath math="0.0500\text{ mol}" />. Plugging the spare <InlineMath math="0.0250\text{ mol}" /> into the formula instead makes the alkene twice as heavy, <InlineMath math="\text{C}_8\text{H}_{16}" />.
 
-The skeleton has four carbon-carbon bonds: from the branched carbon to the near end of the chain, from the branched carbon along the chain, at the far end of the chain, and from the branched carbon to its methyl group. The last one gives the same molecule as the first, because both join the branched carbon to an end carbon atom.
+# Pinning down n
 
-<Mermaid
-  title={<>Three alkenes, one product</>}
-  description={<>2-methylbut-1-ene, 2-methylbut-2-ene and 3-methylbut-1-ene all add hydrogen to give 2-methylbutane. The straight-chain pentenes give pentane instead.</>}
-  chart={"flowchart LR\n  A[\"2-methylbut-1-ene CH2=C(CH3)CH2CH3\"] --> H[\"add H2 over Ni\"]\n  B[\"2-methylbut-2-ene (CH3)2C=CHCH3\"] --> H\n  C[\"3-methylbut-1-ene (CH3)2CHCH=CH2\"] --> H\n  H --> P[\"2-methylbutane\"]\n  D[\"pent-1-ene or pent-2-ene\"] --> Q[\"pentane, not allowed\"]"}
+One bromine molecule per double bond means <InlineMath math="0.0500\text{ mol}" /> of alkene in <InlineMath math="2.80\text{ g}" />, so <InlineMath math="M_r=56" />. Every <InlineMath math="\text{CH}_2" /> unit adds <InlineMath math="14" />, so **<InlineMath math="14n=56" /> gives <InlineMath math="n=4" />**, a butene, <InlineMath math="\text{C}_4\text{H}_8" />.
+
+<Chart
+  title={<>Bromine a fixed mass of alkene can take</>}
+  description={<>Each point is <InlineMath math="2.80\text{ g}" /> of a different alkene <InlineMath math="\text{C}_n\text{H}_{2n}" /> with one double bond. The flat line is the bromine this alkene actually used.</>}
+  categories={["n = 2", "n = 3", "n = 4", "n = 5", "n = 6", "n = 7", "n = 8"]}
+  series={[
+    { label: "Bromine needed", mark: "line", values: [100.0, 66.7, 50.0, 40.0, 33.3, 28.6, 25.0] },
+    { label: "Bromine used", mark: "line", values: [50.0, 50.0, 50.0, 50.0, 50.0, 50.0, 50.0] },
+  ]}
+  valueLabel="Bromine (mmol)"
 />
 
-So P can be any of <InlineMath math="3" /> alkenes.
+Small alkenes pack more molecules into each gram, so they need more bromine. Only one member of the series lands on the measured line.
 
-# Why the other options are wrong
+# What the alkene turns into
 
-- <InlineMath math="2" /> leaves out 3-methylbut-1-ene, whose double bond sits at the far end of the chain, away from the branch.
-- <InlineMath math="5" /> counts every alkene with the formula <InlineMath math="\text{C}_5\text{H}_{10}" />, but pent-1-ene and pent-2-ene give pentane. **The product fixes the skeleton before you count**.
-- <InlineMath math="4" /> counts the double bond between the branched carbon and its methyl group as a new isomer, but that molecule is 2-methylbut-1-ene again, just drawn with the branch turned.
+Both bromine atoms stay on the product, <InlineMath math="\text{C}_4\text{H}_8\text{Br}_2" /> with <InlineMath math="M_r=216" />, so <InlineMath math="0.0500\text{ mol}" /> of it weighs <InlineMath math="10.8\text{ g}" />. **That is just the alkene plus the bromine it took**, <InlineMath math="2.80\text{ g}" /> and <InlineMath math="8.00\text{ g}" />. Adding a single bromine atom per molecule stops at <InlineMath math="6.80\text{ g}" />.
+
+On burning, each molecule sends its four carbon atoms into four carbon dioxide molecules, so <InlineMath math="0.200\text{ mol}" /> or <InlineMath math="4.80\text{ dm}^3" />. One carbon dioxide per molecule shrinks that to <InlineMath math="1.20\text{ dm}^3" />.
+
+<BlockMath math="\begin{aligned}
+n(\text{Br}_2)&=0.150\times0.500-\tfrac{6.35}{254}=0.0500\text{ mol}\ \Rightarrow\ M_r=\tfrac{2.80}{0.0500}=56=14n,\quad n=4\\
+m(\text{C}_4\text{H}_8\text{Br}_2)&=0.0500\times216=10.8\text{ g},\quad V(\text{CO}_2)=4\times0.0500\times24=4.80\text{ dm}^3
+\end{aligned}" />

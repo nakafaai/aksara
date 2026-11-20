@@ -1,28 +1,47 @@
-# Ausbeute und Atomökonomie messen zwei verschiedene Verluste
+# Der ganze Schwefel verbrennt
 
-Die Ausbeute sagt dir, wie viel des möglichen Ethanols die Charge wirklich geliefert hat, also bestimmt sie, wie viel Glucose du brauchst. Die Atomökonomie folgt allein aus der Gleichung. **Selbst bei perfekter Ausbeute trägt das Kohlenstoffdioxid einen Teil jedes Glucosemoleküls davon**.
+Der Schwefel entspricht <InlineMath math="3{,}20\div32=0{,}100\text{ mol}" />, und die Verbrennung ist vollständig, also entstehen <InlineMath math="0{,}100\text{ mol}" /> Schwefeldioxid, <InlineMath math="2{,}40\text{ dm}^3" />. **Die <InlineMath math="90{,}0\%" /> gehören zum Konverter, nicht zum Brenner**. Hier angewendet schrumpft das Gas auf <InlineMath math="2{,}16\text{ dm}^3" />.
 
-<BlockMath math="\begin{aligned}
-n(\text{C}_2\text{H}_5\text{OH})&=\frac{46{.}000}{46}=1000\text{ mol}\ \Rightarrow\ n(\text{C}_6\text{H}_{12}\text{O}_6)=500\text{ mol}\\
-m(\text{Glucose})&=\frac{500\times180}{0{,}80}=112{.}500\text{ g}=112{,}5\text{ kg}\\
-\text{Atomökonomie}&=\frac{2(46)}{180}\times100\%=\frac{92}{180}\times100\%=51{,}1\%
-\end{aligned}" />
+# Der Konverter lässt etwas Dioxid durch
 
-<Chart
-  title={<>Wohin die Masse von einem Mol Glucose geht</>}
-  description={<>Ein Mol Glucose, <InlineMath math="180\text{ g}" />, wird zu <InlineMath math="92\text{ g}" /> Ethanol und <InlineMath math="88\text{ g}" /> Kohlenstoffdioxid. Nur das Ethanol ist das gewünschte Produkt.</>}
-  bars="apart"
-  categories={["Glucose", "Ethanol", "Kohlenstoffdioxid"]}
-  series={[
-    { label: "Masse", mark: "bar", values: [180, 92, 88] },
+Nur <InlineMath math="0{,}0900\text{ mol}" /> Schwefeltrioxid verlassen den Katalysator, und das Labor unten stellt das gewinkelte Dioxid neben das flache Trioxid. **Jedes Trioxidmolekül wird zu einem Oleummolekül**, <InlineMath math="M_r=178" />, also entstehen <InlineMath math="16{,}0\text{ g}" />. Oleum aus den vollen <InlineMath math="0{,}100\text{ mol}" /> ergäbe <InlineMath math="17{,}8\text{ g}" />, als arbeitete der Konverter perfekt.
+
+<MoleculeShapeLab
+  title={<>Gewinkeltes Dioxid, flaches Trioxid</>}
+  description={<>Der Konverter macht aus dem gewinkelten <InlineMath math="\text{SO}_2" /> das flache <InlineMath math="\text{SO}_3" />. Die <InlineMath math="10{,}0\%" />, die gewinkelt bleiben, ziehen durch den Absorber und werden nie zu Oleum.</>}
+  molecules={[
+    { id: "sulfur-dioxide", name: "Schwefeldioxid" },
+    { id: "sulfur-trioxide", name: "Schwefeltrioxid" },
   ]}
-  valueLabel="Masse aus einem Mol Glucose (g)"
+  labels={{
+    atoms: <>Atome</>,
+    choose: "Molekül wählen",
+    fill: <>Kalottenmodell</>,
+    formula: <>Formel</>,
+    mass: <>Relative Molekülmasse</>,
+    shape: <>Bindungswinkel</>,
+    view: "Schwefeldioxid und Schwefeltrioxid",
+  }}
 />
 
-Die Charge verbraucht also <InlineMath math="112{,}5\text{ kg}" /> Glucose, und die Atomökonomie beträgt <InlineMath math="51{,}1\%" />, egal wie hoch die Ausbeute ist.
+# Verdünnen verdoppelt die Säure
 
-# Warum die anderen Antworten falsch sind
+Wasser spaltet jedes Oleum in **zwei Schwefelsäuremoleküle**. Eines trägt Schwefel aus dem Brenner, das andere den Schwefel der Säure, die das Trioxid aufgenommen hat, und das Diagramm verfolgt beide. Es entstehen also <InlineMath math="0{,}180\text{ mol}" /> Schwefelsäure, <InlineMath math="17{,}6\text{ g}" />. Eine Säure pro Oleum ergibt <InlineMath math="8{,}82\text{ g}" />, und <InlineMath math="19{,}6\text{ g}" /> verdoppelt die vollen <InlineMath math="0{,}100\text{ mol}" /> ohne den Verlust im Konverter.
 
-- <InlineMath math="90\text{ kg}" /> ist die Glucose für volle Ausbeute. Bei <InlineMath math="80\%" /> braucht die Fabrik mehr, <InlineMath math="90\div0{,}80" />.
-- <InlineMath math="225\text{ kg}" /> rechnet mit einer Glucose pro Ethanol und übersieht die <InlineMath math="2" /> vor <InlineMath math="\text{C}_2\text{H}_5\text{OH}" />. Eine Glucose liefert zwei Ethanolmoleküle.
-- <InlineMath math="100\%" /> zählt das Kohlenstoffdioxid als gewünschtes Produkt. **Nur das Ethanol zählt**, also geht fast die Hälfte der Masse schon laut Gleichung verloren.
+<Chart
+  title={<>Herkunft der Schwefelatome in der Säure</>}
+  description={<>Bis zum Oleum stammt aller Schwefel aus dem verbrannten Schwefel. Die absorbierende Säure bringt noch einmal so viele Schwefelatome mit, also endet die Verdünnung mit der doppelten Trioxidmenge.</>}
+  bars="apart"
+  categories={["SO₂", "SO₃", "H₂S₂O₇", "H₂SO₄ nach Verdünnung"]}
+  series={[
+    { label: "Aus dem verbrannten Schwefel", mark: "bar", values: [100, 90, 90, 90] },
+    { label: "Aus der absorbierenden Säure", mark: "bar", values: [0, 0, 90, 90] },
+  ]}
+  valueLabel="mmol"
+/>
+
+<BlockMath math="\begin{aligned}
+n(\text{SO}_2)&=\tfrac{3{,}20}{32}=0{,}100\text{ mol},\quad V=0{,}100\times24=2{,}40\text{ dm}^3\\
+n(\text{SO}_3)&=0{,}900\times0{,}100=0{,}0900\ \Rightarrow\ m(\text{H}_2\text{S}_2\text{O}_7)=0{,}0900\times178=16{,}0\text{ g}\\
+m(\text{H}_2\text{SO}_4)&=2\times0{,}0900\times98=17{,}6\text{ g}
+\end{aligned}" />

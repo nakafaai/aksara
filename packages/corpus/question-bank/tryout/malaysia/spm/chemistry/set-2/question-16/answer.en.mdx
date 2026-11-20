@@ -1,23 +1,33 @@
-# Apply the temperature change and the concentration change, one after the other
+# Reading where the curve goes flat
 
-The cross disappears when the same amount of sulfur has formed in the same volume. **Halving the concentration halves the rate, so it doubles the time**, and the temperature effect is read from the chart.
+The syringe reading climbs fast at first, then levels off at <InlineMath math="480\text{ cm}^3" />, first reached at <InlineMath math="120\text{ s}" />. **An average rate spreads the whole volume over the whole time**, so the reaction averages <InlineMath math="4.00\text{ cm}^3\text{ s}^{-1}" />. Putting the time on top gives <InlineMath math="0.250" />, which counts seconds per cubic centimetre and is no rate at all.
 
-<Chart
-  title={<>Time for the Cross to Disappear</>}
-  categories={["30 °C", "35 °C", "40 °C", "45 °C", "50 °C"]}
-  series={[
-    { label: "Time (s)", mark: "line", values: [60, 45, 34, 26, 20] },
-  ]}
-  valueLabel="Time (s)"
-  description={<>With <InlineMath math="50\text{ cm}^3" /> of <InlineMath math="0.20\text{ mol dm}^{-3}" /> sodium thiosulfate, the times at <InlineMath math="30" />, <InlineMath math="35" />, <InlineMath math="40" />, <InlineMath math="45" /> and <InlineMath math="50^\circ\text{C}" /> are <InlineMath math="60" />, <InlineMath math="45" />, <InlineMath math="34" />, <InlineMath math="26" /> and <InlineMath math="20\text{ s}" />.</>}
+<GasRateLab
+  title={<>The sample fizzing into a gas syringe</>}
+  description={<>One run with granules. The plunger stops at <InlineMath math="0.0200\text{ mol}" /> of carbon dioxide, all that the carbonate can give.</>}
+  runs={[{ amount: 0.02, solid: "granules" }]}
+  showCurves
+  labels={{
+    final: <>final amount of carbon dioxide</>,
+    runs: [<>Sample in acid</>],
+    solids: { chips: <>chips</>, granules: <>granules</>, powder: <>powder</> },
+    time: "Time",
+    view: "Gas collection from the sample",
+  }}
 />
 
-- Temperature: at <InlineMath math="45^\circ\text{C}" />, the full-strength solution takes <InlineMath math="26\text{ s}" />.
-- Concentration: <InlineMath math="15\text{ cm}^3" /> made up to <InlineMath math="50\text{ cm}^3" /> is <InlineMath math="\dfrac{15}{50} = 0.30" /> of the original concentration, so the rate is <InlineMath math="0.30" /> times as fast and the time is <InlineMath math="\dfrac{1}{0.30}" /> times as long.
-- Expected time: <InlineMath math="26 \times \dfrac{50}{15} = 87\text{ s}" />.
+# Only the carbonate fizzes
 
-# Why the other options are wrong
+Magnesium oxide is a base, so it neutralises the acid quietly. **Every bubble in the syringe came from calcium carbonate**, one carbon dioxide per carbonate, so the sample held <InlineMath math="0.0200\text{ mol}" /> of it, <InlineMath math="2.00\text{ g}" /> out of <InlineMath math="2.40\text{ g}" />. The <InlineMath math="16.7\%" /> in one choice is the oxide's share.
 
-- <InlineMath math="26\text{ s}" /> uses the temperature effect only and **forgets that the solution was diluted**.
-- <InlineMath math="200\text{ s}" /> scales the <InlineMath math="30^\circ\text{C}" /> time, so it uses the dilution but forgets the higher temperature.
-- <InlineMath math="8\text{ s}" /> multiplies by <InlineMath math="0.30" /> instead of dividing, as if dilution sped the reaction up.
+# The oxide still spends acid
+
+The flask started with <InlineMath math="0.100\text{ mol}" /> of acid. The carbonate took <InlineMath math="0.0400\text{ mol}" />, and the <InlineMath math="0.400\text{ g}" /> of oxide, <InlineMath math="0.0100\text{ mol}" />, took another <InlineMath math="0.0200\text{ mol}" />. **The oxide never shows up on the graph, but it still empties the acid**. Forget it and <InlineMath math="0.0600\text{ mol}" /> seems to remain, which reads as <InlineMath math="0.600\text{ mol dm}^{-3}" />.
+
+<BlockMath math="\begin{aligned}
+\bar r&=\tfrac{480\text{ cm}^3}{120\text{ s}}=4.00\text{ cm}^3\text{ s}^{-1},\quad n(\text{CaCO}_3)=\tfrac{480}{24\,000}=0.0200\text{ mol}\\
+m(\text{CaCO}_3)&=0.0200\times100=2.00\text{ g}\ \Rightarrow\ \tfrac{2.00}{2.40}\times100=83.3\%\\
+n(\text{HCl})'&=0.100-2\times0.0200-2\times\tfrac{0.400}{40}=0.0400\text{ mol},\quad c=\tfrac{0.0400}{0.100}=0.400\text{ mol dm}^{-3}
+\end{aligned}" />
+
+There is still acid when the gas stops, so the curve went flat because the carbonate ran out, not the acid.

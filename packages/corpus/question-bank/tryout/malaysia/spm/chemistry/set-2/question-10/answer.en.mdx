@@ -1,25 +1,33 @@
-# Find the tube where one reactant runs out, then compare moles there
+# Measuring the ammonium by what it leaves
 
-The precipitate stops growing **as soon as the iodide ions are used up**. Read where that happens, then compare the moles of the two ions at that point.
+Ammonium chloride cannot be titrated directly here, so the method gives it a known excess of alkali and **titrates the alkali that survives**. The acid used, <InlineMath math="0.00750\text{ mol}" />, equals the sodium hydroxide left, so the ammonium ions took <InlineMath math="0.0175\text{ mol}" />. Treating the titre as the ammonium itself gives <InlineMath math="26.4\%" />.
 
-<Chart
-  title={<>Height of Precipitate in Each Test Tube</>}
-  bars="apart"
-  categories={["Tube 1", "Tube 2", "Tube 3", "Tube 4", "Tube 5", "Tube 6"]}
-  series={[
-    { label: "Height of precipitate (cm)", mark: "bar", values: [1.0, 2.0, 2.0, 2.0, 2.0, 2.0] },
-  ]}
-  valueLabel="Height of precipitate (cm)"
-  description={<>Heights in tubes <InlineMath math="1" /> to <InlineMath math="6" />: <InlineMath math="1.0" />, <InlineMath math="2.0" />, <InlineMath math="2.0" />, <InlineMath math="2.0" />, <InlineMath math="2.0" /> and <InlineMath math="2.0\text{ cm}" />.</>}
+<Mermaid
+  title={<>Where the sodium hydroxide goes</>}
+  description={<>The alkali is shared between the ammonium ions and the acid that measures what is left. The chloride from both salts meets the silver nitrate in the second sample.</>}
+  chart={`
+    flowchart TD
+      N0["25.0 mmol NaOH"]
+      N1["17.5 mmol used by NH₄⁺"]
+      N2["7.50 mmol left: 15.0 cm³ HCl"]
+      N3["17.5 mmol NH₃: 420 cm³"]
+      N4["0.936 g NH₄Cl, 0.584 g NaCl"]
+      N5["27.5 mmol Cl⁻: 3.95 g AgCl"]
+      N0 --> N1
+      N0 --> N2
+      N1 --> N3
+      N1 --> N4
+      N4 --> N5
+  `}
 />
 
-- The height stops rising at tube <InlineMath math="2" />, so <InlineMath math="2.0\text{ cm}^3" /> of the metal nitrate exactly uses up the iodide.
-- Moles of <InlineMath math="\text{M}^{x+}" />: <InlineMath math="0.50 \times \dfrac{2.0}{1000} = 0.0010\text{ mol}" />.
-- Moles of <InlineMath math="\text{I}^-" />: <InlineMath math="0.50 \times \dfrac{6.0}{1000} = 0.0030\text{ mol}" />.
-- Ratio <InlineMath math="\text{M} : \text{I} = 1 : 3" />, so the precipitate is <InlineMath math="\text{MI}_3" />, and to balance three <InlineMath math="\text{I}^-" /> the ion must be <InlineMath math="\text{M}^{3+}" />.
+Each ammonium ion releases one ammonia molecule, <InlineMath math="0.0175\text{ mol}" /> or <InlineMath math="420\text{ cm}^3" />. Doubling that, as if two hydroxide ions freed each ammonia, gives <InlineMath math="840\text{ cm}^3" />.
 
-# Why the other options are wrong
+# Both salts carry chloride
 
-- <InlineMath math="\text{MI}" /> would need <InlineMath math="6.0\text{ cm}^3" />, and the height would rise up to tube <InlineMath math="6" />.
-- <InlineMath math="\text{MI}_2" /> would need <InlineMath math="3.0\text{ cm}^3" />, **reading the second tube's height as only part of the way**.
-- <InlineMath math="\text{M}_2\text{I}_3" /> has a <InlineMath math="2 : 3" /> ratio, which would need <InlineMath math="4.0\text{ cm}^3" />.
+The ammonium chloride weighs <InlineMath math="0.936\text{ g}" />, so the sodium chloride is the remaining <InlineMath math="0.584\text{ g}" />, <InlineMath math="0.0100\text{ mol}" />. The silver nitrate does not care which cation came with the chloride, so it precipitates **all <InlineMath math="0.0275\text{ mol}" /> of chloride ions**. Counting only the ammonium salt's chloride gives <InlineMath math="2.51\text{ g}" />.
+
+<BlockMath math="\begin{aligned}
+n(\text{NH}_4^+)&=0.0250-0.00750=0.0175\text{ mol}:\quad \tfrac{0.0175\times53.5}{1.52}\times100=61.6\%,\quad V(\text{NH}_3)=420\text{ cm}^3\\
+n(\text{NaCl})&=\tfrac{1.52-0.936}{58.5}=0.0100,\quad m(\text{AgCl})=(0.0175+0.0100)\times143.5=3.95\text{ g}
+\end{aligned}" />

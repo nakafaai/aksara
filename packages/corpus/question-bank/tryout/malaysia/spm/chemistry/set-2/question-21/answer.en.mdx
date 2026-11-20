@@ -1,50 +1,28 @@
-# Put every metal on one scale against copper
+# Copper ions run out before the zinc does
 
-Copper is the positive terminal in three cells, so P, Q and R sit below copper in the electrochemical series, by <InlineMath math="2.70" />, <InlineMath math="0.40" /> and <InlineMath math="1.10\text{ V}" />. In the last cell S is the positive terminal, so **S sits above copper**, by <InlineMath math="0.46\text{ V}" />. The highest voltage comes from the two metals that stand farthest apart on that scale.
+The zinc is <InlineMath math="0.0200\text{ mol}" /> but the copper(II) ions only <InlineMath math="0.0100\text{ mol}" />, so **half the zinc never finds a copper(II) ion**. The filter paper catches <InlineMath math="0.640\text{ g}" /> of copper mixed with <InlineMath math="0.650\text{ g}" /> of unused zinc, <InlineMath math="1.29\text{ g}" /> in all. Pure copper of <InlineMath math="1.28\text{ g}" /> would need every zinc atom to displace copper, twice the copper(II) ions in the solution.
 
-On one scale with copper at zero, P is the lowest metal and S is the only one above copper.
-
-<MathVisual
-  title={<>The four metals on one scale with copper at zero</>}
-  description={<>P is at <InlineMath math="-2.70\text{ V}" />, R at <InlineMath math="-1.10\text{ V}" />, Q at <InlineMath math="-0.40\text{ V}" />, copper at zero and S at <InlineMath math="+0.46\text{ V}" />. The arrow from P to S spans <InlineMath math="3.16\text{ V}" />, the largest gap.</>}
-  labels={{
-    p: <InlineMath math="\mathrm{P}:\ -2.70\text{ V}" />,
-    r: <InlineMath math="\mathrm{R}:\ -1.10\text{ V}" />,
-    q: <InlineMath math="\mathrm{Q}:\ -0.40\text{ V}" />,
-    cu: <InlineMath math="\mathrm{Cu}:\ 0" />,
-    s: <InlineMath math="\mathrm{S}:\ +0.46\text{ V}" />,
-    gap: <InlineMath math="E_{\text{cell}}=3.16\text{ V}" />,
-  }}
-  scene={{
-    space: "plane",
-    frame: { kind: "cartesian", x: { min: -3, max: 3 }, y: { min: -3.2, max: 1.2 } },
-    view: { kind: "fit", padding: 0.1 },
-    objects: [
-      { id: "scale", kind: "segment", appearance: "reference", from: { x: 0, y: -3 }, to: { x: 0, y: 1 } },
-      { id: "point-p", kind: "point", appearance: "secondary", at: { x: 0, y: -2.7 } },
-      { id: "point-r", kind: "point", appearance: "construction", at: { x: 0, y: -1.1 } },
-      { id: "point-q", kind: "point", appearance: "construction", at: { x: 0, y: -0.4 } },
-      { id: "point-cu", kind: "point", appearance: "reference", at: { x: 0, y: 0 } },
-      { id: "point-s", kind: "point", appearance: "primary", at: { x: 0, y: 0.46 } },
-      { id: "cell-voltage", kind: "vector", appearance: "answer", from: { x: 0.8, y: -2.7 }, to: { x: 0.8, y: 0.46 } },
-    ],
-    labels: [
-      { key: "p", objectId: "point-p", at: { x: 0, y: -2.7 }, placement: "left" },
-      { key: "r", objectId: "point-r", at: { x: 0, y: -1.1 }, placement: "left" },
-      { key: "q", objectId: "point-q", at: { x: 0, y: -0.4 }, placement: "left" },
-      { key: "cu", objectId: "point-cu", at: { x: 0, y: 0 }, placement: "right" },
-      { key: "s", objectId: "point-s", at: { x: 0, y: 0.46 }, placement: "left" },
-      { key: "gap", objectId: "cell-voltage", at: { x: 0.8, y: -1.12 }, placement: "right" },
-    ],
-  }}
+<Chart
+  title={<>How the solid changes from stage to stage</>}
+  description={<>The total hardly moves while zinc swaps for copper, then falls once the acid takes the zinc.</>}
+  categories={["Zinc weighed out", "Filtered solid", "Solid after the acid"]}
+  series={[
+    { label: "Zinc", mark: "line", values: [1.3, 0.65, 0.0] },
+    { label: "Copper", mark: "line", values: [0.0, 0.64, 0.64] },
+    { label: "Total", mark: "line", values: [1.3, 1.29, 0.64] },
+  ]}
+  valueLabel="Mass (g)"
 />
 
-<BlockMath math="E_{\text{cell}}=0.46-(-2.70)=3.16\text{ V}" />
+Watch the total line. Each zinc atom that leaves is replaced by a copper atom only one mass unit lighter, so **the balance barely moves in the first stage** even though half the zinc has reacted.
 
-P is lower in the series, so P gives up electrons and is the negative terminal. So P and S give <InlineMath math="3.16\text{ V}" />, with P as the negative terminal.
+# The acid picks out the zinc
 
-# Why the other options are wrong
+Copper sits below hydrogen in the reactivity series, so **the acid dissolves only the leftover zinc**. That is <InlineMath math="0.0100\text{ mol}" /> of zinc against <InlineMath math="0.0500\text{ mol}" /> of acid, plenty, and one hydrogen comes off per zinc, <InlineMath math="240\text{ cm}^3" />. Making hydrogen from all <InlineMath math="1.30\text{ g}" /> gives <InlineMath math="480\text{ cm}^3" /> and forgets the zinc already spent on copper.
 
-- <InlineMath math="2.24\text{ V}" /> subtracts <InlineMath math="0.46" /> from <InlineMath math="2.70" />, as if S were also below copper. **The terminal column puts S on the other side of copper**.
-- <InlineMath math="3.16\text{ V}" /> with S as the negative terminal reverses the roles: the metal lower in the series, P, gives up the electrons.
-- P and Q at <InlineMath math="2.30\text{ V}" /> reads the S cell as if copper were its positive terminal too, so Q looks farther from P than S does.
+<BlockMath math="\begin{aligned}
+n(\text{Zn})&=\tfrac{1.30}{65}=0.0200>n(\text{Cu}^{2+})=0.200\times0.0500=0.0100\text{ mol}\\
+m&=0.0100\times64+0.0100\times65=1.29\text{ g},\quad V(\text{H}_2)=0.0100\times24\,000=240\text{ cm}^3
+\end{aligned}" />
+
+When the fizzing stops, <InlineMath math="0.640\text{ g}" /> of copper is still lying in the acid. A final <InlineMath math="0\text{ g}" /> would mean copper dissolving in dilute hydrochloric acid, which it does not.

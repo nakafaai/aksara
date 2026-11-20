@@ -1,23 +1,33 @@
-# Terapkan perubahan suhu dan perubahan konsentrasi, satu per satu
+# Membaca titik grafik mendatar
 
-Tanda silang hilang saat jumlah belerang yang sama terbentuk dalam volume yang sama. **Konsentrasi yang separuh membuat laju separuh, jadi waktunya berlipat dua**, dan pengaruh suhu dibaca dari diagram.
+Bacaan suntikan gas naik cepat di awal, lalu mendatar di <InlineMath math="480\text{ cm}^3" />, yang pertama kali tercapai pada <InlineMath math="120\text{ s}" />. **Laju rata-rata membagi seluruh volume dengan seluruh waktu**, jadi lajunya <InlineMath math="4{,}00\text{ cm}^3\text{ s}^{-1}" />. Kalau waktunya ditaruh di atas, hasilnya <InlineMath math="0{,}250" />, yaitu detik per sentimeter kubik, dan itu bukan laju.
 
-<Chart
-  title={<>Waktu Sampai Tanda Silang Hilang</>}
-  categories={["30 °C", "35 °C", "40 °C", "45 °C", "50 °C"]}
-  series={[
-    { label: "Waktu (s)", mark: "line", values: [60, 45, 34, 26, 20] },
-  ]}
-  valueLabel="Waktu (s)"
-  description={<>Dengan <InlineMath math="50\text{ cm}^3" /> natrium tiosulfat <InlineMath math="0{,}20\text{ mol dm}^{-3}" />, waktu pada <InlineMath math="30" />, <InlineMath math="35" />, <InlineMath math="40" />, <InlineMath math="45" />, dan <InlineMath math="50^\circ\text{C}" /> adalah <InlineMath math="60" />, <InlineMath math="45" />, <InlineMath math="34" />, <InlineMath math="26" />, dan <InlineMath math="20\text{ s}" />.</>}
+<GasRateLab
+  title={<>Sampel berbuih ke suntikan gas</>}
+  description={<>Satu percobaan dengan butiran. Penghisap berhenti di <InlineMath math="0{,}0200\text{ mol}" /> karbon dioksida, semua yang bisa diberikan karbonat.</>}
+  runs={[{ amount: 0.02, solid: "granules" }]}
+  showCurves
+  labels={{
+    final: <>jumlah akhir karbon dioksida</>,
+    runs: [<>Sampel dalam asam</>],
+    solids: { chips: <>bongkahan</>, granules: <>butiran</>, powder: <>serbuk</> },
+    time: "Waktu",
+    view: "Pengumpulan gas dari sampel",
+  }}
 />
 
-- Suhu: pada <InlineMath math="45^\circ\text{C}" />, larutan konsentrasi penuh butuh <InlineMath math="26\text{ s}" />.
-- Konsentrasi: <InlineMath math="15\text{ cm}^3" /> yang diencerkan sampai <InlineMath math="50\text{ cm}^3" /> adalah <InlineMath math="\dfrac{15}{50} = 0{,}30" /> dari konsentrasi awal, jadi lajunya <InlineMath math="0{,}30" /> kali dan waktunya <InlineMath math="\dfrac{1}{0{,}30}" /> kali lebih lama.
-- Waktu yang diharapkan: <InlineMath math="26 \times \dfrac{50}{15} = 87\text{ s}" />.
+# Hanya karbonat yang berbuih
 
-# Kenapa pilihan lain salah
+Magnesium oksida adalah basa, jadi ia menetralkan asam tanpa gas. **Setiap gelembung di suntikan gas berasal dari kalsium karbonat**, satu karbon dioksida per karbonat, jadi sampelnya berisi <InlineMath math="0{,}0200\text{ mol}" /> karbonat, yaitu <InlineMath math="2{,}00\text{ g}" /> dari <InlineMath math="2{,}40\text{ g}" />. Nilai <InlineMath math="16{,}7\%" /> di salah satu pilihan adalah bagian oksidanya.
 
-- <InlineMath math="26\text{ s}" /> hanya memakai pengaruh suhu dan **lupa bahwa larutannya diencerkan**.
-- <InlineMath math="200\text{ s}" /> menskalakan waktu pada <InlineMath math="30^\circ\text{C}" />, jadi memakai pengenceran tapi lupa suhunya lebih tinggi.
-- <InlineMath math="8\text{ s}" /> mengalikan dengan <InlineMath math="0{,}30" /> alih-alih membagi, seakan pengenceran mempercepat reaksi.
+# Oksida tetap memakai asam
+
+Labu mulai dengan <InlineMath math="0{,}100\text{ mol}" /> asam. Karbonat mengambil <InlineMath math="0{,}0400\text{ mol}" />, dan <InlineMath math="0{,}400\text{ g}" /> oksida, yaitu <InlineMath math="0{,}0100\text{ mol}" />, mengambil <InlineMath math="0{,}0200\text{ mol}" /> lagi. **Oksida tidak muncul di grafik, tetapi tetap menghabiskan asam**. Kalau kamu melupakannya, sisa asam tampak <InlineMath math="0{,}0600\text{ mol}" />, yaitu <InlineMath math="0{,}600\text{ mol dm}^{-3}" />.
+
+<BlockMath math="\begin{aligned}
+\bar r&=\tfrac{480\text{ cm}^3}{120\text{ s}}=4{,}00\text{ cm}^3\text{ s}^{-1},\quad n(\text{CaCO}_3)=\tfrac{480}{24\,000}=0{,}0200\text{ mol}\\
+m(\text{CaCO}_3)&=0{,}0200\times100=2{,}00\text{ g}\ \Rightarrow\ \tfrac{2{,}00}{2{,}40}\times100=83{,}3\%\\
+n(\text{HCl})'&=0{,}100-2\times0{,}0200-2\times\tfrac{0{,}400}{40}=0{,}0400\text{ mol},\quad c=\tfrac{0{,}0400}{0{,}100}=0{,}400\text{ mol dm}^{-3}
+\end{aligned}" />
+
+Asam masih ada saat gas berhenti, jadi grafik mendatar karena karbonatnya yang habis, bukan asamnya.

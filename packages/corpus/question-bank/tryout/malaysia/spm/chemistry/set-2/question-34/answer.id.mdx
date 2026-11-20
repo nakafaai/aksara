@@ -1,48 +1,35 @@
-# Airnya mendingin, jadi pelarutan menyerap kalor
+# Membaca pelita dan termometer
 
-Kalor yang memecah padatan itu diambil dari air, jadi suhunya turun. **Menyerap kalor membuat perubahannya endoterm, jadi tandanya positif**. Hitung kalornya dari penurunan suhu, lalu bagi dengan jumlah mol yang larut.
+Pelitanya berkurang <InlineMath math="186{,}42-185{,}73=0{,}690\text{ g}" />, yaitu <InlineMath math="0{,}0150\text{ mol}" /> etanol, dan suhu air naik dari <InlineMath math="28{,}0^\circ\text{C}" /> ke <InlineMath math="43{,}0^\circ\text{C}" />. **Air menyerap <InlineMath math="15{,}8\text{ kJ}" />**, jadi susunan alat ini mengukur <InlineMath math="-1050\text{ kJ mol}^{-1}" />.
 
 <BlockMath math="\begin{aligned}
-\Delta\theta&=28{,}0-24{,}6=3{,}4^\circ\text{C}\\
-Q&=50\times4{,}2\times3{,}4=714\text{ J}=0{,}714\text{ kJ}\\
-n(\text{NH}_4\text{NO}_3)&=\frac{2{,}0}{80}=0{,}025\text{ mol}\\
-\Delta H&=+\frac{0{,}714}{0{,}025}=+28{,}6\text{ kJ mol}^{-1}
+Q_1&=250\times4{,}2\times15{,}0=15\,750\text{ J},\quad n=\tfrac{0{,}690}{46}=0{,}0150\text{ mol},\quad \Delta H=-\tfrac{15{,}75}{0{,}0150}=-1050\text{ kJ mol}^{-1}
 \end{aligned}" />
 
-Di diagram tingkat energi, ion terlarut ada di atas padatan dan air sebesar nilai itu, karena ion itu sekarang menyimpan kalor yang hilang dari air.
+Membagi kalornya dengan <InlineMath math="0{,}690\text{ g}" /> itu sendiri memberi <InlineMath math="-22{,}8" />, nilai per gram yang tidak mungkin menjadi kalor pembakaran molar.
 
-<MathVisual
-  title={<>Diagram tingkat energi pelarutan amonium nitrat</>}
-  description={<>Produk, yaitu ion terlarut, ada lebih tinggi dari pereaksi, yaitu padatan dan air. Panahnya mengarah ke atas dan menunjukkan <InlineMath math="+28{,}6\text{ kJ mol}^{-1}" />.</>}
-  labels={{
-    energy: <>Energi</>,
-    reactants: <InlineMath math="\text{NH}_4\text{NO}_3(s)+\text{H}_2\text{O}(l)" />,
-    products: <InlineMath math="\text{NH}_4^+(aq)+\text{NO}_3^-(aq)" />,
-    change: <InlineMath math="\Delta H=+28{,}6\text{ kJ mol}^{-1}" />,
-  }}
-  scene={{
-    space: "plane",
-    frame: { kind: "cartesian", x: { min: -1, max: 6 }, y: { min: -0.6, max: 2.2 } },
-    view: { kind: "fit", padding: 0.1 },
-    objects: [
-      { id: "axis", kind: "vector", appearance: "reference", from: { x: -0.5, y: -0.4 }, to: { x: -0.5, y: 2 } },
-      { id: "reactant-level", kind: "segment", appearance: "secondary", from: { x: 0, y: 0 }, to: { x: 2.2, y: 0 } },
-      { id: "product-level", kind: "segment", appearance: "primary", from: { x: 2.8, y: 1.4 }, to: { x: 5, y: 1.4 } },
-      { id: "enthalpy", kind: "vector", appearance: "answer", from: { x: 2.5, y: 0 }, to: { x: 2.5, y: 1.4 } },
-    ],
-    labels: [
-      { key: "energy", objectId: "axis", at: { x: -0.5, y: 2 }, placement: "above" },
-      { key: "reactants", objectId: "reactant-level", at: { x: 1.1, y: 0 }, placement: "below" },
-      { key: "products", objectId: "product-level", at: { x: 3.9, y: 1.4 }, placement: "above" },
-      { key: "change", objectId: "enthalpy", at: { x: 2.5, y: 0.7 }, placement: "right" },
-    ],
-  }}
+# Seberapa banyak nyala api sampai ke air
+
+Menurut nilai acuan, <InlineMath math="0{,}0150\text{ mol}" /> etanol melepas <InlineMath math="20{,}6\text{ kJ}" />, padahal air hanya menangkap <InlineMath math="15{,}8\text{ kJ}" /> darinya. **Sekitar <InlineMath math="76{,}6\%" /> kalor sampai ke air**, dan sisanya memanaskan kaleng, udara, dan pelita itu sendiri.
+
+<Chart
+  title={<>Kalor dilepas dan kalor tertangkap</>}
+  description={<>Di kedua percobaan, air menangkap bagian yang sama dari kalor yang dilepas etanol menurut nilai acuan, kira-kira tiga perempat.</>}
+  bars="apart"
+  categories={["Percobaan I", "Percobaan II"]}
+  series={[
+    { label: "Dilepas menurut nilai acuan", mark: "bar", values: [20.55, 54.8] },
+    { label: "Diserap air", mark: "bar", values: [15.75, 42.0] },
+  ]}
+  valueLabel="Kalor (kJ)"
 />
 
-Jadi perubahan kalornya <InlineMath math="+28{,}6\text{ kJ mol}^{-1}" />, dengan produk di atas pereaksi.
+# Memperbesar skala ke pemanasan kedua
 
-# Kenapa pilihan lain salah
+Percobaan II meminta <InlineMath math="42{,}0\text{ kJ}" /> untuk air. **Dengan kehilangan yang sama, tiap mol etanol tetap hanya menyerahkan <InlineMath math="1050\text{ kJ}" /> ke air**, jadi pelita membakar <InlineMath math="0{,}0400\text{ mol}" />.
 
-- <InlineMath math="-28{,}6\text{ kJ mol}^{-1}" /> membaca penurunan suhu sebagai kalor yang dilepas. Air kehilangan kalor untuk pelarutan, jadi reaksinya menerima kalor.
-- <InlineMath math="+0{,}714\text{ kJ mol}^{-1}" /> adalah kalor untuk <InlineMath math="2{,}0\text{ g}" />, bukan untuk satu mol. **Bagi dengan <InlineMath math="0{,}025\text{ mol}" /> untuk mendapat nilai per mol**.
-- <InlineMath math="\Delta H" /> positif dengan pereaksi di atas saling bertentangan. Pereaksi di atas produk berarti energi dilepas.
+<BlockMath math="\begin{aligned}
+Q_2&=500\times4{,}2\times20{,}0=42\,000\text{ J},\quad m=\tfrac{42{,}0}{1050}\times46=1{,}84\text{ g}
+\end{aligned}" />
+
+Memakai <InlineMath math="1370\text{ kJ}" /> per mol diam-diam menganggap pelita tanpa kehilangan kalor dan memberi <InlineMath math="1{,}41\text{ g}" />. Memanaskan <InlineMath math="250\text{ g}" /> saja sebesar <InlineMath math="20{,}0^\circ\text{C}" /> hanya butuh separuh kalornya, dan dari situlah <InlineMath math="0{,}920\text{ g}" /> muncul.

@@ -1,38 +1,31 @@
-# Jede Verbindung der Reihe nach benennen, dann das Brom zählen
+# Welches Edukt zuerst ausgeht
 
-X ist Propan-1-ol. Über heißem Porzellan verliert es ein Wassermolekül, und die Doppelbindung bildet sich zwischen dem Endkohlenstoff und seinem Nachbarn, also ist Y Propen. **Brom lagert sich an diese Doppelbindung an**, je ein Bromatom an jedes ihrer zwei Kohlenstoffatome.
+Essigsäure, <InlineMath math="M_r=60" />, sind <InlineMath math="0{,}100\text{ mol}" /> und Ethanol, <InlineMath math="M_r=46" />, sind <InlineMath math="0{,}0500\text{ mol}" />. Sie reagieren eins zu eins, also **legt das Ethanol die Obergrenze fest**: <InlineMath math="0{,}0500\text{ mol}" /> Ester, <InlineMath math="4{,}40\text{ g}" /> bei <InlineMath math="M_r=88" />. Wer die Ausbeute auf die Säure bezieht, erhält <InlineMath math="6{,}16\text{ g}" />, mehr Ester, als das Ethanol Ketten liefern kann.
 
-Dreh beide Moleküle im Labor: Die Doppelbindung von Propen liegt zwischen Kohlenstoff <InlineMath math="1" /> und Kohlenstoff <InlineMath math="2" />, genau dort, wo die Hydroxygruppe und ein Wasserstoffatom abgegangen sind.
-
-<MoleculeShapeLab
-  title={<>Von Propan-1-ol zu Propen</>}
-  description={<>Propan-1-ol trägt seine Hydroxygruppe an Kohlenstoff <InlineMath math="1" />. Propen hat seine Doppelbindung zwischen Kohlenstoff <InlineMath math="1" /> und Kohlenstoff <InlineMath math="2" />, wo sich die Bromatome anlagern.</>}
-  molecules={[
-    { id: "propanol", name: "Propan-1-ol" },
-    { id: "propene", name: "Propen" },
+<Chart
+  title={<>Stoffmengen im Kolben vorher und nachher</>}
+  description={<>Bei voller Ausbeute wäre das Ethanol weg. Bei der echten Ausbeute bleibt von beiden Edukten etwas übrig.</>}
+  bars="apart"
+  categories={["Essigsäure", "Ethanol", "Ethylethanoat", "Wasser"]}
+  series={[
+    { label: "Am Anfang", mark: "bar", values: [100.0, 50.0, 0.0, 0.0] },
+    { label: "Volle Ausbeute", mark: "bar", values: [50.0, 0.0, 50.0, 50.0] },
+    { label: "Echte Ausbeute", mark: "bar", values: [65.0, 15.0, 35.0, 35.0] },
   ]}
-  labels={{
-    atoms: <>Atome</>,
-    choose: "Molekül wählen",
-    fill: <>Kalottenmodell</>,
-    formula: <>Formel</>,
-    mass: <>Relative Molekülmasse</>,
-    shape: <>Bindungswinkel</>,
-    view: "Propan-1-ol und Propen",
-  }}
+  valueLabel="Stoffmenge (mmol)"
 />
 
+# Die Ausbeute kürzt jedes Produkt gleich
+
+Die Veresterung ist umkehrbar, und dieser Kolben bleibt bei <InlineMath math="70{,}0\%" /> der Obergrenze stehen: <InlineMath math="0{,}0350\text{ mol}" /> Ester, <InlineMath math="3{,}08\text{ g}" />. **Wasser entsteht Molekül für Molekül mit dem Ester**, also sind <InlineMath math="0{,}0350\text{ mol}" /> Wasser <InlineMath math="2{,}11\times10^{22}" /> Moleküle. Das Paar <InlineMath math="4{,}40\text{ g}" /> und <InlineMath math="3{,}01\times10^{22}" /> beschreibt eine Reaktion, die vollständig abgelaufen ist.
+
+# Säure, die im Kolben bleibt
+
+Weg ist nur die Säure, die ein Ethanolmolekül getroffen hat, also <InlineMath math="0{,}0350\text{ mol}" />, und <InlineMath math="0{,}0650\text{ mol}" /> oder <InlineMath math="3{,}90\text{ g}" /> bleiben übrig. **Ethanol, das nicht reagiert hat, nimmt keine Säure mit**. Wer Säure für alle <InlineMath math="0{,}0500\text{ mol}" /> Ethanol abzieht und <InlineMath math="3{,}00\text{ g}" /> erhält, macht die gerade angewandte Ausbeute stillschweigend rückgängig.
+
 <BlockMath math="\begin{aligned}
-\text{CH}_3\text{CH}_2\text{CH}_2\text{OH}&\rightarrow\text{CH}_3\text{CH{=}CH}_2+\text{H}_2\text{O}\\
-\text{CH}_3\text{CH{=}CH}_2+\text{Br}_2&\rightarrow\text{CH}_3\text{CHBrCH}_2\text{Br}\\
-M_r(\text{C}_3\text{H}_6\text{Br}_2)&=3(12)+6(1)+2(80)=202\\
-\%\,\text{Br}&=\frac{160}{202}\times100\%=79{,}2\%
+n(\text{CH}_3\text{COOH})&=\tfrac{6{,}00}{60}=0{,}100>n(\text{C}_2\text{H}_5\text{OH})=\tfrac{2{,}30}{46}=0{,}0500\ \Rightarrow\ m=0{,}700\times0{,}0500\times88=3{,}08\text{ g}\\
+m(\text{CH}_3\text{COOH})'&=(0{,}100-0{,}0350)\times60=3{,}90\text{ g},\quad N(\text{H}_2\text{O})=0{,}0350\times6{,}02\times10^{23}=2{,}11\times10^{22}
 \end{aligned}" />
 
-Z ist also 1,2-Dibrompropan, mit <InlineMath math="79{,}2\%" /> Brom nach Masse.
-
-# Warum die anderen Antworten falsch sind
-
-- 1-Brompropan mit <InlineMath math="65{,}0\%" /> behandelt Schritt 2 als Substitution, ein Wasserstoff gegen ein Brom. **Ein Alken nimmt das ganze Brommolekül durch Addition auf**.
-- 1,3-Dibrompropan setzt das Brom an beide Endkohlenstoffe, doch die zwei Atome lagern sich an die beiden Kohlenstoffatome der Doppelbindung an, Kohlenstoff <InlineMath math="1" /> und Kohlenstoff <InlineMath math="2" />.
-- <InlineMath math="39{,}6\%" /> zählt nur ein Bromatom, <InlineMath math="\tfrac{80}{202}" />, in einem Produkt, das zwei enthält.
+Auch <InlineMath math="0{,}0150\text{ mol}" /> Ethanol sind noch da, deshalb fällt bei der echten Ausbeute keines der Edukte auf null.

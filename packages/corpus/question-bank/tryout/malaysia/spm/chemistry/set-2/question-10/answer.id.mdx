@@ -1,25 +1,33 @@
-# Cari tabung tempat satu pereaksi habis, lalu bandingkan mol di sana
+# Mengukur amonium lewat yang ditinggalkannya
 
-Endapan berhenti bertambah **begitu ion iodida habis**. Baca di mana itu terjadi, lalu bandingkan mol kedua ion di titik itu.
+Amonium klorida tidak dititrasi langsung di sini, jadi metode ini memberinya basa berlebih yang diketahui dan **menitrasi basa yang masih tersisa**. Asam yang terpakai, <InlineMath math="0{,}00750\text{ mol}" />, sama dengan sisa natrium hidroksida, jadi ion amonium mengambil <InlineMath math="0{,}0175\text{ mol}" />. Menganggap hasil titrasi itu sebagai amoniumnya memberi <InlineMath math="26{,}4\%" />.
 
-<Chart
-  title={<>Tinggi Endapan di Tiap Tabung Reaksi</>}
-  bars="apart"
-  categories={["Tabung 1", "Tabung 2", "Tabung 3", "Tabung 4", "Tabung 5", "Tabung 6"]}
-  series={[
-    { label: "Tinggi endapan (cm)", mark: "bar", values: [1.0, 2.0, 2.0, 2.0, 2.0, 2.0] },
-  ]}
-  valueLabel="Tinggi endapan (cm)"
-  description={<>Tinggi di tabung <InlineMath math="1" /> sampai <InlineMath math="6" />: <InlineMath math="1{,}0" />, <InlineMath math="2{,}0" />, <InlineMath math="2{,}0" />, <InlineMath math="2{,}0" />, <InlineMath math="2{,}0" />, dan <InlineMath math="2{,}0\text{ cm}" />.</>}
+<Mermaid
+  title={<>Ke mana natrium hidroksida pergi</>}
+  description={<>Basanya terbagi antara ion amonium dan asam yang mengukur sisanya. Klorida dari kedua garam bertemu perak nitrat di sampel kedua.</>}
+  chart={`
+    flowchart TD
+      N0["25,0 mmol NaOH"]
+      N1["17,5 mmol dipakai NH₄⁺"]
+      N2["Sisa 7,50 mmol: 15,0 cm³ HCl"]
+      N3["17,5 mmol NH₃: 420 cm³"]
+      N4["0,936 g NH₄Cl, 0,584 g NaCl"]
+      N5["27,5 mmol Cl⁻: 3,95 g AgCl"]
+      N0 --> N1
+      N0 --> N2
+      N1 --> N3
+      N1 --> N4
+      N4 --> N5
+  `}
 />
 
-- Tingginya berhenti naik di tabung <InlineMath math="2" />, jadi <InlineMath math="2{,}0\text{ cm}^3" /> larutan nitrat logam tepat menghabiskan iodida.
-- Mol <InlineMath math="\text{M}^{x+}" />: <InlineMath math="0{,}50 \times \dfrac{2{,}0}{1000} = 0{,}0010\text{ mol}" />.
-- Mol <InlineMath math="\text{I}^-" />: <InlineMath math="0{,}50 \times \dfrac{6{,}0}{1000} = 0{,}0030\text{ mol}" />.
-- Perbandingan <InlineMath math="\text{M} : \text{I} = 1 : 3" />, jadi endapannya <InlineMath math="\text{MI}_3" />, dan agar seimbang dengan tiga <InlineMath math="\text{I}^-" /> ionnya harus <InlineMath math="\text{M}^{3+}" />.
+Tiap ion amonium melepaskan satu molekul amonia, <InlineMath math="0{,}0175\text{ mol}" /> atau <InlineMath math="420\text{ cm}^3" />. Menggandakannya, seolah dua ion hidroksida membebaskan tiap amonia, memberi <InlineMath math="840\text{ cm}^3" />.
 
-# Kenapa pilihan lain salah
+# Kedua garam membawa klorida
 
-- <InlineMath math="\text{MI}" /> butuh <InlineMath math="6{,}0\text{ cm}^3" />, dan tingginya akan naik sampai tabung <InlineMath math="6" />.
-- <InlineMath math="\text{MI}_2" /> butuh <InlineMath math="3{,}0\text{ cm}^3" />, **membaca tinggi tabung kedua seakan belum penuh**.
-- <InlineMath math="\text{M}_2\text{I}_3" /> punya perbandingan <InlineMath math="2 : 3" />, yang butuh <InlineMath math="4{,}0\text{ cm}^3" />.
+Amonium klorida bermassa <InlineMath math="0{,}936\text{ g}" />, jadi natrium klorida adalah sisanya, <InlineMath math="0{,}584\text{ g}" /> atau <InlineMath math="0{,}0100\text{ mol}" />. Perak nitrat tidak peduli kation apa yang datang bersama klorida, jadi ia mengendapkan **seluruh <InlineMath math="0{,}0275\text{ mol}" /> ion klorida**. Menghitung klorida garam amonium saja memberi <InlineMath math="2{,}51\text{ g}" />.
+
+<BlockMath math="\begin{aligned}
+n(\text{NH}_4^+)&=0{,}0250-0{,}00750=0{,}0175\text{ mol}:\quad \tfrac{0{,}0175\times53{,}5}{1{,}52}\times100=61{,}6\%,\quad V(\text{NH}_3)=420\text{ cm}^3\\
+n(\text{NaCl})&=\tfrac{1{,}52-0{,}936}{58{,}5}=0{,}0100,\quad m(\text{AgCl})=(0{,}0175+0{,}0100)\times143{,}5=3{,}95\text{ g}
+\end{aligned}" />

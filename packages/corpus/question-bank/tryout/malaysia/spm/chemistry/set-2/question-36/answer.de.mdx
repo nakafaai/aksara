@@ -1,31 +1,40 @@
-# Finde, was in Versuch II zuerst verbraucht ist, und verteil seine Wärme auf die größere Lösung
+# Welches Ion den Niederschlag bestimmt
 
-Versuch I verrät die Wärme pro Mol: <InlineMath math="0{,}010\text{ mol}" /> Kupfer(II)-Ionen liefern <InlineMath math="2100\text{ J}" />, also liefert die Reaktion <InlineMath math="210\text{ kJ}" /> pro Mol. In Versuch II **ist das Zink zuerst verbraucht**, denn nur <InlineMath math="0{,}010\text{ mol}" /> Zink treffen auf <InlineMath math="0{,}040\text{ mol}" /> Kupfer(II)-Ionen.
+Silberionen, <InlineMath math="0{,}0250\text{ mol}" />, treffen eins zu eins auf Chloridionen, <InlineMath math="0{,}0200\text{ mol}" />. **Das Chlorid ist die kleinere Menge**, also entstehen <InlineMath math="0{,}0200\text{ mol}" /> Silberchlorid, <InlineMath math="M_r=143{,}5" />, das sind <InlineMath math="2{,}87\text{ g}" />. Um jedes Silberion zu fällen, bräuchte man <InlineMath math="62{,}5\text{ cm}^3" /> dieser Natriumchloridlösung statt <InlineMath math="50{,}0\text{ cm}^3" />, also zählen die <InlineMath math="3{,}59\text{ g}" /> Chlorid, das nie zugegeben wurde.
+
+# Wärme pro Mol Niederschlag
+
+Die <InlineMath math="100\text{ g}" /> Gemisch wurden um <InlineMath math="3{,}12^\circ\text{C}" /> wärmer, also wurden <InlineMath math="1310\text{ J}" /> frei. **Teile durch die <InlineMath math="0{,}0200\text{ mol}" />, die tatsächlich ausgefallen sind**, nicht durch die Silberionen im Becherglas.
 
 <BlockMath math="\begin{aligned}
-\text{I}:\ n(\text{Cu}^{2+})&=\frac{50}{1000}\times0{,}20=0{,}010\text{ mol},\ Q=50\times4{,}2\times10{,}0=2100\text{ J}\\
-\text{II}:\ n(\text{Cu}^{2+})&=\frac{100}{1000}\times0{,}40=0{,}040\text{ mol},\ n(\text{Zn})=\frac{0{,}65}{65}=0{,}010\text{ mol}\\
-Q_{\text{II}}&=0{,}010\times210{.}000=2100\text{ J}\\
-\Delta\theta_{\text{II}}&=\frac{2100}{100\times4{,}2}=5{,}0^\circ\text{C}
+Q&=100\times4{,}2\times3{,}12=1310\text{ J},\quad \Delta H=-\tfrac{1{,}31}{0{,}0200}=-65{,}5\text{ kJ mol}^{-1}
 \end{aligned}" />
 
-Das Diagramm zeigt den Anstieg, den jede Lesart von Versuch II ergäbe. Nur die letzte nutzt das Zink und die Lösung, die wirklich da sind.
+Der Teiler <InlineMath math="0{,}0250\text{ mol}" /> ergibt <InlineMath math="-52{,}4\text{ kJ mol}^{-1}" />. Wer vor dem Teilen aufhört, behält <InlineMath math="-1{,}31" />, eine Wärme in Kilojoule mit der falschen Einheit.
 
-<Chart
-  title={<>Temperaturanstieg für jede Lesart von Versuch II</>}
-  description={<>Zink im Überschuss mit <InlineMath math="50\text{ g}" /> Lösung ergibt <InlineMath math="40^\circ\text{C}" />, Zink im Überschuss mit <InlineMath math="100\text{ g}" /> ergibt <InlineMath math="20^\circ\text{C}" />, Zink begrenzend mit <InlineMath math="50\text{ g}" /> ergibt <InlineMath math="10^\circ\text{C}" />, und Zink begrenzend mit <InlineMath math="100\text{ g}" /> ergibt <InlineMath math="5^\circ\text{C}" />, der echte Fall.</>}
-  bars="apart"
-  categories={["Zink im Überschuss, 50 g", "Zink im Überschuss, 100 g", "Zink begrenzend, 50 g", "Zink begrenzend, 100 g"]}
-  series={[
-    { label: "Temperaturanstieg", mark: "bar", values: [40, 20, 10, 5] },
-  ]}
-  valueLabel="Temperaturanstieg (°C)"
+# Kupfer trifft das Silber im Filtrat
+
+Das Filtrat enthält noch <InlineMath math="0{,}00500\text{ mol}" /> Silberionen. **Jedes Kupferatom gibt zwei Elektronen ab, und jedes Silberion nimmt eines auf**, derselbe Austausch, der eine Kupfer-Silber-Zelle antreibt, und das Labor lässt dich ihn zählen: <InlineMath math="0{,}00500\text{ mol}" /> Elektronen lösen <InlineMath math="0{,}00250\text{ mol}" /> Kupfer und scheiden <InlineMath math="0{,}00500\text{ mol}" /> Silber ab.
+
+<ChemicalCellLab
+  title={<>Kupfer gibt Elektronen an Silberionen ab</>}
+  description={<>Kupfer in Kupfer(II)-Ionenlösung und Silber in Silberionenlösung, verbunden durch eine Salzbrücke. Jedes Kupferatom, das sich löst, schickt zwei Elektronen hinüber, genug für zwei Silberatome.</>}
+  metals={["copper", "silver"]}
+  electrons={0.005}
+  showProducts
+  labels={{
+    atNegative: <>Am Minuspol</>,
+    atPositive: <>Am Pluspol</>,
+    electrons: <>Geflossene Elektronen</>,
+    halfCells: <>Halbzellen</>,
+    view: "Galvanische Zelle aus Kupfer und Silber",
+    voltage: <>Zellspannung</>,
+    voltmeter: "V",
+  }}
 />
 
-Die Temperatur steigt also um <InlineMath math="5^\circ\text{C}" />.
+<BlockMath math="\begin{aligned}
+n(\text{Ag}^+)&=0{,}0250-0{,}0200=0{,}00500\text{ mol}\ \Rightarrow\ m(\text{Ag})=0{,}00500\times108=0{,}540\text{ g}
+\end{aligned}" />
 
-# Warum die anderen Antworten falsch sind
-
-- <InlineMath math="20^\circ\text{C}" /> lässt alle <InlineMath math="0{,}040\text{ mol}" /> Kupfer(II)-Ionen reagieren, als wäre Zink noch im Überschuss. **Hier sind <InlineMath math="0{,}65\text{ g}" /> Zink nur <InlineMath math="0{,}010\text{ mol}" />**.
-- <InlineMath math="40^\circ\text{C}" /> macht denselben Fehler und rechnet außerdem weiter mit <InlineMath math="50\text{ g}" /> Lösung, obwohl es jetzt <InlineMath math="100\text{ g}" /> sind.
-- <InlineMath math="10^\circ\text{C}" /> erkennt, dass das Zink die Wärme auf <InlineMath math="2100\text{ J}" /> begrenzt, verteilt sie aber auf <InlineMath math="50\text{ g}" /> statt auf <InlineMath math="100\text{ g}" />.
+Bei <InlineMath math="0{,}270\text{ g}" /> ist das Verhältnis zwei zu eins verkehrt herum gelandet, und das Silber bekommt die Anzahl des Kupfers.

@@ -1,23 +1,33 @@
-# Wende die Temperatur- und die Konzentrationsänderung nacheinander an
+# Ablesen, wo die Kurve flach wird
 
-Das Kreuz verschwindet, wenn im gleichen Volumen dieselbe Menge Schwefel entstanden ist. **Halbe Konzentration heißt halbe Geschwindigkeit, also doppelte Zeit**, und den Temperatureffekt liest du aus dem Diagramm.
+Die Anzeige des Kolbenprobers steigt erst schnell und bleibt dann bei <InlineMath math="480\text{ cm}^3" /> stehen, zum ersten Mal bei <InlineMath math="120\text{ s}" />. **Eine mittlere Rate verteilt das ganze Volumen auf die ganze Zeit**, also läuft die Reaktion im Mittel mit <InlineMath math="4{,}00\text{ cm}^3\text{ s}^{-1}" />. Wer die Zeit nach oben schreibt, erhält <InlineMath math="0{,}250" />, also Sekunden pro Kubikzentimeter, und das ist keine Rate.
 
-<Chart
-  title={<>Zeit bis das Kreuz verschwindet</>}
-  categories={["30 °C", "35 °C", "40 °C", "45 °C", "50 °C"]}
-  series={[
-    { label: "Zeit (s)", mark: "line", values: [60, 45, 34, 26, 20] },
-  ]}
-  valueLabel="Zeit (s)"
-  description={<>Mit <InlineMath math="50\text{ cm}^3" /> Natriumthiosulfatlösung der Konzentration <InlineMath math="0{,}20\text{ mol dm}^{-3}" /> betragen die Zeiten bei <InlineMath math="30" />, <InlineMath math="35" />, <InlineMath math="40" />, <InlineMath math="45" /> und <InlineMath math="50^\circ\text{C}" /> <InlineMath math="60" />, <InlineMath math="45" />, <InlineMath math="34" />, <InlineMath math="26" /> und <InlineMath math="20\text{ s}" />.</>}
+<GasRateLab
+  title={<>Die Probe schäumt in einen Kolbenprober</>}
+  description={<>Ein Lauf mit Körnern. Der Kolben bleibt bei <InlineMath math="0{,}0200\text{ mol}" /> Kohlenstoffdioxid stehen, mehr kann das Carbonat nicht liefern.</>}
+  runs={[{ amount: 0.02, solid: "granules" }]}
+  showCurves
+  labels={{
+    final: <>Endmenge an Kohlenstoffdioxid</>,
+    runs: [<>Probe in Säure</>],
+    solids: { chips: <>Stücke</>, granules: <>Körner</>, powder: <>Pulver</> },
+    time: "Zeit",
+    view: "Gassammlung aus der Probe",
+  }}
 />
 
-- Temperatur: Bei <InlineMath math="45^\circ\text{C}" /> braucht die unverdünnte Lösung <InlineMath math="26\text{ s}" />.
-- Konzentration: <InlineMath math="15\text{ cm}^3" />, auf <InlineMath math="50\text{ cm}^3" /> aufgefüllt, sind <InlineMath math="\dfrac{15}{50} = 0{,}30" /> der ursprünglichen Konzentration, also läuft die Reaktion <InlineMath math="0{,}30" />-mal so schnell und dauert <InlineMath math="\dfrac{1}{0{,}30}" />-mal so lange.
-- Erwartete Zeit: <InlineMath math="26 \times \dfrac{50}{15} = 87\text{ s}" />.
+# Nur das Carbonat schäumt
 
-# Warum die anderen Antworten falsch sind
+Magnesiumoxid ist eine Base und neutralisiert die Säure ohne Gas. **Jede Blase im Kolbenprober stammt aus dem Calciumcarbonat**, ein Kohlenstoffdioxid pro Carbonat, also enthielt die Probe <InlineMath math="0{,}0200\text{ mol}" /> davon, <InlineMath math="2{,}00\text{ g}" /> von <InlineMath math="2{,}40\text{ g}" />. Die Option mit <InlineMath math="16{,}7\%" /> gibt den Anteil des Oxids an.
 
-- <InlineMath math="26\text{ s}" /> nutzt nur den Temperatureffekt und **vergisst, dass die Lösung verdünnt wurde**.
-- <InlineMath math="200\text{ s}" /> skaliert die Zeit bei <InlineMath math="30^\circ\text{C}" />, berücksichtigt also die Verdünnung, vergisst aber die höhere Temperatur.
-- <InlineMath math="8\text{ s}" /> multipliziert mit <InlineMath math="0{,}30" />, statt zu teilen, als würde Verdünnen die Reaktion beschleunigen.
+# Das Oxid verbraucht trotzdem Säure
+
+Im Kolben waren anfangs <InlineMath math="0{,}100\text{ mol}" /> Säure. Das Carbonat nahm <InlineMath math="0{,}0400\text{ mol}" />, und die <InlineMath math="0{,}400\text{ g}" /> Oxid, also <InlineMath math="0{,}0100\text{ mol}" />, nahmen weitere <InlineMath math="0{,}0200\text{ mol}" />. **Das Oxid taucht im Graphen nie auf, verbraucht aber trotzdem Säure**. Wer es vergisst, behält scheinbar <InlineMath math="0{,}0600\text{ mol}" /> übrig, also <InlineMath math="0{,}600\text{ mol dm}^{-3}" />.
+
+<BlockMath math="\begin{aligned}
+\bar r&=\tfrac{480\text{ cm}^3}{120\text{ s}}=4{,}00\text{ cm}^3\text{ s}^{-1},\quad n(\text{CaCO}_3)=\tfrac{480}{24\,000}=0{,}0200\text{ mol}\\
+m(\text{CaCO}_3)&=0{,}0200\times100=2{,}00\text{ g}\ \Rightarrow\ \tfrac{2{,}00}{2{,}40}\times100=83{,}3\%\\
+n(\text{HCl})'&=0{,}100-2\times0{,}0200-2\times\tfrac{0{,}400}{40}=0{,}0400\text{ mol},\quad c=\tfrac{0{,}0400}{0{,}100}=0{,}400\text{ mol dm}^{-3}
+\end{aligned}" />
+
+Wenn das Gas aufhört, ist noch Säure da. Die Kurve wird also flach, weil das Carbonat aufgebraucht ist, nicht die Säure.

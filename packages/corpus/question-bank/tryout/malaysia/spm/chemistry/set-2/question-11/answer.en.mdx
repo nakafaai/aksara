@@ -1,25 +1,33 @@
-# Check which reactant runs out before reading the rates
+# Who runs out in each flask
 
-<InlineMath math="\text{CaCO}_3 + 2\text{HCl} \rightarrow \text{CaCl}_2 + \text{H}_2\text{O} + \text{CO}_2" />. **The final volume depends on the limiting reactant**, and the initial rate on surface area and concentration.
+In Experiment I the ribbon is <InlineMath math="0.0100\text{ mol}" /> of magnesium and would need <InlineMath math="0.0200\text{ mol}" /> of acid, yet the flask holds only <InlineMath math="0.0100\text{ mol}" />. **The acid gives out while half the ribbon is still fizzing**, so the hydrogen is half the acid, <InlineMath math="0.00500\text{ mol}" /> or <InlineMath math="120\text{ cm}^3" />. A final volume of <InlineMath math="240\text{ cm}^3" /> assumes the whole ribbon dissolves, and that would take twice the acid in that flask.
+
+Experiment II flips the situation. Half as much ribbon meets acid twice as strong, so the bars in the chart swap places and the magnesium is now the reactant that runs out. It still makes <InlineMath math="0.00500\text{ mol}" /> of hydrogen, the same <InlineMath math="120\text{ cm}^3" />.
 
 <Chart
-  title={<>Carbon Dioxide Collected in Three Experiments</>}
-  categories={["Second 0", "Second 30", "Second 60", "Second 90", "Second 120", "Second 150", "Second 180", "Second 240"]}
+  title={<>Acid in the flask against acid the ribbon needs</>}
+  description={<>In Experiment I the ribbon needs more acid than the flask holds. In Experiment II the flask holds twice what the ribbon needs.</>}
+  bars="apart"
+  categories={["Experiment I", "Experiment II"]}
   series={[
-    { label: "Experiment I", mark: "line", values: [0, 70, 125, 165, 195, 215, 228, 240] },
-    { label: "Experiment II", mark: "line", values: [0, 150, 215, 235, 240, 240, 240, 240] },
-    { label: "Experiment III", mark: "line", values: [0, 25, 42, 52, 57, 59, 60, 60] },
+    { label: "Acid present", mark: "bar", values: [10, 20] },
+    { label: "Acid the magnesium needs", mark: "bar", values: [20, 10] },
   ]}
-  valueLabel="Volume of CO₂ (cm³)"
-  description={<>Volumes at <InlineMath math="0" /> to <InlineMath math="240\text{ s}" />. Experiment I: <InlineMath math="0" />, <InlineMath math="70" />, <InlineMath math="125" />, <InlineMath math="165" />, <InlineMath math="195" />, <InlineMath math="215" />, <InlineMath math="228" />, <InlineMath math="240" />. Experiment II: <InlineMath math="0" />, <InlineMath math="150" />, <InlineMath math="215" />, <InlineMath math="235" />, <InlineMath math="240" />, <InlineMath math="240" />, <InlineMath math="240" />, <InlineMath math="240" />. Experiment III: <InlineMath math="0" />, <InlineMath math="25" />, <InlineMath math="42" />, <InlineMath math="52" />, <InlineMath math="57" />, <InlineMath math="59" />, <InlineMath math="60" />, <InlineMath math="60\text{ cm}^3" />.</>}
+  valueLabel="mmol"
 />
 
-- Calcium carbonate: <InlineMath math="\dfrac{1.00}{100} = 0.010\text{ mol}" />, which needs <InlineMath math="0.020\text{ mol}" /> of HCl.
-- Experiments I and II have <InlineMath math="1.0 \times \dfrac{50}{1000} = 0.050\text{ mol}" /> of HCl, in excess, so both give <InlineMath math="0.010\text{ mol}" /> of <InlineMath math="\text{CO}_2" />, <InlineMath math="240\text{ cm}^3" />.
-- Experiment III has only <InlineMath math="0.10 \times \dfrac{50}{1000} = 0.0050\text{ mol}" /> of HCl. The acid runs out first and gives <InlineMath math="0.0025\text{ mol}" /> of <InlineMath math="\text{CO}_2" />, <InlineMath math="60\text{ cm}^3" />.
+## The acid left in Experiment II
 
-# Why the other options are wrong
+The ribbon takes <InlineMath math="0.0100\text{ mol}" /> of the <InlineMath math="0.0200\text{ mol}" />, so **half the acid is still there** in the same <InlineMath math="50.0\text{ cm}^3" />, which is <InlineMath math="0.200\text{ mol dm}^{-3}" />. The <InlineMath math="0.300\text{ mol dm}^{-3}" /> option lets each magnesium atom take a single acid molecule, while the equation asks for two.
 
-- <InlineMath math="240\text{ cm}^3" /> for all three assumes **the acid is always in excess**, which fails in experiment III.
-- <InlineMath math="120\text{ cm}^3" /> in experiment III uses a <InlineMath math="1 : 1" /> ratio of acid to carbon dioxide instead of <InlineMath math="2 : 1" />.
-- <InlineMath math="480\text{ cm}^3" /> in experiment II treats powder as giving more gas, but the surface area changes only the rate.
+# Two speed-ups at once
+
+Doubling the concentration halves the time, and the <InlineMath math="10^\circ\text{C}" /> rise halves it again. **The two factors multiply**, so Experiment II runs four times as fast and stops at <InlineMath math="15\text{ s}" />. A volume of <InlineMath math="120\text{ cm}^3" /> in <InlineMath math="15\text{ s}" /> is <InlineMath math="8.00\text{ cm}^3\text{ s}^{-1}" />. With only one of the doublings the time stays at <InlineMath math="30\text{ s}" /> and the rate comes out as <InlineMath math="4.00\text{ cm}^3\text{ s}^{-1}" />.
+
+<BlockMath math="\begin{aligned}
+n(\text{Mg})_{\text{I}}&=\tfrac{0.240}{24}=0.0100,\quad n(\text{HCl})_{\text{I}}=0.0500\times0.200=0.0100\ \Rightarrow\ V(\text{H}_2)=\tfrac{0.0100}{2}\times24\,000=120\text{ cm}^3\\
+n(\text{Mg})_{\text{II}}&=0.00500,\quad n(\text{HCl})_{\text{II}}=0.0200\ \Rightarrow\ c'=\tfrac{0.0200-2\times0.00500}{0.0500}=0.200\text{ mol dm}^{-3}\\
+t_{\text{II}}&=\tfrac{60}{2\times2}=15\text{ s},\quad \bar r_{\text{II}}=\tfrac{120}{15}=8.00\text{ cm}^3\text{ s}^{-1}
+\end{aligned}" />
+
+Notice the twist: both flasks give the same volume of hydrogen, but in Experiment I the acid decides it and in Experiment II the magnesium does.

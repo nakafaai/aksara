@@ -13,22 +13,22 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "In cell P the blue colour fades, and the cathode of Q gains $$3.2\\text{ g}$$",
+            "$$1.20\\times10^{22}$$, $$0.600\\text{ mol dm}^{-3}$$, $$0.650\\text{ g}$$",
         },
         {
           correct: true,
           label:
-            "The anode of P loses $$3.2\\text{ g}$$, and the solution in Q turns colourless as oxygen forms at its anode",
+            "$$1.20\\times10^{22}$$, $$0.300\\text{ mol dm}^{-3}$$, $$0.650\\text{ g}$$",
         },
         {
           correct: false,
           label:
-            "The anode of P loses $$6.4\\text{ g}$$, and the solution in Q turns colourless",
+            "$$6.02\\times10^{21}$$, $$0.300\\text{ mol dm}^{-3}$$, $$0.650\\text{ g}$$",
         },
         {
           correct: false,
           label:
-            "The anode of P loses $$3.2\\text{ g}$$, and the solution in Q stays blue",
+            "$$1.20\\times10^{22}$$, $$0.300\\text{ mol dm}^{-3}$$, $$1.30\\text{ g}$$",
         },
       ],
     },
@@ -38,22 +38,22 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Dalam sel P warna biru pudar, dan katod Q bertambah $$3.2\\text{ g}$$",
+            "$$1.20\\times10^{22}$$, $$0.600\\text{ mol dm}^{-3}$$, $$0.650\\text{ g}$$",
         },
         {
           correct: true,
           label:
-            "Anod P berkurang $$3.2\\text{ g}$$, dan larutan dalam Q menjadi tidak berwarna apabila oksigen terbentuk di anodnya",
+            "$$1.20\\times10^{22}$$, $$0.300\\text{ mol dm}^{-3}$$, $$0.650\\text{ g}$$",
         },
         {
           correct: false,
           label:
-            "Anod P berkurang $$6.4\\text{ g}$$, dan larutan dalam Q menjadi tidak berwarna",
+            "$$6.02\\times10^{21}$$, $$0.300\\text{ mol dm}^{-3}$$, $$0.650\\text{ g}$$",
         },
         {
           correct: false,
           label:
-            "Anod P berkurang $$3.2\\text{ g}$$, dan larutan dalam Q kekal biru",
+            "$$1.20\\times10^{22}$$, $$0.300\\text{ mol dm}^{-3}$$, $$1.30\\text{ g}$$",
         },
       ],
     },

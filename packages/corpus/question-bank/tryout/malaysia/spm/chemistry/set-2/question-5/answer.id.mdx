@@ -1,26 +1,35 @@
-# Dua logam menghasilkan gas, jadi susun dua persamaan
+# Percikan berhenti saat oksigen habis
 
-Kedua logam bereaksi <InlineMath math="1 : 1" /> dengan hidrogen: <InlineMath math="\text{M} + 2\text{HCl} \rightarrow \text{MCl}_2 + \text{H}_2" />. **Satu persamaan dari massa total, satu lagi dari mol hidrogen total**.
+Enam puluh sentimeter kubik hidrogen sulfida butuh <InlineMath math="90\text{ cm}^3" /> oksigen, padahal hanya ada <InlineMath math="60\text{ cm}^3" />. Jadi **oksigen adalah gas pembatas**: ia membakar <InlineMath math="40\text{ cm}^3" /> hidrogen sulfida menjadi <InlineMath math="40\text{ cm}^3" /> belerang dioksida dan menyisakan <InlineMath math="20\text{ cm}^3" /> yang tidak terbakar. Volume gas yang sama berisi jumlah zat yang sama, jadi volumenya bisa dipakai seperti mol di sini.
 
-<Chart
-  title={<>Volume Hidrogen yang Terkumpul</>}
-  categories={["Detik 0", "Detik 30", "Detik 60", "Detik 90", "Detik 120", "Detik 150", "Detik 180"]}
-  series={[
-    { label: "Volume hidrogen (cm³)", mark: "line", values: [0, 260, 450, 570, 640, 672, 672] },
-  ]}
-  valueLabel="Volume hidrogen (cm³)"
-  description={<>Volume hidrogen pada <InlineMath math="0" /> sampai <InlineMath math="180\text{ s}" />, tiap <InlineMath math="30\text{ s}" />: <InlineMath math="0" />, <InlineMath math="260" />, <InlineMath math="450" />, <InlineMath math="570" />, <InlineMath math="640" />, <InlineMath math="672" />, dan <InlineMath math="672\text{ cm}^3" />.</>}
+# Gas sisa merusak sebagian produk
+
+Hidrogen sulfida yang tidak terbakar sekarang bereaksi dengan belerang dioksida hasil reaksi pertama. Dua volumenya memakai satu volume belerang dioksida, jadi <InlineMath math="10\text{ cm}^3" /> hilang dan tersisa <InlineMath math="30\text{ cm}^3" />. Berhenti setelah reaksi pertama menyisakan <InlineMath math="40\text{ cm}^3" /> gas, artinya langkah kedua ini terlupa.
+
+<Mermaid
+  title={<>Volume gas melewati dua reaksi</>}
+  description={<>Volume dalam sentimeter kubik pada kondisi kamar. Air mengembun, jadi tidak pernah muncul sebagai gas.</>}
+  chart={`
+    flowchart TD
+      N0["60 H₂S + 60 O₂"]
+      N1["Pembakaran: 40 H₂S memakai 60 O₂"]
+      N2["Terbentuk 40 SO₂"]
+      N3["Sisa 20 H₂S"]
+      N4["20 H₂S + 10 SO₂ → 0,0400 g S"]
+      N5["30 SO₂: satu-satunya gas sisa"]
+      N0 --> N1
+      N1 --> N2
+      N1 --> N3
+      N2 --> N4
+      N3 --> N4
+      N2 --> N5
+      N4 --> N5
+  `}
 />
 
-- Mol <InlineMath math="\text{H}_2" />: <InlineMath math="\dfrac{0{,}672}{24} = 0{,}028\text{ mol}" />.
-- Misalkan <InlineMath math="x" /> massa magnesium dalam gram: <InlineMath math="\dfrac{x}{24} + \dfrac{1{,}00 - x}{65} = 0{,}028" />.
-- Kalikan dengan <InlineMath math="1560" />: <InlineMath math="65x + 24(1{,}00 - x) = 43{,}68" />, jadi <InlineMath math="41x = 19{,}68" /> dan <InlineMath math="x = 0{,}48\text{ g}" />.
-- Persentase magnesium: <InlineMath math="\dfrac{0{,}48}{1{,}00} \times 100\% = 48\%" />.
+Belerangnya datang dari kedua pereaksi: **dua hidrogen sulfida dan satu belerang dioksida memberi tiga atom belerang**. Mengambil satu belerang per hidrogen sulfida memberi <InlineMath math="0{,}0267\text{ g}" />.
 
-Cek: <InlineMath math="0{,}020" /> mol dari Mg dan <InlineMath math="0{,}008" /> mol dari Zn menjadi <InlineMath math="0{,}028" /> mol.
-
-# Kenapa pilihan lain salah
-
-- <InlineMath math="52\%" /> adalah persentase **seng**.
-- <InlineMath math="67\%" /> menganggap semua hidrogen dari magnesium, <InlineMath math="0{,}028 \times 24 = 0{,}672\text{ g}" />, mengabaikan seng.
-- <InlineMath math="34\%" /> menganggap dua mol hidrogen per mol logam, sehingga magnesiumnya separuh.
+<BlockMath math="\begin{aligned}
+V(\text{H}_2\text{S})_{\text{terbakar}}&=\tfrac{2}{3}\times60=40\text{ cm}^3\ \Rightarrow\ V(\text{SO}_2)=40\text{ cm}^3,\quad V(\text{H}_2\text{S})'=20\text{ cm}^3\\
+V(\text{SO}_2)'&=40-\tfrac{20}{2}=30\text{ cm}^3,\quad m(\text{S})=\tfrac{3}{2}\times\tfrac{20}{24\,000}\times32=0{,}0400\text{ g}
+\end{aligned}" />

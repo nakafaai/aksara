@@ -10,19 +10,51 @@ const item: ItemSource = {
     en: {
       kind: "choice",
       options: [
-        { correct: false, label: "$$240$$, $$240$$ and $$240\\text{ cm}^3$$" },
-        { correct: true, label: "$$240$$, $$240$$ and $$60\\text{ cm}^3$$" },
-        { correct: false, label: "$$240$$, $$240$$ and $$120\\text{ cm}^3$$" },
-        { correct: false, label: "$$240$$, $$480$$ and $$60\\text{ cm}^3$$" },
+        {
+          correct: false,
+          label:
+            "$$240\\text{ cm}^3$$, $$8.00\\text{ cm}^3\\text{ s}^{-1}$$, $$0.200\\text{ mol dm}^{-3}$$",
+        },
+        {
+          correct: true,
+          label:
+            "$$120\\text{ cm}^3$$, $$8.00\\text{ cm}^3\\text{ s}^{-1}$$, $$0.200\\text{ mol dm}^{-3}$$",
+        },
+        {
+          correct: false,
+          label:
+            "$$120\\text{ cm}^3$$, $$4.00\\text{ cm}^3\\text{ s}^{-1}$$, $$0.200\\text{ mol dm}^{-3}$$",
+        },
+        {
+          correct: false,
+          label:
+            "$$120\\text{ cm}^3$$, $$8.00\\text{ cm}^3\\text{ s}^{-1}$$, $$0.300\\text{ mol dm}^{-3}$$",
+        },
       ],
     },
     ms: {
       kind: "choice",
       options: [
-        { correct: false, label: "$$240$$, $$240$$ dan $$240\\text{ cm}^3$$" },
-        { correct: true, label: "$$240$$, $$240$$ dan $$60\\text{ cm}^3$$" },
-        { correct: false, label: "$$240$$, $$240$$ dan $$120\\text{ cm}^3$$" },
-        { correct: false, label: "$$240$$, $$480$$ dan $$60\\text{ cm}^3$$" },
+        {
+          correct: false,
+          label:
+            "$$240\\text{ cm}^3$$, $$8.00\\text{ cm}^3\\text{ s}^{-1}$$, $$0.200\\text{ mol dm}^{-3}$$",
+        },
+        {
+          correct: true,
+          label:
+            "$$120\\text{ cm}^3$$, $$8.00\\text{ cm}^3\\text{ s}^{-1}$$, $$0.200\\text{ mol dm}^{-3}$$",
+        },
+        {
+          correct: false,
+          label:
+            "$$120\\text{ cm}^3$$, $$4.00\\text{ cm}^3\\text{ s}^{-1}$$, $$0.200\\text{ mol dm}^{-3}$$",
+        },
+        {
+          correct: false,
+          label:
+            "$$120\\text{ cm}^3$$, $$8.00\\text{ cm}^3\\text{ s}^{-1}$$, $$0.300\\text{ mol dm}^{-3}$$",
+        },
       ],
     },
   },

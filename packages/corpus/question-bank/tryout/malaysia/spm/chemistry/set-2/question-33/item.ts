@@ -10,19 +10,51 @@ const item: ItemSource = {
     en: {
       kind: "choice",
       options: [
-        { correct: true, label: "$$-58.8\\text{ kJ mol}^{-1}$$" },
-        { correct: false, label: "$$-57.1\\text{ kJ mol}^{-1}$$" },
-        { correct: false, label: "$$+58.8\\text{ kJ mol}^{-1}$$" },
-        { correct: false, label: "$$-117.6\\text{ kJ mol}^{-1}$$" },
+        {
+          correct: true,
+          label:
+            "$$10.2^\\circ\\text{C}$$, $$4.29\\text{ kJ}$$, $$0.300\\text{ g}$$",
+        },
+        {
+          correct: false,
+          label:
+            "$$6.81^\\circ\\text{C}$$, $$2.86\\text{ kJ}$$, $$0\\text{ g}$$",
+        },
+        {
+          correct: false,
+          label:
+            "$$10.2^\\circ\\text{C}$$, $$4.29\\text{ kJ}$$, $$0.600\\text{ g}$$",
+        },
+        {
+          correct: false,
+          label:
+            "$$20.4^\\circ\\text{C}$$, $$4.29\\text{ kJ}$$, $$0.300\\text{ g}$$",
+        },
       ],
     },
     ms: {
       kind: "choice",
       options: [
-        { correct: true, label: "$$-58.8\\text{ kJ mol}^{-1}$$" },
-        { correct: false, label: "$$-57.1\\text{ kJ mol}^{-1}$$" },
-        { correct: false, label: "$$+58.8\\text{ kJ mol}^{-1}$$" },
-        { correct: false, label: "$$-117.6\\text{ kJ mol}^{-1}$$" },
+        {
+          correct: true,
+          label:
+            "$$10.2^\\circ\\text{C}$$, $$4.29\\text{ kJ}$$, $$0.300\\text{ g}$$",
+        },
+        {
+          correct: false,
+          label:
+            "$$6.81^\\circ\\text{C}$$, $$2.86\\text{ kJ}$$, $$0\\text{ g}$$",
+        },
+        {
+          correct: false,
+          label:
+            "$$10.2^\\circ\\text{C}$$, $$4.29\\text{ kJ}$$, $$0.600\\text{ g}$$",
+        },
+        {
+          correct: false,
+          label:
+            "$$20.4^\\circ\\text{C}$$, $$4.29\\text{ kJ}$$, $$0.300\\text{ g}$$",
+        },
       ],
     },
   },

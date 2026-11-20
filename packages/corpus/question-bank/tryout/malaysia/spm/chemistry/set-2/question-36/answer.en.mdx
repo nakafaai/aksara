@@ -1,31 +1,40 @@
-# Find what runs out in experiment II, then share its heat over the bigger solution
+# Which ion decides the precipitate
 
-Experiment I tells you the heat for each mole: <InlineMath math="0.010\text{ mol}" /> of copper(II) ions gives <InlineMath math="2100\text{ J}" />, so the reaction gives <InlineMath math="210\text{ kJ}" /> per mole. In experiment II, **the zinc runs out first**, since only <InlineMath math="0.010\text{ mol}" /> of it meets <InlineMath math="0.040\text{ mol}" /> of copper(II) ions.
+Silver ions, <InlineMath math="0.0250\text{ mol}" />, meet chloride ions, <InlineMath math="0.0200\text{ mol}" />, one to one. **The chloride is the smaller amount**, so <InlineMath math="0.0200\text{ mol}" /> of silver chloride, <InlineMath math="M_r=143.5" />, forms, <InlineMath math="2.87\text{ g}" />. Turning every silver ion into precipitate would need <InlineMath math="62.5\text{ cm}^3" /> of this sodium chloride, not <InlineMath math="50.0\text{ cm}^3" />, so <InlineMath math="3.59\text{ g}" /> counts chloride that was never poured in.
+
+# Heat per mole of precipitate
+
+The <InlineMath math="100\text{ g}" /> of mixture warmed by <InlineMath math="3.12^\circ\text{C}" />, so <InlineMath math="1310\text{ J}" /> was released. **Divide by the <InlineMath math="0.0200\text{ mol}" /> that actually precipitated**, not by the silver ions in the beaker.
 
 <BlockMath math="\begin{aligned}
-\text{I}:\ n(\text{Cu}^{2+})&=\frac{50}{1000}\times0.20=0.010\text{ mol},\ Q=50\times4.2\times10.0=2100\text{ J}\\
-\text{II}:\ n(\text{Cu}^{2+})&=\frac{100}{1000}\times0.40=0.040\text{ mol},\ n(\text{Zn})=\frac{0.65}{65}=0.010\text{ mol}\\
-Q_{\text{II}}&=0.010\times210\,000=2100\text{ J}\\
-\Delta\theta_{\text{II}}&=\frac{2100}{100\times4.2}=5.0^\circ\text{C}
+Q&=100\times4.2\times3.12=1310\text{ J},\quad \Delta H=-\tfrac{1.31}{0.0200}=-65.5\text{ kJ mol}^{-1}
 \end{aligned}" />
 
-The chart shows the rise each reading of experiment II would give. Only the last one uses both the zinc and the solution that are really there.
+The <InlineMath math="0.0250\text{ mol}" /> divisor gives <InlineMath math="-52.4\text{ kJ mol}^{-1}" />. Stopping before the division leaves <InlineMath math="-1.31" />, which is a heat in kilojoules wearing the wrong unit.
 
-<Chart
-  title={<>Temperature rise for each way of reading experiment II</>}
-  description={<>Zinc in excess with <InlineMath math="50\text{ g}" /> of solution gives <InlineMath math="40^\circ\text{C}" />, zinc in excess with <InlineMath math="100\text{ g}" /> gives <InlineMath math="20^\circ\text{C}" />, zinc limiting with <InlineMath math="50\text{ g}" /> gives <InlineMath math="10^\circ\text{C}" />, and zinc limiting with <InlineMath math="100\text{ g}" /> gives <InlineMath math="5^\circ\text{C}" />, the real case.</>}
-  bars="apart"
-  categories={["Zinc in excess, 50 g", "Zinc in excess, 100 g", "Zinc limiting, 50 g", "Zinc limiting, 100 g"]}
-  series={[
-    { label: "Temperature rise", mark: "bar", values: [40, 20, 10, 5] },
-  ]}
-  valueLabel="Temperature rise (°C)"
+# Copper meets the silver left in the filtrate
+
+The filtrate still carries <InlineMath math="0.00500\text{ mol}" /> of silver ions. **Each copper atom loses two electrons, and each silver ion gains one**, which is the same exchange that drives a copper and silver cell, so the lab lets you count it: <InlineMath math="0.00500\text{ mol}" /> of electrons dissolve <InlineMath math="0.00250\text{ mol}" /> of copper and deposit <InlineMath math="0.00500\text{ mol}" /> of silver.
+
+<ChemicalCellLab
+  title={<>Copper giving electrons to silver ions</>}
+  description={<>Copper in copper(II) ion solution and silver in silver ion solution, joined by a salt bridge. Each copper atom that dissolves sends two electrons across, enough for two silver atoms.</>}
+  metals={["copper", "silver"]}
+  electrons={0.005}
+  showProducts
+  labels={{
+    atNegative: <>At the negative terminal</>,
+    atPositive: <>At the positive terminal</>,
+    electrons: <>Electrons passed</>,
+    halfCells: <>Half-cells</>,
+    view: "Chemical cell of copper and silver",
+    voltage: <>Cell voltage</>,
+    voltmeter: "V",
+  }}
 />
 
-So the temperature rises by <InlineMath math="5^\circ\text{C}" />.
+<BlockMath math="\begin{aligned}
+n(\text{Ag}^+)&=0.0250-0.0200=0.00500\text{ mol}\ \Rightarrow\ m(\text{Ag})=0.00500\times108=0.540\text{ g}
+\end{aligned}" />
 
-# Why the other options are wrong
-
-- <InlineMath math="20^\circ\text{C}" /> lets all <InlineMath math="0.040\text{ mol}" /> of copper(II) ions react, as if zinc were still in excess. **Here <InlineMath math="0.65\text{ g}" /> of zinc is only <InlineMath math="0.010\text{ mol}" />**.
-- <InlineMath math="40^\circ\text{C}" /> makes the same mistake and also keeps the solution at <InlineMath math="50\text{ g}" />, though it is now <InlineMath math="100\text{ g}" />.
-- <InlineMath math="10^\circ\text{C}" /> sees that zinc limits the heat to <InlineMath math="2100\text{ J}" />, but spreads it over <InlineMath math="50\text{ g}" /> instead of <InlineMath math="100\text{ g}" />.
+The <InlineMath math="0.270\text{ g}" /> option applies the two to one ratio backwards and gives the silver the copper's count.

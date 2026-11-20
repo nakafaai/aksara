@@ -1,28 +1,47 @@
-# Peratus hasil dan ekonomi atom mengukur dua kehilangan yang berbeza
+# Semua sulfur terbakar
 
-Peratus hasil memberitahu berapa banyak etanol yang benar-benar dihasilkan daripada yang mungkin, jadi ia menentukan jumlah glukosa yang diperlukan. Ekonomi atom pula datang daripada persamaan sahaja. **Walaupun hasilnya sempurna, karbon dioksida tetap membawa pergi sebahagian setiap molekul glukosa**.
+Sulfur itu <InlineMath math="3.20\div32=0.100\text{ mol}" />, dan pembakarannya lengkap, jadi <InlineMath math="0.100\text{ mol}" /> sulfur dioksida terbentuk, <InlineMath math="2.40\text{ dm}^3" />. **Angka <InlineMath math="90.0\%" /> itu milik penukar, bukan pembakar**. Menggunakannya di sini mengecilkan gas kepada <InlineMath math="2.16\text{ dm}^3" />.
 
-<BlockMath math="\begin{aligned}
-n(\text{C}_2\text{H}_5\text{OH})&=\frac{46\,000}{46}=1000\text{ mol}\ \Rightarrow\ n(\text{C}_6\text{H}_{12}\text{O}_6)=500\text{ mol}\\
-m(\text{glukosa})&=\frac{500\times180}{0.80}=112\,500\text{ g}=112.5\text{ kg}\\
-\text{ekonomi atom}&=\frac{2(46)}{180}\times100\%=\frac{92}{180}\times100\%=51.1\%
-\end{aligned}" />
+# Penukar membiarkan sebahagian dioksida lalu
 
-<Chart
-  title={<>Ke mana jisim satu mol glukosa pergi</>}
-  description={<>Satu mol glukosa, <InlineMath math="180\text{ g}" />, menjadi <InlineMath math="92\text{ g}" /> etanol dan <InlineMath math="88\text{ g}" /> karbon dioksida. Hanya etanol ialah hasil yang dikehendaki.</>}
-  bars="apart"
-  categories={["Glukosa", "Etanol", "Karbon dioksida"]}
-  series={[
-    { label: "Jisim", mark: "bar", values: [180, 92, 88] },
+Hanya <InlineMath math="0.0900\text{ mol}" /> sulfur trioksida keluar daripada mangkin, dan makmal di bawah meletakkan dioksida yang bengkok di sebelah trioksida yang rata. **Setiap molekul trioksida menjadi satu molekul oleum**, <InlineMath math="M_r=178" />, jadi <InlineMath math="16.0\text{ g}" /> terbentuk. Membina oleum daripada kesemua <InlineMath math="0.100\text{ mol}" /> memberi <InlineMath math="17.8\text{ g}" />, seolah-olah penukar itu sempurna.
+
+<MoleculeShapeLab
+  title={<>Dioksida bengkok, trioksida rata</>}
+  description={<>Penukar mengubah <InlineMath math="\text{SO}_2" /> yang bengkok menjadi <InlineMath math="\text{SO}_3" /> yang rata. <InlineMath math="10.0\%" /> yang kekal bengkok melalui penyerap dan tidak pernah menjadi oleum.</>}
+  molecules={[
+    { id: "sulfur-dioxide", name: "sulfur dioksida" },
+    { id: "sulfur-trioxide", name: "sulfur trioksida" },
   ]}
-  valueLabel="Jisim daripada satu mol glukosa (g)"
+  labels={{
+    atoms: <>Atom</>,
+    choose: "Pilih molekul",
+    fill: <>Model pengisian ruang</>,
+    formula: <>Formula</>,
+    mass: <>Jisim molekul relatif</>,
+    shape: <>Sudut ikatan</>,
+    view: "Sulfur dioksida dan sulfur trioksida",
+  }}
 />
 
-Jadi kelompok itu menggunakan <InlineMath math="112.5\text{ kg}" /> glukosa, dan ekonomi atomnya <InlineMath math="51.1\%" />, tidak kira berapa peratus hasilnya.
+# Pencairan menggandakan asid
 
-# Kenapa pilihan lain salah
+Air memecahkan setiap oleum kepada **dua molekul asid sulfurik**. Satu membawa sulfur daripada pembakar, satu lagi membawa sulfur asid yang menyerap trioksida, dan carta menjejak kedua-duanya. Jadi <InlineMath math="0.180\text{ mol}" /> asid sulfurik terbentuk, <InlineMath math="17.6\text{ g}" />. Satu asid bagi setiap oleum memberi <InlineMath math="8.82\text{ g}" />, dan <InlineMath math="19.6\text{ g}" /> menggandakan <InlineMath math="0.100\text{ mol}" /> penuh tanpa kehilangan di penukar.
 
-- <InlineMath math="90\text{ kg}" /> ialah glukosa bagi hasil penuh. Pada <InlineMath math="80\%" /> kilang memerlukan lebih, <InlineMath math="90\div0.80" />.
-- <InlineMath math="225\text{ kg}" /> menggunakan satu glukosa bagi setiap etanol dan tertinggal <InlineMath math="2" /> di hadapan <InlineMath math="\text{C}_2\text{H}_5\text{OH}" />. Satu glukosa memberi dua molekul etanol.
-- <InlineMath math="100\%" /> mengira karbon dioksida sebagai hasil yang dikehendaki. **Hanya etanol dikira**, jadi hampir separuh jisim memang hilang mengikut persamaan.
+<Chart
+  title={<>Asal atom sulfur dalam asid</>}
+  description={<>Sehingga oleum, semua sulfur datang daripada sulfur yang dibakar. Asid penyerap menambah atom sulfur sebanyak itu lagi, jadi pencairan berakhir dengan dua kali ganda jumlah trioksida.</>}
+  bars="apart"
+  categories={["SO₂", "SO₃", "H₂S₂O₇", "H₂SO₄ selepas pencairan"]}
+  series={[
+    { label: "Daripada sulfur yang dibakar", mark: "bar", values: [100, 90, 90, 90] },
+    { label: "Daripada asid penyerap", mark: "bar", values: [0, 0, 90, 90] },
+  ]}
+  valueLabel="mmol"
+/>
+
+<BlockMath math="\begin{aligned}
+n(\text{SO}_2)&=\tfrac{3.20}{32}=0.100\text{ mol},\quad V=0.100\times24=2.40\text{ dm}^3\\
+n(\text{SO}_3)&=0.900\times0.100=0.0900\ \Rightarrow\ m(\text{H}_2\text{S}_2\text{O}_7)=0.0900\times178=16.0\text{ g}\\
+m(\text{H}_2\text{SO}_4)&=2\times0.0900\times98=17.6\text{ g}
+\end{aligned}" />

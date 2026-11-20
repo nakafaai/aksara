@@ -10,19 +10,51 @@ const item: ItemSource = {
     en: {
       kind: "choice",
       options: [
-        { correct: false, label: "X, Y, Z. X is sodium." },
-        { correct: false, label: "Z, Y, X. X is aluminium." },
-        { correct: false, label: "Y, Z, X. X is phosphorus." },
-        { correct: true, label: "Z, Y, X. X is sulfur." },
+        {
+          correct: false,
+          label:
+            "$$40.0\\text{ cm}^3$$, $$0.180\\text{ g}$$, $$0.214\\text{ g}$$",
+        },
+        {
+          correct: false,
+          label:
+            "$$50.0\\text{ cm}^3$$, $$0.214\\text{ g}$$, $$0.214\\text{ g}$$",
+        },
+        {
+          correct: false,
+          label:
+            "$$50.0\\text{ cm}^3$$, $$0.197\\text{ g}$$, $$0.197\\text{ g}$$",
+        },
+        {
+          correct: true,
+          label:
+            "$$50.0\\text{ cm}^3$$, $$0.197\\text{ g}$$, $$0.214\\text{ g}$$",
+        },
       ],
     },
     ms: {
       kind: "choice",
       options: [
-        { correct: false, label: "X, Y, Z. X ialah natrium." },
-        { correct: false, label: "Z, Y, X. X ialah aluminium." },
-        { correct: false, label: "Y, Z, X. X ialah fosforus." },
-        { correct: true, label: "Z, Y, X. X ialah sulfur." },
+        {
+          correct: false,
+          label:
+            "$$40.0\\text{ cm}^3$$, $$0.180\\text{ g}$$, $$0.214\\text{ g}$$",
+        },
+        {
+          correct: false,
+          label:
+            "$$50.0\\text{ cm}^3$$, $$0.214\\text{ g}$$, $$0.214\\text{ g}$$",
+        },
+        {
+          correct: false,
+          label:
+            "$$50.0\\text{ cm}^3$$, $$0.197\\text{ g}$$, $$0.197\\text{ g}$$",
+        },
+        {
+          correct: true,
+          label:
+            "$$50.0\\text{ cm}^3$$, $$0.197\\text{ g}$$, $$0.214\\text{ g}$$",
+        },
       ],
     },
   },

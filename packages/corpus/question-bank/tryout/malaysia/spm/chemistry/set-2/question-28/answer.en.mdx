@@ -1,38 +1,31 @@
-# Name each compound in turn, then count the bromine
+# Which reactant runs out
 
-X is propan-1-ol. Over hot porcelain it loses a water molecule, and the double bond forms between the end carbon and its neighbour, so Y is propene. **Bromine adds across that double bond**, one bromine atom to each of its two carbon atoms.
+Ethanoic acid, <InlineMath math="M_r=60" />, comes to <InlineMath math="0.100\text{ mol}" /> and ethanol, <InlineMath math="M_r=46" />, to <InlineMath math="0.0500\text{ mol}" />. They pair one to one, so **ethanol sets the ceiling** at <InlineMath math="0.0500\text{ mol}" /> of ester, <InlineMath math="4.40\text{ g}" /> with <InlineMath math="M_r=88" />. Building the yield on the acid gives <InlineMath math="6.16\text{ g}" />, more ester than the ethanol has chains for.
 
-Turn both molecules in the lab: the double bond of propene sits between carbon <InlineMath math="1" /> and carbon <InlineMath math="2" />, exactly where the hydroxyl group and a hydrogen atom left.
-
-<MoleculeShapeLab
-  title={<>From propan-1-ol to propene</>}
-  description={<>Propan-1-ol has its hydroxyl group on carbon <InlineMath math="1" />. Propene has its double bond between carbon <InlineMath math="1" /> and carbon <InlineMath math="2" />, where the bromine atoms add.</>}
-  molecules={[
-    { id: "propanol", name: "propan-1-ol" },
-    { id: "propene", name: "propene" },
+<Chart
+  title={<>Amounts in the flask before and after</>}
+  description={<>At a full yield the ethanol would vanish. At the real yield some of each reactant stays behind.</>}
+  bars="apart"
+  categories={["Ethanoic acid", "Ethanol", "Ethyl ethanoate", "Water"]}
+  series={[
+    { label: "At the start", mark: "bar", values: [100.0, 50.0, 0.0, 0.0] },
+    { label: "Full yield", mark: "bar", values: [50.0, 0.0, 50.0, 50.0] },
+    { label: "Actual yield", mark: "bar", values: [65.0, 15.0, 35.0, 35.0] },
   ]}
-  labels={{
-    atoms: <>Atoms</>,
-    choose: "Choose a molecule",
-    fill: <>Space-filling model</>,
-    formula: <>Formula</>,
-    mass: <>Relative molecular mass</>,
-    shape: <>Bond angle</>,
-    view: "Propan-1-ol and propene",
-  }}
+  valueLabel="Amount (mmol)"
 />
 
+# The yield shrinks every product equally
+
+Esterification is reversible, and this flask stops at <InlineMath math="70.0\%" /> of the ceiling: <InlineMath math="0.0350\text{ mol}" /> of ester, <InlineMath math="3.08\text{ g}" />. **Water leaves the reaction molecule for molecule with the ester**, so <InlineMath math="0.0350\text{ mol}" /> of water is <InlineMath math="2.11\times10^{22}" /> molecules. The pair <InlineMath math="4.40\text{ g}" /> and <InlineMath math="3.01\times10^{22}" /> describes a reaction that went all the way.
+
+# Acid that stays in the flask
+
+Only the acid that met an ethanol molecule is gone, <InlineMath math="0.0350\text{ mol}" /> of it, so <InlineMath math="0.0650\text{ mol}" /> or <InlineMath math="3.90\text{ g}" /> remains. **The ethanol that never reacted did not take any acid with it**. Subtracting acid for all <InlineMath math="0.0500\text{ mol}" /> of ethanol, to get <InlineMath math="3.00\text{ g}" />, quietly undoes the yield you just applied.
+
 <BlockMath math="\begin{aligned}
-\text{CH}_3\text{CH}_2\text{CH}_2\text{OH}&\rightarrow\text{CH}_3\text{CH{=}CH}_2+\text{H}_2\text{O}\\
-\text{CH}_3\text{CH{=}CH}_2+\text{Br}_2&\rightarrow\text{CH}_3\text{CHBrCH}_2\text{Br}\\
-M_r(\text{C}_3\text{H}_6\text{Br}_2)&=3(12)+6(1)+2(80)=202\\
-\%\,\text{Br}&=\frac{160}{202}\times100\%=79.2\%
+n(\text{CH}_3\text{COOH})&=\tfrac{6.00}{60}=0.100>n(\text{C}_2\text{H}_5\text{OH})=\tfrac{2.30}{46}=0.0500\ \Rightarrow\ m=0.700\times0.0500\times88=3.08\text{ g}\\
+m(\text{CH}_3\text{COOH})'&=(0.100-0.0350)\times60=3.90\text{ g},\quad N(\text{H}_2\text{O})=0.0350\times6.02\times10^{23}=2.11\times10^{22}
 \end{aligned}" />
 
-So Z is 1,2-dibromopropane, with <InlineMath math="79.2\%" /> bromine by mass.
-
-# Why the other options are wrong
-
-- 1-bromopropane at <InlineMath math="65.0\%" /> treats step 2 as substitution, swapping one hydrogen for one bromine. **An alkene takes the whole bromine molecule by addition**.
-- 1,3-dibromopropane puts the bromine on both end carbons, but the two atoms add to the two carbon atoms of the double bond, carbon <InlineMath math="1" /> and carbon <InlineMath math="2" />.
-- <InlineMath math="39.6\%" /> counts only one bromine atom, <InlineMath math="\tfrac{80}{202}" />, in a product that holds two.
+Some ethanol, <InlineMath math="0.0150\text{ mol}" />, is also still in the flask, which is why the actual yield bars never drop either reactant to zero.

@@ -1,25 +1,33 @@
-# Finde das Glas, in dem ein Edukt aufgebraucht ist, und vergleiche dort die Stoffmengen
+# Das Ammonium über seinen Rest messen
 
-Der Niederschlag wächst nicht mehr, **sobald die Iodidionen verbraucht sind**. Lies ab, wo das geschieht, und vergleiche an dieser Stelle die Stoffmengen beider Ionen.
+Ammoniumchlorid wird hier nicht direkt titriert. Die Methode gibt ihm einen bekannten Überschuss Lauge und **titriert die Lauge, die übrig bleibt**. Die verbrauchte Säure, <InlineMath math="0{,}00750\text{ mol}" />, entspricht dem übrigen Natriumhydroxid, also haben die Ammoniumionen <InlineMath math="0{,}0175\text{ mol}" /> verbraucht. Wer das Titrationsergebnis selbst als Ammonium nimmt, landet bei <InlineMath math="26{,}4\%" />.
 
-<Chart
-  title={<>Höhe des Niederschlags in jedem Reagenzglas</>}
-  bars="apart"
-  categories={["Glas 1", "Glas 2", "Glas 3", "Glas 4", "Glas 5", "Glas 6"]}
-  series={[
-    { label: "Höhe des Niederschlags (cm)", mark: "bar", values: [1.0, 2.0, 2.0, 2.0, 2.0, 2.0] },
-  ]}
-  valueLabel="Höhe des Niederschlags (cm)"
-  description={<>Höhen in den Gläsern <InlineMath math="1" /> bis <InlineMath math="6" />: <InlineMath math="1{,}0" />, <InlineMath math="2{,}0" />, <InlineMath math="2{,}0" />, <InlineMath math="2{,}0" />, <InlineMath math="2{,}0" /> und <InlineMath math="2{,}0\text{ cm}" />.</>}
+<Mermaid
+  title={<>Wohin das Natriumhydroxid geht</>}
+  description={<>Die Lauge teilt sich auf die Ammoniumionen und die Säure auf, die den Rest misst. Das Chlorid beider Salze trifft in der zweiten Probe auf das Silbernitrat.</>}
+  chart={`
+    flowchart TD
+      N0["25,0 mmol NaOH"]
+      N1["17,5 mmol von NH₄⁺ verbraucht"]
+      N2["7,50 mmol übrig: 15,0 cm³ HCl"]
+      N3["17,5 mmol NH₃: 420 cm³"]
+      N4["0,936 g NH₄Cl, 0,584 g NaCl"]
+      N5["27,5 mmol Cl⁻: 3,95 g AgCl"]
+      N0 --> N1
+      N0 --> N2
+      N1 --> N3
+      N1 --> N4
+      N4 --> N5
+  `}
 />
 
-- Die Höhe steigt ab Glas <InlineMath math="2" /> nicht mehr, also verbrauchen <InlineMath math="2{,}0\text{ cm}^3" /> der Metallnitratlösung genau das Iodid.
-- Stoffmenge <InlineMath math="\text{M}^{x+}" />: <InlineMath math="0{,}50 \times \dfrac{2{,}0}{1000} = 0{,}0010\text{ mol}" />.
-- Stoffmenge <InlineMath math="\text{I}^-" />: <InlineMath math="0{,}50 \times \dfrac{6{,}0}{1000} = 0{,}0030\text{ mol}" />.
-- Verhältnis <InlineMath math="\text{M} : \text{I} = 1 : 3" />, der Niederschlag ist also <InlineMath math="\text{MI}_3" />, und um drei <InlineMath math="\text{I}^-" /> auszugleichen, muss das Ion <InlineMath math="\text{M}^{3+}" /> sein.
+Jedes Ammoniumion setzt ein Ammoniakmolekül frei, <InlineMath math="0{,}0175\text{ mol}" /> oder <InlineMath math="420\text{ cm}^3" />. Verdoppelt, als würden zwei Hydroxidionen jedes Ammoniak freisetzen, ergibt das <InlineMath math="840\text{ cm}^3" />.
 
-# Warum die anderen Antworten falsch sind
+# Beide Salze tragen Chlorid
 
-- <InlineMath math="\text{MI}" /> bräuchte <InlineMath math="6{,}0\text{ cm}^3" />, und die Höhe würde bis Glas <InlineMath math="6" /> steigen.
-- <InlineMath math="\text{MI}_2" /> bräuchte <InlineMath math="3{,}0\text{ cm}^3" /> und **liest die Höhe im zweiten Glas als noch nicht fertig**.
-- <InlineMath math="\text{M}_2\text{I}_3" /> hat ein Verhältnis von <InlineMath math="2 : 3" />, das <InlineMath math="4{,}0\text{ cm}^3" /> bräuchte.
+Das Ammoniumchlorid wiegt <InlineMath math="0{,}936\text{ g}" />, also ist das Natriumchlorid der Rest von <InlineMath math="0{,}584\text{ g}" />, <InlineMath math="0{,}0100\text{ mol}" />. Dem Silbernitrat ist egal, mit welchem Kation das Chlorid kam, also fällt es **alle <InlineMath math="0{,}0275\text{ mol}" /> Chloridionen**. Nur das Chlorid des Ammoniumsalzes zu zählen ergibt <InlineMath math="2{,}51\text{ g}" />.
+
+<BlockMath math="\begin{aligned}
+n(\text{NH}_4^+)&=0{,}0250-0{,}00750=0{,}0175\text{ mol}:\quad \tfrac{0{,}0175\times53{,}5}{1{,}52}\times100=61{,}6\%,\quad V(\text{NH}_3)=420\text{ cm}^3\\
+n(\text{NaCl})&=\tfrac{1{,}52-0{,}936}{58{,}5}=0{,}0100,\quad m(\text{AgCl})=(0{,}0175+0{,}0100)\times143{,}5=3{,}95\text{ g}
+\end{aligned}" />

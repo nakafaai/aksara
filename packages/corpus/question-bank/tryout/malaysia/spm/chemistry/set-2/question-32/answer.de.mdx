@@ -1,49 +1,41 @@
-# Jedes Ethen nimmt ein Wasserstoff auf und wird zu einem Ethan
+# Was die Portion über den Kolben verrät
 
-Ethan reagiert nicht. Ethen lagert Wasserstoff an, also werden aus zwei Gasvolumen eines. **Jeder Kubikzentimeter Ethen verkleinert das Gesamtvolumen um einen Kubikzentimeter**, daher ist die Abnahme gleich dem Ethen.
+Die <InlineMath math="25{,}0\text{ cm}^3" />-Portion verbraucht <InlineMath math="0{,}00400\text{ mol}" /> Salzsäure und ist ein Zehntel des Kolbens, also **haben <InlineMath math="0{,}0400\text{ mol}" /> Natriumhydroxid den Rückfluss überstanden**. Die Lauge begann mit <InlineMath math="0{,}100\text{ mol}" />, also haben Ester und Säure zusammen <InlineMath math="0{,}0600\text{ mol}" /> verbraucht.
+
+<Mermaid
+  title={<>Wohin die Hydroxidionen beim Rückfluss gehen</>}
+  description={<>Die Salzsäure misst nur die übrigen <InlineMath math="40{,}0\text{ mmol}" />. Ester und Säure teilen sich den Rest, und beide machen aus ihrem Anteil Natriumethanoat.</>}
+  chart={`
+    flowchart TD
+      N0["100 mmol NaOH"]
+      N1["40,0 mmol zum Ethylethanoat"]
+      N2["20,0 mmol zur Ethansäure"]
+      N3["40,0 mmol übrig: 4,00 mmol pro Portion"]
+      N4["40,0 mmol Ethanol: 1,84 g"]
+      N5["60,0 mmol Natriumethanoat: 4,92 g"]
+      N0 --> N1
+      N0 --> N2
+      N0 --> N3
+      N1 --> N4
+      N1 --> N5
+      N2 --> N5
+  `}
+/>
+
+# Die Lauge auf Ester und Säure aufteilen
+
+Jede der beiden Verbindungen verbraucht ein Hydroxidion pro Molekül, ihre Stoffmengen ergeben also <InlineMath math="0{,}0600" />, ihre Massen <InlineMath math="4{,}72\text{ g}" />. **Zwei Gleichungen klären die zwei Unbekannten**: <InlineMath math="0{,}0400\text{ mol}" /> Ethylethanoat, <InlineMath math="3{,}52\text{ g}" />, und <InlineMath math="0{,}0200\text{ mol}" /> Ethansäure.
 
 <BlockMath math="\begin{aligned}
-\text{C}_2\text{H}_4+\text{H}_2&\rightarrow\text{C}_2\text{H}_6\\
-\text{Abnahme}&=(30+40)-50=20\text{ cm}^3\\
-V(\text{C}_2\text{H}_4)&=20\text{ cm}^3
+x+y&=0{,}100-10\times0{,}00400=0{,}0600,\quad 88x+60y=4{,}72\ \Rightarrow\ x=0{,}0400,\quad y=0{,}0200
 \end{aligned}" />
 
-Dreh die beiden Moleküle: Ethan ist Ethen mit geöffneter Doppelbindung und je einem zusätzlichen Wasserstoffatom an jedem Kohlenstoff.
+Gibt man alle <InlineMath math="0{,}0600\text{ mol}" /> dem Ester, wiegt er <InlineMath math="5{,}28\text{ g}" />, mehr als das ganze Gemisch mit <InlineMath math="4{,}72\text{ g}" />, und diese Antwort scheitert schon an der Massenkontrolle.
 
-<MoleculeShapeLab
-  title={<>Aus Ethen wird Ethan</>}
-  description={<>Ethen hat eine Doppelbindung zwischen seinen zwei Kohlenstoffatomen. Nach der Anlagerung von Wasserstoff hat Ethan nur Einfachbindungen.</>}
-  molecules={[
-    { id: "ethene", name: "Ethen" },
-    { id: "ethane", name: "Ethan" },
-  ]}
-  labels={{
-    atoms: <>Atome</>,
-    choose: "Molekül wählen",
-    fill: <>Kalottenmodell</>,
-    formula: <>Formel</>,
-    mass: <>Relative Molekülmasse</>,
-    shape: <>Bindungswinkel</>,
-    view: "Ethen und Ethan",
-  }}
-/>
+# Was jede Reaktion im Kolben hinterlässt
 
-<Chart
-  title={<>Gasvolumen vorher und nachher</>}
-  description={<>Vorher: <InlineMath math="20\text{ cm}^3" /> Ethen, <InlineMath math="10\text{ cm}^3" /> Ethan und <InlineMath math="40\text{ cm}^3" /> Wasserstoff. Nachher: kein Ethen, <InlineMath math="30\text{ cm}^3" /> Ethan und <InlineMath math="20\text{ cm}^3" /> Wasserstoff, zusammen <InlineMath math="50\text{ cm}^3" />.</>}
-  bars="apart"
-  categories={["Ethen", "Ethan", "Wasserstoff"]}
-  series={[
-    { label: "Vorher", mark: "bar", values: [20, 10, 40] },
-    { label: "Nachher", mark: "bar", values: [0, 30, 20] },
-  ]}
-  valueLabel="Volumen (cm³)"
-/>
+**Jedes Hydroxidion, das reagiert hat, liefert ein Ethanoation**, egal ob es auf den Ester oder die Säure traf, also sind es <InlineMath math="0{,}0600\text{ mol}" /> Salz, <InlineMath math="4{,}92\text{ g}" />. Nur den Anteil des Esters zu zählen ergibt <InlineMath math="3{,}28\text{ g}" />. Beim Ethanol ist es anders, denn nur der Ester trägt eine Ethylgruppe, also entstehen <InlineMath math="0{,}0400\text{ mol}" />. Schreibt man auch der Säure Ethanol zu, kommen <InlineMath math="2{,}76\text{ g}" /> heraus.
 
-Probe: Übrig sind <InlineMath math="30\text{ cm}^3" /> Ethan und <InlineMath math="20\text{ cm}^3" /> Wasserstoff, zusammen <InlineMath math="50\text{ cm}^3" />, wie gemessen.
-
-# Warum die anderen Antworten falsch sind
-
-- <InlineMath math="10\text{ cm}^3" /> teilt die Abnahme von <InlineMath math="20\text{ cm}^3" /> zwischen Ethen und Wasserstoff auf, doch je ein Volumen von beiden wird zu einem Volumen Ethan, also entspricht der Verlust dem Ethen allein.
-- <InlineMath math="30\text{ cm}^3" /> hält das ganze Gemisch für Ethen. Dann würden <InlineMath math="30\text{ cm}^3" /> Wasserstoff reagieren und nur <InlineMath math="40\text{ cm}^3" /> Gas übrig bleiben.
-- <InlineMath math="40\text{ cm}^3" /> nimmt an, dass der ganze Wasserstoff verbraucht wird. **Wasserstoff ist hier im Überschuss**, und <InlineMath math="20\text{ cm}^3" /> davon bleiben übrig.
+<BlockMath math="\begin{aligned}
+m(\text{CH}_3\text{COONa})&=0{,}0600\times82=4{,}92\text{ g},\quad m(\text{C}_2\text{H}_5\text{OH})=0{,}0400\times46=1{,}84\text{ g}
+\end{aligned}" />

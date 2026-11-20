@@ -1,25 +1,37 @@
-# Average the concordant titres, then use the <InlineMath math="2" /> : <InlineMath math="1" /> ratio
+# Chloride in the portion
 
-Three linked steps: read the titres, **average only the concordant ones**, then turn moles of alkali into moles of a diprotic acid.
+The salt is <InlineMath math="5.85\div58.5=0.100\text{ mol}" /> in <InlineMath math="250\text{ cm}^3" />, so the first flask holds <InlineMath math="0.400\text{ mol dm}^{-3}" />. That is not the solution the question asks about. **Diluting <InlineMath math="25.0\text{ cm}^3" /> to <InlineMath math="100\text{ cm}^3" /> divides the concentration by four**, which gives <InlineMath math="0.100\text{ mol dm}^{-3}" />. Stopping at the first flask is where <InlineMath math="0.400\text{ mol dm}^{-3}" /> comes from.
 
-<Chart
-  title={<>Titre of Each Titration</>}
-  bars="apart"
-  categories={["Rough", "Titration 2", "Titration 3", "Titration 4"]}
-  series={[
-    { label: "Titre (cm³)", mark: "bar", values: [24.6, 24.2, 24.25, 24.3] },
-  ]}
-  valueLabel="Titre (cm³)"
-  description={<>Titres: <InlineMath math="24.60" /> (rough), <InlineMath math="24.20" />, <InlineMath math="24.25" /> and <InlineMath math="24.30\text{ cm}^3" />.</>}
+The <InlineMath math="20.0\text{ cm}^3" /> portion of the diluted solution therefore carries <InlineMath math="0.100\times0.0200=0.00200\text{ mol}" /> of chloride ions.
+
+# Silver the chloride cannot catch
+
+The silver nitrate brings <InlineMath math="0.0500\times0.0500=0.00250\text{ mol}" /> of silver ions, more than the chloride. Every chloride ion takes one silver ion, so <InlineMath math="0.00200\text{ mol}" /> of silver chloride, <InlineMath math="M_r=143.5" />, settles out. The <InlineMath math="0.117\text{ g}" /> in one option is the mass of sodium chloride in the portion, not of the precipitate.
+
+**Only the <InlineMath math="0.000500\text{ mol}" /> of silver ions that found no chloride** meets the thiocyanate. Titrating all <InlineMath math="0.00250\text{ mol}" /> would give <InlineMath math="62.5\text{ cm}^3" />, as if nothing had precipitated.
+
+<Mermaid
+  title={<>The chloride's path from salt to titration</>}
+  description={<>Each arrow is one step of the procedure, and the amount on each box is what that step passes on.</>}
+  chart={`
+    flowchart LR
+      N0["5.85 g NaCl in 250 cm³: 0.400 mol dm⁻³"]
+      N1["25.0 cm³ to 100 cm³: 0.100 mol dm⁻³"]
+      N2["20.0 cm³ portion: 2.00 mmol Cl⁻"]
+      N3["2.50 mmol Ag⁺ added"]
+      N4["2.00 mmol AgCl, 0.287 g"]
+      N5["0.500 mmol Ag⁺ left"]
+      N6["12.5 cm³ of 0.0400 mol dm⁻³ SCN⁻"]
+      N0 --> N1
+      N1 --> N2
+      N2 --> N4
+      N3 --> N4
+      N3 --> N5
+      N5 --> N6
+  `}
 />
 
-- Titres: <InlineMath math="24.60" /> (rough), <InlineMath math="24.20" />, <InlineMath math="24.25" /> and <InlineMath math="24.30\text{ cm}^3" />. The last three agree within <InlineMath math="0.10\text{ cm}^3" />, so the average titre is <InlineMath math="\dfrac{24.20 + 24.25 + 24.30}{3} = 24.25\text{ cm}^3" />.
-- Moles of NaOH: <InlineMath math="0.100 \times \dfrac{25.0}{1000} = 0.00250\text{ mol}" />.
-- <InlineMath math="\text{H}_2\text{SO}_4 + 2\text{NaOH} \rightarrow \text{Na}_2\text{SO}_4 + 2\text{H}_2\text{O}" />, so moles of acid <InlineMath math="= \dfrac{0.00250}{2} = 0.00125\text{ mol}" />.
-- Concentration: <InlineMath math="\dfrac{0.00125}{24.25/1000} = 0.0515\text{ mol dm}^{-3}" />.
-
-# Why the other options are wrong
-
-- <InlineMath math="0.103\text{ mol dm}^{-3}" /> uses a <InlineMath math="1 : 1" /> ratio, **as if sulfuric acid gave one hydrogen ion**.
-- <InlineMath math="0.206\text{ mol dm}^{-3}" /> applies the <InlineMath math="2" /> the wrong way, doubling the moles of acid.
-- <InlineMath math="0.0258\text{ mol dm}^{-3}" /> halves the moles twice.
+<BlockMath math="\begin{aligned}
+c&=\tfrac{5.85\div58.5}{0.250}\times\tfrac{25.0}{100}=0.100\text{ mol dm}^{-3},\quad n(\text{Cl}^-)=0.100\times0.0200=0.00200\text{ mol}\\
+m(\text{AgCl})&=0.00200\times143.5=0.287\text{ g},\quad V(\text{SCN}^-)=\tfrac{0.00250-0.00200}{0.0400}=0.0125\text{ dm}^3=12.5\text{ cm}^3
+\end{aligned}" />

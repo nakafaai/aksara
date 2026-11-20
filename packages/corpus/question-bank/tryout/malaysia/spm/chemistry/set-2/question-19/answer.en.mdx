@@ -1,23 +1,36 @@
-# Count ions, not formula units
+# Carbon atoms tell the two fuels apart
 
-The same number of ions means the same **moles of ions**. Find the moles of each compound, then multiply by the ions in one formula unit.
+After cooling, the water is liquid, so the alkali only meets carbon dioxide and leftover oxygen. For gases at the same conditions, volumes count molecules, and **a methane molecule carries one carbon atom while a propane molecule carries three**.
 
-<Chart
-  title={<>Moles of Ions in Each Sample</>}
-  bars="apart"
-  categories={["5.85 g NaCl", "11.1 g CaCl₂", "7.4 g CaCl₂", "2.8 g KOH", "2.0 g MgO"]}
-  series={[
-    { label: "Moles of ions", mark: "bar", values: [0.2, 0.3, 0.2, 0.1, 0.1] },
-  ]}
-  valueLabel="Moles of ions"
-  description={<>The sodium chloride holds <InlineMath math="0.2\text{ mol}" /> of ions. The samples hold <InlineMath math="0.3" />, <InlineMath math="0.2" />, <InlineMath math="0.1" /> and <InlineMath math="0.1\text{ mol}" /> of ions.</>}
+<MoleculeShapeLab
+  title={<>Methane and propane side by side</>}
+  description={<>One carbon atom against three. That difference sets how much carbon dioxide each volume of fuel makes.</>}
+  molecules={[{ id: "methane", name: "methane" }, { id: "propane", name: "propane" }]}
+  labels={{
+    atoms: <>Atoms</>,
+    choose: "Choose a molecule",
+    fill: <>Space-filling model</>,
+    formula: <>Formula</>,
+    mass: <>Relative molecular mass</>,
+    shape: <>Bond angle</>,
+    view: "Methane and propane",
+  }}
 />
 
-- Sodium chloride, <InlineMath math="M_r = 58.5" />: <InlineMath math="\dfrac{5.85}{58.5} = 0.1" /> mol, with <InlineMath math="2" /> ions each, so <InlineMath math="0.2" /> mol of ions.
-- Calcium chloride, <InlineMath math="M_r = 111" />: <InlineMath math="\dfrac{7.4}{111} = 0.0667" /> mol, with <InlineMath math="3" /> ions each, <InlineMath math="\text{Ca}^{2+}" /> and two <InlineMath math="\text{Cl}^-" />, so <InlineMath math="0.0667 \times 3 = 0.2" /> mol of ions.
+The <InlineMath math="2.88\text{ dm}^3" /> of carbon dioxide from <InlineMath math="1.20\text{ dm}^3" /> of fuel means <InlineMath math="2.40" /> carbon atoms per fuel molecule on average. That sits <InlineMath math="70\%" /> of the way from one to three, so <InlineMath math="70\%" /> of the fuel is propane, <InlineMath math="0.840\text{ dm}^3" />. The <InlineMath math="0.360\text{ dm}^3" /> choice is the methane's share.
 
-# Why the other options are wrong
+# Oxygen the flame leaves behind
 
-- <InlineMath math="11.1\text{ g}" /> of calcium chloride has the same number of **formula units**, <InlineMath math="0.1" /> mol, but <InlineMath math="0.3" /> mol of ions.
-- <InlineMath math="2.8\text{ g}" /> of potassium hydroxide, <InlineMath math="M_r = 56" />, is <InlineMath math="0.05" /> mol with two ions each, so <InlineMath math="0.1" /> mol of ions.
-- <InlineMath math="2.0\text{ g}" /> of magnesium oxide, <InlineMath math="M_r = 40" />, is <InlineMath math="0.05" /> mol with two ions each, so <InlineMath math="0.1" /> mol of ions.
+Propane is the greedier fuel, **five oxygen per molecule against two for methane**. Together they burn <InlineMath math="4.92\text{ dm}^3" /> and leave <InlineMath math="1.08\text{ dm}^3" />. Taking <InlineMath math="2.88\text{ dm}^3" /> off the oxygen gives <InlineMath math="3.12\text{ dm}^3" />, but the carbon dioxide volume says nothing directly about the oxygen used.
+
+# Magnesium mops up what is left
+
+Each oxygen molecule turns two magnesium atoms into oxide, so **<InlineMath math="0.0450\text{ mol}" /> of oxygen makes <InlineMath math="0.0900\text{ mol}" /> of magnesium oxide**. One oxide per oxygen molecule gives half the mass, <InlineMath math="1.80\text{ g}" />, and the <InlineMath math="10.4\text{ g}" /> choice carries the <InlineMath math="3.12\text{ dm}^3" /> slip into this step.
+
+<BlockMath math="\begin{aligned}
+1+2p&=\tfrac{2.88}{1.20}=2.40\ \Rightarrow\ p=0.700,\quad V(\text{C}_3\text{H}_8)=0.700\times1.20=0.840\text{ dm}^3\\
+V(\text{O}_2)'&=6.00-(2\times0.360+5\times0.840)=1.08\text{ dm}^3\\
+m(\text{MgO})&=2\times\tfrac{1.08}{24}\times40=3.60\text{ g}
+\end{aligned}" />
+
+The magnesium never touches the fuel, so the burning matters here only through the oxygen it leaves.

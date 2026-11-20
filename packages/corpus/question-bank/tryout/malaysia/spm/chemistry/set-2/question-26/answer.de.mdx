@@ -1,41 +1,33 @@
-# Dieselben Elektronen, zwei verschiedene Anoden
+# Die Farbe ist der Elektronenzähler
 
-In Reihe fließen durch beide Zellen dieselben <InlineMath math="0{,}10\text{ mol}" /> Elektronen. Die Kathoden verhalten sich gleich, die Anoden nicht: Eine Kupferanode geht in Lösung und ersetzt jedes Kupfer(II)-Ion, das verloren geht, während **eine Kohleanode nur Hydroxidionen entlädt**.
+Niemand wiegt hier das Zink, also fang dort an, wo die Zelle selbst Auskunft gibt: **im Kupferbecher fehlen <InlineMath math="0{,}100\text{ mol dm}^{-3}" /> Kupfer(II)-Ionen in <InlineMath math="0{,}100\text{ dm}^3" />**, also <InlineMath math="0{,}0100\text{ mol}" /> Ionen, die an der positiven Elektrode zu Kupfer wurden. Jedes nimmt zwei Elektronen aus dem Draht, also sind <InlineMath math="0{,}0200\text{ mol}" /> Elektronen geflossen, <InlineMath math="1{,}20\times10^{22}" /> Stück. Gibt man jedem Ion nur ein Elektron, landet man bei <InlineMath math="6{,}02\times10^{21}" />.
 
-Lass beide Zellen im Labor laufen und vergleich die beiden Lösungen.
-
-<ElectrolysisLab
-  title={<>Beide Zellen nach <InlineMath math="0{,}10\text{ mol}" /> Elektronen</>}
-  description={<>In P löst sich die Kupferanode so schnell auf, wie sich Kupfer abscheidet, also bleibt die Lösung blau. In Q scheidet sich Kupfer ab, während Sauerstoff entsteht, also gehen die Kupfer(II)-Ionen aus.</>}
-  cells={[
-    { electrode: "copper", electrolyte: "copper-sulfate" },
-    { electrode: "carbon", electrolyte: "copper-sulfate" },
-  ]}
-  electrons={0.1}
+<ChemicalCellLab
+  title={<>Zwei Elektronen je Kupferion</>}
+  description={<>Jedes Kupfer(II)-Ion, das die blaue Lösung verlässt, nimmt zwei Elektronen auf, und jedes Zinkatom, das sich löst, liefert zwei. Die Menge <InlineMath math="0{,}0200\text{ mol}" /> erscheint als Produkte an beiden Elektroden.</>}
+  metals={["zinc", "copper"]}
+  electrons={0.02}
   showProducts
   labels={{
-    anode: "Anode",
-    atAnode: <>An der Anode</>,
-    atCathode: <>An der Kathode</>,
-    battery: "Batterie",
-    cathode: "Kathode",
-    cells: [<>Zelle P: Kupferelektroden</>, <>Zelle Q: Kohleelektroden</>],
+    atNegative: <>Am Minuspol</>,
+    atPositive: <>Am Pluspol</>,
     electrons: <>Geflossene Elektronen</>,
-    ph: <>pH-Wert des Elektrolyten</>,
-    trends: { falls: <>sinkt</>, rises: <>steigt</>, steady: <>bleibt gleich</> },
-    view: "Zwei Elektrolysezellen mit Kupfer(II)-sulfat in Reihe",
+    halfCells: <>Halbzellen</>,
+    view: "Galvanische Zelle aus Zink und Kupfer",
+    voltage: <>Zellspannung</>,
+    voltmeter: "V",
   }}
 />
 
+# Das Zink bezahlt jedes dieser Elektronen
+
+Der Draht trägt nichts, was das Zink nicht abgegeben hat, und ein Zinkatom gibt zwei ab. Also **lösen sich halb so viele Zinkatome, wie Elektronen fließen**: <InlineMath math="0{,}0100\text{ mol}" />, das sind <InlineMath math="0{,}650\text{ g}" /> weniger an der Elektrode. Kostet jedes Elektron ein ganzes Zinkatom, verdoppelt sich das auf <InlineMath math="1{,}30\text{ g}" />.
+
+# Zwei Bechergläser, zwei Volumen
+
+Die <InlineMath math="0{,}0100\text{ mol}" /> neuen Zinkionen kommen zu den <InlineMath math="0{,}0500\text{ mol}" />, die schon im Zinkbecher sind. Hier liegt die Falle der Aufgabe: **der Zinkbecher fasst <InlineMath math="200\text{ cm}^3" />, nicht <InlineMath math="100\text{ cm}^3" />**, also verteilen sich <InlineMath math="0{,}0600\text{ mol}" /> auf <InlineMath math="0{,}200\text{ dm}^3" /> und ergeben <InlineMath math="0{,}300\text{ mol dm}^{-3}" />. Wer durch das Volumen des Kupferbechers teilt, verdoppelt das auf <InlineMath math="0{,}600\text{ mol dm}^{-3}" />.
+
 <BlockMath math="\begin{aligned}
-n(\text{Cu})&=\frac{0{,}10}{2}=0{,}050\text{ mol}\Rightarrow m=0{,}050\times64=3{,}2\text{ g}\\
-n(\text{Cu}^{2+})\text{ in Q}&=0{,}50\times\frac{100}{1000}=0{,}050\text{ mol}
+n(\text{Cu}^{2+})&=0{,}100\times(0{,}500-0{,}400)=0{,}0100\text{ mol}\ \Rightarrow\ N(e^-)=2\times0{,}0100\times6{,}02\times10^{23}=1{,}20\times10^{22}\\
+n(\text{Zn})&=\tfrac{0{,}0200}{2}=0{,}0100\text{ mol}=0{,}650\text{ g},\quad c(\text{Zn}^{2+})=\tfrac{0{,}200\times0{,}250+0{,}0100}{0{,}200}=0{,}300\text{ mol dm}^{-3}
 \end{aligned}" />
-
-Die <InlineMath math="0{,}050\text{ mol}" /> Kupfer, die sich in Q abscheiden, sind alle Kupfer(II)-Ionen der Lösung, und nichts ersetzt sie, also verschwindet das Blau. Die Anode von P verliert also <InlineMath math="3{,}2\text{ g}" />, und die Lösung in Q wird farblos, während an ihrer Anode Sauerstoff entsteht.
-
-# Warum die anderen Antworten falsch sind
-
-- Das verblassende Blau in P vertauscht die Zellen: In P hält die Kupferanode die Menge der Kupfer(II)-Ionen gleich.
-- <InlineMath math="6{,}4\text{ g}" /> nimmt die <InlineMath math="0{,}10\text{ mol}" /> Elektronen als Stoffmenge Kupfer. **Jedes Kupfer(II)-Ion braucht zwei Elektronen**.
-- Q bleibt blau behandelt die Kohleanode wie die Kupferanode, obwohl in Q nichts die Kupfer(II)-Ionen ersetzt, die die Lösung verlassen.

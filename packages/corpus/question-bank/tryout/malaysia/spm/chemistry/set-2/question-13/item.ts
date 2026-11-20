@@ -12,22 +12,23 @@ const item: ItemSource = {
       options: [
         {
           correct: false,
-          label: "$$10.0\\text{ g}$$ of magnesium oxide, no magnesium left",
+          label:
+            "$$\\text{Fe}_2\\text{O}_3$$, $$4.00\\text{ g}$$, $$30.0\\text{ cm}^3$$",
         },
         {
           correct: false,
           label:
-            "$$4.0\\text{ g}$$ of magnesium oxide, $$3.6\\text{ g}$$ of magnesium left",
+            "$$\\text{Fe}_3\\text{O}_4$$, $$3.00\\text{ g}$$, $$30.0\\text{ cm}^3$$",
         },
         {
           correct: true,
           label:
-            "$$8.0\\text{ g}$$ of magnesium oxide, $$1.2\\text{ g}$$ of magnesium left",
+            "$$\\text{Fe}_3\\text{O}_4$$, $$4.00\\text{ g}$$, $$30.0\\text{ cm}^3$$",
         },
         {
           correct: false,
           label:
-            "$$8.0\\text{ g}$$ of magnesium oxide, $$2.4\\text{ g}$$ of magnesium left",
+            "$$\\text{Fe}_3\\text{O}_4$$, $$4.00\\text{ g}$$, $$150\\text{ cm}^3$$",
         },
       ],
     },
@@ -36,22 +37,23 @@ const item: ItemSource = {
       options: [
         {
           correct: false,
-          label: "$$10.0\\text{ g}$$ magnesium oksida, tiada magnesium berbaki",
+          label:
+            "$$\\text{Fe}_2\\text{O}_3$$, $$4.00\\text{ g}$$, $$30.0\\text{ cm}^3$$",
         },
         {
           correct: false,
           label:
-            "$$4.0\\text{ g}$$ magnesium oksida, $$3.6\\text{ g}$$ magnesium berbaki",
+            "$$\\text{Fe}_3\\text{O}_4$$, $$3.00\\text{ g}$$, $$30.0\\text{ cm}^3$$",
         },
         {
           correct: true,
           label:
-            "$$8.0\\text{ g}$$ magnesium oksida, $$1.2\\text{ g}$$ magnesium berbaki",
+            "$$\\text{Fe}_3\\text{O}_4$$, $$4.00\\text{ g}$$, $$30.0\\text{ cm}^3$$",
         },
         {
           correct: false,
           label:
-            "$$8.0\\text{ g}$$ magnesium oksida, $$2.4\\text{ g}$$ magnesium berbaki",
+            "$$\\text{Fe}_3\\text{O}_4$$, $$4.00\\text{ g}$$, $$150\\text{ cm}^3$$",
         },
       ],
     },

@@ -1,31 +1,33 @@
-# Panjangkan garis penyejukan ke saat pencampuran
+# Ion hidrogen lawan ion hidroksida
 
-Cawan mula kehilangan haba sebaik sahaja tindak balas memanaskannya, jadi bacaan pertama selepas pencampuran sudah terlalu rendah. **Lukis garis penyejukan ke belakang hingga minit <InlineMath math="2.0" />** untuk mendapat suhu yang dicapai jika tiada haba hilang.
-
-Garis kedua memanjangkan penyejukan ke belakang setengah minit, dengan kadar yang sama, <InlineMath math="0.4^\circ\text{C}" /> setiap setengah minit.
+Asid sulfurik ialah asid dwibes, jadi <InlineMath math="0.0500\text{ mol}" /> daripadanya membebaskan <InlineMath math="0.100\text{ mol}" /> ion hidrogen, manakala alkali membawa <InlineMath math="0.0750\text{ mol}" /> ion hidroksida. **Yang lebih kecil, <InlineMath math="0.0750\text{ mol}" />, ialah air yang terbentuk**, dan carta itu menghitung isi cawan selepas peneutralan selesai.
 
 <Chart
-  title={<>Garis penyejukan dipanjangkan ke masa pencampuran</>}
-  description={<>Selepas pencampuran, bacaan turun <InlineMath math="0.4^\circ\text{C}" /> setiap setengah minit. Apabila dipanjangkan ke minit <InlineMath math="2.0" />, garis itu bertemu <InlineMath math="42.0^\circ\text{C}" />, iaitu <InlineMath math="14.0^\circ\text{C}" /> lebih tinggi daripada suhu awal <InlineMath math="28.0^\circ\text{C}" />.</>}
-  categories={["0", "0.5", "1.0", "1.5", "2.0", "2.5", "3.0", "3.5", "4.0", "4.5", "5.0"]}
+  title={<>Ion dalam cawan sebelum dan selepas dicampur</>}
+  description={<>Ion natrium dan ion sulfat hanya pemerhati dan kekal jumlahnya. Ion hidroksida hilang menjadi air, manakala <InlineMath math="25.0\text{ mmol}" /> ion hidrogen masih ada.</>}
+  bars="apart"
+  categories={["H⁺", "OH⁻", "Na⁺", "SO₄²⁻"]}
   series={[
-    { label: "Bacaan", mark: "line", values: [28.0, 28.0, 28.0, 28.0, null, 41.6, 41.2, 40.8, 40.4, 40.0, 39.6] },
-    { label: "Garis penyejukan dipanjangkan", mark: "line", values: [null, null, null, null, 42.0, 41.6, 41.2, 40.8, 40.4, 40.0, 39.6] },
+    { label: "Sebelum dicampur", mark: "bar", values: [100.0, 75.0, 75.0, 50.0] },
+    { label: "Selepas dicampur", mark: "bar", values: [25.0, 0.0, 75.0, 50.0] },
   ]}
-  valueLabel="Suhu (°C)"
+  valueLabel="Kuantiti (mmol)"
 />
 
+Jika kamu menganggap asid itu memberi satu ion hidrogen bagi setiap molekul, asid pula menjadi pihak yang lebih kecil: <InlineMath math="0.0500\text{ mol}" /> air, <InlineMath math="2.86\text{ kJ}" />, <InlineMath math="6.81^\circ\text{C}" />, dan tiada apa-apa untuk magnesium.
+
+# Haba tersebar ke seluruh cawan
+
+Setiap mol air membebaskan <InlineMath math="57.2\text{ kJ}" />, jadi <InlineMath math="0.0750\text{ mol}" /> memberi <InlineMath math="4.29\text{ kJ}" />. **Haba itu memanaskan kedua-dua larutan bersama**, <InlineMath math="100\text{ cm}^3" /> atau <InlineMath math="100\text{ g}" />, jadi kenaikannya <InlineMath math="10.2^\circ\text{C}" />. Memanaskan <InlineMath math="50\text{ g}" /> asid sahaja menggandakannya kepada <InlineMath math="20.4^\circ\text{C}" />.
+
 <BlockMath math="\begin{aligned}
-\Delta\theta&=42.0-28.0=14.0^\circ\text{C}\\
-Q&=50\times4.2\times14.0=2940\text{ J}=2.94\text{ kJ}\\
-n(\text{H}_2\text{O})&=\frac{25}{1000}\times2.0=0.050\text{ mol}\\
-\Delta H&=-\frac{2.94}{0.050}=-58.8\text{ kJ mol}^{-1}
+n(\text{H}_2\text{O})&=n(\text{OH}^-)=0.0750\text{ mol},\quad Q=0.0750\times57.2=4.29\text{ kJ},\quad \Delta T=\tfrac{4290}{100\times4.2}=10.2^\circ\text{C}
 \end{aligned}" />
 
-Jadi haba peneutralan ialah <InlineMath math="-58.8\text{ kJ mol}^{-1}" />.
+# Apa yang ditemui oleh magnesium
 
-# Kenapa pilihan lain salah
+Sebanyak <InlineMath math="0.0250\text{ mol}" /> ion hidrogen yang berlebihan menyerang pita itu, dan **setiap atom magnesium memerlukan dua daripadanya** untuk menjadi <InlineMath math="\text{Mg}^{2+}" /> dan membebaskan satu molekul hidrogen. Jadi <InlineMath math="0.0125\text{ mol}" /> magnesium larut. Membiarkan satu ion hidrogen melarutkan satu atom magnesium memberi <InlineMath math="0.600\text{ g}" /> dan menjadikan casnya tidak seimbang.
 
-- <InlineMath math="-57.1\text{ kJ mol}^{-1}" /> menggunakan bacaan tertinggi, <InlineMath math="41.6^\circ\text{C}" />, iaitu suhu selepas cawan sudah sejuk sedikit semasa bacaan diambil.
-- <InlineMath math="+58.8\text{ kJ mol}^{-1}" /> tertinggal tanda negatif. **Peneutralan membebaskan haba, jadi perubahan habanya negatif**.
-- <InlineMath math="-117.6\text{ kJ mol}^{-1}" /> membahagi dengan <InlineMath math="0.025" />, iaitu isi padu dalam desimeter padu, dan terlupa mendarab dengan kepekatan, <InlineMath math="2.0\text{ mol dm}^{-3}" />.
+<BlockMath math="\begin{aligned}
+m(\text{Mg})&=\tfrac{0.100-0.0750}{2}\times24=0.300\text{ g}
+\end{aligned}" />

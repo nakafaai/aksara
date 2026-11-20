@@ -13,22 +13,22 @@ const item: ItemSource = {
         {
           correct: true,
           label:
-            "The copper electrode gains $$0.96\\text{ g}$$, and the zinc ions reach $$0.40\\text{ mol dm}^{-3}$$",
+            "$$5.76\\text{ g}$$, $$0.590\\text{ g}$$, $$0.480\\text{ mol dm}^{-3}$$",
         },
         {
           correct: false,
           label:
-            "The copper electrode gains $$0.96\\text{ g}$$, and the zinc ions reach $$0.30\\text{ mol dm}^{-3}$$",
+            "$$6.40\\text{ g}$$, $$0.600\\text{ g}$$, $$0.500\\text{ mol dm}^{-3}$$",
         },
         {
           correct: false,
           label:
-            "The copper electrode gains $$1.92\\text{ g}$$, and the zinc ions reach $$0.70\\text{ mol dm}^{-3}$$",
+            "$$5.76\\text{ g}$$, $$0.590\\text{ g}$$, $$0.500\\text{ mol dm}^{-3}$$",
         },
         {
           correct: false,
           label:
-            "The copper electrode gains $$0.96\\text{ g}$$, and the zinc ions stay at $$0.10\\text{ mol dm}^{-3}$$",
+            "$$5.76\\text{ g}$$, $$1.24\\text{ g}$$, $$0.480\\text{ mol dm}^{-3}$$",
         },
       ],
     },
@@ -38,22 +38,22 @@ const item: ItemSource = {
         {
           correct: true,
           label:
-            "Elektrod kuprum bertambah $$0.96\\text{ g}$$, dan ion zink mencapai $$0.40\\text{ mol dm}^{-3}$$",
+            "$$5.76\\text{ g}$$, $$0.590\\text{ g}$$, $$0.480\\text{ mol dm}^{-3}$$",
         },
         {
           correct: false,
           label:
-            "Elektrod kuprum bertambah $$0.96\\text{ g}$$, dan ion zink mencapai $$0.30\\text{ mol dm}^{-3}$$",
+            "$$6.40\\text{ g}$$, $$0.600\\text{ g}$$, $$0.500\\text{ mol dm}^{-3}$$",
         },
         {
           correct: false,
           label:
-            "Elektrod kuprum bertambah $$1.92\\text{ g}$$, dan ion zink mencapai $$0.70\\text{ mol dm}^{-3}$$",
+            "$$5.76\\text{ g}$$, $$0.590\\text{ g}$$, $$0.500\\text{ mol dm}^{-3}$$",
         },
         {
           correct: false,
           label:
-            "Elektrod kuprum bertambah $$0.96\\text{ g}$$, dan ion zink kekal $$0.10\\text{ mol dm}^{-3}$$",
+            "$$5.76\\text{ g}$$, $$1.24\\text{ g}$$, $$0.480\\text{ mol dm}^{-3}$$",
         },
       ],
     },

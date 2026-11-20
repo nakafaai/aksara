@@ -1,28 +1,11 @@
-# Two unknown abundances need two equations
+# Reading the two peaks
 
-With three isotopes and one abundance given, two abundances are unknown. **One equation comes from the percentages adding up to <InlineMath math="100" />, the other from the weighted average**.
-
-Let <InlineMath math="x" /> be the percentage of magnesium-25 and <InlineMath math="y" /> the percentage of magnesium-26.
-
-- Percentages: <InlineMath math="x + y = 100 - 79 = 21" />.
-- Weighted average: <InlineMath math="\dfrac{79(24) + 25x + 26y}{100} = 24.32" />, so <InlineMath math="25x + 26y = 2432 - 1896 = 536" />.
-- Subtract <InlineMath math="25(x + y) = 525" />: <InlineMath math="y = 536 - 525 = 11" />, and <InlineMath math="x = 10" />.
-
-<Chart
-  title={<>Abundance of the Magnesium Isotopes</>}
-  bars="apart"
-  categories={["Magnesium-24", "Magnesium-25", "Magnesium-26"]}
-  series={[
-    { label: "Abundance (%)", mark: "bar", values: [79, 10, 11] },
-  ]}
-  valueLabel="Abundance (%)"
-  description={<>Magnesium-24 makes up <InlineMath math="79\%" />, magnesium-25 <InlineMath math="10\%" /> and magnesium-26 <InlineMath math="11\%" /> of the atoms.</>}
-/>
+The peaks stand <InlineMath math="100" /> and <InlineMath math="33.3" /> high, so **three chlorine-35 atoms come with every chlorine-37 atom**. That is <InlineMath math="75\%" /> and <InlineMath math="25\%" />, and the weighted mean is <InlineMath math="35.5" />. Averaging the two masses without their abundances gives <InlineMath math="36.0" />, which treats the isotopes as equally common.
 
 <MassSpectrometerLab
-  title={<>Magnesium in a Mass Spectrometer</>}
-  description={<>The three isotopes bend on three paths, and the peak heights give their abundances.</>}
-  samples={["magnesium"]}
+  title={<>Chlorine ions in the magnetic field</>}
+  description={<>The lighter chlorine-35 ions bend on a tighter path than chlorine-37 ions, and the detector counts three of the first for every one of the second.</>}
+  samples={["chlorine"]}
   labels={{
     average: <>Average relative atomic mass</>,
     choose: "Choose an element",
@@ -35,8 +18,15 @@ Let <InlineMath math="x" /> be the percentage of magnesium-25 and <InlineMath ma
   }}
 />
 
-# Why the other options are wrong
+# Which gas is used up
 
-- <InlineMath math="10\%" /> is the abundance of magnesium-25: **the two unknowns were swapped** at the end.
-- <InlineMath math="21\%" /> lumps both heavier isotopes together, as if magnesium-26 were the only other isotope.
-- <InlineMath math="5.5\%" /> halves the remaining <InlineMath math="11\%" />, as if it had to be shared again.
+Hydrogen is <InlineMath math="2.40\div24=0.100\text{ mol}" /> and chlorine <InlineMath math="0.150\text{ mol}" />, and they react one to one, so **the hydrogen runs out** and <InlineMath math="0.200\text{ mol}" /> of hydrogen chloride forms. Each molecule has one chlorine atom, and a quarter of those atoms are chlorine-37. Counting a quarter of the chlorine atoms in all <InlineMath math="0.150\text{ mol}" /> of chlorine gives <InlineMath math="4.52\times10^{22}" />, which pretends every chlorine molecule reacted.
+
+# What the leftover chlorine frees
+
+The <InlineMath math="0.0500\text{ mol}" /> of chlorine left frees the same amount of iodine molecules, and **an iodine molecule has <InlineMath math="M_r=254" />**. Using <InlineMath math="127" /> for one iodine atom halves the mass to <InlineMath math="6.35\text{ g}" />.
+
+<BlockMath math="\begin{aligned}
+A_r&=\tfrac{35\times100+37\times33.3}{133.3}=35.5,\quad n(\text{H}_2)=0.100<n(\text{Cl}_2)=0.150\\
+N(\text{H}^{37}\text{Cl})&=0.250\times0.200\times6.02\times10^{23}=3.01\times10^{22},\quad m(\text{I}_2)=0.0500\times254=12.7\text{ g}
+\end{aligned}" />

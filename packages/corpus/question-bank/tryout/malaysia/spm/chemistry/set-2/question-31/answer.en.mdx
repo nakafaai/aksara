@@ -1,49 +1,46 @@
-# Equal masses are not equal moles
+# How long is the chain
 
-Both molecules have six carbon atoms, but hex-1-ene has two fewer hydrogen atoms, so it is lighter, <InlineMath math="84" /> against <InlineMath math="86" />. **A gram of hex-1-ene holds more molecules, and so more carbon**. That extra carbon shows up twice: as soot when air is short, and as more carbon dioxide when the oxygen is plentiful.
+One molecule of <InlineMath math="\text{C}_n\text{H}_{2n+1}\text{OH}" /> burns to <InlineMath math="n" /> molecules of carbon dioxide, and its relative molecular mass is <InlineMath math="14n+18" />. The gas is <InlineMath math="0.0800\text{ mol}" />, so **a single equation in <InlineMath math="n" /> pins down the alcohol**.
 
-Turn the two chains, then compare the products the chart works out for one gram of each.
+<BlockMath math="\begin{aligned}
+n\times\tfrac{1.48}{14n+18}&=\tfrac{1.92}{24}=0.0800\ \Rightarrow\ 0.36n=1.44,\quad n=4,\quad \text{C}_4\text{H}_9\text{OH},\ M_r=74
+\end{aligned}" />
 
-<MoleculeShapeLab
-  title={<>Hexane and hex-1-ene</>}
-  description={<>Both chains have six carbon atoms. Hex-1-ene has a double bond at the end of the chain and two hydrogen atoms fewer.</>}
-  molecules={[
-    { id: "hexane", name: "hexane" },
-    { id: "hexene", name: "hex-1-ene" },
-  ]}
-  labels={{
-    atoms: <>Atoms</>,
-    choose: "Choose a molecule",
-    fill: <>Space-filling model</>,
-    formula: <>Formula</>,
-    mass: <>Relative molecular mass</>,
-    shape: <>Bond angle</>,
-    view: "Hexane and hex-1-ene",
-  }}
-/>
+The alcohol is butanol, and the sample is <InlineMath math="0.0200\text{ mol}" />. All four options already name <InlineMath math="\text{C}_4\text{H}_9\text{OH}" />, so the marks sit in the next two steps.
 
-<Chart
-  title={<>Products from <InlineMath math="1.00\text{ g}" /> of each fuel</>}
-  description={<>Hex-1-ene gives <InlineMath math="3.14\text{ g}" /> of carbon dioxide against <InlineMath math="3.07\text{ g}" /> from hexane, and <InlineMath math="1.29\text{ g}" /> of water against <InlineMath math="1.47\text{ g}" />.</>}
-  bars="apart"
-  categories={["Hexane", "Hex-1-ene"]}
-  series={[
-    { label: "Carbon dioxide", mark: "bar", values: [3.07, 3.14] },
-    { label: "Water", mark: "bar", values: [1.47, 1.29] },
-  ]}
-  valueLabel="Mass (g)"
+# Where the oxygen atoms come from
+
+Burning gives <InlineMath math="0.0800\text{ mol}" /> of carbon dioxide and <InlineMath math="0.100\text{ mol}" /> of water, which hold <InlineMath math="0.260\text{ mol}" /> of oxygen atoms between them. **Each alcohol molecule walks in with one oxygen atom of its own**, so the gas only has to supply the other <InlineMath math="0.240\text{ mol}" /> of atoms.
+
+<Mermaid
+  title={<>Balancing the oxygen atoms of the burning</>}
+  description={<>The products need <InlineMath math="0.260\text{ mol}" /> of oxygen atoms, and the alcohol itself brings <InlineMath math="0.0200\text{ mol}" /> of them.</>}
+  chart={`
+    flowchart LR
+      N0["0.0200 mol C₄H₉OH brings 0.0200 mol O"]
+      N1["0.120 mol O₂ brings 0.240 mol O"]
+      N2["0.260 mol O atoms"]
+      N3["0.0800 mol CO₂ holds 0.160 mol O"]
+      N4["0.100 mol H₂O holds 0.100 mol O"]
+      N0 --> N2
+      N1 --> N2
+      N2 --> N3
+      N2 --> N4
+  `}
 />
 
 <BlockMath math="\begin{aligned}
-\text{C}_6\text{H}_{14}:\ n&=\frac{1.00}{86}=0.0116\text{ mol},\ m(\text{CO}_2)=6\times0.0116\times44=3.07\text{ g}\\
-\text{C}_6\text{H}_{12}:\ n&=\frac{1.00}{84}=0.0119\text{ mol},\ m(\text{CO}_2)=6\times0.0119\times44=3.14\text{ g}\\
-\%\,\text{C}&=\frac{72}{86}\times100\%=83.7\%\ \text{against}\ \frac{72}{84}\times100\%=85.7\%
+n(\text{O}_2)&=\tfrac{2\times0.0800+0.100-0.0200}{2}=0.120\text{ mol},\quad V(\text{O}_2)=0.120\times24=2.88\text{ dm}^3
 \end{aligned}" />
 
-So hex-1-ene gives more carbon dioxide because more of its mass is carbon.
+Charging all <InlineMath math="0.260\text{ mol}" /> of atoms to the gas gives <InlineMath math="3.12\text{ dm}^3" />, the oxygen that butane, with the same carbon and hydrogen count but no oxygen inside, would need.
 
-# Why the other options are wrong
+# Two hydrogens out, one oxygen in
 
-- The double bond holds no extra hydrogen. Hex-1-ene has fewer hydrogen atoms, so it forms less water, <InlineMath math="1.29\text{ g}" /> against <InlineMath math="1.47\text{ g}" />.
-- Six carbon atoms per molecule would give equal carbon dioxide only for equal moles. **Equal masses of the two fuels contain different numbers of molecules**.
-- Hexane's extra atoms are hydrogen, which forms water, not carbon dioxide. Per gram it carries less carbon.
+Acidified dichromate(VI) turns the <InlineMath math="\text{CH}_2\text{OH}" /> end into <InlineMath math="\text{COOH}" />: two hydrogen atoms leave in a water molecule and one oxygen atom joins. **So butanoic acid has <InlineMath math="M_r=88" />, which is <InlineMath math="14" /> more than the alcohol**, and every alcohol molecule becomes one acid molecule.
+
+<BlockMath math="\begin{aligned}
+m(\text{C}_3\text{H}_7\text{COOH})&=0.0200\times88=1.76\text{ g}
+\end{aligned}" />
+
+Writing <InlineMath math="1.48\text{ g}" /> for the acid pretends the molecule did not change. Adding the two oxygen atoms but keeping the water inside the product gives <InlineMath math="M_r=106" /> and <InlineMath math="2.12\text{ g}" />.

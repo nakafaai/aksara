@@ -1,34 +1,35 @@
-# Concentration decides which ion discharges at the anode
+# How far the chlorine gets
 
-At an inert anode, hydroxide ions are discharged before chloride ions, **unless the chloride ions are much more concentrated**. The same current flows through both cells in series.
+Start with the gas, because it is the reagent that can run out: <InlineMath math="120\text{ cm}^3" /> is <InlineMath math="0.00500\text{ mol}" /> of chlorine, against <InlineMath math="0.0150\text{ mol}" /> of bromide. One chlorine molecule clears two bromide ions, so **the chlorine is gone after <InlineMath math="0.0100\text{ mol}" /> of bromide** and only <InlineMath math="0.00500\text{ mol}" /> of bromine forms, <InlineMath math="0.800\text{ g}" /> at <InlineMath math="M_r=160" />. Turning every bromide into bromine, <InlineMath math="1.20\text{ g}" />, would need half as much chlorine again as was bubbled in.
 
-<ElectrolysisLab
-  title={<>Two Cells in Series</>}
-  description={<>Cell I holds dilute and cell II concentrated sodium chloride solution, each with carbon electrodes, on one battery.</>}
-  cells={[{ electrode: "carbon", electrolyte: "sodium-chloride-dilute" }, { electrode: "carbon", electrolyte: "sodium-chloride-concentrated" }]}
-  electrons={0.04}
-  showProducts
-  labels={{
-    anode: "Anode",
-    atAnode: <>At the anode</>,
-    atCathode: <>At the cathode</>,
-    battery: "Battery",
-    cathode: "Cathode",
-    cells: [<>Cell I: dilute sodium chloride, carbon electrodes</>, <>Cell II: concentrated sodium chloride, carbon electrodes</>],
-    electrons: <>Electrons passed</>,
-    ph: <>pH of the electrolyte</>,
-    trends: { falls: <>falls</>, rises: <>rises</>, steady: <>stays the same</> },
-    view: "Two electrolysis cells in series with carbon electrodes in dilute and concentrated sodium chloride solution",
-  }}
+<Mermaid
+  title={<>Where each halogen ends up</>}
+  description={<>Chlorine pushes bromine out of the water and into the hexane. The water layer keeps every halide ion, and the hexane carries the bromine on to the iodide.</>}
+  chart={`
+    flowchart TD
+      N0["5.00 mmol Cl₂ meets 15.0 mmol Br⁻"]
+      N1["Water layer: 10.0 mmol Cl⁻, 5.00 mmol Br⁻"]
+      N2["Hexane layer: 5.00 mmol Br₂, 0.800 g"]
+      N3["Shaken with KI: 5.00 mmol I₂, 1.27 g"]
+      N4["AgNO₃ meets 15.0 mmol halide: 150 cm³"]
+      N0 --> N1
+      N0 --> N2
+      N2 --> N3
+      N1 --> N4
+  `}
 />
 
-- Cell I, dilute: hydroxide ions are discharged, <InlineMath math="4\text{OH}^- \rightarrow \text{O}_2 + 2\text{H}_2\text{O} + 4e^-" />, so oxygen forms.
-- Cell II, concentrated: chloride ions are discharged, <InlineMath math="2\text{Cl}^- \rightarrow \text{Cl}_2 + 2e^-" />, so chlorine forms.
-- In cell II, <InlineMath math="2" /> mol of electrons give <InlineMath math="1" /> mol of <InlineMath math="\text{Cl}_2" />, so <InlineMath math="0.04" /> mol of electrons give <InlineMath math="0.02" /> mol.
-- Volume of chlorine: <InlineMath math="0.02 \times 24 = 0.48\text{ dm}^3" />.
+# Bromine swaps solvent, then partner
 
-# Why the other options are wrong
+Bromine molecules are non-polar, so the shaking pulls **all <InlineMath math="0.00500\text{ mol}" /> of bromine into the hexane** while the ions stay in the water. There it oxidises iodide and frees one iodine molecule per bromine molecule. Iodine leaves as <InlineMath math="\text{I}_2" /> with <InlineMath math="M_r=254" />, giving <InlineMath math="1.27\text{ g}" />. Weighing it as single atoms halves that to <InlineMath math="0.635\text{ g}" />.
 
-- Chlorine in cell I and oxygen in cell II swaps the two cells, **as if dilution favoured chloride ions**.
-- <InlineMath math="0.96\text{ dm}^3" /> takes one mole of chlorine for every mole of electrons, forgetting that each <InlineMath math="\text{Cl}_2" /> needs two.
-- Chlorine at both anodes ignores the concentration effect in the dilute cell.
+# Every halide in the first water layer
+
+That water layer never met the iodide. It holds the <InlineMath math="0.0100\text{ mol}" /> of chloride the chlorine turned into and the <InlineMath math="0.00500\text{ mol}" /> of bromide the chlorine never reached. **Silver nitrate takes both**, white silver chloride and cream silver bromide, so it has <InlineMath math="0.0150\text{ mol}" /> of halide to cover.
+
+<BlockMath math="\begin{aligned}
+n(\text{Cl}_2)&=\tfrac{120}{24\,000}=0.00500\text{ mol}\ \Rightarrow\ m(\text{Br}_2)=0.00500\times160=0.800\text{ g},\quad m(\text{I}_2)=0.00500\times254=1.27\text{ g}\\
+n(\text{Cl}^-)+n(\text{Br}^-)&=0.0100+0.00500=0.0150\text{ mol}\ \Rightarrow\ V(\text{AgNO}_3)=\tfrac{0.0150}{0.100}=0.150\text{ dm}^3=150\text{ cm}^3
+\end{aligned}" />
+
+Counting only the leftover bromide gives <InlineMath math="50.0\text{ cm}^3" />, as though the chloride made in the first step had disappeared. Notice the halide total is exactly the bromide you started with, because each bromide that left as bromine was replaced by one chloride.

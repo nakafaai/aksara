@@ -1,36 +1,44 @@
-# The copper(II) ions decide how far the cell runs
+# The cathode counts the electrons
 
-The cell stops when the copper(II) ions run out, so **their amount fixes the electrons**. Those electrons come from zinc atoms dissolving, and the new zinc ions join the zinc ions that were already in the half-cell.
+Only copper lands on the cathode, so its gain is the cleanest number in the whole cell. The <InlineMath math="6.40\text{ g}" /> is <InlineMath math="0.100\text{ mol}" /> of copper, which means **<InlineMath math="0.200\text{ mol}" /> of electrons went round the circuit**. Every one of them was released at the anode by a metal atom going into solution.
 
-Run the cell in the lab: zinc wears away at the negative terminal while copper coats the positive terminal, both for the same <InlineMath math="0.030\text{ mol}" /> of electrons.
-
-<ChemicalCellLab
-  title={<>The zinc and copper cell running to the end</>}
-  description={<>The zinc plate dissolves and the copper plate grows until the copper(II) ions, <InlineMath math="0.015\text{ mol}" />, are used up.</>}
-  metals={["zinc", "copper"]}
-  electrons={0.03}
+<ElectrolysisLab
+  title={<>The same charge through pure copper</>}
+  description={<>With <InlineMath math="0.200\text{ mol}" /> of electrons, a pure copper anode would lose exactly the <InlineMath math="6.40\text{ g}" /> the cathode gains, and the copper(II) ions would hold steady.</>}
+  cells={[{ electrode: "copper", electrolyte: "copper-sulfate" }]}
+  electrons={0.2}
   showProducts
   labels={{
-    atNegative: <>At the negative terminal</>,
-    atPositive: <>At the positive terminal</>,
+    anode: "Anode",
+    atAnode: <>At the anode</>,
+    atCathode: <>At the cathode</>,
+    battery: "Battery",
+    cathode: "Cathode",
+    cells: [<>Copper(II) sulfate solution, copper electrodes</>],
     electrons: <>Electrons passed</>,
-    halfCells: <>Half-cells</>,
-    view: "Chemical cell of zinc and copper",
-    voltage: <>Cell voltage</>,
-    voltmeter: "V",
+    ph: <>pH of the electrolyte</>,
+    trends: { falls: <>falls</>, rises: <>rises</>, steady: <>stays the same</> },
+    view: "Electrolytic purification of copper",
   }}
 />
 
+The lab runs that charge through pure copper. There the anode loses what the cathode gains and the blue colour stays put. An impure anode breaks both, and the rest of this question is about how much.
+
+# Zinc takes a share of the electrons
+
+Zinc is more reactive than copper, so it dissolves alongside the copper. Its <InlineMath math="0.0100\text{ mol}" /> supplies <InlineMath math="0.0200\text{ mol}" /> of electrons, and **copper supplies only the other <InlineMath math="0.180\text{ mol}" />**, which is <InlineMath math="0.0900\text{ mol}" /> of atoms or <InlineMath math="5.76\text{ g}" />. Writing <InlineMath math="6.40\text{ g}" /> for the copper dissolved pretends the anode were pure.
+
+# What the anode's lost mass is made of
+
+The <InlineMath math="7.00\text{ g}" /> left the anode three ways: copper into the solution, zinc into the solution, and silver to the bottom of the cell. **Whatever is not copper or zinc is sludge**, so <InlineMath math="0.590\text{ g}" />. Calling <InlineMath math="1.24\text{ g}" /> the sludge piles the zinc in with the silver, yet zinc ions are dissolved, not lying under the anode.
+
+# Why the blue fades a little
+
+The anode put <InlineMath math="0.0900\text{ mol}" /> of copper(II) ions into the solution while the cathode pulled <InlineMath math="0.100\text{ mol}" /> out. **The missing <InlineMath math="0.0100\text{ mol}" /> is the zinc's share**, and zinc ions now fill those places. In <InlineMath math="0.500\text{ dm}^3" /> the copper(II) ions drop from <InlineMath math="0.250\text{ mol}" /> to <InlineMath math="0.240\text{ mol}" />.
+
 <BlockMath math="\begin{aligned}
-n(\text{Cu}^{2+})&=0.30\times\frac{50.0}{1000}=0.015\text{ mol}\Rightarrow m(\text{Cu})=0.015\times64=0.96\text{ g}\\
-n(e^-)&=2\times0.015=0.030\text{ mol}\Rightarrow n(\text{Zn}\text{ dissolved})=0.015\text{ mol}\\
-[\text{Zn}^{2+}]&=\frac{0.10\times0.0500+0.015}{0.0500}=\frac{0.020}{0.0500}=0.40\text{ mol dm}^{-3}
+n(e^-)&=2\times\tfrac{6.40}{64}=0.200\text{ mol},\quad m(\text{Cu})'=\tfrac{0.200-2\times\frac{0.650}{65}}{2}\times64=5.76\text{ g}\\
+m(\text{Ag})&=7.00-5.76-0.650=0.590\text{ g},\quad c(\text{Cu}^{2+})=\tfrac{0.250+0.0900-0.100}{0.500}=0.480\text{ mol dm}^{-3}
 \end{aligned}" />
 
-So the copper electrode gains <InlineMath math="0.96\text{ g}" />, and the zinc ions reach <InlineMath math="0.40\text{ mol dm}^{-3}" />.
-
-# Why the other options are wrong
-
-- <InlineMath math="0.30\text{ mol dm}^{-3}" /> counts only the new zinc ions, <InlineMath math="\tfrac{0.015}{0.0500}" />, and forgets the <InlineMath math="0.0050\text{ mol}" /> already in the half-cell.
-- <InlineMath math="1.92\text{ g}" /> and <InlineMath math="0.70\text{ mol dm}^{-3}" /> take the <InlineMath math="0.030\text{ mol}" /> of electrons as moles of copper and of zinc. **Each atom gives or takes two electrons**.
-- Zinc ions staying at <InlineMath math="0.10\text{ mol dm}^{-3}" /> treats the zinc half-cell as a spectator, though every electron in the circuit comes from a zinc atom turning into an ion there.
+A steady <InlineMath math="0.500\text{ mol dm}^{-3}" /> belongs to the pure copper cell in the lab, not to this one.

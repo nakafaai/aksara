@@ -1,26 +1,42 @@
-# Turn the pH back into a hydrogen ion concentration
+# Copper ions run out in the beaker
 
-pH is <InlineMath math="-\log[\text{H}^+]" />, so <InlineMath math="[\text{H}^+] = 10^{-\text{pH}}" />. Each ethanoic acid molecule that ionises gives **one hydrogen ion**, so the hydrogen ion concentration is the concentration of ionised molecules.
+The beaker gets <InlineMath math="0.0200\text{ mol}" /> of copper(II) sulfate and <InlineMath math="0.0240\text{ mol}" /> of sodium carbonate, and the equation matches them one for one. **The copper ions are gone first**, so <InlineMath math="0.0200\text{ mol}" /> of copper(II) carbonate, <InlineMath math="M_r=123.5" />, settles as <InlineMath math="2.47\text{ g}" />, and <InlineMath math="0.00400\text{ mol}" /> of carbonate stays dissolved.
 
-<Chart
-  title={<>pH of Two Acids at Two Concentrations</>}
-  bars="apart"
-  categories={["0.100 mol dm⁻³", "0.010 mol dm⁻³"]}
-  series={[
-    { label: "Hydrochloric acid", mark: "bar", values: [1.0, 2.0] },
-    { label: "Ethanoic acid", mark: "bar", values: [2.87, 3.37] },
-  ]}
-  valueLabel="pH"
-  description={<>pH values. Hydrochloric acid: <InlineMath math="1.00" /> at <InlineMath math="0.100\text{ mol dm}^{-3}" /> and <InlineMath math="2.00" /> at <InlineMath math="0.010\text{ mol dm}^{-3}" />. Ethanoic acid: <InlineMath math="2.87" /> and <InlineMath math="3.37" />.</>}
+A precipitate of <InlineMath math="2.96\text{ g}" /> needs <InlineMath math="0.0240\text{ mol}" /> of copper, more than the copper(II) sulfate supplied. The same mix-up leaves a filtrate with no carbonate in it, <InlineMath math="0\text{ cm}^3" /> of gas, and a yield of <InlineMath math="70.8\%" /> measured against crystals that could never form.
+
+<Mermaid
+  title={<>Carbonate split between filter paper and filtrate</>}
+  description={<>The copper ions carry <InlineMath math="20.0\text{ mmol}" /> of carbonate into the precipitate. The rest stays in the filtrate and is the only carbonate the acid ever meets.</>}
+  chart={`
+    flowchart TD
+      N0["20.0 mmol Cu²⁺"]
+      N1["24.0 mmol CO₃²⁻"]
+      N2["20.0 mmol CuCO₃: 2.47 g"]
+      N3["4.00 mmol CO₃²⁻ in the filtrate"]
+      N4["4.00 mmol CO₂: 96.0 cm³"]
+      N5["20.0 mmol CuO"]
+      N6["At most 20.0 mmol CuSO₄·5H₂O: 4.99 g"]
+      N0 --> N2
+      N1 --> N2
+      N1 --> N3
+      N3 --> N4
+      N2 --> N5
+      N5 --> N6
+  `}
 />
 
-- <InlineMath math="[\text{H}^+] = 10^{-2.87} = 0.00135\text{ mol dm}^{-3}" />.
-- Percentage ionised: <InlineMath math="\dfrac{0.00135}{0.100} \times 100\% = 1.35\%" />.
+# Only the leftover carbonate fizzes
 
-Hydrochloric acid at the same concentration has pH <InlineMath math="1.00" />, so <InlineMath math="[\text{H}^+] = 0.100\text{ mol dm}^{-3}" />: it is fully ionised. That is the difference between a strong and a weak acid.
+The precipitate stays on the filter paper, so the acid sees just the <InlineMath math="0.00400\text{ mol}" /> in the filtrate. **One carbonate ion gives one carbon dioxide**, so the gas is <InlineMath math="96.0\text{ cm}^3" />. The coefficient two belongs to the acid, and dividing by it produces the <InlineMath math="48.0\text{ cm}^3" /> option. Sending all <InlineMath math="0.0240\text{ mol}" /> of carbonate to the acid gives <InlineMath math="576\text{ cm}^3" />, but most of that carbonate already left the solution inside the precipitate.
 
-# Why the other options are wrong
+# Following the copper into the crystals
 
-- <InlineMath math="2.87\%" /> **reads the pH itself as a percentage**.
-- <InlineMath math="13.5\%" /> divides by <InlineMath math="0.0100" /> instead of <InlineMath math="0.100" />, using the more dilute solution's concentration.
-- <InlineMath math="0.135\%" /> drops a factor of <InlineMath math="10" />, dividing by <InlineMath math="1.00" /> instead of <InlineMath math="0.100" />.
+Heating, dissolving and crystallising lose no copper atom in the calculation, so **each mole of copper(II) carbonate can become one mole of <InlineMath math="\text{CuSO}_4\cdot5\text{H}_2\text{O}" />**, <InlineMath math="M_r=249.5" />. The ceiling is <InlineMath math="4.99\text{ g}" />, and the <InlineMath math="4.24\text{ g}" /> collected is <InlineMath math="85.0\%" /> of it.
+
+<BlockMath math="\begin{aligned}
+n(\text{Cu}^{2+})&=0.0200<n(\text{CO}_3^{2-})=0.0240\ \Rightarrow\ m(\text{CuCO}_3)=0.0200\times123.5=2.47\text{ g}\\
+V(\text{CO}_2)&=(0.0240-0.0200)\times24\,000=96.0\text{ cm}^3\\
+m_{\max}&=0.0200\times249.5=4.99\text{ g},\quad \tfrac{4.24}{4.99}\times100=85.0\%
+\end{aligned}" />
+
+The five waters matter here. Leave them out of the formula mass and the ceiling drops to <InlineMath math="3.19\text{ g}" />, below what the student actually collected, a sure sign that something is off.

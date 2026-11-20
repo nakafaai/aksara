@@ -1,28 +1,11 @@
-# Dua kelimpahan yang belum diketahui butuh dua persamaan
+# Membaca kedua puncak
 
-Dengan tiga isotop dan satu kelimpahan diketahui, dua kelimpahan lain belum diketahui. **Satu persamaan datang dari jumlah persentase yang <InlineMath math="100" />, satu lagi dari rata-rata berbobot**.
-
-Misalkan <InlineMath math="x" /> persentase magnesium-25 dan <InlineMath math="y" /> persentase magnesium-26.
-
-- Persentase: <InlineMath math="x + y = 100 - 79 = 21" />.
-- Rata-rata berbobot: <InlineMath math="\dfrac{79(24) + 25x + 26y}{100} = 24{,}32" />, jadi <InlineMath math="25x + 26y = 2432 - 1896 = 536" />.
-- Kurangi dengan <InlineMath math="25(x + y) = 525" />: <InlineMath math="y = 536 - 525 = 11" />, dan <InlineMath math="x = 10" />.
-
-<Chart
-  title={<>Kelimpahan Isotop Magnesium</>}
-  bars="apart"
-  categories={["Magnesium-24", "Magnesium-25", "Magnesium-26"]}
-  series={[
-    { label: "Kelimpahan (%)", mark: "bar", values: [79, 10, 11] },
-  ]}
-  valueLabel="Kelimpahan (%)"
-  description={<>Magnesium-24 menyusun <InlineMath math="79\%" />, magnesium-25 <InlineMath math="10\%" />, dan magnesium-26 <InlineMath math="11\%" /> dari atomnya.</>}
-/>
+Puncaknya setinggi <InlineMath math="100" /> dan <InlineMath math="33{,}3" />, jadi **tiga atom klorin-35 datang bersama tiap atom klorin-37**. Itu <InlineMath math="75\%" /> dan <InlineMath math="25\%" />, dan rata-rata berbobotnya <InlineMath math="35{,}5" />. Merata-rata kedua massa tanpa kelimpahannya memberi <InlineMath math="36{,}0" />, seolah kedua isotop sama banyak.
 
 <MassSpectrometerLab
-  title={<>Magnesium dalam Spektrometer Massa</>}
-  description={<>Tiga isotop berbelok di tiga lintasan, dan tinggi puncak memberi kelimpahannya.</>}
-  samples={["magnesium"]}
+  title={<>Ion klorin di dalam medan magnet</>}
+  description={<>Ion klorin-35 yang lebih ringan berbelok di lintasan yang lebih sempit dari ion klorin-37, dan detektor menghitung tiga ion pertama untuk tiap satu ion kedua.</>}
+  samples={["chlorine"]}
   labels={{
     average: <>Massa atom relatif rata-rata</>,
     choose: "Pilih unsur",
@@ -35,8 +18,15 @@ Misalkan <InlineMath math="x" /> persentase magnesium-25 dan <InlineMath math="y
   }}
 />
 
-# Kenapa pilihan lain salah
+# Gas yang habis
 
-- <InlineMath math="10\%" /> adalah kelimpahan magnesium-25: **dua variabel tertukar** di akhir.
-- <InlineMath math="21\%" /> menggabungkan kedua isotop yang lebih berat, seakan-akan magnesium-26 satu-satunya isotop lain.
-- <InlineMath math="5{,}5\%" /> membagi dua sisa <InlineMath math="11\%" />, seakan-akan harus dibagi lagi.
+Hidrogennya <InlineMath math="2{,}40\div24=0{,}100\text{ mol}" /> dan klorinnya <InlineMath math="0{,}150\text{ mol}" />, dan keduanya bereaksi satu banding satu, jadi **hidrogennya yang habis** dan terbentuk <InlineMath math="0{,}200\text{ mol}" /> hidrogen klorida. Tiap molekul punya satu atom klorin, dan seperempat atom itu adalah klorin-37. Menghitung seperempat atom klorin dari semua <InlineMath math="0{,}150\text{ mol}" /> klorin memberi <InlineMath math="4{,}52\times10^{22}" />, seolah tiap molekul klorin ikut bereaksi.
+
+# Yang dibebaskan sisa klorin
+
+Sisa <InlineMath math="0{,}0500\text{ mol}" /> klorin membebaskan molekul iodin sebanyak itu juga, dan **molekul iodin punya <InlineMath math="M_r=254" />**. Memakai <InlineMath math="127" /> untuk satu atom iodin membagi dua massanya menjadi <InlineMath math="6{,}35\text{ g}" />.
+
+<BlockMath math="\begin{aligned}
+A_r&=\tfrac{35\times100+37\times33{,}3}{133{,}3}=35{,}5,\quad n(\text{H}_2)=0{,}100<n(\text{Cl}_2)=0{,}150\\
+N(\text{H}^{37}\text{Cl})&=0{,}250\times0{,}200\times6{,}02\times10^{23}=3{,}01\times10^{22},\quad m(\text{I}_2)=0{,}0500\times254=12{,}7\text{ g}
+\end{aligned}" />

@@ -12,19 +12,23 @@ const item: ItemSource = {
       options: [
         {
           correct: false,
-          label: "$$90\\text{ kg}$$ of glucose, atom economy $$51.1\\%$$",
+          label:
+            "$$2.40\\text{ dm}^3$$, $$16.0\\text{ g}$$, $$8.82\\text{ g}$$",
         },
         {
           correct: false,
-          label: "$$225\\text{ kg}$$ of glucose, atom economy $$51.1\\%$$",
+          label:
+            "$$2.16\\text{ dm}^3$$, $$16.0\\text{ g}$$, $$17.6\\text{ g}$$",
         },
         {
           correct: false,
-          label: "$$112.5\\text{ kg}$$ of glucose, atom economy $$100\\%$$",
+          label:
+            "$$2.40\\text{ dm}^3$$, $$17.8\\text{ g}$$, $$19.6\\text{ g}$$",
         },
         {
           correct: true,
-          label: "$$112.5\\text{ kg}$$ of glucose, atom economy $$51.1\\%$$",
+          label:
+            "$$2.40\\text{ dm}^3$$, $$16.0\\text{ g}$$, $$17.6\\text{ g}$$",
         },
       ],
     },
@@ -33,19 +37,23 @@ const item: ItemSource = {
       options: [
         {
           correct: false,
-          label: "$$90\\text{ kg}$$ glukosa, ekonomi atom $$51.1\\%$$",
+          label:
+            "$$2.40\\text{ dm}^3$$, $$16.0\\text{ g}$$, $$8.82\\text{ g}$$",
         },
         {
           correct: false,
-          label: "$$225\\text{ kg}$$ glukosa, ekonomi atom $$51.1\\%$$",
+          label:
+            "$$2.16\\text{ dm}^3$$, $$16.0\\text{ g}$$, $$17.6\\text{ g}$$",
         },
         {
           correct: false,
-          label: "$$112.5\\text{ kg}$$ glukosa, ekonomi atom $$100\\%$$",
+          label:
+            "$$2.40\\text{ dm}^3$$, $$17.8\\text{ g}$$, $$19.6\\text{ g}$$",
         },
         {
           correct: true,
-          label: "$$112.5\\text{ kg}$$ glukosa, ekonomi atom $$51.1\\%$$",
+          label:
+            "$$2.40\\text{ dm}^3$$, $$16.0\\text{ g}$$, $$17.6\\text{ g}$$",
         },
       ],
     },

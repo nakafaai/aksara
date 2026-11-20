@@ -1,28 +1,47 @@
-# Rendemen dan ekonomi atom mengukur dua kehilangan yang berbeda
+# Semua belerang terbakar
 
-Rendemen memberi tahu berapa banyak etanol yang benar-benar terbentuk dari yang mungkin, jadi rendemen menentukan jumlah glukosa yang dibutuhkan. Ekonomi atom hanya berasal dari persamaan reaksinya. **Bahkan dengan rendemen sempurna, karbon dioksida tetap membawa pergi sebagian dari tiap molekul glukosa**.
+Belerangnya <InlineMath math="3{,}20\div32=0{,}100\text{ mol}" />, dan pembakarannya sempurna, jadi terbentuk <InlineMath math="0{,}100\text{ mol}" /> belerang dioksida, <InlineMath math="2{,}40\text{ dm}^3" />. **Angka <InlineMath math="90{,}0\%" /> itu milik konverter, bukan pembakar**. Memakainya di sini mengecilkan gasnya menjadi <InlineMath math="2{,}16\text{ dm}^3" />.
 
-<BlockMath math="\begin{aligned}
-n(\text{C}_2\text{H}_5\text{OH})&=\frac{46{.}000}{46}=1000\text{ mol}\ \Rightarrow\ n(\text{C}_6\text{H}_{12}\text{O}_6)=500\text{ mol}\\
-m(\text{glukosa})&=\frac{500\times180}{0{,}80}=112{.}500\text{ g}=112{,}5\text{ kg}\\
-\text{ekonomi atom}&=\frac{2(46)}{180}\times100\%=\frac{92}{180}\times100\%=51{,}1\%
-\end{aligned}" />
+# Konverter meloloskan sebagian dioksida
 
-<Chart
-  title={<>Ke mana massa satu mol glukosa pergi</>}
-  description={<>Satu mol glukosa, <InlineMath math="180\text{ g}" />, menjadi <InlineMath math="92\text{ g}" /> etanol dan <InlineMath math="88\text{ g}" /> karbon dioksida. Hanya etanol yang merupakan produk yang diinginkan.</>}
-  bars="apart"
-  categories={["Glukosa", "Etanol", "Karbon dioksida"]}
-  series={[
-    { label: "Massa", mark: "bar", values: [180, 92, 88] },
+Hanya <InlineMath math="0{,}0900\text{ mol}" /> belerang trioksida yang keluar dari katalis, dan lab di bawah menaruh dioksida yang bengkok di samping trioksida yang datar. **Tiap molekul trioksida menjadi satu molekul oleum**, <InlineMath math="M_r=178" />, jadi terbentuk <InlineMath math="16{,}0\text{ g}" />. Membuat oleum dari seluruh <InlineMath math="0{,}100\text{ mol}" /> memberi <InlineMath math="17{,}8\text{ g}" />, seolah konverternya sempurna.
+
+<MoleculeShapeLab
+  title={<>Dioksida bengkok, trioksida datar</>}
+  description={<>Konverter mengubah <InlineMath math="\text{SO}_2" /> yang bengkok menjadi <InlineMath math="\text{SO}_3" /> yang datar. <InlineMath math="10{,}0\%" /> yang tetap bengkok melewati penyerap dan tidak pernah menjadi oleum.</>}
+  molecules={[
+    { id: "sulfur-dioxide", name: "belerang dioksida" },
+    { id: "sulfur-trioxide", name: "belerang trioksida" },
   ]}
-  valueLabel="Massa dari satu mol glukosa (g)"
+  labels={{
+    atoms: <>Atom</>,
+    choose: "Pilih molekul",
+    fill: <>Model ruang terisi</>,
+    formula: <>Rumus</>,
+    mass: <>Massa molekul relatif</>,
+    shape: <>Sudut ikatan</>,
+    view: "Belerang dioksida dan belerang trioksida",
+  }}
 />
 
-Jadi satu batch memakai <InlineMath math="112{,}5\text{ kg}" /> glukosa, dan ekonomi atomnya <InlineMath math="51{,}1\%" />, berapa pun rendemennya.
+# Pengenceran menggandakan asam
 
-# Kenapa pilihan lain salah
+Air memecah tiap oleum menjadi **dua molekul asam sulfat**. Satu membawa belerang dari pembakar, satu lagi membawa belerang dari asam yang menyerap trioksida, dan diagramnya melacak keduanya. Jadi terbentuk <InlineMath math="0{,}180\text{ mol}" /> asam sulfat, <InlineMath math="17{,}6\text{ g}" />. Satu asam per oleum memberi <InlineMath math="8{,}82\text{ g}" />, dan <InlineMath math="19{,}6\text{ g}" /> menggandakan <InlineMath math="0{,}100\text{ mol}" /> penuh tanpa kehilangan di konverter.
 
-- <InlineMath math="90\text{ kg}" /> adalah glukosa untuk rendemen penuh. Pada <InlineMath math="80\%" /> pabrik butuh lebih banyak, <InlineMath math="90\div0{,}80" />.
-- <InlineMath math="225\text{ kg}" /> memakai satu glukosa untuk tiap etanol dan melewatkan angka <InlineMath math="2" /> di depan <InlineMath math="\text{C}_2\text{H}_5\text{OH}" />. Satu glukosa memberi dua molekul etanol.
-- <InlineMath math="100\%" /> menghitung karbon dioksida sebagai produk yang diinginkan. **Hanya etanol yang dihitung**, jadi hampir separuh massa memang hilang menurut persamaannya.
+<Chart
+  title={<>Asal atom belerang dalam asam</>}
+  description={<>Sampai oleum, semua belerang berasal dari belerang yang dibakar. Asam penyerap menambahkan atom belerang sebanyak itu lagi, jadi pengenceran berakhir dengan dua kali jumlah trioksida.</>}
+  bars="apart"
+  categories={["SO₂", "SO₃", "H₂S₂O₇", "H₂SO₄ setelah pengenceran"]}
+  series={[
+    { label: "Dari belerang yang dibakar", mark: "bar", values: [100, 90, 90, 90] },
+    { label: "Dari asam penyerap", mark: "bar", values: [0, 0, 90, 90] },
+  ]}
+  valueLabel="mmol"
+/>
+
+<BlockMath math="\begin{aligned}
+n(\text{SO}_2)&=\tfrac{3{,}20}{32}=0{,}100\text{ mol},\quad V=0{,}100\times24=2{,}40\text{ dm}^3\\
+n(\text{SO}_3)&=0{,}900\times0{,}100=0{,}0900\ \Rightarrow\ m(\text{H}_2\text{S}_2\text{O}_7)=0{,}0900\times178=16{,}0\text{ g}\\
+m(\text{H}_2\text{SO}_4)&=2\times0{,}0900\times98=17{,}6\text{ g}
+\end{aligned}" />

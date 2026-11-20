@@ -1,23 +1,33 @@
-# Gunakan perubahan suhu dan perubahan kepekatan, satu demi satu
+# Membaca titik graf mendatar
 
-Tanda pangkah hilang apabila kuantiti sulfur yang sama terbentuk dalam isi padu yang sama. **Kepekatan yang separuh menjadikan kadar separuh, jadi masa berganda**, dan kesan suhu dibaca daripada carta.
+Bacaan picagari naik dengan cepat pada awalnya, kemudian mendatar pada <InlineMath math="480\text{ cm}^3" />, yang pertama kali dicapai pada <InlineMath math="120\text{ s}" />. **Kadar purata membahagikan seluruh isi padu dengan seluruh masa**, jadi kadarnya <InlineMath math="4.00\text{ cm}^3\text{ s}^{-1}" />. Jika masa diletakkan di atas, kamu dapat <InlineMath math="0.250" />, iaitu saat bagi setiap sentimeter padu, dan itu bukan kadar.
 
-<Chart
-  title={<>Masa untuk Tanda Pangkah Hilang</>}
-  categories={["30 °C", "35 °C", "40 °C", "45 °C", "50 °C"]}
-  series={[
-    { label: "Masa (s)", mark: "line", values: [60, 45, 34, 26, 20] },
-  ]}
-  valueLabel="Masa (s)"
-  description={<>Dengan <InlineMath math="50\text{ cm}^3" /> natrium tiosulfat <InlineMath math="0.20\text{ mol dm}^{-3}" />, masa pada <InlineMath math="30" />, <InlineMath math="35" />, <InlineMath math="40" />, <InlineMath math="45" /> dan <InlineMath math="50^\circ\text{C}" /> ialah <InlineMath math="60" />, <InlineMath math="45" />, <InlineMath math="34" />, <InlineMath math="26" /> dan <InlineMath math="20\text{ s}" />.</>}
+<GasRateLab
+  title={<>Sampel berbuih ke dalam picagari gas</>}
+  description={<>Satu larian dengan butiran. Omboh berhenti pada <InlineMath math="0.0200\text{ mol}" /> karbon dioksida, iaitu semua yang boleh diberi oleh karbonat.</>}
+  runs={[{ amount: 0.02, solid: "granules" }]}
+  showCurves
+  labels={{
+    final: <>jumlah akhir karbon dioksida</>,
+    runs: [<>Sampel dalam asid</>],
+    solids: { chips: <>ketulan</>, granules: <>butiran</>, powder: <>serbuk</> },
+    time: "Masa",
+    view: "Pengumpulan gas daripada sampel",
+  }}
 />
 
-- Suhu: pada <InlineMath math="45^\circ\text{C}" />, larutan kepekatan penuh mengambil masa <InlineMath math="26\text{ s}" />.
-- Kepekatan: <InlineMath math="15\text{ cm}^3" /> yang dicairkan kepada <InlineMath math="50\text{ cm}^3" /> ialah <InlineMath math="\dfrac{15}{50} = 0.30" /> daripada kepekatan asal, jadi kadar ialah <InlineMath math="0.30" /> kali dan masa <InlineMath math="\dfrac{1}{0.30}" /> kali lebih lama.
-- Masa yang dijangka: <InlineMath math="26 \times \dfrac{50}{15} = 87\text{ s}" />.
+# Hanya karbonat yang berbuih
 
-# Kenapa pilihan lain salah
+Magnesium oksida ialah bes, jadi ia meneutralkan asid tanpa gas. **Setiap gelembung dalam picagari datang daripada kalsium karbonat**, satu karbon dioksida bagi setiap karbonat, jadi sampel itu mengandungi <InlineMath math="0.0200\text{ mol}" /> karbonat, iaitu <InlineMath math="2.00\text{ g}" /> daripada <InlineMath math="2.40\text{ g}" />. Nilai <InlineMath math="16.7\%" /> dalam satu pilihan ialah bahagian oksida.
 
-- <InlineMath math="26\text{ s}" /> hanya menggunakan kesan suhu dan **terlupa larutan telah dicairkan**.
-- <InlineMath math="200\text{ s}" /> menskalakan masa pada <InlineMath math="30^\circ\text{C}" />, jadi ia menggunakan pencairan tetapi terlupa suhu yang lebih tinggi.
-- <InlineMath math="8\text{ s}" /> mendarab dengan <InlineMath math="0.30" /> dan bukan membahagi, seolah-olah pencairan mempercepat tindak balas.
+# Oksida tetap menggunakan asid
+
+Kelalang bermula dengan <InlineMath math="0.100\text{ mol}" /> asid. Karbonat mengambil <InlineMath math="0.0400\text{ mol}" />, dan <InlineMath math="0.400\text{ g}" /> oksida, iaitu <InlineMath math="0.0100\text{ mol}" />, mengambil <InlineMath math="0.0200\text{ mol}" /> lagi. **Oksida tidak muncul pada graf, tetapi ia tetap menghabiskan asid**. Jika kamu melupakannya, baki asid kelihatan <InlineMath math="0.0600\text{ mol}" />, iaitu <InlineMath math="0.600\text{ mol dm}^{-3}" />.
+
+<BlockMath math="\begin{aligned}
+\bar r&=\tfrac{480\text{ cm}^3}{120\text{ s}}=4.00\text{ cm}^3\text{ s}^{-1},\quad n(\text{CaCO}_3)=\tfrac{480}{24\,000}=0.0200\text{ mol}\\
+m(\text{CaCO}_3)&=0.0200\times100=2.00\text{ g}\ \Rightarrow\ \tfrac{2.00}{2.40}\times100=83.3\%\\
+n(\text{HCl})'&=0.100-2\times0.0200-2\times\tfrac{0.400}{40}=0.0400\text{ mol},\quad c=\tfrac{0.0400}{0.100}=0.400\text{ mol dm}^{-3}
+\end{aligned}" />
+
+Asid masih ada apabila gas berhenti, jadi graf mendatar kerana karbonat yang habis, bukan asid.

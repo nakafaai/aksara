@@ -1,48 +1,35 @@
-# The water cools, so the dissolving takes heat in
+# Reading the lamp and the thermometer
 
-The heat that breaks up the solid comes out of the water, so the temperature falls. **Taking heat in makes the change endothermic, so its sign is positive**. Work out the heat from the temperature fall, then share it over the moles dissolved.
+The lamp lost <InlineMath math="186.42-185.73=0.690\text{ g}" />, which is <InlineMath math="0.0150\text{ mol}" /> of ethanol, and the water climbed from <InlineMath math="28.0^\circ\text{C}" /> to <InlineMath math="43.0^\circ\text{C}" />. **The water took in <InlineMath math="15.8\text{ kJ}" />**, so this set-up measures <InlineMath math="-1050\text{ kJ mol}^{-1}" />.
 
 <BlockMath math="\begin{aligned}
-\Delta\theta&=28.0-24.6=3.4^\circ\text{C}\\
-Q&=50\times4.2\times3.4=714\text{ J}=0.714\text{ kJ}\\
-n(\text{NH}_4\text{NO}_3)&=\frac{2.0}{80}=0.025\text{ mol}\\
-\Delta H&=+\frac{0.714}{0.025}=+28.6\text{ kJ mol}^{-1}
+Q_1&=250\times4.2\times15.0=15\,750\text{ J},\quad n=\tfrac{0.690}{46}=0.0150\text{ mol},\quad \Delta H=-\tfrac{15.75}{0.0150}=-1050\text{ kJ mol}^{-1}
 \end{aligned}" />
 
-On the energy level diagram, the dissolved ions sit above the solid and water by that amount, because they now hold the heat the water lost.
+Dividing the heat by the <InlineMath math="0.690\text{ g}" /> itself gives <InlineMath math="-22.8" />, a figure per gram that cannot be a molar heat of combustion.
 
-<MathVisual
-  title={<>Energy level diagram for dissolving ammonium nitrate</>}
-  description={<>The products, the dissolved ions, sit higher than the reactants, the solid and water. The arrow points up and shows <InlineMath math="+28.6\text{ kJ mol}^{-1}" />.</>}
-  labels={{
-    energy: <>Energy</>,
-    reactants: <InlineMath math="\text{NH}_4\text{NO}_3(s)+\text{H}_2\text{O}(l)" />,
-    products: <InlineMath math="\text{NH}_4^+(aq)+\text{NO}_3^-(aq)" />,
-    change: <InlineMath math="\Delta H=+28.6\text{ kJ mol}^{-1}" />,
-  }}
-  scene={{
-    space: "plane",
-    frame: { kind: "cartesian", x: { min: -1, max: 6 }, y: { min: -0.6, max: 2.2 } },
-    view: { kind: "fit", padding: 0.1 },
-    objects: [
-      { id: "axis", kind: "vector", appearance: "reference", from: { x: -0.5, y: -0.4 }, to: { x: -0.5, y: 2 } },
-      { id: "reactant-level", kind: "segment", appearance: "secondary", from: { x: 0, y: 0 }, to: { x: 2.2, y: 0 } },
-      { id: "product-level", kind: "segment", appearance: "primary", from: { x: 2.8, y: 1.4 }, to: { x: 5, y: 1.4 } },
-      { id: "enthalpy", kind: "vector", appearance: "answer", from: { x: 2.5, y: 0 }, to: { x: 2.5, y: 1.4 } },
-    ],
-    labels: [
-      { key: "energy", objectId: "axis", at: { x: -0.5, y: 2 }, placement: "above" },
-      { key: "reactants", objectId: "reactant-level", at: { x: 1.1, y: 0 }, placement: "below" },
-      { key: "products", objectId: "product-level", at: { x: 3.9, y: 1.4 }, placement: "above" },
-      { key: "change", objectId: "enthalpy", at: { x: 2.5, y: 0.7 }, placement: "right" },
-    ],
-  }}
+# How much of the flame reaches the water
+
+At the accepted value, <InlineMath math="0.0150\text{ mol}" /> of ethanol releases <InlineMath math="20.6\text{ kJ}" />, yet the water caught only <InlineMath math="15.8\text{ kJ}" /> of it. **About <InlineMath math="76.6\%" /> of the heat ends up in the water**, and the rest warms the can, the air and the lamp itself.
+
+<Chart
+  title={<>Heat released and heat caught</>}
+  description={<>In both experiments the water catches the same fraction of the heat the ethanol releases at the accepted value, about three quarters.</>}
+  bars="apart"
+  categories={["Experiment I", "Experiment II"]}
+  series={[
+    { label: "Released at the accepted value", mark: "bar", values: [20.55, 54.8] },
+    { label: "Taken in by the water", mark: "bar", values: [15.75, 42.0] },
+  ]}
+  valueLabel="Heat (kJ)"
 />
 
-So the heat change is <InlineMath math="+28.6\text{ kJ mol}^{-1}" />, with the products above the reactants.
+# Scaling up to the second heating
 
-# Why the other options are wrong
+Experiment II asks the water for <InlineMath math="42.0\text{ kJ}" />. **With the same losses, each mole of ethanol still delivers only <InlineMath math="1050\text{ kJ}" /> to the water**, so the lamp burns <InlineMath math="0.0400\text{ mol}" />.
 
-- <InlineMath math="-28.6\text{ kJ mol}^{-1}" /> reads the fall in temperature as heat given out. The water lost heat to the dissolving, so the reaction gained it.
-- <InlineMath math="+0.714\text{ kJ mol}^{-1}" /> is the heat for <InlineMath math="2.0\text{ g}" />, not for one mole. **Divide by <InlineMath math="0.025\text{ mol}" /> to get the value per mole**.
-- A positive <InlineMath math="\Delta H" /> with the reactants on top contradicts itself. Above the products would mean energy was released.
+<BlockMath math="\begin{aligned}
+Q_2&=500\times4.2\times20.0=42\,000\text{ J},\quad m=\tfrac{42.0}{1050}\times46=1.84\text{ g}
+\end{aligned}" />
+
+Using the accepted <InlineMath math="1370\text{ kJ}" /> per mole quietly assumes a lamp with no losses and gives <InlineMath math="1.41\text{ g}" />. Warming only <InlineMath math="250\text{ g}" /> by <InlineMath math="20.0^\circ\text{C}" /> needs half the heat, which is where <InlineMath math="0.920\text{ g}" /> comes from.

@@ -1,28 +1,11 @@
-# Zwei unbekannte Häufigkeiten brauchen zwei Gleichungen
+# Die beiden Peaks lesen
 
-Bei drei Isotopen und einer gegebenen Häufigkeit sind zwei Häufigkeiten unbekannt. **Eine Gleichung liefert die Summe der Prozente, die andere der gewichtete Mittelwert**.
-
-Sei <InlineMath math="x" /> der Anteil von Magnesium-25 und <InlineMath math="y" /> der Anteil von Magnesium-26 in Prozent.
-
-- Prozente: <InlineMath math="x + y = 100 - 79 = 21" />.
-- Gewichteter Mittelwert: <InlineMath math="\dfrac{79(24) + 25x + 26y}{100} = 24{,}32" />, also <InlineMath math="25x + 26y = 2432 - 1896 = 536" />.
-- Ziehe <InlineMath math="25(x + y) = 525" /> ab: <InlineMath math="y = 536 - 525 = 11" />, und <InlineMath math="x = 10" />.
-
-<Chart
-  title={<>Häufigkeit der Magnesiumisotope</>}
-  bars="apart"
-  categories={["Magnesium-24", "Magnesium-25", "Magnesium-26"]}
-  series={[
-    { label: "Häufigkeit (%)", mark: "bar", values: [79, 10, 11] },
-  ]}
-  valueLabel="Häufigkeit (%)"
-  description={<>Magnesium-24 macht <InlineMath math="79\%" />, Magnesium-25 <InlineMath math="10\%" /> und Magnesium-26 <InlineMath math="11\%" /> der Atome aus.</>}
-/>
+Die Peaks sind <InlineMath math="100" /> und <InlineMath math="33{,}3" /> hoch, also **kommen auf jedes Chlor-37-Atom drei Chlor-35-Atome**. Das sind <InlineMath math="75\%" /> und <InlineMath math="25\%" />, und der gewichtete Mittelwert ist <InlineMath math="35{,}5" />. Wer die beiden Massen ohne ihre Häufigkeit mittelt, erhält <InlineMath math="36{,}0" /> und tut so, als wären beide Isotope gleich häufig.
 
 <MassSpectrometerLab
-  title={<>Magnesium im Massenspektrometer</>}
-  description={<>Die drei Isotope laufen auf drei Bahnen, und die Peakhöhen geben ihre Häufigkeiten.</>}
-  samples={["magnesium"]}
+  title={<>Chlorionen im Magnetfeld</>}
+  description={<>Die leichteren Chlor-35-Ionen laufen auf einer engeren Bahn als die Chlor-37-Ionen, und der Detektor zählt drei der ersten auf eines der zweiten.</>}
+  samples={["chlorine"]}
   labels={{
     average: <>Mittlere relative Atommasse</>,
     choose: "Element wählen",
@@ -35,8 +18,15 @@ Sei <InlineMath math="x" /> der Anteil von Magnesium-25 und <InlineMath math="y"
   }}
 />
 
-# Warum die anderen Antworten falsch sind
+# Welches Gas aufgebraucht wird
 
-- <InlineMath math="10\,\%" /> ist die Häufigkeit von Magnesium-25: **Die beiden Unbekannten wurden am Ende vertauscht**.
-- <InlineMath math="21\,\%" /> fasst beide schwereren Isotope zusammen, als wäre Magnesium-26 das einzige andere Isotop.
-- <InlineMath math="5{,}5\,\%" /> halbiert die übrigen <InlineMath math="11\,\%" />, als müssten sie noch einmal geteilt werden.
+Wasserstoff sind <InlineMath math="2{,}40\div24=0{,}100\text{ mol}" /> und Chlor <InlineMath math="0{,}150\text{ mol}" />, beide reagieren eins zu eins, also **geht der Wasserstoff aus**, und es entstehen <InlineMath math="0{,}200\text{ mol}" /> Chlorwasserstoff. Jedes Molekül hat ein Chloratom, und ein Viertel davon ist Chlor-37. Ein Viertel der Chloratome aller <InlineMath math="0{,}150\text{ mol}" /> Chlor ergibt <InlineMath math="4{,}52\times10^{22}" />, als hätte jedes Chlormolekül reagiert.
+
+# Was das übrige Chlor freisetzt
+
+Die übrigen <InlineMath math="0{,}0500\text{ mol}" /> Chlor setzen ebenso viele Iodmoleküle frei, und **ein Iodmolekül hat <InlineMath math="M_r=254" />**. Mit <InlineMath math="127" /> für ein einzelnes Iodatom halbiert sich die Masse auf <InlineMath math="6{,}35\text{ g}" />.
+
+<BlockMath math="\begin{aligned}
+A_r&=\tfrac{35\times100+37\times33{,}3}{133{,}3}=35{,}5,\quad n(\text{H}_2)=0{,}100<n(\text{Cl}_2)=0{,}150\\
+N(\text{H}^{37}\text{Cl})&=0{,}250\times0{,}200\times6{,}02\times10^{23}=3{,}01\times10^{22},\quad m(\text{I}_2)=0{,}0500\times254=12{,}7\text{ g}
+\end{aligned}" />

@@ -12,20 +12,19 @@ const item: ItemSource = {
       options: [
         {
           correct: false,
-          label: "$$\\text{M}^{+} + \\text{I}^- \\rightarrow \\text{MI}$$",
+          label: "$$26.4\\%$$, $$180\\text{ cm}^3$$, $$3.82\\text{ g}$$",
         },
         {
           correct: false,
-          label: "$$\\text{M}^{2+} + 2\\text{I}^- \\rightarrow \\text{MI}_2$$",
+          label: "$$61.6\\%$$, $$840\\text{ cm}^3$$, $$3.95\\text{ g}$$",
         },
         {
           correct: true,
-          label: "$$\\text{M}^{3+} + 3\\text{I}^- \\rightarrow \\text{MI}_3$$",
+          label: "$$61.6\\%$$, $$420\\text{ cm}^3$$, $$3.95\\text{ g}$$",
         },
         {
           correct: false,
-          label:
-            "$$2\\text{M}^{3+} + 3\\text{I}^- \\rightarrow \\text{M}_2\\text{I}_3$$",
+          label: "$$61.6\\%$$, $$420\\text{ cm}^3$$, $$2.51\\text{ g}$$",
         },
       ],
     },
@@ -34,20 +33,19 @@ const item: ItemSource = {
       options: [
         {
           correct: false,
-          label: "$$\\text{M}^{+} + \\text{I}^- \\rightarrow \\text{MI}$$",
+          label: "$$26.4\\%$$, $$180\\text{ cm}^3$$, $$3.82\\text{ g}$$",
         },
         {
           correct: false,
-          label: "$$\\text{M}^{2+} + 2\\text{I}^- \\rightarrow \\text{MI}_2$$",
+          label: "$$61.6\\%$$, $$840\\text{ cm}^3$$, $$3.95\\text{ g}$$",
         },
         {
           correct: true,
-          label: "$$\\text{M}^{3+} + 3\\text{I}^- \\rightarrow \\text{MI}_3$$",
+          label: "$$61.6\\%$$, $$420\\text{ cm}^3$$, $$3.95\\text{ g}$$",
         },
         {
           correct: false,
-          label:
-            "$$2\\text{M}^{3+} + 3\\text{I}^- \\rightarrow \\text{M}_2\\text{I}_3$$",
+          label: "$$61.6\\%$$, $$420\\text{ cm}^3$$, $$2.51\\text{ g}$$",
         },
       ],
     },

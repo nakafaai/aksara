@@ -1,31 +1,40 @@
-# Cari yang habis di percobaan II, lalu sebarkan kalornya ke larutan yang lebih besar
+# Ion mana yang menentukan endapan
 
-Percobaan I memberi tahu kalor tiap mol: <InlineMath math="0{,}010\text{ mol}" /> ion tembaga(II) memberi <InlineMath math="2100\text{ J}" />, jadi reaksinya memberi <InlineMath math="210\text{ kJ}" /> per mol. Di percobaan II, **seng habis duluan**, karena hanya <InlineMath math="0{,}010\text{ mol}" /> seng bertemu <InlineMath math="0{,}040\text{ mol}" /> ion tembaga(II).
+Ion perak, <InlineMath math="0{,}0250\text{ mol}" />, bertemu ion klorida, <InlineMath math="0{,}0200\text{ mol}" />, satu banding satu. **Kloridanya yang lebih sedikit**, jadi terbentuk <InlineMath math="0{,}0200\text{ mol}" /> perak klorida, <InlineMath math="M_r=143{,}5" />, yaitu <InlineMath math="2{,}87\text{ g}" />. Mengubah semua ion perak menjadi endapan butuh <InlineMath math="62{,}5\text{ cm}^3" /> natrium klorida ini, bukan <InlineMath math="50{,}0\text{ cm}^3" />, jadi <InlineMath math="3{,}59\text{ g}" /> menghitung klorida yang tidak pernah dituang.
+
+# Kalor per mol endapan
+
+Campuran <InlineMath math="100\text{ g}" /> menghangat <InlineMath math="3{,}12^\circ\text{C}" />, jadi <InlineMath math="1310\text{ J}" /> dilepas. **Bagi dengan <InlineMath math="0{,}0200\text{ mol}" /> yang benar-benar mengendap**, bukan dengan ion perak di gelas kimia.
 
 <BlockMath math="\begin{aligned}
-\text{I}:\ n(\text{Cu}^{2+})&=\frac{50}{1000}\times0{,}20=0{,}010\text{ mol},\ Q=50\times4{,}2\times10{,}0=2100\text{ J}\\
-\text{II}:\ n(\text{Cu}^{2+})&=\frac{100}{1000}\times0{,}40=0{,}040\text{ mol},\ n(\text{Zn})=\frac{0{,}65}{65}=0{,}010\text{ mol}\\
-Q_{\text{II}}&=0{,}010\times210{.}000=2100\text{ J}\\
-\Delta\theta_{\text{II}}&=\frac{2100}{100\times4{,}2}=5{,}0^\circ\text{C}
+Q&=100\times4{,}2\times3{,}12=1310\text{ J},\quad \Delta H=-\tfrac{1{,}31}{0{,}0200}=-65{,}5\text{ kJ mol}^{-1}
 \end{aligned}" />
 
-Diagram ini menunjukkan kenaikan suhu dari tiap cara membaca percobaan II. Hanya yang terakhir memakai seng dan larutan yang benar-benar ada.
+Pembagi <InlineMath math="0{,}0250\text{ mol}" /> memberi <InlineMath math="-52{,}4\text{ kJ mol}^{-1}" />. Berhenti sebelum membagi menyisakan <InlineMath math="-1{,}31" />, yaitu kalor dalam kilojoule yang memakai satuan yang salah.
 
-<Chart
-  title={<>Kenaikan suhu untuk tiap cara membaca percobaan II</>}
-  description={<>Seng berlebih dengan <InlineMath math="50\text{ g}" /> larutan memberi <InlineMath math="40^\circ\text{C}" />, seng berlebih dengan <InlineMath math="100\text{ g}" /> memberi <InlineMath math="20^\circ\text{C}" />, seng pembatas dengan <InlineMath math="50\text{ g}" /> memberi <InlineMath math="10^\circ\text{C}" />, dan seng pembatas dengan <InlineMath math="100\text{ g}" /> memberi <InlineMath math="5^\circ\text{C}" />, yaitu kasus sebenarnya.</>}
-  bars="apart"
-  categories={["Seng berlebih, 50 g", "Seng berlebih, 100 g", "Seng pembatas, 50 g", "Seng pembatas, 100 g"]}
-  series={[
-    { label: "Kenaikan suhu", mark: "bar", values: [40, 20, 10, 5] },
-  ]}
-  valueLabel="Kenaikan suhu (°C)"
+# Tembaga bertemu perak yang tersisa di filtrat
+
+Filtratnya masih membawa <InlineMath math="0{,}00500\text{ mol}" /> ion perak. **Tiap atom tembaga melepas dua elektron, dan tiap ion perak menerima satu**, pertukaran yang sama yang menggerakkan sel tembaga dan perak, jadi lab itu membiarkan kamu menghitungnya: <InlineMath math="0{,}00500\text{ mol}" /> elektron melarutkan <InlineMath math="0{,}00250\text{ mol}" /> tembaga dan mengendapkan <InlineMath math="0{,}00500\text{ mol}" /> perak.
+
+<ChemicalCellLab
+  title={<>Tembaga memberi elektron ke ion perak</>}
+  description={<>Tembaga dalam larutan ion tembaga(II) dan perak dalam larutan ion perak, dihubungkan jembatan garam. Tiap atom tembaga yang larut mengirim dua elektron, cukup untuk dua atom perak.</>}
+  metals={["copper", "silver"]}
+  electrons={0.005}
+  showProducts
+  labels={{
+    atNegative: <>Di kutub negatif</>,
+    atPositive: <>Di kutub positif</>,
+    electrons: <>Elektron yang mengalir</>,
+    halfCells: <>Setengah sel</>,
+    view: "Sel kimia tembaga dan perak",
+    voltage: <>Tegangan sel</>,
+    voltmeter: "V",
+  }}
 />
 
-Jadi suhunya naik <InlineMath math="5^\circ\text{C}" />.
+<BlockMath math="\begin{aligned}
+n(\text{Ag}^+)&=0{,}0250-0{,}0200=0{,}00500\text{ mol}\ \Rightarrow\ m(\text{Ag})=0{,}00500\times108=0{,}540\text{ g}
+\end{aligned}" />
 
-# Kenapa pilihan lain salah
-
-- <InlineMath math="20^\circ\text{C}" /> membiarkan semua <InlineMath math="0{,}040\text{ mol}" /> ion tembaga(II) bereaksi, seolah seng masih berlebih. **Di sini <InlineMath math="0{,}65\text{ g}" /> seng hanya <InlineMath math="0{,}010\text{ mol}" />**.
-- <InlineMath math="40^\circ\text{C}" /> membuat kesalahan yang sama dan juga tetap memakai <InlineMath math="50\text{ g}" /> larutan, padahal sekarang <InlineMath math="100\text{ g}" />.
-- <InlineMath math="10^\circ\text{C}" /> sadar bahwa seng membatasi kalor menjadi <InlineMath math="2100\text{ J}" />, tetapi menyebarkannya ke <InlineMath math="50\text{ g}" />, bukan <InlineMath math="100\text{ g}" />.
+Pilihan <InlineMath math="0{,}270\text{ g}" /> memakai perbandingan dua banding satu secara terbalik dan memberi perak jumlah milik tembaga.

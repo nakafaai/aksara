@@ -1,41 +1,33 @@
-# Elektron yang sama, dua anod yang berbeza
+# Perubahan warna menjadi meter elektron
 
-Dalam litar bersiri, kedua-dua sel mengalirkan <InlineMath math="0.10\text{ mol}" /> elektron yang sama. Katodnya bertindak sama, tetapi anodnya tidak: anod kuprum melarut dan menggantikan setiap ion kuprum(II) yang hilang, manakala **anod karbon hanya menyahcas ion hidroksida**.
+Tiada apa dalam soalan yang menimbang zink, jadi mulakan di tempat sel itu melaporkan dirinya: **bikar kuprum kehilangan <InlineMath math="0.100\text{ mol dm}^{-3}" /> ion kuprum(II) dalam <InlineMath math="0.100\text{ dm}^3" />**, iaitu <InlineMath math="0.0100\text{ mol}" /> ion yang menjadi kuprum di elektrod positif. Setiap ion mengambil dua elektron daripada wayar, jadi <InlineMath math="0.0200\text{ mol}" /> elektron, atau <InlineMath math="1.20\times10^{22}" />, telah mengalir. Kalau kamu beri setiap ion satu elektron sahaja, kamu dapat <InlineMath math="6.02\times10^{21}" />.
 
-Jalankan kedua-dua sel dalam makmal dan bandingkan kedua-dua larutan.
-
-<ElectrolysisLab
-  title={<>Kedua-dua sel selepas <InlineMath math="0.10\text{ mol}" /> elektron</>}
-  description={<>Dalam P anod kuprum melarut sepantas kuprum terenap, jadi larutan kekal biru. Dalam Q kuprum terenap manakala oksigen terbentuk, jadi ion kuprum(II) habis.</>}
-  cells={[
-    { electrode: "copper", electrolyte: "copper-sulfate" },
-    { electrode: "carbon", electrolyte: "copper-sulfate" },
-  ]}
-  electrons={0.1}
+<ChemicalCellLab
+  title={<>Dua elektron bagi setiap ion kuprum</>}
+  description={<>Setiap ion kuprum(II) yang meninggalkan larutan biru mengambil dua elektron, dan setiap atom zink yang larut membekalkan dua. Jumlah <InlineMath math="0.0200\text{ mol}" /> ditunjukkan sebagai hasil di kedua-dua elektrod.</>}
+  metals={["zinc", "copper"]}
+  electrons={0.02}
   showProducts
   labels={{
-    anode: "Anod",
-    atAnode: <>Di anod</>,
-    atCathode: <>Di katod</>,
-    battery: "Bateri",
-    cathode: "Katod",
-    cells: [<>Sel P: elektrod kuprum</>, <>Sel Q: elektrod karbon</>],
+    atNegative: <>Di terminal negatif</>,
+    atPositive: <>Di terminal positif</>,
     electrons: <>Elektron yang mengalir</>,
-    ph: <>pH elektrolit</>,
-    trends: { falls: <>berkurang</>, rises: <>bertambah</>, steady: <>tidak berubah</> },
-    view: "Dua sel elektrolisis kuprum(II) sulfat yang disambung secara bersiri",
+    halfCells: <>Sel setengah</>,
+    view: "Sel kimia zink dan kuprum",
+    voltage: <>Voltan sel</>,
+    voltmeter: "V",
   }}
 />
 
+# Zink membayar setiap elektron itu
+
+Wayar tidak membawa apa-apa yang tidak dibebaskan oleh zink, dan satu atom zink membebaskan dua. Jadi **bilangan atom zink yang larut ialah separuh bilangan elektron**: <InlineMath math="0.0100\text{ mol}" />, iaitu <InlineMath math="0.650\text{ g}" /> hilang daripada elektrod. Kalau setiap elektron dikira sebagai satu atom zink, jisim itu berganda kepada <InlineMath math="1.30\text{ g}" />.
+
+# Dua bikar, dua isi padu
+
+<InlineMath math="0.0100\text{ mol}" /> ion zink baharu itu bergabung dengan <InlineMath math="0.0500\text{ mol}" /> yang sedia ada dalam bikar zink. Inilah perangkap dalam soalan: **bikar zink mengandungi <InlineMath math="200\text{ cm}^3" />, bukan <InlineMath math="100\text{ cm}^3" />**, jadi <InlineMath math="0.0600\text{ mol}" /> tersebar dalam <InlineMath math="0.200\text{ dm}^3" /> dan memberi <InlineMath math="0.300\text{ mol dm}^{-3}" />. Membahagi dengan isi padu bikar kuprum menggandakannya kepada <InlineMath math="0.600\text{ mol dm}^{-3}" />.
+
 <BlockMath math="\begin{aligned}
-n(\text{Cu})&=\frac{0.10}{2}=0.050\text{ mol}\Rightarrow m=0.050\times64=3.2\text{ g}\\
-n(\text{Cu}^{2+})\text{ dalam Q}&=0.50\times\frac{100}{1000}=0.050\text{ mol}
+n(\text{Cu}^{2+})&=0.100\times(0.500-0.400)=0.0100\text{ mol}\ \Rightarrow\ N(e^-)=2\times0.0100\times6.02\times10^{23}=1.20\times10^{22}\\
+n(\text{Zn})&=\tfrac{0.0200}{2}=0.0100\text{ mol}=0.650\text{ g},\quad c(\text{Zn}^{2+})=\tfrac{0.200\times0.250+0.0100}{0.200}=0.300\text{ mol dm}^{-3}
 \end{aligned}" />
-
-<InlineMath math="0.050\text{ mol}" /> kuprum yang terenap dalam Q ialah semua ion kuprum(II) yang ada, dan tiada yang menggantikannya, jadi warna biru hilang. Jadi anod P berkurang <InlineMath math="3.2\text{ g}" />, dan larutan dalam Q menjadi tidak berwarna apabila oksigen terbentuk di anodnya.
-
-# Kenapa pilihan lain salah
-
-- Warna biru yang pudar dalam P menukar sel: dalam P anod kuprum mengekalkan kuantiti ion kuprum(II).
-- <InlineMath math="6.4\text{ g}" /> menganggap <InlineMath math="0.10\text{ mol}" /> elektron sebagai bilangan mol kuprum. **Setiap ion kuprum(II) memerlukan dua elektron**.
-- Q yang kekal biru menganggap anod karbon sama seperti anod kuprum, sedangkan tiada apa-apa dalam Q yang menggantikan ion kuprum(II) yang keluar dari larutan.

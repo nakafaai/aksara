@@ -1,49 +1,41 @@
-# Setiap etena mengambil satu hidrogen dan menyisakan satu etana
+# Apa kata porsi itu tentang labunya
 
-Etana tidak bereaksi. Etena mengadisi hidrogen, jadi dua volume gas menjadi satu. **Setiap sentimeter kubik etena mengecilkan total sebanyak satu sentimeter kubik**, sehingga penurunan volume sama dengan volume etena.
+Porsi <InlineMath math="25{,}0\text{ cm}^3" /> memakai <InlineMath math="0{,}00400\text{ mol}" /> asam klorida, dan porsi itu sepersepuluh isi labu, jadi **<InlineMath math="0{,}0400\text{ mol}" /> natrium hidroksida masih bertahan setelah refluks**. Basanya berawal <InlineMath math="0{,}100\text{ mol}" />, artinya ester dan asam bersama-sama mengambil <InlineMath math="0{,}0600\text{ mol}" />.
+
+<Mermaid
+  title={<>Ke mana ion hidroksida pergi selama refluks</>}
+  description={<>Asam klorida hanya mengukur <InlineMath math="40{,}0\text{ mmol}" /> yang tersisa. Ester dan asam berbagi sisanya, dan keduanya mengubah bagian masing-masing menjadi natrium etanoat.</>}
+  chart={`
+    flowchart TD
+      N0["100 mmol NaOH"]
+      N1["40,0 mmol ke etil etanoat"]
+      N2["20,0 mmol ke asam etanoat"]
+      N3["Sisa 40,0 mmol: 4,00 mmol per porsi"]
+      N4["40,0 mmol etanol: 1,84 g"]
+      N5["60,0 mmol natrium etanoat: 4,92 g"]
+      N0 --> N1
+      N0 --> N2
+      N0 --> N3
+      N1 --> N4
+      N1 --> N5
+      N2 --> N5
+  `}
+/>
+
+# Membagi basa antara ester dan asam
+
+Tiap senyawa memakai satu ion hidroksida per molekul, jadi jumlah mol keduanya <InlineMath math="0{,}0600" />, dan jumlah massanya <InlineMath math="4{,}72\text{ g}" />. **Dua persamaan menyelesaikan dua yang belum diketahui**: <InlineMath math="0{,}0400\text{ mol}" /> etil etanoat, <InlineMath math="3{,}52\text{ g}" />, dan <InlineMath math="0{,}0200\text{ mol}" /> asam etanoat.
 
 <BlockMath math="\begin{aligned}
-\text{C}_2\text{H}_4+\text{H}_2&\rightarrow\text{C}_2\text{H}_6\\
-\text{penurunan}&=(30+40)-50=20\text{ cm}^3\\
-V(\text{C}_2\text{H}_4)&=20\text{ cm}^3
+x+y&=0{,}100-10\times0{,}00400=0{,}0600,\quad 88x+60y=4{,}72\ \Rightarrow\ x=0{,}0400,\quad y=0{,}0200
 \end{aligned}" />
 
-Putar kedua molekul: etana adalah etena yang ikatan rangkapnya terbuka dan tiap karbonnya mendapat satu atom hidrogen.
+Memberikan seluruh <InlineMath math="0{,}0600\text{ mol}" /> ke ester membuatnya <InlineMath math="5{,}28\text{ g}" />, lebih berat dari seluruh campuran <InlineMath math="4{,}72\text{ g}" />, jadi pilihan itu gugur di cek massa sebelum kimianya diperlukan.
 
-<MoleculeShapeLab
-  title={<>Etena menjadi etana</>}
-  description={<>Etena punya ikatan rangkap di antara dua atom karbonnya. Setelah mengadisi hidrogen, etana hanya punya ikatan tunggal.</>}
-  molecules={[
-    { id: "ethene", name: "etena" },
-    { id: "ethane", name: "etana" },
-  ]}
-  labels={{
-    atoms: <>Atom</>,
-    choose: "Pilih molekul",
-    fill: <>Model ruang terisi</>,
-    formula: <>Rumus</>,
-    mass: <>Massa molekul relatif</>,
-    shape: <>Sudut ikatan</>,
-    view: "Etena dan etana",
-  }}
-/>
+# Apa yang ditinggalkan tiap reaksi
 
-<Chart
-  title={<>Volume gas sebelum dan sesudah</>}
-  description={<>Sebelum: <InlineMath math="20\text{ cm}^3" /> etena, <InlineMath math="10\text{ cm}^3" /> etana, dan <InlineMath math="40\text{ cm}^3" /> hidrogen. Sesudah: tidak ada etena, <InlineMath math="30\text{ cm}^3" /> etana, dan <InlineMath math="20\text{ cm}^3" /> hidrogen, total <InlineMath math="50\text{ cm}^3" />.</>}
-  bars="apart"
-  categories={["Etena", "Etana", "Hidrogen"]}
-  series={[
-    { label: "Sebelum", mark: "bar", values: [20, 10, 40] },
-    { label: "Sesudah", mark: "bar", values: [0, 30, 20] },
-  ]}
-  valueLabel="Volume (cm³)"
-/>
+**Tiap ion hidroksida yang bereaksi menghasilkan satu ion etanoat**, entah ia bertemu ester atau asam, jadi garamnya <InlineMath math="0{,}0600\text{ mol}" />, <InlineMath math="4{,}92\text{ g}" />. Menghitung bagian ester saja memberi <InlineMath math="3{,}28\text{ g}" />. Etanol lain ceritanya, karena hanya ester yang membawa gugus etil, jadi terbentuk <InlineMath math="0{,}0400\text{ mol}" />. Pilihan <InlineMath math="2{,}76\text{ g}" /> membiarkan asamnya ikut melepas etanol.
 
-Cek: tersisa <InlineMath math="30\text{ cm}^3" /> etana dan <InlineMath math="20\text{ cm}^3" /> hidrogen, total <InlineMath math="50\text{ cm}^3" />, sesuai pengukuran.
-
-# Kenapa pilihan lain salah
-
-- <InlineMath math="10\text{ cm}^3" /> membagi penurunan <InlineMath math="20\text{ cm}^3" /> antara etena dan hidrogen, padahal satu volume masing-masing menjadi satu volume etana, jadi penurunannya sama dengan etena saja.
-- <InlineMath math="30\text{ cm}^3" /> menganggap seluruh campuran adalah etena. Kalau begitu, <InlineMath math="30\text{ cm}^3" /> hidrogen bereaksi dan hanya <InlineMath math="40\text{ cm}^3" /> gas tersisa.
-- <InlineMath math="40\text{ cm}^3" /> menganggap semua hidrogen habis. **Hidrogen berlebih di sini**, dan <InlineMath math="20\text{ cm}^3" /> masih tersisa.
+<BlockMath math="\begin{aligned}
+m(\text{CH}_3\text{COONa})&=0{,}0600\times82=4{,}92\text{ g},\quad m(\text{C}_2\text{H}_5\text{OH})=0{,}0400\times46=1{,}84\text{ g}
+\end{aligned}" />

@@ -1,19 +1,37 @@
-# Find the limiting reactant before the yield
+# The gas pins down the carbonate
 
-An insoluble salt is made by **precipitation from two soluble salts**, then filtered, rinsed and dried. The yield must be measured against the reactant that runs out first.
+Only the carbonate fizzes, so **<InlineMath math="120\text{ cm}^3" /> of carbon dioxide means <InlineMath math="0.00500\text{ mol}" /> of magnesium carbonate**, <InlineMath math="0.420\text{ g}" />. It used two acid per carbonate, <InlineMath math="0.0100\text{ mol}" />.
+
+# The titration finds the acid nobody used
+
+The portion is a tenth of the flask, and its <InlineMath math="0.000500\text{ mol}" /> of alkali matches the same amount of acid. **Scale that back up to the whole flask**: <InlineMath math="0.00500\text{ mol}" /> of acid was never touched.
 
 <Mermaid
-  title={<>Which Reactant Limits the Precipitate</>}
-  description={<>The sulfate ions run out first, so they set the mass of lead(II) sulfate, and the yield compares the dry mass with that limit.</>}
-  chart={"flowchart LR\n  A[Pb2+: 0.0100 mol] --> C[Mix]\n  B[SO4 2-: 0.00750 mol, runs out first] --> C\n  C --> D[At most 0.00750 mol PbSO4, 2.27 g]\n  D --> E[2.05 g obtained, yield 90.2%]"}
+  title={<>How the hydrochloric acid is shared out</>}
+  description={<>The acid splits three ways. The gas measures one branch, the titration another, and the hydroxide takes what lies between them.</>}
+  chart={`
+    flowchart TD
+      N0["25.0 mmol HCl added"]
+      N1["10.0 mmol to MgCO₃: 120 cm³ CO₂"]
+      N2["10.0 mmol to Mg(OH)₂"]
+      N3["5.00 mmol left: 25.0 cm³ NaOH per portion"]
+      N4["10.0 mmol MgCl₂: 0.950 g"]
+      N0 --> N1
+      N0 --> N2
+      N0 --> N3
+      N1 --> N4
+      N2 --> N4
+  `}
 />
 
-- Moles of <InlineMath math="\text{Pb}^{2+}" />: <InlineMath math="0.500 \times \dfrac{20.0}{1000} = 0.0100\text{ mol}" />. Moles of <InlineMath math="\text{SO}_4^{2-}" />: <InlineMath math="0.500 \times \dfrac{15.0}{1000} = 0.00750\text{ mol}" />.
-- They react <InlineMath math="1 : 1" />, so sulfate runs out first: at most <InlineMath math="0.00750 \times 303 = 2.27\text{ g}" /> of lead(II) sulfate.
-- Percentage yield: <InlineMath math="\dfrac{2.05}{2.27} \times 100\% = 90.2\%" />.
+# The hydroxide gets the remainder
 
-# Why the other options are wrong
+The tablet received <InlineMath math="0.0250\text{ mol}" /> of acid. The carbonate and the leftover account for <InlineMath math="0.0150\text{ mol}" />, so **the hydroxide used the other <InlineMath math="0.0100\text{ mol}" />**, two per formula unit, which makes <InlineMath math="0.00500\text{ mol}" /> or <InlineMath math="0.290\text{ g}" />. Giving it one acid each doubles it to <InlineMath math="0.580\text{ g}" />, and then carbonate plus hydroxide weigh the whole <InlineMath math="1.00\text{ g}" />, leaving nothing for the inert filler the question mentions. Loading all the used acid onto the carbonate gives <InlineMath math="0.840\text{ g}" /> and no hydroxide, which contradicts the gas volume.
 
-- Titration makes **soluble** salts of sodium, potassium and ammonium, not an insoluble one.
-- <InlineMath math="67.7\%" /> takes the lead(II) ions as limiting, <InlineMath math="\dfrac{2.05}{3.03}" />, although there are more of them than sulfate ions.
-- <InlineMath math="111\%" /> divides the expected mass by the actual mass. A yield above <InlineMath math="100\%" /> is impossible.
+<BlockMath math="\begin{aligned}
+n(\text{MgCO}_3)&=\tfrac{120}{24\,000}=0.00500\text{ mol},\quad m=0.00500\times84=0.420\text{ g}\\
+n(\text{HCl})_{\text{Mg(OH)}_2}&=0.0250-2\times0.00500-10\times0.000500=0.0100\ \Rightarrow\ m(\text{Mg(OH)}_2)=\tfrac{0.0100}{2}\times58=0.290\text{ g}\\
+m(\text{MgCl}_2)&=(0.00500+0.00500)\times95=0.950\text{ g}
+\end{aligned}" />
+
+Both compounds put one magnesium into each magnesium chloride, so <InlineMath math="0.0100\text{ mol}" /> of it forms. Counting only the carbonate's magnesium gives <InlineMath math="0.475\text{ g}" />.

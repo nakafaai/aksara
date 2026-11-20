@@ -1,41 +1,33 @@
-# The same electrons, two different anodes
+# The colour change is the electron meter
 
-In series, both cells pass the same <InlineMath math="0.10\text{ mol}" /> of electrons. The cathodes behave alike, but the anodes do not: a copper anode dissolves and replaces every copper(II) ion it loses, while **a carbon anode only discharges hydroxide ions**.
+Nothing in the stem weighs the zinc, so start where the cell reports itself: **the copper beaker lost <InlineMath math="0.100\text{ mol dm}^{-3}" /> of copper(II) ions across <InlineMath math="0.100\text{ dm}^3" />**, which is <InlineMath math="0.0100\text{ mol}" /> of ions turned into copper on the positive electrode. Each one takes two electrons from the wire, so <InlineMath math="0.0200\text{ mol}" /> of electrons, or <InlineMath math="1.20\times10^{22}" />, have flowed. Give each ion a single electron and you land on <InlineMath math="6.02\times10^{21}" />.
 
-Run both cells in the lab and compare the two solutions.
-
-<ElectrolysisLab
-  title={<>Both cells after <InlineMath math="0.10\text{ mol}" /> of electrons</>}
-  description={<>In P the copper anode dissolves as fast as copper deposits, so the solution stays blue. In Q copper deposits while oxygen forms, so the copper(II) ions run out.</>}
-  cells={[
-    { electrode: "copper", electrolyte: "copper-sulfate" },
-    { electrode: "carbon", electrolyte: "copper-sulfate" },
-  ]}
-  electrons={0.1}
+<ChemicalCellLab
+  title={<>Two electrons per copper ion</>}
+  description={<>Every copper(II) ion that leaves the blue solution takes two electrons, and every zinc atom that dissolves supplies two. The count <InlineMath math="0.0200\text{ mol}" /> is shown as products at both electrodes.</>}
+  metals={["zinc", "copper"]}
+  electrons={0.02}
   showProducts
   labels={{
-    anode: "Anode",
-    atAnode: <>At the anode</>,
-    atCathode: <>At the cathode</>,
-    battery: "Battery",
-    cathode: "Cathode",
-    cells: [<>Cell P: copper electrodes</>, <>Cell Q: carbon electrodes</>],
+    atNegative: <>At the negative terminal</>,
+    atPositive: <>At the positive terminal</>,
     electrons: <>Electrons passed</>,
-    ph: <>pH of the electrolyte</>,
-    trends: { falls: <>falls</>, rises: <>rises</>, steady: <>stays the same</> },
-    view: "Two electrolysis cells of copper(II) sulfate in series",
+    halfCells: <>Half-cells</>,
+    view: "Chemical cell of zinc and copper",
+    voltage: <>Cell voltage</>,
+    voltmeter: "V",
   }}
 />
 
+# The zinc pays for every one of those electrons
+
+The wire carries nothing the zinc did not release, and a zinc atom releases two. So **half as many zinc atoms as electrons dissolve**: <InlineMath math="0.0100\text{ mol}" />, which is <InlineMath math="0.650\text{ g}" /> off the electrode. Letting every electron cost a whole zinc atom doubles that to <InlineMath math="1.30\text{ g}" />.
+
+# Two beakers, two volumes
+
+Those <InlineMath math="0.0100\text{ mol}" /> of new zinc ions join the <InlineMath math="0.0500\text{ mol}" /> already in the zinc beaker. Here is the trap the stem set: **the zinc beaker holds <InlineMath math="200\text{ cm}^3" />, not <InlineMath math="100\text{ cm}^3" />**, so <InlineMath math="0.0600\text{ mol}" /> is spread through <InlineMath math="0.200\text{ dm}^3" /> and gives <InlineMath math="0.300\text{ mol dm}^{-3}" />. Dividing by the copper beaker's volume doubles it to <InlineMath math="0.600\text{ mol dm}^{-3}" />.
+
 <BlockMath math="\begin{aligned}
-n(\text{Cu})&=\frac{0.10}{2}=0.050\text{ mol}\Rightarrow m=0.050\times64=3.2\text{ g}\\
-n(\text{Cu}^{2+})\text{ in Q}&=0.50\times\frac{100}{1000}=0.050\text{ mol}
+n(\text{Cu}^{2+})&=0.100\times(0.500-0.400)=0.0100\text{ mol}\ \Rightarrow\ N(e^-)=2\times0.0100\times6.02\times10^{23}=1.20\times10^{22}\\
+n(\text{Zn})&=\tfrac{0.0200}{2}=0.0100\text{ mol}=0.650\text{ g},\quad c(\text{Zn}^{2+})=\tfrac{0.200\times0.250+0.0100}{0.200}=0.300\text{ mol dm}^{-3}
 \end{aligned}" />
-
-The <InlineMath math="0.050\text{ mol}" /> of copper deposited in Q is every copper(II) ion it held, and nothing replaces them, so the blue colour disappears. So the anode of P loses <InlineMath math="3.2\text{ g}" />, and the solution in Q turns colourless as oxygen forms at its anode.
-
-# Why the other options are wrong
-
-- The blue fading in P swaps the cells: in P the copper anode keeps the copper(II) ions at the same level.
-- <InlineMath math="6.4\text{ g}" /> takes the <InlineMath math="0.10\text{ mol}" /> of electrons as moles of copper. **Each copper(II) ion needs two electrons**.
-- Q staying blue treats the carbon anode like the copper one, though nothing in Q replaces the copper(II) ions that leave the solution.

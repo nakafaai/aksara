@@ -1,34 +1,28 @@
-# Count the links in the chain, then take their water away
+# Weigh the sheet after the sulfur goes in
 
-Each amide link forms when a carboxyl group of the acid meets an amino group of the diamine, and that link gives off one water molecule. **A straight chain of <InlineMath math="1000" /> monomers has one link fewer than it has monomers**, just as a row of beads has one gap fewer than it has beads.
+Vulcanising adds the sulfur to the rubber, so the finished sheet weighs <InlineMath math="13.6+0.640=14.24\text{ g}" />. **The percentage is taken of that heavier sheet**, which gives <InlineMath math="4.49\%" />. Measuring the sulfur against the raw <InlineMath math="13.6\text{ g}" /> gives <InlineMath math="4.71\%" />, a share of a sheet that no longer exists.
 
-<Mermaid
-  title={<>Monomers joined by amide links</>}
-  description={<>The acid and the diamine alternate along the chain. Every arrow is one amide link and one water molecule given off, and the chain ends at the <InlineMath math="1000" />th monomer.</>}
-  chart={"flowchart LR\n  A1[\"hexanedioic acid\"] -->|amide link, H2O out| B1[\"hexane-1,6-diamine\"]\n  B1 -->|amide link, H2O out| A2[\"hexanedioic acid\"]\n  A2 -->|amide link, H2O out| B2[\"hexane-1,6-diamine\"]\n  B2 -.-> Z[\"up to the 1000th monomer\"]"}
+# Two sulfur atoms and two units per cross-link
+
+The sulfur is <InlineMath math="0.0200\text{ mol}" /> of atoms, and **every cross-link spends two of them**, so <InlineMath math="0.0100\text{ mol}" /> of cross-links form, <InlineMath math="6.02\times10^{21}" /> in number. The option with <InlineMath math="1.20\times10^{22}" /> counts sulfur atoms as if each were a cross-link.
+
+Each cross-link has two ends, one on each chain, so <InlineMath math="0.0200\text{ mol}" /> of isoprene units carry one. The raw rubber has <InlineMath math="13.6\div68=0.200\text{ mol}" /> of units, and one unit in ten is linked. Giving each cross-link a single unit halves this to <InlineMath math="5.00\%" />.
+
+<Chart
+  title={<>In every hundred isoprene units</>}
+  description={<>Ten of the hundred units carry a cross-link. They share five <InlineMath math="-\text{S-S}-" /> cross-links, built from ten sulfur atoms.</>}
+  bars="apart"
+  categories={["Linked units", "Free units", "Cross-links", "Sulfur atoms"]}
+  series={[
+    { label: "Count", mark: "bar", values: [10, 90, 5, 10] },
+  ]}
+  valueLabel="Count"
 />
 
 <BlockMath math="\begin{aligned}
-\text{links}&=1000-1=999\ \Rightarrow\ 999\ \text{H}_2\text{O}\\
-M_r&=500(146)+500(116)-999(18)\\
-&=73\,000+58\,000-17\,982=113\,018
+\tfrac{0.640}{13.6+0.640}\times100&=4.49\%\\
+n(\text{S-S})&=\tfrac12\times\tfrac{0.640}{32}=0.0100\text{ mol}\ \Rightarrow\ N=0.0100\times6.02\times10^{23}=6.02\times10^{21}\\
+\tfrac{2\times0.0100}{13.6\div68}\times100&=\tfrac{0.0200}{0.200}\times100=10.0\%
 \end{aligned}" />
 
-<Chart
-  title={<>Mass of the monomers, the water and the chain</>}
-  description={<>The monomers add up to <InlineMath math="131\,000" />. The water given off is <InlineMath math="17\,982" />, which leaves <InlineMath math="113\,018" /> for the chain.</>}
-  bars="apart"
-  categories={["Monomers", "Water given off", "Nylon chain"]}
-  series={[
-    { label: "Relative mass", mark: "bar", values: [131000, 17982, 113018] },
-  ]}
-  valueLabel="Relative mass"
-/>
-
-So the chain releases <InlineMath math="999" /> water molecules and has a relative molecular mass of <InlineMath math="113\,018" />.
-
-# Why the other options are wrong
-
-- <InlineMath math="1000" /> water molecules gives one per monomer. The two ends of the chain keep their groups, so there is one link fewer.
-- <InlineMath math="500" /> counts one water molecule per pair of monomers. **Every link between neighbours gives off water, also the link between one pair and the next**.
-- <InlineMath math="131\,000" /> counts the water correctly but never takes its mass away from the monomers.
+So even light cross-linking, one unit in ten, is already enough to stop the chains sliding past each other. That is why vulcanised rubber springs back instead of staying stretched.

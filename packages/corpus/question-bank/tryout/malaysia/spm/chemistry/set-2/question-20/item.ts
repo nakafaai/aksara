@@ -10,19 +10,47 @@ const item: ItemSource = {
     en: {
       kind: "choice",
       options: [
-        { correct: false, label: "Titration, $$90.2\\%$$" },
-        { correct: false, label: "Precipitation, $$67.7\\%$$" },
-        { correct: false, label: "Precipitation, $$111\\%$$" },
-        { correct: true, label: "Precipitation, $$90.2\\%$$" },
+        {
+          correct: false,
+          label: "$$0.840\\text{ g}$$, $$0\\text{ g}$$, $$0.950\\text{ g}$$",
+        },
+        {
+          correct: false,
+          label: "$$0.420\\text{ g}$$, $$0.580\\text{ g}$$, $$1.43\\text{ g}$$",
+        },
+        {
+          correct: false,
+          label:
+            "$$0.420\\text{ g}$$, $$0.290\\text{ g}$$, $$0.475\\text{ g}$$",
+        },
+        {
+          correct: true,
+          label:
+            "$$0.420\\text{ g}$$, $$0.290\\text{ g}$$, $$0.950\\text{ g}$$",
+        },
       ],
     },
     ms: {
       kind: "choice",
       options: [
-        { correct: false, label: "Pentitratan, $$90.2\\%$$" },
-        { correct: false, label: "Pemendakan, $$67.7\\%$$" },
-        { correct: false, label: "Pemendakan, $$111\\%$$" },
-        { correct: true, label: "Pemendakan, $$90.2\\%$$" },
+        {
+          correct: false,
+          label: "$$0.840\\text{ g}$$, $$0\\text{ g}$$, $$0.950\\text{ g}$$",
+        },
+        {
+          correct: false,
+          label: "$$0.420\\text{ g}$$, $$0.580\\text{ g}$$, $$1.43\\text{ g}$$",
+        },
+        {
+          correct: false,
+          label:
+            "$$0.420\\text{ g}$$, $$0.290\\text{ g}$$, $$0.475\\text{ g}$$",
+        },
+        {
+          correct: true,
+          label:
+            "$$0.420\\text{ g}$$, $$0.290\\text{ g}$$, $$0.950\\text{ g}$$",
+        },
       ],
     },
   },

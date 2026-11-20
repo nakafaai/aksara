@@ -1,34 +1,35 @@
-# Die Konzentration entscheidet, welches Ion an der Anode entladen wird
+# Wie weit das Chlor kommt
 
-An einer inerten Anode werden Hydroxidionen vor Chloridionen entladen, **außer die Chloridionen sind viel konzentrierter**. Durch beide Zellen in Reihe fließt derselbe Strom.
+Fang beim Gas an, denn das kann ausgehen: <InlineMath math="120\text{ cm}^3" /> sind <InlineMath math="0{,}00500\text{ mol}" /> Chlor, gegen <InlineMath math="0{,}0150\text{ mol}" /> Bromid. Ein Chlormolekül räumt zwei Bromidionen ab, also **ist das Chlor nach <InlineMath math="0{,}0100\text{ mol}" /> Bromid verbraucht**, und es entstehen nur <InlineMath math="0{,}00500\text{ mol}" /> Brom, <InlineMath math="0{,}800\text{ g}" /> bei <InlineMath math="M_r=160" />. Alles Bromid zu Brom zu machen, <InlineMath math="1{,}20\text{ g}" />, bräuchte anderthalbmal so viel Chlor, wie eingeleitet wurde.
 
-<ElectrolysisLab
-  title={<>Zwei Zellen in Reihe</>}
-  description={<>Zelle I enthält verdünnte, Zelle II konzentrierte Natriumchloridlösung, jeweils mit Kohleelektroden, an einer Batterie.</>}
-  cells={[{ electrode: "carbon", electrolyte: "sodium-chloride-dilute" }, { electrode: "carbon", electrolyte: "sodium-chloride-concentrated" }]}
-  electrons={0.04}
-  showProducts
-  labels={{
-    anode: "Anode",
-    atAnode: <>An der Anode</>,
-    atCathode: <>An der Kathode</>,
-    battery: "Batterie",
-    cathode: "Kathode",
-    cells: [<>Zelle I: verdünnte Natriumchloridlösung, Kohleelektroden</>, <>Zelle II: konzentrierte Natriumchloridlösung, Kohleelektroden</>],
-    electrons: <>Geflossene Elektronen</>,
-    ph: <>pH-Wert des Elektrolyten</>,
-    trends: { falls: <>sinkt</>, rises: <>steigt</>, steady: <>bleibt gleich</> },
-    view: "Zwei Elektrolysezellen in Reihe mit Kohleelektroden in verdünnter und konzentrierter Natriumchloridlösung",
-  }}
+<Mermaid
+  title={<>Wo jedes Halogen landet</>}
+  description={<>Chlor drängt das Brom aus dem Wasser in das Hexan. Die Wasserschicht behält alle Halogenidionen, und das Hexan trägt das Brom weiter zum Iodid.</>}
+  chart={`
+    flowchart TD
+      N0["5,00 mmol Cl₂ trifft 15,0 mmol Br⁻"]
+      N1["Wasserschicht: 10,0 mmol Cl⁻, 5,00 mmol Br⁻"]
+      N2["Hexanschicht: 5,00 mmol Br₂, 0,800 g"]
+      N3["Mit KI geschüttelt: 5,00 mmol I₂, 1,27 g"]
+      N4["AgNO₃ trifft 15,0 mmol Halogenid: 150 cm³"]
+      N0 --> N1
+      N0 --> N2
+      N2 --> N3
+      N1 --> N4
+  `}
 />
 
-- Zelle I, verdünnt: Hydroxidionen werden entladen, <InlineMath math="4\text{OH}^- \rightarrow \text{O}_2 + 2\text{H}_2\text{O} + 4e^-" />, es entsteht Sauerstoff.
-- Zelle II, konzentriert: Chloridionen werden entladen, <InlineMath math="2\text{Cl}^- \rightarrow \text{Cl}_2 + 2e^-" />, es entsteht Chlor.
-- In Zelle II liefern <InlineMath math="2" /> mol Elektronen <InlineMath math="1" /> mol <InlineMath math="\text{Cl}_2" />, also liefern <InlineMath math="0{,}04" /> mol Elektronen <InlineMath math="0{,}02" /> mol.
-- Volumen Chlor: <InlineMath math="0{,}02 \times 24 = 0{,}48\text{ dm}^3" />.
+# Brom wechselt das Lösungsmittel, dann den Partner
 
-# Warum die anderen Antworten falsch sind
+Brommoleküle sind unpolar, also zieht das Schütteln **alle <InlineMath math="0{,}00500\text{ mol}" /> Brom ins Hexan**, während die Ionen im Wasser bleiben. Dort oxidiert das Brom Iodid und setzt pro Brommolekül ein Iodmolekül frei. Iod entsteht als <InlineMath math="\text{I}_2" /> mit <InlineMath math="M_r=254" />, das sind <InlineMath math="1{,}27\text{ g}" />. Wer es als einzelne Atome wiegt, halbiert das auf <InlineMath math="0{,}635\text{ g}" />.
 
-- Chlor in Zelle I und Sauerstoff in Zelle II vertauscht die Zellen, **als ob Verdünnen die Chloridionen begünstigen würde**.
-- <InlineMath math="0{,}96\text{ dm}^3" /> rechnet ein Mol Chlor pro Mol Elektronen und vergisst, dass jedes <InlineMath math="\text{Cl}_2" /> zwei braucht.
-- Chlor an beiden Anoden übersieht den Einfluss der Konzentration in der verdünnten Zelle.
+# Jedes Halogenid in der ersten Wasserschicht
+
+Diese Wasserschicht hat das Iodid nie gesehen. Sie enthält die <InlineMath math="0{,}0100\text{ mol}" /> Chlorid, zu denen das Chlor wurde, und die <InlineMath math="0{,}00500\text{ mol}" /> Bromid, die das Chlor nicht erreicht hat. **Silbernitrat fällt beide**, weißes Silberchlorid und blassgelbes Silberbromid, also muss es <InlineMath math="0{,}0150\text{ mol}" /> Halogenid abdecken.
+
+<BlockMath math="\begin{aligned}
+n(\text{Cl}_2)&=\tfrac{120}{24\,000}=0{,}00500\text{ mol}\ \Rightarrow\ m(\text{Br}_2)=0{,}00500\times160=0{,}800\text{ g},\quad m(\text{I}_2)=0{,}00500\times254=1{,}27\text{ g}\\
+n(\text{Cl}^-)+n(\text{Br}^-)&=0{,}0100+0{,}00500=0{,}0150\text{ mol}\ \Rightarrow\ V(\text{AgNO}_3)=\tfrac{0{,}0150}{0{,}100}=0{,}150\text{ dm}^3=150\text{ cm}^3
+\end{aligned}" />
+
+Zählst du nur das übrige Bromid, kommen <InlineMath math="50{,}0\text{ cm}^3" /> heraus, als wäre das Chlorid aus dem ersten Schritt verschwunden. Die Halogenidsumme ist übrigens genau das Bromid vom Anfang, denn jedes Bromid, das als Brom ging, wurde durch ein Chlorid ersetzt.

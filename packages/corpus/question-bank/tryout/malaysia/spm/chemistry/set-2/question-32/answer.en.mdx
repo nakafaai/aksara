@@ -1,49 +1,41 @@
-# Each ethene takes one hydrogen and leaves one ethane
+# What the portion says about the flask
 
-Ethane does not react. Ethene adds hydrogen, so two volumes of gas become one. **Every cubic centimetre of ethene shrinks the total by one cubic centimetre**, which makes the decrease equal to the ethene.
+The <InlineMath math="25.0\text{ cm}^3" /> portion uses <InlineMath math="0.00400\text{ mol}" /> of hydrochloric acid, and it is a tenth of the flask, so **<InlineMath math="0.0400\text{ mol}" /> of sodium hydroxide survived the reflux**. The alkali started at <InlineMath math="0.100\text{ mol}" />, which means the ester and the acid took <InlineMath math="0.0600\text{ mol}" /> between them.
+
+<Mermaid
+  title={<>Where the hydroxide ions go during the reflux</>}
+  description={<>The hydrochloric acid measures only the <InlineMath math="40.0\text{ mmol}" /> left over. The ester and the acid share the rest, and both send their share into sodium ethanoate.</>}
+  chart={`
+    flowchart TD
+      N0["100 mmol NaOH"]
+      N1["40.0 mmol to ethyl ethanoate"]
+      N2["20.0 mmol to ethanoic acid"]
+      N3["40.0 mmol left: 4.00 mmol per portion"]
+      N4["40.0 mmol ethanol: 1.84 g"]
+      N5["60.0 mmol sodium ethanoate: 4.92 g"]
+      N0 --> N1
+      N0 --> N2
+      N0 --> N3
+      N1 --> N4
+      N1 --> N5
+      N2 --> N5
+  `}
+/>
+
+# Splitting the alkali between ester and acid
+
+Each compound consumes one hydroxide ion per molecule, so their moles add up to <InlineMath math="0.0600" />, and their masses add up to <InlineMath math="4.72\text{ g}" />. **Two equations settle the two unknowns**: <InlineMath math="0.0400\text{ mol}" /> of ethyl ethanoate, <InlineMath math="3.52\text{ g}" />, and <InlineMath math="0.0200\text{ mol}" /> of ethanoic acid.
 
 <BlockMath math="\begin{aligned}
-\text{C}_2\text{H}_4+\text{H}_2&\rightarrow\text{C}_2\text{H}_6\\
-\text{decrease}&=(30+40)-50=20\text{ cm}^3\\
-V(\text{C}_2\text{H}_4)&=20\text{ cm}^3
+x+y&=0.100-10\times0.00400=0.0600,\quad 88x+60y=4.72\ \Rightarrow\ x=0.0400,\quad y=0.0200
 \end{aligned}" />
 
-Turn the two molecules: ethane is ethene with its double bond opened and one hydrogen atom added to each carbon.
+Handing all <InlineMath math="0.0600\text{ mol}" /> to the ester makes it <InlineMath math="5.28\text{ g}" />, heavier than the whole <InlineMath math="4.72\text{ g}" /> mixture, so that option fails a mass check before any chemistry is needed.
 
-<MoleculeShapeLab
-  title={<>Ethene becomes ethane</>}
-  description={<>Ethene has a double bond between its two carbon atoms. After it adds hydrogen, ethane has only single bonds.</>}
-  molecules={[
-    { id: "ethene", name: "ethene" },
-    { id: "ethane", name: "ethane" },
-  ]}
-  labels={{
-    atoms: <>Atoms</>,
-    choose: "Choose a molecule",
-    fill: <>Space-filling model</>,
-    formula: <>Formula</>,
-    mass: <>Relative molecular mass</>,
-    shape: <>Bond angle</>,
-    view: "Ethene and ethane",
-  }}
-/>
+# What each reaction leaves in the flask
 
-<Chart
-  title={<>Gas volumes before and after</>}
-  description={<>Before: <InlineMath math="20\text{ cm}^3" /> ethene, <InlineMath math="10\text{ cm}^3" /> ethane and <InlineMath math="40\text{ cm}^3" /> hydrogen. After: no ethene, <InlineMath math="30\text{ cm}^3" /> ethane and <InlineMath math="20\text{ cm}^3" /> hydrogen, <InlineMath math="50\text{ cm}^3" /> in all.</>}
-  bars="apart"
-  categories={["Ethene", "Ethane", "Hydrogen"]}
-  series={[
-    { label: "Before", mark: "bar", values: [20, 10, 40] },
-    { label: "After", mark: "bar", values: [0, 30, 20] },
-  ]}
-  valueLabel="Volume (cm³)"
-/>
+**Every hydroxide ion that reacted produced one ethanoate ion**, whether it met the ester or the acid, so the salt is <InlineMath math="0.0600\text{ mol}" />, <InlineMath math="4.92\text{ g}" />. Counting only the ester's share gives <InlineMath math="3.28\text{ g}" />. Ethanol is a different story, because only the ester carries an ethyl group, so <InlineMath math="0.0400\text{ mol}" /> forms. The <InlineMath math="2.76\text{ g}" /> option lets the acid release ethanol as well.
 
-Check it: <InlineMath math="30\text{ cm}^3" /> of ethane and <InlineMath math="20\text{ cm}^3" /> of hydrogen are left, <InlineMath math="50\text{ cm}^3" /> in all, as measured.
-
-# Why the other options are wrong
-
-- <InlineMath math="10\text{ cm}^3" /> splits the <InlineMath math="20\text{ cm}^3" /> decrease between ethene and hydrogen, but one volume of each becomes one volume of ethane, so the loss equals the ethene alone.
-- <InlineMath math="30\text{ cm}^3" /> treats the whole mixture as ethene. Then <InlineMath math="30\text{ cm}^3" /> of hydrogen would react and only <InlineMath math="40\text{ cm}^3" /> of gas would remain.
-- <InlineMath math="40\text{ cm}^3" /> assumes all the hydrogen is used up. **Hydrogen is in excess here**, and <InlineMath math="20\text{ cm}^3" /> of it is left over.
+<BlockMath math="\begin{aligned}
+m(\text{CH}_3\text{COONa})&=0.0600\times82=4.92\text{ g},\quad m(\text{C}_2\text{H}_5\text{OH})=0.0400\times46=1.84\text{ g}
+\end{aligned}" />

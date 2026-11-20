@@ -1,19 +1,37 @@
-# Bestimme das begrenzende Edukt vor der Ausbeute
+# Das Gas legt das Carbonat fest
 
-Ein schwerlösliches Salz entsteht durch **Fällung aus zwei löslichen Salzen** und wird dann filtriert, gespült und getrocknet. Die Ausbeute muss am zuerst verbrauchten Edukt gemessen werden.
+Nur das Carbonat schäumt, also **bedeuten <InlineMath math="120\text{ cm}^3" /> Kohlenstoffdioxid <InlineMath math="0{,}00500\text{ mol}" /> Magnesiumcarbonat**, <InlineMath math="0{,}420\text{ g}" />. Es verbrauchte zwei Säure pro Carbonat, <InlineMath math="0{,}0100\text{ mol}" />.
+
+# Die Titration findet die unbenutzte Säure
+
+Die Portion ist ein Zehntel des Kolbens, und ihre <InlineMath math="0{,}000500\text{ mol}" /> Lauge entsprechen ebenso viel Säure. **Rechne das auf den ganzen Kolben hoch**: <InlineMath math="0{,}00500\text{ mol}" /> Säure blieben unberührt.
 
 <Mermaid
-  title={<>Welcher Stoff den Niederschlag begrenzt</>}
-  description={<>Die Sulfationen sind zuerst verbraucht, sie bestimmen also die Masse an Blei(II)-sulfat, und die Ausbeute vergleicht die trockene Masse mit dieser Grenze.</>}
-  chart={"flowchart LR\n  A[Pb2+: 0,0100 mol] --> C[Mischen]\n  B[SO4 2-: 0,00750 mol, zuerst verbraucht] --> C\n  C --> D[Höchstens 0,00750 mol PbSO4, 2,27 g]\n  D --> E[2,05 g erhalten, Ausbeute 90,2 %]"}
+  title={<>Wie sich die Salzsäure aufteilt</>}
+  description={<>Die Säure teilt sich dreifach. Das Gas misst einen Zweig, die Titration einen anderen, und das Hydroxid nimmt, was dazwischen liegt.</>}
+  chart={`
+    flowchart TD
+      N0["25,0 mmol HCl zugegeben"]
+      N1["10,0 mmol an MgCO₃: 120 cm³ CO₂"]
+      N2["10,0 mmol an Mg(OH)₂"]
+      N3["5,00 mmol übrig: 25,0 cm³ NaOH pro Portion"]
+      N4["10,0 mmol MgCl₂: 0,950 g"]
+      N0 --> N1
+      N0 --> N2
+      N0 --> N3
+      N1 --> N4
+      N2 --> N4
+  `}
 />
 
-- Stoffmenge <InlineMath math="\text{Pb}^{2+}" />: <InlineMath math="0{,}500 \times \dfrac{20{,}0}{1000} = 0{,}0100\text{ mol}" />. Stoffmenge <InlineMath math="\text{SO}_4^{2-}" />: <InlineMath math="0{,}500 \times \dfrac{15{,}0}{1000} = 0{,}00750\text{ mol}" />.
-- Blei- und Sulfationen reagieren <InlineMath math="1 : 1" />, also ist das Sulfat zuerst verbraucht: höchstens <InlineMath math="0{,}00750 \times 303 = 2{,}27\text{ g}" /> Blei(II)-sulfat.
-- Ausbeute: <InlineMath math="\dfrac{2{,}05}{2{,}27} \times 100\,\% = 90{,}2\,\%" />.
+# Das Hydroxid bekommt den Rest
 
-# Warum die anderen Antworten falsch sind
+Die Tablette bekam <InlineMath math="0{,}0250\text{ mol}" /> Säure. Carbonat und Rest machen <InlineMath math="0{,}0150\text{ mol}" /> aus, also **verbrauchte das Hydroxid die übrigen <InlineMath math="0{,}0100\text{ mol}" />**, zwei pro Formeleinheit, also <InlineMath math="0{,}00500\text{ mol}" /> oder <InlineMath math="0{,}290\text{ g}" />. Mit nur einer Säure pro Hydroxid verdoppelt sich das auf <InlineMath math="0{,}580\text{ g}" />, und dann wiegen Carbonat und Hydroxid zusammen die ganzen <InlineMath math="1{,}00\text{ g}" />, ohne Platz für den inerten Rest aus der Aufgabe. Wer die ganze verbrauchte Säure dem Carbonat zuschreibt, erhält <InlineMath math="0{,}840\text{ g}" /> und kein Hydroxid, und das widerspricht dem Gasvolumen.
 
-- Titration liefert **lösliche** Natrium-, Kalium- und Ammoniumsalze, kein schwerlösliches.
-- <InlineMath math="67{,}7\,\%" /> hält die Blei(II)-Ionen für begrenzend, <InlineMath math="\dfrac{2{,}05}{3{,}03}" />, obwohl es mehr davon gibt als Sulfationen.
-- <InlineMath math="111\,\%" /> teilt die erwartete durch die erhaltene Masse. Eine Ausbeute über <InlineMath math="100\,\%" /> ist unmöglich.
+<BlockMath math="\begin{aligned}
+n(\text{MgCO}_3)&=\tfrac{120}{24\,000}=0{,}00500\text{ mol},\quad m=0{,}00500\times84=0{,}420\text{ g}\\
+n(\text{HCl})_{\text{Mg(OH)}_2}&=0{,}0250-2\times0{,}00500-10\times0{,}000500=0{,}0100\ \Rightarrow\ m(\text{Mg(OH)}_2)=\tfrac{0{,}0100}{2}\times58=0{,}290\text{ g}\\
+m(\text{MgCl}_2)&=(0{,}00500+0{,}00500)\times95=0{,}950\text{ g}
+\end{aligned}" />
+
+Beide Verbindungen geben je ein Magnesium in ein Magnesiumchlorid, also entstehen <InlineMath math="0{,}0100\text{ mol}" /> davon. Nur das Magnesium aus dem Carbonat ergibt <InlineMath math="0{,}475\text{ g}" />.

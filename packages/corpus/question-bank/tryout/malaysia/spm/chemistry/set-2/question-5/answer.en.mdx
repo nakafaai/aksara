@@ -1,26 +1,35 @@
-# Two metals make the gas, so set up two equations
+# The spark stops when the oxygen is gone
 
-Both metals react <InlineMath math="1 : 1" /> with hydrogen: <InlineMath math="\text{M} + 2\text{HCl} \rightarrow \text{MCl}_2 + \text{H}_2" />. **One equation comes from the total mass, the other from the total moles of hydrogen**.
+Sixty cubic centimetres of hydrogen sulfide would need <InlineMath math="90\text{ cm}^3" /> of oxygen, and only <InlineMath math="60\text{ cm}^3" /> is there. So **oxygen is the limiting gas**: it burns <InlineMath math="40\text{ cm}^3" /> of hydrogen sulfide into <InlineMath math="40\text{ cm}^3" /> of sulfur dioxide and leaves <InlineMath math="20\text{ cm}^3" /> unburnt. Equal volumes of gases hold equal amounts, so the volumes can be used like moles here.
 
-<Chart
-  title={<>Volume of Hydrogen Collected</>}
-  categories={["Second 0", "Second 30", "Second 60", "Second 90", "Second 120", "Second 150", "Second 180"]}
-  series={[
-    { label: "Volume of hydrogen (cm³)", mark: "line", values: [0, 260, 450, 570, 640, 672, 672] },
-  ]}
-  valueLabel="Volume of hydrogen (cm³)"
-  description={<>Volume of hydrogen at <InlineMath math="0" /> to <InlineMath math="180\text{ s}" />, every <InlineMath math="30\text{ s}" />: <InlineMath math="0" />, <InlineMath math="260" />, <InlineMath math="450" />, <InlineMath math="570" />, <InlineMath math="640" />, <InlineMath math="672" /> and <InlineMath math="672\text{ cm}^3" />.</>}
+# The leftover gas destroys some product
+
+The unburnt hydrogen sulfide now reacts with the sulfur dioxide that the first reaction made. Two volumes of it use one volume of sulfur dioxide, so <InlineMath math="10\text{ cm}^3" /> disappears and <InlineMath math="30\text{ cm}^3" /> remains. Stopping after the first reaction leaves <InlineMath math="40\text{ cm}^3" /> of gas, which forgets this second step.
+
+<Mermaid
+  title={<>Gas volumes through the two reactions</>}
+  description={<>Volumes in cubic centimetres at room conditions. Water condenses, so it never appears as gas.</>}
+  chart={`
+    flowchart TD
+      N0["60 H₂S + 60 O₂"]
+      N1["Burn: 40 H₂S use 60 O₂"]
+      N2["40 SO₂ formed"]
+      N3["20 H₂S left"]
+      N4["20 H₂S + 10 SO₂ → 0.0400 g S"]
+      N5["30 SO₂: the only gas left"]
+      N0 --> N1
+      N1 --> N2
+      N1 --> N3
+      N2 --> N4
+      N3 --> N4
+      N2 --> N5
+      N4 --> N5
+  `}
 />
 
-- Moles of <InlineMath math="\text{H}_2" />: <InlineMath math="\dfrac{0.672}{24} = 0.028\text{ mol}" />.
-- Let <InlineMath math="x" /> be the mass of magnesium in grams: <InlineMath math="\dfrac{x}{24} + \dfrac{1.00 - x}{65} = 0.028" />.
-- Multiply by <InlineMath math="1560" />: <InlineMath math="65x + 24(1.00 - x) = 43.68" />, so <InlineMath math="41x = 19.68" /> and <InlineMath math="x = 0.48\text{ g}" />.
-- Percentage of magnesium: <InlineMath math="\dfrac{0.48}{1.00} \times 100\% = 48\%" />.
+The sulfur comes from both reactants: **two hydrogen sulfide and one sulfur dioxide give three sulfur atoms**. Taking one sulfur per hydrogen sulfide gives <InlineMath math="0.0267\text{ g}" /> instead.
 
-Check: <InlineMath math="0.020" /> mol from Mg and <InlineMath math="0.008" /> mol from Zn make <InlineMath math="0.028" /> mol.
-
-# Why the other options are wrong
-
-- <InlineMath math="52\%" /> is the percentage of **zinc**.
-- <InlineMath math="67\%" /> credits all the hydrogen to magnesium, <InlineMath math="0.028 \times 24 = 0.672\text{ g}" />, ignoring the zinc.
-- <InlineMath math="34\%" /> takes two moles of hydrogen per mole of metal, halving the magnesium.
+<BlockMath math="\begin{aligned}
+V(\text{H}_2\text{S})_{\text{burnt}}&=\tfrac{2}{3}\times60=40\text{ cm}^3\ \Rightarrow\ V(\text{SO}_2)=40\text{ cm}^3,\quad V(\text{H}_2\text{S})'=20\text{ cm}^3\\
+V(\text{SO}_2)'&=40-\tfrac{20}{2}=30\text{ cm}^3,\quad m(\text{S})=\tfrac{3}{2}\times\tfrac{20}{24\,000}\times32=0.0400\text{ g}
+\end{aligned}" />

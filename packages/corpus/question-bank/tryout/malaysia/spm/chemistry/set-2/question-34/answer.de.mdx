@@ -1,48 +1,35 @@
-# Das Wasser kühlt ab, also nimmt das Lösen Wärme auf
+# Brenner und Thermometer ablesen
 
-Die Wärme, die den Feststoff auflöst, kommt aus dem Wasser, deshalb sinkt die Temperatur. **Wärme aufnehmen heißt endotherm, also ist das Vorzeichen positiv**. Berechne die Wärme aus dem Temperaturabfall und teile sie dann durch die gelöste Stoffmenge.
+Der Brenner hat <InlineMath math="186{,}42-185{,}73=0{,}690\text{ g}" /> verloren, also <InlineMath math="0{,}0150\text{ mol}" /> Ethanol, und das Wasser stieg von <InlineMath math="28{,}0^\circ\text{C}" /> auf <InlineMath math="43{,}0^\circ\text{C}" />. **Das Wasser hat <InlineMath math="15{,}8\text{ kJ}" /> aufgenommen**, und dieser Aufbau misst damit <InlineMath math="-1050\text{ kJ mol}^{-1}" />.
 
 <BlockMath math="\begin{aligned}
-\Delta\theta&=28{,}0-24{,}6=3{,}4^\circ\text{C}\\
-Q&=50\times4{,}2\times3{,}4=714\text{ J}=0{,}714\text{ kJ}\\
-n(\text{NH}_4\text{NO}_3)&=\frac{2{,}0}{80}=0{,}025\text{ mol}\\
-\Delta H&=+\frac{0{,}714}{0{,}025}=+28{,}6\text{ kJ mol}^{-1}
+Q_1&=250\times4{,}2\times15{,}0=15\,750\text{ J},\quad n=\tfrac{0{,}690}{46}=0{,}0150\text{ mol},\quad \Delta H=-\tfrac{15{,}75}{0{,}0150}=-1050\text{ kJ mol}^{-1}
 \end{aligned}" />
 
-Im Energiediagramm liegen die gelösten Ionen um diesen Betrag über Feststoff und Wasser, denn sie tragen jetzt die Wärme, die das Wasser verloren hat.
+Die Wärme durch die <InlineMath math="0{,}690\text{ g}" /> selbst zu teilen ergibt <InlineMath math="-22{,}8" />, einen Wert pro Gramm, der keine molare Verbrennungsenthalpie sein kann.
 
-<MathVisual
-  title={<>Energiediagramm für das Lösen von Ammoniumnitrat</>}
-  description={<>Die Produkte, die gelösten Ionen, liegen höher als die Edukte, Feststoff und Wasser. Der Pfeil zeigt nach oben und gibt <InlineMath math="+28{,}6\text{ kJ mol}^{-1}" /> an.</>}
-  labels={{
-    energy: <>Energie</>,
-    reactants: <InlineMath math="\text{NH}_4\text{NO}_3(s)+\text{H}_2\text{O}(l)" />,
-    products: <InlineMath math="\text{NH}_4^+(aq)+\text{NO}_3^-(aq)" />,
-    change: <InlineMath math="\Delta H=+28{,}6\text{ kJ mol}^{-1}" />,
-  }}
-  scene={{
-    space: "plane",
-    frame: { kind: "cartesian", x: { min: -1, max: 6 }, y: { min: -0.6, max: 2.2 } },
-    view: { kind: "fit", padding: 0.1 },
-    objects: [
-      { id: "axis", kind: "vector", appearance: "reference", from: { x: -0.5, y: -0.4 }, to: { x: -0.5, y: 2 } },
-      { id: "reactant-level", kind: "segment", appearance: "secondary", from: { x: 0, y: 0 }, to: { x: 2.2, y: 0 } },
-      { id: "product-level", kind: "segment", appearance: "primary", from: { x: 2.8, y: 1.4 }, to: { x: 5, y: 1.4 } },
-      { id: "enthalpy", kind: "vector", appearance: "answer", from: { x: 2.5, y: 0 }, to: { x: 2.5, y: 1.4 } },
-    ],
-    labels: [
-      { key: "energy", objectId: "axis", at: { x: -0.5, y: 2 }, placement: "above" },
-      { key: "reactants", objectId: "reactant-level", at: { x: 1.1, y: 0 }, placement: "below" },
-      { key: "products", objectId: "product-level", at: { x: 3.9, y: 1.4 }, placement: "above" },
-      { key: "change", objectId: "enthalpy", at: { x: 2.5, y: 0.7 }, placement: "right" },
-    ],
-  }}
+# Wie viel der Flamme beim Wasser ankommt
+
+Laut Literaturwert setzen <InlineMath math="0{,}0150\text{ mol}" /> Ethanol <InlineMath math="20{,}6\text{ kJ}" /> frei, das Wasser hat davon aber nur <InlineMath math="15{,}8\text{ kJ}" /> aufgefangen. **Rund <InlineMath math="76{,}6\%" /> der Wärme landen im Wasser**, der Rest erwärmt die Dose, die Luft und den Brenner selbst.
+
+<Chart
+  title={<>Freigesetzte und aufgefangene Wärme</>}
+  description={<>In beiden Versuchen fängt das Wasser denselben Anteil der Wärme auf, die das Ethanol laut Literaturwert freisetzt, etwa drei Viertel.</>}
+  bars="apart"
+  categories={["Versuch I", "Versuch II"]}
+  series={[
+    { label: "Freigesetzt laut Literaturwert", mark: "bar", values: [20.55, 54.8] },
+    { label: "Vom Wasser aufgenommen", mark: "bar", values: [15.75, 42.0] },
+  ]}
+  valueLabel="Wärme (kJ)"
 />
 
-Die Enthalpieänderung beträgt also <InlineMath math="+28{,}6\text{ kJ mol}^{-1}" />, mit den Produkten über den Edukten.
+# Hochrechnen auf die zweite Erwärmung
 
-# Warum die anderen Antworten falsch sind
+Versuch II verlangt <InlineMath math="42{,}0\text{ kJ}" /> für das Wasser. **Bei gleichen Verlusten liefert jedes Mol Ethanol weiterhin nur <InlineMath math="1050\text{ kJ}" /> an das Wasser**, also verbrennt der Brenner <InlineMath math="0{,}0400\text{ mol}" />.
 
-- <InlineMath math="-28{,}6\text{ kJ mol}^{-1}" /> deutet den Temperaturabfall als abgegebene Wärme. Das Wasser hat Wärme an das Lösen verloren, also hat die Reaktion sie aufgenommen.
-- <InlineMath math="+0{,}714\text{ kJ mol}^{-1}" /> ist die Wärme für <InlineMath math="2{,}0\text{ g}" />, nicht für ein Mol. **Teile durch <InlineMath math="0{,}025\text{ mol}" />, um den Wert pro Mol zu bekommen**.
-- Ein positives <InlineMath math="\Delta H" /> mit den Edukten oben widerspricht sich. Edukte über den Produkten würden bedeuten, dass Energie frei wird.
+<BlockMath math="\begin{aligned}
+Q_2&=500\times4{,}2\times20{,}0=42\,000\text{ J},\quad m=\tfrac{42{,}0}{1050}\times46=1{,}84\text{ g}
+\end{aligned}" />
+
+Der Literaturwert von <InlineMath math="1370\text{ kJ}" /> pro Mol unterstellt stillschweigend einen Brenner ohne Verluste und ergibt <InlineMath math="1{,}41\text{ g}" />. Nur <InlineMath math="250\text{ g}" /> um <InlineMath math="20{,}0^\circ\text{C}" /> zu erwärmen braucht die halbe Wärme, und daher stammen die <InlineMath math="0{,}920\text{ g}" />.

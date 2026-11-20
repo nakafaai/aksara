@@ -1,23 +1,36 @@
-# Zähle Ionen, nicht Formeleinheiten
+# Kohlenstoffatome unterscheiden die beiden Brennstoffe
 
-Gleich viele Ionen heißt **gleiche Stoffmenge an Ionen**. Bestimme die Stoffmenge jeder Verbindung und multipliziere mit den Ionen pro Formeleinheit.
+Nach dem Abkühlen ist das Wasser flüssig, also trifft die Lauge nur auf Kohlenstoffdioxid und übrigen Sauerstoff. Bei Gasen unter gleichen Bedingungen zählen Volumen Moleküle, und **ein Methanmolekül trägt ein Kohlenstoffatom, ein Propanmolekül drei**.
 
-<Chart
-  title={<>Stoffmenge der Ionen in jeder Probe</>}
-  bars="apart"
-  categories={["5,85 g NaCl", "11,1 g CaCl₂", "7,4 g CaCl₂", "2,8 g KOH", "2,0 g MgO"]}
-  series={[
-    { label: "Stoffmenge Ionen (mol)", mark: "bar", values: [0.2, 0.3, 0.2, 0.1, 0.1] },
-  ]}
-  valueLabel="Stoffmenge Ionen (mol)"
-  description={<>Das Natriumchlorid enthält <InlineMath math="0{,}2\text{ mol}" /> Ionen. Die Proben enthalten <InlineMath math="0{,}3" />, <InlineMath math="0{,}2" />, <InlineMath math="0{,}1" /> und <InlineMath math="0{,}1\text{ mol}" /> Ionen.</>}
+<MoleculeShapeLab
+  title={<>Methan und Propan nebeneinander</>}
+  description={<>Ein Kohlenstoffatom gegen drei. Dieser Unterschied legt fest, wie viel Kohlenstoffdioxid jedes Volumen Brennstoff liefert.</>}
+  molecules={[{ id: "methane", name: "Methan" }, { id: "propane", name: "Propan" }]}
+  labels={{
+    atoms: <>Atome</>,
+    choose: "Molekül wählen",
+    fill: <>Kalottenmodell</>,
+    formula: <>Formel</>,
+    mass: <>Relative Molekülmasse</>,
+    shape: <>Bindungswinkel</>,
+    view: "Methan und Propan",
+  }}
 />
 
-- Natriumchlorid, <InlineMath math="M_r = 58{,}5" />: <InlineMath math="\dfrac{5{,}85}{58{,}5} = 0{,}1" /> mol mit je <InlineMath math="2" /> Ionen, also <InlineMath math="0{,}2" /> mol Ionen.
-- Calciumchlorid, <InlineMath math="M_r = 111" />: <InlineMath math="\dfrac{7{,}4}{111} = 0{,}0667" /> mol mit je <InlineMath math="3" /> Ionen, <InlineMath math="\text{Ca}^{2+}" /> und zwei <InlineMath math="\text{Cl}^-" />, also <InlineMath math="0{,}0667 \times 3 = 0{,}2" /> mol Ionen.
+Die <InlineMath math="2{,}88\text{ dm}^3" /> Kohlenstoffdioxid aus <InlineMath math="1{,}20\text{ dm}^3" /> Brennstoff bedeuten im Mittel <InlineMath math="2{,}40" /> Kohlenstoffatome pro Brennstoffmolekül. Das liegt bei <InlineMath math="70\%" /> der Strecke von eins bis drei, also sind <InlineMath math="70\%" /> des Brennstoffs Propan, <InlineMath math="0{,}840\text{ dm}^3" />. Hinter <InlineMath math="0{,}360\text{ dm}^3" /> steckt der Methananteil.
 
-# Warum die anderen Antworten falsch sind
+# Sauerstoff, den die Flamme übrig lässt
 
-- <InlineMath math="11{,}1\text{ g}" /> Calciumchlorid haben gleich viele **Formeleinheiten**, <InlineMath math="0{,}1" /> mol, aber <InlineMath math="0{,}3" /> mol Ionen.
-- <InlineMath math="2{,}8\text{ g}" /> Kaliumhydroxid, <InlineMath math="M_r = 56" />, sind <InlineMath math="0{,}05" /> mol mit je zwei Ionen, also <InlineMath math="0{,}1" /> mol Ionen.
-- <InlineMath math="2{,}0\text{ g}" /> Magnesiumoxid, <InlineMath math="M_r = 40" />, sind <InlineMath math="0{,}05" /> mol mit je zwei Ionen, also <InlineMath math="0{,}1" /> mol Ionen.
+Propan ist der gierigere Brennstoff, **fünf Sauerstoff pro Molekül gegen zwei beim Methan**. Zusammen verbrennen sie <InlineMath math="4{,}92\text{ dm}^3" /> und lassen <InlineMath math="1{,}08\text{ dm}^3" /> übrig. Zieht man <InlineMath math="2{,}88\text{ dm}^3" /> vom Sauerstoff ab, erhält man <InlineMath math="3{,}12\text{ dm}^3" />, aber das Kohlenstoffdioxidvolumen sagt nicht direkt, wie viel Sauerstoff verbraucht wurde.
+
+# Magnesium schluckt den Rest
+
+Jedes Sauerstoffmolekül macht aus zwei Magnesiumatomen Oxid, also **liefern <InlineMath math="0{,}0450\text{ mol}" /> Sauerstoff <InlineMath math="0{,}0900\text{ mol}" /> Magnesiumoxid**. Ein Oxid pro Sauerstoffmolekül ergibt die halbe Masse, <InlineMath math="1{,}80\text{ g}" />, und die <InlineMath math="10{,}4\text{ g}" /> schleppen den Fehler mit <InlineMath math="3{,}12\text{ dm}^3" /> in diesen Schritt.
+
+<BlockMath math="\begin{aligned}
+1+2p&=\tfrac{2{,}88}{1{,}20}=2{,}40\ \Rightarrow\ p=0{,}700,\quad V(\text{C}_3\text{H}_8)=0{,}700\times1{,}20=0{,}840\text{ dm}^3\\
+V(\text{O}_2)'&=6{,}00-(2\times0{,}360+5\times0{,}840)=1{,}08\text{ dm}^3\\
+m(\text{MgO})&=2\times\tfrac{1{,}08}{24}\times40=3{,}60\text{ g}
+\end{aligned}" />
+
+Das Magnesium berührt den Brennstoff nie, die Verbrennung zählt hier also nur über den Sauerstoff, den sie übrig lässt.

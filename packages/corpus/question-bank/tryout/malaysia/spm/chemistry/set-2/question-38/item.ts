@@ -13,22 +13,22 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "$$5\\%$$, and the rubber springs back to its shape because the cross-links stop the chains sliding past one another",
+            "$$6.25\\text{ g}$$, $$4.80\\text{ dm}^3$$, $$1.80\\text{ g}$$",
         },
         {
           correct: true,
           label:
-            "$$10\\%$$, and the rubber springs back to its shape because the cross-links stop the chains sliding past one another",
+            "$$6.25\\text{ g}$$, $$9.60\\text{ dm}^3$$, $$5.40\\text{ g}$$",
         },
         {
           correct: false,
           label:
-            "$$20\\%$$, and the rubber springs back to its shape because the cross-links stop the chains sliding past one another",
+            "$$2.80\\text{ g}$$, $$9.60\\text{ dm}^3$$, $$5.40\\text{ g}$$",
         },
         {
           correct: false,
           label:
-            "$$10\\%$$, and the rubber becomes softer because the cross-links use up its double bonds",
+            "$$6.25\\text{ g}$$, $$9.60\\text{ dm}^3$$, $$6.30\\text{ g}$$",
         },
       ],
     },
@@ -38,22 +38,22 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "$$5\\%$$, dan getah itu kembali kepada bentuk asalnya kerana rangkai silang menghalang rantai daripada menggelongsor melepasi satu sama lain",
+            "$$6.25\\text{ g}$$, $$4.80\\text{ dm}^3$$, $$1.80\\text{ g}$$",
         },
         {
           correct: true,
           label:
-            "$$10\\%$$, dan getah itu kembali kepada bentuk asalnya kerana rangkai silang menghalang rantai daripada menggelongsor melepasi satu sama lain",
+            "$$6.25\\text{ g}$$, $$9.60\\text{ dm}^3$$, $$5.40\\text{ g}$$",
         },
         {
           correct: false,
           label:
-            "$$20\\%$$, dan getah itu kembali kepada bentuk asalnya kerana rangkai silang menghalang rantai daripada menggelongsor melepasi satu sama lain",
+            "$$2.80\\text{ g}$$, $$9.60\\text{ dm}^3$$, $$5.40\\text{ g}$$",
         },
         {
           correct: false,
           label:
-            "$$10\\%$$, dan getah itu menjadi lebih lembut kerana rangkai silang menggunakan ikatan ganda duanya",
+            "$$6.25\\text{ g}$$, $$9.60\\text{ dm}^3$$, $$6.30\\text{ g}$$",
         },
       ],
     },

@@ -1,25 +1,37 @@
-# Mittle die übereinstimmenden Titer und nutze das Verhältnis <InlineMath math="2" /> : <InlineMath math="1" />
+# Chlorid in der Portion
 
-Drei verknüpfte Schritte: Titer ablesen, **nur die übereinstimmenden mitteln**, dann die Stoffmenge der Lauge in die einer zweiprotonigen Säure umrechnen.
+Das Salz sind <InlineMath math="5{,}85\div58{,}5=0{,}100\text{ mol}" /> in <InlineMath math="250\text{ cm}^3" />, also enthält der erste Kolben <InlineMath math="0{,}400\text{ mol dm}^{-3}" />. Nach dieser Lösung ist aber nicht gefragt. **Verdünnen von <InlineMath math="25{,}0\text{ cm}^3" /> auf <InlineMath math="100\text{ cm}^3" /> teilt die Konzentration durch vier**, das ergibt <InlineMath math="0{,}100\text{ mol dm}^{-3}" />. Wer beim ersten Kolben stehen bleibt, landet bei <InlineMath math="0{,}400\text{ mol dm}^{-3}" />.
 
-<Chart
-  title={<>Titer jeder Titration</>}
-  bars="apart"
-  categories={["Grob", "Titration 2", "Titration 3", "Titration 4"]}
-  series={[
-    { label: "Titer (cm³)", mark: "bar", values: [24.6, 24.2, 24.25, 24.3] },
-  ]}
-  valueLabel="Titer (cm³)"
-  description={<>Titer: <InlineMath math="24{,}60" /> (grob), <InlineMath math="24{,}20" />, <InlineMath math="24{,}25" /> und <InlineMath math="24{,}30\text{ cm}^3" />.</>}
+Die <InlineMath math="20{,}0\text{ cm}^3" />-Portion der verdünnten Lösung trägt also <InlineMath math="0{,}100\times0{,}0200=0{,}00200\text{ mol}" /> Chloridionen.
+
+# Silber, das das Chlorid nicht fängt
+
+Das Silbernitrat bringt <InlineMath math="0{,}0500\times0{,}0500=0{,}00250\text{ mol}" /> Silberionen mit, mehr als Chlorid da ist. Jedes Chloridion nimmt ein Silberion, also fallen <InlineMath math="0{,}00200\text{ mol}" /> Silberchlorid aus, <InlineMath math="M_r=143{,}5" />. Die <InlineMath math="0{,}117\text{ g}" /> in einer Antwort sind die Masse Natriumchlorid in der Portion, nicht die des Niederschlags.
+
+**Nur die <InlineMath math="0{,}000500\text{ mol}" /> Silberionen ohne Chloridpartner** treffen auf das Thiocyanat. Würdest du alle <InlineMath math="0{,}00250\text{ mol}" /> titrieren, kämen <InlineMath math="62{,}5\text{ cm}^3" /> heraus, als wäre nichts ausgefallen.
+
+<Mermaid
+  title={<>Der Weg des Chlorids vom Salz zur Titration</>}
+  description={<>Jeder Pfeil ist ein Schritt des Verfahrens, und die Menge in jedem Kasten ist das, was dieser Schritt weitergibt.</>}
+  chart={`
+    flowchart LR
+      N0["5,85 g NaCl in 250 cm³: 0,400 mol dm⁻³"]
+      N1["25,0 cm³ auf 100 cm³: 0,100 mol dm⁻³"]
+      N2["20,0-cm³-Portion: 2,00 mmol Cl⁻"]
+      N3["2,50 mmol Ag⁺ zugegeben"]
+      N4["2,00 mmol AgCl, 0,287 g"]
+      N5["0,500 mmol Ag⁺ übrig"]
+      N6["12,5 cm³ SCN⁻ mit 0,0400 mol dm⁻³"]
+      N0 --> N1
+      N1 --> N2
+      N2 --> N4
+      N3 --> N4
+      N3 --> N5
+      N5 --> N6
+  `}
 />
 
-- Titer: <InlineMath math="24{,}60" /> (grob), <InlineMath math="24{,}20" />, <InlineMath math="24{,}25" /> und <InlineMath math="24{,}30\text{ cm}^3" />. Die letzten drei stimmen auf <InlineMath math="0{,}10\text{ cm}^3" /> überein, der mittlere Titer ist also <InlineMath math="\dfrac{24{,}20 + 24{,}25 + 24{,}30}{3} = 24{,}25\text{ cm}^3" />.
-- Stoffmenge NaOH: <InlineMath math="0{,}100 \times \dfrac{25{,}0}{1000} = 0{,}00250\text{ mol}" />.
-- <InlineMath math="\text{H}_2\text{SO}_4 + 2\text{NaOH} \rightarrow \text{Na}_2\text{SO}_4 + 2\text{H}_2\text{O}" />, also Stoffmenge Säure <InlineMath math="= \dfrac{0{,}00250}{2} = 0{,}00125\text{ mol}" />.
-- Konzentration: <InlineMath math="\dfrac{0{,}00125}{24{,}25/1000} = 0{,}0515\text{ mol dm}^{-3}" />.
-
-# Warum die anderen Antworten falsch sind
-
-- <InlineMath math="0{,}103\text{ mol dm}^{-3}" /> nimmt ein Verhältnis von <InlineMath math="1 : 1" />, **als gäbe Schwefelsäure ein Wasserstoffion ab**.
-- <InlineMath math="0{,}206\text{ mol dm}^{-3}" /> wendet die <InlineMath math="2" /> verkehrt an und verdoppelt die Stoffmenge der Säure.
-- <InlineMath math="0{,}0258\text{ mol dm}^{-3}" /> halbiert die Stoffmenge zweimal.
+<BlockMath math="\begin{aligned}
+c&=\tfrac{5{,}85\div58{,}5}{0{,}250}\times\tfrac{25{,}0}{100}=0{,}100\text{ mol dm}^{-3},\quad n(\text{Cl}^-)=0{,}100\times0{,}0200=0{,}00200\text{ mol}\\
+m(\text{AgCl})&=0{,}00200\times143{,}5=0{,}287\text{ g},\quad V(\text{SCN}^-)=\tfrac{0{,}00250-0{,}00200}{0{,}0400}=0{,}0125\text{ dm}^3=12{,}5\text{ cm}^3
+\end{aligned}" />

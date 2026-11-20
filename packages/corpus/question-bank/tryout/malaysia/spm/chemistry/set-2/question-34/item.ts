@@ -13,22 +13,22 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "$$-28.6\\text{ kJ mol}^{-1}$$, with the reactants above the products",
+            "$$15.8\\text{ kJ}$$, $$-1050\\text{ kJ mol}^{-1}$$, $$1.41\\text{ g}$$",
         },
         {
           correct: true,
           label:
-            "$$+28.6\\text{ kJ mol}^{-1}$$, with the products above the reactants",
+            "$$15.8\\text{ kJ}$$, $$-1050\\text{ kJ mol}^{-1}$$, $$1.84\\text{ g}$$",
         },
         {
           correct: false,
           label:
-            "$$+0.714\\text{ kJ mol}^{-1}$$, with the products above the reactants",
+            "$$15.8\\text{ kJ}$$, $$-22.8\\text{ kJ mol}^{-1}$$, $$1.84\\text{ g}$$",
         },
         {
           correct: false,
           label:
-            "$$+28.6\\text{ kJ mol}^{-1}$$, with the reactants above the products",
+            "$$15.8\\text{ kJ}$$, $$-1050\\text{ kJ mol}^{-1}$$, $$0.920\\text{ g}$$",
         },
       ],
     },
@@ -38,22 +38,22 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "$$-28.6\\text{ kJ mol}^{-1}$$, dengan bahan tindak balas di atas hasil tindak balas",
+            "$$15.8\\text{ kJ}$$, $$-1050\\text{ kJ mol}^{-1}$$, $$1.41\\text{ g}$$",
         },
         {
           correct: true,
           label:
-            "$$+28.6\\text{ kJ mol}^{-1}$$, dengan hasil tindak balas di atas bahan tindak balas",
+            "$$15.8\\text{ kJ}$$, $$-1050\\text{ kJ mol}^{-1}$$, $$1.84\\text{ g}$$",
         },
         {
           correct: false,
           label:
-            "$$+0.714\\text{ kJ mol}^{-1}$$, dengan hasil tindak balas di atas bahan tindak balas",
+            "$$15.8\\text{ kJ}$$, $$-22.8\\text{ kJ mol}^{-1}$$, $$1.84\\text{ g}$$",
         },
         {
           correct: false,
           label:
-            "$$+28.6\\text{ kJ mol}^{-1}$$, dengan bahan tindak balas di atas hasil tindak balas",
+            "$$15.8\\text{ kJ}$$, $$-1050\\text{ kJ mol}^{-1}$$, $$0.920\\text{ g}$$",
         },
       ],
     },

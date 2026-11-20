@@ -1,34 +1,35 @@
-# Kepekatan menentukan ion yang dinyahcas di anod
+# Sejauh mana klorin pergi
 
-Di anod lengai, ion hidroksida dinyahcas sebelum ion klorida, **kecuali jika ion klorida jauh lebih pekat**. Arus yang sama mengalir melalui kedua-dua sel bersiri.
+Mulakan dengan gas itu, kerana itulah bahan yang boleh habis: <InlineMath math="120\text{ cm}^3" /> ialah <InlineMath math="0.00500\text{ mol}" /> klorin, berbanding <InlineMath math="0.0150\text{ mol}" /> bromida. Satu molekul klorin menyingkirkan dua ion bromida, jadi **klorin habis selepas <InlineMath math="0.0100\text{ mol}" /> bromida** dan hanya <InlineMath math="0.00500\text{ mol}" /> bromin terbentuk, <InlineMath math="0.800\text{ g}" /> dengan <InlineMath math="M_r=160" />. Menukar semua bromida kepada bromin, <InlineMath math="1.20\text{ g}" />, memerlukan setengah lagi klorin daripada yang dialirkan.
 
-<ElectrolysisLab
-  title={<>Dua Sel Bersiri</>}
-  description={<>Sel I mengandungi larutan natrium klorida cair dan sel II larutan pekat, masing-masing dengan elektrod karbon, pada satu bateri.</>}
-  cells={[{ electrode: "carbon", electrolyte: "sodium-chloride-dilute" }, { electrode: "carbon", electrolyte: "sodium-chloride-concentrated" }]}
-  electrons={0.04}
-  showProducts
-  labels={{
-    anode: "Anod",
-    atAnode: <>Di anod</>,
-    atCathode: <>Di katod</>,
-    battery: "Bateri",
-    cathode: "Katod",
-    cells: [<>Sel I: natrium klorida cair, elektrod karbon</>, <>Sel II: natrium klorida pekat, elektrod karbon</>],
-    electrons: <>Elektron yang mengalir</>,
-    ph: <>pH elektrolit</>,
-    trends: { falls: <>berkurang</>, rises: <>bertambah</>, steady: <>tidak berubah</> },
-    view: "Dua sel elektrolisis bersiri dengan elektrod karbon dalam larutan natrium klorida cair dan pekat",
-  }}
+<Mermaid
+  title={<>Ke mana setiap halogen pergi</>}
+  description={<>Klorin menolak bromin keluar daripada air dan masuk ke dalam heksana. Lapisan air menyimpan semua ion halida, dan heksana membawa bromin kepada iodida.</>}
+  chart={`
+    flowchart TD
+      N0["5.00 mmol Cl₂ bertemu 15.0 mmol Br⁻"]
+      N1["Lapisan air: 10.0 mmol Cl⁻, 5.00 mmol Br⁻"]
+      N2["Lapisan heksana: 5.00 mmol Br₂, 0.800 g"]
+      N3["Digoncang dengan KI: 5.00 mmol I₂, 1.27 g"]
+      N4["AgNO₃ bertemu 15.0 mmol halida: 150 cm³"]
+      N0 --> N1
+      N0 --> N2
+      N2 --> N3
+      N1 --> N4
+  `}
 />
 
-- Sel I, cair: ion hidroksida dinyahcas, <InlineMath math="4\text{OH}^- \rightarrow \text{O}_2 + 2\text{H}_2\text{O} + 4e^-" />, jadi oksigen terbentuk.
-- Sel II, pekat: ion klorida dinyahcas, <InlineMath math="2\text{Cl}^- \rightarrow \text{Cl}_2 + 2e^-" />, jadi klorin terbentuk.
-- Dalam sel II, <InlineMath math="2" /> mol elektron menghasilkan <InlineMath math="1" /> mol <InlineMath math="\text{Cl}_2" />, jadi <InlineMath math="0.04" /> mol elektron menghasilkan <InlineMath math="0.02" /> mol.
-- Isi padu klorin: <InlineMath math="0.02 \times 24 = 0.48\text{ dm}^3" />.
+# Bromin bertukar pelarut, kemudian bertukar pasangan
 
-# Kenapa pilihan lain salah
+Molekul bromin bukan polar, jadi goncangan itu menarik **kesemua <InlineMath math="0.00500\text{ mol}" /> bromin ke dalam heksana**, manakala ion kekal dalam air. Di situ bromin mengoksidakan iodida dan membebaskan satu molekul iodin bagi setiap molekul bromin. Iodin keluar sebagai <InlineMath math="\text{I}_2" /> dengan <InlineMath math="M_r=254" />, jadi jisimnya <InlineMath math="1.27\text{ g}" />. Menimbangnya sebagai atom tunggal membahagi dua nilai itu kepada <InlineMath math="0.635\text{ g}" />.
 
-- Klorin dalam sel I dan oksigen dalam sel II menukar kedua-dua sel, **seolah-olah pencairan memihak kepada ion klorida**.
-- <InlineMath math="0.96\text{ dm}^3" /> mengambil satu mol klorin bagi setiap mol elektron, terlupa bahawa setiap <InlineMath math="\text{Cl}_2" /> memerlukan dua.
-- Klorin di kedua-dua anod mengabaikan kesan kepekatan dalam sel yang cair.
+# Setiap halida dalam lapisan air pertama
+
+Lapisan air itu tidak pernah bertemu iodida. Ia menyimpan <InlineMath math="0.0100\text{ mol}" /> klorida yang terhasil daripada klorin dan <InlineMath math="0.00500\text{ mol}" /> bromida yang tidak sempat dicapai klorin. **Argentum nitrat mengambil kedua-duanya**, argentum klorida putih dan argentum bromida kuning pucat, jadi ia perlu meliputi <InlineMath math="0.0150\text{ mol}" /> halida.
+
+<BlockMath math="\begin{aligned}
+n(\text{Cl}_2)&=\tfrac{120}{24\,000}=0.00500\text{ mol}\ \Rightarrow\ m(\text{Br}_2)=0.00500\times160=0.800\text{ g},\quad m(\text{I}_2)=0.00500\times254=1.27\text{ g}\\
+n(\text{Cl}^-)+n(\text{Br}^-)&=0.0100+0.00500=0.0150\text{ mol}\ \Rightarrow\ V(\text{AgNO}_3)=\tfrac{0.0150}{0.100}=0.150\text{ dm}^3=150\text{ cm}^3
+\end{aligned}" />
+
+Mengira baki bromida sahaja memberi <InlineMath math="50.0\text{ cm}^3" />, seolah-olah klorida yang terbentuk dalam langkah pertama sudah lenyap. Perhatikan jumlah halida itu sama tepat dengan bromida pada permulaan, kerana setiap bromida yang keluar sebagai bromin diganti oleh satu klorida.

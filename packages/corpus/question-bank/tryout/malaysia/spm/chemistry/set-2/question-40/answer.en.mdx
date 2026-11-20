@@ -1,28 +1,47 @@
-# Yield and atom economy measure two different losses
+# All the sulfur burns
 
-The yield tells you how much of the possible ethanol the batch really made, so it decides how much glucose you need. The atom economy comes from the equation alone. **Even at a perfect yield, the carbon dioxide carries off part of every glucose molecule**.
+Sulfur is <InlineMath math="3.20\div32=0.100\text{ mol}" />, and the burning is complete, so <InlineMath math="0.100\text{ mol}" /> of sulfur dioxide forms, <InlineMath math="2.40\text{ dm}^3" />. **The <InlineMath math="90.0\%" /> belongs to the converter, not to the burner**. Applying it here shrinks the gas to <InlineMath math="2.16\text{ dm}^3" />.
 
-<BlockMath math="\begin{aligned}
-n(\text{C}_2\text{H}_5\text{OH})&=\frac{46\,000}{46}=1000\text{ mol}\ \Rightarrow\ n(\text{C}_6\text{H}_{12}\text{O}_6)=500\text{ mol}\\
-m(\text{glucose})&=\frac{500\times180}{0.80}=112\,500\text{ g}=112.5\text{ kg}\\
-\text{atom economy}&=\frac{2(46)}{180}\times100\%=\frac{92}{180}\times100\%=51.1\%
-\end{aligned}" />
+# The converter lets some dioxide through
 
-<Chart
-  title={<>Where the mass of one mole of glucose goes</>}
-  description={<>One mole of glucose, <InlineMath math="180\text{ g}" />, becomes <InlineMath math="92\text{ g}" /> of ethanol and <InlineMath math="88\text{ g}" /> of carbon dioxide. Only the ethanol is the desired product.</>}
-  bars="apart"
-  categories={["Glucose", "Ethanol", "Carbon dioxide"]}
-  series={[
-    { label: "Mass", mark: "bar", values: [180, 92, 88] },
+Only <InlineMath math="0.0900\text{ mol}" /> of sulfur trioxide leaves the catalyst, and the lab below sets the bent dioxide beside the flat trioxide. **Every trioxide molecule becomes one oleum molecule**, <InlineMath math="M_r=178" />, so <InlineMath math="16.0\text{ g}" /> forms. Building oleum from the full <InlineMath math="0.100\text{ mol}" /> gives <InlineMath math="17.8\text{ g}" />, as if the converter were perfect.
+
+<MoleculeShapeLab
+  title={<>Bent dioxide, flat trioxide</>}
+  description={<>The converter turns the bent <InlineMath math="\text{SO}_2" /> into the flat <InlineMath math="\text{SO}_3" />. The <InlineMath math="10.0\%" /> that stays bent passes through the absorber and never becomes oleum.</>}
+  molecules={[
+    { id: "sulfur-dioxide", name: "sulfur dioxide" },
+    { id: "sulfur-trioxide", name: "sulfur trioxide" },
   ]}
-  valueLabel="Mass from one mole of glucose (g)"
+  labels={{
+    atoms: <>Atoms</>,
+    choose: "Choose a molecule",
+    fill: <>Space-filling model</>,
+    formula: <>Formula</>,
+    mass: <>Relative molecular mass</>,
+    shape: <>Bond angle</>,
+    view: "Sulfur dioxide and sulfur trioxide",
+  }}
 />
 
-So the batch uses <InlineMath math="112.5\text{ kg}" /> of glucose, and the atom economy is <InlineMath math="51.1\%" />, whatever the yield.
+# Dilution doubles the acid
 
-# Why the other options are wrong
+Water splits each oleum into **two sulfuric acid molecules**. One holds sulfur that came from the burner, the other holds the sulfur of the acid that absorbed the trioxide, and the chart tracks both. So <InlineMath math="0.180\text{ mol}" /> of sulfuric acid forms, <InlineMath math="17.6\text{ g}" />. One acid per oleum gives <InlineMath math="8.82\text{ g}" />, and <InlineMath math="19.6\text{ g}" /> doubles the full <InlineMath math="0.100\text{ mol}" /> without the converter's loss.
 
-- <InlineMath math="90\text{ kg}" /> is the glucose for a full yield. At <InlineMath math="80\%" /> the factory needs more, <InlineMath math="90\div0.80" />.
-- <InlineMath math="225\text{ kg}" /> uses one glucose per ethanol and misses the <InlineMath math="2" /> in front of <InlineMath math="\text{C}_2\text{H}_5\text{OH}" />. One glucose gives two ethanol molecules.
-- <InlineMath math="100\%" /> counts the carbon dioxide as a desired product. **Only the ethanol counts**, so almost half the mass is lost by design.
+<Chart
+  title={<>Where the sulfur atoms in the acid come from</>}
+  description={<>Up to the oleum, all the sulfur comes from the burnt sulfur. The absorbing acid adds as many sulfur atoms again, so the dilution ends with twice the trioxide's amount.</>}
+  bars="apart"
+  categories={["SO₂", "SO₃", "H₂S₂O₇", "H₂SO₄ after dilution"]}
+  series={[
+    { label: "From the burnt sulfur", mark: "bar", values: [100, 90, 90, 90] },
+    { label: "From the absorbing acid", mark: "bar", values: [0, 0, 90, 90] },
+  ]}
+  valueLabel="mmol"
+/>
+
+<BlockMath math="\begin{aligned}
+n(\text{SO}_2)&=\tfrac{3.20}{32}=0.100\text{ mol},\quad V=0.100\times24=2.40\text{ dm}^3\\
+n(\text{SO}_3)&=0.900\times0.100=0.0900\ \Rightarrow\ m(\text{H}_2\text{S}_2\text{O}_7)=0.0900\times178=16.0\text{ g}\\
+m(\text{H}_2\text{SO}_4)&=2\times0.0900\times98=17.6\text{ g}
+\end{aligned}" />

@@ -1,27 +1,30 @@
-# Zat murni membeku pada satu suhu, zat tidak murni dalam satu rentang
+# Memisahkan isotopnya
 
-Bagian datar pada kurva pendinginan adalah pembekuan pada suhu tetap. **Penurunan sesaat sebelumnya adalah pendinginan lewat**, dan kurva yang hanya melengkung tanpa bagian datar milik sampel tidak murni.
+Misalkan <InlineMath math="x" /> adalah fraksi tembaga-63. Massa rata-ratanya ada di seperempat jalan dari <InlineMath math="63" /> ke <InlineMath math="65" />, jadi **tiga dari empat atom adalah tembaga-63**, <InlineMath math="75{,}0\%" />. Pilihan <InlineMath math="25{,}0\%" /> menyebut isotop yang lebih berat.
+
+# Hidrogen membatasi reduksi
+
+Oksidanya <InlineMath math="0{,}200\text{ mol}" /> tetapi hidrogennya hanya <InlineMath math="0{,}150\text{ mol}" />, jadi **hanya terbentuk <InlineMath math="0{,}150\text{ mol}" /> tembaga** dan sebagian oksida tetap hitam. Cara apa pun yang memulai reaksi kedua dengan <InlineMath math="0{,}200\text{ mol}" /> tembaga sudah melewatkan pemeriksaan ini.
+
+# Ion perak membatasi pendesakan
+
+Sekarang tembaganya <InlineMath math="0{,}150\text{ mol}" /> dan ion perak <InlineMath math="0{,}220\text{ mol}" />. Satu atom tembaga mengambil dua ion perak, jadi tembaga itu butuh <InlineMath math="0{,}300\text{ mol}" /> dan **ion perak yang habis lebih dulu**. Ion itu memberi <InlineMath math="0{,}220\text{ mol}" /> perak dan hanya memakai <InlineMath math="0{,}110\text{ mol}" /> tembaga.
 
 <Chart
-  title={<>Kurva Pendinginan Q Murni dan Q Tidak Murni</>}
-  categories={["Menit 0", "Menit 1", "Menit 2", "Menit 3", "Menit 4", "Menit 5", "Menit 6", "Menit 7", "Menit 8", "Menit 9", "Menit 10", "Menit 11"]}
+  title={<>Logam di meja pada tiap tahap</>}
+  description={<>Tembaga muncul saat hidrogen habis, lalu sebagian besar berubah menjadi perak sampai ion perak habis.</>}
+  categories={["Sebelum pemanasan", "Setelah hidrogen", "Setelah perak nitrat"]}
   series={[
-    { label: "Q murni", mark: "line", values: [95, 90, 85, 81, 78, 80, 80, 80, 80, 80, 74, 68] },
-    { label: "Q dengan pengotor", mark: "line", values: [95, 90, 84, 79, 76, 75, 74, 73, 72, 70, 66, 61] },
+    { label: "Logam tembaga", mark: "line", values: [0.0, 9.53, 2.54] },
+    { label: "Logam perak", mark: "line", values: [0.0, 0.0, 23.8] },
   ]}
-  valueLabel="Suhu (°C)"
-  description={<>Suhu pada menit <InlineMath math="0" /> sampai <InlineMath math="11" />. Q murni: <InlineMath math="95" />, <InlineMath math="90" />, <InlineMath math="85" />, <InlineMath math="81" />, <InlineMath math="78" />, <InlineMath math="80" />, <InlineMath math="80" />, <InlineMath math="80" />, <InlineMath math="80" />, <InlineMath math="80" />, <InlineMath math="74" />, <InlineMath math="68^\circ\text{C}" />. Q dengan pengotor: <InlineMath math="95" />, <InlineMath math="90" />, <InlineMath math="84" />, <InlineMath math="79" />, <InlineMath math="76" />, <InlineMath math="75" />, <InlineMath math="74" />, <InlineMath math="73" />, <InlineMath math="72" />, <InlineMath math="70" />, <InlineMath math="66" />, <InlineMath math="61^\circ\text{C}" />.</>}
+  valueLabel="Massa (g)"
 />
 
-- I salah: Q murni turun ke <InlineMath math="78^\circ\text{C}" /> pada menit ke-<InlineMath math="4" /> sebelum kristal terbentuk, lalu naik ke <InlineMath math="80^\circ\text{C}" /> dan tetap. Titik bekunya <InlineMath math="80^\circ\text{C}" />.
-- II benar: di bagian datar, partikel yang melepas kalor saat saling menarik membentuk padatan mengganti kalor yang hilang, jadi suhunya tetap.
-- III benar: Q tidak murni tidak pernah bertahan di suhu tetap. Suhunya turun pelan dari sekitar <InlineMath math="76" /> ke <InlineMath math="72^\circ\text{C}" />, di bawah <InlineMath math="80^\circ\text{C}" />, jadi membeku dalam rentang yang lebih rendah.
-- IV salah: suhu yang tetap berarti energi kinetik rata-rata partikel tidak berubah.
+Membiarkan semua tembaga bereaksi memberi <InlineMath math="32{,}4\text{ g}" /> perak, lebih banyak ion perak dari yang ada di larutan. Mengambil satu perak per tembaga memberi <InlineMath math="16{,}2\text{ g}" />.
 
-Jadi, II dan III benar.
-
-# Kenapa pilihan lain salah
-
-- I dan III saja menerima I, **membaca penurunan pendinginan lewat sebagai titik beku**.
-- I, II, dan IV saja menerima I dan IV serta melewatkan pengaruh pengotor.
-- III dan IV saja menerima IV, yang bertentangan dengan suhu tetap di bagian datar.
+<BlockMath math="\begin{aligned}
+63x+65(1-x)&=63{,}5\ \Rightarrow\ x=0{,}750\\
+n(\text{CuO})&=\tfrac{15{,}9}{79{,}5}=0{,}200>n(\text{H}_2)=\tfrac{3{,}60}{24}=0{,}150\ \Rightarrow\ n(\text{Cu})=0{,}150\text{ mol}\\
+n(\text{Ag}^+)&=0{,}220<2\times0{,}150\ \Rightarrow\ m(\text{Ag})=0{,}220\times108=23{,}8\text{ g},\quad m(\text{Cu})'=(0{,}150-0{,}110)\times63{,}5=2{,}54\text{ g}
+\end{aligned}" />

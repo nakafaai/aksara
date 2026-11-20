@@ -1,26 +1,42 @@
-# Ubah pH kembali menjadi konsentrasi ion hidrogen
+# Ion tembaga habis duluan di gelas kimia
 
-pH adalah <InlineMath math="-\log[\text{H}^+]" />, jadi <InlineMath math="[\text{H}^+] = 10^{-\text{pH}}" />. Tiap molekul asam etanoat yang terionisasi memberi **satu ion hidrogen**, jadi konsentrasi ion hidrogen sama dengan konsentrasi molekul yang terionisasi.
+Gelas kimia itu menerima <InlineMath math="0{,}0200\text{ mol}" /> tembaga(II) sulfat dan <InlineMath math="0{,}0240\text{ mol}" /> natrium karbonat, dan persamaannya memasangkan keduanya satu lawan satu. **Ion tembaga yang habis duluan**, jadi <InlineMath math="0{,}0200\text{ mol}" /> tembaga(II) karbonat, <InlineMath math="M_r=123{,}5" />, mengendap sebanyak <InlineMath math="2{,}47\text{ g}" />, dan <InlineMath math="0{,}00400\text{ mol}" /> karbonat tetap terlarut.
 
-<Chart
-  title={<>pH Dua Asam pada Dua Konsentrasi</>}
-  bars="apart"
-  categories={["0,100 mol dm⁻³", "0,010 mol dm⁻³"]}
-  series={[
-    { label: "Asam klorida", mark: "bar", values: [1.0, 2.0] },
-    { label: "Asam etanoat", mark: "bar", values: [2.87, 3.37] },
-  ]}
-  valueLabel="pH"
-  description={<>Nilai pH. Asam klorida: <InlineMath math="1{,}00" /> pada <InlineMath math="0{,}100\text{ mol dm}^{-3}" /> dan <InlineMath math="2{,}00" /> pada <InlineMath math="0{,}010\text{ mol dm}^{-3}" />. Asam etanoat: <InlineMath math="2{,}87" /> dan <InlineMath math="3{,}37" />.</>}
+Endapan <InlineMath math="2{,}96\text{ g}" /> butuh <InlineMath math="0{,}0240\text{ mol}" /> tembaga, lebih banyak dari yang dipasok tembaga(II) sulfat. Kekeliruan yang sama memberi filtrat tanpa karbonat, gas <InlineMath math="0\text{ cm}^3" />, dan rendemen <InlineMath math="70{,}8\%" /> yang diukur terhadap kristal yang mustahil terbentuk.
+
+<Mermaid
+  title={<>Karbonat terbagi antara kertas saring dan filtrat</>}
+  description={<>Ion tembaga membawa <InlineMath math="20{,}0\text{ mmol}" /> karbonat ke dalam endapan. Sisanya tetap di filtrat dan hanya karbonat itu yang pernah bertemu asam.</>}
+  chart={`
+    flowchart TD
+      N0["20,0 mmol Cu²⁺"]
+      N1["24,0 mmol CO₃²⁻"]
+      N2["20,0 mmol CuCO₃: 2,47 g"]
+      N3["4,00 mmol CO₃²⁻ di filtrat"]
+      N4["4,00 mmol CO₂: 96,0 cm³"]
+      N5["20,0 mmol CuO"]
+      N6["Paling banyak 20,0 mmol CuSO₄·5H₂O: 4,99 g"]
+      N0 --> N2
+      N1 --> N2
+      N1 --> N3
+      N3 --> N4
+      N2 --> N5
+      N5 --> N6
+  `}
 />
 
-- <InlineMath math="[\text{H}^+] = 10^{-2{,}87} = 0{,}00135\text{ mol dm}^{-3}" />.
-- Persentase yang terionisasi: <InlineMath math="\dfrac{0{,}00135}{0{,}100} \times 100\% = 1{,}35\%" />.
+# Hanya sisa karbonat yang berbuih
 
-Asam klorida pada konsentrasi yang sama punya pH <InlineMath math="1{,}00" />, jadi <InlineMath math="[\text{H}^+] = 0{,}100\text{ mol dm}^{-3}" />: terionisasi sempurna. Itulah beda asam kuat dan asam lemah.
+Endapannya tertahan di kertas saring, jadi asam hanya bertemu <InlineMath math="0{,}00400\text{ mol}" /> di filtrat. **Satu ion karbonat memberi satu karbon dioksida**, jadi gasnya <InlineMath math="96{,}0\text{ cm}^3" />. Koefisien dua itu milik asam, dan membagi dengannya menghasilkan pilihan <InlineMath math="48{,}0\text{ cm}^3" />. Mengirim seluruh <InlineMath math="0{,}0240\text{ mol}" /> karbonat ke asam memberi <InlineMath math="576\text{ cm}^3" />, padahal sebagian besar karbonat itu sudah meninggalkan larutan bersama endapan.
 
-# Kenapa pilihan lain salah
+# Mengikuti tembaga sampai ke kristal
 
-- <InlineMath math="2{,}87\%" /> **membaca nilai pH sebagai persentase**.
-- <InlineMath math="13{,}5\%" /> membagi dengan <InlineMath math="0{,}0100" />, bukan <InlineMath math="0{,}100" />, memakai konsentrasi larutan yang lebih encer.
-- <InlineMath math="0{,}135\%" /> meleset faktor <InlineMath math="10" />, membagi dengan <InlineMath math="1{,}00" />, bukan <InlineMath math="0{,}100" />.
+Pemanasan, pelarutan, dan kristalisasi tidak menghilangkan satu atom tembaga pun dalam perhitungan, jadi **tiap mol tembaga(II) karbonat bisa menjadi satu mol <InlineMath math="\text{CuSO}_4\cdot5\text{H}_2\text{O}" />**, <InlineMath math="M_r=249{,}5" />. Batas atasnya <InlineMath math="4{,}99\text{ g}" />, dan <InlineMath math="4{,}24\text{ g}" /> yang terkumpul adalah <InlineMath math="85{,}0\%" /> darinya.
+
+<BlockMath math="\begin{aligned}
+n(\text{Cu}^{2+})&=0{,}0200<n(\text{CO}_3^{2-})=0{,}0240\ \Rightarrow\ m(\text{CuCO}_3)=0{,}0200\times123{,}5=2{,}47\text{ g}\\
+V(\text{CO}_2)&=(0{,}0240-0{,}0200)\times24\,000=96{,}0\text{ cm}^3\\
+m_{\max}&=0{,}0200\times249{,}5=4{,}99\text{ g},\quad \tfrac{4{,}24}{4{,}99}\times100=85{,}0\%
+\end{aligned}" />
+
+Lima molekul air itu penting di sini. Tanpa air di massa rumusnya, batas atasnya turun menjadi <InlineMath math="3{,}19\text{ g}" />, lebih kecil dari yang benar-benar dikumpulkan siswa, tanda jelas ada yang keliru.

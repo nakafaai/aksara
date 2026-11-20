@@ -1,26 +1,35 @@
-# Zwei Metalle bilden das Gas, also stelle zwei Gleichungen auf
+# Der Funke endet, wenn der Sauerstoff fehlt
 
-Beide Metalle reagieren <InlineMath math="1 : 1" /> zu Wasserstoff: <InlineMath math="\text{M} + 2\text{HCl} \rightarrow \text{MCl}_2 + \text{H}_2" />. **Eine Gleichung liefert die Gesamtmasse, die andere die gesamte Stoffmenge Wasserstoff**.
+Sechzig Kubikzentimeter Schwefelwasserstoff bräuchten <InlineMath math="90\text{ cm}^3" /> Sauerstoff, da sind aber nur <InlineMath math="60\text{ cm}^3" />. Also **ist Sauerstoff das begrenzende Gas**: Er verbrennt <InlineMath math="40\text{ cm}^3" /> Schwefelwasserstoff zu <InlineMath math="40\text{ cm}^3" /> Schwefeldioxid, und <InlineMath math="20\text{ cm}^3" /> bleiben unverbrannt. Gleiche Gasvolumen enthalten gleiche Stoffmengen, deshalb kannst du hier mit Volumen rechnen wie mit Mol.
 
-<Chart
-  title={<>Aufgefangenes Wasserstoffvolumen</>}
-  categories={["Sekunde 0", "Sekunde 30", "Sekunde 60", "Sekunde 90", "Sekunde 120", "Sekunde 150", "Sekunde 180"]}
-  series={[
-    { label: "Volumen Wasserstoff (cm³)", mark: "line", values: [0, 260, 450, 570, 640, 672, 672] },
-  ]}
-  valueLabel="Volumen Wasserstoff (cm³)"
-  description={<>Wasserstoffvolumen bei <InlineMath math="0" /> bis <InlineMath math="180\text{ s}" />, alle <InlineMath math="30\text{ s}" />: <InlineMath math="0" />, <InlineMath math="260" />, <InlineMath math="450" />, <InlineMath math="570" />, <InlineMath math="640" />, <InlineMath math="672" /> und <InlineMath math="672\text{ cm}^3" />.</>}
+# Das übrige Gas zerstört einen Teil des Produkts
+
+Der unverbrannte Schwefelwasserstoff reagiert jetzt mit dem Schwefeldioxid aus der ersten Reaktion. Zwei Volumen davon verbrauchen ein Volumen Schwefeldioxid, also verschwinden <InlineMath math="10\text{ cm}^3" />, und <InlineMath math="30\text{ cm}^3" /> bleiben. Wer nach der ersten Reaktion aufhört, behält <InlineMath math="40\text{ cm}^3" /> Gas und vergisst diesen zweiten Schritt.
+
+<Mermaid
+  title={<>Gasvolumen durch beide Reaktionen</>}
+  description={<>Volumen in Kubikzentimetern bei Raumbedingungen. Wasser kondensiert und taucht nie als Gas auf.</>}
+  chart={`
+    flowchart TD
+      N0["60 H₂S + 60 O₂"]
+      N1["Verbrennung: 40 H₂S verbrauchen 60 O₂"]
+      N2["40 SO₂ entstehen"]
+      N3["20 H₂S übrig"]
+      N4["20 H₂S + 10 SO₂ → 0,0400 g S"]
+      N5["30 SO₂: einziges übriges Gas"]
+      N0 --> N1
+      N1 --> N2
+      N1 --> N3
+      N2 --> N4
+      N3 --> N4
+      N2 --> N5
+      N4 --> N5
+  `}
 />
 
-- Stoffmenge <InlineMath math="\text{H}_2" />: <InlineMath math="\dfrac{0{,}672}{24} = 0{,}028\text{ mol}" />.
-- Sei <InlineMath math="x" /> die Masse Magnesium in Gramm: <InlineMath math="\dfrac{x}{24} + \dfrac{1{,}00 - x}{65} = 0{,}028" />.
-- Mit <InlineMath math="1560" /> multipliziert: <InlineMath math="65x + 24(1{,}00 - x) = 43{,}68" />, also <InlineMath math="41x = 19{,}68" /> und <InlineMath math="x = 0{,}48\text{ g}" />.
-- Massenanteil Magnesium: <InlineMath math="\dfrac{0{,}48}{1{,}00} \times 100\,\% = 48\,\%" />.
+Der Schwefel stammt aus beiden Edukten: **zwei Schwefelwasserstoff und ein Schwefeldioxid liefern drei Schwefelatome**. Ein Schwefel pro Schwefelwasserstoff ergäbe <InlineMath math="0{,}0267\text{ g}" />.
 
-Probe: <InlineMath math="0{,}020" /> mol aus Mg und <InlineMath math="0{,}008" /> mol aus Zn ergeben <InlineMath math="0{,}028" /> mol.
-
-# Warum die anderen Antworten falsch sind
-
-- <InlineMath math="52\,\%" /> ist der Anteil des **Zinks**.
-- <InlineMath math="67\,\%" /> schreibt den ganzen Wasserstoff dem Magnesium zu, <InlineMath math="0{,}028 \times 24 = 0{,}672\text{ g}" />, und übersieht das Zink.
-- <InlineMath math="34\,\%" /> rechnet zwei Mol Wasserstoff pro Mol Metall und halbiert so das Magnesium.
+<BlockMath math="\begin{aligned}
+V(\text{H}_2\text{S})_{\text{verbrannt}}&=\tfrac{2}{3}\times60=40\text{ cm}^3\ \Rightarrow\ V(\text{SO}_2)=40\text{ cm}^3,\quad V(\text{H}_2\text{S})'=20\text{ cm}^3\\
+V(\text{SO}_2)'&=40-\tfrac{20}{2}=30\text{ cm}^3,\quad m(\text{S})=\tfrac{3}{2}\times\tfrac{20}{24\,000}\times32=0{,}0400\text{ g}
+\end{aligned}" />

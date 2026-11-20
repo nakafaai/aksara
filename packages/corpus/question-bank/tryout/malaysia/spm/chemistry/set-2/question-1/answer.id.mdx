@@ -1,25 +1,37 @@
-# Rata-ratakan titran yang sesuai, lalu pakai perbandingan <InlineMath math="2" /> : <InlineMath math="1" />
+# Klorida dalam porsi
 
-Tiga langkah berkaitan: baca volume titran, **rata-ratakan hanya yang sesuai**, lalu ubah mol basa menjadi mol asam diprotik.
+Garamnya <InlineMath math="5{,}85\div58{,}5=0{,}100\text{ mol}" /> dalam <InlineMath math="250\text{ cm}^3" />, jadi labu pertama berisi <InlineMath math="0{,}400\text{ mol dm}^{-3}" />. Itu bukan larutan yang ditanyakan. **Mengencerkan <InlineMath math="25{,}0\text{ cm}^3" /> menjadi <InlineMath math="100\text{ cm}^3" /> membagi konsentrasinya dengan empat**, jadi hasilnya <InlineMath math="0{,}100\text{ mol dm}^{-3}" />. Berhenti di labu pertama adalah asal jawaban <InlineMath math="0{,}400\text{ mol dm}^{-3}" />.
 
-<Chart
-  title={<>Volume Titran Tiap Titrasi</>}
-  bars="apart"
-  categories={["Kasar", "Titrasi 2", "Titrasi 3", "Titrasi 4"]}
-  series={[
-    { label: "Volume titran (cm³)", mark: "bar", values: [24.6, 24.2, 24.25, 24.3] },
-  ]}
-  valueLabel="Volume titran (cm³)"
-  description={<>Volume titran: <InlineMath math="24{,}60" /> (kasar), <InlineMath math="24{,}20" />, <InlineMath math="24{,}25" />, dan <InlineMath math="24{,}30\text{ cm}^3" />.</>}
+Porsi <InlineMath math="20{,}0\text{ cm}^3" /> dari larutan encer itu membawa <InlineMath math="0{,}100\times0{,}0200=0{,}00200\text{ mol}" /> ion klorida.
+
+# Perak yang tidak tertangkap klorida
+
+Perak nitrat membawa <InlineMath math="0{,}0500\times0{,}0500=0{,}00250\text{ mol}" /> ion perak, lebih banyak dari kloridanya. Tiap ion klorida mengambil satu ion perak, jadi <InlineMath math="0{,}00200\text{ mol}" /> perak klorida, <InlineMath math="M_r=143{,}5" />, mengendap. Nilai <InlineMath math="0{,}117\text{ g}" /> di salah satu pilihan adalah massa natrium klorida dalam porsi, bukan massa endapan.
+
+**Hanya <InlineMath math="0{,}000500\text{ mol}" /> ion perak yang tidak bertemu klorida** yang dititrasi dengan tiosianat. Kalau semua <InlineMath math="0{,}00250\text{ mol}" /> dititrasi, hasilnya <InlineMath math="62{,}5\text{ cm}^3" />, seolah tidak ada yang mengendap.
+
+<Mermaid
+  title={<>Jalur klorida dari garam ke titrasi</>}
+  description={<>Tiap panah adalah satu langkah prosedur, dan jumlah di tiap kotak adalah yang diteruskan langkah itu.</>}
+  chart={`
+    flowchart LR
+      N0["5,85 g NaCl dalam 250 cm³: 0,400 mol dm⁻³"]
+      N1["25,0 cm³ menjadi 100 cm³: 0,100 mol dm⁻³"]
+      N2["Porsi 20,0 cm³: 2,00 mmol Cl⁻"]
+      N3["2,50 mmol Ag⁺ ditambahkan"]
+      N4["2,00 mmol AgCl, 0,287 g"]
+      N5["Sisa 0,500 mmol Ag⁺"]
+      N6["12,5 cm³ SCN⁻ 0,0400 mol dm⁻³"]
+      N0 --> N1
+      N1 --> N2
+      N2 --> N4
+      N3 --> N4
+      N3 --> N5
+      N5 --> N6
+  `}
 />
 
-- Volume titran: <InlineMath math="24{,}60" /> (kasar), <InlineMath math="24{,}20" />, <InlineMath math="24{,}25" />, dan <InlineMath math="24{,}30\text{ cm}^3" />. Tiga yang terakhir berselisih paling banyak <InlineMath math="0{,}10\text{ cm}^3" />, jadi rata-ratanya <InlineMath math="\dfrac{24{,}20 + 24{,}25 + 24{,}30}{3} = 24{,}25\text{ cm}^3" />.
-- Mol NaOH: <InlineMath math="0{,}100 \times \dfrac{25{,}0}{1000} = 0{,}00250\text{ mol}" />.
-- <InlineMath math="\text{H}_2\text{SO}_4 + 2\text{NaOH} \rightarrow \text{Na}_2\text{SO}_4 + 2\text{H}_2\text{O}" />, jadi mol asam <InlineMath math="= \dfrac{0{,}00250}{2} = 0{,}00125\text{ mol}" />.
-- Konsentrasi: <InlineMath math="\dfrac{0{,}00125}{24{,}25/1000} = 0{,}0515\text{ mol dm}^{-3}" />.
-
-# Kenapa pilihan lain salah
-
-- <InlineMath math="0{,}103\text{ mol dm}^{-3}" /> memakai perbandingan <InlineMath math="1 : 1" />, **seakan asam sulfat melepas satu ion hidrogen**.
-- <InlineMath math="0{,}206\text{ mol dm}^{-3}" /> memakai angka <InlineMath math="2" /> terbalik, menggandakan mol asam.
-- <InlineMath math="0{,}0258\text{ mol dm}^{-3}" /> membagi dua mol sebanyak dua kali.
+<BlockMath math="\begin{aligned}
+c&=\tfrac{5{,}85\div58{,}5}{0{,}250}\times\tfrac{25{,}0}{100}=0{,}100\text{ mol dm}^{-3},\quad n(\text{Cl}^-)=0{,}100\times0{,}0200=0{,}00200\text{ mol}\\
+m(\text{AgCl})&=0{,}00200\times143{,}5=0{,}287\text{ g},\quad V(\text{SCN}^-)=\tfrac{0{,}00250-0{,}00200}{0{,}0400}=0{,}0125\text{ dm}^3=12{,}5\text{ cm}^3
+\end{aligned}" />

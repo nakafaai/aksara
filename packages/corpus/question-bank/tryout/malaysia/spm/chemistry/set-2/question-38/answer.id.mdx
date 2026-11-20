@@ -1,34 +1,34 @@
-# Satu jembatan, dua atom belerang, dua unit terikat
+# Klorin keluar sebagai asam yang bisa dititrasi
 
-Ubah belerang menjadi jembatan dulu, lalu hitung unit yang disentuh jembatan itu. **Setiap jembatan memakai dua atom belerang tetapi mengikat dua unit**, satu di tiap rantai, jadi jumlah unit terikat sama dengan jumlah atom belerang.
+Hanya PVC yang membawa klorin, dan **tiap unit PVC mengirim tepat satu hidrogen klorida ke labu**. Satu porsi memakai <InlineMath math="0{,}0100\text{ mol}" /> basa, dan labunya berisi sepuluh porsi, jadi campurannya punya <InlineMath math="0{,}100\text{ mol}" /> unit PVC, <InlineMath math="M_r=62{,}5" />, atau <InlineMath math="6{,}25\text{ g}" />. Polietena adalah <InlineMath math="2{,}80\text{ g}" /> sisanya, dan jawaban <InlineMath math="2{,}80\text{ g}" /> untuk PVC menukar kedua polimer itu.
 
-<Mermaid
-  title={<>Jembatan belerang di antara dua rantai</>}
-  description={<>Dua atom belerang menghubungkan satu unit di rantai atas dengan satu unit di rantai bawah. Satu jembatan mengikat dua unit.</>}
-  chart={"flowchart LR\n  A1[\"unit isoprena\"] --- A2[\"unit terikat\"] --- A3[\"unit isoprena\"]\n  B1[\"unit isoprena\"] --- B2[\"unit terikat\"] --- B3[\"unit isoprena\"]\n  A2 --- S1((S)) --- S2((S)) --- B2"}
+<MoleculeShapeLab
+  title={<>Dua monomer dan hidrogen klorida</>}
+  description={<>Etena dan kloroetena adalah monomernya. Pembakaran unit PVC melepaskan klorinnya bersama satu hidrogen sebagai hidrogen klorida, molekul yang dititrasi oleh basa.</>}
+  molecules={[
+    { id: "ethene", name: "etena" },
+    { id: "chloroethene", name: "kloroetena" },
+    { id: "hydrogen-chloride", name: "hidrogen klorida" },
+  ]}
+  labels={{
+    atoms: <>Atom</>,
+    choose: "Pilih molekul",
+    fill: <>Model ruang terisi</>,
+    formula: <>Rumus</>,
+    mass: <>Massa molekul relatif</>,
+    shape: <>Sudut ikatan</>,
+    view: "Monomer dan hidrogen klorida",
+  }}
 />
+
+# Karbon dan hidrogen dari dua jenis unit
+
+Polietena, <InlineMath math="M_r=28" /> per unit, juga <InlineMath math="0{,}100\text{ mol}" /> unit. **Kedua unit punya dua atom karbon**, jadi <InlineMath math="0{,}200\text{ mol}" /> unit terbakar menjadi <InlineMath math="0{,}400\text{ mol}" /> karbon dioksida, <InlineMath math="9{,}60\text{ dm}^3" />. Satu karbon dioksida per unit memberi <InlineMath math="4{,}80\text{ dm}^3" />.
+
+Hidrogennya perlu lebih teliti. Satu unit polietena punya empat atom hidrogen dan membentuk dua molekul air. Satu unit PVC punya tiga, tetapi satu pergi bersama klorin, jadi ia hanya membentuk satu air. Totalnya <InlineMath math="0{,}300\text{ mol}" />, <InlineMath math="5{,}40\text{ g}" />. Mengirim ketiga hidrogen PVC ke air memberi <InlineMath math="6{,}30\text{ g}" />, dan <InlineMath math="1{,}80\text{ g}" /> adalah air dari PVC saja.
 
 <BlockMath math="\begin{aligned}
-n(\text{C}_5\text{H}_8)&=\frac{68}{68}=1{,}0\text{ mol},\quad n(\text{S})=\frac{3{,}2}{32}=0{,}10\text{ mol}\\
-n(\text{ikatan silang})&=\frac{0{,}10}{2}=0{,}050\text{ mol}\\
-n(\text{unit terikat})&=2\times0{,}050=0{,}10\text{ mol}\ \Rightarrow\ \frac{0{,}10}{1{,}0}\times100\%=10\%
+n(\text{HCl})&=\tfrac{250}{25{,}0}\times0{,}100\times0{,}100=0{,}100\text{ mol}\ \Rightarrow\ m(\text{PVC})=0{,}100\times62{,}5=6{,}25\text{ g}\\
+n(\text{C}_2\text{H}_4)&=\tfrac{9{,}05-6{,}25}{28}=0{,}100,\quad V(\text{CO}_2)=2\times0{,}200\times24=9{,}60\text{ dm}^3\\
+n(\text{H}_2\text{O})&=2\times0{,}100+1\times0{,}100=0{,}300\ \Rightarrow\ m=0{,}300\times18=5{,}40\text{ g}
 \end{aligned}" />
-
-<Chart
-  title={<>Jumlah zat dalam karet tervulkanisasi</>}
-  description={<>Karet itu berisi <InlineMath math="1{,}0\text{ mol}" /> unit isoprena. Sebanyak <InlineMath math="0{,}10\text{ mol}" /> atom belerang membentuk <InlineMath math="0{,}050\text{ mol}" /> jembatan, yang mengikat <InlineMath math="0{,}10\text{ mol}" /> unit.</>}
-  bars="apart"
-  categories={["Unit isoprena", "Atom belerang", "Ikatan silang", "Unit terikat"]}
-  series={[
-    { label: "Jumlah zat", mark: "bar", values: [1.0, 0.10, 0.050, 0.10] },
-  ]}
-  valueLabel="Jumlah zat (mol)"
-/>
-
-Jadi <InlineMath math="10\%" /> unit membawa ikatan silang. Jembatan itu menahan rantai di tempatnya, jadi karet yang diregangkan kembali ke bentuknya serta lebih keras dan kuat dari karet alam.
-
-# Kenapa pilihan lain salah
-
-- <InlineMath math="5\%" /> menghitung satu unit untuk tiap jembatan dan lupa bahwa tiap jembatan punya dua ujung, satu di tiap rantai.
-- <InlineMath math="20\%" /> menganggap tiap atom belerang sebagai jembatan berujung dua. **Satu jembatan butuh sepasang atom belerang**, jadi jumlahnya hanya separuh.
-- Ikatan silang membuat karet lebih keras, bukan lebih lunak, dan sebagian besar ikatan rangkapnya masih ada. Persentasenya benar, tetapi efeknya terbalik.

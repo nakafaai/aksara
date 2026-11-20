@@ -1,34 +1,34 @@
-# Satu jambatan, dua atom sulfur, dua unit berangkai
+# Klorin keluar sebagai asid yang boleh dititratkan
 
-Tukarkan sulfur kepada jambatan dahulu, kemudian kira unit yang disentuh oleh jambatan itu. **Setiap jambatan menggunakan dua atom sulfur tetapi menyambung dua unit**, satu pada setiap rantai, jadi bilangan unit berangkai sama dengan bilangan atom sulfur.
+Hanya PVC yang membawa klorin, dan **setiap unit PVC menghantar tepat satu hidrogen klorida ke dalam kelalang**. Satu bahagian mengambil <InlineMath math="0.0100\text{ mol}" /> alkali, dan kelalang itu mengandungi sepuluh bahagian, jadi campuran itu ada <InlineMath math="0.100\text{ mol}" /> unit PVC, <InlineMath math="M_r=62.5" />, iaitu <InlineMath math="6.25\text{ g}" />. Polietena ialah <InlineMath math="2.80\text{ g}" /> yang lain, dan jawapan <InlineMath math="2.80\text{ g}" /> bagi PVC menukar tempat kedua-dua polimer itu.
 
-<Mermaid
-  title={<>Jambatan sulfur antara dua rantai</>}
-  description={<>Dua atom sulfur menyambung satu unit pada rantai atas kepada satu unit pada rantai bawah. Satu jambatan menyambung dua unit.</>}
-  chart={"flowchart LR\n  A1[\"unit isoprena\"] --- A2[\"unit berangkai\"] --- A3[\"unit isoprena\"]\n  B1[\"unit isoprena\"] --- B2[\"unit berangkai\"] --- B3[\"unit isoprena\"]\n  A2 --- S1((S)) --- S2((S)) --- B2"}
+<MoleculeShapeLab
+  title={<>Dua monomer dan hidrogen klorida</>}
+  description={<>Etena dan kloroetena ialah monomernya. Pembakaran unit PVC menghantar klorinnya pergi bersama satu hidrogen sebagai hidrogen klorida, molekul yang dititratkan oleh alkali.</>}
+  molecules={[
+    { id: "ethene", name: "etena" },
+    { id: "chloroethene", name: "kloroetena" },
+    { id: "hydrogen-chloride", name: "hidrogen klorida" },
+  ]}
+  labels={{
+    atoms: <>Atom</>,
+    choose: "Pilih molekul",
+    fill: <>Model pengisian ruang</>,
+    formula: <>Formula</>,
+    mass: <>Jisim molekul relatif</>,
+    shape: <>Sudut ikatan</>,
+    view: "Monomer dan hidrogen klorida",
+  }}
 />
+
+# Karbon dan hidrogen daripada dua jenis unit
+
+Polietena, <InlineMath math="M_r=28" /> bagi setiap unit, juga <InlineMath math="0.100\text{ mol}" /> unit. **Kedua-dua unit mempunyai dua atom karbon**, jadi <InlineMath math="0.200\text{ mol}" /> unit terbakar menjadi <InlineMath math="0.400\text{ mol}" /> karbon dioksida, <InlineMath math="9.60\text{ dm}^3" />. Satu karbon dioksida bagi setiap unit memberi <InlineMath math="4.80\text{ dm}^3" />.
+
+Hidrogen perlu lebih teliti. Satu unit polietena ada empat atom hidrogen dan membentuk dua molekul air. Satu unit PVC ada tiga, tetapi satu keluar bersama klorin, jadi ia membentuk satu air sahaja. Jumlahnya <InlineMath math="0.300\text{ mol}" />, <InlineMath math="5.40\text{ g}" />. Menghantar ketiga-tiga hidrogen PVC kepada air memberi <InlineMath math="6.30\text{ g}" />, dan <InlineMath math="1.80\text{ g}" /> ialah air daripada PVC sahaja.
 
 <BlockMath math="\begin{aligned}
-n(\text{C}_5\text{H}_8)&=\frac{68}{68}=1.0\text{ mol},\quad n(\text{S})=\frac{3.2}{32}=0.10\text{ mol}\\
-n(\text{rangkai silang})&=\frac{0.10}{2}=0.050\text{ mol}\\
-n(\text{unit berangkai})&=2\times0.050=0.10\text{ mol}\ \Rightarrow\ \frac{0.10}{1.0}\times100\%=10\%
+n(\text{HCl})&=\tfrac{250}{25.0}\times0.100\times0.100=0.100\text{ mol}\ \Rightarrow\ m(\text{PVC})=0.100\times62.5=6.25\text{ g}\\
+n(\text{C}_2\text{H}_4)&=\tfrac{9.05-6.25}{28}=0.100,\quad V(\text{CO}_2)=2\times0.200\times24=9.60\text{ dm}^3\\
+n(\text{H}_2\text{O})&=2\times0.100+1\times0.100=0.300\ \Rightarrow\ m=0.300\times18=5.40\text{ g}
 \end{aligned}" />
-
-<Chart
-  title={<>Kuantiti dalam getah tervulkan</>}
-  description={<>Getah itu mengandungi <InlineMath math="1.0\text{ mol}" /> unit isoprena. Sebanyak <InlineMath math="0.10\text{ mol}" /> atom sulfur membentuk <InlineMath math="0.050\text{ mol}" /> jambatan, yang menyambung <InlineMath math="0.10\text{ mol}" /> unit.</>}
-  bars="apart"
-  categories={["Unit isoprena", "Atom sulfur", "Rangkai silang", "Unit berangkai"]}
-  series={[
-    { label: "Bilangan mol", mark: "bar", values: [1.0, 0.10, 0.050, 0.10] },
-  ]}
-  valueLabel="Bilangan mol (mol)"
-/>
-
-Jadi <InlineMath math="10\%" /> unit membawa rangkai silang. Jambatan itu memegang rantai di tempatnya, jadi getah yang diregangkan kembali kepada bentuknya dan lebih keras serta lebih kuat daripada getah asli.
-
-# Kenapa pilihan lain salah
-
-- <InlineMath math="5\%" /> mengira satu unit bagi setiap jambatan dan terlupa setiap jambatan ada dua hujung, satu pada setiap rantai.
-- <InlineMath math="20\%" /> menganggap setiap atom sulfur sebagai jambatan dengan dua hujung. **Satu jambatan memerlukan sepasang atom sulfur**, jadi bilangannya hanya separuh.
-- Rangkai silang menjadikan getah lebih keras, bukan lebih lembut, dan kebanyakan ikatan ganda duanya masih ada. Peratusnya betul, tetapi kesannya terbalik.

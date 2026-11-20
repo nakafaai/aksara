@@ -1,36 +1,44 @@
-# Die Kupfer(II)-Ionen bestimmen, wie weit die Zelle läuft
+# Die Kathode zählt die Elektronen
 
-Die Zelle hört auf, wenn die Kupfer(II)-Ionen verbraucht sind, also **legt ihre Stoffmenge die Elektronen fest**. Diese Elektronen stammen aus Zinkatomen, die in Lösung gehen, und die neuen Zinkionen kommen zu den Zinkionen dazu, die schon in der Halbzelle waren.
+Auf der Kathode landet nur Kupfer, also ist ihre Zunahme die sauberste Zahl in der ganzen Zelle. Die <InlineMath math="6{,}40\text{ g}" /> sind <InlineMath math="0{,}100\text{ mol}" /> Kupfer, also **sind <InlineMath math="0{,}200\text{ mol}" /> Elektronen durch den Stromkreis geflossen**. Jedes davon hat an der Anode ein Metallatom freigesetzt, das in Lösung ging.
 
-Lass die Zelle im Labor laufen: Am Minuspol löst sich Zink auf, am Pluspol scheidet sich Kupfer ab, beides für dieselben <InlineMath math="0{,}030\text{ mol}" /> Elektronen.
-
-<ChemicalCellLab
-  title={<>Die Zink-Kupfer-Zelle bis zum Ende</>}
-  description={<>Die Zinkplatte löst sich auf, und die Kupferplatte wächst, bis die Kupfer(II)-Ionen, <InlineMath math="0{,}015\text{ mol}" />, verbraucht sind.</>}
-  metals={["zinc", "copper"]}
-  electrons={0.03}
+<ElectrolysisLab
+  title={<>Dieselbe Ladung durch reines Kupfer</>}
+  description={<>Bei <InlineMath math="0{,}200\text{ mol}" /> Elektronen würde eine Anode aus reinem Kupfer genau die <InlineMath math="6{,}40\text{ g}" /> verlieren, die die Kathode gewinnt, und die Kupfer(II)-Ionen blieben konstant.</>}
+  cells={[{ electrode: "copper", electrolyte: "copper-sulfate" }]}
+  electrons={0.2}
   showProducts
   labels={{
-    atNegative: <>Am Minuspol</>,
-    atPositive: <>Am Pluspol</>,
+    anode: "Anode",
+    atAnode: <>An der Anode</>,
+    atCathode: <>An der Kathode</>,
+    battery: "Batterie",
+    cathode: "Kathode",
+    cells: [<>Kupfer(II)-sulfat-Lösung, Kupferelektroden</>],
     electrons: <>Geflossene Elektronen</>,
-    halfCells: <>Halbzellen</>,
-    view: "Galvanische Zelle aus Zink und Kupfer",
-    voltage: <>Zellspannung</>,
-    voltmeter: "V",
+    ph: <>pH-Wert des Elektrolyten</>,
+    trends: { falls: <>sinkt</>, rises: <>steigt</>, steady: <>bleibt gleich</> },
+    view: "Kupferraffination durch Elektrolyse",
   }}
 />
 
+Die Simulation schickt dieselbe Ladung durch reines Kupfer. Dort verliert die Anode genau, was die Kathode gewinnt, und das Blau bleibt gleich. Eine Rohkupferanode bricht beides, und der Rest der Aufgabe dreht sich darum, wie stark.
+
+# Zink übernimmt einen Teil der Elektronen
+
+Zink ist unedler als Kupfer, also löst es sich mit. Seine <InlineMath math="0{,}0100\text{ mol}" /> liefern <InlineMath math="0{,}0200\text{ mol}" /> Elektronen, und **das Kupfer liefert nur die übrigen <InlineMath math="0{,}180\text{ mol}" />**, also <InlineMath math="0{,}0900\text{ mol}" /> Atome oder <InlineMath math="5{,}76\text{ g}" />. Wer <InlineMath math="6{,}40\text{ g}" /> gelöstes Kupfer schreibt, tut so, als wäre die Anode rein.
+
+# Woraus der Massenverlust der Anode besteht
+
+Die <InlineMath math="7{,}00\text{ g}" /> haben die Anode auf drei Wegen verlassen: Kupfer in die Lösung, Zink in die Lösung und Silber auf den Boden der Zelle. **Was weder Kupfer noch Zink ist, ist Anodenschlamm**, also <InlineMath math="0{,}590\text{ g}" />. Wer <InlineMath math="1{,}24\text{ g}" /> Schlamm angibt, wirft das Zink zum Silber, dabei sind Zinkionen gelöst und liegen nicht unter der Anode.
+
+# Warum das Blau etwas blasser wird
+
+Die Anode hat <InlineMath math="0{,}0900\text{ mol}" /> Kupfer(II)-Ionen in die Lösung gegeben, die Kathode hat <InlineMath math="0{,}100\text{ mol}" /> herausgeholt. **Die fehlenden <InlineMath math="0{,}0100\text{ mol}" /> sind der Anteil des Zinks**, dessen Ionen jetzt diese Plätze besetzen. In <InlineMath math="0{,}500\text{ dm}^3" /> sinken die Kupfer(II)-Ionen von <InlineMath math="0{,}250\text{ mol}" /> auf <InlineMath math="0{,}240\text{ mol}" />.
+
 <BlockMath math="\begin{aligned}
-n(\text{Cu}^{2+})&=0{,}30\times\frac{50{,}0}{1000}=0{,}015\text{ mol}\Rightarrow m(\text{Cu})=0{,}015\times64=0{,}96\text{ g}\\
-n(e^-)&=2\times0{,}015=0{,}030\text{ mol}\Rightarrow n(\text{Zn gelöst})=0{,}015\text{ mol}\\
-[\text{Zn}^{2+}]&=\frac{0{,}10\times0{,}0500+0{,}015}{0{,}0500}=\frac{0{,}020}{0{,}0500}=0{,}40\text{ mol dm}^{-3}
+n(e^-)&=2\times\tfrac{6{,}40}{64}=0{,}200\text{ mol},\quad m(\text{Cu})'=\tfrac{0{,}200-2\times\frac{0{,}650}{65}}{2}\times64=5{,}76\text{ g}\\
+m(\text{Ag})&=7{,}00-5{,}76-0{,}650=0{,}590\text{ g},\quad c(\text{Cu}^{2+})=\tfrac{0{,}250+0{,}0900-0{,}100}{0{,}500}=0{,}480\text{ mol dm}^{-3}
 \end{aligned}" />
 
-Die Kupferelektrode nimmt also um <InlineMath math="0{,}96\text{ g}" /> zu, und die Zinkionen erreichen <InlineMath math="0{,}40\text{ mol dm}^{-3}" />.
-
-# Warum die anderen Antworten falsch sind
-
-- <InlineMath math="0{,}30\text{ mol dm}^{-3}" /> zählt nur die neuen Zinkionen, <InlineMath math="\tfrac{0{,}015}{0{,}0500}" />, und vergisst die <InlineMath math="0{,}0050\text{ mol}" />, die schon in der Halbzelle waren.
-- <InlineMath math="1{,}92\text{ g}" /> und <InlineMath math="0{,}70\text{ mol dm}^{-3}" /> nehmen die <InlineMath math="0{,}030\text{ mol}" /> Elektronen als Stoffmenge von Kupfer und Zink. **Jedes Atom gibt oder nimmt zwei Elektronen**.
-- Zinkionen, die bei <InlineMath math="0{,}10\text{ mol dm}^{-3}" /> bleiben, behandeln die Zinkhalbzelle als Zuschauer, obwohl jedes Elektron im Stromkreis von einem Zinkatom stammt, das dort zum Ion wird.
+Konstante <InlineMath math="0{,}500\text{ mol dm}^{-3}" /> gehören zur Zelle aus reinem Kupfer in der Simulation, nicht zu dieser.

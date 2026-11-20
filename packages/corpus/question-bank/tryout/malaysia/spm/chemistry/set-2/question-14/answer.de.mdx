@@ -1,26 +1,42 @@
-# Rechne den pH-Wert zurück in eine Wasserstoffionenkonzentration
+# Die Kupferionen gehen im Becherglas zuerst aus
 
-Der pH-Wert ist <InlineMath math="-\log[\text{H}^+]" />, also <InlineMath math="[\text{H}^+] = 10^{-\text{pH}}" />. Jedes protolysierte Ethansäuremolekül liefert **ein Wasserstoffion**, also ist die Wasserstoffionenkonzentration die Konzentration der protolysierten Moleküle.
+Ins Becherglas kommen <InlineMath math="0{,}0200\text{ mol}" /> Kupfer(II)-sulfat und <InlineMath math="0{,}0240\text{ mol}" /> Natriumcarbonat, und die Gleichung ordnet sie eins zu eins zu. **Die Kupferionen sind zuerst verbraucht**, also fallen <InlineMath math="0{,}0200\text{ mol}" /> Kupfer(II)-carbonat, <InlineMath math="M_r=123{,}5" />, als <InlineMath math="2{,}47\text{ g}" /> aus, und <InlineMath math="0{,}00400\text{ mol}" /> Carbonat bleiben gelöst.
 
-<Chart
-  title={<>pH-Wert zweier Säuren bei zwei Konzentrationen</>}
-  bars="apart"
-  categories={["0,100 mol dm⁻³", "0,010 mol dm⁻³"]}
-  series={[
-    { label: "Salzsäure", mark: "bar", values: [1.0, 2.0] },
-    { label: "Ethansäure", mark: "bar", values: [2.87, 3.37] },
-  ]}
-  valueLabel="pH-Wert"
-  description={<>pH-Werte. Salzsäure: <InlineMath math="1{,}00" /> bei <InlineMath math="0{,}100\text{ mol dm}^{-3}" /> und <InlineMath math="2{,}00" /> bei <InlineMath math="0{,}010\text{ mol dm}^{-3}" />. Ethansäure: <InlineMath math="2{,}87" /> und <InlineMath math="3{,}37" />.</>}
+Ein Niederschlag von <InlineMath math="2{,}96\text{ g}" /> bräuchte <InlineMath math="0{,}0240\text{ mol}" /> Kupfer, mehr als das Kupfer(II)-sulfat liefert. Derselbe Irrtum ergibt ein Filtrat ohne Carbonat, <InlineMath math="0\text{ cm}^3" /> Gas und eine Ausbeute von <InlineMath math="70{,}8\%" />, gemessen an Kristallen, die nie entstehen könnten.
+
+<Mermaid
+  title={<>Carbonat zwischen Filterpapier und Filtrat aufgeteilt</>}
+  description={<>Die Kupferionen nehmen <InlineMath math="20{,}0\text{ mmol}" /> Carbonat mit in den Niederschlag. Der Rest bleibt im Filtrat, und nur dieses Carbonat trifft je auf die Säure.</>}
+  chart={`
+    flowchart TD
+      N0["20,0 mmol Cu²⁺"]
+      N1["24,0 mmol CO₃²⁻"]
+      N2["20,0 mmol CuCO₃: 2,47 g"]
+      N3["4,00 mmol CO₃²⁻ im Filtrat"]
+      N4["4,00 mmol CO₂: 96,0 cm³"]
+      N5["20,0 mmol CuO"]
+      N6["Höchstens 20,0 mmol CuSO₄·5H₂O: 4,99 g"]
+      N0 --> N2
+      N1 --> N2
+      N1 --> N3
+      N3 --> N4
+      N2 --> N5
+      N5 --> N6
+  `}
 />
 
-- <InlineMath math="[\text{H}^+] = 10^{-2{,}87} = 0{,}00135\text{ mol dm}^{-3}" />.
-- Protolysierter Anteil: <InlineMath math="\dfrac{0{,}00135}{0{,}100} \times 100\,\% = 1{,}35\,\%" />.
+# Nur das übrige Carbonat schäumt
 
-Salzsäure gleicher Konzentration hat den pH-Wert <InlineMath math="1{,}00" />, also <InlineMath math="[\text{H}^+] = 0{,}100\text{ mol dm}^{-3}" />: Sie ist vollständig protolysiert. Das ist der Unterschied zwischen starker und schwacher Säure.
+Der Niederschlag bleibt im Filterpapier, also sieht die Säure nur die <InlineMath math="0{,}00400\text{ mol}" /> im Filtrat. **Ein Carbonation liefert ein Kohlenstoffdioxid**, also entstehen <InlineMath math="96{,}0\text{ cm}^3" />. Die Zwei gehört zur Säure, und das Teilen durch sie führt zur Antwort mit <InlineMath math="48{,}0\text{ cm}^3" />. Schickt man alle <InlineMath math="0{,}0240\text{ mol}" /> Carbonat in die Säure, kommen <InlineMath math="576\text{ cm}^3" /> heraus, obwohl der größte Teil davon die Lösung schon mit dem Niederschlag verlassen hat.
 
-# Warum die anderen Antworten falsch sind
+# Dem Kupfer bis in die Kristalle folgen
 
-- <InlineMath math="2{,}87\,\%" /> **liest den pH-Wert selbst als Prozentwert**.
-- <InlineMath math="13{,}5\,\%" /> teilt durch <InlineMath math="0{,}0100" /> statt durch <InlineMath math="0{,}100" /> und nimmt die Konzentration der verdünnteren Lösung.
-- <InlineMath math="0{,}135\,\%" /> verliert einen Faktor <InlineMath math="10" /> und teilt durch <InlineMath math="1{,}00" /> statt durch <InlineMath math="0{,}100" />.
+Erhitzen, Lösen und Kristallisieren verlieren in der Rechnung kein Kupferatom, also **kann jedes Mol Kupfer(II)-carbonat ein Mol <InlineMath math="\text{CuSO}_4\cdot5\text{H}_2\text{O}" /> werden**, <InlineMath math="M_r=249{,}5" />. Die Obergrenze liegt bei <InlineMath math="4{,}99\text{ g}" />, und die gesammelten <InlineMath math="4{,}24\text{ g}" /> sind <InlineMath math="85{,}0\%" /> davon.
+
+<BlockMath math="\begin{aligned}
+n(\text{Cu}^{2+})&=0{,}0200<n(\text{CO}_3^{2-})=0{,}0240\ \Rightarrow\ m(\text{CuCO}_3)=0{,}0200\times123{,}5=2{,}47\text{ g}\\
+V(\text{CO}_2)&=(0{,}0240-0{,}0200)\times24\,000=96{,}0\text{ cm}^3\\
+m_{\max}&=0{,}0200\times249{,}5=4{,}99\text{ g},\quad \tfrac{4{,}24}{4{,}99}\times100=85{,}0\%
+\end{aligned}" />
+
+Die fünf Wasser zählen hier. Ohne sie in der Formelmasse sinkt die Obergrenze auf <InlineMath math="3{,}19\text{ g}" />, weniger als tatsächlich gesammelt wurde, ein sicheres Zeichen für einen Fehler.

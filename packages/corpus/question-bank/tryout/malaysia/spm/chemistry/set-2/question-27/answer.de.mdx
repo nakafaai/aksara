@@ -1,30 +1,47 @@
-# Erst den Trend fortsetzen, dann die Wärme nutzen
+# Nur ein Teil der Glucose gärt
 
-Das Diagramm endet bei Butan, also muss die Verbrennungsenthalpie von Pentan aus dem Trend kommen. Jede weitere <InlineMath math="\text{CH}_2" />-Einheit bringt etwa gleich viel dazu, <InlineMath math="2220-1560=660" /> und <InlineMath math="2880-2220=660\text{ kJ}" />, weil jedes Alkan eine <InlineMath math="\text{CH}_2" />-Gruppe mehr verbrennt. Dann **legt die vom Wasser aufgenommene Wärme die Stoffmenge Pentan fest**.
+Kürze die Glucose auf das, was wirklich reagiert, bevor du die Gleichung anfasst: <InlineMath math="80{,}0\%" /> von <InlineMath math="9{,}00\text{ g}" /> sind <InlineMath math="7{,}20\text{ g}" />, also <InlineMath math="0{,}0400\text{ mol}" /> bei <InlineMath math="M_r=180" />. **Mit den vollen <InlineMath math="9{,}00\text{ g}" /> wird jede spätere Zahl um ein Viertel zu groß**, und so landen <InlineMath math="2{,}40\text{ dm}^3" />, <InlineMath math="4{,}60\text{ g}" /> und <InlineMath math="1{,}20\text{ dm}^3" /> nebeneinander.
 
-Das Diagramm verlängert die Linie um einen Schritt, bis Pentan.
+# Ein Zucker, zwei von jedem Produkt
+
+Die Gärungsgleichung spaltet jede Glucose in **zwei Ethanol und zwei Kohlenstoffdioxid**, also sind es von beiden <InlineMath math="0{,}0800\text{ mol}" />. Das Gas füllt <InlineMath math="1{,}92\text{ dm}^3" />, und das Ethanol, <InlineMath math="M_r=46" />, wiegt <InlineMath math="3{,}68\text{ g}" />. Wer die Gleichung als eins zu eins liest, halbiert beides auf <InlineMath math="0{,}960\text{ dm}^3" /> und <InlineMath math="1{,}84\text{ g}" />.
 
 <Chart
-  title={<>Verbrennungsenthalpie bis Pentan verlängert</>}
-  description={<>Die gemessenen Werte steigen von <InlineMath math="890" /> für Methan bis <InlineMath math="2880\text{ kJ mol}^{-1}" /> für Butan. Ein weiterer Schritt von <InlineMath math="660" /> ergibt etwa <InlineMath math="3540\text{ kJ mol}^{-1}" /> für Pentan.</>}
-  categories={["Methan", "Ethan", "Propan", "Butan", "Pentan"]}
+  title={<>Kohlenstoff aus der umgesetzten Glucose</>}
+  description={<>Aus jeder Glucose werden von jedem Produkt zwei, dann braucht es zwei Säuremoleküle, um ein weiteres Kohlenstoffdioxid freizusetzen.</>}
+  bars="apart"
+  categories={["Umgesetzte Glucose", "Ethanol", "Kohlenstoffdioxid aus der Gärung", "Kohlenstoffdioxid aus dem Carbonat"]}
   series={[
-    { label: "Gemessen", mark: "line", values: [890, 1560, 2220, 2880, null] },
-    { label: "Vorhergesagt", mark: "line", values: [null, null, null, 2880, 2880 + (2880 - 2220)] },
+    { label: "Stoffmenge", mark: "bar", values: [40.0, 80.0, 80.0, 40.0] },
   ]}
-  valueLabel="Verbrennungsenthalpie (kJ pro mol)"
+  valueLabel="Stoffmenge (mmol)"
 />
 
+# Die Säure behält jede Kohlenstoffkette
+
+Die Oxidation baut nur das Kettenende um, also wird jedes Ethanol zu genau einer Essigsäure, und die <InlineMath math="0{,}0800\text{ mol}" /> gehen unverändert weiter.
+
+<MoleculeShapeLab
+  title={<>Ethanol vor der Oxidation</>}
+  description={<>Bei der Oxidation ändert sich nur das <InlineMath math="\text{CH}_2\text{OH}" />-Ende, also geht die Kette aus zwei Kohlenstoffatomen unverändert in die Säure über.</>}
+  molecules={[{ id: "ethanol", name: "Ethanol" }]}
+  labels={{
+    atoms: <>Atome</>,
+    choose: "Molekül wählen",
+    fill: <>Kalottenmodell</>,
+    formula: <>Formel</>,
+    mass: <>Relative Molekülmasse</>,
+    shape: <>Bindungswinkel</>,
+    view: "Ethanol",
+  }}
+/>
+
+**Ein Carbonation schluckt die Wasserstoffionen von zwei Säuremolekülen**, bevor es sein Kohlenstoffdioxid abgibt, also setzt das Carbonat <InlineMath math="0{,}0400\text{ mol}" /> frei, das sind <InlineMath math="0{,}960\text{ dm}^3" />. Ein ganzes Kohlenstoffdioxid pro Säuremolekül brächte wieder <InlineMath math="1{,}92\text{ dm}^3" />, als hätte Essigsäure zwei saure Wasserstoffatome.
+
 <BlockMath math="\begin{aligned}
-\Delta H(\text{C}_5\text{H}_{12})&\approx-(2880+660)=-3540\text{ kJ mol}^{-1}\\
-Q&=250\times4{,}2\times40{,}0=42{.}000\text{ J}=42{,}0\text{ kJ}\\
-n&=\frac{42{,}0}{3540}=0{,}0119\text{ mol}\Rightarrow m=0{,}0119\times72=0{,}85\text{ g}
+n(\text{C}_6\text{H}_{12}\text{O}_6)&=0{,}800\times\tfrac{9{,}00}{180}=0{,}0400\text{ mol}\ \Rightarrow\ n(\text{CO}_2)=n(\text{C}_2\text{H}_5\text{OH})=0{,}0800\text{ mol}\\
+V_1&=0{,}0800\times24=1{,}92\text{ dm}^3,\quad m(\text{C}_2\text{H}_5\text{OH})=0{,}0800\times46=3{,}68\text{ g}\\
+n(\text{CH}_3\text{COOH})&=0{,}0800\text{ mol}\ \Rightarrow\ V_2=\tfrac{0{,}0800}{2}\times24=0{,}960\text{ dm}^3
 \end{aligned}" />
 
-Es werden also etwa <InlineMath math="0{,}85\text{ g}" /> Pentan verbrannt.
-
-# Warum die anderen Antworten falsch sind
-
-- <InlineMath math="1{,}05\text{ g}" /> nimmt die <InlineMath math="2880\text{ kJ mol}^{-1}" /> von Butan, bleibt also beim letzten Wert im Diagramm stehen, statt bis Pentan zu verlängern.
-- <InlineMath math="0{,}72\text{ g}" /> geht zwei Schritte weiter, <InlineMath math="2880+2\cdot660=4200" />, das ist die Vorhersage für Hexan.
-- <InlineMath math="0{,}69\text{ g}" /> rechnet die Stoffmenge mit der molaren Masse von Butan, <InlineMath math="58" />, um. **Pentan ist <InlineMath math="\text{C}_5\text{H}_{12}" />, seine molare Masse also <InlineMath math="72" />**.
+Das zweite Gas ist also halb so viel wie das erste, obwohl unterwegs keine Kohlenstoffkette verloren ging.

@@ -1,30 +1,47 @@
-# Lanjutkan corak dahulu, kemudian gunakan haba
+# Hanya sebahagian glukosa ditapai
 
-Carta berhenti pada butana, jadi haba pembakaran pentana perlu diperoleh daripada corak. Setiap unit <InlineMath math="\text{CH}_2" /> tambahan menambah kuantiti yang hampir sama, <InlineMath math="2220-1560=660" /> dan <InlineMath math="2880-2220=660\text{ kJ}" />, kerana setiap alkana membakar satu kumpulan <InlineMath math="\text{CH}_2" /> lagi. Kemudian **haba yang diserap oleh air menentukan bilangan mol pentana**.
+Potong glukosa kepada bahagian yang benar-benar bertindak balas sebelum menyentuh persamaan: <InlineMath math="80.0\%" /> daripada <InlineMath math="9.00\text{ g}" /> ialah <InlineMath math="7.20\text{ g}" />, iaitu <InlineMath math="0.0400\text{ mol}" /> dengan <InlineMath math="M_r=180" />. **Menggunakan semua <InlineMath math="9.00\text{ g}" /> membesarkan setiap nombor seterusnya sebanyak suku**, dan itulah sebabnya <InlineMath math="2.40\text{ dm}^3" />, <InlineMath math="4.60\text{ g}" /> dan <InlineMath math="1.20\text{ dm}^3" /> muncul bersama.
 
-Carta ini melanjutkan garis satu langkah lagi, kepada pentana.
+# Satu gula, dua bagi setiap hasil
+
+Persamaan penapaian memecahkan setiap glukosa kepada **dua etanol dan dua karbon dioksida**, jadi kedua-duanya <InlineMath math="0.0800\text{ mol}" />. Gas itu mengisi <InlineMath math="1.92\text{ dm}^3" /> dan etanol, <InlineMath math="M_r=46" />, berjisim <InlineMath math="3.68\text{ g}" />. Membaca persamaan itu sebagai satu bagi setiap hasil membahagi dua kedua-duanya, kepada <InlineMath math="0.960\text{ dm}^3" /> dan <InlineMath math="1.84\text{ g}" />.
 
 <Chart
-  title={<>Haba pembakaran dilanjutkan kepada pentana</>}
-  description={<>Nilai yang diukur naik dari <InlineMath math="890" /> bagi metana kepada <InlineMath math="2880\text{ kJ mol}^{-1}" /> bagi butana. Satu langkah lagi sebanyak <InlineMath math="660" /> memberi lebih kurang <InlineMath math="3540\text{ kJ mol}^{-1}" /> bagi pentana.</>}
-  categories={["Metana", "Etana", "Propana", "Butana", "Pentana"]}
+  title={<>Karbon daripada glukosa yang bertindak balas</>}
+  description={<>Setiap glukosa memberi dua bagi setiap hasil, kemudian dua molekul asid diperlukan untuk membebaskan satu lagi karbon dioksida.</>}
+  bars="apart"
+  categories={["Glukosa yang bertindak balas", "Etanol", "Karbon dioksida daripada penapaian", "Karbon dioksida daripada karbonat"]}
   series={[
-    { label: "Diukur", mark: "line", values: [890, 1560, 2220, 2880, null] },
-    { label: "Ramalan", mark: "line", values: [null, null, null, 2880, 2880 + (2880 - 2220)] },
+    { label: "Jumlah", mark: "bar", values: [40.0, 80.0, 80.0, 40.0] },
   ]}
-  valueLabel="Haba pembakaran (kJ per mol)"
+  valueLabel="Jumlah (mmol)"
 />
 
+# Asid menyimpan setiap rantai karbon
+
+Pengoksidaan hanya membina semula hujung rantai, jadi setiap etanol menjadi tepat satu asid etanoik dan <InlineMath math="0.0800\text{ mol}" /> itu dibawa terus.
+
+<MoleculeShapeLab
+  title={<>Etanol sebelum pengoksidaan</>}
+  description={<>Hanya hujung <InlineMath math="\text{CH}_2\text{OH}" /> berubah apabila etanol dioksidakan, jadi rantai dua karbon itu masuk ke dalam asid secara utuh.</>}
+  molecules={[{ id: "ethanol", name: "etanol" }]}
+  labels={{
+    atoms: <>Atom</>,
+    choose: "Pilih molekul",
+    fill: <>Model pengisian ruang</>,
+    formula: <>Formula</>,
+    mass: <>Jisim molekul relatif</>,
+    shape: <>Sudut ikatan</>,
+    view: "Etanol",
+  }}
+/>
+
+**Satu ion karbonat menyerap ion hidrogen daripada dua molekul asid** sebelum melepaskan karbon dioksidanya, jadi karbonat membebaskan <InlineMath math="0.0400\text{ mol}" />, atau <InlineMath math="0.960\text{ dm}^3" />. Satu karbon dioksida bagi setiap molekul asid akan memberi semula <InlineMath math="1.92\text{ dm}^3" />, seolah-olah asid etanoik mempunyai dua hidrogen berasid.
+
 <BlockMath math="\begin{aligned}
-\Delta H(\text{C}_5\text{H}_{12})&\approx-(2880+660)=-3540\text{ kJ mol}^{-1}\\
-Q&=250\times4.2\times40.0=42\,000\text{ J}=42.0\text{ kJ}\\
-n&=\frac{42.0}{3540}=0.0119\text{ mol}\Rightarrow m=0.0119\times72=0.85\text{ g}
+n(\text{C}_6\text{H}_{12}\text{O}_6)&=0.800\times\tfrac{9.00}{180}=0.0400\text{ mol}\ \Rightarrow\ n(\text{CO}_2)=n(\text{C}_2\text{H}_5\text{OH})=0.0800\text{ mol}\\
+V_1&=0.0800\times24=1.92\text{ dm}^3,\quad m(\text{C}_2\text{H}_5\text{OH})=0.0800\times46=3.68\text{ g}\\
+n(\text{CH}_3\text{COOH})&=0.0800\text{ mol}\ \Rightarrow\ V_2=\tfrac{0.0800}{2}\times24=0.960\text{ dm}^3
 \end{aligned}" />
 
-Jadi lebih kurang <InlineMath math="0.85\text{ g}" /> pentana dibakar.
-
-# Kenapa pilihan lain salah
-
-- <InlineMath math="1.05\text{ g}" /> menggunakan <InlineMath math="2880\text{ kJ mol}^{-1}" /> bagi butana, berhenti pada nilai terakhir dalam carta dan tidak melanjutkannya kepada pentana.
-- <InlineMath math="0.72\text{ g}" /> menambah dua langkah, <InlineMath math="2880+2\times660=4200" />, iaitu ramalan bagi heksana.
-- <InlineMath math="0.69\text{ g}" /> menukar bilangan mol dengan jisim molar butana, <InlineMath math="58" />. **Pentana ialah <InlineMath math="\text{C}_5\text{H}_{12}" />, jadi jisim molarnya <InlineMath math="72" />**.
+Jadi gas kedua ialah separuh gas pertama, walaupun tiada rantai karbon yang hilang di tengah jalan.

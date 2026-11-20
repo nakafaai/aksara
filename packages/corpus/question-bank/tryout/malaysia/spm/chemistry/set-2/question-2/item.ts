@@ -10,19 +10,43 @@ const item: ItemSource = {
     en: {
       kind: "choice",
       options: [
-        { correct: true, label: "$$11\\%$$" },
-        { correct: false, label: "$$10\\%$$" },
-        { correct: false, label: "$$21\\%$$" },
-        { correct: false, label: "$$5.5\\%$$" },
+        {
+          correct: true,
+          label: "$$35.5$$, $$3.01\\times10^{22}$$, $$12.7\\text{ g}$$",
+        },
+        {
+          correct: false,
+          label: "$$36.0$$, $$3.01\\times10^{22}$$, $$12.7\\text{ g}$$",
+        },
+        {
+          correct: false,
+          label: "$$35.5$$, $$4.52\\times10^{22}$$, $$0\\text{ g}$$",
+        },
+        {
+          correct: false,
+          label: "$$35.5$$, $$3.01\\times10^{22}$$, $$6.35\\text{ g}$$",
+        },
       ],
     },
     ms: {
       kind: "choice",
       options: [
-        { correct: true, label: "$$11\\%$$" },
-        { correct: false, label: "$$10\\%$$" },
-        { correct: false, label: "$$21\\%$$" },
-        { correct: false, label: "$$5.5\\%$$" },
+        {
+          correct: true,
+          label: "$$35.5$$, $$3.01\\times10^{22}$$, $$12.7\\text{ g}$$",
+        },
+        {
+          correct: false,
+          label: "$$36.0$$, $$3.01\\times10^{22}$$, $$12.7\\text{ g}$$",
+        },
+        {
+          correct: false,
+          label: "$$35.5$$, $$4.52\\times10^{22}$$, $$0\\text{ g}$$",
+        },
+        {
+          correct: false,
+          label: "$$35.5$$, $$3.01\\times10^{22}$$, $$6.35\\text{ g}$$",
+        },
       ],
     },
   },

@@ -13,22 +13,22 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Hex-1-ene forms more water, because its double bond holds extra hydrogen",
+            "$$\\text{C}_4\\text{H}_9\\text{OH}$$, $$3.12\\text{ dm}^3$$, $$1.76\\text{ g}$$",
         },
         {
           correct: false,
           label:
-            "Both form the same mass of carbon dioxide, because each molecule has six carbon atoms",
+            "$$\\text{C}_4\\text{H}_9\\text{OH}$$, $$2.88\\text{ dm}^3$$, $$1.48\\text{ g}$$",
         },
         {
           correct: true,
           label:
-            "Hex-1-ene forms $$3.14\\text{ g}$$ of carbon dioxide and hexane $$3.07\\text{ g}$$, because hex-1-ene has a higher percentage of carbon by mass",
+            "$$\\text{C}_4\\text{H}_9\\text{OH}$$, $$2.88\\text{ dm}^3$$, $$1.76\\text{ g}$$",
         },
         {
           correct: false,
           label:
-            "Hexane forms more carbon dioxide, because each hexane molecule has more atoms",
+            "$$\\text{C}_4\\text{H}_9\\text{OH}$$, $$2.88\\text{ dm}^3$$, $$2.12\\text{ g}$$",
         },
       ],
     },
@@ -38,22 +38,22 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Heks-1-ena membentuk lebih banyak air, kerana ikatan ganda duanya memegang hidrogen tambahan",
+            "$$\\text{C}_4\\text{H}_9\\text{OH}$$, $$3.12\\text{ dm}^3$$, $$1.76\\text{ g}$$",
         },
         {
           correct: false,
           label:
-            "Kedua-duanya membentuk jisim karbon dioksida yang sama, kerana setiap molekul mempunyai enam atom karbon",
+            "$$\\text{C}_4\\text{H}_9\\text{OH}$$, $$2.88\\text{ dm}^3$$, $$1.48\\text{ g}$$",
         },
         {
           correct: true,
           label:
-            "Heks-1-ena membentuk $$3.14\\text{ g}$$ karbon dioksida dan heksana $$3.07\\text{ g}$$, kerana heks-1-ena mempunyai peratus karbon mengikut jisim yang lebih tinggi",
+            "$$\\text{C}_4\\text{H}_9\\text{OH}$$, $$2.88\\text{ dm}^3$$, $$1.76\\text{ g}$$",
         },
         {
           correct: false,
           label:
-            "Heksana membentuk lebih banyak karbon dioksida, kerana setiap molekul heksana mempunyai lebih banyak atom",
+            "$$\\text{C}_4\\text{H}_9\\text{OH}$$, $$2.88\\text{ dm}^3$$, $$2.12\\text{ g}$$",
         },
       ],
     },
