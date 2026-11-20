@@ -56,7 +56,39 @@ export const kssmForm5MathematicsTopicNodes = [
     },
   }),
   unitNode({
+    children: [
+      materialNode({
+        key: "form-5-mathematics-consumer-mathematics-insurance-insurance",
+        level: "lesson",
+        materialKeys: ["lesson.mathematics.insurance"],
+        order: 10,
+        outcomes: [
+          {
+            code: "Tingkatan 5, Standard Kandungan 3.1",
+            ...mathematicsStandards,
+          },
+        ],
+      }),
+    ],
     key: "form-5-mathematics-consumer-mathematics-insurance",
+    materialCard: {
+      de: {
+        description: "Berechne Prämien, Selbstbehalt und Entschädigung.",
+        title: "Versicherung",
+      },
+      en: {
+        description: "Work out premiums, deductibles and compensation.",
+        title: "Insurance",
+      },
+      id: {
+        description: "Hitung premi, risiko sendiri, dan ganti rugi.",
+        title: "Asuransi",
+      },
+      ms: {
+        description: "Kira premium, deduktibel dan pampasan.",
+        title: "Insurans",
+      },
+    },
     order: 30,
     translations: {
       de: {

@@ -1,0 +1,256 @@
+export const metadata = {
+  title: "Versicherungen in der Verbrauchermathematik",
+  description:
+    "Erkläre Risiko und Versicherung, berechne Prämien der Lebensversicherung, Selbstbehalte und Entschädigungen mit Unterversicherungsklausel mit Übungen.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2026-11-17",
+  subject: "Verbrauchermathematik: Versicherung",
+};
+
+## Eine Versicherung überträgt das Schadensrisiko auf den Versicherer
+
+**Risiko** ist die Möglichkeit, dass ein Schaden eintritt, etwa ein Unfall, ein Brand oder ein Todesfall. Eine **Versicherung** überträgt dieses Risiko auf ein Versicherungsunternehmen. Der Versicherungsnehmer zahlt regelmäßig eine **Prämie**, und der Versicherer zahlt eine **Entschädigung**, wenn ein versicherter Schaden eintritt. Der Betrag des Schutzes im Vertrag heißt **Versicherungssumme**. In den Modellen hier berechnest du Prämien aus einer Tariftabelle, siehst die Wirkung eines Selbstbehalts und bestimmst Entschädigungen mit einer Unterversicherungsklausel.
+
+## Arten von Versicherungen
+
+| Art | Schutz | Beispiel |
+| :--- | :--- | :--- |
+| Lebensversicherung | Tod oder dauerhafte Erwerbsunfähigkeit | Risikolebensversicherung |
+| Krankenversicherung | Kosten ärztlicher Behandlung | Krankenzusatzversicherung |
+| Kfz-Versicherung | Schäden am Fahrzeug und Ansprüche Dritter | Vollkaskoversicherung |
+| Sachversicherung | Brand, Hochwasser oder Diebstahl | Wohngebäudeversicherung |
+
+Lebens und Krankenversicherung zählen zu den **Personenversicherungen**, Kfz und Sachversicherung zu den **Schadenversicherungen**.
+
+## Prämien der Lebensversicherung
+
+Die Prämie einer Lebensversicherung hängt von Alter, Geschlecht, Gesundheit und Versicherungssumme ab. Versicherer veröffentlichen eine **Tariftabelle** für je <InlineMath math="\text{RM}\,1{.}000" /> Versicherungssumme. Dieses Diagramm zeigt eine Beispieltabelle eines erfundenen Versicherers für eine Risikolebensversicherung.
+
+<BarChart
+  title={<>Beispieltabelle der Jahresprämie nach Alter</>}
+  description={
+    <>
+      Jahresprämie in Ringgit für je <InlineMath math="\text{RM}\,1{.}000" />{" "}
+      Versicherungssumme. Diese Tarife sind Übungsbeispiele, keine echten
+      Tarife eines Versicherers.
+    </>
+  }
+  yAxisLabel="Prämie je RM 1000 (RM)"
+  data={[
+    { name: "20 Jahre", value: 1.8 },
+    { name: "25 Jahre", value: 2.1 },
+    { name: "30 Jahre", value: 2.6 },
+    { name: "35 Jahre", value: 3.3 },
+    { name: "40 Jahre", value: 4.4 },
+    { name: "45 Jahre", value: 6.0 },
+    { name: "50 Jahre", value: 8.4 },
+  ]}
+  chartConfig={{ value: { label: "Prämie", colors: { light: ["var(--chart-2)"], dark: ["var(--chart-2)"] } } }}
+/>
+
+### Die Regel für die Jahresprämie
+
+Die Jahresprämie berechnet sich nach **der Regel**:
+
+<BlockMath math="\text{Prämie} = \frac{\text{Versicherungssumme}}{1{.}000} \times \text{Tarif}" />
+
+Dieses Modell zeichnet die Jahresprämie für Versicherungssummen bis <InlineMath math="\text{RM}\,300{.}000" />. Ändere den Tarif nach Alter und lies die Prämie ab.
+
+<MathVisual
+  title={<>Jahresprämie nach Versicherungssumme</>}
+  description={
+    <>
+      Prämie in hundert Ringgit gegen die Versicherungssumme in zehntausend
+      Ringgit, für einen Tarif <InlineMath math="r" /> je{" "}
+      <InlineMath math="\text{RM}\,1{.}000" />.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 30 }, y: { min: 0, max: 26 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "r", min: 1.8, max: 8.4, value: 2.6, step: 0.1, label: "r" },
+      { name: "f", min: 1, max: 30, value: 15, step: 1, label: "f" },
+    ],
+    objects: [
+      { id: "premium", kind: "function", appearance: "primary", formula: "r x/10", domain: { min: 0, max: 30 } },
+      { id: "now", kind: "marker", x: "f", y: "r f/10", appearance: "warning" },
+    ],
+    readouts: [
+      { key: "premium", formula: "10r f" },
+    ],
+  }}
+  labels={{
+    r: <>Tarif <InlineMath math="r" /></>,
+    f: <>Versicherungssumme <InlineMath math="f" /> in zehntausend Ringgit</>,
+    premium: <>Jahresprämie in Ringgit</>,
+  }}
+/>
+
+### Beispiel Eine Lebensversicherungsprämie berechnen
+
+Herr Hafiz ist <InlineMath math="30" /> Jahre alt und möchte eine Risikolebensversicherung mit einer Versicherungssumme von <InlineMath math="\text{RM}\,150{.}000" /> abschließen. Berechne mit der Beispieltabelle **seine Jahresprämie**.
+
+<BlockMath math="\frac{150{.}000}{1{.}000} \times 2{,}60 = 150 \times 2{,}60 = 390" />
+
+Seine Jahresprämie beträgt <InlineMath math="\text{RM}\,390" />. Prüfe mit dem Modell: Bei <InlineMath math="r = 2{,}6" /> und <InlineMath math="f = 15" /> zeigt es <InlineMath math="390" />. Mit <InlineMath math="45" /> Jahren würde dieselbe Versicherung <InlineMath math="150 \times 6{,}00 = \text{RM}\,900" /> kosten.
+
+## Der Selbstbehalt
+
+Bei Schadenversicherungen ist der **Selbstbehalt** der Teil eines Schadens, den der Versicherungsnehmer selbst trägt, bevor der Versicherer zahlt. Ist der Schaden kleiner als der Selbstbehalt, wird nichts gezahlt. Ändere Selbstbehalt und Schadenshöhe in diesem Modell.
+
+<MathVisual
+  title={<>Entschädigung nach Abzug des Selbstbehalts</>}
+  description={
+    <>
+      Entschädigung in tausend Ringgit, <InlineMath math="\max(0, k - d)" />,
+      gegen den Schaden <InlineMath math="k" /> in tausend Ringgit, für einen
+      Selbstbehalt <InlineMath math="d" />.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 20 }, y: { min: 0, max: 20 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "d", min: 0, max: 5, value: 1, step: 0.5, label: "d" },
+      { name: "k", min: 0, max: 20, value: 8, step: 0.5, label: "k" },
+    ],
+    objects: [
+      { id: "payout", kind: "function", appearance: "primary", formula: "max(0, x - d)", domain: { min: 0, max: 20 } },
+      { id: "now", kind: "marker", x: "k", y: "max(0, k - d)", appearance: "warning" },
+    ],
+    readouts: [
+      { key: "payout", formula: "1000max(0, k - d)" },
+    ],
+  }}
+  labels={{
+    d: <>Selbstbehalt <InlineMath math="d" /> in tausend Ringgit</>,
+    k: <>Schaden <InlineMath math="k" /> in tausend Ringgit</>,
+    payout: <>Entschädigung in Ringgit</>,
+  }}
+/>
+
+Bei einem Selbstbehalt von <InlineMath math="\text{RM}\,1{.}000" /> und einem Schaden von <InlineMath math="\text{RM}\,8{.}000" /> beträgt die Entschädigung <InlineMath math="8{.}000 - 1{.}000 = \text{RM}\,7{.}000" />. Prüfe mit dem Modell: Bei <InlineMath math="d = 1" /> und <InlineMath math="k = 8" /> zeigt es <InlineMath math="7{.}000" />.
+
+## Die Unterversicherungsklausel in der Sachversicherung
+
+Eine Sachversicherung enthält meist eine **Unterversicherungsklausel**: Der Eigentümer muss mindestens einen festen Prozentsatz des Werts versichern, zum Beispiel <InlineMath math="80\%" />. Ist die Versicherungssumme kleiner als der geforderte Betrag, wird die Entschädigung anteilig gekürzt:
+
+<BlockMath math="\text{Entschädigung} = \frac{\text{Versicherungssumme}}{\text{geforderte Summe}} \times \text{Schaden} - \text{Selbstbehalt}" />
+
+### Die Wirkung der Versicherungssumme
+
+**Die Entschädigung kann nie höher als die Versicherungssumme sein**. Dieses Modell zeichnet die Entschädigung für einen Schaden von <InlineMath math="\text{RM}\,60{.}000" /> an einem Haus im Wert von <InlineMath math="\text{RM}\,400{.}000" />, mit einer Klausel von <InlineMath math="80\%" /> und einem Selbstbehalt von <InlineMath math="\text{RM}\,1{.}000" />.
+
+<MathVisual
+  title={<>Entschädigung nach Versicherungssumme</>}
+  description={
+    <>
+      Entschädigung in tausend Ringgit gegen die Versicherungssumme in
+      zehntausend Ringgit. Gefordert sind <InlineMath math="80\%" /> von{" "}
+      <InlineMath math="\text{RM}\,400{.}000" />, also{" "}
+      <InlineMath math="\text{RM}\,320{.}000" />.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 40 }, y: { min: 0, max: 62 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "i", min: 4, max: 40, value: 24, step: 1, label: "i" },
+    ],
+    objects: [
+      { id: "payout", kind: "function", appearance: "primary", formula: "60min(x/32, 1) - 1", domain: { min: 1, max: 40 } },
+      { id: "now", kind: "marker", x: "i", y: "60min(i/32, 1) - 1", appearance: "warning" },
+    ],
+    readouts: [
+      { key: "payout", formula: "1000(60min(i/32, 1) - 1)" },
+    ],
+  }}
+  labels={{
+    i: <>Versicherungssumme <InlineMath math="i" /> in zehntausend Ringgit</>,
+    payout: <>Entschädigung in Ringgit</>,
+  }}
+/>
+
+### Beispiel Entschädigung bei Unterversicherung
+
+Das Haus von Frau Lim ist <InlineMath math="\text{RM}\,400{.}000" /> wert und mit <InlineMath math="\text{RM}\,240{.}000" /> versichert. Der Vertrag hat eine Klausel von <InlineMath math="80\%" /> und einen Selbstbehalt von <InlineMath math="\text{RM}\,1{.}000" />. Ein Brand verursacht einen Schaden von <InlineMath math="\text{RM}\,60{.}000" />. Berechne **die Entschädigung** und den Anteil, den Frau Lim selbst trägt.
+
+<MathContainer>
+<BlockMath math="\text{Geforderte Summe} = 80\% \times 400{.}000 = 320{.}000" />
+<BlockMath math="\text{Entschädigung} = \frac{240{.}000}{320{.}000} \times 60{.}000 - 1{.}000 = 45{.}000 - 1{.}000 = 44{.}000" />
+<BlockMath math="\text{Eigenanteil} = 60{.}000 - 44{.}000 = 16{.}000" />
+</MathContainer>
+
+Prüfe mit dem Modell: Bei <InlineMath math="i = 24" /> zeigt es <InlineMath math="44{.}000" />. Hätte Frau Lim mindestens <InlineMath math="\text{RM}\,320{.}000" /> versichert, stiege die Entschädigung auf <InlineMath math="60{.}000 - 1{.}000 = \text{RM}\,59{.}000" />. Dieses Diagramm vergleicht beide Fälle.
+
+<BarChart
+  title={<>Aufteilung des Schadens zwischen Versicherer und Eigentümer</>}
+  description={
+    <>
+      Ringgit, die der Versicherer zahlt und die der Eigentümer trägt, bei
+      einem Schaden von <InlineMath math="\text{RM}\,60{.}000" />, bei einer
+      Versicherungssumme von <InlineMath math="\text{RM}\,240{.}000" /> oder{" "}
+      <InlineMath math="\text{RM}\,320{.}000" />.
+    </>
+  }
+  yAxisLabel="Betrag (RM)"
+  data={[
+    { name: "Versicherer, 240 Tsd.", value: 44000 },
+    { name: "Eigentümer, 240 Tsd.", value: 16000 },
+    { name: "Versicherer, 320 Tsd.", value: 59000 },
+    { name: "Eigentümer, 320 Tsd.", value: 1000 },
+  ]}
+  chartConfig={{ value: { label: "Betrag", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>
+
+## Häufige Fehler bei Versicherungen
+
+| Fehler | Warum er falsch ist | So prüfst du es |
+| :--- | :--- | :--- |
+| Den Sachwert statt der geforderten Summe in den Bruch einsetzen. | Im Nenner steht der Prozentsatz der Klausel mal den Sachwert. | Berechne zuerst die geforderte Summe. |
+| Den Selbstbehalt vergessen. | Der Selbstbehalt wird bei jedem Schaden abgezogen. | Prüfe die Vertragsbedingungen. |
+| Die Versicherungssumme für die Prämie durch <InlineMath math="100" /> teilen. | Tarife gelten je <InlineMath math="\text{RM}\,1{.}000" />. | Lies die Einheit in der Tariftabelle. |
+| Eine Entschädigung über der Versicherungssumme. | Der Versicherer zahlt nie mehr als die Versicherungssumme. | Vergleiche die Antwort mit der Versicherungssumme. |
+
+Der erste Fehler kommt in Aufgaben zur Unterversicherung am häufigsten vor. **Berechne die geforderte Summe vor dem Bruch**.
+
+## Übungen zu Versicherungen
+
+Diese Aufgaben führen von Prämien zu Entschädigungen. **Gib bei jeder Entschädigungsaufgabe den Eigenanteil an**.
+
+1. Berechne mit der Beispieltabelle die Jahresprämie einer Lebensversicherung über <InlineMath math="\text{RM}\,200{.}000" /> für eine Person von <InlineMath math="40" /> Jahren.
+
+2. Ein Auto wird beschädigt, die Reparatur kostet <InlineMath math="\text{RM}\,3{.}500" />. Der Selbstbehalt beträgt <InlineMath math="\text{RM}\,500" />. Berechne die Entschädigung.
+
+3. Eine Immobilie im Wert von <InlineMath math="\text{RM}\,250{.}000" /> ist mit <InlineMath math="\text{RM}\,150{.}000" /> versichert, mit einer Klausel von <InlineMath math="80\%" /> und einem Selbstbehalt von <InlineMath math="\text{RM}\,2{.}000" />. Der Schaden beträgt <InlineMath math="\text{RM}\,40{.}000" />. Berechne die Entschädigung.
+
+4. Welcher Betrag hätte in Aufgabe drei mindestens versichert werden müssen, damit die Entschädigung nicht gekürzt wird?
+
+### Lösungen
+
+**Lösung 1**: Teile die Versicherungssumme durch <InlineMath math="1{.}000" /> und multipliziere mit dem Tarif:
+
+<BlockMath math="\frac{200{.}000}{1{.}000} \times 4{,}40 = 200 \times 4{,}40 = 880" />
+
+Die Jahresprämie beträgt <InlineMath math="\text{RM}\,880" />. Prüfe mit dem Modell: Bei <InlineMath math="r = 4{,}4" /> und <InlineMath math="f = 20" /> zeigt es <InlineMath math="880" />.
+
+**Lösung 2**: Ziehe den Selbstbehalt vom Schaden ab:
+
+<BlockMath math="3{.}500 - 500 = 3{.}000" />
+
+Die Entschädigung beträgt <InlineMath math="\text{RM}\,3{.}000" />, der Eigentümer **trägt selbst** <InlineMath math="\text{RM}\,500" />.
+
+**Lösung 3**: Berechne zuerst die geforderte Summe:
+
+<MathContainer>
+<BlockMath math="80\% \times 250{.}000 = 200{.}000" />
+<BlockMath math="\frac{150{.}000}{200{.}000} \times 40{.}000 - 2{.}000 = 30{.}000 - 2{.}000 = 28{.}000" />
+</MathContainer>
+
+Die Entschädigung beträgt <InlineMath math="\text{RM}\,28{.}000" />, der Eigentümer trägt <InlineMath math="40{.}000 - 28{.}000 = \text{RM}\,12{.}000" />.
+
+**Lösung 4**: Der Mindestbetrag ist **die geforderte Summe**, <InlineMath math="80\% \times 250{.}000 = \text{RM}\,200{.}000" />. Bei diesem Betrag wird der Bruch <InlineMath math="1" />, und nur der Selbstbehalt wird abgezogen.

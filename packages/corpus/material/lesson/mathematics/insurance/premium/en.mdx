@@ -1,0 +1,256 @@
+export const metadata = {
+  title: "Consumer Mathematics Insurance Notes for Form Five",
+  description:
+    "Form 5 Mathematics Chapter 3: explain risk and insurance, calculate life insurance premiums, deductibles and compensation with a coinsurance clause.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2026-11-17",
+  subject: "Consumer Mathematics: Insurance",
+};
+
+## Insurance Moves the Risk of Loss to an Insurer
+
+**Risk** is the chance that a loss happens, such as an accident, a fire or a death. **Insurance** moves that risk to an insurance company. The policyholder pays a **premium** regularly, and the insurer pays **compensation** when a covered loss happens. The amount of cover in the policy is called the **face value** or sum insured. In the models here, you calculate premiums from a rate table, see the effect of a deductible and work out compensation with a coinsurance clause.
+
+## Types of Insurance
+
+| Type | Cover | Example |
+| :--- | :--- | :--- |
+| Life insurance | Death or permanent disability | Term life policy |
+| Health insurance | Cost of medical treatment | Medical policy |
+| Motor insurance | Damage to the vehicle and third-party claims | Comprehensive policy |
+| Property insurance | Fire, flood or theft of property | Home fire policy |
+
+Life and health insurance are called **life insurance**, while motor and property insurance are called **general insurance**.
+
+## Life Insurance Premiums
+
+A life insurance premium depends on age, sex, health and face value. Insurers publish a **premium rate table** for every <InlineMath math="\text{RM}\,1{,}000" /> of face value. This chart shows an example table from a fictional insurer for a term life policy.
+
+<BarChart
+  title={<>Example Table of Annual Premiums by Age</>}
+  description={
+    <>
+      Annual premium in ringgit for every{" "}
+      <InlineMath math="\text{RM}\,1{,}000" /> of face value. These are example
+      rates for practice, not a real insurer's rates.
+    </>
+  }
+  yAxisLabel="Premium per RM 1000 (RM)"
+  data={[
+    { name: "Age 20", value: 1.8 },
+    { name: "Age 25", value: 2.1 },
+    { name: "Age 30", value: 2.6 },
+    { name: "Age 35", value: 3.3 },
+    { name: "Age 40", value: 4.4 },
+    { name: "Age 45", value: 6.0 },
+    { name: "Age 50", value: 8.4 },
+  ]}
+  chartConfig={{ value: { label: "Premium", colors: { light: ["var(--chart-2)"], dark: ["var(--chart-2)"] } } }}
+/>
+
+### The Annual Premium Rule
+
+The annual premium is worked out with **the rule**:
+
+<BlockMath math="\text{Premium} = \frac{\text{face value}}{1{,}000} \times \text{premium rate}" />
+
+This model draws the annual premium for face values up to <InlineMath math="\text{RM}\,300{,}000" />. Change the rate by age and read the premium.
+
+<MathVisual
+  title={<>Annual Premium by Face Value</>}
+  description={
+    <>
+      Premium in hundreds of ringgit against face value in tens of thousands of
+      ringgit, for a premium rate <InlineMath math="r" /> per{" "}
+      <InlineMath math="\text{RM}\,1{,}000" />.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 30 }, y: { min: 0, max: 26 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "r", min: 1.8, max: 8.4, value: 2.6, step: 0.1, label: "r" },
+      { name: "f", min: 1, max: 30, value: 15, step: 1, label: "f" },
+    ],
+    objects: [
+      { id: "premium", kind: "function", appearance: "primary", formula: "r x/10", domain: { min: 0, max: 30 } },
+      { id: "now", kind: "marker", x: "f", y: "r f/10", appearance: "warning" },
+    ],
+    readouts: [
+      { key: "premium", formula: "10r f" },
+    ],
+  }}
+  labels={{
+    r: <>Premium rate <InlineMath math="r" /></>,
+    f: <>Face value <InlineMath math="f" /> in tens of thousands of ringgit</>,
+    premium: <>Annual premium in ringgit</>,
+  }}
+/>
+
+### Example Working Out a Life Insurance Premium
+
+Mr Hafiz is <InlineMath math="30" /> years old and wants a term life policy with a face value of <InlineMath math="\text{RM}\,150{,}000" />. Using the example table, work out **his annual premium**.
+
+<BlockMath math="\frac{150{,}000}{1{,}000} \times 2.60 = 150 \times 2.60 = 390" />
+
+His annual premium is <InlineMath math="\text{RM}\,390" />. Check with the model: at <InlineMath math="r = 2.6" /> and <InlineMath math="f = 15" />, it reads <InlineMath math="390" />. If he bought the same policy at age <InlineMath math="45" />, the premium would be <InlineMath math="150 \times 6.00 = \text{RM}\,900" />.
+
+## Deductibles
+
+In general insurance, a **deductible** is the part of a loss the policyholder pays before the insurer pays anything. If the loss is less than the deductible, no compensation is paid. Change the deductible and the size of the loss in this model.
+
+<MathVisual
+  title={<>Compensation after a Deductible</>}
+  description={
+    <>
+      Compensation in thousands of ringgit, <InlineMath math="\max(0, k - d)" />,
+      against loss <InlineMath math="k" /> in thousands of ringgit, for a
+      deductible <InlineMath math="d" />.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 20 }, y: { min: 0, max: 20 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "d", min: 0, max: 5, value: 1, step: 0.5, label: "d" },
+      { name: "k", min: 0, max: 20, value: 8, step: 0.5, label: "k" },
+    ],
+    objects: [
+      { id: "payout", kind: "function", appearance: "primary", formula: "max(0, x - d)", domain: { min: 0, max: 20 } },
+      { id: "now", kind: "marker", x: "k", y: "max(0, k - d)", appearance: "warning" },
+    ],
+    readouts: [
+      { key: "payout", formula: "1000max(0, k - d)" },
+    ],
+  }}
+  labels={{
+    d: <>Deductible <InlineMath math="d" /> in thousands of ringgit</>,
+    k: <>Loss <InlineMath math="k" /> in thousands of ringgit</>,
+    payout: <>Compensation in ringgit</>,
+  }}
+/>
+
+With a deductible of <InlineMath math="\text{RM}\,1{,}000" /> and a loss of <InlineMath math="\text{RM}\,8{,}000" />, the compensation is <InlineMath math="8{,}000 - 1{,}000 = \text{RM}\,7{,}000" />. Check with the model: at <InlineMath math="d = 1" /> and <InlineMath math="k = 8" />, it reads <InlineMath math="7{,}000" />.
+
+## The Coinsurance Clause in Property Insurance
+
+A property policy usually has a **coinsurance clause**: the owner must insure at least a set percentage of the property's value, for example <InlineMath math="80\%" />. If the sum insured is less than the required amount, compensation is reduced in proportion:
+
+<BlockMath math="\text{Compensation} = \frac{\text{sum insured}}{\text{required insurance}} \times \text{loss} - \text{deductible}" />
+
+### The Effect of the Sum Insured
+
+**Compensation can't be more than the sum insured**. This model draws the compensation for a loss of <InlineMath math="\text{RM}\,60{,}000" /> on a house worth <InlineMath math="\text{RM}\,400{,}000" />, with <InlineMath math="80\%" /> coinsurance and a deductible of <InlineMath math="\text{RM}\,1{,}000" />.
+
+<MathVisual
+  title={<>Compensation by Sum Insured</>}
+  description={
+    <>
+      Compensation in thousands of ringgit against the sum insured in tens of
+      thousands of ringgit. The required amount is <InlineMath math="80\%" /> of{" "}
+      <InlineMath math="\text{RM}\,400{,}000" />, which is{" "}
+      <InlineMath math="\text{RM}\,320{,}000" />.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 40 }, y: { min: 0, max: 62 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "i", min: 4, max: 40, value: 24, step: 1, label: "i" },
+    ],
+    objects: [
+      { id: "payout", kind: "function", appearance: "primary", formula: "60min(x/32, 1) - 1", domain: { min: 1, max: 40 } },
+      { id: "now", kind: "marker", x: "i", y: "60min(i/32, 1) - 1", appearance: "warning" },
+    ],
+    readouts: [
+      { key: "payout", formula: "1000(60min(i/32, 1) - 1)" },
+    ],
+  }}
+  labels={{
+    i: <>Sum insured <InlineMath math="i" /> in tens of thousands of ringgit</>,
+    payout: <>Compensation in ringgit</>,
+  }}
+/>
+
+### Example Compensation with Coinsurance
+
+Mrs Lim's house is worth <InlineMath math="\text{RM}\,400{,}000" /> and insured for <InlineMath math="\text{RM}\,240{,}000" />. The policy has <InlineMath math="80\%" /> coinsurance and a deductible of <InlineMath math="\text{RM}\,1{,}000" />. A fire causes a loss of <InlineMath math="\text{RM}\,60{,}000" />. Work out **the compensation** and the part Mrs Lim bears herself.
+
+<MathContainer>
+<BlockMath math="\text{Required amount} = 80\% \times 400{,}000 = 320{,}000" />
+<BlockMath math="\text{Compensation} = \frac{240{,}000}{320{,}000} \times 60{,}000 - 1{,}000 = 45{,}000 - 1{,}000 = 44{,}000" />
+<BlockMath math="\text{Borne by the owner} = 60{,}000 - 44{,}000 = 16{,}000" />
+</MathContainer>
+
+Check with the model: at <InlineMath math="i = 24" />, it reads <InlineMath math="44{,}000" />. If Mrs Lim insured at least <InlineMath math="\text{RM}\,320{,}000" />, the compensation would rise to <InlineMath math="60{,}000 - 1{,}000 = \text{RM}\,59{,}000" />. This chart compares the two cases.
+
+<BarChart
+  title={<>How a Loss Is Split between the Insurer and the Owner</>}
+  description={
+    <>
+      Ringgit paid by the insurer and borne by the owner for a loss of{" "}
+      <InlineMath math="\text{RM}\,60{,}000" />, with a sum insured of{" "}
+      <InlineMath math="\text{RM}\,240{,}000" /> or{" "}
+      <InlineMath math="\text{RM}\,320{,}000" />.
+    </>
+  }
+  yAxisLabel="Amount (RM)"
+  data={[
+    { name: "Insurer, 240k", value: 44000 },
+    { name: "Owner, 240k", value: 16000 },
+    { name: "Insurer, 320k", value: 59000 },
+    { name: "Owner, 320k", value: 1000 },
+  ]}
+  chartConfig={{ value: { label: "Amount", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>
+
+## Common Mistakes about Insurance
+
+| Mistake | Why it's wrong | How to check |
+| :--- | :--- | :--- |
+| Using the property value, not the required amount, in the coinsurance fraction. | The denominator is the coinsurance percentage times the property value. | Work out the required amount first. |
+| Forgetting the deductible. | The deductible is subtracted from the compensation for every claim. | Check the policy terms. |
+| Dividing the face value by <InlineMath math="100" /> for the premium. | Rates are given per <InlineMath math="\text{RM}\,1{,}000" />. | Read the units in the rate table. |
+| Compensation larger than the sum insured. | The insurer never pays more than the sum insured. | Compare the answer with the face value. |
+
+The first mistake is the most common one in coinsurance questions. **Work out the required amount before the fraction**.
+
+## Practice on Insurance
+
+These questions move from premiums to compensation. **State the amount the owner bears** in every compensation question.
+
+1. Using the example table, work out the annual premium for a <InlineMath math="\text{RM}\,200{,}000" /> life policy for someone aged <InlineMath math="40" />.
+
+2. A car is damaged with a repair cost of <InlineMath math="\text{RM}\,3{,}500" />. The policy deductible is <InlineMath math="\text{RM}\,500" />. Work out the compensation.
+
+3. A property worth <InlineMath math="\text{RM}\,250{,}000" /> is insured for <InlineMath math="\text{RM}\,150{,}000" /> with <InlineMath math="80\%" /> coinsurance and a deductible of <InlineMath math="\text{RM}\,2{,}000" />. The loss is <InlineMath math="\text{RM}\,40{,}000" />. Work out the compensation.
+
+4. In question three, what is the minimum amount that should be insured so the compensation isn't reduced?
+
+### Solutions
+
+**Solution 1**: Divide the face value by <InlineMath math="1{,}000" />, then multiply by the rate:
+
+<BlockMath math="\frac{200{,}000}{1{,}000} \times 4.40 = 200 \times 4.40 = 880" />
+
+The annual premium is <InlineMath math="\text{RM}\,880" />. Check with the model: at <InlineMath math="r = 4.4" /> and <InlineMath math="f = 20" />, it reads <InlineMath math="880" />.
+
+**Solution 2**: Subtract the deductible from the loss:
+
+<BlockMath math="3{,}500 - 500 = 3{,}000" />
+
+The compensation is <InlineMath math="\text{RM}\,3{,}000" />, and the owner **bears** <InlineMath math="\text{RM}\,500" />.
+
+**Solution 3**: Work out the required amount first:
+
+<MathContainer>
+<BlockMath math="80\% \times 250{,}000 = 200{,}000" />
+<BlockMath math="\frac{150{,}000}{200{,}000} \times 40{,}000 - 2{,}000 = 30{,}000 - 2{,}000 = 28{,}000" />
+</MathContainer>
+
+The compensation is <InlineMath math="\text{RM}\,28{,}000" />, and the owner bears <InlineMath math="40{,}000 - 28{,}000 = \text{RM}\,12{,}000" />.
+
+**Solution 4**: The minimum is **the required amount**, <InlineMath math="80\% \times 250{,}000 = \text{RM}\,200{,}000" />. At that amount, the coinsurance fraction becomes <InlineMath math="1" /> and only the deductible is subtracted.

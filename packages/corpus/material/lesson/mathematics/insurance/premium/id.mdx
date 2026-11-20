@@ -1,0 +1,256 @@
+export const metadata = {
+  title: "Matematika Keuangan Asuransi",
+  description:
+    "Jelaskan risiko dan asuransi, hitung premi asuransi jiwa, risiko sendiri, dan ganti rugi dengan klausul koasuransi lewat model interaktif, contoh, dan latihan.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2026-11-17",
+  subject: "Matematika Keuangan: Asuransi",
+};
+
+## Asuransi Memindahkan Risiko Kerugian ke Perusahaan Asuransi
+
+**Risiko** adalah kemungkinan terjadinya kerugian, seperti kecelakaan, kebakaran, atau kematian. **Asuransi** memindahkan risiko itu ke perusahaan asuransi. Pemegang polis membayar **premi** secara berkala, dan perusahaan asuransi membayar **ganti rugi** saat kerugian yang ditanggung terjadi. Besar pertanggungan dalam polis disebut **uang pertanggungan**. Dalam model di sini, kamu menghitung premi dari tabel tarif, melihat pengaruh risiko sendiri, dan menghitung ganti rugi dengan klausul koasuransi.
+
+## Jenis Asuransi
+
+| Jenis | Pertanggungan | Contoh |
+| :--- | :--- | :--- |
+| Asuransi jiwa | Kematian atau cacat tetap | Polis jiwa berjangka |
+| Asuransi kesehatan | Biaya pengobatan | Polis kesehatan |
+| Asuransi kendaraan | Kerusakan kendaraan dan tuntutan pihak ketiga | Polis menyeluruh |
+| Asuransi harta benda | Kebakaran, banjir, atau pencurian harta | Polis kebakaran rumah |
+
+Asuransi jiwa dan kesehatan disebut **asuransi jiwa**, sedangkan asuransi kendaraan dan harta benda disebut **asuransi umum**.
+
+## Premi Asuransi Jiwa
+
+Premi asuransi jiwa bergantung pada usia, jenis kelamin, kesehatan, dan uang pertanggungan. Perusahaan asuransi menyediakan **tabel tarif premi** untuk setiap <InlineMath math="\text{RM}\,1{.}000" /> uang pertanggungan. Grafik ini menunjukkan tabel contoh dari perusahaan rekaan untuk polis jiwa berjangka.
+
+<BarChart
+  title={<>Tabel Contoh Premi Tahunan Menurut Usia</>}
+  description={
+    <>
+      Premi tahunan dalam ringgit untuk setiap{" "}
+      <InlineMath math="\text{RM}\,1{.}000" /> uang pertanggungan. Tarif ini
+      contoh untuk latihan, bukan tarif perusahaan sungguhan.
+    </>
+  }
+  yAxisLabel="Premi per RM 1000 (RM)"
+  data={[
+    { name: "20 tahun", value: 1.8 },
+    { name: "25 tahun", value: 2.1 },
+    { name: "30 tahun", value: 2.6 },
+    { name: "35 tahun", value: 3.3 },
+    { name: "40 tahun", value: 4.4 },
+    { name: "45 tahun", value: 6.0 },
+    { name: "50 tahun", value: 8.4 },
+  ]}
+  chartConfig={{ value: { label: "Premi", colors: { light: ["var(--chart-2)"], dark: ["var(--chart-2)"] } } }}
+/>
+
+### Rumus Premi Tahunan
+
+Premi tahunan dihitung dengan **rumus**:
+
+<BlockMath math="\text{Premi} = \frac{\text{uang pertanggungan}}{1{.}000} \times \text{tarif premi}" />
+
+Model ini menggambar premi tahunan untuk uang pertanggungan sampai <InlineMath math="\text{RM}\,300{.}000" />. Ubah tarif menurut usia dan baca preminya.
+
+<MathVisual
+  title={<>Premi Tahunan Menurut Uang Pertanggungan</>}
+  description={
+    <>
+      Premi dalam ratusan ringgit terhadap uang pertanggungan dalam puluhan
+      ribu ringgit, untuk tarif premi <InlineMath math="r" /> per{" "}
+      <InlineMath math="\text{RM}\,1{.}000" />.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 30 }, y: { min: 0, max: 26 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "r", min: 1.8, max: 8.4, value: 2.6, step: 0.1, label: "r" },
+      { name: "f", min: 1, max: 30, value: 15, step: 1, label: "f" },
+    ],
+    objects: [
+      { id: "premium", kind: "function", appearance: "primary", formula: "r x/10", domain: { min: 0, max: 30 } },
+      { id: "now", kind: "marker", x: "f", y: "r f/10", appearance: "warning" },
+    ],
+    readouts: [
+      { key: "premium", formula: "10r f" },
+    ],
+  }}
+  labels={{
+    r: <>Tarif premi <InlineMath math="r" /></>,
+    f: <>Uang pertanggungan <InlineMath math="f" /> dalam puluhan ribu ringgit</>,
+    premium: <>Premi tahunan dalam ringgit</>,
+  }}
+/>
+
+### Contoh Menghitung Premi Asuransi Jiwa
+
+Pak Hafiz berusia <InlineMath math="30" /> tahun dan ingin membeli polis jiwa berjangka dengan uang pertanggungan <InlineMath math="\text{RM}\,150{.}000" />. Dengan tabel contoh, hitung **premi tahunannya**.
+
+<BlockMath math="\frac{150{.}000}{1{.}000} \times 2{,}60 = 150 \times 2{,}60 = 390" />
+
+Premi tahunannya <InlineMath math="\text{RM}\,390" />. Cek dengan model: pada <InlineMath math="r = 2{,}6" /> dan <InlineMath math="f = 15" />, terbaca <InlineMath math="390" />. Jika ia membeli polis yang sama pada usia <InlineMath math="45" /> tahun, preminya menjadi <InlineMath math="150 \times 6{,}00 = \text{RM}\,900" />.
+
+## Risiko Sendiri
+
+Dalam asuransi umum, **risiko sendiri** adalah bagian kerugian yang ditanggung pemegang polis sebelum perusahaan asuransi membayar. Jika kerugian lebih kecil dari risiko sendiri, tidak ada ganti rugi yang dibayar. Ubah risiko sendiri dan besar kerugian dalam model ini.
+
+<MathVisual
+  title={<>Ganti Rugi setelah Risiko Sendiri</>}
+  description={
+    <>
+      Ganti rugi dalam ribuan ringgit, <InlineMath math="\max(0, k - d)" />,
+      terhadap kerugian <InlineMath math="k" /> dalam ribuan ringgit, untuk
+      risiko sendiri <InlineMath math="d" />.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 20 }, y: { min: 0, max: 20 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "d", min: 0, max: 5, value: 1, step: 0.5, label: "d" },
+      { name: "k", min: 0, max: 20, value: 8, step: 0.5, label: "k" },
+    ],
+    objects: [
+      { id: "payout", kind: "function", appearance: "primary", formula: "max(0, x - d)", domain: { min: 0, max: 20 } },
+      { id: "now", kind: "marker", x: "k", y: "max(0, k - d)", appearance: "warning" },
+    ],
+    readouts: [
+      { key: "payout", formula: "1000max(0, k - d)" },
+    ],
+  }}
+  labels={{
+    d: <>Risiko sendiri <InlineMath math="d" /> dalam ribuan ringgit</>,
+    k: <>Kerugian <InlineMath math="k" /> dalam ribuan ringgit</>,
+    payout: <>Ganti rugi dalam ringgit</>,
+  }}
+/>
+
+Dengan risiko sendiri <InlineMath math="\text{RM}\,1{.}000" /> dan kerugian <InlineMath math="\text{RM}\,8{.}000" />, ganti ruginya <InlineMath math="8{.}000 - 1{.}000 = \text{RM}\,7{.}000" />. Cek dengan model: pada <InlineMath math="d = 1" /> dan <InlineMath math="k = 8" />, terbaca <InlineMath math="7{.}000" />.
+
+## Klausul Koasuransi pada Asuransi Harta Benda
+
+Polis harta benda biasanya punya **klausul koasuransi**: pemilik harus mengasuransikan paling sedikit persentase tertentu dari nilai harta, misalnya <InlineMath math="80\%" />. Jika jumlah yang diasuransikan kurang dari jumlah yang disyaratkan, ganti rugi dikurangi secara sebanding:
+
+<BlockMath math="\text{Ganti rugi} = \frac{\text{jumlah diasuransikan}}{\text{jumlah yang disyaratkan}} \times \text{kerugian} - \text{risiko sendiri}" />
+
+### Pengaruh Jumlah yang Diasuransikan
+
+**Ganti rugi tidak bisa melebihi jumlah yang diasuransikan**. Model ini menggambar ganti rugi untuk kerugian <InlineMath math="\text{RM}\,60{.}000" /> pada rumah senilai <InlineMath math="\text{RM}\,400{.}000" />, dengan koasuransi <InlineMath math="80\%" /> dan risiko sendiri <InlineMath math="\text{RM}\,1{.}000" />.
+
+<MathVisual
+  title={<>Ganti Rugi Menurut Jumlah yang Diasuransikan</>}
+  description={
+    <>
+      Ganti rugi dalam ribuan ringgit terhadap jumlah yang diasuransikan dalam
+      puluhan ribu ringgit. Jumlah yang disyaratkan adalah{" "}
+      <InlineMath math="80\%" /> dari <InlineMath math="\text{RM}\,400{.}000" />,
+      yaitu <InlineMath math="\text{RM}\,320{.}000" />.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 40 }, y: { min: 0, max: 62 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "i", min: 4, max: 40, value: 24, step: 1, label: "i" },
+    ],
+    objects: [
+      { id: "payout", kind: "function", appearance: "primary", formula: "60min(x/32, 1) - 1", domain: { min: 1, max: 40 } },
+      { id: "now", kind: "marker", x: "i", y: "60min(i/32, 1) - 1", appearance: "warning" },
+    ],
+    readouts: [
+      { key: "payout", formula: "1000(60min(i/32, 1) - 1)" },
+    ],
+  }}
+  labels={{
+    i: <>Jumlah diasuransikan <InlineMath math="i" /> dalam puluhan ribu ringgit</>,
+    payout: <>Ganti rugi dalam ringgit</>,
+  }}
+/>
+
+### Contoh Ganti Rugi dengan Koasuransi
+
+Rumah Bu Lim bernilai <InlineMath math="\text{RM}\,400{.}000" /> dan diasuransikan sebesar <InlineMath math="\text{RM}\,240{.}000" />. Polisnya punya koasuransi <InlineMath math="80\%" /> dan risiko sendiri <InlineMath math="\text{RM}\,1{.}000" />. Kebakaran menimbulkan kerugian <InlineMath math="\text{RM}\,60{.}000" />. Hitung **ganti ruginya** dan bagian yang ditanggung sendiri oleh Bu Lim.
+
+<MathContainer>
+<BlockMath math="\text{Jumlah disyaratkan} = 80\% \times 400{.}000 = 320{.}000" />
+<BlockMath math="\text{Ganti rugi} = \frac{240{.}000}{320{.}000} \times 60{.}000 - 1{.}000 = 45{.}000 - 1{.}000 = 44{.}000" />
+<BlockMath math="\text{Ditanggung sendiri} = 60{.}000 - 44{.}000 = 16{.}000" />
+</MathContainer>
+
+Cek dengan model: pada <InlineMath math="i = 24" />, terbaca <InlineMath math="44{.}000" />. Jika Bu Lim mengasuransikan paling sedikit <InlineMath math="\text{RM}\,320{.}000" />, ganti ruginya naik menjadi <InlineMath math="60{.}000 - 1{.}000 = \text{RM}\,59{.}000" />. Grafik ini membandingkan kedua keadaan itu.
+
+<BarChart
+  title={<>Pembagian Kerugian antara Perusahaan dan Pemilik</>}
+  description={
+    <>
+      Ringgit yang dibayar perusahaan asuransi dan yang ditanggung pemilik
+      untuk kerugian <InlineMath math="\text{RM}\,60{.}000" />, dengan nilai
+      pertanggungan <InlineMath math="\text{RM}\,240{.}000" /> atau{" "}
+      <InlineMath math="\text{RM}\,320{.}000" />.
+    </>
+  }
+  yAxisLabel="Jumlah (RM)"
+  data={[
+    { name: "Perusahaan, 240 rb", value: 44000 },
+    { name: "Pemilik, 240 rb", value: 16000 },
+    { name: "Perusahaan, 320 rb", value: 59000 },
+    { name: "Pemilik, 320 rb", value: 1000 },
+  ]}
+  chartConfig={{ value: { label: "Jumlah", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>
+
+## Kesalahan Umum tentang Asuransi
+
+| Kesalahan | Mengapa salah | Cara mengecek |
+| :--- | :--- | :--- |
+| Memakai nilai harta, bukan jumlah yang disyaratkan, dalam pecahan koasuransi. | Penyebutnya adalah persentase koasuransi dikali nilai harta. | Hitung jumlah yang disyaratkan lebih dulu. |
+| Melupakan risiko sendiri. | Risiko sendiri dikurangkan dari ganti rugi setiap klaim. | Cek ketentuan polis. |
+| Membagi uang pertanggungan dengan <InlineMath math="100" /> untuk premi. | Tarif diberikan per <InlineMath math="\text{RM}\,1{.}000" />. | Baca satuan di tabel tarif. |
+| Ganti rugi melebihi jumlah yang diasuransikan. | Perusahaan tidak membayar lebih dari jumlah yang diasuransikan. | Bandingkan jawaban dengan uang pertanggungan. |
+
+Kesalahan pertama paling sering muncul dalam soal koasuransi. **Hitung jumlah yang disyaratkan sebelum pecahan**.
+
+## Latihan Asuransi
+
+Soal-soal ini bergerak dari premi ke ganti rugi. **Sebutkan jumlah yang ditanggung sendiri** di setiap soal ganti rugi.
+
+1. Dengan tabel contoh, hitung premi tahunan polis jiwa <InlineMath math="\text{RM}\,200{.}000" /> untuk orang berusia <InlineMath math="40" /> tahun.
+
+2. Sebuah mobil rusak dengan biaya perbaikan <InlineMath math="\text{RM}\,3{.}500" />. Risiko sendiri polisnya <InlineMath math="\text{RM}\,500" />. Hitung ganti ruginya.
+
+3. Harta senilai <InlineMath math="\text{RM}\,250{.}000" /> diasuransikan <InlineMath math="\text{RM}\,150{.}000" /> dengan koasuransi <InlineMath math="80\%" /> dan risiko sendiri <InlineMath math="\text{RM}\,2{.}000" />. Kerugiannya <InlineMath math="\text{RM}\,40{.}000" />. Hitung ganti ruginya.
+
+4. Pada soal ketiga, berapa jumlah minimum yang sebaiknya diasuransikan agar ganti rugi tidak dikurangi?
+
+### Pembahasan
+
+**Pembahasan 1**: Bagi uang pertanggungan dengan <InlineMath math="1{.}000" />, lalu kalikan dengan tarifnya:
+
+<BlockMath math="\frac{200{.}000}{1{.}000} \times 4{,}40 = 200 \times 4{,}40 = 880" />
+
+Premi tahunannya <InlineMath math="\text{RM}\,880" />. Cek dengan model: pada <InlineMath math="r = 4{,}4" /> dan <InlineMath math="f = 20" />, terbaca <InlineMath math="880" />.
+
+**Pembahasan 2**: Kurangkan risiko sendiri dari kerugian:
+
+<BlockMath math="3{.}500 - 500 = 3{.}000" />
+
+Ganti ruginya <InlineMath math="\text{RM}\,3{.}000" />, dan pemilik **menanggung sendiri** <InlineMath math="\text{RM}\,500" />.
+
+**Pembahasan 3**: Hitung jumlah yang disyaratkan lebih dulu:
+
+<MathContainer>
+<BlockMath math="80\% \times 250{.}000 = 200{.}000" />
+<BlockMath math="\frac{150{.}000}{200{.}000} \times 40{.}000 - 2{.}000 = 30{.}000 - 2{.}000 = 28{.}000" />
+</MathContainer>
+
+Ganti ruginya <InlineMath math="\text{RM}\,28{.}000" />, dan pemilik menanggung <InlineMath math="40{.}000 - 28{.}000 = \text{RM}\,12{.}000" />.
+
+**Pembahasan 4**: Jumlah minimumnya adalah **jumlah yang disyaratkan**, yaitu <InlineMath math="80\% \times 250{.}000 = \text{RM}\,200{.}000" />. Pada jumlah itu, pecahan koasuransi menjadi <InlineMath math="1" /> dan hanya risiko sendiri yang dikurangkan.
