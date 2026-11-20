@@ -1,0 +1,260 @@
+export const metadata = {
+  title: "Number Bases Notes for Form Four",
+  description:
+    "Form 4 Mathematics Chapter 2: find place values in bases two to nine, convert numbers between bases, and add and subtract in number bases, with practice.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2026-11-17",
+  subject: "Number Bases",
+};
+
+## Every Digit Is Worth a Power of Its Base
+
+In **base** <InlineMath math="b" />, numbers are written with the digits <InlineMath math="0" /> to <InlineMath math="b - 1" />, and each position is worth a **power** of <InlineMath math="b" />. The rightmost digit is worth <InlineMath math="b^0 = 1" />, the digit to its left <InlineMath math="b^1" />, then <InlineMath math="b^2" />, and so on. To find a number's value in base ten, multiply each digit by its place value and add them up. In the models here, you break a number into place values, compare how many digits a number needs in different bases and see how the base changes the value of the same digits.
+
+## Place Value and Digit Value
+
+Take the number <InlineMath math="10110_2" />. From the right, its **place values** are <InlineMath math="2^0, 2^1, 2^2, 2^3, 2^4" />, which are <InlineMath math="1, 2, 4, 8, 16" />.
+
+<BlockMath math="10110_2 = 1 \times 2^4 + 0 \times 2^3 + 1 \times 2^2 + 1 \times 2^1 + 0 \times 2^0 = 22_{10}" />
+
+This chart shows what each digit contributes to the total. A digit <InlineMath math="0" /> contributes nothing even when its place value is large.
+
+<BarChart
+  title={<>What Each Digit of <InlineMath math="10110_2" /> Contributes</>}
+  description={
+    <>
+      Digit value, the digit times its place value, for each position. The
+      total is <InlineMath math="22" />.
+    </>
+  }
+  yAxisLabel="Digit value"
+  data={[
+    { name: "2⁴", value: 1 * 16 },
+    { name: "2³", value: 0 * 8 },
+    { name: "2²", value: 1 * 4 },
+    { name: "2¹", value: 1 * 2 },
+    { name: "2⁰", value: 0 * 1 },
+  ]}
+  chartConfig={{ value: { label: "Digit value", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>
+
+Place values in base two double at every position. Move the position slider and read the place value.
+
+<MathVisual
+  title={<>Place Values in Base Two</>}
+  description={
+    <>
+      Place value <InlineMath math="2^k" /> in tens,{" "}
+      <InlineMath math="\dfrac{2^k}{10}" />, against position{" "}
+      <InlineMath math="k" /> from the right, starting at{" "}
+      <InlineMath math="k = 0" />.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 7.5 }, y: { min: 0, max: 13.5 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "k", min: 0, max: 7, value: 4, step: 1, label: "k" },
+    ],
+    objects: [
+      { id: "place", kind: "function", appearance: "primary", formula: "2^x/10", domain: { min: 0, max: 7.2 } },
+      { id: "now", kind: "marker", x: "k", y: "2^k/10", appearance: "warning" },
+    ],
+    readouts: [
+      { key: "value", formula: "2^k" },
+    ],
+  }}
+  labels={{
+    k: <>Digit position <InlineMath math="k" /></>,
+    value: <>Place value</>,
+  }}
+/>
+
+## The Base Changes the Value of the Same Digits
+
+**The same digits give different values** in different bases. The number <InlineMath math="123_b" /> is worth <InlineMath math="b^2 + 2b + 3" /> in base ten. Change the base and watch the value grow quickly.
+
+<MathVisual
+  title={<>The Value of <InlineMath math="123_b" /> by Base</>}
+  description={
+    <>
+      The value <InlineMath math="123_b = b^2 + 2b + 3" /> in tens against the
+      base <InlineMath math="b" />. The digit <InlineMath math="3" /> is only
+      valid when <InlineMath math="b \ge 4" />.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 10.5 }, y: { min: 0, max: 12.5 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "b", min: 4, max: 10, value: 5, step: 1, label: "b" },
+    ],
+    objects: [
+      { id: "value", kind: "function", appearance: "primary", formula: "(x^2 + 2x + 3)/10", domain: { min: 4, max: 10 } },
+      { id: "now", kind: "marker", x: "b", y: "(b^2 + 2b + 3)/10", appearance: "warning" },
+    ],
+    readouts: [
+      { key: "decimal", formula: "b^2 + 2b + 3" },
+    ],
+  }}
+  labels={{
+    b: <>Base <InlineMath math="b" /></>,
+    decimal: <>Value in base ten</>,
+  }}
+/>
+
+### Example Finding an Unknown Base
+
+Given <InlineMath math="123_b = 38_{10}" />. Find **the value** of <InlineMath math="b" />.
+
+<MathContainer>
+<BlockMath math="b^2 + 2b + 3 = 38" />
+<BlockMath math="b^2 + 2b - 35 = 0 \quad\Rightarrow\quad (b + 7)(b - 5) = 0" />
+</MathContainer>
+
+The base must be positive, so <InlineMath math="b = 5" />. Check with the model: at <InlineMath math="b = 5" />, it reads <InlineMath math="25 + 10 + 3 = 38" />.
+
+### Number of Digits in Different Bases
+
+**A small base needs more digits** for the same number. The number <InlineMath math="45_{10}" /> is written as <InlineMath math="101101_2" />, <InlineMath math="140_5" />, <InlineMath math="55_8" /> and <InlineMath math="45_{10}" />.
+
+<BarChart
+  title={<>Number of Digits for <InlineMath math="45" /> in Four Bases</>}
+  description={
+    <>
+      The same number needs six digits in base two but only two digits in base
+      eight and base ten.
+    </>
+  }
+  yAxisLabel="Number of digits"
+  data={[
+    { name: "Base 2", value: 6 },
+    { name: "Base 5", value: 3 },
+    { name: "Base 8", value: 2 },
+    { name: "Base 10", value: 2 },
+  ]}
+  chartConfig={{ value: { label: "Number of digits", colors: { light: ["var(--chart-2)"], dark: ["var(--chart-2)"] } } }}
+/>
+
+The number of digits of <InlineMath math="N" /> in base <InlineMath math="b" /> is <InlineMath math="\lfloor \log_b N \rfloor + 1" />. This model draws the number of digits for every number up to <InlineMath math="64" />.
+
+<MathVisual
+  title={<>Number of Digits by Size of Number</>}
+  description={
+    <>
+      Number of digits <InlineMath math="\lfloor \log_b N \rfloor + 1" />{" "}
+      against the number <InlineMath math="N" /> in units of{" "}
+      <InlineMath math="8" />, for base <InlineMath math="b" />.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 8.2 }, y: { min: 0, max: 7.5 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "b", min: 2, max: 10, value: 2, step: 1, label: "b" },
+      { name: "n", min: 1, max: 64, value: 45, step: 1, label: "n" },
+    ],
+    objects: [
+      { id: "digits", kind: "function", appearance: "primary", formula: "floor(ln(8x)/ln(b) + 0.000001) + 1", domain: { min: 0.125, max: 8 } },
+      { id: "now", kind: "marker", x: "n/8", y: "floor(ln(n)/ln(b) + 0.000001) + 1", appearance: "warning" },
+    ],
+    readouts: [
+      { key: "digits", formula: "floor(ln(n)/ln(b) + 0.000001) + 1" },
+    ],
+  }}
+  labels={{
+    b: <>Base <InlineMath math="b" /></>,
+    n: <>Number <InlineMath math="n" /></>,
+    digits: <>Number of digits</>,
+  }}
+/>
+
+## Converting Numbers between Bases
+
+There are two directions. To convert a number in base <InlineMath math="b" /> to base ten, expand it by place value as above. For the other direction, use repeated division. A conversion between two other bases can go through base ten, or go straight across when one base is a power of the other.
+
+To convert a base ten number to base <InlineMath math="b" />, **divide repeatedly by** <InlineMath math="b" /> and record the remainders. The remainders are read from the bottom up.
+
+### Example Converting to Base Five
+
+<BlockMath math="45 \div 5 = 9 \text{ rem } 0, \quad 9 \div 5 = 1 \text{ rem } 4, \quad 1 \div 5 = 0 \text{ rem } 1" />
+
+**Read the remainders from the bottom**: <InlineMath math="45_{10} = 140_5" />. Check by expanding back: <InlineMath math="1 \times 25 + 4 \times 5 + 0 = 45" />.
+
+### Example Converting between Base Two and Base Eight
+
+Because <InlineMath math="8 = 2^3" />, every **three base two digits** match one base eight digit. Group the digits from the right:
+
+<BlockMath math="101101_2 = \underbrace{101}_{5}\,\underbrace{101}_{5} = 55_8" />
+
+Check through base ten: <InlineMath math="101101_2 = 32 + 8 + 4 + 1 = 45" /> and <InlineMath math="55_8 = 40 + 5 = 45" />.
+
+## Adding and Subtracting in Number Bases
+
+Addition in base <InlineMath math="b" /> works like addition in base ten, but **carry one when a column reaches** <InlineMath math="b" />, not ten. In subtraction, borrow <InlineMath math="b" /> from the column on the left.
+
+### Example Addition in Base Two
+
+<BlockMath math="1011_2 + 110_2 = 10001_2" />
+
+**Start from the rightmost column**: <InlineMath math="1 + 0 = 1" />. Second column: <InlineMath math="1 + 1 = 2 = 10_2" />, write <InlineMath math="0" /> carry <InlineMath math="1" />. Third column: <InlineMath math="0 + 1 + 1 = 10_2" />, write <InlineMath math="0" /> carry <InlineMath math="1" />. Fourth column: <InlineMath math="1 + 1 = 10_2" />. Check: <InlineMath math="11 + 6 = 17" /> and <InlineMath math="10001_2 = 16 + 1 = 17" />.
+
+### Example Subtraction in Base Five
+
+Calculate <InlineMath math="1302_5 - 244_5" />. In base five, **every borrow is worth five**.
+
+<BlockMath math="1302_5 - 244_5 = 1003_5" />
+
+Rightmost column: <InlineMath math="2 - 4" /> doesn't work, so borrow five, <InlineMath math="7 - 4 = 3" />. The second column is now <InlineMath math="0 - 1" />, so borrow again, <InlineMath math="5 - 1 - 4 = 0" />. Third column: <InlineMath math="3 - 1 - 2 = 0" />. Fourth column: <InlineMath math="1" />. Check: <InlineMath math="1302_5 = 202" />, <InlineMath math="244_5 = 74" />, and <InlineMath math="202 - 74 = 128 = 1003_5" />.
+
+## Common Mistakes about Number Bases
+
+| Mistake | Why it's wrong | How to check |
+| :--- | :--- | :--- |
+| Writing the digit <InlineMath math="5" /> in base five. | Base five only uses the digits <InlineMath math="0" /> to <InlineMath math="4" />. | Every digit must be less than the base. |
+| Reading the remainders from top to bottom. | The first remainder is the rightmost digit. | Expand the answer and compare it with the original number. |
+| The rightmost place value is <InlineMath math="b^1" />. | The rightmost place value is <InlineMath math="b^0 = 1" />. | Count powers starting from zero. |
+| Carrying one when a column reaches ten in base two. | Carry one when a column reaches the base, which is two. | Convert each column total to that base. |
+
+The second mistake is the most common one in conversion questions. **Read the remainders from the bottom up**.
+
+## Practice on Number Bases
+
+These questions move from place value to conversion and addition. **Check every answer through base ten**.
+
+1. Convert <InlineMath math="2341_5" /> to base ten.
+
+2. Convert <InlineMath math="100_{10}" /> to base three.
+
+3. Convert <InlineMath math="11010111_2" /> to base eight.
+
+4. Given <InlineMath math="25_b = 17_{10}" />. Find <InlineMath math="b" />.
+
+### Solutions
+
+**Solution 1**: Multiply each digit by a power of five:
+
+<BlockMath math="2 \times 125 + 3 \times 25 + 4 \times 5 + 1 = 250 + 75 + 20 + 1 = 346" />
+
+Check: every digit is less than <InlineMath math="5" />, so the number is valid in base five.
+
+**Solution 2**: Divide repeatedly by three:
+
+<BlockMath math="100 = 3 \times 33 + 1, \quad 33 = 3 \times 11 + 0, \quad 11 = 3 \times 3 + 2, \quad 3 = 3 \times 1 + 0, \quad 1 = 3 \times 0 + 1" />
+
+**Read the remainders from the bottom**: <InlineMath math="10201_3" />. Check: <InlineMath math="81 + 0 + 18 + 0 + 1 = 100" />.
+
+**Solution 3**: Group three digits from the right, adding a zero in front if needed:
+
+<BlockMath math="011\,010\,111_2 = 3\,2\,7 = 327_8" />
+
+Check: <InlineMath math="327_8 = 192 + 16 + 7 = 215" /> and <InlineMath math="11010111_2 = 128 + 64 + 16 + 4 + 2 + 1 = 215" />.
+
+**Solution 4**: Expand and solve:
+
+<BlockMath math="2b + 5 = 17 \quad\Rightarrow\quad b = 6" />
+
+Check: the digit <InlineMath math="5" /> is less than <InlineMath math="6" />, and <InlineMath math="2 \times 6 + 5 = 17" />.

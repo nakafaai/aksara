@@ -62,7 +62,39 @@ export const kssmForm4MathematicsTopicNodes = [
     },
   }),
   unitNode({
+    children: [
+      materialNode({
+        key: "form-4-mathematics-number-bases-number-base",
+        level: "lesson",
+        materialKeys: ["lesson.mathematics.number-base"],
+        order: 10,
+        outcomes: [
+          {
+            code: "Tingkatan 4, Standard Kandungan 2.1",
+            ...mathematicsStandards,
+          },
+        ],
+      }),
+    ],
     key: "form-4-mathematics-number-bases",
+    materialCard: {
+      de: {
+        description: "Rechne zwischen Basen um und addiere darin.",
+        title: "Zahlensysteme",
+      },
+      en: {
+        description: "Convert between bases and add in them.",
+        title: "Number Bases",
+      },
+      id: {
+        description: "Ubah bilangan antarbasis dan jumlahkan.",
+        title: "Basis Bilangan",
+      },
+      ms: {
+        description: "Tukar nombor antara asas dan tambah dalamnya.",
+        title: "Asas Nombor",
+      },
+    },
     order: 20,
     translations: {
       de: { routeSlug: "zahlensysteme", title: "Zahlensysteme" },

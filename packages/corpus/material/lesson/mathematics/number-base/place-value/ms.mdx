@@ -1,0 +1,260 @@
+export const metadata = {
+  title: "Nota Asas Nombor Tingkatan Empat",
+  description:
+    "Nota Matematik Tingkatan 4 Bab 2: tentukan nilai tempat dalam asas dua hingga sembilan, tukar nombor antara asas, serta tambah dan tolak dalam asas nombor.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2026-11-17",
+  subject: "Asas Nombor",
+};
+
+## Setiap Digit Bernilai Kuasa Asasnya
+
+Dalam **asas** <InlineMath math="b" />, nombor ditulis dengan digit <InlineMath math="0" /> hingga <InlineMath math="b - 1" />, dan setiap kedudukan bernilai satu **kuasa** <InlineMath math="b" />. Digit paling kanan bernilai <InlineMath math="b^0 = 1" />, digit di sebelah kirinya <InlineMath math="b^1" />, kemudian <InlineMath math="b^2" />, dan seterusnya. Untuk mencari nilai nombor dalam asas sepuluh, darabkan setiap digit dengan nilai tempatnya dan jumlahkan. Dalam model di sini, kamu memecahkan nombor kepada nilai tempat, membandingkan bilangan digit dalam asas berlainan dan melihat bagaimana asas mengubah nilai digit yang sama.
+
+## Nilai Tempat dan Nilai Digit
+
+Ambil nombor <InlineMath math="10110_2" />. Dari kanan, **nilai tempatnya** ialah <InlineMath math="2^0, 2^1, 2^2, 2^3, 2^4" />, iaitu <InlineMath math="1, 2, 4, 8, 16" />.
+
+<BlockMath math="10110_2 = 1 \times 2^4 + 0 \times 2^3 + 1 \times 2^2 + 1 \times 2^1 + 0 \times 2^0 = 22_{10}" />
+
+Carta ini menunjukkan sumbangan setiap digit kepada jumlah. Digit <InlineMath math="0" /> tidak menyumbang apa-apa walaupun nilai tempatnya besar.
+
+<BarChart
+  title={<>Sumbangan Setiap Digit dalam <InlineMath math="10110_2" /></>}
+  description={
+    <>
+      Nilai digit, iaitu digit darab nilai tempat, bagi setiap kedudukan.
+      Jumlahnya <InlineMath math="22" />.
+    </>
+  }
+  yAxisLabel="Nilai digit"
+  data={[
+    { name: "2⁴", value: 1 * 16 },
+    { name: "2³", value: 0 * 8 },
+    { name: "2²", value: 1 * 4 },
+    { name: "2¹", value: 1 * 2 },
+    { name: "2⁰", value: 0 * 1 },
+  ]}
+  chartConfig={{ value: { label: "Nilai digit", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>
+
+Nilai tempat dalam asas dua berganda pada setiap kedudukan. Gerakkan gelangsar kedudukan dan baca nilai tempatnya.
+
+<MathVisual
+  title={<>Nilai Tempat dalam Asas Dua</>}
+  description={
+    <>
+      Nilai tempat <InlineMath math="2^k" /> dalam puluhan,{" "}
+      <InlineMath math="\dfrac{2^k}{10}" />, terhadap kedudukan{" "}
+      <InlineMath math="k" /> dari kanan, bermula dengan{" "}
+      <InlineMath math="k = 0" />.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 7.5 }, y: { min: 0, max: 13.5 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "k", min: 0, max: 7, value: 4, step: 1, label: "k" },
+    ],
+    objects: [
+      { id: "place", kind: "function", appearance: "primary", formula: "2^x/10", domain: { min: 0, max: 7.2 } },
+      { id: "now", kind: "marker", x: "k", y: "2^k/10", appearance: "warning" },
+    ],
+    readouts: [
+      { key: "value", formula: "2^k" },
+    ],
+  }}
+  labels={{
+    k: <>Kedudukan digit <InlineMath math="k" /></>,
+    value: <>Nilai tempat</>,
+  }}
+/>
+
+## Asas Mengubah Nilai Digit yang Sama
+
+**Digit yang sama memberi nilai berbeza** dalam asas berbeza. Nombor <InlineMath math="123_b" /> bernilai <InlineMath math="b^2 + 2b + 3" /> dalam asas sepuluh. Ubah asas dan perhatikan nilainya meningkat dengan cepat.
+
+<MathVisual
+  title={<>Nilai <InlineMath math="123_b" /> Mengikut Asas</>}
+  description={
+    <>
+      Nilai <InlineMath math="123_b = b^2 + 2b + 3" /> dalam puluhan terhadap
+      asas <InlineMath math="b" />. Digit <InlineMath math="3" /> hanya sah
+      apabila <InlineMath math="b \ge 4" />.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 10.5 }, y: { min: 0, max: 12.5 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "b", min: 4, max: 10, value: 5, step: 1, label: "b" },
+    ],
+    objects: [
+      { id: "value", kind: "function", appearance: "primary", formula: "(x^2 + 2x + 3)/10", domain: { min: 4, max: 10 } },
+      { id: "now", kind: "marker", x: "b", y: "(b^2 + 2b + 3)/10", appearance: "warning" },
+    ],
+    readouts: [
+      { key: "decimal", formula: "b^2 + 2b + 3" },
+    ],
+  }}
+  labels={{
+    b: <>Asas <InlineMath math="b" /></>,
+    decimal: <>Nilai dalam asas sepuluh</>,
+  }}
+/>
+
+### Contoh Mencari Asas yang Tidak Diketahui
+
+Diberi <InlineMath math="123_b = 38_{10}" />. Cari **nilai** <InlineMath math="b" />.
+
+<MathContainer>
+<BlockMath math="b^2 + 2b + 3 = 38" />
+<BlockMath math="b^2 + 2b - 35 = 0 \quad\Rightarrow\quad (b + 7)(b - 5) = 0" />
+</MathContainer>
+
+Asas mesti positif, jadi <InlineMath math="b = 5" />. Semak dengan model: pada <InlineMath math="b = 5" />, bacaan ialah <InlineMath math="25 + 10 + 3 = 38" />.
+
+### Bilangan Digit dalam Asas Berbeza
+
+**Asas yang kecil memerlukan lebih banyak digit** untuk nombor yang sama. Nombor <InlineMath math="45_{10}" /> ditulis sebagai <InlineMath math="101101_2" />, <InlineMath math="140_5" />, <InlineMath math="55_8" /> dan <InlineMath math="45_{10}" />.
+
+<BarChart
+  title={<>Bilangan Digit bagi <InlineMath math="45" /> dalam Empat Asas</>}
+  description={
+    <>
+      Nombor yang sama memerlukan enam digit dalam asas dua tetapi hanya dua
+      digit dalam asas lapan dan asas sepuluh.
+    </>
+  }
+  yAxisLabel="Bilangan digit"
+  data={[
+    { name: "Asas 2", value: 6 },
+    { name: "Asas 5", value: 3 },
+    { name: "Asas 8", value: 2 },
+    { name: "Asas 10", value: 2 },
+  ]}
+  chartConfig={{ value: { label: "Bilangan digit", colors: { light: ["var(--chart-2)"], dark: ["var(--chart-2)"] } } }}
+/>
+
+Bilangan digit bagi nombor <InlineMath math="N" /> dalam asas <InlineMath math="b" /> ialah <InlineMath math="\lfloor \log_b N \rfloor + 1" />. Model ini melukis bilangan digit bagi setiap nombor hingga <InlineMath math="64" />.
+
+<MathVisual
+  title={<>Bilangan Digit Mengikut Saiz Nombor</>}
+  description={
+    <>
+      Bilangan digit <InlineMath math="\lfloor \log_b N \rfloor + 1" /> terhadap
+      nombor <InlineMath math="N" /> dalam unit <InlineMath math="8" />, bagi
+      asas <InlineMath math="b" />.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 8.2 }, y: { min: 0, max: 7.5 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "b", min: 2, max: 10, value: 2, step: 1, label: "b" },
+      { name: "n", min: 1, max: 64, value: 45, step: 1, label: "n" },
+    ],
+    objects: [
+      { id: "digits", kind: "function", appearance: "primary", formula: "floor(ln(8x)/ln(b) + 0.000001) + 1", domain: { min: 0.125, max: 8 } },
+      { id: "now", kind: "marker", x: "n/8", y: "floor(ln(n)/ln(b) + 0.000001) + 1", appearance: "warning" },
+    ],
+    readouts: [
+      { key: "digits", formula: "floor(ln(n)/ln(b) + 0.000001) + 1" },
+    ],
+  }}
+  labels={{
+    b: <>Asas <InlineMath math="b" /></>,
+    n: <>Nombor <InlineMath math="n" /></>,
+    digits: <>Bilangan digit</>,
+  }}
+/>
+
+## Menukar Nombor antara Asas
+
+Ada dua arah penukaran. Untuk menukar nombor asas <InlineMath math="b" /> kepada asas sepuluh, kembangkan nombor itu mengikut nilai tempat seperti di atas. Untuk arah sebaliknya, gunakan pembahagian berulang. Penukaran antara dua asas lain boleh dibuat melalui asas sepuluh, atau terus jika satu asas ialah kuasa asas yang lain.
+
+Untuk menukar nombor asas sepuluh kepada asas <InlineMath math="b" />, **bahagi berulang kali dengan** <InlineMath math="b" /> dan catat bakinya. Baki dibaca dari bawah ke atas.
+
+### Contoh Penukaran ke Asas Lima
+
+<BlockMath math="45 \div 5 = 9 \text{ baki } 0, \quad 9 \div 5 = 1 \text{ baki } 4, \quad 1 \div 5 = 0 \text{ baki } 1" />
+
+**Baca baki dari bawah**: <InlineMath math="45_{10} = 140_5" />. Semak dengan mengembangkan semula: <InlineMath math="1 \times 25 + 4 \times 5 + 0 = 45" />.
+
+### Contoh Menukar antara Asas Dua dan Asas Lapan
+
+Oleh sebab <InlineMath math="8 = 2^3" />, setiap **tiga digit asas dua** sepadan dengan satu digit asas lapan. Kumpulkan digit dari kanan:
+
+<BlockMath math="101101_2 = \underbrace{101}_{5}\,\underbrace{101}_{5} = 55_8" />
+
+Semak melalui asas sepuluh: <InlineMath math="101101_2 = 32 + 8 + 4 + 1 = 45" /> dan <InlineMath math="55_8 = 40 + 5 = 45" />.
+
+## Tambah dan Tolak dalam Asas Nombor
+
+Penambahan dalam asas <InlineMath math="b" /> sama seperti dalam asas sepuluh, tetapi **bawa satu apabila jumlah mencapai** <InlineMath math="b" />, bukan sepuluh. Dalam penolakan, pinjam <InlineMath math="b" /> daripada lajur di sebelah kiri.
+
+### Contoh Penambahan dalam Asas Dua
+
+<BlockMath math="1011_2 + 110_2 = 10001_2" />
+
+**Mulakan dari lajur paling kanan**: <InlineMath math="1 + 0 = 1" />. Lajur kedua: <InlineMath math="1 + 1 = 2 = 10_2" />, tulis <InlineMath math="0" /> bawa <InlineMath math="1" />. Lajur ketiga: <InlineMath math="0 + 1 + 1 = 10_2" />, tulis <InlineMath math="0" /> bawa <InlineMath math="1" />. Lajur keempat: <InlineMath math="1 + 1 = 10_2" />. Semak: <InlineMath math="11 + 6 = 17" /> dan <InlineMath math="10001_2 = 16 + 1 = 17" />.
+
+### Contoh Penolakan dalam Asas Lima
+
+Kira <InlineMath math="1302_5 - 244_5" />. Dalam asas lima, **setiap pinjaman bernilai lima**.
+
+<BlockMath math="1302_5 - 244_5 = 1003_5" />
+
+Lajur paling kanan: <InlineMath math="2 - 4" /> tidak boleh, jadi pinjam lima, <InlineMath math="7 - 4 = 3" />. Lajur kedua kini <InlineMath math="0 - 1" />, pinjam lagi, <InlineMath math="5 - 1 - 4 = 0" />. Lajur ketiga: <InlineMath math="3 - 1 - 2 = 0" />. Lajur keempat: <InlineMath math="1" />. Semak: <InlineMath math="1302_5 = 202" />, <InlineMath math="244_5 = 74" />, dan <InlineMath math="202 - 74 = 128 = 1003_5" />.
+
+## Kesilapan Lazim tentang Asas Nombor
+
+| Kesilapan | Sebab salah | Cara semak |
+| :--- | :--- | :--- |
+| Menulis digit <InlineMath math="5" /> dalam asas lima. | Asas lima hanya menggunakan digit <InlineMath math="0" /> hingga <InlineMath math="4" />. | Setiap digit mesti kurang daripada asas. |
+| Membaca baki dari atas ke bawah. | Baki pertama ialah digit paling kanan. | Kembangkan jawapan dan bandingkan dengan nombor asal. |
+| Nilai tempat paling kanan ialah <InlineMath math="b^1" />. | Nilai tempat paling kanan ialah <InlineMath math="b^0 = 1" />. | Kira kuasa bermula daripada sifar. |
+| Membawa satu apabila jumlah mencapai sepuluh dalam asas dua. | Bawa satu apabila jumlah mencapai asas, iaitu dua. | Tukar jumlah lajur kepada asas itu. |
+
+Kesilapan kedua paling kerap muncul dalam soalan penukaran. **Baca baki dari bawah ke atas**.
+
+## Latihan Asas Nombor
+
+Soalan ini bergerak dari nilai tempat ke penukaran dan penambahan. **Semak setiap jawapan melalui asas sepuluh**.
+
+1. Tukarkan <InlineMath math="2341_5" /> kepada asas sepuluh.
+
+2. Tukarkan <InlineMath math="100_{10}" /> kepada asas tiga.
+
+3. Tukarkan <InlineMath math="11010111_2" /> kepada asas lapan.
+
+4. Diberi <InlineMath math="25_b = 17_{10}" />. Cari <InlineMath math="b" />.
+
+### Penyelesaian
+
+**Penyelesaian 1**: Darab setiap digit dengan kuasa lima:
+
+<BlockMath math="2 \times 125 + 3 \times 25 + 4 \times 5 + 1 = 250 + 75 + 20 + 1 = 346" />
+
+Semak: setiap digit kurang daripada <InlineMath math="5" />, jadi nombor itu sah dalam asas lima.
+
+**Penyelesaian 2**: Bahagi berulang kali dengan tiga:
+
+<BlockMath math="100 = 3 \times 33 + 1, \quad 33 = 3 \times 11 + 0, \quad 11 = 3 \times 3 + 2, \quad 3 = 3 \times 1 + 0, \quad 1 = 3 \times 0 + 1" />
+
+**Baca baki dari bawah**: <InlineMath math="10201_3" />. Semak: <InlineMath math="81 + 0 + 18 + 0 + 1 = 100" />.
+
+**Penyelesaian 3**: Kumpulkan tiga digit dari kanan, tambah sifar di hadapan jika perlu:
+
+<BlockMath math="011\,010\,111_2 = 3\,2\,7 = 327_8" />
+
+Semak: <InlineMath math="327_8 = 192 + 16 + 7 = 215" /> dan <InlineMath math="11010111_2 = 128 + 64 + 16 + 4 + 2 + 1 = 215" />.
+
+**Penyelesaian 4**: Kembangkan dan selesaikan:
+
+<BlockMath math="2b + 5 = 17 \quad\Rightarrow\quad b = 6" />
+
+Semak: digit <InlineMath math="5" /> kurang daripada <InlineMath math="6" />, dan <InlineMath math="2 \times 6 + 5 = 17" />.
