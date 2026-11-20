@@ -9,6 +9,7 @@ import { merdekaClass11MathematicsTopicNodes } from "#corpus/curriculum/merdeka/
 import { merdekaClass11PhysicsTopicNodes } from "#corpus/curriculum/merdeka/topics/class-11/physics";
 import { merdekaClass12AdvancedMathematicsTopicNodes } from "#corpus/curriculum/merdeka/topics/class-12/advanced";
 import { merdekaClass12MathematicsTopicNodes } from "#corpus/curriculum/merdeka/topics/class-12/mathematics";
+import { merdekaClass12PhysicsTopicNodes } from "#corpus/curriculum/merdeka/topics/class-12/physics";
 import { subjectNode } from "#corpus/curriculum/schema";
 
 export const merdekaClass10SubjectNodes = [
@@ -235,6 +236,18 @@ export const merdekaClass12SubjectNodes = [
         routeSlug: "matematik-lanjutan",
         title: "Matematik Lanjutan",
       },
+    },
+  }),
+  subjectNode({
+    children: merdekaClass12PhysicsTopicNodes,
+    key: "class-12-physics",
+    materialDomain: "physics",
+    order: 40,
+    translations: {
+      de: { routeSlug: "physik", title: "Physik" },
+      en: { routeSlug: "physics", title: "Physics" },
+      id: { routeSlug: "fisika", title: "Fisika" },
+      ms: { routeSlug: "fizik", title: "Fizik" },
     },
   }),
 ];
