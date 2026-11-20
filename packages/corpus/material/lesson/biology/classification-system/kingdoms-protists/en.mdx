@@ -1,0 +1,313 @@
+export const metadata = {
+  title: "Classification System and Naming of Organisms",
+  description:
+    "Sort organisms into the six kingdoms, rank taxa from kingdom down to species, write binomial names correctly and build a dichotomous key that works.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2026-11-20",
+  subject: "Classification and Naming of Organisms",
+};
+
+## Common Names Can Mislead
+
+Classification means sorting living things into groups by the features they share. The groups sit inside each other like boxes inside boxes. The biggest box is the **kingdom**, and every organism belongs to one of **six kingdoms**. The smallest box is the **species**, and each species gets a two-word scientific name, such as *Oryza sativa* for rice. To identify an organism you don't know, you use a dichotomous key. In the sea model below, switch the language and find the name that never changes.
+
+Why bother with scientific names? Common names change with language and place. In Malaysia, people call a whale ikan paus, whale fish, yet a whale breathes with lungs and feeds its young on milk, so it's a mammal. English calls an animal with no backbone and no gills a jellyfish. So **the word fish in a common name** proves nothing.
+
+<SeaNameLab
+  title={<>One Animal, Four Names</>}
+  description={
+    <>
+      Five animals from Malaysian waters, each with a name tag. Switch the
+      language and compare each animal's common name with its scientific name.
+    </>
+  }
+  footer={<>Switch the language and watch which line on the name tag stays put.</>}
+  animals={["dugong", "whale", "jellyfish", "seaStar", "mackerel"]}
+  languages={["malay", "english", "indonesian", "german"]}
+  labels={{
+    language: "Language",
+    languages: {
+      malay: "Malay",
+      english: "English",
+      indonesian: "Indonesian",
+      german: "German",
+    },
+    animal: "Animal",
+    names: {
+      dugong: { malay: "duyung", english: "dugong", indonesian: "duyung", german: "Dugong" },
+      whale: { malay: "ikan paus Bryde", english: "Bryde's whale", indonesian: "paus Bryde", german: "Brydewal" },
+      jellyfish: { malay: "obor-obor", english: "moon jellyfish", indonesian: "ubur-ubur bulan", german: "Ohrenqualle" },
+      seaStar: { malay: "tapak sulaiman", english: "horned sea star", indonesian: "bintang laut", german: "Seestern" },
+      mackerel: { malay: "ikan kembung", english: "Indian mackerel", indonesian: "ikan kembung", german: "Indische Makrele" },
+    },
+    scientific: "Scientific name",
+    group: <>What it really is</>,
+    groups: {
+      dugong: <>Class Mammalia</>,
+      whale: <>Class Mammalia</>,
+      jellyfish: <>Phylum Cnidaria</>,
+      seaStar: <>Phylum Echinodermata</>,
+      mackerel: <>Class Actinopterygii, bony fish</>,
+    },
+    view: "Shallow sea in Malaysian waters with five animals and their name tags",
+  }}
+/>
+
+A scientific name is the same in every language, so biologists everywhere know they mean the same animal. Knowing the right group, you can also predict features. Put the dugong in class Mammalia and you know it breathes with lungs and feeds its calf on milk, because one group means **many features in common**.
+
+## Seven Ranks from Kingdom Down
+
+Every organism has a place on seven ranks, from top to bottom: **kingdom, phylum, class, order, family, genus and species**. Each group at one rank sits inside one group at the rank above. A named group at any rank is a **taxon**, such as the family Felidae. Going down, each taxon holds **fewer kinds of organisms** that share more features, until a species holds just one kind. Comparing many features at once makes this [a natural classification rather than an artificial one](/en/subjects/biology/biodiversity/classification).
+
+A tiger and a sun bear, two animals of Malaysian forests, match from the kingdom Animalia down to the order Carnivora. Then they split at family: Felidae for the tiger, Ursidae for the sun bear. So **the lowest rank they share** is order, four of the seven ranks. The lower the shared rank, the closer two organisms are related.
+
+<TaxonRankLab
+  title={<>Where Two Organisms Part Ways</>}
+  description={
+    <>
+      Seven nested trays, from kingdom on the outside to species in the
+      middle. Pick two organisms and find the last tray that still holds both.
+    </>
+  }
+  footer={<>Follow the glowing trays from the outside in. Which tray does the glow stop at?</>}
+  organisms={["tiger", "leopard", "leopardCat", "sunBear", "tapir", "hornbill", "birdwing", "padi"]}
+  pair={["tiger", "sunBear"]}
+  labels={{
+    first: "First organism",
+    second: "Second organism",
+    organisms: {
+      tiger: "Tiger",
+      leopard: "Leopard",
+      leopardCat: "Leopard cat",
+      sunBear: "Sun bear",
+      tapir: "Malayan tapir",
+      hornbill: "Rhinoceros hornbill",
+      birdwing: "Rajah Brooke's birdwing",
+      padi: "Rice",
+    },
+    ranks: {
+      kingdom: "Kingdom",
+      phylum: "Phylum",
+      class: "Class",
+      order: "Order",
+      family: "Family",
+      genus: "Genus",
+      species: "Species",
+    },
+    shared: <>Lowest shared rank</>,
+    count: <>Ranks shared</>,
+    none: <>None, not even the kingdom</>,
+    view: "Seven nested trays with small models of the organisms inside",
+  }}
+/>
+
+Predict before you pick in the model. What's the lowest rank a tiger shares with a leopard cat? And a sun bear with a Malayan tapir?
+
+The tiger and the leopard cat are both in Felidae but in different genera, *Panthera* and *Prionailurus*, so they share **five ranks, from kingdom to family**. The sun bear (order Carnivora) and the tapir (order Perissodactyla) split at order, so they share only three ranks, down to the class Mammalia.
+
+## Six Kingdoms in Four Questions
+
+Four questions place almost any organism in its kingdom. Do its cells have a nucleus? Is it one cell or many, and do the cells form tissues? What's the cell wall made of? How does it get food? **Read all four answers together**, because one feature on its own often misleads.
+
+| Kingdom | Nucleus | Cells | Cell wall | How it gets food | Examples |
+| --- | --- | --- | --- | --- | --- |
+| Archaebacteria | None | One | No peptidoglycan | Autotroph or heterotroph | Sulfur bacteria, *Sulfolobus* |
+| Eubacteria | None | One | Peptidoglycan | Autotroph or heterotroph | *Thermus aquaticus* |
+| Protista | Yes | One, or many without tissues | In most algae, none in protozoa | Photosynthesis, eating or absorbing | Protozoa, algae, slime moulds |
+| Fungi | Yes | One in yeast, many in hyphae | Chitin | Absorbs food digested outside its body | Yeast, mushrooms |
+| Plantae | Yes | Many, with tissues | Cellulose | Photosynthesis | Ferns without seeds, rice with seeds |
+| Animalia | Yes | Many | None | Eats food | Hydra (invertebrate), tiger (vertebrate) |
+
+### Cells without a Nucleus
+
+Archaebacteria and Eubacteria are both **prokaryotes**, tiny cells whose DNA has no nuclear membrane around it. Their genes differ, and so do their walls: the wall of Eubacteria contains **peptidoglycan**, and the wall of Archaebacteria doesn't.
+
+Don't assume every microbe in a hot spring belongs to Archaebacteria. Compare two microbes that both live in hot springs:
+
+| Feature | *Sulfolobus* | *Thermus aquaticus* |
+| --- | --- | --- |
+| Where it was found | Acidic hot springs | A hot spring in Yellowstone National Park |
+| Fastest growth | <InlineMath math="70" /> to <InlineMath math="75^\circ\text{C}" /> | <InlineMath math="70^\circ\text{C}" /> |
+| Peptidoglycan in the wall | No | Yes |
+| Kingdom | Archaebacteria | Eubacteria |
+
+Both like water at <InlineMath math="70^\circ\text{C}" />, but only *Thermus aquaticus* has peptidoglycan in its wall. So **where an organism lives doesn't decide its kingdom**.
+
+### Cells with a Nucleus
+
+The other four kingdoms are **eukaryotes**, with their DNA inside a nucleus. Here, looks can fool you. A mushroom grows from the ground like a plant, but its walls are chitin and it absorbs its food, so it's a fungus. A hydra clings to a pond leaf like a tiny plant, but its cells have no walls and it catches food with tentacles, so it's in **Animalia**.
+
+<KingdomSortLab
+  title={<>Put Each Specimen in Its Kingdom</>}
+  description={
+    <>
+      Ten specimens at true size, under a microscope or a hand lens. Check
+      four features, then drop each specimen into one of the six kingdom
+      trays.
+    </>
+  }
+  footer={<>Look just outside the cell membrane: is there a wall, and what's it made of?</>}
+  specimens={["sulfolobus", "thermus", "paramecium", "spirogyra", "slimeMould", "yeast", "mushroom", "fern", "padi", "hydra"]}
+  labels={{
+    specimen: "Specimen",
+    specimens: {
+      sulfolobus: <em>Sulfolobus</em>,
+      thermus: <em>Thermus aquaticus</em>,
+      paramecium: <em>Paramecium</em>,
+      spirogyra: <em>Spirogyra</em>,
+      slimeMould: <>Slime mould</>,
+      yeast: <>Yeast</>,
+      mushroom: <>Oyster mushroom</>,
+      fern: <>Fern</>,
+      padi: <>Rice</>,
+      hydra: <>Hydra</>,
+    },
+    kingdoms: {
+      archaebacteria: "Archaebacteria",
+      eubacteria: "Eubacteria",
+      protista: "Protista",
+      fungi: "Fungi",
+      plantae: "Plantae",
+      animalia: "Animalia",
+    },
+    checks: {
+      nucleus: "Nucleus",
+      cells: "Cells",
+      wall: "Cell wall",
+      food: "How it gets food",
+    },
+    values: {
+      yes: "Yes",
+      no: "No",
+      one: "One cell",
+      many: "Many cells, no tissues",
+      tissue: "Many cells with tissues",
+      none: "No wall",
+      peptidoglycan: "Peptidoglycan",
+      noPeptidoglycan: "No peptidoglycan",
+      chitin: "Chitin",
+      cellulose: "Cellulose",
+      photosynthesis: "Photosynthesis",
+      absorbs: "Absorbs",
+      ingests: "Eats",
+      either: "Autotroph or heterotroph",
+    },
+    place: "Place it",
+    right: <>Right, all four features match this kingdom.</>,
+    wrong: <>Not yet. Compare each feature with the kingdom table again.</>,
+    kingdom: <>Correct kingdom</>,
+    view: "Lab bench with a microscope, ten specimens and six kingdom trays",
+  }}
+/>
+
+Test yourself with *Spirogyra* in the model. Its green filament is made of cells with a nucleus, chloroplasts and a cellulose wall. Why isn't it in Plantae?
+
+Look at the second question. The cells line up end to end, each just like its neighbour, and none of them form a root, a stem or a leaf. So **the filament has no tissues**, and *Spirogyra* is an alga in Protista. Rice has tissues such as xylem and phloem, so it stays in Plantae.
+
+## Two Words in a Scientific Name
+
+The **binomial nomenclature system** gives every species a two-word name in Latin form. Carolus Linnaeus used it for every plant in *Species Plantarum* in 1753. The first word is the **genus name**. The second word, the specific epithet, only means something next to its genus, so rice is *Oryza sativa*, both words together.
+
+The rules for writing it:
+
+- The genus starts with a capital letter, and the second word is all lowercase, even when it comes from a person, like *brookiana* from Brooke.
+- In print, the name is in italics: *Ipomoea aquatica*.
+- By hand, **underline each word separately**, one line per word.
+- After the first full mention, shorten the genus to its first letter: *I. aquatica*.
+- If the species isn't known yet, write the genus followed by sp.: *Ipomoea* sp.
+
+<GardenNameLab
+  title={<>Name Tags in a School Garden</>}
+  description={
+    <>
+      Six plants in a school garden, each with a name tag. Pick a plant,
+      switch the writing style, then match the first word or the second word.
+    </>
+  }
+  footer={<>Match the second word. Are the plants that light up close relatives?</>}
+  plants={["kangkung", "sweetPotato", "mango", "beluntas", "neem", "padi"]}
+  labels={{
+    plant: "Plant",
+    plants: {
+      kangkung: "Water spinach",
+      sweetPotato: "Sweet potato",
+      mango: "Mango",
+      beluntas: "Indian fleabane",
+      neem: "Neem",
+      padi: "Rice",
+    },
+    style: "Writing style",
+    styles: { printed: "Printed", handwritten: "Handwritten" },
+    match: "Match",
+    matches: { genus: "First word", epithet: "Second word" },
+    genus: <>Genus name</>,
+    epithet: <>Second word</>,
+    family: <>Family</>,
+    view: "School garden with six plants and a name tag on each",
+  }}
+/>
+
+Match the first word first. Water spinach, *Ipomoea aquatica*, and sweet potato, *Ipomoea batatas*, share a genus, so they're close relatives, though you eat the leaves of one and the tubers of the other. Then match the second word. Mango, Indian fleabane and neem are all *indica*, from India, yet they sit in three families: Anacardiaceae, Asteraceae and Meliaceae. A shared second word says **nothing about kinship**.
+
+Try fixing this handwritten tag: Mangifera Indica, with one long line under both words.
+
+It has two mistakes. The second word needs a lowercase letter, Mangifera indica, and each word gets **its own line**, one under Mangifera and one under indica.
+
+## A Key to Six Small Animals
+
+A **dichotomous key** works like a path that keeps forking. Each numbered step gives you a pair of opposite statements. You pick the one that's true for your animal and follow it to the next step or to a name.
+
+Here's a key to six small animals found around schools:
+
+| Step | Statement a | Statement b |
+| --- | --- | --- |
+| <InlineMath math="1" /> | Has legs, go to step 2 | No legs, go to step 5 |
+| <InlineMath math="2" /> | Three pairs of legs, go to step 3 | More than three pairs of legs, go to step 4 |
+| <InlineMath math="3" /> | Has wings: dragonfly | No wings: worker ant |
+| <InlineMath math="4" /> | Four pairs of legs: spider | One pair of legs on each body segment: centipede |
+| <InlineMath math="5" /> | Has a shell: giant African land snail | No shell, body in rings: earthworm |
+
+A good step tests **one feature that every specimen shows**, with two statements that can't both be true. If step 3 read "has wings" against "three pairs of legs", a dragonfly would fit both and the key would jam. "Big" against "small" or "dark" against "light" fails too, because size and colour change with age and light.
+
+<KeyBuilderLab
+  title={<>Build a Key and Test It</>}
+  description={
+    <>
+      Six small animals from around a school on a white tray. Choose a pair of
+      statements for each step, then run every animal through your key.
+    </>
+  }
+  footer={<>Look at the animal that stops at a fork: which statements are true for it?</>}
+  animals={["ant", "dragonfly", "spider", "centipede", "earthworm", "snail"]}
+  couplets={["legs", "pairs", "wings", "segments", "shell", "size", "colour", "overlap"]}
+  labels={{
+    animals: {
+      ant: "Worker ant",
+      dragonfly: "Dragonfly",
+      spider: "Spider",
+      centipede: "Centipede",
+      earthworm: "Earthworm",
+      snail: "Giant African land snail",
+    },
+    couplets: {
+      legs: { a: "Has legs", b: "No legs" },
+      pairs: { a: "Three pairs of legs", b: "More than three pairs of legs" },
+      wings: { a: "Has wings", b: "No wings" },
+      segments: { a: "Four pairs of legs", b: "One pair of legs on each body segment" },
+      shell: { a: "Has a shell", b: "No shell" },
+      size: { a: "Big body", b: "Small body" },
+      colour: { a: "Dark colour", b: "Light colour" },
+      overlap: { a: "Has wings", b: "Three pairs of legs" },
+    },
+    step: "Step",
+    run: "Run the key",
+    reached: <>Animals that reach their own name</>,
+    failed: <>Step that failed</>,
+    sorted: <>Your key works for every animal</>,
+    view: "White tray with six small animals and a branching key beside it",
+  }}
+/>
+
+Now add a millipede, which has **two pairs of legs on most body segments**. Which step fails, how do you fix it, and how many steps does the new key need?
+
+Steps 1 and 2 send the millipede to step 4, where it fits neither statement. Rewrite step 4 as "four pairs of legs: spider" against "many segments with legs, go to step 6", and make step 6 "one pair on each segment: centipede" against "two pairs on most segments: millipede". Each step splits one group in two, so <InlineMath math="n" /> organisms need <InlineMath math="n - 1" /> steps: <InlineMath math="6 - 1 = 5" /> before, <InlineMath math="7 - 1 = 6" /> now.
