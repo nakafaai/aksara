@@ -1,260 +1,178 @@
 export const metadata = {
-  title: "Stellenwertsysteme und Zahlenbasen",
+  title: "Stellenwert und Ziffernwert in Zahlensystemen",
   description:
-    "Bestimme Stellenwerte in den Basen zwei bis neun, rechne Zahlen zwischen Basen um und addiere und subtrahiere in anderen Basen, mit Beispielen und Übungen.",
+    "Lies ab, was jede Ziffer zur Basis zwei bis neun wert ist, schreib eine Zahl als Summe ihrer Stellenwerte und erkenne Ziffern, die eine Basis nie enthält.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
-  datePublished: "2026-11-17",
-  subject: "Zahlenbasen",
+  datePublished: "2026-11-20",
+  subject: "Zahlensysteme",
 };
 
-## Jede Ziffer ist eine Potenz ihrer Basis wert
+## Wenn dem Abakus der Platz ausgeht
 
-In der **Basis** <InlineMath math="b" /> schreibt man Zahlen mit den Ziffern <InlineMath math="0" /> bis <InlineMath math="b - 1" />, und jede Stelle ist eine **Potenz** von <InlineMath math="b" /> wert. Die Ziffer ganz rechts ist <InlineMath math="b^0 = 1" /> wert, die Ziffer links daneben <InlineMath math="b^1" />, dann <InlineMath math="b^2" /> und so weiter. Um den Wert einer Zahl im Zehnersystem zu finden, multiplizierst du jede Ziffer mit ihrem Stellenwert und addierst. In den Modellen hier zerlegst du eine Zahl in Stellenwerte, vergleichst, wie viele Ziffern eine Zahl in verschiedenen Basen braucht, und siehst, wie die Basis den Wert derselben Ziffern verändert.
+Im **Fünfersystem** zählst du in Fünfergruppen. Ein Stab des Abakus darf nur vier Perlen tragen. Sobald die fünfte Perle kommt, gehen alle fünf herunter, und dafür steckt eine Perle auf dem Stab links daneben. Ein Zahlensystem mit der **Basis** <InlineMath math="b" /> benutzt also nur die Ziffern <InlineMath math="0" /> bis <InlineMath math="b - 1" />, und jede Stelle ist <InlineMath math="b" />-mal so viel wert wie die Stelle rechts von ihr. Die Zahl <InlineMath math="123_5" /> bedeutet eine Gruppe aus <InlineMath math="25" />, zwei Gruppen aus <InlineMath math="5" /> und drei Einer, also <InlineMath math="38" />. Auf diesem Abakus schiebst du diese Zahl vom Fünfer- ins Zehnersystem.
+
+<AbacusBaseLab
+  title={<>Die Zahl <InlineMath math="38" /> auf einem Abakus zur Basis fünf</>}
+  description={
+    <>
+      Jeder Stab trägt eine Ziffer. Wähle die Basis <InlineMath math="5" />{" "}
+      oder <InlineMath math="10" />, verschieb die Zahl und zähl die Perlen
+      auf jedem Stab.
+    </>
+  }
+  footer={<>Zur Basis fünf trägt ein Stab nie mehr als vier Perlen.</>}
+  bases={[5, 10]}
+  value={38}
+  labels={{
+    base: "Basis",
+    decimal: <>Wert im Zehnersystem</>,
+    digits: <>In dieser Basis geschrieben</>,
+    expanded: <>Ausführliche Schreibweise</>,
+    value: "Zahl",
+    viewLabel: "Ein Abakus mit vier Stäben auf einem Tisch, die Perlen jedes Stabs zeigen eine Ziffer",
+  }}
+  showReadout
+/>
+
+Warum hört ein Stab bei vier Perlen auf? Fünf Perlen auf dem Einerstab ergeben schon eine Fünfergruppe, und Fünfergruppen haben ihren eigenen Stab. Dürfte der Einerstab fünf Perlen tragen, könntest du fünf auf zwei Arten schreiben: fünf Perlen auf dem Einerstab oder eine Perle auf dem zweiten Stab. Die Regel **höchstens <InlineMath math="b - 1" /> Perlen auf jedem Stab** sorgt dafür, dass jede Zahl genau eine Schreibweise hat.
+
+Wähl jetzt die Basis zehn. Dieselbe Zahl ordnet sich neu: drei Perlen auf dem Zehnerstab und acht auf dem Einerstab. **Die Anzahl der Dinge bleibt gleich**, nur die Größe der Gruppen ändert sich. Geh zurück zur Basis fünf und schieb die Zahl auf <InlineMath math="39" /> und dann auf <InlineMath math="40" />. Bei <InlineMath math="40" /> ist der Einerstab wieder leer, weil fünf Perlen gerade zu einer Perle auf dem zweiten Stab geworden sind.
 
 ## Stellenwert und Ziffernwert
 
-Nimm die Zahl <InlineMath math="10110_2" />. Von rechts sind ihre **Stellenwerte** <InlineMath math="2^0, 2^1, 2^2, 2^3, 2^4" />, also <InlineMath math="1, 2, 4, 8, 16" />.
+Jede Ziffer einer Zahl hat zwei Werte. Ihr **Stellenwert** ist das, was eine einzelne Perle auf ihrem Stab wert ist. Ihr **Ziffernwert** ist die Ziffer mal ihrem Stellenwert, also das, was alle Perlen auf diesem Stab zusammen wert sind. Nimm die Ziffer <InlineMath math="2" /> in <InlineMath math="123_5" />. Sie steht auf dem zweiten Stab, also ist ihr Stellenwert <InlineMath math="5" /> und ihr Ziffernwert <InlineMath math="2 \cdot 5 = 10" />.
 
-<BlockMath math="10110_2 = 1 \times 2^4 + 0 \times 2^3 + 1 \times 2^2 + 1 \times 2^1 + 0 \times 2^0 = 22_{10}" />
+### Potenzen der Basis auf jedem Stab
 
-Dieses Diagramm zeigt, was jede Ziffer zur Summe beiträgt. Eine Ziffer <InlineMath math="0" /> trägt nichts bei, auch wenn ihr Stellenwert groß ist.
+Der Stab ganz rechts zählt Einer. Eine Perle auf dem nächsten Stab steht für eine volle Gruppe des Stabs rechts davon, sie ist also <InlineMath math="b" />-mal so viel wert. Deshalb lauten die Stellenwerte von rechts nach links <InlineMath math="b^0, b^1, b^2, b^3" />: **Potenzen der Basis, beginnend bei null**. Die Tabelle zeigt die vier Stellenwerte für die Basen, die dir am häufigsten begegnen.
 
-<BarChart
-  title={<>Beitrag jeder Ziffer von <InlineMath math="10110_2" /></>}
-  description={
-    <>
-      Ziffernwert, also Ziffer mal Stellenwert, für jede Stelle. Die Summe ist{" "}
-      <InlineMath math="22" />.
-    </>
-  }
-  yAxisLabel="Ziffernwert"
-  data={[
-    { name: "2⁴", value: 1 * 16 },
-    { name: "2³", value: 0 * 8 },
-    { name: "2²", value: 1 * 4 },
-    { name: "2¹", value: 1 * 2 },
-    { name: "2⁰", value: 0 * 1 },
-  ]}
-  chartConfig={{ value: { label: "Ziffernwert", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
-/>
+| Stab | Potenz | Basis <InlineMath math="2" /> | Basis <InlineMath math="5" /> | Basis <InlineMath math="8" /> | Basis <InlineMath math="10" /> |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| Vierter | <InlineMath math="b^3" /> | <InlineMath math="8" /> | <InlineMath math="125" /> | <InlineMath math="512" /> | <InlineMath math="1{.}000" /> |
+| Dritter | <InlineMath math="b^2" /> | <InlineMath math="4" /> | <InlineMath math="25" /> | <InlineMath math="64" /> | <InlineMath math="100" /> |
+| Zweiter | <InlineMath math="b^1" /> | <InlineMath math="2" /> | <InlineMath math="5" /> | <InlineMath math="8" /> | <InlineMath math="10" /> |
+| Erster, die Einer | <InlineMath math="b^0" /> | <InlineMath math="1" /> | <InlineMath math="1" /> | <InlineMath math="1" /> | <InlineMath math="1" /> |
 
-Im Zweiersystem verdoppelt sich der Stellenwert an jeder Stelle. Verschiebe den Regler für die Stelle und lies den Stellenwert ab.
+Warum ist der Einerstab <InlineMath math="b^0 = 1" /> wert und nicht <InlineMath math="b" />? Eine Perle dort ist noch ein einzelnes Ding, das nicht gebündelt ist. Die erste Gruppe taucht erst auf dem zweiten Stab auf. Es ist dasselbe Muster wie bei [Potenzen und Exponenten](/de/faecher/mathematik/potenzen-und-logarithmen/grundlagen): Mit jeder Stelle weiter links multiplizierst du noch einmal mit der Basis.
+
+### Die ausführliche Schreibweise als Summe der Ziffernwerte
+
+Addierst du alle Ziffernwerte, erhältst du den Wert der Zahl im Zehnersystem. Diese ausgeschriebene Summe heißt **ausführliche Schreibweise**. Nimm <InlineMath math="3214_5" />.
+
+<BlockMath math="\begin{aligned} 3214_5 &= 3 \cdot 5^3 + 2 \cdot 5^2 + 1 \cdot 5^1 + 4 \cdot 5^0 \\ &= 375 + 50 + 5 + 4 \\ &= 434 \end{aligned}" />
+
+Der Ziffernwert der <InlineMath math="2" /> ist hier <InlineMath math="50" /> und nicht <InlineMath math="10" />, weil diese Ziffer an der Stelle <InlineMath math="5^2" /> steht. Prüf dein Ergebnis am Abakus: Wähl die Basis fünf, schieb die Zahl auf <InlineMath math="434" /> und zähl die Perlen. Von links müssen die Stäbe drei, zwei, eine und vier Perlen tragen.
+
+Das zweite Beispiel steht zur Basis acht und enthält eine Null.
+
+<BlockMath math="\begin{aligned} 2075_8 &= 2 \cdot 8^3 + 0 \cdot 8^2 + 7 \cdot 8^1 + 5 \cdot 8^0 \\ &= 1{.}024 + 0 + 56 + 5 \\ &= 1{.}085 \end{aligned}" />
+
+Die <InlineMath math="0" /> trägt nichts bei, aber **die Null hält den anderen Ziffern ihren Platz frei**. Ohne sie stünde da <InlineMath math="275_8" />, und das ist nur <InlineMath math="189" /> wert. Prüf das Ergebnis, indem du <InlineMath math="1{.}085" /> von der größten Stelle her zerlegst. Zieh <InlineMath math="2 \cdot 512" /> ab, dann bleibt <InlineMath math="61" />. Weil <InlineMath math="61" /> kleiner als <InlineMath math="64" /> ist, steht an der Stelle <InlineMath math="8^2" /> eine <InlineMath math="0" />. Dann ist <InlineMath math="61 - 7 \cdot 8 = 5" />, und du bekommst die Ziffern <InlineMath math="2" />, <InlineMath math="0" />, <InlineMath math="7" /> und <InlineMath math="5" /> zurück.
+
+## Gleiche Ziffern in verschiedenen Basen
+
+Die Ziffernfolge <InlineMath math="123" /> hat keinen festen Wert. Ihr Wert hängt von der Basis ab, die dazugehört, denn die Basis legt fest, wie groß jede Stelle ist: <InlineMath math="123_b = 1 \cdot b^2 + 2 \cdot b + 3" />.
+
+| Basis | Ausführliche Schreibweise | Wert |
+| :--- | :--- | :--- |
+| <InlineMath math="4" /> | <InlineMath math="1 \cdot 16 + 2 \cdot 4 + 3" /> | <InlineMath math="27" /> |
+| <InlineMath math="5" /> | <InlineMath math="1 \cdot 25 + 2 \cdot 5 + 3" /> | <InlineMath math="38" /> |
+| <InlineMath math="8" /> | <InlineMath math="1 \cdot 64 + 2 \cdot 8 + 3" /> | <InlineMath math="83" /> |
+| <InlineMath math="10" /> | <InlineMath math="1 \cdot 100 + 2 \cdot 10 + 3" /> | <InlineMath math="123" /> |
+
+Je größer die Basis, desto größer jede Stelle, also sind **dieselben Ziffern in einer größeren Basis mehr wert**. Verschieb die Basis im Graphen und sieh zu, wie der Punkt immer schneller steigt, denn die dritte Stelle wächst wie <InlineMath math="b^2" />.
 
 <MathVisual
-  title={<>Stellenwerte im Zweiersystem</>}
+  title={<>Der Wert von <InlineMath math="123_b" /> für jede Basis</>}
   description={
     <>
-      Stellenwert <InlineMath math="2^k" /> in Zehnern,{" "}
-      <InlineMath math="\dfrac{2^k}{10}" />, gegen die Stelle{" "}
-      <InlineMath math="k" /> von rechts, beginnend bei{" "}
-      <InlineMath math="k = 0" />.
+      Verschieb die Basis <InlineMath math="b" />. Der Punkt springt zum Wert
+      von <InlineMath math="123_b" />, und ein Kästchen nach oben ist im
+      Graphen <InlineMath math="10" /> wert.{" "}
+      Die gestrichelte Kurve führt nur dein Auge. Eine Basis ist immer ganzzahlig, also lies den Punkt.
     </>
   }
   scene={{
     space: "plane",
-    frame: { kind: "cartesian", x: { min: 0, max: 7.5 }, y: { min: 0, max: 13.5 } },
+    frame: { kind: "cartesian", x: { min: 0, max: 10.5 }, y: { min: 0, max: 13 } },
     view: { kind: "fit", padding: 0.06 },
-    parameters: [
-      { name: "k", min: 0, max: 7, value: 4, step: 1, label: "k" },
-    ],
+    parameters: [{ name: "b", min: 4, max: 10, value: 5, step: 1, label: "b" }],
     objects: [
-      { id: "place", kind: "function", appearance: "primary", formula: "2^x/10", domain: { min: 0, max: 7.2 } },
-      { id: "now", kind: "marker", x: "k", y: "2^k/10", appearance: "warning" },
-    ],
-    readouts: [
-      { key: "value", formula: "2^k" },
-    ],
-  }}
-  labels={{
-    k: <>Stelle der Ziffer <InlineMath math="k" /></>,
-    value: <>Stellenwert</>,
-  }}
-/>
-
-## Die Basis verändert den Wert derselben Ziffern
-
-**Dieselben Ziffern ergeben in verschiedenen Basen verschiedene Werte**. Die Zahl <InlineMath math="123_b" /> ist im Zehnersystem <InlineMath math="b^2 + 2b + 3" /> wert. Ändere die Basis und beobachte, wie schnell der Wert wächst.
-
-<MathVisual
-  title={<>Der Wert von <InlineMath math="123_b" /> je nach Basis</>}
-  description={
-    <>
-      Der Wert <InlineMath math="123_b = b^2 + 2b + 3" /> in Zehnern gegen die
-      Basis <InlineMath math="b" />. Die Ziffer <InlineMath math="3" /> ist nur
-      erlaubt, wenn <InlineMath math="b \ge 4" />.
-    </>
-  }
-  scene={{
-    space: "plane",
-    frame: { kind: "cartesian", x: { min: 0, max: 10.5 }, y: { min: 0, max: 12.5 } },
-    view: { kind: "fit", padding: 0.06 },
-    parameters: [
-      { name: "b", min: 4, max: 10, value: 5, step: 1, label: "b" },
-    ],
-    objects: [
-      { id: "value", kind: "function", appearance: "primary", formula: "(x^2 + 2x + 3)/10", domain: { min: 4, max: 10 } },
-      { id: "now", kind: "marker", x: "b", y: "(b^2 + 2b + 3)/10", appearance: "warning" },
+      { id: "growth", kind: "function", appearance: "reference", stroke: "dashed", formula: "(x^2 + 2x + 3)/10", domain: { min: 4, max: 10 } },
+      { id: "now", kind: "marker", appearance: "primary", x: "b", y: "(b^2 + 2b + 3)/10" },
     ],
     readouts: [
       { key: "decimal", formula: "b^2 + 2b + 3" },
+      { key: "largest", formula: "b - 1" },
     ],
   }}
   labels={{
     b: <>Basis <InlineMath math="b" /></>,
-    decimal: <>Wert im Zehnersystem</>,
+    decimal: <>Wert von <InlineMath math="123_b" /> im Zehnersystem</>,
+    largest: <>Größte erlaubte Ziffer</>,
   }}
 />
 
-### Beispiel Eine unbekannte Basis finden
+Der Graph beginnt bei der Basis <InlineMath math="4" />, weil die Ziffer <InlineMath math="3" /> eine Basis größer als <InlineMath math="3" /> braucht. Aus demselben Grund kommt die Ziffer <InlineMath math="7" /> zur Basis sechs nie vor. Sieben Perlen auf dem Einerstab bedeuten zur Basis sechs: Sechs davon müssen zu einer Perle auf dem zweiten Stab werden, eine bleibt liegen. Sieben schreibst du also <InlineMath math="11_6" />, **niemals als einzelne Ziffer** <InlineMath math="7" />.
 
-Gegeben ist <InlineMath math="123_b = 38_{10}" />. Bestimme **den Wert** von <InlineMath math="b" />.
+## Zahlen lesen ohne Umrechnen
 
-<MathContainer>
-<BlockMath math="b^2 + 2b + 3 = 38" />
-<BlockMath math="b^2 + 2b - 35 = 0 \quad\Rightarrow\quad (b + 7)(b - 5) = 0" />
-</MathContainer>
+Wörter wie „hundert“ und „zwanzig“ benennen Stellen im Zehnersystem: „hundert“ heißt <InlineMath math="10^2" />, und „zwanzig“ heißt zwei Zehner. In <InlineMath math="123_5" /> ist die Ziffer <InlineMath math="1" /> nur <InlineMath math="25" /> wert, also liefert „hundertdreiundzwanzig“ den falschen Wert. **Lies die Ziffern einzeln und nenn dann die Basis**.
 
-Die Basis muss positiv sein, also <InlineMath math="b = 5" />. Prüfe mit dem Modell: Bei <InlineMath math="b = 5" /> zeigt es <InlineMath math="25 + 10 + 3 = 38" />.
-
-### Die Anzahl der Ziffern in verschiedenen Basen
-
-**Eine kleine Basis braucht mehr Ziffern** für dieselbe Zahl. Die Zahl <InlineMath math="45_{10}" /> schreibt man als <InlineMath math="101101_2" />, <InlineMath math="140_5" />, <InlineMath math="55_8" /> und <InlineMath math="45_{10}" />.
-
-<BarChart
-  title={<>Anzahl der Ziffern von <InlineMath math="45" /> in vier Basen</>}
-  description={
-    <>
-      Dieselbe Zahl braucht im Zweiersystem sechs Ziffern, im Achter und
-      Zehnersystem aber nur zwei.
-    </>
-  }
-  yAxisLabel="Anzahl der Ziffern"
-  data={[
-    { name: "Basis 2", value: 6 },
-    { name: "Basis 5", value: 3 },
-    { name: "Basis 8", value: 2 },
-    { name: "Basis 10", value: 2 },
-  ]}
-  chartConfig={{ value: { label: "Anzahl der Ziffern", colors: { light: ["var(--chart-2)"], dark: ["var(--chart-2)"] } } }}
-/>
-
-Die Anzahl der Ziffern von <InlineMath math="N" /> in der Basis <InlineMath math="b" /> ist <InlineMath math="\lfloor \log_b N \rfloor + 1" />. Dieses Modell zeichnet die Anzahl der Ziffern für jede Zahl bis <InlineMath math="64" />.
-
-<MathVisual
-  title={<>Anzahl der Ziffern nach Größe der Zahl</>}
-  description={
-    <>
-      Anzahl der Ziffern <InlineMath math="\lfloor \log_b N \rfloor + 1" />{" "}
-      gegen die Zahl <InlineMath math="N" /> in Einheiten von{" "}
-      <InlineMath math="8" />, für die Basis <InlineMath math="b" />.
-    </>
-  }
-  scene={{
-    space: "plane",
-    frame: { kind: "cartesian", x: { min: 0, max: 8.2 }, y: { min: 0, max: 7.5 } },
-    view: { kind: "fit", padding: 0.06 },
-    parameters: [
-      { name: "b", min: 2, max: 10, value: 2, step: 1, label: "b" },
-      { name: "n", min: 1, max: 64, value: 45, step: 1, label: "n" },
-    ],
-    objects: [
-      { id: "digits", kind: "function", appearance: "primary", formula: "floor(ln(8x)/ln(b) + 0.000001) + 1", domain: { min: 0.125, max: 8 } },
-      { id: "now", kind: "marker", x: "n/8", y: "floor(ln(n)/ln(b) + 0.000001) + 1", appearance: "warning" },
-    ],
-    readouts: [
-      { key: "digits", formula: "floor(ln(n)/ln(b) + 0.000001) + 1" },
-    ],
-  }}
-  labels={{
-    b: <>Basis <InlineMath math="b" /></>,
-    n: <>Zahl <InlineMath math="n" /></>,
-    digits: <>Anzahl der Ziffern</>,
-  }}
-/>
-
-## Zahlen zwischen Basen umrechnen
-
-Es gibt zwei Richtungen. Um eine Zahl der Basis <InlineMath math="b" /> ins Zehnersystem umzurechnen, zerlegst du sie wie oben nach Stellenwerten. Für die umgekehrte Richtung nutzt du wiederholte Division. Zwischen zwei anderen Basen rechnest du über das Zehnersystem um, oder direkt, wenn eine Basis eine Potenz der anderen ist.
-
-Um eine Zahl des Zehnersystems in die Basis <InlineMath math="b" /> umzurechnen, **teilst du wiederholt durch** <InlineMath math="b" /> und notierst die Reste. Die Reste liest du von unten nach oben.
-
-### Beispiel Umrechnung in die Basis fünf
-
-<BlockMath math="45 \div 5 = 9 \text{ Rest } 0, \quad 9 \div 5 = 1 \text{ Rest } 4, \quad 1 \div 5 = 0 \text{ Rest } 1" />
-
-**Lies die Reste von unten**: <InlineMath math="45_{10} = 140_5" />. Prüfe durch Zerlegen: <InlineMath math="1 \times 25 + 4 \times 5 + 0 = 45" />.
-
-### Beispiel Umrechnung zwischen Zweier und Achtersystem
-
-Weil <InlineMath math="8 = 2^3" /> ist, entsprechen je **drei Ziffern im Zweiersystem** einer Ziffer im Achtersystem. Gruppiere die Ziffern von rechts:
-
-<BlockMath math="101101_2 = \underbrace{101}_{5}\,\underbrace{101}_{5} = 55_8" />
-
-Prüfe über das Zehnersystem: <InlineMath math="101101_2 = 32 + 8 + 4 + 1 = 45" /> und <InlineMath math="55_8 = 40 + 5 = 45" />.
-
-## Addieren und Subtrahieren in anderen Basen
-
-Die Addition in der Basis <InlineMath math="b" /> funktioniert wie im Zehnersystem, aber **du überträgst eins, sobald eine Spalte** <InlineMath math="b" /> **erreicht**, nicht zehn. Beim Subtrahieren borgst du <InlineMath math="b" /> von der Spalte links.
-
-### Beispiel Addition im Zweiersystem
-
-<BlockMath math="1011_2 + 110_2 = 10001_2" />
-
-**Beginne mit der Spalte ganz rechts**: <InlineMath math="1 + 0 = 1" />. Zweite Spalte: <InlineMath math="1 + 1 = 2 = 10_2" />, schreibe <InlineMath math="0" />, übertrage <InlineMath math="1" />. Dritte Spalte: <InlineMath math="0 + 1 + 1 = 10_2" />, schreibe <InlineMath math="0" />, übertrage <InlineMath math="1" />. Vierte Spalte: <InlineMath math="1 + 1 = 10_2" />. Prüfe: <InlineMath math="11 + 6 = 17" /> und <InlineMath math="10001_2 = 16 + 1 = 17" />.
-
-### Beispiel Subtraktion in der Basis fünf
-
-Berechne <InlineMath math="1302_5 - 244_5" />. In der Basis fünf ist **jedes Borgen fünf wert**.
-
-<BlockMath math="1302_5 - 244_5 = 1003_5" />
-
-Spalte ganz rechts: <InlineMath math="2 - 4" /> geht nicht, also borge fünf, <InlineMath math="7 - 4 = 3" />. Die zweite Spalte ist nun <InlineMath math="0 - 1" />, also borge erneut, <InlineMath math="5 - 1 - 4 = 0" />. Dritte Spalte: <InlineMath math="3 - 1 - 2 = 0" />. Vierte Spalte: <InlineMath math="1" />. Prüfe: <InlineMath math="1302_5 = 202" />, <InlineMath math="244_5 = 74" /> und <InlineMath math="202 - 74 = 128 = 1003_5" />.
-
-## Häufige Fehler bei Zahlenbasen
-
-| Fehler | Warum er falsch ist | So prüfst du es |
+| Zahl | So liest du sie | Wert im Zehnersystem |
 | :--- | :--- | :--- |
-| Die Ziffer <InlineMath math="5" /> in der Basis fünf schreiben. | Die Basis fünf nutzt nur die Ziffern <InlineMath math="0" /> bis <InlineMath math="4" />. | Jede Ziffer muss kleiner als die Basis sein. |
-| Die Reste von oben nach unten lesen. | Der erste Rest ist die Ziffer ganz rechts. | Zerlege die Antwort und vergleiche mit der Ausgangszahl. |
-| Der Stellenwert ganz rechts ist <InlineMath math="b^1" />. | Der Stellenwert ganz rechts ist <InlineMath math="b^0 = 1" />. | Zähle die Potenzen ab null. |
-| Im Zweiersystem erst bei zehn übertragen. | Übertragen wird, sobald die Spalte die Basis erreicht, also zwei. | Rechne jede Spaltensumme in diese Basis um. |
+| <InlineMath math="123_5" /> | eins zwei drei zur Basis fünf | <InlineMath math="38" /> |
+| <InlineMath math="1010_2" /> | eins null eins null zur Basis zwei | <InlineMath math="10" /> |
+| <InlineMath math="2075_8" /> | zwei null sieben fünf zur Basis acht | <InlineMath math="1{.}085" /> |
 
-Der zweite Fehler kommt in Aufgaben zur Umrechnung am häufigsten vor. **Lies die Reste von unten nach oben**.
+Eine Zahl ohne kleine Basis darunter liest du immer im Zehnersystem, <InlineMath math="38" /> bleibt also „achtunddreißig“. Wenn du Ziffer für Ziffer liest, kommst du nicht in Versuchung, <InlineMath math="1010_2" /> „tausendzehn“ zu nennen, obwohl die Zahl nur zehn wert ist.
 
-## Übungen zu Zahlenbasen
+## Ziffern gegen die Regel der Basis
 
-Diese Aufgaben führen vom Stellenwert zur Umrechnung und Addition. **Prüfe jede Antwort über das Zehnersystem**.
+Es gibt nur eine Regel: **Jede Ziffer muss kleiner sein als die Basis**. Zum Prüfen suchst du die größte Ziffer der Zahl und vergleichst sie mit der Basis. Ist die größte Ziffer <InlineMath math="d" />, gilt die Zahl nur zur Basis <InlineMath math="d + 1" /> oder größer.
 
-1. Rechne <InlineMath math="2341_5" /> ins Zehnersystem um.
+| Zahl | Größte Ziffer | Gültig oder nicht | Kleinste mögliche Basis |
+| :--- | :--- | :--- | :--- |
+| <InlineMath math="4302_5" /> | <InlineMath math="4" /> | Gültig, da <InlineMath math="4 < 5" /> | <InlineMath math="5" /> |
+| <InlineMath math="2061_5" /> | <InlineMath math="6" /> | Ungültig, da <InlineMath math="6 > 5" /> | <InlineMath math="7" /> |
+| <InlineMath math="1201_2" /> | <InlineMath math="2" /> | Ungültig, da <InlineMath math="2 = 2" /> | <InlineMath math="3" /> |
+| <InlineMath math="7345_8" /> | <InlineMath math="7" /> | Gültig, da <InlineMath math="7 < 8" /> | <InlineMath math="8" /> |
 
-2. Rechne <InlineMath math="100_{10}" /> in die Basis drei um.
+Schau dir <InlineMath math="1201_2" /> an. Das Zweiersystem hat nur die Ziffern <InlineMath math="0" /> und <InlineMath math="1" />, weil ein Stab zur Basis zwei mit zwei Perlen schon voll ist. Eine <InlineMath math="2" /> an dieser Stelle steht für zwei Perlen, die längst auf den linken Stab hätten wandern müssen. Gibt dir eine Aufgabe so eine Zahl, fang nicht an zu rechnen: **Diese Zahl gibt es in der angegebenen Basis nicht**.
 
-3. Rechne <InlineMath math="11010111_2" /> ins Achtersystem um.
+## Fehler beim Lesen von Stellenwerten
 
-4. Gegeben ist <InlineMath math="25_b = 17_{10}" />. Bestimme <InlineMath math="b" />.
+Diese vier Fehler passieren am häufigsten, wenn du die ausführliche Schreibweise aufstellst.
 
-### Lösungen
+| Fehler | Warum er falsch ist | So prüfst du |
+| :--- | :--- | :--- |
+| Der Stab ganz rechts gilt als <InlineMath math="b" /> wert. | Der Stab ganz rechts zählt Einer, <InlineMath math="b^0 = 1" />. | Beginn die Potenzen rechts mit <InlineMath math="0" />. |
+| Die <InlineMath math="2" /> in <InlineMath math="3214_5" /> wird als <InlineMath math="2 \cdot 5" /> gezählt. | Die Ziffer steht an der Stelle <InlineMath math="5^2" />, ist also <InlineMath math="50" /> wert. | Zeig zuerst auf den Stab, dann multiplizier. |
+| <InlineMath math="123_5" /> wird als hundertdreiundzwanzig gelesen. | Das Wort hundert gehört nur zur Stelle <InlineMath math="10^2" />. | Lies die Ziffern einzeln und nenn die Basis. |
+| Eine Null in der Mitte fällt weg, aus <InlineMath math="2075_8" /> wird <InlineMath math="275_8" />. | Die Null hält den Ziffern links von ihr den Platz frei. | Zähl die Stellen vor und nach dem Abschreiben. |
 
-**Lösung 1**: Multipliziere jede Ziffer mit einer Potenz von fünf:
+Der zweite Fehler ist der heimtückischste, weil das Ergebnis trotzdem vernünftig aussieht. Mit der falschen Multiplikation wird aus <InlineMath math="3214_5" /> plötzlich <InlineMath math="3 \cdot 5 + 2 \cdot 5 + 1 \cdot 5 + 4 = 34" />, weit weg von <InlineMath math="434" />. **Ordne jeder Ziffer ihre Potenz der Basis zu**, bevor du multiplizierst.
 
-<BlockMath math="2 \times 125 + 3 \times 25 + 4 \times 5 + 1 = 250 + 75 + 20 + 1 = 346" />
+## Übung zu Stellenwerten
 
-Prüfe: Jede Ziffer ist kleiner als <InlineMath math="5" />, also ist die Zahl in der Basis fünf gültig.
+Rechne alle drei Aufgaben, bevor du in die Lösungen schaust. Die dritte verbindet die **Regel für gültige Ziffern** mit der ausführlichen Schreibweise.
 
-**Lösung 2**: Teile wiederholt durch drei:
+1. Bestimme den Stellenwert und den Ziffernwert der Ziffer <InlineMath math="4" /> in <InlineMath math="2431_5" />.
+2. Schreib <InlineMath math="6053_7" /> in ausführlicher Schreibweise und berechne den Wert im Zehnersystem.
+3. Die Zahl <InlineMath math="3504" /> steht in einer Basis, die du noch nicht kennst. Bestimme die kleinste mögliche Basis und berechne den Wert der Zahl in dieser Basis.
 
-<BlockMath math="100 = 3 \times 33 + 1, \quad 33 = 3 \times 11 + 0, \quad 11 = 3 \times 3 + 2, \quad 3 = 3 \times 1 + 0, \quad 1 = 3 \times 0 + 1" />
+### Ausführliche Lösungen
 
-**Lies die Reste von unten**: <InlineMath math="10201_3" />. Prüfe: <InlineMath math="81 + 0 + 18 + 0 + 1 = 100" />.
+**Aufgabe 1**. Die Ziffer <InlineMath math="4" /> steht an der dritten Stelle von rechts, also an der Stelle <InlineMath math="5^2 = 25" />. Damit ist **ihr Stellenwert <InlineMath math="25" />** und ihr Ziffernwert <InlineMath math="4 \cdot 25 = 100" />. Kontrolle: Jede Ziffer in <InlineMath math="2431" /> ist kleiner als <InlineMath math="5" />, die Zahl ist zur Basis fünf also gültig.
 
-**Lösung 3**: Gruppiere je drei Ziffern von rechts und ergänze vorn eine Null, falls nötig:
+**Aufgabe 2**. Ordne jeder Ziffer eine Potenz von sieben zu, rechts beginnend mit <InlineMath math="7^0" />.
 
-<BlockMath math="011\,010\,111_2 = 3\,2\,7 = 327_8" />
+<BlockMath math="\begin{aligned} 6053_7 &= 6 \cdot 7^3 + 0 \cdot 7^2 + 5 \cdot 7^1 + 3 \cdot 7^0 \\ &= 2{.}058 + 0 + 35 + 3 \\ &= 2{.}096 \end{aligned}" />
 
-Prüfe: <InlineMath math="327_8 = 192 + 16 + 7 = 215" /> und <InlineMath math="11010111_2 = 128 + 64 + 16 + 4 + 2 + 1 = 215" />.
+Zur Kontrolle zerlegst du die Zahl von der größten Stelle her. Zieh <InlineMath math="6 \cdot 343" /> von <InlineMath math="2{.}096" /> ab, dann bleibt <InlineMath math="38" />. Weil <InlineMath math="38" /> kleiner als <InlineMath math="49" /> ist, steht an der Stelle <InlineMath math="7^2" /> eine <InlineMath math="0" />. Dann ist <InlineMath math="38 - 5 \cdot 7 = 3" />, und **du bekommst die Ziffern zurück**: <InlineMath math="6" />, <InlineMath math="0" />, <InlineMath math="5" /> und <InlineMath math="3" />.
 
-**Lösung 4**: Zerlege und löse:
+**Aufgabe 3**. Die größte Ziffer in <InlineMath math="3504" /> ist <InlineMath math="5" />, also ist **die kleinste Basis <InlineMath math="6" />**. Zur Basis sechs lauten die Stellenwerte von links <InlineMath math="216" />, <InlineMath math="36" />, <InlineMath math="6" /> und <InlineMath math="1" />.
 
-<BlockMath math="2b + 5 = 17 \quad\Rightarrow\quad b = 6" />
+<BlockMath math="\begin{aligned} 3504_6 &= 3 \cdot 216 + 5 \cdot 36 + 0 \cdot 6 + 4 \cdot 1 \\ &= 648 + 180 + 0 + 4 \\ &= 832 \end{aligned}" />
 
-Prüfe: Die Ziffer <InlineMath math="5" /> ist kleiner als <InlineMath math="6" />, und <InlineMath math="2 \times 6 + 5 = 17" />.
+Kontrolle: <InlineMath math="832 - 3 \cdot 216 = 184" />, dann <InlineMath math="184 - 5 \cdot 36 = 4" />. Der Rest <InlineMath math="4" /> ist kleiner als <InlineMath math="6" />, also steht an der Stelle <InlineMath math="6^1" /> eine <InlineMath math="0" />, und die Einerziffer ist <InlineMath math="4" />.

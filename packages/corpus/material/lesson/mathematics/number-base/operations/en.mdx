@@ -1,0 +1,168 @@
+export const metadata = {
+  title: "Adding and Subtracting in Number Bases",
+  description:
+    "Add and subtract numbers directly in bases two to nine by carrying and borrowing, then find the base a problem keeps hidden.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2026-11-20",
+  subject: "Number Bases",
+};
+
+## Carrying When a Spike Fills
+
+You can add and subtract directly in base <InlineMath math="b" />, without converting to base ten first. It works like the column addition you already know, only the limit changes: **carry one to the left whenever a column reaches <InlineMath math="b" />**, not ten. In subtraction, one borrowed from the column on the left is worth <InlineMath math="b" />. This abacus shows carrying happen to beads. Press Play, and each step adds one bead to the ones spike.
+
+<AbacusBaseLab
+  title={<>Adding One at a Time in Base Four</>}
+  description={
+    <>
+      Press Play. Each step adds one bead to the ones spike, and a full spike
+      sends one bead to the spike on its left.
+    </>
+  }
+  footer={<>As soon as a spike holds four beads, all four go home and one bead moves left.</>}
+  bases={[4, 3]}
+  value={61}
+  labels={{
+    base: "Base",
+    decimal: <>Value in base ten</>,
+    digits: <>Written in this base</>,
+    expanded: <>Expanded form</>,
+    value: "Number",
+    viewLabel: "A four-spike abacus with a pot of beads beside it",
+  }}
+  showReadout
+/>
+
+The abacus starts at <InlineMath math="61 = 331_4" />. The first two steps only add beads to the ones spike: <InlineMath math="332_4" />, then <InlineMath math="333_4" />. The third step puts four beads on the ones spike. Those four beads go back to the pot and one bead moves to the second spike, which fills up too, so the carrying runs all the way to the fourth spike. The result is <InlineMath math="1000_4 = 64" />: **one extra bead can carry three times in a row**. Pick base three and play again. From <InlineMath math="2021_3" /> you reach <InlineMath math="2100_3" />, with two carries in a single step.
+
+## Column Addition in Any Base
+
+Column addition uses the abacus rule in every column. Add each column from the right, including any carry from the column before. If the total is less than <InlineMath math="b" />, write it down. If it's <InlineMath math="b" /> or more, **write the total minus <InlineMath math="b" /> and carry <InlineMath math="1" />**. The carry is never more than <InlineMath math="1" />, because one column of two numbers holds at most <InlineMath math="(b - 1) + (b - 1) + 1 = 2b - 1" />.
+
+### A Carry That Runs Across Two Places
+
+Work out <InlineMath math="4675_8 + 2307_8" />. Every digit here is in base eight, so each column's limit is <InlineMath math="8" />. The small row on top records the carry going into each column.
+
+<BlockMath math="\begin{array}{rcccc} & {\scriptstyle 1} & {\scriptstyle 1} & {\scriptstyle 1} & \\ & 4 & 6 & 7 & 5 \\ + & 2 & 3 & 0 & 7 \\ \hline & 7 & 2 & 0 & 4 \end{array}" />
+
+| Column | Column total | In base eight | Write | Carry |
+| :--- | :--- | :--- | :--- | :--- |
+| Ones | <InlineMath math="5 + 7 = 12" /> | <InlineMath math="12 = 1 \times 8 + 4" /> | <InlineMath math="4" /> | <InlineMath math="1" /> |
+| Eights | <InlineMath math="7 + 0 + 1 = 8" /> | <InlineMath math="8 = 1 \times 8 + 0" /> | <InlineMath math="0" /> | <InlineMath math="1" /> |
+| The <InlineMath math="8^2" /> column | <InlineMath math="6 + 3 + 1 = 10" /> | <InlineMath math="10 = 1 \times 8 + 2" /> | <InlineMath math="2" /> | <InlineMath math="1" /> |
+| The <InlineMath math="8^3" /> column | <InlineMath math="4 + 2 + 1 = 7" /> | <InlineMath math="7 < 8" /> | <InlineMath math="7" /> | <InlineMath math="0" /> |
+
+Look at the eights column. Without a carry, <InlineMath math="7 + 0" /> wouldn't need to carry anything. The carry from the ones makes that column exactly <InlineMath math="8" />, so it carries as well. One carry **runs across two places**, just like a full abacus spike sending a bead to a spike that's almost full. The result is <InlineMath math="4675_8 + 2307_8 = 7204_8" />.
+
+### Checking Through Base Ten
+
+Convert all three numbers to base ten and see whether the sum matches.
+
+<BlockMath math="\begin{aligned} 4675_8 &= 4 \times 512 + 6 \times 64 + 7 \times 8 + 5 = 2{,}493 \\ 2307_8 &= 2 \times 512 + 3 \times 64 + 0 \times 8 + 7 = 1{,}223 \\ 7204_8 &= 7 \times 512 + 2 \times 64 + 0 \times 8 + 4 = 3{,}716 \end{aligned}" />
+
+Since <InlineMath math="2{,}493 + 1{,}223 = 3{,}716" />, **the base eight sum is right**. This check takes longer than the addition itself, but it catches a forgotten carry, because a lost carry makes the result short by a whole place value.
+
+## Borrowing in Subtraction
+
+Subtraction runs the abacus the other way. If the top digit of a column is smaller than the bottom one, **take one bead from the spike on the left and trade it for <InlineMath math="b" /> beads** in that column. Work out <InlineMath math="1302_5 - 244_5" />.
+
+<BlockMath math="\begin{array}{rcccc} & 1 & 3 & 0 & 2 \\ - & & 2 & 4 & 4 \\ \hline & 1 & 0 & 0 & 3 \end{array}" />
+
+The ones column asks for <InlineMath math="2 - 4" />, so it has to borrow. The fives spike is empty, so the borrow comes from the third spike: its <InlineMath math="3" /> drops to <InlineMath math="2" />, and the fives spike gets five beads. The fives spike then lends one bead to the ones. Now the fives hold <InlineMath math="4" /> and the ones hold <InlineMath math="2 + 5 = 7" />.
+
+| Column | After borrowing | Subtraction | Result |
+| :--- | :--- | :--- | :--- |
+| Ones | <InlineMath math="2 + 5 = 7" /> | <InlineMath math="7 - 4" /> | <InlineMath math="3" /> |
+| Fives | <InlineMath math="0 + 5 - 1 = 4" /> | <InlineMath math="4 - 4" /> | <InlineMath math="0" /> |
+| The <InlineMath math="5^2" /> column | <InlineMath math="3 - 1 = 2" /> | <InlineMath math="2 - 2" /> | <InlineMath math="0" /> |
+| The <InlineMath math="5^3" /> column | <InlineMath math="1" /> | <InlineMath math="1 - 0" /> | <InlineMath math="1" /> |
+
+So <InlineMath math="1302_5 - 244_5 = 1003_5" />. Check by adding back in base five: <InlineMath math="1003_5 + 244_5" /> gives ones <InlineMath math="3 + 4 = 7 = 12_5" />, fives <InlineMath math="0 + 4 + 1 = 5 = 10_5" />, third column <InlineMath math="0 + 2 + 1 = 3" /> and fourth column <InlineMath math="1" />, which is <InlineMath math="1302_5" /> again. Base ten agrees too: <InlineMath math="202 - 74 = 128 = 1003_5" />.
+
+## Problems That Hide the Base
+
+Sometimes a problem doesn't give the base and asks you to find it. Write the numeral in expanded form with the letter <InlineMath math="b" /> as the base, then solve the equation. Take <InlineMath math="123_b = 38" />.
+
+<BlockMath math="\begin{aligned} 1 \times b^2 + 2 \times b + 3 &= 38 \\ b^2 + 2b - 35 &= 0 \\ (b + 7)(b - 5) &= 0 \end{aligned}" />
+
+You solve this quadratic by [factoring a quadratic equation](/en/subjects/mathematics/quadratic-function/quadratic-equation-factorization), and it has two roots: <InlineMath math="b = -7" /> and <InlineMath math="b = 5" />. Only one can be a base. **A base must be a whole number bigger than the largest digit**, which is <InlineMath math="3" /> here, so <InlineMath math="b = 5" />. This graph shows both roots and the region of valid bases.
+
+<MathVisual
+  title={<>Two Roots, One Base</>}
+  description={
+    <>
+      The curve is <InlineMath math="b^2 + 2b - 35" /> divided by{" "}
+      <InlineMath math="10" /> so it fits. Dividing doesn't move the points
+      where it crosses the horizontal axis. Slide <InlineMath math="b" /> and
+      read the value of <InlineMath math="123_b" />.{" "}
+      Valid bases lie only in the shaded region, right of the dashed line <InlineMath math="b = 3" />.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -8.5, max: 6.5 }, y: { min: -4, max: 2 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [{ name: "b", min: 4, max: 6, value: 4, step: 1, label: "b" }],
+    objects: [
+      { id: "valid", kind: "region", appearance: "construction", inequalities: ["x > 3"] },
+      { id: "curve", kind: "function", appearance: "primary", formula: "(x^2 + 2x - 35)/10" },
+      { id: "rejected", kind: "point", appearance: "warning", at: { x: -7, y: 0 } },
+      { id: "root", kind: "point", appearance: "answer", at: { x: 5, y: 0 } },
+      { id: "now", kind: "marker", appearance: "highlight", x: "b", y: "(b^2 + 2b - 35)/10" },
+    ],
+    labels: [
+      { key: "rejected", objectId: "rejected", at: { x: -7, y: 0 }, placement: "above" },
+      { key: "root", objectId: "root", at: { x: 5, y: 0 }, placement: "above-left" },
+    ],
+    readouts: [{ key: "value", formula: "b^2 + 2b + 3" }],
+  }}
+  labels={{
+    b: <>Base <InlineMath math="b" /></>,
+    rejected: <InlineMath math="b = -7" />,
+    root: <InlineMath math="b = 5" />,
+    value: <>Value of <InlineMath math="123_b" /></>,
+  }}
+/>
+
+Slide <InlineMath math="b" /> from <InlineMath math="4" /> to <InlineMath math="6" />. The value of <InlineMath math="123_b" /> jumps from <InlineMath math="27" /> to <InlineMath math="38" /> and then to <InlineMath math="51" />, and the point touches the axis exactly when the value is <InlineMath math="38" />. The root <InlineMath math="-7" /> satisfies the equation, but it lies outside the shaded region, so it's rejected.
+
+## Mistakes When Adding and Subtracting
+
+Base ten habits sneak in here more than anywhere else. This table uses the examples you've just worked through.
+
+| Mistake | Why it's wrong | How to check |
+| :--- | :--- | :--- |
+| In <InlineMath math="4675_8 + 2307_8" />, the ones total <InlineMath math="12" /> is written as <InlineMath math="2" /> carry <InlineMath math="1" />. | The limit is <InlineMath math="8" />, and <InlineMath math="12 = 1 \times 8 + 4" />, so you write <InlineMath math="4" />. | Every digit of the answer must be smaller than the base. |
+| In <InlineMath math="1302_5 - 244_5" />, a borrow is counted as ten. | The ones become <InlineMath math="12 - 4 = 8" />, a digit that doesn't exist in base five. | A borrow is always worth <InlineMath math="b" />. |
+| The digit that lends isn't reduced, giving <InlineMath math="1103_5" />. | One bead has already moved, and <InlineMath math="1103_5 = 153" />, not <InlineMath math="128" />. | Add the answer back to the number you subtracted. |
+| The root <InlineMath math="b = -7" /> is accepted as a base. | A base must be a whole number bigger than every digit. | Compare each root with the largest digit. |
+
+The best check for subtraction is to **add the answer back to the number you subtracted**, because you stay in the same base the whole time.
+
+## Practice on Adding and Subtracting
+
+The third problem combines column addition with a hidden base. **Check every answer** in the way that suits it best.
+
+1. Work out <InlineMath math="2434_5 + 1213_5" />.
+2. Work out <InlineMath math="5032_8 - 1647_8" />.
+3. Given <InlineMath math="45_b + 36_b = 103_b" />, find <InlineMath math="b" />.
+
+### Worked Solutions
+
+**Problem 1**. Add the columns from the right with a limit of <InlineMath math="5" />.
+
+<BlockMath math="\begin{array}{rcccc} & {\scriptstyle 1} & {\scriptstyle 1} & {\scriptstyle 1} & \\ & 2 & 4 & 3 & 4 \\ + & 1 & 2 & 1 & 3 \\ \hline & 4 & 2 & 0 & 2 \end{array}" />
+
+Ones: <InlineMath math="4 + 3 = 7 = 12_5" />, write <InlineMath math="2" /> carry <InlineMath math="1" />. Fives: <InlineMath math="3 + 1 + 1 = 5 = 10_5" />, write <InlineMath math="0" /> carry <InlineMath math="1" />. Third column: <InlineMath math="4 + 2 + 1 = 7 = 12_5" />, write <InlineMath math="2" /> carry <InlineMath math="1" />. Fourth column: <InlineMath math="2 + 1 + 1 = 4" />. So **<InlineMath math="2434_5 + 1213_5 = 4202_5" />**. Check through base ten: <InlineMath math="369 + 183 = 552" />, and <InlineMath math="4202_5 = 500 + 50 + 0 + 2 = 552" />.
+
+**Problem 2**. Subtract the columns from the right, and **every borrow is worth <InlineMath math="8" />**.
+
+<BlockMath math="\begin{array}{rcccc} & 5 & 0 & 3 & 2 \\ - & 1 & 6 & 4 & 7 \\ \hline & 3 & 1 & 6 & 3 \end{array}" />
+
+Ones: <InlineMath math="2 < 7" />, so borrow from the eights, giving <InlineMath math="2 + 8 - 7 = 3" />, and the eights column drops to <InlineMath math="2" />. Eights: <InlineMath math="2 < 4" />, but the <InlineMath math="8^2" /> column is empty, so borrow from the <InlineMath math="8^3" /> column. Its <InlineMath math="5" /> becomes <InlineMath math="4" />, the <InlineMath math="8^2" /> column becomes <InlineMath math="8 - 1 = 7" />, and the eights become <InlineMath math="2 + 8 - 4 = 6" />. The <InlineMath math="8^2" /> column: <InlineMath math="7 - 6 = 1" />. The <InlineMath math="8^3" /> column: <InlineMath math="4 - 1 = 3" />. So **<InlineMath math="5032_8 - 1647_8 = 3163_8" />**. Check through base ten: <InlineMath math="2{,}586 - 935 = 1{,}651" />, and <InlineMath math="3163_8 = 1{,}536 + 64 + 48 + 3 = 1{,}651" />.
+
+**Problem 3**. Write each numeral in expanded form with base <InlineMath math="b" />.
+
+<BlockMath math="\begin{aligned} (4b + 5) + (3b + 6) &= b^2 + 0 \times b + 3 \\ 7b + 11 &= b^2 + 3 \\ b^2 - 7b - 8 &= 0 \\ (b - 8)(b + 1) &= 0 \end{aligned}" />
+
+The roots are <InlineMath math="b = 8" /> and <InlineMath math="b = -1" />. The base must be bigger than the largest digit, <InlineMath math="6" />, so **<InlineMath math="b = 8" />**. Check by adding in base eight: ones <InlineMath math="5 + 6 = 11 = 13_8" />, write <InlineMath math="3" /> carry <InlineMath math="1" />, then <InlineMath math="4 + 3 + 1 = 8 = 10_8" />. The result is <InlineMath math="103_8" />, the same as the right-hand side.

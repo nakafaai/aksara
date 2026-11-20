@@ -1,0 +1,168 @@
+export const metadata = {
+  title: "Addieren und Subtrahieren in Zahlensystemen",
+  description:
+    "Addiere und subtrahiere direkt zur Basis zwei bis neun mit Übertrag und Entbündeln und finde die Basis, die eine Aufgabe versteckt.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2026-11-20",
+  subject: "Zahlensysteme",
+};
+
+## Übertrag bei vollem Stab
+
+Du kannst direkt zur Basis <InlineMath math="b" /> addieren und subtrahieren, ohne vorher ins Zehnersystem umzurechnen. Es läuft wie die schriftliche Addition, die du kennst, nur die Grenze ist eine andere: **Übertrag eine Eins nach links, sobald eine Spalte <InlineMath math="b" /> erreicht**, nicht zehn. Beim Subtrahieren ist eine Eins, die du dir aus der linken Spalte holst, <InlineMath math="b" /> wert. Dieser Abakus zeigt dir den Übertrag an den Perlen. Tippe auf Abspielen, und jeder Schritt legt eine Perle auf den Einerstab.
+
+<AbacusBaseLab
+  title={<>Eins nach dem anderen zur Basis vier</>}
+  description={
+    <>
+      Tippe auf Abspielen. Jeder Schritt legt eine Perle auf den Einerstab,
+      und ein voller Stab schickt eine Perle auf den Stab links daneben.
+    </>
+  }
+  footer={<>Trägt ein Stab vier Perlen, gehen alle vier zurück und eine Perle wandert nach links.</>}
+  bases={[4, 3]}
+  value={61}
+  labels={{
+    base: "Basis",
+    decimal: <>Wert im Zehnersystem</>,
+    digits: <>In dieser Basis geschrieben</>,
+    expanded: <>Ausführliche Schreibweise</>,
+    value: "Zahl",
+    viewLabel: "Ein Abakus mit vier Stäben und einer Schale Perlen daneben",
+  }}
+  showReadout
+/>
+
+Der Abakus beginnt bei <InlineMath math="61 = 331_4" />. Die ersten beiden Schritte legen nur Perlen auf den Einerstab: <InlineMath math="332_4" />, dann <InlineMath math="333_4" />. Der dritte Schritt bringt den Einerstab auf vier Perlen. Diese vier gehen zurück in die Schale, und eine Perle wandert auf den zweiten Stab, der dadurch auch voll wird, also läuft der Übertrag bis zum vierten Stab durch. Heraus kommt <InlineMath math="1000_4 = 64" />: **Eine einzige Perle kann dreimal hintereinander einen Übertrag auslösen**. Wähl die Basis drei und spiel noch einmal ab. Von <InlineMath math="2021_3" /> kommst du zu <InlineMath math="2100_3" />, mit zwei Überträgen in einem Schritt.
+
+## Schriftlich addieren in jeder Basis
+
+Die schriftliche Addition wendet die Abakusregel auf jede Spalte an. Addier die Spalten von rechts, samt Übertrag aus der vorigen Spalte. Ist die Summe kleiner als <InlineMath math="b" />, schreibst du sie hin. Ist sie <InlineMath math="b" /> oder größer, **schreibst du die Summe minus <InlineMath math="b" /> und überträgst <InlineMath math="1" />**. Der Übertrag ist nie größer als <InlineMath math="1" />, denn eine Spalte aus zwei Zahlen ergibt höchstens <InlineMath math="(b - 1) + (b - 1) + 1 = 2b - 1" />.
+
+### Ein Übertrag über zwei Stellen
+
+Rechne <InlineMath math="4675_8 + 2307_8" />. Alle Ziffern stehen zur Basis acht, die Grenze jeder Spalte ist also <InlineMath math="8" />. Die kleine Zeile oben hält den Übertrag fest, der in jede Spalte geht.
+
+<BlockMath math="\begin{array}{rcccc} & {\scriptstyle 1} & {\scriptstyle 1} & {\scriptstyle 1} & \\ & 4 & 6 & 7 & 5 \\ + & 2 & 3 & 0 & 7 \\ \hline & 7 & 2 & 0 & 4 \end{array}" />
+
+| Spalte | Spaltensumme | Zur Basis acht | Schreiben | Übertrag |
+| :--- | :--- | :--- | :--- | :--- |
+| Einer | <InlineMath math="5 + 7 = 12" /> | <InlineMath math="12 = 1 \cdot 8 + 4" /> | <InlineMath math="4" /> | <InlineMath math="1" /> |
+| Achter | <InlineMath math="7 + 0 + 1 = 8" /> | <InlineMath math="8 = 1 \cdot 8 + 0" /> | <InlineMath math="0" /> | <InlineMath math="1" /> |
+| Spalte <InlineMath math="8^2" /> | <InlineMath math="6 + 3 + 1 = 10" /> | <InlineMath math="10 = 1 \cdot 8 + 2" /> | <InlineMath math="2" /> | <InlineMath math="1" /> |
+| Spalte <InlineMath math="8^3" /> | <InlineMath math="4 + 2 + 1 = 7" /> | <InlineMath math="7 < 8" /> | <InlineMath math="7" /> | <InlineMath math="0" /> |
+
+Schau auf die Achterspalte. Ohne Übertrag bräuchte <InlineMath math="7 + 0" /> keinen eigenen Übertrag. Der Übertrag aus den Einern macht die Spalte aber genau <InlineMath math="8" />, also überträgt sie ebenfalls. Ein Übertrag **läuft über zwei Stellen**, genau wie ein voller Abakusstab eine Perle auf einen Stab schickt, der selbst fast voll ist. Das Ergebnis ist <InlineMath math="4675_8 + 2307_8 = 7204_8" />.
+
+### Die Probe über das Zehnersystem
+
+Rechne alle drei Zahlen ins Zehnersystem um und prüf, ob die Summe passt.
+
+<BlockMath math="\begin{aligned} 4675_8 &= 4 \cdot 512 + 6 \cdot 64 + 7 \cdot 8 + 5 = 2{.}493 \\ 2307_8 &= 2 \cdot 512 + 3 \cdot 64 + 0 \cdot 8 + 7 = 1{.}223 \\ 7204_8 &= 7 \cdot 512 + 2 \cdot 64 + 0 \cdot 8 + 4 = 3{.}716 \end{aligned}" />
+
+Weil <InlineMath math="2{.}493 + 1{.}223 = 3{.}716" /> ist, **stimmt die Summe zur Basis acht**. Diese Probe dauert länger als die Addition selbst, aber sie fängt einen vergessenen Übertrag ab, denn ohne ihn fehlt dem Ergebnis ein ganzer Stellenwert.
+
+## Entbündeln beim Subtrahieren
+
+Beim Subtrahieren läuft der Abakus andersherum. Ist die obere Ziffer einer Spalte kleiner als die untere, **nimmst du eine Perle vom linken Stab und tauschst sie gegen <InlineMath math="b" /> Perlen** in dieser Spalte. Rechne <InlineMath math="1302_5 - 244_5" />.
+
+<BlockMath math="\begin{array}{rcccc} & 1 & 3 & 0 & 2 \\ - & & 2 & 4 & 4 \\ \hline & 1 & 0 & 0 & 3 \end{array}" />
+
+Die Einerspalte verlangt <InlineMath math="2 - 4" />, also muss sie entbündeln. Der Fünferstab ist leer, darum kommt die Perle vom dritten Stab: Seine <InlineMath math="3" /> wird zu <InlineMath math="2" />, und der Fünferstab bekommt fünf Perlen. Dann gibt der Fünferstab eine Perle an die Einer ab. Jetzt trägt der Fünferstab <InlineMath math="4" /> und der Einerstab <InlineMath math="2 + 5 = 7" />.
+
+| Spalte | Nach dem Entbündeln | Subtraktion | Ergebnis |
+| :--- | :--- | :--- | :--- |
+| Einer | <InlineMath math="2 + 5 = 7" /> | <InlineMath math="7 - 4" /> | <InlineMath math="3" /> |
+| Fünfer | <InlineMath math="0 + 5 - 1 = 4" /> | <InlineMath math="4 - 4" /> | <InlineMath math="0" /> |
+| Spalte <InlineMath math="5^2" /> | <InlineMath math="3 - 1 = 2" /> | <InlineMath math="2 - 2" /> | <InlineMath math="0" /> |
+| Spalte <InlineMath math="5^3" /> | <InlineMath math="1" /> | <InlineMath math="1 - 0" /> | <InlineMath math="1" /> |
+
+Also ist <InlineMath math="1302_5 - 244_5 = 1003_5" />. Prüf durch Zurückaddieren zur Basis fünf: <InlineMath math="1003_5 + 244_5" /> ergibt bei den Einern <InlineMath math="3 + 4 = 7 = 12_5" />, bei den Fünfern <InlineMath math="0 + 4 + 1 = 5 = 10_5" />, in der dritten Spalte <InlineMath math="0 + 2 + 1 = 3" /> und in der vierten <InlineMath math="1" />, also wieder <InlineMath math="1302_5" />. Auch das Zehnersystem passt: <InlineMath math="202 - 74 = 128 = 1003_5" />.
+
+## Aufgaben mit versteckter Basis
+
+Manchmal nennt eine Aufgabe die Basis nicht und du sollst sie finden. Schreib die Zahl in ausführlicher Schreibweise mit dem Buchstaben <InlineMath math="b" /> als Basis und lös die Gleichung. Nimm <InlineMath math="123_b = 38" />.
+
+<BlockMath math="\begin{aligned} 1 \cdot b^2 + 2 \cdot b + 3 &= 38 \\ b^2 + 2b - 35 &= 0 \\ (b + 7)(b - 5) &= 0 \end{aligned}" />
+
+Diese quadratische Gleichung löst du durch [Faktorisieren einer quadratischen Gleichung](/de/faecher/mathematik/quadratische-funktionen/faktorisieren-quadratischer-gleichungen), und sie hat zwei Lösungen: <InlineMath math="b = -7" /> und <InlineMath math="b = 5" />. Nur eine davon kann eine Basis sein. **Eine Basis ist eine ganze Zahl, die größer ist als die größte Ziffer**, hier <InlineMath math="3" />, also ist <InlineMath math="b = 5" />. Der Graph zeigt beide Lösungen und den Bereich gültiger Basen.
+
+<MathVisual
+  title={<>Zwei Lösungen, eine Basis</>}
+  description={
+    <>
+      Die Kurve ist <InlineMath math="b^2 + 2b - 35" /> geteilt durch{" "}
+      <InlineMath math="10" />, damit sie passt. Das Teilen verschiebt ihre
+      Schnittpunkte mit der waagrechten Achse nicht. Verschieb{" "}
+      <InlineMath math="b" /> und lies den Wert von <InlineMath math="123_b" />.{" "}
+      Gültige Basen liegen nur im schraffierten Bereich rechts der gestrichelten Linie <InlineMath math="b = 3" />.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -8.5, max: 6.5 }, y: { min: -4, max: 2 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [{ name: "b", min: 4, max: 6, value: 4, step: 1, label: "b" }],
+    objects: [
+      { id: "valid", kind: "region", appearance: "construction", inequalities: ["x > 3"] },
+      { id: "curve", kind: "function", appearance: "primary", formula: "(x^2 + 2x - 35)/10" },
+      { id: "rejected", kind: "point", appearance: "warning", at: { x: -7, y: 0 } },
+      { id: "root", kind: "point", appearance: "answer", at: { x: 5, y: 0 } },
+      { id: "now", kind: "marker", appearance: "highlight", x: "b", y: "(b^2 + 2b - 35)/10" },
+    ],
+    labels: [
+      { key: "rejected", objectId: "rejected", at: { x: -7, y: 0 }, placement: "above" },
+      { key: "root", objectId: "root", at: { x: 5, y: 0 }, placement: "above-left" },
+    ],
+    readouts: [{ key: "value", formula: "b^2 + 2b + 3" }],
+  }}
+  labels={{
+    b: <>Basis <InlineMath math="b" /></>,
+    rejected: <InlineMath math="b = -7" />,
+    root: <InlineMath math="b = 5" />,
+    value: <>Wert von <InlineMath math="123_b" /></>,
+  }}
+/>
+
+Verschieb <InlineMath math="b" /> von <InlineMath math="4" /> auf <InlineMath math="6" />. Der Wert von <InlineMath math="123_b" /> springt von <InlineMath math="27" /> auf <InlineMath math="38" /> und dann auf <InlineMath math="51" />, und der Punkt berührt die Achse genau beim Wert <InlineMath math="38" />. Die Lösung <InlineMath math="-7" /> erfüllt die Gleichung, liegt aber außerhalb des schraffierten Bereichs, also fällt sie weg.
+
+## Fehler beim Addieren und Subtrahieren
+
+Gewohnheiten aus dem Zehnersystem schleichen sich hier am leichtesten ein. Die Tabelle nutzt die Beispiele von oben.
+
+| Fehler | Warum er falsch ist | So prüfst du |
+| :--- | :--- | :--- |
+| In <InlineMath math="4675_8 + 2307_8" /> wird die Einersumme <InlineMath math="12" /> als <InlineMath math="2" />, Übertrag <InlineMath math="1" /> notiert. | Die Grenze ist <InlineMath math="8" />, und <InlineMath math="12 = 1 \cdot 8 + 4" />, also schreibst du <InlineMath math="4" />. | Jede Ziffer des Ergebnisses ist kleiner als die Basis. |
+| In <InlineMath math="1302_5 - 244_5" /> zählt das Entbündeln als zehn. | Die Einer werden <InlineMath math="12 - 4 = 8" />, eine Ziffer, die es zur Basis fünf nicht gibt. | Entbündeln bringt immer <InlineMath math="b" />. |
+| Die abgebende Ziffer wird nicht verkleinert, heraus kommt <InlineMath math="1103_5" />. | Eine Perle ist schon gewandert, und <InlineMath math="1103_5 = 153" />, nicht <InlineMath math="128" />. | Addier das Ergebnis und den Subtrahenden zurück. |
+| Die Lösung <InlineMath math="b = -7" /> wird als Basis genommen. | Eine Basis ist eine ganze Zahl, größer als jede Ziffer. | Vergleich jede Lösung mit der größten Ziffer. |
+
+Die beste Probe beim Subtrahieren ist, **das Ergebnis und den Subtrahenden zurückzuaddieren**, denn so bleibst du die ganze Zeit in derselben Basis.
+
+## Übung zum Addieren und Subtrahieren
+
+Die dritte Aufgabe verbindet die schriftliche Addition mit einer versteckten Basis. **Prüf jedes Ergebnis** mit der Probe, die am besten passt.
+
+1. Berechne <InlineMath math="2434_5 + 1213_5" />.
+2. Berechne <InlineMath math="5032_8 - 1647_8" />.
+3. Es gilt <InlineMath math="45_b + 36_b = 103_b" />. Bestimme <InlineMath math="b" />.
+
+### Ausführliche Lösungen
+
+**Aufgabe 1**. Addier die Spalten von rechts mit der Grenze <InlineMath math="5" />.
+
+<BlockMath math="\begin{array}{rcccc} & {\scriptstyle 1} & {\scriptstyle 1} & {\scriptstyle 1} & \\ & 2 & 4 & 3 & 4 \\ + & 1 & 2 & 1 & 3 \\ \hline & 4 & 2 & 0 & 2 \end{array}" />
+
+Einer: <InlineMath math="4 + 3 = 7 = 12_5" />, schreib <InlineMath math="2" />, Übertrag <InlineMath math="1" />. Fünfer: <InlineMath math="3 + 1 + 1 = 5 = 10_5" />, schreib <InlineMath math="0" />, Übertrag <InlineMath math="1" />. Dritte Spalte: <InlineMath math="4 + 2 + 1 = 7 = 12_5" />, schreib <InlineMath math="2" />, Übertrag <InlineMath math="1" />. Vierte Spalte: <InlineMath math="2 + 1 + 1 = 4" />. Also ist **<InlineMath math="2434_5 + 1213_5 = 4202_5" />**. Probe über das Zehnersystem: <InlineMath math="369 + 183 = 552" />, und <InlineMath math="4202_5 = 500 + 50 + 0 + 2 = 552" />.
+
+**Aufgabe 2**. Subtrahier die Spalten von rechts, und **jedes Entbündeln bringt <InlineMath math="8" />**.
+
+<BlockMath math="\begin{array}{rcccc} & 5 & 0 & 3 & 2 \\ - & 1 & 6 & 4 & 7 \\ \hline & 3 & 1 & 6 & 3 \end{array}" />
+
+Einer: <InlineMath math="2 < 7" />, also holst du dir eine Perle aus der Achterspalte, das ergibt <InlineMath math="2 + 8 - 7 = 3" />, und die Achterspalte sinkt auf <InlineMath math="2" />. Achter: <InlineMath math="2 < 4" />, aber die Spalte <InlineMath math="8^2" /> ist leer, also holst du dir die Perle aus der Spalte <InlineMath math="8^3" />. Ihre <InlineMath math="5" /> wird zu <InlineMath math="4" />, die Spalte <InlineMath math="8^2" /> wird zu <InlineMath math="8 - 1 = 7" />, und die Achter werden <InlineMath math="2 + 8 - 4 = 6" />. Spalte <InlineMath math="8^2" />: <InlineMath math="7 - 6 = 1" />. Spalte <InlineMath math="8^3" />: <InlineMath math="4 - 1 = 3" />. Also ist **<InlineMath math="5032_8 - 1647_8 = 3163_8" />**. Probe über das Zehnersystem: <InlineMath math="2{.}586 - 935 = 1{.}651" />, und <InlineMath math="3163_8 = 1{.}536 + 64 + 48 + 3 = 1{.}651" />.
+
+**Aufgabe 3**. Schreib jede Zahl in ausführlicher Schreibweise mit der Basis <InlineMath math="b" />.
+
+<BlockMath math="\begin{aligned} (4b + 5) + (3b + 6) &= b^2 + 0 \cdot b + 3 \\ 7b + 11 &= b^2 + 3 \\ b^2 - 7b - 8 &= 0 \\ (b - 8)(b + 1) &= 0 \end{aligned}" />
+
+Die Lösungen sind <InlineMath math="b = 8" /> und <InlineMath math="b = -1" />. Die Basis muss größer sein als die größte Ziffer <InlineMath math="6" />, also ist **<InlineMath math="b = 8" />**. Probe durch Addieren zur Basis acht: Einer <InlineMath math="5 + 6 = 11 = 13_8" />, schreib <InlineMath math="3" />, Übertrag <InlineMath math="1" />, dann <InlineMath math="4 + 3 + 1 = 8 = 10_8" />. Heraus kommt <InlineMath math="103_8" />, genau die rechte Seite.

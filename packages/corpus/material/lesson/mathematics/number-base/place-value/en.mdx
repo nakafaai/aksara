@@ -1,260 +1,178 @@
 export const metadata = {
-  title: "Number Bases Notes for Form Four",
+  title: "Place Value and Digit Value in Number Bases",
   description:
-    "Form 4 Mathematics Chapter 2: find place values in bases two to nine, convert numbers between bases, and add and subtract in number bases, with practice.",
+    "Read what each digit is worth in bases two to nine, write a numeral in expanded form, and spot digits a base can never contain.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
-  datePublished: "2026-11-17",
+  datePublished: "2026-11-20",
   subject: "Number Bases",
 };
 
-## Every Digit Is Worth a Power of Its Base
+## A Spike Abacus That Runs Out of Room
 
-In **base** <InlineMath math="b" />, numbers are written with the digits <InlineMath math="0" /> to <InlineMath math="b - 1" />, and each position is worth a **power** of <InlineMath math="b" />. The rightmost digit is worth <InlineMath math="b^0 = 1" />, the digit to its left <InlineMath math="b^1" />, then <InlineMath math="b^2" />, and so on. To find a number's value in base ten, multiply each digit by its place value and add them up. In the models here, you break a number into place values, compare how many digits a number needs in different bases and see how the base changes the value of the same digits.
+In **base five**, you count in groups of five. One spike of an abacus may hold only four beads. As soon as a fifth bead arrives, all five beads come off and one bead goes onto the spike to the left. So **base** <InlineMath math="b" /> uses only the digits <InlineMath math="0" /> to <InlineMath math="b - 1" />, and each place is worth <InlineMath math="b" /> times the place to its right. The numeral <InlineMath math="123_5" /> means one group of <InlineMath math="25" />, two groups of <InlineMath math="5" /> and three ones, so its value is <InlineMath math="38" />. On this abacus you move that number from base five to base ten.
+
+<AbacusBaseLab
+  title={<>The Number <InlineMath math="38" /> on a Base Five Abacus</>}
+  description={
+    <>
+      Each spike holds one digit. Pick base <InlineMath math="5" /> or{" "}
+      <InlineMath math="10" />, then slide the number and count the beads on
+      each spike.
+    </>
+  }
+  footer={<>In base five, a spike never holds more than four beads.</>}
+  bases={[5, 10]}
+  value={38}
+  labels={{
+    base: "Base",
+    decimal: <>Value in base ten</>,
+    digits: <>Written in this base</>,
+    expanded: <>Expanded form</>,
+    value: "Number",
+    viewLabel: "A four-spike abacus on a desk, the beads on each spike showing one digit",
+  }}
+  showReadout
+/>
+
+Why does a spike stop at four beads? Five beads on the ones spike already make one group of five, and groups of five have their own spike. If the ones spike could hold five beads, you could write five in two ways: five beads on the ones spike, or one bead on the second spike. The rule of **at most <InlineMath math="b - 1" /> beads on each spike** gives every number exactly one way to be written.
+
+Now pick base ten. The same number regroups into three beads on the tens spike and eight beads on the ones spike. **How many things you have doesn't change**, only the size of the groups does. Go back to base five and slide the number to <InlineMath math="39" />, then <InlineMath math="40" />. At <InlineMath math="40" /> the ones spike is empty again, because five beads have just turned into one bead on the second spike.
 
 ## Place Value and Digit Value
 
-Take the number <InlineMath math="10110_2" />. From the right, its **place values** are <InlineMath math="2^0, 2^1, 2^2, 2^3, 2^4" />, which are <InlineMath math="1, 2, 4, 8, 16" />.
+Every digit in a numeral has two values. Its **place value** is what one bead is worth on the spike where the digit stands. Its **digit value** is the digit times its place value, which is what all the beads on that spike are worth. Take the digit <InlineMath math="2" /> in <InlineMath math="123_5" />. It stands on the second spike, so its place value is <InlineMath math="5" /> and its digit value is <InlineMath math="2 \times 5 = 10" />.
 
-<BlockMath math="10110_2 = 1 \times 2^4 + 0 \times 2^3 + 1 \times 2^2 + 1 \times 2^1 + 0 \times 2^0 = 22_{10}" />
+### Powers of the Base Along the Spikes
 
-This chart shows what each digit contributes to the total. A digit <InlineMath math="0" /> contributes nothing even when its place value is large.
+The rightmost spike counts ones. One bead on the next spike stands for a full group from the spike to its right, so it's worth <InlineMath math="b" /> times as much. That makes the place values, from right to left, <InlineMath math="b^0, b^1, b^2, b^3" />: **powers of the base starting from zero**. This table lists the four place values for the bases you'll meet most often.
 
-<BarChart
-  title={<>What Each Digit of <InlineMath math="10110_2" /> Contributes</>}
-  description={
-    <>
-      Digit value, the digit times its place value, for each position. The
-      total is <InlineMath math="22" />.
-    </>
-  }
-  yAxisLabel="Digit value"
-  data={[
-    { name: "2⁴", value: 1 * 16 },
-    { name: "2³", value: 0 * 8 },
-    { name: "2²", value: 1 * 4 },
-    { name: "2¹", value: 1 * 2 },
-    { name: "2⁰", value: 0 * 1 },
-  ]}
-  chartConfig={{ value: { label: "Digit value", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
-/>
+| Spike | Power | Base <InlineMath math="2" /> | Base <InlineMath math="5" /> | Base <InlineMath math="8" /> | Base <InlineMath math="10" /> |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| Fourth | <InlineMath math="b^3" /> | <InlineMath math="8" /> | <InlineMath math="125" /> | <InlineMath math="512" /> | <InlineMath math="1{,}000" /> |
+| Third | <InlineMath math="b^2" /> | <InlineMath math="4" /> | <InlineMath math="25" /> | <InlineMath math="64" /> | <InlineMath math="100" /> |
+| Second | <InlineMath math="b^1" /> | <InlineMath math="2" /> | <InlineMath math="5" /> | <InlineMath math="8" /> | <InlineMath math="10" /> |
+| First, the ones | <InlineMath math="b^0" /> | <InlineMath math="1" /> | <InlineMath math="1" /> | <InlineMath math="1" /> | <InlineMath math="1" /> |
 
-Place values in base two double at every position. Move the position slider and read the place value.
+Why is the ones spike worth <InlineMath math="b^0 = 1" /> and not <InlineMath math="b" />? A bead there is still a single thing that hasn't been grouped. The first group only appears on the second spike. It's the same pattern as [powers and exponents](/en/subjects/mathematics/exponential-logarithm/basic-concept): every time you move up one place, you multiply by the base once more.
+
+### Expanded Form as a Sum of Digit Values
+
+Add up all the digit values and you get the number's value in base ten. Writing that sum out is called the **expanded form**. Take <InlineMath math="3214_5" />.
+
+<BlockMath math="\begin{aligned} 3214_5 &= 3 \times 5^3 + 2 \times 5^2 + 1 \times 5^1 + 4 \times 5^0 \\ &= 375 + 50 + 5 + 4 \\ &= 434 \end{aligned}" />
+
+The digit value of the <InlineMath math="2" /> here is <InlineMath math="50" />, not <InlineMath math="10" />, because that digit stands in the <InlineMath math="5^2" /> place. Check your answer on the abacus: pick base five, slide the number to <InlineMath math="434" /> and count the beads. From the left, the spikes should hold three, two, one and four beads.
+
+The second example uses base eight and contains a zero.
+
+<BlockMath math="\begin{aligned} 2075_8 &= 2 \times 8^3 + 0 \times 8^2 + 7 \times 8^1 + 5 \times 8^0 \\ &= 1{,}024 + 0 + 56 + 5 \\ &= 1{,}085 \end{aligned}" />
+
+The <InlineMath math="0" /> adds nothing, but **the zero still holds a place** for the other digits. Without it you'd have <InlineMath math="275_8" />, which is only worth <InlineMath math="189" />. Check the result by taking <InlineMath math="1{,}085" /> apart from the largest place. Subtract <InlineMath math="2 \times 512" /> and <InlineMath math="61" /> is left. Since <InlineMath math="61" /> is less than <InlineMath math="64" />, the digit in the <InlineMath math="8^2" /> place is <InlineMath math="0" />. Then <InlineMath math="61 - 7 \times 8 = 5" />, so you get the digits <InlineMath math="2" />, <InlineMath math="0" />, <InlineMath math="7" /> and <InlineMath math="5" /> back.
+
+## The Same Digits in Different Bases
+
+The numeral <InlineMath math="123" /> has no single fixed value. Its value depends on the base that comes with it, because the base sets how big each place is: <InlineMath math="123_b = 1 \times b^2 + 2 \times b + 3" />.
+
+| Base | Expanded form | Value |
+| :--- | :--- | :--- |
+| <InlineMath math="4" /> | <InlineMath math="1 \times 16 + 2 \times 4 + 3" /> | <InlineMath math="27" /> |
+| <InlineMath math="5" /> | <InlineMath math="1 \times 25 + 2 \times 5 + 3" /> | <InlineMath math="38" /> |
+| <InlineMath math="8" /> | <InlineMath math="1 \times 64 + 2 \times 8 + 3" /> | <InlineMath math="83" /> |
+| <InlineMath math="10" /> | <InlineMath math="1 \times 100 + 2 \times 10 + 3" /> | <InlineMath math="123" /> |
+
+The bigger the base, the bigger every place, so **the same digits are worth more in a bigger base**. Slide the base on this graph and watch the point climb faster and faster, because the third place grows as <InlineMath math="b^2" />.
 
 <MathVisual
-  title={<>Place Values in Base Two</>}
+  title={<>The Value of <InlineMath math="123_b" /> for Each Base</>}
   description={
     <>
-      Place value <InlineMath math="2^k" /> in tens,{" "}
-      <InlineMath math="\dfrac{2^k}{10}" />, against position{" "}
-      <InlineMath math="k" /> from the right, starting at{" "}
-      <InlineMath math="k = 0" />.
+      Slide the base <InlineMath math="b" />. The point moves to the value of{" "}
+      <InlineMath math="123_b" />, and one grid square up on the graph is
+      worth <InlineMath math="10" />.{" "}
+      The dashed curve only guides your eye. A base is always a whole number, so read the point.
     </>
   }
   scene={{
     space: "plane",
-    frame: { kind: "cartesian", x: { min: 0, max: 7.5 }, y: { min: 0, max: 13.5 } },
+    frame: { kind: "cartesian", x: { min: 0, max: 10.5 }, y: { min: 0, max: 13 } },
     view: { kind: "fit", padding: 0.06 },
-    parameters: [
-      { name: "k", min: 0, max: 7, value: 4, step: 1, label: "k" },
-    ],
+    parameters: [{ name: "b", min: 4, max: 10, value: 5, step: 1, label: "b" }],
     objects: [
-      { id: "place", kind: "function", appearance: "primary", formula: "2^x/10", domain: { min: 0, max: 7.2 } },
-      { id: "now", kind: "marker", x: "k", y: "2^k/10", appearance: "warning" },
-    ],
-    readouts: [
-      { key: "value", formula: "2^k" },
-    ],
-  }}
-  labels={{
-    k: <>Digit position <InlineMath math="k" /></>,
-    value: <>Place value</>,
-  }}
-/>
-
-## The Base Changes the Value of the Same Digits
-
-**The same digits give different values** in different bases. The number <InlineMath math="123_b" /> is worth <InlineMath math="b^2 + 2b + 3" /> in base ten. Change the base and watch the value grow quickly.
-
-<MathVisual
-  title={<>The Value of <InlineMath math="123_b" /> by Base</>}
-  description={
-    <>
-      The value <InlineMath math="123_b = b^2 + 2b + 3" /> in tens against the
-      base <InlineMath math="b" />. The digit <InlineMath math="3" /> is only
-      valid when <InlineMath math="b \ge 4" />.
-    </>
-  }
-  scene={{
-    space: "plane",
-    frame: { kind: "cartesian", x: { min: 0, max: 10.5 }, y: { min: 0, max: 12.5 } },
-    view: { kind: "fit", padding: 0.06 },
-    parameters: [
-      { name: "b", min: 4, max: 10, value: 5, step: 1, label: "b" },
-    ],
-    objects: [
-      { id: "value", kind: "function", appearance: "primary", formula: "(x^2 + 2x + 3)/10", domain: { min: 4, max: 10 } },
-      { id: "now", kind: "marker", x: "b", y: "(b^2 + 2b + 3)/10", appearance: "warning" },
+      { id: "growth", kind: "function", appearance: "reference", stroke: "dashed", formula: "(x^2 + 2x + 3)/10", domain: { min: 4, max: 10 } },
+      { id: "now", kind: "marker", appearance: "primary", x: "b", y: "(b^2 + 2b + 3)/10" },
     ],
     readouts: [
       { key: "decimal", formula: "b^2 + 2b + 3" },
+      { key: "largest", formula: "b - 1" },
     ],
   }}
   labels={{
     b: <>Base <InlineMath math="b" /></>,
-    decimal: <>Value in base ten</>,
+    decimal: <>Value of <InlineMath math="123_b" /> in base ten</>,
+    largest: <>Largest digit allowed</>,
   }}
 />
 
-### Example Finding an Unknown Base
+The graph starts at base <InlineMath math="4" />, because the digit <InlineMath math="3" /> needs a base bigger than <InlineMath math="3" />. The same reason explains why the digit <InlineMath math="7" /> never appears in base six. Seven beads on the ones spike in base six means six beads that must turn into one bead on the second spike, plus one bead that stays. So seven is written <InlineMath math="11_6" />, **never as the single digit** <InlineMath math="7" />.
 
-Given <InlineMath math="123_b = 38_{10}" />. Find **the value** of <InlineMath math="b" />.
+## Reading a Numeral Without Converting It
 
-<MathContainer>
-<BlockMath math="b^2 + 2b + 3 = 38" />
-<BlockMath math="b^2 + 2b - 35 = 0 \quad\Rightarrow\quad (b + 7)(b - 5) = 0" />
-</MathContainer>
+Words like “hundred” and “twenty” name places in base ten: “hundred” means <InlineMath math="10^2" /> and “twenty” means two tens. In <InlineMath math="123_5" /> the digit <InlineMath math="1" /> is only worth <InlineMath math="25" />, so calling it “one hundred twenty-three” gives the wrong value. **Read the digits one by one, then say the base**.
 
-The base must be positive, so <InlineMath math="b = 5" />. Check with the model: at <InlineMath math="b = 5" />, it reads <InlineMath math="25 + 10 + 3 = 38" />.
+| Numeral | How to read it | Value in base ten |
+| :--- | :--- | :--- |
+| <InlineMath math="123_5" /> | one two three base five | <InlineMath math="38" /> |
+| <InlineMath math="1010_2" /> | one zero one zero base two | <InlineMath math="10" /> |
+| <InlineMath math="2075_8" /> | two zero seven five base eight | <InlineMath math="1{,}085" /> |
 
-### Number of Digits in Different Bases
+A numeral with no small base written under it is always read in base ten, so <InlineMath math="38" /> is still “thirty-eight”. Reading digit by digit keeps you from calling <InlineMath math="1010_2" /> “one thousand ten” when it's only worth ten.
 
-**A small base needs more digits** for the same number. The number <InlineMath math="45_{10}" /> is written as <InlineMath math="101101_2" />, <InlineMath math="140_5" />, <InlineMath math="55_8" /> and <InlineMath math="45_{10}" />.
+## Digits That Break the Base Rule
 
-<BarChart
-  title={<>Number of Digits for <InlineMath math="45" /> in Four Bases</>}
-  description={
-    <>
-      The same number needs six digits in base two but only two digits in base
-      eight and base ten.
-    </>
-  }
-  yAxisLabel="Number of digits"
-  data={[
-    { name: "Base 2", value: 6 },
-    { name: "Base 5", value: 3 },
-    { name: "Base 8", value: 2 },
-    { name: "Base 10", value: 2 },
-  ]}
-  chartConfig={{ value: { label: "Number of digits", colors: { light: ["var(--chart-2)"], dark: ["var(--chart-2)"] } } }}
-/>
+There's only one rule: **every digit must be smaller than the base**. To check it, find the largest digit in the numeral and compare it with the base. If the largest digit is <InlineMath math="d" />, the numeral is only valid in base <InlineMath math="d + 1" /> or higher.
 
-The number of digits of <InlineMath math="N" /> in base <InlineMath math="b" /> is <InlineMath math="\lfloor \log_b N \rfloor + 1" />. This model draws the number of digits for every number up to <InlineMath math="64" />.
+| Numeral | Largest digit | Valid or not | Smallest possible base |
+| :--- | :--- | :--- | :--- |
+| <InlineMath math="4302_5" /> | <InlineMath math="4" /> | Valid, since <InlineMath math="4 < 5" /> | <InlineMath math="5" /> |
+| <InlineMath math="2061_5" /> | <InlineMath math="6" /> | Not valid, since <InlineMath math="6 > 5" /> | <InlineMath math="7" /> |
+| <InlineMath math="1201_2" /> | <InlineMath math="2" /> | Not valid, since <InlineMath math="2 = 2" /> | <InlineMath math="3" /> |
+| <InlineMath math="7345_8" /> | <InlineMath math="7" /> | Valid, since <InlineMath math="7 < 8" /> | <InlineMath math="8" /> |
 
-<MathVisual
-  title={<>Number of Digits by Size of Number</>}
-  description={
-    <>
-      Number of digits <InlineMath math="\lfloor \log_b N \rfloor + 1" />{" "}
-      against the number <InlineMath math="N" /> in units of{" "}
-      <InlineMath math="8" />, for base <InlineMath math="b" />.
-    </>
-  }
-  scene={{
-    space: "plane",
-    frame: { kind: "cartesian", x: { min: 0, max: 8.2 }, y: { min: 0, max: 7.5 } },
-    view: { kind: "fit", padding: 0.06 },
-    parameters: [
-      { name: "b", min: 2, max: 10, value: 2, step: 1, label: "b" },
-      { name: "n", min: 1, max: 64, value: 45, step: 1, label: "n" },
-    ],
-    objects: [
-      { id: "digits", kind: "function", appearance: "primary", formula: "floor(ln(8x)/ln(b) + 0.000001) + 1", domain: { min: 0.125, max: 8 } },
-      { id: "now", kind: "marker", x: "n/8", y: "floor(ln(n)/ln(b) + 0.000001) + 1", appearance: "warning" },
-    ],
-    readouts: [
-      { key: "digits", formula: "floor(ln(n)/ln(b) + 0.000001) + 1" },
-    ],
-  }}
-  labels={{
-    b: <>Base <InlineMath math="b" /></>,
-    n: <>Number <InlineMath math="n" /></>,
-    digits: <>Number of digits</>,
-  }}
-/>
+Look at <InlineMath math="1201_2" />. Base two only has the digits <InlineMath math="0" /> and <InlineMath math="1" />, because a base two spike is already full with two beads. A <InlineMath math="2" /> there means two beads that should already have moved to the spike on the left. If a problem hands you a numeral like that, don't start calculating: **that numeral doesn't exist in the base it's written in**.
 
-## Converting Numbers between Bases
+## Mistakes When Reading Place Value
 
-There are two directions. To convert a number in base <InlineMath math="b" /> to base ten, expand it by place value as above. For the other direction, use repeated division. A conversion between two other bases can go through base ten, or go straight across when one base is a power of the other.
-
-To convert a base ten number to base <InlineMath math="b" />, **divide repeatedly by** <InlineMath math="b" /> and record the remainders. The remainders are read from the bottom up.
-
-### Example Converting to Base Five
-
-<BlockMath math="45 \div 5 = 9 \text{ rem } 0, \quad 9 \div 5 = 1 \text{ rem } 4, \quad 1 \div 5 = 0 \text{ rem } 1" />
-
-**Read the remainders from the bottom**: <InlineMath math="45_{10} = 140_5" />. Check by expanding back: <InlineMath math="1 \times 25 + 4 \times 5 + 0 = 45" />.
-
-### Example Converting between Base Two and Base Eight
-
-Because <InlineMath math="8 = 2^3" />, every **three base two digits** match one base eight digit. Group the digits from the right:
-
-<BlockMath math="101101_2 = \underbrace{101}_{5}\,\underbrace{101}_{5} = 55_8" />
-
-Check through base ten: <InlineMath math="101101_2 = 32 + 8 + 4 + 1 = 45" /> and <InlineMath math="55_8 = 40 + 5 = 45" />.
-
-## Adding and Subtracting in Number Bases
-
-Addition in base <InlineMath math="b" /> works like addition in base ten, but **carry one when a column reaches** <InlineMath math="b" />, not ten. In subtraction, borrow <InlineMath math="b" /> from the column on the left.
-
-### Example Addition in Base Two
-
-<BlockMath math="1011_2 + 110_2 = 10001_2" />
-
-**Start from the rightmost column**: <InlineMath math="1 + 0 = 1" />. Second column: <InlineMath math="1 + 1 = 2 = 10_2" />, write <InlineMath math="0" /> carry <InlineMath math="1" />. Third column: <InlineMath math="0 + 1 + 1 = 10_2" />, write <InlineMath math="0" /> carry <InlineMath math="1" />. Fourth column: <InlineMath math="1 + 1 = 10_2" />. Check: <InlineMath math="11 + 6 = 17" /> and <InlineMath math="10001_2 = 16 + 1 = 17" />.
-
-### Example Subtraction in Base Five
-
-Calculate <InlineMath math="1302_5 - 244_5" />. In base five, **every borrow is worth five**.
-
-<BlockMath math="1302_5 - 244_5 = 1003_5" />
-
-Rightmost column: <InlineMath math="2 - 4" /> doesn't work, so borrow five, <InlineMath math="7 - 4 = 3" />. The second column is now <InlineMath math="0 - 1" />, so borrow again, <InlineMath math="5 - 1 - 4 = 0" />. Third column: <InlineMath math="3 - 1 - 2 = 0" />. Fourth column: <InlineMath math="1" />. Check: <InlineMath math="1302_5 = 202" />, <InlineMath math="244_5 = 74" />, and <InlineMath math="202 - 74 = 128 = 1003_5" />.
-
-## Common Mistakes about Number Bases
+These four mistakes come up most often when you write an expanded form.
 
 | Mistake | Why it's wrong | How to check |
 | :--- | :--- | :--- |
-| Writing the digit <InlineMath math="5" /> in base five. | Base five only uses the digits <InlineMath math="0" /> to <InlineMath math="4" />. | Every digit must be less than the base. |
-| Reading the remainders from top to bottom. | The first remainder is the rightmost digit. | Expand the answer and compare it with the original number. |
-| The rightmost place value is <InlineMath math="b^1" />. | The rightmost place value is <InlineMath math="b^0 = 1" />. | Count powers starting from zero. |
-| Carrying one when a column reaches ten in base two. | Carry one when a column reaches the base, which is two. | Convert each column total to that base. |
+| The rightmost spike is taken to be worth <InlineMath math="b" />. | The rightmost spike counts ones, <InlineMath math="b^0 = 1" />. | Start the powers at <InlineMath math="0" /> on the right. |
+| The <InlineMath math="2" /> in <InlineMath math="3214_5" /> is counted as <InlineMath math="2 \times 5" />. | That digit stands in the <InlineMath math="5^2" /> place, so it's worth <InlineMath math="50" />. | Point at the spike first, then multiply. |
+| <InlineMath math="123_5" /> is read as one hundred twenty-three. | The word hundred belongs to the <InlineMath math="10^2" /> place only. | Read the digits one by one and say the base. |
+| A zero in the middle is dropped, so <InlineMath math="2075_8" /> becomes <InlineMath math="275_8" />. | The zero holds the place of the digits to its left. | Count the places before and after you rewrite. |
 
-The second mistake is the most common one in conversion questions. **Read the remainders from the bottom up**.
+The second mistake is the sneakiest, because the result still looks reasonable. With the wrong multiplication, <InlineMath math="3214_5" /> becomes <InlineMath math="3 \times 5 + 2 \times 5 + 1 \times 5 + 4 = 34" />, far from <InlineMath math="434" />. **Pair every digit with its power of the base** before you multiply.
 
-## Practice on Number Bases
+## Practice on Place Value
 
-These questions move from place value to conversion and addition. **Check every answer through base ten**.
+Try all three problems before you look at the solutions. The third one combines the **rule for valid digits** with the expanded form.
 
-1. Convert <InlineMath math="2341_5" /> to base ten.
+1. Find the place value and the digit value of the digit <InlineMath math="4" /> in <InlineMath math="2431_5" />.
+2. Write <InlineMath math="6053_7" /> in expanded form, then find its value in base ten.
+3. The numeral <InlineMath math="3504" /> is written in a base you don't know yet. Find the smallest base it could be in, then find its value in that base.
 
-2. Convert <InlineMath math="100_{10}" /> to base three.
+### Worked Solutions
 
-3. Convert <InlineMath math="11010111_2" /> to base eight.
+**Problem 1**. The digit <InlineMath math="4" /> stands in the third place from the right, which is the <InlineMath math="5^2 = 25" /> place. So **its place value is <InlineMath math="25" />** and its digit value is <InlineMath math="4 \times 25 = 100" />. Check: every digit in <InlineMath math="2431" /> is smaller than <InlineMath math="5" />, so the numeral is valid in base five.
 
-4. Given <InlineMath math="25_b = 17_{10}" />. Find <InlineMath math="b" />.
+**Problem 2**. Pair each digit with a power of seven, starting from <InlineMath math="7^0" /> on the right.
 
-### Solutions
+<BlockMath math="\begin{aligned} 6053_7 &= 6 \times 7^3 + 0 \times 7^2 + 5 \times 7^1 + 3 \times 7^0 \\ &= 2{,}058 + 0 + 35 + 3 \\ &= 2{,}096 \end{aligned}" />
 
-**Solution 1**: Multiply each digit by a power of five:
+Check by taking the number apart from the largest place. Subtract <InlineMath math="6 \times 343" /> from <InlineMath math="2{,}096" /> and <InlineMath math="38" /> is left. Since <InlineMath math="38" /> is less than <InlineMath math="49" />, the digit in the <InlineMath math="7^2" /> place is <InlineMath math="0" />. Then <InlineMath math="38 - 5 \times 7 = 3" />, so **you get the digits back**: <InlineMath math="6" />, <InlineMath math="0" />, <InlineMath math="5" /> and <InlineMath math="3" />.
 
-<BlockMath math="2 \times 125 + 3 \times 25 + 4 \times 5 + 1 = 250 + 75 + 20 + 1 = 346" />
+**Problem 3**. The largest digit in <InlineMath math="3504" /> is <InlineMath math="5" />, so **the smallest base is <InlineMath math="6" />**. In base six the place values from the left are <InlineMath math="216" />, <InlineMath math="36" />, <InlineMath math="6" /> and <InlineMath math="1" />.
 
-Check: every digit is less than <InlineMath math="5" />, so the number is valid in base five.
+<BlockMath math="\begin{aligned} 3504_6 &= 3 \times 216 + 5 \times 36 + 0 \times 6 + 4 \times 1 \\ &= 648 + 180 + 0 + 4 \\ &= 832 \end{aligned}" />
 
-**Solution 2**: Divide repeatedly by three:
-
-<BlockMath math="100 = 3 \times 33 + 1, \quad 33 = 3 \times 11 + 0, \quad 11 = 3 \times 3 + 2, \quad 3 = 3 \times 1 + 0, \quad 1 = 3 \times 0 + 1" />
-
-**Read the remainders from the bottom**: <InlineMath math="10201_3" />. Check: <InlineMath math="81 + 0 + 18 + 0 + 1 = 100" />.
-
-**Solution 3**: Group three digits from the right, adding a zero in front if needed:
-
-<BlockMath math="011\,010\,111_2 = 3\,2\,7 = 327_8" />
-
-Check: <InlineMath math="327_8 = 192 + 16 + 7 = 215" /> and <InlineMath math="11010111_2 = 128 + 64 + 16 + 4 + 2 + 1 = 215" />.
-
-**Solution 4**: Expand and solve:
-
-<BlockMath math="2b + 5 = 17 \quad\Rightarrow\quad b = 6" />
-
-Check: the digit <InlineMath math="5" /> is less than <InlineMath math="6" />, and <InlineMath math="2 \times 6 + 5 = 17" />.
+Check: <InlineMath math="832 - 3 \times 216 = 184" />, then <InlineMath math="184 - 5 \times 36 = 4" />. The <InlineMath math="4" /> left over is smaller than <InlineMath math="6" />, so the <InlineMath math="6^1" /> place holds <InlineMath math="0" /> and the ones digit is <InlineMath math="4" />.

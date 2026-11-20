@@ -79,19 +79,19 @@ export const kssmForm4MathematicsTopicNodes = [
     key: "form-4-mathematics-number-bases",
     materialCard: {
       de: {
-        description: "Rechne zwischen Basen um und addiere darin.",
+        description: "Lies Stellenwerte, rechne um, addiere und subtrahiere.",
         title: "Zahlensysteme",
       },
       en: {
-        description: "Convert between bases and add in them.",
+        description: "Read place value, convert bases, add and subtract.",
         title: "Number Bases",
       },
       id: {
-        description: "Ubah bilangan antarbasis dan jumlahkan.",
+        description: "Baca nilai tempat, ubah basis, jumlahkan, dan kurangkan.",
         title: "Basis Bilangan",
       },
       ms: {
-        description: "Tukar nombor antara asas dan tambah dalamnya.",
+        description: "Baca nilai tempat, tukar asas, tambah dan tolak.",
         title: "Asas Nombor",
       },
     },
