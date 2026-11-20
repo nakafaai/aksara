@@ -1,0 +1,418 @@
+export const metadata = {
+  title: "Zellatmung und Gärung",
+  description:
+    "Sieh, wie Zellen Glucose mit und ohne Sauerstoff abbauen, stell die Gleichung auf, berechne eine Rate am Respirometer und erkläre die Sauerstoffschuld.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2026-11-20",
+  subject: "Zellatmung",
+};
+
+## Energie für jede Zellarbeit
+
+Jede lebende Zelle braucht Energie für ihre Arbeit. Diese Energie holt sie sich, indem sie einen Zucker namens Glucose abbaut, ihren wichtigsten Brennstoff. Dieser Abbau heißt **Zellatmung**. Die Zelle verbraucht die Energie aber nicht sofort. Sie speichert sie zuerst in kleinen Molekülen namens **ATP** (Adenosintriphosphat), der Energie, die die Zelle direkt ausgeben kann.
+
+Glucose lässt sich auf zwei Arten abbauen. Mit Sauerstoff zerlegt die Zelle Glucose ganz, bis zu Kohlenstoffdioxid und Wasser. Das ist die **aerobe Atmung**. Ohne Sauerstoff zerlegt sie Glucose nur teilweise und gewinnt viel weniger ATP. Das ist die **Gärung**. Im Mitochondrium-Modell drehst du den Sauerstoff ab und siehst selbst, welche Schritte stehen bleiben.
+
+Warum der Umweg über ATP? Die Energie der Glucose steckt in ihren chemischen Bindungen, und von dort kann sie nichts schieben oder pumpen. Also überträgt die Zelle sie auf ATP. Dann spaltet sie ATP in kleinen Portionen genau dort, wo gerade Arbeit anfällt:
+
+| Arbeit der Zelle | Beispiel | Was ATP leistet |
+| :--- | :--- | :--- |
+| Zusammenziehen | Skelettmuskelfaser | Gibt dem Muskel die Energie, sich zusammenzuziehen |
+| Ionen pumpen | Nervenzelle | Pumpt Natriumionen hinaus und Kaliumionen hinein |
+| Proteine aufbauen | Jede Zelle mit Ribosomen | Verknüpft Aminosäuren zu Proteinketten |
+| Glykolyse starten | Jede Zelle | Zwei ATP werden zuerst eingesetzt, damit sich Glucose spalten lässt |
+
+Ionen zu pumpen ist Arbeit gegen den Strom. Die Natrium-Kalium-Pumpe schiebt Ionen von dort, wo wenige sind, dorthin, wo viele sind, also gegen ihr Konzentrationsgefälle. Sie ist ein Beispiel für [aktiven Transport durch die Zellmembran](/de/faecher/biologie/stofftransport-durch-membranen/diffusion-osmose-und-aktiver-transport), und **jeder Pumpzyklus spaltet ein ATP-Molekül**. Der Aufbau von Proteinen gehört zu den größten Energieposten einer wachsenden Zelle.
+
+Viele verwechseln Zellatmung mit Atmen. **Atmen** ist Luft, die in deine Lunge hinein- und wieder hinausströmt, also die [Atembewegung mit dem Gasaustausch](/de/faecher/biologie/atmungssystem/atembewegung-und-gasaustausch), die Sauerstoff ins Blut bringt. **Zellatmung** ist das, was jede Zelle danach mit diesem Sauerstoff macht: eine chemische Reaktion, die ihn nutzt, um Glucose abzubauen.
+
+Ein Baum hat keine Lunge, aber seine Blattzellen haben Mitochondrien. Nachts fehlt Licht, deshalb ruht die Fotosynthese, doch die Blattzellen nehmen weiter Sauerstoff auf und geben Kohlenstoffdioxid ab. Um beides auseinanderzuhalten, stell eine Frage: **Wird gerade Glucose abgebaut, um ATP zu gewinnen**? Wenn ja, ist es Zellatmung.
+
+## Zellplasma und Mitochondrium
+
+Der Abbau der Glucose beginnt im **Zellplasma** (Cytoplasma), der geleeartigen Flüssigkeit, die die Zelle füllt. Dort wird ein Glucosemolekül mit sechs Kohlenstoffatomen in zwei Hälften gespalten. Heraus kommen zwei Moleküle **Brenztraubensäure** (Pyruvat) mit je drei Kohlenstoffatomen. Dieser Spaltschritt heißt Glykolyse. Er braucht keinen Sauerstoff und bringt pro Glucose einen Reingewinn von <InlineMath math="2" /> ATP.
+
+Ist Sauerstoff da, wandert die Brenztraubensäure in ein [Mitochondrium, das von zwei Membranen umhüllte Organell](/de/faecher/biologie/zelle-und-organisation/zellbau-und-spezialisierte-zellen). In seinem Innenraum, der Matrix, werden die Kohlenstoffatome der Brenztraubensäure als Kohlenstoffdioxid abgespalten. Am Ende haben alle sechs Kohlenstoffatome der Glucose die Zelle als sechs <InlineMath math="\mathrm{CO_2}" />-Moleküle verlassen.
+
+Der dabei abgelöste Wasserstoff gelangt zur gefalteten inneren Membran, den Cristae. Dort **nimmt Sauerstoff den Wasserstoff auf und bildet Wasser**. Die Energie, die bei diesem letzten Schritt frei wird, liefert etwa <InlineMath math="90\%" /> des gesamten ATP der aeroben Atmung.
+
+Ohne Sauerstoff nimmt am Ende der inneren Membran nichts den Wasserstoff ab, und die Schritte im Mitochondrium kommen zum Stillstand. Die Brenztraubensäure bleibt im Zellplasma. Eine Muskelzelle macht daraus Milchsäure. Eine Hefezelle macht daraus Ethanol und Kohlenstoffdioxid. Diese Umwandlung macht die Wasserstoffträger wieder frei, sodass die Glykolyse weiterlaufen kann, aber **es bleibt bei <InlineMath math="2" /> ATP pro Glucose**.
+
+Stell im Modell den Sauerstoff auf „Nein“ und vergleiche dann die Werte für ATP und Kohlenstoffdioxid bei Muskelzelle und Hefezelle.
+
+<MitochondrionLab
+  title={<>Glucose im Zellplasma und im Mitochondrium</>}
+  description={
+    <>
+      Ein längs aufgeschnittenes Mitochondrium neben dem Zellplasma. Schalte
+      den Sauerstoff um und verfolge, wohin die Brenztraubensäure geht, wie
+      viel <InlineMath math="\mathrm{CO_2}" /> herauskommt und wie viel ATP du
+      bekommst.
+    </>
+  }
+  footer={<>Siehst du die Falten innen? An dieser inneren Membran entsteht das meiste ATP.</>}
+  atp={36}
+  cells={["muscle", "yeast"]}
+  labels={{
+    atp: <>ATP aus einer Glucose</>,
+    carbonDioxide: <><InlineMath math="\mathrm{CO_2}" /> aus einer Glucose</>,
+    energy: <>Energie aus einem Mol Glucose</>,
+    cell: "Zelle ohne Sauerstoff",
+    cells: { muscle: "Muskelzelle", yeast: "Hefezelle" },
+    oxygen: "Sauerstoff",
+    oxygens: { present: "Ja", absent: "Nein" },
+    products: {
+      aerobic: <>Kohlenstoffdioxid und Wasser</>,
+      lactic: <>Milchsäure</>,
+      alcoholic: <>Ethanol und Kohlenstoffdioxid</>,
+    },
+    product: <>Was aus der Glucose wird</>,
+    parts: {
+      cytoplasm: "Zellplasma",
+      outer: "Äußere Membran",
+      inner: "Innere Membran",
+      cristae: "Cristae, die Falten",
+      matrix: "Matrix, der Innenraum",
+    },
+    view: "Ein längs aufgeschnittenes Mitochondrium im Zellplasma einer Zelle",
+  }}
+/>
+
+Eine Zellart in deinem Körper betreibt nie aerobe Atmung. **Reife rote Blutkörperchen haben keine Mitochondrien**, deshalb stammt ihr gesamtes ATP aus der Glykolyse, und sie bilden Milchsäure. Sie tragen Sauerstoff durch deinen ganzen Körper, verbrauchen selbst aber nichts davon. Unterwegs wird also nichts von dem Sauerstoff verbraucht, den sie tragen.
+
+## Gasbilanz der Zellatmung
+
+Für jede Glucose nimmt die aerobe Atmung eine feste Menge Sauerstoff auf und gibt eine feste Menge Kohlenstoffdioxid ab. Wie viel, sagt dir die Gleichung: **sechs Sauerstoff für sechs Kohlenstoffdioxid**. Dieses Verhältnis brauchst du zweimal. Erst berechnest du damit die Masse der Produkte, dann sagst du vorher, wie sich die gefärbte Flüssigkeit in einem Respirometer bewegt, einem verschlossenen Glas, das misst, wie viel Sauerstoff Lebewesen aufnehmen.
+
+### Atome und Kilojoule
+
+In Worten reagiert Glucose mit Sauerstoff:
+
+<BlockMath math="\text{Glucose} + \text{Sauerstoff} \rightarrow \text{Kohlenstoffdioxid} + \text{Wasser} + \text{Energie}" />
+
+Die ausgeglichene Reaktionsgleichung sagt dasselbe mit Zahlen. Sie nennt die Zahl der Moleküle jedes Stoffs und die Energie aus einem Mol Glucose:
+
+<BlockMath math="\mathrm{C_6H_{12}O_6} + 6\mathrm{O_2} \rightarrow 6\mathrm{CO_2} + 6\mathrm{H_2O} + 2{.}898\text{ kJ}" />
+
+Zähl die Atome auf beiden Seiten: Kohlenstoff <InlineMath math="6 = 6" />, Wasserstoff <InlineMath math="12 = 12" /> und Sauerstoff <InlineMath math="6 + 12 = 12 + 6 = 18" />. Von den <InlineMath math="2{.}898\text{ kJ}" /> **landet weniger als die Hälfte im ATP**. Der Rest geht als Wärme verloren.
+
+Auch die Zahl der ATP pro Glucose unterscheidet sich je nach Buch: <InlineMath math="38" /> als theoretisches Maximum, <InlineMath math="36" /> in vielen Schulbüchern und weniger in echten Zellen, weil unterschiedlich viele Wasserstoffionen durch die innere Membran gepumpt werden. Wir rechnen durchgehend mit <InlineMath math="36" />.
+
+Die Zellen eines Beinmuskels bauen <InlineMath math="45\text{ g}" /> Glucose mit Sauerstoff ab, sie oxidieren sie also aerob. Wie viel Kohlenstoffdioxid entsteht dabei? Rechne die Masse der Glucose in Mol um, nutze das **Verhältnis <InlineMath math="1 : 6" /> aus der Gleichung** und rechne zurück in eine Masse. Die molaren Massen sind Glucose <InlineMath math="180" />, Sauerstoff <InlineMath math="32" />, Kohlenstoffdioxid <InlineMath math="44" /> und Wasser <InlineMath math="18\text{ g mol}^{-1}" />.
+
+<MathContainer>
+<BlockMath math="\text{Glucose} = \frac{45}{180} = 0{,}25\text{ mol}" />
+<BlockMath math="\mathrm{CO_2} = 6 \cdot 0{,}25 = 1{,}5\text{ mol} = 1{,}5 \cdot 44 = 66\text{ g}" />
+<BlockMath math="\text{Energie} = 0{,}25 \cdot 2{.}898 = 724{,}5\text{ kJ}" />
+</MathContainer>
+
+Prüf das Ergebnis mit dem Gesetz der Massenerhaltung: Atome entstehen nicht und verschwinden nicht, also muss die Masse vorher genauso groß sein wie nachher. Verbraucht werden <InlineMath math="1{,}5 \cdot 32 = 48\text{ g}" /> Sauerstoff, und es entstehen <InlineMath math="1{,}5 \cdot 18 = 27\text{ g}" /> Wasser. Die Ausgangsstoffe wiegen zusammen <InlineMath math="45 + 48 = 93\text{ g}" />, genauso viel wie die Produkte mit <InlineMath math="66 + 27 = 93\text{ g}" />.
+
+### Messung im Respirometer
+
+Sauerstoff ist farblos, aber eine Flüssigkeit bewegt sich, wenn aus einem verschlossenen Glas Gas verschwindet. Genau das nutzt ein Respirometer: Es misst die Rate der aeroben Atmung über das **aufgenommene Sauerstoffvolumen**.
+
+Das Modell zeigt einen möglichen Aufbau. Keimende Samen liegen auf einem Drahtnetz in einem dicht verschlossenen Reagenzglas. Unter dem Netz bindet **Kalilauge** oder Natronkalk das Kohlenstoffdioxid, das die Samen abgeben. Das Gas im Glas schrumpft dann nur um den aufgenommenen Sauerstoff, und ein gefärbter Flüssigkeitstropfen in der Kapillare kriecht auf die Samen zu.
+
+Das Glas steht in einem Wasserbad, weil sich warmes Gas ausdehnt und den Tropfen auch ganz ohne Atmung verschieben könnte.
+
+Ein zweites Glas ist genauso aufgebaut, enthält aber Wasser. Wasser bindet kein Kohlenstoffdioxid, deshalb bewegt sich dieser Tropfen um die Differenz aus aufgenommenem Sauerstoff und abgegebenem Kohlenstoffdioxid. Ein Kontrollansatz ohne Lebewesen zeigt, ob schon eine Änderung von Temperatur oder Luftdruck den Tropfen verschiebt.
+
+Der Pflichtversuch zur aeroben Atmung im malaysischen Lehrplan KSSM nutzt einen anderen Aufbau mit derselben Idee. Ein kleines lebendes Tier, etwa eine Schabe, sitzt in einem dicht verschlossenen Reagenzglas auf einem Drahtnetz über Natronkalk. Eine Kapillare führt aus dem Glas heraus und taucht senkrecht in eine gefärbte Flüssigkeit, meist Eosin. Der Natronkalk bindet das Kohlenstoffdioxid, also schrumpft das Gas nur, weil das Tier Sauerstoff aufnimmt, und **das Eosin steigt in der Kapillare hoch**.
+
+Ein zweites Glas mit Natronkalk, aber ohne Tier, ist die Kontrolle. Beide Gläser stehen in einem Wasserbad, damit ihre Temperatur gleich bleibt.
+
+Sag es erst voraus, bevor du im Modell die Zeit weiterschiebst. In <InlineMath math="20" /> Minuten nehmen Samen, die Glucose oxidieren, so viel Sauerstoff auf, dass der Tropfen im Glas mit Kalilauge um <InlineMath math="30\text{ mm}" /> wandert. **Wo steht der Tropfen im Glas mit Wasser** nach <InlineMath math="20" /> Minuten?
+
+<RespirometerLab
+  title={<>Zwei Respirometer mit keimenden Samen</>}
+  description={
+    <>
+      Dieselben Samen über Kalilauge und über Wasser, <InlineMath math="20" />{" "}
+      Minuten lang im selben Wasserbad. Schieb die Zeit weiter und prüf deine
+      Vorhersage an beiden Kapillaren.
+    </>
+  }
+  footer={<>Achte auf den roten Tropfen in jeder Kapillare: Er wandert nur, wenn das Gas schrumpft.</>}
+  oxygen={30}
+  carbonDioxide={30}
+  minutes={20}
+  labels={{
+    potash: <>Tropfen im Glas mit Kalilauge</>,
+    water: <>Tropfen im Glas mit Wasser</>,
+    quotient: <>Respiratorischer Quotient</>,
+    substrate: <>Was die Samen abbauen</>,
+    substrates: {
+      fat: <>Fett</>,
+      protein: <>Protein</>,
+      carbohydrate: <>Kohlenhydrat</>,
+      anaerobic: <>Teilweise ohne Sauerstoff</>,
+    },
+    time: "Zeit",
+    view: "Zwei Respirometer mit Samen in einem Wasserbad",
+  }}
+/>
+
+Der Tropfen im Glas mit Wasser **bewegt sich nicht**. Bei Glucose ersetzen sechs abgegebene Kohlenstoffdioxid-Moleküle genau sechs aufgenommene Sauerstoffmoleküle. Gleich viele Gasmoleküle nehmen bei gleicher Temperatur und gleichem Druck das gleiche Volumen ein, also heben sich verlorenes und dazugekommenes Gas auf: <InlineMath math="30 - 30 = 0\text{ mm}" />. Abgegebenes Kohlenstoffdioxid geteilt durch aufgenommenen Sauerstoff heißt respiratorischer Quotient. Der respiratorische Quotient im Modell zeigt <InlineMath math="1{,}0" />, den Wert für Kohlenhydrate.
+
+Jetzt machst du aus dem Wert im Glas mit Kalilauge eine Rate. Das fehlende Gas füllt die Kapillare wie ein dünner Stab, es bildet also einen **Zylinder mit dem Radius der Kapillarbohrung**. Die Bohrung ist <InlineMath math="1\text{ mm}" /> breit, ihr Radius also <InlineMath math="0{,}5\text{ mm}" />. Der Zylinder ist <InlineMath math="30\text{ mm}" /> lang, so weit ist der Tropfen gewandert.
+
+<MathContainer>
+<BlockMath math="V = \pi r^2 h = \pi \cdot 0{,}5^2 \cdot 30 = 7{,}5\pi \approx 23{,}6\text{ mm}^3" />
+<BlockMath math="\text{Rate} = \frac{7{,}5\pi\text{ mm}^3}{20\text{ min}} = 0{,}375\pi \approx 1{,}18\text{ mm}^3\text{ min}^{-1}" />
+</MathContainer>
+
+Prüf die Einheiten: <InlineMath math="\text{mm}^2 \cdot \text{mm} = \text{mm}^3" />, und ein Volumen geteilt durch eine Zeit ergibt <InlineMath math="\text{mm}^3\text{ min}^{-1}" />. Prüf den Wert: <InlineMath math="0{,}375\pi \cdot 20 = 7{,}5\pi" />, das Volumen vom Anfang.
+
+## Sprintmuskel ohne Sauerstoff
+
+Beim Sprint verbrauchen deine Muskelfasern ATP schneller, als das Blut Sauerstoff heranschaffen kann. Also gewinnen die Fasern ATP ohne Sauerstoff. Sie betreiben im Zellplasma **Milchsäuregärung**. Aus einer Glucose werden zwei Moleküle Milchsäure, und dabei entsteht kein Kohlenstoffdioxid:
+
+<MathContainer>
+<BlockMath math="\text{Glucose} \rightarrow \text{Milchsäure} + \text{Energie } (150\text{ kJ})" />
+<BlockMath math="\mathrm{C_6H_{12}O_6} \rightarrow 2\mathrm{C_3H_6O_3}" />
+</MathContainer>
+
+Das bringt wenig Energie. Ein Mol Glucose setzt so nur etwa <InlineMath math="150\text{ kJ}" /> frei, und die Zelle gewinnt <InlineMath math="2" /> ATP pro Glucose. Die Glykolyse allein hält harte Muskelarbeit nur etwa eine Minute lang durch. Wenn sich Milchsäure anstaut, wird das Innere der Faser saurer, **der pH-Wert in der Faser sinkt**. Ein niedriger pH-Wert stört die Enzyme, und so kann Milchsäure zur Ermüdung des Muskels beitragen.
+
+Nach dem Sprint atmest du noch eine Weile schnell und tief. Mit diesem zusätzlichen Sauerstoff gleichst du aus, was beim Sprint gefehlt hat. Das ist die **Sauerstoffschuld**: die Sauerstoffmenge, die nötig ist, um das ohne Sauerstoff gewonnene ATP auszugleichen. Das Blut bringt die Milchsäure zur Leber. Dort wird ein Teil davon zu Glucose oder Glykogen umgebaut. Der Rest wird wieder zu Brenztraubensäure und dann zu Kohlenstoffdioxid und Wasser oxidiert.
+
+Stell im Muskelmodell ein, wie viel zusätzlichen Sauerstoff der Sprint braucht, und starte ihn. Beobachte, wie die Milchsäureanzeige steigt, solange du weniger Sauerstoff aufnimmst, als deine Muskeln brauchen. Verfolge den Pfeil, der Milchsäure zur Leber trägt, und lies ab, wie viel Kraft der Muskel noch aufbringt.
+
+<OxygenDebtLab
+  title={<>Muskelfasern während und nach einem Sprint</>}
+  description={
+    <>
+      Ruhe bis Minute <InlineMath math="2" />, Sprint bis Minute{" "}
+      <InlineMath math="8" />, danach Erholung. In Ruhe nimmst du{" "}
+      <InlineMath math="0{,}3" /> Liter Sauerstoff pro Minute auf.
+    </>
+  }
+  footer={<>Orange ist Sauerstoff, der beim Sprint fehlt. Blau ist derselbe Sauerstoff, nachgeholt.</>}
+  demand={{ min: 1, max: 2.5, value: 2 }}
+  rest={0.3}
+  labels={{
+    demand: "Zusätzlicher Sauerstoff für den Sprint, Liter pro Minute",
+    need: <>Sauerstoffbedarf deiner Muskeln jetzt</>,
+    uptake: <>Sauerstoff, den du jetzt aufnimmst</>,
+    shortfall: <>Sauerstoffdefizit bisher</>,
+    debt: <>Bereits zurückgezahlte Sauerstoffschuld</>,
+    lactic: <>Milchsäure in den Fasern</>,
+    force: <>Kraft, die der Muskel noch aufbringt</>,
+    time: "Zeit",
+    parts: {
+      fibre: "Muskelfaser",
+      capillary: "Kapillare",
+      cell: "Rotes Blutkörperchen",
+      liver: "Milchsäure zur Leber",
+    },
+    view: "Ein Bündel Skelettmuskelfasern mit Kapillaren dazwischen",
+  }}
+/>
+
+Zu Beginn des Sprints steigt die Sauerstoffaufnahme nur langsam. Deshalb öffnet sich eine Lücke zwischen Bedarfslinie und Aufnahmekurve, und diese Lücke ist das **Sauerstoffdefizit**. Nach Minute <InlineMath math="8" /> ist der Sprint vorbei, trotzdem bleibt die Sauerstoffaufnahme über dem Ruhewert. Die Fläche über dem Ruhewert ist die Sauerstoffschuld, die gerade zurückgezahlt wird. Erhöhst du den Bedarf, wachsen beide Flächen. Die Kurven im Modell sind vereinfacht, echte Werte unterscheiden sich von Mensch zu Mensch.
+
+Muskelkater, der ein oder zwei Tage nach harter Belastung auftritt, wird oft der Milchsäure zugeschrieben. Der Zeitverlauf passt aber nicht. **Die Milchsäure im Blut ist nach etwa einer Stunde wieder auf dem Wert vor der Belastung**, während der Muskelkater erst <InlineMath math="24" /> bis <InlineMath math="72" /> Stunden später am stärksten ist.
+
+Muskelkater entsteht durch winzige Schäden in den Muskelfasern und die Entzündung, die darauf folgt, vor allem nach Bewegungen, bei denen ein Muskel unter Spannung gedehnt wird, etwa beim Bergablaufen. Wenn deine Beine am zweiten Tag schmerzen, ist die Milchsäure also längst abgebaut.
+
+## Gärung außerhalb der Muskeln
+
+Auch Hefe, Reiswurzeln und *Lactobacillus*-Bakterien gären, wenn Sauerstoff knapp ist oder fehlt. Hefe und Reiswurzeln bilden **Ethanol und Kohlenstoffdioxid**. *Lactobacillus* bildet Milchsäure, genau wie deine Muskelfasern. Jedem fehlt der Sauerstoff an einem anderen Ort: der Hefe in einem mit Öl verschlossenen Glas, der Reiswurzel im überfluteten Schlamm und *Lactobacillus* in der Milch.
+
+### Hefe im Gärröhrchen
+
+Hefe ist ein winziger Pilz, derselbe, der Brotteig aufgehen lässt. Ohne Sauerstoff betreibt sie **alkoholische Gärung**. Aus einer Glucose werden zwei Moleküle Ethanol und zwei Moleküle Kohlenstoffdioxid:
+
+<MathContainer>
+<BlockMath math="\text{Glucose} \rightarrow \text{Ethanol} + \text{Kohlenstoffdioxid} + \text{Energie } (210\text{ kJ})" />
+<BlockMath math="\mathrm{C_6H_{12}O_6} \rightarrow 2\mathrm{C_2H_5OH} + 2\mathrm{CO_2}" />
+</MathContainer>
+
+Ein übliches Schulexperiment prüft diese Produkte mit zwei Reagenzgläsern. Glas A enthält <InlineMath math="15\text{ cm}^3" /> einer <InlineMath math="5\%" />-igen Glucoselösung, die abgekocht und wieder abgekühlt wurde, dazu <InlineMath math="5\text{ cm}^3" /> einer <InlineMath math="5\%" />-igen Hefesuspension und obenauf eine **Schicht Paraffinöl**. Ein Gasableitungsrohr führt das Gas aus Glas A in Kalkwasser. Glas B, der Kontrollansatz, ist genauso aufgebaut, aber ohne Hefesuspension.
+
+| Schritt | Grund |
+| :--- | :--- |
+| Glucoselösung abkochen | Treibt gelösten Sauerstoff aus, damit keiner übrig bleibt |
+| Vor der Hefe abkühlen | Hitze zerstört die Enzyme der Hefe und tötet sie |
+| Paraffinöl aufgießen | Verhindert, dass sich Luftsauerstoff wieder löst |
+| Gas in Kalkwasser leiten | Kalkwasser trübt sich durch Kohlenstoffdioxid |
+
+Starte im Modell den Versuch und vergleiche Gasblasen, Kalkwasser und Thermometer in beiden Gläsern. Ändere danach die Temperatur des Wasserbads und beobachte, wie schnell Glas A Blasen bildet.
+
+<YeastFermentationLab
+  title={<>Hefe vergärt Glucose unter Paraffinöl</>}
+  description={
+    <>
+      In Glas A sind <InlineMath math="5\%" /> Glucose und Hefe, in Glas B nur
+      Glucose. Beide stehen im Wasserbad. Stell das Bad zwischen{" "}
+      <InlineMath math="10^\circ\text{C}" /> und{" "}
+      <InlineMath math="60^\circ\text{C}" /> ein und vergleiche das Kalkwasser.
+    </>
+  }
+  footer={<>Schau auf das Kalkwasser neben jedem Glas: Kohlenstoffdioxid macht es milchig trüb.</>}
+  glucose={5}
+  temperature={{ min: 10, max: 60, value: 30 }}
+  labels={{
+    temperature: "Temperatur des Wasserbads",
+    rate: <>Gasblasen pro Minute</>,
+    collected: <>Aufgefangenes Kohlenstoffdioxid</>,
+    limewater: <>Kalkwasser</>,
+    clear: <>klar</>,
+    milky: <>trüb</>,
+    time: "Zeit",
+    smell: <>Wonach Glas A riecht</>,
+    ethanol: <>Alkohol (Ethanol)</>,
+    none: <>nach nichts</>,
+    yeast: "Glas A, mit Hefe",
+    control: "Glas B, ohne Hefe",
+    warmth: <>Wie warm jedes Glas ist</>,
+    parts: {
+      paraffin: "Paraffinöl",
+      limewater: "Kalkwasser",
+      bath: "Wasserbad",
+      thermometer: "Thermometer",
+    },
+    view: "Zwei Reagenzgläser im Wasserbad mit Gasableitungsrohren in Kalkwasser",
+  }}
+/>
+
+Am Ende des Versuchs ist das Kalkwasser von Glas A trüb, die Mischung ist etwas wärmer geworden und riecht nach Alkohol. Glas B hat sich nicht verändert. Bevor du weiterliest, überleg dir, **welche Beobachtung die Gärung beweist** und was Glas B ausschließt.
+
+Trübes Kalkwasser zeigt Kohlenstoffdioxid an. Doch auch die aerobe Atmung gibt Kohlenstoffdioxid ab, deshalb reicht diese Beobachtung allein nicht. Der Alkoholgeruch zeigt Ethanol an, und Ethanol entsteht nur bei der Gärung. Also **ist der Ethanolgeruch der Beweis für die Gärung**. Die gestiegene Temperatur zeigt, dass ein Teil der Energie als Wärme frei wird. Das Kalkwasser von Glas B bleibt klar, also stammt das Kohlenstoffdioxid in Glas A von der Hefe, nicht aus der Luft oder der Glucoselösung.
+
+### Reiswurzeln unter Wasser
+
+Auch Pflanzen gären. Normalerweise holen sich Wurzeln ihren Sauerstoff aus der Luft in den winzigen Lücken zwischen den Bodenkörnchen. In einem überfluteten Reisfeld füllt Wasser diese Lücken, und **Sauerstoff diffundiert durch Wasser etwa <InlineMath math="10{.}000" />-mal langsamer** als durch Luft. Der Sauerstoff im Schlamm ist darum bald verbraucht. Wurzelzellen mit Sauerstoffmangel stellen auf alkoholische Gärung um und bilden Ethanol und Kohlenstoffdioxid.
+
+Wie überlebt Reis dann im Nassfeld? Seine Wurzeln besitzen **Aerenchym**, große Lufträume in der Rinde von Wurzel und Spross, die wie Luftrohre wirken. Sauerstoff diffundiert vom Spross durch das Aerenchym bis zur Wurzelspitze.
+
+Reiswurzeln bilden Aerenchym schon in trockenem Boden und noch mehr, wenn der Boden überflutet ist. Die älteren, oberen Wurzelabschnitte bauen außerdem eine Schicht auf, die verhindert, dass Sauerstoff in den Schlamm entweicht, sodass mehr davon die Wurzelspitze erreicht.
+
+Trockenlandpflanzen wie Mais, Weizen und Gerste bilden diese Barriere nicht, und Staunässe schädigt sie. Dauert die Gärung lange an, bekommen die Wurzeln zu wenig ATP zum Überleben, und giftige Nebenprodukte reichern sich an, bis die Wurzelzellen absterben. Flute im Reisfeld-Modell den Boden und vergleiche Reis mit einer Trockenlandpflanze: den Bodensauerstoff an den Wurzeln, den Energieanteil aus Gärung und das Ethanol in der Wurzel.
+
+<PaddyRootLab
+  title={<>Reis und eine Trockenlandpflanze im überfluteten Schlamm</>}
+  description={
+    <>
+      Ein Reisfeld mit Röntgenblick in den Schlamm und einer Lupe auf einer
+      Wurzel. Flute oder entwässere den Boden und verfolge den Sauerstoff, der
+      durch das Aerenchym zur Wurzelspitze gelangt.
+    </>
+  }
+  footer={<>Folge den blauen Punkten durch die Luftkanäle: So kommt Sauerstoff zur Wurzelspitze.</>}
+  atp={36}
+  plants={["rice", "dryland"]}
+  labels={{
+    water: "Feld",
+    waters: { drained: "Entwässert", flooded: "Überflutet" },
+    plant: "Pflanze",
+    plants: { rice: "Reis", dryland: "Trockenlandpflanze" },
+    oxygen: <>Bodensauerstoff an den Wurzeln</>,
+    fermentation: <>Wurzelenergie aus Gärung</>,
+    ethanol: <>Ethanol in der Wurzel</>,
+    roots: <>Wie es den Wurzeln geht</>,
+    healthy: <>gesund</>,
+    damaged: <>geschädigt</>,
+    parts: {
+      water: "Stauwasser",
+      mud: "Schlamm",
+      root: "Wurzel",
+      aerenchyma: "Aerenchym, die Lufträume",
+    },
+    view: "Reisfeld mit Röntgenblick auf die Reiswurzeln im Schlamm",
+  }}
+/>
+
+Wird der Boden wieder entwässert, kehrt Luft in die Lücken zwischen den Bodenkörnchen zurück. Die Wurzelzellen beider Pflanzen wechseln zurück zur aeroben Atmung und gewinnen wieder etwa <InlineMath math="36" /> ATP pro Glucose.
+
+### Gärung in Küche und Tank
+
+*Lactobacillus*-Bakterien betreiben Milchsäuregärung auf dieselbe Weise wie Muskelfasern mit Sauerstoffmangel. Sie verwandeln den Zucker der Milch in Milchsäure. Die Milch wird sauer und dick, weil **die Säure die Milcheiweiße gerinnen lässt**. So entstehen Joghurt und Käse. Auch andere Gärungsprodukte landen in Lebensmitteln und im Tank:
+
+| Produkt | Lebewesen | Genutztes Gärungsprodukt |
+| :--- | :--- | :--- |
+| Joghurt und Käse | *Lactobacillus* | Milchsäure lässt Milcheiweiß gerinnen |
+| Brot | Hefe | Kohlenstoffdioxid lässt den Teig aufgehen |
+| Tapai, vergorener Klebreis | Schimmelpilze und Hefen im Starter Ragi | Schimmelpilze machen aus Stärke Zucker, Hefen bilden etwas Alkohol |
+| Bioethanol | Hefe | Ethanol aus Zuckerrohr oder Maisstärke wird zu Kraftstoff |
+
+## Glucose auf drei Wegen
+
+Alle drei Wege beginnen gleich, mit der Glykolyse im Zellplasma. Sie trennen sich erst bei einer Frage: Was passiert als Nächstes mit der Brenztraubensäure? **Was mit der Brenztraubensäure passiert, entscheidet über die frei werdende Energie**.
+
+| Merkmal | Aerobe Atmung | Milchsäuregärung | Alkoholische Gärung |
+| :--- | :--- | :--- | :--- |
+| Sauerstoff | Nötig | Nicht nötig | Nicht nötig |
+| Wo es passiert | Zellplasma und Mitochondrien | Zellplasma | Zellplasma |
+| Produkte | <InlineMath math="\mathrm{CO_2}" /> und Wasser | Milchsäure | Ethanol und <InlineMath math="\mathrm{CO_2}" /> |
+| Energie pro Mol Glucose | <InlineMath math="2{.}898\text{ kJ}" /> | <InlineMath math="150\text{ kJ}" /> | <InlineMath math="210\text{ kJ}" /> |
+| ATP pro Glucose | Etwa <InlineMath math="36" /> | <InlineMath math="2" /> | <InlineMath math="2" /> |
+| Beispiele | Die meisten Zellen | Muskelzellen, *Lactobacillus* | Hefe, Reiswurzeln |
+
+Bei der Gärung steckt der größte Teil der Energie der Glucose noch in Milchsäure oder Ethanol. Ethanol beweist es: Es lässt sich noch als Bioethanol verbrennen, und die Energie, die dabei frei wird, hat die Hefe nie bekommen. Deshalb **baut eine gärende Zelle für dieselbe ATP-Menge mehr Glucose ab**. Verschieb im Graphen die benötigte ATP-Menge und vergleiche die Höhe der beiden Punkte.
+
+<MathVisual
+  title={<>Wie viel Glucose eine Zelle für ihr ATP braucht</>}
+  description={
+    <>
+      Aerobe Atmung liefert etwa <InlineMath math="36" /> ATP pro Glucose.
+      Gärung liefert nur <InlineMath math="2" />. Die waagerechte Achse zeigt
+      das ATP, das die Zelle braucht, und die senkrechte Achse die Zahl der
+      Glucosemoleküle, die sie dafür verbraucht.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 76 }, y: { min: 0, max: 38 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "a", min: 2, max: 72, value: 36, step: 2, label: "a" },
+    ],
+    objects: [
+      { id: "aerobic", kind: "function", appearance: "primary", formula: "x/36", domain: { min: 0, max: 72 } },
+      { id: "ferment", kind: "function", appearance: "warning", formula: "x/2", domain: { min: 0, max: 72 } },
+      { id: "aerobic-now", kind: "marker", x: "a", y: "a/36", appearance: "primary" },
+      { id: "ferment-now", kind: "marker", x: "a", y: "a/2", appearance: "warning" },
+    ],
+    labels: [
+      { key: "aer", objectId: "aerobic", at: { x: 60, y: 60 / 36 }, placement: "above" },
+      { key: "fer", objectId: "ferment", at: { x: 30, y: 15 }, placement: "above-left" },
+    ],
+    readouts: [
+      { key: "aerobic-glucose", formula: "a/36" },
+      { key: "ferment-glucose", formula: "a/2" },
+    ],
+  }}
+  labels={{
+    a: <>Benötigtes ATP</>,
+    aer: <>Aerobe Atmung</>,
+    fer: <>Gärung</>,
+    "aerobic-glucose": <>Glucose bei aerober Atmung</>,
+    "ferment-glucose": <>Glucose bei Gärung</>,
+  }}
+/>
+
+Angenommen, eine Muskelzelle braucht <InlineMath math="72" /> ATP. Wie viele Glucosemoleküle verbraucht jeder Weg? **Teile das benötigte ATP durch das ATP pro Glucose**:
+
+<MathContainer>
+<BlockMath math="\text{Aerobe Atmung} = \frac{72}{36} = 2\text{ Glucose}" />
+<BlockMath math="\text{Gärung} = \frac{72}{2} = 36\text{ Glucose}" />
+</MathContainer>
+
+Prüf durch Zurückmultiplizieren: <InlineMath math="2 \cdot 36 = 72" /> und <InlineMath math="36 \cdot 2 = 72" />. Die Gärung verbraucht <InlineMath math="36 : 2 = 18" />-mal so viel Glucose, und darum schrumpft der Glucosevorrat eines Muskels beim Sprint so schnell. Stell den Regler auf <InlineMath math="72" />, dann zeigt der Graph dieselben Werte.
+
+Jetzt bist du dran, bevor du den Lösungsweg liest. Der Beinmuskel einer Sprinterin und eine Hefekultur gewinnen durch Gärung jeweils <InlineMath math="0{,}6\text{ mol}" /> ATP. Berechne die Masse der Glucose, die jeder von beiden verbraucht. Nenne jeweils die Produkte mit ihren Massen. Berechne dann, wie viel Glucose der Muskel bräuchte, um dasselbe ATP aerob zu gewinnen. Die molare Masse von Milchsäure ist <InlineMath math="90" />, die von Ethanol <InlineMath math="46\text{ g mol}^{-1}" />.
+
+Beide Gärungen liefern <InlineMath math="2" /> ATP pro Glucose, also **verbrauchen Muskel und Hefe gleich viel Glucose**:
+
+<BlockMath math="\text{Glucose} = \frac{0{,}6}{2} = 0{,}3\text{ mol} = 0{,}3 \cdot 180 = 54\text{ g}" />
+
+Die Produkte unterscheiden sich. Der Muskel macht aus jeder Glucose zwei Milchsäuremoleküle. Die Hefe macht daraus zwei Ethanol- und zwei Kohlenstoffdioxid-Moleküle:
+
+<MathContainer>
+<BlockMath math="\text{Muskel: Milchsäure} = 0{,}6\text{ mol} = 0{,}6 \cdot 90 = 54\text{ g}" />
+<BlockMath math="\text{Hefe: Ethanol} = 0{,}6 \cdot 46 = 27{,}6\text{ g}, \quad \mathrm{CO_2} = 0{,}6 \cdot 44 = 26{,}4\text{ g}" />
+</MathContainer>
+
+Probe: Die Produkte der Hefe wiegen zusammen <InlineMath math="27{,}6 + 26{,}4 = 54\text{ g}" />, genauso viel wie die Glucose. Bei der Gärung wiegen die Produkte so viel wie die Glucose, weil kein Sauerstoff hinzukommt, anders als bei der aeroben Atmung vorhin. Aerob bräuchte der Muskel nur <InlineMath math="\dfrac{0{,}6}{36} = \dfrac{1}{60}\text{ mol}" />, also <InlineMath math="\dfrac{180}{60} = 3\text{ g}" /> Glucose. Das Verhältnis <InlineMath math="54 : 3 = 18" /> stimmt mit dem Graphen überein, die Antwort passt also zum Beispiel mit <InlineMath math="72" /> ATP.

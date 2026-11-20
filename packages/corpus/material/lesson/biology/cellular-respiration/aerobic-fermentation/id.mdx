@@ -1,0 +1,418 @@
+export const metadata = {
+  title: "Respirasi Aerob dan Fermentasi",
+  description:
+    "Lihat cara selmu memecah glukosa dengan dan tanpa oksigen, setarakan persamaannya, hitung laju respirometer, kenali utang oksigen, lalu bandingkan ATP.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2026-11-20",
+  subject: "Respirasi Sel",
+};
+
+## Energi untuk Setiap Kerja Sel
+
+Setiap sel hidup butuh energi untuk melakukan kerjanya. Sel mendapat energi itu dengan memecah sejenis gula yang disebut glukosa, bahan bakar utamanya. Pemecahan itulah **respirasi sel**. Sel tidak langsung memakai energinya. Sel menyimpannya dulu dalam molekul kecil yang disebut **ATP** (adenosin trifosfat), yaitu energi sel yang siap dipakai.
+
+Ada dua cara memecah glukosa. Dengan oksigen, sel memecah glukosa sampai habis menjadi karbon dioksida dan air. Itulah **respirasi aerob**. Tanpa oksigen, sel memecah glukosa hanya sebagian dan menghasilkan ATP jauh lebih sedikit. Itulah **fermentasi**. Di model mitokondria, kamu mematikan pasokan oksigen dan melihat sendiri tahap mana yang berhenti.
+
+Kenapa energinya harus disimpan dulu dalam ATP? Energi glukosa tersimpan dalam ikatan kimianya, dan dari sana energi itu tidak bisa mendorong atau memompa apa pun. Jadi sel memindahkannya ke ATP. Lalu sel memecah ATP sedikit demi sedikit, tepat di tempat sebuah kerja perlu dilakukan:
+
+| Kerja sel | Contoh | Fungsi ATP |
+| :--- | :--- | :--- |
+| Berkontraksi | Serabut otot rangka | Memberi otot energi untuk berkontraksi |
+| Memompa ion | Sel saraf | Memompa ion natrium keluar dan ion kalium masuk |
+| Menyusun protein | Setiap sel yang punya ribosom | Menyambung asam amino menjadi rantai protein |
+| Memulai glikolisis | Setiap sel | Dua ATP dipakai dulu agar glukosa bisa dipecah |
+
+Memompa ion itu kerja melawan arus. Pompa natrium-kalium mendorong ion dari tempat yang ionnya sedikit ke tempat yang ionnya banyak, artinya melawan gradien konsentrasi. Pompa ini salah satu contoh [transpor aktif melintasi membran plasma](/id/materi/biologi/transpor-membran/difusi-osmosis-dan-transpor-aktif), dan **setiap siklus pompa memecah satu molekul ATP**. Penyusunan protein termasuk pengeluaran energi terbesar bagi sel yang sedang tumbuh.
+
+Banyak orang menyamakan respirasi dengan bernapas. **Bernapas** adalah gerakan udara masuk dan keluar paru-parumu, yaitu [mekanisme bernapas dan pertukaran gas](/id/materi/biologi/sistem-pernapasan/mekanisme-bernapas-dan-pertukaran-gas) yang membawa oksigen ke dalam darah. **Respirasi sel** adalah apa yang dilakukan setiap sel dengan oksigen itu: reaksi kimia yang memakai oksigen untuk memecah glukosa.
+
+Sebatang pohon tidak punya paru-paru, tetapi sel daunnya punya mitokondria. Pada malam hari tidak ada cahaya, jadi fotosintesis berhenti, tetapi sel daun tetap mengambil oksigen dan melepaskan karbon dioksida. Untuk membedakan keduanya, ajukan satu pertanyaan: **apakah glukosa sedang dipecah untuk menghasilkan ATP**? Kalau ya, itulah respirasi sel.
+
+## Dari Sitoplasma ke Mitokondria
+
+Pemecahan glukosa dimulai di **sitoplasma**, cairan mirip jeli yang mengisi sel. Di sana, satu molekul glukosa yang punya enam atom karbon dibelah dua. Hasilnya dua molekul **asam piruvat**, masing-masing dengan tiga atom karbon. Tahap membelah ini disebut glikolisis. Glikolisis tidak memerlukan oksigen dan memberi keuntungan bersih <InlineMath math="2" /> ATP untuk setiap glukosa.
+
+Kalau oksigen tersedia, asam piruvat masuk ke [mitokondria, organel yang dibungkus dua lapis membran](/id/materi/biologi/sel-dan-organisasi/struktur-sel-dan-sel-khusus). Di ruang bagian dalamnya, yaitu matriks, atom karbon asam piruvat lepas sebagai karbon dioksida. Pada akhirnya, keenam atom karbon glukosa keluar sebagai enam molekul <InlineMath math="\mathrm{CO_2}" />.
+
+Hidrogen yang dilepaskan selama proses itu dibawa ke membran dalam yang berlipat-lipat, yaitu krista. Di sana, **oksigen menangkap hidrogen dan membentuk air**. Energi yang dilepaskan pada tahap terakhir ini menghasilkan sekitar <InlineMath math="90\%" /> dari seluruh ATP respirasi aerob.
+
+Tanpa oksigen, tidak ada yang menangkap hidrogen di ujung membran dalam, jadi tahap di mitokondria terhenti. Asam piruvat tetap di sitoplasma. Sel otot mengubahnya menjadi asam laktat. Sel khamir mengubahnya menjadi etanol dan karbon dioksida. Perubahan ini membebaskan lagi pembawa hidrogen sehingga glikolisis bisa terus berjalan, tetapi **ATP tetap <InlineMath math="2" /> untuk setiap glukosa**.
+
+Di model ini, ubah oksigen menjadi Tidak ada, lalu bandingkan angka ATP dan karbon dioksida pada sel otot dengan sel khamir.
+
+<MitochondrionLab
+  title={<>Glukosa di Sitoplasma dan Mitokondria</>}
+  description={
+    <>
+      Satu mitokondria dibelah memanjang, di samping sitoplasma. Ubah oksigen
+      dan ikuti ke mana asam piruvat pergi, berapa banyak{" "}
+      <InlineMath math="\mathrm{CO_2}" /> keluar, dan berapa banyak ATP yang
+      kamu dapat.
+    </>
+  }
+  footer={<>Lihat lipatan di dalamnya? Di membran dalam itulah sebagian besar ATP dibuat.</>}
+  atp={36}
+  cells={["muscle", "yeast"]}
+  labels={{
+    atp: <>ATP dari satu glukosa</>,
+    carbonDioxide: <><InlineMath math="\mathrm{CO_2}" /> dari satu glukosa</>,
+    energy: <>Energi dari satu mol glukosa</>,
+    cell: "Sel tanpa oksigen",
+    cells: { muscle: "Sel otot", yeast: "Sel khamir" },
+    oxygen: "Oksigen",
+    oxygens: { present: "Ada", absent: "Tidak ada" },
+    products: {
+      aerobic: <>Karbon dioksida dan air</>,
+      lactic: <>Asam laktat</>,
+      alcoholic: <>Etanol dan karbon dioksida</>,
+    },
+    product: <>Glukosa akhirnya menjadi</>,
+    parts: {
+      cytoplasm: "Sitoplasma",
+      outer: "Membran luar",
+      inner: "Membran dalam",
+      cristae: "Krista, lipatannya",
+      matrix: "Matriks, ruang dalamnya",
+    },
+    view: "Mitokondria yang dibelah memanjang di dalam sitoplasma sel",
+  }}
+/>
+
+Ada satu jenis sel di tubuhmu yang tidak pernah menjalankan respirasi aerob. **Sel darah merah yang matang tidak punya mitokondria**, jadi seluruh ATP-nya berasal dari glikolisis, dan sel itu menghasilkan asam laktat. Sel darah merah membawa oksigen ke seluruh tubuhmu tetapi tidak memakai sedikit pun untuk dirinya. Jadi tidak ada oksigen bawaannya yang terpakai di perjalanan.
+
+## Neraca Gas Respirasi
+
+Untuk setiap glukosa, respirasi aerob mengambil oksigen dan melepaskan karbon dioksida dalam jumlah yang tetap. Persamaannya memberi tahu berapa banyak: **enam oksigen untuk enam karbon dioksida**. Kamu akan memakai rasio itu dua kali: pertama untuk menghitung massa hasil, lalu untuk menebak gerak cairan berwarna di respirometer, yaitu tabung tertutup yang mengukur berapa banyak oksigen yang diambil makhluk hidup.
+
+### Atom dan Kilojoule
+
+Dalam kata-kata, glukosa bereaksi dengan oksigen:
+
+<BlockMath math="\text{glukosa} + \text{oksigen} \rightarrow \text{karbon dioksida} + \text{air} + \text{energi}" />
+
+Persamaan kimia yang setara mengatakan hal yang sama dengan angka. Persamaan itu memberi jumlah molekul setiap zat dan energi dari satu mol glukosa:
+
+<BlockMath math="\mathrm{C_6H_{12}O_6} + 6\mathrm{O_2} \rightarrow 6\mathrm{CO_2} + 6\mathrm{H_2O} + 2{.}898\text{ kJ}" />
+
+Hitung atom di kedua ruas: karbon <InlineMath math="6 = 6" />, hidrogen <InlineMath math="12 = 12" />, dan oksigen <InlineMath math="6 + 12 = 12 + 6 = 18" />. Dari <InlineMath math="2{.}898\text{ kJ}" /> itu, **kurang dari separuhnya tersimpan dalam ATP**. Sisanya lepas sebagai panas.
+
+Jumlah ATP per glukosa juga berbeda antarbuku: <InlineMath math="38" /> sebagai batas teoretis, <InlineMath math="36" /> di banyak buku sekolah, dan lebih sedikit di sel sebenarnya, karena jumlah ion hidrogen yang dipompa melintasi membran dalam berbeda-beda. Kita pakai <InlineMath math="36" /> di setiap perhitungan.
+
+Sel-sel otot kaki memecah <InlineMath math="45\text{ g}" /> glukosa dengan oksigen, artinya mengoksidasinya secara aerob. Berapa banyak karbon dioksida yang keluar? Ubah massa glukosa menjadi mol, pakai **perbandingan <InlineMath math="1 : 6" /> pada persamaan**, lalu ubah kembali menjadi massa. Massa molarnya: glukosa <InlineMath math="180" />, oksigen <InlineMath math="32" />, karbon dioksida <InlineMath math="44" />, dan air <InlineMath math="18\text{ g mol}^{-1}" />.
+
+<MathContainer>
+<BlockMath math="\text{Glukosa} = \frac{45}{180} = 0{,}25\text{ mol}" />
+<BlockMath math="\mathrm{CO_2} = 6 \times 0{,}25 = 1{,}5\text{ mol} = 1{,}5 \times 44 = 66\text{ g}" />
+<BlockMath math="\text{Energi} = 0{,}25 \times 2{.}898 = 724{,}5\text{ kJ}" />
+</MathContainer>
+
+Cek dengan hukum kekekalan massa: tidak ada atom yang muncul atau hilang, jadi massa sebelum reaksi harus sama dengan massa sesudahnya. Oksigen yang dipakai <InlineMath math="1{,}5 \times 32 = 48\text{ g}" /> dan air yang terbentuk <InlineMath math="1{,}5 \times 18 = 27\text{ g}" />. Glukosa dan oksigen yang masuk ke sel otot berjumlah <InlineMath math="45 + 48 = 93\text{ g}" />, sama persis dengan karbon dioksida dan air yang keluar, <InlineMath math="66 + 27 = 93\text{ g}" />.
+
+### Membaca Respirometer
+
+Oksigen tidak berwarna, tetapi cairan bergerak saat gas hilang dari tabung yang tertutup rapat. Respirometer memakai cairan itu untuk mengukur laju respirasi aerob lewat **volume oksigen yang diambil**.
+
+Model ini memperlihatkan satu rancangan respirometer. Kecambah diletakkan di atas kasa kawat di dalam tabung reaksi yang tertutup rapat. Di bawah kasa, larutan **kalium hidroksida** atau kapur soda menyerap karbon dioksida yang dilepaskan kecambah. Jadi volume gas di tabung itu berkurang sebanyak oksigen yang diambil saja, dan setetes cairan berwarna di pipa kapiler bergerak pelan mendekati kecambah.
+
+Tabung itu dimasukkan ke penangas air karena gas yang hangat memuai dan bisa mendorong tetesan walaupun sama sekali tidak ada respirasi.
+
+Tabung kedua disusun dengan cara yang sama, tetapi berisi air. Air tidak menyerap karbon dioksida, jadi tetesannya bergerak sebesar selisih antara oksigen yang diambil dan karbon dioksida yang dilepaskan. Set kontrol tanpa makhluk hidup menunjukkan apakah perubahan suhu atau tekanan udara saja sudah menggeser tetesan.
+
+Praktikum respirasi aerob dalam kurikulum KSSM Malaysia memakai rancangan lain dengan ide yang sama. Seekor hewan kecil yang hidup, misalnya kecoak, diletakkan di atas kasa kawat di atas kapur soda dalam tabung reaksi yang tertutup rapat. Sebatang pipa kapiler keluar dari tabung itu dan dicelupkan tegak ke dalam cairan berwarna, biasanya eosin. Kapur soda menyerap karbon dioksida, jadi gas berkurang hanya karena hewan itu mengambil oksigen, dan **eosin naik di dalam pipa kapiler**.
+
+Tabung kedua berisi kapur soda tanpa hewan menjadi kontrol. Kedua tabung diletakkan dalam penangas air, jadi suhunya tetap sama.
+
+Tebak dulu sebelum kamu menggeser waktu di model. Dalam <InlineMath math="20" /> menit, kecambah yang mengoksidasi glukosa mengambil oksigen yang cukup untuk menggeser tetesan di tabung kalium hidroksida sejauh <InlineMath math="30\text{ mm}" />. **Di mana posisi tetesan di tabung air** pada menit ke-<InlineMath math="20" />?
+
+<RespirometerLab
+  title={<>Dua Respirometer Berisi Kecambah</>}
+  description={
+    <>
+      Kecambah yang sama di atas kalium hidroksida dan di atas air, dalam satu
+      penangas air selama <InlineMath math="20" /> menit. Geser waktu dan cek
+      tebakanmu di kedua pipa kapiler.
+    </>
+  }
+  footer={<>Lihat tetes merah di tiap kapiler: tetes itu bergerak hanya kalau gas di tabung menyusut.</>}
+  oxygen={30}
+  carbonDioxide={30}
+  minutes={20}
+  labels={{
+    potash: <>Tetesan di tabung kalium hidroksida</>,
+    water: <>Tetesan di tabung air</>,
+    quotient: <>Kuosien respirasi</>,
+    substrate: <>Zat yang dipecah kecambah</>,
+    substrates: {
+      fat: <>Lemak</>,
+      protein: <>Protein</>,
+      carbohydrate: <>Karbohidrat</>,
+      anaerobic: <>Sebagian tanpa oksigen</>,
+    },
+    time: "Waktu",
+    view: "Dua respirometer berisi kecambah di dalam penangas air",
+  }}
+/>
+
+Tetesan di tabung air **tidak bergerak**. Untuk glukosa, setiap enam molekul oksigen yang diambil diganti enam molekul karbon dioksida yang dilepaskan. Gas dengan jumlah molekul yang sama pada suhu dan tekanan yang sama menempati volume yang sama, jadi gas yang hilang dan gas yang bertambah saling meniadakan: <InlineMath math="30 - 30 = 0\text{ mm}" />. Karbon dioksida yang dilepaskan dibagi oksigen yang diambil disebut kuosien respirasi. Kuosien respirasi di model menunjukkan <InlineMath math="1{,}0" />, nilai untuk karbohidrat.
+
+Sekarang ubah angka tabung kalium hidroksida menjadi laju. Gas yang hilang mengisi pipa kapiler seperti sebatang lidi, jadi bentuknya **tabung silinder dengan jari-jari lubang kapiler**. Lubang itu berdiameter <InlineMath math="1\text{ mm}" />, jadi jari-jarinya <InlineMath math="0{,}5\text{ mm}" />. Panjang silindernya <InlineMath math="30\text{ mm}" />, yaitu jarak geser tetesan.
+
+<MathContainer>
+<BlockMath math="V = \pi r^2 h = \pi \times 0{,}5^2 \times 30 = 7{,}5\pi \approx 23{,}6\text{ mm}^3" />
+<BlockMath math="\text{Laju} = \frac{7{,}5\pi\text{ mm}^3}{20\text{ menit}} = 0{,}375\pi \approx 1{,}18\text{ mm}^3\text{ menit}^{-1}" />
+</MathContainer>
+
+Cek satuan: <InlineMath math="\text{mm}^2 \times \text{mm} = \text{mm}^3" />, dan volume dibagi waktu memberi <InlineMath math="\text{mm}^3\text{ menit}^{-1}" />. Cek nilai: <InlineMath math="0{,}375\pi \times 20 = 7{,}5\pi" />, sama dengan volume yang kamu hitung tadi.
+
+## Otot Pelari Kekurangan Oksigen
+
+Saat kamu lari cepat, serabut otot memakai ATP lebih cepat daripada kemampuan darah membawa oksigen ke sana. Jadi serabut itu membuat ATP tanpa oksigen. Serabut otot menjalankan **fermentasi asam laktat** di sitoplasma. Satu glukosa menjadi dua molekul asam laktat, dan tidak ada karbon dioksida yang keluar:
+
+<MathContainer>
+<BlockMath math="\text{glukosa} \rightarrow \text{asam laktat} + \text{energi } (150\text{ kJ})" />
+<BlockMath math="\mathrm{C_6H_{12}O_6} \rightarrow 2\mathrm{C_3H_6O_3}" />
+</MathContainer>
+
+Energi yang didapat itu sedikit. Satu mol glukosa hanya melepaskan sekitar <InlineMath math="150\text{ kJ}" />, dan sel mendapat <InlineMath math="2" /> ATP untuk setiap glukosa. Glikolisis saja hanya sanggup menopang kerja otot yang berat selama kira-kira satu menit. Saat asam laktat menumpuk, bagian dalam serabut menjadi lebih asam, jadi **pH di dalam serabut turun**. Nilai pH yang rendah mengganggu kerja enzim, jadi asam laktat bisa ikut menyebabkan kelelahan otot.
+
+Setelah berhenti, kamu masih bernapas cepat dan dalam selama beberapa saat. Oksigen tambahan itu membayar kekurangan selama lari. Itulah **utang oksigen**, yaitu oksigen yang dibutuhkan untuk mengganti ATP yang dihasilkan tanpa oksigen. Darah membawa asam laktat ke hati. Di hati, sebagian asam laktat diubah menjadi glukosa atau glikogen. Sisanya diubah kembali menjadi asam piruvat lalu dioksidasi menjadi karbon dioksida dan air.
+
+Di model otot ini, atur oksigen tambahan yang dibutuhkan lari cepat, lalu jalankan. Perhatikan meteran asam laktat naik selama oksigen yang kamu ambil masih di bawah kebutuhan otot. Ikuti panah yang membawa asam laktat ke hati, dan baca seberapa besar gaya yang masih diberikan otot.
+
+<OxygenDebtLab
+  title={<>Serabut Otot Selama dan Sesudah Lari Cepat</>}
+  description={
+    <>
+      Istirahat sampai menit ke-<InlineMath math="2" />, lari cepat sampai
+      menit ke-<InlineMath math="8" />, lalu pemulihan. Saat istirahat, kamu
+      mengambil <InlineMath math="0{,}3" /> liter oksigen per menit.
+    </>
+  }
+  footer={<>Oranye adalah oksigen yang kurang saat berlari. Biru adalah oksigen itu, dibayar kembali.</>}
+  demand={{ min: 1, max: 2.5, value: 2 }}
+  rest={0.3}
+  labels={{
+    demand: "Oksigen tambahan untuk lari cepat, liter per menit",
+    need: <>Oksigen yang dibutuhkan otot sekarang</>,
+    uptake: <>Oksigen yang kamu ambil sekarang</>,
+    shortfall: <>Kekurangan oksigen sejauh ini</>,
+    debt: <>Utang oksigen yang sudah dibayar</>,
+    lactic: <>Asam laktat di serabut otot</>,
+    force: <>Gaya yang masih diberikan otot</>,
+    time: "Waktu",
+    parts: {
+      fibre: "Serabut otot",
+      capillary: "Kapiler",
+      cell: "Sel darah merah",
+      liver: "Asam laktat ke hati",
+    },
+    view: "Seberkas serabut otot rangka dengan kapiler di antaranya",
+  }}
+/>
+
+Di awal lari, pengambilan oksigen naik perlahan. Jadi muncul celah di antara garis kebutuhan dan kurva pengambilan, dan celah itulah **kekurangan oksigen**. Setelah menit ke-<InlineMath math="8" />, lari sudah selesai, tetapi pengambilan oksigen tetap di atas laju istirahat. Daerah di atas laju istirahat itu adalah utang oksigen yang sedang dibayar. Naikkan kebutuhan, maka kedua daerah membesar. Kurva di model ini disederhanakan, jadi nilai sebenarnya berbeda pada setiap orang.
+
+Otot yang nyeri sehari atau dua hari setelah olahraga berat sering dianggap akibat asam laktat. Waktunya tidak cocok. **Kadar asam laktat dalam darah kembali ke kadar sebelum olahraga dalam waktu sekitar satu jam**, sedangkan nyeri itu memuncak <InlineMath math="24" /> sampai <InlineMath math="72" /> jam kemudian.
+
+Nyeri yang tertunda ini berasal dari kerusakan kecil pada serabut otot dan peradangan yang mengikutinya, terutama setelah gerakan yang meregangkan otot saat otot itu berkontraksi, seperti berlari menuruni bukit. Jadi, ketika kakimu pegal di hari kedua, asam laktatnya sudah lama dibersihkan.
+
+## Fermentasi di Luar Otot
+
+Khamir, akar padi, dan bakteri *Lactobacillus* juga berfermentasi saat oksigen kurang atau tidak ada. Khamir dan akar padi menghasilkan **etanol dan karbon dioksida**. *Lactobacillus* menghasilkan asam laktat, sama seperti serabut ototmu. Masing-masing kekurangan oksigen di tempat yang berbeda: khamir di tabung yang ditutup minyak, akar padi di lumpur yang tergenang, dan *Lactobacillus* di dalam susu.
+
+### Khamir di Tabung Rapat
+
+Khamir atau ragi adalah jamur yang sangat kecil, jamur yang membuat adonan roti mengembang. Tanpa oksigen, khamir menjalankan **fermentasi alkohol**. Satu glukosa menjadi dua molekul etanol dan dua molekul karbon dioksida:
+
+<MathContainer>
+<BlockMath math="\text{glukosa} \rightarrow \text{etanol} + \text{karbon dioksida} + \text{energi } (210\text{ kJ})" />
+<BlockMath math="\mathrm{C_6H_{12}O_6} \rightarrow 2\mathrm{C_2H_5OH} + 2\mathrm{CO_2}" />
+</MathContainer>
+
+Percobaan yang biasa dilakukan di laboratorium sekolah menguji hasil ini dengan dua tabung reaksi. Tabung A berisi <InlineMath math="15\text{ cm}^3" /> larutan glukosa <InlineMath math="5\%" /> yang sudah dididihkan lalu didinginkan, <InlineMath math="5\text{ cm}^3" /> suspensi khamir <InlineMath math="5\%" />, dan **lapisan minyak parafin** di atasnya. Pipa penghubung mengalirkan gas dari tabung A ke air kapur. Tabung B sebagai kontrol disusun dengan cara yang sama tetapi tanpa suspensi khamir.
+
+| Langkah | Alasan |
+| :--- | :--- |
+| Didihkan larutan glukosa | Mengusir oksigen terlarut, jadi tidak ada oksigen yang tersisa |
+| Dinginkan sebelum khamir ditambahkan | Panas merusak enzim khamir dan membunuh khamir |
+| Tuang minyak parafin | Mencegah oksigen udara larut kembali |
+| Alirkan gas ke air kapur | Air kapur menjadi keruh oleh karbon dioksida |
+
+Di model ini, jalankan percobaan dan bandingkan gelembung, air kapur, dan termometer kedua tabung. Lalu ubah suhu penangas air dan perhatikan seberapa cepat tabung A menghasilkan gelembung.
+
+<YeastFermentationLab
+  title={<>Khamir Memfermentasi Glukosa di Bawah Minyak Parafin</>}
+  description={
+    <>
+      Tabung A berisi glukosa <InlineMath math="5\%" /> dan khamir. Tabung B
+      hanya berisi glukosa. Keduanya ada di penangas air. Atur penangas antara{" "}
+      <InlineMath math="10^\circ\text{C}" /> dan{" "}
+      <InlineMath math="60^\circ\text{C}" /> lalu bandingkan air kapurnya.
+    </>
+  }
+  footer={<>Lihat air kapur di samping tiap tabung: karbon dioksida membuat air kapur jadi keruh.</>}
+  glucose={5}
+  temperature={{ min: 10, max: 60, value: 30 }}
+  labels={{
+    temperature: "Suhu penangas air",
+    rate: <>Gelembung per menit</>,
+    collected: <>Karbon dioksida terkumpul</>,
+    limewater: <>Air kapur</>,
+    clear: <>jernih</>,
+    milky: <>keruh</>,
+    time: "Waktu",
+    smell: <>Bau tabung A</>,
+    ethanol: <>alkohol (etanol)</>,
+    none: <>tidak berbau</>,
+    yeast: "Tabung A, berisi khamir",
+    control: "Tabung B, tanpa khamir",
+    warmth: <>Suhu di setiap tabung</>,
+    parts: {
+      paraffin: "Minyak parafin",
+      limewater: "Air kapur",
+      bath: "Penangas air",
+      thermometer: "Termometer",
+    },
+    view: "Dua tabung reaksi di penangas air dengan pipa ke air kapur",
+  }}
+/>
+
+Di akhir percobaan, air kapur dari tabung A menjadi keruh, campuran sedikit lebih hangat, dan campuran berbau alkohol. Tabung B tidak berubah. Sebelum lanjut membaca, tentukan **pengamatan mana yang membuktikan fermentasi**, dan apa yang disingkirkan oleh tabung B.
+
+Air kapur yang keruh menunjukkan karbon dioksida. Tetapi respirasi aerob juga melepaskan karbon dioksida, jadi pengamatan itu saja belum cukup. Bau alkohol menunjukkan etanol, dan etanol hanya dihasilkan lewat fermentasi. Jadi **bau etanol adalah bukti fermentasi**. Suhu yang naik menunjukkan sebagian energi dilepaskan sebagai panas. Air kapur dari tabung B tetap jernih, jadi karbon dioksida di tabung A berasal dari khamir, bukan dari udara atau larutan glukosa.
+
+### Akar Padi Terendam Air
+
+Tumbuhan juga berfermentasi. Biasanya akar mendapat oksigen dari udara di celah-celah kecil antara butiran tanah. Di sawah yang tergenang, air mengisi celah itu, dan **oksigen berdifusi lewat air sekitar <InlineMath math="10{.}000" /> kali lebih lambat** daripada lewat udara. Jadi oksigen di lumpur cepat habis. Sel akar yang kekurangan oksigen beralih ke fermentasi alkohol dan menghasilkan etanol dan karbon dioksida.
+
+Lalu bagaimana padi bisa hidup di sawah? Akarnya punya **aerenkim**, yaitu rongga udara besar di korteks akar dan batang yang bekerja seperti pipa udara. Oksigen berdifusi dari tajuk lewat aerenkim sampai ke ujung akar.
+
+Akar padi membentuk aerenkim walaupun tanahnya kering, dan membentuk lebih banyak saat tanah tergenang. Bagian akar padi yang lebih tua di sebelah atas juga membangun lapisan yang menahan oksigen agar tidak bocor ke lumpur, jadi lebih banyak oksigen sampai ke ujung akar.
+
+Tanaman lahan kering seperti jagung, gandum, dan jelai tidak membangun lapisan penahan itu, dan genangan merusak tanaman ini. Kalau fermentasi berlangsung lama, akar mendapat terlalu sedikit ATP untuk bertahan hidup, dan hasil samping beracun menumpuk sampai sel akar mati. Di model sawah, genangi tanah, lalu bandingkan padi dengan tanaman lahan kering: oksigen tanah di akar, bagian energi akar dari fermentasi, dan etanol di akar.
+
+<PaddyRootLab
+  title={<>Akar Padi dan Tanaman Lahan Kering di Lumpur Tergenang</>}
+  description={
+    <>
+      Sawah dengan tampilan sinar-X ke dalam lumpur dan lensa pada satu akar.
+      Genangi atau keringkan tanah dan ikuti oksigen yang turun lewat aerenkim
+      ke ujung akar.
+    </>
+  }
+  footer={<>Ikuti titik biru turun lewat saluran udara: itulah oksigen yang sampai ke ujung akar.</>}
+  atp={36}
+  plants={["rice", "dryland"]}
+  labels={{
+    water: "Sawah",
+    waters: { drained: "Kering", flooded: "Tergenang" },
+    plant: "Tanaman",
+    plants: { rice: "Padi", dryland: "Tanaman lahan kering" },
+    oxygen: <>Oksigen tanah di akar</>,
+    fermentation: <>Energi akar dari fermentasi</>,
+    ethanol: <>Etanol di akar</>,
+    roots: <>Kondisi akar</>,
+    healthy: <>sehat</>,
+    damaged: <>rusak</>,
+    parts: {
+      water: "Air genangan",
+      mud: "Lumpur",
+      root: "Akar",
+      aerenchyma: "Aerenkim, rongga udaranya",
+    },
+    view: "Sawah dengan tampilan sinar-X akar padi di dalam lumpur",
+  }}
+/>
+
+Ketika tanah kering lagi, udara kembali mengisi celah antara butiran tanah. Sel akar kedua tanaman kembali menjalankan respirasi aerob dan mendapat lagi sekitar <InlineMath math="36" /> ATP per glukosa.
+
+### Pangan dan Bahan Bakar
+
+Bakteri *Lactobacillus* menjalankan fermentasi asam laktat dengan cara yang sama seperti serabut otot yang kekurangan oksigen. Bakteri ini mengubah gula dalam susu menjadi asam laktat. Susu jadi asam dan kental karena **asam laktat membuat protein susu menggumpal**. Begitulah yoghurt dan keju dibuat. Hasil fermentasi lain juga dipakai sebagai makanan dan bahan bakar:
+
+| Produk | Organisme | Hasil fermentasi yang dipakai |
+| :--- | :--- | :--- |
+| Yoghurt dan keju | *Lactobacillus* | Asam laktat menggumpalkan protein susu |
+| Roti | Khamir | Karbon dioksida mengembangkan adonan |
+| Tape | Kapang dan khamir dalam ragi tape | Kapang mengubah pati menjadi gula, khamir menghasilkan sedikit alkohol |
+| Bioetanol | Khamir | Etanol dari gula tebu atau pati jagung menjadi bahan bakar |
+
+## Satu Glukosa di Tiga Jalur
+
+Ketiga jalur dimulai dengan cara yang sama, yaitu glikolisis di sitoplasma. Jalurnya berpisah pada satu pertanyaan: apa yang terjadi pada asam piruvat berikutnya? **Apa yang terjadi pada asam piruvat menentukan berapa banyak energi yang dilepaskan**.
+
+| Ciri | Respirasi aerob | Fermentasi asam laktat | Fermentasi alkohol |
+| :--- | :--- | :--- | :--- |
+| Oksigen | Diperlukan | Tidak diperlukan | Tidak diperlukan |
+| Tempat terjadinya | Sitoplasma dan mitokondria | Sitoplasma | Sitoplasma |
+| Hasil | <InlineMath math="\mathrm{CO_2}" /> dan air | Asam laktat | Etanol dan <InlineMath math="\mathrm{CO_2}" /> |
+| Energi per mol glukosa | <InlineMath math="2{.}898\text{ kJ}" /> | <InlineMath math="150\text{ kJ}" /> | <InlineMath math="210\text{ kJ}" /> |
+| ATP per glukosa | Sekitar <InlineMath math="36" /> | <InlineMath math="2" /> | <InlineMath math="2" /> |
+| Contoh | Sebagian besar sel | Sel otot, *Lactobacillus* | Khamir, akar padi |
+
+Fermentasi meninggalkan sebagian besar energi glukosa masih di dalam asam laktat atau etanol. Etanol buktinya: etanol masih bisa dibakar sebagai bioetanol, dan energi yang lepas saat pembakaran itu adalah energi yang tidak pernah didapat khamir. Jadi **untuk ATP yang sama, sel yang berfermentasi memecah lebih banyak glukosa**. Di grafik ini, geser jumlah ATP yang dibutuhkan dan bandingkan tinggi kedua titik.
+
+<MathVisual
+  title={<>Glukosa yang Dibutuhkan untuk ATP Sel</>}
+  description={
+    <>
+      Respirasi aerob menghasilkan sekitar <InlineMath math="36" /> ATP per
+      glukosa. Fermentasi hanya <InlineMath math="2" />. Sumbu mendatar adalah
+      ATP yang dibutuhkan sel, dan sumbu tegak adalah banyaknya molekul
+      glukosa yang dipakai.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 76 }, y: { min: 0, max: 38 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "a", min: 2, max: 72, value: 36, step: 2, label: "a" },
+    ],
+    objects: [
+      { id: "aerobic", kind: "function", appearance: "primary", formula: "x/36", domain: { min: 0, max: 72 } },
+      { id: "ferment", kind: "function", appearance: "warning", formula: "x/2", domain: { min: 0, max: 72 } },
+      { id: "aerobic-now", kind: "marker", x: "a", y: "a/36", appearance: "primary" },
+      { id: "ferment-now", kind: "marker", x: "a", y: "a/2", appearance: "warning" },
+    ],
+    labels: [
+      { key: "aer", objectId: "aerobic", at: { x: 60, y: 60 / 36 }, placement: "above" },
+      { key: "fer", objectId: "ferment", at: { x: 30, y: 15 }, placement: "above-left" },
+    ],
+    readouts: [
+      { key: "aerobic-glucose", formula: "a/36" },
+      { key: "ferment-glucose", formula: "a/2" },
+    ],
+  }}
+  labels={{
+    a: <>ATP yang dibutuhkan</>,
+    aer: <>Respirasi aerob</>,
+    fer: <>Fermentasi</>,
+    "aerobic-glucose": <>Glukosa untuk respirasi aerob</>,
+    "ferment-glucose": <>Glukosa untuk fermentasi</>,
+  }}
+/>
+
+Misalkan sebuah sel otot membutuhkan <InlineMath math="72" /> ATP. Berapa banyak glukosa yang dipakai setiap jalur? **Bagi ATP yang dibutuhkan dengan ATP per glukosa**:
+
+<MathContainer>
+<BlockMath math="\text{Respirasi aerob} = \frac{72}{36} = 2\text{ glukosa}" />
+<BlockMath math="\text{Fermentasi} = \frac{72}{2} = 36\text{ glukosa}" />
+</MathContainer>
+
+Cek dengan mengalikan kembali: <InlineMath math="2 \times 36 = 72" /> dan <InlineMath math="36 \times 2 = 72" />. Fermentasi memakai <InlineMath math="36 : 2 = 18" /> kali lebih banyak glukosa, itulah sebabnya cadangan glukosa otot cepat menipis saat lari cepat. Letakkan penggeser di <InlineMath math="72" />, dan grafik menunjukkan angka yang sama.
+
+Sekarang coba sendiri sebelum membaca penyelesaiannya. Otot kaki seorang pelari cepat dan satu kultur khamir masing-masing menghasilkan <InlineMath math="0{,}6\text{ mol}" /> ATP lewat fermentasi. Hitung massa glukosa yang dipakai masing-masing. Sebutkan hasil masing-masing beserta massanya. Lalu hitung massa glukosa yang diperlukan otot itu kalau menghasilkan ATP yang sama secara aerob. Massa molar asam laktat <InlineMath math="90" /> dan etanol <InlineMath math="46\text{ g mol}^{-1}" />.
+
+Kedua fermentasi memberi <InlineMath math="2" /> ATP per glukosa, jadi **otot dan khamir memakai glukosa sama banyak**:
+
+<BlockMath math="\text{Glukosa} = \frac{0{,}6}{2} = 0{,}3\text{ mol} = 0{,}3 \times 180 = 54\text{ g}" />
+
+Hasilnya berbeda. Otot mengubah setiap glukosa menjadi dua molekul asam laktat. Khamir mengubah setiap glukosa menjadi dua molekul etanol dan dua molekul karbon dioksida:
+
+<MathContainer>
+<BlockMath math="\text{Otot: asam laktat} = 0{,}6\text{ mol} = 0{,}6 \times 90 = 54\text{ g}" />
+<BlockMath math="\text{Khamir: etanol} = 0{,}6 \times 46 = 27{,}6\text{ g}, \quad \mathrm{CO_2} = 0{,}6 \times 44 = 26{,}4\text{ g}" />
+</MathContainer>
+
+Cek: hasil khamir berjumlah <InlineMath math="27{,}6 + 26{,}4 = 54\text{ g}" />, sama dengan massa glukosa. Pada fermentasi, massa hasil sama dengan massa glukosa karena tidak ada oksigen yang ditambahkan, berbeda dengan respirasi aerob tadi. Secara aerob, otot hanya butuh <InlineMath math="\dfrac{0{,}6}{36} = \dfrac{1}{60}\text{ mol}" />, yaitu <InlineMath math="\dfrac{180}{60} = 3\text{ g}" /> glukosa. Perbandingan <InlineMath math="54 : 3 = 18" /> sama dengan grafik, jadi jawaban ini cocok dengan contoh <InlineMath math="72" /> ATP.

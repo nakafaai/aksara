@@ -1,4 +1,5 @@
-import { unitNode } from "#corpus/curriculum/schema";
+import { biologyStandards } from "#corpus/curriculum/kssm/documents";
+import { materialNode, unitNode } from "#corpus/curriculum/schema";
 
 /** The KSSM Form 4 Biology chapters on what happens inside a cell, Bab 5 to Bab 7 of the DSKP. */
 export const kssmForm4BiologyProcessNodes = [
@@ -35,7 +36,39 @@ export const kssmForm4BiologyProcessNodes = [
     },
   }),
   unitNode({
+    children: [
+      materialNode({
+        key: "form-4-biology-cellular-respiration-cellular-respiration",
+        level: "lesson",
+        materialKeys: ["lesson.biology.cellular-respiration"],
+        order: 10,
+        outcomes: [
+          {
+            code: "Form 4, Content Standards 7.1 to 7.3",
+            ...biologyStandards,
+          },
+        ],
+      }),
+    ],
     key: "form-4-biology-cellular-respiration",
+    materialCard: {
+      de: {
+        description: "Vergleiche Zellatmung, Gärung und Sauerstoffschuld.",
+        title: "Zellatmung",
+      },
+      en: {
+        description: "Compare respiration, fermentation and oxygen debt.",
+        title: "Cellular Respiration",
+      },
+      id: {
+        description: "Bandingkan respirasi, fermentasi, dan utang oksigen.",
+        title: "Respirasi Sel",
+      },
+      ms: {
+        description: "Bandingkan respirasi, fermentasi dan hutang oksigen.",
+        title: "Respirasi Sel",
+      },
+    },
     order: 70,
     translations: {
       de: { routeSlug: "zellatmung", title: "Zellatmung" },
