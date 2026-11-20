@@ -125,3 +125,17 @@ export function literalFindings(source: string) {
 export function literalRules(blocks: string) {
   return literalFindings(lesson(blocks)).map(({ rule }) => rule);
 }
+
+/** Writes one MathVisual whose line runs through the origin and the given point. */
+export function lineFigure(x: number, title = "A line") {
+  return `<MathVisual
+  title="${title}"
+  description="A line through the origin."
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -2, max: 2 }, y: { min: -2, max: 2 } },
+    view: { kind: "fit" },
+    objects: [{ id: "line", kind: "line", appearance: "primary", through: [{ x: 0, y: 0 }, { x: ${x}, y: 1 }] }],
+  }}
+/>`;
+}
