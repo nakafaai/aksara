@@ -225,6 +225,7 @@ function decodeOverride(override: unknown) {
 
 describe("a sketch's key and its rubric", () => {
   const version = {
+    interactions: [decodeStrict(InteractionSchema, sketchInteraction)],
     scoring: [decodeOverride({ interaction: "graph", rule: sketchRule })],
   };
 
@@ -234,7 +235,7 @@ describe("a sketch's key and its rubric", () => {
     ).toBe(true);
     expect(
       hasKeyedRubrics(
-        { scoring: [] },
+        { interactions: [], scoring: [] },
         decodeStrict(ItemKeySchema, itemKey(choiceKey))
       )
     ).toBe(true);
@@ -257,10 +258,16 @@ describe("a sketch's key and its rubric", () => {
     ] as const) {
       expect(
         hasKeyedRubrics(
-          { scoring: Arr.map(scoring, decodeOverride) },
+          { interactions: [], scoring: Arr.map(scoring, decodeOverride) },
           decodeStrict(ItemKeySchema, itemKey(key))
         )
       ).toBe(false);
     }
+  });
+
+  it("refuse a sketch that the key does not answer", () => {
+    expect(
+      hasKeyedRubrics(version, decodeStrict(ItemKeySchema, itemKey(choiceKey)))
+    ).toBe(false);
   });
 });
