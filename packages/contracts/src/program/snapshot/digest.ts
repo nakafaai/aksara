@@ -14,6 +14,7 @@ import {
   type CurriculumRoute,
   curriculumNamespace,
 } from "#contracts/program/curriculum";
+import { FormerPathLedger } from "#contracts/program/snapshot/former";
 import { verifyProgramSnapshotRowHash } from "#contracts/program/snapshot/hash";
 import {
   canonicalizeProgramSnapshotRow,
@@ -33,6 +34,7 @@ export class ProgramDigestError extends Schema.TaggedError<
 >()("ProgramDigestError", {
   code: Schema.Literals([
     "count",
+    "former",
     "integrity",
     "key",
     "order",
@@ -79,6 +81,7 @@ function isExactProgramRoot(row: CurriculumRoute, program: LearningProgram) {
 class ProgramDigestState {
   readonly #activeAppLocales: ActiveAppLocaleList;
   readonly #stream = new DigestStream();
+  readonly #formerPaths = new FormerPathLedger();
   readonly #nodes = MutableHashSet.empty<string>();
   readonly #paths = MutableHashSet.empty<string>();
   readonly #programs = MutableHashMap.empty<string, LearningProgram>();
@@ -247,6 +250,16 @@ class ProgramDigestState {
     ) {
       return Effect.fail(
         new ProgramDigestError({ code: "parent", identity: nodeIdentity })
+      );
+    }
+    const collision = this.#formerPaths.claim(
+      routeIdentity,
+      Arr.map(row.formerPaths ?? [], (path) => `${row.appLocale}\0${path}`),
+      this.#routes
+    );
+    if (Option.isSome(collision)) {
+      return Effect.fail(
+        new ProgramDigestError({ code: "former", identity: collision.value })
       );
     }
     this.#lastCurriculumKey = orderKey;

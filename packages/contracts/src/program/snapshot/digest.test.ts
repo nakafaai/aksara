@@ -9,6 +9,7 @@ import { LearningProgramSchema } from "#contracts/program/spec";
 import {
   decodeAppLocales,
   digestRows,
+  formerRejectionInputs,
   reject,
   routeRejectionInputs,
 } from "#contracts/test/closure";
@@ -212,5 +213,27 @@ describe("program aggregate digest", () => {
           )
         ).toEqual(["program", "program", "root", "parent", "route"]);
       })
+  );
+
+  it.effect("rejects former paths that shadow a route or lead two ways", () =>
+    Effect.gen(function* () {
+      const records = yield* makeProgramTestRecords();
+      const former = yield* formerRejectionInputs(records);
+      const moved = yield* digestProgramRows({
+        activeAppLocales: ACTIVE_APP_LOCALES,
+        rows: Stream.fromIterable(former.moved),
+      });
+      const errors = yield* Effect.all([
+        reject(former.shadowsLater),
+        reject(former.shadowsEarlier),
+        reject(former.twoWays),
+      ]);
+      expect(moved.curriculumRowCount).toBe(774);
+      expect(
+        Arr.map(errors, (error) =>
+          error._tag === "ProgramDigestError" ? error.code : error._tag
+        )
+      ).toEqual(["former", "former", "former"]);
+    })
   );
 });

@@ -81,6 +81,8 @@ const CurriculumRouteFields = {
   canonicalPath: Schema.optional(PublicPathSchema),
   displayGroupIconKey: Schema.optional(ProgramNavigationIconKeySchema),
   displayGroupTitle: Schema.optional(Schema.String),
+  /** Paths the route answered at before it moved or was renamed; each redirects here. */
+  formerPaths: Schema.optional(Schema.NonEmptyArray(PublicPathSchema)),
   iconKey: ProgramNavigationIconKeySchema,
   kind: Schema.Literal("curriculum-context"),
   level: ProgramNavigationLevelSchema,
@@ -177,6 +179,38 @@ function hasCompleteMaterialContext(input: {
   );
 }
 
+/** Returns the namespace and program segments that root one public path. */
+function programRoot(publicPath: string) {
+  return Arr.join(Arr.take(publicPath.split("/"), 2), "/");
+}
+
+/**
+ * Checks the paths a route answered at before it moved or was renamed. Each
+ * one redirects to the route, so the route must be a listed page, and each
+ * must sit below the same program root, differ from the current path, and
+ * appear once.
+ */
+function hasCoherentFormerPaths(input: {
+  readonly formerPaths?: readonly string[] | undefined;
+  readonly publicPath: string;
+  readonly sitemap: boolean;
+}) {
+  const { formerPaths, publicPath, sitemap } = input;
+  if (formerPaths === undefined) {
+    return true;
+  }
+  const root = programRoot(publicPath);
+  return (
+    sitemap &&
+    Arr.dedupe(formerPaths).length === formerPaths.length &&
+    Arr.every(
+      formerPaths,
+      (path) =>
+        path !== publicPath && path !== root && programRoot(path) === root
+    )
+  );
+}
+
 /** Checks that only learner-renderable levels enter the sitemap. */
 function hasCoherentSitemap(input: {
   readonly level: string;
@@ -202,6 +236,12 @@ export const CurriculumRouteDraftSchema = Schema.Struct(
   Schema.check(
     Schema.makeFilter(hasCoherentSitemap, {
       message: "Expected only renderable curriculum sitemap routes.",
+    })
+  ),
+  Schema.check(
+    Schema.makeFilter(hasCoherentFormerPaths, {
+      message:
+        "Expected distinct former paths below the program root of a listed curriculum route.",
     })
   )
 );
@@ -230,6 +270,9 @@ export function canonicalizeCurriculumRoute(route: CurriculumRoute) {
     ...(route.displayGroupTitle === undefined
       ? {}
       : { displayGroupTitle: route.displayGroupTitle }),
+    ...(route.formerPaths === undefined
+      ? {}
+      : { formerPaths: route.formerPaths }),
     iconKey: route.iconKey,
     kind: route.kind,
     level: route.level,

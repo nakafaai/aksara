@@ -20,6 +20,7 @@ import {
 import { resolveCurriculumMaterial } from "#corpus/curriculum/material";
 import {
   CurriculumDisplayGroupMapSchema,
+  CurriculumFormerRouteSchema,
   CurriculumMaterialCardMapSchema,
   CurriculumNodeTranslationMapSchema,
   type CurriculumSource,
@@ -43,6 +44,9 @@ const ProjectedCurriculumNodeSchema = Schema.Struct({
   curriculumKey: LearningProgramKeySchema,
   displayGroup: Schema.optional(CurriculumDisplayGroupMapSchema),
   displayGroupIconKey: Schema.optional(ProgramNavigationIconKeySchema),
+  formerRoutes: Schema.optional(
+    Schema.NonEmptyArray(CurriculumFormerRouteSchema)
+  ),
   iconKey: Schema.optional(ProgramNavigationIconKeySchema),
   key: CurriculumNodeKeySchema,
   level: ProgramNavigationLevelSchema,
@@ -85,6 +89,7 @@ function makeProjectedNode(
       displayGroup: "displayGroup" in node ? node.displayGroup : undefined,
       displayGroupIconKey:
         "displayGroupIconKey" in node ? node.displayGroupIconKey : undefined,
+      formerRoutes: "formerRoutes" in node ? node.formerRoutes : undefined,
       iconKey: "iconKey" in node ? node.iconKey : undefined,
       key: node.key,
       level: node.level,

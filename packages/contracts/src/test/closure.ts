@@ -1,5 +1,6 @@
-import { Array as Arr, Effect, Schema, Stream } from "effect";
+import { Array as Arr, Effect, Option, Schema, Stream } from "effect";
 
+import { PublicPathSchema } from "#contracts/ids";
 import {
   ACTIVE_APP_LOCALES,
   ActiveAppLocaleListSchema,
@@ -211,5 +212,57 @@ export const routeRejectionInputs = Effect.fn(
     priorAppLocales,
     priorProgram,
     wrongRoot,
+  };
+});
+
+/** Replaces the given records of a complete stream, keeping every other row. */
+function replaceRecords(
+  records: readonly ProgramSnapshotRow[],
+  replacements: readonly (readonly [ProgramSnapshotRow, ProgramSnapshotRow])[]
+) {
+  return Arr.map(records, (record) =>
+    Option.match(
+      Arr.findFirst(replacements, ([from]) => from === record),
+      { onNone: () => record, onSome: ([, to]) => to }
+    )
+  );
+}
+
+/**
+ * A complete stream where one listed route names a former path, and three
+ * streams whose former paths shadow a later route, shadow an earlier route,
+ * or lead two ways.
+ */
+export const formerRejectionInputs = Effect.fn(
+  "AksaraContracts.test.formerRejectionInputs"
+)(function* (records: readonly ProgramSnapshotRow[]) {
+  const listed = Arr.filter(
+    curriculumRows(records),
+    ({ row }) => row.sitemap && row.parentPath !== undefined
+  );
+  const first = yield* Effect.fromNullishOr(listed[0]);
+  const second = yield* Effect.fromNullishOr(listed[1]);
+  const formerPath = PublicPathSchema.make(`${first.row.publicPath}-former`);
+  /** Gives one listed route the former paths and re-signs its row. */
+  const moved = (
+    record: (typeof listed)[number],
+    formerPaths: readonly [string, ...string[]]
+  ) =>
+    Schema.decodeEffect(CurriculumRouteSchema)({
+      ...record.row,
+      formerPaths,
+    }).pipe(Effect.flatMap(makeCurriculumSnapshotRow));
+  const firstMoved = yield* moved(first, [formerPath]);
+  const firstShadowing = yield* moved(first, [second.row.publicPath]);
+  const secondShadowing = yield* moved(second, [first.row.publicPath]);
+  const secondMoved = yield* moved(second, [formerPath]);
+  return {
+    moved: replaceRecords(records, [[first, firstMoved]]),
+    shadowsEarlier: replaceRecords(records, [[second, secondShadowing]]),
+    shadowsLater: replaceRecords(records, [[first, firstShadowing]]),
+    twoWays: replaceRecords(records, [
+      [first, firstMoved],
+      [second, secondMoved],
+    ]),
   };
 });

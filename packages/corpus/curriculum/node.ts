@@ -12,14 +12,22 @@ import {
   type LearningProgram,
   LearningProgramSchema,
 } from "@nakafa/aksara-contracts/program/spec";
-import { Array as Arr, Effect, HashMap, HashSet, Option, Schema } from "effect";
+import {
+  Array as Arr,
+  Effect,
+  HashMap,
+  HashSet,
+  Option,
+  Predicate,
+  Schema,
+} from "effect";
 import {
   curriculumSourcePath,
   requireCurriculumProgram,
   requireProgramTranslation,
 } from "#corpus/curriculum/ownership";
 import type { ProjectedCurriculumNode } from "#corpus/curriculum/projection";
-import { requireSourceLocale } from "#corpus/locale/source";
+import { requireSourceLocale, sourceLocaleValue } from "#corpus/locale/source";
 import {
   type MaterialDomainDescriptor,
   MaterialDomainDescriptorSchema,
@@ -60,6 +68,27 @@ const nodeSegments = Effect.fn("AksaraCorpus.curriculumNodeSegments")(
     );
   }
 );
+
+/**
+ * The public paths a node answered at in one locale before it moved, below the
+ * program root it still shares, or none when it never moved in that locale.
+ */
+function formerPaths(
+  node: ProjectedCurriculumNode,
+  appLocale: AppLocale,
+  root: string
+) {
+  const paths = Arr.map(
+    Arr.filter(
+      Arr.map(node.formerRoutes ?? [], (route) =>
+        sourceLocaleValue(route, appLocale)
+      ),
+      Predicate.isNotUndefined
+    ),
+    (segments) => PublicPathSchema.make(`${root}/${Arr.join(segments, "/")}`)
+  );
+  return Arr.isReadonlyArrayNonEmpty(paths) ? paths : undefined;
+}
 
 /** Projects one localized curriculum node with its material-owned context. */
 const projectCurriculumNodeRoute = Effect.fn(
@@ -128,6 +157,7 @@ const projectCurriculumNodeRoute = Effect.fn(
     canonicalPath,
     displayGroupIconKey: node.displayGroupIconKey,
     displayGroupTitle: displayGroup?.title,
+    formerPaths: formerPaths(node, appLocale, root),
     iconKey: routeIcon(node, program, nodeDescriptor),
     kind: "curriculum-context",
     level: node.level,

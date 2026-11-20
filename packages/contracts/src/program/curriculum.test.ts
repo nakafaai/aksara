@@ -47,7 +47,7 @@ describe("curriculum route golden canonical bytes", () => {
 
   it("pins the canonical bytes of a material route with every optional field", () => {
     expect(canonicalizeCurriculumRoute(goldenMaterial)).toBe(
-      '{"appLocale":"de","canonicalPath":"lehrplaene/grundlagen-mathematik/bab-1","displayGroupIconKey":"grade-10","displayGroupTitle":"Gruppe é","iconKey":"mathematics","kind":"curriculum-context","level":"subject","materialCardDescription":"Beschreibung é","materialCardTitle":"Kartentitel","materialContextNodeKey":"bab-1","materialContextParentPath":"lehrplaene/grundlagen-mathematik","materialContextPublicPath":"lehrplaene/grundlagen-mathematik/bab-1","materialDomain":"algebra","materialKey":"lesson.grundlagen-mathematik.persamaan-linear","nodeKey":"bab-1","order":1,"parentPath":"lehrplaene/grundlagen-mathematik","programKey":"matematika-dasar","publicPath":"lehrplaene/grundlagen-mathematik/bab-1","sitemap":true,"sourcePath":"packages/corpus/curriculum/matematika-dasar","title":"Bab 1 é"}'
+      '{"appLocale":"de","canonicalPath":"lehrplaene/grundlagen-mathematik/bab-1","displayGroupIconKey":"grade-10","displayGroupTitle":"Gruppe é","formerPaths":["lehrplaene/grundlagen-mathematik/kapitel-1"],"iconKey":"mathematics","kind":"curriculum-context","level":"subject","materialCardDescription":"Beschreibung é","materialCardTitle":"Kartentitel","materialContextNodeKey":"bab-1","materialContextParentPath":"lehrplaene/grundlagen-mathematik","materialContextPublicPath":"lehrplaene/grundlagen-mathematik/bab-1","materialDomain":"algebra","materialKey":"lesson.grundlagen-mathematik.persamaan-linear","nodeKey":"bab-1","order":1,"parentPath":"lehrplaene/grundlagen-mathematik","programKey":"matematika-dasar","publicPath":"lehrplaene/grundlagen-mathematik/bab-1","sitemap":true,"sourcePath":"packages/corpus/curriculum/matematika-dasar","title":"Bab 1 é"}'
     );
   });
 
@@ -131,6 +131,34 @@ describe("curriculum route contract", () => {
     ],
     ["invalid root", { parentPath: undefined }],
     ["non-renderable sitemap row", { level: "lesson", sitemap: true }],
+    [
+      "former path in another program",
+      { formerPaths: ["curriculum/kssm/form-4/mathematics"] },
+    ],
+    [
+      "former path at the program root",
+      { formerPaths: ["curriculum/merdeka"] },
+    ],
+    [
+      "former path equal to the route",
+      { formerPaths: [merdekaRoute.publicPath] },
+    ],
+    [
+      "repeated former path",
+      {
+        formerPaths: [
+          "curriculum/merdeka/class-11/mathematics",
+          "curriculum/merdeka/class-11/mathematics",
+        ],
+      },
+    ],
+    [
+      "former path on an unlisted route",
+      {
+        formerPaths: ["curriculum/merdeka/class-11/mathematics"],
+        sitemap: false,
+      },
+    ],
   ])("rejects %s", (_, change) => {
     expect(
       Exit.isFailure(

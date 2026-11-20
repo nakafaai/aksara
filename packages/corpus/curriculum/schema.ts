@@ -53,6 +53,16 @@ const CurriculumLevelBandSchema = Schema.Literals([
   "tertiary",
 ]);
 
+/**
+ * Where a structure node answered before it moved or was renamed: its route
+ * segments below the program root, in each locale that had the route. A
+ * release redirects every former route to the node, so an old link still
+ * reaches it.
+ */
+export const CurriculumFormerRouteSchema = localizedSourceMapSchema(
+  Schema.NonEmptyArray(PublicRouteSegmentSchema)
+);
+
 type CurriculumStructureNodeShape = typeof CurriculumStructureNodeSchema.Type;
 
 /**
@@ -91,6 +101,9 @@ const CurriculumStructureNodeSchema = Schema.Struct({
   ),
   displayGroup: Schema.optional(CurriculumDisplayGroupMapSchema),
   displayGroupIconKey: Schema.optional(ProgramNavigationIconKeySchema),
+  formerRoutes: Schema.optional(
+    Schema.NonEmptyArray(CurriculumFormerRouteSchema)
+  ),
   iconKey: Schema.optional(ProgramNavigationIconKeySchema),
   key: CurriculumNodeKeySchema,
   level: ProgramNavigationLevelSchema,

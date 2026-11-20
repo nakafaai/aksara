@@ -20,6 +20,7 @@ export const goldenMaterial = Schema.decodeSync(CurriculumRouteSchema)({
   canonicalPath: "lehrplaene/grundlagen-mathematik/bab-1",
   displayGroupIconKey: "grade-10",
   displayGroupTitle: "Gruppe é",
+  formerPaths: ["lehrplaene/grundlagen-mathematik/kapitel-1"],
   iconKey: "mathematics",
   kind: "curriculum-context",
   level: "subject",

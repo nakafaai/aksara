@@ -1,9 +1,13 @@
 import { NodeServices } from "@effect/platform-node";
 import { expect, layer } from "@effect/vitest";
 import { LearningProgramSchema } from "@nakafa/aksara-contracts/program/spec";
-import { Array as Arr, Effect, HashSet, Option, Schema } from "effect";
+import { Array as Arr, Effect, Exit, HashSet, Option, Schema } from "effect";
 import { CurriculumRouteError } from "#corpus/curriculum/ownership";
 import { projectCurriculumRoutes } from "#corpus/curriculum/route";
+import {
+  CurriculumFormerRouteSchema,
+  type CurriculumSource,
+} from "#corpus/curriculum/schema";
 import { decodeCurriculumCatalog } from "#corpus/curriculum/source";
 import { decodeMaterialSources } from "#corpus/material/source";
 import { decodeProgramCatalog } from "#corpus/program/catalog";
@@ -21,7 +25,65 @@ const loadRouteInputs = Effect.fn(
   return { curricula, materials, programs } as const;
 });
 
+/** Records former routes in English and Indonesian on one Merdeka class node. */
+function moveMerdekaClass(
+  curricula: readonly CurriculumSource[],
+  classKey: string
+) {
+  const formerRoutes = [
+    Schema.decodeSync(CurriculumFormerRouteSchema)({
+      en: ["grade-10"],
+      id: ["kelas-x"],
+    }),
+  ] as const;
+  return Arr.map(curricula, (curriculum) =>
+    curriculum.programKey === "merdeka"
+      ? {
+          ...curriculum,
+          tree: Arr.map(curriculum.tree, (node) =>
+            node.key === classKey && !("materialKeys" in node)
+              ? { ...node, formerRoutes }
+              : node
+          ),
+        }
+      : curriculum
+  );
+}
+
 layer(NodeServices.layer)("curriculum route projection", (it) => {
+  it.effect("projects a moved node's former paths in each locale it had", () =>
+    Effect.gen(function* () {
+      const inputs = yield* loadRouteInputs();
+      const routes = yield* projectCurriculumRoutes({
+        ...inputs,
+        curricula: moveMerdekaClass(inputs.curricula, "class-10"),
+      });
+      const unlisted = yield* Effect.exit(
+        projectCurriculumRoutes({
+          ...inputs,
+          curricula: moveMerdekaClass(inputs.curricula, "class-1"),
+        })
+      );
+
+      expect(
+        Arr.map(
+          Arr.filter(
+            routes,
+            ({ nodeKey, programKey }) =>
+              programKey === "merdeka" && nodeKey === "class-10"
+          ),
+          ({ appLocale, formerPaths }) => [appLocale, formerPaths]
+        )
+      ).toEqual([
+        ["de", undefined],
+        ["en", ["curriculum/merdeka/grade-10"]],
+        ["id", ["kurikulum/merdeka/kelas-x"]],
+        ["ms", undefined],
+      ]);
+      expect(Exit.isFailure(unlisted)).toBe(true);
+    })
+  );
+
   it.effect("projects the exact real localized route inventory", () =>
     Effect.gen(function* () {
       const inputs = yield* loadRouteInputs();
