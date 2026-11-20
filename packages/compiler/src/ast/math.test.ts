@@ -105,7 +105,16 @@ describe("MathVisual authored syntax", () => {
     })
   );
 
-  it.effect.each(["title", "description"])(
+  it.effect("accepts a footer its author wrote under the visual", () =>
+    validateMathSource(`<MathVisual
+      title={<>A diagonal</>}
+      description={<>A segment from corner to corner.</>}
+      footer={<>It rises one unit for each unit to the right.</>}
+      scene={${planeScene()}}
+    />`)
+  );
+
+  it.effect.each(["title", "description", "footer"])(
     "rejects a duplicate %s component prop",
     (name) =>
       Effect.gen(function* () {

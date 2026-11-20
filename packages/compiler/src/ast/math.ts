@@ -58,8 +58,14 @@ interface MathVisualInspection {
   readonly violations: readonly MathVisualPolicyViolation[];
 }
 
+/**
+ * The props a MathVisual takes: the card's title, description and optional
+ * footer, its scene and the scene's rich labels. The Visual Catalog check
+ * decodes the card's words after evaluation, so a footer keeps its length.
+ */
 const ALLOWED_ATTRIBUTES = HashSet.make(
   "description",
+  "footer",
   "labels",
   "scene",
   "title"
@@ -241,6 +247,7 @@ export function inspectMathVisual(
   }
   recordDuplicates(named, "title", "attribute-duplicate", violations);
   recordDuplicates(named, "description", "attribute-duplicate", violations);
+  recordDuplicates(named, "footer", "attribute-duplicate", violations);
   recordDuplicates(named, "scene", "scene-duplicate", violations);
   recordDuplicates(named, "labels", "labels-duplicate", violations);
   const metadataViolations = requiredMetadataViolations(named, fallback);
