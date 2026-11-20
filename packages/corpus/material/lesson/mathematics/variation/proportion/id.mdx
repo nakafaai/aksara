@@ -1,0 +1,271 @@
+export const metadata = {
+  title: "Variasi Langsung dan Variasi Berbalik",
+  description:
+    "Kenali variasi langsung, variasi berbalik, variasi gabungan, dan variasi campuran, tentukan konstanta variasi, lalu selesaikan masalah lewat model dan latihan.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2026-11-17",
+  subject: "Variasi",
+};
+
+## Variasi Menghubungkan Besaran lewat Satu Konstanta
+
+Dalam **variasi langsung**, <InlineMath math="y" /> bertambah saat <InlineMath math="x" /> bertambah, dan <InlineMath math="y = kx^n" />. Dalam **variasi berbalik**, <InlineMath math="y" /> berkurang saat <InlineMath math="x" /> bertambah, dan <InlineMath math="y = \dfrac{k}{x^n}" />. Bilangan <InlineMath math="k" /> disebut **konstanta variasi**. Saat <InlineMath math="y" /> bervariasi terhadap dua variabel atau lebih sekaligus, kita mendapat variasi gabungan atau variasi campuran. Langkahnya selalu sama: tulis persamaan, cari <InlineMath math="k" /> dari nilai yang diketahui, lalu gunakan persamaan itu. Dalam model di sini, kamu mengubah konstanta dan pangkat, menguji data percobaan, dan melihat pengaruh dua variabel.
+
+## Variasi Langsung
+
+Jika <InlineMath math="y" /> bervariasi langsung terhadap <InlineMath math="x^n" />, ditulis <InlineMath math="y \propto x^n" />, maka <InlineMath math="y = kx^n" /> dan **rasio** <InlineMath math="\dfrac{y}{x^n}" /> selalu sama dengan <InlineMath math="k" />. Ubah konstanta dan pangkat dalam model ini. Semua kurva melewati titik asal.
+
+<MathVisual
+  title={<>Variasi Langsung y sama dengan kx pangkat n</>}
+  description={
+    <>
+      Kurva <InlineMath math="y = kx^n" /> untuk <InlineMath math="x \ge 0" />.
+      Nilai <InlineMath math="n = 1" /> memberi garis lurus melalui titik asal.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 5 }, y: { min: 0, max: 10 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "k", min: 0.5, max: 4, value: 1, step: 0.5, label: "k" },
+      { name: "n", min: 0.5, max: 3, value: 2, step: 0.5, label: "n" },
+      { name: "a", min: 0, max: 5, value: 2, step: 0.1, label: "a" },
+    ],
+    objects: [
+      { id: "direct", kind: "function", appearance: "primary", formula: "k x^n", domain: { min: 0, max: 5 } },
+      { id: "now", kind: "marker", x: "a", y: "k a^n", appearance: "warning" },
+    ],
+    readouts: [
+      { key: "value", formula: "k a^n" },
+    ],
+  }}
+  labels={{
+    k: <>Konstanta <InlineMath math="k" /></>,
+    n: <>Pangkat <InlineMath math="n" /></>,
+    a: <>Nilai <InlineMath math="x" /></>,
+    value: <>Nilai <InlineMath math="y" /></>,
+  }}
+/>
+
+### Contoh Variasi Langsung dengan Kuadrat
+
+Diketahui <InlineMath math="y \propto x^2" /> dan <InlineMath math="y = 36" /> saat <InlineMath math="x = 3" />. Tentukan **nilai** <InlineMath math="y" /> saat <InlineMath math="x = 5" />.
+
+<MathContainer>
+<BlockMath math="36 = k(3)^2 \quad\Rightarrow\quad k = 4" />
+<BlockMath math="y = 4(5)^2 = 100" />
+</MathContainer>
+
+Cek dengan rasio: <InlineMath math="\dfrac{36}{3^2} = 4" /> dan <InlineMath math="\dfrac{100}{5^2} = 4" />. Dalam model, atur <InlineMath math="k = 4" />, <InlineMath math="n = 2" />, dan <InlineMath math="x = 1{,}5" />, lalu terbaca <InlineMath math="9" />, yaitu <InlineMath math="4 \times 1{,}5^2" />.
+
+### Menguji Data Percobaan
+
+Sebuah bola dijatuhkan dan jarak jatuhnya diukur. Untuk menguji apakah jarak bervariasi langsung terhadap kuadrat waktu, **hitung rasio** <InlineMath math="\dfrac{d}{t^2}" /> untuk setiap pasangan data.
+
+<ScatterDiagram
+  title={<>Jarak Jatuh terhadap Waktu</>}
+  description={
+    <>
+      Jarak jatuh dalam meter setelah setiap selang waktu. Titik-titiknya
+      melengkung ke atas, bukan membentuk garis lurus.
+    </>
+  }
+  xAxisLabel="Waktu t (s)"
+  yAxisLabel="Jarak d (m)"
+  datasets={[
+    {
+      name: "Bola jatuh",
+      color: "var(--chart-1)",
+      points: [
+        { x: 0.2, y: 0.20 },
+        { x: 0.4, y: 0.78 },
+        { x: 0.6, y: 1.76 },
+        { x: 0.8, y: 3.14 },
+        { x: 1.0, y: 4.90 },
+      ],
+    },
+  ]}
+/>
+
+Grafik ini menunjukkan rasio <InlineMath math="\dfrac{d}{t^2}" /> untuk setiap titik. Rasio yang hampir tetap membuktikan <InlineMath math="d \propto t^2" /> dengan <InlineMath math="k \approx 4{,}9" />.
+
+<BarChart
+  title={<>Rasio d per t Kuadrat untuk Setiap Titik</>}
+  description={
+    <>
+      Nilai <InlineMath math="\dfrac{d}{t^2}" /> dibulatkan ke satu tempat
+      desimal. Semuanya mendekati <InlineMath math="4{,}9" />.
+    </>
+  }
+  yAxisLabel="d per t kuadrat"
+  data={[
+    { name: "t = 0,2", value: 4.9 },
+    { name: "t = 0,4", value: 4.9 },
+    { name: "t = 0,6", value: 4.9 },
+    { name: "t = 0,8", value: 4.9 },
+    { name: "t = 1,0", value: 4.9 },
+  ]}
+  chartConfig={{ value: { label: "Rasio", colors: { light: ["var(--chart-2)"], dark: ["var(--chart-2)"] } } }}
+/>
+
+## Variasi Berbalik
+
+Jika <InlineMath math="y" /> bervariasi berbalik terhadap <InlineMath math="x^n" />, ditulis <InlineMath math="y \propto \dfrac{1}{x^n}" />, maka <InlineMath math="y = \dfrac{k}{x^n}" /> dan **hasil kali** <InlineMath math="yx^n" /> selalu sama dengan <InlineMath math="k" />. Misalnya, waktu menyelesaikan pekerjaan bervariasi berbalik terhadap banyak pekerja. Makin banyak pekerja, makin singkat waktunya, tetapi banyak pekerja dikali waktu tetap sama dengan jumlah pekerjaan.
+
+### Grafik Variasi Berbalik
+
+Grafik variasi berbalik berupa kurva turun yang mendekati kedua sumbu tanpa menyentuhnya. **Menggandakan** <InlineMath math="x" /> saat <InlineMath math="n = 1" /> membuat <InlineMath math="y" /> menjadi setengahnya.
+
+<MathVisual
+  title={<>Variasi Berbalik y sama dengan k per x pangkat n</>}
+  description={
+    <>
+      Kurva <InlineMath math="y = \dfrac{k}{x^n}" /> untuk{" "}
+      <InlineMath math="x > 0" />. Kurva tidak pernah menyentuh sumbu.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 12 }, y: { min: 0, max: 12 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "k", min: 1, max: 24, value: 24, step: 1, label: "k" },
+      { name: "n", min: 0.5, max: 2, value: 1, step: 0.5, label: "n" },
+      { name: "a", min: 0.5, max: 12, value: 3, step: 0.1, label: "a" },
+    ],
+    objects: [
+      { id: "inverse", kind: "function", appearance: "primary", formula: "k/x^n", domain: { min: 0.5, max: 12 } },
+      { id: "now", kind: "marker", x: "a", y: "k/a^n", appearance: "warning" },
+    ],
+    readouts: [
+      { key: "value", formula: "k/a^n" },
+    ],
+  }}
+  labels={{
+    k: <>Konstanta <InlineMath math="k" /></>,
+    n: <>Pangkat <InlineMath math="n" /></>,
+    a: <>Nilai <InlineMath math="x" /></>,
+    value: <>Nilai <InlineMath math="y" /></>,
+  }}
+/>
+
+### Contoh Variasi Berbalik
+
+Empat pekerja membangun pagar dalam <InlineMath math="6" /> hari. Waktu <InlineMath math="T" /> bervariasi berbalik terhadap banyak pekerja <InlineMath math="P" />. Berapa hari yang diperlukan **tiga pekerja**?
+
+<MathContainer>
+<BlockMath math="T = \frac{k}{P} \quad\Rightarrow\quad 6 = \frac{k}{4} \quad\Rightarrow\quad k = 24" />
+<BlockMath math="T = \frac{24}{3} = 8 \text{ hari}" />
+</MathContainer>
+
+Cek: <InlineMath math="4 \times 6 = 3 \times 8 = 24" />, jadi hasil kalinya tetap. Dalam model, atur <InlineMath math="k = 24" />, <InlineMath math="n = 1" />, dan <InlineMath math="x = 3" />, lalu terbaca <InlineMath math="8" />.
+
+## Variasi Gabungan dan Variasi Campuran
+
+Dalam **variasi gabungan**, <InlineMath math="y" /> bervariasi langsung terhadap hasil kali dua variabel atau lebih, misalnya <InlineMath math="y = kxz" />. Dalam **variasi campuran**, <InlineMath math="y" /> bervariasi langsung terhadap satu variabel dan berbalik terhadap variabel lain, misalnya <InlineMath math="y = \dfrac{kx}{z}" />.
+
+### Pengaruh Dua Variabel
+
+Model ini menggambar <InlineMath math="y = \dfrac{kx}{z}" /> dengan <InlineMath math="k = 6" />. **Menambah <InlineMath math="z" /> mengurangi <InlineMath math="y" />** untuk setiap nilai <InlineMath math="x" />.
+
+<MathVisual
+  title={<>Variasi Campuran y sama dengan kx per z</>}
+  description={
+    <>
+      Garis <InlineMath math="y = \dfrac{6x}{z}" /> terhadap{" "}
+      <InlineMath math="x" />. Menambah <InlineMath math="z" /> membuat garis
+      kurang curam.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 8 }, y: { min: 0, max: 12 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "c", min: 1, max: 6, value: 3, step: 0.5, label: "c" },
+      { name: "a", min: 0, max: 8, value: 4, step: 0.5, label: "a" },
+    ],
+    objects: [
+      { id: "combined", kind: "function", appearance: "primary", formula: "6x/c", domain: { min: 0, max: 8 } },
+      { id: "now", kind: "marker", x: "a", y: "6a/c", appearance: "warning" },
+    ],
+    readouts: [
+      { key: "value", formula: "6a/c" },
+    ],
+  }}
+  labels={{
+    c: <>Nilai <InlineMath math="z" /></>,
+    a: <>Nilai <InlineMath math="x" /></>,
+    value: <>Nilai <InlineMath math="y" /></>,
+  }}
+/>
+
+### Contoh Variasi Campuran
+
+Diketahui <InlineMath math="y \propto \dfrac{x}{z}" />, dan <InlineMath math="y = 8" /> saat <InlineMath math="x = 4" /> dan <InlineMath math="z = 3" />. Tentukan **nilai** <InlineMath math="y" /> saat <InlineMath math="x = 6" /> dan <InlineMath math="z = 2" />.
+
+<MathContainer>
+<BlockMath math="8 = \frac{k(4)}{3} \quad\Rightarrow\quad k = 6" />
+<BlockMath math="y = \frac{6(6)}{2} = 18" />
+</MathContainer>
+
+Cek dengan model: dengan <InlineMath math="k = 6" />, atur <InlineMath math="z = 2" /> dan <InlineMath math="x = 6" />, lalu terbaca <InlineMath math="18" />. Pada <InlineMath math="z = 3" /> dan <InlineMath math="x = 4" />, terbaca <InlineMath math="8" />, sama dengan data awal.
+
+## Kesalahan Umum tentang Variasi
+
+| Kesalahan | Mengapa salah | Cara mengecek |
+| :--- | :--- | :--- |
+| Menulis <InlineMath math="y = x + k" /> untuk variasi langsung. | Variasi langsung berupa hasil kali, <InlineMath math="y = kx^n" />. | Rasio <InlineMath math="\tfrac{y}{x^n}" /> harus tetap. |
+| Memakai <InlineMath math="k" /> dari soal lain. | Setiap situasi punya konstantanya sendiri. | Cari <InlineMath math="k" /> dari data soal itu. |
+| Menganggap variasi berbalik berarti nilai negatif. | Variasi berbalik berarti satu bertambah dan yang lain berkurang, tetapi keduanya tetap positif. | Hasil kali <InlineMath math="yx^n" /> harus tetap. |
+| Melupakan pangkat saat mencari <InlineMath math="k" />. | Jika <InlineMath math="y \propto x^2" />, kuadratnya harus dipakai. | Substitusikan kembali nilai awal. |
+
+Kesalahan keempat paling sering muncul dalam soal variasi. **Tulis pangkatnya dalam persamaan sebelum menyubstitusi nilai**.
+
+## Latihan Variasi
+
+Soal-soal ini bergerak dari variasi langsung sampai variasi campuran. **Cari konstantanya lebih dulu** di setiap soal.
+
+1. Diketahui <InlineMath math="p \propto \sqrt{q}" /> dan <InlineMath math="p = 12" /> saat <InlineMath math="q = 9" />. Tentukan <InlineMath math="p" /> saat <InlineMath math="q = 25" />.
+
+2. Diketahui <InlineMath math="y \propto \dfrac{1}{x^2}" /> dan <InlineMath math="y = 5" /> saat <InlineMath math="x = 2" />. Tentukan <InlineMath math="y" /> saat <InlineMath math="x = 5" />.
+
+3. Luas <InlineMath math="L" /> sebuah segitiga bervariasi gabungan terhadap alas <InlineMath math="t" /> dan tinggi <InlineMath math="h" />. Diketahui <InlineMath math="L = 15" /> saat <InlineMath math="t = 6" /> dan <InlineMath math="h = 5" />. Tentukan konstantanya dan jelaskan artinya.
+
+4. Diketahui <InlineMath math="w \propto \dfrac{u^2}{v}" />, dan <InlineMath math="w = 18" /> saat <InlineMath math="u = 3" /> dan <InlineMath math="v = 2" />. Tentukan <InlineMath math="w" /> saat <InlineMath math="u = 4" /> dan <InlineMath math="v = 8" />.
+
+### Pembahasan
+
+**Pembahasan 1**: Tulis <InlineMath math="p = k\sqrt{q}" /> dan cari konstantanya:
+
+<MathContainer>
+<BlockMath math="12 = k\sqrt{9} = 3k \quad\Rightarrow\quad k = 4" />
+<BlockMath math="p = 4\sqrt{25} = 20" />
+</MathContainer>
+
+Cek: <InlineMath math="\dfrac{20}{\sqrt{25}} = 4" />.
+
+**Pembahasan 2**: Tulis <InlineMath math="y = \dfrac{k}{x^2}" /> dan **cari konstantanya**:
+
+<MathContainer>
+<BlockMath math="5 = \frac{k}{4} \quad\Rightarrow\quad k = 20" />
+<BlockMath math="y = \frac{20}{25} = 0{,}8" />
+</MathContainer>
+
+Cek: <InlineMath math="0{,}8 \times 5^2 = 20" />.
+
+**Pembahasan 3**: Tulis <InlineMath math="L = kth" />:
+
+<BlockMath math="15 = k(6)(5) \quad\Rightarrow\quad k = \frac{1}{2}" />
+
+Konstanta <InlineMath math="\tfrac{1}{2}" /> adalah faktor dalam rumus luas segitiga, <InlineMath math="L = \tfrac{1}{2}th" />.
+
+**Pembahasan 4**: Tulis <InlineMath math="w = \dfrac{ku^2}{v}" />:
+
+<MathContainer>
+<BlockMath math="18 = \frac{k(9)}{2} \quad\Rightarrow\quad k = 4" />
+<BlockMath math="w = \frac{4(16)}{8} = 8" />
+</MathContainer>
+
+Cek: <InlineMath math="\dfrac{8 \times 8}{16} = 4" />, sama dengan konstantanya.

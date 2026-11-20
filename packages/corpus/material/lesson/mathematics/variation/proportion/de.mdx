@@ -1,0 +1,271 @@
+export const metadata = {
+  title: "Proportionalität und Antiproportionalität",
+  description:
+    "Erkenne direkte, umgekehrte, gemeinsame und kombinierte Proportionalität, bestimme den Proportionalitätsfaktor und löse Aufgaben mit Modellen und Übungen.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2026-11-17",
+  subject: "Proportionalität",
+};
+
+## Proportionalität verbindet Größen über einen Faktor
+
+Bei **direkter Proportionalität** wächst <InlineMath math="y" />, wenn <InlineMath math="x" /> wächst, und es gilt <InlineMath math="y = kx^n" />. Bei **umgekehrter Proportionalität** sinkt <InlineMath math="y" />, wenn <InlineMath math="x" /> wächst, und es gilt <InlineMath math="y = \dfrac{k}{x^n}" />. Die Zahl <InlineMath math="k" /> heißt **Proportionalitätsfaktor**. Hängt <InlineMath math="y" /> von zwei oder mehr Variablen zugleich ab, erhält man gemeinsame oder kombinierte Proportionalität. Das Vorgehen ist immer gleich: Gleichung aufstellen, <InlineMath math="k" /> aus den gegebenen Werten bestimmen, dann die Gleichung anwenden. In den Modellen hier änderst du Faktor und Exponent, prüfst Messdaten und siehst die Wirkung zweier Variablen.
+
+## Direkte Proportionalität
+
+Ist <InlineMath math="y" /> direkt proportional zu <InlineMath math="x^n" />, geschrieben <InlineMath math="y \propto x^n" />, dann gilt <InlineMath math="y = kx^n" /> und **der Quotient** <InlineMath math="\dfrac{y}{x^n}" /> ist immer gleich <InlineMath math="k" />. Ändere Faktor und Exponent in diesem Modell. Jede Kurve geht durch den Ursprung.
+
+<MathVisual
+  title={<>Direkte Proportionalität y gleich kx hoch n</>}
+  description={
+    <>
+      Die Kurve <InlineMath math="y = kx^n" /> für <InlineMath math="x \ge 0" />.
+      Der Wert <InlineMath math="n = 1" /> ergibt eine Ursprungsgerade.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 5 }, y: { min: 0, max: 10 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "k", min: 0.5, max: 4, value: 1, step: 0.5, label: "k" },
+      { name: "n", min: 0.5, max: 3, value: 2, step: 0.5, label: "n" },
+      { name: "a", min: 0, max: 5, value: 2, step: 0.1, label: "a" },
+    ],
+    objects: [
+      { id: "direct", kind: "function", appearance: "primary", formula: "k x^n", domain: { min: 0, max: 5 } },
+      { id: "now", kind: "marker", x: "a", y: "k a^n", appearance: "warning" },
+    ],
+    readouts: [
+      { key: "value", formula: "k a^n" },
+    ],
+  }}
+  labels={{
+    k: <>Faktor <InlineMath math="k" /></>,
+    n: <>Exponent <InlineMath math="n" /></>,
+    a: <>Wert von <InlineMath math="x" /></>,
+    value: <>Wert von <InlineMath math="y" /></>,
+  }}
+/>
+
+### Beispiel Direkte Proportionalität zum Quadrat
+
+Gegeben ist <InlineMath math="y \propto x^2" /> und <InlineMath math="y = 36" /> für <InlineMath math="x = 3" />. Bestimme **den Wert** von <InlineMath math="y" /> für <InlineMath math="x = 5" />.
+
+<MathContainer>
+<BlockMath math="36 = k(3)^2 \quad\Rightarrow\quad k = 4" />
+<BlockMath math="y = 4(5)^2 = 100" />
+</MathContainer>
+
+Prüfe mit dem Quotienten: <InlineMath math="\dfrac{36}{3^2} = 4" /> und <InlineMath math="\dfrac{100}{5^2} = 4" />. Stell im Modell <InlineMath math="k = 4" />, <InlineMath math="n = 2" /> und <InlineMath math="x = 1{,}5" /> ein, dann zeigt es <InlineMath math="9" />, also <InlineMath math="4 \times 1{,}5^2" />.
+
+### Messdaten prüfen
+
+Ein Ball wird fallen gelassen, und seine Fallstrecke wird gemessen. Um zu prüfen, ob die Strecke direkt proportional zum Quadrat der Zeit ist, **berechnest du den Quotienten** <InlineMath math="\dfrac{d}{t^2}" /> für jedes Datenpaar.
+
+<ScatterDiagram
+  title={<>Fallstrecke gegen Zeit</>}
+  description={
+    <>
+      Die Fallstrecke in Metern nach jedem Zeitabschnitt. Die Punkte krümmen
+      sich nach oben und bilden keine Gerade.
+    </>
+  }
+  xAxisLabel="Zeit t (s)"
+  yAxisLabel="Strecke d (m)"
+  datasets={[
+    {
+      name: "Fallender Ball",
+      color: "var(--chart-1)",
+      points: [
+        { x: 0.2, y: 0.20 },
+        { x: 0.4, y: 0.78 },
+        { x: 0.6, y: 1.76 },
+        { x: 0.8, y: 3.14 },
+        { x: 1.0, y: 4.90 },
+      ],
+    },
+  ]}
+/>
+
+Dieses Diagramm zeigt den Quotienten <InlineMath math="\dfrac{d}{t^2}" /> für jeden Punkt. Ein nahezu konstanter Quotient zeigt <InlineMath math="d \propto t^2" /> mit <InlineMath math="k \approx 4{,}9" />.
+
+<BarChart
+  title={<>Der Quotient d durch t Quadrat für jeden Punkt</>}
+  description={
+    <>
+      Der Wert <InlineMath math="\dfrac{d}{t^2}" /> auf eine Nachkommastelle
+      gerundet. Alle liegen nahe bei <InlineMath math="4{,}9" />.
+    </>
+  }
+  yAxisLabel="d durch t Quadrat"
+  data={[
+    { name: "t = 0,2", value: 4.9 },
+    { name: "t = 0,4", value: 4.9 },
+    { name: "t = 0,6", value: 4.9 },
+    { name: "t = 0,8", value: 4.9 },
+    { name: "t = 1,0", value: 4.9 },
+  ]}
+  chartConfig={{ value: { label: "Quotient", colors: { light: ["var(--chart-2)"], dark: ["var(--chart-2)"] } } }}
+/>
+
+## Umgekehrte Proportionalität
+
+Ist <InlineMath math="y" /> umgekehrt proportional zu <InlineMath math="x^n" />, geschrieben <InlineMath math="y \propto \dfrac{1}{x^n}" />, dann gilt <InlineMath math="y = \dfrac{k}{x^n}" />, und **das Produkt** <InlineMath math="yx^n" /> ist immer gleich <InlineMath math="k" />. So ist zum Beispiel die Zeit für eine Arbeit umgekehrt proportional zur Zahl der Arbeiter.
+
+### Der Graph der umgekehrten Proportionalität
+
+Der Graph ist eine fallende Kurve, die sich beiden Achsen nähert, ohne sie zu berühren. **Verdoppelt** man <InlineMath math="x" /> bei <InlineMath math="n = 1" />, halbiert sich <InlineMath math="y" />.
+
+<MathVisual
+  title={<>Umgekehrte Proportionalität y gleich k durch x hoch n</>}
+  description={
+    <>
+      Die Kurve <InlineMath math="y = \dfrac{k}{x^n}" /> für{" "}
+      <InlineMath math="x > 0" />. Die Kurve berührt die Achsen nie.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 12 }, y: { min: 0, max: 12 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "k", min: 1, max: 24, value: 24, step: 1, label: "k" },
+      { name: "n", min: 0.5, max: 2, value: 1, step: 0.5, label: "n" },
+      { name: "a", min: 0.5, max: 12, value: 3, step: 0.1, label: "a" },
+    ],
+    objects: [
+      { id: "inverse", kind: "function", appearance: "primary", formula: "k/x^n", domain: { min: 0.5, max: 12 } },
+      { id: "now", kind: "marker", x: "a", y: "k/a^n", appearance: "warning" },
+    ],
+    readouts: [
+      { key: "value", formula: "k/a^n" },
+    ],
+  }}
+  labels={{
+    k: <>Faktor <InlineMath math="k" /></>,
+    n: <>Exponent <InlineMath math="n" /></>,
+    a: <>Wert von <InlineMath math="x" /></>,
+    value: <>Wert von <InlineMath math="y" /></>,
+  }}
+/>
+
+### Beispiel Umgekehrte Proportionalität
+
+Vier Arbeiter bauen einen Zaun in <InlineMath math="6" /> Tagen. Die Zeit <InlineMath math="T" /> ist umgekehrt proportional zur Zahl der Arbeiter <InlineMath math="P" />. Wie viele Tage brauchen **drei Arbeiter**?
+
+<MathContainer>
+<BlockMath math="T = \frac{k}{P} \quad\Rightarrow\quad 6 = \frac{k}{4} \quad\Rightarrow\quad k = 24" />
+<BlockMath math="T = \frac{24}{3} = 8 \text{ Tage}" />
+</MathContainer>
+
+Prüfe: <InlineMath math="4 \times 6 = 3 \times 8 = 24" />, das Produkt bleibt gleich. Stell im Modell <InlineMath math="k = 24" />, <InlineMath math="n = 1" /> und <InlineMath math="x = 3" /> ein, dann zeigt es <InlineMath math="8" />.
+
+## Gemeinsame und kombinierte Proportionalität
+
+Bei **gemeinsamer Proportionalität** ist <InlineMath math="y" /> direkt proportional zum Produkt zweier oder mehr Variablen, zum Beispiel <InlineMath math="y = kxz" />. Bei **kombinierter Proportionalität** ist <InlineMath math="y" /> direkt proportional zu einer Variablen und umgekehrt proportional zu einer anderen, zum Beispiel <InlineMath math="y = \dfrac{kx}{z}" />.
+
+### Die Wirkung zweier Variablen
+
+Dieses Modell zeichnet <InlineMath math="y = \dfrac{kx}{z}" /> mit <InlineMath math="k = 6" />. **Ein größeres <InlineMath math="z" /> verkleinert <InlineMath math="y" />** für jeden Wert von <InlineMath math="x" />.
+
+<MathVisual
+  title={<>Kombinierte Proportionalität y gleich kx durch z</>}
+  description={
+    <>
+      Die Gerade <InlineMath math="y = \dfrac{6x}{z}" /> gegen{" "}
+      <InlineMath math="x" />. Ein größeres <InlineMath math="z" /> macht die
+      Gerade flacher.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 8 }, y: { min: 0, max: 12 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "c", min: 1, max: 6, value: 3, step: 0.5, label: "c" },
+      { name: "a", min: 0, max: 8, value: 4, step: 0.5, label: "a" },
+    ],
+    objects: [
+      { id: "combined", kind: "function", appearance: "primary", formula: "6x/c", domain: { min: 0, max: 8 } },
+      { id: "now", kind: "marker", x: "a", y: "6a/c", appearance: "warning" },
+    ],
+    readouts: [
+      { key: "value", formula: "6a/c" },
+    ],
+  }}
+  labels={{
+    c: <>Wert von <InlineMath math="z" /></>,
+    a: <>Wert von <InlineMath math="x" /></>,
+    value: <>Wert von <InlineMath math="y" /></>,
+  }}
+/>
+
+### Beispiel Kombinierte Proportionalität
+
+Gegeben ist <InlineMath math="y \propto \dfrac{x}{z}" />, und <InlineMath math="y = 8" /> für <InlineMath math="x = 4" /> und <InlineMath math="z = 3" />. Bestimme **den Wert** von <InlineMath math="y" /> für <InlineMath math="x = 6" /> und <InlineMath math="z = 2" />.
+
+<MathContainer>
+<BlockMath math="8 = \frac{k(4)}{3} \quad\Rightarrow\quad k = 6" />
+<BlockMath math="y = \frac{6(6)}{2} = 18" />
+</MathContainer>
+
+Prüfe mit dem Modell: Mit <InlineMath math="k = 6" /> stellst du <InlineMath math="z = 2" /> und <InlineMath math="x = 6" /> ein, dann zeigt es <InlineMath math="18" />. Bei <InlineMath math="z = 3" /> und <InlineMath math="x = 4" /> zeigt es <InlineMath math="8" />, wie in den Ausgangsdaten.
+
+## Häufige Fehler bei Proportionalität
+
+| Fehler | Warum er falsch ist | So prüfst du es |
+| :--- | :--- | :--- |
+| <InlineMath math="y = x + k" /> für direkte Proportionalität schreiben. | Direkte Proportionalität ist ein Produkt, <InlineMath math="y = kx^n" />. | Der Quotient <InlineMath math="\tfrac{y}{x^n}" /> muss gleich bleiben. |
+| <InlineMath math="k" /> aus einer anderen Aufgabe verwenden. | Jede Situation hat ihren eigenen Faktor. | Bestimme <InlineMath math="k" /> aus den Daten dieser Aufgabe. |
+| Umgekehrte Proportionalität mit negativen Werten verwechseln. | Umgekehrt heißt, eine Größe wächst, die andere sinkt, beide bleiben aber positiv. | Das Produkt <InlineMath math="yx^n" /> muss gleich bleiben. |
+| Den Exponenten beim Bestimmen von <InlineMath math="k" /> vergessen. | Bei <InlineMath math="y \propto x^2" /> muss das Quadrat verwendet werden. | Setze die Ausgangswerte wieder ein. |
+
+Der vierte Fehler kommt in Aufgaben zur Proportionalität am häufigsten vor. **Schreib den Exponenten in die Gleichung, bevor du Werte einsetzt**.
+
+## Übungen zur Proportionalität
+
+Diese Aufgaben führen von direkter zu kombinierter Proportionalität. **Bestimme in jeder Aufgabe zuerst den Faktor**.
+
+1. Gegeben ist <InlineMath math="p \propto \sqrt{q}" /> und <InlineMath math="p = 12" /> für <InlineMath math="q = 9" />. Bestimme <InlineMath math="p" /> für <InlineMath math="q = 25" />.
+
+2. Gegeben ist <InlineMath math="y \propto \dfrac{1}{x^2}" /> und <InlineMath math="y = 5" /> für <InlineMath math="x = 2" />. Bestimme <InlineMath math="y" /> für <InlineMath math="x = 5" />.
+
+3. Der Flächeninhalt <InlineMath math="L" /> eines Dreiecks ist gemeinsam proportional zur Grundseite <InlineMath math="t" /> und zur Höhe <InlineMath math="h" />. Gegeben ist <InlineMath math="L = 15" /> für <InlineMath math="t = 6" /> und <InlineMath math="h = 5" />. Bestimme den Faktor und erkläre seine Bedeutung.
+
+4. Gegeben ist <InlineMath math="w \propto \dfrac{u^2}{v}" />, und <InlineMath math="w = 18" /> für <InlineMath math="u = 3" /> und <InlineMath math="v = 2" />. Bestimme <InlineMath math="w" /> für <InlineMath math="u = 4" /> und <InlineMath math="v = 8" />.
+
+### Lösungen
+
+**Lösung 1**: Schreib <InlineMath math="p = k\sqrt{q}" /> und bestimme den Faktor:
+
+<MathContainer>
+<BlockMath math="12 = k\sqrt{9} = 3k \quad\Rightarrow\quad k = 4" />
+<BlockMath math="p = 4\sqrt{25} = 20" />
+</MathContainer>
+
+Prüfe: <InlineMath math="\dfrac{20}{\sqrt{25}} = 4" />.
+
+**Lösung 2**: Schreib <InlineMath math="y = \dfrac{k}{x^2}" /> und **bestimme den Faktor**:
+
+<MathContainer>
+<BlockMath math="5 = \frac{k}{4} \quad\Rightarrow\quad k = 20" />
+<BlockMath math="y = \frac{20}{25} = 0{,}8" />
+</MathContainer>
+
+Prüfe: <InlineMath math="0{,}8 \times 5^2 = 20" />.
+
+**Lösung 3**: Schreib <InlineMath math="L = kth" />:
+
+<BlockMath math="15 = k(6)(5) \quad\Rightarrow\quad k = \frac{1}{2}" />
+
+Der Faktor <InlineMath math="\tfrac{1}{2}" /> ist der Faktor in der Flächenformel des Dreiecks, <InlineMath math="L = \tfrac{1}{2}th" />.
+
+**Lösung 4**: Schreib <InlineMath math="w = \dfrac{ku^2}{v}" />:
+
+<MathContainer>
+<BlockMath math="18 = \frac{k(9)}{2} \quad\Rightarrow\quad k = 4" />
+<BlockMath math="w = \frac{4(16)}{8} = 8" />
+</MathContainer>
+
+Prüfe: <InlineMath math="\dfrac{8 \times 8}{16} = 4" />, genau der Faktor.
