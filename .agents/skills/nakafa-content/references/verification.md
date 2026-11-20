@@ -285,7 +285,11 @@ to the outline, heading, and repetition rules, and compares it with every page
 of its locale in the corpus, so a collision with an untouched lesson still
 fails.
 It reads the change from the merge base of `origin/main` and `HEAD`, as the
-points gate does, including untracked files.
+points gate does, including untracked files. A page whose change only corrects
+its figures (rule D26, the same `correctsFiguresOnly` reading as the scene bar)
+keeps its findings until a revision touches it: it reads the same once each
+`MathVisual`'s `scene` attribute is left out. Any change to a heading, a
+sentence, a section, or a figure's words holds the page to every rule.
 
 ```sh
 bun run headings

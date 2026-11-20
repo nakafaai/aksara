@@ -2,6 +2,7 @@ import { NodeServices } from "@effect/platform-node";
 import { describe, expect, it } from "@effect/vitest";
 import { Array as Arr, Effect, FileSystem, HashSet, Path } from "effect";
 import { corpusPage } from "#nakafa-content/heading/test";
+import { lineFigure } from "#nakafa-content/points/test/lesson";
 import { inDirectory, makeRepository } from "#scripts/check/fixture";
 import {
   checkHeadings,
@@ -214,6 +215,50 @@ describe("checkHeadings and relabelFindings", () => {
         expect(Arr.map(relabel, ({ rule }) => rule)).toEqual([
           "heading-only-change",
         ]);
+      }).pipe(Effect.scoped, Effect.provide(NodeServices.layer))
+  );
+});
+
+describe("revisedPages", () => {
+  it.effect(
+    "leaves out a page whose change only corrects its figures and holds it once its text changes",
+    () =>
+      Effect.gen(function* () {
+        const fileSystem = yield* FileSystem.FileSystem;
+        const path = yield* Path.Path;
+        const root = yield* makeRepository();
+        /** Writes one page of the test repository. */
+        const write = (folder: string, text: string) =>
+          fileSystem.writeFileString(
+            path.join(root, ROOT, folder, "id.mdx"),
+            text
+          );
+        const sections = ["## Busur Satu", "## Busur Dua", "## Busur Tiga"];
+        /** The rotation page, its figure's line through (x, 1). */
+        const rotation = (x: number, ...more: readonly string[]) =>
+          `${page("Rotasi", [...sections, ...more])}\n\n${lineFigure(x)}\n`;
+        for (const folder of ["rotation", "dilation"]) {
+          yield* fileSystem.makeDirectory(path.join(root, ROOT, folder), {
+            recursive: true,
+          });
+        }
+        // Both pages head a section "Busur Satu": a finding the base keeps until a revision.
+        yield* write("rotation", rotation(1));
+        yield* write("dilation", page("Dilatasi", ["## Busur Satu"]));
+        yield* gitIn(root, ["add", "--", "."]);
+        yield* gitIn(root, ["commit", "--quiet", "-m", "base"]);
+        yield* gitIn(root, ["branch", "base"]);
+        const options = headingOptions(["--base", "base"]);
+
+        yield* write("rotation", rotation(2));
+        yield* inDirectory(root, checkHeadings(options));
+
+        yield* write("rotation", rotation(2, "## Busur Empat"));
+        const revised = yield* Effect.flip(
+          inDirectory(root, checkHeadings(options))
+        );
+        expect(revised).toBeInstanceOf(OutlinePolicyError);
+        expect(revised).not.toMatchObject({ blocking: 0 });
       }).pipe(Effect.scoped, Effect.provide(NodeServices.layer))
   );
 });

@@ -6,9 +6,8 @@ import {
   Option,
   Path,
 } from "effect";
-import type { MdxNode } from "#nakafa-content/mdx/parse";
-import { parseLessonMdx, visitMdxNodes } from "#nakafa-content/mdx/parse";
-import { expectShape } from "#nakafa-content/mdx/shape";
+import { correctsFiguresOnly } from "#nakafa-content/mdx/figure";
+import { parseLessonMdx } from "#nakafa-content/mdx/parse";
 import { readBase } from "#nakafa-content/points/base";
 import type { DocumentParts } from "#nakafa-content/points/document";
 import { inspectDocument } from "#nakafa-content/points/document";
@@ -16,58 +15,29 @@ import { unreadable } from "#nakafa-content/points/error";
 import type { LessonScenes } from "#nakafa-content/points/scene";
 import { lessonOf } from "#nakafa-content/points/scene";
 
-/**
- * The source of one document with the scene data of every MathVisual cut out:
- * the whole `scene` attribute of each MathVisual element. Two versions that
- * read the same this way differ only in a figure's frame, objects or view, a
- * correction of the figure rather than a revision of the lesson (D26). A
- * title, a description, a label or a footer is text the learner reads, so it
- * stays.
- */
-export function withoutSceneData(source: string, tree: MdxNode): string {
-  const ranges: (readonly [start: number, end: number])[] = [];
-  visitMdxNodes(tree, (node) => {
-    if (node.name !== "MathVisual") {
-      return;
-    }
-    expectShape(node.attributes);
-    for (const attribute of node.attributes) {
-      const start = attribute.position?.start?.offset;
-      const end = attribute.position?.end?.offset;
-      expectShape(start !== undefined && end !== undefined);
-      if (attribute.name === "scene") {
-        ranges.push([start, end]);
-      }
-    }
-  });
-  // The parser visits elements in document order, so the ranges run forward.
-  const cut = Arr.reduce(ranges, { at: 0, text: "" }, (kept, [start, end]) => ({
-    at: end,
-    text: kept.text + source.slice(kept.at, start),
-  }));
-  return cut.text + source.slice(cut.at);
-}
-
-/** Whether one modified file reads the same at the base once its figures' scene data is left out. */
-const correctsFiguresOnly = Effect.fn("PointsFigure.correctsFiguresOnly")(
-  function* (root: string, base: string, file: string) {
-    const fileSystem = yield* FileSystem.FileSystem;
-    const path = yield* Path.Path;
-    const source = yield* fileSystem
-      .readFileString(path.join(root, file))
-      .pipe(Effect.mapError(unreadable(file)));
-    const baseSource = yield* readBase(root, base, file);
-    // The gate parsed both versions before it reads their figures, so they parse here too.
-    const tree = parseLessonMdx(source, file);
-    const baseTree = parseLessonMdx(baseSource, `${file} at base`);
-    return {
-      base: inspectDocument(baseTree),
-      same:
-        withoutSceneData(source, tree) ===
-        withoutSceneData(baseSource, baseTree),
-    };
-  }
-);
+/** Reads one modified file at the base: its parts there, and whether the change only corrects its figures. */
+const readCorrection = Effect.fn("PointsFigure.readCorrection")(function* (
+  root: string,
+  base: string,
+  file: string
+) {
+  const fileSystem = yield* FileSystem.FileSystem;
+  const path = yield* Path.Path;
+  const source = yield* fileSystem
+    .readFileString(path.join(root, file))
+    .pipe(Effect.mapError(unreadable(file)));
+  const baseSource = yield* readBase(root, base, file);
+  // The gate parsed both versions before it reads their figures, so they parse here too.
+  const tree = parseLessonMdx(source, file);
+  const baseTree = parseLessonMdx(baseSource, `${file} at base`);
+  return {
+    base: inspectDocument(baseTree),
+    same: correctsFiguresOnly(
+      { source: baseSource, tree: baseTree },
+      { source, tree }
+    ),
+  };
+});
 
 /**
  * Reads which touched lessons a change only corrects figures in (D26). Every
@@ -96,7 +66,7 @@ export const figureCorrections = Effect.fn("PointsFigure.figureCorrections")(
         revised = HashSet.add(revised, lesson);
         continue;
       }
-      const reading = yield* correctsFiguresOnly(root, base, file);
+      const reading = yield* readCorrection(root, base, file);
       baseParts.set(file, reading.base);
       if (reading.same) {
         corrected = HashSet.add(corrected, lesson);
