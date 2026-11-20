@@ -12,7 +12,7 @@ export const merdekaClass10ProbabilityUnit = unitNode({
       level: "lesson",
       materialKeys: ["lesson.mathematics.probability"],
       order: 10,
-      outcomes: [{ code: "Bab 7 Peluang", document: mathematicsBookX }],
+      outcomes: [{ code: "Bab 7 Peluang", ...mathematicsBookX }],
     }),
   ],
   key: "class-10-mathematics-probability",
@@ -54,11 +54,11 @@ export const merdekaClass10StatisticsFoundationsUnit = unitNode({
       outcomes: [
         {
           code: "Matematika, Fase E, elemen Analisis Data dan Peluang",
-          document: merdekaLearningOutcomes,
+          ...merdekaLearningOutcomes,
         },
         {
           code: "Bab 6 Representasi dan Interpretasi Data",
-          document: mathematicsBookX,
+          ...mathematicsBookX,
         },
       ],
     }),

@@ -21,6 +21,7 @@ export const unitedStatesCurriculum = defineCurriculum({
       displayGroupIconKey: "school",
       iconKey: "high-school",
       key: "high-school",
+      levelBand: "upper-secondary",
       order: 10,
       translations: {
         de: { routeSlug: "highschool", title: "Highschool" },

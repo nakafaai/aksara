@@ -17,18 +17,14 @@ export const usHighSchoolScienceCourseNode = courseNode({
           level: "lesson",
           materialKeys: ["lesson.physics.measurement"],
           order: 10,
-          outcomes: [
-            { code: "N-Q Quantities", document: mathematicsStandards },
-          ],
+          outcomes: [{ code: "N-Q Quantities", ...mathematicsStandards }],
         }),
         materialNode({
           key: "us-high-school-science-physical-motion",
           level: "lesson",
           materialKeys: ["lesson.physics.kinematics"],
           order: 20,
-          outcomes: [
-            { code: "PS2.A Forces and Motion", document: forceStandards },
-          ],
+          outcomes: [{ code: "PS2.A Forces and Motion", ...forceStandards }],
         }),
         materialNode({
           key: "us-high-school-science-physical-energy",
@@ -36,10 +32,10 @@ export const usHighSchoolScienceCourseNode = courseNode({
           materialKeys: ["lesson.physics.renewable-energy"],
           order: 30,
           outcomes: [
-            { code: "PS3.A Definitions of Energy", document: energyStandards },
+            { code: "PS3.A Definitions of Energy", ...energyStandards },
             {
               code: "PS3.B Conservation of Energy and Energy Transfer",
-              document: energyStandards,
+              ...energyStandards,
             },
           ],
         }),
@@ -51,7 +47,7 @@ export const usHighSchoolScienceCourseNode = courseNode({
           outcomes: [
             {
               code: "PS1.A Structure and Properties of Matter",
-              document: matterStandards,
+              ...matterStandards,
             },
           ],
         }),
@@ -60,9 +56,7 @@ export const usHighSchoolScienceCourseNode = courseNode({
           level: "lesson",
           materialKeys: ["lesson.chemistry.basic-chemistry-laws"],
           order: 50,
-          outcomes: [
-            { code: "PS1.B Chemical Reactions", document: matterStandards },
-          ],
+          outcomes: [{ code: "PS1.B Chemical Reactions", ...matterStandards }],
         }),
       ],
       key: "high-school-science-physical-sciences",
@@ -114,11 +108,11 @@ export const usHighSchoolScienceCourseNode = courseNode({
           outcomes: [
             {
               code: "LS4.A Evidence of Common Ancestry and Diversity",
-              document: evolutionStandards,
+              ...evolutionStandards,
             },
             {
               code: "LS4.D Biodiversity and Humans",
-              document: evolutionStandards,
+              ...evolutionStandards,
             },
           ],
         }),
@@ -172,7 +166,7 @@ export const usHighSchoolScienceCourseNode = courseNode({
           outcomes: [
             {
               code: "ESS3.D Global Climate Change",
-              document: earthActivityStandards,
+              ...earthActivityStandards,
             },
           ],
         }),

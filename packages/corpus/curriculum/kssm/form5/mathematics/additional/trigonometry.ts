@@ -13,7 +13,7 @@ export const kssmForm5AdditionalMathematicsTrigonometryNodes = [
         outcomes: [
           {
             code: "Form 5, Content Standards 6.1 and 6.3 to 6.6",
-            document: additionalMathematicsStandards,
+            ...additionalMathematicsStandards,
           },
         ],
       }),

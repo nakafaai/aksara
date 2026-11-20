@@ -15,11 +15,11 @@ export const merdekaClass10BiologyTopicNodes = [
         outcomes: [
           {
             code: "IPA, Fase E, elemen Pemahaman IPA",
-            document: merdekaLearningOutcomes,
+            ...merdekaLearningOutcomes,
           },
           {
             code: "Bab VI Keanekaragaman Makhluk Hidup, Interaksi dan Peranannya di Lingkungan",
-            document: scienceBookX,
+            ...scienceBookX,
           },
         ],
       }),
@@ -73,9 +73,9 @@ export const merdekaClass10BiologyTopicNodes = [
         outcomes: [
           {
             code: "IPA, Fase E, elemen Pemahaman IPA",
-            document: merdekaLearningOutcomes,
+            ...merdekaLearningOutcomes,
           },
-          { code: "Bab VIII Perubahan Iklim", document: scienceBookX },
+          { code: "Bab VIII Perubahan Iklim", ...scienceBookX },
         ],
       }),
     ],
@@ -116,9 +116,9 @@ export const merdekaClass10BiologyTopicNodes = [
         outcomes: [
           {
             code: "IPA, Fase E, elemen Pemahaman IPA",
-            document: merdekaLearningOutcomes,
+            ...merdekaLearningOutcomes,
           },
-          { code: "Bab II Virus dan Peranannya", document: scienceBookX },
+          { code: "Bab II Virus dan Peranannya", ...scienceBookX },
         ],
       }),
     ],

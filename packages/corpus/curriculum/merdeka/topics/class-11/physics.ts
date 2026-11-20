@@ -12,7 +12,7 @@ export const merdekaClass11PhysicsTopicNodes = [
         level: "lesson",
         materialKeys: ["lesson.physics.kinematics"],
         order: 10,
-        outcomes: [{ code: "Bab 2 Kinematika", document: physicsBookXI }],
+        outcomes: [{ code: "Bab 2 Kinematika", ...physicsBookXI }],
       }),
     ],
     key: "class-11-physics-kinematics",
@@ -52,9 +52,9 @@ export const merdekaClass11PhysicsTopicNodes = [
         outcomes: [
           {
             code: "Fisika, Fase F, elemen Pemahaman Fisika",
-            document: merdekaLearningOutcomes,
+            ...merdekaLearningOutcomes,
           },
-          { code: "Bab 1 Vektor", document: physicsBookXI },
+          { code: "Bab 1 Vektor", ...physicsBookXI },
         ],
       }),
     ],

@@ -15,9 +15,9 @@ export const merdekaClass11StatisticsRegressionUnit = unitNode({
       outcomes: [
         {
           code: "Matematika, Fase F, elemen Analisis Data dan Peluang",
-          document: merdekaLearningOutcomes,
+          ...merdekaLearningOutcomes,
         },
-        { code: "Bab 1 Analisis Data Bivariat", document: mathematicsBookXI },
+        { code: "Bab 1 Analisis Data Bivariat", ...mathematicsBookXI },
       ],
     }),
   ],

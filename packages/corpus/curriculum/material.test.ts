@@ -2,7 +2,11 @@ import { describe, expect, it } from "@effect/vitest";
 import { Effect, HashMap } from "effect";
 
 import { resolveCurriculumMaterial } from "#corpus/curriculum/material";
-import { defineCurriculum, materialNode } from "#corpus/curriculum/schema";
+import {
+  classNode,
+  defineCurriculum,
+  materialNode,
+} from "#corpus/curriculum/schema";
 import { decodeMaterialDomains } from "#corpus/material/domain";
 import { citedOutcomes } from "#corpus/test/curriculum";
 import { lessonMaterialSource } from "#corpus/test/material";
@@ -22,9 +26,24 @@ describe("curriculum material", () => {
         });
         const curriculum = yield* defineCurriculum({
           programKey: "merdeka",
-          tree: [node],
+          tree: [
+            classNode({
+              children: [node],
+              key: "class-11",
+              levelBand: "upper-secondary",
+              order: 1,
+              translations: {
+                en: { routeSlug: "class-11", title: "Class 11" },
+                id: { routeSlug: "kelas-11", title: "Kelas 11" },
+              },
+            }),
+          ],
         });
-        const [decodedNode] = curriculum.tree;
+        const [decodedClass] = curriculum.tree;
+        const [decodedNode] =
+          decodedClass !== undefined && "children" in decodedClass
+            ? (decodedClass.children ?? [])
+            : [];
         expect(decodedNode).toBeDefined();
         if (decodedNode === undefined || !("materialKeys" in decodedNode)) {
           return;

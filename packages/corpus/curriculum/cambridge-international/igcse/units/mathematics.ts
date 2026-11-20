@@ -10,8 +10,8 @@ export const igcseMathematicsUnitNodes = [
         materialKeys: ["lesson.mathematics.linear-equation-inequality"],
         order: 10,
         outcomes: [
-          { code: "E2.5 Equations", document: mathematicsSyllabus },
-          { code: "E2.6 Inequalities", document: mathematicsSyllabus },
+          { code: "E2.5 Equations", ...mathematicsSyllabus },
+          { code: "E2.6 Inequalities", ...mathematicsSyllabus },
         ],
       }),
       materialNode({
@@ -19,14 +19,14 @@ export const igcseMathematicsUnitNodes = [
         level: "lesson",
         materialKeys: ["lesson.mathematics.quadratic-function"],
         order: 20,
-        outcomes: [{ code: "E2.5 Equations", document: mathematicsSyllabus }],
+        outcomes: [{ code: "E2.5 Equations", ...mathematicsSyllabus }],
       }),
       materialNode({
         key: "mathematics-0580-algebra-graphs-sequences",
         level: "lesson",
         materialKeys: ["lesson.mathematics.sequence-series"],
         order: 30,
-        outcomes: [{ code: "E2.7 Sequences", document: mathematicsSyllabus }],
+        outcomes: [{ code: "E2.7 Sequences", ...mathematicsSyllabus }],
       }),
       materialNode({
         key: "mathematics-0580-algebra-graphs-functions",
@@ -34,10 +34,10 @@ export const igcseMathematicsUnitNodes = [
         materialKeys: ["lesson.mathematics.function-modeling"],
         order: 40,
         outcomes: [
-          { code: "E2.10 Graphs of functions", document: mathematicsSyllabus },
+          { code: "E2.10 Graphs of functions", ...mathematicsSyllabus },
           {
             code: "E6.4 Trigonometric functions",
-            document: mathematicsSyllabus,
+            ...mathematicsSyllabus,
           },
         ],
       }),
@@ -86,8 +86,8 @@ export const igcseMathematicsUnitNodes = [
         materialKeys: ["lesson.mathematics.circle"],
         order: 10,
         outcomes: [
-          { code: "E4.7 Circle theorems I", document: mathematicsSyllabus },
-          { code: "E4.8 Circle theorems II", document: mathematicsSyllabus },
+          { code: "E4.7 Circle theorems I", ...mathematicsSyllabus },
+          { code: "E4.8 Circle theorems II", ...mathematicsSyllabus },
         ],
       }),
       materialNode({
@@ -98,7 +98,7 @@ export const igcseMathematicsUnitNodes = [
         outcomes: [
           {
             code: "E5.3 Circles, arcs and sectors",
-            document: mathematicsSyllabus,
+            ...mathematicsSyllabus,
           },
         ],
       }),
@@ -110,11 +110,11 @@ export const igcseMathematicsUnitNodes = [
         outcomes: [
           {
             code: "E6.2 Right-angled triangles",
-            document: mathematicsSyllabus,
+            ...mathematicsSyllabus,
           },
           {
             code: "E6.3 Exact trigonometric values",
-            document: mathematicsSyllabus,
+            ...mathematicsSyllabus,
           },
         ],
       }),
@@ -165,9 +165,7 @@ export const igcseMathematicsUnitNodes = [
         level: "lesson",
         materialKeys: ["lesson.mathematics.geometric-transformation"],
         order: 10,
-        outcomes: [
-          { code: "E7.1 Transformations", document: mathematicsSyllabus },
-        ],
+        outcomes: [{ code: "E7.1 Transformations", ...mathematicsSyllabus }],
       }),
       materialNode({
         key: "mathematics-0580-transformations-vectors-vectors",
@@ -177,9 +175,9 @@ export const igcseMathematicsUnitNodes = [
         outcomes: [
           {
             code: "E7.2 Vectors in two dimensions",
-            document: mathematicsSyllabus,
+            ...mathematicsSyllabus,
           },
-          { code: "E7.3 Magnitude of a vector", document: mathematicsSyllabus },
+          { code: "E7.3 Magnitude of a vector", ...mathematicsSyllabus },
         ],
       }),
     ],
@@ -232,11 +230,11 @@ export const igcseMathematicsUnitNodes = [
         outcomes: [
           {
             code: "E8.1 Introduction to probability",
-            document: mathematicsSyllabus,
+            ...mathematicsSyllabus,
           },
           {
             code: "E8.3 Probability of combined events",
-            document: mathematicsSyllabus,
+            ...mathematicsSyllabus,
           },
         ],
       }),
@@ -248,9 +246,9 @@ export const igcseMathematicsUnitNodes = [
         outcomes: [
           {
             code: "E9.3 Averages and measures of spread",
-            document: mathematicsSyllabus,
+            ...mathematicsSyllabus,
           },
-          { code: "E9.7 Histograms", document: mathematicsSyllabus },
+          { code: "E9.7 Histograms", ...mathematicsSyllabus },
         ],
       }),
     ],

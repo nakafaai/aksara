@@ -16,6 +16,7 @@ export const merdekaClassNodes = [
     displayGroupIconKey: "primary-school",
     iconKey: "grade-1",
     key: "class-1",
+    levelBand: "primary",
     order: 10,
     translations: {
       de: { routeSlug: "klasse-1", title: "Klasse 1" },
@@ -34,6 +35,7 @@ export const merdekaClassNodes = [
     displayGroupIconKey: "primary-school",
     iconKey: "grade-2",
     key: "class-2",
+    levelBand: "primary",
     order: 20,
     translations: {
       de: { routeSlug: "klasse-2", title: "Klasse 2" },
@@ -52,6 +54,7 @@ export const merdekaClassNodes = [
     displayGroupIconKey: "primary-school",
     iconKey: "grade-3",
     key: "class-3",
+    levelBand: "primary",
     order: 30,
     translations: {
       de: { routeSlug: "klasse-3", title: "Klasse 3" },
@@ -70,6 +73,7 @@ export const merdekaClassNodes = [
     displayGroupIconKey: "primary-school",
     iconKey: "grade-4",
     key: "class-4",
+    levelBand: "primary",
     order: 40,
     translations: {
       de: { routeSlug: "klasse-4", title: "Klasse 4" },
@@ -88,6 +92,7 @@ export const merdekaClassNodes = [
     displayGroupIconKey: "primary-school",
     iconKey: "grade-5",
     key: "class-5",
+    levelBand: "primary",
     order: 50,
     translations: {
       de: { routeSlug: "klasse-5", title: "Klasse 5" },
@@ -106,6 +111,7 @@ export const merdekaClassNodes = [
     displayGroupIconKey: "primary-school",
     iconKey: "grade-6",
     key: "class-6",
+    levelBand: "primary",
     order: 60,
     translations: {
       de: { routeSlug: "klasse-6", title: "Klasse 6" },
@@ -124,6 +130,7 @@ export const merdekaClassNodes = [
     displayGroupIconKey: "middle-school",
     iconKey: "grade-7",
     key: "class-7",
+    levelBand: "lower-secondary",
     order: 70,
     translations: {
       de: { routeSlug: "klasse-7", title: "Klasse 7" },
@@ -142,6 +149,7 @@ export const merdekaClassNodes = [
     displayGroupIconKey: "middle-school",
     iconKey: "grade-8",
     key: "class-8",
+    levelBand: "lower-secondary",
     order: 80,
     translations: {
       de: { routeSlug: "klasse-8", title: "Klasse 8" },
@@ -160,6 +168,7 @@ export const merdekaClassNodes = [
     displayGroupIconKey: "middle-school",
     iconKey: "grade-9",
     key: "class-9",
+    levelBand: "lower-secondary",
     order: 90,
     translations: {
       de: { routeSlug: "klasse-9", title: "Klasse 9" },
@@ -179,6 +188,7 @@ export const merdekaClassNodes = [
     displayGroupIconKey: "high-school",
     iconKey: "grade-10",
     key: "class-10",
+    levelBand: "upper-secondary",
     order: 100,
     translations: {
       de: { routeSlug: "klasse-10", title: "Klasse 10" },
@@ -198,6 +208,7 @@ export const merdekaClassNodes = [
     displayGroupIconKey: "high-school",
     iconKey: "grade-11",
     key: "class-11",
+    levelBand: "upper-secondary",
     order: 110,
     translations: {
       de: { routeSlug: "klasse-11", title: "Klasse 11" },
@@ -217,6 +228,7 @@ export const merdekaClassNodes = [
     displayGroupIconKey: "high-school",
     iconKey: "grade-12",
     key: "class-12",
+    levelBand: "upper-secondary",
     order: 120,
     translations: {
       de: { routeSlug: "klasse-12", title: "Klasse 12" },

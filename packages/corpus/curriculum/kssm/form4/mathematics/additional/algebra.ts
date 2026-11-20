@@ -15,7 +15,7 @@ export const kssmForm4AdditionalMathematicsAlgebraNodes = [
         outcomes: [
           {
             code: "Form 4, Content Standards 1.1 to 1.3",
-            document: additionalMathematicsStandards,
+            ...additionalMathematicsStandards,
           },
         ],
       }),
@@ -57,7 +57,7 @@ export const kssmForm4AdditionalMathematicsAlgebraNodes = [
         outcomes: [
           {
             code: "Form 4, Content Standard 2.1 (Learning Standards 2.1.1 and 2.1.2), 2.2 and 2.3",
-            document: additionalMathematicsStandards,
+            ...additionalMathematicsStandards,
           },
         ],
       }),
@@ -102,7 +102,7 @@ export const kssmForm4AdditionalMathematicsAlgebraNodes = [
         outcomes: [
           {
             code: "Form 4, Content Standards 3.1 to 3.2",
-            document: additionalMathematicsStandards,
+            ...additionalMathematicsStandards,
           },
         ],
       }),
@@ -144,7 +144,7 @@ export const kssmForm4AdditionalMathematicsAlgebraNodes = [
         outcomes: [
           {
             code: "Form 4, Content Standards 4.1 to 4.3",
-            document: additionalMathematicsStandards,
+            ...additionalMathematicsStandards,
           },
         ],
       }),
@@ -198,7 +198,7 @@ export const kssmForm4AdditionalMathematicsAlgebraNodes = [
         outcomes: [
           {
             code: "Form 4, Content Standards 5.1 to 5.2",
-            document: additionalMathematicsStandards,
+            ...additionalMathematicsStandards,
           },
         ],
       }),
@@ -240,7 +240,7 @@ export const kssmForm4AdditionalMathematicsAlgebraNodes = [
         outcomes: [
           {
             code: "Form 4, Content Standards 6.1 to 6.3",
-            document: additionalMathematicsStandards,
+            ...additionalMathematicsStandards,
           },
         ],
       }),

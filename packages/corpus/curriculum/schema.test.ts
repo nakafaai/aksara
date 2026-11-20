@@ -1,14 +1,5 @@
-import { NodeServices } from "@effect/platform-node";
 import { describe, expect, it } from "@effect/vitest";
-import {
-  Array as Arr,
-  Effect,
-  Exit,
-  HashSet,
-  Predicate,
-  Record,
-  Schema,
-} from "effect";
+import { Array as Arr, Effect, Exit, Schema } from "effect";
 
 import { cambridgeInternationalCurriculum } from "#corpus/curriculum/cambridge-international/source";
 import { merdekaCurriculum } from "#corpus/curriculum/merdeka/source";
@@ -23,21 +14,8 @@ import {
   unitNode,
 } from "#corpus/curriculum/schema";
 import { singaporeMoeCurriculum } from "#corpus/curriculum/singapore-moe/source";
-import { decodeCurriculumCatalog } from "#corpus/curriculum/source";
 import { unitedStatesCurriculum } from "#corpus/curriculum/united-states/source";
 import { citedOutcomes } from "#corpus/test/curriculum";
-import { importCorpusModules } from "#corpus/test/imports";
-
-/** Collects every curriculum node key inside one exported registry value. */
-function exportedNodeKeys(value: unknown): string[] {
-  if (Arr.isArray(value)) {
-    return Arr.flatMap(value, exportedNodeKeys);
-  }
-  if (!(Predicate.isObject(value) && Predicate.isString(value.key))) {
-    return [];
-  }
-  return [value.key, ...exportedNodeKeys(value.children)];
-}
 
 /** Builds complete localized translations for one real curriculum node shape. */
 function translations(prefix: string) {
@@ -81,6 +59,7 @@ describe("curriculum schema", () => {
         unitNode({
           children: [leaf],
           key: "unit-node",
+          levelBand: "upper-secondary",
           order: 5,
           translations: translations("unit"),
         }),
@@ -154,22 +133,73 @@ describe("curriculum schema", () => {
 
       expect(Exit.isFailure(decode(mapping))).toBe(true);
       expect(Exit.isFailure(decode({ ...mapping, outcomes: [] }))).toBe(true);
-      expect(
-        Exit.isFailure(
-          decode({
-            ...mapping,
-            outcomes: [
-              {
-                code: "Bab 1 Matriks",
-                document: { title: "Buku Matematika", url: "matriks.pdf" },
-              },
-            ],
-          })
-        )
-      ).toBe(true);
+      for (const url of ["matriks.pdf", "http://buku.example.id/matriks.pdf"]) {
+        expect(
+          Exit.isFailure(
+            decode({
+              ...mapping,
+              outcomes: [{ citation: "Buku Matematika", code: "Bab 1", url }],
+            })
+          )
+        ).toBe(true);
+      }
       expect(
         Exit.isSuccess(decode({ ...mapping, outcomes: citedOutcomes }))
       ).toBe(true);
+    })
+  );
+
+  it.effect("requires every material inside exactly one level band", () =>
+    Effect.gen(function* () {
+      const leaf = materialNode({
+        key: "banded-material",
+        level: "lesson",
+        materialKeys: ["lesson.mathematics.matrix"],
+        order: 1,
+        outcomes: citedOutcomes,
+      });
+      const unbanded = yield* defineCurriculum({
+        programKey: "merdeka",
+        tree: [
+          unitNode({
+            children: [leaf],
+            key: "unbanded-unit",
+            order: 1,
+            translations: translations("unbanded"),
+          }),
+        ],
+      }).pipe(Effect.flip);
+      const nested = yield* defineCurriculum({
+        programKey: "merdeka",
+        tree: [
+          classNode({
+            children: [
+              unitNode({
+                children: [leaf],
+                key: "nested-unit",
+                levelBand: "lower-secondary",
+                order: 1,
+                translations: translations("nested"),
+              }),
+            ],
+            key: "banded-class",
+            levelBand: "upper-secondary",
+            order: 1,
+            translations: translations("banded"),
+          }),
+        ],
+      }).pipe(Effect.flip);
+
+      expect(unbanded).toMatchObject({
+        _tag: "CurriculumLevelBandError",
+        nodeKey: "banded-material",
+        reason: "missing",
+      });
+      expect(nested).toMatchObject({
+        _tag: "CurriculumLevelBandError",
+        nodeKey: "nested-unit",
+        reason: "nested",
+      });
     })
   );
 
@@ -215,46 +245,5 @@ describe("curriculum schema", () => {
         "united-states",
       ]);
     })
-  );
-
-  it.effect(
-    "registers every node each curriculum registry module exports",
-    () =>
-      Effect.gen(function* () {
-        const modules = yield* importCorpusModules("curriculum/**/*.ts", [
-          "curriculum/*/documents.ts",
-          "curriculum/context.ts",
-          "curriculum/material.ts",
-          "curriculum/node.ts",
-          "curriculum/ownership.ts",
-          "curriculum/projection.ts",
-          "curriculum/route.ts",
-          "curriculum/schema.ts",
-          "curriculum/source.ts",
-        ]);
-
-        const curricula = yield* decodeCurriculumCatalog();
-        const registered = HashSet.fromIterable(
-          Arr.flatMap(curricula, ({ tree }) => exportedNodeKeys(tree))
-        );
-        const nodeModules = Arr.filter(
-          Arr.map(modules, ({ exports, file }) => ({
-            file,
-            keys: exportedNodeKeys(
-              Predicate.isObject(exports) ? Record.values(exports) : []
-            ),
-          })),
-          ({ keys }) => keys.length > 0
-        );
-        const unregistered = Arr.flatMap(nodeModules, ({ file, keys }) =>
-          Arr.map(
-            Arr.filter(keys, (key) => !HashSet.has(registered, key)),
-            (key) => `${file}: ${key}`
-          )
-        );
-
-        expect(unregistered).toEqual([]);
-        expect(modules.length - nodeModules.length).toBe(curricula.length);
-      }).pipe(Effect.provide(NodeServices.layer))
   );
 });

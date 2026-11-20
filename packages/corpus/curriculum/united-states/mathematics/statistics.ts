@@ -12,7 +12,7 @@ export const usHighSchoolStatisticsProbabilityUnit = unitNode({
       outcomes: [
         {
           code: "S-ID Interpreting Categorical and Quantitative Data",
-          document: mathematicsStandards,
+          ...mathematicsStandards,
         },
       ],
     }),
@@ -24,7 +24,7 @@ export const usHighSchoolStatisticsProbabilityUnit = unitNode({
       outcomes: [
         {
           code: "S-CP Conditional Probability and the Rules of Probability",
-          document: mathematicsStandards,
+          ...mathematicsStandards,
         },
       ],
     }),
@@ -36,7 +36,7 @@ export const usHighSchoolStatisticsProbabilityUnit = unitNode({
       outcomes: [
         {
           code: "S-ID Interpreting Categorical and Quantitative Data",
-          document: mathematicsStandards,
+          ...mathematicsStandards,
         },
       ],
     }),

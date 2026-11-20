@@ -15,11 +15,11 @@ export const merdekaClass10PhysicsTopicNodes = [
         outcomes: [
           {
             code: "IPA, Fase E, elemen Pemahaman IPA",
-            document: merdekaLearningOutcomes,
+            ...merdekaLearningOutcomes,
           },
           {
             code: "Bab I Sistem Pengukuran dalam Kerja Ilmiah",
-            document: scienceBookX,
+            ...scienceBookX,
           },
         ],
       }),
@@ -64,9 +64,9 @@ export const merdekaClass10PhysicsTopicNodes = [
         outcomes: [
           {
             code: "IPA, Fase E, elemen Pemahaman IPA",
-            document: merdekaLearningOutcomes,
+            ...merdekaLearningOutcomes,
           },
-          { code: "Bab VII Energi Terbarukan", document: scienceBookX },
+          { code: "Bab VII Energi Terbarukan", ...scienceBookX },
         ],
       }),
     ],

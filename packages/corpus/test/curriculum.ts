@@ -4,6 +4,6 @@ import { merdekaLearningOutcomes } from "#corpus/curriculum/merdeka/documents";
 export const citedOutcomes = [
   {
     code: "Matematika, Fase F, elemen Aljabar dan Fungsi",
-    document: merdekaLearningOutcomes,
+    ...merdekaLearningOutcomes,
   },
 ] as const;

@@ -12,7 +12,7 @@ export const kssmForm4UngroupedDispersionUnit = unitNode({
       outcomes: [
         {
           code: "Tingkatan 4, Standard Kandungan 8.2, Standard Pembelajaran 8.2.1 dan 8.2.3",
-          document: mathematicsStandards,
+          ...mathematicsStandards,
         },
       ],
     }),
@@ -68,7 +68,7 @@ export const kssmForm4CombinedProbabilityUnit = unitNode({
       outcomes: [
         {
           code: "Tingkatan 4, Standard Kandungan 9.1 (sebahagian) dan 9.3",
-          document: mathematicsStandards,
+          ...mathematicsStandards,
         },
       ],
     }),

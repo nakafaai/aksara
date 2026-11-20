@@ -15,7 +15,7 @@ export const usHighSchoolMathematicsCourseNode = courseNode({
           outcomes: [
             {
               code: "N-CN The Complex Number System",
-              document: mathematicsStandards,
+              ...mathematicsStandards,
             },
           ],
         }),
@@ -27,7 +27,7 @@ export const usHighSchoolMathematicsCourseNode = courseNode({
           outcomes: [
             {
               code: "N-VM Vector and Matrix Quantities",
-              document: mathematicsStandards,
+              ...mathematicsStandards,
             },
           ],
         }),
@@ -39,7 +39,7 @@ export const usHighSchoolMathematicsCourseNode = courseNode({
           outcomes: [
             {
               code: "N-VM Vector and Matrix Quantities",
-              document: mathematicsStandards,
+              ...mathematicsStandards,
             },
           ],
         }),
@@ -84,7 +84,7 @@ export const usHighSchoolMathematicsCourseNode = courseNode({
           outcomes: [
             {
               code: "A-REI Reasoning with Equations and Inequalities",
-              document: mathematicsStandards,
+              ...mathematicsStandards,
             },
           ],
         }),
@@ -96,11 +96,11 @@ export const usHighSchoolMathematicsCourseNode = courseNode({
           outcomes: [
             {
               code: "A-REI Reasoning with Equations and Inequalities",
-              document: mathematicsStandards,
+              ...mathematicsStandards,
             },
             {
               code: "A-SSE Seeing Structure in Expressions",
-              document: mathematicsStandards,
+              ...mathematicsStandards,
             },
           ],
         }),
@@ -112,7 +112,7 @@ export const usHighSchoolMathematicsCourseNode = courseNode({
           outcomes: [
             {
               code: "A-APR Arithmetic with Polynomials and Rational Expressions",
-              document: mathematicsStandards,
+              ...mathematicsStandards,
             },
           ],
         }),
@@ -124,11 +124,11 @@ export const usHighSchoolMathematicsCourseNode = courseNode({
           outcomes: [
             {
               code: "N-RN The Real Number System",
-              document: mathematicsStandards,
+              ...mathematicsStandards,
             },
             {
               code: "F-LE Linear, Quadratic, and Exponential Models",
-              document: mathematicsStandards,
+              ...mathematicsStandards,
             },
           ],
         }),
@@ -170,11 +170,11 @@ export const usHighSchoolMathematicsCourseNode = courseNode({
           outcomes: [
             {
               code: "F-IF Interpreting Functions",
-              document: mathematicsStandards,
+              ...mathematicsStandards,
             },
             {
               code: "F-TF Trigonometric Functions",
-              document: mathematicsStandards,
+              ...mathematicsStandards,
             },
           ],
         }),
@@ -186,7 +186,7 @@ export const usHighSchoolMathematicsCourseNode = courseNode({
           ],
           order: 20,
           outcomes: [
-            { code: "F-BF Building Functions", document: mathematicsStandards },
+            { code: "F-BF Building Functions", ...mathematicsStandards },
           ],
         }),
         materialNode({
@@ -195,7 +195,7 @@ export const usHighSchoolMathematicsCourseNode = courseNode({
           materialKeys: ["lesson.mathematics.function-transformation"],
           order: 30,
           outcomes: [
-            { code: "F-BF Building Functions", document: mathematicsStandards },
+            { code: "F-BF Building Functions", ...mathematicsStandards },
           ],
         }),
       ],

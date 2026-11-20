@@ -9,7 +9,7 @@ export const usHighSchoolGeometryUnit = unitNode({
       level: "lesson",
       materialKeys: ["lesson.mathematics.circle"],
       order: 10,
-      outcomes: [{ code: "G-C Circles", document: mathematicsStandards }],
+      outcomes: [{ code: "G-C Circles", ...mathematicsStandards }],
     }),
     materialNode({
       key: "us-high-school-mathematics-geometry-coordinate",
@@ -19,7 +19,7 @@ export const usHighSchoolGeometryUnit = unitNode({
       outcomes: [
         {
           code: "G-GPE Expressing Geometric Properties with Equations",
-          document: mathematicsStandards,
+          ...mathematicsStandards,
         },
       ],
     }),
@@ -31,7 +31,7 @@ export const usHighSchoolGeometryUnit = unitNode({
       outcomes: [
         {
           code: "G-SRT Similarity, Right Triangles, and Trigonometry",
-          document: mathematicsStandards,
+          ...mathematicsStandards,
         },
       ],
     }),

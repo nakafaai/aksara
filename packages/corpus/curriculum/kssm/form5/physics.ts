@@ -18,7 +18,7 @@ export const kssmForm5PhysicsTopicNodes = [
         outcomes: [
           {
             code: "Tingkatan 5, Standard Kandungan 1.1 hingga 1.2",
-            document: physicsStandards,
+            ...physicsStandards,
           },
         ],
       }),
@@ -63,7 +63,7 @@ export const kssmForm5PhysicsTopicNodes = [
         outcomes: [
           {
             code: "Tingkatan 5, Standard Kandungan 2.1 hingga 2.6",
-            document: physicsStandards,
+            ...physicsStandards,
           },
         ],
       }),
@@ -108,7 +108,7 @@ export const kssmForm5PhysicsTopicNodes = [
         outcomes: [
           {
             code: "Tingkatan 5, Standard Kandungan 6.1 hingga 6.2",
-            document: physicsStandards,
+            ...physicsStandards,
           },
         ],
       }),
@@ -150,7 +150,7 @@ export const kssmForm5PhysicsTopicNodes = [
         outcomes: [
           {
             code: "Tingkatan 5, Standard Kandungan 7.1 hingga 7.3",
-            document: physicsStandards,
+            ...physicsStandards,
           },
         ],
       }),

@@ -17,7 +17,7 @@ export const singaporeSecondaryScienceCourseNode = courseNode({
           outcomes: [
             {
               code: "1 Physical Quantities, Units and Measurement",
-              document: physicsSyllabus,
+              ...physicsSyllabus,
             },
           ],
         }),
@@ -26,14 +26,14 @@ export const singaporeSecondaryScienceCourseNode = courseNode({
           level: "lesson",
           materialKeys: ["lesson.physics.kinematics"],
           order: 20,
-          outcomes: [{ code: "2 Kinematics", document: physicsSyllabus }],
+          outcomes: [{ code: "2 Kinematics", ...physicsSyllabus }],
         }),
         materialNode({
           key: "singapore-secondary-science-physics-energy",
           level: "lesson",
           materialKeys: ["lesson.physics.renewable-energy"],
           order: 30,
-          outcomes: [{ code: "6 Energy", document: physicsSyllabus }],
+          outcomes: [{ code: "6 Energy", ...physicsSyllabus }],
         }),
       ],
       key: "secondary-science-physics",
@@ -80,9 +80,7 @@ export const singaporeSecondaryScienceCourseNode = courseNode({
           level: "lesson",
           materialKeys: ["lesson.chemistry.structure-matter"],
           order: 10,
-          outcomes: [
-            { code: "2.2 Atomic Structure", document: chemistrySyllabus },
-          ],
+          outcomes: [{ code: "2.2 Atomic Structure", ...chemistrySyllabus }],
         }),
         materialNode({
           key: "singapore-secondary-science-chemistry-reactions",
@@ -92,7 +90,7 @@ export const singaporeSecondaryScienceCourseNode = courseNode({
           outcomes: [
             {
               code: "4.1 Formulae and Equation Writing",
-              document: chemistrySyllabus,
+              ...chemistrySyllabus,
             },
           ],
         }),
@@ -145,7 +143,7 @@ export const singaporeSecondaryScienceCourseNode = courseNode({
           outcomes: [
             {
               code: "11 Organisms and their Environment",
-              document: biologySyllabus,
+              ...biologySyllabus,
             },
           ],
         }),
@@ -157,7 +155,7 @@ export const singaporeSecondaryScienceCourseNode = courseNode({
           outcomes: [
             {
               code: "11 Organisms and their Environment",
-              document: biologySyllabus,
+              ...biologySyllabus,
             },
           ],
         }),
@@ -202,6 +200,7 @@ export const singaporeSecondaryScienceCourseNode = courseNode({
   ],
   iconKey: "science",
   key: "secondary-science",
+  levelBand: "upper-secondary",
   order: 30,
   translations: {
     de: { routeSlug: "naturwissenschaften", title: "Naturwissenschaften" },
