@@ -1,9 +1,23 @@
 // biome-ignore-all lint/suspicious/noBitwiseOperators: SHA-256 is defined on 32-bit words (FIPS 180-4), so its rotations, shifts, and logical functions are bitwise by definition.
 /**
+ * Packs 32-bit words into a big-endian view, so every read of a word index is a
+ * number and the state view's bytes are the digest bytes.
+ */
+function wordView(words: readonly number[]) {
+  const view = new DataView(new ArrayBuffer(words.length * 4));
+  let index = 0;
+  for (const word of words) {
+    view.setUint32(index * 4, word);
+    index += 1;
+  }
+  return view;
+}
+
+/**
  * The 64 round constants of SHA-256: the first 32 bits of the fractional parts
  * of the cube roots of the first 64 primes (FIPS 180-4, section 4.2.2).
  */
-const ROUND_CONSTANTS = new Uint32Array([
+const ROUND_CONSTANTS = wordView([
   0x42_8a_2f_98, 0x71_37_44_91, 0xb5_c0_fb_cf, 0xe9_b5_db_a5, 0x39_56_c2_5b,
   0x59_f1_11_f1, 0x92_3f_82_a4, 0xab_1c_5e_d5, 0xd8_07_aa_98, 0x12_83_5b_01,
   0x24_31_85_be, 0x55_0c_7d_c3, 0x72_be_5d_74, 0x80_de_b1_fe, 0x9b_dc_06_a7,
@@ -36,44 +50,59 @@ function rotateRight(word: number, bits: number) {
   return (word >>> bits) | (word << (32 - bits));
 }
 
-/** Reads one word of a fixed-size word array, which always holds it. */
-function at(words: Uint32Array, index: number) {
-  return words[index] ?? 0;
+/** Reads the 32-bit big-endian word at a word index of a view. */
+function wordAt(view: DataView, index: number) {
+  return view.getUint32(index * 4);
+}
+
+/** Writes the 32-bit big-endian word at a word index of a view. */
+function setWord(view: DataView, index: number, word: number) {
+  view.setUint32(index * 4, word);
 }
 
 /** Expands one block into the 64-word message schedule (FIPS 180-4, 6.2.2 step 1). */
-function expandSchedule(block: DataView, schedule: Uint32Array) {
+function expandSchedule(block: DataView, schedule: DataView) {
   for (let index = 0; index < 16; index += 1) {
-    schedule[index] = block.getUint32(index * 4);
+    setWord(schedule, index, wordAt(block, index));
   }
   for (let index = 16; index < 64; index += 1) {
-    const early = at(schedule, index - 15);
-    const late = at(schedule, index - 2);
+    const early = wordAt(schedule, index - 15);
+    const late = wordAt(schedule, index - 2);
     const sigma0 =
       rotateRight(early, 7) ^ rotateRight(early, 18) ^ (early >>> 3);
     const sigma1 =
       rotateRight(late, 17) ^ rotateRight(late, 19) ^ (late >>> 10);
-    schedule[index] =
-      (at(schedule, index - 16) + sigma0 + at(schedule, index - 7) + sigma1) >>>
-      0;
+    setWord(
+      schedule,
+      index,
+      (wordAt(schedule, index - 16) +
+        sigma0 +
+        wordAt(schedule, index - 7) +
+        sigma1) >>>
+        0
+    );
   }
 }
 
 /** Runs the 64 rounds over the schedule and adds the result to the state (6.2.2 steps 2 to 4). */
-function mixRounds(state: Uint32Array, schedule: Uint32Array) {
-  let a = at(state, 0);
-  let b = at(state, 1);
-  let c = at(state, 2);
-  let d = at(state, 3);
-  let e = at(state, 4);
-  let f = at(state, 5);
-  let g = at(state, 6);
-  let h = at(state, 7);
+function mixRounds(state: DataView, schedule: DataView) {
+  let a = wordAt(state, 0);
+  let b = wordAt(state, 1);
+  let c = wordAt(state, 2);
+  let d = wordAt(state, 3);
+  let e = wordAt(state, 4);
+  let f = wordAt(state, 5);
+  let g = wordAt(state, 6);
+  let h = wordAt(state, 7);
   for (let index = 0; index < 64; index += 1) {
     const sum1 = rotateRight(e, 6) ^ rotateRight(e, 11) ^ rotateRight(e, 25);
     const choice = (e & f) ^ (~e & g);
     const first =
-      (h + sum1 + choice + at(ROUND_CONSTANTS, index) + at(schedule, index)) >>>
+      (h +
+        sum1 +
+        choice +
+        wordAt(ROUND_CONSTANTS, index) +
+        wordAt(schedule, index)) >>>
       0;
     const sum0 = rotateRight(a, 2) ^ rotateRight(a, 13) ^ rotateRight(a, 22);
     const majority = (a & b) ^ (a & c) ^ (b & c);
@@ -86,14 +115,14 @@ function mixRounds(state: Uint32Array, schedule: Uint32Array) {
     b = a;
     a = (first + sum0 + majority) >>> 0;
   }
-  state[0] = (at(state, 0) + a) >>> 0;
-  state[1] = (at(state, 1) + b) >>> 0;
-  state[2] = (at(state, 2) + c) >>> 0;
-  state[3] = (at(state, 3) + d) >>> 0;
-  state[4] = (at(state, 4) + e) >>> 0;
-  state[5] = (at(state, 5) + f) >>> 0;
-  state[6] = (at(state, 6) + g) >>> 0;
-  state[7] = (at(state, 7) + h) >>> 0;
+  setWord(state, 0, (wordAt(state, 0) + a) >>> 0);
+  setWord(state, 1, (wordAt(state, 1) + b) >>> 0);
+  setWord(state, 2, (wordAt(state, 2) + c) >>> 0);
+  setWord(state, 3, (wordAt(state, 3) + d) >>> 0);
+  setWord(state, 4, (wordAt(state, 4) + e) >>> 0);
+  setWord(state, 5, (wordAt(state, 5) + f) >>> 0);
+  setWord(state, 6, (wordAt(state, 6) + g) >>> 0);
+  setWord(state, 7, (wordAt(state, 7) + h) >>> 0);
 }
 
 /**
@@ -103,9 +132,10 @@ function mixRounds(state: Uint32Array, schedule: Uint32Array) {
  * same bytes joined.
  */
 export class Sha256 {
-  readonly #state = new Uint32Array(INITIAL_STATE);
+  readonly #state = wordView(INITIAL_STATE);
   readonly #block = new Uint8Array(BLOCK_BYTES);
-  readonly #schedule = new Uint32Array(64);
+  readonly #blockView = new DataView(this.#block.buffer);
+  readonly #schedule = new DataView(new ArrayBuffer(64 * 4));
   #blockLength = 0;
   #totalBytes = 0;
 
@@ -145,21 +175,15 @@ export class Sha256 {
       this.#blockLength = 0;
     }
     this.#block.fill(0, this.#blockLength);
-    const view = new DataView(this.#block.buffer);
-    view.setUint32(BLOCK_BYTES - 8, Math.floor(bitLength / 2 ** 32));
-    view.setUint32(BLOCK_BYTES - 4, bitLength >>> 0);
+    this.#blockView.setUint32(BLOCK_BYTES - 8, Math.floor(bitLength / 2 ** 32));
+    this.#blockView.setUint32(BLOCK_BYTES - 4, bitLength >>> 0);
     this.#compress();
-    const output = new Uint8Array(32);
-    const outputView = new DataView(output.buffer);
-    for (let index = 0; index < 8; index += 1) {
-      outputView.setUint32(index * 4, at(this.#state, index));
-    }
-    return output;
+    return new Uint8Array(this.#state.buffer.slice(0));
   }
 
   /** Mixes the full 64-byte block into the state words. */
   #compress() {
-    expandSchedule(new DataView(this.#block.buffer), this.#schedule);
+    expandSchedule(this.#blockView, this.#schedule);
     mixRounds(this.#state, this.#schedule);
   }
 }
