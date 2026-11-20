@@ -13,22 +13,22 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "$$720\\text{ kg}$$, because cryolite lowers the melting point",
+            "$$0.508\\text{ g}$$, $$0.120\\text{ mol dm}^{-3}$$, from P to Q",
         },
         {
           correct: false,
           label:
-            "$$360\\text{ kg}$$, because cryolite makes solid aluminium oxide conduct",
+            "$$0.254\\text{ g}$$, $$0.160\\text{ mol dm}^{-3}$$, from Q to P",
         },
         {
           correct: false,
           label:
-            "$$480\\text{ kg}$$, because cryolite lowers the melting point",
+            "$$0.0508\\text{ g}$$, $$0.192\\text{ mol dm}^{-3}$$, from P to Q",
         },
         {
           correct: true,
           label:
-            "$$360\\text{ kg}$$, because cryolite lowers the melting point of the electrolyte",
+            "$$0.254\\text{ g}$$, $$0.160\\text{ mol dm}^{-3}$$, from P to Q",
         },
       ],
     },
@@ -37,21 +37,23 @@ const item: ItemSource = {
       options: [
         {
           correct: false,
-          label: "$$720\\text{ kg}$$, kerana kriolit merendahkan takat lebur",
+          label:
+            "$$0.508\\text{ g}$$, $$0.120\\text{ mol dm}^{-3}$$, dari P ke Q",
         },
         {
           correct: false,
           label:
-            "$$360\\text{ kg}$$, kerana kriolit menjadikan aluminium oksida pepejal mengkonduksi",
+            "$$0.254\\text{ g}$$, $$0.160\\text{ mol dm}^{-3}$$, dari Q ke P",
         },
         {
           correct: false,
-          label: "$$480\\text{ kg}$$, kerana kriolit merendahkan takat lebur",
+          label:
+            "$$0.0508\\text{ g}$$, $$0.192\\text{ mol dm}^{-3}$$, dari P ke Q",
         },
         {
           correct: true,
           label:
-            "$$360\\text{ kg}$$, kerana kriolit merendahkan takat lebur elektrolit",
+            "$$0.254\\text{ g}$$, $$0.160\\text{ mol dm}^{-3}$$, dari P ke Q",
         },
       ],
     },

@@ -1,26 +1,30 @@
-# Zurück heißt vom Produkt zum selben Gipfel klettern
+# Was der Katalysator vom Berg übrig lässt
 
-Der Katalysator senkt den Gipfel auf <InlineMath math="58\text{ kJ mol}^{-1}" /> über den Edukten, und die Produkte liegen <InlineMath math="98\text{ kJ mol}^{-1}" /> darunter. **Die Rückreaktion beginnt bei den Produkten, also klettert sie die ganzen <InlineMath math="58+98" />**. Die freigesetzte Wärme hängt nur davon ab, wie viel Wasserstoffperoxid zerfällt, nicht vom Katalysator.
+<InlineMath math="250\text{ kJ}" /> um <InlineMath math="60\%" /> gesenkt lässt <InlineMath math="100\text{ kJ}" /> Anstieg übrig. **Der Rückweg startet bei den Produkten, die <InlineMath math="746\text{ kJ}" /> tiefer liegen**, auf dem Katalysator sind es also <InlineMath math="100+746=846\text{ kJ}" />. Ein Katalysator senkt beide Richtungen um denselben Betrag, deshalb gehören die <InlineMath math="996\text{ kJ}" /> ohne Katalysator zum nackten Auspuffrohr, nicht zum Konverter.
 
 <Chart
-  title={<>Energieprofil des Zerfalls</>}
-  description={<>Bezogen auf die Edukte bei <InlineMath math="0" /> liegt der Gipfel ohne Katalysator bei <InlineMath math="75" />, mit Katalysator bei <InlineMath math="58" />, die Produkte bei <InlineMath math="-98\text{ kJ mol}^{-1}" />.</>}
-  categories={["Edukte", "Übergang", "Produkte"]}
+  title={<>Energieprofil mit und ohne Katalysator</>}
+  description={<>Beide Wege starten bei den Edukten und enden <InlineMath math="746\text{ kJ}" /> tiefer. Der katalysierte Gipfel liegt <InlineMath math="100\text{ kJ}" /> über den Edukten, der Rückweg von den Produkten verlangt also <InlineMath math="846\text{ kJ}" />.</>}
+  categories={["Edukte", "Früh", "Anstieg", "Gipfel", "Nach dem Gipfel", "Abstieg", "Spät", "Auslauf", "Produkte"]}
   series={[
-    { label: "Ohne Katalysator", mark: "line", values: [0, 75, -98] },
-    { label: "Mit Katalysator", mark: "line", values: [0, 58, -98] },
+    { label: "Ohne Katalysator", mark: "line", values: [0, 40, 150, 250, 100, -300, -600, -730, -746] },
+    { label: "Auf Platin und Rhodium", mark: "line", values: [0, 15, 60, 100, -60, -380, -640, -735, -746] },
   ]}
-  valueLabel="Energie (kJ mol⁻¹)"
+  valueLabel="Energie (kJ)"
 />
 
+# Welches Gas zuerst ausgeht
+
+Das Abgas bringt <InlineMath math="0{,}150\text{ mol}" /> Kohlenstoffmonoxid und <InlineMath math="0{,}100\text{ mol}" /> Stickstoffmonoxid, und die Gleichung verbraucht sie zwei zu zwei, also eins zu eins. **Das Stickstoffmonoxid ist zuerst weg**, nachdem je <InlineMath math="0{,}100\text{ mol}" /> reagiert haben. Das ist nur die halbe Gleichung, denn <InlineMath math="\Delta H" /> gehört zu zwei Mol Stickstoffmonoxid, die Wärme beträgt also <InlineMath math="37{,}3\text{ kJ}" />. Wer <InlineMath math="746" /> mit <InlineMath math="0{,}100" /> multipliziert, kommt auf <InlineMath math="74{,}6\text{ kJ}" /> und liest den Wert stillschweigend pro Mol Gas.
+
+# Was aus dem Auspuff kommt
+
+**Jedes Stickstoffmonoxid hat genau ein Kohlenstoffmonoxid mitgenommen**, also gehen <InlineMath math="0{,}0500\text{ mol}" /> Kohlenstoffmonoxid unverändert durch.
+
 <BlockMath math="\begin{aligned}
-E_a(\text{Rück})&=58+98=156\text{ kJ mol}^{-1}\\
-n(\text{H}_2\text{O}_2)&=0{,}100\times2{,}0=0{,}20\text{ mol}\\
-Q&=0{,}20\times98=19{,}6\text{ kJ}
+E_a(\text{Pt})&=0{,}40\times250=100\text{ kJ}\ \Rightarrow\ E_a(\leftarrow)=100+746=846\text{ kJ}\\
+n(\text{NO})&=\tfrac{2{,}40}{24}=0{,}100<n(\text{CO})=\tfrac{3{,}60}{24}=0{,}150\ \Rightarrow\ Q=\tfrac{0{,}100}{2}\times746=37{,}3\text{ kJ}\\
+V(\text{CO})&=(0{,}150-0{,}100)\times24=1{,}20\text{ dm}^3
 \end{aligned}" />
 
-# Warum die anderen Antworten falsch sind
-
-- <InlineMath math="17\text{ kJ mol}^{-1}" /> ist, um wie viel der Katalysator den Gipfel senkt, nicht die Aktivierungsenergie der Rückreaktion.
-- <InlineMath math="9{,}8\text{ kJ}" /> halbiert die Wärme, als gehörten <InlineMath math="98\text{ kJ}" /> zu zwei Mol. **Der Wert gilt pro Mol Wasserstoffperoxid**.
-- <InlineMath math="173\text{ kJ mol}^{-1}" /> nimmt den Gipfel ohne Katalysator, doch gefragt ist die katalysierte Reaktion.
+Paart man jedes Stickstoffmonoxid mit einem halben Kohlenstoffmonoxid, bleiben <InlineMath math="2{,}40\text{ dm}^3" />, ein Verhältnis, das in der Gleichung nicht steht.

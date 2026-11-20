@@ -12,19 +12,19 @@ const item: ItemSource = {
       options: [
         {
           correct: false,
-          label: "$$1.51\\times10^{20}$$ chains, $$6.0\\text{ dm}^3$$",
+          label: "$$7.50\\%$$, $$1.56\\text{ g}$$, $$3.96\\text{ g}$$",
         },
         {
           correct: true,
-          label: "$$1.51\\times10^{20}$$ chains, $$12.0\\text{ dm}^3$$",
+          label: "$$75.0\\%$$, $$15.6\\text{ g}$$, $$3.96\\text{ g}$$",
         },
         {
           correct: false,
-          label: "$$1.51\\times10^{23}$$ chains, $$12.0\\text{ dm}^3$$",
+          label: "$$75.0\\%$$, $$15.6\\text{ g}$$, $$39.6\\text{ g}$$",
         },
         {
           correct: false,
-          label: "$$1.51\\times10^{20}$$ chains, $$24.0\\text{ dm}^3$$",
+          label: "$$75.0\\%$$, $$15.6\\text{ g}$$, $$2.76\\text{ g}$$",
         },
       ],
     },
@@ -33,19 +33,19 @@ const item: ItemSource = {
       options: [
         {
           correct: false,
-          label: "$$1.51\\times10^{20}$$ rantai, $$6.0\\text{ dm}^3$$",
+          label: "$$7.50\\%$$, $$1.56\\text{ g}$$, $$3.96\\text{ g}$$",
         },
         {
           correct: true,
-          label: "$$1.51\\times10^{20}$$ rantai, $$12.0\\text{ dm}^3$$",
+          label: "$$75.0\\%$$, $$15.6\\text{ g}$$, $$3.96\\text{ g}$$",
         },
         {
           correct: false,
-          label: "$$1.51\\times10^{23}$$ rantai, $$12.0\\text{ dm}^3$$",
+          label: "$$75.0\\%$$, $$15.6\\text{ g}$$, $$39.6\\text{ g}$$",
         },
         {
           correct: false,
-          label: "$$1.51\\times10^{20}$$ rantai, $$24.0\\text{ dm}^3$$",
+          label: "$$75.0\\%$$, $$15.6\\text{ g}$$, $$2.76\\text{ g}$$",
         },
       ],
     },

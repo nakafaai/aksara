@@ -1,26 +1,29 @@
-# Kupfer(II)-Ionen beschleunigen die Reaktion, sind hier aber kein echter Katalysator
+# Die Rate an der Kurve ablesen
 
-Zink verdrängt Kupfer aus den Kupfer(II)-Ionen, und das Kupfer auf dem Zink **bildet ein winziges Element, das die Wasserstoffbildung beschleunigt**. Doch die Verdrängung verbraucht <InlineMath math="0{,}0010\text{ mol}" /> Zink, das die Säure nie erreicht, also liefert Kolben II weniger Wasserstoff.
+Nach <InlineMath math="40\text{ s}" /> stehen <InlineMath math="120\text{ cm}^3" /> im Kolbenprober, also **ist die mittlere Rate auf diesem Abschnitt <InlineMath math="3{,}00\text{ cm}^3\text{ s}^{-1}" />**. Verteilt man die <InlineMath math="192\text{ cm}^3" /> am Ende auf die <InlineMath math="120\text{ s}" />, die es dauerte, erhält man <InlineMath math="1{,}60" />, den Mittelwert des ganzen Laufs statt des Anfangs.
+
+# Die Säure ist vor dem Eisen verbraucht
+
+Eisen sind <InlineMath math="0{,}0100\text{ mol}" /> und Schwefelsäure <InlineMath math="0{,}00800\text{ mol}" />, und sie reagieren eins zu eins. **Die Kurve wird bei <InlineMath math="192\text{ cm}^3" /> flach, das sind <InlineMath math="0{,}00800\text{ mol}" /> Wasserstoff**, genau so viel wie Säure da war, also liegen noch <InlineMath math="0{,}00200\text{ mol}" /> Eisen, <InlineMath math="0{,}112\text{ g}" />, im Kolben. Wer alles Eisen für verbraucht hält, übersieht, dass der Graph vor den <InlineMath math="240\text{ cm}^3" /> stehen bleibt, die das Eisen liefern könnte.
 
 <Chart
-  title={<>Gesammelter Wasserstoff über die Zeit</>}
-  description={<>Kolben I steigt gleichmäßig auf <InlineMath math="240\text{ cm}^3" />. Kolben II steigt anfangs schneller und bleibt nach etwa <InlineMath math="80\text{ s}" /> bei <InlineMath math="216\text{ cm}^3" />.</>}
-  categories={["0", "20", "40", "60", "80", "100", "120"]}
+  title={<>Gelieferte Wasserstoffionen und gebildeter Wasserstoff</>}
+  description={<>In beiden Kolben ist zuerst die Säure verbraucht. Das Eisen hätte jedes Mal <InlineMath math="10{,}0\text{ mmol}" /> Wasserstoff liefern können.</>}
+  bars="apart"
+  categories={["Schwefelsäure", "Salzsäure"]}
   series={[
-    { label: "Kolben I", mark: "line", values: [0, 70, 125, 170, 205, 228, 240] },
-    { label: "Kolben II", mark: "line", values: [0, 110, 175, 205, 216, 216, 216] },
+    { label: "Gelieferte Wasserstoffionen", mark: "bar", values: [16.0, 8.0] },
+    { label: "Gebildeter Wasserstoff", mark: "bar", values: [8.0, 4.0] },
+    { label: "Wasserstoff aus dem ganzen Eisen", mark: "bar", values: [10.0, 10.0] },
   ]}
-  valueLabel="Wasserstoffvolumen (cm³)"
+  valueLabel="Stoffmenge (mmol)"
 />
 
+# Gleiche Konzentration, halber Wasserstoff
+
+Die Salzsäure enthält <InlineMath math="0{,}00800\text{ mol}" /> Wasserstoffionen, halb so viele wie die Schwefelsäure. **Zwei Moleküle Chlorwasserstoff ergeben ein Wasserstoffmolekül**, also liefert der zweite Kolben <InlineMath math="0{,}00400\text{ mol}" />, <InlineMath math="96{,}0\text{ cm}^3" />, und wieder bleibt Eisen übrig. Wer erneut <InlineMath math="192\text{ cm}^3" /> erwartet, setzt gleiche Konzentration mit gleicher Wasserstoffmenge gleich.
+
 <BlockMath math="\begin{aligned}
-n(\text{Zn})&=\tfrac{0{,}65}{65}=0{,}010\text{ mol}\Rightarrow V_{\text{I}}=0{,}010\times24{.}000=240\text{ cm}^3\\
-n(\text{Cu}^{2+})&=0{,}0050\times0{,}20=0{,}0010\text{ mol, die verbrauchen }0{,}0010\text{ mol Zn}\\
-V_{\text{II}}&=(0{,}010-0{,}0010)\times24{.}000=216\text{ cm}^3
+\bar r&=\tfrac{120\text{ cm}^3}{40\text{ s}}=3{,}00\text{ cm}^3\text{ s}^{-1},\quad n(\text{Fe})'=0{,}0100-0{,}00800=0{,}00200\text{ mol}=0{,}112\text{ g}\\
+n(\text{H}_2)&=\tfrac{0{,}00800}{2}=0{,}00400\text{ mol}\ \Rightarrow\ V=0{,}00400\times24\,000=96{,}0\text{ cm}^3
 \end{aligned}" />
-
-# Warum die anderen Antworten falsch sind
-
-- <InlineMath math="240\text{ cm}^3" /> für beide übersieht das Zink, das in die Verdrängung des Kupfers ging.
-- Ein langsameres II übersieht die Wirkung des Kupfers auf das Zink, die die Reaktion beschleunigt.
-- <InlineMath math="264\text{ cm}^3" /> stellt sich vor, auch Kupfer gäbe Wasserstoff. **Kupfer steht unter Wasserstoff und reagiert nicht mit der Säure**.

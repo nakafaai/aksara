@@ -1,26 +1,30 @@
-# Going back means climbing from the products to the same peak
+# What the catalyst leaves of the barrier
 
-The catalyst lowers the peak to <InlineMath math="58\text{ kJ mol}^{-1}" /> above the reactants, and the products lie <InlineMath math="98\text{ kJ mol}^{-1}" /> below them. **The reverse reaction starts at the products, so it climbs the whole <InlineMath math="58+98" />**. The heat released depends only on how much hydrogen peroxide decomposes, not on the catalyst.
+Lowering <InlineMath math="250\text{ kJ}" /> by <InlineMath math="60\%" /> leaves <InlineMath math="100\text{ kJ}" /> to climb. **The reverse climb starts from the products, which sit <InlineMath math="746\text{ kJ}" /> lower**, so on the catalyst it is <InlineMath math="100+746=846\text{ kJ}" />. A catalyst lowers both directions by the same amount, which is why the uncatalysed <InlineMath math="996\text{ kJ}" /> belongs to the bare exhaust pipe, not the converter.
 
 <Chart
-  title={<>Energy profile of the decomposition</>}
-  description={<>Relative to the reactants at <InlineMath math="0" />, the peak is <InlineMath math="75" /> without a catalyst and <InlineMath math="58" /> with one, and the products are at <InlineMath math="-98\text{ kJ mol}^{-1}" />.</>}
-  categories={["Reactants", "Transition", "Products"]}
+  title={<>Energy profile on and off the catalyst</>}
+  description={<>Both paths start at the reactants and end <InlineMath math="746\text{ kJ}" /> lower. The catalysed peak sits <InlineMath math="100\text{ kJ}" /> above the reactants, so climbing back from the products takes <InlineMath math="846\text{ kJ}" />.</>}
+  categories={["Reactants", "Early", "Climbing", "Peak", "Past the peak", "Falling", "Late", "Settling", "Products"]}
   series={[
-    { label: "Without catalyst", mark: "line", values: [0, 75, -98] },
-    { label: "With catalyst", mark: "line", values: [0, 58, -98] },
+    { label: "Without catalyst", mark: "line", values: [0, 40, 150, 250, 100, -300, -600, -730, -746] },
+    { label: "On platinum and rhodium", mark: "line", values: [0, 15, 60, 100, -60, -380, -640, -735, -746] },
   ]}
-  valueLabel="Energy (kJ mol⁻¹)"
+  valueLabel="Energy (kJ)"
 />
 
+# Which gas runs out
+
+The exhaust brings <InlineMath math="0.150\text{ mol}" /> of carbon monoxide and <InlineMath math="0.100\text{ mol}" /> of nitrogen monoxide, and the equation uses them two to two, that is one to one. **Nitrogen monoxide is used up first**, after <InlineMath math="0.100\text{ mol}" /> of each has reacted. That is only half of the equation as written, because <InlineMath math="\Delta H" /> belongs to two moles of nitrogen monoxide, so the heat is <InlineMath math="37.3\text{ kJ}" />. Multiplying <InlineMath math="746" /> by <InlineMath math="0.100" /> gives <InlineMath math="74.6\text{ kJ}" /> and quietly reads the value per mole of gas.
+
+# What comes out of the tailpipe
+
+**Every nitrogen monoxide took exactly one carbon monoxide with it**, so <InlineMath math="0.0500\text{ mol}" /> of carbon monoxide passes through untouched.
+
 <BlockMath math="\begin{aligned}
-E_a(\text{reverse})&=58+98=156\text{ kJ mol}^{-1}\\
-n(\text{H}_2\text{O}_2)&=0.100\times2.0=0.20\text{ mol}\\
-Q&=0.20\times98=19.6\text{ kJ}
+E_a(\text{Pt})&=0.40\times250=100\text{ kJ}\ \Rightarrow\ E_a(\leftarrow)=100+746=846\text{ kJ}\\
+n(\text{NO})&=\tfrac{2.40}{24}=0.100<n(\text{CO})=\tfrac{3.60}{24}=0.150\ \Rightarrow\ Q=\tfrac{0.100}{2}\times746=37.3\text{ kJ}\\
+V(\text{CO})&=(0.150-0.100)\times24=1.20\text{ dm}^3
 \end{aligned}" />
 
-# Why the other options are wrong
-
-- <InlineMath math="17\text{ kJ mol}^{-1}" /> is how much the catalyst lowers the peak, not the reverse activation energy.
-- <InlineMath math="9.8\text{ kJ}" /> halves the heat, as if <InlineMath math="98\text{ kJ}" /> belonged to two moles. **The value is per mole of hydrogen peroxide**.
-- <InlineMath math="173\text{ kJ mol}^{-1}" /> uses the peak without the catalyst, though the question asks about the catalysed reaction.
+Pairing each nitrogen monoxide with half a carbon monoxide leaves <InlineMath math="2.40\text{ dm}^3" />, a ratio the equation never wrote.

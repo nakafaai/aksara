@@ -1,27 +1,46 @@
-# Uji menunjuk tembaga(II) nitrat, residu menghitung airnya, dan zat pengering menyingkirkan air
+# Membaca uji ion satu per satu
 
-Cincin cokelat menunjukkan nitrat, dan larutan biru tua dalam amonia berlebih menunjukkan tembaga(II). Residu hitam adalah tembaga(II) oksida, <InlineMath math="0{,}0100\text{ mol}" />, jadi <InlineMath math="0{,}0100\text{ mol}" /> Y bermassa <InlineMath math="2{,}42\text{ g}" />. Kelebihan <InlineMath math="54" /> pada massa molarnya adalah tiga molekul air. **Kalsium klorida anhidrat menyerap air kristal**, jadi hanya nitrogen dioksida dan oksigen yang sampai ke pengukuran.
+Tidak ada gas dengan asam nitrat menyingkirkan karbonat, hasil jernih dengan perak nitrat menyingkirkan klorida, dan hasil jernih dengan barium klorida menyingkirkan sulfat. **Cincin cokelat adalah uji positif untuk nitrat**, dan endapan biru yang larut dalam amonia berlebih menjadi larutan biru tua adalah tembaga(II). Jadi Y adalah salah satu hidrat tembaga(II) nitrat.
+
+<Mermaid
+  title={<>Dari uji ion ke garamnya</>}
+  description={<>Tiga uji menyingkirkan ion, dua uji memastikan ion.</>}
+  chart={`
+    flowchart TD
+      N0["Tidak ada gas dengan asam nitrat: bukan karbonat"]
+      N1["Tidak ada endapan dengan perak nitrat: bukan klorida"]
+      N2["Tidak ada endapan dengan barium klorida: bukan sulfat"]
+      N3["Cincin cokelat: nitrat"]
+      N4["Endapan biru, biru tua dalam amonia berlebih: tembaga(II)"]
+      N5["Y adalah tembaga(II) nitrat hidrat"]
+      N0 --> N5
+      N1 --> N5
+      N2 --> N5
+      N3 --> N5
+      N4 --> N5
+  `}
+/>
+
+# Sisa hitam menimbang rumusnya
+
+Padatan hitam itu tembaga(II) oksida, <InlineMath math="0{,}80\div80=0{,}0100\text{ mol}" />. **Tiap atom tembaga di dalamnya berasal dari satu satuan rumus Y**, jadi <InlineMath math="2{,}42\text{ g}" /> adalah <InlineMath math="0{,}0100\text{ mol}" /> Y dan massa rumusnya <InlineMath math="242" />. Nitrat anhidrat hanya menyumbang <InlineMath math="188" />, dan sisa <InlineMath math="54" /> adalah tiga molekul air. Menulis rumus tanpa air membuat <InlineMath math="0{,}54\text{ g}" /> sampel tidak terjelaskan.
+
+# Gas mana yang sampai ke tabung ukur
+
+Pemanasan kuat menguraikan nitratnya, dan air kristal keluar sebagai uap. **Kalsium klorida menahan air itu**, jadi hanya <InlineMath math="0{,}0200\text{ mol}" /> nitrogen dioksida dan <InlineMath math="0{,}00500\text{ mol}" /> oksigen yang terukur, yaitu <InlineMath math="600\text{ cm}^3" />. Kalau uapnya ikut dihitung, hasilnya <InlineMath math="1320\text{ cm}^3" />. Kalau lupa bahwa satu molekul oksigen keluar untuk tiap dua atom tembaga, hasilnya <InlineMath math="480\text{ cm}^3" />.
 
 <Chart
-  title={<>Jumlah mol tiap hasil dari Y</>}
-  description={<>Pemanasan memberi <InlineMath math="0{,}0200\text{ mol}" /> nitrogen dioksida, <InlineMath math="0{,}0050\text{ mol}" /> oksigen, dan <InlineMath math="0{,}0300\text{ mol}" /> air yang diserap kalsium klorida.</>}
+  title={<>Ke mana massa Y pergi saat dipanaskan</>}
+  description={<>Keempat bagian itu kembali berjumlah <InlineMath math="2{,}42\text{ g}" />. Hanya dua yang terakhir lolos dari kalsium klorida.</>}
   bars="apart"
-  categories={["Nitrogen dioksida", "Oksigen", "Air (diserap)"]}
+  categories={["Air", "Tembaga(II) oksida", "Nitrogen dioksida", "Oksigen"]}
   series={[
-    { label: "Jumlah zat", mark: "bar", values: [0.0200, 0.0050, 0.0300] },
+    { label: "Massa (g)", mark: "bar", values: [0.54, 0.8, 0.92, 0.16] },
   ]}
-  valueLabel="Jumlah zat (mol)"
+  valueLabel="Massa (g)"
 />
 
 <BlockMath math="\begin{aligned}
-n(\text{CuO})&=\tfrac{0{,}80}{80}=0{,}0100\text{ mol}\Rightarrow M_r(\text{Y})=\tfrac{2{,}42}{0{,}0100}=242\\
-242-188&=54=3\times18\Rightarrow\text{Cu(NO}_3)_2\cdot3\text{H}_2\text{O}\\
-2\text{Cu(NO}_3)_2&\rightarrow2\text{CuO}+4\text{NO}_2+\text{O}_2\\
-V&=(0{,}0200+0{,}0050)\times24{.}000=600\text{ cm}^3
+n(\text{CuO})&=\tfrac{0{,}80}{80}=0{,}0100\text{ mol}\ \Rightarrow\ M=\tfrac{2{,}42}{0{,}0100}=242,\quad x=\tfrac{242-188}{18}=3\\
+2\text{Cu(NO}_3)_2&\rightarrow2\text{CuO}+4\text{NO}_2+\text{O}_2:\quad V=(0{,}0200+0{,}00500)\times24\,000=600\text{ cm}^3
 \end{aligned}" />
-
-# Kenapa pilihan lain salah
-
-- <InlineMath math="480\text{ cm}^3" /> hanya menghitung nitrogen dioksida. **Nitrat juga melepas satu molekul oksigen untuk tiap dua ion tembaga**.
-- <InlineMath math="1320\text{ cm}^3" /> ikut menghitung <InlineMath math="0{,}0300\text{ mol}" /> air, yang diserap kalsium klorida anhidrat sebelum pengukuran.
-- Tembaga(II) nitrat anhidrat hanya bermassa <InlineMath math="1{,}88\text{ g}" /> untuk <InlineMath math="0{,}0100\text{ mol}" /> tembaga, bukan <InlineMath math="2{,}42\text{ g}" />.

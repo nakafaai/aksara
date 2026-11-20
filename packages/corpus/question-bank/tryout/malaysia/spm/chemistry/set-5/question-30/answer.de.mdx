@@ -1,25 +1,33 @@
-# Gleiche Gasvolumen sind gleiche Stoffmengen, also benennt das Sauerstoffverhältnis das Alkan
+# Was jedes Rohr auffängt
 
-Jedes Volumen Alkan braucht <InlineMath math="130\div20{,}0=6{,}5" /> Volumen Sauerstoff. **Für <InlineMath math="\text{C}_n\text{H}_{2n+2}" /> ist der Sauerstoffbedarf <InlineMath math="\tfrac{3n+1}{2}" />**, und das ist <InlineMath math="6{,}5" /> für <InlineMath math="n=4" />: Butan, <InlineMath math="\text{C}_4\text{H}_{10}" />. Seine <InlineMath math="2{,}90\text{ g}" /> sind <InlineMath math="0{,}0500\text{ mol}" />, und die zehn Wasserstoffatome jedes Moleküls ergeben fünf Wassermoleküle.
+**Das Calciumchloridrohr kommt zuerst, weil es nur Wasser aufnimmt**. Natronkalk nimmt Wasser und Kohlenstoffdioxid auf, also ließen sich die beiden Zunahmen in umgekehrter Reihenfolge nicht trennen. Das erste Rohr nahm <InlineMath math="1{,}08\text{ g}" /> Wasser auf, <InlineMath math="0{,}0600\text{ mol}" />, die <InlineMath math="0{,}120\text{ mol}" /> Wasserstoffatome tragen. Der Natronkalk nahm <InlineMath math="2{,}20\text{ g}" /> Kohlenstoffdioxid auf, <InlineMath math="0{,}0500\text{ mol}" /> Kohlenstoff.
 
-<Chart
-  title={<>Sauerstoffbedarf je Alkanmolekül</>}
-  description={<>Der Sauerstoff je Molekül steigt um <InlineMath math="1{,}5" /> je Kohlenstoffatom, und nur Butan braucht <InlineMath math="6{,}5" />.</>}
-  bars="apart"
-  categories={["Methan", "Ethan", "Propan", "Butan", "Pentan"]}
-  series={[
-    { label: "Sauerstoffmoleküle", mark: "bar", values: [2, 3.5, 5, 6.5, 8] },
-  ]}
-  valueLabel="Sauerstoffmoleküle"
+<Mermaid
+  title={<>Die Absorptionsrohre lesen</>}
+  description={<>Zuerst wird Wasser aufgefangen, dann Kohlenstoffdioxid, und die Masse, die kein Rohr festhält, ist der Sauerstoff in X.</>}
+  chart={`
+    flowchart LR
+      N0["0,880 g X verbrannt"]
+      N1["Calciumchlorid: +1,08 g H₂O, 0,120 mol H"]
+      N2["Natronkalk: +2,20 g CO₂, 0,0500 mol C"]
+      N3["O aus der Differenz: 0,160 g, 0,0100 mol"]
+      N4["C₅H₁₂O, Mr 88"]
+      N0 --> N1
+      N1 --> N2
+      N2 --> N3
+      N3 --> N4
+  `}
 />
 
+# Die Masse, die niemand gewogen hat, ist Sauerstoff
+
+Kohlenstoff und Wasserstoff machen <InlineMath math="0{,}600+0{,}120=0{,}720\text{ g}" /> der <InlineMath math="0{,}880\text{ g}" /> aus. Die übrigen <InlineMath math="0{,}160\text{ g}" /> **müssen Sauerstoff in X sein**, <InlineMath math="0{,}0100\text{ mol}" />, das ergibt das Verhältnis <InlineMath math="5:12:1" /> und die Formel <InlineMath math="\text{C}_5\text{H}_{12}\text{O}" />, passend zu <InlineMath math="M_r=88" />. Wer bei Kohlenstoff und Wasserstoff stehen bleibt, landet bei <InlineMath math="\text{C}_5\text{H}_{12}" />, dessen <InlineMath math="M_r=72" /> nicht passt, und Pentan würde mit Natrium nie Wasserstoff geben. Mit fünf Kohlenstoffatomen in gerader Kette und der Hydroxygruppe am Ende ist X Pentan-1-ol.
+
+# Wie viel Sauerstoff aus der Flasche kam
+
+Die Produkte enthalten <InlineMath math="2\times0{,}0500+0{,}0600=0{,}160\text{ mol}" /> Sauerstoffatome, aber **eines von sechzehn steckte schon im Alkohol**. Die Flasche lieferte die übrigen <InlineMath math="0{,}150\text{ mol}" /> Atome, also <InlineMath math="0{,}0750\text{ mol}" /> Sauerstoffmoleküle, <InlineMath math="1{,}80\text{ dm}^3" />. Nimmt man allen <InlineMath math="0{,}160\text{ mol}" /> Produktsauerstoff aus der Flasche, kommen <InlineMath math="1{,}92\text{ dm}^3" /> heraus, und zählt man die Atome als Moleküle, sind es <InlineMath math="3{,}60\text{ dm}^3" />, doppelt zu viel.
+
 <BlockMath math="\begin{aligned}
-\tfrac{3n+1}{2}&=\tfrac{130}{20{,}0}=6{,}5\Rightarrow n=4\ (\text{C}_4\text{H}_{10},\ M_r=58)\\
-m(\text{H}_2\text{O})&=5\times\tfrac{2{,}90}{58}\times18=4{,}50\text{ g}
+n(\text{C})&=\tfrac{2{,}20}{44}=0{,}0500,\quad n(\text{H})=2\times\tfrac{1{,}08}{18}=0{,}120,\quad n(\text{O})=\tfrac{0{,}880-0{,}600-0{,}120}{16}=0{,}0100\\
+n(\text{O}_2)&=\tfrac{2\times0{,}0500+0{,}0600-0{,}0100}{2}=0{,}0750\text{ mol}\ \Rightarrow\ V=0{,}0750\times24=1{,}80\text{ dm}^3
 \end{aligned}" />
-
-# Warum die anderen Antworten falsch sind
-
-- Propan braucht nur <InlineMath math="5" /> Sauerstoffmoleküle je Molekül. **Das Verhältnis <InlineMath math="6{,}5" /> passt zu Butan**.
-- <InlineMath math="3{,}60\text{ g}" /> gibt vier Wassermoleküle je Molekül wie bei <InlineMath math="\text{C}_4\text{H}_8" />, doch Butan hat zehn Wasserstoffatome.
-- Pentan braucht <InlineMath math="8" /> Sauerstoffmoleküle je Molekül, mehr als die gemessenen <InlineMath math="6{,}5" />.

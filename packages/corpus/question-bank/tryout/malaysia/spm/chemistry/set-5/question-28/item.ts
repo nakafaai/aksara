@@ -13,22 +13,22 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "$$0.10\\text{ mol}$$ of trichloromethane only, and $$1.0\\text{ mol dm}^{-3}$$",
+            "$$10.0\\%$$, $$0.0620\\text{ g}$$, $$0.0200\\text{ mol dm}^{-3}$$",
         },
         {
           correct: false,
           label:
-            "$$0.050\\text{ mol}$$ of each, and $$2.0\\text{ mol dm}^{-3}$$",
+            "$$4.00\\%$$, $$0.0248\\text{ g}$$, $$0.0200\\text{ mol dm}^{-3}$$",
         },
         {
           correct: true,
           label:
-            "$$0.050\\text{ mol}$$ of each, and $$1.0\\text{ mol dm}^{-3}$$",
+            "$$25.0\\%$$, $$0.155\\text{ g}$$, $$0.0200\\text{ mol dm}^{-3}$$",
         },
         {
           correct: false,
           label:
-            "$$0.025\\text{ mol}$$ of dichloromethane and $$0.075\\text{ mol}$$ of trichloromethane, and $$1.0\\text{ mol dm}^{-3}$$",
+            "$$25.0\\%$$, $$0.155\\text{ g}$$, $$0.00800\\text{ mol dm}^{-3}$$",
         },
       ],
     },
@@ -38,22 +38,22 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "$$0.10\\text{ mol}$$ triklorometana sahaja, dan $$1.0\\text{ mol dm}^{-3}$$",
+            "$$10.0\\%$$, $$0.0620\\text{ g}$$, $$0.0200\\text{ mol dm}^{-3}$$",
         },
         {
           correct: false,
           label:
-            "$$0.050\\text{ mol}$$ setiap satu, dan $$2.0\\text{ mol dm}^{-3}$$",
+            "$$4.00\\%$$, $$0.0248\\text{ g}$$, $$0.0200\\text{ mol dm}^{-3}$$",
         },
         {
           correct: true,
           label:
-            "$$0.050\\text{ mol}$$ setiap satu, dan $$1.0\\text{ mol dm}^{-3}$$",
+            "$$25.0\\%$$, $$0.155\\text{ g}$$, $$0.0200\\text{ mol dm}^{-3}$$",
         },
         {
           correct: false,
           label:
-            "$$0.025\\text{ mol}$$ diklorometana dan $$0.075\\text{ mol}$$ triklorometana, dan $$1.0\\text{ mol dm}^{-3}$$",
+            "$$25.0\\%$$, $$0.155\\text{ g}$$, $$0.00800\\text{ mol dm}^{-3}$$",
         },
       ],
     },

@@ -1,26 +1,27 @@
-# Das Wasser ist zuerst verbraucht, also bestimmt es die Wärme, und nur ein Teil davon erreicht die Suppe
+# Der Wasserbeutel ist zuerst leer
 
-Die Gleichung verbraucht beide im Verhältnis eins zu eins. **Es gibt weniger Wasser als Calciumoxid, also bestimmt das Wasser, wie viel reagiert**, und ein Viertel des Calciumoxids bleibt übrig. Von der Wärme aus <InlineMath math="0{,}750\text{ mol}" /> erwärmen sieben Zehntel die Suppe.
+Die Dose enthält <InlineMath math="1{,}00\text{ mol}" /> Calciumoxid, aber nur <InlineMath math="0{,}750\text{ mol}" /> Wasser, und beide reagieren eins zu eins. **Das Wasser begrenzt die Reaktion**, ein Viertel des Oxids bleibt als trockenes Pulver liegen. Rechnet man mit den <InlineMath math="1{,}00\text{ mol}" /> Oxid, kommen <InlineMath math="65{,}0\text{ kJ}" /> ins Spiel und nach dem Verlust die Option mit <InlineMath math="45{,}5^\circ\text{C}" />.
+
+# Sieben Zehntel erreichen die Suppe
+
+Die Reaktion setzt <InlineMath math="0{,}750\times65=48{,}75\text{ kJ}" /> frei, aber **nur <InlineMath math="70\%" /> davon landen in der Suppe**: <InlineMath math="34{,}1\text{ kJ}" />. Lässt du diesen Abzug weg, scheint die Suppe um <InlineMath math="48{,}8^\circ\text{C}" /> wärmer zu werden.
 
 <Chart
-  title={<>Stoffmengen der zwei Edukte</>}
-  description={<>Die Dose enthält <InlineMath math="1{,}00\text{ mol}" /> Calciumoxid, aber nur <InlineMath math="0{,}750\text{ mol}" /> Wasser.</>}
+  title={<>Wohin die Wärme in der Dose geht</>}
+  description={<>Die Reaktion setzt <InlineMath math="48{,}75\text{ kJ}" /> frei. Sieben Zehntel erreichen die Suppe, der Rest wärmt Dose und Luft.</>}
   bars="apart"
-  categories={["Calciumoxid", "Wasser"]}
+  categories={["Freigesetzt", "Erreicht die Suppe", "Verloren an Dose und Luft"]}
   series={[
-    { label: "Stoffmenge", mark: "bar", values: [1.00, 0.750] },
+    { label: "Wärme", mark: "bar", values: [48.75, 34.13, 14.63] },
   ]}
-  valueLabel="Stoffmenge (mol)"
+  valueLabel="Wärme (kJ)"
 />
 
+# Aus Joule werden Grad
+
+Jetzt teilst du durch das, was sich wirklich erwärmt. **In den Nenner gehören nur die <InlineMath math="250\text{ g}" /> Suppe**, mit der Wärmekapazität der Suppe, <InlineMath math="4{,}0\text{ J g}^{-1}\,^\circ\text{C}^{-1}" />, nicht der von Wasser.
+
 <BlockMath math="\begin{aligned}
-n(\text{CaO})&=\tfrac{56{,}0}{56}=1{,}00\text{ mol},\quad n(\text{H}_2\text{O})=\tfrac{13{,}5}{18}=0{,}750\text{ mol}\\
-Q&=0{,}70\times0{,}750\times65{.}000=34{.}100\text{ J}\\
-\Delta\theta&=\tfrac{34{.}100}{250\times4{,}0}=34{,}1^\circ\text{C}
+n(\text{H}_2\text{O})&=\tfrac{13{,}5}{18}=0{,}750\text{ mol}<n(\text{CaO})=\tfrac{56{,}0}{56}=1{,}00\text{ mol}\\
+Q&=0{,}70\times0{,}750\times65=34{,}1\text{ kJ},\quad \Delta T=\tfrac{34\,125}{250\times4{,}0}=34{,}1^\circ\text{C}
 \end{aligned}" />
-
-# Warum die anderen Antworten falsch sind
-
-- <InlineMath math="45{,}5^\circ\text{C}" /> lässt alle <InlineMath math="1{,}00\text{ mol}" /> Calciumoxid reagieren. **Es sind nur <InlineMath math="0{,}750\text{ mol}" /> Wasser zum Reagieren da**.
-- <InlineMath math="48{,}8^\circ\text{C}" /> rechnet richtig mit dem Wasser, gibt aber alle Wärme statt <InlineMath math="70\%" /> an die Suppe.
-- <InlineMath math="65{,}0^\circ\text{C}" /> lässt alles Calciumoxid reagieren und verliert keine Wärme.

@@ -12,22 +12,19 @@ const item: ItemSource = {
       options: [
         {
           correct: false,
-          label: "Ethanoic acid, giving $$0.55\\text{ g}$$ of methyl ethanoate",
+          label: "$$x=2$$, P, Q and R, $$92.0\\ \\mu\\text{g}$$",
         },
         {
           correct: true,
-          label:
-            "Propanoic acid, giving $$0.66\\text{ g}$$ of methyl propanoate",
+          label: "$$x=4$$, Q and R, $$46.0\\ \\mu\\text{g}$$",
         },
         {
           correct: false,
-          label:
-            "Propanoic acid, giving $$0.66\\text{ g}$$ of propyl methanoate",
+          label: "$$x=4$$, none of them, $$23.0\\ \\mu\\text{g}$$",
         },
         {
           correct: false,
-          label:
-            "Propanoic acid, giving $$0.88\\text{ g}$$ of methyl propanoate",
+          label: "$$x=4$$, Q and R, $$60.0\\ \\mu\\text{g}$$",
         },
       ],
     },
@@ -36,22 +33,19 @@ const item: ItemSource = {
       options: [
         {
           correct: false,
-          label: "Asid etanoik, menghasilkan $$0.55\\text{ g}$$ metil etanoat",
+          label: "$$x=2$$, P, Q dan R, $$92.0\\ \\mu\\text{g}$$",
         },
         {
           correct: true,
-          label:
-            "Asid propanoik, menghasilkan $$0.66\\text{ g}$$ metil propanoat",
+          label: "$$x=4$$, Q dan R, $$46.0\\ \\mu\\text{g}$$",
         },
         {
           correct: false,
-          label:
-            "Asid propanoik, menghasilkan $$0.66\\text{ g}$$ propil metanoat",
+          label: "$$x=4$$, tiada seorang pun, $$23.0\\ \\mu\\text{g}$$",
         },
         {
           correct: false,
-          label:
-            "Asid propanoik, menghasilkan $$0.88\\text{ g}$$ metil propanoat",
+          label: "$$x=4$$, Q dan R, $$60.0\\ \\mu\\text{g}$$",
         },
       ],
     },

@@ -1,30 +1,28 @@
-# The volume's uncertainty, not the mass's, decides what you can claim
+# Two readings, so twice the error
 
-The metal's volume is the rise in level, <InlineMath math="31.0-25.0=6.0\text{ cm}^3" />. Each reading can be off by <InlineMath math="0.5\text{ cm}^3" />, so **the rise carries both errors**, <InlineMath math="\pm 1.0\text{ cm}^3" />, which is <InlineMath math="16.7\%" /> of it. The balance adds only <InlineMath math="0.02\%" />.
+The cylinder never measures the volume of the metal directly. It measures two water levels, and **the volume is their difference, so the uncertainty of both readings adds**. In Measurement I that is <InlineMath math="6.0\pm1.0\text{ cm}^3" />, a <InlineMath math="16.7\%" /> uncertainty, while the <InlineMath math="\pm0.01\text{ g}" /> on the mass barely registers. The density <InlineMath math="9.05\text{ g cm}^{-3}" /> could really be anywhere from <InlineMath math="7.54" /> to <InlineMath math="10.56\text{ g cm}^{-3}" />, wide enough for iron, nickel, copper and silver.
+
+# Why the second piece is worth a cruder balance
+
+Measurement II uses a rougher balance, yet it wins. The volume grows to <InlineMath math="15.0\pm1.0\text{ cm}^3" />, only <InlineMath math="6.7\%" />, and the <InlineMath math="\pm0.5\text{ g}" /> on <InlineMath math="135.8\text{ g}" /> adds just <InlineMath math="0.37\%" />. For a quotient such as mass over volume **the percentage uncertainties add**, giving <InlineMath math="7.0\%" />. Charging only one water reading, as if the starting level were exact, halves the volume part and lands on <InlineMath math="3.7\%" />.
+
+<BlockMath math="\begin{aligned}
+\rho&=\tfrac{135.8}{65.0-50.0}=9.05\text{ g cm}^{-3},\quad \tfrac{1.0}{15.0}\times100+\tfrac{0.5}{135.8}\times100=6.67\%+0.37\%=7.0\%\\
+\rho&=9.05\pm0.64\text{ g cm}^{-3}:\quad 8.42\le\rho\le9.69
+\end{aligned}" />
+
+# Which bars fall inside the window
 
 <Chart
-  title={<>Measured range</>}
-  description={<>The measured density runs from <InlineMath math="7.54\text{ g cm}^{-3}" /> to <InlineMath math="10.56\text{ g cm}^{-3}" />. Iron, copper and silver lie inside it, zinc below it.</>}
-  bars="apart"
-  categories={["Zinc", "Iron", "Copper", "Silver"]}
+  title={<>Metal densities against the second window</>}
+  description={<>The two flat lines mark the lowest and highest density Measurement II allows. Only nickel and copper sit between them.</>}
+  categories={["Zinc", "Iron", "Nickel", "Copper", "Silver", "Lead"]}
   series={[
-    { label: "Density", mark: "bar", values: [7.14, 7.87, 8.96, 10.5] },
-    { label: "Lowest", mark: "line", values: [7.54, 7.54, 7.54, 7.54] },
-    { label: "Highest", mark: "line", values: [10.56, 10.56, 10.56, 10.56] },
+    { label: "Metal density", mark: "line", values: [7.14, 7.87, 8.91, 8.96, 10.5, 11.3] },
+    { label: "Lowest allowed", mark: "line", values: [8.42, 8.42, 8.42, 8.42, 8.42, 8.42] },
+    { label: "Highest allowed", mark: "line", values: [9.69, 9.69, 9.69, 9.69, 9.69, 9.69] },
   ]}
   valueLabel="Density (g cm⁻³)"
 />
 
-<BlockMath math="\begin{aligned}
-\rho&=\frac{54.32}{6.0}=9.05\text{ g cm}^{-3}\\
-\frac{1.0}{6.0}\times100\%&=16.7\%\\
-9.05\pm16.7\%&\Rightarrow 7.54\text{ to }10.56\text{ g cm}^{-3}
-\end{aligned}" />
-
-So the cylinder cannot tell the three metals apart. A density bottle or a burette would.
-
-# Why the other options are wrong
-
-- <InlineMath math="8.3\%" /> counts one reading of the cylinder, though the rise needs two.
-- Copper alone ignores the uncertainty. **Any density from <InlineMath math="7.54" /> to <InlineMath math="10.56\text{ g cm}^{-3}" /> fits the data**.
-- <InlineMath math="1.75\text{ g cm}^{-3}" /> divides by the final reading, <InlineMath math="31.0\text{ cm}^3" />, which includes the water.
+Only two bars land between <InlineMath math="8.42" /> and <InlineMath math="9.69\text{ g cm}^{-3}" />: nickel at <InlineMath math="8.91" /> and copper at <InlineMath math="8.96" />. **Their densities differ by less than a tenth of the uncertainty**, so this method cannot tell them apart. Picking copper because <InlineMath math="9.05" /> sits nearest to it reads more into the number than the measurement allows. Keeping the four metals from Measurement I throws away the better measurement, since the block must fit both windows at once.

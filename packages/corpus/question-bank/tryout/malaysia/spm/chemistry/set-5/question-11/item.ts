@@ -12,21 +12,23 @@ const item: ItemSource = {
       options: [
         {
           correct: false,
-          label: "It has $$6$$ bonding pairs and $$10$$ lone pairs",
+          label:
+            "$$1.70\\text{ g}$$, $$2.41\\times10^{23}$$, $$\\tfrac{2}{7}$$",
         },
         {
           correct: false,
-          label: "It has $$7$$ bonding pairs and $$10$$ lone pairs",
+          label:
+            "$$3.40\\text{ g}$$, $$4.33\\times10^{23}$$, $$\\tfrac{1}{3}$$",
         },
         {
           correct: true,
           label:
-            "It has $$7$$ bonding pairs and $$9$$ lone pairs, and both electrons of the N–B bond come from nitrogen",
+            "$$1.70\\text{ g}$$, $$2.17\\times10^{23}$$, $$\\tfrac{1}{3}$$",
         },
         {
           correct: false,
           label:
-            "It has $$7$$ bonding pairs and $$9$$ lone pairs, and both electrons of the N–B bond come from boron",
+            "$$1.70\\text{ g}$$, $$2.17\\times10^{23}$$, $$\\tfrac{7}{16}$$",
         },
       ],
     },
@@ -36,22 +38,22 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Ia mempunyai $$6$$ pasangan elektron ikatan dan $$10$$ pasangan elektron bebas",
+            "$$1.70\\text{ g}$$, $$2.41\\times10^{23}$$, $$\\tfrac{2}{7}$$",
         },
         {
           correct: false,
           label:
-            "Ia mempunyai $$7$$ pasangan elektron ikatan dan $$10$$ pasangan elektron bebas",
+            "$$3.40\\text{ g}$$, $$4.33\\times10^{23}$$, $$\\tfrac{1}{3}$$",
         },
         {
           correct: true,
           label:
-            "Ia mempunyai $$7$$ pasangan elektron ikatan dan $$9$$ pasangan elektron bebas, dan kedua-dua elektron ikatan N–B datang daripada nitrogen",
+            "$$1.70\\text{ g}$$, $$2.17\\times10^{23}$$, $$\\tfrac{1}{3}$$",
         },
         {
           correct: false,
           label:
-            "Ia mempunyai $$7$$ pasangan elektron ikatan dan $$9$$ pasangan elektron bebas, dan kedua-dua elektron ikatan N–B datang daripada boron",
+            "$$1.70\\text{ g}$$, $$2.17\\times10^{23}$$, $$\\tfrac{7}{16}$$",
         },
       ],
     },

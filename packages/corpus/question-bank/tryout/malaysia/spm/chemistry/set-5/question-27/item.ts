@@ -12,19 +12,19 @@ const item: ItemSource = {
       options: [
         {
           correct: false,
-          label: "$$3$$ alcohols, $$2$$ of them oxidised to an acid",
+          label: "$$11.6\\text{ g}$$, $$0\\text{ g}$$, $$9$$ loaves",
         },
         {
           correct: false,
-          label: "$$4$$ alcohols, all $$4$$ oxidised to an acid",
+          label: "$$9.30\\text{ g}$$, $$5.55\\text{ g}$$, $$7$$ loaves",
         },
         {
           correct: false,
-          label: "$$4$$ alcohols, $$3$$ of them oxidised to an acid",
+          label: "$$9.30\\text{ g}$$, $$1.85\\text{ g}$$, $$8$$ loaves",
         },
         {
           correct: true,
-          label: "$$4$$ alcohols, $$2$$ of them oxidised to an acid",
+          label: "$$9.30\\text{ g}$$, $$1.85\\text{ g}$$, $$7$$ loaves",
         },
       ],
     },
@@ -33,19 +33,19 @@ const item: ItemSource = {
       options: [
         {
           correct: false,
-          label: "$$3$$ alkohol, $$2$$ daripadanya dioksidakan kepada asid",
+          label: "$$11.6\\text{ g}$$, $$0\\text{ g}$$, $$9$$ buku",
         },
         {
           correct: false,
-          label: "$$4$$ alkohol, kesemua $$4$$ dioksidakan kepada asid",
+          label: "$$9.30\\text{ g}$$, $$5.55\\text{ g}$$, $$7$$ buku",
         },
         {
           correct: false,
-          label: "$$4$$ alkohol, $$3$$ daripadanya dioksidakan kepada asid",
+          label: "$$9.30\\text{ g}$$, $$1.85\\text{ g}$$, $$8$$ buku",
         },
         {
           correct: true,
-          label: "$$4$$ alkohol, $$2$$ daripadanya dioksidakan kepada asid",
+          label: "$$9.30\\text{ g}$$, $$1.85\\text{ g}$$, $$7$$ buku",
         },
       ],
     },

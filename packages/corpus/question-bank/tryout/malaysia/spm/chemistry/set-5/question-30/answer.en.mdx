@@ -1,25 +1,33 @@
-# Equal gas volumes are equal moles, so the oxygen ratio names the alkane
+# What each tube catches
 
-Each volume of alkane needs <InlineMath math="130\div20.0=6.5" /> volumes of oxygen. **For <InlineMath math="\text{C}_n\text{H}_{2n+2}" /> the oxygen needed is <InlineMath math="\tfrac{3n+1}{2}" />**, which is <InlineMath math="6.5" /> when <InlineMath math="n=4" />: butane, <InlineMath math="\text{C}_4\text{H}_{10}" />. Its <InlineMath math="2.90\text{ g}" /> is <InlineMath math="0.0500\text{ mol}" />, and each molecule's ten hydrogen atoms make five water molecules.
+**The calcium chloride tube comes first because it takes only water**. Soda lime absorbs water as well as carbon dioxide, so in the other order the two gains could not be told apart. The first tube gained <InlineMath math="1.08\text{ g}" /> of water, <InlineMath math="0.0600\text{ mol}" />, which carries <InlineMath math="0.120\text{ mol}" /> of hydrogen atoms. The soda lime gained <InlineMath math="2.20\text{ g}" /> of carbon dioxide, <InlineMath math="0.0500\text{ mol}" /> of carbon.
 
-<Chart
-  title={<>Oxygen needed per alkane molecule</>}
-  description={<>The oxygen per molecule rises by <InlineMath math="1.5" /> for each carbon atom, and only butane needs <InlineMath math="6.5" />.</>}
-  bars="apart"
-  categories={["Methane", "Ethane", "Propane", "Butane", "Pentane"]}
-  series={[
-    { label: "Oxygen molecules", mark: "bar", values: [2, 3.5, 5, 6.5, 8] },
-  ]}
-  valueLabel="Oxygen molecules"
+<Mermaid
+  title={<>Reading the absorption tubes</>}
+  description={<>Water is caught first, carbon dioxide second, and the mass that neither tube holds is the oxygen inside X.</>}
+  chart={`
+    flowchart LR
+      N0["0.880 g of X burnt"]
+      N1["Calcium chloride: +1.08 g H₂O, 0.120 mol H"]
+      N2["Soda lime: +2.20 g CO₂, 0.0500 mol C"]
+      N3["O by difference: 0.160 g, 0.0100 mol"]
+      N4["C₅H₁₂O, Mr 88"]
+      N0 --> N1
+      N1 --> N2
+      N2 --> N3
+      N3 --> N4
+  `}
 />
 
+# The mass nobody weighed is oxygen
+
+Carbon and hydrogen account for <InlineMath math="0.600+0.120=0.720\text{ g}" /> of the <InlineMath math="0.880\text{ g}" />. The other <InlineMath math="0.160\text{ g}" /> **has to be oxygen inside X**, <InlineMath math="0.0100\text{ mol}" />, giving the ratio <InlineMath math="5:12:1" /> and the formula <InlineMath math="\text{C}_5\text{H}_{12}\text{O}" />, which matches <InlineMath math="M_r=88" />. Carbon and hydrogen alone would suggest <InlineMath math="\text{C}_5\text{H}_{12}" />, whose <InlineMath math="M_r=72" /> does not fit, and pentane would never give hydrogen with sodium. With five carbons in a straight chain and the hydroxyl group at the end, X is pentan-1-ol.
+
+# How much oxygen came from the cylinder
+
+The products hold <InlineMath math="2\times0.0500+0.0600=0.160\text{ mol}" /> of oxygen atoms, but **one in every sixteen was already in the alcohol**. The cylinder supplied the other <InlineMath math="0.150\text{ mol}" /> of atoms, which is <InlineMath math="0.0750\text{ mol}" /> of oxygen molecules, <InlineMath math="1.80\text{ dm}^3" />. If the cylinder had supplied all <InlineMath math="0.160\text{ mol}" /> of product oxygen, the answer would be <InlineMath math="1.92\text{ dm}^3" />, and counting the atoms as molecules gives <InlineMath math="3.60\text{ dm}^3" />, twice too much.
+
 <BlockMath math="\begin{aligned}
-\tfrac{3n+1}{2}&=\tfrac{130}{20.0}=6.5\Rightarrow n=4\ (\text{C}_4\text{H}_{10},\ M_r=58)\\
-m(\text{H}_2\text{O})&=5\times\tfrac{2.90}{58}\times18=4.50\text{ g}
+n(\text{C})&=\tfrac{2.20}{44}=0.0500,\quad n(\text{H})=2\times\tfrac{1.08}{18}=0.120,\quad n(\text{O})=\tfrac{0.880-0.600-0.120}{16}=0.0100\\
+n(\text{O}_2)&=\tfrac{2\times0.0500+0.0600-0.0100}{2}=0.0750\text{ mol}\ \Rightarrow\ V=0.0750\times24=1.80\text{ dm}^3
 \end{aligned}" />
-
-# Why the other options are wrong
-
-- Propane needs only <InlineMath math="5" /> oxygen molecules per molecule. **The ratio <InlineMath math="6.5" /> fits butane**.
-- <InlineMath math="3.60\text{ g}" /> gives four water molecules per molecule, as for <InlineMath math="\text{C}_4\text{H}_8" />, but butane has ten hydrogen atoms.
-- Pentane needs <InlineMath math="8" /> oxygen molecules per molecule, more than the <InlineMath math="6.5" /> measured.

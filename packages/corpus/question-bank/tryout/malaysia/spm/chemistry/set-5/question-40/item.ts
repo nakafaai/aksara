@@ -10,16 +10,23 @@ const item: ItemSource = {
     en: {
       kind: "choice",
       options: [
-        { correct: true, label: "$$0.965\\text{ g}$$, $$100$$ times more" },
         {
-          correct: false,
-          label: "$$0.965\\text{ g}$$, $$10\\,000$$ times more",
+          correct: true,
+          label: "$$0.965\\text{ g}$$, $$12.3\\%$$, $$96.5\\text{ g}$$",
         },
         {
           correct: false,
-          label: "$$9.65\\times10^{-7}\\text{ g}$$, $$100$$ times more",
+          label: "$$0.965\\text{ g}$$, $$12.3\\%$$, $$9.65\\text{ kg}$$",
         },
-        { correct: false, label: "$$5.79\\text{ g}$$, $$100$$ times more" },
+        {
+          correct: false,
+          label:
+            "$$9.65\\times10^{-7}\\text{ g}$$, $$12.3\\%$$, $$9.65\\times10^{-5}\\text{ g}$$",
+        },
+        {
+          correct: false,
+          label: "$$0.965\\text{ g}$$, $$2.04\\%$$, $$96.5\\text{ g}$$",
+        },
       ],
     },
     ms: {
@@ -27,19 +34,20 @@ const item: ItemSource = {
       options: [
         {
           correct: true,
-          label: "$$0.965\\text{ g}$$, $$100$$ kali lebih banyak",
+          label: "$$0.965\\text{ g}$$, $$12.3\\%$$, $$96.5\\text{ g}$$",
         },
         {
           correct: false,
-          label: "$$0.965\\text{ g}$$, $$10\\,000$$ kali lebih banyak",
+          label: "$$0.965\\text{ g}$$, $$12.3\\%$$, $$9.65\\text{ kg}$$",
         },
         {
           correct: false,
-          label: "$$9.65\\times10^{-7}\\text{ g}$$, $$100$$ kali lebih banyak",
+          label:
+            "$$9.65\\times10^{-7}\\text{ g}$$, $$12.3\\%$$, $$9.65\\times10^{-5}\\text{ g}$$",
         },
         {
           correct: false,
-          label: "$$5.79\\text{ g}$$, $$100$$ kali lebih banyak",
+          label: "$$0.965\\text{ g}$$, $$2.04\\%$$, $$96.5\\text{ g}$$",
         },
       ],
     },

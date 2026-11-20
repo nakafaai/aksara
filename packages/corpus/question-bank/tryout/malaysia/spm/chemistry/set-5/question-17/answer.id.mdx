@@ -1,21 +1,31 @@
-# Kenaikan suhu memberi perubahan entalpi, dan cairan hangat menyusut saat mendingin
+# Membaca buret dua kali
 
-Airnya menghangat, jadi pelarutan melepas kalor dan **perubahan entalpinya negatif**. Cairan menyusut saat mendingin, jadi labu yang diisi sampai tanda saat masih hangat berisi kurang dari <InlineMath math="250\text{ cm}^3" /> setelah dingin. <InlineMath math="0{,}100\text{ mol}" /> yang sama dalam volume lebih kecil berarti lebih pekat.
+Dengan fenolftalein, bacaannya bergerak dari <InlineMath math="0{,}50" /> ke <InlineMath math="22{,}50\text{ cm}^3" />, volume titrasinya <InlineMath math="22{,}00\text{ cm}^3" />. Metil jingga melanjutkannya ke <InlineMath math="25{,}50" />, jadi **volume titrasi kedua hanya <InlineMath math="3{,}00\text{ cm}^3" />**, diukur dari titik berhentinya yang pertama, bukan dari nol.
 
-<Mermaid
-  title={<>Kenapa labu hangat memberi larutan lebih pekat</>}
-  description={<>Diisi saat hangat, larutan menyusut ketika mendingin, jadi jumlah mol yang sama ada dalam kurang dari <InlineMath math="250\text{ cm}^3" />.</>}
-  chart={"flowchart LR\n  W[\"Hangat: diisi sampai tanda\"] --> C[\"Mendingin dan menyusut\"]\n  C --> V[\"Volume di bawah 250 cm3\"]\n  V --> H[\"Mol sama dalam volume lebih kecil: di atas 0,400 mol dm-3\"]"}
+# Titrasi kedua menghitung karbonat
+
+Saat fenolftalein tidak berwarna lagi, tiap ion karbonat sudah menjadi satu ion hidrogen karbonat. **Metil jingga lalu butuh tepat satu ion hidrogen lagi untuk tiap ion itu**, jadi <InlineMath math="0{,}300\text{ mmol}" /> asam di tahap kedua berarti <InlineMath math="0{,}300\text{ mmol}" /> karbonat, yaitu <InlineMath math="0{,}0120\text{ mol dm}^{-3}" />. Membagi dua volume titrasi kedua, seolah kedua langkah karbonat terjadi setelah perubahan warna pertama, memberi <InlineMath math="0{,}00600" />.
+
+<Chart
+  title={<>pH sampel saat asam ditambahkan</>}
+  description={<>Penurunan pertama di dekat <InlineMath math="22{,}0\text{ cm}^3" /> adalah saat fenolftalein berubah, penurunan kedua di dekat <InlineMath math="25{,}0\text{ cm}^3" /> adalah saat metil jingga berubah.</>}
+  categories={["0 cm³", "4 cm³", "8 cm³", "12 cm³", "16 cm³", "20 cm³", "21 cm³", "22 cm³", "23 cm³", "24 cm³", "25 cm³", "26 cm³", "28 cm³"]}
+  series={[
+    { label: "pH", mark: "line", values: [12.88, 12.71, 12.52, 12.28, 11.88, 10.53, 10.0, 8.33, 6.65, 6.05, 4.29, 2.71, 2.25] },
+  ]}
+  valueLabel="pH"
 />
 
+# Mengeluarkan karbonat dari titrasi pertama
+
+<InlineMath math="2{,}20\text{ mmol}" /> asam yang pertama mengerjakan dua hal sekaligus. Ia menetralkan hidroksida dan **memberi tiap ion karbonat ion hidrogen pertamanya**, jadi hidroksidanya <InlineMath math="2{,}20-0{,}300=1{,}90\text{ mmol}" />, yaitu <InlineMath math="0{,}0760\text{ mol dm}^{-3}" />. Menganggap seluruh titrasi pertama sebagai hidroksida memberi <InlineMath math="0{,}0880" />, dan mengurangkan karbonat dua kali memberi <InlineMath math="0{,}0640" />.
+
+# Kembali ke gas yang ditelan botol itu
+
+**Tiap ion karbonat terbentuk dari satu molekul karbon dioksida**, jadi tiap <InlineMath math="\text{dm}^3" /> larutan sudah menyerap <InlineMath math="0{,}0120\text{ mol}" /> gas itu, yaitu <InlineMath math="288\text{ cm}^3" /> pada kondisi ruang.
+
 <BlockMath math="\begin{aligned}
-Q&=100\times4{,}2\times10{,}6=4452\text{ J}=4{,}452\text{ kJ}\\
-n(\text{NaOH})&=\tfrac{4{,}00}{40}=0{,}100\text{ mol}\\
-\Delta H&=-\tfrac{4{,}452}{0{,}100}=-44{,}5\text{ kJ mol}^{-1}
+n(\text{CO}_3^{\,2-})&=0{,}100\times3{,}00=0{,}300\text{ mmol}\ \Rightarrow\ c=\tfrac{0{,}300}{25{,}0}=0{,}0120\text{ mol dm}^{-3}\\
+n(\text{OH}^-)&=0{,}100\times22{,}00-0{,}300=1{,}90\text{ mmol}\ \Rightarrow\ c=\tfrac{1{,}90}{25{,}0}=0{,}0760\text{ mol dm}^{-3}\\
+V(\text{CO}_2)&=0{,}0120\times24\,000=288\text{ cm}^3
 \end{aligned}" />
-
-# Kenapa pilihan lain salah
-
-- Kenaikan suhu berarti kalor dilepas, jadi tandanya negatif, bukan positif.
-- Larutan yang lebih encer butuh volume yang bertambah. **Pendinginan membuat cairan menyusut**.
-- <InlineMath math="-4{,}45\text{ kJ mol}^{-1}" /> membagi dengan <InlineMath math="1{,}00\text{ mol}" /> alih-alih <InlineMath math="0{,}100\text{ mol}" />, dan volume labu memang bergantung pada suhu.

@@ -10,19 +10,51 @@ const item: ItemSource = {
     en: {
       kind: "choice",
       options: [
-        { correct: false, label: "Ammonium sulfate, $$10.6\\text{ kg}$$" },
-        { correct: false, label: "Ammonium nitrate, $$8.75\\text{ kg}$$" },
-        { correct: false, label: "Urea, $$11.7\\text{ kg}$$" },
-        { correct: true, label: "Urea, $$23.3\\text{ kg}$$" },
+        {
+          correct: false,
+          label:
+            "Dinitrogen tetroxide, $$0.640\\text{ kg}$$ of hydrazine left, $$2.16\\text{ m}^3$$",
+        },
+        {
+          correct: false,
+          label:
+            "Dinitrogen tetroxide, $$3.52\\text{ kg}$$ of hydrazine left, $$6.48\\text{ m}^3$$",
+        },
+        {
+          correct: false,
+          label:
+            "Hydrazine, no dinitrogen tetroxide left, $$7.20\\text{ m}^3$$",
+        },
+        {
+          correct: true,
+          label:
+            "Dinitrogen tetroxide, $$0.640\\text{ kg}$$ of hydrazine left, $$6.48\\text{ m}^3$$",
+        },
       ],
     },
     ms: {
       kind: "choice",
       options: [
-        { correct: false, label: "Ammonium sulfat, $$10.6\\text{ kg}$$" },
-        { correct: false, label: "Ammonium nitrat, $$8.75\\text{ kg}$$" },
-        { correct: false, label: "Urea, $$11.7\\text{ kg}$$" },
-        { correct: true, label: "Urea, $$23.3\\text{ kg}$$" },
+        {
+          correct: false,
+          label:
+            "Dinitrogen tetroksida, $$0.640\\text{ kg}$$ hidrazin berbaki, $$2.16\\text{ m}^3$$",
+        },
+        {
+          correct: false,
+          label:
+            "Dinitrogen tetroksida, $$3.52\\text{ kg}$$ hidrazin berbaki, $$6.48\\text{ m}^3$$",
+        },
+        {
+          correct: false,
+          label:
+            "Hidrazin, tiada dinitrogen tetroksida berbaki, $$7.20\\text{ m}^3$$",
+        },
+        {
+          correct: true,
+          label:
+            "Dinitrogen tetroksida, $$0.640\\text{ kg}$$ hidrazin berbaki, $$6.48\\text{ m}^3$$",
+        },
       ],
     },
   },

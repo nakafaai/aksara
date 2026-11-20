@@ -1,27 +1,41 @@
-# Bindungen spalten kostet Energie, Bindungen bilden setzt sie frei, und die Differenz ist die Enthalpieänderung
+# Jeder Becher liefert eine Enthalpieänderung
 
-Eine <InlineMath math="\text{H–H}" />- und eine <InlineMath math="\text{Cl–Cl}" />-Bindung zu spalten nimmt Energie auf, zwei <InlineMath math="\text{H–Cl}" />-Bindungen zu bilden gibt mehr ab, also ist die Reaktion exotherm. **Diese <InlineMath math="-184\text{ kJ}" /> gehören zu zwei Mol Chlorwasserstoff**, ein Mol sind also <InlineMath math="-92\text{ kJ}" />. In der Gleichung reagiert ein Mol Chlor, also setzen <InlineMath math="0{,}10\text{ mol}" /> Chlor ein Zehntel von <InlineMath math="184\text{ kJ}" /> frei.
-
-<Chart
-  title={<>Energie für je ein Mol der Edukte</>}
-  description={<>Das Spalten nimmt <InlineMath math="678\text{ kJ}" /> auf, das Bilden gibt <InlineMath math="862\text{ kJ}" /> ab, insgesamt werden <InlineMath math="184\text{ kJ}" /> frei.</>}
-  bars="apart"
-  categories={["Bindungen spalten", "Bindungen bilden", "Gesamt"]}
-  series={[
-    { label: "Energie", mark: "bar", values: [678, -862, -184] },
-  ]}
-  valueLabel="Energie (kJ)"
-/>
+Beide Feststoffe sind <InlineMath math="0{,}0100\text{ mol}" />, und die Säure reicht für beide locker. **Erwärmt werden die <InlineMath math="50{,}0\text{ g}" /> Lösung**, nicht der hineingeworfene Feststoff, und ein Temperaturanstieg heißt, dass Wärme die Reaktion verlassen hat, also sind beide Vorzeichen negativ.
 
 <BlockMath math="\begin{aligned}
-\text{gespalten}&=436+242=678\text{ kJ}\\
-\text{gebildet}&=2\times431=862\text{ kJ}\\
-\Delta H&=678-862=-184\text{ kJ für }2\text{ HCl}=-92\text{ kJ mol}^{-1}\\
-n(\text{Cl}_2)&=\tfrac{7{,}1}{71}=0{,}10\text{ mol}\Rightarrow0{,}10\times184=18{,}4\text{ kJ}
+\Delta H_1&=-\tfrac{50{,}0\times4{,}2\times22{,}0}{0{,}0100}=-462\,000\text{ J mol}^{-1}=-462\text{ kJ mol}^{-1}\\
+\Delta H_2&=-\tfrac{50{,}0\times4{,}2\times7{,}0}{0{,}0100}=-147\,000\text{ J mol}^{-1}=-147\text{ kJ mol}^{-1}
 \end{aligned}" />
 
-# Warum die anderen Antworten falsch sind
+# Den Kreisprozess bauen
 
-- <InlineMath math="+184" /> zieht verkehrt herum ab. **Beim Bilden der Bindungen wird mehr Energie frei, als das Spalten aufnimmt**.
-- <InlineMath math="9{,}2\text{ kJ}" /> nimmt den Wert pro Mol Chlorwasserstoff, doch <InlineMath math="0{,}10\text{ mol}" /> Chlor bilden <InlineMath math="0{,}20\text{ mol}" /> davon.
-- <InlineMath math="-184\text{ kJ mol}^{-1}" /> nennt den Wert der ganzen Gleichung, die zwei Mol Chlorwasserstoff bildet.
+In keinem Becher verbrennt Magnesium, also muss die Zielreaktion zusammengesetzt werden. Schick das Magnesium durch die Säure (<InlineMath math="\Delta H_1" />), verbrenn den entstandenen Wasserstoff zu Wasser (<InlineMath math="-286\text{ kJ}" />) und lass Versuch II rückwärts laufen, sodass Magnesiumchlorid und Wasser zu Magnesiumoxid und Säure werden. **Eine umgekehrte Reaktion hat das umgekehrte Vorzeichen von <InlineMath math="\Delta H" />**, dieser Schritt zählt also <InlineMath math="+147\text{ kJ}" />, und Säure und Magnesiumchlorid heben sich weg.
+
+<Mermaid
+  title={<>Der Kreisprozess zum Magnesiumoxid</>}
+  description={<>Der Umweg über die Säure, <InlineMath math="-462-286+147" />, liefert dieselbe Änderung wie das direkte Verbrennen, <InlineMath math="-601\text{ kJ mol}^{-1}" />.</>}
+  chart={`
+    flowchart TD
+      N0["Mg + ½O₂ + 2HCl"]
+      N1["MgCl₂ + H₂ + ½O₂"]
+      N2["MgCl₂ + H₂O"]
+      N3["MgO + 2HCl"]
+      N0 -->|"ΔH₁ = −462 kJ"| N1
+      N1 -->|"Wasserstoff verbrennt: −286 kJ"| N2
+      N2 -->|"Versuch II umgekehrt: +147 kJ"| N3
+      N0 -->|"direkter Weg: −601 kJ"| N3
+  `}
+/>
+
+Bleibt der Wasserstoff unverbrannt, endet der Kreis bei <InlineMath math="-315\text{ kJ mol}^{-1}" />, und Sauerstoff kommt nie zum Magnesium. Addierst du <InlineMath math="\Delta H_2" /> ohne Vorzeichenwechsel, landest du bei <InlineMath math="-895\text{ kJ mol}^{-1}" />, als würde das Auflösen des Oxids noch einmal Wärme freisetzen.
+
+# Vom Mol zum Streifen mit sechs Gramm
+
+Der Streifen sind <InlineMath math="0{,}250\text{ mol}" /> Magnesium, und **jedes verbrannte Mol setzt <InlineMath math="601\text{ kJ}" /> frei**.
+
+<BlockMath math="\begin{aligned}
+\Delta H_f(\text{MgO})&=\Delta H_1+(-286)-\Delta H_2=-462-286+147=-601\text{ kJ mol}^{-1}\\
+Q&=\tfrac{6{,}00}{24}\times601=150\text{ kJ}
+\end{aligned}" />
+
+Teilst du <InlineMath math="6{,}00\text{ g}" /> durch <InlineMath math="40" />, die molare Masse des Oxids, kommen <InlineMath math="90{,}2\text{ kJ}" /> heraus, doch die Aufgabe wiegt das Metall, nicht die Asche.

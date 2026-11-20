@@ -1,25 +1,33 @@
-# Isi padu gas yang sama ialah bilangan mol yang sama, jadi nisbah oksigen menamakan alkana itu
+# Apa yang ditangkap oleh setiap tiub
 
-Setiap isi padu alkana memerlukan <InlineMath math="130\div20.0=6.5" /> isi padu oksigen. **Bagi <InlineMath math="\text{C}_n\text{H}_{2n+2}" /> oksigen yang diperlukan ialah <InlineMath math="\tfrac{3n+1}{2}" />**, iaitu <InlineMath math="6.5" /> apabila <InlineMath math="n=4" />: butana, <InlineMath math="\text{C}_4\text{H}_{10}" />. <InlineMath math="2.90\text{ g}" /> butana ialah <InlineMath math="0.0500\text{ mol}" />, dan sepuluh atom hidrogen setiap molekul menghasilkan lima molekul air.
+**Tiub kalsium klorida diletakkan dahulu kerana ia hanya menyerap air**. Kapur soda menyerap air dan juga karbon dioksida, jadi jika susunannya terbalik, kedua-dua pertambahan jisim tidak dapat dibezakan. Tiub pertama bertambah <InlineMath math="1.08\text{ g}" /> air, <InlineMath math="0.0600\text{ mol}" />, yang membawa <InlineMath math="0.120\text{ mol}" /> atom hidrogen. Kapur soda bertambah <InlineMath math="2.20\text{ g}" /> karbon dioksida, iaitu <InlineMath math="0.0500\text{ mol}" /> karbon.
 
-<Chart
-  title={<>Oksigen yang diperlukan bagi setiap molekul alkana</>}
-  description={<>Oksigen bagi setiap molekul naik sebanyak <InlineMath math="1.5" /> bagi setiap atom karbon, dan hanya butana memerlukan <InlineMath math="6.5" />.</>}
-  bars="apart"
-  categories={["Metana", "Etana", "Propana", "Butana", "Pentana"]}
-  series={[
-    { label: "Molekul oksigen", mark: "bar", values: [2, 3.5, 5, 6.5, 8] },
-  ]}
-  valueLabel="Molekul oksigen"
+<Mermaid
+  title={<>Membaca tiub penyerap</>}
+  description={<>Air ditangkap dahulu, karbon dioksida kemudian, dan jisim yang tidak ditahan oleh mana-mana tiub ialah oksigen dalam X.</>}
+  chart={`
+    flowchart LR
+      N0["0.880 g X dibakar"]
+      N1["Kalsium klorida: +1.08 g H₂O, 0.120 mol H"]
+      N2["Kapur soda: +2.20 g CO₂, 0.0500 mol C"]
+      N3["O melalui perbezaan: 0.160 g, 0.0100 mol"]
+      N4["C₅H₁₂O, Mr 88"]
+      N0 --> N1
+      N1 --> N2
+      N2 --> N3
+      N3 --> N4
+  `}
 />
 
+# Jisim yang tidak ditimbang ialah oksigen
+
+Karbon dan hidrogen menyumbang <InlineMath math="0.600+0.120=0.720\text{ g}" /> daripada <InlineMath math="0.880\text{ g}" />. Baki <InlineMath math="0.160\text{ g}" /> **mesti oksigen dalam X**, <InlineMath math="0.0100\text{ mol}" />, yang memberi nisbah <InlineMath math="5:12:1" /> dan formula <InlineMath math="\text{C}_5\text{H}_{12}\text{O}" />, sepadan dengan <InlineMath math="M_r=88" />. Karbon dan hidrogen sahaja akan mencadangkan <InlineMath math="\text{C}_5\text{H}_{12}" />, yang <InlineMath math="M_r=72" /> tidak sepadan, dan pentana tidak akan memberi hidrogen dengan natrium. Dengan lima karbon dalam rantai lurus dan kumpulan hidroksil di hujung, X ialah pentan-1-ol.
+
+# Berapa banyak oksigen datang dari silinder
+
+Hasil pembakaran mengandungi <InlineMath math="2\times0.0500+0.0600=0.160\text{ mol}" /> atom oksigen, tetapi **satu daripada setiap enam belas telah ada dalam alkohol itu**. Silinder membekalkan baki <InlineMath math="0.150\text{ mol}" /> atom, iaitu <InlineMath math="0.0750\text{ mol}" /> molekul oksigen, <InlineMath math="1.80\text{ dm}^3" />. Jika silinder membekalkan kesemua <InlineMath math="0.160\text{ mol}" /> oksigen hasil, jawapannya <InlineMath math="1.92\text{ dm}^3" />, dan mengira atom sebagai molekul memberi <InlineMath math="3.60\text{ dm}^3" />, dua kali terlalu banyak.
+
 <BlockMath math="\begin{aligned}
-\tfrac{3n+1}{2}&=\tfrac{130}{20.0}=6.5\Rightarrow n=4\ (\text{C}_4\text{H}_{10},\ M_r=58)\\
-m(\text{H}_2\text{O})&=5\times\tfrac{2.90}{58}\times18=4.50\text{ g}
+n(\text{C})&=\tfrac{2.20}{44}=0.0500,\quad n(\text{H})=2\times\tfrac{1.08}{18}=0.120,\quad n(\text{O})=\tfrac{0.880-0.600-0.120}{16}=0.0100\\
+n(\text{O}_2)&=\tfrac{2\times0.0500+0.0600-0.0100}{2}=0.0750\text{ mol}\ \Rightarrow\ V=0.0750\times24=1.80\text{ dm}^3
 \end{aligned}" />
-
-# Kenapa pilihan lain salah
-
-- Propana hanya memerlukan <InlineMath math="5" /> molekul oksigen bagi setiap molekul. **Nisbah <InlineMath math="6.5" /> sepadan dengan butana**.
-- <InlineMath math="3.60\text{ g}" /> memberi empat molekul air bagi setiap molekul, seperti bagi <InlineMath math="\text{C}_4\text{H}_8" />, tetapi butana mempunyai sepuluh atom hidrogen.
-- Pentana memerlukan <InlineMath math="8" /> molekul oksigen bagi setiap molekul, lebih daripada <InlineMath math="6.5" /> yang diukur.

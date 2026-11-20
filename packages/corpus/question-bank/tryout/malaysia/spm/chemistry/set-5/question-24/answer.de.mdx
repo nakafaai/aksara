@@ -1,25 +1,31 @@
-# Schwefelwasserstoff ist zuerst verbraucht, und sein Schwefel ist der oxidierte Anteil
+# Welcher Stoff zuerst ausgeht
 
-Jedes Gas sind <InlineMath math="0{,}0100\text{ mol}" />. **Schwefelwasserstoff wird doppelt so schnell gebraucht**, also ist er verbraucht, wenn erst <InlineMath math="0{,}00500\text{ mol}" /> Schwefeldioxid reagiert haben. Das gibt <InlineMath math="0{,}0150\text{ mol}" /> Schwefel. Im Schwefelwasserstoff steigt der Schwefel von <InlineMath math="-2" /> auf <InlineMath math="0" />, er wird also oxidiert, während der Schwefel aus Schwefeldioxid von <InlineMath math="+4" /> auf <InlineMath math="0" /> fällt.
+Das Chlor sind <InlineMath math="\tfrac{1{,}44}{24}=0{,}0600\text{ mol}" />, die Lauge <InlineMath math="0{,}100\times2{,}00=0{,}200\text{ mol}" />. Die Gleichung paart **drei Chlormoleküle mit sechs Natriumhydroxid, zwei für jedes**, also braucht das Chlor nur <InlineMath math="0{,}120\text{ mol}" />, und <InlineMath math="0{,}0800\text{ mol}" /> Natriumhydroxid bleiben übrig, <InlineMath math="0{,}800\text{ mol dm}^{-3}" /> in den <InlineMath math="100\text{ cm}^3" />. Wer ein Natriumhydroxid je Chlor rechnet, behält <InlineMath math="0{,}140\text{ mol}" /> und meldet <InlineMath math="1{,}40\text{ mol dm}^{-3}" />.
 
-<Chart
-  title={<>Schwefelatome aus jedem Gas</>}
-  description={<>Schwefelwasserstoff liefert <InlineMath math="0{,}0100\text{ mol}" /> des Schwefels und Schwefeldioxid <InlineMath math="0{,}00500\text{ mol}" />.</>}
-  bars="apart"
-  categories={["Aus Schwefelwasserstoff", "Aus Schwefeldioxid"]}
-  series={[
-    { label: "Schwefel", mark: "bar", values: [0.0100, 0.00500] },
-  ]}
-  valueLabel="Schwefel (mol)"
+# Sechs Chloratome, zwei Schicksale
+
+Jedes Chloratom beginnt bei der Oxidationszahl null. Fünf von sechs enden als Chloridionen bei <InlineMath math="-1" />, und eines endet im Chlorat(V)-Ion bei <InlineMath math="+5" />, also **wird dasselbe Element in einer Reaktion reduziert und oxidiert**. Das eine Atom gibt fünf Elektronen ab, und die fünf Atome nehmen je eines auf, deshalb muss die Aufteilung fünf zu eins sein.
+
+<Mermaid
+  title={<>Wohin die sechs Chloratome gehen</>}
+  description={<>Fünf Chloratome werden zu Chlorid reduziert und eines zu Chlorat(V) oxidiert, also gleichen sich die Elektronen aus.</>}
+  chart={`
+    flowchart TD
+      N0["3 Cl₂: sechs Cl-Atome bei 0"]
+      N1["5 Cl⁻ in NaCl: je −1, fünf Elektronen aufgenommen"]
+      N2["1 Cl in ClO₃⁻: +5, fünf Elektronen abgegeben"]
+      N0 --> N1
+      N0 --> N2
+  `}
 />
 
+Nur <InlineMath math="\tfrac{1}{6}" /> der Chloratome wird oxidiert. Fünf Sechstel ist der reduzierte Anteil, die größere Gruppe, aber die entgegengesetzte Änderung.
+
+# Chlorat aus dem Chlor
+
+Auf drei Chlormoleküle kommt ein Chlorat(V)-Ion, also entstehen <InlineMath math="0{,}0200\text{ mol}" /> **Natriumchlorat(V), <InlineMath math="M_r=106{,}5" />**, das sind <InlineMath math="2{,}13\text{ g}" />. Macht man aus jedem Chlormolekül ein eigenes Chlorat, kommen <InlineMath math="6{,}39\text{ g}" /> heraus, dreimal zu viel, denn für ein einziges Chlorat-Ion braucht es sechs Chloratome.
+
 <BlockMath math="\begin{aligned}
-n(\text{H}_2\text{S})&=n(\text{SO}_2)=\tfrac{240}{24{.}000}=0{,}0100\text{ mol}\\
-n(\text{S})&=\tfrac{3}{2}\times0{,}0100=0{,}0150\text{ mol}\Rightarrow m=0{,}0150\times32=0{,}48\text{ g}
+n(\text{NaOH})&=0{,}200-2\times0{,}0600=0{,}0800\text{ mol}\ \Rightarrow\ c=\tfrac{0{,}0800}{0{,}100}=0{,}800\text{ mol dm}^{-3}\\
+m(\text{NaClO}_3)&=\tfrac{0{,}0600}{3}\times106{,}5=2{,}13\text{ g}
 \end{aligned}" />
-
-# Warum die anderen Antworten falsch sind
-
-- <InlineMath math="0{,}96\text{ g}" /> lässt alles Schwefeldioxid reagieren. **Der Schwefelwasserstoff ist zuerst verbraucht**.
-- Ein Drittel ist der Schwefel aus Schwefeldioxid, der reduziert und nicht oxidiert wird.
-- <InlineMath math="0{,}32\text{ g}" /> zählt nur den Schwefel aus Schwefelwasserstoff und lässt den Anteil des Schwefeldioxids weg.

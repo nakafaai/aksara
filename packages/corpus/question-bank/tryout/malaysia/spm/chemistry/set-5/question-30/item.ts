@@ -10,19 +10,51 @@ const item: ItemSource = {
     en: {
       kind: "choice",
       options: [
-        { correct: false, label: "Propane, $$4.75\\text{ g}$$" },
-        { correct: false, label: "Butane, $$3.60\\text{ g}$$" },
-        { correct: true, label: "Butane, $$4.50\\text{ g}$$" },
-        { correct: false, label: "Pentane, $$4.35\\text{ g}$$" },
+        {
+          correct: false,
+          label:
+            "$$\\text{C}_5\\text{H}_{12}$$, $$1.92\\text{ dm}^3$$, pentane",
+        },
+        {
+          correct: false,
+          label:
+            "$$\\text{C}_5\\text{H}_{12}\\text{O}$$, $$1.92\\text{ dm}^3$$, pentan-1-ol",
+        },
+        {
+          correct: true,
+          label:
+            "$$\\text{C}_5\\text{H}_{12}\\text{O}$$, $$1.80\\text{ dm}^3$$, pentan-1-ol",
+        },
+        {
+          correct: false,
+          label:
+            "$$\\text{C}_5\\text{H}_{12}\\text{O}$$, $$3.60\\text{ dm}^3$$, pentan-1-ol",
+        },
       ],
     },
     ms: {
       kind: "choice",
       options: [
-        { correct: false, label: "Propana, $$4.75\\text{ g}$$" },
-        { correct: false, label: "Butana, $$3.60\\text{ g}$$" },
-        { correct: true, label: "Butana, $$4.50\\text{ g}$$" },
-        { correct: false, label: "Pentana, $$4.35\\text{ g}$$" },
+        {
+          correct: false,
+          label:
+            "$$\\text{C}_5\\text{H}_{12}$$, $$1.92\\text{ dm}^3$$, pentana",
+        },
+        {
+          correct: false,
+          label:
+            "$$\\text{C}_5\\text{H}_{12}\\text{O}$$, $$1.92\\text{ dm}^3$$, pentan-1-ol",
+        },
+        {
+          correct: true,
+          label:
+            "$$\\text{C}_5\\text{H}_{12}\\text{O}$$, $$1.80\\text{ dm}^3$$, pentan-1-ol",
+        },
+        {
+          correct: false,
+          label:
+            "$$\\text{C}_5\\text{H}_{12}\\text{O}$$, $$3.60\\text{ dm}^3$$, pentan-1-ol",
+        },
       ],
     },
   },

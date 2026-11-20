@@ -1,26 +1,28 @@
-# The cheapest bag is not the cheapest nitrogen
+# Kilograms hide the count
 
-Each formula's nitrogen share sets how much of the bag is useful. **Two nitrogen atoms in each formula unit, but very different masses**, so the light urea carries the most. Dividing each price by its nitrogen gives the cost of one kilogram of nitrogen.
+The tetroxide tank is heavier, which makes hydrazine look like the one that runs short. **Turn both masses into moles first**: <InlineMath math="\tfrac{6400}{32}=200\text{ mol}" /> of hydrazine and <InlineMath math="\tfrac{8280}{92}=90.0\text{ mol}" /> of tetroxide. Trusting the masses picks hydrazine and gives <InlineMath math="300\text{ mol}" /> of nitrogen, <InlineMath math="7.20\text{ m}^3" />, from fuel the thruster cannot actually burn.
 
-<Chart
-  title={<>Cost of one kilogram of nitrogen</>}
-  description={<>Urea <InlineMath math="\text{RM}\,5.14" />, ammonium nitrate <InlineMath math="\text{RM}\,5.43" />, ammonium sulfate <InlineMath math="\text{RM}\,5.66" />.</>}
-  bars="apart"
-  categories={["Urea", "Ammonium nitrate", "Ammonium sulfate"]}
-  series={[
-    { label: "Cost", mark: "bar", values: [5.14, 5.43, 5.66] },
-  ]}
-  valueLabel="Cost (RM per kg N)"
+# The two to one ratio decides
+
+Every tetroxide molecule needs two hydrazine molecules, so the <InlineMath math="90.0\text{ mol}" /> of tetroxide would use <InlineMath math="180\text{ mol}" /> of hydrazine, and <InlineMath math="200\text{ mol}" /> is on board. **The tetroxide runs out first, leaving <InlineMath math="20.0\text{ mol}" /> of hydrazine**, <InlineMath math="0.640\text{ kg}" />. Pairing the two one to one burns only <InlineMath math="90.0\text{ mol}" /> of hydrazine and strands <InlineMath math="3.52\text{ kg}" />.
+
+<Mermaid
+  title={<>Two tanks, one limit</>}
+  description={<>Moles from each tank, the ratio that picks the limiting one, and the nitrogen that forms.</>}
+  chart={`
+    flowchart LR
+      N0["6.40 kg N₂H₄: 200 mol"]
+      N1["8.28 kg N₂O₄: 90.0 mol"]
+      N2["90.0 mol N₂O₄ uses 180 mol N₂H₄"]
+      N3["N₂H₄ left: 20.0 mol, 0.640 kg"]
+      N4["N₂ formed: 270 mol, 6.48 m³"]
+      N0 --> N2
+      N1 --> N2
+      N2 --> N3
+      N2 --> N4
+  `}
 />
 
-<BlockMath math="\begin{aligned}
-\text{urea}&:\ \tfrac{28}{60}\times50=23.3\text{ kg N},\ \tfrac{120}{23.3}=5.14\text{ RM per kg}\\
-\text{NH}_4\text{NO}_3&:\ \tfrac{28}{80}\times50=17.5\text{ kg N},\ \tfrac{95}{17.5}=5.43\text{ RM per kg}\\
-(\text{NH}_4)_2\text{SO}_4&:\ \tfrac{28}{132}\times50=10.6\text{ kg N},\ \tfrac{60}{10.6}=5.66\text{ RM per kg}
-\end{aligned}" />
+# Nitrogen from both tanks
 
-# Why the other options are wrong
-
-- <InlineMath math="10.6\text{ kg}" /> picks the cheapest bag, but its nitrogen costs the most per kilogram.
-- <InlineMath math="8.75\text{ kg}" /> counts only the ammonium nitrogen. **The nitrate ion carries a nitrogen atom too**.
-- <InlineMath math="11.7\text{ kg}" /> counts one nitrogen in urea, though <InlineMath math="\text{CO(NH}_2)_2" /> has two.
+Each tetroxide that reacts yields three nitrogen molecules, so <InlineMath math="90.0\text{ mol}" /> of it gives <InlineMath math="270\text{ mol}" />, <InlineMath math="6480\text{ dm}^3" /> or <InlineMath math="6.48\text{ m}^3" />. **Both reactants feed nitrogen atoms into the product**: <InlineMath math="360\text{ mol}" /> from the hydrazine burnt and <InlineMath math="180\text{ mol}" /> from the tetroxide, <InlineMath math="540\text{ mol}" /> of atoms in <InlineMath math="270\text{ mol}" /> of molecules. Giving each tetroxide only one nitrogen molecule counts its own atoms and forgets the hydrazine's, <InlineMath math="2.16\text{ m}^3" />.

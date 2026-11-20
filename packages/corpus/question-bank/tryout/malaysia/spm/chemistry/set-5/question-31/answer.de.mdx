@@ -1,26 +1,39 @@
-# Die zwei Isomere verbrauchen verschieden viel Dichromat, also legen zwei Gleichungen das Gemisch fest
+# Zwei Alkohole mit unterschiedlichem Appetit
 
-Beide Alkohole haben die molare Masse <InlineMath math="60" />, das Gemisch sind also <InlineMath math="0{,}0150\text{ mol}" />. **Propan-1-ol wird zur Säure oxidiert und braucht je Mol doppelt so viel Dichromat wie Propan-2-ol**, denn Propan-2-ol endet beim Keton Propanon. Die zwei Gleichungen ergeben <InlineMath math="0{,}0090\text{ mol}" /> Propan-1-ol. Nur Propansäure ist sauer, Propanon ist neutral.
+Beide Isomere haben <InlineMath math="M_r=60" />, also sind <InlineMath math="0{,}90\text{ g}" /> immer <InlineMath math="0{,}0150\text{ mol}" /> Alkohol, egal wie die Mischung aufgeteilt ist, und der Kolben hat <InlineMath math="0{,}00800\text{ mol}" /> Dichromat verbraucht. **Propan-1-ol braucht zwei Dichromationen auf drei Moleküle, Propan-2-ol nur eines**, weil der primäre Alkohol bis zur Säure oxidiert wird, der sekundäre aber beim Keton stehen bleibt.
 
-<Chart
-  title={<>Dichromatverbrauch jedes Alkohols</>}
-  description={<>Propan-1-ol verbraucht <InlineMath math="0{,}0060\text{ mol}" /> Dichromat und Propan-2-ol <InlineMath math="0{,}0020\text{ mol}" />, zusammen die verbrauchten <InlineMath math="0{,}00800\text{ mol}" />.</>}
-  bars="apart"
-  categories={["Propan-1-ol", "Propan-2-ol"]}
-  series={[
-    { label: "Dichromat", mark: "bar", values: [0.0060, 0.0020] },
-  ]}
-  valueLabel="Dichromat (mol)"
+<Mermaid
+  title={<>Wie sich das Dichromat aufteilt</>}
+  description={<>Propan-1-ol verbraucht <InlineMath math="0{,}00600\text{ mol}" /> Dichromat, Propan-2-ol die übrigen <InlineMath math="0{,}00200\text{ mol}" />. Nur die Säure färbt Lackmus rot.</>}
+  chart={`
+    flowchart TD
+      N0["15,0 mmol Alkohol in 0,90 g"]
+      N1["9,00 mmol Propan-1-ol"]
+      N2["6,00 mmol Propan-2-ol"]
+      N3["6,00 mmol Dichromat"]
+      N4["2,00 mmol Dichromat"]
+      N5["Propansäure: Lackmus wird rot"]
+      N6["Propanon: Lackmus bleibt blau"]
+      N0 --> N1
+      N0 --> N2
+      N1 --> N3
+      N2 --> N4
+      N3 --> N5
+      N4 --> N6
+  `}
 />
 
+# Die fünfzehn Millimol aufteilen
+
+Tu so, als wäre alles Propan-2-ol: Dann bräuchte die Mischung nur <InlineMath math="0{,}00500\text{ mol}" /> Dichromat. Die zusätzlichen <InlineMath math="0{,}00300\text{ mol}" /> gehen auf das Konto von Propan-1-ol, und **jedes Propan-1-ol-Molekül kostet ein Drittel Dichromation mehr als sein Isomer**, also sind es <InlineMath math="0{,}00900\text{ mol}" /> Propan-1-ol.
+
 <BlockMath math="\begin{aligned}
-x+y&=\tfrac{0{,}90}{60}=0{,}0150\text{ mol}\\
-\tfrac{2}{3}x+\tfrac{1}{3}y&=0{,}100\times0{,}0800=0{,}00800\text{ mol}\\
-x&=0{,}0090\text{ mol}\Rightarrow m=0{,}0090\times60=0{,}54\text{ g}
+n(\text{C}_3\text{H}_8\text{O})&=\tfrac{0{,}90}{60}=0{,}0150\text{ mol},\quad n(\text{Cr}_2\text{O}_7^{2-})=0{,}0800\times0{,}100=0{,}00800\text{ mol}\\
+\tfrac23x+\tfrac13(0{,}0150-x)&=0{,}00800\ \Rightarrow\ x=0{,}00900\text{ mol},\quad m=0{,}00900\times60=0{,}54\text{ g}
 \end{aligned}" />
 
-# Warum die anderen Antworten falsch sind
+Vertauschst du die beiden Mengen, landest du bei <InlineMath math="0{,}36\text{ g}" />, der Masse des Propan-2-ols. Hielte man die ganzen <InlineMath math="0{,}90\text{ g}" /> für Propan-1-ol, bräuchte man <InlineMath math="0{,}0100\text{ mol}" /> Dichromat, mehr als die Bürette geliefert hat.
 
-- <InlineMath math="0{,}36\text{ g}" /> ist die Masse des Propan-2-ols. **Das Isomer mit dem größeren Dichromatbedarf ist hier der größere Anteil**.
-- Propanon ist ein Keton ohne saures Wasserstoffatom und ändert Lackmus nicht.
-- <InlineMath math="0{,}90\text{ g}" /> hält das ganze Gemisch für Propan-1-ol, das <InlineMath math="100\text{ cm}^3" /> Dichromat bräuchte, nicht <InlineMath math="80{,}0\text{ cm}^3" />.
+# Nur ein Produkt ist eine Säure
+
+Propansäure gibt in Wasser Wasserstoffionen ab, also **färbt nur das Produkt des Propan-1-ols feuchtes blaues Lackmuspapier rot**. Propanon ist ein neutrales Keton und lässt das Papier blau, obwohl es ebenfalls aus einer Oxidation stammt.

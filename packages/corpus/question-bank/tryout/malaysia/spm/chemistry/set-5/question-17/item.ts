@@ -13,22 +13,22 @@ const item: ItemSource = {
         {
           correct: true,
           label:
-            "$$-44.5\\text{ kJ mol}^{-1}$$, and the cooled solution is more concentrated than $$0.400\\text{ mol dm}^{-3}$$",
+            "$$0.0120\\text{ mol dm}^{-3}$$, $$0.0760\\text{ mol dm}^{-3}$$, $$288\\text{ cm}^3$$",
         },
         {
           correct: false,
           label:
-            "$$+44.5\\text{ kJ mol}^{-1}$$, and the cooled solution is more concentrated than $$0.400\\text{ mol dm}^{-3}$$",
+            "$$0.0120\\text{ mol dm}^{-3}$$, $$0.0880\\text{ mol dm}^{-3}$$, $$288\\text{ cm}^3$$",
         },
         {
           correct: false,
           label:
-            "$$-44.5\\text{ kJ mol}^{-1}$$, and the cooled solution is less concentrated than $$0.400\\text{ mol dm}^{-3}$$",
+            "$$0.00600\\text{ mol dm}^{-3}$$, $$0.0820\\text{ mol dm}^{-3}$$, $$144\\text{ cm}^3$$",
         },
         {
           correct: false,
           label:
-            "$$-4.45\\text{ kJ mol}^{-1}$$, and the temperature has no effect on the concentration",
+            "$$0.0120\\text{ mol dm}^{-3}$$, $$0.0640\\text{ mol dm}^{-3}$$, $$288\\text{ cm}^3$$",
         },
       ],
     },
@@ -38,22 +38,22 @@ const item: ItemSource = {
         {
           correct: true,
           label:
-            "$$-44.5\\text{ kJ mol}^{-1}$$, dan larutan yang sejuk lebih pekat daripada $$0.400\\text{ mol dm}^{-3}$$",
+            "$$0.0120\\text{ mol dm}^{-3}$$, $$0.0760\\text{ mol dm}^{-3}$$, $$288\\text{ cm}^3$$",
         },
         {
           correct: false,
           label:
-            "$$+44.5\\text{ kJ mol}^{-1}$$, dan larutan yang sejuk lebih pekat daripada $$0.400\\text{ mol dm}^{-3}$$",
+            "$$0.0120\\text{ mol dm}^{-3}$$, $$0.0880\\text{ mol dm}^{-3}$$, $$288\\text{ cm}^3$$",
         },
         {
           correct: false,
           label:
-            "$$-44.5\\text{ kJ mol}^{-1}$$, dan larutan yang sejuk kurang pekat daripada $$0.400\\text{ mol dm}^{-3}$$",
+            "$$0.00600\\text{ mol dm}^{-3}$$, $$0.0820\\text{ mol dm}^{-3}$$, $$144\\text{ cm}^3$$",
         },
         {
           correct: false,
           label:
-            "$$-4.45\\text{ kJ mol}^{-1}$$, dan suhu tidak mempengaruhi kepekatan",
+            "$$0.0120\\text{ mol dm}^{-3}$$, $$0.0640\\text{ mol dm}^{-3}$$, $$288\\text{ cm}^3$$",
         },
       ],
     },

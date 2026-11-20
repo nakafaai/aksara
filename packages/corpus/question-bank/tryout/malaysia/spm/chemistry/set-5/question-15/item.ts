@@ -10,19 +10,43 @@ const item: ItemSource = {
     en: {
       kind: "choice",
       options: [
-        { correct: false, label: "$$12.4$$ then $$10.4$$" },
-        { correct: true, label: "$$12.7$$ then $$10.7$$" },
-        { correct: false, label: "$$12.7$$ then $$11.7$$" },
-        { correct: false, label: "$$1.3$$ then $$3.3$$" },
+        {
+          correct: false,
+          label: "$$12.7$$, $$11.0$$, $$12.4$$",
+        },
+        {
+          correct: true,
+          label: "$$13.0$$, $$11.0$$, $$12.7$$",
+        },
+        {
+          correct: false,
+          label: "$$13.0$$, $$11.0$$, $$12.0$$",
+        },
+        {
+          correct: false,
+          label: "$$13.0$$, $$11.0$$, $$13.0$$",
+        },
       ],
     },
     ms: {
       kind: "choice",
       options: [
-        { correct: false, label: "$$12.4$$ kemudian $$10.4$$" },
-        { correct: true, label: "$$12.7$$ kemudian $$10.7$$" },
-        { correct: false, label: "$$12.7$$ kemudian $$11.7$$" },
-        { correct: false, label: "$$1.3$$ kemudian $$3.3$$" },
+        {
+          correct: false,
+          label: "$$12.7$$, $$11.0$$, $$12.4$$",
+        },
+        {
+          correct: true,
+          label: "$$13.0$$, $$11.0$$, $$12.7$$",
+        },
+        {
+          correct: false,
+          label: "$$13.0$$, $$11.0$$, $$12.0$$",
+        },
+        {
+          correct: false,
+          label: "$$13.0$$, $$11.0$$, $$13.0$$",
+        },
       ],
     },
   },

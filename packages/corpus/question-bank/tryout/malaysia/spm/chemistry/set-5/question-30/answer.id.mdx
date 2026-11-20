@@ -1,25 +1,33 @@
-# Volume gas yang sama berarti mol yang sama, jadi perbandingan oksigen menamai alkananya
+# Yang ditangkap tiap tabung
 
-Tiap volume alkana memerlukan <InlineMath math="130\div20{,}0=6{,}5" /> volume oksigen. **Untuk <InlineMath math="\text{C}_n\text{H}_{2n+2}" /> oksigen yang diperlukan <InlineMath math="\tfrac{3n+1}{2}" />**, yang bernilai <InlineMath math="6{,}5" /> saat <InlineMath math="n=4" />: butana, <InlineMath math="\text{C}_4\text{H}_{10}" />. <InlineMath math="2{,}90\text{ g}" /> butana sama dengan <InlineMath math="0{,}0500\text{ mol}" />, dan sepuluh atom hidrogen tiap molekul membuat lima molekul air.
+**Tabung kalsium klorida dipasang lebih dulu karena hanya menyerap air**. Kapur soda menyerap air sekaligus karbon dioksida, jadi kalau urutannya terbalik, kedua pertambahan massa tidak bisa dipisahkan. Tabung pertama bertambah <InlineMath math="1{,}08\text{ g}" /> air, <InlineMath math="0{,}0600\text{ mol}" />, yang membawa <InlineMath math="0{,}120\text{ mol}" /> atom hidrogen. Kapur soda bertambah <InlineMath math="2{,}20\text{ g}" /> karbon dioksida, yaitu <InlineMath math="0{,}0500\text{ mol}" /> karbon.
 
-<Chart
-  title={<>Oksigen yang diperlukan per molekul alkana</>}
-  description={<>Oksigen per molekul naik <InlineMath math="1{,}5" /> untuk tiap atom karbon, dan hanya butana yang memerlukan <InlineMath math="6{,}5" />.</>}
-  bars="apart"
-  categories={["Metana", "Etana", "Propana", "Butana", "Pentana"]}
-  series={[
-    { label: "Molekul oksigen", mark: "bar", values: [2, 3.5, 5, 6.5, 8] },
-  ]}
-  valueLabel="Molekul oksigen"
+<Mermaid
+  title={<>Membaca tabung penyerap</>}
+  description={<>Air ditangkap lebih dulu, karbon dioksida kemudian, dan massa yang tidak tertahan di tabung mana pun adalah oksigen di dalam X.</>}
+  chart={`
+    flowchart LR
+      N0["0,880 g X dibakar"]
+      N1["Kalsium klorida: +1,08 g H₂O, 0,120 mol H"]
+      N2["Kapur soda: +2,20 g CO₂, 0,0500 mol C"]
+      N3["O dari selisih: 0,160 g, 0,0100 mol"]
+      N4["C₅H₁₂O, Mr 88"]
+      N0 --> N1
+      N1 --> N2
+      N2 --> N3
+      N3 --> N4
+  `}
 />
 
+# Massa yang tidak ditimbang adalah oksigen
+
+Karbon dan hidrogen menyumbang <InlineMath math="0{,}600+0{,}120=0{,}720\text{ g}" /> dari <InlineMath math="0{,}880\text{ g}" />. Sisa <InlineMath math="0{,}160\text{ g}" /> **pasti oksigen di dalam X**, <InlineMath math="0{,}0100\text{ mol}" />, sehingga perbandingannya <InlineMath math="5:12:1" /> dan rumusnya <InlineMath math="\text{C}_5\text{H}_{12}\text{O}" />, cocok dengan <InlineMath math="M_r=88" />. Karbon dan hidrogen saja akan mengarah ke <InlineMath math="\text{C}_5\text{H}_{12}" />, yang <InlineMath math="M_r=72" /> tidak cocok, dan pentana tidak akan memberi hidrogen dengan natrium. Dengan lima karbon dalam rantai lurus dan gugus hidroksil di ujung, X adalah pentan-1-ol.
+
+# Berapa banyak oksigen dari tabung gas
+
+Produk pembakaran berisi <InlineMath math="2\times0{,}0500+0{,}0600=0{,}160\text{ mol}" /> atom oksigen, tetapi **satu dari tiap enam belas sudah ada di dalam alkohol itu**. Tabung gas memasok sisa <InlineMath math="0{,}150\text{ mol}" /> atom, yaitu <InlineMath math="0{,}0750\text{ mol}" /> molekul oksigen, <InlineMath math="1{,}80\text{ dm}^3" />. Kalau tabung gas memasok seluruh <InlineMath math="0{,}160\text{ mol}" /> oksigen produk, jawabannya <InlineMath math="1{,}92\text{ dm}^3" />, dan menghitung atom sebagai molekul memberi <InlineMath math="3{,}60\text{ dm}^3" />, dua kali terlalu banyak.
+
 <BlockMath math="\begin{aligned}
-\tfrac{3n+1}{2}&=\tfrac{130}{20{,}0}=6{,}5\Rightarrow n=4\ (\text{C}_4\text{H}_{10},\ M_r=58)\\
-m(\text{H}_2\text{O})&=5\times\tfrac{2{,}90}{58}\times18=4{,}50\text{ g}
+n(\text{C})&=\tfrac{2{,}20}{44}=0{,}0500,\quad n(\text{H})=2\times\tfrac{1{,}08}{18}=0{,}120,\quad n(\text{O})=\tfrac{0{,}880-0{,}600-0{,}120}{16}=0{,}0100\\
+n(\text{O}_2)&=\tfrac{2\times0{,}0500+0{,}0600-0{,}0100}{2}=0{,}0750\text{ mol}\ \Rightarrow\ V=0{,}0750\times24=1{,}80\text{ dm}^3
 \end{aligned}" />
-
-# Kenapa pilihan lain salah
-
-- Propana hanya memerlukan <InlineMath math="5" /> molekul oksigen per molekul. **Perbandingan <InlineMath math="6{,}5" /> cocok dengan butana**.
-- <InlineMath math="3{,}60\text{ g}" /> memberi empat molekul air per molekul, seperti untuk <InlineMath math="\text{C}_4\text{H}_8" />, padahal butana punya sepuluh atom hidrogen.
-- Pentana memerlukan <InlineMath math="8" /> molekul oksigen per molekul, lebih dari <InlineMath math="6{,}5" /> yang terukur.

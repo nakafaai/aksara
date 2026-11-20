@@ -1,26 +1,34 @@
-# Die Oberfläche pro Gramm wächst, wenn der Würfel kleiner wird, wie eins durch die Kante
+# Ein Würfel, zweimal vermessen
 
-Die Oberfläche jedes Würfels wächst mit dem Quadrat der Kante, seine Masse mit der dritten Potenz. **Also ist die Oberfläche pro Gramm proportional zu eins durch die Kante**. Rechne einen Würfel in passenden Einheiten: Die Kante von <InlineMath math="10\text{ nm}" /> ist <InlineMath math="10^{-8}\text{ m}" /> für die Fläche und <InlineMath math="10^{-6}\text{ cm}" /> für das Volumen, weil die Dichte pro Kubikzentimeter gilt.
+Die Kante misst <InlineMath math="1{,}0\times10^{-8}\text{ m}" /> oder <InlineMath math="1{,}0\times10^{-6}\text{ cm}" />. **Rechne jede Größe in der Einheit ihrer Daten**: Die Dichte will Kubikzentimeter, die Oberfläche Quadratmeter. Ein Würfel wiegt dann <InlineMath math="1{,}93\times10^{-17}\text{ g}" /> und bietet auf seinen sechs Flächen <InlineMath math="6{,}0\times10^{-16}\text{ m}^2" />. Vermischt man die Einheiten, schrumpft das Ergebnis auf <InlineMath math="9{,}65\times10^{-7}\text{ g}" />.
 
-<Chart
-  title={<>Oberfläche pro Gramm Gold</>}
-  description={<>Würfel mit Kanten von <InlineMath math="10\text{ nm}" /> geben <InlineMath math="31{,}1\text{ m}^2" /> pro Gramm, <InlineMath math="100\text{ nm}" /> geben <InlineMath math="3{,}11" /> und <InlineMath math="1{,}0{.}\mu\text{m}" /> geben <InlineMath math="0{,}311" />.</>}
-  bars="apart"
-  categories={["10 nm", "100 nm", "1.0 µm"]}
-  series={[
-    { label: "Fläche pro Gramm", mark: "bar", values: [31.1, 3.11, 0.311] },
-  ]}
-  valueLabel="Fläche pro Gramm (m²)"
-/>
+# Wie viele Würfel das Bett bedecken
+
+Dreißig Quadratmeter brauchen <InlineMath math="5{,}0\times10^{16}" /> Würfel, und **die Goldmasse ist einfach diese Anzahl mal die Masse eines Würfels**.
 
 <BlockMath math="\begin{aligned}
-A&=6\times(10^{-8}\text{ m})^2=6{,}0\times10^{-16}\text{ m}^2,\quad V=(10^{-6}\text{ cm})^3=10^{-18}\text{ cm}^3\\
-\tfrac{A}{m}&=\tfrac{6{,}0\times10^{-16}}{19{,}3\times10^{-18}}=31{,}1\text{ m}^2\text{ g}^{-1}\Rightarrow m=\tfrac{30}{31{,}1}=0{,}965\text{ g}\\
-\tfrac{A}{m}&\propto\tfrac{1}{\text{edge}}\Rightarrow\tfrac{1{,}0{.}\mu\text{m}}{10\text{ nm}}=100
+m_1&=19{,}3\times(1{,}0\times10^{-6})^3=1{,}93\times10^{-17}\text{ g},\quad A_1=6\times(1{,}0\times10^{-8})^2=6{,}0\times10^{-16}\text{ m}^2\\
+N&=\tfrac{30{,}0}{6{,}0\times10^{-16}}=5{,}0\times10^{16}\ \Rightarrow\ m=5{,}0\times10^{16}\times1{,}93\times10^{-17}=0{,}965\text{ g}
 \end{aligned}" />
 
-# Warum die anderen Antworten falsch sind
+# Atome in der Haut, Atome im Inneren
 
-- <InlineMath math="10{.}000" />-mal quadriert das Kantenverhältnis. **Die Masse für eine gegebene Fläche wächst mit der Kante, nicht mit ihrem Quadrat**, weil die Fläche pro Gramm wie eins durch die Kante geht.
-- <InlineMath math="9{,}65\times10^{-7}\text{ g}" /> nimmt das Volumen in Kubikmetern, aber die Dichte pro Kubikzentimeter, ein Faktor <InlineMath math="10^{6}" />.
-- <InlineMath math="5{,}79\text{ g}" /> zählt nur eine Fläche jedes Würfels statt aller sechs.
+Die <InlineMath math="0{,}965\text{ g}" /> sind <InlineMath math="2{,}95\times10^{21}" /> Atome, an der Oberfläche sitzen davon <InlineMath math="3{,}61\times10^{20}" />. **Alle sechs Flächen jedes Würfels zählen**, deshalb kann etwa jedes achte Atom Chemie machen. Wer nur eine Fläche pro Würfel zählt, kommt auf <InlineMath math="2{,}04\%" />.
+
+<BlockMath math="\begin{aligned}
+\tfrac{30{,}0/(8{,}30\times10^{-20})}{(0{,}965/197)\times6{,}02\times10^{23}}\times100=\tfrac{3{,}61\times10^{20}}{2{,}95\times10^{21}}\times100=12{,}3\%
+\end{aligned}" />
+
+# Größere Würfel verstecken mehr Gold
+
+Die Oberfläche eines Würfels wächst mit dem Quadrat der Kante, seine Masse mit der dritten Potenz, also **sinkt die Oberfläche pro Gramm im Gleichschritt mit der Kante**. Hundertfache Kante heißt hundertfaches Gold, <InlineMath math="96{,}5\text{ g}" />, und nur <InlineMath math="0{,}123\%" /> dieser Atome säßen an der Oberfläche. Hundert zu quadrieren ergibt <InlineMath math="9{,}65\text{ kg}" />, das folgt der Fläche, nicht der Masse.
+
+<Chart
+  title={<>Gold für dieselbe Oberfläche</>}
+  description={<>Bei festen <InlineMath math="30{,}0\text{ m}^2" /> wächst die Masse im Gleichschritt mit der Kante: zehnfache Kante, zehnfaches Gold.</>}
+  categories={["10 nm", "20 nm", "50 nm", "100 nm", "200 nm", "500 nm", "1,0 µm"]}
+  series={[
+    { label: "Benötigtes Gold", mark: "line", values: [0.965, 1.93, 4.825, 9.65, 19.3, 48.25, 96.5] },
+  ]}
+  valueLabel="Goldmasse (g)"
+/>

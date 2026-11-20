@@ -1,26 +1,35 @@
-# Count chains with the chain's mass, but count carbon with the repeating unit
+# From one slice back to the whole cake
 
-Each chain is a molecule of mass <InlineMath math="28\,000" />, so the chains are few. **The carbon does not care how the units are joined**: polyethene is <InlineMath math="(\text{CH}_2)_n" />, and every <InlineMath math="14\text{ g}" /> of it holds one mole of carbon atoms, each of which becomes one carbon dioxide molecule.
+If one slice is a tenth of a cake, the whole cake is ten slices. The flask works the same way. The portion used <InlineMath math="0.0300\times0.500=0.0150\text{ mol}" /> of bromine. One bromine molecule goes to each styrene, so those <InlineMath math="25.0\text{ cm}^3" /> held <InlineMath math="0.0150\text{ mol}" /> of styrene. **But that portion is only one tenth of the <InlineMath math="250\text{ cm}^3" />**, so the whole solution holds <InlineMath math="0.150\text{ mol}" />. At <InlineMath math="M_r=104" /> that is <InlineMath math="15.6\text{ g}" />.
 
-<Chart
-  title={<>Amounts in the bag</>}
-  description={<>The bag holds <InlineMath math="2.5\times10^{-4}\text{ mol}" /> of chains but <InlineMath math="0.50\text{ mol}" /> of <InlineMath math="\text{CH}_2" /> units, which give <InlineMath math="0.50\text{ mol}" /> of carbon dioxide.</>}
-  bars="apart"
-  categories={["CH₂ units", "Carbon dioxide"]}
-  series={[
-    { label: "Amount", mark: "bar", values: [0.50, 0.50] },
-  ]}
-  valueLabel="Amount (mol)"
+<Mermaid
+  title={<>Working back from the burette</>}
+  description={<>The bromine one portion uses fixes the styrene in the whole solution, which is then compared with the units in the block.</>}
+  chart={`
+    flowchart TD
+      N0["Bromine water: 30.0 cm³ × 0.500 = 0.0150 mol Br₂"]
+      N1["Portion of 25.0 cm³: 0.0150 mol styrene"]
+      N2["Whole 250 cm³: 0.150 mol styrene, 15.6 g"]
+      N3["Block of 20.8 g: 0.200 mol repeating units"]
+      N4["Recovered: 75.0%"]
+      N0 --> N1
+      N1 --> N2
+      N2 --> N4
+      N3 --> N4
+  `}
 />
 
+Forget the factor of ten and you stop at <InlineMath math="1.56\text{ g}" /> and a recovery of only <InlineMath math="7.50\%" />.
+
+# How much of the foam came back
+
+Making the polymer is like snapping beads onto a necklace. Each bead keeps all its own atoms, only the clasp changes. **So a repeating unit has the same atoms as styrene, <InlineMath math="\text{C}_8\text{H}_8" />**. The block holds <InlineMath math="0.200\text{ mol}" /> of units, and <InlineMath math="0.150\text{ mol}" /> of them came back.
+
 <BlockMath math="\begin{aligned}
-n(\text{chains})&=\tfrac{7.0}{28\,000}=2.5\times10^{-4}\text{ mol}\Rightarrow2.5\times10^{-4}\times6.02\times10^{23}=1.51\times10^{20}\\
-n(\text{CH}_2)&=\tfrac{7.0}{14}=0.50\text{ mol}\Rightarrow n(\text{CO}_2)=0.50\text{ mol}\\
-V&=0.50\times24=12.0\text{ dm}^3
+n(\text{C}_8\text{H}_8)&=\tfrac{20.8}{104}=0.200\text{ mol}\\
+\tfrac{0.150}{0.200}\times100\%&=75.0\%
 \end{aligned}" />
 
-# Why the other options are wrong
+# Only the slice met the bromine
 
-- <InlineMath math="6.0\text{ dm}^3" /> counts one carbon for each ethene unit, <InlineMath math="\text{C}_2\text{H}_4" />, which has two.
-- <InlineMath math="1.51\times10^{23}" /> counts the <InlineMath math="\text{CH}_2" /> units as chains. **A chain is one molecule made of a thousand ethene units**.
-- <InlineMath math="24.0\text{ dm}^3" /> counts each carbon atom twice.
+You tested one slice, so only that slice turned into product. **The product in the flask comes from <InlineMath math="0.0150\text{ mol}" /> of styrene**. Each <InlineMath math="\text{C}_8\text{H}_8\text{Br}_2" /> has <InlineMath math="M_r=104+160=264" />, so the flask holds <InlineMath math="3.96\text{ g}" />. The product for the whole <InlineMath math="250\text{ cm}^3" /> would be <InlineMath math="39.6\text{ g}" />, but that never formed. And adding one bromine atom instead of two gives <InlineMath math="M_r=184" /> and <InlineMath math="2.76\text{ g}" />.

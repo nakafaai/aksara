@@ -1,21 +1,31 @@
-# Der Temperaturanstieg gibt die Enthalpieänderung, und warme Flüssigkeit schrumpft beim Abkühlen
+# Die Bürette zweimal ablesen
 
-Das Wasser wird warm, also setzt das Lösen Wärme frei und **die Enthalpieänderung ist negativ**. Eine Flüssigkeit zieht sich beim Abkühlen zusammen, also enthält ein warm bis zur Marke gefüllter Kolben kalt weniger als <InlineMath math="250\text{ cm}^3" />. Dieselben <InlineMath math="0{,}100\text{ mol}" /> in weniger Volumen sind konzentrierter.
+Mit Phenolphthalein läuft die Anzeige von <InlineMath math="0{,}50" /> bis <InlineMath math="22{,}50\text{ cm}^3" />, ein Verbrauch von <InlineMath math="22{,}00\text{ cm}^3" />. Methylorange führt sie weiter bis <InlineMath math="25{,}50" />, also **ist der zweite Verbrauch nur <InlineMath math="3{,}00\text{ cm}^3" />**, gemessen ab dem Ende der ersten Stufe und nicht ab null.
 
-<Mermaid
-  title={<>Warum der warme Kolben eine stärkere Lösung gibt</>}
-  description={<>Warm gefüllt, zieht sich die Lösung beim Abkühlen zusammen, also steckt dieselbe Stoffmenge in weniger als <InlineMath math="250\text{ cm}^3" />.</>}
-  chart={"flowchart LR\n  W[\"Warm bis zur Marke gefüllt\"] --> C[\"Kühlt ab und zieht sich zusammen\"]\n  C --> V[\"Volumen unter 250 cm3\"]\n  V --> H[\"Gleiche Stoffmenge in weniger Volumen: über 0,400 mol dm-3\"]"}
+# Der zweite Verbrauch zählt das Carbonat
+
+Wenn Phenolphthalein farblos wird, ist jedes Carbonation zu einem Hydrogencarbonation geworden. **Methylorange braucht dann für jedes davon genau ein weiteres Wasserstoffion**, also bedeuten <InlineMath math="0{,}300\text{ mmol}" /> Säure in der zweiten Stufe <InlineMath math="0{,}300\text{ mmol}" /> Carbonat, <InlineMath math="0{,}0120\text{ mol dm}^{-3}" />. Halbiert man den zweiten Verbrauch, als liefen beide Schritte des Carbonats erst nach dem ersten Umschlag, kommt <InlineMath math="0{,}00600" /> heraus.
+
+<Chart
+  title={<>pH-Wert der Probe beim Zutropfen der Säure</>}
+  description={<>Der erste Abfall bei etwa <InlineMath math="22{,}0\text{ cm}^3" /> ist der Umschlag von Phenolphthalein, der zweite bei etwa <InlineMath math="25{,}0\text{ cm}^3" /> der von Methylorange.</>}
+  categories={["0 cm³", "4 cm³", "8 cm³", "12 cm³", "16 cm³", "20 cm³", "21 cm³", "22 cm³", "23 cm³", "24 cm³", "25 cm³", "26 cm³", "28 cm³"]}
+  series={[
+    { label: "pH-Wert", mark: "line", values: [12.88, 12.71, 12.52, 12.28, 11.88, 10.53, 10.0, 8.33, 6.65, 6.05, 4.29, 2.71, 2.25] },
+  ]}
+  valueLabel="pH-Wert"
 />
 
+# Das Carbonat aus dem ersten Verbrauch herausrechnen
+
+Die ersten <InlineMath math="2{,}20\text{ mmol}" /> Säure hatten zwei Aufgaben zugleich. Sie neutralisierten das Hydroxid und **gaben jedem Carbonation sein erstes Wasserstoffion**, also ist das Hydroxid <InlineMath math="2{,}20-0{,}300=1{,}90\text{ mmol}" />, <InlineMath math="0{,}0760\text{ mol dm}^{-3}" />. Hält man den ganzen ersten Verbrauch für Hydroxid, erhält man <InlineMath math="0{,}0880" />, zieht man das Carbonat doppelt ab, <InlineMath math="0{,}0640" />.
+
+# Zurück zum Gas, das die Flasche geschluckt hat
+
+**Jedes Carbonation entstand aus einem Kohlenstoffdioxidmolekül**, also hat jeder <InlineMath math="\text{dm}^3" /> der Lösung <InlineMath math="0{,}0120\text{ mol}" /> des Gases aufgenommen, <InlineMath math="288\text{ cm}^3" /> bei Raumbedingungen.
+
 <BlockMath math="\begin{aligned}
-Q&=100\times4{,}2\times10{,}6=4452\text{ J}=4{,}452\text{ kJ}\\
-n(\text{NaOH})&=\tfrac{4{,}00}{40}=0{,}100\text{ mol}\\
-\Delta H&=-\tfrac{4{,}452}{0{,}100}=-44{,}5\text{ kJ mol}^{-1}
+n(\text{CO}_3^{\,2-})&=0{,}100\times3{,}00=0{,}300\text{ mmol}\ \Rightarrow\ c=\tfrac{0{,}300}{25{,}0}=0{,}0120\text{ mol dm}^{-3}\\
+n(\text{OH}^-)&=0{,}100\times22{,}00-0{,}300=1{,}90\text{ mmol}\ \Rightarrow\ c=\tfrac{1{,}90}{25{,}0}=0{,}0760\text{ mol dm}^{-3}\\
+V(\text{CO}_2)&=0{,}0120\times24\,000=288\text{ cm}^3
 \end{aligned}" />
-
-# Warum die anderen Antworten falsch sind
-
-- Ein Temperaturanstieg heißt, Wärme wird frei, also ist das Vorzeichen negativ, nicht positiv.
-- Eine verdünntere Lösung bräuchte mehr Volumen. **Abkühlen lässt die Flüssigkeit schrumpfen**.
-- <InlineMath math="-4{,}45\text{ kJ mol}^{-1}" /> teilt durch <InlineMath math="1{,}00\text{ mol}" /> statt <InlineMath math="0{,}100\text{ mol}" />, und das Volumen im Kolben hängt sehr wohl von der Temperatur ab.

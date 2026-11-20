@@ -10,19 +10,51 @@ const item: ItemSource = {
     en: {
       kind: "choice",
       options: [
-        { correct: true, label: "$$3$$, gold" },
-        { correct: false, label: "$$2$$, gold" },
-        { correct: false, label: "$$3$$, platinum" },
-        { correct: false, label: "$$4$$, platinum" },
+        {
+          correct: true,
+          label:
+            "$$1.97\\text{ g}$$, $$0.100\\text{ mol dm}^{-3}$$, $$0.200\\text{ mol dm}^{-3}$$",
+        },
+        {
+          correct: false,
+          label:
+            "$$1.97\\text{ g}$$, $$0.0500\\text{ mol dm}^{-3}$$, $$0.200\\text{ mol dm}^{-3}$$",
+        },
+        {
+          correct: false,
+          label:
+            "$$3.94\\text{ g}$$, $$0.100\\text{ mol dm}^{-3}$$, $$0.200\\text{ mol dm}^{-3}$$",
+        },
+        {
+          correct: false,
+          label:
+            "$$2.63\\text{ g}$$, $$0.100\\text{ mol dm}^{-3}$$, $$0.200\\text{ mol dm}^{-3}$$",
+        },
       ],
     },
     ms: {
       kind: "choice",
       options: [
-        { correct: true, label: "$$3$$, emas" },
-        { correct: false, label: "$$2$$, emas" },
-        { correct: false, label: "$$3$$, platinum" },
-        { correct: false, label: "$$4$$, platinum" },
+        {
+          correct: true,
+          label:
+            "$$1.97\\text{ g}$$, $$0.100\\text{ mol dm}^{-3}$$, $$0.200\\text{ mol dm}^{-3}$$",
+        },
+        {
+          correct: false,
+          label:
+            "$$1.97\\text{ g}$$, $$0.0500\\text{ mol dm}^{-3}$$, $$0.200\\text{ mol dm}^{-3}$$",
+        },
+        {
+          correct: false,
+          label:
+            "$$3.94\\text{ g}$$, $$0.100\\text{ mol dm}^{-3}$$, $$0.200\\text{ mol dm}^{-3}$$",
+        },
+        {
+          correct: false,
+          label:
+            "$$2.63\\text{ g}$$, $$0.100\\text{ mol dm}^{-3}$$, $$0.200\\text{ mol dm}^{-3}$$",
+        },
       ],
     },
   },

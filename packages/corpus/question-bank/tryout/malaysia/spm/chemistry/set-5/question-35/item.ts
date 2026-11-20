@@ -13,22 +13,22 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "$$-57.3\\text{ kJ mol}^{-1}$$, the same as for any neutralisation",
+            "$$-42.0\\text{ kJ mol}^{-1}$$, $$15.3\\text{ kJ mol}^{-1}$$, $$6.82^\\circ\\text{C}$$",
         },
         {
           correct: true,
           label:
-            "$$-52.1\\text{ kJ mol}^{-1}$$, because some of the heat is used to ionise the weak alkali completely",
+            "$$-52.5\\text{ kJ mol}^{-1}$$, $$4.80\\text{ kJ mol}^{-1}$$, $$5.46^\\circ\\text{C}$$",
         },
         {
           correct: false,
           label:
-            "$$-26.0\\text{ kJ mol}^{-1}$$, because ammonia is only partly ionised",
+            "$$-26.3\\text{ kJ mol}^{-1}$$, $$31.0\\text{ kJ mol}^{-1}$$, $$10.9^\\circ\\text{C}$$",
         },
         {
           correct: false,
           label:
-            "$$-52.1\\text{ kJ mol}^{-1}$$, because fewer moles of water form",
+            "$$-52.5\\text{ kJ mol}^{-1}$$, $$4.80\\text{ kJ mol}^{-1}$$, $$6.82^\\circ\\text{C}$$",
         },
       ],
     },
@@ -38,22 +38,22 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "$$-57.3\\text{ kJ mol}^{-1}$$, sama seperti mana-mana peneutralan",
+            "$$-42.0\\text{ kJ mol}^{-1}$$, $$15.3\\text{ kJ mol}^{-1}$$, $$6.82^\\circ\\text{C}$$",
         },
         {
           correct: true,
           label:
-            "$$-52.1\\text{ kJ mol}^{-1}$$, kerana sebahagian haba digunakan untuk mengionkan alkali lemah itu sepenuhnya",
+            "$$-52.5\\text{ kJ mol}^{-1}$$, $$4.80\\text{ kJ mol}^{-1}$$, $$5.46^\\circ\\text{C}$$",
         },
         {
           correct: false,
           label:
-            "$$-26.0\\text{ kJ mol}^{-1}$$, kerana ammonia hanya mengion separa",
+            "$$-26.3\\text{ kJ mol}^{-1}$$, $$31.0\\text{ kJ mol}^{-1}$$, $$10.9^\\circ\\text{C}$$",
         },
         {
           correct: false,
           label:
-            "$$-52.1\\text{ kJ mol}^{-1}$$, kerana bilangan mol air yang terbentuk lebih sedikit",
+            "$$-52.5\\text{ kJ mol}^{-1}$$, $$4.80\\text{ kJ mol}^{-1}$$, $$6.82^\\circ\\text{C}$$",
         },
       ],
     },

@@ -12,23 +12,20 @@ const item: ItemSource = {
       options: [
         {
           correct: true,
-          label:
-            "$$6.02\\times10^{23}$$ in diamond, $$4.52\\times10^{23}$$ in graphite",
+          label: "$$6.02\\times10^{23}$$, $$1.20\\times10^{23}$$, $$0$$",
+        },
+        {
+          correct: false,
+          label: "$$1.13\\times10^{23}$$, $$6.42\\times10^{23}$$, $$0$$",
+        },
+        {
+          correct: false,
+          label: "$$1.20\\times10^{24}$$, $$2.41\\times10^{23}$$, $$0$$",
         },
         {
           correct: false,
           label:
-            "$$1.20\\times10^{24}$$ in diamond, $$9.03\\times10^{23}$$ in graphite",
-        },
-        {
-          correct: false,
-          label:
-            "$$6.02\\times10^{23}$$ in diamond, $$6.02\\times10^{23}$$ in graphite",
-        },
-        {
-          correct: false,
-          label:
-            "$$3.01\\times10^{23}$$ in diamond, $$2.26\\times10^{23}$$ in graphite",
+            "$$6.02\\times10^{23}$$, $$1.20\\times10^{23}$$, $$1.20\\times10^{23}$$",
         },
       ],
     },
@@ -37,23 +34,20 @@ const item: ItemSource = {
       options: [
         {
           correct: true,
-          label:
-            "$$6.02\\times10^{23}$$ dalam intan, $$4.52\\times10^{23}$$ dalam grafit",
+          label: "$$6.02\\times10^{23}$$, $$1.20\\times10^{23}$$, $$0$$",
+        },
+        {
+          correct: false,
+          label: "$$1.13\\times10^{23}$$, $$6.42\\times10^{23}$$, $$0$$",
+        },
+        {
+          correct: false,
+          label: "$$1.20\\times10^{24}$$, $$2.41\\times10^{23}$$, $$0$$",
         },
         {
           correct: false,
           label:
-            "$$1.20\\times10^{24}$$ dalam intan, $$9.03\\times10^{23}$$ dalam grafit",
-        },
-        {
-          correct: false,
-          label:
-            "$$6.02\\times10^{23}$$ dalam intan, $$6.02\\times10^{23}$$ dalam grafit",
-        },
-        {
-          correct: false,
-          label:
-            "$$3.01\\times10^{23}$$ dalam intan, $$2.26\\times10^{23}$$ dalam grafit",
+            "$$6.02\\times10^{23}$$, $$1.20\\times10^{23}$$, $$1.20\\times10^{23}$$",
         },
       ],
     },

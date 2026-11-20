@@ -13,22 +13,22 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Hydrogen is used at the positive terminal, $$2.4\\text{ dm}^3$$, and $$1.2\\text{ dm}^3$$ of oxygen",
+            "$$26.8\\text{ h}$$, $$15.0\\text{ dm}^3$$, $$4.50\\text{ g}$$",
         },
         {
           correct: false,
           label:
-            "$$2.4\\text{ dm}^3$$ of hydrogen and $$2.4\\text{ dm}^3$$ of oxygen are used",
+            "$$53.6\\text{ h}$$, $$3.00\\text{ dm}^3$$, $$4.50\\text{ g}$$",
         },
         {
           correct: true,
           label:
-            "$$2.4\\text{ dm}^3$$ of hydrogen is used at the negative terminal, $$1.2\\text{ dm}^3$$ of oxygen is used, and $$1.8\\text{ g}$$ of water forms overall",
+            "$$53.6\\text{ h}$$, $$15.0\\text{ dm}^3$$, $$4.50\\text{ g}$$",
         },
         {
           correct: false,
           label:
-            "$$4.8\\text{ dm}^3$$ of hydrogen and $$1.2\\text{ dm}^3$$ of oxygen are used",
+            "$$53.6\\text{ h}$$, $$15.0\\text{ dm}^3$$, $$9.00\\text{ g}$$",
         },
       ],
     },
@@ -38,22 +38,22 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Hidrogen digunakan di terminal positif, $$2.4\\text{ dm}^3$$, dan $$1.2\\text{ dm}^3$$ oksigen",
+            "$$26.8\\text{ h}$$, $$15.0\\text{ dm}^3$$, $$4.50\\text{ g}$$",
         },
         {
           correct: false,
           label:
-            "$$2.4\\text{ dm}^3$$ hidrogen dan $$2.4\\text{ dm}^3$$ oksigen digunakan",
+            "$$53.6\\text{ h}$$, $$3.00\\text{ dm}^3$$, $$4.50\\text{ g}$$",
         },
         {
           correct: true,
           label:
-            "$$2.4\\text{ dm}^3$$ hidrogen digunakan di terminal negatif, $$1.2\\text{ dm}^3$$ oksigen digunakan, dan $$1.8\\text{ g}$$ air terbentuk secara keseluruhan",
+            "$$53.6\\text{ h}$$, $$15.0\\text{ dm}^3$$, $$4.50\\text{ g}$$",
         },
         {
           correct: false,
           label:
-            "$$4.8\\text{ dm}^3$$ hidrogen dan $$1.2\\text{ dm}^3$$ oksigen digunakan",
+            "$$53.6\\text{ h}$$, $$15.0\\text{ dm}^3$$, $$9.00\\text{ g}$$",
         },
       ],
     },

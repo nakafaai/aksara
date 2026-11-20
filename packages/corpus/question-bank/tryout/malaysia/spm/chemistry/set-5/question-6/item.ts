@@ -12,19 +12,19 @@ const item: ItemSource = {
       options: [
         {
           correct: true,
-          label: "$$84\\text{ cm}^3$$, then $$48\\text{ cm}^3$$",
+          label: "$$40\\%$$, $$48\\text{ cm}^3$$, $$24\\text{ cm}^3$$",
         },
         {
           correct: false,
-          label: "$$60\\text{ cm}^3$$, then $$36\\text{ cm}^3$$",
+          label: "$$40\\%$$, $$48\\text{ cm}^3$$, $$60\\text{ cm}^3$$",
         },
         {
           correct: false,
-          label: "$$84\\text{ cm}^3$$, then $$60\\text{ cm}^3$$",
+          label: "$$20\\%$$, $$24\\text{ cm}^3$$, $$27\\text{ cm}^3$$",
         },
         {
           correct: false,
-          label: "$$96\\text{ cm}^3$$, then $$72\\text{ cm}^3$$",
+          label: "$$40\\%$$, $$48\\text{ cm}^3$$, $$12\\text{ cm}^3$$",
         },
       ],
     },
@@ -33,19 +33,19 @@ const item: ItemSource = {
       options: [
         {
           correct: true,
-          label: "$$84\\text{ cm}^3$$, kemudian $$48\\text{ cm}^3$$",
+          label: "$$40\\%$$, $$48\\text{ cm}^3$$, $$24\\text{ cm}^3$$",
         },
         {
           correct: false,
-          label: "$$60\\text{ cm}^3$$, kemudian $$36\\text{ cm}^3$$",
+          label: "$$40\\%$$, $$48\\text{ cm}^3$$, $$60\\text{ cm}^3$$",
         },
         {
           correct: false,
-          label: "$$84\\text{ cm}^3$$, kemudian $$60\\text{ cm}^3$$",
+          label: "$$20\\%$$, $$24\\text{ cm}^3$$, $$27\\text{ cm}^3$$",
         },
         {
           correct: false,
-          label: "$$96\\text{ cm}^3$$, kemudian $$72\\text{ cm}^3$$",
+          label: "$$40\\%$$, $$48\\text{ cm}^3$$, $$12\\text{ cm}^3$$",
         },
       ],
     },

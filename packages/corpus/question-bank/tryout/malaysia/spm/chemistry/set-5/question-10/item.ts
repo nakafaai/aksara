@@ -10,19 +10,51 @@ const item: ItemSource = {
     en: {
       kind: "choice",
       options: [
-        { correct: false, label: "$$+5$$ to $$+2$$, $$0.65\\text{ g}$$" },
-        { correct: true, label: "$$+5$$ to $$+2$$, $$0.98\\text{ g}$$" },
-        { correct: false, label: "$$+3$$ to $$+2$$, $$0.33\\text{ g}$$" },
-        { correct: false, label: "$$+5$$ to $$+2$$, $$1.95\\text{ g}$$" },
+        {
+          correct: false,
+          label:
+            "$$0.00700\\text{ mol VO}^{2+}$$ and $$0.00300\\text{ mol VO}_2^+$$, $$1.95\\text{ g}$$",
+        },
+        {
+          correct: true,
+          label:
+            "$$0.00600\\text{ mol VO}^{2+}$$ and $$0.00400\\text{ mol V}^{3+}$$, $$0.975\\text{ g}$$",
+        },
+        {
+          correct: false,
+          label:
+            "$$0.00600\\text{ mol VO}^{2+}$$ and $$0.00400\\text{ mol V}^{3+}$$, $$0.650\\text{ g}$$",
+        },
+        {
+          correct: false,
+          label:
+            "$$0.00700\\text{ mol V}^{3+}$$ and $$0.00300\\text{ mol VO}_2^+$$, $$0.975\\text{ g}$$",
+        },
       ],
     },
     ms: {
       kind: "choice",
       options: [
-        { correct: false, label: "$$+5$$ kepada $$+2$$, $$0.65\\text{ g}$$" },
-        { correct: true, label: "$$+5$$ kepada $$+2$$, $$0.98\\text{ g}$$" },
-        { correct: false, label: "$$+3$$ kepada $$+2$$, $$0.33\\text{ g}$$" },
-        { correct: false, label: "$$+5$$ kepada $$+2$$, $$1.95\\text{ g}$$" },
+        {
+          correct: false,
+          label:
+            "$$0.00700\\text{ mol VO}^{2+}$$ dan $$0.00300\\text{ mol VO}_2^+$$, $$1.95\\text{ g}$$",
+        },
+        {
+          correct: true,
+          label:
+            "$$0.00600\\text{ mol VO}^{2+}$$ dan $$0.00400\\text{ mol V}^{3+}$$, $$0.975\\text{ g}$$",
+        },
+        {
+          correct: false,
+          label:
+            "$$0.00600\\text{ mol VO}^{2+}$$ dan $$0.00400\\text{ mol V}^{3+}$$, $$0.650\\text{ g}$$",
+        },
+        {
+          correct: false,
+          label:
+            "$$0.00700\\text{ mol V}^{3+}$$ dan $$0.00300\\text{ mol VO}_2^+$$, $$0.975\\text{ g}$$",
+        },
       ],
     },
   },

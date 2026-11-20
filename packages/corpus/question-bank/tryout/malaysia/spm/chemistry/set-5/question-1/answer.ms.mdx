@@ -1,30 +1,28 @@
-# Ketakpastian isi padu, bukan jisim, menentukan apa yang boleh dirumuskan
+# Dua bacaan, jadi ralat berganda
 
-Isi padu logam ialah kenaikan aras, <InlineMath math="31.0-25.0=6.0\text{ cm}^3" />. Setiap bacaan boleh tersasar <InlineMath math="0.5\text{ cm}^3" />, jadi **kenaikan itu membawa kedua-dua ralat**, <InlineMath math="\pm 1.0\text{ cm}^3" />, iaitu <InlineMath math="16.7\%" /> daripadanya. Penimbang hanya menambah <InlineMath math="0.02\%" />.
+Silinder itu tidak pernah menyukat isi padu logam secara terus. Ia menyukat dua aras air, dan **isi padu ialah beza kedua-duanya, jadi ketakpastian kedua-dua bacaan dijumlahkan**. Dalam Pengukuran I, nilainya <InlineMath math="6.0\pm1.0\text{ cm}^3" />, iaitu ketakpastian <InlineMath math="16.7\%" />, manakala <InlineMath math="\pm0.01\text{ g}" /> pada jisim hampir tidak memberi kesan. Ketumpatan <InlineMath math="9.05\text{ g cm}^{-3}" /> itu sebenarnya boleh berada di mana-mana dari <InlineMath math="7.54" /> hingga <InlineMath math="10.56\text{ g cm}^{-3}" />, cukup lebar untuk besi, nikel, kuprum dan argentum.
+
+# Kenapa ketulan kedua berbaloi walaupun penimbangnya lebih kasar
+
+Pengukuran II menggunakan penimbang yang lebih kasar, tetapi hasilnya lebih baik. Isi padu menjadi <InlineMath math="15.0\pm1.0\text{ cm}^3" />, hanya <InlineMath math="6.7\%" />, dan <InlineMath math="\pm0.5\text{ g}" /> pada <InlineMath math="135.8\text{ g}" /> cuma menambah <InlineMath math="0.37\%" />. Untuk hasil bahagi seperti jisim per isi padu, **peratus ketakpastian dijumlahkan**, jadi jawapannya <InlineMath math="7.0\%" />. Kalau kamu hanya mengira satu bacaan air, seolah-olah aras awal itu tepat, bahagian isi padu menjadi separuh dan kamu dapat <InlineMath math="3.7\%" />.
+
+<BlockMath math="\begin{aligned}
+\rho&=\tfrac{135.8}{65.0-50.0}=9.05\text{ g cm}^{-3},\quad \tfrac{1.0}{15.0}\times100+\tfrac{0.5}{135.8}\times100=6.67\%+0.37\%=7.0\%\\
+\rho&=9.05\pm0.64\text{ g cm}^{-3}:\quad 8.42\le\rho\le9.69
+\end{aligned}" />
+
+# Bar mana yang jatuh dalam julat itu
 
 <Chart
-  title={<>Julat diukur</>}
-  description={<>Ketumpatan diukur ialah dari <InlineMath math="7.54\text{ g cm}^{-3}" /> hingga <InlineMath math="10.56\text{ g cm}^{-3}" />. Besi, kuprum dan argentum berada di dalamnya, zink di bawahnya.</>}
-  bars="apart"
-  categories={["Zink", "Besi", "Kuprum", "Argentum"]}
+  title={<>Ketumpatan logam berbanding julat kedua</>}
+  description={<>Dua garis mendatar menandakan ketumpatan terendah dan tertinggi yang dibenarkan oleh Pengukuran II. Hanya nikel dan kuprum berada di antaranya.</>}
+  categories={["Zink", "Besi", "Nikel", "Kuprum", "Argentum", "Plumbum"]}
   series={[
-    { label: "Ketumpatan", mark: "bar", values: [7.14, 7.87, 8.96, 10.5] },
-    { label: "Terendah", mark: "line", values: [7.54, 7.54, 7.54, 7.54] },
-    { label: "Tertinggi", mark: "line", values: [10.56, 10.56, 10.56, 10.56] },
+    { label: "Ketumpatan logam", mark: "line", values: [7.14, 7.87, 8.91, 8.96, 10.5, 11.3] },
+    { label: "Terendah dibenarkan", mark: "line", values: [8.42, 8.42, 8.42, 8.42, 8.42, 8.42] },
+    { label: "Tertinggi dibenarkan", mark: "line", values: [9.69, 9.69, 9.69, 9.69, 9.69, 9.69] },
   ]}
   valueLabel="Ketumpatan (g cm⁻³)"
 />
 
-<BlockMath math="\begin{aligned}
-\rho&=\frac{54.32}{6.0}=9.05\text{ g cm}^{-3}\\
-\frac{1.0}{6.0}\times100\%&=16.7\%\\
-9.05\pm16.7\%&\Rightarrow 7.54\text{ hingga }10.56\text{ g cm}^{-3}
-\end{aligned}" />
-
-Jadi silinder penyukat tidak dapat membezakan tiga logam itu. Botol ketumpatan atau buret boleh.
-
-# Kenapa pilihan lain salah
-
-- <InlineMath math="8.3\%" /> mengira satu bacaan silinder sahaja, walhal kenaikan memerlukan dua.
-- Kuprum sahaja mengabaikan ketakpastian. **Sebarang ketumpatan dari <InlineMath math="7.54" /> hingga <InlineMath math="10.56\text{ g cm}^{-3}" /> sepadan dengan data**.
-- <InlineMath math="1.75\text{ g cm}^{-3}" /> membahagi dengan bacaan akhir, <InlineMath math="31.0\text{ cm}^3" />, yang termasuk air.
+Hanya dua bar berada antara <InlineMath math="8.42" /> dan <InlineMath math="9.69\text{ g cm}^{-3}" />: nikel pada <InlineMath math="8.91" /> dan kuprum pada <InlineMath math="8.96" />. **Beza ketumpatan kedua-duanya kurang daripada sepersepuluh ketakpastian**, jadi kaedah ini tidak dapat membezakannya. Memilih kuprum hanya kerana <InlineMath math="9.05" /> paling dekat dengannya membaca lebih daripada yang dibenarkan oleh pengukuran itu. Mengekalkan empat logam daripada Pengukuran I pula membuang pengukuran yang lebih baik, kerana blok itu mesti sepadan dengan kedua-dua julat serentak.

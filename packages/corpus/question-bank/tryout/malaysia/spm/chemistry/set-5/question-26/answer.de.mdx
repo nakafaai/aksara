@@ -1,25 +1,34 @@
-# Die Elektronen des Magnesiums legen die Ladung jedes Metallions fest, und die Masse legt das Metall fest
+# Der Wasserstoff misst die Säure
 
-Das Magnesium sind <InlineMath math="0{,}0150\text{ mol}" />, und **jedes Magnesiumatom gibt zwei Elektronen ab**, insgesamt <InlineMath math="0{,}0300\text{ mol}" />. Sie reduzieren <InlineMath math="0{,}0100\text{ mol}" /> Metallionen, also nimmt jedes Ion drei Elektronen auf und <InlineMath math="n=3" />. Die molare Masse des Metalls ist <InlineMath math="1{,}97\div0{,}0100=197" />, also Gold.
+Zink reagiert sowohl mit den Gold(III)-Ionen als auch mit der Säure, also ist das Gas die eine saubere Messung. <InlineMath math="120\text{ cm}^3" /> sind <InlineMath math="5{,}00\times10^{-3}\text{ mol}" /> Wasserstoff, und **jedes Wasserstoffmolekül hat zwei Wasserstoffionen verbraucht**, also enthielt das Abwasser <InlineMath math="0{,}0100\text{ mol}" /> Säure, <InlineMath math="0{,}100\text{ mol dm}^{-3}" /> in <InlineMath math="100\text{ cm}^3" />. Ein Wasserstoffion pro Molekül ergibt <InlineMath math="0{,}0500\text{ mol dm}^{-3}" />.
 
-<Chart
-  title={<>Stoffmengen bei der Rückgewinnung</>}
-  description={<>Die <InlineMath math="0{,}0150\text{ mol}" /> Magnesium geben <InlineMath math="0{,}0300\text{ mol}" /> Elektronen an <InlineMath math="0{,}0100\text{ mol}" /> Metallionen ab.</>}
-  bars="apart"
-  categories={["Magnesiumatome", "Elektronen", "Metallionen"]}
-  series={[
-    { label: "Stoffmenge", mark: "bar", values: [0.0150, 0.0300, 0.0100] },
-  ]}
-  valueLabel="Stoffmenge (mol)"
+# Der Rest des Zinks kauft Gold
+
+Von den <InlineMath math="\tfrac{1{,}30}{65}=0{,}0200\text{ mol}" /> Zink gingen <InlineMath math="5{,}00\times10^{-3}\text{ mol}" /> an die Säure. Die übrigen <InlineMath math="0{,}0150\text{ mol}" /> gaben ihre Elektronen an Gold(III)-Ionen, und weil **drei Zinkatome zwei Goldionen reduzieren**, gewinnt man <InlineMath math="0{,}0100\text{ mol}" /> Gold, <InlineMath math="1{,}97\text{ g}" />.
+
+<Mermaid
+  title={<>Wohin das Zink geht</>}
+  description={<>Der Wasserstoff legt den Anteil der Säure fest. Der Rest reduziert Gold, und beide Wege enden als Zinkionen.</>}
+  chart={`
+    flowchart TD
+      N0["1,30 g Zn: 0,0200 mol"]
+      N1["0,00500 mol Zn zu H⁺: 120 cm³ H₂"]
+      N2["0,0150 mol Zn zu Au³⁺: 0,0100 mol Au, 1,97 g"]
+      N3["0,0200 mol Zn²⁺ in 100 cm³"]
+      N0 --> N1
+      N0 --> N2
+      N1 --> N3
+      N2 --> N3
+  `}
 />
 
+Schickt man alles Zink zum Gold, als wäre kein Wasserstoff entstanden, kommen <InlineMath math="2{,}63\text{ g}" /> heraus. Gibt man jedem gelösten Zinkatom ein eigenes Goldatom, sind es <InlineMath math="3{,}94\text{ g}" />, aber ein Zinkatom trägt nur zwei Elektronen, und ein Goldion braucht drei.
+
+# Jedes Zinkatom endet als Ion
+
+Egal, mit welchem Partner es reagiert hat, **jedes gelöste Zinkatom ist jetzt ein Zinkion in der Lösung**: <InlineMath math="0{,}0200\text{ mol}" /> in <InlineMath math="0{,}100\text{ dm}^3" />, <InlineMath math="0{,}200\text{ mol dm}^{-3}" />.
+
 <BlockMath math="\begin{aligned}
-n&=\tfrac{2\times\tfrac{0{,}36}{24}}{0{,}0100}=\tfrac{0{,}0300}{0{,}0100}=3\\
-M&=\tfrac{1{,}97}{0{,}0100}=197\ (\text{Au})
+n(\text{H}^+)&=2\times\tfrac{120}{24\,000}=0{,}0100\text{ mol}\ \Rightarrow\ c(\text{HCl})=\tfrac{0{,}0100}{0{,}100}=0{,}100\text{ mol dm}^{-3}\\
+n(\text{Au})&=\tfrac{2}{3}\times(0{,}0200-0{,}00500)=0{,}0100\text{ mol}=1{,}97\text{ g},\quad c(\text{Zn}^{2+})=\tfrac{0{,}0200}{0{,}100}=0{,}200\text{ mol dm}^{-3}
 \end{aligned}" />
-
-# Warum die anderen Antworten falsch sind
-
-- <InlineMath math="n=2" /> tauscht je Magnesiumatom ein Metallion. **Zähle Elektronen, nicht Atome**.
-- Die relative Atommasse von Platin ist <InlineMath math="195" />, doch die Daten ergeben <InlineMath math="197" />.
-- Platin bildet oft <InlineMath math="\text{Pt}^{4+}" />, doch die Elektronenbilanz gibt die Ladung <InlineMath math="+3" /> und die Masse <InlineMath math="197" />.

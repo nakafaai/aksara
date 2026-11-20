@@ -1,26 +1,29 @@
-# The solid's slope gives the heater's power, and both trends fix when melting starts and ends
+# The solid stage clocks the heater
 
-The power is unknown, so get it from the part of the graph where only the solid warms: <InlineMath math="20^\circ\text{C}" /> a minute in <InlineMath math="12.8\text{ g}" /> of solid. **The flat stretch does not start or end on a grid point**. The solid's line reaches <InlineMath math="80^\circ\text{C}" /> half a minute after the reading at <InlineMath math="2\text{ min}" />, and the liquid's line leaves <InlineMath math="80^\circ\text{C}" /> three quarters of a minute before the reading at <InlineMath math="9\text{ min}" />. During melting the heat pulls molecules apart against their attraction, so their kinetic energy, and the temperature, stay constant.
+Nothing tells you the heater's power, but the solid warming up does. **Below <InlineMath math="80^\circ\text{C}" /> every joule goes into raising the temperature**, <InlineMath math="20^\circ\text{C}" /> per minute, so the heater supplies <InlineMath math="12.8\times1.30\times20=332.8\text{ J}" /> each minute. The liquid climbs more slowly, <InlineMath math="15.3^\circ\text{C}" /> per minute, because liquid naphthalene stores heat differently. Feeding that slope into the solid's heat capacity undercounts the heater and ends at <InlineMath math="15.3\text{ kJ mol}^{-1}" />.
+
+# Timing the flat part
+
+You don't have to stretch either line, because the question tells you both ends. The first drop of liquid appears exactly at minute <InlineMath math="3" /> and the last crystal disappears exactly at minute <InlineMath math="9" />. So **the melting lasts six minutes, the gaps between readings, not the seven readings of <InlineMath math="80^\circ\text{C}" />**. Think of fence posts: seven posts have only six gaps between them. Counting the readings as minutes gives <InlineMath math="23.3\text{ kJ mol}^{-1}" />.
 
 <Chart
-  title={<>Melting time read three ways</>}
-  description={<>Counting only the flat grid points gives <InlineMath math="5.0\text{ min}" />, extending both trends to <InlineMath math="80^\circ\text{C}" /> gives <InlineMath math="5.75\text{ min}" />, and joining the last point below to the first point above gives <InlineMath math="7.0\text{ min}" />.</>}
+  title={<>Heater energy in each stage</>}
+  description={<>The heater gives <InlineMath math="332.8\text{ J}" /> every minute, so each bar is that rate times the minutes the naphthalene spends in the stage.</>}
   bars="apart"
-  categories={["Grid points 3 to 8", "Trends meet 80 °C", "Last below to first above"]}
+  categories={["Solid warming", "Melting", "Liquid warming"]}
   series={[
-    { label: "Time", mark: "bar", values: [5.0, 5.75, 7.0] },
+    { label: "Energy (J)", mark: "bar", values: [998.4, 1996.8, 665.6] },
   ]}
-  valueLabel="Time (min)"
+  valueLabel="Energy (J)"
 />
 
+# From one sample to one mole
+
+Six minutes at <InlineMath math="332.8\text{ J}" /> per minute is <InlineMath math="1997\text{ J}" /> for <InlineMath math="\tfrac{12.8}{128}=0.100\text{ mol}" />, which makes <InlineMath math="20.0\text{ kJ mol}^{-1}" />.
+
 <BlockMath math="\begin{aligned}
-P&=12.8\times1.30\times\tfrac{70-30}{2}=332.8\text{ J min}^{-1}\\
-t_1&=2+\tfrac{80-70}{20}=2.50\text{ min},\quad t_2=9-\tfrac{91.5-80}{106.8-91.5}=8.25\text{ min}\\
-\Delta H&=\tfrac{332.8\times(8.25-2.50)}{12.8\div128}=19\,100\text{ J mol}^{-1}=19.1\text{ kJ mol}^{-1}
+12.8\times1.30\times20&=332.8\text{ J}\\
+\Delta H&=\tfrac{332.8\times(9-3)}{0.100}=19\,968\text{ J mol}^{-1}=20.0\text{ kJ mol}^{-1}
 \end{aligned}" />
 
-# Why the other options are wrong
-
-- <InlineMath math="16.6\text{ kJ mol}^{-1}" /> counts only the grid points at <InlineMath math="80^\circ\text{C}" />, from <InlineMath math="3" /> to <InlineMath math="8\text{ min}" />, and misses the melting that happens before and after them.
-- A constant temperature means the average kinetic energy is constant. **The heat raises the potential energy of the molecules as they separate**.
-- <InlineMath math="23.3\text{ kJ mol}^{-1}" /> times the whole gap from <InlineMath math="2" /> to <InlineMath math="9\text{ min}" />, which includes warming the solid and the liquid.
+**The temperature does not move while this energy goes in**, so the average kinetic energy of the molecules stays the same and the energy goes into overcoming the forces between them. Molecules speeding up would show as a rising temperature, which the flat line rules out.

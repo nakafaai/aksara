@@ -1,26 +1,30 @@
-# The titration gives the molar mass, the molar mass gives the acid, and the acid names the ester
+# Balance the electrode reaction first
 
-A monoprotic acid reacts one to one with sodium hydroxide, so the moles of alkali are the moles of acid. **Its molar mass, <InlineMath math="74" />, fits only <InlineMath math="n=2" />**, propanoic acid. With methanol it gives methyl propanoate, <InlineMath math="\text{C}_2\text{H}_5\text{COOCH}_3" />, whose name starts with the alcohol part.
+Atoms and charge both have to balance. On the left there are eight hydrogen atoms, six in ethanol and two in water, and ethanoic acid keeps only four, so **four hydrogen ions leave and four electrons go with them**, <InlineMath math="x=4" />. An equation with <InlineMath math="x=2" /> loses two hydrogen atoms, halves the electrons per molecule and doubles every ethanol mass, which pushes all three drivers over.
 
-<Chart
-  title={<>Masses in the esterification</>}
-  description={<>The acid is <InlineMath math="0.74\text{ g}" />, a full yield of ester would be <InlineMath math="0.88\text{ g}" />, and <InlineMath math="75\%" /> of it is <InlineMath math="0.66\text{ g}" />.</>}
-  bars="apart"
-  categories={["Acid", "Ester, full yield", "Ester, 75% yield"]}
-  series={[
-    { label: "Mass", mark: "bar", values: [0.74, 0.88, 0.66] },
-  ]}
-  valueLabel="Mass (g)"
-/>
+# From the meter reading to micrograms
+
+Driver Q's <InlineMath math="0.193\text{ C}" /> is <InlineMath math="2.00\times10^{-6}\text{ mol}" /> of electrons, so **a quarter of that, <InlineMath math="5.00\times10^{-7}\text{ mol}" />, is the ethanol**, <InlineMath math="23.0\ \mu\text{g}" />. That sat in <InlineMath math="50.0\text{ cm}^3" /> while the limit is written per <InlineMath math="100\text{ cm}^3" />, so Q's breath carries <InlineMath math="46.0\ \mu\text{g}" /> in every <InlineMath math="100\text{ cm}^3" />.
 
 <BlockMath math="\begin{aligned}
-n&=0.0250\times0.20=0.0050\text{ mol}\Rightarrow M_r=\tfrac{0.37}{0.0050}=74\\
-14n+46&=74\Rightarrow n=2:\ \text{C}_2\text{H}_5\text{COOH}\\
-m(\text{C}_2\text{H}_5\text{COOCH}_3)&=\tfrac{0.74}{74}\times88\times0.75=0.66\text{ g}
+n(e^-)&=\tfrac{0.193}{96\,500}=2.00\times10^{-6}\text{ mol},\quad n(\text{C}_2\text{H}_5\text{OH})=\tfrac{2.00\times10^{-6}}{4}=5.00\times10^{-7}\text{ mol}\\
+m&=2\times5.00\times10^{-7}\times46=4.60\times10^{-5}\text{ g}=46.0\ \mu\text{g}
 \end{aligned}" />
 
-# Why the other options are wrong
+Put <InlineMath math="23.0\ \mu\text{g}" /> straight next to the limit and you forget that the sample was only half the reference volume, so nobody looks guilty. Weighing the product, ethanoic acid at <InlineMath math="M_r=60" />, instead of the ethanol gives <InlineMath math="60.0\ \mu\text{g}" />.
 
-- <InlineMath math="\text{CH}_3\text{COOH}" /> has a molar mass of <InlineMath math="60" />, which does not match the titration.
-- Propyl methanoate swaps the parts. **The alcohol, methanol, gives the methyl part of the name**.
-- <InlineMath math="0.88\text{ g}" /> is the mass at a full yield and leaves out the <InlineMath math="75\%" />.
+# Three drivers against one line
+
+The same steps turn P's charge into <InlineMath math="23.0\ \mu\text{g}" /> and R's into <InlineMath math="35.8\ \mu\text{g}" /> per <InlineMath math="100\text{ cm}^3" />. **R is over by less than a microgram**, which is exactly why the meter reports charge to three significant figures. Q and R are over the limit, and P is not.
+
+<Chart
+  title={<>Each driver against the limit</>}
+  description={<>Q is well over the line, and R crosses it by less than a microgram.</>}
+  bars="apart"
+  categories={["Driver P", "Driver Q", "Driver R"]}
+  series={[
+    { label: "Ethanol in breath", mark: "bar", values: [23.0, 46.0, 35.8] },
+    { label: "Legal limit", mark: "bar", values: [35, 35, 35] },
+  ]}
+  valueLabel="Ethanol per 100 cm³ (µg)"
+/>

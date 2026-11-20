@@ -1,26 +1,29 @@
-# Hitung parasetamol yang sudah diminum, lalu periksa batas mana yang tercapai lebih dulu
+# Tiga batas untuk satu anak
 
-Sirup flu juga obat parasetamol, jadi dua dosisnya ikut dihitung, yaitu <InlineMath math="240\text{ mg}" /> dan dua dari empat dosis. Batas harian <InlineMath math="1080\text{ mg}" /> menyisakan <InlineMath math="840\text{ mg}" />. **Tetapi hanya tersisa dua dosis, masing-masing paling banyak <InlineMath math="270\text{ mg}" />**, jadi jumlah dosis menghentikan anak itu pada <InlineMath math="540\text{ mg}" /> lagi, jauh di bawah batas harian.
+Dengan <InlineMath math="18\text{ kg}" />, anak itu boleh mendapat <InlineMath math="270\text{ mg}" /> dalam satu dosis dan <InlineMath math="1080\text{ mg}" /> sehari, paling banyak dalam empat dosis. **Ketiga batas berlaku sekaligus**, dan batas terkecil yang menang.
+
+# Yang sudah dipakai sirup flu
+
+Tiap dosis <InlineMath math="7{,}5\text{ mL}" /> sirup flu berisi <InlineMath math="7{,}5/5{,}0\times80=120\text{ mg}" />, jadi anak itu sudah minum <InlineMath math="240\text{ mg}" />. **Hitungan dosis berlaku untuk semua obat parasetamol**, jadi dua dosis itu juga memakai separuh dari empat, dan tersisa dua. Menghitung dari batas harian <InlineMath math="1080\text{ mg}" /> saja, seolah belum ada yang diminum, memberi opsi <InlineMath math="45{,}0\text{ mL}" />.
 
 <Chart
-  title={<>Parasetamol dibanding batas harian</>}
-  description={<>Anak itu meminum <InlineMath math="240\text{ mg}" /> dalam sirup flu dan paling banyak <InlineMath math="540\text{ mg}" /> lagi, di bawah batas <InlineMath math="1080\text{ mg}" />.</>}
+  title={<>Jatah parasetamol hari itu</>}
+  description={<>Batas harian masih menyisakan <InlineMath math="840\text{ mg}" />, tetapi dua dosis yang masing-masing paling banyak <InlineMath math="270\text{ mg}" /> membatasi sirup biasa di <InlineMath math="540\text{ mg}" />.</>}
   bars="apart"
-  categories={["Sirup flu diminum", "Dua dosis lagi", "Batas harian"]}
+  categories={["Batas harian", "Diminum sebagai sirup flu", "Sisa menurut batas harian", "Sisa dalam dua dosis lagi"]}
   series={[
-    { label: "Parasetamol", mark: "bar", values: [240, 540, 1080] },
+    { label: "Parasetamol", mark: "bar", values: [1080, 240, 840, 540] },
   ]}
   valueLabel="Parasetamol (mg)"
 />
 
+# Batas yang lebih ketat menentukan
+
+Menurut batas harian masih ada ruang <InlineMath math="840\text{ mg}" />, yaitu <InlineMath math="35{,}0\text{ mL}" /> sirup biasa, tetapi itu berarti satu dosis lebih dari <InlineMath math="270\text{ mg}" /> atau dosis kelima. **Dua dosis <InlineMath math="270\text{ mg}" /> hanya mengizinkan <InlineMath math="540\text{ mg}" />**, dan dengan <InlineMath math="120\text{ mg}" /> per <InlineMath math="5{,}0\text{ mL}" /> itu berarti <InlineMath math="22{,}5\text{ mL}" />.
+
 <BlockMath math="\begin{aligned}
-\text{sirup flu}&=2\times7{,}5\times\tfrac{80}{5{,}0}=240\text{ mg},\quad\text{sisa harian}=18\times60-240=840\text{ mg}\\
-\text{dua dosis tersisa}&=2\times18\times15=540\text{ mg}<840\text{ mg}\Rightarrow V=540\times\tfrac{5{,}0}{120}=22{,}5\text{ mL}\\
-n&=\tfrac{0{,}240+0{,}540}{151}=5{,}17\times10^{-3}\text{ mol}
+2\times270&=540\text{ mg}<1080-240=840\text{ mg}\ \Rightarrow\ V=\tfrac{540}{120}\times5{,}0=22{,}5\text{ mL}\\
+n&=\tfrac{0{,}240+0{,}540}{151}=\tfrac{0{,}780}{151}=5{,}17\times10^{-3}\text{ mol}
 \end{aligned}" />
 
-# Kenapa pilihan lain salah
-
-- <InlineMath math="35{,}0\text{ mL}" /> memenuhi batas massa harian. **Itu memerlukan lebih dari empat dosis seluruhnya**, karena satu dosis paling banyak <InlineMath math="270\text{ mg}" />.
-- <InlineMath math="45{,}0\text{ mL}" /> lupa bahwa sirup flu sudah berisi parasetamol.
-- <InlineMath math="3{,}58\times10^{-3}\text{ mol}" /> hanya menghitung sirup biasa dan melewatkan <InlineMath math="240\text{ mg}" /> yang diminum sebelumnya.
+Hari itu ditutup dengan <InlineMath math="780\text{ mg}" /> parasetamol, dengan <InlineMath math="M_r=151" />. Menghitung sirup biasa saja memberi <InlineMath math="3{,}58\times10^{-3}\text{ mol}" /> dan melupakan sirup flu tadi pagi.

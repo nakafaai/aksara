@@ -1,27 +1,46 @@
-# Die Nachweise nennen Kupfer(II)-nitrat, der Rückstand zählt sein Wasser, und das Trockenmittel entfernt das Wasser
+# Die Nachweise einzeln lesen
 
-Der braune Ring zeigt Nitrat, die tiefblaue Lösung in überschüssigem Ammoniak Kupfer(II). Der schwarze Rückstand ist Kupfer(II)-oxid, <InlineMath math="0{,}0100\text{ mol}" />, also wiegen <InlineMath math="0{,}0100\text{ mol}" /> Y <InlineMath math="2{,}42\text{ g}" />. Die zusätzlichen <InlineMath math="54" /> in der molaren Masse sind drei Wassermoleküle. **Wasserfreies Calciumchlorid bindet das Kristallwasser**, also erreichen nur Stickstoffdioxid und Sauerstoff die Messung.
+Kein Gas mit Salpetersäure schließt Carbonat aus, eine klare Lösung mit Silbernitrat schließt Chlorid aus, und eine klare Lösung mit Bariumchlorid schließt Sulfat aus. **Der braune Ring ist der Nachweis für Nitrat**, und ein blauer Niederschlag, der sich in überschüssigem Ammoniak tiefblau löst, gehört zu Kupfer(II). Y ist also ein Hydrat von Kupfer(II)-nitrat.
+
+<Mermaid
+  title={<>Von den Nachweisen zum Salz</>}
+  description={<>Drei Nachweise schließen Ionen aus, zwei weisen Ionen nach.</>}
+  chart={`
+    flowchart TD
+      N0["Kein Gas mit Salpetersäure: kein Carbonat"]
+      N1["Kein Niederschlag mit Silbernitrat: kein Chlorid"]
+      N2["Kein Niederschlag mit Bariumchlorid: kein Sulfat"]
+      N3["Brauner Ring: Nitrat"]
+      N4["Blauer Niederschlag, tiefblau in überschüssigem Ammoniak: Kupfer(II)"]
+      N5["Y ist ein Kupfer(II)-nitrat-Hydrat"]
+      N0 --> N5
+      N1 --> N5
+      N2 --> N5
+      N3 --> N5
+      N4 --> N5
+  `}
+/>
+
+# Der schwarze Rückstand wiegt die Formel
+
+Der schwarze Feststoff ist Kupfer(II)-oxid, <InlineMath math="0{,}80\div80=0{,}0100\text{ mol}" />. **Jedes Kupferatom darin stammt aus einer Formeleinheit Y**, also sind <InlineMath math="2{,}42\text{ g}" /> genau <InlineMath math="0{,}0100\text{ mol}" /> Y, und die Formelmasse ist <InlineMath math="242" />. Das wasserfreie Nitrat erklärt nur <InlineMath math="188" />, die fehlenden <InlineMath math="54" /> sind drei Wasser. Ohne Wasser in der Formel bleiben <InlineMath math="0{,}54\text{ g}" /> der Probe unerklärt.
+
+# Welche Gase im Messrohr ankommen
+
+Starkes Erhitzen zersetzt das Nitrat, und das Kristallwasser entweicht als Dampf. **Das Calciumchlorid hält das Wasser zurück**, also werden nur <InlineMath math="0{,}0200\text{ mol}" /> Stickstoffdioxid und <InlineMath math="0{,}00500\text{ mol}" /> Sauerstoff gemessen, <InlineMath math="600\text{ cm}^3" />. Lässt man den Dampf mitzählen, kommen <InlineMath math="1320\text{ cm}^3" /> heraus. Vergisst man, dass auf zwei Kupferatome ein Sauerstoffmolekül entweicht, bleiben <InlineMath math="480\text{ cm}^3" />.
 
 <Chart
-  title={<>Stoffmenge jedes Produkts aus Y</>}
-  description={<>Das Erhitzen gibt <InlineMath math="0{,}0200\text{ mol}" /> Stickstoffdioxid, <InlineMath math="0{,}0050\text{ mol}" /> Sauerstoff und <InlineMath math="0{,}0300\text{ mol}" /> Wasser, das das Calciumchlorid bindet.</>}
+  title={<>Wohin die Masse von Y beim Erhitzen geht</>}
+  description={<>Die vier Teile ergeben zusammen wieder <InlineMath math="2{,}42\text{ g}" />. Nur die letzten beiden kommen am Calciumchlorid vorbei.</>}
   bars="apart"
-  categories={["Stickstoffdioxid", "Sauerstoff", "Wasser (gebunden)"]}
+  categories={["Wasser", "Kupfer(II)-oxid", "Stickstoffdioxid", "Sauerstoff"]}
   series={[
-    { label: "Stoffmenge", mark: "bar", values: [0.0200, 0.0050, 0.0300] },
+    { label: "Masse (g)", mark: "bar", values: [0.54, 0.8, 0.92, 0.16] },
   ]}
-  valueLabel="Stoffmenge (mol)"
+  valueLabel="Masse (g)"
 />
 
 <BlockMath math="\begin{aligned}
-n(\text{CuO})&=\tfrac{0{,}80}{80}=0{,}0100\text{ mol}\Rightarrow M_r(\text{Y})=\tfrac{2{,}42}{0{,}0100}=242\\
-242-188&=54=3\times18\Rightarrow\text{Cu(NO}_3)_2\cdot3\text{H}_2\text{O}\\
-2\text{Cu(NO}_3)_2&\rightarrow2\text{CuO}+4\text{NO}_2+\text{O}_2\\
-V&=(0{,}0200+0{,}0050)\times24{.}000=600\text{ cm}^3
+n(\text{CuO})&=\tfrac{0{,}80}{80}=0{,}0100\text{ mol}\ \Rightarrow\ M=\tfrac{2{,}42}{0{,}0100}=242,\quad x=\tfrac{242-188}{18}=3\\
+2\text{Cu(NO}_3)_2&\rightarrow2\text{CuO}+4\text{NO}_2+\text{O}_2:\quad V=(0{,}0200+0{,}00500)\times24\,000=600\text{ cm}^3
 \end{aligned}" />
-
-# Warum die anderen Antworten falsch sind
-
-- <InlineMath math="480\text{ cm}^3" /> zählt nur das Stickstoffdioxid. **Das Nitrat setzt auch ein Sauerstoffmolekül je zwei Kupferionen frei**.
-- <InlineMath math="1320\text{ cm}^3" /> zählt auch die <InlineMath math="0{,}0300\text{ mol}" /> Wasser mit, die das wasserfreie Calciumchlorid vor der Messung bindet.
-- Wasserfreies Kupfer(II)-nitrat wöge für <InlineMath math="0{,}0100\text{ mol}" /> Kupfer nur <InlineMath math="1{,}88\text{ g}" />, nicht <InlineMath math="2{,}42\text{ g}" />.

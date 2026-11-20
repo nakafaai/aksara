@@ -12,20 +12,22 @@ const item: ItemSource = {
       options: [
         {
           correct: false,
-          label: "$$2.48\\text{ g}$$, and the filtrate is colourless",
+          label: "$$0.990\\text{ g}$$, $$0\\text{ g}$$, $$60.0\\text{ cm}^3$$",
         },
         {
           correct: false,
-          label: "$$2.23\\text{ g}$$, and the filtrate is colourless",
+          label:
+            "$$0.990\\text{ g}$$, $$0.495\\text{ g}$$, $$40.0\\text{ cm}^3$$",
         },
         {
           correct: true,
           label:
-            "$$2.23\\text{ g}$$, and the filtrate is pale blue because copper(II) ions are left over",
+            "$$0.990\\text{ g}$$, $$0.495\\text{ g}$$, $$80.0\\text{ cm}^3$$",
         },
         {
           correct: false,
-          label: "$$2.48\\text{ g}$$, and the filtrate is pale blue",
+          label:
+            "$$0.990\\text{ g}$$, $$0.743\\text{ g}$$, $$80.0\\text{ cm}^3$$",
         },
       ],
     },
@@ -34,20 +36,22 @@ const item: ItemSource = {
       options: [
         {
           correct: false,
-          label: "$$2.48\\text{ g}$$, dan hasil turasan tidak berwarna",
+          label: "$$0.990\\text{ g}$$, $$0\\text{ g}$$, $$60.0\\text{ cm}^3$$",
         },
         {
           correct: false,
-          label: "$$2.23\\text{ g}$$, dan hasil turasan tidak berwarna",
+          label:
+            "$$0.990\\text{ g}$$, $$0.495\\text{ g}$$, $$40.0\\text{ cm}^3$$",
         },
         {
           correct: true,
           label:
-            "$$2.23\\text{ g}$$, dan hasil turasan biru muda kerana ion kuprum(II) berlebihan",
+            "$$0.990\\text{ g}$$, $$0.495\\text{ g}$$, $$80.0\\text{ cm}^3$$",
         },
         {
           correct: false,
-          label: "$$2.48\\text{ g}$$, dan hasil turasan biru muda",
+          label:
+            "$$0.990\\text{ g}$$, $$0.743\\text{ g}$$, $$80.0\\text{ cm}^3$$",
         },
       ],
     },

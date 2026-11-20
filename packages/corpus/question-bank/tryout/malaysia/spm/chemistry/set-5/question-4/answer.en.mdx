@@ -1,27 +1,29 @@
-# The lost mass is oxygen, and only the chlorate made it
+# Only the carbide makes gas
 
-The catalyst comes out unchanged, so **the whole loss in mass is oxygen**. The equation turns the oxygen back into the chlorate that released it.
+Calcium oxide reacts with water too, but quietly, with no gas. **Every bubble of ethyne comes from one calcium carbide unit**, so <InlineMath math="\tfrac{480}{24\,000}=0.0200\text{ mol}" /> of ethyne means <InlineMath math="0.0200\text{ mol}" /> of carbide, <InlineMath math="0.0200\times64=1.28\text{ g}" /> of the <InlineMath math="1.84\text{ g}" />. That is <InlineMath math="69.6\%" />. Dividing the ethyne's own mass, <InlineMath math="0.520\text{ g}" />, by the sample gives <InlineMath math="28.3\%" />, which measures the gas, not the solid it came from. The remaining <InlineMath math="30.4\%" /> is the oxide, the other share of the sample.
 
-<Chart
-  title={<>Masses in the experiment</>}
-  description={<>The mixture weighs <InlineMath math="7.00\text{ g}" />, it held <InlineMath math="4.90\text{ g}" /> of potassium chlorate, and <InlineMath math="1.92\text{ g}" /> of oxygen left it.</>}
-  bars="apart"
-  categories={["Mixture", "Potassium chlorate", "Oxygen lost"]}
-  series={[
-    { label: "Mass", mark: "bar", values: [7.00, 4.90, 1.92] },
-  ]}
-  valueLabel="Mass (g)"
+# Both solids end as calcium hydroxide
+
+The <InlineMath math="0.560\text{ g}" /> left is calcium oxide, <InlineMath math="0.0100\text{ mol}" />, and it slakes to calcium hydroxide just as the carbide does. **Each calcium atom, whichever solid it started in, ends in one <InlineMath math="\text{Ca(OH)}_2" />**.
+
+<Mermaid
+  title={<>Where the calcium goes</>}
+  description={<>The gas fixes the carbide, the rest of the mass is oxide, and both routes end in calcium hydroxide.</>}
+  chart={`
+    flowchart TD
+      N0["480 cm³ C₂H₂: 0.0200 mol"]
+      N1["CaC₂: 0.0200 mol, 1.28 g"]
+      N2["CaO: 0.560 g, 0.0100 mol"]
+      N3["Ca(OH)₂ from CaC₂: 0.0200 mol"]
+      N4["Ca(OH)₂ from CaO: 0.0100 mol"]
+      N5["All Ca(OH)₂: 0.0300 mol, 2.22 g"]
+      N0 --> N1
+      N1 --> N2
+      N1 --> N3
+      N2 --> N4
+      N3 --> N5
+      N4 --> N5
+  `}
 />
 
-<BlockMath math="\begin{aligned}
-m(\text{O}_2)&=7.00-5.08=1.92\text{ g},\quad n=\frac{1.92}{32}=0.0600\text{ mol}\\
-n(\text{KClO}_3)&=\tfrac{2}{3}\times0.0600=0.0400\text{ mol}\\
-m&=0.0400\times122.5=4.90\text{ g}\Rightarrow\frac{4.90}{7.00}\times100\%=70.0\%\\
-V(\text{O}_2)&=0.0600\times24=1.44\text{ dm}^3
-\end{aligned}" />
-
-# Why the other options are wrong
-
-- <InlineMath math="0.96\text{ dm}^3" /> converts the moles of chlorate, <InlineMath math="0.0400" />, into gas instead of the moles of oxygen.
-- <InlineMath math="27.4\%" /> is the oxygen's share of the mixture, not the chlorate's.
-- <InlineMath math="35.0\%" /> pairs one chlorate with three oxygen molecules. **Two chlorate units give three oxygen molecules**.
+So <InlineMath math="0.0300\text{ mol}" /> of hydroxide forms, <InlineMath math="2.22\text{ g}" />. Counting only the carbide's calcium gives <InlineMath math="1.48\text{ g}" /> and leaves the silent reaction out.

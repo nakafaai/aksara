@@ -1,28 +1,113 @@
-# Gleiche Volumen enthalten gleich viele Moleküle, also Moleküle zählen
+# Der Volumenzuwachs zählt das zerfallene Ammoniak
 
-Bei gleicher Temperatur und gleichem Druck **folgt das Volumen der Zahl der Gasmoleküle**. Je zwei zerfallende Ammoniakmoleküle geben vier, also wächst das Volumen, und die Säure entfernt dann nur das übrige Ammoniak.
+Zwei Volumen Ammoniak werden zu vier Volumen Gas, eins Stickstoff und drei Wasserstoff. **Jedes Volumen Ammoniak, das zerfällt, fügt genau ein Volumen hinzu**, also bedeutet der Anstieg von <InlineMath math="60" /> auf <InlineMath math="84\text{ cm}^3" />, dass <InlineMath math="24\text{ cm}^3" /> zerfallen sind, <InlineMath math="40\%" />. Wer den Anstieg als zwei Volumen pro Ammoniak liest, halbiert das auf <InlineMath math="12\text{ cm}^3" /> und <InlineMath math="20\%" />, und alle späteren Volumen schrumpfen mit.
+
+<CombiningVolumesLab
+  title={<>Zwei Volumen rein, vier Volumen raus</>}
+  description={<>Hier zerfallen <InlineMath math="24\text{ cm}^3" /> Ammoniak in <InlineMath math="12\text{ cm}^3" /> Stickstoff und <InlineMath math="36\text{ cm}^3" /> Wasserstoff, ein Zuwachs von <InlineMath math="24\text{ cm}^3" />.</>}
+  labels={{
+    chooseMode: "Gasreaktion auswählen",
+    reactants: "Reaktanten",
+    products: "Produkte",
+    reactionView: "Gasmodell zum Gesetz der Volumenverhältnisse",
+    ratioLabel: "Volumenverhältnis",
+    exampleLabel: "Skaliertes Beispiel",
+    volumeUnit: "VE",
+    modes: {
+      "water-vapor": {
+        tab: "Dampf",
+        tabLabel: "Wasserdampfbildung",
+        helperCaption: (
+          <>
+            Zwei gleiche Volumenanteile <InlineMath math="\mathrm{H_2}" /> reagieren
+            mit einem gleichen Volumenanteil <InlineMath math="\mathrm{O_2}" /> zu
+            zwei gleichen Volumenanteilen <InlineMath math="\mathrm{H_2O(g)}" /> bei gleicher Temperatur und gleichem Druck.
+          </>
+        ),
+        ratio: (
+          <>
+            <InlineMath math="\mathrm{H_2:O_2:H_2O} = 2:1:2" />.
+          </>
+        ),
+        example: (
+          <>
+            <InlineMath math="200\ \mathrm{mL}" />{" "}
+            <InlineMath math="\mathrm{H_2}" /> reagieren mit{" "}
+            <InlineMath math="100\ \mathrm{mL}" />{" "}
+            <InlineMath math="\mathrm{O_2}" />.
+        </>
+        ),
+      },
+      "ammonia-synthesis": {
+        tab: "Ammoniak",
+        tabLabel: "Ammoniakbildung",
+        helperCaption: (
+          <>
+            Ein Volumen <InlineMath math="\mathrm{N_2}" /> reagiert mit drei
+            Volumen <InlineMath math="\mathrm{H_2}" /> und bildet zwei Volumen{" "}
+            <InlineMath math="\mathrm{NH_3}" />.
+          </>
+        ),
+        ratio: (
+          <>
+            <InlineMath math="\mathrm{N_2:H_2:NH_3} = 1:3:2" />.
+          </>
+        ),
+        example: (
+          <>
+            <InlineMath math="1\ \mathrm{L}" />{" "}
+            <InlineMath math="\mathrm{N_2}" /> reagiert mit{" "}
+            <InlineMath math="3\ \mathrm{L}" />{" "}
+            <InlineMath math="\mathrm{H_2}" />.
+          </>
+        ),
+      },
+      "ammonia-decomposition": {
+        tab: "Zersetzung",
+        tabLabel: "Ammoniakzersetzung",
+        helperCaption: (
+          <>
+            Zwei Teile <InlineMath math="\mathrm{NH_3}" /> zerfallen in drei Teile{" "}
+            <InlineMath math="\mathrm{H_2}" /> und einen Teil{" "}
+            <InlineMath math="\mathrm{N_2}" />.
+          </>
+        ),
+        ratio: (
+          <>
+            <InlineMath math="\mathrm{NH_3:H_2:N_2} = 2:3:1" />.
+        </>
+        ),
+        example: (
+          <>
+            <InlineMath math="24\ \mathrm{cm^3}" />{" "}
+            <InlineMath math="\mathrm{NH_3}" /> ergeben{" "}
+            <InlineMath math="36\ \mathrm{cm^3}" />{" "}
+            <InlineMath math="\mathrm{H_2}" /> und{" "}
+            <InlineMath math="12\ \mathrm{cm^3}" />{" "}
+            <InlineMath math="\mathrm{N_2}" />.
+        </>
+        ),
+      },
+    },
+  }}
+/>
+
+# Was jeder Schritt herausnimmt
+
+Die zerfallenen <InlineMath math="24\text{ cm}^3" /> lieferten <InlineMath math="12\text{ cm}^3" /> Stickstoff und <InlineMath math="36\text{ cm}^3" /> Wasserstoff, und <InlineMath math="36\text{ cm}^3" /> Ammoniak blieben übrig. **Die Säure entfernt nur das Ammoniak**, also verlassen sie <InlineMath math="48\text{ cm}^3" />.
 
 <Chart
-  title={<>Gasvolumen in jeder Stufe</>}
-  description={<>Am Anfang <InlineMath math="60\text{ cm}^3" /> Ammoniak. Nach dem Erhitzen <InlineMath math="36\text{ cm}^3" /> Ammoniak, <InlineMath math="12\text{ cm}^3" /> Stickstoff und <InlineMath math="36\text{ cm}^3" /> Wasserstoff. Nach der Säure ist das Ammoniak weg.</>}
+  title={<>Jedes Gas durch die Schritte</>}
+  description={<>Volumen in Kubikzentimetern nach jedem Schritt. Stickstoff läuft unverändert durch, während sich Ammoniak, Wasserstoff und dann der überschüssige Sauerstoff ändern.</>}
   bars="apart"
-  categories={["Ammoniak", "Stickstoff", "Wasserstoff"]}
+  categories={["Nach dem Zerfall", "Nach der Säure", "Sauerstoff zugegeben", "Nach dem Funken"]}
   series={[
-    { label: "Anfang", mark: "bar", values: [60, 0, 0] },
-    { label: "Nach dem Erhitzen", mark: "bar", values: [36, 12, 36] },
-    { label: "Nach der Säure", mark: "bar", values: [0, 12, 36] },
+    { label: "Ammoniak", mark: "bar", values: [36, 0, 0, 0] },
+    { label: "Stickstoff", mark: "bar", values: [12, 12, 12, 12] },
+    { label: "Wasserstoff", mark: "bar", values: [36, 36, 36, 0] },
+    { label: "Sauerstoff", mark: "bar", values: [0, 0, 30, 12] },
   ]}
   valueLabel="Volumen (cm³)"
 />
 
-<BlockMath math="\begin{aligned}
-\text{zerfallen}&=0{,}40\times60=24\text{ cm}^3\rightarrow12\text{ cm}^3\ \text{N}_2+36\text{ cm}^3\ \text{H}_2\\
-\text{danach}&=36+12+36=84\text{ cm}^3\\
-\text{nach der Säure}&=84-36=48\text{ cm}^3
-\end{aligned}" />
-
-# Warum die anderen Antworten falsch sind
-
-- <InlineMath math="60\text{ cm}^3" /> übersieht, dass der Zerfall mehr Moleküle bildet, als er verbraucht.
-- <InlineMath math="60\text{ cm}^3" /> nach der Säure zieht das zerfallene Ammoniak, <InlineMath math="24\text{ cm}^3" />, ab statt des übrigen.
-- <InlineMath math="96\text{ cm}^3" /> lässt <InlineMath math="60\%" /> zerfallen. **<InlineMath math="40\%" /> zerfielen und <InlineMath math="60\%" /> blieben Ammoniak**.
+Der Funke verbrennt mit den <InlineMath math="30\text{ cm}^3" /> Sauerstoff die <InlineMath math="36\text{ cm}^3" /> Wasserstoff und verbraucht dabei <InlineMath math="18\text{ cm}^3" /> Sauerstoff. Übrig bleiben <InlineMath math="12\text{ cm}^3" /> Stickstoff und <InlineMath math="12\text{ cm}^3" /> ungenutzter Sauerstoff, zusammen <InlineMath math="24\text{ cm}^3" />. **Der Wasserdampf kondensiert und nimmt kein Volumen ein**. Zählt man ihn als Gas, kommen <InlineMath math="36\text{ cm}^3" /> dazu, das macht <InlineMath math="60\text{ cm}^3" />, und wer den überschüssigen Sauerstoff vergisst, behält nur den Stickstoff, <InlineMath math="12\text{ cm}^3" />.

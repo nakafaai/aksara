@@ -1,26 +1,27 @@
-# The water runs out first, so it sets the heat, and only part of that heat reaches the soup
+# The pouch runs out first
 
-The equation uses the two in a one to one ratio. **There is less water than calcium oxide, so the water decides how much reacts**, and a quarter of the calcium oxide is left over. Of the heat from <InlineMath math="0.750\text{ mol}" />, seven tenths warms the soup.
+The can holds <InlineMath math="1.00\text{ mol}" /> of calcium oxide but only <InlineMath math="0.750\text{ mol}" /> of water, and they react one to one. **The water is the limit**, so a quarter of the oxide stays behind as dry powder. Working from the oxide's <InlineMath math="1.00\text{ mol}" /> puts <InlineMath math="65.0\text{ kJ}" /> into play and, after the loss, the <InlineMath math="45.5^\circ\text{C}" /> option.
+
+# Seven tenths reaches the soup
+
+The reaction releases <InlineMath math="0.750\times65=48.75\text{ kJ}" />, but **only <InlineMath math="70\%" /> of it ends up in the soup**: <InlineMath math="34.1\text{ kJ}" />. Skip that cut and the soup seems to rise by <InlineMath math="48.8^\circ\text{C}" />.
 
 <Chart
-  title={<>Amounts of the two reactants</>}
-  description={<>The can holds <InlineMath math="1.00\text{ mol}" /> of calcium oxide but only <InlineMath math="0.750\text{ mol}" /> of water.</>}
+  title={<>Where the heat in the can goes</>}
+  description={<>The reaction releases <InlineMath math="48.75\text{ kJ}" />. Seven tenths of it reaches the soup and the rest warms the can and the air.</>}
   bars="apart"
-  categories={["Calcium oxide", "Water"]}
+  categories={["Released", "Reaching the soup", "Lost to the can and air"]}
   series={[
-    { label: "Amount", mark: "bar", values: [1.00, 0.750] },
+    { label: "Heat", mark: "bar", values: [48.75, 34.13, 14.63] },
   ]}
-  valueLabel="Amount (mol)"
+  valueLabel="Heat (kJ)"
 />
 
+# Joules into degrees
+
+Now divide by what actually warms up. **Only the <InlineMath math="250\text{ g}" /> of soup goes in the denominator**, with the soup's own <InlineMath math="4.0\text{ J g}^{-1}\,^\circ\text{C}^{-1}" /> rather than water's value.
+
 <BlockMath math="\begin{aligned}
-n(\text{CaO})&=\tfrac{56.0}{56}=1.00\text{ mol},\quad n(\text{H}_2\text{O})=\tfrac{13.5}{18}=0.750\text{ mol}\\
-Q&=0.70\times0.750\times65\,000=34\,100\text{ J}\\
-\Delta\theta&=\tfrac{34\,100}{250\times4.0}=34.1^\circ\text{C}
+n(\text{H}_2\text{O})&=\tfrac{13.5}{18}=0.750\text{ mol}<n(\text{CaO})=\tfrac{56.0}{56}=1.00\text{ mol}\\
+Q&=0.70\times0.750\times65=34.1\text{ kJ},\quad \Delta T=\tfrac{34\,125}{250\times4.0}=34.1^\circ\text{C}
 \end{aligned}" />
-
-# Why the other options are wrong
-
-- <InlineMath math="45.5^\circ\text{C}" /> lets all <InlineMath math="1.00\text{ mol}" /> of calcium oxide react. **Only <InlineMath math="0.750\text{ mol}" /> of water is there to react with it**.
-- <InlineMath math="48.8^\circ\text{C}" /> uses the water correctly but puts all the heat into the soup instead of <InlineMath math="70\%" />.
-- <InlineMath math="65.0^\circ\text{C}" /> lets all the calcium oxide react and loses no heat.

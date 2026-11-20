@@ -1,17 +1,28 @@
-# Banyaknya ikatan silang menentukan perilaku polimer saat dipanaskan atau diregangkan
+# Menghitung gugus asam
 
-Melamin adalah termoset: **rantainya terikat oleh banyak ikatan silang kovalen**, jadi panas tidak bisa membuatnya bergeser. Polietena adalah termoplastik, rantainya hanya ditahan gaya lemah antarmolekul. Elastomer ada di antaranya, dengan sedikit ikatan silang yang menarik rantai yang teregang kembali.
+Satuan berulang <InlineMath math="\text{C}_3\text{H}_4\text{O}_2" /> punya <InlineMath math="M_r=72" />, jadi campuran itu berisi <InlineMath math="0{,}200\text{ mol}" /> satuan, dan **tiap satuan membawa tepat satu gugus <InlineMath math="\text{-COOH}" />**. Hanya tiga perempatnya yang bertemu basa: <InlineMath math="0{,}150\text{ mol}" /> natrium hidroksida, <InlineMath math="75{,}0\text{ cm}^3" />. Menetralkan semua gugus butuh <InlineMath math="100\text{ cm}^3" />.
 
-<Mermaid
-  title={<>Struktur dan perilaku tiga jenis polimer</>}
-  description={<>Termoplastik melunak, elastomer meregang dan kembali, dan termoset tidak melunak.</>}
-  chart={"flowchart LR\n  A[\"Termoplastik: gaya lemah antarrantai\"] --> A2[\"melunak, bisa dibentuk ulang\"]\n  B[\"Elastomer: sedikit ikatan silang\"] --> B2[\"meregang dan kembali\"]\n  C[\"Termoset: banyak ikatan silang\"] --> C2[\"tidak melunak\"]"}
+<Chart
+  title={<>Gugus asam sebelum dan sesudah basa</>}
+  description={<>Semua <InlineMath math="200\text{ mmol}" /> satuan mulai sebagai gugus asam. Basanya mengubah <InlineMath math="150\text{ mmol}" /> dan membiarkan <InlineMath math="50\text{ mmol}" /> tetap.</>}
+  bars="apart"
+  categories={["Sebelum", "Sesudah"]}
+  series={[
+    { label: "Gugus asam", mark: "bar", values: [200, 50] },
+    { label: "Gugus garam natrium", mark: "bar", values: [0, 150] },
+  ]}
+  valueLabel="Gugus (mmol)"
 />
 
-Jadi pernyataan I dan II benar.
+# Tambahan massa padatan kering
 
-# Kenapa pilihan lain salah
+**Tiap gugus yang diubah menukar satu atom hidrogen dengan satu atom natrium**, jadi massanya bertambah <InlineMath math="23-1=22" />, dan air yang terbentuk menguap saat produk dikeringkan. Menambahkan seluruh natrium hidroksida, <InlineMath math="40" /> per gugus, memberi <InlineMath math="20{,}4\text{ g}" /> dan menyimpan air yang sudah pergi. Mengubah semua <InlineMath math="0{,}200\text{ mol}" /> memberi <InlineMath math="18{,}8\text{ g}" />.
 
-- I saja melewatkan II, alasan termoplastik melunak.
-- III salah. **Tanpa ikatan silang sama sekali, rantai yang teregang akan bergeser dan tidak kembali**.
-- IV salah: termoset tidak bisa dilelehkan, karena itu paling sulit didaur ulang.
+<BlockMath math="\begin{aligned}
+n&=\tfrac{14{,}4}{72}=0{,}200\text{ mol},\quad n(\text{NaOH})=0{,}750\times0{,}200=0{,}150\text{ mol}\ \Rightarrow\ V=\tfrac{0{,}150}{2{,}00}=0{,}0750\text{ dm}^3\\
+m&=14{,}4+0{,}150\times(23-1)=17{,}7\text{ g},\quad 200\times17{,}7=3540\text{ g}=3{,}54\text{ kg}
+\end{aligned}" />
+
+# Dua ratus kali massa kering
+
+Daya serapnya milik produk jadi, yang gugus ioniknya menarik air ke dalam jaringannya, jadi **faktor <InlineMath math="200" /> mengalikan <InlineMath math="17{,}7\text{ g}" />**. Memakainya pada <InlineMath math="14{,}4\text{ g}" /> polimer awal memberi <InlineMath math="2{,}88\text{ kg}" />, polimer yang belum bertemu basa.
