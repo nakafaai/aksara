@@ -1,0 +1,317 @@
+export const metadata = {
+  title: "Systematik und Benennung der Lebewesen",
+  description:
+    "Ordne Lebewesen den sechs Reichen zu, stufe Taxa vom Reich bis zur Art, schreib wissenschaftliche Artnamen richtig und bau einen Bestimmungsschlüssel.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2026-11-20",
+  subject: "Klassifikation und Benennung",
+};
+
+## Alltagsnamen täuschen
+
+Klassifizieren heißt, Lebewesen nach gemeinsamen Merkmalen in Gruppen zu sortieren. Die Gruppen stecken ineinander wie Schachteln in Schachteln. Die größte Schachtel ist das **Reich**, und jedes Lebewesen gehört zu einem von **sechs Reichen**. Die kleinste Schachtel ist die **Art**, und jede Art bekommt einen wissenschaftlichen Namen aus zwei Wörtern, zum Beispiel *Oryza sativa* für Reis. Ein Lebewesen, das du noch nicht kennst, bestimmst du mit einem Bestimmungsschlüssel. Im Meeresmodell unten wechselst du die Sprache und suchst den Namen, der sich nie ändert.
+
+Wozu wissenschaftliche Namen? Alltagsnamen ändern sich mit Sprache und Gegend. In Malaysia heißt der Wal ikan paus, wörtlich Walfisch, und auch im Deutschen sagen viele noch Walfisch. Dabei atmet ein Wal mit Lungen und säugt sein Junges, er ist also ein Säugetier. Das Englische nennt die Qualle jellyfish, obwohl sie weder Wirbelsäule noch Kiemen hat. **Das Wort Fisch in einem Alltagsnamen** beweist also nichts.
+
+<SeaNameLab
+  title={<>Ein Tier, vier Namen</>}
+  description={
+    <>
+      Fünf Tiere aus malaysischen Gewässern, jedes mit einem Namensschild.
+      Wechsle die Sprache und vergleiche den Alltagsnamen jedes Tiers mit
+      seinem wissenschaftlichen Namen.
+    </>
+  }
+  footer={<>Wechsle die Sprache und achte darauf, welche Zeile auf dem Schild stehen bleibt.</>}
+  animals={["dugong", "whale", "jellyfish", "seaStar", "mackerel"]}
+  languages={["malay", "english", "indonesian", "german"]}
+  labels={{
+    language: "Sprache",
+    languages: {
+      malay: "Malaiisch",
+      english: "Englisch",
+      indonesian: "Indonesisch",
+      german: "Deutsch",
+    },
+    animal: "Tier",
+    names: {
+      dugong: { malay: "duyung", english: "dugong", indonesian: "duyung", german: "Dugong" },
+      whale: { malay: "ikan paus Bryde", english: "Bryde's whale", indonesian: "paus Bryde", german: "Brydewal" },
+      jellyfish: { malay: "obor-obor", english: "moon jellyfish", indonesian: "ubur-ubur bulan", german: "Ohrenqualle" },
+      seaStar: { malay: "tapak sulaiman", english: "horned sea star", indonesian: "bintang laut", german: "Seestern" },
+      mackerel: { malay: "ikan kembung", english: "Indian mackerel", indonesian: "ikan kembung", german: "Indische Makrele" },
+    },
+    scientific: "Wissenschaftlicher Name",
+    group: <>Was es wirklich ist</>,
+    groups: {
+      dugong: <>Klasse Mammalia</>,
+      whale: <>Klasse Mammalia</>,
+      jellyfish: <>Stamm Cnidaria</>,
+      seaStar: <>Stamm Echinodermata</>,
+      mackerel: <>Klasse Actinopterygii, Knochenfisch</>,
+    },
+    view: "Flaches Meer in malaysischen Gewässern mit fünf Tieren und ihren Namensschildern",
+  }}
+/>
+
+Ein wissenschaftlicher Name ist in jeder Sprache gleich, also wissen Fachleute überall, dass sie vom selben Tier reden. Mit der richtigen Gruppe kannst du außerdem Merkmale vorhersagen. Steht der Dugong in der Klasse Mammalia, weißt du, dass er mit Lungen atmet und sein Junges säugt, denn eine Gruppe heißt **viele gemeinsame Merkmale**.
+
+## Sieben Ränge vom Reich zur Art
+
+Jedes Lebewesen hat einen Platz auf sieben Rängen, von oben nach unten: **Reich, Stamm, Klasse, Ordnung, Familie, Gattung und Art**. Jede Gruppe eines Rangs liegt in genau einer Gruppe des Rangs darüber. Eine benannte Gruppe auf irgendeinem Rang heißt **Taxon**, zum Beispiel die Familie Felidae. Nach unten enthält jedes Taxon **weniger Sorten von Lebewesen**, die mehr Merkmale teilen, bis eine Art nur noch eine Sorte enthält. Weil diese Hierarchie viele Merkmale zugleich vergleicht, ist sie eine [natürliche Klassifikation im Unterschied zur künstlichen](/de/faecher/biologie/vielfalt-der-lebewesen/klassifikation).
+
+Tiger und Malaienbär, zwei Tiere der Wälder Malaysias, stimmen vom Reich Animalia bis zur Ordnung Carnivora überein. Dann trennen sie sich bei der Familie: Felidae für den Tiger, Ursidae für den Malaienbären. Der **niedrigste gemeinsame Rang** ist also die Ordnung, vier von sieben Rängen. Je niedriger der gemeinsame Rang, desto näher sind zwei Lebewesen verwandt.
+
+<TaxonRankLab
+  title={<>Wo sich zwei Lebewesen trennen</>}
+  description={
+    <>
+      Sieben ineinander liegende Schalen, außen das Reich, in der Mitte die
+      Art. Wähl zwei Lebewesen und such die letzte Schale, in der noch beide
+      liegen.
+    </>
+  }
+  footer={<>Folge den leuchtenden Schalen von außen nach innen. Wo hört das Leuchten auf?</>}
+  organisms={["tiger", "leopard", "leopardCat", "sunBear", "tapir", "hornbill", "birdwing", "padi"]}
+  pair={["tiger", "sunBear"]}
+  labels={{
+    first: "Erstes Lebewesen",
+    second: "Zweites Lebewesen",
+    organisms: {
+      tiger: "Tiger",
+      leopard: "Leopard",
+      leopardCat: "Bengalkatze",
+      sunBear: "Malaienbär",
+      tapir: "Schabrackentapir",
+      hornbill: "Nashornvogel",
+      birdwing: "Brookes Vogelfalter",
+      padi: "Reis",
+    },
+    ranks: {
+      kingdom: "Reich",
+      phylum: "Stamm",
+      class: "Klasse",
+      order: "Ordnung",
+      family: "Familie",
+      genus: "Gattung",
+      species: "Art",
+    },
+    shared: <>Niedrigster gemeinsamer Rang</>,
+    count: <>Gemeinsame Ränge</>,
+    none: <>Keiner, nicht einmal das Reich</>,
+    view: "Sieben ineinander liegende Schalen mit kleinen Modellen der Lebewesen",
+  }}
+/>
+
+Stell eine Vermutung auf, bevor du im Modell wählst. Welchen niedrigsten Rang teilen Tiger und Bengalkatze? Und Malaienbär und Schabrackentapir?
+
+Tiger und Bengalkatze gehören beide zu den Felidae, aber zu verschiedenen Gattungen, *Panthera* und *Prionailurus*, und teilen deshalb **fünf Ränge, vom Reich bis zur Familie**. Malaienbär (Ordnung Carnivora) und Tapir (Ordnung Perissodactyla) trennen sich bei der Ordnung und teilen nur drei Ränge, bis zur Klasse Mammalia.
+
+## Sechs Reiche in vier Fragen
+
+Vier Fragen reichen, um fast jedes Lebewesen seinem Reich zuzuordnen. Haben seine Zellen einen Zellkern? Ist es eine Zelle oder sind es viele, und bilden diese Zellen Gewebe? Woraus besteht die Zellwand? Wie kommt es an Nahrung? **Lies alle vier Antworten zusammen**, denn ein einzelnes Merkmal führt oft in die Irre.
+
+| Reich | Zellkern | Zellen | Zellwand | Ernährung | Beispiele |
+| --- | --- | --- | --- | --- | --- |
+| Archaebakterien | Nein | Eine | Ohne Murein | Autotroph oder heterotroph | Schwefelbakterien, *Sulfolobus* |
+| Eubakterien | Nein | Eine | Murein | Autotroph oder heterotroph | *Thermus aquaticus* |
+| Protisten | Ja | Eine, oder viele ohne Gewebe | Bei den meisten Algen, nicht bei Protozoen | Fotosynthese, Fressen oder Aufnehmen | Protozoen, Algen, Schleimpilze |
+| Pilze | Ja | Eine bei Hefe, viele bei Hyphen | Chitin | Nimmt außerhalb des Körpers verdaute Nahrung auf | Hefe, Hutpilze |
+| Pflanzen | Ja | Viele, mit Geweben | Cellulose | Fotosynthese | Farne ohne Samen, Reis mit Samen |
+| Tiere | Ja | Viele | Keine | Frisst Nahrung | Süßwasserpolyp (Wirbelloser), Tiger (Wirbeltier) |
+
+### Zellen ohne Zellkern
+
+Archaebakterien und Eubakterien sind beide **Prokaryoten**: winzige Zellen, deren DNA nicht von einer Kernhülle umgeben ist. Ihre Gene unterscheiden sich, und ihre Wände auch: Die Wand der Eubakterien enthält **Murein**, auch Peptidoglykan genannt, die Wand der Archaebakterien nicht.
+
+Nimm nicht an, dass jede Mikrobe in einer heißen Quelle ein Archaebakterium ist. Vergleich zwei Mikroben, die beide in heißen Quellen leben:
+
+| Merkmal | *Sulfolobus* | *Thermus aquaticus* |
+| --- | --- | --- |
+| Fundort | Saure heiße Quellen | Eine heiße Quelle im Yellowstone-Nationalpark |
+| Schnellstes Wachstum | <InlineMath math="70" /> bis <InlineMath math="75^\circ\text{C}" /> | <InlineMath math="70^\circ\text{C}" /> |
+| Murein in der Wand | Nein | Ja |
+| Reich | Archaebakterien | Eubakterien |
+
+Beide mögen Wasser mit <InlineMath math="70^\circ\text{C}" />, aber nur *Thermus aquaticus* hat Murein in der Wand. Damit gilt: Der Lebensort entscheidet **nicht über das Reich**.
+
+### Zellen mit Zellkern
+
+Die anderen vier Reiche sind **Eukaryoten**, ihre DNA liegt in einem Zellkern. Hier kann dich das Aussehen täuschen. Ein Hutpilz wächst aus dem Boden wie eine Pflanze, aber seine Zellwände bestehen aus Chitin und er nimmt Nahrung auf, also gehört er ins Reich der Pilze. Ein Süßwasserpolyp hängt im Teich an einem Blatt wie eine winzige Pflanze, aber seine Zellen haben keine Wand und er fängt Beute mit Tentakeln, also gehört er zu den **Tieren**.
+
+<KingdomSortLab
+  title={<>Ordne jedes Präparat seinem Reich zu</>}
+  description={
+    <>
+      Zehn Präparate in echter Größe, unter dem Mikroskop oder der Lupe. Prüf
+      vier Merkmale und leg jedes Präparat dann in eine der sechs Schalen für
+      die Reiche.
+    </>
+  }
+  footer={<>Schau direkt außerhalb der Zellmembran: Gibt es eine Wand, und woraus besteht sie?</>}
+  specimens={["sulfolobus", "thermus", "paramecium", "spirogyra", "slimeMould", "yeast", "mushroom", "fern", "padi", "hydra"]}
+  labels={{
+    specimen: "Präparat",
+    specimens: {
+      sulfolobus: <em>Sulfolobus</em>,
+      thermus: <em>Thermus aquaticus</em>,
+      paramecium: <em>Paramecium</em>,
+      spirogyra: <em>Spirogyra</em>,
+      slimeMould: <>Schleimpilz</>,
+      yeast: <>Hefe</>,
+      mushroom: <>Austernseitling</>,
+      fern: <>Farn</>,
+      padi: <>Reis</>,
+      hydra: <>Süßwasserpolyp</>,
+    },
+    kingdoms: {
+      archaebacteria: "Archaebakterien",
+      eubacteria: "Eubakterien",
+      protista: "Protisten",
+      fungi: "Pilze",
+      plantae: "Pflanzen",
+      animalia: "Tiere",
+    },
+    checks: {
+      nucleus: "Zellkern",
+      cells: "Zellen",
+      wall: "Zellwand",
+      food: "Ernährung",
+    },
+    values: {
+      yes: "Ja",
+      no: "Nein",
+      one: "Eine Zelle",
+      many: "Viele Zellen, kein Gewebe",
+      tissue: "Viele Zellen mit Geweben",
+      none: "Keine Wand",
+      peptidoglycan: "Murein",
+      noPeptidoglycan: "Ohne Murein",
+      chitin: "Chitin",
+      cellulose: "Cellulose",
+      photosynthesis: "Fotosynthese",
+      absorbs: "Nimmt auf",
+      ingests: "Frisst",
+      either: "Autotroph oder heterotroph",
+    },
+    place: "Einordnen",
+    right: <>Richtig, alle vier Merkmale passen zu diesem Reich.</>,
+    wrong: <>Noch nicht. Vergleich jedes Merkmal noch einmal mit der Tabelle.</>,
+    kingdom: <>Richtiges Reich</>,
+    view: "Labortisch mit Mikroskop, zehn Präparaten und sechs Schalen für die Reiche",
+  }}
+/>
+
+Teste dich mit *Spirogyra* im Modell. Ihr grüner Faden besteht aus Zellen mit Zellkern, Chloroplasten und einer Wand aus Cellulose. Warum gehört *Spirogyra* nicht zu den Pflanzen?
+
+Schau auf die zweite Frage. Die Zellen reihen sich Ende an Ende, jede gleicht ihrer Nachbarin, und keine bildet Wurzel, Spross oder Blatt. Also **hat der Faden kein Gewebe**, und *Spirogyra* ist eine Alge bei den Protisten. Reis hat Gewebe wie Xylem und Phloem und bleibt deshalb bei den Pflanzen.
+
+## Zwei Wörter im Artnamen
+
+Die **binäre Nomenklatur** gibt jeder Art einen Namen aus zwei Wörtern in lateinischer Form. Carl von Linné nutzte sie 1753 in *Species Plantarum* für jede Pflanze. Das erste Wort ist der **Gattungsname**. Das zweite Wort, das Artepitheton, bedeutet nur neben seiner Gattung etwas, also heißt Reis *Oryza sativa*, beide Wörter zusammen.
+
+Die Regeln fürs Schreiben:
+
+- Der Gattungsname beginnt mit einem Großbuchstaben, das zweite Wort schreibst du ganz klein, auch wenn es von einem Personennamen kommt, wie *brookiana* von Brooke.
+- Gedruckt steht der Name kursiv: *Ipomoea aquatica*.
+- Von Hand **unterstreichst du jedes Wort einzeln**, ein Strich pro Wort.
+- Nach der ersten vollen Nennung kürzt du die Gattung auf den Anfangsbuchstaben: *I. aquatica*.
+- Kennst du die Art noch nicht, schreib die Gattung und dahinter sp.: *Ipomoea* sp.
+
+<GardenNameLab
+  title={<>Namensschilder im Schulgarten</>}
+  description={
+    <>
+      Sechs Pflanzen in einem Schulgarten, jede mit einem Namensschild. Wähl
+      eine Pflanze, wechsle die Schreibweise und vergleiche dann das erste
+      oder das zweite Wort.
+    </>
+  }
+  footer={<>Vergleich das zweite Wort. Sind die Pflanzen, die aufleuchten, nahe verwandt?</>}
+  plants={["kangkung", "sweetPotato", "mango", "beluntas", "neem", "padi"]}
+  labels={{
+    plant: "Pflanze",
+    plants: {
+      kangkung: "Wasserspinat",
+      sweetPotato: "Süßkartoffel",
+      mango: "Mango",
+      beluntas: "Beluntas",
+      neem: "Niembaum",
+      padi: "Reis",
+    },
+    style: "Schreibweise",
+    styles: { printed: "Gedruckt", handwritten: "Handschrift" },
+    match: "Vergleichen",
+    matches: { genus: "Erstes Wort", epithet: "Zweites Wort" },
+    genus: <>Gattungsname</>,
+    epithet: <>Zweites Wort</>,
+    family: <>Familie</>,
+    view: "Schulgarten mit sechs Pflanzen und einem Namensschild an jeder",
+  }}
+/>
+
+Vergleich zuerst das erste Wort. Wasserspinat, *Ipomoea aquatica*, und Süßkartoffel, *Ipomoea batatas*, teilen die Gattung und sind nahe Verwandte, obwohl du von der einen die Blätter isst und von der anderen die Knollen. Vergleich dann das zweite Wort. Mango, Beluntas und Niembaum heißen alle *indica*, aus Indien, stehen aber in drei Familien: Anacardiaceae, Asteraceae und Meliaceae. Ein gleiches zweites Wort sagt **nichts über Verwandtschaft**.
+
+Verbessere dieses handgeschriebene Schild: Mangifera Indica, mit einem langen Strich unter beiden Wörtern.
+
+Das Schild hat zwei Fehler. Das zweite Wort beginnt klein, Mangifera indica, und jedes Wort bekommt **seinen eigenen Strich**, einen unter Mangifera und einen unter indica.
+
+## Schlüssel für sechs Kleintiere
+
+Ein **dichotomer Bestimmungsschlüssel** funktioniert wie ein Weg, der sich immer wieder gabelt. Jeder nummerierte Schritt gibt dir ein Paar gegensätzlicher Aussagen. Du wählst die, die für dein Tier stimmt, und folgst ihr zum nächsten Schritt oder zu einem Namen.
+
+Hier ist ein Schlüssel für sechs kleine Tiere, die du oft rund um Schulen findest:
+
+| Schritt | Aussage a | Aussage b |
+| --- | --- | --- |
+| <InlineMath math="1" /> | Hat Beine, weiter zu Schritt 2 | Keine Beine, weiter zu Schritt 5 |
+| <InlineMath math="2" /> | Drei Beinpaare, weiter zu Schritt 3 | Mehr als drei Beinpaare, weiter zu Schritt 4 |
+| <InlineMath math="3" /> | Hat Flügel: Libelle | Keine Flügel: Ameisenarbeiterin |
+| <InlineMath math="4" /> | Vier Beinpaare: Spinne | Ein Beinpaar an jedem Körpersegment: Hundertfüßer |
+| <InlineMath math="5" /> | Hat ein Gehäuse: Achatschnecke | Kein Gehäuse, Körper aus Ringen: Regenwurm |
+
+Ein guter Schritt prüft **ein Merkmal, das jedes Präparat zeigt**, und seine zwei Aussagen können nicht beide stimmen. Hieße Schritt 3 "hat Flügel" gegen "drei Beinpaare", passte die Libelle zu beiden, und der Schlüssel bliebe hängen. "Groß" gegen "klein" oder "dunkel" gegen "hell" scheitert auch, denn Größe und Farbe ändern sich mit Alter und Licht.
+
+<KeyBuilderLab
+  title={<>Bau einen Schlüssel und teste ihn</>}
+  description={
+    <>
+      Sechs kleine Tiere von rund um eine Schule auf einem weißen Tablett.
+      Wähl für jeden Schritt ein Aussagenpaar und schick dann jedes Tier durch
+      deinen Schlüssel.
+    </>
+  }
+  footer={<>Schau dir das Tier an, das an einer Gabelung hängt: Welche Aussagen stimmen?</>}
+  animals={["ant", "dragonfly", "spider", "centipede", "earthworm", "snail"]}
+  couplets={["legs", "pairs", "wings", "segments", "shell", "size", "colour", "overlap"]}
+  labels={{
+    animals: {
+      ant: "Ameisenarbeiterin",
+      dragonfly: "Libelle",
+      spider: "Spinne",
+      centipede: "Hundertfüßer",
+      earthworm: "Regenwurm",
+      snail: "Achatschnecke",
+    },
+    couplets: {
+      legs: { a: "Hat Beine", b: "Keine Beine" },
+      pairs: { a: "Drei Beinpaare", b: "Mehr als drei Beinpaare" },
+      wings: { a: "Hat Flügel", b: "Keine Flügel" },
+      segments: { a: "Vier Beinpaare", b: "Ein Beinpaar an jedem Körpersegment" },
+      shell: { a: "Hat ein Gehäuse", b: "Kein Gehäuse" },
+      size: { a: "Großer Körper", b: "Kleiner Körper" },
+      colour: { a: "Dunkle Farbe", b: "Helle Farbe" },
+      overlap: { a: "Hat Flügel", b: "Drei Beinpaare" },
+    },
+    step: "Schritt",
+    run: "Schlüssel testen",
+    reached: <>Tiere, die bei ihrem eigenen Namen ankommen</>,
+    failed: <>Schritt, der versagt</>,
+    sorted: <>Dein Schlüssel klappt für jedes Tier</>,
+    view: "Weißes Tablett mit sechs kleinen Tieren und einem verzweigten Schlüssel daneben",
+  }}
+/>
+
+Nimm jetzt einen Doppelfüßer auf, der **an den meisten Körpersegmenten zwei Beinpaare** hat. Welcher Schritt versagt, wie reparierst du ihn, und wie viele Schritte braucht der neue Schlüssel?
+
+Schritt 1 und 2 schicken den Doppelfüßer zu Schritt 4, und dort passt er zu keiner der beiden Aussagen. Schreib Schritt 4 neu als "vier Beinpaare: Spinne" gegen "viele Segmente mit Beinen, weiter zu Schritt 6", und mach Schritt 6 zu "ein Beinpaar an jedem Segment: Hundertfüßer" gegen "zwei Beinpaare an den meisten Segmenten: Doppelfüßer". Jeder Schritt teilt eine Gruppe in zwei, also brauchen <InlineMath math="n" /> Lebewesen <InlineMath math="n - 1" /> Schritte: vorher <InlineMath math="6 - 1 = 5" />, jetzt <InlineMath math="7 - 1 = 6" />.

@@ -17,6 +17,30 @@ export const kssmForm5BiologyEcologyNodes = [
           },
         ],
       }),
+      materialNode({
+        key: "form-5-biology-biodiversity-classification-system",
+        level: "lesson",
+        materialKeys: ["lesson.biology.classification-system"],
+        order: 20,
+        outcomes: [
+          {
+            code: "Form 5, Content Standard 23.1",
+            ...biologyStandards,
+          },
+        ],
+      }),
+      materialNode({
+        key: "form-5-biology-biodiversity-virus-role",
+        level: "lesson",
+        materialKeys: ["lesson.biology.virus-role"],
+        order: 30,
+        outcomes: [
+          {
+            code: "Form 5, Content Standard 23.3",
+            ...biologyStandards,
+          },
+        ],
+      }),
     ],
     key: "form-5-biology-biodiversity",
     materialCard: {

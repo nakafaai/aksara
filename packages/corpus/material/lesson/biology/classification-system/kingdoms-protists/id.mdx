@@ -1,0 +1,317 @@
+export const metadata = {
+  title: "Sistem Klasifikasi dan Tata Nama Makhluk Hidup",
+  description:
+    "Kelompokkan makhluk hidup ke enam kingdom, urutkan takson dari kingdom sampai spesies, tulis nama binomial dengan benar, dan susun kunci determinasi.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2026-11-20",
+  subject: "Sistem Klasifikasi dan Tata Nama",
+};
+
+## Nama Lokal Bisa Menyesatkan
+
+Klasifikasi artinya mengelompokkan makhluk hidup berdasarkan ciri yang sama. Kelompok-kelompok itu tersusun seperti kotak di dalam kotak. Kotak terbesar adalah **kingdom**, dan setiap makhluk hidup masuk ke salah satu dari **enam kingdom**. Kotak terkecil adalah **spesies**, dan setiap spesies punya nama ilmiah dua kata, misalnya *Oryza sativa* untuk padi. Untuk mengenali makhluk hidup yang belum kamu ketahui, kamu memakai kunci determinasi. Di model laut di bawah, ganti bahasanya dan cari nama yang tidak pernah berubah.
+
+Kenapa perlu nama ilmiah? Nama sehari-hari berubah menurut bahasa dan daerah. Di Indonesia dan Malaysia, paus sering disebut ikan paus. Padahal paus bernapas dengan paru-paru dan menyusui anaknya, jadi paus termasuk mamalia. Bahasa Inggris menyebut ubur-ubur jellyfish, padahal ubur-ubur tidak punya tulang belakang dan tidak punya insang. Jadi **kata ikan dalam nama sehari-hari** tidak bisa dijadikan bukti.
+
+<SeaNameLab
+  title={<>Satu Hewan, Empat Nama</>}
+  description={
+    <>
+      Lima hewan dari perairan Malaysia, masing-masing dengan papan nama. Ganti
+      bahasanya dan bandingkan nama sehari-hari setiap hewan dengan nama
+      ilmiahnya.
+    </>
+  }
+  footer={<>Ganti bahasanya dan perhatikan baris mana di papan nama yang tetap diam.</>}
+  animals={["dugong", "whale", "jellyfish", "seaStar", "mackerel"]}
+  languages={["malay", "english", "indonesian", "german"]}
+  labels={{
+    language: "Bahasa",
+    languages: {
+      malay: "Bahasa Melayu",
+      english: "Bahasa Inggris",
+      indonesian: "Bahasa Indonesia",
+      german: "Bahasa Jerman",
+    },
+    animal: "Hewan",
+    names: {
+      dugong: { malay: "duyung", english: "dugong", indonesian: "duyung", german: "Dugong" },
+      whale: { malay: "ikan paus Bryde", english: "Bryde's whale", indonesian: "paus Bryde", german: "Brydewal" },
+      jellyfish: { malay: "obor-obor", english: "moon jellyfish", indonesian: "ubur-ubur bulan", german: "Ohrenqualle" },
+      seaStar: { malay: "tapak sulaiman", english: "horned sea star", indonesian: "bintang laut", german: "Seestern" },
+      mackerel: { malay: "ikan kembung", english: "Indian mackerel", indonesian: "ikan kembung", german: "Indische Makrele" },
+    },
+    scientific: "Nama ilmiah",
+    group: <>Kelompok sebenarnya</>,
+    groups: {
+      dugong: <>Kelas Mammalia</>,
+      whale: <>Kelas Mammalia</>,
+      jellyfish: <>Filum Cnidaria</>,
+      seaStar: <>Filum Echinodermata</>,
+      mackerel: <>Kelas Actinopterygii, ikan bertulang sejati</>,
+    },
+    view: "Laut dangkal di perairan Malaysia dengan lima hewan dan papan namanya",
+  }}
+/>
+
+Nama ilmiah sama di semua bahasa, jadi ahli biologi di mana pun tahu mereka membicarakan hewan yang sama. Dengan kelompok yang tepat, kamu juga bisa meramal ciri. Masukkan duyung ke kelas Mammalia, dan kamu tahu duyung bernapas dengan paru-paru dan menyusui anaknya, karena satu kelompok berarti **banyak ciri yang sama**.
+
+## Tujuh Tingkatan Takson
+
+Setiap makhluk hidup punya tempat di tujuh tingkatan, dari atas ke bawah: **kingdom, filum, kelas, ordo, famili, genus, dan spesies**. Setiap kelompok di satu tingkatan berada di dalam satu kelompok di tingkatan atasnya. Kelompok yang diberi nama di tingkatan mana pun disebut **takson**, misalnya famili Felidae. Makin ke bawah, setiap takson berisi **makin sedikit jenis makhluk hidup** yang makin banyak berbagi ciri, sampai spesies hanya berisi satu jenis. Hierarki ini membandingkan banyak ciri sekaligus, sehingga termasuk [klasifikasi alami yang berbeda dari klasifikasi buatan](/id/materi/biologi/keanekaragaman-makhluk-hidup/klasifikasi-makhluk-hidup).
+
+Harimau dan beruang madu, dua hewan hutan Asia Tenggara, sama dari kingdom Animalia sampai ordo Carnivora. Lalu keduanya berpisah di famili: Felidae untuk harimau, Ursidae untuk beruang madu. Jadi **tingkatan terendah yang sama** adalah ordo, yaitu empat dari tujuh tingkatan. Makin rendah tingkatan yang sama, makin dekat kekerabatan dua makhluk hidup itu.
+
+<TaxonRankLab
+  title={<>Tempat Dua Makhluk Hidup Berpisah</>}
+  description={
+    <>
+      Tujuh nampan bersarang, dari kingdom di luar sampai spesies di tengah.
+      Pilih dua makhluk hidup dan cari nampan terakhir yang masih memuat
+      keduanya.
+    </>
+  }
+  footer={<>Ikuti nampan yang menyala dari luar ke dalam. Di nampan mana cahayanya berhenti?</>}
+  organisms={["tiger", "leopard", "leopardCat", "sunBear", "tapir", "hornbill", "birdwing", "padi"]}
+  pair={["tiger", "sunBear"]}
+  labels={{
+    first: "Makhluk hidup pertama",
+    second: "Makhluk hidup kedua",
+    organisms: {
+      tiger: "Harimau",
+      leopard: "Macan tutul",
+      leopardCat: "Kucing kuwuk",
+      sunBear: "Beruang madu",
+      tapir: "Tapir",
+      hornbill: "Rangkong badak",
+      birdwing: "Kupu-kupu Raja Brooke",
+      padi: "Padi",
+    },
+    ranks: {
+      kingdom: "Kingdom",
+      phylum: "Filum",
+      class: "Kelas",
+      order: "Ordo",
+      family: "Famili",
+      genus: "Genus",
+      species: "Spesies",
+    },
+    shared: <>Tingkatan terendah yang sama</>,
+    count: <>Jumlah tingkatan yang sama</>,
+    none: <>Tidak ada, kingdom-nya pun berbeda</>,
+    view: "Tujuh nampan bersarang dengan model kecil makhluk hidup di dalamnya",
+  }}
+/>
+
+Coba tebak dulu sebelum memilih di model. Apa tingkatan terendah yang sama antara harimau dan kucing kuwuk? Lalu antara beruang madu dan tapir?
+
+Harimau dan kucing kuwuk sama-sama masuk Felidae tetapi genusnya berbeda, *Panthera* dan *Prionailurus*, jadi keduanya berbagi **lima tingkatan, dari kingdom sampai famili**. Beruang madu (ordo Carnivora) dan tapir (ordo Perissodactyla) berpisah di ordo, jadi hanya tiga tingkatan yang sama, sampai kelas Mammalia.
+
+## Enam Kingdom dari Empat Ciri
+
+Empat pertanyaan sudah cukup untuk menempatkan hampir semua makhluk hidup di kingdom-nya. Apakah selnya punya membran inti? Satu sel atau banyak sel, dan apakah sel-sel itu membentuk jaringan? Dinding selnya terbuat dari apa? Bagaimana makhluk itu mendapat makanan? **Baca keempat jawaban bersama-sama**, karena satu ciri saja sering menyesatkan.
+
+| Kingdom | Membran inti | Sel | Dinding sel | Cara mendapat makanan | Contoh |
+| --- | --- | --- | --- | --- | --- |
+| Archaebacteria | Tidak ada | Satu | Tanpa peptidoglikan | Autotrof atau heterotrof | Bakteri belerang, *Sulfolobus* |
+| Eubacteria | Tidak ada | Satu | Peptidoglikan | Autotrof atau heterotrof | *Thermus aquaticus* |
+| Protista | Ada | Satu, atau banyak tanpa jaringan | Ada pada sebagian besar alga, tidak ada pada protozoa | Fotosintesis, menelan, atau menyerap | Protozoa, alga, jamur lendir |
+| Fungi | Ada | Satu pada khamir, banyak pada hifa | Kitin | Menyerap makanan yang dicerna di luar tubuh | Khamir, jamur |
+| Plantae | Ada | Banyak, dengan jaringan | Selulosa | Fotosintesis | Tumbuhan paku tanpa biji, padi berbiji |
+| Animalia | Ada | Banyak | Tidak ada | Menelan makanan | Hidra (invertebrata), harimau (vertebrata) |
+
+### Sel tanpa Membran Inti
+
+Archaebacteria dan Eubacteria sama-sama **prokariot**, yaitu sel kecil yang DNA-nya tidak dibungkus membran inti. Gen keduanya berbeda, begitu juga dindingnya: dinding Eubacteria mengandung **peptidoglikan**, sedangkan dinding Archaebacteria tidak.
+
+Jangan anggap setiap mikroba di kolam air panas pasti Archaebacteria. Bandingkan dua mikroba yang sama-sama hidup di mata air panas:
+
+| Ciri | *Sulfolobus* | *Thermus aquaticus* |
+| --- | --- | --- |
+| Tempat ditemukan | Mata air panas yang asam | Mata air panas di Taman Nasional Yellowstone |
+| Suhu tumbuh tercepat | <InlineMath math="70" /> sampai <InlineMath math="75^\circ\text{C}" /> | <InlineMath math="70^\circ\text{C}" /> |
+| Peptidoglikan di dinding | Tidak ada | Ada |
+| Kingdom | Archaebacteria | Eubacteria |
+
+Keduanya suka air sepanas <InlineMath math="70^\circ\text{C}" />, tetapi hanya *Thermus aquaticus* yang punya peptidoglikan di dindingnya. Artinya, **tempat hidup tidak menentukan kingdom**.
+
+### Sel dengan Membran Inti
+
+Empat kingdom lainnya adalah **eukariot**, dan DNA-nya berada di dalam inti sel. Di sini, penampilan luar gampang mengecohmu. Jamur tumbuh dari tanah seperti tumbuhan, tetapi dinding selnya dari kitin dan ia menyerap makanan, jadi ia Fungi. Hidra menempel pada daun di kolam seperti tumbuhan kecil, tetapi selnya tidak berdinding dan ia menangkap makanan dengan tentakel, jadi ia **Animalia**.
+
+<KingdomSortLab
+  title={<>Masukkan Spesimen ke Kingdom-nya</>}
+  description={
+    <>
+      Sepuluh spesimen dalam ukuran sebenarnya, di bawah mikroskop atau lup.
+      Periksa empat ciri, lalu masukkan setiap spesimen ke salah satu dari
+      enam nampan kingdom.
+    </>
+  }
+  footer={<>Lihat lapisan di luar membran sel: ada dindingnya atau tidak, dan dari apa?</>}
+  specimens={["sulfolobus", "thermus", "paramecium", "spirogyra", "slimeMould", "yeast", "mushroom", "fern", "padi", "hydra"]}
+  labels={{
+    specimen: "Spesimen",
+    specimens: {
+      sulfolobus: <em>Sulfolobus</em>,
+      thermus: <em>Thermus aquaticus</em>,
+      paramecium: <em>Paramecium</em>,
+      spirogyra: <em>Spirogyra</em>,
+      slimeMould: <>Jamur lendir</>,
+      yeast: <>Khamir</>,
+      mushroom: <>Jamur tiram</>,
+      fern: <>Tumbuhan paku</>,
+      padi: <>Padi</>,
+      hydra: <>Hidra</>,
+    },
+    kingdoms: {
+      archaebacteria: "Archaebacteria",
+      eubacteria: "Eubacteria",
+      protista: "Protista",
+      fungi: "Fungi",
+      plantae: "Plantae",
+      animalia: "Animalia",
+    },
+    checks: {
+      nucleus: "Membran inti",
+      cells: "Sel",
+      wall: "Dinding sel",
+      food: "Cara mendapat makanan",
+    },
+    values: {
+      yes: "Ada",
+      no: "Tidak ada",
+      one: "Satu sel",
+      many: "Banyak sel, tanpa jaringan",
+      tissue: "Banyak sel, dengan jaringan",
+      none: "Tanpa dinding",
+      peptidoglycan: "Peptidoglikan",
+      noPeptidoglycan: "Tanpa peptidoglikan",
+      chitin: "Kitin",
+      cellulose: "Selulosa",
+      photosynthesis: "Fotosintesis",
+      absorbs: "Menyerap",
+      ingests: "Menelan",
+      either: "Autotrof atau heterotrof",
+    },
+    place: "Masukkan",
+    right: <>Tepat, keempat ciri cocok dengan kingdom ini.</>,
+    wrong: <>Belum tepat. Bandingkan lagi setiap ciri dengan tabel kingdom.</>,
+    kingdom: <>Kingdom yang benar</>,
+    view: "Meja laboratorium dengan mikroskop, sepuluh spesimen, dan enam nampan kingdom",
+  }}
+/>
+
+Uji dirimu dengan *Spirogyra* di model. Filamen hijaunya tersusun dari sel yang punya inti, kloroplas, dan dinding selulosa. Kenapa *Spirogyra* tidak masuk Plantae?
+
+Lihat pertanyaan kedua. Sel-selnya berderet ujung ke ujung, masing-masing sama dengan sel tetangganya, dan tidak ada sel yang membentuk akar, batang, atau daun. Jadi **filamen itu tidak punya jaringan**, dan *Spirogyra* adalah alga dalam Protista. Padi punya jaringan seperti xilem dan floem, jadi padi tetap di Plantae.
+
+## Dua Kata Nama Ilmiah
+
+**Tata nama binomial** memberi setiap spesies nama dua kata dalam bentuk Latin. Carolus Linnaeus memakainya untuk setiap tumbuhan dalam *Species Plantarum* pada tahun 1753. Kata pertama adalah **nama genus**. Kata kedua adalah penunjuk spesies, dan kata itu hanya bermakna di samping genusnya, jadi padi adalah *Oryza sativa*, dua kata sekaligus.
+
+Aturan menulisnya:
+
+- Nama genus diawali huruf kapital, dan kata kedua ditulis dengan huruf kecil semua, walaupun berasal dari nama orang, seperti *brookiana* dari Brooke.
+- Dalam cetakan, nama itu ditulis miring: *Ipomoea aquatica*.
+- Dalam tulisan tangan, **garis bawahi setiap kata secara terpisah**, satu garis untuk satu kata.
+- Setelah nama lengkap muncul sekali, singkat genus menjadi huruf pertamanya: *I. aquatica*.
+- Kalau spesiesnya belum diketahui, tulis nama genus lalu sp.: *Ipomoea* sp.
+
+<GardenNameLab
+  title={<>Papan Nama di Kebun Sekolah</>}
+  description={
+    <>
+      Enam tumbuhan di kebun sekolah, masing-masing dengan papan nama. Pilih
+      tumbuhan, ganti cara menulisnya, lalu cocokkan kata pertama atau kata
+      kedua.
+    </>
+  }
+  footer={<>Cocokkan kata kedua. Apakah tumbuhan yang menyala itu kerabat dekat?</>}
+  plants={["kangkung", "sweetPotato", "mango", "beluntas", "neem", "padi"]}
+  labels={{
+    plant: "Tumbuhan",
+    plants: {
+      kangkung: "Kangkung",
+      sweetPotato: "Ubi jalar",
+      mango: "Mangga",
+      beluntas: "Beluntas",
+      neem: "Mimba",
+      padi: "Padi",
+    },
+    style: "Cara menulis",
+    styles: { printed: "Cetak", handwritten: "Tulisan tangan" },
+    match: "Cocokkan",
+    matches: { genus: "Kata pertama", epithet: "Kata kedua" },
+    genus: <>Nama genus</>,
+    epithet: <>Kata kedua</>,
+    family: <>Famili</>,
+    view: "Kebun sekolah dengan enam tumbuhan dan papan nama pada setiap tumbuhan",
+  }}
+/>
+
+Cocokkan kata pertama dulu. Kangkung, *Ipomoea aquatica*, dan ubi jalar, *Ipomoea batatas*, satu genus, jadi keduanya kerabat dekat, walaupun yang satu dimakan daunnya dan yang lain dimakan umbinya. Lalu cocokkan kata kedua. Mangga, beluntas, dan mimba semuanya *indica*, artinya dari India, tetapi ketiganya ada di tiga famili: Anacardiaceae, Asteraceae, dan Meliaceae. Kata kedua yang sama **tidak menandakan kekerabatan**.
+
+Coba perbaiki papan nama tulisan tangan ini: Mangifera Indica, dengan satu garis panjang di bawah kedua kata.
+
+Papan itu punya dua kesalahan. Kata kedua harus diawali huruf kecil, Mangifera indica, dan setiap kata mendapat **garisnya sendiri**, satu di bawah Mangifera dan satu di bawah indica.
+
+## Kunci Determinasi Enam Hewan
+
+**Kunci determinasi** atau kunci dikotomis bekerja seperti jalan yang terus bercabang. Setiap langkah bernomor memberimu sepasang pernyataan yang berlawanan. Pilih pernyataan yang benar untuk hewanmu, lalu ikuti ke langkah berikutnya atau langsung ke sebuah nama.
+
+Ini kunci untuk enam hewan kecil yang sering ditemukan di sekitar sekolah:
+
+| Langkah | Pernyataan a | Pernyataan b |
+| --- | --- | --- |
+| <InlineMath math="1" /> | Berkaki, ke langkah 2 | Tidak berkaki, ke langkah 5 |
+| <InlineMath math="2" /> | Tiga pasang kaki, ke langkah 3 | Lebih dari tiga pasang kaki, ke langkah 4 |
+| <InlineMath math="3" /> | Bersayap: capung | Tidak bersayap: semut pekerja |
+| <InlineMath math="4" /> | Empat pasang kaki: laba-laba | Sepasang kaki pada setiap ruas tubuh: lipan |
+| <InlineMath math="5" /> | Bercangkang: bekicot | Tidak bercangkang, tubuh beruas-ruas: cacing tanah |
+
+Langkah yang baik menguji **satu ciri yang ada pada setiap spesimen**, dan dua pernyataannya tidak boleh benar bersamaan. Kalau langkah 3 berbunyi "bersayap" lawan "tiga pasang kaki", capung cocok dengan keduanya, jadi kuncinya macet di situ. Pasangan "besar" lawan "kecil" atau "gelap" lawan "terang" juga gagal, karena ukuran dan warna berubah menurut umur dan cahaya.
+
+<KeyBuilderLab
+  title={<>Susun Kunci dan Uji Sendiri</>}
+  description={
+    <>
+      Enam hewan kecil dari sekitar sekolah di atas nampan putih. Pilih
+      pasangan pernyataan untuk setiap langkah, lalu jalankan setiap hewan
+      melewati kuncimu.
+    </>
+  }
+  footer={<>Lihat hewan yang berhenti di cabang: pernyataan mana yang benar untuknya?</>}
+  animals={["ant", "dragonfly", "spider", "centipede", "earthworm", "snail"]}
+  couplets={["legs", "pairs", "wings", "segments", "shell", "size", "colour", "overlap"]}
+  labels={{
+    animals: {
+      ant: "Semut pekerja",
+      dragonfly: "Capung",
+      spider: "Laba-laba",
+      centipede: "Lipan",
+      earthworm: "Cacing tanah",
+      snail: "Bekicot",
+    },
+    couplets: {
+      legs: { a: "Berkaki", b: "Tidak berkaki" },
+      pairs: { a: "Tiga pasang kaki", b: "Lebih dari tiga pasang kaki" },
+      wings: { a: "Bersayap", b: "Tidak bersayap" },
+      segments: { a: "Empat pasang kaki", b: "Sepasang kaki pada setiap ruas tubuh" },
+      shell: { a: "Bercangkang", b: "Tidak bercangkang" },
+      size: { a: "Tubuh besar", b: "Tubuh kecil" },
+      colour: { a: "Warna gelap", b: "Warna terang" },
+      overlap: { a: "Bersayap", b: "Tiga pasang kaki" },
+    },
+    step: "Langkah",
+    run: "Jalankan kunci",
+    reached: <>Hewan yang sampai ke namanya sendiri</>,
+    failed: <>Langkah yang gagal</>,
+    sorted: <>Kuncimu berhasil untuk semua hewan</>,
+    view: "Nampan putih dengan enam hewan kecil dan kunci bercabang di sampingnya",
+  }}
+/>
+
+Sekarang tambahkan kaki seribu, yang punya **dua pasang kaki pada sebagian besar ruas tubuhnya**. Langkah mana yang gagal, bagaimana kamu memperbaikinya, dan ada berapa langkah dalam kunci yang baru?
+
+Langkah 1 dan 2 membawa kaki seribu ke langkah 4, dan di sana ia tidak cocok dengan pernyataan mana pun. Tulis ulang langkah 4 menjadi "empat pasang kaki: laba-laba" lawan "banyak ruas berkaki, ke langkah 6", lalu jadikan langkah 6 "sepasang kaki pada setiap ruas: lipan" lawan "dua pasang kaki pada sebagian besar ruas: kaki seribu". Setiap langkah membagi satu kelompok menjadi dua, jadi <InlineMath math="n" /> makhluk hidup butuh <InlineMath math="n - 1" /> langkah: <InlineMath math="6 - 1 = 5" /> sebelumnya, <InlineMath math="7 - 1 = 6" /> sekarang.
