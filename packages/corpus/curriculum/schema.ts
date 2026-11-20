@@ -87,12 +87,57 @@ const CurriculumStructureNodeSchema = Schema.Struct({
   translations: CurriculumNodeTranslationMapSchema,
 });
 
+/** Whether a value is an absolute http or https address with a host. */
+function isWebUrl(value: string) {
+  if (!URL.canParse(value)) {
+    return false;
+  }
+  const url = new URL(value);
+  return (
+    (url.protocol === "https:" || url.protocol === "http:") &&
+    url.hostname.length > 0
+  );
+}
+
+/**
+ * An absolute web address of an official curriculum document. Plain http is
+ * allowed because some ministries publish their books only on hosts whose
+ * https certificate does not match the host name.
+ */
+const CurriculumDocumentUrlSchema = Schema.String.pipe(
+  Schema.check(
+    Schema.makeFilter(isWebUrl, {
+      message: "Expected an absolute http or https address.",
+    })
+  )
+);
+
+/** One official curriculum document: its title and where it is published. */
+const CurriculumDocumentSchema = Schema.Struct({
+  title: Schema.Trimmed.check(Schema.isNonEmpty()),
+  url: CurriculumDocumentUrlSchema,
+});
+
+/**
+ * One official outcome a mapped material teaches: where it stands in its
+ * document, as an outcome code, a phase and element, or a book chapter.
+ */
+const CurriculumOutcomeSchema = Schema.Struct({
+  code: Schema.Trimmed.check(Schema.isNonEmpty()),
+  document: CurriculumDocumentSchema,
+});
+
+/**
+ * One material mapped to a curriculum unit. Every mapping cites the official
+ * outcomes its materials teach, so no mapping rests on a title alone.
+ */
 const CurriculumMaterialNodeSchema = Schema.Struct({
   displayOverride: Schema.optional(CurriculumNodeTranslationMapSchema),
   key: CurriculumNodeKeySchema,
   level: ProgramNavigationLevelSchema,
   materialKeys: Schema.NonEmptyArray(MaterialKeySchema),
   order: Schema.Int.pipe(Schema.check(Schema.isGreaterThanOrEqualTo(0))),
+  outcomes: Schema.NonEmptyArray(CurriculumOutcomeSchema),
 });
 
 export const CurriculumTreeNodeSchema: Schema.Codec<

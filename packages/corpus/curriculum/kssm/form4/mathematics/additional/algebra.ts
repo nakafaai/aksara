@@ -1,3 +1,4 @@
+import { additionalMathematicsStandards } from "#corpus/curriculum/kssm/documents";
 import { materialNode, unitNode } from "#corpus/curriculum/schema";
 
 /** The KSSM Form 4 Additional Mathematics algebra chapters, functions to linear law, in the order of their DSKP. */
@@ -11,6 +12,12 @@ export const kssmForm4AdditionalMathematicsAlgebraNodes = [
           "lesson.mathematics.function-composition-inverse-function",
         ],
         order: 10,
+        outcomes: [
+          {
+            code: "Form 4, Content Standards 1.1 to 1.3",
+            document: additionalMathematicsStandards,
+          },
+        ],
       }),
     ],
     key: "form-4-additional-mathematics-functions",
@@ -47,6 +54,12 @@ export const kssmForm4AdditionalMathematicsAlgebraNodes = [
         level: "lesson",
         materialKeys: ["lesson.mathematics.quadratic-function"],
         order: 10,
+        outcomes: [
+          {
+            code: "Form 4, Content Standard 2.1 (Learning Standards 2.1.1 and 2.1.2), 2.2 and 2.3",
+            document: additionalMathematicsStandards,
+          },
+        ],
       }),
     ],
     key: "form-4-additional-mathematics-quadratic-functions",
@@ -86,6 +99,12 @@ export const kssmForm4AdditionalMathematicsAlgebraNodes = [
         level: "lesson",
         materialKeys: ["lesson.mathematics.simultaneous-equation"],
         order: 10,
+        outcomes: [
+          {
+            code: "Form 4, Content Standards 3.1 to 3.2",
+            document: additionalMathematicsStandards,
+          },
+        ],
       }),
     ],
     key: "form-4-additional-mathematics-systems-of-equations",
@@ -122,6 +141,12 @@ export const kssmForm4AdditionalMathematicsAlgebraNodes = [
         level: "lesson",
         materialKeys: ["lesson.mathematics.exponential-logarithm"],
         order: 10,
+        outcomes: [
+          {
+            code: "Form 4, Content Standards 4.1 to 4.3",
+            document: additionalMathematicsStandards,
+          },
+        ],
       }),
     ],
     key: "form-4-additional-mathematics-indices-surds-and-logarithms",
@@ -170,6 +195,12 @@ export const kssmForm4AdditionalMathematicsAlgebraNodes = [
         level: "lesson",
         materialKeys: ["lesson.mathematics.sequence-series"],
         order: 10,
+        outcomes: [
+          {
+            code: "Form 4, Content Standards 5.1 to 5.2",
+            document: additionalMathematicsStandards,
+          },
+        ],
       }),
     ],
     key: "form-4-additional-mathematics-progressions",
@@ -206,6 +237,12 @@ export const kssmForm4AdditionalMathematicsAlgebraNodes = [
         level: "lesson",
         materialKeys: ["lesson.mathematics.linear-law"],
         order: 10,
+        outcomes: [
+          {
+            code: "Form 4, Content Standards 6.1 to 6.3",
+            document: additionalMathematicsStandards,
+          },
+        ],
       }),
     ],
     key: "form-4-additional-mathematics-linear-law",

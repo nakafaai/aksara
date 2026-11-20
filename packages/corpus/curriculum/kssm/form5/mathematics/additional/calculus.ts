@@ -1,3 +1,4 @@
+import { additionalMathematicsStandards } from "#corpus/curriculum/kssm/documents";
 import { materialNode, unitNode } from "#corpus/curriculum/schema";
 
 /** The KSSM Form 5 Additional Mathematics calculus chapters, differentiation then integration. */
@@ -9,6 +10,12 @@ export const kssmForm5AdditionalMathematicsCalculusNodes = [
         level: "lesson",
         materialKeys: ["lesson.mathematics.derivative-function"],
         order: 10,
+        outcomes: [
+          {
+            code: "Form 5, Content Standards 2.1 to 2.3, Content Standard 2.4 (Learning Standards 2.4.1, 2.4.4 and 2.4.5)",
+            document: additionalMathematicsStandards,
+          },
+        ],
       }),
     ],
     key: "form-5-additional-mathematics-differentiation",
@@ -45,6 +52,12 @@ export const kssmForm5AdditionalMathematicsCalculusNodes = [
         level: "lesson",
         materialKeys: ["lesson.mathematics.integral"],
         order: 10,
+        outcomes: [
+          {
+            code: "Form 5, Content Standards 3.1 to 3.4",
+            document: additionalMathematicsStandards,
+          },
+        ],
       }),
     ],
     key: "form-5-additional-mathematics-integration",

@@ -1,4 +1,9 @@
 import { courseNode, materialNode, unitNode } from "#corpus/curriculum/schema";
+import {
+  biologySyllabus,
+  chemistrySyllabus,
+  physicsSyllabus,
+} from "#corpus/curriculum/singapore-moe/documents";
 
 export const singaporeSecondaryScienceCourseNode = courseNode({
   children: [
@@ -9,18 +14,26 @@ export const singaporeSecondaryScienceCourseNode = courseNode({
           level: "lesson",
           materialKeys: ["lesson.physics.measurement"],
           order: 10,
+          outcomes: [
+            {
+              code: "1 Physical Quantities, Units and Measurement",
+              document: physicsSyllabus,
+            },
+          ],
         }),
         materialNode({
           key: "singapore-secondary-science-physics-kinematics",
           level: "lesson",
           materialKeys: ["lesson.physics.kinematics"],
           order: 20,
+          outcomes: [{ code: "2 Kinematics", document: physicsSyllabus }],
         }),
         materialNode({
           key: "singapore-secondary-science-physics-energy",
           level: "lesson",
           materialKeys: ["lesson.physics.renewable-energy"],
           order: 30,
+          outcomes: [{ code: "6 Energy", document: physicsSyllabus }],
         }),
       ],
       key: "secondary-science-physics",
@@ -67,12 +80,21 @@ export const singaporeSecondaryScienceCourseNode = courseNode({
           level: "lesson",
           materialKeys: ["lesson.chemistry.structure-matter"],
           order: 10,
+          outcomes: [
+            { code: "2.2 Atomic Structure", document: chemistrySyllabus },
+          ],
         }),
         materialNode({
           key: "singapore-secondary-science-chemistry-reactions",
           level: "lesson",
           materialKeys: ["lesson.chemistry.basic-chemistry-laws"],
           order: 20,
+          outcomes: [
+            {
+              code: "4.1 Formulae and Equation Writing",
+              document: chemistrySyllabus,
+            },
+          ],
         }),
       ],
       key: "secondary-science-chemistry",
@@ -120,12 +142,24 @@ export const singaporeSecondaryScienceCourseNode = courseNode({
           level: "lesson",
           materialKeys: ["lesson.biology.biodiversity"],
           order: 10,
+          outcomes: [
+            {
+              code: "11 Organisms and their Environment",
+              document: biologySyllabus,
+            },
+          ],
         }),
         materialNode({
           key: "singapore-secondary-science-biology-ecosystems",
           level: "lesson",
           materialKeys: ["lesson.biology.climate-change"],
           order: 20,
+          outcomes: [
+            {
+              code: "11 Organisms and their Environment",
+              document: biologySyllabus,
+            },
+          ],
         }),
       ],
       key: "secondary-science-biology",

@@ -1,3 +1,4 @@
+import { biologyStandards } from "#corpus/curriculum/kssm/documents";
 import { materialNode, unitNode } from "#corpus/curriculum/schema";
 
 /** The KSSM Form 4 Biology chapters on how the body defends and regulates itself: immunity, coordination and homeostasis, chapters 11 to 13 of the DSKP. */
@@ -9,6 +10,12 @@ export const kssmForm4PhysiologyControlNodes = [
         level: "lesson",
         materialKeys: ["lesson.biology.immunity"],
         order: 10,
+        outcomes: [
+          {
+            code: "Form 4, Content Standards 11.1 to 11.4",
+            document: biologyStandards,
+          },
+        ],
       }),
     ],
     key: "form-4-biology-immunity-in-humans",
@@ -51,6 +58,12 @@ export const kssmForm4PhysiologyControlNodes = [
         level: "lesson",
         materialKeys: ["lesson.biology.coordination"],
         order: 10,
+        outcomes: [
+          {
+            code: "Form 4, Content Standards 12.1 to 12.7",
+            document: biologyStandards,
+          },
+        ],
       }),
     ],
     key: "form-4-biology-coordination-and-response-in-humans",
@@ -99,6 +112,12 @@ export const kssmForm4PhysiologyControlNodes = [
         level: "lesson",
         materialKeys: ["lesson.biology.homeostasis"],
         order: 10,
+        outcomes: [
+          {
+            code: "Form 4, Content Standards 13.1 to 13.3",
+            document: biologyStandards,
+          },
+        ],
       }),
     ],
     key: "form-4-biology-homeostasis-and-the-human-urinary-system",

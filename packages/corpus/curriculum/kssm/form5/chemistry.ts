@@ -1,3 +1,4 @@
+import { chemistryStandards } from "#corpus/curriculum/kssm/documents";
 import { materialNode, unitNode } from "#corpus/curriculum/schema";
 
 /** The KSSM Form 5 Chemistry chapters, in the order of their DSKP. */
@@ -9,6 +10,12 @@ export const kssmForm5ChemistryTopicNodes = [
         level: "lesson",
         materialKeys: ["lesson.chemistry.redox-equilibrium"],
         order: 10,
+        outcomes: [
+          {
+            code: "Form 5, Content Standards 9.1 to 9.6",
+            document: chemistryStandards,
+          },
+        ],
       }),
     ],
     key: "form-5-chemistry-redox-equilibrium",
@@ -45,6 +52,12 @@ export const kssmForm5ChemistryTopicNodes = [
         level: "lesson",
         materialKeys: ["lesson.chemistry.carbon-compound"],
         order: 10,
+        outcomes: [
+          {
+            code: "Form 5, Content Standards 10.1 to 10.4",
+            document: chemistryStandards,
+          },
+        ],
       }),
     ],
     key: "form-5-chemistry-carbon-compound",
@@ -84,6 +97,12 @@ export const kssmForm5ChemistryTopicNodes = [
         level: "lesson",
         materialKeys: ["lesson.chemistry.thermochemistry"],
         order: 10,
+        outcomes: [
+          {
+            code: "Form 5, Content Standards 11.1 to 11.3",
+            document: chemistryStandards,
+          },
+        ],
       }),
     ],
     key: "form-5-chemistry-thermochemistry",
@@ -120,6 +139,12 @@ export const kssmForm5ChemistryTopicNodes = [
         level: "lesson",
         materialKeys: ["lesson.chemistry.polymer"],
         order: 10,
+        outcomes: [
+          {
+            code: "Form 5, Content Standards 12.1 to 12.3",
+            document: chemistryStandards,
+          },
+        ],
       }),
     ],
     key: "form-5-chemistry-polymer",
@@ -156,6 +181,12 @@ export const kssmForm5ChemistryTopicNodes = [
         level: "lesson",
         materialKeys: ["lesson.chemistry.consumer-industrial-chemistry"],
         order: 10,
+        outcomes: [
+          {
+            code: "Form 5, Content Standards 13.1 to 13.6",
+            document: chemistryStandards,
+          },
+        ],
       }),
     ],
     key: "form-5-chemistry-consumer-and-industrial-chemistry",

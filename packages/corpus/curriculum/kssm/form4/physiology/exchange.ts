@@ -1,3 +1,4 @@
+import { biologyStandards } from "#corpus/curriculum/kssm/documents";
 import { materialNode, unitNode } from "#corpus/curriculum/schema";
 
 /** The KSSM Form 4 Biology chapters on how the body takes in and moves materials: respiration, nutrition and transport, chapters 8 to 10 of the DSKP. */
@@ -9,6 +10,12 @@ export const kssmForm4PhysiologyExchangeNodes = [
         level: "lesson",
         materialKeys: ["lesson.biology.respiratory-system"],
         order: 10,
+        outcomes: [
+          {
+            code: "Form 4, Content Standards 8.1 to 8.4",
+            document: biologyStandards,
+          },
+        ],
       }),
     ],
     key: "form-4-biology-respiratory-systems-in-humans-and-animals",
@@ -57,6 +64,12 @@ export const kssmForm4PhysiologyExchangeNodes = [
         level: "lesson",
         materialKeys: ["lesson.biology.digestive-system"],
         order: 10,
+        outcomes: [
+          {
+            code: "Form 4, Content Standards 9.1 to 9.7",
+            document: biologyStandards,
+          },
+        ],
       }),
     ],
     key: "form-4-biology-nutrition-and-the-human-digestive-system",
@@ -105,6 +118,12 @@ export const kssmForm4PhysiologyExchangeNodes = [
         level: "lesson",
         materialKeys: ["lesson.biology.circulatory-system"],
         order: 10,
+        outcomes: [
+          {
+            code: "Form 4, Content Standards 10.1 to 10.8",
+            document: biologyStandards,
+          },
+        ],
       }),
     ],
     key: "form-4-biology-transport-in-humans-and-animals",

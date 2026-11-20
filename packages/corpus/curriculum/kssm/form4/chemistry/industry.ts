@@ -1,3 +1,4 @@
+import { chemistryStandards } from "#corpus/curriculum/kssm/documents";
 import { materialNode, unitNode } from "#corpus/curriculum/schema";
 
 /** The KSSM Form 4 Chemistry chapter of the theme Industrial Chemistry, Bab 8. */
@@ -9,6 +10,12 @@ export const kssmForm4ChemistryIndustryNodes = [
         level: "lesson",
         materialKeys: ["lesson.chemistry.manufactured-substances"],
         order: 10,
+        outcomes: [
+          {
+            code: "Form 4, Content Standards 8.1 to 8.4",
+            document: chemistryStandards,
+          },
+        ],
       }),
     ],
     key: "form-4-chemistry-manufactured-substances-in-industry",
