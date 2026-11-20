@@ -101,7 +101,7 @@ So arbeitet der Grenzwert. Die genaue Fläche unter <InlineMath math="y = x" /> 
     view: { kind: "fit", padding: 0.3 },
     objects: [
       { id: "f", kind: "line", through: [{ x: 0, y: 0 }, { x: 1, y: 1 }], appearance: "reference" },
-      { id: "area", kind: "polygon", vertices: [{ x: 0, y: 0 }, { x: 7, y: 0 }, { x: 7, y: 7 }], appearance: "primary" },
+      { id: "area", kind: "region", inequalities: ["y >= 0", "y <= x", "x <= 7"], appearance: "primary" },
       { id: "r1", kind: "polygon", vertices: [{ x: (0 * 7) / 7, y: 0 }, { x: (1 * 7) / 7, y: 0 }, { x: (1 * 7) / 7, y: (1 * 7) / 7 }, { x: (0 * 7) / 7, y: (1 * 7) / 7 }], appearance: "secondary" },
       { id: "r2", kind: "polygon", vertices: [{ x: (1 * 7) / 7, y: 0 }, { x: (2 * 7) / 7, y: 0 }, { x: (2 * 7) / 7, y: (2 * 7) / 7 }, { x: (1 * 7) / 7, y: (2 * 7) / 7 }], appearance: "secondary" },
       { id: "r3", kind: "polygon", vertices: [{ x: (2 * 7) / 7, y: 0 }, { x: (3 * 7) / 7, y: 0 }, { x: (3 * 7) / 7, y: (3 * 7) / 7 }, { x: (2 * 7) / 7, y: (3 * 7) / 7 }], appearance: "secondary" },
@@ -146,7 +146,7 @@ Verdopple die Anzahl der Rechtecke auf <InlineMath math="14" />, jedes mit Breit
     view: { kind: "fit", padding: 0.3 },
     objects: [
       { id: "f", kind: "line", through: [{ x: 0, y: 0 }, { x: 1, y: 1 }], appearance: "reference" },
-      { id: "area", kind: "polygon", vertices: [{ x: 0, y: 0 }, { x: 7, y: 0 }, { x: 7, y: 7 }], appearance: "primary" },
+      { id: "area", kind: "region", inequalities: ["y >= 0", "y <= x", "x <= 7"], appearance: "primary" },
       { id: "r1", kind: "polygon", vertices: [{ x: (0 * 7) / 14, y: 0 }, { x: (1 * 7) / 14, y: 0 }, { x: (1 * 7) / 14, y: (1 * 7) / 14 }, { x: (0 * 7) / 14, y: (1 * 7) / 14 }], appearance: "secondary" },
       { id: "r2", kind: "polygon", vertices: [{ x: (1 * 7) / 14, y: 0 }, { x: (2 * 7) / 14, y: 0 }, { x: (2 * 7) / 14, y: (2 * 7) / 14 }, { x: (1 * 7) / 14, y: (2 * 7) / 14 }], appearance: "secondary" },
       { id: "r3", kind: "polygon", vertices: [{ x: (2 * 7) / 14, y: 0 }, { x: (3 * 7) / 14, y: 0 }, { x: (3 * 7) / 14, y: (3 * 7) / 14 }, { x: (2 * 7) / 14, y: (3 * 7) / 14 }], appearance: "secondary" },

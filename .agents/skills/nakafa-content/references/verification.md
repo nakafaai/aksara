@@ -242,7 +242,12 @@ fails the gate with `[custom-scenes]`; three or four prints a
 Visual Catalog figure (`FIGURE_NAMES` in `@nakafa/aksara-contracts`) except the
 standard visuals in `STANDARD_VISUALS` of `points/scene.ts`, so a new catalog
 figure counts without a change to the gate. A lesson the change never touched
-keeps its count until a change touches it.
+keeps its count until a change touches it. A change that only corrects figures
+(rule D26) does not revise a lesson either: when every touched file of a lesson
+is modified in place and reads the same once each `MathVisual`'s `scene`
+attribute is left out, and the lesson keeps every custom scene, the bar does not
+hold it. Any change to text, a title, a description, a label, a section, or the
+outline holds the lesson to the bar as before.
 
 ```sh
 bun run points
@@ -280,7 +285,11 @@ to the outline, heading, and repetition rules, and compares it with every page
 of its locale in the corpus, so a collision with an untouched lesson still
 fails.
 It reads the change from the merge base of `origin/main` and `HEAD`, as the
-points gate does, including untracked files.
+points gate does, including untracked files. A page whose change only corrects
+its figures (rule D26, the same `correctsFiguresOnly` reading as the scene bar)
+keeps its findings until a revision touches it: it reads the same once each
+`MathVisual`'s `scene` attribute is left out. Any change to a heading, a
+sentence, a section, or a figure's words holds the page to every rule.
 
 ```sh
 bun run headings

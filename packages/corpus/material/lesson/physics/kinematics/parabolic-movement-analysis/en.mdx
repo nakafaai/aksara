@@ -167,7 +167,7 @@ Move the time and follow the cannonball. The violet arrow is the velocity at tha
     frame: { kind: "cartesian", x: { min: -1, max: 16 }, y: { min: -1, max: 7.5 } },
     view: { kind: "fit", padding: 0.06 },
     objects: [
-      { id: "path", kind: "parametric", appearance: "construction", x: "2t", y: "2 sqrt(3) t - t^2/2", parameter: { min: 0, max: 4 * Math.sqrt(3) } },
+      { id: "path", kind: "function", appearance: "construction", formula: "sqrt(3) x - x^2 / 8", domain: { min: 0, max: 8 * Math.sqrt(3) } },
       { id: "ball", kind: "marker", appearance: "answer", x: "2s", y: "2 sqrt(3) s - s^2/2" },
       { id: "velocity", kind: "path", appearance: "secondary", points: [{ x: "2s", y: "2 sqrt(3) s - s^2/2" }, { x: "2s + 2", y: "2 sqrt(3) s - s^2/2 + 2 sqrt(3) - s" }] },
     ],
@@ -225,7 +225,7 @@ At <InlineMath math="t = 2\text{ s}" /> the ball is still rising because <Inline
     frame: { kind: "cartesian", x: { min: -1, max: 17 }, y: { min: -4.2, max: 7.5 } },
     view: { kind: "fit", padding: 0.06 },
     objects: [
-      { id: "path", kind: "parametric", appearance: "construction", x: "2t", y: "2 sqrt(3) t - t^2/2", parameter: { min: 0, max: 4 * Math.sqrt(3) } },
+      { id: "path", kind: "function", appearance: "construction", formula: "sqrt(3) x - x^2 / 8", domain: { min: 0, max: 8 * Math.sqrt(3) } },
       { id: "at-0", kind: "point", appearance: "secondary", at: { x: 0, y: 0 } },
       { id: "v0", kind: "segment", appearance: "secondary", from: { x: 0, y: 0 }, to: { x: 2, y: 2 * Math.sqrt(3) } },
       { id: "v0-head", kind: "polygon", appearance: "secondary", vertices: [{ x: 2, y: 2 * Math.sqrt(3) }, { x: 2 - (0.25 * 2) / Math.hypot(2, 3.4641016151377544) + ((0.25 / 2) * -3.4641016151377544) / Math.hypot(2, 3.4641016151377544), y: 2 * Math.sqrt(3) - (0.25 * 3.4641016151377544) / Math.hypot(2, 3.4641016151377544) + ((0.25 / 2) * 2) / Math.hypot(2, 3.4641016151377544) }, { x: 2 - (0.25 * 2) / Math.hypot(2, 3.4641016151377544) - ((0.25 / 2) * -3.4641016151377544) / Math.hypot(2, 3.4641016151377544), y: 2 * Math.sqrt(3) - (0.25 * 3.4641016151377544) / Math.hypot(2, 3.4641016151377544) - ((0.25 / 2) * 2) / Math.hypot(2, 3.4641016151377544) }] },

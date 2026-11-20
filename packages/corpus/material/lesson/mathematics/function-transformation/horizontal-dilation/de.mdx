@@ -32,10 +32,10 @@ Wende die Regel auf die Parabel <InlineMath math="f(x) = x^2" /> mit <InlineMath
     frame: { kind: "cartesian", x: { min: -8.5, max: 8.5 }, y: { min: -1.5, max: 13.5 } },
     view: { kind: "fit", padding: 0.2 },
     objects: [
-      { id: "s1", kind: "parametric", x: "(((t - 140) / 40) / 1)", y: "((1 * (((t - 140) / 40) / 1)) * (1 * (((t - 140) / 40) / 1)))", parameter: { min: 0, max: 280 }, appearance: "primary" },
+      { id: "s1", kind: "function", formula: "((1 * x) * (1 * x))", domain: { min: -3.5, max: 3.5 }, appearance: "primary" },
       { id: "s1-p220", kind: "point", at: { x: 2, y: 4 }, appearance: "primary" },
-      { id: "s2", kind: "parametric", x: "(((t - 140) / 40) / 2)", y: "((2 * (((t - 140) / 40) / 2)) * (2 * (((t - 140) / 40) / 2)))", parameter: { min: 0, max: 280 }, appearance: "secondary" },
-      { id: "s3", kind: "parametric", x: "(((t - 140) / 40) / (1 / 2))", y: "(((1 / 2) * (((t - 140) / 40) / (1 / 2))) * ((1 / 2) * (((t - 140) / 40) / (1 / 2))))", parameter: { min: 0, max: 280 }, appearance: "answer" },
+      { id: "s2", kind: "function", formula: "((2 * x) * (2 * x))", domain: { min: -1.75, max: 1.75 }, appearance: "secondary" },
+      { id: "s3", kind: "function", formula: "(((1 / 2) * x) * ((1 / 2) * x))", domain: { min: -7, max: 7 }, appearance: "answer" },
       { id: "s4", kind: "vector", from: { x: 2, y: 4 }, to: { x: 1, y: 4 }, appearance: "highlight" },
       { id: "s5", kind: "vector", from: { x: 2, y: 4 }, to: { x: 4, y: 4 }, appearance: "highlight" },
     ],
@@ -72,11 +72,11 @@ Aus <InlineMath math="4x^2 - 8x = 4x(x - 2)" /> folgen die Nullstellen <InlineMa
   }}
   scene={{
     space: "plane",
-    frame: { kind: "cartesian", x: { min: -3, max: 7 }, y: { min: -6, max: 14 } },
+    frame: { kind: "cartesian", x: { min: -3.5, max: 7.5 }, y: { min: -6, max: 9 } },
     view: { kind: "fit", padding: 0.2 },
     objects: [
-      { id: "s1", kind: "parametric", x: "((-2) + (t / 40))", y: "((((-2) + (t / 40)) * ((-2) + (t / 40))) - (4 * ((-2) + (t / 40))))", parameter: { min: 0, max: 320 }, appearance: "primary" },
-      { id: "s2", kind: "parametric", x: "(((-2) + (t / 40)) / 2)", y: "(((2 * (((-2) + (t / 40)) / 2)) * (2 * (((-2) + (t / 40)) / 2))) - (4 * (2 * (((-2) + (t / 40)) / 2))))", parameter: { min: 0, max: 320 }, appearance: "secondary" },
+      { id: "s1", kind: "function", formula: "((x * x) - (4 * x))", domain: { min: -2, max: 6 }, appearance: "primary" },
+      { id: "s2", kind: "function", formula: "(((2 * x) * (2 * x)) - (4 * (2 * x)))", domain: { min: -1, max: 3 }, appearance: "secondary" },
       { id: "s3", kind: "vector", from: { x: 5, y: 5 }, to: { x: 2.5, y: 5 }, appearance: "answer" },
       { id: "s4", kind: "vector", from: { x: -1, y: 5 }, to: { x: -0.5, y: 5 }, appearance: "answer" },
       { id: "s5", kind: "vector", from: { x: 2, y: -4 }, to: { x: 1, y: -4 }, appearance: "answer" },
@@ -268,8 +268,8 @@ Der Graph von <InlineMath math="y = 2^x" /> geht durch <InlineMath math="(3, 8)"
     frame: { kind: "cartesian", x: { min: -14, max: 6 }, y: { min: -2, max: 18 } },
     view: { kind: "fit", padding: 0.2 },
     objects: [
-      { id: "s1", kind: "parametric", x: "((-12) + (t * (1 / 16)))", y: "(2)^(((-12) + (t * (1 / 16))))", parameter: { min: 0, max: 256 }, appearance: "primary" },
-      { id: "s2", kind: "parametric", x: "(((-36) + (t * (1 / 8))) / 3)", y: "(2)^((3 * (((-36) + (t * (1 / 8))) / 3)))", parameter: { min: 0, max: 320 }, appearance: "secondary" },
+      { id: "s1", kind: "function", formula: "(2)^(x)", domain: { min: -12, max: 4 }, appearance: "primary" },
+      { id: "s2", kind: "function", formula: "(2)^((3 * x))", domain: { min: -12, max: 4 / 3 }, appearance: "secondary" },
       { id: "s3", kind: "vector", from: { x: 3, y: 8 }, to: { x: 1, y: 8 }, appearance: "answer" },
       { id: "s4", kind: "point", at: { x: 0, y: 1 }, appearance: "construction" },
     ],
@@ -298,10 +298,10 @@ Die Funktion <InlineMath math="f(x) = \frac{1}{x - 4}" /> hat die [senkrechte As
     frame: { kind: "cartesian", x: { min: -12, max: 18 }, y: { min: -10, max: 10 } },
     view: { kind: "fit", padding: 0.2 },
     objects: [
-      { id: "s1", kind: "parametric", x: "(4 - (13 * (((1 / 8) / 13))^((t / 200))))", y: "(1 / ((4 - (13 * (((1 / 8) / 13))^((t / 200)))) - 4))", parameter: { min: 0, max: 200 }, appearance: "primary" },
-      { id: "s2", kind: "parametric", x: "(4 + ((1 / 8) * ((11 / (1 / 8)))^((t / 200))))", y: "(1 / ((4 + ((1 / 8) * ((11 / (1 / 8)))^((t / 200)))) - 4))", parameter: { min: 0, max: 200 }, appearance: "primary" },
-      { id: "s3", kind: "parametric", x: "(2 - (11 * (((1 / 16) / 11))^((t / 200))))", y: "(1 / ((2 * (2 - (11 * (((1 / 16) / 11))^((t / 200))))) - 4))", parameter: { min: 0, max: 200 }, appearance: "secondary" },
-      { id: "s4", kind: "parametric", x: "(2 + ((1 / 16) * ((13 / (1 / 16)))^((t / 200))))", y: "(1 / ((2 * (2 + ((1 / 16) * ((13 / (1 / 16)))^((t / 200))))) - 4))", parameter: { min: 0, max: 200 }, appearance: "secondary" },
+      { id: "s1", kind: "function", formula: "(1 / (x - 4))", domain: { min: -9, max: 3.88 }, appearance: "primary" },
+      { id: "s2", kind: "function", formula: "(1 / (x - 4))", domain: { min: 4.12, max: 15 }, appearance: "primary" },
+      { id: "s3", kind: "function", formula: "(1 / ((2 * x) - 4))", domain: { min: -9, max: 1.94 }, appearance: "secondary" },
+      { id: "s4", kind: "function", formula: "(1 / ((2 * x) - 4))", domain: { min: 2.06, max: 15 }, appearance: "secondary" },
       { id: "s5", kind: "polyline", vertices: [{ x: 4, y: -8 }, { x: 4, y: 8 }], appearance: "primary" },
       { id: "s6", kind: "polyline", vertices: [{ x: 2, y: -8 }, { x: 2, y: 8 }], appearance: "secondary" },
       { id: "s7", kind: "vector", from: { x: 5, y: 1 }, to: { x: 2.5, y: 1 }, appearance: "answer" },
@@ -338,8 +338,8 @@ Bei einer geraden Funktion sieht man die Spiegelung nicht. Für <InlineMath math
     frame: { kind: "cartesian", x: { min: -4, max: 4 }, y: { min: 0, max: 11 } },
     view: { kind: "fit", padding: 0.2 },
     objects: [
-      { id: "s1", kind: "parametric", x: "((-3) + (t / 40))", y: "((((-3) + (t / 40)) * ((-3) + (t / 40))) + 1)", parameter: { min: 0, max: 240 }, appearance: "primary" },
-      { id: "s2", kind: "parametric", x: "(((-3) + (t / 40)) / (-2))", y: "((((-2) * (((-3) + (t / 40)) / (-2))) * ((-2) * (((-3) + (t / 40)) / (-2)))) + 1)", parameter: { min: 0, max: 240 }, appearance: "secondary" },
+      { id: "s1", kind: "function", formula: "((x * x) + 1)", domain: { min: -3, max: 3 }, appearance: "primary" },
+      { id: "s2", kind: "function", formula: "((((-2) * x) * ((-2) * x)) + 1)", domain: { min: -1.5, max: 1.5 }, appearance: "secondary" },
       { id: "s3", kind: "vector", from: { x: 2, y: 5 }, to: { x: -1, y: 5 }, appearance: "answer" },
       { id: "s4", kind: "vector", from: { x: -1, y: 2 }, to: { x: 0.5, y: 2 }, appearance: "answer" },
     ],
@@ -374,7 +374,7 @@ Zum Vergleich liefert <InlineMath math="b = -1" /> die Funktion <InlineMath math
   }}
   scene={{
     space: "plane",
-    frame: { kind: "cartesian", x: { min: -14, max: 14 }, y: { min: -1, max: 10 } },
+    frame: { kind: "cartesian", x: { min: -14, max: 14 }, y: { min: -2.5, max: 11.5 } },
     view: { kind: "fit", padding: 0.2 },
     objects: [
       { id: "s1", kind: "polyline", vertices: [{ x: -7, y: 9 }, { x: 0, y: 2 }, { x: 2, y: 0 }, { x: 4, y: 2 }, { x: 11, y: 9 }], appearance: "primary" },
@@ -431,13 +431,13 @@ Aus der faktorisierten Form liest du die Nullstellen <InlineMath math="x = -\fra
   }}
   scene={{
     space: "plane",
-    frame: { kind: "cartesian", x: { min: -4, max: 6 }, y: { min: -6, max: 14 } },
+    frame: { kind: "cartesian", x: { min: -4.5, max: 6.5 }, y: { min: -6, max: 9 } },
     view: { kind: "fit", padding: 0.2 },
     objects: [
-      { id: "s1", kind: "parametric", x: "((-3) + (t / 30))", y: "(((((-3) + (t / 30)) * ((-3) + (t / 30))) - (2 * ((-3) + (t / 30)))) - 3)", parameter: { min: 0, max: 240 }, appearance: "primary" },
+      { id: "s1", kind: "function", formula: "(((x * x) - (2 * x)) - 3)", domain: { min: -3, max: 5 }, appearance: "primary" },
       { id: "s1-p60", kind: "point", at: { x: -1, y: 0 }, appearance: "primary" },
       { id: "s1-p180", kind: "point", at: { x: 3, y: 0 }, appearance: "primary" },
-      { id: "s2", kind: "parametric", x: "(((-3) + (t / 30)) / 3)", y: "((((3 * (((-3) + (t / 30)) / 3)) * (3 * (((-3) + (t / 30)) / 3))) - (2 * (3 * (((-3) + (t / 30)) / 3)))) - 3)", parameter: { min: 0, max: 240 }, appearance: "secondary" },
+      { id: "s2", kind: "function", formula: "((((3 * x) * (3 * x)) - (2 * (3 * x))) - 3)", domain: { min: -1, max: 5 / 3 }, appearance: "secondary" },
       { id: "s2-p60", kind: "point", at: { x: -0.33, y: 0 }, appearance: "secondary" },
       { id: "s2-p180", kind: "point", at: { x: 1, y: 0 }, appearance: "secondary" },
       { id: "s3", kind: "vector", from: { x: 1, y: -4 }, to: { x: 0.33, y: -4 }, appearance: "answer" },
@@ -464,11 +464,11 @@ Die zweite Form gilt, weil <InlineMath math="\sqrt{\frac{x}{4}} = \frac{\sqrt{x}
   }}
   scene={{
     space: "plane",
-    frame: { kind: "cartesian", x: { min: -1, max: 10 }, y: { min: -0.5, max: 3.5 } },
+    frame: { kind: "cartesian", x: { min: -1, max: 7.5 }, y: { min: -0.75, max: 3.75 } },
     view: { kind: "fit", padding: 0.2 },
     objects: [
-      { id: "s1", kind: "parametric", x: "((t / 80) * (t / 80))", y: "sqrt(((t / 80) * (t / 80)))", parameter: { min: 0, max: 240 }, appearance: "primary" },
-      { id: "s2", kind: "parametric", x: "((4 * (t / 200)) * (t / 200))", y: "sqrt((((4 * (t / 200)) * (t / 200)) / 4))", parameter: { min: 0, max: 300 }, appearance: "secondary" },
+      { id: "s1", kind: "function", formula: "sqrt(x)", domain: { min: 0, max: 9 }, appearance: "primary" },
+      { id: "s2", kind: "function", formula: "sqrt((x / 4))", domain: { min: 0, max: 9 }, appearance: "secondary" },
       { id: "s3", kind: "vector", from: { x: 1, y: 1 }, to: { x: 4, y: 1 }, appearance: "answer" },
       { id: "s4", kind: "vector", from: { x: 4, y: 2 }, to: { x: 4, y: 1 }, appearance: "answer" },
     ],
@@ -503,8 +503,8 @@ Die Funktion <InlineMath math="2^t" /> ist streng monoton steigend, deshalb gilt
     frame: { kind: "cartesian", x: { min: -12, max: 10 }, y: { min: -2, max: 18 } },
     view: { kind: "fit", padding: 0.2 },
     objects: [
-      { id: "s1", kind: "parametric", x: "((-10) + (t / 32))", y: "(2)^(((-10) + (t / 32)))", parameter: { min: 0, max: 448 }, appearance: "primary" },
-      { id: "s2", kind: "parametric", x: "(2 * ((-10) + ((t + 160) / 32)))", y: "(2)^(((2 * ((-10) + ((t + 160) / 32))) / 2))", parameter: { min: 0, max: 288 }, appearance: "secondary" },
+      { id: "s1", kind: "function", formula: "(2)^(x)", domain: { min: -10, max: 4 }, appearance: "primary" },
+      { id: "s2", kind: "function", formula: "(2)^((x / 2))", domain: { min: -10, max: 8 }, appearance: "secondary" },
       { id: "s3", kind: "vector", from: { x: 3, y: 8 }, to: { x: 6, y: 8 }, appearance: "answer" },
       { id: "s4", kind: "point", at: { x: 0, y: 1 }, appearance: "construction" },
     ],

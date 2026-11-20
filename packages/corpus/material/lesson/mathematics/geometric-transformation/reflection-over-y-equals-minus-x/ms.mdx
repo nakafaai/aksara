@@ -190,8 +190,8 @@ Jadi, persamaan imej bagi garis <InlineMath math="y = -4x - 2" /> selepas pantul
     view: { kind: "fit", padding: 0.2 },
     objects: [
       { id: "s1", kind: "polyline", vertices: [{ x: -5, y: 5 }, { x: 5, y: -5 }], appearance: "primary" },
-      { id: "s2", kind: "parametric", x: "((-2) + (t * 0.3))", y: "(((-4) * ((-2) + (t * 0.3))) - 2)", parameter: { min: 0, max: 10 }, appearance: "secondary" },
-      { id: "s3", kind: "parametric", x: "((t - 5) * 1.2)", y: "((((-1) / 4) * ((t - 5) * 1.2)) + (1 / 2))", parameter: { min: 0, max: 10 }, appearance: "answer" },
+      { id: "s2", kind: "function", formula: "(((-4) * x) - 2)", domain: { min: -2, max: 1 }, appearance: "secondary" },
+      { id: "s3", kind: "function", formula: "((((-1) / 4) * x) + (1 / 2))", domain: { min: -6, max: 6 }, appearance: "answer" },
     ],
     labels: [
       { key: "l1", objectId: "s1", at: { x: 5, y: -5 }, placement: "above-left" },

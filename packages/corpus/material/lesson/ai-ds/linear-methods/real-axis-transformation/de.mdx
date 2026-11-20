@@ -124,8 +124,8 @@ Mit Halbachsenlängen <InlineMath math="r_1 = \sqrt{\frac{\gamma}{\lambda_1}}" /
     objects: [
       { id: "s1", kind: "parametric", x: "(cosh(((((2 * t) / 59) - 1) * ln(((4 / sqrt(3))) + sqrt(((4 / sqrt(3)))^2 + 1)))) * sqrt((3 / 2)))", y: "(sinh(((((2 * t) / 59) - 1) * ln(((4 / sqrt(3))) + sqrt(((4 / sqrt(3)))^2 + 1)))) * sqrt((3 / (-(-1)))))", parameter: { min: 0, max: 59 }, appearance: "primary" },
       { id: "s2", kind: "parametric", x: "((-cosh(((((2 * t) / 59) - 1) * ln(((4 / sqrt(3))) + sqrt(((4 / sqrt(3)))^2 + 1))))) * sqrt((3 / 2)))", y: "(sinh(((((2 * t) / 59) - 1) * ln(((4 / sqrt(3))) + sqrt(((4 / sqrt(3)))^2 + 1)))) * sqrt((3 / (-(-1)))))", parameter: { min: 0, max: 59 }, appearance: "primary" },
-      { id: "s3", kind: "parametric", x: "((t - 0.5) * 6)", y: "((sqrt((3 / (-(-1)))) / sqrt((3 / 2))) * ((t - 0.5) * 6))", parameter: { min: 0, max: 1 }, appearance: "secondary" },
-      { id: "s4", kind: "parametric", x: "((t - 0.5) * 6)", y: "(((-sqrt((3 / (-(-1))))) / sqrt((3 / 2))) * ((t - 0.5) * 6))", parameter: { min: 0, max: 1 }, appearance: "secondary" },
+      { id: "s3", kind: "function", formula: "((sqrt((3 / (-(-1)))) / sqrt((3 / 2))) * x)", domain: { min: -3, max: 3 }, appearance: "secondary" },
+      { id: "s4", kind: "function", formula: "(((-sqrt((3 / (-(-1))))) / sqrt((3 / 2))) * x)", domain: { min: -3, max: 3 }, appearance: "secondary" },
       { id: "s5", kind: "polyline", vertices: [{ x: -4, y: 0 }, { x: 4, y: 0 }], appearance: "answer" },
       { id: "s6", kind: "polyline", vertices: [{ x: 0, y: -3 }, { x: 0, y: 3 }], appearance: "answer" },
     ],
@@ -174,7 +174,7 @@ Nach dem Auflösen nach <InlineMath math="\xi_2" /> ist die **Parabelform** unmi
     frame: { kind: "cartesian", x: { min: -4.5, max: 4.5 }, y: { min: -1.5, max: 4.5 } },
     view: { kind: "fit", padding: 0.2 },
     objects: [
-      { id: "s1", kind: "parametric", x: "(((t / 154) - 0.5) * 6)", y: "(((-(1 / (-2))) * (((((t / 154) - 0.5) * 6) - 0))^(2)) + (2 / (-2)))", parameter: { min: 0, max: 154 }, appearance: "primary" },
+      { id: "s1", kind: "function", formula: "(((-(1 / (-2))) * ((x - 0))^(2)) + (2 / (-2)))", domain: { min: -3, max: 3 }, appearance: "primary" },
       { id: "s2", kind: "polyline", vertices: [{ x: -3.5, y: 0 }, { x: 3.5, y: 0 }], appearance: "secondary" },
       { id: "s3", kind: "polyline", vertices: [{ x: 0, y: -0.5 }, { x: 0, y: 4 }], appearance: "secondary" },
     ],

@@ -24,12 +24,12 @@ Tanda minus di dalam kurung seolah menggeser grafik ke kiri, tetapi arahnya just
   }}
   scene={{
     space: "plane",
-    frame: { kind: "cartesian", x: { min: -5, max: 7 }, y: { min: -5, max: 54 } },
+    frame: { kind: "cartesian", x: { min: -6, max: 8 }, y: { min: -5, max: 14 } },
     view: { kind: "fit", padding: 0.2 },
     objects: [
-      { id: "s1", kind: "parametric", x: "((-4) + (t / 40))", y: "(((-4) + (t / 40)) * ((-4) + (t / 40)))", parameter: { min: 0, max: 400 }, appearance: "primary" },
+      { id: "s1", kind: "function", formula: "(x * x)", domain: { min: -4, max: 6 }, appearance: "primary" },
       { id: "s1-p160", kind: "point", at: { x: 0, y: 0 }, appearance: "primary" },
-      { id: "s2", kind: "parametric", x: "((-4) + (t / 40))", y: "((((-4) + (t / 40)) - 3) * (((-4) + (t / 40)) - 3))", parameter: { min: 0, max: 400 }, appearance: "secondary" },
+      { id: "s2", kind: "function", formula: "((x - 3) * (x - 3))", domain: { min: -4, max: 6 }, appearance: "secondary" },
       { id: "s3", kind: "vector", from: { x: 0, y: 0 }, to: { x: 3, y: 0 }, appearance: "answer" },
       { id: "s4", kind: "vector", from: { x: 2, y: 4 }, to: { x: 5, y: 4 }, appearance: "answer" },
     ],
@@ -83,12 +83,12 @@ Periksa fungsi baru dengan titik yang sudah kamu kenal. Fungsi baru ini memfakto
   }}
   scene={{
     space: "plane",
-    frame: { kind: "cartesian", x: { min: -5, max: 5 }, y: { min: -7, max: 24 } },
+    frame: { kind: "cartesian", x: { min: -6, max: 6 }, y: { min: -7, max: 8 } },
     view: { kind: "fit", padding: 0.2 },
     objects: [
-      { id: "s1", kind: "parametric", x: "((-4) + (t / 40))", y: "(((((-4) + (t / 40)) * ((-4) + (t / 40))) - (2 * ((-4) + (t / 40)))) - 3)", parameter: { min: 0, max: 320 }, appearance: "primary" },
+      { id: "s1", kind: "function", formula: "(((x * x) - (2 * x)) - 3)", domain: { min: -4, max: 4 }, appearance: "primary" },
       { id: "s1-p200", kind: "point", at: { x: 1, y: -4 }, appearance: "primary" },
-      { id: "s2", kind: "parametric", x: "((-4) + (t / 40))", y: "(((((-4) + (t / 40)) * ((-4) + (t / 40))) + (2 * ((-4) + (t / 40)))) - 3)", parameter: { min: 0, max: 320 }, appearance: "secondary" },
+      { id: "s2", kind: "function", formula: "(((x * x) + (2 * x)) - 3)", domain: { min: -4, max: 4 }, appearance: "secondary" },
       { id: "s2-p120", kind: "point", at: { x: -1, y: -4 }, appearance: "secondary" },
       { id: "s3", kind: "vector", from: { x: 1, y: -4 }, to: { x: -1, y: -4 }, appearance: "answer" },
       { id: "s4", kind: "vector", from: { x: -1, y: 0 }, to: { x: -3, y: 0 }, appearance: "answer" },
@@ -118,12 +118,12 @@ Titik awal <InlineMath math="(0, 0)" /> berpindah ke <InlineMath math="(-4, 0)" 
   }}
   scene={{
     space: "plane",
-    frame: { kind: "cartesian", x: { min: -5.5, max: 9.5 }, y: { min: -0.5, max: 4 } },
+    frame: { kind: "cartesian", x: { min: -5, max: 6 }, y: { min: -1, max: 4.5 } },
     view: { kind: "fit", padding: 0.2 },
     objects: [
-      { id: "s1", kind: "parametric", x: "(t / 40)", y: "sqrt((t / 40))", parameter: { min: 0, max: 320 }, appearance: "primary" },
+      { id: "s1", kind: "function", formula: "sqrt(x)", domain: { min: 0, max: 8 }, appearance: "primary" },
       { id: "s1-p0", kind: "point", at: { x: 0, y: 0 }, appearance: "primary" },
-      { id: "s2", kind: "parametric", x: "((-4) + (t / 40))", y: "sqrt((((-4) + (t / 40)) + 4))", parameter: { min: 0, max: 480 }, appearance: "secondary" },
+      { id: "s2", kind: "function", formula: "sqrt((x + 4))", domain: { min: -4, max: 8 }, appearance: "secondary" },
       { id: "s2-p0", kind: "point", at: { x: -4, y: 0 }, appearance: "secondary" },
       { id: "s3", kind: "vector", from: { x: 0, y: 0 }, to: { x: -4, y: 0 }, appearance: "answer" },
       { id: "s4", kind: "vector", from: { x: 4, y: 2 }, to: { x: 0, y: 2 }, appearance: "answer" },
@@ -150,9 +150,9 @@ Fungsi eksponensial memberi contoh kedua. Ambil <InlineMath math="f(x) = 2^x" />
     frame: { kind: "cartesian", x: { min: -5, max: 4 }, y: { min: -1, max: 9 } },
     view: { kind: "fit", padding: 0.2 },
     objects: [
-      { id: "s1", kind: "parametric", x: "((-4) + (t / 40))", y: "(2)^(((-4) + (t / 40)))", parameter: { min: 0, max: 280 }, appearance: "primary" },
+      { id: "s1", kind: "function", formula: "(2)^(x)", domain: { min: -4, max: 3 }, appearance: "primary" },
       { id: "s1-p160", kind: "point", at: { x: 0, y: 1 }, appearance: "primary" },
-      { id: "s2", kind: "parametric", x: "((-4) + (t / 40))", y: "(2)^((((-4) + (t / 40)) - 2))", parameter: { min: 0, max: 280 }, appearance: "secondary" },
+      { id: "s2", kind: "function", formula: "(2)^((x - 2))", domain: { min: -4, max: 3 }, appearance: "secondary" },
       { id: "s2-p160", kind: "point", at: { x: 0, y: 0.25 }, appearance: "secondary" },
       { id: "s3", kind: "polyline", vertices: [{ x: -4, y: 0 }, { x: 3, y: 0 }], appearance: "answer" },
       { id: "s4", kind: "vector", from: { x: 0, y: 1 }, to: { x: 2, y: 1 }, appearance: "highlight" },
@@ -179,13 +179,13 @@ Ekspresi <InlineMath math="f(x - 3)" /> dan <InlineMath math="f(x) - 3" /> terli
   }}
   scene={{
     space: "plane",
-    frame: { kind: "cartesian", x: { min: -3, max: 6 }, y: { min: -6, max: 28 } },
+    frame: { kind: "cartesian", x: { min: -4, max: 7 }, y: { min: -6, max: 8 } },
     view: { kind: "fit", padding: 0.2 },
     objects: [
-      { id: "s1", kind: "parametric", x: "((-2) + (t / 40))", y: "(((-2) + (t / 40)) * ((-2) + (t / 40)))", parameter: { min: 0, max: 280 }, appearance: "primary" },
+      { id: "s1", kind: "function", formula: "(x * x)", domain: { min: -2, max: 5 }, appearance: "primary" },
       { id: "s1-p80", kind: "point", at: { x: 0, y: 0 }, appearance: "primary" },
-      { id: "s2", kind: "parametric", x: "((-2) + (t / 40))", y: "((((-2) + (t / 40)) - 3) * (((-2) + (t / 40)) - 3))", parameter: { min: 0, max: 280 }, appearance: "secondary" },
-      { id: "s3", kind: "parametric", x: "((-2) + (t / 40))", y: "((((-2) + (t / 40)) * ((-2) + (t / 40))) - 3)", parameter: { min: 0, max: 280 }, appearance: "answer" },
+      { id: "s2", kind: "function", formula: "((x - 3) * (x - 3))", domain: { min: -2, max: 5 }, appearance: "secondary" },
+      { id: "s3", kind: "function", formula: "((x * x) - 3)", domain: { min: -2, max: 5 }, appearance: "answer" },
       { id: "s4", kind: "vector", from: { x: 0, y: 0 }, to: { x: 3, y: 0 }, appearance: "highlight" },
       { id: "s5", kind: "vector", from: { x: 0, y: 0 }, to: { x: 0, y: -3 }, appearance: "highlight" },
     ],
@@ -212,11 +212,11 @@ Garis lurus bisa membuat kedua aturan tampak sama. Untuk <InlineMath math="f(x) 
   }}
   scene={{
     space: "plane",
-    frame: { kind: "cartesian", x: { min: -3, max: 7 }, y: { min: -12, max: 16 } },
+    frame: { kind: "cartesian", x: { min: -4, max: 8 }, y: { min: -6, max: 10 } },
     view: { kind: "fit", padding: 0.2 },
     objects: [
-      { id: "s1", kind: "parametric", x: "((-2) + (t / 20))", y: "((2 * ((-2) + (t / 20))) + 1)", parameter: { min: 0, max: 160 }, appearance: "primary" },
-      { id: "s2", kind: "parametric", x: "((-2) + (t / 20))", y: "((2 * (((-2) + (t / 20)) - 3)) + 1)", parameter: { min: 0, max: 160 }, appearance: "secondary" },
+      { id: "s1", kind: "function", formula: "((2 * x) + 1)", domain: { min: -2, max: 6 }, appearance: "primary" },
+      { id: "s2", kind: "function", formula: "((2 * (x - 3)) + 1)", domain: { min: -2, max: 6 }, appearance: "secondary" },
       { id: "s3", kind: "vector", from: { x: 2, y: 5 }, to: { x: 5, y: 5 }, appearance: "answer" },
       { id: "s4", kind: "vector", from: { x: 2, y: 5 }, to: { x: 2, y: -1 }, appearance: "answer" },
     ],

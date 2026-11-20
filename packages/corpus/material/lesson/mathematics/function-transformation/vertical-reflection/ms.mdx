@@ -24,12 +24,12 @@ Rumus juga memberikan hasil yang sama. Jika titik <InlineMath math="(x_0, y_0)" 
   }}
   scene={{
     space: "plane",
-    frame: { kind: "cartesian", x: { min: -3, max: 3 }, y: { min: -6.5, max: 6.5 } },
+    frame: { kind: "cartesian", x: { min: -3.25, max: 3.25 }, y: { min: -4.5, max: 4.5 } },
     view: { kind: "fit", padding: 0.2 },
     objects: [
-      { id: "s1", kind: "parametric", x: "((-2.5) + (t / 40))", y: "((((-2.5) + (t / 40)) * ((-2.5) + (t / 40))) - 1)", parameter: { min: 0, max: 200 }, appearance: "primary" },
+      { id: "s1", kind: "function", formula: "((x * x) - 1)", domain: { min: -2.5, max: 2.5 }, appearance: "primary" },
       { id: "s1-p100", kind: "point", at: { x: 0, y: -1 }, appearance: "primary" },
-      { id: "s2", kind: "parametric", x: "((-2.5) + (t / 40))", y: "(-((((-2.5) + (t / 40)) * ((-2.5) + (t / 40))) - 1))", parameter: { min: 0, max: 200 }, appearance: "secondary" },
+      { id: "s2", kind: "function", formula: "(-((x * x) - 1))", domain: { min: -2.5, max: 2.5 }, appearance: "secondary" },
       { id: "s2-p100", kind: "point", at: { x: 0, y: 1 }, appearance: "secondary" },
       { id: "s3", kind: "vector", from: { x: 2, y: 3 }, to: { x: 2, y: -3 }, appearance: "answer" },
     ],
@@ -150,14 +150,14 @@ Semak tiga titik khas. Pensifar <InlineMath math="g" /> masih <InlineMath math="
   }}
   scene={{
     space: "plane",
-    frame: { kind: "cartesian", x: { min: -3, max: 5 }, y: { min: -6, max: 6 } },
+    frame: { kind: "cartesian", x: { min: -3.25, max: 5.25 }, y: { min: -6, max: 6 } },
     view: { kind: "fit", padding: 0.2 },
     objects: [
-      { id: "s1", kind: "parametric", x: "((-2) + (t / 40))", y: "(((((-2) + (t / 40)) * ((-2) + (t / 40))) - (2 * ((-2) + (t / 40)))) - 3)", parameter: { min: 0, max: 240 }, appearance: "primary" },
+      { id: "s1", kind: "function", formula: "(((x * x) - (2 * x)) - 3)", domain: { min: -2, max: 4 }, appearance: "primary" },
       { id: "s1-p120", kind: "point", at: { x: 1, y: -4 }, appearance: "primary" },
       { id: "s1-p40", kind: "point", at: { x: -1, y: 0 }, appearance: "primary" },
       { id: "s1-p200", kind: "point", at: { x: 3, y: 0 }, appearance: "primary" },
-      { id: "s2", kind: "parametric", x: "((-2) + (t / 40))", y: "(-(((((-2) + (t / 40)) * ((-2) + (t / 40))) - (2 * ((-2) + (t / 40)))) - 3))", parameter: { min: 0, max: 240 }, appearance: "secondary" },
+      { id: "s2", kind: "function", formula: "(-(((x * x) - (2 * x)) - 3))", domain: { min: -2, max: 4 }, appearance: "secondary" },
       { id: "s3", kind: "vector", from: { x: 1, y: -4 }, to: { x: 1, y: 4 }, appearance: "answer" },
       { id: "s4", kind: "vector", from: { x: 0, y: -3 }, to: { x: 0, y: 3 }, appearance: "answer" },
     ],
@@ -187,11 +187,11 @@ Asimptot bergerak ke <InlineMath math="y = 1" />, kerana tinggi <InlineMath math
   }}
   scene={{
     space: "plane",
-    frame: { kind: "cartesian", x: { min: -4, max: 4 }, y: { min: -8.5, max: 8.5 } },
+    frame: { kind: "cartesian", x: { min: -4.5, max: 4.5 }, y: { min: -6, max: 6 } },
     view: { kind: "fit", padding: 0.2 },
     objects: [
-      { id: "s1", kind: "parametric", x: "((-3) + (t / 40))", y: "((2)^(((-3) + (t / 40))) - 1)", parameter: { min: 0, max: 240 }, appearance: "primary" },
-      { id: "s2", kind: "parametric", x: "((-3) + (t / 40))", y: "(-((2)^(((-3) + (t / 40))) - 1))", parameter: { min: 0, max: 240 }, appearance: "secondary" },
+      { id: "s1", kind: "function", formula: "((2)^(x) - 1)", domain: { min: -3, max: 3 }, appearance: "primary" },
+      { id: "s2", kind: "function", formula: "(-((2)^(x) - 1))", domain: { min: -3, max: 3 }, appearance: "secondary" },
       { id: "s3", kind: "polyline", vertices: [{ x: -3, y: -1 }, { x: 3, y: -1 }], appearance: "answer" },
       { id: "s4", kind: "polyline", vertices: [{ x: -3, y: 1 }, { x: 3, y: 1 }], appearance: "answer" },
       { id: "s5", kind: "vector", from: { x: 1, y: 1 }, to: { x: 1, y: -1 }, appearance: "highlight" },
@@ -219,7 +219,7 @@ Untuk <InlineMath math="y = \sin x" />, graf mencapai titik tertingginya pada <I
   }}
   scene={{
     space: "plane",
-    frame: { kind: "cartesian", x: { min: -8, max: 8 }, y: { min: -1.5, max: 1.5 } },
+    frame: { kind: "cartesian", x: { min: -7, max: 7 }, y: { min: -3.5, max: 3.5 } },
     view: { kind: "fit", padding: 0.2 },
     objects: [
       { id: "s1", kind: "function", formula: "sin(x)", domain: { min: -2 * Math.PI, max: 2 * Math.PI }, appearance: "primary" },
@@ -249,13 +249,13 @@ Tanda negatif di luar fungsi dan tanda negatif di dalamnya **melakukan tugas yan
   }}
   scene={{
     space: "plane",
-    frame: { kind: "cartesian", x: { min: -2.5, max: 2.5 }, y: { min: -5, max: 5 } },
+    frame: { kind: "cartesian", x: { min: -3.25, max: 3.25 }, y: { min: -4.5, max: 4.5 } },
     view: { kind: "fit", padding: 0.2 },
     objects: [
-      { id: "s1", kind: "parametric", x: "((-2) + (t / 40))", y: "(2)^(((-2) + (t / 40)))", parameter: { min: 0, max: 160 }, appearance: "primary" },
+      { id: "s1", kind: "function", formula: "(2)^(x)", domain: { min: -2, max: 2 }, appearance: "primary" },
       { id: "s1-p120", kind: "point", at: { x: 1, y: 2 }, appearance: "primary" },
-      { id: "s2", kind: "parametric", x: "((-2) + (t / 40))", y: "(-(2)^(((-2) + (t / 40))))", parameter: { min: 0, max: 160 }, appearance: "secondary" },
-      { id: "s3", kind: "parametric", x: "((-2) + (t / 40))", y: "(2)^((-((-2) + (t / 40))))", parameter: { min: 0, max: 160 }, appearance: "answer" },
+      { id: "s2", kind: "function", formula: "(-(2)^(x))", domain: { min: -2, max: 2 }, appearance: "secondary" },
+      { id: "s3", kind: "function", formula: "(2)^((-x))", domain: { min: -2, max: 2 }, appearance: "answer" },
       { id: "s4", kind: "vector", from: { x: 1, y: 2 }, to: { x: 1, y: -2 }, appearance: "highlight" },
       { id: "s5", kind: "vector", from: { x: 1, y: 2 }, to: { x: -1, y: 2 }, appearance: "highlight" },
     ],
@@ -279,12 +279,12 @@ Fungsi ganjil ialah pengecualian. Untuk <InlineMath math="f(x) = x^3 - 3x" />, i
   }}
   scene={{
     space: "plane",
-    frame: { kind: "cartesian", x: { min: -3, max: 3 }, y: { min: -5, max: 5 } },
+    frame: { kind: "cartesian", x: { min: -3.25, max: 3.25 }, y: { min: -4.5, max: 4.5 } },
     view: { kind: "fit", padding: 0.2 },
     objects: [
-      { id: "s1", kind: "parametric", x: "((-2.2) + (t / 40))", y: "(((((-2.2) + (t / 40)) * ((-2.2) + (t / 40))) * ((-2.2) + (t / 40))) - (3 * ((-2.2) + (t / 40))))", parameter: { min: 0, max: 176 }, appearance: "primary" },
-      { id: "s2", kind: "parametric", x: "((-2.2) + (t / 40))", y: "((((-((-2.2) + (t / 40))) * (-((-2.2) + (t / 40)))) * (-((-2.2) + (t / 40)))) - (3 * (-((-2.2) + (t / 40)))))", parameter: { min: 0, max: 176 }, appearance: "secondary" },
-      { id: "s3", kind: "parametric", x: "((-2.2) + (t / 40))", y: "(-(((((-2.2) + (t / 40)) * ((-2.2) + (t / 40))) * ((-2.2) + (t / 40))) - (3 * ((-2.2) + (t / 40)))))", parameter: { min: 0, max: 176 }, appearance: "answer" },
+      { id: "s1", kind: "function", formula: "(((x * x) * x) - (3 * x))", domain: { min: -2.2, max: 2.2 }, appearance: "primary" },
+      { id: "s2", kind: "function", formula: "((((-x) * (-x)) * (-x)) - (3 * (-x)))", domain: { min: -2.2, max: 2.2 }, appearance: "secondary" },
+      { id: "s3", kind: "function", formula: "(-(((x * x) * x) - (3 * x)))", domain: { min: -2.2, max: 2.2 }, appearance: "answer" },
       { id: "s4", kind: "vector", from: { x: -1, y: 2 }, to: { x: -1, y: -2 }, appearance: "highlight" },
       { id: "s5", kind: "vector", from: { x: 1, y: -2 }, to: { x: 1, y: 2 }, appearance: "highlight" },
     ],

@@ -47,9 +47,9 @@ Fungsi cebis demi cebis linear menggunakan fungsi linear pada setiap selang. Ben
     frame: { kind: "cartesian", x: { min: -3, max: 5 }, y: { min: -1.5, max: 3.5 } },
     view: { kind: "fit", padding: 0.2 },
     objects: [
-      { id: "s1", kind: "parametric", x: "((-2) + (t * 0.1))", y: "((2 * ((-2) + (t * 0.1))) + 3)", parameter: { min: 0, max: 20 }, appearance: "primary" },
-      { id: "s2", kind: "parametric", x: "(0 + (t * 0.1))", y: "((-(0 + (t * 0.1))) + 3)", parameter: { min: 0, max: 20 }, appearance: "secondary" },
-      { id: "s3", kind: "parametric", x: "(2 + (t * 0.1))", y: "(0.5 * (2 + (t * 0.1)))", parameter: { min: 0, max: 20 }, appearance: "answer" },
+      { id: "s1", kind: "function", formula: "((2 * x) + 3)", domain: { min: -2, max: 0 }, appearance: "primary" },
+      { id: "s2", kind: "function", formula: "((-x) + 3)", domain: { min: 0, max: 2 }, appearance: "secondary" },
+      { id: "s3", kind: "function", formula: "(0.5 * x)", domain: { min: 2, max: 4 }, appearance: "answer" },
     ],
     labels: [
       { key: "l1", objectId: "s1", at: { x: -1, y: 1 }, placement: "above-left" },
@@ -81,8 +81,8 @@ Fungsi cebis demi cebis juga boleh menggunakan cebisan kuadratik. Cebisan kuadra
     frame: { kind: "cartesian", x: { min: -4, max: 4 }, y: { min: -1, max: 10 } },
     view: { kind: "fit", padding: 0.2 },
     objects: [
-      { id: "s1", kind: "parametric", x: "((t - 150) / 50)", y: "(((t - 150) / 50) * ((t - 150) / 50))", parameter: { min: 0, max: 150 }, appearance: "primary" },
-      { id: "s2", kind: "parametric", x: "(0 + (t * 0.1))", y: "(2 * (0 + (t * 0.1)))", parameter: { min: 0, max: 30 }, appearance: "secondary" },
+      { id: "s1", kind: "function", formula: "(x * x)", domain: { min: -3, max: 0 }, appearance: "primary" },
+      { id: "s2", kind: "function", formula: "(2 * x)", domain: { min: 0, max: 3 }, appearance: "secondary" },
     ],
     labels: [
       { key: "l1", objectId: "s1", at: { x: -1.5, y: 2.25 }, placement: "below-left" },
@@ -142,8 +142,8 @@ Contohnya, dua petua di bawah bertemu pada <InlineMath math="x=1" /> tetapi meng
     frame: { kind: "cartesian", x: { min: -1.5, max: 3.5 }, y: { min: -1.5, max: 3.5 } },
     view: { kind: "fit", padding: 0.2 },
     objects: [
-      { id: "s1", kind: "parametric", x: "((-1) + (t * 0.1))", y: "(((-1) + (t * 0.1)) + 2)", parameter: { min: 0, max: 20 }, appearance: "primary" },
-      { id: "s2", kind: "parametric", x: "(1 + (t * 0.1))", y: "((2 * (1 + (t * 0.1))) - 3)", parameter: { min: 0, max: 20 }, appearance: "secondary" },
+      { id: "s1", kind: "function", formula: "(x + 2)", domain: { min: -1, max: 1 }, appearance: "primary" },
+      { id: "s2", kind: "function", formula: "((2 * x) - 3)", domain: { min: 1, max: 3 }, appearance: "secondary" },
     ],
     labels: [
       { key: "l1", objectId: "s1", at: { x: 0, y: 2 }, placement: "above-left" },
@@ -322,9 +322,9 @@ Oleh sebab <InlineMath math="\lim_{x \to 1^-} g(x) = \lim_{x \to 1^+} g(x) = g(1
     frame: { kind: "cartesian", x: { min: -3, max: 5 }, y: { min: -0.5, max: 4.5 } },
     view: { kind: "fit", padding: 0.2 },
     objects: [
-      { id: "s1", kind: "parametric", x: "((-2) + (t * 0.1))", y: "((-((-2) + (t * 0.1))) + 2)", parameter: { min: 0, max: 20 }, appearance: "primary" },
-      { id: "s2", kind: "parametric", x: "(0 + ((t / 5) * 0.1))", y: "((0 + ((t / 5) * 0.1)) * (0 + ((t / 5) * 0.1)))", parameter: { min: 0, max: 100 }, appearance: "secondary" },
-      { id: "s3", kind: "parametric", x: "(2 + (t * 0.1))", y: "4", parameter: { min: 0, max: 20 }, appearance: "answer" },
+      { id: "s1", kind: "function", formula: "((-x) + 2)", domain: { min: -2, max: 0 }, appearance: "primary" },
+      { id: "s2", kind: "function", formula: "(x * x)", domain: { min: 0, max: 2 }, appearance: "secondary" },
+      { id: "s3", kind: "function", formula: "4", domain: { min: 2, max: 4 }, appearance: "answer" },
     ],
     labels: [
       { key: "l1", objectId: "s1", at: { x: -1, y: 3 }, placement: "above" },

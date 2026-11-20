@@ -117,8 +117,8 @@ The following values show the function's behavior around the vertical asymptote:
     frame: { kind: "cartesian", x: { min: -13, max: 17 }, y: { min: -44, max: 46 } },
     view: { kind: "fit", padding: 0.2 },
     objects: [
-      { id: "s1", kind: "parametric", x: "(2 - exp(t))", y: "(((2 - exp(t)) + 3) / ((2 - exp(t)) - 2))", parameter: { min: -2, max: 2.5 }, appearance: "primary" },
-      { id: "s2", kind: "parametric", x: "(2 + exp(t))", y: "(((2 + exp(t)) + 3) / ((2 + exp(t)) - 2))", parameter: { min: -2, max: 2.5 }, appearance: "primary" },
+      { id: "s1", kind: "function", formula: "((x + 3) / (x - 2))", domain: { min: -10.2, max: 1.87 }, appearance: "primary" },
+      { id: "s2", kind: "function", formula: "((x + 3) / (x - 2))", domain: { min: 2.13, max: 14.2 }, appearance: "primary" },
       { id: "s3", kind: "polyline", vertices: [{ x: 2, y: -12 }, { x: 2, y: 0 }, { x: 2, y: 12 }], appearance: "secondary" },
     ],
     labels: [
@@ -182,7 +182,7 @@ The following values show how the function approaches the horizontal asymptote:
     frame: { kind: "cartesian", x: { min: -13, max: 13 }, y: { min: -0.5, max: 2 } },
     view: { kind: "fit", padding: 0.2 },
     objects: [
-      { id: "s1", kind: "parametric", x: "sinh(t)", y: "((((3 * sinh(t)) * sinh(t)) - 1) / (((2 * sinh(t)) * sinh(t)) + 5))", parameter: { min: -3, max: 3 }, appearance: "primary" },
+      { id: "s1", kind: "function", formula: "((((3 * x) * x) - 1) / (((2 * x) * x) + 5))", domain: { min: -10.1, max: 10.1 }, appearance: "primary" },
       { id: "s2", kind: "polyline", vertices: [{ x: -10, y: 1.5 }, { x: 0, y: 1.5 }, { x: 10, y: 1.5 }], appearance: "secondary" },
     ],
     labels: [
@@ -237,8 +237,8 @@ Oblique asymptote: <InlineMath math="y = x + 3" />
     frame: { kind: "cartesian", x: { min: -14, max: 16 }, y: { min: -14, max: 22 } },
     view: { kind: "fit", padding: 0.2 },
     objects: [
-      { id: "s1", kind: "parametric", x: "(1 - exp(t))", y: "(((((1 - exp(t)) * (1 - exp(t))) + (2 * (1 - exp(t)))) - 1) / ((1 - exp(t)) - 1))", parameter: { min: -2, max: 2.5 }, appearance: "primary" },
-      { id: "s2", kind: "parametric", x: "(1 + exp(t))", y: "(((((1 + exp(t)) * (1 + exp(t))) + (2 * (1 + exp(t)))) - 1) / ((1 + exp(t)) - 1))", parameter: { min: -2, max: 2.5 }, appearance: "primary" },
+      { id: "s1", kind: "function", formula: "((((x * x) + (2 * x)) - 1) / (x - 1))", domain: { min: -11.2, max: 0.865 }, appearance: "primary" },
+      { id: "s2", kind: "function", formula: "((((x * x) + (2 * x)) - 1) / (x - 1))", domain: { min: 1.13, max: 13.2 }, appearance: "primary" },
       { id: "s3", kind: "polyline", vertices: [{ x: -8, y: -5 }, { x: 0, y: 3 }, { x: 10, y: 13 }], appearance: "secondary" },
       { id: "s4", kind: "polyline", vertices: [{ x: 1, y: -10 }, { x: 1, y: 0 }, { x: 1, y: 15 }], appearance: "answer" },
     ],
@@ -311,8 +311,8 @@ Draw the asymptotes first. A vertical asymptote marks the input value approached
     frame: { kind: "cartesian", x: { min: -13, max: 17 }, y: { min: -26, max: 28 } },
     view: { kind: "fit", padding: 0.2 },
     objects: [
-      { id: "s1", kind: "parametric", x: "(2 - exp(t))", y: "(((2 - exp(t)) + 1) / ((2 - exp(t)) - 2))", parameter: { min: -2, max: 2.5 }, appearance: "primary" },
-      { id: "s2", kind: "parametric", x: "(2 + exp(t))", y: "(((2 + exp(t)) + 1) / ((2 + exp(t)) - 2))", parameter: { min: -2, max: 2.5 }, appearance: "primary" },
+      { id: "s1", kind: "function", formula: "((x + 1) / (x - 2))", domain: { min: -10.2, max: 1.87 }, appearance: "primary" },
+      { id: "s2", kind: "function", formula: "((x + 1) / (x - 2))", domain: { min: 2.13, max: 14.2 }, appearance: "primary" },
       { id: "s3", kind: "polyline", vertices: [{ x: 2, y: -12 }, { x: 2, y: 0 }, { x: 2, y: 12 }], appearance: "secondary" },
       { id: "s4", kind: "polyline", vertices: [{ x: -5, y: 1 }, { x: 0, y: 1 }, { x: 9, y: 1 }], appearance: "answer" },
       { id: "s5", kind: "point", at: { x: -1, y: 0 }, appearance: "primary" },
@@ -404,9 +404,9 @@ Value table for <InlineMath math="h(x) = \frac{x}{x^2 - 1}" />:
     frame: { kind: "cartesian", x: { min: -16, max: 16 }, y: { min: -12, max: 12 } },
     view: { kind: "fit", padding: 0.2 },
     objects: [
-      { id: "s1", kind: "parametric", x: "((-1) - exp(t))", y: "(((-1) - exp(t)) / ((((-1) - exp(t)) * ((-1) - exp(t))) - 1))", parameter: { min: -2, max: 2.5 }, appearance: "primary" },
-      { id: "s2", kind: "parametric", x: "tanh(t)", y: "(tanh(t) / ((tanh(t) * tanh(t)) - 1))", parameter: { min: -1.6, max: 1.6 }, appearance: "primary" },
-      { id: "s3", kind: "parametric", x: "(1 + exp(t))", y: "((1 + exp(t)) / (((1 + exp(t)) * (1 + exp(t))) - 1))", parameter: { min: -2, max: 2.5 }, appearance: "primary" },
+      { id: "s1", kind: "function", formula: "(x / ((x * x) - 1))", domain: { min: -13.2, max: -1.13 }, appearance: "primary" },
+      { id: "s2", kind: "function", formula: "(x / ((x * x) - 1))", domain: { min: -0.922, max: 0.922 }, appearance: "primary" },
+      { id: "s3", kind: "function", formula: "(x / ((x * x) - 1))", domain: { min: 1.13, max: 13.2 }, appearance: "primary" },
       { id: "s4", kind: "polyline", vertices: [{ x: -1, y: -10 }, { x: -1, y: 0 }, { x: -1, y: 10 }], appearance: "secondary" },
       { id: "s5", kind: "polyline", vertices: [{ x: 1, y: -10 }, { x: 1, y: 0 }, { x: 1, y: 10 }], appearance: "secondary" },
       { id: "s6", kind: "polyline", vertices: [{ x: -3, y: 0 }, { x: 0, y: 0 }, { x: 3, y: 0 }], appearance: "answer" },

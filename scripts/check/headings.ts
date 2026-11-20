@@ -4,6 +4,7 @@ import { findIdentityFindings } from "#nakafa-content/heading/identity";
 import { findPageFindings } from "#nakafa-content/heading/page";
 import { isHeadingOnlyChange } from "#nakafa-content/heading/relabel";
 import { findSkeletonFindings } from "#nakafa-content/heading/skeleton";
+import { correctsFiguresOnly } from "#nakafa-content/mdx/figure";
 import { findRepeatFindings } from "#nakafa-content/prose/repeat";
 import { trackedFiles } from "#scripts/check/files";
 import { corpusPages, parsePage, sourceAt } from "#scripts/check/pages";
@@ -140,6 +141,43 @@ export const relabelFindings = Effect.fn("AksaraOutline.relabelFindings")(
   }
 );
 
+/**
+ * The touched pages a change revises. A page whose change only corrects its
+ * figures (D26) keeps its outline and its text as they were, so it keeps its
+ * findings until a revision touches it. A page the change adds is revised.
+ */
+export const revisedPages = Effect.fn("AksaraOutline.revisedPages")(function* (
+  pages: readonly CorpusPage[],
+  touched: HashSet.HashSet<string>,
+  base: string
+) {
+  const corrected = yield* Effect.forEach(
+    Arr.filter(pages, (page) => HashSet.has(touched, page.file)),
+    (head) =>
+      Effect.gen(function* () {
+        const baseSource = yield* sourceAt(base, head.file);
+        if (Option.isNone(baseSource)) {
+          return Option.none<string>();
+        }
+        const basePage = yield* parsePage(
+          head.file,
+          { kind: head.page.kind, locale: head.page.locale },
+          baseSource.value
+        );
+        return correctsFiguresOnly(
+          { source: basePage.source, tree: basePage.page.tree },
+          { source: head.source, tree: head.page.tree }
+        )
+          ? Option.some(head.file)
+          : Option.none<string>();
+      })
+  );
+  return HashSet.difference(
+    touched,
+    HashSet.fromIterable(Arr.getSomes(corrected))
+  );
+});
+
 /** Logs every finding and fails when one blocks, or any does under strict review. */
 export const outlineReport = Effect.fn("AksaraOutline.outlineReport")(
   function* (
@@ -167,22 +205,27 @@ export const outlineReport = Effect.fn("AksaraOutline.outlineReport")(
 );
 
 /**
- * The gate's check: holds every lesson and article page this change touched,
+ * The gate's check: holds every lesson and article page this change revised,
  * measured from the base ref, to the outline and heading rules, compared with
- * the whole corpus. An untouched page keeps its findings until a change
- * touches it, so the corpus rises to the rules one revision at a time.
+ * the whole corpus. An untouched page, or one whose figures alone were
+ * corrected, keeps its findings until a revision touches it, so the corpus
+ * rises to the rules one revision at a time.
  */
 export const checkHeadings = Effect.fn("AksaraOutline.checkHeadings")(
   function* (options: HeadingOptions) {
     const pages = yield* corpusPages(yield* trackedFiles());
     const files = Arr.map(pages, ({ file }) => file);
+    const base = yield* mergeBase(options.base);
     const report = options.all
       ? HashSet.fromIterable(files)
-      : HashSet.intersection(
-          HashSet.fromIterable(files),
-          HashSet.fromIterable(yield* changedFiles(options.base))
+      : yield* revisedPages(
+          pages,
+          HashSet.intersection(
+            HashSet.fromIterable(files),
+            HashSet.fromIterable(yield* changedFiles(options.base))
+          ),
+          base
         );
-    const base = yield* mergeBase(options.base);
     const findings = Arr.sort(
       [
         ...outlineFindings(pages, report),

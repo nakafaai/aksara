@@ -20,6 +20,7 @@ import {
 import type { DocumentParts } from "#nakafa-content/points/document";
 import { inspectDocument } from "#nakafa-content/points/document";
 import { PointsCheckError, unreadable } from "#nakafa-content/points/error";
+import { figureCorrections, keptScenes } from "#nakafa-content/points/figure";
 import { collectFiles } from "#nakafa-content/points/files";
 import type { PointsFinding } from "#nakafa-content/points/finding";
 import { findLiteralPoints } from "#nakafa-content/points/literal";
@@ -66,19 +67,14 @@ const loadDocument = Effect.fn("PointsCheck.loadDocument")(function* (
   return { document, source };
 });
 
-/** The lesson folders below the targets that this change touched. */
-const changedLessons = Effect.fn("PointsCheck.changedLessons")(function* (
-  root: string,
-  base: string,
-  targets: readonly string[]
-) {
-  const touched = yield* touchedFiles(root, base, targets);
+/** The lesson folders that the touched files belong to. */
+function lessonsOf(touched: readonly string[]) {
   return HashSet.fromIterable(
     Arr.flatMap(touched, (file) =>
       Option.toArray(Option.map(lessonOf(file), ({ lesson }) => lesson))
     )
   );
-});
+}
 
 /**
  * Adds every section file of the changed lessons that the targets left out,
@@ -149,14 +145,29 @@ const checkPoints = Effect.fn("PointsCheck.checkPoints")(function* (
       ...found.sort(byPosition).map((entry) => ({ ...entry, file }))
     );
   }
-  const lessons = yield* changedLessons(root, base, targets);
+  const touched = yield* touchedFiles(root, base, targets);
+  const lessons = lessonsOf(touched);
   const scenes = yield* lessonDocuments(root, lessons, documents);
+  // A lesson whose change only corrects its figures keeps its count (D26).
+  const corrections = yield* figureCorrections(root, base, touched, changed);
+  const now = lessonScenes(scenes);
+  const before = lessonScenes(
+    Arr.map(
+      scenes,
+      ([file, document]) =>
+        [file, corrections.baseParts.get(file) ?? document] as const
+    )
+  );
+  const held = HashSet.difference(
+    lessons,
+    keptScenes(corrections.lessons, now, before)
+  );
   return {
     base,
     compared,
     files: files.length,
     findings,
-    scenes: sceneShortfalls(lessonScenes(scenes), lessons),
+    scenes: sceneShortfalls(now, held),
   } satisfies PointsReport;
 });
 

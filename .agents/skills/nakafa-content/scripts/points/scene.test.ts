@@ -12,7 +12,11 @@ import {
   unknownStandardVisuals,
 } from "#nakafa-content/points/scene";
 import { capture } from "#nakafa-content/points/test/console";
-import { COMPUTED_CURVE, lesson } from "#nakafa-content/points/test/lesson";
+import {
+  COMPUTED_CURVE,
+  lesson,
+  lineFigure,
+} from "#nakafa-content/points/test/lesson";
 import {
   commitAll,
   createRepository,
@@ -205,6 +209,53 @@ layer(NodeServices.layer, { excludeTestServices: true })(
           assert.include(
             result.log[0],
             `${ROOT} [review: custom-scenes] 3 distinct custom scenes in en (CellCutawayLab, VirusReplicationLab, VirusStructureLab); aim for 5.`
+          );
+        })
+    );
+
+    gate.effect(
+      "passes a lesson below the bar whose change only corrects a figure's scene data",
+      () =>
+        Effect.gen(function* () {
+          const root = yield* commitBase({
+            [SECTION_FILE]: lesson(element("VirusStructureLab"), lineFigure(1)),
+            [SIBLING_FILE]: lesson(element("CellCutawayLab")),
+          });
+          yield* writeFiles(root, {
+            [SECTION_FILE]: lesson(element("VirusStructureLab"), lineFigure(2)),
+          });
+          const result = yield* capture(
+            runMain([ROOT, "--base", "HEAD"], root)
+          );
+
+          assert.strictEqual(result.code, 0);
+          assert.deepStrictEqual(result.error, []);
+        })
+    );
+
+    gate.effect(
+      "holds a lesson to the bar when its change also revises its text",
+      () =>
+        Effect.gen(function* () {
+          const root = yield* commitBase({
+            [SECTION_FILE]: lesson(element("VirusStructureLab"), lineFigure(1)),
+            [SIBLING_FILE]: lesson(element("CellCutawayLab")),
+          });
+          yield* writeFiles(root, {
+            [SECTION_FILE]: lesson(
+              element("VirusStructureLab"),
+              lineFigure(2),
+              "One more line."
+            ),
+          });
+          const result = yield* capture(
+            runMain([ROOT, "--base", "HEAD"], root)
+          );
+
+          assert.strictEqual(result.code, 1);
+          assert.include(
+            result.error[0],
+            `${ROOT} [custom-scenes] 2 distinct custom scene(s) in en (CellCutawayLab, VirusStructureLab)`
           );
         })
     );

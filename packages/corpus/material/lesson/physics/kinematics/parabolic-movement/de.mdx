@@ -184,9 +184,9 @@ Jede Flugzeit ist doppelt so lang wie die Steigzeit <InlineMath math="\frac{v_0 
     view: { kind: "fit", padding: 0.06 },
     objects: [
       { id: "ground", kind: "segment", appearance: "reference", from: { x: 0, y: 0 }, to: { x: 8.5, y: 0 } },
-      { id: "thirty", kind: "parametric", appearance: "construction", x: "4 cos(pi/6) t", y: "4 sin(pi/6) t - t^2", parameter: { min: 0, max: 2 } },
-      { id: "fortyfive", kind: "parametric", appearance: "secondary", x: "4 cos(pi/4) t", y: "4 sin(pi/4) t - t^2", parameter: { min: 0, max: 2 * Math.SQRT2 } },
-      { id: "sixty", kind: "parametric", appearance: "highlight", x: "4 cos(pi/3) t", y: "4 sin(pi/3) t - t^2", parameter: { min: 0, max: 2 * Math.sqrt(3) } },
+      { id: "thirty", kind: "function", appearance: "construction", formula: "x / sqrt(3) - x^2 / 12", domain: { min: 0, max: 4 * Math.sqrt(3) } },
+      { id: "fortyfive", kind: "function", appearance: "secondary", formula: "x - x^2 / 8", domain: { min: 0, max: 8 } },
+      { id: "sixty", kind: "function", appearance: "highlight", formula: "sqrt(3) x - x^2 / 4", domain: { min: 0, max: 4 * Math.sqrt(3) } },
       { id: "thirty-top", kind: "point", appearance: "construction", at: { x: 2 * Math.sqrt(3), y: 1 } },
       { id: "fortyfive-top", kind: "point", appearance: "secondary", at: { x: 4, y: 2 } },
       { id: "sixty-top", kind: "point", appearance: "highlight", at: { x: 2 * Math.sqrt(3), y: 3 } },

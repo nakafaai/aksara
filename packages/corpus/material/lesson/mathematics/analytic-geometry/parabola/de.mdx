@@ -33,10 +33,10 @@ Besonders wichtig ist die **Reflexionseigenschaft**. Strahlen, die parallel zur 
     frame: { kind: "cartesian", x: { min: -6, max: 6 }, y: { min: -2, max: 4 } },
     view: { kind: "fit", padding: 0.2 },
     objects: [
-      { id: "s1", kind: "parametric", x: "((t - 40) / 10)", y: "((0.2 * ((t - 40) / 10)) * ((t - 40) / 10))", parameter: { min: 0, max: 80 }, appearance: "primary" },
+      { id: "s1", kind: "function", formula: "((0.2 * x) * x)", domain: { min: -4, max: 4 }, appearance: "primary" },
       { id: "s2", kind: "point", at: { x: 0, y: 1.25 }, appearance: "secondary" },
       { id: "s3", kind: "point", at: { x: 0, y: 0 }, appearance: "answer" },
-      { id: "s4", kind: "parametric", x: "((-5) + (t * 10))", y: "(-1.25)", parameter: { min: 0, max: 1 }, appearance: "highlight" },
+      { id: "s4", kind: "function", formula: "(-1.25)", domain: { min: -5, max: 5 }, appearance: "highlight" },
       { id: "s5", kind: "polyline", vertices: [{ x: 0, y: 1.25 }, { x: 2, y: 0.8 }, { x: 2, y: -1.25 }], appearance: "reference" },
       { id: "s5-p0", kind: "point", at: { x: 0, y: 1.25 }, appearance: "reference" },
       { id: "s5-p1", kind: "point", at: { x: 2, y: 0.8 }, appearance: "reference" },
@@ -90,8 +90,8 @@ Zunächst betrachten wir eine Parabel mit Scheitelpunkt im Ursprung <InlineMath 
     frame: { kind: "cartesian", x: { min: -4, max: 4 }, y: { min: -4, max: 4 } },
     view: { kind: "fit", padding: 0.2 },
     objects: [
-      { id: "s1", kind: "parametric", x: "((t - 30) / 10)", y: "((0.25 * ((t - 30) / 10)) * ((t - 30) / 10))", parameter: { min: 0, max: 60 }, appearance: "primary" },
-      { id: "s2", kind: "parametric", x: "((t - 30) / 10)", y: "(((-0.25) * ((t - 30) / 10)) * ((t - 30) / 10))", parameter: { min: 0, max: 60 }, appearance: "secondary" },
+      { id: "s1", kind: "function", formula: "((0.25 * x) * x)", domain: { min: -3, max: 3 }, appearance: "primary" },
+      { id: "s2", kind: "function", formula: "(((-0.25) * x) * x)", domain: { min: -3, max: 3 }, appearance: "secondary" },
       { id: "s3", kind: "parametric", x: "((0.25 * ((t - 30) / 10)) * ((t - 30) / 10))", y: "((t - 30) / 10)", parameter: { min: 0, max: 60 }, appearance: "answer" },
       { id: "s4", kind: "parametric", x: "(((-0.25) * ((t - 30) / 10)) * ((t - 30) / 10))", y: "((t - 30) / 10)", parameter: { min: 0, max: 60 }, appearance: "highlight" },
       { id: "s5", kind: "point", at: { x: 0, y: 0 }, appearance: "reference" },
@@ -143,10 +143,10 @@ Eine Parabel muss nicht im Ursprung liegen. Befindet sich ihr Scheitelpunkt bei 
     frame: { kind: "cartesian", x: { min: -3, max: 7 }, y: { min: -2, max: 6.5 } },
     view: { kind: "fit", padding: 0.2 },
     objects: [
-      { id: "s1", kind: "parametric", x: "((-1) + (t / 20))", y: "(1 + ((1 / (4 * 0.5)) * ((((-1) + (t / 20)) - 2))^(2)))", parameter: { min: 0, max: 120 }, appearance: "primary" },
+      { id: "s1", kind: "function", formula: "(1 + ((1 / (4 * 0.5)) * ((x - 2))^(2)))", domain: { min: -1, max: 5 }, appearance: "primary" },
       { id: "s2", kind: "point", at: { x: 2, y: 1 }, appearance: "secondary" },
       { id: "s3", kind: "point", at: { x: 2, y: 1.5 }, appearance: "answer" },
-      { id: "s4", kind: "parametric", x: "((-2) + (t * 8))", y: "0.5", parameter: { min: 0, max: 1 }, appearance: "highlight" },
+      { id: "s4", kind: "function", formula: "0.5", domain: { min: -2, max: 6 }, appearance: "highlight" },
       { id: "s5", kind: "line", through: [{ x: 2, y: -1 }, { x: 2, y: 5 }], appearance: "reference" },
     ],
     labels: [
@@ -229,10 +229,10 @@ Damit stehen die Parabelelemente fest:
     frame: { kind: "cartesian", x: { min: -6.5, max: 10.5 }, y: { min: -3, max: 7 } },
     view: { kind: "fit", padding: 0.2 },
     objects: [
-      { id: "s1", kind: "parametric", x: "((-4) + (t / 10))", y: "(1 + ((1 / (4 * 2)) * ((((-4) + (t / 10)) - 2))^(2)))", parameter: { min: 0, max: 120 }, appearance: "primary" },
+      { id: "s1", kind: "function", formula: "(1 + ((1 / (4 * 2)) * ((x - 2))^(2)))", domain: { min: -4, max: 8 }, appearance: "primary" },
       { id: "s2", kind: "point", at: { x: 2, y: 1 }, appearance: "secondary" },
       { id: "s3", kind: "point", at: { x: 2, y: 3 }, appearance: "answer" },
-      { id: "s4", kind: "parametric", x: "((-5) + (t * 14))", y: "(-1)", parameter: { min: 0, max: 1 }, appearance: "highlight" },
+      { id: "s4", kind: "function", formula: "(-1)", domain: { min: -5, max: 9 }, appearance: "highlight" },
       { id: "s5", kind: "line", through: [{ x: 2, y: -2 }, { x: 2, y: 6 }], appearance: "reference" },
     ],
     labels: [

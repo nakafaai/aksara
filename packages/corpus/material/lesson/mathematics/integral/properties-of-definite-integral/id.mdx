@@ -55,7 +55,7 @@ Menggandakan fungsi menggandakan setiap ketinggian, jadi luasnya juga menjadi du
   }}
   scene={{
     space: "plane",
-    frame: { kind: "cartesian", x: { min: -0.5, max: 2.5 }, y: { min: -0.5, max: 6.5 } },
+    frame: { kind: "cartesian", x: { min: -1.4, max: 3.4 }, y: { min: -0.5, max: 6.5 } },
     view: { kind: "fit", padding: 0.3 },
     objects: [
       { id: "double", kind: "polygon", vertices: [{ x: 0, y: 0 }, { x: 2, y: 0 }, { x: 2, y: 6 }, { x: 0, y: 2 }], appearance: "secondary" },
@@ -144,8 +144,8 @@ Pecah selangnya, maka luasnya dijumlahkan. Di bawah <InlineMath math="y = x + 1"
     view: { kind: "fit", padding: 0.3 },
     objects: [
       { id: "f", kind: "line", through: [{ x: 0, y: 1 }, { x: 4, y: 5 }], appearance: "reference" },
-      { id: "left", kind: "polygon", vertices: [{ x: 0, y: 0 }, { x: 2, y: 0 }, { x: 2, y: 3 }, { x: 0, y: 1 }], appearance: "primary" },
-      { id: "right", kind: "polygon", vertices: [{ x: 2, y: 0 }, { x: 4, y: 0 }, { x: 4, y: 5 }, { x: 2, y: 3 }], appearance: "secondary" },
+      { id: "left", kind: "region", inequalities: ["y >= 0", "y <= x + 1", "x >= 0", "x <= 2"], appearance: "primary" },
+      { id: "right", kind: "region", inequalities: ["y >= 0", "y <= x + 1", "x >= 2", "x <= 4"], appearance: "secondary" },
     ],
     labels: [
       { key: "left", objectId: "left", at: { x: 1, y: 1 }, placement: "center" },
