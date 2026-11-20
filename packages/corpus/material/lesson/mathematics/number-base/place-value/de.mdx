@@ -7,7 +7,7 @@ export const metadata = {
   subject: "Zahlensysteme",
 };
 
-## Wenn dem Abakus der Platz ausgeht
+## Ein Abakus ohne freien Platz
 
 Im **Fünfersystem** zählst du in Fünfergruppen. Ein Stab des Abakus darf nur vier Perlen tragen. Sobald die fünfte Perle kommt, gehen alle fünf herunter, und dafür steckt eine Perle auf dem Stab links daneben. Ein Zahlensystem mit der **Basis** <InlineMath math="b" /> benutzt also nur die Ziffern <InlineMath math="0" /> bis <InlineMath math="b - 1" />, und jede Stelle ist <InlineMath math="b" />-mal so viel wert wie die Stelle rechts von ihr. Die Zahl <InlineMath math="123_5" /> bedeutet eine Gruppe aus <InlineMath math="25" />, zwei Gruppen aus <InlineMath math="5" /> und drei Einer, also <InlineMath math="38" />. Auf diesem Abakus schiebst du diese Zahl vom Fünfer- ins Zehnersystem.
 
@@ -42,7 +42,7 @@ Wähl jetzt die Basis zehn. Dieselbe Zahl ordnet sich neu: drei Perlen auf dem Z
 
 Jede Ziffer einer Zahl hat zwei Werte. Ihr **Stellenwert** ist das, was eine einzelne Perle auf ihrem Stab wert ist. Ihr **Ziffernwert** ist die Ziffer mal ihrem Stellenwert, also das, was alle Perlen auf diesem Stab zusammen wert sind. Nimm die Ziffer <InlineMath math="2" /> in <InlineMath math="123_5" />. Sie steht auf dem zweiten Stab, also ist ihr Stellenwert <InlineMath math="5" /> und ihr Ziffernwert <InlineMath math="2 \cdot 5 = 10" />.
 
-### Potenzen der Basis auf jedem Stab
+### Basispotenzen je Stab
 
 Der Stab ganz rechts zählt Einer. Eine Perle auf dem nächsten Stab steht für eine volle Gruppe des Stabs rechts davon, sie ist also <InlineMath math="b" />-mal so viel wert. Deshalb lauten die Stellenwerte von rechts nach links <InlineMath math="b^0, b^1, b^2, b^3" />: **Potenzen der Basis, beginnend bei null**. Die Tabelle zeigt die vier Stellenwerte für die Basen, die dir am häufigsten begegnen.
 
@@ -53,23 +53,31 @@ Der Stab ganz rechts zählt Einer. Eine Perle auf dem nächsten Stab steht für 
 | Zweiter | <InlineMath math="b^1" /> | <InlineMath math="2" /> | <InlineMath math="5" /> | <InlineMath math="8" /> | <InlineMath math="10" /> |
 | Erster, die Einer | <InlineMath math="b^0" /> | <InlineMath math="1" /> | <InlineMath math="1" /> | <InlineMath math="1" /> | <InlineMath math="1" /> |
 
-Warum ist der Einerstab <InlineMath math="b^0 = 1" /> wert und nicht <InlineMath math="b" />? Eine Perle dort ist noch ein einzelnes Ding, das nicht gebündelt ist. Die erste Gruppe taucht erst auf dem zweiten Stab auf. Es ist dasselbe Muster wie bei [Potenzen und Exponenten](/de/faecher/mathematik/potenzen-und-logarithmen/grundlagen): Mit jeder Stelle weiter links multiplizierst du noch einmal mit der Basis.
+Warum ist der Einerstab <InlineMath math="b^0 = 1" /> wert und nicht <InlineMath math="b" />? Eine Perle dort ist noch ein einzelnes Ding, das nicht gebündelt ist. Die erste Gruppe taucht erst auf dem zweiten Stab auf. Es ist dasselbe Muster wie bei [Potenzen und Exponenten](/de/faecher/mathematik/potenzen-und-logarithmen/grundlagen): Mit jeder Stelle weiter links multiplizierst du noch einmal mit der Basis. Wenn du die Stellen beschriftest, **beginnst du die Potenzen also rechts mit <InlineMath math="0" />**. Gibst du dem Stab ganz rechts den Wert <InlineMath math="b" />, rutscht jede Stelle eine Potenz zu hoch.
 
-### Die ausführliche Schreibweise als Summe der Ziffernwerte
+Probier eine Aufgabe, bevor du weiterliest: Welchen Stellenwert und welchen Ziffernwert hat die Ziffer <InlineMath math="4" /> in <InlineMath math="2431_5" />? Die <InlineMath math="4" /> steht an der dritten Stelle von rechts, also an der Stelle <InlineMath math="5^2 = 25" />. Damit ist **ihr Stellenwert <InlineMath math="25" />** und ihr Ziffernwert <InlineMath math="4 \cdot 25 = 100" />. Jede Ziffer in <InlineMath math="2431" /> ist kleiner als <InlineMath math="5" />, die Zahl ist zur Basis fünf also wirklich gültig.
+
+### Summe der Ziffernwerte
 
 Addierst du alle Ziffernwerte, erhältst du den Wert der Zahl im Zehnersystem. Diese ausgeschriebene Summe heißt **ausführliche Schreibweise**. Nimm <InlineMath math="3214_5" />.
 
 <BlockMath math="\begin{aligned} 3214_5 &= 3 \cdot 5^3 + 2 \cdot 5^2 + 1 \cdot 5^1 + 4 \cdot 5^0 \\ &= 375 + 50 + 5 + 4 \\ &= 434 \end{aligned}" />
 
-Der Ziffernwert der <InlineMath math="2" /> ist hier <InlineMath math="50" /> und nicht <InlineMath math="10" />, weil diese Ziffer an der Stelle <InlineMath math="5^2" /> steht. Prüf dein Ergebnis am Abakus: Wähl die Basis fünf, schieb die Zahl auf <InlineMath math="434" /> und zähl die Perlen. Von links müssen die Stäbe drei, zwei, eine und vier Perlen tragen.
+Der Ziffernwert der <InlineMath math="2" /> ist hier <InlineMath math="50" /> und nicht <InlineMath math="10" />, weil diese Ziffer an der Stelle <InlineMath math="5^2" /> steht. Multiplizierst du jede Ziffer mit <InlineMath math="5" />, kommt <InlineMath math="3 \cdot 5 + 2 \cdot 5 + 1 \cdot 5 + 4 = 34" /> heraus. Das sieht vernünftig aus, liegt aber weit weg von <InlineMath math="434" />. **Ordne jeder Ziffer ihre Potenz der Basis zu**, bevor du multiplizierst. Prüf dein Ergebnis am Abakus: Wähl die Basis fünf, schieb die Zahl auf <InlineMath math="434" /> und zähl die Perlen. Von links müssen die Stäbe drei, zwei, eine und vier Perlen tragen.
 
 Das zweite Beispiel steht zur Basis acht und enthält eine Null.
 
 <BlockMath math="\begin{aligned} 2075_8 &= 2 \cdot 8^3 + 0 \cdot 8^2 + 7 \cdot 8^1 + 5 \cdot 8^0 \\ &= 1{.}024 + 0 + 56 + 5 \\ &= 1{.}085 \end{aligned}" />
 
-Die <InlineMath math="0" /> trägt nichts bei, aber **die Null hält den anderen Ziffern ihren Platz frei**. Ohne sie stünde da <InlineMath math="275_8" />, und das ist nur <InlineMath math="189" /> wert. Prüf das Ergebnis, indem du <InlineMath math="1{.}085" /> von der größten Stelle her zerlegst. Zieh <InlineMath math="2 \cdot 512" /> ab, dann bleibt <InlineMath math="61" />. Weil <InlineMath math="61" /> kleiner als <InlineMath math="64" /> ist, steht an der Stelle <InlineMath math="8^2" /> eine <InlineMath math="0" />. Dann ist <InlineMath math="61 - 7 \cdot 8 = 5" />, und du bekommst die Ziffern <InlineMath math="2" />, <InlineMath math="0" />, <InlineMath math="7" /> und <InlineMath math="5" /> zurück.
+Die <InlineMath math="0" /> trägt nichts bei, aber **die Null hält den anderen Ziffern ihren Platz frei**. Ohne sie stünde da <InlineMath math="275_8" />, und das ist nur <InlineMath math="189" /> wert. Zähl deshalb die Stellen vor und nach dem Abschreiben: Aus vier Ziffern müssen vier Ziffern bleiben. Prüf das Ergebnis, indem du <InlineMath math="1{.}085" /> von der größten Stelle her zerlegst. Zieh <InlineMath math="2 \cdot 512" /> ab, dann bleibt <InlineMath math="61" />. Weil <InlineMath math="61" /> kleiner als <InlineMath math="64" /> ist, steht an der Stelle <InlineMath math="8^2" /> eine <InlineMath math="0" />. Dann ist <InlineMath math="61 - 7 \cdot 8 = 5" />, und du bekommst die Ziffern <InlineMath math="2" />, <InlineMath math="0" />, <InlineMath math="7" /> und <InlineMath math="5" /> zurück.
 
-## Gleiche Ziffern in verschiedenen Basen
+Schreib jetzt selbst <InlineMath math="6053_7" /> in ausführlicher Schreibweise. Ordne jeder Ziffer eine Potenz von sieben zu, rechts beginnend mit <InlineMath math="7^0" />.
+
+<BlockMath math="\begin{aligned} 6053_7 &= 6 \cdot 7^3 + 0 \cdot 7^2 + 5 \cdot 7^1 + 3 \cdot 7^0 \\ &= 2{.}058 + 0 + 35 + 3 \\ &= 2{.}096 \end{aligned}" />
+
+Zur Kontrolle zerlegst du die Zahl von der größten Stelle her. Zieh <InlineMath math="6 \cdot 343" /> von <InlineMath math="2{.}096" /> ab, dann bleibt <InlineMath math="38" />. Weil <InlineMath math="38" /> kleiner als <InlineMath math="49" /> ist, steht an der Stelle <InlineMath math="7^2" /> eine <InlineMath math="0" />. Dann ist <InlineMath math="38 - 5 \cdot 7 = 3" />, und **du bekommst die Ziffern zurück**: <InlineMath math="6" />, <InlineMath math="0" />, <InlineMath math="5" /> und <InlineMath math="3" />.
+
+## Gleiche Ziffern in jeder Basis
 
 Die Ziffernfolge <InlineMath math="123" /> hat keinen festen Wert. Ihr Wert hängt von der Basis ab, die dazugehört, denn die Basis legt fest, wie groß jede Stelle ist: <InlineMath math="123_b = 1 \cdot b^2 + 2 \cdot b + 3" />.
 
@@ -127,7 +135,7 @@ Wörter wie „hundert“ und „zwanzig“ benennen Stellen im Zehnersystem: �
 
 Eine Zahl ohne kleine Basis darunter liest du immer im Zehnersystem, <InlineMath math="38" /> bleibt also „achtunddreißig“. Wenn du Ziffer für Ziffer liest, kommst du nicht in Versuchung, <InlineMath math="1010_2" /> „tausendzehn“ zu nennen, obwohl die Zahl nur zehn wert ist.
 
-## Ziffern gegen die Regel der Basis
+## Ziffern gegen die Basisregel
 
 Es gibt nur eine Regel: **Jede Ziffer muss kleiner sein als die Basis**. Zum Prüfen suchst du die größte Ziffer der Zahl und vergleichst sie mit der Basis. Ist die größte Ziffer <InlineMath math="d" />, gilt die Zahl nur zur Basis <InlineMath math="d + 1" /> oder größer.
 
@@ -140,38 +148,7 @@ Es gibt nur eine Regel: **Jede Ziffer muss kleiner sein als die Basis**. Zum Pr�
 
 Schau dir <InlineMath math="1201_2" /> an. Das Zweiersystem hat nur die Ziffern <InlineMath math="0" /> und <InlineMath math="1" />, weil ein Stab zur Basis zwei mit zwei Perlen schon voll ist. Eine <InlineMath math="2" /> an dieser Stelle steht für zwei Perlen, die längst auf den linken Stab hätten wandern müssen. Gibt dir eine Aufgabe so eine Zahl, fang nicht an zu rechnen: **Diese Zahl gibt es in der angegebenen Basis nicht**.
 
-## Fehler beim Lesen von Stellenwerten
-
-Diese vier Fehler passieren am häufigsten, wenn du die ausführliche Schreibweise aufstellst.
-
-| Fehler | Warum er falsch ist | So prüfst du |
-| :--- | :--- | :--- |
-| Der Stab ganz rechts gilt als <InlineMath math="b" /> wert. | Der Stab ganz rechts zählt Einer, <InlineMath math="b^0 = 1" />. | Beginn die Potenzen rechts mit <InlineMath math="0" />. |
-| Die <InlineMath math="2" /> in <InlineMath math="3214_5" /> wird als <InlineMath math="2 \cdot 5" /> gezählt. | Die Ziffer steht an der Stelle <InlineMath math="5^2" />, ist also <InlineMath math="50" /> wert. | Zeig zuerst auf den Stab, dann multiplizier. |
-| <InlineMath math="123_5" /> wird als hundertdreiundzwanzig gelesen. | Das Wort hundert gehört nur zur Stelle <InlineMath math="10^2" />. | Lies die Ziffern einzeln und nenn die Basis. |
-| Eine Null in der Mitte fällt weg, aus <InlineMath math="2075_8" /> wird <InlineMath math="275_8" />. | Die Null hält den Ziffern links von ihr den Platz frei. | Zähl die Stellen vor und nach dem Abschreiben. |
-
-Der zweite Fehler ist der heimtückischste, weil das Ergebnis trotzdem vernünftig aussieht. Mit der falschen Multiplikation wird aus <InlineMath math="3214_5" /> plötzlich <InlineMath math="3 \cdot 5 + 2 \cdot 5 + 1 \cdot 5 + 4 = 34" />, weit weg von <InlineMath math="434" />. **Ordne jeder Ziffer ihre Potenz der Basis zu**, bevor du multiplizierst.
-
-## Übung zu Stellenwerten
-
-Rechne alle drei Aufgaben, bevor du in die Lösungen schaust. Die dritte verbindet die **Regel für gültige Ziffern** mit der ausführlichen Schreibweise.
-
-1. Bestimme den Stellenwert und den Ziffernwert der Ziffer <InlineMath math="4" /> in <InlineMath math="2431_5" />.
-2. Schreib <InlineMath math="6053_7" /> in ausführlicher Schreibweise und berechne den Wert im Zehnersystem.
-3. Die Zahl <InlineMath math="3504" /> steht in einer Basis, die du noch nicht kennst. Bestimme die kleinste mögliche Basis und berechne den Wert der Zahl in dieser Basis.
-
-### Ausführliche Lösungen
-
-**Aufgabe 1**. Die Ziffer <InlineMath math="4" /> steht an der dritten Stelle von rechts, also an der Stelle <InlineMath math="5^2 = 25" />. Damit ist **ihr Stellenwert <InlineMath math="25" />** und ihr Ziffernwert <InlineMath math="4 \cdot 25 = 100" />. Kontrolle: Jede Ziffer in <InlineMath math="2431" /> ist kleiner als <InlineMath math="5" />, die Zahl ist zur Basis fünf also gültig.
-
-**Aufgabe 2**. Ordne jeder Ziffer eine Potenz von sieben zu, rechts beginnend mit <InlineMath math="7^0" />.
-
-<BlockMath math="\begin{aligned} 6053_7 &= 6 \cdot 7^3 + 0 \cdot 7^2 + 5 \cdot 7^1 + 3 \cdot 7^0 \\ &= 2{.}058 + 0 + 35 + 3 \\ &= 2{.}096 \end{aligned}" />
-
-Zur Kontrolle zerlegst du die Zahl von der größten Stelle her. Zieh <InlineMath math="6 \cdot 343" /> von <InlineMath math="2{.}096" /> ab, dann bleibt <InlineMath math="38" />. Weil <InlineMath math="38" /> kleiner als <InlineMath math="49" /> ist, steht an der Stelle <InlineMath math="7^2" /> eine <InlineMath math="0" />. Dann ist <InlineMath math="38 - 5 \cdot 7 = 3" />, und **du bekommst die Ziffern zurück**: <InlineMath math="6" />, <InlineMath math="0" />, <InlineMath math="5" /> und <InlineMath math="3" />.
-
-**Aufgabe 3**. Die größte Ziffer in <InlineMath math="3504" /> ist <InlineMath math="5" />, also ist **die kleinste Basis <InlineMath math="6" />**. Zur Basis sechs lauten die Stellenwerte von links <InlineMath math="216" />, <InlineMath math="36" />, <InlineMath math="6" /> und <InlineMath math="1" />.
+Die Regel verrät dir auch, zu welcher Basis eine Zahl gehören kann. Nimm <InlineMath math="3504" />, geschrieben in einer Basis, die du noch nicht kennst. Ihre größte Ziffer ist <InlineMath math="5" />, also ist **die kleinste mögliche Basis <InlineMath math="6" />**. Zur Basis sechs lauten die Stellenwerte von links <InlineMath math="216" />, <InlineMath math="36" />, <InlineMath math="6" /> und <InlineMath math="1" />.
 
 <BlockMath math="\begin{aligned} 3504_6 &= 3 \cdot 216 + 5 \cdot 36 + 0 \cdot 6 + 4 \cdot 1 \\ &= 648 + 180 + 0 + 4 \\ &= 832 \end{aligned}" />
 
