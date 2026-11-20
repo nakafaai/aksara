@@ -1,0 +1,239 @@
+export const metadata = {
+  title: "Matematika Keuangan dan Perencanaan Anggaran",
+  description:
+    "Tetapkan tujuan keuangan SMART, susun anggaran, hitung arus kas, dan rencanakan tabungan untuk mencapai tujuan lewat model interaktif, contoh, dan latihan.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2026-11-17",
+  subject: "Matematika Keuangan: Pengelolaan Keuangan",
+};
+
+## Pengelolaan Keuangan Dimulai dari Tujuan dan Anggaran
+
+**Pengelolaan keuangan** adalah proses merencanakan dan mengendalikan penggunaan uang untuk mencapai tujuan. Prosesnya punya lima langkah: **tetapkan tujuan, nilai kondisi keuangan, susun rencana, jalankan rencana, dan tinjau ulang**. Alat utamanya adalah **anggaran**, yaitu daftar pemasukan dan pengeluaran untuk satu periode. Selisih antara pemasukan dan pengeluaran disebut **arus kas**. Dalam model di sini, kamu menganalisis anggaran bulanan, memantau arus kas, dan menghitung berapa lama sampai target tabungan tercapai.
+
+## Tujuan Keuangan SMART
+
+Tujuan yang baik bersifat **SMART**: spesifik, terukur, dapat dicapai, realistis, dan punya batas waktu. Tujuan aku ingin berhemat belum cukup jelas. Tujuan aku ingin menabung <InlineMath math="\text{RM}\,6{.}000" /> untuk dana darurat dalam <InlineMath math="12" /> bulan adalah tujuan SMART, karena jumlah dan waktunya jelas.
+
+| Jangka | Waktu | Contoh |
+| :--- | :--- | :--- |
+| Pendek | Kurang dari setahun | Membeli ponsel |
+| Menengah | Satu sampai lima tahun | Uang muka mobil |
+| Panjang | Lebih dari lima tahun | Uang muka rumah atau pensiun |
+
+## Anggaran dan Arus Kas
+
+Pak Amir menerima gaji bersih <InlineMath math="\text{RM}\,4{.}500" /> per bulan. **Pengeluaran tetap** jumlahnya sama setiap bulan, seperti sewa dan cicilan mobil. **Pengeluaran tidak tetap** berubah dari bulan ke bulan, seperti makanan dan tagihan listrik. Grafik ini menunjukkan anggaran bulanannya.
+
+<BarChart
+  title={<>Anggaran Bulanan Pak Amir</>}
+  description={
+    <>
+      Pemasukan bersih dan pembagian pengeluaran dalam ringgit untuk satu
+      bulan.
+    </>
+  }
+  yAxisLabel="Jumlah (RM)"
+  data={[
+    { name: "Pemasukan bersih", value: 4500 },
+    { name: "Pengeluaran tetap", value: 1200 + 650 + 150 },
+    { name: "Pengeluaran tidak tetap", value: 900 + 250 + 300 + 350 },
+    { name: "Tabungan", value: 450 },
+  ]}
+  chartConfig={{ value: { label: "Jumlah", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>
+
+### Contoh Menghitung Arus Kas
+
+Pengeluaran tetap Pak Amir adalah sewa <InlineMath math="\text{RM}\,1{.}200" />, cicilan mobil <InlineMath math="\text{RM}\,650" />, dan asuransi <InlineMath math="\text{RM}\,150" />. Pengeluaran tidak tetapnya berjumlah <InlineMath math="\text{RM}\,1{.}800" />, dan ia menabung <InlineMath math="\text{RM}\,450" />. Hitung **arus kas bulanannya**.
+
+<MathContainer>
+<BlockMath math="\text{Pengeluaran tetap} = 1{.}200 + 650 + 150 = 2{.}000" />
+<BlockMath math="\text{Arus kas} = 4{.}500 - 2{.}000 - 1{.}800 - 450 = 250" />
+</MathContainer>
+
+Arus kas <InlineMath math="\text{RM}\,250" /> adalah **surplus**, jadi Pak Amir hidup sesuai kemampuannya. Cek: <InlineMath math="2{.}000 + 1{.}800 + 450 + 250 = 4{.}500" />.
+
+### Arus Kas dari Bulan ke Bulan
+
+Arus kas berubah setiap bulan karena pengeluaran tidak tetap berubah. Grafik ini menunjukkan surplus atau **defisit** Pak Amir selama enam bulan. Bulan ketiga defisit karena pengeluaran hari raya.
+
+<ScatterDiagram
+  title={<>Arus Kas Bulanan Pak Amir</>}
+  description={
+    <>
+      Surplus atau defisit dalam ringgit untuk setiap bulan. Nilai negatif
+      berarti pengeluaran melebihi pemasukan.
+    </>
+  }
+  xAxisLabel="Bulan"
+  yAxisLabel="Arus kas (RM)"
+  datasets={[
+    {
+      name: "Arus kas",
+      color: "var(--chart-1)",
+      points: [
+        { x: 1, y: 250 },
+        { x: 2, y: 180 },
+        { x: 3, y: -120 },
+        { x: 4, y: 300 },
+        { x: 5, y: 260 },
+        { x: 6, y: 240 },
+      ],
+    },
+  ]}
+/>
+
+Jumlah arus kas selama enam bulan adalah <InlineMath math="250 + 180 - 120 + 300 + 260 + 240 = 1{.}110" /> ringgit. Defisit pada satu bulan masih bisa ditutup oleh surplus bulan lain jika anggarannya direncanakan.
+
+## Panduan Anggaran Lima Puluh Tiga Puluh Dua Puluh
+
+Satu panduan yang umum membagi pemasukan bersih menjadi **kebutuhan**, **keinginan**, dan **tabungan** dengan perbandingan <InlineMath math="50\% : 30\% : 20\%" />. Untuk pemasukan <InlineMath math="\text{RM}\,4{.}500" />, panduan ini memberi <InlineMath math="\text{RM}\,2{.}250" />, <InlineMath math="\text{RM}\,1{.}350" />, dan <InlineMath math="\text{RM}\,900" />. Grafik ini membandingkannya dengan anggaran nyata Pak Amir.
+
+<BarChart
+  title={<>Panduan Dibandingkan dengan Anggaran Nyata</>}
+  description={
+    <>
+      Ringgit untuk kebutuhan, keinginan, dan tabungan termasuk surplus, menurut
+      panduan dan menurut anggaran Pak Amir.
+    </>
+  }
+  yAxisLabel="Jumlah (RM)"
+  data={[
+    { name: "Kebutuhan, panduan", value: 2250 },
+    { name: "Kebutuhan, nyata", value: 2000 + 900 + 250 + 300 },
+    { name: "Keinginan, panduan", value: 1350 },
+    { name: "Keinginan, nyata", value: 350 },
+    { name: "Tabungan, panduan", value: 900 },
+    { name: "Tabungan, nyata", value: 450 + 250 },
+  ]}
+  chartConfig={{ value: { label: "Jumlah", colors: { light: ["var(--chart-2)"], dark: ["var(--chart-2)"] } } }}
+/>
+
+Kebutuhan Pak Amir, <InlineMath math="\text{RM}\,3{.}450" />, melebihi panduan karena sewa dan cicilan mobilnya tinggi, jadi ruang untuk menabung lebih kecil. Panduan ini titik awal, bukan aturan baku.
+
+## Merencanakan Tabungan untuk Mencapai Tujuan
+
+Untuk mencapai target tabungan <InlineMath math="T" /> dengan tabungan bulanan <InlineMath math="m" />, **banyak bulan yang diperlukan** adalah <InlineMath math="\left\lceil \dfrac{T}{m} \right\rceil" />, yaitu dibulatkan ke atas. Ubah tabungan bulanan dan lihat kapan garis tabungan melewati target <InlineMath math="\text{RM}\,6{.}000" />.
+
+<MathVisual
+  title={<>Tabungan Terkumpul Menuju Target</>}
+  description={
+    <>
+      Tabungan terkumpul dalam ribuan ringgit,{" "}
+      <InlineMath math="\dfrac{mx}{1000}" />, terhadap bulan{" "}
+      <InlineMath math="x" />. Garis mendatar adalah target{" "}
+      <InlineMath math="6" /> ribu ringgit.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 24 }, y: { min: 0, max: 12 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "m", min: 200, max: 1000, value: 700, step: 50, label: "m" },
+    ],
+    objects: [
+      { id: "saved", kind: "function", appearance: "primary", formula: "m x/1000", domain: { min: 0, max: 24 } },
+      { id: "target", kind: "function", appearance: "construction", formula: "6 + 0x", domain: { min: 0, max: 24 } },
+    ],
+    readouts: [
+      { key: "months", formula: "ceil(6000/m)" },
+    ],
+  }}
+  labels={{
+    m: <>Tabungan bulanan <InlineMath math="m" /> dalam ringgit</>,
+    months: <>Bulan untuk mencapai target</>,
+  }}
+/>
+
+### Contoh Waktu Mencapai Target
+
+Pak Amir menabung <InlineMath math="\text{RM}\,450" /> dan memindahkan surplus <InlineMath math="\text{RM}\,250" /> ke rekening tabungan setiap bulan. Berapa bulan yang ia perlukan untuk **mengumpulkan** <InlineMath math="\text{RM}\,6{.}000" />?
+
+<BlockMath math="\frac{6{.}000}{450 + 250} = \frac{6{.}000}{700} = 8{,}57 \quad\Rightarrow\quad 9 \text{ bulan}" />
+
+Setelah <InlineMath math="8" /> bulan ia baru punya <InlineMath math="\text{RM}\,5{.}600" />, jadi bulan kesembilan diperlukan. Cek dengan model: pada <InlineMath math="m = 700" />, terbaca <InlineMath math="9" />. Tujuan <InlineMath math="12" /> bulannya bisa tercapai lebih cepat.
+
+### Tabungan dengan Bunga Majemuk
+
+Untuk tujuan jangka panjang, **bunga majemuk** membantu uang bertambah. Tabungan <InlineMath math="P" /> dengan bunga <InlineMath math="r\%" /> per tahun menjadi <InlineMath math="P\left(1 + \dfrac{r}{100}\right)^t" /> setelah <InlineMath math="t" /> tahun. Ubah suku bunga dan lamanya untuk tabungan <InlineMath math="\text{RM}\,10{.}000" />.
+
+<MathVisual
+  title={<>Pertumbuhan Tabungan dengan Bunga Majemuk</>}
+  description={
+    <>
+      Nilai tabungan dalam ribuan ringgit,{" "}
+      <InlineMath math="10\left(1 + \dfrac{r}{100}\right)^x" />, terhadap tahun{" "}
+      <InlineMath math="x" />.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 20 }, y: { min: 0, max: 35 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "r", min: 1, max: 6, value: 4, step: 0.5, label: "r" },
+      { name: "n", min: 0, max: 20, value: 10, step: 1, label: "n" },
+    ],
+    objects: [
+      { id: "growth", kind: "function", appearance: "primary", formula: "10(1 + r/100)^x", domain: { min: 0, max: 20 } },
+      { id: "now", kind: "marker", x: "n", y: "10(1 + r/100)^n", appearance: "warning" },
+    ],
+    readouts: [
+      { key: "value", formula: "10000(1 + r/100)^n" },
+    ],
+  }}
+  labels={{
+    r: <>Suku bunga <InlineMath math="r" /> persen per tahun</>,
+    n: <>Lama <InlineMath math="n" /> dalam tahun</>,
+    value: <>Nilai tabungan dalam ringgit</>,
+  }}
+/>
+
+Dengan bunga <InlineMath math="4\%" /> selama <InlineMath math="10" /> tahun, <InlineMath math="10{.}000 \times 1{,}04^{10} = 14{.}802" /> ringgit, yaitu bunga <InlineMath math="\text{RM}\,4{.}802" /> tanpa menambah tabungan baru.
+
+## Kesalahan Umum tentang Pengelolaan Keuangan
+
+| Kesalahan | Mengapa salah | Cara mengecek |
+| :--- | :--- | :--- |
+| Memakai gaji kotor dalam anggaran. | Anggaran memakai pemasukan bersih setelah potongan. | Cek jumlah yang benar-benar masuk ke rekening. |
+| Membulatkan banyak bulan ke bawah. | Bulan terakhir yang tidak penuh tetap diperlukan. | Kalikan banyak bulan dengan tabungan bulanan. |
+| Menganggap tabungan sebagai sisa setelah belanja. | Tabungan direncanakan lebih dulu sebagai bagian anggaran. | Tabungan harus tercantum dalam anggaran. |
+| Tujuan tanpa batas waktu. | Tujuan SMART harus punya batas waktu agar bisa diukur. | Tanyakan kapan tujuan itu harus tercapai. |
+
+Kesalahan kedua paling sering muncul dalam soal lama menabung. **Bulatkan banyak bulan ke atas**.
+
+## Latihan Pengelolaan Keuangan
+
+Soal-soal ini bergerak dari anggaran sampai rencana tabungan. **Cek setiap jawaban dengan menjumlahkan kembali**.
+
+1. Bu Siti punya pemasukan bersih <InlineMath math="\text{RM}\,3{.}800" />. Pengeluaran tetapnya <InlineMath math="\text{RM}\,1{.}650" />, pengeluaran tidak tetap <InlineMath math="\text{RM}\,1{.}400" />, dan tabungan <InlineMath math="\text{RM}\,380" />. Hitung arus kasnya.
+
+2. Ubah tujuan aku ingin punya banyak uang menjadi tujuan SMART.
+
+3. Sebuah laptop berharga <InlineMath math="\text{RM}\,3{.}200" />. Jika seorang siswa menabung <InlineMath math="\text{RM}\,350" /> per bulan, berapa bulan yang diperlukan?
+
+4. Menurut panduan <InlineMath math="50\% : 30\% : 20\%" />, berapa tabungan bulanan untuk pemasukan bersih <InlineMath math="\text{RM}\,3{.}800" />?
+
+### Pembahasan
+
+**Pembahasan 1**: Kurangkan semua pengeluaran dan tabungan dari pemasukan:
+
+<BlockMath math="3{.}800 - 1{.}650 - 1{.}400 - 380 = 370" />
+
+Arus kasnya **surplus** <InlineMath math="\text{RM}\,370" />. Cek: <InlineMath math="1{.}650 + 1{.}400 + 380 + 370 = 3{.}800" />.
+
+**Pembahasan 2**: Misalnya, aku ingin menabung <InlineMath math="\text{RM}\,2{.}400" /> dalam <InlineMath math="12" /> bulan dengan menyisihkan <InlineMath math="\text{RM}\,200" /> setiap bulan. Tujuan ini **spesifik, terukur, dan punya batas waktu**.
+
+**Pembahasan 3**: Bagi lalu bulatkan ke atas:
+
+<BlockMath math="\frac{3{.}200}{350} = 9{,}14 \quad\Rightarrow\quad 10 \text{ bulan}" />
+
+Cek: <InlineMath math="9 \times 350 = 3{.}150" /> belum cukup, tetapi <InlineMath math="10 \times 350 = 3{.}500" /> sudah melebihi harganya.
+
+**Pembahasan 4**: Ambil <InlineMath math="20\%" /> dari pemasukan bersih:
+
+<BlockMath math="0{,}20 \times 3{.}800 = 760" />
+
+Tabungan yang disarankan adalah <InlineMath math="\text{RM}\,760" /> per bulan.
