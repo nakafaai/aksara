@@ -33,8 +33,24 @@ const aufgabe = {
       label: "d",
       points: 3,
       rubric: [
-        { label: "Vorzeichen", met: "Zeigt, dass f'(x) < 0 gilt.", points: 2 },
-        { label: "Schluss", met: "Folgert die Monotonie.", points: 1 },
+        {
+          feedback: {
+            earned: "Richtig gezeigt.",
+            missed: "Hier fehlt noch ein Schritt.",
+          },
+          label: "Vorzeichen",
+          met: "Zeigt, dass f'(x) < 0 gilt.",
+          points: 2,
+        },
+        {
+          feedback: {
+            earned: "Richtig gezeigt.",
+            missed: "Hier fehlt noch ein Schritt.",
+          },
+          label: "Schluss",
+          met: "Folgert die Monotonie.",
+          points: 1,
+        },
       ],
     },
   ],

@@ -1,4 +1,6 @@
 import { CorpusSourcePathSchema } from "@nakafa/aksara-contracts/ids";
+import type { AppLocaleCode } from "@nakafa/aksara-contracts/locale";
+import { AppLocaleCodeSchema } from "@nakafa/aksara-contracts/locale";
 import { partLabels } from "@nakafa/aksara-corpus/question-bank/item";
 import { decodeItemSource } from "@nakafa/aksara-corpus/question-bank/reader";
 import { TypeScriptParser } from "@nakafa/aksara-utilities/typescript/parse";
@@ -18,8 +20,37 @@ import { PageParseError } from "#scripts/check/pages";
 const QUESTION_FILE =
   /^(?<folder>packages\/corpus\/question-bank\/tryout\/(?:[^/]+\/){4}question-\d+)\/(?:item\.ts|answer\.[a-z]+\.mdx)$/u;
 
-/** The label a part's heading opens with: `a) Die Ableitung` opens with `a`. */
-const PART_HEADING = /^(?<label>[a-z0-9]+(?:\.[a-z0-9]+)*)\)/u;
+/** The language of a worked answer, read from its file name `answer.<language>.mdx`. */
+const ANSWER_LANGUAGE = /answer\.(?<language>[a-z]+)\.mdx$/u;
+
+/**
+ * The word a part's top heading opens with in each language, before the part's
+ * label, a colon, and the concept the part is about: `Teil a: Die Ableitung`.
+ * A heading names a concept and never opens with a list marker such as `a)`,
+ * which the compiler refuses, so the label follows a word.
+ */
+const PART_WORDS = {
+  de: "Teil",
+  en: "Part",
+  id: "Bagian",
+  ms: "Bahagian",
+} satisfies Record<AppLocaleCode, string>;
+
+/** The label of a part heading in one language: `Teil a: Die Ableitung` names `a`. */
+function partHeading(language: AppLocaleCode) {
+  return new RegExp(
+    `^${PART_WORDS[language]} (?<label>[a-z0-9]+(?:\\.[a-z0-9]+)*): \\S`,
+    "u"
+  );
+}
+
+/** The part heading pattern of a worked answer's language, or none for a file in no known language. */
+function answerHeading(file: string) {
+  return Option.filter(
+    Option.fromNullishOr(ANSWER_LANGUAGE.exec(file)?.groups?.language),
+    Schema.is(AppLocaleCodeSchema)
+  ).pipe(Option.map(partHeading));
+}
 
 /** One worked answer of an item with parts whose top headings do not name its parts. */
 const PartFindingSchema = Schema.Struct({
@@ -44,7 +75,8 @@ export function questionFolder(file: string): Option.Option<string> {
 
 /**
  * Reads what each top heading of one worked answer names: the part label it
- * opens with, or its whole text when it opens with none.
+ * opens with in the answer's language, such as `a` for `Teil a: Die
+ * Ableitung`, or its whole text when it opens with none.
  */
 export const topHeadings = Effect.fn("AksaraPolicy.topHeadings")(function* (
   file: string,
@@ -54,11 +86,14 @@ export const topHeadings = Effect.fn("AksaraPolicy.topHeadings")(function* (
     catch: (cause) => new PageParseError({ file, message: String(cause) }),
     try: () => parseLessonMdx(source, file),
   });
+  const heading = answerHeading(file);
   return Arr.map(
     Arr.filter(outlineHeadings(source, tree), ({ depth }) => depth === 1),
     ({ label }) =>
       Option.getOrElse(
-        Option.fromNullishOr(PART_HEADING.exec(label)?.groups?.label),
+        Option.flatMap(heading, (pattern) =>
+          Option.fromNullishOr(pattern.exec(label)?.groups?.label)
+        ),
         () => label
       )
   );
@@ -112,8 +147,9 @@ const folderFindings = Effect.fn("AksaraPolicy.folderFindings")(function* (
 /**
  * Holds every worked answer of each item with parts that this change touches,
  * through the item or an answer, to one top heading per part in the parts'
- * order, each opening with the part's label and a parenthesis, such as
- * `# a) Die Ableitung`. Steps inside a part use lower headings.
+ * order, each opening with the word for a part in the answer's language, the
+ * part's label, a colon, and the concept, such as `# Teil a: Die Ableitung`.
+ * Steps inside a part use lower headings.
  */
 export const partReport = Effect.fn("AksaraPolicy.partReport")(function* (
   files: readonly string[],
@@ -133,7 +169,7 @@ export const partReport = Effect.fn("AksaraPolicy.partReport")(function* (
   }
   for (const { expected, file, found } of findings) {
     yield* Effect.logError(
-      `${file}: an item with parts opens one top heading per part, in order, each starting with its label and a parenthesis, such as "# a) ..."; expected ${Arr.join(expected, ", ")}, found ${Arr.isReadonlyArrayNonEmpty(found) ? Arr.join(found, ", ") : "none"}`
+      `${file}: an item with parts opens one top heading per part, in order, each opening with the word for a part, its label, a colon and the concept, such as "# Teil a: ..." or "# Part a: ..."; expected ${Arr.join(expected, ", ")}, found ${Arr.isReadonlyArrayNonEmpty(found) ? Arr.join(found, ", ") : "none"}`
     );
   }
   return yield* new ExplanationPartError({ findings });

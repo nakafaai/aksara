@@ -7,6 +7,10 @@ import {
 } from "@nakafa/aksara-contracts/locale";
 import { TypeScriptParser } from "@nakafa/aksara-utilities/typescript/parse";
 import { Array as Arr, Effect, FileSystem, Order, Path, Schema } from "effect";
+import {
+  CALIBRATION_FILE,
+  decodeCalibration,
+} from "#corpus/question-bank/calibration";
 import { QuestionReadError, readEntries } from "#corpus/question-bank/entries";
 import { ItemSourceSchema, itemVersions } from "#corpus/question-bank/item";
 import type { BankEntry, SetPath } from "#corpus/question-bank/path";
@@ -113,7 +117,24 @@ function requireFiles(
     : Effect.fail(new QuestionFileSetError({ files, sourcePath }));
 }
 
-/** Reads one question: its item, checked against the files of its folder. */
+/** Reads one file of a question folder as text. */
+const readQuestionFile = Effect.fn("AksaraCorpus.readQuestionFile")(function* (
+  corpusRoot: string,
+  file: typeof CorpusSourcePathSchema.Type
+) {
+  const fileSystem = yield* FileSystem.FileSystem;
+  const path = yield* Path.Path;
+  return yield* fileSystem
+    .readFileString(path.join(corpusRoot, file), "utf8")
+    .pipe(
+      Effect.mapError((cause) => new QuestionReadError({ cause, path: file }))
+    );
+});
+
+/**
+ * Reads one question: its item, checked against the files of its folder, and
+ * the calibration file beside it, when it has one, checked against the item.
+ */
 const readQuestion = Effect.fn("AksaraCorpus.readQuestion")(function* (
   corpusRoot: string,
   set: SetPath,
@@ -121,19 +142,27 @@ const readQuestion = Effect.fn("AksaraCorpus.readQuestion")(function* (
   files: readonly string[],
   explanations: readonly AppLocaleCode[]
 ) {
-  const fileSystem = yield* FileSystem.FileSystem;
-  const path = yield* Path.Path;
   const sourceRoot = setSourcePath(set, `question-${number}`);
   const itemPath = CorpusSourcePathSchema.make(`${sourceRoot}/item.ts`);
-  const text = yield* fileSystem
-    .readFileString(path.join(corpusRoot, itemPath), "utf8")
-    .pipe(
-      Effect.mapError(
-        (cause) => new QuestionReadError({ cause, path: itemPath })
-      )
+  const item = yield* decodeItemSource(
+    yield* readQuestionFile(corpusRoot, itemPath),
+    itemPath
+  );
+  yield* requireFiles(
+    sourceRoot,
+    Arr.filter(files, (file) => file !== CALIBRATION_FILE),
+    questionFiles(item, explanations)
+  );
+  if (Arr.contains(files, CALIBRATION_FILE)) {
+    const calibrationPath = CorpusSourcePathSchema.make(
+      `${sourceRoot}/${CALIBRATION_FILE}`
     );
-  const item = yield* decodeItemSource(text, itemPath);
-  yield* requireFiles(sourceRoot, files, questionFiles(item, explanations));
+    yield* decodeCalibration(
+      yield* readQuestionFile(corpusRoot, calibrationPath),
+      calibrationPath,
+      item
+    );
+  }
   return QuestionSourceSchema.make({
     explanations,
     item,

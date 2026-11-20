@@ -598,7 +598,7 @@ texts, or a rubric of criteria whose points add up to the part's. Its prompt
 places each part once with `<Field part="a" />`, inline for a typed part and on
 a line of its own for a written one. Publication gives each part its own
 interaction, key, and scoring override, named after the label (`part-a`), and
-its worked answer opens one `#` heading per part, such as `# a) ...`. Until
+its worked answer opens one `#` heading per part, such as `# Teil a: ...`. Until
 Nakafa production stores, grades, and renders every part, publication refuses
 a release that carries such an item (`NAKAFA_SERVES_PARTS`). A reading is
 its own file in the set, `<reading>/stimulus.<language>.mdx`, used by key; the

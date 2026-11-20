@@ -24,11 +24,19 @@ const reason = {
   points: 3,
   rubric: [
     {
+      feedback: {
+        earned: "Du hast das Vorzeichen der Ableitung sauber begründet.",
+        missed: "Prüfe das Vorzeichen von f'(x) auf dem ganzen Intervall.",
+      },
       label: "Vorzeichen der Ableitung",
       met: "Zeigt, dass f'(x) < 0 für 0 < x < 4/3 gilt.",
       points: 2,
     },
     {
+      feedback: {
+        earned: "Dein Schluss auf die Monotonie stimmt.",
+        missed: "Ziehe aus dem Vorzeichen noch den Schluss auf die Monotonie.",
+      },
       label: "Schluss auf die Monotonie",
       met: "Folgert, dass f dort streng monoton fällt.",
       points: 1,
