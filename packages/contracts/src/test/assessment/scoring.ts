@@ -48,3 +48,29 @@ export const formula = {
   id: "Rata-rata skor bagian (nilai uji)",
   ms: "Purata skor bahagian (nilai ujian)",
 };
+
+/** Builds a criterion of a sketch, missed for no points or earned for `points`. */
+function sketchCriterion(id: string, points: number) {
+  return {
+    id,
+    label: id,
+    levels: [
+      { id: "missed", label: "Missed", points: 0 },
+      { id: "earned", label: "Earned", points },
+    ],
+  };
+}
+
+/** The rubric of the sketch key: 2 points for each side of its shape, 1 for each other feature. */
+export const sketchRule = {
+  criteria: [
+    sketchCriterion("left", 2),
+    sketchCriterion("right", 2),
+    sketchCriterion("zero", 1),
+    sketchCriterion("intercept", 1),
+    sketchCriterion("vertical", 1),
+    sketchCriterion("horizontal", 1),
+    sketchCriterion("end", 1),
+  ],
+  kind: "rubric",
+};

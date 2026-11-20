@@ -1,4 +1,4 @@
-import { Schema } from "effect";
+import { HashSet, Schema } from "effect";
 
 import { ImageSchema } from "#contracts/assessment/figure";
 import { hasUniqueIds, LocalIdSchema } from "#contracts/assessment/identity";
@@ -145,4 +145,26 @@ export const GraphPointInteractionSchema = Schema.Struct({
   kind: Schema.Literal("graphPoint"),
   placing: Schema.Literals(["points", "lines"]),
   snap: Schema.optionalKey(PositiveMeasureSchema),
+});
+
+/**
+ * Sketch the graph of a function on a plane of Cartesian axes, in one stroke or
+ * more, and place what the item asks for besides: points, such as zeros,
+ * intercepts and turning points, and asymptotes as lines. `frame` is the view
+ * the plane opens on, and the learner may pan and zoom past it; `grid`, when
+ * present, is the step of its grid lines. The features the graph must show are
+ * in the key. QTI has no interaction for a drawn graph, so it maps to
+ * `qti-portable-custom-interaction`.
+ */
+export const SketchInteractionSchema = Schema.Struct({
+  ...InteractionFields,
+  frame: PlaneMathFrameSchema,
+  grid: Schema.optionalKey(PositiveMeasureSchema),
+  kind: Schema.Literal("sketch"),
+  marks: Schema.Array(Schema.Literals(["asymptote", "point"])).check(
+    Schema.makeFilter(
+      (marks) => HashSet.size(HashSet.fromIterable(marks)) === marks.length,
+      { message: "Expected each kind of mark once." }
+    )
+  ),
 });

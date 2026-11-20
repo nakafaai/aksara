@@ -25,8 +25,8 @@ import {
 import { recordOfBytes } from "#contracts/test/assessment/record";
 
 describe("answer keys", () => {
-  it("decodes one key of each of the twelve kinds and encodes it back", () => {
-    expect(ALL_KEYS).toHaveLength(12);
+  it("decodes one key of each of the thirteen kinds and encodes it back", () => {
+    expect(ALL_KEYS).toHaveLength(13);
     for (const key of ALL_KEYS) {
       const decoded = decodeStrict(InteractionKeySchema, key);
 

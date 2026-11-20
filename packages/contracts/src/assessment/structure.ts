@@ -34,11 +34,15 @@ function withoutFields(
 
 /**
  * The fields of an answer key that hold the words of a language: the accepted
- * texts of a text entry and the descriptors of a rubric. Everything else in a
- * key, such as a choice, a number, or a tolerance, is the same in every
- * language of an item.
+ * texts of a text entry, the descriptors of a rubric, and the feedback of a
+ * sketch's criteria. Everything else in a key, such as a choice, a number, a
+ * feature, or a tolerance, is the same in every language of an item.
  */
-const KEY_WORD_FIELDS = HashSet.make("acceptedAnswers", "descriptor");
+const KEY_WORD_FIELDS = HashSet.make(
+  "acceptedAnswers",
+  "descriptor",
+  "feedback"
+);
 
 /**
  * Checks that every answer key has the shape of the first apart from its

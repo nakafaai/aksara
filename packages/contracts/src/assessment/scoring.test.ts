@@ -17,6 +17,7 @@ import {
   ScoringStrategySchema,
   scoreCeiling,
   supportsRule,
+  takesRubric,
   WrongPartsRuleSchema,
 } from "#contracts/assessment/scoring";
 import { akmRule, akmVersion } from "#contracts/test/assessment/akm";
@@ -145,7 +146,7 @@ describe("which rule scores which interaction", () => {
     decodeStrict(ScoringRuleSchema, rule)
   );
 
-  it("scores an extended text by a rubric only, and every other interaction by anything but a rubric", () => {
+  it("scores an extended text and a sketch by a rubric only, and every other interaction by anything but a rubric", () => {
     /** Tells which of the three rules can score the given interaction. */
     const fits = (input: unknown) =>
       Arr.map(rules, (rule) =>
@@ -155,6 +156,7 @@ describe("which rule scores which interaction", () => {
     expect(fits(extendedTextInteraction)).toEqual([false, false, true]);
     expect(fits(choiceInteraction)).toEqual([true, true, false]);
     for (const interaction of ALL_INTERACTIONS) {
+      // The test rubric has a criterion of three levels, which no sketch takes.
       expect(fits(interaction)[2]).toBe(interaction.kind === "extendedText");
     }
   });
@@ -233,7 +235,7 @@ describe("wrong-parts tables", () => {
     for (const interaction of ALL_INTERACTIONS) {
       const { kind } = decodeStrict(InteractionSchema, interaction);
       expect(supportsRule(kind, table)).toBe(
-        kind !== "extendedText" && !Arr.contains(fields, kind)
+        !(takesRubric(kind) || Arr.contains(fields, kind))
       );
     }
     for (const field of fields) {

@@ -31,8 +31,8 @@ const KINDS = Arr.map(
 );
 
 describe("interactions", () => {
-  it("decodes one interaction of each of the twelve kinds and encodes it back", () => {
-    expect(KINDS).toHaveLength(12);
+  it("decodes one interaction of each of the thirteen kinds and encodes it back", () => {
+    expect(KINDS).toHaveLength(13);
     for (const interaction of ALL_INTERACTIONS) {
       const decoded = decodeStrict(InteractionSchema, interaction);
 

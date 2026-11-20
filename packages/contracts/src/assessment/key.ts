@@ -7,6 +7,7 @@ import {
 import { hasDistinctIds, LocalIdSchema } from "#contracts/assessment/identity";
 import { isWithinRecordLimit } from "#contracts/assessment/record";
 import { LatexSchema, PlainTextSchema } from "#contracts/assessment/scalar";
+import { SketchKeySchema } from "#contracts/assessment/sketch";
 import { Sha256HashSchema } from "#contracts/ids";
 import {
   PlanePointSchema,
@@ -200,6 +201,7 @@ export const InteractionKeySchema = Schema.Union([
   GapMatchKeySchema,
   GraphPointKeySchema,
   ExtendedTextKeySchema,
+  SketchKeySchema,
 ]);
 export type InteractionKey = typeof InteractionKeySchema.Type;
 

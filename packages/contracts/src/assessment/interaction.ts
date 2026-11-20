@@ -17,6 +17,7 @@ import {
 import {
   GraphPointInteractionSchema,
   HotspotInteractionSchema,
+  SketchInteractionSchema,
 } from "#contracts/assessment/graphic";
 
 /**
@@ -38,6 +39,7 @@ export const InteractionSchema = Schema.Union([
   GapMatchInteractionSchema,
   GraphPointInteractionSchema,
   ExtendedTextInteractionSchema,
+  SketchInteractionSchema,
 ]);
 export type Interaction = typeof InteractionSchema.Type;
 

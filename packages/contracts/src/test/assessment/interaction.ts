@@ -149,6 +149,16 @@ export const extendedTextInteraction = {
   label: NAME,
 };
 
+/** Sketch a graph, and place its points and asymptotes. */
+export const sketchInteraction = {
+  frame: { kind: "cartesian", x: { max: 6, min: -6 }, y: { max: 6, min: -6 } },
+  grid: 1,
+  id: "graph",
+  kind: "sketch",
+  label: NAME,
+  marks: ["asymptote", "point"],
+};
+
 /** One interaction of every kind, in the order of the contract. */
 export const ALL_INTERACTIONS = Arr.make(
   choiceInteraction,
@@ -162,5 +172,6 @@ export const ALL_INTERACTIONS = Arr.make(
   hotspotInteraction,
   gapMatchInteraction,
   graphPointInteraction,
-  extendedTextInteraction
+  extendedTextInteraction,
+  sketchInteraction
 );

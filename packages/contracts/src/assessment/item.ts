@@ -82,7 +82,7 @@ export const ItemVersionBodySchema = Schema.Struct(VersionFields).check(
   }),
   Schema.makeFilter(hasFittingRules, {
     message:
-      "Expected each scoring rule to fit its interaction, and each extended text to carry a rubric.",
+      "Expected each scoring rule to fit its interaction, and each extended text and sketch to carry a rubric.",
   }),
   Schema.makeFilter(hasJointParts, {
     message:
