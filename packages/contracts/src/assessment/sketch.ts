@@ -139,6 +139,16 @@ const SketchTolerancesSchema = Schema.Struct({
 });
 
 /**
+ * What the learner reads about one criterion of a rubric once it is scored, in
+ * a teacher's voice: a line for a criterion earned and one for a criterion
+ * missed. It is words of a language, so translations may change it.
+ */
+export const CriterionFeedbackSchema = Schema.Struct({
+  earned: PlainTextSchema,
+  missed: PlainTextSchema,
+});
+
+/**
  * One criterion of a sketch's rubric. Its points are the levels of the rubric
  * rule with the same `criterion`; the key says how it is checked and what the
  * learner reads when it is earned or missed, in a teacher's voice. A `feature`
@@ -152,7 +162,7 @@ const SketchCriterionSchema = Schema.Struct({
     kind: Schema.Literal("feature"),
   }),
   criterion: LocalIdSchema,
-  feedback: Schema.Struct({ earned: PlainTextSchema, missed: PlainTextSchema }),
+  feedback: CriterionFeedbackSchema,
   requires: Schema.optionalKey(Schema.NonEmptyArray(LocalIdSchema)),
 });
 type SketchCriterion = typeof SketchCriterionSchema.Type;

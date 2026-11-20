@@ -118,6 +118,9 @@ sketch's rubric is missed or earned: two levels, the lower worth no points. The
 key of a sketch checks exactly the criteria that its rubric scores
 (`hasKeyedRubrics`), so no feature is worth no points and no points go
 unchecked; the snapshot closure refuses a version whose key and rubric differ.
+A criterion of either rubric may carry `feedback`, the line the learner reads
+once it is scored (`earned` at its highest level, `missed` below it); it is
+required for a sketch and optional for an extended text.
 An exam scores its outcomes with one strategy: `irt`, `raw`, `penalized` (whole
 marks for a correct, a wrong, and a blank answer), or `composite` (a formula
 written out in every language).
