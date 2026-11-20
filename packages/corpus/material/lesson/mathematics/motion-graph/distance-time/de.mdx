@@ -1,0 +1,262 @@
+export const metadata = {
+  title: "Weg und Zeit im Diagramm",
+  description:
+    "Zeichne das Weg-Zeit-Diagramm einer Busfahrt, lies das Tempo an der Steigung ab, berechne die Durchschnittsgeschwindigkeit und finde den Treffpunkt.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2026-11-17",
+  subject: "Bewegungsdiagramme",
+};
+
+## Die Busfahrt als Diagramm
+
+Notiere zu jedem Zeitpunkt, wie weit etwas von seinem Startpunkt entfernt ist, und trage das mit der Zeit nach rechts und dem Weg nach oben ein. So entsteht ein **Weg-Zeit-Diagramm**. Ein Gedanke schließt es auf: **Die Steigung der Linie ist die Geschwindigkeit**. Je steiler die Linie, desto schneller. Eine waagerechte Linie heißt, dass der Körper steht, und eine fallende Linie heißt, dass er zum Start zurückfährt. Im Bus-Labor siehst du, wie sich dieses Diagramm während der Fahrt selbst zeichnet.
+
+Folge einem Stadtbus. Er fährt am Busbahnhof los, hält an der Klinik, fährt weiter zum Stadion, wartet dort kurz und fährt dann ohne Halt zum Busbahnhof zurück. Nimm an, dass der Bus **in jedem Abschnitt mit konstanter Geschwindigkeit** fährt. Ein echter Bus wird allmählich schneller und langsamer, aber mit dieser Annahme wird jeder Abschnitt zu einer geraden Linie.
+
+| Abschnitt | Zeit (Minuten) | Was der Bus macht | Weg vom Busbahnhof (km) |
+| :--- | :--- | :--- | :--- |
+| <InlineMath math="OA" /> | <InlineMath math="0" /> bis <InlineMath math="12" /> | fährt zur Klinik | <InlineMath math="0" /> bis <InlineMath math="8" /> |
+| <InlineMath math="AB" /> | <InlineMath math="12" /> bis <InlineMath math="18" /> | hält an der Klinik | bleibt bei <InlineMath math="8" /> |
+| <InlineMath math="BC" /> | <InlineMath math="18" /> bis <InlineMath math="28" /> | fährt zum Stadion | <InlineMath math="8" /> bis <InlineMath math="12" /> |
+| <InlineMath math="CD" /> | <InlineMath math="28" /> bis <InlineMath math="33" /> | wartet am Stadion | bleibt bei <InlineMath math="12" /> |
+| <InlineMath math="DE" /> | <InlineMath math="33" /> bis <InlineMath math="48" /> | fährt zum Busbahnhof zurück | <InlineMath math="12" /> zurück auf <InlineMath math="0" /> |
+
+Zum Zeichnen **setzt du jedes Mal einen Punkt, wenn der Bus seine Bewegung ändert**: die Zeit als erste Koordinate, den Weg als zweite. Die Punkte sind <InlineMath math="O(0, 0)" />, <InlineMath math="A(12, 8)" />, <InlineMath math="B(18, 8)" />, <InlineMath math="C(28, 12)" />, <InlineMath math="D(33, 12)" /> und <InlineMath math="E(48, 0)" />. Verbinde benachbarte Punkte mit geraden Linien, denn dazwischen ändert sich das Tempo des Busses nicht.
+
+<JourneyGraphLab
+  title={<>Ein Stadtbus vom Busbahnhof zum Stadion</>}
+  description={
+    <>
+      Drück auf Abspielen oder zieh die Uhr, und sieh zu, wie sich der Bus
+      auf der Straße und sein Punkt auf dem Millimeterpapier gemeinsam
+      bewegen. Wähl einen Abschnitt, um Anstieg und Dauer zu sehen.
+    </>
+  }
+  footer={
+    <>
+      Waagerecht wird die Linie, wenn der Bus hält, und fallend, wenn er
+      zurückfährt.
+    </>
+  }
+  bus={{
+    name: "Bus",
+    legs: [
+      { change: 8, minutes: 12 },
+      { change: 0, minutes: 6 },
+      { change: 4, minutes: 10 },
+      { change: 0, minutes: 5 },
+      { change: -12, minutes: 15 },
+    ],
+  }}
+  stops={[
+    { at: 0, name: "Busbahnhof" },
+    { at: 8, name: "Klinik" },
+    { at: 12, name: "Stadion" },
+  ]}
+  labels={{
+    average: <>Durchschnittsgeschwindigkeit der ganzen Fahrt</>,
+    axes: { distance: "Weg vom Busbahnhof (km)", time: "Zeit (min)" },
+    distance: <>Abstand des Busses vom Busbahnhof</>,
+    motion: {
+      away: <>der Bus entfernt sich vom Busbahnhof</>,
+      back: <>der Bus fährt zum Busbahnhof zurück</>,
+      still: <>der Bus steht</>,
+    },
+    parts: "Abschnitt der Fahrt",
+    speed: <>Geschwindigkeit</>,
+    time: "Zeit seit der Abfahrt",
+    units: { distance: "km", speed: "km/h", time: "min" },
+    viewLabel: "Eine gerade Straße mit einem Stadtbus neben einem Blatt Millimeterpapier",
+    whole: "Alle",
+  }}
+/>
+
+Zieh die Uhr auf Minute <InlineMath math="15" />. Der Bus wartet an der Klinik, also liegt sein Punkt auf der waagerechten Linie <InlineMath math="AB" /> bei <InlineMath math="8\text{ km}" />. Das Tempo der Abschnitte steht noch als Fragezeichen da, weil du genau diese Zahlen gleich selbst aus der Steigung berechnest.
+
+## Steiler heißt schneller
+
+Im Abschnitt <InlineMath math="OA" /> wächst der Weg des Busses in <InlineMath math="12" /> Minuten um <InlineMath math="8\text{ km}" />. Den Anstieg geteilt durch die Dauer nennt man die **Steigung** der Linie. Im Weg-Zeit-Diagramm ist **die Steigung die Geschwindigkeit**, denn sie sagt dir, wie viele Kilometer pro Minute dazukommen.
+
+<MathContainer>
+<BlockMath math="\text{Steigung von } OA = \frac{8 - 0}{12 - 0} = \frac{2}{3}\text{ km pro Minute}" />
+<BlockMath math="\frac{2}{3}\text{ km pro Minute} \times 60 = 40\text{ km/h}" />
+</MathContainer>
+
+Du multiplizierst mit <InlineMath math="60" />, weil eine Stunde <InlineMath math="60" /> Minuten hat. Im Abschnitt <InlineMath math="BC" /> steigt der Weg in <InlineMath math="10" /> Minuten nur um <InlineMath math="4\text{ km}" />, also ergibt die Steigung <InlineMath math="\tfrac{4}{10} \times 60 = 24\text{ km/h}" />. Die Linie <InlineMath math="BC" /> sieht flacher aus als <InlineMath math="OA" />, und dort ist der Bus auch wirklich langsamer.
+
+<JourneyGraphLab
+  title={<>Das Tempo jedes Abschnitts der Busfahrt</>}
+  description={
+    <>
+      Wähl <InlineMath math="OA" />, <InlineMath math="BC" /> oder{" "}
+      <InlineMath math="DE" />. Das Labor zeichnet Anstieg und Dauer ein und
+      teilt beides zur Geschwindigkeit in km/h.
+    </>
+  }
+  footer={
+    <>
+      Vergleiche <InlineMath math="OA" /> mit <InlineMath math="BC" />: Die
+      steilere Linie hat das höhere Tempo.
+    </>
+  }
+  showSpeeds
+  bus={{
+    name: "Bus",
+    legs: [
+      { change: 8, minutes: 12 },
+      { change: 0, minutes: 6 },
+      { change: 4, minutes: 10 },
+      { change: 0, minutes: 5 },
+      { change: -12, minutes: 15 },
+    ],
+  }}
+  stops={[
+    { at: 0, name: "Busbahnhof" },
+    { at: 8, name: "Klinik" },
+    { at: 12, name: "Stadion" },
+  ]}
+  labels={{
+    average: <>Durchschnittsgeschwindigkeit der ganzen Fahrt</>,
+    axes: { distance: "Weg vom Busbahnhof (km)", time: "Zeit (min)" },
+    distance: <>Abstand des Busses vom Busbahnhof</>,
+    motion: {
+      away: <>der Bus entfernt sich vom Busbahnhof</>,
+      back: <>der Bus fährt zum Busbahnhof zurück</>,
+      still: <>der Bus steht</>,
+    },
+    parts: "Abschnitt der Fahrt",
+    speed: <>Geschwindigkeit</>,
+    time: "Zeit seit der Abfahrt",
+    units: { distance: "km", speed: "km/h", time: "min" },
+    viewLabel: "Eine gerade Straße mit einem Stadtbus neben einem Blatt Millimeterpapier",
+    whole: "Alle",
+  }}
+/>
+
+Zwei andere Linienformen werden oft falsch gelesen: die waagerechte und die fallende Linie.
+
+### Flach heißt Stillstand
+
+Von Minute <InlineMath math="12" /> bis Minute <InlineMath math="18" /> bleibt der Bus <InlineMath math="8\text{ km}" /> vom Busbahnhof entfernt. Der Anstieg ist null, also ist auch die Steigung von <InlineMath math="AB" /> null:
+
+<BlockMath math="\text{Steigung von } AB = \frac{8 - 8}{18 - 12} = \frac{0}{6} = 0" />
+
+**Geschwindigkeit null heißt, dass der Bus steht**, und das passt zu einem Bus, der an der Klinik Fahrgäste aussteigen lässt. Dasselbe passiert auf <InlineMath math="CD" /> am Stadion.
+
+Vorsicht beim anderen Diagrammtyp. Im [Diagramm von Geschwindigkeit und Zeit](/de/faecher/mathematik/bewegungsdiagramme/geschwindigkeit-zeit-diagramme) bedeutet eine waagerechte Linie, dass sich der Körper mit gleichbleibendem Tempo weiterbewegt. Bevor du eine waagerechte Linie deutest, **liest du also zuerst die Beschriftung der senkrechten Achse**.
+
+### Fallend auf dem Rückweg
+
+Auf <InlineMath math="DE" /> sinkt der Abstand des Busses vom Busbahnhof in <InlineMath math="15" /> Minuten von <InlineMath math="12\text{ km}" /> auf <InlineMath math="0" />. Die Steigung ist negativ:
+
+<BlockMath math="\text{Steigung von } DE = \frac{0 - 12}{48 - 33} = -\frac{12}{15} = -0{,}8\text{ km pro Minute}" />
+
+Das Minuszeichen zeigt nur die Richtung: **Der Bus fährt auf den Busbahnhof zu**. Es heißt nicht, dass er langsamer wird. Das Tempo hat keine Richtung, also ist es der Betrag der Steigung, <InlineMath math="0{,}8 \times 60 = 48\text{ km/h}" />. Die Linie <InlineMath math="DE" /> ist sogar die steilste, also ist der Bus auf dem Rückweg am schnellsten.
+
+## Mittleres Tempo der Busfahrt
+
+Das Tempo in einem Moment liest du an der Steigung des Abschnitts ab, auf dem der Bus gerade ist. In Minute <InlineMath math="20" /> ist er auf <InlineMath math="BC" />, also fährt er <InlineMath math="24\text{ km/h}" />. Für die ganze Fahrt brauchst du eine Zahl, die alles zusammenfasst: den Gesamtweg geteilt durch die Gesamtzeit. Diese Zahl heißt **Durchschnittsgeschwindigkeit**:
+
+<BlockMath math="\text{Durchschnittsgeschwindigkeit} = \frac{\text{Gesamtweg}}{\text{Gesamtzeit}}" />
+
+Der Gesamtweg zählt jeden Kilometer, den der Bus fährt, auch den Rückweg. Die Gesamtzeit zählt jede Minute, auch die Halte.
+
+<MathContainer>
+<BlockMath math="\text{Gesamtweg} = 8 + 4 + 12 = 24\text{ km}" />
+<BlockMath math="\text{Durchschnittsgeschwindigkeit} = \frac{24\text{ km}}{48\text{ Minuten}} = 0{,}5\text{ km pro Minute} = 30\text{ km/h}" />
+</MathContainer>
+
+Rechne rückwärts nach: <InlineMath math="48" /> Minuten sind <InlineMath math="0{,}8" /> Stunden, und <InlineMath math="30 \times 0{,}8 = 24\text{ km}" />. Wähl im Tempo-Labor die Option Alle, dann erscheint dort dieselbe Zahl. Am Ende steht der Bus wieder <InlineMath math="0\text{ km}" /> vom Busbahnhof entfernt, und trotzdem ist er <InlineMath math="24\text{ km}" /> gefahren.
+
+Ein häufiger Fehler ist, die fünf Abschnittstempos zu mitteln:
+
+<BlockMath math="\frac{40 + 0 + 24 + 0 + 48}{5} = 22{,}4\text{ km/h}" />
+
+Das ist falsch, weil die fünf Abschnitte **unterschiedlich lange dauern**. <InlineMath math="DE" /> dauert <InlineMath math="15" /> Minuten, <InlineMath math="CD" /> nur <InlineMath math="5" />, und trotzdem zählen beide bei dieser Rechnung gleich viel. Geh immer zurück zu Gesamtweg durch Gesamtzeit.
+
+## Wann und wo sie sich treffen
+
+Genau in Minute <InlineMath math="18" />, als der Bus die Klinik verlässt, fährt ein Motorrad am Stadion los, mit konstant <InlineMath math="36\text{ km/h}" /> Richtung Busbahnhof. Wann und wo begegnet das Motorrad dem Bus? Im Diagramm beantwortet **der Schnittpunkt der beiden Linien** beide Fragen auf einmal, denn dort sind beide zur selben Zeit am selben Ort.
+
+Rechne die Geschwindigkeiten zuerst in Kilometer pro Minute um. Auf <InlineMath math="BC" /> schafft der Bus <InlineMath math="24 \div 60 = 0{,}4" /> km pro Minute, das Motorrad <InlineMath math="36 \div 60 = 0{,}6" /> km pro Minute. Angenommen, sie treffen sich <InlineMath math="t" /> Minuten nach Minute <InlineMath math="18" />. Dann ist der Bus <InlineMath math="8 + 0{,}4t" /> km vom Busbahnhof entfernt und das Motorrad <InlineMath math="12 - 0{,}6t" /> km. Setz beides gleich:
+
+<BlockMath math="\begin{aligned} 8 + 0{,}4t &= 12 - 0{,}6t \\ t &= 4 \end{aligned}" />
+
+Bus und Motorrad treffen sich also in **Minute <InlineMath math="22" />**. So weit sind beide in diesem Moment vom Busbahnhof entfernt:
+
+<MathContainer>
+<BlockMath math="\text{Bus: } 8 + 0{,}4 \times 4 = 9{,}6\text{ km}" />
+<BlockMath math="\text{Motorrad: } 12 - 0{,}6 \times 4 = 9{,}6\text{ km}" />
+</MathContainer>
+
+Beide Abstände stimmen überein, also passt die Antwort. Minute <InlineMath math="22" /> liegt auch noch im Abschnitt <InlineMath math="BC" />, der in Minute <InlineMath math="28" /> endet, also gilt die Gleichung für den Bus wirklich. Schneller geht es so: Die Lücke zwischen beiden ist <InlineMath math="4\text{ km}" /> groß und schrumpft jede Minute um <InlineMath math="0{,}4 + 0{,}6 = 1" /> km, also ist sie nach <InlineMath math="4" /> Minuten weg.
+
+<JourneyGraphLab
+  title={<>Bus und Motorrad begegnen sich</>}
+  description={
+    <>
+      Das Motorrad startet in Minute <InlineMath math="18" /> am Stadion und
+      fährt Richtung Busbahnhof. Zieh die Uhr und beobachte, wie sich die
+      beiden Punkte auf der Straße und auf dem Papier nähern.
+    </>
+  }
+  footer={
+    <>
+      Wo sich die Linien kreuzen, sind Bus und Motorrad gleichzeitig am
+      selben Ort.
+    </>
+  }
+  showSpeeds
+  showMeeting
+  bus={{
+    name: "Bus",
+    legs: [
+      { change: 8, minutes: 12 },
+      { change: 0, minutes: 6 },
+      { change: 4, minutes: 10 },
+      { change: 0, minutes: 5 },
+      { change: -12, minutes: 15 },
+    ],
+  }}
+  second={{
+    name: "Motorrad",
+    depart: 18,
+    from: 12,
+    legs: [{ change: -12, minutes: 20 }],
+  }}
+  stops={[
+    { at: 0, name: "Busbahnhof" },
+    { at: 8, name: "Klinik" },
+    { at: 12, name: "Stadion" },
+  ]}
+  labels={{
+    average: <>Durchschnittsgeschwindigkeit des Busses</>,
+    axes: { distance: "Weg vom Busbahnhof (km)", time: "Zeit (min)" },
+    distance: <>Abstand des Busses vom Busbahnhof</>,
+    meeting: <>Wann und wo der Bus dem Motorrad begegnet</>,
+    motion: {
+      away: <>der Bus entfernt sich vom Busbahnhof</>,
+      back: <>der Bus fährt zum Busbahnhof zurück</>,
+      still: <>der Bus steht</>,
+    },
+    parts: "Abschnitt der Busfahrt",
+    speed: <>Geschwindigkeit</>,
+    time: "Zeit seit der Abfahrt",
+    units: { distance: "km", speed: "km/h", time: "min" },
+    viewLabel: "Eine gerade Straße mit Bus und Motorrad neben einem Blatt Millimeterpapier",
+    whole: "Alle",
+  }}
+/>
+
+Löse diese zwei Aufgaben mit demselben Diagramm von Bus und Motorrad und vergleiche dann.
+
+1. Wie weit sind Bus und Motorrad in Minute <InlineMath math="30" /> voneinander entfernt?
+2. Ein Lieferwagen fährt in Minute <InlineMath math="3" /> mit konstant <InlineMath math="48\text{ km/h}" /> vom Busbahnhof Richtung Stadion los. Wann und wo holt er den Bus ein?
+
+**Aufgabe 1**. In Minute <InlineMath math="30" /> wartet der Bus am Stadion, <InlineMath math="12\text{ km}" /> vom Busbahnhof entfernt. Das Motorrad ist schon <InlineMath math="12" /> Minuten unterwegs, also ist es <InlineMath math="12 - 0{,}6 \times 12 = 4{,}8\text{ km}" /> vom Busbahnhof entfernt. Zwischen beiden liegen <InlineMath math="12 - 4{,}8 = 7{,}2\text{ km}" />.
+
+**Aufgabe 2**. Der Lieferwagen schafft <InlineMath math="48 \div 60 = 0{,}8" /> km pro Minute. Probier zuerst den Abschnitt <InlineMath math="OA" />, auf dem der Bus <InlineMath math="\tfrac{2}{3}t" /> km vom Busbahnhof entfernt ist:
+
+<BlockMath math="\begin{aligned} \tfrac{2}{3}t &= 0{,}8(t - 3) \\ t &= 18 \end{aligned}" />
+
+Minute <InlineMath math="18" /> liegt außerhalb von <InlineMath math="OA" />, das in Minute <InlineMath math="12" /> endet. **Auf dem Weg zur Klinik holt der Lieferwagen den Bus also nicht ein**. In Minute <InlineMath math="12" /> ist der Lieferwagen erst bei <InlineMath math="0{,}8 \times 9 = 7{,}2\text{ km}" />, hinter dem Bus. Danach steht der Bus bis Minute <InlineMath math="18" /> bei <InlineMath math="8\text{ km}" />. Der Lieferwagen erreicht <InlineMath math="8\text{ km}" /> in Minute <InlineMath math="3 + 8 \div 0{,}8 = 13" />. Er holt den Bus also in Minute <InlineMath math="13" /> an der Klinik ein, während der Bus noch hält. Im Diagramm schneidet die Linie des Lieferwagens die waagerechte Linie <InlineMath math="AB" />.

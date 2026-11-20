@@ -1,0 +1,242 @@
+export const metadata = {
+  title: "Graphs of Speed against Time",
+  description:
+    "Draw a speed-time graph from a description of a trip, find distance from the area under the line, and read acceleration from its gradient.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2026-11-17",
+  subject: "Graphs of Motion",
+};
+
+## From a Trip to a Speed Graph
+
+If you plot how fast something moves at every moment, you get a **speed-time graph**. You can read two things from it. **The area under the line is the distance travelled**, and **the gradient of the line is the acceleration**, which tells you how quickly the speed goes up or down. This graph is for an object moving in one direction only, so its line never dips below the time axis.
+
+Take a car waiting at a red light. When the light turns green, the car speeds up steadily from <InlineMath math="0" /> to <InlineMath math="12\text{ m/s}" /> in <InlineMath math="8" /> seconds. It then holds <InlineMath math="12\text{ m/s}" /> for <InlineMath math="20" /> seconds, turns onto a main road, and speeds up again to <InlineMath math="20\text{ m/s}" /> in <InlineMath math="10" /> seconds. At the next red light, it brakes steadily to a stop in <InlineMath math="10" /> seconds.
+
+**Steadily** means the speed changes by the same amount every second, so each part of the story becomes one straight line. Put time on the horizontal axis and speed on the vertical axis. Mark the speed at each moment the motion changes: <InlineMath math="(0, 0)" />, <InlineMath math="(8, 12)" />, <InlineMath math="(28, 12)" />, <InlineMath math="(38, 20)" />, and <InlineMath math="(48, 0)" />. The time <InlineMath math="28" /> comes from <InlineMath math="8 + 20" />, and <InlineMath math="38" /> from <InlineMath math="28 + 10" />. Join the points with straight lines.
+
+<MathVisual
+  title={<>Speed of a Car between Two Red Lights</>}
+  description={
+    <>
+      Speed in m/s against time in seconds since the light turned green.
+      Slide the time and read the car's speed at that moment.
+    </>
+  }
+  footer={
+    <>
+      The dot on the line follows the time, and its height is the car's speed
+      right then.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 50 }, y: { min: 0, max: 22 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "w", min: 0, max: 48, value: 30, step: 0.5, label: "w" },
+    ],
+    objects: [
+      { id: "speed", kind: "polyline", vertices: [{ x: 0, y: 0 }, { x: 8, y: 12 }, { x: 28, y: 12 }, { x: 38, y: 20 }, { x: 48, y: 0 }], appearance: "primary" },
+      { id: "now", kind: "marker", x: "w", y: "min(1.5w, max(12, 12 + 0.8(w - 28)), 20 - 2(w - 38))", appearance: "warning" },
+    ],
+    readouts: [
+      { key: "speed", formula: "min(1.5w, max(12, 12 + 0.8(w - 28)), 20 - 2(w - 38))" },
+    ],
+  }}
+  labels={{
+    w: <>Time since the green light, in seconds</>,
+    speed: <>Car's speed in m/s</>,
+  }}
+/>
+
+To get a feel for these speeds, <InlineMath math="12\text{ m/s}" /> is <InlineMath math="12 \times 3.6 = 43.2\text{ km/h}" />, and <InlineMath math="20\text{ m/s}" /> is <InlineMath math="72\text{ km/h}" />. Slide the time to second <InlineMath math="30" />. The car has spent <InlineMath math="2" /> seconds in the third part, where its speed rises <InlineMath math="8\text{ m/s}" /> in <InlineMath math="10" /> seconds, or <InlineMath math="0.8\text{ m/s}" /> every second. So its speed is <InlineMath math="12 + 0.8 \times 2 = 13.6\text{ m/s}" />, the same number the graph shows.
+
+## Area under the Speed Line
+
+Now the same car drives in the lab. As it moves, the region under its speed line fills with colour, and each part gets a number in metres. Before you press play, guess what number will appear under the flat part. Then run the lab and compare each number with how far the car moved along the road. They always match: **the area under a speed-time line is the distance travelled**.
+
+<MotionAreaLab
+  title={<>A Car from One Red Light to the Next</>}
+  description={
+    <>
+      The car speeds up, holds its speed, speeds up again, then brakes. The
+      region under the line fills in while the car moves.
+    </>
+  }
+  footer={
+    <>
+      Each colour is one part of the trip. Add the four numbers to get the
+      total distance.
+    </>
+  }
+  start={0}
+  stretches={[
+    { duration: 8, end: 12 },
+    { duration: 20, end: 12 },
+    { duration: 10, end: 20 },
+    { duration: 10, end: 0 },
+  ]}
+  labels={{
+    displacement: <>Distance from the first red light</>,
+    distance: <>Distance travelled</>,
+    viewLabel: "A car on a straight road with its speed-time graph below it",
+  }}
+/>
+
+Why should an area equal a distance? Start with the flat part, where the region is just a rectangle, then move on to the sloping parts.
+
+### When the Speed Holds
+
+From second <InlineMath math="8" /> to second <InlineMath math="28" />, the car holds <InlineMath math="12\text{ m/s}" />. Every second it moves <InlineMath math="12" /> metres, so in <InlineMath math="20" /> seconds it moves:
+
+<BlockMath math="\text{distance} = \text{speed} \times \text{time} = 12\text{ m/s} \times 20\text{ s} = 240\text{ m}" />
+
+On the graph, the region under that flat line is a **rectangle** <InlineMath math="20" /> wide and <InlineMath math="12" /> tall, so its area is <InlineMath math="240" /> as well. Look at the units: metres per second times seconds gives metres. **The unit of this area is a unit of distance**, which is how you know the area really is a distance. The area under a distance-time graph doesn't give a distance, because its unit becomes metres times seconds.
+
+### When the Speed Changes
+
+When the speed changes steadily, the average speed over that part is halfway between the starting speed <InlineMath math="u" /> and the final speed <InlineMath math="v" />. The distance is that average speed times the time <InlineMath math="t" />, and the formula is exactly **the area of a trapezium**:
+
+<BlockMath math="\text{distance} = \frac{u + v}{2} \times t" />
+
+If one end is zero, the trapezium becomes a triangle. The car's other three parts work out like this:
+
+<MathContainer>
+<BlockMath math="\text{first part (triangle)} = \tfrac{1}{2} \times 8 \times 12 = 48\text{ m}" />
+<BlockMath math="\text{third part (trapezium)} = \tfrac{1}{2}(12 + 20) \times 10 = 160\text{ m}" />
+<BlockMath math="\text{fourth part (triangle)} = \tfrac{1}{2} \times 10 \times 20 = 100\text{ m}" />
+<BlockMath math="\text{total distance} = 48 + 240 + 160 + 100 = 548\text{ m}" />
+</MathContainer>
+
+Check the first part another way: its average speed is <InlineMath math="\tfrac{0 + 12}{2} = 6\text{ m/s}" />, and <InlineMath math="6 \times 8 = 48\text{ m}" />. The total of <InlineMath math="548\text{ m}" /> also matches the distance travelled in the lab. When the speed line is curved, its area comes from integration, as in [the kinematics of linear motion](/en/subjects/mathematics/kinematics-of-linear-motion/displacement-velocity-and-acceleration).
+
+## How Fast the Speed Changes
+
+How quickly does the speed change? Divide the change in speed by the time it takes. That quotient is called the **acceleration**, and on a speed-time graph it equals the gradient of the line:
+
+<BlockMath math="a = \frac{v - u}{t}" />
+
+Here <InlineMath math="u" /> is the starting speed, <InlineMath math="v" /> the final speed, and <InlineMath math="t" /> the time taken. On the car's first part, <InlineMath math="a = \tfrac{12 - 0}{8} = 1.5\text{ m/s}^2" />.
+
+The train in this lab has three motions. Pick each one, read the starting speed, final speed and time from the graph, and work out the gradient before you look at the table.
+
+<NonUniformLinearMotionGraphCard
+  title={<>Three Ways a Train Moves</>}
+  description={
+    <>
+      Pick one of the train's motions. Its starting and final speeds are on
+      the vertical axis, and the time it takes is on the horizontal axis.
+    </>
+  }
+  footer={
+    <>
+      Equally steep rising lines have the same acceleration, even at
+      different speeds.
+    </>
+  }
+  labels={{
+    chooseScenario: "Choose the train's motion",
+    scenarioNames: {
+      "from-rest": "Starting from rest",
+      "speed-up": "Speeding up",
+      brake: "Braking",
+    },
+    timeAxis: "Time (s)",
+    velocityAxis: "Speed (m/s)",
+  }}
+/>
+
+| Train's motion | Speed (m/s) | Time (s) | Acceleration (<InlineMath math="\text{m/s}^2" />) |
+| :--- | :--- | :--- | :--- |
+| Starting from rest | <InlineMath math="0" /> to <InlineMath math="20" /> | <InlineMath math="5" /> | <InlineMath math="\tfrac{20 - 0}{5} = 4" /> |
+| Speeding up | <InlineMath math="8" /> to <InlineMath math="24" /> | <InlineMath math="4" /> | <InlineMath math="\tfrac{24 - 8}{4} = 4" /> |
+| Braking | <InlineMath math="24" /> to <InlineMath math="4" /> | <InlineMath math="5" /> | <InlineMath math="\tfrac{4 - 24}{5} = -4" /> |
+
+The first two motions have the same acceleration even though their speeds differ. **Acceleration depends on how steep the line is**, not on how high it sits.
+
+### Rising or Falling Speed
+
+A rising line means the speed is increasing, and the acceleration is positive. A flat line means **the speed is steady and the acceleration is zero**. From second <InlineMath math="8" /> to second <InlineMath math="28" />, the car keeps moving <InlineMath math="12" /> metres every second. That's different from a flat line on a [graph of distance against time](/en/subjects/mathematics/graphs-of-motion/distance-time-graphs), which means the object is standing still.
+
+A falling line means the speed is decreasing, and the acceleration is negative. Speed that keeps dropping like this is called **deceleration**. When the car brakes, <InlineMath math="a = \tfrac{0 - 20}{10} = -2\text{ m/s}^2" />, so its deceleration is <InlineMath math="2\text{ m/s}^2" />. A falling line doesn't mean the car is reversing. The car keeps going forward until the line touches the time axis, and that's where it stops.
+
+This table compares what the same line shape means on the two graphs. Most mistakes come from carrying the meaning from one graph over to the other.
+
+| Line shape | On a distance-time graph | On a speed-time graph |
+| :--- | :--- | :--- |
+| Rising | moving away from the start | speed increasing |
+| Flat | standing still | steady speed |
+| Falling | heading back to the start | speed decreasing |
+
+### Units of Acceleration
+
+You read <InlineMath math="\text{m/s}^2" /> as metres per second per second. An acceleration of <InlineMath math="4\text{ m/s}^2" /> means **the speed goes up by <InlineMath math="4\text{ m/s}" /> every second**. The train starting from rest has speeds of <InlineMath math="0, 4, 8, 12, 16" />, then <InlineMath math="20\text{ m/s}" /> at seconds <InlineMath math="0" /> to <InlineMath math="5" />.
+
+The units have to match before you divide. Say a car goes from rest to <InlineMath math="90\text{ km/h}" /> in <InlineMath math="10" /> seconds. Working out <InlineMath math="90 \div 10 = 9" /> mixes hours with seconds, so change the speed to m/s first:
+
+<MathContainer>
+<BlockMath math="90\text{ km/h} = \frac{90 \times 1000\text{ m}}{3600\text{ s}} = 25\text{ m/s}" />
+<BlockMath math="a = \frac{25 - 0}{10} = 2.5\text{ m/s}^2" />
+</MathContainer>
+
+Check: in <InlineMath math="10" /> seconds the speed rises by <InlineMath math="2.5 \times 10 = 25\text{ m/s}" />, which is <InlineMath math="90\text{ km/h}" />.
+
+## From Lifts to Toll Plazas
+
+These three problems get harder as they go. For each one, **sketch the speed-time graph first**, then work out its area or gradient.
+
+1. A lift goes up from the ground floor. It speeds up steadily from rest to <InlineMath math="3\text{ m/s}" /> in <InlineMath math="2" /> seconds, rises at a steady speed for <InlineMath math="6" /> seconds, then slows steadily to a stop in <InlineMath math="2" /> seconds. How many metres does it rise? If each floor is <InlineMath math="3\text{ m}" /> tall, how many floors does it pass?
+2. In a <InlineMath math="100\text{ m}" /> race, a runner speeds up steadily from rest for <InlineMath math="4" /> seconds to a speed <InlineMath math="v" />, then runs at a steady <InlineMath math="v" /> to the finish line. The race takes <InlineMath math="12" /> seconds. Find <InlineMath math="v" /> and the runner's acceleration in the first <InlineMath math="4" /> seconds.
+3. A car is travelling at <InlineMath math="25\text{ m/s}" /> on a highway. Approaching a toll plaza, it slows steadily to <InlineMath math="5\text{ m/s}" /> in <InlineMath math="10" /> seconds, passes the gate at a steady <InlineMath math="5\text{ m/s}" /> for <InlineMath math="4" /> seconds, then speeds up steadily back to <InlineMath math="25\text{ m/s}" /> in <InlineMath math="16" /> seconds. How far does it travel in those <InlineMath math="30" /> seconds, and how many seconds does it lose compared with keeping up <InlineMath math="25\text{ m/s}" />?
+
+**Problem 1**. The graph rises, stays flat, then falls, and the region under it is a trapezium. Its parallel sides are <InlineMath math="10" /> seconds along the bottom and <InlineMath math="6" /> seconds along the top, and its height is <InlineMath math="3" />:
+
+<BlockMath math="\text{distance} = \tfrac{1}{2}(10 + 6) \times 3 = 24\text{ m}" />
+
+Check part by part: <InlineMath math="3 + 18 + 3 = 24\text{ m}" />. The lift rises <InlineMath math="24\text{ m}" />, which is <InlineMath math="24 \div 3 = 8" /> floors.
+
+**Problem 2**. The final speed is unknown, so **write the area in terms of <InlineMath math="v" />**. The region is a triangle over <InlineMath math="4" /> seconds plus a rectangle over <InlineMath math="12 - 4 = 8" /> seconds, and its total area must be <InlineMath math="100" />:
+
+<MathContainer>
+<BlockMath math="\tfrac{1}{2} \times 4 \times v + 8v = 100" />
+<BlockMath math="10v = 100 \quad\Rightarrow\quad v = 10\text{ m/s}" />
+<BlockMath math="a = \frac{10 - 0}{4} = 2.5\text{ m/s}^2" />
+</MathContainer>
+
+Check: the triangle is <InlineMath math="\tfrac{1}{2} \times 4 \times 10 = 20\text{ m}" /> and the rectangle is <InlineMath math="8 \times 10 = 80\text{ m}" />, which add up to <InlineMath math="100\text{ m}" />.
+
+**Problem 3**. The speed line falls, stays flat, then rises again. The region under it is two trapeziums and one rectangle:
+
+<MathVisual
+  title={<>A Car's Speed through a Toll Plaza</>}
+  description={
+    <>
+      Speed in m/s against time in seconds. The shaded region is the distance
+      the car covers in <InlineMath math="30" /> seconds.
+    </>
+  }
+  footer={
+    <>
+      The dip in the middle of the graph is the time the car spends near the
+      gate.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 32 }, y: { min: 0, max: 28 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "area", kind: "polygon", vertices: [{ x: 0, y: 0 }, { x: 0, y: 25 }, { x: 10, y: 5 }, { x: 14, y: 5 }, { x: 30, y: 25 }, { x: 30, y: 0 }], appearance: "secondary" },
+      { id: "speed", kind: "polyline", vertices: [{ x: 0, y: 25 }, { x: 10, y: 5 }, { x: 14, y: 5 }, { x: 30, y: 25 }], appearance: "primary" },
+    ],
+  }}
+/>
+
+<MathContainer>
+<BlockMath math="\tfrac{1}{2}(25 + 5) \times 10 + 5 \times 4 + \tfrac{1}{2}(5 + 25) \times 16 = 150 + 20 + 240 = 410\text{ m}" />
+<BlockMath math="\text{time at } 25\text{ m/s} = \frac{410}{25} = 16.4\text{ s}" />
+<BlockMath math="\text{time lost} = 30 - 16.4 = 13.6\text{ s}" />
+</MathContainer>
+
+The car covers <InlineMath math="410\text{ m}" /> and **loses <InlineMath math="13.6" /> seconds** at the toll plaza. Check: at a steady <InlineMath math="25\text{ m/s}" /> for <InlineMath math="16.4" /> seconds, it would cover <InlineMath math="25 \times 16.4 = 410\text{ m}" />, the same as the shaded area.
