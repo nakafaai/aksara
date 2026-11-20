@@ -1,0 +1,315 @@
+export const metadata = {
+  title: "Unabhängige und abhängige Ereignisse",
+  description: "Ändert A die Chance von B nicht, gilt P(A ∩ B) = P(A) × P(B). Ändert A sie, multiplizierst du mit der Wahrscheinlichkeit von B nach A. Mit Baumdiagrammen, Beispielen und Übungen.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2026-11-17",
+  subject: "Wahrscheinlichkeit",
+};
+
+## Die Wahrscheinlichkeit für A und B zusammen
+
+Zwei Ereignisse sind **unabhängig**, wenn das Eintreten von <InlineMath math="A" /> die Wahrscheinlichkeit von <InlineMath math="B" /> nicht ändert. Für unabhängige Ereignisse ist die Wahrscheinlichkeit, dass beide eintreten, das Produkt ihrer Wahrscheinlichkeiten:
+
+<BlockMath math="P(A \cap B) = P(A) \times P(B)" />
+
+Zwei Ereignisse sind **abhängig**, wenn das Eintreten von <InlineMath math="A" /> die Wahrscheinlichkeit von <InlineMath math="B" /> ändert. Du multiplizierst trotzdem, aber der zweite Faktor ist die Wahrscheinlichkeit von <InlineMath math="B" /> **nachdem** <InlineMath math="A" /> eingetreten ist, geschrieben <InlineMath math="P(B \mid A)" />:
+
+<BlockMath math="P(A \cap B) = P(A) \times P(B \mid A)" />
+
+Für unabhängige Ereignisse gilt <InlineMath math="P(B \mid A) = P(B)" />, also wird die zweite Formel zur ersten. Ein Beispiel: Eine Münze und ein Würfel werden geworfen. Kopf ändert die Chance auf eine <InlineMath math="6" /> nicht, also ist <InlineMath math="P(\text{Kopf und } 6) = \frac{1}{2} \times \frac{1}{6} = \frac{1}{12}" />. Prüfe durch Auflisten: Es gibt <InlineMath math="2 \times 6 = 12" /> gleich wahrscheinliche Ergebnisse, und nur eines davon ist Kopf und <InlineMath math="6" />.
+
+<MathVisual
+  title={<>Das Produkt als Fläche</>}
+  description={<>Ein Quadrat mit Seitenlänge <InlineMath math="1" /> steht für den Ergebnisraum. Der senkrechte Streifen ist <InlineMath math="P(A) = 0{,}6" />, der waagerechte Streifen ist <InlineMath math="P(B) = 0{,}5" />, und ihre Überschneidung hat die Fläche <InlineMath math="0{,}6 \times 0{,}5 = 0{,}3" />.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.2, max: 1.2 }, y: { min: -0.2, max: 1.2 } },
+    view: { kind: "fit", padding: 0.05 },
+    objects: [
+      { id: "space", kind: "polygon", vertices: [{ x: 0, y: 0 }, { x: 1, y: 0 }, { x: 1, y: 1 }, { x: 0, y: 1 }], appearance: "reference" },
+      { id: "a", kind: "polygon", vertices: [{ x: 0, y: 0 }, { x: 0.6, y: 0 }, { x: 0.6, y: 1 }, { x: 0, y: 1 }], appearance: "primary" },
+      { id: "b", kind: "polygon", vertices: [{ x: 0, y: 0 }, { x: 1, y: 0 }, { x: 1, y: 0.5 }, { x: 0, y: 0.5 }], appearance: "secondary" },
+      { id: "both", kind: "polygon", vertices: [{ x: 0, y: 0 }, { x: 0.6, y: 0 }, { x: 0.6, y: 0.5 }, { x: 0, y: 0.5 }], appearance: "highlight" },
+    ],
+    labels: [
+      { key: "a", objectId: "a", at: { x: 0.3, y: 1 }, placement: "above" },
+      { key: "b", objectId: "b", at: { x: 1, y: 0.25 }, placement: "right" },
+      { key: "both", objectId: "both", at: { x: 0.3, y: 0.25 }, placement: "above" },
+    ],
+  }}
+  labels={{
+    a: <InlineMath math="P(A) = 0{,}6" />,
+    b: <InlineMath math="P(B) = 0{,}5" />,
+    both: <InlineMath math="0{,}3" />,
+  }}
+/>
+
+Das Flächenbild zeigt, was Unabhängigkeit heißt. Innerhalb des Streifens <InlineMath math="A" /> ist der Anteil von <InlineMath math="B" /> immer noch die Hälfte, genau wie im ganzen Quadrat. Zu wissen, dass <InlineMath math="A" /> eingetreten ist, ändert die Chance von <InlineMath math="B" /> also nicht.
+
+## Abhängige Ereignisse erkennen
+
+Prüfe, ob **das erste Ergebnis den Ergebnisraum** für den zweiten Versuch ändert. Wenn ja, sind die Ereignisse abhängig.
+
+| Situation | Art | Grund |
+| --- | --- | --- |
+| Eine Münze zweimal werfen | Unabhängig | Die Münze erinnert sich nicht an den ersten Wurf |
+| Zwei Kugeln **mit** Zurücklegen ziehen | Unabhängig | Die erste Kugel kommt zurück, die Urne bleibt gleich |
+| Zwei Kugeln **ohne** Zurücklegen ziehen | Abhängig | Die Urne verliert eine Kugel, die Anteile ändern sich |
+| Zwei Schüler für zwei verschiedene Ämter wählen | Abhängig | Wer zuerst gewählt wurde, kann nicht noch einmal gewählt werden |
+
+<Mermaid
+  title={<>Die Formel für P(A und B) wählen</>}
+  description={<>Entscheide, ob das erste Ergebnis die Chance des zweiten ändert.</>}
+  chart={`flowchart TD
+  A["Ereignisse A und B aufschreiben"] --> B{"Ändert A die Chance von B?"}
+  B -->|"nein, unabhängig"| C["P(A) x P(B)"]
+  B -->|"ja, abhängig"| D["P(A) x P(B nach A)"]
+  C --> E["Prüfen: alle Pfade im Baum ergeben zusammen 1"]
+  D --> E`}
+/>
+
+Unabhängige Ereignisse sind **nicht** dasselbe wie [unvereinbare Ereignisse](/de/faecher/mathematik/wahrscheinlichkeit/zwei-unvereinbare-ereignisse). Sind <InlineMath math="A" /> und <InlineMath math="B" /> unvereinbar und haben beide eine Wahrscheinlichkeit größer als <InlineMath math="0" />, dann ist <InlineMath math="P(A \cap B) = 0" />, aber <InlineMath math="P(A) \times P(B) > 0" />. Solche unvereinbaren Ereignisse sind also immer abhängig: Sobald <InlineMath math="A" /> eintritt, fällt die Chance von <InlineMath math="B" /> auf <InlineMath math="0" />.
+
+## Baumdiagramm mit Zurücklegen
+
+Eine Urne enthält <InlineMath math="3" /> rote Kugeln <InlineMath math="(R)" /> und <InlineMath math="2" /> grüne Kugeln <InlineMath math="(G)" />. Eine Kugel wird gezogen, ihre Farbe notiert, und sie wird vor dem zweiten Zug **zurückgelegt**. Jeder Ast trägt auf beiden Stufen dieselben Wahrscheinlichkeiten.
+
+<MathVisual
+  title={<>Zwei Züge mit Zurücklegen</>}
+  description={<>Der rote Ast ist immer <InlineMath math="\frac{3}{5}" /> und der grüne Ast immer <InlineMath math="\frac{2}{5}" />. Die Wahrscheinlichkeit jedes Ergebnisses ist das Produkt der Äste entlang seines Pfads.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 10 }, y: { min: 0, max: 6 } },
+    view: { kind: "fit", padding: 0.05 },
+    objects: [
+      { id: "root", kind: "point", at: { x: 0.4, y: 3 }, appearance: "reference" },
+      { id: "m1", kind: "point", at: { x: 3.4, y: 4.6 }, appearance: "primary" },
+      { id: "h1", kind: "point", at: { x: 3.4, y: 1.4 }, appearance: "secondary" },
+      { id: "mm", kind: "point", at: { x: 6.8, y: 5.4 }, appearance: "primary" },
+      { id: "mh", kind: "point", at: { x: 6.8, y: 3.8 }, appearance: "secondary" },
+      { id: "hm", kind: "point", at: { x: 6.8, y: 2.2 }, appearance: "primary" },
+      { id: "hh", kind: "point", at: { x: 6.8, y: 0.6 }, appearance: "secondary" },
+      { id: "to-m1", kind: "segment", from: { x: 0.4, y: 3 }, to: { x: 3.4, y: 4.6 }, appearance: "primary" },
+      { id: "to-h1", kind: "segment", from: { x: 0.4, y: 3 }, to: { x: 3.4, y: 1.4 }, appearance: "secondary" },
+      { id: "to-mm", kind: "segment", from: { x: 3.4, y: 4.6 }, to: { x: 6.8, y: 5.4 }, appearance: "primary" },
+      { id: "to-mh", kind: "segment", from: { x: 3.4, y: 4.6 }, to: { x: 6.8, y: 3.8 }, appearance: "secondary" },
+      { id: "to-hm", kind: "segment", from: { x: 3.4, y: 1.4 }, to: { x: 6.8, y: 2.2 }, appearance: "primary" },
+      { id: "to-hh", kind: "segment", from: { x: 3.4, y: 1.4 }, to: { x: 6.8, y: 0.6 }, appearance: "secondary" },
+    ],
+    labels: [
+      { key: "to-m1", objectId: "to-m1", at: { x: 1.9, y: 3.8 }, placement: "above-left" },
+      { key: "to-h1", objectId: "to-h1", at: { x: 1.9, y: 2.2 }, placement: "below-left" },
+      { key: "to-mm", objectId: "to-mm", at: { x: 5.1, y: 5 }, placement: "above" },
+      { key: "to-mh", objectId: "to-mh", at: { x: 5.1, y: 4.2 }, placement: "below" },
+      { key: "to-hm", objectId: "to-hm", at: { x: 5.1, y: 1.8 }, placement: "above" },
+      { key: "to-hh", objectId: "to-hh", at: { x: 5.1, y: 1 }, placement: "below" },
+      { key: "mm", objectId: "mm", at: { x: 6.8, y: 5.4 }, placement: "right" },
+      { key: "mh", objectId: "mh", at: { x: 6.8, y: 3.8 }, placement: "right" },
+      { key: "hm", objectId: "hm", at: { x: 6.8, y: 2.2 }, placement: "right" },
+      { key: "hh", objectId: "hh", at: { x: 6.8, y: 0.6 }, placement: "right" },
+    ],
+  }}
+  labels={{
+    "to-m1": <InlineMath math="\tfrac{3}{5}" />,
+    "to-h1": <InlineMath math="\tfrac{2}{5}" />,
+    "to-mm": <InlineMath math="\tfrac{3}{5}" />,
+    "to-mh": <InlineMath math="\tfrac{2}{5}" />,
+    "to-hm": <InlineMath math="\tfrac{3}{5}" />,
+    "to-hh": <InlineMath math="\tfrac{2}{5}" />,
+    mm: <InlineMath math="RR = \tfrac{9}{25}" />,
+    mh: <InlineMath math="RG = \tfrac{6}{25}" />,
+    hm: <InlineMath math="GR = \tfrac{6}{25}" />,
+    hh: <InlineMath math="GG = \tfrac{4}{25}" />,
+  }}
+/>
+
+Die Wahrscheinlichkeit für zwei rote Kugeln ist <InlineMath math="\frac{3}{5} \times \frac{3}{5} = \frac{9}{25}" />. Prüfe: Die vier Ergebnisse ergeben zusammen <InlineMath math="\frac{9 + 6 + 6 + 4}{25} = 1" />.
+
+## Baumdiagramm ohne Zurücklegen
+
+Jetzt wird die erste Kugel **nicht** zurückgelegt. Nach dem ersten Zug liegen noch <InlineMath math="4" /> Kugeln in der Urne, und ihr Inhalt hängt von der gezogenen Farbe ab. Deshalb ändern sich die Äste der zweiten Stufe.
+
+<MathVisual
+  title={<>Zwei Züge ohne Zurücklegen</>}
+  description={<>Nach einer roten Kugel enthält die Urne <InlineMath math="2" /> rote und <InlineMath math="2" /> grüne. Nach einer grünen Kugel enthält sie <InlineMath math="3" /> rote und <InlineMath math="1" /> grüne.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 10 }, y: { min: 0, max: 6 } },
+    view: { kind: "fit", padding: 0.05 },
+    objects: [
+      { id: "root", kind: "point", at: { x: 0.4, y: 3 }, appearance: "reference" },
+      { id: "m1", kind: "point", at: { x: 3.4, y: 4.6 }, appearance: "primary" },
+      { id: "h1", kind: "point", at: { x: 3.4, y: 1.4 }, appearance: "secondary" },
+      { id: "mm", kind: "point", at: { x: 6.8, y: 5.4 }, appearance: "primary" },
+      { id: "mh", kind: "point", at: { x: 6.8, y: 3.8 }, appearance: "secondary" },
+      { id: "hm", kind: "point", at: { x: 6.8, y: 2.2 }, appearance: "primary" },
+      { id: "hh", kind: "point", at: { x: 6.8, y: 0.6 }, appearance: "secondary" },
+      { id: "to-m1", kind: "segment", from: { x: 0.4, y: 3 }, to: { x: 3.4, y: 4.6 }, appearance: "primary" },
+      { id: "to-h1", kind: "segment", from: { x: 0.4, y: 3 }, to: { x: 3.4, y: 1.4 }, appearance: "secondary" },
+      { id: "to-mm", kind: "segment", from: { x: 3.4, y: 4.6 }, to: { x: 6.8, y: 5.4 }, appearance: "primary" },
+      { id: "to-mh", kind: "segment", from: { x: 3.4, y: 4.6 }, to: { x: 6.8, y: 3.8 }, appearance: "secondary" },
+      { id: "to-hm", kind: "segment", from: { x: 3.4, y: 1.4 }, to: { x: 6.8, y: 2.2 }, appearance: "primary" },
+      { id: "to-hh", kind: "segment", from: { x: 3.4, y: 1.4 }, to: { x: 6.8, y: 0.6 }, appearance: "secondary" },
+    ],
+    labels: [
+      { key: "to-m1", objectId: "to-m1", at: { x: 1.9, y: 3.8 }, placement: "above-left" },
+      { key: "to-h1", objectId: "to-h1", at: { x: 1.9, y: 2.2 }, placement: "below-left" },
+      { key: "to-mm", objectId: "to-mm", at: { x: 5.1, y: 5 }, placement: "above" },
+      { key: "to-mh", objectId: "to-mh", at: { x: 5.1, y: 4.2 }, placement: "below" },
+      { key: "to-hm", objectId: "to-hm", at: { x: 5.1, y: 1.8 }, placement: "above" },
+      { key: "to-hh", objectId: "to-hh", at: { x: 5.1, y: 1 }, placement: "below" },
+      { key: "mm", objectId: "mm", at: { x: 6.8, y: 5.4 }, placement: "right" },
+      { key: "mh", objectId: "mh", at: { x: 6.8, y: 3.8 }, placement: "right" },
+      { key: "hm", objectId: "hm", at: { x: 6.8, y: 2.2 }, placement: "right" },
+      { key: "hh", objectId: "hh", at: { x: 6.8, y: 0.6 }, placement: "right" },
+    ],
+  }}
+  labels={{
+    "to-m1": <InlineMath math="\tfrac{3}{5}" />,
+    "to-h1": <InlineMath math="\tfrac{2}{5}" />,
+    "to-mm": <InlineMath math="\tfrac{2}{4}" />,
+    "to-mh": <InlineMath math="\tfrac{2}{4}" />,
+    "to-hm": <InlineMath math="\tfrac{3}{4}" />,
+    "to-hh": <InlineMath math="\tfrac{1}{4}" />,
+    mm: <InlineMath math="RR = \tfrac{6}{20}" />,
+    mh: <InlineMath math="RG = \tfrac{6}{20}" />,
+    hm: <InlineMath math="GR = \tfrac{6}{20}" />,
+    hh: <InlineMath math="GG = \tfrac{2}{20}" />,
+  }}
+/>
+
+Die Wahrscheinlichkeit für zwei rote Kugeln ist jetzt <InlineMath math="\frac{3}{5} \times \frac{2}{4} = \frac{6}{20} = \frac{3}{10}" />, kleiner als <InlineMath math="\frac{9}{25}" />, weil der erste rote Zug weniger rote Kugeln in der Urne lässt. Prüfe: <InlineMath math="\frac{6 + 6 + 6 + 2}{20} = 1" />.
+
+<BarChart
+  title={<>Verteilung der Ergebnisse ohne Zurücklegen</>}
+  description={<>Die Wahrscheinlichkeiten der vier Ergebnisse zweier Züge aus einer Urne mit <InlineMath math="3" /> roten und <InlineMath math="2" /> grünen Kugeln. Die Balken ergeben zusammen <InlineMath math="1" />.</>}
+  data={[
+    { name: "RR", value: 0.3 },
+    { name: "RG", value: 0.3 },
+    { name: "GR", value: 0.3 },
+    { name: "GG", value: 0.1 },
+  ]}
+  yAxisLabel="Wahrscheinlichkeit"
+  chartConfig={{ value: { label: "Wahrscheinlichkeit", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>
+
+## Fast unabhängig bei großen Urnen
+
+Das Modell unten vergleicht die Wahrscheinlichkeit für zwei rote Kugeln, wenn der Anteil roter Kugeln in der Urne <InlineMath math="x" /> ist. Mit Zurücklegen ist der Wert <InlineMath math="x^2" />. Ohne Zurücklegen aus einer Urne mit <InlineMath math="n" /> Kugeln ist er <InlineMath math="x \times \frac{nx - 1}{n - 1}" />. Verschiebe <InlineMath math="n" /> und beobachte, wie sich die Kurve ohne Zurücklegen der Kurve mit Zurücklegen **annähert**, je größer die Urne wird.
+
+<MathVisual
+  title={<>Zwei rote Kugeln mit und ohne Zurücklegen</>}
+  description={<>Die waagerechte Achse ist der Anteil roter Kugeln in der Urne und die senkrechte Achse die Wahrscheinlichkeit für zwei rote Kugeln. Die Markierung zeigt eine Urne mit <InlineMath math="r" /> roten Kugeln.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 1 }, y: { min: 0, max: 1 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "n", min: 2, max: 40, value: 5, step: 1, label: "n" },
+      { name: "r", min: 1, max: 40, value: 3, step: 1, label: "r" },
+    ],
+    objects: [
+      { id: "with", kind: "function", appearance: "reference", formula: "x^2", domain: { min: 0, max: 1 } },
+      { id: "without", kind: "function", appearance: "primary", formula: "max(0, x (n x - 1)/(n - 1))", domain: { min: 0, max: 1 } },
+      { id: "bag", kind: "marker", x: "min(r, n)/n", y: "(min(r, n)/n) (min(r, n) - 1)/(n - 1)", appearance: "warning" },
+    ],
+    readouts: [
+      { key: "replace", formula: "(min(r, n)/n)^2" },
+      { key: "keep", formula: "(min(r, n)/n) (min(r, n) - 1)/(n - 1)" },
+    ],
+  }}
+  labels={{
+    n: <>Anzahl der Kugeln <InlineMath math="n" /></>,
+    r: <>Rote Kugeln <InlineMath math="r" /></>,
+    replace: <>Mit Zurücklegen</>,
+    keep: <>Ohne Zurücklegen</>,
+  }}
+/>
+
+Mit <InlineMath math="n = 5" /> und <InlineMath math="r = 3" /> zeigen die Anzeigen <InlineMath math="0{,}36" /> und <InlineMath math="0{,}3" />, also <InlineMath math="\frac{9}{25}" /> und <InlineMath math="\frac{3}{10}" /> aus den Bäumen oben. Mit <InlineMath math="n = 40" /> und <InlineMath math="r = 24" /> ist der Anteil immer noch <InlineMath math="\frac{3}{5}" />, aber der Wert ohne Zurücklegen steigt auf <InlineMath math="\frac{24}{40} \times \frac{23}{39} \approx 0{,}354" />, nahe bei <InlineMath math="0{,}36" />. Ein Zug ändert eine große Urne kaum.
+
+## Beispiel mit zwei unabhängigen Maschinen
+
+Eine Fabrik hat zwei Maschinen, die unabhängig voneinander ausfallen. Die Wahrscheinlichkeit, dass Maschine <InlineMath math="A" /> an einem Tag läuft, ist <InlineMath math="0{,}9" />, für Maschine <InlineMath math="B" /> ist sie <InlineMath math="0{,}8" />. Bestimme die Wahrscheinlichkeit, dass **beide** Maschinen laufen, und die Wahrscheinlichkeit, dass **mindestens eine** Maschine läuft.
+
+<MathContainer>
+  <BlockMath math="P(A \cap B) = 0{,}9 \times 0{,}8 = 0{,}72" />
+  <BlockMath math="P(\text{beide fallen aus}) = 0{,}1 \times 0{,}2 = 0{,}02" />
+  <BlockMath math="P(\text{mindestens eine läuft}) = 1 - 0{,}02 = 0{,}98" />
+</MathContainer>
+
+Prüfe mit den drei Fällen, in denen mindestens eine Maschine läuft: <InlineMath math="0{,}9 \times 0{,}8 + 0{,}9 \times 0{,}2 + 0{,}1 \times 0{,}8 = 0{,}72 + 0{,}18 + 0{,}08 = 0{,}98" />.
+
+## Beispiel zum Test auf Unabhängigkeit
+
+Ein Würfel wird einmal geworfen. <InlineMath math="A" /> ist das Ereignis einer geraden Zahl und <InlineMath math="B" /> das Ereignis einer Zahl größer als <InlineMath math="3" />. Sind <InlineMath math="A" /> und <InlineMath math="B" /> unabhängig?
+
+Vergleiche <InlineMath math="P(A \cap B)" /> mit <InlineMath math="P(A) \times P(B)" />. Die Schnittmenge ist <InlineMath math="\{4, 6\}" />:
+
+<MathContainer>
+  <BlockMath math="P(A \cap B) = \frac{2}{6} = \frac{1}{3}" />
+  <BlockMath math="P(A) \times P(B) = \frac{3}{6} \times \frac{3}{6} = \frac{1}{4}" />
+</MathContainer>
+
+Da <InlineMath math="\frac{1}{3} \ne \frac{1}{4}" />, sind die Ereignisse **abhängig**. Prüfe mit der Bedeutung: Weißt du schon, dass das Ergebnis gerade ist, bleiben <InlineMath math="\{2, 4, 6\}" />, und zwei davon sind größer als <InlineMath math="3" />. Also ist <InlineMath math="P(B \mid A) = \frac{2}{3}" />, nicht <InlineMath math="P(B) = \frac{1}{2}" />.
+
+## Häufige Fehler
+
+| Fehler | Warum er falsch ist | So prüfst du |
+| --- | --- | --- |
+| Beim zweiten Zug ohne Zurücklegen denselben Bruch verwenden | Die Urne hat schon eine Kugel verloren | Der Nenner der zweiten Stufe muss um eins kleiner sein |
+| Unvereinbar mit unabhängig gleichsetzen | Unvereinbar heißt <InlineMath math="P(A \cap B) = 0" />, nicht <InlineMath math="P(A)P(B)" /> | Vergleiche <InlineMath math="P(A \cap B)" /> mit <InlineMath math="P(A) \times P(B)" /> |
+| Wahrscheinlichkeiten entlang eines Pfads addieren | Ein Pfad bedeutet, dass beide Ereignisse eintreten, also wird multipliziert | Das Produkt eines Pfads ist nie größer als sein erster Ast |
+| Wahrscheinlichkeiten zweier verschiedener Pfade multiplizieren | Verschiedene Pfade treten nicht zusammen ein, also wird addiert | Alle Pfade ergeben zusammen <InlineMath math="1" /> |
+| Mindestens eins durch Auflisten nur einiger Fälle berechnen | Ein fehlender Fall wird leicht übersehen | Nutze das Gegenereignis: <InlineMath math="1 - P(\text{keins})" /> |
+
+Die stärkste Probe ist **die Summe aller Pfade im Baum**. Ergibt sie nicht <InlineMath math="1" />, ist ein Ast falsch.
+
+## Übungsaufgaben
+
+Entscheide zuerst, ob die Ereignisse abhängig sind, und **prüfe jede Antwort mit der Pfadsumme oder dem Gegenereignis**.
+
+1. Zwei Würfel werden geworfen. Bestimme die Wahrscheinlichkeit, dass beide eine <InlineMath math="6" /> zeigen.
+
+2. Eine Schachtel enthält <InlineMath math="4" /> blaue und <InlineMath math="6" /> gelbe Karten. Zwei Karten werden nacheinander ohne Zurücklegen gezogen. Bestimme die Wahrscheinlichkeit für zwei gelbe Karten und die Wahrscheinlichkeit für zwei verschiedene Farben.
+
+3. <InlineMath math="A" /> und <InlineMath math="B" /> sind unabhängige Ereignisse mit <InlineMath math="P(A) = 0{,}3" /> und <InlineMath math="P(B) = 0{,}6" />. Bestimme <InlineMath math="P(A \cap B)" /> und <InlineMath math="P(A \cup B)" />.
+
+4. Eine Bogenschützin trifft bei jedem Schuss mit der Wahrscheinlichkeit <InlineMath math="0{,}8" />, und die Schüsse sind unabhängig. Sie schießt dreimal. Bestimme die Wahrscheinlichkeit für drei Treffer und die Wahrscheinlichkeit für mindestens einen Fehlschuss.
+
+### Lösungen
+
+Nur Aufgabe 2 ist **abhängig**, weil die Karten nicht zurückgelegt werden. Die anderen drei haben unabhängige Ereignisse.
+
+**Aufgabe 1**. Die beiden Würfel sind unabhängig:
+
+<BlockMath math="P(6 \text{ und } 6) = \frac{1}{6} \times \frac{1}{6} = \frac{1}{36}" />
+
+Prüfe: Von den <InlineMath math="36" /> Ergebnispaaren passt nur <InlineMath math="(6, 6)" />.
+
+**Aufgabe 2**. Die Züge sind abhängig, weil die erste Karte nicht zurückgelegt wird:
+
+<MathContainer>
+  <BlockMath math="P(\text{gelb, gelb}) = \frac{6}{10} \times \frac{5}{9} = \frac{30}{90} = \frac{1}{3}" />
+  <BlockMath math="P(\text{verschiedene Farben}) = \frac{4}{10} \times \frac{6}{9} + \frac{6}{10} \times \frac{4}{9} = \frac{48}{90} = \frac{8}{15}" />
+</MathContainer>
+
+Prüfe: <InlineMath math="P(\text{blau, blau}) = \frac{4}{10} \times \frac{3}{9} = \frac{12}{90}" />, und <InlineMath math="\frac{30 + 48 + 12}{90} = 1" />.
+
+**Aufgabe 3**. Multipliziere für die Schnittmenge und nutze dann den [Additionssatz](/de/faecher/mathematik/wahrscheinlichkeit/additionssatz):
+
+<MathContainer>
+  <BlockMath math="P(A \cap B) = 0{,}3 \times 0{,}6 = 0{,}18" />
+  <BlockMath math="P(A \cup B) = 0{,}3 + 0{,}6 - 0{,}18 = 0{,}72" />
+</MathContainer>
+
+Prüfe mit dem Gegenereignis: <InlineMath math="P(\text{weder } A \text{ noch } B) = 0{,}7 \times 0{,}4 = 0{,}28" />, und <InlineMath math="1 - 0{,}28 = 0{,}72" />.
+
+**Aufgabe 4**. Die drei Schüsse sind unabhängig:
+
+<MathContainer>
+  <BlockMath math="P(\text{drei Treffer}) = 0{,}8 \times 0{,}8 \times 0{,}8 = 0{,}512" />
+  <BlockMath math="P(\text{mindestens ein Fehlschuss}) = 1 - 0{,}512 = 0{,}488" />
+</MathContainer>
+
+Prüfe: Die beiden Ereignisse sind Gegenereignisse, und <InlineMath math="0{,}512 + 0{,}488 = 1" />.

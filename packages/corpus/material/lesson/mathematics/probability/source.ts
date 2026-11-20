@@ -13,6 +13,7 @@ const lesson: LessonModule = {
   },
   sections: [
     "addition-rule",
+    "independent-dependent-events",
     "probability-distribution",
     "two-events-mutually-exclusive",
     "two-events-not-mutually-exclusive",
