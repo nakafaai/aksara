@@ -41,6 +41,13 @@ function isPositiveDecimal(value: string) {
   return value !== "0" && !value.startsWith("-");
 }
 
+/** One canonical decimal strictly greater than zero, such as a tolerance. */
+export const PositiveDecimalSchema = DecimalSchema.check(
+  Schema.makeFilter(isPositiveDecimal, {
+    message: "Expected a positive tolerance.",
+  })
+);
+
 /**
  * Largest accepted distance from the exact value, inclusive. An absolute
  * tolerance `t` accepts `|answer - value| <= t`. A relative tolerance `r`
@@ -49,11 +56,7 @@ function isPositiveDecimal(value: string) {
  */
 export const ToleranceSchema = Schema.Struct({
   kind: Schema.Literals(["absolute", "relative"]),
-  value: DecimalSchema.check(
-    Schema.makeFilter(isPositiveDecimal, {
-      message: "Expected a positive tolerance.",
-    })
-  ),
+  value: PositiveDecimalSchema,
 }).check(
   Schema.makeFilter(
     ({ kind, value }) => kind === "absolute" || value.startsWith("0."),

@@ -215,19 +215,40 @@ function fitsField(rule: ScoringRule) {
 }
 
 /**
+ * Checks that an interaction of this kind is scored by a rubric of its own,
+ * and never by a default: an extended text, whose criteria a grader reads, and
+ * a sketch, whose criteria are features of the drawn graph.
+ */
+export function takesRubric(kind: InteractionKind) {
+  return kind === "extendedText" || kind === "sketch";
+}
+
+/**
+ * Checks that every criterion of a rubric is missed or earned, as a feature of
+ * a sketch is: two levels, the lower one worth no points.
+ */
+function isMissedOrEarned(rule: typeof RubricRuleSchema.Type) {
+  return Arr.every(
+    rule.criteria,
+    ({ levels }) =>
+      levels.length === 2 && Arr.some(levels, ({ points }) => points === 0)
+  );
+}
+
+/**
  * Checks that a rule can score an interaction of this kind. A rubric scores an
- * extended text and nothing else, and an extended text takes no other rule. A
- * field has one part, worth the points of its rule: one point, or more when
- * the item is worth more. The floor of a rule per part is at most those
- * points, and a wrong-parts table has one band for no wrong part. Every other
- * kind has the parts that its key counts, so the key checks the floor of a rule
- * for those.
+ * extended text or a sketch and nothing else, and they take no other rule; each
+ * criterion of a sketch is missed or earned. A field has one part, worth the
+ * points of its rule: one point, or more when the item is worth more. The
+ * floor of a rule per part is at most those points, and a wrong-parts table has
+ * one band for no wrong part. Every other kind has the parts that its key
+ * counts, so the key checks the floor of a rule for those.
  */
 export function supportsRule(kind: InteractionKind, rule: ScoringRule) {
-  return (
-    (kind === "extendedText") === (rule.kind === "rubric") &&
-    (!canSitInText(kind) || fitsField(rule))
-  );
+  if (rule.kind === "rubric") {
+    return takesRubric(kind) && (kind !== "sketch" || isMissedOrEarned(rule));
+  }
+  return !takesRubric(kind) && (!canSitInText(kind) || fitsField(rule));
 }
 
 /**

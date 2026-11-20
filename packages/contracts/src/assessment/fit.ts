@@ -5,7 +5,7 @@ import { hasDistinctIds, hasUniqueIds } from "#contracts/assessment/identity";
 import type { Interaction } from "#contracts/assessment/interaction";
 import { canSitInText } from "#contracts/assessment/interaction";
 import type { ScoringOverride } from "#contracts/assessment/scoring";
-import { supportsRule } from "#contracts/assessment/scoring";
+import { supportsRule, takesRubric } from "#contracts/assessment/scoring";
 
 type Place = ReturnType<typeof documentPlacements>[number];
 
@@ -66,8 +66,8 @@ export function hasPlacedInteractions(version: {
 
 /**
  * Checks the scoring rules that a version sets itself: each names one of its
- * interactions once, and fits its kind. An extended text has no default, so it
- * must carry its rubric.
+ * interactions once, and fits its kind. An extended text and a sketch have no
+ * default, so each must carry its rubric.
  */
 export function hasFittingRules(version: {
   readonly interactions: readonly Interaction[];
@@ -85,7 +85,7 @@ export function hasFittingRules(version: {
       )
     ) &&
     Arr.every(
-      Arr.filter(version.interactions, ({ kind }) => kind === "extendedText"),
+      Arr.filter(version.interactions, ({ kind }) => takesRubric(kind)),
       ({ id }) =>
         Arr.some(
           version.scoring,
