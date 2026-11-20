@@ -1,0 +1,179 @@
+export const metadata = {
+  title: "Implikasi dan Kontraposisi",
+  description:
+    "Susun implikasi dan biimplikasi, bentuk konvers, invers, dan kontraposisi, bandingkan nilainya, lalu patahkan klaim umum dengan satu contoh penyangkal.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2026-11-20",
+  subject: "Logika Matematika",
+};
+
+## Kalimat Jika dan Maka
+
+Implikasi menghubungkan dua pernyataan dengan satu aturan: **setiap kali bagian pertama benar, bagian kedua juga benar**. Bentuknya jika <InlineMath math="p" />, maka <InlineMath math="q" />. Bagian <InlineMath math="p" /> disebut anteseden, dan bagian <InlineMath math="q" /> disebut konsekuen. Contohnya, jika <InlineMath math="m > 5" />, maka <InlineMath math="m > 2" />. Antesedennya <InlineMath math="m > 5" />, dan konsekuennya <InlineMath math="m > 2" />.
+
+Kapan implikasi salah? Hanya kalau antesedennya benar tetapi konsekuennya salah. Kalau antesedennya salah, implikasi tidak menuntut apa pun dari konsekuennya, jadi **implikasi tetap benar**.
+
+| <InlineMath math="p" /> | <InlineMath math="q" /> | Jika <InlineMath math="p" />, maka <InlineMath math="q" /> |
+| :--- | :--- | :--- |
+| Benar | Benar | Benar |
+| Benar | Salah | Salah |
+| Salah | Benar | Benar |
+| Salah | Salah | Benar |
+
+Cek implikasi jika <InlineMath math="m > 5" />, maka <InlineMath math="m > 2" />. Untuk membuatnya salah, kamu butuh bilangan yang lebih dari <InlineMath math="5" /> tetapi tidak lebih dari <InlineMath math="2" />. Bilangan seperti itu tidak ada, karena setiap bilangan di atas <InlineMath math="5" /> sudah melewati <InlineMath math="2" />. Baris benar lalu salah tidak pernah terjadi, jadi implikasinya benar. Untuk <InlineMath math="m = 3" />, antesedennya salah dan konsekuennya benar, dan baris itu tidak melanggar apa pun.
+
+## Dua Arah dalam Satu Kalimat
+
+Kadang implikasi berlaku ke dua arah. Jika <InlineMath math="x + 3 = 10" />, maka <InlineMath math="x = 7" />, dan jika <InlineMath math="x = 7" />, maka <InlineMath math="x + 3 = 10" />. Kedua implikasi itu benar, jadi keduanya boleh digabung menjadi **biimplikasi**: <InlineMath math="x + 3 = 10" /> jika dan hanya jika <InlineMath math="x = 7" />. Bentuk umumnya <InlineMath math="p" /> jika dan hanya jika <InlineMath math="q" />, dan biimplikasi benar kalau **kedua implikasinya benar**.
+
+Sekarang pecah sebuah biimplikasi menjadi dua implikasi. Untuk bilangan cacah, berlaku: sebuah bilangan genap jika dan hanya jika angka terakhirnya <InlineMath math="0, 2, 4, 6" /> atau <InlineMath math="8" />.
+
+| Arah | Implikasi | Nilai |
+| :--- | :--- | :--- |
+| <InlineMath math="p" /> ke <InlineMath math="q" /> | Jika sebuah bilangan cacah genap, maka angka terakhirnya <InlineMath math="0, 2, 4, 6" /> atau <InlineMath math="8" />. | Benar |
+| <InlineMath math="q" /> ke <InlineMath math="p" /> | Jika angka terakhir sebuah bilangan cacah <InlineMath math="0, 2, 4, 6" /> atau <InlineMath math="8" />, maka bilangan itu genap. | Benar |
+
+Cek keduanya sekaligus. Setiap bilangan cacah bisa ditulis <InlineMath math="10k + d" />, dengan <InlineMath math="d" /> angka terakhirnya. Bagian <InlineMath math="10k" /> selalu genap, jadi genap atau tidaknya bilangan itu hanya ditentukan oleh <InlineMath math="d" />.
+
+Ingat lagi implikasi tentang <InlineMath math="m" />. Jika <InlineMath math="m > 5" />, maka <InlineMath math="m > 2" /> memang benar, tetapi <InlineMath math="m > 5" /> jika dan hanya jika <InlineMath math="m > 2" /> salah. Arah kebalikannya, jika <InlineMath math="m > 2" />, maka <InlineMath math="m > 5" />, patah di <InlineMath math="m = 3" />. Satu arah yang patah sudah membuat **biimplikasinya salah**.
+
+## Membalik Sebuah Implikasi
+
+Dari satu implikasi jika <InlineMath math="p" />, maka <InlineMath math="q" />, kamu bisa menyusun tiga implikasi baru: tukar kedua bagiannya, beri negasi pada keduanya, atau lakukan dua-duanya. Masing-masing punya nama, dan nilai kebenarannya **tidak selalu sama** dengan implikasi asalnya.
+
+### Tiga Implikasi Baru
+
+Ambil implikasi jika <InlineMath math="x > 2" />, maka <InlineMath math="x^2 > 4" />, untuk bilangan real <InlineMath math="x" />. Negasi dari <InlineMath math="x > 2" /> adalah <InlineMath math="x \le 2" />, dan negasi dari <InlineMath math="x^2 > 4" /> adalah <InlineMath math="x^2 \le 4" />.
+
+| Nama | Cara menyusun | Contoh | Nilai |
+| :--- | :--- | :--- | :--- |
+| Implikasi | asal | Jika <InlineMath math="x > 2" />, maka <InlineMath math="x^2 > 4" /> | Benar |
+| Konvers | tukar kedua bagian | Jika <InlineMath math="x^2 > 4" />, maka <InlineMath math="x > 2" /> | Salah |
+| Invers | negasikan kedua bagian | Jika <InlineMath math="x \le 2" />, maka <InlineMath math="x^2 \le 4" /> | Salah |
+| Kontraposisi | tukar lalu negasikan | Jika <InlineMath math="x^2 \le 4" />, maka <InlineMath math="x \le 2" /> | Benar |
+
+Grafik ini menguji konvers. Geser <InlineMath math="x" /> dan cari titik yang berada di atas garis <InlineMath math="y = 4" /> tetapi di sebelah kiri <InlineMath math="x = 2" />.
+
+<MathVisual
+  title={<>Menguji Konvers dengan Contoh Penyangkal</>}
+  description={
+    <>
+      Kurva <InlineMath math="y = x^2" /> dan garis <InlineMath math="y = 4" />.
+      Titik di atas garis memenuhi <InlineMath math="x^2 > 4" />.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -4, max: 4 }, y: { min: -1, max: 12 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "a", min: -3.5, max: 3.5, value: -3, step: 0.1, label: "a" },
+    ],
+    objects: [
+      { id: "square", kind: "function", appearance: "primary", formula: "x^2", domain: { min: -3.5, max: 3.5 } },
+      { id: "four", kind: "function", appearance: "construction", formula: "4 + 0x", domain: { min: -4, max: 4 } },
+      { id: "now", kind: "marker", x: "a", y: "a^2", appearance: "warning" },
+    ],
+    readouts: [
+      { key: "square", formula: "a^2" },
+    ],
+  }}
+  labels={{
+    a: <>Nilai <InlineMath math="x" /></>,
+    square: <>Nilai <InlineMath math="x^2" /></>,
+  }}
+/>
+
+Di <InlineMath math="x = -3" />, titiknya ada di atas garis tetapi di kiri <InlineMath math="x = 2" />.
+
+<BlockMath math="(-3)^2 = 9 > 4 \quad\text{tetapi}\quad -3 < 2" />
+
+Jadi <InlineMath math="x = -3" /> memenuhi <InlineMath math="x^2 > 4" /> tanpa memenuhi <InlineMath math="x > 2" />, dan **konversnya salah**. Bilangan yang sama mematahkan inversnya: <InlineMath math="-3 \le 2" />, tetapi <InlineMath math="(-3)^2 = 9" /> lebih dari <InlineMath math="4" />. Kontraposisinya benar. Kalau <InlineMath math="x^2 \le 4" />, maka <InlineMath math="x" /> ada di antara <InlineMath math="-2" /> dan <InlineMath math="2" />, jadi pasti <InlineMath math="x \le 2" />.
+
+### Pasangan Bernilai Sama
+
+Hasil tadi bukan kebetulan. Tabel kebenaran keempat bentuk menunjukkan bahwa implikasi dan kontraposisinya **selalu bernilai sama**, begitu juga konvers dan invers.
+
+| <InlineMath math="p" /> | <InlineMath math="q" /> | Implikasi | Kontraposisi | Konvers | Invers |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| Benar | Benar | Benar | Benar | Benar | Benar |
+| Benar | Salah | Salah | Salah | Benar | Benar |
+| Salah | Benar | Benar | Benar | Salah | Salah |
+| Salah | Salah | Benar | Benar | Benar | Benar |
+
+Kalau kamu sudah membuktikan sebuah implikasi, kontraposisinya ikut terbukti. Konvers tidak ikut. Konvers bisa salah, seperti pada <InlineMath math="x > 2" /> tadi, tetapi bisa juga benar. Untuk bilangan cacah <InlineMath math="n" />, jika <InlineMath math="n" /> kelipatan <InlineMath math="10" />, maka angka terakhir <InlineMath math="n" /> adalah <InlineMath math="0" />. Konversnya, jika angka terakhir <InlineMath math="n" /> adalah <InlineMath math="0" />, maka <InlineMath math="n" /> kelipatan <InlineMath math="10" />, juga benar, dan inversnya ikut benar karena berpasangan dengan konvers. Jadi **konvers harus dicek sendiri**, tidak bisa disalin dari implikasi asalnya.
+
+## Satu Kasus Mematahkan Klaim
+
+Untuk menjatuhkan klaim tentang setiap kasus, kamu cukup menemukan satu kasus yang gagal. Kasus itu disebut **contoh penyangkal**. Untuk implikasi jika <InlineMath math="p" />, maka <InlineMath math="q" />, contoh penyangkal adalah kasus dengan <InlineMath math="p" /> benar dan <InlineMath math="q" /> salah, satu-satunya baris yang membuat implikasi salah. Cara ini sama dengan menjatuhkan [klaim dengan kata semua](/id/materi/matematika/logika-matematika/pernyataan-dan-nilai-kebenaran) di papan ubin.
+
+Papan di bawah memuat sembilan ubin dan dua klaim yang saling konvers. Setiap ubin yang dicek masuk ke salah satu dari empat kotak kasus <InlineMath math="p" /> dan <InlineMath math="q" />.
+
+<CounterexampleGridLab
+  title={<>Papan Empat Kasus</>}
+  description={
+    <>
+      Pilih klaim, lalu cek ubin satu per satu. Setiap ubin pindah ke kotak
+      kasusnya sendiri.
+    </>
+  }
+  footer={<>Hanya kotak <InlineMath math="p" /> benar dan <InlineMath math="q" /> salah yang bisa mematahkan klaim jika maka.</>}
+  tiles={[
+    { name: "4", tile: { kind: "number", value: 4 } },
+    { name: "6", tile: { kind: "number", value: 6 } },
+    { name: "8", tile: { kind: "number", value: 8 } },
+    { name: "9", tile: { kind: "number", value: 9 } },
+    { name: "12", tile: { kind: "number", value: 12 } },
+    { name: "15", tile: { kind: "number", value: 15 } },
+    { name: "18", tile: { kind: "number", value: 18 } },
+    { name: "20", tile: { kind: "number", value: 20 } },
+    { name: "24", tile: { kind: "number", value: 24 } },
+  ]}
+  claims={[
+    {
+      name: "Implikasi",
+      text: "Jika sebuah bilangan di sini kelipatan 6, maka bilangan itu kelipatan 3.",
+      claim: {
+        kind: "if",
+        p: { name: "Kelipatan 6", test: { kind: "multiple", of: 6 } },
+        q: { name: "Kelipatan 3", test: { kind: "multiple", of: 3 } },
+      },
+    },
+    {
+      name: "Konvers",
+      text: "Jika sebuah bilangan di sini kelipatan 3, maka bilangan itu kelipatan 6.",
+      claim: {
+        kind: "if",
+        p: { name: "Kelipatan 3", test: { kind: "multiple", of: 3 } },
+        q: { name: "Kelipatan 6", test: { kind: "multiple", of: 6 } },
+      },
+    },
+  ]}
+  labels={{
+    claim: <>Klaim</>,
+    claims: "Klaim",
+    false: "Salah",
+    none: <>Belum ada ubin yang dipilih</>,
+    picked: <>Ubin yang dipilih</>,
+    tile: "Ubin",
+    true: "Benar",
+    verdicts: {
+      breaks: <>Contoh penyangkal</>,
+      fits: <>Cocok</>,
+      misses: <>Bukan contoh</>,
+      outside: <>Di luar klaim</>,
+      proves: <>Contoh</>,
+      safe: <>Syarat salah</>,
+    },
+    viewLabel: "Sembilan ubin bilangan dan papan empat kasus",
+  }}
+  showAnswer
+/>
+
+Implikasi pertama bertahan sampai ubin terakhir. Kotak <InlineMath math="p" /> benar dan <InlineMath math="q" /> salah tetap kosong, karena setiap kelipatan <InlineMath math="6" /> berbentuk <InlineMath math="6k = 3(2k)" />, jadi juga kelipatan <InlineMath math="3" />. Konversnya patah di ubin <InlineMath math="9" />, yang kelipatan <InlineMath math="3" /> tetapi bukan kelipatan <InlineMath math="6" />, dan ubin <InlineMath math="15" /> mematahkannya juga. Ubin <InlineMath math="4" />, <InlineMath math="8" />, dan <InlineMath math="20" /> bukan kelipatan <InlineMath math="3" />, jadi pada kedua klaim syaratnya salah dan ubin itu **tidak bisa mematahkan apa pun**.
+
+Contoh penyangkal kadang bersembunyi jauh. Lihat klaim ini: untuk setiap bilangan cacah <InlineMath math="n" />, nilai <InlineMath math="n^2 + n + 41" /> adalah bilangan prima. Untuk <InlineMath math="n = 0, 1, 2" /> hasilnya <InlineMath math="41, 43, 47" />, semuanya prima. Klaim ini bahkan lolos untuk <InlineMath math="n = 0" /> sampai <InlineMath math="n = 39" />, empat puluh kasus berturut-turut. Sekarang coba <InlineMath math="n = 40" />.
+
+<BlockMath math="40^2 + 40 + 41 = 1{.}600 + 40 + 41 = 1{.}681 = 41 \times 41" />
+
+Bilangan <InlineMath math="1{.}681" /> habis dibagi <InlineMath math="41" />, jadi bukan bilangan prima, dan **satu kasus ini menjatuhkan klaimnya**. Cek perkaliannya: <InlineMath math="41 \times 41 = 1{.}640 + 41 = 1{.}681" />. Empat puluh kasus yang cocok tidak membuktikan klaim tentang semua bilangan, sedangkan satu contoh penyangkal sudah cukup untuk menyalahkannya.

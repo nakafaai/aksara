@@ -1,0 +1,261 @@
+export const metadata = {
+  title: "Deduktive und induktive Argumente",
+  description:
+    "Unterscheide deduktives und induktives Schließen, nutze die drei gültigen Schlussformen, beurteile die Stärke eines Musters und löse ein Kartenrätsel.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2026-11-17",
+  dateModified: "2026-11-20",
+  subject: "Logisches Schließen",
+};
+
+## Von Prämissen zur Konklusion
+
+Ein Argument ist eine Kette von Aussagen: Einige Aussagen, die du annimmst, die **Prämissen**, führen zu einer Aussage, die du behauptest, der **Konklusion**. Es gibt zwei Richtungen des Schließens. Deduktives Schließen geht von allgemeinen Prämissen zu einer besonderen Konklusion. Induktives Schließen geht von besonderen Fällen zu einer allgemeinen Konklusion.
+
+| Richtung | Prämissen | Konklusion |
+| :--- | :--- | :--- |
+| Deduktiv | In jedem Viereck ist die Summe der Innenwinkel <InlineMath math="360^\circ" />. <InlineMath math="PQRS" /> ist ein Viereck. | Die Innenwinkel von <InlineMath math="PQRS" /> ergeben zusammen <InlineMath math="360^\circ" />. |
+| Induktiv | <InlineMath math="1 + 3 = 2^2" />, <InlineMath math="1 + 3 + 5 = 3^2" />, <InlineMath math="1 + 3 + 5 + 7 = 4^2" /> | Die Summe der ersten <InlineMath math="n" /> ungeraden Zahlen ist <InlineMath math="n^2" />. |
+
+Der Unterschied liegt in der Gewissheit. Sind die Prämissen eines deduktiven Arguments wahr und ist seine Form gültig, dann ist die Konklusion **sicher wahr**. Eine induktive Konklusion ist nur **wahrscheinlich wahr**, deshalb testest du sie an neuen Fällen. Für <InlineMath math="n = 5" /> hält das Muster noch, denn <InlineMath math="1 + 3 + 5 + 7 + 9 = 25 = 5^2" />. Trotzdem ist ein weiterer Fall noch kein Beweis für jedes <InlineMath math="n" />.
+
+## Drei gültige Schlussformen
+
+Manche Formen von Argumenten funktionieren immer: Sind die Prämissen wahr, kann die Konklusion nicht falsch sein. Ein Argument mit so einer Form heißt **gültig**. Die drei Formen in dieser Tabelle wirst du am häufigsten brauchen.
+
+| Form | Prämisse 1 | Prämisse 2 | Konklusion |
+| :--- | :--- | :--- | :--- |
+| I | Alle <InlineMath math="A" /> sind <InlineMath math="B" />. | <InlineMath math="C" /> ist ein <InlineMath math="A" />. | <InlineMath math="C" /> ist ein <InlineMath math="B" />. |
+| II, Modus ponens | Wenn <InlineMath math="p" />, dann <InlineMath math="q" />. | <InlineMath math="p" /> ist wahr. | <InlineMath math="q" /> ist wahr. |
+| III, Modus tollens | Wenn <InlineMath math="p" />, dann <InlineMath math="q" />. | <InlineMath math="\sim q" /> ist wahr. | <InlineMath math="\sim p" /> ist wahr. |
+
+Form I funktioniert, weil jedes Element von <InlineMath math="A" />, auch <InlineMath math="C" />, in <InlineMath math="B" /> liegt, sobald ganz <InlineMath math="A" /> in <InlineMath math="B" /> liegt. Form III funktioniert, weil eine Implikation und [ihre Kontraposition immer denselben Wahrheitswert haben](/de/faecher/mathematik/logisches-schliessen/implikation-und-kontraposition). Die Kette unten hält schon Prämisse 1 eines Arguments in Form III. Hier ist <InlineMath math="PQRS" /> ein Drachenviereck mit den Seiten <InlineMath math="3\text{ cm}" />, <InlineMath math="3\text{ cm}" />, <InlineMath math="5\text{ cm}" /> und <InlineMath math="5\text{ cm}" />.
+
+<ArgumentChainLab
+  title={<>Zwei Karten, zwei Reihenfolgen</>}
+  description={
+    <>
+      Leg beide Karten in Prämisse 2 und die Konklusion und tausche sie dann.
+      Die Kette prüft jede Reihenfolge.
+    </>
+  }
+  footer={<>Dieselben Karten, aber eine Reihenfolge schließt die Kette und die andere zerreißt sie.</>}
+  premises={[
+    {
+      statement: { kind: "conditional", antecedent: "square", consequent: "equal-sides" },
+      text: "Wenn PQRS ein Quadrat ist, dann sind alle vier Seiten von PQRS gleich lang.",
+      truth: true,
+    },
+    "open",
+  ]}
+  conclusion="open"
+  hand={[
+    {
+      statement: { kind: "claim", negated: true, statement: "equal-sides" },
+      text: "Die vier Seiten von PQRS sind nicht alle gleich lang.",
+      truth: true,
+    },
+    {
+      statement: { kind: "claim", negated: true, statement: "square" },
+      text: "PQRS ist kein Quadrat.",
+      truth: true,
+    },
+  ]}
+  labels={{
+    conclusion: "Konklusion",
+    fallacies: {
+      antecedent: <>Verneinung des Antezedens</>,
+      consequent: <>Bejahung des Konsequens</>,
+      middle: <>Unverteilter Mittelbegriff</>,
+    },
+    form: <>Form</>,
+    forms: {
+      I: <>Form I</>,
+      II: <>Form II</>,
+      III: <>Form III</>,
+    },
+    hand: "Karten",
+    no: <>Nein</>,
+    premises: ["Prämisse 1", "Prämisse 2"],
+    sound: <>Schlüssig</>,
+    truth: <>Prämissen wahr</>,
+    unfollowed: <>Die Konklusion folgt nicht</>,
+    unlinked: <>Die Prämissen hängen nicht zusammen</>,
+    valid: <>Gültig</>,
+    viewLabel: "Drei Karten auf einer Schiene, verbunden durch zwei Kettenglieder",
+    yes: <>Ja</>,
+  }}
+  showVerdict
+/>
+
+Die erste Reihenfolge legt die vier Seiten von <InlineMath math="PQRS" /> sind nicht alle gleich lang in Prämisse 2 und <InlineMath math="PQRS" /> ist kein Quadrat in die Konklusion. Das ist **Form III**, und die Kette schließt sich. Die zweite Reihenfolge geht den Schritt rückwärts: Aus <InlineMath math="PQRS" /> ist kein Quadrat folgert sie, dass die Seiten nicht alle gleich lang sind. Dieser Schritt ist ein Fehlschluss namens **Verneinung des Antezedens**. Beim Drachenviereck ist die Konklusion zufällig wahr, aber die Form bleibt ungültig. Auch eine Raute ist kein Quadrat, und trotzdem sind ihre vier Seiten gleich lang.
+
+### Gültig und schlüssig
+
+Gültig sagt nur etwas über die Form. Ein Argument, das gültig ist und dessen **Prämissen alle wahr sind**, heißt schlüssig, und nur ein schlüssiges Argument garantiert eine wahre Konklusion. Die Kette unten hält eine falsche Prämisse: Alle Primzahlen sind ungerade.
+
+<ArgumentChainLab
+  title={<>Richtige Form, falsche Prämisse</>}
+  description={
+    <>
+      Leg beide Karten über die Zahl <InlineMath math="2" /> an und lies dann
+      das Urteil der Kette für jede Reihenfolge.
+    </>
+  }
+  footer={<>Ein Siegel markiert jede falsche Karte. Die Kette kann sich trotz Siegel schließen.</>}
+  premises={[
+    {
+      statement: { kind: "all", subject: "prime", predicate: "odd" },
+      text: "Alle Primzahlen sind ungerade.",
+      truth: false,
+    },
+    "open",
+  ]}
+  conclusion="open"
+  hand={[
+    {
+      statement: { kind: "member", member: "2", set: "prime" },
+      text: "2 ist eine Primzahl.",
+      truth: true,
+    },
+    {
+      statement: { kind: "member", member: "2", set: "odd" },
+      text: "2 ist eine ungerade Zahl.",
+      truth: false,
+    },
+  ]}
+  labels={{
+    conclusion: "Konklusion",
+    fallacies: {
+      antecedent: <>Verneinung des Antezedens</>,
+      consequent: <>Bejahung des Konsequens</>,
+      middle: <>Unverteilter Mittelbegriff</>,
+    },
+    form: <>Form</>,
+    forms: {
+      I: <>Form I</>,
+      II: <>Form II</>,
+      III: <>Form III</>,
+    },
+    hand: "Karten",
+    no: <>Nein</>,
+    premises: ["Prämisse 1", "Prämisse 2"],
+    sound: <>Schlüssig</>,
+    truth: <>Prämissen wahr</>,
+    unfollowed: <>Die Konklusion folgt nicht</>,
+    unlinked: <>Die Prämissen hängen nicht zusammen</>,
+    valid: <>Gültig</>,
+    viewLabel: "Drei Karten auf einer Schiene, verbunden durch zwei Kettenglieder",
+    yes: <>Ja</>,
+  }}
+  showVerdict
+/>
+
+Mit <InlineMath math="2" /> ist eine Primzahl als Prämisse 2 ist die Kette **Form I** und gültig: Wären wirklich alle Primzahlen ungerade, müsste <InlineMath math="2" /> ungerade sein. Das Problem ist Prämisse 1, denn <InlineMath math="2" /> ist eine gerade Primzahl. Das Argument ist gültig, aber nicht schlüssig, und seine Konklusion, <InlineMath math="2" /> ist eine ungerade Zahl, ist falsch.
+
+Die andere Reihenfolge, von <InlineMath math="2" /> ist ungerade zu <InlineMath math="2" /> ist eine Primzahl, ist der Fehlschluss des **unverteilten Mittelbegriffs**. Dass alle Primzahlen ungerade sind, macht nicht jede ungerade Zahl zur Primzahl, wie <InlineMath math="9" /> zeigt: ungerade, aber keine Primzahl. Vergleiche ein schlüssiges Argument: Alle Vielfachen von <InlineMath math="4" /> sind gerade, <InlineMath math="36" /> ist ein Vielfaches von <InlineMath math="4" />, also ist <InlineMath math="36" /> gerade. Prüfe: <InlineMath math="36 = 4 \times 9" />.
+
+### Gültige Schlüsse bauen
+
+Für ein gültiges Argument zu einer Situation **wählst du zuerst die Form** und füllst dann die Sätze ein. Das erste Beispiel nutzt Form I. Prämisse 1: Alle Vielfachen von <InlineMath math="9" /> haben eine Quersumme, die durch <InlineMath math="9" /> teilbar ist. Prämisse 2: <InlineMath math="7{.}263" /> ist ein Vielfaches von <InlineMath math="9" />. Konklusion: Die Quersumme von <InlineMath math="7{.}263" /> ist durch <InlineMath math="9" /> teilbar. Prüfe beide Seiten:
+
+<BlockMath math="7{.}263 = 9 \times 807, \qquad 7 + 2 + 6 + 3 = 18 = 9 \times 2" />
+
+Das zweite Beispiel fragt nach einer fehlenden Prämisse. Prämisse 1: Wenn das Quadrat <InlineMath math="K" /> die Seitenlänge <InlineMath math="5\text{ cm}" /> hat, dann ist sein Flächeninhalt <InlineMath math="25\text{ cm}^2" />. Konklusion: Das Quadrat <InlineMath math="K" /> hat nicht die Seitenlänge <InlineMath math="5\text{ cm}" />. Die Konklusion hat die Gestalt <InlineMath math="\sim p" />, also ist das Argument Form III, und Prämisse 2 muss <InlineMath math="\sim q" /> sein: Der Flächeninhalt des Quadrats <InlineMath math="K" /> ist nicht <InlineMath math="25\text{ cm}^2" />. Prüfe: Eine Seite von <InlineMath math="5\text{ cm}" /> ergibt den Flächeninhalt <InlineMath math="5 \times 5 = 25\text{ cm}^2" />, und das widerspricht Prämisse 2. Die Seite ist also wirklich nicht <InlineMath math="5\text{ cm}" /> lang.
+
+## Starke und schwache Induktion
+
+Ein induktives Argument errät aus einigen Fällen eine allgemeine Regel. Geben die Prämissen einen guten Grund, an die Regel zu glauben, ist das Argument **stark**. Ist der Grund dünn, ist es **schwach**. Ein schwaches Beispiel: <InlineMath math="3" />, <InlineMath math="5" /> und <InlineMath math="7" /> sind Primzahlen, also ist jede ungerade Zahl größer als <InlineMath math="1" /> eine Primzahl. Drei Fälle sind zu wenig, und <InlineMath math="9 = 3 \times 3" /> widerlegt die Konklusion sofort.
+
+### Vom Muster zur Regel
+
+Zähle die Diagonalen eines Vielecks mit <InlineMath math="n" /> Ecken für <InlineMath math="n = 3" /> bis <InlineMath math="n = 7" />. Dieses Diagramm hält die Zahlen fest, die direkt an jedem Vieleck gezählt wurden.
+
+<ScatterDiagram
+  title={<>Anzahl der Diagonalen eines Vielecks</>}
+  description={
+    <>
+      Die Anzahl der Diagonalen von Vielecken mit drei bis sieben Ecken,
+      direkt an jedem Vieleck gezählt.
+    </>
+  }
+  footer={<>Von Punkt zu Punkt wächst die Anzahl um <InlineMath math="2, 3, 4, 5" />.</>}
+  xAxisLabel="Anzahl der Ecken"
+  yAxisLabel="Anzahl der Diagonalen"
+  datasets={[
+    {
+      name: "Vieleck",
+      color: "var(--chart-1)",
+      points: [
+        { x: 3, y: 0 },
+        { x: 4, y: 2 },
+        { x: 5, y: 5 },
+        { x: 6, y: 9 },
+        { x: 7, y: 14 },
+      ],
+    },
+  ]}
+/>
+
+Das Muster hat einen Grund. Jede Ecke ist mit <InlineMath math="n - 3" /> anderen Ecken durch eine Diagonale verbunden, denn nicht mit sich selbst und nicht mit ihren zwei Nachbarn. Es gibt <InlineMath math="n" /> Ecken, aber **jede Diagonale wird doppelt gezählt**, einmal von jedem Ende aus. Das induktive Argument lautet so. Prämissen: Vielecke mit drei bis sieben Ecken haben <InlineMath math="0, 2, 5, 9, 14" /> Diagonalen, und jeder dieser Werte ist gleich <InlineMath math="\tfrac{n(n - 3)}{2}" />. Konklusion: Ein Vieleck mit <InlineMath math="n" /> Ecken hat <InlineMath math="\tfrac{n(n - 3)}{2}" /> Diagonalen.
+
+<MathVisual
+  title={<>Die Diagonalenregel aus dem Muster</>}
+  description={
+    <>
+      Die Kurve <InlineMath math="y = \tfrac{n(n - 3)}{2}" /> über der Anzahl
+      der Ecken <InlineMath math="n" />. Verschieb <InlineMath math="n" /> und
+      lies ab, wie viele Diagonalen die Regel vorhersagt. Nur bei ganzen Werten von <InlineMath math="n" /> steht der Punkt für ein Vieleck.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 9 }, y: { min: -1, max: 21 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "n", min: 3, max: 8, value: 8, step: 1, label: "n" },
+    ],
+    objects: [
+      { id: "rule", kind: "function", appearance: "primary", formula: "x(x - 3)/2", domain: { min: 3, max: 8 } },
+      { id: "now", kind: "marker", x: "n", y: "n(n - 3)/2", appearance: "warning" },
+    ],
+    readouts: [
+      { key: "diagonals", formula: "n(n - 3)/2" },
+    ],
+  }}
+  labels={{
+    n: <>Anzahl der Ecken <InlineMath math="n" /></>,
+    diagonals: <>Anzahl der Diagonalen</>,
+  }}
+/>
+
+Teste die Konklusion an einem Achteck. Die Regel sagt voraus:
+
+<BlockMath math="\frac{8(8 - 3)}{2} = \frac{40}{2} = 20" />
+
+Direktes Zählen liefert dasselbe: Jede der <InlineMath math="8" /> Ecken hat <InlineMath math="5" /> Diagonalen, und <InlineMath math="8 \times 5 \div 2 = 20" />. Schieb <InlineMath math="n" /> im Graphen auf <InlineMath math="8" />, und der Punkt liegt auf der Höhe <InlineMath math="20" />.
+
+### Stark und überzeugend
+
+Ein starkes induktives Argument, dessen **Prämissen alle wahr sind**, heißt überzeugend. Das Diagonalenargument ist überzeugend, weil jede Zählung in seinen Prämissen geprüft ist. Vergleiche dieses Argument. Prämissen: <InlineMath math="2^2 - 1 = 3" />, <InlineMath math="2^3 - 1 = 7" />, <InlineMath math="2^5 - 1 = 31" />, <InlineMath math="2^7 - 1 = 127" /> und <InlineMath math="2^{11} - 1 = 2{.}047" /> sind alle Primzahlen. Konklusion: <InlineMath math="2^p - 1" /> ist für jede Primzahl <InlineMath math="p" /> eine Primzahl.
+
+Die letzte Prämisse ist falsch.
+
+<BlockMath math="2^{11} - 1 = 2{.}047 = 23 \times 89" />
+
+Weil eine Prämisse falsch ist, **ist das Argument nicht überzeugend**, egal wie ordentlich das Muster aussieht. Der Fall <InlineMath math="p = 11" /> ist sogar ein Gegenbeispiel zur Konklusion. Prüfe das Produkt: <InlineMath math="23 \times 89 = 23 \times 90 - 23 = 2{.}070 - 23 = 2{.}047" />.
+
+## Welche Karten umdrehen
+
+Dieses Rätsel braucht alle Werkzeuge auf einmal. Jede von vier Karten hat auf einer Seite eine Zahl und auf der anderen eine Farbe. Oben liegen <InlineMath math="8" />, <InlineMath math="3" />, Rot und Blau. Die Regel lautet: Wenn eine Karte auf einer Seite eine gerade Zahl hat, dann ist ihre andere Seite rot. Welche Karten musst du umdrehen, um die Regel zu testen?
+
+Die Regel ist eine Implikation, also kann nur ein Gegenbeispiel sie widerlegen: eine Karte mit **gerader Zahl und einer Farbe, die nicht Rot ist**. Stell diese Frage zu jeder Karte.
+
+| Karte | Was auf der Rückseite sein kann | Kann sie die Regel widerlegen? |
+| :--- | :--- | :--- |
+| <InlineMath math="8" /> | Rot oder Blau | Ja, wenn hinten Blau ist |
+| <InlineMath math="3" /> | Rot oder Blau | Nein, das Antezedens ist falsch |
+| Rot | gerade oder ungerade | Nein, das Konsequens ist schon wahr |
+| Blau | gerade oder ungerade | Ja, wenn hinten eine gerade Zahl ist |
+
+Du musst also **die Karte <InlineMath math="8" /> und die blaue Karte** umdrehen. Die Karte <InlineMath math="8" /> testest du mit Form II: Gilt die Regel, muss hinten Rot sein. Die blaue Karte testest du mit Form III: Gilt die Regel, darf hinten keine gerade Zahl stehen. Viele wählen die rote Karte, doch nichts auf ihrer Rückseite kann die Regel verletzen. Aus der roten Karte etwas zu schließen, ist eine Bejahung des Konsequens.

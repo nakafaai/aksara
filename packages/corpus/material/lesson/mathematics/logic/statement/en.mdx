@@ -1,0 +1,212 @@
+export const metadata = {
+  title: "Statements and Truth Values",
+  description:
+    "Tell a statement from other sentences, test claims that use all and some, write a negation, and find when a statement joined by and or by or is true.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2026-11-20",
+  subject: "Logical Reasoning",
+};
+
+## Sentences You Can Check
+
+A statement is a sentence you can check, and the check comes out **either true or false, never both**. Whether it's true or false is called its **truth value**. You can't check a question or a command that way, so neither one is a statement. From statements you'll build claims with all and some, flip them with not, and join two of them with and or or. You'll try each rule yourself on a board of tiles, in a circuit of switches and on a hidden gate.
+
+| Sentence | Statement? | Truth value |
+| :--- | :--- | :--- |
+| <InlineMath math="91" /> is a prime number. | Yes | False, because <InlineMath math="91 = 7 \times 13" /> |
+| Every square has four equal sides. | Yes | True |
+| Is <InlineMath math="0" /> an even number? | No, it's a question | None |
+| Write down the first five prime numbers. | No, it's a command | None |
+| <InlineMath math="x + 4 = 9" /> | No, it depends on <InlineMath math="x" /> | Not yet |
+
+The first row shows that **a false sentence is still a statement**. You can check it, and the check says false. The last row is different. With <InlineMath math="x = 5" /> the sentence is true, and with <InlineMath math="x = 1" /> it's false, because <InlineMath math="1 + 4 = 5" />. Until you know <InlineMath math="x" />, you can't give it a truth value. A sentence like that is called an open sentence, not a statement.
+
+## The Words All and Some
+
+A claim with all is true only when **every member it talks about passes**. A claim with some is already true when **at least one member passes**. Words such as all and some are called quantifiers. The board below holds ten number tiles and three claims about them. Pick a claim, run the check and watch which tile decides its truth value.
+
+<CounterexampleGridLab
+  title={<>One Board, Three Claims</>}
+  description={
+    <>
+      Pick a claim, then check the tiles one at a time. You can also tap any
+      tile to check it yourself.
+    </>
+  }
+  footer={<>One failing tile brings down an all claim. One passing tile is enough for a some claim.</>}
+  tiles={[
+    { name: "1", tile: { kind: "number", value: 1 } },
+    { name: "4", tile: { kind: "number", value: 4 } },
+    { name: "6", tile: { kind: "number", value: 6 } },
+    { name: "9", tile: { kind: "number", value: 9 } },
+    { name: "12", tile: { kind: "number", value: 12 } },
+    { name: "16", tile: { kind: "number", value: 16 } },
+    { name: "20", tile: { kind: "number", value: 20 } },
+    { name: "25", tile: { kind: "number", value: 25 } },
+    { name: "30", tile: { kind: "number", value: 30 } },
+    { name: "36", tile: { kind: "number", value: 36 } },
+  ]}
+  claims={[
+    {
+      name: "All squares",
+      text: "All square numbers here are even.",
+      claim: {
+        kind: "all",
+        subject: { name: "Square number", test: { kind: "square-number" } },
+        predicate: { name: "Even number", test: { kind: "even" } },
+      },
+    },
+    {
+      name: "Some squares",
+      text: "Some square numbers here are even.",
+      claim: {
+        kind: "some",
+        subject: { name: "Square number", test: { kind: "square-number" } },
+        predicate: { name: "Even number", test: { kind: "even" } },
+      },
+    },
+    {
+      name: "All multiples of four",
+      text: "All multiples of 4 here are even.",
+      claim: {
+        kind: "all",
+        subject: { name: "Multiple of 4", test: { kind: "multiple", of: 4 } },
+        predicate: { name: "Even number", test: { kind: "even" } },
+      },
+    },
+  ]}
+  labels={{
+    claim: <>The claim</>,
+    claims: "Claim",
+    false: "False",
+    none: <>No tile picked yet</>,
+    picked: <>Picked tile</>,
+    tile: "Tile",
+    true: "True",
+    verdicts: {
+      breaks: <>Counterexample</>,
+      fits: <>Fits</>,
+      misses: <>Not an example</>,
+      outside: <>Outside the claim</>,
+      proves: <>Example</>,
+      safe: <>Condition false</>,
+    },
+    viewLabel: "Ten number tiles in front of a claim card",
+  }}
+  showAnswer
+/>
+
+The first claim falls at the very first tile. The number <InlineMath math="1 = 1^2" /> is a square number, but it's odd, and the tiles <InlineMath math="9" /> and <InlineMath math="25" /> bring the claim down too. The second claim is true as soon as you reach <InlineMath math="4 = 2^2" />, because one example is enough. The third claim takes more work. You have to check all five multiples of <InlineMath math="4" />, which are <InlineMath math="4, 12, 16, 20, 36" />, and every one is even. So **a true all claim needs a full check**, while a false one needs just one tile.
+
+## Saying Not Flips the Truth
+
+Put not into a statement and its truth value flips: true becomes false, and false becomes true. The new statement is called the **negation**. The negation of <InlineMath math="p" /> is written <InlineMath math="\sim p" /> and read not <InlineMath math="p" />.
+
+| <InlineMath math="p" /> | <InlineMath math="\sim p" /> |
+| :--- | :--- |
+| True | False |
+| False | True |
+
+Take <InlineMath math="p" />: <InlineMath math="91" /> is a prime number. That's false, so its negation, <InlineMath math="91" /> is not a prime number, is true. Check: <InlineMath math="91 = 7 \times 13" />, so <InlineMath math="91" /> has a factor other than <InlineMath math="1" /> and itself.
+
+Be careful with all. On the board, the claim all square numbers here are even is false. People often write its negation as no square number here is even. That sentence is false too, because <InlineMath math="4" /> is even. A negation always has the opposite truth value, so that sentence can't be the negation. The right negation is **not all square numbers here are even**, and the tile <InlineMath math="1" /> shows it's true.
+
+## Joining Two Statements
+
+The words and and or join two statements into one **compound statement**, and its truth value depends on the truth values of the two parts. In the circuit below, a closed switch means its statement is true, and a lit lamp means the compound statement is true. Switches wired in a row behave like and. Switches wired side by side behave like or.
+
+<SwitchLogicLab
+  title={<>Two Switches and a Lamp</>}
+  description={
+    <>
+      Close and open switches P and Q, then watch the lamp. Each case you try
+      fills one row of the truth table.
+    </>
+  }
+  footer={<>In a row, the current has to pass both switches. Side by side, one path is enough.</>}
+  modes={["and", "or"]}
+  startMode="and"
+  labels={{
+    compounds: {
+      and: <><InlineMath math="p" /> and <InlineMath math="q" /></>,
+      not: <>not <InlineMath math="p" /></>,
+      or: <><InlineMath math="p" /> or <InlineMath math="q" /></>,
+    },
+    false: "False",
+    mode: "Circuit",
+    modes: {
+      and: "In a row",
+      not: "Across the lamp",
+      or: "Side by side",
+    },
+    p: <><InlineMath math="p" />: switch P is closed</>,
+    q: <><InlineMath math="q" />: switch Q is closed</>,
+    switches: "Switches",
+    true: "True",
+    viewLabel: "A battery, two switches and a lamp on a pegboard",
+  }}
+/>
+
+### When And Is True
+
+The statement <InlineMath math="p" /> and <InlineMath math="q" /> is true **only when both parts are true**. In the row circuit, the lamp lights only when switches P and Q are both closed.
+
+| <InlineMath math="p" /> | <InlineMath math="q" /> | <InlineMath math="p" /> and <InlineMath math="q" /> |
+| :--- | :--- | :--- |
+| True | True | True |
+| True | False | False |
+| False | True | False |
+| False | False | False |
+
+Take <InlineMath math="p" />: <InlineMath math="12" /> is a multiple of <InlineMath math="4" />, and <InlineMath math="q" />: <InlineMath math="12" /> is a square number. The statement <InlineMath math="p" /> is true because <InlineMath math="12 = 4 \times 3" />. The statement <InlineMath math="q" /> is false because <InlineMath math="3^2 = 9" /> and <InlineMath math="4^2 = 16" />, so no whole number squares to <InlineMath math="12" />. That makes <InlineMath math="12" /> is a multiple of <InlineMath math="4" /> and <InlineMath math="12" /> is a square number false. Check it in the circuit: close P, leave Q open, and the lamp stays dark.
+
+### Or Includes Both
+
+The statement <InlineMath math="p" /> or <InlineMath math="q" /> is true when **at least one part is true**, and that includes both parts being true. It's false only when both parts are false.
+
+| <InlineMath math="p" /> | <InlineMath math="q" /> | <InlineMath math="p" /> or <InlineMath math="q" /> |
+| :--- | :--- | :--- |
+| True | True | True |
+| True | False | True |
+| False | True | True |
+| False | False | False |
+
+With the same <InlineMath math="p" /> and <InlineMath math="q" />, the sentence <InlineMath math="12" /> is a multiple of <InlineMath math="4" /> or <InlineMath math="12" /> is a square number is true, because its first part is true. The sentence <InlineMath math="16" /> is even or <InlineMath math="16" /> is a square number is true as well, and here both parts are true.
+
+In everyday talk, or often means pick just one, and that habit is why people get the first row wrong. Or in logic **doesn't rule out both being true**. Check it in the side by side circuit: close P and Q together, and the lamp stays lit.
+
+### The Hidden Gate
+
+Now turn the question around: you only see the table, and you have to work out the joining word. The trainer below hides a gate P with inputs <InlineMath math="A" /> and <InlineMath math="B" />. A gate is a small circuit that outputs <InlineMath math="1" /> for true and <InlineMath math="0" /> for false. **An AND gate works like and**, and an OR gate works like or.
+
+The output of P goes into a NAND gate together with a third input <InlineMath math="C" />. While <InlineMath math="C = 1" />, the NAND gate just flips its input, exactly like not. So the final output <InlineMath math="Q" /> is the negation of what P puts out. Choose a gate for P and count how many rows of the table it matches.
+
+<LogicGateLab
+  title={<>Guess Gate P</>}
+  description={
+    <>
+      Gate P takes <InlineMath math="A" /> and <InlineMath math="B" />, then a
+      NAND gate with <InlineMath math="C = 1" /> flips the result. The four
+      rows come from the table on the trainer.
+    </>
+  }
+  footer={<>Only one choice of gate matches all four rows of the table.</>}
+  gate="OR"
+  labels={{
+    gate: "Gate P",
+    matches: <>Rows matched</>,
+    viewLabel: "A logic circuit trainer",
+  }}
+  rows={[
+    { a: 0, b: 0, c: 1, q: 1 },
+    { a: 0, b: 1, c: 1, q: 1 },
+    { a: 1, b: 0, c: 1, q: 1 },
+    { a: 1, b: 1, c: 1, q: 0 },
+  ]}
+/>
+
+Flip every value of <InlineMath math="Q" /> to get the output of P in the rows <InlineMath math="AB = 00, 01, 10, 11" />.
+
+<BlockMath math="Q = 1, 1, 1, 0 \quad\Rightarrow\quad P = 0, 0, 0, 1" />
+
+P outputs <InlineMath math="1" /> only in the row with <InlineMath math="A = 1" /> and <InlineMath math="B = 1" />, which is when both inputs are true. That's the truth table of and, so **P is an AND gate**. Check it on the trainer: with AND all four rows match, while OR matches only two, the rows <InlineMath math="00" /> and <InlineMath math="11" />.
