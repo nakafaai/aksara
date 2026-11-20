@@ -142,10 +142,19 @@ function hasTolerances({
   readonly criteria: readonly SketchCriterion[];
   readonly tolerances: typeof SketchTolerancesSchema.Type;
 }) {
-  return Arr.every(criteria, ({ check: { feature } }) =>
-    feature.kind === "end" && !DecimalSchema.is(feature.limit)
-      ? true
-      : tolerances[feature.kind] !== undefined
+  return Arr.every(
+    criteria,
+    ({ check: { feature } }) =>
+      isUnbounded(feature) || tolerances[feature.kind] !== undefined
+  );
+}
+
+/** Whether a feature is an end that goes up or down without bound, which no distance measures. */
+function isUnbounded(feature: SketchFeature) {
+  return (
+    feature.kind === "end" &&
+    (feature.limit === "negativeInfinity" ||
+      feature.limit === "positiveInfinity")
   );
 }
 
