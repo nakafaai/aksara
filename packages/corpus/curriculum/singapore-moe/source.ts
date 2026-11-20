@@ -3,7 +3,11 @@ import {
   singaporeSecondaryAdditionalMathematicsCourseNode,
   singaporeSecondaryMathematicsCourseNode,
 } from "#corpus/curriculum/singapore-moe/mathematics";
-import { singaporeSecondaryScienceCourseNode } from "#corpus/curriculum/singapore-moe/science";
+import {
+  singaporeSecondaryBiologyCourseNode,
+  singaporeSecondaryChemistryCourseNode,
+  singaporeSecondaryPhysicsCourseNode,
+} from "#corpus/curriculum/singapore-moe/science";
 import { LEARNING_PROGRAM_KEYS } from "#corpus/program/keys";
 
 /** Lazily validates the complete authored Singapore MOE curriculum tree. */
@@ -42,7 +46,9 @@ export const singaporeMoeCurriculum = defineCurriculum({
       children: [
         singaporeSecondaryMathematicsCourseNode,
         singaporeSecondaryAdditionalMathematicsCourseNode,
-        singaporeSecondaryScienceCourseNode,
+        singaporeSecondaryPhysicsCourseNode,
+        singaporeSecondaryChemistryCourseNode,
+        singaporeSecondaryBiologyCourseNode,
       ],
       displayGroup: {
         de: { title: "Schulstufen" },
