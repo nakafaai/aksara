@@ -1,0 +1,261 @@
+export const metadata = {
+  title: "Consumer Mathematics Taxation Notes for Form Five",
+  description:
+    "Form 5 Mathematics Chapter 4: identify types of tax, work out chargeable income, progressive income tax and the average tax rate, with worked examples and practice.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2026-11-17",
+  subject: "Consumer Mathematics: Taxation",
+};
+
+## Taxes Pay for Public Services
+
+A **tax** is a compulsory payment to the government that funds public services such as schools, hospitals and roads. **Income tax** is charged on **chargeable income**, the annual income left after exemptions and reliefs are subtracted. Income tax is **progressive**: each slice of income is charged at a higher rate than the slice before it. In the models here, you work out the tax for any income, see how the tax splits across bands and compare average tax rates.
+
+## Types of Tax
+
+Taxes are collected by **three levels of government**, depending on the type.
+
+| Tax | Charged on | Paid to |
+| :--- | :--- | :--- |
+| Income tax | Chargeable income of individuals or companies | Federal government |
+| Sales and service tax | Certain goods and services | Federal government |
+| Road tax | Motor vehicles | Federal government |
+| Assessment tax | Houses and buildings in a local authority area | Local authority |
+| Quit rent | Land ownership | State government |
+
+## Chargeable Income
+
+Chargeable income is found by subtracting **exemptions** and **reliefs** from total annual income:
+
+<BlockMath math="\text{Chargeable income} = \text{annual income} - \text{exemptions} - \text{reliefs}" />
+
+Reliefs include individual relief, contributions to a savings fund and certain spending such as books. The actual amounts are set each year by the tax authority. This chart shows an example calculation for Mrs Aini.
+
+<BarChart
+  title={<>From Annual Income to Chargeable Income</>}
+  description={
+    <>
+      An example in ringgit: annual income, each relief, and the chargeable
+      income left.
+    </>
+  }
+  yAxisLabel="Amount (RM)"
+  data={[
+    { name: "Annual income", value: 72000 },
+    { name: "Individual relief", value: 9000 },
+    { name: "Savings contribution", value: 4000 },
+    { name: "Lifestyle relief", value: 3000 },
+    { name: "Chargeable income", value: 72000 - 9000 - 4000 - 3000 },
+  ]}
+  chartConfig={{ value: { label: "Amount", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>
+
+Mrs Aini's chargeable income is <InlineMath math="72{,}000 - 9{,}000 - 4{,}000 - 3{,}000 = \text{RM}\,56{,}000" />.
+
+## Progressive Income Tax
+
+These notes use **the example progressive rate table** below for practice. The actual rates are published each year by the tax authority.
+
+| Chargeable income band (RM) | Rate |
+| :--- | :--- |
+| <InlineMath math="0" /> to <InlineMath math="5{,}000" /> | <InlineMath math="0\%" /> |
+| <InlineMath math="5{,}001" /> to <InlineMath math="20{,}000" /> | <InlineMath math="1\%" /> |
+| <InlineMath math="20{,}001" /> to <InlineMath math="35{,}000" /> | <InlineMath math="3\%" /> |
+| <InlineMath math="35{,}001" /> to <InlineMath math="50{,}000" /> | <InlineMath math="6\%" /> |
+| <InlineMath math="50{,}001" /> to <InlineMath math="70{,}000" /> | <InlineMath math="11\%" /> |
+| <InlineMath math="70{,}001" /> to <InlineMath math="100{,}000" /> | <InlineMath math="19\%" /> |
+
+A higher rate applies only to the part of income inside that band, not to the whole income. Move the chargeable income in this model to see the tax and the average tax rate.
+
+<MathVisual
+  title={<>Income Tax by Chargeable Income</>}
+  description={
+    <>
+      Tax in hundreds of ringgit against chargeable income in thousands of
+      ringgit, from the example table. The curve gets steeper at each band.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 100 }, y: { min: 0, max: 95 } },
+    view: { kind: "fit", padding: 0.04 },
+    parameters: [
+      { name: "p", min: 1, max: 100, value: 56, step: 1, label: "p" },
+    ],
+    objects: [
+      { id: "tax", kind: "function", appearance: "primary", formula: "10(0.01min(max(x - 5, 0), 15) + 0.03min(max(x - 20, 0), 15) + 0.06min(max(x - 35, 0), 15) + 0.11min(max(x - 50, 0), 20) + 0.19max(x - 70, 0))", domain: { min: 0, max: 100 } },
+      { id: "now", kind: "marker", x: "p", y: "10(0.01min(max(p - 5, 0), 15) + 0.03min(max(p - 20, 0), 15) + 0.06min(max(p - 35, 0), 15) + 0.11min(max(p - 50, 0), 20) + 0.19max(p - 70, 0))", appearance: "warning" },
+    ],
+    readouts: [
+      { key: "tax", formula: "1000(0.01min(max(p - 5, 0), 15) + 0.03min(max(p - 20, 0), 15) + 0.06min(max(p - 35, 0), 15) + 0.11min(max(p - 50, 0), 20) + 0.19max(p - 70, 0))" },
+      { key: "average", formula: "100(0.01min(max(p - 5, 0), 15) + 0.03min(max(p - 20, 0), 15) + 0.06min(max(p - 35, 0), 15) + 0.11min(max(p - 50, 0), 20) + 0.19max(p - 70, 0))/p" },
+    ],
+  }}
+  labels={{
+    p: <>Chargeable income <InlineMath math="p" /> in thousands of ringgit</>,
+    tax: <>Tax in ringgit</>,
+    average: <>Average tax rate in percent</>,
+  }}
+/>
+
+### Example Working Out Income Tax
+
+Work out **the income tax** on Mrs Aini's chargeable income of <InlineMath math="\text{RM}\,56{,}000" /> using the example table.
+
+<MathContainer>
+<BlockMath math="5{,}000 \times 0\% = 0" />
+<BlockMath math="15{,}000 \times 1\% = 150" />
+<BlockMath math="15{,}000 \times 3\% = 450" />
+<BlockMath math="15{,}000 \times 6\% = 900" />
+<BlockMath math="6{,}000 \times 11\% = 660" />
+<BlockMath math="\text{Total tax} = 0 + 150 + 450 + 900 + 660 = 2{,}160" />
+</MathContainer>
+
+Check that the slices add up to <InlineMath math="5{,}000 + 15{,}000 \times 3 + 6{,}000 = 56{,}000" />. Check with the model: at <InlineMath math="p = 56" />, the tax reads <InlineMath math="2{,}160" />. This chart shows the tax from each band.
+
+<BarChart
+  title={<>Tax from Each Band for <InlineMath math="\text{RM}\,56{,}000" /></>}
+  description={
+    <>
+      Ringgit of tax from each band. The highest band reached contributes{" "}
+      <InlineMath math="11\%" /> of only <InlineMath math="\text{RM}\,6{,}000" />.
+    </>
+  }
+  yAxisLabel="Tax (RM)"
+  data={[
+    { name: "0 to 5000", value: 0 },
+    { name: "5001 to 20000", value: 150 },
+    { name: "20001 to 35000", value: 450 },
+    { name: "35001 to 50000", value: 900 },
+    { name: "50001 to 56000", value: 660 },
+  ]}
+  chartConfig={{ value: { label: "Tax", colors: { light: ["var(--chart-2)"], dark: ["var(--chart-2)"] } } }}
+/>
+
+### The Average Tax Rate
+
+**The average tax rate** is total tax divided by chargeable income. For Mrs Aini:
+
+<BlockMath math="\frac{2{,}160}{56{,}000} \times 100\% = 3.86\%" />
+
+This average rate is far lower than her highest band rate, <InlineMath math="11\%" />. This model draws the average rate for every income, and the curve keeps rising because the tax is progressive.
+
+<MathVisual
+  title={<>Average Tax Rate by Income</>}
+  description={
+    <>
+      Average tax rate in percent against chargeable income in tens of
+      thousands of ringgit, from the example table.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 10 }, y: { min: 0, max: 10 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "q", min: 0.5, max: 10, value: 5.6, step: 0.1, label: "q" },
+    ],
+    objects: [
+      { id: "average", kind: "function", appearance: "primary", formula: "100(0.01min(max(10x - 5, 0), 15) + 0.03min(max(10x - 20, 0), 15) + 0.06min(max(10x - 35, 0), 15) + 0.11min(max(10x - 50, 0), 20) + 0.19max(10x - 70, 0))/(10x)", domain: { min: 0.5, max: 10 } },
+      { id: "now", kind: "marker", x: "q", y: "100(0.01min(max(10q - 5, 0), 15) + 0.03min(max(10q - 20, 0), 15) + 0.06min(max(10q - 35, 0), 15) + 0.11min(max(10q - 50, 0), 20) + 0.19max(10q - 70, 0))/(10q)", appearance: "warning" },
+    ],
+    readouts: [
+      { key: "average", formula: "100(0.01min(max(10q - 5, 0), 15) + 0.03min(max(10q - 20, 0), 15) + 0.06min(max(10q - 35, 0), 15) + 0.11min(max(10q - 50, 0), 20) + 0.19max(10q - 70, 0))/(10q)" },
+    ],
+  }}
+  labels={{
+    q: <>Chargeable income <InlineMath math="q" /> in tens of thousands of ringgit</>,
+    average: <>Average tax rate in percent</>,
+  }}
+/>
+
+## Sales and Service Tax
+
+Service tax is charged as a percentage of the price of a service. If a restaurant bill is <InlineMath math="\text{RM}\,80" /> and service tax is <InlineMath math="8\%" />, the amount paid is <InlineMath math="80 \times 1.08 = \text{RM}\,86.40" />. To find the original price from an amount that already includes tax, **divide by** <InlineMath math="1.08" />, rather than subtracting <InlineMath math="8\%" />.
+
+This model compares the price with the amount paid after tax. Change the tax rate and the price.
+
+<MathVisual
+  title={<>Amount Paid after Service Tax</>}
+  description={
+    <>
+      Amount paid in tens of ringgit, <InlineMath math="h\left(1 + \dfrac{r}{100}\right)" />, against the price in tens of ringgit. The reference line is the price without tax.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 10 }, y: { min: 0, max: 11 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "r", min: 0, max: 10, value: 8, step: 1, label: "r" },
+      { name: "h", min: 1, max: 10, value: 8, step: 0.5, label: "h" },
+    ],
+    objects: [
+      { id: "total", kind: "function", appearance: "primary", formula: "x(1 + r/100)", domain: { min: 0, max: 10 } },
+      { id: "price", kind: "function", appearance: "reference", formula: "x", domain: { min: 0, max: 10 } },
+      { id: "now", kind: "marker", x: "h", y: "h(1 + r/100)", appearance: "warning" },
+    ],
+    readouts: [
+      { key: "total", formula: "10h(1 + r/100)" },
+      { key: "tax", formula: "10h r/100" },
+    ],
+  }}
+  labels={{
+    r: <>Tax rate <InlineMath math="r" /> in percent</>,
+    h: <>Price <InlineMath math="h" /> in tens of ringgit</>,
+    total: <>Amount paid in ringgit</>,
+    tax: <>Tax in ringgit</>,
+  }}
+/>
+
+## Common Mistakes about Taxation
+
+| Mistake | Why it's wrong | How to check |
+| :--- | :--- | :--- |
+| Working out tax on annual income. | Tax is worked out on chargeable income after reliefs. | Subtract exemptions and reliefs first. |
+| Applying the highest rate to the whole income. | Each rate applies only to the slice inside its band. | The slices must add up to the chargeable income. |
+| Subtracting <InlineMath math="8\%" /> to find the price before tax. | The original price is the total divided by <InlineMath math="1.08" />. | Multiply the answer back by <InlineMath math="1.08" />. |
+| Treating the average rate as the highest band rate. | The average rate is total tax divided by chargeable income. | The average rate must be lower. |
+
+The second mistake is the most common one in income tax questions. **Work out the tax band by band**.
+
+## Practice on Taxation
+
+These questions move from chargeable income to progressive tax. **Use the example table** in these notes.
+
+1. Mr Daniel has an annual income of <InlineMath math="\text{RM}\,48{,}000" /> and total reliefs of <InlineMath math="\text{RM}\,14{,}000" />. Work out his chargeable income.
+
+2. Work out the income tax on a chargeable income of <InlineMath math="\text{RM}\,34{,}000" />.
+
+3. Work out the income tax and the average tax rate on a chargeable income of <InlineMath math="\text{RM}\,80{,}000" />.
+
+4. A bill including <InlineMath math="8\%" /> service tax comes to <InlineMath math="\text{RM}\,54" />. Find the price before tax.
+
+### Solutions
+
+**Solution 1**: Subtract the reliefs from annual income:
+
+<BlockMath math="48{,}000 - 14{,}000 = 34{,}000" />
+
+The chargeable income is <InlineMath math="\text{RM}\,34{,}000" />.
+
+**Solution 2**: Work it out **band by band**:
+
+<BlockMath math="0 + 15{,}000 \times 1\% + 14{,}000 \times 3\% = 150 + 420 = 570" />
+
+Check with the model: at <InlineMath math="p = 34" />, it reads <InlineMath math="570" />.
+
+**Solution 3**: The bands up to <InlineMath math="\text{RM}\,70{,}000" /> give <InlineMath math="150 + 450 + 900 + 2{,}200 = 3{,}700" />, plus the slice in the <InlineMath math="19\%" /> band:
+
+<MathContainer>
+<BlockMath math="3{,}700 + 10{,}000 \times 19\% = 3{,}700 + 1{,}900 = 5{,}600" />
+<BlockMath math="\frac{5{,}600}{80{,}000} \times 100\% = 7\%" />
+</MathContainer>
+
+Check with the model: at <InlineMath math="p = 80" />, the tax reads <InlineMath math="5{,}600" /> and the average rate <InlineMath math="7" />.
+
+**Solution 4**: Divide by <InlineMath math="1.08" />:
+
+<BlockMath math="\frac{54}{1.08} = 50" />
+
+The price before tax is <InlineMath math="\text{RM}\,50" />. Check: <InlineMath math="50 \times 1.08 = 54" />.

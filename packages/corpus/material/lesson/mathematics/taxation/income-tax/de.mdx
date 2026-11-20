@@ -1,0 +1,263 @@
+export const metadata = {
+  title: "Steuern in der Verbrauchermathematik",
+  description:
+    "Erkenne Steuerarten, berechne das zu versteuernde Einkommen, die progressive Einkommensteuer und den Durchschnittssteuersatz mit Beispielen und Übungen.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2026-11-17",
+  subject: "Verbrauchermathematik: Steuern",
+};
+
+## Steuern finanzieren öffentliche Leistungen
+
+Eine **Steuer** ist eine Pflichtzahlung an den Staat, mit der öffentliche Leistungen wie Schulen, Krankenhäuser und Straßen bezahlt werden. Die **Einkommensteuer** wird auf das **zu versteuernde Einkommen** erhoben, also das Jahreseinkommen nach Abzug von Befreiungen und Freibeträgen. Die Einkommensteuer ist **progressiv**: Jede Einkommensstufe wird mit einem höheren Satz besteuert als die Stufe davor. In den Modellen hier berechnest du die Steuer für jedes Einkommen, siehst die Aufteilung der Steuer auf die Stufen und vergleichst Durchschnittssteuersätze.
+
+## Steuerarten
+
+Steuern werden je nach Art von **drei staatlichen Ebenen** erhoben.
+
+| Steuer | Erhoben auf | Gezahlt an |
+| :--- | :--- | :--- |
+| Einkommensteuer | Zu versteuerndes Einkommen von Personen oder Firmen | Bund |
+| Verkaufs und Dienstleistungssteuer | Bestimmte Waren und Dienstleistungen | Bund |
+| Kfz-Steuer | Kraftfahrzeuge | Bund |
+| Grundsteuer auf Gebäude | Häuser und Gebäude im Gebiet einer Gemeinde | Gemeinde |
+| Grundsteuer auf Land | Landbesitz | Bundesstaat |
+
+## Das zu versteuernde Einkommen
+
+Das zu versteuernde Einkommen ergibt sich, indem man **Befreiungen** und **Freibeträge** vom gesamten Jahreseinkommen abzieht:
+
+<BlockMath math="\text{Zu versteuerndes Einkommen} = \text{Jahreseinkommen} - \text{Befreiungen} - \text{Freibeträge}" />
+
+Freibeträge umfassen den persönlichen Freibetrag, Beiträge zu einem Sparfonds und bestimmte Ausgaben wie Bücher. Die tatsächlichen Beträge legt die Steuerbehörde jedes Jahr fest. Dieses Diagramm zeigt eine Beispielrechnung für Frau Aini.
+
+<BarChart
+  title={<>Vom Jahreseinkommen zum zu versteuernden Einkommen</>}
+  description={
+    <>
+      Ein Beispiel in Ringgit: Jahreseinkommen, jeder Freibetrag und das
+      verbleibende zu versteuernde Einkommen.
+    </>
+  }
+  yAxisLabel="Betrag (RM)"
+  data={[
+    { name: "Jahreseinkommen", value: 72000 },
+    { name: "Persönlicher Freibetrag", value: 9000 },
+    { name: "Sparbeitrag", value: 4000 },
+    { name: "Freibetrag Lebensstil", value: 3000 },
+    { name: "Zu versteuern", value: 72000 - 9000 - 4000 - 3000 },
+  ]}
+  chartConfig={{ value: { label: "Betrag", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>
+
+Das zu versteuernde Einkommen von Frau Aini beträgt <InlineMath math="72{.}000 - 9{.}000 - 4{.}000 - 3{.}000 = \text{RM}\,56{.}000" />.
+
+## Die progressive Einkommensteuer
+
+Diese Unterlage nutzt **die Beispieltabelle mit progressiven Sätzen** unten zum Üben. Die tatsächlichen Sätze veröffentlicht die Steuerbehörde jedes Jahr.
+
+| Stufe des zu versteuernden Einkommens (RM) | Satz |
+| :--- | :--- |
+| <InlineMath math="0" /> bis <InlineMath math="5{.}000" /> | <InlineMath math="0\%" /> |
+| <InlineMath math="5{.}001" /> bis <InlineMath math="20{.}000" /> | <InlineMath math="1\%" /> |
+| <InlineMath math="20{.}001" /> bis <InlineMath math="35{.}000" /> | <InlineMath math="3\%" /> |
+| <InlineMath math="35{.}001" /> bis <InlineMath math="50{.}000" /> | <InlineMath math="6\%" /> |
+| <InlineMath math="50{.}001" /> bis <InlineMath math="70{.}000" /> | <InlineMath math="11\%" /> |
+| <InlineMath math="70{.}001" /> bis <InlineMath math="100{.}000" /> | <InlineMath math="19\%" /> |
+
+Ein höherer Satz gilt nur für den Teil des Einkommens in dieser Stufe, nicht für das ganze Einkommen. Verschiebe das zu versteuernde Einkommen in diesem Modell und lies Steuer und Durchschnittssteuersatz ab.
+
+<MathVisual
+  title={<>Einkommensteuer nach zu versteuerndem Einkommen</>}
+  description={
+    <>
+      Steuer in hundert Ringgit gegen das zu versteuernde Einkommen in tausend
+      Ringgit, nach der Beispieltabelle. Die Kurve wird in jeder Stufe
+      steiler.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 100 }, y: { min: 0, max: 95 } },
+    view: { kind: "fit", padding: 0.04 },
+    parameters: [
+      { name: "p", min: 1, max: 100, value: 56, step: 1, label: "p" },
+    ],
+    objects: [
+      { id: "tax", kind: "function", appearance: "primary", formula: "10(0.01min(max(x - 5, 0), 15) + 0.03min(max(x - 20, 0), 15) + 0.06min(max(x - 35, 0), 15) + 0.11min(max(x - 50, 0), 20) + 0.19max(x - 70, 0))", domain: { min: 0, max: 100 } },
+      { id: "now", kind: "marker", x: "p", y: "10(0.01min(max(p - 5, 0), 15) + 0.03min(max(p - 20, 0), 15) + 0.06min(max(p - 35, 0), 15) + 0.11min(max(p - 50, 0), 20) + 0.19max(p - 70, 0))", appearance: "warning" },
+    ],
+    readouts: [
+      { key: "tax", formula: "1000(0.01min(max(p - 5, 0), 15) + 0.03min(max(p - 20, 0), 15) + 0.06min(max(p - 35, 0), 15) + 0.11min(max(p - 50, 0), 20) + 0.19max(p - 70, 0))" },
+      { key: "average", formula: "100(0.01min(max(p - 5, 0), 15) + 0.03min(max(p - 20, 0), 15) + 0.06min(max(p - 35, 0), 15) + 0.11min(max(p - 50, 0), 20) + 0.19max(p - 70, 0))/p" },
+    ],
+  }}
+  labels={{
+    p: <>Zu versteuerndes Einkommen <InlineMath math="p" /> in tausend Ringgit</>,
+    tax: <>Steuer in Ringgit</>,
+    average: <>Durchschnittssteuersatz in Prozent</>,
+  }}
+/>
+
+### Beispiel Die Einkommensteuer berechnen
+
+Berechne mit der Beispieltabelle **die Einkommensteuer** auf das zu versteuernde Einkommen von Frau Aini, <InlineMath math="\text{RM}\,56{.}000" />.
+
+<MathContainer>
+<BlockMath math="5{.}000 \times 0\% = 0" />
+<BlockMath math="15{.}000 \times 1\% = 150" />
+<BlockMath math="15{.}000 \times 3\% = 450" />
+<BlockMath math="15{.}000 \times 6\% = 900" />
+<BlockMath math="6{.}000 \times 11\% = 660" />
+<BlockMath math="\text{Gesamtsteuer} = 0 + 150 + 450 + 900 + 660 = 2{.}160" />
+</MathContainer>
+
+Prüfe, dass die Teile zusammen <InlineMath math="5{.}000 + 15{.}000 \times 3 + 6{.}000 = 56{.}000" /> ergeben. Prüfe mit dem Modell: Bei <InlineMath math="p = 56" /> zeigt die Steuer <InlineMath math="2{.}160" />. Dieses Diagramm zeigt die Steuer aus jeder Stufe.
+
+<BarChart
+  title={<>Steuer aus jeder Stufe bei <InlineMath math="\text{RM}\,56{.}000" /></>}
+  description={
+    <>
+      Ringgit Steuer aus jeder Stufe. Die höchste erreichte Stufe trägt{" "}
+      <InlineMath math="11\%" /> von nur <InlineMath math="\text{RM}\,6{.}000" />{" "}
+      bei.
+    </>
+  }
+  yAxisLabel="Steuer (RM)"
+  data={[
+    { name: "0 bis 5000", value: 0 },
+    { name: "5001 bis 20000", value: 150 },
+    { name: "20001 bis 35000", value: 450 },
+    { name: "35001 bis 50000", value: 900 },
+    { name: "50001 bis 56000", value: 660 },
+  ]}
+  chartConfig={{ value: { label: "Steuer", colors: { light: ["var(--chart-2)"], dark: ["var(--chart-2)"] } } }}
+/>
+
+### Der Durchschnittssteuersatz
+
+**Der Durchschnittssteuersatz** ist die Gesamtsteuer geteilt durch das zu versteuernde Einkommen. Für Frau Aini gilt:
+
+<BlockMath math="\frac{2{.}160}{56{.}000} \times 100\% = 3{,}86\%" />
+
+Dieser Durchschnittssatz liegt weit unter ihrem höchsten Stufensatz von <InlineMath math="11\%" />. Dieses Modell zeichnet den Durchschnittssatz für jedes Einkommen, und die Kurve steigt immer weiter, weil die Steuer progressiv ist.
+
+<MathVisual
+  title={<>Durchschnittssteuersatz nach Einkommen</>}
+  description={
+    <>
+      Durchschnittssteuersatz in Prozent gegen das zu versteuernde Einkommen in
+      zehntausend Ringgit, nach der Beispieltabelle.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 10 }, y: { min: 0, max: 10 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "q", min: 0.5, max: 10, value: 5.6, step: 0.1, label: "q" },
+    ],
+    objects: [
+      { id: "average", kind: "function", appearance: "primary", formula: "100(0.01min(max(10x - 5, 0), 15) + 0.03min(max(10x - 20, 0), 15) + 0.06min(max(10x - 35, 0), 15) + 0.11min(max(10x - 50, 0), 20) + 0.19max(10x - 70, 0))/(10x)", domain: { min: 0.5, max: 10 } },
+      { id: "now", kind: "marker", x: "q", y: "100(0.01min(max(10q - 5, 0), 15) + 0.03min(max(10q - 20, 0), 15) + 0.06min(max(10q - 35, 0), 15) + 0.11min(max(10q - 50, 0), 20) + 0.19max(10q - 70, 0))/(10q)", appearance: "warning" },
+    ],
+    readouts: [
+      { key: "average", formula: "100(0.01min(max(10q - 5, 0), 15) + 0.03min(max(10q - 20, 0), 15) + 0.06min(max(10q - 35, 0), 15) + 0.11min(max(10q - 50, 0), 20) + 0.19max(10q - 70, 0))/(10q)" },
+    ],
+  }}
+  labels={{
+    q: <>Zu versteuerndes Einkommen <InlineMath math="q" /> in zehntausend Ringgit</>,
+    average: <>Durchschnittssteuersatz in Prozent</>,
+  }}
+/>
+
+## Verkaufs und Dienstleistungssteuer
+
+Die Dienstleistungssteuer wird als Prozentsatz des Preises erhoben. Beträgt eine Restaurantrechnung <InlineMath math="\text{RM}\,80" /> und die Dienstleistungssteuer <InlineMath math="8\%" />, zahlt man <InlineMath math="80 \times 1{,}08 = \text{RM}\,86{,}40" />. Um aus einem Betrag mit Steuer den ursprünglichen Preis zu finden, **teilst du durch** <InlineMath math="1{,}08" />, statt <InlineMath math="8\%" /> abzuziehen.
+
+Dieses Modell vergleicht den Preis mit dem Betrag nach Steuer. Ändere Steuersatz und Preis.
+
+<MathVisual
+  title={<>Zahlbetrag nach Dienstleistungssteuer</>}
+  description={
+    <>
+      Zahlbetrag in zehn Ringgit, <InlineMath math="h\left(1 + \dfrac{r}{100}\right)" />, gegen den Preis in zehn Ringgit. Die Bezugslinie ist der Preis ohne Steuer.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 10 }, y: { min: 0, max: 11 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "r", min: 0, max: 10, value: 8, step: 1, label: "r" },
+      { name: "h", min: 1, max: 10, value: 8, step: 0.5, label: "h" },
+    ],
+    objects: [
+      { id: "total", kind: "function", appearance: "primary", formula: "x(1 + r/100)", domain: { min: 0, max: 10 } },
+      { id: "price", kind: "function", appearance: "reference", formula: "x", domain: { min: 0, max: 10 } },
+      { id: "now", kind: "marker", x: "h", y: "h(1 + r/100)", appearance: "warning" },
+    ],
+    readouts: [
+      { key: "total", formula: "10h(1 + r/100)" },
+      { key: "tax", formula: "10h r/100" },
+    ],
+  }}
+  labels={{
+    r: <>Steuersatz <InlineMath math="r" /> in Prozent</>,
+    h: <>Preis <InlineMath math="h" /> in zehn Ringgit</>,
+    total: <>Zahlbetrag in Ringgit</>,
+    tax: <>Steuer in Ringgit</>,
+  }}
+/>
+
+## Häufige Fehler bei Steuern
+
+| Fehler | Warum er falsch ist | So prüfst du es |
+| :--- | :--- | :--- |
+| Die Steuer vom Jahreseinkommen berechnen. | Die Steuer wird vom zu versteuernden Einkommen nach Freibeträgen berechnet. | Ziehe zuerst Befreiungen und Freibeträge ab. |
+| Den höchsten Satz auf das ganze Einkommen anwenden. | Jeder Satz gilt nur für den Teil in seiner Stufe. | Die Teile müssen zusammen das zu versteuernde Einkommen ergeben. |
+| <InlineMath math="8\%" /> abziehen, um den Preis ohne Steuer zu finden. | Der ursprüngliche Preis ist der Gesamtbetrag geteilt durch <InlineMath math="1{,}08" />. | Multipliziere die Antwort wieder mit <InlineMath math="1{,}08" />. |
+| Den Durchschnittssatz mit dem höchsten Stufensatz gleichsetzen. | Der Durchschnittssatz ist Gesamtsteuer durch zu versteuerndes Einkommen. | Der Durchschnittssatz muss niedriger sein. |
+
+Der zweite Fehler kommt in Aufgaben zur Einkommensteuer am häufigsten vor. **Berechne die Steuer Stufe für Stufe**.
+
+## Übungen zu Steuern
+
+Diese Aufgaben führen vom zu versteuernden Einkommen zur progressiven Steuer. **Nutze die Beispieltabelle** dieser Unterlage.
+
+1. Herr Daniel hat ein Jahreseinkommen von <InlineMath math="\text{RM}\,48{.}000" /> und Freibeträge von insgesamt <InlineMath math="\text{RM}\,14{.}000" />. Berechne sein zu versteuerndes Einkommen.
+
+2. Berechne die Einkommensteuer auf ein zu versteuerndes Einkommen von <InlineMath math="\text{RM}\,34{.}000" />.
+
+3. Berechne Einkommensteuer und Durchschnittssteuersatz für ein zu versteuerndes Einkommen von <InlineMath math="\text{RM}\,80{.}000" />.
+
+4. Eine Rechnung mit <InlineMath math="8\%" /> Dienstleistungssteuer beträgt <InlineMath math="\text{RM}\,54" />. Bestimme den Preis ohne Steuer.
+
+### Lösungen
+
+**Lösung 1**: Ziehe die Freibeträge vom Jahreseinkommen ab:
+
+<BlockMath math="48{.}000 - 14{.}000 = 34{.}000" />
+
+Das zu versteuernde Einkommen beträgt <InlineMath math="\text{RM}\,34{.}000" />.
+
+**Lösung 2**: Rechne **Stufe für Stufe**:
+
+<BlockMath math="0 + 15{.}000 \times 1\% + 14{.}000 \times 3\% = 150 + 420 = 570" />
+
+Prüfe mit dem Modell: Bei <InlineMath math="p = 34" /> zeigt es <InlineMath math="570" />.
+
+**Lösung 3**: Die Stufen bis <InlineMath math="\text{RM}\,70{.}000" /> ergeben <InlineMath math="150 + 450 + 900 + 2{.}200 = 3{.}700" />, dazu der Teil in der Stufe mit <InlineMath math="19\%" />:
+
+<MathContainer>
+<BlockMath math="3{.}700 + 10{.}000 \times 19\% = 3{.}700 + 1{.}900 = 5{.}600" />
+<BlockMath math="\frac{5{.}600}{80{.}000} \times 100\% = 7\%" />
+</MathContainer>
+
+Prüfe mit dem Modell: Bei <InlineMath math="p = 80" /> zeigt die Steuer <InlineMath math="5{.}600" /> und der Durchschnittssatz <InlineMath math="7" />.
+
+**Lösung 4**: Teile durch <InlineMath math="1{,}08" />:
+
+<BlockMath math="\frac{54}{1{,}08} = 50" />
+
+Der Preis ohne Steuer beträgt <InlineMath math="\text{RM}\,50" />. Prüfe: <InlineMath math="50 \times 1{,}08 = 54" />.

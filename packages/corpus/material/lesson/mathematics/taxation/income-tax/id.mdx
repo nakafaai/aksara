@@ -1,0 +1,262 @@
+export const metadata = {
+  title: "Matematika Keuangan Perpajakan",
+  description:
+    "Kenali jenis pajak, hitung penghasilan kena pajak, pajak penghasilan progresif, dan tarif pajak rata-rata lewat model interaktif, contoh soal, dan latihan.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2026-11-17",
+  subject: "Matematika Keuangan: Perpajakan",
+};
+
+## Pajak Membiayai Layanan Publik
+
+**Pajak** adalah pembayaran wajib kepada pemerintah untuk membiayai layanan publik seperti sekolah, rumah sakit, dan jalan. **Pajak penghasilan** dikenakan pada **penghasilan kena pajak**, yaitu penghasilan tahunan setelah dikurangi pengecualian dan keringanan. Pajak penghasilan bersifat **progresif**: setiap lapisan penghasilan dikenai tarif yang lebih tinggi daripada lapisan sebelumnya. Dalam model di sini, kamu menghitung pajak untuk setiap penghasilan, melihat pembagian pajak menurut lapisan, dan membandingkan tarif pajak rata-rata.
+
+## Jenis Pajak
+
+Pajak dipungut oleh **tiga tingkat pemerintahan** menurut jenisnya.
+
+| Pajak | Dikenakan pada | Dibayar kepada |
+| :--- | :--- | :--- |
+| Pajak penghasilan | Penghasilan kena pajak orang atau perusahaan | Pemerintah federal |
+| Pajak penjualan dan layanan | Barang dan jasa tertentu | Pemerintah federal |
+| Pajak kendaraan | Kendaraan bermotor | Pemerintah federal |
+| Pajak bangunan | Rumah dan bangunan di wilayah pemerintah daerah | Pemerintah daerah |
+| Pajak tanah | Kepemilikan tanah | Pemerintah negara bagian |
+
+## Penghasilan Kena Pajak
+
+Penghasilan kena pajak dihitung dengan mengurangkan **pengecualian** dan **keringanan** dari total penghasilan tahunan:
+
+<BlockMath math="\text{Penghasilan kena pajak} = \text{penghasilan tahunan} - \text{pengecualian} - \text{keringanan}" />
+
+Keringanan mencakup keringanan pribadi, iuran dana tabungan, dan pengeluaran tertentu seperti buku. Besarnya ditetapkan setiap tahun oleh otoritas pajak. Grafik ini menunjukkan contoh perhitungan untuk Bu Aini.
+
+<BarChart
+  title={<>Dari Penghasilan Tahunan ke Penghasilan Kena Pajak</>}
+  description={
+    <>
+      Contoh dalam ringgit: penghasilan tahunan, setiap keringanan, dan
+      penghasilan kena pajak yang tersisa.
+    </>
+  }
+  yAxisLabel="Jumlah (RM)"
+  data={[
+    { name: "Penghasilan tahunan", value: 72000 },
+    { name: "Keringanan pribadi", value: 9000 },
+    { name: "Iuran tabungan", value: 4000 },
+    { name: "Keringanan gaya hidup", value: 3000 },
+    { name: "Penghasilan kena pajak", value: 72000 - 9000 - 4000 - 3000 },
+  ]}
+  chartConfig={{ value: { label: "Jumlah", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>
+
+Penghasilan kena pajak Bu Aini adalah <InlineMath math="72{.}000 - 9{.}000 - 4{.}000 - 3{.}000 = \text{RM}\,56{.}000" />.
+
+## Pajak Penghasilan Progresif
+
+Contoh di sini memakai **tabel tarif progresif** berikut untuk latihan. Tarif sebenarnya diterbitkan setiap tahun oleh otoritas pajak.
+
+| Lapisan penghasilan kena pajak (RM) | Tarif |
+| :--- | :--- |
+| <InlineMath math="0" /> sampai <InlineMath math="5{.}000" /> | <InlineMath math="0\%" /> |
+| <InlineMath math="5{.}001" /> sampai <InlineMath math="20{.}000" /> | <InlineMath math="1\%" /> |
+| <InlineMath math="20{.}001" /> sampai <InlineMath math="35{.}000" /> | <InlineMath math="3\%" /> |
+| <InlineMath math="35{.}001" /> sampai <InlineMath math="50{.}000" /> | <InlineMath math="6\%" /> |
+| <InlineMath math="50{.}001" /> sampai <InlineMath math="70{.}000" /> | <InlineMath math="11\%" /> |
+| <InlineMath math="70{.}001" /> sampai <InlineMath math="100{.}000" /> | <InlineMath math="19\%" /> |
+
+Tarif yang lebih tinggi hanya dikenakan pada bagian penghasilan dalam lapisan itu, bukan pada seluruh penghasilan. Geser penghasilan kena pajak dalam model ini dan baca pajak serta tarif pajak rata-ratanya.
+
+<MathVisual
+  title={<>Pajak Penghasilan Menurut Penghasilan Kena Pajak</>}
+  description={
+    <>
+      Pajak dalam ratusan ringgit terhadap penghasilan kena pajak dalam ribuan
+      ringgit, menurut tabel contoh. Kurvanya makin curam di setiap lapisan.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 100 }, y: { min: 0, max: 95 } },
+    view: { kind: "fit", padding: 0.04 },
+    parameters: [
+      { name: "p", min: 1, max: 100, value: 56, step: 1, label: "p" },
+    ],
+    objects: [
+      { id: "tax", kind: "function", appearance: "primary", formula: "10(0.01min(max(x - 5, 0), 15) + 0.03min(max(x - 20, 0), 15) + 0.06min(max(x - 35, 0), 15) + 0.11min(max(x - 50, 0), 20) + 0.19max(x - 70, 0))", domain: { min: 0, max: 100 } },
+      { id: "now", kind: "marker", x: "p", y: "10(0.01min(max(p - 5, 0), 15) + 0.03min(max(p - 20, 0), 15) + 0.06min(max(p - 35, 0), 15) + 0.11min(max(p - 50, 0), 20) + 0.19max(p - 70, 0))", appearance: "warning" },
+    ],
+    readouts: [
+      { key: "tax", formula: "1000(0.01min(max(p - 5, 0), 15) + 0.03min(max(p - 20, 0), 15) + 0.06min(max(p - 35, 0), 15) + 0.11min(max(p - 50, 0), 20) + 0.19max(p - 70, 0))" },
+      { key: "average", formula: "100(0.01min(max(p - 5, 0), 15) + 0.03min(max(p - 20, 0), 15) + 0.06min(max(p - 35, 0), 15) + 0.11min(max(p - 50, 0), 20) + 0.19max(p - 70, 0))/p" },
+    ],
+  }}
+  labels={{
+    p: <>Penghasilan kena pajak <InlineMath math="p" /> dalam ribuan ringgit</>,
+    tax: <>Pajak dalam ringgit</>,
+    average: <>Tarif pajak rata-rata dalam persen</>,
+  }}
+/>
+
+### Contoh Menghitung Pajak Penghasilan
+
+Hitung **pajak penghasilan** Bu Aini untuk penghasilan kena pajak <InlineMath math="\text{RM}\,56{.}000" /> dengan tabel contoh.
+
+<MathContainer>
+<BlockMath math="5{.}000 \times 0\% = 0" />
+<BlockMath math="15{.}000 \times 1\% = 150" />
+<BlockMath math="15{.}000 \times 3\% = 450" />
+<BlockMath math="15{.}000 \times 6\% = 900" />
+<BlockMath math="6{.}000 \times 11\% = 660" />
+<BlockMath math="\text{Total pajak} = 0 + 150 + 450 + 900 + 660 = 2{.}160" />
+</MathContainer>
+
+Cek bahwa bagian-bagiannya berjumlah <InlineMath math="5{.}000 + 15{.}000 \times 3 + 6{.}000 = 56{.}000" />. Cek dengan model: pada <InlineMath math="p = 56" />, pajaknya terbaca <InlineMath math="2{.}160" />. Grafik ini menunjukkan pajak dari setiap lapisan.
+
+<BarChart
+  title={<>Pajak dari Setiap Lapisan untuk <InlineMath math="\text{RM}\,56{.}000" /></>}
+  description={
+    <>
+      Ringgit pajak dari setiap lapisan. Lapisan tertinggi yang tercapai
+      menyumbang <InlineMath math="11\%" /> dari{" "}
+      <InlineMath math="\text{RM}\,6{.}000" /> saja.
+    </>
+  }
+  yAxisLabel="Pajak (RM)"
+  data={[
+    { name: "0 sampai 5000", value: 0 },
+    { name: "5001 sampai 20000", value: 150 },
+    { name: "20001 sampai 35000", value: 450 },
+    { name: "35001 sampai 50000", value: 900 },
+    { name: "50001 sampai 56000", value: 660 },
+  ]}
+  chartConfig={{ value: { label: "Pajak", colors: { light: ["var(--chart-2)"], dark: ["var(--chart-2)"] } } }}
+/>
+
+### Tarif Pajak Rata-Rata
+
+**Tarif pajak rata-rata** adalah total pajak dibagi penghasilan kena pajak. Untuk Bu Aini:
+
+<BlockMath math="\frac{2{.}160}{56{.}000} \times 100\% = 3{,}86\%" />
+
+Tarif rata-rata ini jauh lebih rendah dari tarif lapisan tertingginya, <InlineMath math="11\%" />. Model ini menggambar tarif rata-rata untuk setiap penghasilan, dan kurvanya terus naik karena pajaknya progresif.
+
+<MathVisual
+  title={<>Tarif Pajak Rata-Rata Menurut Penghasilan</>}
+  description={
+    <>
+      Tarif pajak rata-rata dalam persen terhadap penghasilan kena pajak dalam
+      puluhan ribu ringgit, menurut tabel contoh.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 10 }, y: { min: 0, max: 10 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "q", min: 0.5, max: 10, value: 5.6, step: 0.1, label: "q" },
+    ],
+    objects: [
+      { id: "average", kind: "function", appearance: "primary", formula: "100(0.01min(max(10x - 5, 0), 15) + 0.03min(max(10x - 20, 0), 15) + 0.06min(max(10x - 35, 0), 15) + 0.11min(max(10x - 50, 0), 20) + 0.19max(10x - 70, 0))/(10x)", domain: { min: 0.5, max: 10 } },
+      { id: "now", kind: "marker", x: "q", y: "100(0.01min(max(10q - 5, 0), 15) + 0.03min(max(10q - 20, 0), 15) + 0.06min(max(10q - 35, 0), 15) + 0.11min(max(10q - 50, 0), 20) + 0.19max(10q - 70, 0))/(10q)", appearance: "warning" },
+    ],
+    readouts: [
+      { key: "average", formula: "100(0.01min(max(10q - 5, 0), 15) + 0.03min(max(10q - 20, 0), 15) + 0.06min(max(10q - 35, 0), 15) + 0.11min(max(10q - 50, 0), 20) + 0.19max(10q - 70, 0))/(10q)" },
+    ],
+  }}
+  labels={{
+    q: <>Penghasilan kena pajak <InlineMath math="q" /> dalam puluhan ribu ringgit</>,
+    average: <>Tarif pajak rata-rata dalam persen</>,
+  }}
+/>
+
+## Pajak Penjualan dan Layanan
+
+Pajak layanan dihitung sebagai persentase dari harga layanan. Jika tagihan restoran <InlineMath math="\text{RM}\,80" /> dan pajak layanannya <InlineMath math="8\%" />, jumlah yang dibayar adalah <InlineMath math="80 \times 1{,}08 = \text{RM}\,86{,}40" />. Untuk mencari harga awal dari jumlah yang sudah termasuk pajak, **bagi dengan** <InlineMath math="1{,}08" />, bukan kurangi <InlineMath math="8\%" />.
+
+Model ini membandingkan harga dengan jumlah yang dibayar setelah pajak. Ubah tarif pajak dan harganya.
+
+<MathVisual
+  title={<>Jumlah Dibayar setelah Pajak Layanan</>}
+  description={
+    <>
+      Jumlah dibayar dalam puluhan ringgit, <InlineMath math="h\left(1 + \dfrac{r}{100}\right)" />, terhadap harga dalam puluhan ringgit. Garis acuan adalah harga tanpa pajak.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 10 }, y: { min: 0, max: 11 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "r", min: 0, max: 10, value: 8, step: 1, label: "r" },
+      { name: "h", min: 1, max: 10, value: 8, step: 0.5, label: "h" },
+    ],
+    objects: [
+      { id: "total", kind: "function", appearance: "primary", formula: "x(1 + r/100)", domain: { min: 0, max: 10 } },
+      { id: "price", kind: "function", appearance: "reference", formula: "x", domain: { min: 0, max: 10 } },
+      { id: "now", kind: "marker", x: "h", y: "h(1 + r/100)", appearance: "warning" },
+    ],
+    readouts: [
+      { key: "total", formula: "10h(1 + r/100)" },
+      { key: "tax", formula: "10h r/100" },
+    ],
+  }}
+  labels={{
+    r: <>Tarif pajak <InlineMath math="r" /> dalam persen</>,
+    h: <>Harga <InlineMath math="h" /> dalam puluhan ringgit</>,
+    total: <>Jumlah dibayar dalam ringgit</>,
+    tax: <>Pajak dalam ringgit</>,
+  }}
+/>
+
+## Kesalahan Umum tentang Perpajakan
+
+| Kesalahan | Mengapa salah | Cara mengecek |
+| :--- | :--- | :--- |
+| Menghitung pajak dari penghasilan tahunan. | Pajak dihitung dari penghasilan kena pajak setelah keringanan. | Kurangkan pengecualian dan keringanan lebih dulu. |
+| Mengenakan tarif tertinggi pada seluruh penghasilan. | Setiap tarif hanya berlaku untuk bagian dalam lapisannya. | Jumlah bagian harus sama dengan penghasilan kena pajak. |
+| Mengurangi <InlineMath math="8\%" /> untuk mencari harga sebelum pajak. | Harga awal adalah total dibagi <InlineMath math="1{,}08" />. | Kalikan kembali jawaban dengan <InlineMath math="1{,}08" />. |
+| Menyamakan tarif rata-rata dengan tarif lapisan tertinggi. | Tarif rata-rata adalah total pajak dibagi penghasilan kena pajak. | Tarif rata-rata harus lebih rendah. |
+
+Kesalahan kedua paling sering muncul dalam soal pajak penghasilan. **Hitung pajak lapisan demi lapisan**.
+
+## Latihan Perpajakan
+
+Soal-soal ini bergerak dari penghasilan kena pajak ke pajak progresif. **Gunakan tabel tarif contoh** di atas.
+
+1. Pak Daniel berpenghasilan tahunan <InlineMath math="\text{RM}\,48{.}000" /> dengan total keringanan <InlineMath math="\text{RM}\,14{.}000" />. Hitung penghasilan kena pajaknya.
+
+2. Hitung pajak penghasilan untuk penghasilan kena pajak <InlineMath math="\text{RM}\,34{.}000" />.
+
+3. Hitung pajak penghasilan dan tarif pajak rata-rata untuk penghasilan kena pajak <InlineMath math="\text{RM}\,80{.}000" />.
+
+4. Tagihan yang sudah termasuk pajak layanan <InlineMath math="8\%" /> berjumlah <InlineMath math="\text{RM}\,54" />. Tentukan harga sebelum pajak.
+
+### Pembahasan
+
+**Pembahasan 1**: Kurangkan keringanan dari penghasilan tahunan:
+
+<BlockMath math="48{.}000 - 14{.}000 = 34{.}000" />
+
+Penghasilan kena pajaknya <InlineMath math="\text{RM}\,34{.}000" />.
+
+**Pembahasan 2**: Hitung **lapisan demi lapisan**:
+
+<BlockMath math="0 + 15{.}000 \times 1\% + 14{.}000 \times 3\% = 150 + 420 = 570" />
+
+Cek dengan model: pada <InlineMath math="p = 34" />, terbaca <InlineMath math="570" />.
+
+**Pembahasan 3**: Lapisan sampai <InlineMath math="\text{RM}\,70{.}000" /> memberi <InlineMath math="150 + 450 + 900 + 2{.}200 = 3{.}700" />, ditambah bagian dalam lapisan <InlineMath math="19\%" />:
+
+<MathContainer>
+<BlockMath math="3{.}700 + 10{.}000 \times 19\% = 3{.}700 + 1{.}900 = 5{.}600" />
+<BlockMath math="\frac{5{.}600}{80{.}000} \times 100\% = 7\%" />
+</MathContainer>
+
+Cek dengan model: pada <InlineMath math="p = 80" />, pajaknya terbaca <InlineMath math="5{.}600" /> dan tarif rata-ratanya <InlineMath math="7" />.
+
+**Pembahasan 4**: Bagi dengan <InlineMath math="1{,}08" />:
+
+<BlockMath math="\frac{54}{1{,}08} = 50" />
+
+Harga sebelum pajak adalah <InlineMath math="\text{RM}\,50" />. Cek: <InlineMath math="50 \times 1{,}08 = 54" />.

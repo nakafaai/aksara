@@ -78,7 +78,39 @@ export const kssmForm5MathematicsTopicNodes = [
     },
   }),
   unitNode({
+    children: [
+      materialNode({
+        key: "form-5-mathematics-consumer-mathematics-taxation-taxation",
+        level: "lesson",
+        materialKeys: ["lesson.mathematics.taxation"],
+        order: 10,
+        outcomes: [
+          {
+            code: "Tingkatan 5, Standard Kandungan 4.1",
+            ...mathematicsStandards,
+          },
+        ],
+      }),
+    ],
     key: "form-5-mathematics-consumer-mathematics-taxation",
+    materialCard: {
+      de: {
+        description: "Berechne progressive Einkommensteuer.",
+        title: "Steuern",
+      },
+      en: {
+        description: "Work out progressive income tax.",
+        title: "Taxation",
+      },
+      id: {
+        description: "Hitung pajak penghasilan progresif.",
+        title: "Perpajakan",
+      },
+      ms: {
+        description: "Kira cukai pendapatan berperingkat.",
+        title: "Percukaian",
+      },
+    },
     order: 40,
     translations: {
       de: {

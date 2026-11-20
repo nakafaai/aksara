@@ -1,0 +1,263 @@
+export const metadata = {
+  title: "Nota Matematik Pengguna Percukaian Tingkatan Lima",
+  description:
+    "Nota Matematik Tingkatan 5 Bab 4: kenal pasti jenis cukai, kira pendapatan bercukai, cukai pendapatan berperingkat dan kadar cukai purata dengan latihan.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2026-11-17",
+  subject: "Matematik Pengguna: Percukaian",
+};
+
+## Cukai Membiayai Perkhidmatan Awam
+
+**Cukai** ialah bayaran wajib kepada kerajaan untuk membiayai perkhidmatan awam seperti sekolah, hospital dan jalan raya. **Cukai pendapatan** dikenakan ke atas **pendapatan bercukai**, iaitu pendapatan tahunan selepas ditolak pengecualian dan pelepasan. Cukai pendapatan bersifat **berperingkat**: setiap bahagian pendapatan dikenakan kadar yang lebih tinggi daripada bahagian sebelumnya. Dalam model di sini, kamu mengira cukai bagi setiap pendapatan, melihat pembahagian cukai mengikut banjaran dan membandingkan kadar cukai purata.
+
+## Jenis Cukai
+
+Cukai dipungut oleh **tiga peringkat kerajaan** mengikut jenisnya.
+
+| Cukai | Dikenakan ke atas | Dibayar kepada |
+| :--- | :--- | :--- |
+| Cukai pendapatan | Pendapatan bercukai individu atau syarikat | Kerajaan persekutuan |
+| Cukai jualan dan perkhidmatan | Barangan dan perkhidmatan tertentu | Kerajaan persekutuan |
+| Cukai jalan | Kenderaan bermotor | Kerajaan persekutuan |
+| Cukai pintu | Rumah dan bangunan dalam kawasan pihak berkuasa tempatan | Pihak berkuasa tempatan |
+| Cukai tanah | Pemilikan tanah | Kerajaan negeri |
+
+## Pendapatan Bercukai
+
+Pendapatan bercukai dikira dengan menolak **pengecualian** dan **pelepasan** daripada jumlah pendapatan tahunan:
+
+<BlockMath math="\text{Pendapatan bercukai} = \text{pendapatan tahunan} - \text{pengecualian} - \text{pelepasan}" />
+
+Pelepasan termasuk pelepasan individu, caruman kumpulan wang simpanan dan perbelanjaan tertentu seperti buku. Jumlah pelepasan sebenar ditetapkan setiap tahun oleh pihak berkuasa cukai. Carta ini menunjukkan contoh pengiraan bagi Puan Aini.
+
+<BarChart
+  title={<>Daripada Pendapatan Tahunan kepada Pendapatan Bercukai</>}
+  description={
+    <>
+      Contoh dalam ringgit: pendapatan tahunan, setiap pelepasan, dan pendapatan
+      bercukai yang tinggal.
+    </>
+  }
+  yAxisLabel="Jumlah (RM)"
+  data={[
+    { name: "Pendapatan tahunan", value: 72000 },
+    { name: "Pelepasan individu", value: 9000 },
+    { name: "Caruman simpanan", value: 4000 },
+    { name: "Pelepasan gaya hidup", value: 3000 },
+    { name: "Pendapatan bercukai", value: 72000 - 9000 - 4000 - 3000 },
+  ]}
+  chartConfig={{ value: { label: "Jumlah", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>
+
+Pendapatan bercukai Puan Aini ialah <InlineMath math="72{,}000 - 9{,}000 - 4{,}000 - 3{,}000 = \text{RM}\,56{,}000" />.
+
+## Cukai Pendapatan Berperingkat
+
+Nota ini menggunakan **jadual contoh kadar cukai berperingkat** di bawah untuk latihan. Kadar sebenar diterbitkan setiap tahun oleh pihak berkuasa cukai.
+
+| Banjaran pendapatan bercukai (RM) | Kadar |
+| :--- | :--- |
+| <InlineMath math="0" /> hingga <InlineMath math="5{,}000" /> | <InlineMath math="0\%" /> |
+| <InlineMath math="5{,}001" /> hingga <InlineMath math="20{,}000" /> | <InlineMath math="1\%" /> |
+| <InlineMath math="20{,}001" /> hingga <InlineMath math="35{,}000" /> | <InlineMath math="3\%" /> |
+| <InlineMath math="35{,}001" /> hingga <InlineMath math="50{,}000" /> | <InlineMath math="6\%" /> |
+| <InlineMath math="50{,}001" /> hingga <InlineMath math="70{,}000" /> | <InlineMath math="11\%" /> |
+| <InlineMath math="70{,}001" /> hingga <InlineMath math="100{,}000" /> | <InlineMath math="19\%" /> |
+
+Kadar yang lebih tinggi hanya dikenakan ke atas bahagian pendapatan dalam banjaran itu, bukan ke atas seluruh pendapatan. Gerakkan pendapatan bercukai dalam model ini dan baca cukai serta kadar cukai purata.
+
+<MathVisual
+  title={<>Cukai Pendapatan Mengikut Pendapatan Bercukai</>}
+  description={
+    <>
+      Cukai dalam ratus ringgit terhadap pendapatan bercukai dalam ribu ringgit,
+      menurut jadual contoh. Lengkung menjadi semakin curam pada setiap
+      banjaran.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 100 }, y: { min: 0, max: 95 } },
+    view: { kind: "fit", padding: 0.04 },
+    parameters: [
+      { name: "p", min: 1, max: 100, value: 56, step: 1, label: "p" },
+    ],
+    objects: [
+      { id: "tax", kind: "function", appearance: "primary", formula: "10(0.01min(max(x - 5, 0), 15) + 0.03min(max(x - 20, 0), 15) + 0.06min(max(x - 35, 0), 15) + 0.11min(max(x - 50, 0), 20) + 0.19max(x - 70, 0))", domain: { min: 0, max: 100 } },
+      { id: "now", kind: "marker", x: "p", y: "10(0.01min(max(p - 5, 0), 15) + 0.03min(max(p - 20, 0), 15) + 0.06min(max(p - 35, 0), 15) + 0.11min(max(p - 50, 0), 20) + 0.19max(p - 70, 0))", appearance: "warning" },
+    ],
+    readouts: [
+      { key: "tax", formula: "1000(0.01min(max(p - 5, 0), 15) + 0.03min(max(p - 20, 0), 15) + 0.06min(max(p - 35, 0), 15) + 0.11min(max(p - 50, 0), 20) + 0.19max(p - 70, 0))" },
+      { key: "average", formula: "100(0.01min(max(p - 5, 0), 15) + 0.03min(max(p - 20, 0), 15) + 0.06min(max(p - 35, 0), 15) + 0.11min(max(p - 50, 0), 20) + 0.19max(p - 70, 0))/p" },
+    ],
+  }}
+  labels={{
+    p: <>Pendapatan bercukai <InlineMath math="p" /> dalam ribu ringgit</>,
+    tax: <>Cukai dalam ringgit</>,
+    average: <>Kadar cukai purata dalam peratus</>,
+  }}
+/>
+
+### Contoh Mengira Cukai Pendapatan
+
+Kira **cukai pendapatan** Puan Aini bagi pendapatan bercukai <InlineMath math="\text{RM}\,56{,}000" /> menggunakan jadual contoh.
+
+<MathContainer>
+<BlockMath math="5{,}000 \times 0\% = 0" />
+<BlockMath math="15{,}000 \times 1\% = 150" />
+<BlockMath math="15{,}000 \times 3\% = 450" />
+<BlockMath math="15{,}000 \times 6\% = 900" />
+<BlockMath math="6{,}000 \times 11\% = 660" />
+<BlockMath math="\text{Jumlah cukai} = 0 + 150 + 450 + 900 + 660 = 2{,}160" />
+</MathContainer>
+
+Semak bahawa bahagian-bahagian itu berjumlah <InlineMath math="5{,}000 + 15{,}000 \times 3 + 6{,}000 = 56{,}000" />. Semak dengan model: pada <InlineMath math="p = 56" />, bacaan cukai ialah <InlineMath math="2{,}160" />. Carta ini menunjukkan cukai daripada setiap banjaran.
+
+<BarChart
+  title={<>Cukai daripada Setiap Banjaran bagi <InlineMath math="\text{RM}\,56{,}000" /></>}
+  description={
+    <>
+      Ringgit cukai yang datang daripada setiap banjaran. Banjaran tertinggi
+      yang dicapai menyumbang <InlineMath math="11\%" /> daripada{" "}
+      <InlineMath math="\text{RM}\,6{,}000" /> sahaja.
+    </>
+  }
+  yAxisLabel="Cukai (RM)"
+  data={[
+    { name: "0 hingga 5000", value: 0 },
+    { name: "5001 hingga 20000", value: 150 },
+    { name: "20001 hingga 35000", value: 450 },
+    { name: "35001 hingga 50000", value: 900 },
+    { name: "50001 hingga 56000", value: 660 },
+  ]}
+  chartConfig={{ value: { label: "Cukai", colors: { light: ["var(--chart-2)"], dark: ["var(--chart-2)"] } } }}
+/>
+
+### Kadar Cukai Purata
+
+**Kadar cukai purata** ialah jumlah cukai dibahagi pendapatan bercukai. Bagi Puan Aini:
+
+<BlockMath math="\frac{2{,}160}{56{,}000} \times 100\% = 3.86\%" />
+
+Kadar purata ini jauh lebih rendah daripada kadar banjaran tertingginya, <InlineMath math="11\%" />. Model ini melukis kadar purata bagi setiap pendapatan, dan lengkungnya terus naik kerana cukai berperingkat.
+
+<MathVisual
+  title={<>Kadar Cukai Purata Mengikut Pendapatan</>}
+  description={
+    <>
+      Kadar cukai purata dalam peratus terhadap pendapatan bercukai dalam
+      sepuluh ribu ringgit, menurut jadual contoh.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 10 }, y: { min: 0, max: 10 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "q", min: 0.5, max: 10, value: 5.6, step: 0.1, label: "q" },
+    ],
+    objects: [
+      { id: "average", kind: "function", appearance: "primary", formula: "100(0.01min(max(10x - 5, 0), 15) + 0.03min(max(10x - 20, 0), 15) + 0.06min(max(10x - 35, 0), 15) + 0.11min(max(10x - 50, 0), 20) + 0.19max(10x - 70, 0))/(10x)", domain: { min: 0.5, max: 10 } },
+      { id: "now", kind: "marker", x: "q", y: "100(0.01min(max(10q - 5, 0), 15) + 0.03min(max(10q - 20, 0), 15) + 0.06min(max(10q - 35, 0), 15) + 0.11min(max(10q - 50, 0), 20) + 0.19max(10q - 70, 0))/(10q)", appearance: "warning" },
+    ],
+    readouts: [
+      { key: "average", formula: "100(0.01min(max(10q - 5, 0), 15) + 0.03min(max(10q - 20, 0), 15) + 0.06min(max(10q - 35, 0), 15) + 0.11min(max(10q - 50, 0), 20) + 0.19max(10q - 70, 0))/(10q)" },
+    ],
+  }}
+  labels={{
+    q: <>Pendapatan bercukai <InlineMath math="q" /> dalam sepuluh ribu ringgit</>,
+    average: <>Kadar cukai purata dalam peratus</>,
+  }}
+/>
+
+## Cukai Jualan dan Perkhidmatan
+
+Cukai perkhidmatan dikira sebagai peratus daripada harga perkhidmatan. Jika bil restoran ialah <InlineMath math="\text{RM}\,80" /> dan cukai perkhidmatan <InlineMath math="8\%" />, jumlah yang dibayar ialah <InlineMath math="80 \times 1.08 = \text{RM}\,86.40" />. Untuk mencari harga asal daripada jumlah yang sudah termasuk cukai, **bahagi dengan** <InlineMath math="1.08" />, bukan tolak <InlineMath math="8\%" />.
+
+Model ini membandingkan harga dengan jumlah yang dibayar selepas cukai. Ubah kadar cukai dan harga.
+
+<MathVisual
+  title={<>Jumlah Dibayar selepas Cukai Perkhidmatan</>}
+  description={
+    <>
+      Jumlah dibayar dalam puluh ringgit, <InlineMath math="h\left(1 + \dfrac{r}{100}\right)" />, terhadap harga dalam puluh ringgit. Garis rujukan ialah harga tanpa cukai.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 10 }, y: { min: 0, max: 11 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "r", min: 0, max: 10, value: 8, step: 1, label: "r" },
+      { name: "h", min: 1, max: 10, value: 8, step: 0.5, label: "h" },
+    ],
+    objects: [
+      { id: "total", kind: "function", appearance: "primary", formula: "x(1 + r/100)", domain: { min: 0, max: 10 } },
+      { id: "price", kind: "function", appearance: "reference", formula: "x", domain: { min: 0, max: 10 } },
+      { id: "now", kind: "marker", x: "h", y: "h(1 + r/100)", appearance: "warning" },
+    ],
+    readouts: [
+      { key: "total", formula: "10h(1 + r/100)" },
+      { key: "tax", formula: "10h r/100" },
+    ],
+  }}
+  labels={{
+    r: <>Kadar cukai <InlineMath math="r" /> dalam peratus</>,
+    h: <>Harga <InlineMath math="h" /> dalam puluh ringgit</>,
+    total: <>Jumlah dibayar dalam ringgit</>,
+    tax: <>Cukai dalam ringgit</>,
+  }}
+/>
+
+## Kesilapan Lazim tentang Percukaian
+
+| Kesilapan | Sebab salah | Cara semak |
+| :--- | :--- | :--- |
+| Mengira cukai daripada pendapatan tahunan. | Cukai dikira daripada pendapatan bercukai selepas pelepasan. | Tolak pengecualian dan pelepasan dahulu. |
+| Mengenakan kadar tertinggi ke atas seluruh pendapatan. | Setiap kadar hanya dikenakan ke atas bahagian dalam banjarannya. | Jumlah bahagian mesti sama dengan pendapatan bercukai. |
+| Menolak <InlineMath math="8\%" /> untuk mencari harga sebelum cukai. | Harga asal ialah jumlah dibahagi <InlineMath math="1.08" />. | Darab semula jawapan dengan <InlineMath math="1.08" />. |
+| Menyamakan kadar purata dengan kadar banjaran tertinggi. | Kadar purata ialah jumlah cukai dibahagi pendapatan bercukai. | Kadar purata mesti lebih rendah. |
+
+Kesilapan kedua paling kerap muncul dalam soalan cukai pendapatan. **Kira cukai banjaran demi banjaran**.
+
+## Latihan Percukaian
+
+Soalan ini bergerak dari pendapatan bercukai ke cukai berperingkat. **Gunakan jadual contoh** dalam nota ini.
+
+1. Encik Daniel berpendapatan tahunan <InlineMath math="\text{RM}\,48{,}000" /> dengan jumlah pelepasan <InlineMath math="\text{RM}\,14{,}000" />. Kira pendapatan bercukainya.
+
+2. Kira cukai pendapatan bagi pendapatan bercukai <InlineMath math="\text{RM}\,34{,}000" />.
+
+3. Kira cukai pendapatan dan kadar cukai purata bagi pendapatan bercukai <InlineMath math="\text{RM}\,80{,}000" />.
+
+4. Jumlah bil termasuk cukai perkhidmatan <InlineMath math="8\%" /> ialah <InlineMath math="\text{RM}\,54" />. Cari harga sebelum cukai.
+
+### Penyelesaian
+
+**Penyelesaian 1**: Tolak pelepasan daripada pendapatan tahunan:
+
+<BlockMath math="48{,}000 - 14{,}000 = 34{,}000" />
+
+Pendapatan bercukai <InlineMath math="\text{RM}\,34{,}000" />.
+
+**Penyelesaian 2**: Kira **banjaran demi banjaran**:
+
+<BlockMath math="0 + 15{,}000 \times 1\% + 14{,}000 \times 3\% = 150 + 420 = 570" />
+
+Semak dengan model: pada <InlineMath math="p = 34" />, bacaan ialah <InlineMath math="570" />.
+
+**Penyelesaian 3**: Banjaran hingga <InlineMath math="\text{RM}\,70{,}000" /> memberi <InlineMath math="150 + 450 + 900 + 2{,}200 = 3{,}700" />, ditambah bahagian dalam banjaran <InlineMath math="19\%" />:
+
+<MathContainer>
+<BlockMath math="3{,}700 + 10{,}000 \times 19\% = 3{,}700 + 1{,}900 = 5{,}600" />
+<BlockMath math="\frac{5{,}600}{80{,}000} \times 100\% = 7\%" />
+</MathContainer>
+
+Semak dengan model: pada <InlineMath math="p = 80" />, bacaan cukai ialah <InlineMath math="5{,}600" /> dan kadar purata <InlineMath math="7" />.
+
+**Penyelesaian 4**: Bahagi dengan <InlineMath math="1.08" />:
+
+<BlockMath math="\frac{54}{1.08} = 50" />
+
+Harga sebelum cukai <InlineMath math="\text{RM}\,50" />. Semak: <InlineMath math="50 \times 1.08 = 54" />.
