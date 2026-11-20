@@ -107,6 +107,7 @@ export const labelDocument = Effect.fn("AksaraCompiler.labelDocument")(
     const content = yield* blockChildren(childrenOf(root), {
       ...site,
       answers: "hidden",
+      fields: [],
     });
     return yield* Schema.decodeEffect(ContentDocumentSchema)(
       { content, type: "doc" },

@@ -1,6 +1,7 @@
 import { NodeServices } from "@effect/platform-node";
 import { describe, expect, it } from "@effect/vitest";
 import { Array as Arr, Effect, Option } from "effect";
+import type { TaskSource } from "#corpus/question-bank/item";
 import type { QuestionSet, QuestionSource } from "#corpus/question-bank/source";
 import { readQuestionSets } from "#corpus/question-bank/source";
 import { corpusRoot } from "#corpus/test/root";
@@ -10,6 +11,20 @@ import { examSetPaths } from "#corpus/tryout/projection";
 import { validateAssessmentQuestionReadiness } from "#corpus/tryout/readiness/inventory";
 
 type Blueprint = NonNullable<QuestionSource["item"]["blueprint"]>;
+
+/** An item of a typed part and a written part, which TKA does not ask. */
+const written: TaskSource = {
+  kind: "parts",
+  parts: [
+    { expression: "1", kind: "mathEntry", label: "a", points: 1 },
+    {
+      kind: "extendedText",
+      label: "b",
+      points: 1,
+      rubric: [{ label: "Alasan", met: "Menjelaskan alasannya.", points: 1 }],
+    },
+  ],
+};
 
 /** Loads the actual TKA source, its mathematics gate, and its bank sets. */
 const loadTkaReadiness = Effect.gen(function* () {
@@ -191,7 +206,7 @@ describe("validateAssessmentQuestionReadiness", () => {
   );
 
   it.effect(
-    "rejects a false topic owner, response mix, short answer, or group count",
+    "rejects a false topic owner, response mix, short answer, written part, or group count",
     () =>
       Effect.gen(function* () {
         const loaded = yield* loadTkaReadiness;
@@ -250,12 +265,20 @@ describe("validateAssessmentQuestionReadiness", () => {
               },
             }))
           ),
+          rejectField(
+            loaded,
+            mapQuestions(sets, (question) => ({
+              ...question,
+              item: { ...question.item, versions: { id: written } },
+            }))
+          ),
         ]);
 
         expect(fields).toEqual([
           "topicDomain:real-numbers",
           "responseKind:multiple-choice",
           "groupedStimulus",
+          "responseKindCoverage",
           "responseKindCoverage",
         ]);
       })

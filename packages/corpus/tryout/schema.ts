@@ -12,6 +12,7 @@ import {
   ScoreScaleSchema,
   ScoringStrategySchema,
 } from "@nakafa/aksara-contracts/assessment/scoring";
+import { ToolSetSchema } from "@nakafa/aksara-contracts/assessment/tools";
 import { CountryCodeSchema } from "@nakafa/aksara-contracts/country";
 import { AppLocaleCodeSchema } from "@nakafa/aksara-contracts/locale";
 import { Array as Arr, Effect, MutableHashSet, Option, Schema } from "effect";
@@ -55,11 +56,24 @@ export const ExplanationKindSchema = Schema.Literals(["figure", "evidence"]);
 export type ExplanationKind = typeof ExplanationKindSchema.Type;
 
 /**
+ * The aids an exam allows in a section, such as a scientific calculator or a
+ * formula sheet: tools of the player, each once, at most one calculator, and
+ * never mark for review, which every Nakafa try-out offers (`tryout/profile`).
+ */
+export const AidsSchema = ToolSetSchema.check(
+  Schema.makeFilter((tools) => !Arr.contains(tools, "mark-for-review"), {
+    message:
+      "Expected aids without mark for review, which every try-out offers.",
+  })
+);
+
+/**
  * One section of an exam profile: the languages its items are asked in, the
  * first being the one a learner starts in, how many items it has, how long it
- * lasts, what its explanations show, the interactions it allows, and its names and routes. Every set of the
- * track sits the same sections in this order, each with its own items, and
- * every item of a section is written in each of its languages.
+ * lasts, what its explanations show, the interactions it allows, the aids it
+ * offers, and its names and routes. A section without aids leaves `tools` out.
+ * Every set of the track sits the same sections in this order, each with its
+ * own items, and every item of a section is written in each of its languages.
  */
 export const SectionSourceSchema = Schema.Struct({
   explanation: ExplanationKindSchema,
@@ -73,6 +87,7 @@ export const SectionSourceSchema = Schema.Struct({
   ),
   routeSlugs: Schema.optionalKey(PublicRouteSlugMapSchema),
   seconds: PositiveIntSchema,
+  tools: Schema.optionalKey(AidsSchema.check(Schema.isMinLength(1))),
   translations: TranslationMapSchema,
   visibility: SectionVisibilitySchema,
 }).check(
@@ -97,7 +112,7 @@ function hasReachableSections(sections: readonly SectionSource[]) {
 /**
  * The exam profile of one track, as authored: its names, its scoring and
  * report, and its sections. The facts that every Nakafa try-out shares, such
- * as the deadline allowances and the tools, are in `tryout/profile`.
+ * as the deadline allowances and mark for review, are in `tryout/profile`.
  */
 export const ProfileSourceSchema = Schema.Struct({
   names: TranslationMapSchema,

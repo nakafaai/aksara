@@ -28,6 +28,11 @@ import type { loadTryoutContent } from "@nakafa/aksara-corpus/tryout/content";
 import { makeExamProfile } from "@nakafa/aksara-corpus/tryout/profile";
 import type { FileSystem, Path, Schema } from "effect";
 import { Array as Arr, Effect, Option, Stream } from "effect";
+import type { PartsReleaseError } from "#publisher/assessment/guard";
+import {
+  NAKAFA_SERVES_PARTS,
+  requireServableParts,
+} from "#publisher/assessment/guard";
 import type {
   AssembledItem,
   AssembleItemError,
@@ -66,6 +71,7 @@ export interface PreparedAssessmentSnapshot {
 
 /** Every failure of preparing the assessment snapshot. */
 export type PrepareAssessmentSnapshotError =
+  | PartsReleaseError
   | AssembleItemError
   | Schema.SchemaError
   | Effect.Error<ReturnType<typeof compileExplanationDocument>>
@@ -85,7 +91,8 @@ export type PrepareAssessmentSnapshotError =
  * Prepares the assessment snapshot of the active try-outs: the profile of
  * every track, the frozen paper of every set with its items, readings, keys,
  * and explanations, and the catalog that names the papers, as hashed rows in
- * canonical order with the digest over them.
+ * canonical order with the digest over them. It refuses items with parts
+ * until Nakafa production serves them (`assessment/guard`).
  */
 export const prepareAssessmentSnapshot: (
   input: AssessmentSnapshotInput
@@ -96,6 +103,7 @@ export const prepareAssessmentSnapshot: (
 > = Effect.fn("AksaraPublisher.prepareAssessmentSnapshot")(function* (
   input: AssessmentSnapshotInput
 ) {
+  yield* requireServableParts(input.content.sets, NAKAFA_SERVES_PARTS);
   const tracks = yield* Effect.forEach(
     Arr.flatMap(input.content.exams, (exam) =>
       Arr.map(exam.tracks, (track) => ({ exam, track }))

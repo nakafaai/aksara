@@ -589,7 +589,18 @@ blueprint, the key of its set's reading, and its interaction in each language it
 is asked in, a `choice` of options that are correct or not, a `matrix` of
 statements in columns, or a `numericEntry` with its exact decimal value and an
 optional unit. Publication derives every identifier, the key, the
-prompt with its interaction placed after the stem, and the hashes. A reading is
+prompt with its interaction placed after the stem, and the hashes. An item of
+several `parts`, such as an Aufgabe of the Feststellungsprüfung with its
+Teilaufgaben or a C-Test text with its gaps, lists each part with the label its
+paper prints, its kind (`mathEntry`, `numericEntry`, `textEntry`, or
+`extendedText`), its points, and its key: an expression, a value, the accepted
+texts, or a rubric of criteria whose points add up to the part's. Its prompt
+places each part once with `<Field part="a" />`, inline for a typed part and on
+a line of its own for a written one. Publication gives each part its own
+interaction, key, and scoring override, named after the label (`part-a`), and
+its worked answer opens one `#` heading per part, such as `# a) ...`. Until
+Nakafa production stores, grades, and renders every part, publication refuses
+a release that carries such an item (`NAKAFA_SERVES_PARTS`). A reading is
 its own file in the set, `<reading>/stimulus.<language>.mdx`, used by key; the
 migration moved each of the 159 readings out of the 887 prompts that copied it.
 The assessment vocabulary of MDX is Markdown, `InlineMath`, `BlockMath`,
@@ -601,11 +612,15 @@ Catalog, without metadata; headings of an explanation start at `#`.
 Each track carries one profile. SNBT scores by IRT on a scale of 0 to 1000 and
 reports its sections and their standard error; each TKA subject scores raw and
 reports its total. Every Nakafa try-out moves freely within a section, offers
-mark for review and no calculator, scores each interaction all or nothing, lets
+mark for review, scores each interaction all or nothing unless its item scores
+its parts, lets
 a sampled math verdict score, and has no break and no accommodation catalog. The
 write allowance is 5 seconds, a few seconds within one presence lease as Nakafa
 ADR 0013 bounds it, and the grace period is 75 seconds, one presence lease of
-Nakafa: 2.5 heartbeats of 30 seconds (`PRESENCE_INTERVAL`).
+Nakafa: 2.5 heartbeats of 30 seconds (`PRESENCE_INTERVAL`). A section offers
+no other tool unless its source names the aids its exam allows in `tools`, such
+as a scientific calculator and a formula sheet, which the profile lists after
+mark for review; its readiness records the same aids with their evidence.
 
 ## Rejected
 

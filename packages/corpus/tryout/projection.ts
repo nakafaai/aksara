@@ -1,7 +1,7 @@
 import { KebabKeySchema } from "@nakafa/aksara-contracts/assessment/identity";
 import { AppLocaleCodeSchema } from "@nakafa/aksara-contracts/locale";
 import { Array as Arr, Effect, Option, Result, Schema } from "effect";
-import { itemVersions } from "#corpus/question-bank/item";
+import { itemVersions, taskKinds } from "#corpus/question-bank/item";
 import type { SetPath } from "#corpus/question-bank/path";
 import { SetPathSchema, setPath } from "#corpus/question-bank/path";
 import type { QuestionSet } from "#corpus/question-bank/source";
@@ -119,7 +119,8 @@ const requireStimulusGroups = Effect.fn("AksaraCorpus.requireStimulusGroups")(
 
 /**
  * Plans one section: its bank set, with exactly its items, each asked in every
- * language of the section with an interaction its section allows.
+ * language of the section with interactions its section allows, the kinds of
+ * all its parts included.
  */
 const planSection = Effect.fn("AksaraCorpus.planSection")(function* (
   exam: ExamSource,
@@ -151,8 +152,10 @@ const planSection = Effect.fn("AksaraCorpus.planSection")(function* (
   }
   if (
     !Arr.every(questions, ({ item }) =>
-      Arr.every(itemVersions(item.versions), ({ interaction }) =>
-        Arr.contains(section.interactions, interaction.kind)
+      Arr.every(itemVersions(item.versions), ({ task }) =>
+        Arr.every(taskKinds(task), (kind) =>
+          Arr.contains(section.interactions, kind)
+        )
       )
     )
   ) {

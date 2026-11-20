@@ -125,6 +125,22 @@ describe("item label source validation", () => {
     )
   );
 
+  it.effect("reads no Markdown label in the parts of an item", () =>
+    validateItemLabels(
+      {
+        versions: {
+          de: {
+            kind: "parts",
+            parts: [
+              { accepted: ["$x$"], kind: "textEntry", label: "a", points: 1 },
+            ],
+          },
+        },
+      },
+      sourcePath
+    )
+  );
+
   it.effect("checks both column names and statement labels", () =>
     Effect.gen(function* () {
       const item: ItemSource = {

@@ -6,14 +6,13 @@ import {
   Option,
   Schema,
 } from "effect";
-
+import type { TaskSource } from "#corpus/question-bank/item";
 import { itemVersions } from "#corpus/question-bank/item";
 import { setPath } from "#corpus/question-bank/path";
 import type { QuestionSet, QuestionSource } from "#corpus/question-bank/source";
-import type {
-  AssessmentReadiness,
-  ResponseFormat,
-} from "#corpus/tryout/readiness/schema";
+import { validateSectionPoints } from "#corpus/tryout/readiness/points";
+import type { AssessmentReadiness } from "#corpus/tryout/readiness/schema";
+import type { ResponseFormat } from "#corpus/tryout/readiness/section";
 import {
   requireReadinessSection,
   requireReadinessTrack,
@@ -26,23 +25,39 @@ type ReadinessSection = AssessmentReadiness["sections"][number];
 type ReadinessBlueprint = NonNullable<ReadinessSection["blueprint"]>;
 
 /**
- * The official response format of one item: a choice with one correct option
+ * The official response formats of one task: a choice with one correct option
  * is a single choice, with several a multiple choice, a matrix a category
- * table, and a typed number a short answer. Every language of an item asks the
- * same task, so one version tells.
+ * table, and a typed number a short answer. Each part of an item has its own
+ * format: a written answer is an extended response, and every other part a
+ * short answer.
  */
-function responseFormat(question: QuestionSource): readonly ResponseFormat[] {
-  return Arr.map(itemVersions(question.item.versions), ({ interaction }) => {
-    if (interaction.kind === "matrix") {
-      return "category";
-    }
-    if (interaction.kind === "numericEntry") {
-      return "short-answer";
-    }
-    return Arr.filter(interaction.options, ({ correct }) => correct).length > 1
-      ? "multiple-choice"
-      : "single-choice";
-  });
+function taskFormats(task: TaskSource): readonly ResponseFormat[] {
+  if (task.kind === "parts") {
+    return Arr.map(task.parts, ({ kind }) =>
+      kind === "extendedText" ? "extended-response" : "short-answer"
+    );
+  }
+  if (task.kind === "matrix") {
+    return ["category"];
+  }
+  if (task.kind === "numericEntry") {
+    return ["short-answer"];
+  }
+  return Arr.filter(task.options, ({ correct }) => correct).length > 1
+    ? ["multiple-choice"]
+    : ["single-choice"];
+}
+
+/**
+ * The official response formats of one item, each once. Every language of an
+ * item asks the same task, so every version tells the same.
+ */
+function responseFormats(question: QuestionSource): readonly ResponseFormat[] {
+  return Arr.dedupe(
+    Arr.flatMap(itemVersions(question.item.versions), ({ task }) =>
+      taskFormats(task)
+    )
+  );
 }
 
 /** Counts each observed readiness key without losing unknown values. */
@@ -173,13 +188,15 @@ const validateSectionQuestionReadiness = Effect.fn(
     "topic",
     scope
   );
-  const responseKinds = Arr.flatMap(readiness.responseMinimums, ({ kind }) =>
-    Arr.flatMap(selected, (question) =>
-      Arr.contains(responseFormat(question), kind) ? [kind] : []
-    )
+  const listed = Arr.map(readiness.responseMinimums, ({ kind }) => kind);
+  const formats = Arr.map(selected, responseFormats);
+  const responseKinds = Arr.filter(Arr.flatten(formats), (format) =>
+    Arr.contains(listed, format)
   );
   yield* validateReadinessField(
-    responseKinds.length,
+    Arr.filter(formats, (own) =>
+      Arr.every(own, (format) => Arr.contains(listed, format))
+    ).length,
     selected.length,
     "responseKindCoverage",
     scope
@@ -209,7 +226,7 @@ const validateSectionQuestionReadiness = Effect.fn(
   );
 });
 
-/** Validates item coverage, response mix, and grouped stimuli for every set. */
+/** Validates item coverage, response mix, points, and grouped stimuli for every set. */
 export const validateAssessmentQuestionReadiness = Effect.fn(
   "AksaraCorpus.validateAssessmentQuestionReadiness"
 )(function* (
@@ -231,22 +248,26 @@ export const validateAssessmentQuestionReadiness = Effect.fn(
             index,
             setScope
           );
-          if (expected.blueprint === undefined) {
-            return;
-          }
           const path = setPath({
             countryKey: source.countryKey,
             examKey: source.examKey,
             sectionKey: section.key,
             setKey: set.key,
           });
+          const sectionSet = Arr.findFirst(
+            sets,
+            (candidate) => candidate.path === path
+          ).pipe(Option.getOrUndefined);
+          const scope = `${setScope}:${section.key}`;
+          yield* validateSectionPoints(expected, sectionSet, scope);
+          if (expected.blueprint === undefined) {
+            return;
+          }
           yield* validateSectionQuestionReadiness(
             section.items,
             expected.blueprint,
-            Arr.findFirst(sets, (candidate) => candidate.path === path).pipe(
-              Option.getOrUndefined
-            ),
-            `${setScope}:${section.key}`
+            sectionSet,
+            scope
           );
         }),
       { discard: true }

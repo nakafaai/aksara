@@ -54,6 +54,15 @@ official format and the record states the deviation and its resolution. For an
 institution's own entrance test, the evidence is that institution's published
 test description and the rules that govern it.
 
+A section records the aids its exam allows in `tools` of its source, such as
+`["calculator-scientific", "formula-sheet"]`, and its readiness records the
+same aids under `aids` with their evidence; the profile always offers mark for
+review beside them. Where the paper prints the points of each question, such
+as each Aufgabe of a Feststellungsprüfung, readiness records `questionPoints`
+and `totalPoints`, and every set must add up to them. Readiness records each
+section's `weight` in the official result, and the parts of the exam the
+try-out leaves out, such as the oral exam, under `excluded` with theirs.
+
 ## Uniqueness and difficulty
 
 - No item may repeat another item in the bank or the source item that inspired

@@ -6,7 +6,7 @@ import remarkMath from "remark-math";
 import remarkParse from "remark-parse";
 import { unified } from "unified";
 import { EXIT, visit } from "unist-util-visit";
-import type { InteractionSource, ItemSource } from "#corpus/question-bank/item";
+import type { ItemSource, TaskSource } from "#corpus/question-bank/item";
 import { itemVersions } from "#corpus/question-bank/item";
 
 const markdown = unified()
@@ -158,26 +158,27 @@ function labelViolation(label: string) {
 }
 
 /**
- * Lists every rendered Markdown label authored in one interaction. A numeric
- * entry has none: its unit is plain text.
+ * Lists every rendered Markdown label authored in one task. A numeric entry
+ * and the parts of an item have none: units, accepted texts, and rubric
+ * criteria are plain text, and a part's wording sits in its prompt.
  */
-function interactionLabels(interaction: InteractionSource) {
-  if (interaction.kind === "numericEntry") {
+function taskLabels(task: TaskSource) {
+  if (task.kind === "numericEntry" || task.kind === "parts") {
     return [];
   }
-  if (interaction.kind === "matrix") {
+  if (task.kind === "matrix") {
     return [
-      ...Arr.map(interaction.columns, (label, index) => ({
+      ...Arr.map(task.columns, (label, index) => ({
         label,
         path: `columns[${index}]`,
       })),
-      ...Arr.map(interaction.statements, ({ label }, index) => ({
+      ...Arr.map(task.statements, ({ label }, index) => ({
         label,
         path: `statements[${index}].label`,
       })),
     ];
   }
-  return Arr.map(interaction.options, ({ label }, index) => ({
+  return Arr.map(task.options, ({ label }, index) => ({
     label,
     path: `options[${index}].label`,
   }));
@@ -186,8 +187,8 @@ function interactionLabels(interaction: InteractionSource) {
 /** Rejects malformed math in every label before any signed publication. */
 export const validateItemLabels = Effect.fn("AksaraCorpus.validateItemLabels")(
   function* (item: ItemSource, sourcePath: typeof CorpusSourcePathSchema.Type) {
-    for (const { interaction, language } of itemVersions(item.versions)) {
-      for (const { label, path } of interactionLabels(interaction)) {
+    for (const { language, task } of itemVersions(item.versions)) {
+      for (const { label, path } of taskLabels(task)) {
         const reason = labelViolation(label);
         if (reason !== undefined) {
           return yield* new QuestionLabelError({

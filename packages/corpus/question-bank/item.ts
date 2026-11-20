@@ -1,11 +1,18 @@
 import { DecimalSchema } from "@nakafa/aksara-contracts/assessment/answer";
 import { KebabKeySchema } from "@nakafa/aksara-contracts/assessment/identity";
+import type { InteractionKind } from "@nakafa/aksara-contracts/assessment/interaction";
 import { ItemBlueprintSchema } from "@nakafa/aksara-contracts/assessment/item";
 import {
   APP_LOCALE_CODES,
   AppLocaleCodeSchema,
 } from "@nakafa/aksara-contracts/locale";
 import { Array as Arr, Result, Schema, Struct } from "effect";
+import {
+  PartStructureSchema,
+  PartsSourceSchema,
+  partStructure,
+  sumPoints,
+} from "#corpus/question-bank/part";
 
 /**
  * One authored label: one rich Markdown string that becomes a document, with
@@ -83,7 +90,7 @@ const NumericEntrySourceSchema = Schema.Struct({
   value: DecimalSchema,
 }).mapFields(Struct.map(Schema.mutableKey));
 
-/** The one interaction of an authored item, in one language. */
+/** The one interaction of an item that asks a single thing, in one language. */
 export const InteractionSourceSchema = Schema.Union([
   ChoiceSourceSchema,
   MatrixSourceSchema,
@@ -92,8 +99,21 @@ export const InteractionSourceSchema = Schema.Union([
 export type InteractionSource = typeof InteractionSourceSchema.Type;
 
 /**
- * The task of an interaction without its words: its kind, its counts, and
- * which parts are correct. Every language of an item asks the same task.
+ * The task of an authored item in one language: one interaction, or parts
+ * that each have their own interaction, points, and key.
+ */
+export const TaskSourceSchema = Schema.Union([
+  ChoiceSourceSchema,
+  MatrixSourceSchema,
+  NumericEntrySourceSchema,
+  PartsSourceSchema,
+]);
+export type TaskSource = typeof TaskSourceSchema.Type;
+
+/**
+ * A task without its words: its kind, its counts, which parts are correct,
+ * and the label, points, and key of each part. Every language of an item asks
+ * the same task.
  */
 const StructureSchema = Schema.Union([
   Schema.Struct({
@@ -109,50 +129,55 @@ const StructureSchema = Schema.Union([
     kind: Schema.Literal("numericEntry"),
     value: DecimalSchema,
   }),
+  Schema.Struct({
+    kind: Schema.Literal("parts"),
+    parts: Schema.Array(PartStructureSchema),
+  }),
 ]);
 const sameStructure = Schema.toEquivalence(StructureSchema);
 
-/** Returns the task of one interaction without its words. */
-function structureOf(
-  interaction: InteractionSource
-): typeof StructureSchema.Type {
-  if (interaction.kind === "choice") {
+/** Returns one task without its words. */
+function structureOf(task: TaskSource): typeof StructureSchema.Type {
+  if (task.kind === "choice") {
     return {
-      correct: Arr.map(interaction.options, ({ correct }) => correct),
-      kind: interaction.kind,
+      correct: Arr.map(task.options, ({ correct }) => correct),
+      kind: task.kind,
     };
   }
-  if (interaction.kind === "numericEntry") {
-    return { kind: interaction.kind, value: interaction.value };
+  if (task.kind === "numericEntry") {
+    return { kind: task.kind, value: task.value };
+  }
+  if (task.kind === "parts") {
+    return { kind: task.kind, parts: Arr.map(task.parts, partStructure) };
   }
   return {
-    columns: interaction.columns.length,
-    kind: interaction.kind,
-    statements: Arr.map(interaction.statements, ({ column }) => column),
+    columns: task.columns.length,
+    kind: task.kind,
+    statements: Arr.map(task.statements, ({ column }) => column),
   };
 }
 
-/** An item's interaction in each language it is asked in. */
+/** An item's task in each language it is asked in. */
 const VersionsSchema = Schema.Record(
   AppLocaleCodeSchema,
-  Schema.optional(InteractionSourceSchema)
+  Schema.optional(TaskSourceSchema)
 );
 type Versions = typeof VersionsSchema.Type;
 
-/** The authored languages of an item, each with its interaction, in locale order. */
+/** The authored languages of an item, each with its task, in locale order. */
 export function itemVersions(versions: Versions) {
   return Arr.filterMap(APP_LOCALE_CODES, (language) => {
-    const interaction = versions[language];
-    return interaction === undefined
+    const task = versions[language];
+    return task === undefined
       ? Result.failVoid
-      : Result.succeed({ interaction, language });
+      : Result.succeed({ language, task });
   });
 }
 
 /** Checks that an item is asked in at least one language, each asking the same task. */
 function hasOneStructure(versions: Versions) {
-  const [first, ...rest] = Arr.map(itemVersions(versions), ({ interaction }) =>
-    structureOf(interaction)
+  const [first, ...rest] = Arr.map(itemVersions(versions), ({ task }) =>
+    structureOf(task)
   );
   return (
     first !== undefined &&
@@ -162,10 +187,10 @@ function hasOneStructure(versions: Versions) {
 
 /**
  * One authored item: its blueprint facts, the shared reading of its set that
- * it belongs to, and its interaction in each language it is asked in. The
- * prompt of each language is `question.<language>.mdx` beside it, and its
- * explanations are `answer.<locale>.mdx`. Publication derives every
- * identifier, hash, key, and document from this once.
+ * it belongs to, and its task in each language it is asked in. The prompt of
+ * each language is `question.<language>.mdx` beside it, and its explanations
+ * are `answer.<locale>.mdx`. Publication derives every identifier, hash, key,
+ * and document from this once.
  */
 export const ItemSourceSchema = Schema.Struct({
   blueprint: Schema.optionalKey(ItemBlueprintSchema),
@@ -178,3 +203,46 @@ export const ItemSourceSchema = Schema.Struct({
   ),
 });
 export type ItemSource = typeof ItemSourceSchema.Type;
+
+/** The interaction kinds a task asks: its one kind, or the kinds of its parts. */
+export function taskKinds(task: TaskSource): readonly InteractionKind[] {
+  return task.kind === "parts"
+    ? Arr.dedupe(Arr.map(task.parts, ({ kind }) => kind))
+    : [task.kind];
+}
+
+/**
+ * The points a task is worth: the points of its parts added up, or one for a
+ * single interaction, which every try-out scores all or nothing
+ * (`tryout/profile`).
+ */
+export function taskPoints(task: TaskSource) {
+  return task.kind === "parts" ? sumPoints(task.parts) : 1;
+}
+
+/**
+ * The first task of an item, which tells what every language asks, since each
+ * asks the same; an item is asked in at least one language.
+ */
+function firstTasks(item: ItemSource) {
+  return Arr.map(Arr.take(itemVersions(item.versions), 1), ({ task }) => task);
+}
+
+/** The points an item is worth, the same in every language it is asked in. */
+export function itemPoints(item: ItemSource) {
+  return Arr.reduce(
+    firstTasks(item),
+    0,
+    (total, task) => total + taskPoints(task)
+  );
+}
+
+/**
+ * The labels of an item's parts in order, the same in every language, or
+ * none for an item that asks a single thing.
+ */
+export function partLabels(item: ItemSource): readonly string[] {
+  return Arr.flatMap(firstTasks(item), (task) =>
+    task.kind === "parts" ? Arr.map(task.parts, ({ label }) => label) : []
+  );
+}

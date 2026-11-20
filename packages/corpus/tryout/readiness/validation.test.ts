@@ -1,4 +1,5 @@
 import { describe, expect, it } from "@effect/vitest";
+import type { ToolId } from "@nakafa/aksara-contracts/assessment/tools";
 import { Array as Arr, Effect } from "effect";
 import {
   testEnglishSection as english,
@@ -184,6 +185,56 @@ describe("validateAssessmentSourceReadiness", () => {
         ["marks", "3/-1/0", "4/-1/0"],
         ["marks", "none", "4/-1/0"],
         ["marks", "4/-1/0", "none"],
+      ]);
+    })
+  );
+
+  it.effect("validates the aids of each section against its readiness", () =>
+    Effect.gen(function* () {
+      /** Binds the given aids to the fixture-owned official evidence. */
+      const aids = (value: readonly ToolId[]) => ({ ...official(0), value });
+      const aided = yield* defineAssessmentReadiness({
+        ...readinessInput,
+        sections: [
+          {
+            ...reasoningReadiness,
+            aids: aids(["formula-sheet", "calculator-scientific"]),
+          },
+          { ...englishReadiness, aids: aids([]) },
+        ],
+      });
+      const unaided = yield* defineAssessmentReadiness(readinessInput);
+      const [offered, drifted] = yield* Effect.all([
+        withProfile({
+          sections: [
+            { ...reasoning, tools: ["calculator-scientific", "formula-sheet"] },
+            english,
+          ],
+        }),
+        withProfile({
+          sections: [{ ...reasoning, tools: ["formula-sheet"] }, english],
+        }),
+      ]);
+      const failures = yield* Effect.forEach(
+        [
+          validateAssessmentSourceReadiness(drifted, aided),
+          validateAssessmentSourceReadiness(offered, unaided),
+        ],
+        Effect.flip
+      );
+
+      expect(yield* validateAssessmentSourceReadiness(offered, aided)).toBe(
+        offered
+      );
+      expect(
+        Arr.map(failures, ({ actual, expected, field }) => [
+          field,
+          actual,
+          expected,
+        ])
+      ).toEqual([
+        ["aids", "formula-sheet", "calculator-scientific,formula-sheet"],
+        ["aids", "calculator-scientific,formula-sheet", "none"],
       ]);
     })
   );

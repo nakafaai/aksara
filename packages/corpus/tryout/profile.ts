@@ -38,9 +38,10 @@ function names(translations: TrackSource["translations"]) {
 
 /**
  * Builds the exam profile of one track. Every Nakafa try-out moves freely
- * within a section, offers mark for review and no calculator, scores each
- * interaction all or nothing, lets a sampled math verdict score, and has no
- * break and no accommodation catalog yet.
+ * within a section, offers mark for review beside the aids its section
+ * allows, scores each interaction all or nothing unless its item sets its own
+ * points, lets a sampled math verdict score, and has no break and no
+ * accommodation catalog yet.
  */
 export const makeExamProfile = Effect.fn("AksaraCorpus.makeExamProfile")(
   function* (exam: ExamSource, track: TrackSource) {
@@ -71,7 +72,7 @@ export const makeExamProfile = Effect.fn("AksaraCorpus.makeExamProfile")(
           names: names(section.translations),
           navigation: "free",
           seconds: section.seconds,
-          tools: ["mark-for-review"],
+          tools: ["mark-for-review", ...(section.tools ?? [])],
         })),
         totalSeconds: Arr.reduce(
           profile.sections,

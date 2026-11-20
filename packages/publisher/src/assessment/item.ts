@@ -1,3 +1,4 @@
+import type { AssessmentSource } from "@nakafa/aksara-compiler/assessment/document";
 import {
   compileAssessmentBlocks,
   compileExplanationDocument,
@@ -28,7 +29,9 @@ import {
   ContentKeySchema,
   CorpusSourcePathSchema,
 } from "@nakafa/aksara-contracts/ids";
+import type { AppLocaleCode } from "@nakafa/aksara-contracts/locale";
 import { ContentLanguageSchema } from "@nakafa/aksara-contracts/locale";
+import type { TaskSource } from "@nakafa/aksara-corpus/question-bank/item";
 import { itemVersions } from "@nakafa/aksara-corpus/question-bank/item";
 import { QuestionSourceSchema } from "@nakafa/aksara-corpus/question-bank/source";
 import {
@@ -41,13 +44,14 @@ import {
   Schema,
 } from "effect";
 import { assembleInteraction } from "#publisher/assessment/interaction";
+import { assembleParts } from "#publisher/assessment/part";
 
 /**
- * The body of one item version and the key of its one interaction, which one
+ * The body of one item version and the keys of its interactions, which one
  * version's assembly checks together before it hashes the body.
  */
 const VersionSourceSchema = Schema.Struct({
-  answer: InteractionKeySchema,
+  answers: Schema.NonEmptyArray(InteractionKeySchema),
   body: ItemVersionBodySchema,
 });
 
@@ -83,6 +87,44 @@ export const readAssessmentSource = Effect.fn(
     sourcePath: CorpusSourcePathSchema.make(sourcePath),
   };
   return { ...site, rawMdx };
+});
+
+/**
+ * Assembles what one version asks in its language: its interactions and their
+ * keys, the scoring rules it sets, and the content of its prompt. A single
+ * interaction sits after the compiled stem and scores by its exam's default.
+ * Each part of an item sits where its `Field` stands in the stem and scores
+ * its own points.
+ */
+const assembleTask = Effect.fn("AksaraPublisher.assembleTask")(function* (
+  task: TaskSource,
+  language: AppLocaleCode,
+  source: AssessmentSource
+) {
+  if (task.kind === "parts") {
+    const parts = assembleParts(task.parts, language);
+    return {
+      answers: parts.keys,
+      content: yield* compileAssessmentBlocks(source, parts.fields),
+      interactions: parts.interactions,
+      scoring: parts.scoring,
+    };
+  }
+  const stem = yield* compileAssessmentBlocks(source, []);
+  const { interaction, key } = yield* assembleInteraction(
+    task,
+    language,
+    source
+  );
+  return {
+    answers: [key],
+    content: [
+      ...stem,
+      { attrs: { interaction: interaction.id }, type: "interaction" },
+    ],
+    interactions: [interaction],
+    scoring: [],
+  };
 });
 
 /** The records that one authored question becomes. */
@@ -125,8 +167,9 @@ export type AssembleItemError =
  * Assembles one authored question into its records: its family, a version in
  * each language it is asked in, the key of each version, and the explanation
  * of each version in every active app locale. A version's prompt is its
- * compiled stem with its one interaction placed after it, and the version
- * names the reading of its set in its own language.
+ * compiled stem with its one interaction placed after it, or with the field of
+ * each part where the stem places it, and the version names the reading of its
+ * set in its own language.
  */
 export const assembleItem: (
   input: AssembleItemInput
@@ -163,37 +206,28 @@ export const assembleItem: (
   );
   const assembled = yield* Effect.forEach(
     itemVersions(item.versions),
-    ({ interaction: interactionSource, language }) =>
+    ({ language, task }) =>
       Effect.gen(function* () {
         const source = yield* readAssessmentSource(
           input.checkoutRoot,
           `${sourceRoot}/question.${language}.mdx`
         );
-        const stem = yield* compileAssessmentBlocks(source);
-        const { interaction, key } = yield* assembleInteraction(
-          interactionSource,
+        const { answers, content, interactions, scoring } = yield* assembleTask(
+          task,
           language,
           source
         );
         const reading = Option.flatMap(input.reading, ({ versions }) =>
           Rec.get(versions, language)
         );
-        const { answer, body } = yield* Schema.decodeUnknownEffect(
-          VersionSourceSchema
-        )({
-          answer: key,
+        const decoded = yield* Schema.decodeUnknownEffect(VersionSourceSchema)({
+          answers,
           body: {
             deliveryLanguage: language,
             family: input.familyId,
-            interactions: [interaction],
-            prompt: {
-              content: [
-                ...stem,
-                { attrs: { interaction: interaction.id }, type: "interaction" },
-              ],
-              type: "doc",
-            },
-            scoring: [],
+            interactions,
+            prompt: { content, type: "doc" },
+            scoring,
             ...Option.match(reading, {
               onNone: () => ({}),
               onSome: (stimulus) => ({ stimulus }),
@@ -205,11 +239,14 @@ export const assembleItem: (
           )
         );
         const version = ItemVersionSchema.make({
-          ...body,
-          hash: yield* hashItemVersion(body),
+          ...decoded.body,
+          hash: yield* hashItemVersion(decoded.body),
         });
         return {
-          key: ItemKeySchema.make({ answers: [answer], version: version.hash }),
+          key: ItemKeySchema.make({
+            answers: decoded.answers,
+            version: version.hash,
+          }),
           version,
         };
       })

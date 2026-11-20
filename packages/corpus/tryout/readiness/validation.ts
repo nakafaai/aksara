@@ -1,5 +1,5 @@
 import type { MarksSchema } from "@nakafa/aksara-contracts/assessment/scoring";
-import { Array as Arr, Effect, Option, Schema } from "effect";
+import { Array as Arr, Effect, Option, Order, Schema } from "effect";
 
 import type { AssessmentReadiness } from "#corpus/tryout/readiness/schema";
 import type {
@@ -15,6 +15,12 @@ function marksFact(marks: typeof MarksSchema.Type | undefined) {
   return marks === undefined
     ? "none"
     : `${marks.correct}/${marks.wrong}/${marks.blank}`;
+}
+
+/** Writes a set of aids as one comparable readiness fact: in name order, or `none`. */
+function aidsFact(aids: readonly string[] | undefined) {
+  const sorted = Arr.sort(aids ?? [], Order.String);
+  return Arr.isReadonlyArrayNonEmpty(sorted) ? Arr.join(sorted, ",") : "none";
 }
 
 /** The marks a profile scores with: those of a penalized exam, and none for any other. */
@@ -95,7 +101,7 @@ export const requireReadinessSection = Effect.fn(
 /**
  * Validates one exam source against its readiness: the country, exam, and
  * revision, active sets, and each section of the track's profile with its
- * official items, seconds, and marks.
+ * official items, seconds, marks, and aids.
  */
 export const validateAssessmentSourceReadiness = Effect.fn(
   "AksaraCorpus.validateAssessmentSourceReadiness"
@@ -160,6 +166,12 @@ export const validateAssessmentSourceReadiness = Effect.fn(
           marksFact(profileMarks(track.profile)),
           marksFact(expected.marks?.value),
           "marks",
+          scope
+        );
+        yield* validateReadinessField(
+          aidsFact(actual.tools),
+          aidsFact(expected.aids?.value),
+          "aids",
           scope
         );
       }),

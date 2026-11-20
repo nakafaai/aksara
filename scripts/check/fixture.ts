@@ -1,4 +1,4 @@
-import { Effect, FileSystem } from "effect";
+import { Effect, FileSystem, Path, Record as Rec } from "effect";
 import { runGit } from "#scripts/git";
 
 /** Runs one effect with the process working directory moved to root, restored afterwards. */
@@ -27,3 +27,18 @@ export const makeRepository = Effect.fn("AksaraCheckFixture.makeRepository")(
     return root;
   }
 );
+
+/** Writes each file below root, creating its folders. */
+export const writeFiles = Effect.fn("AksaraCheckFixture.writeFiles")(function* (
+  root: string,
+  files: Record<string, string>
+) {
+  const fileSystem = yield* FileSystem.FileSystem;
+  const path = yield* Path.Path;
+  for (const [file, source] of Rec.toEntries(files)) {
+    yield* fileSystem.makeDirectory(path.dirname(path.join(root, file)), {
+      recursive: true,
+    });
+    yield* fileSystem.writeFileString(path.join(root, file), source);
+  }
+});

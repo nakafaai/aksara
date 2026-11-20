@@ -140,8 +140,12 @@ It owns the complete novice-safe reasoning contract, including method choice,
 subgoals, substitutions, conditions, cases, transformations, units, checks,
 and a conclusion stated by content rather than an option letter. Keep notation
 consistent with the prompt. Use the [heading rules](headings.md):
-answer sections start at `####` and name real subgoals. Never delete reasoning
-to reduce line count.
+answer sections start at `#` and name real subgoals. Never delete reasoning
+to reduce line count. The answer of an item with parts opens one `#` heading
+per part, in the parts' order, each starting with the part's label and a
+parenthesis, such as `# a) Die Ableitung`, and works each part under its own
+heading with `##` for its steps. The explanations check refuses any other top
+heading in such an answer.
 
 ## Items
 
@@ -173,6 +177,34 @@ to reduce line count.
   type, such as the unit or the rounding. A section allows a numeric entry only
   where the official format asks short answers; the plan of a paper refuses an
   item whose kind its section does not list.
+- An item of several parts, such as an Aufgabe of the Feststellungsprüfung with
+  its Teilaufgaben or a C-Test text with its gaps, sets `kind: "parts"` and
+  lists its `parts` in the paper's order. Each part has the `label` the paper
+  prints, lower-case letters and digits such as `"a"`, `"1"`, or `"1a"`, with a
+  dot for a nested part such as `"1.1"`, each once; its `kind`; and its
+  `points`, a whole number of at least one. A `mathEntry` part holds the LaTeX
+  `expression` it is matched against. A `numericEntry` part holds its `value`
+  and optional `unit` as above. A `textEntry` part lists its `accepted` texts,
+  each once, matched exactly with the case kept and runs of spaces collapsed,
+  so a C-Test gap lists every spelling the official key accepts. An
+  `extendedText` part is a written answer, such as a Begründung, and its
+  `rubric` lists each criterion with its `label`, what meets it (`met`), and its
+  `points`, which add up to the part's points. Every language asks the same
+  parts: the same labels, kinds, points, expressions, values, and rubric
+  points, in that language's words. Each kind of part must be one its section
+  lists.
+- The prompt of an item with parts places each part exactly once with
+  `<Field part="a" />` and prints each label where the paper prints it, such as
+  `**a)**`. A typed part may sit inside a line, as a C-Test gap does in
+  `le<Field part="1" />t`; a written part stands on a line of its own. The
+  compiler refuses a part left out or placed twice, a label the item lacks, and
+  a `Field` in the prompt of an item that asks a single thing. Publication
+  derives each part's interaction, key, and scoring from its label: a typed
+  part earns its points or none, and a written part earns the points of each
+  criterion it meets. Until Nakafa production serves items with parts,
+  publication refuses a release that holds one
+  (`packages/publisher/src/assessment/guard.ts`), so keep them out of active
+  try-outs.
 - A label is one non-empty rich Markdown string that becomes a document. Plain
   prose needs no wrapper. Use no-space `$$...$$` for inline math, such as
   `The result is $$x=4$$.`. Options, columns, and statements keep mathematics

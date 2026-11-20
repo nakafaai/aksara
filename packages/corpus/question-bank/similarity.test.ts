@@ -35,6 +35,14 @@ const matrix: ItemSource = {
 const seedlings: ItemSource = {
   versions: { id: { kind: "numericEntry", unit: "bibit", value: "48" } },
 };
+const growth: ItemSource = {
+  versions: {
+    id: {
+      kind: "parts",
+      parts: [{ kind: "numericEntry", label: "a", points: 1, value: "48" }],
+    },
+  },
+};
 
 const QuestionSchema = Schema.Struct({
   item: Schema.optionalKey(ItemSourceSchema),
@@ -189,6 +197,11 @@ describe("scanQuestionSimilarity", () => {
             {
               item: seedlings,
               prompt: "Berapa bibit yang tumbuh setelah tiga bulan?",
+              reading: otherPassage,
+            },
+            {
+              item: growth,
+              prompt: 'Hitung pertumbuhan bibit.\n\n<Field part="a" />',
               reading: otherPassage,
             },
           ],
