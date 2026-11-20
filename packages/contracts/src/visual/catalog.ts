@@ -42,6 +42,7 @@ import { geometryVisuals } from "#contracts/visual/mathematics/geometry";
 import { logicVisuals } from "#contracts/visual/mathematics/logic";
 import { networkVisuals } from "#contracts/visual/mathematics/network";
 import { numeralVisuals } from "#contracts/visual/mathematics/numeral";
+import { setVisuals } from "#contracts/visual/mathematics/sets";
 import { brakingVisuals } from "#contracts/visual/physics/braking";
 import { circuitVisuals } from "#contracts/visual/physics/circuit";
 import { circularVisuals } from "#contracts/visual/physics/circular";
@@ -104,6 +105,7 @@ export function visualCatalog<E>(rich: RichSlot<E>) {
     ...logicVisuals(rich),
     ...networkVisuals(rich),
     ...numeralVisuals(rich),
+    ...setVisuals(rich),
     ...measurementVisuals(rich),
     ...motionVisuals(rich),
     ...parabolicVisuals(rich),

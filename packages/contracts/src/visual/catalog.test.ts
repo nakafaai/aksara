@@ -31,7 +31,7 @@ const MARKUP = [
 
 describe("visual catalog", () => {
   it("names every component of Nakafa's renderer once, in code-unit order", () => {
-    expect(VISUAL_NAMES).toHaveLength(250);
+    expect(VISUAL_NAMES).toHaveLength(251);
     expect(VISUAL_NAMES).toEqual(
       Arr.sort(Arr.dedupe(VISUAL_NAMES), Order.String)
     );
