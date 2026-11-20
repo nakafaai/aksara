@@ -12,6 +12,10 @@ import {
   UnsupportedMdxModuleSyntaxError,
 } from "#compiler/errors";
 import { enforceExecutablePolicy } from "#compiler/policy";
+import {
+  type AuthoredHeadingAnchorError,
+  createAnchorPolicy,
+} from "#compiler/policy/anchor";
 import { createDiagramPolicy } from "#compiler/policy/diagram";
 import {
   type AuthoredHeadingDepthError,
@@ -22,6 +26,7 @@ import { createMathVisualPolicy } from "#compiler/policy/math";
 
 /** Every expected failure surfaced by authored-source policy validation. */
 export type SourcePolicyError =
+  | AuthoredHeadingAnchorError
   | AuthoredHeadingDepthError
   | AuthoredListHeadingError
   | DiagramPolicyError
@@ -36,12 +41,14 @@ export function createSourcePolicy(
   allowedComponents: HashSet.HashSet<string>
 ) {
   const headingPolicy = createHeadingPolicy(contentKey, sourcePath);
+  const anchorPolicy = createAnchorPolicy(contentKey);
   const mathVisualPolicy = createMathVisualPolicy(contentKey);
   const diagramPolicy = createDiagramPolicy(contentKey, sourcePath);
   const unsupportedModules = MutableList.make<UnsupportedMdxModuleOccurrence>();
   const violations = MutableList.make<ExecutablePolicyViolation>();
   const remarkPlugins = [
     headingPolicy.remarkPlugin,
+    anchorPolicy.remarkPlugin,
     mathVisualPolicy.remarkPlugin,
     diagramPolicy.remarkPlugin,
     enforceExecutablePolicy(allowedComponents, unsupportedModules, violations),
@@ -65,6 +72,7 @@ export function createSourcePolicy(
         });
       }
       yield* headingPolicy.validate();
+      yield* anchorPolicy.validate();
     }
   );
 

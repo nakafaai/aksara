@@ -112,23 +112,50 @@ contains. Its structural parts are enforced here:
 
 - The opening section answers the lesson's main question before it builds
   context.
-- A lesson usually has five to nine H2 sections. Fewer often means missing
-  examples or practice; more often means thin sections that should merge.
-  The gate holds the outline to the shape the 383 lessons of 15 November 2026
-  measured: `flat-outline` blocks fewer than three H2 sections (the 5th
-  percentile) and `crowded-outline` more than ten (the largest lesson), and
+- The outline is the lesson's map, shown beside the page in a panel 256 pixels
+  wide. About ten entries show without scrolling on a 1366 by 768 laptop
+  (measured on nakafa.com, 20 November 2026), so a learner reads the whole map
+  at once. Give the page 4 to 8 H2 sections and at most 12 outline entries, H2
+  and H3 together; most pages need 6 to 10. `outline-budget` blocks a 13th
+  entry and asks for a review above 10, and `section-count` blocks a 9th H2 and
+  asks for a review below 4. When the outline does not fit, first merge
+  subsections that share one teaching job, then write a procedure as an
+  ordered list or a table, and split the page only when it answers two main
+  questions. `flat-outline` still blocks fewer than three H2 sections and
   `heading-order` keeps every heading at H2 or H3.
-- Give an H2 no subsections or at least two. `lone-subsection` blocks an H2
-  that opens a single H3, because one subsection splits one teaching job across
-  two headings: merge it into its section when the two together stay a short
-  section, or make it a section of its own when each part carries its own job.
-  A worked-solution H3 stays alone, since an exercise keeps its solutions one
-  level below it.
+- Give an H2 no subsections or 2 to 4. `lone-subsection` blocks one, because
+  one subsection splits one teaching job across two headings: merge it into its
+  section when the two together stay a short section, or make it a section of
+  its own when each part carries its own job. `section-fanout` asks for a
+  review at four and blocks a fifth. A worked-solution H3 stays alone, since an
+  exercise keeps its solutions one level below it.
+- Do not leave a long page flat. With 7 or more H2 sections, group the sections
+  that develop one idea under a shared H2 (`flat-sections`). Depth follows the
+  topic structure; never add an H3 to satisfy the rule.
+- A procedure is not an outline. Steps such as drawing a boundary, choosing a
+  side, and shading the overlap become numbered steps or the H3 subsections of
+  one method section, never a run of imperative headings, one for every step.
+- An interactive visual belongs inside the section whose idea it models. Never
+  give a visual its own section such as `Visualisasi Interaktif ...`, and never
+  add a section that explains how to read a visual: its description and the
+  sentence around it do that.
+- The outline comes from the topic's own teaching job and its hardest ideas,
+  never from a template. Mistakes, examples, and practice appear only where they
+  teach something specific to this topic, in the form that fits it: a
+  misconception inside the section it belongs to, a worked contrast beside the
+  rule it tests, an interactive check after the idea it checks. They are never
+  a fixed tail of `Common Mistakes`, `Practice`, and `Solutions` that every
+  lesson carries. `shared-skeleton` blocks a changed page that ends with the
+  same scaffold sections as another page of its locale, whatever their words,
+  so renaming those headings never passes it.
+- Never reach these rules by renaming. A change that only relabels the headings
+  of a page that failed them keeps the repeated structure and text, and
+  `heading-only-change` flags it for review. Restructure and rewrite instead.
 - Keep paragraphs to about seventy words. A paragraph near a hundred words
   usually hides a derivation, comparison, or process that a math block, table,
   diagram, or interactive visual would show better.
 - Do not nest lists in lessons. Turn a nested list into a sequence of short
   paragraphs, a table, or separate steps with their own explanation.
-- Give common mistakes and practice their own sections with real teaching
-  content: the mistake, why it fails, and how to check; the problem and its
-  complete answer.
+- Wherever a mistake or a practice problem teaches something specific, give it
+  real teaching content: the mistake, why it fails, and how to check; the
+  problem and its complete answer.

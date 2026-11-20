@@ -56,3 +56,32 @@ export function metadataAddressRanges(
   });
   return ranges;
 }
+
+/**
+ * Reads one string field of the exported metadata, such as the page title,
+ * when the source writes it as a string literal.
+ */
+export function metadataString(
+  tree: MdxNode,
+  field: string
+): string | undefined {
+  let found: string | undefined;
+  visitMdxNodes(tree, (node) => {
+    if (found !== undefined || node.type !== "mdxjsEsm" || !node.data?.estree) {
+      return;
+    }
+    const metadata = metadataObject(node.data.estree);
+    for (const property of (metadata?.properties ??
+      []) as readonly EstreeNode[]) {
+      const value = asEstreeNode(property.value);
+      if (
+        staticFieldName(asEstreeNode(property.key)) === field &&
+        value?.type === "Literal" &&
+        typeof value.value === "string"
+      ) {
+        found = value.value;
+      }
+    }
+  });
+  return found;
+}

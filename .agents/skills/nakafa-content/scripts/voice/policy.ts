@@ -33,6 +33,7 @@ const BLOCKING_RULES = new Set([
   "lone-subsection",
   "flat-outline",
   "crowded-outline",
+  "heading-anchor",
   "heading-demonstrative-reference",
   "heading-symbol",
   "heading-undefined-abbreviation",

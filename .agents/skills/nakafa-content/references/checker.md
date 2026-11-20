@@ -416,6 +416,30 @@ Do not add a global word ban from one awkward sentence, optimize prose for a
 detector score, translate terminology merely to make a lint pass, or treat a
 clean gate as evidence that the corpus is human.
 
+## Outline and heading identity
+
+- The outline budget follows decision D2 of 20 November 2026 and the outline
+  panel measured on nakafa.com that day: about ten entries show without
+  scrolling on a 1366 by 768 laptop, so the cap is twelve and the target six
+  to ten. Its rules and tiers are listed under the
+  [outline gate](verification.md#outline-gate).
+- `heading-anchor` mirrors nakafa.com's `createHeadingId`: the readable label
+  (formula sources kept, markup removed, LaTeX commands by name) in lower case,
+  each run of whitespace one hyphen. Nakafa does not de-duplicate anchors, so
+  two equal anchors leave the second heading unreachable from the outline.
+  The compiler's `headingAnchor` is the one implementation both read.
+- No source requires headings to be unique across a whole site. Heading
+  uniqueness, the generic-label rule, and the skeleton check are Nakafa rules
+  against repetitive lessons; the title rules follow search engines' guidance
+  on distinct titles.
+- The section roles behind `shared-skeleton` come from a heading's first
+  words (`Kesalahan`, `Latihan`, `Pembahasan`, `Contoh`, `Ringkasan`, and their
+  English, German, and Malay equivalents), never from its exact text, so a
+  renamed tail still matches. A solution word that also names a concept, such
+  as `Penyelesaian` or `Solutions of`, announces solutions only below an H2. A
+  scaffold section renamed to avoid every scaffold word is a manual review
+  finding, as is an H3 that only restates its H2.
+
 ## Section review and emphasis regressions
 
 The physics vector report showed that a document can satisfy the opening

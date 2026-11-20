@@ -72,3 +72,23 @@ it("recognizes the current corpus exercise and solution titles without broad mat
   assert.isFalse(isSolutionHeading("de", "Lösunge"));
   assert.isFalse(isSolutionHeading("de", "Ausführliche Lösunge"));
 });
+
+it("recognizes a scaffold word followed by the topic it practises", () => {
+  const cases: readonly [LessonVoiceLocale, string, string][] = [
+    ["id", "Latihan Arsiran Daerah", "Pembahasan Arsiran"],
+    ["id", "Uji Pemahaman Rotasi", "Kunci Jawaban Rotasi"],
+    ["en", "Practice on Rotations", "Worked Solutions for Rotations"],
+    ["en", "Rotation Practice", "Solutions to Rotation Practice"],
+    ["en", "Exercises for Rotations", "Answers to Rotation Exercises"],
+    ["de", "Übungen zur Spiegelung", "Lösungen zur Spiegelung"],
+    ["de", "Spiegelungsübungen", "Ausführliche Lösungen zur Spiegelung"],
+    ["ms", "Latihan Pantulan", "Jalan Kerja Pantulan"],
+    ["ms", "Soalan Latihan Pantulan", "Skema Jawapan Pantulan"],
+  ];
+  for (const [locale, exercise, solution] of cases) {
+    assert.ok(isExerciseHeading(locale, exercise), exercise);
+    assert.ok(isSolutionHeading(locale, solution), solution);
+  }
+  assert.isFalse(isExerciseHeading("en", "Practical Uses of Rotation"));
+  assert.isFalse(isExerciseHeading("de", "Aufgabenstellung lesen"));
+});
