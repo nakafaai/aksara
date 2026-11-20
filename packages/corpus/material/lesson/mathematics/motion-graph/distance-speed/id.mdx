@@ -1,0 +1,223 @@
+export const metadata = {
+  title: "Grafik Gerak Jarak dan Kelajuan",
+  description:
+    "Baca kelajuan dan kelajuan rata-rata dari grafik jarak terhadap waktu, serta jarak dan percepatan dari grafik kelajuan terhadap waktu lewat contoh dan latihan.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2026-11-17",
+  subject: "Grafik Gerak",
+};
+
+## Gradien dan Luas Grafik Menceritakan Gerak
+
+Pada **grafik jarak terhadap waktu**, gradien adalah **kelajuan**. Garis mendatar berarti benda diam, dan garis yang lebih curam berarti benda bergerak lebih cepat. Pada **grafik kelajuan terhadap waktu**, gradien adalah **percepatan**, dan **luas di bawah grafik adalah jarak** yang ditempuh. Dengan dua gagasan ini, kamu bisa membaca seluruh perjalanan dari satu grafik. Dalam model di sini, kamu mengikuti perjalanan sebuah mobil, menghitung luas di bawah grafik kelajuan, dan membandingkan kelajuan setiap tahap.
+
+## Grafik Jarak terhadap Waktu
+
+Sebuah mobil menempuh <InlineMath math="120\text{ km}" /> dari rumah ke kota dalam <InlineMath math="2" /> jam, berhenti selama <InlineMath math="1" /> jam, lalu pulang dalam <InlineMath math="2" /> jam. **Setiap bagian grafik adalah satu tahap perjalanan**. Geser penggeser waktu dan baca jarak mobil dari rumah.
+
+<MathVisual
+  title={<>Grafik Jarak terhadap Waktu Perjalanan Mobil</>}
+  description={
+    <>
+      Jarak dari rumah dalam satuan <InlineMath math="20\text{ km}" /> terhadap
+      waktu dalam jam. Bagian mendatar adalah saat mobil berhenti.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 5.5 }, y: { min: 0, max: 6.5 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "s", min: 0, max: 5, value: 1, step: 0.1, label: "s" },
+    ],
+    objects: [
+      { id: "trip", kind: "polyline", vertices: [{ x: 0, y: 0 }, { x: 2, y: 6 }, { x: 3, y: 6 }, { x: 5, y: 0 }], appearance: "primary" },
+      { id: "now", kind: "marker", x: "s", y: "min(3s, 6, 3(5 - s))", appearance: "warning" },
+    ],
+    readouts: [
+      { key: "distance", formula: "20min(3s, 6, 3(5 - s))" },
+    ],
+  }}
+  labels={{
+    s: <>Waktu <InlineMath math="s" /> dalam jam</>,
+    distance: <>Jarak dari rumah dalam kilometer</>,
+  }}
+/>
+
+Kelajuan setiap tahap adalah gradien garis itu. Grafik ini membandingkan kelajuan ketiga tahap. Kelajuan pulang ditulis positif karena kelajuan tidak punya arah.
+
+<BarChart
+  title={<>Kelajuan Setiap Tahap Perjalanan</>}
+  description={
+    <>
+      Kelajuan dalam km/jam untuk tahap pergi, berhenti, dan pulang, yaitu
+      jarak dibagi waktu untuk setiap bagian grafik.
+    </>
+  }
+  yAxisLabel="Kelajuan (km/jam)"
+  data={[
+    { name: "Pergi", value: 120 / 2 },
+    { name: "Berhenti", value: 0 },
+    { name: "Pulang", value: 120 / 2 },
+  ]}
+  chartConfig={{ value: { label: "Kelajuan", colors: { light: ["var(--chart-2)"], dark: ["var(--chart-2)"] } } }}
+/>
+
+### Contoh Kelajuan Rata-Rata
+
+Tentukan **kelajuan rata-rata** mobil untuk seluruh perjalanan.
+
+<BlockMath math="\text{Kelajuan rata-rata} = \frac{\text{jarak total}}{\text{waktu total}} = \frac{120 + 120}{5} = 48\text{ km/jam}" />
+
+Kelajuan rata-ratanya lebih kecil dari <InlineMath math="60\text{ km/jam}" /> karena satu jam berhenti ikut dihitung dalam waktu total. Cek dengan model: pada <InlineMath math="s = 1" />, jaraknya <InlineMath math="60\text{ km}" />, sama dengan <InlineMath math="60 \times 1" />.
+
+### Gerak dengan Kelajuan Berubah
+
+Saat kelajuan berubah seiring waktu, **grafik jarak terhadap waktu melengkung**. Grafik ini menunjukkan jarak seorang pelari yang makin cepat. Gradiennya makin curam, jadi kelajuannya terus bertambah.
+
+<ScatterDiagram
+  title={<>Jarak Pelari Setiap Detik</>}
+  description={
+    <>
+      Jarak yang ditempuh pelari setelah setiap detik dalam lima detik pertama
+      lari cepat.
+    </>
+  }
+  xAxisLabel="Waktu (s)"
+  yAxisLabel="Jarak (m)"
+  datasets={[
+    {
+      name: "Pelari",
+      color: "var(--chart-1)",
+      points: [
+        { x: 0, y: 0 },
+        { x: 1, y: 2 },
+        { x: 2, y: 7 },
+        { x: 3, y: 14 },
+        { x: 4, y: 22 },
+        { x: 5, y: 31 },
+      ],
+    },
+  ]}
+/>
+
+Kelajuan rata-rata selama lima detik adalah <InlineMath math="\dfrac{31}{5} = 6{,}2\text{ m/s}" />, tetapi kelajuan antara detik keempat dan kelima adalah <InlineMath math="31 - 22 = 9\text{ m/s}" />.
+
+## Grafik Kelajuan terhadap Waktu
+
+Sebuah mobil dipercepat dari diam hingga <InlineMath math="20\text{ m/s}" /> dalam <InlineMath math="10\text{ s}" />, bergerak dengan kelajuan tetap selama <InlineMath math="20\text{ s}" />, lalu diperlambat hingga berhenti dalam <InlineMath math="10\text{ s}" />. Model ini mewarnai **luas di bawah grafik kelajuan** selama mobil bergerak.
+
+<MotionAreaLab
+  title={<>Mobil dan Luas di Bawah Grafik Kelajuannya</>}
+  description={
+    <>
+      Mobil dipercepat, bergerak tetap, lalu diperlambat. Luas di bawah grafik
+      bertambah sesuai jarak yang ditempuh.
+    </>
+  }
+  start={0}
+  stretches={[
+    { duration: 10, end: 20 },
+    { duration: 20, end: 20 },
+    { duration: 10, end: 0 },
+  ]}
+  labels={{
+    displacement: <>Perpindahan</>,
+    distance: <>Jarak tempuh</>,
+    viewLabel: "Mobil di jalan lurus dengan grafik kelajuan terhadap waktu di bawahnya",
+  }}
+/>
+
+### Membaca Luas Sampai Waktu Tertentu
+
+Grafik yang sama digambar di bawah ini. Geser waktunya dan baca **kelajuan serta jarak yang sudah ditempuh**, yaitu luas di bawah grafik sampai waktu itu.
+
+<MathVisual
+  title={<>Luas di Bawah Grafik Kelajuan terhadap Waktu</>}
+  description={
+    <>
+      Kelajuan dalam m/s terhadap waktu dalam detik. Jarak yang terbaca adalah
+      luas di bawah grafik dari <InlineMath math="0" /> sampai waktu{" "}
+      <InlineMath math="s" />.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 42 }, y: { min: 0, max: 22 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "s", min: 0, max: 40, value: 15, step: 0.5, label: "s" },
+    ],
+    objects: [
+      { id: "speed", kind: "polyline", vertices: [{ x: 0, y: 0 }, { x: 10, y: 20 }, { x: 30, y: 20 }, { x: 40, y: 0 }], appearance: "primary" },
+      { id: "now", kind: "marker", x: "s", y: "min(2s, 20, 2(40 - s))", appearance: "warning" },
+    ],
+    readouts: [
+      { key: "speed", formula: "min(2s, 20, 2(40 - s))" },
+      { key: "distance", formula: "min(s, 10)^2 + 20max(0, min(s, 30) - 10) + 20max(0, s - 30) - max(0, s - 30)^2" },
+    ],
+  }}
+  labels={{
+    s: <>Waktu <InlineMath math="s" /> dalam detik</>,
+    speed: <>Kelajuan dalam m/s</>,
+    distance: <>Jarak tempuh dalam meter</>,
+  }}
+/>
+
+### Contoh Jarak dan Percepatan
+
+Tentukan **jarak total**, **percepatan** dalam <InlineMath math="10" /> detik pertama, dan **perlambatan** dalam <InlineMath math="10" /> detik terakhir.
+
+<MathContainer>
+<BlockMath math="\text{Jarak} = \tfrac{1}{2}(20 + 40) \times 20 = 600\text{ m}" />
+<BlockMath math="\text{Percepatan} = \frac{20 - 0}{10} = 2\text{ m/s}^2" />
+<BlockMath math="\text{Perlambatan} = \frac{0 - 20}{10} = -2\text{ m/s}^2" />
+</MathContainer>
+
+Luas di bawah grafik berbentuk trapesium dengan sisi sejajar <InlineMath math="20" /> dan <InlineMath math="40" />, serta tinggi <InlineMath math="20" />. Cek dengan model: pada <InlineMath math="s = 40" />, jaraknya <InlineMath math="600" />, dan pada <InlineMath math="s = 10" />, jaraknya <InlineMath math="100" />, yaitu luas segitiga pertama.
+
+## Kesalahan Umum tentang Grafik Gerak
+
+| Kesalahan | Mengapa salah | Cara mengecek |
+| :--- | :--- | :--- |
+| Garis mendatar pada grafik kelajuan berarti benda diam. | Garis mendatar pada grafik kelajuan berarti kelajuan tetap. | Cek sumbu tegak grafik. |
+| Luas di bawah grafik jarak adalah jarak. | Hanya luas di bawah grafik kelajuan yang memberi jarak. | Satuan luasnya harus meter. |
+| Kelajuan rata-rata adalah rata-rata dua kelajuan. | Kelajuan rata-rata adalah jarak total dibagi waktu total. | Masukkan waktu berhenti dalam waktu total. |
+| Gradien negatif pada grafik kelajuan berarti bergerak mundur. | Gradien negatif berarti kelajuan berkurang, yaitu perlambatan. | Kelajuan masih positif di atas sumbu waktu. |
+
+Kesalahan pertama paling sering muncul dalam soal grafik. **Baca label sumbu tegak lebih dulu**.
+
+## Latihan Grafik Gerak
+
+Soal-soal ini bergerak dari grafik jarak ke grafik kelajuan. **Tuliskan satuan** di setiap jawaban.
+
+1. Sebuah bus menempuh <InlineMath math="90\text{ km}" /> dalam <InlineMath math="1{,}5" /> jam, berhenti <InlineMath math="30" /> menit, lalu menempuh <InlineMath math="60\text{ km}" /> lagi dalam <InlineMath math="1" /> jam. Tentukan kelajuan rata-rata seluruh perjalanan.
+
+2. Grafik kelajuan sebuah sepeda motor berupa garis lurus dari <InlineMath math="(0, 4)" /> ke <InlineMath math="(8, 20)" />, dengan kelajuan dalam m/s dan waktu dalam detik. Tentukan percepatan dan jarak dalam <InlineMath math="8" /> detik itu.
+
+3. Pada contoh mobil di atas, berapa jarak yang ditempuh dalam <InlineMath math="20" /> detik pertama?
+
+4. Jelaskan arti bagian grafik jarak terhadap waktu yang turun sampai sumbu waktu.
+
+### Pembahasan
+
+**Pembahasan 1**: Jarak total dan waktu total, termasuk waktu berhenti:
+
+<BlockMath math="\frac{90 + 60}{1{,}5 + 0{,}5 + 1} = \frac{150}{3} = 50\text{ km/jam}" />
+
+Cek: kelajuan rata-ratanya lebih kecil dari kelajuan setiap tahap bergerak, yaitu <InlineMath math="60\text{ km/jam}" />, karena bus berhenti setengah jam.
+
+**Pembahasan 2**: Percepatan adalah gradien, dan jarak adalah luas trapesium:
+
+<MathContainer>
+<BlockMath math="a = \frac{20 - 4}{8} = 2\text{ m/s}^2" />
+<BlockMath math="\text{Jarak} = \tfrac{1}{2}(4 + 20) \times 8 = 96\text{ m}" />
+</MathContainer>
+
+**Pembahasan 3**: Luas segitiga <InlineMath math="10" /> detik pertama ditambah persegi panjang <InlineMath math="10" /> detik berikutnya:
+
+<BlockMath math="\tfrac{1}{2} \times 10 \times 20 + 10 \times 20 = 100 + 200 = 300\text{ m}" />
+
+Cek dengan model: pada <InlineMath math="s = 20" />, jaraknya <InlineMath math="300" />.
+
+**Pembahasan 4**: Bagian yang turun berarti **jarak dari titik awal makin berkurang**, jadi benda sedang kembali ke titik awal. Saat grafik menyentuh sumbu waktu, benda sudah sampai lagi di titik awal.

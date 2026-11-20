@@ -168,7 +168,39 @@ export const kssmForm4MathematicsTopicNodes = [
     },
   }),
   unitNode({
+    children: [
+      materialNode({
+        key: "form-4-mathematics-graphs-of-motion-motion-graph",
+        level: "lesson",
+        materialKeys: ["lesson.mathematics.motion-graph"],
+        order: 10,
+        outcomes: [
+          {
+            code: "Tingkatan 4, Standard Kandungan 7.1 hingga 7.2",
+            ...mathematicsStandards,
+          },
+        ],
+      }),
+    ],
     key: "form-4-mathematics-graphs-of-motion",
+    materialCard: {
+      de: {
+        description: "Lies Geschwindigkeit und Weg aus Diagrammen ab.",
+        title: "Bewegungsdiagramme",
+      },
+      en: {
+        description: "Read speed and distance from motion graphs.",
+        title: "Graphs of Motion",
+      },
+      id: {
+        description: "Baca kelajuan dan jarak dari grafik gerak.",
+        title: "Grafik Gerak",
+      },
+      ms: {
+        description: "Baca laju dan jarak daripada graf gerakan.",
+        title: "Graf Gerakan",
+      },
+    },
     order: 70,
     translations: {
       de: { routeSlug: "bewegungsdiagramme", title: "Bewegungsdiagramme" },
