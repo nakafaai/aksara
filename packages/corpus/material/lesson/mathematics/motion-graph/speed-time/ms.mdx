@@ -1,0 +1,243 @@
+export const metadata = {
+  title: "Graf Laju terhadap Masa",
+  description:
+    "Lukis graf laju-masa daripada cerita sesuatu perjalanan, kira jarak daripada luas di bawah garisnya, dan baca pecutan daripada kecerunannya.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2026-11-17",
+  subject: "Graf Gerakan",
+};
+
+## Daripada Cerita ke Graf Laju
+
+Kalau yang kamu lukis ialah selaju mana sesuatu objek bergerak pada setiap saat, kamu mendapat **graf laju-masa**. Dua perkara boleh dibaca daripadanya. **Luas di bawah garis ialah jarak yang dilalui**, dan **kecerunan garis ialah pecutan**, iaitu kadar laju bertambah atau berkurang. Graf ini digunakan untuk objek yang bergerak dalam satu arah sahaja, jadi garisnya tidak pernah turun ke bawah paksi masa.
+
+Ambil sebuah kereta yang berhenti di lampu isyarat merah. Apabila lampu hijau menyala, kereta itu menambah laju secara seragam dari <InlineMath math="0" /> hingga <InlineMath math="12\text{ m/s}" /> dalam <InlineMath math="8" /> saat. Kereta kemudian bergerak dengan laju tetap <InlineMath math="12\text{ m/s}" /> selama <InlineMath math="20" /> saat, masuk ke jalan besar, dan menambah laju lagi hingga <InlineMath math="20\text{ m/s}" /> dalam <InlineMath math="10" /> saat. Di lampu isyarat merah seterusnya, kereta membrek secara seragam hingga berhenti dalam <InlineMath math="10" /> saat.
+
+Perkataan **secara seragam** bermakna laju berubah dengan jumlah yang sama setiap saat, jadi setiap bahagian cerita menjadi satu garis lurus. Letakkan masa pada paksi mengufuk dan laju pada paksi mencancang. Tandakan laju pada setiap saat gerakannya berubah: <InlineMath math="(0, 0)" />, <InlineMath math="(8, 12)" />, <InlineMath math="(28, 12)" />, <InlineMath math="(38, 20)" /> dan <InlineMath math="(48, 0)" />. Masa <InlineMath math="28" /> datang daripada <InlineMath math="8 + 20" />, dan <InlineMath math="38" /> daripada <InlineMath math="28 + 10" />. Sambungkan titik-titik itu dengan garis lurus.
+
+<MathVisual
+  title={<>Graf Laju Kereta di antara Dua Lampu Merah</>}
+  description={
+    <>
+      Laju dalam m/s melawan masa dalam saat sejak lampu hijau menyala.
+      Gerakkan masa dan baca laju kereta pada saat itu.
+    </>
+  }
+  footer={
+    <>
+      Titik pada garis mengikut masa, dan tingginya ialah laju kereta pada
+      ketika itu.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 50 }, y: { min: 0, max: 22 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "w", min: 0, max: 48, value: 30, step: 0.5, label: "w" },
+    ],
+    objects: [
+      { id: "speed", kind: "polyline", vertices: [{ x: 0, y: 0 }, { x: 8, y: 12 }, { x: 28, y: 12 }, { x: 38, y: 20 }, { x: 48, y: 0 }], appearance: "primary" },
+      { id: "now", kind: "marker", x: "w", y: "min(1.5w, max(12, 12 + 0.8(w - 28)), 20 - 2(w - 38))", appearance: "warning" },
+    ],
+    readouts: [
+      { key: "speed", formula: "min(1.5w, max(12, 12 + 0.8(w - 28)), 20 - 2(w - 38))" },
+    ],
+  }}
+  labels={{
+    w: <>Masa sejak lampu hijau, dalam saat</>,
+    speed: <>Laju kereta dalam m/s</>,
+  }}
+/>
+
+Sebagai gambaran, <InlineMath math="12\text{ m/s}" /> sama dengan <InlineMath math="12 \times 3.6 = 43.2\text{ km/j}" />, dan <InlineMath math="20\text{ m/s}" /> sama dengan <InlineMath math="72\text{ km/j}" />. Gerakkan masa ke saat <InlineMath math="30" />. Kereta sudah <InlineMath math="2" /> saat berada dalam bahagian ketiga, dan dalam bahagian itu lajunya naik <InlineMath math="8\text{ m/s}" /> dalam <InlineMath math="10" /> saat, atau <InlineMath math="0.8\text{ m/s}" /> setiap saat. Jadi lajunya <InlineMath math="12 + 0.8 \times 2 = 13.6\text{ m/s}" />, sama dengan nombor pada graf.
+
+## Luas di Bawah Garis Laju
+
+Sekarang kereta yang sama bergerak dalam makmal. Semasa kereta bergerak, kawasan di bawah garis lajunya diwarnakan, dan setiap bahagian diberi nombor dalam meter. Sebelum menekan main, teka dahulu nombor yang akan muncul di bawah bahagian yang mengufuk. Kemudian mainkan makmal itu dan bandingkan setiap nombor dengan jarak yang dilalui kereta di jalan. Hasilnya sentiasa sama: **luas di bawah garis laju ialah jarak yang dilalui**.
+
+<MotionAreaLab
+  title={<>Kereta dari Lampu Merah ke Lampu Merah</>}
+  description={
+    <>
+      Kereta menambah laju, bergerak dengan laju tetap, menambah laju lagi,
+      kemudian membrek. Kawasan di bawah garis diwarnakan semasa kereta
+      bergerak.
+    </>
+  }
+  footer={
+    <>
+      Setiap warna ialah satu bahagian perjalanan. Tambah empat nombor itu
+      untuk jumlah jarak.
+    </>
+  }
+  start={0}
+  stretches={[
+    { duration: 8, end: 12 },
+    { duration: 20, end: 12 },
+    { duration: 10, end: 20 },
+    { duration: 10, end: 0 },
+  ]}
+  labels={{
+    displacement: <>Jarak dari lampu merah pertama</>,
+    distance: <>Jarak yang dilalui</>,
+    viewLabel: "Kereta di jalan lurus dengan graf laju-masa di bawahnya",
+  }}
+/>
+
+Mengapakah luas sama dengan jarak? Mulakan dengan bahagian yang mengufuk, kerana di situ kawasannya hanya sebuah segi empat tepat, kemudian teruskan ke bahagian yang condong.
+
+### Apabila Laju Seragam
+
+Dari saat <InlineMath math="8" /> hingga saat <InlineMath math="28" />, kereta bergerak dengan laju seragam <InlineMath math="12\text{ m/s}" />. Setiap saat kereta bergerak <InlineMath math="12" /> meter, jadi dalam <InlineMath math="20" /> saat kereta bergerak:
+
+<BlockMath math="\text{jarak} = \text{laju} \times \text{masa} = 12\text{ m/s} \times 20\text{ s} = 240\text{ m}" />
+
+Pada graf, kawasan di bawah garis mengufuk itu ialah **segi empat tepat** dengan lebar <InlineMath math="20" /> dan tinggi <InlineMath math="12" />, jadi luasnya juga <InlineMath math="240" />. Perhatikan unitnya: meter sesaat didarab dengan saat menjadi meter. **Unit luas ini ialah unit jarak**, dan itulah tanda bahawa luas itu memang satu jarak. Luas di bawah graf jarak-masa tidak memberi jarak, kerana unitnya menjadi meter darab saat.
+
+### Apabila Laju Berubah
+
+Apabila laju berubah secara seragam, laju purata bahagian itu ialah nilai tengah antara laju awal <InlineMath math="u" /> dan laju akhir <InlineMath math="v" />. Jarak sama dengan laju purata itu didarab dengan masa <InlineMath math="t" />, dan rumusnya tepat sama dengan **rumus luas trapezium**:
+
+<BlockMath math="\text{jarak} = \frac{u + v}{2} \times t" />
+
+Jika salah satu hujungnya sifar, trapezium itu menjadi segi tiga. Tiga bahagian lain perjalanan kereta dikira begini:
+
+<MathContainer>
+<BlockMath math="\text{bahagian pertama (segi tiga)} = \tfrac{1}{2} \times 8 \times 12 = 48\text{ m}" />
+<BlockMath math="\text{bahagian ketiga (trapezium)} = \tfrac{1}{2}(12 + 20) \times 10 = 160\text{ m}" />
+<BlockMath math="\text{bahagian keempat (segi tiga)} = \tfrac{1}{2} \times 10 \times 20 = 100\text{ m}" />
+<BlockMath math="\text{jumlah jarak} = 48 + 240 + 160 + 100 = 548\text{ m}" />
+</MathContainer>
+
+Semak bahagian pertama dengan cara lain: laju puratanya <InlineMath math="\tfrac{0 + 12}{2} = 6\text{ m/s}" />, dan <InlineMath math="6 \times 8 = 48\text{ m}" />. Jumlah <InlineMath math="548\text{ m}" /> juga sama dengan jarak yang dilalui dalam makmal. Jika garis lajunya melengkung, luasnya dikira dengan pengamiran, seperti dalam [kinematik gerakan linear](/ms/subjek/matematik/kinematik-gerakan-linear/sesaran-halaju-dan-pecutan).
+
+## Perubahan Laju Setiap Saat
+
+Berapa cepat laju berubah? Bahagikan perubahan laju dengan masa yang diambil. Hasil bahagi itu dipanggil **pecutan**, dan pada graf laju-masa nilainya sama dengan kecerunan garis:
+
+<BlockMath math="a = \frac{v - u}{t}" />
+
+Di sini <InlineMath math="u" /> ialah laju awal, <InlineMath math="v" /> laju akhir dan <InlineMath math="t" /> masa yang diambil. Pada bahagian pertama kereta tadi, <InlineMath math="a = \tfrac{12 - 0}{8} = 1.5\text{ m/s}^2" />.
+
+Kereta api dalam makmal ini mempunyai tiga gerakan. Pilih setiap gerakan, baca laju awal, laju akhir dan masa yang diambil daripada graf, kemudian kira kecerunannya sebelum melihat jadual.
+
+<NonUniformLinearMotionGraphCard
+  title={<>Tiga Gerakan Sebuah Kereta Api</>}
+  description={
+    <>
+      Pilih satu gerakan kereta api. Laju awal dan akhirnya ada pada paksi
+      mencancang, dan masa yang diambil ada pada paksi mengufuk.
+    </>
+  }
+  footer={
+    <>
+      Dua garis menaik yang sama curam mempunyai pecutan yang sama, walaupun
+      lajunya berbeza.
+    </>
+  }
+  labels={{
+    chooseScenario: "Pilih gerakan kereta api",
+    scenarioNames: {
+      "from-rest": "Bermula dari pegun",
+      "speed-up": "Menambah laju",
+      brake: "Membrek",
+    },
+    timeAxis: "Masa (s)",
+    velocityAxis: "Laju (m/s)",
+  }}
+/>
+
+| Gerakan kereta api | Laju (m/s) | Masa (s) | Pecutan (<InlineMath math="\text{m/s}^2" />) |
+| :--- | :--- | :--- | :--- |
+| Bermula dari pegun | <InlineMath math="0" /> menjadi <InlineMath math="20" /> | <InlineMath math="5" /> | <InlineMath math="\tfrac{20 - 0}{5} = 4" /> |
+| Menambah laju | <InlineMath math="8" /> menjadi <InlineMath math="24" /> | <InlineMath math="4" /> | <InlineMath math="\tfrac{24 - 8}{4} = 4" /> |
+| Membrek | <InlineMath math="24" /> menjadi <InlineMath math="4" /> | <InlineMath math="5" /> | <InlineMath math="\tfrac{4 - 24}{5} = -4" /> |
+
+Dua gerakan pertama mempunyai pecutan yang sama walaupun lajunya berbeza. **Pecutan bergantung pada kecuraman garis**, bukan pada ketinggian garis itu.
+
+### Bertambah atau Berkurang
+
+Garis yang menaik bermakna laju bertambah, dan pecutannya positif. Garis mengufuk bermakna **laju seragam dan pecutannya sifar**. Dari saat <InlineMath math="8" /> hingga saat <InlineMath math="28" />, kereta terus bergerak <InlineMath math="12" /> meter setiap saat. Ini berbeza daripada garis mengufuk pada [graf jarak terhadap masa](/ms/subjek/matematik/graf-gerakan/graf-jarak-masa), yang bermakna objek itu pegun.
+
+Garis yang menurun bermakna laju berkurang, dan pecutannya negatif. Laju yang terus berkurang begini dipanggil **nyahpecutan**. Ketika kereta membrek, <InlineMath math="a = \tfrac{0 - 20}{10} = -2\text{ m/s}^2" />, jadi nyahpecutannya <InlineMath math="2\text{ m/s}^2" />. Garis menurun tidak bermakna kereta bergerak ke belakang. Kereta tetap bergerak ke hadapan hingga garisnya menyentuh paksi masa, dan di situlah kereta berhenti.
+
+Jadual ini membandingkan maksud bentuk garis yang sama pada kedua-dua graf. Kesilapan paling kerap berlaku apabila maksud daripada satu graf dibawa ke graf yang lain.
+
+| Bentuk garis | Pada graf jarak-masa | Pada graf laju-masa |
+| :--- | :--- | :--- |
+| Menaik | objek bergerak menjauhi titik mula | laju bertambah |
+| Mengufuk | objek pegun | laju seragam |
+| Menurun | objek kembali ke titik mula | laju berkurang |
+
+### Unit Pecutan
+
+Unit <InlineMath math="\text{m/s}^2" /> dibaca meter per saat per saat. Pecutan <InlineMath math="4\text{ m/s}^2" /> bermakna **laju bertambah <InlineMath math="4\text{ m/s}" /> setiap saat**. Kereta api yang bermula dari pegun mempunyai laju <InlineMath math="0, 4, 8, 12, 16" />, kemudian <InlineMath math="20\text{ m/s}" /> pada saat <InlineMath math="0" /> hingga <InlineMath math="5" />.
+
+Unitnya mesti sepadan sebelum kamu membahagi. Katakan sebuah kereta bergerak dari pegun hingga <InlineMath math="90\text{ km/j}" /> dalam <InlineMath math="10" /> saat. Mengira <InlineMath math="90 \div 10 = 9" /> mencampurkan jam dengan saat, jadi tukar laju kepada m/s dahulu:
+
+<MathContainer>
+<BlockMath math="90\text{ km/j} = \frac{90 \times 1000\text{ m}}{3600\text{ s}} = 25\text{ m/s}" />
+<BlockMath math="a = \frac{25 - 0}{10} = 2.5\text{ m/s}^2" />
+</MathContainer>
+
+Semak: dalam <InlineMath math="10" /> saat, laju bertambah <InlineMath math="2.5 \times 10 = 25\text{ m/s}" />, iaitu <InlineMath math="90\text{ km/j}" />.
+
+## Dari Lif hingga Plaza Tol
+
+Tiga soalan ini semakin sukar. Untuk setiap soalan, **lakar graf laju-masa dahulu**, kemudian baru kira luas atau kecerunannya.
+
+1. Sebuah lif naik dari tingkat bawah. Lif itu menambah laju secara seragam dari pegun hingga <InlineMath math="3\text{ m/s}" /> dalam <InlineMath math="2" /> saat, naik dengan laju seragam selama <InlineMath math="6" /> saat, kemudian mengurangkan laju secara seragam hingga berhenti dalam <InlineMath math="2" /> saat. Berapa meter lif itu naik? Jika tinggi setiap tingkat <InlineMath math="3\text{ m}" />, berapa tingkat yang dilaluinya?
+2. Dalam larian <InlineMath math="100\text{ m}" />, seorang pelari menambah laju secara seragam dari pegun selama <InlineMath math="4" /> saat hingga laju <InlineMath math="v" />, kemudian berlari dengan laju seragam <InlineMath math="v" /> hingga garisan penamat. Masa lariannya <InlineMath math="12" /> saat. Cari <InlineMath math="v" /> dan pecutan pelari dalam <InlineMath math="4" /> saat pertama.
+3. Sebuah kereta bergerak <InlineMath math="25\text{ m/s}" /> di lebuh raya. Apabila menghampiri plaza tol, kereta itu mengurangkan laju secara seragam hingga <InlineMath math="5\text{ m/s}" /> dalam <InlineMath math="10" /> saat, melalui palang tol dengan laju seragam <InlineMath math="5\text{ m/s}" /> selama <InlineMath math="4" /> saat, kemudian menambah laju secara seragam hingga <InlineMath math="25\text{ m/s}" /> semula dalam <InlineMath math="16" /> saat. Berapakah jarak yang dilalui dalam <InlineMath math="30" /> saat itu, dan berapa saat yang hilang berbanding jika kereta terus bergerak pada <InlineMath math="25\text{ m/s}" />?
+
+**Soalan 1**. Grafnya menaik, mengufuk, kemudian menurun, dan kawasan di bawahnya berbentuk trapezium. Sisi selarinya <InlineMath math="10" /> saat di bawah dan <InlineMath math="6" /> saat di atas, dengan tinggi <InlineMath math="3" />:
+
+<BlockMath math="\text{jarak} = \tfrac{1}{2}(10 + 6) \times 3 = 24\text{ m}" />
+
+Semak mengikut bahagian: <InlineMath math="3 + 18 + 3 = 24\text{ m}" />. Lif naik <InlineMath math="24\text{ m}" />, iaitu <InlineMath math="24 \div 3 = 8" /> tingkat.
+
+**Soalan 2**. Laju akhirnya belum diketahui, jadi **tulis luasnya dalam sebutan <InlineMath math="v" />**. Kawasannya ialah segi tiga selama <InlineMath math="4" /> saat ditambah segi empat tepat selama <InlineMath math="12 - 4 = 8" /> saat, dan jumlah luasnya mesti <InlineMath math="100" />:
+
+<MathContainer>
+<BlockMath math="\tfrac{1}{2} \times 4 \times v + 8v = 100" />
+<BlockMath math="10v = 100 \quad\Rightarrow\quad v = 10\text{ m/s}" />
+<BlockMath math="a = \frac{10 - 0}{4} = 2.5\text{ m/s}^2" />
+</MathContainer>
+
+Semak: segi tiganya <InlineMath math="\tfrac{1}{2} \times 4 \times 10 = 20\text{ m}" /> dan segi empat tepatnya <InlineMath math="8 \times 10 = 80\text{ m}" />, jumlahnya <InlineMath math="100\text{ m}" />.
+
+**Soalan 3**. Garis lajunya menurun, mengufuk, kemudian menaik semula. Kawasan di bawahnya terdiri daripada dua trapezium dan satu segi empat tepat:
+
+<MathVisual
+  title={<>Laju Kereta Melalui Plaza Tol</>}
+  description={
+    <>
+      Laju dalam m/s melawan masa dalam saat. Kawasan berwarna ialah jarak
+      yang dilalui kereta dalam <InlineMath math="30" /> saat.
+    </>
+  }
+  footer={
+    <>
+      Lekuk di tengah graf ialah masa yang dihabiskan kereta berhampiran
+      palang tol.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 32 }, y: { min: 0, max: 28 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "area", kind: "polygon", vertices: [{ x: 0, y: 0 }, { x: 0, y: 25 }, { x: 10, y: 5 }, { x: 14, y: 5 }, { x: 30, y: 25 }, { x: 30, y: 0 }], appearance: "secondary" },
+      { id: "speed", kind: "polyline", vertices: [{ x: 0, y: 25 }, { x: 10, y: 5 }, { x: 14, y: 5 }, { x: 30, y: 25 }], appearance: "primary" },
+    ],
+  }}
+/>
+
+<MathContainer>
+<BlockMath math="\tfrac{1}{2}(25 + 5) \times 10 + 5 \times 4 + \tfrac{1}{2}(5 + 25) \times 16 = 150 + 20 + 240 = 410\text{ m}" />
+<BlockMath math="\text{masa pada } 25\text{ m/s} = \frac{410}{25} = 16.4\text{ s}" />
+<BlockMath math="\text{masa yang hilang} = 30 - 16.4 = 13.6\text{ s}" />
+</MathContainer>
+
+Kereta melalui <InlineMath math="410\text{ m}" /> dan **kehilangan <InlineMath math="13.6" /> saat** kerana plaza tol. Semak: jika kereta terus bergerak <InlineMath math="25\text{ m/s}" /> selama <InlineMath math="16.4" /> saat, jaraknya <InlineMath math="25 \times 16.4 = 410\text{ m}" />, sama dengan luas kawasan berwarna.
