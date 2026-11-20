@@ -12,7 +12,6 @@ import {
 
 import {
   type LessonMaterialSource,
-  LessonMaterialSourceSchema,
   LessonModuleSchema,
   LessonSectionModuleSchema,
 } from "#corpus/material/schema";
@@ -122,8 +121,8 @@ const readMaterialModule = Effect.fn("AksaraCorpus.readMaterialModule")(
 /**
  * Reads one lesson from its folder: its typed lesson module, which must name
  * this folder, and the typed module of every section it lists, whose folders
- * must be exactly the lesson's section folders. The parts compose one lesson
- * through the same Schema the catalog has always decoded.
+ * must be exactly the lesson's section folders. Both parts are decoded strictly,
+ * so together they are the lesson the catalog has always held.
  */
 const readLesson = Effect.fn("AksaraCorpus.readLesson")(function* (
   checkoutRoot: string,
@@ -169,14 +168,8 @@ const readLesson = Effect.fn("AksaraCorpus.readLesson")(function* (
       (section) => ({ ...section, slug })
     )
   );
-  return yield* Schema.decodeEffect(LessonMaterialSourceSchema)(
-    { ...authored, sections },
-    { onExcessProperty: "error" }
-  ).pipe(
-    Effect.mapError(
-      () => new MaterialFolderError({ folder, reason: "invalid" })
-    )
-  );
+  const source: LessonMaterialSource = { ...authored, sections };
+  return source;
 });
 
 /**

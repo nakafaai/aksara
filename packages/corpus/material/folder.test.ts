@@ -124,6 +124,26 @@ layer(NodeServices.layer)("lesson folder discovery", (it) => {
       })
   );
 
+  it.effect("refuses a lesson root holding an entry it cannot inspect", () =>
+    Effect.gen(function* () {
+      const fileSystem = yield* FileSystem.FileSystem;
+      const path = yield* Path.Path;
+      const root = yield* fixtureCheckout({});
+      yield* fileSystem.symlink(
+        path.join(root, "absent"),
+        path.join(root, "packages/corpus/material/lesson/ghost")
+      );
+
+      expect(
+        yield* discoverMaterialSources(root).pipe(Effect.flip)
+      ).toMatchObject({
+        _tag: "MaterialFolderError",
+        folder: "packages/corpus/material/lesson",
+        reason: "unreadable",
+      });
+    }).pipe(Effect.scoped)
+  );
+
   it.effect("refuses a checkout without a lesson root", () =>
     Effect.gen(function* () {
       const fileSystem = yield* FileSystem.FileSystem;
