@@ -1,0 +1,25 @@
+# When the line does not pass through the origin, the gain is the slope, not the ratio
+
+The two readings give **different** ratios, <InlineMath math="\dfrac{3.5}{0.020}=175" /> and <InlineMath math="\dfrac{8.0}{0.050}=160" />, so the collector current is not simply proportional to the base current. On a straight line, the gain is the **slope**: the change in collector current divided by the change in base current. The line then meets the axis at a small collector current that flows even with no base current. For the collector resistor, the supply's <InlineMath math="9.0\text{ V}" /> must cover the resistor **and** the <InlineMath math="1.0\text{ V}" /> the transistor must keep.
+
+<Chart
+  title={<>Collector Current Against Base Current</>}
+  categories={["0 µA", "20 µA", "50 µA"]}
+  series={[
+    { label: "Collector current", mark: "line", values: [0.5, 3.5, 8.0] },
+  ]}
+  valueLabel="Current (mA)"
+  description={<>The readings lie on a straight line of gradient <InlineMath math="150" /> that crosses the axis at <InlineMath math="0.50\text{ mA}" />, not at zero, so the gain must come from the change in the currents.</>}
+/>
+
+<BlockMath math="\beta=\frac{8.0-3.5}{0.050-0.020}=\frac{4.5\text{ mA}}{30\,\mu\text{A}}=150,\qquad I_0=3.5-150\times0.020=0.50\text{ mA}" />
+
+<BlockMath math="R_C\le\frac{9.0-1.0}{8.0\times10^{-3}}=1.0\times10^{3}\,\Omega=1.0\text{ k}\Omega" />
+
+The current gain is <InlineMath math="150" />, and about <InlineMath math="0.50\text{ mA}" /> flows in the collector with no base current. The collector resistor can be at most <InlineMath math="1.0\text{ k}\Omega" />.
+
+# Why the other options are wrong
+
+- <InlineMath math="160" /> and <InlineMath math="175" /> divide **one reading by itself**, which gives different answers for the two readings and ignores the current at zero base current.
+- <InlineMath math="0\text{ mA}" /> assumes the line **passes through the origin**, but the two readings do not lie on a line through it.
+- <InlineMath math="1.1\text{ k}\Omega" /> uses the **whole <InlineMath math="9.0\text{ V}" />**, forgetting the <InlineMath math="1.0\text{ V}" /> that must stay across the transistor.

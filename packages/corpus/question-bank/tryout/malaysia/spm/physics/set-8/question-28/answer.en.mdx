@@ -1,0 +1,26 @@
+# Two emfs face each other, so only their difference drives the current, and charging pushes the battery's terminal voltage above its emf
+
+With positive joined to positive, the two emfs **oppose** each other round the loop: only their **difference**, <InlineMath math="3.0\text{ V}" />, drives current, through both internal resistances in series. The current flows **into** the battery's positive terminal, the reverse of discharging, so the voltage across its internal resistance now **adds** to its emf. Of the charger's emf power, the part stored is the battery's emf times the current.
+
+<Chart
+  title={<>Where the Charger's Power Goes</>}
+  bars="apart"
+  categories={["Stored as chemical energy", "Heat in the battery", "Heat in the charger"]}
+  series={[
+    { label: "Power", mark: "bar", values: [60, 2.5, 12.5] },
+  ]}
+  valueLabel="Power (W)"
+  description={<>Of the <InlineMath math="75\text{ W}" /> the charger's emf supplies, <InlineMath math="60\text{ W}" /> is stored, <InlineMath math="2.5\text{ W}" /> heats the battery and <InlineMath math="12.5\text{ W}" /> heats the charger.</>}
+/>
+
+<BlockMath math="I=\frac{15-12}{0.50+0.10}=5.0\text{ A},\qquad V=12+5.0\times0.10=12.5\text{ V}" />
+
+<BlockMath math="\frac{12\times5.0}{15\times5.0}=\frac{60}{75}=80\%" />
+
+A current of <InlineMath math="5.0\text{ A}" /> flows, and the battery's terminals sit at <InlineMath math="12.5\text{ V}" /> while it charges, above its own emf. Of the charger's <InlineMath math="75\text{ W}" />, <InlineMath math="60\text{ W}" />, or <InlineMath math="80\%" />, is stored, and the rest heats the two internal resistances.
+
+# Why the other options are wrong
+
+- <InlineMath math="11.5\text{ V}" /> **subtracts** the internal voltage as when the battery is supplying current, but here the current is driven into it.
+- <InlineMath math="45\text{ A}" /> **adds** the two emfs, as if they were connected the same way round, positive to negative.
+- <InlineMath math="83\%" /> compares the battery's **terminal voltage** with the charger's emf, counting the heat in the battery's own resistance as stored.

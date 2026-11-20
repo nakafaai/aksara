@@ -1,0 +1,25 @@
+# Apabila garis tidak melalui asalan, gandaan ialah kecerunan, bukan nisbah
+
+Dua bacaan memberi nisbah yang **berbeza**, <InlineMath math="\dfrac{3.5}{0.020}=175" /> dan <InlineMath math="\dfrac{8.0}{0.050}=160" />, jadi arus pengumpul tidak berkadar langsung dengan arus tapak. Pada garis lurus, gandaan ialah **kecerunan**: perubahan arus pengumpul dibahagi perubahan arus tapak. Garis itu kemudian memotong paksi pada arus pengumpul kecil yang mengalir walaupun tanpa arus tapak. Bagi perintang pengumpul, <InlineMath math="9.0\text{ V}" /> bekalan mesti menampung perintang **dan** <InlineMath math="1.0\text{ V}" /> yang mesti dikekalkan oleh transistor.
+
+<Chart
+  title={<>Arus Pengumpul Melawan Arus Tapak</>}
+  categories={["0 µA", "20 µA", "50 µA"]}
+  series={[
+    { label: "Arus pengumpul", mark: "line", values: [0.5, 3.5, 8.0] },
+  ]}
+  valueLabel="Arus (mA)"
+  description={<>Bacaan terletak pada garis lurus berkecerunan <InlineMath math="150" /> yang memotong paksi pada <InlineMath math="0.50\text{ mA}" />, bukan sifar, jadi gandaan mesti diperoleh daripada perubahan arus.</>}
+/>
+
+<BlockMath math="\beta=\frac{8.0-3.5}{0.050-0.020}=\frac{4.5\text{ mA}}{30\,\mu\text{A}}=150,\qquad I_0=3.5-150\times0.020=0.50\text{ mA}" />
+
+<BlockMath math="R_C\le\frac{9.0-1.0}{8.0\times10^{-3}}=1.0\times10^{3}\,\Omega=1.0\text{ k}\Omega" />
+
+Gandaan arus ialah <InlineMath math="150" />, dan kira-kira <InlineMath math="0.50\text{ mA}" /> mengalir dalam pengumpul tanpa arus tapak. Perintang pengumpul boleh paling besar <InlineMath math="1.0\text{ k}\Omega" />.
+
+# Kenapa pilihan lain salah
+
+- <InlineMath math="160" /> dan <InlineMath math="175" /> membahagi **satu bacaan dengan dirinya sendiri**, yang memberi jawapan berbeza bagi dua bacaan dan mengabaikan arus pada arus tapak sifar.
+- <InlineMath math="0\text{ mA}" /> menganggap garis **melalui asalan**, tetapi dua bacaan itu tidak terletak pada garis yang melaluinya.
+- <InlineMath math="1.1\text{ k}\Omega" /> menggunakan **seluruh <InlineMath math="9.0\text{ V}" />**, lupa <InlineMath math="1.0\text{ V}" /> yang mesti kekal merentasi transistor.

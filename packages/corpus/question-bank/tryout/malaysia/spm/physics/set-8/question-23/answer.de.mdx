@@ -1,0 +1,28 @@
+# Die schräge Kraft ändert die Normalkraft, Schieben und Ziehen unter gleichem Winkel sind also nicht gleich
+
+Nur der waagerechte Anteil der Griffkraft, <InlineMath math="F\cos30°" />, treibt die Walze voran, doch der senkrechte Anteil ändert, wie stark sie auf den Boden drückt. Schieben **nach unten** addiert <InlineMath math="F\sin30°" /> zur Normalkraft und **erhöht** den Widerstand. Ziehen **nach oben** nimmt ihn weg und **senkt** den Widerstand. Bei einem steil genugen Schubwinkel wächst der Zusatzwiderstand so schnell wie der Vortrieb, und keine Kraft gewinnt.
+
+<Chart
+  title={<>Kraft unter <InlineMath math="30^\circ" /> zum Bewegen der Walze</>}
+  bars="apart"
+  categories={["Geschoben, abwärts", "Gezogen, aufwärts"]}
+  series={[
+    { label: "Kraft", mark: "bar", values: [75.9, 63.8] },
+  ]}
+  valueLabel="Kraft (N)"
+  description={<>Schieben schräg nach unten drückt die Walze ins Gras und erhöht den Widerstand, das braucht etwa <InlineMath math="76\text{ N}" />. Ziehen schräg nach oben entlastet sie, <InlineMath math="64\text{ N}" /> genügen.</>}
+/>
+
+<BlockMath math="\text{Schieben: }F\cos30°=0{,}15(400+F\sin30°)\Rightarrow F=\frac{60}{0{,}866-0{,}075}\approx76\text{ N}" />
+
+<BlockMath math="\text{Ziehen: }F\cos30°=0{,}15(400-F\sin30°)\Rightarrow F=\frac{60}{0{,}866+0{,}075}\approx64\text{ N}" />
+
+<BlockMath math="\cos\theta\le0{,}15\sin\theta\Rightarrow\tan\theta\ge\frac{1}{0{,}15}\approx6{,}7\Rightarrow\theta\ge81°" />
+
+Schieben braucht etwa <InlineMath math="76\text{ N}" />, Ziehen nur etwa <InlineMath math="64\text{ N}" />. Schiebt man den Griff steiler als etwa <InlineMath math="81°" /> unter der Waagerechten, gleicht der Zusatzwiderstand den Vortrieb immer aus, die Walze bewegt sich gar nicht.
+
+# Warum die anderen Antworten falsch sind
+
+- <InlineMath math="69\text{ N}" /> für beides **übersieht die Änderung der Normalkraft** und nimmt in beiden Fällen <InlineMath math="0{,}15mg" /> als Widerstand.
+- <InlineMath math="64\text{ N}" /> zum Schieben und <InlineMath math="76\text{ N}" /> zum Ziehen **vertauschen die Wirkungen**: Drücken erhöht den Widerstand, Anheben senkt ihn.
+- <InlineMath math="8{,}5°" /> löst <InlineMath math="\tan\theta=0{,}15" />, den Winkel **einer Schräge**, auf der Reibung einen Block gerade hält, nicht den Klemmwinkel beim Schieben.

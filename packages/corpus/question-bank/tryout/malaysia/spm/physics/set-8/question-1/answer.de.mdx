@@ -1,0 +1,28 @@
+# Ein negativer Nullpunktfehler wird addiert, und eine Unsicherheit im Durchmesser zählt doppelt
+
+Die Schieblehre zeigt geschlossen <InlineMath math="-0{,}02\text{ cm}" />, jede Ablesung ist also <InlineMath math="0{,}02\text{ cm}" /> **zu klein**: Man muss sie addieren. Die <InlineMath math="40" /> Windungen liegen dicht an dicht, die Spule ist also <InlineMath math="40" /> Durchmesser lang. Der spezifische Widerstand folgt aus <InlineMath math="R=\dfrac{\rho L}{A}" /> mit <InlineMath math="A=\pi r^2" />. Weil die Fläche mit dem **Quadrat** des Durchmessers geht, erscheint eine prozentuale Unsicherheit des Durchmessers **doppelt** im spezifischen Widerstand.
+
+<Chart
+  title={<>Spezifischer Widerstand aus drei Ablesungen</>}
+  bars="apart"
+  categories={["Richtig", "Nullpunktfehler abgezogen", "Durchmesser als Radius"]}
+  series={[
+    { label: "Spezifischer Widerstand", mark: "bar", values: [4.9, 4.8, 19.5] },
+  ]}
+  valueLabel="Spez. Widerstand (10⁻⁷ Ω m)"
+  description={<>Mit addiertem Nullpunktfehler von <InlineMath math="0{,}02\text{ cm}" /> ergeben sich etwa <InlineMath math="4{,}9\cdot10^{-7}" />. Abgezogen ergeben sich <InlineMath math="4{,}8\cdot10^{-7}" />, und der Durchmesser als Radius liefert das Vierfache.</>}
+/>
+
+<BlockMath math="\ell=2{,}86-(-0{,}02)=2{,}88\text{ cm},\qquad d=\frac{2{,}88}{40}=0{,}0720\text{ cm}=0{,}720\text{ mm}" />
+
+<BlockMath math="\rho=\frac{RA}{L}=\frac{2{,}4\cdot3{,}14\cdot(0{,}360\cdot10^{-3})^2}{2{,}00}\approx4{,}9\cdot10^{-7}\,\Omega\text{ m}" />
+
+<BlockMath math="\frac{0{,}01}{2{,}88}\approx0{,}35\%\text{ bei }d,\qquad 2\cdot0{,}35\%\approx0{,}7\%\text{ bei }\rho" />
+
+Der Draht ist <InlineMath math="0{,}720\text{ mm}" /> dick, sein spezifischer Widerstand beträgt etwa <InlineMath math="4{,}9\cdot10^{-7}" /> Ohmmeter. Allein die Ablesung der Spule bringt etwa <InlineMath math="0{,}7\%" /> Unsicherheit in den spezifischen Widerstand.
+
+# Warum die anderen Antworten falsch sind
+
+- <InlineMath math="0{,}710\text{ mm}" /> **zieht den Nullpunktfehler ab**, doch ein negativer Nullpunktfehler heißt, die Ablesungen sind zu klein, er muss also addiert werden.
+- <InlineMath math="2{,}0\cdot10^{-6}" /> setzt in <InlineMath math="\pi r^2" /> den **Durchmesser als Radius** ein, Fläche und spezifischer Widerstand werden viermal zu groß.
+- <InlineMath math="0{,}35\%" /> ist die Unsicherheit des **Durchmessers**, doch der spezifische Widerstand hängt von dessen Quadrat ab, das verdoppelt den Prozentwert.

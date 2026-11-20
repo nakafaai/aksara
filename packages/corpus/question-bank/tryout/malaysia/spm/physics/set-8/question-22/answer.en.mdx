@@ -1,0 +1,28 @@
+# Spring energy pays for the climb and the friction along the whole path, including while the spring is still pushing
+
+The spring stores <InlineMath math="\tfrac12kx^2" />. Even while the spring is pushing, the ball is **already climbing and rubbing** over those <InlineMath math="8.0\text{ cm}" />. After that it slows under the slope's pull, <InlineMath math="mg\sin10°" />, plus the <InlineMath math="0.10\text{ N}" /> resistance. For the least pull-back, the energy stored must just cover the climb and friction over <InlineMath math="1.2\text{ m}" /> **plus the pull-back distance itself**, which gives a quadratic in <InlineMath math="x" />.
+
+<Chart
+  title={<>Energy of the Ball</>}
+  bars="apart"
+  categories={["In the spring", "Leaving the spring", "At the bumper"]}
+  series={[
+    { label: "Energy", mark: "bar", values: [0.8, 0.76, 0.23] },
+  ]}
+  valueLabel="Energy (J)"
+  description={<>The spring stores <InlineMath math="0.80\text{ J}" />. The ball leaves it with <InlineMath math="0.76\text{ J}" />, having already climbed and rubbed for <InlineMath math="8.0\text{ cm}" />, and reaches the bumper with about <InlineMath math="0.23\text{ J}" />.</>}
+/>
+
+<BlockMath math="F_{\text{down}}=0.20\times10\times0.174+0.10\approx0.447\text{ N},\qquad E_k=\tfrac12(250)(0.080)^2-0.447\times0.080\approx0.764\text{ J},\qquad v=\sqrt{\frac{2(0.764)}{0.20}}\approx2.8\text{ m s}^{-1}" />
+
+<BlockMath math="E_k'=0.764-0.447\times1.2\approx0.227\text{ J},\qquad v'=\sqrt{\frac{2(0.227)}{0.20}}\approx1.5\text{ m s}^{-1}" />
+
+<BlockMath math="125x^2=0.447(1.2+x)\Rightarrow125x^2-0.447x-0.536=0\Rightarrow x\approx0.067\text{ m}=6.7\text{ cm}" />
+
+The ball leaves the spring at about <InlineMath math="2.8\text{ m s}^{-1}" /> and reaches the bumper at about <InlineMath math="1.5\text{ m s}^{-1}" />. A pull-back of about <InlineMath math="6.7\text{ cm}" /> would just get it there.
+
+# Why the other options are wrong
+
+- <InlineMath math="1.6\text{ m s}^{-1}" /> and <InlineMath math="6.5\text{ cm}" /> ignore the **climb and friction while the spring is pushing**, as if the ball started from the spring's end.
+- <InlineMath math="1.9\text{ m s}^{-1}" /> and <InlineMath math="5.9\text{ cm}" /> **ignore the resistive force**, leaving only the climb to slow the ball.
+- **Stopping before the bumper** uses the ball's **whole weight** against the motion instead of its component along the slope, <InlineMath math="mg\sin10°" />.

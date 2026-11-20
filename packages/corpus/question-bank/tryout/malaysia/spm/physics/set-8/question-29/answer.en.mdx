@@ -1,0 +1,28 @@
+# Each failed lamp shortens the chain, so the current rises until the fuse goes
+
+In series, the current is the supply voltage divided by the **total resistance**. A failed lamp's shunt takes its <InlineMath math="12\,\Omega" /> out of the string, so each failure **lowers** the total resistance and **raises** the current through every lamp still working. The fuse limits the current, which sets how many lamps may remain, and the remaining lamps share the full <InlineMath math="240\text{ V}" />, so each one runs brighter than before.
+
+<Chart
+  title={<>Current as Lamps Fail</>}
+  categories={["0 failed", "2 failed", "4 failed", "6 failed", "8 failed", "10 failed", "12 failed"]}
+  series={[
+    { label: "Current", mark: "line", values: [0.4, 0.417, 0.435, 0.455, 0.476, 0.5, 0.526] },
+    { label: "Fuse limit", mark: "line", values: [0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5] },
+  ]}
+  valueLabel="Current (A)"
+  description={<>Each failed lamp's shunt removes <InlineMath math="12\,\Omega" /> from the string, so the current climbs from <InlineMath math="0.40\text{ A}" /> and reaches the fuse's <InlineMath math="0.50\text{ A}" /> when <InlineMath math="10" /> lamps have failed.</>}
+/>
+
+<BlockMath math="I_0=\frac{240}{50\times12}=0.40\text{ A}" />
+
+<BlockMath math="\frac{240}{12(50-n)}\le0.50\Rightarrow 50-n\ge40\Rightarrow n\le10" />
+
+<BlockMath math="P=I^2R=(0.50)^2\times12=3.0\text{ W}\quad\text{(against }0.40^2\times12\approx1.9\text{ W normally)}" />
+
+With all lamps working <InlineMath math="0.40\text{ A}" /> flows. Up to <InlineMath math="10" /> lamps can fail, leaving <InlineMath math="40" /> that carry <InlineMath math="0.50\text{ A}" />, and each of those then runs at <InlineMath math="3.0\text{ W}" /> instead of about <InlineMath math="1.9\text{ W}" />.
+
+# Why the other options are wrong
+
+- <InlineMath math="40" /> lamps is the number **still working** at the limit, not the number that have failed.
+- <InlineMath math="1.9\text{ W}" /> assumes each lamp **keeps its normal share** of the voltage, but fewer lamps share the same <InlineMath math="240\text{ V}" />.
+- <InlineMath math="6.0\text{ W}" /> multiplies the current by the **resistance** as if it were a voltage, <InlineMath math="P=IR" />, which is not a power.

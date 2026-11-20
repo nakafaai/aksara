@@ -1,0 +1,26 @@
+# Voltan sesalur dinyatakan sebagai p.k.m., tetapi tiub menyala pada nilai puncak
+
+Nilai <InlineMath math="240\text{ V}" /> sesalur ialah nilai **punca kuasa dua min**. Voltan ulang-alik berayun hingga **puncak** <InlineMath math="\sqrt2" /> kali lebih besar, dan transformer menskalakan seluruh bentuk gelombang, termasuk puncaknya, mengikut nisbah lilitan. Tiub menyala apabila **puncak sekunder** mencapai <InlineMath math="9000\text{ V}" />. Bagi arus, transformer mesti menerima kuasa lebih daripada yang diberikannya, jadi input ialah output **dibahagi** dengan kecekapan.
+
+<Chart
+  title={<>Voltan dalam Papan Tanda Neon</>}
+  bars="apart"
+  categories={["Sesalur, p.k.m.", "Sesalur, puncak", "Diperlukan untuk menyala, puncak"]}
+  series={[
+    { label: "Voltan", mark: "bar", values: [240, 340, 9000] },
+  ]}
+  valueLabel="Voltan (V)"
+  description={<>Sesalur <InlineMath math="240\text{ V}" /> mencapai <InlineMath math="340\text{ V}" /> pada puncaknya. Untuk memberi puncak <InlineMath math="9000\text{ V}" /> yang diperlukan tiub, transformer mesti menaikkan sekurang-kurangnya <InlineMath math="27" /> kali.</>}
+/>
+
+<BlockMath math="V_0=\sqrt2\times240\approx340\text{ V},\qquad \frac{N_s}{N_p}\ge\frac{9000}{340}\approx26.5\Rightarrow27" />
+
+<BlockMath math="P_{\text{masuk}}=\frac{150}{0.90}\approx167\text{ W},\qquad I=\frac{167}{240}\approx0.69\text{ A}" />
+
+Sesalur memuncak pada kira-kira <InlineMath math="340\text{ V}" />, jadi transformer memerlukan nisbah lilitan sekurang-kurangnya <InlineMath math="27" />. Semasa papan tanda menyala, ia mengambil kira-kira <InlineMath math="167\text{ W}" /> daripada sesalur, iaitu arus kira-kira <InlineMath math="0.69\text{ A}" />.
+
+# Kenapa pilihan lain salah
+
+- <InlineMath math="38" /> menggunakan <InlineMath math="240\text{ V}" /> **p.k.m.** seolah-olah nilai puncak, jadi ia menganggar lebih nisbah lilitan yang diperlukan.
+- <InlineMath math="0.56\text{ A}" /> **mendarab** dengan kecekapan, seolah-olah transformer menerima kuasa kurang daripada yang diberikannya.
+- <InlineMath math="170\text{ V}" /> **membahagi** dengan <InlineMath math="\sqrt2" /> dan bukan mendarab: nilai puncak lebih besar daripada nilai p.k.m.

@@ -1,0 +1,26 @@
+# In der Brücke durchläuft jede Halbwelle zwei Dioden, und beide Halbwellen kommen gleich gerichtet heraus
+
+Die <InlineMath math="12\text{ V}" /> des Trafos sind ein **Effektivwert**, die Scheitel sind also <InlineMath math="\sqrt2" />-mal größer. In einem Brückengleichrichter fließt der Strom jeder Halbwelle durch **zwei Dioden in Reihe**, eine auf dem Hinweg zur Last und eine auf dem Rückweg, vom Scheitel gehen also **zwei** Diodenspannungen ab. Beide Halbwellen erreichen die Last gleich gerichtet, der Ausgang erreicht also **zweimal** pro Netzperiode einen Scheitel.
+
+<Chart
+  title={<>Scheitelspannungen im Gleichrichter</>}
+  bars="apart"
+  categories={["Trafo, effektiv", "Trafo, Scheitel", "Ausgang, Scheitel"]}
+  series={[
+    { label: "Spannung", mark: "bar", values: [12, 17.0, 15.6] },
+  ]}
+  valueLabel="Spannung (V)"
+  description={<>Die <InlineMath math="12\text{ V}" /> effektiv des Trafos haben Scheitel von <InlineMath math="17{,}0\text{ V}" />. Es leiten immer zwei Dioden, der Ausgang erreicht also <InlineMath math="17{,}0-1{,}4=15{,}6\text{ V}" />.</>}
+/>
+
+<BlockMath math="V_0=12\sqrt2\approx17{,}0\text{ V},\qquad V_{\text{aus}}=17{,}0-2(0{,}70)\approx15{,}6\text{ V}" />
+
+<BlockMath math="f_{\text{Scheitel}}=2\cdot50=100\text{ Hz},\qquad I_0=\frac{15{,}6}{100}\approx0{,}16\text{ A}" />
+
+Die Last sieht Scheitel von etwa <InlineMath math="15{,}6\text{ V}" />, <InlineMath math="100" />-mal pro Sekunde, der Scheitelstrom beträgt etwa <InlineMath math="0{,}16\text{ A}" />.
+
+# Warum die anderen Antworten falsch sind
+
+- <InlineMath math="16{,}3\text{ V}" /> zieht nur **eine Diodenspannung** ab, doch in der Brücke fließt der Strom immer durch zwei Dioden.
+- <InlineMath math="50\text{ Hz}" /> ist die Scheitelrate eines **Einweggleichrichters**, die Brücke nutzt aber beide Halbwellen.
+- <InlineMath math="10{,}6\text{ V}" /> nimmt die **effektiven** <InlineMath math="12\text{ V}" /> als Scheitelwert.

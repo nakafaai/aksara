@@ -1,0 +1,28 @@
+# Current goes out along one conductor and back along the other, and the tool's power falls with the voltage it receives
+
+The current flows to the tool along the live conductor and **back** along the neutral, so the cable puts **<InlineMath math="50\text{ m}" />** of copper in the circuit, not <InlineMath math="25\text{ m}" />. The tool's rating fixes its resistance, <InlineMath math="R=\dfrac{V^2}{P}" />, not its power: with the cable in series the current is a little smaller, and the tool delivers <InlineMath math="I^2R" />, less than its rating. For the cable to lose at most <InlineMath math="2\%" />, its resistance must be at most about <InlineMath math="2\%" /> of the total.
+
+<Chart
+  title={<>Power Reaching the Tool</>}
+  bars="apart"
+  categories={["Rated", "Through the 1.0 mm² cable"]}
+  series={[
+    { label: "Power", mark: "bar", values: [2.0, 1.89] },
+  ]}
+  valueLabel="Power (kW)"
+  description={<>The cable's <InlineMath math="0.85\,\Omega" /> takes about <InlineMath math="7\text{ V}" /> of the supply, so the tool, whose resistance is fixed, delivers only about <InlineMath math="1.89\text{ kW}" /> instead of <InlineMath math="2.00\text{ kW}" />.</>}
+/>
+
+<BlockMath math="R_c=\frac{1.7\times10^{-8}\times50}{1.0\times10^{-6}}=0.85\,\Omega,\qquad R_t=\frac{240^2}{2000}=28.8\,\Omega" />
+
+<BlockMath math="I=\frac{240}{28.8+0.85}\approx8.09\text{ A},\qquad P=8.09^2\times28.8\approx1.89\text{ kW}" />
+
+<BlockMath math="\frac{R_c}{R_c+28.8}\le0.02\Rightarrow R_c\le0.588\,\Omega\Rightarrow A\ge\frac{1.7\times10^{-8}\times50}{0.588}\approx1.5\times10^{-6}\text{ m}^2=1.5\text{ mm}^2" />
+
+The cable adds <InlineMath math="0.85\,\Omega" />, and the tool delivers only about <InlineMath math="1.89\text{ kW}" />. To lose no more than <InlineMath math="2\%" /> of the supply, each conductor needs an area of at least about <InlineMath math="1.5\text{ mm}^2" />.
+
+# Why the other options are wrong
+
+- <InlineMath math="0.43\,\Omega" /> counts **one conductor only**, but the current must go out and come back.
+- <InlineMath math="2.00\text{ kW}" /> assumes the tool **still takes its rated power**, but its resistance is fixed and it now receives less than <InlineMath math="240\text{ V}" />.
+- <InlineMath math="0.085\,\Omega" /> converts <InlineMath math="1\text{ mm}^2" /> to **<InlineMath math="10^{-5}\text{ m}^2" />**, but a square millimetre is <InlineMath math="10^{-6}\text{ m}^2" />.

@@ -1,0 +1,26 @@
+# Dua GGL saling berhadapan, jadi hanya selisihnya yang mendorong arus, dan pengisian membuat tegangan jepit baterai melebihi GGL-nya
+
+Dengan positif ke positif, kedua GGL **berlawanan** di sepanjang rangkaian: hanya **selisihnya**, <InlineMath math="3{,}0\text{ V}" />, yang mendorong arus, melewati kedua hambatan dalam secara seri. Arus mengalir **masuk** ke kutub positif baterai, kebalikan dari saat pengosongan, jadi tegangan pada hambatan dalamnya kini **ditambahkan** ke GGL-nya. Dari daya GGL pengisi, bagian yang tersimpan adalah GGL baterai kali arus.
+
+<Chart
+  title={<>Ke Mana Daya Pengisi Pergi</>}
+  bars="apart"
+  categories={["Tersimpan sebagai energi kimia", "Kalor di baterai", "Kalor di pengisi"]}
+  series={[
+    { label: "Daya", mark: "bar", values: [60, 2.5, 12.5] },
+  ]}
+  valueLabel="Daya (W)"
+  description={<>Dari <InlineMath math="75\text{ W}" /> yang diberikan GGL pengisi, <InlineMath math="60\text{ W}" /> tersimpan, <InlineMath math="2{,}5\text{ W}" /> memanaskan baterai, dan <InlineMath math="12{,}5\text{ W}" /> memanaskan pengisi.</>}
+/>
+
+<BlockMath math="I=\frac{15-12}{0{,}50+0{,}10}=5{,}0\text{ A},\qquad V=12+5{,}0\times0{,}10=12{,}5\text{ V}" />
+
+<BlockMath math="\frac{12\times5{,}0}{15\times5{,}0}=\frac{60}{75}=80\%" />
+
+Arus <InlineMath math="5{,}0\text{ A}" /> mengalir, dan kutub baterai bertegangan <InlineMath math="12{,}5\text{ V}" /> selama diisi, di atas GGL-nya sendiri. Dari <InlineMath math="75\text{ W}" /> pengisi, <InlineMath math="60\text{ W}" />, atau <InlineMath math="80\%" />, tersimpan, dan sisanya memanaskan kedua hambatan dalam.
+
+# Mengapa pilihan lain salah
+
+- <InlineMath math="11{,}5\text{ V}" /> **mengurangkan** tegangan dalam seperti saat baterai memberi arus, padahal di sini arus didorong masuk ke dalamnya.
+- <InlineMath math="45\text{ A}" /> **menjumlahkan** kedua GGL, seolah-olah dirangkai searah, positif ke negatif.
+- <InlineMath math="83\%" /> membandingkan **tegangan jepit** baterai dengan GGL pengisi, menghitung kalor di hambatan baterai sendiri sebagai energi tersimpan.

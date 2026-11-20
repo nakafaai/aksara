@@ -1,0 +1,25 @@
+# Geht die Gerade nicht durch den Ursprung, ist die Verstärkung die Steigung, nicht das Verhältnis
+
+Die beiden Messwerte liefern **verschiedene** Verhältnisse, <InlineMath math="\dfrac{3{,}5}{0{,}020}=175" /> und <InlineMath math="\dfrac{8{,}0}{0{,}050}=160" />, der Kollektorstrom ist also nicht einfach proportional zum Basisstrom. Auf einer Geraden ist die Verstärkung die **Steigung**: Änderung des Kollektorstroms durch Änderung des Basisstroms. Die Gerade trifft die Achse dann bei einem kleinen Kollektorstrom, der auch ohne Basisstrom fließt. Für den Kollektorwiderstand müssen die <InlineMath math="9{,}0\text{ V}" /> den Widerstand **und** die <InlineMath math="1{,}0\text{ V}" /> am Transistor decken.
+
+<Chart
+  title={<>Kollektorstrom über Basisstrom</>}
+  categories={["0 µA", "20 µA", "50 µA"]}
+  series={[
+    { label: "Kollektorstrom", mark: "line", values: [0.5, 3.5, 8.0] },
+  ]}
+  valueLabel="Strom (mA)"
+  description={<>Die Messwerte liegen auf einer Geraden mit Steigung <InlineMath math="150" />, die die Achse bei <InlineMath math="0{,}50\text{ mA}" /> schneidet, nicht bei null, die Verstärkung folgt also aus der Änderung der Ströme.</>}
+/>
+
+<BlockMath math="\beta=\frac{8{,}0-3{,}5}{0{,}050-0{,}020}=\frac{4{,}5\text{ mA}}{30\,\mu\text{A}}=150,\qquad I_0=3{,}5-150\cdot0{,}020=0{,}50\text{ mA}" />
+
+<BlockMath math="R_C\le\frac{9{,}0-1{,}0}{8{,}0\cdot10^{-3}}=1{,}0\cdot10^{3}\,\Omega=1{,}0\text{ k}\Omega" />
+
+Die Stromverstärkung beträgt <InlineMath math="150" />, ohne Basisstrom fließen etwa <InlineMath math="0{,}50\text{ mA}" /> im Kollektor. Der Kollektorwiderstand darf höchstens <InlineMath math="1{,}0\text{ k}\Omega" /> betragen.
+
+# Warum die anderen Antworten falsch sind
+
+- <InlineMath math="160" /> und <InlineMath math="175" /> teilen **einen Messwert durch sich selbst**, was für beide Messungen Verschiedenes ergibt und den Strom bei null Basisstrom übersieht.
+- <InlineMath math="0\text{ mA}" /> nimmt an, die Gerade **gehe durch den Ursprung**, doch die beiden Messwerte liegen nicht auf einer solchen Geraden.
+- <InlineMath math="1{,}1\text{ k}\Omega" /> nimmt die **ganzen <InlineMath math="9{,}0\text{ V}" />** und vergisst das <InlineMath math="1{,}0\text{ V}" />, das am Transistor bleiben muss.

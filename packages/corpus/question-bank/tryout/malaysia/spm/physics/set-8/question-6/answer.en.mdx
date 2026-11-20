@@ -1,0 +1,28 @@
+# The crate gains on the cab only while the lorry is still braking, then the lorry is simply parked
+
+The lorry brakes harder than friction can slow the crate, so the crate **slides forwards** relative to the bed. While both are slowing, the crate gains on the cab with relative acceleration <InlineMath math="10-4.0=6.0\text{ m s}^{-2}" />. But the lorry stops after <InlineMath math="2.0\text{ s}" />, and **from then on** the cab stands still while friction keeps slowing the crate. So first check where the crate is when the lorry stops.
+
+<Chart
+  title={<>Speeds During the Emergency Stop</>}
+  categories={["0 s", "0.5 s", "1.0 s", "1.5 s", "2.0 s", "2.17 s"]}
+  series={[
+    { label: "Lorry", mark: "line", values: [20, 15, 10, 5, 0, 0] },
+    { label: "Crate", mark: "line", values: [20, 18, 16, 14, 12, 11.3] },
+  ]}
+  valueLabel="Speed (m/s)"
+  description={<>The lorry is at rest after <InlineMath math="2.0\text{ s}" />, while the crate, slowed only by friction, is still doing <InlineMath math="12\text{ m s}^{-1}" /> and hits the cab at about <InlineMath math="11\text{ m s}^{-1}" />.</>}
+/>
+
+<BlockMath math="s=\frac{20^2}{2(10)}=20\text{ m},\qquad t_s=\frac{20}{10}=2.0\text{ s},\qquad \Delta s(2.0)=\tfrac12(6.0)(2.0)^2=12\text{ m}<14\text{ m}" />
+
+<BlockMath math="v_{\text{crate}}(2.0)=20-4.0\times2.0=12\text{ m s}^{-1},\qquad v^2=12^2-2(4.0)(2.0)\Rightarrow v\approx11\text{ m s}^{-1}" />
+
+<BlockMath math="t=2.0+\frac{12-11.3}{4.0}\approx2.2\text{ s}" />
+
+The lorry stops in <InlineMath math="20\text{ m}" />. At that moment the crate has slid <InlineMath math="12\text{ m}" /> along the bed and is still doing <InlineMath math="12\text{ m s}^{-1}" />. It covers the last <InlineMath math="2.0\text{ m}" /> towards the parked cab and hits it about <InlineMath math="2.2\text{ s}" /> after braking began, at about <InlineMath math="11\text{ m s}^{-1}" />.
+
+# Why the other options are wrong
+
+- <InlineMath math="13\text{ m s}^{-1}" /> keeps the **relative acceleration of <InlineMath math="6.0\text{ m s}^{-2}" />** all the way, but after <InlineMath math="2.0\text{ s}" /> the lorry has stopped, so only friction acts on the crate.
+- <InlineMath math="1.7\text{ s}" /> and <InlineMath math="17\text{ m s}^{-1}" /> **ignore the friction** on the crate, as if nothing slowed it at all.
+- <InlineMath math="40\text{ m}" /> uses <InlineMath math="\dfrac{v^2}{a}" /> for the stopping distance, **forgetting the factor of <InlineMath math="2" />**.

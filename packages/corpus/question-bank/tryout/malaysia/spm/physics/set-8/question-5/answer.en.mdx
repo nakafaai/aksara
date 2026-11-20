@@ -1,0 +1,28 @@
+# Thrust is momentum given to the air each second, and thinner air must be thrown faster
+
+To hover, the thrust must equal the weight. The thrust is the **momentum given to the air each second**: mass per second times speed, <InlineMath math="(\rho Av)v=\rho Av^2" />. The power is the **kinetic energy given to the air each second**, <InlineMath math="\tfrac12(\rho Av)v^2" />. In thinner air, the same thrust needs a larger <InlineMath math="v" />, and because power grows as <InlineMath math="v^3" /> while thrust grows as <InlineMath math="v^2" />, the power **rises** even though less air is moved.
+
+<Chart
+  title={<>Power Needed to Hover</>}
+  bars="apart"
+  categories={["Sea level", "Plateau"]}
+  series={[
+    { label: "Power", mark: "bar", values: [42.4, 49.0] },
+  ]}
+  valueLabel="Power (W)"
+  description={<>In thinner air the rotors must throw air down faster to make the same thrust, so the power rises from about <InlineMath math="42\text{ W}" /> to about <InlineMath math="49\text{ W}" />.</>}
+/>
+
+<BlockMath math="\rho Av^2=mg\Rightarrow v=\sqrt{\frac{12}{1.2\times0.20}}=\sqrt{50}\approx7.1\text{ m s}^{-1}" />
+
+<BlockMath math="P=\tfrac12\rho Av^3=\tfrac12(1.2)(0.20)(7.07)^3\approx42\text{ W}" />
+
+<BlockMath math="\text{plateau: }v=\sqrt{\frac{12}{0.90\times0.20}}\approx8.2\text{ m s}^{-1},\qquad P=\tfrac12(0.90)(0.20)(8.16)^3\approx49\text{ W}" />
+
+At sea level the air leaves at about <InlineMath math="7.1\text{ m s}^{-1}" />, and the drone gives it kinetic energy at about <InlineMath math="42\text{ W}" />. On the plateau it must throw the thinner air down at about <InlineMath math="8.2\text{ m s}^{-1}" />, which takes about <InlineMath math="49\text{ W}" />.
+
+# Why the other options are wrong
+
+- <InlineMath math="32\text{ W}" /> **scales the power down with the density**, but the thrust must stay equal to the weight, so the air must move faster.
+- <InlineMath math="85\text{ W}" /> uses <InlineMath math="\dot m v^2" /> for the kinetic energy each second, **forgetting the <InlineMath math="\tfrac12" />**.
+- <InlineMath math="42\text{ W}" /> on the plateau assumes the **same thrust needs the same power**, but thinner air must be thrown faster.

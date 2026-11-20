@@ -1,0 +1,28 @@
+# Der Strom fließt über einen Leiter hin und über den anderen zurück, und die Leistung des Werkzeugs sinkt mit seiner Spannung
+
+Der Strom fließt über den Außenleiter zum Werkzeug und über den Neutralleiter **zurück**, das Kabel bringt also **<InlineMath math="50\text{ m}" />** Kupfer in den Kreis, nicht <InlineMath math="25\text{ m}" />. Die Nennangabe legt den Widerstand des Werkzeugs fest, <InlineMath math="R=\dfrac{V^2}{P}" />, nicht seine Leistung: Mit dem Kabel in Reihe ist der Strom etwas kleiner, das Werkzeug leistet <InlineMath math="I^2R" />, weniger als den Nennwert. Damit das Kabel höchstens <InlineMath math="2\%" /> verliert, darf sein Widerstand höchstens etwa <InlineMath math="2\%" /> des Gesamtwiderstands betragen.
+
+<Chart
+  title={<>Leistung am Werkzeug</>}
+  bars="apart"
+  categories={["Nennwert", "Über das 1,0-mm²-Kabel"]}
+  series={[
+    { label: "Leistung", mark: "bar", values: [2.0, 1.89] },
+  ]}
+  valueLabel="Leistung (kW)"
+  description={<>Die <InlineMath math="0{,}85\,\Omega" /> des Kabels nehmen etwa <InlineMath math="7\text{ V}" /> der Netzspannung, das Werkzeug mit festem Widerstand leistet daher nur etwa <InlineMath math="1{,}89\text{ kW}" /> statt <InlineMath math="2{,}00\text{ kW}" />.</>}
+/>
+
+<BlockMath math="R_k=\frac{1{,}7\cdot10^{-8}\cdot50}{1{,}0\cdot10^{-6}}=0{,}85\,\Omega,\qquad R_w=\frac{240^2}{2000}=28{,}8\,\Omega" />
+
+<BlockMath math="I=\frac{240}{28{,}8+0{,}85}\approx8{,}09\text{ A},\qquad P=8{,}09^2\cdot28{,}8\approx1{,}89\text{ kW}" />
+
+<BlockMath math="\frac{R_k}{R_k+28{,}8}\le0{,}02\Rightarrow R_k\le0{,}588\,\Omega\Rightarrow A\ge\frac{1{,}7\cdot10^{-8}\cdot50}{0{,}588}\approx1{,}5\cdot10^{-6}\text{ m}^2=1{,}5\text{ mm}^2" />
+
+Das Kabel bringt <InlineMath math="0{,}85\,\Omega" /> in den Kreis, das Werkzeug leistet nur etwa <InlineMath math="1{,}89\text{ kW}" />. Für höchstens <InlineMath math="2\%" /> Spannungsverlust braucht jeder Leiter mindestens etwa <InlineMath math="1{,}5\text{ mm}^2" />.
+
+# Warum die anderen Antworten falsch sind
+
+- <InlineMath math="0{,}43\,\Omega" /> zählt **nur einen Leiter**, doch der Strom muss hin und zurück.
+- <InlineMath math="2{,}00\text{ kW}" /> nimmt an, das Werkzeug **nehme weiter seine Nennleistung** auf, doch sein Widerstand ist fest und es erhält weniger als <InlineMath math="240\text{ V}" />.
+- <InlineMath math="0{,}085\,\Omega" /> rechnet <InlineMath math="1\text{ mm}^2" /> als **<InlineMath math="10^{-5}\text{ m}^2" />**, doch ein Quadratmillimeter sind <InlineMath math="10^{-6}\text{ m}^2" />.

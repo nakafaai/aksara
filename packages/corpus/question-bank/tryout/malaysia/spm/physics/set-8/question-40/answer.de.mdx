@@ -1,0 +1,28 @@
+# Jedes Photon wirkt allein: Seine Energie entscheidet, ob und wie schnell ein Elektron austritt, die Photonenzahl bestimmt den Strom
+
+Licht kommt in Photonen der Energie <InlineMath math="E=\dfrac{hc}{\lambda}" />, und jedes Photon kann **höchstens ein** Elektron lösen. Ein Elektron tritt nur aus, wenn die Photonenenergie die **Austrittsarbeit** übersteigt, seine größte Bewegungsenergie ist die Differenz. Der **Strom** hängt davon ab, wie viele Photonen pro Sekunde ankommen, Leistung durch Photonenenergie, mal dem Anteil, der ein Elektron löst. Unter der Schwelle löst kein Photon ein Elektron, **mehr Leistung hilft also nicht**.
+
+<Chart
+  title={<>Photonenenergie und Austrittsarbeit</>}
+  bars="apart"
+  categories={["Photon 450 nm", "Austrittsarbeit", "Photon 600 nm"]}
+  series={[
+    { label: "Energie", mark: "bar", values: [2.76, 2.28, 2.07] },
+  ]}
+  valueLabel="Energie (eV)"
+  description={<>Ein <InlineMath math="450\text{ nm}" /> Photon hat <InlineMath math="2{,}76\text{ eV}" />, mehr als die <InlineMath math="2{,}28\text{ eV}" /> Austrittsarbeit der Kathode. Ein <InlineMath math="600\text{ nm}" /> Photon hat nur <InlineMath math="2{,}07\text{ eV}" />, weniger, also löst sich kein Elektron, wie hell die Lampe auch ist.</>}
+/>
+
+<BlockMath math="E=\frac{6{,}63\cdot10^{-34}\cdot3{,}0\cdot10^{8}}{450\cdot10^{-9}}\approx4{,}42\cdot10^{-19}\text{ J}\approx2{,}76\text{ eV},\qquad E_{k,\max}=2{,}76-2{,}28\approx0{,}48\text{ eV}" />
+
+<BlockMath math="N=\frac{2{,}0\cdot10^{-3}}{4{,}42\cdot10^{-19}}\approx4{,}5\cdot10^{15}\text{ s}^{-1},\qquad I=0{,}10\cdot4{,}5\cdot10^{15}\cdot1{,}6\cdot10^{-19}\approx72\,\mu\text{A}" />
+
+<BlockMath math="E_{600}=\frac{6{,}63\cdot10^{-34}\cdot3{,}0\cdot10^{8}}{600\cdot10^{-9}}\approx2{,}07\text{ eV}<2{,}28\text{ eV}\Rightarrow I=0" />
+
+Die schnellsten Elektronen treten mit etwa <InlineMath math="0{,}48\text{ eV}" /> aus, die Fotozelle liefert etwa <InlineMath math="72\,\mu\text{A}" />. Mit <InlineMath math="600\text{ nm}" /> Licht hat jedes Photon weniger Energie als die Austrittsarbeit, es fließt gar kein Strom, auch bei doppelter Leistung.
+
+# Warum die anderen Antworten falsch sind
+
+- <InlineMath math="190\,\mu\text{A}" /> zählt die Photonen des helleren roten Strahls, als könne **jedes ein Elektron lösen**, doch jedes liegt unter der Schwelle.
+- <InlineMath math="2{,}8\text{ eV}" /> ist die **Photonenenergie** und vergisst, dass erst die Austrittsarbeit aufgebracht werden muss.
+- <InlineMath math="720\,\mu\text{A}" /> lässt **jedes Photon** ein Elektron lösen und vergisst, dass es nur <InlineMath math="10\%" /> tun.

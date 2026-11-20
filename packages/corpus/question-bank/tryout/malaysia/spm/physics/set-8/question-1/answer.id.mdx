@@ -1,0 +1,28 @@
+# Galat nol negatif ditambahkan kembali, dan ketidakpastian diameter terhitung dua kali
+
+Jangka sorong membaca <InlineMath math="-0{,}02\text{ cm}" /> saat ditutup, jadi tiap bacaan <InlineMath math="0{,}02\text{ cm}" /> **terlalu kecil**: koreksinya adalah menambahkannya. Sebanyak <InlineMath math="40" /> lilitan tersusun rapat, jadi panjang kumparan sama dengan <InlineMath math="40" /> diameter. Hambatan jenis mengikuti <InlineMath math="R=\dfrac{\rho L}{A}" /> dengan <InlineMath math="A=\pi r^2" />. Karena luas bergantung pada **kuadrat** diameter, persentase ketidakpastian diameter muncul **dua kali** dalam hambatan jenis.
+
+<Chart
+  title={<>Hambatan Jenis dari Tiga Bacaan Kumparan</>}
+  bars="apart"
+  categories={["Benar", "Galat nol dikurangkan", "Diameter sebagai jari-jari"]}
+  series={[
+    { label: "Hambatan jenis", mark: "bar", values: [4.9, 4.8, 19.5] },
+  ]}
+  valueLabel="Hambatan jenis (10⁻⁷ Ω m)"
+  description={<>Menambahkan galat nol <InlineMath math="0{,}02\text{ cm}" /> memberi sekitar <InlineMath math="4{,}9\times10^{-7}" />. Menguranginya memberi <InlineMath math="4{,}8\times10^{-7}" />, dan memakai diameter sebagai jari-jari membuat nilainya empat kali terlalu besar.</>}
+/>
+
+<BlockMath math="\ell=2{,}86-(-0{,}02)=2{,}88\text{ cm},\qquad d=\frac{2{,}88}{40}=0{,}0720\text{ cm}=0{,}720\text{ mm}" />
+
+<BlockMath math="\rho=\frac{RA}{L}=\frac{2{,}4\times3{,}14\times(0{,}360\times10^{-3})^2}{2{,}00}\approx4{,}9\times10^{-7}\,\Omega\text{ m}" />
+
+<BlockMath math="\frac{0{,}01}{2{,}88}\approx0{,}35\%\text{ pada }d,\qquad 2\times0{,}35\%\approx0{,}7\%\text{ pada }\rho" />
+
+Kawat itu setebal <InlineMath math="0{,}720\text{ mm}" /> dan hambatan jenisnya sekitar <InlineMath math="4{,}9\times10^{-7}" /> ohm meter. Bacaan kumparan saja memberi ketidakpastian sekitar <InlineMath math="0{,}7\%" /> pada hambatan jenis.
+
+# Mengapa pilihan lain salah
+
+- <InlineMath math="0{,}710\text{ mm}" /> **mengurangkan galat nol**, padahal galat nol negatif berarti bacaan terlalu kecil, jadi harus ditambahkan.
+- <InlineMath math="2{,}0\times10^{-6}" /> memakai **diameter sebagai jari-jari** dalam <InlineMath math="\pi r^2" />, membuat luas dan hambatan jenisnya empat kali terlalu besar.
+- <InlineMath math="0{,}35\%" /> adalah ketidakpastian **diameter**, padahal hambatan jenis bergantung pada kuadratnya, yang melipatduakan persentasenya.

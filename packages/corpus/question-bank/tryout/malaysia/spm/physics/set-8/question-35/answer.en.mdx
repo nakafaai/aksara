@@ -1,0 +1,26 @@
+# In a bridge, every half-cycle passes through two diodes, and both halves come out the same way round
+
+The transformer's <InlineMath math="12\text{ V}" /> is an **r.m.s.** value, so its peaks are <InlineMath math="\sqrt2" /> times larger. In a bridge rectifier the current in each half-cycle passes through **two diodes in series**, one on the way to the load and one on the way back, so **two** diode drops come off the peak. Both half-cycles reach the load in the same direction, so the output reaches a peak **twice** in each cycle of the supply.
+
+<Chart
+  title={<>Peak Voltages in the Rectifier</>}
+  bars="apart"
+  categories={["Transformer, r.m.s.", "Transformer, peak", "Output, peak"]}
+  series={[
+    { label: "Voltage", mark: "bar", values: [12, 17.0, 15.6] },
+  ]}
+  valueLabel="Voltage (V)"
+  description={<>The <InlineMath math="12\text{ V}" /> r.m.s. output of the transformer peaks at <InlineMath math="17.0\text{ V}" />. Two diodes conduct at a time, so the output peaks at <InlineMath math="17.0-1.4=15.6\text{ V}" />.</>}
+/>
+
+<BlockMath math="V_0=12\sqrt2\approx17.0\text{ V},\qquad V_{\text{out}}=17.0-2(0.70)\approx15.6\text{ V}" />
+
+<BlockMath math="f_{\text{peaks}}=2\times50=100\text{ Hz},\qquad I_0=\frac{15.6}{100}\approx0.16\text{ A}" />
+
+The load sees a peak of about <InlineMath math="15.6\text{ V}" />, reached <InlineMath math="100" /> times a second, and the peak current is about <InlineMath math="0.16\text{ A}" />.
+
+# Why the other options are wrong
+
+- <InlineMath math="16.3\text{ V}" /> takes off only **one diode drop**, but in a bridge the current always passes through two diodes.
+- <InlineMath math="50\text{ Hz}" /> is the peak rate of a **half-wave** rectifier, but a bridge uses both halves of every cycle.
+- <InlineMath math="10.6\text{ V}" /> treats the **r.m.s.** <InlineMath math="12\text{ V}" /> as the peak.

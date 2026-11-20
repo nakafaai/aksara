@@ -1,0 +1,28 @@
+# Der Topf erwärmt sich mit, und beim Sieden fressen die Verluste an der Leistung
+
+Nur <InlineMath math="80\%" /> der <InlineMath math="2{,}0\text{ kW}" /> erreichen den Topf, <InlineMath math="1600\text{ W}" />. Beim Aufheizen muss diese Leistung **den Kupfertopf ebenso wie die Suppe** erwärmen. Beim Sieden ändert sich die Temperatur der Suppe nicht mehr, die verbleibende Wärme verdampft also Wasser, doch der Topf verliert jetzt <InlineMath math="600\text{ W}" />, für das Verkochen bleiben **nur <InlineMath math="1000\text{ W}" />**. Die elektrische Energie zählt die vollen <InlineMath math="2{,}0\text{ kW}" /> über die ganze Zeit.
+
+<Chart
+  title={<>Zeit auf dem Herd</>}
+  bars="apart"
+  categories={["Erhitzen auf 100 °C", "0,50 kg verkochen"]}
+  series={[
+    { label: "Zeit", mark: "bar", values: [6.7, 18.8] },
+  ]}
+  valueLabel="Zeit (min)"
+  description={<>Topf und Suppe zum Sieden zu bringen dauert etwa <InlineMath math="6{,}7\text{ min}" />. <InlineMath math="0{,}50\text{ kg}" /> zu verkochen dauert dann etwa <InlineMath math="19\text{ min}" />, weil von den <InlineMath math="1600\text{ W}" /> im Topf <InlineMath math="600\text{ W}" /> verloren gehen.</>}
+/>
+
+<BlockMath math="Q_1=(1{,}5\cdot390+2{,}0\cdot4000)\cdot75\approx6{,}44\cdot10^{5}\text{ J},\qquad t_1=\frac{6{,}44\cdot10^{5}}{1600}\approx402\text{ s}\approx6{,}7\text{ min}" />
+
+<BlockMath math="Q_2=0{,}50\cdot2{,}26\cdot10^{6}=1{,}13\cdot10^{6}\text{ J},\qquad t_2=\frac{1{,}13\cdot10^{6}}{1600-600}=1130\text{ s}\approx19\text{ min}" />
+
+<BlockMath math="E=2000\cdot(402+1130)\approx3{,}06\cdot10^{6}\text{ J}\approx0{,}85\text{ kW h}" />
+
+Die Suppe siedet nach etwa <InlineMath math="6{,}7\text{ min}" />, das Verkochen von <InlineMath math="0{,}50\text{ kg}" /> dauert etwa <InlineMath math="19\text{ min}" /> länger. Insgesamt verbraucht der Herd etwa <InlineMath math="0{,}85\text{ kW h}" />.
+
+# Warum die anderen Antworten falsch sind
+
+- <InlineMath math="6{,}3\text{ min}" /> erwärmt **nur die Suppe** und vergisst, dass auch der Kupfertopf warm werden muss.
+- <InlineMath math="12\text{ min}" /> verkocht mit vollen <InlineMath math="1600\text{ W}" /> und **übersieht die <InlineMath math="600\text{ W}" />**, die der Topf bei <InlineMath math="100" /> °C verliert.
+- <InlineMath math="0{,}68\text{ kW h}" /> zählt nur die **<InlineMath math="80\%" />, die den Topf erreichen**, doch der Zähler misst alles, was der Herd aufnimmt.

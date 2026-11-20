@@ -1,0 +1,28 @@
+# Die Laufzeit ist Strecke durch Lichtgeschwindigkeit, und der versperrte Weg erzwingt einen längeren Umweg
+
+Radiowellen laufen mit Lichtgeschwindigkeit, jede Laufzeit ist also **Strecke durch <InlineMath math="3{,}0\cdot10^{8}\text{ m s}^{-1}" />**. Am nächsten sind die Planeten auf derselben Seite der Sonne, <InlineMath math="2{,}3-1{,}5" /> voneinander entfernt. Auf entgegengesetzten Seiten liefe die Gerade durch die Sonne, das Signal muss also **außen herum** über das Relais: Erde und Relais liegen eine Vierteldrehung auseinander auf demselben Kreis, und die Strecke vom Relais zum Mars ist die Hypotenuse eines rechtwinkligen Dreiecks mit der Sonne in der Ecke. Befehl und Antwort legen diesen Weg **zweimal** zurück.
+
+<Chart
+  title={<>Einweg-Signallaufzeit zum Mars</>}
+  bars="apart"
+  categories={["Größte Annäherung", "Gerade bei Konjunktion", "Über das Relais"]}
+  series={[
+    { label: "Laufzeit", mark: "bar", values: [4.4, 21.1, 27.0] },
+  ]}
+  valueLabel="Laufzeit (min)"
+  description={<>Bei größter Annäherung braucht ein Signal etwa <InlineMath math="4{,}4\text{ min}" />. Bei Konjunktion bräuchte die Gerade <InlineMath math="21\text{ min}" />, doch die Sonne versperrt sie, der Weg über das Relais dauert etwa <InlineMath math="27\text{ min}" />.</>}
+/>
+
+<BlockMath math="t_{\min}=\frac{(2{,}3-1{,}5)\cdot10^{11}}{3{,}0\cdot10^{8}}\approx267\text{ s}\approx4{,}4\text{ min}" />
+
+<BlockMath math="d_{ER}=\sqrt{2}\cdot1{,}5\cdot10^{11}\approx2{,}12\cdot10^{11}\text{ m},\qquad d_{RM}=\sqrt{1{,}5^2+2{,}3^2}\cdot10^{11}\approx2{,}75\cdot10^{11}\text{ m}" />
+
+<BlockMath math="t=\frac{(2{,}12+2{,}75)\cdot10^{11}}{3{,}0\cdot10^{8}}\approx1{,}62\cdot10^{3}\text{ s}\approx27\text{ min},\qquad 2t\approx54\text{ min}" />
+
+Die kürzeste Einweg-Laufzeit beträgt etwa <InlineMath math="4{,}4\text{ min}" />. Mit der Sonne im Weg dauert der Weg über das Relais etwa <InlineMath math="27\text{ min}" /> pro Richtung, die Antwort kommt also etwa <InlineMath math="54\text{ min}" /> nach dem Befehl an.
+
+# Warum die anderen Antworten falsch sind
+
+- <InlineMath math="21\text{ min}" /> schickt das Signal **gerade durch die Sonne**, den Weg, der laut Aufgabe versperrt ist.
+- <InlineMath math="13\text{ min}" /> nimmt den **Abstand des Mars von der Sonne** als kürzesten Abstand zur Erde.
+- <InlineMath math="32\text{ min}" /> **addiert die beiden Katheten** für den Weg Erde zum Relais, statt Pythagoras zu nutzen.

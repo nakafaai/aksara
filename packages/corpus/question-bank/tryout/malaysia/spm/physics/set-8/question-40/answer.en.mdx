@@ -1,0 +1,28 @@
+# Each photon acts alone: its energy sets whether and how fast an electron escapes, and the number of photons sets the current
+
+Light arrives as photons of energy <InlineMath math="E=\dfrac{hc}{\lambda}" />, and each photon can free **at most one** electron. An electron escapes only if the photon's energy exceeds the **work function**, and its greatest kinetic energy is the difference. The **current** depends on how many photons arrive each second, the power divided by the photon energy, times the fraction that free an electron. Below the threshold no photon can free an electron, so **more power does not help**.
+
+<Chart
+  title={<>Photon Energy Against the Work Function</>}
+  bars="apart"
+  categories={["450 nm photon", "Work function", "600 nm photon"]}
+  series={[
+    { label: "Energy", mark: "bar", values: [2.76, 2.28, 2.07] },
+  ]}
+  valueLabel="Energy (eV)"
+  description={<>A <InlineMath math="450\text{ nm}" /> photon has <InlineMath math="2.76\text{ eV}" />, above the cathode's <InlineMath math="2.28\text{ eV}" /> work function. A <InlineMath math="600\text{ nm}" /> photon has only <InlineMath math="2.07\text{ eV}" />, below it, so no electron escapes however bright the lamp.</>}
+/>
+
+<BlockMath math="E=\frac{6.63\times10^{-34}\times3.0\times10^{8}}{450\times10^{-9}}\approx4.42\times10^{-19}\text{ J}\approx2.76\text{ eV},\qquad E_{k,\max}=2.76-2.28\approx0.48\text{ eV}" />
+
+<BlockMath math="N=\frac{2.0\times10^{-3}}{4.42\times10^{-19}}\approx4.5\times10^{15}\text{ s}^{-1},\qquad I=0.10\times4.5\times10^{15}\times1.6\times10^{-19}\approx72\,\mu\text{A}" />
+
+<BlockMath math="E_{600}=\frac{6.63\times10^{-34}\times3.0\times10^{8}}{600\times10^{-9}}\approx2.07\text{ eV}<2.28\text{ eV}\Rightarrow I=0" />
+
+The fastest electrons leave with about <InlineMath math="0.48\text{ eV}" />, and the photocell gives about <InlineMath math="72\,\mu\text{A}" />. With <InlineMath math="600\text{ nm}" /> light each photon has less energy than the work function, so there is no current at all, even at twice the power.
+
+# Why the other options are wrong
+
+- <InlineMath math="190\,\mu\text{A}" /> counts the brighter red beam's photons as if **each could free an electron**, but every one is below the threshold.
+- <InlineMath math="2.8\text{ eV}" /> is the **photon's energy**, forgetting that the work function must be paid before the electron escapes.
+- <InlineMath math="720\,\mu\text{A}" /> lets **every photon** free an electron, forgetting that only <InlineMath math="10\%" /> do.

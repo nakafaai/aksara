@@ -1,0 +1,28 @@
+# The slanting force changes the normal force, so pushing and pulling at the same angle are not equal
+
+Only the horizontal part of the handle force, <InlineMath math="F\cos30°" />, drives the roller forwards, but the vertical part changes how hard the roller presses on the ground. Pushing **down** adds <InlineMath math="F\sin30°" /> to the normal force and so **raises** the resistance. Pulling **up** takes it away and **lowers** the resistance. At a steep enough pushing angle, the extra resistance grows as fast as the forward drive, and no force can win.
+
+<Chart
+  title={<>Force Needed at <InlineMath math="30^\circ" /> to Move the Roller</>}
+  bars="apart"
+  categories={["Pushed down", "Pulled up"]}
+  series={[
+    { label: "Force", mark: "bar", values: [75.9, 63.8] },
+  ]}
+  valueLabel="Force (N)"
+  description={<>Pushing down along the handle presses the roller into the grass and raises the resistance, so it takes about <InlineMath math="76\text{ N}" />. Pulling upwards lightens it, so <InlineMath math="64\text{ N}" /> is enough.</>}
+/>
+
+<BlockMath math="\text{push: }F\cos30°=0.15(400+F\sin30°)\Rightarrow F=\frac{60}{0.866-0.075}\approx76\text{ N}" />
+
+<BlockMath math="\text{pull: }F\cos30°=0.15(400-F\sin30°)\Rightarrow F=\frac{60}{0.866+0.075}\approx64\text{ N}" />
+
+<BlockMath math="\cos\theta\le0.15\sin\theta\Rightarrow\tan\theta\ge\frac{1}{0.15}\approx6.7\Rightarrow\theta\ge81°" />
+
+Pushing needs about <InlineMath math="76\text{ N}" /> and pulling only about <InlineMath math="64\text{ N}" />. Push the handle at more than about <InlineMath math="81°" /> below the horizontal, and the extra resistance always matches the forward push, so the roller will not move at all.
+
+# Why the other options are wrong
+
+- <InlineMath math="69\text{ N}" /> for both **ignores the change in normal force**, taking the resistance as <InlineMath math="0.15mg" /> in both cases.
+- <InlineMath math="64\text{ N}" /> to push and <InlineMath math="76\text{ N}" /> to pull **swap the effects**: pressing down raises the resistance, lifting lowers it.
+- <InlineMath math="8.5°" /> solves <InlineMath math="\tan\theta=0.15" />, the angle **of a slope** where friction just holds a block, not the jamming angle of a push.

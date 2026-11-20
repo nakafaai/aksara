@@ -1,0 +1,28 @@
+# Schub ist der Impuls, den die Luft pro Sekunde erhält, und dünnere Luft muss schneller geworfen werden
+
+Zum Schweben muss der Schub gleich dem Gewicht sein. Der Schub ist der **Impuls, den die Luft pro Sekunde erhält**: Masse pro Sekunde mal Geschwindigkeit, <InlineMath math="(\rho Av)v=\rho Av^2" />. Die Leistung ist die **Bewegungsenergie, die die Luft pro Sekunde erhält**, <InlineMath math="\tfrac12(\rho Av)v^2" />. In dünnerer Luft braucht derselbe Schub ein größeres <InlineMath math="v" />, und weil die Leistung mit <InlineMath math="v^3" />, der Schub aber mit <InlineMath math="v^2" /> wächst, **steigt** die Leistung, obwohl weniger Luft bewegt wird.
+
+<Chart
+  title={<>Leistung zum Schweben</>}
+  bars="apart"
+  categories={["Meereshöhe", "Hochebene"]}
+  series={[
+    { label: "Leistung", mark: "bar", values: [42.4, 49.0] },
+  ]}
+  valueLabel="Leistung (W)"
+  description={<>In dünnerer Luft müssen die Rotoren die Luft schneller nach unten werfen, um denselben Schub zu erzeugen, die Leistung steigt von etwa <InlineMath math="42\text{ W}" /> auf etwa <InlineMath math="49\text{ W}" />.</>}
+/>
+
+<BlockMath math="\rho Av^2=mg\Rightarrow v=\sqrt{\frac{12}{1{,}2\cdot0{,}20}}=\sqrt{50}\approx7{,}1\text{ m s}^{-1}" />
+
+<BlockMath math="P=\tfrac12\rho Av^3=\tfrac12(1{,}2)(0{,}20)(7{,}07)^3\approx42\text{ W}" />
+
+<BlockMath math="\text{Hochebene: }v=\sqrt{\frac{12}{0{,}90\cdot0{,}20}}\approx8{,}2\text{ m s}^{-1},\qquad P=\tfrac12(0{,}90)(0{,}20)(8{,}16)^3\approx49\text{ W}" />
+
+Auf Meereshöhe verlässt die Luft die Rotoren mit etwa <InlineMath math="7{,}1\text{ m s}^{-1}" />, die Drohne gibt ihr etwa <InlineMath math="42\text{ W}" /> Bewegungsenergie. Auf der Hochebene muss sie die dünnere Luft mit etwa <InlineMath math="8{,}2\text{ m s}^{-1}" /> nach unten werfen, das kostet etwa <InlineMath math="49\text{ W}" />.
+
+# Warum die anderen Antworten falsch sind
+
+- <InlineMath math="32\text{ W}" /> **verkleinert die Leistung mit der Dichte**, doch der Schub muss gleich dem Gewicht bleiben, die Luft muss also schneller strömen.
+- <InlineMath math="85\text{ W}" /> nimmt <InlineMath math="\dot m v^2" /> als Bewegungsenergie pro Sekunde und **vergisst das <InlineMath math="\tfrac12" />**.
+- <InlineMath math="42\text{ W}" /> auf der Hochebene nimmt an, **gleicher Schub brauche gleiche Leistung**, doch dünnere Luft muss schneller geworfen werden.

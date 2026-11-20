@@ -1,0 +1,28 @@
+# Panci ikut memanas bersama sup, dan saat mendidih kerugian kalor memakan daya
+
+Hanya <InlineMath math="80\%" /> dari <InlineMath math="2{,}0\text{ kW}" /> kompor yang sampai ke panci, <InlineMath math="1600\text{ W}" />. Saat memanas, daya itu harus memanaskan **panci tembaga sekaligus sup**. Begitu mendidih, suhu sup tidak berubah lagi, jadi kalor yang tinggal di dalamnya dipakai menguapkan air, tetapi panci kini kehilangan <InlineMath math="600\text{ W}" />, jadi **hanya <InlineMath math="1000\text{ W}" />** yang tersisa untuk mendidih. Energi listrik kompor menghitung <InlineMath math="2{,}0\text{ kW}" /> penuh sepanjang waktu.
+
+<Chart
+  title={<>Waktu di Atas Kompor</>}
+  bars="apart"
+  categories={["Memanaskan ke 100 °C", "Menguapkan 0,50 kg"]}
+  series={[
+    { label: "Waktu", mark: "bar", values: [6.7, 18.8] },
+  ]}
+  valueLabel="Waktu (min)"
+  description={<>Memanaskan panci dan sup sampai mendidih butuh sekitar <InlineMath math="6{,}7\text{ min}" />. Menguapkan <InlineMath math="0{,}50\text{ kg}" /> lalu butuh sekitar <InlineMath math="19\text{ min}" />, karena <InlineMath math="600\text{ W}" /> dari <InlineMath math="1600\text{ W}" /> yang sampai ke panci bocor keluar.</>}
+/>
+
+<BlockMath math="Q_1=(1{,}5\times390+2{,}0\times4000)\times75\approx6{,}44\times10^{5}\text{ J},\qquad t_1=\frac{6{,}44\times10^{5}}{1600}\approx402\text{ s}\approx6{,}7\text{ min}" />
+
+<BlockMath math="Q_2=0{,}50\times2{,}26\times10^{6}=1{,}13\times10^{6}\text{ J},\qquad t_2=\frac{1{,}13\times10^{6}}{1600-600}=1130\text{ s}\approx19\text{ min}" />
+
+<BlockMath math="E=2000\times(402+1130)\approx3{,}06\times10^{6}\text{ J}\approx0{,}85\text{ kW h}" />
+
+Sup mendidih setelah sekitar <InlineMath math="6{,}7\text{ min}" />, dan menguapkan <InlineMath math="0{,}50\text{ kg}" /> butuh sekitar <InlineMath math="19\text{ min}" /> lagi. Seluruhnya kompor memakai sekitar <InlineMath math="0{,}85\text{ kW h}" />.
+
+# Mengapa pilihan lain salah
+
+- <InlineMath math="6{,}3\text{ min}" /> hanya **memanaskan sup**, lupa bahwa panci tembaga juga harus dipanaskan.
+- <InlineMath math="12\text{ min}" /> mendidihkan dengan <InlineMath math="1600\text{ W}" /> penuh, **mengabaikan <InlineMath math="600\text{ W}" />** yang hilang dari panci pada <InlineMath math="100" /> °C.
+- <InlineMath math="0{,}68\text{ kW h}" /> hanya menghitung **<InlineMath math="80\%" /> yang sampai ke panci**, padahal meteran mencatat semua yang diambil kompor.

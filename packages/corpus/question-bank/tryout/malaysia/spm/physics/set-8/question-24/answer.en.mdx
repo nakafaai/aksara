@@ -1,0 +1,28 @@
+# Pascal's principle carries the pressure, but a column of oil adds its own weight on the way down
+
+Pressure applied to the oil is passed on everywhere, but the oil also has weight. The small piston is <InlineMath math="4.0\text{ m}" /> **below** the load piston, so the pressure there is larger by <InlineMath math="\rho gh" />. The oil is incompressible, so the volume pushed in by the small piston equals the volume that lifts the load. The work done includes lifting the load and also **lifting that volume of oil** the <InlineMath math="4.0\text{ m}" /> up to the load cylinder.
+
+<Chart
+  title={<>Pressure in the Oil</>}
+  bars="apart"
+  categories={["Under the load piston", "At the pump piston"]}
+  series={[
+    { label: "Pressure", mark: "bar", values: [200, 236] },
+  ]}
+  valueLabel="Pressure (kPa)"
+  description={<>Under the load the oil is at <InlineMath math="200\text{ kPa}" />, but the pump piston sits <InlineMath math="4.0\text{ m}" /> lower, where the oil's own weight adds <InlineMath math="36\text{ kPa}" />.</>}
+/>
+
+<BlockMath math="p=\frac{200\times10}{0.010}=2.0\times10^{5}\text{ Pa},\qquad p_s=2.0\times10^{5}+900\times10\times4.0=2.36\times10^{5}\text{ Pa}" />
+
+<BlockMath math="F=2.36\times10^{5}\times5.0\times10^{-4}\approx120\text{ N},\qquad \Delta V=0.010\times0.10=1.0\times10^{-3}\text{ m}^3,\qquad d=\frac{1.0\times10^{-3}}{5.0\times10^{-4}}=2.0\text{ m}" />
+
+<BlockMath math="W=118\times2.0\approx240\text{ J}=200\text{ J (load)}+36\text{ J (oil raised }4.0\text{ m)}" />
+
+About <InlineMath math="120\text{ N}" /> on the small piston holds the load. Pushing it <InlineMath math="2.0\text{ m}" /> raises the load <InlineMath math="10\text{ cm}" />, and that takes about <InlineMath math="240\text{ J}" />: <InlineMath math="200\text{ J}" /> for the load and <InlineMath math="36\text{ J}" /> to lift the oil to the upper floor.
+
+# Why the other options are wrong
+
+- <InlineMath math="100\text{ N}" /> and <InlineMath math="200\text{ J}" /> **ignore the <InlineMath math="4.0\text{ m}" /> column of oil**, as if both pistons were at the same height.
+- <InlineMath math="82\text{ N}" /> **subtracts** the oil's pressure, as if the small piston were above the load piston.
+- <InlineMath math="5.0\text{ mm}" /> divides the load's rise by the area ratio **the wrong way**: the small piston must move further, not less.

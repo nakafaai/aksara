@@ -1,0 +1,26 @@
+# The roof lifts when the pressure difference times its area beats its weight and its fixings together
+
+Fast air over the roof has **lower pressure** than the still air inside, so the roof is pushed up with a force of the pressure difference times the area. It lifts once that force exceeds **everything** holding it down: its weight **and** the <InlineMath math="30\text{ kN}" /> the fixings supply. The air over the roof is faster than the wind in the open, so the open wind speed is the roof speed **divided by** <InlineMath math="1.5" />.
+
+<Chart
+  title={<>Force Holding the Roof Down</>}
+  bars="apart"
+  categories={["Roof's weight", "Fixings", "Total"]}
+  series={[
+    { label: "Force", mark: "bar", values: [12, 30, 42] },
+  ]}
+  valueLabel="Force (kN)"
+  description={<>The roof's own weight gives only <InlineMath math="12\text{ kN}" />. With the fixings the wind must lift <InlineMath math="42\text{ kN}" />, a pressure difference of <InlineMath math="525\text{ Pa}" /> over <InlineMath math="80\text{ m}^2" />.</>}
+/>
+
+<BlockMath math="F=1200\times10+30\,000=42\,000\text{ N},\qquad \Delta p=\frac{42\,000}{8.0\times10}=525\text{ Pa}" />
+
+<BlockMath math="\tfrac12(1.2)v^2=525\Rightarrow v\approx29.6\text{ m s}^{-1}\approx30\text{ m s}^{-1},\qquad v_{\text{wind}}=\frac{29.6}{1.5}\approx19.7\text{ m s}^{-1}\approx71\text{ km h}^{-1}" />
+
+A pressure difference of <InlineMath math="525\text{ Pa}" /> would lift the roof. That needs air moving at about <InlineMath math="30\text{ m s}^{-1}" /> over the roof, which happens when the wind in the open reaches about <InlineMath math="71\text{ km h}^{-1}" />.
+
+# Why the other options are wrong
+
+- <InlineMath math="150\text{ Pa}" /> counts only the **roof's weight**, forgetting the <InlineMath math="30\text{ kN}" /> the fixings add.
+- <InlineMath math="21\text{ m s}^{-1}" /> uses <InlineMath math="\rho v^2" /> for the pressure difference, **forgetting the <InlineMath math="\tfrac12" />**.
+- <InlineMath math="107\text{ km h}^{-1}" /> takes the **air speed over the roof** as the wind speed, but the air over the roof moves <InlineMath math="1.5" /> times faster than the wind.

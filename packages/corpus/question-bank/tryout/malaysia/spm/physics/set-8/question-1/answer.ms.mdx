@@ -1,0 +1,28 @@
+# Ralat sifar negatif ditambah semula, dan ketakpastian diameter dikira dua kali
+
+Angkup membaca <InlineMath math="-0.02\text{ cm}" /> apabila ditutup, jadi setiap bacaan <InlineMath math="0.02\text{ cm}" /> **terlalu kecil**: pembetulannya ialah menambahnya. Sebanyak <InlineMath math="40" /> lilitan terletak rapat, jadi gegelung itu sepanjang <InlineMath math="40" /> diameter. Kerintangan diperoleh daripada <InlineMath math="R=\dfrac{\rho L}{A}" /> dengan <InlineMath math="A=\pi r^2" />. Kerana luas bergantung pada **kuasa dua** diameter, peratus ketakpastian diameter muncul **dua kali** dalam kerintangan.
+
+<Chart
+  title={<>Kerintangan daripada Tiga Bacaan Gegelung</>}
+  bars="apart"
+  categories={["Betul", "Ralat sifar ditolak", "Diameter sebagai jejari"]}
+  series={[
+    { label: "Kerintangan", mark: "bar", values: [4.9, 4.8, 19.5] },
+  ]}
+  valueLabel="Kerintangan (10⁻⁷ Ω m)"
+  description={<>Menambah ralat sifar <InlineMath math="0.02\text{ cm}" /> memberi kira-kira <InlineMath math="4.9\times10^{-7}" />. Menolaknya memberi <InlineMath math="4.8\times10^{-7}" />, dan menggunakan diameter sebagai jejari menjadikan nilai empat kali terlalu besar.</>}
+/>
+
+<BlockMath math="\ell=2.86-(-0.02)=2.88\text{ cm},\qquad d=\frac{2.88}{40}=0.0720\text{ cm}=0.720\text{ mm}" />
+
+<BlockMath math="\rho=\frac{RA}{L}=\frac{2.4\times3.14\times(0.360\times10^{-3})^2}{2.00}\approx4.9\times10^{-7}\,\Omega\text{ m}" />
+
+<BlockMath math="\frac{0.01}{2.88}\approx0.35\%\text{ bagi }d,\qquad 2\times0.35\%\approx0.7\%\text{ bagi }\rho" />
+
+Dawai itu setebal <InlineMath math="0.720\text{ mm}" /> dan kerintangannya kira-kira <InlineMath math="4.9\times10^{-7}" /> ohm meter. Bacaan gegelung sahaja memberi kira-kira <InlineMath math="0.7\%" /> ketakpastian dalam kerintangan.
+
+# Kenapa pilihan lain salah
+
+- <InlineMath math="0.710\text{ mm}" /> **menolak ralat sifar**, tetapi ralat sifar negatif bermakna bacaan terlalu kecil, jadi ia mesti ditambah.
+- <InlineMath math="2.0\times10^{-6}" /> menggunakan **diameter sebagai jejari** dalam <InlineMath math="\pi r^2" />, menjadikan luas dan kerintangan empat kali terlalu besar.
+- <InlineMath math="0.35\%" /> ialah ketakpastian **diameter**, tetapi kerintangan bergantung pada kuasa duanya, yang menggandakan peratusan itu.

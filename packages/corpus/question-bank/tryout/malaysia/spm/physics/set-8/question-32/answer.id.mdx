@@ -1,0 +1,26 @@
+# Tegangan jala-jala dinyatakan sebagai nilai efektif, tetapi tabung menyala pada nilai puncak
+
+Nilai <InlineMath math="240\text{ V}" /> jala-jala adalah nilai **efektif** (akar rata-rata kuadrat). Tegangan bolak-balik berayun sampai **puncak** <InlineMath math="\sqrt2" /> kali lebih besar, dan transformator mengubah seluruh bentuk gelombang, termasuk puncaknya, sesuai perbandingan lilitan. Tabung menyala saat **puncak sekunder** mencapai <InlineMath math="9000\text{ V}" />. Untuk arus, transformator harus menerima daya lebih besar dari yang diberikannya, jadi masukan adalah keluaran **dibagi** efisiensi.
+
+<Chart
+  title={<>Tegangan pada Papan Neon</>}
+  bars="apart"
+  categories={["Jala-jala, efektif", "Jala-jala, puncak", "Untuk menyala, puncak"]}
+  series={[
+    { label: "Tegangan", mark: "bar", values: [240, 340, 9000] },
+  ]}
+  valueLabel="Tegangan (V)"
+  description={<>Jala-jala <InlineMath math="240\text{ V}" /> mencapai <InlineMath math="340\text{ V}" /> di puncaknya. Untuk memberi puncak <InlineMath math="9000\text{ V}" /> yang dibutuhkan tabung, transformator harus menaikkan paling sedikit <InlineMath math="27" /> kali.</>}
+/>
+
+<BlockMath math="V_0=\sqrt2\times240\approx340\text{ V},\qquad \frac{N_s}{N_p}\ge\frac{9000}{340}\approx26{,}5\Rightarrow27" />
+
+<BlockMath math="P_{\text{masuk}}=\frac{150}{0{,}90}\approx167\text{ W},\qquad I=\frac{167}{240}\approx0{,}69\text{ A}" />
+
+Jala-jala memuncak sekitar <InlineMath math="340\text{ V}" />, jadi transformator butuh perbandingan lilitan paling sedikit <InlineMath math="27" />. Saat papan menyala, transformator mengambil sekitar <InlineMath math="167\text{ W}" /> dari jala-jala, yaitu arus sekitar <InlineMath math="0{,}69\text{ A}" />.
+
+# Mengapa pilihan lain salah
+
+- <InlineMath math="38" /> memakai <InlineMath math="240\text{ V}" /> **efektif** seolah-olah nilai puncak, sehingga menaksir terlalu besar perbandingan lilitan yang diperlukan.
+- <InlineMath math="0{,}56\text{ A}" /> **mengalikan** dengan efisiensi, seolah-olah transformator menerima daya lebih kecil dari yang diberikannya.
+- <InlineMath math="170\text{ V}" /> **membagi** dengan <InlineMath math="\sqrt2" /> alih-alih mengalikan: nilai puncak lebih besar dari nilai efektif.

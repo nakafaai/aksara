@@ -1,0 +1,26 @@
+# Bewegungsenergie wird zu elektrischer Energie, und die Akkuspannung macht aus dieser Energie Ladung
+
+Nur ein Teil der Bewegungsenergie, <InlineMath math="\tfrac12mv^2" />, kommt zurück: Der Rest geht als Wärme verloren. Elektrische Energie bei fester Spannung ist **Ladung mal Spannung**, <InlineMath math="E=QV" />, die in den Akku geschobene Ladung ist also Energie geteilt durch <InlineMath math="400\text{ V}" />. Verteilt auf die <InlineMath math="5{,}0\text{ s}" /> des Bremsens ergibt das den mittleren Strom, <InlineMath math="I=\dfrac{Q}{t}" />.
+
+<Chart
+  title={<>Energie im bremsenden Auto</>}
+  bars="apart"
+  categories={["Bewegungsenergie", "Zurück in den Akku", "Als Wärme verloren"]}
+  series={[
+    { label: "Energie", mark: "bar", values: [300, 180, 120] },
+  ]}
+  valueLabel="Energie (kJ)"
+  description={<>Von den <InlineMath math="300\text{ kJ}" /> Bewegungsenergie gehen <InlineMath math="60\%" />, also <InlineMath math="180\text{ kJ}" />, zurück in den Akku, die übrigen <InlineMath math="120\text{ kJ}" /> werden zu Wärme.</>}
+/>
+
+<BlockMath math="E_k=\tfrac12(1500)(20)^2=3{,}0\cdot10^{5}\text{ J},\qquad E=0{,}60\cdot3{,}0\cdot10^{5}=1{,}8\cdot10^{5}\text{ J}=180\text{ kJ}" />
+
+<BlockMath math="Q=\frac{E}{V}=\frac{1{,}8\cdot10^{5}}{400}=450\text{ C},\qquad I=\frac{450}{5{,}0}=90\text{ A}" />
+
+Der Akku erhält <InlineMath math="180\text{ kJ}" /> zurück, also <InlineMath math="450\text{ C}" /> Ladung bei <InlineMath math="400\text{ V}" />, im Mittel mit <InlineMath math="90\text{ A}" />.
+
+# Warum die anderen Antworten falsch sind
+
+- <InlineMath math="300\text{ kJ}" /> gibt **die ganze** Bewegungsenergie zurück und übersieht, dass nur <InlineMath math="60\%" /> zurückkommen.
+- <InlineMath math="2250\text{ A}" /> **multipliziert** die Ladung mit der Zeit, statt zu teilen.
+- <InlineMath math="9{,}0\text{ kJ}" /> nimmt <InlineMath math="\tfrac12mv" /> und **vergisst das Quadrat** der Geschwindigkeit, der Fehler zieht sich in Ladung und Strom.

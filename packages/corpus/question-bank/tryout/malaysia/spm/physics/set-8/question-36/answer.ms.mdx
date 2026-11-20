@@ -1,0 +1,24 @@
+# Kerjakan jadual kebenaran melalui setiap get, kemudian bandingkan kedua-dua litar baris demi baris
+
+Get AND memberi <InlineMath math="1" /> hanya apabila **kedua-dua** inputnya <InlineMath math="1" />. Dalam litar yang betul, OR ialah <InlineMath math="1" /> kecuali kedua-dua pintu tertutup, dan NAND ialah <InlineMath math="1" /> kecuali kedua-duanya terbuka, jadi kedua-duanya <InlineMath math="1" /> tepat apabila **satu** pintu terbuka. Menggantikan OR dengan NOR menterbalikkan input itu: NOR ialah <InlineMath math="1" /> **hanya** apabila kedua-dua pintu tertutup, dan di situ NAND juga <InlineMath math="1" />, jadi penggera yang rosak berbunyi bagi baris itu sahaja.
+
+<Mermaid
+  title={<>Penggera Pintu yang Dibina dengan Betul</>}
+  description={<>Setiap pintu memberi <InlineMath math="1" /> apabila terbuka. OR dan NAND kedua-duanya membekalkan get AND, jadi penggera berbunyi hanya apabila tepat satu pintu terbuka.</>}
+  chart={"flowchart LR\n  A[\"Pintu A\"] --> OR\n  B[\"Pintu B\"] --> OR\n  A --> NAND\n  B --> NAND\n  OR --> AND\n  NAND --> AND\n  AND --> X[\"Penggera\"]"}
+/>
+
+| A | B | OR | NOR | NAND | betul | rosak |
+| --- | --- | --- | --- | --- | --- | --- |
+| <InlineMath math="0" /> | <InlineMath math="0" /> | <InlineMath math="0" /> | <InlineMath math="1" /> | <InlineMath math="1" /> | <InlineMath math="0" /> | <InlineMath math="1" /> |
+| <InlineMath math="0" /> | <InlineMath math="1" /> | <InlineMath math="1" /> | <InlineMath math="0" /> | <InlineMath math="1" /> | <InlineMath math="1" /> | <InlineMath math="0" /> |
+| <InlineMath math="1" /> | <InlineMath math="0" /> | <InlineMath math="1" /> | <InlineMath math="0" /> | <InlineMath math="1" /> | <InlineMath math="1" /> | <InlineMath math="0" /> |
+| <InlineMath math="1" /> | <InlineMath math="1" /> | <InlineMath math="1" /> | <InlineMath math="0" /> | <InlineMath math="0" /> | <InlineMath math="0" /> | <InlineMath math="0" /> |
+
+Litar yang betul berbunyi bagi <InlineMath math="2" /> daripada <InlineMath math="4" /> gabungan. Apabila kedua-dua pintu tertutup litar yang rosak memberi <InlineMath math="1" />, iaitu penggera palsu, dan kedua-dua litar bersetuju hanya pada <InlineMath math="1" /> baris, apabila kedua-dua pintu terbuka.
+
+# Kenapa pilihan lain salah
+
+- <InlineMath math="0" /> dan <InlineMath math="4" /> menganggap get NOR **berkelakuan seperti OR**, jadi tiada apa yang kelihatan berubah.
+- <InlineMath math="1" /> dan <InlineMath math="0" /> menganggap kerosakan hanya **menterbalikkan seluruh output**, tetapi hanya satu input get AND yang diterbalikkan.
+- <InlineMath math="3" /> menganggap penggera yang betul sebagai **OR**, lupa bahawa get NAND menyenyapkannya apabila kedua-dua pintu terbuka.

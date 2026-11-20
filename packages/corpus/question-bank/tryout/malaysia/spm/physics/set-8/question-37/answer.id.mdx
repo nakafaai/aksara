@@ -1,0 +1,25 @@
+# Bila garis tidak melewati titik asal, penguatan adalah gradien, bukan perbandingan
+
+Kedua bacaan memberi perbandingan yang **berbeda**, <InlineMath math="\dfrac{3{,}5}{0{,}020}=175" /> dan <InlineMath math="\dfrac{8{,}0}{0{,}050}=160" />, jadi arus kolektor tidak sebanding langsung dengan arus basis. Pada garis lurus, penguatan adalah **gradien**: perubahan arus kolektor dibagi perubahan arus basis. Garis itu lalu memotong sumbu pada arus kolektor kecil yang mengalir bahkan tanpa arus basis. Untuk resistor kolektor, <InlineMath math="9{,}0\text{ V}" /> sumber harus menutup resistor **dan** <InlineMath math="1{,}0\text{ V}" /> yang harus tetap ada pada transistor.
+
+<Chart
+  title={<>Arus Kolektor terhadap Arus Basis</>}
+  categories={["0 µA", "20 µA", "50 µA"]}
+  series={[
+    { label: "Arus kolektor", mark: "line", values: [0.5, 3.5, 8.0] },
+  ]}
+  valueLabel="Arus (mA)"
+  description={<>Bacaan terletak pada garis lurus bergradien <InlineMath math="150" /> yang memotong sumbu di <InlineMath math="0{,}50\text{ mA}" />, bukan nol, jadi penguatan harus dihitung dari perubahan arus.</>}
+/>
+
+<BlockMath math="\beta=\frac{8{,}0-3{,}5}{0{,}050-0{,}020}=\frac{4{,}5\text{ mA}}{30\,\mu\text{A}}=150,\qquad I_0=3{,}5-150\times0{,}020=0{,}50\text{ mA}" />
+
+<BlockMath math="R_C\le\frac{9{,}0-1{,}0}{8{,}0\times10^{-3}}=1{,}0\times10^{3}\,\Omega=1{,}0\text{ k}\Omega" />
+
+Penguatan arusnya <InlineMath math="150" />, dan sekitar <InlineMath math="0{,}50\text{ mA}" /> mengalir di kolektor tanpa arus basis. Resistor kolektor paling besar <InlineMath math="1{,}0\text{ k}\Omega" />.
+
+# Mengapa pilihan lain salah
+
+- <InlineMath math="160" /> dan <InlineMath math="175" /> membagi **satu bacaan dengan dirinya sendiri**, yang memberi hasil berbeda untuk kedua bacaan dan mengabaikan arus saat arus basis nol.
+- <InlineMath math="0\text{ mA}" /> menganggap garis **melewati titik asal**, padahal kedua bacaan tidak terletak pada garis yang melewatinya.
+- <InlineMath math="1{,}1\text{ k}\Omega" /> memakai **seluruh <InlineMath math="9{,}0\text{ V}" />**, lupa <InlineMath math="1{,}0\text{ V}" /> yang harus tetap ada pada transistor.

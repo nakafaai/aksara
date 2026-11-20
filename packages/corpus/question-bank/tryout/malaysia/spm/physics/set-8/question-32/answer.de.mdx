@@ -1,0 +1,26 @@
+# Die Netzspannung ist als Effektivwert angegeben, doch die Röhre zündet am Scheitelwert
+
+Die <InlineMath math="240\text{ V}" /> des Netzes sind der **Effektivwert**. Eine Wechselspannung schwingt bis zu einem <InlineMath math="\sqrt2" />-mal größeren **Scheitelwert**, und ein Transformator skaliert die ganze Kurve samt Scheiteln mit dem Windungsverhältnis. Die Röhre zündet, wenn der **sekundäre Scheitelwert** <InlineMath math="9000\text{ V}" /> erreicht. Für den Strom muss der Transformator mehr Leistung aufnehmen, als er abgibt, die Aufnahme ist also die Abgabe **geteilt durch** den Wirkungsgrad.
+
+<Chart
+  title={<>Spannungen in der Neonreklame</>}
+  bars="apart"
+  categories={["Netz, effektiv", "Netz, Scheitel", "Zum Zünden nötig, Scheitel"]}
+  series={[
+    { label: "Spannung", mark: "bar", values: [240, 340, 9000] },
+  ]}
+  valueLabel="Spannung (V)"
+  description={<>Das <InlineMath math="240\text{ V}" /> Netz erreicht in den Scheiteln <InlineMath math="340\text{ V}" />. Für die <InlineMath math="9000\text{ V}" /> Scheitelspannung der Röhre muss der Transformator mindestens <InlineMath math="27" />-fach hochsetzen.</>}
+/>
+
+<BlockMath math="V_0=\sqrt2\cdot240\approx340\text{ V},\qquad \frac{N_s}{N_p}\ge\frac{9000}{340}\approx26{,}5\Rightarrow27" />
+
+<BlockMath math="P_{\text{auf}}=\frac{150}{0{,}90}\approx167\text{ W},\qquad I=\frac{167}{240}\approx0{,}69\text{ A}" />
+
+Das Netz erreicht Scheitel von etwa <InlineMath math="340\text{ V}" />, der Transformator braucht also mindestens das Windungsverhältnis <InlineMath math="27" />. Bei leuchtender Reklame nimmt er etwa <InlineMath math="167\text{ W}" /> aus dem Netz auf, einen Strom von etwa <InlineMath math="0{,}69\text{ A}" />.
+
+# Warum die anderen Antworten falsch sind
+
+- <InlineMath math="38" /> nimmt den **Effektivwert** <InlineMath math="240\text{ V}" /> als Scheitelwert und überschätzt so das nötige Windungsverhältnis.
+- <InlineMath math="0{,}56\text{ A}" /> **multipliziert** mit dem Wirkungsgrad, als nähme der Transformator weniger auf, als er abgibt.
+- <InlineMath math="170\text{ V}" /> **teilt** durch <InlineMath math="\sqrt2" />, statt zu multiplizieren: Der Scheitelwert ist größer als der Effektivwert.

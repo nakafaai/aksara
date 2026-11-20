@@ -1,0 +1,26 @@
+# Pada jembatan, tiap setengah siklus melewati dua dioda, dan kedua paruh keluar searah
+
+Nilai <InlineMath math="12\text{ V}" /> transformator adalah nilai **efektif**, jadi puncaknya <InlineMath math="\sqrt2" /> kali lebih besar. Pada penyearah jembatan, arus di tiap setengah siklus melewati **dua dioda secara seri**, satu menuju beban dan satu saat kembali, jadi **dua** penurunan dioda dikurangkan dari puncak. Kedua setengah siklus mencapai beban searah, jadi keluaran mencapai puncak **dua kali** di tiap siklus sumber.
+
+<Chart
+  title={<>Tegangan Puncak dalam Penyearah</>}
+  bars="apart"
+  categories={["Transformator, efektif", "Transformator, puncak", "Keluaran, puncak"]}
+  series={[
+    { label: "Tegangan", mark: "bar", values: [12, 17.0, 15.6] },
+  ]}
+  valueLabel="Tegangan (V)"
+  description={<>Keluaran <InlineMath math="12\text{ V}" /> efektif transformator memuncak di <InlineMath math="17{,}0\text{ V}" />. Dua dioda menghantar sekaligus, jadi keluaran memuncak di <InlineMath math="17{,}0-1{,}4=15{,}6\text{ V}" />.</>}
+/>
+
+<BlockMath math="V_0=12\sqrt2\approx17{,}0\text{ V},\qquad V_{\text{keluar}}=17{,}0-2(0{,}70)\approx15{,}6\text{ V}" />
+
+<BlockMath math="f_{\text{puncak}}=2\times50=100\text{ Hz},\qquad I_0=\frac{15{,}6}{100}\approx0{,}16\text{ A}" />
+
+Beban menerima puncak sekitar <InlineMath math="15{,}6\text{ V}" />, tercapai <InlineMath math="100" /> kali per detik, dan arus puncaknya sekitar <InlineMath math="0{,}16\text{ A}" />.
+
+# Mengapa pilihan lain salah
+
+- <InlineMath math="16{,}3\text{ V}" /> hanya mengurangkan **satu penurunan dioda**, padahal pada jembatan arus selalu melewati dua dioda.
+- <InlineMath math="50\text{ Hz}" /> adalah laju puncak penyearah **setengah gelombang**, padahal jembatan memakai kedua paruh tiap siklus.
+- <InlineMath math="10{,}6\text{ V}" /> menganggap <InlineMath math="12\text{ V}" /> **efektif** sebagai puncak.

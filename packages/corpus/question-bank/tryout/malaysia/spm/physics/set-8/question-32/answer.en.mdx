@@ -1,0 +1,26 @@
+# The mains voltage is quoted as r.m.s., but the tube strikes on the peak
+
+The <InlineMath math="240\text{ V}" /> of the mains is its **root-mean-square** value. An alternating voltage swings up to a **peak** <InlineMath math="\sqrt2" /> times larger, and a transformer scales the whole waveform, peaks included, by its turns ratio. The tube strikes when the **secondary peak** reaches <InlineMath math="9000\text{ V}" />. For the current, the transformer must take in more power than it gives out, so the input is the output **divided by** the efficiency.
+
+<Chart
+  title={<>Voltages in the Neon Sign</>}
+  bars="apart"
+  categories={["Mains, r.m.s.", "Mains, peak", "Needed to strike, peak"]}
+  series={[
+    { label: "Voltage", mark: "bar", values: [240, 340, 9000] },
+  ]}
+  valueLabel="Voltage (V)"
+  description={<>The <InlineMath math="240\text{ V}" /> mains reaches <InlineMath math="340\text{ V}" /> at its peaks. To give the <InlineMath math="9000\text{ V}" /> peak the tube needs, the transformer must step up at least <InlineMath math="27" /> times.</>}
+/>
+
+<BlockMath math="V_0=\sqrt2\times240\approx340\text{ V},\qquad \frac{N_s}{N_p}\ge\frac{9000}{340}\approx26.5\Rightarrow27" />
+
+<BlockMath math="P_{\text{in}}=\frac{150}{0.90}\approx167\text{ W},\qquad I=\frac{167}{240}\approx0.69\text{ A}" />
+
+The mains peaks at about <InlineMath math="340\text{ V}" />, so the transformer needs a turns ratio of at least <InlineMath math="27" />. While the sign is lit it takes about <InlineMath math="167\text{ W}" /> from the mains, a current of about <InlineMath math="0.69\text{ A}" />.
+
+# Why the other options are wrong
+
+- <InlineMath math="38" /> uses the **r.m.s.** <InlineMath math="240\text{ V}" /> as if it were the peak, so it overestimates the turns ratio needed.
+- <InlineMath math="0.56\text{ A}" /> **multiplies** by the efficiency, as if the transformer took in less power than it gave out.
+- <InlineMath math="170\text{ V}" /> **divides** by <InlineMath math="\sqrt2" /> instead of multiplying: the peak is larger than the r.m.s. value.

@@ -1,0 +1,28 @@
+# Peti mendekati kabin hanya selama truk masih mengerem, lalu truk sekadar diam
+
+Truk mengerem lebih keras dari yang sanggup dilakukan gesekan pada peti, jadi peti **tergelincir ke depan** terhadap bak. Selama keduanya melambat, peti mendekati kabin dengan percepatan relatif <InlineMath math="10-4{,}0=6{,}0\text{ m s}^{-2}" />. Tetapi truk berhenti setelah <InlineMath math="2{,}0\text{ s}" />, dan **sejak itu** kabin diam sementara gesekan terus memperlambat peti. Jadi periksa dulu posisi peti saat truk berhenti.
+
+<Chart
+  title={<>Kelajuan Selama Pengereman Darurat</>}
+  categories={["0 s", "0,5 s", "1,0 s", "1,5 s", "2,0 s", "2,17 s"]}
+  series={[
+    { label: "Truk", mark: "line", values: [20, 15, 10, 5, 0, 0] },
+    { label: "Peti", mark: "line", values: [20, 18, 16, 14, 12, 11.3] },
+  ]}
+  valueLabel="Kelajuan (m/s)"
+  description={<>Truk sudah diam setelah <InlineMath math="2{,}0\text{ s}" />, sementara peti, yang hanya diperlambat gesekan, masih melaju <InlineMath math="12\text{ m s}^{-1}" /> dan menabrak kabin sekitar <InlineMath math="11\text{ m s}^{-1}" />.</>}
+/>
+
+<BlockMath math="s=\frac{20^2}{2(10)}=20\text{ m},\qquad t_s=\frac{20}{10}=2{,}0\text{ s},\qquad \Delta s(2{,}0)=\tfrac12(6{,}0)(2{,}0)^2=12\text{ m}<14\text{ m}" />
+
+<BlockMath math="v_{\text{peti}}(2{,}0)=20-4{,}0\times2{,}0=12\text{ m s}^{-1},\qquad v^2=12^2-2(4{,}0)(2{,}0)\Rightarrow v\approx11\text{ m s}^{-1}" />
+
+<BlockMath math="t=2{,}0+\frac{12-11{,}3}{4{,}0}\approx2{,}2\text{ s}" />
+
+Truk berhenti dalam <InlineMath math="20\text{ m}" />. Saat itu peti sudah tergelincir <InlineMath math="12\text{ m}" /> di bak dan masih melaju <InlineMath math="12\text{ m s}^{-1}" />. Peti menempuh <InlineMath math="2{,}0\text{ m}" /> terakhir menuju kabin yang diam dan menabraknya sekitar <InlineMath math="2{,}2\text{ s}" /> setelah pengereman dimulai, pada sekitar <InlineMath math="11\text{ m s}^{-1}" />.
+
+# Mengapa pilihan lain salah
+
+- <InlineMath math="13\text{ m s}^{-1}" /> mempertahankan **percepatan relatif <InlineMath math="6{,}0\text{ m s}^{-2}" />** sepanjang waktu, padahal setelah <InlineMath math="2{,}0\text{ s}" /> truk sudah berhenti, jadi hanya gesekan yang bekerja pada peti.
+- <InlineMath math="1{,}7\text{ s}" /> dan <InlineMath math="17\text{ m s}^{-1}" /> **mengabaikan gesekan** pada peti, seolah-olah tidak ada yang memperlambatnya.
+- <InlineMath math="40\text{ m}" /> memakai <InlineMath math="\dfrac{v^2}{a}" /> untuk jarak berhenti, **lupa faktor <InlineMath math="2" />**.

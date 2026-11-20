@@ -1,0 +1,28 @@
+# Check what each car is really doing before you set their distances equal
+
+Setting the two distance formulas equal gives a time, but only if both formulas still hold then. Car B's formula <InlineMath math="20t-t^2" /> is valid **only until it stops**: after that it stays put. The police car's <InlineMath math="\tfrac12at^2" /> is valid **only until it reaches <InlineMath math="10\text{ m s}^{-1}" />**: after that it moves at a steady speed. So find where each car is when its motion changes, and solve the chase in the right phase.
+
+<Chart
+  title={<>Distance From the Lights Against Time</>}
+  categories={["0 s", "2 s", "4 s", "6 s", "8 s", "10 s", "12 s", "14 s", "16 s"]}
+  series={[
+    { label: "Police car", mark: "line", values: [0, 2, 8, 18, 32, 50, 70, 90, 110] },
+    { label: "Car B", mark: "line", values: [0, 36, 64, 84, 96, 100, 100, 100, 100] },
+  ]}
+  valueLabel="Distance (m)"
+  description={<>Car B stops at <InlineMath math="100\text{ m}" /> after <InlineMath math="10\text{ s}" />. The police car, limited to <InlineMath math="10\text{ m s}^{-1}" />, is only at <InlineMath math="50\text{ m}" /> then and reaches car B at <InlineMath math="15\text{ s}" />.</>}
+/>
+
+<BlockMath math="\text{car B: }t_s=\frac{20}{2.0}=10\text{ s},\qquad s_B=\frac{20^2}{2(2.0)}=100\text{ m}" />
+
+<BlockMath math="\text{police: }t_1=\frac{10}{1.0}=10\text{ s},\qquad s_1=\tfrac12(1.0)(10)^2=50\text{ m}<100\text{ m}" />
+
+<BlockMath math="50+10(t-10)=100\Rightarrow t=15\text{ s},\qquad v=10\text{ m s}^{-1}" />
+
+Car B stops after <InlineMath math="10\text{ s}" />, <InlineMath math="100\text{ m}" /> from the light. At that moment the police car has only just reached its top speed and is <InlineMath math="50\text{ m}" /> behind, so it covers the last <InlineMath math="50\text{ m}" /> at <InlineMath math="10\text{ m s}^{-1}" /> and reaches car B <InlineMath math="15\text{ s}" /> after the start.
+
+# Why the other options are wrong
+
+- <InlineMath math="13\text{ s}" /> solves <InlineMath math="20t-t^2=\tfrac12t^2" />, which **lets car B keep braking after it has stopped** and ignores the speed limit, so the police car seems to pass <InlineMath math="13\text{ m s}^{-1}" />.
+- <InlineMath math="14\text{ s}" /> at <InlineMath math="14\text{ m s}^{-1}" /> stops car B correctly but **forgets the speed limit**, letting the police car keep accelerating.
+- <InlineMath math="14\text{ s}" /> at <InlineMath math="10\text{ m s}^{-1}" /> keeps the speed limit but **lets car B roll backwards** after stopping, so they seem to meet too early.

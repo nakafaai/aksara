@@ -1,0 +1,28 @@
+# Gaya miring mengubah gaya normal, jadi mendorong dan menarik pada sudut yang sama tidak setara
+
+Hanya komponen mendatar gaya gagang, <InlineMath math="F\cos30°" />, yang menggerakkan silinder ke depan, tetapi komponen tegaknya mengubah seberapa keras silinder menekan tanah. Mendorong **ke bawah** menambah <InlineMath math="F\sin30°" /> pada gaya normal dan **menaikkan** hambatan. Menarik **ke atas** menguranginya dan **menurunkan** hambatan. Pada sudut dorong yang cukup curam, hambatan tambahan tumbuh secepat dorongan ke depan, dan tidak ada gaya yang bisa menang.
+
+<Chart
+  title={<>Gaya pada <InlineMath math="30^\circ" /> untuk Menggerakkan Silinder</>}
+  bars="apart"
+  categories={["Didorong ke bawah", "Ditarik ke atas"]}
+  series={[
+    { label: "Gaya", mark: "bar", values: [75.9, 63.8] },
+  ]}
+  valueLabel="Gaya (N)"
+  description={<>Mendorong ke bawah sepanjang gagang menekan silinder ke rumput dan menambah hambatan, jadi butuh sekitar <InlineMath math="76\text{ N}" />. Menarik ke atas meringankannya, jadi <InlineMath math="64\text{ N}" /> sudah cukup.</>}
+/>
+
+<BlockMath math="\text{dorong: }F\cos30°=0{,}15(400+F\sin30°)\Rightarrow F=\frac{60}{0{,}866-0{,}075}\approx76\text{ N}" />
+
+<BlockMath math="\text{tarik: }F\cos30°=0{,}15(400-F\sin30°)\Rightarrow F=\frac{60}{0{,}866+0{,}075}\approx64\text{ N}" />
+
+<BlockMath math="\cos\theta\le0{,}15\sin\theta\Rightarrow\tan\theta\ge\frac{1}{0{,}15}\approx6{,}7\Rightarrow\theta\ge81°" />
+
+Mendorong butuh sekitar <InlineMath math="76\text{ N}" /> dan menarik hanya sekitar <InlineMath math="64\text{ N}" />. Bila gagang didorong lebih dari sekitar <InlineMath math="81°" /> di bawah horizontal, hambatan tambahan selalu menyamai dorongan ke depan, jadi silinder sama sekali tidak bergerak.
+
+# Mengapa pilihan lain salah
+
+- <InlineMath math="69\text{ N}" /> untuk keduanya **mengabaikan perubahan gaya normal**, menganggap hambatannya <InlineMath math="0{,}15mg" /> pada kedua kasus.
+- <InlineMath math="64\text{ N}" /> untuk mendorong dan <InlineMath math="76\text{ N}" /> untuk menarik **menukar efeknya**: menekan ke bawah menaikkan hambatan, mengangkat menurunkannya.
+- <InlineMath math="8{,}5°" /> menyelesaikan <InlineMath math="\tan\theta=0{,}15" />, yaitu sudut **lereng** tempat gesekan pas menahan balok, bukan sudut macet untuk dorongan.

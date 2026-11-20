@@ -1,0 +1,26 @@
+# An offset that is small for a slow catch is large for a fast one
+
+The rule falls from rest, so the distance it drops before being caught gives the reaction time through <InlineMath math="s=\tfrac12gt^2" />. The fingers start at the rule's bottom end, <InlineMath math="1.0\text{ cm}" /> **below** the <InlineMath math="0" /> mark, so the rule really falls <InlineMath math="1.0\text{ cm}" /> **more** than the scale shows. A fixed offset is a small fraction of a long drop but a large fraction of a short one, and since <InlineMath math="t\propto\sqrt{s}" />, the percentage error in the time is about **half** the percentage error in the distance.
+
+<Chart
+  title={<>Reaction Times With and Without the Offset</>}
+  bars="apart"
+  categories={["First, uncorrected", "First, corrected", "Fast, uncorrected", "Fast, corrected"]}
+  series={[
+    { label: "Reaction time", mark: "bar", values: [202, 207, 101, 111] },
+  ]}
+  valueLabel="Time (ms)"
+  description={<>The <InlineMath math="1.0\text{ cm}" /> offset barely changes the first catcher's <InlineMath math="0.21\text{ s}" />, but it hides about a tenth of the fast catcher's <InlineMath math="0.11\text{ s}" />.</>}
+/>
+
+<BlockMath math="t_1=\sqrt{\frac{2(0.210)}{9.8}}\approx0.21\text{ s},\qquad t_2=\sqrt{\frac{2(0.060)}{9.8}}\approx0.111\text{ s}" />
+
+<BlockMath math="t_2'=\sqrt{\frac{2(0.050)}{9.8}}\approx0.101\text{ s},\qquad \frac{0.111-0.101}{0.111}\approx9\%" />
+
+The first catcher reacts in about <InlineMath math="0.21\text{ s}" /> and the faster one in about <InlineMath math="0.11\text{ s}" />. Ignoring the offset would make the faster catcher's time about <InlineMath math="9\%" /> too small, against only about <InlineMath math="2\%" /> for the first catcher.
+
+# Why the other options are wrong
+
+- <InlineMath math="0.20\text{ s}" /> and <InlineMath math="0.090\text{ s}" /> **subtract the offset**, but the fingers start below the <InlineMath math="0" /> mark, so the rule falls further than the reading.
+- <InlineMath math="17\%" /> is the error in the **distance**, <InlineMath math="\dfrac{1.0}{6.0}" />, but the time goes as its square root, so its error is about half.
+- <InlineMath math="2\%" /> is the error for the **first catcher's** long drop, but the same <InlineMath math="1.0\text{ cm}" /> is a much bigger share of a <InlineMath math="6.0\text{ cm}" /> drop.

@@ -1,0 +1,28 @@
+# Ketinggian salur keluar menentukan laju, dan laju yang sama itu menurunkan tekanan di puncak
+
+Di permukaan tangki dan di salur keluar yang terbuka, tekanan adalah atmosfera, jadi laju di salur keluar ditentukan oleh penurunan <InlineMath math="2.0\text{ m}" /> sahaja. Hos itu seragam, jadi air bergerak pada **laju yang sama di mana-mana** di sepanjangnya, termasuk di atas tembok. Di puncak, tekanan diturunkan oleh **ketinggian** di atas permukaan tangki dan juga oleh **laju**, <InlineMath math="\tfrac12\rho v^2" />. Sifon gagal apabila tekanan puncak akan mencapai sifar.
+
+<Chart
+  title={<>Tekanan di Puncak Sifon</>}
+  bars="apart"
+  categories={["Atmosfera", "Puncak 3.0 m, air pegun", "Puncak 3.0 m, mengalir"]}
+  series={[
+    { label: "Tekanan", mark: "bar", values: [100, 70, 50] },
+  ]}
+  valueLabel="Tekanan (kPa)"
+  description={<>Menaikkan puncak <InlineMath math="3.0\text{ m}" /> di atas permukaan tangki mengurangkan <InlineMath math="30\text{ kPa}" /> daripada atmosfera, dan laju air <InlineMath math="6.3\text{ m s}^{-1}" /> mengurangkan <InlineMath math="20\text{ kPa}" /> lagi, meninggalkan <InlineMath math="50\text{ kPa}" />.</>}
+/>
+
+<BlockMath math="v=\sqrt{2(10)(2.0)}\approx6.3\text{ m s}^{-1},\qquad \tfrac12\rho v^2=\tfrac12(1000)(40)=2.0\times10^{4}\text{ Pa}" />
+
+<BlockMath math="p_{\text{puncak}}=1.0\times10^{5}-1000\times10\times3.0-2.0\times10^{4}=5.0\times10^{4}\text{ Pa}" />
+
+<BlockMath math="0=1.0\times10^{5}-10^{4}h-2.0\times10^{4}\Rightarrow h=8.0\text{ m}" />
+
+Air keluar pada kira-kira <InlineMath math="6.3\text{ m s}^{-1}" />. Di atas tembok tekanannya <InlineMath math="5.0\times10^{4}\text{ Pa}" />, dan puncak boleh dinaikkan hingga <InlineMath math="8.0\text{ m}" /> di atas permukaan tangki sebelum tekanan di situ turun ke sifar.
+
+# Kenapa pilihan lain salah
+
+- <InlineMath math="7.0\times10^{4}\text{ Pa}" /> dan <InlineMath math="10\text{ m}" /> menganggap air di puncak **pegun**, mengabaikan tekanan yang digunakan oleh lajunya.
+- <InlineMath math="10\text{ m}" /> dengan tekanan puncak yang betul menggunakan **had statik**, yang hanya terpakai jika air tidak mengalir.
+- <InlineMath math="4.5\text{ m s}^{-1}" /> menggunakan <InlineMath math="v=\sqrt{gh}" />, **lupa faktor <InlineMath math="2" />**, dan kesilapan itu terbawa ke tekanan puncak dan ketinggian.

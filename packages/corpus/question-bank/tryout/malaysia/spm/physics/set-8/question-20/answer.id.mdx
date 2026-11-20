@@ -1,0 +1,26 @@
+# Jendela datar membelokkan sinar tepi ke arah normal, jadi kamera melihat dunia yang lebih sempit dan tampak lebih dekat
+
+Sinar tepi kamera meninggalkan lensa pada <InlineMath math="30°" /> di udara. Dirunut balik lewat jendela datar, sinar itu pasti merambat di air dengan sudut yang **lebih kecil** terhadap normal, dari <InlineMath math="\sin\theta_a=1{,}33\sin\theta_w" />. Jadi di air kamera menangkap kerucut yang lebih sempit. Pembiasan yang sama membuat benda di depan tampak **lebih dekat**, dengan faktor <InlineMath math="\dfrac{1}{1{,}33}" />, seperti kedalaman semu kolam. Untuk membingkai dinding, pakai sudut yang lebih sempit di air.
+
+<Chart
+  title={<>Lebar Penuh Pandangan Kamera</>}
+  bars="apart"
+  categories={["Di udara", "Di air, jendela datar"]}
+  series={[
+    { label: "Medan pandang", mark: "bar", values: [60, 44.2] },
+  ]}
+  valueLabel="Sudut (°)"
+  description={<>Pembiasan di jendela datar membelokkan tiap sinar ke arah normal, jadi pandangan <InlineMath math="60°" /> di udara menyempit menjadi sekitar <InlineMath math="44°" /> di air.</>}
+/>
+
+<BlockMath math="\sin\theta_w=\frac{\sin30°}{1{,}33}\approx0{,}376\Rightarrow\theta_w\approx22°,\qquad\text{pandangan penuh}\approx44°" />
+
+<BlockMath math="\text{jarak semu}=\frac{2{,}0}{1{,}33}\approx1{,}5\text{ m},\qquad d=\frac{1{,}5}{\tan22{,}1°}\approx3{,}7\text{ m}" />
+
+Di air medan pandang kamera menyempit menjadi sekitar <InlineMath math="44°" />, dan ikan yang berjarak <InlineMath math="2{,}0\text{ m}" /> tampak hanya sekitar <InlineMath math="1{,}5\text{ m}" />. Untuk memuat dinding <InlineMath math="3{,}0\text{ m}" /> di seluruh lebar gambar, penyelam harus mundur sampai sekitar <InlineMath math="3{,}7\text{ m}" />.
+
+# Mengapa pilihan lain salah
+
+- <InlineMath math="60°" /> dan <InlineMath math="2{,}6\text{ m}" /> menganggap jendela datar **tidak mengubah apa pun**, padahal cahaya terbias di batas air dan udara.
+- <InlineMath math="83°" /> dan <InlineMath math="2{,}7\text{ m}" /> **mengalikan** dengan indeks bias, membelokkan sinar menjauhi normal di air.
+- <InlineMath math="2{,}6\text{ m}" /> dengan <InlineMath math="44°" /> memakai **medan pandang udara** untuk membingkai dinding, padahal pandangan di air yang lebih sempit.

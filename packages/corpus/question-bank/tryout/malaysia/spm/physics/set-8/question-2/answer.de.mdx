@@ -1,0 +1,26 @@
+# Ein Versatz, der bei langsamem Fangen klein ist, wird bei schnellem groß
+
+Das Lineal fällt aus der Ruhe, die Fallstrecke bis zum Fangen liefert also die Reaktionszeit über <InlineMath math="s=\tfrac12gt^2" />. Die Finger beginnen am unteren Ende, <InlineMath math="1{,}0\text{ cm}" /> **unter** der Nullmarke, das Lineal fällt also <InlineMath math="1{,}0\text{ cm}" /> **weiter**, als die Skala zeigt. Ein fester Versatz ist ein kleiner Teil einer langen Strecke, aber ein großer Teil einer kurzen, und wegen <InlineMath math="t\propto\sqrt{s}" /> ist der prozentuale Fehler der Zeit etwa **halb** so groß wie der der Strecke.
+
+<Chart
+  title={<>Reaktionszeiten mit und ohne Versatz</>}
+  bars="apart"
+  categories={["Erster, unkorrigiert", "Erster, korrigiert", "Schneller, unkorrigiert", "Schneller, korrigiert"]}
+  series={[
+    { label: "Reaktionszeit", mark: "bar", values: [202, 207, 101, 111] },
+  ]}
+  valueLabel="Zeit (ms)"
+  description={<>Der Versatz von <InlineMath math="1{,}0\text{ cm}" /> ändert die <InlineMath math="0{,}21\text{ s}" /> des ersten Fängers kaum, verschluckt aber etwa ein Zehntel der <InlineMath math="0{,}11\text{ s}" /> des schnellen Fängers.</>}
+/>
+
+<BlockMath math="t_1=\sqrt{\frac{2(0{,}210)}{9{,}8}}\approx0{,}21\text{ s},\qquad t_2=\sqrt{\frac{2(0{,}060)}{9{,}8}}\approx0{,}111\text{ s}" />
+
+<BlockMath math="t_2'=\sqrt{\frac{2(0{,}050)}{9{,}8}}\approx0{,}101\text{ s},\qquad \frac{0{,}111-0{,}101}{0{,}111}\approx9\%" />
+
+Der erste Fänger reagiert in etwa <InlineMath math="0{,}21\text{ s}" />, der schnellere in etwa <InlineMath math="0{,}11\text{ s}" />. Ohne Versatzkorrektur wäre die Zeit des schnelleren etwa <InlineMath math="9\%" /> zu klein, beim ersten nur etwa <InlineMath math="2\%" />.
+
+# Warum die anderen Antworten falsch sind
+
+- <InlineMath math="0{,}20\text{ s}" /> und <InlineMath math="0{,}090\text{ s}" /> **ziehen den Versatz ab**, doch die Finger beginnen unter der Nullmarke, das Lineal fällt also weiter als abgelesen.
+- <InlineMath math="17\%" /> ist der Fehler der **Strecke**, <InlineMath math="\dfrac{1{,}0}{6{,}0}" />, doch die Zeit geht mit ihrer Wurzel, ihr Fehler ist also etwa halb so groß.
+- <InlineMath math="2\%" /> ist der Fehler der langen Strecke des **ersten Fängers**, doch dieselben <InlineMath math="1{,}0\text{ cm}" /> sind ein viel größerer Teil von <InlineMath math="6{,}0\text{ cm}" />.

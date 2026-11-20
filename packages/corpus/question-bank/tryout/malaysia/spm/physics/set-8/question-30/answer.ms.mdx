@@ -1,0 +1,28 @@
+# Arus pergi melalui satu konduktor dan kembali melalui yang lain, dan kuasa alat turun mengikut voltan yang diterimanya
+
+Arus mengalir ke alat melalui konduktor hidup dan **kembali** melalui neutral, jadi kabel meletakkan **<InlineMath math="50\text{ m}" />** kuprum dalam litar, bukan <InlineMath math="25\text{ m}" />. Kadar alat menetapkan rintangannya, <InlineMath math="R=\dfrac{V^2}{P}" />, bukan kuasanya: dengan kabel secara bersiri, arus sedikit berkurang, dan alat menghasilkan <InlineMath math="I^2R" />, kurang daripada kadarnya. Supaya kabel kehilangan paling banyak <InlineMath math="2\%" />, rintangannya mesti paling banyak kira-kira <InlineMath math="2\%" /> daripada jumlah.
+
+<Chart
+  title={<>Kuasa yang Sampai ke Alat</>}
+  bars="apart"
+  categories={["Berkadar", "Melalui kabel 1.0 mm²"]}
+  series={[
+    { label: "Kuasa", mark: "bar", values: [2.0, 1.89] },
+  ]}
+  valueLabel="Kuasa (kW)"
+  description={<>Rintangan kabel <InlineMath math="0.85\,\Omega" /> mengambil kira-kira <InlineMath math="7\text{ V}" /> daripada bekalan, jadi alat itu, yang rintangannya tetap, hanya menghasilkan kira-kira <InlineMath math="1.89\text{ kW}" /> dan bukan <InlineMath math="2.00\text{ kW}" />.</>}
+/>
+
+<BlockMath math="R_k=\frac{1.7\times10^{-8}\times50}{1.0\times10^{-6}}=0.85\,\Omega,\qquad R_a=\frac{240^2}{2000}=28.8\,\Omega" />
+
+<BlockMath math="I=\frac{240}{28.8+0.85}\approx8.09\text{ A},\qquad P=8.09^2\times28.8\approx1.89\text{ kW}" />
+
+<BlockMath math="\frac{R_k}{R_k+28.8}\le0.02\Rightarrow R_k\le0.588\,\Omega\Rightarrow A\ge\frac{1.7\times10^{-8}\times50}{0.588}\approx1.5\times10^{-6}\text{ m}^2=1.5\text{ mm}^2" />
+
+Kabel menambah <InlineMath math="0.85\,\Omega" />, dan alat hanya menghasilkan kira-kira <InlineMath math="1.89\text{ kW}" />. Untuk kehilangan tidak lebih daripada <InlineMath math="2\%" /> bekalan, setiap konduktor memerlukan luas sekurang-kurangnya kira-kira <InlineMath math="1.5\text{ mm}^2" />.
+
+# Kenapa pilihan lain salah
+
+- <InlineMath math="0.43\,\Omega" /> hanya mengira **satu konduktor**, tetapi arus mesti pergi dan kembali.
+- <InlineMath math="2.00\text{ kW}" /> menganggap alat **masih mengambil kuasa berkadarnya**, tetapi rintangannya tetap dan kini ia menerima kurang daripada <InlineMath math="240\text{ V}" />.
+- <InlineMath math="0.085\,\Omega" /> menukar <InlineMath math="1\text{ mm}^2" /> kepada **<InlineMath math="10^{-5}\text{ m}^2" />**, tetapi satu milimeter persegi ialah <InlineMath math="10^{-6}\text{ m}^2" />.

@@ -1,0 +1,28 @@
+# The outlet height sets the speed, and that same speed lowers the pressure at the crest
+
+At the tank's surface and at the open outlet the pressure is atmospheric, so the speed at the outlet comes from the <InlineMath math="2.0\text{ m}" /> drop alone. The hose is uniform, so the water moves at **that same speed everywhere** along it, including over the wall. At the crest the pressure is lowered both by the **height** above the tank's surface and by the **speed**, <InlineMath math="\tfrac12\rho v^2" />. The siphon fails when the crest pressure would reach zero.
+
+<Chart
+  title={<>Pressure at the Crest of the Siphon</>}
+  bars="apart"
+  categories={["Atmosphere", "Crest 3.0 m up, still water", "Crest 3.0 m up, flowing"]}
+  series={[
+    { label: "Pressure", mark: "bar", values: [100, 70, 50] },
+  ]}
+  valueLabel="Pressure (kPa)"
+  description={<>Raising the crest <InlineMath math="3.0\text{ m}" /> above the tank's surface takes <InlineMath math="30\text{ kPa}" /> off the atmosphere, and the water's <InlineMath math="6.3\text{ m s}^{-1}" /> takes another <InlineMath math="20\text{ kPa}" />, leaving <InlineMath math="50\text{ kPa}" />.</>}
+/>
+
+<BlockMath math="v=\sqrt{2(10)(2.0)}\approx6.3\text{ m s}^{-1},\qquad \tfrac12\rho v^2=\tfrac12(1000)(40)=2.0\times10^{4}\text{ Pa}" />
+
+<BlockMath math="p_{\text{crest}}=1.0\times10^{5}-1000\times10\times3.0-2.0\times10^{4}=5.0\times10^{4}\text{ Pa}" />
+
+<BlockMath math="0=1.0\times10^{5}-10^{4}h-2.0\times10^{4}\Rightarrow h=8.0\text{ m}" />
+
+The water leaves at about <InlineMath math="6.3\text{ m s}^{-1}" />. Over the wall its pressure is <InlineMath math="5.0\times10^{4}\text{ Pa}" />, and the crest could be raised to <InlineMath math="8.0\text{ m}" /> above the tank's surface before the pressure there fell to zero.
+
+# Why the other options are wrong
+
+- <InlineMath math="7.0\times10^{4}\text{ Pa}" /> and <InlineMath math="10\text{ m}" /> treat the water at the crest as **still**, ignoring the pressure taken up by its speed.
+- <InlineMath math="10\text{ m}" /> with the right crest pressure uses the **static limit**, which applies only if the water is not flowing.
+- <InlineMath math="4.5\text{ m s}^{-1}" /> uses <InlineMath math="v=\sqrt{gh}" />, **forgetting the factor of <InlineMath math="2" />**, and the slip carries into the crest pressure and the height.

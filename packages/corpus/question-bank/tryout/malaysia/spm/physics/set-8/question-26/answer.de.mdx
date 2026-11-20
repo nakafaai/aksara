@@ -1,0 +1,26 @@
+# Das Dach hebt ab, wenn Druckunterschied mal Fläche Gewicht und Befestigung zusammen übertrifft
+
+Schnelle Luft über dem Dach hat **niedrigeren Druck** als die ruhende Luft innen, das Dach wird also mit Druckunterschied mal Fläche nach oben gedrückt. Es hebt ab, sobald diese Kraft **alles** übersteigt, was es hält: sein Gewicht **und** die <InlineMath math="30\text{ kN}" /> der Befestigungen. Die Luft über dem Dach ist schneller als der Wind im Freien, die Windgeschwindigkeit ist also die Dachgeschwindigkeit **geteilt durch** <InlineMath math="1{,}5" />.
+
+<Chart
+  title={<>Kraft, die das Dach hält</>}
+  bars="apart"
+  categories={["Dachgewicht", "Befestigungen", "Gesamt"]}
+  series={[
+    { label: "Kraft", mark: "bar", values: [12, 30, 42] },
+  ]}
+  valueLabel="Kraft (kN)"
+  description={<>Das Eigengewicht des Dachs liefert nur <InlineMath math="12\text{ kN}" />. Mit den Befestigungen muss der Wind <InlineMath math="42\text{ kN}" /> heben, einen Druckunterschied von <InlineMath math="525\text{ Pa}" /> auf <InlineMath math="80\text{ m}^2" />.</>}
+/>
+
+<BlockMath math="F=1200\cdot10+30\,000=42\,000\text{ N},\qquad \Delta p=\frac{42\,000}{8{,}0\cdot10}=525\text{ Pa}" />
+
+<BlockMath math="\tfrac12(1{,}2)v^2=525\Rightarrow v\approx29{,}6\text{ m s}^{-1}\approx30\text{ m s}^{-1},\qquad v_{\text{Wind}}=\frac{29{,}6}{1{,}5}\approx19{,}7\text{ m s}^{-1}\approx71\text{ km h}^{-1}" />
+
+Ein Druckunterschied von <InlineMath math="525\text{ Pa}" /> höbe das Dach. Dafür muss die Luft über dem Dach etwa <InlineMath math="30\text{ m s}^{-1}" /> schnell sein, was bei etwa <InlineMath math="71\text{ km h}^{-1}" /> Wind im Freien der Fall ist.
+
+# Warum die anderen Antworten falsch sind
+
+- <InlineMath math="150\text{ Pa}" /> zählt nur das **Dachgewicht** und vergisst die <InlineMath math="30\text{ kN}" /> der Befestigungen.
+- <InlineMath math="21\text{ m s}^{-1}" /> nimmt <InlineMath math="\rho v^2" /> als Druckunterschied und **vergisst das <InlineMath math="\tfrac12" />**.
+- <InlineMath math="107\text{ km h}^{-1}" /> nimmt die **Luftgeschwindigkeit über dem Dach** als Windgeschwindigkeit, doch über dem Dach ist die Luft <InlineMath math="1{,}5" />-mal schneller.

@@ -1,0 +1,28 @@
+# First decide whether the block floats at all, then compare the water it displaces
+
+A floating object displaces its own **weight** of water, but an object denser than water sinks and displaces only its own **volume**. So the first step is the average density. Once melted, the ice becomes water that simply joins the rest, and the stone on the bottom displaces its own volume. The level changes by the change in displaced volume divided by the glass's area.
+
+<Chart
+  title={<>Water Displaced Before and After Melting</>}
+  bars="apart"
+  categories={["30 g stone, before", "30 g stone, after", "10 g stone, before", "10 g stone, after"]}
+  series={[
+    { label: "Displaced volume", mark: "bar", values: [110, 100, 100, 93.3] },
+  ]}
+  valueLabel="Volume (cm³)"
+  description={<>With the <InlineMath math="30\text{ g}" /> stone the block sinks and fills <InlineMath math="110\text{ cm}^3" />, then <InlineMath math="100\text{ cm}^3" /> once melted. With a <InlineMath math="10\text{ g}" /> stone it floats, displacing <InlineMath math="100\text{ cm}^3" />, then <InlineMath math="93\text{ cm}^3" />.</>}
+/>
+
+<BlockMath math="V=\frac{90}{0.90}+\frac{30}{3.00}=100+10=110\text{ cm}^3,\qquad \rho=\frac{120}{110}\approx1.09\text{ g cm}^{-3}>1.00" />
+
+<BlockMath math="\text{sinks: }110\text{ cm}^3\to 90+10=100\text{ cm}^3,\qquad \Delta h=-\frac{10}{20}=-0.50\text{ cm}" />
+
+<BlockMath math="10\text{ g stone: }\rho=\frac{100}{103.3}<1\Rightarrow\text{floats, }100\text{ cm}^3\to 90+3.33=93.3\text{ cm}^3,\qquad \Delta h=-\frac{6.67}{20}\approx-0.33\text{ cm}" />
+
+The ice and stone together average <InlineMath math="1.09\text{ g cm}^{-3}" />, so the block sinks at once, and the level falls <InlineMath math="0.50\text{ cm}" /> as the ice melts. With a <InlineMath math="10\text{ g}" /> stone the block floats, and melting lowers the level by about <InlineMath math="0.33\text{ cm}" />.
+
+# Why the other options are wrong
+
+- <InlineMath math="1.0\text{ cm}" /> assumes the block **floats** and displaces <InlineMath math="120\text{ cm}^3" />, but at <InlineMath math="1.09\text{ g cm}^{-3}" /> it sinks and displaces only its <InlineMath math="110\text{ cm}^3" />.
+- **No change** applies the rule for **pure floating ice**, but a stone that ends on the bottom displaces less than it did while carried by the ice.
+- **No change** for the <InlineMath math="10\text{ g}" /> stone forgets that the stone was buoyed by the ice, and on the bottom it displaces only its own volume.

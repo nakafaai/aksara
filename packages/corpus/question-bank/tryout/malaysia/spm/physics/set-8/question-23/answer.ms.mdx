@@ -1,0 +1,28 @@
+# Daya condong mengubah daya normal, jadi menolak dan menarik pada sudut yang sama tidak sama
+
+Hanya komponen mengufuk daya pemegang, <InlineMath math="F\cos30°" />, yang memacu penggelek ke hadapan, tetapi komponen menegak mengubah betapa kuat penggelek menekan tanah. Menolak **ke bawah** menambah <InlineMath math="F\sin30°" /> kepada daya normal dan **menaikkan** rintangan. Menarik **ke atas** mengurangkannya dan **menurunkan** rintangan. Pada sudut tolakan yang cukup curam, rintangan tambahan bertambah secepat daya ke hadapan, dan tiada daya yang boleh menang.
+
+<Chart
+  title={<>Daya pada <InlineMath math="30^\circ" /> untuk Menggerakkan Penggelek</>}
+  bars="apart"
+  categories={["Ditolak ke bawah", "Ditarik ke atas"]}
+  series={[
+    { label: "Daya", mark: "bar", values: [75.9, 63.8] },
+  ]}
+  valueLabel="Daya (N)"
+  description={<>Menolak ke bawah di sepanjang pemegang menekan penggelek ke rumput dan menambah rintangan, jadi ia memerlukan kira-kira <InlineMath math="76\text{ N}" />. Menarik ke atas meringankannya, jadi <InlineMath math="64\text{ N}" /> sudah cukup.</>}
+/>
+
+<BlockMath math="\text{tolak: }F\cos30°=0.15(400+F\sin30°)\Rightarrow F=\frac{60}{0.866-0.075}\approx76\text{ N}" />
+
+<BlockMath math="\text{tarik: }F\cos30°=0.15(400-F\sin30°)\Rightarrow F=\frac{60}{0.866+0.075}\approx64\text{ N}" />
+
+<BlockMath math="\cos\theta\le0.15\sin\theta\Rightarrow\tan\theta\ge\frac{1}{0.15}\approx6.7\Rightarrow\theta\ge81°" />
+
+Menolak memerlukan kira-kira <InlineMath math="76\text{ N}" /> dan menarik hanya kira-kira <InlineMath math="64\text{ N}" />. Jika pemegang ditolak pada lebih daripada kira-kira <InlineMath math="81°" /> di bawah ufuk, rintangan tambahan sentiasa menyamai tolakan ke hadapan, jadi penggelek tidak akan bergerak langsung.
+
+# Kenapa pilihan lain salah
+
+- <InlineMath math="69\text{ N}" /> bagi kedua-duanya **mengabaikan perubahan daya normal**, mengambil rintangan sebagai <InlineMath math="0.15mg" /> dalam kedua-dua kes.
+- <InlineMath math="64\text{ N}" /> untuk menolak dan <InlineMath math="76\text{ N}" /> untuk menarik **menukar kesannya**: menekan ke bawah menaikkan rintangan, mengangkat menurunkannya.
+- <InlineMath math="8.5°" /> menyelesaikan <InlineMath math="\tan\theta=0.15" />, iaitu sudut **cerun** di mana geseran tepat menahan blok, bukan sudut tersekat bagi tolakan.

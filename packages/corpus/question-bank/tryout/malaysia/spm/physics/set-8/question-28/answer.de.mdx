@@ -1,0 +1,26 @@
+# Zwei Quellenspannungen stehen gegeneinander, nur ihre Differenz treibt den Strom, und Laden hebt die Klemmenspannung über die Quellenspannung
+
+Plus an Plus geschaltet, wirken die Quellenspannungen im Kreis **gegeneinander**: Nur ihre **Differenz**, <InlineMath math="3{,}0\text{ V}" />, treibt Strom durch beide Innenwiderstände in Reihe. Der Strom fließt **in** den Pluspol des Akkus, umgekehrt wie beim Entladen, die Spannung am Innenwiderstand **addiert** sich also zur Quellenspannung. Gespeichert wird von der Leistung des Ladegeräts der Anteil Quellenspannung des Akkus mal Strom.
+
+<Chart
+  title={<>Wohin die Ladeleistung geht</>}
+  bars="apart"
+  categories={["Chemisch gespeichert", "Wärme im Akku", "Wärme im Ladegerät"]}
+  series={[
+    { label: "Leistung", mark: "bar", values: [60, 2.5, 12.5] },
+  ]}
+  valueLabel="Leistung (W)"
+  description={<>Von den <InlineMath math="75\text{ W}" /> der Quellenspannung des Ladegeräts werden <InlineMath math="60\text{ W}" /> gespeichert, <InlineMath math="2{,}5\text{ W}" /> heizen den Akku und <InlineMath math="12{,}5\text{ W}" /> das Ladegerät.</>}
+/>
+
+<BlockMath math="I=\frac{15-12}{0{,}50+0{,}10}=5{,}0\text{ A},\qquad V=12+5{,}0\cdot0{,}10=12{,}5\text{ V}" />
+
+<BlockMath math="\frac{12\cdot5{,}0}{15\cdot5{,}0}=\frac{60}{75}=80\%" />
+
+Es fließen <InlineMath math="5{,}0\text{ A}" />, und die Klemmen des Akkus liegen beim Laden auf <InlineMath math="12{,}5\text{ V}" />, über seiner eigenen Quellenspannung. Von den <InlineMath math="75\text{ W}" /> des Ladegeräts werden <InlineMath math="60\text{ W}" /> gespeichert, also <InlineMath math="80\%" />, der Rest heizt die beiden Innenwiderstände.
+
+# Warum die anderen Antworten falsch sind
+
+- <InlineMath math="11{,}5\text{ V}" /> **zieht** die innere Spannung ab wie beim Entladen, doch hier wird der Strom in den Akku getrieben.
+- <InlineMath math="45\text{ A}" /> **addiert** die beiden Quellenspannungen, als wären sie gleichsinnig geschaltet, Plus an Minus.
+- <InlineMath math="83\%" /> vergleicht die **Klemmenspannung** des Akkus mit der Quellenspannung des Ladegeräts und zählt die Wärme im Akkuwiderstand als gespeichert.

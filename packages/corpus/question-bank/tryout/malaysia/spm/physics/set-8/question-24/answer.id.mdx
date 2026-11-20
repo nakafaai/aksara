@@ -1,0 +1,28 @@
+# Prinsip Pascal meneruskan tekanan, tetapi kolom minyak menambahkan beratnya sendiri dalam perjalanan turun
+
+Tekanan yang diberikan pada minyak diteruskan ke segala arah, tetapi minyak juga punya berat. Piston kecil berada <InlineMath math="4{,}0\text{ m}" /> **di bawah** piston beban, jadi tekanan di situ lebih besar sebesar <InlineMath math="\rho gh" />. Minyak tidak termampatkan, jadi volume yang didorong masuk piston kecil sama dengan volume yang mengangkat beban. Usaha yang dilakukan mencakup mengangkat beban dan juga **mengangkat volume minyak itu** setinggi <InlineMath math="4{,}0\text{ m}" /> ke silinder beban.
+
+<Chart
+  title={<>Tekanan dalam Minyak</>}
+  bars="apart"
+  categories={["Di bawah piston beban", "Di piston pompa"]}
+  series={[
+    { label: "Tekanan", mark: "bar", values: [200, 236] },
+  ]}
+  valueLabel="Tekanan (kPa)"
+  description={<>Di bawah beban minyak bertekanan <InlineMath math="200\text{ kPa}" />, tetapi piston pompa berada <InlineMath math="4{,}0\text{ m}" /> lebih rendah, tempat berat minyak sendiri menambah <InlineMath math="36\text{ kPa}" />.</>}
+/>
+
+<BlockMath math="p=\frac{200\times10}{0{,}010}=2{,}0\times10^{5}\text{ Pa},\qquad p_s=2{,}0\times10^{5}+900\times10\times4{,}0=2{,}36\times10^{5}\text{ Pa}" />
+
+<BlockMath math="F=2{,}36\times10^{5}\times5{,}0\times10^{-4}\approx120\text{ N},\qquad \Delta V=0{,}010\times0{,}10=1{,}0\times10^{-3}\text{ m}^3,\qquad d=\frac{1{,}0\times10^{-3}}{5{,}0\times10^{-4}}=2{,}0\text{ m}" />
+
+<BlockMath math="W=118\times2{,}0\approx240\text{ J}=200\text{ J (beban)}+36\text{ J (minyak dinaikkan }4{,}0\text{ m)}" />
+
+Sekitar <InlineMath math="120\text{ N}" /> pada piston kecil menahan beban. Mendorongnya <InlineMath math="2{,}0\text{ m}" /> menaikkan beban <InlineMath math="10\text{ cm}" />, dan itu butuh sekitar <InlineMath math="240\text{ J}" />: <InlineMath math="200\text{ J}" /> untuk beban dan <InlineMath math="36\text{ J}" /> untuk menaikkan minyak ke lantai atas.
+
+# Mengapa pilihan lain salah
+
+- <InlineMath math="100\text{ N}" /> dan <InlineMath math="200\text{ J}" /> **mengabaikan kolom minyak <InlineMath math="4{,}0\text{ m}" />**, seolah-olah kedua piston sama tinggi.
+- <InlineMath math="82\text{ N}" /> **mengurangkan** tekanan minyak, seolah-olah piston kecil berada di atas piston beban.
+- <InlineMath math="5{,}0\text{ mm}" /> membagi kenaikan beban dengan perbandingan luas **secara terbalik**: piston kecil harus bergerak lebih jauh, bukan lebih pendek.

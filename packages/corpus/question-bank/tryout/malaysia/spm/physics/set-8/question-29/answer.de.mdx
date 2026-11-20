@@ -1,0 +1,28 @@
+# Jede ausgefallene Lampe verkürzt die Kette, der Strom steigt, bis die Sicherung schmilzt
+
+In Reihe ist der Strom die Netzspannung geteilt durch den **Gesamtwiderstand**. Die Überbrückung einer ausgefallenen Lampe nimmt ihre <InlineMath math="12\,\Omega" /> aus der Kette, jeder Ausfall **senkt** also den Gesamtwiderstand und **erhöht** den Strom durch jede noch leuchtende Lampe. Die Sicherung begrenzt den Strom und damit, wie viele Lampen bleiben müssen, und die übrigen teilen sich die vollen <InlineMath math="240\text{ V}" />, jede leuchtet also heller als zuvor.
+
+<Chart
+  title={<>Strom bei ausfallenden Lampen</>}
+  categories={["0 ausgefallen", "2 ausgefallen", "4 ausgefallen", "6 ausgefallen", "8 ausgefallen", "10 ausgefallen", "12 ausgefallen"]}
+  series={[
+    { label: "Strom", mark: "line", values: [0.4, 0.417, 0.435, 0.455, 0.476, 0.5, 0.526] },
+    { label: "Sicherungsgrenze", mark: "line", values: [0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5] },
+  ]}
+  valueLabel="Strom (A)"
+  description={<>Jeder überbrückte Ausfall nimmt der Kette <InlineMath math="12\,\Omega" />, der Strom steigt von <InlineMath math="0{,}40\text{ A}" /> und erreicht die <InlineMath math="0{,}50\text{ A}" /> der Sicherung, wenn <InlineMath math="10" /> Lampen ausgefallen sind.</>}
+/>
+
+<BlockMath math="I_0=\frac{240}{50\cdot12}=0{,}40\text{ A}" />
+
+<BlockMath math="\frac{240}{12(50-n)}\le0{,}50\Rightarrow 50-n\ge40\Rightarrow n\le10" />
+
+<BlockMath math="P=I^2R=(0{,}50)^2\cdot12=3{,}0\text{ W}\quad\text{(statt sonst }0{,}40^2\cdot12\approx1{,}9\text{ W)}" />
+
+Mit allen Lampen fließen <InlineMath math="0{,}40\text{ A}" />. Bis zu <InlineMath math="10" /> Lampen dürfen ausfallen, dann tragen die übrigen <InlineMath math="40" /> je <InlineMath math="0{,}50\text{ A}" /> und leuchten mit <InlineMath math="3{,}0\text{ W}" /> statt etwa <InlineMath math="1{,}9\text{ W}" />.
+
+# Warum die anderen Antworten falsch sind
+
+- <InlineMath math="40" /> Lampen ist die Zahl der **noch leuchtenden** an der Grenze, nicht der ausgefallenen.
+- <InlineMath math="1{,}9\text{ W}" /> nimmt an, jede Lampe **behalte ihren üblichen Spannungsanteil**, doch weniger Lampen teilen sich dieselben <InlineMath math="240\text{ V}" />.
+- <InlineMath math="6{,}0\text{ W}" /> multipliziert den Strom mit dem **Widerstand**, als wäre er eine Spannung, <InlineMath math="P=IR" /> ist keine Leistung.

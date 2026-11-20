@@ -1,0 +1,28 @@
+# Die Federenergie bezahlt Steigung und Reibung auf dem ganzen Weg, auch solange die Feder noch schiebt
+
+Die Feder speichert <InlineMath math="\tfrac12kx^2" />. Schon während sie schiebt, **steigt und reibt** die Kugel über diese <InlineMath math="8{,}0\text{ cm}" />. Danach bremsen sie der Hangabtrieb, <InlineMath math="mg\sin10°" />, und der Widerstand von <InlineMath math="0{,}10\text{ N}" />. Für das kleinste Spannen muss die gespeicherte Energie Steigung und Reibung über <InlineMath math="1{,}2\text{ m}" /> **plus die Spannstrecke selbst** gerade decken, das ergibt eine quadratische Gleichung in <InlineMath math="x" />.
+
+<Chart
+  title={<>Energie der Kugel</>}
+  bars="apart"
+  categories={["In der Feder", "Beim Verlassen der Feder", "Am Puffer"]}
+  series={[
+    { label: "Energie", mark: "bar", values: [0.8, 0.76, 0.23] },
+  ]}
+  valueLabel="Energie (J)"
+  description={<>Die Feder speichert <InlineMath math="0{,}80\text{ J}" />. Die Kugel verlässt sie mit <InlineMath math="0{,}76\text{ J}" />, nachdem sie schon <InlineMath math="8{,}0\text{ cm}" /> gestiegen ist und gerieben hat, und erreicht den Puffer mit etwa <InlineMath math="0{,}23\text{ J}" />.</>}
+/>
+
+<BlockMath math="F_{\text{ab}}=0{,}20\cdot10\cdot0{,}174+0{,}10\approx0{,}447\text{ N},\qquad E_k=\tfrac12(250)(0{,}080)^2-0{,}447\cdot0{,}080\approx0{,}764\text{ J},\qquad v=\sqrt{\frac{2(0{,}764)}{0{,}20}}\approx2{,}8\text{ m s}^{-1}" />
+
+<BlockMath math="E_k'=0{,}764-0{,}447\cdot1{,}2\approx0{,}227\text{ J},\qquad v'=\sqrt{\frac{2(0{,}227)}{0{,}20}}\approx1{,}5\text{ m s}^{-1}" />
+
+<BlockMath math="125x^2=0{,}447(1{,}2+x)\Rightarrow125x^2-0{,}447x-0{,}536=0\Rightarrow x\approx0{,}067\text{ m}=6{,}7\text{ cm}" />
+
+Die Kugel verlässt die Feder mit etwa <InlineMath math="2{,}8\text{ m s}^{-1}" /> und erreicht den Puffer mit etwa <InlineMath math="1{,}5\text{ m s}^{-1}" />. Etwa <InlineMath math="6{,}7\text{ cm}" /> Spannen brächten sie gerade hin.
+
+# Warum die anderen Antworten falsch sind
+
+- <InlineMath math="1{,}6\text{ m s}^{-1}" /> und <InlineMath math="6{,}5\text{ cm}" /> übersehen **Steigung und Reibung, solange die Feder schiebt**, als startete die Kugel am Federende.
+- <InlineMath math="1{,}9\text{ m s}^{-1}" /> und <InlineMath math="5{,}9\text{ cm}" /> **übersehen den Widerstand**, nur die Steigung bremst dann die Kugel.
+- **Anhalten vor dem Puffer** setzt das **ganze Gewicht** gegen die Bewegung statt der Komponente entlang des Hangs, <InlineMath math="mg\sin10°" />.

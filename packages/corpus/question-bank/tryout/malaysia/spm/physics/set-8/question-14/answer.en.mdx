@@ -1,0 +1,26 @@
+# The worst shaking is resonance, and slowing down from above sweeps the driving frequency through it
+
+The ridges strike the wheels at a frequency <InlineMath math="f=\dfrac{v}{d}" />. The violent shaking at one particular speed is **resonance**: there the ridges drive the wheels at their natural frequency. Starting faster, the driving frequency is **above** the natural frequency. As the car brakes, it falls steadily and passes **through** resonance on the way to zero, so the worst shaking comes in the middle of the stop, not at its start or end.
+
+<Chart
+  title={<>Bump Frequency While Braking</>}
+  categories={["0 s", "1 s", "2 s", "3 s", "4 s", "5 s", "6 s"]}
+  series={[
+    { label: "Bump frequency", mark: "line", values: [18.8, 15.6, 12.5, 9.4, 6.2, 3.1, 0.0] },
+    { label: "Natural frequency", mark: "line", values: [12.5, 12.5, 12.5, 12.5, 12.5, 12.5, 12.5] },
+  ]}
+  valueLabel="Frequency (Hz)"
+  description={<>Braking from <InlineMath math="15\text{ m s}^{-1}" />, the bump frequency falls from about <InlineMath math="19\text{ Hz}" /> and crosses the wheels' natural <InlineMath math="12.5\text{ Hz}" /> after <InlineMath math="2.0\text{ s}" />, when the shaking is worst.</>}
+/>
+
+<BlockMath math="f_0=\frac{10}{0.80}=12.5\text{ Hz},\qquad f_{54}=\frac{15}{0.80}\approx19\text{ Hz}" />
+
+<BlockMath math="v=15-2.5t=10\Rightarrow t=2.0\text{ s}" />
+
+The wheels' natural frequency is <InlineMath math="12.5\text{ Hz}" />. At <InlineMath math="54\text{ km h}^{-1}" /> the ridges strike about <InlineMath math="19" /> times a second, and as the car brakes the frequency falls through <InlineMath math="12.5\text{ Hz}" /> after <InlineMath math="2.0\text{ s}" />, when the car is back at <InlineMath math="36\text{ km h}^{-1}" /> and the shaking peaks.
+
+# Why the other options are wrong
+
+- <InlineMath math="0\text{ s}" /> assumes the **fastest, most frequent** bumping shakes most, but large shaking needs the frequency to match the natural one.
+- <InlineMath math="0.080\text{ Hz}" /> **inverts** the relation, using <InlineMath math="\dfrac{d}{v}" />, which is the time between ridges, not the frequency.
+- <InlineMath math="6.0\text{ s}" /> is when the car **stops**, where the ridges no longer strike at all.

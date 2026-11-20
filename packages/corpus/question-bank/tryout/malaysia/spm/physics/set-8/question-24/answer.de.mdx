@@ -1,0 +1,28 @@
+# Das Pascalsche Prinzip überträgt den Druck, doch eine Ölsäule bringt auf dem Weg nach unten ihr eigenes Gewicht hinzu
+
+Druck auf das Öl wird überallhin weitergegeben, doch das Öl hat auch Gewicht. Der kleine Kolben liegt <InlineMath math="4{,}0\text{ m}" /> **unter** dem Lastkolben, dort ist der Druck um <InlineMath math="\rho gh" /> größer. Öl ist inkompressibel, das vom kleinen Kolben verdrängte Volumen hebt also die Last. Die Arbeit umfasst das Heben der Last und das **Heben dieses Ölvolumens** um <InlineMath math="4{,}0\text{ m}" /> in den Lastzylinder.
+
+<Chart
+  title={<>Druck im Öl</>}
+  bars="apart"
+  categories={["Unter dem Lastkolben", "Am Pumpkolben"]}
+  series={[
+    { label: "Druck", mark: "bar", values: [200, 236] },
+  ]}
+  valueLabel="Druck (kPa)"
+  description={<>Unter der Last hat das Öl <InlineMath math="200\text{ kPa}" />, doch der Pumpkolben sitzt <InlineMath math="4{,}0\text{ m}" /> tiefer, wo das Eigengewicht des Öls <InlineMath math="36\text{ kPa}" /> hinzufügt.</>}
+/>
+
+<BlockMath math="p=\frac{200\cdot10}{0{,}010}=2{,}0\cdot10^{5}\text{ Pa},\qquad p_s=2{,}0\cdot10^{5}+900\cdot10\cdot4{,}0=2{,}36\cdot10^{5}\text{ Pa}" />
+
+<BlockMath math="F=2{,}36\cdot10^{5}\cdot5{,}0\cdot10^{-4}\approx120\text{ N},\qquad \Delta V=0{,}010\cdot0{,}10=1{,}0\cdot10^{-3}\text{ m}^3,\qquad d=\frac{1{,}0\cdot10^{-3}}{5{,}0\cdot10^{-4}}=2{,}0\text{ m}" />
+
+<BlockMath math="W=118\cdot2{,}0\approx240\text{ J}=200\text{ J (Last)}+36\text{ J (Öl um }4{,}0\text{ m gehoben)}" />
+
+Etwa <InlineMath math="120\text{ N}" /> am kleinen Kolben halten die Last. Ihn <InlineMath math="2{,}0\text{ m}" /> weit zu drücken hebt die Last um <InlineMath math="10\text{ cm}" /> und kostet etwa <InlineMath math="240\text{ J}" />: <InlineMath math="200\text{ J}" /> für die Last und <InlineMath math="36\text{ J}" />, um das Öl ins Obergeschoss zu heben.
+
+# Warum die anderen Antworten falsch sind
+
+- <InlineMath math="100\text{ N}" /> und <InlineMath math="200\text{ J}" /> **übersehen die <InlineMath math="4{,}0\text{ m}" /> hohe Ölsäule**, als lägen beide Kolben gleich hoch.
+- <InlineMath math="82\text{ N}" /> **zieht** den Öldruck ab, als läge der kleine Kolben über dem Lastkolben.
+- <InlineMath math="5{,}0\text{ mm}" /> teilt den Hub der Last **falsch herum** durch das Flächenverhältnis: Der kleine Kolben muss weiter wandern, nicht weniger.

@@ -1,0 +1,28 @@
+# Tiap lampu yang rusak memendekkan rangkaian, jadi arus naik sampai sekring putus
+
+Dalam rangkaian seri, arus adalah tegangan sumber dibagi **hambatan total**. Pirau lampu yang rusak mengeluarkan <InlineMath math="12\,\Omega" /> dari rangkaian, jadi tiap kerusakan **menurunkan** hambatan total dan **menaikkan** arus di tiap lampu yang masih menyala. Sekring membatasi arus, yang menentukan berapa banyak lampu yang boleh tersisa, dan lampu yang tersisa berbagi seluruh <InlineMath math="240\text{ V}" />, jadi tiap lampu menyala lebih terang dari sebelumnya.
+
+<Chart
+  title={<>Arus saat Lampu Rusak</>}
+  categories={["0 rusak", "2 rusak", "4 rusak", "6 rusak", "8 rusak", "10 rusak", "12 rusak"]}
+  series={[
+    { label: "Arus", mark: "line", values: [0.4, 0.417, 0.435, 0.455, 0.476, 0.5, 0.526] },
+    { label: "Batas sekring", mark: "line", values: [0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5] },
+  ]}
+  valueLabel="Arus (A)"
+  description={<>Pirau tiap lampu yang rusak membuang <InlineMath math="12\,\Omega" /> dari rangkaian, jadi arus naik dari <InlineMath math="0{,}40\text{ A}" /> dan mencapai <InlineMath math="0{,}50\text{ A}" /> sekring saat <InlineMath math="10" /> lampu sudah rusak.</>}
+/>
+
+<BlockMath math="I_0=\frac{240}{50\times12}=0{,}40\text{ A}" />
+
+<BlockMath math="\frac{240}{12(50-n)}\le0{,}50\Rightarrow 50-n\ge40\Rightarrow n\le10" />
+
+<BlockMath math="P=I^2R=(0{,}50)^2\times12=3{,}0\text{ W}\quad\text{(dibanding }0{,}40^2\times12\approx1{,}9\text{ W biasanya)}" />
+
+Saat semua lampu menyala mengalir <InlineMath math="0{,}40\text{ A}" />. Sampai <InlineMath math="10" /> lampu boleh rusak, menyisakan <InlineMath math="40" /> yang dialiri <InlineMath math="0{,}50\text{ A}" />, dan masing-masing lalu menyala <InlineMath math="3{,}0\text{ W}" />, bukan sekitar <InlineMath math="1{,}9\text{ W}" />.
+
+# Mengapa pilihan lain salah
+
+- <InlineMath math="40" /> lampu adalah jumlah yang **masih menyala** pada batas itu, bukan yang rusak.
+- <InlineMath math="1{,}9\text{ W}" /> menganggap tiap lampu **tetap mendapat bagian tegangan biasanya**, padahal lebih sedikit lampu yang berbagi <InlineMath math="240\text{ V}" /> yang sama.
+- <InlineMath math="6{,}0\text{ W}" /> mengalikan arus dengan **hambatan** seolah-olah itu tegangan, <InlineMath math="P=IR" />, yang bukan daya.

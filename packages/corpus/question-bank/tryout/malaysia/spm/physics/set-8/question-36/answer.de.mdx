@@ -1,0 +1,24 @@
+# Die Wahrheitstabelle Gatter für Gatter durchgehen, dann beide Schaltungen zeilenweise vergleichen
+
+Das AND-Gatter liefert <InlineMath math="1" /> nur, wenn **beide** Eingänge <InlineMath math="1" /> sind. In der richtigen Schaltung ist OR <InlineMath math="1" />, außer wenn beide Türen zu sind, und NAND ist <InlineMath math="1" />, außer wenn beide offen sind, beide sind also genau dann <InlineMath math="1" />, wenn **eine** Tür offen ist. NOR statt OR kehrt diesen Eingang um: NOR ist **nur** <InlineMath math="1" />, wenn beide Türen zu sind, und dort ist auch NAND <InlineMath math="1" />, der fehlerhafte Alarm ertönt also allein in dieser Zeile.
+
+<Mermaid
+  title={<>Die korrekt gebaute Türalarmanlage</>}
+  description={<>Jede Tür liefert <InlineMath math="1" />, wenn sie offen ist. OR und NAND speisen beide das AND-Gatter, der Alarm ertönt also nur, wenn genau eine Tür offen ist.</>}
+  chart={"flowchart LR\n  A[\"Tür A\"] --> OR\n  B[\"Tür B\"] --> OR\n  A --> NAND\n  B --> NAND\n  OR --> AND\n  NAND --> AND\n  AND --> X[\"Alarm\"]"}
+/>
+
+| A | B | OR | NOR | NAND | richtig | fehlerhaft |
+| --- | --- | --- | --- | --- | --- | --- |
+| <InlineMath math="0" /> | <InlineMath math="0" /> | <InlineMath math="0" /> | <InlineMath math="1" /> | <InlineMath math="1" /> | <InlineMath math="0" /> | <InlineMath math="1" /> |
+| <InlineMath math="0" /> | <InlineMath math="1" /> | <InlineMath math="1" /> | <InlineMath math="0" /> | <InlineMath math="1" /> | <InlineMath math="1" /> | <InlineMath math="0" /> |
+| <InlineMath math="1" /> | <InlineMath math="0" /> | <InlineMath math="1" /> | <InlineMath math="0" /> | <InlineMath math="1" /> | <InlineMath math="1" /> | <InlineMath math="0" /> |
+| <InlineMath math="1" /> | <InlineMath math="1" /> | <InlineMath math="1" /> | <InlineMath math="0" /> | <InlineMath math="0" /> | <InlineMath math="0" /> | <InlineMath math="0" /> |
+
+Die richtige Schaltung schlägt in <InlineMath math="2" /> der <InlineMath math="4" /> Fälle Alarm. Bei zwei geschlossenen Türen liefert die fehlerhafte <InlineMath math="1" />, einen Fehlalarm, und beide stimmen nur in <InlineMath math="1" /> Zeile überein, wenn beide Türen offen sind.
+
+# Warum die anderen Antworten falsch sind
+
+- <InlineMath math="0" /> und <InlineMath math="4" /> lassen das NOR-Gatter **wie ein OR** arbeiten, als änderte sich nichts.
+- <InlineMath math="1" /> und <InlineMath math="0" /> nehmen an, der Fehler **kehre den ganzen Ausgang um**, doch nur ein Eingang des AND-Gatters wird umgekehrt.
+- <InlineMath math="3" /> behandelt den richtigen Alarm wie ein **OR** und vergisst, dass das NAND-Gatter ihn bei zwei offenen Türen stumm schaltet.

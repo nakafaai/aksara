@@ -1,0 +1,28 @@
+# Arus pergi lewat satu konduktor dan kembali lewat yang lain, dan daya alat turun mengikuti tegangan yang diterimanya
+
+Arus mengalir ke alat lewat konduktor fase dan **kembali** lewat netral, jadi kabel memasukkan **<InlineMath math="50\text{ m}" />** tembaga ke rangkaian, bukan <InlineMath math="25\text{ m}" />. Rating alat menetapkan hambatannya, <InlineMath math="R=\dfrac{V^2}{P}" />, bukan dayanya: dengan kabel terpasang seri, arus sedikit berkurang, dan alat menghasilkan <InlineMath math="I^2R" />, lebih kecil dari ratingnya. Agar kabel kehilangan paling banyak <InlineMath math="2\%" />, hambatannya harus paling banyak sekitar <InlineMath math="2\%" /> dari total.
+
+<Chart
+  title={<>Daya yang Sampai ke Alat</>}
+  bars="apart"
+  categories={["Nominal", "Lewat kabel 1,0 mm²"]}
+  series={[
+    { label: "Daya", mark: "bar", values: [2.0, 1.89] },
+  ]}
+  valueLabel="Daya (kW)"
+  description={<>Hambatan kabel <InlineMath math="0{,}85\,\Omega" /> mengambil sekitar <InlineMath math="7\text{ V}" /> dari sumber, jadi alat yang hambatannya tetap hanya menghasilkan sekitar <InlineMath math="1{,}89\text{ kW}" />, bukan <InlineMath math="2{,}00\text{ kW}" />.</>}
+/>
+
+<BlockMath math="R_k=\frac{1{,}7\times10^{-8}\times50}{1{,}0\times10^{-6}}=0{,}85\,\Omega,\qquad R_a=\frac{240^2}{2000}=28{,}8\,\Omega" />
+
+<BlockMath math="I=\frac{240}{28{,}8+0{,}85}\approx8{,}09\text{ A},\qquad P=8{,}09^2\times28{,}8\approx1{,}89\text{ kW}" />
+
+<BlockMath math="\frac{R_k}{R_k+28{,}8}\le0{,}02\Rightarrow R_k\le0{,}588\,\Omega\Rightarrow A\ge\frac{1{,}7\times10^{-8}\times50}{0{,}588}\approx1{,}5\times10^{-6}\text{ m}^2=1{,}5\text{ mm}^2" />
+
+Kabel menambah <InlineMath math="0{,}85\,\Omega" />, dan alat hanya menghasilkan sekitar <InlineMath math="1{,}89\text{ kW}" />. Agar kehilangan tidak lebih dari <InlineMath math="2\%" /> sumber, tiap konduktor butuh luas paling kecil sekitar <InlineMath math="1{,}5\text{ mm}^2" />.
+
+# Mengapa pilihan lain salah
+
+- <InlineMath math="0{,}43\,\Omega" /> hanya menghitung **satu konduktor**, padahal arus harus pergi dan kembali.
+- <InlineMath math="2{,}00\text{ kW}" /> menganggap alat **tetap mengambil daya ratingnya**, padahal hambatannya tetap dan kini menerima kurang dari <InlineMath math="240\text{ V}" />.
+- <InlineMath math="0{,}085\,\Omega" /> mengubah <InlineMath math="1\text{ mm}^2" /> menjadi **<InlineMath math="10^{-5}\text{ m}^2" />**, padahal satu milimeter persegi adalah <InlineMath math="10^{-6}\text{ m}^2" />.

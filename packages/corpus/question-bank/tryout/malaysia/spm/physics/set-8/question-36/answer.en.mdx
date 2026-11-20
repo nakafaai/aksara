@@ -1,0 +1,24 @@
+# Work the truth table through each gate, then compare the two circuits row by row
+
+The AND gate gives <InlineMath math="1" /> only when **both** its inputs are <InlineMath math="1" />. In the correct circuit, OR is <InlineMath math="1" /> unless both doors are closed, and NAND is <InlineMath math="1" /> unless both are open, so both are <InlineMath math="1" /> exactly when **one** door is open. Replacing OR by NOR flips that input: NOR is <InlineMath math="1" /> **only** when both doors are closed, and there NAND is <InlineMath math="1" /> too, so the faulty alarm sounds for that one row alone.
+
+<Mermaid
+  title={<>The Door Alarm as Built Correctly</>}
+  description={<>Each door gives <InlineMath math="1" /> when open. OR and NAND both feed the AND gate, so the alarm sounds only when exactly one door is open.</>}
+  chart={"flowchart LR\n  A[\"Door A\"] --> OR\n  B[\"Door B\"] --> OR\n  A --> NAND\n  B --> NAND\n  OR --> AND\n  NAND --> AND\n  AND --> X[\"Alarm\"]"}
+/>
+
+| A | B | OR | NOR | NAND | correct | faulty |
+| --- | --- | --- | --- | --- | --- | --- |
+| <InlineMath math="0" /> | <InlineMath math="0" /> | <InlineMath math="0" /> | <InlineMath math="1" /> | <InlineMath math="1" /> | <InlineMath math="0" /> | <InlineMath math="1" /> |
+| <InlineMath math="0" /> | <InlineMath math="1" /> | <InlineMath math="1" /> | <InlineMath math="0" /> | <InlineMath math="1" /> | <InlineMath math="1" /> | <InlineMath math="0" /> |
+| <InlineMath math="1" /> | <InlineMath math="0" /> | <InlineMath math="1" /> | <InlineMath math="0" /> | <InlineMath math="1" /> | <InlineMath math="1" /> | <InlineMath math="0" /> |
+| <InlineMath math="1" /> | <InlineMath math="1" /> | <InlineMath math="1" /> | <InlineMath math="0" /> | <InlineMath math="0" /> | <InlineMath math="0" /> | <InlineMath math="0" /> |
+
+The correct circuit sounds for <InlineMath math="2" /> of the <InlineMath math="4" /> combinations. With both doors closed the faulty circuit gives <InlineMath math="1" />, a false alarm, and the two circuits agree in only <InlineMath math="1" /> row, when both doors are open.
+
+# Why the other options are wrong
+
+- <InlineMath math="0" /> and <InlineMath math="4" /> treat the NOR gate as if it **behaved like OR**, so nothing seems to change.
+- <InlineMath math="1" /> and <InlineMath math="0" /> assume the fault simply **inverts the whole output**, but only one input of the AND gate is inverted.
+- <InlineMath math="3" /> treats the correct alarm as an **OR**, forgetting that the NAND gate silences it when both doors are open.

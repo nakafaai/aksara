@@ -1,0 +1,28 @@
+# The delay is distance over the speed of light, and the blocked path forces a longer, bent route
+
+Radio waves travel at the speed of light, so each delay is a **distance divided by <InlineMath math="3.0\times10^{8}\text{ m s}^{-1}" />**. The planets are closest when they are on the same side of the Sun, <InlineMath math="2.3-1.5" /> apart. On opposite sides the straight line would pass through the Sun, so the signal has to go **round** through the relay: Earth and relay are a quarter turn apart on the same circle, and the relay to Mars is the long side of a right-angled triangle with the Sun at the corner. A command and its reply cover that route **twice**.
+
+<Chart
+  title={<>One-Way Signal Delay to Mars</>}
+  bars="apart"
+  categories={["Closest approach", "Straight line at conjunction", "Through the relay"]}
+  series={[
+    { label: "Delay", mark: "bar", values: [4.4, 21.1, 27.0] },
+  ]}
+  valueLabel="Delay (min)"
+  description={<>At closest approach a signal takes about <InlineMath math="4.4\text{ min}" />. At conjunction the straight line would take <InlineMath math="21\text{ min}" />, but the Sun blocks it, and the relay route takes about <InlineMath math="27\text{ min}" />.</>}
+/>
+
+<BlockMath math="t_{\min}=\frac{(2.3-1.5)\times10^{11}}{3.0\times10^{8}}\approx267\text{ s}\approx4.4\text{ min}" />
+
+<BlockMath math="d_{ER}=\sqrt{2}\times1.5\times10^{11}\approx2.12\times10^{11}\text{ m},\qquad d_{RM}=\sqrt{1.5^2+2.3^2}\times10^{11}\approx2.75\times10^{11}\text{ m}" />
+
+<BlockMath math="t=\frac{(2.12+2.75)\times10^{11}}{3.0\times10^{8}}\approx1.62\times10^{3}\text{ s}\approx27\text{ min},\qquad 2t\approx54\text{ min}" />
+
+The shortest one-way delay is about <InlineMath math="4.4\text{ min}" />. With the Sun in the way, the relay route takes about <InlineMath math="27\text{ min}" /> each way, so a reply arrives about <InlineMath math="54\text{ min}" /> after the command is sent.
+
+# Why the other options are wrong
+
+- <InlineMath math="21\text{ min}" /> sends the signal **straight through the Sun**, the path the question says is blocked.
+- <InlineMath math="13\text{ min}" /> uses **Mars's distance from the Sun** as its shortest distance from the Earth.
+- <InlineMath math="32\text{ min}" /> **adds the two sides** of the right angle for the Earth to relay leg instead of using Pythagoras.

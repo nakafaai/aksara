@@ -1,0 +1,28 @@
+# Die Auslaufhöhe bestimmt die Geschwindigkeit, und dieselbe Geschwindigkeit senkt den Druck im Scheitel
+
+An der Oberfläche im Tank und am offenen Auslauf herrscht Luftdruck, die Geschwindigkeit am Auslauf folgt also allein aus den <InlineMath math="2{,}0\text{ m}" /> Gefälle. Der Schlauch ist gleichmäßig, das Wasser fließt also **überall mit derselben Geschwindigkeit**, auch über der Mauer. Im Scheitel senken sowohl die **Höhe** über dem Wasserspiegel als auch die **Geschwindigkeit**, <InlineMath math="\tfrac12\rho v^2" />, den Druck. Der Heber versagt, wenn der Scheiteldruck null erreichen würde.
+
+<Chart
+  title={<>Druck im Scheitel des Hebers</>}
+  bars="apart"
+  categories={["Atmosphäre", "Scheitel 3,0 m hoch, ruhend", "Scheitel 3,0 m hoch, strömend"]}
+  series={[
+    { label: "Druck", mark: "bar", values: [100, 70, 50] },
+  ]}
+  valueLabel="Druck (kPa)"
+  description={<>Den Scheitel <InlineMath math="3{,}0\text{ m}" /> über den Wasserspiegel zu heben nimmt <InlineMath math="30\text{ kPa}" /> vom Luftdruck, die <InlineMath math="6{,}3\text{ m s}^{-1}" /> des Wassers nehmen weitere <InlineMath math="20\text{ kPa}" />, es bleiben <InlineMath math="50\text{ kPa}" />.</>}
+/>
+
+<BlockMath math="v=\sqrt{2(10)(2{,}0)}\approx6{,}3\text{ m s}^{-1},\qquad \tfrac12\rho v^2=\tfrac12(1000)(40)=2{,}0\cdot10^{4}\text{ Pa}" />
+
+<BlockMath math="p_{\text{Scheitel}}=1{,}0\cdot10^{5}-1000\cdot10\cdot3{,}0-2{,}0\cdot10^{4}=5{,}0\cdot10^{4}\text{ Pa}" />
+
+<BlockMath math="0=1{,}0\cdot10^{5}-10^{4}h-2{,}0\cdot10^{4}\Rightarrow h=8{,}0\text{ m}" />
+
+Das Wasser tritt mit etwa <InlineMath math="6{,}3\text{ m s}^{-1}" /> aus. Über der Mauer hat es <InlineMath math="5{,}0\cdot10^{4}\text{ Pa}" />, und der Scheitel ließe sich bis <InlineMath math="8{,}0\text{ m}" /> über den Wasserspiegel heben, bevor der Druck dort null erreicht.
+
+# Warum die anderen Antworten falsch sind
+
+- <InlineMath math="7{,}0\cdot10^{4}\text{ Pa}" /> und <InlineMath math="10\text{ m}" /> behandeln das Wasser im Scheitel als **ruhend** und übersehen den Druckanteil seiner Geschwindigkeit.
+- <InlineMath math="10\text{ m}" /> mit richtigem Scheiteldruck nimmt die **statische Grenze**, die nur für stehendes Wasser gilt.
+- <InlineMath math="4{,}5\text{ m s}^{-1}" /> nimmt <InlineMath math="v=\sqrt{gh}" />, **vergisst den Faktor <InlineMath math="2" />**, und der Fehler zieht sich in Scheiteldruck und Höhe.

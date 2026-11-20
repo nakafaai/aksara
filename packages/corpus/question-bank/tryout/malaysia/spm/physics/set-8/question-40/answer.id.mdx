@@ -1,0 +1,28 @@
+# Tiap foton bekerja sendiri: energinya menentukan apakah dan secepat apa elektron lepas, dan jumlah foton menentukan arus
+
+Cahaya datang sebagai foton berenergi <InlineMath math="E=\dfrac{hc}{\lambda}" />, dan tiap foton bisa melepaskan **paling banyak satu** elektron. Elektron lepas hanya bila energi foton melebihi **fungsi kerja**, dan energi kinetik maksimumnya adalah selisihnya. **Arus** bergantung pada berapa foton yang tiba tiap detik, yaitu daya dibagi energi foton, dikali bagian yang melepaskan elektron. Di bawah ambang tidak ada foton yang bisa melepaskan elektron, jadi **daya yang lebih besar tidak membantu**.
+
+<Chart
+  title={<>Energi Foton Dibanding Fungsi Kerja</>}
+  bars="apart"
+  categories={["Foton 450 nm", "Fungsi kerja", "Foton 600 nm"]}
+  series={[
+    { label: "Energi", mark: "bar", values: [2.76, 2.28, 2.07] },
+  ]}
+  valueLabel="Energi (eV)"
+  description={<>Foton <InlineMath math="450\text{ nm}" /> punya <InlineMath math="2{,}76\text{ eV}" />, di atas fungsi kerja katoda <InlineMath math="2{,}28\text{ eV}" />. Foton <InlineMath math="600\text{ nm}" /> hanya punya <InlineMath math="2{,}07\text{ eV}" />, di bawahnya, jadi tidak ada elektron yang lepas seterang apa pun lampunya.</>}
+/>
+
+<BlockMath math="E=\frac{6{,}63\times10^{-34}\times3{,}0\times10^{8}}{450\times10^{-9}}\approx4{,}42\times10^{-19}\text{ J}\approx2{,}76\text{ eV},\qquad E_{k,\max}=2{,}76-2{,}28\approx0{,}48\text{ eV}" />
+
+<BlockMath math="N=\frac{2{,}0\times10^{-3}}{4{,}42\times10^{-19}}\approx4{,}5\times10^{15}\text{ s}^{-1},\qquad I=0{,}10\times4{,}5\times10^{15}\times1{,}6\times10^{-19}\approx72\,\mu\text{A}" />
+
+<BlockMath math="E_{600}=\frac{6{,}63\times10^{-34}\times3{,}0\times10^{8}}{600\times10^{-9}}\approx2{,}07\text{ eV}<2{,}28\text{ eV}\Rightarrow I=0" />
+
+Elektron tercepat keluar dengan sekitar <InlineMath math="0{,}48\text{ eV}" />, dan fotosel memberi sekitar <InlineMath math="72\,\mu\text{A}" />. Dengan cahaya <InlineMath math="600\text{ nm}" /> tiap foton berenergi lebih kecil dari fungsi kerja, jadi sama sekali tidak ada arus, meski dayanya dua kali lipat.
+
+# Mengapa pilihan lain salah
+
+- <InlineMath math="190\,\mu\text{A}" /> menghitung foton berkas merah yang lebih terang seolah-olah **masing-masing bisa melepaskan elektron**, padahal semuanya di bawah ambang.
+- <InlineMath math="2{,}8\text{ eV}" /> adalah **energi foton**, lupa bahwa fungsi kerja harus dibayar sebelum elektron lepas.
+- <InlineMath math="720\,\mu\text{A}" /> membiarkan **setiap foton** melepaskan elektron, lupa bahwa hanya <InlineMath math="10\%" /> yang melakukannya.

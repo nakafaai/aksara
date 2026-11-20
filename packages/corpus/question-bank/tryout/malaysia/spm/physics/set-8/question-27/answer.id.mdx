@@ -1,0 +1,28 @@
+# Tinggi saluran keluar menentukan kelajuan, dan kelajuan yang sama menurunkan tekanan di puncak
+
+Di permukaan tangki dan di saluran keluar yang terbuka tekanannya atmosfer, jadi kelajuan di saluran keluar ditentukan penurunan <InlineMath math="2{,}0\text{ m}" /> saja. Selangnya seragam, jadi air bergerak dengan **kelajuan yang sama di mana-mana** sepanjang selang, termasuk di atas tembok. Di puncak tekanan diturunkan oleh **ketinggian** di atas permukaan tangki dan juga oleh **kelajuan**, <InlineMath math="\tfrac12\rho v^2" />. Sifon gagal saat tekanan puncak akan mencapai nol.
+
+<Chart
+  title={<>Tekanan di Puncak Sifon</>}
+  bars="apart"
+  categories={["Atmosfer", "Puncak 3,0 m, air diam", "Puncak 3,0 m, mengalir"]}
+  series={[
+    { label: "Tekanan", mark: "bar", values: [100, 70, 50] },
+  ]}
+  valueLabel="Tekanan (kPa)"
+  description={<>Menaikkan puncak <InlineMath math="3{,}0\text{ m}" /> di atas permukaan tangki mengurangi <InlineMath math="30\text{ kPa}" /> dari atmosfer, dan kelajuan air <InlineMath math="6{,}3\text{ m s}^{-1}" /> mengurangi <InlineMath math="20\text{ kPa}" /> lagi, menyisakan <InlineMath math="50\text{ kPa}" />.</>}
+/>
+
+<BlockMath math="v=\sqrt{2(10)(2{,}0)}\approx6{,}3\text{ m s}^{-1},\qquad \tfrac12\rho v^2=\tfrac12(1000)(40)=2{,}0\times10^{4}\text{ Pa}" />
+
+<BlockMath math="p_{\text{puncak}}=1{,}0\times10^{5}-1000\times10\times3{,}0-2{,}0\times10^{4}=5{,}0\times10^{4}\text{ Pa}" />
+
+<BlockMath math="0=1{,}0\times10^{5}-10^{4}h-2{,}0\times10^{4}\Rightarrow h=8{,}0\text{ m}" />
+
+Air keluar sekitar <InlineMath math="6{,}3\text{ m s}^{-1}" />. Di atas tembok tekanannya <InlineMath math="5{,}0\times10^{4}\text{ Pa}" />, dan puncak bisa dinaikkan sampai <InlineMath math="8{,}0\text{ m}" /> di atas permukaan tangki sebelum tekanan di situ turun ke nol.
+
+# Mengapa pilihan lain salah
+
+- <InlineMath math="7{,}0\times10^{4}\text{ Pa}" /> dan <InlineMath math="10\text{ m}" /> menganggap air di puncak **diam**, mengabaikan tekanan yang terpakai oleh kelajuannya.
+- <InlineMath math="10\text{ m}" /> dengan tekanan puncak yang benar memakai **batas statis**, yang hanya berlaku bila air tidak mengalir.
+- <InlineMath math="4{,}5\text{ m s}^{-1}" /> memakai <InlineMath math="v=\sqrt{gh}" />, **lupa faktor <InlineMath math="2" />**, dan kesalahan itu terbawa ke tekanan puncak dan ketinggian.

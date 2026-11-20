@@ -1,0 +1,26 @@
+# Das Gas folgt einem Gesetz, solange der Kolben klemmt, einem anderen, wenn er gleitet, und die Reibung kann ihn auf dem Rückweg festhalten
+
+Solange der Kolben festsitzt, ist das Volumen konstant und es gilt das **Gesetz von Amontons**, <InlineMath math="\dfrac{p}{T}" /> konstant, mit Temperaturen in Kelvin. Liegt der Druck <InlineMath math="20\text{ kPa}" /> über dem Außendruck, gleitet der Kolben und der Druck bleibt bei <InlineMath math="120\text{ kPa}" />, dann gilt das **Gesetz von Gay-Lussac**. Beim Abkühlen hält die Reibung den Kolben wieder, bis der Druck <InlineMath math="20\text{ kPa}" /> **unter** dem Außendruck liegt, bei <InlineMath math="80\text{ kPa}" />, man prüft also, ob das vor <InlineMath math="27" /> °C erreicht wird.
+
+<Chart
+  title={<>Volumen der eingeschlossenen Luft</>}
+  bars="apart"
+  categories={["27 °C, Start", "87 °C, Kolben bewegt sich", "100 °C", "Zurück bei 27 °C"]}
+  series={[
+    { label: "Volumen", mark: "bar", values: [30, 30, 31.1, 31.1] },
+  ]}
+  valueLabel="Volumen (cm³)"
+  description={<>Das Volumen bleibt bei <InlineMath math="30\text{ cm}^3" />, bis der Druck bei <InlineMath math="87" /> °C <InlineMath math="120\text{ kPa}" /> erreicht, wächst bis <InlineMath math="100" /> °C auf etwa <InlineMath math="31\text{ cm}^3" /> und bleibt beim Abkühlen dort, weil die Reibung den Kolben wieder festhält.</>}
+/>
+
+<BlockMath math="\frac{100}{300}=\frac{120}{T}\Rightarrow T=360\text{ K}=87\text{ °C},\qquad V=30\cdot\frac{373}{360}\approx31\text{ cm}^3" />
+
+<BlockMath math="\text{Abkühlen, Kolben fest: }p=120\cdot\frac{300}{373}\approx97\text{ kPa}>80\text{ kPa}\Rightarrow V\text{ bleibt }\approx31\text{ cm}^3" />
+
+Der Kolben beginnt bei <InlineMath math="87" /> °C zu gleiten, bei <InlineMath math="100" /> °C füllt die Luft etwa <InlineMath math="31\text{ cm}^3" />. Beim Abkühlen fällt der Druck nur auf etwa <InlineMath math="97\text{ kPa}" />, nie <InlineMath math="20\text{ kPa}" /> unter den Außendruck, der Kolben bleibt also stehen und das Volumen bei etwa <InlineMath math="31\text{ cm}^3" />.
+
+# Warum die anderen Antworten falsch sind
+
+- <InlineMath math="30\text{ cm}^3" /> nach dem Abkühlen nimmt an, der Kolben **gleite zurück**, doch die Reibung hält ihn, solange der Druck nicht auf <InlineMath math="80\text{ kPa}" /> fällt.
+- <InlineMath math="37\text{ cm}^3" /> lässt den Kolben **von Anfang an** gleiten, als hielte ihn die Reibung nicht, bis der Druck steigt.
+- <InlineMath math="32" /> °C setzt **Grad Celsius** statt Kelvin in das Druckgesetz ein.

@@ -1,0 +1,28 @@
+# Semak apa yang sebenarnya dilakukan setiap kereta sebelum menyamakan jaraknya
+
+Menyamakan dua rumus jarak memberi satu masa, tetapi hanya jika kedua-dua rumus masih sah ketika itu. Rumus kereta B, <InlineMath math="20t-t^2" />, sah **hanya sehingga ia berhenti**: selepas itu ia kekal di tempatnya. Rumus kereta polis, <InlineMath math="\tfrac12at^2" />, sah **hanya sehingga ia mencapai <InlineMath math="10\text{ m s}^{-1}" />**: selepas itu ia bergerak dengan laju tetap. Jadi cari di mana setiap kereta berada apabila gerakannya berubah, dan selesaikan kejaran itu dalam fasa yang betul.
+
+<Chart
+  title={<>Jarak dari Lampu Isyarat Melawan Masa</>}
+  categories={["0 s", "2 s", "4 s", "6 s", "8 s", "10 s", "12 s", "14 s", "16 s"]}
+  series={[
+    { label: "Kereta polis", mark: "line", values: [0, 2, 8, 18, 32, 50, 70, 90, 110] },
+    { label: "Kereta B", mark: "line", values: [0, 36, 64, 84, 96, 100, 100, 100, 100] },
+  ]}
+  valueLabel="Jarak (m)"
+  description={<>Kereta B berhenti pada <InlineMath math="100\text{ m}" /> selepas <InlineMath math="10\text{ s}" />. Kereta polis, yang terhad kepada <InlineMath math="10\text{ m s}^{-1}" />, baru berada pada <InlineMath math="50\text{ m}" /> ketika itu dan sampai ke kereta B pada <InlineMath math="15\text{ s}" />.</>}
+/>
+
+<BlockMath math="\text{kereta B: }t_s=\frac{20}{2.0}=10\text{ s},\qquad s_B=\frac{20^2}{2(2.0)}=100\text{ m}" />
+
+<BlockMath math="\text{polis: }t_1=\frac{10}{1.0}=10\text{ s},\qquad s_1=\tfrac12(1.0)(10)^2=50\text{ m}<100\text{ m}" />
+
+<BlockMath math="50+10(t-10)=100\Rightarrow t=15\text{ s},\qquad v=10\text{ m s}^{-1}" />
+
+Kereta B berhenti selepas <InlineMath math="10\text{ s}" />, <InlineMath math="100\text{ m}" /> dari lampu isyarat. Pada saat itu kereta polis baru mencapai laju maksimumnya dan berada <InlineMath math="50\text{ m}" /> di belakang, jadi ia melalui <InlineMath math="50\text{ m}" /> terakhir pada <InlineMath math="10\text{ m s}^{-1}" /> dan sampai ke kereta B <InlineMath math="15\text{ s}" /> selepas permulaan.
+
+# Kenapa pilihan lain salah
+
+- <InlineMath math="13\text{ s}" /> menyelesaikan <InlineMath math="20t-t^2=\tfrac12t^2" />, yang **membiarkan kereta B terus membrek selepas berhenti** dan mengabaikan had laju, jadi kereta polis kelihatan melebihi <InlineMath math="13\text{ m s}^{-1}" />.
+- <InlineMath math="14\text{ s}" /> pada <InlineMath math="14\text{ m s}^{-1}" /> menghentikan kereta B dengan betul tetapi **lupa had laju**, membiarkan kereta polis terus memecut.
+- <InlineMath math="14\text{ s}" /> pada <InlineMath math="10\text{ m s}^{-1}" /> mematuhi had laju tetapi **membiarkan kereta B bergerak ke belakang** selepas berhenti, jadi mereka kelihatan bertemu terlalu awal.

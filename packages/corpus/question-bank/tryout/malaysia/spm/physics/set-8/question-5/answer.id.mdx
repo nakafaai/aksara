@@ -1,0 +1,28 @@
+# Gaya dorong adalah momentum yang diberikan ke udara tiap detik, dan udara tipis harus dilempar lebih cepat
+
+Agar melayang, gaya dorong harus sama dengan berat. Gaya dorong adalah **momentum yang diberikan ke udara tiap detik**: massa per detik kali kelajuan, <InlineMath math="(\rho Av)v=\rho Av^2" />. Dayanya adalah **energi kinetik yang diberikan ke udara tiap detik**, <InlineMath math="\tfrac12(\rho Av)v^2" />. Di udara yang lebih tipis, gaya dorong yang sama butuh <InlineMath math="v" /> lebih besar, dan karena daya tumbuh menurut <InlineMath math="v^3" /> sedangkan gaya dorong menurut <InlineMath math="v^2" />, dayanya **naik** walau udara yang digerakkan lebih sedikit.
+
+<Chart
+  title={<>Daya untuk Melayang</>}
+  bars="apart"
+  categories={["Permukaan laut", "Dataran tinggi"]}
+  series={[
+    { label: "Daya", mark: "bar", values: [42.4, 49.0] },
+  ]}
+  valueLabel="Daya (W)"
+  description={<>Di udara yang lebih tipis, rotor harus melempar udara ke bawah lebih cepat demi gaya dorong yang sama, jadi dayanya naik dari sekitar <InlineMath math="42\text{ W}" /> menjadi sekitar <InlineMath math="49\text{ W}" />.</>}
+/>
+
+<BlockMath math="\rho Av^2=mg\Rightarrow v=\sqrt{\frac{12}{1{,}2\times0{,}20}}=\sqrt{50}\approx7{,}1\text{ m s}^{-1}" />
+
+<BlockMath math="P=\tfrac12\rho Av^3=\tfrac12(1{,}2)(0{,}20)(7{,}07)^3\approx42\text{ W}" />
+
+<BlockMath math="\text{dataran tinggi: }v=\sqrt{\frac{12}{0{,}90\times0{,}20}}\approx8{,}2\text{ m s}^{-1},\qquad P=\tfrac12(0{,}90)(0{,}20)(8{,}16)^3\approx49\text{ W}" />
+
+Di permukaan laut udara keluar sekitar <InlineMath math="7{,}1\text{ m s}^{-1}" />, dan drone memberinya energi kinetik sekitar <InlineMath math="42\text{ W}" />. Di dataran tinggi drone harus melempar udara yang lebih tipis ke bawah sekitar <InlineMath math="8{,}2\text{ m s}^{-1}" />, yang butuh sekitar <InlineMath math="49\text{ W}" />.
+
+# Mengapa pilihan lain salah
+
+- <InlineMath math="32\text{ W}" /> **memperkecil daya sesuai massa jenis**, padahal gaya dorong harus tetap sama dengan berat, jadi udara harus bergerak lebih cepat.
+- <InlineMath math="85\text{ W}" /> memakai <InlineMath math="\dot m v^2" /> untuk energi kinetik tiap detik, **lupa faktor <InlineMath math="\tfrac12" />**.
+- <InlineMath math="42\text{ W}" /> di dataran tinggi menganggap **gaya dorong yang sama butuh daya yang sama**, padahal udara tipis harus dilempar lebih cepat.

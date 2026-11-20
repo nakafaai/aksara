@@ -1,0 +1,28 @@
+# A negative zero error is added back, and an uncertainty in the diameter counts twice
+
+The calipers read <InlineMath math="-0.02\text{ cm}" /> when closed, so every reading is <InlineMath math="0.02\text{ cm}" /> **too small**: the correction is to add it. The <InlineMath math="40" /> turns lie side by side, so the coil is <InlineMath math="40" /> diameters long. Resistivity follows from <InlineMath math="R=\dfrac{\rho L}{A}" /> with <InlineMath math="A=\pi r^2" />. Because the area goes as the **square** of the diameter, a percentage uncertainty in the diameter appears **twice** in the resistivity.
+
+<Chart
+  title={<>Resistivity From Three Readings of the Coil</>}
+  bars="apart"
+  categories={["Correct", "Zero error subtracted", "Diameter used as radius"]}
+  series={[
+    { label: "Resistivity", mark: "bar", values: [4.9, 4.8, 19.5] },
+  ]}
+  valueLabel="Resistivity (10⁻⁷ Ω m)"
+  description={<>Adding the <InlineMath math="0.02\text{ cm}" /> zero error gives about <InlineMath math="4.9\times10^{-7}" />. Subtracting it gives <InlineMath math="4.8\times10^{-7}" />, and using the diameter as the radius makes the value four times too big.</>}
+/>
+
+<BlockMath math="\ell=2.86-(-0.02)=2.88\text{ cm},\qquad d=\frac{2.88}{40}=0.0720\text{ cm}=0.720\text{ mm}" />
+
+<BlockMath math="\rho=\frac{RA}{L}=\frac{2.4\times3.14\times(0.360\times10^{-3})^2}{2.00}\approx4.9\times10^{-7}\,\Omega\text{ m}" />
+
+<BlockMath math="\frac{0.01}{2.88}\approx0.35\%\text{ in }d,\qquad 2\times0.35\%\approx0.7\%\text{ in }\rho" />
+
+The wire is <InlineMath math="0.720\text{ mm}" /> thick and its resistivity is about <InlineMath math="4.9\times10^{-7}" /> ohm metres. The reading of the coil alone gives about <InlineMath math="0.7\%" /> uncertainty in the resistivity.
+
+# Why the other options are wrong
+
+- <InlineMath math="0.710\text{ mm}" /> **subtracts the zero error**, but a negative zero error means the readings are too small, so it must be added.
+- <InlineMath math="2.0\times10^{-6}" /> uses the **diameter as the radius** in <InlineMath math="\pi r^2" />, making the area and the resistivity four times too large.
+- <InlineMath math="0.35\%" /> is the uncertainty in the **diameter**, but the resistivity depends on its square, which doubles the percentage.

@@ -1,0 +1,24 @@
+# Kerjakan tabel kebenaran lewat tiap gerbang, lalu bandingkan kedua rangkaian baris demi baris
+
+Gerbang AND memberi <InlineMath math="1" /> hanya bila **kedua** masukannya <InlineMath math="1" />. Pada rangkaian yang benar, OR bernilai <InlineMath math="1" /> kecuali kedua pintu tertutup, dan NAND bernilai <InlineMath math="1" /> kecuali keduanya terbuka, jadi keduanya <InlineMath math="1" /> tepat saat **satu** pintu terbuka. Mengganti OR dengan NOR membalik masukan itu: NOR bernilai <InlineMath math="1" /> **hanya** saat kedua pintu tertutup, dan di situ NAND juga <InlineMath math="1" />, jadi alarm yang salah berbunyi hanya pada baris itu.
+
+<Mermaid
+  title={<>Alarm Pintu yang Dirakit dengan Benar</>}
+  description={<>Tiap pintu memberi <InlineMath math="1" /> saat terbuka. OR dan NAND sama-sama masuk ke gerbang AND, jadi alarm berbunyi hanya saat tepat satu pintu terbuka.</>}
+  chart={"flowchart LR\n  A[\"Pintu A\"] --> OR\n  B[\"Pintu B\"] --> OR\n  A --> NAND\n  B --> NAND\n  OR --> AND\n  NAND --> AND\n  AND --> X[\"Alarm\"]"}
+/>
+
+| A | B | OR | NOR | NAND | benar | salah |
+| --- | --- | --- | --- | --- | --- | --- |
+| <InlineMath math="0" /> | <InlineMath math="0" /> | <InlineMath math="0" /> | <InlineMath math="1" /> | <InlineMath math="1" /> | <InlineMath math="0" /> | <InlineMath math="1" /> |
+| <InlineMath math="0" /> | <InlineMath math="1" /> | <InlineMath math="1" /> | <InlineMath math="0" /> | <InlineMath math="1" /> | <InlineMath math="1" /> | <InlineMath math="0" /> |
+| <InlineMath math="1" /> | <InlineMath math="0" /> | <InlineMath math="1" /> | <InlineMath math="0" /> | <InlineMath math="1" /> | <InlineMath math="1" /> | <InlineMath math="0" /> |
+| <InlineMath math="1" /> | <InlineMath math="1" /> | <InlineMath math="1" /> | <InlineMath math="0" /> | <InlineMath math="0" /> | <InlineMath math="0" /> | <InlineMath math="0" /> |
+
+Rangkaian yang benar berbunyi untuk <InlineMath math="2" /> dari <InlineMath math="4" /> kombinasi. Saat kedua pintu tertutup rangkaian yang salah memberi <InlineMath math="1" />, alarm palsu, dan kedua rangkaian sama hanya pada <InlineMath math="1" /> baris, saat kedua pintu terbuka.
+
+# Mengapa pilihan lain salah
+
+- <InlineMath math="0" /> dan <InlineMath math="4" /> menganggap gerbang NOR **berperilaku seperti OR**, sehingga tidak ada yang tampak berubah.
+- <InlineMath math="1" /> dan <InlineMath math="0" /> menganggap kesalahan itu sekadar **membalik seluruh keluaran**, padahal hanya satu masukan gerbang AND yang terbalik.
+- <InlineMath math="3" /> menganggap alarm yang benar sebagai **OR**, lupa bahwa gerbang NAND membungkamnya saat kedua pintu terbuka.

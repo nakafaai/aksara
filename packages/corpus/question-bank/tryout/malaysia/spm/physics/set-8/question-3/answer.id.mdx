@@ -1,0 +1,28 @@
+# Periksa apa yang sebenarnya dilakukan tiap mobil sebelum menyamakan jaraknya
+
+Menyamakan dua rumus jarak memberi satu waktu, tetapi hanya jika kedua rumus masih berlaku saat itu. Rumus mobil B, <InlineMath math="20t-t^2" />, berlaku **hanya sampai mobil berhenti**: setelah itu mobil diam. Rumus mobil polisi, <InlineMath math="\tfrac12at^2" />, berlaku **hanya sampai mencapai <InlineMath math="10\text{ m s}^{-1}" />**: setelah itu mobil melaju tetap. Jadi cari posisi tiap mobil saat geraknya berubah, lalu selesaikan pengejaran pada fase yang benar.
+
+<Chart
+  title={<>Jarak dari Lampu Lalu Lintas terhadap Waktu</>}
+  categories={["0 s", "2 s", "4 s", "6 s", "8 s", "10 s", "12 s", "14 s", "16 s"]}
+  series={[
+    { label: "Mobil polisi", mark: "line", values: [0, 2, 8, 18, 32, 50, 70, 90, 110] },
+    { label: "Mobil B", mark: "line", values: [0, 36, 64, 84, 96, 100, 100, 100, 100] },
+  ]}
+  valueLabel="Jarak (m)"
+  description={<>Mobil B berhenti di <InlineMath math="100\text{ m}" /> setelah <InlineMath math="10\text{ s}" />. Mobil polisi, yang dibatasi <InlineMath math="10\text{ m s}^{-1}" />, baru di <InlineMath math="50\text{ m}" /> saat itu dan menyusul mobil B pada <InlineMath math="15\text{ s}" />.</>}
+/>
+
+<BlockMath math="\text{mobil B: }t_s=\frac{20}{2{,}0}=10\text{ s},\qquad s_B=\frac{20^2}{2(2{,}0)}=100\text{ m}" />
+
+<BlockMath math="\text{polisi: }t_1=\frac{10}{1{,}0}=10\text{ s},\qquad s_1=\tfrac12(1{,}0)(10)^2=50\text{ m}<100\text{ m}" />
+
+<BlockMath math="50+10(t-10)=100\Rightarrow t=15\text{ s},\qquad v=10\text{ m s}^{-1}" />
+
+Mobil B berhenti setelah <InlineMath math="10\text{ s}" />, <InlineMath math="100\text{ m}" /> dari lampu. Saat itu mobil polisi baru mencapai kelajuan maksimumnya dan masih <InlineMath math="50\text{ m}" /> di belakang, jadi menempuh <InlineMath math="50\text{ m}" /> terakhir pada <InlineMath math="10\text{ m s}^{-1}" /> dan menyusul mobil B <InlineMath math="15\text{ s}" /> setelah awal.
+
+# Mengapa pilihan lain salah
+
+- <InlineMath math="13\text{ s}" /> menyelesaikan <InlineMath math="20t-t^2=\tfrac12t^2" />, yang **membiarkan mobil B terus mengerem setelah berhenti** dan mengabaikan batas kelajuan, sehingga mobil polisi tampak melewati <InlineMath math="13\text{ m s}^{-1}" />.
+- <InlineMath math="14\text{ s}" /> pada <InlineMath math="14\text{ m s}^{-1}" /> menghentikan mobil B dengan benar tetapi **lupa batas kelajuan**, membiarkan mobil polisi terus dipercepat.
+- <InlineMath math="14\text{ s}" /> pada <InlineMath math="10\text{ m s}^{-1}" /> menaati batas kelajuan tetapi **membiarkan mobil B mundur** setelah berhenti, sehingga keduanya tampak bertemu terlalu cepat.

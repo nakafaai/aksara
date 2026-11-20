@@ -1,0 +1,28 @@
+# Setiap lampu yang rosak memendekkan rantaian, jadi arus naik sehingga fius putus
+
+Dalam litar bersiri, arus ialah voltan bekalan dibahagi dengan **jumlah rintangan**. Pirau lampu yang rosak mengeluarkan <InlineMath math="12\,\Omega" /> daripada rantaian, jadi setiap kerosakan **menurunkan** jumlah rintangan dan **menaikkan** arus melalui setiap lampu yang masih berfungsi. Fius mengehadkan arus, yang menentukan berapa banyak lampu boleh kekal, dan lampu yang tinggal berkongsi seluruh <InlineMath math="240\text{ V}" />, jadi setiap satu menyala lebih terang daripada sebelumnya.
+
+<Chart
+  title={<>Arus Semasa Lampu Rosak</>}
+  categories={["0 rosak", "2 rosak", "4 rosak", "6 rosak", "8 rosak", "10 rosak", "12 rosak"]}
+  series={[
+    { label: "Arus", mark: "line", values: [0.4, 0.417, 0.435, 0.455, 0.476, 0.5, 0.526] },
+    { label: "Had fius", mark: "line", values: [0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5] },
+  ]}
+  valueLabel="Arus (A)"
+  description={<>Pirau setiap lampu yang rosak membuang <InlineMath math="12\,\Omega" /> daripada rantaian, jadi arus naik dari <InlineMath math="0.40\text{ A}" /> dan mencapai <InlineMath math="0.50\text{ A}" /> fius apabila <InlineMath math="10" /> lampu telah rosak.</>}
+/>
+
+<BlockMath math="I_0=\frac{240}{50\times12}=0.40\text{ A}" />
+
+<BlockMath math="\frac{240}{12(50-n)}\le0.50\Rightarrow 50-n\ge40\Rightarrow n\le10" />
+
+<BlockMath math="P=I^2R=(0.50)^2\times12=3.0\text{ W}\quad\text{(berbanding }0.40^2\times12\approx1.9\text{ W biasanya)}" />
+
+Dengan semua lampu berfungsi, <InlineMath math="0.40\text{ A}" /> mengalir. Sehingga <InlineMath math="10" /> lampu boleh rosak, meninggalkan <InlineMath math="40" /> yang membawa <InlineMath math="0.50\text{ A}" />, dan setiap satu kemudian menyala pada <InlineMath math="3.0\text{ W}" /> dan bukan kira-kira <InlineMath math="1.9\text{ W}" />.
+
+# Kenapa pilihan lain salah
+
+- <InlineMath math="40" /> lampu ialah bilangan yang **masih berfungsi** pada had itu, bukan bilangan yang rosak.
+- <InlineMath math="1.9\text{ W}" /> menganggap setiap lampu **mengekalkan bahagian voltan biasanya**, tetapi lebih sedikit lampu berkongsi <InlineMath math="240\text{ V}" /> yang sama.
+- <InlineMath math="6.0\text{ W}" /> mendarab arus dengan **rintangan** seolah-olah ia voltan, <InlineMath math="P=IR" />, yang bukan kuasa.

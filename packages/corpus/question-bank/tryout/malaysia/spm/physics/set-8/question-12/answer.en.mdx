@@ -1,0 +1,28 @@
+# The pot warms along with the soup, and at the boil the losses eat into the power
+
+Only <InlineMath math="80\%" /> of the hob's <InlineMath math="2.0\text{ kW}" /> reaches the pot, <InlineMath math="1600\text{ W}" />. Warming up, that power must heat **the copper pot as well as the soup**. Once boiling, the soup's temperature no longer changes, so the heat that stays in it goes into vaporising water, but the pot is now losing <InlineMath math="600\text{ W}" />, so **only <InlineMath math="1000\text{ W}" />** is left for boiling. The hob's electrical energy counts its full <InlineMath math="2.0\text{ kW}" /> for the whole time.
+
+<Chart
+  title={<>Time on the Hob</>}
+  bars="apart"
+  categories={["Heating to 100 °C", "Boiling off 0.50 kg"]}
+  series={[
+    { label: "Time", mark: "bar", values: [6.7, 18.8] },
+  ]}
+  valueLabel="Time (min)"
+  description={<>Heating pot and soup to boiling takes about <InlineMath math="6.7\text{ min}" />. Boiling away <InlineMath math="0.50\text{ kg}" /> then takes about <InlineMath math="19\text{ min}" />, because <InlineMath math="600\text{ W}" /> of the <InlineMath math="1600\text{ W}" /> reaching the pot leaks away.</>}
+/>
+
+<BlockMath math="Q_1=(1.5\times390+2.0\times4000)\times75\approx6.44\times10^{5}\text{ J},\qquad t_1=\frac{6.44\times10^{5}}{1600}\approx402\text{ s}\approx6.7\text{ min}" />
+
+<BlockMath math="Q_2=0.50\times2.26\times10^{6}=1.13\times10^{6}\text{ J},\qquad t_2=\frac{1.13\times10^{6}}{1600-600}=1130\text{ s}\approx19\text{ min}" />
+
+<BlockMath math="E=2000\times(402+1130)\approx3.06\times10^{6}\text{ J}\approx0.85\text{ kW h}" />
+
+The soup boils after about <InlineMath math="6.7\text{ min}" />, and boiling away <InlineMath math="0.50\text{ kg}" /> takes about <InlineMath math="19\text{ min}" /> more. Altogether the hob uses about <InlineMath math="0.85\text{ kW h}" />.
+
+# Why the other options are wrong
+
+- <InlineMath math="6.3\text{ min}" /> heats **only the soup**, forgetting that the copper pot has to be warmed too.
+- <InlineMath math="12\text{ min}" /> boils with the full <InlineMath math="1600\text{ W}" />, **ignoring the <InlineMath math="600\text{ W}" />** the pot loses while at <InlineMath math="100" /> °C.
+- <InlineMath math="0.68\text{ kW h}" /> counts only the **<InlineMath math="80\%" /> that reaches the pot**, but the meter records everything the hob draws.

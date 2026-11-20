@@ -1,0 +1,26 @@
+# A flat window bends the edge rays towards the normal, so the camera sees a narrower, closer-looking world
+
+The camera's edge ray leaves the lens at <InlineMath math="30°" /> in air. Traced back through the flat window, it must have been travelling in the water at a **smaller** angle to the normal, from <InlineMath math="\sin\theta_a=1.33\sin\theta_w" />. So under water the camera takes in a narrower cone. The same refraction makes things straight ahead look **closer**, by the factor <InlineMath math="\dfrac{1}{1.33}" />, like the apparent depth of a pool. To frame the wall, use the narrower angle in the water.
+
+<Chart
+  title={<>Full Width of the Camera's View</>}
+  bars="apart"
+  categories={["In air", "Under water, flat port"]}
+  series={[
+    { label: "Field of view", mark: "bar", values: [60, 44.2] },
+  ]}
+  valueLabel="Angle (°)"
+  description={<>Refraction at the flat window bends every ray towards the normal, so the <InlineMath math="60°" /> view in air narrows to about <InlineMath math="44°" /> under water.</>}
+/>
+
+<BlockMath math="\sin\theta_w=\frac{\sin30°}{1.33}\approx0.376\Rightarrow\theta_w\approx22°,\qquad\text{full view}\approx44°" />
+
+<BlockMath math="\text{apparent distance}=\frac{2.0}{1.33}\approx1.5\text{ m},\qquad d=\frac{1.5}{\tan22.1°}\approx3.7\text{ m}" />
+
+Under water the camera's field of view narrows to about <InlineMath math="44°" />, and the fish <InlineMath math="2.0\text{ m}" /> away looks only about <InlineMath math="1.5\text{ m}" /> away. To fit the <InlineMath math="3.0\text{ m}" /> wall across the picture the diver must back off to about <InlineMath math="3.7\text{ m}" />.
+
+# Why the other options are wrong
+
+- <InlineMath math="60°" /> and <InlineMath math="2.6\text{ m}" /> assume a flat window **changes nothing**, but light bends at the boundary between water and air.
+- <InlineMath math="83°" /> and <InlineMath math="2.7\text{ m}" /> **multiply** by the refractive index, bending the rays away from the normal in the water.
+- <InlineMath math="2.6\text{ m}" /> with <InlineMath math="44°" /> uses the **air field of view** to frame the wall, but the view in the water is the narrower one.

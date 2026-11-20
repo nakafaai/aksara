@@ -1,0 +1,28 @@
+# Erst prüfen, was jedes Auto wirklich tut, dann die Wege gleichsetzen
+
+Setzt man die beiden Weg-Formeln gleich, erhält man eine Zeit, aber nur, wenn beide Formeln dann noch gelten. Die Formel von Auto B, <InlineMath math="20t-t^2" />, gilt **nur bis zum Stillstand**: Danach bleibt es stehen. Die des Polizeiautos, <InlineMath math="\tfrac12at^2" />, gilt **nur bis <InlineMath math="10\text{ m s}^{-1}" />**: Danach fährt es gleichförmig. Also bestimmt man, wo jedes Auto ist, wenn sich seine Bewegung ändert, und löst die Verfolgung in der richtigen Phase.
+
+<Chart
+  title={<>Abstand von der Ampel über der Zeit</>}
+  categories={["0 s", "2 s", "4 s", "6 s", "8 s", "10 s", "12 s", "14 s", "16 s"]}
+  series={[
+    { label: "Polizeiauto", mark: "line", values: [0, 2, 8, 18, 32, 50, 70, 90, 110] },
+    { label: "Auto B", mark: "line", values: [0, 36, 64, 84, 96, 100, 100, 100, 100] },
+  ]}
+  valueLabel="Abstand (m)"
+  description={<>Auto B steht nach <InlineMath math="10\text{ s}" /> bei <InlineMath math="100\text{ m}" />. Das auf <InlineMath math="10\text{ m s}^{-1}" /> begrenzte Polizeiauto ist dann erst bei <InlineMath math="50\text{ m}" /> und erreicht Auto B nach <InlineMath math="15\text{ s}" />.</>}
+/>
+
+<BlockMath math="\text{Auto B: }t_s=\frac{20}{2{,}0}=10\text{ s},\qquad s_B=\frac{20^2}{2(2{,}0)}=100\text{ m}" />
+
+<BlockMath math="\text{Polizei: }t_1=\frac{10}{1{,}0}=10\text{ s},\qquad s_1=\tfrac12(1{,}0)(10)^2=50\text{ m}<100\text{ m}" />
+
+<BlockMath math="50+10(t-10)=100\Rightarrow t=15\text{ s},\qquad v=10\text{ m s}^{-1}" />
+
+Auto B steht nach <InlineMath math="10\text{ s}" />, <InlineMath math="100\text{ m}" /> hinter der Ampel. Das Polizeiauto hat dann gerade seine Höchstgeschwindigkeit erreicht und liegt <InlineMath math="50\text{ m}" /> zurück, es fährt die letzten <InlineMath math="50\text{ m}" /> mit <InlineMath math="10\text{ m s}^{-1}" /> und erreicht Auto B nach <InlineMath math="15\text{ s}" />.
+
+# Warum die anderen Antworten falsch sind
+
+- <InlineMath math="13\text{ s}" /> löst <InlineMath math="20t-t^2=\tfrac12t^2" />, **lässt Auto B also nach dem Stillstand weiterbremsen** und übersieht die Geschwindigkeitsgrenze, sodass das Polizeiauto <InlineMath math="13\text{ m s}^{-1}" /> zu fahren scheint.
+- <InlineMath math="14\text{ s}" /> bei <InlineMath math="14\text{ m s}^{-1}" /> lässt Auto B richtig anhalten, **vergisst aber die Geschwindigkeitsgrenze** und lässt das Polizeiauto weiter beschleunigen.
+- <InlineMath math="14\text{ s}" /> bei <InlineMath math="10\text{ m s}^{-1}" /> hält die Grenze ein, **lässt Auto B nach dem Stillstand aber rückwärts rollen**, sodass sie sich zu früh zu treffen scheinen.

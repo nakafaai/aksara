@@ -1,0 +1,26 @@
+# Gas mengikuti satu hukum selama piston macet dan hukum lain setelah bergeser, dan gesekan bisa menahannya saat kembali
+
+Selama piston tertahan, volume tetap dan **hukum tekanan** berlaku, <InlineMath math="\dfrac{p}{T}" /> tetap, dengan suhu dalam kelvin. Begitu tekanan <InlineMath math="20\text{ kPa}" /> di atas tekanan luar, piston bergeser dan tekanan tetap <InlineMath math="120\text{ kPa}" />, jadi **hukum Charles** mengambil alih. Saat mendingin, gesekan menahan piston lagi sampai tekanan <InlineMath math="20\text{ kPa}" /> **di bawah** tekanan luar, <InlineMath math="80\text{ kPa}" />, jadi periksa apakah itu tercapai sebelum <InlineMath math="27" /> °C.
+
+<Chart
+  title={<>Volume Udara yang Terperangkap</>}
+  bars="apart"
+  categories={["27 °C, awal", "87 °C, piston mulai bergerak", "100 °C", "Kembali 27 °C"]}
+  series={[
+    { label: "Volume", mark: "bar", values: [30, 30, 31.1, 31.1] },
+  ]}
+  valueLabel="Volume (cm³)"
+  description={<>Volume tetap <InlineMath math="30\text{ cm}^3" /> sampai tekanan mencapai <InlineMath math="120\text{ kPa}" /> pada <InlineMath math="87" /> °C, bertambah menjadi sekitar <InlineMath math="31\text{ cm}^3" /> pada <InlineMath math="100" /> °C, dan tetap di situ saat mendingin karena gesekan menahan piston lagi.</>}
+/>
+
+<BlockMath math="\frac{100}{300}=\frac{120}{T}\Rightarrow T=360\text{ K}=87\text{ °C},\qquad V=30\times\frac{373}{360}\approx31\text{ cm}^3" />
+
+<BlockMath math="\text{mendingin, piston tertahan: }p=120\times\frac{300}{373}\approx97\text{ kPa}>80\text{ kPa}\Rightarrow V\text{ tetap }\approx31\text{ cm}^3" />
+
+Piston mulai bergerak pada <InlineMath math="87" /> °C, dan pada <InlineMath math="100" /> °C udara mengisi sekitar <InlineMath math="31\text{ cm}^3" />. Saat mendingin tekanan hanya turun sampai sekitar <InlineMath math="97\text{ kPa}" />, tidak pernah <InlineMath math="20\text{ kPa}" /> di bawah tekanan luar, jadi piston diam dan volumenya tetap sekitar <InlineMath math="31\text{ cm}^3" />.
+
+# Mengapa pilihan lain salah
+
+- <InlineMath math="30\text{ cm}^3" /> setelah mendingin menganggap piston **bergeser kembali**, padahal gesekan menahannya kecuali tekanan turun ke <InlineMath math="80\text{ kPa}" />.
+- <InlineMath math="37\text{ cm}^3" /> membiarkan piston bergeser **sejak awal**, seolah-olah gesekan tidak menahannya sampai tekanan naik.
+- <InlineMath math="32" /> °C memakai **derajat Celsius** dalam hukum tekanan, bukan kelvin.
