@@ -10,8 +10,8 @@ import { ConsumerVerificationError } from "#scripts/consumer/tools";
 
 describe("consumer command paths", () => {
   it("selects platform executables without a shell", () => {
-    expect(executablePath("pnpm", "darwin")).toBe("pnpm");
-    expect(executablePath("pnpm", "win32")).toBe("pnpm.cmd");
+    expect(executablePath("bun", "darwin")).toBe("bun");
+    expect(executablePath("bun", "win32")).toBe("bun.cmd");
   });
 });
 

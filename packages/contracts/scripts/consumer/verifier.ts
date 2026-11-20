@@ -14,10 +14,10 @@ import {
 } from "#scripts/consumer/command";
 import { stageConsumerPackage } from "#scripts/consumer/package";
 import {
+  CONSUMER_INSTALL_ARGUMENTS,
   ConsumerPackageInputSchema,
   consumerError,
   consumerFailure,
-  consumerPnpmArguments,
   createConsumerManifest,
   createConsumerSource,
   createConsumerTsconfig,
@@ -128,7 +128,7 @@ const inspectInstalledPackage = Effect.fn(
   return answer.resolved;
 });
 
-/** Builds and verifies one exact release archive in an isolated pnpm consumer. */
+/** Builds and verifies one exact release archive in an isolated Bun consumer. */
 export const verifyConsumer = Effect.fn("AksaraContracts.verifyConsumer")(
   function* (input: ConsumerVerificationInput) {
     const output = yield* parseConsumerArguments(input.args);
@@ -159,20 +159,14 @@ export const verifyConsumer = Effect.fn("AksaraContracts.verifyConsumer")(
       path.join(staged.consumerDirectory, "package.json"),
       createConsumerManifest({
         effectVersion: staged.effectVersion,
-        packageManager: staged.packageManager,
         packageName: staged.packageName,
         tarballPath: staged.tarballPath,
       }),
       "Consumer manifest staging failed"
     );
     yield* run(
-      staged.bunx,
-      consumerPnpmArguments([
-        "install",
-        "--ignore-scripts",
-        "--no-frozen-lockfile",
-        "--prod",
-      ]),
+      staged.bun,
+      CONSUMER_INSTALL_ARGUMENTS,
       "Consumer dependency installation",
       staged.consumerDirectory
     );
@@ -223,7 +217,7 @@ export const verifyConsumer = Effect.fn("AksaraContracts.verifyConsumer")(
     });
     yield* preserveTarball(output, staged.tarballPath);
     yield* Console.log(
-      `Verified ${staged.packageName} as an isolated pnpm release consumer.`
+      `Verified ${staged.packageName} as an isolated Bun release consumer.`
     );
   }
 );

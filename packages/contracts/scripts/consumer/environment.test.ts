@@ -40,23 +40,23 @@ layer(NodeServices.layer)("consumer command environment", (effectIt) => {
             NPM_TOKEN: "credential",
             npm_config_registry: "private",
             PATH: "/usr/bin",
-            PNPM_CONFIG_STORE_DIR: "private",
-            PNPM_HOME: "/home/test/store",
+            BUN_CONFIG_REGISTRY: "private",
+            BUN_INSTALL_CACHE_DIR: "/home/test/cache",
           })
         )
       );
 
       expect(environment).toEqual({
+        BUN_INSTALL_CACHE_DIR: "/home/test/cache",
         HOME: "/home/test",
         NPM_CONFIG_GLOBALCONFIG: "/empty/global",
         NPM_CONFIG_USERCONFIG: "/empty/user",
         PATH: "/usr/bin",
-        PNPM_HOME: "/home/test/store",
       });
     })
   );
 
-  effectIt.effect("omits the package store when none is configured", () =>
+  effectIt.effect("omits Bun's install cache when none is configured", () =>
     Effect.gen(function* () {
       const environment = yield* consumerEnvironment(
         "/empty/global",
@@ -65,7 +65,7 @@ layer(NodeServices.layer)("consumer command environment", (effectIt) => {
         Effect.provide(configuration({ HOME: "/home/test", PATH: "/usr/bin" }))
       );
 
-      expect(environment).not.toHaveProperty("PNPM_HOME");
+      expect(environment).not.toHaveProperty("BUN_INSTALL_CACHE_DIR");
     })
   );
 
@@ -95,8 +95,8 @@ layer(NodeServices.layer)("consumer command environment", (effectIt) => {
           configuration({
             HOME: "/home/test",
             NPM_TOKEN: "must-not-reach-a-command",
+            BUN_INSTALL_CACHE_DIR: "/home/test/cache",
             PATH: "/usr/bin:/bin",
-            PNPM_HOME: "/home/test/store",
           })
         )
       );
@@ -110,11 +110,11 @@ layer(NodeServices.layer)("consumer command environment", (effectIt) => {
         Arr.sort(
           [
             ...baseline,
+            "BUN_INSTALL_CACHE_DIR",
             "HOME",
             "NPM_CONFIG_GLOBALCONFIG",
             "NPM_CONFIG_USERCONFIG",
             "PATH",
-            "PNPM_HOME",
           ],
           Order.String
         )

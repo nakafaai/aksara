@@ -14,7 +14,7 @@ const requiredVariable = (name: string) =>
 
 /**
  * Builds the environment of every consumer command from named configuration
- * only: the search path and home directory, the package store when one is
+ * only: the search path and home directory, Bun's install cache when one is
  * configured, and the two npm configuration files that the verifier empties.
  */
 export const consumerEnvironment = Effect.fn(
@@ -22,11 +22,13 @@ export const consumerEnvironment = Effect.fn(
 )(function* (globalConfig: string, userConfig: string) {
   const home = yield* requiredVariable("HOME");
   const path = yield* requiredVariable("PATH");
-  const pnpmHome = yield* Config.option(Config.String("PNPM_HOME")).pipe(
+  const cache = yield* Config.option(
+    Config.String("BUN_INSTALL_CACHE_DIR")
+  ).pipe(
     Effect.mapError(
       consumerFailure(
         "argument",
-        "Consumer command environment cannot read PNPM_HOME"
+        "Consumer command environment cannot read BUN_INSTALL_CACHE_DIR"
       )
     )
   );
@@ -35,6 +37,6 @@ export const consumerEnvironment = Effect.fn(
     NPM_CONFIG_GLOBALCONFIG: globalConfig,
     NPM_CONFIG_USERCONFIG: userConfig,
     PATH: path,
-    ...(Option.isSome(pnpmHome) ? { PNPM_HOME: pnpmHome.value } : {}),
+    ...(Option.isSome(cache) ? { BUN_INSTALL_CACHE_DIR: cache.value } : {}),
   };
 });

@@ -4,25 +4,26 @@ import { ManifestError } from "#scripts/manifest";
 import { encodePrettyJsonText } from "#scripts/text/json";
 
 /**
- * The pnpm release that packs and installs the isolated consumer. Runners do
- * not install pnpm, so Bun fetches this exact release through bunx. The release
- * identity compares the packed archive byte for byte with the latest immutable
- * release, so a new pin must keep those bytes identical. nakafa.com installs the
- * published package with Bun, but a different packer can change the archive
- * bytes.
+ * Bun packs the release archive and installs it in the isolated consumer, the
+ * same tool nakafa.com installs the published package with. Bun writes every
+ * archive entry with one fixed timestamp, so the same staged package always
+ * packs to the same bytes, which the release identity compares with the latest
+ * immutable release. Lifecycle scripts never run: the staged package is
+ * already built.
  */
-export const CONSUMER_PACKAGE_MANAGER = "pnpm@11.28.8";
-
-/** Builds the arguments that run one pnpm command with the pinned consumer release through bunx. */
-export function consumerPnpmArguments(
-  args: readonly string[]
-): readonly string[] {
-  return [CONSUMER_PACKAGE_MANAGER, ...args];
+export function consumerPackArguments(destination: string): readonly string[] {
+  return ["pm", "pack", "--ignore-scripts", "--destination", destination];
 }
+
+/** Installs the consumer's production dependencies, the packed archive among them, without lifecycle scripts. */
+export const CONSUMER_INSTALL_ARGUMENTS: readonly string[] = [
+  "install",
+  "--production",
+  "--ignore-scripts",
+];
 
 const ConsumerManifestInputSchema = Schema.Struct({
   effectVersion: Schema.String,
-  packageManager: Schema.String,
   packageName: Schema.String,
   tarballPath: Schema.String,
 });
@@ -47,7 +48,7 @@ export const ConsumerPackageInputSchema = Schema.Struct({
   temporaryDirectory: Schema.optionalKey(Schema.String),
   tools: Schema.optionalKey(
     Schema.Struct({
-      bunx: Schema.optionalKey(Schema.String),
+      bun: Schema.optionalKey(Schema.String),
       tar: Schema.optionalKey(Schema.String),
     })
   ),
@@ -93,7 +94,7 @@ export function selectPackedArchive(
   );
   if (archive === undefined || extra.length > 0) {
     return Effect.fail(
-      new ManifestError({ message: "pnpm must produce exactly one tarball" })
+      new ManifestError({ message: "Bun must pack exactly one tarball" })
     );
   }
   return Effect.succeed(archive);
@@ -102,7 +103,6 @@ export function selectPackedArchive(
 /** Serializes the isolated package consumer without inheriting workspace state. */
 export function createConsumerManifest({
   effectVersion,
-  packageManager,
   packageName,
   tarballPath,
 }: ConsumerManifestInput) {
@@ -112,7 +112,6 @@ export function createConsumerManifest({
       effect: effectVersion,
     },
     name: "aksara-contracts-external-consumer",
-    packageManager,
     private: true,
     type: "module",
   })}\n`;

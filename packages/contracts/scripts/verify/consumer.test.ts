@@ -116,7 +116,7 @@ layer(NodeServices.layer)("consumer verification", (effectIt) => {
       const processError = yield* verifyConsumer({
         ...input(),
         temporaryDirectory: workspace,
-        tools: { bunx: process.execPath },
+        tools: { bun: process.execPath },
       }).pipe(Effect.scoped, Effect.provide(configuration(root)), Effect.flip);
       expect(processError).toMatchObject({
         detail: expect.stringContaining("Contract package creation"),
@@ -132,7 +132,7 @@ layer(NodeServices.layer)("consumer verification", (effectIt) => {
       const startError = yield* verifyConsumer({
         ...input(),
         temporaryDirectory: workspace,
-        tools: { bunx: path.join(root, "missing-command") },
+        tools: { bun: path.join(root, "missing-command") },
       }).pipe(
         Effect.scoped,
         Effect.provide(configuration(root, { NPM_TOKEN: credential })),
@@ -173,28 +173,28 @@ layer(NodeServices.layer)("consumer verification", (effectIt) => {
   );
 
   effectIt.effect(
-    "packs the consumer with the pinned pnpm release through bunx",
+    "packs the consumer with Bun, without lifecycle scripts",
     () =>
       Effect.gen(function* () {
         const fileSystem = yield* FileSystem.FileSystem;
         const path = yield* Path.Path;
         const root = yield* fileSystem.makeTempDirectoryScoped({
-          prefix: "aksara-consumer-pnpm-",
+          prefix: "aksara-consumer-bun-",
         });
         const workspace = path.join(root, "workspace");
         const recorded = path.join(root, "arguments.txt");
-        const bunx = path.join(root, "bunx");
+        const bun = path.join(root, "bun");
         yield* fileSystem.makeDirectory(workspace);
         yield* fileSystem.writeFileString(
-          bunx,
+          bun,
           `#!/bin/sh\nprintf '%s\\n' "$@" > "${recorded}"\nexit 3\n`
         );
-        yield* fileSystem.chmod(bunx, 0o755);
+        yield* fileSystem.chmod(bun, 0o755);
 
         const error = yield* verifyConsumer({
           ...input(),
           temporaryDirectory: workspace,
-          tools: { bunx },
+          tools: { bun },
         }).pipe(
           Effect.scoped,
           Effect.provide(configuration(root)),
@@ -208,10 +208,10 @@ layer(NodeServices.layer)("consumer verification", (effectIt) => {
           .trimEnd()
           .split("\n");
         expect(command).toEqual([
-          "pnpm@11.28.8",
+          "pm",
           "pack",
-          "--config.ignore-scripts=true",
-          "--pack-destination",
+          "--ignore-scripts",
+          "--destination",
           expect.stringMatching(PACK_DIRECTORY_PATTERN),
         ]);
       })
