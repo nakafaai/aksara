@@ -15,10 +15,12 @@ misses an element below is not finished.
 2. **A teacher talks to one learner.** Short sentences, direct address, named
    objects and actions, and the next likely question answered in the next
    sentence. [Voice](voice.md) owns the register for each locale.
-3. **Rich interactive visuals model the concept.** Learners skim long text, so
-   3D scenes and animations carry Nakafa's lessons. Every lesson in every
-   subject has at least three interactive visual cards. A Mermaid diagram, a
-   table, or a video never counts toward the three. Every main idea a learner can see
+3. **Custom scenes model the concept.** Learners skim long text, so 3D
+   scenes and animations carry Nakafa's lessons. Every lesson folder in every
+   subject holds at least three distinct custom scenes across its sections, and
+   aims for five: Visual Catalog figures drawn in three.js or p5, or animated
+   labs. `MathVisual`, the charts, Mermaid diagrams, tables, and videos come on
+   top and never count toward the three. Every main idea a learner can see
    gets its own interactive visual, usually one in each teaching section, and
    the lesson never has fewer than it had before a revision.
    Changing a parameter, stepping through a process, rotating a structure, or
@@ -76,8 +78,9 @@ count toward it.
    finding reaches zero, and every signal is either fixed or retained with a
    stated teaching reason. Run the
    [points gate](verification.md#points-gate) on the same directory: it fails
-   a typed coordinate list, a long decimal coordinate, and any file with fewer
-   interactive visuals than before.
+   a typed coordinate list, a long decimal coordinate, any file with fewer
+   interactive visuals than before, and a changed lesson with fewer than three
+   distinct custom scenes.
 6. Compile the lesson and preview it through Nakafa's renderer at 390 and 1440
    pixels in light and dark themes. Rotate every 3D scene and play every
    animation.
@@ -91,8 +94,8 @@ count toward it.
 - A long paragraph describing what a table, diagram, or interactive visual
   would show faster.
 - A formula stated without its conditions, its symbols, or a worked use.
-- A lesson with fewer than three interactive visual cards, or a Mermaid
-  diagram added to reach the count.
+- A lesson with fewer than three distinct custom scenes, or a `MathVisual`,
+  chart, Mermaid diagram, or table added to reach the count.
 - A visual that only draws a static line or shape when the lesson's question is
   about how a parameter, step, or structure changes the result.
 - A revision that removes or merges interactive visuals, so the lesson ends

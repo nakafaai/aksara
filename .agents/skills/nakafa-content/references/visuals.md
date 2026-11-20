@@ -296,15 +296,16 @@ and remember a concept they can see and change, and they skim long text. The
 research in the [evidence basis](research.md) governs how the visual is
 designed: it carries a teaching job and never decorates.
 
-- Every lesson in every subject carries at least three interactive visual
-  cards in every locale, each modelling part of its concept: a 3D scene, a p5
-  animation, an interactive chart, or a formula-driven `MathVisual`, inside
-  its renderer-owned card. A Mermaid diagram, a table, a code block, or a
-  video never counts toward the three and is never added as filler, because
-  none of them lets the learner change, step through, rotate, or run the
-  idea. A learner never meets a
-  lesson of only text and formulas. The [points gate](#computed-and-exact-visuals)
-  lists every lesson below this bar.
+- Every lesson folder in every subject carries at least three distinct custom
+  scenes across its sections in every locale, and aims for five. A custom
+  scene is a Visual Catalog figure that Nakafa draws for a concept: a 3D
+  scene, a p5 sketch, or an animated lab, inside its renderer-owned card. Each
+  models part of the lesson's concept. `MathVisual`, the charts, Mermaid
+  diagrams, tables, code blocks, and videos come on top: they teach, but they
+  never count toward the three and are never added as filler. A learner never
+  meets a lesson of only text and formulas. The
+  [points gate](verification.md#points-gate) holds every changed lesson to
+  this bar.
 
 - The interaction answers a question the lesson asks: change a parameter and
   watch the result, step through a process, rotate a structure, or run a
