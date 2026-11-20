@@ -64,6 +64,13 @@ describe("headingWords", () => {
           { type: "text", value: "Nilai " },
           { attributes: [], type: "mdxJsxTextElement" },
           { type: "mdxJsxTextElement" },
+          {
+            attributes: [{ name: "math", value: { type: "expression" } }],
+            type: "mdxJsxTextElement",
+          },
+          { children: "not a list", type: "emphasis" },
+          { type: "text" },
+          { value: "no type" },
           { type: "inlineCode", value: "x" },
           { type: "mdxTextExpression", value: "y" },
         ],

@@ -76,29 +76,16 @@ export function headingAnchor(text: string): string {
   return headingLabel(text).toLowerCase().replace(WHITESPACE, "-");
 }
 
-/**
- * The fields of a Markdown or MDX node that a heading's words come from, so
- * the compiler's tree and the content skill's parser share one reading.
- */
-export interface HeadingWordNode {
-  readonly attributes?: readonly {
-    readonly name?: string | null;
-    readonly type?: string;
-    readonly value?: unknown;
-  }[];
-  readonly children?: readonly HeadingWordNode[];
-  readonly type: string;
-  readonly value?: unknown;
-}
-
 /** Reads the literal `math` prop of one inline JSX element, when it has one. */
-function mathProp(node: HeadingWordNode): Option.Option<string> {
-  if (node.type !== "mdxJsxTextElement") {
-    return Option.none();
-  }
-  return Arr.findFirst(node.attributes ?? [], (attribute) =>
-    attribute.type === "mdxJsxAttribute" &&
+function mathProp(node: object): Option.Option<string> {
+  const attributes =
+    Predicate.hasProperty(node, "attributes") && Arr.isArray(node.attributes)
+      ? node.attributes
+      : [];
+  return Arr.findFirst(attributes, (attribute: unknown) =>
+    Predicate.hasProperty(attribute, "name") &&
     attribute.name === "math" &&
+    Predicate.hasProperty(attribute, "value") &&
     Predicate.isString(attribute.value)
       ? Option.some(attribute.value)
       : Option.none()
@@ -108,14 +95,23 @@ function mathProp(node: HeadingWordNode): Option.Option<string> {
 /**
  * The words of one heading node as the rendered page reads them: its text,
  * and the source of each formula, which stands in a `math` prop instead of
- * the component's children. This mirrors nakafa.com's `textOf`.
+ * the component's children. This mirrors nakafa.com's `textOf`. It reads any
+ * Markdown or MDX node, so the compiler's tree and the content skill's parser
+ * share one reading.
  */
-export function headingWords(node: HeadingWordNode): string {
-  if (node.type === "text" || node.type === "inlineCode") {
-    return String(node.value);
+export function headingWords(node: unknown): string {
+  if (!Predicate.hasProperty(node, "type")) {
+    return "";
   }
-  return Option.getOrElse(mathProp(node), () =>
-    Arr.join(Arr.map(node.children ?? [], headingWords), "")
+  if (node.type === "text" || node.type === "inlineCode") {
+    return Predicate.hasProperty(node, "value") ? String(node.value) : "";
+  }
+  const math =
+    node.type === "mdxJsxTextElement" ? mathProp(node) : Option.none();
+  return Option.getOrElse(math, () =>
+    Predicate.hasProperty(node, "children") && Arr.isArray(node.children)
+      ? Arr.join(Arr.map(node.children, headingWords), "")
+      : ""
   );
 }
 

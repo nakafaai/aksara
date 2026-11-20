@@ -47,7 +47,8 @@ misses an element below is not finished.
    [structure](structure.md#lesson-shape) rules. No section whose body is only a
    list, no nested lists, and paragraphs of about seventy words at most. No
    outline, paragraph, opening, transition, or example scenario is reused from
-   another lesson in any locale.
+   another lesson in any locale (`repeated-sentence`, `repeated-paragraph`,
+   `shared-skeleton`).
 8. **Emphasis like a student's highlighter.** Each section marks the few terms,
    conditions, and results a learner would copy into notes.
    [Emphasis](emphasis.md) owns the marker rules.

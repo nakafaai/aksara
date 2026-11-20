@@ -276,8 +276,9 @@ joins `NON_VISUAL_COMPONENTS` in `points/visual.ts` with its test.
 ## Outline gate
 
 `bun run headings` holds every lesson and article page that a change touched
-to the outline and heading rules, and compares it with every page of its
-locale in the corpus, so a collision with an untouched lesson still fails.
+to the outline, heading, and repetition rules, and compares it with every page
+of its locale in the corpus, so a collision with an untouched lesson still
+fails.
 It reads the change from the merge base of `origin/main` and `HEAD`, as the
 points gate does, including untracked files.
 
@@ -300,6 +301,8 @@ bun run headings --all
 | `heading-unique` | block | every heading, per locale, across lessons and articles, except an article's standard scientific section names |
 | `heading-names-lesson` | block | a heading that is another page's title |
 | `shared-skeleton` | block | the scaffold sections a lesson page ends with, shared with another page |
+| `repeated-sentence` | block | a sentence of 6 or more words, formulas aside, that another lesson page of the locale also has |
+| `repeated-paragraph` | block | a paragraph of 20 or more words sharing half its five-word runs with another lesson page's |
 | `heading-width` | review | about 30 characters for an H2, 24 for an H3 |
 | `section-span` | review | a leaf section above 300 words of text alone |
 | `lesson-length` | review | a page above 1,400 visible words |

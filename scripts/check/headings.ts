@@ -6,6 +6,7 @@ import {
 import { findPageFindings } from "#nakafa-content/heading/page";
 import { isHeadingOnlyChange } from "#nakafa-content/heading/relabel";
 import { findSkeletonFindings } from "#nakafa-content/heading/skeleton";
+import { findRepeatFindings } from "#nakafa-content/prose/repeat";
 import { trackedFiles } from "#scripts/check/files";
 import { corpusPages, parsePage, sourceAt } from "#scripts/check/pages";
 import { changedFiles, mergeBase } from "#scripts/check/visuals";
@@ -36,24 +37,28 @@ export class OutlinePolicyError extends Schema.TaggedError<
   review: Schema.Finite,
 }) {}
 
-/** What one run checks and how strictly. */
-export interface HeadingOptions {
-  /** Reports every page instead of the pages this change touched. */
-  readonly all: boolean;
-  /** The ref the change is measured from. */
-  readonly base: string;
-  /** Fails on review findings too, as a lesson revision should before review. */
-  readonly strictReview: boolean;
-}
+/**
+ * What one run checks and how strictly: every page or only the touched ones,
+ * the ref the change is measured from, and whether review findings fail too,
+ * as they should for a lesson revision before review.
+ */
+const HeadingOptionsSchema = Schema.Struct({
+  all: Schema.Boolean,
+  base: Schema.String,
+  strictReview: Schema.Boolean,
+});
+export type HeadingOptions = typeof HeadingOptionsSchema.Type;
 
 /** Reads `--all`, `--strict-review`, and `--base <ref>` from the arguments. */
 export function headingOptions(args: readonly string[]): HeadingOptions {
-  const at = args.indexOf("--base");
-  const base = at < 0 ? undefined : args[at + 1];
+  const base = Option.flatMap(
+    Arr.findFirstIndex(args, (argument) => argument === "--base"),
+    (at) => Arr.get(args, at + 1)
+  );
   return {
-    all: args.includes("--all"),
-    base: base ?? BASE_REF,
-    strictReview: args.includes("--strict-review"),
+    all: Arr.contains(args, "--all"),
+    base: Option.getOrElse(base, () => BASE_REF),
+    strictReview: Arr.contains(args, "--strict-review"),
   };
 }
 
@@ -64,7 +69,7 @@ const byPlace = Order.combine(
 
 /**
  * Every finding of the pages in `report`: the rules that read one page, and
- * the identity and skeleton rules that compare it with every page of the
+ * the identity, skeleton, and repetition rules that compare it with every page of the
  * corpus in its locale.
  */
 export function outlineFindings(
@@ -79,6 +84,7 @@ export function outlineFindings(
     [
       ...findIdentityFindings(pages, report),
       ...findSkeletonFindings(pages, report),
+      ...findRepeatFindings(pages, report),
     ],
     ([file, finding]) => ({ ...finding, file })
   );
@@ -195,5 +201,5 @@ export const checkHeadings = Effect.fn("AksaraOutline.checkHeadings")(
 
 runEntry(
   import.meta.main,
-  checkHeadings(headingOptions(process.argv.slice(2)))
+  checkHeadings(headingOptions(Arr.drop(process.argv, 2)))
 );

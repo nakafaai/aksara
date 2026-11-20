@@ -1,7 +1,4 @@
-import {
-  type AppLocaleCode,
-  AppLocaleCodeSchema,
-} from "@nakafa/aksara-contracts/locale";
+import { AppLocaleCodeSchema } from "@nakafa/aksara-contracts/locale";
 import { Array as Arr, Effect, FileSystem, Option, Schema } from "effect";
 import type { CorpusPage } from "#nakafa-content/heading/identity";
 import { outlineHeadings } from "#nakafa-content/heading/outline";
@@ -26,10 +23,11 @@ export class PageParseError extends Schema.TaggedError<
 >()("PageParseError", { file: Schema.String, message: Schema.String }) {}
 
 /** The kind and the locale of one corpus page. */
-export interface PagePlace {
-  readonly kind: "article" | "lesson";
-  readonly locale: AppLocaleCode;
-}
+const PagePlaceSchema = Schema.Struct({
+  kind: Schema.Literals(["article", "lesson"]),
+  locale: AppLocaleCodeSchema,
+});
+export type PagePlace = typeof PagePlaceSchema.Type;
 
 /** Names the kind and the locale of a lesson or article page path. */
 export function pageKind(file: string): Option.Option<PagePlace> {

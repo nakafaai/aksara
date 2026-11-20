@@ -439,6 +439,15 @@ clean gate as evidence that the corpus is human.
   as `Penyelesaian` or `Solutions of`, announces solutions only below an H2. A
   scaffold section renamed to avoid every scaffold word is a manual review
   finding, as is an H3 that only restates its H2.
+- The repetition rules compare the prose a learner reads (paragraphs, list
+  items, quotations; never headings, tables, code, or component props), each
+  formula as one placeholder. They were calibrated on the 421 section pages per
+  locale of 20 November 2026: 87 to 130 pages per locale repeat a sentence of
+  six or more words from another page, and 15 to 24 hold a paragraph that
+  shares half its five-word runs with another page's. A five-word run that more
+  than fifty paragraphs share is a phrase of the language and never counts.
+  Shorter sentences such as `Jadi, x = 4.` recur by nature and stay outside the
+  rule; a reused scenario told in new words is a manual review finding.
 
 ## Section review and emphasis regressions
 

@@ -59,6 +59,7 @@ it("skips a heading or title that folds to nothing", () => {
 });
 
 it("exempts an article's standard scientific section names, and nothing else", () => {
+  /** Builds one English article page titled by its own path. */
   const article = (file: string, headings: readonly string[]) =>
     corpusPage(file, file, headings, { kind: "article", locale: "en" });
   const pages = [

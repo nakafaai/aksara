@@ -1,6 +1,6 @@
 import { NodeServices } from "@effect/platform-node";
 import { describe, expect, it } from "@effect/vitest";
-import { Effect, FileSystem, HashSet, Path } from "effect";
+import { Array as Arr, Effect, FileSystem, HashSet, Path } from "effect";
 import { corpusPage } from "#nakafa-content/heading/test";
 import { inDirectory, makeRepository } from "#scripts/check/fixture";
 import {
@@ -17,12 +17,16 @@ const ROOT = "packages/corpus/material/lesson/math/geometry";
 
 /** A lesson page with a title and headings, each with one paragraph. */
 function page(title: string, headings: readonly string[]): string {
-  return [
-    `export const metadata = { title: "${title}" };`,
-    ...headings.map(
-      (heading) => `${heading}\n\nSatu paragraf mengajar bagian ini.`
-    ),
-  ].join("\n\n");
+  return Arr.join(
+    [
+      `export const metadata = { title: "${title}" };`,
+      ...Arr.map(
+        headings,
+        (heading) => `${heading}\n\nSatu paragraf mengajar bagian ini.`
+      ),
+    ],
+    "\n\n"
+  );
 }
 
 /** Runs Git in a test repository as a test author. */
@@ -69,7 +73,7 @@ describe("outlineFindings", () => {
     const findings = outlineFindings(pages, HashSet.make("a/id.mdx"));
 
     expect(
-      findings.map(({ file, line, rule }) => `${file}:${line} ${rule}`)
+      Arr.map(findings, ({ file, line, rule }) => `${file}:${line} ${rule}`)
     ).toEqual([
       "a/id.mdx:1 section-count",
       "a/id.mdx:1 heading-density",
@@ -203,11 +207,11 @@ describe("checkHeadings and relabelFindings", () => {
           root,
           relabelFindings(
             pages,
-            HashSet.fromIterable(pages.map(({ file }) => file)),
+            HashSet.fromIterable(Arr.map(pages, ({ file }) => file)),
             "base"
           )
         );
-        expect(relabel.map(({ rule }) => rule)).toEqual([
+        expect(Arr.map(relabel, ({ rule }) => rule)).toEqual([
           "heading-only-change",
         ]);
       }).pipe(Effect.scoped, Effect.provide(NodeServices.layer))

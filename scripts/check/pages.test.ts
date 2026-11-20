@@ -1,6 +1,6 @@
 import { NodeServices } from "@effect/platform-node";
 import { describe, expect, it } from "@effect/vitest";
-import { Effect, FileSystem, Option, Path } from "effect";
+import { Array as Arr, Effect, FileSystem, Option, Path } from "effect";
 import { inDirectory, makeRepository } from "#scripts/check/fixture";
 import {
   corpusPages,
@@ -43,7 +43,9 @@ describe("pageOf", () => {
       const value = Option.getOrThrow(page);
 
       expect(value.page.title).toBe("Sudut");
-      expect(value.page.headings.map(({ words }) => words)).toEqual(["Busur"]);
+      expect(Arr.map(value.page.headings, ({ words }) => words)).toEqual([
+        "Busur",
+      ]);
       expect(yield* pageOf("README.md", "# Readme")).toEqual(Option.none());
       expect(
         (yield* pageOf(ARTICLE, "## Untitled")).pipe(Option.getOrThrow).page
@@ -97,7 +99,7 @@ describe("corpusPages and sourceAt", () => {
           root,
           corpusPages([LESSON, "note.md"])
         );
-        expect(pages.map(({ file }) => file)).toEqual([LESSON]);
+        expect(Arr.map(pages, ({ file }) => file)).toEqual([LESSON]);
         expect(yield* inDirectory(root, sourceAt("HEAD", LESSON))).toEqual(
           Option.some("## Busur\n")
         );
