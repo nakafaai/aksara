@@ -2,7 +2,8 @@ name: Verdict
 description: >-
   Posts `gate/test` and `gate` on the gated head once every part status of this
   run is final. Each job of gate.yml posts its own part statuses before it runs
-  this, so the job that finishes last always finds them all.
+  this, so the job that finishes last finds them all, after reading again: a
+  status read right after a write can miss that write.
 
 runs:
   using: composite
@@ -25,9 +26,17 @@ runs:
             -f state="$2" -f context="$1" -f target_url="$URL" -f description="$3"
         }
         parts='^gate/(policies|typecheck|build|audit|test-voice|test-rest)$'
-        states="$(retry gh api "repos/$GITHUB_REPOSITORY/commits/$SHA/status?per_page=100" --jq \
-          "[.statuses[] | select(.target_url == \"$URL\" and (.context | test(\"$parts\"))) | {context, state}]")"
-        [ "$(jq 'map(select(.state != "pending")) | length' <<< "$states")" = 6 ] || exit 0
+        # The status read can lag the writes just before it: on 20 November the Gate job of run
+        # 44758360666 posted its parts last, then read a part still pending and left the verdict
+        # pending, although all six were final. So a read with a part still pending is made again,
+        # up to four reads 10 seconds apart; a job that is not the last one ends 30 seconds later.
+        for read in 1 2 3 4; do
+          states="$(retry gh api "repos/$GITHUB_REPOSITORY/commits/$SHA/status?per_page=100" --jq \
+            "[.statuses[] | select(.target_url == \"$URL\" and (.context | test(\"$parts\"))) | {context, state}]")"
+          [ "$(jq 'map(select(.state != "pending")) | length' <<< "$states")" = 6 ] && break
+          [ "$read" = 4 ] && exit 0
+          sleep 10
+        done
         test=failure
         [ "$(jq '[.[] | select(.context | startswith("gate/test-")) | .state] | all(. == "success")' <<< "$states")" = true ] && test=success
         post gate/test "$test" "Lesson voice and every other suite: $test"
