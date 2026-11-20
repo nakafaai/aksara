@@ -112,6 +112,7 @@ bun run boundaries
 bun run locales
 bun run points
 bun run visuals
+bun run headings
 bun run workflows
 bun run native
 bun run typecheck

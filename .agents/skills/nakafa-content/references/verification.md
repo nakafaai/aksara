@@ -53,6 +53,7 @@ bun run lines
 bun run jsdocs
 bun run locales
 bun run points
+bun run headings
 bun run explanations
 bun run boundaries
 bun run lint
@@ -144,8 +145,10 @@ boundary before widening a rule. Preserve the following verification boundaries:
   `component-only-section`, and `thin-section-body` are blocking section-body
   defects; `thin-section-body` became blocking on 15 November 2026, when no
   lesson section stayed under the bar. The lesson outline rules
-  `lone-subsection`, `flat-outline`, and `crowded-outline` block too, and
-  [structure](structure.md#lesson-shape) owns their shape. The section-body
+  `lone-subsection`, `flat-outline`, `crowded-outline`, and `heading-anchor`
+  block too, and [structure](structure.md#lesson-shape) owns their shape. The
+  outline rules the corpus does not meet yet run in the
+  [outline gate](#outline-gate) on changed pages. The section-body
   bar is twenty-five prose words or one real representation, and list-item
   text counts as prose. Body-level demonstratives, possessives, Indonesian
   `-nya`, and English `it/that/they` stay a manual review item, because no rule
@@ -269,6 +272,52 @@ names that only lay out, typeset, emphasize, or embed content, plus every
 lowercase HTML element, and counts every other name. A newly deployed visual
 counts without a change to the gate. A new text, layout, or media component
 joins `NON_VISUAL_COMPONENTS` in `points/visual.ts` with its test.
+
+## Outline gate
+
+`bun run headings` holds every lesson and article page that a change touched
+to the outline, heading, and repetition rules, and compares it with every page
+of its locale in the corpus, so a collision with an untouched lesson still
+fails.
+It reads the change from the merge base of `origin/main` and `HEAD`, as the
+points gate does, including untracked files.
+
+```sh
+bun run headings
+bun run headings --strict-review
+bun run headings --base <ref>
+bun run headings --all
+```
+
+| Rule | Tier | What it holds |
+| --- | --- | --- |
+| `outline-budget` | block above 12 entries, review above 10 | H2 and H3 entries of a lesson page |
+| `section-count` | block above 8 H2, review below 4 | H2 sections of a lesson page |
+| `section-fanout` | block above 4 H3, review at 4 | H3 subsections under one H2 |
+| `flat-sections` | block | 7 or more H2 with no teaching H3 |
+| `heading-title` | block when equal, review when contained | a heading that repeats the page title |
+| `generic-heading` | block | a scaffold label alone, or a section about the visual |
+| `title-unique` | block | the page title, per locale |
+| `heading-unique` | block | every heading, per locale, across lessons and articles, except an article's standard scientific section names |
+| `heading-names-lesson` | block | a heading that is another page's title |
+| `shared-skeleton` | block | the scaffold sections a lesson page ends with, shared with another page |
+| `repeated-sentence` | block | a sentence of 6 or more words, formulas aside, that another lesson page of the locale also has |
+| `repeated-paragraph` | block | a paragraph of 20 or more words sharing half its five-word runs with another lesson page's |
+| `heading-width` | review | about 30 characters for an H2, 24 for an H3 |
+| `section-span` | review | a leaf section above 300 words of text alone |
+| `lesson-length` | review | a page above 1,400 visible words |
+| `heading-density` | review | more than 15 headings per 1,000 visible words |
+| `heading-only-change` | review | a change that only renames the headings of a page that failed the rules |
+
+A page that no change touched keeps its findings until a change touches it,
+so the corpus rises to the rules one revision at a time; `--all` reports
+every page and measures how far the corpus is from the rules. Exit code `1`
+means a blocking finding, or any finding under `--strict-review`, which every
+lesson revision runs before review. Once `--all` reports no blocking finding,
+the gate runs `bun run headings --all` on every change, so the rules hold the
+whole corpus (decision D1). The rule code lives in
+`scripts/heading/` of this skill, so each rule moves into the voice gate once
+the corpus meets it.
 
 ## Acceptance review
 

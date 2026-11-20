@@ -1,6 +1,9 @@
 import { assert, it } from "@effect/vitest";
 
-import { metadataAddressRanges } from "#nakafa-content/mdx/metadata";
+import {
+  metadataAddressRanges,
+  metadataString,
+} from "#nakafa-content/mdx/metadata";
 import { parseLessonMdx } from "#nakafa-content/mdx/parse";
 
 it("collects only learner-facing fields from authored metadata", () => {
@@ -31,4 +34,21 @@ it("ignores modules without an object-valued metadata export", () => {
   ]) {
     assert.deepEqual(metadataAddressRanges(parseLessonMdx(source), source), []);
   }
+});
+
+it("reads one literal string field of the metadata", () => {
+  const source = [
+    "export const metadata = {",
+    '  title: "Sudut Pusat",',
+    "  subject: shared,",
+    "};",
+  ].join("\n");
+  const tree = parseLessonMdx(source);
+
+  assert.strictEqual(metadataString(tree, "title"), "Sudut Pusat");
+  assert.isUndefined(metadataString(tree, "subject"));
+  assert.isUndefined(metadataString(parseLessonMdx("# Lesson"), "title"));
+  assert.isUndefined(
+    metadataString(parseLessonMdx('export const metadata = "x";'), "title")
+  );
 });

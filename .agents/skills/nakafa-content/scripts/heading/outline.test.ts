@@ -84,3 +84,19 @@ it("reports a crowded lesson with more than ten sections at its eleventh", () =>
     "crowded-outline 41",
   ]);
 });
+
+it("reports a heading whose anchor an earlier heading renders", () => {
+  assert.deepEqual(
+    outline(
+      lesson([
+        "## Sudut Pusat",
+        '## Nilai <InlineMath math="x" />',
+        "## sudut   pusat",
+        "## Nilai `x`",
+        "## Sudut Keliling",
+      ]),
+      "id"
+    ),
+    ["heading-anchor 9", "heading-anchor 13"]
+  );
+});

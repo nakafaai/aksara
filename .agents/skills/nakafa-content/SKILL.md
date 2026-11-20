@@ -127,7 +127,8 @@ Read only what the task needs. Each reference owns one concern.
   first, a teacher talking to one learner, at least three custom 3D scenes or
   animations that model its main ideas (aiming for five, never fewer than
   before a revision),
-  complete worked examples, common mistakes, practice with answers, and search
+  complete worked examples, mistakes and practice only where the topic needs
+  them (never a template tail), an outline that is this topic's own, and search
   metadata in every locale.
 - Every plotted coordinate is computed in the source from the formula it
   draws, and a smooth function renders smooth. Illustrations use only Nakafa's

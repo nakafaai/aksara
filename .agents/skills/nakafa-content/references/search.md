@@ -31,13 +31,13 @@ source, never in the lesson.
 - The opening section answers the lesson's main question directly (see the
   [lesson standard](lesson.md)). Answer engines and featured snippets can quote
   such a passage, although the search engine decides what it shows.
-- A heading may take the form of the question a learner asks, such as
-  `Bagaimana cara merotasi titik 90°?`, when answering it is the section's
-  teaching job. The [structure](structure.md) and [headings](headings.md) rules
-  still apply.
-- Worked examples, common mistakes, and practice answer the follow-up questions
-  learners search for. Complete reasoning earns trust from both learners and
-  search engines.
+- A heading names the question a section answers as a short phrase, such as
+  `Rotasi Titik Seperempat Putaran` for the question how a point turns through
+  90 degrees. The full question, with its digits and punctuation, belongs in
+  the first sentence below, as [headings](headings.md) requires.
+- Worked examples, mistakes, and practice answer the follow-up questions
+  learners search for, where they teach something specific to the topic.
+  Complete reasoning earns trust from both learners and search engines.
 
 ## Links and duplication
 
@@ -48,3 +48,8 @@ source, never in the lesson.
   question needs, stays self-contained, and links to the neighbor where the
   prose genuinely uses that relation.
 - Never add hidden text, keyword lists, or repeated phrases for search.
+- Titles and descriptions are unique per locale across lessons and articles.
+  Search engines treat the title as the page's identity; repeated section
+  headings cause no ranking penalty, but repeated titles and two pages
+  answering one question do. `title-unique` and `heading-names-lesson` enforce
+  the title side.

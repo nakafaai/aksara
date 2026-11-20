@@ -27,19 +27,28 @@ misses an element below is not finished.
    running an experiment answers a question the lesson asks. Every plotted
    point is computed from its formula. [Visuals](visuals.md) owns the choice,
    the component families, the computation, and the verification.
-4. **At least two worked examples.** Every transformation is written in a
-   math block and each example ends with a check. In biology, chemistry, and
-   programming lessons a worked example may be an analyzed case: data, a
-   reaction, or code traced step by step with the result explained.
-5. **Common mistakes.** A compact table or a contrasted pair names the typical
-   error, why it fails, and how the learner can catch it.
-6. **Practice with answers.** Two to four problems of rising difficulty, each
-   answered in the same lesson with complete reasoning under the
-   [worked solutions](solutions.md) rules.
-7. **A clear shape.** Usually five to nine H2 sections, each with a real
-   teaching job. No section whose body is only a list, no nested lists, and
-   paragraphs of about seventy words at most. [Structure](structure.md) owns the
-   section rules.
+4. **At least two worked examples, inside the sections they apply.** Every
+   transformation is written in a math block and each example ends with a
+   check. In biology, chemistry, and programming lessons a worked example may
+   be an analyzed case: data, a reaction, or code traced step by step with the
+   result explained. An example sits beside the rule it uses, named for what it
+   works out, never in a generic `Contoh` section.
+5. **Mistakes where they happen.** A misconception that this topic invites is
+   named inside the section it belongs to, as a contrasted pair or a short
+   check: the error, why it fails, and how the learner catches it. A lesson
+   never carries a fixed `Common Mistakes` section because every lesson does.
+6. **Practice that fits the topic.** When the topic needs practice, give two to
+   four problems of rising difficulty, or an interactive check, where the
+   learner can retrieve what was just taught, each answered with complete
+   reasoning under the [worked solutions](solutions.md) rules. The form and
+   place come from the topic, never from a template tail.
+7. **A clear shape that is this topic's own.** 4 to 8 H2 sections and at most
+   12 outline entries, each with a real teaching job, under the
+   [structure](structure.md#lesson-shape) rules. No section whose body is only a
+   list, no nested lists, and paragraphs of about seventy words at most. No
+   outline, paragraph, opening, transition, or example scenario is reused from
+   another lesson in any locale (`repeated-sentence`, `repeated-paragraph`,
+   `shared-skeleton`).
 8. **Emphasis like a student's highlighter.** Each section marks the few terms,
    conditions, and results a learner would copy into notes.
    [Emphasis](emphasis.md) owns the marker rules.
@@ -50,10 +59,12 @@ misses an element below is not finished.
     `description` written for that language's learners. [Search](search.md)
     owns the rules.
 
-Length follows the concept. A typical Indonesian school lesson lands between
-nine hundred and sixteen hundred words, and the length comes from examples,
-checks, and representations. Restatement, filler, and invented context never
-count toward it.
+Length follows the concept. Count the words a learner reads (paragraphs,
+lists, tables, and headings, without display math, code, and component props):
+most pages land between 500 and 1,100 such words, and above 1,400
+(`lesson-length`, review) a page usually answers two questions. The length
+comes from examples, checks, and representations. Restatement, filler, and
+invented context never count toward it.
 
 ## Rewriting an existing lesson
 
@@ -104,3 +115,6 @@ count toward it.
   formula, or a smooth function drawn with visible corners.
 - An example that stops at the answer without checking it.
 - Exercises without answers, or answers without reasoning.
+- The template outline: a thesis section, topic sections, then `Common
+  Mistakes`, `Practice`, and `Solutions` at the end, or the same outline with
+  its headings renamed.

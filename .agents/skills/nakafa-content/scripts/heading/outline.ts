@@ -1,3 +1,8 @@
+import {
+  headingAnchor,
+  headingWords,
+} from "@nakafa/aksara-compiler/policy/anchor";
+import { HashSet } from "effect";
 import { isSolutionHeading } from "#nakafa-content/exercise/context";
 import { headingText } from "#nakafa-content/heading/label";
 import type { MdxNode } from "#nakafa-content/mdx/parse";
@@ -32,15 +37,21 @@ function isHeadingNode(node: MdxNode): node is HeadingNode {
 }
 
 /** One top-level Markdown heading of a lesson body. */
-interface OutlineHeading {
+export interface OutlineHeading {
   readonly depth: number;
   readonly excerpt: string;
+  /** The heading's text and JSX text, without the source of its formulas. */
   readonly label: string;
   readonly line: number;
+  /** The words the page renders, with the source of each formula. */
+  readonly words: string;
 }
 
 /** Reads the top-level headings of one lesson in teaching order. */
-function outlineHeadings(source: string, tree: MdxNode): OutlineHeading[] {
+export function outlineHeadings(
+  source: string,
+  tree: MdxNode
+): OutlineHeading[] {
   const headings: OutlineHeading[] = [];
   for (const node of tree.children ?? []) {
     if (!isHeadingNode(node)) {
@@ -52,6 +63,7 @@ function outlineHeadings(source: string, tree: MdxNode): OutlineHeading[] {
       excerpt: source.slice(start.offset, end.offset).trim(),
       label: headingText(node).replace(WHITESPACE_PATTERN, " ").trim(),
       line: start.line,
+      words: headingWords(node).replace(WHITESPACE_PATTERN, " ").trim(),
     });
   }
   return headings;
@@ -115,8 +127,30 @@ function findSectionCountIssues(
 }
 
 /**
+ * Finds each heading whose anchor an earlier heading of the page already
+ * renders, as `Sudut Pusat` and `sudut pusat` do. The page outline links both
+ * entries to the first heading, so the second is unreachable. The compiler
+ * rejects the same collision with `AuthoredHeadingAnchorError`.
+ */
+function findAnchorCollisions(
+  headings: readonly OutlineHeading[]
+): LessonVoiceIssue[] {
+  let seen = HashSet.empty<string>();
+  const issues: LessonVoiceIssue[] = [];
+  for (const heading of headings) {
+    const anchor = headingAnchor(heading.words);
+    if (anchor !== "" && HashSet.has(seen, anchor)) {
+      issues.push(issueAt(heading, "heading-anchor"));
+    }
+    seen = HashSet.add(seen, anchor);
+  }
+  return issues;
+}
+
+/**
  * Holds one lesson's outline to its measured shape: three to ten H2
- * sections, and no H2 with a single H3 except an exercise's worked solutions.
+ * sections, no H2 with a single H3 except an exercise's worked solutions, and
+ * no two headings with one anchor.
  * The heading-order rule owns the depth limit and the section-body rules own
  * the words under each heading.
  */
@@ -129,5 +163,6 @@ export function findOutlineIssues(
   return [
     ...findSectionCountIssues(headings),
     ...findLoneSubsections(locale, headings),
+    ...findAnchorCollisions(headings),
   ];
 }

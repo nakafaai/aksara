@@ -130,6 +130,13 @@ const changedGit = Effect.fn("AksaraPolicy.changedGit")(function* (
 const lines = (text: string) =>
   Arr.filter(Str.split(text, "\n"), Str.isNonEmpty);
 
+/** The revision where this change left `ref`: their merge base. */
+export const mergeBase = Effect.fn("AksaraPolicy.mergeBase")(function* (
+  ref: string
+) {
+  return Str.trim(yield* changedGit(["merge-base", ref, "HEAD"]));
+});
+
 /**
  * The files this change touched since it left `ref`: committed, staged,
  * unstaged and untracked, measured from the merge base as the points check
@@ -138,7 +145,7 @@ const lines = (text: string) =>
 export const changedFiles = Effect.fn("AksaraPolicy.changedFiles")(function* (
   ref: string
 ) {
-  const base = Str.trim(yield* changedGit(["merge-base", ref, "HEAD"]));
+  const base = yield* mergeBase(ref);
   const edited = lines(
     yield* changedGit(["diff", "--name-only", "--no-renames", base])
   );

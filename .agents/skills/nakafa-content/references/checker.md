@@ -416,6 +416,39 @@ Do not add a global word ban from one awkward sentence, optimize prose for a
 detector score, translate terminology merely to make a lint pass, or treat a
 clean gate as evidence that the corpus is human.
 
+## Outline and heading identity
+
+- The outline budget follows decision D2 of 20 November 2026 and the outline
+  panel measured on nakafa.com that day: about ten entries show without
+  scrolling on a 1366 by 768 laptop, so the cap is twelve and the target six
+  to ten. Its rules and tiers are listed under the
+  [outline gate](verification.md#outline-gate).
+- `heading-anchor` mirrors nakafa.com's `createHeadingId`: the readable label
+  (formula sources kept, markup removed, LaTeX commands by name) in lower case,
+  each run of whitespace one hyphen. Nakafa does not de-duplicate anchors, so
+  two equal anchors leave the second heading unreachable from the outline.
+  The compiler's `headingAnchor` is the one implementation both read.
+- No source requires headings to be unique across a whole site. Heading
+  uniqueness, the generic-label rule, and the skeleton check are Nakafa rules
+  against repetitive lessons; the title rules follow search engines' guidance
+  on distinct titles.
+- The section roles behind `shared-skeleton` come from a heading's first
+  words (`Kesalahan`, `Latihan`, `Pembahasan`, `Contoh`, `Ringkasan`, and their
+  English, German, and Malay equivalents), never from its exact text, so a
+  renamed tail still matches. A solution word that also names a concept, such
+  as `Penyelesaian` or `Solutions of`, announces solutions only below an H2. A
+  scaffold section renamed to avoid every scaffold word is a manual review
+  finding, as is an H3 that only restates its H2.
+- The repetition rules compare the prose a learner reads (paragraphs, list
+  items, quotations; never headings, tables, code, or component props), each
+  formula as one placeholder. They were calibrated on the 421 section pages per
+  locale of 20 November 2026: 87 to 130 pages per locale repeat a sentence of
+  six or more words from another page, and 15 to 24 hold a paragraph that
+  shares half its five-word runs with another page's. A five-word run that more
+  than fifty paragraphs share is a phrase of the language and never counts.
+  Shorter sentences such as `Jadi, x = 4.` recur by nature and stay outside the
+  rule; a reused scenario told in new words is a manual review finding.
+
 ## Section review and emphasis regressions
 
 The physics vector report showed that a document can satisfy the opening
