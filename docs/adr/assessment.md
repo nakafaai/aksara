@@ -86,9 +86,10 @@ planned and are not part of this decision.
 - A `sketch` is a graph the learner draws on a plane that opens on a frame and
   pans and zooms past it, with the points and asymptotes the item lets them
   place. Its key lists the features the graph must show (zeros that cross or
-  touch, the y-intercept, turning points, asymptotes, where it rises or falls,
-  and how it ends), each as exact decimals and each a criterion of the item's
-  rubric with the feedback the learner reads when it is earned or missed. A
+  touch, the y-intercept, turning points, inflection points, given points and
+  ends of the domain, asymptotes, where it rises or falls, and how it ends),
+  each as exact decimals and each a criterion of the item's rubric with the
+  feedback the learner reads when it is earned or missed. A
   criterion may require earlier ones, so the shape is earned before any of its
   points. Nakafa reads the features of the drawn strokes exactly, in the
   plane's units with the key's tolerance for each kind of feature, and never
@@ -113,9 +114,13 @@ the key-fit check below. The exam profile sets a default rule for every
 interaction kind, and an item may override it for one interaction. A default is
 `allOrNothing`, `perPart`, or `wrongParts`, never a rubric, so an extended text
 and a sketch always carry their own (`takesRubric`). Each criterion of a
-sketch's rubric is missed or earned: two levels, the lower worth no points. An exam scores its outcomes with one strategy: `irt`,
-`raw`, `penalized` (whole marks for a correct, a wrong, and a blank answer), or
-`composite` (a formula written out in every language).
+sketch's rubric is missed or earned: two levels, the lower worth no points. The
+key of a sketch checks exactly the criteria that its rubric scores
+(`hasKeyedRubrics`), so no feature is worth no points and no points go
+unchecked; the snapshot closure refuses a version whose key and rubric differ.
+An exam scores its outcomes with one strategy: `irt`, `raw`, `penalized` (whole
+marks for a correct, a wrong, and a blank answer), or `composite` (a formula
+written out in every language).
 
 ### Keys
 
@@ -356,7 +361,8 @@ compatibility layer.
   the compiler that writes a hash and the consumer that checks it share one
   encoding.
 - This contract leaves out upload and audio interactions, adaptive sections, and
-  a check that a key fits the item version it names. The publisher owns that
+  a check that a key fits the item version it names, apart from the sketch's
+  criteria against its rubric (`hasKeyedRubrics`). The publisher owns that
   check, and it includes the floor of a per-part rule and the bands of a
   wrong-parts table against the parts that the key counts. The accommodation
   vocabulary is the one in the

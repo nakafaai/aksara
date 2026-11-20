@@ -1,9 +1,10 @@
-import { Array as Arr, HashSet } from "effect";
+import { Array as Arr, Equal, HashSet } from "effect";
 import type { AssessmentDocument } from "#contracts/assessment/document";
 import { documentPlacements } from "#contracts/assessment/document";
 import { hasDistinctIds, hasUniqueIds } from "#contracts/assessment/identity";
 import type { Interaction } from "#contracts/assessment/interaction";
 import { canSitInText } from "#contracts/assessment/interaction";
+import type { InteractionKey } from "#contracts/assessment/key";
 import type { ScoringOverride } from "#contracts/assessment/scoring";
 import { supportsRule, takesRubric } from "#contracts/assessment/scoring";
 
@@ -93,5 +94,37 @@ export function hasFittingRules(version: {
             interaction === id && rule.kind === "rubric"
         )
     )
+  );
+}
+
+/** Checks that two lists name the same identifiers, in any order. */
+function sameIds(left: readonly string[], right: readonly string[]) {
+  return Equal.equals(HashSet.fromIterable(left), HashSet.fromIterable(right));
+}
+
+/**
+ * Checks that a version's key and its rubrics meet: each sketch the key answers
+ * is scored by a rubric of the version with exactly the key's criteria, so no
+ * feature is worth no points and no points go unchecked. It is the check where a
+ * key and its version's scoring meet, so it needs both records.
+ */
+export function hasKeyedRubrics(
+  version: { readonly scoring: readonly ScoringOverride[] },
+  key: { readonly answers: readonly InteractionKey[] }
+) {
+  return Arr.every(
+    key.answers,
+    (answer) =>
+      answer.kind !== "sketch" ||
+      Arr.some(
+        version.scoring,
+        ({ interaction, rule }) =>
+          interaction === answer.interaction &&
+          rule.kind === "rubric" &&
+          sameIds(
+            Arr.map(rule.criteria, ({ id }) => id),
+            Arr.map(answer.criteria, ({ criterion }) => criterion)
+          )
+      )
   );
 }
