@@ -1,0 +1,245 @@
+export const metadata = {
+  title: "Mathematisches Modellieren mit Daten",
+  description:
+    "Folge dem Kreislauf des mathematischen Modellierens, stelle lineare, quadratische und exponentielle Modelle aus Daten auf und prüfe und verbessere sie.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2026-11-17",
+  subject: "Mathematisches Modellieren",
+};
+
+## Mathematisches Modellieren macht aus einem Problem eine Gleichung
+
+**Mathematisches Modellieren** heißt, Mathematik zu nutzen, um Probleme wie Taxitarife, Gartenplanung oder Bakterienwachstum darzustellen und zu lösen. Ein Modell ist eine Gleichung oder Funktion, die die Variablen des Problems verbindet. Der Vorgang wiederholt sich: Nachdem ein Modell an Daten geprüft wurde, wird es **verbessert**, wenn seine Vorhersagen nicht genau genug sind. Übliche Formen sind **linear** bei konstanter Änderungsrate, **quadratisch** bei Optimierungsaufgaben und **exponentiell** bei Wachstum mit konstantem Prozentsatz. In den Modellen hier passt du eine Gerade an Taxitarife an, findest die größte Fläche eines Gartens und stimmst ein exponentielles Modell auf Bakteriendaten ab.
+
+## Der Modellierungskreislauf
+
+Das Modellieren besteht aus sechs Schritten, die einen Kreislauf bilden.
+
+<Mermaid
+  title={<>Der Kreislauf des mathematischen Modellierens</>}
+  description={<>Sechs Schritte des Modellierens. Reicht das Modell nicht aus, geht es zurück zu den Annahmen, und das Modell wird verbessert.</>}
+  chart={`
+    flowchart LR
+        A[Problem erkennen und beschreiben] --> B[Annahmen treffen und Variablen festlegen]
+        B --> C[Mathematik anwenden und das Problem lösen]
+        C --> D[Lösung prüfen und deuten]
+        D --> E{Reicht das Modell?}
+        E -- Nein --> F[Modell verbessern]
+        F --> B
+        E -- Ja --> G[Ergebnisse berichten]
+  `}
+/>
+
+Annahmen vereinfachen ein Problem. Wir können zum Beispiel annehmen, dass der Kraftstoffpreis gleich bleibt oder dass es keinen Stau gibt. Zu einfache Annahmen ergeben ein ungenaueres Modell, deshalb **muss jede Annahme genannt werden**.
+
+## Lineare Modelle
+
+Ein lineares Modell <InlineMath math="y = mx + c" /> passt, wenn sich eine Variable mit **konstanter Rate** ändert. Ein Taxiunternehmen berechnet den Fahrpreis nach der Strecke. Dieses Diagramm zeigt die Fahrpreise von fünf Fahrten mit der Ausgleichsgeraden.
+
+<ScatterDiagram
+  title={<>Taxipreis nach Strecke</>}
+  description={
+    <>
+      Fahrpreis in Ringgit für fünf Fahrten. Die Ausgleichsgerade lautet{" "}
+      <InlineMath math="y = 1{,}2x + 3" />.
+    </>
+  }
+  xAxisLabel="Strecke (km)"
+  yAxisLabel="Fahrpreis (RM)"
+  calculateRegressionLine
+  datasets={[
+    {
+      name: "Fahrten",
+      color: "var(--chart-1)",
+      points: [
+        { x: 2, y: 5.4 },
+        { x: 4, y: 7.8 },
+        { x: 6, y: 10.2 },
+        { x: 8, y: 12.6 },
+        { x: 10, y: 15.0 },
+      ],
+    },
+  ]}
+/>
+
+### Beispiel Ein lineares Modell aufstellen und nutzen
+
+Laut den Daten steigt der Fahrpreis um <InlineMath math="\text{RM}\,2{,}40" /> je <InlineMath math="2\text{ km}" />. Stelle **das Preismodell** auf und sage den Preis für eine Fahrt von <InlineMath math="15\text{ km}" /> voraus.
+
+<MathContainer>
+<BlockMath math="m = \frac{7{,}8 - 5{,}4}{4 - 2} = 1{,}2" />
+<BlockMath math="5{,}4 = 1{,}2(2) + c \quad\Rightarrow\quad c = 3" />
+<BlockMath math="y = 1{,}2(15) + 3 = 21" />
+</MathContainer>
+
+Das Modell <InlineMath math="y = 1{,}2x + 3" /> bedeutet einen Grundpreis von <InlineMath math="\text{RM}\,3" /> und <InlineMath math="\text{RM}\,1{,}20" /> je Kilometer. Prüfe mit dem letzten Punkt: <InlineMath math="1{,}2(10) + 3 = 15" />, genau wie in den Daten.
+
+### Annahmen des Preismodells
+
+Das Modell nimmt an, dass **keine Zuschläge** für Wartezeit, Maut oder Nachtfahrten anfallen. Verlangt das Unternehmen einen Zuschlag zur Hauptverkehrszeit, muss das Modell um eine weitere Variable ergänzt werden.
+
+## Quadratische Modelle zur Optimierung
+
+Eine Gärtnerin hat <InlineMath math="40\text{ m}" /> Zaun, um drei Seiten eines rechteckigen Gartens an einer Mauer einzuzäunen. Ist die Breite des Gartens <InlineMath math="x" />, beträgt die Länge <InlineMath math="40 - 2x" /> und die Fläche <InlineMath math="A = x(40 - 2x)" />. Ändere die Breite und finde **die größte Fläche**.
+
+<MathVisual
+  title={<>Gartenfläche nach Breite</>}
+  description={
+    <>
+      Fläche in Einheiten von <InlineMath math="10\text{ m}^2" />,{" "}
+      <InlineMath math="\dfrac{x(40 - 2x)}{10}" />, gegen die Breite{" "}
+      <InlineMath math="x" /> in Metern.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 20 }, y: { min: 0, max: 21 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "w", min: 0, max: 20, value: 6, step: 0.5, label: "w" },
+    ],
+    objects: [
+      { id: "area", kind: "function", appearance: "primary", formula: "x(40 - 2x)/10", domain: { min: 0, max: 20 } },
+      { id: "now", kind: "marker", x: "w", y: "w(40 - 2w)/10", appearance: "warning" },
+    ],
+    readouts: [
+      { key: "length", formula: "40 - 2w" },
+      { key: "area", formula: "w(40 - 2w)" },
+    ],
+  }}
+  labels={{
+    w: <>Breite <InlineMath math="w" /> in Metern</>,
+    length: <>Länge in Metern</>,
+    area: <>Fläche in Quadratmetern</>,
+  }}
+/>
+
+### Beispiel Die größte Fläche
+
+Bestimme **die Breite mit der größten Fläche** und diese Fläche.
+
+<MathContainer>
+<BlockMath math="A = 40x - 2x^2 = -2(x - 10)^2 + 200" />
+<BlockMath math="x = 10 \quad\Rightarrow\quad A_{\max} = 200\text{ m}^2" />
+</MathContainer>
+
+Die Länge beträgt <InlineMath math="40 - 2(10) = 20\text{ m}" />. Prüfe mit dem Modell: Bei <InlineMath math="w = 10" /> zeigt die Fläche <InlineMath math="200" />, bei <InlineMath math="w = 9" /> oder <InlineMath math="w = 11" /> sind es <InlineMath math="198" />, etwas weniger.
+
+### Annahmen des Gartenmodells
+
+Das Modell nimmt an, dass **die Mauer lang genug ist** und alle <InlineMath math="40\text{ m}" /> Zaun verwendet werden. Ist die Mauer nur <InlineMath math="15\text{ m}" /> lang, darf der Garten nicht länger als <InlineMath math="15\text{ m}" /> sein, und die Lösung ändert sich. Dann ergibt <InlineMath math="40 - 2x \le 15" /> die Bedingung <InlineMath math="x \ge 12{,}5" />, also ist die beste Breite <InlineMath math="12{,}5\text{ m}" /> mit einer Fläche von <InlineMath math="12{,}5 \times 15 = 187{,}5\text{ m}^2" />.
+
+## Exponentielle Modelle
+
+Ein exponentielles Modell <InlineMath math="y = ab^t" /> passt, wenn eine Größe in jedem Zeitabschnitt um **einen konstanten Prozentsatz** wächst. Eine Bakterienkolonie wird jede Stunde gezählt. Stell den Wachstumsfaktor <InlineMath math="b" /> so ein, dass die Kurve durch die Datenpunkte läuft.
+
+<MathVisual
+  title={<>Ein exponentielles Modell für Bakterienzahlen</>}
+  description={
+    <>
+      Anzahl der Bakterien in Hundert gegen die Zeit in Stunden. Die Punkte
+      sind Daten, die Kurve ist das Modell <InlineMath math="2b^t" />.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 6.5 }, y: { min: 0, max: 10.5 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "b", min: 1.1, max: 1.5, value: 1.2, step: 0.01, label: "b" },
+    ],
+    objects: [
+      { id: "model", kind: "function", appearance: "primary", formula: "2b^x", domain: { min: 0, max: 6.5 } },
+      { id: "d0", kind: "point", appearance: "answer", at: { x: 0, y: 2 } },
+      { id: "d1", kind: "point", appearance: "answer", at: { x: 1, y: 2.6 } },
+      { id: "d2", kind: "point", appearance: "answer", at: { x: 2, y: 3.38 } },
+      { id: "d3", kind: "point", appearance: "answer", at: { x: 3, y: 4.39 } },
+      { id: "d4", kind: "point", appearance: "answer", at: { x: 4, y: 5.71 } },
+      { id: "d5", kind: "point", appearance: "answer", at: { x: 5, y: 7.43 } },
+    ],
+    readouts: [
+      { key: "prediction", formula: "200b^6" },
+    ],
+  }}
+  labels={{
+    b: <>Wachstumsfaktor <InlineMath math="b" /></>,
+    prediction: <>Vorhergesagte Bakterienzahl nach sechs Stunden</>,
+  }}
+/>
+
+### Beispiel Ein exponentielles Modell prüfen
+
+Die Anfangszahl ist <InlineMath math="200" />, und das Verhältnis zweier aufeinanderfolgender Zählungen beträgt <InlineMath math="\dfrac{260}{200} = 1{,}3" />. Stelle **das Modell** auf und vergleiche seine Vorhersagen mit den Daten.
+
+<BlockMath math="N = 200(1{,}3)^t, \qquad N(5) = 200(1{,}3)^5 = 742{,}6" />
+
+Die tatsächliche Zählung nach fünf Stunden beträgt <InlineMath math="743" />, also reicht das Modell aus. Prüfe mit dem Modell: Bei <InlineMath math="b = 1{,}3" /> läuft die Kurve durch alle Punkte, und die Vorhersage für die sechste Stunde ist <InlineMath math="965" />. Dieses Diagramm vergleicht die Vorhersagen des Modells mit den tatsächlichen Zählungen.
+
+<BarChart
+  title={<>Modellvorhersagen im Vergleich zu echten Zählungen</>}
+  description={
+    <>
+      Tatsächliche Bakterienzahlen und die Vorhersagen von{" "}
+      <InlineMath math="200(1{,}3)^t" /> für die Stunden eins bis fünf.
+    </>
+  }
+  yAxisLabel="Anzahl der Bakterien"
+  data={[
+    { name: "Stunde 1, echt", value: 260 },
+    { name: "Stunde 1, Modell", value: 260 },
+    { name: "Stunde 3, echt", value: 439 },
+    { name: "Stunde 3, Modell", value: 439.4 },
+    { name: "Stunde 5, echt", value: 743 },
+    { name: "Stunde 5, Modell", value: 742.6 },
+  ]}
+  chartConfig={{ value: { label: "Anzahl", colors: { light: ["var(--chart-2)"], dark: ["var(--chart-2)"] } } }}
+/>
+
+### Annahmen des Bakterienmodells
+
+Das Modell nimmt **unbegrenzte Nahrung und unbegrenzten Platz** an. Über lange Zeit trifft diese Annahme nicht mehr zu, und das Modell muss verbessert werden, weil sich das Bakterienwachstum schließlich verlangsamt.
+
+## Häufige Fehler beim Modellieren
+
+| Fehler | Warum er falsch ist | So prüfst du es |
+| :--- | :--- | :--- |
+| Annahmen nicht nennen. | Annahmen bestimmen, wann man dem Modell trauen kann. | Liste jede Annahme auf, bevor du das Modell aufstellst. |
+| Ein lineares Modell für Wachstum mit konstantem Prozentsatz wählen. | Wachstum mit konstantem Prozentsatz ergibt ein konstantes Verhältnis, keine konstante Differenz. | Berechne Differenzen und Verhältnisse aufeinanderfolgender Daten. |
+| Ein Modell weit außerhalb des Datenbereichs nutzen. | Vorhersagen außerhalb des Bereichs können die Annahmen verletzen. | Vergleiche die Eingabe mit dem Bereich der Ausgangsdaten. |
+| Aufhören, sobald die Gleichung steht. | Ein Modell muss an Daten geprüft werden, bevor man es nutzt. | Setze Datenwerte in das Modell ein. |
+
+Der zweite Fehler kommt in Aufgaben zur Modellwahl am häufigsten vor. **Konstante Differenz heißt linear, konstantes Verhältnis heißt exponentiell**.
+
+## Übungen zum mathematischen Modellieren
+
+Diese Aufgaben führen von linearen zu exponentiellen Modellen. **Nenne für jedes Modell eine Annahme**.
+
+1. Ein Tank enthält <InlineMath math="500\text{ L}" /> Wasser und verliert <InlineMath math="12\text{ L}" /> pro Stunde. Stelle ein Modell für das Volumen auf und bestimme, wann der Tank leer ist.
+
+2. Ein Draht von <InlineMath math="60\text{ cm}" /> wird zu einem Rechteck gebogen. Bestimme die Maße mit der größten Fläche.
+
+3. Eine Stadt hat in drei aufeinanderfolgenden Jahren <InlineMath math="10{.}000" />, <InlineMath math="10{.}500" /> und <InlineMath math="11{.}025" /> Einwohner. Entscheide, ob ein lineares oder ein exponentielles Modell besser passt, und stelle es auf.
+
+4. Erkläre, warum das Modell aus Aufgabe drei nach <InlineMath math="30" /> Jahren verbessert werden muss.
+
+### Lösungen
+
+**Lösung 1**: Das Volumen sinkt mit konstanter Rate, also nutze das lineare Modell <InlineMath math="V = 500 - 12t" />:
+
+<BlockMath math="0 = 500 - 12t \quad\Rightarrow\quad t = \frac{500}{12} = 41{,}7 \text{ Stunden}" />
+
+**Annahme**: Die Leckrate bleibt gleich, auch wenn der Wasserstand sinkt.
+
+**Lösung 2**: Ist die Breite <InlineMath math="x" />, beträgt die Länge <InlineMath math="30 - x" />:
+
+<BlockMath math="A = x(30 - x) = -(x - 15)^2 + 225" />
+
+Die größte Fläche ist <InlineMath math="225\text{ cm}^2" /> bei <InlineMath math="x = 15\text{ cm}" />, also ein Quadrat. **Annahme**: Der Draht überlappt an den Ecken nicht.
+
+**Lösung 3**: Die Differenzen sind <InlineMath math="500" /> und <InlineMath math="525" />, nicht konstant, die Verhältnisse aber <InlineMath math="\dfrac{10{.}500}{10{.}000} = 1{,}05" /> und <InlineMath math="\dfrac{11{.}025}{10{.}500} = 1{,}05" />, konstant. Also passt ein exponentielles Modell besser:
+
+<BlockMath math="P = 10{.}000(1{,}05)^t" />
+
+**Annahme**: Die Wachstumsrate bleibt bei <InlineMath math="5\%" /> pro Jahr.
+
+**Lösung 4**: Das Modell sagt <InlineMath math="10{.}000(1{,}05)^{30} = 43{.}219" /> Einwohner voraus. Über lange Zeit sind **Land, Wohnraum und Arbeitsplätze begrenzt**, also sinkt die Wachstumsrate meist. Das Modell muss mit neuen Daten verbessert werden.

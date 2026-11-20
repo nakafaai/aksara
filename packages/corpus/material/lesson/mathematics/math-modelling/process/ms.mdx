@@ -1,0 +1,245 @@
+export const metadata = {
+  title: "Nota Pemodelan Matematik Tingkatan Lima",
+  description:
+    "Nota Matematik Tingkatan 5 Bab 8: ikuti proses pemodelan matematik, bina model linear, kuadratik dan eksponen daripada data, kemudian sahkan dan perhalusi.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2026-11-17",
+  subject: "Pemodelan Matematik",
+};
+
+## Pemodelan Matematik Menukar Masalah Sebenar kepada Persamaan
+
+**Pemodelan matematik** ialah proses menggunakan matematik untuk mewakili dan menyelesaikan masalah seperti tambang teksi, reka bentuk taman dan pertumbuhan bakteria. Model ialah persamaan atau fungsi yang menghubungkan pemboleh ubah dalam masalah itu. Proses ini berulang: selepas model diuji dengan data, model **diperhalusi** jika ramalannya tidak cukup tepat. Bentuk model yang biasa ialah **linear** bagi kadar perubahan tetap, **kuadratik** bagi masalah pengoptimuman, dan **eksponen** bagi pertumbuhan dengan peratus tetap. Dalam model di sini, kamu memadankan garis dengan data tambang teksi, mencari luas maksimum taman dan menyesuaikan model eksponen dengan data bakteria.
+
+## Proses Pemodelan
+
+Proses pemodelan mempunyai enam langkah yang membentuk satu kitaran.
+
+<Mermaid
+  title={<>Kitaran Pemodelan Matematik</>}
+  description={<>Enam langkah pemodelan. Jika model tidak memadai, kembali ke langkah membuat andaian dan perhalusi model.</>}
+  chart={`
+    flowchart LR
+        A[Kenal pasti dan takrifkan masalah] --> B[Buat andaian dan kenal pasti pemboleh ubah]
+        B --> C[Aplikasi matematik untuk menyelesaikan masalah]
+        C --> D[Sahkan dan tafsir penyelesaian]
+        D --> E{Model memadai?}
+        E -- Tidak --> F[Perhalusi model]
+        F --> B
+        E -- Ya --> G[Laporkan dapatan]
+  `}
+/>
+
+Andaian memudahkan masalah. Contohnya, kita mungkin menganggap harga bahan api tetap atau tiada kesesakan lalu lintas. Andaian yang terlalu mudah menghasilkan model yang kurang tepat, jadi **setiap andaian mesti dinyatakan**.
+
+## Model Linear
+
+Model linear <InlineMath math="y = mx + c" /> sesuai apabila pemboleh ubah berubah pada **kadar tetap**. Sebuah syarikat teksi mengenakan tambang mengikut jarak. Graf ini menunjukkan tambang bagi lima perjalanan bersama garis penyuaian terbaik.
+
+<ScatterDiagram
+  title={<>Tambang Teksi Mengikut Jarak</>}
+  description={
+    <>
+      Tambang dalam ringgit bagi lima perjalanan. Garis penyuaian terbaik ialah{" "}
+      <InlineMath math="y = 1.2x + 3" />.
+    </>
+  }
+  xAxisLabel="Jarak (km)"
+  yAxisLabel="Tambang (RM)"
+  calculateRegressionLine
+  datasets={[
+    {
+      name: "Perjalanan",
+      color: "var(--chart-1)",
+      points: [
+        { x: 2, y: 5.4 },
+        { x: 4, y: 7.8 },
+        { x: 6, y: 10.2 },
+        { x: 8, y: 12.6 },
+        { x: 10, y: 15.0 },
+      ],
+    },
+  ]}
+/>
+
+### Contoh Membina dan Menggunakan Model Linear
+
+Daripada data, tambang naik <InlineMath math="\text{RM}\,2.40" /> bagi setiap <InlineMath math="2\text{ km}" />. Bina **model tambang** dan ramalkan tambang bagi perjalanan <InlineMath math="15\text{ km}" />.
+
+<MathContainer>
+<BlockMath math="m = \frac{7.8 - 5.4}{4 - 2} = 1.2" />
+<BlockMath math="5.4 = 1.2(2) + c \quad\Rightarrow\quad c = 3" />
+<BlockMath math="y = 1.2(15) + 3 = 21" />
+</MathContainer>
+
+Model <InlineMath math="y = 1.2x + 3" /> bermaksud tambang asas <InlineMath math="\text{RM}\,3" /> dan <InlineMath math="\text{RM}\,1.20" /> sekilometer. Sahkan dengan titik terakhir: <InlineMath math="1.2(10) + 3 = 15" />, sama dengan data.
+
+### Andaian Model Tambang
+
+Model ini menganggap **tiada caj tambahan** untuk menunggu, tol atau perjalanan waktu malam. Jika syarikat mengenakan caj waktu puncak, model perlu diperhalusi dengan pemboleh ubah tambahan.
+
+## Model Kuadratik untuk Pengoptimuman
+
+Seorang pekebun mempunyai <InlineMath math="40\text{ m}" /> pagar untuk memagar tiga sisi taman segi empat tepat di tepi dinding. Jika lebar taman ialah <InlineMath math="x" />, panjangnya ialah <InlineMath math="40 - 2x" />, dan luasnya <InlineMath math="A = x(40 - 2x)" />. Ubah lebar dan cari **luas maksimum**.
+
+<MathVisual
+  title={<>Luas Taman Mengikut Lebar</>}
+  description={
+    <>
+      Luas dalam unit <InlineMath math="10\text{ m}^2" />,{" "}
+      <InlineMath math="\dfrac{x(40 - 2x)}{10}" />, terhadap lebar{" "}
+      <InlineMath math="x" /> dalam meter.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 20 }, y: { min: 0, max: 21 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "w", min: 0, max: 20, value: 6, step: 0.5, label: "w" },
+    ],
+    objects: [
+      { id: "area", kind: "function", appearance: "primary", formula: "x(40 - 2x)/10", domain: { min: 0, max: 20 } },
+      { id: "now", kind: "marker", x: "w", y: "w(40 - 2w)/10", appearance: "warning" },
+    ],
+    readouts: [
+      { key: "length", formula: "40 - 2w" },
+      { key: "area", formula: "w(40 - 2w)" },
+    ],
+  }}
+  labels={{
+    w: <>Lebar <InlineMath math="w" /> dalam meter</>,
+    length: <>Panjang dalam meter</>,
+    area: <>Luas dalam meter persegi</>,
+  }}
+/>
+
+### Contoh Luas Maksimum
+
+Cari **lebar yang memberi luas maksimum** dan luas itu.
+
+<MathContainer>
+<BlockMath math="A = 40x - 2x^2 = -2(x - 10)^2 + 200" />
+<BlockMath math="x = 10 \quad\Rightarrow\quad A_{\max} = 200\text{ m}^2" />
+</MathContainer>
+
+Panjangnya ialah <InlineMath math="40 - 2(10) = 20\text{ m}" />. Semak dengan model: pada <InlineMath math="w = 10" />, bacaan luas ialah <InlineMath math="200" />, dan pada <InlineMath math="w = 9" /> atau <InlineMath math="w = 11" />, luas ialah <InlineMath math="198" />, sedikit kurang.
+
+### Andaian Model Taman
+
+Model ini menganggap **dinding cukup panjang** dan semua <InlineMath math="40\text{ m}" /> pagar digunakan. Jika dinding hanya <InlineMath math="15\text{ m}" />, panjang taman tidak boleh melebihi <InlineMath math="15\text{ m}" /> dan penyelesaiannya berubah. Dalam keadaan itu, <InlineMath math="40 - 2x \le 15" /> memberi <InlineMath math="x \ge 12.5" />, jadi lebar terbaik ialah <InlineMath math="12.5\text{ m}" /> dengan luas <InlineMath math="12.5 \times 15 = 187.5\text{ m}^2" />.
+
+## Model Eksponen
+
+Model eksponen <InlineMath math="y = ab^t" /> sesuai apabila kuantiti bertambah dengan **peratus tetap** dalam setiap tempoh. Sekumpulan bakteria dikira setiap jam. Laraskan faktor pertumbuhan <InlineMath math="b" /> sehingga lengkung melalui titik data.
+
+<MathVisual
+  title={<>Model Eksponen untuk Bilangan Bakteria</>}
+  description={
+    <>
+      Bilangan bakteria dalam ratus terhadap masa dalam jam. Titik ialah data,
+      dan lengkung ialah model <InlineMath math="2b^t" />.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 6.5 }, y: { min: 0, max: 10.5 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "b", min: 1.1, max: 1.5, value: 1.2, step: 0.01, label: "b" },
+    ],
+    objects: [
+      { id: "model", kind: "function", appearance: "primary", formula: "2b^x", domain: { min: 0, max: 6.5 } },
+      { id: "d0", kind: "point", appearance: "answer", at: { x: 0, y: 2 } },
+      { id: "d1", kind: "point", appearance: "answer", at: { x: 1, y: 2.6 } },
+      { id: "d2", kind: "point", appearance: "answer", at: { x: 2, y: 3.38 } },
+      { id: "d3", kind: "point", appearance: "answer", at: { x: 3, y: 4.39 } },
+      { id: "d4", kind: "point", appearance: "answer", at: { x: 4, y: 5.71 } },
+      { id: "d5", kind: "point", appearance: "answer", at: { x: 5, y: 7.43 } },
+    ],
+    readouts: [
+      { key: "prediction", formula: "200b^6" },
+    ],
+  }}
+  labels={{
+    b: <>Faktor pertumbuhan <InlineMath math="b" /></>,
+    prediction: <>Ramalan bilangan bakteria pada jam keenam</>,
+  }}
+/>
+
+### Contoh Mengesahkan Model Eksponen
+
+Bilangan awal ialah <InlineMath math="200" />, dan nisbah antara dua kiraan berturut-turut ialah <InlineMath math="\dfrac{260}{200} = 1.3" />. Bina **model** dan bandingkan ramalannya dengan data.
+
+<BlockMath math="N = 200(1.3)^t, \qquad N(5) = 200(1.3)^5 = 742.6" />
+
+Data sebenar pada jam kelima ialah <InlineMath math="743" />, jadi model ini memadai. Semak dengan model: pada <InlineMath math="b = 1.3" />, lengkung melalui semua titik dan ramalan jam keenam ialah <InlineMath math="965" />. Carta ini membandingkan ramalan model dengan kiraan sebenar.
+
+<BarChart
+  title={<>Ramalan Model Berbanding Kiraan Sebenar</>}
+  description={
+    <>
+      Bilangan bakteria sebenar dan ramalan <InlineMath math="200(1.3)^t" />{" "}
+      bagi jam pertama hingga kelima.
+    </>
+  }
+  yAxisLabel="Bilangan bakteria"
+  data={[
+    { name: "Jam 1, sebenar", value: 260 },
+    { name: "Jam 1, model", value: 260 },
+    { name: "Jam 3, sebenar", value: 439 },
+    { name: "Jam 3, model", value: 439.4 },
+    { name: "Jam 5, sebenar", value: 743 },
+    { name: "Jam 5, model", value: 742.6 },
+  ]}
+  chartConfig={{ value: { label: "Bilangan", colors: { light: ["var(--chart-2)"], dark: ["var(--chart-2)"] } } }}
+/>
+
+### Andaian Model Bakteria
+
+Model ini menganggap **makanan dan ruang tidak terhad**. Dalam tempoh yang panjang, andaian ini gagal dan model perlu diperhalusi, kerana pertumbuhan bakteria akhirnya perlahan.
+
+## Kesilapan Lazim tentang Pemodelan Matematik
+
+| Kesilapan | Sebab salah | Cara semak |
+| :--- | :--- | :--- |
+| Tidak menyatakan andaian. | Andaian menentukan bila model boleh dipercayai. | Senaraikan setiap andaian sebelum membina model. |
+| Memilih model linear bagi pertumbuhan peratus tetap. | Pertumbuhan peratus tetap memberi nisbah tetap, bukan beza tetap. | Kira beza dan nisbah antara data berturut-turut. |
+| Menggunakan model jauh di luar julat data. | Ramalan di luar julat mungkin melanggar andaian. | Bandingkan input dengan julat data asal. |
+| Berhenti selepas mendapat persamaan. | Model mesti disahkan dengan data sebelum digunakan. | Gantikan nilai data ke dalam model. |
+
+Kesilapan kedua paling kerap muncul dalam soalan pemilihan model. **Beza tetap bermaksud linear, nisbah tetap bermaksud eksponen**.
+
+## Latihan Pemodelan Matematik
+
+Soalan ini bergerak dari model linear ke model eksponen. **Nyatakan satu andaian** dalam setiap model.
+
+1. Sebuah tangki mengandungi <InlineMath math="500\text{ L}" /> air dan bocor <InlineMath math="12\text{ L}" /> sejam. Bina model isi padu dan cari bila tangki kosong.
+
+2. Seutas dawai <InlineMath math="60\text{ cm}" /> dibengkokkan menjadi segi empat tepat. Cari dimensi yang memberi luas maksimum.
+
+3. Data populasi sebuah pekan ialah <InlineMath math="10{,}000" />, <InlineMath math="10{,}500" />, <InlineMath math="11{,}025" /> bagi tiga tahun berturut-turut. Tentukan sama ada model linear atau eksponen lebih sesuai, dan bina model itu.
+
+4. Terangkan mengapa model dalam soalan ketiga mungkin perlu diperhalusi selepas <InlineMath math="30" /> tahun.
+
+### Penyelesaian
+
+**Penyelesaian 1**: Isi padu berkurang pada kadar tetap, jadi gunakan model linear <InlineMath math="V = 500 - 12t" />:
+
+<BlockMath math="0 = 500 - 12t \quad\Rightarrow\quad t = \frac{500}{12} = 41.7 \text{ jam}" />
+
+**Andaian**: kadar bocor tetap walaupun paras air menurun.
+
+**Penyelesaian 2**: Jika lebar <InlineMath math="x" />, panjang <InlineMath math="30 - x" />:
+
+<BlockMath math="A = x(30 - x) = -(x - 15)^2 + 225" />
+
+Luas maksimum <InlineMath math="225\text{ cm}^2" /> apabila <InlineMath math="x = 15\text{ cm}" />, iaitu sebuah segi empat sama. **Andaian**: dawai tidak bertindih di bucu.
+
+**Penyelesaian 3**: Beza ialah <InlineMath math="500" /> dan <InlineMath math="525" />, tidak tetap, tetapi nisbah ialah <InlineMath math="\dfrac{10{,}500}{10{,}000} = 1.05" /> dan <InlineMath math="\dfrac{11{,}025}{10{,}500} = 1.05" />, tetap. Jadi model eksponen lebih sesuai:
+
+<BlockMath math="P = 10{,}000(1.05)^t" />
+
+**Andaian**: kadar pertumbuhan kekal <InlineMath math="5\%" /> setahun.
+
+**Penyelesaian 4**: Model meramalkan <InlineMath math="10{,}000(1.05)^{30} = 43{,}219" /> orang. Selepas tempoh yang panjang, **tanah, rumah dan pekerjaan terhad**, jadi kadar pertumbuhan biasanya menurun. Model perlu diperhalusi dengan data baharu.
