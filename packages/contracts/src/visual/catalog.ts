@@ -7,16 +7,47 @@ import { mathVisuals } from "#contracts/visual/base/math";
 import { mediaVisuals } from "#contracts/visual/base/media";
 import { biologyVisuals } from "#contracts/visual/biology";
 import { bacteriaVisuals } from "#contracts/visual/biology/bacteria";
+import { binomialVisuals } from "#contracts/visual/biology/binomial";
 import { bloodVisuals } from "#contracts/visual/biology/blood";
+import { boneVisuals } from "#contracts/visual/biology/bone";
 import { cellVisuals } from "#contracts/visual/biology/cell";
+import { chromosomeVisuals } from "#contracts/visual/biology/chromosome";
 import { climateVisuals } from "#contracts/visual/biology/climate";
+import { denatureVisuals } from "#contracts/visual/biology/denature";
+import { drawingVisuals } from "#contracts/visual/biology/drawing";
 import { ecologyVisuals } from "#contracts/visual/biology/ecology";
+import { enzymeVisuals } from "#contracts/visual/biology/enzyme";
+import { equipmentVisuals } from "#contracts/visual/biology/equipment";
+import { gametogenesisVisuals } from "#contracts/visual/biology/gametogenesis";
 import { heartVisuals } from "#contracts/visual/biology/heart";
+import { implantationVisuals } from "#contracts/visual/biology/implantation";
+import { jointVisuals } from "#contracts/visual/biology/joint";
+import { keyVisuals } from "#contracts/visual/biology/key";
+import { kingdomVisuals } from "#contracts/visual/biology/kingdom";
+import { lactaseVisuals } from "#contracts/visual/biology/lactase";
+import { limbVisuals } from "#contracts/visual/biology/limb";
+import { lipidVisuals } from "#contracts/visual/biology/lipid";
+import { locomotionVisuals } from "#contracts/visual/biology/locomotion";
+import { menstrualVisuals } from "#contracts/visual/biology/menstrual";
+import { metamorphosisVisuals } from "#contracts/visual/biology/metamorphosis";
 import { neuronVisuals } from "#contracts/visual/biology/neuron";
 import { physiologyVisuals } from "#contracts/visual/biology/physiology";
+import { placentaVisuals } from "#contracts/visual/biology/placenta";
+import { planesVisuals } from "#contracts/visual/biology/planes";
 import { plantVisuals } from "#contracts/visual/biology/plant";
+import { proteinVisuals } from "#contracts/visual/biology/protein";
+import { saturationVisuals } from "#contracts/visual/biology/saturation";
+import { secretionVisuals } from "#contracts/visual/biology/secretion";
+import { spillVisuals } from "#contracts/visual/biology/spill";
+import { sugarVisuals } from "#contracts/visual/biology/sugar";
 import { synapseVisuals } from "#contracts/visual/biology/synapse";
+import { taxonVisuals } from "#contracts/visual/biology/taxon";
+import { twinsVisuals } from "#contracts/visual/biology/twins";
+import { vernacularVisuals } from "#contracts/visual/biology/vernacular";
+import { vertebraVisuals } from "#contracts/visual/biology/vertebra";
 import { vesselVisuals } from "#contracts/visual/biology/vessel";
+import { wasteVisuals } from "#contracts/visual/biology/waste";
+import { waterVisuals } from "#contracts/visual/biology/water";
 import type { RichSlot } from "#contracts/visual/card";
 import { atomVisuals } from "#contracts/visual/chemistry/atom";
 import { balanceVisuals } from "#contracts/visual/chemistry/balance";
@@ -111,6 +142,37 @@ export function visualCatalog<E>(rich: RichSlot<E>) {
     ...bloodVisuals(rich),
     ...neuronVisuals(rich),
     ...synapseVisuals(rich),
+    ...equipmentVisuals(rich),
+    ...wasteVisuals(rich),
+    ...spillVisuals(rich),
+    ...drawingVisuals(rich),
+    ...planesVisuals(rich),
+    ...vertebraVisuals(rich),
+    ...jointVisuals(rich),
+    ...limbVisuals(rich),
+    ...locomotionVisuals(rich),
+    ...boneVisuals(rich),
+    ...waterVisuals(rich),
+    ...sugarVisuals(rich),
+    ...proteinVisuals(rich),
+    ...lipidVisuals(rich),
+    ...chromosomeVisuals(rich),
+    ...vernacularVisuals(rich),
+    ...taxonVisuals(rich),
+    ...kingdomVisuals(rich),
+    ...binomialVisuals(rich),
+    ...keyVisuals(rich),
+    ...gametogenesisVisuals(rich),
+    ...menstrualVisuals(rich),
+    ...implantationVisuals(rich),
+    ...placentaVisuals(rich),
+    ...twinsVisuals(rich),
+    ...metamorphosisVisuals(rich),
+    ...enzymeVisuals(rich),
+    ...secretionVisuals(rich),
+    ...denatureVisuals(rich),
+    ...saturationVisuals(rich),
+    ...lactaseVisuals(rich),
     ...balanceVisuals(rich),
     ...bondingVisuals(rich),
     ...discoveryVisuals(rich),
