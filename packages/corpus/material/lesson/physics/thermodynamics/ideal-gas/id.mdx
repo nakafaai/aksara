@@ -1,0 +1,183 @@
+export const metadata = {
+  title: "Gas Ideal dan Teori Kinetik Gas",
+  description:
+    "Lihat gas sebagai kerumunan partikel kecil, pakai persamaan gas ideal untuk menghitung mol dan tekanan, lalu pahami arti suhu bagi gerak partikel.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2026-11-20",
+  subject: "Termodinamika",
+};
+
+## Balon Mengembang Saat Dijemur
+
+Gas adalah **kerumunan partikel yang sangat kecil** yang bergerak acak ke segala arah. Setiap kali sebuah partikel menumbuk dinding, dinding itu terdorong sedikit. Dorongan dari tumbukan yang sangat banyak itu kita rasakan sebagai **tekanan**, dan makin cepat partikelnya bergerak, makin tinggi **suhu** gasnya. Dari gambaran ini lahir persamaan gas ideal:
+
+<BlockMath math="pV = nRT" />
+
+Di sini <InlineMath math="p" /> tekanan dalam pascal, <InlineMath math="V" /> volume dalam meter kubik, <InlineMath math="n" /> jumlah mol, <InlineMath math="R = 8{,}314\text{ J mol}^{-1}\,\text{K}^{-1}" />, dan <InlineMath math="T" /> suhu mutlak dalam kelvin. Di lab piston nanti, kamu menekan lalu memanaskan satu gas dan mengecek persamaan ini dengan angkanya.
+
+Gambaran partikel ini menjelaskan balon yang dijemur di bawah matahari. Udara di dalam balon menyerap kalor, partikelnya bergerak lebih cepat, dan kulit balon ditumbuk lebih sering dan lebih keras. Dorongan dari dalam sempat lebih besar daripada dorongan udara luar ditambah tarikan karet, jadi kulit balon bergeser keluar. Balon berhenti mengembang begitu dorongan dari dalam kembali seimbang, sekarang dengan volume yang lebih besar.
+
+Model gas ideal memakai empat anggapan tentang partikel itu:
+
+| Anggapan | Artinya bagi partikel |
+| :--- | :--- |
+| Gerak acak | tidak ada arah gerak yang lebih disukai |
+| Tanpa gaya tarik | partikel hanya saling memengaruhi saat bertumbukan |
+| Ukuran diabaikan | volume semua partikel jauh lebih kecil daripada volume wadah |
+| Tumbukan lenting | energi kinetik tidak hilang saat partikel menumbuk dinding |
+
+Gas yang memenuhi keempatnya disebut **gas ideal**. Gas nyata hanya mendekatinya, dan pendekatan itu bagus selama partikelnya renggang.
+
+## Tekanan dari Jutaan Tumbukan
+
+Tekanan adalah gaya dorong pada setiap satu meter persegi dinding, <InlineMath math="p = F/A" />. Pada <InlineMath math="100\text{ kPa}" />, setiap <InlineMath math="1\text{ cm}^2" /> dinding didorong dengan gaya <InlineMath math="(10^5\text{ Pa})(10^{-4}\text{ m}^2) = 10\text{ N}" />, kira-kira berat benda bermassa <InlineMath math="1\text{ kg}" />. Gaya sebesar itu datang dari partikel yang masing-masing sangat ringan, jadi jumlah tumbukannya luar biasa banyak.
+
+Ada dua cara menaikkan tekanan. Cara pertama membuat tumbukan **lebih sering**: masukkan lebih banyak partikel atau perkecil wadahnya, sehingga setiap liter berisi lebih banyak partikel. Cara kedua membuat tumbukan **lebih keras**: panaskan gasnya supaya partikel bergerak lebih cepat. Teori kinetik gas merangkum keduanya dalam satu persamaan:
+
+<BlockMath math="p = \frac{2}{3}\,\frac{N}{V}\,\bar{E}_k" />
+
+Pecahan <InlineMath math="N/V" /> adalah banyaknya partikel dalam setiap satuan volume, yaitu seberapa padat kerumunannya. <InlineMath math="\bar{E}_k" /> adalah energi kinetik rata-rata satu partikel. Gandakan kepadatannya, dan tekanan menjadi dua kali lipat. Gandakan energi kinetik rata-ratanya, dan tekanan juga menjadi dua kali lipat.
+
+## Persamaan Keadaan Gas Ideal
+
+Tekanan, volume, suhu, dan jumlah partikel gas tidak bebas satu sama lain. Kalau tiga di antaranya sudah diketahui, yang keempat **sudah tertentu**. Persamaan gas ideal mengikat keempatnya, dan persamaan itu juga punya batas: gas nyata mulai menyimpang ketika partikelnya berdesakan.
+
+### Menggabungkan Hukum Gas
+
+Dari sudut partikel, setiap hukum gas adalah satu cara mengubah tumbukan. Kecilkan volume pada suhu tetap, tumbukan menjadi lebih sering, dan <InlineMath math="pV" /> tetap (hukum Boyle). Panaskan pada volume tetap, tumbukan menjadi lebih keras, dan <InlineMath math="p/T" /> tetap (hukum Gay-Lussac). Setiap [hukum gas](/id/materi/fisika/kalor/kalor-jenis-dan-hukum-gas) membiarkan hanya dua besaran berubah, sedangkan persamaan gas ideal membiarkan semuanya berubah bersama.
+
+Untuk gas yang jumlahnya tetap, gabungan itu berarti **<InlineMath math="pV/T" /> tidak berubah** apa pun yang kamu lakukan pada gasnya. Hukum Avogadro menambahkan bahwa nilai tetap itu sebanding dengan banyaknya partikel, jadi untuk <InlineMath math="n" /> mol gas nilainya <InlineMath math="nR" />:
+
+<BlockMath math="\frac{pV}{T} = nR \quad\Longrightarrow\quad pV = nRT" />
+
+<GasPistonLab
+  title={<>Gas Ditekan, lalu Dipanaskan</>}
+  description={
+    <>
+      Gas mula-mula bertekanan <InlineMath math="100\text{ kPa}" /> pada{" "}
+      <InlineMath math="27^\circ\text{C}" />. Tekan pistonnya sampai volume
+      tinggal <InlineMath math="0{,}4" /> kali semula, lalu panaskan gasnya
+      sampai <InlineMath math="177^\circ\text{C}" />.
+    </>
+  }
+  footer={
+    <>
+      Tekanan naik dua kali: karena gasnya lebih padat, lalu karena partikelnya lebih cepat.
+    </>
+  }
+  labels={{
+    pressure: <>Tekanan</>,
+    stage: "Langkah",
+    stages: {
+      compressed: <>Ditekan</>,
+      heated: <>Dipanaskan</>,
+      start: <>Awal</>,
+    },
+    temperature: <>Suhu mutlak</>,
+    viewLabel: "Gas dalam silinder berpiston dengan pengukur tekanan",
+    volume: <>Volume</>,
+  }}
+  finalTemperature={177}
+  pressure={100}
+  temperature={27}
+  volumeRatio={0.4}
+/>
+
+Misalkan volume awal gas di lab itu <InlineMath math="6\text{ L}" />. Berapa mol gas di dalam silinder, dan berapa tekanannya setelah dipanaskan? Ubah dulu ke satuan SI: <InlineMath math="100\text{ kPa} = 1{,}00 \times 10^5\text{ Pa}" />, <InlineMath math="6\text{ L} = 6 \times 10^{-3}\text{ m}^3" />, dan <InlineMath math="27^\circ\text{C} = 300\text{ K}" />.
+
+<MathContainer>
+<BlockMath math="n = \frac{pV}{RT} = \frac{(1{,}00 \times 10^5)(6 \times 10^{-3})}{(8{,}314)(300)} = \frac{600}{2494{,}2} = 0{,}241\text{ mol}" />
+<BlockMath math="nR = \frac{pV}{T} = \frac{600\text{ J}}{300\text{ K}} = 2\text{ J/K}" />
+</MathContainer>
+
+Jumlah itu setara dengan <InlineMath math="(0{,}241)(6{,}02 \times 10^{23}) = 1{,}45 \times 10^{23}" /> partikel. Setelah ditekan, volumenya <InlineMath math="(0{,}4)(6\text{ L}) = 2{,}4\text{ L}" />, dan setelah dipanaskan suhunya <InlineMath math="177 + 273 = 450\text{ K}" />. Dengan <InlineMath math="nR" /> yang sama:
+
+<BlockMath math="p = \frac{nRT}{V} = \frac{(2\text{ J/K})(450\text{ K})}{2{,}4 \times 10^{-3}\text{ m}^3} = 3{,}75 \times 10^5\text{ Pa} = 375\text{ kPa}" />
+
+Cek dengan lab: pada langkah terakhir pengukurnya menunjukkan <InlineMath math="375\text{ kPa}" />. Cek juga <InlineMath math="pV/T" /> di setiap langkah, dengan kPa kali liter sama dengan joule: <InlineMath math="(250)(2{,}4)/300 = 2" /> dan <InlineMath math="(375)(2{,}4)/450 = 2" />. Nilainya tetap <InlineMath math="2\text{ J/K}" /> karena jumlah gasnya tidak berubah.
+
+Coba hitung sendiri: tabung kaku <InlineMath math="4\text{ L}" /> berisi <InlineMath math="0{,}2" /> mol oksigen pada <InlineMath math="47^\circ\text{C}" />. Suhunya <InlineMath math="320\text{ K}" />, jadi <InlineMath math="p = (0{,}2)(8{,}314)(320)/(4 \times 10^{-3}) = 1{,}33 \times 10^5\text{ Pa}" />, sekitar <InlineMath math="133\text{ kPa}" />.
+
+### Gas Nyata Menyimpang
+
+Dua anggapan model ideal gagal ketika partikel berdesakan. Partikel nyata saling **menarik** sedikit, sehingga tumbukannya ke dinding melemah dan tekanannya lebih kecil daripada ramalan gas ideal. Partikel nyata juga punya **ukuran**, sehingga ruang geraknya sedikit lebih sempit daripada volume wadah. Persamaan van der Waals memasukkan kedua koreksi itu lewat tetapan <InlineMath math="a" /> dan <InlineMath math="b" /> yang berbeda untuk setiap gas:
+
+<BlockMath math="\left(p + \frac{an^2}{V^2}\right)(V - nb) = nRT" />
+
+Untuk karbon dioksida, <InlineMath math="a = 3{,}59\text{ L}^2\,\text{atm mol}^{-2}" /> dan <InlineMath math="b = 0{,}0427\text{ L mol}^{-1}" />, menurut tabel di [Chemistry 2e OpenStax](https://openstax.org/books/chemistry-2e/pages/9-6-non-ideal-gas-behavior). Grafik ini membandingkan tekanan karbon dioksida dari persamaan itu dengan ramalan gas ideal pada kepadatan yang sama.
+
+<MathVisual
+  title={<>Karbon Dioksida Nyata dan Gas Ideal</>}
+  description={
+    <>
+      Sumbu mendatar adalah kepadatan gas dalam mol per liter, sumbu tegak
+      adalah tekanan nyata dibagi tekanan ideal. Geser suhu dan kepadatannya.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 5 }, y: { min: 0, max: 1.2 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "s", min: 300, max: 700, value: 300, step: 10, label: "s" },
+      { name: "d", min: 0.04, max: 5, value: 1, step: 0.02, label: "d" },
+    ],
+    objects: [
+      { id: "ideal", kind: "line", appearance: "reference", through: [{ x: 0, y: 1 }, { x: 5, y: 1 }] },
+      { id: "real", kind: "function", appearance: "primary", formula: "1/(1 - 0.0427*x) - 3.59*101.325*x/(8.314*s)", domain: { min: 0, max: 5 } },
+      { id: "state", kind: "marker", x: "d", y: "1/(1 - 0.0427*d) - 3.59*101.325*d/(8.314*s)", appearance: "answer" },
+    ],
+    labels: [
+      { key: "ideal-line", objectId: "ideal", at: { x: 4, y: 1 }, placement: "above" },
+    ],
+    readouts: [
+      { key: "ideal-pressure", formula: "8.314*s*d" },
+      { key: "real-pressure", formula: "8.314*s*d/(1 - 0.0427*d) - 3.59*101.325*d^2" },
+      { key: "ratio", formula: "1/(1 - 0.0427*d) - 3.59*101.325*d/(8.314*s)" },
+    ],
+  }}
+  labels={{
+    s: <>Suhu <InlineMath math="T" /> dalam <InlineMath math="\text{K}" /></>,
+    d: <>Kepadatan dalam <InlineMath math="\text{mol/L}" /></>,
+    "ideal-line": <>Gas ideal</>,
+    "ideal-pressure": <>Tekanan menurut gas ideal dalam <InlineMath math="\text{kPa}" /></>,
+    "real-pressure": <>Tekanan karbon dioksida dalam <InlineMath math="\text{kPa}" /></>,
+    ratio: <>Tekanan nyata dibagi tekanan ideal</>,
+  }}
+/>
+
+Pada <InlineMath math="300\text{ K}" /> dan kepadatan <InlineMath math="0{,}04" /> mol per liter, kira-kira kepadatan gas pada tekanan udara biasa, rasionya <InlineMath math="0{,}996" />: karbon dioksida hanya <InlineMath math="0{,}4\%" /> di bawah ramalan ideal. Pada <InlineMath math="1" /> mol per liter rasionya turun ke <InlineMath math="0{,}899" />. Naikkan suhunya ke <InlineMath math="600\text{ K}" /> pada kepadatan yang sama, dan rasionya kembali ke <InlineMath math="0{,}972" />. Jadi **gas nyata mendekati gas ideal pada tekanan rendah dan suhu tinggi**: partikelnya renggang, dan geraknya yang cepat membuat tarikan kecil di antara mereka tidak berarti.
+
+## Suhu dan Gerak Partikel
+
+Persamaan tekanan dari teori kinetik dan persamaan gas ideal menggambarkan gas yang sama. Kalau keduanya disandingkan, muncul **arti suhu** dari sudut partikel, dan dari situ juga energi yang tersimpan di dalam gas.
+
+### Energi Kinetik Rata-Rata
+
+Tulis persamaan gas ideal untuk <InlineMath math="N" /> partikel: <InlineMath math="pV = NkT" />, dengan <InlineMath math="k = R/N_A = 1{,}38 \times 10^{-23}\text{ J/K}" /> tetapan Boltzmann. Teori kinetik memberi <InlineMath math="pV = \tfrac{2}{3}N\bar{E}_k" />. Samakan keduanya:
+
+<BlockMath math="\tfrac{2}{3}N\bar{E}_k = NkT \quad\Longrightarrow\quad \bar{E}_k = \tfrac{3}{2}kT" />
+
+Suhu mutlak ternyata **sebanding dengan energi kinetik rata-rata** satu partikel, apa pun jenis gasnya. Gas di lab pada <InlineMath math="300\text{ K}" /> punya <InlineMath math="\bar{E}_k = \tfrac{3}{2}(1{,}38 \times 10^{-23})(300) = 6{,}21 \times 10^{-21}\text{ J}" />, dan pada <InlineMath math="450\text{ K}" /> nilainya <InlineMath math="9{,}32 \times 10^{-21}\text{ J}" />. Itu naik <InlineMath math="1{,}5" /> kali, sama dengan kenaikan tekanannya dari <InlineMath math="250" /> ke <InlineMath math="375\text{ kPa}" /> saat dipanaskan.
+
+Seberapa cepat partikelnya? Karena <InlineMath math="\bar{E}_k = \tfrac{1}{2}mv_{\text{rms}}^2" />, kelajuan rata-ratanya <InlineMath math="v_{\text{rms}} = \sqrt{3kT/m}" />. Satu atom helium bermassa <InlineMath math="6{,}65 \times 10^{-27}\text{ kg}" />, jadi pada <InlineMath math="300\text{ K}" />:
+
+<BlockMath math="v_{\text{rms}} = \sqrt{\frac{3(1{,}38 \times 10^{-23})(300)}{6{,}65 \times 10^{-27}}} = 1{,}37 \times 10^3\text{ m/s}" />
+
+Atom helium melesat hampir <InlineMath math="1{,}4\text{ km}" /> setiap detik, tetapi terus berbelok karena bertumbukan. Rumus ini juga menjelaskan mengapa suhu harus dalam kelvin: dalam Celsius, energinya menjadi nol pada <InlineMath math="0^\circ\text{C}" />, padahal partikel es pun masih bergetar.
+
+### Energi Dalam Gas Ideal
+
+**Energi dalam** <InlineMath math="U" /> adalah jumlah energi semua partikel gas. Partikel gas ideal tidak saling tarik, jadi tidak ada energi potensial di antara mereka, dan yang tersisa hanya energi kinetiknya. Untuk gas monoatomik seperti helium atau argon:
+
+<BlockMath math="U = N\bar{E}_k = \tfrac{3}{2}NkT = \tfrac{3}{2}nRT" />
+
+Akibatnya, **energi dalam gas ideal hanya bergantung pada suhunya**. Cek dengan gas di lab, anggap gasnya helium. Karena <InlineMath math="nRT = pV" />, energi dalamnya <InlineMath math="U = \tfrac{3}{2}pV" />:
+
+| Langkah di lab | Suhu | <InlineMath math="pV" /> | <InlineMath math="U" /> |
+| :--- | :--- | :--- | :--- |
+| Awal | <InlineMath math="300\text{ K}" /> | <InlineMath math="600\text{ J}" /> | <InlineMath math="900\text{ J}" /> |
+| Ditekan | <InlineMath math="300\text{ K}" /> | <InlineMath math="600\text{ J}" /> | <InlineMath math="900\text{ J}" /> |
+| Dipanaskan | <InlineMath math="450\text{ K}" /> | <InlineMath math="900\text{ J}" /> | <InlineMath math="1350\text{ J}" /> |
+
+Menekan gas pada suhu tetap tidak mengubah energi dalamnya. Hanya pemanasan yang menaikkannya, sebesar <InlineMath math="\Delta U = 450\text{ J}" />. Dari mana energi itu datang, dan berapa yang pergi sebagai usaha, dijawab oleh [hukum pertama termodinamika](/id/materi/fisika/termodinamika/hukum-pertama-dan-proses-gas). Gas diatomik seperti nitrogen dan oksigen juga berputar, sehingga pada suhu kamar energi dalamnya mendekati <InlineMath math="\tfrac{5}{2}nRT" />.

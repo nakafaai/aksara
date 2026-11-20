@@ -1,0 +1,269 @@
+export const metadata = {
+  title: "Erster Hauptsatz der Thermodynamik",
+  description:
+    "Bestimme die Arbeit eines Gases als Fläche unter dem p-V-Graphen, wende den ersten Hauptsatz an und vergleiche die vier Zustandsänderungen.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2026-11-20",
+  subject: "Thermodynamik",
+};
+
+## Das Gas und seine Umgebung
+
+Der **erste Hauptsatz der Thermodynamik** ist die Energieerhaltung für ein Gas: Die Änderung der inneren Energie ist gleich der zugeführten Wärme minus der Arbeit, die das Gas verrichtet.
+
+<BlockMath math="\Delta U = Q - W" />
+
+Die Wärme <InlineMath math="Q" /> ist positiv, wenn sie ins Gas fließt, und die Arbeit <InlineMath math="W" /> ist positiv, wenn sich das Gas ausdehnt und den Kolben hinausschiebt. Im Diagramm von Druck gegen Volumen ist <InlineMath math="W" /> die Fläche unter dem Weg des Gases. Im Labor zu den Zustandsänderungen weiter unten ziehst du das Gas in einen neuen Endzustand und siehst, wie sich <InlineMath math="Q" />, <InlineMath math="W" /> und <InlineMath math="\Delta U" /> gemeinsam ändern.
+
+Bevor du rechnest, leg das **System** fest, also den Teil, dessen Energie du verfolgst. Hier ist das System das Gas im Zylinder. Alles außerhalb, also Kolben, Wände, Heizung und die Luft ringsum, ist die **Umgebung**. Wärme und Arbeit sind Energie, die die Grenze zwischen beiden überquert. Diese Grenze kann fest bleiben oder sich bewegen, wie ein Kolben, der hinausgeschoben wird.
+
+| System | Stoff überquert die Grenze | Energie überquert die Grenze | Beispiel |
+| :--- | :--- | :--- | :--- |
+| Offen | ja | ja | ein Wasserkocher, aus dem Dampf entweicht |
+| Geschlossen | nein | ja | Gas in einem Zylinder mit Kolben |
+| Abgeschlossen | nein | nein | der Inhalt einer dicht verschlossenen Thermoskanne, näherungsweise |
+
+Druck, Volumen, Temperatur und innere Energie sind **Zustandsgrößen**: Ihr Wert hängt nur vom jetzigen Zustand des Gases ab, nicht davon, auf welchem Weg es dorthin kam. Temperatur kannst du dank des nullten Hauptsatzes messen: Zwei Körper, die jeweils mit einem dritten im thermischen Gleichgewicht sind, sind auch miteinander im Gleichgewicht, und das Thermometer ist dieser dritte Körper.
+
+## Arbeit als Fläche im Diagramm
+
+Stell dir vor, das Gas schiebt einen Kolben der Fläche <InlineMath math="A" /> bei konstantem Druck <InlineMath math="p" /> um die Strecke <InlineMath math="\Delta s" />. Die Kraft des Gases ist <InlineMath math="pA" />, also verrichtet es die Arbeit:
+
+<BlockMath math="W = F\,\Delta s = pA\,\Delta s = p\,\Delta V" />
+
+Im Graphen von <InlineMath math="p" /> gegen <InlineMath math="V" /> ist das Produkt <InlineMath math="p\,\Delta V" /> die Fläche des Rechtecks unter einem waagerechten Weg. Ändert sich der Druck während der Ausdehnung, zerlegst du den Weg in kleine Schritte, die jeweils fast konstanten Druck haben. Alle diese schmalen Rechtecke zusammen ergeben die **Fläche unter dem Weg**, und diese Fläche ist die Arbeit des Gases. Druck in Kilopascal mal Volumen in Litern ergibt direkt Joule, denn <InlineMath math="1\text{ kPa} \times 1\text{ L} = (10^3\text{ Pa})(10^{-3}\text{ m}^3) = 1\text{ J}" />.
+
+<GasProcessLab
+  title={<>Zwei Wege der Ausdehnung vom selben Start</>}
+  description={
+    <>
+      <InlineMath math="0{,}25" /> mol Gas starten bei{" "}
+      <InlineMath math="300\text{ kPa}" /> und <InlineMath math="2\text{ L}" />.
+      Wähle isobar oder isotherm, zieh das Endvolumen und vergleiche die Flächen
+      unter beiden Wegen.
+    </>
+  }
+  footer={
+    <>
+      Beim Ausdehnen hat der waagerechte Weg mehr Fläche unter sich, also mehr Arbeit.
+    </>
+  }
+  labels={{
+    endPressure: "Enddruck",
+    endState: <>Endzustand</>,
+    endVolume: "Endvolumen",
+    energy: "Energie bei diesem Prozess",
+    heat: <>Zugeführte Wärme, <InlineMath math="Q" /></>,
+    internal: <>Änderung der inneren Energie, <InlineMath math="\Delta U" /></>,
+    law: <>Was dieser Prozess konstant hält</>,
+    pressureAxis: <InlineMath math="p\ (\text{kPa})" />,
+    process: "Prozess",
+    processes: {
+      adiabatic: "Adiabatisch",
+      isobaric: "Isobar",
+      isochoric: "Isochor",
+      isothermal: "Isotherm",
+    },
+    startState: <>Anfangszustand</>,
+    viewLabel: "Ein Gaszylinder mit Kolben neben seinem Diagramm von Druck gegen Volumen",
+    volumeAxis: <InlineMath math="V\ (\text{L})" />,
+    work: <>Vom Gas verrichtete Arbeit, <InlineMath math="W" /></>,
+  }}
+  moles={0.25}
+  processes={[
+    { process: "isobaric", volume: { end: 6, max: 8, min: 1 } },
+    { process: "isothermal", volume: { end: 6, max: 8, min: 1 } },
+  ]}
+  start={{ pressure: 300, volume: 2 }}
+/>
+
+Lass das Gas sich auf <InlineMath math="6\text{ L}" /> ausdehnen. Bei konstantem Druck ist die Fläche ein Rechteck: <InlineMath math="W = (300)(6 - 2) = 1200\text{ J}" />. Bei konstanter Temperatur fällt der Druck entlang <InlineMath math="p = 600/V" /> auf <InlineMath math="100\text{ kPa}" />. Die Fläche unter einer solchen Kurve ist <InlineMath math="nRT\ln(V_2/V_1)" />, mit <InlineMath math="nRT = p_1V_1 = 600\text{ J}" />:
+
+<BlockMath math="W = 600 \ln \frac{6}{2} = 600 \ln 3 = 659\text{ J}" />
+
+Gleicher Start, gleiches Endvolumen, verschiedene Arbeit. **Die Arbeit hängt vom Weg ab**, nicht nur von Anfangs- und Endzustand. Zieh das Endvolumen jetzt links unter <InlineMath math="2\text{ L}" />. Das Gas wird zusammengedrückt, <InlineMath math="\Delta V" /> ist negativ, und bei konstantem Druck bis <InlineMath math="1\text{ L}" /> beträgt die Arbeit <InlineMath math="(300)(1 - 2) = -300\text{ J}" />. Das Minuszeichen sagt dir, dass die Umgebung Arbeit am Gas verrichtet.
+
+## Bilanz aus Wärme und Arbeit
+
+Energie entsteht nicht und verschwindet nicht. Wärme <InlineMath math="Q" />, die ins Gas fließt, kann nur zwei Wege nehmen: Sie **erhöht die innere Energie** des Gases, oder sie **fließt als Arbeit wieder ab**, die den Kolben schiebt. Also gilt <InlineMath math="Q = \Delta U + W" />, meist so geschrieben:
+
+<BlockMath math="\Delta U = Q - W" />
+
+| Größe | Positiv, wenn | Negativ, wenn |
+| :--- | :--- | :--- |
+| <InlineMath math="Q" /> | Wärme ins Gas fließt | Wärme aus dem Gas fließt |
+| <InlineMath math="W" /> | das Gas sich ausdehnt, Arbeit vom Gas | das Gas zusammengedrückt wird, Arbeit am Gas |
+| <InlineMath math="\Delta U" /> | das Gas wärmer wird | das Gas kälter wird |
+
+Erstes Beispiel: Ein Gas nimmt <InlineMath math="1800\text{ J}" /> Wärme auf und verrichtet beim Ausdehnen <InlineMath math="700\text{ J}" /> Arbeit.
+
+<BlockMath math="\Delta U = Q - W = 1800 - 700 = 1100\text{ J}" />
+
+Die innere Energie steigt, also wird das Gas wärmer. Probe: Von den <InlineMath math="1800\text{ J}" />, die hineinkamen, gingen <InlineMath math="700\text{ J}" /> als Arbeit hinaus und <InlineMath math="1100\text{ J}" /> blieben im Gas, und <InlineMath math="700 + 1100 = 1800" />.
+
+Zweites Beispiel: Ein Kolben drückt das Gas mit <InlineMath math="450\text{ J}" /> Arbeit zusammen, während das Gas <InlineMath math="200\text{ J}" /> Wärme an eine kalte Wand abgibt. Die Wärme fließt hinaus, also <InlineMath math="Q = -200\text{ J}" />, und das Gas wird zusammengedrückt, also <InlineMath math="W = -450\text{ J}" />.
+
+<BlockMath math="\Delta U = Q - W = (-200) - (-450) = 250\text{ J}" />
+
+Die innere Energie steigt trotzdem, weil über die Arbeit mehr Energie hineinkam, als mit der Wärme hinausging. In vielen deutschen Schulbüchern steht <InlineMath math="\Delta U = Q + W" />. Das ist kein anderes Gesetz: Dort bedeutet <InlineMath math="W" /> die Arbeit **am** Gas, also das umgekehrte Vorzeichen wie hier. Entscheide dich für eine Vorzeichenregel und bleib bis zum Ende der Aufgabe dabei.
+
+## Vier Prozesse vom selben Start
+
+Ein Gas kann auf vielen Wegen von einem Zustand in einen anderen kommen. Vier besondere Wege **halten jeweils eine Sache fest**: den Druck (isobar), das Volumen (isochor), die Temperatur (isotherm) oder gar keinen Wärmeaustausch (adiabatisch). Im nächsten Labor starten <InlineMath math="0{,}4" /> mol eines einatomigen Gases bei <InlineMath math="200\text{ kPa}" /> und <InlineMath math="5\text{ L}" />, die Temperatur ist also <InlineMath math="T_1 = 1000/(0{,}4 \times 8{,}314) = 300{,}7\text{ K}" />.
+
+<GasProcessLab
+  title={<>Vier Zustandsänderungen von einem Startpunkt</>}
+  description={
+    <>
+      Wähle einen Prozess und zieh dann den Endzustand. Die Balken für{" "}
+      <InlineMath math="Q" />, <InlineMath math="W" /> und{" "}
+      <InlineMath math="\Delta U" /> teilen eine Skala, und der erste Hauptsatz
+      wird mit den Zahlen durchgerechnet.
+    </>
+  }
+  footer={
+    <>
+      Nur beim isothermen Prozess bleibt der Balken für <InlineMath math="\Delta U" /> leer.
+    </>
+  }
+  labels={{
+    endPressure: "Enddruck",
+    endState: <>Endzustand</>,
+    endVolume: "Endvolumen",
+    energy: "Energie bei diesem Prozess",
+    heat: <>Zugeführte Wärme, <InlineMath math="Q" /></>,
+    internal: <>Änderung der inneren Energie, <InlineMath math="\Delta U" /></>,
+    law: <>Was dieser Prozess konstant hält</>,
+    pressureAxis: <InlineMath math="p\ (\text{kPa})" />,
+    process: "Prozess",
+    processes: {
+      adiabatic: "Adiabatisch",
+      isobaric: "Isobar",
+      isochoric: "Isochor",
+      isothermal: "Isotherm",
+    },
+    startState: <>Anfangszustand</>,
+    viewLabel: "Ein Gaszylinder mit Kolben neben seinem Diagramm von Druck gegen Volumen",
+    volumeAxis: <InlineMath math="V\ (\text{L})" />,
+    work: <>Vom Gas verrichtete Arbeit, <InlineMath math="W" /></>,
+  }}
+  moles={0.4}
+  processes={[
+    { process: "isobaric", volume: { end: 10, max: 12, min: 2.5 } },
+    { pressure: { end: 400, max: 500, min: 100 }, process: "isochoric" },
+    { process: "isothermal", volume: { end: 10, max: 12, min: 2.5 } },
+    { process: "adiabatic", volume: { end: 10, max: 12, min: 2.5 } },
+  ]}
+  showValues
+  start={{ pressure: 200, volume: 5 }}
+/>
+
+Für ein einatomiges Gas ist <InlineMath math="\Delta U = \tfrac{3}{2}nR\,\Delta T" />. Wegen <InlineMath math="nRT = pV" /> ist das dasselbe wie <InlineMath math="\Delta U = \tfrac{3}{2}(p_2V_2 - p_1V_1)" />, was aus Kilopascal und Litern direkt Joule liefert.
+
+### Isobar und isochor
+
+Beim **isobaren** Prozess dehnt sich das Gas bei <InlineMath math="200\text{ kPa}" /> von <InlineMath math="5" /> auf <InlineMath math="10\text{ L}" /> aus. Doppeltes Volumen bei gleichem Druck heißt doppelte Temperatur, <InlineMath math="601{,}4\text{ K}" />.
+
+<MathContainer>
+<BlockMath math="W = p\,\Delta V = (200)(10 - 5) = 1000\text{ J}" />
+<BlockMath math="\Delta U = \tfrac{3}{2}(2000 - 1000) = 1500\text{ J}" />
+<BlockMath math="Q = \Delta U + W = 1500 + 1000 = 2500\text{ J}" />
+</MathContainer>
+
+Beim **isochoren** Prozess ist der Kolben festgesteckt, und das Gas wird bis <InlineMath math="400\text{ kPa}" /> erhitzt. Das Volumen ändert sich nicht, also ist <InlineMath math="W = 0" />, und die ganze Wärme wird innere Energie: <InlineMath math="Q = \Delta U = \tfrac{3}{2}(2000 - 1000) = 1500\text{ J}" />. Auch hier erreicht die Temperatur <InlineMath math="601{,}4\text{ K}" />, genau wie beim isobaren Prozess, aber es braucht <InlineMath math="1000\text{ J}" /> weniger Wärme. Dieser Unterschied ist genau die Arbeit, die das Gas beim isobaren Prozess verrichtet hat.
+
+### Isotherm und adiabatisch
+
+Beim **isothermen** Prozess bleibt die Temperatur gleich, also ist <InlineMath math="\Delta U = 0" />, und alle zugeführte Wärme geht als Arbeit wieder hinaus. Ausdehnung von <InlineMath math="5" /> auf <InlineMath math="10\text{ L}" />:
+
+<BlockMath math="Q = W = nRT\ln\frac{V_2}{V_1} = 1000\ln 2 = 693{,}1\text{ J}" />
+
+Zieh das Endvolumen einmal auf <InlineMath math="2{,}5\text{ L}" />. Du erhältst <InlineMath math="Q = W = 1000\ln 0{,}5 = -693{,}1\text{ J}" />: Das Gas wird zusammengedrückt, und so viel Wärme muss abfließen, damit die Temperatur gleich bleibt.
+
+Beim **adiabatischen** Prozess kommt keine Wärme durch, <InlineMath math="Q = 0" />, etwa weil der Zylinder gedämmt ist oder die Änderung zu schnell abläuft. Ein ideales Gas folgt dann <InlineMath math="pV^\gamma = \text{konstant}" />, mit <InlineMath math="\gamma = 5/3" /> für ein einatomiges Gas.
+
+<MathContainer>
+<BlockMath math="p_2 = p_1\left(\frac{V_1}{V_2}\right)^{\gamma} = 200\left(\frac{1}{2}\right)^{5/3} = 63{,}0\text{ kPa}" />
+<BlockMath math="\Delta U = \tfrac{3}{2}(p_2V_2 - p_1V_1) = \tfrac{3}{2}(629{,}96 - 1000) = -555{,}1\text{ J}" />
+<BlockMath math="W = Q - \Delta U = 0 - (-555{,}1) = 555{,}1\text{ J}" />
+</MathContainer>
+
+Das Gas bezahlt seine Arbeit aus der eigenen inneren Energie, deshalb **sinkt seine Temperatur** von <InlineMath math="300{,}7\text{ K}" /> auf <InlineMath math="189{,}4\text{ K}" />. Weil die Temperatur mitfällt, ist die Adiabate steiler als die Isotherme durch denselben Punkt. Adiabatisch heißt also nicht konstante Temperatur. Null bleibt nur die Wärme, die durchkommt.
+
+## Wärmekapazität eines Gases
+
+Die **Wärmekapazität** <InlineMath math="C" /> ist die Wärme, die die Temperatur eines Gases um <InlineMath math="1\text{ K}" /> erhöht, also <InlineMath math="C = Q/\Delta T" />. Bei einem Gas hängt sie davon ab, wie du es erhitzt. Der isochore und der isobare Prozess im Labor erhöhen die Temperatur beide um <InlineMath math="\Delta T = 601{,}4 - 300{,}7 = 300{,}7\text{ K}" />:
+
+<MathContainer>
+<BlockMath math="C_V = \frac{1500\text{ J}}{300{,}7\text{ K}} = 4{,}99\text{ J/K} = \tfrac{3}{2}nR" />
+<BlockMath math="C_p = \frac{2500\text{ J}}{300{,}7\text{ K}} = 8{,}31\text{ J/K} = \tfrac{5}{2}nR" />
+</MathContainer>
+
+Bei konstantem Druck ist die Wärmekapazität größer, weil das Gas zusätzlich **den Kolben schiebt**: Ein Teil der Wärme geht als Arbeit wieder hinaus und erwärmt das Gas nicht. Der Unterschied ist genau <InlineMath math="C_p - C_V = nR" />, und das Verhältnis <InlineMath math="C_p/C_V = 5/3" /> ist das <InlineMath math="\gamma" /> der Adiabate.
+
+Teilst du durch die Stoffmenge, erhältst du die molare Wärmekapazität eines einatomigen Gases bei konstantem Volumen, <InlineMath math="\tfrac{3}{2}R = 12{,}5\text{ J mol}^{-1}\,\text{K}^{-1}" />, und Helium und Argon liegen tatsächlich nahe daran. Zweiatomige Moleküle wie Stickstoff und Sauerstoff rotieren zusätzlich, deshalb liegt ihre molare Wärmekapazität bei konstantem Volumen nahe <InlineMath math="\tfrac{5}{2}R = 20{,}8\text{ J mol}^{-1}\,\text{K}^{-1}" />.
+
+## Kreisprozesse zurück zum Start
+
+Eine Maschine arbeitet immer wieder, also muss ihr Gas in den Anfangszustand zurückkehren. Eine Folge von Prozessen, die im Anfangszustand endet, heißt **Kreisprozess**. Die innere Energie ist eine Zustandsgröße, also gilt nach einem vollen Umlauf <InlineMath math="\Delta U = 0" />, und der erste Hauptsatz liefert <InlineMath math="Q_{\text{gesamt}} = W_{\text{gesamt}}" />.
+
+Der Kreisprozess im Graphen nutzt dasselbe Gas. Es dehnt sich bei <InlineMath math="200\text{ kPa}" /> von <InlineMath math="A" /> nach <InlineMath math="B" /> aus, kühlt bei <InlineMath math="10\text{ L}" /> bis <InlineMath math="C" /> ab, wird bei <InlineMath math="100\text{ kPa}" /> nach <InlineMath math="D" /> zusammengedrückt und dann bei <InlineMath math="5\text{ L}" /> zurück nach <InlineMath math="A" /> erhitzt. **Die Nettoarbeit ist die Fläche innerhalb des Kreisprozesses**, weil die positive Arbeit beim Ausdehnen oben größer ist als die negative Arbeit beim Zusammendrücken unten.
+
+<MathVisual
+  title={<>Ein rechteckiger Kreisprozess</>}
+  description={
+    <>
+      Nach rechts steht das Volumen in Litern, nach oben der Druck in
+      Kilopascal. Verschieb den oberen Druck und das rechte Volumen und
+      beobachte die Nettoarbeit und die aufgenommene Wärme.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 13 }, y: { min: 0, max: 320 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "h", min: 120, max: 300, value: 200, step: 10, label: "h" },
+      { name: "r", min: 6, max: 12, value: 10, step: 0.5, label: "r" },
+    ],
+    objects: [
+      { id: "cycle", kind: "loop", appearance: "primary", points: [{ x: "5", y: "h" }, { x: "r", y: "h" }, { x: "r", y: "100" }, { x: "5", y: "100" }] },
+      { id: "a", kind: "marker", x: "5", y: "h", appearance: "answer" },
+      { id: "b", kind: "marker", x: "r", y: "h", appearance: "answer" },
+      { id: "c", kind: "marker", x: "r", y: "100", appearance: "answer" },
+      { id: "d", kind: "marker", x: "5", y: "100", appearance: "answer" },
+    ],
+    labels: [
+      { key: "point-a", objectId: "a", at: { x: "5", y: "h" }, placement: "above-left" },
+      { key: "point-b", objectId: "b", at: { x: "r", y: "h" }, placement: "above-right" },
+      { key: "point-c", objectId: "c", at: { x: "r", y: "100" }, placement: "below-right" },
+      { key: "point-d", objectId: "d", at: { x: "5", y: "100" }, placement: "below-left" },
+    ],
+    readouts: [
+      { key: "net-work", formula: "(h - 100)*(r - 5)" },
+      { key: "heat-in", formula: "2.5*h*(r - 5) + 7.5*(h - 100)" },
+    ],
+  }}
+  labels={{
+    h: <>Oberer Druck in <InlineMath math="\text{kPa}" /></>,
+    r: <>Rechtes Volumen in <InlineMath math="\text{L}" /></>,
+    "point-a": <InlineMath math="A" />,
+    "point-b": <InlineMath math="B" />,
+    "point-c": <InlineMath math="C" />,
+    "point-d": <InlineMath math="D" />,
+    "net-work": <>Nettoarbeit pro Umlauf in <InlineMath math="\text{J}" /></>,
+    "heat-in": <>Aufgenommene Wärme in <InlineMath math="\text{J}" /></>,
+  }}
+/>
+
+Beim Startprozess beträgt die Nettoarbeit <InlineMath math="(200 - 100)(10 - 5) = 500\text{ J}" />. Die Tabelle prüft diese Zahl Schritt für Schritt, so wie das Labor rechnet:
+
+| Schritt | <InlineMath math="W" /> | <InlineMath math="\Delta U" /> | <InlineMath math="Q" /> |
+| :--- | :--- | :--- | :--- |
+| <InlineMath math="A" /> nach <InlineMath math="B" />, isobar | <InlineMath math="+1000\text{ J}" /> | <InlineMath math="+1500\text{ J}" /> | <InlineMath math="+2500\text{ J}" /> |
+| <InlineMath math="B" /> nach <InlineMath math="C" />, isochor | <InlineMath math="0" /> | <InlineMath math="-1500\text{ J}" /> | <InlineMath math="-1500\text{ J}" /> |
+| <InlineMath math="C" /> nach <InlineMath math="D" />, isobar | <InlineMath math="-500\text{ J}" /> | <InlineMath math="-750\text{ J}" /> | <InlineMath math="-1250\text{ J}" /> |
+| <InlineMath math="D" /> nach <InlineMath math="A" />, isochor | <InlineMath math="0" /> | <InlineMath math="+750\text{ J}" /> | <InlineMath math="+750\text{ J}" /> |
+| Ein Umlauf | <InlineMath math="+500\text{ J}" /> | <InlineMath math="0" /> | <InlineMath math="+500\text{ J}" /> |
+
+Das Gas nimmt <InlineMath math="2500 + 750 = 3250\text{ J}" /> auf und gibt <InlineMath math="1500 + 1250 = 2750\text{ J}" /> ab, also werden nur <InlineMath math="500\text{ J}" /> zu Arbeit. Warum ein Teil der Wärme immer abgegeben werden muss und welcher Anteil höchstens zu Arbeit werden kann, beantwortet der [zweite Hauptsatz der Thermodynamik](/de/faecher/physik/thermodynamik/zweiter-hauptsatz-und-waermekraftmaschinen).

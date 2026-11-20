@@ -1,0 +1,268 @@
+export const metadata = {
+  title: "Hukum Pertama Termodinamika",
+  description:
+    "Hitung usaha gas sebagai luas di bawah grafik tekanan terhadap volume, pakai hukum pertama termodinamika, dan bandingkan empat proses gas.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2026-11-20",
+  subject: "Termodinamika",
+};
+
+## Sistem dan Lingkungan Gas
+
+**Hukum pertama termodinamika** adalah hukum kekekalan energi untuk gas: perubahan energi dalam gas sama dengan kalor yang masuk dikurangi usaha yang dilakukan gas.
+
+<BlockMath math="\Delta U = Q - W" />
+
+Kalor <InlineMath math="Q" /> positif kalau masuk ke gas, dan usaha <InlineMath math="W" /> positif kalau gas memuai dan mendorong piston. Pada diagram tekanan terhadap volume, <InlineMath math="W" /> adalah luas di bawah lintasan gas. Di lab proses gas nanti, kamu menggeser keadaan akhir gas dan melihat <InlineMath math="Q" />, <InlineMath math="W" />, dan <InlineMath math="\Delta U" /> berubah bersama.
+
+Sebelum menghitung, tentukan dulu **sistemnya**, yaitu bagian yang energinya kamu catat. Di sini sistemnya gas di dalam silinder. Segala sesuatu di luar gas, termasuk piston, dinding, pemanas, dan udara sekitar, adalah **lingkungan**. Kalor dan usaha adalah energi yang melintasi batas di antara keduanya. Batas itu bisa tetap atau bergerak, seperti piston yang terdorong keluar.
+
+| Sistem | Materi melintasi batas | Energi melintasi batas | Contoh |
+| :--- | :--- | :--- | :--- |
+| Terbuka | ya | ya | ketel yang mengeluarkan uap |
+| Tertutup | tidak | ya | gas dalam silinder berpiston |
+| Terisolasi | tidak | tidak | isi termos yang tertutup rapat, kira-kira |
+
+Tekanan, volume, suhu, dan energi dalam disebut **variabel keadaan**: nilainya hanya bergantung pada keadaan gas sekarang, bukan pada jalan yang ditempuh untuk sampai ke situ. Suhu bisa diukur berkat hukum ke nol termodinamika: dua benda yang masing-masing setimbang termal dengan benda ketiga juga setimbang satu sama lain, dan termometer adalah benda ketiga itu.
+
+## Usaha Gas sebagai Luas Diagram
+
+Bayangkan gas mendorong piston seluas <InlineMath math="A" /> sejauh <InlineMath math="\Delta s" /> pada tekanan tetap <InlineMath math="p" />. Gaya dari gas adalah <InlineMath math="pA" />, jadi usahanya:
+
+<BlockMath math="W = F\,\Delta s = pA\,\Delta s = p\,\Delta V" />
+
+Pada diagram <InlineMath math="p" /> terhadap <InlineMath math="V" />, hasil kali <InlineMath math="p\,\Delta V" /> adalah luas persegi panjang di bawah lintasan mendatar. Kalau tekanannya berubah selama pemuaian, potong lintasannya menjadi langkah kecil yang masing-masing hampir bertekanan tetap. Jumlah semua persegi panjang kecil itu adalah **luas di bawah lintasan**, dan itulah usaha gas. Tekanan dalam kPa kali volume dalam liter langsung menghasilkan joule, karena <InlineMath math="1\text{ kPa} \times 1\text{ L} = (10^3\text{ Pa})(10^{-3}\text{ m}^3) = 1\text{ J}" />.
+
+<GasProcessLab
+  title={<>Dua Jalan Pemuaian dari Keadaan yang Sama</>}
+  description={
+    <>
+      Sebanyak <InlineMath math="0{,}25" /> mol gas mulai dari{" "}
+      <InlineMath math="300\text{ kPa}" /> dan <InlineMath math="2\text{ L}" />.
+      Pilih isobarik atau isotermal, geser volume akhirnya, lalu bandingkan luas
+      di bawah kedua lintasan.
+    </>
+  }
+  footer={
+    <>
+      Saat gas memuai, lintasan mendatar punya luas lebih besar, jadi usahanya lebih banyak.
+    </>
+  }
+  labels={{
+    endPressure: "Tekanan akhir",
+    endState: <>Keadaan akhir</>,
+    endVolume: "Volume akhir",
+    energy: "Energi dalam proses ini",
+    heat: <>Kalor masuk ke gas, <InlineMath math="Q" /></>,
+    internal: <>Perubahan energi dalam, <InlineMath math="\Delta U" /></>,
+    law: <>Yang dijaga proses ini</>,
+    pressureAxis: <InlineMath math="p\ (\text{kPa})" />,
+    process: "Proses",
+    processes: {
+      adiabatic: "Adiabatik",
+      isobaric: "Isobarik",
+      isochoric: "Isokhorik",
+      isothermal: "Isotermal",
+    },
+    startState: <>Keadaan awal</>,
+    viewLabel: "Silinder gas berpiston di samping diagram tekanan terhadap volume",
+    volumeAxis: <InlineMath math="V\ (\text{L})" />,
+    work: <>Usaha oleh gas, <InlineMath math="W" /></>,
+  }}
+  moles={0.25}
+  processes={[
+    { process: "isobaric", volume: { end: 6, max: 8, min: 1 } },
+    { process: "isothermal", volume: { end: 6, max: 8, min: 1 } },
+  ]}
+  start={{ pressure: 300, volume: 2 }}
+/>
+
+Muaikan gas itu sampai <InlineMath math="6\text{ L}" />. Pada tekanan tetap, luasnya persegi panjang: <InlineMath math="W = (300)(6 - 2) = 1200\text{ J}" />. Pada suhu tetap, tekanannya turun mengikuti <InlineMath math="p = 600/V" /> sampai <InlineMath math="100\text{ kPa}" />. Luas di bawah kurva seperti itu adalah <InlineMath math="nRT\ln(V_2/V_1)" />, dengan <InlineMath math="nRT = p_1V_1 = 600\text{ J}" />:
+
+<BlockMath math="W = 600 \ln \frac{6}{2} = 600 \ln 3 = 659\text{ J}" />
+
+Keadaan awal dan volume akhirnya sama, tetapi usahanya berbeda. **Usaha bergantung pada jalan yang ditempuh**, tidak hanya pada keadaan awal dan akhir. Sekarang geser volume akhir ke kiri dari <InlineMath math="2\text{ L}" />. Gas dimampatkan, <InlineMath math="\Delta V" /> negatif, dan pada tekanan tetap sampai <InlineMath math="1\text{ L}" /> usahanya <InlineMath math="(300)(1 - 2) = -300\text{ J}" />. Tanda negatif berarti lingkungan yang melakukan usaha pada gas.
+
+## Neraca Energi Kalor dan Usaha
+
+Energi tidak muncul dan tidak hilang. Kalor <InlineMath math="Q" /> yang masuk ke gas hanya bisa pergi ke dua tempat: **menaikkan energi dalam** gas, atau **keluar lagi sebagai usaha** yang mendorong piston. Jadi <InlineMath math="Q = \Delta U + W" />, atau dalam bentuk yang biasa ditulis:
+
+<BlockMath math="\Delta U = Q - W" />
+
+| Besaran | Positif jika | Negatif jika |
+| :--- | :--- | :--- |
+| <InlineMath math="Q" /> | kalor masuk ke gas | kalor keluar dari gas |
+| <InlineMath math="W" /> | gas memuai, usaha oleh gas | gas dimampatkan, usaha pada gas |
+| <InlineMath math="\Delta U" /> | suhu gas naik | suhu gas turun |
+
+Contoh pertama: gas menerima kalor <InlineMath math="1800\text{ J}" /> dan, sambil memuai, melakukan usaha <InlineMath math="700\text{ J}" />.
+
+<BlockMath math="\Delta U = Q - W = 1800 - 700 = 1100\text{ J}" />
+
+Energi dalam naik, jadi suhu gas naik. Cek: dari <InlineMath math="1800\text{ J}" /> yang masuk, <InlineMath math="700\text{ J}" /> keluar sebagai usaha dan <InlineMath math="1100\text{ J}" /> tinggal di dalam gas, dan <InlineMath math="700 + 1100 = 1800" />.
+
+Contoh kedua: piston menekan gas dengan usaha <InlineMath math="450\text{ J}" />, sementara gas melepas kalor <InlineMath math="200\text{ J}" /> ke dinding yang dingin. Karena kalor keluar, <InlineMath math="Q = -200\text{ J}" />, dan karena gas dimampatkan, <InlineMath math="W = -450\text{ J}" />.
+
+<BlockMath math="\Delta U = Q - W = (-200) - (-450) = 250\text{ J}" />
+
+Energi dalam tetap naik, karena usaha yang masuk lebih besar daripada kalor yang keluar. Beberapa buku menulis <InlineMath math="\Delta U = Q + W" />. Itu bukan hukum yang lain: di sana <InlineMath math="W" /> berarti usaha **pada** gas, kebalikan tanda yang dipakai di sini. Pilih satu kesepakatan tanda dan pegang sampai soal selesai.
+
+## Empat Proses dari Satu Titik
+
+Gas bisa berpindah antara dua keadaan lewat banyak jalan. Empat jalan istimewa masing-masing **menjaga satu hal tetap**: tekanan (isobarik), volume (isokhorik), suhu (isotermal), atau tanpa pertukaran kalor sama sekali (adiabatik). Di lab berikut, <InlineMath math="0{,}4" /> mol gas monoatomik mulai dari <InlineMath math="200\text{ kPa}" /> dan <InlineMath math="5\text{ L}" />, sehingga suhunya <InlineMath math="T_1 = 1000/(0{,}4 \times 8{,}314) = 300{,}7\text{ K}" />.
+
+<GasProcessLab
+  title={<>Empat Proses dari Titik Awal yang Sama</>}
+  description={
+    <>
+      Pilih prosesnya, lalu geser keadaan akhir. Batang <InlineMath math="Q" />,{" "}
+      <InlineMath math="W" />, dan <InlineMath math="\Delta U" /> memakai satu
+      skala, dan hukum pertama ditulis dengan angkanya.
+    </>
+  }
+  footer={
+    <>
+      Hanya proses isotermal yang membuat batang <InlineMath math="\Delta U" /> tetap kosong.
+    </>
+  }
+  labels={{
+    endPressure: "Tekanan akhir",
+    endState: <>Keadaan akhir</>,
+    endVolume: "Volume akhir",
+    energy: "Energi dalam proses ini",
+    heat: <>Kalor masuk ke gas, <InlineMath math="Q" /></>,
+    internal: <>Perubahan energi dalam, <InlineMath math="\Delta U" /></>,
+    law: <>Yang dijaga proses ini</>,
+    pressureAxis: <InlineMath math="p\ (\text{kPa})" />,
+    process: "Proses",
+    processes: {
+      adiabatic: "Adiabatik",
+      isobaric: "Isobarik",
+      isochoric: "Isokhorik",
+      isothermal: "Isotermal",
+    },
+    startState: <>Keadaan awal</>,
+    viewLabel: "Silinder gas berpiston di samping diagram tekanan terhadap volume",
+    volumeAxis: <InlineMath math="V\ (\text{L})" />,
+    work: <>Usaha oleh gas, <InlineMath math="W" /></>,
+  }}
+  moles={0.4}
+  processes={[
+    { process: "isobaric", volume: { end: 10, max: 12, min: 2.5 } },
+    { pressure: { end: 400, max: 500, min: 100 }, process: "isochoric" },
+    { process: "isothermal", volume: { end: 10, max: 12, min: 2.5 } },
+    { process: "adiabatic", volume: { end: 10, max: 12, min: 2.5 } },
+  ]}
+  showValues
+  start={{ pressure: 200, volume: 5 }}
+/>
+
+Untuk gas monoatomik, <InlineMath math="\Delta U = \tfrac{3}{2}nR\,\Delta T" />. Karena <InlineMath math="nRT = pV" />, rumus ini sama dengan <InlineMath math="\Delta U = \tfrac{3}{2}(p_2V_2 - p_1V_1)" />, yang langsung memberi joule dari kPa dan liter.
+
+### Isobarik dan Isokhorik
+
+Pada proses **isobarik**, gas memuai dari <InlineMath math="5" /> ke <InlineMath math="10\text{ L}" /> pada <InlineMath math="200\text{ kPa}" />. Volume dua kali lipat pada tekanan yang sama berarti suhunya juga dua kali lipat, <InlineMath math="601{,}4\text{ K}" />.
+
+<MathContainer>
+<BlockMath math="W = p\,\Delta V = (200)(10 - 5) = 1000\text{ J}" />
+<BlockMath math="\Delta U = \tfrac{3}{2}(2000 - 1000) = 1500\text{ J}" />
+<BlockMath math="Q = \Delta U + W = 1500 + 1000 = 2500\text{ J}" />
+</MathContainer>
+
+Pada proses **isokhorik**, piston dikunci dan gas dipanaskan sampai <InlineMath math="400\text{ kPa}" />. Volumenya tidak berubah, jadi <InlineMath math="W = 0" /> dan semua kalor menjadi energi dalam: <InlineMath math="Q = \Delta U = \tfrac{3}{2}(2000 - 1000) = 1500\text{ J}" />. Suhunya juga naik ke <InlineMath math="601{,}4\text{ K}" />, sama seperti proses isobarik, tetapi kalornya <InlineMath math="1000\text{ J}" /> lebih sedikit. Selisih itu persis usaha yang dilakukan gas isobarik.
+
+### Isotermal dan Adiabatik
+
+Pada proses **isotermal**, suhu tetap, jadi <InlineMath math="\Delta U = 0" /> dan semua kalor yang masuk keluar lagi sebagai usaha. Memuai dari <InlineMath math="5" /> ke <InlineMath math="10\text{ L}" />:
+
+<BlockMath math="Q = W = nRT\ln\frac{V_2}{V_1} = 1000\ln 2 = 693{,}1\text{ J}" />
+
+Coba geser volume akhir ke <InlineMath math="2{,}5\text{ L}" />. Hasilnya <InlineMath math="Q = W = 1000\ln 0{,}5 = -693{,}1\text{ J}" />: gas dimampatkan, dan kalor sebanyak itu harus keluar supaya suhunya tetap.
+
+Pada proses **adiabatik**, tidak ada kalor yang lewat, <InlineMath math="Q = 0" />, misalnya karena silinder dibungkus penyekat atau prosesnya terlalu cepat. Gas ideal mengikuti <InlineMath math="pV^\gamma = \text{tetap}" />, dengan <InlineMath math="\gamma = 5/3" /> untuk gas monoatomik.
+
+<MathContainer>
+<BlockMath math="p_2 = p_1\left(\frac{V_1}{V_2}\right)^{\gamma} = 200\left(\frac{1}{2}\right)^{5/3} = 63{,}0\text{ kPa}" />
+<BlockMath math="\Delta U = \tfrac{3}{2}(p_2V_2 - p_1V_1) = \tfrac{3}{2}(629{,}96 - 1000) = -555{,}1\text{ J}" />
+<BlockMath math="W = Q - \Delta U = 0 - (-555{,}1) = 555{,}1\text{ J}" />
+</MathContainer>
+
+Gas membayar usahanya dari energi dalamnya sendiri, jadi **suhunya turun** dari <InlineMath math="300{,}7\text{ K}" /> ke <InlineMath math="189{,}4\text{ K}" />. Karena suhunya ikut turun, kurva adiabatik lebih curam daripada kurva isotermal dari titik yang sama. Jadi adiabatik tidak berarti suhu tetap. Yang tetap nol hanyalah kalor yang lewat.
+
+## Kalor untuk Menaikkan Suhu Gas
+
+**Kapasitas kalor** <InlineMath math="C" /> adalah kalor yang diperlukan untuk menaikkan suhu gas sebesar <InlineMath math="1\text{ K}" />, yaitu <InlineMath math="C = Q/\Delta T" />. Untuk gas, nilainya bergantung pada cara memanaskannya. Proses isokhorik dan isobarik di lab sama-sama menaikkan suhu sebesar <InlineMath math="\Delta T = 601{,}4 - 300{,}7 = 300{,}7\text{ K}" />:
+
+<MathContainer>
+<BlockMath math="C_V = \frac{1500\text{ J}}{300{,}7\text{ K}} = 4{,}99\text{ J/K} = \tfrac{3}{2}nR" />
+<BlockMath math="C_p = \frac{2500\text{ J}}{300{,}7\text{ K}} = 8{,}31\text{ J/K} = \tfrac{5}{2}nR" />
+</MathContainer>
+
+Kapasitas kalor pada tekanan tetap lebih besar karena gas juga **mendorong piston**: sebagian kalor keluar lagi sebagai usaha dan tidak ikut menaikkan suhu. Selisihnya tepat <InlineMath math="C_p - C_V = nR" />, dan perbandingannya <InlineMath math="C_p/C_V = 5/3" />, yaitu <InlineMath math="\gamma" /> pada kurva adiabatik tadi.
+
+Dibagi jumlah mol, kapasitas kalor molar gas monoatomik adalah <InlineMath math="\tfrac{3}{2}R = 12{,}5\text{ J mol}^{-1}\,\text{K}^{-1}" /> pada volume tetap, dan helium serta argon memang mendekati nilai itu. Molekul diatomik seperti nitrogen dan oksigen juga berputar, sehingga kapasitas kalor molarnya pada volume tetap mendekati <InlineMath math="\tfrac{5}{2}R = 20{,}8\text{ J mol}^{-1}\,\text{K}^{-1}" />.
+
+## Siklus yang Kembali ke Awal
+
+Mesin bekerja berulang-ulang, jadi gasnya harus kembali ke keadaan awal. Rangkaian proses yang berakhir di keadaan awal disebut **siklus**. Energi dalam adalah variabel keadaan, sehingga setelah satu putaran penuh <InlineMath math="\Delta U = 0" /> dan hukum pertama memberi <InlineMath math="Q_{\text{total}} = W_{\text{total}}" />.
+
+Siklus pada grafik memakai gas yang sama. Gas memuai dari <InlineMath math="A" /> ke <InlineMath math="B" /> pada <InlineMath math="200\text{ kPa}" />, didinginkan pada <InlineMath math="10\text{ L}" /> sampai <InlineMath math="C" />, dimampatkan ke <InlineMath math="D" /> pada <InlineMath math="100\text{ kPa}" />, lalu dipanaskan pada <InlineMath math="5\text{ L}" /> kembali ke <InlineMath math="A" />. **Usaha bersihnya adalah luas di dalam siklus**, karena usaha positif saat memuai di atas lebih besar daripada usaha negatif saat dimampatkan di bawah.
+
+<MathVisual
+  title={<>Siklus Persegi Panjang Satu Gas</>}
+  description={
+    <>
+      Sumbu mendatar volume dalam liter, sumbu tegak tekanan dalam kPa. Geser
+      tekanan atas dan volume kanan, lalu lihat usaha bersih dan kalor yang
+      masuk.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 13 }, y: { min: 0, max: 320 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "h", min: 120, max: 300, value: 200, step: 10, label: "h" },
+      { name: "r", min: 6, max: 12, value: 10, step: 0.5, label: "r" },
+    ],
+    objects: [
+      { id: "cycle", kind: "loop", appearance: "primary", points: [{ x: "5", y: "h" }, { x: "r", y: "h" }, { x: "r", y: "100" }, { x: "5", y: "100" }] },
+      { id: "a", kind: "marker", x: "5", y: "h", appearance: "answer" },
+      { id: "b", kind: "marker", x: "r", y: "h", appearance: "answer" },
+      { id: "c", kind: "marker", x: "r", y: "100", appearance: "answer" },
+      { id: "d", kind: "marker", x: "5", y: "100", appearance: "answer" },
+    ],
+    labels: [
+      { key: "point-a", objectId: "a", at: { x: "5", y: "h" }, placement: "above-left" },
+      { key: "point-b", objectId: "b", at: { x: "r", y: "h" }, placement: "above-right" },
+      { key: "point-c", objectId: "c", at: { x: "r", y: "100" }, placement: "below-right" },
+      { key: "point-d", objectId: "d", at: { x: "5", y: "100" }, placement: "below-left" },
+    ],
+    readouts: [
+      { key: "net-work", formula: "(h - 100)*(r - 5)" },
+      { key: "heat-in", formula: "2.5*h*(r - 5) + 7.5*(h - 100)" },
+    ],
+  }}
+  labels={{
+    h: <>Tekanan atas dalam <InlineMath math="\text{kPa}" /></>,
+    r: <>Volume kanan dalam <InlineMath math="\text{L}" /></>,
+    "point-a": <InlineMath math="A" />,
+    "point-b": <InlineMath math="B" />,
+    "point-c": <InlineMath math="C" />,
+    "point-d": <InlineMath math="D" />,
+    "net-work": <>Usaha bersih satu siklus dalam <InlineMath math="\text{J}" /></>,
+    "heat-in": <>Kalor yang masuk dalam <InlineMath math="\text{J}" /></>,
+  }}
+/>
+
+Pada siklus awal, usaha bersihnya <InlineMath math="(200 - 100)(10 - 5) = 500\text{ J}" />. Tabel ini mengecek angka itu langkah demi langkah dengan cara yang sama seperti di lab:
+
+| Langkah | <InlineMath math="W" /> | <InlineMath math="\Delta U" /> | <InlineMath math="Q" /> |
+| :--- | :--- | :--- | :--- |
+| <InlineMath math="A" /> ke <InlineMath math="B" />, isobarik | <InlineMath math="+1000\text{ J}" /> | <InlineMath math="+1500\text{ J}" /> | <InlineMath math="+2500\text{ J}" /> |
+| <InlineMath math="B" /> ke <InlineMath math="C" />, isokhorik | <InlineMath math="0" /> | <InlineMath math="-1500\text{ J}" /> | <InlineMath math="-1500\text{ J}" /> |
+| <InlineMath math="C" /> ke <InlineMath math="D" />, isobarik | <InlineMath math="-500\text{ J}" /> | <InlineMath math="-750\text{ J}" /> | <InlineMath math="-1250\text{ J}" /> |
+| <InlineMath math="D" /> ke <InlineMath math="A" />, isokhorik | <InlineMath math="0" /> | <InlineMath math="+750\text{ J}" /> | <InlineMath math="+750\text{ J}" /> |
+| Satu siklus | <InlineMath math="+500\text{ J}" /> | <InlineMath math="0" /> | <InlineMath math="+500\text{ J}" /> |
+
+Gas menyerap <InlineMath math="2500 + 750 = 3250\text{ J}" /> dan membuang <InlineMath math="1500 + 1250 = 2750\text{ J}" />, jadi hanya <InlineMath math="500\text{ J}" /> yang menjadi usaha. Mengapa sebagian kalor harus dibuang, dan berapa bagian paling banyak yang bisa menjadi usaha, dijawab oleh [hukum kedua termodinamika](/id/materi/fisika/termodinamika/hukum-kedua-dan-mesin-kalor).

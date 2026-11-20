@@ -2,6 +2,7 @@ import {
   merdekaLearningOutcomes,
   physicsBookXI,
 } from "#corpus/curriculum/merdeka/documents";
+import { merdekaClass11ThermodynamicsUnit } from "#corpus/curriculum/merdeka/topics/class-11/thermodynamics";
 import { materialNode, unitNode } from "#corpus/curriculum/schema";
 
 /** The Kurikulum Merdeka Kelas 11 Fisika units, in the chapter order of the Kemendikbudristek Buku Siswa Fisika SMA/MA Kelas XI (2022). */
@@ -288,47 +289,5 @@ export const merdekaClass11PhysicsTopicNodes = [
       ms: { routeSlug: "haba", title: "Haba" },
     },
   }),
-  unitNode({
-    children: [
-      materialNode({
-        key: "class-11-physics-thermodynamics-material",
-        level: "lesson",
-        materialKeys: ["lesson.physics.thermodynamics"],
-        order: 10,
-        outcomes: [
-          {
-            code: "Fisika, Fase F, elemen Pemahaman Fisika",
-            ...merdekaLearningOutcomes,
-          },
-          { code: "Bab 7 Termodinamika", ...physicsBookXI },
-        ],
-      }),
-    ],
-    key: "class-11-physics-thermodynamics",
-    materialCard: {
-      de: {
-        description: "Nutze den ersten Hauptsatz und Wärmekraftmaschinen.",
-        title: "Thermodynamik",
-      },
-      en: {
-        description: "Use the first law, gas processes and heat engines.",
-        title: "Thermodynamics",
-      },
-      id: {
-        description: "Pakai hukum pertama, proses gas, dan mesin kalor.",
-        title: "Termodinamika",
-      },
-      ms: {
-        description: "Guna hukum pertama, proses gas dan enjin haba.",
-        title: "Termodinamik",
-      },
-    },
-    order: 70,
-    translations: {
-      de: { routeSlug: "thermodynamik", title: "Thermodynamik" },
-      en: { routeSlug: "thermodynamics", title: "Thermodynamics" },
-      id: { routeSlug: "termodinamika", title: "Termodinamika" },
-      ms: { routeSlug: "termodinamik", title: "Termodinamik" },
-    },
-  }),
+  merdekaClass11ThermodynamicsUnit,
 ];

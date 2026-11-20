@@ -1,0 +1,161 @@
+export const metadata = {
+  title: "Hukum Kedua Termodinamika dan Mesin Kalor",
+  description:
+    "Hitung perubahan entropi, efisiensi mesin kalor, batas Carnot, dan kinerja lemari es, lalu kaitkan efisiensi pembangkit listrik dengan pemanasan iklim.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2026-11-20",
+  subject: "Termodinamika",
+};
+
+## Arah Aliran Kalor
+
+**Hukum kedua termodinamika** menyatakan bahwa kalor mengalir dengan sendirinya hanya dari benda panas ke benda dingin. Akibatnya, tidak ada mesin bersiklus yang bisa mengubah seluruh kalor yang diserapnya menjadi usaha. Mesin terbaik yang mungkin, mesin Carnot, bekerja di antara suhu panas <InlineMath math="T_h" /> dan suhu dingin <InlineMath math="T_c" />, keduanya dalam kelvin, dengan efisiensi:
+
+<BlockMath math="\eta_{\text{Carnot}} = 1 - \frac{T_c}{T_h}" />
+
+Di lab pembangkit uap nanti, kamu membandingkan efisiensi pembangkit listrik sungguhan dengan batas ini.
+
+Hukum pertama hanya mencatat jumlah energi, bukan arahnya. Sendok dingin yang dicelupkan ke sup panas ikut menghangat sementara supnya sedikit mendingin. Sendok itu tidak pernah menjadi makin dingin sambil memanaskan supnya, padahal energi tetap kekal di kedua arah. Hukum kedua memilih arahnya, dan biasanya ditulis dalam dua rumusan yang setara:
+
+- Rumusan Clausius: tidak mungkin ada mesin bersiklus yang hasil satu-satunya memindahkan kalor dari benda dingin ke benda panas.
+- Rumusan Kelvin-Planck: tidak mungkin ada mesin bersiklus yang mengubah seluruh kalor dari satu sumber menjadi usaha tanpa membuang sebagian ke tempat yang lebih dingin.
+
+Proses alami seperti sendok yang menghangat adalah **proses ireversibel**: proses itu tidak bisa dibalik tanpa bantuan dari luar. Proses reversibel adalah batas ideal yang berjalan sangat pelan, sehingga di setiap langkah arahnya bisa dibalik.
+
+## Entropi dan Energi Menyebar
+
+Arah proses bisa dihitung dengan besaran baru, **entropi** <InlineMath math="S" />. Ketika kalor <InlineMath math="Q" /> masuk ke benda yang suhunya <InlineMath math="T" /> hampir tidak berubah, entropi benda itu bertambah sebesar:
+
+<BlockMath math="\Delta S = \frac{Q}{T}" />
+
+Kalor yang keluar memberi <InlineMath math="Q" /> negatif, jadi entropinya berkurang. Dalam bahasa entropi, hukum kedua berbunyi: dalam sistem terisolasi, **entropi total tidak pernah berkurang**. Proses ireversibel menaikkannya, dan proses reversibel membiarkannya tetap.
+
+Contohnya, <InlineMath math="600\text{ J}" /> kalor mengalir dari benda besar bersuhu <InlineMath math="400\text{ K}" /> ke benda besar bersuhu <InlineMath math="300\text{ K}" />.
+
+<MathContainer>
+<BlockMath math="\Delta S_{\text{panas}} = \frac{-600}{400} = -1{,}5\text{ J/K}" />
+<BlockMath math="\Delta S_{\text{dingin}} = \frac{+600}{300} = +2\text{ J/K}" />
+<BlockMath math="\Delta S_{\text{total}} = -1{,}5 + 2 = +0{,}5\text{ J/K}" />
+</MathContainer>
+
+Totalnya positif, jadi aliran ini terjadi dengan sendirinya. Kalau arahnya dibalik, totalnya menjadi <InlineMath math="-0{,}5\text{ J/K}" />, dan hukum kedua melarangnya. Perhatikan juga artinya: kalor yang sama menambah entropi lebih banyak di benda yang dingin. Begitu kalor menyebar ke tempat yang lebih dingin, **energinya makin sulit dipakai** untuk melakukan usaha.
+
+## Sebagian Kalor Menjadi Usaha
+
+**Mesin kalor** menyerap kalor <InlineMath math="Q_h" /> dari sumber panas, mengubah sebagian menjadi usaha <InlineMath math="W" />, dan membuang sisanya <InlineMath math="Q_c" /> ke tempat yang lebih dingin, lalu mengulanginya dalam siklus. Energi dalam kembali ke nilai awal setiap siklus, jadi <InlineMath math="Q_h = W + Q_c" />. Pembangkit listrik tenaga uap adalah mesin kalor raksasa: boiler memberi <InlineMath math="Q_h" />, turbin dan generator menghasilkan <InlineMath math="W" /> sebagai listrik, dan kondensor membuang <InlineMath math="Q_c" />.
+
+<SteamPlantCycleLab
+  title={<>Pembangkit Uap sebagai Mesin Kalor</>}
+  description={
+    <>
+      Setiap detik pembangkit ini menerima kalor <InlineMath math="1000\text{ MJ}" />.
+      Pilih sumber kalornya, lalu bandingkan listrik, kalor buangan, dan batas
+      Carnot dari suhu uapnya.
+    </>
+  }
+  footer={
+    <>
+      Listrik ditambah kalor buangan selalu sama dengan kalor yang masuk.
+    </>
+  }
+  fuel="coal"
+  labels={{
+    chooseFuel: "Sumber kalor",
+    electric: <>Usaha sebagai listrik, <InlineMath math="W" /></>,
+    fuelUse: <>Bahan bakar setiap jam</>,
+    fuels: {
+      coal: <>Batu bara</>,
+      gas: <>Gas alam</>,
+      uranium: <>Uranium</>,
+    },
+    heat: <>Kalor dari sumber panas, <InlineMath math="Q_h" /></>,
+    ideal: <>Batas Carnot</>,
+    steam: <>Suhu uap masuk turbin</>,
+    viewLabel: "Pembangkit uap dengan boiler, turbin, generator, kondensor, dan menara pendingin",
+    waste: <>Kalor ke kondensor, <InlineMath math="Q_c" /></>,
+  }}
+/>
+
+### Efisiensi Mesin Kalor
+
+**Efisiensi** adalah bagian kalor masuk yang menjadi usaha:
+
+<BlockMath math="\eta = \frac{W}{Q_h} = 1 - \frac{Q_c}{Q_h}" />
+
+Untuk pembangkit batu bara di lab, setiap detik <InlineMath math="Q_h = 1000\text{ MJ}" />, <InlineMath math="W = 380\text{ MJ}" />, dan <InlineMath math="Q_c = 620\text{ MJ}" />. Efisiensinya <InlineMath math="380/1000 = 0{,}38 = 38\%" />, dan cek lewat kalor buangan memberi <InlineMath math="1 - 620/1000 = 0{,}38" /> juga. Pilih uranium: <InlineMath math="W = 330\text{ MJ}" /> dan <InlineMath math="Q_c = 670\text{ MJ}" />, jadi efisiensinya <InlineMath math="33\%" />. Pada kedua pembangkit, **sebagian besar kalor tidak menjadi listrik**.
+
+### Batas dari Suhu Sumber
+
+Carnot membuktikan bahwa mesin reversibel di antara dua suhu tertentu adalah mesin yang paling efisien, dan efisiensinya hanya bergantung pada kedua suhu itu. Siklusnya terdiri atas dua proses isotermal dan dua proses adiabatik. Pada pembangkit batu bara, uapnya <InlineMath math="540^\circ\text{C} = 813\text{ K}" /> dan kondensornya <InlineMath math="30^\circ\text{C} = 303\text{ K}" />:
+
+<BlockMath math="\eta_{\text{Carnot}} = 1 - \frac{303}{813} = 0{,}627 = 62{,}7\%" />
+
+Pembangkit sungguhan mencapai <InlineMath math="38\%" />, sekitar enam persepuluh batasnya, karena gesekan, kebocoran kalor, dan proses yang ireversibel. Bahkan mesin sempurna pada suhu-suhu ini tetap harus membuang <InlineMath math="(1000)(303/813) = 372{,}7\text{ MJ}" /> setiap detik. Uap dari reaktor uranium di lab lebih dingin, <InlineMath math="285^\circ\text{C} = 558\text{ K}" />, sehingga **batasnya lebih rendah**, <InlineMath math="1 - 303/558 = 45{,}7\%" />.
+
+<MathVisual
+  title={<>Batas Carnot dan Suhu Uap</>}
+  description={
+    <>
+      Kurva adalah batas Carnot dalam persen untuk setiap suhu uap dalam
+      kelvin. Kedua titik di bawahnya adalah efisiensi pembangkit di lab. Geser
+      suhu kondensornya.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 300, max: 1000 }, y: { min: 0, max: 80 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "c", min: 273, max: 330, value: 303, step: 1, label: "c" },
+    ],
+    objects: [
+      { id: "limit", kind: "function", appearance: "primary", formula: "100*(1 - c/x)", domain: { min: 330, max: 1000 } },
+      { id: "uranium-limit", kind: "marker", x: "558", y: "100*(1 - c/558)", appearance: "answer" },
+      { id: "coal-limit", kind: "marker", x: "813", y: "100*(1 - c/813)", appearance: "answer" },
+      { id: "uranium-real", kind: "point", appearance: "reference", at: { x: 558, y: 33 } },
+      { id: "coal-real", kind: "point", appearance: "reference", at: { x: 813, y: 38 } },
+    ],
+    labels: [
+      { key: "uranium-plant", objectId: "uranium-real", at: { x: 558, y: 33 }, placement: "below" },
+      { key: "coal-plant", objectId: "coal-real", at: { x: 813, y: 38 }, placement: "below" },
+    ],
+    readouts: [
+      { key: "uranium-bound", formula: "100*(1 - c/558)" },
+      { key: "coal-bound", formula: "100*(1 - c/813)" },
+    ],
+  }}
+  labels={{
+    c: <>Suhu kondensor <InlineMath math="T_c" /> dalam <InlineMath math="\text{K}" /></>,
+    "uranium-plant": <>Uranium, nyata</>,
+    "coal-plant": <>Batu bara, nyata</>,
+    "uranium-bound": <>Batas Carnot uap uranium dalam persen</>,
+    "coal-bound": <>Batas Carnot uap batu bara dalam persen</>,
+  }}
+/>
+
+Suhu harus dalam kelvin. Kalau Celsius dimasukkan, hasilnya <InlineMath math="1 - 30/540 = 94{,}4\%" />, jauh melewati batas yang sebenarnya. Efisiensi <InlineMath math="100\%" /> memerlukan <InlineMath math="T_c = 0\text{ K}" />, suhu yang tidak bisa dicapai.
+
+## Pompa Kalor dan Lemari Es
+
+Balik arah mesin kalor, dan kamu mendapat **pompa kalor**: usaha <InlineMath math="W" /> dipakai untuk mengambil kalor <InlineMath math="Q_c" /> dari tempat dingin dan membuang <InlineMath math="Q_h = Q_c + W" /> ke tempat panas. Hukum kedua tetap terpenuhi, karena aliran ke arah panas itu dibayar dengan usaha. Lemari es dan AC memakai cara ini untuk mendinginkan, sedangkan pompa kalor pemanas memakainya untuk menghangatkan ruangan. Kinerjanya diukur dengan **koefisien performa**:
+
+<MathContainer>
+<BlockMath math="\text{COP}_R = \frac{Q_c}{W}" />
+<BlockMath math="\text{COP}_{hp} = \frac{Q_h}{W} = \text{COP}_R + 1" />
+</MathContainer>
+
+Misalkan kompresor lemari es memakai usaha <InlineMath math="100\text{ J}" /> untuk mengambil <InlineMath math="300\text{ J}" /> kalor dari dalam lemari. Maka <InlineMath math="\text{COP}_R = 300/100 = 3" />, dan kalor yang keluar ke dapur <InlineMath math="300 + 100 = 400\text{ J}" />. Kalau kalor <InlineMath math="400\text{ J}" /> itulah yang kamu inginkan, misalnya untuk menghangatkan ruangan, <InlineMath math="\text{COP}_{hp} = 4" />.
+
+Mesin Carnot yang dibalik memberi batasnya, <InlineMath math="\text{COP}_R = T_c/(T_h - T_c)" />. Untuk ruang beku <InlineMath math="-18^\circ\text{C} = 255\text{ K}" /> di dapur <InlineMath math="30^\circ\text{C} = 303\text{ K}" />, batasnya <InlineMath math="255/48 = 5{,}31" />, jadi lemari es tadi berada di bawah batas, sesuai hukum kedua. Makin besar selisih suhunya, makin kecil batas itu. Karena itu pompa kalor bekerja lebih berat saat udara luar sangat dingin.
+
+## Efisiensi dan Pemanasan Iklim
+
+Kembali ke pembangkit batu bara di lab. Setiap detik <InlineMath math="620\text{ MJ}" /> kalor buangan masuk ke air sungai, laut, atau udara lewat menara pendingin, dan setiap jam pembangkit itu membakar <InlineMath math="150" /> ton batu bara. Kalor buangan menghangatkan lingkungan di dekat pembangkit. Iklim bumi secara keseluruhan menghangat terutama karena gas rumah kaca: menurut [laporan sintesis IPCC 2023](https://www.ipcc.ch/report/ar6/syr/summary-for-policymakers/), kegiatan manusia lewat emisi gas rumah kaca telah menaikkan suhu permukaan bumi sekitar <InlineMath math="1{,}1^\circ\text{C}" /> dibandingkan tahun 1850 sampai 1900.
+
+Hukum kedua menghubungkan keduanya. Setiap pembangkit berbahan bakar harus membuang kalor, jadi **efisiensi menentukan berapa banyak bahan bakar**, dan berapa banyak karbon dioksida, untuk setiap joule listrik. Seandainya pembangkit tadi mencapai <InlineMath math="45\%" />, listrik <InlineMath math="380\text{ MW}" /> yang sama hanya memerlukan kalor <InlineMath math="380/0{,}45 = 844{,}4\text{ MW}" />:
+
+<BlockMath math="1 - \frac{844{,}4}{1000} = 0{,}156" />
+
+Itu berarti <InlineMath math="15{,}6\%" /> lebih sedikit batu bara, sekitar <InlineMath math="23" /> ton lebih hemat setiap jam. Batas Carnot untuk uap ini, <InlineMath math="62{,}7\%" />, masih di atas <InlineMath math="45\%" />, jadi hukum kedua mengizinkannya, dan uap yang lebih panas menaikkan batas itu lebih jauh lagi.
+
+Pendingin mengikuti aturan yang sama dari arah sebaliknya. AC dengan <InlineMath math="\text{COP}_R = 3" /> memindahkan <InlineMath math="3\text{ J}" /> kalor untuk setiap <InlineMath math="1\text{ J}" /> listrik, dan listrik itu sering dibuat oleh mesin kalor yang membuang kalor dan karbon dioksida. Cairan pendinginnya juga berperan: banyak AC dan lemari es memakai hidrofluorokarbon (HFC), gas rumah kaca yang produksinya dikurangi bertahap lewat [Amendemen Kigali pada Protokol Montreal](https://ozone.unep.org/treaties/montreal-protocol/amendments/kigali-amendment-2016-amendment-montreal-protocol-agreed).

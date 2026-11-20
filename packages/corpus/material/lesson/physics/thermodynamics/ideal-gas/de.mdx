@@ -1,0 +1,184 @@
+export const metadata = {
+  title: "Ideales Gas und kinetische Gastheorie",
+  description:
+    "Sieh ein Gas als Gewimmel winziger Teilchen, berechne mit der Zustandsgleichung Stoffmenge und Druck und verstehe, was Temperatur für die Teilchen heißt.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2026-11-20",
+  subject: "Thermodynamik",
+};
+
+## Ein Ballon in der Sonne
+
+Ein Gas ist ein **Gewimmel sehr kleiner Teilchen**, die regellos in alle Richtungen fliegen. Jedes Mal, wenn ein Teilchen gegen eine Wand prallt, schiebt es die Wand ein kleines Stück an. Diese unzähligen Stöße zusammen spürst du als **Druck**, und je schneller sich die Teilchen bewegen, desto höher ist die **Temperatur** des Gases. Aus diesem Bild folgt die Zustandsgleichung des idealen Gases:
+
+<BlockMath math="pV = nRT" />
+
+Dabei ist <InlineMath math="p" /> der Druck in Pascal, <InlineMath math="V" /> das Volumen in Kubikmetern, <InlineMath math="n" /> die Stoffmenge in Mol, <InlineMath math="R = 8{,}314\text{ J mol}^{-1}\,\text{K}^{-1}" /> und <InlineMath math="T" /> die absolute Temperatur in Kelvin. Im Kolbenlabor weiter unten drückst du ein Gas zusammen, erhitzt es danach und prüfst die Gleichung an seinen Zahlen.
+
+Das Teilchenbild erklärt den Ballon, der in der Sonne liegt. Die Luft darin nimmt Wärme auf, ihre Teilchen werden schneller und treffen die Gummihaut öfter und härter. Für einen Moment drückt es von innen stärker als die Außenluft und die Spannung des Gummis zusammen, also wandert die Haut nach außen. Der Ballon wächst nicht weiter, sobald sich die Kräfte wieder ausgleichen, jetzt bei größerem Volumen.
+
+Das Modell des idealen Gases trifft vier Annahmen über die Teilchen:
+
+| Annahme | Was sie für die Teilchen bedeutet |
+| :--- | :--- |
+| Regellose Bewegung | keine Flugrichtung ist bevorzugt |
+| Keine Anziehung | Teilchen beeinflussen sich nur, wenn sie zusammenstoßen |
+| Vernachlässigbare Größe | alle Teilchen zusammen brauchen viel weniger Platz als der Behälter |
+| Elastische Stöße | beim Aufprall an der Wand geht keine Bewegungsenergie verloren |
+
+Ein Gas, das alle vier erfüllt, heißt **ideales Gas**. Reale Gase kommen dem nur nahe, und zwar umso besser, je weiter ihre Teilchen voneinander entfernt sind.
+
+## Druck aus Teilchenstößen
+
+Druck ist die Kraft auf jeden Quadratmeter Wand, <InlineMath math="p = F/A" />. Bei <InlineMath math="100\text{ kPa}" /> drückt das Gas auf jeden <InlineMath math="1\text{ cm}^2" /> Wand mit <InlineMath math="(10^5\text{ Pa})(10^{-4}\text{ m}^2) = 10\text{ N}" />, ungefähr die Gewichtskraft eines Körpers mit <InlineMath math="1\text{ kg}" /> Masse. Jedes Teilchen ist unvorstellbar leicht, also braucht eine so große Kraft eine riesige Zahl von Stößen.
+
+Du kannst den Druck auf zwei Arten erhöhen. Die erste macht die Stöße **häufiger**: Gib Teilchen dazu oder verkleinere den Behälter, damit in jedem Liter mehr Teilchen sind. Die zweite macht die Stöße **heftiger**: Erhitze das Gas, damit die Teilchen schneller fliegen. Die kinetische Gastheorie fasst beides in einer Gleichung zusammen:
+
+<BlockMath math="p = \frac{2}{3}\,\frac{N}{V}\,\bar{E}_k" />
+
+Der Bruch <InlineMath math="N/V" /> ist die Zahl der Teilchen pro Volumeneinheit, also wie dicht das Gewimmel ist. <InlineMath math="\bar{E}_k" /> ist die mittlere kinetische Energie eines Teilchens. Verdoppelst du die Dichte, verdoppelt sich der Druck. Verdoppelst du die mittlere kinetische Energie, verdoppelt sich der Druck ebenfalls.
+
+## Zustandsgleichung idealer Gase
+
+Druck, Volumen, Temperatur und Stoffmenge eines Gases sind nicht unabhängig voneinander. Kennst du drei davon, ist die vierte **schon festgelegt**. Die Zustandsgleichung verbindet alle vier, und sie hat auch Grenzen: Ein reales Gas weicht von ihr ab, sobald seine Teilchen dicht gedrängt sind.
+
+### Gasgesetze vereint
+
+Im Teilchenbild ist jedes Gasgesetz eine Art, die Stöße zu verändern. Verkleinerst du das Volumen bei gleicher Temperatur, werden die Stöße häufiger, und <InlineMath math="pV" /> bleibt gleich (Gesetz von Boyle-Mariotte). Erhitzt du das Gas bei gleichem Volumen, werden die Stöße heftiger, und <InlineMath math="p/T" /> bleibt gleich (Gesetz von Amontons, oft nach Gay-Lussac benannt). Jedes einzelne [Gasgesetz](/de/faecher/physik/waerme/waermekapazitaet-und-gasgesetze) lässt nur zwei Größen sich ändern, die Zustandsgleichung dagegen alle zugleich.
+
+Für eine feste Gasmenge heißt das zusammen: **<InlineMath math="pV/T" /> ändert sich nicht**, egal was du mit dem Gas machst. Das Gesetz von Avogadro ergänzt, dass dieser feste Wert mit der Zahl der Teilchen wächst, also beträgt er für <InlineMath math="n" /> Mol Gas <InlineMath math="nR" />:
+
+<BlockMath math="\frac{pV}{T} = nR \quad\Longrightarrow\quad pV = nRT" />
+
+<GasPistonLab
+  title={<>Ein Gas wird zusammengedrückt und dann erhitzt</>}
+  description={
+    <>
+      Das Gas startet bei <InlineMath math="100\text{ kPa}" /> und{" "}
+      <InlineMath math="27^\circ\text{C}" />. Schieb den Kolben hinein, bis das
+      Volumen nur noch das <InlineMath math="0{,}4" />-Fache beträgt, und
+      erhitze das Gas dann auf <InlineMath math="177^\circ\text{C}" />.
+    </>
+  }
+  footer={
+    <>
+      Der Druck steigt zweimal: erst wird das Gas dichter, dann werden die Teilchen schneller.
+    </>
+  }
+  labels={{
+    pressure: <>Druck</>,
+    stage: "Schritt",
+    stages: {
+      compressed: <>Zusammengedrückt</>,
+      heated: <>Erhitzt</>,
+      start: <>Start</>,
+    },
+    temperature: <>Absolute Temperatur</>,
+    viewLabel: "Gas in einem Zylinder mit Kolben und Manometer",
+    volume: <>Volumen</>,
+  }}
+  finalTemperature={177}
+  pressure={100}
+  temperature={27}
+  volumeRatio={0.4}
+/>
+
+Angenommen, das Gas im Labor hat anfangs <InlineMath math="6\text{ L}" />. Wie viel Mol sind im Zylinder, und welcher Druck herrscht nach dem Erhitzen? Rechne zuerst in SI-Einheiten um: <InlineMath math="100\text{ kPa} = 1{,}00 \times 10^5\text{ Pa}" />, <InlineMath math="6\text{ L} = 6 \times 10^{-3}\text{ m}^3" /> und <InlineMath math="27^\circ\text{C} = 300\text{ K}" />.
+
+<MathContainer>
+<BlockMath math="n = \frac{pV}{RT} = \frac{(1{,}00 \times 10^5)(6 \times 10^{-3})}{(8{,}314)(300)} = \frac{600}{2494{,}2} = 0{,}241\text{ mol}" />
+<BlockMath math="nR = \frac{pV}{T} = \frac{600\text{ J}}{300\text{ K}} = 2\text{ J/K}" />
+</MathContainer>
+
+Das sind <InlineMath math="(0{,}241)(6{,}02 \times 10^{23}) = 1{,}45 \times 10^{23}" /> Teilchen. Nach dem Zusammendrücken beträgt das Volumen <InlineMath math="(0{,}4)(6\text{ L}) = 2{,}4\text{ L}" />, nach dem Erhitzen die Temperatur <InlineMath math="177 + 273 = 450\text{ K}" />. Mit demselben <InlineMath math="nR" /> gilt:
+
+<BlockMath math="p = \frac{nRT}{V} = \frac{(2\text{ J/K})(450\text{ K})}{2{,}4 \times 10^{-3}\text{ m}^3} = 3{,}75 \times 10^5\text{ Pa} = 375\text{ kPa}" />
+
+Prüf das im Labor: Beim letzten Schritt zeigt das Manometer <InlineMath math="375\text{ kPa}" />. Prüf außerdem <InlineMath math="pV/T" /> bei jedem Schritt, wobei Kilopascal mal Liter Joule ergibt: <InlineMath math="(250)(2{,}4)/300 = 2" /> und <InlineMath math="(375)(2{,}4)/450 = 2" />. Der Wert bleibt bei <InlineMath math="2\text{ J/K}" />, weil sich die Gasmenge nicht ändert.
+
+Probier es selbst: Ein starrer Behälter mit <InlineMath math="4\text{ L}" /> enthält <InlineMath math="0{,}2" /> mol Sauerstoff bei <InlineMath math="47^\circ\text{C}" />. Die Temperatur ist <InlineMath math="320\text{ K}" />, also <InlineMath math="p = (0{,}2)(8{,}314)(320)/(4 \times 10^{-3}) = 1{,}33 \times 10^5\text{ Pa}" />, rund <InlineMath math="133\text{ kPa}" />.
+
+### Reale Gase weichen ab
+
+Zwei Annahmen des Modells versagen, wenn die Teilchen eng beieinander sind. Reale Teilchen **ziehen sich** ein wenig **an**, deshalb treffen sie die Wand etwas sanfter, und der Druck fällt kleiner aus, als das ideale Gas vorhersagt. Reale Teilchen haben außerdem eine **Größe**, deshalb bleibt ihnen etwas weniger Platz, als der Behälter fasst. Die Van-der-Waals-Gleichung berücksichtigt beides mit Konstanten <InlineMath math="a" /> und <InlineMath math="b" />, die für jedes Gas anders sind:
+
+<BlockMath math="\left(p + \frac{an^2}{V^2}\right)(V - nb) = nRT" />
+
+Für Kohlenstoffdioxid gilt <InlineMath math="a = 3{,}59\text{ L}^2\,\text{atm mol}^{-2}" /> und <InlineMath math="b = 0{,}0427\text{ L mol}^{-1}" />, laut der Tabelle in [OpenStax Chemistry 2e](https://openstax.org/books/chemistry-2e/pages/9-6-non-ideal-gas-behavior). Der Graph vergleicht den Druck von Kohlenstoffdioxid nach dieser Gleichung mit der Vorhersage des idealen Gases bei gleicher Dichte.
+
+<MathVisual
+  title={<>Reales Kohlenstoffdioxid und ideales Gas</>}
+  description={
+    <>
+      Nach rechts steht die Dichte des Gases in Mol pro Liter, nach oben der
+      reale Druck geteilt durch den idealen Druck. Verschieb Temperatur und
+      Dichte.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 5 }, y: { min: 0, max: 1.2 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "s", min: 300, max: 700, value: 300, step: 10, label: "s" },
+      { name: "d", min: 0.04, max: 5, value: 1, step: 0.02, label: "d" },
+    ],
+    objects: [
+      { id: "ideal", kind: "line", appearance: "reference", through: [{ x: 0, y: 1 }, { x: 5, y: 1 }] },
+      { id: "real", kind: "function", appearance: "primary", formula: "1/(1 - 0.0427*x) - 3.59*101.325*x/(8.314*s)", domain: { min: 0, max: 5 } },
+      { id: "state", kind: "marker", x: "d", y: "1/(1 - 0.0427*d) - 3.59*101.325*d/(8.314*s)", appearance: "answer" },
+    ],
+    labels: [
+      { key: "ideal-line", objectId: "ideal", at: { x: 4, y: 1 }, placement: "above" },
+    ],
+    readouts: [
+      { key: "ideal-pressure", formula: "8.314*s*d" },
+      { key: "real-pressure", formula: "8.314*s*d/(1 - 0.0427*d) - 3.59*101.325*d^2" },
+      { key: "ratio", formula: "1/(1 - 0.0427*d) - 3.59*101.325*d/(8.314*s)" },
+    ],
+  }}
+  labels={{
+    s: <>Temperatur <InlineMath math="T" /> in <InlineMath math="\text{K}" /></>,
+    d: <>Dichte in <InlineMath math="\text{mol/L}" /></>,
+    "ideal-line": <>Ideales Gas</>,
+    "ideal-pressure": <>Druck des idealen Gases in <InlineMath math="\text{kPa}" /></>,
+    "real-pressure": <>Druck von Kohlenstoffdioxid in <InlineMath math="\text{kPa}" /></>,
+    ratio: <>Realer Druck geteilt durch idealen Druck</>,
+  }}
+/>
+
+Bei <InlineMath math="300\text{ K}" /> und <InlineMath math="0{,}04" /> mol pro Liter, ungefähr der Dichte eines Gases bei normalem Luftdruck, beträgt das Verhältnis <InlineMath math="0{,}996" />: Kohlenstoffdioxid liegt nur <InlineMath math="0{,}4\,\%" /> unter der idealen Vorhersage. Bei <InlineMath math="1" /> mol pro Liter sinkt das Verhältnis auf <InlineMath math="0{,}899" />. Erhöhst du bei derselben Dichte die Temperatur auf <InlineMath math="600\text{ K}" />, steigt es wieder auf <InlineMath math="0{,}972" />. **Ein reales Gas verhält sich bei niedrigem Druck und hoher Temperatur fast ideal**: Seine Teilchen sind weit auseinander und so schnell, dass ihre schwache Anziehung kaum zählt.
+
+## Temperatur als Bewegung
+
+Die Druckgleichung der kinetischen Gastheorie und die Zustandsgleichung beschreiben dasselbe Gas. Stellst du sie nebeneinander, siehst du, **was Temperatur** für die Teilchen **bedeutet**, und daraus die Energie, die im Gas steckt.
+
+### Energie je Teilchen
+
+Schreib die Zustandsgleichung für <InlineMath math="N" /> Teilchen: <InlineMath math="pV = NkT" />, mit der Boltzmann-Konstante <InlineMath math="k = R/N_A = 1{,}38 \times 10^{-23}\text{ J/K}" />. Die kinetische Gastheorie liefert <InlineMath math="pV = \tfrac{2}{3}N\bar{E}_k" />. Setz beide gleich:
+
+<BlockMath math="\tfrac{2}{3}N\bar{E}_k = NkT \quad\Longrightarrow\quad \bar{E}_k = \tfrac{3}{2}kT" />
+
+Die absolute Temperatur ist also **proportional zur mittleren kinetischen Energie** eines Teilchens, egal welches Gas. Das Gas im Labor hat bei <InlineMath math="300\text{ K}" /> eine mittlere Energie von <InlineMath math="\bar{E}_k = \tfrac{3}{2}(1{,}38 \times 10^{-23})(300) = 6{,}21 \times 10^{-21}\text{ J}" />, bei <InlineMath math="450\text{ K}" /> sind es <InlineMath math="9{,}32 \times 10^{-21}\text{ J}" />. Das ist das <InlineMath math="1{,}5" />-Fache, derselbe Faktor, um den der Druck beim Erhitzen von <InlineMath math="250" /> auf <InlineMath math="375\text{ kPa}" /> gestiegen ist.
+
+Wie schnell sind die Teilchen? Aus <InlineMath math="\bar{E}_k = \tfrac{1}{2}mv_{\text{rms}}^2" /> folgt die quadratisch gemittelte Geschwindigkeit <InlineMath math="v_{\text{rms}} = \sqrt{3kT/m}" />. Ein Heliumatom hat die Masse <InlineMath math="6{,}65 \times 10^{-27}\text{ kg}" />, also gilt bei <InlineMath math="300\text{ K}" />:
+
+<BlockMath math="v_{\text{rms}} = \sqrt{\frac{3(1{,}38 \times 10^{-23})(300)}{6{,}65 \times 10^{-27}}} = 1{,}37 \times 10^3\text{ m/s}" />
+
+Ein Heliumatom legt fast <InlineMath math="1{,}4\text{ km}" /> pro Sekunde zurück, ändert aber durch Stöße ständig die Richtung. Die Formel zeigt auch, warum die Temperatur in Kelvin stehen muss: In Celsius ergäbe sie bei <InlineMath math="0^\circ\text{C}" /> die Energie null, dabei schwingen selbst die Teilchen im Eis noch.
+
+### Innere Energie des Gases
+
+Die **innere Energie** <InlineMath math="U" /> ist die gesamte Energie aller Teilchen eines Gases. Teilchen eines idealen Gases ziehen sich nicht an, es gibt also keine potenzielle Energie zwischen ihnen, und es bleibt nur ihre Bewegungsenergie. Für ein einatomiges Gas wie Helium oder Argon gilt:
+
+<BlockMath math="U = N\bar{E}_k = \tfrac{3}{2}NkT = \tfrac{3}{2}nRT" />
+
+Damit hängt **die innere Energie eines idealen Gases nur von seiner Temperatur ab**. Prüf das am Gas im Labor und nimm an, es sei Helium. Wegen <InlineMath math="nRT = pV" /> ist seine innere Energie <InlineMath math="U = \tfrac{3}{2}pV" />:
+
+| Schritt im Labor | Temperatur | <InlineMath math="pV" /> | <InlineMath math="U" /> |
+| :--- | :--- | :--- | :--- |
+| Start | <InlineMath math="300\text{ K}" /> | <InlineMath math="600\text{ J}" /> | <InlineMath math="900\text{ J}" /> |
+| Zusammengedrückt | <InlineMath math="300\text{ K}" /> | <InlineMath math="600\text{ J}" /> | <InlineMath math="900\text{ J}" /> |
+| Erhitzt | <InlineMath math="450\text{ K}" /> | <InlineMath math="900\text{ J}" /> | <InlineMath math="1350\text{ J}" /> |
+
+Das Zusammendrücken bei gleicher Temperatur lässt die innere Energie unverändert. Nur das Erhitzen erhöht sie, um <InlineMath math="\Delta U = 450\text{ J}" />. Woher diese Energie kommt und wie viel davon als Arbeit wieder abfließt, beantwortet der [erste Hauptsatz der Thermodynamik](/de/faecher/physik/thermodynamik/erster-hauptsatz-und-zustandsaenderungen). Zweiatomige Moleküle wie Stickstoff und Sauerstoff rotieren zusätzlich, deshalb liegt ihre innere Energie bei Raumtemperatur nahe <InlineMath math="\tfrac{5}{2}nRT" />.

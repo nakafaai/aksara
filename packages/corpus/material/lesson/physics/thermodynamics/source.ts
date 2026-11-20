@@ -11,23 +11,23 @@ const lesson: LessonModule = {
     de: "thermodynamik",
     ms: "termodinamik",
   },
-  sections: ["gas-first-law-engine"],
+  sections: ["ideal-gas", "first-law", "second-law-engines"],
   slug: "thermodynamics",
   translations: {
     en: {
-      description: "Use the first law, gas processes and heat engines.",
+      description: "Use the ideal gas law, both laws and heat engines.",
       title: "Thermodynamics",
     },
     id: {
-      description: "Pakai hukum pertama, proses gas, dan mesin kalor.",
+      description: "Pakai gas ideal, hukum pertama dan kedua, mesin kalor.",
       title: "Termodinamika",
     },
     de: {
-      description: "Nutze den ersten Hauptsatz, Gasprozesse und Maschinen.",
+      description: "Nutze ideale Gase, Hauptsätze und Wärmekraftmaschinen.",
       title: "Thermodynamik",
     },
     ms: {
-      description: "Guna hukum pertama, proses gas dan enjin haba.",
+      description: "Guna gas unggul, hukum pertama dan kedua, enjin haba.",
       title: "Termodinamik",
     },
   },

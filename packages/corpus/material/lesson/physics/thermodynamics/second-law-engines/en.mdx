@@ -1,0 +1,161 @@
+export const metadata = {
+  title: "Second Law of Thermodynamics and Heat Engines",
+  description:
+    "Calculate entropy changes, heat engine efficiency, the Carnot limit and how well a fridge performs, then link power plant efficiency to climate.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2026-11-20",
+  subject: "Thermodynamics",
+};
+
+## Which Way Heat Flows
+
+The **second law of thermodynamics** says heat flows by itself only from a hot object to a cold one. Because of that, no engine running in a cycle can turn all the heat it takes in into work. The best engine possible, the Carnot engine, runs between a hot temperature <InlineMath math="T_h" /> and a cold temperature <InlineMath math="T_c" />, both in kelvin, with an efficiency of:
+
+<BlockMath math="\eta_{\text{Carnot}} = 1 - \frac{T_c}{T_h}" />
+
+In the steam plant lab further down, you compare the efficiency of real power plants with this limit.
+
+The first law only counts energy, it says nothing about direction. Dip a cold spoon into hot soup and the spoon warms up while the soup cools a little. The spoon never gets colder while making the soup hotter, even though energy would be conserved either way. The second law picks the direction, and it's usually stated in two equivalent ways:
+
+- Clausius statement: no engine running in a cycle can have moving heat from a cold object to a hot one as its only result.
+- Kelvin-Planck statement: no engine running in a cycle can turn all the heat from one source into work without giving some of it to a colder place.
+
+Natural processes like the spoon warming up are **irreversible processes**: you can't run them backwards without help from outside. A reversible process is an ideal limit that runs so slowly that its direction could be turned around at every step.
+
+## Entropy and Spreading Energy
+
+You can put a number on that direction with a new quantity, **entropy** <InlineMath math="S" />. When heat <InlineMath math="Q" /> flows into an object whose temperature <InlineMath math="T" /> barely changes, the object's entropy goes up by:
+
+<BlockMath math="\Delta S = \frac{Q}{T}" />
+
+Heat flowing out gives a negative <InlineMath math="Q" />, so the entropy goes down. In terms of entropy, the second law says that in an isolated system **the total entropy never decreases**. Irreversible processes raise it, and reversible ones leave it unchanged.
+
+For example, <InlineMath math="600\text{ J}" /> of heat flows from a large object at <InlineMath math="400\text{ K}" /> into a large object at <InlineMath math="300\text{ K}" />.
+
+<MathContainer>
+<BlockMath math="\Delta S_{\text{hot}} = \frac{-600}{400} = -1.5\text{ J/K}" />
+<BlockMath math="\Delta S_{\text{cold}} = \frac{+600}{300} = +2\text{ J/K}" />
+<BlockMath math="\Delta S_{\text{total}} = -1.5 + 2 = +0.5\text{ J/K}" />
+</MathContainer>
+
+The total is positive, so this flow happens on its own. Reverse it and the total becomes <InlineMath math="-0.5\text{ J/K}" />, which the second law forbids. Notice what that means: the same heat adds more entropy to the colder object. Once heat has spread out to a colder place, **its energy is harder to use** for doing work.
+
+## Turning Some Heat into Work
+
+A **heat engine** takes in heat <InlineMath math="Q_h" /> from a hot source, turns part of it into work <InlineMath math="W" />, and gives the rest, <InlineMath math="Q_c" />, to a colder place, then repeats this in a cycle. The internal energy returns to its starting value every cycle, so <InlineMath math="Q_h = W + Q_c" />. A steam power plant is a giant heat engine: the boiler supplies <InlineMath math="Q_h" />, the turbine and generator deliver <InlineMath math="W" /> as electricity, and the condenser gets rid of <InlineMath math="Q_c" />.
+
+<SteamPlantCycleLab
+  title={<>A Steam Plant as a Heat Engine</>}
+  description={
+    <>
+      Every second this plant takes in <InlineMath math="1000\text{ MJ}" /> of
+      heat. Choose the heat source, then compare the electricity, the waste
+      heat and the Carnot limit set by the steam temperature.
+    </>
+  }
+  footer={
+    <>
+      Electricity plus waste heat always adds up to the heat that went in.
+    </>
+  }
+  fuel="coal"
+  labels={{
+    chooseFuel: "Heat source",
+    electric: <>Work as electricity, <InlineMath math="W" /></>,
+    fuelUse: <>Fuel used each hour</>,
+    fuels: {
+      coal: <>Coal</>,
+      gas: <>Natural gas</>,
+      uranium: <>Uranium</>,
+    },
+    heat: <>Heat from the hot source, <InlineMath math="Q_h" /></>,
+    ideal: <>Carnot limit</>,
+    steam: <>Steam temperature at the turbine</>,
+    viewLabel: "A steam plant with boiler, turbine, generator, condenser and cooling tower",
+    waste: <>Heat to the condenser, <InlineMath math="Q_c" /></>,
+  }}
+/>
+
+### Heat Engine Efficiency
+
+**Efficiency** is the share of the heat taken in that becomes work:
+
+<BlockMath math="\eta = \frac{W}{Q_h} = 1 - \frac{Q_c}{Q_h}" />
+
+For the coal plant in the lab, every second <InlineMath math="Q_h = 1000\text{ MJ}" />, <InlineMath math="W = 380\text{ MJ}" /> and <InlineMath math="Q_c = 620\text{ MJ}" />. Its efficiency is <InlineMath math="380/1000 = 0.38 = 38\%" />, and checking with the waste heat gives <InlineMath math="1 - 620/1000 = 0.38" /> too. Choose uranium: <InlineMath math="W = 330\text{ MJ}" /> and <InlineMath math="Q_c = 670\text{ MJ}" />, so the efficiency is <InlineMath math="33\%" />. In both plants, **most of the heat never becomes electricity**.
+
+### The Temperature Limit
+
+Carnot proved that a reversible engine working between two given temperatures is the most efficient engine there can be, and that its efficiency depends only on those two temperatures. Its cycle is made of two isothermal and two adiabatic processes. In the coal plant the steam is at <InlineMath math="540^\circ\text{C} = 813\text{ K}" /> and the condenser at <InlineMath math="30^\circ\text{C} = 303\text{ K}" />:
+
+<BlockMath math="\eta_{\text{Carnot}} = 1 - \frac{303}{813} = 0.627 = 62.7\%" />
+
+The real plant reaches <InlineMath math="38\%" />, about six tenths of its limit, because of friction, heat leaking away and irreversible steps. Even a perfect engine at these temperatures would still have to give out <InlineMath math="(1000)(303/813) = 372.7\text{ MJ}" /> every second. The steam from the uranium reactor in the lab is cooler, <InlineMath math="285^\circ\text{C} = 558\text{ K}" />, so **its limit is lower**, <InlineMath math="1 - 303/558 = 45.7\%" />.
+
+<MathVisual
+  title={<>The Carnot Limit and Steam Temperature</>}
+  description={
+    <>
+      The curve is the Carnot limit in percent for each steam temperature in
+      kelvin. The two points below it are the efficiencies of the plants in the
+      lab. Move the condenser temperature.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 300, max: 1000 }, y: { min: 0, max: 80 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "c", min: 273, max: 330, value: 303, step: 1, label: "c" },
+    ],
+    objects: [
+      { id: "limit", kind: "function", appearance: "primary", formula: "100*(1 - c/x)", domain: { min: 330, max: 1000 } },
+      { id: "uranium-limit", kind: "marker", x: "558", y: "100*(1 - c/558)", appearance: "answer" },
+      { id: "coal-limit", kind: "marker", x: "813", y: "100*(1 - c/813)", appearance: "answer" },
+      { id: "uranium-real", kind: "point", appearance: "reference", at: { x: 558, y: 33 } },
+      { id: "coal-real", kind: "point", appearance: "reference", at: { x: 813, y: 38 } },
+    ],
+    labels: [
+      { key: "uranium-plant", objectId: "uranium-real", at: { x: 558, y: 33 }, placement: "below" },
+      { key: "coal-plant", objectId: "coal-real", at: { x: 813, y: 38 }, placement: "below" },
+    ],
+    readouts: [
+      { key: "uranium-bound", formula: "100*(1 - c/558)" },
+      { key: "coal-bound", formula: "100*(1 - c/813)" },
+    ],
+  }}
+  labels={{
+    c: <>Condenser temperature <InlineMath math="T_c" /> in <InlineMath math="\text{K}" /></>,
+    "uranium-plant": <>Uranium, real</>,
+    "coal-plant": <>Coal, real</>,
+    "uranium-bound": <>Carnot limit for uranium steam, in percent</>,
+    "coal-bound": <>Carnot limit for coal steam, in percent</>,
+  }}
+/>
+
+The temperatures have to be in kelvin. Put in Celsius and you get <InlineMath math="1 - 30/540 = 94.4\%" />, far above the real limit. An efficiency of <InlineMath math="100\%" /> would need <InlineMath math="T_c = 0\text{ K}" />, a temperature no one can reach.
+
+## Heat Pumps and Refrigerators
+
+Run a heat engine backwards and you get a **heat pump**: work <InlineMath math="W" /> is used to take heat <InlineMath math="Q_c" /> from a cold place and give <InlineMath math="Q_h = Q_c + W" /> to a hot place. The second law still holds, because that uphill flow is paid for with work. Fridges and air conditioners use this to cool things down, and heat pump heaters use it to warm a room. How well they do it is measured by the **coefficient of performance**:
+
+<MathContainer>
+<BlockMath math="\text{COP}_R = \frac{Q_c}{W}" />
+<BlockMath math="\text{COP}_{hp} = \frac{Q_h}{W} = \text{COP}_R + 1" />
+</MathContainer>
+
+Say a fridge compressor uses <InlineMath math="100\text{ J}" /> of work to pull <InlineMath math="300\text{ J}" /> of heat out of the fridge. Then <InlineMath math="\text{COP}_R = 300/100 = 3" />, and the heat released into the kitchen is <InlineMath math="300 + 100 = 400\text{ J}" />. If those <InlineMath math="400\text{ J}" /> are what you want, for example to warm a room, then <InlineMath math="\text{COP}_{hp} = 4" />.
+
+A Carnot engine run backwards sets the limit, <InlineMath math="\text{COP}_R = T_c/(T_h - T_c)" />. For a freezer at <InlineMath math="-18^\circ\text{C} = 255\text{ K}" /> in a kitchen at <InlineMath math="30^\circ\text{C} = 303\text{ K}" />, the limit is <InlineMath math="255/48 = 5.31" />, so the fridge above sits below it, as the second law requires. The bigger the temperature gap, the smaller that limit. That's why a heat pump has to work harder when the air outside is very cold.
+
+## Engines and a Warming Climate
+
+Go back to the coal plant in the lab. Every second, <InlineMath math="620\text{ MJ}" /> of waste heat goes into a river, the sea or the air through a cooling tower, and every hour the plant burns <InlineMath math="150" /> tonnes of coal. The waste heat warms the surroundings near the plant. The climate as a whole is warming mainly because of greenhouse gases: according to the [IPCC synthesis report of 2023](https://www.ipcc.ch/report/ar6/syr/summary-for-policymakers/), human activities, through greenhouse gas emissions, have raised Earth's surface temperature by about <InlineMath math="1.1^\circ\text{C}" /> compared with 1850 to 1900.
+
+The second law ties the two together. Every fuel-burning plant has to give out heat, so **efficiency sets how much fuel is burned**, and how much carbon dioxide is released, for each joule of electricity. If the plant reached <InlineMath math="45\%" />, the same <InlineMath math="380\text{ MW}" /> of electricity would need only <InlineMath math="380/0.45 = 844.4\text{ MW}" /> of heat:
+
+<BlockMath math="1 - \frac{844.4}{1000} = 0.156" />
+
+That's <InlineMath math="15.6\%" /> less coal, about <InlineMath math="23" /> tonnes saved every hour. The Carnot limit for this steam, <InlineMath math="62.7\%" />, is still above <InlineMath math="45\%" />, so the second law allows it, and hotter steam would raise that limit further.
+
+Coolers follow the same rule in the other direction. An air conditioner with <InlineMath math="\text{COP}_R = 3" /> moves <InlineMath math="3\text{ J}" /> of heat for every <InlineMath math="1\text{ J}" /> of electricity, and that electricity often comes from a heat engine that gives out heat and carbon dioxide. The coolant matters too: many air conditioners and fridges use hydrofluorocarbons (HFCs), greenhouse gases whose production is being cut step by step under the [Kigali Amendment to the Montreal Protocol](https://ozone.unep.org/treaties/montreal-protocol/amendments/kigali-amendment-2016-amendment-montreal-protocol-agreed).
