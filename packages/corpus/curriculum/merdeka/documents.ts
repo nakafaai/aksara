@@ -84,3 +84,9 @@ export const physicsBookXII = {
   citation: "Fisika untuk SMA/MA Kelas XII",
   url: `${bookHost}/Fisika_BS_KLS_XII.pdf`,
 };
+
+/** Kimia untuk SMA/MA Kelas XII, 2022. */
+export const chemistryBookXII = {
+  citation: "Kimia untuk SMA/MA Kelas XII",
+  url: `${bookHost}/Kimia_BS_KLS_XII.pdf`,
+};
