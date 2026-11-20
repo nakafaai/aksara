@@ -57,7 +57,7 @@ const realMaterials = decodeMaterialSources({ checkoutRoot: CHECKOUT_ROOT });
 
 layer(NodeServices.layer)("curriculum node projection", (it) => {
   it.effect(
-    "flattens all five real trees and validates every material reference",
+    "flattens all six real trees and validates every material reference",
     () =>
       Effect.gen(function* () {
         const [curricula, materials] = yield* Effect.all([

@@ -8,6 +8,7 @@ describe("learning program keys", () => {
   it("contains exactly the real curriculum and assessment programs", () => {
     expect(LEARNING_PROGRAM_KEYS).toEqual({
       cambridgeInternational: "cambridge-international",
+      gymnasialeOberstufe: "gymnasiale-oberstufe",
       kssm: "kssm",
       merdeka: "merdeka",
       singaporeMoe: "singapore-moe",

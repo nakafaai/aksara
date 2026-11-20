@@ -58,7 +58,7 @@ function reject(input: unknown) {
 
 describe("learning program catalog", () => {
   it.effect(
-    "preserves the exact seven real program rows in display order",
+    "preserves the exact eight real program rows in display order",
     () =>
       Effect.gen(function* () {
         const programs = yield* decodeProgramCatalog();
@@ -69,11 +69,12 @@ describe("learning program catalog", () => {
           "singapore-moe",
           "united-states",
           "kssm",
+          "gymnasiale-oberstufe",
           "tka",
           "snbt",
         ]);
         expect(Arr.map(programs, ({ displayOrder }) => displayOrder)).toEqual([
-          10, 20, 30, 40, 45, 50, 60,
+          10, 20, 30, 40, 45, 46, 50, 60,
         ]);
         expect(
           Arr.every(programs, ({ sources: refs }) => refs.length > 0)

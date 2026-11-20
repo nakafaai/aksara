@@ -21,20 +21,19 @@ function exportedNodeKeys(value: unknown): string[] {
 }
 
 describe("curriculum source catalog", () => {
-  it.effect(
-    "loads the five real curriculum trees in stable program order",
-    () =>
-      Effect.gen(function* () {
-        const curricula = yield* decodeCurriculumCatalog();
+  it.effect("loads the six real curriculum trees in stable program order", () =>
+    Effect.gen(function* () {
+      const curricula = yield* decodeCurriculumCatalog();
 
-        expect(Arr.map(curricula, ({ programKey }) => programKey)).toEqual([
-          "cambridge-international",
-          "kssm",
-          "merdeka",
-          "singapore-moe",
-          "united-states",
-        ]);
-      })
+      expect(Arr.map(curricula, ({ programKey }) => programKey)).toEqual([
+        "cambridge-international",
+        "gymnasiale-oberstufe",
+        "kssm",
+        "merdeka",
+        "singapore-moe",
+        "united-states",
+      ]);
+    })
   );
 
   it.effect("canonicalizes reversed real source order", () =>

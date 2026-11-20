@@ -2,6 +2,7 @@ import { LearningProgramKeySchema } from "@nakafa/aksara-contracts/program/spec"
 import { Array as Arr, Effect, MutableHashSet, Order, Schema } from "effect";
 
 import { cambridgeInternationalCurriculum } from "#corpus/curriculum/cambridge-international/source";
+import { gymnasialeOberstufeCurriculum } from "#corpus/curriculum/gymnasiale-oberstufe/source";
 import { kssmCurriculum } from "#corpus/curriculum/kssm/source";
 import { merdekaCurriculum } from "#corpus/curriculum/merdeka/source";
 import type { CurriculumSource } from "#corpus/curriculum/schema";
@@ -10,6 +11,7 @@ import { unitedStatesCurriculum } from "#corpus/curriculum/united-states/source"
 
 const curriculumSourcePrograms = [
   cambridgeInternationalCurriculum,
+  gymnasialeOberstufeCurriculum,
   kssmCurriculum,
   merdekaCurriculum,
   singaporeMoeCurriculum,
