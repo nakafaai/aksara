@@ -70,6 +70,7 @@ import { readingVisuals } from "#contracts/visual/physics/reading";
 import { recordVisuals } from "#contracts/visual/physics/record";
 import { relativeVisuals } from "#contracts/visual/physics/relative";
 import { solarVisuals } from "#contracts/visual/physics/solar";
+import { thermodynamicsVisuals } from "#contracts/visual/physics/thermodynamics";
 import { vectorVisuals } from "#contracts/visual/physics/vector";
 import { velocityVisuals } from "#contracts/visual/physics/velocity";
 import { waveVisuals } from "#contracts/visual/physics/wave";
@@ -151,6 +152,7 @@ export function visualCatalog<E>(rich: RichSlot<E>) {
     ...fluidVisuals(rich),
     ...gravityVisuals(rich),
     ...heatVisuals(rich),
+    ...thermodynamicsVisuals(rich),
     ...lightVisuals(rich),
     ...nuclearVisuals(rich),
     ...readingVisuals(rich),
