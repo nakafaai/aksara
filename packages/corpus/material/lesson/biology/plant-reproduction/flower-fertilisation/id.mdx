@@ -1,0 +1,295 @@
+export const metadata = {
+  title: "Reproduksi Seksual pada Tumbuhan Berbunga dan Pembuahan Ganda",
+  description:
+    "Kenali bagian bunga, pembentukan serbuk sari dan kantong embrio, pembuahan ganda, serta perkembangan biji dan buah lewat contoh dan latihan.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2026-11-17",
+  subject: "Reproduksi Seksual pada Tumbuhan Berbunga",
+};
+
+## Bunga Menghasilkan Biji lewat Pembuahan Ganda
+
+**Reproduksi seksual pada tumbuhan berbunga** terjadi di dalam bunga. Kepala sari menghasilkan **serbuk sari** yang membawa gamet jantan, dan tiap bakal biji di dalam bakal buah menghasilkan **kantong embrio** yang berisi sel telur.
+
+Setelah serbuk sari menempel di kepala putik, buluh serbuk sari tumbuh menuju bakal biji sambil membawa dua gamet jantan. Satu gamet jantan melebur dengan sel telur dan membentuk **zigot diploid**. Gamet jantan kedua melebur dengan dua inti kutub dan membentuk **inti endosperma triploid**. Itulah **pembuahan ganda**. Bakal biji lalu menjadi biji dan bakal buah menjadi buah. Di sini kamu mengikuti buluh serbuk sari sampai pembuahan, menghitung kromosom tiap struktur, dan menghitung serbuk sari yang dibutuhkan satu buah.
+
+## Bagian Bunga dan Fungsi Tiap Bagiannya
+
+Bunga lengkap punya empat lingkaran bagian. Bagian jantannya adalah **benang sari** dan bagian betinanya adalah **putik**, yang juga disebut karpel.
+
+| Bagian | Struktur | Fungsi |
+| :--- | :--- | :--- |
+| Benang sari | Kepala sari | Menghasilkan serbuk sari |
+| Benang sari | Tangkai sari | Menopang kepala sari supaya serbuk sari mudah tersebar |
+| Putik | Kepala putik | Permukaan lengket yang menerima serbuk sari |
+| Putik | Tangkai putik | Jalur buluh serbuk sari dari kepala putik ke bakal buah |
+| Putik | Bakal buah | Berisi bakal biji dan berkembang menjadi buah |
+| Putik | Bakal biji | Berisi kantong embrio dan berkembang menjadi biji |
+| Lingkaran luar | Mahkota bunga | Menarik serangga penyerbuk dengan warna dan aroma |
+| Lingkaran luar | Kelopak bunga | Melindungi bunga selama masih kuncup |
+
+Bunga yang diserbuki serangga biasanya punya mahkota berwarna, nektar, dan serbuk sari yang lengket. Bunga yang diserbuki angin punya mahkota kecil, kepala sari yang menggantung di luar bunga, dan kepala putik berbulu yang **menangkap serbuk sari ringan** dari udara.
+
+## Serbuk Sari dan Kantong Embrio Terbentuk lewat Meiosis dan Mitosis
+
+Di dalam kepala sari, tiap **sel induk serbuk sari** yang diploid menjalani meiosis dan menghasilkan tetrad, yaitu empat mikrospora haploid. Inti tiap mikrospora membelah sekali secara mitosis menjadi **inti buluh** dan **inti generatif**, lalu mikrospora menjadi serbuk sari berdinding tebal. Inti generatif membelah sekali lagi secara mitosis menjadi dua gamet jantan.
+
+Di dalam bakal biji, **sel induk megaspora** yang diploid menjalani meiosis dan menghasilkan empat megaspora haploid. Tiga megaspora mengalami degenerasi. Inti megaspora yang tersisa membelah **tiga kali secara mitosis** dan menghasilkan delapan inti haploid di kantong embrio: satu sel telur, dua sinergid, tiga sel antipoda, dan dua inti kutub. Geser penggesernya untuk membandingkan jumlah inti di kantong embrio dengan jumlah inti di serbuk sari.
+
+<MathVisual
+  title={<>Jumlah Inti setelah Tiap Mitosis</>}
+  description={
+    <>
+      Jumlah inti terhadap banyaknya putaran mitosis <InlineMath math="m" />.
+      Di kantong embrio semua inti membelah, jadi jumlahnya{" "}
+      <InlineMath math="2^m" />. Di serbuk sari, hanya inti generatif yang
+      membelah pada putaran kedua.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.3, max: 3.3 }, y: { min: 0, max: 9 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "m", min: 0, max: 3, value: 3, step: 1, label: "m" },
+    ],
+    objects: [
+      { id: "sac-0", kind: "point", at: { x: 0, y: 1 }, appearance: "reference" },
+      { id: "sac-1", kind: "point", at: { x: 1, y: 2 }, appearance: "reference" },
+      { id: "sac-2", kind: "point", at: { x: 2, y: 4 }, appearance: "reference" },
+      { id: "sac-3", kind: "point", at: { x: 3, y: 8 }, appearance: "reference" },
+      { id: "sac-now", kind: "marker", x: "m", y: "2^m", appearance: "primary" },
+      { id: "pollen-now", kind: "marker", x: "m", y: "min(m + 1, 3)", appearance: "warning" },
+    ],
+    readouts: [
+      { key: "sac", formula: "2^m" },
+      { key: "pollen", formula: "min(m + 1, 3)" },
+    ],
+  }}
+  labels={{
+    m: <>Putaran mitosis <InlineMath math="m" /></>,
+    sac: <>Inti di kantong embrio</>,
+    pollen: <>Inti di serbuk sari</>,
+  }}
+/>
+
+**Contoh 1.** Tunjukkan bahwa tiga putaran mitosis menghasilkan delapan inti di kantong embrio, lalu cek jumlahnya menurut jenis inti.
+
+<MathContainer>
+<BlockMath math="1 \times 2 \times 2 \times 2 = 2^3 = 8 \text{ inti}" />
+<BlockMath math="1 + 2 + 3 + 2 = 8 \text{ inti}" />
+</MathContainer>
+
+Baris kedua menjumlahkan satu sel telur, dua sinergid, tiga sel antipoda, dan dua inti kutub. Cek dengan model: pada <InlineMath math="m = 3" />, bacaan kantong embrio <InlineMath math="8" />, sedangkan serbuk sari berhenti di <InlineMath math="3" /> inti, yaitu satu inti buluh dan dua gamet jantan.
+
+## Penyerbukan Membawa Serbuk Sari ke Kepala Putik
+
+**Penyerbukan** adalah perpindahan serbuk sari dari kepala sari ke kepala putik. **Penyerbukan sendiri** terjadi di dalam satu bunga atau antarbunga pada tumbuhan yang sama. **Penyerbukan silang** terjadi antarbunga pada dua tumbuhan berbeda dari spesies yang sama, sehingga keturunannya mewarisi gabungan gen dari dua induk. Serangga, burung, angin, dan air adalah perantara penyerbukan.
+
+Kepala putik mengeluarkan larutan sukrosa. Serbuk sari menyerap larutan itu dan berkecambah, lalu **buluh serbuk sari tumbuh menuruni tangkai putik** menuju bakal buah. Inti buluh berada di ujung buluh dan inti generatif mengikuti di belakangnya. Buluh masuk ke bakal biji lewat **mikropil**. Lama perjalanannya bergantung pada panjang tangkai putik dan laju tumbuh buluh.
+
+<MathVisual
+  title={<>Waktu Buluh Serbuk Sari Mencapai Bakal Biji</>}
+  description={
+    <>
+      Waktu dalam jam terhadap panjang tangkai putik dalam milimeter,
+      mengikuti <InlineMath math="t = L/r" /> untuk buluh yang tumbuh{" "}
+      <InlineMath math="r" /> milimeter per jam.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 20.5 }, y: { min: 0, max: 42 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "r", min: 0.5, max: 4, value: 2, step: 0.5, label: "r" },
+      { name: "l", min: 1, max: 20, value: 12, step: 1, label: "l" },
+    ],
+    objects: [
+      { id: "time", kind: "function", appearance: "primary", formula: "x/r", domain: { min: 0, max: 20 } },
+      { id: "now", kind: "marker", x: "l", y: "l/r", appearance: "warning" },
+    ],
+    readouts: [{ key: "time", formula: "l/r" }],
+  }}
+  labels={{
+    r: <>Laju tumbuh buluh <InlineMath math="r" /> dalam mm per jam</>,
+    l: <>Panjang tangkai putik <InlineMath math="L" /> dalam milimeter</>,
+    time: <>Waktu mencapai bakal biji dalam jam</>,
+  }}
+/>
+
+**Contoh 2.** Tangkai putik sebuah bunga panjangnya <InlineMath math="12\text{ mm}" />. Buluh serbuk sarinya tumbuh <InlineMath math="2{,}0\text{ mm}" /> per jam. Hitung waktu yang dibutuhkan buluh untuk mencapai bakal biji.
+
+<BlockMath math="t = \frac{L}{r} = \frac{12\text{ mm}}{2{,}0\text{ mm jam}^{-1}} = 6{,}0\text{ jam}" />
+
+Cek dengan mengalikan balik: <InlineMath math="2{,}0 \times 6{,}0 = 12\text{ mm}" />. Model menunjukkan <InlineMath math="6" /> pada <InlineMath math="L = 12" /> dan <InlineMath math="r = 2" />. Gandakan lajunya menjadi <InlineMath math="r = 4" />, dan waktunya tinggal separuh, yaitu <InlineMath math="3" /> jam.
+
+## Pembuahan Ganda Menghasilkan Zigot dan Endosperma
+
+Selama buluh serbuk sari tumbuh, inti generatif membelah menjadi dua gamet jantan. Saat buluh mencapai kantong embrio, inti buluh mengalami degenerasi dan **dua gamet jantan dilepaskan**. Satu gamet jantan membuahi sel telur dan menghasilkan zigot <InlineMath math="2n" />. Gamet jantan kedua melebur dengan dua inti kutub dan menghasilkan inti endosperma <InlineMath math="3n" />. Model di bawah memakai jagung, yang sel tubuhnya punya <InlineMath math="2n = 20" /> kromosom. Geser tahapnya dari penyerbukan sampai pembuahan.
+
+<FertilisationLab
+  title={<>Pembuahan Ganda pada Bunga Jagung</>}
+  description={
+    <>
+      Bunga yang dibelah memanjang. Sel tubuh induk betina dan induk jantan
+      masing-masing punya <InlineMath math="20" /> kromosom. Bacaan
+      menunjukkan kromosom di embrio, endosperma, dan kulit biji.
+    </>
+  }
+  mother={20}
+  father={20}
+  labels={{
+    embryo: <>Kromosom embrio, sel telur dan gamet jantan</>,
+    endosperm: <>Kromosom endosperma, dua inti kutub dan gamet jantan</>,
+    gamete: <>Kromosom satu gamet jantan</>,
+    grains: <>Serbuk sari yang dibutuhkan</>,
+    progress: "Tahap",
+    seedCoat: <>Kromosom kulit biji</>,
+    stages: {
+      pollination: "Penyerbukan",
+      tube: "Buluh serbuk sari tumbuh",
+      entry: "Buluh masuk lewat mikropil",
+      fusion: "Pembuahan ganda",
+    },
+    view: "Bunga jagung yang dibelah memanjang",
+  }}
+/>
+
+Kulit biji tidak ikut dalam pembuahan. Kulit biji berkembang dari integumen bakal biji, yaitu jaringan milik induk betina sendiri, jadi **kulit biji hanya punya kromosom induk betina**. Diagram batang di bawah merangkum jumlah kromosom tiap struktur dalam daur hidup jagung.
+
+<BarChart
+  title={<>Jumlah Kromosom di Struktur Reproduksi Jagung</>}
+  description={
+    <>
+      Tiap batang adalah banyaknya set kromosom dikali{" "}
+      <InlineMath math="n = 10" />. Struktur haploid punya satu set, zigot
+      dua set, dan inti endosperma tiga set.
+    </>
+  }
+  yAxisLabel="Jumlah kromosom"
+  data={[
+    { name: "Sel induk serbuk sari", sets: 2 },
+    { name: "Mikrospora", sets: 1 },
+    { name: "Gamet jantan", sets: 1 },
+    { name: "Sel induk megaspora", sets: 2 },
+    { name: "Sel telur", sets: 1 },
+    { name: "Inti kutub", sets: 1 },
+    { name: "Zigot", sets: 2 },
+    { name: "Inti endosperma", sets: 3 },
+  ].map(({ name, sets }) => ({ name, value: 10 * sets }))}
+  chartConfig={{ value: { label: "Jumlah kromosom", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>
+
+**Contoh 3.** Sel tubuh tomat punya <InlineMath math="2n = 24" /> kromosom. Hitung jumlah kromosom di sel telur, zigot, inti endosperma, dan kulit biji tomat.
+
+<MathContainer>
+<BlockMath math="n = \frac{24}{2} = 12 \text{ di sel telur dan tiap gamet jantan}" />
+<BlockMath math="\text{zigot} = 12 + 12 = 24, \quad \text{endosperma} = 12 + 12 + 12 = 36" />
+<BlockMath math="\text{kulit biji} = 24, \text{ sama dengan sel tubuh induk betina}" />
+</MathContainer>
+
+Cek: endosperma punya tiga set dan zigot dua set, jadi <InlineMath math="36 \div 24 = 1{,}5" />. Model jagung memberi perbandingan yang sama: <InlineMath math="30 \div 20 = 1{,}5" />.
+
+## Bakal Biji Menjadi Biji dan Bakal Buah Menjadi Buah
+
+Setelah pembuahan, tiap bagian bakal biji dan bakal buah berubah. **Biji berkembang dari bakal biji**, sedangkan **buah berkembang dari bakal buah**. Sinergid dan sel antipoda mengalami degenerasi, sementara mahkota dan benang sari biasanya layu lalu gugur.
+
+| Sebelum pembuahan | Setelah pembuahan |
+| :--- | :--- |
+| Zigot | Embrio dengan plumula, radikula, dan kotiledon |
+| Inti endosperma triploid | Endosperma, jaringan cadangan makanan |
+| Integumen | Testa, kulit biji |
+| Mikropil | Lubang kecil di testa tempat air masuk saat perkecambahan |
+| Bakal biji | Biji |
+| Dinding bakal buah | Perikarp, dinding buah |
+| Bakal buah | Buah |
+
+Pada jagung, endosperma tetap menjadi cadangan makanan di biji yang matang. Pada kacang kapri, embrio menyerap endosperma selama biji berkembang, jadi **cadangan makanan disimpan di kotiledon**. Model kedua memakai kacang kapri, <InlineMath math="2n = 14" />, dengan bakal buah berisi <InlineMath math="8" /> bakal biji.
+
+<FertilisationLab
+  title={<>Serbuk Sari yang Dibutuhkan Satu Polong Kapri</>}
+  description={
+    <>
+      Bakal buah kapri dengan <InlineMath math="8" /> bakal biji. Sel tubuh
+      kedua induk punya <InlineMath math="14" /> kromosom. Bacaan terakhir
+      menghitung serbuk sari yang dibutuhkan agar tiap bakal biji menjadi
+      biji.
+    </>
+  }
+  mother={14}
+  father={14}
+  ovules={8}
+  labels={{
+    embryo: <>Kromosom embrio, sel telur dan gamet jantan</>,
+    endosperm: <>Kromosom endosperma, dua inti kutub dan gamet jantan</>,
+    gamete: <>Kromosom satu gamet jantan</>,
+    grains: <>Serbuk sari yang dibutuhkan</>,
+    progress: "Tahap",
+    seedCoat: <>Kromosom kulit biji</>,
+    stages: {
+      pollination: "Penyerbukan",
+      tube: "Buluh serbuk sari tumbuh",
+      entry: "Buluh masuk lewat mikropil",
+      fusion: "Pembuahan ganda",
+    },
+    view: "Bunga kapri yang dibelah memanjang",
+  }}
+/>
+
+**Contoh 4.** Berapa serbuk sari dan gamet jantan yang dibutuhkan supaya kedelapan bakal biji menjadi biji?
+
+<BlockMath math="\text{serbuk sari} = 8 \times 1 = 8, \quad \text{gamet jantan} = 8 \times 2 = 16" />
+
+Tiap bakal biji menerima satu buluh serbuk sari, dan tiap buluh membawa dua gamet jantan yang keduanya dipakai dalam pembuahan ganda. Cek dengan model: bacaan serbuk sari <InlineMath math="8" />, dan <InlineMath math="16 \div 8 = 2" /> gamet jantan untuk tiap bakal biji.
+
+Biji membantu tumbuhan bertahan hidup. **Testa melindungi embrio**, cadangan makanan di endosperma atau kotiledon memasok energi saat perkecambahan, dan biji bisa dorman sampai keadaannya cocok. Biji juga tersebar jauh dari induknya, jadi tumbuhan muda tidak bersaing dengan induk untuk mendapat cahaya dan air. Tiap biji hasil reproduksi seksual membawa gabungan gen baru, jadi spesiesnya lebih mampu menyesuaikan diri saat lingkungannya berubah.
+
+## Kesalahan Umum tentang Reproduksi Tumbuhan Berbunga
+
+| Kesalahan | Kenapa salah | Cara mengecek |
+| :--- | :--- | :--- |
+| Penyerbukan dan pembuahan adalah proses yang sama. | Penyerbukan memindahkan serbuk sari, pembuahan meleburkan inti. | Tanyakan apakah buluh serbuk sari sudah mencapai bakal biji. |
+| Endosperma bersifat diploid. | Endosperma terbentuk dari dua inti kutub dan satu gamet jantan. | Hitung setnya: <InlineMath math="1 + 1 + 1 = 3" />. |
+| Biji berkembang dari bakal buah. | Bakal buah menjadi buah, bakal bijilah yang menjadi biji. | Hitung biji di dalam buah: tiap biji berasal dari satu bakal biji. |
+| Satu serbuk sari bisa membuahi banyak bakal biji. | Satu buluh serbuk sari hanya masuk ke satu bakal biji. | Bandingkan bacaan serbuk sari dengan jumlah bakal biji. |
+| Kulit biji membawa kromosom induk jantan. | Kulit biji berasal dari integumen induk betina. | Bandingkan bacaan kulit biji dengan jumlah kromosom induk betina. |
+
+Kesalahan kedua sering muncul di soal jumlah kromosom. **Endosperma adalah satu-satunya struktur triploid** di dalam biji, jadi tulis <InlineMath math="3n" /> untuknya.
+
+## Latihan Reproduksi Seksual pada Tumbuhan Berbunga
+
+Soal bergerak dari struktur ke perhitungan. **Tulis banyaknya set kromosom** sebelum menghitung jumlah kromosom.
+
+1. Sebutkan struktur yang berkembang menjadi testa, perikarp, dan endosperma.
+
+2. Sel tubuh bawang merah punya <InlineMath math="2n = 16" /> kromosom. Tentukan jumlah kromosom di inti buluh, sel antipoda, zigot, dan inti endosperma.
+
+3. Buluh serbuk sari mencapai bakal biji <InlineMath math="4{,}5" /> jam setelah berkecambah di kepala putik. Tangkai putik bunga itu panjangnya <InlineMath math="18\text{ mm}" />. Hitung laju tumbuh buluhnya.
+
+4. Sebuah semangka berisi <InlineMath math="300" /> biji. Hitung jumlah minimum serbuk sari dan gamet jantan yang dibutuhkan, lalu jelaskan jawabanmu.
+
+### Pembahasan
+
+**Pembahasan 1**: Testa berkembang dari **integumen**, perikarp berkembang dari **dinding bakal buah**, dan endosperma berkembang dari **inti endosperma triploid** yang terbentuk saat gamet jantan kedua melebur dengan dua inti kutub.
+
+**Pembahasan 2**: Inti buluh dan sel antipoda bersifat haploid, zigot diploid, dan endosperma triploid:
+
+<MathContainer>
+<BlockMath math="n = \frac{16}{2} = 8 \text{ di inti buluh dan sel antipoda}" />
+<BlockMath math="\text{zigot} = 2 \times 8 = 16, \quad \text{endosperma} = 3 \times 8 = 24" />
+</MathContainer>
+
+Cek: <InlineMath math="24 \div 16 = 1{,}5" />, sama dengan perbandingan endosperma terhadap zigot pada tomat.
+
+**Pembahasan 3**: Susun ulang <InlineMath math="t = L/r" /> menjadi <InlineMath math="r = L/t" />:
+
+<BlockMath math="r = \frac{18\text{ mm}}{4{,}5\text{ jam}} = 4{,}0\text{ mm jam}^{-1}" />
+
+Cek dengan model waktu buluh: pada <InlineMath math="r = 4" /> dan <InlineMath math="L = 18" />, bacaan waktunya <InlineMath math="4{,}5" />.
+
+**Pembahasan 4**: Tiap biji berasal dari satu bakal biji, dan tiap bakal biji butuh **satu buluh serbuk sari** yang membawa dua gamet jantan:
+
+<BlockMath math="\text{serbuk sari} = 300, \quad \text{gamet jantan} = 300 \times 2 = 600" />
+
+Angka ini minimum karena banyak serbuk sari lain tidak pernah mencapai bakal biji. Cek: <InlineMath math="600 \div 300 = 2" /> gamet jantan untuk tiap biji, satu untuk zigot dan satu untuk endosperma.
