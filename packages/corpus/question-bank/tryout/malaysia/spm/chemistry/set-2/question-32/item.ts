@@ -12,20 +12,19 @@ const item: ItemSource = {
       options: [
         {
           correct: false,
-          label: "$$4.10\\text{ g}$$, $$2.30\\text{ g}$$, $$100\\text{ cm}^3$$",
+          label: "$$3.52\\text{ g}$$, $$3.28\\text{ g}$$, $$1.84\\text{ g}$$",
         },
         {
           correct: false,
-          label: "$$8.20\\text{ g}$$, $$4.60\\text{ g}$$, $$0\\text{ cm}^3$$",
+          label: "$$3.52\\text{ g}$$, $$4.92\\text{ g}$$, $$2.76\\text{ g}$$",
         },
         {
           correct: false,
-          label: "$$4.10\\text{ g}$$, $$2.30\\text{ g}$$, $$500\\text{ cm}^3$$",
+          label: "$$5.28\\text{ g}$$, $$4.92\\text{ g}$$, $$2.76\\text{ g}$$",
         },
         {
           correct: true,
-          label:
-            "$$4.10\\text{ g}$$, $$2.30\\text{ g}$$, $$50.0\\text{ cm}^3$$",
+          label: "$$3.52\\text{ g}$$, $$4.92\\text{ g}$$, $$1.84\\text{ g}$$",
         },
       ],
     },
@@ -34,20 +33,19 @@ const item: ItemSource = {
       options: [
         {
           correct: false,
-          label: "$$4.10\\text{ g}$$, $$2.30\\text{ g}$$, $$100\\text{ cm}^3$$",
+          label: "$$3.52\\text{ g}$$, $$3.28\\text{ g}$$, $$1.84\\text{ g}$$",
         },
         {
           correct: false,
-          label: "$$8.20\\text{ g}$$, $$4.60\\text{ g}$$, $$0\\text{ cm}^3$$",
+          label: "$$3.52\\text{ g}$$, $$4.92\\text{ g}$$, $$2.76\\text{ g}$$",
         },
         {
           correct: false,
-          label: "$$4.10\\text{ g}$$, $$2.30\\text{ g}$$, $$500\\text{ cm}^3$$",
+          label: "$$5.28\\text{ g}$$, $$4.92\\text{ g}$$, $$2.76\\text{ g}$$",
         },
         {
           correct: true,
-          label:
-            "$$4.10\\text{ g}$$, $$2.30\\text{ g}$$, $$50.0\\text{ cm}^3$$",
+          label: "$$3.52\\text{ g}$$, $$4.92\\text{ g}$$, $$1.84\\text{ g}$$",
         },
       ],
     },

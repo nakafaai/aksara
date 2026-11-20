@@ -1,25 +1,25 @@
-# The water's heat over the moles burned gives the measured value, and the accepted value shows how much heat was lost
+# The first heating measures what this burner really delivers per mole, and that measured value, not the accepted one, scales the second
 
-The water absorbs <InlineMath math="250\times4.2\times15.0=15\,750\text{ J}" />, <InlineMath math="15.8\text{ kJ}" />. The ethanol is <InlineMath math="\tfrac{0.690}{46}=0.0150\text{ mol}" />, so **per mole** the experiment gives <InlineMath math="15.75\div0.0150=1050" />, <InlineMath math="\Delta H=-1050\text{ kJ mol}^{-1}" />. Burning <InlineMath math="0.0150\text{ mol}" /> really releases <InlineMath math="0.0150\times1370=20.55\text{ kJ}" />, so **only <InlineMath math="\tfrac{1050}{1370}\times100=76.6\%" /> reaches the water**.
+The water absorbs <InlineMath math="250\times4.2\times15.0=15\,750\text{ J}" />, <InlineMath math="15.8\text{ kJ}" />, from <InlineMath math="0.0150\text{ mol}" /> of ethanol, so <InlineMath math="\Delta H=-1050\text{ kJ mol}^{-1}" />. The second heating needs <InlineMath math="500\times4.2\times20.0=42\,000\text{ J}" />. **The same lamp still delivers only <InlineMath math="1050\text{ kJ}" /> per mole**, so <InlineMath math="42.0\div1050=0.0400\text{ mol}" />, <InlineMath math="0.0400\times46=1.84\text{ g}" />.
 
 <Chart
-  title={<>Heat of combustion</>}
-  description={<>The experiment gives <InlineMath math="1050\text{ kJ mol}^{-1}" /> against the accepted <InlineMath math="1370\text{ kJ mol}^{-1}" />.</>}
+  title={<>Heat the water needs</>}
+  description={<>The first heating takes <InlineMath math="15.8\text{ kJ}" /> and the second <InlineMath math="42.0\text{ kJ}" />.</>}
   bars="apart"
-  categories={["Measured", "Accepted"]}
+  categories={["First heating", "Second heating"]}
   series={[
-    { label: "Heat released", mark: "bar", values: [1050, 1370] },
+    { label: "Heat", mark: "bar", values: [15.8, 42.0] },
   ]}
-  valueLabel="Heat released (kJ per mol)"
+  valueLabel="Heat (kJ)"
 />
 
 <BlockMath math="\begin{aligned}
-Q&=250\times4.2\times15.0=15\,750\text{ J},\quad \Delta H=-\tfrac{15.75}{0.690\div46}=-1050\text{ kJ mol}^{-1}\\
-\text{share}&=\tfrac{1050}{1370}\times100=76.6\%
+Q_1&=250\times4.2\times15.0=15\,750\text{ J},\quad \Delta H=-\tfrac{15.75}{0.690\div46}=-1050\text{ kJ mol}^{-1}\\
+m&=\tfrac{500\times4.2\times20.0\div1000}{1050}\times46=1.84\text{ g}
 \end{aligned}" />
 
 # Why the other options are wrong
 
-- <InlineMath math="130\%" /> divides the accepted value by the measured one, but more heat cannot reach the water than the burning releases.
-- <InlineMath math="-22.8" /> gives the heat per gram, but **a heat of combustion is per mole of fuel**.
-- <InlineMath math="23.4\%" /> is the share lost to the surroundings, not the share that reaches the water.
+- <InlineMath math="1.41\text{ g}" /> uses the accepted <InlineMath math="1370\text{ kJ mol}^{-1}" />, but **this lamp loses heat**, so it delivers only <InlineMath math="1050\text{ kJ}" /> per mole.
+- <InlineMath math="-22.8" /> gives the heat per gram, but a heat of combustion is per mole of fuel.
+- <InlineMath math="0.920\text{ g}" /> heats only <InlineMath math="250\text{ g}" /> by <InlineMath math="20.0^\circ\text{C}" />, but the second heating warms <InlineMath math="500\text{ g}" />.

@@ -13,22 +13,22 @@ const item: ItemSource = {
         {
           correct: true,
           label:
-            "$$6.79^\\circ\\text{C}$$, $$2.85\\text{ kJ}$$, $$50.0\\text{ cm}^3$$",
+            "$$10.2^\\circ\\text{C}$$, $$4.29\\text{ kJ}$$, $$25.0\\text{ cm}^3$$",
         },
         {
           correct: false,
           label:
-            "$$13.6^\\circ\\text{C}$$, $$5.70\\text{ kJ}$$, $$0\\text{ cm}^3$$",
+            "$$6.81^\\circ\\text{C}$$, $$2.86\\text{ kJ}$$, $$0\\text{ cm}^3$$",
         },
         {
           correct: false,
           label:
-            "$$6.79^\\circ\\text{C}$$, $$2.85\\text{ kJ}$$, $$100\\text{ cm}^3$$",
+            "$$10.2^\\circ\\text{C}$$, $$4.29\\text{ kJ}$$, $$12.5\\text{ cm}^3$$",
         },
         {
           correct: false,
           label:
-            "$$13.6^\\circ\\text{C}$$, $$2.85\\text{ kJ}$$, $$50.0\\text{ cm}^3$$",
+            "$$20.4^\\circ\\text{C}$$, $$4.29\\text{ kJ}$$, $$25.0\\text{ cm}^3$$",
         },
       ],
     },
@@ -38,22 +38,22 @@ const item: ItemSource = {
         {
           correct: true,
           label:
-            "$$6.79^\\circ\\text{C}$$, $$2.85\\text{ kJ}$$, $$50.0\\text{ cm}^3$$",
+            "$$10.2^\\circ\\text{C}$$, $$4.29\\text{ kJ}$$, $$25.0\\text{ cm}^3$$",
         },
         {
           correct: false,
           label:
-            "$$13.6^\\circ\\text{C}$$, $$5.70\\text{ kJ}$$, $$0\\text{ cm}^3$$",
+            "$$6.81^\\circ\\text{C}$$, $$2.86\\text{ kJ}$$, $$0\\text{ cm}^3$$",
         },
         {
           correct: false,
           label:
-            "$$6.79^\\circ\\text{C}$$, $$2.85\\text{ kJ}$$, $$100\\text{ cm}^3$$",
+            "$$10.2^\\circ\\text{C}$$, $$4.29\\text{ kJ}$$, $$12.5\\text{ cm}^3$$",
         },
         {
           correct: false,
           label:
-            "$$13.6^\\circ\\text{C}$$, $$2.85\\text{ kJ}$$, $$50.0\\text{ cm}^3$$",
+            "$$20.4^\\circ\\text{C}$$, $$4.29\\text{ kJ}$$, $$25.0\\text{ cm}^3$$",
         },
       ],
     },
