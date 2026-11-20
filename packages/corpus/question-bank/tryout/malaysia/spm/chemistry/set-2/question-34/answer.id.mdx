@@ -1,25 +1,25 @@
-# Kalor air dibagi mol yang terbakar memberi nilai terukur, dan nilai yang diterima menunjukkan berapa kalor yang hilang
+# Pemanasan pertama mengukur apa yang benar-benar diberikan pembakar ini per mol, dan nilai terukur itu, bukan nilai yang diterima, menskalakan pemanasan kedua
 
-Air menyerap <InlineMath math="250\times4{,}2\times15{,}0=15{.}750\text{ J}" />, <InlineMath math="15{,}8\text{ kJ}" />. Etanolnya <InlineMath math="\tfrac{0{,}690}{46}=0{,}0150\text{ mol}" />, jadi **per mol** percobaan memberi <InlineMath math="15{,}75\div0{,}0150=1050" />, <InlineMath math="\Delta H=-1050\text{ kJ mol}^{-1}" />. Pembakaran <InlineMath math="0{,}0150\text{ mol}" /> sebenarnya melepas <InlineMath math="0{,}0150\times1370=20{,}55\text{ kJ}" />, jadi **hanya <InlineMath math="\tfrac{1050}{1370}\times100=76{,}6\%" /> yang sampai ke air**.
+Air menyerap <InlineMath math="250\times4{,}2\times15{,}0=15{.}750\text{ J}" />, <InlineMath math="15{,}8\text{ kJ}" />, dari <InlineMath math="0{,}0150\text{ mol}" /> etanol, jadi <InlineMath math="\Delta H=-1050\text{ kJ mol}^{-1}" />. Pemanasan kedua butuh <InlineMath math="500\times4{,}2\times20{,}0=42{.}000\text{ J}" />. **Pelita yang sama tetap hanya memberi <InlineMath math="1050\text{ kJ}" /> per mol**, jadi <InlineMath math="42{,}0\div1050=0{,}0400\text{ mol}" />, <InlineMath math="0{,}0400\times46=1{,}84\text{ g}" />.
 
 <Chart
-  title={<>Kalor pembakaran</>}
-  description={<>Percobaan memberi <InlineMath math="1050\text{ kJ mol}^{-1}" /> terhadap nilai yang diterima <InlineMath math="1370\text{ kJ mol}^{-1}" />.</>}
+  title={<>Kalor yang dibutuhkan air</>}
+  description={<>Pemanasan pertama memakai <InlineMath math="15{,}8\text{ kJ}" /> dan yang kedua <InlineMath math="42{,}0\text{ kJ}" />.</>}
   bars="apart"
-  categories={["Terukur", "Diterima"]}
+  categories={["Pemanasan pertama", "Pemanasan kedua"]}
   series={[
-    { label: "Kalor dilepas", mark: "bar", values: [1050, 1370] },
+    { label: "Kalor", mark: "bar", values: [15.8, 42.0] },
   ]}
-  valueLabel="Kalor dilepas (kJ per mol)"
+  valueLabel="Kalor (kJ)"
 />
 
 <BlockMath math="\begin{aligned}
-Q&=250\times4{,}2\times15{,}0=15{.}750\text{ J},\quad \Delta H=-\tfrac{15{,}75}{0{,}690\div46}=-1050\text{ kJ mol}^{-1}\\
-\text{share}&=\tfrac{1050}{1370}\times100=76{,}6\%
+Q_1&=250\times4{,}2\times15{,}0=15{.}750\text{ J},\quad \Delta H=-\tfrac{15{,}75}{0{,}690\div46}=-1050\text{ kJ mol}^{-1}\\
+m&=\tfrac{500\times4{,}2\times20{,}0\div1000}{1050}\times46=1{,}84\text{ g}
 \end{aligned}" />
 
 # Kenapa pilihan lain salah
 
-- <InlineMath math="130\%" /> membagi nilai yang diterima dengan nilai terukur, padahal kalor yang sampai ke air tidak bisa melebihi kalor yang dilepas.
-- <InlineMath math="-22{,}8" /> memberi kalor per gram, padahal **kalor pembakaran dihitung per mol bahan bakar**.
-- <InlineMath math="23{,}4\%" /> adalah bagian yang hilang ke lingkungan, bukan bagian yang sampai ke air.
+- <InlineMath math="1{,}41\text{ g}" /> memakai nilai yang diterima <InlineMath math="1370\text{ kJ mol}^{-1}" />, padahal **pelita ini kehilangan kalor**, jadi hanya memberi <InlineMath math="1050\text{ kJ}" /> per mol.
+- <InlineMath math="-22{,}8" /> memberi kalor per gram, padahal kalor pembakaran dihitung per mol bahan bakar.
+- <InlineMath math="0{,}920\text{ g}" /> hanya memanaskan <InlineMath math="250\text{ g}" /> sebesar <InlineMath math="20{,}0^\circ\text{C}" />, padahal pemanasan kedua memanaskan <InlineMath math="500\text{ g}" />.

@@ -13,22 +13,22 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "$$15.8\\text{ kJ}$$, $$-1050\\text{ kJ mol}^{-1}$$, $$130\\%$$",
+            "$$15.8\\text{ kJ}$$, $$-1050\\text{ kJ mol}^{-1}$$, $$1.41\\text{ g}$$",
         },
         {
           correct: true,
           label:
-            "$$15.8\\text{ kJ}$$, $$-1050\\text{ kJ mol}^{-1}$$, $$76.6\\%$$",
+            "$$15.8\\text{ kJ}$$, $$-1050\\text{ kJ mol}^{-1}$$, $$1.84\\text{ g}$$",
         },
         {
           correct: false,
           label:
-            "$$15.8\\text{ kJ}$$, $$-22.8\\text{ kJ mol}^{-1}$$, $$76.6\\%$$",
+            "$$15.8\\text{ kJ}$$, $$-22.8\\text{ kJ mol}^{-1}$$, $$1.84\\text{ g}$$",
         },
         {
           correct: false,
           label:
-            "$$15.8\\text{ kJ}$$, $$-1050\\text{ kJ mol}^{-1}$$, $$23.4\\%$$",
+            "$$15.8\\text{ kJ}$$, $$-1050\\text{ kJ mol}^{-1}$$, $$0.920\\text{ g}$$",
         },
       ],
     },
@@ -38,22 +38,22 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "$$15.8\\text{ kJ}$$, $$-1050\\text{ kJ mol}^{-1}$$, $$130\\%$$",
+            "$$15.8\\text{ kJ}$$, $$-1050\\text{ kJ mol}^{-1}$$, $$1.41\\text{ g}$$",
         },
         {
           correct: true,
           label:
-            "$$15.8\\text{ kJ}$$, $$-1050\\text{ kJ mol}^{-1}$$, $$76.6\\%$$",
+            "$$15.8\\text{ kJ}$$, $$-1050\\text{ kJ mol}^{-1}$$, $$1.84\\text{ g}$$",
         },
         {
           correct: false,
           label:
-            "$$15.8\\text{ kJ}$$, $$-22.8\\text{ kJ mol}^{-1}$$, $$76.6\\%$$",
+            "$$15.8\\text{ kJ}$$, $$-22.8\\text{ kJ mol}^{-1}$$, $$1.84\\text{ g}$$",
         },
         {
           correct: false,
           label:
-            "$$15.8\\text{ kJ}$$, $$-1050\\text{ kJ mol}^{-1}$$, $$23.4\\%$$",
+            "$$15.8\\text{ kJ}$$, $$-1050\\text{ kJ mol}^{-1}$$, $$0.920\\text{ g}$$",
         },
       ],
     },

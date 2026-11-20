@@ -18,7 +18,7 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "$$\\text{C}_2\\text{H}_4$$, $$18.8\\text{ g}$$, $$4.80\\text{ dm}^3$$",
+            "$$\\text{C}_8\\text{H}_{16}$$, $$6.80\\text{ g}$$, $$4.80\\text{ dm}^3$$",
         },
         {
           correct: false,
@@ -43,7 +43,7 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "$$\\text{C}_2\\text{H}_4$$, $$18.8\\text{ g}$$, $$4.80\\text{ dm}^3$$",
+            "$$\\text{C}_8\\text{H}_{16}$$, $$6.80\\text{ g}$$, $$4.80\\text{ dm}^3$$",
         },
         {
           correct: false,

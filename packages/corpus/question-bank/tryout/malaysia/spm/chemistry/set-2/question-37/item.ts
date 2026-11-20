@@ -12,19 +12,19 @@ const item: ItemSource = {
       options: [
         {
           correct: true,
-          label: "$$4.80\\text{ dm}^3$$, $$1000$$, $$1.20\\times10^{20}$$",
+          label: "$$2.24\\text{ g}$$, $$1000$$, $$4.82\\times10^{19}$$",
         },
         {
           correct: false,
-          label: "$$4.80\\text{ dm}^3$$, $$1000$$, $$1.20\\times10^{23}$$",
+          label: "$$2.24\\text{ g}$$, $$1000$$, $$4.82\\times10^{22}$$",
         },
         {
           correct: false,
-          label: "$$4.80\\text{ dm}^3$$, $$2000$$, $$1.20\\times10^{20}$$",
+          label: "$$2.24\\text{ g}$$, $$2000$$, $$4.82\\times10^{19}$$",
         },
         {
           correct: false,
-          label: "$$9.60\\text{ dm}^3$$, $$1000$$, $$1.20\\times10^{20}$$",
+          label: "$$2.80\\text{ g}$$, $$1000$$, $$6.02\\times10^{19}$$",
         },
       ],
     },
@@ -33,19 +33,19 @@ const item: ItemSource = {
       options: [
         {
           correct: true,
-          label: "$$4.80\\text{ dm}^3$$, $$1000$$, $$1.20\\times10^{20}$$",
+          label: "$$2.24\\text{ g}$$, $$1000$$, $$4.82\\times10^{19}$$",
         },
         {
           correct: false,
-          label: "$$4.80\\text{ dm}^3$$, $$1000$$, $$1.20\\times10^{23}$$",
+          label: "$$2.24\\text{ g}$$, $$1000$$, $$4.82\\times10^{22}$$",
         },
         {
           correct: false,
-          label: "$$4.80\\text{ dm}^3$$, $$2000$$, $$1.20\\times10^{20}$$",
+          label: "$$2.24\\text{ g}$$, $$2000$$, $$4.82\\times10^{19}$$",
         },
         {
           correct: false,
-          label: "$$9.60\\text{ dm}^3$$, $$1000$$, $$1.20\\times10^{20}$$",
+          label: "$$2.80\\text{ g}$$, $$1000$$, $$6.02\\times10^{19}$$",
         },
       ],
     },

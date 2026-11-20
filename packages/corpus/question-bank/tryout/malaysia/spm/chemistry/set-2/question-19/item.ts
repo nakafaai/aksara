@@ -13,22 +13,22 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "$$0.840\\text{ dm}^3$$, $$1.08\\text{ dm}^3$$, $$6.12\\text{ g}$$",
+            "$$0.840\\text{ dm}^3$$, $$1.08\\text{ dm}^3$$, $$1.80\\text{ g}$$",
         },
         {
           correct: true,
           label:
-            "$$0.840\\text{ dm}^3$$, $$1.08\\text{ dm}^3$$, $$3.06\\text{ g}$$",
+            "$$0.840\\text{ dm}^3$$, $$1.08\\text{ dm}^3$$, $$3.60\\text{ g}$$",
         },
         {
           correct: false,
           label:
-            "$$0.840\\text{ dm}^3$$, $$3.12\\text{ dm}^3$$, $$3.06\\text{ g}$$",
+            "$$0.840\\text{ dm}^3$$, $$3.12\\text{ dm}^3$$, $$10.4\\text{ g}$$",
         },
         {
           correct: false,
           label:
-            "$$0.360\\text{ dm}^3$$, $$1.08\\text{ dm}^3$$, $$3.06\\text{ g}$$",
+            "$$0.360\\text{ dm}^3$$, $$1.08\\text{ dm}^3$$, $$3.60\\text{ g}$$",
         },
       ],
     },
@@ -38,22 +38,22 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "$$0.840\\text{ dm}^3$$, $$1.08\\text{ dm}^3$$, $$6.12\\text{ g}$$",
+            "$$0.840\\text{ dm}^3$$, $$1.08\\text{ dm}^3$$, $$1.80\\text{ g}$$",
         },
         {
           correct: true,
           label:
-            "$$0.840\\text{ dm}^3$$, $$1.08\\text{ dm}^3$$, $$3.06\\text{ g}$$",
+            "$$0.840\\text{ dm}^3$$, $$1.08\\text{ dm}^3$$, $$3.60\\text{ g}$$",
         },
         {
           correct: false,
           label:
-            "$$0.840\\text{ dm}^3$$, $$3.12\\text{ dm}^3$$, $$3.06\\text{ g}$$",
+            "$$0.840\\text{ dm}^3$$, $$3.12\\text{ dm}^3$$, $$10.4\\text{ g}$$",
         },
         {
           correct: false,
           label:
-            "$$0.360\\text{ dm}^3$$, $$1.08\\text{ dm}^3$$, $$3.06\\text{ g}$$",
+            "$$0.360\\text{ dm}^3$$, $$1.08\\text{ dm}^3$$, $$3.60\\text{ g}$$",
         },
       ],
     },

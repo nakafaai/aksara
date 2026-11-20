@@ -13,22 +13,22 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "$$3.59\\text{ g}$$, $$3.90^\\circ\\text{C}$$, $$0\\text{ mol dm}^{-3}$$",
+            "$$3.59\\text{ g}$$, $$-52.4\\text{ kJ mol}^{-1}$$, $$0\\text{ cm}^3$$",
         },
         {
           correct: false,
           label:
-            "$$2.87\\text{ g}$$, $$6.24^\\circ\\text{C}$$, $$0.0500\\text{ mol dm}^{-3}$$",
+            "$$2.87\\text{ g}$$, $$-65.5\\text{ kJ mol}^{-1}$$, $$250\\text{ cm}^3$$",
         },
         {
           correct: false,
           label:
-            "$$2.87\\text{ g}$$, $$3.12^\\circ\\text{C}$$, $$0.100\\text{ mol dm}^{-3}$$",
+            "$$2.87\\text{ g}$$, $$-1.31\\text{ kJ mol}^{-1}$$, $$50.0\\text{ cm}^3$$",
         },
         {
           correct: true,
           label:
-            "$$2.87\\text{ g}$$, $$3.12^\\circ\\text{C}$$, $$0.0500\\text{ mol dm}^{-3}$$",
+            "$$2.87\\text{ g}$$, $$-65.5\\text{ kJ mol}^{-1}$$, $$50.0\\text{ cm}^3$$",
         },
       ],
     },
@@ -38,22 +38,22 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "$$3.59\\text{ g}$$, $$3.90^\\circ\\text{C}$$, $$0\\text{ mol dm}^{-3}$$",
+            "$$3.59\\text{ g}$$, $$-52.4\\text{ kJ mol}^{-1}$$, $$0\\text{ cm}^3$$",
         },
         {
           correct: false,
           label:
-            "$$2.87\\text{ g}$$, $$6.24^\\circ\\text{C}$$, $$0.0500\\text{ mol dm}^{-3}$$",
+            "$$2.87\\text{ g}$$, $$-65.5\\text{ kJ mol}^{-1}$$, $$250\\text{ cm}^3$$",
         },
         {
           correct: false,
           label:
-            "$$2.87\\text{ g}$$, $$3.12^\\circ\\text{C}$$, $$0.100\\text{ mol dm}^{-3}$$",
+            "$$2.87\\text{ g}$$, $$-1.31\\text{ kJ mol}^{-1}$$, $$50.0\\text{ cm}^3$$",
         },
         {
           correct: true,
           label:
-            "$$2.87\\text{ g}$$, $$3.12^\\circ\\text{C}$$, $$0.0500\\text{ mol dm}^{-3}$$",
+            "$$2.87\\text{ g}$$, $$-65.5\\text{ kJ mol}^{-1}$$, $$50.0\\text{ cm}^3$$",
         },
       ],
     },

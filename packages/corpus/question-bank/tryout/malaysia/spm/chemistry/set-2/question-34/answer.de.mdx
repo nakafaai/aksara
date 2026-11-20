@@ -1,25 +1,25 @@
-# Die Wärme des Wassers durch die verbrannten Mol gibt den Messwert, und der anerkannte Wert zeigt, wie viel Wärme verloren ging
+# Das erste Erhitzen misst, was dieser Brenner je Mol wirklich liefert, und dieser Messwert, nicht der anerkannte, skaliert das zweite
 
-Das Wasser nimmt <InlineMath math="250\times4{,}2\times15{,}0=15{.}750\text{ J}" /> auf, <InlineMath math="15{,}8\text{ kJ}" />. Das Ethanol sind <InlineMath math="\tfrac{0{,}690}{46}=0{,}0150\text{ mol}" />, also gibt der Versuch **je Mol** <InlineMath math="15{,}75\div0{,}0150=1050" />, <InlineMath math="\Delta H=-1050\text{ kJ mol}^{-1}" />. Das Verbrennen von <InlineMath math="0{,}0150\text{ mol}" /> setzt tatsächlich <InlineMath math="0{,}0150\times1370=20{,}55\text{ kJ}" /> frei, also **erreichen nur <InlineMath math="\tfrac{1050}{1370}\times100=76{,}6\%" /> das Wasser**.
+Das Wasser nimmt <InlineMath math="250\times4{,}2\times15{,}0=15{.}750\text{ J}" /> auf, <InlineMath math="15{,}8\text{ kJ}" />, aus <InlineMath math="0{,}0150\text{ mol}" /> Ethanol, also <InlineMath math="\Delta H=-1050\text{ kJ mol}^{-1}" />. Das zweite Erhitzen braucht <InlineMath math="500\times4{,}2\times20{,}0=42{.}000\text{ J}" />. **Dieselbe Lampe liefert weiterhin nur <InlineMath math="1050\text{ kJ}" /> je Mol**, also <InlineMath math="42{,}0\div1050=0{,}0400\text{ mol}" />, <InlineMath math="0{,}0400\times46=1{,}84\text{ g}" />.
 
 <Chart
-  title={<>Verbrennungsenthalpie</>}
-  description={<>Der Versuch gibt <InlineMath math="1050\text{ kJ mol}^{-1}" /> gegenüber dem anerkannten Wert <InlineMath math="1370\text{ kJ mol}^{-1}" />.</>}
+  title={<>Vom Wasser benötigte Wärme</>}
+  description={<>Das erste Erhitzen braucht <InlineMath math="15{,}8\text{ kJ}" /> und das zweite <InlineMath math="42{,}0\text{ kJ}" />.</>}
   bars="apart"
-  categories={["Gemessen", "Anerkannt"]}
+  categories={["Erstes Erhitzen", "Zweites Erhitzen"]}
   series={[
-    { label: "Freigesetzte Wärme", mark: "bar", values: [1050, 1370] },
+    { label: "Wärme", mark: "bar", values: [15.8, 42.0] },
   ]}
-  valueLabel="Freigesetzte Wärme (kJ je mol)"
+  valueLabel="Wärme (kJ)"
 />
 
 <BlockMath math="\begin{aligned}
-Q&=250\times4{,}2\times15{,}0=15{.}750\text{ J},\quad \Delta H=-\tfrac{15{,}75}{0{,}690\div46}=-1050\text{ kJ mol}^{-1}\\
-\text{share}&=\tfrac{1050}{1370}\times100=76{,}6\%
+Q_1&=250\times4{,}2\times15{,}0=15{.}750\text{ J},\quad \Delta H=-\tfrac{15{,}75}{0{,}690\div46}=-1050\text{ kJ mol}^{-1}\\
+m&=\tfrac{500\times4{,}2\times20{,}0\div1000}{1050}\times46=1{,}84\text{ g}
 \end{aligned}" />
 
 # Warum die anderen Antworten falsch sind
 
-- <InlineMath math="130\%" /> teilt den anerkannten Wert durch den gemessenen, doch das Wasser kann nicht mehr Wärme erhalten, als die Verbrennung freisetzt.
-- <InlineMath math="-22{,}8" /> gibt die Wärme je Gramm, doch **eine Verbrennungsenthalpie bezieht sich auf ein Mol Brennstoff**.
-- <InlineMath math="23{,}4\%" /> ist der an die Umgebung verlorene Anteil, nicht der Anteil, der das Wasser erreicht.
+- <InlineMath math="1{,}41\text{ g}" /> nimmt den anerkannten Wert <InlineMath math="1370\text{ kJ mol}^{-1}" />, doch **diese Lampe verliert Wärme** und liefert nur <InlineMath math="1050\text{ kJ}" /> je Mol.
+- <InlineMath math="-22{,}8" /> gibt die Wärme je Gramm, doch eine Verbrennungsenthalpie bezieht sich auf ein Mol Brennstoff.
+- <InlineMath math="0{,}920\text{ g}" /> erwärmt nur <InlineMath math="250\text{ g}" /> um <InlineMath math="20{,}0^\circ\text{C}" />, doch das zweite Erhitzen erwärmt <InlineMath math="500\text{ g}" />.
