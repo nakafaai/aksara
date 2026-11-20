@@ -1,0 +1,294 @@
+export const metadata = {
+  title: "Sexual Reproduction in Flowering Plants Notes for Form Five",
+  description:
+    "Form 5 Biology Chapter 6: learn flower structure, how pollen and the embryo sac form, double fertilisation, and how seeds and fruits develop.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2026-11-17",
+  subject: "Sexual Reproduction in Flowering Plants",
+};
+
+## Flowers Make Seeds through Double Fertilisation
+
+**Sexual reproduction in flowering plants** happens inside the flower. The anther makes **pollen grains** that carry the male gametes, and each ovule inside the ovary makes an **embryo sac** that holds the egg cell.
+
+After pollen lands on the stigma, a pollen tube grows down to an ovule and carries two male gametes. One male gamete fuses with the egg cell to form a **diploid zygote**. The second male gamete fuses with the two polar nuclei to form a **triploid endosperm nucleus**. That's **double fertilisation**. The ovule then becomes a seed and the ovary becomes a fruit. In these notes you follow a pollen tube all the way to fertilisation, count the chromosomes in each structure and work out how much pollen one fruit needs.
+
+## The Structure of a Flower and What Each Part Does
+
+A complete flower has four rings of parts. The male part is the **stamen** and the female part is the **pistil**, also called the carpel.
+
+| Part | Structure | Function |
+| :--- | :--- | :--- |
+| Stamen | Anther | Makes pollen grains |
+| Stamen | Filament | Holds up the anther so pollen spreads easily |
+| Pistil | Stigma | Sticky surface that receives pollen |
+| Pistil | Style | Path of the pollen tube from the stigma to the ovary |
+| Pistil | Ovary | Holds the ovules and develops into the fruit |
+| Pistil | Ovule | Holds the embryo sac and develops into the seed |
+| Outer ring | Petal | Attracts insect pollinators with colour and scent |
+| Outer ring | Sepal | Protects the flower while it's still a bud |
+
+Insect-pollinated flowers usually have coloured petals, nectar and sticky pollen. Wind-pollinated flowers have small petals, anthers that hang outside the flower and feathery stigmas that **catch light pollen** from the air.
+
+## Pollen and the Embryo Sac Form through Meiosis and Mitosis
+
+Inside the anther, each diploid **pollen mother cell** goes through meiosis and makes a tetrad of four haploid microspores. The nucleus of each microspore divides once by mitosis into a **tube nucleus** and a **generative nucleus**, and the microspore becomes a thick-walled pollen grain. The generative nucleus divides once more by mitosis to make two male gametes.
+
+Inside the ovule, the diploid **megaspore mother cell** goes through meiosis and makes four haploid megaspores. Three of them degenerate. The nucleus of the remaining megaspore divides **three times by mitosis** and makes eight haploid nuclei in the embryo sac: one egg cell, two synergids, three antipodal cells and two polar nuclei. Move the slider to compare the number of nuclei in the embryo sac with the number in a pollen grain.
+
+<MathVisual
+  title={<>Number of Nuclei after Each Mitosis</>}
+  description={
+    <>
+      Number of nuclei against the number of rounds of mitosis{" "}
+      <InlineMath math="m" />. In the embryo sac every nucleus divides, so the
+      count is <InlineMath math="2^m" />. In a pollen grain, only the generative
+      nucleus divides in the second round.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.3, max: 3.3 }, y: { min: 0, max: 9 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "m", min: 0, max: 3, value: 3, step: 1, label: "m" },
+    ],
+    objects: [
+      { id: "sac-0", kind: "point", at: { x: 0, y: 1 }, appearance: "reference" },
+      { id: "sac-1", kind: "point", at: { x: 1, y: 2 }, appearance: "reference" },
+      { id: "sac-2", kind: "point", at: { x: 2, y: 4 }, appearance: "reference" },
+      { id: "sac-3", kind: "point", at: { x: 3, y: 8 }, appearance: "reference" },
+      { id: "sac-now", kind: "marker", x: "m", y: "2^m", appearance: "primary" },
+      { id: "pollen-now", kind: "marker", x: "m", y: "min(m + 1, 3)", appearance: "warning" },
+    ],
+    readouts: [
+      { key: "sac", formula: "2^m" },
+      { key: "pollen", formula: "min(m + 1, 3)" },
+    ],
+  }}
+  labels={{
+    m: <>Rounds of mitosis <InlineMath math="m" /></>,
+    sac: <>Nuclei in the embryo sac</>,
+    pollen: <>Nuclei in a pollen grain</>,
+  }}
+/>
+
+**Example 1.** Show that three rounds of mitosis give eight nuclei in the embryo sac, and check the total by adding up each kind of nucleus.
+
+<MathContainer>
+<BlockMath math="1 \times 2 \times 2 \times 2 = 2^3 = 8 \text{ nuclei}" />
+<BlockMath math="1 + 2 + 3 + 2 = 8 \text{ nuclei}" />
+</MathContainer>
+
+The second line adds one egg cell, two synergids, three antipodal cells and two polar nuclei. Check with the model: at <InlineMath math="m = 3" />, the embryo sac reading is <InlineMath math="8" />, while the pollen grain stops at <InlineMath math="3" /> nuclei, one tube nucleus and two male gametes.
+
+## Pollination Carries Pollen to the Stigma
+
+**Pollination** is the transfer of pollen grains from an anther to a stigma. **Self-pollination** happens within one flower or between flowers on the same plant. **Cross-pollination** happens between flowers on two different plants of the same species, so the offspring inherit a mix of genes from two parents. Insects, birds, wind and water are pollinating agents.
+
+The stigma secretes a sucrose solution. A pollen grain takes up the solution and germinates, and **the pollen tube grows down the style** towards the ovary. The tube nucleus sits at the tip of the tube and the generative nucleus follows behind it. The tube enters the ovule through the **micropyle**. How long that takes depends on the length of the style and how fast the tube grows.
+
+<MathVisual
+  title={<>Time for a Pollen Tube to Reach the Ovule</>}
+  description={
+    <>
+      Time in hours against style length in millimetres, following{" "}
+      <InlineMath math="t = L/r" /> for a pollen tube that grows{" "}
+      <InlineMath math="r" /> millimetres an hour.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 20.5 }, y: { min: 0, max: 42 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "r", min: 0.5, max: 4, value: 2, step: 0.5, label: "r" },
+      { name: "l", min: 1, max: 20, value: 12, step: 1, label: "l" },
+    ],
+    objects: [
+      { id: "time", kind: "function", appearance: "primary", formula: "x/r", domain: { min: 0, max: 20 } },
+      { id: "now", kind: "marker", x: "l", y: "l/r", appearance: "warning" },
+    ],
+    readouts: [{ key: "time", formula: "l/r" }],
+  }}
+  labels={{
+    r: <>Tube growth rate <InlineMath math="r" /> in mm per hour</>,
+    l: <>Style length <InlineMath math="L" /> in millimetres</>,
+    time: <>Time to reach the ovule in hours</>,
+  }}
+/>
+
+**Example 2.** A flower's style is <InlineMath math="12\text{ mm}" /> long. Its pollen tube grows <InlineMath math="2.0\text{ mm}" /> an hour. Calculate how long the tube takes to reach the ovule.
+
+<BlockMath math="t = \frac{L}{r} = \frac{12\text{ mm}}{2.0\text{ mm h}^{-1}} = 6.0\text{ h}" />
+
+Check by multiplying back: <InlineMath math="2.0 \times 6.0 = 12\text{ mm}" />. The model shows a time of <InlineMath math="6" /> hours at <InlineMath math="L = 12" /> and <InlineMath math="r = 2" />. Double the rate to <InlineMath math="r = 4" />, and the time halves to <InlineMath math="3" /> hours.
+
+## Double Fertilisation Makes a Zygote and an Endosperm
+
+While the pollen tube grows, the generative nucleus divides into two male gametes. When the tube reaches the embryo sac, the tube nucleus degenerates and **the two male gametes are released**. One male gamete fertilises the egg cell and makes a <InlineMath math="2n" /> zygote. The second male gamete fuses with the two polar nuclei and makes a <InlineMath math="3n" /> endosperm nucleus. The model below uses maize, whose body cells have <InlineMath math="2n = 20" /> chromosomes. Move the stage from pollination to fertilisation.
+
+<FertilisationLab
+  title={<>Double Fertilisation in a Maize Flower</>}
+  description={
+    <>
+      A flower cut lengthwise. The body cells of the female and male parents
+      each have <InlineMath math="20" /> chromosomes. The readings show the
+      chromosomes in the embryo, the endosperm and the seed coat.
+    </>
+  }
+  mother={20}
+  father={20}
+  labels={{
+    embryo: <>Embryo chromosomes, egg cell and male gamete</>,
+    endosperm: <>Endosperm chromosomes, two polar nuclei and male gamete</>,
+    gamete: <>Chromosomes in one male gamete</>,
+    grains: <>Pollen grains needed</>,
+    progress: "Stage",
+    seedCoat: <>Seed coat chromosomes</>,
+    stages: {
+      pollination: "Pollination",
+      tube: "Pollen tube grows",
+      entry: "Tube enters through the micropyle",
+      fusion: "Double fertilisation",
+    },
+    view: "A maize flower cut lengthwise",
+  }}
+/>
+
+The seed coat takes no part in fertilisation. It develops from the ovule's integuments, the female parent's own tissue, so **the seed coat has only the female parent's chromosomes**. The chart below collects the chromosome number of each structure in the maize life cycle.
+
+<BarChart
+  title={<>Chromosome Numbers in the Reproductive Structures of Maize</>}
+  description={
+    <>
+      Each bar is the number of chromosome sets times{" "}
+      <InlineMath math="n = 10" />. Haploid structures have one set, the
+      zygote two sets and the endosperm nucleus three sets.
+    </>
+  }
+  yAxisLabel="Number of chromosomes"
+  data={[
+    { name: "Pollen mother cell", sets: 2 },
+    { name: "Microspore", sets: 1 },
+    { name: "Male gamete", sets: 1 },
+    { name: "Megaspore mother cell", sets: 2 },
+    { name: "Egg cell", sets: 1 },
+    { name: "Polar nucleus", sets: 1 },
+    { name: "Zygote", sets: 2 },
+    { name: "Endosperm nucleus", sets: 3 },
+  ].map(({ name, sets }) => ({ name, value: 10 * sets }))}
+  chartConfig={{ value: { label: "Number of chromosomes", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>
+
+**Example 3.** Tomato body cells have <InlineMath math="2n = 24" /> chromosomes. Calculate the number of chromosomes in the egg cell, the zygote, the endosperm nucleus and the seed coat of a tomato seed.
+
+<MathContainer>
+<BlockMath math="n = \frac{24}{2} = 12 \text{ in the egg cell and each male gamete}" />
+<BlockMath math="\text{zygote} = 12 + 12 = 24, \quad \text{endosperm} = 12 + 12 + 12 = 36" />
+<BlockMath math="\text{seed coat} = 24, \text{ the same as the female parent's body cells}" />
+</MathContainer>
+
+Check: the endosperm has three sets and the zygote two, so <InlineMath math="36 \div 24 = 1.5" />. The maize model gives the same ratio: <InlineMath math="30 \div 20 = 1.5" />.
+
+## The Ovule Becomes the Seed and the Ovary Becomes the Fruit
+
+After fertilisation, every part of the ovule and ovary changes. **The seed develops from the ovule**, while **the fruit develops from the ovary**. The synergids and antipodal cells degenerate, and the petals and stamens usually wither and fall.
+
+| Before fertilisation | After fertilisation |
+| :--- | :--- |
+| Zygote | Embryo with plumule, radicle and cotyledons |
+| Triploid endosperm nucleus | Endosperm, the food store |
+| Integuments | Testa, the seed coat |
+| Micropyle | Small pore in the testa that lets water in during germination |
+| Ovule | Seed |
+| Ovary wall | Pericarp, the wall of the fruit |
+| Ovary | Fruit |
+
+In maize, the endosperm stays as the food store in the ripe seed. In peas, the embryo absorbs the endosperm while the seed develops, so **the food is stored in the cotyledons**. The second model uses peas, <InlineMath math="2n = 14" />, with an ovary that holds <InlineMath math="8" /> ovules.
+
+<FertilisationLab
+  title={<>Pollen Needed for One Pea Pod</>}
+  description={
+    <>
+      A pea ovary with <InlineMath math="8" /> ovules. The body cells of both
+      parents have <InlineMath math="14" /> chromosomes. The last reading
+      counts the pollen grains needed to turn every ovule into a seed.
+    </>
+  }
+  mother={14}
+  father={14}
+  ovules={8}
+  labels={{
+    embryo: <>Embryo chromosomes, egg cell and male gamete</>,
+    endosperm: <>Endosperm chromosomes, two polar nuclei and male gamete</>,
+    gamete: <>Chromosomes in one male gamete</>,
+    grains: <>Pollen grains needed</>,
+    progress: "Stage",
+    seedCoat: <>Seed coat chromosomes</>,
+    stages: {
+      pollination: "Pollination",
+      tube: "Pollen tube grows",
+      entry: "Tube enters through the micropyle",
+      fusion: "Double fertilisation",
+    },
+    view: "A pea flower cut lengthwise",
+  }}
+/>
+
+**Example 4.** How many pollen grains and male gametes are needed so that all <InlineMath math="8" /> ovules become seeds?
+
+<BlockMath math="\text{pollen grains} = 8 \times 1 = 8, \quad \text{male gametes} = 8 \times 2 = 16" />
+
+Each ovule receives one pollen tube, and each tube carries two male gametes, both used in double fertilisation. Check with the model: the pollen grain reading is <InlineMath math="8" />, and <InlineMath math="16 \div 8 = 2" /> male gametes per ovule.
+
+Seeds help a plant survive. **The testa protects the embryo**, the food store in the endosperm or cotyledons supplies energy during germination, and a seed can stay dormant until conditions suit it. Seeds also spread away from the parent, so the young plants don't compete with it for light and water. Every seed from sexual reproduction carries a new mix of genes, so the species copes better when its surroundings change.
+
+## Common Mistakes about Reproduction in Flowering Plants
+
+| Mistake | Why it's wrong | How to check |
+| :--- | :--- | :--- |
+| Pollination and fertilisation are the same process. | Pollination moves pollen, fertilisation fuses nuclei. | Ask whether the pollen tube has reached the ovule yet. |
+| The endosperm is diploid. | The endosperm forms from two polar nuclei and one male gamete. | Count the sets: <InlineMath math="1 + 1 + 1 = 3" />. |
+| The seed develops from the ovary. | The ovary becomes the fruit, and the ovule becomes the seed. | Count the seeds in a fruit: each one is one ovule. |
+| One pollen grain can fertilise many ovules. | One pollen tube enters only one ovule. | Compare the pollen grain reading with the number of ovules. |
+| The seed coat carries the male parent's chromosomes. | The seed coat comes from the female parent's integuments. | Compare the seed coat reading with the female parent's chromosome number. |
+
+The second mistake turns up often in chromosome number questions. **The endosperm is the only triploid structure** in the seed, so write <InlineMath math="3n" /> for it.
+
+## Practice on Sexual Reproduction in Flowering Plants
+
+The questions move from structures to calculations. **Write the number of chromosome sets** before you work out the number of chromosomes.
+
+1. Name the structures that develop into the testa, the pericarp and the endosperm.
+
+2. Onion body cells have <InlineMath math="2n = 16" /> chromosomes. State the number of chromosomes in the tube nucleus, an antipodal cell, the zygote and the endosperm nucleus.
+
+3. A pollen tube reaches the ovule <InlineMath math="4.5" /> hours after germinating on the stigma. The flower's style is <InlineMath math="18\text{ mm}" /> long. Calculate the tube's growth rate.
+
+4. A watermelon holds <InlineMath math="300" /> seeds. Calculate the minimum number of pollen grains and male gametes needed, and explain your answer.
+
+### Solutions
+
+**Solution 1**: The testa develops from the **integuments**, the pericarp develops from the **ovary wall**, and the endosperm develops from the **triploid endosperm nucleus** that forms when the second male gamete fuses with the two polar nuclei.
+
+**Solution 2**: The tube nucleus and antipodal cells are haploid, the zygote is diploid and the endosperm is triploid:
+
+<MathContainer>
+<BlockMath math="n = \frac{16}{2} = 8 \text{ in the tube nucleus and an antipodal cell}" />
+<BlockMath math="\text{zygote} = 2 \times 8 = 16, \quad \text{endosperm} = 3 \times 8 = 24" />
+</MathContainer>
+
+Check: <InlineMath math="24 \div 16 = 1.5" />, the same endosperm to zygote ratio as in the tomato.
+
+**Solution 3**: Rearrange <InlineMath math="t = L/r" /> to <InlineMath math="r = L/t" />:
+
+<BlockMath math="r = \frac{18\text{ mm}}{4.5\text{ h}} = 4.0\text{ mm h}^{-1}" />
+
+Check with the tube time model: at <InlineMath math="r = 4" /> and <InlineMath math="L = 18" />, the time reading is <InlineMath math="4.5" />.
+
+**Solution 4**: Each seed comes from one ovule, and each ovule needs **one pollen tube** carrying two male gametes:
+
+<BlockMath math="\text{pollen grains} = 300, \quad \text{male gametes} = 300 \times 2 = 600" />
+
+This is a minimum because many other pollen grains never reach an ovule. Check: <InlineMath math="600 \div 300 = 2" /> male gametes per seed, one for the zygote and one for the endosperm.
