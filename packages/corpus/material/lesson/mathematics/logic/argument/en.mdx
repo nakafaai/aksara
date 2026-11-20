@@ -1,177 +1,186 @@
 export const metadata = {
-  title: "Logical Reasoning Notes for Form Four",
+  title: "Deductive and Inductive Arguments",
   description:
-    "Form 4 Mathematics Chapter 3: identify statements, form implications, converses, inverses and contrapositives, and build deductive and inductive arguments.",
+    "Tell deductive from inductive reasoning, use the three valid argument forms, judge how strong a pattern is, and solve a card puzzle with logic.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-11-17",
+  dateModified: "2026-11-20",
   subject: "Logical Reasoning",
 };
 
-## Logical Reasoning Tests Whether Statements Are True
+## From Premises to a Conclusion
 
-A **statement** is a sentence that is either true or false, but not both. The sentence <InlineMath math="7" /> is a prime number is a true statement. Questions and commands are not statements. From statements, we build compound statements, implications and arguments. A **deductive argument** moves from general premises to a specific conclusion, while an **inductive argument** moves from specific cases to a general conclusion. In the models here, you test an implication with a counterexample, see a premise as a set diagram and build a general conclusion from a pattern.
+An argument is a chain of statements: some statements you accept, called **premises**, lead to one statement you claim, called the **conclusion**. There are two directions to reason in. Deductive reasoning goes from general premises to a specific conclusion. Inductive reasoning goes from specific cases to a general conclusion.
 
-## Compound Statements and Negation
-
-The **negation** of a statement <InlineMath math="p" /> is written <InlineMath math="\sim p" /> and has the opposite truth value. Two statements can be joined with **and** or **or**.
-
-| <InlineMath math="p" /> | <InlineMath math="q" /> | <InlineMath math="p \text{ and } q" /> | <InlineMath math="p \text{ or } q" /> |
-| :--- | :--- | :--- | :--- |
-| True | True | True | True |
-| True | False | False | True |
-| False | True | False | True |
-| False | False | False | False |
-
-A statement with **and** is true only when both parts are true. A statement with **or** is false only when both parts are false. This chart compares the number of true rows in the truth table of each kind of statement.
-
-<BarChart
-  title={<>Number of True Rows in a Truth Table</>}
-  description={
-    <>
-      Out of the four combinations of truth values of <InlineMath math="p" />{" "}
-      and <InlineMath math="q" />, how many make each compound statement true.
-    </>
-  }
-  yAxisLabel="True rows"
-  data={[
-    { name: "p and q", value: 1 },
-    { name: "p or q", value: 3 },
-    { name: "If p, then q", value: 3 },
-  ]}
-  chartConfig={{ value: { label: "True rows", colors: { light: ["var(--chart-2)"], dark: ["var(--chart-2)"] } } }}
-/>
-
-## Implications and Their Converses
-
-An **implication** has the form if <InlineMath math="p" />, then <InlineMath math="q" />. The part <InlineMath math="p" /> is the antecedent and <InlineMath math="q" /> is the consequent. An implication is false only when <InlineMath math="p" /> is true but <InlineMath math="q" /> is false.
-
-| Form | Statement | Example |
+| Direction | Premises | Conclusion |
 | :--- | :--- | :--- |
-| Implication | If <InlineMath math="p" />, then <InlineMath math="q" /> | If <InlineMath math="x > 2" />, then <InlineMath math="x^2 > 4" /> |
-| Converse | If <InlineMath math="q" />, then <InlineMath math="p" /> | If <InlineMath math="x^2 > 4" />, then <InlineMath math="x > 2" /> |
-| Inverse | If <InlineMath math="\sim p" />, then <InlineMath math="\sim q" /> | If <InlineMath math="x \le 2" />, then <InlineMath math="x^2 \le 4" /> |
-| Contrapositive | If <InlineMath math="\sim q" />, then <InlineMath math="\sim p" /> | If <InlineMath math="x^2 \le 4" />, then <InlineMath math="x \le 2" /> |
+| Deductive | The interior angles of every quadrilateral add up to <InlineMath math="360^\circ" />. <InlineMath math="PQRS" /> is a quadrilateral. | The interior angles of <InlineMath math="PQRS" /> add up to <InlineMath math="360^\circ" />. |
+| Inductive | <InlineMath math="1 + 3 = 2^2" />, <InlineMath math="1 + 3 + 5 = 3^2" />, <InlineMath math="1 + 3 + 5 + 7 = 4^2" /> | The sum of the first <InlineMath math="n" /> odd numbers is <InlineMath math="n^2" />. |
 
-**The contrapositive always has the same truth value as the implication**, while the converse and inverse may differ. This model tests an implication and its converse. Move <InlineMath math="x" /> and find a value that makes the converse false.
+The difference is certainty. If the premises of a deductive argument are true and its form is valid, the conclusion is **certainly true**. An inductive conclusion is only **probably true**, so you test it on new cases. For <InlineMath math="n = 5" /> the pattern still holds, because <InlineMath math="1 + 3 + 5 + 7 + 9 = 25 = 5^2" />. Even so, one more case still isn't proof for every <InlineMath math="n" />.
 
-<MathVisual
-  title={<>Testing a Converse with a Counterexample</>}
-  description={
-    <>
-      The curve <InlineMath math="y = x^2" /> and the line{" "}
-      <InlineMath math="y = 4" />. The converse if <InlineMath math="x^2 > 4" />,
-      then <InlineMath math="x > 2" /> fails when the point is above the line
-      but to the left of <InlineMath math="x = 2" />.
-    </>
-  }
-  scene={{
-    space: "plane",
-    frame: { kind: "cartesian", x: { min: -4, max: 4 }, y: { min: -1, max: 12 } },
-    view: { kind: "fit", padding: 0.06 },
-    parameters: [
-      { name: "a", min: -3.5, max: 3.5, value: -3, step: 0.1, label: "a" },
-    ],
-    objects: [
-      { id: "square", kind: "function", appearance: "primary", formula: "x^2", domain: { min: -3.5, max: 3.5 } },
-      { id: "four", kind: "function", appearance: "construction", formula: "4 + 0x", domain: { min: -4, max: 4 } },
-      { id: "now", kind: "marker", x: "a", y: "a^2", appearance: "warning" },
-    ],
-    readouts: [
-      { key: "square", formula: "a^2" },
-    ],
-  }}
-  labels={{
-    a: <>Value of <InlineMath math="x" /></>,
-    square: <>Value of <InlineMath math="x^2" /></>,
-  }}
-/>
+## Three Valid Argument Forms
 
-### Example Deciding a Truth Value
-
-Decide whether **the converse** of if <InlineMath math="x > 2" />, then <InlineMath math="x^2 > 4" /> is true or false.
-
-The converse is if <InlineMath math="x^2 > 4" />, then <InlineMath math="x > 2" />. Take <InlineMath math="x = -3" />:
-
-<BlockMath math="(-3)^2 = 9 > 4 \quad\text{but}\quad -3 < 2" />
-
-One counterexample is enough, so the converse is false. Check with the model: at <InlineMath math="x = -3" />, the point is above the line <InlineMath math="y = 4" /> but to the left of <InlineMath math="x = 2" />. The original implication is true, because every <InlineMath math="x > 2" /> gives <InlineMath math="x^2 > 4" />.
-
-### Biconditional Statements
-
-If an implication and its converse are both true, they can be written as one **if and only if** statement. For example, <InlineMath math="x^3 = 8" /> if and only if <InlineMath math="x = 2" />, because each direction is true.
-
-## Deductive Arguments
-
-A deductive argument has premises and a conclusion. If the premises are true and the form is valid, **the conclusion must be true**. Three valid forms:
+Some argument forms always work: if the premises are true, the conclusion can't be false. An argument with a form like that is called **valid**. The three forms in this table are the ones you'll use most.
 
 | Form | Premise 1 | Premise 2 | Conclusion |
 | :--- | :--- | :--- | :--- |
-| Form one | All <InlineMath math="A" /> are <InlineMath math="B" /> | <InlineMath math="C" /> is <InlineMath math="A" /> | <InlineMath math="C" /> is <InlineMath math="B" /> |
-| Form two | If <InlineMath math="p" />, then <InlineMath math="q" /> | <InlineMath math="p" /> is true | <InlineMath math="q" /> is true |
-| Form three | If <InlineMath math="p" />, then <InlineMath math="q" /> | <InlineMath math="\sim q" /> is true | <InlineMath math="\sim p" /> is true |
+| I | All <InlineMath math="A" /> are <InlineMath math="B" />. | <InlineMath math="C" /> is <InlineMath math="A" />. | <InlineMath math="C" /> is <InlineMath math="B" />. |
+| II, modus ponens | If <InlineMath math="p" />, then <InlineMath math="q" />. | <InlineMath math="p" /> is true. | <InlineMath math="q" /> is true. |
+| III, modus tollens | If <InlineMath math="p" />, then <InlineMath math="q" />. | <InlineMath math="\sim q" /> is true. | <InlineMath math="\sim p" /> is true. |
 
-### Premises as Set Diagrams
+Form I works because if every member of <InlineMath math="A" /> sits inside <InlineMath math="B" />, then any member of <InlineMath math="A" />, including <InlineMath math="C" />, sits inside <InlineMath math="B" /> too. Form III works because an implication and [its contrapositive always share a truth value](/en/subjects/mathematics/logical-reasoning/implication-and-contrapositive). The chain below already holds premise 1 of a Form III argument. Here <InlineMath math="PQRS" /> is a kite with sides <InlineMath math="3\text{ cm}" />, <InlineMath math="3\text{ cm}" />, <InlineMath math="5\text{ cm}" /> and <InlineMath math="5\text{ cm}" />.
 
-The premise all <InlineMath math="A" /> are <InlineMath math="B" /> means **set <InlineMath math="A" /> lies inside set <InlineMath math="B" />**. Move circle <InlineMath math="A" /> and see when it sits entirely inside <InlineMath math="B" />.
-
-<MathVisual
-  title={<>The Premise All A Are B as a Set Diagram</>}
+<ArgumentChainLab
+  title={<>Two Cards, Two Orders</>}
   description={
     <>
-      The large circle is set <InlineMath math="B" /> with radius{" "}
-      <InlineMath math="3" />, and the small circle is set{" "}
-      <InlineMath math="A" /> with radius <InlineMath math="1" /> centred at{" "}
-      <InlineMath math="(h, 0)" />.
+      Deal both cards into premise 2 and the conclusion, then swap them. The
+      chain tests each order.
     </>
   }
-  scene={{
-    space: "plane",
-    frame: { kind: "cartesian", x: { min: -4.5, max: 6.5 }, y: { min: -3.5, max: 3.5 } },
-    view: { kind: "fit", padding: 0.06 },
-    parameters: [
-      { name: "h", min: -2, max: 5, value: 1, step: 0.1, label: "h" },
-    ],
-    objects: [
-      { id: "setb", kind: "parametric", appearance: "reference", x: "3cos(t)", y: "3sin(t)", parameter: { min: 0, max: 2 * Math.PI } },
-      { id: "seta", kind: "parametric", appearance: "primary", x: "h + cos(t)", y: "sin(t)", parameter: { min: 0, max: 2 * Math.PI } },
-    ],
-    readouts: [
-      { key: "margin", formula: "2 - abs(h)" },
-    ],
-    labels: [
-      { key: "setb", objectId: "setb", at: { x: -2.1, y: 2.1 }, placement: "above-left" },
-      { key: "seta", objectId: "seta", at: { x: "h", y: "1" }, placement: "above" },
-    ],
-  }}
+  footer={<>Same two cards, but one order locks the chain and the other breaks it.</>}
+  premises={[
+    {
+      statement: { kind: "conditional", antecedent: "square", consequent: "equal-sides" },
+      text: "If PQRS is a square, then all four sides of PQRS are equal.",
+      truth: true,
+    },
+    "open",
+  ]}
+  conclusion="open"
+  hand={[
+    {
+      statement: { kind: "claim", negated: true, statement: "equal-sides" },
+      text: "The four sides of PQRS are not all equal.",
+      truth: true,
+    },
+    {
+      statement: { kind: "claim", negated: true, statement: "square" },
+      text: "PQRS is not a square.",
+      truth: true,
+    },
+  ]}
   labels={{
-    setb: <InlineMath math="B" />,
-    seta: <InlineMath math="A" />,
-    h: <>Centre of set <InlineMath math="A" /> <InlineMath math="h" /></>,
-    margin: <>Gap between the edge of <InlineMath math="A" /> and the edge of <InlineMath math="B" /></>,
+    conclusion: "Conclusion",
+    fallacies: {
+      antecedent: <>Denying the antecedent</>,
+      consequent: <>Affirming the consequent</>,
+      middle: <>Undistributed middle</>,
+    },
+    form: <>Form</>,
+    forms: {
+      I: <>Form I</>,
+      II: <>Form II</>,
+      III: <>Form III</>,
+    },
+    hand: "Cards",
+    no: <>No</>,
+    premises: ["Premise 1", "Premise 2"],
+    sound: <>Sound</>,
+    truth: <>Premises true</>,
+    unfollowed: <>The conclusion doesn't follow</>,
+    unlinked: <>The premises don't connect</>,
+    valid: <>Valid</>,
+    viewLabel: "Three cards on a rail, joined by two chain links",
+    yes: <>Yes</>,
   }}
+  showVerdict
 />
 
-When the gap is positive, that is <InlineMath math="-2 < h < 2" />, set <InlineMath math="A" /> lies entirely inside <InlineMath math="B" /> and the premise is true. Any element <InlineMath math="C" /> of <InlineMath math="A" /> is then also in <InlineMath math="B" />, which is why form one is valid.
+The first order puts the four sides of <InlineMath math="PQRS" /> are not all equal in premise 2 and <InlineMath math="PQRS" /> is not a square in the conclusion. That's **Form III**, and the chain locks. The second order runs the step backwards: from <InlineMath math="PQRS" /> is not a square, it concludes that the sides aren't all equal. That step is a fallacy called **denying the antecedent**. For this kite the conclusion happens to be true, but the form is still invalid. A rhombus isn't a square either, yet all four of its sides are equal.
 
-### Example Completing a Deductive Argument
+### Valid but Not Sound
 
-Complete **the conclusion**. Premise 1: If a quadrilateral is a square, then all its sides are equal. Premise 2: The sides of quadrilateral <InlineMath math="PQRS" /> are not all equal.
+Valid is only about the form. An argument that's valid and has **all its premises true** is called sound, and only a sound argument guarantees a true conclusion. The chain below holds a false premise: all prime numbers are odd.
 
-This is form three with <InlineMath math="\sim q" /> true, so the conclusion is: <InlineMath math="PQRS" /> is not a square. Check: if <InlineMath math="PQRS" /> were a square, all its sides would be equal, which contradicts premise 2.
+<ArgumentChainLab
+  title={<>Right Form, Wrong Premise</>}
+  description={
+    <>
+      Deal both cards about the number <InlineMath math="2" />, then read the
+      chain's verdict for each order.
+    </>
+  }
+  footer={<>A seal marks each false card. The chain can lock even with a sealed card in it.</>}
+  premises={[
+    {
+      statement: { kind: "all", subject: "prime", predicate: "odd" },
+      text: "All prime numbers are odd.",
+      truth: false,
+    },
+    "open",
+  ]}
+  conclusion="open"
+  hand={[
+    {
+      statement: { kind: "member", member: "2", set: "prime" },
+      text: "2 is a prime number.",
+      truth: true,
+    },
+    {
+      statement: { kind: "member", member: "2", set: "odd" },
+      text: "2 is an odd number.",
+      truth: false,
+    },
+  ]}
+  labels={{
+    conclusion: "Conclusion",
+    fallacies: {
+      antecedent: <>Denying the antecedent</>,
+      consequent: <>Affirming the consequent</>,
+      middle: <>Undistributed middle</>,
+    },
+    form: <>Form</>,
+    forms: {
+      I: <>Form I</>,
+      II: <>Form II</>,
+      III: <>Form III</>,
+    },
+    hand: "Cards",
+    no: <>No</>,
+    premises: ["Premise 1", "Premise 2"],
+    sound: <>Sound</>,
+    truth: <>Premises true</>,
+    unfollowed: <>The conclusion doesn't follow</>,
+    unlinked: <>The premises don't connect</>,
+    valid: <>Valid</>,
+    viewLabel: "Three cards on a rail, joined by two chain links",
+    yes: <>Yes</>,
+  }}
+  showVerdict
+/>
 
-## Inductive Arguments
+With <InlineMath math="2" /> is a prime number as premise 2, the chain is **Form I** and valid: if every prime really were odd, <InlineMath math="2" /> would have to be odd. The trouble is that premise 1 is false, because <InlineMath math="2" /> is a prime number that's even. The argument is valid but not sound, and its conclusion, <InlineMath math="2" /> is an odd number, is false.
 
-An inductive argument builds a general conclusion from **a pattern in specific cases**. The conclusion may be true but isn't guaranteed, so it has to be tested on new cases. This graph shows the number of diagonals of a polygon with <InlineMath math="n" /> sides.
+The other order, from <InlineMath math="2" /> is odd to <InlineMath math="2" /> is prime, is the fallacy called the **undistributed middle**. All primes being odd doesn't make every odd number prime, just as <InlineMath math="9" /> is odd but not prime. Compare a sound argument: all multiples of <InlineMath math="4" /> are even, <InlineMath math="36" /> is a multiple of <InlineMath math="4" />, so <InlineMath math="36" /> is even. Check: <InlineMath math="36 = 4 \times 9" />.
+
+### Writing a Valid Argument
+
+To write a valid argument about a situation, **choose the form first**, then fill in the sentences. The first example uses Form I. Premise 1: all multiples of <InlineMath math="9" /> have a digit sum divisible by <InlineMath math="9" />. Premise 2: <InlineMath math="7{,}263" /> is a multiple of <InlineMath math="9" />. Conclusion: the digit sum of <InlineMath math="7{,}263" /> is divisible by <InlineMath math="9" />. Check both sides:
+
+<BlockMath math="7{,}263 = 9 \times 807, \qquad 7 + 2 + 6 + 3 = 18 = 9 \times 2" />
+
+The second example asks for a missing premise. Premise 1: if the side of square <InlineMath math="K" /> is <InlineMath math="5\text{ cm}" />, then its area is <InlineMath math="25\text{ cm}^2" />. Conclusion: the side of square <InlineMath math="K" /> is not <InlineMath math="5\text{ cm}" />. The conclusion has the shape <InlineMath math="\sim p" />, so the argument is Form III, and premise 2 must be <InlineMath math="\sim q" />: the area of square <InlineMath math="K" /> is not <InlineMath math="25\text{ cm}^2" />. Check: a side of <InlineMath math="5\text{ cm}" /> gives an area of <InlineMath math="5 \times 5 = 25\text{ cm}^2" />, which contradicts premise 2. So the side really isn't <InlineMath math="5\text{ cm}" />.
+
+## Strong and Weak Induction
+
+An inductive argument guesses a general rule from a few cases. If the premises give good reason to believe the rule, the argument is **strong**. If the reason is thin, the argument is **weak**. Here's a weak one: <InlineMath math="3" />, <InlineMath math="5" /> and <InlineMath math="7" /> are prime, so every odd number greater than <InlineMath math="1" /> is prime. Three cases are too few, and <InlineMath math="9 = 3 \times 3" /> breaks the conclusion straight away.
+
+### From a Pattern to a Rule
+
+Count the diagonals of a polygon with <InlineMath math="n" /> sides for <InlineMath math="n = 3" /> up to <InlineMath math="n = 7" />. This diagram records the counts made directly on each polygon.
 
 <ScatterDiagram
   title={<>Number of Diagonals of a Polygon</>}
   description={
     <>
       The number of diagonals of polygons with three to seven sides, counted
-      directly on a drawing.
+      directly on each polygon.
     </>
   }
-  xAxisLabel="Number of sides n"
+  footer={<>From one point to the next, the count grows by <InlineMath math="2, 3, 4, 5" />.</>}
+  xAxisLabel="Number of sides"
   yAxisLabel="Number of diagonals"
   datasets={[
     {
@@ -188,29 +197,27 @@ An inductive argument builds a general conclusion from **a pattern in specific c
   ]}
 />
 
-### From Pattern to Rule
-
-Each vertex joins <InlineMath math="n - 3" /> other vertices by a diagonal, and **each diagonal is counted twice**, so the inductive conclusion is <InlineMath math="\dfrac{n(n - 3)}{2}" />. This model draws that rule.
+The pattern has a reason. Each vertex joins <InlineMath math="n - 3" /> other vertices by a diagonal, because it doesn't join itself or its two neighbours. There are <InlineMath math="n" /> vertices, but **each diagonal gets counted twice**, once from each end. The inductive argument reads like this. Premises: polygons with three to seven sides have <InlineMath math="0, 2, 5, 9, 14" /> diagonals, and each of those values equals <InlineMath math="\tfrac{n(n - 3)}{2}" />. Conclusion: a polygon with <InlineMath math="n" /> sides has <InlineMath math="\tfrac{n(n - 3)}{2}" /> diagonals.
 
 <MathVisual
   title={<>The Diagonal Rule from a Pattern</>}
   description={
     <>
-      The curve <InlineMath math="\dfrac{n(n - 3)}{2}" /> in units of{" "}
-      <InlineMath math="2" /> diagonals against the number of sides{" "}
-      <InlineMath math="n" />.
+      The curve <InlineMath math="y = \tfrac{n(n - 3)}{2}" /> against the
+      number of sides <InlineMath math="n" />. Move <InlineMath math="n" /> to
+      read the number of diagonals the rule predicts. The point only means a polygon at whole values of <InlineMath math="n" />.
     </>
   }
   scene={{
     space: "plane",
-    frame: { kind: "cartesian", x: { min: 0, max: 10.5 }, y: { min: 0, max: 18.5 } },
+    frame: { kind: "cartesian", x: { min: 0, max: 9 }, y: { min: -1, max: 21 } },
     view: { kind: "fit", padding: 0.06 },
     parameters: [
-      { name: "n", min: 3, max: 10, value: 8, step: 1, label: "n" },
+      { name: "n", min: 3, max: 8, value: 8, step: 1, label: "n" },
     ],
     objects: [
-      { id: "rule", kind: "function", appearance: "primary", formula: "x(x - 3)/4", domain: { min: 3, max: 10 } },
-      { id: "now", kind: "marker", x: "n", y: "n(n - 3)/4", appearance: "warning" },
+      { id: "rule", kind: "function", appearance: "primary", formula: "x(x - 3)/2", domain: { min: 3, max: 8 } },
+      { id: "now", kind: "marker", x: "n", y: "n(n - 3)/2", appearance: "warning" },
     ],
     readouts: [
       { key: "diagonals", formula: "n(n - 3)/2" },
@@ -222,47 +229,33 @@ Each vertex joins <InlineMath math="n - 3" /> other vertices by a diagonal, and 
   }}
 />
 
-### Example Testing an Inductive Conclusion
-
-Use the rule to **predict** the number of diagonals of an octagon, then check with the model.
+Test the conclusion on an octagon. The rule predicts
 
 <BlockMath math="\frac{8(8 - 3)}{2} = \frac{40}{2} = 20" />
 
-Check with the model: at <InlineMath math="n = 8" />, it reads <InlineMath math="20" />. A direct count also gives <InlineMath math="20" />: each of the <InlineMath math="8" /> vertices has <InlineMath math="5" /> diagonals, and <InlineMath math="8 \times 5 \div 2 = 20" />.
+A direct count gives the same result: each of the <InlineMath math="8" /> vertices has <InlineMath math="5" /> diagonals, and <InlineMath math="8 \times 5 \div 2 = 20" />. Move <InlineMath math="n" /> to <InlineMath math="8" /> on the graph, and the point sits at a height of <InlineMath math="20" />.
 
-## Common Mistakes about Logical Reasoning
+### When Strong Is Cogent
 
-| Mistake | Why it's wrong | How to check |
+A strong inductive argument whose **premises are all true** is called cogent. The diagonal argument is cogent, because every count in its premises has been checked. Compare this one. Premises: <InlineMath math="2^2 - 1 = 3" />, <InlineMath math="2^3 - 1 = 7" />, <InlineMath math="2^5 - 1 = 31" />, <InlineMath math="2^7 - 1 = 127" /> and <InlineMath math="2^{11} - 1 = 2{,}047" /> are all prime. Conclusion: <InlineMath math="2^p - 1" /> is prime for every prime number <InlineMath math="p" />.
+
+The last premise is false.
+
+<BlockMath math="2^{11} - 1 = 2{,}047 = 23 \times 89" />
+
+Because one premise is false, **the argument isn't cogent**, however neat the pattern looks. The case <InlineMath math="p = 11" /> is even a counterexample to the conclusion. Check the product: <InlineMath math="23 \times 89 = 23 \times 90 - 23 = 2{,}070 - 23 = 2{,}047" />.
+
+## Which Cards to Turn Over
+
+This puzzle uses every tool at once. Each of four cards has a number on one side and a colour on the other. The faces lying up show <InlineMath math="8" />, <InlineMath math="3" />, red and blue. The rule is: if a card has an even number on one side, then its other side is red. Which cards must you turn over to test the rule?
+
+The rule is an implication, so only a counterexample can break it: a card with **an even number and a colour that isn't red**. Ask that question about each card.
+
+| Card | What could be on the back | Can it break the rule? |
 | :--- | :--- | :--- |
-| The converse is always true when the implication is true. | The converse can be false, as the example <InlineMath math="x = -3" /> shows. | Look for one counterexample. |
-| A statement with or needs both parts true. | A statement with or is true if at least one part is true. | Check the truth table. |
-| An inductive conclusion is certainly true. | An inductive conclusion is only probable and must be tested. | Test the rule on a new case. |
-| The negation of all <InlineMath math="A" /> are <InlineMath math="B" /> is no <InlineMath math="A" /> are <InlineMath math="B" />. | The negation is not all <InlineMath math="A" /> are <InlineMath math="B" />. | One element outside <InlineMath math="B" /> is enough. |
+| <InlineMath math="8" /> | red or blue | Yes, if the back is blue |
+| <InlineMath math="3" /> | red or blue | No, the antecedent is false |
+| red | even or odd | No, the consequent is already true |
+| blue | even or odd | Yes, if the back is even |
 
-The first mistake is the most common one in implication questions. **One counterexample proves a statement false**.
-
-## Practice on Logical Reasoning
-
-These questions move from statements to deductive and inductive arguments. **Name the argument form** in every deductive answer.
-
-1. Decide the truth value of the statement <InlineMath math="5 > 3" /> and <InlineMath math="2^3 = 6" />.
-
-2. Write the contrapositive of if <InlineMath math="n" /> is a multiple of <InlineMath math="4" />, then <InlineMath math="n" /> is even, and state its truth value.
-
-3. Complete the argument. Premise 1: All multiples of <InlineMath math="6" /> are multiples of <InlineMath math="3" />. Premise 2: <InlineMath math="42" /> is a multiple of <InlineMath math="6" />.
-
-4. The sequence <InlineMath math="5, 8, 11, 14, \ldots" /> follows the pattern <InlineMath math="3n + 2" /> for <InlineMath math="n = 1, 2, 3, \ldots" />. Use the inductive conclusion to find term <InlineMath math="20" />.
-
-### Solutions
-
-**Solution 1**: <InlineMath math="5 > 3" /> is true, but <InlineMath math="2^3 = 8" />, not <InlineMath math="6" />, so the second part is false. A statement with **and** needs both parts true, so the statement is **false**.
-
-**Solution 2**: The contrapositive is if <InlineMath math="n" /> is not even, then <InlineMath math="n" /> is not a multiple of <InlineMath math="4" />. The original implication is true, and **the contrapositive has the same truth value**, so it's also true.
-
-**Solution 3**: This is form one, so the conclusion is <InlineMath math="42" /> is a multiple of <InlineMath math="3" />. Check: <InlineMath math="42 = 3 \times 14" />.
-
-**Solution 4**: Substitute <InlineMath math="n = 20" /> into the pattern:
-
-<BlockMath math="3(20) + 2 = 62" />
-
-Check the pattern on a known term: <InlineMath math="3(4) + 2 = 14" />, the same as the fourth term.
+So you must turn over **the <InlineMath math="8" /> card and the blue card**. The <InlineMath math="8" /> card is tested with Form II: if the rule holds, its back has to be red. The blue card is tested with Form III: if the rule holds, its back can't be even. Many people pick the red card, yet nothing on its back can break the rule. Drawing a conclusion from the red card is affirming the consequent.

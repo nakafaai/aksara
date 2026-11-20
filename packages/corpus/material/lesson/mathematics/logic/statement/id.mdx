@@ -1,0 +1,212 @@
+export const metadata = {
+  title: "Pernyataan dan Nilai Kebenaran",
+  description:
+    "Bedakan pernyataan dari kalimat lain, uji klaim dengan kata semua dan beberapa, buat negasi, lalu tentukan nilai pernyataan majemuk dengan dan serta atau.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2026-11-20",
+  subject: "Logika Matematika",
+};
+
+## Kalimat yang Bisa Dicek
+
+Pernyataan adalah kalimat yang bisa kamu cek, dan hasil ceknya **benar atau salah, tidak keduanya**. Benar atau salahnya kalimat itu disebut **nilai kebenaran**. Pertanyaan dan perintah tidak bisa dicek seperti itu, jadi keduanya bukan pernyataan. Dari pernyataan, kamu menyusun klaim dengan kata semua dan beberapa, membalik nilainya dengan kata bukan, lalu menggabungkan dua pernyataan dengan dan serta atau. Setiap aturan itu kamu coba sendiri di papan ubin, di rangkaian sakelar, dan pada gerbang yang tersembunyi.
+
+| Kalimat | Pernyataan? | Nilai kebenaran |
+| :--- | :--- | :--- |
+| <InlineMath math="91" /> adalah bilangan prima. | Ya | Salah, karena <InlineMath math="91 = 7 \times 13" /> |
+| Setiap persegi punya empat sisi yang sama panjang. | Ya | Benar |
+| Apakah <InlineMath math="0" /> bilangan genap? | Bukan, ini pertanyaan | Tidak ada |
+| Tulis lima bilangan prima pertama. | Bukan, ini perintah | Tidak ada |
+| <InlineMath math="x + 4 = 9" /> | Bukan, nilainya bergantung pada <InlineMath math="x" /> | Belum ada |
+
+Baris pertama menunjukkan bahwa **kalimat yang salah tetap pernyataan**. Kalimat itu bisa dicek, dan hasil ceknya salah. Baris terakhir berbeda. Untuk <InlineMath math="x = 5" /> kalimatnya benar, sedangkan untuk <InlineMath math="x = 1" /> kalimatnya salah, karena <InlineMath math="1 + 4 = 5" />. Selama <InlineMath math="x" /> belum diketahui, nilai kebenarannya belum bisa ditentukan. Kalimat seperti itu disebut kalimat terbuka, bukan pernyataan.
+
+## Kata Semua dan Beberapa
+
+Klaim dengan kata semua baru benar kalau **setiap anggota yang dibicarakan lolos**. Klaim dengan kata beberapa sudah benar kalau **paling sedikit satu anggota lolos**. Kata seperti semua dan beberapa disebut kuantor. Papan di bawah memuat sepuluh ubin bilangan dan tiga klaim tentang ubin itu. Pilih satu klaim, jalankan pengecekan, dan perhatikan ubin mana yang memutuskan nilainya.
+
+<CounterexampleGridLab
+  title={<>Satu Papan, Tiga Klaim</>}
+  description={
+    <>
+      Pilih klaim, lalu jalankan pengecekan ubin satu per satu. Kamu juga
+      bisa mengetuk ubin mana pun untuk mengeceknya sendiri.
+    </>
+  }
+  footer={<>Satu ubin gagal menjatuhkan klaim semua. Satu ubin lolos cukup untuk klaim beberapa.</>}
+  tiles={[
+    { name: "1", tile: { kind: "number", value: 1 } },
+    { name: "4", tile: { kind: "number", value: 4 } },
+    { name: "6", tile: { kind: "number", value: 6 } },
+    { name: "9", tile: { kind: "number", value: 9 } },
+    { name: "12", tile: { kind: "number", value: 12 } },
+    { name: "16", tile: { kind: "number", value: 16 } },
+    { name: "20", tile: { kind: "number", value: 20 } },
+    { name: "25", tile: { kind: "number", value: 25 } },
+    { name: "30", tile: { kind: "number", value: 30 } },
+    { name: "36", tile: { kind: "number", value: 36 } },
+  ]}
+  claims={[
+    {
+      name: "Semua kuadrat",
+      text: "Semua bilangan kuadrat di sini genap.",
+      claim: {
+        kind: "all",
+        subject: { name: "Bilangan kuadrat", test: { kind: "square-number" } },
+        predicate: { name: "Bilangan genap", test: { kind: "even" } },
+      },
+    },
+    {
+      name: "Beberapa kuadrat",
+      text: "Beberapa bilangan kuadrat di sini genap.",
+      claim: {
+        kind: "some",
+        subject: { name: "Bilangan kuadrat", test: { kind: "square-number" } },
+        predicate: { name: "Bilangan genap", test: { kind: "even" } },
+      },
+    },
+    {
+      name: "Semua kelipatan empat",
+      text: "Semua kelipatan 4 di sini genap.",
+      claim: {
+        kind: "all",
+        subject: { name: "Kelipatan 4", test: { kind: "multiple", of: 4 } },
+        predicate: { name: "Bilangan genap", test: { kind: "even" } },
+      },
+    },
+  ]}
+  labels={{
+    claim: <>Klaim</>,
+    claims: "Klaim",
+    false: "Salah",
+    none: <>Belum ada ubin yang dipilih</>,
+    picked: <>Ubin yang dipilih</>,
+    tile: "Ubin",
+    true: "Benar",
+    verdicts: {
+      breaks: <>Contoh penyangkal</>,
+      fits: <>Cocok</>,
+      misses: <>Bukan contoh</>,
+      outside: <>Di luar klaim</>,
+      proves: <>Contoh</>,
+      safe: <>Syarat salah</>,
+    },
+    viewLabel: "Sepuluh ubin bilangan di depan kartu klaim",
+  }}
+  showAnswer
+/>
+
+Klaim pertama jatuh di ubin pertama. Bilangan <InlineMath math="1 = 1^2" /> adalah bilangan kuadrat, tetapi ganjil, dan ubin <InlineMath math="9" /> serta <InlineMath math="25" /> menjatuhkannya juga. Klaim kedua langsung benar di ubin <InlineMath math="4 = 2^2" />, karena satu contoh sudah cukup. Klaim ketiga lebih berat dibuktikan. Kamu harus mengecek kelima kelipatan <InlineMath math="4" />, yaitu <InlineMath math="4, 12, 16, 20, 36" />, dan semuanya genap. Jadi **klaim semua yang benar menuntut pengecekan penuh**, sedangkan klaim semua yang salah cukup dijatuhkan oleh satu ubin.
+
+## Kata Bukan Membalik Nilai
+
+Tambahkan kata bukan atau tidak ke sebuah pernyataan, dan nilai kebenarannya berbalik: yang benar menjadi salah, yang salah menjadi benar. Pernyataan baru itu disebut **negasi** atau ingkaran. Negasi dari <InlineMath math="p" /> ditulis <InlineMath math="\sim p" /> dan dibaca bukan <InlineMath math="p" />.
+
+| <InlineMath math="p" /> | <InlineMath math="\sim p" /> |
+| :--- | :--- |
+| Benar | Salah |
+| Salah | Benar |
+
+Ambil <InlineMath math="p" />: <InlineMath math="91" /> adalah bilangan prima. Pernyataan ini salah, jadi negasinya, <InlineMath math="91" /> bukan bilangan prima, bernilai benar. Cek: <InlineMath math="91 = 7 \times 13" />, jadi <InlineMath math="91" /> punya faktor selain <InlineMath math="1" /> dan dirinya sendiri.
+
+Kata semua butuh perhatian lebih. Di papan tadi, klaim semua bilangan kuadrat di sini genap bernilai salah. Banyak orang menulis negasinya sebagai tidak ada bilangan kuadrat di sini yang genap. Kalimat itu juga salah, karena <InlineMath math="4" /> genap. Negasi harus selalu berlawanan nilai dengan pernyataan asalnya, jadi kalimat itu bukan negasinya. Negasi yang tepat adalah **tidak semua bilangan kuadrat di sini genap**, dan ubin <InlineMath math="1" /> membuktikannya benar.
+
+## Menggabungkan Dua Pernyataan
+
+Kata dan serta atau menggabungkan dua pernyataan menjadi satu **pernyataan majemuk**, dan nilai kebenarannya ditentukan oleh nilai kedua bagiannya. Di rangkaian di bawah, sakelar yang tertutup berarti pernyataannya benar, dan lampu yang menyala berarti pernyataan majemuknya benar. Sakelar yang dipasang berderet bekerja seperti dan. Sakelar yang dipasang berdampingan bekerja seperti atau.
+
+<SwitchLogicLab
+  title={<>Dua Sakelar dan Satu Lampu</>}
+  description={
+    <>
+      Tutup dan buka sakelar P dan Q, lalu lihat lampunya. Setiap kasus yang
+      kamu coba mengisi satu baris tabel kebenaran.
+    </>
+  }
+  footer={<>Berderet, arus harus melewati kedua sakelar. Berdampingan, satu jalur saja sudah cukup.</>}
+  modes={["and", "or"]}
+  startMode="and"
+  labels={{
+    compounds: {
+      and: <><InlineMath math="p" /> dan <InlineMath math="q" /></>,
+      not: <>bukan <InlineMath math="p" /></>,
+      or: <><InlineMath math="p" /> atau <InlineMath math="q" /></>,
+    },
+    false: "Salah",
+    mode: "Rangkaian",
+    modes: {
+      and: "Berderet",
+      not: "Melintasi lampu",
+      or: "Berdampingan",
+    },
+    p: <><InlineMath math="p" />: sakelar P tertutup</>,
+    q: <><InlineMath math="q" />: sakelar Q tertutup</>,
+    switches: "Sakelar",
+    true: "Benar",
+    viewLabel: "Baterai, dua sakelar, dan lampu di papan pasak",
+  }}
+/>
+
+### Kapan Dan Bernilai Benar
+
+Pernyataan <InlineMath math="p" /> dan <InlineMath math="q" /> benar **hanya kalau kedua bagiannya benar**. Di rangkaian berderet, lampu hanya menyala kalau sakelar P dan Q sama-sama tertutup.
+
+| <InlineMath math="p" /> | <InlineMath math="q" /> | <InlineMath math="p" /> dan <InlineMath math="q" /> |
+| :--- | :--- | :--- |
+| Benar | Benar | Benar |
+| Benar | Salah | Salah |
+| Salah | Benar | Salah |
+| Salah | Salah | Salah |
+
+Ambil <InlineMath math="p" />: <InlineMath math="12" /> kelipatan <InlineMath math="4" />, dan <InlineMath math="q" />: <InlineMath math="12" /> bilangan kuadrat. Pernyataan <InlineMath math="p" /> benar karena <InlineMath math="12 = 4 \times 3" />. Pernyataan <InlineMath math="q" /> salah karena <InlineMath math="3^2 = 9" /> dan <InlineMath math="4^2 = 16" />, jadi tidak ada bilangan bulat yang kuadratnya <InlineMath math="12" />. Akibatnya, kalimat <InlineMath math="12" /> kelipatan <InlineMath math="4" /> dan <InlineMath math="12" /> bilangan kuadrat bernilai salah. Cek di rangkaian: tutup P, buka Q, dan lampunya padam.
+
+### Atau Termasuk Keduanya
+
+Pernyataan <InlineMath math="p" /> atau <InlineMath math="q" /> benar kalau **paling sedikit satu bagiannya benar**, termasuk kalau keduanya benar. Pernyataan ini hanya salah kalau kedua bagiannya salah.
+
+| <InlineMath math="p" /> | <InlineMath math="q" /> | <InlineMath math="p" /> atau <InlineMath math="q" /> |
+| :--- | :--- | :--- |
+| Benar | Benar | Benar |
+| Benar | Salah | Benar |
+| Salah | Benar | Benar |
+| Salah | Salah | Salah |
+
+Dengan <InlineMath math="p" /> dan <InlineMath math="q" /> yang sama, kalimat <InlineMath math="12" /> kelipatan <InlineMath math="4" /> atau <InlineMath math="12" /> bilangan kuadrat bernilai benar, karena bagian pertamanya benar. Kalimat <InlineMath math="16" /> genap atau <InlineMath math="16" /> bilangan kuadrat juga benar, dan di sini kedua bagiannya benar.
+
+Dalam obrolan sehari-hari, atau sering berarti pilih salah satu saja, dan kebiasaan itu yang membuat orang salah mengisi baris pertama. Atau dalam logika **tidak melarang keduanya benar**. Cek di rangkaian berdampingan: tutup P dan Q bersamaan, dan lampunya tetap menyala.
+
+### Gerbang yang Tersembunyi
+
+Sekarang arahnya dibalik: kamu hanya melihat tabelnya dan harus menebak kata penghubungnya. Papan latih di bawah menyembunyikan gerbang P dengan masukan <InlineMath math="A" /> dan <InlineMath math="B" />. Gerbang adalah rangkaian kecil yang mengeluarkan <InlineMath math="1" /> untuk benar dan <InlineMath math="0" /> untuk salah. **Gerbang AND bekerja seperti dan**, sedangkan gerbang OR bekerja seperti atau.
+
+Keluaran P masuk ke gerbang NAND bersama masukan ketiga <InlineMath math="C" />. Selama <InlineMath math="C = 1" />, gerbang NAND hanya membalik masukannya, persis seperti kata bukan. Jadi keluaran akhir <InlineMath math="Q" /> adalah negasi dari keluaran P. Pilih gerbang untuk P dan hitung berapa baris tabel yang cocok.
+
+<LogicGateLab
+  title={<>Tebak Gerbang P</>}
+  description={
+    <>
+      Gerbang P menerima <InlineMath math="A" /> dan <InlineMath math="B" />,
+      lalu gerbang NAND dengan <InlineMath math="C = 1" /> membalik hasilnya.
+      Keempat baris berasal dari tabel di papan.
+    </>
+  }
+  footer={<>Hanya satu pilihan gerbang yang mencocokkan keempat baris tabel.</>}
+  gate="OR"
+  labels={{
+    gate: "Gerbang P",
+    matches: <>Baris yang cocok</>,
+    viewLabel: "Papan latih rangkaian logika",
+  }}
+  rows={[
+    { a: 0, b: 0, c: 1, q: 1 },
+    { a: 0, b: 1, c: 1, q: 1 },
+    { a: 1, b: 0, c: 1, q: 1 },
+    { a: 1, b: 1, c: 1, q: 0 },
+  ]}
+/>
+
+Balik setiap nilai <InlineMath math="Q" /> untuk mendapatkan keluaran P pada baris <InlineMath math="AB = 00, 01, 10, 11" />.
+
+<BlockMath math="Q = 1, 1, 1, 0 \quad\Rightarrow\quad P = 0, 0, 0, 1" />
+
+Keluaran P hanya <InlineMath math="1" /> pada baris <InlineMath math="A = 1" /> dan <InlineMath math="B = 1" />, yaitu ketika kedua masukan benar. Itu tabel kebenaran dan, jadi **P adalah gerbang AND**. Cek di papan: dengan AND, keempat baris cocok, sedangkan OR hanya mencocokkan dua baris, yaitu baris <InlineMath math="00" /> dan <InlineMath math="11" />.
