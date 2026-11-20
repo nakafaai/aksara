@@ -11,7 +11,7 @@ const lesson: LessonModule = {
     id: "grafik-gerak",
     ms: "graf-gerakan",
   },
-  sections: ["distance-speed"],
+  sections: ["distance-time", "speed-time"],
   slug: "motion-graph",
   translations: {
     de: {

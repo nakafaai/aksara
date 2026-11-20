@@ -1,0 +1,242 @@
+export const metadata = {
+  title: "Grafik Kelajuan terhadap Waktu",
+  description:
+    "Gambar grafik kelajuan-waktu dari cerita perjalanan, hitung jarak dari luas di bawah garisnya, dan baca percepatan dari kemiringannya.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2026-11-17",
+  subject: "Grafik Gerak",
+};
+
+## Dari Cerita ke Grafik Kelajuan
+
+Kalau yang kamu gambar adalah seberapa cepat sebuah benda bergerak pada setiap saat, kamu mendapat **grafik kelajuan-waktu**. Dari grafik ini kamu membaca dua hal. **Luas di bawah garis adalah jarak tempuh**, dan **kemiringan garis adalah percepatan**, yaitu seberapa cepat kelajuan bertambah atau berkurang. Grafik ini dipakai untuk benda yang bergerak ke satu arah saja, jadi garisnya tidak pernah turun ke bawah sumbu waktu.
+
+Ambil sebuah mobil yang berhenti di lampu merah. Saat lampu hijau menyala, mobil menambah kelajuan secara teratur dari <InlineMath math="0" /> sampai <InlineMath math="12\text{ m/s}" /> dalam <InlineMath math="8" /> detik. Mobil lalu melaju tetap <InlineMath math="12\text{ m/s}" /> selama <InlineMath math="20" /> detik, masuk jalan besar, dan menambah kelajuan lagi sampai <InlineMath math="20\text{ m/s}" /> dalam <InlineMath math="10" /> detik. Di lampu merah berikutnya, mobil mengerem teratur sampai berhenti dalam <InlineMath math="10" /> detik.
+
+Kata **secara teratur** berarti kelajuan berubah sama banyak setiap detik, jadi setiap bagian cerita menjadi satu garis lurus. Taruh waktu di sumbu mendatar dan kelajuan di sumbu tegak. Tandai kelajuan pada setiap saat geraknya berubah: <InlineMath math="(0, 0)" />, <InlineMath math="(8, 12)" />, <InlineMath math="(28, 12)" />, <InlineMath math="(38, 20)" />, dan <InlineMath math="(48, 0)" />. Waktu <InlineMath math="28" /> datang dari <InlineMath math="8 + 20" />, dan <InlineMath math="38" /> dari <InlineMath math="28 + 10" />. Hubungkan titik-titik itu dengan garis lurus.
+
+<MathVisual
+  title={<>Grafik Kelajuan Mobil dari Lampu Merah</>}
+  description={
+    <>
+      Kelajuan dalam m/s terhadap waktu dalam detik sejak lampu hijau. Geser
+      waktunya dan baca kelajuan mobil pada saat itu.
+    </>
+  }
+  footer={
+    <>
+      Titik di garis mengikuti waktu, dan tingginya adalah kelajuan mobil saat
+      itu.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 50 }, y: { min: 0, max: 22 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "w", min: 0, max: 48, value: 30, step: 0.5, label: "w" },
+    ],
+    objects: [
+      { id: "speed", kind: "polyline", vertices: [{ x: 0, y: 0 }, { x: 8, y: 12 }, { x: 28, y: 12 }, { x: 38, y: 20 }, { x: 48, y: 0 }], appearance: "primary" },
+      { id: "now", kind: "marker", x: "w", y: "min(1.5w, max(12, 12 + 0.8(w - 28)), 20 - 2(w - 38))", appearance: "warning" },
+    ],
+    readouts: [
+      { key: "speed", formula: "min(1.5w, max(12, 12 + 0.8(w - 28)), 20 - 2(w - 38))" },
+    ],
+  }}
+  labels={{
+    w: <>Waktu sejak lampu hijau, dalam detik</>,
+    speed: <>Kelajuan mobil dalam m/s</>,
+  }}
+/>
+
+Sebagai gambaran, <InlineMath math="12\text{ m/s}" /> sama dengan <InlineMath math="12 \times 3{,}6 = 43{,}2\text{ km/jam}" />, dan <InlineMath math="20\text{ m/s}" /> sama dengan <InlineMath math="72\text{ km/jam}" />. Geser waktunya ke detik <InlineMath math="30" />. Mobil sudah <InlineMath math="2" /> detik berada di bagian ketiga, dan di bagian itu kelajuannya naik <InlineMath math="8\text{ m/s}" /> dalam <InlineMath math="10" /> detik, atau <InlineMath math="0{,}8\text{ m/s}" /> setiap detik. Jadi kelajuannya <InlineMath math="12 + 0{,}8 \times 2 = 13{,}6\text{ m/s}" />, sama dengan angka di grafik.
+
+## Luas di Bawah Garis Kelajuan
+
+Sekarang mobil yang sama berjalan di lab. Selama mobil bergerak, daerah di bawah garis kelajuannya terisi warna, dan setiap bagian diberi angka dalam meter. Sebelum menekan putar, tebak dulu: angka apa yang akan muncul di bawah bagian yang datar? Lalu putar labnya dan bandingkan setiap angka dengan jarak yang ditempuh mobil di jalan. Hasilnya selalu sama: **luas di bawah garis kelajuan adalah jarak tempuh**.
+
+<MotionAreaLab
+  title={<>Mobil dari Lampu Merah ke Lampu Merah</>}
+  description={
+    <>
+      Mobil menambah kelajuan, melaju tetap, menambah kelajuan lagi, lalu
+      mengerem. Daerah di bawah garis terisi selama mobil bergerak.
+    </>
+  }
+  footer={
+    <>
+      Setiap warna adalah satu bagian perjalanan. Jumlah keempat angkanya
+      adalah jarak total.
+    </>
+  }
+  start={0}
+  stretches={[
+    { duration: 8, end: 12 },
+    { duration: 20, end: 12 },
+    { duration: 10, end: 20 },
+    { duration: 10, end: 0 },
+  ]}
+  labels={{
+    displacement: <>Jarak dari lampu merah pertama</>,
+    distance: <>Jarak tempuh</>,
+    viewLabel: "Mobil di jalan lurus dengan grafik kelajuan terhadap waktu di bawahnya",
+  }}
+/>
+
+Kenapa luas bisa sama dengan jarak? Mulailah dari bagian yang datar, karena di sana luasnya hanya persegi panjang, lalu lanjutkan ke bagian yang miring.
+
+### Saat Kelajuan Tetap
+
+Dari detik <InlineMath math="8" /> sampai <InlineMath math="28" />, mobil melaju tetap <InlineMath math="12\text{ m/s}" />. Setiap detik mobil maju <InlineMath math="12" /> meter, jadi dalam <InlineMath math="20" /> detik mobil maju:
+
+<BlockMath math="\text{jarak} = \text{kelajuan} \times \text{waktu} = 12\text{ m/s} \times 20\text{ s} = 240\text{ m}" />
+
+Di grafik, daerah di bawah garis datar itu adalah **persegi panjang** dengan lebar <InlineMath math="20" /> dan tinggi <InlineMath math="12" />, jadi luasnya juga <InlineMath math="240" />. Perhatikan satuannya: meter per detik dikali detik menjadi meter. **Satuan luas ini adalah satuan jarak**, dan itulah tanda bahwa luasnya memang sebuah jarak. Luas di bawah grafik jarak-waktu tidak memberi jarak, karena satuannya menjadi meter kali detik.
+
+### Saat Kelajuan Berubah
+
+Saat kelajuan berubah secara teratur, kelajuan rata-rata bagian itu adalah nilai tengah kelajuan awal <InlineMath math="u" /> dan kelajuan akhir <InlineMath math="v" />. Jarak sama dengan kelajuan rata-rata itu dikali waktu <InlineMath math="t" />, dan rumusnya persis **rumus luas trapesium**:
+
+<BlockMath math="\text{jarak} = \frac{u + v}{2} \times t" />
+
+Kalau salah satu ujungnya nol, trapesium itu menjadi segitiga. Tiga bagian mobil yang lain dihitung seperti ini:
+
+<MathContainer>
+<BlockMath math="\text{bagian pertama (segitiga)} = \tfrac{1}{2} \times 8 \times 12 = 48\text{ m}" />
+<BlockMath math="\text{bagian ketiga (trapesium)} = \tfrac{1}{2}(12 + 20) \times 10 = 160\text{ m}" />
+<BlockMath math="\text{bagian keempat (segitiga)} = \tfrac{1}{2} \times 10 \times 20 = 100\text{ m}" />
+<BlockMath math="\text{jarak total} = 48 + 240 + 160 + 100 = 548\text{ m}" />
+</MathContainer>
+
+Cek bagian pertama dengan cara lain: kelajuan rata-ratanya <InlineMath math="\tfrac{0 + 12}{2} = 6\text{ m/s}" />, dan <InlineMath math="6 \times 8 = 48\text{ m}" />. Jarak total <InlineMath math="548\text{ m}" /> juga sama dengan angka jarak tempuh di lab. Kalau garis kelajuannya melengkung, luasnya dihitung dengan integral, seperti pada [kinematika gerak lurus](/id/materi/matematika/kinematika-gerak-lurus/perpindahan-kecepatan-dan-percepatan).
+
+## Perubahan Kelajuan Tiap Detik
+
+Seberapa cepat kelajuan berubah? Bagi perubahan kelajuan dengan waktu yang dibutuhkan. Hasil bagi itu disebut **percepatan**, dan di grafik kelajuan-waktu nilainya sama dengan gradien garis:
+
+<BlockMath math="a = \frac{v - u}{t}" />
+
+Di sini <InlineMath math="u" /> kelajuan awal, <InlineMath math="v" /> kelajuan akhir, dan <InlineMath math="t" /> lamanya. Pada bagian pertama mobil tadi, <InlineMath math="a = \tfrac{12 - 0}{8} = 1{,}5\text{ m/s}^2" />.
+
+Kereta di lab berikut punya tiga gerak. Pilih setiap gerak, baca kelajuan awal, kelajuan akhir, dan lamanya dari grafik, lalu hitung gradiennya sebelum melihat tabel.
+
+<NonUniformLinearMotionGraphCard
+  title={<>Tiga Gerak Sebuah Kereta</>}
+  description={
+    <>
+      Pilih satu gerak kereta. Kelajuan awal dan akhirnya ada di sumbu tegak,
+      dan lamanya ada di sumbu mendatar.
+    </>
+  }
+  footer={
+    <>
+      Dua garis naik yang sama curamnya punya percepatan sama, walau
+      kelajuannya beda.
+    </>
+  }
+  labels={{
+    chooseScenario: "Pilih gerak kereta",
+    scenarioNames: {
+      "from-rest": "Mulai dari diam",
+      "speed-up": "Menambah kelajuan",
+      brake: "Mengerem",
+    },
+    timeAxis: "Waktu (s)",
+    velocityAxis: "Kelajuan (m/s)",
+  }}
+/>
+
+| Gerak kereta | Kelajuan (m/s) | Waktu (s) | Percepatan (<InlineMath math="\text{m/s}^2" />) |
+| :--- | :--- | :--- | :--- |
+| Mulai dari diam | <InlineMath math="0" /> menjadi <InlineMath math="20" /> | <InlineMath math="5" /> | <InlineMath math="\tfrac{20 - 0}{5} = 4" /> |
+| Menambah kelajuan | <InlineMath math="8" /> menjadi <InlineMath math="24" /> | <InlineMath math="4" /> | <InlineMath math="\tfrac{24 - 8}{4} = 4" /> |
+| Mengerem | <InlineMath math="24" /> menjadi <InlineMath math="4" /> | <InlineMath math="5" /> | <InlineMath math="\tfrac{4 - 24}{5} = -4" /> |
+
+Dua gerak pertama punya percepatan yang sama walaupun kelajuannya berbeda. **Percepatan bergantung pada kemiringan garis**, bukan pada seberapa tinggi garis itu.
+
+### Bertambah atau Berkurang
+
+Garis yang naik berarti kelajuan bertambah, dan percepatannya positif. Garis datar berarti **kelajuan tetap dan percepatannya nol**. Mobil pada detik <InlineMath math="8" /> sampai <InlineMath math="28" /> tetap bergerak <InlineMath math="12" /> meter setiap detik. Ini berbeda dari garis datar pada [grafik jarak terhadap waktu](/id/materi/matematika/grafik-gerak/grafik-jarak-waktu), yang berarti benda diam.
+
+Garis yang turun berarti kelajuan berkurang, dan percepatannya negatif. Kelajuan yang terus berkurang seperti ini disebut **perlambatan**. Saat mobil mengerem, <InlineMath math="a = \tfrac{0 - 20}{10} = -2\text{ m/s}^2" />, jadi perlambatannya <InlineMath math="2\text{ m/s}^2" />. Garis turun tidak berarti mobil mundur. Mobil tetap maju sampai garisnya menyentuh sumbu waktu, dan di situlah mobil berhenti.
+
+Tabel ini membandingkan arti bentuk garis yang sama pada kedua grafik. Kesalahan paling sering terjadi saat arti dari satu grafik dipakai untuk grafik yang lain.
+
+| Bentuk garis | Pada grafik jarak-waktu | Pada grafik kelajuan-waktu |
+| :--- | :--- | :--- |
+| Naik | benda menjauhi titik awal | kelajuan bertambah |
+| Datar | benda diam | kelajuan tetap |
+| Turun | benda kembali ke titik awal | kelajuan berkurang |
+
+### Satuan Percepatan
+
+Satuan <InlineMath math="\text{m/s}^2" /> dibaca meter per detik per detik. Percepatan <InlineMath math="4\text{ m/s}^2" /> berarti **kelajuan bertambah <InlineMath math="4\text{ m/s}" /> setiap detik**. Kereta yang mulai dari diam punya kelajuan <InlineMath math="0, 4, 8, 12, 16" />, lalu <InlineMath math="20\text{ m/s}" /> pada detik ke-<InlineMath math="0" /> sampai ke-<InlineMath math="5" />.
+
+Satuannya harus cocok sebelum membagi. Misalnya sebuah mobil melaju dari diam sampai <InlineMath math="90\text{ km/jam}" /> dalam <InlineMath math="10" /> detik. Membagi <InlineMath math="90 \div 10 = 9" /> mencampur jam dan detik, jadi ubah kelajuannya ke m/s lebih dulu:
+
+<MathContainer>
+<BlockMath math="90\text{ km/jam} = \frac{90 \times 1000\text{ m}}{3600\text{ s}} = 25\text{ m/s}" />
+<BlockMath math="a = \frac{25 - 0}{10} = 2{,}5\text{ m/s}^2" />
+</MathContainer>
+
+Cek: dalam <InlineMath math="10" /> detik, kelajuan bertambah <InlineMath math="2{,}5 \times 10 = 25\text{ m/s}" />, yaitu <InlineMath math="90\text{ km/jam}" />.
+
+## Dari Lift sampai Gerbang Tol
+
+Tiga soal ini makin lama makin sulit. Untuk setiap soal, **gambar dulu grafik kelajuan-waktunya**, baru hitung luas atau gradiennya.
+
+1. Sebuah lift naik dari lantai dasar. Lift menambah kelajuan secara teratur dari diam sampai <InlineMath math="3\text{ m/s}" /> dalam <InlineMath math="2" /> detik, naik tetap selama <InlineMath math="6" /> detik, lalu melambat teratur sampai berhenti dalam <InlineMath math="2" /> detik. Berapa meter lift naik? Kalau tinggi satu lantai <InlineMath math="3\text{ m}" />, berapa lantai yang dilewatinya?
+2. Dalam lomba lari <InlineMath math="100\text{ m}" />, seorang pelari menambah kelajuan secara teratur dari diam selama <InlineMath math="4" /> detik sampai kelajuan <InlineMath math="v" />, lalu berlari tetap dengan kelajuan <InlineMath math="v" /> sampai garis finis. Waktunya <InlineMath math="12" /> detik. Tentukan <InlineMath math="v" /> dan percepatannya selama <InlineMath math="4" /> detik pertama.
+3. Sebuah mobil melaju <InlineMath math="25\text{ m/s}" /> di jalan tol. Menjelang gerbang tol, mobil melambat teratur sampai <InlineMath math="5\text{ m/s}" /> dalam <InlineMath math="10" /> detik, melewati gerbang dengan kelajuan tetap <InlineMath math="5\text{ m/s}" /> selama <InlineMath math="4" /> detik, lalu menambah kelajuan teratur sampai <InlineMath math="25\text{ m/s}" /> lagi dalam <InlineMath math="16" /> detik. Berapa jarak yang ditempuh dalam <InlineMath math="30" /> detik itu, dan berapa detik yang hilang dibanding kalau mobil terus melaju <InlineMath math="25\text{ m/s}" />?
+
+**Soal 1**. Grafiknya naik, datar, lalu turun, dan daerah di bawahnya berbentuk trapesium. Sisi sejajarnya <InlineMath math="10" /> detik di bawah dan <InlineMath math="6" /> detik di atas, dengan tinggi <InlineMath math="3" />:
+
+<BlockMath math="\text{jarak} = \tfrac{1}{2}(10 + 6) \times 3 = 24\text{ m}" />
+
+Cek per bagian: <InlineMath math="3 + 18 + 3 = 24\text{ m}" />. Lift naik <InlineMath math="24\text{ m}" />, atau <InlineMath math="24 \div 3 = 8" /> lantai.
+
+**Soal 2**. Kelajuan akhirnya belum diketahui, jadi **tulis luasnya dalam <InlineMath math="v" />**. Daerahnya segitiga selama <InlineMath math="4" /> detik ditambah persegi panjang selama <InlineMath math="12 - 4 = 8" /> detik, dan jumlah luasnya harus <InlineMath math="100" />:
+
+<MathContainer>
+<BlockMath math="\tfrac{1}{2} \times 4 \times v + 8v = 100" />
+<BlockMath math="10v = 100 \quad\Rightarrow\quad v = 10\text{ m/s}" />
+<BlockMath math="a = \frac{10 - 0}{4} = 2{,}5\text{ m/s}^2" />
+</MathContainer>
+
+Cek: segitiganya <InlineMath math="\tfrac{1}{2} \times 4 \times 10 = 20\text{ m}" /> dan persegi panjangnya <InlineMath math="8 \times 10 = 80\text{ m}" />, jumlahnya <InlineMath math="100\text{ m}" />.
+
+**Soal 3**. Grafik kelajuannya turun, datar, lalu naik lagi. Daerah di bawahnya terdiri dari dua trapesium dan satu persegi panjang:
+
+<MathVisual
+  title={<>Kelajuan Mobil Melewati Gerbang Tol</>}
+  description={
+    <>
+      Kelajuan dalam m/s terhadap waktu dalam detik. Daerah berwarna adalah
+      jarak yang ditempuh mobil selama <InlineMath math="30" /> detik.
+    </>
+  }
+  footer={
+    <>
+      Lekukan di tengah grafik adalah waktu yang dihabiskan mobil di dekat
+      gerbang.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 32 }, y: { min: 0, max: 28 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "area", kind: "polygon", vertices: [{ x: 0, y: 0 }, { x: 0, y: 25 }, { x: 10, y: 5 }, { x: 14, y: 5 }, { x: 30, y: 25 }, { x: 30, y: 0 }], appearance: "secondary" },
+      { id: "speed", kind: "polyline", vertices: [{ x: 0, y: 25 }, { x: 10, y: 5 }, { x: 14, y: 5 }, { x: 30, y: 25 }], appearance: "primary" },
+    ],
+  }}
+/>
+
+<MathContainer>
+<BlockMath math="\tfrac{1}{2}(25 + 5) \times 10 + 5 \times 4 + \tfrac{1}{2}(5 + 25) \times 16 = 150 + 20 + 240 = 410\text{ m}" />
+<BlockMath math="\text{waktu dengan } 25\text{ m/s} = \frac{410}{25} = 16{,}4\text{ s}" />
+<BlockMath math="\text{waktu yang hilang} = 30 - 16{,}4 = 13{,}6\text{ s}" />
+</MathContainer>
+
+Mobil menempuh <InlineMath math="410\text{ m}" /> dan **kehilangan <InlineMath math="13{,}6" /> detik** karena gerbang tol. Cek: kalau mobil terus melaju <InlineMath math="25\text{ m/s}" /> selama <InlineMath math="16{,}4" /> detik, jaraknya <InlineMath math="25 \times 16{,}4 = 410\text{ m}" />, sama dengan luas daerah berwarna.
