@@ -1,0 +1,44 @@
+# When the bus stands still
+
+A rolling ball that slows by the same amount every second stops after a fixed time and then stays put. **The bus loses <InlineMath math="1.5\text{ m/s}" /> every second, so it stops after <InlineMath math="10" /> seconds, covering the average speed times the time**:
+
+<BlockMath math="\begin{aligned}
+t_{\text{s}}&=\frac{15}{1.5}=10\text{ s}\\
+d_{\text{s}}&=\frac{15\cdot10}{2}=75\text{ m}
+\end{aligned}" />
+
+# The equation that rolls backwards
+
+Setting the two positions equal seems natural:
+
+<BlockMath math="\begin{aligned}
+5t&=100+15t-0.75t^2\\
+0&=3t^2-40t-400\\
+t&=20\text{ s}
+\end{aligned}" />
+
+**But the braking formula holds only until <InlineMath math="t=10\text{ s}" />**. After that it would make the bus drive backwards towards the runner, and that is exactly what <InlineMath math="t=20" /> describes. At <InlineMath math="t=10\text{ s}" /> the runner has covered only <InlineMath math="50\text{ m}" /> while the door already waits at <InlineMath math="175\text{ m}" />.
+
+<Chart
+  title={<>Where the runner and the bus door are</>}
+  description={<>The position of the runner and of the rear bus door, measured from the runner's start. The bus stands at <InlineMath math="175\text{ m}" /> from <InlineMath math="10\text{ s}" /> on, and the runner reaches it after <InlineMath math="35\text{ s}" />. The parabola without the stop would roll back to meet her at <InlineMath math="20\text{ s}" />, which a braking bus never does.</>}
+  categories={["0 s", "5 s", "10 s", "15 s", "20 s", "25 s", "30 s", "35 s", "40 s"]}
+  series={[
+    { label: "runner", mark: "line", values: [0.0, 25.0, 50.0, 75.0, 100.0, 125.0, 150.0, 175.0, 200.0] },
+    { label: "bus door", mark: "line", values: [100.0, 156.25, 175.0, 175.0, 175.0, 175.0, 175.0, 175.0, 175.0] },
+    { label: "parabola without the stop", mark: "line", values: [100.0, 156.25, 175.0, 156.25, 100.0, null, null, null, null] },
+  ]}
+  valueLabel="Position (m)"
+/>
+
+# Catching the standing bus
+
+From <InlineMath math="10\text{ s}" /> on the door does not move, so the runner just has to cover the whole <InlineMath math="175\text{ m}" />. **The bus leaves at <InlineMath math="10+30=40\text{ s}" />**:
+
+<BlockMath math="\begin{aligned}
+5t&=100+75=175\\
+t&=35\text{ s}\\
+10+30-35&=5\text{ s}
+\end{aligned}" />
+
+She reaches the door <InlineMath math="5" /> seconds before the bus leaves. The false <InlineMath math="20\text{ s}" /> would promise her a comfortable <InlineMath math="20" /> seconds.

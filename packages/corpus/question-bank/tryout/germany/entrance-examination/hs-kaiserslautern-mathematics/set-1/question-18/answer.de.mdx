@@ -1,0 +1,53 @@
+# Die Linie, die gerade streift
+
+Leg dich hinter einem Hügel auf den Boden und schieb ein Lineal vom Auge aus, bis es die Hügelkurve gerade berührt: Alles über dem Lineal kannst du sehen. **Dieses Lineal ist die Tangente von <InlineMath math="B(50\mid0)" /> an den Hügel**. Sie berührt bei <InlineMath math="x=a" /> mit der Steigung <InlineMath math="f'(a)=-\frac{a}{20}" /> und muss durch <InlineMath math="B" /> gehen:
+
+<BlockMath math="\begin{aligned}
+f(a)+f'(a)\,(50-a)&=0\\
+40-\tfrac{a^2}{40}-\tfrac{a}{20}(50-a)&=0\\
+a^2-100a+1600&=0\\
+(a-20)(a-80)&=0
+\end{aligned}" />
+
+# Den richtigen Berührpunkt wählen
+
+Der Hügel reicht nur von <InlineMath math="x=-40" /> bis <InlineMath math="x=40" />, also berührt <InlineMath math="a=80" /> die Parabel dort, wo es keinen Hügel gibt. **Der echte Berührpunkt ist <InlineMath math="P(20\mid30)" /> mit der Steigung <InlineMath math="-1" />**, die Sichtlinie ist also <InlineMath math="y=30-(x-20)=-x+50" />.
+
+<MathVisual
+  title={<>Die Sichtlinie streift den Hügel</>}
+  description={<>Die Tangente von <InlineMath math="B(50\mid0)" /> berührt den Hügel in <InlineMath math="P(20\mid30)" /> und hat die Gleichung <InlineMath math="y=-x+50" />. Bei <InlineMath math="x=-60" /> liegt sie auf <InlineMath math="110\text{ m}" /> Höhe. Die Linie zur Hügelspitze schneidet dagegen in den Hügel.</>}
+  labels={{
+    b: <><InlineMath math="B" /></>,
+    p: <><InlineMath math="P(20\mid30)" /></>,
+    t: <><InlineMath math="110\text{ m}" /></>,
+    hill: <><InlineMath math="f" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -70, max: 60 },
+      y: { min: -10, max: 120 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "ground", kind: "segment", appearance: "reference", from: { x: -70, y: 0 }, to: { x: 60, y: 0 } },
+      { id: "hill", kind: "function", appearance: "primary", formula: "40 - x^2/40", domain: { min: -40, max: 40 } },
+      { id: "sight", kind: "segment", appearance: "secondary", from: { x: 50, y: 0 }, to: { x: -60, y: 110 } },
+      { id: "to-top", kind: "segment", appearance: "warning", from: { x: 50, y: 0 }, to: { x: 0, y: 40 } },
+      { id: "tower", kind: "segment", appearance: "answer", from: { x: -60, y: 0 }, to: { x: -60, y: 110 } },
+      { id: "pb", kind: "point", appearance: "reference", at: { x: 50, y: 0 } },
+      { id: "pp", kind: "point", appearance: "highlight", at: { x: 20, y: 30 } },
+    ],
+    labels: [
+      { key: "b", objectId: "pb", at: { x: 50, y: 0 }, placement: "below" },
+      { key: "p", objectId: "pp", at: { x: 20, y: 30 }, placement: "above-right" },
+      { key: "t", objectId: "tower", at: { x: -60, y: 55 }, placement: "left" },
+      { key: "hill", objectId: "hill", at: { x: -20, y: 30 }, placement: "above-left" },
+    ],
+  }}
+/>
+
+# Hinauf zum Turm
+
+Bei <InlineMath math="x=-60" /> liegt die Sichtlinie <InlineMath math="60+50=110\text{ m}" /> hoch. **Der Turm muss mindestens <InlineMath math="110\text{ m}" /> hoch sein**. Wer auf die Hügelspitze <InlineMath math="(0\mid40)" /> zielt, kommt auf <InlineMath math="88\text{ m}" />, aber diese Linie verläuft bei <InlineMath math="x=20" /> mit <InlineMath math="24\text{ m}" /> unter dem Hügel, der dort <InlineMath math="30\text{ m}" /> hoch ist.

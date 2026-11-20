@@ -1,0 +1,29 @@
+# In minus out
+
+Think of a bathtub with the tap on and the plug pulled. The water rises only while more flows in than drains out. **The net rate is <InlineMath math="18t-3t^2-15=-3(t-1)(t-5)" />**: negative before <InlineMath math="t=1" />, positive between <InlineMath math="1" /> and <InlineMath math="5" />, negative again after <InlineMath math="5" />.
+
+# Adding up the change
+
+The integral collects the net flow hour by hour, like counting coins dropped into and taken from a jar:
+
+<BlockMath math="\begin{aligned}
+V(t)-V(0)&=\int_0^t\left(18s-3s^2-15\right)ds\\
+&=9t^2-t^3-15t
+\end{aligned}" />
+
+At <InlineMath math="t=1" /> this is <InlineMath math="-7" />, at <InlineMath math="t=5" /> it is <InlineMath math="+25" />, at <InlineMath math="t=6" /> it is <InlineMath math="+18" />. **The lowest point is at <InlineMath math="t=1" />, the highest at <InlineMath math="t=5" />**. Stopping at <InlineMath math="t=3" />, where the inflow itself peaks, misses that water keeps gathering as long as inflow beats the pump.
+
+<Chart
+  title={<>Water in the basin</>}
+  description={<>Starting with <InlineMath math="11\text{ m}^3" />, the amount sinks to exactly <InlineMath math="4\text{ m}^3" /> at <InlineMath math="t=1" />, rises to <InlineMath math="36\text{ m}^3" /> at <InlineMath math="t=5" /> and then falls to <InlineMath math="29\text{ m}^3" />.</>}
+  categories={["0 h", "0.5 h", "1 h", "1.5 h", "2 h", "2.5 h", "3 h", "3.5 h", "4 h", "4.5 h", "5 h", "5.5 h", "6 h"]}
+  series={[
+    { label: "water", mark: "line", values: [11.0, 5.625, 4.0, 5.375, 9.0, 14.125, 20.0, 25.875, 31.0, 34.625, 36.0, 34.375, 29.0] },
+    { label: "minimum", mark: "line", values: [4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4] },
+  ]}
+  valueLabel="Water in m³"
+/>
+
+# The smallest safe start
+
+The basin must never drop below <InlineMath math="4\text{ m}^3" />, and it drops by <InlineMath math="7\text{ m}^3" /> in the first hour, so it starts with <InlineMath math="11\text{ m}^3" />. **At <InlineMath math="t=5" /> it holds <InlineMath math="11+25=36\text{ m}^3" />**. Starting with only <InlineMath math="4\text{ m}^3" /> would let the pump suck air in the first hour.

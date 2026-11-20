@@ -1,0 +1,49 @@
+# Each candle shrinks at its own pace
+
+Think of a candle as a pencil that a sharpener eats from the top at a steady speed. If the whole candle lasts <InlineMath math="8" /> hours, each hour takes away <InlineMath math="\frac18" /> of its length. **After <InlineMath math="3" /> hours the first candle keeps <InlineMath math="\frac58" /> of its length <InlineMath math="L_1" /> and the second keeps <InlineMath math="\frac36=\frac12" /> of <InlineMath math="L_2" />**. With the total length that gives two equations:
+
+<BlockMath math="\begin{aligned}
+L_1+L_2&=45\\
+\left|\tfrac58L_1-\tfrac12L_2\right|&=9
+\end{aligned}" />
+
+# A gap without a direction
+
+If someone says two friends' heights differ by <InlineMath math="9\text{ cm}" />, you still do not know who is taller. **The absolute value hides the same choice, so try both signs**. Put <InlineMath math="L_2=45-L_1" /> into each case:
+
+<BlockMath math="\begin{aligned}
+\tfrac58L_1-\tfrac12\left(45-L_1\right)&=\pm9\\
+\tfrac98L_1&=22.5\pm9\\
+L_1&=28\ \text{or}\ L_1=12
+\end{aligned}" />
+
+So the pair is <InlineMath math="L_1=28\text{ cm},\ L_2=17\text{ cm}" /> or <InlineMath math="L_1=12\text{ cm},\ L_2=33\text{ cm}" />. Both pairs pass every equation so far.
+
+# Only one pair ever meets
+
+A car only catches up with another one if it is faster. **The longer candle must burn down faster than the shorter one, and the meeting must come before the second candle is gone after <InlineMath math="6" /> hours**.
+
+In the first pair the first candle is longer by <InlineMath math="11\text{ cm}" /> and loses <InlineMath math="\frac{28}{8}=3.5\text{ cm}" /> per hour against <InlineMath math="\frac{17}{6}\approx2.83\text{ cm}" />. It closes the gap by only <InlineMath math="\frac23\text{ cm}" /> per hour and would need <InlineMath math="16.5" /> hours, long after both candles have burned out. Reading <InlineMath math="990" /> minutes off this case is the trap.
+
+In the second pair the second candle is longer by <InlineMath math="21\text{ cm}" /> and loses <InlineMath math="5.5\text{ cm}" /> per hour, the first only <InlineMath math="1.5\text{ cm}" />:
+
+<BlockMath math="\begin{aligned}
+12-1.5t&=33-5.5t\\
+4t&=21\\
+t&=5.25\text{ h}=315\text{ min}
+\end{aligned}" />
+
+That is before the second candle goes out after <InlineMath math="6" /> hours. **The two candles are equally long <InlineMath math="315" /> minutes after lighting**.
+
+<Chart
+  title={<>The candle lengths in both cases</>}
+  description={<>The length of each candle in the hours after lighting, for the pair <InlineMath math="12" /> and <InlineMath math="33\text{ cm}" /> and for the pair <InlineMath math="28" /> and <InlineMath math="17\text{ cm}" />. Only the first pair's lines cross, after <InlineMath math="5.25\text{ h}" /> and while both candles still burn.</>}
+  categories={["0 h", "1 h", "2 h", "3 h", "4 h", "5 h", "6 h", "7 h", "8 h"]}
+  series={[
+    { label: "first candle, kept pair", mark: "line", values: [12.0, 10.5, 9.0, 7.5, 6.0, 4.5, 3.0, 1.5, 0.0] },
+    { label: "second candle, kept pair", mark: "line", values: [33.0, 27.5, 22.0, 16.5, 11.0, 5.5, 0.0, null, null] },
+    { label: "first candle, rejected pair", mark: "line", values: [28.0, 24.5, 21.0, 17.5, 14.0, 10.5, 7.0, 3.5, 0.0] },
+    { label: "second candle, rejected pair", mark: "line", values: [17.0, 14.17, 11.33, 8.5, 5.67, 2.83, 0.0, null, null] },
+  ]}
+  valueLabel="Length (cm)"
+/>

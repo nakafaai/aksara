@@ -1,0 +1,57 @@
+# Wie viel Wasser da ist
+
+Vor dem Kippen bildet das Wasser im Becken einen eigenen Quader. **Sein Volumen ist Länge mal Breite mal Höhe**:
+
+<BlockMath math="\begin{aligned}
+V_{\text{alt}}&=60\cdot25\cdot30=45\,000\text{ cm}^3=45\text{ l}
+\end{aligned}" />
+
+# Wo der Wasserspiegel bei fünfundvierzig Grad endet
+
+Kippst du eine volle Tasse, bleibt der Tee waagerecht, während er über den tiefen Rand läuft. Genauso hier: Der Wasserspiegel bleibt waagerecht und geht durch den Rand der abgesenkten Wand. **Bei <InlineMath math="45^\circ" /> fällt er auf jedem Zentimeter Boden um <InlineMath math="1\text{ cm}" />, er trifft den Boden also <InlineMath math="40\text{ cm}" /> von der Ecke entfernt, noch vor der Rückwand bei <InlineMath math="60\text{ cm}" />**. Das Wasser ist deshalb ein Dreieck und kein Trapez. Ein Trapez bräuchte an der Rückwand eine Wasserhöhe von <InlineMath math="40-60=-20\text{ cm}" />, und das geht nicht.
+
+<MathVisual
+  title={<>Der Querschnitt bei fünfundvierzig Grad</>}
+  description={<>Der Querschnitt des Aquariums, <InlineMath math="60\text{ cm}" /> lang und <InlineMath math="40\text{ cm}" /> hoch, gezeichnet in der Lage des Beckens. Der Wasserspiegel geht durch den Rand der abgesenkten Wand und trifft den Boden schon nach <InlineMath math="40\text{ cm}" />. Das Wasser bildet ein Dreieck. Gestrichelt der alte Wasserstand von <InlineMath math="30\text{ cm}" />.</>}
+  labels={{
+    surf: <>Wasserspiegel</>,
+    old: <>alter Wasserstand</>,
+    rim: <><InlineMath math="40\text{ cm}" /></>,
+    meet: <><InlineMath math="40\text{ cm}" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -8, max: 68 },
+      y: { min: -8, max: 48 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "tank", kind: "polygon", appearance: "reference", vertices: [{ x: 0, y: 0 }, { x: 60, y: 0 }, { x: 60, y: 40 }, { x: 0, y: 40 }] },
+      { id: "water", kind: "polygon", appearance: "primary", vertices: [{ x: 0, y: 0 }, { x: 40, y: 0 }, { x: 0, y: 40 }] },
+      { id: "surf", kind: "segment", appearance: "answer", from: { x: 0, y: 40 }, to: { x: 40, y: 0 } },
+      { id: "old", kind: "segment", appearance: "construction", from: { x: 0, y: 30 }, to: { x: 60, y: 30 } },
+      { id: "meet", kind: "point", appearance: "highlight", at: { x: 40, y: 0 } },
+      { id: "rim", kind: "point", appearance: "highlight", at: { x: 0, y: 40 } },
+    ],
+    labels: [
+      { key: "surf", objectId: "surf", at: { x: 20, y: 20 }, placement: "above-right" },
+      { key: "old", objectId: "old", at: { x: 50, y: 30 }, placement: "above" },
+      { key: "rim", objectId: "rim", at: { x: 0, y: 40 }, placement: "left" },
+      { key: "meet", objectId: "meet", at: { x: 40, y: 0 }, placement: "below" },
+    ],
+  }}
+/>
+
+# Was bleibt und was ausläuft
+
+Das Dreieck hat zwei Katheten von <InlineMath math="40\text{ cm}" />, und dahinter ist das Becken <InlineMath math="25\text{ cm}" /> breit. **Der Rest des Wassers ist ausgelaufen**:
+
+<BlockMath math="\begin{aligned}
+A&=\tfrac12\cdot40\cdot40=800\text{ cm}^2\\
+V&=800\cdot25=20\,000\text{ cm}^3=20\text{ l}\\
+45-20&=25\text{ l}
+\end{aligned}" />
+
+Es sind also <InlineMath math="25" /> Liter ausgelaufen.

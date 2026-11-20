@@ -1,0 +1,53 @@
+# Tiga pagar di sekeliling rencana
+
+Tiap batasan seperti pagar di peta: kamu boleh berdiri di mana saja asalkan di dalam semua pagar. Dengan <InlineMath math="x" /> hektar kentang dan <InlineMath math="y" /> hektar gandum, **tiga pagar mengurung rencananya**:
+
+<BlockMath math="\begin{aligned}
+x+y&\le40\\
+30x+10y&\le900\quad\Leftrightarrow\quad3x+y\le90\\
+400x+300y&\le13{.}000\quad\Leftrightarrow\quad4x+3y\le130
+\end{aligned}" />
+
+<MathVisual
+  title={<>Luas tanam yang diizinkan</>}
+  description={<>Mendatar <InlineMath math="x" /> hektar kentang, tegak <InlineMath math="y" /> hektar gandum. Yang diizinkan adalah segi lima dengan titik sudut <InlineMath math="(0\mid0)" />, <InlineMath math="(30\mid0)" />, <InlineMath math="(28\mid6)" />, <InlineMath math="(10\mid30)" />, dan <InlineMath math="(0\mid40)" />. Laba tertinggi ada di <InlineMath math="(28\mid6)" />.</>}
+  labels={{
+    best: <><InlineMath math="(28\mid6)" /></>,
+    land: <>lahan</>,
+    labour: <>kerja</>,
+    capital: <>modal</>,
+    c2: <><InlineMath math="(10\mid30)" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -2, max: 42 },
+      y: { min: -2, max: 48 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "region", kind: "polygon", appearance: "secondary", vertices: [{ x: 0, y: 0 }, { x: 30, y: 0 }, { x: 28, y: 6 }, { x: 10, y: 30 }, { x: 0, y: 40 }] },
+      { id: "land", kind: "segment", appearance: "construction", from: { x: 0, y: 40 }, to: { x: 40, y: 0 } },
+      { id: "labour", kind: "segment", appearance: "construction", from: { x: 30, y: 0 }, to: { x: 15, y: 45 } },
+      { id: "capital", kind: "segment", appearance: "construction", from: { x: 32.5, y: 0 }, to: { x: 1, y: 42 } },
+      { id: "corner", kind: "point", appearance: "answer", at: { x: 28, y: 6 } },
+      { id: "corner-2", kind: "point", appearance: "highlight", at: { x: 10, y: 30 } },
+    ],
+    labels: [
+      { key: "best", objectId: "corner", at: { x: 28, y: 6 }, placement: "right" },
+      { key: "c2", objectId: "corner-2", at: { x: 10, y: 30 }, placement: "left" },
+      { key: "land", objectId: "land", at: { x: 36, y: 4 }, placement: "above-right" },
+      { key: "labour", objectId: "labour", at: { x: 16, y: 42 }, placement: "right" },
+      { key: "capital", objectId: "capital", at: { x: 4, y: 38 }, placement: "left" },
+    ],
+  }}
+/>
+
+# Letak titik-titik sudutnya
+
+Garis laba lurus <InlineMath math="900x+400y" /> yang digeser melintasi daerah bersisi lurus terakhir menyentuhnya di sebuah titik sudut, jadi **hanya titik sudut yang perlu diperiksa**. Lahan dan kerja berpotongan di <InlineMath math="(25\mid15)" />, tetapi itu butuh modal <InlineMath math="14{.}500\text{ €}" />, lebih dari yang ada. Titik sudut yang berlaku adalah <InlineMath math="(30\mid0)" />, <InlineMath math="(28\mid6)" /> dari kerja dan modal, <InlineMath math="(10\mid30)" /> dari modal dan lahan, serta <InlineMath math="(0\mid40)" />.
+
+# Membandingkan titik sudut
+
+Laba: <InlineMath math="(30\mid0)" /> memberi <InlineMath math="27{.}000\text{ €}" />, <InlineMath math="(28\mid6)" /> memberi <InlineMath math="25{.}200+2400=27{.}600\text{ €}" />, <InlineMath math="(10\mid30)" /> memberi <InlineMath math="21{.}000\text{ €}" />, <InlineMath math="(0\mid40)" /> memberi <InlineMath math="16{.}000\text{ €}" />. **Rencana terbaik adalah <InlineMath math="28\text{ ha}" /> kentang dan <InlineMath math="6\text{ ha}" /> gandum dengan laba <InlineMath math="27{.}600\text{ €}" />**, dan <InlineMath math="6\text{ ha}" /> dibiarkan kosong. Menanami seluruh <InlineMath math="40\text{ ha}" /> terasa hemat, tetapi labanya <InlineMath math="6600\text{ €}" /> lebih kecil.

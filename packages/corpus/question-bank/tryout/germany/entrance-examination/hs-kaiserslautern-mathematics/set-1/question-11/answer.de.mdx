@@ -1,0 +1,44 @@
+# Wie schnell sich die Kultur verdoppelt
+
+Stell dir einen Münzstapel vor, der sich in einem festen Takt verdoppelt. Zwischen den beiden Zählungen wird die Zahl der Bakterien in <InlineMath math="90" /> Minuten achtmal so groß. **Acht sind drei Verdopplungen, also verdoppelt sich die Kultur alle <InlineMath math="30" /> Minuten und vervierfacht sich jede Stunde**:
+
+<BlockMath math="\begin{aligned}
+\frac{40000}{5000}&=8=2^3\\
+T_2&=\frac{90\text{ min}}{3}=30\text{ min}
+\end{aligned}" />
+
+# Zurück zum Start und weiter bis Mittag
+
+Rückwärts in der Zeit heißt halbieren statt verdoppeln. **Die Kultur wurde <InlineMath math="90" /> Minuten vor der ersten Zählung angesetzt, also drei Halbierungen zurück, und das Mittel kommt eine Stunde nach der zweiten Zählung, also zwei Verdopplungen weiter**:
+
+<BlockMath math="\begin{aligned}
+N_0&=\frac{5000}{2^3}=625\\
+N_{12}&=40000\cdot2^2=160000
+\end{aligned}" />
+
+# Zwei Wirkungen gleichzeitig
+
+Denk an eine Badewanne, in die Wasser läuft, während der Stöpsel gezogen ist. Was nach einer Stunde übrig ist, hängt von beidem ab. **Das Mittel allein ließe jede Stunde <InlineMath math="\frac{1}{16}" /> übrig, aber in derselben Stunde vervierfachen sich die Bakterien, also ist der Gesamtfaktor <InlineMath math="4\cdot\frac{1}{16}=\frac14" /> pro Stunde**. Wer nur mit <InlineMath math="\frac{1}{16}" /> rechnet, vergisst das Wachstum und kommt auf <InlineMath math="120" /> Minuten. Wer bei <InlineMath math="40000" /> statt bei <InlineMath math="160000" /> beginnt, vergisst die letzte Stunde Wachstum und kommt auf <InlineMath math="180" /> Minuten.
+
+# Zurück zur Anfangszahl
+
+Jetzt zählst du, wie viele Viertelungen <InlineMath math="160000" /> auf <InlineMath math="625" /> bringen:
+
+<BlockMath math="\begin{aligned}
+160000\cdot\left(\tfrac14\right)^s&=625\\
+4^s&=\frac{160000}{625}=256=4^4\\
+s&=4\text{ h}=240\text{ min}
+\end{aligned}" />
+
+**Die Zahl der Bakterien ist <InlineMath math="240" /> Minuten nach der Zugabe wieder so groß wie beim Ansetzen**, also um 16:00 Uhr.
+
+<Chart
+  title={<>Die Bakterienzahl im Lauf des Tages</>}
+  description={<>Die Zahl der Bakterien in Tausend zu jeder vollen Stunde von 8:00 Uhr bis 16:00 Uhr. Bis 12:00 Uhr vervierfacht sie sich jede Stunde, danach viertelt sie sich und ist um 16:00 Uhr wieder bei <InlineMath math="625" /> Bakterien. Die zweite Linie rechnet nur mit dem Abtöten und kommt schon um 14:00 Uhr dort an.</>}
+  categories={["8:00", "9:00", "10:00", "11:00", "12:00", "13:00", "14:00", "15:00", "16:00"]}
+  series={[
+    { label: "mit Wachstum und Mittel", mark: "line", values: [0.625, 2.5, 10.0, 40.0, 160.0, 40.0, 10.0, 2.5, 0.625] },
+    { label: "nur Abtöten gerechnet", mark: "line", values: [null, null, null, null, 160.0, 10.0, 0.625, null, null] },
+  ]}
+  valueLabel="Bakterien (Tausend)"
+/>

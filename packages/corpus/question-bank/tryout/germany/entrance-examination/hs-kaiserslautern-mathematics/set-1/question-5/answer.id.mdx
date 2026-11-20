@@ -1,0 +1,49 @@
+# Tiap lilin memendek dengan lajunya sendiri
+
+Bayangkan lilin seperti pensil yang diraut dari atas dengan laju tetap. Kalau seluruh lilin habis dalam <InlineMath math="8" /> jam, tiap jam hilang <InlineMath math="\frac18" /> dari panjangnya. **Setelah <InlineMath math="3" /> jam lilin pertama tinggal <InlineMath math="\frac58" /> dari panjang <InlineMath math="L_1" />, dan lilin kedua tinggal <InlineMath math="\frac36=\frac12" /> dari <InlineMath math="L_2" />**. Bersama panjang totalnya kamu mendapat dua persamaan:
+
+<BlockMath math="\begin{aligned}
+L_1+L_2&=45\\
+\left|\tfrac58L_1-\tfrac12L_2\right|&=9
+\end{aligned}" />
+
+# Selisih tanpa arah
+
+Kalau kamu dengar tinggi dua teman berselisih <InlineMath math="9\text{ cm}" />, kamu belum tahu siapa yang lebih tinggi. **Nilai mutlak menyembunyikan pilihan yang sama, jadi coba kedua tandanya**. Substitusikan <InlineMath math="L_2=45-L_1" /> pada tiap kasus:
+
+<BlockMath math="\begin{aligned}
+\tfrac58L_1-\tfrac12\left(45-L_1\right)&=\pm9\\
+\tfrac98L_1&=22{,}5\pm9\\
+L_1&=28\ \vee\ L_1=12
+\end{aligned}" />
+
+Jadi pasangannya <InlineMath math="L_1=28\text{ cm},\ L_2=17\text{ cm}" /> atau <InlineMath math="L_1=12\text{ cm},\ L_2=33\text{ cm}" />. Kedua pasangan memenuhi semua persamaan sejauh ini.
+
+# Hanya satu pasangan yang bertemu
+
+Sebuah mobil hanya bisa menyusul mobil lain kalau ia lebih cepat. **Lilin yang lebih panjang harus memendek lebih cepat daripada yang lebih pendek, dan pertemuannya harus terjadi sebelum lilin kedua habis setelah <InlineMath math="6" /> jam**.
+
+Pada pasangan pertama, lilin pertama lebih panjang <InlineMath math="11\text{ cm}" /> dan kehilangan <InlineMath math="\frac{28}{8}=3{,}5\text{ cm}" /> per jam, lilin kedua <InlineMath math="\frac{17}{6}\approx2{,}83\text{ cm}" />. Selisihnya hanya berkurang <InlineMath math="\frac23\text{ cm}" /> per jam, jadi perlu <InlineMath math="16{,}5" /> jam, jauh setelah kedua lilin habis. Membaca <InlineMath math="990" /> menit dari kasus ini adalah jebakannya.
+
+Pada pasangan kedua, lilin kedua lebih panjang <InlineMath math="21\text{ cm}" /> dan kehilangan <InlineMath math="5{,}5\text{ cm}" /> per jam, lilin pertama hanya <InlineMath math="1{,}5\text{ cm}" />:
+
+<BlockMath math="\begin{aligned}
+12-1{,}5t&=33-5{,}5t\\
+4t&=21\\
+t&=5{,}25\text{ h}=315\text{ min}
+\end{aligned}" />
+
+Waktu itu masih sebelum lilin kedua habis setelah <InlineMath math="6" /> jam. **Kedua lilin sama panjang <InlineMath math="315" /> menit setelah dinyalakan**.
+
+<Chart
+  title={<>Panjang lilin pada kedua kasus</>}
+  description={<>Panjang tiap lilin pada jam-jam setelah dinyalakan, untuk pasangan <InlineMath math="12" /> dan <InlineMath math="33\text{ cm}" /> serta pasangan <InlineMath math="28" /> dan <InlineMath math="17\text{ cm}" />. Hanya garis pasangan pertama yang berpotongan, setelah <InlineMath math="5{,}25\text{ h}" /> dan selagi kedua lilin masih menyala.</>}
+  categories={["0 h", "1 h", "2 h", "3 h", "4 h", "5 h", "6 h", "7 h", "8 h"]}
+  series={[
+    { label: "lilin pertama, pasangan dipakai", mark: "line", values: [12.0, 10.5, 9.0, 7.5, 6.0, 4.5, 3.0, 1.5, 0.0] },
+    { label: "lilin kedua, pasangan dipakai", mark: "line", values: [33.0, 27.5, 22.0, 16.5, 11.0, 5.5, 0.0, null, null] },
+    { label: "lilin pertama, pasangan ditolak", mark: "line", values: [28.0, 24.5, 21.0, 17.5, 14.0, 10.5, 7.0, 3.5, 0.0] },
+    { label: "lilin kedua, pasangan ditolak", mark: "line", values: [17.0, 14.17, 11.33, 8.5, 5.67, 2.83, 0.0, null, null] },
+  ]}
+  valueLabel="Panjang (cm)"
+/>

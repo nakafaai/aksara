@@ -1,0 +1,31 @@
+# Digit dahulu, kemudian susunannya
+
+Bayangkan kamu memilih empat pelekat yang berbeza dahulu, kemudian baru menentukan tempat setiap satu. Di sini pelekatnya ialah digit. **Pilih set empat digit dahulu**, kemudian kira cara menyusunnya.
+
+Empat digit berbeza yang hasil tambahnya <InlineMath math="10" /> bermula daripada set terkecil, <InlineMath math="0+1+2+3=6" />. Masih kurang <InlineMath math="4" /> tanpa menjadikan dua digit sama. Dengan menaikkan digit terbesar kamu dapat <InlineMath math="\{0,1,2,7\}" />, <InlineMath math="\{0,1,3,6\}" /> dan <InlineMath math="\{0,1,4,5\}" />, kemudian <InlineMath math="\{0,2,3,5\}" />, dan tanpa <InlineMath math="0" /> hanya <InlineMath math="\{1,2,3,4\}" />. Cubaan lain mengulang digit atau melebihi <InlineMath math="10" />.
+
+<Mermaid
+  title={<>Daripada set digit kepada bilangan kod</>}
+  description={<>Lima set digit yang hasil tambahnya <InlineMath math="10" />. Empat mengandungi <InlineMath math="0" /> dan setiap satu memberi <InlineMath math="18" /> kod, satu tidak mengandunginya dan memberi <InlineMath math="24" /> kod.</>}
+  chart={`
+    flowchart TD
+      A["0 1 2 7"] --> W["set dengan 0<br/>18 kod setiap satu"]
+      B["0 1 3 6"] --> W
+      C["0 1 4 5"] --> W
+      D["0 2 3 5"] --> W
+      E["1 2 3 4"] --> V["set tanpa 0<br/>24 kod"]
+      W --> T["jumlah 96"]
+      V --> T
+  `}
+/>
+
+# Gelang pertama yang dilarang
+
+Empat digit berbeza boleh disusun dalam <InlineMath math="4!=24" /> cara. **Set yang mengandungi <InlineMath math="0" /> kehilangan susunan yang bermula dengan <InlineMath math="0" />**, iaitu <InlineMath math="3!=6" /> susunan tiga digit yang lain. Setiap set dengan <InlineMath math="0" /> tinggal <InlineMath math="18" /> kod.
+
+<BlockMath math="\begin{aligned}
+4\cdot18+1\cdot24&=72+24\\
+&=96
+\end{aligned}" />
+
+Kalau peraturan gelang pertama terlupa, kamu dapat <InlineMath math="5\cdot24=120" />. Lena akan mencuba <InlineMath math="24" /> kod yang sebenarnya sudah dilarang. **Ada <InlineMath math="96" /> kod yang mungkin**.

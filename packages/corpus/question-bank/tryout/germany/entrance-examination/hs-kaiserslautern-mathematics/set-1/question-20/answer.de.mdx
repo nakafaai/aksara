@@ -1,0 +1,53 @@
+# Drei Zäune um den Plan
+
+Jede Grenze ist wie ein Zaun auf einer Karte: Du darfst überall stehen, wo du innerhalb aller Zäune bist. Mit <InlineMath math="x" /> Hektar Kartoffeln und <InlineMath math="y" /> Hektar Weizen **schließen drei Zäune den Plan ein**:
+
+<BlockMath math="\begin{aligned}
+x+y&\le40\\
+30x+10y&\le900\quad\Leftrightarrow\quad3x+y\le90\\
+400x+300y&\le13{.}000\quad\Leftrightarrow\quad4x+3y\le130
+\end{aligned}" />
+
+<MathVisual
+  title={<>Die erlaubten Anbauflächen</>}
+  description={<>Waagerecht <InlineMath math="x" /> Hektar Kartoffeln, senkrecht <InlineMath math="y" /> Hektar Weizen. Erlaubt ist das Fünfeck mit den Ecken <InlineMath math="(0\mid0)" />, <InlineMath math="(30\mid0)" />, <InlineMath math="(28\mid6)" />, <InlineMath math="(10\mid30)" /> und <InlineMath math="(0\mid40)" />. Der höchste Gewinn liegt in <InlineMath math="(28\mid6)" />.</>}
+  labels={{
+    best: <><InlineMath math="(28\mid6)" /></>,
+    land: <>Fläche</>,
+    labour: <>Arbeit</>,
+    capital: <>Kapital</>,
+    c2: <><InlineMath math="(10\mid30)" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -2, max: 42 },
+      y: { min: -2, max: 48 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "region", kind: "polygon", appearance: "secondary", vertices: [{ x: 0, y: 0 }, { x: 30, y: 0 }, { x: 28, y: 6 }, { x: 10, y: 30 }, { x: 0, y: 40 }] },
+      { id: "land", kind: "segment", appearance: "construction", from: { x: 0, y: 40 }, to: { x: 40, y: 0 } },
+      { id: "labour", kind: "segment", appearance: "construction", from: { x: 30, y: 0 }, to: { x: 15, y: 45 } },
+      { id: "capital", kind: "segment", appearance: "construction", from: { x: 32.5, y: 0 }, to: { x: 1, y: 42 } },
+      { id: "corner", kind: "point", appearance: "answer", at: { x: 28, y: 6 } },
+      { id: "corner-2", kind: "point", appearance: "highlight", at: { x: 10, y: 30 } },
+    ],
+    labels: [
+      { key: "best", objectId: "corner", at: { x: 28, y: 6 }, placement: "right" },
+      { key: "c2", objectId: "corner-2", at: { x: 10, y: 30 }, placement: "left" },
+      { key: "land", objectId: "land", at: { x: 36, y: 4 }, placement: "above-right" },
+      { key: "labour", objectId: "labour", at: { x: 16, y: 42 }, placement: "right" },
+      { key: "capital", objectId: "capital", at: { x: 4, y: 38 }, placement: "left" },
+    ],
+  }}
+/>
+
+# Wo die Ecken liegen
+
+Eine gerade Gewinnlinie <InlineMath math="900x+400y" />, die über ein Gebiet mit geraden Rändern geschoben wird, berührt es zuletzt in einer Ecke, also **musst du nur die Ecken prüfen**. Fläche und Arbeit schneiden sich in <InlineMath math="(25\mid15)" />, das braucht aber <InlineMath math="14{.}500\text{ €}" /> Kapital, mehr als vorhanden. Es zählen die Ecken <InlineMath math="(30\mid0)" />, <InlineMath math="(28\mid6)" /> aus Arbeit und Kapital, <InlineMath math="(10\mid30)" /> aus Kapital und Fläche, und <InlineMath math="(0\mid40)" />.
+
+# Die Ecken vergleichen
+
+Gewinne: <InlineMath math="(30\mid0)" /> bringt <InlineMath math="27{.}000\text{ €}" />, <InlineMath math="(28\mid6)" /> bringt <InlineMath math="25{.}200+2400=27{.}600\text{ €}" />, <InlineMath math="(10\mid30)" /> bringt <InlineMath math="21{.}000\text{ €}" />, <InlineMath math="(0\mid40)" /> bringt <InlineMath math="16{.}000\text{ €}" />. **Am besten sind <InlineMath math="28\text{ ha}" /> Kartoffeln und <InlineMath math="6\text{ ha}" /> Weizen mit <InlineMath math="27{.}600\text{ €}" />**, und <InlineMath math="6\text{ ha}" /> bleiben brach. Alle <InlineMath math="40\text{ ha}" /> zu bebauen wirkt sparsam, bringt aber <InlineMath math="6600\text{ €}" /> weniger.

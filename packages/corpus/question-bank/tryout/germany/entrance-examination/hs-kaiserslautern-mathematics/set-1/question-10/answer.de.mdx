@@ -1,0 +1,32 @@
+# Wie groß der Saal ist
+
+Die Reihen wachsen wie Treppenstufen, zwei Plätze pro Stufe. Von <InlineMath math="16" /> bis <InlineMath math="54" /> sind es <InlineMath math="\frac{54-16}{2}=19" /> Stufen, also **hat der Saal <InlineMath math="20" /> Reihen**. Fasst du die erste und die letzte Reihe zusammen, die zweite und die vorletzte und so weiter, hat jedes Paar <InlineMath math="70" /> Plätze:
+
+<BlockMath math="\begin{aligned}
+S&=\tfrac{20}{2}\,(16+54)=700
+\end{aligned}" />
+
+# Wie viele vordere Reihen wegfallen dürfen
+
+Damit <InlineMath math="560" /> Plätze bleiben, dürfen höchstens <InlineMath math="700-560=140" /> wegfallen. Die ersten <InlineMath math="m" /> Reihen haben <InlineMath math="16+18+\dots" /> Plätze, eine arithmetische Summe, also **haben die vorderen Reihen <InlineMath math="m(m+15)" /> Plätze**: <InlineMath math="m\cdot\tfrac{16+(14+2m)}{2}=m(m+15)" />.
+
+<BlockMath math="\begin{aligned}
+m(m+15)&\le140\\
+6\cdot21=126&\le140\\
+7\cdot22=154&>140
+\end{aligned}" />
+
+<Chart
+  title={<>Plätze, die mit den vorderen Reihen wegfallen</>}
+  description={<>Fallen die ersten <InlineMath math="m" /> Reihen weg, verschwinden <InlineMath math="m(m+15)" /> Plätze. Erlaubt sind höchstens <InlineMath math="140" />. Sechs Reihen kosten <InlineMath math="126" /> Plätze, sieben schon <InlineMath math="154" />.</>}
+  categories={["Reihen weg: 1", "Reihen weg: 2", "Reihen weg: 3", "Reihen weg: 4", "Reihen weg: 5", "Reihen weg: 6", "Reihen weg: 7", "Reihen weg: 8"]}
+  series={[
+    { label: "wegfallende Plätze", mark: "line", values: [16, 34, 54, 76, 100, 126, 154, 184] },
+    { label: "erlaubt", mark: "line", values: [140, 140, 140, 140, 140, 140, 140, 140] },
+  ]}
+  valueLabel="Plätze"
+/>
+
+# Die vorderste Reihe, die bleibt
+
+Sechs Reihen fallen weg, das Publikum sitzt also ab Reihe <InlineMath math="7" />. **Sie hat <InlineMath math="16+6\cdot2=28" /> Plätze**. Wer <InlineMath math="26" /> angibt, die letzte weggefallene Reihe, oder sieben Reihen wegnimmt, liegt jeweils um eine Stufe daneben.

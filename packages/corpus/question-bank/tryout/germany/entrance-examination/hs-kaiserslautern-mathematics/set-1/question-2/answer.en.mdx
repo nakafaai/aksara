@@ -1,0 +1,31 @@
+# First the digits, then their order
+
+Think of picking four different stickers first and only then deciding where each goes. Here the stickers are digits. **Choose the set of four digits first**, then count the ways to arrange it.
+
+Four different digits with sum <InlineMath math="10" /> start from the smallest possible, <InlineMath math="0+1+2+3=6" />. You must add <InlineMath math="4" /> more without making two digits equal. Raising the largest digit gives <InlineMath math="\{0,1,2,7\}" />, <InlineMath math="\{0,1,3,6\}" /> and <InlineMath math="\{0,1,4,5\}" />, then <InlineMath math="\{0,2,3,5\}" />, and without <InlineMath math="0" /> only <InlineMath math="\{1,2,3,4\}" />. Any other try repeats a digit or overshoots <InlineMath math="10" />.
+
+<Mermaid
+  title={<>From digit set to number of codes</>}
+  description={<>The five digit sets with sum <InlineMath math="10" />. Four contain <InlineMath math="0" /> and give <InlineMath math="18" /> codes each, one does not and gives <InlineMath math="24" /> codes.</>}
+  chart={`
+    flowchart TD
+      A["0 1 2 7"] --> W["sets with 0<br/>18 codes each"]
+      B["0 1 3 6"] --> W
+      C["0 1 4 5"] --> W
+      D["0 2 3 5"] --> W
+      E["1 2 3 4"] --> V["set without 0<br/>24 codes"]
+      W --> T["96 in total"]
+      V --> T
+  `}
+/>
+
+# The forbidden first ring
+
+Four different digits can stand in <InlineMath math="4!=24" /> orders. **A set with <InlineMath math="0" /> loses the orders that start with <InlineMath math="0" />**, and those are the <InlineMath math="3!=6" /> ways to arrange the other three. That leaves <InlineMath math="18" /> codes for each of the four sets with <InlineMath math="0" />.
+
+<BlockMath math="\begin{aligned}
+4\cdot18+1\cdot24&=72+24\\
+&=96
+\end{aligned}" />
+
+Forgetting the first-ring rule gives <InlineMath math="5\cdot24=120" />. Lena would then try <InlineMath math="24" /> codes that the rule already rules out. **There are <InlineMath math="96" /> possible codes**.

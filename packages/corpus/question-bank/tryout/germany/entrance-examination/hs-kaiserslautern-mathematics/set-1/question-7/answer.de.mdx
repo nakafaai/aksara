@@ -1,0 +1,63 @@
+# Tarif B hat drei Stücke
+
+Ein Handyvertrag mit Mindestumsatz funktioniert so: Telefonierst du wenig, zahlst du trotzdem den Sockel. Tarif B legt noch eine zweite Regel darauf, die teuren Kilowattstunden nach den ersten <InlineMath math="100" />. **B kostet also bis <InlineMath math="90\text{ kWh}" /> pauschal <InlineMath math="18\text{ €}" />, dann bis <InlineMath math="100\text{ kWh}" /> <InlineMath math="0{,}20x" /> und danach <InlineMath math="20+0{,}35\,(x-100)" />**.
+
+# Die untere Grenze
+
+Bei sehr kleinem Verbrauch verlangt B noch <InlineMath math="18\text{ €}" />, A dagegen kaum mehr als <InlineMath math="15\text{ €}" />. **B gewinnt, sobald A über den Mindestbetrag steigt**:
+
+<BlockMath math="\begin{aligned}
+18&<15+0{,}25x\\
+x&>12
+\end{aligned}" />
+
+Zwischen <InlineMath math="90" /> und <InlineMath math="100\text{ kWh}" /> kostet B höchstens <InlineMath math="20\text{ €}" />, A aber mindestens <InlineMath math="37{,}5\text{ €}" />, also bleibt B dort günstiger.
+
+# Die obere Grenze
+
+Über <InlineMath math="100\text{ kWh}" /> kostet jede weitere Einheit bei B mehr als bei A, also holt A auf. **Nur die Einheiten nach den ersten <InlineMath math="100" /> kosten <InlineMath math="0{,}35\text{ €}" />**:
+
+<BlockMath math="\begin{aligned}
+20+0{,}35\,(x-100)&<15+0{,}25x\\
+0{,}10x&<30\\
+x&<300
+\end{aligned}" />
+
+Der Wert <InlineMath math="300" /> liegt in diesem dritten Stück, also gilt er. Wer jede Einheit mit <InlineMath math="0{,}35\text{ €}" /> berechnet, kommt fälschlich auf <InlineMath math="150\text{ kWh}" />.
+
+<MathVisual
+  title={<>Die Kosten beider Tarife</>}
+  description={<>Tarif A als Gerade <InlineMath math="15+0{,}25x" />, Tarif B mit dem Mindestbetrag von <InlineMath math="18\text{ €}" /> bis <InlineMath math="90\text{ kWh}" />, dann <InlineMath math="0{,}20\text{ €}" /> je kWh bis <InlineMath math="100\text{ kWh}" /> und danach <InlineMath math="0{,}35\text{ €}" /> je kWh. Tarif B liegt zwischen <InlineMath math="12" /> und <InlineMath math="300\text{ kWh}" /> unter Tarif A.</>}
+  labels={{
+    ta: <>Tarif A</>,
+    tb: <>Tarif B</>,
+    lo: <><InlineMath math="(12\mid18)" /></>,
+    hi: <><InlineMath math="(300\mid90)" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -20, max: 360 },
+      y: { min: -10, max: 120 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "a", kind: "segment", appearance: "secondary", from: { x: 0, y: 15 }, to: { x: 350, y: 102.5 } },
+      { id: "b", kind: "polyline", appearance: "primary", vertices: [{ x: 0, y: 18 }, { x: 90, y: 18 }, { x: 100, y: 20 }, { x: 350, y: 107.5 }] },
+      { id: "lo", kind: "point", appearance: "answer", at: { x: 12, y: 18 } },
+      { id: "hi", kind: "point", appearance: "answer", at: { x: 300, y: 90 } },
+      { id: "band", kind: "segment", appearance: "highlight", from: { x: 12, y: 0 }, to: { x: 300, y: 0 } },
+    ],
+    labels: [
+      { key: "ta", objectId: "a", at: { x: 200, y: 65 }, placement: "above-left" },
+      { key: "tb", objectId: "b", at: { x: 200, y: 72.5 }, placement: "below-right" },
+      { key: "lo", objectId: "lo", at: { x: 12, y: 18 }, placement: "above" },
+      { key: "hi", objectId: "hi", at: { x: 300, y: 90 }, placement: "left" },
+    ],
+  }}
+/>
+
+# Die Breite des Bereichs
+
+B ist von <InlineMath math="12" /> bis <InlineMath math="300\text{ kWh}" /> günstiger. **Die Grenzen liegen <InlineMath math="300-12=288\text{ kWh}" /> auseinander**.

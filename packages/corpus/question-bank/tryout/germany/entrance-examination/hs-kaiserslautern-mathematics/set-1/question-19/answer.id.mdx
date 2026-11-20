@@ -1,0 +1,29 @@
+# Masuk dikurangi keluar
+
+Bayangkan bak mandi dengan keran terbuka dan sumbat dicabut. Airnya naik hanya selama yang masuk lebih banyak daripada yang keluar. **Laju bersihnya <InlineMath math="18t-3t^2-15=-3(t-1)(t-5)" />**: negatif sebelum <InlineMath math="t=1" />, positif antara <InlineMath math="1" /> dan <InlineMath math="5" />, dan negatif lagi setelah <InlineMath math="5" />.
+
+# Menjumlahkan perubahannya
+
+Integral mengumpulkan aliran bersih jam demi jam, seperti menghitung koin yang dimasukkan ke dan diambil dari toples:
+
+<BlockMath math="\begin{aligned}
+V(t)-V(0)&=\int_0^t\left(18s-3s^2-15\right)ds\\
+&=9t^2-t^3-15t
+\end{aligned}" />
+
+Pada <InlineMath math="t=1" /> nilainya <InlineMath math="-7" />, pada <InlineMath math="t=5" /> <InlineMath math="+25" />, pada <InlineMath math="t=6" /> <InlineMath math="+18" />. **Titik terendah di <InlineMath math="t=1" />, titik tertinggi di <InlineMath math="t=5" />**. Berhenti di <InlineMath math="t=3" />, saat aliran masuknya sendiri terbesar, berarti lupa bahwa air terus terkumpul selama aliran masuk mengalahkan pompa.
+
+<Chart
+  title={<>Air di dalam kolam</>}
+  description={<>Dengan <InlineMath math="11\text{ m}^3" /> di awal, airnya turun tepat ke <InlineMath math="4\text{ m}^3" /> pada <InlineMath math="t=1" />, naik ke <InlineMath math="36\text{ m}^3" /> pada <InlineMath math="t=5" />, lalu turun ke <InlineMath math="29\text{ m}^3" />.</>}
+  categories={["0 jam", "0,5 jam", "1 jam", "1,5 jam", "2 jam", "2,5 jam", "3 jam", "3,5 jam", "4 jam", "4,5 jam", "5 jam", "5,5 jam", "6 jam"]}
+  series={[
+    { label: "air", mark: "line", values: [11.0, 5.625, 4.0, 5.375, 9.0, 14.125, 20.0, 25.875, 31.0, 34.625, 36.0, 34.375, 29.0] },
+    { label: "batas minimum", mark: "line", values: [4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4] },
+  ]}
+  valueLabel="Air dalam m³"
+/>
+
+# Awal aman yang terkecil
+
+Kolam tidak boleh di bawah <InlineMath math="4\text{ m}^3" />, dan pada jam pertama ia kehilangan <InlineMath math="7\text{ m}^3" />, jadi ia mulai dengan <InlineMath math="11\text{ m}^3" />. **Pada <InlineMath math="t=5" /> isinya <InlineMath math="11+25=36\text{ m}^3" />**. Kalau awalnya hanya <InlineMath math="4\text{ m}^3" />, pompa akan menyedot udara pada jam pertama.

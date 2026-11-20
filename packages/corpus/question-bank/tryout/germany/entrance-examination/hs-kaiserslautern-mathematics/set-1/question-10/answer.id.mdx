@@ -1,0 +1,32 @@
+# Seberapa besar gedungnya
+
+Baris-barisnya bertambah seperti anak tangga, dua kursi per anak tangga. Dari <InlineMath math="16" /> sampai <InlineMath math="54" /> ada <InlineMath math="\frac{54-16}{2}=19" /> langkah, jadi **gedung itu punya <InlineMath math="20" /> baris**. Pasangkan baris pertama dengan baris terakhir, baris kedua dengan baris kedua dari belakang, dan seterusnya, maka tiap pasangan berisi <InlineMath math="70" /> kursi:
+
+<BlockMath math="\begin{aligned}
+S&=\tfrac{20}{2}\,(16+54)=700
+\end{aligned}" />
+
+# Berapa baris depan yang boleh dihapus
+
+Supaya tersisa <InlineMath math="560" /> kursi, paling banyak <InlineMath math="700-560=140" /> yang boleh hilang. Baris <InlineMath math="m" /> pertama berisi <InlineMath math="16+18+\dots" /> kursi, sebuah deret aritmetika, jadi **baris-baris depan berisi <InlineMath math="m(m+15)" /> kursi**: <InlineMath math="m\cdot\tfrac{16+(14+2m)}{2}=m(m+15)" />.
+
+<BlockMath math="\begin{aligned}
+m(m+15)&\le140\\
+6\cdot21=126&\le140\\
+7\cdot22=154&>140
+\end{aligned}" />
+
+<Chart
+  title={<>Kursi yang hilang bersama baris depan</>}
+  description={<>Kalau <InlineMath math="m" /> baris pertama dihapus, <InlineMath math="m(m+15)" /> kursi ikut hilang. Paling banyak <InlineMath math="140" /> boleh hilang. Enam baris menghapus <InlineMath math="126" /> kursi, tujuh baris sudah <InlineMath math="154" />.</>}
+  categories={["baris dihapus: 1", "baris dihapus: 2", "baris dihapus: 3", "baris dihapus: 4", "baris dihapus: 5", "baris dihapus: 6", "baris dihapus: 7", "baris dihapus: 8"]}
+  series={[
+    { label: "kursi hilang", mark: "line", values: [16, 34, 54, 76, 100, 126, 154, 184] },
+    { label: "batas", mark: "line", values: [140, 140, 140, 140, 140, 140, 140, 140] },
+  ]}
+  valueLabel="Kursi"
+/>
+
+# Baris terdepan yang masih dipakai
+
+Enam baris dihapus, jadi penonton mulai dari baris <InlineMath math="7" />. **Baris itu berisi <InlineMath math="16+6\cdot2=28" /> kursi**. Menjawab <InlineMath math="26" />, yaitu baris terakhir yang dihapus, atau menghapus tujuh baris, sama-sama meleset satu langkah.

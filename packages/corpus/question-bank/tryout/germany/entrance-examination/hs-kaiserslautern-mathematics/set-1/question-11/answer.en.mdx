@@ -1,0 +1,44 @@
+# How fast the culture doubles
+
+Think of a pile of coins that doubles on a fixed beat. Between the two counts the number of bacteria becomes eight times as large in <InlineMath math="90" /> minutes. **Eight is three doublings, so the culture doubles every <InlineMath math="30" /> minutes and grows fourfold each hour**:
+
+<BlockMath math="\begin{aligned}
+\frac{40000}{5000}&=8=2^3\\
+T_2&=\frac{90\text{ min}}{3}=30\text{ min}
+\end{aligned}" />
+
+# Back to the start and on to noon
+
+Going back in time is halving instead of doubling. **The culture was set up <InlineMath math="90" /> minutes before the first count, three halvings back, and the agent comes one hour after the second count, two doublings on**:
+
+<BlockMath math="\begin{aligned}
+N_0&=\frac{5000}{2^3}=625\\
+N_{12}&=40000\cdot2^2=160000
+\end{aligned}" />
+
+# Two effects at the same time
+
+Imagine a bathtub with the tap running and the plug pulled out. What is left after an hour depends on both. **The agent alone would leave <InlineMath math="\frac{1}{16}" /> each hour, but in that same hour the bacteria multiply by <InlineMath math="4" />, so the net factor is <InlineMath math="4\cdot\frac{1}{16}=\frac14" /> per hour**. Using only <InlineMath math="\frac{1}{16}" /> forgets the growth and gives <InlineMath math="120" /> minutes. Starting from <InlineMath math="40000" /> instead of <InlineMath math="160000" /> forgets the last hour of growth and gives <InlineMath math="180" /> minutes.
+
+# Back to the starting count
+
+Now count how many quarterings bring <InlineMath math="160000" /> down to <InlineMath math="625" />:
+
+<BlockMath math="\begin{aligned}
+160000\cdot\left(\tfrac14\right)^s&=625\\
+4^s&=\frac{160000}{625}=256=4^4\\
+s&=4\text{ h}=240\text{ min}
+\end{aligned}" />
+
+**The count is back at its starting value <InlineMath math="240" /> minutes after the agent is added**, at 16:00.
+
+<Chart
+  title={<>The bacteria count through the day</>}
+  description={<>The number of bacteria in thousands at every full hour from 8:00 to 16:00. Until noon it grows fourfold each hour, then it falls to a quarter each hour and is back at <InlineMath math="625" /> bacteria at 16:00. The second line counts only the killing and gets there already at 14:00.</>}
+  categories={["8:00", "9:00", "10:00", "11:00", "12:00", "13:00", "14:00", "15:00", "16:00"]}
+  series={[
+    { label: "growth and agent", mark: "line", values: [0.625, 2.5, 10.0, 40.0, 160.0, 40.0, 10.0, 2.5, 0.625] },
+    { label: "killing only", mark: "line", values: [null, null, null, null, 160.0, 10.0, 0.625, null, null] },
+  ]}
+  valueLabel="Bacteria (thousands)"
+/>

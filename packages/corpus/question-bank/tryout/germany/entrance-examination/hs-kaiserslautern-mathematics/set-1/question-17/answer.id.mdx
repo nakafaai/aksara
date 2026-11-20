@@ -1,0 +1,44 @@
+# Kapan bus berhenti
+
+Bola yang menggelinding dan melambat sama banyak tiap detik akan berhenti setelah waktu tertentu lalu diam. **Bus kehilangan <InlineMath math="1{,}5\text{ m/s}" /> setiap detik, jadi berhenti setelah <InlineMath math="10" /> detik dan menempuh kecepatan rata-rata kali waktu**:
+
+<BlockMath math="\begin{aligned}
+t_{\text{s}}&=\frac{15}{1{,}5}=10\text{ s}\\
+d_{\text{s}}&=\frac{15\cdot10}{2}=75\text{ m}
+\end{aligned}" />
+
+# Persamaan yang menggelinding mundur
+
+Menyamakan kedua posisi terasa wajar:
+
+<BlockMath math="\begin{aligned}
+5t&=100+15t-0{,}75t^2\\
+0&=3t^2-40t-400\\
+t&=20\text{ s}
+\end{aligned}" />
+
+**Namun rumus pengereman hanya berlaku sampai <InlineMath math="t=10\text{ s}" />**. Sesudah itu rumus tersebut membuat bus mundur ke arah pelari, dan itulah yang digambarkan oleh <InlineMath math="t=20" />. Pada <InlineMath math="t=10\text{ s}" /> pelari baru menempuh <InlineMath math="50\text{ m}" />, sementara pintu sudah menunggu di <InlineMath math="175\text{ m}" />.
+
+<Chart
+  title={<>Posisi pelari dan pintu bus</>}
+  description={<>Posisi pelari dan pintu belakang bus, diukur dari titik awal pelari. Bus berhenti di <InlineMath math="175\text{ m}" /> sejak <InlineMath math="10\text{ s}" />, dan pelari mencapainya setelah <InlineMath math="35\text{ s}" />. Parabola tanpa berhenti akan mundur menemui pelari pada <InlineMath math="20\text{ s}" />, hal yang tidak pernah dilakukan bus yang mengerem.</>}
+  categories={["0 s", "5 s", "10 s", "15 s", "20 s", "25 s", "30 s", "35 s", "40 s"]}
+  series={[
+    { label: "pelari", mark: "line", values: [0.0, 25.0, 50.0, 75.0, 100.0, 125.0, 150.0, 175.0, 200.0] },
+    { label: "pintu bus", mark: "line", values: [100.0, 156.25, 175.0, 175.0, 175.0, 175.0, 175.0, 175.0, 175.0] },
+    { label: "parabola tanpa berhenti", mark: "line", values: [100.0, 156.25, 175.0, 156.25, 100.0, null, null, null, null] },
+  ]}
+  valueLabel="Posisi (m)"
+/>
+
+# Mengejar bus yang berhenti
+
+Sejak <InlineMath math="10\text{ s}" /> pintu tidak bergerak, jadi pelari cukup menempuh seluruh <InlineMath math="175\text{ m}" />. **Bus berangkat pada <InlineMath math="10+30=40\text{ s}" />**:
+
+<BlockMath math="\begin{aligned}
+5t&=100+75=175\\
+t&=35\text{ s}\\
+10+30-35&=5\text{ s}
+\end{aligned}" />
+
+Ia mencapai pintu <InlineMath math="5" /> detik sebelum bus berangkat. Hasil keliru <InlineMath math="20\text{ s}" /> akan menjanjikan waktu santai <InlineMath math="20" /> detik.

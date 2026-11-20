@@ -1,0 +1,28 @@
+# Die Wege zum Sieg aufschreiben
+
+Denk an Trittsteine in einem Bach: Du bleibst stehen, sobald du zweimal hintereinander auf einem Treffer landest. Schreib <InlineMath math="T" /> für Treffer und <InlineMath math="F" /> für Fehlwurf. **Das Spiel endet beim ersten <InlineMath math="TT" />, also ist jeder Sieg eine Folge ohne <InlineMath math="TT" /> vor den letzten beiden Würfen**. Mit höchstens vier Würfen gibt es genau vier solche Folgen: <InlineMath math="TT" />, <InlineMath math="FTT" />, <InlineMath math="TFTT" /> und <InlineMath math="FFTT" />.
+
+Eine Folge wie <InlineMath math="TTFT" /> ist kein fünfter Fall. Mia hat schon nach <InlineMath math="TT" /> aufgehört, es ist derselbe Sieg wie der erste. Wer ihn noch einmal zählt, addiert Wahrscheinlichkeit doppelt.
+
+# Entlang jedes Weges multiplizieren
+
+Unabhängige Würfe werden multipliziert, wie bei der Auswahl aus getrennten Speisekarten. **Ein Fehlwurf hat die Wahrscheinlichkeit <InlineMath math="0{,}2" />, ein Treffer <InlineMath math="0{,}8" />**:
+
+<BlockMath math="\begin{aligned}
+P&=0{,}8^2+0{,}2\cdot0{,}8^2+0{,}8\cdot0{,}2\cdot0{,}8^2+0{,}2^2\cdot0{,}8^2\\
+&=0{,}64+0{,}128+0{,}1024+0{,}0256\\
+&=0{,}896
+\end{aligned}" />
+
+<Chart
+  title={<>Die vier Wege zum Sieg</>}
+  description={<><InlineMath math="T" /> steht für Treffer, <InlineMath math="F" /> für Fehlwurf. Jeder Weg endet mit dem ersten Doppeltreffer: <InlineMath math="0{,}64+0{,}128+0{,}1024+0{,}0256=0{,}896" />.</>}
+  bars="apart"
+  categories={["TT", "FTT", "TFTT", "FFTT"]}
+  series={[
+    { label: "Wahrscheinlichkeit", mark: "bar", values: [0.64, 0.128, 0.1024, 0.0256] },
+  ]}
+  valueLabel="Wahrscheinlichkeit"
+/>
+
+Wer nach drei Würfen aufhört, kommt nur auf <InlineMath math="0{,}64+0{,}128=0{,}768" />. **Mia gewinnt mit der Wahrscheinlichkeit <InlineMath math="0{,}896" />**.

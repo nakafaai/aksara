@@ -1,0 +1,28 @@
+# Two timings, two unknowns
+
+Picture the train as a long snake going through a pipe. To get all the way through, its head travels the tunnel length plus its own length. To be completely inside, the head only travels the tunnel length minus its own length. **So <InlineMath math="\frac{L+300}{v}=50" /> and <InlineMath math="\frac{L-300}{v}=30" />**.
+
+<BlockMath math="\begin{aligned}
+L+300&=50v\\
+L-300&=30v\\
+600&=20v\ \Rightarrow\ v=30\,\tfrac{\text{m}}{\text{s}},\ L=1200\text{ m}
+\end{aligned}" />
+
+# Each train's window
+
+Start the clock when the freight train is fully inside. **It stays fully inside for its <InlineMath math="30\text{ s}" />, until <InlineMath math="t=30" />**. The passenger train's head enters at <InlineMath math="t=0" />, but its tail follows <InlineMath math="\frac{200}{20}=10\text{ s}" /> later. It is fully inside from <InlineMath math="t=10" /> until its head reaches the far end at <InlineMath math="\frac{1200}{20}=60\text{ s}" />.
+
+<Chart
+  title={<>When each train is fully inside</>}
+  description={<>Counting from the moment the freight train is fully inside: it stays so until <InlineMath math="t=30\text{ s}" />. The passenger train is fully inside from <InlineMath math="t=10\text{ s}" /> to <InlineMath math="t=60\text{ s}" />. Both at once from <InlineMath math="10" /> to <InlineMath math="30\text{ s}" />.</>}
+  categories={["0 s", "5 s", "10 s", "15 s", "20 s", "25 s", "30 s", "35 s", "40 s", "45 s", "50 s", "55 s", "60 s"]}
+  series={[
+    { label: "freight train fully inside", mark: "line", values: [1, 1, 1, 1, 1, 1, 1, null, null, null, null, null, null] },
+    { label: "passenger train fully inside", mark: "line", values: [null, null, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2] },
+  ]}
+  valueLabel="Track"
+/>
+
+# The overlap
+
+Both windows are open from <InlineMath math="t=10" /> to <InlineMath math="t=30" />. **That is <InlineMath math="20" /> seconds**. Letting the passenger train count as inside the moment its head enters would give <InlineMath math="30\text{ s}" />.

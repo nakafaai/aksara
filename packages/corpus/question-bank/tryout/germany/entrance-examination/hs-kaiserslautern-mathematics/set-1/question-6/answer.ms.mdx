@@ -1,0 +1,63 @@
+# Sudut yang tersembunyi pada boya
+
+Teks tidak menyebut sudut haluan, tetapi boya itu menetapkannya seperti pancang menetapkan khemah. **Pelabuhan, pulau dan boya membentuk segi tiga bersisi <InlineMath math="5" />, <InlineMath math="7" /> dan <InlineMath math="8\text{ km}" />, jadi petua kosinus memberi sudut di <InlineMath math="A" />**:
+
+<BlockMath math="\begin{aligned}
+\cos\angle DAB&=\frac{5^2+8^2-7^2}{2\cdot5\cdot8}=\frac{40}{80}=\frac12\\
+\angle DAB&=60^\circ
+\end{aligned}" />
+
+# Dua titik pada haluan
+
+Bayangkan pagar berbentuk bulatan berjejari <InlineMath math="7\text{ km}" /> di sekeliling pulau. Haluan lurus melintasi pagar begitu dua kali. **Biar <InlineMath math="x=\overline{AC}" /> dan guna petua kosinus dalam segi tiga <InlineMath math="ABC" /> dengan sudut <InlineMath math="60^\circ" />**:
+
+<BlockMath math="\begin{aligned}
+7^2&=8^2+x^2-2\cdot8\cdot x\cdot\cos60^\circ\\
+0&=x^2-8x+15=(x-3)(x-5)
+\end{aligned}" />
+
+Titik kedua, <InlineMath math="x=5" />, ialah boya itu sendiri. Titik pertama, <InlineMath math="x=3" />, datang lebih awal.
+
+# Kali pertama yang dikira
+
+Berjalan ke arah tiang lampu lalu melepasinya: mula-mula kamu makin dekat, kemudian makin jauh. **Dalam perjalanan ke boya, bot itu buat kali pertama berada <InlineMath math="7\text{ km}" /> dari pulau selepas <InlineMath math="3\text{ km}" />, kemudian makin dekat lagi, dan di boya jaraknya kembali <InlineMath math="7\text{ km}" />**. Jadi bot berpusing di <InlineMath math="C" /> dengan <InlineMath math="\overline{AC}=3\text{ km}" />. Kalau terus ke boya, jaraknya <InlineMath math="5+7=12\text{ km}" /> dan masanya <InlineMath math="48" /> minit, dan itulah perangkapnya.
+
+<MathVisual
+  title={<>Dua titik yang sama jauh dari pulau</>}
+  description={<>Haluan dari pelabuhan <InlineMath math="A" /> ke boya <InlineMath math="D" /> dan bulatan berjejari <InlineMath math="7\text{ km}" /> di sekeliling pulau <InlineMath math="B" />. Bulatan itu memotong haluan di <InlineMath math="C" /> selepas <InlineMath math="3\text{ km}" /> dan di boya selepas <InlineMath math="5\text{ km}" />. Bot itu sudah berpusing di <InlineMath math="C" /> lalu menuju ke pulau.</>}
+  labels={{
+    a: <><InlineMath math="A" /></>,
+    b: <><InlineMath math="B" /></>,
+    c: <><InlineMath math="C" /></>,
+    d: <><InlineMath math="D" /></>,
+    course: <>haluan</>,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -1.5, max: 16 },
+      y: { min: -7.5, max: 7.5 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "range", kind: "circle", appearance: "construction", center: { x: 8, y: 0 }, radius: 7 },
+      { id: "ab", kind: "segment", appearance: "reference", from: { x: 0, y: 0 }, to: { x: 8, y: 0 } },
+      { id: "course", kind: "segment", appearance: "primary", from: { x: 0, y: 0 }, to: { x: 2.5, y: 4.33 } },
+      { id: "route", kind: "segment", appearance: "answer", from: { x: 1.5, y: 2.598 }, to: { x: 8, y: 0 } },
+      { id: "pa", kind: "point", appearance: "reference", at: { x: 0, y: 0 } },
+      { id: "pb", kind: "point", appearance: "reference", at: { x: 8, y: 0 } },
+      { id: "pc", kind: "point", appearance: "answer", at: { x: 1.5, y: 2.598 } },
+      { id: "pd", kind: "point", appearance: "warning", at: { x: 2.5, y: 4.33 } },
+    ],
+    labels: [
+      { key: "a", objectId: "pa", at: { x: 0, y: 0 }, placement: "below-left" },
+      { key: "b", objectId: "pb", at: { x: 8, y: 0 }, placement: "below-right" },
+      { key: "c", objectId: "pc", at: { x: 1.5, y: 2.598 }, placement: "left" },
+      { key: "d", objectId: "pd", at: { x: 2.5, y: 4.33 }, placement: "above-left" },
+      { key: "course", objectId: "course", at: { x: 2, y: 3.464 }, placement: "right" },
+    ],
+  }}
+/>
+
+Seluruh perjalanan sepanjang <InlineMath math="3+7=10\text{ km}" />, dan pada <InlineMath math="15\text{ km/h}" /> masanya <InlineMath math="\frac{10}{15}\text{ h}=40" /> minit.

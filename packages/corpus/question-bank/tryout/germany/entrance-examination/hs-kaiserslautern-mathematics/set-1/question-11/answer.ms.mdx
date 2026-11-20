@@ -1,0 +1,44 @@
+# Berapa cepat kultur berganda
+
+Bayangkan timbunan syiling yang berganda mengikut rentak tetap. Di antara kedua-dua kiraan, bilangan bakteria menjadi lapan kali dalam <InlineMath math="90" /> minit. **Lapan bermakna tiga kali berganda, jadi kultur itu berganda setiap <InlineMath math="30" /> minit dan menjadi empat kali setiap jam**:
+
+<BlockMath math="\begin{aligned}
+\frac{40000}{5000}&=8=2^3\\
+T_2&=\frac{90\text{ min}}{3}=30\text{ min}
+\end{aligned}" />
+
+# Undur ke permulaan dan maju ke tengah hari
+
+Berundur dalam masa bermakna membahagi dua, bukan menggandakan. **Kultur itu disediakan <InlineMath math="90" /> minit sebelum kiraan pertama, iaitu tiga kali dibahagi dua, dan bahan itu ditambah sejam selepas kiraan kedua, iaitu dua kali berganda**:
+
+<BlockMath math="\begin{aligned}
+N_0&=\frac{5000}{2^3}=625\\
+N_{12}&=40000\cdot2^2=160000
+\end{aligned}" />
+
+# Dua kesan serentak
+
+Bayangkan tab mandi yang pilinya terbuka sementara penyumbatnya ditarik. Baki air selepas sejam bergantung pada kedua-duanya. **Bahan itu sahaja akan meninggalkan <InlineMath math="\frac{1}{16}" /> setiap jam, tetapi dalam jam yang sama bakteria menjadi empat kali, jadi faktor bersihnya <InlineMath math="4\cdot\frac{1}{16}=\frac14" /> sejam**. Kalau kamu hanya guna <InlineMath math="\frac{1}{16}" />, pertumbuhan terlupa dan jawapannya <InlineMath math="120" /> minit. Kalau kamu bermula daripada <InlineMath math="40000" />, bukan <InlineMath math="160000" />, sejam pertumbuhan terakhir terlupa dan jawapannya <InlineMath math="180" /> minit.
+
+# Kembali kepada bilangan asal
+
+Sekarang kira berapa kali dibahagi empat supaya <InlineMath math="160000" /> turun kepada <InlineMath math="625" />:
+
+<BlockMath math="\begin{aligned}
+160000\cdot\left(\tfrac14\right)^s&=625\\
+4^s&=\frac{160000}{625}=256=4^4\\
+s&=4\text{ h}=240\text{ min}
+\end{aligned}" />
+
+**Bilangan bakteria kembali seperti semasa kultur disediakan <InlineMath math="240" /> minit selepas bahan itu ditambah**, iaitu pukul 16.00.
+
+<Chart
+  title={<>Bilangan bakteria sepanjang hari</>}
+  description={<>Bilangan bakteria dalam ribu pada setiap jam penuh dari pukul 8.00 hingga 16.00. Sehingga pukul 12.00 bilangannya menjadi empat kali setiap jam, kemudian tinggal suku setiap jam dan kembali kepada <InlineMath math="625" /> bakteria pada pukul 16.00. Garis kedua hanya mengira pembunuhan bakteria dan sudah sampai di situ pada pukul 14.00.</>}
+  categories={["8.00", "9.00", "10.00", "11.00", "12.00", "13.00", "14.00", "15.00", "16.00"]}
+  series={[
+    { label: "pertumbuhan dan bahan", mark: "line", values: [0.625, 2.5, 10.0, 40.0, 160.0, 40.0, 10.0, 2.5, 0.625] },
+    { label: "pembunuhan sahaja", mark: "line", values: [null, null, null, null, 160.0, 10.0, 0.625, null, null] },
+  ]}
+  valueLabel="Bakteria (ribu)"
+/>
