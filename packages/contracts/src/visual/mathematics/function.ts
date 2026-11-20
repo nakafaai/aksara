@@ -1,6 +1,6 @@
 import { Schema } from "effect";
-
-import { cardFields, type RichSlot, TextSchema } from "#contracts/visual/card";
+import type { RichSlot } from "#contracts/visual/card";
+import { cardFields, TextSchema } from "#contracts/visual/card";
 import { answerAt, figure, markup } from "#contracts/visual/entry";
 
 /** The ways the bacterial growth animation counts generations. */

@@ -2,11 +2,11 @@ import { Array as Arr, Predicate, Schema, SchemaTransformation } from "effect";
 
 import { FigureNodeSchema, ImageSchema } from "#contracts/assessment/figure";
 import { LocalIdSchema } from "#contracts/assessment/identity";
-import {
-  InlineContentSchema,
-  type InlineInteractionNode,
-  type InlineNode,
+import type {
+  InlineInteractionNode,
+  InlineNode,
 } from "#contracts/assessment/inline";
+import { InlineContentSchema } from "#contracts/assessment/inline";
 import {
   LatexSchema,
   PlainTextSchema,

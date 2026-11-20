@@ -1,9 +1,7 @@
 import type { Sha256Hash } from "@nakafa/aksara-contracts/ids";
 import { ACTIVE_APP_LOCALES } from "@nakafa/aksara-contracts/locale";
-import {
-  makeQuranProvenanceManifest,
-  type QuranProvenanceManifest,
-} from "@nakafa/aksara-contracts/quran/provenance";
+import type { QuranProvenanceManifest } from "@nakafa/aksara-contracts/quran/provenance";
+import { makeQuranProvenanceManifest } from "@nakafa/aksara-contracts/quran/provenance";
 import { digestQuranRows } from "@nakafa/aksara-contracts/quran/snapshot/digest";
 import { makeQuranSnapshot } from "@nakafa/aksara-contracts/quran/snapshot/hash";
 import type {
@@ -14,10 +12,8 @@ import {
   bindQuranRow,
   hashQuranRow,
 } from "@nakafa/aksara-contracts/quran/snapshot/row/hash";
-import {
-  type QuranSnapshot,
-  QuranSnapshotFactsSchema,
-} from "@nakafa/aksara-contracts/quran/snapshot/spec";
+import type { QuranSnapshot } from "@nakafa/aksara-contracts/quran/snapshot/spec";
+import { QuranSnapshotFactsSchema } from "@nakafa/aksara-contracts/quran/snapshot/spec";
 import {
   QURAN_SURAH_COUNT,
   QURAN_VERSE_COUNT,
@@ -25,10 +21,8 @@ import {
 import { Effect, Stream } from "effect";
 
 import { quranProvenanceRecordsFor } from "#corpus/quran/catalog/select";
-import {
-  type QuranProjectionError,
-  streamQuranRows,
-} from "#corpus/quran/projection";
+import type { QuranProjectionError } from "#corpus/quran/projection";
+import { streamQuranRows } from "#corpus/quran/projection";
 import { loadVerifiedQuranSource } from "#corpus/quran/source/integrity";
 
 type PreparedQuranRowError = QuranProjectionError;

@@ -1,10 +1,7 @@
 import { Predicate } from "effect";
 import { issueAtOffset } from "#nakafa-content/math/finding";
-import {
-  estreeChildren,
-  type MdxNode,
-  parseLessonMdx,
-} from "#nakafa-content/mdx/parse";
+import type { MdxNode } from "#nakafa-content/mdx/parse";
+import { estreeChildren, parseLessonMdx } from "#nakafa-content/mdx/parse";
 import { expectShape } from "#nakafa-content/mdx/shape";
 import type { LessonVoiceIssue } from "#nakafa-content/voice/types";
 

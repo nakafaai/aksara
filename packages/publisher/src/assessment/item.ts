@@ -2,11 +2,11 @@ import {
   compileAssessmentBlocks,
   compileExplanationDocument,
 } from "@nakafa/aksara-compiler/assessment/document";
-import {
-  type AssessmentSite,
-  type AssessmentSourceError,
-  sourceError,
+import type {
+  AssessmentSite,
+  AssessmentSourceError,
 } from "@nakafa/aksara-compiler/assessment/error";
+import { sourceError } from "@nakafa/aksara-compiler/assessment/error";
 import type { labelDocument } from "@nakafa/aksara-compiler/assessment/label";
 import { ItemExplanationSchema } from "@nakafa/aksara-contracts/assessment/explanation";
 import { hashItemVersion } from "@nakafa/aksara-contracts/assessment/hash";

@@ -1,13 +1,13 @@
 import { Effect, Schema } from "effect";
 import { decodeContract } from "#contracts/decode";
 import { HeadPageRequestSchema } from "#contracts/release/head";
+import type { RollbackContentReleaseBundle } from "#contracts/release/lifecycle";
 import {
   ContentReleaseBundleSchema,
   ContentReleaseStatusRequestSchema,
   ReleaseAbortRequestSchema,
   ReleaseAcceptRequestSchema,
   ReleaseCleanupRequestSchema,
-  type RollbackContentReleaseBundle,
 } from "#contracts/release/lifecycle";
 import { RollbackPageRequestSchema } from "#contracts/release/rollback/spec";
 import { RoutePageRequestSchema } from "#contracts/release/route/page";

@@ -64,12 +64,12 @@ option letter.
 
 ## Lesson versus answer explanation
 
-| Lesson | Answer explanation |
-| --- | --- |
-| Builds a concept across sections, examples, misconceptions, and practice. | Resolves one attempted problem completely. |
-| May motivate, compare several methods, and generalize. | Uses the most instructionally useful method for this item. |
-| Can sequence full examples, faded examples, and independent practice. | Must not fade essential steps because it is the learner's only post-attempt explanation. |
-| May revisit prerequisite theory in depth. | Gives only the prerequisite reminder needed to understand this solution. |
+| Lesson                                                                    | Answer explanation                                                                       |
+| ------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- |
+| Builds a concept across sections, examples, misconceptions, and practice. | Resolves one attempted problem completely.                                               |
+| May motivate, compare several methods, and generalize.                    | Uses the most instructionally useful method for this item.                               |
+| Can sequence full examples, faded examples, and independent practice.     | Must not fade essential steps because it is the learner's only post-attempt explanation. |
+| May revisit prerequisite theory in depth.                                 | Gives only the prerequisite reminder needed to understand this solution.                 |
 
 ## Heading hierarchy
 
@@ -235,7 +235,7 @@ A learner who chose a wrong option needs to see why it is wrong.
 When the exam language differs from the explanation language, as with German
 Studienkolleg exams explained in Indonesian or English, quote each German exam
 term at first use and explain it in the explanation language, for example
-*Definitionsbereich* (domain). Mathematics, symbols, and results stay identical
+_Definitionsbereich_ (domain). Mathematics, symbols, and results stay identical
 across every locale.
 
 ## Evidence basis

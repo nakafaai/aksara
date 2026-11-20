@@ -4,7 +4,8 @@ import {
   findEmphasisArtifactIssues,
   findPhraseEmphasisIssues,
 } from "#nakafa-content/emphasis/check";
-import { type MdxNode, parseLessonMdx } from "#nakafa-content/mdx/parse";
+import type { MdxNode } from "#nakafa-content/mdx/parse";
+import { parseLessonMdx } from "#nakafa-content/mdx/parse";
 
 it("finds whole sentence emphasis with either rendered marker", () => {
   for (const source of [

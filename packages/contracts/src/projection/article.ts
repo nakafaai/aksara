@@ -1,9 +1,9 @@
 import { Array as Arr, Schema } from "effect";
 import { ContentAuthorSchema } from "#contracts/content";
 import { withPublicationDates } from "#contracts/date";
+import type { LearningGraphIdentity } from "#contracts/graph/spec";
 import {
   canonicalizeLearningGraphIdentity,
-  type LearningGraphIdentity,
   LearningGraphIdentitySchema,
 } from "#contracts/graph/spec";
 import { ContentKeySchema, PublicPathSchema } from "#contracts/ids";

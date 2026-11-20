@@ -1,22 +1,22 @@
+import type { LocalCache } from "@nakafa/aksara-compiler/incremental";
 import {
   compileIncremental,
   IncrementalResultKindSchema,
-  type LocalCache,
 } from "@nakafa/aksara-compiler/incremental";
 import { SignedContentArtifactSchema } from "@nakafa/aksara-contracts/content";
 import { ContentProjectionSchema } from "@nakafa/aksara-contracts/projection/spec";
 import type { RendererManifestEnvelope } from "@nakafa/aksara-contracts/renderer/contract";
+import type { LoadedPreviewSource } from "@nakafa/aksara-publisher/preview/source";
 import {
-  type LoadedPreviewSource,
   loadPreviewSource,
   projectPreviewSource,
 } from "@nakafa/aksara-publisher/preview/source";
 import type { PublicationSigner } from "@nakafa/aksara-publisher/signing/service";
 import type { FileSystem, Path } from "effect";
 import { Effect, Option, Ref, Schema } from "effect";
+import type { SelectedDocument } from "#cli/integrity";
 import {
   fingerprintSelectedDocument,
-  type SelectedDocument,
   SelectedFingerprintSchema,
   verifySelectedFingerprint,
   verifySelectedTopology,

@@ -1,5 +1,6 @@
 import { Array as Arr, Effect } from "effect";
-import { type Document, parseDocument } from "yaml";
+import type { Document } from "yaml";
+import { parseDocument } from "yaml";
 import {
   verifyDispatchGuards,
   verifyTargetChoice,

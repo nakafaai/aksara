@@ -3,9 +3,11 @@ import { verifyRendererPolicyTransition } from "@nakafa/aksara-contracts/release
 import type { PublicationScope } from "@nakafa/aksara-contracts/release/snapshot/scope";
 import type { RendererManifestEnvelope } from "@nakafa/aksara-contracts/renderer/contract";
 import { validateRendererManifestHash } from "@nakafa/aksara-contracts/renderer/manifest";
-import { Effect, type Redacted, Result, Schedule } from "effect";
+import type { Redacted } from "effect";
+import { Effect, Result, Schedule } from "effect";
 import type { HttpClient } from "effect/http";
-import { makeNakafaAppError, type NakafaAppError } from "#cli/error";
+import type { NakafaAppError } from "#cli/error";
+import { makeNakafaAppError } from "#cli/error";
 import { fetchRendererEndpoint } from "#cli/renderer/http";
 
 const RETRY_DELAY = "5 seconds";

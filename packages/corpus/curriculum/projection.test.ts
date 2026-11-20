@@ -4,10 +4,8 @@ import { Array as Arr, Effect, HashSet, Option, Schema } from "effect";
 
 import { CurriculumProjectionError } from "#corpus/curriculum/material";
 import { projectCurriculumNodes } from "#corpus/curriculum/projection";
-import {
-  type CurriculumMaterialInput,
-  CurriculumSourceSchema,
-} from "#corpus/curriculum/schema";
+import type { CurriculumMaterialInput } from "#corpus/curriculum/schema";
+import { CurriculumSourceSchema } from "#corpus/curriculum/schema";
 import { decodeCurriculumCatalog } from "#corpus/curriculum/source";
 import {
   decodeMaterialDomains,

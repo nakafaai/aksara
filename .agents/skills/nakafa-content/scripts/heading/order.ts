@@ -5,11 +5,10 @@ import {
 } from "#nakafa-content/exercise/context";
 import { expressionText, headingText } from "#nakafa-content/heading/label";
 import { issueAtOffset } from "#nakafa-content/math/finding";
+import type { EstreeNode, MdxNode } from "#nakafa-content/mdx/parse";
 import {
   attributeEstree,
-  type EstreeNode,
   jsxComponentName,
-  type MdxNode,
   parseLessonMdx,
   visitMdxNodes,
   walkEstreeDeep,

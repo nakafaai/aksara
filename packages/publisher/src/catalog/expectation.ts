@@ -1,20 +1,18 @@
 import { ContentFamilySchema } from "@nakafa/aksara-contracts/content";
-import {
-  type ContentKey,
-  ContentKeySchema,
-  type PublicPath,
-} from "@nakafa/aksara-contracts/ids";
-import {
-  type AppLocale,
-  type ArtifactLocale,
-  ArtifactLocaleSchema,
+import type { ContentKey, PublicPath } from "@nakafa/aksara-contracts/ids";
+import { ContentKeySchema } from "@nakafa/aksara-contracts/ids";
+import type {
+  AppLocale,
+  ArtifactLocale,
 } from "@nakafa/aksara-contracts/locale";
+import { ArtifactLocaleSchema } from "@nakafa/aksara-contracts/locale";
 import { decodeArticleRegistry } from "@nakafa/aksara-corpus/articles/registry";
 import { decodeMaterialRegistry } from "@nakafa/aksara-corpus/material/registry";
 import { decodePageRegistry } from "@nakafa/aksara-corpus/pages/registry";
 import type { FileSystem, Path } from "effect";
 import { Array as Arr, Effect, Schema } from "effect";
-import { type RouteTransition, RouteTransitionSchema } from "#publisher/routes";
+import type { RouteTransition } from "#publisher/routes";
+import { RouteTransitionSchema } from "#publisher/routes";
 
 const ExpectedCatalogHeadSchema = Schema.Struct({
   artifactLocale: ArtifactLocaleSchema,

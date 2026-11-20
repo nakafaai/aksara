@@ -1,12 +1,10 @@
-import {
-  type ContentReleaseManifest,
-  ReleaseVerificationCompleteSchema,
-  type SignedContentRelease,
+import type {
+  ContentReleaseManifest,
+  SignedContentRelease,
 } from "@nakafa/aksara-contracts/release";
-import {
-  type ActiveContentRelease,
-  ActiveRollbackContentReleaseSchema,
-} from "@nakafa/aksara-contracts/release/current/evidence";
+import { ReleaseVerificationCompleteSchema } from "@nakafa/aksara-contracts/release";
+import type { ActiveContentRelease } from "@nakafa/aksara-contracts/release/current/evidence";
+import { ActiveRollbackContentReleaseSchema } from "@nakafa/aksara-contracts/release/current/evidence";
 import type {
   StagedContentRelease,
   StagedRollbackContentRelease,

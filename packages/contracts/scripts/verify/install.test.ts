@@ -2,9 +2,11 @@ import { NodeServices } from "@effect/platform-node";
 import { assert, layer } from "@effect/vitest";
 import { Effect, FileSystem, Path, Schema } from "effect";
 import { encodeJsonText } from "#contracts/text/json";
+import type {
+  InstallInspection,
+  InstallVerificationInput,
+} from "#scripts/verify/install";
 import {
-  type InstallInspection,
-  type InstallVerificationInput,
   isInstalledPath,
   verifyInstalledPackage,
 } from "#scripts/verify/install";
@@ -27,7 +29,6 @@ const InstallFixtureSchema = Schema.Struct({
 });
 
 type InstallFixture = typeof InstallFixtureSchema.Type;
-
 type Seams<E, R> = Partial<
   Pick<InstallVerificationInput<E, R>, "inspect" | "write">
 >;

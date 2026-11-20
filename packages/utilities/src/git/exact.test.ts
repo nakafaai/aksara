@@ -6,11 +6,8 @@ import {
   GIT_EXECUTABLE,
   makeExactGitInput,
 } from "#utilities/git/exact";
-import {
-  ExactProcess,
-  type ExactProcessInput,
-  ExactProcessLive,
-} from "#utilities/process/exact";
+import type { ExactProcessInput } from "#utilities/process/exact";
+import { ExactProcess, ExactProcessLive } from "#utilities/process/exact";
 
 const OUTPUT_LIMIT = 4096;
 const COMMIT_SHA_PATTERN = /^[0-9a-f]{40}$/u;

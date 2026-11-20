@@ -3,12 +3,14 @@ import {
   isCodeComponentName,
   isNonProseFieldName,
 } from "#nakafa-content/mdx/fields";
+import type {
+  EstreeNode,
+  MdxAttribute,
+  MdxNode,
+} from "#nakafa-content/mdx/parse";
 import {
   asEstreeNode,
   attributeEstree,
-  type EstreeNode,
-  type MdxAttribute,
-  type MdxNode,
   parseLessonMdx,
   staticFieldName,
 } from "#nakafa-content/mdx/parse";

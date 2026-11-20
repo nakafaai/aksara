@@ -20,9 +20,9 @@ import type { Mermaid } from "mermaid";
 import type { Plugin } from "unified";
 import { visit } from "unist-util-visit";
 import { attributeExpression } from "#compiler/ast/attribute";
+import type { DiagramPolicyViolation } from "#compiler/errors";
 import {
   DiagramPolicyError,
-  type DiagramPolicyViolation,
   DiagramPolicyViolationSchema,
 } from "#compiler/errors";
 

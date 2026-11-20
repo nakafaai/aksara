@@ -1,9 +1,7 @@
 import { Array as Arr, MutableHashMap, Option } from "effect";
 import type { SampleBox } from "#contracts/math/formula/box";
-import {
-  CONTOUR_CELLS,
-  type SampleField,
-} from "#contracts/math/formula/contour";
+import type { SampleField } from "#contracts/math/formula/contour";
+import { CONTOUR_CELLS } from "#contracts/math/formula/contour";
 
 /** The field's values at the four corners of one cell, counterclockwise from the bottom left. */
 export type CellValues = readonly [number, number, number, number];

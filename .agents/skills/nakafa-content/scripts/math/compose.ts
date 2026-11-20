@@ -1,19 +1,22 @@
 import { Predicate } from "effect";
 import { findAlignedFindings } from "#nakafa-content/math/align";
-import { issueAtOffset, type MathFinding } from "#nakafa-content/math/finding";
+import type { MathFinding } from "#nakafa-content/math/finding";
+import { issueAtOffset } from "#nakafa-content/math/finding";
 import { findGluedTextGroups } from "#nakafa-content/math/glue";
 import {
   NESTED_DISCOVERY_KEYS,
   walkKeyedChildren,
 } from "#nakafa-content/mdx/keys";
 import { sourceOffsetForStaticMatch } from "#nakafa-content/mdx/offset";
+import type {
+  EstreeNode,
+  MdxAttribute,
+  MdxNode,
+} from "#nakafa-content/mdx/parse";
 import {
   asEstreeNode,
   attributeEstree,
-  type EstreeNode,
   estreeChildren,
-  type MdxAttribute,
-  type MdxNode,
   parseLessonMdx,
   staticFieldName,
 } from "#nakafa-content/mdx/parse";

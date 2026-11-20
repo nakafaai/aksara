@@ -6,12 +6,8 @@ import {
   PlainTextSchema,
   PositiveIntSchema,
 } from "#contracts/assessment/scalar";
-import {
-  type AssessmentVisuals,
-  assessmentVisuals,
-  FIGURE_NAMES,
-  type VisualName,
-} from "#contracts/visual/catalog";
+import type { AssessmentVisuals, VisualName } from "#contracts/visual/catalog";
+import { assessmentVisuals, FIGURE_NAMES } from "#contracts/visual/catalog";
 
 /**
  * One uploaded image. The text alternative is required, and the pixel size is

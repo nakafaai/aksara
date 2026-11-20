@@ -5,11 +5,8 @@ import {
   isSrcSetAttribute,
 } from "#nakafa-content/link/destination";
 import { sourceOffsetForStaticMatch } from "#nakafa-content/mdx/offset";
-import {
-  asEstreeNode,
-  type EstreeNode,
-  staticFieldName,
-} from "#nakafa-content/mdx/parse";
+import type { EstreeNode } from "#nakafa-content/mdx/parse";
+import { asEstreeNode, staticFieldName } from "#nakafa-content/mdx/parse";
 import { expectShape } from "#nakafa-content/mdx/shape";
 import {
   isFullyStaticStringExpression,

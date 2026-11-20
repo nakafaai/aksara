@@ -1,10 +1,6 @@
 import { Array as Arr, Option, Schema } from "effect";
-
-import {
-  type SamplePoint,
-  SamplePointSchema,
-  type SampleRange,
-} from "#contracts/math/formula/box";
+import type { SamplePoint, SampleRange } from "#contracts/math/formula/box";
+import { SamplePointSchema } from "#contracts/math/formula/box";
 
 /** Cells along each side of a sampled surface. */
 export const MESH_CELLS = 96;

@@ -1,8 +1,6 @@
 import { expect, layer } from "@effect/vitest";
-import {
-  type PageHead,
-  PageHeadSchema,
-} from "@nakafa/aksara-contracts/release/head";
+import type { PageHead } from "@nakafa/aksara-contracts/release/head";
+import { PageHeadSchema } from "@nakafa/aksara-contracts/release/head";
 import { Effect, Schema } from "effect";
 import {
   collectPageRoutes,

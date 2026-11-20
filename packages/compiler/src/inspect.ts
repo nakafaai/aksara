@@ -20,15 +20,13 @@ import {
   validateCompileRequest,
 } from "#compiler/engine";
 import { MdxCompilationError } from "#compiler/errors";
+import type { MetadataSourceRange } from "#compiler/metadata";
 import {
   AuthoredMetadataSchema,
-  type MetadataSourceRange,
   readMetadataDocument,
 } from "#compiler/metadata";
-import {
-  createSourcePolicy,
-  type SourcePolicyError,
-} from "#compiler/policy/source";
+import type { SourcePolicyError } from "#compiler/policy/source";
+import { createSourcePolicy } from "#compiler/policy/source";
 
 /** Lightweight source facts used before deciding whether code generation is needed. */
 const ContentSourceInspectionSchema = Schema.Struct({

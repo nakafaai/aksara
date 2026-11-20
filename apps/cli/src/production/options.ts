@@ -1,8 +1,8 @@
 import { Effect, MutableList, Schema } from "effect";
 
 import type { ProductionCommand } from "#cli/production/arguments";
+import type { ProductionOption } from "#cli/production/error";
 import {
-  type ProductionOption,
   ProductionOptionSchema,
   productionArgumentsError,
 } from "#cli/production/error";

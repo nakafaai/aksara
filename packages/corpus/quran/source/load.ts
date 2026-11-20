@@ -1,8 +1,6 @@
 import { Sha256HashSchema } from "@nakafa/aksara-contracts/ids";
-import {
-  ACTIVE_APP_LOCALES,
-  type ActiveAppLocaleList,
-} from "@nakafa/aksara-contracts/locale";
+import type { ActiveAppLocaleList } from "@nakafa/aksara-contracts/locale";
+import { ACTIVE_APP_LOCALES } from "@nakafa/aksara-contracts/locale";
 import {
   QuranSourceArtifactSchema,
   quranSourceFileCount,
@@ -24,8 +22,8 @@ import {
   QuranSourceLocaleError,
 } from "#corpus/quran/source/failure";
 import { RawSourcesSchema } from "#corpus/quran/source/model";
+import type { PinnedQuranFile } from "#corpus/quran/source/policy";
 import {
-  type PinnedQuranFile,
   QURAN_SOURCE_BUNDLE_DOMAIN,
   QURAN_SOURCE_POLICY,
   sha256Hex,

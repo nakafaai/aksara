@@ -1,5 +1,6 @@
 import { TypeScriptParser } from "@nakafa/aksara-utilities/typescript/parse";
 import { Array as Arr, Effect, HashSet } from "effect";
+import type { Node } from "tsrs/ast";
 import {
   isBinaryExpression,
   isBindingElement,
@@ -18,7 +19,6 @@ import {
   isStringLiteral,
   isStringLiteralLikeNode,
   isVariableDeclaration,
-  type Node,
   SyntaxKind,
 } from "tsrs/ast";
 import { syntaxNodesSkippingTypes } from "#scripts/check/syntax";

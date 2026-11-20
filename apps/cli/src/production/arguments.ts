@@ -1,15 +1,12 @@
-import { type ReleaseId, ReleaseIdSchema } from "@nakafa/aksara-contracts/ids";
+import type { ReleaseId } from "@nakafa/aksara-contracts/ids";
+import { ReleaseIdSchema } from "@nakafa/aksara-contracts/ids";
 import { PublicationScopeSchema } from "@nakafa/aksara-contracts/release/snapshot/scope";
-import {
-  type PublicationRetentionDecision,
-  PublicationRetentionSchema,
-} from "@nakafa/aksara-publisher/publication/spec";
+import type { PublicationRetentionDecision } from "@nakafa/aksara-publisher/publication/spec";
+import { PublicationRetentionSchema } from "@nakafa/aksara-publisher/publication/spec";
 import { Effect, Schema } from "effect";
 import { productionArgumentsError as argumentError } from "#cli/production/error";
-import {
-  parseProductionOptions,
-  type RawProductionOptions,
-} from "#cli/production/options";
+import type { RawProductionOptions } from "#cli/production/options";
+import { parseProductionOptions } from "#cli/production/options";
 import { decodePublicationScopeSelectors } from "#cli/scope";
 
 /** Exact immutable identity requested by one production release command. */

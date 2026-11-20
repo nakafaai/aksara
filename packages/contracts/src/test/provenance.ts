@@ -1,12 +1,9 @@
 import { Array as Arr, Schema } from "effect";
-
-import {
-  ACTIVE_APP_LOCALES,
-  type ActiveAppLocaleList,
-} from "#contracts/locale";
+import type { ActiveAppLocaleList } from "#contracts/locale";
+import { ACTIVE_APP_LOCALES } from "#contracts/locale";
+import type { QuranProvenanceScope } from "#contracts/quran/provenance";
 import {
   QuranProvenanceRecordSchema,
-  type QuranProvenanceScope,
   quranProvenanceScopes,
   quranSourceForProvenanceScope,
 } from "#contracts/quran/provenance";

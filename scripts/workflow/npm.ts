@@ -8,12 +8,12 @@ import {
   Schema,
 } from "effect";
 import { Hex } from "effect/encoding";
+import type { WorkflowJob } from "#scripts/workflow/decode";
 import {
   decodeWorkflow,
   exactNeeds,
   executableSource,
   jobSource,
-  type WorkflowJob,
 } from "#scripts/workflow/decode";
 import { ensure, WorkflowError } from "#scripts/workflow/requirement";
 

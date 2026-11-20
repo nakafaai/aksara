@@ -1,11 +1,9 @@
 /** Signed structured snapshot transition contracts. */
 import { Array as Arr, Record as Rec, Schema } from "effect";
-
-import { type Sha256Hash, Sha256HashSchema } from "#contracts/ids";
-import {
-  ContentSnapshotKindSchema,
-  type PublicationScope,
-} from "#contracts/release/snapshot/scope";
+import type { Sha256Hash } from "#contracts/ids";
+import { Sha256HashSchema } from "#contracts/ids";
+import type { PublicationScope } from "#contracts/release/snapshot/scope";
+import { ContentSnapshotKindSchema } from "#contracts/release/snapshot/scope";
 import { encodeJsonText } from "#contracts/text/json";
 
 /** Canonical digest for a release that stages no structured snapshot rows. */

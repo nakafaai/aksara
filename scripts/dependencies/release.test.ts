@@ -115,6 +115,34 @@ describe("newest stable release", () => {
   );
 
   it.effect(
+    "keeps the revisions of one prerelease line in one channel, in numeric order",
+    () =>
+      Effect.gen(function* () {
+        const versions = yield* versionsOf([
+          "0.25.0-ts7.1.0-beta",
+          "7.1.0-beta.tsrs2",
+          "7.1.0-beta.tsrs10",
+          "7.1.0-beta.tsrs9",
+          "7.1.0",
+        ]);
+
+        expect(releaseChannel("7.1.0-beta.tsrs3")).toEqual(
+          Option.some("beta.tsrs")
+        );
+        expect(
+          Option.getOrUndefined(
+            newestRelease(versions, undefined, Option.some("beta.tsrs"))
+          )
+        ).toBe("7.1.0-beta.tsrs10");
+        expect(
+          Option.getOrUndefined(
+            newestRelease(versions, undefined, Option.some("ts7.1.0-beta"))
+          )
+        ).toBe("0.25.0-ts7.1.0-beta");
+      })
+  );
+
+  it.effect(
     "reports nothing when no stable release is in the release line",
     () =>
       Effect.gen(function* () {

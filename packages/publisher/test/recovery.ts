@@ -1,14 +1,9 @@
 import { snapshotRowCount } from "@nakafa/aksara-contracts/release/snapshot/spec";
-import {
-  type PublicationSuccess,
-  PublicationSuccessSchema,
-} from "@nakafa/aksara-contracts/transport/response";
+import type { PublicationSuccess } from "@nakafa/aksara-contracts/transport/response";
+import { PublicationSuccessSchema } from "@nakafa/aksara-contracts/transport/response";
 import { Schema } from "effect";
-import {
-  transportRelease,
-  transportRenderer,
-  type transportRequests,
-} from "#test/transport/spec";
+import type { transportRequests } from "#test/transport/spec";
+import { transportRelease, transportRenderer } from "#test/transport/spec";
 
 type RecoveryRequest = Extract<
   (typeof transportRequests)[number],

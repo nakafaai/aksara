@@ -6,10 +6,12 @@ import {
   Sha256HashSchema,
 } from "@nakafa/aksara-contracts/ids";
 import { AppLocaleSchema } from "@nakafa/aksara-contracts/locale";
+import type {
+  RoutePageRequest,
+  RouteRollbackRecord,
+} from "@nakafa/aksara-contracts/release/route/page";
 import {
-  type RoutePageRequest,
   RoutePageSchema,
-  type RouteRollbackRecord,
   RouteRollbackRecordSchema,
 } from "@nakafa/aksara-contracts/release/route/page";
 import { ContentRouteItemSchema } from "@nakafa/aksara-contracts/release/route/spec";

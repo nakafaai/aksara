@@ -7,11 +7,8 @@ import type {
 import { Array as Arr, Effect, MutableHashMap, Schema } from "effect";
 
 import { requireSourceLocale } from "#corpus/locale/source";
-import {
-  projectTryoutExam,
-  type ServedExam,
-  serveTryoutExam,
-} from "#corpus/tryout/exam";
+import type { ServedExam } from "#corpus/tryout/exam";
+import { projectTryoutExam, serveTryoutExam } from "#corpus/tryout/exam";
 import { validateTryoutRoutes } from "#corpus/tryout/route";
 import { servedLocales } from "#corpus/tryout/row";
 import type { ExamSource } from "#corpus/tryout/schema";

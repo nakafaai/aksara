@@ -1,7 +1,5 @@
-import {
-  type ContentFamily,
-  ContentFamilySchema,
-} from "@nakafa/aksara-contracts/content";
+import type { ContentFamily } from "@nakafa/aksara-contracts/content";
+import { ContentFamilySchema } from "@nakafa/aksara-contracts/content";
 import {
   ContentKeySchema,
   CorpusSourcePathSchema,
@@ -13,9 +11,9 @@ import {
   AppLocaleSchema,
   ArtifactLocaleSchema,
 } from "@nakafa/aksara-contracts/locale";
+import type { ContentHead } from "@nakafa/aksara-contracts/release/head";
 import {
   ArticleHeadSchema,
-  type ContentHead,
   MaterialHeadSchema,
   PageHeadSchema,
 } from "@nakafa/aksara-contracts/release/head";

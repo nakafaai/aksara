@@ -1,8 +1,7 @@
-import { Effect, FileSystem, Path, Schema, type Scope, Stream } from "effect";
-import {
-  type ReplaySpoolError,
-  replaySpoolFailure,
-} from "#publisher/replay/error";
+import type { Scope } from "effect";
+import { Effect, FileSystem, Path, Schema, Stream } from "effect";
+import type { ReplaySpoolError } from "#publisher/replay/error";
+import { replaySpoolFailure } from "#publisher/replay/error";
 import {
   decodeReplayRecord,
   encodeReplayRecord,

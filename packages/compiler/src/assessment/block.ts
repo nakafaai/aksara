@@ -10,7 +10,8 @@ import type {
   ContentTreeElement,
 } from "@nakafa/aksara-contracts/tree";
 import { Array as Arr, Effect, Option, Predicate } from "effect";
-import { type BlockSite, sourceError } from "#compiler/assessment/error";
+import type { BlockSite } from "#compiler/assessment/error";
+import { sourceError } from "#compiler/assessment/error";
 import { figureComponent, figureNode } from "#compiler/assessment/figure";
 import { inlineContent } from "#compiler/assessment/inline";
 

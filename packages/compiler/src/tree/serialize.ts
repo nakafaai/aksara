@@ -2,17 +2,15 @@ import {
   ContentKeySchema,
   CorpusSourcePathSchema,
 } from "@nakafa/aksara-contracts/ids";
-import {
-  type ContentTreeChild,
-  type ContentTreeElement,
-  ContentTreeIntrinsicTagSchema,
-  type ContentTreeValue,
+import type {
+  ContentTreeChild,
+  ContentTreeElement,
+  ContentTreeValue,
 } from "@nakafa/aksara-contracts/tree";
+import { ContentTreeIntrinsicTagSchema } from "@nakafa/aksara-contracts/tree";
 import { Array as Arr, Effect, Predicate, Record as Rec, Schema } from "effect";
-import {
-  ContentTreePolicyError,
-  type ContentTreePolicyReason,
-} from "#compiler/errors";
+import type { ContentTreePolicyReason } from "#compiler/errors";
+import { ContentTreePolicyError } from "#compiler/errors";
 import {
   componentNameOf,
   TREE_FRAGMENT,

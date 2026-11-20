@@ -215,15 +215,15 @@ interaction.
 
 ### Modules
 
-| Module | Owns |
-| --- | --- |
-| `document`, `inline`, `figure` | the Assessment Document, its inline nodes, the figure node over the Visual Catalog, and the image |
-| `interaction`, `choice`, `entry`, `graphic` | the twelve interactions |
-| `scoring` | rules, strategies, scales, the score ceiling of a rule, and the points of a wrong-parts table |
-| `key`, `explanation` | the answer key and the explanation of an item version, each a record of its own |
-| `item`, `stimulus`, `hash` | families, versions, shared readings, and their hashes |
-| `joint` | the joint rule of an item version: its levels, its ceiling, and the checks that it fits the version |
-| `profile`, `paper`, `tools` | exam profiles, frozen papers, and the tool registry |
+| Module                                                     | Owns                                                                                                         |
+| ---------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------ |
+| `document`, `inline`, `figure`                             | the Assessment Document, its inline nodes, the figure node over the Visual Catalog, and the image            |
+| `interaction`, `choice`, `entry`, `graphic`                | the twelve interactions                                                                                      |
+| `scoring`                                                  | rules, strategies, scales, the score ceiling of a rule, and the points of a wrong-parts table                |
+| `key`, `explanation`                                       | the answer key and the explanation of an item version, each a record of its own                              |
+| `item`, `stimulus`, `hash`                                 | families, versions, shared readings, and their hashes                                                        |
+| `joint`                                                    | the joint rule of an item version: its levels, its ceiling, and the checks that it fits the version          |
+| `profile`, `paper`, `tools`                                | exam profiles, frozen papers, and the tool registry                                                          |
 | `identity`, `scalar`, `part`, `fit`, `structure`, `record` | identifiers, shared scalars, and the checks that the other modules share, such as the size limit of a record |
 
 Every module has its own `./assessment/<module>` export except `scalar`,
@@ -239,27 +239,27 @@ Nakafa renderer and Tiptap share. The research behind this table (13 October
 processing templates, and the official examples. It could not open the ASI XSD,
 so every attribute name below needs an XSD check before any QTI XML is written.
 
-| Contract | QTI 3.0.1 |
-| --- | --- |
-| `choice` | `qti-choice-interaction` (`min-choices`, `max-choices`, `shuffle`) with `qti-simple-choice` |
-| `matrix` | `qti-match-interaction`: the statements are the first set, the columns the second |
-| `match` | `qti-match-interaction` with `qti-simple-match-set` and `match-max` on each `qti-simple-associable-choice` |
-| `order` | `qti-order-interaction` |
-| `inlineChoice` | `qti-inline-choice-interaction` |
-| `textEntry` | `qti-text-entry-interaction` (`expected-length`) |
-| `numericEntry` | `qti-text-entry-interaction` with a float response |
-| `mathEntry` | `qti-portable-custom-interaction`, because QTI has no interaction for a typed expression |
-| `hotspot` | `qti-hotspot-interaction` with `qti-hotspot-choice` (`shape`, `coords`) |
-| `gapMatch` | `qti-gap-match-interaction` with `qti-gap-text` (`match-max`) and `qti-gap` |
-| `graphPoint` | `qti-select-point-interaction` for points, `qti-portable-custom-interaction` for lines |
-| `extendedText` | `qti-extended-text-interaction` (`expected-lines`); QTI leaves its scoring to a person |
-| `allOrNothing` | the `match_correct` response processing template |
-| `perPart` | the `map_response` template with a `qti-mapping` (`qti-map-entry`, `default-value`, `lower-bound`) |
-| `wrongParts` | no standard template holds a table over the wrong parts: general response processing (Best Practices and Implementation Guide, section 3.4.2) |
-| `joint` | a composite item, which section 3.4.2 scores by general response processing, not by a standard template |
-| `rubric` | `qti-rubric-block` with `use="scoring"` and a float `SCORE` that a person sets |
-| score ceiling k | the float outcomes `SCORE` and `MAXSCORE` |
-| stimulus | `qti-assessment-stimulus` and `qti-assessment-stimulus-ref` |
+| Contract        | QTI 3.0.1                                                                                                                                     |
+| --------------- | --------------------------------------------------------------------------------------------------------------------------------------------- |
+| `choice`        | `qti-choice-interaction` (`min-choices`, `max-choices`, `shuffle`) with `qti-simple-choice`                                                   |
+| `matrix`        | `qti-match-interaction`: the statements are the first set, the columns the second                                                             |
+| `match`         | `qti-match-interaction` with `qti-simple-match-set` and `match-max` on each `qti-simple-associable-choice`                                    |
+| `order`         | `qti-order-interaction`                                                                                                                       |
+| `inlineChoice`  | `qti-inline-choice-interaction`                                                                                                               |
+| `textEntry`     | `qti-text-entry-interaction` (`expected-length`)                                                                                              |
+| `numericEntry`  | `qti-text-entry-interaction` with a float response                                                                                            |
+| `mathEntry`     | `qti-portable-custom-interaction`, because QTI has no interaction for a typed expression                                                      |
+| `hotspot`       | `qti-hotspot-interaction` with `qti-hotspot-choice` (`shape`, `coords`)                                                                       |
+| `gapMatch`      | `qti-gap-match-interaction` with `qti-gap-text` (`match-max`) and `qti-gap`                                                                   |
+| `graphPoint`    | `qti-select-point-interaction` for points, `qti-portable-custom-interaction` for lines                                                        |
+| `extendedText`  | `qti-extended-text-interaction` (`expected-lines`); QTI leaves its scoring to a person                                                        |
+| `allOrNothing`  | the `match_correct` response processing template                                                                                              |
+| `perPart`       | the `map_response` template with a `qti-mapping` (`qti-map-entry`, `default-value`, `lower-bound`)                                            |
+| `wrongParts`    | no standard template holds a table over the wrong parts: general response processing (Best Practices and Implementation Guide, section 3.4.2) |
+| `joint`         | a composite item, which section 3.4.2 scores by general response processing, not by a standard template                                       |
+| `rubric`        | `qti-rubric-block` with `use="scoring"` and a float `SCORE` that a person sets                                                                |
+| score ceiling k | the float outcomes `SCORE` and `MAXSCORE`                                                                                                     |
+| stimulus        | `qti-assessment-stimulus` and `qti-assessment-stimulus-ref`                                                                                   |
 
 `max-choices="0"` is not used: its meaning is not confirmed by the sources read,
 so `maxChoices` is always a positive count.
@@ -274,12 +274,12 @@ Sources:
 
 ## Bounds
 
-| Bound | Value | Source |
-| --- | --- | --- |
-| Nesting of a document | 16 levels, `doc` being level 1 and a text node a level | Convex limits, section "Documents", row "Nesting depth": 16 |
-| Encoded record | 1 MiB (1,048,576 bytes) of UTF-8 JSON text | Convex limits, section "Documents", row "Size": 1 MiB |
-| Local identifier and kebab key | 128 characters | `tryout/key.ts`, the limit that try-out keys already use |
-| Family, profile, paper, stimulus, and asset identifier | 512 characters | `CONTENT_KEY_MAX_LENGTH` in `ids.ts` |
+| Bound                                                  | Value                                                  | Source                                                      |
+| ------------------------------------------------------ | ------------------------------------------------------ | ----------------------------------------------------------- |
+| Nesting of a document                                  | 16 levels, `doc` being level 1 and a text node a level | Convex limits, section "Documents", row "Nesting depth": 16 |
+| Encoded record                                         | 1 MiB (1,048,576 bytes) of UTF-8 JSON text             | Convex limits, section "Documents", row "Size": 1 MiB       |
+| Local identifier and kebab key                         | 128 characters                                         | `tryout/key.ts`, the limit that try-out keys already use    |
+| Family, profile, paper, stimulus, and asset identifier | 512 characters                                         | `CONTENT_KEY_MAX_LENGTH` in `ids.ts`                        |
 
 The Convex numbers are from https://docs.convex.dev/production/state/limits,
 read on 13 October 2026. Convex counts the nesting of objects and arrays, and a

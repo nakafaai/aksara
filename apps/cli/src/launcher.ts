@@ -15,11 +15,8 @@ import {
   Schema,
 } from "effect";
 import { ChildProcess } from "effect/process";
-import {
-  type InfoArgumentsError,
-  parseInfoArguments,
-  printCliInfo,
-} from "#cli/about";
+import type { InfoArgumentsError } from "#cli/about";
+import { parseInfoArguments, printCliInfo } from "#cli/about";
 import { findAksaraRoot, PreviewCheckoutError } from "#cli/checkout";
 import {
   makeLauncherTeardown,
@@ -27,7 +24,8 @@ import {
   setProcessExitCode,
   terminateSelf,
 } from "#cli/exit";
-import { type CliPackageError, readPackageVersion } from "#cli/package";
+import type { CliPackageError } from "#cli/package";
+import { readPackageVersion } from "#cli/package";
 
 /** The installed launcher could not execute the checkout-owned CLI source. */
 class CliLaunchError extends Schema.TaggedError<

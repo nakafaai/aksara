@@ -1,12 +1,11 @@
 import { describe, expect, it } from "@effect/vitest";
 import { Effect, Schema } from "effect";
 import { encodeJsonText, JsonTextSchema } from "#contracts/text/json";
+import type { ManifestError, PackageManifest } from "#scripts/manifest";
 import {
   assertContractPackageMetadata,
   assertPortableDependencies,
   createReleaseManifest,
-  type ManifestError,
-  type PackageManifest,
   parseInstalledManifest,
   parsePackageManifest,
   textField,

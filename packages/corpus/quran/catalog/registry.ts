@@ -8,10 +8,12 @@ import {
 import { QURAN_SOURCE_IDS } from "@nakafa/aksara-contracts/quran/identity";
 import { QuranProvenanceScopeSchema } from "@nakafa/aksara-contracts/quran/provenance";
 import { QuranProvenanceStatusSchema } from "@nakafa/aksara-contracts/quran/snapshot/spec";
+import type {
+  QuranSourceAttribution,
+  QuranTafsirAccess,
+} from "@nakafa/aksara-contracts/quran/source";
 import {
-  type QuranSourceAttribution,
   QuranSourceAttributionSchema,
-  type QuranTafsirAccess,
   QuranTafsirAccessSchema,
 } from "@nakafa/aksara-contracts/quran/source";
 import { Array as Arr, Schema } from "effect";

@@ -1,9 +1,7 @@
 import { NodeServices } from "@effect/platform-node";
 import { expect, layer } from "@effect/vitest";
-import {
-  type CorpusSourcePath,
-  CorpusSourcePathSchema,
-} from "@nakafa/aksara-contracts/ids";
+import type { CorpusSourcePath } from "@nakafa/aksara-contracts/ids";
+import { CorpusSourcePathSchema } from "@nakafa/aksara-contracts/ids";
 import {
   Array as Arr,
   Effect,

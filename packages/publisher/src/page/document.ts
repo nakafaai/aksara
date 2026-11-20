@@ -1,23 +1,19 @@
-import {
-  type CompiledContentResult,
-  compileContent,
-} from "@nakafa/aksara-compiler/compile";
+import type { CompiledContentResult } from "@nakafa/aksara-compiler/compile";
+import { compileContent } from "@nakafa/aksara-compiler/compile";
 import { inspectContentSource } from "@nakafa/aksara-compiler/inspect";
 import { hashCompiledContentPayload } from "@nakafa/aksara-contracts/artifact/integrity";
 import { CorpusSourcePathSchema } from "@nakafa/aksara-contracts/ids";
 import { hashContentProjection } from "@nakafa/aksara-contracts/projection/hash";
+import type { PublicPageProjection } from "@nakafa/aksara-contracts/projection/page";
 import {
   makePublicPageProjection,
   PageMetadataSchema,
-  type PublicPageProjection,
 } from "@nakafa/aksara-contracts/projection/page";
 import { ContentUpsertSchema } from "@nakafa/aksara-contracts/release";
 import type { RendererManifestEnvelope } from "@nakafa/aksara-contracts/renderer/contract";
 import type { PageEntry } from "@nakafa/aksara-corpus/pages/registry";
-import {
-  type PageDocumentSource,
-  readPageDocument,
-} from "@nakafa/aksara-corpus/pages/source";
+import type { PageDocumentSource } from "@nakafa/aksara-corpus/pages/source";
+import { readPageDocument } from "@nakafa/aksara-corpus/pages/source";
 import type { FileSystem, Path } from "effect";
 import { Effect, Schema } from "effect";
 import { makeCompileSource } from "#publisher/compilation";

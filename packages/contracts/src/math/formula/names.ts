@@ -1,9 +1,6 @@
 import { Array as Arr, HashSet } from "effect";
-
-import {
-  FORMULA_CONSTANTS,
-  type FormulaNode,
-} from "#contracts/math/formula/syntax";
+import type { FormulaNode } from "#contracts/math/formula/syntax";
+import { FORMULA_CONSTANTS } from "#contracts/math/formula/syntax";
 
 /** Every variable and parameter a node reads; constants are left out. */
 export function formulaNames(node: FormulaNode): HashSet.HashSet<string> {

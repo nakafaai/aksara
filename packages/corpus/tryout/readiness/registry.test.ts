@@ -10,10 +10,8 @@ import {
   Result,
 } from "effect";
 import { itemVersions } from "#corpus/question-bank/item";
-import {
-  type QuestionSet,
-  readQuestionSets,
-} from "#corpus/question-bank/source";
+import type { QuestionSet } from "#corpus/question-bank/source";
+import { readQuestionSets } from "#corpus/question-bank/source";
 import { corpusRoot } from "#corpus/test/root";
 import { tuDarmstadtEntranceReadiness } from "#corpus/tryout/germany/entrance/readiness/darmstadt";
 import { kaiserslauternEntranceReadiness } from "#corpus/tryout/germany/entrance/readiness/kaiserslautern";

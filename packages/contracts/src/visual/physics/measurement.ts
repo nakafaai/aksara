@@ -1,11 +1,6 @@
 import { Schema } from "effect";
-
-import {
-  byIds,
-  cardFields,
-  type RichSlot,
-  TextSchema,
-} from "#contracts/visual/card";
+import type { RichSlot } from "#contracts/visual/card";
+import { byIds, cardFields, TextSchema } from "#contracts/visual/card";
 import { answerAt, figure } from "#contracts/visual/entry";
 
 /** The quantities the dimension lab builds from length. */

@@ -1,10 +1,8 @@
 import { NodeServices } from "@effect/platform-node";
 import { compileContent } from "@nakafa/aksara-compiler/compile";
 import { hashCompiledContentPayload } from "@nakafa/aksara-contracts/artifact/integrity";
-import {
-  CompileDocumentSourceSchema,
-  type CompiledContentPayload,
-} from "@nakafa/aksara-contracts/content";
+import type { CompiledContentPayload } from "@nakafa/aksara-contracts/content";
+import { CompileDocumentSourceSchema } from "@nakafa/aksara-contracts/content";
 import {
   ContentKeySchema,
   CorpusSourcePathSchema,

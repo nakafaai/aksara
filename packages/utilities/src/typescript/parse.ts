@@ -1,7 +1,8 @@
 import { Context, Effect, Layer, Schema, Semaphore } from "effect";
 import type { SourceFile } from "tsrs/ast";
 import { createFileSystem } from "tsrs/fs";
-import { API, type Project } from "tsrs/sync";
+import type { Project } from "tsrs/sync";
+import { API } from "tsrs/sync";
 
 const ROOT = "/aksara-typescript";
 /** Plain JSON codec whose text is byte-identical to JSON.stringify. */

@@ -1,12 +1,11 @@
 import { Predicate } from "effect";
 import { isHighlightComponentName } from "#nakafa-content/mdx/fields";
+import type { EstreeNode, MdxNode } from "#nakafa-content/mdx/parse";
 import {
   asEstreeNode,
   attributeEstree,
-  type EstreeNode,
   estreeChildren,
   jsxComponentName,
-  type MdxNode,
   visitMdxNodes,
   walkEstreeDeep,
 } from "#nakafa-content/mdx/parse";

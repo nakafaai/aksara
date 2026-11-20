@@ -2,17 +2,21 @@ import { Effect } from "effect";
 
 import { hashText } from "#contracts/hash/text";
 import type { CurriculumRoute } from "#contracts/program/curriculum";
+import type {
+  ProgramSnapshotRow,
+  ProgramSnapshotRowInput,
+} from "#contracts/program/snapshot/row";
 import {
   CurriculumRouteRecordSchema,
   canonicalizeProgramSnapshotRow,
   LearningProgramRecordSchema,
-  type ProgramSnapshotRow,
-  type ProgramSnapshotRowInput,
 } from "#contracts/program/snapshot/row";
+import type {
+  ProgramSnapshot,
+  ProgramSnapshotFacts,
+} from "#contracts/program/snapshot/spec";
 import {
   PROGRAM_SNAPSHOT_FORMAT,
-  type ProgramSnapshot,
-  type ProgramSnapshotFacts,
   ProgramSnapshotSchema,
 } from "#contracts/program/snapshot/spec";
 import type { LearningProgram } from "#contracts/program/spec";

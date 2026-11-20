@@ -1,4 +1,5 @@
-import { type CompileOptions, compile, runSync } from "@mdx-js/mdx";
+import type { CompileOptions } from "@mdx-js/mdx";
+import { compile, runSync } from "@mdx-js/mdx";
 import { ContentTreeSchema } from "@nakafa/aksara-contracts/tree";
 import {
   Array as Arr,

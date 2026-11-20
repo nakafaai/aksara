@@ -1,13 +1,11 @@
 import { Array as Arr, Effect, HashSet, Option, Order, Schema } from "effect";
 import { Sha256MismatchFields } from "#contracts/errors";
 import { Sha256HashSchema } from "#contracts/ids";
-import {
-  type RendererComponents,
-  RendererComponentsSchema,
-} from "#contracts/renderer/component";
+import type { RendererComponents } from "#contracts/renderer/component";
+import { RendererComponentsSchema } from "#contracts/renderer/component";
+import type { RendererDomain } from "#contracts/renderer/domain";
 import {
   RENDERER_DOMAINS,
-  type RendererDomain,
   RendererDomainSchema,
 } from "#contracts/renderer/domain";
 import { encodeJsonText } from "#contracts/text/json";

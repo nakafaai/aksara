@@ -2,16 +2,13 @@ import {
   GitCommitShaSchema,
   ReleaseIdSchema,
 } from "@nakafa/aksara-contracts/ids";
-
-import {
-  type ContentReleaseCurrent,
-  type StagedContentRelease,
-  StagedContentReleaseSchema,
+import type {
+  ContentReleaseCurrent,
+  StagedContentRelease,
 } from "@nakafa/aksara-contracts/release/current/state";
-import {
-  type ContentReleaseBundle,
-  ContentReleaseBundleSchema,
-} from "@nakafa/aksara-contracts/release/lifecycle";
+import { StagedContentReleaseSchema } from "@nakafa/aksara-contracts/release/current/state";
+import type { ContentReleaseBundle } from "@nakafa/aksara-contracts/release/lifecycle";
+import { ContentReleaseBundleSchema } from "@nakafa/aksara-contracts/release/lifecycle";
 import {
   canonicalizePublicationScope,
   PublicationScopeSchema,

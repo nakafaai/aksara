@@ -109,10 +109,10 @@ their actual curricular domains:
 The ordered section projections retain exact canonical field parity with the
 filtered source:
 
-| Material | Sections | Canonical bytes | SHA-256 |
-|---|---:|---:|---|
-| AI Programming | 27 | 4,968 | `7a71c024307691cbb11a12a2f80e1c710b686ce39cd287aa26d1945885e77d6b` |
-| Linear Methods | 40 | 8,601 | `96d4e3dba9bbef575eac2be7e48078b3fc2ecb657706aa2d5a05276c240911e4` |
+| Material       | Sections | Canonical bytes | SHA-256                                                            |
+| -------------- | -------: | --------------: | ------------------------------------------------------------------ |
+| AI Programming |       27 |           4,968 | `7a71c024307691cbb11a12a2f80e1c710b686ce39cd287aa26d1945885e77d6b` |
+| Linear Methods |       40 |           8,601 | `96d4e3dba9bbef575eac2be7e48078b3fc2ecb657706aa2d5a05276c240911e4` |
 
 The monolithic Quran module was split into 114 numbered, surah-owned source
 files plus one ordered aggregator. The 103 owners that exceeded the repository

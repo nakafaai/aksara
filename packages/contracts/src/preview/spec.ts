@@ -1,13 +1,13 @@
 import { Schema } from "effect";
 import { GitCommitShaSchema, Sha256HashSchema } from "#contracts/ids";
 import { PreviewArtifactSchema } from "#contracts/preview/artifact";
-import {
-  type ArticlePreviewDocument,
-  type MaterialPreviewDocument,
-  type PagePreviewDocument,
-  type PreviewDocument,
-  PreviewDocumentSchema,
+import type {
+  ArticlePreviewDocument,
+  MaterialPreviewDocument,
+  PagePreviewDocument,
+  PreviewDocument,
 } from "#contracts/preview/document";
+import { PreviewDocumentSchema } from "#contracts/preview/document";
 import { PreviewRouteSchema } from "#contracts/preview/target";
 import type { ArticleProjection } from "#contracts/projection/article";
 import type { MaterialLessonProjection } from "#contracts/projection/material";

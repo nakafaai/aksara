@@ -1,7 +1,7 @@
 import { NodeServices } from "@effect/platform-node";
 import { describe, expect, it } from "@effect/vitest";
+import type { ContentHead } from "@nakafa/aksara-contracts/release/head";
 import {
-  type ContentHead,
   ContentHeadSchema,
   canonicalizeContentHead,
   HeadPageSchema,

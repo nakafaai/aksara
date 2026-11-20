@@ -1,10 +1,7 @@
 import { Predicate } from "effect";
 import { isHighlightComponentName } from "#nakafa-content/mdx/fields";
-import {
-  type MdxNode,
-  parseLessonMdx,
-  visitMdxNodes,
-} from "#nakafa-content/mdx/parse";
+import type { MdxNode } from "#nakafa-content/mdx/parse";
+import { parseLessonMdx, visitMdxNodes } from "#nakafa-content/mdx/parse";
 import { renderedNodeRange } from "#nakafa-content/mdx/rendered";
 import { maskBalancedQuotations } from "#nakafa-content/voice/text";
 import type { LessonVoiceIssue } from "#nakafa-content/voice/types";

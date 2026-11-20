@@ -32,7 +32,8 @@ import type { ContentSnapshotSet } from "@nakafa/aksara-contracts/release/snapsh
 import type { verifyContentSnapshots } from "@nakafa/aksara-contracts/release/snapshot/verify";
 import type { verifyContentRendererCompatibility } from "@nakafa/aksara-contracts/renderer/compatibility";
 import type { validateRendererManifestHash } from "@nakafa/aksara-contracts/renderer/manifest";
-import { type Effect, Schema, type Stream } from "effect";
+import type { Effect, Stream } from "effect";
+import { Schema } from "effect";
 import type {
   PreparedContentCoherenceError,
   PreparedContentDecodeError,

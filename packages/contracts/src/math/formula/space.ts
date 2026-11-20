@@ -2,11 +2,8 @@ import { Array as Arr, Result } from "effect";
 import type { SampleBox, SamplePoint } from "#contracts/math/formula/box";
 import type { FormulaScope } from "#contracts/math/formula/compile";
 import { sampleGrid } from "#contracts/math/formula/mesh";
-import {
-  compileText,
-  evaluateWith,
-  type FormulaGeometry,
-} from "#contracts/math/formula/plane";
+import type { FormulaGeometry } from "#contracts/math/formula/plane";
+import { compileText, evaluateWith } from "#contracts/math/formula/plane";
 import { sampleCurve } from "#contracts/math/formula/sample";
 import type { FormulaError } from "#contracts/math/formula/syntax";
 import type { SpaceSolidObjectSchemas } from "#contracts/math/solid";

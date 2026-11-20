@@ -2,17 +2,17 @@ import type {
   compileExplanationDocument,
   compileReadingDocument,
 } from "@nakafa/aksara-compiler/assessment/document";
-import {
-  hashExamProfile,
-  type hashPaper,
-  type hashStimulusVersion,
+import type {
+  hashPaper,
+  hashStimulusVersion,
 } from "@nakafa/aksara-contracts/assessment/hash";
+import { hashExamProfile } from "@nakafa/aksara-contracts/assessment/hash";
 import type {
   verifyPaperPlaces,
   verifyPaperStimuli,
 } from "@nakafa/aksara-contracts/assessment/paper";
+import type { AssessmentRow } from "@nakafa/aksara-contracts/assessment/snapshot";
 import {
-  type AssessmentRow,
   AssessmentRowOrder,
   digestAssessmentRows,
   hashAssessmentRow,
@@ -26,8 +26,8 @@ import type {
 import { projectTryoutCatalog } from "@nakafa/aksara-corpus/tryout/catalog";
 import type { loadTryoutContent } from "@nakafa/aksara-corpus/tryout/content";
 import { makeExamProfile } from "@nakafa/aksara-corpus/tryout/profile";
-import type { FileSystem, Path } from "effect";
-import { Array as Arr, Effect, Option, type Schema, Stream } from "effect";
+import type { FileSystem, Path, Schema } from "effect";
+import { Array as Arr, Effect, Option, Stream } from "effect";
 import type {
   AssembledItem,
   AssembleItemError,

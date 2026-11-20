@@ -1,14 +1,10 @@
 import { NodeServices } from "@effect/platform-node";
 import { ContentKeySchema } from "@nakafa/aksara-contracts/ids";
 import { hashContentProjection } from "@nakafa/aksara-contracts/projection/hash";
-import {
-  type MaterialHead,
-  MaterialHeadSchema,
-} from "@nakafa/aksara-contracts/release/head";
-import {
-  type PublicationScope,
-  PublicationScopeSchema,
-} from "@nakafa/aksara-contracts/release/snapshot/scope";
+import type { MaterialHead } from "@nakafa/aksara-contracts/release/head";
+import { MaterialHeadSchema } from "@nakafa/aksara-contracts/release/head";
+import type { PublicationScope } from "@nakafa/aksara-contracts/release/snapshot/scope";
+import { PublicationScopeSchema } from "@nakafa/aksara-contracts/release/snapshot/scope";
 import { RendererManifestEnvelopeSchema } from "@nakafa/aksara-contracts/renderer/contract";
 import { createRendererManifest } from "@nakafa/aksara-contracts/renderer/manifest";
 import {

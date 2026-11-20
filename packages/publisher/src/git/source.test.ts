@@ -1,9 +1,7 @@
 import { NodeServices } from "@effect/platform-node";
 import { describe, expect, it } from "@effect/vitest";
-import {
-  type CompileDocumentSource,
-  CompileDocumentSourceSchema,
-} from "@nakafa/aksara-contracts/content";
+import type { CompileDocumentSource } from "@nakafa/aksara-contracts/content";
+import { CompileDocumentSourceSchema } from "@nakafa/aksara-contracts/content";
 import {
   ContentKeySchema,
   CorpusSourcePathSchema,
@@ -12,10 +10,8 @@ import {
 } from "@nakafa/aksara-contracts/ids";
 import { ArtifactLocaleSchema } from "@nakafa/aksara-contracts/locale";
 import { ContentReleaseItemSchema } from "@nakafa/aksara-contracts/release";
-import {
-  ExactProcess,
-  type ExactProcessInput,
-} from "@nakafa/aksara-utilities/process/exact";
+import type { ExactProcessInput } from "@nakafa/aksara-utilities/process/exact";
+import { ExactProcess } from "@nakafa/aksara-utilities/process/exact";
 import {
   Array as Arr,
   Deferred,

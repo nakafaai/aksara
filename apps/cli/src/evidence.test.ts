@@ -2,10 +2,10 @@ import { NodeServices } from "@effect/platform-node";
 import { expect, layer } from "@effect/vitest";
 import { GitCommitShaSchema } from "@nakafa/aksara-contracts/ids";
 import { makeExactGitInput } from "@nakafa/aksara-utilities/git/exact";
+import type { ExactProcessInput } from "@nakafa/aksara-utilities/process/exact";
 import {
   ExactProcess,
   ExactProcessError,
-  type ExactProcessInput,
 } from "@nakafa/aksara-utilities/process/exact";
 import { encodeJsonText } from "@nakafa/aksara-utilities/text/json";
 import { Array as Arr, Effect, MutableList, Schema } from "effect";

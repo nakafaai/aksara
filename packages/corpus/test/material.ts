@@ -1,10 +1,7 @@
 import type { AppLocaleCode } from "@nakafa/aksara-contracts/locale";
 import { Array as Arr, Effect, Schema } from "effect";
-
-import {
-  type LessonMaterialSource,
-  LessonMaterialSourceSchema,
-} from "#corpus/material/schema";
+import type { LessonMaterialSource } from "#corpus/material/schema";
+import { LessonMaterialSourceSchema } from "#corpus/material/schema";
 
 /** Builds one exact lesson source so tests change one identity at a time. */
 export function lessonMaterialSource() {

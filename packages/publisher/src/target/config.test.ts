@@ -1,9 +1,7 @@
 import { describe, expect, it } from "@effect/vitest";
 import { Array as Arr, Duration, Effect, Redacted, Result } from "effect";
-import {
-  type HttpPublicationTargetConfig,
-  validateHttpConfig,
-} from "#publisher/target/config";
+import type { HttpPublicationTargetConfig } from "#publisher/target/config";
+import { validateHttpConfig } from "#publisher/target/config";
 
 /** Builds one explicit production-style configuration with safe defaults. */
 function config(

@@ -4,10 +4,10 @@ import {
   inheritContentSnapshots,
   snapshotRowCount,
 } from "#contracts/release/snapshot/spec";
+import type { SignedContentRelease } from "#contracts/release/spec";
 import {
   ReleaseVerificationCompleteSchema,
   ReleaseVerificationEvidenceSchema,
-  type SignedContentRelease,
 } from "#contracts/release/spec";
 import {
   hash as manifestHash,

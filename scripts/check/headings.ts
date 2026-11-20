@@ -1,8 +1,6 @@
 import { Array as Arr, Effect, HashSet, Option, Order, Schema } from "effect";
-import {
-  type CorpusPage,
-  findIdentityFindings,
-} from "#nakafa-content/heading/identity";
+import type { CorpusPage } from "#nakafa-content/heading/identity";
+import { findIdentityFindings } from "#nakafa-content/heading/identity";
 import { findPageFindings } from "#nakafa-content/heading/page";
 import { isHeadingOnlyChange } from "#nakafa-content/heading/relabel";
 import { findSkeletonFindings } from "#nakafa-content/heading/skeleton";

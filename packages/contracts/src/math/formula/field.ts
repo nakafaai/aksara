@@ -2,11 +2,11 @@ import { Array as Arr, Result, Schema } from "effect";
 
 import { MathVisualKeySchema } from "#contracts/math/base";
 import { readFormula, readRelation } from "#contracts/math/formula/parse";
-import {
-  type FormulaComparison,
-  type FormulaError,
-  FormulaParameterNameSchema,
+import type {
+  FormulaComparison,
+  FormulaError,
 } from "#contracts/math/formula/syntax";
+import { FormulaParameterNameSchema } from "#contracts/math/formula/syntax";
 
 /** Passes a formula that reads, or names the problem of one that does not. */
 function readable<A>(read: (text: string) => Result.Result<A, FormulaError>) {

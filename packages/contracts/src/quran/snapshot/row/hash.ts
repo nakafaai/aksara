@@ -4,11 +4,11 @@ import { canonicalizeLearningGraphIdentity } from "#contracts/graph/spec";
 import { hashText } from "#contracts/hash/text";
 import type { Sha256Hash } from "#contracts/ids";
 import { canonicalizeQuranAttribution } from "#contracts/quran/attribution";
-import {
-  type QuranRowPayload,
-  type QuranRuntimeVerse,
-  QuranSnapshotRowSchema,
+import type {
+  QuranRowPayload,
+  QuranRuntimeVerse,
 } from "#contracts/quran/snapshot/row";
+import { QuranSnapshotRowSchema } from "#contracts/quran/snapshot/row";
 import type { QuranTafsirAccess } from "#contracts/quran/source";
 import { encodeJsonText } from "#contracts/text/json";
 

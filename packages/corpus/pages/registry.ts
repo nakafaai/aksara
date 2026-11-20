@@ -3,10 +3,12 @@ import {
   CorpusSourcePathSchema,
   PublicPathSchema,
 } from "@nakafa/aksara-contracts/ids";
+import type {
+  ActiveAppLocaleList,
+  AppLocale,
+} from "@nakafa/aksara-contracts/locale";
 import {
   ACTIVE_APP_LOCALES,
-  type ActiveAppLocaleList,
-  type AppLocale,
   AppLocaleSchema,
 } from "@nakafa/aksara-contracts/locale";
 import {
@@ -27,7 +29,8 @@ import {
   contentHeadOrder,
   requireSourceLocale,
 } from "#corpus/locale/source";
-import { PageRootSchema, type PageSource } from "#corpus/pages/schema";
+import type { PageSource } from "#corpus/pages/schema";
+import { PageRootSchema } from "#corpus/pages/schema";
 import { decodePageSources } from "#corpus/pages/source";
 
 export const PageEntrySchema = Schema.Struct({

@@ -1,14 +1,12 @@
 import { ContentFamilySchema } from "@nakafa/aksara-contracts/content";
+import type { Sha256HashSchema } from "@nakafa/aksara-contracts/ids";
 import {
   ContentKeySchema,
   ReleaseIdSchema,
-  type Sha256HashSchema,
 } from "@nakafa/aksara-contracts/ids";
 import { ArtifactLocaleSchema } from "@nakafa/aksara-contracts/locale";
-import {
-  type ContentHead,
-  ContentHeadSchema,
-} from "@nakafa/aksara-contracts/release/head";
+import type { ContentHead } from "@nakafa/aksara-contracts/release/head";
+import { ContentHeadSchema } from "@nakafa/aksara-contracts/release/head";
 import {
   createResultCatalogDigest,
   finalizeResultCatalogDigest,

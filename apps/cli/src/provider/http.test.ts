@@ -10,11 +10,8 @@ import {
 import { encodeJsonText } from "@nakafa/aksara-utilities/text/json";
 import { Array as Arr, Deferred, Effect, HashMap, Schema } from "effect";
 import { TestClock } from "effect/testing";
-import {
-  PREVIEW_EVENTS_PATH,
-  PREVIEW_MANIFEST_PATH,
-  type PreviewHttpState,
-} from "#cli/provider/http";
+import type { PreviewHttpState } from "#cli/provider/http";
+import { PREVIEW_EVENTS_PATH, PREVIEW_MANIFEST_PATH } from "#cli/provider/http";
 import {
   KEEP_ALIVE_LINE,
   makeEventReader,

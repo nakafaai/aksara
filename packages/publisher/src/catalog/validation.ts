@@ -5,8 +5,8 @@ import {
 } from "@nakafa/aksara-contracts/ids";
 import { digestRoutes } from "@nakafa/aksara-contracts/release/route/digest";
 import type { RendererManifestEnvelope } from "@nakafa/aksara-contracts/renderer/contract";
-import type { FileSystem, Path } from "effect";
-import { Effect, Schema, type Scope, Stream } from "effect";
+import type { FileSystem, Path, Scope } from "effect";
+import { Effect, Schema, Stream } from "effect";
 import { readContentCatalogExpectation } from "#publisher/catalog/expectation";
 import { prepareContentCatalog } from "#publisher/catalog/publication";
 import {

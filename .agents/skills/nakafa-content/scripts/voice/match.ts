@@ -5,8 +5,8 @@ import {
   GERMAN_FORMAL_ADDRESS_PATTERN,
   unanchoredGermanFormalAddressOffset,
 } from "#nakafa-content/voice/address";
+import type { InlineQuotationRange } from "#nakafa-content/voice/text";
 import {
-  type InlineQuotationRange,
   maskBalancedQuotations,
   maskMultilineQuotations,
   maskProtectedInlineContent,

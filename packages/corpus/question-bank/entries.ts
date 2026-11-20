@@ -9,12 +9,8 @@ import {
   Result,
   Schema,
 } from "effect";
-import {
-  type BankEntry,
-  QUESTION_BANK_ROOT,
-  readBankEntry,
-  type SetPath,
-} from "#corpus/question-bank/path";
+import type { BankEntry, SetPath } from "#corpus/question-bank/path";
+import { QUESTION_BANK_ROOT, readBankEntry } from "#corpus/question-bank/path";
 
 /** Reading the question bank or one of its files failed. */
 export class QuestionReadError extends Schema.TaggedError<

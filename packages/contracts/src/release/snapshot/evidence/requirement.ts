@@ -1,11 +1,10 @@
-import { Effect, Schema, type Stream } from "effect";
+import type { Stream } from "effect";
+import { Effect, Schema } from "effect";
 
 import type { Sha256Hash } from "#contracts/ids";
 import type { ContentSnapshotRow } from "#contracts/release/snapshot/data";
-import {
-  type ContentSnapshotKind,
-  ContentSnapshotKindSchema,
-} from "#contracts/release/snapshot/scope";
+import type { ContentSnapshotKind } from "#contracts/release/snapshot/scope";
+import { ContentSnapshotKindSchema } from "#contracts/release/snapshot/scope";
 
 /** Signed snapshot evidence differs from its authenticated row stream. */
 export class SnapshotEvidenceError extends Schema.TaggedError<

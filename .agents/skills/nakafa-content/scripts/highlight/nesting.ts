@@ -1,6 +1,7 @@
 import { isAuthoredLesson } from "#nakafa-content/highlight/section";
 import { isHighlightComponentName } from "#nakafa-content/mdx/fields";
-import { type MdxNode, parseLessonMdx } from "#nakafa-content/mdx/parse";
+import type { MdxNode } from "#nakafa-content/mdx/parse";
+import { parseLessonMdx } from "#nakafa-content/mdx/parse";
 import { expectShape } from "#nakafa-content/mdx/shape";
 import type { LessonVoiceIssue } from "#nakafa-content/voice/types";
 

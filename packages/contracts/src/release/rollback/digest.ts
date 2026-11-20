@@ -4,10 +4,8 @@ import {
   ReleaseCountMismatchFields,
   ReleaseDigestMismatchFields,
 } from "#contracts/release/mismatch";
-import {
-  canonicalizeRollbackSnapshotEntry,
-  type RollbackSnapshotEntry,
-} from "#contracts/release/rollback/spec";
+import type { RollbackSnapshotEntry } from "#contracts/release/rollback/spec";
+import { canonicalizeRollbackSnapshotEntry } from "#contracts/release/rollback/spec";
 import type { ContentReleaseManifest } from "#contracts/release/spec";
 
 const ROLLBACK_SNAPSHOT_DIGEST_DOMAIN = "nakafa.aksara.rollback-snapshot";

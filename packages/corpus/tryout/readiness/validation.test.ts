@@ -7,10 +7,8 @@ import {
   testExamInput,
   testYearTrack as year,
 } from "#corpus/test/exam";
-import {
-  type AssessmentReadinessInput,
-  defineAssessmentReadiness,
-} from "#corpus/tryout/readiness/schema";
+import type { AssessmentReadinessInput } from "#corpus/tryout/readiness/schema";
+import { defineAssessmentReadiness } from "#corpus/tryout/readiness/schema";
 import { validateAssessmentSourceReadiness } from "#corpus/tryout/readiness/validation";
 import { defineExamSource } from "#corpus/tryout/schema";
 

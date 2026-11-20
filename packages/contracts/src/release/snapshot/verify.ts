@@ -1,18 +1,18 @@
 import { Effect, MutableRef, Option, Schema, Stream } from "effect";
 import { assessmentRowCount } from "#contracts/assessment/snapshot";
+import type {
+  ContentSnapshotManifest,
+  ContentSnapshotRow,
+} from "#contracts/release/snapshot/data";
 import {
-  type ContentSnapshotManifest,
   ContentSnapshotManifestSchema,
-  type ContentSnapshotRow,
   ContentSnapshotRowSchema,
 } from "#contracts/release/snapshot/data";
 import { verifySnapshotRows } from "#contracts/release/snapshot/evidence";
+import type { ContentSnapshotKind } from "#contracts/release/snapshot/scope";
+import { ContentSnapshotKindSchema } from "#contracts/release/snapshot/scope";
+import type { ContentSnapshotSet } from "#contracts/release/snapshot/spec";
 import {
-  type ContentSnapshotKind,
-  ContentSnapshotKindSchema,
-} from "#contracts/release/snapshot/scope";
-import {
-  type ContentSnapshotSet,
   ContentSnapshotSetSchema,
   inheritContentSnapshots,
   replaceContentSnapshot,

@@ -1,8 +1,6 @@
 import type { ReleaseId, Sha256Hash } from "@nakafa/aksara-contracts/ids";
-import {
-  type ContentSnapshotRow,
-  canonicalizeContentSnapshotRow,
-} from "@nakafa/aksara-contracts/release/snapshot/data";
+import type { ContentSnapshotRow } from "@nakafa/aksara-contracts/release/snapshot/data";
+import { canonicalizeContentSnapshotRow } from "@nakafa/aksara-contracts/release/snapshot/data";
 import { ContentSnapshotKindSchema } from "@nakafa/aksara-contracts/release/snapshot/scope";
 import {
   MAX_SNAPSHOT_BATCH_BYTES,

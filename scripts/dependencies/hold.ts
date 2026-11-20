@@ -2,8 +2,8 @@ import { Effect, Schema } from "effect";
 
 import type { BunRunner } from "#scripts/dependencies/command";
 import type { RootManifest } from "#scripts/dependencies/manifest";
+import type { DependencyHold } from "#scripts/dependencies/policy";
 import {
-  type DependencyHold,
   DependencyHoldSchema,
   declaredVersion,
 } from "#scripts/dependencies/policy";

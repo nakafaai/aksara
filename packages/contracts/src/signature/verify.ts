@@ -2,8 +2,8 @@ import { Effect, Layer } from "effect";
 import { KeyFormat, SecureRandom, Signature } from "effect/crypto";
 import { Base64, Base64Url, Hex } from "effect/encoding";
 import type { Ed25519Signature, SigningKeyId } from "#contracts/ids";
+import type { ContentSignatureSubject } from "#contracts/signature/spec";
 import {
-  type ContentSignatureSubject,
   ContentVerificationKeyResolver,
   PublicKeyParseError,
   PublicKeyTypeError,

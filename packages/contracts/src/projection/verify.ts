@@ -2,10 +2,8 @@ import { Effect, MutableHashMap, Option, Schema, Stream } from "effect";
 import { compareContentHeads, routeIdentity } from "#contracts/content";
 import { PublicPathSchema } from "#contracts/ids";
 import { digestProjections } from "#contracts/projection/digest";
-import {
-  type ContentProjection,
-  ContentProjectionSchema,
-} from "#contracts/projection/spec";
+import type { ContentProjection } from "#contracts/projection/spec";
+import { ContentProjectionSchema } from "#contracts/projection/spec";
 import { ReleaseCountSchema } from "#contracts/release/count";
 import {
   ReleaseCountMismatchFields,

@@ -1,19 +1,14 @@
 import { Array as Arr, Option, Result, Schema } from "effect";
 import type { PlaneCurveObjectSchemas } from "#contracts/math/curve";
-import {
-  type SampleBox,
-  type SamplePoint,
-  SamplePointSchema,
-} from "#contracts/math/formula/box";
-import {
-  compileFormula,
-  type FormulaEvaluator,
-  type FormulaScope,
+import type { SampleBox, SamplePoint } from "#contracts/math/formula/box";
+import { SamplePointSchema } from "#contracts/math/formula/box";
+import type {
+  FormulaEvaluator,
+  FormulaScope,
 } from "#contracts/math/formula/compile";
-import {
-  contourLines,
-  type SampleField,
-} from "#contracts/math/formula/contour";
+import { compileFormula } from "#contracts/math/formula/compile";
+import type { SampleField } from "#contracts/math/formula/contour";
+import { contourLines } from "#contracts/math/formula/contour";
 import type { PlaneFormulaPoint } from "#contracts/math/formula/field";
 import { SampleGridSchema } from "#contracts/math/formula/mesh";
 import { readFormula, readRelation } from "#contracts/math/formula/parse";

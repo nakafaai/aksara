@@ -10,10 +10,8 @@ import {
   makeCurriculumSnapshotRow,
   makeProgramSnapshotRow,
 } from "#contracts/program/snapshot/hash";
-import {
-  type ProgramSnapshotRow,
-  ProgramSnapshotRowSchema,
-} from "#contracts/program/snapshot/row";
+import type { ProgramSnapshotRow } from "#contracts/program/snapshot/row";
+import { ProgramSnapshotRowSchema } from "#contracts/program/snapshot/row";
 import { LearningProgramSchema } from "#contracts/program/spec";
 import { curriculumRows, programCatalogRows } from "#contracts/test/program";
 

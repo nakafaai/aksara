@@ -6,18 +6,20 @@ import type {
   ArtifactSourceHashMismatchError,
   ArtifactVerificationByteLimitError,
 } from "@nakafa/aksara-contracts/artifact/spec";
+import type {
+  CompiledContentPayload,
+  SignedContentArtifact,
+} from "@nakafa/aksara-contracts/content";
 import {
-  type CompiledContentPayload,
   canonicalizeContentArtifactSigningInput,
-  type SignedContentArtifact,
   SignedContentArtifactSchema,
 } from "@nakafa/aksara-contracts/content";
 import { SigningKeyIdSchema } from "@nakafa/aksara-contracts/ids";
-import {
-  type ContentReleaseManifest,
-  type SignedContentRelease,
-  SignedContentReleaseSchema,
+import type {
+  ContentReleaseManifest,
+  SignedContentRelease,
 } from "@nakafa/aksara-contracts/release";
+import { SignedContentReleaseSchema } from "@nakafa/aksara-contracts/release";
 import { hashContentReleaseManifest } from "@nakafa/aksara-contracts/release/hash";
 import { canonicalizeContentReleaseSigningInput } from "@nakafa/aksara-contracts/release/signing";
 import { ed25519PublicKeyPem } from "@nakafa/aksara-contracts/signature/key";

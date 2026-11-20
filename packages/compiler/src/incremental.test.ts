@@ -1,7 +1,8 @@
 import { assert, describe, expect, it } from "@effect/vitest";
 import { Sha256HashSchema } from "@nakafa/aksara-contracts/ids";
 import { Effect, Schema } from "effect";
-import { type CompileReason, compileIncremental } from "#compiler/incremental";
+import type { CompileReason } from "#compiler/incremental";
+import { compileIncremental } from "#compiler/incremental";
 import { createTestRendererManifest } from "#compiler/test/content";
 
 const encodeJson = Schema.encodeSync(Schema.fromJsonString(Schema.Unknown));

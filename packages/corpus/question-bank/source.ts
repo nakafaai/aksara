@@ -1,20 +1,16 @@
 import { KebabKeySchema } from "@nakafa/aksara-contracts/assessment/identity";
 import { CorpusSourcePathSchema } from "@nakafa/aksara-contracts/ids";
+import type { AppLocaleCode } from "@nakafa/aksara-contracts/locale";
 import {
   APP_LOCALE_CODES,
-  type AppLocaleCode,
   AppLocaleCodeSchema,
 } from "@nakafa/aksara-contracts/locale";
 import { TypeScriptParser } from "@nakafa/aksara-utilities/typescript/parse";
 import { Array as Arr, Effect, FileSystem, Order, Path, Schema } from "effect";
 import { QuestionReadError, readEntries } from "#corpus/question-bank/entries";
 import { ItemSourceSchema, itemVersions } from "#corpus/question-bank/item";
-import {
-  type BankEntry,
-  type SetPath,
-  SetPathSchema,
-  setSourcePath,
-} from "#corpus/question-bank/path";
+import type { BankEntry, SetPath } from "#corpus/question-bank/path";
+import { SetPathSchema, setSourcePath } from "#corpus/question-bank/path";
 import { decodeItemSource } from "#corpus/question-bank/reader";
 
 /** One authored question: its set, its number, its folder, and its item. */

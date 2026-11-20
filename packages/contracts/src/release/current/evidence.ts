@@ -1,10 +1,9 @@
 import { Array as Arr, Schema } from "effect";
-
-import {
-  type ContentReleaseBundle,
-  ContentReleaseBundleSchema,
-  type RollbackContentReleaseBundle,
+import type {
+  ContentReleaseBundle,
+  RollbackContentReleaseBundle,
 } from "#contracts/release/lifecycle";
+import { ContentReleaseBundleSchema } from "#contracts/release/lifecycle";
 import {
   hasSameContentSnapshots,
   snapshotRowCount,

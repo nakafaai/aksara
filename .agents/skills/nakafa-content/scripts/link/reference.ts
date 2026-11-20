@@ -1,5 +1,6 @@
 import { Predicate } from "effect";
-import { type MdxNode, visitMdxNodes } from "#nakafa-content/mdx/parse";
+import type { MdxNode } from "#nakafa-content/mdx/parse";
+import { visitMdxNodes } from "#nakafa-content/mdx/parse";
 
 /** Resolves reference-style Markdown links through their definitions. */
 export function linkDefinitions(tree: MdxNode): ReadonlyMap<string, string> {

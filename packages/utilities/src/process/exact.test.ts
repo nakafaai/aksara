@@ -11,11 +11,8 @@ import {
   Schedule,
   Schema,
 } from "effect";
-import {
-  ExactProcess,
-  type ExactProcessInput,
-  ExactProcessLive,
-} from "#utilities/process/exact";
+import type { ExactProcessInput } from "#utilities/process/exact";
+import { ExactProcess, ExactProcessLive } from "#utilities/process/exact";
 
 const OUTPUT_LIMIT = 512 * 1024;
 const ProcessIdSchema = Schema.FiniteFromString.pipe(

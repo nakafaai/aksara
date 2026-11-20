@@ -1,7 +1,8 @@
 import { describe, expect, it } from "@effect/vitest";
 import { Effect, Schema, Stream } from "effect";
 import { ReleaseIdSchema } from "#contracts/ids";
-import { ACTIVE_APP_LOCALES, type AppLocaleCode } from "#contracts/locale";
+import type { AppLocaleCode } from "#contracts/locale";
+import { ACTIVE_APP_LOCALES } from "#contracts/locale";
 import { digestProjections } from "#contracts/projection/digest";
 import { MaterialLessonProjectionSchema } from "#contracts/projection/material";
 import { verifyContentProjections } from "#contracts/projection/verify";

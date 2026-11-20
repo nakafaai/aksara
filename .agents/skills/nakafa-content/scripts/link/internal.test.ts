@@ -4,7 +4,8 @@ import {
   findInternalLinkIssues,
   isInternalDestination,
 } from "#nakafa-content/link/internal";
-import { type MdxNode, parseLessonMdx } from "#nakafa-content/mdx/parse";
+import type { MdxNode } from "#nakafa-content/mdx/parse";
+import { parseLessonMdx } from "#nakafa-content/mdx/parse";
 
 /** Names every issue a lesson source produces, in source order. */
 const rules = (source: string): string[] =>

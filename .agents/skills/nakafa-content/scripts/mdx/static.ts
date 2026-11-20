@@ -1,9 +1,6 @@
 import { Predicate, Schema } from "effect";
-import {
-  asEstreeNode,
-  type EstreeNode,
-  estreeRange,
-} from "#nakafa-content/mdx/parse";
+import type { EstreeNode } from "#nakafa-content/mdx/parse";
+import { asEstreeNode, estreeRange } from "#nakafa-content/mdx/parse";
 import { expectShape } from "#nakafa-content/mdx/shape";
 
 const MAX_STATIC_CANDIDATES = 32;

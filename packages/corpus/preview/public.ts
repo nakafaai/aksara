@@ -1,7 +1,5 @@
-import {
-  type CorpusSourcePath,
-  CorpusSourcePathSchema,
-} from "@nakafa/aksara-contracts/ids";
+import type { CorpusSourcePath } from "@nakafa/aksara-contracts/ids";
+import { CorpusSourcePathSchema } from "@nakafa/aksara-contracts/ids";
 import type {
   ArticlePreviewDocument,
   MaterialPreviewDocument,
@@ -16,10 +14,8 @@ import { decodePagePreviewEntry } from "#corpus/pages/preview";
 import type { PageEntry } from "#corpus/pages/registry";
 import type { PreviewSelection } from "#corpus/preview/source";
 import { PreviewSelectionError } from "#corpus/preview/source";
-import {
-  makeRestartDependencyLookup,
-  type RestartDependencyLookup,
-} from "#corpus/preview/topology";
+import type { RestartDependencyLookup } from "#corpus/preview/topology";
+import { makeRestartDependencyLookup } from "#corpus/preview/topology";
 
 const ARTICLE_OWNER = CorpusSourcePathSchema.make(
   "packages/corpus/articles/source.ts"

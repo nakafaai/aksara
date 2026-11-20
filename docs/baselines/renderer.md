@@ -48,11 +48,11 @@ routes emitted as Partial Prerendering routes. Their static shells contained
 only the fallback, which proved that final content was resolved at request
 time.
 
-| Route | Rich implementation delivered | Raw bytes | Encoded bytes |
-|---|---|---:|---:|
-| plain | none | 0 | 0 |
-| function | FunctionMachine only | 77,841 | 24,971 |
-| atom | AtomShellLab and R3F only | 1,317,348 | 375,571 |
+| Route    | Rich implementation delivered | Raw bytes | Encoded bytes |
+| -------- | ----------------------------- | --------: | ------------: |
+| plain    | none                          |         0 |             0 |
+| function | FunctionMachine only          |    77,841 |        24,971 |
+| atom     | AtomShellLab and R3F only     | 1,317,348 |       375,571 |
 
 Three isolated browser contexts confirmed the network result. FunctionMachine
 incremented its input from 5 to 6 and rendered `f(x)=13`. AtomShellLab created a

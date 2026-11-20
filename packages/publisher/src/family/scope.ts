@@ -1,8 +1,8 @@
-import {
-  type ContentFamily,
-  type ContentHeadIdentity,
-  headIdentity,
+import type {
+  ContentFamily,
+  ContentHeadIdentity,
 } from "@nakafa/aksara-contracts/content";
+import { headIdentity } from "@nakafa/aksara-contracts/content";
 import type { ContentHead } from "@nakafa/aksara-contracts/release/head";
 import type { PublicationScope } from "@nakafa/aksara-contracts/release/snapshot/scope";
 import { Array as Arr, Stream, Tuple } from "effect";

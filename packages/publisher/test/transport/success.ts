@@ -1,9 +1,7 @@
 import { snapshotRowCount } from "@nakafa/aksara-contracts/release/snapshot/spec";
 import type { PublicationRequest } from "@nakafa/aksara-contracts/transport/request";
-import {
-  type PublicationSuccess,
-  PublicationSuccessSchema,
-} from "@nakafa/aksara-contracts/transport/response";
+import type { PublicationSuccess } from "@nakafa/aksara-contracts/transport/response";
+import { PublicationSuccessSchema } from "@nakafa/aksara-contracts/transport/response";
 import { Match, Schema } from "effect";
 import { headSuccess } from "#test/head";
 import { releaseReceipt } from "#test/lifecycle/state";

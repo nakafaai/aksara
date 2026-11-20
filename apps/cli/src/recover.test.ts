@@ -1,7 +1,8 @@
 import { NodeServices } from "@effect/platform-node";
 import { beforeEach, describe, expect, it } from "@effect/vitest";
 import { ReleaseIdSchema } from "@nakafa/aksara-contracts/ids";
-import { Effect, type Redacted } from "effect";
+import type { Redacted } from "effect";
+import { Effect } from "effect";
 import { HttpClient } from "effect/http";
 import { runRecoverCommand } from "#cli/recover";
 import { captureClient } from "#test/http";

@@ -7,9 +7,11 @@ import {
   KebabKeySchema,
   PaperIdSchema,
 } from "#contracts/assessment/identity";
+import type {
+  ItemVersion,
+  StimulusReference,
+} from "#contracts/assessment/item";
 import {
-  type ItemVersion,
-  type StimulusReference,
   StimulusReferenceSchema,
   versionStructure,
 } from "#contracts/assessment/item";

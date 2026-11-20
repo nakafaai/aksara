@@ -5,10 +5,12 @@ import {
   CorpusSourcePathSchema,
   PublicPathSchema,
 } from "@nakafa/aksara-contracts/ids";
+import type {
+  ActiveAppLocaleList,
+  AppLocale,
+} from "@nakafa/aksara-contracts/locale";
 import {
   ACTIVE_APP_LOCALES,
-  type ActiveAppLocaleList,
-  type AppLocale,
   AppLocaleSchema,
   ArtifactLocaleSchema,
 } from "@nakafa/aksara-contracts/locale";
@@ -29,19 +31,17 @@ import {
   contentHeadOrder,
   requireSourceLocale,
 } from "#corpus/locale/source";
+import type { MaterialDomainDescriptor } from "#corpus/material/domain";
 import {
   decodeMaterialDomains,
-  type MaterialDomainDescriptor,
   MaterialDomainDescriptorSchema,
   requireMaterialDomain,
 } from "#corpus/material/domain";
 import { materialLessonPath } from "#corpus/material/route";
 import type { LessonMaterialSource } from "#corpus/material/schema";
 import { LessonMaterialSourceSchema } from "#corpus/material/schema";
-import {
-  decodeMaterialSources,
-  type MaterialOrigin,
-} from "#corpus/material/source";
+import type { MaterialOrigin } from "#corpus/material/source";
+import { decodeMaterialSources } from "#corpus/material/source";
 
 export const MaterialEntrySchema = Schema.Struct({
   assetRoot: LessonMaterialSourceSchema.fields.assetRoot,

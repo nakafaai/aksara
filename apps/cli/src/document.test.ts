@@ -6,12 +6,12 @@ import { Array as Arr, Effect, FileSystem, Option, Path } from "effect";
 import { makePreviewCredentials } from "#cli/credentials";
 import { makePreviewDocumentCompiler } from "#cli/document";
 import { selectPreviewDocument } from "#cli/repository";
+import type { TestRepositories } from "#test/real";
 import {
   makeRepositoryTracker,
   REAL_SOURCE,
   RENDERER_MANIFEST,
   REPOSITORY_ROOT,
-  type TestRepositories,
 } from "#test/real";
 
 const repositories = makeRepositoryTracker();

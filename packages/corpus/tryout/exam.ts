@@ -10,13 +10,8 @@ import {
   servedLocales,
 } from "#corpus/tryout/row";
 import type { ExamSource, GroupSource } from "#corpus/tryout/schema";
-import {
-  type PaperOf,
-  projectTrack,
-  type ServedTrack,
-  serves,
-  serveTrack,
-} from "#corpus/tryout/track";
+import type { PaperOf, ServedTrack } from "#corpus/tryout/track";
+import { projectTrack, serves, serveTrack } from "#corpus/tryout/track";
 
 const TRYOUT_PATH = "try-out";
 

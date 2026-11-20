@@ -1,6 +1,7 @@
 import { assert, it } from "@effect/vitest";
 import { findExerciseAnswerIssues } from "#nakafa-content/exercise/answers";
-import { type MdxNode, parseLessonMdx } from "#nakafa-content/mdx/parse";
+import type { MdxNode } from "#nakafa-content/mdx/parse";
+import { parseLessonMdx } from "#nakafa-content/mdx/parse";
 import { findDocumentIssues } from "#nakafa-content/voice/document";
 import { isBlockingLessonVoiceIssue } from "#nakafa-content/voice/policy";
 

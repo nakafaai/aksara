@@ -1,13 +1,8 @@
 import { verifySignedContentArtifact } from "@nakafa/aksara-contracts/artifact/verify";
-import {
-  type SignedContentArtifact,
-  SignedContentArtifactSchema,
-} from "@nakafa/aksara-contracts/content";
-
-import {
-  type ContentReleaseItem,
-  ContentReleaseItemSchema,
-} from "@nakafa/aksara-contracts/release";
+import type { SignedContentArtifact } from "@nakafa/aksara-contracts/content";
+import { SignedContentArtifactSchema } from "@nakafa/aksara-contracts/content";
+import type { ContentReleaseItem } from "@nakafa/aksara-contracts/release";
+import { ContentReleaseItemSchema } from "@nakafa/aksara-contracts/release";
 import type { RendererManifestEnvelope } from "@nakafa/aksara-contracts/renderer/contract";
 import { Effect, Option, Schema, Stream } from "effect";
 import type { CompiledReleaseSource } from "#publisher/compilation";

@@ -4,11 +4,8 @@ import {
 } from "@nakafa/aksara-contracts/ids";
 import { Effect, FileSystem, Path, Schema } from "effect";
 import type { PageEntry } from "#corpus/pages/registry";
-import {
-  definePageSource,
-  type PageSourceInput,
-  PageSourceSchema,
-} from "#corpus/pages/schema";
+import type { PageSourceInput } from "#corpus/pages/schema";
+import { definePageSource, PageSourceSchema } from "#corpus/pages/schema";
 
 /** Reviewed Nakafa implementation that must be live before developer publication. */
 export const NAKAFA_AGENT_IMPLEMENTATION_SHA = GitCommitShaSchema.make(

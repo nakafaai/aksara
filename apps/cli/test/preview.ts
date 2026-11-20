@@ -3,7 +3,8 @@ import { Effect, FileSystem, Path, Schema } from "effect";
 import { makePreviewCredentials } from "#cli/credentials";
 import { makePreviewDocumentCompiler } from "#cli/document";
 import { selectPreviewDocument } from "#cli/repository";
-import { RENDERER_MANIFEST, type TestRepositories } from "#test/real";
+import type { TestRepositories } from "#test/real";
+import { RENDERER_MANIFEST } from "#test/real";
 
 export const PREVIEW_REPOSITORIES = {
   aksara: Schema.decodeSync(PreviewRepositorySchema)({

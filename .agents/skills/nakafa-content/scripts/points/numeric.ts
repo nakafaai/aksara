@@ -1,15 +1,15 @@
 import { Predicate } from "effect";
+import type { EstreeNode } from "#nakafa-content/mdx/parse";
 import {
   asEstreeNode,
-  type EstreeNode,
   estreeChildren,
   estreeRange,
   staticFieldName,
 } from "#nakafa-content/mdx/parse";
+import type { ObjectExpressionNode } from "#nakafa-content/points/ast";
 import {
   isArrayExpressionNode,
   isObjectExpressionNode,
-  type ObjectExpressionNode,
 } from "#nakafa-content/points/ast";
 
 /** One number written directly in the source, with where it starts. */

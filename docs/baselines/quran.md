@@ -13,13 +13,13 @@ that time.
 
 ## Exact official artifacts
 
-| Scope | Official edition | Exact artifact | Bytes | SHA-256 |
-|---|---|---:|---:|---|
-| Arabic text | Tanzil Uthmani v1.1 | `sources/tanzil/text.txt` | 1,334,737 | `ac0724796cbbda0f4801470fbbd11d0f3c5802067bae0493466d0128b0c667af` |
-| Metadata | Tanzil Quran Metadata v1.0 | `sources/tanzil/data.xml` | 77,234 | `8867c1d88191472adec9db694b3cd9f135b1a2ef580574d32cf888dcb22c5c7a` |
-| English translation | QuranEnc English Rwwad v1.0.19-xml.1 | `sources/quranenc/en.xml` | 1,690,410 | `213e1aeb515c5bac6ca446955527b8f3c0f9c21e9d1bad9c6857e9e5b282e9b6` |
-| Indonesian translation | QuranEnc Indonesian Affairs v1.0.1-xml.1 | `sources/quranenc/id.xml` | 1,820,207 | `45d0014236443e91af1338fe7b60f9e20741c6ff5b4ee82ead960d111f91071b` |
-| Indonesian tafsir | QuranEnc Al-Mukhtasar v1.0.0, 114 official API responses | `sources/quranenc/tafsir/*.json` | 6,584,353 | `b46b730418767dfacdf34ac35cec4277822a019b631910d603def280c3d56364` |
+| Scope                  | Official edition                                         |                   Exact artifact |     Bytes | SHA-256                                                            |
+| ---------------------- | -------------------------------------------------------- | -------------------------------: | --------: | ------------------------------------------------------------------ |
+| Arabic text            | Tanzil Uthmani v1.1                                      |        `sources/tanzil/text.txt` | 1,334,737 | `ac0724796cbbda0f4801470fbbd11d0f3c5802067bae0493466d0128b0c667af` |
+| Metadata               | Tanzil Quran Metadata v1.0                               |        `sources/tanzil/data.xml` |    77,234 | `8867c1d88191472adec9db694b3cd9f135b1a2ef580574d32cf888dcb22c5c7a` |
+| English translation    | QuranEnc English Rwwad v1.0.19-xml.1                     |        `sources/quranenc/en.xml` | 1,690,410 | `213e1aeb515c5bac6ca446955527b8f3c0f9c21e9d1bad9c6857e9e5b282e9b6` |
+| Indonesian translation | QuranEnc Indonesian Affairs v1.0.1-xml.1                 |        `sources/quranenc/id.xml` | 1,820,207 | `45d0014236443e91af1338fe7b60f9e20741c6ff5b4ee82ead960d111f91071b` |
+| Indonesian tafsir      | QuranEnc Al-Mukhtasar v1.0.0, 114 official API responses | `sources/quranenc/tafsir/*.json` | 6,584,353 | `b46b730418767dfacdf34ac35cec4277822a019b631910d603def280c3d56364` |
 
 The Tanzil files came from the official
 [download endpoint](https://tanzil.net/download/) and
@@ -66,13 +66,13 @@ editions carry no local artifact identity.
 
 ## Source-shaped field contract
 
-| Published field | Exact official source |
-|---|---|
-| `text.arabic` | Tanzil Uthmani v1.1 line at the canonical global verse |
-| surah name, count, revelation, partitions, sajda | Tanzil metadata v1.0 |
-| `translation.en.text` and `.footnotes` | QuranEnc English Rwwad XML |
-| `translation.id.text` and `.footnotes` | QuranEnc Indonesian Affairs XML |
-| `tafsir.id.text` and `.footnotes` | QuranEnc Indonesian Al-Mukhtasar API |
+| Published field                                  | Exact official source                                  |
+| ------------------------------------------------ | ------------------------------------------------------ |
+| `text.arabic`                                    | Tanzil Uthmani v1.1 line at the canonical global verse |
+| surah name, count, revelation, partitions, sajda | Tanzil metadata v1.0                                   |
+| `translation.en.text` and `.footnotes`           | QuranEnc English Rwwad XML                             |
+| `translation.id.text` and `.footnotes`           | QuranEnc Indonesian Affairs XML                        |
+| `tafsir.id.text` and `.footnotes`                | QuranEnc Indonesian Al-Mukhtasar API                   |
 
 The verified source parser preserves source strings exactly. It does not trim,
 normalize, translate, repair, shorten, lengthen, or invent content. Empty QuranEnc XML
@@ -145,11 +145,11 @@ German QuranEnc XML. The active snapshot contains 342 locale search rows and
 The official public Al-Mukhtasar catalog exposes complete editions for all
 three Nakafa application locales:
 
-| Locale | Official book | Catalog version | Nakafa delivery |
-|---|---:|---:|---|
-| English | [319](https://mokhtasr.com/en/books/319) | 7 | External link |
-| Indonesian | [219](https://mokhtasr.com/en/books/219) | 6 | Provider corroboration; embedded Tafsir remains the pinned QuranEnc corpus |
-| German | [336](https://mokhtasr.com/en/books/336) | 6 | External link |
+| Locale     |                            Official book | Catalog version | Nakafa delivery                                                            |
+| ---------- | ---------------------------------------: | --------------: | -------------------------------------------------------------------------- |
+| English    | [319](https://mokhtasr.com/en/books/319) |               7 | External link                                                              |
+| Indonesian | [219](https://mokhtasr.com/en/books/219) |               6 | Provider corroboration; embedded Tafsir remains the pinned QuranEnc corpus |
+| German     | [336](https://mokhtasr.com/en/books/336) |               6 | External link                                                              |
 
 These public page observations are typed in the provider-owned Quran catalog.
 They are not stored under `sources/` because they are reviewed metadata rather

@@ -13,10 +13,13 @@ const REPOSITORY_URL = "https://github.com/nakafaai/nakafa.com.git";
  * change, because `bun run native` compares them with nakafa.com. This pin names
  * the nakafa.com main commit whose `scripts/osv` downloads with the job's token,
  * retries an outage for three minutes, and caches its checksummed scanner
- * (nakafa.com#2351), and whose check leaves path names to the repository it
- * judges (nakafa.com#2354).
+ * (nakafa.com#2351), whose check leaves path names to the repository it judges
+ * (nakafa.com#2354), whose compiler is @effect/tsgo 0.73.2 on tsrs
+ * 7.1.0-beta.tsrs3 with its five new rules decided (nakafa.com#2763), and whose
+ * Biome 2.6.8 and Ultracite 8.3.1 write mixed imports as separate type imports
+ * (nakafa.com#2767).
  */
-export const NAKAFA_COMMIT = "73c3ba26824327b880ccd48f96da4ea0533ee0ee";
+export const NAKAFA_COMMIT = "efa9a08fc9193b1d9423279dd4b17b97e8972cf5";
 
 /** The steps of the native check, in the order they run. */
 const NativeStepSchema = Schema.Literals(["clone", "install", "check"]);

@@ -105,46 +105,46 @@ alone. Nakafa therefore maps each tell to a proven blocker, a review candidate,
 a manual read, or an excluded detector. Statistical measures and authorship
 scores never become source gates.
 
-| Tell | Nakafa decision | Boundary |
-| --- | --- | --- |
-| `r-001 stock vocabulary` | Manual review | Technical words such as `robust` and `nuanced` can be exact in science and code. |
-| `r-002 copula avoidance` | Manual review | `serves as` can name a real API, theorem, or institutional role. |
-| `r-003 filler phrases` | Existing review candidate `formulaic-attention-filler` | Only recorded announcement prefaces match; a real comparison such as `when it comes to object identity` stays valid. |
-| `r-004 chatbot artifacts` | Blocker `chatbot-artifact` | Assistant sign-offs are invalid authored prose; protected quotations stay unchanged. |
-| `r-005 promotional adjectives` | Manual review | Assessed text, quotations, and factual place descriptions may use these words. |
-| `r-006 abstract metaphor nouns` | Manual review with existing metaphor blockers | Literal realms, journeys, fabrics, and beacons remain valid when named objects are being taught. |
-| `r-007 stacked transitions` | Manual review plus existing repeated-opener review candidates | Scientific comparison and contrast often need formal connectives. |
-| `r-008 knowledge-cutoff disclaimers` | Blocker `knowledge-cutoff-disclaimer` | A data cutoff date is a factual method boundary and stays valid. |
-| `r-009 em-dash density` | Existing blocker `dash-character` | The repository bans U+2014 entirely; valid punctuation replaces it. |
-| `r-010 colon as connector` | Manual review | A colon is valid for definitions, labels, ratios, and source excerpts. |
-| `r-011 bold-label lists` | Excluded from deterministic gate | Named data groups and criteria lists use this form in the mathematics corpus. |
-| `r-012 title-case headings` | Manual review | Indonesian and German capitalization rules differ from English. |
-| `r-013 decorative emoji` | Manual review | Emoji can be the actual object of a Unicode or communication lesson. |
-| `r-014 negative parallelism` | Existing blocker `rhetorical-not-only` | A factual negation or assessed misconception remains valid. |
-| `r-015 quote style` | Excluded from deterministic gate | Slop Meter calls this a provenance signal, not a meaning error. |
-| `r-016 list density` | Excluded from deterministic gate | Representation rules prohibit a visual or list quota. |
-| `r-017 uniform sentence length` | Manual review | Sentence rhythm is contextual and language-specific. |
-| `r-018 adverb density` | Manual review | Scientific uncertainty and method scope can require adverbs. |
-| `r-019 passive ratio` | Manual review | Passive voice is valid when the actor is unknown, generic, or already explicit. |
-| `r-020 hedging stacks` | Review candidate `stacked-hedge` | Ability and frequency such as `can generally` or `mungkin dapat` are not hedge stacks. |
-| `r-021 groups of three` | Manual review | Three criteria, states, or coordinates can be mathematically complete. |
-| `r-022 lexical diversity` | Manual review | Synonym cycling is contextual; technical terminology should remain stable. |
-| `r-023 long-word share` | Manual review | Correct scientific and programming terms can be long. |
-| `r-024 recap openers` | Manual review | A scientific article can have a real conclusion, while a lesson conclusion needs a concrete result. |
-| `r-025 stop-start fragments` | Manual review | Short fragments can be valid labels, examples, or assessed source text. |
-| `r-026 false ranges` | Manual review | A real interval, scale, or transition remains valid. |
-| `r-027 openers with no antecedent` | Existing review candidates and manual read | The gate owns three narrow shapes; grammatical antecedents still require context. |
-| `r-028 participle tail clauses` | Review candidate `vague-significance-tail` | A tail with a measured change or named mechanism stays valid. |
-| `r-029 staged reveal questions` | Manual review | Teacher questions and assessed prompts are legitimate; concept personification already has blockers. |
-| `r-030 repeated sentence openers` | Existing repeated-opener review candidates plus manual read | A repeated technical subject can preserve exact reference. |
-| `r-031 significance inflation` | Review candidates `inflated-utility-claim` and `significance-inflation` | The existing rule covers role inflation; the new rule covers only testimonial, shift, and legacy claims. Measured operations and mechanisms stay valid. |
-| `r-032 vague attribution` | Manual evidence review | Read the complete claim with its in-text citations and reference list. A phrase such as `studies show` alone cannot establish whether attribution is missing. |
-| `r-033 challenges-and-prospects arc` | Review candidate `cliche-challenges-outcome` | A specific challenge and specific outcome remain valid. |
-| `r-034 absence of voice` | Manual review | Articles speak warmly to the reader, but an impersonal sentence that reports a method or a measured result can be exactly right. |
-| `r-035 generic upbeat conclusion` | Review candidate `generic-upbeat-conclusion` | A dated release, result, or next action remains valid. |
-| `r-036 synonym cycling` | Manual review | Different terms may denote different statistical units or mathematical objects. |
-| `r-037 uniform register` | Excluded from deterministic gate | Articles keep one warm, evidence-led register from start to end. |
-| `r-038 both-sides wrap-up` | Review candidate `cliche-balanced-conclusion` | A real conditional result that names what it depends on remains valid. |
+| Tell                                 | Nakafa decision                                                         | Boundary                                                                                                                                                      |
+| ------------------------------------ | ----------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `r-001 stock vocabulary`             | Manual review                                                           | Technical words such as `robust` and `nuanced` can be exact in science and code.                                                                              |
+| `r-002 copula avoidance`             | Manual review                                                           | `serves as` can name a real API, theorem, or institutional role.                                                                                              |
+| `r-003 filler phrases`               | Existing review candidate `formulaic-attention-filler`                  | Only recorded announcement prefaces match; a real comparison such as `when it comes to object identity` stays valid.                                          |
+| `r-004 chatbot artifacts`            | Blocker `chatbot-artifact`                                              | Assistant sign-offs are invalid authored prose; protected quotations stay unchanged.                                                                          |
+| `r-005 promotional adjectives`       | Manual review                                                           | Assessed text, quotations, and factual place descriptions may use these words.                                                                                |
+| `r-006 abstract metaphor nouns`      | Manual review with existing metaphor blockers                           | Literal realms, journeys, fabrics, and beacons remain valid when named objects are being taught.                                                              |
+| `r-007 stacked transitions`          | Manual review plus existing repeated-opener review candidates           | Scientific comparison and contrast often need formal connectives.                                                                                             |
+| `r-008 knowledge-cutoff disclaimers` | Blocker `knowledge-cutoff-disclaimer`                                   | A data cutoff date is a factual method boundary and stays valid.                                                                                              |
+| `r-009 em-dash density`              | Existing blocker `dash-character`                                       | The repository bans U+2014 entirely; valid punctuation replaces it.                                                                                           |
+| `r-010 colon as connector`           | Manual review                                                           | A colon is valid for definitions, labels, ratios, and source excerpts.                                                                                        |
+| `r-011 bold-label lists`             | Excluded from deterministic gate                                        | Named data groups and criteria lists use this form in the mathematics corpus.                                                                                 |
+| `r-012 title-case headings`          | Manual review                                                           | Indonesian and German capitalization rules differ from English.                                                                                               |
+| `r-013 decorative emoji`             | Manual review                                                           | Emoji can be the actual object of a Unicode or communication lesson.                                                                                          |
+| `r-014 negative parallelism`         | Existing blocker `rhetorical-not-only`                                  | A factual negation or assessed misconception remains valid.                                                                                                   |
+| `r-015 quote style`                  | Excluded from deterministic gate                                        | Slop Meter calls this a provenance signal, not a meaning error.                                                                                               |
+| `r-016 list density`                 | Excluded from deterministic gate                                        | Representation rules prohibit a visual or list quota.                                                                                                         |
+| `r-017 uniform sentence length`      | Manual review                                                           | Sentence rhythm is contextual and language-specific.                                                                                                          |
+| `r-018 adverb density`               | Manual review                                                           | Scientific uncertainty and method scope can require adverbs.                                                                                                  |
+| `r-019 passive ratio`                | Manual review                                                           | Passive voice is valid when the actor is unknown, generic, or already explicit.                                                                               |
+| `r-020 hedging stacks`               | Review candidate `stacked-hedge`                                        | Ability and frequency such as `can generally` or `mungkin dapat` are not hedge stacks.                                                                        |
+| `r-021 groups of three`              | Manual review                                                           | Three criteria, states, or coordinates can be mathematically complete.                                                                                        |
+| `r-022 lexical diversity`            | Manual review                                                           | Synonym cycling is contextual; technical terminology should remain stable.                                                                                    |
+| `r-023 long-word share`              | Manual review                                                           | Correct scientific and programming terms can be long.                                                                                                         |
+| `r-024 recap openers`                | Manual review                                                           | A scientific article can have a real conclusion, while a lesson conclusion needs a concrete result.                                                           |
+| `r-025 stop-start fragments`         | Manual review                                                           | Short fragments can be valid labels, examples, or assessed source text.                                                                                       |
+| `r-026 false ranges`                 | Manual review                                                           | A real interval, scale, or transition remains valid.                                                                                                          |
+| `r-027 openers with no antecedent`   | Existing review candidates and manual read                              | The gate owns three narrow shapes; grammatical antecedents still require context.                                                                             |
+| `r-028 participle tail clauses`      | Review candidate `vague-significance-tail`                              | A tail with a measured change or named mechanism stays valid.                                                                                                 |
+| `r-029 staged reveal questions`      | Manual review                                                           | Teacher questions and assessed prompts are legitimate; concept personification already has blockers.                                                          |
+| `r-030 repeated sentence openers`    | Existing repeated-opener review candidates plus manual read             | A repeated technical subject can preserve exact reference.                                                                                                    |
+| `r-031 significance inflation`       | Review candidates `inflated-utility-claim` and `significance-inflation` | The existing rule covers role inflation; the new rule covers only testimonial, shift, and legacy claims. Measured operations and mechanisms stay valid.       |
+| `r-032 vague attribution`            | Manual evidence review                                                  | Read the complete claim with its in-text citations and reference list. A phrase such as `studies show` alone cannot establish whether attribution is missing. |
+| `r-033 challenges-and-prospects arc` | Review candidate `cliche-challenges-outcome`                            | A specific challenge and specific outcome remain valid.                                                                                                       |
+| `r-034 absence of voice`             | Manual review                                                           | Articles speak warmly to the reader, but an impersonal sentence that reports a method or a measured result can be exactly right.                              |
+| `r-035 generic upbeat conclusion`    | Review candidate `generic-upbeat-conclusion`                            | A dated release, result, or next action remains valid.                                                                                                        |
+| `r-036 synonym cycling`              | Manual review                                                           | Different terms may denote different statistical units or mathematical objects.                                                                               |
+| `r-037 uniform register`             | Excluded from deterministic gate                                        | Articles keep one warm, evidence-led register from start to end.                                                                                              |
+| `r-038 both-sides wrap-up`           | Review candidate `cliche-balanced-conclusion`                           | A real conditional result that names what it depends on remains valid.                                                                                        |
 
 ## Deterministic gate scope
 

@@ -1,10 +1,9 @@
 import { Schema } from "effect";
-
+import type { RichSlot } from "#contracts/visual/card";
 import {
   byIds,
   cardFields,
   factSchema,
-  type RichSlot,
   TextSchema,
 } from "#contracts/visual/card";
 import { answerAt, figure } from "#contracts/visual/entry";

@@ -9,14 +9,10 @@ import {
   Record as Rec,
   Schema,
 } from "effect";
-import {
-  type InteractionSource,
-  itemVersions,
-} from "#corpus/question-bank/item";
-import {
-  type QuestionPrompt,
-  readQuestionPrompts,
-} from "#corpus/question-bank/prompt";
+import type { InteractionSource } from "#corpus/question-bank/item";
+import { itemVersions } from "#corpus/question-bank/item";
+import type { QuestionPrompt } from "#corpus/question-bank/prompt";
+import { readQuestionPrompts } from "#corpus/question-bank/prompt";
 import {
   FormulaPairsSchema,
   formulaPairs,
@@ -24,8 +20,8 @@ import {
   MATH_ATTRIBUTE_PATTERN,
 } from "#corpus/question-bank/similarity/formula";
 import { collect, pairs } from "#corpus/question-bank/similarity/group";
+import type { Print } from "#corpus/question-bank/similarity/print";
 import {
-  type Print,
   PrintSchema,
   score,
   shingles,

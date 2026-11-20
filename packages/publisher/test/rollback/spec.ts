@@ -1,10 +1,10 @@
 import { SignedContentArtifactSchema } from "@nakafa/aksara-contracts/content";
+import type { ReleaseId } from "@nakafa/aksara-contracts/ids";
 import {
   ContentKeySchema,
   CorpusSourcePathSchema,
   Ed25519SignatureSchema,
   PublicPathSchema,
-  type ReleaseId,
   ReleaseIdSchema,
   Sha256HashSchema,
   SigningKeyIdSchema,
@@ -20,9 +20,9 @@ import {
 } from "@nakafa/aksara-contracts/projection/material";
 import { MaterialHeadSchema } from "@nakafa/aksara-contracts/release/head";
 import { Effect } from "effect";
+import type { DerivedRollbackState } from "#publisher/rollback/records";
 import {
   DerivedRollbackRecordSchema,
-  type DerivedRollbackState,
   snapshotRollbackState,
 } from "#publisher/rollback/records";
 import { materialGraph } from "#test/graph";

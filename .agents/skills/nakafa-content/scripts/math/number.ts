@@ -3,10 +3,8 @@ import { issueAtOffset } from "#nakafa-content/math/finding";
 import { textSpans } from "#nakafa-content/math/span";
 import { unitLength } from "#nakafa-content/math/unit";
 import type { MdxNode } from "#nakafa-content/mdx/parse";
-import {
-  type VisibleTextScan,
-  visibleTextOffsets,
-} from "#nakafa-content/mdx/visible";
+import type { VisibleTextScan } from "#nakafa-content/mdx/visible";
+import { visibleTextOffsets } from "#nakafa-content/mdx/visible";
 import type { LessonVoiceIssue } from "#nakafa-content/voice/types";
 
 /** One plain number a learner reads as a quantity, with its sign and unit. */

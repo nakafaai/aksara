@@ -6,11 +6,8 @@ import { Array as Arr, Effect, HashSet, Schema } from "effect";
 import remarkGfm from "remark-gfm";
 import remarkMath from "remark-math";
 import { blockChildren } from "#compiler/assessment/block";
-import {
-  AssessmentSiteSchema,
-  type BlockSite,
-  sourceError,
-} from "#compiler/assessment/error";
+import type { BlockSite } from "#compiler/assessment/error";
+import { AssessmentSiteSchema, sourceError } from "#compiler/assessment/error";
 import { MDX_PROVIDER_SOURCE } from "#compiler/config";
 import { MdxCompilationError } from "#compiler/errors";
 import { createSourcePolicy } from "#compiler/policy/source";

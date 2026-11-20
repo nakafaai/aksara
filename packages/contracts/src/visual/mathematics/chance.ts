@@ -1,11 +1,6 @@
 import { Array as Arr, Schema } from "effect";
-
-import {
-  byIds,
-  cardFields,
-  type RichSlot,
-  TextSchema,
-} from "#contracts/visual/card";
+import type { RichSlot } from "#contracts/visual/card";
+import { byIds, cardFields, TextSchema } from "#contracts/visual/card";
 import { answerAt, figure } from "#contracts/visual/entry";
 
 /** The marble glazes the jar can hold. */

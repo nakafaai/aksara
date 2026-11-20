@@ -1,11 +1,11 @@
 import { PublicPathSchema } from "@nakafa/aksara-contracts/ids";
+import type { AppLocale } from "@nakafa/aksara-contracts/locale";
+import { ACTIVE_APP_LOCALES } from "@nakafa/aksara-contracts/locale";
+import type {
+  CurriculumRoute,
+  CurriculumRouteDraft,
+} from "@nakafa/aksara-contracts/program/curriculum";
 import {
-  ACTIVE_APP_LOCALES,
-  type AppLocale,
-} from "@nakafa/aksara-contracts/locale";
-import {
-  type CurriculumRoute,
-  type CurriculumRouteDraft,
   CurriculumRouteDraftSchema,
   curriculumNamespace,
 } from "@nakafa/aksara-contracts/program/curriculum";
@@ -20,25 +20,19 @@ import {
 } from "effect";
 
 import { addMaterialContext } from "#corpus/curriculum/context";
-import {
-  type CurriculumRouteContext,
-  projectCurriculumNodeRoutes,
-} from "#corpus/curriculum/node";
+import type { CurriculumRouteContext } from "#corpus/curriculum/node";
+import { projectCurriculumNodeRoutes } from "#corpus/curriculum/node";
 import {
   CurriculumRouteError,
   curriculumSourcePath,
   requireCurriculumProgram,
   requireProgramTranslation,
 } from "#corpus/curriculum/ownership";
-import {
-  type ProjectedCurriculumNode,
-  projectCurriculumNodes,
-} from "#corpus/curriculum/projection";
+import type { ProjectedCurriculumNode } from "#corpus/curriculum/projection";
+import { projectCurriculumNodes } from "#corpus/curriculum/projection";
 import type { CurriculumSource } from "#corpus/curriculum/schema";
-import {
-  decodeMaterialDomains,
-  type MaterialDomainDescriptor,
-} from "#corpus/material/domain";
+import type { MaterialDomainDescriptor } from "#corpus/material/domain";
+import { decodeMaterialDomains } from "#corpus/material/domain";
 import type { LessonMaterialSource } from "#corpus/material/schema";
 
 /** Validates one-to-one ownership between curriculum-tree programs and trees. */

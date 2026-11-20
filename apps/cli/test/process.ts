@@ -12,12 +12,8 @@ import {
   Schema,
 } from "effect";
 import type * as Scope from "effect/Scope";
-import {
-  NakafaProcess,
-  type NakafaProcessInput,
-  NakafaProcessLive,
-  type RunningProcess,
-} from "#cli/child/process";
+import type { NakafaProcessInput, RunningProcess } from "#cli/child/process";
+import { NakafaProcess, NakafaProcessLive } from "#cli/child/process";
 import { startNakafa } from "#cli/child/session";
 import { makePreviewCredentials } from "#cli/credentials";
 import type { NakafaAppError } from "#cli/error";

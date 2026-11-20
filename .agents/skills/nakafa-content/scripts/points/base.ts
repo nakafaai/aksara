@@ -1,9 +1,7 @@
 import { Array as Arr, Effect, Schema, Stream } from "effect";
 import { ChildProcess } from "effect/process";
-import {
-  PointsCheckError,
-  type PointsFailureReason,
-} from "#nakafa-content/points/error";
+import type { PointsFailureReason } from "#nakafa-content/points/error";
+import { PointsCheckError } from "#nakafa-content/points/error";
 
 /** Runs Git in the repository and returns stdout or a typed failure. */
 const runGit = Effect.fn("PointsCheck.runGit")(function* (

@@ -11,8 +11,8 @@ import {
   Predicate,
   Schema,
 } from "effect";
+import type { CallExpression, Node, NodeArray } from "tsrs/ast";
 import {
-  type CallExpression,
   isArrayLiteralExpression,
   isCallExpression,
   isIdentifier,
@@ -23,8 +23,6 @@ import {
   isStringLiteralLikeNode,
   isTupleTypeNode,
   isUnionTypeNode,
-  type Node,
-  type NodeArray,
 } from "tsrs/ast";
 
 import {

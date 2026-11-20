@@ -1,8 +1,8 @@
 import { describe, expect, it } from "@effect/vitest";
 import { Effect, Schema } from "effect";
 import { validateArtifactByteIntegrity } from "#contracts/artifact/limits";
+import type { CompiledContentPayload } from "#contracts/content";
 import {
-  type CompiledContentPayload,
   CompiledContentPayloadSchema,
   SignedContentArtifactSchema,
 } from "#contracts/content";

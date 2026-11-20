@@ -9,11 +9,11 @@ import {
   MALAY_APP_LOCALE_CODE,
   makeAppLocale,
 } from "#contracts/locale";
+import type { quranSourceIds } from "#contracts/quran/source";
 import {
   QuranEmbeddedSourceAttributionSchema,
   QuranExternalSourceAttributionSchema,
   QuranTafsirAccessSchema,
-  type quranSourceIds,
 } from "#contracts/quran/source";
 import { QURAN_SURAH_COUNT } from "#contracts/quran/spec";
 

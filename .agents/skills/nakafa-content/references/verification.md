@@ -289,25 +289,25 @@ bun run headings --base <ref>
 bun run headings --all
 ```
 
-| Rule | Tier | What it holds |
-| --- | --- | --- |
-| `outline-budget` | block above 12 entries, review above 10 | H2 and H3 entries of a lesson page |
-| `section-count` | block above 8 H2, review below 4 | H2 sections of a lesson page |
-| `section-fanout` | block above 4 H3, review at 4 | H3 subsections under one H2 |
-| `flat-sections` | block | 7 or more H2 with no teaching H3 |
-| `heading-title` | block when equal, review when contained | a heading that repeats the page title |
-| `generic-heading` | block | a scaffold label alone, or a section about the visual |
-| `title-unique` | block | the page title, per locale |
-| `heading-unique` | block | every heading, per locale, across lessons and articles, except an article's standard scientific section names |
-| `heading-names-lesson` | block | a heading that is another page's title |
-| `shared-skeleton` | block | the scaffold sections a lesson page ends with, shared with another page |
-| `repeated-sentence` | block | a sentence of 6 or more words, formulas aside, that another lesson page of the locale also has |
-| `repeated-paragraph` | block | a paragraph of 20 or more words sharing half its five-word runs with another lesson page's |
-| `heading-width` | review | about 30 characters for an H2, 24 for an H3 |
-| `section-span` | review | a leaf section above 300 words of text alone |
-| `lesson-length` | review | a page above 1,400 visible words |
-| `heading-density` | review | more than 15 headings per 1,000 visible words |
-| `heading-only-change` | review | a change that only renames the headings of a page that failed the rules |
+| Rule                   | Tier                                    | What it holds                                                                                                 |
+| ---------------------- | --------------------------------------- | ------------------------------------------------------------------------------------------------------------- |
+| `outline-budget`       | block above 12 entries, review above 10 | H2 and H3 entries of a lesson page                                                                            |
+| `section-count`        | block above 8 H2, review below 4        | H2 sections of a lesson page                                                                                  |
+| `section-fanout`       | block above 4 H3, review at 4           | H3 subsections under one H2                                                                                   |
+| `flat-sections`        | block                                   | 7 or more H2 with no teaching H3                                                                              |
+| `heading-title`        | block when equal, review when contained | a heading that repeats the page title                                                                         |
+| `generic-heading`      | block                                   | a scaffold label alone, or a section about the visual                                                         |
+| `title-unique`         | block                                   | the page title, per locale                                                                                    |
+| `heading-unique`       | block                                   | every heading, per locale, across lessons and articles, except an article's standard scientific section names |
+| `heading-names-lesson` | block                                   | a heading that is another page's title                                                                        |
+| `shared-skeleton`      | block                                   | the scaffold sections a lesson page ends with, shared with another page                                       |
+| `repeated-sentence`    | block                                   | a sentence of 6 or more words, formulas aside, that another lesson page of the locale also has                |
+| `repeated-paragraph`   | block                                   | a paragraph of 20 or more words sharing half its five-word runs with another lesson page's                    |
+| `heading-width`        | review                                  | about 30 characters for an H2, 24 for an H3                                                                   |
+| `section-span`         | review                                  | a leaf section above 300 words of text alone                                                                  |
+| `lesson-length`        | review                                  | a page above 1,400 visible words                                                                              |
+| `heading-density`      | review                                  | more than 15 headings per 1,000 visible words                                                                 |
+| `heading-only-change`  | review                                  | a change that only renames the headings of a page that failed the rules                                       |
 
 A page that no change touched keeps its findings until a change touches it,
 so the corpus rises to the rules one revision at a time; `--all` reports

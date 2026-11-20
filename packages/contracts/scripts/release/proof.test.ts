@@ -12,10 +12,8 @@ import {
 import { Base64 } from "effect/encoding";
 import { ChildProcess, ChildProcessSpawner } from "effect/process";
 import { encodeJsonText } from "#contracts/text/json";
-import {
-  type ContractProofInput,
-  proveContractRelease,
-} from "#scripts/release/proof";
+import type { ContractProofInput } from "#scripts/release/proof";
+import { proveContractRelease } from "#scripts/release/proof";
 import { makeProcessHandle } from "#scripts/test/process";
 
 const SOURCE_SHA = "b".repeat(40);

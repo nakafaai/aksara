@@ -1,13 +1,9 @@
 import { hashText } from "@nakafa/aksara-contracts/hash/text";
 import type { RendererComponentName } from "@nakafa/aksara-contracts/renderer/component";
-import {
-  canonicalizeRendererManifestContract,
-  type RendererManifestEnvelope,
-} from "@nakafa/aksara-contracts/renderer/contract";
-import {
-  RENDERER_DOMAINS,
-  type RendererDomain,
-} from "@nakafa/aksara-contracts/renderer/domain";
+import type { RendererManifestEnvelope } from "@nakafa/aksara-contracts/renderer/contract";
+import { canonicalizeRendererManifestContract } from "@nakafa/aksara-contracts/renderer/contract";
+import type { RendererDomain } from "@nakafa/aksara-contracts/renderer/domain";
+import { RENDERER_DOMAINS } from "@nakafa/aksara-contracts/renderer/domain";
 import { Array as Arr, Effect } from "effect";
 
 /** Expands sparse publisher fixtures into every canonical renderer domain. */

@@ -5,8 +5,8 @@ import {
   ArtifactLocaleSchema,
 } from "@nakafa/aksara-contracts/locale";
 import { PublicRouteFields } from "@nakafa/aksara-contracts/preview/target";
+import type { ContentHead } from "@nakafa/aksara-contracts/release/head";
 import {
-  type ContentHead,
   ContentHeadSchema,
   canonicalizeContentHead,
 } from "@nakafa/aksara-contracts/release/head";
@@ -21,8 +21,8 @@ import {
   Tuple,
 } from "effect";
 import { mergeSortedCatalogStreams } from "#publisher/catalog/merge";
+import type { DerivedRollbackRecord } from "#publisher/rollback/records";
 import {
-  type DerivedRollbackRecord,
   DerivedRollbackRecordSchema,
   snapshotRollbackState,
 } from "#publisher/rollback/records";

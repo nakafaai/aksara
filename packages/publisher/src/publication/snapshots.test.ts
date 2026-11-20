@@ -11,10 +11,8 @@ import { invertContentSnapshots } from "@nakafa/aksara-contracts/release/snapsho
 import { Array as Arr, Effect, Stream } from "effect";
 
 import { prepareContentRelease } from "#publisher/preparation";
-import {
-  makePreparedRollbackRelease,
-  type PreparedGitRelease,
-} from "#publisher/preparation/prepared";
+import type { PreparedGitRelease } from "#publisher/preparation/prepared";
+import { makePreparedRollbackRelease } from "#publisher/preparation/prepared";
 import {
   makeSnapshotRequests,
   verifyPublicationSnapshots,

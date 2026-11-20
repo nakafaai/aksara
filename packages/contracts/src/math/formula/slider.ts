@@ -1,9 +1,10 @@
-import { Array as Arr, type Schema } from "effect";
-import {
-  type FormulaParameter,
-  type FormulaReadout,
-  isPlaneFormulaPoint,
+import type { Schema } from "effect";
+import { Array as Arr } from "effect";
+import type {
+  FormulaParameter,
+  FormulaReadout,
 } from "#contracts/math/formula/field";
+import { isPlaneFormulaPoint } from "#contracts/math/formula/field";
 import { expression, strayIssues } from "#contracts/math/formula/scope";
 import type { PlaneLabelAnchor } from "#contracts/math/plane";
 

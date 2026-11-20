@@ -1,11 +1,11 @@
+import type { ContentFamily } from "@nakafa/aksara-contracts/content";
+import { ContentFamilySchema } from "@nakafa/aksara-contracts/content";
+import type {
+  ContentSnapshotKind,
+  PublicationScope,
+} from "@nakafa/aksara-contracts/release/snapshot/scope";
 import {
-  type ContentFamily,
-  ContentFamilySchema,
-} from "@nakafa/aksara-contracts/content";
-import {
-  type ContentSnapshotKind,
   ContentSnapshotKindSchema,
-  type PublicationScope,
   PublicationScopeSchema,
 } from "@nakafa/aksara-contracts/release/snapshot/scope";
 import {

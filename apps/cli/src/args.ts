@@ -1,12 +1,10 @@
-import {
-  type AppLocale,
-  AppLocaleSchema,
-} from "@nakafa/aksara-contracts/locale";
+import type { AppLocale } from "@nakafa/aksara-contracts/locale";
+import { AppLocaleSchema } from "@nakafa/aksara-contracts/locale";
 import { Array as Arr, Effect, Option, Schema } from "effect";
 import { InfoCommandSchema, parseInfoArguments } from "#cli/about";
+import type { ProductionArguments } from "#cli/production/arguments";
 import {
   isProductionCommand,
-  type ProductionArguments,
   parseProductionArguments,
 } from "#cli/production/arguments";
 

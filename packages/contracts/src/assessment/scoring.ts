@@ -1,10 +1,8 @@
 import { Array as Arr, Match, Option, Schema } from "effect";
 
 import { hasUniqueIds, LocalIdSchema } from "#contracts/assessment/identity";
-import {
-  canSitInText,
-  type InteractionKind,
-} from "#contracts/assessment/interaction";
+import type { InteractionKind } from "#contracts/assessment/interaction";
+import { canSitInText } from "#contracts/assessment/interaction";
 import {
   LocalizedTextSchema,
   NonNegativeIntSchema,

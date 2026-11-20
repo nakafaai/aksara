@@ -1,10 +1,7 @@
 import { describe, expect, expectTypeOf, it } from "@effect/vitest";
 import { Exit, Schema } from "effect";
-import {
-  DateOnlySchema,
-  type PublicationDates,
-  PublicationDatesSchema,
-} from "#contracts/date";
+import type { PublicationDates } from "#contracts/date";
+import { DateOnlySchema, PublicationDatesSchema } from "#contracts/date";
 
 describe("date only", () => {
   it("accepts a real leap-day date", () => {

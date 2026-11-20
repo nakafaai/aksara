@@ -2,12 +2,13 @@ import { BigDecimal, Array as EffectArray, Record as Rec } from "effect";
 
 import type { PlanePoint, SpacePoint } from "#contracts/math/base";
 import type { AxisRange } from "#contracts/math/extent";
-import {
-  type AxisTraversal,
-  type InfinitePathKind,
-  infinitePathInterval,
+import type {
+  AxisTraversal,
+  InfinitePathKind,
 } from "#contracts/math/intersection";
-import { decimal, type ExactRatio, makeRatio } from "#contracts/math/rational";
+import { infinitePathInterval } from "#contracts/math/intersection";
+import type { ExactRatio } from "#contracts/math/rational";
+import { decimal, makeRatio } from "#contracts/math/rational";
 
 const FLOAT32_RESOLUTION = BigDecimal.fromStringUnsafe(
   "0.00000011920928955078125"

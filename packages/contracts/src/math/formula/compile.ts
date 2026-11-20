@@ -1,11 +1,10 @@
 import { Array as Arr } from "effect";
-
-import {
-  FORMULA_CONSTANTS,
-  type FormulaNode,
-  type FormulaOperator,
-  type FormulaUnary,
+import type {
+  FormulaNode,
+  FormulaOperator,
+  FormulaUnary,
 } from "#contracts/math/formula/syntax";
+import { FORMULA_CONSTANTS } from "#contracts/math/formula/syntax";
 
 /** The value of every variable and parameter a formula reads, by name. */
 export type FormulaScope = Readonly<Record<string, number>>;

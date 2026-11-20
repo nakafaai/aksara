@@ -2,10 +2,8 @@ import { NodeServices } from "@effect/platform-node";
 import { describe, expect, it } from "@effect/vitest";
 import { Effect } from "effect";
 import { readSource } from "#scripts/source";
-import {
-  type NpmWorkflowContract,
-  verifyNpmWorkflow,
-} from "#scripts/workflow/npm";
+import type { NpmWorkflowContract } from "#scripts/workflow/npm";
+import { verifyNpmWorkflow } from "#scripts/workflow/npm";
 import { workflowFailure } from "#scripts/workflow/test/failure";
 import { mutateJob } from "#scripts/workflow/test/mutation";
 

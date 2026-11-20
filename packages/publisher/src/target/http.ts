@@ -39,10 +39,8 @@ import type {
 import { Effect, Schema } from "effect";
 import { HttpClient } from "effect/http";
 import { PublicationTarget } from "#publisher/publication/spec";
-import {
-  type HttpPublicationTargetConfig,
-  validateHttpConfig,
-} from "#publisher/target/config";
+import type { HttpPublicationTargetConfig } from "#publisher/target/config";
+import { validateHttpConfig } from "#publisher/target/config";
 import { sendPublicationRequest } from "#publisher/target/exchange";
 
 /** Narrows validated success evidence without defecting target failures. */

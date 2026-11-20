@@ -4,10 +4,8 @@ import type { Sha256Hash } from "#contracts/ids";
 import { ActiveAppLocaleListSchema } from "#contracts/locale";
 import { hasSameAppLocales } from "#contracts/release/current/evidence";
 import type { ContentSnapshotManifest } from "#contracts/release/snapshot/data";
-import {
-  ContentSnapshotKindSchema,
-  type PublicationScope,
-} from "#contracts/release/snapshot/scope";
+import type { PublicationScope } from "#contracts/release/snapshot/scope";
+import { ContentSnapshotKindSchema } from "#contracts/release/snapshot/scope";
 
 const ClosureFieldSchema = Schema.Literals([
   "activeAppLocales",

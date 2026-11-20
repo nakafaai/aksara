@@ -1,10 +1,10 @@
 import { NodeServices } from "@effect/platform-node";
 import { layer } from "@effect/vitest";
 import { Effect } from "effect";
+import type { WorkflowSources } from "#scripts/workflow/check";
 import {
   verifyRepositoryWorkflows,
   verifyWorkflows,
-  type WorkflowSources,
 } from "#scripts/workflow/check";
 import { expectRefusal } from "#scripts/workflow/test/failure";
 import {

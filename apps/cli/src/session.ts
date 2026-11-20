@@ -4,17 +4,18 @@ import type { FileSystem, Path } from "effect";
 import { Effect, Fiber, Ref, Result, Schema, Semaphore } from "effect";
 import type { RunningNakafa } from "#cli/child/session";
 import { describeDocumentFailure } from "#cli/diagnostic";
-import {
-  makePreviewDocumentCompiler,
-  type PreviewCompileResult,
-  type PreviewDocumentCompiler,
+import type {
+  PreviewCompileResult,
+  PreviewDocumentCompiler,
 } from "#cli/document";
+import { makePreviewDocumentCompiler } from "#cli/document";
 import type { PreviewEnvironment } from "#cli/environment/read";
 import type { PreviewEvidenceError } from "#cli/evidence";
 import { PreviewRestartError } from "#cli/integrity";
 import type { PreviewProvider, PreviewProviderError } from "#cli/provider";
 import { openRendererSession } from "#cli/renderer/session";
-import { openSelectedWatcher, type PreviewWatchError } from "#cli/watch";
+import type { PreviewWatchError } from "#cli/watch";
+import { openSelectedWatcher } from "#cli/watch";
 
 /** Controls one scoped provider, compiler, watcher, and actual Nakafa child. */
 export interface LocalPreviewSession {

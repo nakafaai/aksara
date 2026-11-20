@@ -4,9 +4,9 @@ import {
   localPreviewArtifactPath,
 } from "@nakafa/aksara-contracts/preview/artifact";
 import { previewDocumentRoute } from "@nakafa/aksara-contracts/preview/document";
+import type { LocalPreviewManifest } from "@nakafa/aksara-contracts/preview/spec";
 import {
   LOCAL_PREVIEW_FORMAT,
-  type LocalPreviewManifest,
   LocalPreviewManifestSchema,
   PreviewEventSchema,
 } from "@nakafa/aksara-contracts/preview/spec";
@@ -22,8 +22,8 @@ import {
   Stream,
 } from "effect";
 import { HttpServerRequest } from "effect/http/HttpServerRequest";
+import type { HttpServerResponse } from "effect/http/HttpServerResponse";
 import {
-  type HttpServerResponse,
   stream as streamResponse,
   text as textResponse,
 } from "effect/http/HttpServerResponse";

@@ -1,4 +1,5 @@
-import { asEstreeNode, type EstreeNode } from "#nakafa-content/mdx/parse";
+import type { EstreeNode } from "#nakafa-content/mdx/parse";
+import { asEstreeNode } from "#nakafa-content/mdx/parse";
 import { expectShape } from "#nakafa-content/mdx/shape";
 import { isFullyStaticStringExpression } from "#nakafa-content/mdx/static";
 

@@ -1,16 +1,14 @@
 import { describe, expect, it } from "@effect/vitest";
 import { Array as Arr, Effect, Exit, Schema } from "effect";
+import type { RendererDomainCapability } from "#contracts/renderer/contract";
 import {
   canonicalizeRendererManifestContract,
-  type RendererDomainCapability,
   RendererManifestEnvelopeSchema,
   selectRendererDomainCapability,
   sortRendererDomains,
 } from "#contracts/renderer/contract";
-import {
-  RENDERER_DOMAINS,
-  type RendererDomain,
-} from "#contracts/renderer/domain";
+import type { RendererDomain } from "#contracts/renderer/domain";
+import { RENDERER_DOMAINS } from "#contracts/renderer/domain";
 import { encodeJsonText } from "#contracts/text/json";
 
 const hash = `sha256:${"a".repeat(64)}`;

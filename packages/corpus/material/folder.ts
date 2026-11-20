@@ -9,16 +9,13 @@ import {
   Path,
   Schema,
 } from "effect";
-
+import type { LessonMaterialSource } from "#corpus/material/schema";
 import {
-  type LessonMaterialSource,
   LessonModuleSchema,
   LessonSectionModuleSchema,
 } from "#corpus/material/schema";
-import {
-  type ConstantModule,
-  readConstantModule,
-} from "#corpus/module/constant";
+import type { ConstantModule } from "#corpus/module/constant";
+import { readConstantModule } from "#corpus/module/constant";
 
 /** The folder, below the checkout root, whose domain folders hold one folder per lesson. */
 const LESSON_ROOT = "packages/corpus/material/lesson";

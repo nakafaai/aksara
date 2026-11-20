@@ -1,6 +1,7 @@
 import { describe, expect, it } from "@effect/vitest";
 import { Array as Arr, Effect, HashMap, Option, Schema } from "effect";
-import { type ItemSource, ItemSourceSchema } from "#corpus/question-bank/item";
+import type { ItemSource } from "#corpus/question-bank/item";
+import { ItemSourceSchema } from "#corpus/question-bank/item";
 import {
   QUESTION_BANK_ROOT,
   SetPathSchema,

@@ -1,7 +1,5 @@
-import {
-  type PublicationHeadPageRequest,
-  PublicationHeadPageRequestSchema,
-} from "@nakafa/aksara-contracts/transport/request";
+import type { PublicationHeadPageRequest } from "@nakafa/aksara-contracts/transport/request";
+import { PublicationHeadPageRequestSchema } from "@nakafa/aksara-contracts/transport/request";
 import { PublicationHeadPageSuccessSchema } from "@nakafa/aksara-contracts/transport/response";
 import { Schema } from "effect";
 

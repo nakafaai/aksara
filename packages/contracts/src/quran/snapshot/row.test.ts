@@ -1,14 +1,9 @@
 import { describe, expect, it } from "@effect/vitest";
 import { Array as Arr, Exit, Option, Schema } from "effect";
-
-import {
-  ActiveAppLocaleListSchema,
-  type AppLocaleCode,
-} from "#contracts/locale";
-import {
-  QuranChunkRowSchema,
-  type QuranRowPayload,
-} from "#contracts/quran/snapshot/row";
+import type { AppLocaleCode } from "#contracts/locale";
+import { ActiveAppLocaleListSchema } from "#contracts/locale";
+import type { QuranRowPayload } from "#contracts/quran/snapshot/row";
+import { QuranChunkRowSchema } from "#contracts/quran/snapshot/row";
 import {
   QuranAttributionRowSchema,
   quranSourceFileCount,

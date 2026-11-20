@@ -1,10 +1,7 @@
 import { describe, expect, it } from "@effect/vitest";
 import { Effect } from "effect";
-
-import {
-  type ArticleSourceInput,
-  defineArticleSource,
-} from "#corpus/articles/schema";
+import type { ArticleSourceInput } from "#corpus/articles/schema";
+import { defineArticleSource } from "#corpus/articles/schema";
 
 /** Builds one real-shaped source so tests vary one contract field at a time. */
 function source(values: Partial<ArticleSourceInput> = {}): ArticleSourceInput {

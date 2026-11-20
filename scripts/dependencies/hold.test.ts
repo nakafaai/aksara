@@ -129,10 +129,7 @@ layer(NodeServices.layer, { excludeTestServices: true })(
           ).pipe(Effect.flip);
 
           assert.strictEqual(error._tag, "DependencyPolicyError");
-          assert.strictEqual(
-            error.message,
-            "tsrs has no ts7.1.0-beta release."
-          );
+          assert.strictEqual(error.message, "tsrs has no beta.tsrs release.");
         })
     );
 

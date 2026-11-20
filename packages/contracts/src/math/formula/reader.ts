@@ -1,9 +1,6 @@
 import { Array as Arr, Option, Result, Schema } from "effect";
-
-import {
-  FormulaError,
-  type FormulaProblem,
-} from "#contracts/math/formula/syntax";
+import type { FormulaProblem } from "#contracts/math/formula/syntax";
+import { FormulaError } from "#contracts/math/formula/syntax";
 import {
   FormulaTokenSchema,
   tokenizeFormula,

@@ -1,9 +1,7 @@
 import { issueAtOffset } from "#nakafa-content/math/finding";
 import type { MdxNode } from "#nakafa-content/mdx/parse";
-import {
-  type VisibleTextScan,
-  visibleTextOffsets,
-} from "#nakafa-content/mdx/visible";
+import type { VisibleTextScan } from "#nakafa-content/mdx/visible";
+import { visibleTextOffsets } from "#nakafa-content/mdx/visible";
 import type { LessonVoiceIssue } from "#nakafa-content/voice/types";
 
 /** One stretch of text that dollar signs mark as mathematics. */

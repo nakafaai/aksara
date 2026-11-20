@@ -1,9 +1,9 @@
 import type { ReleaseId } from "@nakafa/aksara-contracts/ids";
 import { Cause, Effect } from "effect";
 import { abortContentRelease } from "#publisher/abort";
+import type { PublicationRetentionDecision } from "#publisher/publication/spec";
 import {
   PublicationRecoveryIdentityError,
-  type PublicationRetentionDecision,
   PublicationTarget,
 } from "#publisher/publication/spec";
 

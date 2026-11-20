@@ -1,15 +1,12 @@
-import { type Path, Predicate } from "effect";
-
-import {
-  type MdxNode,
-  parseLessonMdx,
-  visitMdxNodes,
-} from "#nakafa-content/mdx/parse";
-import {
-  isLessonVoiceLocale,
-  type LessonVoiceFileIssue,
-  type LessonVoiceLocale,
+import type { Path } from "effect";
+import { Predicate } from "effect";
+import type { MdxNode } from "#nakafa-content/mdx/parse";
+import { parseLessonMdx, visitMdxNodes } from "#nakafa-content/mdx/parse";
+import type {
+  LessonVoiceFileIssue,
+  LessonVoiceLocale,
 } from "#nakafa-content/voice/types";
+import { isLessonVoiceLocale } from "#nakafa-content/voice/types";
 
 interface LessonSiblingDocument {
   file: string;

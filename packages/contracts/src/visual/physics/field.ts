@@ -1,6 +1,6 @@
 import { Schema } from "effect";
-
-import { cardFields, type RichSlot, TextSchema } from "#contracts/visual/card";
+import type { RichSlot } from "#contracts/visual/card";
+import { cardFields, TextSchema } from "#contracts/visual/card";
 import { figure } from "#contracts/visual/entry";
 
 /** Props of `CurrentBalanceLab`: a straight wire lies east to west across the gap of a magnet whose field points north. */

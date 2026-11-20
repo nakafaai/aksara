@@ -12,7 +12,8 @@ import {
   Stream,
 } from "effect";
 import { PreviewEvidenceError } from "#cli/evidence";
-import { PreviewRestartError, type SelectedDocument } from "#cli/integrity";
+import type { SelectedDocument } from "#cli/integrity";
+import { PreviewRestartError } from "#cli/integrity";
 import { PreviewProviderError } from "#cli/provider";
 
 /** Filesystem watching stopped instead of preserving the authoring session. */

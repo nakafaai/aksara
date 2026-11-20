@@ -1,13 +1,7 @@
 import { NodeServices } from "@effect/platform-node";
 import { assert, it } from "@effect/vitest";
-import {
-  Array as Arr,
-  Effect,
-  FileSystem,
-  Path,
-  Schema,
-  type Scope,
-} from "effect";
+import type { Scope } from "effect";
+import { Array as Arr, Effect, FileSystem, Path, Schema } from "effect";
 import type { PlatformError } from "effect/PlatformError";
 
 import { loggedLines } from "#nakafa-content/points/test/console";

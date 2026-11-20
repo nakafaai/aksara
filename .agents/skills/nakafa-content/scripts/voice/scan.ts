@@ -5,11 +5,8 @@ import { findUndefinedHeadingAbbreviationIssues } from "#nakafa-content/heading/
 import { findMalformedLatexCommandIssues } from "#nakafa-content/math/command";
 import { findDisplayedMathCompositionIssues } from "#nakafa-content/math/compose";
 import { findPlainMathLabelIssues } from "#nakafa-content/math/label";
-import {
-  type MdxNode,
-  parseLessonMdx,
-  type SourceRange,
-} from "#nakafa-content/mdx/parse";
+import type { MdxNode, SourceRange } from "#nakafa-content/mdx/parse";
+import { parseLessonMdx } from "#nakafa-content/mdx/parse";
 import { unanchoredGermanFormalAddressOffset } from "#nakafa-content/voice/address";
 import { findStructuralIssues } from "#nakafa-content/voice/heading";
 import { UnsupportedLessonLocale } from "#nakafa-content/voice/locale";
@@ -38,14 +35,14 @@ import {
   maskMultilineQuotations,
   multilineQuotationRanges,
 } from "#nakafa-content/voice/text";
-import {
-  isLessonVoiceLocale,
-  type LessonVoiceGenre,
-  type LessonVoiceIssue,
-  type LessonVoiceLocale,
-  type LessonVoiceRule,
-  type LineState,
+import type {
+  LessonVoiceGenre,
+  LessonVoiceIssue,
+  LessonVoiceLocale,
+  LessonVoiceRule,
+  LineState,
 } from "#nakafa-content/voice/types";
+import { isLessonVoiceLocale } from "#nakafa-content/voice/types";
 
 const REPETITIVE_OPENER_LIMIT = 2;
 

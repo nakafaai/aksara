@@ -1,11 +1,7 @@
-import {
-  APP_LOCALE_CODES,
-  type AppLocale,
-} from "@nakafa/aksara-contracts/locale";
-import {
-  type MaterialDomain,
-  MaterialDomainSchema,
-} from "@nakafa/aksara-contracts/material/domain";
+import type { AppLocale } from "@nakafa/aksara-contracts/locale";
+import { APP_LOCALE_CODES } from "@nakafa/aksara-contracts/locale";
+import type { MaterialDomain } from "@nakafa/aksara-contracts/material/domain";
+import { MaterialDomainSchema } from "@nakafa/aksara-contracts/material/domain";
 import { ProgramNavigationIconKeySchema } from "@nakafa/aksara-contracts/program/spec";
 import { RendererDomainSchema } from "@nakafa/aksara-contracts/renderer/domain";
 import {

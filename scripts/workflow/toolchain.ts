@@ -1,5 +1,7 @@
-import { Array as Arr, Effect, type HashMap, Option } from "effect";
-import { isScalar, parseDocument, type YAMLMap } from "yaml";
+import type { HashMap } from "effect";
+import { Array as Arr, Effect, Option } from "effect";
+import type { YAMLMap } from "yaml";
+import { isScalar, parseDocument } from "yaml";
 import {
   environmentValues,
   mergeEnvironment,

@@ -1,7 +1,8 @@
 import type { ContentCacheChange } from "@nakafa/aksara-contracts/cache/content";
 import type { SignedContentRelease } from "@nakafa/aksara-contracts/release";
 import { PublicationActivationError } from "@nakafa/aksara-publisher/publication/spec";
-import { Effect, type FileSystem, Schema, Stream } from "effect";
+import type { FileSystem } from "effect";
+import { Effect, Schema, Stream } from "effect";
 
 /**
  * Selects whether one publication target deploys Nakafa. Only a production target

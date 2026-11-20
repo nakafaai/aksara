@@ -1,15 +1,11 @@
 import { NodeServices } from "@effect/platform-node";
 import { expect, layer } from "@effect/vitest";
-import {
-  ExactProcess,
-  type ExactProcessInput,
-} from "@nakafa/aksara-utilities/process/exact";
+import type { ExactProcessInput } from "@nakafa/aksara-utilities/process/exact";
+import { ExactProcess } from "@nakafa/aksara-utilities/process/exact";
 import { Array as Arr, Effect, FileSystem, Path } from "effect";
 import { NakafaApp } from "#cli/nakafa";
-import {
-  openRendererSession,
-  type RendererSessionSelection,
-} from "#cli/renderer/session";
+import type { RendererSessionSelection } from "#cli/renderer/session";
+import { openRendererSession } from "#cli/renderer/session";
 import { makeRepositoryTracker, REPOSITORY_ROOT } from "#test/real";
 import { makeApp } from "#test/session";
 

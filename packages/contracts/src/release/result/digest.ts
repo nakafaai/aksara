@@ -5,18 +5,12 @@ import {
   routeIdentity,
 } from "#contracts/content";
 import { DigestStream } from "#contracts/hash/stream";
-import {
-  type PublicPath,
-  PublicPathSchema,
-  type ReleaseId,
-  ReleaseIdSchema,
-  type Sha256HashSchema,
-} from "#contracts/ids";
-import { AppLocaleSchema, type ArtifactLocale } from "#contracts/locale";
-import {
-  type ContentHead,
-  canonicalizeContentHead,
-} from "#contracts/release/head";
+import type { PublicPath, ReleaseId, Sha256HashSchema } from "#contracts/ids";
+import { PublicPathSchema, ReleaseIdSchema } from "#contracts/ids";
+import type { ArtifactLocale } from "#contracts/locale";
+import { AppLocaleSchema } from "#contracts/locale";
+import type { ContentHead } from "#contracts/release/head";
+import { canonicalizeContentHead } from "#contracts/release/head";
 import {
   ReleaseCountMismatchFields,
   ReleaseDigestMismatchFields,

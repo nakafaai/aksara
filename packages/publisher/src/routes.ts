@@ -1,14 +1,16 @@
 import { routeIdentity } from "@nakafa/aksara-contracts/content";
+import type { ReleaseId } from "@nakafa/aksara-contracts/ids";
 import {
   ContentKeySchema,
   PublicPathSchema,
-  type ReleaseId,
 } from "@nakafa/aksara-contracts/ids";
 import { AppLocaleSchema } from "@nakafa/aksara-contracts/locale";
+import type {
+  ContentRouteChange,
+  ContentRouteItem,
+} from "@nakafa/aksara-contracts/release/route/spec";
 import {
-  type ContentRouteChange,
   ContentRouteChangeSchema,
-  type ContentRouteItem,
   ContentRouteItemSchema,
 } from "@nakafa/aksara-contracts/release/route/spec";
 import { compareCodeUnits } from "@nakafa/aksara-contracts/text/order";

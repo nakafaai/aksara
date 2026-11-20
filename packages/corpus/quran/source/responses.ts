@@ -1,11 +1,10 @@
-import { Effect, type FileSystem, MutableList, type Path } from "effect";
+import type { FileSystem, Path } from "effect";
+import { Effect, MutableList } from "effect";
 import { bundleParts, digestBundle } from "#corpus/quran/source/bundle";
 import { decodeSource } from "#corpus/quran/source/decode";
 import { QuranSourceFileError } from "#corpus/quran/source/failure";
-import {
-  QURANENC_BUNDLE_DOMAIN,
-  type QuranApiBundle,
-} from "#corpus/quran/source/policy";
+import type { QuranApiBundle } from "#corpus/quran/source/policy";
+import { QURANENC_BUNDLE_DOMAIN } from "#corpus/quran/source/policy";
 
 /**
  * Reads the exact 114 QuranEnc responses of one pinned bundle (the Indonesian

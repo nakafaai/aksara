@@ -5,11 +5,11 @@ import {
   RendererComponentNameSchema,
   sortRendererComponents,
 } from "#contracts/renderer/component";
+import type { RendererManifestEnvelope } from "#contracts/renderer/contract";
 import {
   canonicalizeRendererManifestContract,
   RENDERER_MANIFEST_FORMAT,
   RendererManifestDomainsSchema,
-  type RendererManifestEnvelope,
   RendererManifestEnvelopeSchema,
   RendererManifestHashMismatchError,
   sortRendererDomains,

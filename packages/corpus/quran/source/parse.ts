@@ -1,7 +1,5 @@
-import {
-  type QuranTranslation,
-  QuranTranslationSchema,
-} from "@nakafa/aksara-contracts/quran/notes";
+import type { QuranTranslation } from "@nakafa/aksara-contracts/quran/notes";
+import { QuranTranslationSchema } from "@nakafa/aksara-contracts/quran/notes";
 import {
   Array as Arr,
   Effect,

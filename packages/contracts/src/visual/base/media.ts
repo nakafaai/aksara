@@ -1,6 +1,6 @@
 import { Schema } from "effect";
-
-import { cardFields, type RichSlot } from "#contracts/visual/card";
+import type { RichSlot } from "#contracts/visual/card";
+import { cardFields } from "#contracts/visual/card";
 import { figure } from "#contracts/visual/entry";
 
 /** The identifier of one YouTube video: letters, digits, `-`, and `_`. */

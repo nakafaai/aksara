@@ -1,7 +1,8 @@
 import { Array as Arr, Schema } from "effect";
 
 import { hasDistinctIds } from "#contracts/assessment/identity";
-import { cardFields, type RichSlot, TextSchema } from "#contracts/visual/card";
+import type { RichSlot } from "#contracts/visual/card";
+import { cardFields, TextSchema } from "#contracts/visual/card";
 import { figure } from "#contracts/visual/entry";
 
 /**

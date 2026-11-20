@@ -3,6 +3,7 @@ import {
   MathVisualSchema,
   mathVisualLabelKeys,
 } from "@nakafa/aksara-contracts/math/visual";
+import type { StandardSchema } from "effect";
 import {
   Array as Arr,
   Effect,
@@ -11,24 +12,16 @@ import {
   Result,
   Schema,
   SchemaIssue,
-  type StandardSchema,
 } from "effect";
 import type { Root } from "mdast";
 import type { Plugin } from "unified";
 import { visit } from "unist-util-visit";
-import {
-  type StaticLiteralPathSegment,
-  staticLiteralNodeAtPath,
-} from "#compiler/ast/literal";
-import {
-  estreeLocation,
-  inspectMathVisual,
-  type MathVisualCandidate,
-} from "#compiler/ast/math";
-import {
-  MathVisualPolicyError,
-  type MathVisualPolicyViolation,
-} from "#compiler/errors";
+import type { StaticLiteralPathSegment } from "#compiler/ast/literal";
+import { staticLiteralNodeAtPath } from "#compiler/ast/literal";
+import type { MathVisualCandidate } from "#compiler/ast/math";
+import { estreeLocation, inspectMathVisual } from "#compiler/ast/math";
+import type { MathVisualPolicyViolation } from "#compiler/errors";
+import { MathVisualPolicyError } from "#compiler/errors";
 
 /** Normalizes Standard Schema path values into the compiler contract. */
 export function normalizeSchemaPath(

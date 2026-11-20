@@ -14,10 +14,10 @@ import {
   Path,
   Schema,
 } from "effect";
+import type { GitBatchError } from "#publisher/git/batch";
 import {
   decodeGitBatchMetadata,
   decodeGitBatchResponse,
-  type GitBatchError,
   MAX_GIT_BATCH_BLOBS,
   makeGitBatchRequest,
   makeGitMetadataRequest,

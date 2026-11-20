@@ -11,16 +11,16 @@ import type { Program } from "estree-jsx";
 import type { Root, RootContent } from "mdast";
 import type { MdxjsEsm } from "mdast-util-mdx";
 import type { Plugin } from "unified";
+import type { StaticLiteral } from "#compiler/ast/literal";
 import {
   decodeStaticLiteral,
-  type StaticLiteral,
   StaticLiteralSchema,
 } from "#compiler/ast/literal";
+import type { AuthoredMetadataSyntaxReasonSchema } from "#compiler/errors";
 import {
   AuthoredMetadataDuplicateError,
   AuthoredMetadataMissingError,
   AuthoredMetadataSyntaxError,
-  type AuthoredMetadataSyntaxReasonSchema,
 } from "#compiler/errors";
 
 export type AuthoredMetadataValue = StaticLiteral;

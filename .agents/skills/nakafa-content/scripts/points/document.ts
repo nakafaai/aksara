@@ -1,10 +1,9 @@
 import { Predicate } from "effect";
+import type { EstreeNode, MdxNode } from "#nakafa-content/mdx/parse";
 import {
   attributeEstree,
-  type EstreeNode,
   estreeChildren,
   jsxComponentName,
-  type MdxNode,
   visitMdxNodes,
 } from "#nakafa-content/mdx/parse";
 import { expectShape } from "#nakafa-content/mdx/shape";

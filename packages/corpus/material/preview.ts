@@ -2,10 +2,8 @@ import { CorpusSourcePathSchema } from "@nakafa/aksara-contracts/ids";
 import { ACTIVE_APP_LOCALES } from "@nakafa/aksara-contracts/locale";
 import { Array as Arr, Effect, HashSet, MutableList, Schema } from "effect";
 import { appLocaleCode } from "#corpus/locale/source";
-import {
-  decodeMaterialDomains,
-  type MaterialDomainDescriptor,
-} from "#corpus/material/domain";
+import type { MaterialDomainDescriptor } from "#corpus/material/domain";
+import { decodeMaterialDomains } from "#corpus/material/domain";
 import {
   MaterialEntrySchema,
   MaterialRegistryError,
@@ -13,10 +11,8 @@ import {
   validateMaterialEntries,
   validateMaterialSources,
 } from "#corpus/material/registry";
-import {
-  decodeMaterialSources,
-  type MaterialOrigin,
-} from "#corpus/material/source";
+import type { MaterialOrigin } from "#corpus/material/source";
+import { decodeMaterialSources } from "#corpus/material/source";
 
 /** Projects every selected body and validates base and locale-owned metadata together. */
 export const decodeMaterialPreviewEntries = Effect.fn(

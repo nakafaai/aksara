@@ -1,12 +1,8 @@
 import { hashContentProjection } from "@nakafa/aksara-contracts/projection/hash";
-import {
-  type PageHead,
-  PageHeadSchema,
-} from "@nakafa/aksara-contracts/release/head";
-import {
-  type PublicationScope,
-  PublicationScopeSchema,
-} from "@nakafa/aksara-contracts/release/snapshot/scope";
+import type { PageHead } from "@nakafa/aksara-contracts/release/head";
+import { PageHeadSchema } from "@nakafa/aksara-contracts/release/head";
+import type { PublicationScope } from "@nakafa/aksara-contracts/release/snapshot/scope";
+import { PublicationScopeSchema } from "@nakafa/aksara-contracts/release/snapshot/scope";
 import {
   Array as Arr,
   Context,

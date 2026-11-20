@@ -6,24 +6,24 @@ This guide is a map. It states each Aksara decision once and names the command o
 
 ## Sources Of Truth
 
-| Topic | Owner |
-| --- | --- |
-| Writing Effect v4 | `repos/effect/LLMS.md`, then source and tests under `repos/effect/packages` |
-| Effect-native source rules | `scripts/check/effect.ts`, run by `bun run lint` |
-| Effect compiler rules | `packages/typescript-config/base.json` |
+| Topic                                                                                                                                   | Owner                                                                                                               |
+| --------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------- |
+| Writing Effect v4                                                                                                                       | `repos/effect/LLMS.md`, then source and tests under `repos/effect/packages`                                         |
+| Effect-native source rules                                                                                                              | `scripts/check/effect.ts`, run by `bun run lint`                                                                    |
+| Effect compiler rules                                                                                                                   | `packages/typescript-config/base.json`                                                                              |
 | Facts shared with nakafa.com: the compiler rule block, `scripts/osv`, the verifier core in `scripts/provenance`, the Effect cohort pins | nakafa.com owns them; `bun run native` compares the copies here with the commit pinned in `scripts/check/native.ts` |
-| File and folder names | `bun run names` |
-| Module length | `bun run lines` |
-| JSDoc on stable callables | `bun run jsdocs` |
-| Deprecated APIs | `bun run deprecations` |
-| Import aliases and boundaries | `bun run boundaries` |
-| Locale declarations | `bun run locales` |
-| Workflow policy | `bun run workflows` |
-| Dependency audit and its time-boxed exceptions | `scripts/osv`, `osv.toml` |
-| Contracts release path | `docs/contracts.md` |
-| Scope, governance, architecture decisions | `docs/scope.md`, `docs/governance.md`, `docs/adr` |
-| Authoring, reviewing, and verifying content | `.agents/skills/nakafa-content` |
-| Turborepo | `docs/README.md` inside the installed `turbo` package |
+| File and folder names                                                                                                                   | `bun run names`                                                                                                     |
+| Module length                                                                                                                           | `bun run lines`                                                                                                     |
+| JSDoc on stable callables                                                                                                               | `bun run jsdocs`                                                                                                    |
+| Deprecated APIs                                                                                                                         | `bun run deprecations`                                                                                              |
+| Import aliases and boundaries                                                                                                           | `bun run boundaries`                                                                                                |
+| Locale declarations                                                                                                                     | `bun run locales`                                                                                                   |
+| Workflow policy                                                                                                                         | `bun run workflows`                                                                                                 |
+| Dependency audit and its time-boxed exceptions                                                                                          | `scripts/osv`, `osv.toml`                                                                                           |
+| Contracts release path                                                                                                                  | `docs/contracts.md`                                                                                                 |
+| Scope, governance, architecture decisions                                                                                               | `docs/scope.md`, `docs/governance.md`, `docs/adr`                                                                   |
+| Authoring, reviewing, and verifying content                                                                                             | `.agents/skills/nakafa-content`                                                                                     |
+| Turborepo                                                                                                                               | `docs/README.md` inside the installed `turbo` package                                                               |
 
 ## Workspaces And Names
 

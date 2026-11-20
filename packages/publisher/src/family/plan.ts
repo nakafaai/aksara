@@ -3,9 +3,9 @@ import type {
   ContentHeadIdentity,
 } from "@nakafa/aksara-contracts/content";
 import { ContentDeliveryClassSchema } from "@nakafa/aksara-contracts/delivery";
+import type { PublicPath } from "@nakafa/aksara-contracts/ids";
 import {
   CorpusSourcePathSchema,
-  type PublicPath,
   Sha256HashSchema,
 } from "@nakafa/aksara-contracts/ids";
 import { ContentDeleteSchema } from "@nakafa/aksara-contracts/release";
@@ -15,15 +15,13 @@ import type { PublicationScope } from "@nakafa/aksara-contracts/release/snapshot
 import type { RendererManifestEnvelope } from "@nakafa/aksara-contracts/renderer/contract";
 import { RendererDomainSchema } from "@nakafa/aksara-contracts/renderer/domain";
 import { Effect, Schema, Stream } from "effect";
-import {
-  diffScopedFamilyHeads,
-  type ScopedFamilyDiff,
-} from "#publisher/family/scope";
-import {
-  type PreparedContentTransition,
-  PreparedContentTransitionSchema,
-  type PreparedContentUpsert,
+import type { ScopedFamilyDiff } from "#publisher/family/scope";
+import { diffScopedFamilyHeads } from "#publisher/family/scope";
+import type {
+  PreparedContentTransition,
+  PreparedContentUpsert,
 } from "#publisher/preparation/spec";
+import { PreparedContentTransitionSchema } from "#publisher/preparation/spec";
 
 const FamilyEntrySchema = Schema.Struct({
   delivery: ContentDeliveryClassSchema,

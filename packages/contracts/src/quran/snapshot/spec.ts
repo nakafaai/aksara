@@ -1,11 +1,8 @@
 import { Array as Arr, Schema } from "effect";
 
 import { Sha256HashSchema } from "#contracts/ids";
-import {
-  type ActiveAppLocaleList,
-  ActiveAppLocaleListSchema,
-  AppLocaleSchema,
-} from "#contracts/locale";
+import type { ActiveAppLocaleList } from "#contracts/locale";
+import { ActiveAppLocaleListSchema, AppLocaleSchema } from "#contracts/locale";
 import { quranSourceFileCount } from "#contracts/quran/source";
 import {
   QURAN_ATTRIBUTION_COUNT,

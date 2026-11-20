@@ -1,13 +1,12 @@
 import { hashContentProjection } from "@nakafa/aksara-contracts/projection/hash";
-import {
-  type MaterialHead,
-  MaterialHeadSchema,
-} from "@nakafa/aksara-contracts/release/head";
+import type { MaterialHead } from "@nakafa/aksara-contracts/release/head";
+import { MaterialHeadSchema } from "@nakafa/aksara-contracts/release/head";
 import type { RollbackSnapshotState } from "@nakafa/aksara-contracts/release/rollback/spec";
 import type { PublicationScope } from "@nakafa/aksara-contracts/release/snapshot/scope";
 import type { RendererManifestEnvelope } from "@nakafa/aksara-contracts/renderer/contract";
 import type { MaterialEntry } from "@nakafa/aksara-corpus/material/registry";
-import { Effect, type Stream } from "effect";
+import type { Stream } from "effect";
+import { Effect } from "effect";
 import {
   familyPublicationPlanSchema,
   planFamilyPublication,

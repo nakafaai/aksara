@@ -3,10 +3,12 @@ import { Result, Schema } from "effect";
 
 import { compileFormula } from "#contracts/math/formula/compile";
 import { readFormula, readRelation } from "#contracts/math/formula/parse";
+import type {
+  FormulaError,
+  FormulaProblem,
+} from "#contracts/math/formula/syntax";
 import {
-  type FormulaError,
   FormulaNodeSchema,
-  type FormulaProblem,
   FormulaRelationSchema,
 } from "#contracts/math/formula/syntax";
 

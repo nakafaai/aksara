@@ -12,7 +12,8 @@ import { entranceTryoutSource } from "#corpus/tryout/germany/entrance/source";
 import { snbtTryoutSource } from "#corpus/tryout/indonesia/snbt/source";
 import { tkaTryoutSource } from "#corpus/tryout/indonesia/tka/source";
 import { spmTryoutSource } from "#corpus/tryout/malaysia/spm/source";
-import { type ExamSource, ExamSourceSchema } from "#corpus/tryout/schema";
+import type { ExamSource } from "#corpus/tryout/schema";
+import { ExamSourceSchema } from "#corpus/tryout/schema";
 
 const tryoutPrograms = [
   snbtTryoutSource,

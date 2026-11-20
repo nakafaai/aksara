@@ -1,6 +1,6 @@
 import { ReleaseIdSchema } from "@nakafa/aksara-contracts/ids";
+import type { ReleaseCleanupReceipt } from "@nakafa/aksara-contracts/release/lifecycle";
 import {
-  type ReleaseCleanupReceipt,
   ReleaseCleanupReceiptSchema,
   ReleaseCleanupRequestSchema,
 } from "@nakafa/aksara-contracts/release/lifecycle";

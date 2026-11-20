@@ -1,8 +1,6 @@
 import { compareContentHeads } from "@nakafa/aksara-contracts/content";
-import {
-  type ContentHead,
-  ContentHeadSchema,
-} from "@nakafa/aksara-contracts/release/head";
+import type { ContentHead } from "@nakafa/aksara-contracts/release/head";
+import { ContentHeadSchema } from "@nakafa/aksara-contracts/release/head";
 import { Effect, Option, Schema, Stream, Tuple } from "effect";
 
 const HeadOrderStateSchema = Schema.Struct({

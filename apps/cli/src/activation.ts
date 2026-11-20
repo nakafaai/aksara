@@ -6,12 +6,13 @@ import {
   PublicationActivation,
   PublicationActivationError,
 } from "@nakafa/aksara-publisher/publication/spec";
-import { Effect, FileSystem, type Redacted } from "effect";
+import type { Redacted } from "effect";
+import { Effect, FileSystem } from "effect";
 import { HttpClient } from "effect/http";
+import type { ReleaseDispatch } from "#cli/dispatch/activation";
 import {
   makeAbsentReleaseDispatch,
   makeProductionReleaseDispatch,
-  type ReleaseDispatch,
 } from "#cli/dispatch/activation";
 import { fetchProductionRenderer } from "#cli/production/renderer";
 

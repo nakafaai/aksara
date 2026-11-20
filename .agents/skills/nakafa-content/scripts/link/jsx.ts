@@ -8,11 +8,8 @@ import {
   isProtectedExampleAttribute,
   stringExternalOffset,
 } from "#nakafa-content/link/nested";
-import {
-  attributeEstree,
-  type MdxAttribute,
-  type MdxNode,
-} from "#nakafa-content/mdx/parse";
+import type { MdxAttribute, MdxNode } from "#nakafa-content/mdx/parse";
+import { attributeEstree } from "#nakafa-content/mdx/parse";
 import { expectShape } from "#nakafa-content/mdx/shape";
 import { isFullyStaticStringExpression } from "#nakafa-content/mdx/static";
 import { isFullyStaticValueExpression } from "#nakafa-content/mdx/value";

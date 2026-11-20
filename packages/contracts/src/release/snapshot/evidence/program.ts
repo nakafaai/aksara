@@ -6,10 +6,8 @@ import type {
   ContentSnapshotManifest,
   ContentSnapshotRow,
 } from "#contracts/release/snapshot/data";
-import {
-  requireSnapshotEvidence,
-  type SnapshotRowSource,
-} from "#contracts/release/snapshot/evidence/requirement";
+import type { SnapshotRowSource } from "#contracts/release/snapshot/evidence/requirement";
+import { requireSnapshotEvidence } from "#contracts/release/snapshot/evidence/requirement";
 
 /** Selects current program rows while preserving source failures. */
 function programRows<E, R>(rows: Stream.Stream<ContentSnapshotRow, E, R>) {

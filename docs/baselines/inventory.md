@@ -17,13 +17,13 @@ count of 544 importing documents.
 
 The classified transitive client graph is:
 
-| Capability combination | Documents |
-|---|---:|
-| R3F only | 404 |
-| charts and animation | 72 |
-| R3F, charts, and animation | 6 |
-| animation only | 8 |
-| no classified heavy graph | 3,650 |
+| Capability combination     | Documents |
+| -------------------------- | --------: |
+| R3F only                   |       404 |
+| charts and animation       |        72 |
+| R3F, charts, and animation |         6 |
+| animation only             |         8 |
+| no classified heavy graph  |     3,650 |
 
 ## Smallest measured candidate route partition
 
@@ -51,19 +51,19 @@ reading and writing skills; it must not become an unbounded generic rich
 loader. On the former web app, the localization library owned localized public
 path rewriting, so these internal physical entries did not change public URLs.
 
-| Physical shard | MDX | Heavy documents | Non-heavy documents sharing the union |
-|---|---:|---|---:|
-| articles politics | 14 | 6 charts and animation | 8 |
-| material AI/DS | 134 | 8 R3F | 126 |
-| material biology | 28 | 14 R3F | 14 |
-| material chemistry | 48 | 30 R3F and 2 animation | 16 |
-| material mathematics | 472 | 2 all-heavy, 24 charts, 6 animation, 206 R3F | 234 |
-| material physics | 84 | 4 all-heavy and 40 R3F | 40 |
-| SNBT general reasoning | 800 | 34 charts and animation | 766 |
-| SNBT mathematical reasoning | 560 | 34 R3F | 526 |
-| SNBT quantitative knowledge | 800 | 60 R3F | 740 |
-| SNBT plain fallback | 720 | none | 720 |
-| TKA tka-math | 480 | 8 charts and 12 R3F | 460 |
+| Physical shard              | MDX | Heavy documents                              | Non-heavy documents sharing the union |
+| --------------------------- | --: | -------------------------------------------- | ------------------------------------: |
+| articles politics           |  14 | 6 charts and animation                       |                                     8 |
+| material AI/DS              | 134 | 8 R3F                                        |                                   126 |
+| material biology            |  28 | 14 R3F                                       |                                    14 |
+| material chemistry          |  48 | 30 R3F and 2 animation                       |                                    16 |
+| material mathematics        | 472 | 2 all-heavy, 24 charts, 6 animation, 206 R3F |                                   234 |
+| material physics            |  84 | 4 all-heavy and 40 R3F                       |                                    40 |
+| SNBT general reasoning      | 800 | 34 charts and animation                      |                                   766 |
+| SNBT mathematical reasoning | 560 | 34 R3F                                       |                                   526 |
+| SNBT quantitative knowledge | 800 | 60 R3F                                       |                                   740 |
+| SNBT plain fallback         | 720 | none                                         |                                   720 |
+| TKA tka-math                | 480 | 8 charts and 12 R3F                          |                                   460 |
 
 Further partitioning by topic, set, or document would add substantial route
 duplication and is not justified by current evidence. The registry concept is

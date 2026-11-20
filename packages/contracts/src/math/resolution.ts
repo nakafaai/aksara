@@ -9,24 +9,21 @@ import {
   concentricRadiusCollisionPaths,
   coordinateCollisionPaths,
 } from "#contracts/math/collision";
-import {
-  pathAxes,
-  type ScenePath,
-  ScenePathSchema,
-} from "#contracts/math/coordinate";
+import type { ScenePath } from "#contracts/math/coordinate";
+import { pathAxes, ScenePathSchema } from "#contracts/math/coordinate";
 import type {
   PlaneLabelAnchor,
   PlaneMathFrame,
   PlaneMathObject,
   PlaneMathView,
 } from "#contracts/math/plane";
+import type { RenderThreshold } from "#contracts/math/precision";
 import {
   axisEnvelopePairs,
   axisSpan,
   measureUnresolved,
   polygonAltitudeUnresolved,
   quadraticCurvatureUnresolved,
-  type RenderThreshold,
   renderThreshold,
   spanUnresolved,
   visiblePathResolvable,

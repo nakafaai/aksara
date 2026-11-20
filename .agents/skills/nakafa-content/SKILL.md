@@ -42,45 +42,45 @@ classify. Review every candidate in the complete teaching context before editing
 
 ## Source ownership
 
-| Content | Aksara source |
-| --- | --- |
-| Articles | `packages/corpus/articles/` |
-| Lessons | `packages/corpus/material/lesson/<domain>/<lesson>/`, registered by the typed `source.ts` in that folder, which default-exports a `LessonModule`, and by the typed `section.ts` in each section folder, which default-exports a `LessonSection`; no shared list to edit |
-| Questions, answers, and response items | `packages/corpus/question-bank/` |
-| Programs and localized routes | Owning registries under `packages/corpus/` |
-| Pinned Quran bytes and policy | `packages/corpus/quran/source/` |
+| Content                                | Aksara source                                                                                                                                                                                                                                                           |
+| -------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Articles                               | `packages/corpus/articles/`                                                                                                                                                                                                                                             |
+| Lessons                                | `packages/corpus/material/lesson/<domain>/<lesson>/`, registered by the typed `source.ts` in that folder, which default-exports a `LessonModule`, and by the typed `section.ts` in each section folder, which default-exports a `LessonSection`; no shared list to edit |
+| Questions, answers, and response items | `packages/corpus/question-bank/`                                                                                                                                                                                                                                        |
+| Programs and localized routes          | Owning registries under `packages/corpus/`                                                                                                                                                                                                                              |
+| Pinned Quran bytes and policy          | `packages/corpus/quran/source/`                                                                                                                                                                                                                                         |
 
 ## Required references
 
 Read only what the task needs. Each reference owns one concern.
 
-| Work | Read |
-| --- | --- |
-| Any lesson addition or rewrite | [Lesson standard](references/lesson.md) |
-| Any authored revision or translation | [Editorial workflow](references/editorial.md) |
-| Voice, register, and the clarity test | [Voice and scope](references/voice.md) |
-| Terminology and technical vocabulary | [Terminology](references/terminology.md) |
-| Claims, comparisons, and causal sentences | [Claims and references](references/claims.md) |
-| Transitions and imperatives | [Teaching transitions](references/transitions.md) |
-| Headings, sections, and lists | [Structure](references/structure.md) |
-| Facts, citations, and source accuracy | [Accuracy and evidence](references/evidence.md) |
-| Checker scope and rule admission | [Checker limits and gate scope](references/checker.md) |
-| The closing read-through | [Final language review](references/review.md) |
-| Locale wording and cross-locale review | [Locale sources](references/locales.md) |
-| Raw MDX, metadata, and readability | [Source and readability](references/source.md) |
-| MDX headings | [Headings](references/headings.md) |
-| Learner-facing punctuation | [Learner facing punctuation](references/punctuation.md) |
-| Emphasis markers | [Emphasis](references/emphasis.md) |
-| Internal and external links | [Links](references/links.md) |
-| Search titles, descriptions, and search intent | [Search and answer engines](references/search.md) |
-| Mathematics and code in MDX | [Mathematics and code](references/math.md) |
-| Graphs, diagrams, and components | [Components and visuals](references/visuals.md) |
-| Representation research basis | [Evidence basis](references/research.md) |
-| Questions and response items | [Question bank](references/questions.md) |
-| Building try-out sets from any source material | [Try-out sets](references/sets.md) |
-| How hard a try-out item must be, per section | [Try-out difficulty](references/difficulty.md) |
-| Worked answer explanations | [Worked solutions](references/solutions.md) |
-| Verification commands and acceptance | [Verification](references/verification.md) |
+| Work                                           | Read                                                    |
+| ---------------------------------------------- | ------------------------------------------------------- |
+| Any lesson addition or rewrite                 | [Lesson standard](references/lesson.md)                 |
+| Any authored revision or translation           | [Editorial workflow](references/editorial.md)           |
+| Voice, register, and the clarity test          | [Voice and scope](references/voice.md)                  |
+| Terminology and technical vocabulary           | [Terminology](references/terminology.md)                |
+| Claims, comparisons, and causal sentences      | [Claims and references](references/claims.md)           |
+| Transitions and imperatives                    | [Teaching transitions](references/transitions.md)       |
+| Headings, sections, and lists                  | [Structure](references/structure.md)                    |
+| Facts, citations, and source accuracy          | [Accuracy and evidence](references/evidence.md)         |
+| Checker scope and rule admission               | [Checker limits and gate scope](references/checker.md)  |
+| The closing read-through                       | [Final language review](references/review.md)           |
+| Locale wording and cross-locale review         | [Locale sources](references/locales.md)                 |
+| Raw MDX, metadata, and readability             | [Source and readability](references/source.md)          |
+| MDX headings                                   | [Headings](references/headings.md)                      |
+| Learner-facing punctuation                     | [Learner facing punctuation](references/punctuation.md) |
+| Emphasis markers                               | [Emphasis](references/emphasis.md)                      |
+| Internal and external links                    | [Links](references/links.md)                            |
+| Search titles, descriptions, and search intent | [Search and answer engines](references/search.md)       |
+| Mathematics and code in MDX                    | [Mathematics and code](references/math.md)              |
+| Graphs, diagrams, and components               | [Components and visuals](references/visuals.md)         |
+| Representation research basis                  | [Evidence basis](references/research.md)                |
+| Questions and response items                   | [Question bank](references/questions.md)                |
+| Building try-out sets from any source material | [Try-out sets](references/sets.md)                      |
+| How hard a try-out item must be, per section   | [Try-out difficulty](references/difficulty.md)          |
+| Worked answer explanations                     | [Worked solutions](references/solutions.md)             |
+| Verification commands and acceptance           | [Verification](references/verification.md)              |
 
 ## Content invariants
 
@@ -121,7 +121,7 @@ Read only what the task needs. Each reference owns one concern.
   [worked solutions](references/solutions.md).
 - Mark an emphasised phrase, and no more of it than the phrase. `**` and
   `<Highlight>` render the same treatment, so the [emphasis
-  contract](references/emphasis.md) owns where they belong and how dense they
+contract](references/emphasis.md) owns where they belong and how dense they
   may be.
 - Every lesson meets the [lesson standard](references/lesson.md): the answer
   first, a teacher talking to one learner, at least three custom 3D scenes or

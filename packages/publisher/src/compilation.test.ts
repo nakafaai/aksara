@@ -6,19 +6,18 @@ import {
   CompiledContentPayloadSchema,
   compareContentHeads,
 } from "@nakafa/aksara-contracts/content";
+import type { ReleaseId, Sha256Hash } from "@nakafa/aksara-contracts/ids";
 import {
   ContentKeySchema,
   CorpusSourcePathSchema,
-  type ReleaseId,
   ReleaseIdSchema,
-  type Sha256Hash,
 } from "@nakafa/aksara-contracts/ids";
 import { ArtifactLocaleSchema } from "@nakafa/aksara-contracts/locale";
-import {
-  type ContentChange,
-  type ContentReleaseItem,
-  ContentReleaseItemSchema,
+import type {
+  ContentChange,
+  ContentReleaseItem,
 } from "@nakafa/aksara-contracts/release";
+import { ContentReleaseItemSchema } from "@nakafa/aksara-contracts/release";
 import { createRendererManifest } from "@nakafa/aksara-contracts/renderer/manifest";
 import { Array as Arr, Effect, Order, Schema, Stream } from "effect";
 import { compileReleaseSources } from "#publisher/compilation";

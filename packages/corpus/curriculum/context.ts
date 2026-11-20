@@ -1,7 +1,9 @@
+import type {
+  CurriculumRoute,
+  CurriculumRouteDraft,
+} from "@nakafa/aksara-contracts/program/curriculum";
 import {
   CurriculumNodeKeySchema,
-  type CurriculumRoute,
-  type CurriculumRouteDraft,
   CurriculumRouteSchema,
 } from "@nakafa/aksara-contracts/program/curriculum";
 import { LearningProgramKeySchema } from "@nakafa/aksara-contracts/program/spec";

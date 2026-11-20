@@ -1,5 +1,7 @@
-import { Context, type Effect, Schema } from "effect";
-import { type SigningKeyId, SigningKeyIdSchema } from "#contracts/ids";
+import type { Effect } from "effect";
+import { Context, Schema } from "effect";
+import type { SigningKeyId } from "#contracts/ids";
+import { SigningKeyIdSchema } from "#contracts/ids";
 
 /** Authenticated object whose Ed25519 signature is being checked. */
 export const ContentSignatureSubjectSchema = Schema.Literals([

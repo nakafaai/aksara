@@ -14,11 +14,8 @@ import {
 import { TestClock } from "effect/testing";
 import { PreviewProviderError } from "#cli/provider";
 import { selectPreviewDocument } from "#cli/repository";
-import {
-  makeRepositoryTracker,
-  REPOSITORY_ROOT,
-  type TestRepositories,
-} from "#test/real";
+import type { TestRepositories } from "#test/real";
+import { makeRepositoryTracker, REPOSITORY_ROOT } from "#test/real";
 import { runWatch } from "#test/session";
 
 const repositories = makeRepositoryTracker();

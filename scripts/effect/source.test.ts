@@ -1,6 +1,7 @@
 import { NodeServices } from "@effect/platform-node";
 import { afterEach, assert, layer } from "@effect/vitest";
 import { Effect, FileSystem, Path, Schema } from "effect";
+import type { RepositoryFixture } from "#scripts/effect/fixture";
 import {
   commitInstalledVersion,
   createOutdatedConsumer,
@@ -8,12 +9,9 @@ import {
   createUpstream,
   git,
   gitValue,
-  type RepositoryFixture,
 } from "#scripts/effect/fixture";
-import {
-  type EffectSourceConfig,
-  makeEffectSourceProgram,
-} from "#scripts/effect/source";
+import type { EffectSourceConfig } from "#scripts/effect/source";
+import { makeEffectSourceProgram } from "#scripts/effect/source";
 
 const VersionManifest = Schema.fromJsonString(
   Schema.Struct({ version: Schema.String })

@@ -1,7 +1,5 @@
-import {
-  type MaterialHead,
-  MaterialHeadSchema,
-} from "@nakafa/aksara-contracts/release/head";
+import type { MaterialHead } from "@nakafa/aksara-contracts/release/head";
+import { MaterialHeadSchema } from "@nakafa/aksara-contracts/release/head";
 import {
   Array as Arr,
   Context,
@@ -12,9 +10,9 @@ import {
   Option,
   Schema,
 } from "effect";
+import type { MaterialTestFixtures } from "#test/material/spec";
 import {
   functionContentKey,
-  type MaterialTestFixtures,
   materialTestLayer,
   publishedMaterialHeads,
 } from "#test/material/spec";

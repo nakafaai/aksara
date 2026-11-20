@@ -1,4 +1,5 @@
-import { type MdxNode, visitMdxNodes } from "#nakafa-content/mdx/parse";
+import type { MdxNode } from "#nakafa-content/mdx/parse";
+import { visitMdxNodes } from "#nakafa-content/mdx/parse";
 import { renderedNodeRange } from "#nakafa-content/mdx/rendered";
 import { matchRangeRules } from "#nakafa-content/voice/match";
 import type {

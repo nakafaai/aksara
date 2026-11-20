@@ -1,6 +1,6 @@
 import { hashCompiledContentPayload } from "@nakafa/aksara-contracts/artifact/integrity";
+import type { CompiledContentPayload } from "@nakafa/aksara-contracts/content";
 import {
-  type CompiledContentPayload,
   CompiledContentPayloadSchema,
   canonicalizeContentArtifactSigningInput,
   SignedContentArtifactSchema,
@@ -19,11 +19,13 @@ import {
 } from "@nakafa/aksara-contracts/locale";
 import { MaterialLessonProjectionSchema } from "@nakafa/aksara-contracts/projection/material";
 import type { ContentProjection } from "@nakafa/aksara-contracts/projection/spec";
+import type {
+  RollbackRecord,
+  RollbackUpsertState,
+} from "@nakafa/aksara-contracts/release/rollback/spec";
 import {
   RollbackDeleteStateSchema,
-  type RollbackRecord,
   RollbackRecordSchema,
-  type RollbackUpsertState,
   RollbackUpsertStateSchema,
 } from "@nakafa/aksara-contracts/release/rollback/spec";
 import { createRendererManifest } from "@nakafa/aksara-contracts/renderer/manifest";
@@ -34,11 +36,11 @@ import {
 import { ContentVerificationKeyResolver } from "@nakafa/aksara-contracts/signature/spec";
 import type { ContentTreeElement } from "@nakafa/aksara-contracts/tree";
 import { Effect, Schema, Stream } from "effect";
-import {
-  type DerivedRollbackState,
-  deriveRollbackRecords,
-  type RollbackArtifactPolicy,
+import type {
+  DerivedRollbackState,
+  RollbackArtifactPolicy,
 } from "#publisher/rollback/records";
+import { deriveRollbackRecords } from "#publisher/rollback/records";
 import { materialGraph } from "#test/graph";
 import { testRendererDomains } from "#test/renderer";
 

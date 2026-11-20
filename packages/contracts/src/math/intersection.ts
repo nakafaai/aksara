@@ -2,10 +2,10 @@ import { Schema } from "effect";
 
 import { MathAxisRangeSchema } from "#contracts/math/base";
 import { axisContains } from "#contracts/math/extent";
+import type { ExactRatio } from "#contracts/math/rational";
 import {
   compareRatios,
   differenceRatio,
-  type ExactRatio,
   ExactRatioSchema,
   numberRatio,
 } from "#contracts/math/rational";

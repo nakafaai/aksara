@@ -4,14 +4,16 @@ import {
   arcCurvatureUnresolved,
   arcEndpointsUnresolved,
 } from "#contracts/math/arc";
+import type {
+  SceneCoordinate,
+  SceneFrame,
+  ScenePath,
+} from "#contracts/math/coordinate";
 import {
   clippedPathCoordinates,
   sceneCoordinate as coordinate,
   frameCoordinates,
   pointCoordinates,
-  type SceneCoordinate,
-  type SceneFrame,
-  type ScenePath,
 } from "#contracts/math/coordinate";
 import {
   cuboidExtents,
@@ -24,11 +26,11 @@ import type {
   PlaneMathFrame,
   PlaneMathObject,
 } from "#contracts/math/plane";
+import type { RenderThreshold } from "#contracts/math/precision";
 import {
   axisSpan,
   measureUnresolved,
   quadraticCurvatureUnresolved,
-  type RenderThreshold,
   spanUnresolved,
 } from "#contracts/math/precision";
 import { decimal, decimalRatio } from "#contracts/math/rational";

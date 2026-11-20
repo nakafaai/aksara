@@ -1,6 +1,6 @@
 import { Schema } from "effect";
-
-import { cardFields, type RichSlot, TextSchema } from "#contracts/visual/card";
+import type { RichSlot } from "#contracts/visual/card";
+import { cardFields, TextSchema } from "#contracts/visual/card";
 import { figure } from "#contracts/visual/entry";
 
 /** Props of `EchoLab`: a boat heading for a cliff sounds its horn and hears the echo a few seconds later. */

@@ -3,10 +3,8 @@ import { hashText } from "@nakafa/aksara-contracts/hash/text";
 import { generateEd25519KeyPem } from "@nakafa/aksara-contracts/signature/key";
 import { Array as Arr, Effect, HashSet, Redacted } from "effect";
 import { Base64, Hex } from "effect/encoding";
-import {
-  makePreviewCredentials,
-  type PreviewCredentials,
-} from "#cli/credentials";
+import type { PreviewCredentials } from "#cli/credentials";
+import { makePreviewCredentials } from "#cli/credentials";
 
 const LOCAL_KEY_ID_PATTERN = /^local-[a-f0-9]{24}$/u;
 /** Ed25519 SubjectPublicKeyInfo DER prefix, which precedes the 32 key bytes. */

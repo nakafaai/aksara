@@ -1,11 +1,8 @@
 import { Array as Arr, Schema } from "effect";
 
 import { CorpusSourcePathSchema, PublicPathSchema } from "#contracts/ids";
-import {
-  type AppLocale,
-  type AppLocaleCode,
-  AppLocaleSchema,
-} from "#contracts/locale";
+import type { AppLocale, AppLocaleCode } from "#contracts/locale";
+import { AppLocaleSchema } from "#contracts/locale";
 import { MaterialDomainSchema } from "#contracts/material/domain";
 import {
   LearningProgramKeySchema,

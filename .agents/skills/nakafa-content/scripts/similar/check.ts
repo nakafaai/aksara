@@ -1,10 +1,8 @@
 #!/usr/bin/env node
 
 import { NodeRuntime, NodeServices } from "@effect/platform-node";
-import {
-  type SimilarityMatch,
-  scanQuestionSimilarity,
-} from "@nakafa/aksara-corpus/question-bank/similarity";
+import type { SimilarityMatch } from "@nakafa/aksara-corpus/question-bank/similarity";
+import { scanQuestionSimilarity } from "@nakafa/aksara-corpus/question-bank/similarity";
 import type { FormulaMatch } from "@nakafa/aksara-corpus/question-bank/similarity/formula";
 import { loadTryoutContent } from "@nakafa/aksara-corpus/tryout/content";
 import { Array as Arr, Console, Effect, Path, Schema } from "effect";

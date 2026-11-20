@@ -5,8 +5,8 @@ import type {
   ContentTreeValue,
 } from "@nakafa/aksara-contracts/tree";
 import type { RichSlot } from "@nakafa/aksara-contracts/visual/card";
+import type { VisualName } from "@nakafa/aksara-contracts/visual/catalog";
 import {
-  type VisualName,
   VisualNameSchema,
   visualCatalog,
 } from "@nakafa/aksara-contracts/visual/catalog";

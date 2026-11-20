@@ -16,16 +16,13 @@ import {
   Record as Rec,
   Schema,
 } from "effect";
-import {
-  type CompileContentError,
-  type CompiledContentResult,
-  CompiledContentResultSchema,
-  compileContent,
+import type {
+  CompileContentError,
+  CompiledContentResult,
 } from "#compiler/compile";
-import {
-  type ContentSourceInspection,
-  inspectContentSource,
-} from "#compiler/inspect";
+import { CompiledContentResultSchema, compileContent } from "#compiler/compile";
+import type { ContentSourceInspection } from "#compiler/inspect";
+import { inspectContentSource } from "#compiler/inspect";
 import type { AuthoredMetadataValue } from "#compiler/metadata";
 
 const CACHE_FORMAT = "aksara-local-compile";

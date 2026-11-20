@@ -2,30 +2,26 @@ import {
   ReleaseIdSchema,
   Sha256HashSchema,
 } from "@nakafa/aksara-contracts/ids";
+import type {
+  ArticleHead,
+  MaterialHead,
+  PageHead,
+} from "@nakafa/aksara-contracts/release/head";
 import {
-  type ArticleHead,
   ArticleHeadSchema,
-  type MaterialHead,
   MaterialHeadSchema,
-  type PageHead,
   PageHeadSchema,
 } from "@nakafa/aksara-contracts/release/head";
 import { verifyResultCatalog } from "@nakafa/aksara-contracts/release/result/digest";
 import type { PublicationScope } from "@nakafa/aksara-contracts/release/snapshot/scope";
-import type { FileSystem, Path } from "effect";
-import { Effect, Schema, type Scope, Stream } from "effect";
-import {
-  type PrepareArticlePublicationError,
-  prepareArticlePublication,
-} from "#publisher/article/publication";
-import {
-  type PrepareMaterialPublicationError,
-  prepareMaterialPublication,
-} from "#publisher/material/publication";
-import {
-  type PreparePagePublicationError,
-  preparePagePublication,
-} from "#publisher/page/publication";
+import type { FileSystem, Path, Scope } from "effect";
+import { Effect, Schema, Stream } from "effect";
+import type { PrepareArticlePublicationError } from "#publisher/article/publication";
+import { prepareArticlePublication } from "#publisher/article/publication";
+import type { PrepareMaterialPublicationError } from "#publisher/material/publication";
+import { prepareMaterialPublication } from "#publisher/material/publication";
+import type { PreparePagePublicationError } from "#publisher/page/publication";
+import { preparePagePublication } from "#publisher/page/publication";
 import type { PreparedContentTransition } from "#publisher/preparation/spec";
 import type { ReplaySpoolError } from "#publisher/replay/error";
 import { createReplaySpool } from "#publisher/replay/spool";

@@ -6,10 +6,8 @@ import {
 import { makeQuranProvenanceManifest } from "@nakafa/aksara-contracts/quran/provenance";
 import { Array as Arr, Effect, Option, Schema } from "effect";
 import { mokhtasarCatalog } from "#corpus/quran/catalog/mokhtasar";
-import {
-  type QuranCatalogEntry,
-  quranCatalog,
-} from "#corpus/quran/catalog/registry";
+import type { QuranCatalogEntry } from "#corpus/quran/catalog/registry";
+import { quranCatalog } from "#corpus/quran/catalog/registry";
 import {
   quranAttributionRowFor,
   quranProvenanceRecordsFor,

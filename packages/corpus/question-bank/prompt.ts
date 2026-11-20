@@ -4,10 +4,8 @@ import { Array as Arr, Effect, FileSystem, Option, Path, Schema } from "effect";
 import { QuestionReadError } from "#corpus/question-bank/entries";
 import { itemVersions } from "#corpus/question-bank/item";
 import { setSourcePath } from "#corpus/question-bank/path";
-import {
-  type QuestionSet,
-  QuestionSourceSchema,
-} from "#corpus/question-bank/source";
+import type { QuestionSet } from "#corpus/question-bank/source";
+import { QuestionSourceSchema } from "#corpus/question-bank/source";
 
 /**
  * One task as a learner reads it in one language: the shared reading of its

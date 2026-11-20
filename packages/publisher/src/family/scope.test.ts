@@ -2,10 +2,8 @@ import { describe, expect, it } from "@effect/vitest";
 import type { ContentHeadIdentity } from "@nakafa/aksara-contracts/content";
 import { ContentKeySchema } from "@nakafa/aksara-contracts/ids";
 import { ArtifactLocaleSchema } from "@nakafa/aksara-contracts/locale";
-import {
-  type MaterialHead,
-  MaterialHeadSchema,
-} from "@nakafa/aksara-contracts/release/head";
+import type { MaterialHead } from "@nakafa/aksara-contracts/release/head";
+import { MaterialHeadSchema } from "@nakafa/aksara-contracts/release/head";
 import { PublicationScopeSchema } from "@nakafa/aksara-contracts/release/snapshot/scope";
 import { Effect, Schema, Stream } from "effect";
 import { diffScopedFamilyHeads } from "#publisher/family/scope";

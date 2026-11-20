@@ -5,10 +5,8 @@ import { verifyContentReleaseBundle } from "@nakafa/aksara-contracts/release/ver
 import { makeHttpPublicationTarget } from "@nakafa/aksara-publisher/target/http";
 import { encodeJsonText } from "@nakafa/aksara-utilities/text/json";
 import { Array as Arr, Effect, Order, Schema } from "effect";
-import {
-  type PublicationEnvironment,
-  readPublicationEnvironment,
-} from "#cli/environment/read";
+import type { PublicationEnvironment } from "#cli/environment/read";
+import { readPublicationEnvironment } from "#cli/environment/read";
 import { mapProductionError } from "#cli/failure";
 import type { ParityArguments } from "#cli/production/arguments";
 import { retryPublicationTarget } from "#cli/retry";
