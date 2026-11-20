@@ -191,6 +191,7 @@ describe("validateAssessmentSourceReadiness", () => {
 
   it.effect("validates the aids of each section against its readiness", () =>
     Effect.gen(function* () {
+      /** Binds the given aids to the fixture-owned official evidence. */
       const aids = (value: readonly ToolId[]) => ({ ...official(0), value });
       const aided = yield* defineAssessmentReadiness({
         ...readinessInput,

@@ -95,6 +95,7 @@ describe("exam source", () => {
   });
 
   it("offers the aids of a section, each once, apart from the review mark", () => {
+    /** The test exam input with the reasoning section offering the given tools. */
     const withTools = (tools: readonly string[]) => ({
       ...testExamInput,
       tracks: [
