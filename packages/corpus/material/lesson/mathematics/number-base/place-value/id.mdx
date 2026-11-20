@@ -1,0 +1,155 @@
+export const metadata = {
+  title: "Nilai Tempat dan Nilai Angka dalam Basis Bilangan",
+  description:
+    "Baca nilai setiap angka dalam basis dua sampai sembilan, tulis bentuk panjangnya, dan kenali angka yang tidak boleh muncul dalam suatu basis.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2026-11-20",
+  subject: "Basis Bilangan",
+};
+
+## Abakus yang Kehabisan Tempat
+
+Dalam **basis lima**, kamu menghitung dengan kelompok berisi lima. Satu paku abakus hanya boleh memuat empat manik. Begitu manik kelima datang, kelima manik itu keluar dan diganti satu manik di paku sebelah kirinya. Jadi **basis** <InlineMath math="b" /> hanya memakai angka <InlineMath math="0" /> sampai <InlineMath math="b - 1" />, dan setiap tempat bernilai <InlineMath math="b" /> kali tempat di kanannya. Tulisan <InlineMath math="123_5" /> berarti satu kelompok <InlineMath math="25" />, dua kelompok <InlineMath math="5" />, dan tiga satuan, jadi nilainya <InlineMath math="38" />. Di abakus ini, kamu memindahkan bilangan itu dari basis lima ke basis sepuluh.
+
+<AbacusBaseLab
+  title={<>Bilangan <InlineMath math="38" /> di Abakus Basis Lima</>}
+  description={
+    <>
+      Setiap paku memuat satu angka. Pilih basis <InlineMath math="5" /> atau{" "}
+      <InlineMath math="10" />, lalu geser bilangannya dan hitung manik di
+      setiap paku.
+    </>
+  }
+  footer={<>Dalam basis lima, satu paku tidak pernah memuat lebih dari empat manik.</>}
+  bases={[5, 10]}
+  value={38}
+  labels={{
+    base: "Basis",
+    decimal: <>Nilai dalam basis sepuluh</>,
+    digits: <>Ditulis dalam basis ini</>,
+    expanded: <>Bentuk panjang</>,
+    value: "Bilangan",
+    viewLabel: "Abakus empat paku di atas meja, manik di setiap paku menunjukkan satu angka",
+  }}
+  showReadout
+/>
+
+Kenapa paku berhenti di empat manik? Lima manik di paku satuan sudah membentuk satu kelompok lima, dan kelompok lima punya paku sendiri. Kalau paku satuan boleh memuat lima manik, bilangan lima bisa ditulis dengan dua cara: lima manik di paku satuan, atau satu manik di paku kedua. Aturan **paling banyak <InlineMath math="b - 1" /> manik di setiap paku** membuat setiap bilangan punya tepat satu cara tulis.
+
+Sekarang pilih basis sepuluh. Bilangan yang sama tersusun ulang menjadi tiga manik di paku puluhan dan delapan manik di paku satuan. **Banyak bendanya tidak berubah**, yang berubah hanya besar kelompoknya. Kembali ke basis lima, lalu geser bilangannya ke <InlineMath math="39" /> dan <InlineMath math="40" />. Pada <InlineMath math="40" />, paku satuan kosong lagi karena lima manik baru saja pindah menjadi satu manik di paku kedua.
+
+## Nilai Tempat dan Nilai Angka
+
+Setiap angka dalam sebuah bilangan punya dua nilai. **Nilai tempat** adalah nilai satu manik di paku tempat angka itu berdiri. **Nilai angka** adalah angka itu dikali nilai tempatnya, yaitu nilai semua manik di paku itu. Ambil angka <InlineMath math="2" /> dalam <InlineMath math="123_5" />. Angka itu berdiri di paku kedua, jadi nilai tempatnya <InlineMath math="5" /> dan nilai angkanya <InlineMath math="2 \times 5 = 10" />.
+
+### Pangkat Basis per Paku
+
+Paku paling kanan menghitung satuan. Satu manik di paku berikutnya mewakili satu kelompok penuh dari paku di kanannya, jadi nilainya <InlineMath math="b" /> kali lipat. Karena itu, nilai tempat dari kanan ke kiri adalah <InlineMath math="b^0, b^1, b^2, b^3" />, yaitu **pangkat basis yang dimulai dari nol**. Tabel ini menuliskan keempat nilai tempat untuk basis yang paling sering kamu temui.
+
+| Paku | Pangkat | Basis <InlineMath math="2" /> | Basis <InlineMath math="5" /> | Basis <InlineMath math="8" /> | Basis <InlineMath math="10" /> |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| Keempat | <InlineMath math="b^3" /> | <InlineMath math="8" /> | <InlineMath math="125" /> | <InlineMath math="512" /> | <InlineMath math="1{.}000" /> |
+| Ketiga | <InlineMath math="b^2" /> | <InlineMath math="4" /> | <InlineMath math="25" /> | <InlineMath math="64" /> | <InlineMath math="100" /> |
+| Kedua | <InlineMath math="b^1" /> | <InlineMath math="2" /> | <InlineMath math="5" /> | <InlineMath math="8" /> | <InlineMath math="10" /> |
+| Pertama, satuan | <InlineMath math="b^0" /> | <InlineMath math="1" /> | <InlineMath math="1" /> | <InlineMath math="1" /> | <InlineMath math="1" /> |
+
+Kenapa paku satuan bernilai <InlineMath math="b^0 = 1" />, bukan <InlineMath math="b" />? Satu manik di paku itu masih satu benda yang belum dikelompokkan. Kelompok pertama baru muncul di paku kedua. Pola ini sama dengan pola [pangkat dan eksponen](/id/materi/matematika/eksponen-dan-logaritma/konsep-eksponen): setiap kali kamu naik satu tempat, kalikan sekali lagi dengan basisnya. Jadi saat memberi label tempat, **mulai pangkatnya dari <InlineMath math="0" /> di kanan**. Kalau paku paling kanan diberi nilai <InlineMath math="b" />, setiap tempat ikut naik satu pangkat terlalu tinggi.
+
+Coba satu soal sebelum lanjut: berapa nilai tempat dan nilai angka dari angka <InlineMath math="4" /> dalam <InlineMath math="2431_5" />? Angka <InlineMath math="4" /> berdiri di tempat ketiga dari kanan, yaitu tempat <InlineMath math="5^2 = 25" />. Jadi **nilai tempatnya <InlineMath math="25" />** dan nilai angkanya <InlineMath math="4 \times 25 = 100" />. Semua angka dalam <InlineMath math="2431" /> lebih kecil dari <InlineMath math="5" />, jadi bilangan itu memang sah dalam basis lima.
+
+### Bentuk Panjang Bilangan
+
+Kalau semua nilai angka dijumlahkan, kamu mendapat nilai bilangan itu dalam basis sepuluh. Tulisan penjumlahannya disebut **bentuk panjang**. Ambil <InlineMath math="3214_5" />.
+
+<BlockMath math="\begin{aligned} 3214_5 &= 3 \times 5^3 + 2 \times 5^2 + 1 \times 5^1 + 4 \times 5^0 \\ &= 375 + 50 + 5 + 4 \\ &= 434 \end{aligned}" />
+
+Nilai angka <InlineMath math="2" /> di sini adalah <InlineMath math="50" />, bukan <InlineMath math="10" />, karena angka itu berdiri di tempat <InlineMath math="5^2" />. Kalau setiap angka dikali <InlineMath math="5" />, kamu mendapat <InlineMath math="3 \times 5 + 2 \times 5 + 1 \times 5 + 4 = 34" />, yang tetap tampak masuk akal tetapi jauh dari <InlineMath math="434" />. **Pasangkan setiap angka dengan pangkat basisnya** sebelum mengalikan. Cek jawabanmu di abakus: pilih basis lima, geser bilangannya ke <InlineMath math="434" />, lalu hitung maniknya. Dari kiri, paku-pakunya harus memuat tiga, dua, satu, dan empat manik.
+
+Contoh kedua memakai basis delapan dan memuat angka nol.
+
+<BlockMath math="\begin{aligned} 2075_8 &= 2 \times 8^3 + 0 \times 8^2 + 7 \times 8^1 + 5 \times 8^0 \\ &= 1{.}024 + 0 + 56 + 5 \\ &= 1{.}085 \end{aligned}" />
+
+Angka <InlineMath math="0" /> menyumbang nol, tetapi **nol tetap menjaga tempat** angka lain. Tanpa nol itu, tulisannya menjadi <InlineMath math="275_8" /> yang hanya bernilai <InlineMath math="189" />. Jadi hitung banyak tempat sebelum dan sesudah kamu menyalin bilangan: empat angka harus tetap empat angka. Cek hasilnya dengan membongkar <InlineMath math="1{.}085" /> dari tempat terbesar. Kurangi <InlineMath math="2 \times 512" /> dan tersisa <InlineMath math="61" />. Karena <InlineMath math="61" /> lebih kecil dari <InlineMath math="64" />, angka di tempat <InlineMath math="8^2" /> adalah <InlineMath math="0" />. Lalu <InlineMath math="61 - 7 \times 8 = 5" />, jadi angkanya kembali <InlineMath math="2" />, <InlineMath math="0" />, <InlineMath math="7" />, dan <InlineMath math="5" />.
+
+Sekarang tulis sendiri <InlineMath math="6053_7" /> dalam bentuk panjang. Pasangkan setiap angka dengan pangkat tujuh, mulai dari <InlineMath math="7^0" /> di kanan.
+
+<BlockMath math="\begin{aligned} 6053_7 &= 6 \times 7^3 + 0 \times 7^2 + 5 \times 7^1 + 3 \times 7^0 \\ &= 2{.}058 + 0 + 35 + 3 \\ &= 2{.}096 \end{aligned}" />
+
+Cek dengan membongkar dari tempat terbesar. Kurangi <InlineMath math="6 \times 343" /> dari <InlineMath math="2{.}096" /> dan tersisa <InlineMath math="38" />. Karena <InlineMath math="38" /> lebih kecil dari <InlineMath math="49" />, angka tempat <InlineMath math="7^2" /> adalah <InlineMath math="0" />. Lalu <InlineMath math="38 - 5 \times 7 = 3" />, jadi **angkanya kembali** <InlineMath math="6" />, <InlineMath math="0" />, <InlineMath math="5" />, dan <InlineMath math="3" />.
+
+## Angka Sama dalam Basis Berbeda
+
+Tulisan <InlineMath math="123" /> tidak punya satu nilai tetap. Nilainya bergantung pada basis yang menyertainya, karena basis menentukan besar setiap tempat: <InlineMath math="123_b = 1 \times b^2 + 2 \times b + 3" />.
+
+| Basis | Bentuk panjang | Nilai |
+| :--- | :--- | :--- |
+| <InlineMath math="4" /> | <InlineMath math="1 \times 16 + 2 \times 4 + 3" /> | <InlineMath math="27" /> |
+| <InlineMath math="5" /> | <InlineMath math="1 \times 25 + 2 \times 5 + 3" /> | <InlineMath math="38" /> |
+| <InlineMath math="8" /> | <InlineMath math="1 \times 64 + 2 \times 8 + 3" /> | <InlineMath math="83" /> |
+| <InlineMath math="10" /> | <InlineMath math="1 \times 100 + 2 \times 10 + 3" /> | <InlineMath math="123" /> |
+
+Semakin besar basisnya, semakin besar nilai setiap tempat, jadi **angka yang sama bernilai lebih besar dalam basis yang lebih besar**. Geser basis di grafik ini dan lihat titiknya naik makin cepat, karena tempat ketiga tumbuh sebagai <InlineMath math="b^2" />.
+
+<MathVisual
+  title={<>Nilai <InlineMath math="123_b" /> Menurut Basisnya</>}
+  description={
+    <>
+      Geser basis <InlineMath math="b" />. Titik pindah ke nilai{" "}
+      <InlineMath math="123_b" />, dan satu kotak tegak pada grafik bernilai{" "}
+      <InlineMath math="10" />.{" "}
+      Garis putus-putus hanya penuntun. Basis selalu bilangan bulat, jadi baca titiknya.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 10.5 }, y: { min: 0, max: 13 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [{ name: "b", min: 4, max: 10, value: 5, step: 1, label: "b" }],
+    objects: [
+      { id: "growth", kind: "function", appearance: "reference", stroke: "dashed", formula: "(x^2 + 2x + 3)/10", domain: { min: 4, max: 10 } },
+      { id: "now", kind: "marker", appearance: "primary", x: "b", y: "(b^2 + 2b + 3)/10" },
+    ],
+    readouts: [
+      { key: "decimal", formula: "b^2 + 2b + 3" },
+      { key: "largest", formula: "b - 1" },
+    ],
+  }}
+  labels={{
+    b: <>Basis <InlineMath math="b" /></>,
+    decimal: <>Nilai <InlineMath math="123_b" /> dalam basis sepuluh</>,
+    largest: <>Angka terbesar yang boleh dipakai</>,
+  }}
+/>
+
+Grafik itu mulai dari basis <InlineMath math="4" />, karena angka <InlineMath math="3" /> butuh basis yang lebih besar dari <InlineMath math="3" />. Alasan yang sama menjelaskan kenapa angka <InlineMath math="7" /> tidak pernah muncul dalam basis enam. Tujuh manik di paku satuan basis enam berarti enam manik yang harus pindah menjadi satu manik di paku kedua, ditambah satu manik yang tetap. Jadi tujuh ditulis <InlineMath math="11_6" />, **bukan satu angka** <InlineMath math="7" />.
+
+## Membaca Bilangan Basis Lain
+
+Kata seperti “seratus” dan “dua puluh” adalah nama tempat dalam basis sepuluh: “ratus” berarti <InlineMath math="10^2" /> dan “puluh” berarti <InlineMath math="10" />. Dalam <InlineMath math="123_5" />, angka <InlineMath math="1" /> hanya bernilai <InlineMath math="25" />, jadi menyebutnya “seratus dua puluh tiga” memberi nilai yang salah. **Baca angkanya satu per satu, lalu sebut basisnya**.
+
+| Tulisan | Cara membaca | Nilai dalam basis sepuluh |
+| :--- | :--- | :--- |
+| <InlineMath math="123_5" /> | satu dua tiga basis lima | <InlineMath math="38" /> |
+| <InlineMath math="1010_2" /> | satu nol satu nol basis dua | <InlineMath math="10" /> |
+| <InlineMath math="2075_8" /> | dua nol tujuh lima basis delapan | <InlineMath math="1{.}085" /> |
+
+Bilangan tanpa basis kecil di bawahnya selalu dibaca dalam basis sepuluh, jadi <InlineMath math="38" /> tetap “tiga puluh delapan”. Cara baca angka per angka ini membuat kamu tidak tergoda menyebut <InlineMath math="1010_2" /> sebagai seribu sepuluh, padahal nilainya hanya sepuluh.
+
+## Angka di Luar Aturan Basis
+
+Aturannya cuma satu: **setiap angka harus lebih kecil dari basisnya**. Untuk memeriksanya, cari angka terbesar dalam bilangan itu, lalu bandingkan dengan basisnya. Kalau angka terbesarnya <InlineMath math="d" />, bilangan itu hanya sah dalam basis <InlineMath math="d + 1" /> atau yang lebih besar.
+
+| Bilangan | Angka terbesar | Sah atau tidak | Basis terkecil yang mungkin |
+| :--- | :--- | :--- | :--- |
+| <InlineMath math="4302_5" /> | <InlineMath math="4" /> | Sah, karena <InlineMath math="4 < 5" /> | <InlineMath math="5" /> |
+| <InlineMath math="2061_5" /> | <InlineMath math="6" /> | Tidak, karena <InlineMath math="6 > 5" /> | <InlineMath math="7" /> |
+| <InlineMath math="1201_2" /> | <InlineMath math="2" /> | Tidak, karena <InlineMath math="2 = 2" /> | <InlineMath math="3" /> |
+| <InlineMath math="7345_8" /> | <InlineMath math="7" /> | Sah, karena <InlineMath math="7 < 8" /> | <InlineMath math="8" /> |
+
+Lihat <InlineMath math="1201_2" />. Basis dua hanya punya angka <InlineMath math="0" /> dan <InlineMath math="1" />, karena paku basis dua sudah penuh dengan dua manik. Angka <InlineMath math="2" /> di sana berarti dua manik yang seharusnya sudah pindah ke paku kiri. Kalau soal memberimu bilangan seperti itu, jangan langsung menghitung: **bilangan itu tidak ada dalam basis yang ditulis**.
+
+Aturan ini juga memberi tahu basis mana yang mungkin untuk sebuah bilangan. Ambil <InlineMath math="3504" />, yang ditulis dalam basis yang belum diketahui. Angka terbesarnya <InlineMath math="5" />, jadi **basis terkecil yang mungkin adalah <InlineMath math="6" />**. Dalam basis enam, nilai tempatnya dari kiri adalah <InlineMath math="216" />, <InlineMath math="36" />, <InlineMath math="6" />, dan <InlineMath math="1" />.
+
+<BlockMath math="\begin{aligned} 3504_6 &= 3 \times 216 + 5 \times 36 + 0 \times 6 + 4 \times 1 \\ &= 648 + 180 + 0 + 4 \\ &= 832 \end{aligned}" />
+
+Cek: <InlineMath math="832 - 3 \times 216 = 184" />, lalu <InlineMath math="184 - 5 \times 36 = 4" />. Sisa <InlineMath math="4" /> lebih kecil dari <InlineMath math="6" />, jadi tempat <InlineMath math="6^1" /> berisi <InlineMath math="0" /> dan satuannya <InlineMath math="4" />.

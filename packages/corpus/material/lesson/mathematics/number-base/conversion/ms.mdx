@@ -1,0 +1,160 @@
+export const metadata = {
+  title: "Penukaran Nombor antara Asas",
+  description:
+    "Tukar nombor asas sepuluh kepada asas lain dengan pembahagian berulang, tukar semula kepada asas sepuluh dan baca asas dua sebagai asas empat atau lapan.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2026-11-20",
+  subject: "Asas Nombor",
+};
+
+## Mengikat Batang Aiskrim
+
+Untuk menukar nombor asas sepuluh kepada asas <InlineMath math="b" />, **kumpulkan bendanya <InlineMath math="b" /> demi <InlineMath math="b" />**. Ambil <InlineMath math="200" /> batang aiskrim dan gunakan asas enam. Ikat setiap enam batang menjadi satu ikatan, masukkan setiap enam ikatan ke dalam satu kotak, kemudian letakkan setiap enam kotak di atas satu dulang. Bilangan dulang, kotak yang berbaki, ikatan yang berbaki dan batang yang lepas ialah digit-digit nombor itu dalam asas enam. Setiap pusingan mengikat sama dengan satu pembahagian dengan <InlineMath math="b" />, dan di atas meja ini kamu melihat pembahagian berulang itu berlaku pada benda.
+
+<BundleCountLab
+  title={<>Mengikat <InlineMath math="200" /> Batang dalam Asas Enam</>}
+  description={
+    <>
+      Pilih asas, tetapkan bilangan batang, kemudian tekan butang Main.
+      Setiap pusingan mengumpulkan hasil pusingan sebelumnya menjadi kumpulan
+      yang lebih besar.
+    </>
+  }
+  footer={<>Baki setiap pusingan menjadi satu digit. Baca dari dulang hingga batang yang lepas.</>}
+  bases={[6, 5, 8]}
+  value={200}
+  labels={{
+    base: "Asas",
+    count: "Bilangan batang",
+    ladder: <>Pembahagian berulang</>,
+    numeral: <>Ditulis dalam asas ini</>,
+    viewLabel: "Meja dengan batang lepas, ikatan, kotak dan dulang",
+  }}
+  showReadout
+/>
+
+Dalam asas enam, satu dulang memuatkan <InlineMath math="216" /> batang, jadi <InlineMath math="200" /> batang belum cukup untuk satu dulang. Meja berakhir dengan lima kotak, tiga ikatan dan dua batang lepas, maka <InlineMath math="200 = 532_6" />. Tukar kepada asas lima: satu dulang kini hanya memerlukan <InlineMath math="125" /> batang, dan **sebuah dulang muncul** di hujung kiri meja.
+
+### Tangga Pembahagian
+
+Di atas kertas, setiap pusingan ditulis sebagai satu pembahagian dengan baki. **Hasil bahagi** ialah bilangan kumpulan yang dibawa ke pusingan seterusnya, dan **baki** ialah benda yang tertinggal sebagai satu digit.
+
+<BlockMath math="\begin{aligned} 200 &= 33 \times 6 + 2 \\ 33 &= 5 \times 6 + 3 \\ 5 &= 0 \times 6 + 5 \end{aligned}" />
+
+Berhenti apabila hasil bahaginya <InlineMath math="0" />. Bakinya, dibaca dari bawah ke atas, memberi <InlineMath math="200 = 532_6" />. Semak dengan bentuk kembangan: <InlineMath math="5 \times 36 + 3 \times 6 + 2 = 180 + 18 + 2 = 200" />.
+
+### Baki Dibaca dari Bawah
+
+Kenapa dibaca dari bawah? Baki pertama ialah batang yang lepas, iaitu sa, jadi digit itu berada paling kanan. Setiap pembahagian seterusnya mengira kumpulan yang lebih besar, maka **baki terakhir mengira kumpulan terbesar** dan berada paling kiri. Tangga untuk asas lima lebih panjang satu anak tangga, kerana dulangnya turut terisi.
+
+<BlockMath math="\begin{aligned} 200 &= 40 \times 5 + 0 \\ 40 &= 8 \times 5 + 0 \\ 8 &= 1 \times 5 + 3 \\ 1 &= 0 \times 5 + 1 \end{aligned}" />
+
+Baki terakhir, <InlineMath math="1" />, ialah satu dulang berisi <InlineMath math="125" /> batang, jadi <InlineMath math="200 = 1300_5" />. Kedua-dua baki sifar tetap ditulis, kerana kedua-duanya mencatat bahawa tiada ikatan berbaki dan tiada batang lepas. Semak: <InlineMath math="1 \times 125 + 3 \times 25 + 0 \times 5 + 0 = 200" />.
+
+Dua kesilapan pada tangga ini masih memberi nombor yang kelihatan munasabah. Jika baki tangga asas enam dibaca dari atas, <InlineMath math="200" /> bertukar menjadi <InlineMath math="235_6" />, yang hanya bernilai <InlineMath math="95" />. Jika kedua-dua baki sifar pada tangga asas lima dibuang, hasilnya <InlineMath math="13_5" />, yang hanya bernilai <InlineMath math="8" />. Bilangan digit mesti sama dengan bilangan pembahagian, dan semakan paling cepat ialah **menukar jawapan kamu semula kepada asas asal**. Jika nombor asal tidak kembali, ada langkah yang salah.
+
+Sekarang cuba tangga dengan empat anak tangga: tukar <InlineMath math="150" /> kepada asas empat. Bahagi dengan <InlineMath math="4" /> berulang kali hingga hasil bahaginya <InlineMath math="0" />.
+
+<BlockMath math="\begin{aligned} 150 &= 37 \times 4 + 2 \\ 37 &= 9 \times 4 + 1 \\ 9 &= 2 \times 4 + 1 \\ 2 &= 0 \times 4 + 2 \end{aligned}" />
+
+Baki dari bawah memberi **<InlineMath math="150 = 2112_4" />**. Semak: <InlineMath math="2 \times 64 + 1 \times 16 + 1 \times 4 + 2 = 150" />.
+
+## Kembali ke Asas Sepuluh
+
+Arah sebaliknya menggunakan nilai tempat. Kamu boleh menulis [bentuk kembangan mengikut nilai tempat](/ms/subjek/matematik/asas-nombor/nilai-tempat-dan-nilai-digit) seperti biasa, tetapi ada jalan yang lebih ringkas: **darab dengan asas, kemudian tambah digit seterusnya**. Mulakan dengan digit paling kiri dan ulang hingga digit terakhir. Ambil <InlineMath math="1452_7" />.
+
+<BlockMath math="\begin{aligned} 1 \times 7 + 4 &= 11 \\ 11 \times 7 + 5 &= 82 \\ 82 \times 7 + 2 &= 576 \end{aligned}" />
+
+Kenapa cara ini betul? Setiap kali kamu mendarab dengan <InlineMath math="7" />, semua digit yang sudah diambil naik satu tempat. Digit <InlineMath math="1" /> paling kiri didarab dengan <InlineMath math="7" /> sebanyak tiga kali, jadi akhirnya bernilai <InlineMath math="7^3" />, sama seperti dalam bentuk kembangan. Bentuk kembangan juga menjadi semakan jawapan kamu.
+
+<BlockMath math="1452_7 = 1 \times 343 + 4 \times 49 + 5 \times 7 + 2 = 343 + 196 + 35 + 2 = 576" />
+
+Cara darab dan tambah lebih jimat untuk nombor yang panjang, kerana kamu tidak perlu mengira kuasa besar seperti <InlineMath math="7^3" /> terlebih dahulu. Gunakan cara ini pada <InlineMath math="3021_4" />: mulakan dengan digit paling kiri, darab dengan <InlineMath math="4" />, kemudian tambah digit seterusnya.
+
+<BlockMath math="\begin{aligned} 3 \times 4 + 0 &= 12 \\ 12 \times 4 + 2 &= 50 \\ 50 \times 4 + 1 &= 201 \end{aligned}" />
+
+Jadi **<InlineMath math="3021_4 = 201" />**. Semak dengan bentuk kembangan: <InlineMath math="3 \times 64 + 0 \times 16 + 2 \times 4 + 1 = 192 + 8 + 1 = 201" />.
+
+## Dua Asas Selain Sepuluh
+
+Asas lima dan asas lapan bukan kuasa antara satu sama lain, jadi tiada jalan pintas di antara kedua-duanya. Jalan yang sentiasa berjaya ialah **melalui asas sepuluh**: tukar dahulu kepada asas sepuluh dengan nilai tempat, kemudian tukar kepada asas sasaran dengan pembahagian berulang. Ambil <InlineMath math="2134_5" /> dan tukar kepada asas lapan.
+
+<BlockMath math="2134_5 = 2 \times 125 + 1 \times 25 + 3 \times 5 + 4 = 250 + 25 + 15 + 4 = 294" />
+
+Sekarang bahagi <InlineMath math="294" /> dengan <InlineMath math="8" /> berulang kali.
+
+<BlockMath math="\begin{aligned} 294 &= 36 \times 8 + 6 \\ 36 &= 4 \times 8 + 4 \\ 4 &= 0 \times 8 + 4 \end{aligned}" />
+
+Baki dari bawah memberi <InlineMath math="2134_5 = 446_8" />. Semak dengan bentuk kembangan asas lapan: <InlineMath math="4 \times 64 + 4 \times 8 + 6 = 256 + 32 + 6 = 294" />. Nilai itu sama dengan hasil langkah pertama, jadi kedua-dua nombor mewakili bilangan benda yang sama.
+
+Kesilapan yang paling kerap di sini ialah melangkau asas sepuluh. Jika <InlineMath math="2134" /> terus dibahagi dengan <InlineMath math="8" />, hasilnya <InlineMath math="4126_8" />, bukan <InlineMath math="446_8" />, kerana pembahagian itu menganggap <InlineMath math="2134" /> sebagai nombor asas sepuluh. **Pembahagian berulang hanya berlaku pada nilai dalam asas sepuluh**, jadi tukar kepada asas sepuluh dahulu.
+
+Asas tujuh dan asas tiga juga bukan kuasa antara satu sama lain, jadi <InlineMath math="263_7" /> juga melalui asas sepuluh menuju asas tiga.
+
+<BlockMath math="263_7 = 2 \times 49 + 6 \times 7 + 3 = 98 + 42 + 3 = 143" />
+
+Kemudian bahagi <InlineMath math="143" /> dengan <InlineMath math="3" /> berulang kali.
+
+<BlockMath math="\begin{aligned} 143 &= 47 \times 3 + 2 \\ 47 &= 15 \times 3 + 2 \\ 15 &= 5 \times 3 + 0 \\ 5 &= 1 \times 3 + 2 \\ 1 &= 0 \times 3 + 1 \end{aligned}" />
+
+Baki dari bawah memberi **<InlineMath math="263_7 = 12022_3" />**. Semak: <InlineMath math="1 \times 81 + 2 \times 27 + 0 \times 9 + 2 \times 3 + 2 = 81 + 54 + 6 + 2 = 143" />.
+
+## Asas Dua ke Empat dan Lapan
+
+Asas dua mempunyai hubungan istimewa dengan asas empat dan lapan, kerana <InlineMath math="4 = 2^2" /> dan <InlineMath math="8 = 2^3" />. Dua digit asas dua tepat mengisi satu tempat asas empat, dan tiga digit asas dua tepat mengisi satu tempat asas lapan. Jadi kamu boleh **mengumpulkan digit asas dua** tanpa melalui asas sepuluh. Pada panel ini, setiap lampu ialah satu digit asas dua: menyala bermaksud <InlineMath math="1" />, padam bermaksud <InlineMath math="0" />.
+
+<BinaryLampLab
+  title={<>Nombor <InlineMath math="90" /> pada Tujuh Lampu</>}
+  description={
+    <>
+      Setiap lampu bernilai satu kuasa dua. Tukar cara membacanya kepada
+      berpasangan atau bertiga, kemudian bandingkan digit yang muncul dalam
+      setiap kumpulan.
+    </>
+  }
+  footer={<>Kumpulan dikira dari kanan, jadi kumpulan paling kiri boleh mendapat sifar tambahan.</>}
+  bits={7}
+  value={90}
+  labels={{
+    binary: <>Asas dua</>,
+    decimal: <>Asas sepuluh</>,
+    grouped: <>Bacaan berkumpulan</>,
+    grouping: "Cara membaca",
+    groups: {
+      none: "Satu demi satu",
+      pairs: "Berpasangan, asas empat",
+      triples: "Bertiga, asas lapan",
+    },
+    value: "Nombor",
+    viewLabel: "Panel tujuh lampu dengan suis di bawah setiap lampu",
+  }}
+  showReadout
+/>
+
+Dibaca satu demi satu, panel menunjukkan <InlineMath math="1011010_2 = 64 + 16 + 8 + 2 = 90" />. Arah sebaliknya sama terus: tulis setiap digit asas lapan sebagai tiga digit asas dua. Contohnya, <InlineMath math="75_8" /> menjadi <InlineMath math="111\,101_2" />, kerana <InlineMath math="7 = 111_2" /> dan <InlineMath math="5 = 101_2" />, dan kedua-duanya bernilai <InlineMath math="61" />.
+
+### Mengumpulkan dari Kanan
+
+Kumpulkan sentiasa dari kanan, kerana **digit paling kanan ialah sa** dalam setiap asas. Pasangan pertama dari kanan mengandungi tempat <InlineMath math="2^0" /> dan <InlineMath math="2^1" />, iaitu sa bagi asas empat. Pasangan seterusnya mengandungi <InlineMath math="2^2" /> dan <InlineMath math="2^3" />, yang bersama-sama menjadi tempat <InlineMath math="4^1" />.
+
+<BlockMath math="1011010_2 = 01\,01\,10\,10_2 = 1122_4" />
+
+Setiap pasangan dibaca sebagai nombor asas dua yang kecil: <InlineMath math="01_2 = 1" /> dan <InlineMath math="10_2 = 2" />. Semak: <InlineMath math="1122_4 = 64 + 16 + 8 + 2 = 90" />. Jika kamu mengumpulkan dari kiri, setiap tempat teranjak. Digit <InlineMath math="101\,101\,0" /> akan terbaca sebagai <InlineMath math="550_8 = 360" />, empat kali nilai yang betul.
+
+### Menambah Sifar di Depan
+
+Tujuh lampu tidak terbahagi sama rata kepada pasangan atau kumpulan tiga. Kumpulan paling kiri yang kekurangan digit **diisi dengan sifar di hadapannya**. Sifar di hadapan tidak mengubah nilai, sama seperti <InlineMath math="090" /> tetap sembilan puluh.
+
+<BlockMath math="1011010_2 = 001\,011\,010_2 = 132_8" />
+
+Semak: <InlineMath math="132_8 = 64 + 24 + 2 = 90" />. Pilih bacaan bertiga pada panel dan lihat dua tempat kosong di kiri diisi sifar. Bacaan berpasangan hanya memerlukan satu sifar, kerana tujuh digit hanya kurang satu untuk menjadi lapan.
+
+Cuba kedua-dua cara mengumpulkan pada nombor yang lebih panjang: tukar <InlineMath math="11010111_2" /> kepada asas lapan dan kepada asas empat. Untuk asas lapan, kumpulkan tiga digit dari kanan dan tambah satu sifar di hadapan.
+
+<BlockMath math="11010111_2 = 011\,010\,111_2 = 327_8" />
+
+Untuk asas empat, lapan digit terbahagi sama rata kepada empat pasangan, jadi tiada sifar tambahan diperlukan.
+
+<BlockMath math="11010111_2 = 11\,01\,01\,11_2 = 3113_4" />
+
+Semak kedua-duanya melalui asas sepuluh: <InlineMath math="11010111_2 = 128 + 64 + 16 + 4 + 2 + 1 = 215" />, <InlineMath math="327_8 = 192 + 16 + 7 = 215" /> dan <InlineMath math="3113_4 = 192 + 16 + 4 + 3 = 215" />. **Ketiga-tiga nombor bernilai** <InlineMath math="215" />.

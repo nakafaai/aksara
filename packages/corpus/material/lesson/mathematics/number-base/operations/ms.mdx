@@ -1,0 +1,149 @@
+export const metadata = {
+  title: "Tambah dan Tolak dalam Asas Nombor",
+  description:
+    "Tambah dan tolak nombor terus dalam asas dua hingga sembilan dengan mengumpul semula, kemudian cari asas yang disembunyikan oleh soalan.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2026-11-20",
+  subject: "Asas Nombor",
+};
+
+## Membawa Apabila Batang Penuh
+
+Kamu boleh menambah dan menolak terus dalam asas <InlineMath math="b" />, tanpa menukarnya kepada asas sepuluh dahulu. Caranya sama seperti tambah dalam bentuk lazim yang sudah kamu kenal, cuma hadnya berbeza: **bawa satu ke lajur kiri setiap kali sesuatu lajur mencapai <InlineMath math="b" />**, bukan sepuluh. Dalam penolakan, satu yang dipinjam dari lajur kiri bernilai <InlineMath math="b" />. Kedua-duanya dipanggil pengumpulan semula. Abakus ini menunjukkan pengumpulan semula itu berlaku pada manik. Tekan butang Main, dan setiap langkah menambah satu manik pada batang sa.
+
+<AbacusBaseLab
+  title={<>Menambah Satu demi Satu dalam Asas Empat</>}
+  description={
+    <>
+      Tekan butang Main. Setiap langkah menambah satu manik pada batang sa,
+      dan batang yang penuh menghantar satu manik ke batang di kirinya.
+    </>
+  }
+  footer={<>Apabila batang memuatkan empat manik, keempat-empatnya pulang dan satu manik naik.</>}
+  bases={[4, 3]}
+  value={61}
+  labels={{
+    base: "Asas",
+    decimal: <>Nilai dalam asas sepuluh</>,
+    digits: <>Ditulis dalam asas ini</>,
+    expanded: <>Bentuk kembangan</>,
+    value: "Nombor",
+    viewLabel: "Abakus empat batang dengan bekas manik di sebelahnya",
+  }}
+  showReadout
+/>
+
+Abakus bermula pada <InlineMath math="61 = 331_4" />. Dua langkah pertama hanya menambah manik pada batang sa: <InlineMath math="332_4" />, kemudian <InlineMath math="333_4" />. Langkah ketiga menjadikan batang sa berisi empat manik. Keempat-empat manik itu pulang ke bekas dan satu manik naik ke batang kedua, yang turut menjadi penuh, jadi pembawaan berterusan hingga batang keempat. Hasilnya <InlineMath math="1000_4 = 64" />: **satu manik tambahan boleh membawa tiga kali berturut-turut**. Pilih asas tiga dan main sekali lagi. Dari <InlineMath math="2021_3" /> kamu sampai ke <InlineMath math="2100_3" />, dengan dua pembawaan dalam satu langkah.
+
+## Menambah dalam Bentuk Lazim
+
+Tambah dalam bentuk lazim menggunakan peraturan abakus tadi pada setiap lajur. Tambah setiap lajur dari kanan, termasuk satu yang dibawa dari lajur sebelumnya. Jika jumlahnya kurang daripada <InlineMath math="b" />, tulis jumlah itu. Jika jumlahnya <InlineMath math="b" /> atau lebih, **tulis jumlah tolak <InlineMath math="b" /> dan bawa <InlineMath math="1" />**. Yang dibawa tidak pernah lebih daripada <InlineMath math="1" />, kerana satu lajur dua nombor paling banyak berjumlah <InlineMath math="(b - 1) + (b - 1) + 1 = 2b - 1" />.
+
+### Pembawaan Berantai
+
+Hitung <InlineMath math="4675_8 + 2307_8" />. Semua digit di sini dalam asas lapan, jadi had setiap lajur ialah <InlineMath math="8" />. Baris kecil di atas mencatat satu yang dibawa masuk ke setiap lajur.
+
+<BlockMath math="\begin{array}{rcccc} & {\scriptstyle 1} & {\scriptstyle 1} & {\scriptstyle 1} & \\ & 4 & 6 & 7 & 5 \\ + & 2 & 3 & 0 & 7 \\ \hline & 7 & 2 & 0 & 4 \end{array}" />
+
+| Lajur | Jumlah lajur | Dalam asas lapan | Tulis | Bawa |
+| :--- | :--- | :--- | :--- | :--- |
+| Sa | <InlineMath math="5 + 7 = 12" /> | <InlineMath math="12 = 1 \times 8 + 4" /> | <InlineMath math="4" /> | <InlineMath math="1" /> |
+| Lapanan | <InlineMath math="7 + 0 + 1 = 8" /> | <InlineMath math="8 = 1 \times 8 + 0" /> | <InlineMath math="0" /> | <InlineMath math="1" /> |
+| Lajur <InlineMath math="8^2" /> | <InlineMath math="6 + 3 + 1 = 10" /> | <InlineMath math="10 = 1 \times 8 + 2" /> | <InlineMath math="2" /> | <InlineMath math="1" /> |
+| Lajur <InlineMath math="8^3" /> | <InlineMath math="4 + 2 + 1 = 7" /> | <InlineMath math="7 < 8" /> | <InlineMath math="7" /> | <InlineMath math="0" /> |
+
+Lihat lajur kedua, iaitu lajur lapanan. Tanpa satu yang dibawa, <InlineMath math="7 + 0" /> tidak perlu membawa apa-apa. Satu yang dibawa dari lajur sa menjadikan lajur itu tepat <InlineMath math="8" />, jadi lajur itu turut membawa. Satu pembawaan **merentas dua tempat**, sama seperti batang abakus yang penuh menghantar manik ke batang yang juga hampir penuh. Hasilnya <InlineMath math="4675_8 + 2307_8 = 7204_8" />.
+
+Tabiat dari asas sepuluh paling kerap menyusup pada lajur sa. Jumlah <InlineMath math="12" /> menggoda kamu untuk menulis <InlineMath math="2" /> dan membawa <InlineMath math="1" />, sedangkan hadnya di sini <InlineMath math="8" />, dan <InlineMath math="12 = 1 \times 8 + 4" />, jadi yang ditulis ialah <InlineMath math="4" />. Ada ujian cepat untuk kesilapan ini: **setiap digit hasil mesti lebih kecil daripada asasnya**.
+
+### Semakan Asas Sepuluh
+
+Tukar ketiga-tiga nombor kepada asas sepuluh dan semak sama ada penambahannya sepadan.
+
+<BlockMath math="\begin{aligned} 4675_8 &= 4 \times 512 + 6 \times 64 + 7 \times 8 + 5 = 2{,}493 \\ 2307_8 &= 2 \times 512 + 3 \times 64 + 0 \times 8 + 7 = 1{,}223 \\ 7204_8 &= 7 \times 512 + 2 \times 64 + 0 \times 8 + 4 = 3{,}716 \end{aligned}" />
+
+Oleh sebab <InlineMath math="2{,}493 + 1{,}223 = 3{,}716" />, **penambahan dalam asas lapan itu betul**. Semakan ini lebih panjang daripada penambahannya sendiri, tetapi semakan ini menangkap pembawaan yang terlupa, kerana pembawaan yang hilang terus mengurangkan hasil sebanyak satu nilai tempat.
+
+Cuba satu soalan dalam asas lima, tempat pembawaan cepat muncul: hitung <InlineMath math="2434_5 + 1213_5" />. Tambah setiap lajur dari kanan dengan had <InlineMath math="5" />.
+
+<BlockMath math="\begin{array}{rcccc} & {\scriptstyle 1} & {\scriptstyle 1} & {\scriptstyle 1} & \\ & 2 & 4 & 3 & 4 \\ + & 1 & 2 & 1 & 3 \\ \hline & 4 & 2 & 0 & 2 \end{array}" />
+
+Sa: <InlineMath math="4 + 3 = 7 = 12_5" />, tulis <InlineMath math="2" /> bawa <InlineMath math="1" />. Limaan: <InlineMath math="3 + 1 + 1 = 5 = 10_5" />, tulis <InlineMath math="0" /> bawa <InlineMath math="1" />. Lajur ketiga: <InlineMath math="4 + 2 + 1 = 7 = 12_5" />, tulis <InlineMath math="2" /> bawa <InlineMath math="1" />. Lajur keempat: <InlineMath math="2 + 1 + 1 = 4" />. Jadi **<InlineMath math="2434_5 + 1213_5 = 4202_5" />**. Semak melalui asas sepuluh: <InlineMath math="369 + 183 = 552" />, dan <InlineMath math="4202_5 = 500 + 50 + 0 + 2 = 552" />.
+
+## Meminjam dalam Penolakan
+
+Penolakan menggunakan abakus dari arah sebaliknya. Jika digit atas sesuatu lajur lebih kecil daripada digit bawahnya, **ambil satu manik dari batang kiri dan tukar menjadi <InlineMath math="b" /> manik** dalam lajur itu. Hitung <InlineMath math="1302_5 - 244_5" />.
+
+<BlockMath math="\begin{array}{rcccc} & 1 & 3 & 0 & 2 \\ - & & 2 & 4 & 4 \\ \hline & 1 & 0 & 0 & 3 \end{array}" />
+
+Lajur sa meminta <InlineMath math="2 - 4" />, jadi lajur itu mesti meminjam. Batang kedua, tempat kumpulan lima atau limaan, kosong, jadi pinjaman diambil dari batang ketiga: digit <InlineMath math="3" /> turun menjadi <InlineMath math="2" />, dan batang limaan mendapat lima manik. Batang limaan kemudian meminjamkan satu manik kepada sa. Sekarang limaan berisi <InlineMath math="4" /> dan sa berisi <InlineMath math="2 + 5 = 7" />.
+
+| Lajur | Isi selepas meminjam | Penolakan | Hasil |
+| :--- | :--- | :--- | :--- |
+| Sa | <InlineMath math="2 + 5 = 7" /> | <InlineMath math="7 - 4" /> | <InlineMath math="3" /> |
+| Limaan | <InlineMath math="0 + 5 - 1 = 4" /> | <InlineMath math="4 - 4" /> | <InlineMath math="0" /> |
+| Lajur <InlineMath math="5^2" /> | <InlineMath math="3 - 1 = 2" /> | <InlineMath math="2 - 2" /> | <InlineMath math="0" /> |
+| Lajur <InlineMath math="5^3" /> | <InlineMath math="1" /> | <InlineMath math="1 - 0" /> | <InlineMath math="1" /> |
+
+Jadi <InlineMath math="1302_5 - 244_5 = 1003_5" />. Semak dengan menambah semula dalam asas lima: <InlineMath math="1003_5 + 244_5" /> memberi sa <InlineMath math="3 + 4 = 7 = 12_5" />, limaan <InlineMath math="0 + 4 + 1 = 5 = 10_5" />, lajur ketiga <InlineMath math="0 + 2 + 1 = 3" /> dan lajur keempat <InlineMath math="1" />, iaitu <InlineMath math="1302_5" /> semula. Melalui asas sepuluh pun sepadan: <InlineMath math="202 - 74 = 128 = 1003_5" />.
+
+Dua kesilapan kerap muncul di sini. Jika pinjaman dikira sebagai sepuluh, sa menjadi <InlineMath math="12 - 4 = 8" />, digit yang tidak wujud dalam asas lima: **pinjaman sentiasa bernilai <InlineMath math="b" />**. Jika digit yang meminjamkan tidak dikurangkan, hasilnya <InlineMath math="1103_5" />, yang bernilai <InlineMath math="153" />, bukan <InlineMath math="128" />. Menambah semula hasil dengan nombor yang ditolak menangkap kedua-duanya, kerana kamu kekal dalam asas yang sama sepanjang masa.
+
+Sekarang penolakan dengan dua pinjaman dalam asas lapan: hitung <InlineMath math="5032_8 - 1647_8" />. Tolak setiap lajur dari kanan, dan setiap pinjaman bernilai <InlineMath math="8" />.
+
+<BlockMath math="\begin{array}{rcccc} & 5 & 0 & 3 & 2 \\ - & 1 & 6 & 4 & 7 \\ \hline & 3 & 1 & 6 & 3 \end{array}" />
+
+Sa: <InlineMath math="2 < 7" />, jadi pinjam dari lajur lapanan, memberi <InlineMath math="2 + 8 - 7 = 3" />, dan lajur lapanan tinggal <InlineMath math="2" />. Lapanan: <InlineMath math="2 < 4" />, tetapi lajur <InlineMath math="8^2" /> kosong, jadi pinjam dari lajur <InlineMath math="8^3" />. Digit <InlineMath math="5" /> menjadi <InlineMath math="4" />, lajur <InlineMath math="8^2" /> menjadi <InlineMath math="8 - 1 = 7" />, dan lapanan menjadi <InlineMath math="2 + 8 - 4 = 6" />. Lajur <InlineMath math="8^2" />: <InlineMath math="7 - 6 = 1" />. Lajur <InlineMath math="8^3" />: <InlineMath math="4 - 1 = 3" />. Jadi **<InlineMath math="5032_8 - 1647_8 = 3163_8" />**. Semak melalui asas sepuluh: <InlineMath math="2{,}586 - 935 = 1{,}651" />, dan <InlineMath math="3163_8 = 1{,}536 + 64 + 48 + 3 = 1{,}651" />.
+
+## Mencari Asas Tersembunyi
+
+Kadangkala soalan tidak menyebut asasnya dan meminta kamu mencarinya. Tulis nombornya dalam bentuk kembangan dengan huruf <InlineMath math="b" /> sebagai asas, kemudian selesaikan persamaannya. Contohnya <InlineMath math="123_b = 38" />.
+
+<BlockMath math="\begin{aligned} 1 \times b^2 + 2 \times b + 3 &= 38 \\ b^2 + 2b - 35 &= 0 \\ (b + 7)(b - 5) &= 0 \end{aligned}" />
+
+Persamaan kuadratik ini kamu selesaikan dengan [pemfaktoran persamaan kuadratik](/ms/subjek/matematik/fungsi-kuadratik/pemfaktoran-persamaan-kuadratik), dan hasilnya dua punca: <InlineMath math="b = -7" /> dan <InlineMath math="b = 5" />. Hanya satu yang boleh menjadi asas. **Asas mesti nombor bulat yang lebih besar daripada digit terbesarnya**, di sini <InlineMath math="3" />, jadi <InlineMath math="b = 5" />. Graf ini menunjukkan kedua-dua punca dan kawasan asas yang sah.
+
+<MathVisual
+  title={<>Dua Punca, Satu Asas</>}
+  description={
+    <>
+      Lengkung <InlineMath math="b^2 + 2b - 35" /> dibahagi dengan{" "}
+      <InlineMath math="10" /> supaya muat. Pembahagian itu tidak
+      mengalihkan titik persilangannya dengan paksi mengufuk. Gerakkan{" "}
+      <InlineMath math="b" /> dan baca nilai <InlineMath math="123_b" />.{" "}
+      Asas yang sah hanya di kawasan berlorek, di kanan garis putus-putus <InlineMath math="b = 3" />.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -8.5, max: 6.5 }, y: { min: -4, max: 2 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [{ name: "b", min: 4, max: 6, value: 4, step: 1, label: "b" }],
+    objects: [
+      { id: "valid", kind: "region", appearance: "construction", inequalities: ["x > 3"] },
+      { id: "curve", kind: "function", appearance: "primary", formula: "(x^2 + 2x - 35)/10" },
+      { id: "rejected", kind: "point", appearance: "warning", at: { x: -7, y: 0 } },
+      { id: "root", kind: "point", appearance: "answer", at: { x: 5, y: 0 } },
+      { id: "now", kind: "marker", appearance: "highlight", x: "b", y: "(b^2 + 2b - 35)/10" },
+    ],
+    labels: [
+      { key: "rejected", objectId: "rejected", at: { x: -7, y: 0 }, placement: "above" },
+      { key: "root", objectId: "root", at: { x: 5, y: 0 }, placement: "above-left" },
+    ],
+    readouts: [{ key: "value", formula: "b^2 + 2b + 3" }],
+  }}
+  labels={{
+    b: <>Asas <InlineMath math="b" /></>,
+    rejected: <InlineMath math="b = -7" />,
+    root: <InlineMath math="b = 5" />,
+    value: <>Nilai <InlineMath math="123_b" /></>,
+  }}
+/>
+
+Gerakkan <InlineMath math="b" /> dari <InlineMath math="4" /> ke <InlineMath math="6" />. Nilai <InlineMath math="123_b" /> melompat dari <InlineMath math="27" /> ke <InlineMath math="38" /> dan kemudian ke <InlineMath math="51" />, dan titiknya menyentuh paksi tepat apabila nilainya <InlineMath math="38" />. Punca <InlineMath math="-7" /> memenuhi persamaan itu, tetapi berada di luar kawasan berlorek, jadi punca itu ditolak.
+
+Jadi sebelum menerima sesuatu punca sebagai asas, **bandingkan punca itu dengan digit terbesar**. Asas yang tersembunyi juga boleh muncul dalam penambahan. Diberi <InlineMath math="45_b + 36_b = 103_b" />. Tulis setiap nombor dalam bentuk kembangan dengan asas <InlineMath math="b" />.
+
+<BlockMath math="\begin{aligned} (4b + 5) + (3b + 6) &= b^2 + 0 \times b + 3 \\ 7b + 11 &= b^2 + 3 \\ b^2 - 7b - 8 &= 0 \\ (b - 8)(b + 1) &= 0 \end{aligned}" />
+
+Puncanya <InlineMath math="b = 8" /> dan <InlineMath math="b = -1" />. Asas mesti lebih besar daripada digit terbesar, iaitu <InlineMath math="6" />, jadi <InlineMath math="b = 8" />. Semak dengan menambah dalam asas lapan: sa <InlineMath math="5 + 6 = 11 = 13_8" />, tulis <InlineMath math="3" /> bawa <InlineMath math="1" />, kemudian <InlineMath math="4 + 3 + 1 = 8 = 10_8" />. Hasilnya <InlineMath math="103_8" />, sama dengan sebelah kanan.

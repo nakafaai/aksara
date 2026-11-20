@@ -62,7 +62,39 @@ export const kssmForm4MathematicsTopicNodes = [
     },
   }),
   unitNode({
+    children: [
+      materialNode({
+        key: "form-4-mathematics-number-bases-number-base",
+        level: "lesson",
+        materialKeys: ["lesson.mathematics.number-base"],
+        order: 10,
+        outcomes: [
+          {
+            code: "Tingkatan 4, Standard Kandungan 2.1",
+            ...mathematicsStandards,
+          },
+        ],
+      }),
+    ],
     key: "form-4-mathematics-number-bases",
+    materialCard: {
+      de: {
+        description: "Lies Stellenwerte, rechne um, addiere und subtrahiere.",
+        title: "Zahlensysteme",
+      },
+      en: {
+        description: "Read place value, convert bases, add and subtract.",
+        title: "Number Bases",
+      },
+      id: {
+        description: "Baca nilai tempat, ubah basis, jumlahkan, dan kurangkan.",
+        title: "Basis Bilangan",
+      },
+      ms: {
+        description: "Baca nilai tempat, tukar asas, tambah dan tolak.",
+        title: "Asas Nombor",
+      },
+    },
     order: 20,
     translations: {
       de: { routeSlug: "zahlensysteme", title: "Zahlensysteme" },
