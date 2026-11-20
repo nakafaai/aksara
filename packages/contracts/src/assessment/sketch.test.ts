@@ -14,14 +14,17 @@ import {
 } from "#contracts/test/assessment/document";
 import { sketchInteraction } from "#contracts/test/assessment/interaction";
 import { hash } from "#contracts/test/assessment/item";
-import { sketchKey } from "#contracts/test/assessment/key";
+import {
+  sketchLeft as left,
+  sketchRight as right,
+  sketchKey,
+  sketchZero as zero,
+} from "#contracts/test/assessment/key";
 import {
   allOrNothing,
   rubricRule,
   sketchRule,
 } from "#contracts/test/assessment/scoring";
-
-const [left, right, zero] = sketchKey.criteria;
 
 /** The sketch key with other criteria. */
 function withCriteria(...criteria: readonly object[]) {
@@ -162,8 +165,6 @@ describe("a sketch", () => {
 
   it("is scored by a rubric of its own, each criterion missed or earned", () => {
     const rule = decodeStrict(ScoringRuleSchema, sketchRule);
-    const [first, ...rest] = sketchRule.criteria;
-
     expect(supportsRule("sketch", rule)).toBe(true);
     for (const other of [
       allOrNothing,
@@ -172,13 +173,13 @@ describe("a sketch", () => {
         ...sketchRule,
         criteria: [
           {
-            ...first,
-            levels: Arr.map(first.levels, (level) => ({
-              ...level,
-              points: level.points + 1,
-            })),
+            id: "left",
+            label: "left",
+            levels: [
+              { id: "missed", label: "Missed", points: 1 },
+              { id: "earned", label: "Earned", points: 2 },
+            ],
           },
-          ...rest,
         ],
       },
     ]) {
