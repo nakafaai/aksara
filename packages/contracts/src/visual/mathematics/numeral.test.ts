@@ -96,3 +96,46 @@ describe("BinaryLampLab", () => {
     ).toEqual([]);
   });
 });
+
+describe("BundleCountLab", () => {
+  const lab = {
+    bases: [5, 8, 2],
+    description: [text("Tie the sticks into bundles and read the digits.")],
+    labels: {
+      base: "Base",
+      count: "Sticks",
+      ladder: [text("Repeated division")],
+      numeral: [text("In the new base")],
+      viewLabel: "A desk of sticks, bundles, boxes and trays",
+    },
+    showReadout: true,
+    title: [text("Bundling a count into base five")],
+    value: 237,
+  };
+
+  it("takes the bases to offer and a count the first base can hold", () => {
+    expect(decodeStrict(numeral.BundleCountLab.props, lab)).toEqual(lab);
+  });
+
+  it("refuses a base beyond nine, a repeated base, and a count too large", () => {
+    expect(
+      failsStrict(numeral.BundleCountLab.props, { ...lab, bases: [10] })
+    ).toBe(true);
+    expect(
+      failsStrict(numeral.BundleCountLab.props, { ...lab, bases: [5, 5] })
+    ).toBe(true);
+    expect(
+      failsStrict(numeral.BundleCountLab.props, { ...lab, bases: [2, 5] })
+    ).toBe(true);
+    expect(
+      failsStrict(numeral.BundleCountLab.props, { ...lab, value: 301 })
+    ).toBe(true);
+  });
+
+  it("holds the readout as answer state", () => {
+    expect(answerState("BundleCountLab", lab)).toEqual(["showReadout"]);
+    expect(
+      answerState("BundleCountLab", { ...lab, showReadout: false })
+    ).toEqual([]);
+  });
+});
