@@ -71,14 +71,14 @@ function marbleDrawLab<E>(rich: RichSlot<E>) {
 /** How many dice the tray rolls at once. */
 const DICE_COUNTS = [1, 2] as const;
 
-/** The dice and the outcome a dice lab counts. */
-interface DiceTarget {
-  readonly dice: (typeof DICE_COUNTS)[number];
-  readonly target?: number;
-}
+/** The dice a dice lab rolls and the outcome it counts. */
+const DiceTargetSchema = Schema.Struct({
+  dice: Schema.Literals(DICE_COUNTS),
+  target: Schema.optionalKey(Schema.Int),
+});
 
 /** Whether the target can show: a face 1 to 6 of one die, or a sum 2 to 12 of two. */
-function canShow({ dice, target }: DiceTarget) {
+function canShow({ dice, target }: typeof DiceTargetSchema.Type) {
   return target === undefined || (target >= dice && target <= 6 * dice);
 }
 
@@ -93,7 +93,7 @@ function diceRollLab<E>(rich: RichSlot<E>) {
   return figure(
     Schema.Struct({
       ...cardFields(rich),
-      dice: Schema.Literals(DICE_COUNTS),
+      ...DiceTargetSchema.fields,
       labels: Schema.Struct({
         frequency: rich,
         hits: rich,
@@ -101,7 +101,6 @@ function diceRollLab<E>(rich: RichSlot<E>) {
         trials: rich,
         viewLabel: TextSchema,
       }),
-      target: Schema.optionalKey(Schema.Int),
     }).check(
       Schema.makeFilter(canShow, {
         message:

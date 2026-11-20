@@ -16,14 +16,14 @@ const AbacusBaseSchema = Schema.Int.check(
   Schema.isBetween({ maximum: 10, minimum: 2 })
 );
 
-/** The bases and the starting number of a spike abacus. */
-interface AbacusStart {
-  readonly bases: readonly [number, ...number[]];
-  readonly value: number;
-}
+/** The bases a spike abacus offers and the number it starts from, in the first base. */
+const AbacusStartSchema = Schema.Struct({
+  bases: Schema.NonEmptyArray(AbacusBaseSchema),
+  value: Schema.Int.check(Schema.isGreaterThanOrEqualTo(0)),
+});
 
 /** Whether each base is offered once and the first base's spikes hold the number. */
-function fitsAbacus({ bases, value }: AbacusStart) {
+function fitsAbacus({ bases, value }: typeof AbacusStartSchema.Type) {
   const [first] = bases;
   return (
     Arr.dedupe(bases).length === bases.length &&
@@ -42,7 +42,7 @@ function abacusBaseLab<E>(rich: RichSlot<E>) {
   return figure(
     Schema.Struct({
       ...cardFields(rich),
-      bases: Schema.NonEmptyArray(AbacusBaseSchema),
+      ...AbacusStartSchema.fields,
       labels: Schema.Struct({
         base: TextSchema,
         decimal: rich,
@@ -52,7 +52,6 @@ function abacusBaseLab<E>(rich: RichSlot<E>) {
         viewLabel: TextSchema,
       }),
       showReadout: Schema.optionalKey(Schema.Boolean),
-      value: Schema.Int.check(Schema.isGreaterThanOrEqualTo(0)),
     }).check(
       Schema.makeFilter(fitsAbacus, {
         message:
@@ -66,14 +65,14 @@ function abacusBaseLab<E>(rich: RichSlot<E>) {
 /** How a row of bits can be read: one by one, in pairs for base four, in threes for base eight. */
 const BIT_GROUPINGS = ["none", "pairs", "triples"] as const;
 
-/** The lamps and the starting number of a binary lamp panel. */
-interface LampStart {
-  readonly bits: number;
-  readonly value: number;
-}
+/** The lamps of a binary lamp panel and the number it starts from. */
+const LampStartSchema = Schema.Struct({
+  bits: Schema.Int.check(Schema.isBetween({ maximum: 8, minimum: 4 })),
+  value: Schema.Int.check(Schema.isGreaterThanOrEqualTo(0)),
+});
 
 /** Whether the lamps can show the number. */
-function fitsLamps({ bits, value }: LampStart) {
+function fitsLamps({ bits, value }: typeof LampStartSchema.Type) {
   return value <= 2 ** bits - 1;
 }
 
@@ -88,7 +87,7 @@ function binaryLampLab<E>(rich: RichSlot<E>) {
   return figure(
     Schema.Struct({
       ...cardFields(rich),
-      bits: Schema.Int.check(Schema.isBetween({ maximum: 8, minimum: 4 })),
+      ...LampStartSchema.fields,
       labels: Schema.Struct({
         binary: rich,
         decimal: rich,
@@ -99,7 +98,6 @@ function binaryLampLab<E>(rich: RichSlot<E>) {
         viewLabel: TextSchema,
       }),
       showReadout: Schema.optionalKey(Schema.Boolean),
-      value: Schema.Int.check(Schema.isGreaterThanOrEqualTo(0)),
     }).check(
       Schema.makeFilter(fitsLamps, {
         message: "Expected a number the row of lamps can show.",
