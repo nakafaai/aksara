@@ -26,3 +26,45 @@ export const coreCurriculum = {
     "Kerncurriculum gymnasiale Oberstufe Mathematik, Ausgabe 2024, Stand 01.08.2025 (Hessisches Ministerium für Kultus, Bildung und Chancen)",
   url: "https://kultus.hessen.de/sites/kultus.hessen.de/files/2025-10/kerncurriculum_gymnasiale_oberstufe-mathematik.pdf",
 };
+
+/** KMK Bildungsstandards Physik for the Allgemeine Hochschulreife, cited by Inhaltsbereich of Abschnitt 2.6. */
+export const physicsEducationStandards = {
+  citation:
+    "Bildungsstandards im Fach Physik für die Allgemeine Hochschulreife (Beschluss der Kultusministerkonferenz vom 18.06.2020)",
+  url: "https://www.kmk.org/fileadmin/Dateien/veroeffentlichungen_beschluesse/2020/2020_06_18-BildungsstandardsAHR_Physik.pdf",
+};
+
+/** KMK Bildungsstandards Chemie for the Allgemeine Hochschulreife, cited by Inhaltsbereich of Abschnitt 2.6. */
+export const chemistryEducationStandards = {
+  citation:
+    "Bildungsstandards im Fach Chemie für die Allgemeine Hochschulreife (Beschluss der Kultusministerkonferenz vom 18.06.2020)",
+  url: "https://www.kmk.org/fileadmin/Dateien/veroeffentlichungen_beschluesse/2020/2020_06_18-BildungsstandardsAHR_Chemie.pdf",
+};
+
+/** KMK Bildungsstandards Biologie for the Allgemeine Hochschulreife, cited by Inhaltsbereich of Abschnitt 2.6. */
+export const biologyEducationStandards = {
+  citation:
+    "Bildungsstandards im Fach Biologie für die Allgemeine Hochschulreife (Beschluss der Kultusministerkonferenz vom 18.06.2020)",
+  url: "https://www.kmk.org/fileadmin/Dateien/veroeffentlichungen_beschluesse/2020/2020_06_18-BildungsstandardsAHR_Biologie.pdf",
+};
+
+/** Kerncurriculum gymnasiale Oberstufe Physik of Hessen; its Themenfelder order the Physik units. */
+export const physicsCoreCurriculum = {
+  citation:
+    "Kerncurriculum gymnasiale Oberstufe Physik, Ausgabe 2024, Stand 01.08.2025 (Hessisches Ministerium für Kultus, Bildung und Chancen)",
+  url: "https://kultus.hessen.de/sites/kultus.hessen.de/files/2025-10/kernkurriculum_gymnasiale_oberstufe-physik.pdf",
+};
+
+/** Kerncurriculum gymnasiale Oberstufe Chemie of Hessen; its Themenfelder order the Chemie units. */
+export const chemistryCoreCurriculum = {
+  citation:
+    "Kerncurriculum gymnasiale Oberstufe Chemie, Ausgabe 2024, Stand 21.04.2026 (Hessisches Ministerium für Kultus, Bildung und Chancen)",
+  url: "https://kultus.hessen.de/sites/kultus.hessen.de/files/2026-07/kcgo_chemie_21.04.2026.pdf",
+};
+
+/** Kerncurriculum gymnasiale Oberstufe Biologie of Hessen; its Themenfelder order the Biologie units. */
+export const biologyCoreCurriculum = {
+  citation:
+    "Kerncurriculum gymnasiale Oberstufe Biologie, Ausgabe 2024, Stand 01.08.2025 (Hessisches Ministerium für Kultus, Bildung und Chancen)",
+  url: "https://kultus.hessen.de/sites/kultus.hessen.de/files/2025-10/kerncurriculum_gymnasiale_oberstufe-biologie.pdf",
+};

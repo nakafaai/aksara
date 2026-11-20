@@ -46,3 +46,38 @@ export const sachsenMedicalMathematics = {
     "Studienkolleg Sachsen (Universität Leipzig), Informationen zur Feststellungsprüfung im Fach Mathematik (M-Kurs), archived copy of 2 July 2024",
   url: "https://web.archive.org/web/20240702104502/https://www.stksachs.uni-leipzig.de/fileadmin/Einrichtung_Studienkolleg/media/pdf/ebooks/ext-info/Ext_FSP_Mathe_M_Kurs.pdf",
 };
+
+/** The Hannover Physik page lists the T-Kurs and M-Kurs Prüfungsinhalte under headings. */
+export const hannoverPhysics = {
+  citation:
+    "Niedersächsisches Studienkolleg an der Leibniz Universität Hannover, Feststellungsprüfung, Prüfungsinhalte Physik (T-Kurs und M-Kurs)",
+  url: "https://www.stk.uni-hannover.de/feststellungspruefung/ablauf-und-pruefungsinhalte/physik",
+};
+
+/** The Hannover Chemie page lists one set of headings, marking items taught only in the T-Kurs or the M-Kurs. */
+export const hannoverChemistry = {
+  citation:
+    "Niedersächsisches Studienkolleg an der Leibniz Universität Hannover, Feststellungsprüfung, Prüfungsinhalte Chemie (T-Kurs und M-Kurs)",
+  url: "https://www.stk.uni-hannover.de/feststellungspruefung/ablauf-und-pruefungsinhalte/chemie",
+};
+
+/** The Hannover Biologie page lists the M-Kurs Prüfungsinhalte under four headings. */
+export const hannoverBiology = {
+  citation:
+    "Niedersächsisches Studienkolleg an der Leibniz Universität Hannover, Feststellungsprüfung, Prüfungsinhalte Biologie (M-Kurs)",
+  url: "https://www.stk.uni-hannover.de/feststellungspruefung/ablauf-und-pruefungsinhalte/biologie",
+};
+
+/** The Darmstadt Physik page names its two Bereiche, Mechanik and Elektrizitätslehre. */
+export const darmstadtPhysics = {
+  citation:
+    "Studienkolleg für ausländische Studierende der Technischen Universität Darmstadt, T-Kurs, Fach Physik",
+  url: "https://www.stk.tu-darmstadt.de/schwerpunktkurse_stk/tkurs_stk/faecher_tkurs_stk/physik_stk/index.de.jsp",
+};
+
+/** The Darmstadt Chemie page names its Themenbereiche of general, inorganic and physical chemistry. */
+export const darmstadtChemistry = {
+  citation:
+    "Studienkolleg für ausländische Studierende der Technischen Universität Darmstadt, T-Kurs, Fach Chemie",
+  url: "https://www.stk.tu-darmstadt.de/schwerpunktkurse_stk/tkurs_stk/faecher_tkurs_stk/chemie_stk/index.de.jsp",
+};
