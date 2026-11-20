@@ -26,9 +26,11 @@ import { rateVisuals } from "#contracts/visual/chemistry/rate";
 import { reactionVisuals } from "#contracts/visual/chemistry/reaction";
 import { titrationVisuals } from "#contracts/visual/chemistry/titration";
 import type { VisualEntry } from "#contracts/visual/entry";
+import { chanceVisuals } from "#contracts/visual/mathematics/chance";
 import { chartVisuals } from "#contracts/visual/mathematics/charts";
 import { functionVisuals } from "#contracts/visual/mathematics/function";
 import { geometryVisuals } from "#contracts/visual/mathematics/geometry";
+import { numeralVisuals } from "#contracts/visual/mathematics/numeral";
 import { brakingVisuals } from "#contracts/visual/physics/braking";
 import { circuitVisuals } from "#contracts/visual/physics/circuit";
 import { circularVisuals } from "#contracts/visual/physics/circular";
@@ -84,9 +86,11 @@ export function visualCatalog<E>(rich: RichSlot<E>) {
     ...particleVisuals(rich),
     ...periodicVisuals(rich),
     ...reactionVisuals(rich),
+    ...chanceVisuals(rich),
     ...chartVisuals(rich),
     ...functionVisuals(rich),
     ...geometryVisuals(rich),
+    ...numeralVisuals(rich),
     ...measurementVisuals(rich),
     ...motionVisuals(rich),
     ...parabolicVisuals(rich),

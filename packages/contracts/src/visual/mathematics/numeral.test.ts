@@ -1,0 +1,98 @@
+import { describe, expect, it } from "@effect/vitest";
+import { RichTextSchema } from "#contracts/assessment/inline";
+import {
+  decodeStrict,
+  failsStrict,
+  text,
+} from "#contracts/test/assessment/document";
+import { answerState } from "#contracts/visual/catalog";
+import { numeralVisuals } from "#contracts/visual/mathematics/numeral";
+
+const numeral = numeralVisuals(RichTextSchema);
+
+describe("AbacusBaseLab", () => {
+  const lab = {
+    bases: [10, 2, 5, 8],
+    description: [text("Set a number and watch each spike hold one digit.")],
+    labels: {
+      base: "Base",
+      decimal: [text("Value in base ten")],
+      digits: [text("Numeral")],
+      expanded: [text("Expanded form")],
+      value: "Number",
+      viewLabel: "A spike abacus with four spikes",
+    },
+    showReadout: true,
+    title: [text("A spike abacus in any base")],
+    value: 1999,
+  };
+
+  it("takes the bases to offer and a number the first base can hold", () => {
+    expect(decodeStrict(numeral.AbacusBaseLab.props, lab)).toEqual(lab);
+  });
+
+  it("refuses a base beyond ten, a repeated base, and a number too large", () => {
+    expect(
+      failsStrict(numeral.AbacusBaseLab.props, { ...lab, bases: [16] })
+    ).toBe(true);
+    expect(
+      failsStrict(numeral.AbacusBaseLab.props, { ...lab, bases: [10, 10] })
+    ).toBe(true);
+    expect(
+      failsStrict(numeral.AbacusBaseLab.props, { ...lab, bases: [2, 10] })
+    ).toBe(true);
+    expect(
+      failsStrict(numeral.AbacusBaseLab.props, { ...lab, value: 10_000 })
+    ).toBe(true);
+  });
+
+  it("holds the readout as answer state", () => {
+    expect(answerState("AbacusBaseLab", lab)).toEqual(["showReadout"]);
+    expect(
+      answerState("AbacusBaseLab", { ...lab, showReadout: false })
+    ).toEqual([]);
+  });
+});
+
+describe("BinaryLampLab", () => {
+  const lab = {
+    bits: 6,
+    description: [text("Each lamp is a power of two.")],
+    labels: {
+      binary: [text("Base two")],
+      decimal: [text("Base ten")],
+      grouped: [text("Grouped reading")],
+      grouping: "Read the bits",
+      groups: {
+        none: "One by one",
+        pairs: "Pairs, base 4",
+        triples: "Threes, base 8",
+      },
+      value: "Number",
+      viewLabel: "A panel of six lamps",
+    },
+    showReadout: true,
+    title: [text("Lamps that count in base two")],
+    value: 45,
+  };
+
+  it("takes a row of lamps and a number it can show", () => {
+    expect(decodeStrict(numeral.BinaryLampLab.props, lab)).toEqual(lab);
+  });
+
+  it("refuses a row the panel cannot hold and a number too large", () => {
+    expect(failsStrict(numeral.BinaryLampLab.props, { ...lab, bits: 9 })).toBe(
+      true
+    );
+    expect(
+      failsStrict(numeral.BinaryLampLab.props, { ...lab, value: 64 })
+    ).toBe(true);
+  });
+
+  it("holds the readout as answer state", () => {
+    expect(answerState("BinaryLampLab", lab)).toEqual(["showReadout"]);
+    expect(
+      answerState("BinaryLampLab", { ...lab, showReadout: false })
+    ).toEqual([]);
+  });
+});
