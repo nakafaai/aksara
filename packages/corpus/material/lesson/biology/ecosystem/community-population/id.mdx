@@ -1,0 +1,380 @@
+export const metadata = {
+  title: "Ekosistem dan Ekologi Populasi",
+  description:
+    "Bedakan komunitas dan populasi, hitung efisiensi energi pada piramida ekologi, dan taksir ukuran populasi dengan metode kuadrat dan tangkap ulang.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2026-11-17",
+  subject: "Ekosistem",
+};
+
+## Ekosistem adalah Komunitas beserta Lingkungan Fisiknya
+
+**Ekosistem** adalah komunitas makhluk hidup yang berinteraksi satu sama lain dan dengan **komponen abiotik** di sekitarnya. Makhluk hidup satu spesies membentuk **populasi**, semua populasi di satu wilayah membentuk **komunitas**, dan komunitas beserta cahaya, air, tanah, dan udaranya membentuk ekosistem.
+
+| Istilah | Arti | Contoh di hutan bakau |
+| :--- | :--- | :--- |
+| Spesies | Makhluk hidup yang bisa kawin sesamanya dan menghasilkan keturunan yang fertil | Kepiting bakau |
+| Populasi | Semua individu satu spesies di satu wilayah pada satu waktu | Semua kepiting bakau di hutan itu |
+| Komunitas | Semua populasi berbagai spesies di wilayah yang sama | Pohon bakau, kepiting, ikan glodok, monyet |
+| Habitat | Tempat makhluk hidup tinggal | Lumpur di antara akar bakau |
+| Relung | Peran makhluk hidup: makanannya, aktivitasnya, dan interaksinya | Kepiting memakan daun gugur dan mengurai sisa organik |
+| Ekosistem | Komunitas beserta komponen abiotiknya | Seluruh hutan bakau dengan air asin dan lumpurnya |
+
+Dasar aliran energi serta peran produsen, konsumen, dan pengurai sudah dijelaskan di [makhluk hidup dalam ekosistem](/id/materi/biologi/keanekaragaman-makhluk-hidup/makhluk-hidup-dalam-ekosistem). Di sini kita melangkah lebih jauh: kamu menghitung efisiensi perpindahan energi, membangun piramida ekologi, menjalankan model pemangsa dan mangsa, menimbun lumpur di hutan bakau, dan menaksir ukuran populasi dengan kuadrat dan metode tangkap ulang.
+
+## Komponen Biotik dan Abiotik Menentukan Siapa yang Hidup di Sana
+
+Komponen biotik dikelompokkan menurut cara mendapatkan makanan. **Autotrof** membuat makanannya sendiri. Fotoautotrof seperti tumbuhan memakai cahaya, sedangkan kemoautotrof seperti bakteri nitrifikasi memakai energi dari reaksi kimia. **Heterotrof** mendapat makanan dari makhluk hidup lain dengan tiga cara: holozoik, yaitu menelan dan mencerna makanan seperti hewan, saprofit, yaitu mencerna bahan organik mati di luar tubuh, dan parasit, yaitu menyerap makanan dari inang yang masih hidup.
+
+Komponen abiotik menetapkan batas bagi setiap makhluk hidup:
+
+- **pH**: sebagian besar tumbuhan tumbuh baik di tanah yang mendekati netral, dan hanya tumbuhan tertentu yang beradaptasi dengan tanah gambut yang asam.
+- **Suhu**: suhu mengatur laju reaksi enzim, jadi makhluk hidup hanya aktif dalam rentang suhu tertentu.
+- **Intensitas cahaya**: cahaya menentukan laju fotosintesis, jadi tumbuhan di lantai hutan hujan berbeda dengan tumbuhan di kanopi.
+- **Kelembapan**: udara lembap mengurangi transpirasi dan kehilangan air pada hewan seperti cacing tanah.
+- **Topografi**: ketinggian, kemiringan, dan arah lereng mengubah suhu, cahaya, dan air yang sampai ke suatu wilayah.
+- **Iklim mikro**: kondisi kecil di bawah batu atau kanopi, seperti tempat yang teduh dan lembap, memungkinkan makhluk kecil hidup di sana walaupun daerah sekitarnya kering.
+
+## Rantai Makanan dan Piramida Ekologi
+
+Setiap langkah makan menempatkan makhluk hidup pada satu **tingkat trofik**. Produsen ada di tingkat pertama, konsumen primer di tingkat kedua, dan seterusnya. **Rantai makanan** mengikuti satu jalur, misalnya daun bakau ke kepiting ke ikan ke burung bangau. **Jaring-jaring makanan** menggabungkan banyak rantai yang saling bersilangan, jadi satu makhluk hidup bisa berada di lebih dari satu tingkat trofik.
+
+Ekologi memakai tiga piramida. **Piramida jumlah** menghitung individu di setiap tingkat, **piramida biomassa** menimbang massa kering makhluk hidup, dan **piramida energi** mengukur energi yang mengalir lewat setiap tingkat dalam satu periode. Dua piramida pertama bisa terbalik. Satu pohon besar menopang ribuan ulat, jadi piramida jumlahnya terbalik. Di Selat Inggris, fitoplankton bermassa <InlineMath math="4\text{ g m}^{-2}" /> menopang zooplankton bermassa <InlineMath math="21\text{ g m}^{-2}" />, karena fitoplankton cepat dimakan tetapi berkembang biak lebih cepat lagi. **Piramida energi selalu tegak**, karena energi hilang sebagai panas di setiap tingkat.
+
+Model ini membangun kedua piramida dari data nyata. Luas permukaan atas tiap lapisan sebanding dengan nilainya. Putar modelnya dan bandingkan arah kedua piramida.
+
+<MathVisual
+  title={<>Piramida Energi Silver Springs dan Piramida Biomassa Selat Inggris</>}
+  description={
+    <>
+      Kiri: energi dalam <InlineMath math="\text{kkal m}^{-2}\text{ tahun}^{-1}" /> di Silver
+      Springs, Florida. Kanan: biomassa dalam{" "}
+      <InlineMath math="\text{g m}^{-2}" /> di Selat Inggris. Luas tiap lapisan
+      sebanding dengan nilainya.
+    </>
+  }
+  scene={{
+    space: "space",
+    frame: { kind: "cartesian", x: { min: -8, max: 8 }, y: { min: 0, max: 2.5 }, z: { min: -4, max: 4 } },
+    view: { kind: "camera", position: { x: 2, y: 7, z: 12 }, target: { x: 0, y: 0.8, z: 0 } },
+    objects: [
+      { id: "producers", kind: "cuboid", appearance: "construction", center: { x: -4, y: 0.25, z: 0 }, size: { length: 6, height: 0.5, width: 6 } },
+      { id: "primary", kind: "cuboid", appearance: "highlight", center: { x: -4, y: 0.75, z: 0 }, size: { length: 6 * Math.sqrt(3368 / 20810), height: 0.5, width: 6 * Math.sqrt(3368 / 20810) } },
+      { id: "secondary", kind: "cuboid", appearance: "primary", center: { x: -4, y: 1.25, z: 0 }, size: { length: 6 * Math.sqrt(383 / 20810), height: 0.5, width: 6 * Math.sqrt(383 / 20810) } },
+      { id: "tertiary", kind: "cuboid", appearance: "warning", center: { x: -4, y: 1.75, z: 0 }, size: { length: 6 * Math.sqrt(21 / 20810), height: 0.5, width: 6 * Math.sqrt(21 / 20810) } },
+      { id: "phytoplankton", kind: "cuboid", appearance: "construction", center: { x: 5, y: 0.25, z: 0 }, size: { length: 3 * Math.sqrt(4 / 21), height: 0.5, width: 3 * Math.sqrt(4 / 21) } },
+      { id: "zooplankton", kind: "cuboid", appearance: "highlight", center: { x: 5, y: 0.75, z: 0 }, size: { length: 3, height: 0.5, width: 3 } },
+    ],
+    labels: [
+      { key: "producers", objectId: "producers", at: { x: -0.6, y: 0.25, z: 0 }, placement: "right" },
+      { key: "primary", objectId: "primary", at: { x: -0.6, y: 0.75, z: 0 }, placement: "right" },
+      { key: "secondary", objectId: "secondary", at: { x: -0.6, y: 1.25, z: 0 }, placement: "right" },
+      { key: "tertiary", objectId: "tertiary", at: { x: -0.6, y: 1.75, z: 0 }, placement: "right" },
+      { key: "phytoplankton", objectId: "phytoplankton", at: { x: 6.7, y: 0.25, z: 0 }, placement: "right" },
+      { key: "zooplankton", objectId: "zooplankton", at: { x: 5, y: 1, z: 0 }, placement: "above" },
+    ],
+  }}
+  labels={{
+    producers: <InlineMath math="\text{Produsen: }20{.}810" />,
+    primary: <InlineMath math="\text{Konsumen primer: }3{.}368" />,
+    secondary: <InlineMath math="\text{Konsumen sekunder: }383" />,
+    tertiary: <InlineMath math="\text{Konsumen tersier: }21" />,
+    phytoplankton: <InlineMath math="\text{Fitoplankton: }4" />,
+    zooplankton: <InlineMath math="\text{Zooplankton: }21" />,
+  }}
+/>
+
+Diagram batang ini menunjukkan nilai yang sama untuk Silver Springs, ditambah energi yang melewati pengurai. Pengurai mendapat energi dari sisa dan bangkai makhluk hidup di setiap tingkat.
+
+<Chart
+  title={<>Aliran Energi di Ekosistem Silver Springs</>}
+  bars="apart"
+  categories={["Produsen", "Konsumen primer", "Konsumen sekunder", "Konsumen tersier", "Pengurai"]}
+  series={[
+    { label: "Energi dalam kkal per meter persegi per tahun", mark: "bar", values: [20810, 3368, 383, 21, 5060] },
+  ]}
+  valueLabel="Energi dalam kkal per meter persegi per tahun"
+  description={
+    <>
+      Pengukuran Odum di Silver Springs, Florida:{" "}
+      <InlineMath math="20{.}810" />, <InlineMath math="3{.}368" />,{" "}
+      <InlineMath math="383" />, dan <InlineMath math="21" /> untuk empat
+      tingkat trofik, serta <InlineMath math="5{.}060\text{ kkal m}^{-2}\text{ tahun}^{-1}" /> untuk
+      pengurai.
+    </>
+  }
+/>
+
+Sekarang hitung berapa banyak energi yang berpindah. **Efisiensi perpindahan energi** adalah energi di satu tingkat dibagi energi di tingkat sebelumnya, dikali <InlineMath math="100\%" />. Hitung efisiensi tiga perpindahan di Silver Springs:
+
+<MathContainer>
+<BlockMath math="\frac{3{.}368}{20{.}810} \times 100\% = 16{,}2\%" />
+<BlockMath math="\frac{383}{3{.}368} \times 100\% = 11{,}4\%" />
+<BlockMath math="\frac{21}{383} \times 100\% = 5{,}5\%" />
+</MathContainer>
+
+Efisiensinya berada di antara <InlineMath math="5\%" /> dan <InlineMath math="17\%" />, jadi kira-kira sepersepuluh energi sampai ke tingkat berikutnya. Cek: <InlineMath math="20{.}810 \times 0{,}162 \times 0{,}114 \times 0{,}055 \approx 21" />, sama dengan energi konsumen tersier. Itulah sebabnya rantai makanan jarang lebih dari empat atau lima tingkat.
+
+## Enam Jenis Interaksi Makhluk Hidup
+
+Makhluk hidup dalam komunitas berinteraksi dengan cara yang berdampak berbeda pada tiap pihak. Simbol <InlineMath math="+" /> berarti untung, <InlineMath math="-" /> berarti rugi, dan <InlineMath math="0" /> berarti tidak terpengaruh.
+
+| Interaksi | Dampak | Contoh |
+| :--- | :--- | :--- |
+| Mutualisme | <InlineMath math="+/+" /> | Bakteri Rhizobium di bintil akar kacang-kacangan mengikat nitrogen, dan tumbuhan memberi gula |
+| Komensalisme | <InlineMath math="+/0" /> | Paku sarang burung tumbuh di dahan pohon untuk mendapat cahaya tanpa merugikan pohon |
+| Parasitisme | <InlineMath math="+/-" /> | Tali putri menyerap air dan makanan dari tumbuhan inangnya |
+| Saprofitisme | Sisa diuraikan | Jamur dan bakteri mencerna daun gugur dan menyerap hasilnya |
+| Kompetisi | <InlineMath math="-/-" /> | Bibit padi bersaing dengan sesamanya dan dengan gulma untuk cahaya dan nutrien |
+| Predasi | <InlineMath math="+/-" /> | Burung hantu serak jawa memburu tikus di sawah dan kebun kelapa sawit |
+
+**Kompetisi intraspesifik** terjadi antara individu satu spesies, sedangkan **kompetisi interspesifik** terjadi antara spesies yang berbeda. Keduanya terjadi saat sumber daya seperti makanan, cahaya, air, atau ruang terbatas.
+
+Predasi mengendalikan kedua populasi. Di model sawah ini, tikus tidak dibatasi makanan, jadi hanya burung hantu yang menahan jumlah tikus. Atur jumlah burung hantu di awal dan jalankan modelnya.
+
+<PredatorPreyLab
+  title={<>Burung Hantu dan Tikus Naik Turun Bergantian</>}
+  description={
+    <>
+      Model pemangsa dan mangsa Lotka-Volterra untuk tikus dan burung hantu
+      serak jawa selama <InlineMath math="20" /> tahun, tanpa batas makanan
+      bagi tikus.
+    </>
+  }
+  labels={{
+    start: "Burung hantu di awal",
+    prey: <>Tikus</>,
+    predators: <>Burung hantu</>,
+    peak: <>Tikus terbanyak</>,
+    year: <>Tahun</>,
+    viewLabel: "Sawah dengan tikus dan burung hantu serak jawa",
+  }}
+/>
+
+Puncak jumlah burung hantu selalu **datang setelah puncak jumlah tikus**. Saat tikus melimpah, lebih banyak anak burung hantu bertahan hidup. Lalu burung hantu yang banyak memakan tikus sampai tikus berkurang, dan giliran burung hantu yang kekurangan makanan. Pekebun kelapa sawit di Malaysia dan Indonesia memasang kotak sarang burung hantu sebagai **pengendalian hayati** untuk menekan tikus tanpa racun.
+
+## Nutrien Bersiklus di dalam Ekosistem
+
+Energi mengalir sekali saja melewati ekosistem, tetapi unsur seperti karbon dan nitrogen **dipakai ulang berkali-kali**. Siklus ini bergantung pada pengurai dan bakteri tertentu.
+
+Pada **siklus karbon**, tumbuhan menyerap karbon dioksida saat fotosintesis dan menyusun glukosa. Karbon berpindah ke hewan lewat makanan. Respirasi semua makhluk hidup, penguraian oleh pengurai, dan pembakaran bahan bakar fosil mengembalikan karbon dioksida ke udara. Sebagian karbon tersimpan lama di batu bara, minyak bumi, dan gambut.
+
+Pada **siklus nitrogen**, udara mengandung sekitar <InlineMath math="78\%" /> nitrogen, tetapi tumbuhan tidak bisa memakai gas nitrogen secara langsung. Bakteri pengikat nitrogen seperti Rhizobium, dan juga petir, mengubahnya menjadi senyawa nitrogen. Pengurai mengubah protein dalam bangkai menjadi amonia. Bakteri nitrifikasi mengubah amonia menjadi nitrit, lalu menjadi **nitrat yang diserap akar**. Bakteri denitrifikasi mengembalikan nitrat menjadi gas nitrogen di tanah yang kekurangan oksigen.
+
+<Mermaid
+  title={<>Siklus Nitrogen</>}
+  description={<>Bakteri memindahkan nitrogen antara udara, tanah, dan makhluk hidup di setiap langkah.</>}
+  chart={`flowchart LR
+    N2["Nitrogen di udara"] -->|"Fiksasi nitrogen"| NH4["Amonia dan ion amonium"]
+    NH4 -->|"Nitrifikasi"| NO2["Nitrit"]
+    NO2 -->|"Nitrifikasi"| NO3["Nitrat"]
+    NO3 -->|"Diserap akar"| P["Protein tumbuhan"]
+    P -->|"Dimakan"| A["Protein hewan"]
+    P -->|"Bangkai dan sisa"| D["Pengurai"]
+    A -->|"Bangkai dan sisa"| D
+    D -->|"Amonifikasi"| NH4
+    NO3 -->|"Denitrifikasi"| N2`}
+/>
+
+## Kolonisasi dan Suksesi di Hutan Bakau
+
+Hutan bakau adalah ekosistem di pantai berlumpur yang terendam air laut saat pasang. Komponen abiotiknya adalah air asin, lumpur lunak yang kekurangan oksigen, dan pasang surut. Komponen biotiknya meliputi pohon bakau, kepiting, udang, ikan glodok, siput, dan monyet. Pohon bakau punya akar napas, akar tunjang, dan cairan sel akar yang pekat, seperti diuraikan di [adaptasi tumbuhan di hutan bakau](/id/materi/biologi/adaptasi-tumbuhan/habitat-berbeda).
+
+**Kolonisasi** adalah masuknya spesies pionir ke wilayah baru. **Suksesi** adalah pergantian satu komunitas oleh komunitas lain secara bertahap. Di tepi laut, **spesies pionir api-api dan pidada** tumbuh lebih dulu. Akarnya memperlambat arus air, jadi lumpur mengendap dan tanah meninggi. Saat tanah lebih tinggi dan jarang terendam, Rhizophora menggantikan pionir. Akar tunjangnya menangkap lebih banyak lumpur, lalu Bruguiera mengambil alih, dan akhirnya tumbuhan darat tumbuh di bagian yang tidak lagi terendam air laut.
+
+Model ini menganggap permukaan lumpur turun <InlineMath math="0{,}03\text{ m}" /> setiap meter ke arah laut, mulai <InlineMath math="1{,}5\text{ m}" /> di atas muka laut rata-rata di tepi darat. Penggeser <InlineMath math="s" /> menambah lapisan lumpur yang mengendap. Geser penggesernya dan perhatikan tepi laut bergeser.
+
+<MathVisual
+  title={<>Lumpur yang Mengendap Mendorong Tepi Hutan Bakau ke Arah Laut</>}
+  description={
+    <>
+      Tinggi lumpur <InlineMath math="1{,}5 - 0{,}03x + s" /> dalam meter
+      terhadap jarak <InlineMath math="x" /> dari darat. Garis mendatar adalah
+      muka laut rata-rata dan batas air pasang.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 105 }, y: { min: -1.6, max: 3.3 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "s", min: 0, max: 1.5, value: 0, step: 0.05, label: "s" },
+    ],
+    objects: [
+      { id: "mud", kind: "function", appearance: "secondary", formula: "1.5 - 0.03x + s", domain: { min: 0, max: 100 } },
+      { id: "sea", kind: "function", appearance: "primary", formula: "0x", domain: { min: 0, max: 105 } },
+      { id: "tide", kind: "function", appearance: "reference", formula: "1 + 0x", domain: { min: 0, max: 105 } },
+      { id: "shore", kind: "marker", x: "(1.5 + s)/0.03", y: "0", appearance: "warning" },
+      { id: "edge", kind: "marker", x: "(0.5 + s)/0.03", y: "1", appearance: "highlight" },
+    ],
+    labels: [
+      { key: "pioneer", objectId: "shore", at: { x: "(1.5 + s)/0.03", y: "0" }, placement: "below-left" },
+      { key: "land", objectId: "edge", at: { x: "(0.5 + s)/0.03", y: "1" }, placement: "above-left" },
+    ],
+    readouts: [
+      { key: "seaward", formula: "(1.5 + s)/0.03" },
+      { key: "landward", formula: "(0.5 + s)/0.03" },
+    ],
+  }}
+  labels={{
+    s: <>Lumpur mengendap <InlineMath math="s" /> dalam meter</>,
+    pioneer: <>Pionir di tepi laut</>,
+    land: <>Batas air pasang</>,
+    seaward: <>Tepi laut dari darat dalam meter</>,
+    landward: <>Batas air pasang dari darat dalam meter</>,
+  }}
+/>
+
+Setiap <InlineMath math="0{,}3\text{ m}" /> lumpur mendorong tepi laut <InlineMath math="10" /> meter ke depan. Pionir pindah ke lumpur baru di depan, sementara wilayah di belakang batas air pasang menjadi daratan. Hutan bakau melindungi pantai dari ombak dan abrasi, menjadi tempat berkembang biak ikan dan udang, serta menyediakan kayu dan arang.
+
+## Persebaran dan Pertumbuhan Populasi
+
+Ukuran populasi berubah lewat kelahiran, kematian, imigrasi, dan emigrasi. Faktor abiotik seperti suhu, cahaya, pH, dan air menentukan di mana populasi bisa hidup. Faktor biotik seperti makanan, pemangsa, penyakit, dan kompetisi menentukan seberapa besar populasi bisa tumbuh.
+
+Saat sumber daya melimpah, populasi tumbuh cepat. Saat makanan dan ruang makin terbatas, pertumbuhan melambat dan populasi stabil di **daya dukung**, yaitu ukuran populasi terbesar yang bisa ditopang lingkungan. Model logistik ini dimulai dengan <InlineMath math="10" /> individu. Ubah daya dukung dan laju pertumbuhannya.
+
+<MathVisual
+  title={<>Populasi Tumbuh sampai Daya Dukung</>}
+  description={
+    <>
+      Model logistik <InlineMath math="N = \dfrac{k}{1 + (k/10 - 1)e^{-rx}}" />{" "}
+      dengan daya dukung <InlineMath math="k" />, laju pertumbuhan{" "}
+      <InlineMath math="r" />, dan waktu <InlineMath math="x" /> dalam minggu.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 40 }, y: { min: 0, max: 1100 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "k", min: 100, max: 1000, value: 600, step: 50, label: "k" },
+      { name: "r", min: 0.1, max: 1, value: 0.4, step: 0.05, label: "r" },
+      { name: "w", min: 0, max: 40, value: 10, step: 1, label: "w" },
+    ],
+    objects: [
+      { id: "growth", kind: "function", appearance: "primary", formula: "k/(1 + (k/10 - 1)exp(-r x))", domain: { min: 0, max: 40 } },
+      { id: "now", kind: "marker", x: "w", y: "k/(1 + (k/10 - 1)exp(-r w))", appearance: "warning" },
+    ],
+    readouts: [
+      { key: "size", formula: "k/(1 + (k/10 - 1)exp(-r w))" },
+    ],
+  }}
+  labels={{
+    k: <>Daya dukung <InlineMath math="k" /></>,
+    r: <>Laju pertumbuhan <InlineMath math="r" /></>,
+    w: <>Minggu ke-<InlineMath math="w" /></>,
+    size: <>Ukuran populasi</>,
+  }}
+/>
+
+Kurvanya berbentuk S. Laju pertumbuhan paling tinggi saat populasi mencapai separuh daya dukung, lalu **kompetisi memperebutkan sumber daya** memperlambatnya.
+
+## Menaksir Ukuran Populasi
+
+Menghitung setiap individu jarang mungkin dilakukan, jadi ahli ekologi mengambil sampel. **Metode kuadrat** cocok untuk tumbuhan dan hewan yang diam atau bergerak lambat. Kuadrat diletakkan secara acak, dan isi setiap kuadrat dihitung atau ditaksir. **Metode tangkap, tandai, lepas, dan tangkap ulang** cocok untuk hewan yang bergerak bebas seperti siput, ikan, dan serangga.
+
+<MathContainer>
+<BlockMath math="\text{Frekuensi} = \frac{\text{kuadrat yang berisi spesies}}{\text{jumlah semua kuadrat}} \times 100\%" />
+<BlockMath math="\text{Kerapatan} = \frac{\text{jumlah individu di semua kuadrat}}{\text{banyak kuadrat} \times \text{luas satu kuadrat}}" />
+<BlockMath math="\text{Persentase penutupan} = \frac{\text{total luas yang tertutup}}{\text{banyak kuadrat} \times \text{luas satu kuadrat}} \times 100\%" />
+</MathContainer>
+
+### Contoh Metode Kuadrat
+
+Sepuluh kuadrat <InlineMath math="1\text{ m}^2" /> diletakkan secara acak di lapangan. Banyak tumbuhan putri malu di kuadrat itu adalah <InlineMath math="3, 0, 5, 2, 0, 4, 6, 0, 1" />, dan <InlineMath math="3" />. Rumput menutupi total <InlineMath math="3{,}2\text{ m}^2" /> di sepuluh kuadrat itu. **Putri malu ditemukan** di <InlineMath math="7" /> kuadrat, dan jumlah individunya <InlineMath math="24" />:
+
+<MathContainer>
+<BlockMath math="\text{Frekuensi putri malu} = \frac{7}{10} \times 100\% = 70\%" />
+<BlockMath math="\text{Kerapatan putri malu} = \frac{24}{10 \times 1\text{ m}^2} = 2{,}4\text{ individu m}^{-2}" />
+<BlockMath math="\text{Penutupan rumput} = \frac{3{,}2\text{ m}^2}{10 \times 1\text{ m}^2} \times 100\% = 32\%" />
+</MathContainer>
+
+Cek jumlahnya: <InlineMath math="3 + 5 + 2 + 4 + 6 + 1 + 3 = 24" />, dan tiga kuadrat bernilai nol, jadi <InlineMath math="10 - 3 = 7" /> kuadrat berisi putri malu.
+
+### Contoh Tangkap Ulang Siput
+
+Sebanyak <InlineMath math="40" /> siput ditangkap, ditandai dengan cat, lalu dilepas. Seminggu kemudian, <InlineMath math="50" /> siput ditangkap dan <InlineMath math="8" /> di antaranya bertanda. Proporsi siput bertanda di sampel kedua dianggap sama dengan proporsinya di seluruh populasi:
+
+<MathContainer>
+<BlockMath math="\frac{8}{50} = \frac{40}{N}" />
+<BlockMath math="N = \frac{40 \times 50}{8} = 250" />
+</MathContainer>
+
+Cek: <InlineMath math="40" /> dari <InlineMath math="250" /> adalah <InlineMath math="16\%" />, dan <InlineMath math="8" /> dari <InlineMath math="50" /> juga <InlineMath math="16\%" />. Metode ini menganggap tanda tidak hilang, tanda tidak melukai siput, siput bertanda bercampur lagi dengan populasi, dan tidak ada kelahiran, kematian, atau perpindahan di antara dua penangkapan.
+
+Model ini menetapkan <InlineMath math="40" /> siput bertanda dan <InlineMath math="50" /> siput pada penangkapan kedua. Geser banyak siput bertanda yang tertangkap ulang, <InlineMath math="m" />, dan baca taksiran populasinya.
+
+<MathVisual
+  title={<>Taksiran Populasi Bergantung pada Hewan Bertanda yang Tertangkap Ulang</>}
+  description={
+    <>
+      Kurva <InlineMath math="N = \dfrac{40 \times 50}{m}" /> terhadap banyak
+      siput bertanda pada penangkapan kedua, <InlineMath math="m" />.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 42 }, y: { min: 0, max: 2100 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "m", min: 1, max: 40, value: 8, step: 1, label: "m" },
+    ],
+    objects: [
+      { id: "estimate", kind: "function", appearance: "primary", formula: "2000/x", domain: { min: 1, max: 40 } },
+      { id: "count", kind: "marker", x: "m", y: "2000/m", appearance: "warning" },
+    ],
+    readouts: [
+      { key: "population", formula: "2000/m" },
+    ],
+  }}
+  labels={{
+    m: <>Siput bertanda tertangkap ulang <InlineMath math="m" /></>,
+    population: <>Taksiran populasi <InlineMath math="N" /></>,
+  }}
+/>
+
+Kalau siput bertanda belajar menghindari perangkap, <InlineMath math="m" /> jadi kecil dan taksirannya **menjadi terlalu besar**. Pada <InlineMath math="m = 4" />, taksiran melonjak menjadi <InlineMath math="500" />.
+
+## Kesalahan Umum tentang Ekosistem
+
+| Kesalahan | Kenapa salah | Cara mengecek |
+| :--- | :--- | :--- |
+| Populasi dan komunitas itu sama. | Populasi hanya satu spesies, komunitas mencakup semua spesies. | Hitung berapa spesies yang disebut. |
+| Semua piramida ekologi pasti tegak. | Piramida jumlah dan biomassa bisa terbalik, hanya piramida energi yang selalu tegak. | Tanyakan apa yang diukur oleh lebar tiap lapisan. |
+| Kerapatan dibagi dengan banyak kuadrat yang berisi spesies. | Kerapatan dibagi dengan semua kuadrat, termasuk kuadrat kosong. | Pastikan penyebutnya adalah total luas semua kuadrat. |
+| Pada tangkap ulang, <InlineMath math="N = \dfrac{n_1 \times m}{n_2}" />. | Proporsi bertanda di sampel kedua harus sama dengan proporsi di populasi. | Cek bahwa <InlineMath math="N" /> lebih besar daripada kedua tangkapan. |
+
+Kesalahan ketiga mengecilkan penyebut, jadi kerapatannya terlalu besar. **Kuadrat kosong tetap bagian dari sampel**.
+
+## Latihan Ekosistem
+
+Soal-soal ini dimulai dari mengenali interaksi dan berakhir dengan taksiran populasi. **Tulis rumusnya sebelum memasukkan angka**.
+
+1. Bakteri Rhizobium hidup di bintil akar tanaman kacang tanah. Sebutkan jenis interaksinya dan jelaskan keuntungan bagi tiap pihak.
+
+2. Satu pohon durian menopang <InlineMath math="2{.}000" /> ulat, dan ulat itu dimakan oleh <InlineMath math="20" /> burung. Jelaskan bentuk piramida jumlah dan piramida energi untuk rantai makanan ini.
+
+3. Delapan kuadrat <InlineMath math="0{,}5\text{ m}^2" /> berisi <InlineMath math="2, 4, 0, 3, 5, 0, 1" />, dan <InlineMath math="1" /> rumput belulang. Hitung frekuensi dan kerapatan rumput belulang.
+
+4. Sebanyak <InlineMath math="60" /> ikan ditandai dan dilepas ke kolam. Kemudian <InlineMath math="45" /> ikan ditangkap dan <InlineMath math="9" /> di antaranya bertanda. Taksir banyak ikan, lalu jelaskan akibatnya jika sebagian tanda lepas.
+
+### Pembahasan
+
+**Pembahasan 1**: Interaksi ini adalah **mutualisme**. Rhizobium mengikat nitrogen dari udara menjadi senyawa nitrogen yang dipakai tanaman untuk menyusun protein. Tanaman memberi gula dan tempat tinggal bagi bakteri. Kedua pihak untung, <InlineMath math="+/+" />.
+
+**Pembahasan 2**: Piramida jumlahnya **sempit di dasar dan lebar di tengah**: satu pohon di dasar, <InlineMath math="2{.}000" /> ulat di tengah, dan <InlineMath math="20" /> burung di puncak. Piramida energinya tetap tegak, karena energi dalam satu pohon durian jauh lebih besar daripada energi dalam semua ulat, dan energi hilang sebagai panas di setiap tingkat.
+
+**Pembahasan 3**: Rumput belulang ditemukan di <InlineMath math="6" /> dari <InlineMath math="8" /> kuadrat, dan jumlah individunya <InlineMath math="2 + 4 + 3 + 5 + 1 + 1 = 16" />:
+
+<MathContainer>
+<BlockMath math="\text{Frekuensi} = \frac{6}{8} \times 100\% = 75\%" />
+<BlockMath math="\text{Kerapatan} = \frac{16}{8 \times 0{,}5\text{ m}^2} = 4\text{ individu m}^{-2}" />
+</MathContainer>
+
+Cek: luas sampelnya <InlineMath math="4\text{ m}^2" />, dan <InlineMath math="16" /> individu di <InlineMath math="4\text{ m}^2" /> berarti <InlineMath math="4" /> individu per meter persegi.
+
+**Pembahasan 4**: Gunakan proporsi ikan bertanda:
+
+<BlockMath math="N = \frac{60 \times 45}{9} = 300" />
+
+Cek: <InlineMath math="9/45 = 20\%" /> dan <InlineMath math="60/300 = 20\%" />. Jika sebagian tanda lepas, ikan bertanda yang tertangkap ulang lebih sedikit daripada seharusnya. Nilai <InlineMath math="m" /> mengecil, jadi **taksiran populasinya terlalu besar**.

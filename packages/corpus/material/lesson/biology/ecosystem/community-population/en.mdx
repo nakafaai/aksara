@@ -1,0 +1,379 @@
+export const metadata = {
+  title: "Ecosystem Notes",
+  description:
+    "Form 5 Biology Chapter 9: communities, ecological pyramids, interactions, nutrient cycles, mangroves, and population estimates with quadrats and recapture.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2026-11-17",
+  subject: "Ecosystem",
+};
+
+## An Ecosystem Is a Community with Its Physical Surroundings
+
+An **ecosystem** is a community of organisms interacting with each other and with the **abiotic components** around them. Organisms of one species form a **population**, all the populations in one area form a **community**, and the community together with its light, water, soil and air forms an ecosystem.
+
+| Term | Meaning | Example in a mangrove swamp |
+| :--- | :--- | :--- |
+| Species | Organisms that can breed with each other and produce fertile offspring | Mud crab |
+| Population | All the organisms of one species in one area at one time | All the mud crabs in that swamp |
+| Community | All the populations of different species in the same area | Mangrove trees, crabs, mudskippers, monkeys |
+| Habitat | The place where an organism lives | The mud between the mangrove roots |
+| Niche | An organism's role: its food, activities and interactions | Crabs eat fallen leaves and break down organic waste |
+| Ecosystem | A community together with its abiotic components | The whole mangrove swamp with its salt water and mud |
+
+The basics of energy flow and the roles of producers, consumers and decomposers are covered in [living organisms in an ecosystem](/en/subjects/biology/biodiversity/living-organisms). Here we go further: you calculate the efficiency of energy transfer, build ecological pyramids, run a predator and prey model, pile up mud in a mangrove swamp, and estimate population size with quadrats and the recapture method.
+
+## Biotic and Abiotic Components Decide Who Lives There
+
+Biotic components are grouped by how they get food. **Autotrophs** make their own food. Photoautotrophs such as plants use light, while chemoautotrophs such as nitrifying bacteria use energy from chemical reactions. **Heterotrophs** get food from other organisms in three ways: holozoic, which means swallowing and digesting food as animals do, saprophytic, which means digesting dead organic matter outside the body, and parasitic, which means absorbing food from a living host.
+
+Abiotic components set the limits for every organism:
+
+- **pH**: most plants grow well in soil that's close to neutral, and only certain plants are adapted to acidic peat soil.
+- **Temperature**: temperature controls the rate of enzyme reactions, so organisms are only active within a certain range.
+- **Light intensity**: light sets the rate of photosynthesis, so the plants on a rainforest floor differ from the plants in the canopy.
+- **Humidity**: moist air cuts transpiration and the water that animals such as earthworms lose.
+- **Topography**: altitude, gradient and the direction a slope faces change the temperature, light and water that reach an area.
+- **Microclimate**: small local conditions under a rock or a canopy, such as a shady, damp spot, let small organisms live there even when the surrounding area is dry.
+
+## Food Chains and Ecological Pyramids
+
+Each feeding step puts an organism on a **trophic level**. Producers are on the first level, primary consumers on the second, and so on. A **food chain** follows one path, for example mangrove leaves to crabs to fish to herons. A **food web** joins many chains that cross, so one organism can sit on more than one trophic level.
+
+Ecology uses three pyramids. A **pyramid of numbers** counts the organisms at each level, a **pyramid of biomass** weighs the dry mass of the organisms, and a **pyramid of energy** measures the energy flowing through each level over a period of time. The first two can be inverted. One large tree supports thousands of caterpillars, so its pyramid of numbers is inverted. In the English Channel, <InlineMath math="4\text{ g m}^{-2}" /> of phytoplankton supports <InlineMath math="21\text{ g m}^{-2}" /> of zooplankton, because the phytoplankton are eaten quickly but reproduce even faster. **A pyramid of energy is always upright**, because energy is lost as heat at every level.
+
+This model builds both pyramids from real data. The top area of each layer is proportional to its value. Rotate the model and compare which way the two pyramids point.
+
+<MathVisual
+  title={<>Silver Springs Energy Pyramid and English Channel Biomass Pyramid</>}
+  description={
+    <>
+      Left: energy in <InlineMath math="\text{kcal m}^{-2}\text{ yr}^{-1}" /> at Silver
+      Springs, Florida. Right: biomass in{" "}
+      <InlineMath math="\text{g m}^{-2}" /> in the English Channel. The area of
+      each layer is proportional to its value.
+    </>
+  }
+  scene={{
+    space: "space",
+    frame: { kind: "cartesian", x: { min: -8, max: 8 }, y: { min: 0, max: 2.5 }, z: { min: -4, max: 4 } },
+    view: { kind: "camera", position: { x: 2, y: 7, z: 12 }, target: { x: 0, y: 0.8, z: 0 } },
+    objects: [
+      { id: "producers", kind: "cuboid", appearance: "construction", center: { x: -4, y: 0.25, z: 0 }, size: { length: 6, height: 0.5, width: 6 } },
+      { id: "primary", kind: "cuboid", appearance: "highlight", center: { x: -4, y: 0.75, z: 0 }, size: { length: 6 * Math.sqrt(3368 / 20810), height: 0.5, width: 6 * Math.sqrt(3368 / 20810) } },
+      { id: "secondary", kind: "cuboid", appearance: "primary", center: { x: -4, y: 1.25, z: 0 }, size: { length: 6 * Math.sqrt(383 / 20810), height: 0.5, width: 6 * Math.sqrt(383 / 20810) } },
+      { id: "tertiary", kind: "cuboid", appearance: "warning", center: { x: -4, y: 1.75, z: 0 }, size: { length: 6 * Math.sqrt(21 / 20810), height: 0.5, width: 6 * Math.sqrt(21 / 20810) } },
+      { id: "phytoplankton", kind: "cuboid", appearance: "construction", center: { x: 5, y: 0.25, z: 0 }, size: { length: 3 * Math.sqrt(4 / 21), height: 0.5, width: 3 * Math.sqrt(4 / 21) } },
+      { id: "zooplankton", kind: "cuboid", appearance: "highlight", center: { x: 5, y: 0.75, z: 0 }, size: { length: 3, height: 0.5, width: 3 } },
+    ],
+    labels: [
+      { key: "producers", objectId: "producers", at: { x: -0.6, y: 0.25, z: 0 }, placement: "right" },
+      { key: "primary", objectId: "primary", at: { x: -0.6, y: 0.75, z: 0 }, placement: "right" },
+      { key: "secondary", objectId: "secondary", at: { x: -0.6, y: 1.25, z: 0 }, placement: "right" },
+      { key: "tertiary", objectId: "tertiary", at: { x: -0.6, y: 1.75, z: 0 }, placement: "right" },
+      { key: "phytoplankton", objectId: "phytoplankton", at: { x: 6.7, y: 0.25, z: 0 }, placement: "right" },
+      { key: "zooplankton", objectId: "zooplankton", at: { x: 5, y: 1, z: 0 }, placement: "above" },
+    ],
+  }}
+  labels={{
+    producers: <InlineMath math="\text{Producers: }20{,}810" />,
+    primary: <InlineMath math="\text{Primary consumers: }3{,}368" />,
+    secondary: <InlineMath math="\text{Secondary consumers: }383" />,
+    tertiary: <InlineMath math="\text{Tertiary consumers: }21" />,
+    phytoplankton: <InlineMath math="\text{Phytoplankton: }4" />,
+    zooplankton: <InlineMath math="\text{Zooplankton: }21" />,
+  }}
+/>
+
+This chart shows the same Silver Springs values, plus the energy that passes through decomposers. Decomposers get energy from the waste and dead bodies of organisms at every level.
+
+<Chart
+  title={<>Energy Flow through the Silver Springs Ecosystem</>}
+  bars="apart"
+  categories={["Producers", "Primary consumers", "Secondary consumers", "Tertiary consumers", "Decomposers"]}
+  series={[
+    { label: "Energy in kcal per square metre per year", mark: "bar", values: [20810, 3368, 383, 21, 5060] },
+  ]}
+  valueLabel="Energy in kcal per square metre per year"
+  description={
+    <>
+      Odum's measurements at Silver Springs, Florida:{" "}
+      <InlineMath math="20{,}810" />, <InlineMath math="3{,}368" />,{" "}
+      <InlineMath math="383" /> and <InlineMath math="21" /> for the four
+      trophic levels, and <InlineMath math="5{,}060\text{ kcal m}^{-2}\text{ yr}^{-1}" /> for
+      decomposers.
+    </>
+  }
+/>
+
+Now work out how much energy moves up. **Energy transfer efficiency** is the energy at one level divided by the energy at the level before, times <InlineMath math="100\%" />. Calculate the efficiency of the three transfers at Silver Springs:
+
+<MathContainer>
+<BlockMath math="\frac{3{,}368}{20{,}810} \times 100\% = 16.2\%" />
+<BlockMath math="\frac{383}{3{,}368} \times 100\% = 11.4\%" />
+<BlockMath math="\frac{21}{383} \times 100\% = 5.5\%" />
+</MathContainer>
+
+The efficiencies sit between <InlineMath math="5\%" /> and <InlineMath math="17\%" />, so roughly a tenth of the energy reaches the next level. Check: <InlineMath math="20{,}810 \times 0.162 \times 0.114 \times 0.055 \approx 21" />, the energy of the tertiary consumers. That's why food chains rarely go beyond four or five levels.
+
+## Six Kinds of Interaction between Organisms
+
+Organisms in a community interact in ways that affect each side differently. The symbol <InlineMath math="+" /> means the organism benefits, <InlineMath math="-" /> means it's harmed and <InlineMath math="0" /> means it's unaffected.
+
+| Interaction | Effect | Example |
+| :--- | :--- | :--- |
+| Mutualism | <InlineMath math="+/+" /> | Rhizobium bacteria in legume root nodules fix nitrogen, and the plant supplies sugar |
+| Commensalism | <InlineMath math="+/0" /> | A bird's nest fern grows on a tree branch to reach light without harming the tree |
+| Parasitism | <InlineMath math="+/-" /> | Dodder absorbs water and food from its host plant |
+| Saprophytism | Waste is broken down | Fungi and bacteria digest fallen leaves and absorb the products |
+| Competition | <InlineMath math="-/-" /> | Rice seedlings compete with each other and with weeds for light and nutrients |
+| Predation | <InlineMath math="+/-" /> | Barn owls hunt rats in paddy fields and oil palm plantations |
+
+**Intraspecific competition** happens between organisms of the same species, while **interspecific competition** happens between different species. Both happen when resources such as food, light, water or space are limited.
+
+Predation controls both populations. In this paddy field model, the rats have no food limit, so only the barn owls keep the rats in check. Set the number of owls at the start and play the model.
+
+<PredatorPreyLab
+  title={<>Barn Owls and Rats Rise and Fall in Turn</>}
+  description={
+    <>
+      A Lotka-Volterra predator and prey model of rats and barn owls over{" "}
+      <InlineMath math="20" /> years, with no food limit for the rats.
+    </>
+  }
+  labels={{
+    start: "Barn owls at the start",
+    prey: <>Rats</>,
+    predators: <>Barn owls</>,
+    peak: <>Most rats</>,
+    year: <>Year</>,
+    viewLabel: "Paddy field with rats and barn owls",
+  }}
+/>
+
+The peak in barn owls always **comes after the peak in rats**. When rats are plentiful, more owl chicks survive. Then the many owls eat rats until the rats run low, and the owls in turn run short of food. Oil palm planters in Malaysia put up barn owl nest boxes as **biological control** to cut rat numbers without poison.
+
+## Nutrients Cycle through the Ecosystem
+
+Energy flows through an ecosystem once, but elements such as carbon and nitrogen are **used again and again**. These cycles depend on decomposers and on particular bacteria.
+
+In the **carbon cycle**, plants take in carbon dioxide during photosynthesis and build glucose. Carbon passes to animals through food. Respiration by every organism, decay by decomposers and the burning of fossil fuels return carbon dioxide to the air. Some carbon stays locked away for a long time in coal, petroleum and peat.
+
+In the **nitrogen cycle**, air holds about <InlineMath math="78\%" /> nitrogen, but plants can't use nitrogen gas directly. Nitrogen-fixing bacteria such as Rhizobium, and lightning, turn it into nitrogen compounds. Decomposers turn the protein in dead bodies into ammonia. Nitrifying bacteria turn ammonia into nitrite, then into **nitrate that roots absorb**. Denitrifying bacteria turn nitrate back into nitrogen gas in soil that lacks oxygen.
+
+<Mermaid
+  title={<>The Nitrogen Cycle</>}
+  description={<>Bacteria move nitrogen between the air, the soil and living things at every step.</>}
+  chart={`flowchart LR
+    N2["Nitrogen in the air"] -->|"Nitrogen fixation"| NH4["Ammonia and ammonium ions"]
+    NH4 -->|"Nitrification"| NO2["Nitrite"]
+    NO2 -->|"Nitrification"| NO3["Nitrate"]
+    NO3 -->|"Absorbed by roots"| P["Plant protein"]
+    P -->|"Eaten"| A["Animal protein"]
+    P -->|"Dead bodies and waste"| D["Decomposers"]
+    A -->|"Dead bodies and waste"| D
+    D -->|"Ammonification"| NH4
+    NO3 -->|"Denitrification"| N2`}
+/>
+
+## Colonisation and Succession in a Mangrove Swamp
+
+A mangrove swamp is an ecosystem on a muddy shore that seawater floods at high tide. Its abiotic components are salt water, soft mud that lacks oxygen, and the tides. Its biotic components include mangrove trees, crabs, prawns, mudskippers, snails and monkeys. Mangrove trees have pneumatophores, prop roots and concentrated root cell sap, as described in [plant adaptations in a mangrove swamp](/en/subjects/biology/plant-adaptations/different-habitats).
+
+**Colonisation** is the arrival of pioneer species in a new area. **Succession** is the gradual replacement of one community by another. At the seaward edge, **the pioneer species Avicennia and Sonneratia** grow first. Their roots slow the water, so mud settles and the ground rises. Once the ground is higher and flooded less often, Rhizophora replaces the pioneers. Its prop roots trap even more mud, then Bruguiera takes over, and finally land plants grow where seawater no longer floods.
+
+This model assumes the mud surface drops <InlineMath math="0.03\text{ m}" /> for every metre towards the sea, starting <InlineMath math="1.5\text{ m}" /> above mean sea level at the landward edge. The slider <InlineMath math="s" /> adds a layer of settled mud. Move the slider and watch the seaward edge shift.
+
+<MathVisual
+  title={<>Settling Mud Pushes the Edge of the Swamp Seawards</>}
+  description={
+    <>
+      Mud height <InlineMath math="1.5 - 0.03x + s" /> in metres against the
+      distance <InlineMath math="x" /> from land. The horizontal lines are mean
+      sea level and the high-tide level.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 105 }, y: { min: -1.6, max: 3.3 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "s", min: 0, max: 1.5, value: 0, step: 0.05, label: "s" },
+    ],
+    objects: [
+      { id: "mud", kind: "function", appearance: "secondary", formula: "1.5 - 0.03x + s", domain: { min: 0, max: 100 } },
+      { id: "sea", kind: "function", appearance: "primary", formula: "0x", domain: { min: 0, max: 105 } },
+      { id: "tide", kind: "function", appearance: "reference", formula: "1 + 0x", domain: { min: 0, max: 105 } },
+      { id: "shore", kind: "marker", x: "(1.5 + s)/0.03", y: "0", appearance: "warning" },
+      { id: "edge", kind: "marker", x: "(0.5 + s)/0.03", y: "1", appearance: "highlight" },
+    ],
+    labels: [
+      { key: "pioneer", objectId: "shore", at: { x: "(1.5 + s)/0.03", y: "0" }, placement: "below-left" },
+      { key: "land", objectId: "edge", at: { x: "(0.5 + s)/0.03", y: "1" }, placement: "above-left" },
+    ],
+    readouts: [
+      { key: "seaward", formula: "(1.5 + s)/0.03" },
+      { key: "landward", formula: "(0.5 + s)/0.03" },
+    ],
+  }}
+  labels={{
+    s: <>Settled mud <InlineMath math="s" /> in metres</>,
+    pioneer: <>Pioneers at the seaward edge</>,
+    land: <>High-tide limit</>,
+    seaward: <>Seaward edge from land in metres</>,
+    landward: <>High-tide limit from land in metres</>,
+  }}
+/>
+
+Every <InlineMath math="0.3\text{ m}" /> of mud pushes the seaward edge <InlineMath math="10" /> metres forward. The pioneers move onto the new mud in front, while the area behind the high-tide limit becomes land. Mangrove swamps protect the coast from waves and erosion, serve as breeding grounds for fish and prawns, and supply timber and charcoal.
+
+## How Populations Spread and Grow
+
+A population changes size through births, deaths, immigration and emigration. Abiotic factors such as temperature, light, pH and water decide where a population can live. Biotic factors such as food, predators, disease and competition decide how large it can grow.
+
+When resources are plentiful, a population grows fast. As food and space run short, growth slows and the population levels off at the **carrying capacity**, the largest population the environment can support. This logistic model starts with <InlineMath math="10" /> individuals. Change the carrying capacity and the growth rate.
+
+<MathVisual
+  title={<>A Population Grows up to the Carrying Capacity</>}
+  description={
+    <>
+      The logistic model <InlineMath math="N = \dfrac{k}{1 + (k/10 - 1)e^{-rx}}" />{" "}
+      with carrying capacity <InlineMath math="k" />, growth rate{" "}
+      <InlineMath math="r" /> and time <InlineMath math="x" /> in weeks.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 40 }, y: { min: 0, max: 1100 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "k", min: 100, max: 1000, value: 600, step: 50, label: "k" },
+      { name: "r", min: 0.1, max: 1, value: 0.4, step: 0.05, label: "r" },
+      { name: "w", min: 0, max: 40, value: 10, step: 1, label: "w" },
+    ],
+    objects: [
+      { id: "growth", kind: "function", appearance: "primary", formula: "k/(1 + (k/10 - 1)exp(-r x))", domain: { min: 0, max: 40 } },
+      { id: "now", kind: "marker", x: "w", y: "k/(1 + (k/10 - 1)exp(-r w))", appearance: "warning" },
+    ],
+    readouts: [
+      { key: "size", formula: "k/(1 + (k/10 - 1)exp(-r w))" },
+    ],
+  }}
+  labels={{
+    k: <>Carrying capacity <InlineMath math="k" /></>,
+    r: <>Growth rate <InlineMath math="r" /></>,
+    w: <>Week <InlineMath math="w" /></>,
+    size: <>Population size</>,
+  }}
+/>
+
+The curve is S-shaped. The growth rate is highest when the population reaches half the carrying capacity, and then **competition for resources** slows it down.
+
+## Estimating Population Size
+
+Counting every organism is rarely possible, so ecologists take samples. **The quadrat sampling technique** suits plants and animals that don't move or move slowly. Quadrats are placed at random, and each one is counted or estimated. **The capture, mark, release and recapture technique** suits animals that move freely, such as snails, fish and insects.
+
+<MathContainer>
+<BlockMath math="\text{Frequency} = \frac{\text{quadrats with the species}}{\text{total quadrats}} \times 100\%" />
+<BlockMath math="\text{Density} = \frac{\text{total individuals in all quadrats}}{\text{number of quadrats} \times \text{area of one quadrat}}" />
+<BlockMath math="\text{Percentage cover} = \frac{\text{total area covered}}{\text{number of quadrats} \times \text{area of one quadrat}} \times 100\%" />
+</MathContainer>
+
+### Example of Quadrat Sampling
+
+Ten <InlineMath math="1\text{ m}^2" /> quadrats are placed at random on a field. The numbers of touch-me-not plants in them are <InlineMath math="3, 0, 5, 2, 0, 4, 6, 0, 1" /> and <InlineMath math="3" />. Grass covers a total of <InlineMath math="3.2\text{ m}^2" /> across the ten quadrats. **Touch-me-not is present** in <InlineMath math="7" /> quadrats, and its total is <InlineMath math="24" /> individuals:
+
+<MathContainer>
+<BlockMath math="\text{Frequency of touch-me-not} = \frac{7}{10} \times 100\% = 70\%" />
+<BlockMath math="\text{Density of touch-me-not} = \frac{24}{10 \times 1\text{ m}^2} = 2.4\text{ individuals m}^{-2}" />
+<BlockMath math="\text{Grass cover} = \frac{3.2\text{ m}^2}{10 \times 1\text{ m}^2} \times 100\% = 32\%" />
+</MathContainer>
+
+Check the total: <InlineMath math="3 + 5 + 2 + 4 + 6 + 1 + 3 = 24" />, and three quadrats hold zero, so <InlineMath math="10 - 3 = 7" /> quadrats have touch-me-not.
+
+### Example of Recapturing Snails
+
+Researchers catch <InlineMath math="40" /> snails, mark them with paint and release them. A week later, they catch <InlineMath math="50" /> snails and <InlineMath math="8" /> of them are marked. The proportion of marked snails in the second sample is taken to equal their proportion in the whole population:
+
+<MathContainer>
+<BlockMath math="\frac{8}{50} = \frac{40}{N}" />
+<BlockMath math="N = \frac{40 \times 50}{8} = 250" />
+</MathContainer>
+
+Check: <InlineMath math="40" /> out of <InlineMath math="250" /> is <InlineMath math="16\%" />, and <InlineMath math="8" /> out of <InlineMath math="50" /> is also <InlineMath math="16\%" />. The method assumes the marks don't come off, the marks don't harm the snails, the marked snails mix back into the population, and there are no births, deaths or migration between the two catches.
+
+This model fixes <InlineMath math="40" /> marked snails and <InlineMath math="50" /> snails in the second catch. Move the number of marked snails recaptured, <InlineMath math="m" />, and read the population estimate.
+
+<MathVisual
+  title={<>The Population Estimate Depends on the Marked Animals Recaptured</>}
+  description={
+    <>
+      The curve <InlineMath math="N = \dfrac{40 \times 50}{m}" /> against the
+      number of marked snails in the second catch, <InlineMath math="m" />.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 42 }, y: { min: 0, max: 2100 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "m", min: 1, max: 40, value: 8, step: 1, label: "m" },
+    ],
+    objects: [
+      { id: "estimate", kind: "function", appearance: "primary", formula: "2000/x", domain: { min: 1, max: 40 } },
+      { id: "count", kind: "marker", x: "m", y: "2000/m", appearance: "warning" },
+    ],
+    readouts: [
+      { key: "population", formula: "2000/m" },
+    ],
+  }}
+  labels={{
+    m: <>Marked snails recaptured <InlineMath math="m" /></>,
+    population: <>Population estimate <InlineMath math="N" /></>,
+  }}
+/>
+
+If marked snails learn to avoid traps, <InlineMath math="m" /> gets small and the estimate **comes out too large**. At <InlineMath math="m = 4" />, the estimate jumps to <InlineMath math="500" />.
+
+## Common Mistakes about Ecosystems
+
+| Mistake | Why it's wrong | How to check |
+| :--- | :--- | :--- |
+| A population and a community are the same thing. | A population is one species, a community includes every species. | Count how many species are named. |
+| Every ecological pyramid must be upright. | Pyramids of numbers and biomass can be inverted, only a pyramid of energy is always upright. | Ask what the width of each layer measures. |
+| Density is divided by the number of quadrats that hold the species. | Density is divided by all the quadrats, empty ones included. | Make sure the denominator is the total area of all quadrats. |
+| In recapture, <InlineMath math="N = \dfrac{n_1 \times m}{n_2}" />. | The marked proportion in the second sample must equal the marked proportion in the population. | Check that <InlineMath math="N" /> is bigger than both catches. |
+
+The third mistake shrinks the denominator, so the density comes out too large. **Empty quadrats are still part of the sample**.
+
+## Practice on Ecosystems
+
+These questions start with naming an interaction and end with a population estimate. **Write the formula before you substitute values**.
+
+1. Rhizobium bacteria live in the root nodules of groundnut plants. Name this interaction and explain how each side benefits.
+
+2. One durian tree supports <InlineMath math="2{,}000" /> caterpillars, and the caterpillars are eaten by <InlineMath math="20" /> birds. Describe the shape of the pyramid of numbers and the pyramid of energy for this food chain.
+
+3. Eight <InlineMath math="0.5\text{ m}^2" /> quadrats hold <InlineMath math="2, 4, 0, 3, 5, 0, 1" /> and <InlineMath math="1" /> goosegrass plants. Calculate the frequency and density of goosegrass.
+
+4. Researchers mark <InlineMath math="60" /> fish and release them into a pond. Later they catch <InlineMath math="45" /> fish and <InlineMath math="9" /> of them are marked. Estimate the number of fish, then explain what happens if some of the marks fall off.
+
+### Solutions
+
+**Solution 1**: This interaction is **mutualism**. Rhizobium fixes nitrogen from the air into nitrogen compounds that the plant uses to build protein. The plant supplies sugar and shelter to the bacteria. Both sides benefit, <InlineMath math="+/+" />.
+
+**Solution 2**: The pyramid of numbers is **narrow at the base and wide in the middle**: one tree at the base, <InlineMath math="2{,}000" /> caterpillars in the middle and <InlineMath math="20" /> birds at the top. The pyramid of energy stays upright, because one durian tree holds far more energy than all the caterpillars, and energy is lost as heat at every level.
+
+**Solution 3**: Goosegrass is present in <InlineMath math="6" /> of the <InlineMath math="8" /> quadrats, and its total is <InlineMath math="2 + 4 + 3 + 5 + 1 + 1 = 16" /> individuals:
+
+<MathContainer>
+<BlockMath math="\text{Frequency} = \frac{6}{8} \times 100\% = 75\%" />
+<BlockMath math="\text{Density} = \frac{16}{8 \times 0.5\text{ m}^2} = 4\text{ individuals m}^{-2}" />
+</MathContainer>
+
+Check: the sampled area is <InlineMath math="4\text{ m}^2" />, and <InlineMath math="16" /> individuals in <InlineMath math="4\text{ m}^2" /> gives <InlineMath math="4" /> individuals per square metre.
+
+**Solution 4**: Use the proportion of marked fish:
+
+<BlockMath math="N = \frac{60 \times 45}{9} = 300" />
+
+Check: <InlineMath math="9/45 = 20\%" /> and <InlineMath math="60/300 = 20\%" />. If some marks fall off, fewer marked fish are recaptured than there should be. The value of <InlineMath math="m" /> shrinks, so **the population estimate comes out too large**.
