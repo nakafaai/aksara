@@ -2,10 +2,8 @@ import { Array as Arr, Match, Option, Result, Schema } from "effect";
 
 import { readAffine } from "#contracts/math/formula/affine";
 import { readFormula } from "#contracts/math/formula/parse";
-import {
-  type FormulaNode,
-  FormulaNodeSchema,
-} from "#contracts/math/formula/syntax";
+import type { FormulaNode } from "#contracts/math/formula/syntax";
+import { FormulaNodeSchema } from "#contracts/math/formula/syntax";
 import type { PlaneMathObject } from "#contracts/math/plane";
 
 /** Whether two formulas are the same tree. */

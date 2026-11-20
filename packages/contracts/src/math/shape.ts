@@ -1,4 +1,5 @@
-import { Array as Arr, type Schema } from "effect";
+import type { Schema } from "effect";
+import { Array as Arr } from "effect";
 
 import type {
   PlaneMathFrame,

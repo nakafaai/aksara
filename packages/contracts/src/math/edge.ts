@@ -1,4 +1,5 @@
-import { Array as Arr, BigDecimal, Option, type Schema } from "effect";
+import type { Schema } from "effect";
+import { Array as Arr, BigDecimal, Option } from "effect";
 
 import type { PlanePoint } from "#contracts/math/base";
 import type { PlaneMathFrame, PlaneMathObject } from "#contracts/math/plane";
