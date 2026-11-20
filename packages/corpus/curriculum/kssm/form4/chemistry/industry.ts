@@ -13,7 +13,7 @@ export const kssmForm4ChemistryIndustryNodes = [
         outcomes: [
           {
             code: "Form 4, Content Standards 8.1 to 8.4",
-            document: chemistryStandards,
+            ...chemistryStandards,
           },
         ],
       }),

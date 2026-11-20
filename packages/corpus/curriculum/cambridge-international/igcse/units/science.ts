@@ -16,10 +16,10 @@ export const igcseBiologyUnitNodes = [
         outcomes: [
           {
             code: "1.2 Concept and uses of classification systems",
-            document: biologySyllabus,
+            ...biologySyllabus,
           },
-          { code: "1.3 Features of organisms", document: biologySyllabus },
-          { code: "19.2 Food chains and food webs", document: biologySyllabus },
+          { code: "1.3 Features of organisms", ...biologySyllabus },
+          { code: "19.2 Food chains and food webs", ...biologySyllabus },
         ],
       }),
     ],
@@ -57,16 +57,14 @@ export const igcseBiologyUnitNodes = [
         level: "lesson",
         materialKeys: ["lesson.biology.virus-role"],
         order: 10,
-        outcomes: [
-          { code: "10.1 Diseases and immunity", document: biologySyllabus },
-        ],
+        outcomes: [{ code: "10.1 Diseases and immunity", ...biologySyllabus }],
       }),
       materialNode({
         key: "biology-0610-disease-ecosystems-climate",
         level: "lesson",
         materialKeys: ["lesson.biology.climate-change"],
         order: 20,
-        outcomes: [{ code: "20.3 Pollution", document: biologySyllabus }],
+        outcomes: [{ code: "20.3 Pollution", ...biologySyllabus }],
       }),
     ],
     key: "biology-0610-disease-ecosystems",
@@ -121,9 +119,9 @@ export const igcseChemistryUnitNodes = [
         outcomes: [
           {
             code: "2.2 Atomic structure and the Periodic Table",
-            document: chemistrySyllabus,
+            ...chemistrySyllabus,
           },
-          { code: "2.3 Isotopes", document: chemistrySyllabus },
+          { code: "2.3 Isotopes", ...chemistrySyllabus },
         ],
       }),
       materialNode({
@@ -131,7 +129,7 @@ export const igcseChemistryUnitNodes = [
         level: "lesson",
         materialKeys: ["lesson.chemistry.basic-chemistry-laws"],
         order: 20,
-        outcomes: [{ code: "3.1 Formulae", document: chemistrySyllabus }],
+        outcomes: [{ code: "3.1 Formulae", ...chemistrySyllabus }],
       }),
     ],
     key: "chemistry-0620-matter-reactions",
@@ -180,7 +178,7 @@ export const igcsePhysicsUnitNodes = [
         outcomes: [
           {
             code: "1.1 Physical quantities and measurement techniques",
-            document: physicsSyllabus,
+            ...physicsSyllabus,
           },
         ],
       }),
@@ -189,7 +187,7 @@ export const igcsePhysicsUnitNodes = [
         level: "lesson",
         materialKeys: ["lesson.physics.kinematics"],
         order: 20,
-        outcomes: [{ code: "1.2 Motion", document: physicsSyllabus }],
+        outcomes: [{ code: "1.2 Motion", ...physicsSyllabus }],
       }),
       materialNode({
         key: "physics-0625-measurement-motion-vector",
@@ -199,7 +197,7 @@ export const igcsePhysicsUnitNodes = [
         outcomes: [
           {
             code: "1.1 Physical quantities and measurement techniques",
-            document: physicsSyllabus,
+            ...physicsSyllabus,
           },
         ],
       }),
@@ -250,9 +248,7 @@ export const igcsePhysicsUnitNodes = [
         level: "lesson",
         materialKeys: ["lesson.physics.renewable-energy"],
         order: 10,
-        outcomes: [
-          { code: "1.7 Energy, work and power", document: physicsSyllabus },
-        ],
+        outcomes: [{ code: "1.7 Energy, work and power", ...physicsSyllabus }],
       }),
     ],
     key: "physics-0625-energy",

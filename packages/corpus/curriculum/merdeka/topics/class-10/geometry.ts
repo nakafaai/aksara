@@ -16,11 +16,11 @@ export const merdekaClass10TrigonometryUnit = unitNode({
       outcomes: [
         {
           code: "Matematika, Fase E, elemen Geometri",
-          document: merdekaLearningOutcomes,
+          ...merdekaLearningOutcomes,
         },
         {
           code: "Bab 3 Perbandingan Trigonometri",
-          document: mathematicsBookX,
+          ...mathematicsBookX,
         },
       ],
     }),
@@ -64,9 +64,9 @@ export const merdekaClass10VectorOperationsUnit = unitNode({
       outcomes: [
         {
           code: "Matematika Tingkat Lanjut, Fase F, elemen Geometri",
-          document: merdekaLearningOutcomes,
+          ...merdekaLearningOutcomes,
         },
-        { code: "Bab 4 Vektor", document: advancedMathematicsBookXI },
+        { code: "Bab 4 Vektor", ...advancedMathematicsBookXI },
       ],
     }),
   ],

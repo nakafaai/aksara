@@ -23,9 +23,9 @@ export const merdekaClass11MathematicsTopicNodes = [
         outcomes: [
           {
             code: "Matematika, Fase F, elemen Geometri",
-            document: merdekaLearningOutcomes,
+            ...merdekaLearningOutcomes,
           },
-          { code: "Bab 4 Lingkaran", document: mathematicsBookXI },
+          { code: "Bab 4 Lingkaran", ...mathematicsBookXI },
         ],
       }),
     ],
@@ -69,11 +69,11 @@ export const merdekaClass11MathematicsTopicNodes = [
         outcomes: [
           {
             code: "Matematika, Fase F, elemen Aljabar dan Fungsi",
-            document: merdekaLearningOutcomes,
+            ...merdekaLearningOutcomes,
           },
           {
             code: "Bab 2 Komposisi Fungsi dan Fungsi Invers",
-            document: mathematicsBookXI,
+            ...mathematicsBookXI,
           },
         ],
       }),

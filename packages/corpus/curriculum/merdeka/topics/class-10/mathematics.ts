@@ -23,13 +23,13 @@ export const merdekaClass10MathematicsTopicNodes = [
         outcomes: [
           {
             code: "Matematika, Fase E, elemen Bilangan",
-            document: merdekaLearningOutcomes,
+            ...merdekaLearningOutcomes,
           },
           {
             code: "Matematika, Fase E, elemen Aljabar dan Fungsi",
-            document: merdekaLearningOutcomes,
+            ...merdekaLearningOutcomes,
           },
-          { code: "Bab 1 Eksponen", document: mathematicsBookX },
+          { code: "Bab 1 Eksponen", ...mathematicsBookX },
         ],
       }),
     ],
@@ -79,11 +79,11 @@ export const merdekaClass10MathematicsTopicNodes = [
         outcomes: [
           {
             code: "Matematika, Fase E, elemen Aljabar dan Fungsi",
-            document: merdekaLearningOutcomes,
+            ...merdekaLearningOutcomes,
           },
           {
             code: "Bab 4 Sistem Persamaan dan Pertidaksamaan Linear",
-            document: mathematicsBookX,
+            ...mathematicsBookX,
           },
         ],
       }),
@@ -138,11 +138,11 @@ export const merdekaClass10MathematicsTopicNodes = [
         outcomes: [
           {
             code: "Matematika, Fase E, elemen Aljabar dan Fungsi",
-            document: merdekaLearningOutcomes,
+            ...merdekaLearningOutcomes,
           },
           {
             code: "Bab 5 Persamaan dan Fungsi Kuadrat",
-            document: mathematicsBookX,
+            ...mathematicsBookX,
           },
         ],
       }),
@@ -187,9 +187,7 @@ export const merdekaClass10MathematicsTopicNodes = [
         level: "lesson",
         materialKeys: ["lesson.mathematics.sequence-series"],
         order: 10,
-        outcomes: [
-          { code: "Bab 2 Barisan dan Deret", document: mathematicsBookX },
-        ],
+        outcomes: [{ code: "Bab 2 Barisan dan Deret", ...mathematicsBookX }],
       }),
     ],
     key: "class-10-mathematics-sequence-series",

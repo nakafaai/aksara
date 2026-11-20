@@ -17,7 +17,7 @@ export const kssmForm4MathematicsTopicNodes = [
         outcomes: [
           {
             code: "Tingkatan 4, Standard Kandungan 1.1, Standard Pembelajaran 1.1.1 hingga 1.1.8",
-            document: mathematicsStandards,
+            ...mathematicsStandards,
           },
         ],
       }),
@@ -123,7 +123,7 @@ export const kssmForm4MathematicsTopicNodes = [
         outcomes: [
           {
             code: "Tingkatan 4, Standard Kandungan 6.1 hingga 6.2, Standard Pembelajaran 6.1.1 hingga 6.2.4",
-            document: mathematicsStandards,
+            ...mathematicsStandards,
           },
         ],
       }),

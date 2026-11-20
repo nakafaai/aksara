@@ -13,7 +13,7 @@ export const kssmForm4AdditionalMathematicsGeometryNodes = [
         outcomes: [
           {
             code: "Form 4, Content Standards 7.1 to 7.4",
-            document: additionalMathematicsStandards,
+            ...additionalMathematicsStandards,
           },
         ],
       }),
@@ -55,7 +55,7 @@ export const kssmForm4AdditionalMathematicsGeometryNodes = [
         outcomes: [
           {
             code: "Form 4, Content Standards 8.1 to 8.3",
-            document: additionalMathematicsStandards,
+            ...additionalMathematicsStandards,
           },
         ],
       }),
@@ -97,7 +97,7 @@ export const kssmForm4AdditionalMathematicsGeometryNodes = [
         outcomes: [
           {
             code: "Form 4, Content Standards 9.1 to 9.4",
-            document: additionalMathematicsStandards,
+            ...additionalMathematicsStandards,
           },
         ],
       }),

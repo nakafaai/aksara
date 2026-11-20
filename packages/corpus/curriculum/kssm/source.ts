@@ -187,6 +187,7 @@ export const kssmCurriculum = defineCurriculum({
       displayGroupIconKey: "high-school",
       iconKey: "grade-10",
       key: "form-4",
+      levelBand: "upper-secondary",
       order: 40,
       translations: {
         de: { routeSlug: "form-4", title: "Form 4" },
@@ -201,6 +202,7 @@ export const kssmCurriculum = defineCurriculum({
       displayGroupIconKey: "high-school",
       iconKey: "grade-11",
       key: "form-5",
+      levelBand: "upper-secondary",
       order: 50,
       translations: {
         de: { routeSlug: "form-5", title: "Form 5" },

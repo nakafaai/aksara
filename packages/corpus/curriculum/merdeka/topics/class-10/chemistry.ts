@@ -15,9 +15,9 @@ export const merdekaClass10ChemistryTopicNodes = [
         outcomes: [
           {
             code: "IPA, Fase E, elemen Pemahaman IPA",
-            document: merdekaLearningOutcomes,
+            ...merdekaLearningOutcomes,
           },
-          { code: "Bab IV Hukum Dasar Kimia", document: scienceBookX },
+          { code: "Bab IV Hukum Dasar Kimia", ...scienceBookX },
         ],
       }),
     ],
@@ -61,7 +61,7 @@ export const merdekaClass10ChemistryTopicNodes = [
         level: "lesson",
         materialKeys: ["lesson.chemistry.green-chemistry"],
         order: 10,
-        outcomes: [{ code: "Bab V Kimia Hijau", document: scienceBookX }],
+        outcomes: [{ code: "Bab V Kimia Hijau", ...scienceBookX }],
       }),
     ],
     key: "class-10-chemistry-green-chemistry",
@@ -101,9 +101,9 @@ export const merdekaClass10ChemistryTopicNodes = [
         outcomes: [
           {
             code: "IPA, Fase E, elemen Pemahaman IPA",
-            document: merdekaLearningOutcomes,
+            ...merdekaLearningOutcomes,
           },
-          { code: "Bab III Struktur Atom", document: scienceBookX },
+          { code: "Bab III Struktur Atom", ...scienceBookX },
         ],
       }),
     ],

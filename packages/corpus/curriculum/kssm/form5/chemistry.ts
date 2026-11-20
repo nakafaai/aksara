@@ -13,7 +13,7 @@ export const kssmForm5ChemistryTopicNodes = [
         outcomes: [
           {
             code: "Form 5, Content Standards 9.1 to 9.6",
-            document: chemistryStandards,
+            ...chemistryStandards,
           },
         ],
       }),
@@ -55,7 +55,7 @@ export const kssmForm5ChemistryTopicNodes = [
         outcomes: [
           {
             code: "Form 5, Content Standards 10.1 to 10.4",
-            document: chemistryStandards,
+            ...chemistryStandards,
           },
         ],
       }),
@@ -100,7 +100,7 @@ export const kssmForm5ChemistryTopicNodes = [
         outcomes: [
           {
             code: "Form 5, Content Standards 11.1 to 11.3",
-            document: chemistryStandards,
+            ...chemistryStandards,
           },
         ],
       }),
@@ -142,7 +142,7 @@ export const kssmForm5ChemistryTopicNodes = [
         outcomes: [
           {
             code: "Form 5, Content Standards 12.1 to 12.3",
-            document: chemistryStandards,
+            ...chemistryStandards,
           },
         ],
       }),
@@ -184,7 +184,7 @@ export const kssmForm5ChemistryTopicNodes = [
         outcomes: [
           {
             code: "Form 5, Content Standards 13.1 to 13.6",
-            document: chemistryStandards,
+            ...chemistryStandards,
           },
         ],
       }),

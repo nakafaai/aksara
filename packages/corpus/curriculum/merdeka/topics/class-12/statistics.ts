@@ -16,10 +16,10 @@ export const merdekaClass12CombinatoricsUnit = unitNode({
       outcomes: [
         {
           code: "Matematika, Fase F, elemen Analisis Data dan Peluang",
-          document: merdekaLearningOutcomes,
+          ...merdekaLearningOutcomes,
         },
-        { code: "Bab 3 Kaidah Pencacahan", document: mathematicsBookXII },
-        { code: "Bab 4 Peluang", document: mathematicsBookXII },
+        { code: "Bab 3 Kaidah Pencacahan", ...mathematicsBookXII },
+        { code: "Bab 4 Peluang", ...mathematicsBookXII },
       ],
     }),
   ],
@@ -62,11 +62,11 @@ export const merdekaClass12DataAnalysisProbabilityUnit = unitNode({
       outcomes: [
         {
           code: "Matematika Tingkat Lanjut, Fase F, elemen Analisis Data dan Peluang",
-          document: merdekaLearningOutcomes,
+          ...merdekaLearningOutcomes,
         },
         {
           code: "Bab 4 Analisis Data dan Peluang",
-          document: advancedMathematicsBookXII,
+          ...advancedMathematicsBookXII,
         },
       ],
     }),

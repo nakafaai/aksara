@@ -16,7 +16,7 @@ export const singaporeSecondaryMathematicsCourseNode = courseNode({
           outcomes: [
             {
               code: "N7 Equations and inequalities",
-              document: mathematicsSyllabus,
+              ...mathematicsSyllabus,
             },
           ],
         }),
@@ -28,9 +28,9 @@ export const singaporeSecondaryMathematicsCourseNode = courseNode({
           outcomes: [
             {
               code: "N7 Equations and inequalities",
-              document: mathematicsSyllabus,
+              ...mathematicsSyllabus,
             },
-            { code: "N6 Functions and graphs", document: mathematicsSyllabus },
+            { code: "N6 Functions and graphs", ...mathematicsSyllabus },
           ],
         }),
         materialNode({
@@ -41,12 +41,12 @@ export const singaporeSecondaryMathematicsCourseNode = courseNode({
           outcomes: [
             {
               code: "N1 Numbers and their operations",
-              document: mathematicsSyllabus,
+              ...mathematicsSyllabus,
             },
-            { code: "A3 Surds", document: additionalMathematicsSyllabus },
+            { code: "A3 Surds", ...additionalMathematicsSyllabus },
             {
               code: "A6 Exponential and logarithmic functions",
-              document: additionalMathematicsSyllabus,
+              ...additionalMathematicsSyllabus,
             },
           ],
         }),
@@ -97,7 +97,7 @@ export const singaporeSecondaryMathematicsCourseNode = courseNode({
           outcomes: [
             {
               code: "G4 Pythagoras’ theorem and trigonometry",
-              document: mathematicsSyllabus,
+              ...mathematicsSyllabus,
             },
           ],
         }),
@@ -109,7 +109,7 @@ export const singaporeSecondaryMathematicsCourseNode = courseNode({
           outcomes: [
             {
               code: "S1 Data handling and analysis",
-              document: mathematicsSyllabus,
+              ...mathematicsSyllabus,
             },
           ],
         }),
@@ -118,7 +118,7 @@ export const singaporeSecondaryMathematicsCourseNode = courseNode({
           level: "lesson",
           materialKeys: ["lesson.mathematics.probability"],
           order: 30,
-          outcomes: [{ code: "S2 Probability", document: mathematicsSyllabus }],
+          outcomes: [{ code: "S2 Probability", ...mathematicsSyllabus }],
         }),
       ],
       key: "secondary-mathematics-geometry-statistics",
@@ -163,6 +163,7 @@ export const singaporeSecondaryMathematicsCourseNode = courseNode({
   ],
   iconKey: "advanced",
   key: "secondary-mathematics",
+  levelBand: "upper-secondary",
   materialDomain: "mathematics",
   order: 10,
   translations: {
@@ -194,11 +195,11 @@ export const singaporeSecondaryAdditionalMathematicsCourseNode = courseNode({
           outcomes: [
             {
               code: "A6 Exponential and logarithmic functions",
-              document: additionalMathematicsSyllabus,
+              ...additionalMathematicsSyllabus,
             },
             {
               code: "G1 Trigonometric functions, identities and equations",
-              document: additionalMathematicsSyllabus,
+              ...additionalMathematicsSyllabus,
             },
           ],
         }),
@@ -210,7 +211,7 @@ export const singaporeSecondaryAdditionalMathematicsCourseNode = courseNode({
           outcomes: [
             {
               code: "C1 Differentiation and integration",
-              document: additionalMathematicsSyllabus,
+              ...additionalMathematicsSyllabus,
             },
           ],
         }),
@@ -222,7 +223,7 @@ export const singaporeSecondaryAdditionalMathematicsCourseNode = courseNode({
           outcomes: [
             {
               code: "C1 Differentiation and integration",
-              document: additionalMathematicsSyllabus,
+              ...additionalMathematicsSyllabus,
             },
           ],
         }),
@@ -269,6 +270,7 @@ export const singaporeSecondaryAdditionalMathematicsCourseNode = courseNode({
   ],
   iconKey: "mathematics",
   key: "secondary-additional-mathematics",
+  levelBand: "upper-secondary",
   materialDomain: "mathematics",
   order: 20,
   translations: {

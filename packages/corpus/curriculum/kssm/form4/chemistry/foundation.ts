@@ -13,7 +13,7 @@ export const kssmForm4ChemistryFoundationNodes = [
         outcomes: [
           {
             code: "Form 4, Content Standards 1.1 to 1.3",
-            document: chemistryStandards,
+            ...chemistryStandards,
           },
         ],
       }),
@@ -64,7 +64,7 @@ export const kssmForm4ChemistryFoundationNodes = [
         outcomes: [
           {
             code: "Form 4, Content Standards 2.2 to 2.4",
-            document: chemistryStandards,
+            ...chemistryStandards,
           },
         ],
       }),
@@ -115,7 +115,7 @@ export const kssmForm4ChemistryFoundationNodes = [
         outcomes: [
           {
             code: "Form 4, Content Standards 3.1 to 3.4",
-            document: chemistryStandards,
+            ...chemistryStandards,
           },
         ],
       }),
@@ -169,7 +169,7 @@ export const kssmForm4ChemistryFoundationNodes = [
         outcomes: [
           {
             code: "Form 4, Content Standards 4.3 to 4.7",
-            document: chemistryStandards,
+            ...chemistryStandards,
           },
         ],
       }),
@@ -220,7 +220,7 @@ export const kssmForm4ChemistryFoundationNodes = [
         outcomes: [
           {
             code: "Form 4, Content Standards 5.1 to 5.7",
-            document: chemistryStandards,
+            ...chemistryStandards,
           },
         ],
       }),

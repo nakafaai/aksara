@@ -13,7 +13,7 @@ export const kssmForm4ChemistryInteractionNodes = [
         outcomes: [
           {
             code: "Form 4, Content Standards 6.1 to 6.9",
-            document: chemistryStandards,
+            ...chemistryStandards,
           },
         ],
       }),
@@ -58,7 +58,7 @@ export const kssmForm4ChemistryInteractionNodes = [
         outcomes: [
           {
             code: "Form 4, Content Standards 7.1 to 7.4",
-            document: chemistryStandards,
+            ...chemistryStandards,
           },
         ],
       }),

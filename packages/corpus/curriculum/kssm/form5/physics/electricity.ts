@@ -12,7 +12,7 @@ export const kssmForm5ElectricityUnit = unitNode({
       outcomes: [
         {
           code: "Tingkatan 5, Standard Kandungan 3.1 hingga 3.4",
-          document: physicsStandards,
+          ...physicsStandards,
         },
       ],
     }),
@@ -56,7 +56,7 @@ export const kssmForm5ElectromagnetismUnit = unitNode({
       outcomes: [
         {
           code: "Tingkatan 5, Standard Kandungan 4.1 hingga 4.3",
-          document: physicsStandards,
+          ...physicsStandards,
         },
       ],
     }),
@@ -100,7 +100,7 @@ export const kssmForm5ElectronicsUnit = unitNode({
       outcomes: [
         {
           code: "Tingkatan 5, Standard Kandungan 5.1 hingga 5.3",
-          document: physicsStandards,
+          ...physicsStandards,
         },
       ],
     }),

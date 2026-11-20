@@ -13,7 +13,7 @@ export const kssmForm5BiologyEcologyNodes = [
         outcomes: [
           {
             code: "Form 5, Content Standards 23.1 to 23.3",
-            document: biologyStandards,
+            ...biologyStandards,
           },
         ],
       }),
@@ -68,7 +68,7 @@ export const kssmForm5BiologyEcologyNodes = [
         outcomes: [
           {
             code: "Form 5, Learning Standard 25.1.2 (climate change, global warming)",
-            document: biologyStandards,
+            ...biologyStandards,
           },
         ],
       }),

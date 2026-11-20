@@ -16,7 +16,7 @@ export const merdekaClass11ComplexNumberUnit = unitNode({
       outcomes: [
         {
           code: "Bab 1 Bilangan Kompleks",
-          document: advancedMathematicsFirstBookXI,
+          ...advancedMathematicsFirstBookXI,
         },
       ],
     }),
@@ -60,15 +60,15 @@ export const merdekaClass11FunctionModelingUnit = unitNode({
       outcomes: [
         {
           code: "Matematika Tingkat Lanjut, Fase F, elemen Aljabar dan Fungsi",
-          document: merdekaLearningOutcomes,
+          ...merdekaLearningOutcomes,
         },
         {
           code: "Bab 3 Fungsi Trigonometri",
-          document: advancedMathematicsBookXI,
+          ...advancedMathematicsBookXI,
         },
         {
           code: "Bab 6 Fungsi dan Pemodelannya",
-          document: advancedMathematicsBookXI,
+          ...advancedMathematicsBookXI,
         },
       ],
     }),
@@ -115,11 +115,11 @@ export const merdekaClass11GeometricTransformationUnit = unitNode({
       outcomes: [
         {
           code: "Matematika Tingkat Lanjut, Fase F, elemen Aljabar dan Fungsi",
-          document: merdekaLearningOutcomes,
+          ...merdekaLearningOutcomes,
         },
         {
           code: "Bab 5 Transformasi Geometri",
-          document: advancedMathematicsBookXI,
+          ...advancedMathematicsBookXI,
         },
       ],
     }),
@@ -175,9 +175,9 @@ export const merdekaClass11MatrixUnit = unitNode({
       outcomes: [
         {
           code: "Matematika Tingkat Lanjut, Fase F, elemen Aljabar dan Fungsi",
-          document: merdekaLearningOutcomes,
+          ...merdekaLearningOutcomes,
         },
-        { code: "Bab 1 Matriks", document: advancedMathematicsBookXI },
+        { code: "Bab 1 Matriks", ...advancedMathematicsBookXI },
       ],
     }),
   ],
@@ -214,9 +214,9 @@ export const merdekaClass11PolynomialUnit = unitNode({
       outcomes: [
         {
           code: "Matematika Tingkat Lanjut, Fase F, elemen Aljabar dan Fungsi",
-          document: merdekaLearningOutcomes,
+          ...merdekaLearningOutcomes,
         },
-        { code: "Bab 2 Polinomial", document: advancedMathematicsBookXI },
+        { code: "Bab 2 Polinomial", ...advancedMathematicsBookXI },
       ],
     }),
   ],

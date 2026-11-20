@@ -13,7 +13,7 @@ export const kssmForm5AdditionalMathematicsCalculusNodes = [
         outcomes: [
           {
             code: "Form 5, Content Standards 2.1 to 2.3, Content Standard 2.4 (Learning Standards 2.4.1, 2.4.4 and 2.4.5)",
-            document: additionalMathematicsStandards,
+            ...additionalMathematicsStandards,
           },
         ],
       }),
@@ -55,7 +55,7 @@ export const kssmForm5AdditionalMathematicsCalculusNodes = [
         outcomes: [
           {
             code: "Form 5, Content Standards 3.1 to 3.4",
-            document: additionalMathematicsStandards,
+            ...additionalMathematicsStandards,
           },
         ],
       }),

@@ -23,7 +23,7 @@ export const kssmForm5MathematicsTopicNodes = [
         outcomes: [
           {
             code: "Tingkatan 5, Standard Kandungan 2.1 hingga 2.2, Standard Pembelajaran 2.1.1 hingga 2.2.7",
-            document: mathematicsStandards,
+            ...mathematicsStandards,
           },
         ],
       }),
@@ -109,7 +109,7 @@ export const kssmForm5MathematicsTopicNodes = [
         outcomes: [
           {
             code: "Tingkatan 5, Standard Kandungan 5.2 dan 5.3",
-            document: mathematicsStandards,
+            ...mathematicsStandards,
           },
         ],
       }),
@@ -163,7 +163,7 @@ export const kssmForm5MathematicsTopicNodes = [
         outcomes: [
           {
             code: "Tingkatan 5, Standard Kandungan 6.1 hingga 6.2",
-            document: mathematicsStandards,
+            ...mathematicsStandards,
           },
         ],
       }),
@@ -217,7 +217,7 @@ export const kssmForm5MathematicsTopicNodes = [
         outcomes: [
           {
             code: "Tingkatan 5, Standard Kandungan 7.1 hingga 7.2",
-            document: mathematicsStandards,
+            ...mathematicsStandards,
           },
         ],
       }),

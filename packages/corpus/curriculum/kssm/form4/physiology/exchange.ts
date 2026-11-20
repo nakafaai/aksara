@@ -13,7 +13,7 @@ export const kssmForm4PhysiologyExchangeNodes = [
         outcomes: [
           {
             code: "Form 4, Content Standards 8.1 to 8.4",
-            document: biologyStandards,
+            ...biologyStandards,
           },
         ],
       }),
@@ -67,7 +67,7 @@ export const kssmForm4PhysiologyExchangeNodes = [
         outcomes: [
           {
             code: "Form 4, Content Standards 9.1 to 9.7",
-            document: biologyStandards,
+            ...biologyStandards,
           },
         ],
       }),
@@ -121,7 +121,7 @@ export const kssmForm4PhysiologyExchangeNodes = [
         outcomes: [
           {
             code: "Form 4, Content Standards 10.1 to 10.8",
-            document: biologyStandards,
+            ...biologyStandards,
           },
         ],
       }),

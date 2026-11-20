@@ -35,7 +35,7 @@ export const kssmForm4BiologyTopicNodes = [
         outcomes: [
           {
             code: "Form 4, Content Standards 2.1 to 2.4",
-            document: biologyStandards,
+            ...biologyStandards,
           },
         ],
       }),
@@ -89,7 +89,7 @@ export const kssmForm4BiologyTopicNodes = [
         outcomes: [
           {
             code: "Form 4, Content Standards 3.1 to 3.4",
-            document: biologyStandards,
+            ...biologyStandards,
           },
         ],
       }),

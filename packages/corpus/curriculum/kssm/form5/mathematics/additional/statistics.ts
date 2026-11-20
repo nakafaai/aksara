@@ -13,7 +13,7 @@ export const kssmForm5AdditionalMathematicsStatisticsNodes = [
         outcomes: [
           {
             code: "Form 5, Content Standards 4.1 to 4.2",
-            document: additionalMathematicsStandards,
+            ...additionalMathematicsStandards,
           },
         ],
       }),
@@ -67,7 +67,7 @@ export const kssmForm5AdditionalMathematicsStatisticsNodes = [
         outcomes: [
           {
             code: "Form 5, Content Standards 5.1 to 5.3",
-            document: additionalMathematicsStandards,
+            ...additionalMathematicsStandards,
           },
         ],
       }),

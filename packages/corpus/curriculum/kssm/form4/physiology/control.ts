@@ -13,7 +13,7 @@ export const kssmForm4PhysiologyControlNodes = [
         outcomes: [
           {
             code: "Form 4, Content Standards 11.1 to 11.4",
-            document: biologyStandards,
+            ...biologyStandards,
           },
         ],
       }),
@@ -61,7 +61,7 @@ export const kssmForm4PhysiologyControlNodes = [
         outcomes: [
           {
             code: "Form 4, Content Standards 12.1 to 12.7",
-            document: biologyStandards,
+            ...biologyStandards,
           },
         ],
       }),
@@ -115,7 +115,7 @@ export const kssmForm4PhysiologyControlNodes = [
         outcomes: [
           {
             code: "Form 4, Content Standards 13.1 to 13.3",
-            document: biologyStandards,
+            ...biologyStandards,
           },
         ],
       }),

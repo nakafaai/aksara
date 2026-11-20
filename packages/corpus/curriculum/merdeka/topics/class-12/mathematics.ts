@@ -20,11 +20,11 @@ export const merdekaClass12MathematicsTopicNodes = [
         outcomes: [
           {
             code: "Matematika Tingkat Lanjut, Fase F, elemen Geometri",
-            document: merdekaLearningOutcomes,
+            ...merdekaLearningOutcomes,
           },
           {
             code: "Bab 1 Lingkaran, Elips, dan Garis Singgung Lingkaran",
-            document: advancedMathematicsBookXII,
+            ...advancedMathematicsBookXII,
           },
         ],
       }),
@@ -69,11 +69,11 @@ export const merdekaClass12MathematicsTopicNodes = [
         outcomes: [
           {
             code: "Matematika, Fase F, elemen Geometri",
-            document: merdekaLearningOutcomes,
+            ...merdekaLearningOutcomes,
           },
           {
             code: "Bab 4 Lingkaran, A Lingkaran dan Busur Lingkaran",
-            document: mathematicsBookXI,
+            ...mathematicsBookXI,
           },
         ],
       }),
@@ -123,11 +123,11 @@ export const merdekaClass12MathematicsTopicNodes = [
         outcomes: [
           {
             code: "Matematika Tingkat Lanjut, Fase F, elemen Kalkulus",
-            document: merdekaLearningOutcomes,
+            ...merdekaLearningOutcomes,
           },
           {
             code: "Bab 2 Turunan Fungsi",
-            document: advancedMathematicsBookXII,
+            ...advancedMathematicsBookXII,
           },
         ],
       }),
@@ -169,9 +169,9 @@ export const merdekaClass12MathematicsTopicNodes = [
         outcomes: [
           {
             code: "Matematika, Fase F, elemen Aljabar dan Fungsi",
-            document: merdekaLearningOutcomes,
+            ...merdekaLearningOutcomes,
           },
-          { code: "Bab 3 Transformasi Fungsi", document: mathematicsBookXI },
+          { code: "Bab 3 Transformasi Fungsi", ...mathematicsBookXI },
         ],
       }),
     ],
@@ -218,9 +218,9 @@ export const merdekaClass12MathematicsTopicNodes = [
         outcomes: [
           {
             code: "Matematika Tingkat Lanjut, Fase F, elemen Kalkulus",
-            document: merdekaLearningOutcomes,
+            ...merdekaLearningOutcomes,
           },
-          { code: "Bab 3 Integral", document: advancedMathematicsBookXII },
+          { code: "Bab 3 Integral", ...advancedMathematicsBookXII },
         ],
       }),
     ],
@@ -258,11 +258,11 @@ export const merdekaClass12MathematicsTopicNodes = [
         outcomes: [
           {
             code: "Matematika Tingkat Lanjut, elemen Kalkulus (deskripsi elemen)",
-            document: merdekaLearningOutcomes,
+            ...merdekaLearningOutcomes,
           },
           {
             code: "Bab 2 Turunan Fungsi, A.1 Limit dan Kontinuitas Fungsi",
-            document: advancedMathematicsBookXII,
+            ...advancedMathematicsBookXII,
           },
         ],
       }),

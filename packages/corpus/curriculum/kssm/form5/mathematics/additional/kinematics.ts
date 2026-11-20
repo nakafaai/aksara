@@ -13,7 +13,7 @@ export const kssmForm5AdditionalMathematicsKinematicsNodes = [
         outcomes: [
           {
             code: "Form 5, Content Standards 8.1 to 8.4",
-            document: additionalMathematicsStandards,
+            ...additionalMathematicsStandards,
           },
         ],
       }),
