@@ -3,6 +3,7 @@ import { Schema } from "effect";
 
 import { InteractionKeySchema, ItemKeySchema } from "#contracts/assessment/key";
 import { MAX_RECORD_BYTES } from "#contracts/assessment/record";
+import { hasSameKeyStructure } from "#contracts/assessment/structure";
 import { decodeStrict, failsStrict } from "#contracts/test/assessment/document";
 import { hash } from "#contracts/test/assessment/item";
 import {
@@ -204,6 +205,44 @@ describe("answer keys", () => {
     ]) {
       expect(
         failsStrict(InteractionKeySchema, { ...extendedTextKey, criteria })
+      ).toBe(true);
+    }
+  });
+
+  it("may tell the learner about each criterion, in words a language may change", () => {
+    const feedback = {
+      earned: "Langkahmu runtut.",
+      missed: "Tulis tiap langkah.",
+    };
+    const withFeedback = {
+      ...extendedTextKey,
+      criteria: [{ ...approachKey, feedback }, resultKey],
+    };
+    const translated = {
+      ...withFeedback,
+      criteria: [
+        {
+          ...approachKey,
+          feedback: {
+            earned: "Your steps follow.",
+            missed: "Write each step.",
+          },
+        },
+        resultKey,
+      ],
+    };
+
+    expect(failsStrict(InteractionKeySchema, withFeedback)).toBe(false);
+    expect(hasSameKeyStructure([withFeedback, translated])).toBe(true);
+    for (const partial of [
+      { earned: "Tepat." },
+      { ...feedback, missed: " " },
+    ]) {
+      expect(
+        failsStrict(InteractionKeySchema, {
+          ...extendedTextKey,
+          criteria: [{ ...approachKey, feedback: partial }],
+        })
       ).toBe(true);
     }
   });
