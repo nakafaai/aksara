@@ -1,4 +1,4 @@
-import { Schema } from "effect";
+import { Array as Arr, Predicate, Record as Rec, Schema } from "effect";
 
 import type { RichText } from "#contracts/assessment/inline";
 import { PlainTextSchema } from "#contracts/assessment/scalar";
@@ -54,6 +54,32 @@ export function byIds<
   Value extends Schema.Top,
 >(ids: Ids, value: Value) {
   return Schema.Record(Schema.Literals(ids), value);
+}
+
+/**
+ * The words of one component for the options a document picks from a fixed
+ * list, such as the items a lab shows: at most one value for each identifier.
+ * `namesEach` checks that the picked options and the named ones are the same.
+ */
+export function byPickedIds<
+  const Ids extends readonly [string, ...string[]],
+  Value extends Schema.Top,
+>(ids: Ids, value: Value) {
+  return Schema.Record(Schema.Literals(ids), Schema.optionalKey(value));
+}
+
+/**
+ * Checks that words written with `byPickedIds` name every picked option and
+ * no other one, so no option goes unnamed and no word goes unused.
+ */
+export function namesEach(
+  picked: readonly string[],
+  words: Readonly<Record<string, unknown>>
+) {
+  return (
+    Rec.size(words) === Arr.dedupe(picked).length &&
+    Arr.every(picked, (id) => Predicate.hasProperty(words, id))
+  );
 }
 
 /** One fact a lab lists: a plain label and a rich value. */
