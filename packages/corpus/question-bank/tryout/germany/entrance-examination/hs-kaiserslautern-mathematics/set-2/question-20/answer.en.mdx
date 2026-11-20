@@ -1,0 +1,44 @@
+# It is the gap that halves
+
+Hot tea does not cool towards zero, it cools towards the room. **So track the gap <InlineMath math="\Delta" /> between drink and room, not the temperature itself**. The gap starts at <InlineMath math="80" /> and is <InlineMath math="40" /> after ten minutes:
+
+<BlockMath math="\begin{aligned}
+\Delta(0)&=100-20=80\\
+\Delta(10)&=60-20=40=\tfrac12\cdot80
+\end{aligned}" />
+
+The gap halves every <InlineMath math="10" /> minutes. The temperature does not halve: <InlineMath math="100" /> became <InlineMath math="60" />, not <InlineMath math="50" />.
+
+# The milk starts a new curve
+
+Pouring cold milk into the cup is like mixing two bowls of water of different warmth: the bigger one counts more. **Weight each temperature by its volume**:
+
+<BlockMath math="\begin{aligned}
+T_{\text{M}}&=\frac{300\cdot60+50\cdot4}{350}=\frac{18200}{350}=52\,^\circ\text{C}\\
+\Delta&=52-20=32
+\end{aligned}" />
+
+A plain average of <InlineMath math="60" /> and <InlineMath math="4" /> would give <InlineMath math="32\,^\circ\text{C}" /> and ignore that there is six times as much tea.
+
+<Chart
+  title={<>Tea with and without milk</>}
+  description={<>Without milk the tea falls from <InlineMath math="100" /> to <InlineMath math="30\,^\circ\text{C}" /> in half an hour. With milk it jumps at <InlineMath math="10" /> minutes from <InlineMath math="60" /> to <InlineMath math="52\,^\circ\text{C}" /> and reaches <InlineMath math="36\,^\circ\text{C}" /> after <InlineMath math="20" /> minutes.</>}
+  categories={["0 min", "5 min", "10 min", "15 min", "20 min", "25 min", "30 min"]}
+  series={[
+    { label: "without milk", mark: "line", values: [100.0, 76.57, 60.0, 48.28, 40.0, 34.14, 30.0] },
+    { label: "with milk", mark: "line", values: [100.0, 76.57, 52.0, 42.63, 36.0, 31.31, 28.0] },
+  ]}
+  valueLabel="Temperature in °C"
+/>
+
+# One more half-life
+
+From the new gap of <InlineMath math="32" /> the same halving continues. **The target <InlineMath math="36\,^\circ\text{C}" /> is a gap of <InlineMath math="16" />, exactly one half-life later**:
+
+<BlockMath math="\begin{aligned}
+32\cdot\left(\tfrac12\right)^{s/10}&=36-20=16\\
+s&=10\text{ min}\\
+10+10&=20\text{ min}
+\end{aligned}" />
+
+Without milk the drink would need about <InlineMath math="13.2" /> more minutes from <InlineMath math="60\,^\circ\text{C}" />, so the milk saves time.

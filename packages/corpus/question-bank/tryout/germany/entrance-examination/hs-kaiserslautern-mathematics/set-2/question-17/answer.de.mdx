@@ -1,0 +1,42 @@
+# Die Schlange in Drehkreuz-Minuten messen
+
+Stell dir eine Badewanne vor, in die der Hahn weiter Wasser laufen lässt, während ein paar Abflüsse offen sind. Was schon drin ist und was nachläuft, muss durch die Abflüsse. **Zähle alles in Drehkreuz-Minuten, also in der Zahl der Fans, die ein Drehkreuz in einer Minute durchlässt**. Die Schlange zu Beginn heißt <InlineMath math="S" />, der Zustrom pro Minute <InlineMath math="z" />. An beiden bekannten Tagen haben die Drehkreuze genau die Anfangsschlange und alle Nachzügler durchgelassen:
+
+<BlockMath math="\begin{aligned}
+4\cdot30&=S+30z\\
+6\cdot15&=S+15z
+\end{aligned}" />
+
+Die Differenz gibt <InlineMath math="30=15z" />, also <InlineMath math="z=2" /> und <InlineMath math="S=60" />. Wie viele Fans ein Drehkreuz schafft, erfährst du nie, und du brauchst es auch nicht.
+
+# Drei Drehkreuze sind kaum schneller als der Zustrom
+
+Mit <InlineMath math="3" /> Drehkreuzen schrumpft die Schlange nur um <InlineMath math="3-2=1" /> Drehkreuz-Minute pro Minute. In diesem Tempo bräuchten die <InlineMath math="60" /> genau <InlineMath math="60" /> Minuten. **Doch der Anpfiff kommt nach <InlineMath math="45" /> Minuten zuerst, also ändert sich das Tempo, bevor die Schlange weg ist**. Beim Anpfiff ist noch so viel übrig:
+
+<BlockMath math="\begin{aligned}
+S_{45}&=60-45\cdot1=15
+\end{aligned}" />
+
+Die Antwort <InlineMath math="60" /> Minuten übersieht, dass der Zustrom endet.
+
+<Chart
+  title={<>Die Schlange vor und nach dem Anpfiff</>}
+  description={<>Die Schlange in Drehkreuz-Minuten bei <InlineMath math="3" /> geöffneten Drehkreuzen. Bis zum Anpfiff nach <InlineMath math="45" /> Minuten sinkt sie um <InlineMath math="1" /> pro Minute, danach um <InlineMath math="3" /> pro Minute, und nach <InlineMath math="50" /> Minuten ist sie leer. Die zweite Linie zeigt den falschen Verlauf, bei dem der Zustrom nie endet.</>}
+  categories={["0 min", "5 min", "10 min", "15 min", "20 min", "25 min", "30 min", "35 min", "40 min", "45 min", "50 min", "55 min", "60 min"]}
+  series={[
+    { label: "Zustrom endet beim Anpfiff", mark: "line", values: [60, 55, 50, 45, 40, 35, 30, 25, 20, 15, 0, null, null] },
+    { label: "Zustrom ohne Ende", mark: "line", values: [60, 55, 50, 45, 40, 35, 30, 25, 20, 15, 10, 5, 0] },
+  ]}
+  valueLabel="Schlange (Drehkreuz-Minuten)"
+/>
+
+# Nach dem Anpfiff versiegt der Zustrom
+
+Jetzt kommt niemand mehr dazu, und alle <InlineMath math="3" /> Drehkreuze arbeiten den Rest ab. **Die letzten <InlineMath math="15" /> Drehkreuz-Minuten dauern**:
+
+<BlockMath math="\begin{aligned}
+t&=\frac{15}{3}=5\\
+T&=45+5=50\text{ min}
+\end{aligned}" />
+
+Die Schlange ist <InlineMath math="50" /> Minuten nach Öffnung der Tore abgebaut.

@@ -1,0 +1,72 @@
+# Isi silo
+
+Bayangkan kerucut es krim yang di atasnya berdiri sebuah kaleng: kerucutnya adalah corong, kalengnya adalah tabung. **Kapasitasnya adalah jumlah kedua volume itu, dan tiga perempatnya ada di dalam silo**:
+
+<BlockMath math="\begin{aligned}
+V_1&=\tfrac13\pi\cdot3^2\cdot4=12\pi\\
+V_2&=\pi\cdot3^2\cdot8=72\pi\\
+0{,}75\cdot\left(12\pi+72\pi\right)&=63\pi
+\end{aligned}" />
+
+# Timbunan adalah kerucut tersendiri
+
+Kalau kamu menuang gula ke gelas dari tengah, gula itu tidak rata, tetapi menumpuk menjadi gunung kecil. **Di sini garis pelukisnya naik <InlineMath math="2\text{ m}" /> sepanjang <InlineMath math="3\text{ m}" /> dari sumbu ke dinding, jadi di atas ketinggian tempat timbunan menyentuh dinding ada kerucut berjari-jari <InlineMath math="3" /> dan bertinggi <InlineMath math="2" />**:
+
+<BlockMath math="\begin{aligned}
+V_3&=\tfrac13\pi\cdot3^2\cdot2=6\pi
+\end{aligned}" />
+
+Di bawahnya ada lapisan datar yang tingginya <InlineMath math="h" /> belum diketahui, dan paling bawah corong yang penuh.
+
+# Lapisan datar di tengah
+
+**Setelah corong dan timbunan, untuk lapisan itu tersisa <InlineMath math="63\pi-12\pi-6\pi=45\pi" />, tersebar pada luas lingkaran <InlineMath math="9\pi" />**:
+
+<BlockMath math="\begin{aligned}
+12\pi+9\pi h+6\pi&=63\pi\\
+9\pi h&=45\pi\\
+h&=5
+\end{aligned}" />
+
+Kalau permukaannya dianggap datar, <InlineMath math="51\pi" /> masuk ke tabung, lapisannya <InlineMath math="\approx5{,}67\text{ m}" /> dan bagian atasnya di <InlineMath math="\approx9{,}67\text{ m}" />. Kalau corong dilupakan saat menghitung kapasitas, kamu memakai <InlineMath math="0{,}75\cdot72\pi=54\pi" />, lapisannya hanya <InlineMath math="4\text{ m}" /> dan puncaknya di <InlineMath math="10\text{ m}" />.
+
+<MathVisual
+  title={<>Tiga bagian isian</>}
+  description={<>Penampang silo: di bawah corong penuh berisi <InlineMath math="12\pi\text{ m}^3" />, di atasnya lapisan datar <InlineMath math="45\pi\text{ m}^3" /> sampai <InlineMath math="9\text{ m}" /> di atas lubang keluar, paling atas timbunan <InlineMath math="6\pi\text{ m}^3" /> dengan puncak di <InlineMath math="11\text{ m}" />. Atapnya di <InlineMath math="12\text{ m}" />.</>}
+  labels={{
+    funnel: <><InlineMath math="12\pi" /></>,
+    layer: <><InlineMath math="45\pi" /></>,
+    heap: <><InlineMath math="6\pi" /></>,
+    tip: <><InlineMath math="11\text{ m}" /></>,
+    roof: <>atap</>,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -5.5, max: 5.5 },
+      y: { min: -1, max: 13 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "funnel", kind: "polygon", appearance: "reference", vertices: [{ x: -3, y: 4 }, { x: 0, y: 0 }, { x: 3, y: 4 }] },
+      { id: "layer", kind: "polygon", appearance: "secondary", vertices: [{ x: -3, y: 4 }, { x: 3, y: 4 }, { x: 3, y: 9 }, { x: -3, y: 9 }] },
+      { id: "heap", kind: "polygon", appearance: "answer", vertices: [{ x: -3, y: 9 }, { x: 3, y: 9 }, { x: 0, y: 11 }] },
+      { id: "wall-left", kind: "segment", appearance: "primary", from: { x: -3, y: 9 }, to: { x: -3, y: 12 } },
+      { id: "wall-right", kind: "segment", appearance: "primary", from: { x: 3, y: 9 }, to: { x: 3, y: 12 } },
+      { id: "roof", kind: "segment", appearance: "primary", from: { x: -3, y: 12 }, to: { x: 3, y: 12 } },
+      { id: "tip", kind: "point", appearance: "highlight", at: { x: 0, y: 11 } },
+    ],
+    labels: [
+      { key: "funnel", objectId: "funnel", at: { x: 0, y: 2.7 }, placement: "center" },
+      { key: "layer", objectId: "layer", at: { x: 0, y: 6.5 }, placement: "center" },
+      { key: "heap", objectId: "heap", at: { x: 0, y: 9.6 }, placement: "center" },
+      { key: "tip", objectId: "tip", at: { x: 0, y: 11 }, placement: "right" },
+      { key: "roof", objectId: "roof", at: { x: -1.5, y: 12 }, placement: "above" },
+    ],
+  }}
+/>
+
+# Dihitung dari lubang keluar
+
+Corongnya sedalam <InlineMath math="4\text{ m}" />, lapisannya naik <InlineMath math="5\text{ m}" /> lagi, dan timbunan menambah <InlineMath math="2\text{ m}" />. **Puncak timbunan berada <InlineMath math="4+5+2=11\text{ m}" /> di atas lubang keluar**. Atapnya di <InlineMath math="4+8=12\text{ m}" />, jadi timbunan muat di bawahnya. Kalau diukur dari tepi atas corong, bukan dari lubang keluar, hasilnya <InlineMath math="7\text{ m}" />.

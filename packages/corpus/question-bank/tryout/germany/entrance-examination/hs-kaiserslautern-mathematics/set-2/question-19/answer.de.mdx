@@ -1,0 +1,61 @@
+# Wie viel Erde im alten Deich steckt
+
+Schneidest du ein Kastenbrot in Scheiben, hat jede Scheibe dieselbe Form. Beim Deich ist es genauso: **Sein Volumen ist Querschnittsfläche mal Länge, und die Fläche unter der Parabel ist ein Integral**:
+
+<BlockMath math="\begin{aligned}
+A_{\text{alt}}&=\int_{-3}^{3}\left(3-\frac{x^2}{3}\right)dx\\
+&=\left[3x-\frac{x^3}{9}\right]_{-3}^{3}=2\,(9-3)=12\text{ m}^2
+\end{aligned}" />
+
+# Die Steigungsgrenze legt die Form fest
+
+Die neue Parabel trifft den Boden bei <InlineMath math="6-ax^2=0" />. Je größer <InlineMath math="a" />, desto schmaler und steiler wird der Deich, und die Steigung <InlineMath math="\lvert g'(x)\rvert=2a\lvert x\rvert" /> ist direkt am Fuß am größten. **Die Regel muss also nur am Fuß <InlineMath math="x=r" /> gelten**:
+
+<BlockMath math="\begin{aligned}
+r&=\sqrt{\frac{6}{a}},\qquad \lvert g'(r)\rvert=2ar=2\sqrt{6a}\\
+2\sqrt{6a}&\le2\ \Rightarrow\ a\le\frac16
+\end{aligned}" />
+
+Die alte Form einfach auf <InlineMath math="6\text{ m}" /> zu strecken, mit <InlineMath math="a=\frac13" />, ergibt am Fuß die Steigung <InlineMath math="2\sqrt2>2" /> und ist nicht erlaubt.
+
+<MathVisual
+  title={<>Alter und neuer Deich im Querschnitt</>}
+  description={<>Der alte Deich <InlineMath math="f(x)=3-\frac{x^2}{3}" /> hat <InlineMath math="12\text{ m}^2" /> Querschnitt, der neue <InlineMath math="g(x)=6-\frac{x^2}{6}" /> hat <InlineMath math="48\text{ m}^2" /> und ist am Fuß genau so steil wie erlaubt. Der schmalere Kandidat <InlineMath math="6-\frac{x^2}{3}" /> wäre am Fuß zu steil.</>}
+  labels={{
+    old: <>alter Deich</>,
+    new: <>neuer Deich</>,
+    steep: <>zu steil</>,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -7, max: 7 },
+      y: { min: -1, max: 7 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "ground", kind: "segment", appearance: "reference", from: { x: -7, y: 0 }, to: { x: 7, y: 0 } },
+      { id: "steep", kind: "function", appearance: "warning", formula: "6 - x^2/3", domain: { min: -4.24, max: 4.24 } },
+      { id: "new", kind: "function", appearance: "answer", formula: "6 - x^2/6", domain: { min: -6, max: 6 } },
+      { id: "old", kind: "function", appearance: "primary", formula: "3 - x^2/3", domain: { min: -3, max: 3 } },
+    ],
+    labels: [
+      { key: "old", objectId: "old", at: { x: 0, y: 3 }, placement: "below" },
+      { key: "new", objectId: "new", at: { x: 5, y: 1.83 }, placement: "above-right" },
+      { key: "steep", objectId: "steep", at: { x: -3, y: 3 }, placement: "left" },
+    ],
+  }}
+/>
+
+# So wenig Erde wie erlaubt
+
+Ein breiterer Fuß bedeutet mehr Erde, denn mit <InlineMath math="r^2=\frac6a" /> vereinfacht sich die Fläche zu <InlineMath math="8r" />, und die wächst mit der halben Fußbreite <InlineMath math="r" />. **Am wenigsten Erde braucht also das größte erlaubte <InlineMath math="a" />, nämlich <InlineMath math="\frac16" />**:
+
+<BlockMath math="\begin{aligned}
+A(a)&=\int_{-r}^{r}\left(6-ax^2\right)dx=12r-\frac{2a}{3}r^3=8r\\
+a=\tfrac16&:\ r=6,\quad A=48\text{ m}^2\\
+V&=(48-12)\cdot50=1800\text{ m}^3
+\end{aligned}" />
+
+Dieser Deich umschließt den alten noch, denn <InlineMath math="g(x)-f(x)=3+\frac{x^2}{6}>0" />. Der ganze neue Deich hätte <InlineMath math="2400\text{ m}^3" />, davon sind <InlineMath math="600\text{ m}^3" /> aber schon vorhanden.

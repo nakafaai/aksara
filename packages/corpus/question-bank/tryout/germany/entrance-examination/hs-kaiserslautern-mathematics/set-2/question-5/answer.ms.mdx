@@ -1,0 +1,46 @@
+# Tiga persamaan untuk tiga kuantiti
+
+Namakan jisim setiap jenis dalam kilogram <InlineMath math="a, b, c" />. Protein dan lemak dikira sebagai peratus darab kilogram. **Jumlah jisim, protein dan lemak masing-masing memberi satu persamaan**:
+
+<BlockMath math="\begin{aligned}
+a+b+c&=100\\
+12a+18b+30c&=2100\\
+8a+6b+2c&=500
+\end{aligned}" />
+
+# Syarat lemak hanya mengulang
+
+Tolak dua belas kali persamaan pertama daripada persamaan kedua. Hasilnya <InlineMath math="6b+18c=900" />, jadi <InlineMath math="b=150-3c" /> dan kemudian <InlineMath math="a=2c-50" />. **Apabila kedua-duanya dimasukkan ke dalam persamaan lemak, ia menjadi <InlineMath math="500=500" />, benar bagi setiap <InlineMath math="c" />**:
+
+<BlockMath math="\begin{aligned}
+b&=150-3c\\
+a&=100-b-c=2c-50\\
+8(2c-50)+6(150-3c)+2c&=500
+\end{aligned}" />
+
+Ini seperti dua saksi yang menceritakan kisah yang sama, saksi kedua tidak menambah apa-apa. Sebabnya ada pada data: bagi setiap jenis, kandungan lemak ialah <InlineMath math="12" /> tolak satu pertiga kandungan protein, dan sasarannya juga, <InlineMath math="5=12-7" />. **Jadi bukan satu campuran, tetapi satu keluarga campuran dengan <InlineMath math="c" /> bebas**. Jisim tidak boleh negatif, maka <InlineMath math="2c-50\ge0" /> dan <InlineMath math="150-3c\ge0" /> memberi <InlineMath math="25\le c\le50" />.
+
+# Ahli keluarga yang paling murah
+
+Sekarang harga yang memilih. **Kos naik <InlineMath math="0.50\text{ €}" /> bagi setiap kilogram C tambahan, jadi campuran paling murah menggunakan C sesedikit yang dibenarkan**:
+
+<BlockMath math="\begin{aligned}
+K&=0.4(2c-50)+0.3(150-3c)+0.6c\\
+&=25+0.5c\\
+K(25)&=37.5\text{ €}
+\end{aligned}" />
+
+Campuran itu ialah <InlineMath math="75\text{ kg}" /> B dan <InlineMath math="25\text{ kg}" /> C tanpa A langsung. Hujung satu lagi keluarga ini, <InlineMath math="50\text{ kg}" /> A dan <InlineMath math="50\text{ kg}" /> C, berharga <InlineMath math="50\text{ €}" />.
+
+<Chart
+  title={<>Tiga campuran yang mungkin</>}
+  description={<>Campuran dengan <InlineMath math="25" />, <InlineMath math="40" /> dan <InlineMath math="50\text{ kg}" /> jenis C. Ketiga-tiganya tepat mengandungi <InlineMath math="21\,\%" /> protein dan <InlineMath math="5\,\%" /> lemak. Harganya <InlineMath math="37.5" />, <InlineMath math="45" /> dan <InlineMath math="50\text{ €}" />.</>}
+  bars="apart"
+  categories={["dengan 25 kg C", "dengan 40 kg C", "dengan 50 kg C"]}
+  series={[
+    { label: "jenis A", mark: "bar", values: [0.0, 30.0, 50.0] },
+    { label: "jenis B", mark: "bar", values: [75.0, 30.0, 0.0] },
+    { label: "jenis C", mark: "bar", values: [25.0, 40.0, 50.0] },
+  ]}
+  valueLabel="Jisim dalam kg"
+/>

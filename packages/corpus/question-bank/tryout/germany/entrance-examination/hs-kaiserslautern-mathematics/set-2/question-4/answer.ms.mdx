@@ -1,0 +1,55 @@
+# Longgokan ialah tangga nombor
+
+Lihat longgokan dari hadapan: setiap lapis kurang satu batang daripada lapis di bawahnya, seperti anak tangga. **Dengan <InlineMath math="n" /> lapis dan <InlineMath math="a" /> batang di atas, lapis paling bawah ada <InlineMath math="a+n-1" /> batang, dan jumlahnya ialah bilangan lapis darab purata lapis**:
+
+<BlockMath math="\begin{aligned}
+n\cdot\frac{a+(a+n-1)}{2}&=75\\
+n\,(2a+n-1)&=150
+\end{aligned}" />
+
+# Memecahkan seratus lima puluh kepada dua faktor
+
+Kedua-dua faktor ialah nombor bulat, dan <InlineMath math="2a+n-1" /> lebih besar daripada <InlineMath math="n" /> kerana <InlineMath math="a\ge1" />. **Bezanya <InlineMath math="2a-1" /> ganjil, jadi satu faktor genap dan satu lagi ganjil**. Maka ada tepat enam cara menulis <InlineMath math="150" />:
+
+<BlockMath math="\begin{aligned}
+n=1&:\ 2a=150,\ a=75\\
+n=2&:\ 2a+1=75,\ a=37\\
+n=3&:\ 2a+2=50,\ a=24\\
+n=5&:\ 2a+4=30,\ a=13\\
+n=6&:\ 2a+5=25,\ a=10\\
+n=10&:\ 2a+9=15,\ a=3
+\end{aligned}" />
+
+# Lebar dan ketinggian memilih longgokan
+
+Lapis paling bawah memuatkan <InlineMath math="75, 38, 26, 17, 15" /> dan <InlineMath math="12" /> batang. **Hanya <InlineMath math="15" /> dan <InlineMath math="12" /> muat dalam <InlineMath math="16" /> tempat sebelah-menyebelah**. Sekarang ketinggian menentukan antara enam dan sepuluh lapis:
+
+<BlockMath math="\begin{aligned}
+30+26\,(n-1)&\le200\\
+n-1&\le6.5
+\end{aligned}" />
+
+Maka paling banyak tujuh lapis, dan sepuluh lapis akan setinggi <InlineMath math="264\text{ cm}" />. Berhenti selepas ujian lebar masih meninggalkan dua jawapan, <InlineMath math="15" /> dan <InlineMath math="12" />. **Longgokan itu ada enam lapis, dan lapis paling bawahnya memuatkan <InlineMath math="15" /> batang**.
+
+<Mermaid
+  title={<>Longgokan mana yang kekal</>}
+  description={<>Setiap longgokan <InlineMath math="75" /> batang yang lapisannya berkurang satu batang ke atas, ditulis sebagai bilangan lapisan dan batang dari bawah ke atas. Lebar membuang empat, ketinggian membuang satu lagi.</>}
+  chart={`
+    flowchart TD
+      T["75 batang"] --> A["1 lapis: 75"]
+      T --> B["2 lapis: 38 ke 37"]
+      T --> C["3 lapis: 26 ke 24"]
+      T --> D["5 lapis: 17 ke 13"]
+      T --> E["6 lapis: 15 ke 10"]
+      T --> F["10 lapis: 12 ke 3"]
+      A --> X["terlalu lebar"]
+      B --> X
+      C --> X
+      D --> X
+      E --> W["bawah paling banyak 16"]
+      F --> W
+      W --> H["tinggi paling 200 cm"]
+      H --> G["10 lapis: 264 cm, terlalu tinggi"]
+      H --> K["6 lapis: 160 cm, muat"]
+  `}
+/>

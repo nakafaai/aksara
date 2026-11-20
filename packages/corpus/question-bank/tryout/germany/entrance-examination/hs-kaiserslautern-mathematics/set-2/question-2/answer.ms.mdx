@@ -1,0 +1,78 @@
+# Setiap laluan ialah satu perkataan
+
+Tulis laluan itu sebagai rentetan huruf: T untuk satu langkah ke timur, U untuk satu langkah ke utara. Dari <InlineMath math="S" /> ke <InlineMath math="Z" /> sentiasa ada enam T dan empat U, cuma susunannya berbeza. **Mengira laluan antara dua persimpangan bermaksud memilih kedudukan huruf U, iaitu pekali binomial**. Untuk laluan melalui farmasi <InlineMath math="A" />, darabkan kedua-dua bahagian:
+
+<BlockMath math="\begin{aligned}
+S\to A&:\ \tbinom{4}{2}=6,\qquad A\to Z:\ \tbinom{6}{2}=15\\
+6\cdot15&=90
+\end{aligned}" />
+
+# Jalan yang ditutup hanya menjejaskan laluan melalui A
+
+Laluan melalui <InlineMath math="A" /> menggunakan bahagian yang ditutup jika dari <InlineMath math="A" /> terus ke timur ke <InlineMath math="(3\mid2)" />, dan caranya hanya satu, kemudian melalui bahagian itu, kemudian dari <InlineMath math="(4\mid2)" /> ke <InlineMath math="Z" />. **Laluan-laluan ini mesti ditolak**:
+
+<BlockMath math="\begin{aligned}
+6\cdot1\cdot\tbinom{4}{2}&=6\cdot1\cdot6=36\\
+90-36&=54
+\end{aligned}" />
+
+<MathVisual
+  title={<>Grid jalan kurier</>}
+  description={<>Persimpangan daripada <InlineMath math="S(0\mid0)" /> hingga <InlineMath math="Z(6\mid4)" />, farmasi <InlineMath math="A" /> dan <InlineMath math="B" />, serta bahagian jalan yang ditutup. Yang diserlahkan ialah satu laluan yang dibenarkan melalui <InlineMath math="A" /> dan mengelak kerja jalan melalui <InlineMath math="(3\mid3)" />.</>}
+  labels={{
+    s: <><InlineMath math="S" /></>,
+    z: <><InlineMath math="Z" /></>,
+    a: <><InlineMath math="A" /></>,
+    b: <><InlineMath math="B" /></>,
+    closed: <>ditutup</>,
+    route: <>laluan dibenarkan</>,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -0.5, max: 6.5 },
+      y: { min: -0.5, max: 4.5 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "v0", kind: "segment", appearance: "reference", from: { x: 0, y: 0 }, to: { x: 0, y: 4 } },
+      { id: "v1", kind: "segment", appearance: "reference", from: { x: 1, y: 0 }, to: { x: 1, y: 4 } },
+      { id: "v2", kind: "segment", appearance: "reference", from: { x: 2, y: 0 }, to: { x: 2, y: 4 } },
+      { id: "v3", kind: "segment", appearance: "reference", from: { x: 3, y: 0 }, to: { x: 3, y: 4 } },
+      { id: "v4", kind: "segment", appearance: "reference", from: { x: 4, y: 0 }, to: { x: 4, y: 4 } },
+      { id: "v5", kind: "segment", appearance: "reference", from: { x: 5, y: 0 }, to: { x: 5, y: 4 } },
+      { id: "v6", kind: "segment", appearance: "reference", from: { x: 6, y: 0 }, to: { x: 6, y: 4 } },
+      { id: "h0", kind: "segment", appearance: "reference", from: { x: 0, y: 0 }, to: { x: 6, y: 0 } },
+      { id: "h1", kind: "segment", appearance: "reference", from: { x: 0, y: 1 }, to: { x: 6, y: 1 } },
+      { id: "h2", kind: "segment", appearance: "reference", from: { x: 0, y: 2 }, to: { x: 6, y: 2 } },
+      { id: "h3", kind: "segment", appearance: "reference", from: { x: 0, y: 3 }, to: { x: 6, y: 3 } },
+      { id: "h4", kind: "segment", appearance: "reference", from: { x: 0, y: 4 }, to: { x: 6, y: 4 } },
+      { id: "route", kind: "polyline", appearance: "answer", vertices: [{ x: 0, y: 0 }, { x: 2, y: 0 }, { x: 2, y: 2 }, { x: 3, y: 2 }, { x: 3, y: 3 }, { x: 6, y: 3 }, { x: 6, y: 4 }] },
+      { id: "closed", kind: "segment", appearance: "warning", from: { x: 3, y: 2 }, to: { x: 4, y: 2 } },
+      { id: "s", kind: "point", appearance: "highlight", at: { x: 0, y: 0 } },
+      { id: "z", kind: "point", appearance: "highlight", at: { x: 6, y: 4 } },
+      { id: "a", kind: "point", appearance: "primary", at: { x: 2, y: 2 } },
+      { id: "b", kind: "point", appearance: "primary", at: { x: 4, y: 1 } },
+    ],
+    labels: [
+      { key: "s", objectId: "s", at: { x: 0, y: 0 }, placement: "below-left" },
+      { key: "z", objectId: "z", at: { x: 6, y: 4 }, placement: "above-right" },
+      { key: "a", objectId: "a", at: { x: 2, y: 2 }, placement: "above-left" },
+      { key: "b", objectId: "b", at: { x: 4, y: 1 }, placement: "below-right" },
+      { key: "closed", objectId: "closed", at: { x: 3.5, y: 2 }, placement: "below" },
+      { key: "route", objectId: "route", at: { x: 4.5, y: 3 }, placement: "above" },
+    ],
+  }}
+/>
+
+# Farmasi B dan pertindihannya
+
+Untuk <InlineMath math="B(4\mid1)" /> caranya sama. **Tiada laluan yang melalui kedua-dua farmasi, kerana selepas <InlineMath math="A" /> pada ketinggian <InlineMath math="2" /> kurier tidak boleh turun lagi ke ketinggian <InlineMath math="1" /> di <InlineMath math="B" />, dan sebelum <InlineMath math="A" /> dia perlu sampai <InlineMath math="x=4" /> dan kemudian <InlineMath math="x=2" />**. Jadi tiada yang dikira dua kali. Laluan melalui <InlineMath math="B" /> hanya sampai ketinggian <InlineMath math="2" /> pada <InlineMath math="x\ge4" />, maka ia tidak pernah menggunakan jalan yang ditutup:
+
+<BlockMath math="\begin{aligned}
+S\to B&:\ \tbinom{5}{1}=5,\qquad B\to Z:\ \tbinom{5}{2}=10\\
+54+5\cdot10&=104
+\end{aligned}" />
+
+Kurier itu ada <InlineMath math="104" /> laluan berbeza. Jika kerja jalan dilupakan, jawapannya <InlineMath math="140" />.

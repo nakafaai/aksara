@@ -1,0 +1,42 @@
+# Ukur barisan dalam minit-pintu
+
+Bayangkan tab mandi yang pilinya terus mengalir sementara beberapa lubang salur terbuka. Air yang sudah ada dan air yang terus masuk mesti keluar melalui lubang itu. **Kira semuanya dalam minit-pintu, iaitu bilangan penyokong yang dilepaskan oleh satu pintu putar dalam seminit**. Namakan barisan awal <InlineMath math="S" /> dan ketibaan seminit <InlineMath math="z" />. Pada kedua-dua hari yang diketahui, pintu putar melepaskan tepat barisan awal ditambah semua yang tiba kemudian:
+
+<BlockMath math="\begin{aligned}
+4\cdot30&=S+30z\\
+6\cdot15&=S+15z
+\end{aligned}" />
+
+Bezanya memberi <InlineMath math="30=15z" />, jadi <InlineMath math="z=2" /> dan <InlineMath math="S=60" />. Kamu tidak pernah tahu berapa penyokong yang dilepaskan oleh satu pintu, dan kamu memang tidak memerlukannya.
+
+# Tiga pintu hampir tidak dapat mengatasi arus
+
+Dengan <InlineMath math="3" /> pintu, barisan hanya berkurang <InlineMath math="3-2=1" /> minit-pintu setiap minit. Pada kadar itu, <InlineMath math="60" /> minit-pintu memerlukan <InlineMath math="60" /> minit. **Tetapi sepak mula tiba dahulu, selepas <InlineMath math="45" /> minit, jadi kadarnya berubah sebelum barisan habis**. Ketika sepak mula masih berbaki:
+
+<BlockMath math="\begin{aligned}
+S_{45}&=60-45\cdot1=15
+\end{aligned}" />
+
+Jawapan <InlineMath math="60" /> minit mengabaikan bahawa arus ketibaan berhenti.
+
+<Chart
+  title={<>Barisan sebelum dan selepas sepak mula</>}
+  description={<>Barisan dalam minit-pintu dengan <InlineMath math="3" /> pintu putar dibuka. Sehingga sepak mula selepas <InlineMath math="45" /> minit, barisan turun <InlineMath math="1" /> setiap minit, kemudian <InlineMath math="3" /> setiap minit, dan habis selepas <InlineMath math="50" /> minit. Garis kedua menunjukkan perjalanan yang salah, apabila arus ketibaan tidak pernah berhenti.</>}
+  categories={["0 minit", "5 minit", "10 minit", "15 minit", "20 minit", "25 minit", "30 minit", "35 minit", "40 minit", "45 minit", "50 minit", "55 minit", "60 minit"]}
+  series={[
+    { label: "arus berhenti ketika sepak mula", mark: "line", values: [60, 55, 50, 45, 40, 35, 30, 25, 20, 15, 0, null, null] },
+    { label: "arus tidak pernah berhenti", mark: "line", values: [60, 55, 50, 45, 40, 35, 30, 25, 20, 15, 10, 5, 0] },
+  ]}
+  valueLabel="Barisan (minit-pintu)"
+/>
+
+# Selepas sepak mula arusnya terhenti
+
+Kini tiada lagi yang menyertai, dan ketiga-tiga pintu menghabiskan bakinya. **Baki <InlineMath math="15" /> minit-pintu memerlukan**:
+
+<BlockMath math="\begin{aligned}
+t&=\frac{15}{3}=5\\
+T&=45+5=50\text{ min}
+\end{aligned}" />
+
+Barisan habis <InlineMath math="50" /> minit selepas pintu stadium dibuka.

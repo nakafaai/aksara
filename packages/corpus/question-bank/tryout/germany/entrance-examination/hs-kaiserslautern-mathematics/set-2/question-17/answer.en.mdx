@@ -1,0 +1,42 @@
+# Measure the queue in turnstile minutes
+
+Imagine a bathtub with the tap still running while a few plugholes are open. The water already in the tub and the water still flowing in all have to leave through the holes. **Count everything in turnstile minutes, the number of fans one turnstile lets through in one minute**. Call the starting queue <InlineMath math="S" /> and the arrivals per minute <InlineMath math="z" />. On both known days the turnstiles let through exactly the starting queue plus everyone who came meanwhile:
+
+<BlockMath math="\begin{aligned}
+4\cdot30&=S+30z\\
+6\cdot15&=S+15z
+\end{aligned}" />
+
+Subtracting gives <InlineMath math="30=15z" />, so <InlineMath math="z=2" /> and <InlineMath math="S=60" />. You never learn how many fans one turnstile handles, and you never need to.
+
+# Three turnstiles barely beat the stream
+
+With <InlineMath math="3" /> turnstiles the queue shrinks by only <InlineMath math="3-2=1" /> turnstile minute per minute. At that pace the <InlineMath math="60" /> would take <InlineMath math="60" /> minutes. **But kick-off comes first, after <InlineMath math="45" /> minutes, so the pace changes before the queue is gone**. At kick-off this much is left:
+
+<BlockMath math="\begin{aligned}
+S_{45}&=60-45\cdot1=15
+\end{aligned}" />
+
+Answering <InlineMath math="60" /> minutes overlooks that the stream stops.
+
+<Chart
+  title={<>The queue before and after kick-off</>}
+  description={<>The queue in turnstile minutes with <InlineMath math="3" /> turnstiles open. Until kick-off after <InlineMath math="45" /> minutes it drops by <InlineMath math="1" /> per minute, then by <InlineMath math="3" /> per minute, and it is empty after <InlineMath math="50" /> minutes. The second line shows the wrong course in which the stream never stops.</>}
+  categories={["0 min", "5 min", "10 min", "15 min", "20 min", "25 min", "30 min", "35 min", "40 min", "45 min", "50 min", "55 min", "60 min"]}
+  series={[
+    { label: "stream stops at kick-off", mark: "line", values: [60, 55, 50, 45, 40, 35, 30, 25, 20, 15, 0, null, null] },
+    { label: "stream never stops", mark: "line", values: [60, 55, 50, 45, 40, 35, 30, 25, 20, 15, 10, 5, 0] },
+  ]}
+  valueLabel="Queue (turnstile minutes)"
+/>
+
+# After kick-off the stream dries up
+
+Now nobody joins any more, and all <InlineMath math="3" /> turnstiles work through the rest. **The last <InlineMath math="15" /> turnstile minutes take**:
+
+<BlockMath math="\begin{aligned}
+t&=\frac{15}{3}=5\\
+T&=45+5=50\text{ min}
+\end{aligned}" />
+
+The queue is gone <InlineMath math="50" /> minutes after the gates open.

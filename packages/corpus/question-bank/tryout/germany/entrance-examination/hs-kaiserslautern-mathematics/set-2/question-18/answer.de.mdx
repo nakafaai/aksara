@@ -1,0 +1,75 @@
+# Eine Regel für beide Straßen
+
+Am Strand läufst du lieber ein Stück auf dem festen nassen Sand als quer durch den weichen, auch wenn der Weg dadurch etwas länger wird. **Der Trick ist, die Wiese an der richtigen Stelle zu verlassen**. Nimm eine Straße im Abstand <InlineMath math="d" /> von der Hütte. <InlineMath math="x" /> ist die Strecke entlang der Straße vom nächstgelegenen Punkt bis dorthin, wo die Wanderin die Straße erreicht, und das Dorf liegt <InlineMath math="a" /> von diesem nächstgelegenen Punkt entfernt. Die Zeit in Stunden ist:
+
+<BlockMath math="\begin{aligned}
+T(x)&=\frac{\sqrt{d^2+x^2}}{3}+\frac{a-x}{5}\\
+T'(x)&=\frac{x}{3\sqrt{d^2+x^2}}-\frac15=0\\
+5x&=3\sqrt{d^2+x^2}\\
+16x^2&=9d^2,\qquad x=0{,}75\,d
+\end{aligned}" />
+
+Beide Straßen gehorchen dieser Regel, jede mit ihrem eigenen <InlineMath math="d" /> und <InlineMath math="a" />.
+
+# Die ferne Straße führt direkt ins Dorf
+
+Für die Straße in <InlineMath math="4\text{ km}" /> Abstand ist <InlineMath math="d=4" />, und das Dorf liegt <InlineMath math="a=3\text{ km}" /> weiter. **Der beste Einstiegspunkt ist <InlineMath math="x=0{,}75\cdot4=3" />, also das Dorf selbst**. Bis dahin gilt <InlineMath math="T'<0" />, jeder Schritt Richtung Dorf lohnt sich also, und diese Straße hilft gar nicht. Übrig bleibt der gerade Weg über die Wiese:
+
+<BlockMath math="\begin{aligned}
+\sqrt{3^2+4^2}&=5\text{ km}\\
+T&=\frac53\text{ h}=100\text{ min}
+\end{aligned}" />
+
+# Die nahe Straße spart Zeit
+
+Für die Straße in <InlineMath math="3\text{ km}" /> Abstand ist <InlineMath math="d=3" /> und <InlineMath math="a=4" />. **Jetzt liegt der Einstiegspunkt <InlineMath math="x=0{,}75\cdot3=2{,}25" /> vor dem Dorf, also hilft die Straße wirklich**:
+
+<BlockMath math="\begin{aligned}
+\sqrt{3^2+2{,}25^2}&=3{,}75\text{ km}\\
+T&=\frac{3{,}75}{3}+\frac{4-2{,}25}{5}\\
+&=1{,}25+0{,}35=1{,}6\text{ h}=96\text{ min}
+\end{aligned}" />
+
+Das schlägt den geraden Weg um <InlineMath math="4" /> Minuten, der schnellste Weg dauert also <InlineMath math="96" /> Minuten. Wer erst senkrecht zur nahen Straße geht und dann auf ihr weiter, braucht <InlineMath math="1+0{,}8=1{,}8\text{ h}" />, also <InlineMath math="108" /> Minuten.
+
+<MathVisual
+  title={<>Zwei Straßen und ein Dorf</>}
+  description={<>Die Hütte <InlineMath math="H" /> liegt <InlineMath math="3\text{ km}" /> von der nahen und <InlineMath math="4\text{ km}" /> von der fernen Straße entfernt. Der schnellste Weg erreicht die nahe Straße im Punkt <InlineMath math="P" />, <InlineMath math="1{,}75\text{ km}" /> vor dem Dorf <InlineMath math="D" />. Die zweite Linie von <InlineMath math="H" /> nach <InlineMath math="D" /> ist der gerade Weg über die Wiese, den auch die ferne Straße nicht verbessert.</>}
+  labels={{
+    hut: <><InlineMath math="H" /></>,
+    village: <><InlineMath math="D" /></>,
+    turn: <><InlineMath math="P" /></>,
+    near: <>nahe Straße</>,
+    far: <>ferne Straße</>,
+    leg: <><InlineMath math="3{,}75\text{ km}" /></>,
+    road: <><InlineMath math="1{,}75\text{ km}" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -1, max: 6 },
+      y: { min: -1, max: 6 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "near", kind: "segment", appearance: "reference", from: { x: 0, y: 0 }, to: { x: 0, y: 6 } },
+      { id: "far", kind: "segment", appearance: "reference", from: { x: 0, y: 0 }, to: { x: 6, y: 0 } },
+      { id: "direct", kind: "segment", appearance: "construction", from: { x: 3, y: 4 }, to: { x: 0, y: 0 } },
+      { id: "leg", kind: "segment", appearance: "answer", from: { x: 3, y: 4 }, to: { x: 0, y: 1.75 } },
+      { id: "road", kind: "segment", appearance: "answer", from: { x: 0, y: 1.75 }, to: { x: 0, y: 0 } },
+      { id: "hut", kind: "point", appearance: "highlight", at: { x: 3, y: 4 } },
+      { id: "village", kind: "point", appearance: "highlight", at: { x: 0, y: 0 } },
+      { id: "turn", kind: "point", appearance: "answer", at: { x: 0, y: 1.75 } },
+    ],
+    labels: [
+      { key: "hut", objectId: "hut", at: { x: 3, y: 4 }, placement: "above-right" },
+      { key: "village", objectId: "village", at: { x: 0, y: 0 }, placement: "below-left" },
+      { key: "turn", objectId: "turn", at: { x: 0, y: 1.75 }, placement: "left" },
+      { key: "near", objectId: "near", at: { x: 0, y: 5.2 }, placement: "right" },
+      { key: "far", objectId: "far", at: { x: 5, y: 0 }, placement: "above" },
+      { key: "leg", objectId: "leg", at: { x: 1.5, y: 2.875 }, placement: "above-left" },
+      { key: "road", objectId: "road", at: { x: 0, y: 0.875 }, placement: "left" },
+    ],
+  }}
+/>

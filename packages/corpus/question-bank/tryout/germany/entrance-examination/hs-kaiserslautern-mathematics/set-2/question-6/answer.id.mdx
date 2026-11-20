@@ -1,0 +1,64 @@
+# Sudut di tempat rimbawan berdiri
+
+Namai pangkal batang <InlineMath math="T" /> dan puncaknya <InlineMath math="S" />. Lereng itu seperti jalan landai yang naik <InlineMath math="30^\circ" />, sedangkan pandangan rimbawan naik <InlineMath math="60^\circ" />. **Jadi di antara lereng dan garis pandang hanya tersisa <InlineMath math="30^\circ" />**. Di <InlineMath math="T" /> batang menunjuk tegak ke atas, <InlineMath math="90^\circ" /> di atas garis mendatar, sedangkan lereng kembali ke <InlineMath math="F" /> menunjuk <InlineMath math="30^\circ" /> di bawahnya:
+
+<BlockMath math="\begin{aligned}
+\angle TFS&=60^\circ-30^\circ=30^\circ\\
+\angle FTS&=90^\circ+30^\circ=120^\circ\\
+\angle FST&=180^\circ-30^\circ-120^\circ=30^\circ
+\end{aligned}" />
+
+# Dua sudut sama, dua sisi sama
+
+Segitiga dengan dua sudut sama besar adalah segitiga sama kaki: sisi di depan kedua sudut itu sama panjang. **Sudut di <InlineMath math="F" /> dan di <InlineMath math="S" /> sama-sama <InlineMath math="30^\circ" />, jadi batang <InlineMath math="TS" /> sepanjang <InlineMath math="FT" />, yaitu <InlineMath math="24\text{ m}" />**. Segitiga siku-siku dengan <InlineMath math="24\text{ m}" /> yang direbahkan di tanah datar mengabaikan lereng yang naik dan membuat cemaranya terlalu tinggi.
+
+# Sudut siku-siku di lereng
+
+Matahari ada di belakang rimbawan, jadi sinarnya turun dengan sudut <InlineMath math="60^\circ" /> dan bergerak ke arah atas lereng. Misalkan <InlineMath math="P" /> ujung bayangan. **Di <InlineMath math="P" />, sinar yang <InlineMath math="60^\circ" /> di atas garis mendatar ke arah matahari dan lereng yang <InlineMath math="30^\circ" /> di bawahnya ke arah <InlineMath math="T" /> membentuk tepat <InlineMath math="90^\circ" />**. Di <InlineMath math="T" /> batang dan lereng ke atas mengapit <InlineMath math="60^\circ" />:
+
+<BlockMath math="\begin{aligned}
+\angle STP&=90^\circ-30^\circ=60^\circ\\
+\angle TPS&=60^\circ+30^\circ=90^\circ\\
+\overline{TP}&=\overline{TS}\cdot\cos60^\circ=24\cdot\tfrac12=12\text{ m}
+\end{aligned}" />
+
+<MathVisual
+  title={<>Cemara, garis pandang, dan bayangan di lereng</>}
+  description={<>Lereng naik dengan sudut <InlineMath math="30^\circ" />. Segitiga dari <InlineMath math="F" />, pangkal batang, dan puncak punya dua sudut <InlineMath math="30^\circ" />, jadi tinggi cemara <InlineMath math="24\text{ m}" />. Sinar matahari mengenai lereng tegak lurus, dan bayangannya <InlineMath math="12\text{ m}" />.</>}
+  labels={{
+    f: <><InlineMath math="F" /></>,
+    slope: <>lereng</>,
+    tree: <>cemara</>,
+    sight: <>garis pandang</>,
+    ray: <>sinar matahari</>,
+    shadow: <>bayangan</>,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -4, max: 40 },
+      y: { min: -4, max: 40 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "slope", kind: "segment", appearance: "reference", from: { x: 0, y: 0 }, to: { x: 34.64, y: 20 } },
+      { id: "ground", kind: "segment", appearance: "construction", from: { x: -4, y: 0 }, to: { x: 14, y: 0 } },
+      { id: "tree", kind: "segment", appearance: "primary", from: { x: 20.78, y: 12 }, to: { x: 20.78, y: 36 } },
+      { id: "sight", kind: "segment", appearance: "construction", from: { x: 0, y: 0 }, to: { x: 20.78, y: 36 } },
+      { id: "ray", kind: "segment", appearance: "secondary", from: { x: 20.78, y: 36 }, to: { x: 31.18, y: 18 } },
+      { id: "shadow", kind: "segment", appearance: "answer", from: { x: 20.78, y: 12 }, to: { x: 31.18, y: 18 } },
+      { id: "f", kind: "point", appearance: "highlight", at: { x: 0, y: 0 } },
+    ],
+    labels: [
+      { key: "f", objectId: "f", at: { x: 0, y: 0 }, placement: "below-left" },
+      { key: "slope", objectId: "slope", at: { x: 31.18, y: 18 }, placement: "below-right" },
+      { key: "tree", objectId: "tree", at: { x: 20.78, y: 28 }, placement: "left" },
+      { key: "sight", objectId: "sight", at: { x: 10.39, y: 18 }, placement: "left" },
+      { key: "ray", objectId: "ray", at: { x: 25.98, y: 27 }, placement: "right" },
+      { key: "shadow", objectId: "shadow", at: { x: 25.98, y: 15 }, placement: "below-right" },
+    ],
+  }}
+/>
+
+Di tanah datar, cemara yang sama akan berbayangan <InlineMath math="\frac{24}{\tan60^\circ}\approx13{,}9\text{ m}" />. Lereng yang naik menangkap bayangan itu lebih awal, setelah <InlineMath math="12\text{ m}" />.

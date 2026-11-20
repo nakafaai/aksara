@@ -1,0 +1,44 @@
+# Wo die Wolke beginnt
+
+Denk an zwei Wanderer, die aufeinander zugehen: Die Temperatur sinkt beim Aufsteigen schnell, der Taupunkt nur langsam, also schrumpft der Abstand zwischen beiden. **Wolken entstehen dort, wo sich die beiden Geraden treffen**. Beide hängen linear von der Höhe <InlineMath math="h" /> ab:
+
+<BlockMath math="\begin{aligned}
+T(h)&=15-0{,}01\,(h-500)\\
+\tau(h)&=7-0{,}002\,(h-500)\\
+T-\tau&=8-0{,}008\,(h-500)=0\\
+h&=500+1000=1500\text{ m}
+\end{aligned}" />
+
+Der Abstand von <InlineMath math="8\,^\circ\text{C}" /> schrumpft um <InlineMath math="0{,}8\,^\circ\text{C}" /> pro <InlineMath math="100\text{ m}" /> und ist nach <InlineMath math="1000\text{ m}" /> Aufstieg verschwunden.
+
+# In der Wolke kühlt die Luft langsamer ab
+
+Wenn Wasserdampf zu Tröpfchen wird, gibt er Wärme ab, wie eine Heizung, die in der aufsteigenden Luft eingeschaltet wird. **Von <InlineMath math="1500\text{ m}" /> bis zum Kamm verliert die Luft nur noch <InlineMath math="0{,}5\,^\circ\text{C}" /> pro <InlineMath math="100\text{ m}" />**:
+
+<BlockMath math="\begin{aligned}
+T(1500)&=15-10=5\,^\circ\text{C}\\
+T_{\text{K}}&=5-0{,}005\cdot1500=-2{,}5\,^\circ\text{C}
+\end{aligned}" />
+
+Mit <InlineMath math="1\,^\circ\text{C}" /> pro <InlineMath math="100\text{ m}" /> bis ganz oben hätte der Kamm <InlineMath math="-10\,^\circ\text{C}" />, und die Luft käme unten wieder mit genau <InlineMath math="15\,^\circ\text{C}" /> an, ganz ohne warmen Wind.
+
+<Chart
+  title={<>Temperatur und Taupunkt auf dem Weg über den Kamm</>}
+  description={<>Bis zur Wolkenuntergrenze in <InlineMath math="1500\text{ m}" /> nähern sich Temperatur und Taupunkt, darüber kühlt die Luft langsamer ab. Auf der Leeseite erwärmt sie sich wieder schnell und kommt mit <InlineMath math="22{,}5\,^\circ\text{C}" /> unten an.</>}
+  categories={["Luv 500 m", "Luv 1000 m", "Luv 1500 m", "Luv 2000 m", "Luv 2500 m", "Kamm 3000 m", "Lee 2500 m", "Lee 2000 m", "Lee 1500 m", "Lee 1000 m", "Lee 500 m"]}
+  series={[
+    { label: "Temperatur", mark: "line", values: [15.0, 10.0, 5.0, 2.5, 0.0, -2.5, 2.5, 7.5, 12.5, 17.5, 22.5] },
+    { label: "Taupunkt", mark: "line", values: [7.0, 6.0, 5.0, null, null, null, null, null, null, null, null] },
+  ]}
+  valueLabel="Temperatur in °C"
+/>
+
+# Hinab auf der Leeseite
+
+Die Wolken bleiben auf der Luvseite, die absinkende Luft ist wieder trocken. **Sie erwärmt sich um <InlineMath math="1\,^\circ\text{C}" /> pro <InlineMath math="100\text{ m}" /> über den ganzen Abstieg von <InlineMath math="2500\text{ m}" />**:
+
+<BlockMath math="\begin{aligned}
+T_{\text{L}}&=-2{,}5+0{,}01\cdot2500=22{,}5\,^\circ\text{C}
+\end{aligned}" />
+
+Am Ort auf der Leeseite ist die Luft <InlineMath math="7{,}5\,^\circ\text{C}" /> wärmer als beim Start auf der Luvseite. Genau dieser warme Fallwind heißt Föhn.

@@ -1,0 +1,86 @@
+# Count trips, not litres
+
+A tanker that holds <InlineMath math="3000" /> litres has to drive out again each time it fills up. **Each farm needs as many trips as <InlineMath math="3000" /> litres fit into its milk, rounded up**:
+
+<BlockMath math="\begin{aligned}
+n_A&=\left\lceil\tfrac{2500}{3000}\right\rceil=1,\qquad n_B=\left\lceil\tfrac{10\,000}{3000}\right\rceil=4\\
+n_C&=\left\lceil\tfrac{5500}{3000}\right\rceil=2,\qquad n_D=\left\lceil\tfrac{3200}{3000}\right\rceil=2
+\end{aligned}" />
+
+Farm <InlineMath math="D" /> is the trap: <InlineMath math="3200" /> litres are just over one load, so it needs <InlineMath math="2" /> trips.
+
+# Distance as a sum of absolute values
+
+Every trip runs from the collection point at <InlineMath math="x" /> to one farm and back. **Counted one way, the day's trips add up to a sum of absolute values, and the daily distance is twice as long**:
+
+<BlockMath math="\begin{aligned}
+f(x)&=1\cdot|x|+4\,|x-6|+2\,|x-10|+2\,|x-16|\\
+D(x)&=2f(x)
+\end{aligned}" />
+
+Picture walking along the road: one step to the right brings you closer to every trip on your right and farther from every trip on your left. **So the slope of <InlineMath math="f" /> is the number of trips on the left minus the number on the right**.
+
+# The best point is forbidden
+
+Without the zone, the lowest point of <InlineMath math="f" /> is where the slope turns from negative to positive. Counting from the left there are <InlineMath math="1" />, then <InlineMath math="1+4=5" /> trips, more than half of the <InlineMath math="9" />, and that happens at farm <InlineMath math="B" />. So the minimum is at kilometre <InlineMath math="6" /> with <InlineMath math="f(6)=34" />. **But kilometre <InlineMath math="6" /> lies inside the protection zone, so only its two edges are left**:
+
+<BlockMath math="\begin{aligned}
+5\le x\le6&:\quad 1-(4+2+2)=-7,\qquad f(5)=34+7=41\\
+6\le x\le9&:\quad (1+4)-(2+2)=1,\qquad f(9)=34+3=37
+\end{aligned}" />
+
+<MathVisual
+  title={<>The one-way driving distance along the road</>}
+  description={<>The one-way distance <InlineMath math="f(x)" /> of all trips in a day when the collection point is at kilometre <InlineMath math="x" />, with the number of trips per farm in brackets. The slopes <InlineMath math="-7" />, <InlineMath math="+1" /> and <InlineMath math="+5" /> are trips on the left minus trips on the right. The minimum <InlineMath math="f(6)=34" /> lies in the marked protection zone, and at its edges <InlineMath math="f(9)=37" /> beats <InlineMath math="f(5)=41" />.</>}
+  labels={{
+    a: <><InlineMath math="A\,(1)" /></>,
+    b: <><InlineMath math="B\,(4)" /></>,
+    c: <><InlineMath math="C\,(2)" /></>,
+    d: <><InlineMath math="D\,(2)" /></>,
+    fall: <><InlineMath math="-7" /></>,
+    flat: <><InlineMath math="+1" /></>,
+    climb: <><InlineMath math="+5" /></>,
+    zone: <>protection zone</>,
+    best: <><InlineMath math="f(9)=37" /></>,
+    edge: <><InlineMath math="f(5)=41" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -1, max: 17 },
+      y: { min: -8, max: 80 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "zone-left", kind: "segment", appearance: "warning", from: { x: 5, y: 0 }, to: { x: 5, y: 78 } },
+      { id: "zone-right", kind: "segment", appearance: "warning", from: { x: 9, y: 0 }, to: { x: 9, y: 78 } },
+      { id: "road", kind: "segment", appearance: "reference", from: { x: 0, y: 0 }, to: { x: 16, y: 0 } },
+      { id: "graph", kind: "polyline", appearance: "primary", vertices: [{ x: 0, y: 76 }, { x: 5, y: 41 }, { x: 6, y: 34 }, { x: 9, y: 37 }, { x: 10, y: 38 }, { x: 16, y: 68 }] },
+      { id: "farm-a", kind: "point", appearance: "reference", at: { x: 0, y: 0 } },
+      { id: "farm-b", kind: "point", appearance: "reference", at: { x: 6, y: 0 } },
+      { id: "farm-c", kind: "point", appearance: "reference", at: { x: 10, y: 0 } },
+      { id: "farm-d", kind: "point", appearance: "reference", at: { x: 16, y: 0 } },
+      { id: "edge", kind: "point", appearance: "highlight", at: { x: 5, y: 41 } },
+      { id: "best", kind: "point", appearance: "answer", at: { x: 9, y: 37 } },
+    ],
+    labels: [
+      { key: "a", objectId: "farm-a", at: { x: 0, y: 0 }, placement: "below" },
+      { key: "b", objectId: "farm-b", at: { x: 6, y: 0 }, placement: "below" },
+      { key: "c", objectId: "farm-c", at: { x: 10, y: 0 }, placement: "below" },
+      { key: "d", objectId: "farm-d", at: { x: 16, y: 0 }, placement: "below" },
+      { key: "fall", objectId: "graph", at: { x: 2.5, y: 58.5 }, placement: "above-right" },
+      { key: "flat", objectId: "graph", at: { x: 7.5, y: 35.5 }, placement: "below" },
+      { key: "climb", objectId: "graph", at: { x: 13, y: 53 }, placement: "above-left" },
+      { key: "zone", objectId: "zone-left", at: { x: 7, y: 70 }, placement: "center" },
+      { key: "best", objectId: "best", at: { x: 9, y: 37 }, placement: "right" },
+      { key: "edge", objectId: "edge", at: { x: 5, y: 41 }, placement: "left" },
+    ],
+  }}
+/>
+
+# The far edge wins
+
+The edge at kilometre <InlineMath math="5" /> is closer to the minimum, but <InlineMath math="f" /> is steep there: every kilometre adds <InlineMath math="7" />. Towards kilometre <InlineMath math="9" /> every kilometre adds only <InlineMath math="1" />. **So the collection point goes to kilometre <InlineMath math="9" />, and the tanker drives <InlineMath math="2\cdot37=74\text{ km}" /> a day**.
+
+The nearer edge at kilometre <InlineMath math="5" /> would give <InlineMath math="82\text{ km}" />, and leaving out the way back gives only <InlineMath math="37\text{ km}" />. Weighting by thousands of litres instead of trips gives <InlineMath math="160.8" />, a number that is not even a distance. Counting <InlineMath math="D" /> as one trip lands at <InlineMath math="60\text{ km}" />.

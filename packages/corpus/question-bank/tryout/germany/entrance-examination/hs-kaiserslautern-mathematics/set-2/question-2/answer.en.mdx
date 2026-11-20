@@ -1,0 +1,78 @@
+# Every route is a word of letters
+
+Write down the route as a string: E for a step east, N for a step north. From <InlineMath math="S" /> to <InlineMath math="Z" /> that is always six E and four N, only in a different order. **Counting routes between two crossings means choosing where the N steps go, a binomial coefficient**. For the routes through pharmacy <InlineMath math="A" /> you multiply the two halves:
+
+<BlockMath math="\begin{aligned}
+S\to A&:\ \tbinom{4}{2}=6,\qquad A\to Z:\ \tbinom{6}{2}=15\\
+6\cdot15&=90
+\end{aligned}" />
+
+# The closed street only hurts the routes through A
+
+A route through <InlineMath math="A" /> uses the closed section if it goes from <InlineMath math="A" /> straight east to <InlineMath math="(3\mid2)" />, which is one way only, then along the section, then from <InlineMath math="(4\mid2)" /> to <InlineMath math="Z" />. **Those routes must come off**:
+
+<BlockMath math="\begin{aligned}
+6\cdot1\cdot\tbinom{4}{2}&=6\cdot1\cdot6=36\\
+90-36&=54
+\end{aligned}" />
+
+<MathVisual
+  title={<>The courier's street grid</>}
+  description={<>The crossings from <InlineMath math="S(0\mid0)" /> to <InlineMath math="Z(6\mid4)" />, the pharmacies <InlineMath math="A" /> and <InlineMath math="B" /> and the closed section. Highlighted is an allowed route through <InlineMath math="A" /> that goes round the roadworks via <InlineMath math="(3\mid3)" />.</>}
+  labels={{
+    s: <><InlineMath math="S" /></>,
+    z: <><InlineMath math="Z" /></>,
+    a: <><InlineMath math="A" /></>,
+    b: <><InlineMath math="B" /></>,
+    closed: <>closed</>,
+    route: <>an allowed route</>,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -0.5, max: 6.5 },
+      y: { min: -0.5, max: 4.5 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "v0", kind: "segment", appearance: "reference", from: { x: 0, y: 0 }, to: { x: 0, y: 4 } },
+      { id: "v1", kind: "segment", appearance: "reference", from: { x: 1, y: 0 }, to: { x: 1, y: 4 } },
+      { id: "v2", kind: "segment", appearance: "reference", from: { x: 2, y: 0 }, to: { x: 2, y: 4 } },
+      { id: "v3", kind: "segment", appearance: "reference", from: { x: 3, y: 0 }, to: { x: 3, y: 4 } },
+      { id: "v4", kind: "segment", appearance: "reference", from: { x: 4, y: 0 }, to: { x: 4, y: 4 } },
+      { id: "v5", kind: "segment", appearance: "reference", from: { x: 5, y: 0 }, to: { x: 5, y: 4 } },
+      { id: "v6", kind: "segment", appearance: "reference", from: { x: 6, y: 0 }, to: { x: 6, y: 4 } },
+      { id: "h0", kind: "segment", appearance: "reference", from: { x: 0, y: 0 }, to: { x: 6, y: 0 } },
+      { id: "h1", kind: "segment", appearance: "reference", from: { x: 0, y: 1 }, to: { x: 6, y: 1 } },
+      { id: "h2", kind: "segment", appearance: "reference", from: { x: 0, y: 2 }, to: { x: 6, y: 2 } },
+      { id: "h3", kind: "segment", appearance: "reference", from: { x: 0, y: 3 }, to: { x: 6, y: 3 } },
+      { id: "h4", kind: "segment", appearance: "reference", from: { x: 0, y: 4 }, to: { x: 6, y: 4 } },
+      { id: "route", kind: "polyline", appearance: "answer", vertices: [{ x: 0, y: 0 }, { x: 2, y: 0 }, { x: 2, y: 2 }, { x: 3, y: 2 }, { x: 3, y: 3 }, { x: 6, y: 3 }, { x: 6, y: 4 }] },
+      { id: "closed", kind: "segment", appearance: "warning", from: { x: 3, y: 2 }, to: { x: 4, y: 2 } },
+      { id: "s", kind: "point", appearance: "highlight", at: { x: 0, y: 0 } },
+      { id: "z", kind: "point", appearance: "highlight", at: { x: 6, y: 4 } },
+      { id: "a", kind: "point", appearance: "primary", at: { x: 2, y: 2 } },
+      { id: "b", kind: "point", appearance: "primary", at: { x: 4, y: 1 } },
+    ],
+    labels: [
+      { key: "s", objectId: "s", at: { x: 0, y: 0 }, placement: "below-left" },
+      { key: "z", objectId: "z", at: { x: 6, y: 4 }, placement: "above-right" },
+      { key: "a", objectId: "a", at: { x: 2, y: 2 }, placement: "above-left" },
+      { key: "b", objectId: "b", at: { x: 4, y: 1 }, placement: "below-right" },
+      { key: "closed", objectId: "closed", at: { x: 3.5, y: 2 }, placement: "below" },
+      { key: "route", objectId: "route", at: { x: 4.5, y: 3 }, placement: "above" },
+    ],
+  }}
+/>
+
+# Pharmacy B and the overlap
+
+For <InlineMath math="B(4\mid1)" /> the same counting works. **No route passes both pharmacies, because after <InlineMath math="A" /> at height <InlineMath math="2" /> the courier can never come down to height <InlineMath math="1" /> at <InlineMath math="B" />, and before <InlineMath math="A" /> he would need <InlineMath math="x=4" /> and then <InlineMath math="x=2" />**. So nothing is counted twice. A route through <InlineMath math="B" /> reaches height <InlineMath math="2" /> only at <InlineMath math="x\ge4" />, so it never uses the closed section either:
+
+<BlockMath math="\begin{aligned}
+S\to B&:\ \tbinom{5}{1}=5,\qquad B\to Z:\ \tbinom{5}{2}=10\\
+54+5\cdot10&=104
+\end{aligned}" />
+
+The courier has <InlineMath math="104" /> different routes. Forgetting the roadworks gives <InlineMath math="140" />.

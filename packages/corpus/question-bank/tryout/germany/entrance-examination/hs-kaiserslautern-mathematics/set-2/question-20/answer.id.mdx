@@ -1,0 +1,44 @@
+# Yang berkurang setengah adalah selisihnya
+
+Teh panas tidak mendingin menuju nol, melainkan menuju suhu ruangan. **Jadi ikuti selisih <InlineMath math="\Delta" /> antara minuman dan ruangan, bukan suhunya sendiri**. Selisihnya mula-mula <InlineMath math="80" /> dan menjadi <InlineMath math="40" /> setelah sepuluh menit:
+
+<BlockMath math="\begin{aligned}
+\Delta(0)&=100-20=80\\
+\Delta(10)&=60-20=40=\tfrac12\cdot80
+\end{aligned}" />
+
+Selisih itu berkurang setengah setiap <InlineMath math="10" /> menit. Suhunya tidak berkurang setengah: <InlineMath math="100" /> menjadi <InlineMath math="60" />, bukan <InlineMath math="50" />.
+
+# Susu memulai kurva baru
+
+Menuang susu dingin ke cangkir seperti mencampur dua mangkuk air yang berbeda hangatnya: mangkuk yang lebih besar lebih berpengaruh. **Beri bobot setiap suhu dengan volumenya**:
+
+<BlockMath math="\begin{aligned}
+T_{\text{M}}&=\frac{300\cdot60+50\cdot4}{350}=\frac{18200}{350}=52\,^\circ\text{C}\\
+\Delta&=52-20=32
+\end{aligned}" />
+
+Rata-rata biasa dari <InlineMath math="60" /> dan <InlineMath math="4" /> akan memberi <InlineMath math="32\,^\circ\text{C}" /> dan mengabaikan bahwa tehnya enam kali lebih banyak.
+
+<Chart
+  title={<>Teh dengan dan tanpa susu</>}
+  description={<>Tanpa susu teh turun dari <InlineMath math="100" /> ke <InlineMath math="30\,^\circ\text{C}" /> dalam setengah jam. Dengan susu, pada menit <InlineMath math="10" /> suhunya melompat dari <InlineMath math="60" /> ke <InlineMath math="52\,^\circ\text{C}" /> dan mencapai <InlineMath math="36\,^\circ\text{C}" /> setelah <InlineMath math="20" /> menit.</>}
+  categories={["0 min", "5 min", "10 min", "15 min", "20 min", "25 min", "30 min"]}
+  series={[
+    { label: "tanpa susu", mark: "line", values: [100.0, 76.57, 60.0, 48.28, 40.0, 34.14, 30.0] },
+    { label: "dengan susu", mark: "line", values: [100.0, 76.57, 52.0, 42.63, 36.0, 31.31, 28.0] },
+  ]}
+  valueLabel="Suhu dalam °C"
+/>
+
+# Satu waktu paruh lagi
+
+Dari selisih baru <InlineMath math="32" />, pembagian dua yang sama berlanjut. **Target <InlineMath math="36\,^\circ\text{C}" /> berarti selisih <InlineMath math="16" />, tepat satu waktu paruh kemudian**:
+
+<BlockMath math="\begin{aligned}
+32\cdot\left(\tfrac12\right)^{s/10}&=36-20=16\\
+s&=10\text{ min}\\
+10+10&=20\text{ min}
+\end{aligned}" />
+
+Tanpa susu, minuman itu masih perlu sekitar <InlineMath math="13{,}2" /> menit dari <InlineMath math="60\,^\circ\text{C}" />, jadi susu menghemat waktu.

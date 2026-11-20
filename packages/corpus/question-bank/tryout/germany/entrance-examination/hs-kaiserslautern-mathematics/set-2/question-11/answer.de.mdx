@@ -1,0 +1,43 @@
+# Zwei Arten im selben Takt
+
+Ein Ballon verliert alle zwei Monate die Hälfte seiner Luft, ein anderer verdoppelt sich in derselben Zeit. Beide Änderungen laufen im selben Takt, der Potenz <InlineMath math="2^{t/2}" /> mit <InlineMath math="t" /> in Monaten. **Die Rotfedern schrumpfen mit <InlineMath math="2^{-t/2}" />, die Sonnenbarsche wachsen mit <InlineMath math="2^{t/2}" />**:
+
+<BlockMath math="\begin{aligned}
+R(t)&=800\cdot2^{-t/2}\\
+S(t)&=100\cdot2^{t/2}
+\end{aligned}" />
+
+# Ein neuer Buchstabe ergibt eine quadratische Gleichung
+
+Wegen <InlineMath math="2^{-t/2}=\frac{1}{2^{t/2}}" /> hängt alles an der einen Zahl <InlineMath math="u=2^{t/2}" />, und die ist immer positiv. **Schreib <InlineMath math="R+S=600" /> mit <InlineMath math="u" /> und multipliziere mit <InlineMath math="u" />**:
+
+<BlockMath math="\begin{aligned}
+\frac{800}{u}+100u&=600\\
+100u^2-600u+800&=0\\
+u^2-6u+8&=0\\
+(u-2)(u-4)&=0
+\end{aligned}" />
+
+Beide Lösungen sind positiv, also beides echte Zeitpunkte. Zurück von <InlineMath math="u" /> zu den Monaten:
+
+<BlockMath math="\begin{aligned}
+2^{t/2}=2&\ \Rightarrow\ t=2\\
+2^{t/2}=4&\ \Rightarrow\ t=4\\
+S(4)&=100\cdot4=400
+\end{aligned}" />
+
+# Der zweite Zeitpunkt, nicht der erste
+
+Nach <InlineMath math="2" /> Monaten gibt es <InlineMath math="400" /> Rotfedern und <InlineMath math="200" /> Sonnenbarsche, die Gesamtzahl fällt noch. Zwischen beiden Zeitpunkten sinkt sie unter <InlineMath math="600" />, und **nach <InlineMath math="4" /> Monaten erreicht sie wieder <InlineMath math="600" /> mit <InlineMath math="200" /> Rotfedern und <InlineMath math="400" /> Sonnenbarschen**. Der erste Zeitpunkt würde <InlineMath math="200" /> Sonnenbarsche liefern.
+
+<Chart
+  title={<>Die beiden Arten und ihre Summe</>}
+  description={<>Die Rotfedern halbieren sich, die Sonnenbarsche verdoppeln sich alle <InlineMath math="2" /> Monate. Die Gesamtzahl fällt von <InlineMath math="900" />, ist nach <InlineMath math="2" /> Monaten zum ersten Mal <InlineMath math="600" /> und nach <InlineMath math="4" /> Monaten zum zweiten Mal.</>}
+  categories={["0 Mon.", "1 Mon.", "2 Mon.", "3 Mon.", "4 Mon.", "5 Mon.", "6 Mon.", "7 Mon.", "8 Mon."]}
+  series={[
+    { label: "Rotfedern", mark: "line", values: [800.0, 565.69, 400.0, 282.84, 200.0, 141.42, 100.0, 70.71, 50.0] },
+    { label: "Sonnenbarsche", mark: "line", values: [100.0, 141.42, 200.0, 282.84, 400.0, 565.69, 800.0, 1131.37, 1600.0] },
+    { label: "alle Fische", mark: "line", values: [900.0, 707.11, 600.0, 565.68, 600.0, 707.11, 900.0, 1202.08, 1650.0] },
+  ]}
+  valueLabel="Anzahl"
+/>

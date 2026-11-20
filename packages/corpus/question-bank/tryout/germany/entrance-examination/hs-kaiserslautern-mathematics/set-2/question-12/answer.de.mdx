@@ -1,0 +1,47 @@
+# Welches Hemd gratis ist, hängt vom dritten Preis ab
+
+Aktion A ist wie ein Freund, der dir den billigsten Artikel aus deiner Tüte bezahlt. Welcher das ist, weiß niemand, bevor du das dritte Hemd aussuchst. **Vergleiche die Ersparnisse, nicht die Rechnungen**:
+
+<BlockMath math="\begin{aligned}
+E_{\text{A}}&=\text{Preis des günstigsten Hemdes}\\
+E_{\text{B}}&=0{,}2\,(95+x)=19+0{,}2x
+\end{aligned}" />
+
+# Ein billiges drittes Hemd
+
+Ist <InlineMath math="x\le45" />, dann ist das dritte Hemd selbst das Gratishemd. **A spart dann nur <InlineMath math="x" />, und ein sehr billiges Hemd macht A schlechter als <InlineMath math="20\,\%" /> auf alles**:
+
+<BlockMath math="\begin{aligned}
+x&\ge19+0{,}2x\\
+0{,}8x&\ge19\\
+x&\ge23{,}75
+\end{aligned}" />
+
+In diesem Fall hält A also von <InlineMath math="23{,}75\text{ €}" /> bis <InlineMath math="45\text{ €}" /> mit. Wer annimmt, das Hemd für <InlineMath math="45\text{ €}" /> sei immer gratis, übersieht diese untere Grenze völlig.
+
+# Ein teures drittes Hemd
+
+Ist <InlineMath math="x\ge45" />, ist das Hemd für <InlineMath math="45\text{ €}" /> gratis, und A spart fest <InlineMath math="45\text{ €}" />, während B mit dem Preis weiter wächst. **A bleibt nur bis hierhin mindestens so gut**:
+
+<BlockMath math="\begin{aligned}
+45&\ge19+0{,}2x\\
+0{,}2x&\le26\\
+x&\le130
+\end{aligned}" />
+
+<Chart
+  title={<>Die Ersparnis bei beiden Aktionen</>}
+  description={<>Aktion A spart den Preis des günstigsten Hemdes, höchstens <InlineMath math="45\text{ €}" />. Aktion B spart <InlineMath math="0{,}2\,(95+x)" />. Zwischen <InlineMath math="x=23{,}75" /> und <InlineMath math="x=130" /> liegt A oben oder gleichauf.</>}
+  categories={["0 €", "10 €", "20 €", "30 €", "40 €", "50 €", "60 €", "70 €", "80 €", "90 €", "100 €", "110 €", "120 €", "130 €", "140 €", "150 €", "160 €"]}
+  series={[
+    { label: "Aktion A", mark: "line", values: [0.0, 10.0, 20.0, 30.0, 40.0, 45.0, 45.0, 45.0, 45.0, 45.0, 45.0, 45.0, 45.0, 45.0, 45.0, 45.0, 45.0] },
+    { label: "Aktion B", mark: "line", values: [19.0, 21.0, 23.0, 25.0, 27.0, 29.0, 31.0, 33.0, 35.0, 37.0, 39.0, 41.0, 43.0, 45.0, 47.0, 49.0, 51.0] },
+  ]}
+  valueLabel="Ersparnis in €"
+/>
+
+Beide Fälle schließen bei <InlineMath math="45\text{ €}" /> aneinander an, zu einem Bereich von <InlineMath math="23{,}75\text{ €}" /> bis <InlineMath math="130\text{ €}" />:
+
+<BlockMath math="\begin{aligned}
+130-23{,}75&=106{,}25
+\end{aligned}" />

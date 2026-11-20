@@ -1,0 +1,72 @@
+# Wie viel Platz ein Meter Kabel braucht
+
+Denk an eine Rolle Klebeband: Die äußeren Windungen sind viel länger als die inneren, deshalb steckt in einem Millimeter Dicke außen viel mehr Band. **Darum richtet sich die Länge nach der Ringfläche <InlineMath math="\pi\left(R^2-r^2\right)" /> und nicht nach dem Radius**. Fasse <InlineMath math="\pi" /> und alles, was das dünne Kabel betrifft, in einer Konstanten <InlineMath math="k" /> zusammen und miss die Radien in cm. Voll ist <InlineMath math="R=30" /> und <InlineMath math="L=40" />, nach dem Abwickeln <InlineMath math="R=20" /> und <InlineMath math="L=15" />:
+
+<BlockMath math="\begin{aligned}
+L&=k\left(R^2-r^2\right)\\
+40&=k\left(900-r^2\right)\\
+15&=k\left(400-r^2\right)
+\end{aligned}" />
+
+Ziehst du die beiden Zeilen voneinander ab, fällt der unbekannte Kern heraus. Die abgewickelten <InlineMath math="25\text{ m}" /> lagen genau im Ring zwischen <InlineMath math="20" /> und <InlineMath math="30\text{ cm}" />:
+
+<BlockMath math="\begin{aligned}
+40-15&=k\left(900-400\right)\\
+25&=500k,\qquad k=0{,}05
+\end{aligned}" />
+
+# Der Kern, den der Text verschweigt
+
+Um eine leere Trommel zu füllen, musst du wissen, wo die Wicklung beginnt. **Setzt du <InlineMath math="k=0{,}05" /> in den vollen Zustand ein, zeigt sich der Kernradius**:
+
+<BlockMath math="\begin{aligned}
+40&=0{,}05\left(900-r^2\right)\\
+900-r^2&=800\\
+r^2&=100,\qquad r=10
+\end{aligned}" />
+
+Der Kern ist also <InlineMath math="20\text{ cm}" /> dick. Ließest du das Kabel an der Achse beginnen, hättest du <InlineMath math="R^2-r^2=1225" /> statt <InlineMath math="1125" />, also mehr Platz, als die Trommel hat.
+
+<MathVisual
+  title={<>Vom Kern bis zum Rand</>}
+  description={<>Der Kern hat den Radius <InlineMath math="10\text{ cm}" />. Im Ring zwischen <InlineMath math="20" /> und <InlineMath math="30\text{ cm}" /> lagen die abgewickelten <InlineMath math="25\text{ m}" /> des dünnen Kabels. Der ganze Ring vom Kern bis zum Rand bei <InlineMath math="35\text{ cm}" /> nimmt <InlineMath math="36\text{ m}" /> des dickeren Kabels auf.</>}
+  labels={{
+    core: <>Kern</>,
+    mid: <><InlineMath math="R=20" /></>,
+    full: <><InlineMath math="R=30" /></>,
+    rim: <>Rand</>,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -38, max: 38 },
+      y: { min: -38, max: 38 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "rim", kind: "circle", appearance: "answer", center: { x: 0, y: 0 }, radius: 35 },
+      { id: "full", kind: "circle", appearance: "construction", center: { x: 0, y: 0 }, radius: 30 },
+      { id: "mid", kind: "circle", appearance: "construction", center: { x: 0, y: 0 }, radius: 20 },
+      { id: "core", kind: "circle", appearance: "reference", center: { x: 0, y: 0 }, radius: 10 },
+    ],
+    labels: [
+      { key: "core", objectId: "core", at: { x: 0, y: 0 }, placement: "center" },
+      { key: "mid", objectId: "mid", at: { x: 20, y: 0 }, placement: "left" },
+      { key: "full", objectId: "full", at: { x: 30, y: 0 }, placement: "left" },
+      { key: "rim", objectId: "rim", at: { x: 0, y: -35 }, placement: "below" },
+    ],
+  }}
+/>
+
+# Ein dickeres Kabel füllt den Ring schneller
+
+Denk an Nudeln in einem Glas: Dicke Spaghetti füllen es mit weniger Stangen. **Ist der Durchmesser <InlineMath math="1{,}25" />-mal so groß, braucht jeder Meter <InlineMath math="1{,}25^2=1{,}5625" />-mal so viel Platz, also wird die Konstante um diesen Faktor kleiner**. Vom Kern bei <InlineMath math="r=10" /> bis zum Rand bei <InlineMath math="R=35" />:
+
+<BlockMath math="\begin{aligned}
+k_2&=\frac{0{,}05}{1{,}25^2}=\frac{0{,}05}{1{,}5625}=0{,}032\\
+L_2&=0{,}032\cdot\left(35^2-10^2\right)\\
+&=0{,}032\cdot1125=36\text{ m}
+\end{aligned}" />
+
+Auf die Trommel passen also höchstens <InlineMath math="36\text{ m}" /> des dickeren Kabels. Wer nur durch <InlineMath math="1{,}25" /> teilt, als wüchse der Platz mit dem Durchmesser selbst, kommt auf <InlineMath math="45\text{ m}" />, und vom dünnen Kabel hätten <InlineMath math="56{,}25\text{ m}" /> gepasst.

@@ -1,0 +1,72 @@
+# Wie hoch die Decke an jeder Stelle ist
+
+Geh von einer Außenwand zur Mitte, dann steigt die schräge Decke über dir an wie eine Rampe. Sei <InlineMath math="u" /> dein Abstand von der Wand. **Mit jedem Meter steigt das Dach um gleich viel, die Höhen wachsen also im Verhältnis des Strahlensatzes**:
+
+<BlockMath math="\begin{aligned}
+\frac{h-0{,}5}{u}&=\frac{4{,}5-0{,}5}{5}=0{,}8\\
+h(u)&=0{,}5+0{,}8u
+\end{aligned}" />
+
+Das Dach beginnt in <InlineMath math="0{,}5\text{ m}" /> Höhe auf dem Kniestock, nicht am Boden. Wer es von der Bodenecke aus zeichnet, bekommt ein flacheres Dach und falsche Zonengrenzen.
+
+# Wo die Zählregeln wechseln
+
+Die Regel zieht zwei unsichtbare Linien in <InlineMath math="1\text{ m}" /> und <InlineMath math="2\text{ m}" /> Höhe. **Bestimme, wo die Decke jede dieser Linien schneidet**:
+
+<BlockMath math="\begin{aligned}
+0{,}5+0{,}8u_1&=1\ \Rightarrow\ u_1=0{,}625\text{ m}\\
+0{,}5+0{,}8u_2&=2\ \Rightarrow\ u_2=1{,}875\text{ m}
+\end{aligned}" />
+
+<MathVisual
+  title={<>Der Querschnitt und die drei Zonen</>}
+  description={<>Das Dach steigt vom Kniestock in <InlineMath math="0{,}5\text{ m}" /> Höhe auf <InlineMath math="5\text{ m}" /> Breite um <InlineMath math="4\text{ m}" />. Die Höhe <InlineMath math="1\text{ m}" /> wird <InlineMath math="0{,}625\text{ m}" /> von der Wand erreicht, die Höhe <InlineMath math="2\text{ m}" /> nach <InlineMath math="1{,}875\text{ m}" />. Am Boden zählt der äußerste Streifen nicht, der nächste halb und die Mitte voll.</>}
+  labels={{
+    none: <>zählt nicht</>,
+    half: <>zählt halb</>,
+    full: <>zählt voll</>,
+    roof: <>Dach</>,
+    one: <><InlineMath math="1\text{ m}" /></>,
+    two: <><InlineMath math="2\text{ m}" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -0.5, max: 10.5 },
+      y: { min: -1, max: 5 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "floor", kind: "segment", appearance: "reference", from: { x: 0, y: 0 }, to: { x: 10, y: 0 } },
+      { id: "roof", kind: "polyline", appearance: "primary", vertices: [{ x: 0, y: 0 }, { x: 0, y: 0.5 }, { x: 5, y: 4.5 }, { x: 10, y: 0.5 }, { x: 10, y: 0 }] },
+      { id: "one", kind: "segment", appearance: "construction", from: { x: 0.625, y: 1 }, to: { x: 9.375, y: 1 } },
+      { id: "two", kind: "segment", appearance: "construction", from: { x: 1.875, y: 2 }, to: { x: 8.125, y: 2 } },
+      { id: "none", kind: "segment", appearance: "warning", from: { x: 0, y: -0.3 }, to: { x: 0.625, y: -0.3 } },
+      { id: "none2", kind: "segment", appearance: "warning", from: { x: 9.375, y: -0.3 }, to: { x: 10, y: -0.3 } },
+      { id: "half", kind: "segment", appearance: "secondary", from: { x: 0.625, y: -0.3 }, to: { x: 1.875, y: -0.3 } },
+      { id: "half2", kind: "segment", appearance: "secondary", from: { x: 8.125, y: -0.3 }, to: { x: 9.375, y: -0.3 } },
+      { id: "full", kind: "segment", appearance: "answer", from: { x: 1.875, y: -0.3 }, to: { x: 8.125, y: -0.3 } },
+    ],
+    labels: [
+      { key: "roof", objectId: "roof", at: { x: 3, y: 2.9 }, placement: "above-left" },
+      { key: "one", objectId: "one", at: { x: 5, y: 1 }, placement: "above" },
+      { key: "two", objectId: "two", at: { x: 5, y: 2 }, placement: "above" },
+      { key: "none", objectId: "none", at: { x: 0.3, y: -0.3 }, placement: "below" },
+      { key: "half", objectId: "half", at: { x: 1.25, y: -0.3 }, placement: "below-right" },
+      { key: "full", objectId: "full", at: { x: 5, y: -0.3 }, placement: "below" },
+    ],
+  }}
+/>
+
+# Die Streifen gewichten
+
+Auf jeder Seite zählen die ersten <InlineMath math="0{,}625\text{ m}" /> gar nicht und die nächsten <InlineMath math="1{,}25\text{ m}" /> zur Hälfte. Die Mitte zählt voll. **Addiere die Breiten mit ihren Gewichten und multipliziere mit der Länge**:
+
+<BlockMath math="\begin{aligned}
+b_{\text{voll}}&=10-2\cdot1{,}875=6{,}25\text{ m}\\
+b_{\text{halb}}&=2\cdot(1{,}875-0{,}625)=2{,}5\text{ m}\\
+A&=\left(6{,}25+\tfrac12\cdot2{,}5\right)\cdot8=60\text{ m}^2
+\end{aligned}" />
+
+Von <InlineMath math="80\text{ m}^2" /> Fußboden zählen <InlineMath math="60\text{ m}^2" /> als Wohnfläche.

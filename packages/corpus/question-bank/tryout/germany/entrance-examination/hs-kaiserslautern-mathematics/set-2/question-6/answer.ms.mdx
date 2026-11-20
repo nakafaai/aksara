@@ -1,0 +1,64 @@
+# Sudut di tempat renjer berdiri
+
+Namakan pangkal batang <InlineMath math="T" /> dan puncaknya <InlineMath math="S" />. Cerun itu seperti tanjakan yang naik <InlineMath math="30^\circ" />, manakala pandangan renjer naik <InlineMath math="60^\circ" />. **Jadi di antara cerun dan garis pandangan hanya tinggal <InlineMath math="30^\circ" />**. Di <InlineMath math="T" /> batang menghala tegak ke atas, <InlineMath math="90^\circ" /> di atas garis ufuk, manakala cerun kembali ke <InlineMath math="F" /> menghala <InlineMath math="30^\circ" /> di bawahnya:
+
+<BlockMath math="\begin{aligned}
+\angle TFS&=60^\circ-30^\circ=30^\circ\\
+\angle FTS&=90^\circ+30^\circ=120^\circ\\
+\angle FST&=180^\circ-30^\circ-120^\circ=30^\circ
+\end{aligned}" />
+
+# Dua sudut sama, dua sisi sama
+
+Segi tiga dengan dua sudut yang sama ialah segi tiga sama kaki: sisi bertentangan dengan sudut itu sama panjang. **Sudut di <InlineMath math="F" /> dan di <InlineMath math="S" /> kedua-duanya <InlineMath math="30^\circ" />, maka batang <InlineMath math="TS" /> sama panjang dengan <InlineMath math="FT" />, iaitu <InlineMath math="24\text{ m}" />**. Segi tiga bersudut tegak dengan <InlineMath math="24\text{ m}" /> dibaringkan di tanah rata mengabaikan cerun yang naik dan menjadikan pokok itu terlalu tinggi.
+
+# Sudut tegak di cerun
+
+Matahari berada di belakang renjer, jadi sinarnya turun pada <InlineMath math="60^\circ" /> dan bergerak ke atas cerun. Biar <InlineMath math="P" /> hujung bayang. **Di <InlineMath math="P" />, sinar yang <InlineMath math="60^\circ" /> di atas garis ufuk ke arah matahari dan cerun yang <InlineMath math="30^\circ" /> di bawahnya ke arah <InlineMath math="T" /> menjadikan tepat <InlineMath math="90^\circ" />**. Di <InlineMath math="T" /> batang dan cerun ke atas mengapit <InlineMath math="60^\circ" />:
+
+<BlockMath math="\begin{aligned}
+\angle STP&=90^\circ-30^\circ=60^\circ\\
+\angle TPS&=60^\circ+30^\circ=90^\circ\\
+\overline{TP}&=\overline{TS}\cdot\cos60^\circ=24\cdot\tfrac12=12\text{ m}
+\end{aligned}" />
+
+<MathVisual
+  title={<>Pokok cemara, garis pandangan dan bayang di cerun</>}
+  description={<>Cerun naik pada sudut <InlineMath math="30^\circ" />. Segi tiga daripada <InlineMath math="F" />, pangkal batang dan puncak mempunyai dua sudut <InlineMath math="30^\circ" />, jadi pokok itu setinggi <InlineMath math="24\text{ m}" />. Sinar matahari mengenai cerun pada sudut tegak, dan bayangnya <InlineMath math="12\text{ m}" />.</>}
+  labels={{
+    f: <><InlineMath math="F" /></>,
+    slope: <>cerun</>,
+    tree: <>pokok cemara</>,
+    sight: <>garis pandangan</>,
+    ray: <>sinar matahari</>,
+    shadow: <>bayang</>,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -4, max: 40 },
+      y: { min: -4, max: 40 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "slope", kind: "segment", appearance: "reference", from: { x: 0, y: 0 }, to: { x: 34.64, y: 20 } },
+      { id: "ground", kind: "segment", appearance: "construction", from: { x: -4, y: 0 }, to: { x: 14, y: 0 } },
+      { id: "tree", kind: "segment", appearance: "primary", from: { x: 20.78, y: 12 }, to: { x: 20.78, y: 36 } },
+      { id: "sight", kind: "segment", appearance: "construction", from: { x: 0, y: 0 }, to: { x: 20.78, y: 36 } },
+      { id: "ray", kind: "segment", appearance: "secondary", from: { x: 20.78, y: 36 }, to: { x: 31.18, y: 18 } },
+      { id: "shadow", kind: "segment", appearance: "answer", from: { x: 20.78, y: 12 }, to: { x: 31.18, y: 18 } },
+      { id: "f", kind: "point", appearance: "highlight", at: { x: 0, y: 0 } },
+    ],
+    labels: [
+      { key: "f", objectId: "f", at: { x: 0, y: 0 }, placement: "below-left" },
+      { key: "slope", objectId: "slope", at: { x: 31.18, y: 18 }, placement: "below-right" },
+      { key: "tree", objectId: "tree", at: { x: 20.78, y: 28 }, placement: "left" },
+      { key: "sight", objectId: "sight", at: { x: 10.39, y: 18 }, placement: "left" },
+      { key: "ray", objectId: "ray", at: { x: 25.98, y: 27 }, placement: "right" },
+      { key: "shadow", objectId: "shadow", at: { x: 25.98, y: 15 }, placement: "below-right" },
+    ],
+  }}
+/>
+
+Di tanah rata, pokok yang sama akan memberi bayang <InlineMath math="\frac{24}{\tan60^\circ}\approx13.9\text{ m}" />. Cerun yang naik menangkap bayang itu lebih awal, selepas <InlineMath math="12\text{ m}" />.
