@@ -144,33 +144,43 @@ publishes once Nakafa's production renderer draws it.
   a visual. Longer localized text must not clip, overlap, obscure data, or
   detach from the representation it explains.
 
+## The card header and footer talk like a teacher
+
+A card's title, description and footer talk like a warm teacher showing the
+picture to one student: informal, plain words, short sentences. Say each idea
+so simply first that a young child could follow it, then give the term and the
+notation. Accuracy never drops. The voice gate checks this text like any other
+learning text.
+
 ## The card footer
 
 Every visual card ends with a footer its author writes for that one visual:
 `footer={<>...</>}` beside `title` and `description`, rich text with
 `<InlineMath />` where it holds math, at most 90 visible characters, so it
-reads in one or two lines on a phone. It says what this visual shows and what
-to notice in it, in the voice of the lesson. The footer is never generated
-and never a template: two figures never share a footer sentence, and a
-revised figure gets a footer that names what changed. Live readouts may sit
-beside it; the written sentence is the part every card keeps.
+reads in one or two lines on a phone. It tells the student what to look at in
+this visual and what it means. The footer is never generated and never a
+template: two figures never share a footer sentence, and a revised figure gets
+a footer that names what changed. Live readouts may sit beside it; the written
+sentence is the part every card keeps.
 
-Good footers name a feature of this figure and what it means:
+Good footers point at something in this figure, in plain words first:
 
-- `Both edges are dashed: the corner (2, 1) is not a solution.`
-- `Follow the pink line: it keeps its height after the water cools.`
-- `Each dot is one way to spend the budget; the shading keeps the cheaper ones.`
+- `See the dashed edges? Points on them don't count, so the corner (2, 1) is out.`
+- `Follow the pink line: the water stays just as high after it cools down.`
+- `Each dot is one way to spend the money. The shaded dots are the cheaper ones.`
 
-Bad footers say nothing about this figure, repeat its header, or give away an
-answer:
+Bad footers say nothing about this figure, repeat its header, sound like a
+textbook, or give away an answer:
 
-- `This graph shows the function.` It names no feature of the figure.
+- `This graph shows the function.` It points at nothing in the figure.
 - `A quadratic function and its vertex.` It repeats the title.
+- `The boundary is excluded from the solution set.` It is formal and gives the
+  term before the plain idea; say what the dashes mean first.
 - `The answer is the shaded point (15, 15).` In a prompt, a reading or an
   option a footer tells how to read the figure, never its result.
 
-Write the footer in every locale as its own sentence in that language, with
-the same plain-number and math rules as the header.
+Write the footer in every locale as its own sentence in that language, in the
+same teacher voice, with the same plain-number and math rules as the header.
 
 ## Math in visual text
 
