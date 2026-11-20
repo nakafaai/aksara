@@ -13,23 +13,24 @@ const item: ItemSource = {
       options: [
         {
           correct: false,
-          label: "mencukupi",
+          label: "Bekal air minum untuk pendakian itu sudah *mencukupi*.",
         },
         {
           correct: true,
-          label: "kurang",
+          label:
+            "Jumlah tenaga medis di pulau itu masih *kurang* dibandingkan jumlah penduduknya.",
         },
         {
           correct: false,
-          label: "banyak",
+          label: "*Banyak* warga hadir dalam rapat RT semalam.",
         },
         {
           correct: false,
-          label: "tepat",
+          label: "Jawaban siswa itu *tepat* sesuai dengan pertanyaan guru.",
         },
         {
           correct: false,
-          label: "layak",
+          label: "Rumah bekas banjir itu kini sudah *layak* dihuni.",
         },
       ],
     },

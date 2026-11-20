@@ -19,6 +19,12 @@ describe("SNBT readiness", () => {
               label: "Paparan Informasi SNPMB 2026",
               retrievedAt: "2026-08-30",
             },
+            {
+              key: "snpmb-framework",
+              label: "Framework UTBK SNBT 2026",
+              retrievedAt: "2026-11-20",
+              url: "https://snpmb.id/fr/",
+            },
           ],
           examKey: "snbt",
           trackKey: "2027",
@@ -77,6 +83,17 @@ describe("SNBT readiness", () => {
             timeLimitSeconds: 2550,
           },
         ]);
+        expect(
+          Arr.map(readiness.sections, ({ questionCount, timeLimitSeconds }) => [
+            questionCount.provenance,
+            timeLimitSeconds.provenance,
+          ])
+        ).toEqual(
+          Arr.map(readiness.sections, () => [
+            { evidenceKey: "snpmb-2026", kind: "official" },
+            { evidenceKey: "snpmb-framework", kind: "official" },
+          ])
+        );
         expect(
           Arr.reduce(
             readiness.sections,

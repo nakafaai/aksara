@@ -13,23 +13,27 @@ const item: ItemSource = {
       options: [
         {
           correct: false,
-          label: "kuno",
+          label:
+            "Perahu nelayan di kampung itu masih dibuat dengan cara yang *kuno*.",
         },
         {
           correct: true,
-          label: "modern",
+          label:
+            "Galangan di Surabaya membangun kapal baja dengan teknologi *modern*.",
         },
         {
           correct: false,
-          label: "adat",
+          label:
+            "Peluncuran kapal baru di Tanah Beru selalu diawali upacara *adat*.",
         },
         {
           correct: false,
-          label: "lokal",
+          label: "Kain tenun itu dipasarkan sebagai produk *lokal* unggulan.",
         },
         {
           correct: false,
-          label: "klasik",
+          label:
+            "Tukang kayu itu memakai alat *sederhana* untuk menghaluskan papan.",
         },
       ],
     },
