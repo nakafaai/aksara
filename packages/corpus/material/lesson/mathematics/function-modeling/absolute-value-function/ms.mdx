@@ -86,7 +86,7 @@ Berikut ialah visualisasi **fungsi nilai mutlak** yang asas:
     frame: { kind: "cartesian", x: { min: -7.5, max: 7.5 }, y: { min: -1, max: 7 } },
     view: { kind: "fit", padding: 0.2 },
     objects: [
-      { id: "s1", kind: "parametric", x: "(t - 6)", y: "abs((t - 6))", parameter: { min: 0, max: 12 }, appearance: "primary" },
+      { id: "s1", kind: "function", formula: "abs(x)", domain: { min: -6, max: 6 }, appearance: "primary" },
     ],
     labels: [
       { key: "l1", objectId: "s1", at: { x: 4, y: 4 }, placement: "below-left" },
@@ -127,9 +127,9 @@ Fungsi <InlineMath math="f(x) = |x| + k" /> **mengalihkan graf ke atas** (jika <
     frame: { kind: "cartesian", x: { min: -7.5, max: 7.5 }, y: { min: -3, max: 9 } },
     view: { kind: "fit", padding: 0.2 },
     objects: [
-      { id: "s1", kind: "parametric", x: "(t - 6)", y: "abs((t - 6))", parameter: { min: 0, max: 12 }, appearance: "primary" },
-      { id: "s2", kind: "parametric", x: "(t - 6)", y: "(abs((t - 6)) + 2)", parameter: { min: 0, max: 12 }, appearance: "secondary" },
-      { id: "s3", kind: "parametric", x: "(t - 6)", y: "(abs((t - 6)) - 2)", parameter: { min: 0, max: 12 }, appearance: "answer" },
+      { id: "s1", kind: "function", formula: "abs(x)", domain: { min: -6, max: 6 }, appearance: "primary" },
+      { id: "s2", kind: "function", formula: "(abs(x) + 2)", domain: { min: -6, max: 6 }, appearance: "secondary" },
+      { id: "s3", kind: "function", formula: "(abs(x) - 2)", domain: { min: -6, max: 6 }, appearance: "answer" },
     ],
     labels: [
       { key: "l1", objectId: "s1", at: { x: 2, y: 2 }, placement: "above-right" },
@@ -162,9 +162,9 @@ Fungsi <InlineMath math="f(x) = |x - h|" /> **mengalihkan graf ke kanan** (jika 
     frame: { kind: "cartesian", x: { min: -7.5, max: 7.5 }, y: { min: -1, max: 10 } },
     view: { kind: "fit", padding: 0.2 },
     objects: [
-      { id: "s1", kind: "parametric", x: "(t - 6)", y: "abs((t - 6))", parameter: { min: 0, max: 12 }, appearance: "primary" },
-      { id: "s2", kind: "parametric", x: "(t - 6)", y: "abs(((t - 6) - 3))", parameter: { min: 0, max: 12 }, appearance: "secondary" },
-      { id: "s3", kind: "parametric", x: "(t - 6)", y: "abs(((t - 6) + 3))", parameter: { min: 0, max: 12 }, appearance: "answer" },
+      { id: "s1", kind: "function", formula: "abs(x)", domain: { min: -6, max: 6 }, appearance: "primary" },
+      { id: "s2", kind: "function", formula: "abs((x - 3))", domain: { min: -6, max: 6 }, appearance: "secondary" },
+      { id: "s3", kind: "function", formula: "abs((x + 3))", domain: { min: -6, max: 6 }, appearance: "answer" },
     ],
     labels: [
       { key: "l1", objectId: "s1", at: { x: 2, y: 2 }, placement: "below-left" },
@@ -202,9 +202,9 @@ Perbandingan berikut menunjukkan perubahan-perubahan ini:
     frame: { kind: "cartesian", x: { min: -7.5, max: 7.5 }, y: { min: -1.5, max: 13.5 } },
     view: { kind: "fit", padding: 0.2 },
     objects: [
-      { id: "s1", kind: "parametric", x: "(t - 6)", y: "abs((t - 6))", parameter: { min: 0, max: 12 }, appearance: "primary" },
-      { id: "s2", kind: "parametric", x: "(t - 6)", y: "(2 * abs((t - 6)))", parameter: { min: 0, max: 12 }, appearance: "secondary" },
-      { id: "s3", kind: "parametric", x: "(t - 6)", y: "(0.5 * abs((t - 6)))", parameter: { min: 0, max: 12 }, appearance: "answer" },
+      { id: "s1", kind: "function", formula: "abs(x)", domain: { min: -6, max: 6 }, appearance: "primary" },
+      { id: "s2", kind: "function", formula: "(2 * abs(x))", domain: { min: -6, max: 6 }, appearance: "secondary" },
+      { id: "s3", kind: "function", formula: "(0.5 * abs(x))", domain: { min: -6, max: 6 }, appearance: "answer" },
     ],
     labels: [
       { key: "l1", objectId: "s1", at: { x: 2, y: 2 }, placement: "below-left" },

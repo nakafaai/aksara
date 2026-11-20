@@ -256,7 +256,7 @@ Combine two comparisons on points <InlineMath math="(x,y)" /> with <InlineMath m
 
 <MathVisual
   title={<><code>and</code> and <code>or</code> as regions</>}
-  description={<>The violet line is <InlineMath math="x=1" /> and the orange line is <InlineMath math="y=3" />. The magenta rectangle is where <InlineMath math="x>1" /> and <InlineMath math="y<3" /> both hold. The teal L-shaped region is where at least one comparison holds.</>}
+  description={<>The violet line is <InlineMath math="x=1" /> and the orange line is <InlineMath math="y=3" />, both dashed because the points on them do not satisfy <InlineMath math="x>1" /> or <InlineMath math="y<3" /> themselves. Inside the square <InlineMath math="0\le x\le5" />, <InlineMath math="0\le y\le5" />, the magenta rectangle is where <InlineMath math="x>1" /> and <InlineMath math="y<3" /> both hold, and the teal L-shaped region is where at least one comparison holds.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -0.5, max: 5.5 }, y: { min: -0.5, max: 5.5 } },
@@ -264,8 +264,10 @@ Combine two comparisons on points <InlineMath math="(x,y)" /> with <InlineMath m
     objects: [
       { id: "either", kind: "polygon", vertices: [{ x: 0, y: 0 }, { x: 5, y: 0 }, { x: 5, y: 5 }, { x: 1, y: 5 }, { x: 1, y: 3 }, { x: 0, y: 3 }], appearance: "construction" },
       { id: "both", kind: "polygon", vertices: [{ x: 1, y: 0 }, { x: 5, y: 0 }, { x: 5, y: 3 }, { x: 1, y: 3 }], appearance: "answer" },
-      { id: "first", kind: "line", through: [{ x: 1, y: 0 }, { x: 1, y: 5 }], appearance: "secondary" },
-      { id: "second", kind: "line", through: [{ x: 0, y: 3 }, { x: 5, y: 3 }], appearance: "primary" },
+      { id: "first", kind: "line", through: [{ x: 1, y: 0 }, { x: 1, y: 5 }], appearance: "secondary", stroke: "dashed" },
+      { id: "second", kind: "line", through: [{ x: 0, y: 3 }, { x: 5, y: 3 }], appearance: "primary", stroke: "dashed" },
+      { id: "right", kind: "segment", from: { x: 5, y: 0 }, to: { x: 5, y: 5 }, appearance: "reference" },
+      { id: "top", kind: "segment", from: { x: 0, y: 5 }, to: { x: 5, y: 5 }, appearance: "reference" },
     ],
   }}
 />

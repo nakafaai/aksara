@@ -122,7 +122,7 @@ Apabila menggabungkan graf, kekalkan **input yang sama**. Tambah atau tolak nila
       frame: { kind: "cartesian", x: { min: -2.5, max: 2.5 }, y: { min: -1.5, max: 3.5 } },
       view: { kind: "fit", padding: 0.2 },
       objects: [
-        { id: "s1", kind: "parametric", x: "((-2) + (t * 0.02))", y: "(((-2) + (t * 0.02)) + 1)", parameter: { min: 0, max: 200 }, appearance: "primary" },
+        { id: "s1", kind: "function", formula: "(x + 1)", domain: { min: -2, max: 2 }, appearance: "primary" },
       ],
     }}
   />
@@ -138,7 +138,7 @@ Apabila menggabungkan graf, kekalkan **input yang sama**. Tambah atau tolak nila
       frame: { kind: "cartesian", x: { min: -2.5, max: 2.5 }, y: { min: -1.5, max: 1.5 } },
       view: { kind: "fit", padding: 0.2 },
       objects: [
-        { id: "s1", kind: "parametric", x: "((-2) + (t * 0.02))", y: "(((0.5 * (((-2) + (t * 0.02)))^(4)) - (2 * (((-2) + (t * 0.02)))^(2))) + 1)", parameter: { min: 0, max: 200 }, appearance: "primary" },
+        { id: "s1", kind: "function", formula: "(((0.5 * (x)^(4)) - (2 * (x)^(2))) + 1)", domain: { min: -2, max: 2 }, appearance: "primary" },
       ],
     }}
   />
@@ -154,7 +154,7 @@ Apabila menggabungkan graf, kekalkan **input yang sama**. Tambah atau tolak nila
       frame: { kind: "cartesian", x: { min: -2.5, max: 2.5 }, y: { min: -1.5, max: 1.5 } },
       view: { kind: "fit", padding: 0.2 },
       objects: [
-        { id: "s1", kind: "parametric", x: "((-2) + (t * 0.02))", y: "(((-0.5) * (((-2) + (t * 0.02)))^(3)) + (1.5 * ((-2) + (t * 0.02))))", parameter: { min: 0, max: 200 }, appearance: "primary" },
+        { id: "s1", kind: "function", formula: "(((-0.5) * (x)^(3)) + (1.5 * x))", domain: { min: -2, max: 2 }, appearance: "primary" },
       ],
     }}
   />
@@ -202,9 +202,9 @@ Graf berikut menunjukkan **fungsi asal dan hasilnya pada paksi yang sama**. Band
       frame: { kind: "cartesian", x: { min: -2.5, max: 2.5 }, y: { min: -2.5, max: 5 } },
       view: { kind: "fit", padding: 0.2 },
       objects: [
-        { id: "s1", kind: "parametric", x: "((-2) + (t * 0.02))", y: "(((-2) + (t * 0.02)) + 1)", parameter: { min: 0, max: 200 }, appearance: "primary" },
-        { id: "s2", kind: "parametric", x: "((-2) + (t * 0.02))", y: "(((0.5 * (((-2) + (t * 0.02)))^(4)) - (2 * (((-2) + (t * 0.02)))^(2))) + 1)", parameter: { min: 0, max: 200 }, appearance: "secondary" },
-        { id: "s3", kind: "parametric", x: "((-2) + (t * 0.02))", y: "((((-2) + (t * 0.02)) + 1) + (((0.5 * (((-2) + (t * 0.02)))^(4)) - (2 * (((-2) + (t * 0.02)))^(2))) + 1))", parameter: { min: 0, max: 200 }, appearance: "answer" },
+        { id: "s1", kind: "function", formula: "(x + 1)", domain: { min: -2, max: 2 }, appearance: "primary" },
+        { id: "s2", kind: "function", formula: "(((0.5 * (x)^(4)) - (2 * (x)^(2))) + 1)", domain: { min: -2, max: 2 }, appearance: "secondary" },
+        { id: "s3", kind: "function", formula: "((x + 1) + (((0.5 * (x)^(4)) - (2 * (x)^(2))) + 1))", domain: { min: -2, max: 2 }, appearance: "answer" },
       ],
       labels: [
         { key: "l1", objectId: "s1", at: { x: 1, y: 2 }, placement: "above-right" },
@@ -235,9 +235,9 @@ Graf berikut menunjukkan **fungsi asal dan hasilnya pada paksi yang sama**. Band
       frame: { kind: "cartesian", x: { min: -2.5, max: 2.5 }, y: { min: -3, max: 4.5 } },
       view: { kind: "fit", padding: 0.2 },
       objects: [
-        { id: "s1", kind: "parametric", x: "((-2) + (t * 0.02))", y: "(((-2) + (t * 0.02)) + 1)", parameter: { min: 0, max: 200 }, appearance: "primary" },
-        { id: "s2", kind: "parametric", x: "((-2) + (t * 0.02))", y: "(((0.5 * (((-2) + (t * 0.02)))^(4)) - (2 * (((-2) + (t * 0.02)))^(2))) + 1)", parameter: { min: 0, max: 200 }, appearance: "secondary" },
-        { id: "s3", kind: "parametric", x: "((-2) + (t * 0.02))", y: "((((-2) + (t * 0.02)) + 1) - (((0.5 * (((-2) + (t * 0.02)))^(4)) - (2 * (((-2) + (t * 0.02)))^(2))) + 1))", parameter: { min: 0, max: 200 }, appearance: "answer" },
+        { id: "s1", kind: "function", formula: "(x + 1)", domain: { min: -2, max: 2 }, appearance: "primary" },
+        { id: "s2", kind: "function", formula: "(((0.5 * (x)^(4)) - (2 * (x)^(2))) + 1)", domain: { min: -2, max: 2 }, appearance: "secondary" },
+        { id: "s3", kind: "function", formula: "((x + 1) - (((0.5 * (x)^(4)) - (2 * (x)^(2))) + 1))", domain: { min: -2, max: 2 }, appearance: "answer" },
       ],
       labels: [
         { key: "l1", objectId: "s1", at: { x: 1, y: 2 }, placement: "above-right" },

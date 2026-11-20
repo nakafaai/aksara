@@ -111,7 +111,7 @@ The exact area comes from the [fundamental theorem of calculus](/en/subjects/mat
     frame: { kind: "cartesian", x: { min: -0.5, max: 4.5 }, y: { min: -0.5, max: 4.5 } },
     view: { kind: "fit", padding: 0.2 },
     objects: [
-      { id: "s1", kind: "parametric", x: "((4 * t) / 400)", y: "((((4 * t) / 400))^(2) / 4)", parameter: { min: 0, max: 400 }, appearance: "primary" },
+      { id: "s1", kind: "function", formula: "((x)^(2) / 4)", domain: { min: 0, max: 4 }, appearance: "primary" },
       { id: "s2", kind: "polyline", vertices: [{ x: 0, y: 0 }, { x: 1, y: 0 }, { x: 1, y: 0.06 }, { x: 0, y: 0.06 }], appearance: "secondary" },
       { id: "s2-close", kind: "segment", from: { x: 0, y: 0.06 }, to: { x: 0, y: 0 }, appearance: "secondary" },
       { id: "s3", kind: "polyline", vertices: [{ x: 1, y: 0 }, { x: 2, y: 0 }, { x: 2, y: 0.56 }, { x: 1, y: 0.56 }], appearance: "secondary" },
@@ -223,7 +223,7 @@ Each problem asks for rectangles under a curve, so fix the number of subinterval
     frame: { kind: "cartesian", x: { min: -0.5, max: 4.5 }, y: { min: -2, max: 19 } },
     view: { kind: "fit", padding: 0.2 },
     objects: [
-      { id: "s1", kind: "parametric", x: "(t * 0.1)", y: "(((t * 0.1) * (t * 0.1)) + 1)", parameter: { min: 0, max: 40 }, appearance: "primary" },
+      { id: "s1", kind: "function", formula: "((x * x) + 1)", domain: { min: 0, max: 4 }, appearance: "primary" },
       { id: "s2", kind: "polyline", vertices: [{ x: 0, y: 0 }, { x: 1, y: 0 }, { x: 1, y: 2 }, { x: 0, y: 2 }], appearance: "secondary" },
       { id: "s2-close", kind: "segment", from: { x: 0, y: 2 }, to: { x: 0, y: 0 }, appearance: "secondary" },
       { id: "s3", kind: "polyline", vertices: [{ x: 1, y: 0 }, { x: 2, y: 0 }, { x: 2, y: 5 }, { x: 1, y: 5 }], appearance: "secondary" },

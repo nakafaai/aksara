@@ -15,6 +15,7 @@ import {
 import { strictBoundaryIssues } from "#contracts/math/boundary";
 import { planeBoundsIssues } from "#contracts/math/bounds";
 import { PlaneCurveObjectSchemas } from "#contracts/math/curve";
+import { inventedEdgeIssues } from "#contracts/math/edge";
 import {
   FormulaParameterSchema,
   FormulaReadoutSchema,
@@ -26,6 +27,7 @@ import {
   planeFormulaFields,
 } from "#contracts/math/formula/scope";
 import { sliderFormulaIssues } from "#contracts/math/formula/slider";
+import { graphAsParametricIssues } from "#contracts/math/graph";
 import {
   MATH_LINE_MESSAGE,
   MATH_POLYLINE_MESSAGE,
@@ -294,6 +296,8 @@ export const PlaneMathVisualSchema = Schema.Struct({
         ),
         ...planeResolutionIssues(frame, objects, labels, view),
         ...strictBoundaryIssues(objects),
+        ...graphAsParametricIssues(objects),
+        ...inventedEdgeIssues(frame, objects),
       ]
     )
   )

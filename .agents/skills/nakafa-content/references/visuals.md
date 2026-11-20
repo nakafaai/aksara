@@ -122,6 +122,13 @@ publishes once Nakafa's production renderer draws it.
   figure as drawn up to a value ("drawn up to x = 4"): draw open regions and
   lines whole, and say what they show. Authored frames have no grid override.
   Keep the subject dominant.
+- Never shade a part of the plane that lines cut out as a `polygon` closed
+  near the frame's edge: that edge is invented, and it turns an open region
+  into a closed one. Write it as `{ kind: "region", inequalities: [...] }`
+  and add a bound only where the mathematics has one, such as `x <= 7` for
+  an area under a graph up to 7, or draw the bound as a `segment`. The
+  contract rejects a polygon with an edge along a `line` or straight graph
+  that closes near the frame's edge on no line, ray, segment, graph or axis.
 - Reserve red `#dc2626`, green `#16a34a`, and blue `#2563eb` for the Cartesian
   X, Y, and Z axes respectively. Use other colors for mathematical subject
   objects, and keep each label the same color as its owning object. Keep
@@ -282,6 +289,16 @@ graph teaches the wrong mathematics on an education platform.
   picture, each beside the rich label its key names. Labels, readouts, and
   slider labels read only the declared slider names. Exact points, segments,
   and polygons keep constant coordinates.
+- **A graph is a `function`, never a `parametric` curve.** When x changes at
+  one constant rate in t (`x: "t - 6"`, `x: "-2 + 0.02t"`), each x meets the
+  curve once: it is the graph `y = f(x)`. Write
+  `{ kind: "function", formula: "abs(x)", domain: { min: -6, max: 6 } }`, not
+  `{ kind: "parametric", x: "t - 6", y: "abs(t - 6)", parameter: { min: 0, max: 12 } }`.
+  A function reads as the graph it is, takes its domain in x, and lets the
+  scene scale each axis on its own; a parametric curve keeps one scale for
+  both. The contract rejects a parametric curve whose x is affine in t. Keep
+  `parametric` for curves that turn back on x, such as a circle, a cycloid or
+  a spiral.
 - **A strict boundary is dashed everywhere it is drawn.** A `region` draws
   each `<` or `>` edge dashed by itself. A `line`, `ray`, `segment` or
   straight `function` that runs along such an edge, to name it or carry its

@@ -167,8 +167,8 @@ Graphen zu reziproken Basen haben **entgegengesetzte Ausgaben**. Wegen <InlineMa
     frame: { kind: "cartesian", x: { min: -1, max: 9 }, y: { min: -8, max: 8 } },
     view: { kind: "fit", padding: 0.2 },
     objects: [
-      { id: "s1", kind: "parametric", x: "(((t / 99) * 8) + 0.01)", y: "log_2((((t / 99) * 8) + 0.01))", parameter: { min: 0, max: 99 }, appearance: "primary" },
-      { id: "s2", kind: "parametric", x: "(((t / 99) * 8) + 0.01)", y: "(ln((((t / 99) * 8) + 0.01)) / ln(0.5))", parameter: { min: 0, max: 99 }, appearance: "secondary" },
+      { id: "s1", kind: "function", formula: "log_2(x)", domain: { min: 0.01, max: 8.01 }, appearance: "primary" },
+      { id: "s2", kind: "function", formula: "(ln(x) / ln(0.5))", domain: { min: 0.01, max: 8.01 }, appearance: "secondary" },
       { id: "s3", kind: "polyline", vertices: [{ x: 0, y: -4 }, { x: 0, y: 4 }], appearance: "answer" },
     ],
     labels: [
