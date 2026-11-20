@@ -19,7 +19,7 @@ const LEVEL_LABELS = {
   en: { met: "Met", missed: "Not met" },
   id: { met: "Terpenuhi", missed: "Belum terpenuhi" },
   ms: { met: "Dipenuhi", missed: "Belum dipenuhi" },
-} satisfies Record<AppLocaleCode, { met: string; missed: string }>;
+} satisfies Record<AppLocaleCode, Record<"met" | "missed", string>>;
 
 /**
  * What earns the missed level of a criterion, for a grader: work that does

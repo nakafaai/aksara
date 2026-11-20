@@ -99,8 +99,11 @@ const CriterionSourceSchema = Schema.Struct({
   points: PointsSchema,
 }).mapFields(Struct.map(Schema.mutableKey));
 
+/** Anything worth points: a part, or a criterion of its rubric. */
+const ScoredSchema = Schema.Struct({ points: PointsSchema });
+
 /** Adds up the points of rubric criteria or of parts. */
-export function sumPoints(scored: readonly { readonly points: number }[]) {
+export function sumPoints(scored: readonly (typeof ScoredSchema.Type)[]) {
   return Arr.reduce(scored, 0, (total, { points }) => total + points);
 }
 
