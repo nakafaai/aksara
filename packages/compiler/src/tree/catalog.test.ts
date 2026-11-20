@@ -76,6 +76,49 @@ describe("checkTreeVisuals", () => {
   );
 });
 
+describe("MathVisual footer", () => {
+  /** A MathVisual card over one segment, under the given footer. */
+  const visual = (footer: string) =>
+    element("MathVisual", {
+      description: "A segment from corner to corner.",
+      footer,
+      scene: {
+        frame: {
+          kind: "cartesian",
+          x: { max: 2, min: -2 },
+          y: { max: 2, min: -2 },
+        },
+        objects: [
+          {
+            appearance: "primary",
+            from: { x: -1, y: -1 },
+            id: "diagonal",
+            kind: "segment",
+            to: { x: 1, y: 1 },
+          },
+        ],
+        space: "plane",
+        view: { kind: "fit" },
+      },
+      title: "A diagonal",
+    });
+
+  it.effect("accepts a footer and holds it to a card footer's length", () =>
+    Effect.gen(function* () {
+      yield* checkTreeVisuals(
+        visual("It rises one unit for each unit to the right."),
+        site
+      );
+      const long = yield* checkTreeVisuals(visual("x".repeat(91)), site).pipe(
+        Effect.flip
+      );
+
+      assert.strictEqual(long.reason, "props");
+      assert.include(long.issue ?? "", "card footer of at most 90");
+    })
+  );
+});
+
 describe("TreeRichSchema", () => {
   it.effect("reads rich text from a tree and never writes it back", () =>
     Effect.gen(function* () {
