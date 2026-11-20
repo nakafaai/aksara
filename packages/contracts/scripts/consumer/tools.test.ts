@@ -4,6 +4,8 @@ import { Effect, FileSystem, Path, Record as Rec, Schema } from "effect";
 import { encodeJsonText, JsonTextSchema } from "#contracts/text/json";
 import { readConsumerCommand } from "#scripts/consumer/command";
 import {
+  CONSUMER_INSTALL_ARGUMENTS,
+  consumerPackArguments,
   createConsumerManifest,
   createConsumerSource,
   createConsumerTsconfig,
@@ -28,29 +30,44 @@ describe("consumer tooling", () => {
       );
       for (const paths of [[], ["one.tgz", "two.tgz"]]) {
         const error = yield* Effect.flip(selectPackedArchive(paths));
-        expect(error.message).toBe("pnpm must produce exactly one tarball");
+        expect(error.message).toBe("Bun must pack exactly one tarball");
       }
     })
   );
 
-  it("serializes an isolated pnpm consumer manifest", () => {
+  it("serializes an isolated consumer manifest that names no package manager", () => {
     const manifest = Schema.decodeSync(JsonTextSchema)(
       createConsumerManifest({
         effectVersion: "4.0.0-rc.112",
-        packageManager: "pnpm@11.25.0",
         packageName: "@nakafa/aksara-contracts",
         tarballPath: "/tmp/contracts.tgz",
       })
     );
 
-    expect(manifest).toMatchObject({
+    expect(manifest).toStrictEqual({
       dependencies: {
         "@nakafa/aksara-contracts": "file:/tmp/contracts.tgz",
         effect: "4.0.0-rc.112",
       },
-      packageManager: "pnpm@11.25.0",
+      name: "aksara-contracts-external-consumer",
       private: true,
+      type: "module",
     });
+  });
+
+  it("packs and installs with Bun and never runs lifecycle scripts", () => {
+    expect(consumerPackArguments("/tmp/pack")).toStrictEqual([
+      "pm",
+      "pack",
+      "--ignore-scripts",
+      "--destination",
+      "/tmp/pack",
+    ]);
+    expect(CONSUMER_INSTALL_ARGUMENTS).toStrictEqual([
+      "install",
+      "--production",
+      "--ignore-scripts",
+    ]);
   });
 
   it("serializes all public type imports and renderer proofs", () => {

@@ -39,7 +39,11 @@ not a runtime compatibility interface.
 
 The byte comparison automatically covers compiled source, exports, compiler
 configuration, Effect compatibility, README, license, package metadata, and
-pnpm archive format without a duplicated workflow path list.
+archive format without a duplicated workflow path list. Bun packs every archive
+entry with one fixed timestamp, so an unchanged package packs to the same
+bytes. Archives that pnpm packed before differ from Bun's, and the release
+identity accepts changed bytes only with a version bump, so the first release
+that Bun packs carries one.
 
 ## Verified package
 
@@ -51,12 +55,12 @@ bun run verify:consumer
 
 The verifier builds the contracts package, copies only `dist`, `README.md`,
 `LICENSE`, and a release manifest into a temporary staging directory, then
-creates the archive with pnpm. The release manifest removes repository-only
+creates the archive with `bun pm pack --ignore-scripts`. The release manifest removes repository-only
 source conditions, scripts, and development dependencies and replaces
 workspace protocols with portable exact versions.
 
 The same verifier installs that exact archive in a credential-free isolated
-pnpm consumer, typechecks every public export with tsrs, executes every
+Bun consumer (`bun install --production --ignore-scripts`), typechecks every public export with tsrs, executes every
 runtime export, and rejects missing files, private source targets, nested Effect
 runtimes, or a mismatched license.
 
@@ -188,6 +192,7 @@ References:
 
 - [npm trusted publishers](https://docs.npmjs.com/trusted-publishers/)
 - [npm provenance](https://docs.npmjs.com/generating-provenance-statements/)
-- [pnpm dependency sources](https://pnpm.io/package_json#dependencies)
+- [bun pm pack](https://bun.com/docs/pm/cli/pm#pack)
+- [bun install](https://bun.com/docs/pm/cli/install)
 - [GitHub artifact attestations](https://docs.github.com/en/actions/how-tos/secure-your-work/use-artifact-attestations/use-artifact-attestations)
 - [GitHub immutable releases](https://docs.github.com/en/code-security/concepts/supply-chain-security/immutable-releases)

@@ -4,8 +4,7 @@ import { consumerEnvironment } from "#scripts/consumer/environment";
 import { validatePackedManifest } from "#scripts/consumer/packed";
 import type { ConsumerPackageInput } from "#scripts/consumer/tools";
 import {
-  CONSUMER_PACKAGE_MANAGER,
-  consumerPnpmArguments,
+  consumerPackArguments,
   consumerFailure as failure,
   selectPackedArchive,
 } from "#scripts/consumer/tools";
@@ -132,15 +131,10 @@ export const stageConsumerPackage = Effect.fn(
   ]).pipe(
     Effect.mapError(failure("filesystem", "Contract package staging failed"))
   );
-  const tools = { bunx: "bunx", tar: "tar", ...input.tools };
+  const tools = { bun: "bun", tar: "tar", ...input.tools };
   yield* runConsumerCommand(
-    tools.bunx,
-    consumerPnpmArguments([
-      "pack",
-      "--config.ignore-scripts=true",
-      "--pack-destination",
-      packDirectory,
-    ]),
+    tools.bun,
+    consumerPackArguments(packDirectory),
     childEnvironment,
     input.platform,
     "Contract package creation",
@@ -195,11 +189,10 @@ export const stageConsumerPackage = Effect.fn(
     sourceManifest,
   });
   return {
-    bunx: tools.bunx,
+    bun: tools.bun,
     childEnvironment,
     consumerDirectory,
     effectVersion,
-    packageManager: CONSUMER_PACKAGE_MANAGER,
     packageName: sourceManifest.name,
     packedManifest,
     tarballPath,
