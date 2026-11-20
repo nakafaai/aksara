@@ -152,25 +152,34 @@ function featureCriterion(
  * The graph of y = (x - 1) / (x + 2): its shape first, rising on both sides of
  * its vertical asymptote, then its zero, its intercept, and its asymptotes.
  */
+/** The left side of the shape: rising up to the vertical asymptote. */
+export const sketchLeft = featureCriterion("left", {
+  direction: "rising",
+  from: null,
+  kind: "interval",
+  to: "-2",
+});
+
+/** The right side of the shape: rising away from the vertical asymptote. */
+export const sketchRight = featureCriterion("right", {
+  direction: "rising",
+  from: "-2",
+  kind: "interval",
+  to: null,
+});
+
+/** The zero, earned only with the shape. */
+export const sketchZero = featureCriterion(
+  "zero",
+  { contact: "cross", kind: "zero", x: "1" },
+  { requires: ["left", "right"] }
+);
+
 export const sketchKey = {
   criteria: [
-    featureCriterion("left", {
-      direction: "rising",
-      from: null,
-      kind: "interval",
-      to: "-2",
-    }),
-    featureCriterion("right", {
-      direction: "rising",
-      from: "-2",
-      kind: "interval",
-      to: null,
-    }),
-    featureCriterion(
-      "zero",
-      { contact: "cross", kind: "zero", x: "1" },
-      { requires: ["left", "right"] }
-    ),
+    sketchLeft,
+    sketchRight,
+    sketchZero,
     featureCriterion(
       "intercept",
       { kind: "yIntercept", y: "-0.5" },
