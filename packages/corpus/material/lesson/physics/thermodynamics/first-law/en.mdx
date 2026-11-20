@@ -1,0 +1,268 @@
+export const metadata = {
+  title: "First Law of Thermodynamics",
+  description:
+    "Find the work a gas does as the area under its pressure-volume graph, apply the first law of thermodynamics, and compare the four gas processes.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2026-11-20",
+  subject: "Thermodynamics",
+};
+
+## The Gas and Its Surroundings
+
+The **first law of thermodynamics** is conservation of energy for a gas: the change in the gas's internal energy equals the heat that flows in minus the work the gas does.
+
+<BlockMath math="\Delta U = Q - W" />
+
+The heat <InlineMath math="Q" /> is positive when it flows into the gas, and the work <InlineMath math="W" /> is positive when the gas expands and pushes the piston out. On a pressure against volume diagram, <InlineMath math="W" /> is the area under the path the gas follows. In the gas process lab further down, you drag the gas to a new end state and watch <InlineMath math="Q" />, <InlineMath math="W" /> and <InlineMath math="\Delta U" /> change together.
+
+Before you calculate anything, pick the **system**, the part whose energy you're keeping track of. Here the system is the gas inside the cylinder. Everything outside it, including the piston, the walls, the heater and the air around, is the **surroundings**. Heat and work are energy crossing the boundary between the two. That boundary can stay put or move, like a piston being pushed out.
+
+| System | Matter crosses the boundary | Energy crosses the boundary | Example |
+| :--- | :--- | :--- | :--- |
+| Open | yes | yes | a kettle letting out steam |
+| Closed | no | yes | gas in a cylinder with a piston |
+| Isolated | no | no | the contents of a tightly sealed flask, roughly |
+
+Pressure, volume, temperature and internal energy are **state variables**: their values depend only on the state the gas is in now, not on how it got there. You can measure temperature thanks to the zeroth law of thermodynamics: two objects that are each in thermal equilibrium with a third object are in equilibrium with each other, and a thermometer is that third object.
+
+## Work as Area on the Diagram
+
+Picture a gas pushing a piston of area <InlineMath math="A" /> a distance <InlineMath math="\Delta s" /> at a constant pressure <InlineMath math="p" />. The force from the gas is <InlineMath math="pA" />, so the work it does is:
+
+<BlockMath math="W = F\,\Delta s = pA\,\Delta s = p\,\Delta V" />
+
+On a graph of <InlineMath math="p" /> against <InlineMath math="V" />, the product <InlineMath math="p\,\Delta V" /> is the area of the rectangle under a flat path. If the pressure changes as the gas expands, cut the path into small steps, each at nearly constant pressure. Adding up all those thin rectangles gives the **area under the path**, and that area is the work done by the gas. Pressure in kPa times volume in litres comes out straight in joules, since <InlineMath math="1\text{ kPa} \times 1\text{ L} = (10^3\text{ Pa})(10^{-3}\text{ m}^3) = 1\text{ J}" />.
+
+<GasProcessLab
+  title={<>Two Ways to Expand from One Start</>}
+  description={
+    <>
+      There's <InlineMath math="0.25" /> mol of gas starting at{" "}
+      <InlineMath math="300\text{ kPa}" /> and <InlineMath math="2\text{ L}" />.
+      Pick isobaric or isothermal, drag the end volume, and compare the areas
+      under the two paths.
+    </>
+  }
+  footer={
+    <>
+      As the gas expands, the flat path covers more area, so it does more work.
+    </>
+  }
+  labels={{
+    endPressure: "End pressure",
+    endState: <>End state</>,
+    endVolume: "End volume",
+    energy: "Energy in this process",
+    heat: <>Heat into the gas, <InlineMath math="Q" /></>,
+    internal: <>Change in internal energy, <InlineMath math="\Delta U" /></>,
+    law: <>What this process keeps</>,
+    pressureAxis: <InlineMath math="p\ (\text{kPa})" />,
+    process: "Process",
+    processes: {
+      adiabatic: "Adiabatic",
+      isobaric: "Isobaric",
+      isochoric: "Isochoric",
+      isothermal: "Isothermal",
+    },
+    startState: <>Start state</>,
+    viewLabel: "A cylinder of gas with a piston beside its pressure against volume diagram",
+    volumeAxis: <InlineMath math="V\ (\text{L})" />,
+    work: <>Work done by the gas, <InlineMath math="W" /></>,
+  }}
+  moles={0.25}
+  processes={[
+    { process: "isobaric", volume: { end: 6, max: 8, min: 1 } },
+    { process: "isothermal", volume: { end: 6, max: 8, min: 1 } },
+  ]}
+  start={{ pressure: 300, volume: 2 }}
+/>
+
+Let the gas expand to <InlineMath math="6\text{ L}" />. At constant pressure the area is a rectangle: <InlineMath math="W = (300)(6 - 2) = 1200\text{ J}" />. At constant temperature the pressure falls along <InlineMath math="p = 600/V" /> down to <InlineMath math="100\text{ kPa}" />. The area under a curve like that is <InlineMath math="nRT\ln(V_2/V_1)" />, where <InlineMath math="nRT = p_1V_1 = 600\text{ J}" />:
+
+<BlockMath math="W = 600 \ln \frac{6}{2} = 600 \ln 3 = 659\text{ J}" />
+
+Same start, same end volume, different work. **Work depends on the path the gas takes**, not just on where it starts and ends. Now drag the end volume to the left of <InlineMath math="2\text{ L}" />. The gas is compressed, <InlineMath math="\Delta V" /> is negative, and at constant pressure down to <InlineMath math="1\text{ L}" /> the work is <InlineMath math="(300)(1 - 2) = -300\text{ J}" />. The minus sign tells you the surroundings are doing work on the gas.
+
+## Balancing Heat and Work
+
+Energy can't appear or vanish. Heat <InlineMath math="Q" /> that flows into a gas can only go two places: it can **raise the internal energy** of the gas, or it can **leave again as work** pushing the piston. So <InlineMath math="Q = \Delta U + W" />, which is usually written as:
+
+<BlockMath math="\Delta U = Q - W" />
+
+| Quantity | Positive when | Negative when |
+| :--- | :--- | :--- |
+| <InlineMath math="Q" /> | heat flows into the gas | heat flows out of the gas |
+| <InlineMath math="W" /> | the gas expands, work done by the gas | the gas is compressed, work done on the gas |
+| <InlineMath math="\Delta U" /> | the gas gets hotter | the gas gets cooler |
+
+First example: a gas takes in <InlineMath math="1800\text{ J}" /> of heat and, as it expands, does <InlineMath math="700\text{ J}" /> of work.
+
+<BlockMath math="\Delta U = Q - W = 1800 - 700 = 1100\text{ J}" />
+
+The internal energy goes up, so the gas gets hotter. Check: of the <InlineMath math="1800\text{ J}" /> that came in, <InlineMath math="700\text{ J}" /> left as work and <InlineMath math="1100\text{ J}" /> stayed in the gas, and <InlineMath math="700 + 1100 = 1800" />.
+
+Second example: a piston squeezes a gas with <InlineMath math="450\text{ J}" /> of work, while the gas loses <InlineMath math="200\text{ J}" /> of heat to a cold wall. Heat flows out, so <InlineMath math="Q = -200\text{ J}" />, and the gas is compressed, so <InlineMath math="W = -450\text{ J}" />.
+
+<BlockMath math="\Delta U = Q - W = (-200) - (-450) = 250\text{ J}" />
+
+The internal energy still rises, because more energy came in as work than left as heat. Some books write <InlineMath math="\Delta U = Q + W" />. That isn't a different law: there <InlineMath math="W" /> means the work done **on** the gas, the opposite sign from the one used here. Pick one sign convention and stick to it for the whole problem.
+
+## Four Processes from One Start
+
+A gas can get from one state to another along many paths. Four special paths each **keep one thing fixed**: the pressure (isobaric), the volume (isochoric), the temperature (isothermal), or no heat at all (adiabatic). In the next lab, <InlineMath math="0.4" /> mol of a monatomic gas starts at <InlineMath math="200\text{ kPa}" /> and <InlineMath math="5\text{ L}" />, so its temperature is <InlineMath math="T_1 = 1000/(0.4 \times 8.314) = 300.7\text{ K}" />.
+
+<GasProcessLab
+  title={<>Four Processes from One Starting Point</>}
+  description={
+    <>
+      Pick a process, then drag the end state. The <InlineMath math="Q" />,{" "}
+      <InlineMath math="W" /> and <InlineMath math="\Delta U" /> bars share one
+      scale, and the first law is worked out with the numbers.
+    </>
+  }
+  footer={
+    <>
+      Only the isothermal process leaves the <InlineMath math="\Delta U" /> bar empty.
+    </>
+  }
+  labels={{
+    endPressure: "End pressure",
+    endState: <>End state</>,
+    endVolume: "End volume",
+    energy: "Energy in this process",
+    heat: <>Heat into the gas, <InlineMath math="Q" /></>,
+    internal: <>Change in internal energy, <InlineMath math="\Delta U" /></>,
+    law: <>What this process keeps</>,
+    pressureAxis: <InlineMath math="p\ (\text{kPa})" />,
+    process: "Process",
+    processes: {
+      adiabatic: "Adiabatic",
+      isobaric: "Isobaric",
+      isochoric: "Isochoric",
+      isothermal: "Isothermal",
+    },
+    startState: <>Start state</>,
+    viewLabel: "A cylinder of gas with a piston beside its pressure against volume diagram",
+    volumeAxis: <InlineMath math="V\ (\text{L})" />,
+    work: <>Work done by the gas, <InlineMath math="W" /></>,
+  }}
+  moles={0.4}
+  processes={[
+    { process: "isobaric", volume: { end: 10, max: 12, min: 2.5 } },
+    { pressure: { end: 400, max: 500, min: 100 }, process: "isochoric" },
+    { process: "isothermal", volume: { end: 10, max: 12, min: 2.5 } },
+    { process: "adiabatic", volume: { end: 10, max: 12, min: 2.5 } },
+  ]}
+  showValues
+  start={{ pressure: 200, volume: 5 }}
+/>
+
+For a monatomic gas, <InlineMath math="\Delta U = \tfrac{3}{2}nR\,\Delta T" />. Since <InlineMath math="nRT = pV" />, that's the same as <InlineMath math="\Delta U = \tfrac{3}{2}(p_2V_2 - p_1V_1)" />, which gives joules straight from kPa and litres.
+
+### Isobaric and Isochoric
+
+In the **isobaric** process the gas expands from <InlineMath math="5" /> to <InlineMath math="10\text{ L}" /> at <InlineMath math="200\text{ kPa}" />. Twice the volume at the same pressure means twice the temperature, <InlineMath math="601.4\text{ K}" />.
+
+<MathContainer>
+<BlockMath math="W = p\,\Delta V = (200)(10 - 5) = 1000\text{ J}" />
+<BlockMath math="\Delta U = \tfrac{3}{2}(2000 - 1000) = 1500\text{ J}" />
+<BlockMath math="Q = \Delta U + W = 1500 + 1000 = 2500\text{ J}" />
+</MathContainer>
+
+In the **isochoric** process the piston is pinned and the gas is heated to <InlineMath math="400\text{ kPa}" />. The volume doesn't change, so <InlineMath math="W = 0" /> and all the heat becomes internal energy: <InlineMath math="Q = \Delta U = \tfrac{3}{2}(2000 - 1000) = 1500\text{ J}" />. The temperature also reaches <InlineMath math="601.4\text{ K}" />, just as in the isobaric process, but it takes <InlineMath math="1000\text{ J}" /> less heat. That difference is exactly the work the isobaric gas did.
+
+### Isothermal and Adiabatic
+
+In the **isothermal** process the temperature holds, so <InlineMath math="\Delta U = 0" /> and all the heat that comes in leaves again as work. Expanding from <InlineMath math="5" /> to <InlineMath math="10\text{ L}" />:
+
+<BlockMath math="Q = W = nRT\ln\frac{V_2}{V_1} = 1000\ln 2 = 693.1\text{ J}" />
+
+Try dragging the end volume to <InlineMath math="2.5\text{ L}" />. You get <InlineMath math="Q = W = 1000\ln 0.5 = -693.1\text{ J}" />: the gas is compressed, and that much heat has to leave to keep the temperature steady.
+
+In the **adiabatic** process no heat gets through, <InlineMath math="Q = 0" />, for example because the cylinder is wrapped in insulation or the change happens too fast. An ideal gas then follows <InlineMath math="pV^\gamma = \text{constant}" />, with <InlineMath math="\gamma = 5/3" /> for a monatomic gas.
+
+<MathContainer>
+<BlockMath math="p_2 = p_1\left(\frac{V_1}{V_2}\right)^{\gamma} = 200\left(\frac{1}{2}\right)^{5/3} = 63.0\text{ kPa}" />
+<BlockMath math="\Delta U = \tfrac{3}{2}(p_2V_2 - p_1V_1) = \tfrac{3}{2}(629.96 - 1000) = -555.1\text{ J}" />
+<BlockMath math="W = Q - \Delta U = 0 - (-555.1) = 555.1\text{ J}" />
+</MathContainer>
+
+The gas pays for its work out of its own internal energy, so **its temperature drops** from <InlineMath math="300.7\text{ K}" /> to <InlineMath math="189.4\text{ K}" />. Because the temperature falls as well, the adiabatic curve is steeper than the isothermal curve from the same point. So adiabatic doesn't mean constant temperature. What stays at zero is the heat getting through.
+
+## Heat That Warms a Gas
+
+The **heat capacity** <InlineMath math="C" /> is the heat needed to raise the temperature of a gas by <InlineMath math="1\text{ K}" />, so <InlineMath math="C = Q/\Delta T" />. For a gas, it depends on how you heat it. The isochoric and isobaric processes in the lab both raise the temperature by <InlineMath math="\Delta T = 601.4 - 300.7 = 300.7\text{ K}" />:
+
+<MathContainer>
+<BlockMath math="C_V = \frac{1500\text{ J}}{300.7\text{ K}} = 4.99\text{ J/K} = \tfrac{3}{2}nR" />
+<BlockMath math="C_p = \frac{2500\text{ J}}{300.7\text{ K}} = 8.31\text{ J/K} = \tfrac{5}{2}nR" />
+</MathContainer>
+
+The heat capacity at constant pressure is bigger because the gas also **pushes the piston**: some of the heat leaves again as work and never warms the gas. The difference is exactly <InlineMath math="C_p - C_V = nR" />, and the ratio is <InlineMath math="C_p/C_V = 5/3" />, the <InlineMath math="\gamma" /> in the adiabatic curve.
+
+Divide by the number of moles and you get the molar heat capacity of a monatomic gas at constant volume, <InlineMath math="\tfrac{3}{2}R = 12.5\text{ J mol}^{-1}\,\text{K}^{-1}" />, and helium and argon really do come close to it. Diatomic molecules such as nitrogen and oxygen also spin, so their molar heat capacity at constant volume is close to <InlineMath math="\tfrac{5}{2}R = 20.8\text{ J mol}^{-1}\,\text{K}^{-1}" />.
+
+## Cycles Back to the Start
+
+An engine works over and over, so its gas has to come back to where it started. A set of processes that ends in the starting state is a **cycle**. Internal energy is a state variable, so after one full loop <InlineMath math="\Delta U = 0" /> and the first law gives <InlineMath math="Q_{\text{total}} = W_{\text{total}}" />.
+
+The cycle on the graph uses the same gas. It expands from <InlineMath math="A" /> to <InlineMath math="B" /> at <InlineMath math="200\text{ kPa}" />, cools at <InlineMath math="10\text{ L}" /> down to <InlineMath math="C" />, is compressed to <InlineMath math="D" /> at <InlineMath math="100\text{ kPa}" />, then is heated at <InlineMath math="5\text{ L}" /> back to <InlineMath math="A" />. **The net work is the area inside the cycle**, because the positive work while expanding along the top is bigger than the negative work while being compressed along the bottom.
+
+<MathVisual
+  title={<>A Rectangular Cycle for One Gas</>}
+  description={
+    <>
+      Across is the volume in litres, up is the pressure in kPa. Move the top
+      pressure and the right-hand volume, and watch the net work and the heat
+      taken in.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 13 }, y: { min: 0, max: 320 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "h", min: 120, max: 300, value: 200, step: 10, label: "h" },
+      { name: "r", min: 6, max: 12, value: 10, step: 0.5, label: "r" },
+    ],
+    objects: [
+      { id: "cycle", kind: "loop", appearance: "primary", points: [{ x: "5", y: "h" }, { x: "r", y: "h" }, { x: "r", y: "100" }, { x: "5", y: "100" }] },
+      { id: "a", kind: "marker", x: "5", y: "h", appearance: "answer" },
+      { id: "b", kind: "marker", x: "r", y: "h", appearance: "answer" },
+      { id: "c", kind: "marker", x: "r", y: "100", appearance: "answer" },
+      { id: "d", kind: "marker", x: "5", y: "100", appearance: "answer" },
+    ],
+    labels: [
+      { key: "point-a", objectId: "a", at: { x: "5", y: "h" }, placement: "above-left" },
+      { key: "point-b", objectId: "b", at: { x: "r", y: "h" }, placement: "above-right" },
+      { key: "point-c", objectId: "c", at: { x: "r", y: "100" }, placement: "below-right" },
+      { key: "point-d", objectId: "d", at: { x: "5", y: "100" }, placement: "below-left" },
+    ],
+    readouts: [
+      { key: "net-work", formula: "(h - 100)*(r - 5)" },
+      { key: "heat-in", formula: "2.5*h*(r - 5) + 7.5*(h - 100)" },
+    ],
+  }}
+  labels={{
+    h: <>Top pressure in <InlineMath math="\text{kPa}" /></>,
+    r: <>Right-hand volume in <InlineMath math="\text{L}" /></>,
+    "point-a": <InlineMath math="A" />,
+    "point-b": <InlineMath math="B" />,
+    "point-c": <InlineMath math="C" />,
+    "point-d": <InlineMath math="D" />,
+    "net-work": <>Net work in one cycle in <InlineMath math="\text{J}" /></>,
+    "heat-in": <>Heat taken in, in <InlineMath math="\text{J}" /></>,
+  }}
+/>
+
+For the starting cycle, the net work is <InlineMath math="(200 - 100)(10 - 5) = 500\text{ J}" />. This table checks that number step by step, the same way the lab works it out:
+
+| Step | <InlineMath math="W" /> | <InlineMath math="\Delta U" /> | <InlineMath math="Q" /> |
+| :--- | :--- | :--- | :--- |
+| <InlineMath math="A" /> to <InlineMath math="B" />, isobaric | <InlineMath math="+1000\text{ J}" /> | <InlineMath math="+1500\text{ J}" /> | <InlineMath math="+2500\text{ J}" /> |
+| <InlineMath math="B" /> to <InlineMath math="C" />, isochoric | <InlineMath math="0" /> | <InlineMath math="-1500\text{ J}" /> | <InlineMath math="-1500\text{ J}" /> |
+| <InlineMath math="C" /> to <InlineMath math="D" />, isobaric | <InlineMath math="-500\text{ J}" /> | <InlineMath math="-750\text{ J}" /> | <InlineMath math="-1250\text{ J}" /> |
+| <InlineMath math="D" /> to <InlineMath math="A" />, isochoric | <InlineMath math="0" /> | <InlineMath math="+750\text{ J}" /> | <InlineMath math="+750\text{ J}" /> |
+| One cycle | <InlineMath math="+500\text{ J}" /> | <InlineMath math="0" /> | <InlineMath math="+500\text{ J}" /> |
+
+The gas takes in <InlineMath math="2500 + 750 = 3250\text{ J}" /> and gives out <InlineMath math="1500 + 1250 = 2750\text{ J}" />, so only <InlineMath math="500\text{ J}" /> becomes work. Why some heat always has to be given out, and the largest share that can ever become work, is what the [second law of thermodynamics](/en/subjects/physics/thermodynamics/second-law-and-heat-engines) answers.

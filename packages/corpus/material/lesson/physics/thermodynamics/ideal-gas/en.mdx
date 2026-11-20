@@ -1,0 +1,184 @@
+export const metadata = {
+  title: "Ideal Gas and Kinetic Theory",
+  description:
+    "See a gas as a crowd of tiny particles, use the ideal gas law to find moles and pressure, and learn what temperature means for particle motion.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2026-11-20",
+  subject: "Thermodynamics",
+};
+
+## A Balloon Swelling in the Sun
+
+A gas is a **crowd of very small particles** flying around at random in every direction. Each time a particle hits a wall, it gives the wall a tiny push. Together, those countless pushes are what you feel as **pressure**, and the faster the particles move, the higher the gas's **temperature**. This picture leads to the ideal gas law:
+
+<BlockMath math="pV = nRT" />
+
+Here <InlineMath math="p" /> is the pressure in pascals, <InlineMath math="V" /> the volume in cubic metres, <InlineMath math="n" /> the number of moles, <InlineMath math="R = 8.314\text{ J mol}^{-1}\,\text{K}^{-1}" />, and <InlineMath math="T" /> the absolute temperature in kelvin. In the piston lab further down, you squeeze a gas and then heat it, and check this law against its numbers.
+
+The particle picture explains a balloon left in the sun. The air inside takes in heat, its particles speed up, and they hit the rubber more often and harder. For a moment the push from inside beats the push of the outside air plus the pull of the rubber, so the skin moves outward. The balloon stops growing once the push from inside is balanced again, now at a larger volume.
+
+The ideal gas model makes four assumptions about those particles:
+
+| Assumption | What it means for the particles |
+| :--- | :--- |
+| Random motion | no direction of travel is preferred |
+| No attraction | particles affect each other only when they collide |
+| Negligible size | all the particles together take up far less room than the container |
+| Elastic collisions | no kinetic energy is lost when a particle hits a wall |
+
+A gas that meets all four is an **ideal gas**. Real gases only come close, and they come close as long as their particles are spread out.
+
+## Pressure from Collisions
+
+Pressure is the push on each square metre of wall, <InlineMath math="p = F/A" />. At <InlineMath math="100\text{ kPa}" />, every <InlineMath math="1\text{ cm}^2" /> of wall is pushed with a force of <InlineMath math="(10^5\text{ Pa})(10^{-4}\text{ m}^2) = 10\text{ N}" />, about the weight of a <InlineMath math="1\text{ kg}" /> mass. Each particle is incredibly light, so a force that size takes an enormous number of hits.
+
+You can raise the pressure in two ways. The first makes the hits **more frequent**: add particles or shrink the container, so every litre holds more of them. The second makes the hits **harder**: heat the gas so the particles move faster. Kinetic theory puts both into one equation:
+
+<BlockMath math="p = \frac{2}{3}\,\frac{N}{V}\,\bar{E}_k" />
+
+The fraction <InlineMath math="N/V" /> is the number of particles in each unit of volume, which tells you how packed the crowd is. <InlineMath math="\bar{E}_k" /> is the average kinetic energy of one particle. Double how packed the gas is, and the pressure doubles. Double the average kinetic energy, and the pressure doubles too.
+
+## The Ideal Equation of State
+
+The pressure, volume, temperature and amount of a gas aren't independent. Once you know three of them, the fourth is **already fixed**. The ideal gas law ties all four together, and it has limits too: a real gas starts to drift away from it when its particles get crowded.
+
+### Merging the Gas Laws
+
+In the particle picture, each gas law is one way of changing the collisions. Shrink the volume at a fixed temperature, the hits get more frequent, and <InlineMath math="pV" /> stays the same (Boyle's law). Heat the gas at a fixed volume, the hits get harder, and <InlineMath math="p/T" /> stays the same (Gay-Lussac's law). Each separate [gas law](/en/subjects/physics/heat/heat-capacity-and-gas-laws) lets only two quantities change, while the ideal gas law lets them all change at once.
+
+For a fixed amount of gas, combining the two means **<InlineMath math="pV/T" /> doesn't change**, whatever you do to the gas. Avogadro's law adds that this constant grows in step with the number of particles, so for <InlineMath math="n" /> moles of gas it equals <InlineMath math="nR" />:
+
+<BlockMath math="\frac{pV}{T} = nR \quad\Longrightarrow\quad pV = nRT" />
+
+<GasPistonLab
+  title={<>A Gas Squeezed, Then Heated</>}
+  description={
+    <>
+      The gas starts at <InlineMath math="100\text{ kPa}" /> and{" "}
+      <InlineMath math="27^\circ\text{C}" />. Push the piston in until the
+      volume is <InlineMath math="0.4" /> of what it was, then heat the gas to{" "}
+      <InlineMath math="177^\circ\text{C}" />.
+    </>
+  }
+  footer={
+    <>
+      The pressure climbs twice: first the gas gets denser, then its particles get faster.
+    </>
+  }
+  labels={{
+    pressure: <>Pressure</>,
+    stage: "Step",
+    stages: {
+      compressed: <>Squeezed</>,
+      heated: <>Heated</>,
+      start: <>Start</>,
+    },
+    temperature: <>Absolute temperature</>,
+    viewLabel: "Gas in a cylinder with a piston and a pressure gauge",
+    volume: <>Volume</>,
+  }}
+  finalTemperature={177}
+  pressure={100}
+  temperature={27}
+  volumeRatio={0.4}
+/>
+
+Say the gas in the lab starts at <InlineMath math="6\text{ L}" />. How many moles are in the cylinder, and what's the pressure after heating? First convert to SI units: <InlineMath math="100\text{ kPa} = 1.00 \times 10^5\text{ Pa}" />, <InlineMath math="6\text{ L} = 6 \times 10^{-3}\text{ m}^3" />, and <InlineMath math="27^\circ\text{C} = 300\text{ K}" />.
+
+<MathContainer>
+<BlockMath math="n = \frac{pV}{RT} = \frac{(1.00 \times 10^5)(6 \times 10^{-3})}{(8.314)(300)} = \frac{600}{2494.2} = 0.241\text{ mol}" />
+<BlockMath math="nR = \frac{pV}{T} = \frac{600\text{ J}}{300\text{ K}} = 2\text{ J/K}" />
+</MathContainer>
+
+That's <InlineMath math="(0.241)(6.02 \times 10^{23}) = 1.45 \times 10^{23}" /> particles. After squeezing, the volume is <InlineMath math="(0.4)(6\text{ L}) = 2.4\text{ L}" />, and after heating the temperature is <InlineMath math="177 + 273 = 450\text{ K}" />. With the same <InlineMath math="nR" />:
+
+<BlockMath math="p = \frac{nRT}{V} = \frac{(2\text{ J/K})(450\text{ K})}{2.4 \times 10^{-3}\text{ m}^3} = 3.75 \times 10^5\text{ Pa} = 375\text{ kPa}" />
+
+Check it in the lab: at the last step the gauge reads <InlineMath math="375\text{ kPa}" />. Then check <InlineMath math="pV/T" /> at each step, using the fact that kPa times litres gives joules: <InlineMath math="(250)(2.4)/300 = 2" /> and <InlineMath math="(375)(2.4)/450 = 2" />. It stays at <InlineMath math="2\text{ J/K}" /> because the amount of gas never changes.
+
+Try one yourself: a rigid <InlineMath math="4\text{ L}" /> tank holds <InlineMath math="0.2" /> mol of oxygen at <InlineMath math="47^\circ\text{C}" />. The temperature is <InlineMath math="320\text{ K}" />, so <InlineMath math="p = (0.2)(8.314)(320)/(4 \times 10^{-3}) = 1.33 \times 10^5\text{ Pa}" />, about <InlineMath math="133\text{ kPa}" />.
+
+### Real Gases Drift Away
+
+Two of the ideal assumptions break down when the particles get crowded. Real particles **attract** each other slightly, so they hit the wall a little more softly and the pressure comes out lower than the ideal law predicts. Real particles also have **size**, so they have a bit less room to move in than the volume of the container. The van der Waals equation adds both corrections through constants <InlineMath math="a" /> and <InlineMath math="b" />, which are different for every gas:
+
+<BlockMath math="\left(p + \frac{an^2}{V^2}\right)(V - nb) = nRT" />
+
+For carbon dioxide, <InlineMath math="a = 3.59\text{ L}^2\,\text{atm mol}^{-2}" /> and <InlineMath math="b = 0.0427\text{ L mol}^{-1}" />, from the table in [OpenStax Chemistry 2e](https://openstax.org/books/chemistry-2e/pages/9-6-non-ideal-gas-behavior). This graph compares the pressure of carbon dioxide from that equation with the ideal prediction for the same crowding.
+
+<MathVisual
+  title={<>Real Carbon Dioxide and the Ideal Gas</>}
+  description={
+    <>
+      Across is how packed the gas is, in moles per litre. Up is the real
+      pressure divided by the ideal pressure. Move the temperature and the
+      packing.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 5 }, y: { min: 0, max: 1.2 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "s", min: 300, max: 700, value: 300, step: 10, label: "s" },
+      { name: "d", min: 0.04, max: 5, value: 1, step: 0.02, label: "d" },
+    ],
+    objects: [
+      { id: "ideal", kind: "line", appearance: "reference", through: [{ x: 0, y: 1 }, { x: 5, y: 1 }] },
+      { id: "real", kind: "function", appearance: "primary", formula: "1/(1 - 0.0427*x) - 3.59*101.325*x/(8.314*s)", domain: { min: 0, max: 5 } },
+      { id: "state", kind: "marker", x: "d", y: "1/(1 - 0.0427*d) - 3.59*101.325*d/(8.314*s)", appearance: "answer" },
+    ],
+    labels: [
+      { key: "ideal-line", objectId: "ideal", at: { x: 4, y: 1 }, placement: "above" },
+    ],
+    readouts: [
+      { key: "ideal-pressure", formula: "8.314*s*d" },
+      { key: "real-pressure", formula: "8.314*s*d/(1 - 0.0427*d) - 3.59*101.325*d^2" },
+      { key: "ratio", formula: "1/(1 - 0.0427*d) - 3.59*101.325*d/(8.314*s)" },
+    ],
+  }}
+  labels={{
+    s: <>Temperature <InlineMath math="T" /> in <InlineMath math="\text{K}" /></>,
+    d: <>Packing in <InlineMath math="\text{mol/L}" /></>,
+    "ideal-line": <>Ideal gas</>,
+    "ideal-pressure": <>Ideal gas pressure in <InlineMath math="\text{kPa}" /></>,
+    "real-pressure": <>Carbon dioxide pressure in <InlineMath math="\text{kPa}" /></>,
+    ratio: <>Real pressure divided by ideal pressure</>,
+  }}
+/>
+
+At <InlineMath math="300\text{ K}" /> and <InlineMath math="0.04" /> mol per litre, roughly how packed a gas is at ordinary air pressure, the ratio is <InlineMath math="0.996" />: carbon dioxide is only <InlineMath math="0.4\%" /> below the ideal prediction. At <InlineMath math="1" /> mol per litre the ratio falls to <InlineMath math="0.899" />. Raise the temperature to <InlineMath math="600\text{ K}" /> at that same packing, and it climbs back to <InlineMath math="0.972" />. So **a real gas behaves almost ideally at low pressure and high temperature**: its particles are far apart, and they move so fast that their slight pull on each other barely matters.
+
+## Temperature as Particle Motion
+
+The kinetic theory equation for pressure and the ideal gas law describe the same gas. Put them side by side and you find **what temperature means** for the particles, and from that, the energy stored inside a gas.
+
+### Average Kinetic Energy
+
+Write the ideal gas law for <InlineMath math="N" /> particles: <InlineMath math="pV = NkT" />, where <InlineMath math="k = R/N_A = 1.38 \times 10^{-23}\text{ J/K}" /> is the Boltzmann constant. Kinetic theory gives <InlineMath math="pV = \tfrac{2}{3}N\bar{E}_k" />. Set the two equal:
+
+<BlockMath math="\tfrac{2}{3}N\bar{E}_k = NkT \quad\Longrightarrow\quad \bar{E}_k = \tfrac{3}{2}kT" />
+
+So the absolute temperature is **proportional to the average kinetic energy** of one particle, whatever the gas. The gas in the lab at <InlineMath math="300\text{ K}" /> has <InlineMath math="\bar{E}_k = \tfrac{3}{2}(1.38 \times 10^{-23})(300) = 6.21 \times 10^{-21}\text{ J}" />, and at <InlineMath math="450\text{ K}" /> it has <InlineMath math="9.32 \times 10^{-21}\text{ J}" />. That's <InlineMath math="1.5" /> times as much, the same factor by which the pressure rose from <InlineMath math="250" /> to <InlineMath math="375\text{ kPa}" /> during heating.
+
+How fast are the particles going? Since <InlineMath math="\bar{E}_k = \tfrac{1}{2}mv_{\text{rms}}^2" />, the root mean square speed is <InlineMath math="v_{\text{rms}} = \sqrt{3kT/m}" />. A helium atom has a mass of <InlineMath math="6.65 \times 10^{-27}\text{ kg}" />, so at <InlineMath math="300\text{ K}" />:
+
+<BlockMath math="v_{\text{rms}} = \sqrt{\frac{3(1.38 \times 10^{-23})(300)}{6.65 \times 10^{-27}}} = 1.37 \times 10^3\text{ m/s}" />
+
+A helium atom covers almost <InlineMath math="1.4\text{ km}" /> every second, but keeps changing direction as it collides. The formula also shows why the temperature must be in kelvin: in Celsius it would give zero energy at <InlineMath math="0^\circ\text{C}" />, yet even the particles in ice are still vibrating.
+
+### Energy Inside the Gas
+
+The **internal energy** <InlineMath math="U" /> is the total energy of all the particles in a gas. Ideal gas particles don't attract each other, so there's no potential energy between them, and only their kinetic energy is left. For a monatomic gas such as helium or argon:
+
+<BlockMath math="U = N\bar{E}_k = \tfrac{3}{2}NkT = \tfrac{3}{2}nRT" />
+
+That means **the internal energy of an ideal gas depends only on its temperature**. Check it with the gas in the lab, taking it to be helium. Because <InlineMath math="nRT = pV" />, its internal energy is <InlineMath math="U = \tfrac{3}{2}pV" />:
+
+| Step in the lab | Temperature | <InlineMath math="pV" /> | <InlineMath math="U" /> |
+| :--- | :--- | :--- | :--- |
+| Start | <InlineMath math="300\text{ K}" /> | <InlineMath math="600\text{ J}" /> | <InlineMath math="900\text{ J}" /> |
+| Squeezed | <InlineMath math="300\text{ K}" /> | <InlineMath math="600\text{ J}" /> | <InlineMath math="900\text{ J}" /> |
+| Heated | <InlineMath math="450\text{ K}" /> | <InlineMath math="900\text{ J}" /> | <InlineMath math="1350\text{ J}" /> |
+
+Squeezing the gas at a fixed temperature leaves its internal energy alone. Only heating raises it, by <InlineMath math="\Delta U = 450\text{ J}" />. Where that energy comes from, and how much leaves as work, is what the [first law of thermodynamics](/en/subjects/physics/thermodynamics/first-law-and-gas-processes) answers. Diatomic molecules such as nitrogen and oxygen also spin, so at room temperature their internal energy is close to <InlineMath math="\tfrac{5}{2}nRT" />.

@@ -2,6 +2,7 @@ import {
   merdekaLearningOutcomes,
   physicsBookXI,
 } from "#corpus/curriculum/merdeka/documents";
+import { merdekaClass11ThermodynamicsUnit } from "#corpus/curriculum/merdeka/topics/class-11/thermodynamics";
 import { materialNode, unitNode } from "#corpus/curriculum/schema";
 
 /** The Kurikulum Merdeka Kelas 11 Fisika units, in the chapter order of the Kemendikbudristek Buku Siswa Fisika SMA/MA Kelas XI (2022). */
@@ -288,4 +289,5 @@ export const merdekaClass11PhysicsTopicNodes = [
       ms: { routeSlug: "haba", title: "Haba" },
     },
   }),
+  merdekaClass11ThermodynamicsUnit,
 ];

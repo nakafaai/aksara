@@ -1,0 +1,268 @@
+export const metadata = {
+  title: "Hukum Pertama Termodinamik",
+  description:
+    "Kira kerja gas sebagai luas di bawah graf tekanan melawan isi padu, guna hukum pertama termodinamik, dan bandingkan empat proses gas.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2026-11-20",
+  subject: "Termodinamik",
+};
+
+## Gas dan Persekitarannya
+
+**Hukum pertama termodinamik** ialah hukum keabadian tenaga bagi gas: perubahan tenaga dalam gas sama dengan haba yang masuk ditolak kerja yang dilakukan oleh gas.
+
+<BlockMath math="\Delta U = Q - W" />
+
+Haba <InlineMath math="Q" /> positif apabila haba masuk ke dalam gas, dan kerja <InlineMath math="W" /> positif apabila gas mengembang dan menolak omboh. Pada rajah tekanan melawan isi padu, <InlineMath math="W" /> ialah luas di bawah laluan gas. Dalam makmal proses gas nanti, kamu menggerakkan keadaan akhir gas dan melihat <InlineMath math="Q" />, <InlineMath math="W" /> dan <InlineMath math="\Delta U" /> berubah bersama.
+
+Sebelum mengira, tentukan dahulu **sistemnya**, iaitu bahagian yang tenaganya kamu catat. Di sini sistemnya ialah gas di dalam silinder. Semua yang berada di luar gas, termasuk omboh, dinding, pemanas dan udara sekeliling, ialah **persekitaran**. Haba dan kerja ialah tenaga yang merentas sempadan antara keduanya. Sempadan itu boleh kekal atau bergerak, seperti omboh yang tertolak ke luar.
+
+| Sistem | Jirim merentas sempadan | Tenaga merentas sempadan | Contoh |
+| :--- | :--- | :--- | :--- |
+| Terbuka | ya | ya | cerek yang mengeluarkan wap |
+| Tertutup | tidak | ya | gas dalam silinder dengan omboh |
+| Terpencil | tidak | tidak | isi kelalang yang tertutup rapat, lebih kurang |
+
+Tekanan, isi padu, suhu dan tenaga dalam ialah **pemboleh ubah keadaan**: nilainya hanya bergantung pada keadaan gas sekarang, bukan pada cara gas sampai ke situ. Suhu boleh diukur kerana hukum sifar termodinamik: dua objek yang masing-masing berada dalam keseimbangan terma dengan objek ketiga juga berada dalam keseimbangan terma antara satu sama lain, dan termometer ialah objek ketiga itu.
+
+## Kerja sebagai Luas Rajah
+
+Bayangkan gas menolak omboh yang luasnya <InlineMath math="A" /> sejauh <InlineMath math="\Delta s" /> pada tekanan malar <InlineMath math="p" />. Daya daripada gas ialah <InlineMath math="pA" />, jadi kerjanya:
+
+<BlockMath math="W = F\,\Delta s = pA\,\Delta s = p\,\Delta V" />
+
+Pada graf <InlineMath math="p" /> melawan <InlineMath math="V" />, hasil darab <InlineMath math="p\,\Delta V" /> ialah luas segi empat tepat di bawah laluan mendatar. Jika tekanan berubah semasa gas mengembang, potong laluan itu kepada langkah kecil yang setiap satunya hampir bertekanan malar. Jumlah semua segi empat tepat nipis itu ialah **luas di bawah laluan**, dan luas itulah kerja yang dilakukan oleh gas. Tekanan dalam kPa darab isi padu dalam liter terus memberi joule, kerana <InlineMath math="1\text{ kPa} \times 1\text{ L} = (10^3\text{ Pa})(10^{-3}\text{ m}^3) = 1\text{ J}" />.
+
+<GasProcessLab
+  title={<>Dua Laluan Pengembangan dari Satu Keadaan</>}
+  description={
+    <>
+      Sebanyak <InlineMath math="0.25" /> mol gas bermula pada{" "}
+      <InlineMath math="300\text{ kPa}" /> dan <InlineMath math="2\text{ L}" />.
+      Pilih isobarik atau isoterma, gerakkan isi padu akhir, dan bandingkan
+      luas di bawah kedua-dua laluan.
+    </>
+  }
+  footer={
+    <>
+      Semasa mengembang, luas di bawah laluan mendatar lebih besar, jadi kerjanya lebih banyak.
+    </>
+  }
+  labels={{
+    endPressure: "Tekanan akhir",
+    endState: <>Keadaan akhir</>,
+    endVolume: "Isi padu akhir",
+    energy: "Tenaga dalam proses ini",
+    heat: <>Haba yang masuk ke gas, <InlineMath math="Q" /></>,
+    internal: <>Perubahan tenaga dalam, <InlineMath math="\Delta U" /></>,
+    law: <>Yang dikekalkan proses ini</>,
+    pressureAxis: <InlineMath math="p\ (\text{kPa})" />,
+    process: "Proses",
+    processes: {
+      adiabatic: "Adiabatik",
+      isobaric: "Isobarik",
+      isochoric: "Isokorik",
+      isothermal: "Isoterma",
+    },
+    startState: <>Keadaan awal</>,
+    viewLabel: "Silinder gas dengan omboh di sebelah rajah tekanan melawan isi padu",
+    volumeAxis: <InlineMath math="V\ (\text{L})" />,
+    work: <>Kerja oleh gas, <InlineMath math="W" /></>,
+  }}
+  moles={0.25}
+  processes={[
+    { process: "isobaric", volume: { end: 6, max: 8, min: 1 } },
+    { process: "isothermal", volume: { end: 6, max: 8, min: 1 } },
+  ]}
+  start={{ pressure: 300, volume: 2 }}
+/>
+
+Biarkan gas itu mengembang hingga <InlineMath math="6\text{ L}" />. Pada tekanan malar, luasnya ialah segi empat tepat: <InlineMath math="W = (300)(6 - 2) = 1200\text{ J}" />. Pada suhu malar, tekanan jatuh mengikut <InlineMath math="p = 600/V" /> hingga <InlineMath math="100\text{ kPa}" />. Luas di bawah lengkung seperti itu ialah <InlineMath math="nRT\ln(V_2/V_1)" />, dengan <InlineMath math="nRT = p_1V_1 = 600\text{ J}" />:
+
+<BlockMath math="W = 600 \ln \frac{6}{2} = 600 \ln 3 = 659\text{ J}" />
+
+Keadaan awal dan isi padu akhirnya sama, tetapi kerjanya berbeza. **Kerja bergantung pada laluan yang diambil**, bukan hanya pada keadaan awal dan akhir. Sekarang gerakkan isi padu akhir ke kiri <InlineMath math="2\text{ L}" />. Gas dimampatkan, <InlineMath math="\Delta V" /> negatif, dan pada tekanan malar hingga <InlineMath math="1\text{ L}" /> kerjanya <InlineMath math="(300)(1 - 2) = -300\text{ J}" />. Tanda negatif bermakna persekitaran yang melakukan kerja pada gas.
+
+## Imbangan Haba dan Kerja
+
+Tenaga tidak muncul dan tidak hilang. Haba <InlineMath math="Q" /> yang masuk ke dalam gas hanya boleh pergi ke dua tempat: **menaikkan tenaga dalam** gas, atau **keluar semula sebagai kerja** yang menolak omboh. Jadi <InlineMath math="Q = \Delta U + W" />, yang biasanya ditulis sebagai:
+
+<BlockMath math="\Delta U = Q - W" />
+
+| Kuantiti | Positif jika | Negatif jika |
+| :--- | :--- | :--- |
+| <InlineMath math="Q" /> | haba masuk ke dalam gas | haba keluar dari gas |
+| <InlineMath math="W" /> | gas mengembang, kerja oleh gas | gas dimampatkan, kerja pada gas |
+| <InlineMath math="\Delta U" /> | suhu gas naik | suhu gas turun |
+
+Contoh pertama: gas menerima haba <InlineMath math="1800\text{ J}" /> dan, sambil mengembang, melakukan kerja <InlineMath math="700\text{ J}" />.
+
+<BlockMath math="\Delta U = Q - W = 1800 - 700 = 1100\text{ J}" />
+
+Tenaga dalam naik, jadi suhu gas naik. Semak: daripada <InlineMath math="1800\text{ J}" /> yang masuk, <InlineMath math="700\text{ J}" /> keluar sebagai kerja dan <InlineMath math="1100\text{ J}" /> kekal dalam gas, dan <InlineMath math="700 + 1100 = 1800" />.
+
+Contoh kedua: omboh memampatkan gas dengan kerja <InlineMath math="450\text{ J}" />, sementara gas membebaskan haba <InlineMath math="200\text{ J}" /> kepada dinding yang sejuk. Haba keluar, jadi <InlineMath math="Q = -200\text{ J}" />, dan gas dimampatkan, jadi <InlineMath math="W = -450\text{ J}" />.
+
+<BlockMath math="\Delta U = Q - W = (-200) - (-450) = 250\text{ J}" />
+
+Tenaga dalam tetap naik, kerana tenaga yang masuk sebagai kerja lebih besar daripada haba yang keluar. Sesetengah buku menulis <InlineMath math="\Delta U = Q + W" />. Itu bukan hukum yang lain: di sana <InlineMath math="W" /> bermaksud kerja **pada** gas, iaitu tanda yang berlawanan dengan yang dipakai di sini. Pilih satu ketetapan tanda dan kekalkan hingga soalan selesai.
+
+## Empat Proses dari Satu Titik
+
+Gas boleh berpindah antara dua keadaan melalui banyak laluan. Empat laluan istimewa masing-masing **mengekalkan satu perkara**: tekanan (isobarik), isi padu (isokorik), suhu (isoterma), atau tiada pertukaran haba langsung (adiabatik). Dalam makmal seterusnya, <InlineMath math="0.4" /> mol gas monoatom bermula pada <InlineMath math="200\text{ kPa}" /> dan <InlineMath math="5\text{ L}" />, jadi suhunya <InlineMath math="T_1 = 1000/(0.4 \times 8.314) = 300.7\text{ K}" />.
+
+<GasProcessLab
+  title={<>Empat Proses dari Titik Mula yang Sama</>}
+  description={
+    <>
+      Pilih proses, kemudian gerakkan keadaan akhir. Bar <InlineMath math="Q" />,{" "}
+      <InlineMath math="W" /> dan <InlineMath math="\Delta U" /> berkongsi satu
+      skala, dan hukum pertama dikira dengan nombornya.
+    </>
+  }
+  footer={
+    <>
+      Hanya proses isoterma yang membiarkan bar <InlineMath math="\Delta U" /> kosong.
+    </>
+  }
+  labels={{
+    endPressure: "Tekanan akhir",
+    endState: <>Keadaan akhir</>,
+    endVolume: "Isi padu akhir",
+    energy: "Tenaga dalam proses ini",
+    heat: <>Haba yang masuk ke gas, <InlineMath math="Q" /></>,
+    internal: <>Perubahan tenaga dalam, <InlineMath math="\Delta U" /></>,
+    law: <>Yang dikekalkan proses ini</>,
+    pressureAxis: <InlineMath math="p\ (\text{kPa})" />,
+    process: "Proses",
+    processes: {
+      adiabatic: "Adiabatik",
+      isobaric: "Isobarik",
+      isochoric: "Isokorik",
+      isothermal: "Isoterma",
+    },
+    startState: <>Keadaan awal</>,
+    viewLabel: "Silinder gas dengan omboh di sebelah rajah tekanan melawan isi padu",
+    volumeAxis: <InlineMath math="V\ (\text{L})" />,
+    work: <>Kerja oleh gas, <InlineMath math="W" /></>,
+  }}
+  moles={0.4}
+  processes={[
+    { process: "isobaric", volume: { end: 10, max: 12, min: 2.5 } },
+    { pressure: { end: 400, max: 500, min: 100 }, process: "isochoric" },
+    { process: "isothermal", volume: { end: 10, max: 12, min: 2.5 } },
+    { process: "adiabatic", volume: { end: 10, max: 12, min: 2.5 } },
+  ]}
+  showValues
+  start={{ pressure: 200, volume: 5 }}
+/>
+
+Bagi gas monoatom, <InlineMath math="\Delta U = \tfrac{3}{2}nR\,\Delta T" />. Oleh sebab <InlineMath math="nRT = pV" />, rumus ini sama dengan <InlineMath math="\Delta U = \tfrac{3}{2}(p_2V_2 - p_1V_1)" />, yang terus memberi joule daripada kPa dan liter.
+
+### Isobarik dan Isokorik
+
+Dalam proses **isobarik**, gas mengembang daripada <InlineMath math="5" /> kepada <InlineMath math="10\text{ L}" /> pada <InlineMath math="200\text{ kPa}" />. Isi padu dua kali ganda pada tekanan yang sama bermakna suhunya juga dua kali ganda, <InlineMath math="601.4\text{ K}" />.
+
+<MathContainer>
+<BlockMath math="W = p\,\Delta V = (200)(10 - 5) = 1000\text{ J}" />
+<BlockMath math="\Delta U = \tfrac{3}{2}(2000 - 1000) = 1500\text{ J}" />
+<BlockMath math="Q = \Delta U + W = 1500 + 1000 = 2500\text{ J}" />
+</MathContainer>
+
+Dalam proses **isokorik**, omboh dikunci dan gas dipanaskan hingga <InlineMath math="400\text{ kPa}" />. Isi padunya tidak berubah, jadi <InlineMath math="W = 0" /> dan semua haba menjadi tenaga dalam: <InlineMath math="Q = \Delta U = \tfrac{3}{2}(2000 - 1000) = 1500\text{ J}" />. Suhunya juga naik kepada <InlineMath math="601.4\text{ K}" />, sama seperti proses isobarik, tetapi haba yang diperlukan kurang <InlineMath math="1000\text{ J}" />. Beza itu tepat sama dengan kerja yang dilakukan oleh gas isobarik.
+
+### Isoterma dan Adiabatik
+
+Dalam proses **isoterma**, suhu kekal, jadi <InlineMath math="\Delta U = 0" /> dan semua haba yang masuk keluar semula sebagai kerja. Mengembang daripada <InlineMath math="5" /> kepada <InlineMath math="10\text{ L}" />:
+
+<BlockMath math="Q = W = nRT\ln\frac{V_2}{V_1} = 1000\ln 2 = 693.1\text{ J}" />
+
+Cuba gerakkan isi padu akhir ke <InlineMath math="2.5\text{ L}" />. Hasilnya <InlineMath math="Q = W = 1000\ln 0.5 = -693.1\text{ J}" />: gas dimampatkan, dan haba sebanyak itu mesti keluar supaya suhunya kekal.
+
+Dalam proses **adiabatik**, tiada haba yang merentas, <InlineMath math="Q = 0" />, contohnya kerana silinder dibalut penebat atau perubahannya terlalu cepat. Gas unggul kemudian mematuhi <InlineMath math="pV^\gamma = \text{malar}" />, dengan <InlineMath math="\gamma = 5/3" /> bagi gas monoatom.
+
+<MathContainer>
+<BlockMath math="p_2 = p_1\left(\frac{V_1}{V_2}\right)^{\gamma} = 200\left(\frac{1}{2}\right)^{5/3} = 63.0\text{ kPa}" />
+<BlockMath math="\Delta U = \tfrac{3}{2}(p_2V_2 - p_1V_1) = \tfrac{3}{2}(629.96 - 1000) = -555.1\text{ J}" />
+<BlockMath math="W = Q - \Delta U = 0 - (-555.1) = 555.1\text{ J}" />
+</MathContainer>
+
+Gas membayar kerjanya daripada tenaga dalamnya sendiri, jadi **suhunya turun** daripada <InlineMath math="300.7\text{ K}" /> kepada <InlineMath math="189.4\text{ K}" />. Oleh sebab suhunya turut jatuh, lengkung adiabatik lebih curam daripada lengkung isoterma dari titik yang sama. Jadi adiabatik tidak bermaksud suhu malar. Yang kekal sifar hanyalah haba yang merentas.
+
+## Haba untuk Memanaskan Gas
+
+**Muatan haba** <InlineMath math="C" /> ialah haba yang diperlukan untuk menaikkan suhu gas sebanyak <InlineMath math="1\text{ K}" />, iaitu <InlineMath math="C = Q/\Delta T" />. Bagi gas, nilainya bergantung pada cara gas dipanaskan. Proses isokorik dan isobarik dalam makmal sama-sama menaikkan suhu sebanyak <InlineMath math="\Delta T = 601.4 - 300.7 = 300.7\text{ K}" />:
+
+<MathContainer>
+<BlockMath math="C_V = \frac{1500\text{ J}}{300.7\text{ K}} = 4.99\text{ J/K} = \tfrac{3}{2}nR" />
+<BlockMath math="C_p = \frac{2500\text{ J}}{300.7\text{ K}} = 8.31\text{ J/K} = \tfrac{5}{2}nR" />
+</MathContainer>
+
+Muatan haba pada tekanan malar lebih besar kerana gas juga **menolak omboh**: sebahagian haba keluar semula sebagai kerja dan tidak memanaskan gas. Bezanya tepat <InlineMath math="C_p - C_V = nR" />, dan nisbahnya <InlineMath math="C_p/C_V = 5/3" />, iaitu <InlineMath math="\gamma" /> dalam lengkung adiabatik tadi.
+
+Bahagikan dengan bilangan mol, dan kamu mendapat muatan haba molar gas monoatom pada isi padu malar, <InlineMath math="\tfrac{3}{2}R = 12.5\text{ J mol}^{-1}\,\text{K}^{-1}" />, dan helium serta argon memang menghampirinya. Molekul dwiatom seperti nitrogen dan oksigen juga berputar, jadi muatan haba molarnya pada isi padu malar menghampiri <InlineMath math="\tfrac{5}{2}R = 20.8\text{ J mol}^{-1}\,\text{K}^{-1}" />.
+
+## Kitaran Kembali ke Mula
+
+Enjin bekerja berulang kali, jadi gasnya mesti kembali ke keadaan asal. Satu siri proses yang berakhir pada keadaan asal dipanggil **kitaran**. Tenaga dalam ialah pemboleh ubah keadaan, jadi selepas satu pusingan penuh <InlineMath math="\Delta U = 0" /> dan hukum pertama memberi <InlineMath math="Q_{\text{jumlah}} = W_{\text{jumlah}}" />.
+
+Kitaran pada graf memakai gas yang sama. Gas mengembang dari <InlineMath math="A" /> ke <InlineMath math="B" /> pada <InlineMath math="200\text{ kPa}" />, disejukkan pada <InlineMath math="10\text{ L}" /> hingga <InlineMath math="C" />, dimampatkan ke <InlineMath math="D" /> pada <InlineMath math="100\text{ kPa}" />, kemudian dipanaskan pada <InlineMath math="5\text{ L}" /> kembali ke <InlineMath math="A" />. **Kerja bersihnya ialah luas di dalam kitaran**, kerana kerja positif semasa mengembang di sebelah atas lebih besar daripada kerja negatif semasa dimampatkan di sebelah bawah.
+
+<MathVisual
+  title={<>Kitaran Segi Empat Tepat bagi Satu Gas</>}
+  description={
+    <>
+      Paksi mendatar ialah isi padu dalam liter, paksi menegak tekanan dalam
+      kPa. Gerakkan tekanan atas dan isi padu kanan, kemudian lihat kerja
+      bersih dan haba yang masuk.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 13 }, y: { min: 0, max: 320 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "h", min: 120, max: 300, value: 200, step: 10, label: "h" },
+      { name: "r", min: 6, max: 12, value: 10, step: 0.5, label: "r" },
+    ],
+    objects: [
+      { id: "cycle", kind: "loop", appearance: "primary", points: [{ x: "5", y: "h" }, { x: "r", y: "h" }, { x: "r", y: "100" }, { x: "5", y: "100" }] },
+      { id: "a", kind: "marker", x: "5", y: "h", appearance: "answer" },
+      { id: "b", kind: "marker", x: "r", y: "h", appearance: "answer" },
+      { id: "c", kind: "marker", x: "r", y: "100", appearance: "answer" },
+      { id: "d", kind: "marker", x: "5", y: "100", appearance: "answer" },
+    ],
+    labels: [
+      { key: "point-a", objectId: "a", at: { x: "5", y: "h" }, placement: "above-left" },
+      { key: "point-b", objectId: "b", at: { x: "r", y: "h" }, placement: "above-right" },
+      { key: "point-c", objectId: "c", at: { x: "r", y: "100" }, placement: "below-right" },
+      { key: "point-d", objectId: "d", at: { x: "5", y: "100" }, placement: "below-left" },
+    ],
+    readouts: [
+      { key: "net-work", formula: "(h - 100)*(r - 5)" },
+      { key: "heat-in", formula: "2.5*h*(r - 5) + 7.5*(h - 100)" },
+    ],
+  }}
+  labels={{
+    h: <>Tekanan atas dalam <InlineMath math="\text{kPa}" /></>,
+    r: <>Isi padu kanan dalam <InlineMath math="\text{L}" /></>,
+    "point-a": <InlineMath math="A" />,
+    "point-b": <InlineMath math="B" />,
+    "point-c": <InlineMath math="C" />,
+    "point-d": <InlineMath math="D" />,
+    "net-work": <>Kerja bersih satu kitaran dalam <InlineMath math="\text{J}" /></>,
+    "heat-in": <>Haba yang masuk dalam <InlineMath math="\text{J}" /></>,
+  }}
+/>
+
+Bagi kitaran asal, kerja bersihnya <InlineMath math="(200 - 100)(10 - 5) = 500\text{ J}" />. Jadual ini menyemak nombor itu langkah demi langkah, dengan cara yang sama seperti makmal:
+
+| Langkah | <InlineMath math="W" /> | <InlineMath math="\Delta U" /> | <InlineMath math="Q" /> |
+| :--- | :--- | :--- | :--- |
+| <InlineMath math="A" /> ke <InlineMath math="B" />, isobarik | <InlineMath math="+1000\text{ J}" /> | <InlineMath math="+1500\text{ J}" /> | <InlineMath math="+2500\text{ J}" /> |
+| <InlineMath math="B" /> ke <InlineMath math="C" />, isokorik | <InlineMath math="0" /> | <InlineMath math="-1500\text{ J}" /> | <InlineMath math="-1500\text{ J}" /> |
+| <InlineMath math="C" /> ke <InlineMath math="D" />, isobarik | <InlineMath math="-500\text{ J}" /> | <InlineMath math="-750\text{ J}" /> | <InlineMath math="-1250\text{ J}" /> |
+| <InlineMath math="D" /> ke <InlineMath math="A" />, isokorik | <InlineMath math="0" /> | <InlineMath math="+750\text{ J}" /> | <InlineMath math="+750\text{ J}" /> |
+| Satu kitaran | <InlineMath math="+500\text{ J}" /> | <InlineMath math="0" /> | <InlineMath math="+500\text{ J}" /> |
+
+Gas menyerap <InlineMath math="2500 + 750 = 3250\text{ J}" /> dan membebaskan <InlineMath math="1500 + 1250 = 2750\text{ J}" />, jadi hanya <InlineMath math="500\text{ J}" /> yang menjadi kerja. Mengapa sebahagian haba mesti dibebaskan, dan berapa bahagian paling banyak yang boleh menjadi kerja, dijawab oleh [hukum kedua termodinamik](/ms/subjek/fizik/termodinamik/hukum-kedua-dan-enjin-haba).
