@@ -75,6 +75,7 @@ describe("curriculum source catalog", () => {
           "curriculum/node.ts",
           "curriculum/ownership.ts",
           "curriculum/projection.ts",
+          "curriculum/published.ts",
           "curriculum/route.ts",
           "curriculum/schema.ts",
           "curriculum/source.ts",
