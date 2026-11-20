@@ -1,0 +1,28 @@
+# Light hitting the panel at a slant
+
+Shine a torch straight at a sheet of paper, then tilt the paper. The same beam now spreads over more paper, so each bit gets less light. **Light arriving at <InlineMath math="37^\circ" /> to the normal meets the panel as if it were only <InlineMath math="1.2\cos37^\circ=0.96\text{ m}^2" /> big**, so it catches <InlineMath math="800\times0.96=767\text{ W}" /> of light and makes <InlineMath math="0.18\times767=138\text{ W}" />. Forgetting the slant gives <InlineMath math="173\text{ W}" />, the output of a panel turned straight at the Sun.
+
+# Filling the top half
+
+Filling this battery is like filling a leaky bucket. Only part of what you pour in stays. The battery holds <InlineMath math="12\text{ V}\times100\text{ A h}=1200\text{ W h}" /> and starts half full, so <InlineMath math="600\text{ W h}" /> more fills it. **Only three quarters of the panel's power is stored, <InlineMath math="0.75\times138=104\text{ W}" />, so filling up takes <InlineMath math="600/104=5.8\text{ h}" />**, just inside the <InlineMath math="6.0\text{ h}" /> of sun. Using the whole <InlineMath math="138\text{ W}" /> gets there in <InlineMath math="4.3\text{ h}" />, as if nothing leaked on the way in.
+
+# What the night may use
+
+Think of a phone you must never let drop below half. Only the top half of its charge is yours to use. **The fridge may use only the top <InlineMath math="600\text{ W h}" />, which lasts <InlineMath math="600/60=10\text{ h}" />**. The last <InlineMath math="0.2\text{ h}" /> of sunshine finds the battery already full, so that energy is lost. Counting all <InlineMath math="6.0\text{ h}" /> of charging as stored gives <InlineMath math="621\text{ W h}" /> and <InlineMath math="10.4\text{ h}" />, more than a full battery can hold.
+
+<Chart
+  title={<>Battery charge over the day and the night</>}
+  description={<>Charging fills the battery at <InlineMath math="5.8\text{ h}" />. From sunset at <InlineMath math="6.0\text{ h}" /> the fridge takes <InlineMath math="5\%" /> an hour until the charge is back at half.</>}
+  categories={["0 h", "2 h", "4 h", "5.8 h", "6 h", "10 h", "14 h", "16 h"]}
+  series={[
+    { label: "Battery charge", mark: "line", values: [50, 67.3, 84.5, 100, 100, 80, 60, 50] },
+    { label: "Lowest allowed", mark: "line", values: [50, 50, 50, 50, 50, 50, 50, 50] },
+  ]}
+  valueLabel="Charge (% of full)"
+/>
+
+<BlockMath math="\begin{aligned}
+P&=0.18\times800\times1.2\cos37^\circ=138\text{ W}\\
+t&=\frac{600\text{ W h}}{0.75\times138\text{ W}}=5.8\text{ h}<6.0\text{ h}\\
+t'&=\frac{600\text{ W h}}{60\text{ W}}=10\text{ h}
+\end{aligned}" />

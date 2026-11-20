@@ -1,0 +1,32 @@
+In a shake-to-charge torch, a magnet of mass <InlineMath math="40\text{ g}" /> slides along a tube each time the torch is shaken. On the way out it passes through a coil, bounces off a rubber stop at the end of the tube without losing energy, and passes back through the coil. Each time the magnet passes through the coil, <InlineMath math="30\%" /> of the kinetic energy it has as it enters the coil is stored as electrical energy in a rechargeable cell, and the rest stays with the magnet. Friction is negligible. On the way out the magnet enters the coil at <InlineMath math="2.0\text{ m s}^{-1}" />. The torch has an LED that works at <InlineMath math="3.0\text{ V}" /> and <InlineMath math="20\text{ mA}" />.
+
+<MathVisual
+  title={<>Inside the shake-to-charge torch</>}
+  description={<>A <InlineMath math="40\text{ g}" /> magnet slides along a tube, through a coil, to a rubber stop at the end. On the way out it enters the coil at <InlineMath math="2.0\text{ m s}^{-1}" />.</>}
+  labels={{
+    magnet: <>magnet, <InlineMath math="40\text{ g}" /></>,
+    speed: <><InlineMath math="2.0\text{ m s}^{-1}" /></>,
+    coil: <>coil</>,
+    stop: <>rubber stop</>,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -3.5, max: 14.5 }, y: { min: -1, max: 2.9 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "tube", kind: "polyline", appearance: "reference", vertices: [{ x: -3, y: 0 }, { x: 14, y: 0 }, { x: 14, y: 1.6 }, { x: -3, y: 1.6 }] },
+      { id: "magnet", kind: "polygon", appearance: "primary", vertices: [{ x: 1, y: 0.3 }, { x: 3, y: 0.3 }, { x: 3, y: 1.3 }, { x: 1, y: 1.3 }] },
+      { id: "speed", kind: "vector", appearance: "highlight", from: { x: 3.3, y: 0.8 }, to: { x: 5, y: 0.8 } },
+      { id: "coil", kind: "polyline", appearance: "secondary", vertices: [{ x: 6.5, y: -0.4 }, { x: 6.75, y: 2 }, { x: 7, y: -0.4 }, { x: 7.25, y: 2 }, { x: 7.5, y: -0.4 }, { x: 7.75, y: 2 }, { x: 8, y: -0.4 }, { x: 8.25, y: 2 }, { x: 8.5, y: -0.4 }, { x: 8.75, y: 2 }, { x: 9, y: -0.4 }] },
+      { id: "stop", kind: "polygon", appearance: "warning", vertices: [{ x: 13.3, y: 0 }, { x: 14, y: 0 }, { x: 14, y: 1.6 }, { x: 13.3, y: 1.6 }] },
+    ],
+    labels: [
+      { key: "magnet", objectId: "magnet", at: { x: 1, y: 0.8 }, placement: "left" },
+      { key: "speed", objectId: "speed", at: { x: 4.15, y: 0.8 }, placement: "above" },
+      { key: "coil", objectId: "coil", at: { x: 7.75, y: 2 }, placement: "above" },
+      { key: "stop", objectId: "stop", at: { x: 13.65, y: 1.6 }, placement: "above" },
+    ],
+  }}
+/>
+
+How much energy does one shake store, what is the power of the LED, and what is the least number of shakes needed to keep the LED lit for <InlineMath math="1.0" /> minute?

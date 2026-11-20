@@ -1,0 +1,45 @@
+# Satu landasan nipis, satu rintangan
+
+Bayangkan setiap jalur sebagai reben leper yang lebih nipis daripada rambut. Reben nipis ialah jalan sempit bagi cas, jadi ia melawan arus dengan kuat. Lawan itulah **rintangan**, dan bagi landasan yang seragam nilainya <InlineMath math="R=\rho L/A" />.
+
+Keratan rentas jalan itu ialah lebar darab tebal, jadi jaga unitnya: <InlineMath math="12\ \mu\text{m}" /> ialah <InlineMath math="12\times10^{-6}\text{ m}" />.
+
+<BlockMath math="\begin{aligned}
+A&=1.0\times10^{-3}\times12\times10^{-6}=1.2\times10^{-8}\text{ m}^2\\
+R_1&=\frac{\rho L}{A}=\frac{2.0\times10^{-7}\times1.20}{1.2\times10^{-8}}=20\,\Omega,\qquad R_{10}=\frac{20}{10}=2.0\,\Omega
+\end{aligned}" />
+
+Sepuluh jalur bersebelahan ialah sepuluh jalan, jadi bersama-sama rintangannya hanya <InlineMath math="2.0\,\Omega" />. Nilai <InlineMath math="2.0\,\Omega" /> itu milik seluruh grid. Satu jalur sendiri tetap <InlineMath math="20\,\Omega" />.
+
+# Bateri menyimpan sebahagian volt untuk dirinya
+
+Bateri agak macam tangki dengan saluran keluar yang sempit. Sebahagian tolakan habis hanya untuk keluar. Di sini bateri dan wayar mengambil <InlineMath math="0.50\,\Omega" />, jadi **jalur-jalur itu tidak pernah merasa <InlineMath math="12.5\text{ V}" /> penuh**.
+
+<BlockMath math="\begin{aligned}
+I&=\frac{12.5}{2.0+0.50}=5.0\text{ A},\qquad V=5.0\times2.0=10.0\text{ V}\\
+P_1&=\frac{V^2}{R_1}=\frac{10.0^2}{20}=5.0\text{ W}
+\end{aligned}" />
+
+Setiap jalur menerima <InlineMath math="10.0\text{ V}" /> yang sama kerana disambung selari. Kalau kamu letak <InlineMath math="12.5\text{ V}" /> penuh pada satu jalur, kamu dapat <InlineMath math="7.8\text{ W}" />, iaitu terlupa <InlineMath math="2.5\text{ V}" /> yang hilang di dalam bateri dan wayar.
+
+<Chart
+  title={<>Ke mana kuasa bateri pergi</>}
+  description={<>Bateri memberi <InlineMath math="62.5\text{ W}" /> semuanya. <InlineMath math="12.5\text{ W}" /> tinggal dalam bateri dan wayar, <InlineMath math="30\text{ W}" /> meleburkan fros dan <InlineMath math="20\text{ W}" /> memanaskan kaca dan udara.</>}
+  bars="apart"
+  categories={["Bateri dan wayar", "Jalur, ke dalam fros", "Jalur, ke kaca dan udara"]}
+  series={[
+    { label: "Kuasa", mark: "bar", values: [12.5, 30, 20] },
+  ]}
+  valueLabel="Kuasa (W)"
+/>
+
+# Daripada watt kepada fros yang lebur
+
+Meleburkan ais memerlukan tenaga walaupun suhunya kekal <InlineMath math="0^\circ\text{C}" /> sepanjang masa. Tenaga tersembunyi itu ialah **haba pendam tentu pelakuran**. Sepuluh jalur memberi <InlineMath math="50\text{ W}" />, tetapi hanya <InlineMath math="60\%" /> daripadanya, <InlineMath math="30\text{ W}" />, sampai kepada fros.
+
+<BlockMath math="\begin{aligned}
+Q&=mL=0.025\times3.34\times10^{5}=8350\text{ J}\\
+t&=\frac{8350}{0.60\times50}=278\text{ s}\approx280\text{ s}
+\end{aligned}" />
+
+Itu lebih kurang empat setengah minit. Menggunakan <InlineMath math="50\text{ W}" /> penuh memberi <InlineMath math="170\text{ s}" />, seolah-olah tiada haba yang memanaskan kaca atau lari ke udara.

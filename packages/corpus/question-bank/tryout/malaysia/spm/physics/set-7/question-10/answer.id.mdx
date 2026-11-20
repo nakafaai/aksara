@@ -1,0 +1,30 @@
+# Pompa itu juga pemanas kecil
+
+Ponsel jadi hangat saat diisi daya, karena energi yang dipakainya berubah menjadi kalor. Pompa itu juga begitu. **Tiap detik air mendapat <InlineMath math="10\text{ J}" /> dari pompa, di luar kalor dari pemanas**. Pada <InlineMath math="22\text{ °C}" /> pemanas rata-rata memberi <InlineMath math="30\%\times100=30\text{ W}" />, jadi akuarium kehilangan <InlineMath math="30+10=40\text{ W}" /> lewat selisih suhu <InlineMath math="4\text{ °C}" />, yaitu <InlineMath math="k=10\text{ W}" /> untuk tiap derajat. Kalau pompa terlupa, <InlineMath math="k=7{,}5\text{ W}" /> per derajat, dan semua jawaban berikutnya meleset menjadi <InlineMath math="75\%" />, <InlineMath math="1{,}3\text{ °C jam}^{-1}" />, dan <InlineMath math="25\text{ °C}" />.
+
+# Malam yang dingin
+
+Selisih yang lebih besar antara dalam dan luar membuat kalor bocor lebih cepat, seperti balon dengan lubang yang lebih besar. **Pada <InlineMath math="16\text{ °C}" /> selisihnya <InlineMath math="10\text{ °C}" />, jadi kalor yang hilang <InlineMath math="100\text{ W}" />, dan pemanas harus menyuplai <InlineMath math="100-10=90\text{ W}" />, artinya menyala <InlineMath math="90\%" /> dari waktu**. Kalau pemanas rusak, pompa masih menambah <InlineMath math="10\text{ W}" />, jadi air hanya kehilangan <InlineMath math="90\text{ W}" /> bersih. Itu <InlineMath math="90/(50\times4200)" /> derajat per detik, atau <InlineMath math="1{,}5\text{ °C}" /> per jam. Kalau pompa terlupa di sini, suhu turun <InlineMath math="1{,}7\text{ °C jam}^{-1}" />.
+
+<Chart
+  title={<>Kalor yang hilang dibanding pasokan terbesar akuarium</>}
+  description={<>Dengan air pada <InlineMath math="26\text{ °C}" />, akuarium kehilangan <InlineMath math="10\text{ W}" /> untuk tiap derajat di atas suhu ruang. Di ruang <InlineMath math="12\text{ °C}" /> ia akan kehilangan <InlineMath math="140\text{ W}" />, lebih dari <InlineMath math="110\text{ W}" /> yang bisa diberikan pemanas dan pompa bersama.</>}
+  bars="apart"
+  categories={["Ruang 22 °C", "Ruang 16 °C", "Ruang 12 °C"]}
+  series={[
+    { label: "Kalor hilang pada suhu yang disetel", mark: "bar", values: [40, 100, 140] },
+    { label: "Pemanas dan pompa bersama", mark: "line", values: [110, 110, 110] },
+  ]}
+  valueLabel="Daya (W)"
+/>
+
+# Malam paling dingin
+
+Saat kamu berlari sekuat tenaga, kecepatanmu akhirnya mendatar di kecepatan puncak. Air juga begitu, ia mendingin sampai kalor yang bocor sama dengan pasokan terbesar yang bisa diterimanya. **Dengan pemanas menyala terus, air mendapat <InlineMath math="100+10=110\text{ W}" />, dan kebocoran menyamainya pada <InlineMath math="110/10=11\text{ °C}" /> di atas suhu ruang, yaitu <InlineMath math="23\text{ °C}" />**. Menghitung pemanas saja memberi <InlineMath math="22\text{ °C}" />.
+
+<BlockMath math="\begin{aligned}
+k&=\frac{0{,}30\times100+10}{26-22}=10\text{ W °C}^{-1}\\
+P&=10\times(26-16)-10=90\text{ W}\ \Rightarrow\ 90\%\\
+\frac{\Delta\theta}{\Delta t}&=\frac{100-10}{50\times4200}\times3600=1{,}5\text{ °C jam}^{-1}\\
+\theta_{\max}&=12+\frac{100+10}{10}=23\text{ °C}
+\end{aligned}" />

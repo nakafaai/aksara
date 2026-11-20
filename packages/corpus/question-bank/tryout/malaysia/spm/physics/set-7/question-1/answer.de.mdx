@@ -1,0 +1,31 @@
+# Den Messwert finden, der aus der Reihe fällt
+
+Bis <InlineMath math="4{,}0\text{ N}" /> verschiebt jedes weitere Newton den Zeiger um etwa <InlineMath math="2{,}0\text{ cm}" />. Das letzte Newton verschiebt ihn um <InlineMath math="3{,}5\text{ cm}" />, also **wurde der Wert bei <InlineMath math="5{,}0\text{ N}" /> jenseits der Elastizitätsgrenze abgelesen** und fliegt raus. Behältst du ihn, bekommst du <InlineMath math="5{,}0\text{ N}" /> auf <InlineMath math="11{,}5\text{ cm}" />, etwa <InlineMath math="43\text{ N m}^{-1}" />, eine Härte, die die Feder im Hooke-Bereich nie hatte.
+
+<Chart
+  title={<>Zeigerstand und Hooke-Gerade</>}
+  description={<>Bis <InlineMath math="4{,}0\text{ N}" /> liegen die Werte auf einer Geraden, die pro Newton um <InlineMath math="2{,}0\text{ cm}" /> steigt. Bei <InlineMath math="5{,}0\text{ N}" /> springt der Wert <InlineMath math="1{,}5\text{ cm}" /> über diese Gerade.</>}
+  categories={["0,0 N", "1,0 N", "2,0 N", "3,0 N", "4,0 N", "5,0 N"]}
+  series={[
+    { label: "Messwert", mark: "line", values: [12.0, 14.0, 16.1, 17.9, 20.0, 23.5] },
+    { label: "Hooke-Gerade", mark: "line", values: [12.0, 14.0, 16.0, 18.0, 20.0, 22.0] },
+  ]}
+  valueLabel="Zeigerstand (cm)"
+/>
+
+Die sauberen Werte liefern <InlineMath math="4{,}0\text{ N}" /> für <InlineMath math="8{,}0\text{ cm}" />, also <InlineMath math="k=50\text{ N m}^{-1}" />.
+
+# Die Energie ist ein Dreieck, kein Rechteck
+
+Die Kraft wuchs beim Dehnen von null auf <InlineMath math="4{,}0\text{ N}" />, also ist die Arbeit die Dreiecksfläche unter der Kraft-Dehnungs-Geraden, **die Hälfte von Kraft mal Dehnung**: <InlineMath math="0{,}16\text{ J}" />. Ohne die Hälfte verdoppelt sich das auf <InlineMath math="0{,}32\text{ J}" />.
+
+# Die halbe Feder ist doppelt so hart
+
+Jede Hälfte trägt die volle Last, hat aber nur die halbe Zahl an Windungen für die Dehnung, also **hat die halbe Feder <InlineMath math="k=100\text{ N m}^{-1}" />** und dehnt sich unter <InlineMath math="4{,}0\text{ N}" /> nur um <InlineMath math="0{,}040\text{ m}" />. Sie speichert <InlineMath math="0{,}080\text{ J}" />, und mehr bekommt die Kugel nicht.
+
+<BlockMath math="\begin{aligned}
+k&=\frac{4{,}0\text{ N}}{0{,}080\text{ m}}=50\text{ N m}^{-1},\qquad E=\tfrac12Fx=\tfrac12\times4{,}0\times0{,}080=0{,}16\text{ J}\\
+k'&=2k=100\text{ N m}^{-1},\quad x'=0{,}040\text{ m},\quad E'=0{,}080\text{ J}=\tfrac12\times0{,}020\times v^2\ \Rightarrow\ v=2{,}8\text{ m s}^{-1}
+\end{aligned}" />
+
+Gibst du der Kugel die <InlineMath math="0{,}16\text{ J}" /> der ganzen Feder, fliegt sie mit <InlineMath math="4{,}0\text{ m s}^{-1}" /> los, aber die kürzere Feder speichert bei gleicher Last nur halb so viel.

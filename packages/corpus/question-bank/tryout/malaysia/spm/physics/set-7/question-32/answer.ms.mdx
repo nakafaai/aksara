@@ -1,0 +1,38 @@
+# Kenapa logam cecair itu ditolak
+
+Bayangkan aloi cecair itu sebagai sekumpulan wayar halus yang melintang di dalam saluran, dari dinding ke dinding. Setiap satu membawa arus, dan arus dalam medan magnet akan ditolak ke tepi. Di sini tolakan itu menghala di sepanjang saluran, jadi **medan menolak cecair ke hadapan**, tanpa sebarang bahagian yang bergerak.
+
+Arus merentasi lebar <InlineMath math="4.0\text{ cm}" />, jadi lebar itulah panjang wayar dalam medan, dan dayanya <InlineMath math="F=BIw" />.
+
+# Daya yang tersebar pada muka saluran
+
+Tekanan ialah daya yang dikongsi pada suatu luas. Tolakan itu bertindak pada cecair yang memenuhi keratan rentas saluran, iaitu segi empat kecil yang kamu nampak kalau melihat ke dalam paip, <InlineMath math="w\times h" />. Tengok apa yang berlaku: lebar itu terbatal, dan **hanya tinggi saluran yang tinggal** di bawah garis.
+
+<BlockMath math="\begin{aligned}
+F&=BIw=0.50\times500\times0.040=10\text{ N}\\
+\Delta p&=\frac{F}{wh}=\frac{BI}{h}=\frac{0.50\times500}{0.010}=2.5\times10^{4}\text{ Pa}
+\end{aligned}" />
+
+Dua luas yang menggoda memberi tekanan yang salah. Membahagi dengan lantai saluran, <InlineMath math="10\text{ cm}\times4.0\text{ cm}" />, memberi <InlineMath math="2.5\text{ kPa}" />. Membiarkan arus mengalir ke atas sepanjang tinggi <InlineMath math="1.0\text{ cm}" /> dan bukan merentasi lebar memberi <InlineMath math="6.3\text{ kPa}" />.
+
+# Setinggi mana turus yang dapat ditampung
+
+Turus cecair menekan ke bawah dengan <InlineMath math="\rho g H" /> di kakinya. Pam itu menampung turus selagi **tolakannya sama dengan berat per luas itu**.
+
+<BlockMath math="\begin{aligned}
+H&=\frac{\Delta p}{\rho g}=\frac{2.5\times10^{4}}{850\times9.81}=3.0\text{ m}\\
+I&=\frac{\rho g H h}{B}=\frac{850\times9.81\times4.5\times0.020}{0.50}=1.5\times10^{3}\text{ A}
+\end{aligned}" />
+
+<Chart
+  title={<>Turus yang ditampung melawan arus pam</>}
+  description={<>Ketinggian bertambah seiring dengan arus. Saluran yang dua kali lebih tinggi memerlukan dua kali arus untuk turus yang sama, jadi <InlineMath math="4.5\text{ m}" /> memerlukan <InlineMath math="750\text{ A}" /> dalam saluran lama tetapi <InlineMath math="1500\text{ A}" /> dalam saluran baharu.</>}
+  categories={["0 A", "250 A", "500 A", "750 A", "1000 A", "1250 A", "1500 A"]}
+  series={[
+    { label: "Saluran setinggi 1.0 cm", mark: "line", values: [0.0, 1.5, 3.0, 4.5, 6.0, 7.5, 8.99] },
+    { label: "Saluran setinggi 2.0 cm", mark: "line", values: [0.0, 0.75, 1.5, 2.25, 3.0, 3.75, 4.5] },
+  ]}
+  valueLabel="Tinggi turus (m)"
+/>
+
+Dalam saluran yang lebih tinggi, daya yang sama tersebar pada muka yang dua kali lebih besar, jadi kamu perlukan dua kali arus. Mengekalkan <InlineMath math="750\text{ A}" /> yang lama terlupa bahawa tinggi saluran berada dalam <InlineMath math="\Delta p=BI/h" />.

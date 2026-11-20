@@ -1,0 +1,47 @@
+# Tolakan kecil, tarikan besar
+
+Sidai tuala basah pada tali jemuran yang ditarik tegang, dan tali itu tetap melendut sedikit. Makin tegang tali, makin kurang lendutannya dan makin kuat ia tertarik. Tali di sini berkelakuan sama. **Setiap separuh tali menarik di sepanjang dirinya, dan hanya bahagian ke sisi yang kecil daripada kedua-duanya dapat mengimbangi tolakan <InlineMath math="400\text{ N}" />**. Dengan titik tengah <InlineMath math="0.50\text{ m}" /> ke sisi bagi separuh rentang <InlineMath math="5.0\text{ m}" />, <InlineMath math="\tan\theta=0.10" /> dan <InlineMath math="\sin\theta=0.0995" />. Kedua-dua separuh berkongsi tolakan itu, jadi <InlineMath math="2T\sin\theta=400" /> dan <InlineMath math="T=2.0\text{ kN}" />. Itu lima kali ganda tolakan, tetapi masih kurang daripada <InlineMath math="2500\text{ N}" /> yang diperlukan kereta. Jika separuh kedua dilupakan, tegangan menjadi dua kali ganda, <InlineMath math="4.0\text{ kN}" />, dan kereta sepatutnya sudah keluar.
+
+<ForceTableResultantLab
+  title={<>Titik tengah tali pada meja daya</>}
+  description={<>Setiap gram mewakili <InlineMath math="10\text{ N}" />. Dua separuh tali, <InlineMath math="201\text{ g}" /> setiap satu dan <InlineMath math="5.7^\circ" /> dari garis lurus, mengimbangi tolakan <InlineMath math="40\text{ g}" />. Putar tali tolakan dan cincin itu tergelincir dari tengah.</>}
+  pulls={[
+    { angle: 354.29, mass: 201 },
+    { angle: 185.71, mass: 201 },
+    { angle: 90, mass: 40 },
+  ]}
+  labels={{
+    angle: <>Sudut tali tolakan</>,
+    angleName: "Sudut tali tolakan",
+    direction: <>Arah <InlineMath math="\vec R" /></>,
+    resultant: <>Paduan <InlineMath math="R" /></>,
+    sumX: <>Jumlah di sepanjang <InlineMath math="0^\circ" /></>,
+    sumY: <>Jumlah di sepanjang <InlineMath math="90^\circ" /></>,
+    viewLabel: "Meja daya dengan dua separuh tali dan tolakan",
+  }}
+/>
+
+# Tolakan yang dapat melepaskan kereta
+
+Tolak bahagian tengah tali lompat yang dipegang dua orang kawan, dan kamu melawan kedua-dua mereka serentak. Dengan lendutan yang sama, tarikan yang lebih besar memerlukan tolakan yang naik dengan nisbah yang sama. **Untuk <InlineMath math="2500\text{ N}" />, tolakan mesti <InlineMath math="2\times2500\times0.0995=500\text{ N}" />**, suku lebih banyak daripada tolakan pemandu. Menggunakan bahagian ke sisi satu separuh tali sahaja memberi <InlineMath math="250\text{ N}" />, sedangkan tolakan itu melenturkan kedua-dua separuh sekali gus.
+
+# Lebih tegang lebih baik, bukan lebih jauh
+
+Duduk dalam buaian jaring yang diikat hampir rata, dan talinya menarik pokok jauh lebih kuat berbanding buaian yang melendut. Menolak titik tengah lebih jauh terasa seperti membantu. Sebenarnya sebaliknya. **Supaya <InlineMath math="400\text{ N}" /> menghasilkan <InlineMath math="2500\text{ N}" />, <InlineMath math="\sin\theta\le400/5000=0.080" />**, jadi titik tengah boleh berada paling jauh <InlineMath math="5.0\tan4.6^\circ=0.40\text{ m}" /> ke sisi. Menskalakan <InlineMath math="0.50\text{ m}" /> dengan <InlineMath math="2500/2010" /> kepada <InlineMath math="0.62\text{ m}" /> menjadikan tali lebih longgar dan tarikannya lebih lemah.
+
+<Chart
+  title={<>Tegangan tali bagi tolakan tetap apabila lenturan bertambah</>}
+  description={<>Dengan tolakan <InlineMath math="400\text{ N}" />, tegangan berkurang apabila titik tengah bergerak keluar. Tegangan itu mencapai <InlineMath math="2.5\text{ kN}" /> yang diperlukan kereta hanya sehingga <InlineMath math="0.40\text{ m}" />.</>}
+  categories={["0.20 m", "0.30 m", "0.40 m", "0.50 m", "0.60 m", "0.80 m"]}
+  series={[
+    { label: "Tegangan tali", mark: "line", values: [5.0, 3.34, 2.51, 2.01, 1.68, 1.27] },
+    { label: "Tarikan untuk melepaskan kereta", mark: "line", values: [2.5, 2.5, 2.5, 2.5, 2.5, 2.5] },
+  ]}
+  valueLabel="Daya (kN)"
+/>
+
+<BlockMath math="\begin{aligned}
+\tan\theta&=\frac{0.50}{5.0}=0.10,\quad\sin\theta=0.0995,\quad T=\frac{400}{2\times0.0995}=2.0\times10^{3}\text{ N}\\
+F_{\min}&=2\times2500\times0.0995=500\text{ N}\\
+\sin\theta'&\le\frac{400}{2\times2500}=0.080\ \Rightarrow\ d=5.0\tan4.6^\circ=0.40\text{ m}
+\end{aligned}" />

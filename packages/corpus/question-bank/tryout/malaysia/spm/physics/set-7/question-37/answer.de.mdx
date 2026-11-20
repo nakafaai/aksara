@@ -1,0 +1,27 @@
+# Was die Schaltung will
+
+Stell dir die Pumpe als Gärtner vor, der gießt, wenn der Boden trocken ist und es nicht regnet, oder immer, wenn du den Knopf drückst, aber nie aus einem leeren Tank. **Das ist <InlineMath math="P=(S\cdot\overline{R}+M)\cdot\overline{E}" />**. Mit <InlineMath math="E=1" /> läuft nichts. Mit <InlineMath math="E=0" /> läuft die Pumpe in allen vier Kombinationen mit <InlineMath math="M=1" /> und in einer weiteren, trockener Boden ohne Regen, also in <InlineMath math="5" /> von <InlineMath math="16" />. Wer <InlineMath math="E" /> beim Zählen weglässt, verdoppelt das auf <InlineMath math="10" />.
+
+# Der Tank entscheidet selbst
+
+Eine Taschenlampe, deren Akku drei Stunden hält, geht nach drei Stunden Betrieb aus, nicht nach drei Stunden auf der Uhr. **Die Pumpe will in den Stunden <InlineMath math="1" />, <InlineMath math="3" />, <InlineMath math="4" />, <InlineMath math="5" />, <InlineMath math="6" />, <InlineMath math="7" /> und <InlineMath math="8" /> laufen, doch die Stunden <InlineMath math="1" />, <InlineMath math="3" /> und <InlineMath math="4" /> leeren den Tank, also beginnen die Stunden <InlineMath math="5" /> und <InlineMath math="6" /> mit <InlineMath math="E=1" />**. Das Nachfüllen bringt die Stunden <InlineMath math="7" /> und <InlineMath math="8" /> zurück, also läuft die Pumpe <InlineMath math="5" /> Stunden. Wer den Tank übersieht, kommt auf <InlineMath math="7" />.
+
+<Chart
+  title={<>Wasser im Tank zu Beginn jeder Stunde</>}
+  description={<>Gemessen in Pumpstunden. Die funktionierende Pumpe leert den Tank bis zum Beginn von Stunde <InlineMath math="5" />, die defekte bis zum Beginn von Stunde <InlineMath math="6" />.</>}
+  categories={["Stunde 1", "Stunde 2", "Stunde 3", "Stunde 4", "Stunde 5", "Stunde 6", "Stunde 7", "Stunde 8"]}
+  series={[
+    { label: "Funktionierende Schaltung", mark: "line", values: [3, 2, 2, 1, 0, 0, 3, 2] },
+    { label: "Ohne NICHT-Gatter an R", mark: "line", values: [3, 3, 2, 1, 1, 0, 3, 2] },
+  ]}
+  valueLabel="Restwasser (Pumpstunden)"
+/>
+
+# Ohne das NICHT-Gatter
+
+Jetzt gießt der Gärtner, wenn der Boden trocken ist und es regnet, also genau verkehrt. **Stunde <InlineMath math="1" /> fällt weg, Stunde <InlineMath math="2" /> kommt dazu, und die Stunden <InlineMath math="3" /> und <InlineMath math="5" /> laufen weiter wegen <InlineMath math="M" />, also ist der Tank nach Stunde <InlineMath math="5" /> leer. Nach dem Nachfüllen läuft nur Stunde <InlineMath math="7" />, die defekte Pumpe läuft also <InlineMath math="4" /> Stunden**. Wer die leeren Stunden der funktionierenden Pumpe, <InlineMath math="5" /> und <InlineMath math="6" />, einfach übernimmt, stoppt Stunde <InlineMath math="5" /> zu Unrecht und kommt auf <InlineMath math="3" />.
+
+<BlockMath math="\begin{aligned}
+P&=(S\cdot\overline{R}+M)\cdot\overline{E}\\
+P'&=(S\cdot R+M)\cdot\overline{E}
+\end{aligned}" />

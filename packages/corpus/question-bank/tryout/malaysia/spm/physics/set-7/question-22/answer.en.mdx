@@ -1,0 +1,47 @@
+# A small push, a big pull
+
+Hang a wet towel on a washing line pulled tight, and the line still sags a little. The tighter the line, the less it sags and the harder it strains. The rope here behaves the same. **Each half pulls along its own length, and only their small sideways parts can hold back the <InlineMath math="400\text{ N}" /> push**. With the midpoint <InlineMath math="0.50\text{ m}" /> out over a half-span of <InlineMath math="5.0\text{ m}" />, <InlineMath math="\tan\theta=0.10" /> and <InlineMath math="\sin\theta=0.0995" />. Both halves share the push, so <InlineMath math="2T\sin\theta=400" /> and <InlineMath math="T=2.0\text{ kN}" />. That is five times the push, but still short of the car's <InlineMath math="2500\text{ N}" />. Leaving out the second half doubles the tension to <InlineMath math="4.0\text{ kN}" />, and then the car would already be out.
+
+<ForceTableResultantLab
+  title={<>The rope's midpoint on a force table</>}
+  description={<>Each gram stands for <InlineMath math="10\text{ N}" />. The two rope halves, <InlineMath math="201\text{ g}" /> each and <InlineMath math="5.7^\circ" /> off the straight line, balance the <InlineMath math="40\text{ g}" /> push. Turn the push string and the ring slides off the centre.</>}
+  pulls={[
+    { angle: 354.29, mass: 201 },
+    { angle: 185.71, mass: 201 },
+    { angle: 90, mass: 40 },
+  ]}
+  labels={{
+    angle: <>Angle of the push string</>,
+    angleName: "Angle of the push string",
+    direction: <>Direction of <InlineMath math="\vec R" /></>,
+    resultant: <>Resultant <InlineMath math="R" /></>,
+    sumX: <>Sum along <InlineMath math="0^\circ" /></>,
+    sumY: <>Sum along <InlineMath math="90^\circ" /></>,
+    viewLabel: "Force table with the two rope halves and the push",
+  }}
+/>
+
+# The push that would free the car
+
+Push the middle of a skipping rope held by two friends and you push against both of them at once. With the same sag, a bigger pull needs a push bigger in the same ratio. **For <InlineMath math="2500\text{ N}" /> the push must be <InlineMath math="2\times2500\times0.0995=500\text{ N}" />**, a quarter more than the driver gave. Using one half's sideways part alone gives <InlineMath math="250\text{ N}" />, but the push bends both halves together.
+
+# Tighter wins, not farther
+
+Sit in a hammock strung almost flat and its ropes pull on the trees far harder than in a saggy one. Pushing the midpoint farther out feels as if it should help. It does the opposite. **For <InlineMath math="400\text{ N}" /> to make <InlineMath math="2500\text{ N}" />, <InlineMath math="\sin\theta\le400/5000=0.080" />**, so the midpoint may sit at most <InlineMath math="5.0\tan4.6^\circ=0.40\text{ m}" /> to the side. Scaling <InlineMath math="0.50\text{ m}" /> up by <InlineMath math="2500/2010" /> to <InlineMath math="0.62\text{ m}" /> makes the rope slacker and the pull weaker.
+
+<Chart
+  title={<>Rope tension for a steady push as the sag grows</>}
+  description={<>With a <InlineMath math="400\text{ N}" /> push the tension falls as the midpoint moves out. It stays at or above the car's <InlineMath math="2.5\text{ kN}" /> only up to <InlineMath math="0.40\text{ m}" />.</>}
+  categories={["0.20 m", "0.30 m", "0.40 m", "0.50 m", "0.60 m", "0.80 m"]}
+  series={[
+    { label: "Rope tension", mark: "line", values: [5.0, 3.34, 2.51, 2.01, 1.68, 1.27] },
+    { label: "Pull that frees the car", mark: "line", values: [2.5, 2.5, 2.5, 2.5, 2.5, 2.5] },
+  ]}
+  valueLabel="Force (kN)"
+/>
+
+<BlockMath math="\begin{aligned}
+\tan\theta&=\frac{0.50}{5.0}=0.10,\quad\sin\theta=0.0995,\quad T=\frac{400}{2\times0.0995}=2.0\times10^{3}\text{ N}\\
+F_{\min}&=2\times2500\times0.0995=500\text{ N}\\
+\sin\theta'&\le\frac{400}{2\times2500}=0.080\ \Rightarrow\ d=5.0\tan4.6^\circ=0.40\text{ m}
+\end{aligned}" />

@@ -1,0 +1,33 @@
+# Nur ein Teil des Winddrucks treibt das Boot
+
+Schieb einen Einkaufswagen schräg von der Seite, und nur ein Teil deines Schubs rollt ihn nach vorn. Der Rest drückt nur seitlich auf die Räder. Beim Segel ist es genauso. Der Wind drückt senkrecht auf das Segel, also zeigt der Druck bei <InlineMath math="30^\circ" /> zwischen Segel und Fahrtrichtung um <InlineMath math="60^\circ" /> von der Fahrtrichtung weg. **Der Vortrieb ist <InlineMath math="400\sin30^\circ=200\text{ N}" />, der Seitendruck <InlineMath math="400\cos30^\circ=346\text{ N}" />**, und den fängt der Kiel ab. Bei gleichmäßigen <InlineMath math="3{,}0\text{ m s}^{-1}" /> bleibt nichts übrig, also bremst das Wasser mit genau <InlineMath math="200\text{ N}" />. Vertauschst du Sinus und Kosinus, bekommt das Boot scheinbar <InlineMath math="346\text{ N}" /> Vortrieb, und das Fieren würde es dann bremsen.
+
+# Der erste Moment nach dem Fieren
+
+Wenn du fester in die Pedale trittst, springt dein Fahrrad nicht sofort auf ein neues Tempo. Einen Moment lang drückt die Luft noch genauso dagegen. Das Fieren auf <InlineMath math="50^\circ" /> hebt den Vortrieb auf <InlineMath math="400\sin50^\circ=306\text{ N}" />, aber das Boot fährt noch <InlineMath math="3{,}0\text{ m s}^{-1}" />, also **bremst das Wasser noch mit den alten <InlineMath math="200\text{ N}" />**. Nur die übrigen <InlineMath math="106\text{ N}" /> beschleunigen, also <InlineMath math="a=106/200=0{,}53\text{ m s}^{-2}" />. Teilst du die ganzen <InlineMath math="306\text{ N}" /> durch die Masse, kommen <InlineMath math="1{,}5\text{ m s}^{-2}" /> heraus, als hätte das Wasser plötzlich losgelassen.
+
+# Wo sich das Tempo einpendelt
+
+Lauf mal schnell durchs Schwimmbecken. Das Wasser hält viel stärker dagegen, nicht nur ein bisschen. Hier wächst der Widerstand mit dem Quadrat der Geschwindigkeit, <InlineMath math="F=kv^2" />. **Aus der gleichmäßigen Fahrt folgt <InlineMath math="k=200/3{,}0^2=22{,}2\text{ N s}^2\text{ m}^{-2}" />**. Das Boot hört auf zu beschleunigen, wenn der Widerstand auf <InlineMath math="306\text{ N}" /> gestiegen ist, also <InlineMath math="v=\sqrt{306/22{,}2}=3{,}7\text{ m s}^{-1}" />. Die <InlineMath math="1{,}53" />-fache Kraft bringt nur das <InlineMath math="\sqrt{1{,}53}=1{,}24" />-fache Tempo. Rechnest du das Tempo im Verhältnis der Kräfte hoch, landest du bei <InlineMath math="4{,}6\text{ m s}^{-1}" />, und das passt nur zu einem Widerstand, der linear mit dem Tempo wächst.
+
+<BlockMath math="\begin{aligned}
+400\sin30^\circ&=200\text{ N}=k(3{,}0)^2\ \Rightarrow\ k=22{,}2\text{ N s}^2\text{ m}^{-2}\\
+a&=\frac{400\sin50^\circ-200}{200}=\frac{306-200}{200}=0{,}53\text{ m s}^{-2}\\
+v&=\sqrt{\frac{306}{22{,}2}}=3{,}7\text{ m s}^{-1},\qquad 400\cos\alpha\le360\ \Rightarrow\ \alpha\ge25{,}8^\circ
+\end{aligned}" />
+
+# Wie dicht das Segel kommen darf
+
+Stell dir den Kiel wie eine Hand an der Bootsseite vor, die nur bis zu einer Grenze halten kann. Holst du das Segel dichter an die Fahrtrichtung, kippt der Winddruck mehr zur Seite. **Der Seitendruck <InlineMath math="400\cos\alpha" /> darf höchstens <InlineMath math="360\text{ N}" /> sein**, also <InlineMath math="\cos\alpha\le0{,}90" /> und <InlineMath math="\alpha\ge26^\circ" />. Noch dichter, und das Boot rutscht seitlich weg. Schreibst du den Seitendruck als <InlineMath math="400\sin\alpha" />, kommst du auf <InlineMath math="64^\circ" />, doch dort erreicht der Vortrieb die <InlineMath math="360\text{ N}" />, das andere Ende des Bereichs.
+
+<Chart
+  title={<>Vortrieb und Seitendruck beim Fieren des Segels</>}
+  description={<>Bei <InlineMath math="26^\circ" /> erreicht der Seitendruck die <InlineMath math="360\text{ N}" />, die der Kiel halten kann. Das Fieren von <InlineMath math="30^\circ" /> auf <InlineMath math="50^\circ" /> hebt den Vortrieb von <InlineMath math="200\text{ N}" /> auf <InlineMath math="306\text{ N}" />.</>}
+  categories={["20°", "26°", "30°", "40°", "50°", "60°"]}
+  series={[
+    { label: "Vortrieb", mark: "line", values: [136.8, 175.3, 200.0, 257.1, 306.4, 346.4] },
+    { label: "Seitendruck", mark: "line", values: [375.9, 359.5, 346.4, 306.4, 257.1, 200.0] },
+    { label: "Grenze des Kiels", mark: "line", values: [360, 360, 360, 360, 360, 360] },
+  ]}
+  valueLabel="Kraft (N)"
+/>

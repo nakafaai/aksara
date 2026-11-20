@@ -1,0 +1,44 @@
+# Apa yang dihubungkan tiap posisi sakelar
+
+Orang melewati dua gerbang yang berurutan lebih lambat daripada dua gerbang yang berdampingan. Arus juga begitu. **Rangkaian seri menjumlahkan hambatan, sedangkan rangkaian paralel memberi hambatan yang lebih kecil daripada masing-masing kumparan**. LOW punya <InlineMath math="60+40=100\,\Omega" /> dan <InlineMath math="P=240^2/100=576\text{ W}" />. MEDIUM memakai kumparan <InlineMath math="40\,\Omega" /> saja untuk <InlineMath math="1{,}44\text{ kW}" />, dan HIGH punya <InlineMath math="24\,\Omega" /> untuk <InlineMath math="2{,}4\text{ kW}" />.
+
+# Kumparan terbakar itu seperti jembatan runtuh
+
+Tidak ada yang bisa menyeberangi jembatan yang sudah runtuh. Kumparan yang terbakar putus sama saja bagi arus. **Posisi mana pun yang satu-satunya jalurnya melewati kumparan <InlineMath math="40\,\Omega" /> jadi mati**. LOW punya kedua kumparan dalam satu jalur dan MEDIUM hanya punya kumparan yang terbakar, jadi keduanya tidak memberi apa-apa. HIGH masih punya cabang <InlineMath math="60\,\Omega" />, jadi daya terbesar pemanas adalah <InlineMath math="240^2/60=960\text{ W}" />. Angka <InlineMath math="1{,}44\text{ kW}" /> milik MEDIUM berasal dari kumparan yang sudah tidak ada.
+
+<Mermaid
+  title={<>Apa yang masih bisa dilakukan sakelar</>}
+  description={<>Kumparan yang putus mematikan LOW dan MEDIUM sepenuhnya. Setelah diperbaiki, HIGH menarik tepat <InlineMath math="13\text{ A}" /> dan LOW memberi <InlineMath math="665\text{ W}" />.</>}
+  chart={`
+    flowchart TD
+      N0["Kumparan 40 Ω terbakar putus"]
+      N1["LOW: satu jalur melewati kedua kumparan, 0 W"]
+      N2["MEDIUM: hanya kumparan yang terbakar, 0 W"]
+      N3["HIGH: cabang 60 Ω saja, 960 W"]
+      N4["Pasang kumparan 26,7 Ω"]
+      N5["HIGH: total 18,5 Ω, 13 A, 3,1 kW"]
+      N6["LOW: total 86,7 Ω, 665 W"]
+      N0 --> N1
+      N0 --> N2
+      N0 --> N3
+      N1 --> N4
+      N2 --> N4
+      N3 --> N4
+      N4 --> N5
+      N4 --> N6
+  `}
+/>
+
+# Memilih kumparan baru sesuai sekring
+
+Sekring adalah penjaga yang hanya meloloskan paling banyak <InlineMath math="13\text{ A}" />. **Pada HIGH, seluruh pemanas harus punya minimal <InlineMath math="240/13=18{,}5\,\Omega" />, yaitu kedua kumparan yang paralel**. Jadi <InlineMath math="\tfrac1R\le\tfrac1{18{,}5}-\tfrac1{60}" /> dan <InlineMath math="R\ge26{,}7\,\Omega" />. Memilih <InlineMath math="18{,}5\,\Omega" /> menganggap kumparan baru memikul seluruh <InlineMath math="13\text{ A}" /> sendirian, lalu <InlineMath math="4\text{ A}" /> yang lewat kumparan <InlineMath math="60\,\Omega" /> akan memutus sekring.
+
+# LOW kembali lebih panas
+
+Ganti satu gerbang lambat dalam deretan dengan gerbang yang lebih cepat, dan seluruh antrean bergerak lebih cepat. **LOW kini punya <InlineMath math="60+26{,}7=86{,}7\,\Omega" />, lebih kecil dari tadi, jadi arus yang mengalir lebih besar dan <InlineMath math="P=240^2/86{,}7=665\text{ W}" />**, naik dari <InlineMath math="576\text{ W}" />. Mempertahankan arus lama <InlineMath math="2{,}4\text{ A}" /> dalam <InlineMath math="I^2R" /> hanya menghasilkan <InlineMath math="499\text{ W}" />, padahal arus ikut berubah saat hambatan berubah.
+
+<BlockMath math="\begin{aligned}
+P_L&=\frac{240^2}{60+40}=576\text{ W},\qquad P_{\max}=\frac{240^2}{60}=960\text{ W}\\
+\frac1R&\le\frac{13}{240}-\frac1{60}=0{,}0375\ \Rightarrow\ R\ge26{,}7\,\Omega\\
+P_L'&=\frac{240^2}{60+26{,}7}=665\text{ W}
+\end{aligned}" />

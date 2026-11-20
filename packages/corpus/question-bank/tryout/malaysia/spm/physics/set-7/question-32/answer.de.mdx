@@ -1,0 +1,38 @@
+# Warum das flüssige Metall einen Schub bekommt
+
+Stell dir die flüssige Legierung als viele winzige Drähte vor, die quer im Kanal liegen, von Wand zu Wand. Jeder trägt Strom, und ein Strom im Magnetfeld bekommt einen seitlichen Stoß. Hier zeigt dieser Stoß den Kanal entlang, also **schiebt das Feld die Flüssigkeit vorwärts**, ganz ohne bewegte Teile.
+
+Der Strom läuft quer über die <InlineMath math="4{,}0\text{ cm}" /> Breite, also ist diese Breite die Drahtlänge im Feld, und die Kraft ist <InlineMath math="F=BIw" />.
+
+# Eine Kraft, verteilt auf die Stirnfläche
+
+Druck ist Kraft, verteilt auf eine Fläche. Der Schub wirkt auf die Flüssigkeit, die den Querschnitt des Kanals füllt, das kleine Rechteck, das du siehst, wenn du in das Rohr hineinschaust, <InlineMath math="w\times h" />. Schau, was passiert: Die Breite kürzt sich weg, und **nur die Kanalhöhe bleibt** unter dem Bruchstrich.
+
+<BlockMath math="\begin{aligned}
+F&=BIw=0{,}50\times500\times0{,}040=10\text{ N}\\
+\Delta p&=\frac{F}{wh}=\frac{BI}{h}=\frac{0{,}50\times500}{0{,}010}=2{,}5\times10^{4}\text{ Pa}
+\end{aligned}" />
+
+Zwei verlockende Flächen liefern den falschen Druck. Teilst du durch den Kanalboden, <InlineMath math="10\text{ cm}\times4{,}0\text{ cm}" />, kommen <InlineMath math="2{,}5\text{ kPa}" /> heraus. Lässt du den Strom die <InlineMath math="1{,}0\text{ cm}" /> Höhe hinauf statt quer über die Breite laufen, kommen <InlineMath math="6{,}3\text{ kPa}" /> heraus.
+
+# Wie hoch die Säule sein darf
+
+Eine Flüssigkeitssäule drückt an ihrem Fuß mit <InlineMath math="\rho g H" />. Die Pumpe hält die Säule, solange **ihr Schub dieses Gewicht pro Fläche ausgleicht**.
+
+<BlockMath math="\begin{aligned}
+H&=\frac{\Delta p}{\rho g}=\frac{2{,}5\times10^{4}}{850\times9{,}81}=3{,}0\text{ m}\\
+I&=\frac{\rho g H h}{B}=\frac{850\times9{,}81\times4{,}5\times0{,}020}{0{,}50}=1{,}5\times10^{3}\text{ A}
+\end{aligned}" />
+
+<Chart
+  title={<>Gehaltene Säule gegen den Pumpenstrom</>}
+  description={<>Die Höhe wächst im gleichen Takt wie der Strom. Ein doppelt so hoher Kanal braucht für dieselbe Säule doppelt so viel Strom, also <InlineMath math="750\text{ A}" /> für <InlineMath math="4{,}5\text{ m}" /> im alten Kanal, aber <InlineMath math="1500\text{ A}" /> im neuen.</>}
+  categories={["0 A", "250 A", "500 A", "750 A", "1000 A", "1250 A", "1500 A"]}
+  series={[
+    { label: "Kanal 1,0 cm hoch", mark: "line", values: [0.0, 1.5, 3.0, 4.5, 6.0, 7.5, 8.99] },
+    { label: "Kanal 2,0 cm hoch", mark: "line", values: [0.0, 0.75, 1.5, 2.25, 3.0, 3.75, 4.5] },
+  ]}
+  valueLabel="Säulenhöhe (m)"
+/>
+
+Im höheren Kanal verteilt sich dieselbe Kraft auf eine doppelt so große Fläche, also brauchst du doppelt so viel Strom. Wer bei den alten <InlineMath math="750\text{ A}" /> bleibt, vergisst, dass die Kanalhöhe in <InlineMath math="\Delta p=BI/h" /> steckt.

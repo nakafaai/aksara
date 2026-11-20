@@ -1,0 +1,62 @@
+A string of decorative lights has <InlineMath math="40" /> identical bulbs connected in series to a <InlineMath math="240\text{ V}" /> supply. Each bulb has a resistance of <InlineMath math="36\,\Omega" />, which stays constant. Inside each bulb is a shunt wire of resistance <InlineMath math="1.5\,\Omega" />. When a filament breaks, the current flows through that bulb's shunt instead, so the bulb goes dark and the others stay lit. A lit bulb overheats if its power is more than <InlineMath math="1.25\text{ W}" />, and a shunt overheats if its power is more than <InlineMath math="0.050\text{ W}" />.
+
+<MathVisual
+  title={<>The string of lights and the inside of one bulb</>}
+  description={<>Left: <InlineMath math="40" /> identical bulbs in series with a <InlineMath math="240\text{ V}" /> supply, of which bulbs <InlineMath math="1" />, <InlineMath math="2" />, <InlineMath math="3" /> and <InlineMath math="40" /> are drawn. Right: inside each bulb, a shunt wire of resistance <InlineMath math="1.5\,\Omega" /> lies beside the filament of resistance <InlineMath math="36\,\Omega" />. The shunt, drawn dashed, carries the current only after the filament breaks.</>}
+  labels={{
+    supply: <><InlineMath math="240\text{ V}" /></>,
+    b1: <><InlineMath math="1" /></>,
+    b2: <><InlineMath math="2" /></>,
+    b3: <><InlineMath math="3" /></>,
+    b40: <><InlineMath math="40" /></>,
+    rest: <><InlineMath math="36" /> more bulbs</>,
+    filament: <>filament, <InlineMath math="36\,\Omega" /></>,
+    shunt: <>shunt, <InlineMath math="1.5\,\Omega" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -2.5, max: 22 }, y: { min: -0.5, max: 5.5 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "plate-long", kind: "segment", appearance: "primary", from: { x: -0.5, y: 2.1 }, to: { x: 0.5, y: 2.1 } },
+      { id: "plate-short", kind: "segment", appearance: "primary", from: { x: -0.25, y: 1.9 }, to: { x: 0.25, y: 1.9 } },
+      { id: "w-left-low", kind: "segment", appearance: "reference", from: { x: 0, y: 0 }, to: { x: 0, y: 1.9 } },
+      { id: "w-left-high", kind: "segment", appearance: "reference", from: { x: 0, y: 2.1 }, to: { x: 0, y: 4 } },
+      { id: "w-1", kind: "segment", appearance: "reference", from: { x: 0, y: 4 }, to: { x: 1.5, y: 4 } },
+      { id: "w-2", kind: "segment", appearance: "reference", from: { x: 2.5, y: 4 }, to: { x: 3.5, y: 4 } },
+      { id: "w-3", kind: "segment", appearance: "reference", from: { x: 4.5, y: 4 }, to: { x: 5.5, y: 4 } },
+      { id: "rest", kind: "segment", appearance: "construction", from: { x: 6.5, y: 4 }, to: { x: 10, y: 4 } },
+      { id: "w-4", kind: "segment", appearance: "reference", from: { x: 11, y: 4 }, to: { x: 12, y: 4 } },
+      { id: "w-right", kind: "segment", appearance: "reference", from: { x: 12, y: 4 }, to: { x: 12, y: 0 } },
+      { id: "w-bottom", kind: "segment", appearance: "reference", from: { x: 12, y: 0 }, to: { x: 0, y: 0 } },
+      { id: "b1", kind: "circle", appearance: "secondary", center: { x: 2, y: 4 }, radius: 0.5 },
+      { id: "b1-x1", kind: "segment", appearance: "secondary", from: { x: 2 - 0.5 * Math.SQRT1_2, y: 4 - 0.5 * Math.SQRT1_2 }, to: { x: 2 + 0.5 * Math.SQRT1_2, y: 4 + 0.5 * Math.SQRT1_2 } },
+      { id: "b1-x2", kind: "segment", appearance: "secondary", from: { x: 2 - 0.5 * Math.SQRT1_2, y: 4 + 0.5 * Math.SQRT1_2 }, to: { x: 2 + 0.5 * Math.SQRT1_2, y: 4 - 0.5 * Math.SQRT1_2 } },
+      { id: "b2", kind: "circle", appearance: "secondary", center: { x: 4, y: 4 }, radius: 0.5 },
+      { id: "b2-x1", kind: "segment", appearance: "secondary", from: { x: 4 - 0.5 * Math.SQRT1_2, y: 4 - 0.5 * Math.SQRT1_2 }, to: { x: 4 + 0.5 * Math.SQRT1_2, y: 4 + 0.5 * Math.SQRT1_2 } },
+      { id: "b2-x2", kind: "segment", appearance: "secondary", from: { x: 4 - 0.5 * Math.SQRT1_2, y: 4 + 0.5 * Math.SQRT1_2 }, to: { x: 4 + 0.5 * Math.SQRT1_2, y: 4 - 0.5 * Math.SQRT1_2 } },
+      { id: "b3", kind: "circle", appearance: "secondary", center: { x: 6, y: 4 }, radius: 0.5 },
+      { id: "b3-x1", kind: "segment", appearance: "secondary", from: { x: 6 - 0.5 * Math.SQRT1_2, y: 4 - 0.5 * Math.SQRT1_2 }, to: { x: 6 + 0.5 * Math.SQRT1_2, y: 4 + 0.5 * Math.SQRT1_2 } },
+      { id: "b3-x2", kind: "segment", appearance: "secondary", from: { x: 6 - 0.5 * Math.SQRT1_2, y: 4 + 0.5 * Math.SQRT1_2 }, to: { x: 6 + 0.5 * Math.SQRT1_2, y: 4 - 0.5 * Math.SQRT1_2 } },
+      { id: "b40", kind: "circle", appearance: "secondary", center: { x: 10.5, y: 4 }, radius: 0.5 },
+      { id: "b40-x1", kind: "segment", appearance: "secondary", from: { x: 10.5 - 0.5 * Math.SQRT1_2, y: 4 - 0.5 * Math.SQRT1_2 }, to: { x: 10.5 + 0.5 * Math.SQRT1_2, y: 4 + 0.5 * Math.SQRT1_2 } },
+      { id: "b40-x2", kind: "segment", appearance: "secondary", from: { x: 10.5 - 0.5 * Math.SQRT1_2, y: 4 + 0.5 * Math.SQRT1_2 }, to: { x: 10.5 + 0.5 * Math.SQRT1_2, y: 4 - 0.5 * Math.SQRT1_2 } },
+      { id: "t-a", kind: "point", appearance: "reference", at: { x: 15, y: 2 } },
+      { id: "t-b", kind: "point", appearance: "reference", at: { x: 21, y: 2 } },
+      { id: "filament", kind: "polyline", appearance: "primary", vertices: [{ x: 15, y: 2 }, { x: 15.75, y: 3 }, { x: 16.5, y: 2.4 }, { x: 17.25, y: 3.2 }, { x: 18, y: 2.4 }, { x: 18.75, y: 3.2 }, { x: 19.5, y: 2.4 }, { x: 20.25, y: 3 }, { x: 21, y: 2 }] },
+      { id: "shunt", kind: "polyline", appearance: "construction", vertices: [{ x: 15, y: 2 }, { x: 15.6, y: 1 }, { x: 20.4, y: 1 }, { x: 21, y: 2 }] },
+    ],
+    labels: [
+      { key: "supply", objectId: "plate-long", at: { x: -0.5, y: 2.1 }, placement: "left" },
+      { key: "b1", objectId: "b1", at: { x: 2, y: 4.5 }, placement: "above" },
+      { key: "b2", objectId: "b2", at: { x: 4, y: 4.5 }, placement: "above" },
+      { key: "b3", objectId: "b3", at: { x: 6, y: 4.5 }, placement: "above" },
+      { key: "b40", objectId: "b40", at: { x: 10.5, y: 4.5 }, placement: "above" },
+      { key: "rest", objectId: "rest", at: { x: 8.25, y: 4 }, placement: "below" },
+      { key: "filament", objectId: "filament", at: { x: 17.25, y: 3.2 }, placement: "above" },
+      { key: "shunt", objectId: "shunt", at: { x: 18, y: 1 }, placement: "below" },
+    ],
+  }}
+/>
+
+What is the current in the string when <InlineMath math="3" /> filaments have broken, what is the greatest number of filaments that may break without any part of the string overheating, and which part overheats first when one more filament breaks?

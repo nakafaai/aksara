@@ -1,0 +1,33 @@
+A sailing dinghy and its crew have a total mass of <InlineMath math="200\text{ kg}" />. The sail is set at <InlineMath math="30^\circ" /> to the dinghy's direction of motion, and the wind pushes on it with a force of <InlineMath math="400\text{ N}" /> at right angles to the sail. The keel stops the dinghy from sliding sideways, and the dinghy moves straight ahead at a steady <InlineMath math="3.0\text{ m s}^{-1}" />. The water resistance is proportional to the square of the dinghy's speed.
+
+<MathVisual
+  title={<>The dinghy and its sail, seen from above</>}
+  description={<>Seen from above. The sail is set at <InlineMath math="30^\circ" /> to the dinghy's direction of motion, and the wind pushes on it with a force of <InlineMath math="400\text{ N}" /> at right angles to the sail. The dinghy moves straight ahead at a steady <InlineMath math="3.0\text{ m s}^{-1}" />.</>}
+  labels={{
+    sail: <>sail</>,
+    force: <><InlineMath math="400\text{ N}" /></>,
+    motion: <><InlineMath math="3.0\text{ m s}^{-1}" /></>,
+    angle: <><InlineMath math="30^\circ" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -3.8, max: 6 }, y: { min: -3.2, max: 1.4 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "hull", kind: "polygon", appearance: "reference", vertices: [{ x: -3, y: -0.8 }, { x: 1.5, y: -0.8 }, { x: 3, y: 0 }, { x: 1.5, y: 0.8 }, { x: -3, y: 0.8 }] },
+      { id: "axis", kind: "segment", appearance: "construction", from: { x: -3, y: 0 }, to: { x: 0, y: 0 } },
+      { id: "sail", kind: "segment", appearance: "secondary", from: { x: 0, y: 0 }, to: { x: -2.6 * Math.cos(Math.PI / 6), y: -1.3 } },
+      { id: "force", kind: "vector", appearance: "primary", from: { x: -1.3 * Math.cos(Math.PI / 6), y: -0.65 }, to: { x: -1.3 * Math.cos(Math.PI / 6) + 1.1, y: -0.65 - 2.2 * Math.sin(Math.PI / 3) } },
+      { id: "motion", kind: "vector", appearance: "highlight", from: { x: 3.4, y: 0 }, to: { x: 5.2, y: 0 } },
+      { id: "angle", kind: "arc", appearance: "construction", center: { x: 0, y: 0 }, radius: 1.5, startDegrees: 180, sweepDegrees: 30 },
+    ],
+    labels: [
+      { key: "sail", objectId: "sail", at: { x: -2.6 * Math.cos(Math.PI / 6), y: -1.3 }, placement: "left" },
+      { key: "force", objectId: "force", at: { x: -1.3 * Math.cos(Math.PI / 6) + 1.1, y: -0.65 - 2.2 * Math.sin(Math.PI / 3) }, placement: "below" },
+      { key: "motion", objectId: "motion", at: { x: 5.2, y: 0 }, placement: "above" },
+      { key: "angle", objectId: "angle", at: { x: 1.5 * Math.cos(195 * Math.PI / 180), y: 1.5 * Math.sin(195 * Math.PI / 180) }, placement: "left" },
+    ],
+  }}
+/>
+
+The sail is then eased out to <InlineMath math="50^\circ" /> to the direction of motion, and the wind still pushes on it with <InlineMath math="400\text{ N}" /> at right angles to the sail. The keel can resist a sideways force of at most <InlineMath math="360\text{ N}" />. What is the dinghy's acceleration just after the sail is eased, at what speed does it finally move steadily, and what is the smallest angle between the sail and the direction of motion that the keel allows, with the same <InlineMath math="400\text{ N}" /> wind force?

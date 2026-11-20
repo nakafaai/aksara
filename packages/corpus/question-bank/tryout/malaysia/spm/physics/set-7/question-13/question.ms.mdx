@@ -1,0 +1,41 @@
+Sebatang garpu tala berfrekuensi <InlineMath math="512\text{ Hz}" /> dipegang bergetar di atas mulut terbuka sebatang tiub kaca tinggi yang penuh dengan air. Air dialirkan keluar perlahan-lahan melalui pili di bawah, jadi turus udara di atas air bertambah panjang. Bunyi kuat mula-mula kedengaran apabila turus udara, diukur dari permukaan air ke bibir tiub, sepanjang <InlineMath math="15.5\text{ cm}" />, dan seterusnya apabila panjangnya <InlineMath math="49.5\text{ cm}" />. Pada setiap bunyi kuat, turus udara bergetar dengan nod di permukaan air dan antinod di hujung terbuka, tetapi antinod itu terletak sedikit di atas bibir tiub.
+
+<MathVisual
+  title={<>Turus udara pada dua bunyi kuat yang pertama</>}
+  description={<>Tiub yang sama ditunjukkan pada bunyi kuat pertama, dengan turus udara <InlineMath math="15.5\text{ cm}" />, dan pada bunyi kuat seterusnya, dengan turus udara <InlineMath math="49.5\text{ cm}" />. Setiap panjang diukur dari permukaan air hingga bibir tiub. Sebuah tala bunyi <InlineMath math="512\text{ Hz}" /> bergetar di atas hujung terbuka tiub.</>}
+  labels={{
+    fork: <><InlineMath math="512\text{ Hz}" /></>,
+    first: <>bunyi kuat pertama</>,
+    next: <>bunyi kuat seterusnya</>,
+    short: <><InlineMath math="15.5\text{ cm}" /></>,
+    long: <><InlineMath math="49.5\text{ cm}" /></>,
+    water: <>air</>,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -14, max: 44 }, y: { min: -10, max: 136 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "water-1", kind: "polygon", appearance: "secondary", vertices: [{ x: 0, y: 0 }, { x: 10, y: 0 }, { x: 10, y: 94.5 }, { x: 0, y: 94.5 }] },
+      { id: "tube-1", kind: "polyline", appearance: "reference", vertices: [{ x: 0, y: 110 }, { x: 0, y: 0 }, { x: 10, y: 0 }, { x: 10, y: 110 }] },
+      { id: "fork-1", kind: "polyline", appearance: "primary", vertices: [{ x: 3, y: 113 }, { x: 3, y: 123 }, { x: 7, y: 123 }, { x: 7, y: 113 }] },
+      { id: "handle-1", kind: "segment", appearance: "primary", from: { x: 5, y: 123 }, to: { x: 5, y: 131 } },
+      { id: "column-1", kind: "segment", appearance: "construction", from: { x: -4, y: 94.5 }, to: { x: -4, y: 110 } },
+      { id: "water-2", kind: "polygon", appearance: "secondary", vertices: [{ x: 30, y: 0 }, { x: 40, y: 0 }, { x: 40, y: 60.5 }, { x: 30, y: 60.5 }] },
+      { id: "tube-2", kind: "polyline", appearance: "reference", vertices: [{ x: 30, y: 110 }, { x: 30, y: 0 }, { x: 40, y: 0 }, { x: 40, y: 110 }] },
+      { id: "fork-2", kind: "polyline", appearance: "primary", vertices: [{ x: 33, y: 113 }, { x: 33, y: 123 }, { x: 37, y: 123 }, { x: 37, y: 113 }] },
+      { id: "handle-2", kind: "segment", appearance: "primary", from: { x: 35, y: 123 }, to: { x: 35, y: 131 } },
+      { id: "column-2", kind: "segment", appearance: "construction", from: { x: 26, y: 60.5 }, to: { x: 26, y: 110 } },
+    ],
+    labels: [
+      { key: "fork", objectId: "handle-1", at: { x: 5, y: 131 }, placement: "above" },
+      { key: "first", objectId: "tube-1", at: { x: 5, y: 0 }, placement: "below" },
+      { key: "next", objectId: "tube-2", at: { x: 35, y: 0 }, placement: "below" },
+      { key: "short", objectId: "column-1", at: { x: -4, y: 102.25 }, placement: "left" },
+      { key: "long", objectId: "column-2", at: { x: 26, y: 85.25 }, placement: "left" },
+      { key: "water", objectId: "water-2", at: { x: 35, y: 30 }, placement: "center" },
+    ],
+  }}
+/>
+
+Berapakah laju bunyi dalam udara, berapakah panjang turus udara pada bunyi kuat pertama jika garpu tala <InlineMath math="384\text{ Hz}" /> digunakan, dan berapakah bilangan bunyi kuat yang diberikan oleh garpu tala <InlineMath math="512\text{ Hz}" /> apabila turus udara bertambah dari sifar hingga <InlineMath math="100\text{ cm}" />?

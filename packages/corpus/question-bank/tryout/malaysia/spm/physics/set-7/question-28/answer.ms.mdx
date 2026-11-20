@@ -1,0 +1,30 @@
+# Setiap filamen putus memendekkan barisan
+
+Bayangkan sebaris orang yang menghulur baldi. Jika seorang yang lambat diganti dengan pembantu yang pantas, seluruh barisan bergerak sedikit lebih laju. Mentol yang putus berbuat begitu, kerana filamennya <InlineMath math="36\,\Omega" /> diganti oleh pirau <InlineMath math="1.5\,\Omega" />. **Dengan <InlineMath math="3" /> filamen putus, rangkaian itu berintangan <InlineMath math="37\times36+3\times1.5=1336.5\,\Omega" />, jadi <InlineMath math="I=240/1336.5=0.180\text{ A}" />**. Jika filamen yang putus dilupakan, arus kekal pada nilai asal, <InlineMath math="240/1440=0.167\text{ A}" />.
+
+# Dua jenis bahagian boleh terlalu panas
+
+Jambatan tali boleh gagal pada papannya atau pada simpulannya, jadi kamu memeriksa kedua-duanya. **Setiap filamen putus menaikkan arus, dan bersamanya kuasa mentol yang menyala <InlineMath math="I^2\times36" /> serta kuasa pirau <InlineMath math="I^2\times1.5" />**. Mentol mencapai <InlineMath math="1.25\text{ W}" /> hanya pada <InlineMath math="0.186\text{ A}" />, tetapi pirau sudah mencapai <InlineMath math="0.050\text{ W}" /> pada <InlineMath math="0.183\text{ A}" />. Selepas <InlineMath math="3" /> filamen putus, arus ialah <InlineMath math="0.180\text{ A}" /> dan semua bahagian selamat. Selepas <InlineMath math="4" />, arus ialah <InlineMath math="0.184\text{ A}" />. Mentol masih tahan dengan <InlineMath math="1.22\text{ W}" />, tetapi setiap pirau kini menerima <InlineMath math="0.051\text{ W}" />.
+
+<Chart
+  title={<>Arus dalam rangkaian apabila filamen putus</>}
+  description={<>Setiap filamen yang putus menaikkan arus. Had pirau, <InlineMath math="0.183\text{ A}" />, dilepasi pada filamen keempat yang putus, sebelum had mentol, <InlineMath math="0.186\text{ A}" />, dilepasi pada filamen kelima.</>}
+  bars="apart"
+  categories={["0 putus", "1 putus", "2 putus", "3 putus", "4 putus", "5 putus"]}
+  series={[
+    { label: "Arus dalam rangkaian", mark: "bar", values: [0.1667, 0.1708, 0.1751, 0.1796, 0.1843, 0.1893] },
+    { label: "Arus yang memanaskan mentol", mark: "line", values: [0.1863, 0.1863, 0.1863, 0.1863, 0.1863, 0.1863] },
+    { label: "Arus yang memanaskan pirau", mark: "line", values: [0.1826, 0.1826, 0.1826, 0.1826, 0.1826, 0.1826] },
+  ]}
+  valueLabel="Arus (A)"
+/>
+
+# Mentol yang padam gagal dahulu
+
+Mudah untuk memerhati mentol yang terang dan melupakan yang gelap, seperti memeriksa bilik yang bercahaya sahaja dan tidak pernah almari. **Jadi paling banyak <InlineMath math="3" /> filamen boleh putus, dan putusnya filamen seterusnya membuat pirau terlalu panas, bukan mentol yang menyala**. Memeriksa mentol sahaja membenarkan <InlineMath math="4" /> filamen putus dan menyalahkan mentol yang menyala.
+
+<BlockMath math="\begin{aligned}
+I_3&=\frac{240}{37\times36+3\times1.5}=0.180\text{ A},\quad I_4=\frac{240}{36\times36+4\times1.5}=0.184\text{ A}\\
+P_B&=0.184^2\times36=1.22\text{ W}\le1.25\text{ W}\\
+P_S&=0.184^2\times1.5=0.051\text{ W}>0.050\text{ W}
+\end{aligned}" />

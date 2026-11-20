@@ -1,0 +1,29 @@
+# Vom Bildschirm zu den Schalen
+
+Ein Karussell, das sich zehnmal pro Sekunde dreht, trägt seine Fahrgäste jede Sekunde weit. **Eine Welle umfasst <InlineMath math="5{,}0" /> Teile zu je <InlineMath math="20\text{ ms}" />, eine Umdrehung dauert also <InlineMath math="0{,}10\text{ s}" />, und die Schalen drehen sich zehnmal pro Sekunde**. Bei jeder Umdrehung legt eine Schalenmitte <InlineMath math="2\pi\times0{,}070=0{,}44\text{ m}" /> zurück, also bewegen sich die Schalen mit <InlineMath math="0{,}44\times10=4{,}4\text{ m s}^{-1}" />.
+
+# Der Wind ist schneller als die Schalen
+
+Ein Blatt, das auf einem Bach treibt, hält nie ganz mit dem Wasser mit, das es trägt. Den Schalen geht es mit dem Wind genauso. **Die Schalen bewegen sich mit einem Drittel der Windgeschwindigkeit, also weht der Wind mit <InlineMath math="3\times4{,}4=13\text{ m s}^{-1}" />**. Wer bei <InlineMath math="4{,}4\text{ m s}^{-1}" /> stehen bleibt, hat die Geschwindigkeit der Schalen, nicht die des Windes.
+
+# Mehr Wind, höhere Welle
+
+Tritt schneller in die Pedale, und die Dynamolampe leuchtet heller. **Doppelter Wind dreht den Magneten doppelt so schnell, also verdoppeln sich die Spitzen von <InlineMath math="3{,}0\text{ V}" /> auf <InlineMath math="6{,}0\text{ V}" />**. Über der Nulllinie liegen nur <InlineMath math="4" /> Teile, also muss die Y-Ablenkung mindestens <InlineMath math="6{,}0/4=1{,}5\text{ V}" /> pro Teil betragen, also die Stufe <InlineMath math="2{,}0\text{ V}" />. Wer alle <InlineMath math="8" /> Teile als Platz für die Spitze zählt, lässt <InlineMath math="1{,}0\text{ V}" /> durchgehen, doch dann liegen die Spitzen <InlineMath math="6" /> Teile hoch, über dem oberen Rand. Wer die alten <InlineMath math="3{,}0\text{ V}" /> behält, vergisst, dass ein schnellerer Magnet eine größere Spannung erzeugt.
+
+<Chart
+  title={<>Höhe der Spitzen bei jeder Y-Stufe</>}
+  description={<>Bei stärkerem Wind erreichen die Spitzen <InlineMath math="6{,}0\text{ V}" />. Bei <InlineMath math="2{,}0\text{ V}" /> pro Teil steigen sie <InlineMath math="3" /> Teile hoch, innerhalb der <InlineMath math="4" /> Teile über der Nulllinie.</>}
+  bars="apart"
+  categories={["0,5 V", "1,0 V", "2,0 V", "5,0 V"]}
+  series={[
+    { label: "Höhe der Spitze", mark: "bar", values: [12, 6, 3, 1.2] },
+    { label: "Platz über der Nulllinie", mark: "line", values: [4, 4, 4, 4] },
+  ]}
+  valueLabel="Höhe (Teile)"
+/>
+
+<BlockMath math="\begin{aligned}
+T&=5{,}0\times20\text{ ms}=0{,}10\text{ s},\quad f=10\text{ Hz}\\
+v_c&=2\pi\times0{,}070\times10=4{,}4\text{ m s}^{-1},\quad v_w=3\times4{,}4=13\text{ m s}^{-1}\\
+V_0&=2\times3{,}0=6{,}0\text{ V},\quad \frac{6{,}0}{4}=1{,}5\text{ V}\ \Rightarrow\ 2{,}0\text{ V}
+\end{aligned}" />

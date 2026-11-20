@@ -1,0 +1,30 @@
+# Each break shortens the string a little
+
+Picture a line of people passing buckets. Swap one slow person for a quick helper and the whole line moves a little faster. A broken bulb does that, because its <InlineMath math="36\,\Omega" /> filament is replaced by a <InlineMath math="1.5\,\Omega" /> shunt. **With <InlineMath math="3" /> filaments broken the string has <InlineMath math="37\times36+3\times1.5=1336.5\,\Omega" />, so <InlineMath math="I=240/1336.5=0.180\text{ A}" />**. Forgetting the breaks leaves the first current, <InlineMath math="240/1440=0.167\text{ A}" />.
+
+# Two kinds of part can overheat
+
+A rope bridge can fail at a plank or at a knot, so you check both. **Each break raises the current, and with it both a lit bulb's power <InlineMath math="I^2\times36" /> and a shunt's power <InlineMath math="I^2\times1.5" />**. The bulbs reach <InlineMath math="1.25\text{ W}" /> only at <InlineMath math="0.186\text{ A}" />, but a shunt reaches <InlineMath math="0.050\text{ W}" /> already at <InlineMath math="0.183\text{ A}" />. After <InlineMath math="3" /> breaks the current is <InlineMath math="0.180\text{ A}" /> and every part is safe. After <InlineMath math="4" /> it is <InlineMath math="0.184\text{ A}" />. The bulbs still cope with <InlineMath math="1.22\text{ W}" />, but each shunt now takes <InlineMath math="0.051\text{ W}" />.
+
+<Chart
+  title={<>Current in the string as filaments break</>}
+  description={<>Each broken filament raises the current. The shunt limit, <InlineMath math="0.183\text{ A}" />, is passed at the fourth break, before the bulb limit, <InlineMath math="0.186\text{ A}" />, is passed at the fifth.</>}
+  bars="apart"
+  categories={["0 broken", "1 broken", "2 broken", "3 broken", "4 broken", "5 broken"]}
+  series={[
+    { label: "Current in the string", mark: "bar", values: [0.1667, 0.1708, 0.1751, 0.1796, 0.1843, 0.1893] },
+    { label: "Current that overheats a lit bulb", mark: "line", values: [0.1863, 0.1863, 0.1863, 0.1863, 0.1863, 0.1863] },
+    { label: "Current that overheats a shunt", mark: "line", values: [0.1826, 0.1826, 0.1826, 0.1826, 0.1826, 0.1826] },
+  ]}
+  valueLabel="Current (A)"
+/>
+
+# The dark bulbs fail first
+
+It is easy to watch the bright bulbs and forget the dark ones, like checking the lit rooms of a house and never the cupboard. **So at most <InlineMath math="3" /> filaments may break, and the next break overheats a shunt, not a lit bulb**. Checking only the bulbs allows <InlineMath math="4" /> breaks and blames a lit bulb.
+
+<BlockMath math="\begin{aligned}
+I_3&=\frac{240}{37\times36+3\times1.5}=0.180\text{ A},\quad I_4=\frac{240}{36\times36+4\times1.5}=0.184\text{ A}\\
+P_B&=0.184^2\times36=1.22\text{ W}\le1.25\text{ W}\\
+P_S&=0.184^2\times1.5=0.051\text{ W}>0.050\text{ W}
+\end{aligned}" />

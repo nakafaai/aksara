@@ -1,0 +1,44 @@
+# What each switch position connects
+
+People pass two gates one after the other more slowly than two gates side by side. Current does the same. **Series adds the resistances, and parallel gives less than either coil alone**. LOW has <InlineMath math="60+40=100\,\Omega" /> and <InlineMath math="P=240^2/100=576\text{ W}" />. MEDIUM uses the <InlineMath math="40\,\Omega" /> coil alone for <InlineMath math="1.44\text{ kW}" />, and HIGH has <InlineMath math="24\,\Omega" /> for <InlineMath math="2.4\text{ kW}" />.
+
+# A burnt coil is a fallen bridge
+
+Nobody crosses a bridge that has fallen down. A burnt-through coil is the same for current. **Any position whose only path runs through the <InlineMath math="40\,\Omega" /> coil goes dead**. LOW has both coils in one line and MEDIUM has only the burnt one, so both give nothing. HIGH still has its <InlineMath math="60\,\Omega" /> branch, so the most the heater can give is <InlineMath math="240^2/60=960\text{ W}" />. The <InlineMath math="1.44\text{ kW}" /> of MEDIUM belonged to the coil that is gone.
+
+<Mermaid
+  title={<>What the switch can still do</>}
+  description={<>The broken coil cuts out LOW and MEDIUM completely. After the repair HIGH draws exactly <InlineMath math="13\text{ A}" /> and LOW gives <InlineMath math="665\text{ W}" />.</>}
+  chart={`
+    flowchart TD
+      N0["The 40 Ω coil burns through"]
+      N1["LOW: one path through both coils, 0 W"]
+      N2["MEDIUM: only the burnt coil, 0 W"]
+      N3["HIGH: the 60 Ω branch alone, 960 W"]
+      N4["Fit a 26.7 Ω coil"]
+      N5["HIGH: 18.5 Ω in all, 13 A, 3.1 kW"]
+      N6["LOW: 86.7 Ω in all, 665 W"]
+      N0 --> N1
+      N0 --> N2
+      N0 --> N3
+      N1 --> N4
+      N2 --> N4
+      N3 --> N4
+      N4 --> N5
+      N4 --> N6
+  `}
+/>
+
+# Choosing the new coil for the fuse
+
+A fuse is a guard that lets through at most <InlineMath math="13\text{ A}" />. **On HIGH the whole heater must have at least <InlineMath math="240/13=18.5\,\Omega" />, and that means the two coils side by side**. So <InlineMath math="\tfrac1R\le\tfrac1{18.5}-\tfrac1{60}" /> and <InlineMath math="R\ge26.7\,\Omega" />. Choosing <InlineMath math="18.5\,\Omega" /> treats the new coil as if it carried all <InlineMath math="13\text{ A}" /> alone, and the <InlineMath math="4\text{ A}" /> through the <InlineMath math="60\,\Omega" /> coil would then blow the fuse.
+
+# LOW comes back warmer
+
+Swap one slow gate in a row for a quicker one and the whole queue moves faster. **LOW now has <InlineMath math="60+26.7=86.7\,\Omega" />, less than before, so more current flows and <InlineMath math="P=240^2/86.7=665\text{ W}" />**, up from <InlineMath math="576\text{ W}" />. Keeping the old <InlineMath math="2.4\text{ A}" /> in <InlineMath math="I^2R" /> gives only <InlineMath math="499\text{ W}" />, but the current changes when the resistance does.
+
+<BlockMath math="\begin{aligned}
+P_L&=\frac{240^2}{60+40}=576\text{ W},\qquad P_{\max}=\frac{240^2}{60}=960\text{ W}\\
+\frac1R&\le\frac{13}{240}-\frac1{60}=0.0375\ \Rightarrow\ R\ge26.7\,\Omega\\
+P_L'&=\frac{240^2}{60+26.7}=665\text{ W}
+\end{aligned}" />

@@ -1,0 +1,45 @@
+# Eine dünne Bahn, ein Widerstand
+
+Stell dir jeden Streifen als flaches Band vor, dünner als ein Haar. Ein dünnes Band ist eine schmale Straße für die Ladung, also wehrt es sich stark gegen den Strom. Diese Gegenwehr ist sein **Widerstand**, und für eine gleichmäßige Bahn gilt <InlineMath math="R=\rho L/A" />.
+
+Der Querschnitt der Straße ist Breite mal Dicke, also pass bei den Einheiten auf: <InlineMath math="12\ \mu\text{m}" /> sind <InlineMath math="12\times10^{-6}\text{ m}" />.
+
+<BlockMath math="\begin{aligned}
+A&=1{,}0\times10^{-3}\times12\times10^{-6}=1{,}2\times10^{-8}\text{ m}^2\\
+R_1&=\frac{\rho L}{A}=\frac{2{,}0\times10^{-7}\times1{,}20}{1{,}2\times10^{-8}}=20\,\Omega,\qquad R_{10}=\frac{20}{10}=2{,}0\,\Omega
+\end{aligned}" />
+
+Zehn Streifen nebeneinander sind zehn Straßen, zusammen haben sie also nur <InlineMath math="2{,}0\,\Omega" />. Diese <InlineMath math="2{,}0\,\Omega" /> gehören zum ganzen Gitter. Ein einzelner Streifen hat weiterhin <InlineMath math="20\,\Omega" />.
+
+# Die Batterie behält ein paar Volt für sich
+
+Eine Batterie ist ein bisschen wie ein Tank mit engem Auslauf. Ein Teil des Drucks geht schon beim Herauskommen verloren. Hier nehmen Batterie und Leitungen <InlineMath math="0{,}50\,\Omega" />, also **spüren die Streifen nie die vollen <InlineMath math="12{,}5\text{ V}" />**.
+
+<BlockMath math="\begin{aligned}
+I&=\frac{12{,}5}{2{,}0+0{,}50}=5{,}0\text{ A},\qquad V=5{,}0\times2{,}0=10{,}0\text{ V}\\
+P_1&=\frac{V^2}{R_1}=\frac{10{,}0^2}{20}=5{,}0\text{ W}
+\end{aligned}" />
+
+Jeder Streifen liegt an denselben <InlineMath math="10{,}0\text{ V}" />, weil sie parallel geschaltet sind. Legst du die vollen <InlineMath math="12{,}5\text{ V}" /> an einen Streifen, kommst du auf <InlineMath math="7{,}8\text{ W}" /> und vergisst die <InlineMath math="2{,}5\text{ V}" />, die in Batterie und Leitungen verloren gehen.
+
+<Chart
+  title={<>Wohin die Leistung der Batterie geht</>}
+  description={<>Die Batterie liefert insgesamt <InlineMath math="62{,}5\text{ W}" />. <InlineMath math="12{,}5\text{ W}" /> bleiben in Batterie und Leitungen, <InlineMath math="30\text{ W}" /> schmelzen Reif und <InlineMath math="20\text{ W}" /> wärmen Glas und Luft.</>}
+  bars="apart"
+  categories={["Batterie und Leitungen", "Streifen, in den Reif", "Streifen, in Glas und Luft"]}
+  series={[
+    { label: "Leistung", mark: "bar", values: [12.5, 30, 20] },
+  ]}
+  valueLabel="Leistung (W)"
+/>
+
+# Von Watt zu geschmolzenem Reif
+
+Eis zu schmelzen kostet Energie, obwohl es die ganze Zeit bei <InlineMath math="0^\circ\text{C}" /> bleibt. Diese versteckte Energie ist die **spezifische Schmelzwärme**. Die zehn Streifen liefern <InlineMath math="50\text{ W}" />, aber nur <InlineMath math="60\%" /> davon, also <InlineMath math="30\text{ W}" />, kommen beim Reif an.
+
+<BlockMath math="\begin{aligned}
+Q&=mL=0{,}025\times3{,}34\times10^{5}=8350\text{ J}\\
+t&=\frac{8350}{0{,}60\times50}=278\text{ s}\approx280\text{ s}
+\end{aligned}" />
+
+Das sind etwa viereinhalb Minuten. Rechnest du mit allen <InlineMath math="50\text{ W}" />, kämen <InlineMath math="170\text{ s}" /> heraus, als würde keine Wärme das Glas wärmen oder in die Luft entweichen.

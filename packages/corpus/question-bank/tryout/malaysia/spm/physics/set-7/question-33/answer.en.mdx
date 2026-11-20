@@ -1,0 +1,29 @@
+# The first pass
+
+Roll a ball through a patch of sand and it comes out slower, because the sand keeps some of its movement. The coil does the same. **The magnet arrives with <InlineMath math="\tfrac12\times0.040\times2.0^2=0.080\text{ J}" />, and the coil keeps <InlineMath math="30\%" /> of it, <InlineMath math="0.024\text{ J}" />**. The magnet leaves the coil with the other <InlineMath math="0.056\text{ J}" />.
+
+# The way back starts with less
+
+Cut a slice of cake, then the same share of what is left, and the second slice is smaller. **The rubber stop returns all <InlineMath math="0.056\text{ J}" />, so the way back stores <InlineMath math="0.30\times0.056=0.0168\text{ J}" />, and one shake stores <InlineMath math="0.024+0.0168=0.0408\text{ J}" />**. Counting <InlineMath math="0.024\text{ J}" /> twice gives <InlineMath math="0.048\text{ J}" />, as if the coil had taken nothing on the way out. Counting one pass only gives <InlineMath math="0.024\text{ J}" /> and <InlineMath math="150" /> shakes.
+
+<Chart
+  title={<>Energy at each pass through the coil</>}
+  description={<>The magnet enters with <InlineMath math="0.080\text{ J}" /> on the way out and <InlineMath math="0.056\text{ J}" /> on the way back. The cell stores <InlineMath math="0.024\text{ J}" /> and then <InlineMath math="0.0168\text{ J}" />, <InlineMath math="0.0408\text{ J}" /> in all.</>}
+  bars="apart"
+  categories={["Way out", "Way back"]}
+  series={[
+    { label: "Kinetic energy entering the coil", mark: "bar", values: [0.08, 0.056] },
+    { label: "Energy stored in the cell", mark: "bar", values: [0.024, 0.0168] },
+  ]}
+  valueLabel="Energy (J)"
+/>
+
+# Round the shakes up
+
+If a recipe needs a little more than <InlineMath math="88" /> cups of flour, <InlineMath math="88" /> cups are not enough. **The LED uses <InlineMath math="3.0\times0.020=0.060\text{ W}" />, so one minute needs <InlineMath math="0.060\times60=3.6\text{ J}" />, which is <InlineMath math="3.6/0.0408=88.2" /> shakes, so <InlineMath math="89" /> shakes are needed**. Stopping at <InlineMath math="88" /> leaves the LED dark before the minute is up.
+
+<BlockMath math="\begin{aligned}
+E_1&=0.30\times\tfrac12\times0.040\times2.0^2=0.024\text{ J}\\
+E_2&=0.30\times(0.080-0.024)=0.0168\text{ J},\quad E=0.0408\text{ J}\\
+n&=\frac{3.0\times0.020\times60}{0.0408}=88.2\ \Rightarrow\ 89
+\end{aligned}" />

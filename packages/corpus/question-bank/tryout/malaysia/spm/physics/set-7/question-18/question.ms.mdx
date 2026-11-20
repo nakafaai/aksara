@@ -1,0 +1,36 @@
+Sebuah bongkah kaca tebal dengan permukaan atas yang rata dan mengufuk terletak di dasar sebuah tangki berisi air. Satu sinar cahaya dalam udara menuju permukaan air dengan sudut tuju <InlineMath math="50°" />, melalui air dan memasuki kaca. Indeks biasan air ialah <InlineMath math="1.33" /> dan indeks biasan kaca ialah <InlineMath math="1.50" />.
+
+<MathVisual
+  title={<>Sinar mengenai air di atas blok kaca</>}
+  description={<>Satu sinar dalam udara mengenai permukaan air pada sudut tuju <InlineMath math="50^\circ" />. Air sedalam <InlineMath math="10\text{ cm}" /> berada di atas sebuah blok kaca setebal <InlineMath math="6.0\text{ cm}" /> yang terletak di dasar tangki. Indeks biasan air ialah <InlineMath math="1.33" /> dan indeks biasan kaca ialah <InlineMath math="1.50" />.</>}
+  labels={{
+    angle: <><InlineMath math="50^\circ" /></>,
+    water: <>air, <InlineMath math="n=1.33" /></>,
+    glass: <>kaca, <InlineMath math="n=1.50" /></>,
+    depth: <><InlineMath math="10\text{ cm}" /></>,
+    thick: <><InlineMath math="6.0\text{ cm}" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1, max: 31 }, y: { min: -1, max: 23 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "glass", kind: "polygon", appearance: "secondary", vertices: [{ x: 0, y: 0 }, { x: 24, y: 0 }, { x: 24, y: 6 }, { x: 0, y: 6 }] },
+      { id: "water", kind: "polygon", appearance: "highlight", vertices: [{ x: 0, y: 6 }, { x: 24, y: 6 }, { x: 24, y: 16 }, { x: 0, y: 16 }] },
+      { id: "normal", kind: "segment", appearance: "construction", from: { x: 8, y: 16 }, to: { x: 8, y: 22 } },
+      { id: "ray", kind: "vector", appearance: "primary", from: { x: 8 - 7 * Math.sin(50 * Math.PI / 180), y: 16 + 7 * Math.cos(50 * Math.PI / 180) }, to: { x: 8, y: 16 } },
+      { id: "angle", kind: "arc", appearance: "construction", center: { x: 8, y: 16 }, radius: 4, startDegrees: 90, sweepDegrees: 50 },
+      { id: "depth", kind: "segment", appearance: "construction", from: { x: 26, y: 6 }, to: { x: 26, y: 16 } },
+      { id: "thick", kind: "segment", appearance: "construction", from: { x: 26, y: 0 }, to: { x: 26, y: 6 } },
+    ],
+    labels: [
+      { key: "angle", objectId: "angle", at: { x: 8 + 4 * Math.cos(115 * Math.PI / 180), y: 16 + 4 * Math.sin(115 * Math.PI / 180) }, placement: "above" },
+      { key: "water", objectId: "water", at: { x: 16, y: 11 }, placement: "center" },
+      { key: "glass", objectId: "glass", at: { x: 16, y: 3 }, placement: "center" },
+      { key: "depth", objectId: "depth", at: { x: 26, y: 11 }, placement: "right" },
+      { key: "thick", objectId: "thick", at: { x: 26, y: 3 }, placement: "right" },
+    ],
+  }}
+/>
+
+Air sedalam <InlineMath math="10\text{ cm}" /> di atas bongkah, dan bongkah itu setebal <InlineMath math="6.0\text{ cm}" />. Berapakah sudut biasan dalam kaca, sejauh manakah ke sisi dari titik sinar memasuki air ia sampai ke dasar bongkah, dan berapakah sudut genting bagi cahaya yang bergerak dari kaca ke air?

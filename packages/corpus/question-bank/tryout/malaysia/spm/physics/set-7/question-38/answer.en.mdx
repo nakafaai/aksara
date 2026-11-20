@@ -1,0 +1,35 @@
+# Count atoms, not milligrams
+
+Each uranium atom that decays ends up, after a quick chain of steps, as exactly one lead atom. So the story is told in **atoms**, and grams come only at the end.
+
+<BlockMath math="\begin{aligned}
+n_U&=\frac{4.70}{235}=0.0200\text{ mmol},\qquad n_{Pb}=\frac{12.42}{207}=0.0600\text{ mmol},\qquad n_0=0.0800\text{ mmol}
+\end{aligned}" />
+
+Adding the masses, <InlineMath math="4.70+12.42=17.1\text{ mg}" />, to get the starting uranium forgets that each decay throws away alpha and beta particles. A lead atom is lighter than the uranium atom it came from.
+
+# A quarter left means two halvings
+
+Now only <InlineMath math="0.0200" /> of the starting <InlineMath math="0.0800\text{ mmol}" /> is left. Half, then half again: **a quarter left means two half-lives**.
+
+<BlockMath math="\begin{aligned}
+\frac{n_U}{n_0}&=\frac{0.0200}{0.0800}=\frac14=\left(\frac12\right)^2\ \Rightarrow\ t=2\times7.0\times10^{8}=1.4\times10^{9}\\
+m_0&=0.0800\times235=18.8\text{ mg}
+\end{aligned}" />
+
+<Chart
+  title={<>Uranium and lead in the crystal over time</>}
+  description={<>Every halving of the uranium adds the same number of atoms to the lead. Today, at <InlineMath math="1.4" /> billion years, the crystal holds a quarter of its uranium.</>}
+  categories={["Formed", "0.7 billion years", "1.4 billion years (now)", "2.1 billion years"]}
+  series={[
+    { label: "Uranium-235", mark: "line", values: [80, 40, 20, 10] },
+    { label: "Lead-207", mark: "line", values: [0, 40, 60, 70] },
+  ]}
+  valueLabel="Amount (µmol)"
+/>
+
+Reading the <InlineMath math="3:1" /> ratio of lead to uranium as three half-lives gives <InlineMath math="2.1\times10^{9}" /> years. Three half-lives would leave one eighth, with lead to uranium at <InlineMath math="7:1" />.
+
+# The crystal when it was one half-life old
+
+After one half-life, half the starting uranium, <InlineMath math="0.0400\text{ mmol}" />, had already turned into lead, which is <InlineMath math="0.0400\times207=8.28\text{ mg}" />. **Lead piles up fastest at the start**, because that is when there is the most uranium to decay. Halving today's lead to <InlineMath math="6.21\text{ mg}" /> pretends it built up at a steady rate.

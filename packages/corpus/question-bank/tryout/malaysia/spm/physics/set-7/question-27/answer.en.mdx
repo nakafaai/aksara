@@ -1,0 +1,28 @@
+# The height that counts is straight up
+
+Tip a full bottle and the water surface stays level, however far you lean it. Mercury in a leaning tube does the same, because the air holds it up to the same height above the dish, not the same length along the tube. **Only the vertical height counts, <InlineMath math="69.3\cos30^\circ=60.0\text{ cm}" /> of mercury**, so <InlineMath math="p_0=0.600\times13600\times10=8.2\times10^{4}\text{ Pa}" />. Using the whole <InlineMath math="69.3\text{ cm}" /> gives <InlineMath math="9.4\times10^{4}\text{ Pa}" />, and every later number grows with it.
+
+# The pump cannot empty the pipe
+
+However hard you suck on a straw, a little air stays in it. The pump is the same. **Only the difference, <InlineMath math="81.6-12=69.6\text{ kPa}" />, holds the water up**, so <InlineMath math="h=69600/(1000\times10)=7.0\text{ m}" />. Adding the <InlineMath math="12\text{ kPa}" /> instead of taking it away gives <InlineMath math="9.4\text{ m}" />, as if the leftover air helped to push.
+
+<Chart
+  title={<>Pressure inside the pipe as the water climbs</>}
+  description={<>Every metre of water lowers the pressure by <InlineMath math="10\text{ kPa}" />. The pressure meets the pump's <InlineMath math="12\text{ kPa}" /> at <InlineMath math="7.0\text{ m}" />, and the water climbs no higher.</>}
+  categories={["0 m", "2 m", "4 m", "6 m", "7.0 m"]}
+  series={[
+    { label: "Pressure in the pipe", mark: "line", values: [81.6, 61.6, 41.6, 21.6, 12.0] },
+    { label: "Lowest the pump reaches", mark: "line", values: [12, 12, 12, 12, 12] },
+  ]}
+  valueLabel="Pressure (kPa)"
+/>
+
+# The water drops while you pump
+
+Scoop water out of a bucket and its level sinks bit by bit. The well sinks too, by <InlineMath math="1.5\text{ m}" /> here. **While pumping, the water is <InlineMath math="9.5+1.5=11.0\text{ m}" /> below the ground, and the pump may stand at most <InlineMath math="7.0\text{ m}" /> above it**, so the pit must be at least <InlineMath math="11.0-7.0=4.0\text{ m}" /> deep. Measuring from the still water gives <InlineMath math="2.5\text{ m}" />, and the pump would lose its water as soon as it started.
+
+<BlockMath math="\begin{aligned}
+h_v&=69.3\cos30^\circ=60.0\text{ cm},\quad p_0=0.600\times13600\times10=8.16\times10^{4}\text{ Pa}\\
+h&=\frac{8.16\times10^{4}-1.2\times10^{4}}{1000\times10}=6.96\text{ m}\\
+d&=(9.5+1.5)-6.96=4.0\text{ m}
+\end{aligned}" />

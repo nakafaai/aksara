@@ -1,0 +1,46 @@
+# Abknicken in den Saphir
+
+Am Fenster gilt <InlineMath math="\sin r=\sin50^\circ/1{,}77=0{,}433" />, der Strahl läuft innen also unter <InlineMath math="25{,}6^\circ" /> zur Normalen, und **Aussage I stimmt**. Saphir bricht Licht stärker als Glas, weil seine Brechzahl größer ist.
+
+<GlassBlockLab
+  title={<>Der Strahl im Saphir</>}
+  description={<>Bei <InlineMath math="50^\circ" /> Einfall knickt der Strahl im Saphir mit der Brechzahl <InlineMath math="1{,}77" /> auf etwa <InlineMath math="26^\circ" /> ab.</>}
+  incidence={50}
+  index={1.77}
+  labels={{
+    critical: <>Grenzwinkel <InlineMath math="c" /></>,
+    incidence: <>Einfallswinkel <InlineMath math="i" /></>,
+    incidenceName: "Einfallswinkel",
+    next: <>Winkel an der Seitenfläche</>,
+    outcome: <>An der Seitenfläche</>,
+    reflected: <>Totalreflexion</>,
+    refracted: <>Verlässt den Saphir</>,
+    refraction: <>Brechungswinkel <InlineMath math="r" /></>,
+    viewLabel: "Ein Strahl durch ein Saphirfenster",
+  }}
+/>
+
+# Ein schräger Weg durch das Fenster
+
+Der Strahl quert <InlineMath math="3{,}0\text{ mm}" /> Dicke unter <InlineMath math="25{,}6^\circ" />, sein Weg ist also <InlineMath math="3{,}0/\cos25{,}6^\circ=3{,}33\text{ mm}" /> lang, und **Aussage II stimmt auch**. Im Saphir läuft Licht mit <InlineMath math="3{,}0\times10^{8}/1{,}77=1{,}69\times10^{8}\text{ m s}^{-1}" />, der Durchgang dauert also etwa <InlineMath math="2{,}0\times10^{-11}\text{ s}" />, und Aussage III stimmt. Teilt man nur die Dicke durch die Geschwindigkeit, kommen <InlineMath math="1{,}8\times10^{-11}\text{ s}" /> heraus, weil der schräge Weg fehlt.
+
+<BlockMath math="\begin{aligned}
+\sin r&=\frac{\sin50^\circ}{1{,}77}=0{,}433\ \Rightarrow\ r=25{,}6^\circ,\quad s=\frac{3{,}0\text{ mm}}{\cos25{,}6^\circ}=3{,}33\text{ mm}\\
+v&=\frac{3{,}0\times10^{8}}{1{,}77}=1{,}69\times10^{8}\text{ m s}^{-1},\quad t=\frac{3{,}33\times10^{-3}}{1{,}69\times10^{8}}=2{,}0\times10^{-11}\text{ s}\\
+\lambda'&=\frac{633\text{ nm}}{1{,}77}=358\text{ nm},\quad f=\frac{3{,}0\times10^{8}}{633\times10^{-9}}=4{,}7\times10^{14}\text{ Hz}
+\end{aligned}" />
+
+# Die Wellenlänge ändert sich und die Farbe bleibt
+
+Aussage IV hat die Zahl richtig, <InlineMath math="633/1{,}77=358\text{ nm}" />, zieht aber den falschen Schluss. **Die Farbe hängt an der Frequenz, und die kann der Saphir nicht ändern**: Sie bleibt <InlineMath math="4{,}7\times10^{14}\text{ Hz}" />, das Licht ist innen also weiter rot und beim Austritt auch. Richtig sind damit I, II und III.
+
+<Chart
+  title={<>Wellenlänge des Strahls in Luft und im Saphir</>}
+  description={<>Im Saphir sinkt die Wellenlänge des roten Strahls auf <InlineMath math="358\text{ nm}" />, unter die von violettem Licht in Luft, doch Frequenz und Farbe bleiben gleich.</>}
+  bars="apart"
+  categories={["Rot in Luft", "Rot im Saphir", "Violett in Luft"]}
+  series={[
+    { label: "Wellenlänge", mark: "bar", values: [633, 358, 400] },
+  ]}
+  valueLabel="Wellenlänge (nm)"
+/>

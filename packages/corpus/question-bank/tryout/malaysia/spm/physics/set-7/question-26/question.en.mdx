@@ -1,0 +1,38 @@
+A block of flats is supplied by a water tower whose water surface is <InlineMath math="25\text{ m}" /> above the ground. The taps on the ground floor are at ground level, and each floor is <InlineMath math="3.0\text{ m}" /> above the one below, so the taps on floor <InlineMath math="3" /> are <InlineMath math="9.0\text{ m}" /> above the ground. A washing machine needs a gauge pressure of at least <InlineMath math="5.0\times10^{4}\text{ Pa}" /> at its tap. The density of water is <InlineMath math="1000\text{ kg m}^{-3}" /> and <InlineMath math="g=10\text{ m s}^{-2}" />. Ignore flow in the pipes.
+
+<MathVisual
+  title={<>The water tower and a tap in the flats</>}
+  description={<>The water surface in the full tank is <InlineMath math="25\text{ m}" /> above the ground, and the bottom of the tank is <InlineMath math="20\text{ m}" /> above the ground. A pipe from the tank feeds a tap on floor <InlineMath math="3" />, <InlineMath math="9.0\text{ m}" /> above the ground.</>}
+  labels={{
+    tank: <>tank</>,
+    surface: <><InlineMath math="25\text{ m}" /></>,
+    bottom: <><InlineMath math="20\text{ m}" /></>,
+    tap: <>tap on floor <InlineMath math="3" /></>,
+    height: <><InlineMath math="9.0\text{ m}" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -4.5, max: 15.5 }, y: { min: -1, max: 27 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "ground", kind: "segment", appearance: "reference", from: { x: -4, y: 0 }, to: { x: 15, y: 0 } },
+      { id: "tank", kind: "polygon", appearance: "secondary", vertices: [{ x: 0, y: 20 }, { x: 4, y: 20 }, { x: 4, y: 25 }, { x: 0, y: 25 }] },
+      { id: "leg-1", kind: "segment", appearance: "reference", from: { x: 0.4, y: 20 }, to: { x: 0.4, y: 0 } },
+      { id: "leg-2", kind: "segment", appearance: "reference", from: { x: 3.6, y: 20 }, to: { x: 3.6, y: 0 } },
+      { id: "pipe", kind: "polyline", appearance: "construction", vertices: [{ x: 2, y: 20 }, { x: 2, y: 1 }, { x: 10, y: 1 }, { x: 10, y: 9 }, { x: 10.8, y: 9 }] },
+      { id: "tap", kind: "point", appearance: "primary", at: { x: 10.8, y: 9 } },
+      { id: "surface", kind: "segment", appearance: "construction", from: { x: -1.2, y: 0 }, to: { x: -1.2, y: 25 } },
+      { id: "bottom", kind: "segment", appearance: "construction", from: { x: 5, y: 0 }, to: { x: 5, y: 20 } },
+      { id: "height", kind: "segment", appearance: "construction", from: { x: 12.5, y: 0 }, to: { x: 12.5, y: 9 } },
+    ],
+    labels: [
+      { key: "tank", objectId: "tank", at: { x: 4, y: 22.5 }, placement: "right" },
+      { key: "surface", objectId: "surface", at: { x: -1.2, y: 12.5 }, placement: "left" },
+      { key: "bottom", objectId: "bottom", at: { x: 5, y: 12 }, placement: "right" },
+      { key: "tap", objectId: "tap", at: { x: 10.8, y: 9 }, placement: "above" },
+      { key: "height", objectId: "height", at: { x: 12.5, y: 4.5 }, placement: "right" },
+    ],
+  }}
+/>
+
+The tank has a horizontal cross-section of <InlineMath math="10\text{ m}^2" /> and is <InlineMath math="5.0\text{ m}" /> deep, so its bottom is <InlineMath math="20\text{ m}" /> above the ground. By evening the flats have drawn <InlineMath math="30\text{ m}^3" /> of water from it, and it has not been refilled. What gauge pressure does a tap on floor <InlineMath math="3" /> read when the tank is full, what is the highest floor on which the washing machine works then, what is the highest floor on which it works in the evening, and what volume of water is still in the tank at the moment the washing machine on floor <InlineMath math="6" /> stops working?

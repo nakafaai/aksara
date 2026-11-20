@@ -8,8 +8,11 @@ import type { SetRating } from "#corpus/tryout/level";
  * and two raters rated all 40 items of set 4 alone the same day (3.79 and
  * 4.01), and two raters rated all 40 items of set 5 alone the same day (4.17
  * and 3.67), and two raters rated all 40 items of set 6 alone the same day
- * (3.95 and 4.09) and then the one item rewritten after that (4 and 4). A
- * rewritten set replaces its entry with a rating of its new items.
+ * (3.95 and 4.09) and then the one item rewritten after that (4 and 4), and
+ * four raters rated all 40 items of set 7 alone on 20 Nov 2026, two with each
+ * of set 4's step-counting prompts (3.67 and 4.05, 3.74 and 3.71), and then the
+ * nine items rewritten after that (4.3 and 3.89, 4.22 and 3.9). A rewritten set
+ * replaces its entry with a rating of its new items.
  */
 export const physicsRatings: readonly SetRating[] = [
   { items: 40, level: 4.33, raters: 8 },
@@ -18,6 +21,7 @@ export const physicsRatings: readonly SetRating[] = [
   { items: 40, level: 3.9, raters: 2 },
   { items: 40, level: 3.92, raters: 2 },
   { items: 40, level: 4.04, raters: 2 },
+  { items: 40, level: 3.95, raters: 4 },
 ];
 
 /**

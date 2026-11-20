@@ -1,0 +1,45 @@
+# Satu jalur tipis, satu hambatan
+
+Bayangkan tiap strip sebagai pita pipih yang lebih tipis dari rambut. Pita tipis adalah jalan sempit bagi muatan, jadi ia melawan arus dengan kuat. Perlawanan itulah **hambatan**, dan untuk jalur yang seragam nilainya <InlineMath math="R=\rho L/A" />.
+
+Penampang jalannya adalah lebar kali tebal, jadi hati-hati dengan satuannya: <InlineMath math="12\ \mu\text{m}" /> sama dengan <InlineMath math="12\times10^{-6}\text{ m}" />.
+
+<BlockMath math="\begin{aligned}
+A&=1{,}0\times10^{-3}\times12\times10^{-6}=1{,}2\times10^{-8}\text{ m}^2\\
+R_1&=\frac{\rho L}{A}=\frac{2{,}0\times10^{-7}\times1{,}20}{1{,}2\times10^{-8}}=20\,\Omega,\qquad R_{10}=\frac{20}{10}=2{,}0\,\Omega
+\end{aligned}" />
+
+Sepuluh strip berdampingan adalah sepuluh jalan, jadi bersama-sama hambatannya hanya <InlineMath math="2{,}0\,\Omega" />. Nilai <InlineMath math="2{,}0\,\Omega" /> itu milik seluruh rangkaian. Satu strip sendiri tetap <InlineMath math="20\,\Omega" />.
+
+# Aki menyimpan sebagian volt untuk dirinya
+
+Aki itu mirip tangki dengan lubang keluar yang sempit. Sebagian dorongan habis hanya untuk keluar. Di sini aki dan kabel mengambil <InlineMath math="0{,}50\,\Omega" />, jadi **strip-strip itu tidak pernah merasakan <InlineMath math="12{,}5\text{ V}" /> penuh**.
+
+<BlockMath math="\begin{aligned}
+I&=\frac{12{,}5}{2{,}0+0{,}50}=5{,}0\text{ A},\qquad V=5{,}0\times2{,}0=10{,}0\text{ V}\\
+P_1&=\frac{V^2}{R_1}=\frac{10{,}0^2}{20}=5{,}0\text{ W}
+\end{aligned}" />
+
+Tiap strip mendapat <InlineMath math="10{,}0\text{ V}" /> yang sama karena dipasang paralel. Kalau kamu pasang <InlineMath math="12{,}5\text{ V}" /> penuh pada satu strip, hasilnya <InlineMath math="7{,}8\text{ W}" />, dan itu melupakan <InlineMath math="2{,}5\text{ V}" /> yang hilang di dalam aki dan kabel.
+
+<Chart
+  title={<>Ke mana daya aki pergi</>}
+  description={<>Aki memberi <InlineMath math="62{,}5\text{ W}" /> seluruhnya. <InlineMath math="12{,}5\text{ W}" /> tertinggal di aki dan kabel, <InlineMath math="30\text{ W}" /> melelehkan bunga es dan <InlineMath math="20\text{ W}" /> memanaskan kaca dan udara.</>}
+  bars="apart"
+  categories={["Aki dan kabel", "Strip, ke bunga es", "Strip, ke kaca dan udara"]}
+  series={[
+    { label: "Daya", mark: "bar", values: [12.5, 30, 20] },
+  ]}
+  valueLabel="Daya (W)"
+/>
+
+# Dari watt ke bunga es yang meleleh
+
+Melelehkan es butuh energi walaupun suhunya tetap <InlineMath math="0^\circ\text{C}" /> sepanjang waktu. Energi tersembunyi itu adalah **kalor lebur**. Sepuluh strip memberi <InlineMath math="50\text{ W}" />, tetapi hanya <InlineMath math="60\%" /> darinya, <InlineMath math="30\text{ W}" />, sampai ke bunga es.
+
+<BlockMath math="\begin{aligned}
+Q&=mL=0{,}025\times3{,}34\times10^{5}=8350\text{ J}\\
+t&=\frac{8350}{0{,}60\times50}=278\text{ s}\approx280\text{ s}
+\end{aligned}" />
+
+Itu kira-kira empat setengah menit. Memakai <InlineMath math="50\text{ W}" /> penuh memberi <InlineMath math="170\text{ s}" />, seolah tidak ada kalor yang memanaskan kaca atau lepas ke udara.

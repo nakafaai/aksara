@@ -1,0 +1,32 @@
+Dalam lampu suluh goncang, sebatang magnet berjisim <InlineMath math="40\text{ g}" /> menggelongsor di sepanjang sebatang tiub setiap kali lampu suluh itu digoncang. Dalam perjalanan keluar, magnet melalui sebuah gegelung, melantun daripada penahan getah di hujung tiub tanpa kehilangan tenaga, lalu melalui gegelung itu sekali lagi dalam perjalanan balik. Setiap kali magnet melalui gegelung, <InlineMath math="30\%" /> daripada tenaga kinetik yang dimilikinya semasa memasuki gegelung disimpan sebagai tenaga elektrik dalam sebuah sel boleh cas semula, dan selebihnya kekal pada magnet. Geseran boleh diabaikan. Dalam perjalanan keluar, magnet memasuki gegelung pada <InlineMath math="2.0\text{ m s}^{-1}" />. Lampu suluh itu mempunyai LED yang berfungsi pada <InlineMath math="3.0\text{ V}" /> dan <InlineMath math="20\text{ mA}" />.
+
+<MathVisual
+  title={<>Di dalam lampu suluh goncang</>}
+  description={<>Sebatang magnet <InlineMath math="40\text{ g}" /> menggelongsor di sepanjang tiub, melalui sebuah gegelung, ke penahan getah di hujung tiub. Dalam perjalanan keluar, magnet memasuki gegelung pada <InlineMath math="2.0\text{ m s}^{-1}" />.</>}
+  labels={{
+    magnet: <>magnet, <InlineMath math="40\text{ g}" /></>,
+    speed: <><InlineMath math="2.0\text{ m s}^{-1}" /></>,
+    coil: <>gegelung</>,
+    stop: <>penahan getah</>,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -3.5, max: 14.5 }, y: { min: -1, max: 2.9 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "tube", kind: "polyline", appearance: "reference", vertices: [{ x: -3, y: 0 }, { x: 14, y: 0 }, { x: 14, y: 1.6 }, { x: -3, y: 1.6 }] },
+      { id: "magnet", kind: "polygon", appearance: "primary", vertices: [{ x: 1, y: 0.3 }, { x: 3, y: 0.3 }, { x: 3, y: 1.3 }, { x: 1, y: 1.3 }] },
+      { id: "speed", kind: "vector", appearance: "highlight", from: { x: 3.3, y: 0.8 }, to: { x: 5, y: 0.8 } },
+      { id: "coil", kind: "polyline", appearance: "secondary", vertices: [{ x: 6.5, y: -0.4 }, { x: 6.75, y: 2 }, { x: 7, y: -0.4 }, { x: 7.25, y: 2 }, { x: 7.5, y: -0.4 }, { x: 7.75, y: 2 }, { x: 8, y: -0.4 }, { x: 8.25, y: 2 }, { x: 8.5, y: -0.4 }, { x: 8.75, y: 2 }, { x: 9, y: -0.4 }] },
+      { id: "stop", kind: "polygon", appearance: "warning", vertices: [{ x: 13.3, y: 0 }, { x: 14, y: 0 }, { x: 14, y: 1.6 }, { x: 13.3, y: 1.6 }] },
+    ],
+    labels: [
+      { key: "magnet", objectId: "magnet", at: { x: 1, y: 0.8 }, placement: "left" },
+      { key: "speed", objectId: "speed", at: { x: 4.15, y: 0.8 }, placement: "above" },
+      { key: "coil", objectId: "coil", at: { x: 7.75, y: 2 }, placement: "above" },
+      { key: "stop", objectId: "stop", at: { x: 13.65, y: 1.6 }, placement: "above" },
+    ],
+  }}
+/>
+
+Berapakah tenaga yang disimpan oleh satu goncangan, berapakah kuasa LED itu, dan berapakah bilangan goncangan minimum yang diperlukan untuk menyalakan LED itu selama <InlineMath math="1.0" /> minit?

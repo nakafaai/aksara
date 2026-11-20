@@ -1,0 +1,27 @@
+# Apa yang dikehendaki litar
+
+Fikirkan pam sebagai tukang kebun yang menyiram apabila tanah kering dan hujan tidak turun, atau bila-bila masa butang ditekan, tetapi tidak pernah dari tangki kosong. **Itulah <InlineMath math="P=(S\cdot\overline{R}+M)\cdot\overline{E}" />**. Dengan <InlineMath math="E=1" /> tiada apa yang berjalan. Dengan <InlineMath math="E=0" /> pam berjalan bagi keempat-empat gabungan dengan <InlineMath math="M=1" /> dan bagi satu lagi, tanah kering tanpa hujan, jadi <InlineMath math="5" /> daripada <InlineMath math="16" />. Mengabaikan <InlineMath math="E" /> semasa mengira menggandakannya kepada <InlineMath math="10" />.
+
+# Tangki yang menentukan
+
+Lampu suluh yang baterinya tahan tiga jam padam selepas tiga jam digunakan, bukan selepas tiga jam pada jam dinding. **Pam mahu berjalan pada jam <InlineMath math="1" />, <InlineMath math="3" />, <InlineMath math="4" />, <InlineMath math="5" />, <InlineMath math="6" />, <InlineMath math="7" /> dan <InlineMath math="8" />, tetapi jam <InlineMath math="1" />, <InlineMath math="3" /> dan <InlineMath math="4" /> menghabiskan air tangki, jadi jam <InlineMath math="5" /> dan <InlineMath math="6" /> bermula dengan <InlineMath math="E=1" />**. Pengisian semula mengembalikan jam <InlineMath math="7" /> dan <InlineMath math="8" />, jadi pam berjalan selama <InlineMath math="5" /> jam. Mengabaikan tangki memberi <InlineMath math="7" />.
+
+<Chart
+  title={<>Air dalam tangki pada awal setiap jam</>}
+  description={<>Diukur dalam jam mengepam. Pam yang berfungsi mengosongkan tangki menjelang awal jam <InlineMath math="5" />, pam yang rosak menjelang awal jam <InlineMath math="6" />.</>}
+  categories={["Jam 1", "Jam 2", "Jam 3", "Jam 4", "Jam 5", "Jam 6", "Jam 7", "Jam 8"]}
+  series={[
+    { label: "Litar yang berfungsi", mark: "line", values: [3, 2, 2, 1, 0, 0, 3, 2] },
+    { label: "Tanpa get TIDAK pada R", mark: "line", values: [3, 3, 2, 1, 1, 0, 3, 2] },
+  ]}
+  valueLabel="Baki air (jam mengepam)"
+/>
+
+# Tanpa get TIDAK
+
+Kini tukang kebun menyiram apabila tanah kering dan hujan turun, terbalik sama sekali. **Jam <InlineMath math="1" /> berhenti, jam <InlineMath math="2" /> bermula, dan jam <InlineMath math="3" /> serta <InlineMath math="5" /> masih berjalan kerana <InlineMath math="M" />, jadi tangki kosong selepas jam <InlineMath math="5" />. Selepas pengisian semula hanya jam <InlineMath math="7" /> berjalan, jadi pam yang rosak berjalan selama <InlineMath math="4" /> jam**. Menyalin jam kosong pam yang berfungsi, iaitu <InlineMath math="5" /> dan <InlineMath math="6" />, tersilap menghentikan jam <InlineMath math="5" /> dan memberi <InlineMath math="3" />.
+
+<BlockMath math="\begin{aligned}
+P&=(S\cdot\overline{R}+M)\cdot\overline{E}\\
+P'&=(S\cdot R+M)\cdot\overline{E}
+\end{aligned}" />

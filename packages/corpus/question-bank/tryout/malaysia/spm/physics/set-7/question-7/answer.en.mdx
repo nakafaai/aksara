@@ -1,0 +1,31 @@
+# Where the engine leaves it
+
+Three seconds at <InlineMath math="20\text{ m s}^{-2}" /> give <InlineMath math="60\text{ m s}^{-1}" /> at a height of <InlineMath math="90\text{ m}" />. **From that moment the rocket is just a ball thrown up at <InlineMath math="60\text{ m s}^{-1}" /> from <InlineMath math="90\text{ m}" />**, and gravity alone decides the rest.
+
+# Coasting to the top
+
+Gravity takes <InlineMath math="6\text{ s}" /> to remove <InlineMath math="60\text{ m s}^{-1}" />, and in that time the rocket climbs another <InlineMath math="180\text{ m}" />, to <InlineMath math="270\text{ m}" /> at <InlineMath math="9\text{ s}" />. Answering <InlineMath math="180\text{ m}" /> **forgets the <InlineMath math="90\text{ m}" /> already gained under power**.
+
+# The long fall back
+
+From rest at <InlineMath math="270\text{ m}" /> the fall takes <InlineMath math="7.35\text{ s}" />, so the rocket lands about <InlineMath math="16\text{ s}" /> after launch at <InlineMath math="73\text{ m s}^{-1}" />. **The fall is longer than the <InlineMath math="6\text{ s}" /> coast up** because it covers <InlineMath math="270\text{ m}" />, not <InlineMath math="180\text{ m}" />. Mirroring the coast gives <InlineMath math="15\text{ s}" />, <InlineMath math="9.0\text{ s}" /> is the moment it peaks rather than lands, and a landing at the <InlineMath math="60\text{ m s}^{-1}" /> it had at burnout ignores the extra <InlineMath math="90\text{ m}" /> it falls below that point.
+
+<Chart
+  title={<>Height of the rocket against time</>}
+  description={<>The line bends at <InlineMath math="3\text{ s}" /> when the engine stops, peaks at <InlineMath math="270\text{ m}" /> at <InlineMath math="9\text{ s}" />, and stays above the <InlineMath math="180\text{ m}" /> line from about <InlineMath math="4.8\text{ s}" /> to <InlineMath math="13.2\text{ s}" />.</>}
+  categories={["0 s", "2 s", "4 s", "6 s", "8 s", "10 s", "12 s", "14 s", "16 s"]}
+  series={[
+    { label: "Height", mark: "line", values: [0, 40, 145, 225, 265, 265, 225, 145, 25] },
+    { label: "Height of the line", mark: "line", values: [180, 180, 180, 180, 180, 180, 180, 180, 180] },
+  ]}
+  valueLabel="Height (m)"
+/>
+
+# The window near the top
+
+Only the top <InlineMath math="90\text{ m}" /> of the flight is above <InlineMath math="180\text{ m}" />, and the engine never got the rocket that high. **The free flight is symmetric about its peak**, so the time above that level is twice the time to fall <InlineMath math="90\text{ m}" /> from rest.
+
+<BlockMath math="\begin{aligned}
+v&=20\times3.0=60\text{ m s}^{-1},\quad h=\tfrac12\times20\times3.0^2=90\text{ m},\quad H=90+\frac{60^2}{2\times10}=270\text{ m}\\
+t&=9.0+\sqrt{\frac{2\times270}{10}}=16\text{ s},\quad v=\sqrt{2\times10\times270}=73\text{ m s}^{-1},\quad 2\sqrt{\frac{2\times90}{10}}=8.5\text{ s}
+\end{aligned}" />

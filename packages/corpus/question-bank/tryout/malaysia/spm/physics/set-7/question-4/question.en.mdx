@@ -1,0 +1,31 @@
+A pile driver raises a <InlineMath math="500\text{ kg}" /> hammer and lets it fall freely through <InlineMath math="5.0\text{ m}" /> onto the top of a <InlineMath math="1500\text{ kg}" /> concrete pile standing upright in soft ground. After the impact the hammer and the pile move down together, and the ground resists their motion with a constant force of <InlineMath math="60\text{ kN}" /> until they stop. Take <InlineMath math="g=10\text{ m s}^{-2}" /> and ignore air resistance.
+
+<MathVisual
+  title={<>A pile driver above a concrete pile</>}
+  description={<>A <InlineMath math="500\text{ kg}" /> hammer is raised <InlineMath math="5.0\text{ m}" /> above the top of a <InlineMath math="1500\text{ kg}" /> concrete pile that stands upright in soft ground. The hammer falls freely onto the pile.</>}
+  labels={{
+    hammer: <>hammer, <InlineMath math="500\text{ kg}" /></>,
+    pile: <>pile, <InlineMath math="1500\text{ kg}" /></>,
+    drop: <><InlineMath math="5.0\text{ m}" /></>,
+    ground: <>soft ground</>,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -3.5, max: 4.5 }, y: { min: -3.5, max: 7.5 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "ground", kind: "segment", appearance: "reference", from: { x: -3, y: 0 }, to: { x: 3, y: 0 } },
+      { id: "pile", kind: "polygon", appearance: "secondary", vertices: [{ x: -0.3, y: -3 }, { x: 0.3, y: -3 }, { x: 0.3, y: 1 }, { x: -0.3, y: 1 }] },
+      { id: "hammer", kind: "polygon", appearance: "primary", vertices: [{ x: -0.6, y: 6 }, { x: 0.6, y: 6 }, { x: 0.6, y: 7 }, { x: -0.6, y: 7 }] },
+      { id: "drop", kind: "segment", appearance: "construction", from: { x: 1, y: 1 }, to: { x: 1, y: 6 } },
+    ],
+    labels: [
+      { key: "hammer", objectId: "hammer", at: { x: 0.6, y: 6.5 }, placement: "right" },
+      { key: "pile", objectId: "pile", at: { x: 0.3, y: -1.5 }, placement: "right" },
+      { key: "drop", objectId: "drop", at: { x: 1, y: 3.5 }, placement: "right" },
+      { key: "ground", objectId: "ground", at: { x: -2, y: 0 }, placement: "below" },
+    ],
+  }}
+/>
+
+At what speed do the hammer and the pile start to move together, how far does one blow drive the pile into the ground, and how many blows are needed to drive the pile at least <InlineMath math="1.0\text{ m}" /> deeper?

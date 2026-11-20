@@ -1,0 +1,44 @@
+# Apa yang disambung oleh setiap kedudukan suis
+
+Orang melalui dua pintu pagar satu demi satu lebih perlahan berbanding dua pintu pagar yang bersebelahan. Arus pun begitu. **Sambungan sesiri menjumlahkan rintangan, manakala sambungan selari memberi rintangan yang lebih kecil daripada mana-mana satu gegelung**. LOW mempunyai <InlineMath math="60+40=100\,\Omega" /> dan <InlineMath math="P=240^2/100=576\text{ W}" />. MEDIUM menggunakan gegelung <InlineMath math="40\,\Omega" /> sahaja untuk <InlineMath math="1.44\text{ kW}" />, dan HIGH mempunyai <InlineMath math="24\,\Omega" /> untuk <InlineMath math="2.4\text{ kW}" />.
+
+# Gegelung terbakar umpama jambatan runtuh
+
+Tiada siapa boleh menyeberangi jambatan yang sudah runtuh. Gegelung yang terbakar putus sama sahaja bagi arus. **Mana-mana kedudukan yang satu-satunya laluannya melalui gegelung <InlineMath math="40\,\Omega" /> akan mati**. LOW mempunyai kedua-dua gegelung dalam satu barisan dan MEDIUM hanya ada gegelung yang terbakar, jadi kedua-duanya tidak memberi apa-apa. HIGH masih ada cabang <InlineMath math="60\,\Omega" />, jadi kuasa terbesar pemanas ialah <InlineMath math="240^2/60=960\text{ W}" />. Nilai <InlineMath math="1.44\text{ kW}" /> bagi MEDIUM milik gegelung yang sudah tiada.
+
+<Mermaid
+  title={<>Apa yang masih boleh dilakukan suis</>}
+  description={<>Gegelung yang putus mematikan LOW dan MEDIUM sepenuhnya. Selepas dibaiki, HIGH menarik tepat <InlineMath math="13\text{ A}" /> dan LOW memberi <InlineMath math="665\text{ W}" />.</>}
+  chart={`
+    flowchart TD
+      N0["Gegelung 40 Ω terbakar putus"]
+      N1["LOW: satu laluan melalui kedua-dua gegelung, 0 W"]
+      N2["MEDIUM: hanya gegelung yang terbakar, 0 W"]
+      N3["HIGH: cabang 60 Ω sahaja, 960 W"]
+      N4["Pasang gegelung 26.7 Ω"]
+      N5["HIGH: 18.5 Ω semuanya, 13 A, 3.1 kW"]
+      N6["LOW: 86.7 Ω semuanya, 665 W"]
+      N0 --> N1
+      N0 --> N2
+      N0 --> N3
+      N1 --> N4
+      N2 --> N4
+      N3 --> N4
+      N4 --> N5
+      N4 --> N6
+  `}
+/>
+
+# Memilih gegelung baharu mengikut fius
+
+Fius ialah pengawal yang membenarkan paling banyak <InlineMath math="13\text{ A}" /> lalu. **Pada HIGH, seluruh pemanas mesti mempunyai sekurang-kurangnya <InlineMath math="240/13=18.5\,\Omega" />, iaitu kedua-dua gegelung secara selari**. Jadi <InlineMath math="\tfrac1R\le\tfrac1{18.5}-\tfrac1{60}" /> dan <InlineMath math="R\ge26.7\,\Omega" />. Memilih <InlineMath math="18.5\,\Omega" /> menganggap gegelung baharu membawa seluruh <InlineMath math="13\text{ A}" /> seorang diri, lalu <InlineMath math="4\text{ A}" /> yang melalui gegelung <InlineMath math="60\,\Omega" /> akan memutuskan fius.
+
+# LOW kembali lebih panas
+
+Tukar satu pintu pagar yang lambat dalam satu barisan dengan pintu yang lebih cepat, dan seluruh barisan bergerak lebih laju. **LOW kini mempunyai <InlineMath math="60+26.7=86.7\,\Omega" />, kurang daripada tadi, jadi lebih banyak arus mengalir dan <InlineMath math="P=240^2/86.7=665\text{ W}" />**, naik daripada <InlineMath math="576\text{ W}" />. Mengekalkan arus lama <InlineMath math="2.4\text{ A}" /> dalam <InlineMath math="I^2R" /> hanya memberi <InlineMath math="499\text{ W}" />, sedangkan arus berubah apabila rintangan berubah.
+
+<BlockMath math="\begin{aligned}
+P_L&=\frac{240^2}{60+40}=576\text{ W},\qquad P_{\max}=\frac{240^2}{60}=960\text{ W}\\
+\frac1R&\le\frac{13}{240}-\frac1{60}=0.0375\ \Rightarrow\ R\ge26.7\,\Omega\\
+P_L'&=\frac{240^2}{60+26.7}=665\text{ W}
+\end{aligned}" />

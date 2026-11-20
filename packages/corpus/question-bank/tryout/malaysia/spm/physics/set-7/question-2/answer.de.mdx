@@ -1,0 +1,35 @@
+# Die Steigung im Log-Diagramm ist der Exponent
+
+Logarithmieren von <InlineMath math="t=kd^{\,n}" /> ergibt <InlineMath math="\lg t=\lg k+n\lg d" />, eine Gerade, deren **Steigung der Exponent <InlineMath math="n" /> ist**. Die Endpunkte liefern <InlineMath math="(1{,}000-2{,}505)\div(0{,}903-0{,}301)=-2{,}50" />. Teilst du andersherum, <InlineMath math="\Delta\lg d\div\Delta\lg t" />, kommt <InlineMath math="-0{,}40" /> heraus, und damit landet die Zeit für das <InlineMath math="5{,}0\text{ mm}" />-Loch bei etwa <InlineMath math="220\text{ s}" />.
+
+# Auf das weitere Loch hochrechnen
+
+Der erste Punkt ist das <InlineMath math="2{,}0\text{ mm}" />-Loch, <InlineMath math="10^{2{,}505}=320\text{ s}" />. Ein <InlineMath math="5{,}0\text{ mm}" />-Loch ist <InlineMath math="2{,}5" />-mal so breit, also ist seine Zeit <InlineMath math="320" /> geteilt durch <InlineMath math="2{,}5^{2{,}5}=9{,}88" />, **rund <InlineMath math="32\text{ s}" />**.
+
+# Zwei kleine Löcher gegen ein großes
+
+Bei zwei <InlineMath math="4{,}0\text{ mm}" />-Löchern **addieren sich die Durchflüsse, nicht die Zeiten**. Jedes Loch allein braucht <InlineMath math="56{,}6\text{ s}" />, zusammen rieselt der Sand doppelt so schnell und der Trichter ist nach <InlineMath math="28{,}3\text{ s}" /> leer. Ein einzelnes Loch schafft das nur mit der halben Zeit, also muss sein Durchmesser um den Faktor <InlineMath math="2^{1/2{,}5}=1{,}32" /> wachsen, auf <InlineMath math="5{,}3\text{ mm}" />.
+
+<Chart
+  title={<>Zeit zum Leeren des Trichters für jede Lochanordnung</>}
+  description={<>Zwei Löcher mit <InlineMath math="4{,}0\text{ mm}" /> leeren den Trichter zusammen in <InlineMath math="28{,}3\text{ s}" />, schneller als ein Loch mit <InlineMath math="5{,}0\text{ mm}" /> und genau so schnell wie ein Loch mit <InlineMath math="5{,}3\text{ mm}" />.</>}
+  bars="apart"
+  categories={["Ein Loch, 4,0 mm", "Ein Loch, 5,0 mm", "Zwei Löcher, 4,0 mm", "Ein Loch, 5,3 mm"]}
+  series={[
+    { label: "Zeit", mark: "bar", values: [56.6, 32.4, 28.3, 28.3] },
+  ]}
+  valueLabel="Zeit (s)"
+/>
+
+Wer stattdessen die Fläche verdoppelt, Faktor <InlineMath math="\sqrt2" /> auf <InlineMath math="5{,}7\text{ mm}" />, nimmt an, dass der Durchfluss mit der Fläche wächst. Das Diagramm zeigt aber, dass die Zeit mit <InlineMath math="d^{2{,}5}" /> fällt, schneller als mit <InlineMath math="d^{2}" />, also reicht ein kleinerer Schritt im Durchmesser.
+
+# Wie schnell der Sand hindurchrieselt
+
+Durch dieses Loch laufen <InlineMath math="0{,}40\text{ kg}" /> in <InlineMath math="28{,}3\text{ s}" />, **doppelt so viel pro Sekunde wie durch ein kleines Loch**.
+
+<BlockMath math="\begin{aligned}
+n&=\frac{1{,}000-2{,}505}{0{,}903-0{,}301}=-2{,}50,\qquad t_{5{,}0}=320\times2{,}5^{-2{,}5}=32\text{ s}\\
+t_{2\times4{,}0}&=\tfrac12\times56{,}6=28{,}3\text{ s},\quad d=4{,}0\times2^{1/2{,}5}=5{,}3\text{ mm},\quad \frac{0{,}40\text{ kg}}{28{,}3\text{ s}}=14\text{ g s}^{-1}
+\end{aligned}" />
+
+Die <InlineMath math="7{,}1\text{ g s}^{-1}" /> sind nur der Durchfluss eines der beiden kleinen Löcher.

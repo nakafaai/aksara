@@ -1,0 +1,43 @@
+An automatic watering system has three switches: the soil sensor <InlineMath math="S" /> is <InlineMath math="1" /> when the soil is dry, the rain sensor <InlineMath math="R" /> is <InlineMath math="1" /> when it is raining, and the manual switch <InlineMath math="M" /> is <InlineMath math="1" /> when it is pressed. A fourth input, the tank sensor <InlineMath math="E" />, is <InlineMath math="1" /> when the water tank is empty. In the circuit, <InlineMath math="S" /> and <InlineMath math="R" /> after a NOT gate go into an AND gate, its output and <InlineMath math="M" /> go into an OR gate, and the OR output and <InlineMath math="E" /> after a second NOT gate go into a second AND gate, whose output <InlineMath math="P" /> runs the pump when <InlineMath math="P=1" />.
+
+<Mermaid
+  title={<>Logic circuit of the watering system</>}
+  description={<>The circuit from the sensors on the left to the pump on the right. <InlineMath math="S" /> and <InlineMath math="R" /> through a NOT gate feed the first AND gate. Its output and <InlineMath math="M" /> feed the OR gate. The OR output and <InlineMath math="E" /> through a second NOT gate feed the second AND gate, which drives the pump <InlineMath math="P" />.</>}
+  chart={`
+    flowchart LR
+      N0["Soil sensor S"]
+      N1["Rain sensor R"]
+      N2["NOT gate"]
+      N3["AND gate"]
+      N4["Manual switch M"]
+      N5["OR gate"]
+      N6["Tank sensor E"]
+      N7["NOT gate"]
+      N8["AND gate"]
+      N9["Pump P"]
+      N0 --> N3
+      N1 --> N2
+      N2 --> N3
+      N3 --> N5
+      N4 --> N5
+      N5 --> N8
+      N6 --> N7
+      N7 --> N8
+      N8 --> N9
+  `}
+/>
+
+The tank is full at the start of hour <InlineMath math="1" /> and holds enough water for the pump to run for exactly <InlineMath math="3" /> hours. It is refilled to full at the start of hour <InlineMath math="7" />. For a whole hour, <InlineMath math="E=1" /> if the tank is empty at the start of that hour. The table shows <InlineMath math="S" />, <InlineMath math="R" /> and <InlineMath math="M" /> during eight hours.
+
+| Hour | <InlineMath math="S" /> | <InlineMath math="R" /> | <InlineMath math="M" /> |
+| --- | --- | --- | --- |
+| <InlineMath math="1" /> | <InlineMath math="1" /> | <InlineMath math="0" /> | <InlineMath math="0" /> |
+| <InlineMath math="2" /> | <InlineMath math="1" /> | <InlineMath math="1" /> | <InlineMath math="0" /> |
+| <InlineMath math="3" /> | <InlineMath math="0" /> | <InlineMath math="0" /> | <InlineMath math="1" /> |
+| <InlineMath math="4" /> | <InlineMath math="1" /> | <InlineMath math="0" /> | <InlineMath math="0" /> |
+| <InlineMath math="5" /> | <InlineMath math="0" /> | <InlineMath math="1" /> | <InlineMath math="1" /> |
+| <InlineMath math="6" /> | <InlineMath math="1" /> | <InlineMath math="0" /> | <InlineMath math="0" /> |
+| <InlineMath math="7" /> | <InlineMath math="1" /> | <InlineMath math="1" /> | <InlineMath math="1" /> |
+| <InlineMath math="8" /> | <InlineMath math="1" /> | <InlineMath math="0" /> | <InlineMath math="0" /> |
+
+In how many of the sixteen combinations of <InlineMath math="S" />, <InlineMath math="R" />, <InlineMath math="M" /> and <InlineMath math="E" /> does the pump run, in how many of the eight hours does it run, and in how many of the eight hours would it run if the NOT gate on <InlineMath math="R" /> were missing, so that <InlineMath math="R" /> went straight into the AND gate?

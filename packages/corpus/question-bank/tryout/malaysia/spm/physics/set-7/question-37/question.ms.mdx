@@ -1,0 +1,43 @@
+Sebuah sistem penyiraman automatik mempunyai tiga suis: penderia tanah <InlineMath math="S" /> ialah <InlineMath math="1" /> apabila tanah kering, penderia hujan <InlineMath math="R" /> ialah <InlineMath math="1" /> apabila hujan turun, dan suis manual <InlineMath math="M" /> ialah <InlineMath math="1" /> apabila ditekan. Input keempat, penderia tangki <InlineMath math="E" />, ialah <InlineMath math="1" /> apabila tangki air kosong. Dalam litar itu, <InlineMath math="S" /> dan <InlineMath math="R" /> selepas get TIDAK masuk ke sebuah get DAN, outputnya dan <InlineMath math="M" /> masuk ke sebuah get ATAU, dan output get ATAU serta <InlineMath math="E" /> selepas get TIDAK yang kedua masuk ke get DAN kedua, yang outputnya <InlineMath math="P" /> menghidupkan pam apabila <InlineMath math="P=1" />.
+
+<Mermaid
+  title={<>Litar logik sistem penyiraman</>}
+  description={<>Litar dari penderia di kiri hingga pam di kanan. <InlineMath math="S" /> dan <InlineMath math="R" /> melalui get TIDAK masuk ke get DAN pertama. Outputnya dan <InlineMath math="M" /> masuk ke get ATAU. Output get ATAU dan <InlineMath math="E" /> melalui get TIDAK kedua masuk ke get DAN kedua, yang menghidupkan pam <InlineMath math="P" />.</>}
+  chart={`
+    flowchart LR
+      N0["Penderia tanah S"]
+      N1["Penderia hujan R"]
+      N2["Get NOT"]
+      N3["Get AND"]
+      N4["Suis manual M"]
+      N5["Get OR"]
+      N6["Penderia tangki E"]
+      N7["Get NOT"]
+      N8["Get AND"]
+      N9["Pam P"]
+      N0 --> N3
+      N1 --> N2
+      N2 --> N3
+      N3 --> N5
+      N4 --> N5
+      N5 --> N8
+      N6 --> N7
+      N7 --> N8
+      N8 --> N9
+  `}
+/>
+
+Tangki itu penuh pada awal jam <InlineMath math="1" /> dan mengandungi air yang cukup untuk pam berjalan tepat <InlineMath math="3" /> jam. Tangki itu diisi penuh semula pada awal jam <InlineMath math="7" />. Bagi satu jam penuh, <InlineMath math="E=1" /> jika tangki kosong pada awal jam itu. Jadual menunjukkan <InlineMath math="S" />, <InlineMath math="R" /> dan <InlineMath math="M" /> dalam tempoh lapan jam.
+
+| Jam | <InlineMath math="S" /> | <InlineMath math="R" /> | <InlineMath math="M" /> |
+| --- | --- | --- | --- |
+| <InlineMath math="1" /> | <InlineMath math="1" /> | <InlineMath math="0" /> | <InlineMath math="0" /> |
+| <InlineMath math="2" /> | <InlineMath math="1" /> | <InlineMath math="1" /> | <InlineMath math="0" /> |
+| <InlineMath math="3" /> | <InlineMath math="0" /> | <InlineMath math="0" /> | <InlineMath math="1" /> |
+| <InlineMath math="4" /> | <InlineMath math="1" /> | <InlineMath math="0" /> | <InlineMath math="0" /> |
+| <InlineMath math="5" /> | <InlineMath math="0" /> | <InlineMath math="1" /> | <InlineMath math="1" /> |
+| <InlineMath math="6" /> | <InlineMath math="1" /> | <InlineMath math="0" /> | <InlineMath math="0" /> |
+| <InlineMath math="7" /> | <InlineMath math="1" /> | <InlineMath math="1" /> | <InlineMath math="1" /> |
+| <InlineMath math="8" /> | <InlineMath math="1" /> | <InlineMath math="0" /> | <InlineMath math="0" /> |
+
+Dalam berapa daripada enam belas gabungan <InlineMath math="S" />, <InlineMath math="R" />, <InlineMath math="M" /> dan <InlineMath math="E" /> pam itu berjalan, dalam berapa daripada lapan jam itu pam berjalan, dan dalam berapa daripada lapan jam itu pam akan berjalan jika get TIDAK pada <InlineMath math="R" /> tiada, sehingga <InlineMath math="R" /> terus masuk ke get DAN?

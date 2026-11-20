@@ -1,0 +1,44 @@
+# Was jede Schalterstellung verbindet
+
+Durch zwei Tore hintereinander kommen Leute langsamer als durch zwei Tore nebeneinander. Mit Strom ist es genauso. **In Reihe addieren sich die Widerstände, parallel ergibt sich weniger als bei jeder Wendel allein**. LOW hat <InlineMath math="60+40=100\,\Omega" /> und <InlineMath math="P=240^2/100=576\text{ W}" />. MEDIUM nutzt nur die <InlineMath math="40\,\Omega" />-Wendel für <InlineMath math="1{,}44\text{ kW}" />, und HIGH hat <InlineMath math="24\,\Omega" /> für <InlineMath math="2{,}4\text{ kW}" />.
+
+# Eine durchgebrannte Wendel ist eine eingestürzte Brücke
+
+Über eine eingestürzte Brücke kommt niemand. Für den Strom ist eine durchgebrannte Wendel genau das. **Jede Stellung, deren einziger Weg durch die <InlineMath math="40\,\Omega" />-Wendel führt, fällt aus**. LOW hat beide Wendeln in einer Linie und MEDIUM nur die kaputte, also liefern beide nichts. HIGH hat noch den <InlineMath math="60\,\Omega" />-Zweig, also schafft das Gerät höchstens <InlineMath math="240^2/60=960\text{ W}" />. Die <InlineMath math="1{,}44\text{ kW}" /> von MEDIUM gehörten zur Wendel, die jetzt fehlt.
+
+<Mermaid
+  title={<>Was der Schalter noch kann</>}
+  description={<>Die kaputte Wendel legt LOW und MEDIUM ganz lahm. Nach der Reparatur zieht HIGH genau <InlineMath math="13\text{ A}" />, und LOW gibt <InlineMath math="665\text{ W}" />.</>}
+  chart={`
+    flowchart TD
+      N0["Die 40-Ω-Wendel brennt durch"]
+      N1["LOW: ein Weg durch beide Wendeln, 0 W"]
+      N2["MEDIUM: nur die kaputte Wendel, 0 W"]
+      N3["HIGH: nur der 60-Ω-Zweig, 960 W"]
+      N4["Neue Wendel mit 26,7 Ω"]
+      N5["HIGH: 18,5 Ω gesamt, 13 A, 3,1 kW"]
+      N6["LOW: 86,7 Ω gesamt, 665 W"]
+      N0 --> N1
+      N0 --> N2
+      N0 --> N3
+      N1 --> N4
+      N2 --> N4
+      N3 --> N4
+      N4 --> N5
+      N4 --> N6
+  `}
+/>
+
+# Die neue Wendel passend zur Sicherung
+
+Eine Sicherung ist ein Türsteher, der höchstens <InlineMath math="13\text{ A}" /> durchlässt. **Auf HIGH muss das ganze Gerät mindestens <InlineMath math="240/13=18{,}5\,\Omega" /> haben, und das sind beide Wendeln parallel**. Also <InlineMath math="\tfrac1R\le\tfrac1{18{,}5}-\tfrac1{60}" /> und <InlineMath math="R\ge26{,}7\,\Omega" />. Wählst du <InlineMath math="18{,}5\,\Omega" />, trägt die neue Wendel allein die ganzen <InlineMath math="13\text{ A}" />, und die <InlineMath math="4\text{ A}" /> durch die <InlineMath math="60\,\Omega" />-Wendel lassen die Sicherung durchbrennen.
+
+# LOW kommt wärmer zurück
+
+Tausch in einer Reihe von Toren ein langsames gegen ein schnelleres, und die ganze Schlange kommt schneller voran. **LOW hat jetzt <InlineMath math="60+26{,}7=86{,}7\,\Omega" />, weniger als vorher, also fließt mehr Strom und <InlineMath math="P=240^2/86{,}7=665\text{ W}" />**, mehr als die <InlineMath math="576\text{ W}" /> vorher. Behältst du die alten <InlineMath math="2{,}4\text{ A}" /> in <InlineMath math="I^2R" />, kommen nur <InlineMath math="499\text{ W}" /> heraus, doch der Strom ändert sich, wenn sich der Widerstand ändert.
+
+<BlockMath math="\begin{aligned}
+P_L&=\frac{240^2}{60+40}=576\text{ W},\qquad P_{\max}=\frac{240^2}{60}=960\text{ W}\\
+\frac1R&\le\frac{13}{240}-\frac1{60}=0{,}0375\ \Rightarrow\ R\ge26{,}7\,\Omega\\
+P_L'&=\frac{240^2}{60+26{,}7}=665\text{ W}
+\end{aligned}" />

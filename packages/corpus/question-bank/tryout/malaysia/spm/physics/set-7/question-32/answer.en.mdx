@@ -1,0 +1,38 @@
+# Why the liquid metal gets a push
+
+Picture the liquid alloy as a crowd of tiny wires lying across the channel, wall to wall. Each one carries current, and a current in a magnetic field gets a sideways shove. Here the shove points along the channel, so **the field pushes the liquid forward**, with no moving parts at all.
+
+The current crosses the <InlineMath math="4.0\text{ cm}" /> width, so that width is the length of wire in the field, and the force is <InlineMath math="F=BIw" />.
+
+# A force spread over the channel's face
+
+Pressure is a force shared out over an area. The push acts on the liquid that fills the channel's cross-section, the little rectangle you would see looking down the pipe, <InlineMath math="w\times h" />. Watch what happens: the width cancels, and **only the channel height is left** under the line.
+
+<BlockMath math="\begin{aligned}
+F&=BIw=0.50\times500\times0.040=10\text{ N}\\
+\Delta p&=\frac{F}{wh}=\frac{BI}{h}=\frac{0.50\times500}{0.010}=2.5\times10^{4}\text{ Pa}
+\end{aligned}" />
+
+Two tempting areas give the wrong pressure. Dividing by the channel's floor, <InlineMath math="10\text{ cm}\times4.0\text{ cm}" />, gives <InlineMath math="2.5\text{ kPa}" />. Letting the current run up the <InlineMath math="1.0\text{ cm}" /> height instead of across the width gives <InlineMath math="6.3\text{ kPa}" />.
+
+# How tall a column that push can hold
+
+A column of liquid presses down with <InlineMath math="\rho g H" /> at its foot. The pump holds the column up as long as **its push matches that weight per area**.
+
+<BlockMath math="\begin{aligned}
+H&=\frac{\Delta p}{\rho g}=\frac{2.5\times10^{4}}{850\times9.81}=3.0\text{ m}\\
+I&=\frac{\rho g H h}{B}=\frac{850\times9.81\times4.5\times0.020}{0.50}=1.5\times10^{3}\text{ A}
+\end{aligned}" />
+
+<Chart
+  title={<>Column held up against pump current</>}
+  description={<>The height grows in step with the current. A channel twice as high needs twice the current for the same column, so <InlineMath math="4.5\text{ m}" /> takes <InlineMath math="750\text{ A}" /> in the old channel but <InlineMath math="1500\text{ A}" /> in the new one.</>}
+  categories={["0 A", "250 A", "500 A", "750 A", "1000 A", "1250 A", "1500 A"]}
+  series={[
+    { label: "Channel 1.0 cm high", mark: "line", values: [0.0, 1.5, 3.0, 4.5, 6.0, 7.5, 8.99] },
+    { label: "Channel 2.0 cm high", mark: "line", values: [0.0, 0.75, 1.5, 2.25, 3.0, 3.75, 4.5] },
+  ]}
+  valueLabel="Column height (m)"
+/>
+
+In the taller channel the same force is spread over a face twice as big, so you need twice the current. Keeping the old <InlineMath math="750\text{ A}" /> forgets that the height of the channel sits in <InlineMath math="\Delta p=BI/h" />.

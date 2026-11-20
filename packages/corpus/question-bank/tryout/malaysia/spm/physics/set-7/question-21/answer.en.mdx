@@ -1,0 +1,33 @@
+# Only part of the wind's push drives the boat
+
+Push a shopping trolley from the side at a slant and only part of your push rolls it forward. The rest just leans on the wheels. A sail works the same way. The wind pushes at right angles to the sail, so with the sail at <InlineMath math="30^\circ" /> to the boat's path, the push points <InlineMath math="60^\circ" /> away from that path. **The forward part is <InlineMath math="400\sin30^\circ=200\text{ N}" /> and the sideways part is <InlineMath math="400\cos30^\circ=346\text{ N}" />**, which the keel soaks up. At a steady <InlineMath math="3.0\text{ m s}^{-1}" /> nothing is left over, so the water holds back with exactly <InlineMath math="200\text{ N}" />. Swap sine and cosine here and the boat seems to get <InlineMath math="346\text{ N}" /> of drive, so easing the sail would then slow it down.
+
+# The first moment after easing the sail
+
+When you start pedalling harder, your bike does not jump to a new speed. For a moment the air still pushes back just as before. Easing the sail to <InlineMath math="50^\circ" /> raises the forward part to <InlineMath math="400\sin50^\circ=306\text{ N}" />, but the boat is still at <InlineMath math="3.0\text{ m s}^{-1}" />, so **the water still holds back with the old <InlineMath math="200\text{ N}" />**. Only the <InlineMath math="106\text{ N}" /> left over speeds the boat up, so <InlineMath math="a=106/200=0.53\text{ m s}^{-2}" />. Dividing the whole <InlineMath math="306\text{ N}" /> by the mass gives <InlineMath math="1.5\text{ m s}^{-2}" />, as if the water had suddenly let go.
+
+# Where the speed settles
+
+Try walking fast through a swimming pool. The water fights you much harder, not just a little harder. Here the resistance goes with the square of the speed, <InlineMath math="F=kv^2" />. **From the steady run, <InlineMath math="k=200/3.0^2=22.2\text{ N s}^2\text{ m}^{-2}" />**. The boat stops speeding up once the resistance has grown to <InlineMath math="306\text{ N}" />, so <InlineMath math="v=\sqrt{306/22.2}=3.7\text{ m s}^{-1}" />. A drive <InlineMath math="1.53" /> times bigger buys a speed only <InlineMath math="\sqrt{1.53}=1.24" /> times bigger. Scaling the speed up in step with the force lands on <InlineMath math="4.6\text{ m s}^{-1}" />, which only fits a resistance that grows in step with speed.
+
+<BlockMath math="\begin{aligned}
+400\sin30^\circ&=200\text{ N}=k(3.0)^2\ \Rightarrow\ k=22.2\text{ N s}^2\text{ m}^{-2}\\
+a&=\frac{400\sin50^\circ-200}{200}=\frac{306-200}{200}=0.53\text{ m s}^{-2}\\
+v&=\sqrt{\frac{306}{22.2}}=3.7\text{ m s}^{-1},\qquad 400\cos\alpha\le360\ \Rightarrow\ \alpha\ge25.8^\circ
+\end{aligned}" />
+
+# How tight the sail may be pulled in
+
+Think of the keel as a hand on the side of the boat that can only hold so hard. Pulling the sail in closer to the boat's path tips the wind's push more to the side. **The sideways part <InlineMath math="400\cos\alpha" /> must stay at or below <InlineMath math="360\text{ N}" />**, so <InlineMath math="\cos\alpha\le0.90" /> and <InlineMath math="\alpha\ge26^\circ" />. Any tighter and the boat starts skidding sideways. Writing the sideways part as <InlineMath math="400\sin\alpha" /> gives <InlineMath math="64^\circ" />, but that is where the forward drive reaches <InlineMath math="360\text{ N}" />, the other end of the range.
+
+<Chart
+  title={<>Drive and sideways push as the sail swings out</>}
+  description={<>At <InlineMath math="26^\circ" /> the sideways push reaches the <InlineMath math="360\text{ N}" /> the keel can hold. Easing the sail from <InlineMath math="30^\circ" /> to <InlineMath math="50^\circ" /> lifts the forward drive from <InlineMath math="200\text{ N}" /> to <InlineMath math="306\text{ N}" />.</>}
+  categories={["20°", "26°", "30°", "40°", "50°", "60°"]}
+  series={[
+    { label: "Forward drive", mark: "line", values: [136.8, 175.3, 200.0, 257.1, 306.4, 346.4] },
+    { label: "Sideways push", mark: "line", values: [375.9, 359.5, 346.4, 306.4, 257.1, 200.0] },
+    { label: "Keel limit", mark: "line", values: [360, 360, 360, 360, 360, 360] },
+  ]}
+  valueLabel="Force (N)"
+/>

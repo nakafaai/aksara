@@ -1,0 +1,47 @@
+# Kleiner Schub, großer Zug
+
+Häng ein nasses Handtuch auf eine straff gespannte Wäscheleine, und die Leine hängt trotzdem ein wenig durch. Je straffer die Leine, desto weniger hängt sie durch und desto stärker zieht sie. Das Seil hier verhält sich genauso. **Jede Hälfte zieht entlang ihrer eigenen Richtung, und nur ihre kleinen Seitenanteile können den <InlineMath math="400\text{ N}" /> Schub halten**. Mit der Mitte <InlineMath math="0{,}50\text{ m}" /> seitlich bei <InlineMath math="5{,}0\text{ m}" /> halber Spannweite gilt <InlineMath math="\tan\theta=0{,}10" /> und <InlineMath math="\sin\theta=0{,}0995" />. Beide Hälften teilen sich den Schub, also <InlineMath math="2T\sin\theta=400" /> und <InlineMath math="T=2{,}0\text{ kN}" />. Das ist das Fünffache des Schubs, aber noch unter den <InlineMath math="2500\text{ N}" />, die das Auto braucht. Vergisst du die zweite Hälfte, verdoppelt sich die Spannung auf <InlineMath math="4{,}0\text{ kN}" />, und das Auto wäre schon frei.
+
+<ForceTableResultantLab
+  title={<>Die Seilmitte auf dem Kräftetisch</>}
+  description={<>Jedes Gramm steht für <InlineMath math="10\text{ N}" />. Die beiden Seilhälften, je <InlineMath math="201\text{ g}" /> und <InlineMath math="5{,}7^\circ" /> neben der Geraden, halten dem Schub von <InlineMath math="40\text{ g}" /> die Waage. Dreh die Schubschnur, und der Ring rutscht aus der Mitte.</>}
+  pulls={[
+    { angle: 354.29, mass: 201 },
+    { angle: 185.71, mass: 201 },
+    { angle: 90, mass: 40 },
+  ]}
+  labels={{
+    angle: <>Winkel der Schubschnur</>,
+    angleName: "Winkel der Schubschnur",
+    direction: <>Richtung von <InlineMath math="\vec R" /></>,
+    resultant: <>Resultierende <InlineMath math="R" /></>,
+    sumX: <>Summe entlang <InlineMath math="0^\circ" /></>,
+    sumY: <>Summe entlang <InlineMath math="90^\circ" /></>,
+    viewLabel: "Kräftetisch mit beiden Seilhälften und dem Schub",
+  }}
+/>
+
+# Der Schub, der das Auto befreit
+
+Drück die Mitte eines Springseils, das zwei Freunde halten, und du drückst gegen beide zugleich. Bei gleichem Durchhang braucht mehr Zug einen Schub, der im selben Verhältnis wächst. **Für <InlineMath math="2500\text{ N}" /> braucht es <InlineMath math="2\times2500\times0{,}0995=500\text{ N}" /> Schub**, ein Viertel mehr, als der Fahrer aufbringt. Nimmst du nur den Seitenanteil einer Hälfte, kommst du auf <InlineMath math="250\text{ N}" />, doch der Schub biegt beide Hälften auf einmal.
+
+# Straffer hilft, nicht weiter
+
+Setz dich in eine fast flach gespannte Hängematte, und ihre Seile ziehen viel stärker an den Bäumen als bei einer durchhängenden. Die Mitte weiter hinauszudrücken fühlt sich hilfreich an. Es ist umgekehrt. **Damit aus <InlineMath math="400\text{ N}" /> Schub <InlineMath math="2500\text{ N}" /> Zug werden, muss <InlineMath math="\sin\theta\le400/5000=0{,}080" /> sein**, also darf die Mitte höchstens <InlineMath math="5{,}0\tan4{,}6^\circ=0{,}40\text{ m}" /> seitlich liegen. Rechnest du <InlineMath math="0{,}50\text{ m}" /> mit <InlineMath math="2500/2010" /> auf <InlineMath math="0{,}62\text{ m}" /> hoch, wird das Seil schlaffer und der Zug schwächer.
+
+<Chart
+  title={<>Seilspannung bei gleichem Schub und wachsendem Durchhang</>}
+  description={<>Bei <InlineMath math="400\text{ N}" /> Schub sinkt die Spannung, je weiter die Mitte ausweicht. Die <InlineMath math="2{,}5\text{ kN}" /> für das Auto erreicht sie nur bis <InlineMath math="0{,}40\text{ m}" />.</>}
+  categories={["0,20 m", "0,30 m", "0,40 m", "0,50 m", "0,60 m", "0,80 m"]}
+  series={[
+    { label: "Seilspannung", mark: "line", values: [5.0, 3.34, 2.51, 2.01, 1.68, 1.27] },
+    { label: "Zug, der das Auto befreit", mark: "line", values: [2.5, 2.5, 2.5, 2.5, 2.5, 2.5] },
+  ]}
+  valueLabel="Kraft (kN)"
+/>
+
+<BlockMath math="\begin{aligned}
+\tan\theta&=\frac{0{,}50}{5{,}0}=0{,}10,\quad\sin\theta=0{,}0995,\quad T=\frac{400}{2\times0{,}0995}=2{,}0\times10^{3}\text{ N}\\
+F_{\min}&=2\times2500\times0{,}0995=500\text{ N}\\
+\sin\theta'&\le\frac{400}{2\times2500}=0{,}080\ \Rightarrow\ d=5{,}0\tan4{,}6^\circ=0{,}40\text{ m}
+\end{aligned}" />

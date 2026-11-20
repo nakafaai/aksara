@@ -1,0 +1,45 @@
+# One thin track, one resistance
+
+Think of each strip as a flat ribbon, thinner than a hair. A thin ribbon is a narrow road for the charge, so it fights the current hard. That fight is its **resistance**, and for a uniform track it is <InlineMath math="R=\rho L/A" />.
+
+The road's cross-section is the width times the thickness, so watch the units: <InlineMath math="12\ \mu\text{m}" /> is <InlineMath math="12\times10^{-6}\text{ m}" />.
+
+<BlockMath math="\begin{aligned}
+A&=1.0\times10^{-3}\times12\times10^{-6}=1.2\times10^{-8}\text{ m}^2\\
+R_1&=\frac{\rho L}{A}=\frac{2.0\times10^{-7}\times1.20}{1.2\times10^{-8}}=20\,\Omega,\qquad R_{10}=\frac{20}{10}=2.0\,\Omega
+\end{aligned}" />
+
+Ten strips side by side are ten roads, so together they make only <InlineMath math="2.0\,\Omega" />. That <InlineMath math="2.0\,\Omega" /> belongs to the whole grid. One strip on its own still has <InlineMath math="20\,\Omega" />.
+
+# The battery keeps some volts for itself
+
+A battery is a bit like a tank with a narrow outlet. Some of the push is used up just getting out. Here the battery and the wires take <InlineMath math="0.50\,\Omega" />, so **the strips never feel the full <InlineMath math="12.5\text{ V}" />**.
+
+<BlockMath math="\begin{aligned}
+I&=\frac{12.5}{2.0+0.50}=5.0\text{ A},\qquad V=5.0\times2.0=10.0\text{ V}\\
+P_1&=\frac{V^2}{R_1}=\frac{10.0^2}{20}=5.0\text{ W}
+\end{aligned}" />
+
+Each strip sits across the same <InlineMath math="10.0\text{ V}" />, because they are in parallel. Put the whole <InlineMath math="12.5\text{ V}" /> across a strip and you get <InlineMath math="7.8\text{ W}" />, which forgets the <InlineMath math="2.5\text{ V}" /> lost inside the battery and wires.
+
+<Chart
+  title={<>Where the battery's power goes</>}
+  description={<>The battery gives <InlineMath math="62.5\text{ W}" /> in all. <InlineMath math="12.5\text{ W}" /> stays in the battery and wires, <InlineMath math="30\text{ W}" /> melts frost and <InlineMath math="20\text{ W}" /> warms the glass and the air.</>}
+  bars="apart"
+  categories={["Battery and wires", "Strips, into the frost", "Strips, into glass and air"]}
+  series={[
+    { label: "Power", mark: "bar", values: [12.5, 30, 20] },
+  ]}
+  valueLabel="Power (W)"
+/>
+
+# From watts to melted frost
+
+Melting ice takes energy even though it stays at <InlineMath math="0^\circ\text{C}" /> the whole time. That hidden energy is the **specific latent heat of fusion**. The ten strips give <InlineMath math="50\text{ W}" />, but only <InlineMath math="60\%" /> of it, <InlineMath math="30\text{ W}" />, reaches the frost.
+
+<BlockMath math="\begin{aligned}
+Q&=mL=0.025\times3.34\times10^{5}=8350\text{ J}\\
+t&=\frac{8350}{0.60\times50}=278\text{ s}\approx280\text{ s}
+\end{aligned}" />
+
+That is about four and a half minutes. Using the full <InlineMath math="50\text{ W}" /> gives <InlineMath math="170\text{ s}" />, as if no heat ever warmed the glass or slipped into the air.

@@ -1,0 +1,33 @@
+A U-tube of uniform bore stands upright and contains water. Both water surfaces are <InlineMath math="8.0\text{ cm}" /> below the tops of the arms. Oil, which does not mix with water, is poured slowly into the left arm. When the oil column is <InlineMath math="12.0\text{ cm}" /> long, the oil surface in the left arm is <InlineMath math="2.0\text{ cm}" /> higher than the water surface in the right arm. The density of water is <InlineMath math="1000\text{ kg m}^{-3}" />.
+
+<MathVisual
+  title={<>The U-tube before the oil is poured in</>}
+  description={<>Both arms of the U-tube hold water, and each water surface is <InlineMath math="8.0\text{ cm}" /> below the top of its arm. Oil is then poured slowly into the left arm.</>}
+  labels={{
+    left: <><InlineMath math="8.0\text{ cm}" /></>,
+    right: <><InlineMath math="8.0\text{ cm}" /></>,
+    oil: <>oil poured in</>,
+    water: <>water</>,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -5, max: 21 }, y: { min: -2, max: 39 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "water", kind: "polygon", appearance: "secondary", vertices: [{ x: 0, y: 22 }, { x: 0, y: 0 }, { x: 16, y: 0 }, { x: 16, y: 22 }, { x: 13, y: 22 }, { x: 13, y: 3 }, { x: 3, y: 3 }, { x: 3, y: 22 }] },
+      { id: "outer", kind: "polyline", appearance: "reference", vertices: [{ x: 0, y: 30 }, { x: 0, y: 0 }, { x: 16, y: 0 }, { x: 16, y: 30 }] },
+      { id: "inner", kind: "polyline", appearance: "reference", vertices: [{ x: 3, y: 30 }, { x: 3, y: 3 }, { x: 13, y: 3 }, { x: 13, y: 30 }] },
+      { id: "left", kind: "segment", appearance: "construction", from: { x: -1.5, y: 22 }, to: { x: -1.5, y: 30 } },
+      { id: "right", kind: "segment", appearance: "construction", from: { x: 17.5, y: 22 }, to: { x: 17.5, y: 30 } },
+      { id: "oil", kind: "vector", appearance: "highlight", from: { x: 1.5, y: 36 }, to: { x: 1.5, y: 31 } },
+    ],
+    labels: [
+      { key: "left", objectId: "left", at: { x: -1.5, y: 26 }, placement: "left" },
+      { key: "right", objectId: "right", at: { x: 17.5, y: 26 }, placement: "right" },
+      { key: "oil", objectId: "oil", at: { x: 1.5, y: 36 }, placement: "above" },
+      { key: "water", objectId: "water", at: { x: 8, y: 1.5 }, placement: "center" },
+    ],
+  }}
+/>
+
+What is the density of the oil, how far has the water surface in the right arm risen from its first level, and what is the greatest length of oil column the tube can hold before any liquid spills?
