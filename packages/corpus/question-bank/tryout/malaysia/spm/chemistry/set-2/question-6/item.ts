@@ -12,23 +12,19 @@ const item: ItemSource = {
       options: [
         {
           correct: false,
-          label:
-            "$$0.0100\\text{ mol}$$, $$0.00500\\text{ mol}$$, $$0\\text{ cm}^3$$",
+          label: "$$0.0100\\text{ mol}$$, $$0.00500\\text{ mol}$$, $$7.0$$",
         },
         {
           correct: false,
-          label:
-            "$$0.0200\\text{ mol}$$, $$0.00500\\text{ mol}$$, $$200\\text{ cm}^3$$",
+          label: "$$0.0200\\text{ mol}$$, $$0.00500\\text{ mol}$$, $$12.6$$",
         },
         {
           correct: true,
-          label:
-            "$$0.0200\\text{ mol}$$, $$0.00500\\text{ mol}$$, $$100\\text{ cm}^3$$",
+          label: "$$0.0200\\text{ mol}$$, $$0.00500\\text{ mol}$$, $$12.3$$",
         },
         {
           correct: false,
-          label:
-            "$$0.0200\\text{ mol}$$, $$0.00500\\text{ mol}$$, $$150\\text{ cm}^3$$",
+          label: "$$0.0200\\text{ mol}$$, $$0.00500\\text{ mol}$$, $$12.5$$",
         },
       ],
     },
@@ -37,23 +33,19 @@ const item: ItemSource = {
       options: [
         {
           correct: false,
-          label:
-            "$$0.0100\\text{ mol}$$, $$0.00500\\text{ mol}$$, $$0\\text{ cm}^3$$",
+          label: "$$0.0100\\text{ mol}$$, $$0.00500\\text{ mol}$$, $$7.0$$",
         },
         {
           correct: false,
-          label:
-            "$$0.0200\\text{ mol}$$, $$0.00500\\text{ mol}$$, $$200\\text{ cm}^3$$",
+          label: "$$0.0200\\text{ mol}$$, $$0.00500\\text{ mol}$$, $$12.6$$",
         },
         {
           correct: true,
-          label:
-            "$$0.0200\\text{ mol}$$, $$0.00500\\text{ mol}$$, $$100\\text{ cm}^3$$",
+          label: "$$0.0200\\text{ mol}$$, $$0.00500\\text{ mol}$$, $$12.3$$",
         },
         {
           correct: false,
-          label:
-            "$$0.0200\\text{ mol}$$, $$0.00500\\text{ mol}$$, $$150\\text{ cm}^3$$",
+          label: "$$0.0200\\text{ mol}$$, $$0.00500\\text{ mol}$$, $$12.5$$",
         },
       ],
     },

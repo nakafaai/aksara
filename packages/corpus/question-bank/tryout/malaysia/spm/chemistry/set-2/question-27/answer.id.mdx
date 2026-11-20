@@ -1,25 +1,47 @@
-# Ambil persentase reaksinya dulu, lalu tiap glukosa memberi dua etanol dan dua karbon dioksida, dan tiap etanol memberi satu asam
+# Hanya sebagian glukosa yang berfermentasi
 
-Glukosanya <InlineMath math="\tfrac{9{,}00}{180}=0{,}0500\text{ mol}" />, dan **hanya <InlineMath math="80{,}0\%" /> yang bereaksi**, <InlineMath math="0{,}0400\text{ mol}" />. **Tiap glukosa memberi dua untuk tiap hasil**, <InlineMath math="0{,}0800\text{ mol}" /> karbon dioksida, <InlineMath math="1{,}92\text{ dm}^3" />, dan <InlineMath math="0{,}0800\times46=3{,}68\text{ g}" /> etanol. Etanol itu memberi <InlineMath math="0{,}0800\text{ mol}" /> asam etanoat, satu porsi memuat sepersepuluhnya, <InlineMath math="0{,}00800\text{ mol}" />, dan <InlineMath math="0{,}00800\div0{,}100=0{,}0800\text{ dm}^3=80{,}0\text{ cm}^3" />.
+Pangkas dulu glukosanya menjadi yang benar-benar bereaksi sebelum menyentuh persamaan: <InlineMath math="80{,}0\%" /> dari <InlineMath math="9{,}00\text{ g}" /> adalah <InlineMath math="7{,}20\text{ g}" />, yaitu <InlineMath math="0{,}0400\text{ mol}" /> dengan <InlineMath math="M_r=180" />. **Memakai seluruh <InlineMath math="9{,}00\text{ g}" /> menambah seperempat pada tiap angka berikutnya**, dan begitulah <InlineMath math="2{,}40\text{ dm}^3" />, <InlineMath math="4{,}60\text{ g}" /> dan <InlineMath math="1{,}20\text{ dm}^3" /> muncul bersama.
+
+# Satu gula, dua dari tiap produk
+
+Persamaan fermentasi memecah tiap glukosa menjadi **dua etanol dan dua karbon dioksida**, jadi keduanya <InlineMath math="0{,}0800\text{ mol}" />. Gasnya mengisi <InlineMath math="1{,}92\text{ dm}^3" /> dan etanolnya, <InlineMath math="M_r=46" />, bermassa <InlineMath math="3{,}68\text{ g}" />. Membaca persamaan sebagai satu dari tiap produk membagi dua keduanya, menjadi <InlineMath math="0{,}960\text{ dm}^3" /> dan <InlineMath math="1{,}84\text{ g}" />.
 
 <Chart
-  title={<>Sepanjang jalur</>}
-  description={<><InlineMath math="0{,}0400\text{ mol}" /> glukosa yang bereaksi memberi <InlineMath math="0{,}0800\text{ mol}" /> etanol lalu <InlineMath math="0{,}0800\text{ mol}" /> asam etanoat.</>}
+  title={<>Karbon dari glukosa yang bereaksi</>}
+  description={<>Tiap glukosa memberi dua dari tiap produk, lalu dua molekul asam dibutuhkan untuk membebaskan satu karbon dioksida lagi.</>}
   bars="apart"
-  categories={["Glukosa bereaksi", "Etanol", "Asam etanoat"]}
+  categories={["Glukosa yang bereaksi", "Etanol", "Karbon dioksida dari fermentasi", "Karbon dioksida dari karbonat"]}
   series={[
-    { label: "Jumlah zat", mark: "bar", values: [0.0400, 0.0800, 0.0800] },
+    { label: "Jumlah", mark: "bar", values: [40.0, 80.0, 80.0, 40.0] },
   ]}
-  valueLabel="Jumlah zat (mol)"
+  valueLabel="Jumlah (mmol)"
 />
 
+# Asam menyimpan tiap rantai karbon
+
+Oksidasi hanya membangun ulang ujung rantai, jadi tiap etanol menjadi tepat satu asam asetat dan <InlineMath math="0{,}0800\text{ mol}" /> itu terbawa utuh.
+
+<MoleculeShapeLab
+  title={<>Etanol sebelum oksidasi</>}
+  description={<>Hanya ujung <InlineMath math="\text{CH}_2\text{OH}" /> yang berubah saat etanol dioksidasi, jadi rantai dua karbonnya masuk ke asam secara utuh.</>}
+  molecules={[{ id: "ethanol", name: "etanol" }]}
+  labels={{
+    atoms: <>Atom</>,
+    choose: "Pilih molekul",
+    fill: <>Model ruang terisi</>,
+    formula: <>Rumus</>,
+    mass: <>Massa molekul relatif</>,
+    shape: <>Sudut ikatan</>,
+    view: "Etanol",
+  }}
+/>
+
+**Satu ion karbonat menyerap ion hidrogen dari dua molekul asam** sebelum melepas karbon dioksidanya, jadi karbonat membebaskan <InlineMath math="0{,}0400\text{ mol}" />, atau <InlineMath math="0{,}960\text{ dm}^3" />. Satu karbon dioksida untuk tiap molekul asam akan mengembalikan <InlineMath math="1{,}92\text{ dm}^3" />, seolah asam asetat punya dua hidrogen asam.
+
 <BlockMath math="\begin{aligned}
-n&=0{,}800\times\tfrac{9{,}00}{180}=0{,}0400\ \Rightarrow\ V(\text{CO}_2)=0{,}0800\times24=1{,}92\text{ dm}^3,\quad m(\text{C}_2\text{H}_5\text{OH})=0{,}0800\times46=3{,}68\text{ g}\\
-V(\text{NaOH})&=\tfrac{0{,}0800\div10}{0{,}100}=0{,}0800\text{ dm}^3=80{,}0\text{ cm}^3
+n(\text{C}_6\text{H}_{12}\text{O}_6)&=0{,}800\times\tfrac{9{,}00}{180}=0{,}0400\text{ mol}\ \Rightarrow\ n(\text{CO}_2)=n(\text{C}_2\text{H}_5\text{OH})=0{,}0800\text{ mol}\\
+V_1&=0{,}0800\times24=1{,}92\text{ dm}^3,\quad m(\text{C}_2\text{H}_5\text{OH})=0{,}0800\times46=3{,}68\text{ g}\\
+n(\text{CH}_3\text{COOH})&=0{,}0800\text{ mol}\ \Rightarrow\ V_2=\tfrac{0{,}0800}{2}\times24=0{,}960\text{ dm}^3
 \end{aligned}" />
 
-# Kenapa pilihan lain salah
-
-- <InlineMath math="2{,}40\text{ dm}^3" /> dan <InlineMath math="4{,}60\text{ g}" /> membiarkan semua glukosa bereaksi, padahal **hanya <InlineMath math="80{,}0\%" /> yang bereaksi**.
-- <InlineMath math="0{,}960\text{ dm}^3" /> dan <InlineMath math="1{,}84\text{ g}" /> memberi satu untuk tiap hasil per glukosa, padahal persamaannya memberi dua.
-- <InlineMath math="800\text{ cm}^3" /> menitrasi seluruh asam, padahal porsinya hanya sepersepuluh.
+Jadi gas kedua separuh gas pertama, meski tidak ada rantai karbon yang hilang di tengah jalan.

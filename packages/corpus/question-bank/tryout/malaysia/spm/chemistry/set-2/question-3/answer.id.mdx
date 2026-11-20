@@ -1,26 +1,30 @@
-# Massa atom membagi isotop, hidrogen habis pada oksida, lalu ion perak habis pada tembaga
+# Memisahkan isotopnya
 
-Dengan fraksi <InlineMath math="x" /> untuk <InlineMath math="^{63}\text{Cu}" />, <InlineMath math="63x+65(1-x)=63{,}5" /> memberi <InlineMath math="x=0{,}750" />, <InlineMath math="75{,}0\%" />. Oksidanya <InlineMath math="0{,}200\text{ mol}" /> dan hidrogennya <InlineMath math="0{,}150\text{ mol}" />, jadi **hidrogen yang habis**, memberi <InlineMath math="0{,}150\text{ mol}" /> tembaga. Ion peraknya <InlineMath math="0{,}100\times2{,}20=0{,}220\text{ mol}" />, dan **tiap tembaga mengambil dua**, jadi <InlineMath math="0{,}150\text{ mol}" /> tembaga butuh <InlineMath math="0{,}300\text{ mol}" />. **Ion perak yang habis**, memberi <InlineMath math="0{,}220\times108=23{,}8\text{ g}" /> perak dan memakai <InlineMath math="0{,}110\text{ mol}" /> tembaga, yang menyisakan <InlineMath math="0{,}0400\times63{,}5=2{,}54\text{ g}" />.
+Misalkan <InlineMath math="x" /> adalah fraksi tembaga-63. Massa rata-ratanya ada di seperempat jalan dari <InlineMath math="63" /> ke <InlineMath math="65" />, jadi **tiga dari empat atom adalah tembaga-63**, <InlineMath math="75{,}0\%" />. Pilihan <InlineMath math="25{,}0\%" /> menyebut isotop yang lebih berat.
+
+# Hidrogen membatasi reduksi
+
+Oksidanya <InlineMath math="0{,}200\text{ mol}" /> tetapi hidrogennya hanya <InlineMath math="0{,}150\text{ mol}" />, jadi **hanya terbentuk <InlineMath math="0{,}150\text{ mol}" /> tembaga** dan sebagian oksida tetap hitam. Cara apa pun yang memulai reaksi kedua dengan <InlineMath math="0{,}200\text{ mol}" /> tembaga sudah melewatkan pemeriksaan ini.
+
+# Ion perak membatasi pendesakan
+
+Sekarang tembaganya <InlineMath math="0{,}150\text{ mol}" /> dan ion perak <InlineMath math="0{,}220\text{ mol}" />. Satu atom tembaga mengambil dua ion perak, jadi tembaga itu butuh <InlineMath math="0{,}300\text{ mol}" /> dan **ion perak yang habis lebih dulu**. Ion itu memberi <InlineMath math="0{,}220\text{ mol}" /> perak dan hanya memakai <InlineMath math="0{,}110\text{ mol}" /> tembaga.
 
 <Chart
-  title={<>Tembaga sepanjang jalur</>}
-  description={<>Hidrogen membentuk <InlineMath math="0{,}150\text{ mol}" /> tembaga, ion perak mengambil <InlineMath math="0{,}110\text{ mol}" /> darinya, dan <InlineMath math="0{,}0400\text{ mol}" /> tersisa.</>}
-  bars="apart"
-  categories={["Tembaga terbentuk", "Tembaga bereaksi", "Tembaga sisa"]}
+  title={<>Logam di meja pada tiap tahap</>}
+  description={<>Tembaga muncul saat hidrogen habis, lalu sebagian besar berubah menjadi perak sampai ion perak habis.</>}
+  categories={["Sebelum pemanasan", "Setelah hidrogen", "Setelah perak nitrat"]}
   series={[
-    { label: "Jumlah zat", mark: "bar", values: [0.150, 0.110, 0.0400] },
+    { label: "Logam tembaga", mark: "line", values: [0.0, 9.53, 2.54] },
+    { label: "Logam perak", mark: "line", values: [0.0, 0.0, 23.8] },
   ]}
-  valueLabel="Jumlah zat (mol)"
+  valueLabel="Massa (g)"
 />
+
+Membiarkan semua tembaga bereaksi memberi <InlineMath math="32{,}4\text{ g}" /> perak, lebih banyak ion perak dari yang ada di larutan. Mengambil satu perak per tembaga memberi <InlineMath math="16{,}2\text{ g}" />.
 
 <BlockMath math="\begin{aligned}
 63x+65(1-x)&=63{,}5\ \Rightarrow\ x=0{,}750\\
-n(\text{Cu})&=n(\text{H}_2)=0{,}150,\quad n(\text{Ag}^+)=0{,}220<2\times0{,}150\\
-m(\text{Ag})&=0{,}220\times108=23{,}8\text{ g},\quad m(\text{Cu})=(0{,}150-0{,}110)\times63{,}5=2{,}54\text{ g}
+n(\text{CuO})&=\tfrac{15{,}9}{79{,}5}=0{,}200>n(\text{H}_2)=\tfrac{3{,}60}{24}=0{,}150\ \Rightarrow\ n(\text{Cu})=0{,}150\text{ mol}\\
+n(\text{Ag}^+)&=0{,}220<2\times0{,}150\ \Rightarrow\ m(\text{Ag})=0{,}220\times108=23{,}8\text{ g},\quad m(\text{Cu})'=(0{,}150-0{,}110)\times63{,}5=2{,}54\text{ g}
 \end{aligned}" />
-
-# Kenapa pilihan lain salah
-
-- <InlineMath math="25{,}0\%" /> menukar isotopnya. **Rata-rata <InlineMath math="63{,}5" /> lebih dekat ke <InlineMath math="63" />, jadi <InlineMath math="^{63}\text{Cu}" /> yang lebih banyak**.
-- <InlineMath math="32{,}4\text{ g}" /> membiarkan semua tembaga bereaksi, padahal <InlineMath math="0{,}220\text{ mol}" /> ion perak hanya bisa mengambil <InlineMath math="0{,}110\text{ mol}" /> darinya.
-- <InlineMath math="16{,}2\text{ g}" /> membebaskan satu perak per tembaga, padahal tembaga membentuk <InlineMath math="\text{Cu}^{2+}" /> dan tiap ion perak mengambil satu elektron.

@@ -1,25 +1,44 @@
-# The cathode counts the electrons, the zinc supplies some of them, the copper that dissolved supplies the rest, and the difference leaves the electrolyte
+# The cathode counts the electrons
 
-The cathode gains <InlineMath math="0.100\text{ mol}" /> of copper, so <InlineMath math="0.200\text{ mol}" /> of electrons pass. The zinc is <InlineMath math="0.0100\text{ mol}" /> and gives <InlineMath math="0.0200\text{ mol}" /> of them, so **the copper dissolving gives only <InlineMath math="0.180\text{ mol}" />**, <InlineMath math="0.0900\text{ mol}" />, <InlineMath math="5.76\text{ g}" />. The sludge is the rest, <InlineMath math="7.00-5.76-0.650=0.590\text{ g}" />. **The cathode takes <InlineMath math="0.100\text{ mol}" /> of copper(II) ions but the anode returns <InlineMath math="0.0900\text{ mol}" />**, so <InlineMath math="0.250" /> falls to <InlineMath math="0.240\text{ mol}" />, <InlineMath math="0.240\div0.500=0.480\text{ mol dm}^{-3}" />.
+Only copper lands on the cathode, so its gain is the cleanest number in the whole cell. The <InlineMath math="6.40\text{ g}" /> is <InlineMath math="0.100\text{ mol}" /> of copper, which means **<InlineMath math="0.200\text{ mol}" /> of electrons went round the circuit**. Every one of them was released at the anode by a metal atom going into solution.
 
-<Chart
-  title={<>Mass lost by the anode</>}
-  description={<>The anode loses <InlineMath math="5.76\text{ g}" /> of copper, <InlineMath math="0.650\text{ g}" /> of zinc and <InlineMath math="0.590\text{ g}" /> of sludge.</>}
-  bars="apart"
-  categories={["Copper", "Zinc", "Sludge"]}
-  series={[
-    { label: "Mass", mark: "bar", values: [5.76, 0.650, 0.590] },
-  ]}
-  valueLabel="Mass (g)"
+<ElectrolysisLab
+  title={<>The same charge through pure copper</>}
+  description={<>With <InlineMath math="0.200\text{ mol}" /> of electrons, a pure copper anode would lose exactly the <InlineMath math="6.40\text{ g}" /> the cathode gains, and the copper(II) ions would hold steady.</>}
+  cells={[{ electrode: "copper", electrolyte: "copper-sulfate" }]}
+  electrons={0.2}
+  showProducts
+  labels={{
+    anode: "Anode",
+    atAnode: <>At the anode</>,
+    atCathode: <>At the cathode</>,
+    battery: "Battery",
+    cathode: "Cathode",
+    cells: [<>Copper(II) sulfate solution, copper electrodes</>],
+    electrons: <>Electrons passed</>,
+    ph: <>pH of the electrolyte</>,
+    trends: { falls: <>falls</>, rises: <>rises</>, steady: <>stays the same</> },
+    view: "Electrolytic purification of copper",
+  }}
 />
 
+The lab runs that charge through pure copper. There the anode loses what the cathode gains and the blue colour stays put. An impure anode breaks both, and the rest of this question is about how much.
+
+# Zinc takes a share of the electrons
+
+Zinc is more reactive than copper, so it dissolves alongside the copper. Its <InlineMath math="0.0100\text{ mol}" /> supplies <InlineMath math="0.0200\text{ mol}" /> of electrons, and **copper supplies only the other <InlineMath math="0.180\text{ mol}" />**, which is <InlineMath math="0.0900\text{ mol}" /> of atoms or <InlineMath math="5.76\text{ g}" />. Writing <InlineMath math="6.40\text{ g}" /> for the copper dissolved pretends the anode were pure.
+
+# What the anode's lost mass is made of
+
+The <InlineMath math="7.00\text{ g}" /> left the anode three ways: copper into the solution, zinc into the solution, and silver to the bottom of the cell. **Whatever is not copper or zinc is sludge**, so <InlineMath math="0.590\text{ g}" />. Calling <InlineMath math="1.24\text{ g}" /> the sludge piles the zinc in with the silver, yet zinc ions are dissolved, not lying under the anode.
+
+# Why the blue fades a little
+
+The anode put <InlineMath math="0.0900\text{ mol}" /> of copper(II) ions into the solution while the cathode pulled <InlineMath math="0.100\text{ mol}" /> out. **The missing <InlineMath math="0.0100\text{ mol}" /> is the zinc's share**, and zinc ions now fill those places. In <InlineMath math="0.500\text{ dm}^3" /> the copper(II) ions drop from <InlineMath math="0.250\text{ mol}" /> to <InlineMath math="0.240\text{ mol}" />.
+
 <BlockMath math="\begin{aligned}
-n(e^-)&=2\times\tfrac{6.40}{64}=0.200,\quad m(\text{Cu})_{\text{anode}}=\tfrac{0.200-2\times\tfrac{0.650}{65}}{2}\times64=5.76\text{ g}\\
-m(\text{sludge})&=7.00-5.76-0.650=0.590\text{ g},\quad c(\text{Cu}^{2+})=\tfrac{0.250-0.100+0.0900}{0.500}=0.480\text{ mol dm}^{-3}
+n(e^-)&=2\times\tfrac{6.40}{64}=0.200\text{ mol},\quad m(\text{Cu})'=\tfrac{0.200-2\times\frac{0.650}{65}}{2}\times64=5.76\text{ g}\\
+m(\text{Ag})&=7.00-5.76-0.650=0.590\text{ g},\quad c(\text{Cu}^{2+})=\tfrac{0.250+0.0900-0.100}{0.500}=0.480\text{ mol dm}^{-3}
 \end{aligned}" />
 
-# Why the other options are wrong
-
-- <InlineMath math="6.40\text{ g}" /> makes the copper dissolved equal the copper deposited, but **the zinc also gives electrons at the anode**.
-- <InlineMath math="0.500\text{ mol dm}^{-3}" /> keeps the copper(II) ions steady, but zinc ions take the place of some of them.
-- <InlineMath math="1.24\text{ g}" /> counts the zinc as sludge, but zinc dissolves into the electrolyte.
+A steady <InlineMath math="0.500\text{ mol dm}^{-3}" /> belongs to the pure copper cell in the lab, not to this one.

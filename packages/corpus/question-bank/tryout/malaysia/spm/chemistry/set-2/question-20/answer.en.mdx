@@ -1,26 +1,37 @@
-# The gas counts only the carbonate, the back-titration counts all the acid used, and the difference belongs to the hydroxide
+# The gas pins down the carbonate
 
-The carbon dioxide is <InlineMath math="0.00500\text{ mol}" />, so the carbonate is <InlineMath math="0.00500\times84=0.420\text{ g}" /> and uses <InlineMath math="0.0100\text{ mol}" /> of acid. A portion has <InlineMath math="0.000500\text{ mol}" /> of acid, so **the whole solution has ten times that**, <InlineMath math="0.00500\text{ mol}" />, and <InlineMath math="0.0250-0.00500=0.0200\text{ mol}" /> was used. **The other <InlineMath math="0.0100\text{ mol}" /> went to the hydroxide**, two per unit, <InlineMath math="0.00500\times58=0.290\text{ g}" />. Every magnesium ends in one magnesium chloride, <InlineMath math="0.0100\times95=0.950\text{ g}" />.
+Only the carbonate fizzes, so **<InlineMath math="120\text{ cm}^3" /> of carbon dioxide means <InlineMath math="0.00500\text{ mol}" /> of magnesium carbonate**, <InlineMath math="0.420\text{ g}" />. It used two acid per carbonate, <InlineMath math="0.0100\text{ mol}" />.
 
-<Chart
-  title={<>Acid in the flask</>}
-  description={<>The carbonate and the hydroxide each use <InlineMath math="0.0100\text{ mol}" /> of the acid, and <InlineMath math="0.00500\text{ mol}" /> is left.</>}
-  bars="apart"
-  categories={["Used by the carbonate", "Used by the hydroxide", "Acid left"]}
-  series={[
-    { label: "Amount", mark: "bar", values: [0.0100, 0.0100, 0.00500] },
-  ]}
-  valueLabel="Amount (mol)"
+# The titration finds the acid nobody used
+
+The portion is a tenth of the flask, and its <InlineMath math="0.000500\text{ mol}" /> of alkali matches the same amount of acid. **Scale that back up to the whole flask**: <InlineMath math="0.00500\text{ mol}" /> of acid was never touched.
+
+<Mermaid
+  title={<>How the hydrochloric acid is shared out</>}
+  description={<>The acid splits three ways. The gas measures one branch, the titration another, and the hydroxide takes what lies between them.</>}
+  chart={`
+    flowchart TD
+      N0["25.0 mmol HCl added"]
+      N1["10.0 mmol to MgCO₃: 120 cm³ CO₂"]
+      N2["10.0 mmol to Mg(OH)₂"]
+      N3["5.00 mmol left: 25.0 cm³ NaOH per portion"]
+      N4["10.0 mmol MgCl₂: 0.950 g"]
+      N0 --> N1
+      N0 --> N2
+      N0 --> N3
+      N1 --> N4
+      N2 --> N4
+  `}
 />
 
+# The hydroxide gets the remainder
+
+The tablet received <InlineMath math="0.0250\text{ mol}" /> of acid. The carbonate and the leftover account for <InlineMath math="0.0150\text{ mol}" />, so **the hydroxide used the other <InlineMath math="0.0100\text{ mol}" />**, two per formula unit, which makes <InlineMath math="0.00500\text{ mol}" /> or <InlineMath math="0.290\text{ g}" />. Giving it one acid each doubles it to <InlineMath math="0.580\text{ g}" />, and then carbonate plus hydroxide weigh the whole <InlineMath math="1.00\text{ g}" />, leaving nothing for the inert filler the question mentions. Loading all the used acid onto the carbonate gives <InlineMath math="0.840\text{ g}" /> and no hydroxide, which contradicts the gas volume.
+
 <BlockMath math="\begin{aligned}
-n(\text{MgCO}_3)&=\tfrac{120}{24\,000}=0.00500\ \Rightarrow\ m=0.420\text{ g}\\
-n(\text{HCl})_{\text{used}}&=0.0250-10\times0.000500=0.0200\ \Rightarrow\ m(\text{Mg(OH)}_2)=\tfrac{0.0200-0.0100}{2}\times58=0.290\text{ g}\\
+n(\text{MgCO}_3)&=\tfrac{120}{24\,000}=0.00500\text{ mol},\quad m=0.00500\times84=0.420\text{ g}\\
+n(\text{HCl})_{\text{Mg(OH)}_2}&=0.0250-2\times0.00500-10\times0.000500=0.0100\ \Rightarrow\ m(\text{Mg(OH)}_2)=\tfrac{0.0100}{2}\times58=0.290\text{ g}\\
 m(\text{MgCl}_2)&=(0.00500+0.00500)\times95=0.950\text{ g}
 \end{aligned}" />
 
-# Why the other options are wrong
-
-- <InlineMath math="0.840\text{ g}" /> gives all the acid used to the carbonate, but **the gas shows only <InlineMath math="0.00500\text{ mol}" /> of carbonate**.
-- <InlineMath math="0.580\text{ g}" /> lets each hydroxide unit take one acid, but it takes two.
-- <InlineMath math="0.475\text{ g}" /> counts only the chloride from the carbonate, but the hydroxide gives magnesium chloride too.
+Both compounds put one magnesium into each magnesium chloride, so <InlineMath math="0.0100\text{ mol}" /> of it forms. Counting only the carbonate's magnesium gives <InlineMath math="0.475\text{ g}" />.

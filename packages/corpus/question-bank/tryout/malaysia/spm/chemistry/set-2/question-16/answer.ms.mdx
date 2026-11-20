@@ -1,25 +1,33 @@
-# Gas hanya mengira karbonat, baki sampel ialah oksida, dan kedua-duanya menggunakan asid sebelum sepersepuluh bakinya dititratkan
+# Membaca titik graf mendatar
 
-Karbon dioksida ialah <InlineMath math="0.0200\text{ mol}" />, jadi karbonat ialah <InlineMath math="2.00\text{ g}" />, <InlineMath math="\tfrac{2.00}{2.40}\times100=83.3\%" />, dan kadar ialah <InlineMath math="480\div120=4.00\text{ cm}^3\text{ s}^{-1}" />. **Oksida tidak memberi gas tetapi tetap menggunakan asid**: <InlineMath math="0.40\text{ g}" /> ialah <InlineMath math="0.0100\text{ mol}" />, mengambil <InlineMath math="0.0200\text{ mol}" />, manakala karbonat mengambil <InlineMath math="0.0400\text{ mol}" />. Daripada <InlineMath math="0.100\text{ mol}" />, <InlineMath math="0.0400\text{ mol}" /> berbaki, satu bahagian mengandungi <InlineMath math="0.00400\text{ mol}" />, <InlineMath math="40.0\text{ cm}^3" />.
+Bacaan picagari naik dengan cepat pada awalnya, kemudian mendatar pada <InlineMath math="480\text{ cm}^3" />, yang pertama kali dicapai pada <InlineMath math="120\text{ s}" />. **Kadar purata membahagikan seluruh isi padu dengan seluruh masa**, jadi kadarnya <InlineMath math="4.00\text{ cm}^3\text{ s}^{-1}" />. Jika masa diletakkan di atas, kamu dapat <InlineMath math="0.250" />, iaitu saat bagi setiap sentimeter padu, dan itu bukan kadar.
 
-<Chart
-  title={<>Asid hidroklorik</>}
-  description={<>Karbonat menggunakan <InlineMath math="0.0400\text{ mol}" />, oksida <InlineMath math="0.0200\text{ mol}" />, dan <InlineMath math="0.0400\text{ mol}" /> berbaki.</>}
-  bars="apart"
-  categories={["Digunakan oleh karbonat", "Digunakan oleh oksida", "Asid berbaki"]}
-  series={[
-    { label: "Bilangan mol", mark: "bar", values: [0.0400, 0.0200, 0.0400] },
-  ]}
-  valueLabel="Bilangan mol (mol)"
+<GasRateLab
+  title={<>Sampel berbuih ke dalam picagari gas</>}
+  description={<>Satu larian dengan butiran. Omboh berhenti pada <InlineMath math="0.0200\text{ mol}" /> karbon dioksida, iaitu semua yang boleh diberi oleh karbonat.</>}
+  runs={[{ amount: 0.02, solid: "granules" }]}
+  showCurves
+  labels={{
+    final: <>jumlah akhir karbon dioksida</>,
+    runs: [<>Sampel dalam asid</>],
+    solids: { chips: <>ketulan</>, granules: <>butiran</>, powder: <>serbuk</> },
+    time: "Masa",
+    view: "Pengumpulan gas daripada sampel",
+  }}
 />
 
+# Hanya karbonat yang berbuih
+
+Magnesium oksida ialah bes, jadi ia meneutralkan asid tanpa gas. **Setiap gelembung dalam picagari datang daripada kalsium karbonat**, satu karbon dioksida bagi setiap karbonat, jadi sampel itu mengandungi <InlineMath math="0.0200\text{ mol}" /> karbonat, iaitu <InlineMath math="2.00\text{ g}" /> daripada <InlineMath math="2.40\text{ g}" />. Nilai <InlineMath math="16.7\%" /> dalam satu pilihan ialah bahagian oksida.
+
+# Oksida tetap menggunakan asid
+
+Kelalang bermula dengan <InlineMath math="0.100\text{ mol}" /> asid. Karbonat mengambil <InlineMath math="0.0400\text{ mol}" />, dan <InlineMath math="0.400\text{ g}" /> oksida, iaitu <InlineMath math="0.0100\text{ mol}" />, mengambil <InlineMath math="0.0200\text{ mol}" /> lagi. **Oksida tidak muncul pada graf, tetapi ia tetap menghabiskan asid**. Jika kamu melupakannya, baki asid kelihatan <InlineMath math="0.0600\text{ mol}" />, iaitu <InlineMath math="0.600\text{ mol dm}^{-3}" />.
+
 <BlockMath math="\begin{aligned}
-m(\text{CaCO}_3)&=\tfrac{480}{24\,000}\times100=2.00\text{ g}\ \Rightarrow\ 83.3\%,\quad \bar r=\tfrac{480}{120}=4.00\text{ cm}^3\text{ s}^{-1}\\
-V(\text{NaOH})&=\tfrac{(0.100-2\times0.0200-2\times\tfrac{0.40}{40})\div10}{0.100}=0.0400\text{ dm}^3=40.0\text{ cm}^3
+\bar r&=\tfrac{480\text{ cm}^3}{120\text{ s}}=4.00\text{ cm}^3\text{ s}^{-1},\quad n(\text{CaCO}_3)=\tfrac{480}{24\,000}=0.0200\text{ mol}\\
+m(\text{CaCO}_3)&=0.0200\times100=2.00\text{ g}\ \Rightarrow\ \tfrac{2.00}{2.40}\times100=83.3\%\\
+n(\text{HCl})'&=0.100-2\times0.0200-2\times\tfrac{0.400}{40}=0.0400\text{ mol},\quad c=\tfrac{0.0400}{0.100}=0.400\text{ mol dm}^{-3}
 \end{aligned}" />
 
-# Kenapa pilihan lain salah
-
-- <InlineMath math="60.0\text{ cm}^3" /> hanya membiarkan karbonat menggunakan asid, walhal **magnesium oksida juga meneutralkan asid**.
-- <InlineMath math="0.250" /> membahagikan masa dengan isi padu, walhal kadar ialah isi padu yang dikumpul sesaat.
-- <InlineMath math="16.7\%" /> ialah bahagian magnesium oksida, walhal soalan bertanya tentang karbonat.
+Asid masih ada apabila gas berhenti, jadi graf mendatar kerana karbonat yang habis, bukan asid.

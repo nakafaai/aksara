@@ -1,25 +1,33 @@
-# Das Gas zählt nur das Carbonat, der Rest der Probe ist Oxid, und beide verbrauchen Säure, bevor ein Zehntel des Rests titriert wird
+# Ablesen, wo die Kurve flach wird
 
-Das Kohlenstoffdioxid sind <InlineMath math="0{,}0200\text{ mol}" />, also sind es <InlineMath math="2{,}00\text{ g}" /> Carbonat, <InlineMath math="\tfrac{2{,}00}{2{,}40}\times100=83{,}3\%" />, und die Geschwindigkeit ist <InlineMath math="480\div120=4{,}00\text{ cm}^3\text{ s}^{-1}" />. **Das Oxid gibt kein Gas, verbraucht aber Säure**: <InlineMath math="0{,}40\text{ g}" /> sind <InlineMath math="0{,}0100\text{ mol}" /> und nehmen <InlineMath math="0{,}0200\text{ mol}" />, das Carbonat nimmt <InlineMath math="0{,}0400\text{ mol}" />. Von den <InlineMath math="0{,}100\text{ mol}" /> bleiben <InlineMath math="0{,}0400\text{ mol}" />, eine Portion enthält <InlineMath math="0{,}00400\text{ mol}" />, <InlineMath math="40{,}0\text{ cm}^3" />.
+Die Anzeige des Kolbenprobers steigt erst schnell und bleibt dann bei <InlineMath math="480\text{ cm}^3" /> stehen, zum ersten Mal bei <InlineMath math="120\text{ s}" />. **Eine mittlere Rate verteilt das ganze Volumen auf die ganze Zeit**, also läuft die Reaktion im Mittel mit <InlineMath math="4{,}00\text{ cm}^3\text{ s}^{-1}" />. Wer die Zeit nach oben schreibt, erhält <InlineMath math="0{,}250" />, also Sekunden pro Kubikzentimeter, und das ist keine Rate.
 
-<Chart
-  title={<>Salzsäure</>}
-  description={<>Das Carbonat verbraucht <InlineMath math="0{,}0400\text{ mol}" />, das Oxid <InlineMath math="0{,}0200\text{ mol}" />, und <InlineMath math="0{,}0400\text{ mol}" /> bleiben.</>}
-  bars="apart"
-  categories={["Vom Carbonat verbraucht", "Vom Oxid verbraucht", "Übrige Säure"]}
-  series={[
-    { label: "Stoffmenge", mark: "bar", values: [0.0400, 0.0200, 0.0400] },
-  ]}
-  valueLabel="Stoffmenge (mol)"
+<GasRateLab
+  title={<>Die Probe schäumt in einen Kolbenprober</>}
+  description={<>Ein Lauf mit Körnern. Der Kolben bleibt bei <InlineMath math="0{,}0200\text{ mol}" /> Kohlenstoffdioxid stehen, mehr kann das Carbonat nicht liefern.</>}
+  runs={[{ amount: 0.02, solid: "granules" }]}
+  showCurves
+  labels={{
+    final: <>Endmenge an Kohlenstoffdioxid</>,
+    runs: [<>Probe in Säure</>],
+    solids: { chips: <>Stücke</>, granules: <>Körner</>, powder: <>Pulver</> },
+    time: "Zeit",
+    view: "Gassammlung aus der Probe",
+  }}
 />
 
+# Nur das Carbonat schäumt
+
+Magnesiumoxid ist eine Base und neutralisiert die Säure ohne Gas. **Jede Blase im Kolbenprober stammt aus dem Calciumcarbonat**, ein Kohlenstoffdioxid pro Carbonat, also enthielt die Probe <InlineMath math="0{,}0200\text{ mol}" /> davon, <InlineMath math="2{,}00\text{ g}" /> von <InlineMath math="2{,}40\text{ g}" />. Die Option mit <InlineMath math="16{,}7\%" /> gibt den Anteil des Oxids an.
+
+# Das Oxid verbraucht trotzdem Säure
+
+Im Kolben waren anfangs <InlineMath math="0{,}100\text{ mol}" /> Säure. Das Carbonat nahm <InlineMath math="0{,}0400\text{ mol}" />, und die <InlineMath math="0{,}400\text{ g}" /> Oxid, also <InlineMath math="0{,}0100\text{ mol}" />, nahmen weitere <InlineMath math="0{,}0200\text{ mol}" />. **Das Oxid taucht im Graphen nie auf, verbraucht aber trotzdem Säure**. Wer es vergisst, behält scheinbar <InlineMath math="0{,}0600\text{ mol}" /> übrig, also <InlineMath math="0{,}600\text{ mol dm}^{-3}" />.
+
 <BlockMath math="\begin{aligned}
-m(\text{CaCO}_3)&=\tfrac{480}{24{.}000}\times100=2{,}00\text{ g}\ \Rightarrow\ 83{,}3\%,\quad \bar r=\tfrac{480}{120}=4{,}00\text{ cm}^3\text{ s}^{-1}\\
-V(\text{NaOH})&=\tfrac{(0{,}100-2\times0{,}0200-2\times\tfrac{0{,}40}{40})\div10}{0{,}100}=0{,}0400\text{ dm}^3=40{,}0\text{ cm}^3
+\bar r&=\tfrac{480\text{ cm}^3}{120\text{ s}}=4{,}00\text{ cm}^3\text{ s}^{-1},\quad n(\text{CaCO}_3)=\tfrac{480}{24\,000}=0{,}0200\text{ mol}\\
+m(\text{CaCO}_3)&=0{,}0200\times100=2{,}00\text{ g}\ \Rightarrow\ \tfrac{2{,}00}{2{,}40}\times100=83{,}3\%\\
+n(\text{HCl})'&=0{,}100-2\times0{,}0200-2\times\tfrac{0{,}400}{40}=0{,}0400\text{ mol},\quad c=\tfrac{0{,}0400}{0{,}100}=0{,}400\text{ mol dm}^{-3}
 \end{aligned}" />
 
-# Warum die anderen Antworten falsch sind
-
-- <InlineMath math="60{,}0\text{ cm}^3" /> lässt nur das Carbonat Säure verbrauchen, doch **auch das Magnesiumoxid neutralisiert Säure**.
-- <InlineMath math="0{,}250" /> teilt die Zeit durch das Volumen, doch eine Geschwindigkeit ist das gesammelte Volumen je Sekunde.
-- <InlineMath math="16{,}7\%" /> ist der Anteil des Magnesiumoxids, doch gefragt ist das Carbonat.
+Wenn das Gas aufhört, ist noch Säure da. Die Kurve wird also flach, weil das Carbonat aufgebraucht ist, nicht die Säure.

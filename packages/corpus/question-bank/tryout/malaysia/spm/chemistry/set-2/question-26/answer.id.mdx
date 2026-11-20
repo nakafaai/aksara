@@ -1,25 +1,33 @@
-# Seng yang hilang menghitung elektron, yang menambah ion seng di satu sisi dan menyingkirkan ion tembaga(II) di sisi lain
+# Perubahan warna jadi pengukur elektron
 
-Seng yang hilang <InlineMath math="0{,}0100\text{ mol}" />, dan **tiap atom seng memberi dua elektron**, <InlineMath math="0{,}0200\times6{,}02\times10^{23}=1{,}20\times10^{22}" />. **Ion seng bertambah** dari <InlineMath math="0{,}0500" /> ke <InlineMath math="0{,}0600\text{ mol}" />, <InlineMath math="0{,}600\text{ mol dm}^{-3}" />. Elektron yang sama mengendapkan <InlineMath math="0{,}0100\text{ mol}" /> tembaga, jadi <InlineMath math="0{,}0400\text{ mol}" /> ion tembaga(II) tersisa. Satu porsi memuat sepersepuluhnya, <InlineMath math="0{,}00400\text{ mol}" />, dan **tiap ion mengambil dua ion hidroksida**, <InlineMath math="0{,}00800\div0{,}100=0{,}0800\text{ dm}^3=80{,}0\text{ cm}^3" />.
+Tidak ada yang menimbang seng di soal ini, jadi mulai dari tempat sel itu melapor sendiri: **gelas tembaga kehilangan <InlineMath math="0{,}100\text{ mol dm}^{-3}" /> ion tembaga(II) dalam <InlineMath math="0{,}100\text{ dm}^3" />**, yaitu <InlineMath math="0{,}0100\text{ mol}" /> ion yang menjadi tembaga di elektrode positif. Tiap ion mengambil dua elektron dari kawat, jadi <InlineMath math="0{,}0200\text{ mol}" /> elektron, atau <InlineMath math="1{,}20\times10^{22}" />, sudah mengalir. Kalau tiap ion hanya diberi satu elektron, hasilnya <InlineMath math="6{,}02\times10^{21}" />.
 
-<Chart
-  title={<>Ion setelah reaksi</>}
-  description={<>Sisi seng berakhir dengan <InlineMath math="0{,}0600\text{ mol}" /> ion seng dan sisi tembaga dengan <InlineMath math="0{,}0400\text{ mol}" /> ion tembaga(II).</>}
-  bars="apart"
-  categories={["Ion seng", "Ion tembaga(II)"]}
-  series={[
-    { label: "Jumlah zat", mark: "bar", values: [0.0600, 0.0400] },
-  ]}
-  valueLabel="Jumlah zat (mol)"
+<ChemicalCellLab
+  title={<>Dua elektron untuk tiap ion tembaga</>}
+  description={<>Tiap ion tembaga(II) yang meninggalkan larutan biru mengambil dua elektron, dan tiap atom seng yang larut memasok dua. Jumlah <InlineMath math="0{,}0200\text{ mol}" /> ditampilkan sebagai hasil di kedua elektrode.</>}
+  metals={["zinc", "copper"]}
+  electrons={0.02}
+  showProducts
+  labels={{
+    atNegative: <>Di kutub negatif</>,
+    atPositive: <>Di kutub positif</>,
+    electrons: <>Elektron yang mengalir</>,
+    halfCells: <>Setengah sel</>,
+    view: "Sel kimia seng dan tembaga",
+    voltage: <>Tegangan sel</>,
+    voltmeter: "V",
+  }}
 />
 
+# Seng membayar tiap elektron itu
+
+Kawat tidak membawa apa pun yang tidak dilepas seng, dan satu atom seng melepas dua. Jadi **atom seng yang larut hanya separuh jumlah elektron**: <InlineMath math="0{,}0100\text{ mol}" />, yaitu <InlineMath math="0{,}650\text{ g}" /> hilang dari elektrode. Kalau tiap elektron dihitung satu atom seng, massanya jadi dua kali lipat, <InlineMath math="1{,}30\text{ g}" />.
+
+# Dua gelas, dua volume
+
+<InlineMath math="0{,}0100\text{ mol}" /> ion seng baru itu bergabung dengan <InlineMath math="0{,}0500\text{ mol}" /> yang sudah ada di gelas seng. Ini jebakan yang dipasang soalnya: **gelas seng berisi <InlineMath math="200\text{ cm}^3" />, bukan <InlineMath math="100\text{ cm}^3" />**, jadi <InlineMath math="0{,}0600\text{ mol}" /> tersebar di <InlineMath math="0{,}200\text{ dm}^3" /> dan memberi <InlineMath math="0{,}300\text{ mol dm}^{-3}" />. Membagi dengan volume gelas tembaga menggandakannya menjadi <InlineMath math="0{,}600\text{ mol dm}^{-3}" />.
+
 <BlockMath math="\begin{aligned}
-n(\text{Zn})&=\tfrac{0{,}650}{65}=0{,}0100\ \Rightarrow\ N(e^-)=1{,}20\times10^{22},\quad c(\text{Zn}^{2+})=\tfrac{0{,}0500+0{,}0100}{0{,}100}=0{,}600\text{ mol dm}^{-3}\\
-V(\text{NaOH})&=\tfrac{2\times(0{,}0500-0{,}0100)\div10}{0{,}100}=0{,}0800\text{ dm}^3=80{,}0\text{ cm}^3
+n(\text{Cu}^{2+})&=0{,}100\times(0{,}500-0{,}400)=0{,}0100\text{ mol}\ \Rightarrow\ N(e^-)=2\times0{,}0100\times6{,}02\times10^{23}=1{,}20\times10^{22}\\
+n(\text{Zn})&=\tfrac{0{,}0200}{2}=0{,}0100\text{ mol}=0{,}650\text{ g},\quad c(\text{Zn}^{2+})=\tfrac{0{,}200\times0{,}250+0{,}0100}{0{,}200}=0{,}300\text{ mol dm}^{-3}
 \end{aligned}" />
-
-# Kenapa pilihan lain salah
-
-- <InlineMath math="0{,}400\text{ mol dm}^{-3}" /> menurunkan ion seng, padahal **elektrode seng larut ke dalam larutannya sendiri**.
-- <InlineMath math="6{,}02\times10^{21}" /> menghitung satu elektron per atom seng, padahal tiap atom seng memberi dua.
-- <InlineMath math="40{,}0\text{ cm}^3" /> memberi satu hidroksida per ion tembaga(II), padahal tembaga(II) hidroksida butuh dua.

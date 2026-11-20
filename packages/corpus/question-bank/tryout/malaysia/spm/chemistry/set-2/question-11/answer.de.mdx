@@ -1,25 +1,33 @@
-# Bestimme, was in jedem Lauf ausgeht, teile das Volumen von Versuch II durch seine verkürzte Zeit und titriere ein Zehntel seines Rests
+# Was in jedem Kolben zuerst ausgeht
 
-In Versuch I sind Magnesium und Säure je <InlineMath math="0{,}0100\text{ mol}" />, doch **jedes Magnesium nimmt zwei Säure**, also geht die Säure aus, <InlineMath math="0{,}00500\text{ mol}" /> Wasserstoff, <InlineMath math="120\text{ cm}^3" />. In Versuch II **geht stattdessen das Magnesium aus**, <InlineMath math="0{,}00500\text{ mol}" />, wieder <InlineMath math="120\text{ cm}^3" />. Die doppelte Konzentration und die zusätzlichen <InlineMath math="10^\circ\text{C}" /> machen ihn **viermal so schnell**, <InlineMath math="60\div4=15\text{ s}" />, also <InlineMath math="120\div15=8{,}00\text{ cm}^3\text{ s}^{-1}" />. Das Magnesium verbraucht <InlineMath math="0{,}0100\text{ mol}" /> der <InlineMath math="0{,}0200\text{ mol}" /> Säure, eine Portion enthält ein Zehntel der übrigen <InlineMath math="0{,}0100\text{ mol}" />, <InlineMath math="0{,}00100\text{ mol}" />, und <InlineMath math="0{,}00100\div0{,}0200=0{,}0500\text{ dm}^3=50{,}0\text{ cm}^3" />.
+In Versuch I ist das Band <InlineMath math="0{,}0100\text{ mol}" /> Magnesium und bräuchte <InlineMath math="0{,}0200\text{ mol}" /> Säure, der Kolben enthält aber nur <InlineMath math="0{,}0100\text{ mol}" />. **Die Säure ist erschöpft, während noch das halbe Band sprudelt**, also ist der Wasserstoff die halbe Säuremenge, <InlineMath math="0{,}00500\text{ mol}" /> oder <InlineMath math="120\text{ cm}^3" />. Ein Endvolumen von <InlineMath math="240\text{ cm}^3" /> setzt voraus, dass sich das ganze Band löst, und dafür bräuchte dieser Kolben doppelt so viel Säure.
+
+Versuch II dreht die Lage um. Halb so viel Band trifft auf doppelt so starke Säure, also tauschen die Balken im Diagramm die Plätze, und jetzt geht das Magnesium zuerst aus. Es liefert trotzdem <InlineMath math="0{,}00500\text{ mol}" /> Wasserstoff, dieselben <InlineMath math="120\text{ cm}^3" />.
 
 <Chart
-  title={<>Säure in Versuch II</>}
-  description={<>Das Magnesium verbraucht <InlineMath math="0{,}0100\text{ mol}" /> der Säure und lässt <InlineMath math="0{,}0100\text{ mol}" /> übrig.</>}
+  title={<>Säure im Kolben und Säurebedarf des Bandes</>}
+  description={<>In Versuch I braucht das Band mehr Säure, als der Kolben enthält. In Versuch II enthält der Kolben doppelt so viel, wie das Band braucht.</>}
   bars="apart"
-  categories={["Verbrauchte Säure", "Übrige Säure"]}
+  categories={["Versuch I", "Versuch II"]}
   series={[
-    { label: "Stoffmenge", mark: "bar", values: [0.0100, 0.0100] },
+    { label: "Vorhandene Säure", mark: "bar", values: [10, 20] },
+    { label: "Säurebedarf des Magnesiums", mark: "bar", values: [20, 10] },
   ]}
-  valueLabel="Stoffmenge (mol)"
+  valueLabel="mmol"
 />
 
+## Die übrige Säure in Versuch II
+
+Das Band verbraucht <InlineMath math="0{,}0100\text{ mol}" /> der <InlineMath math="0{,}0200\text{ mol}" />, also **ist die Hälfte der Säure noch da**, in denselben <InlineMath math="50{,}0\text{ cm}^3" />, das sind <InlineMath math="0{,}200\text{ mol dm}^{-3}" />. Nimmt jedes Magnesiumatom nur ein Säuremolekül, landet man bei <InlineMath math="0{,}300\text{ mol dm}^{-3}" />, die Gleichung verlangt aber zwei.
+
+# Zwei Beschleunigungen zugleich
+
+Doppelte Konzentration halbiert die Zeit, und die <InlineMath math="10^\circ\text{C}" /> mehr halbieren sie noch einmal. **Die beiden Faktoren multiplizieren sich**, also läuft Versuch II viermal so schnell und endet nach <InlineMath math="15\text{ s}" />. Ein Volumen von <InlineMath math="120\text{ cm}^3" /> in <InlineMath math="15\text{ s}" /> ergibt <InlineMath math="8{,}00\text{ cm}^3\text{ s}^{-1}" />. Mit nur einer Verdopplung bleibt es bei <InlineMath math="30\text{ s}" /> und einer Rate von <InlineMath math="4{,}00\text{ cm}^3\text{ s}^{-1}" />.
+
 <BlockMath math="\begin{aligned}
-V_{\text{I}}&=\tfrac{1}{2}\times0{,}0100\times24{.}000=120\text{ cm}^3,\quad \bar r_{\text{II}}=\tfrac{0{,}00500\times24{.}000}{60\div(2\times2)}=8{,}00\text{ cm}^3\text{ s}^{-1}\\
-V(\text{NaOH})&=\tfrac{(0{,}0200-2\times0{,}00500)\div10}{0{,}0200}=0{,}0500\text{ dm}^3=50{,}0\text{ cm}^3
+n(\text{Mg})_{\text{I}}&=\tfrac{0{,}240}{24}=0{,}0100,\quad n(\text{HCl})_{\text{I}}=0{,}0500\times0{,}200=0{,}0100\ \Rightarrow\ V(\text{H}_2)=\tfrac{0{,}0100}{2}\times24\,000=120\text{ cm}^3\\
+n(\text{Mg})_{\text{II}}&=0{,}00500,\quad n(\text{HCl})_{\text{II}}=0{,}0200\ \Rightarrow\ c'=\tfrac{0{,}0200-2\times0{,}00500}{0{,}0500}=0{,}200\text{ mol dm}^{-3}\\
+t_{\text{II}}&=\tfrac{60}{2\times2}=15\text{ s},\quad \bar r_{\text{II}}=\tfrac{120}{15}=8{,}00\text{ cm}^3\text{ s}^{-1}
 \end{aligned}" />
 
-# Warum die anderen Antworten falsch sind
-
-- <InlineMath math="240\text{ cm}^3" /> lässt in Versuch I alles Magnesium reagieren, doch <InlineMath math="0{,}0100\text{ mol}" /> Säure lösen nur die Hälfte davon.
-- <InlineMath math="4{,}00\text{ cm}^3\text{ s}^{-1}" /> berücksichtigt nur die Konzentration, doch **die höhere Temperatur verdoppelt die Geschwindigkeit noch einmal**.
-- <InlineMath math="75{,}0\text{ cm}^3" /> lässt jedes Magnesium eine Säure verbrauchen, doch die Gleichung braucht zwei.
+Achte auf die Wendung: Beide Kolben liefern gleich viel Wasserstoff, aber in Versuch I bestimmt das die Säure und in Versuch II das Magnesium.

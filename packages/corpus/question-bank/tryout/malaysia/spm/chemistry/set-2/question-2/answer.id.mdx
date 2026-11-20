@@ -1,26 +1,32 @@
-# Bobot isotopnya, biarkan hidrogen habis, ikuti tiap atom klorin ke hidrogen kloridanya sendiri, dan kirim klorin sisa ke iodida
+# Membaca kedua puncak
 
-Massa atom relatifnya <InlineMath math="0{,}75\times35+0{,}25\times37=35{,}5" />. Hidrogennya <InlineMath math="0{,}100\text{ mol}" /> dan klorinnya <InlineMath math="0{,}150\text{ mol}" />, jadi **hidrogen yang habis**, membentuk <InlineMath math="0{,}200\text{ mol}" /> hidrogen klorida, satu per atom klorin yang terpakai. **Seperempat atom itu <InlineMath math="^{37}\text{Cl}" />**, <InlineMath math="0{,}0500\text{ mol}" /> <InlineMath math="\text{H}^{37}\text{Cl}" />, <InlineMath math="3{,}01\times10^{22}" />. <InlineMath math="0{,}0500\text{ mol}" /> klorin sisa membebaskan iodin sebanyak itu, <InlineMath math="0{,}0500\times254=12{,}7\text{ g}" />.
+Puncaknya setinggi <InlineMath math="100" /> dan <InlineMath math="33{,}3" />, jadi **tiga atom klorin-35 datang bersama tiap atom klorin-37**. Itu <InlineMath math="75\%" /> dan <InlineMath math="25\%" />, dan rata-rata berbobotnya <InlineMath math="35{,}5" />. Merata-rata kedua massa tanpa kelimpahannya memberi <InlineMath math="36{,}0" />, seolah kedua isotop sama banyak.
 
-<Chart
-  title={<>Gas dalam reaksi</>}
-  description={<><InlineMath math="0{,}100\text{ mol}" /> hidrogen bertemu <InlineMath math="0{,}150\text{ mol}" /> klorin, dan <InlineMath math="0{,}0500\text{ mol}" /> klorin tersisa untuk iodida.</>}
-  bars="apart"
-  categories={["Hidrogen", "Klorin", "Klorin sisa"]}
-  series={[
-    { label: "Jumlah zat", mark: "bar", values: [0.100, 0.150, 0.0500] },
-  ]}
-  valueLabel="Jumlah zat (mol)"
+<MassSpectrometerLab
+  title={<>Ion klorin di dalam medan magnet</>}
+  description={<>Ion klorin-35 yang lebih ringan berbelok di lintasan yang lebih sempit dari ion klorin-37, dan detektor menghitung tiga ion pertama untuk tiap satu ion kedua.</>}
+  samples={["chlorine"]}
+  labels={{
+    average: <>Massa atom relatif rata-rata</>,
+    choose: "Pilih unsur",
+    isotopes: <>Isotop dan kelimpahannya</>,
+    north: "U",
+    radius: <>Jari-jari lintasan</>,
+    ratio: <>Perbandingan jari-jari</>,
+    south: "S",
+    view: "Spektrometer massa",
+  }}
 />
 
+# Gas yang habis
+
+Hidrogennya <InlineMath math="2{,}40\div24=0{,}100\text{ mol}" /> dan klorinnya <InlineMath math="0{,}150\text{ mol}" />, dan keduanya bereaksi satu banding satu, jadi **hidrogennya yang habis** dan terbentuk <InlineMath math="0{,}200\text{ mol}" /> hidrogen klorida. Tiap molekul punya satu atom klorin, dan seperempat atom itu adalah klorin-37. Menghitung seperempat atom klorin dari semua <InlineMath math="0{,}150\text{ mol}" /> klorin memberi <InlineMath math="4{,}52\times10^{22}" />, seolah tiap molekul klorin ikut bereaksi.
+
+# Yang dibebaskan sisa klorin
+
+Sisa <InlineMath math="0{,}0500\text{ mol}" /> klorin membebaskan molekul iodin sebanyak itu juga, dan **molekul iodin punya <InlineMath math="M_r=254" />**. Memakai <InlineMath math="127" /> untuk satu atom iodin membagi dua massanya menjadi <InlineMath math="6{,}35\text{ g}" />.
+
 <BlockMath math="\begin{aligned}
-A_r&=0{,}75\times35+0{,}25\times37=35{,}5\\
-n(\text{H}_2)&=0{,}100<n(\text{Cl}_2)=0{,}150\ \Rightarrow\ N(\text{H}^{37}\text{Cl})=0{,}25\times0{,}200\times6{,}02\times10^{23}=3{,}01\times10^{22}\\
-m(\text{I}_2)&=(0{,}150-0{,}100)\times254=12{,}7\text{ g}
+A_r&=\tfrac{35\times100+37\times33{,}3}{133{,}3}=35{,}5,\quad n(\text{H}_2)=0{,}100<n(\text{Cl}_2)=0{,}150\\
+N(\text{H}^{37}\text{Cl})&=0{,}250\times0{,}200\times6{,}02\times10^{23}=3{,}01\times10^{22},\quad m(\text{I}_2)=0{,}0500\times254=12{,}7\text{ g}
 \end{aligned}" />
-
-# Kenapa pilihan lain salah
-
-- <InlineMath math="36{,}0" /> merata-ratakan dua massa seolah kedua isotop sama banyak.
-- <InlineMath math="4{,}52\times10^{22}" /> dan <InlineMath math="0\text{ g}" /> membiarkan klorin yang menentukan, padahal **hanya ada <InlineMath math="0{,}100\text{ mol}" /> hidrogen**, jadi klorin tersisa.
-- <InlineMath math="6{,}35\text{ g}" /> menimbang iodin sebagai atom, <InlineMath math="A_r=127" />, padahal iodin terbentuk sebagai <InlineMath math="\text{I}_2" />, <InlineMath math="M_r=254" />.

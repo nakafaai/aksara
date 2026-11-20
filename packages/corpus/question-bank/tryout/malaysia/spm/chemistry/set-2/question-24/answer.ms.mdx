@@ -1,25 +1,35 @@
-# Klorin habis, jadi ia hanya membebaskan sebahagian bromin, dan setiap bromida yang disingkirkannya diganti oleh satu klorida
+# Sejauh mana klorin pergi
 
-Klorin ialah <InlineMath math="\tfrac{120}{24\,000}=0.00500\text{ mol}" /> dan bromida <InlineMath math="0.0150\text{ mol}" />, jadi **klorin yang habis**, membebaskan <InlineMath math="0.00500\times160=0.800\text{ g}" /> bromin. Bromin itu membebaskan iodin yang sama banyak, <InlineMath math="0.00500\times254=1.27\text{ g}" />. Lapisan air mengekalkan <InlineMath math="0.00500\text{ mol}" /> bromida dan menerima <InlineMath math="0.0100\text{ mol}" /> klorida, dan **argentum nitrat memendakkan kedua-duanya**, <InlineMath math="0.0150\text{ mol}" />, <InlineMath math="150\text{ cm}^3" />.
+Mulakan dengan gas itu, kerana itulah bahan yang boleh habis: <InlineMath math="120\text{ cm}^3" /> ialah <InlineMath math="0.00500\text{ mol}" /> klorin, berbanding <InlineMath math="0.0150\text{ mol}" /> bromida. Satu molekul klorin menyingkirkan dua ion bromida, jadi **klorin habis selepas <InlineMath math="0.0100\text{ mol}" /> bromida** dan hanya <InlineMath math="0.00500\text{ mol}" /> bromin terbentuk, <InlineMath math="0.800\text{ g}" /> dengan <InlineMath math="M_r=160" />. Menukar semua bromida kepada bromin, <InlineMath math="1.20\text{ g}" />, memerlukan setengah lagi klorin daripada yang dialirkan.
 
-<Chart
-  title={<>Ion halida dalam lapisan air</>}
-  description={<>Lapisan air mengandungi <InlineMath math="0.0100\text{ mol}" /> klorida dan <InlineMath math="0.00500\text{ mol}" /> bromida.</>}
-  bars="apart"
-  categories={["Klorida", "Bromida"]}
-  series={[
-    { label: "Bilangan mol", mark: "bar", values: [0.0100, 0.00500] },
-  ]}
-  valueLabel="Bilangan mol (mol)"
+<Mermaid
+  title={<>Ke mana setiap halogen pergi</>}
+  description={<>Klorin menolak bromin keluar daripada air dan masuk ke dalam heksana. Lapisan air menyimpan semua ion halida, dan heksana membawa bromin kepada iodida.</>}
+  chart={`
+    flowchart TD
+      N0["5.00 mmol Cl₂ bertemu 15.0 mmol Br⁻"]
+      N1["Lapisan air: 10.0 mmol Cl⁻, 5.00 mmol Br⁻"]
+      N2["Lapisan heksana: 5.00 mmol Br₂, 0.800 g"]
+      N3["Digoncang dengan KI: 5.00 mmol I₂, 1.27 g"]
+      N4["AgNO₃ bertemu 15.0 mmol halida: 150 cm³"]
+      N0 --> N1
+      N0 --> N2
+      N2 --> N3
+      N1 --> N4
+  `}
 />
 
+# Bromin bertukar pelarut, kemudian bertukar pasangan
+
+Molekul bromin bukan polar, jadi goncangan itu menarik **kesemua <InlineMath math="0.00500\text{ mol}" /> bromin ke dalam heksana**, manakala ion kekal dalam air. Di situ bromin mengoksidakan iodida dan membebaskan satu molekul iodin bagi setiap molekul bromin. Iodin keluar sebagai <InlineMath math="\text{I}_2" /> dengan <InlineMath math="M_r=254" />, jadi jisimnya <InlineMath math="1.27\text{ g}" />. Menimbangnya sebagai atom tunggal membahagi dua nilai itu kepada <InlineMath math="0.635\text{ g}" />.
+
+# Setiap halida dalam lapisan air pertama
+
+Lapisan air itu tidak pernah bertemu iodida. Ia menyimpan <InlineMath math="0.0100\text{ mol}" /> klorida yang terhasil daripada klorin dan <InlineMath math="0.00500\text{ mol}" /> bromida yang tidak sempat dicapai klorin. **Argentum nitrat mengambil kedua-duanya**, argentum klorida putih dan argentum bromida kuning pucat, jadi ia perlu meliputi <InlineMath math="0.0150\text{ mol}" /> halida.
+
 <BlockMath math="\begin{aligned}
-n(\text{Cl}_2)&=0.00500<\tfrac{0.0150}{2}\ \Rightarrow\ m(\text{Br}_2)=0.00500\times160=0.800\text{ g},\quad m(\text{I}_2)=0.00500\times254=1.27\text{ g}\\
-V(\text{AgNO}_3)&=\tfrac{0.0100+0.00500}{0.100}=0.150\text{ dm}^3=150\text{ cm}^3
+n(\text{Cl}_2)&=\tfrac{120}{24\,000}=0.00500\text{ mol}\ \Rightarrow\ m(\text{Br}_2)=0.00500\times160=0.800\text{ g},\quad m(\text{I}_2)=0.00500\times254=1.27\text{ g}\\
+n(\text{Cl}^-)+n(\text{Br}^-)&=0.0100+0.00500=0.0150\text{ mol}\ \Rightarrow\ V(\text{AgNO}_3)=\tfrac{0.0150}{0.100}=0.150\text{ dm}^3=150\text{ cm}^3
 \end{aligned}" />
 
-# Kenapa pilihan lain salah
-
-- <InlineMath math="50.0\text{ cm}^3" /> hanya mengira bromida yang berbaki, walhal **klorida yang terbentuk juga termendak dengan argentum**, jadi jumlah halida kekal <InlineMath math="0.0150\text{ mol}" />.
-- <InlineMath math="1.20\text{ g}" /> dan <InlineMath math="1.91\text{ g}" /> membiarkan bromida yang menentukan, walhal <InlineMath math="0.00500\text{ mol}" /> klorin hanya membebaskan <InlineMath math="0.00500\text{ mol}" /> bromin.
-- <InlineMath math="0.635\text{ g}" /> menimbang iodin sebagai atom, walhal ia terbentuk sebagai <InlineMath math="\text{I}_2" />, <InlineMath math="M_r=254" />.
+Mengira baki bromida sahaja memberi <InlineMath math="50.0\text{ cm}^3" />, seolah-olah klorida yang terbentuk dalam langkah pertama sudah lenyap. Perhatikan jumlah halida itu sama tepat dengan bromida pada permulaan, kerana setiap bromida yang keluar sebagai bromin diganti oleh satu klorida.

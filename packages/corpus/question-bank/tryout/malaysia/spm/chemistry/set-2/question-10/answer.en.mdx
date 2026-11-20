@@ -1,26 +1,33 @@
-# The back titration finds the ammonium salt, the rest of the mass is sodium chloride, and both salts give chloride to the silver
+# Measuring the ammonium by what it leaves
 
-The alkali added is <InlineMath math="0.0250\text{ mol}" /> and the acid shows <InlineMath math="0.00750\text{ mol}" /> left, so **<InlineMath math="0.0175\text{ mol}" /> reacted with the ammonium chloride**, <InlineMath math="0.0175\times53.5=0.936\text{ g}" />, <InlineMath math="61.6\%" /> of the mixture, and it gave <InlineMath math="0.0175\times24\,000=420\text{ cm}^3" /> of ammonia. **The other <InlineMath math="0.585\text{ g}" /> is sodium chloride**, <InlineMath math="0.0100\text{ mol}" />. Both salts carry chloride, <InlineMath math="0.0275\text{ mol}" /> in all, <InlineMath math="0.0275\times143.5=3.95\text{ g}" /> of silver chloride.
+Ammonium chloride cannot be titrated directly here, so the method gives it a known excess of alkali and **titrates the alkali that survives**. The acid used, <InlineMath math="0.00750\text{ mol}" />, equals the sodium hydroxide left, so the ammonium ions took <InlineMath math="0.0175\text{ mol}" />. Treating the titre as the ammonium itself gives <InlineMath math="26.4\%" />.
 
-<Chart
-  title={<>Mass of each salt</>}
-  description={<>The <InlineMath math="1.52\text{ g}" /> of mixture is <InlineMath math="0.936\text{ g}" /> of ammonium chloride and <InlineMath math="0.585\text{ g}" /> of sodium chloride.</>}
-  bars="apart"
-  categories={["Ammonium chloride", "Sodium chloride"]}
-  series={[
-    { label: "Mass", mark: "bar", values: [0.936, 0.585] },
-  ]}
-  valueLabel="Mass (g)"
+<Mermaid
+  title={<>Where the sodium hydroxide goes</>}
+  description={<>The alkali is shared between the ammonium ions and the acid that measures what is left. The chloride from both salts meets the silver nitrate in the second sample.</>}
+  chart={`
+    flowchart TD
+      N0["25.0 mmol NaOH"]
+      N1["17.5 mmol used by NH₄⁺"]
+      N2["7.50 mmol left: 15.0 cm³ HCl"]
+      N3["17.5 mmol NH₃: 420 cm³"]
+      N4["0.936 g NH₄Cl, 0.584 g NaCl"]
+      N5["27.5 mmol Cl⁻: 3.95 g AgCl"]
+      N0 --> N1
+      N0 --> N2
+      N1 --> N3
+      N1 --> N4
+      N4 --> N5
+  `}
 />
 
+Each ammonium ion releases one ammonia molecule, <InlineMath math="0.0175\text{ mol}" /> or <InlineMath math="420\text{ cm}^3" />. Doubling that, as if two hydroxide ions freed each ammonia, gives <InlineMath math="840\text{ cm}^3" />.
+
+# Both salts carry chloride
+
+The ammonium chloride weighs <InlineMath math="0.936\text{ g}" />, so the sodium chloride is the remaining <InlineMath math="0.584\text{ g}" />, <InlineMath math="0.0100\text{ mol}" />. The silver nitrate does not care which cation came with the chloride, so it precipitates **all <InlineMath math="0.0275\text{ mol}" /> of chloride ions**. Counting only the ammonium salt's chloride gives <InlineMath math="2.51\text{ g}" />.
+
 <BlockMath math="\begin{aligned}
-n(\text{NH}_4\text{Cl})&=0.0250-0.00750=0.0175\ \Rightarrow\ \tfrac{0.936}{1.52}\times100=61.6\%\\
-n(\text{NaCl})&=\tfrac{1.52-0.936}{58.5}=0.0100\text{ mol}\\
-m(\text{AgCl})&=(0.0175+0.0100)\times143.5=3.95\text{ g}
+n(\text{NH}_4^+)&=0.0250-0.00750=0.0175\text{ mol}:\quad \tfrac{0.0175\times53.5}{1.52}\times100=61.6\%,\quad V(\text{NH}_3)=420\text{ cm}^3\\
+n(\text{NaCl})&=\tfrac{1.52-0.936}{58.5}=0.0100,\quad m(\text{AgCl})=(0.0175+0.0100)\times143.5=3.95\text{ g}
 \end{aligned}" />
-
-# Why the other options are wrong
-
-- <InlineMath math="26.4\%" /> takes the alkali the acid titrated as the alkali the ammonium used, but **the acid measures what was left over**.
-- <InlineMath math="840\text{ cm}^3" /> gives two ammonia per ammonium, but each ammonium ion gives one.
-- <InlineMath math="2.51\text{ g}" /> precipitates only the ammonium salt's chloride, but the sodium chloride's chloride precipitates too.

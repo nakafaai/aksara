@@ -1,25 +1,35 @@
-# Klorin habis, jadi hanya membebaskan sebagian bromin, dan tiap bromida yang disingkirkannya diganti satu klorida
+# Seberapa jauh klorin bekerja
 
-Klorinnya <InlineMath math="\tfrac{120}{24{.}000}=0{,}00500\text{ mol}" /> dan bromidanya <InlineMath math="0{,}0150\text{ mol}" />, jadi **klorin yang habis**, membebaskan <InlineMath math="0{,}00500\times160=0{,}800\text{ g}" /> bromin. Bromin itu membebaskan iodin sebanyak itu, <InlineMath math="0{,}00500\times254=1{,}27\text{ g}" />. Lapisan air menyimpan <InlineMath math="0{,}00500\text{ mol}" /> bromida dan menerima <InlineMath math="0{,}0100\text{ mol}" /> klorida, dan **perak nitrat mengendapkan keduanya**, <InlineMath math="0{,}0150\text{ mol}" />, <InlineMath math="150\text{ cm}^3" />.
+Mulai dari gasnya, karena itulah pereaksi yang bisa habis: <InlineMath math="120\text{ cm}^3" /> adalah <InlineMath math="0{,}00500\text{ mol}" /> klorin, melawan <InlineMath math="0{,}0150\text{ mol}" /> bromida. Satu molekul klorin menyingkirkan dua ion bromida, jadi **klorinnya habis setelah <InlineMath math="0{,}0100\text{ mol}" /> bromida** dan hanya terbentuk <InlineMath math="0{,}00500\text{ mol}" /> bromin, <InlineMath math="0{,}800\text{ g}" /> dengan <InlineMath math="M_r=160" />. Mengubah semua bromida menjadi bromin, <InlineMath math="1{,}20\text{ g}" />, butuh klorin setengah kali lebih banyak dari yang dialirkan.
 
-<Chart
-  title={<>Ion halida dalam lapisan air</>}
-  description={<>Lapisan air memuat <InlineMath math="0{,}0100\text{ mol}" /> klorida dan <InlineMath math="0{,}00500\text{ mol}" /> bromida.</>}
-  bars="apart"
-  categories={["Klorida", "Bromida"]}
-  series={[
-    { label: "Jumlah zat", mark: "bar", values: [0.0100, 0.00500] },
-  ]}
-  valueLabel="Jumlah zat (mol)"
+<Mermaid
+  title={<>Ke mana tiap halogen berakhir</>}
+  description={<>Klorin mendorong bromin keluar dari air dan masuk ke heksana. Lapisan air menyimpan semua ion halida, dan heksana membawa bromin ke iodida.</>}
+  chart={`
+    flowchart TD
+      N0["5,00 mmol Cl₂ bertemu 15,0 mmol Br⁻"]
+      N1["Lapisan air: 10,0 mmol Cl⁻, 5,00 mmol Br⁻"]
+      N2["Lapisan heksana: 5,00 mmol Br₂, 0,800 g"]
+      N3["Dikocok dengan KI: 5,00 mmol I₂, 1,27 g"]
+      N4["AgNO₃ bertemu 15,0 mmol halida: 150 cm³"]
+      N0 --> N1
+      N0 --> N2
+      N2 --> N3
+      N1 --> N4
+  `}
 />
 
+# Bromin pindah pelarut, lalu pindah pasangan
+
+Molekul bromin nonpolar, jadi pengocokan menarik **seluruh <InlineMath math="0{,}00500\text{ mol}" /> bromin ke heksana**, sementara ion-ionnya tetap di air. Di sana bromin mengoksidasi iodida dan membebaskan satu molekul iodin untuk tiap molekul bromin. Iodin keluar sebagai <InlineMath math="\text{I}_2" /> dengan <InlineMath math="M_r=254" />, jadi massanya <InlineMath math="1{,}27\text{ g}" />. Menimbangnya sebagai atom tunggal membagi dua angka itu menjadi <InlineMath math="0{,}635\text{ g}" />.
+
+# Semua halida di lapisan air pertama
+
+Lapisan air itu tidak pernah bertemu iodida. Isinya <InlineMath math="0{,}0100\text{ mol}" /> klorida hasil dari klorin dan <InlineMath math="0{,}00500\text{ mol}" /> bromida yang tidak terjangkau klorin. **Perak nitrat mengambil keduanya**, perak klorida putih dan perak bromida kuning pucat, jadi ada <InlineMath math="0{,}0150\text{ mol}" /> halida yang harus dihabiskan.
+
 <BlockMath math="\begin{aligned}
-n(\text{Cl}_2)&=0{,}00500<\tfrac{0{,}0150}{2}\ \Rightarrow\ m(\text{Br}_2)=0{,}00500\times160=0{,}800\text{ g},\quad m(\text{I}_2)=0{,}00500\times254=1{,}27\text{ g}\\
-V(\text{AgNO}_3)&=\tfrac{0{,}0100+0{,}00500}{0{,}100}=0{,}150\text{ dm}^3=150\text{ cm}^3
+n(\text{Cl}_2)&=\tfrac{120}{24\,000}=0{,}00500\text{ mol}\ \Rightarrow\ m(\text{Br}_2)=0{,}00500\times160=0{,}800\text{ g},\quad m(\text{I}_2)=0{,}00500\times254=1{,}27\text{ g}\\
+n(\text{Cl}^-)+n(\text{Br}^-)&=0{,}0100+0{,}00500=0{,}0150\text{ mol}\ \Rightarrow\ V(\text{AgNO}_3)=\tfrac{0{,}0150}{0{,}100}=0{,}150\text{ dm}^3=150\text{ cm}^3
 \end{aligned}" />
 
-# Kenapa pilihan lain salah
-
-- <InlineMath math="50{,}0\text{ cm}^3" /> hanya menghitung bromida sisa, padahal **klorida yang terbentuk juga mengendap dengan perak**, jadi total halida tetap <InlineMath math="0{,}0150\text{ mol}" />.
-- <InlineMath math="1{,}20\text{ g}" /> dan <InlineMath math="1{,}91\text{ g}" /> membiarkan bromida yang menentukan, padahal <InlineMath math="0{,}00500\text{ mol}" /> klorin hanya membebaskan <InlineMath math="0{,}00500\text{ mol}" /> bromin.
-- <InlineMath math="0{,}635\text{ g}" /> menimbang iodin sebagai atom, padahal iodin terbentuk sebagai <InlineMath math="\text{I}_2" />, <InlineMath math="M_r=254" />.
+Menghitung sisa bromida saja memberi <InlineMath math="50{,}0\text{ cm}^3" />, seolah klorida dari langkah pertama menghilang. Perhatikan total halidanya persis sama dengan bromida di awal, karena tiap bromida yang keluar sebagai bromin diganti satu klorida.

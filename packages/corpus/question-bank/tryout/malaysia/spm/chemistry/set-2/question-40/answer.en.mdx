@@ -1,25 +1,47 @@
-# Follow the sulfur atom through each step, cut it to ninety percent only where the conversion stops, and titrate a twentieth of the acid
+# All the sulfur burns
 
-The sulfur is <InlineMath math="0.100\text{ mol}" />, and **the burning is complete**, <InlineMath math="0.100\text{ mol}" /> of sulfur dioxide, <InlineMath math="2.40\text{ dm}^3" />. **Only the conversion stops at <InlineMath math="90.0\%" />**, <InlineMath math="0.0900\text{ mol}" />, which becomes <InlineMath math="0.0900\times98=8.82\text{ g}" /> of acid. A portion is a twentieth, <InlineMath math="0.00450\text{ mol}" />, and **each sulfuric acid needs two hydroxide ions**, <InlineMath math="0.00900\div0.200=0.0450\text{ dm}^3=45.0\text{ cm}^3" />.
+Sulfur is <InlineMath math="3.20\div32=0.100\text{ mol}" />, and the burning is complete, so <InlineMath math="0.100\text{ mol}" /> of sulfur dioxide forms, <InlineMath math="2.40\text{ dm}^3" />. **The <InlineMath math="90.0\%" /> belongs to the converter, not to the burner**. Applying it here shrinks the gas to <InlineMath math="2.16\text{ dm}^3" />.
+
+# The converter lets some dioxide through
+
+Only <InlineMath math="0.0900\text{ mol}" /> of sulfur trioxide leaves the catalyst, and the lab below sets the bent dioxide beside the flat trioxide. **Every trioxide molecule becomes one oleum molecule**, <InlineMath math="M_r=178" />, so <InlineMath math="16.0\text{ g}" /> forms. Building oleum from the full <InlineMath math="0.100\text{ mol}" /> gives <InlineMath math="17.8\text{ g}" />, as if the converter were perfect.
+
+<MoleculeShapeLab
+  title={<>Bent dioxide, flat trioxide</>}
+  description={<>The converter turns the bent <InlineMath math="\text{SO}_2" /> into the flat <InlineMath math="\text{SO}_3" />. The <InlineMath math="10.0\%" /> that stays bent passes through the absorber and never becomes oleum.</>}
+  molecules={[
+    { id: "sulfur-dioxide", name: "sulfur dioxide" },
+    { id: "sulfur-trioxide", name: "sulfur trioxide" },
+  ]}
+  labels={{
+    atoms: <>Atoms</>,
+    choose: "Choose a molecule",
+    fill: <>Space-filling model</>,
+    formula: <>Formula</>,
+    mass: <>Relative molecular mass</>,
+    shape: <>Bond angle</>,
+    view: "Sulfur dioxide and sulfur trioxide",
+  }}
+/>
+
+# Dilution doubles the acid
+
+Water splits each oleum into **two sulfuric acid molecules**. One holds sulfur that came from the burner, the other holds the sulfur of the acid that absorbed the trioxide, and the chart tracks both. So <InlineMath math="0.180\text{ mol}" /> of sulfuric acid forms, <InlineMath math="17.6\text{ g}" />. One acid per oleum gives <InlineMath math="8.82\text{ g}" />, and <InlineMath math="19.6\text{ g}" /> doubles the full <InlineMath math="0.100\text{ mol}" /> without the converter's loss.
 
 <Chart
-  title={<>Sulfur along the route</>}
-  description={<>The <InlineMath math="0.100\text{ mol}" /> of sulfur dioxide gives <InlineMath math="0.0900\text{ mol}" /> of sulfur trioxide and <InlineMath math="0.0900\text{ mol}" /> of acid.</>}
+  title={<>Where the sulfur atoms in the acid come from</>}
+  description={<>Up to the oleum, all the sulfur comes from the burnt sulfur. The absorbing acid adds as many sulfur atoms again, so the dilution ends with twice the trioxide's amount.</>}
   bars="apart"
-  categories={["Sulfur dioxide", "Sulfur trioxide", "Sulfuric acid"]}
+  categories={["SO₂", "SO₃", "H₂S₂O₇", "H₂SO₄ after dilution"]}
   series={[
-    { label: "Amount", mark: "bar", values: [0.100, 0.0900, 0.0900] },
+    { label: "From the burnt sulfur", mark: "bar", values: [100, 90, 90, 90] },
+    { label: "From the absorbing acid", mark: "bar", values: [0, 0, 90, 90] },
   ]}
-  valueLabel="Amount (mol)"
+  valueLabel="mmol"
 />
 
 <BlockMath math="\begin{aligned}
-n(\text{SO}_2)&=\tfrac{3.20}{32}=0.100\ \Rightarrow\ V=2.40\text{ dm}^3,\quad m(\text{H}_2\text{SO}_4)=0.0900\times98=8.82\text{ g}\\
-V(\text{NaOH})&=\tfrac{2\times0.0900\div20}{0.200}=0.0450\text{ dm}^3=45.0\text{ cm}^3
+n(\text{SO}_2)&=\tfrac{3.20}{32}=0.100\text{ mol},\quad V=0.100\times24=2.40\text{ dm}^3\\
+n(\text{SO}_3)&=0.900\times0.100=0.0900\ \Rightarrow\ m(\text{H}_2\text{S}_2\text{O}_7)=0.0900\times178=16.0\text{ g}\\
+m(\text{H}_2\text{SO}_4)&=2\times0.0900\times98=17.6\text{ g}
 \end{aligned}" />
-
-# Why the other options are wrong
-
-- <InlineMath math="9.80\text{ g}" /> converts all the sulfur dioxide, but **only <InlineMath math="90.0\%" /> of it becomes sulfur trioxide**.
-- <InlineMath math="22.5\text{ cm}^3" /> neutralises each sulfuric acid with one hydroxide, but it has two acidic hydrogens.
-- <InlineMath math="2.16\text{ dm}^3" /> applies the <InlineMath math="90.0\%" /> to the burning, but the burning is complete.

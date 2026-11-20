@@ -13,22 +13,22 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "$$0.240\\text{ g}$$, $$2.41\\times10^{22}$$, $$50.0\\text{ cm}^3$$",
+            "$$0.240\\text{ g}$$, $$2.41\\times10^{22}$$, $$1.44\\text{ g}$$",
         },
         {
           correct: false,
           label:
-            "$$0.650\\text{ g}$$, $$1.20\\times10^{22}$$, $$50.0\\text{ cm}^3$$",
+            "$$0.650\\text{ g}$$, $$1.20\\times10^{22}$$, $$1.44\\text{ g}$$",
         },
         {
           correct: true,
           label:
-            "$$0.650\\text{ g}$$, $$2.41\\times10^{22}$$, $$50.0\\text{ cm}^3$$",
+            "$$0.650\\text{ g}$$, $$2.41\\times10^{22}$$, $$1.44\\text{ g}$$",
         },
         {
           correct: false,
           label:
-            "$$0.650\\text{ g}$$, $$2.41\\times10^{22}$$, $$250\\text{ cm}^3$$",
+            "$$0.650\\text{ g}$$, $$2.41\\times10^{22}$$, $$7.18\\text{ g}$$",
         },
       ],
     },
@@ -38,22 +38,22 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "$$0.240\\text{ g}$$, $$2.41\\times10^{22}$$, $$50.0\\text{ cm}^3$$",
+            "$$0.240\\text{ g}$$, $$2.41\\times10^{22}$$, $$1.44\\text{ g}$$",
         },
         {
           correct: false,
           label:
-            "$$0.650\\text{ g}$$, $$1.20\\times10^{22}$$, $$50.0\\text{ cm}^3$$",
+            "$$0.650\\text{ g}$$, $$1.20\\times10^{22}$$, $$1.44\\text{ g}$$",
         },
         {
           correct: true,
           label:
-            "$$0.650\\text{ g}$$, $$2.41\\times10^{22}$$, $$50.0\\text{ cm}^3$$",
+            "$$0.650\\text{ g}$$, $$2.41\\times10^{22}$$, $$1.44\\text{ g}$$",
         },
         {
           correct: false,
           label:
-            "$$0.650\\text{ g}$$, $$2.41\\times10^{22}$$, $$250\\text{ cm}^3$$",
+            "$$0.650\\text{ g}$$, $$2.41\\times10^{22}$$, $$7.18\\text{ g}$$",
         },
       ],
     },

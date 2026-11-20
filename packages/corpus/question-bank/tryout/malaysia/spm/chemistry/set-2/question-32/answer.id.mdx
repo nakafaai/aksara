@@ -1,25 +1,41 @@
-# Titrasi menghitung basa yang terpakai, massa membaginya antara ester dan asam, keduanya memberi garam, tetapi hanya ester yang memberi etanol
+# Apa kata porsi itu tentang labunya
 
-Satu porsi punya <InlineMath math="0{,}00400\text{ mol}" /> basa sisa, jadi **seluruh campuran punya sepuluh kalinya**, <InlineMath math="0{,}0400\text{ mol}" />, dan <InlineMath math="0{,}100-0{,}0400=0{,}0600\text{ mol}" /> terpakai. Dengan <InlineMath math="x" /> ester dan <InlineMath math="y" /> asam, <InlineMath math="x+y=0{,}0600" /> dan <InlineMath math="88x+60y=4{,}72" />, jadi <InlineMath math="x=0{,}0400" />, <InlineMath math="3{,}52\text{ g}" /> ester. **Keduanya memberi natrium etanoat**, <InlineMath math="0{,}0600\times82=4{,}92\text{ g}" />, tetapi **hanya ester yang memberi etanol**, <InlineMath math="0{,}0400\times46=1{,}84\text{ g}" />.
+Porsi <InlineMath math="25{,}0\text{ cm}^3" /> memakai <InlineMath math="0{,}00400\text{ mol}" /> asam klorida, dan porsi itu sepersepuluh isi labu, jadi **<InlineMath math="0{,}0400\text{ mol}" /> natrium hidroksida masih bertahan setelah refluks**. Basanya berawal <InlineMath math="0{,}100\text{ mol}" />, artinya ester dan asam bersama-sama mengambil <InlineMath math="0{,}0600\text{ mol}" />.
 
-<Chart
-  title={<>Natrium hidroksida</>}
-  description={<>Ester memakai <InlineMath math="0{,}0400\text{ mol}" />, asam <InlineMath math="0{,}0200\text{ mol}" />, dan <InlineMath math="0{,}0400\text{ mol}" /> tersisa.</>}
-  bars="apart"
-  categories={["Terpakai oleh ester", "Terpakai oleh asam", "Basa sisa"]}
-  series={[
-    { label: "Jumlah zat", mark: "bar", values: [0.0400, 0.0200, 0.0400] },
-  ]}
-  valueLabel="Jumlah zat (mol)"
+<Mermaid
+  title={<>Ke mana ion hidroksida pergi selama refluks</>}
+  description={<>Asam klorida hanya mengukur <InlineMath math="40{,}0\text{ mmol}" /> yang tersisa. Ester dan asam berbagi sisanya, dan keduanya mengubah bagian masing-masing menjadi natrium etanoat.</>}
+  chart={`
+    flowchart TD
+      N0["100 mmol NaOH"]
+      N1["40,0 mmol ke etil etanoat"]
+      N2["20,0 mmol ke asam etanoat"]
+      N3["Sisa 40,0 mmol: 4,00 mmol per porsi"]
+      N4["40,0 mmol etanol: 1,84 g"]
+      N5["60,0 mmol natrium etanoat: 4,92 g"]
+      N0 --> N1
+      N0 --> N2
+      N0 --> N3
+      N1 --> N4
+      N1 --> N5
+      N2 --> N5
+  `}
 />
 
+# Membagi basa antara ester dan asam
+
+Tiap senyawa memakai satu ion hidroksida per molekul, jadi jumlah mol keduanya <InlineMath math="0{,}0600" />, dan jumlah massanya <InlineMath math="4{,}72\text{ g}" />. **Dua persamaan menyelesaikan dua yang belum diketahui**: <InlineMath math="0{,}0400\text{ mol}" /> etil etanoat, <InlineMath math="3{,}52\text{ g}" />, dan <InlineMath math="0{,}0200\text{ mol}" /> asam etanoat.
+
 <BlockMath math="\begin{aligned}
-x+y&=0{,}100-10\times0{,}00400=0{,}0600,\quad 88x+60y=4{,}72\ \Rightarrow\ x=0{,}0400,\quad m(\text{ester})=3{,}52\text{ g}\\
-m(\text{CH}_3\text{COONa})&=0{,}0600\times82=4{,}92\text{ g},\quad m(\text{C}_2\text{H}_5\text{OH})=0{,}0400\times46=1{,}84\text{ g}
+x+y&=0{,}100-10\times0{,}00400=0{,}0600,\quad 88x+60y=4{,}72\ \Rightarrow\ x=0{,}0400,\quad y=0{,}0200
 \end{aligned}" />
 
-# Kenapa pilihan lain salah
+Memberikan seluruh <InlineMath math="0{,}0600\text{ mol}" /> ke ester membuatnya <InlineMath math="5{,}28\text{ g}" />, lebih berat dari seluruh campuran <InlineMath math="4{,}72\text{ g}" />, jadi pilihan itu gugur di cek massa sebelum kimianya diperlukan.
 
-- <InlineMath math="3{,}28\text{ g}" /> hanya menghitung natrium etanoat dari ester, padahal asam etanoat juga memberinya.
-- <InlineMath math="2{,}76\text{ g}" /> memberi etanol dari semua basa yang terpakai, padahal **asam memberi air, bukan etanol**.
-- <InlineMath math="5{,}28\text{ g}" /> memberikan semua basa yang terpakai ke ester, padahal itu melebihi massa seluruh campuran.
+# Apa yang ditinggalkan tiap reaksi
+
+**Tiap ion hidroksida yang bereaksi menghasilkan satu ion etanoat**, entah ia bertemu ester atau asam, jadi garamnya <InlineMath math="0{,}0600\text{ mol}" />, <InlineMath math="4{,}92\text{ g}" />. Menghitung bagian ester saja memberi <InlineMath math="3{,}28\text{ g}" />. Etanol lain ceritanya, karena hanya ester yang membawa gugus etil, jadi terbentuk <InlineMath math="0{,}0400\text{ mol}" />. Pilihan <InlineMath math="2{,}76\text{ g}" /> membiarkan asamnya ikut melepas etanol.
+
+<BlockMath math="\begin{aligned}
+m(\text{CH}_3\text{COONa})&=0{,}0600\times82=4{,}92\text{ g},\quad m(\text{C}_2\text{H}_5\text{OH})=0{,}0400\times46=1{,}84\text{ g}
+\end{aligned}" />

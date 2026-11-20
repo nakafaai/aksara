@@ -1,25 +1,46 @@
-# Karbon dioksida bersama massanya menetapkan n, persamaan setara memberi oksigen, dan tiap alkohol memberi satu asam dengan satu hidrogen asam
+# Seberapa panjang rantainya
 
-Karbon dioksidanya <InlineMath math="0{,}0800\text{ mol}" />, jadi <InlineMath math="n\times\tfrac{1{,}48}{14n+18}=0{,}0800" />, <InlineMath math="1{,}48n=1{,}12n+1{,}44" />, <InlineMath math="n=4" />, <InlineMath math="\text{C}_4\text{H}_9\text{OH}" />, <InlineMath math="0{,}0200\text{ mol}" />. Setelah disetarakan, <InlineMath math="\text{C}_4\text{H}_9\text{OH}+6\text{O}_2\rightarrow4\text{CO}_2+5\text{H}_2\text{O}" />, dan **atom oksigen milik alkohol sendiri mengurangi oksigen yang dibutuhkan**, <InlineMath math="0{,}120\times24=2{,}88\text{ dm}^3" />. <InlineMath math="0{,}0200\text{ mol}" /> asam butanoat menaruh <InlineMath math="0{,}00200\text{ mol}" /> dalam satu porsi, dan **hanya hidrogen <InlineMath math="\text{-COOH}" /> yang asam**, <InlineMath math="0{,}00200\div0{,}0200=0{,}100\text{ dm}^3=100\text{ cm}^3" />.
+Satu molekul <InlineMath math="\text{C}_n\text{H}_{2n+1}\text{OH}" /> terbakar menjadi <InlineMath math="n" /> molekul karbon dioksida, dan massa molekul relatifnya <InlineMath math="14n+18" />. Gasnya <InlineMath math="0{,}0800\text{ mol}" />, jadi **satu persamaan dalam <InlineMath math="n" /> sudah memastikan alkoholnya**.
 
-<Chart
-  title={<>Hasil dan oksigen</>}
-  description={<><InlineMath math="0{,}0200\text{ mol}" /> alkohol memberi <InlineMath math="0{,}0800\text{ mol}" /> karbon dioksida dengan <InlineMath math="0{,}120\text{ mol}" /> oksigen, atau <InlineMath math="0{,}0200\text{ mol}" /> asam.</>}
-  bars="apart"
-  categories={["Karbon dioksida", "Oksigen", "Asam"]}
-  series={[
-    { label: "Jumlah zat", mark: "bar", values: [0.0800, 0.120, 0.0200] },
-  ]}
-  valueLabel="Jumlah zat (mol)"
+<BlockMath math="\begin{aligned}
+n\times\tfrac{1{,}48}{14n+18}&=\tfrac{1{,}92}{24}=0{,}0800\ \Rightarrow\ 0{,}36n=1{,}44,\quad n=4,\quad \text{C}_4\text{H}_9\text{OH},\ M_r=74
+\end{aligned}" />
+
+Alkoholnya butanol, dan sampelnya <InlineMath math="0{,}0200\text{ mol}" />. Keempat pilihan sudah menyebut <InlineMath math="\text{C}_4\text{H}_9\text{OH}" />, jadi nilainya ditentukan di dua langkah berikutnya.
+
+# Dari mana atom oksigen datang
+
+Pembakaran memberi <InlineMath math="0{,}0800\text{ mol}" /> karbon dioksida dan <InlineMath math="0{,}100\text{ mol}" /> air, yang bersama-sama memuat <InlineMath math="0{,}260\text{ mol}" /> atom oksigen. **Tiap molekul alkohol datang dengan satu atom oksigennya sendiri**, jadi gasnya cukup memasok <InlineMath math="0{,}240\text{ mol}" /> atom sisanya.
+
+<Mermaid
+  title={<>Menyeimbangkan atom oksigen pada pembakaran</>}
+  description={<>Produknya butuh <InlineMath math="0{,}260\text{ mol}" /> atom oksigen, dan alkohol itu sendiri membawa <InlineMath math="0{,}0200\text{ mol}" /> di antaranya.</>}
+  chart={`
+    flowchart LR
+      N0["0,0200 mol C₄H₉OH membawa 0,0200 mol O"]
+      N1["0,120 mol O₂ membawa 0,240 mol O"]
+      N2["0,260 mol atom O"]
+      N3["0,0800 mol CO₂ memuat 0,160 mol O"]
+      N4["0,100 mol H₂O memuat 0,100 mol O"]
+      N0 --> N2
+      N1 --> N2
+      N2 --> N3
+      N2 --> N4
+  `}
 />
 
 <BlockMath math="\begin{aligned}
-\tfrac{1{,}48n}{14n+18}&=\tfrac{1{,}92}{24}\ \Rightarrow\ n=4,\quad V(\text{O}_2)=6\times0{,}0200\times24=2{,}88\text{ dm}^3\\
-V(\text{NaOH})&=\tfrac{0{,}0200\div10}{0{,}0200}=0{,}100\text{ dm}^3=100\text{ cm}^3
+n(\text{O}_2)&=\tfrac{2\times0{,}0800+0{,}100-0{,}0200}{2}=0{,}120\text{ mol},\quad V(\text{O}_2)=0{,}120\times24=2{,}88\text{ dm}^3
 \end{aligned}" />
 
-# Kenapa pilihan lain salah
+Membebankan seluruh <InlineMath math="0{,}260\text{ mol}" /> atom ke gas memberi <InlineMath math="3{,}12\text{ dm}^3" />, yaitu oksigen yang dibutuhkan butana, yang jumlah karbon dan hidrogennya sama tetapi tidak membawa oksigen.
 
-- <InlineMath math="3{,}12\text{ dm}^3" /> mengabaikan atom oksigen yang sudah ada di alkohol, jadi butuh <InlineMath math="6\tfrac{1}{2}" /> molekul oksigen alih-alih <InlineMath math="6" />.
-- <InlineMath math="1000\text{ cm}^3" /> menitrasi seluruh asam, padahal **porsinya hanya sepersepuluh**.
-- <InlineMath math="200\text{ cm}^3" /> memberi asam butanoat dua hidrogen asam, padahal hanya hidrogen <InlineMath math="\text{-COOH}" /> yang bereaksi dengan basa.
+# Dua hidrogen keluar, satu oksigen masuk
+
+Kalium dikromat(VI) dalam asam mengubah ujung <InlineMath math="\text{CH}_2\text{OH}" /> menjadi <InlineMath math="\text{COOH}" />: dua atom hidrogen keluar dalam satu molekul air dan satu atom oksigen masuk. **Jadi asam butanoat punya <InlineMath math="M_r=88" />, lebih besar <InlineMath math="14" /> dari alkoholnya**, dan tiap molekul alkohol menjadi satu molekul asam.
+
+<BlockMath math="\begin{aligned}
+m(\text{C}_3\text{H}_7\text{COOH})&=0{,}0200\times88=1{,}76\text{ g}
+\end{aligned}" />
+
+Menulis <InlineMath math="1{,}48\text{ g}" /> untuk asamnya menganggap molekulnya tidak berubah. Menambahkan dua atom oksigen tetapi menahan airnya di dalam produk memberi <InlineMath math="M_r=106" /> dan <InlineMath math="2{,}12\text{ g}" />.

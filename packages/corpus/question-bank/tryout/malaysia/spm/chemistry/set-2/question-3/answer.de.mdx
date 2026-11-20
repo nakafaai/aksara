@@ -1,26 +1,30 @@
-# Die Atommasse teilt die Isotope auf, der Wasserstoff geht am Oxid aus, und dann gehen die Silberionen am Kupfer aus
+# Die Isotope aufteilen
 
-Mit dem Anteil <InlineMath math="x" /> an <InlineMath math="^{63}\text{Cu}" /> gibt <InlineMath math="63x+65(1-x)=63{,}5" /> <InlineMath math="x=0{,}750" />, <InlineMath math="75{,}0\%" />. Das Oxid sind <InlineMath math="0{,}200\text{ mol}" /> und der Wasserstoff <InlineMath math="0{,}150\text{ mol}" />, also **geht der Wasserstoff aus**, es entstehen <InlineMath math="0{,}150\text{ mol}" /> Kupfer. Die Silberionen sind <InlineMath math="0{,}100\times2{,}20=0{,}220\text{ mol}" />, und **jedes Kupfer nimmt zwei**, also bräuchten <InlineMath math="0{,}150\text{ mol}" /> Kupfer <InlineMath math="0{,}300\text{ mol}" />. **Die Silberionen gehen aus**, es entstehen <InlineMath math="0{,}220\times108=23{,}8\text{ g}" /> Silber, und <InlineMath math="0{,}110\text{ mol}" /> Kupfer werden verbraucht, also bleiben <InlineMath math="0{,}0400\times63{,}5=2{,}54\text{ g}" />.
+Sei <InlineMath math="x" /> der Anteil an Kupfer-63. Die mittlere Masse liegt ein Viertel des Wegs von <InlineMath math="63" /> nach <InlineMath math="65" />, also **sind drei von vier Atomen Kupfer-63**, <InlineMath math="75{,}0\%" />. Mit <InlineMath math="25{,}0\%" /> hat man den Anteil des schwereren Isotops erwischt.
+
+# Der Wasserstoff begrenzt die Reduktion
+
+Das Oxid sind <InlineMath math="0{,}200\text{ mol}" />, der Wasserstoff nur <InlineMath math="0{,}150\text{ mol}" />, also **entstehen nur <InlineMath math="0{,}150\text{ mol}" /> Kupfer**, und ein Teil des Oxids bleibt schwarz. Wer die zweite Reaktion mit <InlineMath math="0{,}200\text{ mol}" /> Kupfer beginnt, hat diese Prüfung übersprungen.
+
+# Die Silberionen begrenzen die Verdrängung
+
+Jetzt sind es <InlineMath math="0{,}150\text{ mol}" /> Kupfer und <InlineMath math="0{,}220\text{ mol}" /> Silberionen. Ein Kupferatom nimmt zwei Silberionen, also bräuchte das Kupfer <InlineMath math="0{,}300\text{ mol}" />, und **die Silberionen gehen zuerst aus**. Sie liefern <InlineMath math="0{,}220\text{ mol}" /> Silber und verbrauchen nur <InlineMath math="0{,}110\text{ mol}" /> Kupfer.
 
 <Chart
-  title={<>Kupfer entlang des Wegs</>}
-  description={<>Der Wasserstoff bildet <InlineMath math="0{,}150\text{ mol}" /> Kupfer, die Silberionen nehmen <InlineMath math="0{,}110\text{ mol}" /> davon, und <InlineMath math="0{,}0400\text{ mol}" /> bleiben.</>}
-  bars="apart"
-  categories={["Gebildetes Kupfer", "Reagierendes Kupfer", "Übriges Kupfer"]}
+  title={<>Metalle auf dem Tisch in jeder Stufe</>}
+  description={<>Kupfer entsteht, bis der Wasserstoff verbraucht ist, und wird dann großteils zu Silber, bis die Silberionen ausgehen.</>}
+  categories={["Vor dem Erhitzen", "Nach dem Wasserstoff", "Nach dem Silbernitrat"]}
   series={[
-    { label: "Stoffmenge", mark: "bar", values: [0.150, 0.110, 0.0400] },
+    { label: "Kupfermetall", mark: "line", values: [0.0, 9.53, 2.54] },
+    { label: "Silbermetall", mark: "line", values: [0.0, 0.0, 23.8] },
   ]}
-  valueLabel="Stoffmenge (mol)"
+  valueLabel="Masse (g)"
 />
+
+Lässt du alles Kupfer reagieren, kommst du auf <InlineMath math="32{,}4\text{ g}" /> Silber, mehr Silberionen, als die Lösung enthält. Ein Silber pro Kupfer ergibt <InlineMath math="16{,}2\text{ g}" />.
 
 <BlockMath math="\begin{aligned}
 63x+65(1-x)&=63{,}5\ \Rightarrow\ x=0{,}750\\
-n(\text{Cu})&=n(\text{H}_2)=0{,}150,\quad n(\text{Ag}^+)=0{,}220<2\times0{,}150\\
-m(\text{Ag})&=0{,}220\times108=23{,}8\text{ g},\quad m(\text{Cu})=(0{,}150-0{,}110)\times63{,}5=2{,}54\text{ g}
+n(\text{CuO})&=\tfrac{15{,}9}{79{,}5}=0{,}200>n(\text{H}_2)=\tfrac{3{,}60}{24}=0{,}150\ \Rightarrow\ n(\text{Cu})=0{,}150\text{ mol}\\
+n(\text{Ag}^+)&=0{,}220<2\times0{,}150\ \Rightarrow\ m(\text{Ag})=0{,}220\times108=23{,}8\text{ g},\quad m(\text{Cu})'=(0{,}150-0{,}110)\times63{,}5=2{,}54\text{ g}
 \end{aligned}" />
-
-# Warum die anderen Antworten falsch sind
-
-- <InlineMath math="25{,}0\%" /> vertauscht die Isotope. **Der Mittelwert <InlineMath math="63{,}5" /> liegt näher an <InlineMath math="63" />, also ist <InlineMath math="^{63}\text{Cu}" /> das häufige**.
-- <InlineMath math="32{,}4\text{ g}" /> lässt alles Kupfer reagieren, doch <InlineMath math="0{,}220\text{ mol}" /> Silberionen nehmen nur <InlineMath math="0{,}110\text{ mol}" /> davon.
-- <InlineMath math="16{,}2\text{ g}" /> setzt ein Silber je Kupfer frei, doch Kupfer bildet <InlineMath math="\text{Cu}^{2+}" />, und jedes Silberion nimmt ein Elektron.

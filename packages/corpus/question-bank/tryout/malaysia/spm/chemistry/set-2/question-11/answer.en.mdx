@@ -1,25 +1,33 @@
-# Find what runs out in each run, divide Experiment II's volume by its shortened time, and titrate a tenth of what it leaves
+# Who runs out in each flask
 
-In Experiment I the magnesium and the acid are both <InlineMath math="0.0100\text{ mol}" />, but **each magnesium takes two acid**, so the acid runs out, <InlineMath math="0.00500\text{ mol}" /> of hydrogen, <InlineMath math="120\text{ cm}^3" />. In Experiment II **the magnesium runs out instead**, <InlineMath math="0.00500\text{ mol}" />, again <InlineMath math="120\text{ cm}^3" />. Doubling the concentration and the extra <InlineMath math="10^\circ\text{C}" /> make it **four times as fast**, <InlineMath math="60\div4=15\text{ s}" />, so <InlineMath math="120\div15=8.00\text{ cm}^3\text{ s}^{-1}" />. The magnesium uses <InlineMath math="0.0100\text{ mol}" /> of the <InlineMath math="0.0200\text{ mol}" /> of acid, a portion holds a tenth of the <InlineMath math="0.0100\text{ mol}" /> left, <InlineMath math="0.00100\text{ mol}" />, and <InlineMath math="0.00100\div0.0200=0.0500\text{ dm}^3=50.0\text{ cm}^3" />.
+In Experiment I the ribbon is <InlineMath math="0.0100\text{ mol}" /> of magnesium and would need <InlineMath math="0.0200\text{ mol}" /> of acid, yet the flask holds only <InlineMath math="0.0100\text{ mol}" />. **The acid gives out while half the ribbon is still fizzing**, so the hydrogen is half the acid, <InlineMath math="0.00500\text{ mol}" /> or <InlineMath math="120\text{ cm}^3" />. A final volume of <InlineMath math="240\text{ cm}^3" /> assumes the whole ribbon dissolves, and that would take twice the acid in that flask.
+
+Experiment II flips the situation. Half as much ribbon meets acid twice as strong, so the bars in the chart swap places and the magnesium is now the reactant that runs out. It still makes <InlineMath math="0.00500\text{ mol}" /> of hydrogen, the same <InlineMath math="120\text{ cm}^3" />.
 
 <Chart
-  title={<>Acid in Experiment II</>}
-  description={<>The magnesium uses <InlineMath math="0.0100\text{ mol}" /> of the acid and leaves <InlineMath math="0.0100\text{ mol}" />.</>}
+  title={<>Acid in the flask against acid the ribbon needs</>}
+  description={<>In Experiment I the ribbon needs more acid than the flask holds. In Experiment II the flask holds twice what the ribbon needs.</>}
   bars="apart"
-  categories={["Acid used", "Acid left"]}
+  categories={["Experiment I", "Experiment II"]}
   series={[
-    { label: "Amount", mark: "bar", values: [0.0100, 0.0100] },
+    { label: "Acid present", mark: "bar", values: [10, 20] },
+    { label: "Acid the magnesium needs", mark: "bar", values: [20, 10] },
   ]}
-  valueLabel="Amount (mol)"
+  valueLabel="mmol"
 />
 
+## The acid left in Experiment II
+
+The ribbon takes <InlineMath math="0.0100\text{ mol}" /> of the <InlineMath math="0.0200\text{ mol}" />, so **half the acid is still there** in the same <InlineMath math="50.0\text{ cm}^3" />, which is <InlineMath math="0.200\text{ mol dm}^{-3}" />. The <InlineMath math="0.300\text{ mol dm}^{-3}" /> option lets each magnesium atom take a single acid molecule, while the equation asks for two.
+
+# Two speed-ups at once
+
+Doubling the concentration halves the time, and the <InlineMath math="10^\circ\text{C}" /> rise halves it again. **The two factors multiply**, so Experiment II runs four times as fast and stops at <InlineMath math="15\text{ s}" />. A volume of <InlineMath math="120\text{ cm}^3" /> in <InlineMath math="15\text{ s}" /> is <InlineMath math="8.00\text{ cm}^3\text{ s}^{-1}" />. With only one of the doublings the time stays at <InlineMath math="30\text{ s}" /> and the rate comes out as <InlineMath math="4.00\text{ cm}^3\text{ s}^{-1}" />.
+
 <BlockMath math="\begin{aligned}
-V_{\text{I}}&=\tfrac{1}{2}\times0.0100\times24\,000=120\text{ cm}^3,\quad \bar r_{\text{II}}=\tfrac{0.00500\times24\,000}{60\div(2\times2)}=8.00\text{ cm}^3\text{ s}^{-1}\\
-V(\text{NaOH})&=\tfrac{(0.0200-2\times0.00500)\div10}{0.0200}=0.0500\text{ dm}^3=50.0\text{ cm}^3
+n(\text{Mg})_{\text{I}}&=\tfrac{0.240}{24}=0.0100,\quad n(\text{HCl})_{\text{I}}=0.0500\times0.200=0.0100\ \Rightarrow\ V(\text{H}_2)=\tfrac{0.0100}{2}\times24\,000=120\text{ cm}^3\\
+n(\text{Mg})_{\text{II}}&=0.00500,\quad n(\text{HCl})_{\text{II}}=0.0200\ \Rightarrow\ c'=\tfrac{0.0200-2\times0.00500}{0.0500}=0.200\text{ mol dm}^{-3}\\
+t_{\text{II}}&=\tfrac{60}{2\times2}=15\text{ s},\quad \bar r_{\text{II}}=\tfrac{120}{15}=8.00\text{ cm}^3\text{ s}^{-1}
 \end{aligned}" />
 
-# Why the other options are wrong
-
-- <InlineMath math="240\text{ cm}^3" /> lets all the magnesium in Experiment I react, but <InlineMath math="0.0100\text{ mol}" /> of acid dissolves only half of it.
-- <InlineMath math="4.00\text{ cm}^3\text{ s}^{-1}" /> counts only the concentration, but **the higher temperature doubles the rate again**.
-- <InlineMath math="75.0\text{ cm}^3" /> lets each magnesium use one acid, but the equation uses two.
+Notice the twist: both flasks give the same volume of hydrogen, but in Experiment I the acid decides it and in Experiment II the magnesium does.

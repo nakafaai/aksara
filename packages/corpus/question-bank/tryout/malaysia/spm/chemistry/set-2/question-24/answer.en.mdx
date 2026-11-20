@@ -1,25 +1,35 @@
-# The chlorine runs out, so it frees only part of the bromine, and every bromide it removes is replaced by a chloride
+# How far the chlorine gets
 
-The chlorine is <InlineMath math="\tfrac{120}{24\,000}=0.00500\text{ mol}" /> and the bromide <InlineMath math="0.0150\text{ mol}" />, so **the chlorine runs out**, freeing <InlineMath math="0.00500\times160=0.800\text{ g}" /> of bromine. That bromine frees as much iodine, <InlineMath math="0.00500\times254=1.27\text{ g}" />. The water layer keeps <InlineMath math="0.00500\text{ mol}" /> of bromide and gains <InlineMath math="0.0100\text{ mol}" /> of chloride, and **silver nitrate precipitates both**, <InlineMath math="0.0150\text{ mol}" />, <InlineMath math="150\text{ cm}^3" />.
+Start with the gas, because it is the reagent that can run out: <InlineMath math="120\text{ cm}^3" /> is <InlineMath math="0.00500\text{ mol}" /> of chlorine, against <InlineMath math="0.0150\text{ mol}" /> of bromide. One chlorine molecule clears two bromide ions, so **the chlorine is gone after <InlineMath math="0.0100\text{ mol}" /> of bromide** and only <InlineMath math="0.00500\text{ mol}" /> of bromine forms, <InlineMath math="0.800\text{ g}" /> at <InlineMath math="M_r=160" />. Turning every bromide into bromine, <InlineMath math="1.20\text{ g}" />, would need half as much chlorine again as was bubbled in.
 
-<Chart
-  title={<>Halide ions in the water layer</>}
-  description={<>The water layer holds <InlineMath math="0.0100\text{ mol}" /> of chloride and <InlineMath math="0.00500\text{ mol}" /> of bromide.</>}
-  bars="apart"
-  categories={["Chloride", "Bromide"]}
-  series={[
-    { label: "Amount", mark: "bar", values: [0.0100, 0.00500] },
-  ]}
-  valueLabel="Amount (mol)"
+<Mermaid
+  title={<>Where each halogen ends up</>}
+  description={<>Chlorine pushes bromine out of the water and into the hexane. The water layer keeps every halide ion, and the hexane carries the bromine on to the iodide.</>}
+  chart={`
+    flowchart TD
+      N0["5.00 mmol Cl₂ meets 15.0 mmol Br⁻"]
+      N1["Water layer: 10.0 mmol Cl⁻, 5.00 mmol Br⁻"]
+      N2["Hexane layer: 5.00 mmol Br₂, 0.800 g"]
+      N3["Shaken with KI: 5.00 mmol I₂, 1.27 g"]
+      N4["AgNO₃ meets 15.0 mmol halide: 150 cm³"]
+      N0 --> N1
+      N0 --> N2
+      N2 --> N3
+      N1 --> N4
+  `}
 />
 
+# Bromine swaps solvent, then partner
+
+Bromine molecules are non-polar, so the shaking pulls **all <InlineMath math="0.00500\text{ mol}" /> of bromine into the hexane** while the ions stay in the water. There it oxidises iodide and frees one iodine molecule per bromine molecule. Iodine leaves as <InlineMath math="\text{I}_2" /> with <InlineMath math="M_r=254" />, giving <InlineMath math="1.27\text{ g}" />. Weighing it as single atoms halves that to <InlineMath math="0.635\text{ g}" />.
+
+# Every halide in the first water layer
+
+That water layer never met the iodide. It holds the <InlineMath math="0.0100\text{ mol}" /> of chloride the chlorine turned into and the <InlineMath math="0.00500\text{ mol}" /> of bromide the chlorine never reached. **Silver nitrate takes both**, white silver chloride and cream silver bromide, so it has <InlineMath math="0.0150\text{ mol}" /> of halide to cover.
+
 <BlockMath math="\begin{aligned}
-n(\text{Cl}_2)&=0.00500<\tfrac{0.0150}{2}\ \Rightarrow\ m(\text{Br}_2)=0.00500\times160=0.800\text{ g},\quad m(\text{I}_2)=0.00500\times254=1.27\text{ g}\\
-V(\text{AgNO}_3)&=\tfrac{0.0100+0.00500}{0.100}=0.150\text{ dm}^3=150\text{ cm}^3
+n(\text{Cl}_2)&=\tfrac{120}{24\,000}=0.00500\text{ mol}\ \Rightarrow\ m(\text{Br}_2)=0.00500\times160=0.800\text{ g},\quad m(\text{I}_2)=0.00500\times254=1.27\text{ g}\\
+n(\text{Cl}^-)+n(\text{Br}^-)&=0.0100+0.00500=0.0150\text{ mol}\ \Rightarrow\ V(\text{AgNO}_3)=\tfrac{0.0150}{0.100}=0.150\text{ dm}^3=150\text{ cm}^3
 \end{aligned}" />
 
-# Why the other options are wrong
-
-- <InlineMath math="50.0\text{ cm}^3" /> counts only the bromide left, but **the chloride formed precipitates with silver too**, so the halide total stays <InlineMath math="0.0150\text{ mol}" />.
-- <InlineMath math="1.20\text{ g}" /> and <InlineMath math="1.91\text{ g}" /> let the bromide decide, but <InlineMath math="0.00500\text{ mol}" /> of chlorine frees only <InlineMath math="0.00500\text{ mol}" /> of bromine.
-- <InlineMath math="0.635\text{ g}" /> weighs the iodine as atoms, but it forms as <InlineMath math="\text{I}_2" />, <InlineMath math="M_r=254" />.
+Counting only the leftover bromide gives <InlineMath math="50.0\text{ cm}^3" />, as though the chloride made in the first step had disappeared. Notice the halide total is exactly the bromide you started with, because each bromide that left as bromine was replaced by one chloride.

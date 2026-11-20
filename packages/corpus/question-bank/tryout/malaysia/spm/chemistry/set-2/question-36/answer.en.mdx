@@ -1,25 +1,40 @@
-# The chloride runs out, so it sets the precipitate and the moles the heat is shared over, and a tenth of the silver ions left is titrated
+# Which ion decides the precipitate
 
-The silver ions are <InlineMath math="0.0250\text{ mol}" /> and the chloride <InlineMath math="0.0200\text{ mol}" />, so **the chloride runs out**, <InlineMath math="0.0200\times143.5=2.87\text{ g}" />. The heat is <InlineMath math="100\times4.2\times3.12=1310\text{ J}" />, and **per mole of silver chloride** <InlineMath math="\Delta H=-\tfrac{1.310}{0.0200}=-65.5\text{ kJ mol}^{-1}" />. The <InlineMath math="0.00500\text{ mol}" /> of silver ions left puts <InlineMath math="0.000500\text{ mol}" /> in a portion, <InlineMath math="0.000500\div0.0100=0.0500\text{ dm}^3=50.0\text{ cm}^3" />.
+Silver ions, <InlineMath math="0.0250\text{ mol}" />, meet chloride ions, <InlineMath math="0.0200\text{ mol}" />, one to one. **The chloride is the smaller amount**, so <InlineMath math="0.0200\text{ mol}" /> of silver chloride, <InlineMath math="M_r=143.5" />, forms, <InlineMath math="2.87\text{ g}" />. Turning every silver ion into precipitate would need <InlineMath math="62.5\text{ cm}^3" /> of this sodium chloride, not <InlineMath math="50.0\text{ cm}^3" />, so <InlineMath math="3.59\text{ g}" /> counts chloride that was never poured in.
 
-<Chart
-  title={<>Silver ions</>}
-  description={<>The chloride precipitates <InlineMath math="0.0200\text{ mol}" /> of the silver ions and <InlineMath math="0.00500\text{ mol}" /> is left.</>}
-  bars="apart"
-  categories={["Precipitated", "Left in solution"]}
-  series={[
-    { label: "Amount", mark: "bar", values: [0.0200, 0.00500] },
-  ]}
-  valueLabel="Amount (mol)"
+# Heat per mole of precipitate
+
+The <InlineMath math="100\text{ g}" /> of mixture warmed by <InlineMath math="3.12^\circ\text{C}" />, so <InlineMath math="1310\text{ J}" /> was released. **Divide by the <InlineMath math="0.0200\text{ mol}" /> that actually precipitated**, not by the silver ions in the beaker.
+
+<BlockMath math="\begin{aligned}
+Q&=100\times4.2\times3.12=1310\text{ J},\quad \Delta H=-\tfrac{1.31}{0.0200}=-65.5\text{ kJ mol}^{-1}
+\end{aligned}" />
+
+The <InlineMath math="0.0250\text{ mol}" /> divisor gives <InlineMath math="-52.4\text{ kJ mol}^{-1}" />. Stopping before the division leaves <InlineMath math="-1.31" />, which is a heat in kilojoules wearing the wrong unit.
+
+# Copper meets the silver left in the filtrate
+
+The filtrate still carries <InlineMath math="0.00500\text{ mol}" /> of silver ions. **Each copper atom loses two electrons, and each silver ion gains one**, which is the same exchange that drives a copper and silver cell, so the lab lets you count it: <InlineMath math="0.00500\text{ mol}" /> of electrons dissolve <InlineMath math="0.00250\text{ mol}" /> of copper and deposit <InlineMath math="0.00500\text{ mol}" /> of silver.
+
+<ChemicalCellLab
+  title={<>Copper giving electrons to silver ions</>}
+  description={<>Copper in copper(II) ion solution and silver in silver ion solution, joined by a salt bridge. Each copper atom that dissolves sends two electrons across, enough for two silver atoms.</>}
+  metals={["copper", "silver"]}
+  electrons={0.005}
+  showProducts
+  labels={{
+    atNegative: <>At the negative terminal</>,
+    atPositive: <>At the positive terminal</>,
+    electrons: <>Electrons passed</>,
+    halfCells: <>Half-cells</>,
+    view: "Chemical cell of copper and silver",
+    voltage: <>Cell voltage</>,
+    voltmeter: "V",
+  }}
 />
 
 <BlockMath math="\begin{aligned}
-n(\text{Cl}^-)&=0.0200<n(\text{Ag}^+)=0.0250\ \Rightarrow\ m=2.87\text{ g},\quad \Delta H=-\tfrac{100\times4.2\times3.12}{0.0200}=-65.5\text{ kJ mol}^{-1}\\
-V(\text{NaCl})&=\tfrac{0.00500\div10}{0.0100}=0.0500\text{ dm}^3=50.0\text{ cm}^3
+n(\text{Ag}^+)&=0.0250-0.0200=0.00500\text{ mol}\ \Rightarrow\ m(\text{Ag})=0.00500\times108=0.540\text{ g}
 \end{aligned}" />
 
-# Why the other options are wrong
-
-- <InlineMath math="3.59\text{ g}" /> and <InlineMath math="-52.4" /> let the silver ions decide, but only <InlineMath math="0.0200\text{ mol}" /> of chloride is there.
-- <InlineMath math="250\text{ cm}^3" /> titrates all the silver ions put in, but <InlineMath math="0.0200\text{ mol}" /> of them already precipitated.
-- <InlineMath math="-1.31" /> is the heat released, but **a heat of precipitation is per mole of precipitate**.
+The <InlineMath math="0.270\text{ g}" /> option applies the two to one ratio backwards and gives the silver the copper's count.

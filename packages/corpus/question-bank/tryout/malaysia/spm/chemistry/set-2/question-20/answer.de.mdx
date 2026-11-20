@@ -1,26 +1,37 @@
-# Das Gas zählt nur das Carbonat, die Rücktitration zählt alle verbrauchte Säure, und die Differenz gehört dem Hydroxid
+# Das Gas legt das Carbonat fest
 
-Das Kohlenstoffdioxid sind <InlineMath math="0{,}00500\text{ mol}" />, also sind es <InlineMath math="0{,}00500\times84=0{,}420\text{ g}" /> Carbonat, das <InlineMath math="0{,}0100\text{ mol}" /> Säure verbraucht. Eine Portion hat <InlineMath math="0{,}000500\text{ mol}" /> Säure, also **hat die ganze Lösung das Zehnfache**, <InlineMath math="0{,}00500\text{ mol}" />, und <InlineMath math="0{,}0250-0{,}00500=0{,}0200\text{ mol}" /> wurden verbraucht. **Die anderen <InlineMath math="0{,}0100\text{ mol}" /> gingen an das Hydroxid**, zwei je Einheit, <InlineMath math="0{,}00500\times58=0{,}290\text{ g}" />. Jedes Magnesium endet in einem Magnesiumchlorid, <InlineMath math="0{,}0100\times95=0{,}950\text{ g}" />.
+Nur das Carbonat schäumt, also **bedeuten <InlineMath math="120\text{ cm}^3" /> Kohlenstoffdioxid <InlineMath math="0{,}00500\text{ mol}" /> Magnesiumcarbonat**, <InlineMath math="0{,}420\text{ g}" />. Es verbrauchte zwei Säure pro Carbonat, <InlineMath math="0{,}0100\text{ mol}" />.
 
-<Chart
-  title={<>Säure im Kolben</>}
-  description={<>Carbonat und Hydroxid verbrauchen je <InlineMath math="0{,}0100\text{ mol}" /> der Säure, und <InlineMath math="0{,}00500\text{ mol}" /> bleiben.</>}
-  bars="apart"
-  categories={["Vom Carbonat verbraucht", "Vom Hydroxid verbraucht", "Übrige Säure"]}
-  series={[
-    { label: "Stoffmenge", mark: "bar", values: [0.0100, 0.0100, 0.00500] },
-  ]}
-  valueLabel="Stoffmenge (mol)"
+# Die Titration findet die unbenutzte Säure
+
+Die Portion ist ein Zehntel des Kolbens, und ihre <InlineMath math="0{,}000500\text{ mol}" /> Lauge entsprechen ebenso viel Säure. **Rechne das auf den ganzen Kolben hoch**: <InlineMath math="0{,}00500\text{ mol}" /> Säure blieben unberührt.
+
+<Mermaid
+  title={<>Wie sich die Salzsäure aufteilt</>}
+  description={<>Die Säure teilt sich dreifach. Das Gas misst einen Zweig, die Titration einen anderen, und das Hydroxid nimmt, was dazwischen liegt.</>}
+  chart={`
+    flowchart TD
+      N0["25,0 mmol HCl zugegeben"]
+      N1["10,0 mmol an MgCO₃: 120 cm³ CO₂"]
+      N2["10,0 mmol an Mg(OH)₂"]
+      N3["5,00 mmol übrig: 25,0 cm³ NaOH pro Portion"]
+      N4["10,0 mmol MgCl₂: 0,950 g"]
+      N0 --> N1
+      N0 --> N2
+      N0 --> N3
+      N1 --> N4
+      N2 --> N4
+  `}
 />
 
+# Das Hydroxid bekommt den Rest
+
+Die Tablette bekam <InlineMath math="0{,}0250\text{ mol}" /> Säure. Carbonat und Rest machen <InlineMath math="0{,}0150\text{ mol}" /> aus, also **verbrauchte das Hydroxid die übrigen <InlineMath math="0{,}0100\text{ mol}" />**, zwei pro Formeleinheit, also <InlineMath math="0{,}00500\text{ mol}" /> oder <InlineMath math="0{,}290\text{ g}" />. Mit nur einer Säure pro Hydroxid verdoppelt sich das auf <InlineMath math="0{,}580\text{ g}" />, und dann wiegen Carbonat und Hydroxid zusammen die ganzen <InlineMath math="1{,}00\text{ g}" />, ohne Platz für den inerten Rest aus der Aufgabe. Wer die ganze verbrauchte Säure dem Carbonat zuschreibt, erhält <InlineMath math="0{,}840\text{ g}" /> und kein Hydroxid, und das widerspricht dem Gasvolumen.
+
 <BlockMath math="\begin{aligned}
-n(\text{MgCO}_3)&=\tfrac{120}{24{.}000}=0{,}00500\ \Rightarrow\ m=0{,}420\text{ g}\\
-n(\text{HCl})_{\text{used}}&=0{,}0250-10\times0{,}000500=0{,}0200\ \Rightarrow\ m(\text{Mg(OH)}_2)=\tfrac{0{,}0200-0{,}0100}{2}\times58=0{,}290\text{ g}\\
+n(\text{MgCO}_3)&=\tfrac{120}{24\,000}=0{,}00500\text{ mol},\quad m=0{,}00500\times84=0{,}420\text{ g}\\
+n(\text{HCl})_{\text{Mg(OH)}_2}&=0{,}0250-2\times0{,}00500-10\times0{,}000500=0{,}0100\ \Rightarrow\ m(\text{Mg(OH)}_2)=\tfrac{0{,}0100}{2}\times58=0{,}290\text{ g}\\
 m(\text{MgCl}_2)&=(0{,}00500+0{,}00500)\times95=0{,}950\text{ g}
 \end{aligned}" />
 
-# Warum die anderen Antworten falsch sind
-
-- <InlineMath math="0{,}840\text{ g}" /> gibt alle verbrauchte Säure dem Carbonat, doch **das Gas zeigt nur <InlineMath math="0{,}00500\text{ mol}" /> Carbonat**.
-- <InlineMath math="0{,}580\text{ g}" /> lässt jede Hydroxideinheit eine Säure nehmen, doch sie nimmt zwei.
-- <InlineMath math="0{,}475\text{ g}" /> zählt nur das Chlorid aus dem Carbonat, doch auch das Hydroxid gibt Magnesiumchlorid.
+Beide Verbindungen geben je ein Magnesium in ein Magnesiumchlorid, also entstehen <InlineMath math="0{,}0100\text{ mol}" /> davon. Nur das Magnesium aus dem Carbonat ergibt <InlineMath math="0{,}475\text{ g}" />.

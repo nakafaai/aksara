@@ -12,19 +12,19 @@ const item: ItemSource = {
       options: [
         {
           correct: false,
-          label: "$$28.9\\%$$, $$480\\text{ cm}^3$$, $$20.0\\text{ cm}^3$$",
+          label: "$$28.9\\%$$, $$480\\text{ cm}^3$$, $$2.72\\text{ g}$$",
         },
         {
           correct: true,
-          label: "$$71.1\\%$$, $$480\\text{ cm}^3$$, $$20.0\\text{ cm}^3$$",
+          label: "$$71.1\\%$$, $$480\\text{ cm}^3$$, $$2.72\\text{ g}$$",
         },
         {
           correct: false,
-          label: "$$71.1\\%$$, $$480\\text{ cm}^3$$, $$60.0\\text{ cm}^3$$",
+          label: "$$71.1\\%$$, $$480\\text{ cm}^3$$, $$3.40\\text{ g}$$",
         },
         {
           correct: false,
-          label: "$$88.9\\%$$, $$480\\text{ cm}^3$$, $$20.0\\text{ cm}^3$$",
+          label: "$$88.9\\%$$, $$480\\text{ cm}^3$$, $$2.72\\text{ g}$$",
         },
       ],
     },
@@ -33,19 +33,19 @@ const item: ItemSource = {
       options: [
         {
           correct: false,
-          label: "$$28.9\\%$$, $$480\\text{ cm}^3$$, $$20.0\\text{ cm}^3$$",
+          label: "$$28.9\\%$$, $$480\\text{ cm}^3$$, $$2.72\\text{ g}$$",
         },
         {
           correct: true,
-          label: "$$71.1\\%$$, $$480\\text{ cm}^3$$, $$20.0\\text{ cm}^3$$",
+          label: "$$71.1\\%$$, $$480\\text{ cm}^3$$, $$2.72\\text{ g}$$",
         },
         {
           correct: false,
-          label: "$$71.1\\%$$, $$480\\text{ cm}^3$$, $$60.0\\text{ cm}^3$$",
+          label: "$$71.1\\%$$, $$480\\text{ cm}^3$$, $$3.40\\text{ g}$$",
         },
         {
           correct: false,
-          label: "$$88.9\\%$$, $$480\\text{ cm}^3$$, $$20.0\\text{ cm}^3$$",
+          label: "$$88.9\\%$$, $$480\\text{ cm}^3$$, $$2.72\\text{ g}$$",
         },
       ],
     },

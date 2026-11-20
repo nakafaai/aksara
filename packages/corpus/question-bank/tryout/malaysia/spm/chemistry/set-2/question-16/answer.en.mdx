@@ -1,25 +1,33 @@
-# The gas counts only the carbonate, the rest of the sample is oxide, and both use acid before a tenth of what is left is titrated
+# Reading where the curve goes flat
 
-The carbon dioxide is <InlineMath math="0.0200\text{ mol}" />, so the carbonate is <InlineMath math="2.00\text{ g}" />, <InlineMath math="\tfrac{2.00}{2.40}\times100=83.3\%" />, and the rate is <InlineMath math="480\div120=4.00\text{ cm}^3\text{ s}^{-1}" />. **The oxide gives no gas but still uses acid**: <InlineMath math="0.40\text{ g}" /> is <InlineMath math="0.0100\text{ mol}" />, taking <InlineMath math="0.0200\text{ mol}" />, while the carbonate takes <InlineMath math="0.0400\text{ mol}" />. Of the <InlineMath math="0.100\text{ mol}" />, <InlineMath math="0.0400\text{ mol}" /> is left, a portion holds <InlineMath math="0.00400\text{ mol}" />, <InlineMath math="40.0\text{ cm}^3" />.
+The syringe reading climbs fast at first, then levels off at <InlineMath math="480\text{ cm}^3" />, first reached at <InlineMath math="120\text{ s}" />. **An average rate spreads the whole volume over the whole time**, so the reaction averages <InlineMath math="4.00\text{ cm}^3\text{ s}^{-1}" />. Putting the time on top gives <InlineMath math="0.250" />, which counts seconds per cubic centimetre and is no rate at all.
 
-<Chart
-  title={<>Hydrochloric acid</>}
-  description={<>The carbonate uses <InlineMath math="0.0400\text{ mol}" />, the oxide <InlineMath math="0.0200\text{ mol}" />, and <InlineMath math="0.0400\text{ mol}" /> is left.</>}
-  bars="apart"
-  categories={["Used by the carbonate", "Used by the oxide", "Acid left"]}
-  series={[
-    { label: "Amount", mark: "bar", values: [0.0400, 0.0200, 0.0400] },
-  ]}
-  valueLabel="Amount (mol)"
+<GasRateLab
+  title={<>The sample fizzing into a gas syringe</>}
+  description={<>One run with granules. The plunger stops at <InlineMath math="0.0200\text{ mol}" /> of carbon dioxide, all that the carbonate can give.</>}
+  runs={[{ amount: 0.02, solid: "granules" }]}
+  showCurves
+  labels={{
+    final: <>final amount of carbon dioxide</>,
+    runs: [<>Sample in acid</>],
+    solids: { chips: <>chips</>, granules: <>granules</>, powder: <>powder</> },
+    time: "Time",
+    view: "Gas collection from the sample",
+  }}
 />
 
+# Only the carbonate fizzes
+
+Magnesium oxide is a base, so it neutralises the acid quietly. **Every bubble in the syringe came from calcium carbonate**, one carbon dioxide per carbonate, so the sample held <InlineMath math="0.0200\text{ mol}" /> of it, <InlineMath math="2.00\text{ g}" /> out of <InlineMath math="2.40\text{ g}" />. The <InlineMath math="16.7\%" /> in one choice is the oxide's share.
+
+# The oxide still spends acid
+
+The flask started with <InlineMath math="0.100\text{ mol}" /> of acid. The carbonate took <InlineMath math="0.0400\text{ mol}" />, and the <InlineMath math="0.400\text{ g}" /> of oxide, <InlineMath math="0.0100\text{ mol}" />, took another <InlineMath math="0.0200\text{ mol}" />. **The oxide never shows up on the graph, but it still empties the acid**. Forget it and <InlineMath math="0.0600\text{ mol}" /> seems to remain, which reads as <InlineMath math="0.600\text{ mol dm}^{-3}" />.
+
 <BlockMath math="\begin{aligned}
-m(\text{CaCO}_3)&=\tfrac{480}{24\,000}\times100=2.00\text{ g}\ \Rightarrow\ 83.3\%,\quad \bar r=\tfrac{480}{120}=4.00\text{ cm}^3\text{ s}^{-1}\\
-V(\text{NaOH})&=\tfrac{(0.100-2\times0.0200-2\times\tfrac{0.40}{40})\div10}{0.100}=0.0400\text{ dm}^3=40.0\text{ cm}^3
+\bar r&=\tfrac{480\text{ cm}^3}{120\text{ s}}=4.00\text{ cm}^3\text{ s}^{-1},\quad n(\text{CaCO}_3)=\tfrac{480}{24\,000}=0.0200\text{ mol}\\
+m(\text{CaCO}_3)&=0.0200\times100=2.00\text{ g}\ \Rightarrow\ \tfrac{2.00}{2.40}\times100=83.3\%\\
+n(\text{HCl})'&=0.100-2\times0.0200-2\times\tfrac{0.400}{40}=0.0400\text{ mol},\quad c=\tfrac{0.0400}{0.100}=0.400\text{ mol dm}^{-3}
 \end{aligned}" />
 
-# Why the other options are wrong
-
-- <InlineMath math="60.0\text{ cm}^3" /> lets only the carbonate use acid, but **the magnesium oxide neutralises acid too**.
-- <InlineMath math="0.250" /> divides the time by the volume, but a rate is the volume collected per second.
-- <InlineMath math="16.7\%" /> is the magnesium oxide's share, but the question asks for the carbonate.
+There is still acid when the gas stops, so the curve went flat because the carbonate ran out, not the acid.

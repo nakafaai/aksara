@@ -1,25 +1,35 @@
-# Das Chlor geht aus, setzt also nur einen Teil des Broms frei, und jedes entfernte Bromid wird durch ein Chlorid ersetzt
+# Wie weit das Chlor kommt
 
-Das Chlor sind <InlineMath math="\tfrac{120}{24{.}000}=0{,}00500\text{ mol}" /> und das Bromid <InlineMath math="0{,}0150\text{ mol}" />, also **geht das Chlor aus** und setzt <InlineMath math="0{,}00500\times160=0{,}800\text{ g}" /> Brom frei. Dieses Brom setzt ebenso viel Iod frei, <InlineMath math="0{,}00500\times254=1{,}27\text{ g}" />. Die Wasserschicht behält <InlineMath math="0{,}00500\text{ mol}" /> Bromid und gewinnt <InlineMath math="0{,}0100\text{ mol}" /> Chlorid, und **Silbernitrat fällt beide**, <InlineMath math="0{,}0150\text{ mol}" />, <InlineMath math="150\text{ cm}^3" />.
+Fang beim Gas an, denn das kann ausgehen: <InlineMath math="120\text{ cm}^3" /> sind <InlineMath math="0{,}00500\text{ mol}" /> Chlor, gegen <InlineMath math="0{,}0150\text{ mol}" /> Bromid. Ein Chlormolekül räumt zwei Bromidionen ab, also **ist das Chlor nach <InlineMath math="0{,}0100\text{ mol}" /> Bromid verbraucht**, und es entstehen nur <InlineMath math="0{,}00500\text{ mol}" /> Brom, <InlineMath math="0{,}800\text{ g}" /> bei <InlineMath math="M_r=160" />. Alles Bromid zu Brom zu machen, <InlineMath math="1{,}20\text{ g}" />, bräuchte anderthalbmal so viel Chlor, wie eingeleitet wurde.
 
-<Chart
-  title={<>Halogenidionen in der Wasserschicht</>}
-  description={<>Die Wasserschicht enthält <InlineMath math="0{,}0100\text{ mol}" /> Chlorid und <InlineMath math="0{,}00500\text{ mol}" /> Bromid.</>}
-  bars="apart"
-  categories={["Chlorid", "Bromid"]}
-  series={[
-    { label: "Stoffmenge", mark: "bar", values: [0.0100, 0.00500] },
-  ]}
-  valueLabel="Stoffmenge (mol)"
+<Mermaid
+  title={<>Wo jedes Halogen landet</>}
+  description={<>Chlor drängt das Brom aus dem Wasser in das Hexan. Die Wasserschicht behält alle Halogenidionen, und das Hexan trägt das Brom weiter zum Iodid.</>}
+  chart={`
+    flowchart TD
+      N0["5,00 mmol Cl₂ trifft 15,0 mmol Br⁻"]
+      N1["Wasserschicht: 10,0 mmol Cl⁻, 5,00 mmol Br⁻"]
+      N2["Hexanschicht: 5,00 mmol Br₂, 0,800 g"]
+      N3["Mit KI geschüttelt: 5,00 mmol I₂, 1,27 g"]
+      N4["AgNO₃ trifft 15,0 mmol Halogenid: 150 cm³"]
+      N0 --> N1
+      N0 --> N2
+      N2 --> N3
+      N1 --> N4
+  `}
 />
 
+# Brom wechselt das Lösungsmittel, dann den Partner
+
+Brommoleküle sind unpolar, also zieht das Schütteln **alle <InlineMath math="0{,}00500\text{ mol}" /> Brom ins Hexan**, während die Ionen im Wasser bleiben. Dort oxidiert das Brom Iodid und setzt pro Brommolekül ein Iodmolekül frei. Iod entsteht als <InlineMath math="\text{I}_2" /> mit <InlineMath math="M_r=254" />, das sind <InlineMath math="1{,}27\text{ g}" />. Wer es als einzelne Atome wiegt, halbiert das auf <InlineMath math="0{,}635\text{ g}" />.
+
+# Jedes Halogenid in der ersten Wasserschicht
+
+Diese Wasserschicht hat das Iodid nie gesehen. Sie enthält die <InlineMath math="0{,}0100\text{ mol}" /> Chlorid, zu denen das Chlor wurde, und die <InlineMath math="0{,}00500\text{ mol}" /> Bromid, die das Chlor nicht erreicht hat. **Silbernitrat fällt beide**, weißes Silberchlorid und blassgelbes Silberbromid, also muss es <InlineMath math="0{,}0150\text{ mol}" /> Halogenid abdecken.
+
 <BlockMath math="\begin{aligned}
-n(\text{Cl}_2)&=0{,}00500<\tfrac{0{,}0150}{2}\ \Rightarrow\ m(\text{Br}_2)=0{,}00500\times160=0{,}800\text{ g},\quad m(\text{I}_2)=0{,}00500\times254=1{,}27\text{ g}\\
-V(\text{AgNO}_3)&=\tfrac{0{,}0100+0{,}00500}{0{,}100}=0{,}150\text{ dm}^3=150\text{ cm}^3
+n(\text{Cl}_2)&=\tfrac{120}{24\,000}=0{,}00500\text{ mol}\ \Rightarrow\ m(\text{Br}_2)=0{,}00500\times160=0{,}800\text{ g},\quad m(\text{I}_2)=0{,}00500\times254=1{,}27\text{ g}\\
+n(\text{Cl}^-)+n(\text{Br}^-)&=0{,}0100+0{,}00500=0{,}0150\text{ mol}\ \Rightarrow\ V(\text{AgNO}_3)=\tfrac{0{,}0150}{0{,}100}=0{,}150\text{ dm}^3=150\text{ cm}^3
 \end{aligned}" />
 
-# Warum die anderen Antworten falsch sind
-
-- <InlineMath math="50{,}0\text{ cm}^3" /> zählt nur das übrige Bromid, doch **das gebildete Chlorid fällt ebenfalls mit Silber**, also bleibt die Halogenidmenge <InlineMath math="0{,}0150\text{ mol}" />.
-- <InlineMath math="1{,}20\text{ g}" /> und <InlineMath math="1{,}91\text{ g}" /> lassen das Bromid entscheiden, doch <InlineMath math="0{,}00500\text{ mol}" /> Chlor setzen nur <InlineMath math="0{,}00500\text{ mol}" /> Brom frei.
-- <InlineMath math="0{,}635\text{ g}" /> wiegt das Iod als Atome, doch es entsteht als <InlineMath math="\text{I}_2" />, <InlineMath math="M_r=254" />.
+Zählst du nur das übrige Bromid, kommen <InlineMath math="50{,}0\text{ cm}^3" /> heraus, als wäre das Chlorid aus dem ersten Schritt verschwunden. Die Halogenidsumme ist übrigens genau das Bromid vom Anfang, denn jedes Bromid, das als Brom ging, wurde durch ein Chlorid ersetzt.

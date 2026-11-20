@@ -1,26 +1,37 @@
-# Gas hanya menghitung karbonat, titrasi balik menghitung semua asam yang terpakai, dan selisihnya milik hidroksida
+# Gas menentukan karbonat
 
-Karbon dioksidanya <InlineMath math="0{,}00500\text{ mol}" />, jadi karbonatnya <InlineMath math="0{,}00500\times84=0{,}420\text{ g}" /> dan memakai <InlineMath math="0{,}0100\text{ mol}" /> asam. Satu porsi punya <InlineMath math="0{,}000500\text{ mol}" /> asam, jadi **seluruh larutan punya sepuluh kalinya**, <InlineMath math="0{,}00500\text{ mol}" />, dan <InlineMath math="0{,}0250-0{,}00500=0{,}0200\text{ mol}" /> terpakai. **<InlineMath math="0{,}0100\text{ mol}" /> lainnya dipakai hidroksida**, dua per satuan, <InlineMath math="0{,}00500\times58=0{,}290\text{ g}" />. Tiap magnesium berakhir dalam satu magnesium klorida, <InlineMath math="0{,}0100\times95=0{,}950\text{ g}" />.
+Hanya karbonat yang berbuih, jadi **<InlineMath math="120\text{ cm}^3" /> karbon dioksida berarti <InlineMath math="0{,}00500\text{ mol}" /> magnesium karbonat**, yaitu <InlineMath math="0{,}420\text{ g}" />. Ia memakai dua asam per karbonat, yaitu <InlineMath math="0{,}0100\text{ mol}" />.
 
-<Chart
-  title={<>Asam dalam labu</>}
-  description={<>Karbonat dan hidroksida masing-masing memakai <InlineMath math="0{,}0100\text{ mol}" /> asam, dan <InlineMath math="0{,}00500\text{ mol}" /> tersisa.</>}
-  bars="apart"
-  categories={["Terpakai oleh karbonat", "Terpakai oleh hidroksida", "Asam sisa"]}
-  series={[
-    { label: "Jumlah zat", mark: "bar", values: [0.0100, 0.0100, 0.00500] },
-  ]}
-  valueLabel="Jumlah zat (mol)"
+# Titrasi menemukan asam yang tidak terpakai
+
+Porsinya sepersepuluh isi labu, dan <InlineMath math="0{,}000500\text{ mol}" /> basa di dalamnya setara dengan asam yang sama banyaknya. **Kalikan lagi untuk seluruh labu**: <InlineMath math="0{,}00500\text{ mol}" /> asam tidak pernah tersentuh.
+
+<Mermaid
+  title={<>Bagaimana asam klorida dibagi</>}
+  description={<>Asamnya terbagi tiga. Gas mengukur satu cabang, titrasi mengukur cabang lain, dan hidroksida mengambil yang ada di antaranya.</>}
+  chart={`
+    flowchart TD
+      N0["25,0 mmol HCl ditambahkan"]
+      N1["10,0 mmol ke MgCO₃: 120 cm³ CO₂"]
+      N2["10,0 mmol ke Mg(OH)₂"]
+      N3["Sisa 5,00 mmol: 25,0 cm³ NaOH per porsi"]
+      N4["10,0 mmol MgCl₂: 0,950 g"]
+      N0 --> N1
+      N0 --> N2
+      N0 --> N3
+      N1 --> N4
+      N2 --> N4
+  `}
 />
 
+# Hidroksida mendapat sisanya
+
+Tablet itu menerima <InlineMath math="0{,}0250\text{ mol}" /> asam. Karbonat dan sisa asam mencakup <InlineMath math="0{,}0150\text{ mol}" />, jadi **hidroksida memakai <InlineMath math="0{,}0100\text{ mol}" /> sisanya**, dua per satuan rumus, yaitu <InlineMath math="0{,}00500\text{ mol}" /> atau <InlineMath math="0{,}290\text{ g}" />. Memberinya satu asam saja menggandakan massanya menjadi <InlineMath math="0{,}580\text{ g}" />, lalu karbonat dan hidroksida bersama-sama bermassa <InlineMath math="1{,}00\text{ g}" /> penuh, tanpa tempat untuk bahan inert yang disebut soal. Membebankan semua asam yang terpakai ke karbonat memberi <InlineMath math="0{,}840\text{ g}" /> tanpa hidroksida, dan itu bertentangan dengan volume gasnya.
+
 <BlockMath math="\begin{aligned}
-n(\text{MgCO}_3)&=\tfrac{120}{24{.}000}=0{,}00500\ \Rightarrow\ m=0{,}420\text{ g}\\
-n(\text{HCl})_{\text{used}}&=0{,}0250-10\times0{,}000500=0{,}0200\ \Rightarrow\ m(\text{Mg(OH)}_2)=\tfrac{0{,}0200-0{,}0100}{2}\times58=0{,}290\text{ g}\\
+n(\text{MgCO}_3)&=\tfrac{120}{24\,000}=0{,}00500\text{ mol},\quad m=0{,}00500\times84=0{,}420\text{ g}\\
+n(\text{HCl})_{\text{Mg(OH)}_2}&=0{,}0250-2\times0{,}00500-10\times0{,}000500=0{,}0100\ \Rightarrow\ m(\text{Mg(OH)}_2)=\tfrac{0{,}0100}{2}\times58=0{,}290\text{ g}\\
 m(\text{MgCl}_2)&=(0{,}00500+0{,}00500)\times95=0{,}950\text{ g}
 \end{aligned}" />
 
-# Kenapa pilihan lain salah
-
-- <InlineMath math="0{,}840\text{ g}" /> memberikan semua asam yang terpakai ke karbonat, padahal **gas hanya menunjukkan <InlineMath math="0{,}00500\text{ mol}" /> karbonat**.
-- <InlineMath math="0{,}580\text{ g}" /> membiarkan tiap satuan hidroksida mengambil satu asam, padahal ia mengambil dua.
-- <InlineMath math="0{,}475\text{ g}" /> hanya menghitung klorida dari karbonat, padahal hidroksida juga memberi magnesium klorida.
+Kedua senyawa menaruh satu magnesium di tiap magnesium klorida, jadi terbentuk <InlineMath math="0{,}0100\text{ mol}" /> magnesium klorida. Menghitung magnesium dari karbonat saja memberi <InlineMath math="0{,}475\text{ g}" />.

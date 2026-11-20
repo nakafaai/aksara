@@ -1,26 +1,37 @@
-# Follow the chloride through the dilution into the portion, then let the excess silver tell the thiocyanate how much to take
+# Chloride in the portion
 
-The salt is <InlineMath math="5.85\div58.5=0.100\text{ mol}" /> in <InlineMath math="0.250\text{ dm}^3" />, <InlineMath math="0.400\text{ mol dm}^{-3}" />, and **diluting <InlineMath math="25.0\text{ cm}^3" /> to <InlineMath math="100\text{ cm}^3" /> divides it by four**, <InlineMath math="0.100\text{ mol dm}^{-3}" />. The portion holds <InlineMath math="0.0200\times0.100=0.00200\text{ mol}" /> of chloride, which precipitates <InlineMath math="0.00200\times143.5=0.287\text{ g}" />. The silver added is <InlineMath math="0.0500\times0.0500=0.00250\text{ mol}" />, so **<InlineMath math="0.000500\text{ mol}" /> is left over**, which needs <InlineMath math="0.000500\div0.0400=0.0125\text{ dm}^3" />, <InlineMath math="12.5\text{ cm}^3" /> of thiocyanate.
+The salt is <InlineMath math="5.85\div58.5=0.100\text{ mol}" /> in <InlineMath math="250\text{ cm}^3" />, so the first flask holds <InlineMath math="0.400\text{ mol dm}^{-3}" />. That is not the solution the question asks about. **Diluting <InlineMath math="25.0\text{ cm}^3" /> to <InlineMath math="100\text{ cm}^3" /> divides the concentration by four**, which gives <InlineMath math="0.100\text{ mol dm}^{-3}" />. Stopping at the first flask is where <InlineMath math="0.400\text{ mol dm}^{-3}" /> comes from.
 
-<Chart
-  title={<>Silver in the flask</>}
-  description={<>Of the <InlineMath math="2.50\text{ mmol}" /> of silver added, the chloride takes <InlineMath math="2.00\text{ mmol}" /> and the thiocyanate the <InlineMath math="0.50\text{ mmol}" /> left.</>}
-  bars="apart"
-  categories={["Silver added", "Taken by chloride", "Left for thiocyanate"]}
-  series={[
-    { label: "Amount", mark: "bar", values: [2.50, 2.00, 0.50] },
-  ]}
-  valueLabel="Amount (mmol)"
+The <InlineMath math="20.0\text{ cm}^3" /> portion of the diluted solution therefore carries <InlineMath math="0.100\times0.0200=0.00200\text{ mol}" /> of chloride ions.
+
+# Silver the chloride cannot catch
+
+The silver nitrate brings <InlineMath math="0.0500\times0.0500=0.00250\text{ mol}" /> of silver ions, more than the chloride. Every chloride ion takes one silver ion, so <InlineMath math="0.00200\text{ mol}" /> of silver chloride, <InlineMath math="M_r=143.5" />, settles out. The <InlineMath math="0.117\text{ g}" /> in one option is the mass of sodium chloride in the portion, not of the precipitate.
+
+**Only the <InlineMath math="0.000500\text{ mol}" /> of silver ions that found no chloride** meets the thiocyanate. Titrating all <InlineMath math="0.00250\text{ mol}" /> would give <InlineMath math="62.5\text{ cm}^3" />, as if nothing had precipitated.
+
+<Mermaid
+  title={<>The chloride's path from salt to titration</>}
+  description={<>Each arrow is one step of the procedure, and the amount on each box is what that step passes on.</>}
+  chart={`
+    flowchart LR
+      N0["5.85 g NaCl in 250 cm³: 0.400 mol dm⁻³"]
+      N1["25.0 cm³ to 100 cm³: 0.100 mol dm⁻³"]
+      N2["20.0 cm³ portion: 2.00 mmol Cl⁻"]
+      N3["2.50 mmol Ag⁺ added"]
+      N4["2.00 mmol AgCl, 0.287 g"]
+      N5["0.500 mmol Ag⁺ left"]
+      N6["12.5 cm³ of 0.0400 mol dm⁻³ SCN⁻"]
+      N0 --> N1
+      N1 --> N2
+      N2 --> N4
+      N3 --> N4
+      N3 --> N5
+      N5 --> N6
+  `}
 />
 
 <BlockMath math="\begin{aligned}
-c&=\tfrac{5.85\div58.5}{0.250}\times\tfrac{25.0}{100}=0.100\text{ mol dm}^{-3}\\
-m(\text{AgCl})&=0.0200\times0.100\times143.5=0.287\text{ g}\\
-V(\text{SCN}^-)&=\tfrac{0.00250-0.00200}{0.0400}=0.0125\text{ dm}^3=12.5\text{ cm}^3
+c&=\tfrac{5.85\div58.5}{0.250}\times\tfrac{25.0}{100}=0.100\text{ mol dm}^{-3},\quad n(\text{Cl}^-)=0.100\times0.0200=0.00200\text{ mol}\\
+m(\text{AgCl})&=0.00200\times143.5=0.287\text{ g},\quad V(\text{SCN}^-)=\tfrac{0.00250-0.00200}{0.0400}=0.0125\text{ dm}^3=12.5\text{ cm}^3
 \end{aligned}" />
-
-# Why the other options are wrong
-
-- <InlineMath math="0.400\text{ mol dm}^{-3}" /> skips the dilution, so the portion seems to hold <InlineMath math="0.00800\text{ mol}" /> of chloride, more than the silver can take.
-- <InlineMath math="62.5\text{ cm}^3" /> titrates all the silver added, but **the chloride has already taken <InlineMath math="0.00200\text{ mol}" /> of it**.
-- <InlineMath math="0.117\text{ g}" /> weighs the precipitate as sodium chloride, but it is silver chloride, <InlineMath math="M_r=143.5" />.

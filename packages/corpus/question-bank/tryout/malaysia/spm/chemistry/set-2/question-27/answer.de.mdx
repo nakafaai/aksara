@@ -1,25 +1,47 @@
-# Berücksichtige zuerst den Umsatz, dann gibt jede Glucose zwei Ethanol und zwei Kohlenstoffdioxid, und jedes Ethanol eine Säure
+# Nur ein Teil der Glucose gärt
 
-Die Glucose sind <InlineMath math="\tfrac{9{,}00}{180}=0{,}0500\text{ mol}" />, und **nur <InlineMath math="80{,}0\%" /> reagieren**, <InlineMath math="0{,}0400\text{ mol}" />. **Jede Glucose gibt zwei von jedem Produkt**, <InlineMath math="0{,}0800\text{ mol}" /> Kohlenstoffdioxid, <InlineMath math="1{,}92\text{ dm}^3" />, und <InlineMath math="0{,}0800\times46=3{,}68\text{ g}" /> Ethanol. Dieses Ethanol gibt <InlineMath math="0{,}0800\text{ mol}" /> Ethansäure, eine Portion enthält ein Zehntel, <InlineMath math="0{,}00800\text{ mol}" />, und <InlineMath math="0{,}00800\div0{,}100=0{,}0800\text{ dm}^3=80{,}0\text{ cm}^3" />.
+Kürze die Glucose auf das, was wirklich reagiert, bevor du die Gleichung anfasst: <InlineMath math="80{,}0\%" /> von <InlineMath math="9{,}00\text{ g}" /> sind <InlineMath math="7{,}20\text{ g}" />, also <InlineMath math="0{,}0400\text{ mol}" /> bei <InlineMath math="M_r=180" />. **Mit den vollen <InlineMath math="9{,}00\text{ g}" /> wird jede spätere Zahl um ein Viertel zu groß**, und so landen <InlineMath math="2{,}40\text{ dm}^3" />, <InlineMath math="4{,}60\text{ g}" /> und <InlineMath math="1{,}20\text{ dm}^3" /> nebeneinander.
+
+# Ein Zucker, zwei von jedem Produkt
+
+Die Gärungsgleichung spaltet jede Glucose in **zwei Ethanol und zwei Kohlenstoffdioxid**, also sind es von beiden <InlineMath math="0{,}0800\text{ mol}" />. Das Gas füllt <InlineMath math="1{,}92\text{ dm}^3" />, und das Ethanol, <InlineMath math="M_r=46" />, wiegt <InlineMath math="3{,}68\text{ g}" />. Wer die Gleichung als eins zu eins liest, halbiert beides auf <InlineMath math="0{,}960\text{ dm}^3" /> und <InlineMath math="1{,}84\text{ g}" />.
 
 <Chart
-  title={<>Entlang des Wegs</>}
-  description={<>Die reagierenden <InlineMath math="0{,}0400\text{ mol}" /> Glucose geben <InlineMath math="0{,}0800\text{ mol}" /> Ethanol und dann <InlineMath math="0{,}0800\text{ mol}" /> Ethansäure.</>}
+  title={<>Kohlenstoff aus der umgesetzten Glucose</>}
+  description={<>Aus jeder Glucose werden von jedem Produkt zwei, dann braucht es zwei Säuremoleküle, um ein weiteres Kohlenstoffdioxid freizusetzen.</>}
   bars="apart"
-  categories={["Reagierende Glucose", "Ethanol", "Ethansäure"]}
+  categories={["Umgesetzte Glucose", "Ethanol", "Kohlenstoffdioxid aus der Gärung", "Kohlenstoffdioxid aus dem Carbonat"]}
   series={[
-    { label: "Stoffmenge", mark: "bar", values: [0.0400, 0.0800, 0.0800] },
+    { label: "Stoffmenge", mark: "bar", values: [40.0, 80.0, 80.0, 40.0] },
   ]}
-  valueLabel="Stoffmenge (mol)"
+  valueLabel="Stoffmenge (mmol)"
 />
 
+# Die Säure behält jede Kohlenstoffkette
+
+Die Oxidation baut nur das Kettenende um, also wird jedes Ethanol zu genau einer Essigsäure, und die <InlineMath math="0{,}0800\text{ mol}" /> gehen unverändert weiter.
+
+<MoleculeShapeLab
+  title={<>Ethanol vor der Oxidation</>}
+  description={<>Bei der Oxidation ändert sich nur das <InlineMath math="\text{CH}_2\text{OH}" />-Ende, also geht die Kette aus zwei Kohlenstoffatomen unverändert in die Säure über.</>}
+  molecules={[{ id: "ethanol", name: "Ethanol" }]}
+  labels={{
+    atoms: <>Atome</>,
+    choose: "Molekül wählen",
+    fill: <>Kalottenmodell</>,
+    formula: <>Formel</>,
+    mass: <>Relative Molekülmasse</>,
+    shape: <>Bindungswinkel</>,
+    view: "Ethanol",
+  }}
+/>
+
+**Ein Carbonation schluckt die Wasserstoffionen von zwei Säuremolekülen**, bevor es sein Kohlenstoffdioxid abgibt, also setzt das Carbonat <InlineMath math="0{,}0400\text{ mol}" /> frei, das sind <InlineMath math="0{,}960\text{ dm}^3" />. Ein ganzes Kohlenstoffdioxid pro Säuremolekül brächte wieder <InlineMath math="1{,}92\text{ dm}^3" />, als hätte Essigsäure zwei saure Wasserstoffatome.
+
 <BlockMath math="\begin{aligned}
-n&=0{,}800\times\tfrac{9{,}00}{180}=0{,}0400\ \Rightarrow\ V(\text{CO}_2)=0{,}0800\times24=1{,}92\text{ dm}^3,\quad m(\text{C}_2\text{H}_5\text{OH})=0{,}0800\times46=3{,}68\text{ g}\\
-V(\text{NaOH})&=\tfrac{0{,}0800\div10}{0{,}100}=0{,}0800\text{ dm}^3=80{,}0\text{ cm}^3
+n(\text{C}_6\text{H}_{12}\text{O}_6)&=0{,}800\times\tfrac{9{,}00}{180}=0{,}0400\text{ mol}\ \Rightarrow\ n(\text{CO}_2)=n(\text{C}_2\text{H}_5\text{OH})=0{,}0800\text{ mol}\\
+V_1&=0{,}0800\times24=1{,}92\text{ dm}^3,\quad m(\text{C}_2\text{H}_5\text{OH})=0{,}0800\times46=3{,}68\text{ g}\\
+n(\text{CH}_3\text{COOH})&=0{,}0800\text{ mol}\ \Rightarrow\ V_2=\tfrac{0{,}0800}{2}\times24=0{,}960\text{ dm}^3
 \end{aligned}" />
 
-# Warum die anderen Antworten falsch sind
-
-- <InlineMath math="2{,}40\text{ dm}^3" /> und <InlineMath math="4{,}60\text{ g}" /> lassen alle Glucose reagieren, doch **nur <InlineMath math="80{,}0\%" /> reagieren**.
-- <InlineMath math="0{,}960\text{ dm}^3" /> und <InlineMath math="1{,}84\text{ g}" /> geben je Glucose eines von jedem Produkt, doch die Gleichung gibt zwei.
-- <InlineMath math="800\text{ cm}^3" /> titriert die ganze Säure, doch die Portion ist nur ein Zehntel davon.
+Das zweite Gas ist also halb so viel wie das erste, obwohl unterwegs keine Kohlenstoffkette verloren ging.

@@ -1,25 +1,33 @@
-# The zinc lost counts the electrons, which add zinc ions on one side and remove copper(II) ions on the other
+# The colour change is the electron meter
 
-The zinc lost is <InlineMath math="0.0100\text{ mol}" />, and **each zinc atom gives two electrons**, <InlineMath math="0.0200\times6.02\times10^{23}=1.20\times10^{22}" />. **The zinc ions rise** from <InlineMath math="0.0500" /> to <InlineMath math="0.0600\text{ mol}" />, <InlineMath math="0.600\text{ mol dm}^{-3}" />. The same electrons plate <InlineMath math="0.0100\text{ mol}" /> of copper, so <InlineMath math="0.0400\text{ mol}" /> of copper(II) ions is left. A portion holds a tenth, <InlineMath math="0.00400\text{ mol}" />, and **each takes two hydroxide ions**, <InlineMath math="0.00800\div0.100=0.0800\text{ dm}^3=80.0\text{ cm}^3" />.
+Nothing in the stem weighs the zinc, so start where the cell reports itself: **the copper beaker lost <InlineMath math="0.100\text{ mol dm}^{-3}" /> of copper(II) ions across <InlineMath math="0.100\text{ dm}^3" />**, which is <InlineMath math="0.0100\text{ mol}" /> of ions turned into copper on the positive electrode. Each one takes two electrons from the wire, so <InlineMath math="0.0200\text{ mol}" /> of electrons, or <InlineMath math="1.20\times10^{22}" />, have flowed. Give each ion a single electron and you land on <InlineMath math="6.02\times10^{21}" />.
 
-<Chart
-  title={<>Ions after the reaction</>}
-  description={<>The zinc side ends with <InlineMath math="0.0600\text{ mol}" /> of zinc ions and the copper side with <InlineMath math="0.0400\text{ mol}" /> of copper(II) ions.</>}
-  bars="apart"
-  categories={["Zinc ions", "Copper(II) ions"]}
-  series={[
-    { label: "Amount", mark: "bar", values: [0.0600, 0.0400] },
-  ]}
-  valueLabel="Amount (mol)"
+<ChemicalCellLab
+  title={<>Two electrons per copper ion</>}
+  description={<>Every copper(II) ion that leaves the blue solution takes two electrons, and every zinc atom that dissolves supplies two. The count <InlineMath math="0.0200\text{ mol}" /> is shown as products at both electrodes.</>}
+  metals={["zinc", "copper"]}
+  electrons={0.02}
+  showProducts
+  labels={{
+    atNegative: <>At the negative terminal</>,
+    atPositive: <>At the positive terminal</>,
+    electrons: <>Electrons passed</>,
+    halfCells: <>Half-cells</>,
+    view: "Chemical cell of zinc and copper",
+    voltage: <>Cell voltage</>,
+    voltmeter: "V",
+  }}
 />
 
+# The zinc pays for every one of those electrons
+
+The wire carries nothing the zinc did not release, and a zinc atom releases two. So **half as many zinc atoms as electrons dissolve**: <InlineMath math="0.0100\text{ mol}" />, which is <InlineMath math="0.650\text{ g}" /> off the electrode. Letting every electron cost a whole zinc atom doubles that to <InlineMath math="1.30\text{ g}" />.
+
+# Two beakers, two volumes
+
+Those <InlineMath math="0.0100\text{ mol}" /> of new zinc ions join the <InlineMath math="0.0500\text{ mol}" /> already in the zinc beaker. Here is the trap the stem set: **the zinc beaker holds <InlineMath math="200\text{ cm}^3" />, not <InlineMath math="100\text{ cm}^3" />**, so <InlineMath math="0.0600\text{ mol}" /> is spread through <InlineMath math="0.200\text{ dm}^3" /> and gives <InlineMath math="0.300\text{ mol dm}^{-3}" />. Dividing by the copper beaker's volume doubles it to <InlineMath math="0.600\text{ mol dm}^{-3}" />.
+
 <BlockMath math="\begin{aligned}
-n(\text{Zn})&=\tfrac{0.650}{65}=0.0100\ \Rightarrow\ N(e^-)=1.20\times10^{22},\quad c(\text{Zn}^{2+})=\tfrac{0.0500+0.0100}{0.100}=0.600\text{ mol dm}^{-3}\\
-V(\text{NaOH})&=\tfrac{2\times(0.0500-0.0100)\div10}{0.100}=0.0800\text{ dm}^3=80.0\text{ cm}^3
+n(\text{Cu}^{2+})&=0.100\times(0.500-0.400)=0.0100\text{ mol}\ \Rightarrow\ N(e^-)=2\times0.0100\times6.02\times10^{23}=1.20\times10^{22}\\
+n(\text{Zn})&=\tfrac{0.0200}{2}=0.0100\text{ mol}=0.650\text{ g},\quad c(\text{Zn}^{2+})=\tfrac{0.200\times0.250+0.0100}{0.200}=0.300\text{ mol dm}^{-3}
 \end{aligned}" />
-
-# Why the other options are wrong
-
-- <InlineMath math="0.400\text{ mol dm}^{-3}" /> lowers the zinc ions, but **the zinc electrode dissolves into its own solution**.
-- <InlineMath math="6.02\times10^{21}" /> counts one electron per zinc atom, but each zinc atom gives two.
-- <InlineMath math="40.0\text{ cm}^3" /> gives one hydroxide per copper(II) ion, but copper(II) hydroxide needs two.

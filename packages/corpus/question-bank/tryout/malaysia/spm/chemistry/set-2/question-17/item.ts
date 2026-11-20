@@ -12,19 +12,23 @@ const item: ItemSource = {
       options: [
         {
           correct: true,
-          label: "$$81.7\\%$$, $$17.5\\text{ cm}^3$$, $$2.05\\text{ g}$$",
+          label:
+            "$$81.7\\%$$, $$0.140\\text{ mol dm}^{-3}$$, $$2.05\\text{ g}$$",
         },
         {
           correct: false,
-          label: "$$81.7\\%$$, $$15.0\\text{ cm}^3$$, $$1.76\\text{ g}$$",
+          label:
+            "$$81.7\\%$$, $$0.120\\text{ mol dm}^{-3}$$, $$1.76\\text{ g}$$",
         },
         {
           correct: false,
-          label: "$$81.7\\%$$, $$35.0\\text{ cm}^3$$, $$2.05\\text{ g}$$",
+          label:
+            "$$81.7\\%$$, $$0.130\\text{ mol dm}^{-3}$$, $$1.90\\text{ g}$$",
         },
         {
           correct: false,
-          label: "$$40.8\\%$$, $$17.5\\text{ cm}^3$$, $$2.05\\text{ g}$$",
+          label:
+            "$$40.8\\%$$, $$0.140\\text{ mol dm}^{-3}$$, $$2.05\\text{ g}$$",
         },
       ],
     },
@@ -33,19 +37,23 @@ const item: ItemSource = {
       options: [
         {
           correct: true,
-          label: "$$81.7\\%$$, $$17.5\\text{ cm}^3$$, $$2.05\\text{ g}$$",
+          label:
+            "$$81.7\\%$$, $$0.140\\text{ mol dm}^{-3}$$, $$2.05\\text{ g}$$",
         },
         {
           correct: false,
-          label: "$$81.7\\%$$, $$15.0\\text{ cm}^3$$, $$1.76\\text{ g}$$",
+          label:
+            "$$81.7\\%$$, $$0.120\\text{ mol dm}^{-3}$$, $$1.76\\text{ g}$$",
         },
         {
           correct: false,
-          label: "$$81.7\\%$$, $$35.0\\text{ cm}^3$$, $$2.05\\text{ g}$$",
+          label:
+            "$$81.7\\%$$, $$0.130\\text{ mol dm}^{-3}$$, $$1.90\\text{ g}$$",
         },
         {
           correct: false,
-          label: "$$40.8\\%$$, $$17.5\\text{ cm}^3$$, $$2.05\\text{ g}$$",
+          label:
+            "$$40.8\\%$$, $$0.140\\text{ mol dm}^{-3}$$, $$2.05\\text{ g}$$",
         },
       ],
     },

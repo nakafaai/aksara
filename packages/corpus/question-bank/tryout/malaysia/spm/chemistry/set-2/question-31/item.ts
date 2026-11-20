@@ -13,22 +13,22 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "$$\\text{C}_4\\text{H}_9\\text{OH}$$, $$3.12\\text{ dm}^3$$, $$100\\text{ cm}^3$$",
+            "$$\\text{C}_4\\text{H}_9\\text{OH}$$, $$3.12\\text{ dm}^3$$, $$1.76\\text{ g}$$",
         },
         {
           correct: false,
           label:
-            "$$\\text{C}_4\\text{H}_9\\text{OH}$$, $$2.88\\text{ dm}^3$$, $$1000\\text{ cm}^3$$",
+            "$$\\text{C}_4\\text{H}_9\\text{OH}$$, $$2.88\\text{ dm}^3$$, $$1.48\\text{ g}$$",
         },
         {
           correct: true,
           label:
-            "$$\\text{C}_4\\text{H}_9\\text{OH}$$, $$2.88\\text{ dm}^3$$, $$100\\text{ cm}^3$$",
+            "$$\\text{C}_4\\text{H}_9\\text{OH}$$, $$2.88\\text{ dm}^3$$, $$1.76\\text{ g}$$",
         },
         {
           correct: false,
           label:
-            "$$\\text{C}_4\\text{H}_9\\text{OH}$$, $$2.88\\text{ dm}^3$$, $$200\\text{ cm}^3$$",
+            "$$\\text{C}_4\\text{H}_9\\text{OH}$$, $$2.88\\text{ dm}^3$$, $$2.12\\text{ g}$$",
         },
       ],
     },
@@ -38,22 +38,22 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "$$\\text{C}_4\\text{H}_9\\text{OH}$$, $$3.12\\text{ dm}^3$$, $$100\\text{ cm}^3$$",
+            "$$\\text{C}_4\\text{H}_9\\text{OH}$$, $$3.12\\text{ dm}^3$$, $$1.76\\text{ g}$$",
         },
         {
           correct: false,
           label:
-            "$$\\text{C}_4\\text{H}_9\\text{OH}$$, $$2.88\\text{ dm}^3$$, $$1000\\text{ cm}^3$$",
+            "$$\\text{C}_4\\text{H}_9\\text{OH}$$, $$2.88\\text{ dm}^3$$, $$1.48\\text{ g}$$",
         },
         {
           correct: true,
           label:
-            "$$\\text{C}_4\\text{H}_9\\text{OH}$$, $$2.88\\text{ dm}^3$$, $$100\\text{ cm}^3$$",
+            "$$\\text{C}_4\\text{H}_9\\text{OH}$$, $$2.88\\text{ dm}^3$$, $$1.76\\text{ g}$$",
         },
         {
           correct: false,
           label:
-            "$$\\text{C}_4\\text{H}_9\\text{OH}$$, $$2.88\\text{ dm}^3$$, $$200\\text{ cm}^3$$",
+            "$$\\text{C}_4\\text{H}_9\\text{OH}$$, $$2.88\\text{ dm}^3$$, $$2.12\\text{ g}$$",
         },
       ],
     },

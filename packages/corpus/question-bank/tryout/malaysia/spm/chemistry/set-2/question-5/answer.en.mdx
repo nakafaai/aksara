@@ -1,26 +1,35 @@
-# The oxygen runs out first and leaves hydrogen sulfide, which then eats into the sulfur dioxide it helped make
+# The spark stops when the oxygen is gone
 
-The hydrogen sulfide would need <InlineMath math="60\times\tfrac{3}{2}=90\text{ cm}^3" /> of oxygen, so **the oxygen runs out**, burning <InlineMath math="40\text{ cm}^3" /> of it to <InlineMath math="40\text{ cm}^3" /> of sulfur dioxide and leaving <InlineMath math="20\text{ cm}^3" />. In the second reaction **those <InlineMath math="20\text{ cm}^3" /> take <InlineMath math="10\text{ cm}^3" /> of sulfur dioxide**, so <InlineMath math="30\text{ cm}^3" /> of gas is left. The sulfur is three per two hydrogen sulfide, <InlineMath math="\tfrac{3}{2}\times\tfrac{20}{24\,000}=1.25\times10^{-3}\text{ mol}" />, <InlineMath math="0.0400\text{ g}" />.
+Sixty cubic centimetres of hydrogen sulfide would need <InlineMath math="90\text{ cm}^3" /> of oxygen, and only <InlineMath math="60\text{ cm}^3" /> is there. So **oxygen is the limiting gas**: it burns <InlineMath math="40\text{ cm}^3" /> of hydrogen sulfide into <InlineMath math="40\text{ cm}^3" /> of sulfur dioxide and leaves <InlineMath math="20\text{ cm}^3" /> unburnt. Equal volumes of gases hold equal amounts, so the volumes can be used like moles here.
 
-<Chart
-  title={<>Sulfur dioxide through both reactions</>}
-  description={<>The first reaction makes <InlineMath math="40\text{ cm}^3" /> of sulfur dioxide, the hydrogen sulfide left takes <InlineMath math="10\text{ cm}^3" />, and <InlineMath math="30\text{ cm}^3" /> remains.</>}
-  bars="apart"
-  categories={["Sulfur dioxide formed", "Taken by hydrogen sulfide", "Left at the end"]}
-  series={[
-    { label: "Volume", mark: "bar", values: [40, 10, 30] },
-  ]}
-  valueLabel="Volume (cm³)"
+# The leftover gas destroys some product
+
+The unburnt hydrogen sulfide now reacts with the sulfur dioxide that the first reaction made. Two volumes of it use one volume of sulfur dioxide, so <InlineMath math="10\text{ cm}^3" /> disappears and <InlineMath math="30\text{ cm}^3" /> remains. Stopping after the first reaction leaves <InlineMath math="40\text{ cm}^3" /> of gas, which forgets this second step.
+
+<Mermaid
+  title={<>Gas volumes through the two reactions</>}
+  description={<>Volumes in cubic centimetres at room conditions. Water condenses, so it never appears as gas.</>}
+  chart={`
+    flowchart TD
+      N0["60 H₂S + 60 O₂"]
+      N1["Burn: 40 H₂S use 60 O₂"]
+      N2["40 SO₂ formed"]
+      N3["20 H₂S left"]
+      N4["20 H₂S + 10 SO₂ → 0.0400 g S"]
+      N5["30 SO₂: the only gas left"]
+      N0 --> N1
+      N1 --> N2
+      N1 --> N3
+      N2 --> N4
+      N3 --> N4
+      N2 --> N5
+      N4 --> N5
+  `}
 />
 
+The sulfur comes from both reactants: **two hydrogen sulfide and one sulfur dioxide give three sulfur atoms**. Taking one sulfur per hydrogen sulfide gives <InlineMath math="0.0267\text{ g}" /> instead.
+
 <BlockMath math="\begin{aligned}
-V(\text{SO}_2)&=\tfrac{2}{3}\times60=40\text{ cm}^3,\quad V(\text{H}_2\text{S})=60-40=20\text{ cm}^3\\
-V&=40-\tfrac{1}{2}\times20=30\text{ cm}^3\\
-m(\text{S})&=\tfrac{3}{2}\times\tfrac{20}{24\,000}\times32=0.0400\text{ g}
+V(\text{H}_2\text{S})_{\text{burnt}}&=\tfrac{2}{3}\times60=40\text{ cm}^3\ \Rightarrow\ V(\text{SO}_2)=40\text{ cm}^3,\quad V(\text{H}_2\text{S})'=20\text{ cm}^3\\
+V(\text{SO}_2)'&=40-\tfrac{20}{2}=30\text{ cm}^3,\quad m(\text{S})=\tfrac{3}{2}\times\tfrac{20}{24\,000}\times32=0.0400\text{ g}
 \end{aligned}" />
-
-# Why the other options are wrong
-
-- <InlineMath math="60\text{ cm}^3" /> lets all the hydrogen sulfide burn, but it would need <InlineMath math="90\text{ cm}^3" /> of oxygen and only <InlineMath math="60\text{ cm}^3" /> is there.
-- <InlineMath math="40\text{ cm}^3" /> at the end forgets that the hydrogen sulfide left **uses up <InlineMath math="10\text{ cm}^3" /> of the sulfur dioxide**.
-- <InlineMath math="0.0267\text{ g}" /> gives one sulfur per hydrogen sulfide, but the equation gives three for every two.

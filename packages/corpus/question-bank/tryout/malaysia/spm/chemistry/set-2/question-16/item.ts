@@ -13,22 +13,22 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "$$83.3\\%$$, $$4.00\\text{ cm}^3\\text{ s}^{-1}$$, $$60.0\\text{ cm}^3$$",
+            "$$83.3\\%$$, $$4.00\\text{ cm}^3\\text{ s}^{-1}$$, $$0.600\\text{ mol dm}^{-3}$$",
         },
         {
           correct: false,
           label:
-            "$$83.3\\%$$, $$0.250\\text{ cm}^3\\text{ s}^{-1}$$, $$40.0\\text{ cm}^3$$",
+            "$$83.3\\%$$, $$0.250\\text{ cm}^3\\text{ s}^{-1}$$, $$0.400\\text{ mol dm}^{-3}$$",
         },
         {
           correct: false,
           label:
-            "$$16.7\\%$$, $$4.00\\text{ cm}^3\\text{ s}^{-1}$$, $$40.0\\text{ cm}^3$$",
+            "$$16.7\\%$$, $$4.00\\text{ cm}^3\\text{ s}^{-1}$$, $$0.400\\text{ mol dm}^{-3}$$",
         },
         {
           correct: true,
           label:
-            "$$83.3\\%$$, $$4.00\\text{ cm}^3\\text{ s}^{-1}$$, $$40.0\\text{ cm}^3$$",
+            "$$83.3\\%$$, $$4.00\\text{ cm}^3\\text{ s}^{-1}$$, $$0.400\\text{ mol dm}^{-3}$$",
         },
       ],
     },
@@ -38,22 +38,22 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "$$83.3\\%$$, $$4.00\\text{ cm}^3\\text{ s}^{-1}$$, $$60.0\\text{ cm}^3$$",
+            "$$83.3\\%$$, $$4.00\\text{ cm}^3\\text{ s}^{-1}$$, $$0.600\\text{ mol dm}^{-3}$$",
         },
         {
           correct: false,
           label:
-            "$$83.3\\%$$, $$0.250\\text{ cm}^3\\text{ s}^{-1}$$, $$40.0\\text{ cm}^3$$",
+            "$$83.3\\%$$, $$0.250\\text{ cm}^3\\text{ s}^{-1}$$, $$0.400\\text{ mol dm}^{-3}$$",
         },
         {
           correct: false,
           label:
-            "$$16.7\\%$$, $$4.00\\text{ cm}^3\\text{ s}^{-1}$$, $$40.0\\text{ cm}^3$$",
+            "$$16.7\\%$$, $$4.00\\text{ cm}^3\\text{ s}^{-1}$$, $$0.400\\text{ mol dm}^{-3}$$",
         },
         {
           correct: true,
           label:
-            "$$83.3\\%$$, $$4.00\\text{ cm}^3\\text{ s}^{-1}$$, $$40.0\\text{ cm}^3$$",
+            "$$83.3\\%$$, $$4.00\\text{ cm}^3\\text{ s}^{-1}$$, $$0.400\\text{ mol dm}^{-3}$$",
         },
       ],
     },

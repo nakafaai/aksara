@@ -1,26 +1,22 @@
-# Natriumoxid ist basisch und Schwefeltrioxid sauer, also neutralisieren sie sich teilweise, bevor die Portion titriert wird
+# Zwei Oxide, zwei gegensätzliche Lösungen
 
-Natriumoxid hat <InlineMath math="M_r=62" />, also <InlineMath math="0{,}0100\text{ mol}" />, und **jedes gibt zwei Hydroxid**, <InlineMath math="0{,}0200\text{ mol}" /> Natriumhydroxid. Schwefeltrioxid, <InlineMath math="M_r=80" />, gibt <InlineMath math="0{,}00500\text{ mol}" /> Schwefelsäure, und **jede Säure nimmt zwei Hydroxid**, <InlineMath math="0{,}0100\text{ mol}" />. Es bleiben <InlineMath math="0{,}0100\text{ mol}" /> Hydroxid in <InlineMath math="250\text{ cm}^3" />, <InlineMath math="0{,}00100\text{ mol}" /> in der Portion, die <InlineMath math="0{,}00100\div0{,}0100=0{,}100\text{ dm}^3" /> brauchen, <InlineMath math="100\text{ cm}^3" /> Säure.
+Natriumoxid ist basisch und Schwefeltrioxid sauer, also neutralisieren sich die beiden Lösungen zuerst. Natriumoxid, <InlineMath math="M_r=62" />, sind <InlineMath math="0{,}0100\text{ mol}" />, und **seine zwei Natriumionen ergeben zwei Natriumhydroxid**, <InlineMath math="0{,}0200\text{ mol}" />. Mit nur einem pro Oxid höbe die Säure die Lauge genau auf, daher kommt pH <InlineMath math="7{,}0" />. Schwefeltrioxid, <InlineMath math="M_r=80" />, liefert <InlineMath math="0{,}00500\text{ mol}" /> Schwefelsäure.
+
+# Was die Säure übrig lässt
+
+Schwefelsäure ist zweiprotonig, also entfernen <InlineMath math="0{,}00500\text{ mol}" /> davon <InlineMath math="0{,}0100\text{ mol}" /> Hydroxidionen und lassen <InlineMath math="0{,}0100\text{ mol}" /> in <InlineMath math="500\text{ cm}^3" /> übrig. Das Diagramm zeigt diesen Abfall: **ohne die Säure läge der pH-Wert bei <InlineMath math="12{,}6" />**, und nimmt jede Säure nur ein Hydroxid, bleibt er bei etwa <InlineMath math="12{,}5" /> stehen.
 
 <Chart
-  title={<>Hydroxid in der Mischung</>}
-  description={<>Von den <InlineMath math="20{,}0\text{ mmol}" /> Hydroxid nimmt die Schwefelsäure <InlineMath math="10{,}0\text{ mmol}" />, und <InlineMath math="10{,}0\text{ mmol}" /> bleiben im Kolben.</>}
-  bars="apart"
-  categories={["Gebildetes Hydroxid", "Von Schwefelsäure verbraucht", "Im Kolben übrig"]}
+  title={<>pH-Wert, während die Schwefelsäure zur Lauge kommt</>}
+  description={<>Jeder Schritt gibt ein Viertel der Säure zu den <InlineMath math="500\text{ cm}^3" /> Lauge. Der pH-Wert fällt von <InlineMath math="12{,}6" />, wird aber nie neutral, weil die Säure nur die Hälfte des Hydroxids aufnehmen kann.</>}
+  categories={["0 mmol", "1,25 mmol", "2,50 mmol", "3,75 mmol", "5,00 mmol"]}
   series={[
-    { label: "Stoffmenge", mark: "bar", values: [20.0, 10.0, 10.0] },
+    { label: "pH-Wert", mark: "line", values: [12.6, 12.54, 12.48, 12.4, 12.3] },
   ]}
-  valueLabel="Stoffmenge (mmol)"
+  valueLabel="pH-Wert"
 />
 
 <BlockMath math="\begin{aligned}
 n(\text{NaOH})&=2\times\tfrac{0{,}620}{62}=0{,}0200,\quad n(\text{H}_2\text{SO}_4)=\tfrac{0{,}400}{80}=0{,}00500\\
-n'(\text{OH}^-)&=0{,}0200-2\times0{,}00500=0{,}0100\text{ mol}\\
-V(\text{HCl})&=\tfrac{0{,}0100\div10}{0{,}0100}=0{,}100\text{ dm}^3=100\text{ cm}^3
+[\text{OH}^-]&=\tfrac{0{,}0200-2\times0{,}00500}{0{,}500}=0{,}0200\text{ mol dm}^{-3},\quad \text{pOH}=2-\log2=1{,}70,\quad \text{pH}=12{,}3
 \end{aligned}" />
-
-# Warum die anderen Antworten falsch sind
-
-- <InlineMath math="0{,}0100\text{ mol}" /> gibt ein Hydroxid je Natriumoxid, doch **<InlineMath math="\text{Na}_2\text{O}" /> hat zwei Natrium**, also gibt es zwei.
-- <InlineMath math="200\text{ cm}^3" /> übergeht die Schwefelsäure, doch Schwefeltrioxid ist ein saures Oxid und hebt einen Teil der Lauge auf.
-- <InlineMath math="150\text{ cm}^3" /> lässt jede Schwefelsäure ein Hydroxid nehmen, doch sie hat zwei saure Wasserstoffe.

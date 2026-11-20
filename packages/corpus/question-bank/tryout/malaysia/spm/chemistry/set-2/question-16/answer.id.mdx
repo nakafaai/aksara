@@ -1,25 +1,33 @@
-# Gas hanya menghitung karbonat, sisa sampel adalah oksida, dan keduanya memakai asam sebelum sepersepuluh sisanya dititrasi
+# Membaca titik grafik mendatar
 
-Karbon dioksidanya <InlineMath math="0{,}0200\text{ mol}" />, jadi karbonatnya <InlineMath math="2{,}00\text{ g}" />, <InlineMath math="\tfrac{2{,}00}{2{,}40}\times100=83{,}3\%" />, dan lajunya <InlineMath math="480\div120=4{,}00\text{ cm}^3\text{ s}^{-1}" />. **Oksida tidak memberi gas tetapi tetap memakai asam**: <InlineMath math="0{,}40\text{ g}" /> adalah <InlineMath math="0{,}0100\text{ mol}" />, mengambil <InlineMath math="0{,}0200\text{ mol}" />, sedangkan karbonat mengambil <InlineMath math="0{,}0400\text{ mol}" />. Dari <InlineMath math="0{,}100\text{ mol}" />, <InlineMath math="0{,}0400\text{ mol}" /> tersisa, satu porsi memuat <InlineMath math="0{,}00400\text{ mol}" />, <InlineMath math="40{,}0\text{ cm}^3" />.
+Bacaan suntikan gas naik cepat di awal, lalu mendatar di <InlineMath math="480\text{ cm}^3" />, yang pertama kali tercapai pada <InlineMath math="120\text{ s}" />. **Laju rata-rata membagi seluruh volume dengan seluruh waktu**, jadi lajunya <InlineMath math="4{,}00\text{ cm}^3\text{ s}^{-1}" />. Kalau waktunya ditaruh di atas, hasilnya <InlineMath math="0{,}250" />, yaitu detik per sentimeter kubik, dan itu bukan laju.
 
-<Chart
-  title={<>Asam klorida</>}
-  description={<>Karbonat memakai <InlineMath math="0{,}0400\text{ mol}" />, oksida <InlineMath math="0{,}0200\text{ mol}" />, dan <InlineMath math="0{,}0400\text{ mol}" /> tersisa.</>}
-  bars="apart"
-  categories={["Terpakai oleh karbonat", "Terpakai oleh oksida", "Asam sisa"]}
-  series={[
-    { label: "Jumlah zat", mark: "bar", values: [0.0400, 0.0200, 0.0400] },
-  ]}
-  valueLabel="Jumlah zat (mol)"
+<GasRateLab
+  title={<>Sampel berbuih ke suntikan gas</>}
+  description={<>Satu percobaan dengan butiran. Penghisap berhenti di <InlineMath math="0{,}0200\text{ mol}" /> karbon dioksida, semua yang bisa diberikan karbonat.</>}
+  runs={[{ amount: 0.02, solid: "granules" }]}
+  showCurves
+  labels={{
+    final: <>jumlah akhir karbon dioksida</>,
+    runs: [<>Sampel dalam asam</>],
+    solids: { chips: <>bongkahan</>, granules: <>butiran</>, powder: <>serbuk</> },
+    time: "Waktu",
+    view: "Pengumpulan gas dari sampel",
+  }}
 />
 
+# Hanya karbonat yang berbuih
+
+Magnesium oksida adalah basa, jadi ia menetralkan asam tanpa gas. **Setiap gelembung di suntikan gas berasal dari kalsium karbonat**, satu karbon dioksida per karbonat, jadi sampelnya berisi <InlineMath math="0{,}0200\text{ mol}" /> karbonat, yaitu <InlineMath math="2{,}00\text{ g}" /> dari <InlineMath math="2{,}40\text{ g}" />. Nilai <InlineMath math="16{,}7\%" /> di salah satu pilihan adalah bagian oksidanya.
+
+# Oksida tetap memakai asam
+
+Labu mulai dengan <InlineMath math="0{,}100\text{ mol}" /> asam. Karbonat mengambil <InlineMath math="0{,}0400\text{ mol}" />, dan <InlineMath math="0{,}400\text{ g}" /> oksida, yaitu <InlineMath math="0{,}0100\text{ mol}" />, mengambil <InlineMath math="0{,}0200\text{ mol}" /> lagi. **Oksida tidak muncul di grafik, tetapi tetap menghabiskan asam**. Kalau kamu melupakannya, sisa asam tampak <InlineMath math="0{,}0600\text{ mol}" />, yaitu <InlineMath math="0{,}600\text{ mol dm}^{-3}" />.
+
 <BlockMath math="\begin{aligned}
-m(\text{CaCO}_3)&=\tfrac{480}{24{.}000}\times100=2{,}00\text{ g}\ \Rightarrow\ 83{,}3\%,\quad \bar r=\tfrac{480}{120}=4{,}00\text{ cm}^3\text{ s}^{-1}\\
-V(\text{NaOH})&=\tfrac{(0{,}100-2\times0{,}0200-2\times\tfrac{0{,}40}{40})\div10}{0{,}100}=0{,}0400\text{ dm}^3=40{,}0\text{ cm}^3
+\bar r&=\tfrac{480\text{ cm}^3}{120\text{ s}}=4{,}00\text{ cm}^3\text{ s}^{-1},\quad n(\text{CaCO}_3)=\tfrac{480}{24\,000}=0{,}0200\text{ mol}\\
+m(\text{CaCO}_3)&=0{,}0200\times100=2{,}00\text{ g}\ \Rightarrow\ \tfrac{2{,}00}{2{,}40}\times100=83{,}3\%\\
+n(\text{HCl})'&=0{,}100-2\times0{,}0200-2\times\tfrac{0{,}400}{40}=0{,}0400\text{ mol},\quad c=\tfrac{0{,}0400}{0{,}100}=0{,}400\text{ mol dm}^{-3}
 \end{aligned}" />
 
-# Kenapa pilihan lain salah
-
-- <InlineMath math="60{,}0\text{ cm}^3" /> hanya membiarkan karbonat memakai asam, padahal **magnesium oksida juga menetralkan asam**.
-- <InlineMath math="0{,}250" /> membagi waktu dengan volume, padahal laju adalah volume yang terkumpul per detik.
-- <InlineMath math="16{,}7\%" /> adalah bagian magnesium oksida, padahal yang ditanya karbonat.
+Asam masih ada saat gas berhenti, jadi grafik mendatar karena karbonatnya yang habis, bukan asamnya.

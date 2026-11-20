@@ -13,22 +13,22 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "$$1.20\\times10^{22}$$, $$0.400\\text{ mol dm}^{-3}$$, $$80.0\\text{ cm}^3$$",
+            "$$1.20\\times10^{22}$$, $$0.600\\text{ mol dm}^{-3}$$, $$0.650\\text{ g}$$",
         },
         {
           correct: true,
           label:
-            "$$1.20\\times10^{22}$$, $$0.600\\text{ mol dm}^{-3}$$, $$80.0\\text{ cm}^3$$",
+            "$$1.20\\times10^{22}$$, $$0.300\\text{ mol dm}^{-3}$$, $$0.650\\text{ g}$$",
         },
         {
           correct: false,
           label:
-            "$$6.02\\times10^{21}$$, $$0.600\\text{ mol dm}^{-3}$$, $$80.0\\text{ cm}^3$$",
+            "$$6.02\\times10^{21}$$, $$0.300\\text{ mol dm}^{-3}$$, $$0.650\\text{ g}$$",
         },
         {
           correct: false,
           label:
-            "$$1.20\\times10^{22}$$, $$0.600\\text{ mol dm}^{-3}$$, $$40.0\\text{ cm}^3$$",
+            "$$1.20\\times10^{22}$$, $$0.300\\text{ mol dm}^{-3}$$, $$1.30\\text{ g}$$",
         },
       ],
     },
@@ -38,22 +38,22 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "$$1.20\\times10^{22}$$, $$0.400\\text{ mol dm}^{-3}$$, $$80.0\\text{ cm}^3$$",
+            "$$1.20\\times10^{22}$$, $$0.600\\text{ mol dm}^{-3}$$, $$0.650\\text{ g}$$",
         },
         {
           correct: true,
           label:
-            "$$1.20\\times10^{22}$$, $$0.600\\text{ mol dm}^{-3}$$, $$80.0\\text{ cm}^3$$",
+            "$$1.20\\times10^{22}$$, $$0.300\\text{ mol dm}^{-3}$$, $$0.650\\text{ g}$$",
         },
         {
           correct: false,
           label:
-            "$$6.02\\times10^{21}$$, $$0.600\\text{ mol dm}^{-3}$$, $$80.0\\text{ cm}^3$$",
+            "$$6.02\\times10^{21}$$, $$0.300\\text{ mol dm}^{-3}$$, $$0.650\\text{ g}$$",
         },
         {
           correct: false,
           label:
-            "$$1.20\\times10^{22}$$, $$0.600\\text{ mol dm}^{-3}$$, $$40.0\\text{ cm}^3$$",
+            "$$1.20\\times10^{22}$$, $$0.300\\text{ mol dm}^{-3}$$, $$1.30\\text{ g}$$",
         },
       ],
     },

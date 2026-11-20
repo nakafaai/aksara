@@ -13,22 +13,22 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "$$240\\text{ cm}^3$$, $$8.00\\text{ cm}^3\\text{ s}^{-1}$$, $$50.0\\text{ cm}^3$$",
+            "$$240\\text{ cm}^3$$, $$8.00\\text{ cm}^3\\text{ s}^{-1}$$, $$0.200\\text{ mol dm}^{-3}$$",
         },
         {
           correct: true,
           label:
-            "$$120\\text{ cm}^3$$, $$8.00\\text{ cm}^3\\text{ s}^{-1}$$, $$50.0\\text{ cm}^3$$",
+            "$$120\\text{ cm}^3$$, $$8.00\\text{ cm}^3\\text{ s}^{-1}$$, $$0.200\\text{ mol dm}^{-3}$$",
         },
         {
           correct: false,
           label:
-            "$$120\\text{ cm}^3$$, $$4.00\\text{ cm}^3\\text{ s}^{-1}$$, $$50.0\\text{ cm}^3$$",
+            "$$120\\text{ cm}^3$$, $$4.00\\text{ cm}^3\\text{ s}^{-1}$$, $$0.200\\text{ mol dm}^{-3}$$",
         },
         {
           correct: false,
           label:
-            "$$120\\text{ cm}^3$$, $$8.00\\text{ cm}^3\\text{ s}^{-1}$$, $$75.0\\text{ cm}^3$$",
+            "$$120\\text{ cm}^3$$, $$8.00\\text{ cm}^3\\text{ s}^{-1}$$, $$0.300\\text{ mol dm}^{-3}$$",
         },
       ],
     },
@@ -38,22 +38,22 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "$$240\\text{ cm}^3$$, $$8.00\\text{ cm}^3\\text{ s}^{-1}$$, $$50.0\\text{ cm}^3$$",
+            "$$240\\text{ cm}^3$$, $$8.00\\text{ cm}^3\\text{ s}^{-1}$$, $$0.200\\text{ mol dm}^{-3}$$",
         },
         {
           correct: true,
           label:
-            "$$120\\text{ cm}^3$$, $$8.00\\text{ cm}^3\\text{ s}^{-1}$$, $$50.0\\text{ cm}^3$$",
+            "$$120\\text{ cm}^3$$, $$8.00\\text{ cm}^3\\text{ s}^{-1}$$, $$0.200\\text{ mol dm}^{-3}$$",
         },
         {
           correct: false,
           label:
-            "$$120\\text{ cm}^3$$, $$4.00\\text{ cm}^3\\text{ s}^{-1}$$, $$50.0\\text{ cm}^3$$",
+            "$$120\\text{ cm}^3$$, $$4.00\\text{ cm}^3\\text{ s}^{-1}$$, $$0.200\\text{ mol dm}^{-3}$$",
         },
         {
           correct: false,
           label:
-            "$$120\\text{ cm}^3$$, $$8.00\\text{ cm}^3\\text{ s}^{-1}$$, $$75.0\\text{ cm}^3$$",
+            "$$120\\text{ cm}^3$$, $$8.00\\text{ cm}^3\\text{ s}^{-1}$$, $$0.300\\text{ mol dm}^{-3}$$",
         },
       ],
     },

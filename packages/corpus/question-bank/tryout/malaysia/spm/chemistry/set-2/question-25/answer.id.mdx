@@ -1,25 +1,44 @@
-# Katode menghitung elektron, seng memasok sebagian, tembaga yang larut memasok sisanya, dan selisihnya meninggalkan elektrolit
+# Katode menghitung elektron
 
-Katode bertambah <InlineMath math="0{,}100\text{ mol}" /> tembaga, jadi <InlineMath math="0{,}200\text{ mol}" /> elektron mengalir. Sengnya <InlineMath math="0{,}0100\text{ mol}" /> dan memberi <InlineMath math="0{,}0200\text{ mol}" /> di antaranya, jadi **tembaga yang larut hanya memberi <InlineMath math="0{,}180\text{ mol}" />**, <InlineMath math="0{,}0900\text{ mol}" />, <InlineMath math="5{,}76\text{ g}" />. Lumpur anode adalah sisanya, <InlineMath math="7{,}00-5{,}76-0{,}650=0{,}590\text{ g}" />. **Katode mengambil <InlineMath math="0{,}100\text{ mol}" /> ion tembaga(II) tetapi anode mengembalikan <InlineMath math="0{,}0900\text{ mol}" />**, jadi <InlineMath math="0{,}250" /> turun ke <InlineMath math="0{,}240\text{ mol}" />, <InlineMath math="0{,}240\div0{,}500=0{,}480\text{ mol dm}^{-3}" />.
+Hanya tembaga yang menempel di katode, jadi pertambahan massanya adalah angka paling bersih di sel ini. Massa <InlineMath math="6{,}40\text{ g}" /> itu adalah <InlineMath math="0{,}100\text{ mol}" /> tembaga, artinya **<InlineMath math="0{,}200\text{ mol}" /> elektron sudah mengalir di rangkaian**. Tiap elektron itu dilepas di anode oleh atom logam yang larut.
 
-<Chart
-  title={<>Massa yang hilang dari anode</>}
-  description={<>Anode kehilangan <InlineMath math="5{,}76\text{ g}" /> tembaga, <InlineMath math="0{,}650\text{ g}" /> seng, dan <InlineMath math="0{,}590\text{ g}" /> lumpur anode.</>}
-  bars="apart"
-  categories={["Tembaga", "Seng", "Lumpur anode"]}
-  series={[
-    { label: "Massa", mark: "bar", values: [5.76, 0.650, 0.590] },
-  ]}
-  valueLabel="Massa (g)"
+<ElectrolysisLab
+  title={<>Muatan yang sama lewat tembaga murni</>}
+  description={<>Dengan <InlineMath math="0{,}200\text{ mol}" /> elektron, anode tembaga murni akan kehilangan tepat <InlineMath math="6{,}40\text{ g}" /> yang diterima katode, dan ion tembaga(II) tetap.</>}
+  cells={[{ electrode: "copper", electrolyte: "copper-sulfate" }]}
+  electrons={0.2}
+  showProducts
+  labels={{
+    anode: "Anode",
+    atAnode: <>Di anode</>,
+    atCathode: <>Di katode</>,
+    battery: "Baterai",
+    cathode: "Katode",
+    cells: [<>Larutan tembaga(II) sulfat, elektrode tembaga</>],
+    electrons: <>Elektron yang mengalir</>,
+    ph: <>pH elektrolit</>,
+    trends: { falls: <>turun</>, rises: <>naik</>, steady: <>tetap</> },
+    view: "Pemurnian tembaga secara elektrolisis",
+  }}
 />
 
+Simulasi ini mengalirkan muatan yang sama lewat tembaga murni. Di sana anode kehilangan persis yang diterima katode dan warna birunya tetap. Anode tidak murni melanggar keduanya, dan sisa soal ini membahas seberapa besar.
+
+# Seng mengambil sebagian elektron
+
+Seng lebih reaktif dari tembaga, jadi ia ikut larut bersama tembaga. Seng sebanyak <InlineMath math="0{,}0100\text{ mol}" /> memasok <InlineMath math="0{,}0200\text{ mol}" /> elektron, dan **tembaga hanya memasok sisa <InlineMath math="0{,}180\text{ mol}" />**, yaitu <InlineMath math="0{,}0900\text{ mol}" /> atom atau <InlineMath math="5{,}76\text{ g}" />. Menulis <InlineMath math="6{,}40\text{ g}" /> untuk tembaga yang larut sama saja menganggap anodenya murni.
+
+# Isi massa yang hilang dari anode
+
+Massa <InlineMath math="7{,}00\text{ g}" /> itu meninggalkan anode lewat tiga jalan: tembaga ke larutan, seng ke larutan, dan perak ke dasar sel. **Apa pun yang bukan tembaga atau seng adalah lumpur anode**, jadi <InlineMath math="0{,}590\text{ g}" />. Menyebut <InlineMath math="1{,}24\text{ g}" /> sebagai lumpur mencampur seng dengan perak, padahal ion seng terlarut, bukan tergeletak di bawah anode.
+
+# Kenapa birunya sedikit memudar
+
+Anode memasukkan <InlineMath math="0{,}0900\text{ mol}" /> ion tembaga(II) ke larutan sementara katode menarik keluar <InlineMath math="0{,}100\text{ mol}" />. **Kekurangan <InlineMath math="0{,}0100\text{ mol}" /> itu adalah bagian seng**, dan kini ion seng mengisi tempat itu. Dalam <InlineMath math="0{,}500\text{ dm}^3" />, ion tembaga(II) turun dari <InlineMath math="0{,}250\text{ mol}" /> menjadi <InlineMath math="0{,}240\text{ mol}" />.
+
 <BlockMath math="\begin{aligned}
-n(e^-)&=2\times\tfrac{6{,}40}{64}=0{,}200,\quad m(\text{Cu})_{\text{anode}}=\tfrac{0{,}200-2\times\tfrac{0{,}650}{65}}{2}\times64=5{,}76\text{ g}\\
-m(\text{sludge})&=7{,}00-5{,}76-0{,}650=0{,}590\text{ g},\quad c(\text{Cu}^{2+})=\tfrac{0{,}250-0{,}100+0{,}0900}{0{,}500}=0{,}480\text{ mol dm}^{-3}
+n(e^-)&=2\times\tfrac{6{,}40}{64}=0{,}200\text{ mol},\quad m(\text{Cu})'=\tfrac{0{,}200-2\times\frac{0{,}650}{65}}{2}\times64=5{,}76\text{ g}\\
+m(\text{Ag})&=7{,}00-5{,}76-0{,}650=0{,}590\text{ g},\quad c(\text{Cu}^{2+})=\tfrac{0{,}250+0{,}0900-0{,}100}{0{,}500}=0{,}480\text{ mol dm}^{-3}
 \end{aligned}" />
 
-# Kenapa pilihan lain salah
-
-- <InlineMath math="6{,}40\text{ g}" /> menyamakan tembaga yang larut dengan tembaga yang terendap, padahal **seng juga memberi elektron di anode**.
-- <InlineMath math="0{,}500\text{ mol dm}^{-3}" /> mempertahankan ion tembaga(II), padahal ion seng menggantikan sebagian di antaranya.
-- <InlineMath math="1{,}24\text{ g}" /> menghitung seng sebagai lumpur anode, padahal seng larut ke dalam elektrolit.
+Konsentrasi tetap <InlineMath math="0{,}500\text{ mol dm}^{-3}" /> hanya berlaku untuk sel tembaga murni di simulasi, bukan sel ini.

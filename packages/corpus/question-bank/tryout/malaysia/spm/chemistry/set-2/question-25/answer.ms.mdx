@@ -1,25 +1,44 @@
-# Katod mengira elektron, zink membekalkan sebahagian, kuprum yang melarut membekalkan bakinya, dan bezanya meninggalkan elektrolit
+# Katod mengira elektron
 
-Katod bertambah <InlineMath math="0.100\text{ mol}" /> kuprum, jadi <InlineMath math="0.200\text{ mol}" /> elektron mengalir. Zink ialah <InlineMath math="0.0100\text{ mol}" /> dan memberi <InlineMath math="0.0200\text{ mol}" /> daripadanya, jadi **kuprum yang melarut hanya memberi <InlineMath math="0.180\text{ mol}" />**, <InlineMath math="0.0900\text{ mol}" />, <InlineMath math="5.76\text{ g}" />. Enapcemar ialah bakinya, <InlineMath math="7.00-5.76-0.650=0.590\text{ g}" />. **Katod mengambil <InlineMath math="0.100\text{ mol}" /> ion kuprum(II) tetapi anod memulangkan <InlineMath math="0.0900\text{ mol}" />**, jadi <InlineMath math="0.250" /> turun kepada <InlineMath math="0.240\text{ mol}" />, <InlineMath math="0.240\div0.500=0.480\text{ mol dm}^{-3}" />.
+Hanya kuprum yang terenap di katod, jadi pertambahan jisimnya ialah nombor paling bersih dalam sel ini. Jisim <InlineMath math="6.40\text{ g}" /> itu ialah <InlineMath math="0.100\text{ mol}" /> kuprum, maksudnya **<InlineMath math="0.200\text{ mol}" /> elektron telah mengalir dalam litar**. Setiap satu daripadanya dilepaskan di anod oleh atom logam yang melarut.
 
-<Chart
-  title={<>Jisim yang hilang daripada anod</>}
-  description={<>Anod kehilangan <InlineMath math="5.76\text{ g}" /> kuprum, <InlineMath math="0.650\text{ g}" /> zink dan <InlineMath math="0.590\text{ g}" /> enapcemar.</>}
-  bars="apart"
-  categories={["Kuprum", "Zink", "Enapcemar"]}
-  series={[
-    { label: "Jisim", mark: "bar", values: [5.76, 0.650, 0.590] },
-  ]}
-  valueLabel="Jisim (g)"
+<ElectrolysisLab
+  title={<>Cas yang sama melalui kuprum tulen</>}
+  description={<>Dengan <InlineMath math="0.200\text{ mol}" /> elektron, anod kuprum tulen akan kehilangan tepat <InlineMath math="6.40\text{ g}" /> yang diterima katod, dan ion kuprum(II) tidak berubah.</>}
+  cells={[{ electrode: "copper", electrolyte: "copper-sulfate" }]}
+  electrons={0.2}
+  showProducts
+  labels={{
+    anode: "Anod",
+    atAnode: <>Di anod</>,
+    atCathode: <>Di katod</>,
+    battery: "Bateri",
+    cathode: "Katod",
+    cells: [<>Larutan kuprum(II) sulfat, elektrod kuprum</>],
+    electrons: <>Elektron yang mengalir</>,
+    ph: <>pH elektrolit</>,
+    trends: { falls: <>berkurang</>, rises: <>bertambah</>, steady: <>tidak berubah</> },
+    view: "Penulenan kuprum secara elektrolisis",
+  }}
 />
 
+Simulasi ini mengalirkan cas yang sama melalui kuprum tulen. Di situ anod kehilangan apa yang diterima katod dan warna biru tidak berubah. Anod tidak tulen melanggar kedua-dua perkara itu, dan baki soalan ini ialah tentang berapa banyak.
+
+# Zink mengambil sebahagian elektron
+
+Zink lebih reaktif daripada kuprum, jadi ia melarut bersama kuprum. Zink sebanyak <InlineMath math="0.0100\text{ mol}" /> membekalkan <InlineMath math="0.0200\text{ mol}" /> elektron, dan **kuprum hanya membekalkan baki <InlineMath math="0.180\text{ mol}" />**, iaitu <InlineMath math="0.0900\text{ mol}" /> atom atau <InlineMath math="5.76\text{ g}" />. Menulis <InlineMath math="6.40\text{ g}" /> bagi kuprum yang melarut menganggap anod itu tulen.
+
+# Isi jisim yang hilang daripada anod
+
+Jisim <InlineMath math="7.00\text{ g}" /> itu meninggalkan anod melalui tiga jalan: kuprum ke dalam larutan, zink ke dalam larutan, dan argentum ke dasar sel. **Apa sahaja yang bukan kuprum atau zink ialah enapcemar**, jadi <InlineMath math="0.590\text{ g}" />. Menganggap <InlineMath math="1.24\text{ g}" /> sebagai enapcemar mencampurkan zink dengan argentum, sedangkan ion zink terlarut dan tidak berada di bawah anod.
+
+# Kenapa warna biru pudar sedikit
+
+Anod memasukkan <InlineMath math="0.0900\text{ mol}" /> ion kuprum(II) ke dalam larutan manakala katod mengeluarkan <InlineMath math="0.100\text{ mol}" />. **Kekurangan <InlineMath math="0.0100\text{ mol}" /> itu ialah bahagian zink**, dan ion zink kini mengisi tempat itu. Dalam <InlineMath math="0.500\text{ dm}^3" />, ion kuprum(II) turun daripada <InlineMath math="0.250\text{ mol}" /> kepada <InlineMath math="0.240\text{ mol}" />.
+
 <BlockMath math="\begin{aligned}
-n(e^-)&=2\times\tfrac{6.40}{64}=0.200,\quad m(\text{Cu})_{\text{anode}}=\tfrac{0.200-2\times\tfrac{0.650}{65}}{2}\times64=5.76\text{ g}\\
-m(\text{sludge})&=7.00-5.76-0.650=0.590\text{ g},\quad c(\text{Cu}^{2+})=\tfrac{0.250-0.100+0.0900}{0.500}=0.480\text{ mol dm}^{-3}
+n(e^-)&=2\times\tfrac{6.40}{64}=0.200\text{ mol},\quad m(\text{Cu})'=\tfrac{0.200-2\times\frac{0.650}{65}}{2}\times64=5.76\text{ g}\\
+m(\text{Ag})&=7.00-5.76-0.650=0.590\text{ g},\quad c(\text{Cu}^{2+})=\tfrac{0.250+0.0900-0.100}{0.500}=0.480\text{ mol dm}^{-3}
 \end{aligned}" />
 
-# Kenapa pilihan lain salah
-
-- <InlineMath math="6.40\text{ g}" /> menyamakan kuprum yang melarut dengan kuprum yang dienapkan, walhal **zink juga memberi elektron di anod**.
-- <InlineMath math="0.500\text{ mol dm}^{-3}" /> mengekalkan ion kuprum(II), walhal ion zink mengambil tempat sebahagian daripadanya.
-- <InlineMath math="1.24\text{ g}" /> mengira zink sebagai enapcemar, walhal zink melarut ke dalam elektrolit.
+Kepekatan tetap <InlineMath math="0.500\text{ mol dm}^{-3}" /> hanya milik sel kuprum tulen dalam simulasi itu, bukan sel ini.

@@ -1,25 +1,34 @@
-# Only PVC gives hydrogen chloride, so the titration counts the PVC, the mass gives the polyethene, and both give carbon dioxide and water
+# Chlorine comes out as an acid you can titrate
 
-A portion has <InlineMath math="0.0100\text{ mol}" /> of hydrogen chloride, so **the whole solution has <InlineMath math="0.100\text{ mol}" />**, one per PVC unit, <InlineMath math="0.100\times62.5=6.25\text{ g}" />. The polyethene is <InlineMath math="2.80\text{ g}" />, <InlineMath math="0.100\text{ mol}" /> of units. **Both polymers give two carbon dioxide per unit**, <InlineMath math="0.400\text{ mol}" />, <InlineMath math="9.60\text{ dm}^3" />. The water is two per polyethene unit and one per PVC unit, <InlineMath math="0.300\times18=5.40\text{ g}" />.
+Only the PVC carries chlorine, and **each PVC unit sends exactly one hydrogen chloride into the flask**. A portion takes <InlineMath math="0.0100\text{ mol}" /> of alkali, and the flask holds ten portions, so the mixture had <InlineMath math="0.100\text{ mol}" /> of PVC units, <InlineMath math="M_r=62.5" />, or <InlineMath math="6.25\text{ g}" />. The polyethene is the other <InlineMath math="2.80\text{ g}" />, and an answer of <InlineMath math="2.80\text{ g}" /> for the PVC has the two polymers swapped.
 
-<Chart
-  title={<>Units in the mixture</>}
-  description={<>The mixture holds <InlineMath math="0.100\text{ mol}" /> of polyethene units and <InlineMath math="0.100\text{ mol}" /> of PVC units.</>}
-  bars="apart"
-  categories={["Polyethene units", "PVC units"]}
-  series={[
-    { label: "Amount", mark: "bar", values: [0.100, 0.100] },
+<MoleculeShapeLab
+  title={<>The two monomers and hydrogen chloride</>}
+  description={<>Ethene and chloroethene are the monomers. Burning a PVC unit sends its chlorine away with one hydrogen as hydrogen chloride, the molecule the alkali titrates.</>}
+  molecules={[
+    { id: "ethene", name: "ethene" },
+    { id: "chloroethene", name: "chloroethene" },
+    { id: "hydrogen-chloride", name: "hydrogen chloride" },
   ]}
-  valueLabel="Amount (mol)"
+  labels={{
+    atoms: <>Atoms</>,
+    choose: "Choose a molecule",
+    fill: <>Space-filling model</>,
+    formula: <>Formula</>,
+    mass: <>Relative molecular mass</>,
+    shape: <>Bond angle</>,
+    view: "Monomers and hydrogen chloride",
+  }}
 />
 
+# Carbon and hydrogen from two kinds of unit
+
+Polyethene, <InlineMath math="M_r=28" /> per unit, is also <InlineMath math="0.100\text{ mol}" /> of units. **Both units hold two carbon atoms**, so <InlineMath math="0.200\text{ mol}" /> of units burn to <InlineMath math="0.400\text{ mol}" /> of carbon dioxide, <InlineMath math="9.60\text{ dm}^3" />. One carbon dioxide per unit would give <InlineMath math="4.80\text{ dm}^3" />.
+
+The hydrogen needs more care. A polyethene unit has four hydrogen atoms and makes two water molecules. A PVC unit has three, but one leaves with the chlorine, so it makes only one water. That totals <InlineMath math="0.300\text{ mol}" />, <InlineMath math="5.40\text{ g}" />. Sending all three PVC hydrogens into water gives <InlineMath math="6.30\text{ g}" />, and <InlineMath math="1.80\text{ g}" /> is the PVC's water alone.
+
 <BlockMath math="\begin{aligned}
-n(\text{PVC unit})&=10\times0.100\times0.100=0.100\ \Rightarrow\ m=6.25\text{ g},\quad n(\text{PE unit})=\tfrac{9.05-6.25}{28}=0.100\\
-V(\text{CO}_2)&=(2\times0.100+2\times0.100)\times24=9.60\text{ dm}^3,\quad m(\text{H}_2\text{O})=(0.200+0.100)\times18=5.40\text{ g}
+n(\text{HCl})&=\tfrac{250}{25.0}\times0.100\times0.100=0.100\text{ mol}\ \Rightarrow\ m(\text{PVC})=0.100\times62.5=6.25\text{ g}\\
+n(\text{C}_2\text{H}_4)&=\tfrac{9.05-6.25}{28}=0.100,\quad V(\text{CO}_2)=2\times0.200\times24=9.60\text{ dm}^3\\
+n(\text{H}_2\text{O})&=2\times0.100+1\times0.100=0.300\ \Rightarrow\ m=0.300\times18=5.40\text{ g}
 \end{aligned}" />
-
-# Why the other options are wrong
-
-- <InlineMath math="4.80\text{ dm}^3" /> and <InlineMath math="1.80\text{ g}" /> count only the PVC, but **the polyethene burns to carbon dioxide and water too**.
-- <InlineMath math="2.80\text{ g}" /> is the mass of the polyethene, but the question asks for the PVC.
-- <InlineMath math="6.30\text{ g}" /> turns all three hydrogens of each PVC unit into water, but one leaves as hydrogen chloride.

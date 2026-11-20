@@ -1,26 +1,42 @@
-# Tentukan larutan yang habis, titrasi sepersepuluh karbonat yang disisakannya, dan bandingkan kristal dengan yang bisa diberikan tembaga itu
+# Ion tembaga habis duluan di gelas kimia
 
-Ion tembaga(II)-nya <InlineMath math="0{,}0200\text{ mol}" /> dan ion karbonatnya <InlineMath math="0{,}0240\text{ mol}" />, jadi **tembaga(II) sulfat yang habis**, memberi <InlineMath math="0{,}0200\times123{,}5=2{,}47\text{ g}" /> tembaga(II) karbonat dan menyisakan <InlineMath math="0{,}00400\text{ mol}" /> natrium karbonat. Satu porsi memuat sepersepuluhnya, <InlineMath math="0{,}000400\text{ mol}" />, dan **tiap karbonat mengambil dua asam**, <InlineMath math="0{,}000800\div0{,}0100=0{,}0800\text{ dm}^3=80{,}0\text{ cm}^3" />. <InlineMath math="0{,}0200\text{ mol}" /> tembaga bisa memberi <InlineMath math="0{,}0200\times249{,}5=4{,}99\text{ g}" /> kristal, jadi rendemennya <InlineMath math="\tfrac{4{,}24}{4{,}99}\times100=85{,}0\%" />.
+Gelas kimia itu menerima <InlineMath math="0{,}0200\text{ mol}" /> tembaga(II) sulfat dan <InlineMath math="0{,}0240\text{ mol}" /> natrium karbonat, dan persamaannya memasangkan keduanya satu lawan satu. **Ion tembaga yang habis duluan**, jadi <InlineMath math="0{,}0200\text{ mol}" /> tembaga(II) karbonat, <InlineMath math="M_r=123{,}5" />, mengendap sebanyak <InlineMath math="2{,}47\text{ g}" />, dan <InlineMath math="0{,}00400\text{ mol}" /> karbonat tetap terlarut.
 
-<Chart
-  title={<>Ion karbonat</>}
-  description={<>Ion tembaga(II) memakai <InlineMath math="0{,}0200\text{ mol}" /> karbonat dan <InlineMath math="0{,}00400\text{ mol}" /> tersisa dalam filtrat.</>}
-  bars="apart"
-  categories={["Terpakai oleh ion tembaga(II)", "Sisa dalam filtrat"]}
-  series={[
-    { label: "Jumlah zat", mark: "bar", values: [0.0200, 0.00400] },
-  ]}
-  valueLabel="Jumlah zat (mol)"
+Endapan <InlineMath math="2{,}96\text{ g}" /> butuh <InlineMath math="0{,}0240\text{ mol}" /> tembaga, lebih banyak dari yang dipasok tembaga(II) sulfat. Kekeliruan yang sama memberi filtrat tanpa karbonat, gas <InlineMath math="0\text{ cm}^3" />, dan rendemen <InlineMath math="70{,}8\%" /> yang diukur terhadap kristal yang mustahil terbentuk.
+
+<Mermaid
+  title={<>Karbonat terbagi antara kertas saring dan filtrat</>}
+  description={<>Ion tembaga membawa <InlineMath math="20{,}0\text{ mmol}" /> karbonat ke dalam endapan. Sisanya tetap di filtrat dan hanya karbonat itu yang pernah bertemu asam.</>}
+  chart={`
+    flowchart TD
+      N0["20,0 mmol Cu²⁺"]
+      N1["24,0 mmol CO₃²⁻"]
+      N2["20,0 mmol CuCO₃: 2,47 g"]
+      N3["4,00 mmol CO₃²⁻ di filtrat"]
+      N4["4,00 mmol CO₂: 96,0 cm³"]
+      N5["20,0 mmol CuO"]
+      N6["Paling banyak 20,0 mmol CuSO₄·5H₂O: 4,99 g"]
+      N0 --> N2
+      N1 --> N2
+      N1 --> N3
+      N3 --> N4
+      N2 --> N5
+      N5 --> N6
+  `}
 />
+
+# Hanya sisa karbonat yang berbuih
+
+Endapannya tertahan di kertas saring, jadi asam hanya bertemu <InlineMath math="0{,}00400\text{ mol}" /> di filtrat. **Satu ion karbonat memberi satu karbon dioksida**, jadi gasnya <InlineMath math="96{,}0\text{ cm}^3" />. Koefisien dua itu milik asam, dan membagi dengannya menghasilkan pilihan <InlineMath math="48{,}0\text{ cm}^3" />. Mengirim seluruh <InlineMath math="0{,}0240\text{ mol}" /> karbonat ke asam memberi <InlineMath math="576\text{ cm}^3" />, padahal sebagian besar karbonat itu sudah meninggalkan larutan bersama endapan.
+
+# Mengikuti tembaga sampai ke kristal
+
+Pemanasan, pelarutan, dan kristalisasi tidak menghilangkan satu atom tembaga pun dalam perhitungan, jadi **tiap mol tembaga(II) karbonat bisa menjadi satu mol <InlineMath math="\text{CuSO}_4\cdot5\text{H}_2\text{O}" />**, <InlineMath math="M_r=249{,}5" />. Batas atasnya <InlineMath math="4{,}99\text{ g}" />, dan <InlineMath math="4{,}24\text{ g}" /> yang terkumpul adalah <InlineMath math="85{,}0\%" /> darinya.
 
 <BlockMath math="\begin{aligned}
 n(\text{Cu}^{2+})&=0{,}0200<n(\text{CO}_3^{2-})=0{,}0240\ \Rightarrow\ m(\text{CuCO}_3)=0{,}0200\times123{,}5=2{,}47\text{ g}\\
-V(\text{HCl})&=\tfrac{2\times(0{,}0240-0{,}0200)\div10}{0{,}0100}=0{,}0800\text{ dm}^3=80{,}0\text{ cm}^3\\
-\text{yield}&=\tfrac{4{,}24}{0{,}0200\times249{,}5}\times100=85{,}0\%
+V(\text{CO}_2)&=(0{,}0240-0{,}0200)\times24\,000=96{,}0\text{ cm}^3\\
+m_{\max}&=0{,}0200\times249{,}5=4{,}99\text{ g},\quad \tfrac{4{,}24}{4{,}99}\times100=85{,}0\%
 \end{aligned}" />
 
-# Kenapa pilihan lain salah
-
-- <InlineMath math="2{,}96\text{ g}" /> dan <InlineMath math="70{,}8\%" /> membiarkan natrium karbonat yang menentukan, padahal hanya ada <InlineMath math="0{,}0200\text{ mol}" /> ion tembaga(II), jadi karbonat tersisa.
-- <InlineMath math="40{,}0\text{ cm}^3" /> membiarkan tiap karbonat mengambil satu asam, padahal persamaannya memakai dua.
-- <InlineMath math="800\text{ cm}^3" /> menitrasi semua karbonat sisa, padahal **porsinya hanya sepersepuluh filtrat**.
+Lima molekul air itu penting di sini. Tanpa air di massa rumusnya, batas atasnya turun menjadi <InlineMath math="3{,}19\text{ g}" />, lebih kecil dari yang benar-benar dikumpulkan siswa, tanda jelas ada yang keliru.

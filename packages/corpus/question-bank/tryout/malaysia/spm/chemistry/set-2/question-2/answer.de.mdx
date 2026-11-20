@@ -1,26 +1,32 @@
-# Gewichte die Isotope, lass den Wasserstoff ausgehen, verfolge jedes Chloratom in seinen eigenen Chlorwasserstoff und schick das übrige Chlor zum Iodid
+# Die beiden Peaks lesen
 
-Die relative Atommasse ist <InlineMath math="0{,}75\times35+0{,}25\times37=35{,}5" />. Der Wasserstoff sind <InlineMath math="0{,}100\text{ mol}" /> und das Chlor <InlineMath math="0{,}150\text{ mol}" />, also **geht der Wasserstoff aus** und bildet <InlineMath math="0{,}200\text{ mol}" /> Chlorwasserstoff, einen je verbrauchtem Chloratom. **Ein Viertel dieser Atome ist <InlineMath math="^{37}\text{Cl}" />**, <InlineMath math="0{,}0500\text{ mol}" /> <InlineMath math="\text{H}^{37}\text{Cl}" />, <InlineMath math="3{,}01\times10^{22}" />. Die übrigen <InlineMath math="0{,}0500\text{ mol}" /> Chlor setzen ebenso viel Iod frei, <InlineMath math="0{,}0500\times254=12{,}7\text{ g}" />.
+Die Peaks sind <InlineMath math="100" /> und <InlineMath math="33{,}3" /> hoch, also **kommen auf jedes Chlor-37-Atom drei Chlor-35-Atome**. Das sind <InlineMath math="75\%" /> und <InlineMath math="25\%" />, und der gewichtete Mittelwert ist <InlineMath math="35{,}5" />. Wer die beiden Massen ohne ihre Häufigkeit mittelt, erhält <InlineMath math="36{,}0" /> und tut so, als wären beide Isotope gleich häufig.
 
-<Chart
-  title={<>Gase in der Reaktion</>}
-  description={<>Die <InlineMath math="0{,}100\text{ mol}" /> Wasserstoff treffen auf <InlineMath math="0{,}150\text{ mol}" /> Chlor, und <InlineMath math="0{,}0500\text{ mol}" /> Chlor bleiben für das Iodid.</>}
-  bars="apart"
-  categories={["Wasserstoff", "Chlor", "Übriges Chlor"]}
-  series={[
-    { label: "Stoffmenge", mark: "bar", values: [0.100, 0.150, 0.0500] },
-  ]}
-  valueLabel="Stoffmenge (mol)"
+<MassSpectrometerLab
+  title={<>Chlorionen im Magnetfeld</>}
+  description={<>Die leichteren Chlor-35-Ionen laufen auf einer engeren Bahn als die Chlor-37-Ionen, und der Detektor zählt drei der ersten auf eines der zweiten.</>}
+  samples={["chlorine"]}
+  labels={{
+    average: <>Mittlere relative Atommasse</>,
+    choose: "Element wählen",
+    isotopes: <>Isotope und Häufigkeit</>,
+    north: "N",
+    radius: <>Bahnradius</>,
+    ratio: <>Verhältnis der Radien</>,
+    south: "S",
+    view: "Massenspektrometer",
+  }}
 />
 
+# Welches Gas aufgebraucht wird
+
+Wasserstoff sind <InlineMath math="2{,}40\div24=0{,}100\text{ mol}" /> und Chlor <InlineMath math="0{,}150\text{ mol}" />, beide reagieren eins zu eins, also **geht der Wasserstoff aus**, und es entstehen <InlineMath math="0{,}200\text{ mol}" /> Chlorwasserstoff. Jedes Molekül hat ein Chloratom, und ein Viertel davon ist Chlor-37. Ein Viertel der Chloratome aller <InlineMath math="0{,}150\text{ mol}" /> Chlor ergibt <InlineMath math="4{,}52\times10^{22}" />, als hätte jedes Chlormolekül reagiert.
+
+# Was das übrige Chlor freisetzt
+
+Die übrigen <InlineMath math="0{,}0500\text{ mol}" /> Chlor setzen ebenso viele Iodmoleküle frei, und **ein Iodmolekül hat <InlineMath math="M_r=254" />**. Mit <InlineMath math="127" /> für ein einzelnes Iodatom halbiert sich die Masse auf <InlineMath math="6{,}35\text{ g}" />.
+
 <BlockMath math="\begin{aligned}
-A_r&=0{,}75\times35+0{,}25\times37=35{,}5\\
-n(\text{H}_2)&=0{,}100<n(\text{Cl}_2)=0{,}150\ \Rightarrow\ N(\text{H}^{37}\text{Cl})=0{,}25\times0{,}200\times6{,}02\times10^{23}=3{,}01\times10^{22}\\
-m(\text{I}_2)&=(0{,}150-0{,}100)\times254=12{,}7\text{ g}
+A_r&=\tfrac{35\times100+37\times33{,}3}{133{,}3}=35{,}5,\quad n(\text{H}_2)=0{,}100<n(\text{Cl}_2)=0{,}150\\
+N(\text{H}^{37}\text{Cl})&=0{,}250\times0{,}200\times6{,}02\times10^{23}=3{,}01\times10^{22},\quad m(\text{I}_2)=0{,}0500\times254=12{,}7\text{ g}
 \end{aligned}" />
-
-# Warum die anderen Antworten falsch sind
-
-- <InlineMath math="36{,}0" /> mittelt die beiden Massen, als wären beide Isotope gleich häufig.
-- <InlineMath math="4{,}52\times10^{22}" /> und <InlineMath math="0\text{ g}" /> lassen das Chlor entscheiden, doch **nur <InlineMath math="0{,}100\text{ mol}" /> Wasserstoff sind da**, also bleibt Chlor übrig.
-- <InlineMath math="6{,}35\text{ g}" /> wiegt das Iod als Atome, <InlineMath math="A_r=127" />, doch es entsteht als <InlineMath math="\text{I}_2" />, <InlineMath math="M_r=254" />.

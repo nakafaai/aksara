@@ -1,26 +1,32 @@
-# Beri pemberat kepada isotop, biarkan hidrogen habis, ikuti setiap atom klorin ke hidrogen kloridanya sendiri, dan hantar klorin berbaki kepada iodida
+# Membaca dua puncak itu
 
-Jisim atom relatif ialah <InlineMath math="0.75\times35+0.25\times37=35.5" />. Hidrogen itu <InlineMath math="0.100\text{ mol}" /> dan klorin <InlineMath math="0.150\text{ mol}" />, jadi **hidrogen yang habis**, menghasilkan <InlineMath math="0.200\text{ mol}" /> hidrogen klorida, satu bagi setiap atom klorin yang digunakan. **Suku daripada atom itu ialah <InlineMath math="^{37}\text{Cl}" />**, <InlineMath math="0.0500\text{ mol}" /> <InlineMath math="\text{H}^{37}\text{Cl}" />, <InlineMath math="3.01\times10^{22}" />. <InlineMath math="0.0500\text{ mol}" /> klorin yang berbaki membebaskan iodin yang sama banyak, <InlineMath math="0.0500\times254=12.7\text{ g}" />.
+Puncak itu setinggi <InlineMath math="100" /> dan <InlineMath math="33.3" />, jadi **tiga atom klorin-35 hadir bagi setiap atom klorin-37**. Itu <InlineMath math="75\%" /> dan <InlineMath math="25\%" />, dan purata berpemberatnya <InlineMath math="35.5" />. Purata dua jisim tanpa kelimpahan memberi <InlineMath math="36.0" />, seolah-olah kedua-dua isotop sama banyak.
 
-<Chart
-  title={<>Gas dalam tindak balas</>}
-  description={<><InlineMath math="0.100\text{ mol}" /> hidrogen bertemu <InlineMath math="0.150\text{ mol}" /> klorin, dan <InlineMath math="0.0500\text{ mol}" /> klorin berbaki untuk iodida.</>}
-  bars="apart"
-  categories={["Hidrogen", "Klorin", "Klorin berbaki"]}
-  series={[
-    { label: "Bilangan mol", mark: "bar", values: [0.100, 0.150, 0.0500] },
-  ]}
-  valueLabel="Bilangan mol (mol)"
+<MassSpectrometerLab
+  title={<>Ion klorin dalam medan magnet</>}
+  description={<>Ion klorin-35 yang lebih ringan membengkok pada lintasan yang lebih ketat daripada ion klorin-37, dan pengesan mengira tiga ion pertama bagi setiap satu ion kedua.</>}
+  samples={["chlorine"]}
+  labels={{
+    average: <>Purata jisim atom relatif</>,
+    choose: "Pilih unsur",
+    isotopes: <>Isotop dan kelimpahannya</>,
+    north: "U",
+    radius: <>Jejari lintasan</>,
+    ratio: <>Nisbah jejari</>,
+    south: "S",
+    view: "Spektrometer jisim",
+  }}
 />
 
+# Gas yang habis digunakan
+
+Hidrogen ialah <InlineMath math="2.40\div24=0.100\text{ mol}" /> dan klorin <InlineMath math="0.150\text{ mol}" />, dan kedua-duanya bertindak balas satu dengan satu, jadi **hidrogen yang habis** dan <InlineMath math="0.200\text{ mol}" /> hidrogen klorida terbentuk. Setiap molekul ada satu atom klorin, dan suku daripada atom itu ialah klorin-37. Mengira suku atom klorin dalam semua <InlineMath math="0.150\text{ mol}" /> klorin memberi <InlineMath math="4.52\times10^{22}" />, seolah-olah setiap molekul klorin bertindak balas.
+
+# Apa yang dibebaskan oleh baki klorin
+
+Baki <InlineMath math="0.0500\text{ mol}" /> klorin membebaskan jumlah molekul iodin yang sama, dan **molekul iodin ada <InlineMath math="M_r=254" />**. Menggunakan <InlineMath math="127" /> bagi satu atom iodin membahagi dua jisim itu kepada <InlineMath math="6.35\text{ g}" />.
+
 <BlockMath math="\begin{aligned}
-A_r&=0.75\times35+0.25\times37=35.5\\
-n(\text{H}_2)&=0.100<n(\text{Cl}_2)=0.150\ \Rightarrow\ N(\text{H}^{37}\text{Cl})=0.25\times0.200\times6.02\times10^{23}=3.01\times10^{22}\\
-m(\text{I}_2)&=(0.150-0.100)\times254=12.7\text{ g}
+A_r&=\tfrac{35\times100+37\times33.3}{133.3}=35.5,\quad n(\text{H}_2)=0.100<n(\text{Cl}_2)=0.150\\
+N(\text{H}^{37}\text{Cl})&=0.250\times0.200\times6.02\times10^{23}=3.01\times10^{22},\quad m(\text{I}_2)=0.0500\times254=12.7\text{ g}
 \end{aligned}" />
-
-# Kenapa pilihan lain salah
-
-- <InlineMath math="36.0" /> mempuratakan dua jisim seolah-olah kedua-dua isotop sama banyak.
-- <InlineMath math="4.52\times10^{22}" /> dan <InlineMath math="0\text{ g}" /> membiarkan klorin yang menentukan, walhal **hanya <InlineMath math="0.100\text{ mol}" /> hidrogen yang ada**, jadi klorin berbaki.
-- <InlineMath math="6.35\text{ g}" /> menimbang iodin sebagai atom, <InlineMath math="A_r=127" />, walhal ia terbentuk sebagai <InlineMath math="\text{I}_2" />, <InlineMath math="M_r=254" />.

@@ -1,25 +1,36 @@
-# Two facts split the mixture, the split sets the oxygen used, and the oxygen left becomes twice as many oxide units
+# Carbon atoms tell the two fuels apart
 
-The mixture is <InlineMath math="0.0500\text{ mol}" /> and the carbon dioxide <InlineMath math="0.120\text{ mol}" />. With <InlineMath math="x" /> of methane and <InlineMath math="y" /> of propane, <InlineMath math="x+y=0.0500" /> and <InlineMath math="x+3y=0.120" />, so <InlineMath math="y=0.0350\text{ mol}" />, <InlineMath math="0.840\text{ dm}^3" />, and <InlineMath math="x=0.0150\text{ mol}" />. The oxygen used is <InlineMath math="2x+5y=0.205\text{ mol}" />, <InlineMath math="4.92\text{ dm}^3" />, so <InlineMath math="1.08\text{ dm}^3" />, <InlineMath math="0.0450\text{ mol}" />, is left. **Each oxygen molecule makes two magnesium oxide**, <InlineMath math="0.0900\times40=3.60\text{ g}" />.
+After cooling, the water is liquid, so the alkali only meets carbon dioxide and leftover oxygen. For gases at the same conditions, volumes count molecules, and **a methane molecule carries one carbon atom while a propane molecule carries three**.
 
-<Chart
-  title={<>Oxygen</>}
-  description={<>The gases use <InlineMath math="0.205\text{ mol}" /> of the oxygen and <InlineMath math="0.0450\text{ mol}" /> is left for the magnesium.</>}
-  bars="apart"
-  categories={["Oxygen used by the gases", "Oxygen left for magnesium"]}
-  series={[
-    { label: "Amount", mark: "bar", values: [0.205, 0.0450] },
-  ]}
-  valueLabel="Amount (mol)"
+<MoleculeShapeLab
+  title={<>Methane and propane side by side</>}
+  description={<>One carbon atom against three. That difference sets how much carbon dioxide each volume of fuel makes.</>}
+  molecules={[{ id: "methane", name: "methane" }, { id: "propane", name: "propane" }]}
+  labels={{
+    atoms: <>Atoms</>,
+    choose: "Choose a molecule",
+    fill: <>Space-filling model</>,
+    formula: <>Formula</>,
+    mass: <>Relative molecular mass</>,
+    shape: <>Bond angle</>,
+    view: "Methane and propane",
+  }}
 />
 
+The <InlineMath math="2.88\text{ dm}^3" /> of carbon dioxide from <InlineMath math="1.20\text{ dm}^3" /> of fuel means <InlineMath math="2.40" /> carbon atoms per fuel molecule on average. That sits <InlineMath math="70\%" /> of the way from one to three, so <InlineMath math="70\%" /> of the fuel is propane, <InlineMath math="0.840\text{ dm}^3" />. The <InlineMath math="0.360\text{ dm}^3" /> choice is the methane's share.
+
+# Oxygen the flame leaves behind
+
+Propane is the greedier fuel, **five oxygen per molecule against two for methane**. Together they burn <InlineMath math="4.92\text{ dm}^3" /> and leave <InlineMath math="1.08\text{ dm}^3" />. Taking <InlineMath math="2.88\text{ dm}^3" /> off the oxygen gives <InlineMath math="3.12\text{ dm}^3" />, but the carbon dioxide volume says nothing directly about the oxygen used.
+
+# Magnesium mops up what is left
+
+Each oxygen molecule turns two magnesium atoms into oxide, so **<InlineMath math="0.0450\text{ mol}" /> of oxygen makes <InlineMath math="0.0900\text{ mol}" /> of magnesium oxide**. One oxide per oxygen molecule gives half the mass, <InlineMath math="1.80\text{ g}" />, and the <InlineMath math="10.4\text{ g}" /> choice carries the <InlineMath math="3.12\text{ dm}^3" /> slip into this step.
+
 <BlockMath math="\begin{aligned}
-x+y&=\tfrac{1.20}{24},\quad x+3y=\tfrac{2.88}{24}\ \Rightarrow\ y=0.0350,\quad V(\text{C}_3\text{H}_8)=0.840\text{ dm}^3\\
-V(\text{O}_2)_{\text{left}}&=6.00-0.205\times24=1.08\text{ dm}^3,\quad m(\text{MgO})=2\times0.0450\times40=3.60\text{ g}
+1+2p&=\tfrac{2.88}{1.20}=2.40\ \Rightarrow\ p=0.700,\quad V(\text{C}_3\text{H}_8)=0.700\times1.20=0.840\text{ dm}^3\\
+V(\text{O}_2)'&=6.00-(2\times0.360+5\times0.840)=1.08\text{ dm}^3\\
+m(\text{MgO})&=2\times\tfrac{1.08}{24}\times40=3.60\text{ g}
 \end{aligned}" />
 
-# Why the other options are wrong
-
-- <InlineMath math="1.80\text{ g}" /> makes one magnesium oxide per oxygen molecule, but **each <InlineMath math="\text{O}_2" /> gives two oxide units**.
-- <InlineMath math="3.12\text{ dm}^3" /> subtracts only the oxygen that ends in carbon dioxide, but the water takes oxygen too.
-- <InlineMath math="0.360\text{ dm}^3" /> is the methane, but the question asks for the propane.
+The magnesium never touches the fuel, so the burning matters here only through the oxygen it leaves.

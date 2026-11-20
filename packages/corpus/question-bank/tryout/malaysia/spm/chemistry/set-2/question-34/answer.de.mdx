@@ -1,25 +1,35 @@
-# Das erste Erhitzen misst, was dieser Brenner je Mol wirklich liefert, und dieser Messwert, nicht der anerkannte, skaliert das zweite
+# Brenner und Thermometer ablesen
 
-Das Wasser nimmt <InlineMath math="250\times4{,}2\times15{,}0=15{.}750\text{ J}" /> auf, <InlineMath math="15{,}8\text{ kJ}" />, aus <InlineMath math="0{,}0150\text{ mol}" /> Ethanol, also <InlineMath math="\Delta H=-1050\text{ kJ mol}^{-1}" />. Das zweite Erhitzen braucht <InlineMath math="500\times4{,}2\times20{,}0=42{.}000\text{ J}" />. **Dieselbe Lampe liefert weiterhin nur <InlineMath math="1050\text{ kJ}" /> je Mol**, also <InlineMath math="42{,}0\div1050=0{,}0400\text{ mol}" />, <InlineMath math="0{,}0400\times46=1{,}84\text{ g}" />.
+Der Brenner hat <InlineMath math="186{,}42-185{,}73=0{,}690\text{ g}" /> verloren, also <InlineMath math="0{,}0150\text{ mol}" /> Ethanol, und das Wasser stieg von <InlineMath math="28{,}0^\circ\text{C}" /> auf <InlineMath math="43{,}0^\circ\text{C}" />. **Das Wasser hat <InlineMath math="15{,}8\text{ kJ}" /> aufgenommen**, und dieser Aufbau misst damit <InlineMath math="-1050\text{ kJ mol}^{-1}" />.
+
+<BlockMath math="\begin{aligned}
+Q_1&=250\times4{,}2\times15{,}0=15\,750\text{ J},\quad n=\tfrac{0{,}690}{46}=0{,}0150\text{ mol},\quad \Delta H=-\tfrac{15{,}75}{0{,}0150}=-1050\text{ kJ mol}^{-1}
+\end{aligned}" />
+
+Die Wärme durch die <InlineMath math="0{,}690\text{ g}" /> selbst zu teilen ergibt <InlineMath math="-22{,}8" />, einen Wert pro Gramm, der keine molare Verbrennungsenthalpie sein kann.
+
+# Wie viel der Flamme beim Wasser ankommt
+
+Laut Literaturwert setzen <InlineMath math="0{,}0150\text{ mol}" /> Ethanol <InlineMath math="20{,}6\text{ kJ}" /> frei, das Wasser hat davon aber nur <InlineMath math="15{,}8\text{ kJ}" /> aufgefangen. **Rund <InlineMath math="76{,}6\%" /> der Wärme landen im Wasser**, der Rest erwärmt die Dose, die Luft und den Brenner selbst.
 
 <Chart
-  title={<>Vom Wasser benötigte Wärme</>}
-  description={<>Das erste Erhitzen braucht <InlineMath math="15{,}8\text{ kJ}" /> und das zweite <InlineMath math="42{,}0\text{ kJ}" />.</>}
+  title={<>Freigesetzte und aufgefangene Wärme</>}
+  description={<>In beiden Versuchen fängt das Wasser denselben Anteil der Wärme auf, die das Ethanol laut Literaturwert freisetzt, etwa drei Viertel.</>}
   bars="apart"
-  categories={["Erstes Erhitzen", "Zweites Erhitzen"]}
+  categories={["Versuch I", "Versuch II"]}
   series={[
-    { label: "Wärme", mark: "bar", values: [15.8, 42.0] },
+    { label: "Freigesetzt laut Literaturwert", mark: "bar", values: [20.55, 54.8] },
+    { label: "Vom Wasser aufgenommen", mark: "bar", values: [15.75, 42.0] },
   ]}
   valueLabel="Wärme (kJ)"
 />
 
+# Hochrechnen auf die zweite Erwärmung
+
+Versuch II verlangt <InlineMath math="42{,}0\text{ kJ}" /> für das Wasser. **Bei gleichen Verlusten liefert jedes Mol Ethanol weiterhin nur <InlineMath math="1050\text{ kJ}" /> an das Wasser**, also verbrennt der Brenner <InlineMath math="0{,}0400\text{ mol}" />.
+
 <BlockMath math="\begin{aligned}
-Q_1&=250\times4{,}2\times15{,}0=15{.}750\text{ J},\quad \Delta H=-\tfrac{15{,}75}{0{,}690\div46}=-1050\text{ kJ mol}^{-1}\\
-m&=\tfrac{500\times4{,}2\times20{,}0\div1000}{1050}\times46=1{,}84\text{ g}
+Q_2&=500\times4{,}2\times20{,}0=42\,000\text{ J},\quad m=\tfrac{42{,}0}{1050}\times46=1{,}84\text{ g}
 \end{aligned}" />
 
-# Warum die anderen Antworten falsch sind
-
-- <InlineMath math="1{,}41\text{ g}" /> nimmt den anerkannten Wert <InlineMath math="1370\text{ kJ mol}^{-1}" />, doch **diese Lampe verliert Wärme** und liefert nur <InlineMath math="1050\text{ kJ}" /> je Mol.
-- <InlineMath math="-22{,}8" /> gibt die Wärme je Gramm, doch eine Verbrennungsenthalpie bezieht sich auf ein Mol Brennstoff.
-- <InlineMath math="0{,}920\text{ g}" /> erwärmt nur <InlineMath math="250\text{ g}" /> um <InlineMath math="20{,}0^\circ\text{C}" />, doch das zweite Erhitzen erwärmt <InlineMath math="500\text{ g}" />.
+Der Literaturwert von <InlineMath math="1370\text{ kJ}" /> pro Mol unterstellt stillschweigend einen Brenner ohne Verluste und ergibt <InlineMath math="1{,}41\text{ g}" />. Nur <InlineMath math="250\text{ g}" /> um <InlineMath math="20{,}0^\circ\text{C}" /> zu erwärmen braucht die halbe Wärme, und daher stammen die <InlineMath math="0{,}920\text{ g}" />.

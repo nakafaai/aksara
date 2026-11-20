@@ -1,25 +1,47 @@
-# Take the yield first, then each glucose gives two ethanol and two carbon dioxide, and each ethanol gives one acid
+# Only part of the glucose ferments
 
-The glucose is <InlineMath math="\tfrac{9.00}{180}=0.0500\text{ mol}" />, and **only <InlineMath math="80.0\%" /> reacts**, <InlineMath math="0.0400\text{ mol}" />. **Each glucose gives two of each product**, <InlineMath math="0.0800\text{ mol}" /> of carbon dioxide, <InlineMath math="1.92\text{ dm}^3" />, and <InlineMath math="0.0800\times46=3.68\text{ g}" /> of ethanol. That ethanol gives <InlineMath math="0.0800\text{ mol}" /> of ethanoic acid, a portion holds a tenth, <InlineMath math="0.00800\text{ mol}" />, and <InlineMath math="0.00800\div0.100=0.0800\text{ dm}^3=80.0\text{ cm}^3" />.
+Cut the glucose down to what actually reacts before touching the equation: <InlineMath math="80.0\%" /> of <InlineMath math="9.00\text{ g}" /> is <InlineMath math="7.20\text{ g}" />, which is <InlineMath math="0.0400\text{ mol}" /> at <InlineMath math="M_r=180" />. **Using all <InlineMath math="9.00\text{ g}" /> inflates every later number by a quarter**, and that is how <InlineMath math="2.40\text{ dm}^3" />, <InlineMath math="4.60\text{ g}" /> and <InlineMath math="1.20\text{ dm}^3" /> end up side by side.
+
+# One sugar, two of each product
+
+The fermentation equation splits each glucose into **two ethanol and two carbon dioxide**, so both come to <InlineMath math="0.0800\text{ mol}" />. The gas fills <InlineMath math="1.92\text{ dm}^3" /> and the ethanol, <InlineMath math="M_r=46" />, weighs <InlineMath math="3.68\text{ g}" />. Reading the equation as one of each halves both, to <InlineMath math="0.960\text{ dm}^3" /> and <InlineMath math="1.84\text{ g}" />.
 
 <Chart
-  title={<>Along the route</>}
-  description={<>The <InlineMath math="0.0400\text{ mol}" /> of glucose that reacts gives <InlineMath math="0.0800\text{ mol}" /> of ethanol and then <InlineMath math="0.0800\text{ mol}" /> of ethanoic acid.</>}
+  title={<>Carbon from the glucose that reacts</>}
+  description={<>Two of everything from each glucose, then two acid molecules to free one more carbon dioxide.</>}
   bars="apart"
-  categories={["Glucose that reacts", "Ethanol", "Ethanoic acid"]}
+  categories={["Glucose that reacts", "Ethanol", "Carbon dioxide from fermentation", "Carbon dioxide from the carbonate"]}
   series={[
-    { label: "Amount", mark: "bar", values: [0.0400, 0.0800, 0.0800] },
+    { label: "Amount", mark: "bar", values: [40.0, 80.0, 80.0, 40.0] },
   ]}
-  valueLabel="Amount (mol)"
+  valueLabel="Amount (mmol)"
 />
 
+# The acid keeps every carbon chain
+
+Oxidation only rebuilds the end of the chain, so each ethanol becomes exactly one ethanoic acid and the <InlineMath math="0.0800\text{ mol}" /> carries straight through.
+
+<MoleculeShapeLab
+  title={<>Ethanol before oxidation</>}
+  description={<>Only the <InlineMath math="\text{CH}_2\text{OH}" /> end changes when ethanol is oxidised, so the two-carbon chain passes into the acid whole.</>}
+  molecules={[{ id: "ethanol", name: "ethanol" }]}
+  labels={{
+    atoms: <>Atoms</>,
+    choose: "Choose a molecule",
+    fill: <>Space-filling model</>,
+    formula: <>Formula</>,
+    mass: <>Relative molecular mass</>,
+    shape: <>Bond angle</>,
+    view: "Ethanol",
+  }}
+/>
+
+**One carbonate ion soaks up the hydrogen ions of two acid molecules** before it lets go of its carbon dioxide, so the carbonate releases <InlineMath math="0.0400\text{ mol}" />, or <InlineMath math="0.960\text{ dm}^3" />. A whole carbon dioxide for each acid molecule would bring back <InlineMath math="1.92\text{ dm}^3" />, which treats ethanoic acid as if it had two acidic hydrogens.
+
 <BlockMath math="\begin{aligned}
-n&=0.800\times\tfrac{9.00}{180}=0.0400\ \Rightarrow\ V(\text{CO}_2)=0.0800\times24=1.92\text{ dm}^3,\quad m(\text{C}_2\text{H}_5\text{OH})=0.0800\times46=3.68\text{ g}\\
-V(\text{NaOH})&=\tfrac{0.0800\div10}{0.100}=0.0800\text{ dm}^3=80.0\text{ cm}^3
+n(\text{C}_6\text{H}_{12}\text{O}_6)&=0.800\times\tfrac{9.00}{180}=0.0400\text{ mol}\ \Rightarrow\ n(\text{CO}_2)=n(\text{C}_2\text{H}_5\text{OH})=0.0800\text{ mol}\\
+V_1&=0.0800\times24=1.92\text{ dm}^3,\quad m(\text{C}_2\text{H}_5\text{OH})=0.0800\times46=3.68\text{ g}\\
+n(\text{CH}_3\text{COOH})&=0.0800\text{ mol}\ \Rightarrow\ V_2=\tfrac{0.0800}{2}\times24=0.960\text{ dm}^3
 \end{aligned}" />
 
-# Why the other options are wrong
-
-- <InlineMath math="2.40\text{ dm}^3" /> and <InlineMath math="4.60\text{ g}" /> let all the glucose react, but **only <InlineMath math="80.0\%" /> of it does**.
-- <InlineMath math="0.960\text{ dm}^3" /> and <InlineMath math="1.84\text{ g}" /> give one of each product per glucose, but the equation gives two.
-- <InlineMath math="800\text{ cm}^3" /> titrates all the acid, but the portion is only a tenth of it.
+So the second gas is half the first, even though no carbon chain went missing in between.

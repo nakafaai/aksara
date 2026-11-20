@@ -1,26 +1,33 @@
-# Titrasi balik menemukan garam amonium, sisa massanya natrium klorida, dan kedua garam memberi klorida ke perak
+# Mengukur amonium lewat yang ditinggalkannya
 
-Basa yang ditambahkan <InlineMath math="0{,}0250\text{ mol}" /> dan asam menunjukkan <InlineMath math="0{,}00750\text{ mol}" /> tersisa, jadi **<InlineMath math="0{,}0175\text{ mol}" /> bereaksi dengan amonium klorida**, <InlineMath math="0{,}0175\times53{,}5=0{,}936\text{ g}" />, <InlineMath math="61{,}6\%" /> dari campuran, dan memberi <InlineMath math="0{,}0175\times24{.}000=420\text{ cm}^3" /> amonia. **Sisa <InlineMath math="0{,}585\text{ g}" /> adalah natrium klorida**, <InlineMath math="0{,}0100\text{ mol}" />. Kedua garam membawa klorida, <InlineMath math="0{,}0275\text{ mol}" /> seluruhnya, <InlineMath math="0{,}0275\times143{,}5=3{,}95\text{ g}" /> perak klorida.
+Amonium klorida tidak dititrasi langsung di sini, jadi metode ini memberinya basa berlebih yang diketahui dan **menitrasi basa yang masih tersisa**. Asam yang terpakai, <InlineMath math="0{,}00750\text{ mol}" />, sama dengan sisa natrium hidroksida, jadi ion amonium mengambil <InlineMath math="0{,}0175\text{ mol}" />. Menganggap hasil titrasi itu sebagai amoniumnya memberi <InlineMath math="26{,}4\%" />.
 
-<Chart
-  title={<>Massa tiap garam</>}
-  description={<><InlineMath math="1{,}52\text{ g}" /> campuran terdiri dari <InlineMath math="0{,}936\text{ g}" /> amonium klorida dan <InlineMath math="0{,}585\text{ g}" /> natrium klorida.</>}
-  bars="apart"
-  categories={["Amonium klorida", "Natrium klorida"]}
-  series={[
-    { label: "Massa", mark: "bar", values: [0.936, 0.585] },
-  ]}
-  valueLabel="Massa (g)"
+<Mermaid
+  title={<>Ke mana natrium hidroksida pergi</>}
+  description={<>Basanya terbagi antara ion amonium dan asam yang mengukur sisanya. Klorida dari kedua garam bertemu perak nitrat di sampel kedua.</>}
+  chart={`
+    flowchart TD
+      N0["25,0 mmol NaOH"]
+      N1["17,5 mmol dipakai NH₄⁺"]
+      N2["Sisa 7,50 mmol: 15,0 cm³ HCl"]
+      N3["17,5 mmol NH₃: 420 cm³"]
+      N4["0,936 g NH₄Cl, 0,584 g NaCl"]
+      N5["27,5 mmol Cl⁻: 3,95 g AgCl"]
+      N0 --> N1
+      N0 --> N2
+      N1 --> N3
+      N1 --> N4
+      N4 --> N5
+  `}
 />
 
+Tiap ion amonium melepaskan satu molekul amonia, <InlineMath math="0{,}0175\text{ mol}" /> atau <InlineMath math="420\text{ cm}^3" />. Menggandakannya, seolah dua ion hidroksida membebaskan tiap amonia, memberi <InlineMath math="840\text{ cm}^3" />.
+
+# Kedua garam membawa klorida
+
+Amonium klorida bermassa <InlineMath math="0{,}936\text{ g}" />, jadi natrium klorida adalah sisanya, <InlineMath math="0{,}584\text{ g}" /> atau <InlineMath math="0{,}0100\text{ mol}" />. Perak nitrat tidak peduli kation apa yang datang bersama klorida, jadi ia mengendapkan **seluruh <InlineMath math="0{,}0275\text{ mol}" /> ion klorida**. Menghitung klorida garam amonium saja memberi <InlineMath math="2{,}51\text{ g}" />.
+
 <BlockMath math="\begin{aligned}
-n(\text{NH}_4\text{Cl})&=0{,}0250-0{,}00750=0{,}0175\ \Rightarrow\ \tfrac{0{,}936}{1{,}52}\times100=61{,}6\%\\
-n(\text{NaCl})&=\tfrac{1{,}52-0{,}936}{58{,}5}=0{,}0100\text{ mol}\\
-m(\text{AgCl})&=(0{,}0175+0{,}0100)\times143{,}5=3{,}95\text{ g}
+n(\text{NH}_4^+)&=0{,}0250-0{,}00750=0{,}0175\text{ mol}:\quad \tfrac{0{,}0175\times53{,}5}{1{,}52}\times100=61{,}6\%,\quad V(\text{NH}_3)=420\text{ cm}^3\\
+n(\text{NaCl})&=\tfrac{1{,}52-0{,}936}{58{,}5}=0{,}0100,\quad m(\text{AgCl})=(0{,}0175+0{,}0100)\times143{,}5=3{,}95\text{ g}
 \end{aligned}" />
-
-# Kenapa pilihan lain salah
-
-- <InlineMath math="26{,}4\%" /> menganggap basa yang dititrasi asam sebagai basa yang dipakai amonium, padahal **asam mengukur sisanya**.
-- <InlineMath math="840\text{ cm}^3" /> memberi dua amonia per amonium, padahal tiap ion amonium memberi satu.
-- <InlineMath math="2{,}51\text{ g}" /> hanya mengendapkan klorida garam amonium, padahal klorida natrium klorida juga mengendap.

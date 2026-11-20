@@ -1,25 +1,31 @@
-# The ethanol limits, the yield cuts what actually reacts, and only that amount of acid is used
+# Which reactant runs out
 
-The acid is <InlineMath math="\tfrac{6.00}{60}=0.100\text{ mol}" /> and the ethanol <InlineMath math="\tfrac{2.30}{46}=0.0500\text{ mol}" />, so **the ethanol limits**. At <InlineMath math="70.0\%" />, <InlineMath math="0.0350\text{ mol}" /> reacts, giving <InlineMath math="0.0350\times88=3.08\text{ g}" /> of ester and <InlineMath math="0.0350\times6.02\times10^{23}=2.11\times10^{22}" /> water molecules. **Only <InlineMath math="0.0350\text{ mol}" /> of acid is used**, so <InlineMath math="0.0650\times60=3.90\text{ g}" /> is left.
+Ethanoic acid, <InlineMath math="M_r=60" />, comes to <InlineMath math="0.100\text{ mol}" /> and ethanol, <InlineMath math="M_r=46" />, to <InlineMath math="0.0500\text{ mol}" />. They pair one to one, so **ethanol sets the ceiling** at <InlineMath math="0.0500\text{ mol}" /> of ester, <InlineMath math="4.40\text{ g}" /> with <InlineMath math="M_r=88" />. Building the yield on the acid gives <InlineMath math="6.16\text{ g}" />, more ester than the ethanol has chains for.
 
 <Chart
-  title={<>Ethanoic acid</>}
-  description={<>The reaction uses <InlineMath math="0.0350\text{ mol}" /> of the acid and leaves <InlineMath math="0.0650\text{ mol}" />.</>}
+  title={<>Amounts in the flask before and after</>}
+  description={<>At a full yield the ethanol would vanish. At the real yield some of each reactant stays behind.</>}
   bars="apart"
-  categories={["Acid that reacts", "Acid left"]}
+  categories={["Ethanoic acid", "Ethanol", "Ethyl ethanoate", "Water"]}
   series={[
-    { label: "Amount", mark: "bar", values: [0.0350, 0.0650] },
+    { label: "At the start", mark: "bar", values: [100.0, 50.0, 0.0, 0.0] },
+    { label: "Full yield", mark: "bar", values: [50.0, 0.0, 50.0, 50.0] },
+    { label: "Actual yield", mark: "bar", values: [65.0, 15.0, 35.0, 35.0] },
   ]}
-  valueLabel="Amount (mol)"
+  valueLabel="Amount (mmol)"
 />
 
+# The yield shrinks every product equally
+
+Esterification is reversible, and this flask stops at <InlineMath math="70.0\%" /> of the ceiling: <InlineMath math="0.0350\text{ mol}" /> of ester, <InlineMath math="3.08\text{ g}" />. **Water leaves the reaction molecule for molecule with the ester**, so <InlineMath math="0.0350\text{ mol}" /> of water is <InlineMath math="2.11\times10^{22}" /> molecules. The pair <InlineMath math="4.40\text{ g}" /> and <InlineMath math="3.01\times10^{22}" /> describes a reaction that went all the way.
+
+# Acid that stays in the flask
+
+Only the acid that met an ethanol molecule is gone, <InlineMath math="0.0350\text{ mol}" /> of it, so <InlineMath math="0.0650\text{ mol}" /> or <InlineMath math="3.90\text{ g}" /> remains. **The ethanol that never reacted did not take any acid with it**. Subtracting acid for all <InlineMath math="0.0500\text{ mol}" /> of ethanol, to get <InlineMath math="3.00\text{ g}" />, quietly undoes the yield you just applied.
+
 <BlockMath math="\begin{aligned}
-n&=0.700\times\tfrac{2.30}{46}=0.0350\ \Rightarrow\ m(\text{ester})=0.0350\times88=3.08\text{ g}\\
-m(\text{CH}_3\text{COOH})&=(0.100-0.0350)\times60=3.90\text{ g},\quad N(\text{H}_2\text{O})=0.0350\times6.02\times10^{23}=2.11\times10^{22}
+n(\text{CH}_3\text{COOH})&=\tfrac{6.00}{60}=0.100>n(\text{C}_2\text{H}_5\text{OH})=\tfrac{2.30}{46}=0.0500\ \Rightarrow\ m=0.700\times0.0500\times88=3.08\text{ g}\\
+m(\text{CH}_3\text{COOH})'&=(0.100-0.0350)\times60=3.90\text{ g},\quad N(\text{H}_2\text{O})=0.0350\times6.02\times10^{23}=2.11\times10^{22}
 \end{aligned}" />
 
-# Why the other options are wrong
-
-- <InlineMath math="4.40\text{ g}" /> lets all the ethanol react, but **the yield is only <InlineMath math="70.0\%" />**.
-- <InlineMath math="6.16\text{ g}" /> lets the acid limit, but <InlineMath math="0.0500\text{ mol}" /> of ethanol is less than <InlineMath math="0.100\text{ mol}" /> of acid.
-- <InlineMath math="3.00\text{ g}" /> removes acid for all the ethanol, but only the <InlineMath math="0.0350\text{ mol}" /> that reacts uses acid.
+Some ethanol, <InlineMath math="0.0150\text{ mol}" />, is also still in the flask, which is why the actual yield bars never drop either reactant to zero.

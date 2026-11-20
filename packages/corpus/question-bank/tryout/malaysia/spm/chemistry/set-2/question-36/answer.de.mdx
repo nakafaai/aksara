@@ -1,25 +1,40 @@
-# Das Chlorid geht aus, legt also den Niederschlag und die Stoffmenge für die Wärme fest, und ein Zehntel der übrigen Silberionen wird titriert
+# Welches Ion den Niederschlag bestimmt
 
-Die Silberionen sind <InlineMath math="0{,}0250\text{ mol}" /> und das Chlorid <InlineMath math="0{,}0200\text{ mol}" />, also **geht das Chlorid aus**, <InlineMath math="0{,}0200\times143{,}5=2{,}87\text{ g}" />. Die Wärme ist <InlineMath math="100\times4{,}2\times3{,}12=1310\text{ J}" />, und **je Mol Silberchlorid** <InlineMath math="\Delta H=-\tfrac{1{,}310}{0{,}0200}=-65{,}5\text{ kJ mol}^{-1}" />. Die übrigen <InlineMath math="0{,}00500\text{ mol}" /> Silberionen legen <InlineMath math="0{,}000500\text{ mol}" /> in eine Portion, <InlineMath math="0{,}000500\div0{,}0100=0{,}0500\text{ dm}^3=50{,}0\text{ cm}^3" />.
+Silberionen, <InlineMath math="0{,}0250\text{ mol}" />, treffen eins zu eins auf Chloridionen, <InlineMath math="0{,}0200\text{ mol}" />. **Das Chlorid ist die kleinere Menge**, also entstehen <InlineMath math="0{,}0200\text{ mol}" /> Silberchlorid, <InlineMath math="M_r=143{,}5" />, das sind <InlineMath math="2{,}87\text{ g}" />. Um jedes Silberion zu fällen, bräuchte man <InlineMath math="62{,}5\text{ cm}^3" /> dieser Natriumchloridlösung statt <InlineMath math="50{,}0\text{ cm}^3" />, also zählen die <InlineMath math="3{,}59\text{ g}" /> Chlorid, das nie zugegeben wurde.
 
-<Chart
-  title={<>Silberionen</>}
-  description={<>Das Chlorid fällt <InlineMath math="0{,}0200\text{ mol}" /> der Silberionen, und <InlineMath math="0{,}00500\text{ mol}" /> bleiben.</>}
-  bars="apart"
-  categories={["Gefällt", "In der Lösung übrig"]}
-  series={[
-    { label: "Stoffmenge", mark: "bar", values: [0.0200, 0.00500] },
-  ]}
-  valueLabel="Stoffmenge (mol)"
+# Wärme pro Mol Niederschlag
+
+Die <InlineMath math="100\text{ g}" /> Gemisch wurden um <InlineMath math="3{,}12^\circ\text{C}" /> wärmer, also wurden <InlineMath math="1310\text{ J}" /> frei. **Teile durch die <InlineMath math="0{,}0200\text{ mol}" />, die tatsächlich ausgefallen sind**, nicht durch die Silberionen im Becherglas.
+
+<BlockMath math="\begin{aligned}
+Q&=100\times4{,}2\times3{,}12=1310\text{ J},\quad \Delta H=-\tfrac{1{,}31}{0{,}0200}=-65{,}5\text{ kJ mol}^{-1}
+\end{aligned}" />
+
+Der Teiler <InlineMath math="0{,}0250\text{ mol}" /> ergibt <InlineMath math="-52{,}4\text{ kJ mol}^{-1}" />. Wer vor dem Teilen aufhört, behält <InlineMath math="-1{,}31" />, eine Wärme in Kilojoule mit der falschen Einheit.
+
+# Kupfer trifft das Silber im Filtrat
+
+Das Filtrat enthält noch <InlineMath math="0{,}00500\text{ mol}" /> Silberionen. **Jedes Kupferatom gibt zwei Elektronen ab, und jedes Silberion nimmt eines auf**, derselbe Austausch, der eine Kupfer-Silber-Zelle antreibt, und das Labor lässt dich ihn zählen: <InlineMath math="0{,}00500\text{ mol}" /> Elektronen lösen <InlineMath math="0{,}00250\text{ mol}" /> Kupfer und scheiden <InlineMath math="0{,}00500\text{ mol}" /> Silber ab.
+
+<ChemicalCellLab
+  title={<>Kupfer gibt Elektronen an Silberionen ab</>}
+  description={<>Kupfer in Kupfer(II)-Ionenlösung und Silber in Silberionenlösung, verbunden durch eine Salzbrücke. Jedes Kupferatom, das sich löst, schickt zwei Elektronen hinüber, genug für zwei Silberatome.</>}
+  metals={["copper", "silver"]}
+  electrons={0.005}
+  showProducts
+  labels={{
+    atNegative: <>Am Minuspol</>,
+    atPositive: <>Am Pluspol</>,
+    electrons: <>Geflossene Elektronen</>,
+    halfCells: <>Halbzellen</>,
+    view: "Galvanische Zelle aus Kupfer und Silber",
+    voltage: <>Zellspannung</>,
+    voltmeter: "V",
+  }}
 />
 
 <BlockMath math="\begin{aligned}
-n(\text{Cl}^-)&=0{,}0200<n(\text{Ag}^+)=0{,}0250\ \Rightarrow\ m=2{,}87\text{ g},\quad \Delta H=-\tfrac{100\times4{,}2\times3{,}12}{0{,}0200}=-65{,}5\text{ kJ mol}^{-1}\\
-V(\text{NaCl})&=\tfrac{0{,}00500\div10}{0{,}0100}=0{,}0500\text{ dm}^3=50{,}0\text{ cm}^3
+n(\text{Ag}^+)&=0{,}0250-0{,}0200=0{,}00500\text{ mol}\ \Rightarrow\ m(\text{Ag})=0{,}00500\times108=0{,}540\text{ g}
 \end{aligned}" />
 
-# Warum die anderen Antworten falsch sind
-
-- <InlineMath math="3{,}59\text{ g}" /> und <InlineMath math="-52{,}4" /> lassen die Silberionen entscheiden, doch nur <InlineMath math="0{,}0200\text{ mol}" /> Chlorid sind da.
-- <InlineMath math="250\text{ cm}^3" /> titriert alle eingesetzten Silberionen, doch <InlineMath math="0{,}0200\text{ mol}" /> davon sind schon gefällt.
-- <InlineMath math="-1{,}31" /> ist die freigesetzte Wärme, doch **eine Fällungsenthalpie bezieht sich auf ein Mol Niederschlag**.
+Bei <InlineMath math="0{,}270\text{ g}" /> ist das Verhältnis zwei zu eins verkehrt herum gelandet, und das Silber bekommt die Anzahl des Kupfers.

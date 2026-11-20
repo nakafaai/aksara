@@ -1,26 +1,32 @@
-# Weight the isotopes, let the hydrogen run out, follow each chlorine atom into its own hydrogen chloride, and send the leftover chlorine to the iodide
+# Reading the two peaks
 
-The relative atomic mass is <InlineMath math="0.75\times35+0.25\times37=35.5" />. The hydrogen is <InlineMath math="0.100\text{ mol}" /> and the chlorine <InlineMath math="0.150\text{ mol}" />, so **the hydrogen runs out**, making <InlineMath math="0.200\text{ mol}" /> of hydrogen chloride, one per chlorine atom used. **A quarter of those atoms are <InlineMath math="^{37}\text{Cl}" />**, <InlineMath math="0.0500\text{ mol}" /> of <InlineMath math="\text{H}^{37}\text{Cl}" />, <InlineMath math="3.01\times10^{22}" />. The <InlineMath math="0.0500\text{ mol}" /> of chlorine left frees as much iodine, <InlineMath math="0.0500\times254=12.7\text{ g}" />.
+The peaks stand <InlineMath math="100" /> and <InlineMath math="33.3" /> high, so **three chlorine-35 atoms come with every chlorine-37 atom**. That is <InlineMath math="75\%" /> and <InlineMath math="25\%" />, and the weighted mean is <InlineMath math="35.5" />. Averaging the two masses without their abundances gives <InlineMath math="36.0" />, which treats the isotopes as equally common.
 
-<Chart
-  title={<>Gases in the reaction</>}
-  description={<>The <InlineMath math="0.100\text{ mol}" /> of hydrogen meets <InlineMath math="0.150\text{ mol}" /> of chlorine, and <InlineMath math="0.0500\text{ mol}" /> of chlorine is left for the iodide.</>}
-  bars="apart"
-  categories={["Hydrogen", "Chlorine", "Chlorine left"]}
-  series={[
-    { label: "Amount", mark: "bar", values: [0.100, 0.150, 0.0500] },
-  ]}
-  valueLabel="Amount (mol)"
+<MassSpectrometerLab
+  title={<>Chlorine ions in the magnetic field</>}
+  description={<>The lighter chlorine-35 ions bend on a tighter path than chlorine-37 ions, and the detector counts three of the first for every one of the second.</>}
+  samples={["chlorine"]}
+  labels={{
+    average: <>Average relative atomic mass</>,
+    choose: "Choose an element",
+    isotopes: <>Isotopes and abundance</>,
+    north: "N",
+    radius: <>Path radius</>,
+    ratio: <>Ratio of radii</>,
+    south: "S",
+    view: "Mass spectrometer",
+  }}
 />
 
+# Which gas is used up
+
+Hydrogen is <InlineMath math="2.40\div24=0.100\text{ mol}" /> and chlorine <InlineMath math="0.150\text{ mol}" />, and they react one to one, so **the hydrogen runs out** and <InlineMath math="0.200\text{ mol}" /> of hydrogen chloride forms. Each molecule has one chlorine atom, and a quarter of those atoms are chlorine-37. Counting a quarter of the chlorine atoms in all <InlineMath math="0.150\text{ mol}" /> of chlorine gives <InlineMath math="4.52\times10^{22}" />, which pretends every chlorine molecule reacted.
+
+# What the leftover chlorine frees
+
+The <InlineMath math="0.0500\text{ mol}" /> of chlorine left frees the same amount of iodine molecules, and **an iodine molecule has <InlineMath math="M_r=254" />**. Using <InlineMath math="127" /> for one iodine atom halves the mass to <InlineMath math="6.35\text{ g}" />.
+
 <BlockMath math="\begin{aligned}
-A_r&=0.75\times35+0.25\times37=35.5\\
-n(\text{H}_2)&=0.100<n(\text{Cl}_2)=0.150\ \Rightarrow\ N(\text{H}^{37}\text{Cl})=0.25\times0.200\times6.02\times10^{23}=3.01\times10^{22}\\
-m(\text{I}_2)&=(0.150-0.100)\times254=12.7\text{ g}
+A_r&=\tfrac{35\times100+37\times33.3}{133.3}=35.5,\quad n(\text{H}_2)=0.100<n(\text{Cl}_2)=0.150\\
+N(\text{H}^{37}\text{Cl})&=0.250\times0.200\times6.02\times10^{23}=3.01\times10^{22},\quad m(\text{I}_2)=0.0500\times254=12.7\text{ g}
 \end{aligned}" />
-
-# Why the other options are wrong
-
-- <InlineMath math="36.0" /> averages the two masses as if the isotopes were equally common.
-- <InlineMath math="4.52\times10^{22}" /> and <InlineMath math="0\text{ g}" /> let the chlorine decide, but **only <InlineMath math="0.100\text{ mol}" /> of hydrogen is there**, so chlorine is left over.
-- <InlineMath math="6.35\text{ g}" /> weighs the iodine as atoms, <InlineMath math="A_r=127" />, but it forms as <InlineMath math="\text{I}_2" />, <InlineMath math="M_r=254" />.

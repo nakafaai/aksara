@@ -1,25 +1,41 @@
-# Pentitratan mengira alkali yang digunakan, jisim membahagikannya antara ester dan asid, kedua-duanya memberi garam, tetapi hanya ester memberi etanol
+# Apa yang dikatakan bahagian itu tentang kelalang
 
-Satu bahagian mempunyai <InlineMath math="0.00400\text{ mol}" /> alkali berbaki, jadi **kesemua campuran mempunyai sepuluh kali ganda**, <InlineMath math="0.0400\text{ mol}" />, dan <InlineMath math="0.100-0.0400=0.0600\text{ mol}" /> telah digunakan. Dengan <InlineMath math="x" /> ester dan <InlineMath math="y" /> asid, <InlineMath math="x+y=0.0600" /> dan <InlineMath math="88x+60y=4.72" />, jadi <InlineMath math="x=0.0400" />, <InlineMath math="3.52\text{ g}" /> ester. **Kedua-duanya memberi natrium etanoat**, <InlineMath math="0.0600\times82=4.92\text{ g}" />, tetapi **hanya ester memberi etanol**, <InlineMath math="0.0400\times46=1.84\text{ g}" />.
+Bahagian <InlineMath math="25.0\text{ cm}^3" /> menggunakan <InlineMath math="0.00400\text{ mol}" /> asid hidroklorik, dan ia sepersepuluh daripada kelalang, jadi **<InlineMath math="0.0400\text{ mol}" /> natrium hidroksida masih tinggal selepas refluks**. Alkali bermula dengan <InlineMath math="0.100\text{ mol}" />, maka ester dan asid bersama-sama mengambil <InlineMath math="0.0600\text{ mol}" />.
 
-<Chart
-  title={<>Natrium hidroksida</>}
-  description={<>Ester menggunakan <InlineMath math="0.0400\text{ mol}" />, asid <InlineMath math="0.0200\text{ mol}" />, dan <InlineMath math="0.0400\text{ mol}" /> berbaki.</>}
-  bars="apart"
-  categories={["Digunakan oleh ester", "Digunakan oleh asid", "Alkali berbaki"]}
-  series={[
-    { label: "Bilangan mol", mark: "bar", values: [0.0400, 0.0200, 0.0400] },
-  ]}
-  valueLabel="Bilangan mol (mol)"
+<Mermaid
+  title={<>Ke mana ion hidroksida pergi semasa refluks</>}
+  description={<>Asid hidroklorik hanya menyukat <InlineMath math="40.0\text{ mmol}" /> yang berbaki. Ester dan asid berkongsi selebihnya, dan kedua-duanya menukar bahagian masing-masing kepada natrium etanoat.</>}
+  chart={`
+    flowchart TD
+      N0["100 mmol NaOH"]
+      N1["40.0 mmol kepada etil etanoat"]
+      N2["20.0 mmol kepada asid etanoik"]
+      N3["40.0 mmol berbaki: 4.00 mmol setiap bahagian"]
+      N4["40.0 mmol etanol: 1.84 g"]
+      N5["60.0 mmol natrium etanoat: 4.92 g"]
+      N0 --> N1
+      N0 --> N2
+      N0 --> N3
+      N1 --> N4
+      N1 --> N5
+      N2 --> N5
+  `}
 />
 
+# Membahagikan alkali antara ester dan asid
+
+Setiap sebatian menggunakan satu ion hidroksida bagi setiap molekul, jadi jumlah mol kedua-duanya <InlineMath math="0.0600" />, dan jumlah jisimnya <InlineMath math="4.72\text{ g}" />. **Dua persamaan menyelesaikan dua anu**: <InlineMath math="0.0400\text{ mol}" /> etil etanoat, <InlineMath math="3.52\text{ g}" />, dan <InlineMath math="0.0200\text{ mol}" /> asid etanoik.
+
 <BlockMath math="\begin{aligned}
-x+y&=0.100-10\times0.00400=0.0600,\quad 88x+60y=4.72\ \Rightarrow\ x=0.0400,\quad m(\text{ester})=3.52\text{ g}\\
-m(\text{CH}_3\text{COONa})&=0.0600\times82=4.92\text{ g},\quad m(\text{C}_2\text{H}_5\text{OH})=0.0400\times46=1.84\text{ g}
+x+y&=0.100-10\times0.00400=0.0600,\quad 88x+60y=4.72\ \Rightarrow\ x=0.0400,\quad y=0.0200
 \end{aligned}" />
 
-# Kenapa pilihan lain salah
+Memberi kesemua <InlineMath math="0.0600\text{ mol}" /> kepada ester menjadikannya <InlineMath math="5.28\text{ g}" />, lebih berat daripada keseluruhan campuran <InlineMath math="4.72\text{ g}" />, jadi pilihan itu gagal semakan jisim sebelum kimia diperlukan.
 
-- <InlineMath math="3.28\text{ g}" /> hanya mengira natrium etanoat daripada ester, walhal asid etanoik juga memberinya.
-- <InlineMath math="2.76\text{ g}" /> memberi etanol daripada semua alkali yang digunakan, walhal **asid memberi air, bukan etanol**.
-- <InlineMath math="5.28\text{ g}" /> memberi semua alkali yang digunakan kepada ester, walhal itu melebihi jisim seluruh campuran.
+# Apa yang ditinggalkan oleh setiap tindak balas
+
+**Setiap ion hidroksida yang bertindak balas menghasilkan satu ion etanoat**, sama ada ia bertemu ester atau asid, jadi garam itu <InlineMath math="0.0600\text{ mol}" />, <InlineMath math="4.92\text{ g}" />. Mengira bahagian ester sahaja memberi <InlineMath math="3.28\text{ g}" />. Etanol pula lain ceritanya, kerana hanya ester yang membawa kumpulan etil, jadi <InlineMath math="0.0400\text{ mol}" /> terbentuk. Pilihan <InlineMath math="2.76\text{ g}" /> membiarkan asid turut membebaskan etanol.
+
+<BlockMath math="\begin{aligned}
+m(\text{CH}_3\text{COONa})&=0.0600\times82=4.92\text{ g},\quad m(\text{C}_2\text{H}_5\text{OH})=0.0400\times46=1.84\text{ g}
+\end{aligned}" />

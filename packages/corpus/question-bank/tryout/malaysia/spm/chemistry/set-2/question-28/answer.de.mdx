@@ -1,25 +1,31 @@
-# Das Ethanol begrenzt, die Ausbeute kürzt den tatsächlichen Umsatz, und nur so viel Säure wird verbraucht
+# Welches Edukt zuerst ausgeht
 
-Die Säure sind <InlineMath math="\tfrac{6{,}00}{60}=0{,}100\text{ mol}" /> und das Ethanol <InlineMath math="\tfrac{2{,}30}{46}=0{,}0500\text{ mol}" />, also **begrenzt das Ethanol**. Bei <InlineMath math="70{,}0\%" /> reagieren <InlineMath math="0{,}0350\text{ mol}" /> und geben <InlineMath math="0{,}0350\times88=3{,}08\text{ g}" /> Ester und <InlineMath math="0{,}0350\times6{,}02\times10^{23}=2{,}11\times10^{22}" /> Wassermoleküle. **Nur <InlineMath math="0{,}0350\text{ mol}" /> Säure werden verbraucht**, also bleiben <InlineMath math="0{,}0650\times60=3{,}90\text{ g}" />.
+Essigsäure, <InlineMath math="M_r=60" />, sind <InlineMath math="0{,}100\text{ mol}" /> und Ethanol, <InlineMath math="M_r=46" />, sind <InlineMath math="0{,}0500\text{ mol}" />. Sie reagieren eins zu eins, also **legt das Ethanol die Obergrenze fest**: <InlineMath math="0{,}0500\text{ mol}" /> Ester, <InlineMath math="4{,}40\text{ g}" /> bei <InlineMath math="M_r=88" />. Wer die Ausbeute auf die Säure bezieht, erhält <InlineMath math="6{,}16\text{ g}" />, mehr Ester, als das Ethanol Ketten liefern kann.
 
 <Chart
-  title={<>Ethansäure</>}
-  description={<>Die Reaktion verbraucht <InlineMath math="0{,}0350\text{ mol}" /> der Säure und lässt <InlineMath math="0{,}0650\text{ mol}" /> übrig.</>}
+  title={<>Stoffmengen im Kolben vorher und nachher</>}
+  description={<>Bei voller Ausbeute wäre das Ethanol weg. Bei der echten Ausbeute bleibt von beiden Edukten etwas übrig.</>}
   bars="apart"
-  categories={["Reagierende Säure", "Übrige Säure"]}
+  categories={["Essigsäure", "Ethanol", "Ethylethanoat", "Wasser"]}
   series={[
-    { label: "Stoffmenge", mark: "bar", values: [0.0350, 0.0650] },
+    { label: "Am Anfang", mark: "bar", values: [100.0, 50.0, 0.0, 0.0] },
+    { label: "Volle Ausbeute", mark: "bar", values: [50.0, 0.0, 50.0, 50.0] },
+    { label: "Echte Ausbeute", mark: "bar", values: [65.0, 15.0, 35.0, 35.0] },
   ]}
-  valueLabel="Stoffmenge (mol)"
+  valueLabel="Stoffmenge (mmol)"
 />
 
+# Die Ausbeute kürzt jedes Produkt gleich
+
+Die Veresterung ist umkehrbar, und dieser Kolben bleibt bei <InlineMath math="70{,}0\%" /> der Obergrenze stehen: <InlineMath math="0{,}0350\text{ mol}" /> Ester, <InlineMath math="3{,}08\text{ g}" />. **Wasser entsteht Molekül für Molekül mit dem Ester**, also sind <InlineMath math="0{,}0350\text{ mol}" /> Wasser <InlineMath math="2{,}11\times10^{22}" /> Moleküle. Das Paar <InlineMath math="4{,}40\text{ g}" /> und <InlineMath math="3{,}01\times10^{22}" /> beschreibt eine Reaktion, die vollständig abgelaufen ist.
+
+# Säure, die im Kolben bleibt
+
+Weg ist nur die Säure, die ein Ethanolmolekül getroffen hat, also <InlineMath math="0{,}0350\text{ mol}" />, und <InlineMath math="0{,}0650\text{ mol}" /> oder <InlineMath math="3{,}90\text{ g}" /> bleiben übrig. **Ethanol, das nicht reagiert hat, nimmt keine Säure mit**. Wer Säure für alle <InlineMath math="0{,}0500\text{ mol}" /> Ethanol abzieht und <InlineMath math="3{,}00\text{ g}" /> erhält, macht die gerade angewandte Ausbeute stillschweigend rückgängig.
+
 <BlockMath math="\begin{aligned}
-n&=0{,}700\times\tfrac{2{,}30}{46}=0{,}0350\ \Rightarrow\ m(\text{ester})=0{,}0350\times88=3{,}08\text{ g}\\
-m(\text{CH}_3\text{COOH})&=(0{,}100-0{,}0350)\times60=3{,}90\text{ g},\quad N(\text{H}_2\text{O})=0{,}0350\times6{,}02\times10^{23}=2{,}11\times10^{22}
+n(\text{CH}_3\text{COOH})&=\tfrac{6{,}00}{60}=0{,}100>n(\text{C}_2\text{H}_5\text{OH})=\tfrac{2{,}30}{46}=0{,}0500\ \Rightarrow\ m=0{,}700\times0{,}0500\times88=3{,}08\text{ g}\\
+m(\text{CH}_3\text{COOH})'&=(0{,}100-0{,}0350)\times60=3{,}90\text{ g},\quad N(\text{H}_2\text{O})=0{,}0350\times6{,}02\times10^{23}=2{,}11\times10^{22}
 \end{aligned}" />
 
-# Warum die anderen Antworten falsch sind
-
-- <InlineMath math="4{,}40\text{ g}" /> lässt alles Ethanol reagieren, doch **die Ausbeute ist nur <InlineMath math="70{,}0\%" />**.
-- <InlineMath math="6{,}16\text{ g}" /> lässt die Säure begrenzen, doch <InlineMath math="0{,}0500\text{ mol}" /> Ethanol sind weniger als <InlineMath math="0{,}100\text{ mol}" /> Säure.
-- <InlineMath math="3{,}00\text{ g}" /> zieht Säure für alles Ethanol ab, doch nur die reagierenden <InlineMath math="0{,}0350\text{ mol}" /> verbrauchen Säure.
+Auch <InlineMath math="0{,}0150\text{ mol}" /> Ethanol sind noch da, deshalb fällt bei der echten Ausbeute keines der Edukte auf null.

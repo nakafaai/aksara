@@ -1,26 +1,35 @@
-# Oksigen habis lebih dulu dan menyisakan hidrogen sulfida, yang lalu memakan belerang dioksida yang ikut dibentuknya
+# Percikan berhenti saat oksigen habis
 
-Hidrogen sulfida butuh <InlineMath math="60\times\tfrac{3}{2}=90\text{ cm}^3" /> oksigen, jadi **oksigen yang habis**, membakar <InlineMath math="40\text{ cm}^3" /> hidrogen sulfida menjadi <InlineMath math="40\text{ cm}^3" /> belerang dioksida dan menyisakan <InlineMath math="20\text{ cm}^3" />. Di reaksi kedua **<InlineMath math="20\text{ cm}^3" /> itu mengambil <InlineMath math="10\text{ cm}^3" /> belerang dioksida**, jadi tersisa <InlineMath math="30\text{ cm}^3" /> gas. Belerangnya tiga per dua hidrogen sulfida, <InlineMath math="\tfrac{3}{2}\times\tfrac{20}{24{.}000}=1{,}25\times10^{-3}\text{ mol}" />, <InlineMath math="0{,}0400\text{ g}" />.
+Enam puluh sentimeter kubik hidrogen sulfida butuh <InlineMath math="90\text{ cm}^3" /> oksigen, padahal hanya ada <InlineMath math="60\text{ cm}^3" />. Jadi **oksigen adalah gas pembatas**: ia membakar <InlineMath math="40\text{ cm}^3" /> hidrogen sulfida menjadi <InlineMath math="40\text{ cm}^3" /> belerang dioksida dan menyisakan <InlineMath math="20\text{ cm}^3" /> yang tidak terbakar. Volume gas yang sama berisi jumlah zat yang sama, jadi volumenya bisa dipakai seperti mol di sini.
 
-<Chart
-  title={<>Belerang dioksida di kedua reaksi</>}
-  description={<>Reaksi pertama membentuk <InlineMath math="40\text{ cm}^3" /> belerang dioksida, hidrogen sulfida sisa mengambil <InlineMath math="10\text{ cm}^3" />, dan tersisa <InlineMath math="30\text{ cm}^3" />.</>}
-  bars="apart"
-  categories={["Belerang dioksida terbentuk", "Diambil hidrogen sulfida", "Sisa di akhir"]}
-  series={[
-    { label: "Volume", mark: "bar", values: [40, 10, 30] },
-  ]}
-  valueLabel="Volume (cm³)"
+# Gas sisa merusak sebagian produk
+
+Hidrogen sulfida yang tidak terbakar sekarang bereaksi dengan belerang dioksida hasil reaksi pertama. Dua volumenya memakai satu volume belerang dioksida, jadi <InlineMath math="10\text{ cm}^3" /> hilang dan tersisa <InlineMath math="30\text{ cm}^3" />. Berhenti setelah reaksi pertama menyisakan <InlineMath math="40\text{ cm}^3" /> gas, artinya langkah kedua ini terlupa.
+
+<Mermaid
+  title={<>Volume gas melewati dua reaksi</>}
+  description={<>Volume dalam sentimeter kubik pada kondisi kamar. Air mengembun, jadi tidak pernah muncul sebagai gas.</>}
+  chart={`
+    flowchart TD
+      N0["60 H₂S + 60 O₂"]
+      N1["Pembakaran: 40 H₂S memakai 60 O₂"]
+      N2["Terbentuk 40 SO₂"]
+      N3["Sisa 20 H₂S"]
+      N4["20 H₂S + 10 SO₂ → 0,0400 g S"]
+      N5["30 SO₂: satu-satunya gas sisa"]
+      N0 --> N1
+      N1 --> N2
+      N1 --> N3
+      N2 --> N4
+      N3 --> N4
+      N2 --> N5
+      N4 --> N5
+  `}
 />
 
+Belerangnya datang dari kedua pereaksi: **dua hidrogen sulfida dan satu belerang dioksida memberi tiga atom belerang**. Mengambil satu belerang per hidrogen sulfida memberi <InlineMath math="0{,}0267\text{ g}" />.
+
 <BlockMath math="\begin{aligned}
-V(\text{SO}_2)&=\tfrac{2}{3}\times60=40\text{ cm}^3,\quad V(\text{H}_2\text{S})=60-40=20\text{ cm}^3\\
-V&=40-\tfrac{1}{2}\times20=30\text{ cm}^3\\
-m(\text{S})&=\tfrac{3}{2}\times\tfrac{20}{24{.}000}\times32=0{,}0400\text{ g}
+V(\text{H}_2\text{S})_{\text{terbakar}}&=\tfrac{2}{3}\times60=40\text{ cm}^3\ \Rightarrow\ V(\text{SO}_2)=40\text{ cm}^3,\quad V(\text{H}_2\text{S})'=20\text{ cm}^3\\
+V(\text{SO}_2)'&=40-\tfrac{20}{2}=30\text{ cm}^3,\quad m(\text{S})=\tfrac{3}{2}\times\tfrac{20}{24\,000}\times32=0{,}0400\text{ g}
 \end{aligned}" />
-
-# Kenapa pilihan lain salah
-
-- <InlineMath math="60\text{ cm}^3" /> membiarkan semua hidrogen sulfida terbakar, padahal ia butuh <InlineMath math="90\text{ cm}^3" /> oksigen dan hanya ada <InlineMath math="60\text{ cm}^3" />.
-- <InlineMath math="40\text{ cm}^3" /> di akhir lupa bahwa hidrogen sulfida sisa **memakai <InlineMath math="10\text{ cm}^3" /> belerang dioksida**.
-- <InlineMath math="0{,}0267\text{ g}" /> memberi satu belerang per hidrogen sulfida, padahal persamaannya memberi tiga untuk tiap dua.

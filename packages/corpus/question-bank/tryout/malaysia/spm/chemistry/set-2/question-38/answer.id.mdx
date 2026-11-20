@@ -1,25 +1,34 @@
-# Hanya PVC yang memberi hidrogen klorida, jadi titrasi menghitung PVC, massa memberi polietena, dan keduanya memberi karbon dioksida dan air
+# Klorin keluar sebagai asam yang bisa dititrasi
 
-Satu porsi punya <InlineMath math="0{,}0100\text{ mol}" /> hidrogen klorida, jadi **seluruh larutan punya <InlineMath math="0{,}100\text{ mol}" />**, satu per satuan PVC, <InlineMath math="0{,}100\times62{,}5=6{,}25\text{ g}" />. Polietenanya <InlineMath math="2{,}80\text{ g}" />, <InlineMath math="0{,}100\text{ mol}" /> satuan. **Kedua polimer memberi dua karbon dioksida per satuan**, <InlineMath math="0{,}400\text{ mol}" />, <InlineMath math="9{,}60\text{ dm}^3" />. Airnya dua per satuan polietena dan satu per satuan PVC, <InlineMath math="0{,}300\times18=5{,}40\text{ g}" />.
+Hanya PVC yang membawa klorin, dan **tiap unit PVC mengirim tepat satu hidrogen klorida ke labu**. Satu porsi memakai <InlineMath math="0{,}0100\text{ mol}" /> basa, dan labunya berisi sepuluh porsi, jadi campurannya punya <InlineMath math="0{,}100\text{ mol}" /> unit PVC, <InlineMath math="M_r=62{,}5" />, atau <InlineMath math="6{,}25\text{ g}" />. Polietena adalah <InlineMath math="2{,}80\text{ g}" /> sisanya, dan jawaban <InlineMath math="2{,}80\text{ g}" /> untuk PVC menukar kedua polimer itu.
 
-<Chart
-  title={<>Satuan dalam campuran</>}
-  description={<>Campuran memuat <InlineMath math="0{,}100\text{ mol}" /> satuan polietena dan <InlineMath math="0{,}100\text{ mol}" /> satuan PVC.</>}
-  bars="apart"
-  categories={["Satuan polietena", "Satuan PVC"]}
-  series={[
-    { label: "Jumlah zat", mark: "bar", values: [0.100, 0.100] },
+<MoleculeShapeLab
+  title={<>Dua monomer dan hidrogen klorida</>}
+  description={<>Etena dan kloroetena adalah monomernya. Pembakaran unit PVC melepaskan klorinnya bersama satu hidrogen sebagai hidrogen klorida, molekul yang dititrasi oleh basa.</>}
+  molecules={[
+    { id: "ethene", name: "etena" },
+    { id: "chloroethene", name: "kloroetena" },
+    { id: "hydrogen-chloride", name: "hidrogen klorida" },
   ]}
-  valueLabel="Jumlah zat (mol)"
+  labels={{
+    atoms: <>Atom</>,
+    choose: "Pilih molekul",
+    fill: <>Model ruang terisi</>,
+    formula: <>Rumus</>,
+    mass: <>Massa molekul relatif</>,
+    shape: <>Sudut ikatan</>,
+    view: "Monomer dan hidrogen klorida",
+  }}
 />
 
+# Karbon dan hidrogen dari dua jenis unit
+
+Polietena, <InlineMath math="M_r=28" /> per unit, juga <InlineMath math="0{,}100\text{ mol}" /> unit. **Kedua unit punya dua atom karbon**, jadi <InlineMath math="0{,}200\text{ mol}" /> unit terbakar menjadi <InlineMath math="0{,}400\text{ mol}" /> karbon dioksida, <InlineMath math="9{,}60\text{ dm}^3" />. Satu karbon dioksida per unit memberi <InlineMath math="4{,}80\text{ dm}^3" />.
+
+Hidrogennya perlu lebih teliti. Satu unit polietena punya empat atom hidrogen dan membentuk dua molekul air. Satu unit PVC punya tiga, tetapi satu pergi bersama klorin, jadi ia hanya membentuk satu air. Totalnya <InlineMath math="0{,}300\text{ mol}" />, <InlineMath math="5{,}40\text{ g}" />. Mengirim ketiga hidrogen PVC ke air memberi <InlineMath math="6{,}30\text{ g}" />, dan <InlineMath math="1{,}80\text{ g}" /> adalah air dari PVC saja.
+
 <BlockMath math="\begin{aligned}
-n(\text{PVC unit})&=10\times0{,}100\times0{,}100=0{,}100\ \Rightarrow\ m=6{,}25\text{ g},\quad n(\text{PE unit})=\tfrac{9{,}05-6{,}25}{28}=0{,}100\\
-V(\text{CO}_2)&=(2\times0{,}100+2\times0{,}100)\times24=9{,}60\text{ dm}^3,\quad m(\text{H}_2\text{O})=(0{,}200+0{,}100)\times18=5{,}40\text{ g}
+n(\text{HCl})&=\tfrac{250}{25{,}0}\times0{,}100\times0{,}100=0{,}100\text{ mol}\ \Rightarrow\ m(\text{PVC})=0{,}100\times62{,}5=6{,}25\text{ g}\\
+n(\text{C}_2\text{H}_4)&=\tfrac{9{,}05-6{,}25}{28}=0{,}100,\quad V(\text{CO}_2)=2\times0{,}200\times24=9{,}60\text{ dm}^3\\
+n(\text{H}_2\text{O})&=2\times0{,}100+1\times0{,}100=0{,}300\ \Rightarrow\ m=0{,}300\times18=5{,}40\text{ g}
 \end{aligned}" />
-
-# Kenapa pilihan lain salah
-
-- <InlineMath math="4{,}80\text{ dm}^3" /> dan <InlineMath math="1{,}80\text{ g}" /> hanya menghitung PVC, padahal **polietena juga terbakar menjadi karbon dioksida dan air**.
-- <InlineMath math="2{,}80\text{ g}" /> adalah massa polietena, padahal yang ditanya PVC.
-- <InlineMath math="6{,}30\text{ g}" /> mengubah ketiga hidrogen tiap satuan PVC menjadi air, padahal satu keluar sebagai hidrogen klorida.

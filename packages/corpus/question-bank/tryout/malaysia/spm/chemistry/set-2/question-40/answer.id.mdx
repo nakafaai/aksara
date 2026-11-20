@@ -1,25 +1,47 @@
-# Ikuti atom belerang melewati tiap langkah, potong menjadi sembilan puluh persen hanya di tempat konversinya berhenti, dan titrasi seperdua puluh asamnya
+# Semua belerang terbakar
 
-Belerangnya <InlineMath math="0{,}100\text{ mol}" />, dan **pembakarannya tuntas**, <InlineMath math="0{,}100\text{ mol}" /> belerang dioksida, <InlineMath math="2{,}40\text{ dm}^3" />. **Hanya konversinya yang berhenti di <InlineMath math="90{,}0\%" />**, <InlineMath math="0{,}0900\text{ mol}" />, yang menjadi <InlineMath math="0{,}0900\times98=8{,}82\text{ g}" /> asam. Satu porsi seperdua puluhnya, <InlineMath math="0{,}00450\text{ mol}" />, dan **tiap asam sulfat butuh dua ion hidroksida**, <InlineMath math="0{,}00900\div0{,}200=0{,}0450\text{ dm}^3=45{,}0\text{ cm}^3" />.
+Belerangnya <InlineMath math="3{,}20\div32=0{,}100\text{ mol}" />, dan pembakarannya sempurna, jadi terbentuk <InlineMath math="0{,}100\text{ mol}" /> belerang dioksida, <InlineMath math="2{,}40\text{ dm}^3" />. **Angka <InlineMath math="90{,}0\%" /> itu milik konverter, bukan pembakar**. Memakainya di sini mengecilkan gasnya menjadi <InlineMath math="2{,}16\text{ dm}^3" />.
+
+# Konverter meloloskan sebagian dioksida
+
+Hanya <InlineMath math="0{,}0900\text{ mol}" /> belerang trioksida yang keluar dari katalis, dan lab di bawah menaruh dioksida yang bengkok di samping trioksida yang datar. **Tiap molekul trioksida menjadi satu molekul oleum**, <InlineMath math="M_r=178" />, jadi terbentuk <InlineMath math="16{,}0\text{ g}" />. Membuat oleum dari seluruh <InlineMath math="0{,}100\text{ mol}" /> memberi <InlineMath math="17{,}8\text{ g}" />, seolah konverternya sempurna.
+
+<MoleculeShapeLab
+  title={<>Dioksida bengkok, trioksida datar</>}
+  description={<>Konverter mengubah <InlineMath math="\text{SO}_2" /> yang bengkok menjadi <InlineMath math="\text{SO}_3" /> yang datar. <InlineMath math="10{,}0\%" /> yang tetap bengkok melewati penyerap dan tidak pernah menjadi oleum.</>}
+  molecules={[
+    { id: "sulfur-dioxide", name: "belerang dioksida" },
+    { id: "sulfur-trioxide", name: "belerang trioksida" },
+  ]}
+  labels={{
+    atoms: <>Atom</>,
+    choose: "Pilih molekul",
+    fill: <>Model ruang terisi</>,
+    formula: <>Rumus</>,
+    mass: <>Massa molekul relatif</>,
+    shape: <>Sudut ikatan</>,
+    view: "Belerang dioksida dan belerang trioksida",
+  }}
+/>
+
+# Pengenceran menggandakan asam
+
+Air memecah tiap oleum menjadi **dua molekul asam sulfat**. Satu membawa belerang dari pembakar, satu lagi membawa belerang dari asam yang menyerap trioksida, dan diagramnya melacak keduanya. Jadi terbentuk <InlineMath math="0{,}180\text{ mol}" /> asam sulfat, <InlineMath math="17{,}6\text{ g}" />. Satu asam per oleum memberi <InlineMath math="8{,}82\text{ g}" />, dan <InlineMath math="19{,}6\text{ g}" /> menggandakan <InlineMath math="0{,}100\text{ mol}" /> penuh tanpa kehilangan di konverter.
 
 <Chart
-  title={<>Belerang sepanjang jalur</>}
-  description={<><InlineMath math="0{,}100\text{ mol}" /> belerang dioksida memberi <InlineMath math="0{,}0900\text{ mol}" /> belerang trioksida dan <InlineMath math="0{,}0900\text{ mol}" /> asam.</>}
+  title={<>Asal atom belerang dalam asam</>}
+  description={<>Sampai oleum, semua belerang berasal dari belerang yang dibakar. Asam penyerap menambahkan atom belerang sebanyak itu lagi, jadi pengenceran berakhir dengan dua kali jumlah trioksida.</>}
   bars="apart"
-  categories={["Belerang dioksida", "Belerang trioksida", "Asam sulfat"]}
+  categories={["SO₂", "SO₃", "H₂S₂O₇", "H₂SO₄ setelah pengenceran"]}
   series={[
-    { label: "Jumlah zat", mark: "bar", values: [0.100, 0.0900, 0.0900] },
+    { label: "Dari belerang yang dibakar", mark: "bar", values: [100, 90, 90, 90] },
+    { label: "Dari asam penyerap", mark: "bar", values: [0, 0, 90, 90] },
   ]}
-  valueLabel="Jumlah zat (mol)"
+  valueLabel="mmol"
 />
 
 <BlockMath math="\begin{aligned}
-n(\text{SO}_2)&=\tfrac{3{,}20}{32}=0{,}100\ \Rightarrow\ V=2{,}40\text{ dm}^3,\quad m(\text{H}_2\text{SO}_4)=0{,}0900\times98=8{,}82\text{ g}\\
-V(\text{NaOH})&=\tfrac{2\times0{,}0900\div20}{0{,}200}=0{,}0450\text{ dm}^3=45{,}0\text{ cm}^3
+n(\text{SO}_2)&=\tfrac{3{,}20}{32}=0{,}100\text{ mol},\quad V=0{,}100\times24=2{,}40\text{ dm}^3\\
+n(\text{SO}_3)&=0{,}900\times0{,}100=0{,}0900\ \Rightarrow\ m(\text{H}_2\text{S}_2\text{O}_7)=0{,}0900\times178=16{,}0\text{ g}\\
+m(\text{H}_2\text{SO}_4)&=2\times0{,}0900\times98=17{,}6\text{ g}
 \end{aligned}" />
-
-# Kenapa pilihan lain salah
-
-- <InlineMath math="9{,}80\text{ g}" /> mengubah semua belerang dioksida, padahal **hanya <InlineMath math="90{,}0\%" /> yang menjadi belerang trioksida**.
-- <InlineMath math="22{,}5\text{ cm}^3" /> menetralkan tiap asam sulfat dengan satu hidroksida, padahal asam itu punya dua hidrogen asam.
-- <InlineMath math="2{,}16\text{ dm}^3" /> menerapkan <InlineMath math="90{,}0\%" /> pada pembakaran, padahal pembakarannya tuntas.

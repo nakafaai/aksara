@@ -1,26 +1,37 @@
-# Ikuti klorida melalui pencairan ke dalam bahagian itu, kemudian biarkan argentum berlebihan memberitahu berapa banyak tiosianat diperlukan
+# Klorida dalam bahagian itu
 
-Garam itu <InlineMath math="5.85\div58.5=0.100\text{ mol}" /> dalam <InlineMath math="0.250\text{ dm}^3" />, <InlineMath math="0.400\text{ mol dm}^{-3}" />, dan **mencairkan <InlineMath math="25.0\text{ cm}^3" /> kepada <InlineMath math="100\text{ cm}^3" /> membahagikannya dengan empat**, <InlineMath math="0.100\text{ mol dm}^{-3}" />. Bahagian itu mengandungi <InlineMath math="0.0200\times0.100=0.00200\text{ mol}" /> klorida, yang memendakkan <InlineMath math="0.00200\times143.5=0.287\text{ g}" />. Argentum yang ditambah ialah <InlineMath math="0.0500\times0.0500=0.00250\text{ mol}" />, jadi **<InlineMath math="0.000500\text{ mol}" /> berbaki**, yang memerlukan <InlineMath math="0.000500\div0.0400=0.0125\text{ dm}^3" />, <InlineMath math="12.5\text{ cm}^3" /> tiosianat.
+Garam itu <InlineMath math="5.85\div58.5=0.100\text{ mol}" /> dalam <InlineMath math="250\text{ cm}^3" />, jadi kelalang pertama mengandungi <InlineMath math="0.400\text{ mol dm}^{-3}" />. Itu bukan larutan yang ditanya. **Mencairkan <InlineMath math="25.0\text{ cm}^3" /> kepada <InlineMath math="100\text{ cm}^3" /> membahagi kepekatan dengan empat**, jadi kamu dapat <InlineMath math="0.100\text{ mol dm}^{-3}" />. Berhenti pada kelalang pertama ialah punca jawapan <InlineMath math="0.400\text{ mol dm}^{-3}" />.
 
-<Chart
-  title={<>Argentum dalam kelalang</>}
-  description={<>Daripada <InlineMath math="2.50\text{ mmol}" /> argentum yang ditambah, klorida mengambil <InlineMath math="2.00\text{ mmol}" /> dan tiosianat <InlineMath math="0.50\text{ mmol}" /> yang berbaki.</>}
-  bars="apart"
-  categories={["Argentum ditambah", "Diambil oleh klorida", "Berbaki untuk tiosianat"]}
-  series={[
-    { label: "Bilangan mol", mark: "bar", values: [2.50, 2.00, 0.50] },
-  ]}
-  valueLabel="Bilangan mol (mmol)"
+Bahagian <InlineMath math="20.0\text{ cm}^3" /> daripada larutan cair itu membawa <InlineMath math="0.100\times0.0200=0.00200\text{ mol}" /> ion klorida.
+
+# Argentum yang tidak ditangkap klorida
+
+Argentum nitrat membawa <InlineMath math="0.0500\times0.0500=0.00250\text{ mol}" /> ion argentum, lebih banyak daripada klorida. Setiap ion klorida mengambil satu ion argentum, jadi <InlineMath math="0.00200\text{ mol}" /> argentum klorida, <InlineMath math="M_r=143.5" />, termendak. Nilai <InlineMath math="0.117\text{ g}" /> dalam satu pilihan ialah jisim natrium klorida dalam bahagian itu, bukan jisim mendakan.
+
+**Hanya <InlineMath math="0.000500\text{ mol}" /> ion argentum yang tidak bertemu klorida** yang dititratkan dengan tiosianat. Jika semua <InlineMath math="0.00250\text{ mol}" /> dititratkan, kamu dapat <InlineMath math="62.5\text{ cm}^3" />, seolah-olah tiada apa yang termendak.
+
+<Mermaid
+  title={<>Laluan klorida dari garam ke pentitratan</>}
+  description={<>Setiap anak panah ialah satu langkah prosedur, dan jumlah dalam setiap kotak ialah apa yang dibawa ke langkah seterusnya.</>}
+  chart={`
+    flowchart LR
+      N0["5.85 g NaCl dalam 250 cm³: 0.400 mol dm⁻³"]
+      N1["25.0 cm³ kepada 100 cm³: 0.100 mol dm⁻³"]
+      N2["Bahagian 20.0 cm³: 2.00 mmol Cl⁻"]
+      N3["2.50 mmol Ag⁺ ditambah"]
+      N4["2.00 mmol AgCl, 0.287 g"]
+      N5["0.500 mmol Ag⁺ berbaki"]
+      N6["12.5 cm³ SCN⁻ 0.0400 mol dm⁻³"]
+      N0 --> N1
+      N1 --> N2
+      N2 --> N4
+      N3 --> N4
+      N3 --> N5
+      N5 --> N6
+  `}
 />
 
 <BlockMath math="\begin{aligned}
-c&=\tfrac{5.85\div58.5}{0.250}\times\tfrac{25.0}{100}=0.100\text{ mol dm}^{-3}\\
-m(\text{AgCl})&=0.0200\times0.100\times143.5=0.287\text{ g}\\
-V(\text{SCN}^-)&=\tfrac{0.00250-0.00200}{0.0400}=0.0125\text{ dm}^3=12.5\text{ cm}^3
+c&=\tfrac{5.85\div58.5}{0.250}\times\tfrac{25.0}{100}=0.100\text{ mol dm}^{-3},\quad n(\text{Cl}^-)=0.100\times0.0200=0.00200\text{ mol}\\
+m(\text{AgCl})&=0.00200\times143.5=0.287\text{ g},\quad V(\text{SCN}^-)=\tfrac{0.00250-0.00200}{0.0400}=0.0125\text{ dm}^3=12.5\text{ cm}^3
 \end{aligned}" />
-
-# Kenapa pilihan lain salah
-
-- <InlineMath math="0.400\text{ mol dm}^{-3}" /> melangkau pencairan, jadi bahagian itu seolah-olah mengandungi <InlineMath math="0.00800\text{ mol}" /> klorida, lebih daripada yang boleh diambil oleh argentum.
-- <InlineMath math="62.5\text{ cm}^3" /> menitratkan semua argentum yang ditambah, walhal **klorida telah mengambil <InlineMath math="0.00200\text{ mol}" /> daripadanya**.
-- <InlineMath math="0.117\text{ g}" /> menimbang mendakan sebagai natrium klorida, walhal ia argentum klorida, <InlineMath math="M_r=143.5" />.

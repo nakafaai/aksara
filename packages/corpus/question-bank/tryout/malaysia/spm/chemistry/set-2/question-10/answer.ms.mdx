@@ -1,26 +1,33 @@
-# Pentitratan balik mencari garam ammonium, baki jisim ialah natrium klorida, dan kedua-dua garam memberi klorida kepada argentum
+# Menyukat ammonium melalui apa yang ditinggalkannya
 
-Alkali yang ditambah ialah <InlineMath math="0.0250\text{ mol}" /> dan asid menunjukkan <InlineMath math="0.00750\text{ mol}" /> berbaki, jadi **<InlineMath math="0.0175\text{ mol}" /> bertindak balas dengan ammonium klorida**, <InlineMath math="0.0175\times53.5=0.936\text{ g}" />, <InlineMath math="61.6\%" /> daripada campuran, dan ia memberi <InlineMath math="0.0175\times24\,000=420\text{ cm}^3" /> ammonia. **Baki <InlineMath math="0.585\text{ g}" /> ialah natrium klorida**, <InlineMath math="0.0100\text{ mol}" />. Kedua-dua garam membawa klorida, <InlineMath math="0.0275\text{ mol}" /> kesemuanya, <InlineMath math="0.0275\times143.5=3.95\text{ g}" /> argentum klorida.
+Ammonium klorida tidak dititratkan terus di sini, jadi kaedah ini memberinya alkali berlebihan yang diketahui dan **mentitratkan alkali yang masih tinggal**. Asid yang digunakan, <InlineMath math="0.00750\text{ mol}" />, sama dengan baki natrium hidroksida, jadi ion ammonium mengambil <InlineMath math="0.0175\text{ mol}" />. Menganggap nilai titratan itu sebagai ammonium memberi <InlineMath math="26.4\%" />.
 
-<Chart
-  title={<>Jisim setiap garam</>}
-  description={<><InlineMath math="1.52\text{ g}" /> campuran itu terdiri daripada <InlineMath math="0.936\text{ g}" /> ammonium klorida dan <InlineMath math="0.585\text{ g}" /> natrium klorida.</>}
-  bars="apart"
-  categories={["Ammonium klorida", "Natrium klorida"]}
-  series={[
-    { label: "Jisim", mark: "bar", values: [0.936, 0.585] },
-  ]}
-  valueLabel="Jisim (g)"
+<Mermaid
+  title={<>Ke mana natrium hidroksida pergi</>}
+  description={<>Alkali itu dikongsi antara ion ammonium dan asid yang menyukat bakinya. Klorida daripada kedua-dua garam bertemu argentum nitrat dalam sampel kedua.</>}
+  chart={`
+    flowchart TD
+      N0["25.0 mmol NaOH"]
+      N1["17.5 mmol digunakan NH₄⁺"]
+      N2["7.50 mmol berbaki: 15.0 cm³ HCl"]
+      N3["17.5 mmol NH₃: 420 cm³"]
+      N4["0.936 g NH₄Cl, 0.584 g NaCl"]
+      N5["27.5 mmol Cl⁻: 3.95 g AgCl"]
+      N0 --> N1
+      N0 --> N2
+      N1 --> N3
+      N1 --> N4
+      N4 --> N5
+  `}
 />
 
+Setiap ion ammonium membebaskan satu molekul ammonia, <InlineMath math="0.0175\text{ mol}" /> atau <InlineMath math="420\text{ cm}^3" />. Menggandakannya, seolah-olah dua ion hidroksida membebaskan setiap ammonia, memberi <InlineMath math="840\text{ cm}^3" />.
+
+# Kedua-dua garam membawa klorida
+
+Ammonium klorida berjisim <InlineMath math="0.936\text{ g}" />, jadi natrium klorida ialah baki <InlineMath math="0.584\text{ g}" />, <InlineMath math="0.0100\text{ mol}" />. Argentum nitrat tidak peduli kation mana yang datang bersama klorida, jadi ia memendakkan **kesemua <InlineMath math="0.0275\text{ mol}" /> ion klorida**. Mengira klorida garam ammonium sahaja memberi <InlineMath math="2.51\text{ g}" />.
+
 <BlockMath math="\begin{aligned}
-n(\text{NH}_4\text{Cl})&=0.0250-0.00750=0.0175\ \Rightarrow\ \tfrac{0.936}{1.52}\times100=61.6\%\\
-n(\text{NaCl})&=\tfrac{1.52-0.936}{58.5}=0.0100\text{ mol}\\
-m(\text{AgCl})&=(0.0175+0.0100)\times143.5=3.95\text{ g}
+n(\text{NH}_4^+)&=0.0250-0.00750=0.0175\text{ mol}:\quad \tfrac{0.0175\times53.5}{1.52}\times100=61.6\%,\quad V(\text{NH}_3)=420\text{ cm}^3\\
+n(\text{NaCl})&=\tfrac{1.52-0.936}{58.5}=0.0100,\quad m(\text{AgCl})=(0.0175+0.0100)\times143.5=3.95\text{ g}
 \end{aligned}" />
-
-# Kenapa pilihan lain salah
-
-- <InlineMath math="26.4\%" /> menganggap alkali yang dititratkan oleh asid sebagai alkali yang digunakan oleh ammonium, walhal **asid mengukur baki**.
-- <InlineMath math="840\text{ cm}^3" /> memberi dua ammonia bagi setiap ammonium, walhal setiap ion ammonium memberi satu.
-- <InlineMath math="2.51\text{ g}" /> hanya memendakkan klorida garam ammonium, walhal klorida natrium klorida juga termendak.

@@ -1,26 +1,37 @@
-# Ikuti klorida melewati pengenceran ke dalam porsi, lalu biarkan perak berlebih menentukan berapa banyak tiosianat yang dibutuhkan
+# Klorida dalam porsi
 
-Garamnya <InlineMath math="5{,}85\div58{,}5=0{,}100\text{ mol}" /> dalam <InlineMath math="0{,}250\text{ dm}^3" />, <InlineMath math="0{,}400\text{ mol dm}^{-3}" />, dan **mengencerkan <InlineMath math="25{,}0\text{ cm}^3" /> menjadi <InlineMath math="100\text{ cm}^3" /> membaginya dengan empat**, <InlineMath math="0{,}100\text{ mol dm}^{-3}" />. Porsi memuat <InlineMath math="0{,}0200\times0{,}100=0{,}00200\text{ mol}" /> klorida, yang mengendapkan <InlineMath math="0{,}00200\times143{,}5=0{,}287\text{ g}" />. Perak yang ditambahkan <InlineMath math="0{,}0500\times0{,}0500=0{,}00250\text{ mol}" />, jadi **<InlineMath math="0{,}000500\text{ mol}" /> tersisa**, yang butuh <InlineMath math="0{,}000500\div0{,}0400=0{,}0125\text{ dm}^3" />, <InlineMath math="12{,}5\text{ cm}^3" /> tiosianat.
+Garamnya <InlineMath math="5{,}85\div58{,}5=0{,}100\text{ mol}" /> dalam <InlineMath math="250\text{ cm}^3" />, jadi labu pertama berisi <InlineMath math="0{,}400\text{ mol dm}^{-3}" />. Itu bukan larutan yang ditanyakan. **Mengencerkan <InlineMath math="25{,}0\text{ cm}^3" /> menjadi <InlineMath math="100\text{ cm}^3" /> membagi konsentrasinya dengan empat**, jadi hasilnya <InlineMath math="0{,}100\text{ mol dm}^{-3}" />. Berhenti di labu pertama adalah asal jawaban <InlineMath math="0{,}400\text{ mol dm}^{-3}" />.
 
-<Chart
-  title={<>Perak dalam labu</>}
-  description={<>Dari <InlineMath math="2{,}50\text{ mmol}" /> perak yang ditambahkan, klorida mengambil <InlineMath math="2{,}00\text{ mmol}" /> dan tiosianat <InlineMath math="0{,}50\text{ mmol}" /> sisanya.</>}
-  bars="apart"
-  categories={["Perak ditambahkan", "Diambil klorida", "Sisa untuk tiosianat"]}
-  series={[
-    { label: "Jumlah zat", mark: "bar", values: [2.50, 2.00, 0.50] },
-  ]}
-  valueLabel="Jumlah zat (mmol)"
+Porsi <InlineMath math="20{,}0\text{ cm}^3" /> dari larutan encer itu membawa <InlineMath math="0{,}100\times0{,}0200=0{,}00200\text{ mol}" /> ion klorida.
+
+# Perak yang tidak tertangkap klorida
+
+Perak nitrat membawa <InlineMath math="0{,}0500\times0{,}0500=0{,}00250\text{ mol}" /> ion perak, lebih banyak dari kloridanya. Tiap ion klorida mengambil satu ion perak, jadi <InlineMath math="0{,}00200\text{ mol}" /> perak klorida, <InlineMath math="M_r=143{,}5" />, mengendap. Nilai <InlineMath math="0{,}117\text{ g}" /> di salah satu pilihan adalah massa natrium klorida dalam porsi, bukan massa endapan.
+
+**Hanya <InlineMath math="0{,}000500\text{ mol}" /> ion perak yang tidak bertemu klorida** yang dititrasi dengan tiosianat. Kalau semua <InlineMath math="0{,}00250\text{ mol}" /> dititrasi, hasilnya <InlineMath math="62{,}5\text{ cm}^3" />, seolah tidak ada yang mengendap.
+
+<Mermaid
+  title={<>Jalur klorida dari garam ke titrasi</>}
+  description={<>Tiap panah adalah satu langkah prosedur, dan jumlah di tiap kotak adalah yang diteruskan langkah itu.</>}
+  chart={`
+    flowchart LR
+      N0["5,85 g NaCl dalam 250 cm³: 0,400 mol dm⁻³"]
+      N1["25,0 cm³ menjadi 100 cm³: 0,100 mol dm⁻³"]
+      N2["Porsi 20,0 cm³: 2,00 mmol Cl⁻"]
+      N3["2,50 mmol Ag⁺ ditambahkan"]
+      N4["2,00 mmol AgCl, 0,287 g"]
+      N5["Sisa 0,500 mmol Ag⁺"]
+      N6["12,5 cm³ SCN⁻ 0,0400 mol dm⁻³"]
+      N0 --> N1
+      N1 --> N2
+      N2 --> N4
+      N3 --> N4
+      N3 --> N5
+      N5 --> N6
+  `}
 />
 
 <BlockMath math="\begin{aligned}
-c&=\tfrac{5{,}85\div58{,}5}{0{,}250}\times\tfrac{25{,}0}{100}=0{,}100\text{ mol dm}^{-3}\\
-m(\text{AgCl})&=0{,}0200\times0{,}100\times143{,}5=0{,}287\text{ g}\\
-V(\text{SCN}^-)&=\tfrac{0{,}00250-0{,}00200}{0{,}0400}=0{,}0125\text{ dm}^3=12{,}5\text{ cm}^3
+c&=\tfrac{5{,}85\div58{,}5}{0{,}250}\times\tfrac{25{,}0}{100}=0{,}100\text{ mol dm}^{-3},\quad n(\text{Cl}^-)=0{,}100\times0{,}0200=0{,}00200\text{ mol}\\
+m(\text{AgCl})&=0{,}00200\times143{,}5=0{,}287\text{ g},\quad V(\text{SCN}^-)=\tfrac{0{,}00250-0{,}00200}{0{,}0400}=0{,}0125\text{ dm}^3=12{,}5\text{ cm}^3
 \end{aligned}" />
-
-# Kenapa pilihan lain salah
-
-- <InlineMath math="0{,}400\text{ mol dm}^{-3}" /> melewatkan pengenceran, jadi porsi seolah memuat <InlineMath math="0{,}00800\text{ mol}" /> klorida, lebih dari yang bisa diambil perak.
-- <InlineMath math="62{,}5\text{ cm}^3" /> menitrasi semua perak yang ditambahkan, padahal **klorida sudah mengambil <InlineMath math="0{,}00200\text{ mol}" /> darinya**.
-- <InlineMath math="0{,}117\text{ g}" /> menimbang endapan sebagai natrium klorida, padahal itu perak klorida, <InlineMath math="M_r=143{,}5" />.

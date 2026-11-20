@@ -1,25 +1,46 @@
-# Karbon dioksida bersama jisim menetapkan n, persamaan seimbang memberi oksigen, dan setiap alkohol memberi satu asid dengan satu hidrogen berasid
+# Berapa panjang rantainya
 
-Karbon dioksida ialah <InlineMath math="0.0800\text{ mol}" />, jadi <InlineMath math="n\times\tfrac{1.48}{14n+18}=0.0800" />, <InlineMath math="1.48n=1.12n+1.44" />, <InlineMath math="n=4" />, <InlineMath math="\text{C}_4\text{H}_9\text{OH}" />, <InlineMath math="0.0200\text{ mol}" />. Selepas diseimbangkan, <InlineMath math="\text{C}_4\text{H}_9\text{OH}+6\text{O}_2\rightarrow4\text{CO}_2+5\text{H}_2\text{O}" />, dan **atom oksigen alkohol itu sendiri mengurangkan oksigen yang diperlukan**, <InlineMath math="0.120\times24=2.88\text{ dm}^3" />. <InlineMath math="0.0200\text{ mol}" /> asid butanoik meletakkan <InlineMath math="0.00200\text{ mol}" /> dalam satu bahagian, dan **hanya hidrogen <InlineMath math="\text{-COOH}" /> yang berasid**, <InlineMath math="0.00200\div0.0200=0.100\text{ dm}^3=100\text{ cm}^3" />.
+Satu molekul <InlineMath math="\text{C}_n\text{H}_{2n+1}\text{OH}" /> terbakar menjadi <InlineMath math="n" /> molekul karbon dioksida, dan jisim molekul relatifnya ialah <InlineMath math="14n+18" />. Gas itu <InlineMath math="0.0800\text{ mol}" />, jadi **satu persamaan dalam <InlineMath math="n" /> sudah menetapkan alkohol itu**.
 
-<Chart
-  title={<>Hasil dan oksigen</>}
-  description={<><InlineMath math="0.0200\text{ mol}" /> alkohol memberi <InlineMath math="0.0800\text{ mol}" /> karbon dioksida menggunakan <InlineMath math="0.120\text{ mol}" /> oksigen, atau <InlineMath math="0.0200\text{ mol}" /> asid.</>}
-  bars="apart"
-  categories={["Karbon dioksida", "Oksigen", "Asid"]}
-  series={[
-    { label: "Bilangan mol", mark: "bar", values: [0.0800, 0.120, 0.0200] },
-  ]}
-  valueLabel="Bilangan mol (mol)"
+<BlockMath math="\begin{aligned}
+n\times\tfrac{1.48}{14n+18}&=\tfrac{1.92}{24}=0.0800\ \Rightarrow\ 0.36n=1.44,\quad n=4,\quad \text{C}_4\text{H}_9\text{OH},\ M_r=74
+\end{aligned}" />
+
+Alkohol itu butanol, dan sampelnya <InlineMath math="0.0200\text{ mol}" />. Keempat-empat pilihan sudah menamakan <InlineMath math="\text{C}_4\text{H}_9\text{OH}" />, jadi markah terletak pada dua langkah seterusnya.
+
+# Dari mana datangnya atom oksigen
+
+Pembakaran memberi <InlineMath math="0.0800\text{ mol}" /> karbon dioksida dan <InlineMath math="0.100\text{ mol}" /> air, yang bersama-sama memegang <InlineMath math="0.260\text{ mol}" /> atom oksigen. **Setiap molekul alkohol datang dengan satu atom oksigennya sendiri**, jadi gas itu hanya perlu membekalkan <InlineMath math="0.240\text{ mol}" /> atom yang lain.
+
+<Mermaid
+  title={<>Mengimbangkan atom oksigen dalam pembakaran</>}
+  description={<>Hasil memerlukan <InlineMath math="0.260\text{ mol}" /> atom oksigen, dan alkohol itu sendiri membawa <InlineMath math="0.0200\text{ mol}" /> daripadanya.</>}
+  chart={`
+    flowchart LR
+      N0["0.0200 mol C₄H₉OH membawa 0.0200 mol O"]
+      N1["0.120 mol O₂ membawa 0.240 mol O"]
+      N2["0.260 mol atom O"]
+      N3["0.0800 mol CO₂ memegang 0.160 mol O"]
+      N4["0.100 mol H₂O memegang 0.100 mol O"]
+      N0 --> N2
+      N1 --> N2
+      N2 --> N3
+      N2 --> N4
+  `}
 />
 
 <BlockMath math="\begin{aligned}
-\tfrac{1.48n}{14n+18}&=\tfrac{1.92}{24}\ \Rightarrow\ n=4,\quad V(\text{O}_2)=6\times0.0200\times24=2.88\text{ dm}^3\\
-V(\text{NaOH})&=\tfrac{0.0200\div10}{0.0200}=0.100\text{ dm}^3=100\text{ cm}^3
+n(\text{O}_2)&=\tfrac{2\times0.0800+0.100-0.0200}{2}=0.120\text{ mol},\quad V(\text{O}_2)=0.120\times24=2.88\text{ dm}^3
 \end{aligned}" />
 
-# Kenapa pilihan lain salah
+Membebankan kesemua <InlineMath math="0.260\text{ mol}" /> atom kepada gas memberi <InlineMath math="3.12\text{ dm}^3" />, iaitu oksigen yang diperlukan oleh butana, yang mempunyai bilangan karbon dan hidrogen yang sama tetapi tiada oksigen di dalamnya.
 
-- <InlineMath math="3.12\text{ dm}^3" /> mengabaikan atom oksigen yang sudah ada dalam alkohol, jadi ia memerlukan <InlineMath math="6\tfrac{1}{2}" /> molekul oksigen dan bukan <InlineMath math="6" />.
-- <InlineMath math="1000\text{ cm}^3" /> mentitratkan semua asid, walhal **bahagian itu hanya sepersepuluh daripadanya**.
-- <InlineMath math="200\text{ cm}^3" /> memberi asid butanoik dua hidrogen berasid, walhal hanya hidrogen <InlineMath math="\text{-COOH}" /> yang bertindak balas dengan alkali.
+# Dua hidrogen keluar, satu oksigen masuk
+
+Kalium dikromat(VI) berasid menukar hujung <InlineMath math="\text{CH}_2\text{OH}" /> kepada <InlineMath math="\text{COOH}" />: dua atom hidrogen keluar dalam satu molekul air dan satu atom oksigen masuk. **Jadi asid butanoik mempunyai <InlineMath math="M_r=88" />, iaitu <InlineMath math="14" /> lebih daripada alkohol itu**, dan setiap molekul alkohol menjadi satu molekul asid.
+
+<BlockMath math="\begin{aligned}
+m(\text{C}_3\text{H}_7\text{COOH})&=0.0200\times88=1.76\text{ g}
+\end{aligned}" />
+
+Menulis <InlineMath math="1.48\text{ g}" /> bagi asid itu menganggap molekulnya tidak berubah. Menambah dua atom oksigen tetapi mengekalkan air di dalam hasil memberi <InlineMath math="M_r=106" /> dan <InlineMath math="2.12\text{ g}" />.

@@ -1,25 +1,41 @@
-# The titration counts the alkali used, the mass splits it between ester and acid, both give the salt, but only the ester gives ethanol
+# What the portion says about the flask
 
-A portion has <InlineMath math="0.00400\text{ mol}" /> of alkali left, so **the whole mixture has ten times that**, <InlineMath math="0.0400\text{ mol}" />, and <InlineMath math="0.100-0.0400=0.0600\text{ mol}" /> was used. With <InlineMath math="x" /> of ester and <InlineMath math="y" /> of acid, <InlineMath math="x+y=0.0600" /> and <InlineMath math="88x+60y=4.72" />, so <InlineMath math="x=0.0400" />, <InlineMath math="3.52\text{ g}" /> of ester. **Both give sodium ethanoate**, <InlineMath math="0.0600\times82=4.92\text{ g}" />, but **only the ester gives ethanol**, <InlineMath math="0.0400\times46=1.84\text{ g}" />.
+The <InlineMath math="25.0\text{ cm}^3" /> portion uses <InlineMath math="0.00400\text{ mol}" /> of hydrochloric acid, and it is a tenth of the flask, so **<InlineMath math="0.0400\text{ mol}" /> of sodium hydroxide survived the reflux**. The alkali started at <InlineMath math="0.100\text{ mol}" />, which means the ester and the acid took <InlineMath math="0.0600\text{ mol}" /> between them.
 
-<Chart
-  title={<>Sodium hydroxide</>}
-  description={<>The ester uses <InlineMath math="0.0400\text{ mol}" />, the acid <InlineMath math="0.0200\text{ mol}" />, and <InlineMath math="0.0400\text{ mol}" /> is left.</>}
-  bars="apart"
-  categories={["Used by the ester", "Used by the acid", "Alkali left"]}
-  series={[
-    { label: "Amount", mark: "bar", values: [0.0400, 0.0200, 0.0400] },
-  ]}
-  valueLabel="Amount (mol)"
+<Mermaid
+  title={<>Where the hydroxide ions go during the reflux</>}
+  description={<>The hydrochloric acid measures only the <InlineMath math="40.0\text{ mmol}" /> left over. The ester and the acid share the rest, and both send their share into sodium ethanoate.</>}
+  chart={`
+    flowchart TD
+      N0["100 mmol NaOH"]
+      N1["40.0 mmol to ethyl ethanoate"]
+      N2["20.0 mmol to ethanoic acid"]
+      N3["40.0 mmol left: 4.00 mmol per portion"]
+      N4["40.0 mmol ethanol: 1.84 g"]
+      N5["60.0 mmol sodium ethanoate: 4.92 g"]
+      N0 --> N1
+      N0 --> N2
+      N0 --> N3
+      N1 --> N4
+      N1 --> N5
+      N2 --> N5
+  `}
 />
 
+# Splitting the alkali between ester and acid
+
+Each compound consumes one hydroxide ion per molecule, so their moles add up to <InlineMath math="0.0600" />, and their masses add up to <InlineMath math="4.72\text{ g}" />. **Two equations settle the two unknowns**: <InlineMath math="0.0400\text{ mol}" /> of ethyl ethanoate, <InlineMath math="3.52\text{ g}" />, and <InlineMath math="0.0200\text{ mol}" /> of ethanoic acid.
+
 <BlockMath math="\begin{aligned}
-x+y&=0.100-10\times0.00400=0.0600,\quad 88x+60y=4.72\ \Rightarrow\ x=0.0400,\quad m(\text{ester})=3.52\text{ g}\\
-m(\text{CH}_3\text{COONa})&=0.0600\times82=4.92\text{ g},\quad m(\text{C}_2\text{H}_5\text{OH})=0.0400\times46=1.84\text{ g}
+x+y&=0.100-10\times0.00400=0.0600,\quad 88x+60y=4.72\ \Rightarrow\ x=0.0400,\quad y=0.0200
 \end{aligned}" />
 
-# Why the other options are wrong
+Handing all <InlineMath math="0.0600\text{ mol}" /> to the ester makes it <InlineMath math="5.28\text{ g}" />, heavier than the whole <InlineMath math="4.72\text{ g}" /> mixture, so that option fails a mass check before any chemistry is needed.
 
-- <InlineMath math="3.28\text{ g}" /> counts sodium ethanoate only from the ester, but the ethanoic acid gives it too.
-- <InlineMath math="2.76\text{ g}" /> gives ethanol from all the alkali used, but **the acid gives water, not ethanol**.
-- <InlineMath math="5.28\text{ g}" /> gives all the alkali used to the ester, but that is more than the whole mixture weighs.
+# What each reaction leaves in the flask
+
+**Every hydroxide ion that reacted produced one ethanoate ion**, whether it met the ester or the acid, so the salt is <InlineMath math="0.0600\text{ mol}" />, <InlineMath math="4.92\text{ g}" />. Counting only the ester's share gives <InlineMath math="3.28\text{ g}" />. Ethanol is a different story, because only the ester carries an ethyl group, so <InlineMath math="0.0400\text{ mol}" /> forms. The <InlineMath math="2.76\text{ g}" /> option lets the acid release ethanol as well.
+
+<BlockMath math="\begin{aligned}
+m(\text{CH}_3\text{COONa})&=0.0600\times82=4.92\text{ g},\quad m(\text{C}_2\text{H}_5\text{OH})=0.0400\times46=1.84\text{ g}
+\end{aligned}" />

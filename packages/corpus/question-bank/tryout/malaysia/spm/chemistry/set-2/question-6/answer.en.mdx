@@ -1,26 +1,22 @@
-# Sodium's oxide is basic and sulfur's is acidic, so they partly neutralise each other before the portion is titrated
+# Two oxides, two opposite solutions
 
-Sodium oxide has <InlineMath math="M_r=62" />, so <InlineMath math="0.0100\text{ mol}" />, and **each gives two hydroxide**, <InlineMath math="0.0200\text{ mol}" /> of sodium hydroxide. Sulfur trioxide, <InlineMath math="M_r=80" />, gives <InlineMath math="0.00500\text{ mol}" /> of sulfuric acid, and **each acid takes two hydroxide**, <InlineMath math="0.0100\text{ mol}" />. That leaves <InlineMath math="0.0100\text{ mol}" /> of hydroxide in <InlineMath math="250\text{ cm}^3" />, <InlineMath math="0.00100\text{ mol}" /> in the portion, which needs <InlineMath math="0.00100\div0.0100=0.100\text{ dm}^3" />, <InlineMath math="100\text{ cm}^3" /> of acid.
+Sodium oxide is basic and sulfur trioxide acidic, so the two solutions neutralise each other before anything else. Sodium oxide, <InlineMath math="M_r=62" />, is <InlineMath math="0.0100\text{ mol}" />, and **its two sodium ions make two sodium hydroxide**, <InlineMath math="0.0200\text{ mol}" />. With only one per oxide the acid would cancel the alkali exactly, which is where pH <InlineMath math="7.0" /> comes from. Sulfur trioxide, <InlineMath math="M_r=80" />, gives <InlineMath math="0.00500\text{ mol}" /> of sulfuric acid.
+
+# What the acid leaves behind
+
+Sulfuric acid is dibasic, so <InlineMath math="0.00500\text{ mol}" /> of it removes <InlineMath math="0.0100\text{ mol}" /> of hydroxide ions and leaves <InlineMath math="0.0100\text{ mol}" /> in <InlineMath math="500\text{ cm}^3" />. The chart follows that fall: **without the acid the pH would be <InlineMath math="12.6" />**, and letting each acid take one hydroxide stops it near <InlineMath math="12.5" />.
 
 <Chart
-  title={<>Hydroxide in the mixture</>}
-  description={<>Of the <InlineMath math="20.0\text{ mmol}" /> of hydroxide, the sulfuric acid takes <InlineMath math="10.0\text{ mmol}" /> and <InlineMath math="10.0\text{ mmol}" /> is left in the flask.</>}
-  bars="apart"
-  categories={["Hydroxide formed", "Taken by sulfuric acid", "Left in flask"]}
+  title={<>pH as the sulfuric acid joins the alkali</>}
+  description={<>Each step adds a quarter of the acid to the <InlineMath math="500\text{ cm}^3" /> of alkali. The pH falls from <InlineMath math="12.6" /> but never reaches neutral, because the acid can take only half of the hydroxide.</>}
+  categories={["0 mmol", "1.25 mmol", "2.50 mmol", "3.75 mmol", "5.00 mmol"]}
   series={[
-    { label: "Amount", mark: "bar", values: [20.0, 10.0, 10.0] },
+    { label: "pH", mark: "line", values: [12.6, 12.54, 12.48, 12.4, 12.3] },
   ]}
-  valueLabel="Amount (mmol)"
+  valueLabel="pH"
 />
 
 <BlockMath math="\begin{aligned}
 n(\text{NaOH})&=2\times\tfrac{0.620}{62}=0.0200,\quad n(\text{H}_2\text{SO}_4)=\tfrac{0.400}{80}=0.00500\\
-n'(\text{OH}^-)&=0.0200-2\times0.00500=0.0100\text{ mol}\\
-V(\text{HCl})&=\tfrac{0.0100\div10}{0.0100}=0.100\text{ dm}^3=100\text{ cm}^3
+[\text{OH}^-]&=\tfrac{0.0200-2\times0.00500}{0.500}=0.0200\text{ mol dm}^{-3},\quad \text{pOH}=2-\log2=1.70,\quad \text{pH}=12.3
 \end{aligned}" />
-
-# Why the other options are wrong
-
-- <InlineMath math="0.0100\text{ mol}" /> gives one hydroxide per sodium oxide, but **<InlineMath math="\text{Na}_2\text{O}" /> has two sodium**, so it gives two.
-- <InlineMath math="200\text{ cm}^3" /> ignores the sulfuric acid, but sulfur trioxide is an acidic oxide and cancels part of the alkali.
-- <InlineMath math="150\text{ cm}^3" /> lets each sulfuric acid take one hydroxide, but it has two acidic hydrogens.
