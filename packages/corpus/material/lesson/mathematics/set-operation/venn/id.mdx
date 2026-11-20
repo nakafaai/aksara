@@ -1,0 +1,275 @@
+export const metadata = {
+  title: "Operasi Himpunan dan Diagram Venn",
+  description:
+    "Tentukan irisan, gabungan, dan komplemen himpunan, gabungkan operasi, lalu selesaikan masalah dengan diagram Venn lewat model interaktif, contoh, dan latihan.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2026-11-17",
+  subject: "Operasi Himpunan",
+};
+
+## Operasi Himpunan Menggabungkan atau Memilih Anggota
+
+**Irisan** <InlineMath math="A \cap B" /> adalah himpunan anggota yang berada di <InlineMath math="A" /> dan di <InlineMath math="B" />. **Gabungan** <InlineMath math="A \cup B" /> adalah himpunan anggota yang berada di <InlineMath math="A" />, di <InlineMath math="B" />, atau di keduanya. **Komplemen** <InlineMath math="A'" /> adalah himpunan anggota semesta <InlineMath math="S" /> yang tidak berada di <InlineMath math="A" />. Diagram Venn menunjukkan operasi ini sebagai daerah. Dalam model di sini, kamu menggeser himpunan untuk melihat irisan, menghitung anggota dengan prinsip inklusi dan eksklusi, dan menyelesaikan masalah survei.
+
+## Irisan dan Gabungan
+
+Ambil <InlineMath math="S = \{1, 2, 3, \ldots, 10\}" />, <InlineMath math="A = \{2, 4, 6, 8, 10\}" />, dan <InlineMath math="B = \{3, 6, 9\}" />.
+
+<MathContainer>
+<BlockMath math="A \cap B = \{6\}" />
+<BlockMath math="A \cup B = \{2, 3, 4, 6, 8, 9, 10\}" />
+<BlockMath math="(A \cup B)' = \{1, 5, 7\}" />
+</MathContainer>
+
+Model ini menggambar dua himpunan sebagai lingkaran di dalam himpunan semesta. Geser himpunan <InlineMath math="B" /> dan perhatikan kapan **irisan** ada dan kapan menjadi himpunan kosong.
+
+<MathVisual
+  title={<>Dua Himpunan dalam Himpunan Semesta</>}
+  description={
+    <>
+      Himpunan <InlineMath math="A" /> berpusat di <InlineMath math="(-1, 0)" />{" "}
+      dan himpunan <InlineMath math="B" /> di <InlineMath math="(h, 0)" />,
+      keduanya berjari-jari <InlineMath math="2" />.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -4.5, max: 6.5 }, y: { min: -3, max: 3 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "h", min: -1, max: 5, value: 1.5, step: 0.1, label: "h" },
+    ],
+    objects: [
+      { id: "seta", kind: "parametric", appearance: "primary", x: "-1 + 2cos(t)", y: "2sin(t)", parameter: { min: 0, max: 2 * Math.PI } },
+      { id: "setb", kind: "parametric", appearance: "secondary", x: "h + 2cos(t)", y: "2sin(t)", parameter: { min: 0, max: 2 * Math.PI } },
+    ],
+    readouts: [
+      { key: "overlap", formula: "max(0, 4 - abs(h + 1))" },
+    ],
+    labels: [
+      { key: "seta", objectId: "seta", at: { x: -2.4, y: 1.4 }, placement: "above-left" },
+      { key: "setb", objectId: "setb", at: { x: "h + 1.4", y: "1.4" }, placement: "above-right" },
+    ],
+  }}
+  labels={{
+    seta: <InlineMath math="A" />,
+    setb: <InlineMath math="B" />,
+    h: <>Pusat himpunan <InlineMath math="B" /> <InlineMath math="h" /></>,
+    overlap: <>Lebar daerah irisan</>,
+  }}
+/>
+
+Saat <InlineMath math="h \ge 3" />, lebar irisan menjadi nol dan <InlineMath math="A \cap B = \varnothing" />. Dua himpunan seperti ini disebut **himpunan saling lepas**.
+
+### Hukum De Morgan
+
+**Komplemen gabungan sama dengan irisan komplemen**, dan sebaliknya:
+
+<BlockMath math="(A \cup B)' = A' \cap B', \qquad (A \cap B)' = A' \cup B'" />
+
+Cek dengan contoh di atas: <InlineMath math="A' = \{1, 3, 5, 7, 9\}" /> dan <InlineMath math="B' = \{1, 2, 4, 5, 7, 8, 10\}" />, jadi <InlineMath math="A' \cap B' = \{1, 5, 7\}" />, sama dengan <InlineMath math="(A \cup B)'" />.
+
+### Operasi Gabungan
+
+Dalam operasi gabungan, **kerjakan tanda kurung lebih dulu**. Misalnya, dengan <InlineMath math="C = \{1, 2, 3\}" />:
+
+<BlockMath math="(A \cup B) \cap C = \{2, 3, 4, 6, 8, 9, 10\} \cap \{1, 2, 3\} = \{2, 3\}" />
+
+## Banyak Anggota dan Prinsip Inklusi dan Eksklusi
+
+Notasi <InlineMath math="n(A)" /> berarti **banyak anggota** himpunan <InlineMath math="A" />. Banyak anggota suatu gabungan bisa dihitung tanpa mendaftar semua anggotanya. Cara ini penting dalam masalah survei, karena data biasanya diberikan sebagai jumlah, bukan daftar nama. Pada contoh pertama, <InlineMath math="n(A) = 5" />, <InlineMath math="n(B) = 3" />, dan <InlineMath math="n(A \cap B) = 1" />.
+
+### Rumus Banyak Anggota Gabungan
+
+Saat kita menjumlahkan <InlineMath math="n(A)" /> dan <InlineMath math="n(B)" />, anggota irisan terhitung dua kali. Jadi:
+
+<BlockMath math="n(A \cup B) = n(A) + n(B) - n(A \cap B)" />
+
+Model ini menggambar <InlineMath math="n(A \cup B)" /> untuk setiap nilai <InlineMath math="n(A \cap B)" />. Ubah ukuran kedua himpunan dan perhatikan bahwa **gabungan mengecil saat irisan membesar**.
+
+<MathVisual
+  title={<>Banyak Anggota Gabungan</>}
+  description={
+    <>
+      Garis <InlineMath math="n(A \cup B) = a + b - x" /> terhadap{" "}
+      <InlineMath math="x = n(A \cap B)" />, dengan <InlineMath math="n(A) = a" />{" "}
+      dan <InlineMath math="n(B) = b" />.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 20 }, y: { min: 0, max: 40 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "a", min: 5, max: 20, value: 18, step: 1, label: "a" },
+      { name: "b", min: 5, max: 20, value: 15, step: 1, label: "b" },
+      { name: "c", min: 0, max: 15, value: 6, step: 1, label: "c" },
+    ],
+    objects: [
+      { id: "union", kind: "function", appearance: "primary", formula: "a + b - x", domain: { min: 0, max: 20 } },
+      { id: "now", kind: "marker", x: "c", y: "a + b - c", appearance: "warning" },
+    ],
+    readouts: [
+      { key: "union", formula: "a + b - c" },
+    ],
+  }}
+  labels={{
+    a: <>Banyak anggota <InlineMath math="A" /></>,
+    b: <>Banyak anggota <InlineMath math="B" /></>,
+    c: <>Banyak anggota irisan</>,
+    union: <>Banyak anggota gabungan</>,
+  }}
+/>
+
+### Contoh Masalah Survei
+
+Di sebuah kelas berisi <InlineMath math="35" /> siswa, <InlineMath math="18" /> siswa suka sepak bola, <InlineMath math="15" /> siswa suka bulu tangkis, dan <InlineMath math="6" /> siswa suka keduanya. Tentukan **banyak siswa yang tidak suka keduanya**.
+
+<MathContainer>
+<BlockMath math="n(F \cup B) = 18 + 15 - 6 = 27" />
+<BlockMath math="n(F \cup B)' = 35 - 27 = 8" />
+</MathContainer>
+
+Cek dengan model: pada <InlineMath math="a = 18" />, <InlineMath math="b = 15" />, dan <InlineMath math="c = 6" />, gabungannya terbaca <InlineMath math="27" />. Grafik ini menunjukkan banyak siswa di setiap daerah diagram Venn.
+
+<BarChart
+  title={<>Siswa di Setiap Daerah Diagram Venn</>}
+  description={
+    <>
+      Empat daerah yang tidak tumpang tindih. Jumlahnya{" "}
+      <InlineMath math="35" /> siswa.
+    </>
+  }
+  yAxisLabel="Banyak siswa"
+  data={[
+    { name: "Hanya sepak bola", value: 18 - 6 },
+    { name: "Keduanya", value: 6 },
+    { name: "Hanya bulu tangkis", value: 15 - 6 },
+    { name: "Tidak keduanya", value: 35 - 27 },
+  ]}
+  chartConfig={{ value: { label: "Banyak siswa", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>
+
+Cek: <InlineMath math="12 + 6 + 9 + 8 = 35" />. Isi daerah irisan lebih dulu, lalu daerah hanya, agar tidak ada siswa yang terhitung dua kali.
+
+## Tiga Himpunan
+
+Prinsip yang sama diperluas ke **tiga himpunan**, tetapi kini ada lebih banyak daerah tumpang tindih yang harus diperhitungkan. Setiap irisan dua himpunan dikurangkan sekali, dan daerah tengah ditambahkan kembali karena sudah terkurangi terlalu banyak:
+
+<BlockMath math="n(A \cup B \cup C) = n(A) + n(B) + n(C) - n(A \cap B) - n(A \cap C) - n(B \cap C) + n(A \cap B \cap C)" />
+
+### Delapan Daerah Tiga Himpunan
+
+Tiga himpunan yang tumpang tindih membentuk delapan daerah. **Mulai dari daerah tengah** <InlineMath math="A \cap B \cap C" />, lalu irisan dua himpunan, lalu daerah hanya. Geser himpunan <InlineMath math="C" /> dalam model ini dan lihat bagaimana daerah tengah muncul dan hilang.
+
+<MathVisual
+  title={<>Tiga Himpunan yang Tumpang Tindih</>}
+  description={
+    <>
+      Himpunan <InlineMath math="A" /> dan <InlineMath math="B" /> tetap,
+      sedangkan himpunan <InlineMath math="C" /> berpusat di{" "}
+      <InlineMath math="(0, k)" />. Semua lingkaran berjari-jari{" "}
+      <InlineMath math="2" />.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -4, max: 4 }, y: { min: -4.5, max: 3 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "k", min: -2.5, max: 2.5, value: -1.5, step: 0.1, label: "k" },
+    ],
+    objects: [
+      { id: "seta", kind: "parametric", appearance: "primary", x: "-1 + 2cos(t)", y: "0.6 + 2sin(t)", parameter: { min: 0, max: 2 * Math.PI } },
+      { id: "setb", kind: "parametric", appearance: "secondary", x: "1 + 2cos(t)", y: "0.6 + 2sin(t)", parameter: { min: 0, max: 2 * Math.PI } },
+      { id: "setc", kind: "parametric", appearance: "reference", x: "2cos(t)", y: "k + 2sin(t)", parameter: { min: 0, max: 2 * Math.PI } },
+    ],
+    readouts: [
+      { key: "centre", formula: "k" },
+    ],
+    labels: [
+      { key: "seta", objectId: "seta", at: { x: -2.4, y: 2 }, placement: "above-left" },
+      { key: "setb", objectId: "setb", at: { x: 2.4, y: 2 }, placement: "above-right" },
+      { key: "setc", objectId: "setc", at: { x: "0", y: "k - 2" }, placement: "below" },
+    ],
+  }}
+  labels={{
+    seta: <InlineMath math="A" />,
+    setb: <InlineMath math="B" />,
+    setc: <InlineMath math="C" />,
+    k: <>Pusat himpunan <InlineMath math="C" /> <InlineMath math="k" /></>,
+    centre: <>Letak pusat <InlineMath math="C" /></>,
+  }}
+/>
+
+### Contoh Masalah Tiga Himpunan
+
+Sebanyak <InlineMath math="50" /> siswa ditanya tentang ekstrakurikuler. <InlineMath math="20" /> siswa ikut klub sains, <InlineMath math="18" /> klub matematika, dan <InlineMath math="15" /> klub seni. <InlineMath math="7" /> siswa ikut sains dan matematika, <InlineMath math="5" /> sains dan seni, <InlineMath math="4" /> matematika dan seni, dan <InlineMath math="2" /> siswa ikut ketiganya. Tentukan **banyak siswa yang tidak ikut klub mana pun**.
+
+<BlockMath math="n(S \cup M \cup A) = 20 + 18 + 15 - 7 - 5 - 4 + 2 = 39" />
+
+Jadi <InlineMath math="50 - 39 = 11" /> siswa tidak ikut klub mana pun. Grafik ini merinci jumlah itu menurut daerah.
+
+<BarChart
+  title={<>Siswa di Daerah Tiga Himpunan</>}
+  description={
+    <>
+      Banyak siswa di setiap daerah, diisi dari tengah ke luar.
+    </>
+  }
+  yAxisLabel="Banyak siswa"
+  data={[
+    { name: "Ketiganya", value: 2 },
+    { name: "Hanya sains dan matematika", value: 7 - 2 },
+    { name: "Hanya sains dan seni", value: 5 - 2 },
+    { name: "Hanya matematika dan seni", value: 4 - 2 },
+    { name: "Hanya sains", value: 20 - 5 - 3 - 2 },
+    { name: "Hanya matematika", value: 18 - 5 - 2 - 2 },
+    { name: "Hanya seni", value: 15 - 3 - 2 - 2 },
+    { name: "Tidak ada", value: 11 },
+  ]}
+  chartConfig={{ value: { label: "Banyak siswa", colors: { light: ["var(--chart-2)"], dark: ["var(--chart-2)"] } } }}
+/>
+
+Cek: <InlineMath math="2 + 5 + 3 + 2 + 10 + 9 + 8 + 11 = 50" />.
+
+## Kesalahan Umum tentang Operasi Himpunan
+
+| Kesalahan | Mengapa salah | Cara mengecek |
+| :--- | :--- | :--- |
+| <InlineMath math="n(A \cup B) = n(A) + n(B)" /> selalu. | Anggota irisan terhitung dua kali, jadi kurangkan <InlineMath math="n(A \cap B)" />. | Cek apakah himpunannya tumpang tindih. |
+| <InlineMath math="(A \cup B)' = A' \cup B'" />. | Hukum De Morgan mengubah gabungan menjadi irisan. | Uji dengan daftar anggota. |
+| Mengisi daerah hanya sebelum irisan. | Banyak anggota daerah hanya bergantung pada irisan. | Isi dari tengah ke luar. |
+| Melupakan anggota di luar semua himpunan. | Himpunan semesta mencakup anggota yang tidak berada di himpunan mana pun. | Jumlah semua daerah harus sama dengan <InlineMath math="n(S)" />. |
+
+Kesalahan pertama paling sering muncul dalam soal survei. **Kurangkan irisan sekali**.
+
+## Latihan Operasi Himpunan
+
+Soal-soal ini bergerak dari daftar anggota sampai masalah tiga himpunan. **Cek setiap jawaban dengan jumlah semua daerah**.
+
+1. Diketahui <InlineMath math="S = \{x : 1 \le x \le 12\}" />, <InlineMath math="P" /> adalah himpunan kelipatan <InlineMath math="3" />, dan <InlineMath math="Q" /> adalah himpunan bilangan genap. Daftarkan <InlineMath math="P \cap Q" /> dan <InlineMath math="(P \cup Q)'" />.
+
+2. Diketahui <InlineMath math="n(A) = 25" />, <InlineMath math="n(B) = 30" />, dan <InlineMath math="n(A \cup B) = 45" />. Tentukan <InlineMath math="n(A \cap B)" />.
+
+3. Dalam sekelompok <InlineMath math="40" /> orang, <InlineMath math="22" /> orang minum kopi, <InlineMath math="19" /> orang minum teh, dan <InlineMath math="5" /> orang tidak minum keduanya. Berapa orang yang minum keduanya?
+
+4. Tunjukkan bahwa <InlineMath math="(A \cap B)' = A' \cup B'" /> untuk himpunan <InlineMath math="A" /> dan <InlineMath math="B" /> pada contoh pertama materi ini.
+
+### Pembahasan
+
+**Pembahasan 1**: <InlineMath math="P = \{3, 6, 9, 12\}" /> dan <InlineMath math="Q = \{2, 4, 6, 8, 10, 12\}" />, jadi <InlineMath math="P \cap Q = \{6, 12\}" />. **Gabungannya** adalah <InlineMath math="\{2, 3, 4, 6, 8, 9, 10, 12\}" />, jadi <InlineMath math="(P \cup Q)' = \{1, 5, 7, 11\}" />.
+
+**Pembahasan 2**: Susun ulang prinsip inklusi dan eksklusi:
+
+<BlockMath math="n(A \cap B) = 25 + 30 - 45 = 10" />
+
+Cek: <InlineMath math="25 + 30 - 10 = 45" />.
+
+**Pembahasan 3**: Sebanyak <InlineMath math="40 - 5 = 35" /> orang minum paling sedikit satu minuman:
+
+<BlockMath math="n(K \cap T) = 22 + 19 - 35 = 6" />
+
+Cek: <InlineMath math="16 + 6 + 13 + 5 = 40" />.
+
+**Pembahasan 4**: <InlineMath math="A \cap B = \{6\}" />, jadi <InlineMath math="(A \cap B)'" /> berisi semua anggota kecuali <InlineMath math="6" />. **Gabungan komplemen** <InlineMath math="A' \cup B' = \{1, 2, 3, 4, 5, 7, 8, 9, 10\}" /> juga berisi semua anggota kecuali <InlineMath math="6" />, jadi kedua himpunan sama.

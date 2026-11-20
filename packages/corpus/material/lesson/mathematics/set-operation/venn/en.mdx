@@ -1,0 +1,274 @@
+export const metadata = {
+  title: "Operations on Sets Notes for Form Four",
+  description:
+    "Form 4 Mathematics Chapter 4: find intersections, unions and complements of sets, combine operations, and solve problems with Venn diagrams, with practice.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2026-11-17",
+  subject: "Operations on Sets",
+};
+
+## Set Operations Combine or Pick Out Elements
+
+The **intersection** <InlineMath math="A \cap B" /> is the set of elements in both <InlineMath math="A" /> and <InlineMath math="B" />. The **union** <InlineMath math="A \cup B" /> is the set of elements in <InlineMath math="A" />, in <InlineMath math="B" />, or in both. The **complement** <InlineMath math="A'" /> is the set of elements of the universal set <InlineMath math="\xi" /> that are not in <InlineMath math="A" />. A Venn diagram shows these operations as regions. In the models here, you move a set to see the intersection, count elements with the inclusion-exclusion principle and solve survey problems.
+
+## Intersection and Union
+
+Take <InlineMath math="\xi = \{1, 2, 3, \ldots, 10\}" />, <InlineMath math="A = \{2, 4, 6, 8, 10\}" /> and <InlineMath math="B = \{3, 6, 9\}" />.
+
+<MathContainer>
+<BlockMath math="A \cap B = \{6\}" />
+<BlockMath math="A \cup B = \{2, 3, 4, 6, 8, 9, 10\}" />
+<BlockMath math="(A \cup B)' = \{1, 5, 7\}" />
+</MathContainer>
+
+This model draws two sets as circles inside the universal set. Move set <InlineMath math="B" /> and notice when the **intersection** exists and when it becomes the empty set.
+
+<MathVisual
+  title={<>Two Sets in the Universal Set</>}
+  description={
+    <>
+      Set <InlineMath math="A" /> is centred at <InlineMath math="(-1, 0)" /> and
+      set <InlineMath math="B" /> at <InlineMath math="(h, 0)" />, both with
+      radius <InlineMath math="2" />.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -4.5, max: 6.5 }, y: { min: -3, max: 3 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "h", min: -1, max: 5, value: 1.5, step: 0.1, label: "h" },
+    ],
+    objects: [
+      { id: "seta", kind: "parametric", appearance: "primary", x: "-1 + 2cos(t)", y: "2sin(t)", parameter: { min: 0, max: 2 * Math.PI } },
+      { id: "setb", kind: "parametric", appearance: "secondary", x: "h + 2cos(t)", y: "2sin(t)", parameter: { min: 0, max: 2 * Math.PI } },
+    ],
+    readouts: [
+      { key: "overlap", formula: "max(0, 4 - abs(h + 1))" },
+    ],
+    labels: [
+      { key: "seta", objectId: "seta", at: { x: -2.4, y: 1.4 }, placement: "above-left" },
+      { key: "setb", objectId: "setb", at: { x: "h + 1.4", y: "1.4" }, placement: "above-right" },
+    ],
+  }}
+  labels={{
+    seta: <InlineMath math="A" />,
+    setb: <InlineMath math="B" />,
+    h: <>Centre of set <InlineMath math="B" /> <InlineMath math="h" /></>,
+    overlap: <>Width of the intersection region</>,
+  }}
+/>
+
+When <InlineMath math="h \ge 3" />, the width of the intersection becomes zero and <InlineMath math="A \cap B = \varnothing" />. Two sets like this are called **disjoint sets**.
+
+### The Laws of De Morgan
+
+**The complement of a union equals the intersection of the complements**, and the other way round:
+
+<BlockMath math="(A \cup B)' = A' \cap B', \qquad (A \cap B)' = A' \cup B'" />
+
+Check with the example above: <InlineMath math="A' = \{1, 3, 5, 7, 9\}" /> and <InlineMath math="B' = \{1, 2, 4, 5, 7, 8, 10\}" />, so <InlineMath math="A' \cap B' = \{1, 5, 7\}" />, the same as <InlineMath math="(A \cup B)'" />.
+
+### Combined Operations
+
+In a combined operation, **work out the brackets first**. For example, with <InlineMath math="C = \{1, 2, 3\}" />:
+
+<BlockMath math="(A \cup B) \cap C = \{2, 3, 4, 6, 8, 9, 10\} \cap \{1, 2, 3\} = \{2, 3\}" />
+
+## Number of Elements and the Principle of Inclusion and Exclusion
+
+The notation <InlineMath math="n(A)" /> means **the number of elements** in set <InlineMath math="A" />. The number of elements in a union can be found without listing every element. This matters in survey problems, because the data is usually given as counts, not as lists of names. In the first example, <InlineMath math="n(A) = 5" />, <InlineMath math="n(B) = 3" /> and <InlineMath math="n(A \cap B) = 1" />.
+
+### The Rule for the Number of Elements in a Union
+
+When we add <InlineMath math="n(A)" /> and <InlineMath math="n(B)" />, the elements in the intersection are counted twice. So:
+
+<BlockMath math="n(A \cup B) = n(A) + n(B) - n(A \cap B)" />
+
+This model draws <InlineMath math="n(A \cup B)" /> for every value of <InlineMath math="n(A \cap B)" />. Change the sizes of both sets and notice that **the union shrinks as the intersection grows**.
+
+<MathVisual
+  title={<>Number of Elements in a Union</>}
+  description={
+    <>
+      The line <InlineMath math="n(A \cup B) = a + b - x" /> against{" "}
+      <InlineMath math="x = n(A \cap B)" />, with <InlineMath math="n(A) = a" />{" "}
+      and <InlineMath math="n(B) = b" />.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 20 }, y: { min: 0, max: 40 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "a", min: 5, max: 20, value: 18, step: 1, label: "a" },
+      { name: "b", min: 5, max: 20, value: 15, step: 1, label: "b" },
+      { name: "c", min: 0, max: 15, value: 6, step: 1, label: "c" },
+    ],
+    objects: [
+      { id: "union", kind: "function", appearance: "primary", formula: "a + b - x", domain: { min: 0, max: 20 } },
+      { id: "now", kind: "marker", x: "c", y: "a + b - c", appearance: "warning" },
+    ],
+    readouts: [
+      { key: "union", formula: "a + b - c" },
+    ],
+  }}
+  labels={{
+    a: <>Number of elements of <InlineMath math="A" /></>,
+    b: <>Number of elements of <InlineMath math="B" /></>,
+    c: <>Number of elements in the intersection</>,
+    union: <>Number of elements in the union</>,
+  }}
+/>
+
+### Example A Survey Problem
+
+In a class of <InlineMath math="35" /> students, <InlineMath math="18" /> like football, <InlineMath math="15" /> like badminton and <InlineMath math="6" /> like both. Find **the number of students who like neither sport**.
+
+<MathContainer>
+<BlockMath math="n(F \cup B) = 18 + 15 - 6 = 27" />
+<BlockMath math="n(F \cup B)' = 35 - 27 = 8" />
+</MathContainer>
+
+Check with the model: at <InlineMath math="a = 18" />, <InlineMath math="b = 15" /> and <InlineMath math="c = 6" />, the union reads <InlineMath math="27" />. This chart shows the number of students in each region of the Venn diagram.
+
+<BarChart
+  title={<>Students in Each Region of the Venn Diagram</>}
+  description={
+    <>
+      Four regions that don't overlap. Their total is <InlineMath math="35" />{" "}
+      students.
+    </>
+  }
+  yAxisLabel="Number of students"
+  data={[
+    { name: "Football only", value: 18 - 6 },
+    { name: "Both", value: 6 },
+    { name: "Badminton only", value: 15 - 6 },
+    { name: "Neither", value: 35 - 27 },
+  ]}
+  chartConfig={{ value: { label: "Number of students", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>
+
+Check: <InlineMath math="12 + 6 + 9 + 8 = 35" />. Fill in the intersection first, then the only regions, so no student is counted twice.
+
+## Three Sets
+
+The same principle extends to **three sets**, but now there are more overlapping regions to account for. Each intersection of two sets is subtracted once, and the middle region is added back because it has been subtracted too many times:
+
+<BlockMath math="n(A \cup B \cup C) = n(A) + n(B) + n(C) - n(A \cap B) - n(A \cap C) - n(B \cap C) + n(A \cap B \cap C)" />
+
+### The Eight Regions of Three Sets
+
+Three overlapping sets make eight regions. **Start with the middle region** <InlineMath math="A \cap B \cap C" />, then the intersections of two sets, then the only regions. Move set <InlineMath math="C" /> in this model and see how the middle region appears and disappears.
+
+<MathVisual
+  title={<>Three Overlapping Sets</>}
+  description={
+    <>
+      Sets <InlineMath math="A" /> and <InlineMath math="B" /> are fixed, while
+      set <InlineMath math="C" /> is centred at <InlineMath math="(0, k)" />.
+      Every circle has radius <InlineMath math="2" />.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -4, max: 4 }, y: { min: -4.5, max: 3 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "k", min: -2.5, max: 2.5, value: -1.5, step: 0.1, label: "k" },
+    ],
+    objects: [
+      { id: "seta", kind: "parametric", appearance: "primary", x: "-1 + 2cos(t)", y: "0.6 + 2sin(t)", parameter: { min: 0, max: 2 * Math.PI } },
+      { id: "setb", kind: "parametric", appearance: "secondary", x: "1 + 2cos(t)", y: "0.6 + 2sin(t)", parameter: { min: 0, max: 2 * Math.PI } },
+      { id: "setc", kind: "parametric", appearance: "reference", x: "2cos(t)", y: "k + 2sin(t)", parameter: { min: 0, max: 2 * Math.PI } },
+    ],
+    readouts: [
+      { key: "centre", formula: "k" },
+    ],
+    labels: [
+      { key: "seta", objectId: "seta", at: { x: -2.4, y: 2 }, placement: "above-left" },
+      { key: "setb", objectId: "setb", at: { x: 2.4, y: 2 }, placement: "above-right" },
+      { key: "setc", objectId: "setc", at: { x: "0", y: "k - 2" }, placement: "below" },
+    ],
+  }}
+  labels={{
+    seta: <InlineMath math="A" />,
+    setb: <InlineMath math="B" />,
+    setc: <InlineMath math="C" />,
+    k: <>Centre of set <InlineMath math="C" /> <InlineMath math="k" /></>,
+    centre: <>Position of the centre of <InlineMath math="C" /></>,
+  }}
+/>
+
+### Example A Problem with Three Sets
+
+<InlineMath math="50" /> students are asked about clubs. <InlineMath math="20" /> join the science club, <InlineMath math="18" /> the mathematics club and <InlineMath math="15" /> the art club. <InlineMath math="7" /> join science and mathematics, <InlineMath math="5" /> science and art, <InlineMath math="4" /> mathematics and art, and <InlineMath math="2" /> join all three. Find **the number of students who join no club**.
+
+<BlockMath math="n(S \cup M \cup A) = 20 + 18 + 15 - 7 - 5 - 4 + 2 = 39" />
+
+So <InlineMath math="50 - 39 = 11" /> students join no club. This chart breaks that total down by region.
+
+<BarChart
+  title={<>Students in the Regions of Three Sets</>}
+  description={
+    <>
+      The number of students in each region, filled from the middle outwards.
+    </>
+  }
+  yAxisLabel="Number of students"
+  data={[
+    { name: "All three", value: 2 },
+    { name: "Science and maths only", value: 7 - 2 },
+    { name: "Science and art only", value: 5 - 2 },
+    { name: "Maths and art only", value: 4 - 2 },
+    { name: "Science only", value: 20 - 5 - 3 - 2 },
+    { name: "Maths only", value: 18 - 5 - 2 - 2 },
+    { name: "Art only", value: 15 - 3 - 2 - 2 },
+    { name: "None", value: 11 },
+  ]}
+  chartConfig={{ value: { label: "Number of students", colors: { light: ["var(--chart-2)"], dark: ["var(--chart-2)"] } } }}
+/>
+
+Check: <InlineMath math="2 + 5 + 3 + 2 + 10 + 9 + 8 + 11 = 50" />.
+
+## Common Mistakes about Operations on Sets
+
+| Mistake | Why it's wrong | How to check |
+| :--- | :--- | :--- |
+| <InlineMath math="n(A \cup B) = n(A) + n(B)" /> always. | Elements of the intersection are counted twice, so subtract <InlineMath math="n(A \cap B)" />. | Check whether the sets overlap. |
+| <InlineMath math="(A \cup B)' = A' \cup B'" />. | De Morgan's law turns a union into an intersection. | Test it with a list of elements. |
+| Filling the only regions before the intersection. | The only regions depend on the intersection. | Fill from the middle outwards. |
+| Forgetting elements outside every set. | The universal set includes elements that are in none of the sets. | All regions must add up to <InlineMath math="n(\xi)" />. |
+
+The first mistake is the most common one in survey questions. **Subtract the intersection once**.
+
+## Practice on Operations on Sets
+
+These questions move from lists of elements to three-set problems. **Check every answer with the total of all regions**.
+
+1. Given <InlineMath math="\xi = \{x : 1 \le x \le 12\}" />, <InlineMath math="P" /> is the set of multiples of <InlineMath math="3" /> and <InlineMath math="Q" /> is the set of even numbers. List <InlineMath math="P \cap Q" /> and <InlineMath math="(P \cup Q)'" />.
+
+2. Given <InlineMath math="n(A) = 25" />, <InlineMath math="n(B) = 30" /> and <InlineMath math="n(A \cup B) = 45" />. Find <InlineMath math="n(A \cap B)" />.
+
+3. In a group of <InlineMath math="40" /> people, <InlineMath math="22" /> drink coffee, <InlineMath math="19" /> drink tea and <InlineMath math="5" /> drink neither. How many drink both?
+
+4. Show that <InlineMath math="(A \cap B)' = A' \cup B'" /> for the sets <InlineMath math="A" /> and <InlineMath math="B" /> in the first example of these notes.
+
+### Solutions
+
+**Solution 1**: <InlineMath math="P = \{3, 6, 9, 12\}" /> and <InlineMath math="Q = \{2, 4, 6, 8, 10, 12\}" />, so <InlineMath math="P \cap Q = \{6, 12\}" />. **The union** is <InlineMath math="\{2, 3, 4, 6, 8, 9, 10, 12\}" />, so <InlineMath math="(P \cup Q)' = \{1, 5, 7, 11\}" />.
+
+**Solution 2**: Rearrange the inclusion-exclusion principle:
+
+<BlockMath math="n(A \cap B) = 25 + 30 - 45 = 10" />
+
+Check: <InlineMath math="25 + 30 - 10 = 45" />.
+
+**Solution 3**: <InlineMath math="40 - 5 = 35" /> people drink at least one of the drinks:
+
+<BlockMath math="n(K \cap T) = 22 + 19 - 35 = 6" />
+
+Check: <InlineMath math="16 + 6 + 13 + 5 = 40" />.
+
+**Solution 4**: <InlineMath math="A \cap B = \{6\}" />, so <InlineMath math="(A \cap B)'" /> holds every element except <InlineMath math="6" />. **The union of the complements** <InlineMath math="A' \cup B' = \{1, 2, 3, 4, 5, 7, 8, 9, 10\}" /> also holds every element except <InlineMath math="6" />, so the two sets are equal.
