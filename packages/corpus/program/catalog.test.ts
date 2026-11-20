@@ -57,41 +57,39 @@ function reject(input: unknown) {
 }
 
 describe("learning program catalog", () => {
-  it.effect(
-    "preserves the exact eight real program rows in display order",
-    () =>
-      Effect.gen(function* () {
-        const programs = yield* decodeProgramCatalog();
+  it.effect("preserves the exact nine real program rows in display order", () =>
+    Effect.gen(function* () {
+      const programs = yield* decodeProgramCatalog();
 
-        expect(Arr.map(programs, ({ key }) => key)).toEqual([
-          "merdeka",
-          "cambridge-international",
-          "singapore-moe",
-          "united-states",
-          "kssm",
-          "gymnasiale-oberstufe",
-          "tka",
-          "snbt",
-        ]);
-        expect(Arr.map(programs, ({ displayOrder }) => displayOrder)).toEqual([
-          10, 20, 30, 40, 45, 46, 50, 60,
-        ]);
-        expect(
-          Arr.every(programs, ({ sources: refs }) => refs.length > 0)
-        ).toBe(true);
-        expect(
-          Arr.every(
-            programs,
-            ({ translations }) =>
-              translations.length === ACTIVE_APP_LOCALES.length &&
-              Arr.every(
-                translations,
-                ({ appLocale }, index) =>
-                  appLocale === ACTIVE_APP_LOCALES[index]
-              )
-          )
-        ).toBe(true);
-      })
+      expect(Arr.map(programs, ({ key }) => key)).toEqual([
+        "merdeka",
+        "cambridge-international",
+        "singapore-moe",
+        "united-states",
+        "kssm",
+        "gymnasiale-oberstufe",
+        "studienkolleg",
+        "tka",
+        "snbt",
+      ]);
+      expect(Arr.map(programs, ({ displayOrder }) => displayOrder)).toEqual([
+        10, 20, 30, 40, 45, 46, 47, 50, 60,
+      ]);
+      expect(Arr.every(programs, ({ sources: refs }) => refs.length > 0)).toBe(
+        true
+      );
+      expect(
+        Arr.every(
+          programs,
+          ({ translations }) =>
+            translations.length === ACTIVE_APP_LOCALES.length &&
+            Arr.every(
+              translations,
+              ({ appLocale }, index) => appLocale === ACTIVE_APP_LOCALES[index]
+            )
+        )
+      ).toBe(true);
+    })
   );
 
   it.effect(

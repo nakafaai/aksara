@@ -7,6 +7,7 @@ import { kssmCurriculum } from "#corpus/curriculum/kssm/source";
 import { merdekaCurriculum } from "#corpus/curriculum/merdeka/source";
 import type { CurriculumSource } from "#corpus/curriculum/schema";
 import { singaporeMoeCurriculum } from "#corpus/curriculum/singapore-moe/source";
+import { studienkollegCurriculum } from "#corpus/curriculum/studienkolleg/source";
 import { unitedStatesCurriculum } from "#corpus/curriculum/united-states/source";
 
 const curriculumSourcePrograms = [
@@ -15,6 +16,7 @@ const curriculumSourcePrograms = [
   kssmCurriculum,
   merdekaCurriculum,
   singaporeMoeCurriculum,
+  studienkollegCurriculum,
   unitedStatesCurriculum,
 ];
 

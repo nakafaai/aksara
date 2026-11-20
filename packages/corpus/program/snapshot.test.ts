@@ -26,11 +26,11 @@ layer(NodeServices.layer)("program snapshot preparation", (it) => {
         activeAppLocales: ["en", "id", "de", "ms"],
         curriculumRowCount: curriculumRows.length,
         format: "localized-program-snapshot",
-        programRowCount: 8,
-        rowCount: curriculumRows.length + 8,
+        programRowCount: 9,
+        rowCount: curriculumRows.length + 9,
         sitemapCount: Arr.filter(curriculumRows, ({ row }) => row.sitemap)
           .length,
-        slugCount: 32,
+        slugCount: 36,
       });
       for (const appLocale of prepared.manifest.activeAppLocales) {
         expect(
@@ -100,6 +100,13 @@ layer(NodeServices.layer)("program snapshot preparation", (it) => {
           id: "gymnasiale-oberstufe",
           key: "gymnasiale-oberstufe",
           ms: "gymnasiale-oberstufe",
+        },
+        {
+          de: "studienkolleg",
+          en: "studienkolleg",
+          id: "studienkolleg",
+          key: "studienkolleg",
+          ms: "studienkolleg",
         },
         { de: "tka", en: "tka", id: "tka", key: "tka", ms: "tka" },
         { de: "snbt", en: "snbt", id: "snbt", key: "snbt", ms: "snbt" },
@@ -177,10 +184,10 @@ layer(NodeServices.layer)("program snapshot preparation", (it) => {
 
       expect(expanded.manifest).toMatchObject({
         curriculumRowCount: base.manifest.curriculumRowCount,
-        programRowCount: 9,
+        programRowCount: 10,
         rowCount: base.manifest.rowCount + 1,
         sitemapCount: base.manifest.sitemapCount,
-        slugCount: 36,
+        slugCount: 40,
       });
     })
   );
