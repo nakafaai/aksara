@@ -1,0 +1,46 @@
+# Three equations for three amounts
+
+Call the kilograms of the sorts <InlineMath math="a, b, c" />. Protein and fat are counted in percent times kilograms. **The total, the protein and the fat each give one equation**:
+
+<BlockMath math="\begin{aligned}
+a+b+c&=100\\
+12a+18b+30c&=2100\\
+8a+6b+2c&=500
+\end{aligned}" />
+
+# The fat condition repeats the others
+
+Subtract twelve times the first equation from the second. That gives <InlineMath math="6b+18c=900" />, so <InlineMath math="b=150-3c" /> and then <InlineMath math="a=2c-50" />. **Putting both into the fat equation turns it into <InlineMath math="500=500" />, true for every <InlineMath math="c" />**:
+
+<BlockMath math="\begin{aligned}
+b&=150-3c\\
+a&=100-b-c=2c-50\\
+8(2c-50)+6(150-3c)+2c&=500
+\end{aligned}" />
+
+It is like two witnesses telling the same story, the second one adds nothing. The reason sits in the data: for every sort the fat is <InlineMath math="12" /> minus a third of the protein, and so is the target, <InlineMath math="5=12-7" />. **So there is not one mix but a whole family, with <InlineMath math="c" /> free**. Amounts cannot be negative, so <InlineMath math="2c-50\ge0" /> and <InlineMath math="150-3c\ge0" /> give <InlineMath math="25\le c\le50" />.
+
+# The cheapest member of the family
+
+Now the price chooses. **The cost grows by <InlineMath math="0.50\text{ €}" /> with every extra kilogram of C, so the cheapest mix uses as little C as allowed**:
+
+<BlockMath math="\begin{aligned}
+K&=0.4(2c-50)+0.3(150-3c)+0.6c\\
+&=25+0.5c\\
+K(25)&=37.5\text{ €}
+\end{aligned}" />
+
+That mix is <InlineMath math="75\text{ kg}" /> of B and <InlineMath math="25\text{ kg}" /> of C with no A at all. The other end of the family, <InlineMath math="50\text{ kg}" /> each of A and C, costs <InlineMath math="50\text{ €}" />.
+
+<Chart
+  title={<>Three possible mixes</>}
+  description={<>Mixes with <InlineMath math="25" />, <InlineMath math="40" /> and <InlineMath math="50\text{ kg}" /> of sort C. All three have exactly <InlineMath math="21\,\%" /> protein and <InlineMath math="5\,\%" /> fat. They cost <InlineMath math="37.5" />, <InlineMath math="45" /> and <InlineMath math="50\text{ €}" />.</>}
+  bars="apart"
+  categories={["with 25 kg C", "with 40 kg C", "with 50 kg C"]}
+  series={[
+    { label: "sort A", mark: "bar", values: [0.0, 30.0, 50.0] },
+    { label: "sort B", mark: "bar", values: [75.0, 30.0, 0.0] },
+    { label: "sort C", mark: "bar", values: [25.0, 40.0, 50.0] },
+  ]}
+  valueLabel="Amount in kg"
+/>

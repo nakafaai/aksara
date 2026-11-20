@@ -1,0 +1,46 @@
+# Tiga persamaan untuk tiga banyaknya
+
+Sebut banyak tiap jenis dalam kilogram <InlineMath math="a, b, c" />. Protein dan lemak dihitung sebagai persen kali kilogram. **Jumlah total, protein, dan lemak masing-masing memberi satu persamaan**:
+
+<BlockMath math="\begin{aligned}
+a+b+c&=100\\
+12a+18b+30c&=2100\\
+8a+6b+2c&=500
+\end{aligned}" />
+
+# Syarat lemak hanya mengulang
+
+Kurangkan dua belas kali persamaan pertama dari persamaan kedua. Hasilnya <InlineMath math="6b+18c=900" />, jadi <InlineMath math="b=150-3c" /> lalu <InlineMath math="a=2c-50" />. **Kalau keduanya dimasukkan ke persamaan lemak, hasilnya <InlineMath math="500=500" />, benar untuk setiap <InlineMath math="c" />**:
+
+<BlockMath math="\begin{aligned}
+b&=150-3c\\
+a&=100-b-c=2c-50\\
+8(2c-50)+6(150-3c)+2c&=500
+\end{aligned}" />
+
+Ini seperti dua saksi yang menceritakan kisah yang sama, saksi kedua tidak menambah apa pun. Alasannya ada pada data: pada setiap jenis, kadar lemak sama dengan <InlineMath math="12" /> dikurangi sepertiga kadar protein, dan targetnya juga, <InlineMath math="5=12-7" />. **Jadi bukan satu campuran, melainkan satu keluarga campuran dengan <InlineMath math="c" /> bebas**. Banyaknya tidak boleh negatif, jadi <InlineMath math="2c-50\ge0" /> dan <InlineMath math="150-3c\ge0" /> memberi <InlineMath math="25\le c\le50" />.
+
+# Anggota keluarga yang paling murah
+
+Sekarang harga yang memilih. **Biaya naik <InlineMath math="0{,}50\text{ €}" /> untuk setiap kilogram C tambahan, jadi campuran termurah memakai C sesedikit mungkin**:
+
+<BlockMath math="\begin{aligned}
+K&=0{,}4(2c-50)+0{,}3(150-3c)+0{,}6c\\
+&=25+0{,}5c\\
+K(25)&=37{,}5\text{ €}
+\end{aligned}" />
+
+Campuran itu terdiri atas <InlineMath math="75\text{ kg}" /> B dan <InlineMath math="25\text{ kg}" /> C tanpa A sama sekali. Ujung lain keluarga ini, masing-masing <InlineMath math="50\text{ kg}" /> A dan C, berharga <InlineMath math="50\text{ €}" />.
+
+<Chart
+  title={<>Tiga campuran yang mungkin</>}
+  description={<>Campuran dengan <InlineMath math="25" />, <InlineMath math="40" />, dan <InlineMath math="50\text{ kg}" /> jenis C. Ketiganya tepat mengandung <InlineMath math="21\,\%" /> protein dan <InlineMath math="5\,\%" /> lemak. Harganya <InlineMath math="37{,}5" />, <InlineMath math="45" />, dan <InlineMath math="50\text{ €}" />.</>}
+  bars="apart"
+  categories={["dengan 25 kg C", "dengan 40 kg C", "dengan 50 kg C"]}
+  series={[
+    { label: "jenis A", mark: "bar", values: [0.0, 30.0, 50.0] },
+    { label: "jenis B", mark: "bar", values: [75.0, 30.0, 0.0] },
+    { label: "jenis C", mark: "bar", values: [25.0, 40.0, 50.0] },
+  ]}
+  valueLabel="Banyak dalam kg"
+/>

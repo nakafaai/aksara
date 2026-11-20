@@ -1,0 +1,52 @@
+# Dua ketibaan menjadi satu titik
+
+Tulis masa tiba Anna sebagai <InlineMath math="x" /> dan masa tiba Ben sebagai <InlineMath math="y" />, dalam minit selepas 17:00, kedua-duanya antara <InlineMath math="0" /> dengan <InlineMath math="40" />. **Setiap pasangan masa tiba ialah satu titik dalam segi empat sama bersisi <InlineMath math="40" />, dan oleh sebab setiap saat sama mungkin, kebarangkalian ialah bahagian daripada luasnya <InlineMath math="1600" />**. Ia seperti titisan hujan yang jatuh di mana-mana sahaja pada jubin segi empat sama: peluang terkena sesuatu kawasan sama dengan bahagian kawasan itu daripada jubin.
+
+# Ben dahulu: satu potongan lurus
+
+Jika Ben tiba dahulu, iaitu <InlineMath math="y<x" />, hanya kesabarannya yang dikira. **Dia menunggu <InlineMath math="20" /> minit, jadi mereka terlepas apabila <InlineMath math="x-y>20" />**. Itulah penjuru di bawah garis <InlineMath math="y=x-20" />, segi tiga bersudut tegak dengan kaki <InlineMath math="20" />:
+
+<BlockMath math="\begin{aligned}
+A_1&=\tfrac12\cdot20\cdot20=200
+\end{aligned}" />
+
+# Anna dahulu: sempadannya membengkok
+
+Anna pergi pada masa yang lebih lewat antara dua masa: pukul 17:30 atau <InlineMath math="10" /> minit selepas dia tiba. Sehingga <InlineMath math="x=20" /> pukul 17:30 lebih lewat, selepas itu <InlineMath math="10" /> minitnya yang menang. **Jadi sempadannya bukan satu garis lurus: ia mendatar pada <InlineMath math="y=30" /> hingga <InlineMath math="x=20" />, kemudian naik di sepanjang <InlineMath math="y=x+10" /> hingga penjuru <InlineMath math="(30\mid40)" />**. Di atasnya Ben tiba terlalu lewat, iaitu jalur <InlineMath math="20" /> kali <InlineMath math="10" /> dan segi tiga kecil dengan kaki <InlineMath math="10" />:
+
+<BlockMath math="\begin{aligned}
+A_2&=20\cdot10+\tfrac12\cdot10\cdot10=250\\
+P&=\frac{1600-200-250}{1600}=\frac{1150}{1600}=0.71875
+\end{aligned}" />
+
+Mereka bertemu dengan kebarangkalian <InlineMath math="0.71875" />. Jika Anna hanya menunggu <InlineMath math="10" /> minit, penjuru atas menjadi segi tiga seluas <InlineMath math="450" /> dan jawapannya <InlineMath math="0.59375" />. Jika dia sentiasa pergi pukul 17:30, walaupun sejurus selepas tiba lewat, jawapannya <InlineMath math="0.65625" />.
+
+<MathVisual
+  title={<>Segi empat sama pertemuan dengan sempadan yang membengkok</>}
+  description={<>Masa tiba Anna <InlineMath math="x" /> dan masa tiba Ben <InlineMath math="y" /> dalam minit selepas 17:00. Sempadan Anna mendatar pada <InlineMath math="y=30" /> hingga <InlineMath math="x=20" />, kemudian naik di sepanjang <InlineMath math="y=x+10" />. Dua kawasan terlepas berluas <InlineMath math="250" /> dan <InlineMath math="200" />, kawasan bertemu <InlineMath math="1150" />.</>}
+  labels={{
+    meet: <>bertemu</>,
+    anna: <>Ben sudah pergi</>,
+    ben: <>Anna sudah pergi</>,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -2, max: 42 },
+      y: { min: -2, max: 42 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "square", kind: "polygon", appearance: "reference", vertices: [{ x: 0, y: 0 }, { x: 40, y: 0 }, { x: 40, y: 40 }, { x: 0, y: 40 }] },
+      { id: "meet", kind: "polygon", appearance: "answer", vertices: [{ x: 0, y: 0 }, { x: 20, y: 0 }, { x: 40, y: 20 }, { x: 40, y: 40 }, { x: 30, y: 40 }, { x: 20, y: 30 }, { x: 0, y: 30 }] },
+      { id: "anna", kind: "polygon", appearance: "warning", vertices: [{ x: 0, y: 30 }, { x: 20, y: 30 }, { x: 30, y: 40 }, { x: 0, y: 40 }] },
+      { id: "ben", kind: "polygon", appearance: "warning", vertices: [{ x: 20, y: 0 }, { x: 40, y: 0 }, { x: 40, y: 20 }] },
+    ],
+    labels: [
+      { key: "meet", objectId: "meet", at: { x: 20, y: 16 }, placement: "center" },
+      { key: "anna", objectId: "anna", at: { x: 10, y: 35 }, placement: "center" },
+      { key: "ben", objectId: "ben", at: { x: 34, y: 6 }, placement: "below-right" },
+    ],
+  }}
+/>

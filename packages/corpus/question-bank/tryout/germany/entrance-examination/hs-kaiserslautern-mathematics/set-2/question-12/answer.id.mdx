@@ -1,0 +1,47 @@
+# Kemeja mana yang gratis bergantung pada harga ketiga
+
+Promo A seperti teman yang membayari barang termurah di tas belanjamu. Barang mana itu, belum ada yang tahu sebelum kemeja ketiga dipilih. **Bandingkan penghematannya, bukan tagihannya**:
+
+<BlockMath math="\begin{aligned}
+E_{\text{A}}&=\text{harga kemeja termurah}\\
+E_{\text{B}}&=0{,}2\,(95+x)=19+0{,}2x
+\end{aligned}" />
+
+# Kemeja ketiga yang murah
+
+Kalau <InlineMath math="x\le45" />, kemeja ketiga itulah yang gratis. **Maka A hanya menghemat <InlineMath math="x" />, dan kemeja yang sangat murah membuat A kalah dari potongan <InlineMath math="20\,\%" /> untuk semuanya**:
+
+<BlockMath math="\begin{aligned}
+x&\ge19+0{,}2x\\
+0{,}8x&\ge19\\
+x&\ge23{,}75
+\end{aligned}" />
+
+Jadi pada kasus ini A bisa menyaingi dari <InlineMath math="23{,}75\text{ €}" /> sampai <InlineMath math="45\text{ €}" />. Menganggap kemeja <InlineMath math="45\text{ €}" /> selalu yang gratis membuat batas bawah ini hilang sama sekali.
+
+# Kemeja ketiga yang mahal
+
+Kalau <InlineMath math="x\ge45" />, kemeja <InlineMath math="45\text{ €}" /> yang gratis dan A menghemat tetap <InlineMath math="45\text{ €}" />, sedangkan B terus bertambah mengikuti harga. **A paling tidak sama baiknya hanya sampai**:
+
+<BlockMath math="\begin{aligned}
+45&\ge19+0{,}2x\\
+0{,}2x&\le26\\
+x&\le130
+\end{aligned}" />
+
+<Chart
+  title={<>Penghematan dari kedua promo</>}
+  description={<>Promo A menghemat harga kemeja termurah, paling banyak <InlineMath math="45\text{ €}" />. Promo B menghemat <InlineMath math="0{,}2\,(95+x)" />. Di antara <InlineMath math="x=23{,}75" /> dan <InlineMath math="x=130" /> A berada di atas atau sama.</>}
+  categories={["0 €", "10 €", "20 €", "30 €", "40 €", "50 €", "60 €", "70 €", "80 €", "90 €", "100 €", "110 €", "120 €", "130 €", "140 €", "150 €", "160 €"]}
+  series={[
+    { label: "promo A", mark: "line", values: [0.0, 10.0, 20.0, 30.0, 40.0, 45.0, 45.0, 45.0, 45.0, 45.0, 45.0, 45.0, 45.0, 45.0, 45.0, 45.0, 45.0] },
+    { label: "promo B", mark: "line", values: [19.0, 21.0, 23.0, 25.0, 27.0, 29.0, 31.0, 33.0, 35.0, 37.0, 39.0, 41.0, 43.0, 45.0, 47.0, 49.0, 51.0] },
+  ]}
+  valueLabel="Hemat dalam €"
+/>
+
+Kedua kasus bersambung di <InlineMath math="45\text{ €}" /> menjadi satu rentang dari <InlineMath math="23{,}75\text{ €}" /> sampai <InlineMath math="130\text{ €}" />:
+
+<BlockMath math="\begin{aligned}
+130-23{,}75&=106{,}25
+\end{aligned}" />

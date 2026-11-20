@@ -1,0 +1,86 @@
+# Fahrten zählen, nicht Liter
+
+Ein Tankwagen mit <InlineMath math="3000" /> Litern muss jedes Mal neu losfahren, wenn er voll ist. **Jeder Hof braucht so viele Fahrten, wie <InlineMath math="3000" /> Liter in seine Milch passen, aufgerundet**:
+
+<BlockMath math="\begin{aligned}
+n_A&=\left\lceil\tfrac{2500}{3000}\right\rceil=1,\qquad n_B=\left\lceil\tfrac{10\,000}{3000}\right\rceil=4\\
+n_C&=\left\lceil\tfrac{5500}{3000}\right\rceil=2,\qquad n_D=\left\lceil\tfrac{3200}{3000}\right\rceil=2
+\end{aligned}" />
+
+Hof <InlineMath math="D" /> ist die Falle: <InlineMath math="3200" /> Liter sind knapp mehr als eine Ladung, also braucht er <InlineMath math="2" /> Fahrten.
+
+# Die Strecke als Summe von Beträgen
+
+Jede Fahrt führt von der Sammelstelle bei <InlineMath math="x" /> zu einem Hof und zurück. **Einfach gezählt ergeben alle Fahrten eines Tages eine Summe von Beträgen, und die Tagesstrecke ist doppelt so lang**:
+
+<BlockMath math="\begin{aligned}
+f(x)&=1\cdot|x|+4\,|x-6|+2\,|x-10|+2\,|x-16|\\
+D(x)&=2f(x)
+\end{aligned}" />
+
+Stell dir vor, du gehst die Straße entlang: Ein Schritt nach rechts bringt dich jeder Fahrt rechts von dir näher und jeder Fahrt links von dir ferner. **Die Steigung von <InlineMath math="f" /> ist deshalb die Zahl der Fahrten links minus die Zahl der Fahrten rechts**.
+
+# Der beste Punkt ist verboten
+
+Ohne Schutzgebiet liegt der tiefste Punkt von <InlineMath math="f" /> dort, wo die Steigung von negativ zu positiv wechselt. Von links gezählt sind es <InlineMath math="1" />, dann <InlineMath math="1+4=5" /> Fahrten, mehr als die Hälfte der <InlineMath math="9" />, und das geschieht am Hof <InlineMath math="B" />. Das Minimum liegt also bei Kilometer <InlineMath math="6" /> mit <InlineMath math="f(6)=34" />. **Kilometer <InlineMath math="6" /> liegt aber im Schutzgebiet, also bleiben nur dessen beide Ränder**:
+
+<BlockMath math="\begin{aligned}
+5\le x\le6&:\quad 1-(4+2+2)=-7,\qquad f(5)=34+7=41\\
+6\le x\le9&:\quad (1+4)-(2+2)=1,\qquad f(9)=34+3=37
+\end{aligned}" />
+
+<MathVisual
+  title={<>Die einfache Fahrstrecke entlang der Straße</>}
+  description={<>Die einfache Strecke <InlineMath math="f(x)" /> aller Fahrten eines Tages, wenn die Sammelstelle bei Kilometer <InlineMath math="x" /> liegt, mit der Zahl der Fahrten je Hof in Klammern. Die Steigungen <InlineMath math="-7" />, <InlineMath math="+1" /> und <InlineMath math="+5" /> sind Fahrten links minus Fahrten rechts. Das Minimum <InlineMath math="f(6)=34" /> liegt im markierten Schutzgebiet, an dessen Rändern gewinnt <InlineMath math="f(9)=37" /> gegen <InlineMath math="f(5)=41" />.</>}
+  labels={{
+    a: <><InlineMath math="A\,(1)" /></>,
+    b: <><InlineMath math="B\,(4)" /></>,
+    c: <><InlineMath math="C\,(2)" /></>,
+    d: <><InlineMath math="D\,(2)" /></>,
+    fall: <><InlineMath math="-7" /></>,
+    flat: <><InlineMath math="+1" /></>,
+    climb: <><InlineMath math="+5" /></>,
+    zone: <>Schutzgebiet</>,
+    best: <><InlineMath math="f(9)=37" /></>,
+    edge: <><InlineMath math="f(5)=41" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -1, max: 17 },
+      y: { min: -8, max: 80 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "zone-left", kind: "segment", appearance: "warning", from: { x: 5, y: 0 }, to: { x: 5, y: 78 } },
+      { id: "zone-right", kind: "segment", appearance: "warning", from: { x: 9, y: 0 }, to: { x: 9, y: 78 } },
+      { id: "road", kind: "segment", appearance: "reference", from: { x: 0, y: 0 }, to: { x: 16, y: 0 } },
+      { id: "graph", kind: "polyline", appearance: "primary", vertices: [{ x: 0, y: 76 }, { x: 5, y: 41 }, { x: 6, y: 34 }, { x: 9, y: 37 }, { x: 10, y: 38 }, { x: 16, y: 68 }] },
+      { id: "farm-a", kind: "point", appearance: "reference", at: { x: 0, y: 0 } },
+      { id: "farm-b", kind: "point", appearance: "reference", at: { x: 6, y: 0 } },
+      { id: "farm-c", kind: "point", appearance: "reference", at: { x: 10, y: 0 } },
+      { id: "farm-d", kind: "point", appearance: "reference", at: { x: 16, y: 0 } },
+      { id: "edge", kind: "point", appearance: "highlight", at: { x: 5, y: 41 } },
+      { id: "best", kind: "point", appearance: "answer", at: { x: 9, y: 37 } },
+    ],
+    labels: [
+      { key: "a", objectId: "farm-a", at: { x: 0, y: 0 }, placement: "below" },
+      { key: "b", objectId: "farm-b", at: { x: 6, y: 0 }, placement: "below" },
+      { key: "c", objectId: "farm-c", at: { x: 10, y: 0 }, placement: "below" },
+      { key: "d", objectId: "farm-d", at: { x: 16, y: 0 }, placement: "below" },
+      { key: "fall", objectId: "graph", at: { x: 2.5, y: 58.5 }, placement: "above-right" },
+      { key: "flat", objectId: "graph", at: { x: 7.5, y: 35.5 }, placement: "below" },
+      { key: "climb", objectId: "graph", at: { x: 13, y: 53 }, placement: "above-left" },
+      { key: "zone", objectId: "zone-left", at: { x: 7, y: 70 }, placement: "center" },
+      { key: "best", objectId: "best", at: { x: 9, y: 37 }, placement: "right" },
+      { key: "edge", objectId: "edge", at: { x: 5, y: 41 }, placement: "left" },
+    ],
+  }}
+/>
+
+# Der ferne Rand gewinnt
+
+Der Rand bei Kilometer <InlineMath math="5" /> liegt näher am Minimum, doch dort ist <InlineMath math="f" /> steil: Jeder Kilometer kostet <InlineMath math="7" />. Richtung Kilometer <InlineMath math="9" /> kostet jeder Kilometer nur <InlineMath math="1" />. **Die Sammelstelle kommt also an Kilometer <InlineMath math="9" />, und der Tankwagen fährt <InlineMath math="2\cdot37=74\text{ km}" /> am Tag**.
+
+Der nähere Rand bei Kilometer <InlineMath math="5" /> ergäbe <InlineMath math="82\text{ km}" />, und ohne Rückweg kämst du nur auf <InlineMath math="37\text{ km}" />. Gewichtest du mit Tausenden von Litern statt mit den Fahrten, erhältst du <InlineMath math="160{,}8" />, eine Zahl, die gar keine Strecke ist. Zählst du <InlineMath math="D" /> als eine Fahrt, landest du bei <InlineMath math="60\text{ km}" />.

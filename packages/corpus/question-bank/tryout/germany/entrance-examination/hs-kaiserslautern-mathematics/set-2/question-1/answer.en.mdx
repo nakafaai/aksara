@@ -1,0 +1,37 @@
+# A yes vote passes four gates
+
+Picture a sieve with four layers. Everyone entitled to vote is poured in at the top, but only those who go to vote pass the first layer, only valid ballots pass the second, and only the yes ballots pass the last. **So the number of yes votes is the electorate times three shares**:
+
+<BlockMath math="\begin{aligned}
+J_1&=E\cdot0.60\cdot0.96\cdot0.40\\
+J_2&=0.96E\cdot0.75\cdot0.98\cdot0.42
+\end{aligned}" />
+
+Here <InlineMath math="E" /> is the first electorate. For the second vote the electorate is <InlineMath math="4\,\%" /> smaller, which is the factor <InlineMath math="0.96" /> in front.
+
+# Points are not percent
+
+If your mark goes from <InlineMath math="60" /> to <InlineMath math="75" /> out of a hundred, you gained <InlineMath math="15" /> points, yet you scored a quarter more than before. **A rise of <InlineMath math="15" /> percentage points turns the turnout <InlineMath math="60\,\%" /> into <InlineMath math="75\,\%" />, the factor <InlineMath math="\frac{75}{60}=1.25" />, and <InlineMath math="2" /> points lift the yes share from <InlineMath math="40\,\%" /> to <InlineMath math="42\,\%" />, the factor <InlineMath math="1.05" />**. Reading them as <InlineMath math="1.15" /> and <InlineMath math="1.02" /> is the classic slip here.
+
+Divide the two chains. The unknown electorate cancels, and so do the two numbers <InlineMath math="0.96" /> hiding in different places:
+
+<BlockMath math="\begin{aligned}
+\frac{J_2}{J_1}&=0.96\cdot\frac{0.75}{0.60}\cdot\frac{0.98}{0.96}\cdot\frac{0.42}{0.40}\\
+&=0.98\cdot1.25\cdot1.05=1.28625
+\end{aligned}" />
+
+<Chart
+  title={<>From the right to vote to a yes vote</>}
+  description={<>Both votes, counted for <InlineMath math="10\,000" /> people entitled to vote at the first one. Each stage keeps only a share of the stage before. The yes votes end at <InlineMath math="2304" /> and <InlineMath math="2963.52" />.</>}
+  bars="apart"
+  categories={["entitled", "cast", "valid", "yes"]}
+  series={[
+    { label: "first vote", mark: "bar", values: [10000.0, 6000.0, 5760.0, 2304.0] },
+    { label: "second vote", mark: "bar", values: [9600.0, 7200.0, 7056.0, 2963.52] },
+  ]}
+  valueLabel="People"
+/>
+
+# How large the rise is
+
+A factor of <InlineMath math="1.28625" /> means the old amount plus <InlineMath math="0.28625" /> of it. **The yes votes grew by <InlineMath math="28.625\,\%" />**. Simply adding the changes, <InlineMath math="-4+15+2" /> or similar, mixes percent with percentage points and cannot give this.

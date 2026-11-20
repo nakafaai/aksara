@@ -1,0 +1,61 @@
+# How much earth the old dyke holds
+
+Slice a loaf of bread and every slice has the same face. A dyke is the same: **its volume is the cross-section area times the length, and the area under the parabola is an integral**:
+
+<BlockMath math="\begin{aligned}
+A_{0}&=\int_{-3}^{3}\left(3-\frac{x^2}{3}\right)dx\\
+&=\left[3x-\frac{x^3}{9}\right]_{-3}^{3}=2\,(9-3)=12\text{ m}^2
+\end{aligned}" />
+
+# The slope limit decides the shape
+
+The new parabola meets the ground where <InlineMath math="6-ax^2=0" />. The bigger <InlineMath math="a" />, the narrower and steeper the dyke, and the slope <InlineMath math="\lvert g'(x)\rvert=2a\lvert x\rvert" /> is largest right at the foot. **So the rule only has to hold at the foot <InlineMath math="x=r" />**:
+
+<BlockMath math="\begin{aligned}
+r&=\sqrt{\frac{6}{a}},\qquad \lvert g'(r)\rvert=2ar=2\sqrt{6a}\\
+2\sqrt{6a}&\le2\ \Rightarrow\ a\le\frac16
+\end{aligned}" />
+
+Stretching the old shape to <InlineMath math="6\text{ m}" />, with <InlineMath math="a=\frac13" />, gives a foot slope of <InlineMath math="2\sqrt2>2" /> and is not allowed.
+
+<MathVisual
+  title={<>Old and new dyke in cross-section</>}
+  description={<>The old dyke <InlineMath math="f(x)=3-\frac{x^2}{3}" /> has a cross-section of <InlineMath math="12\text{ m}^2" />, the new one <InlineMath math="g(x)=6-\frac{x^2}{6}" /> has <InlineMath math="48\text{ m}^2" /> and is exactly as steep at its foot as allowed. The narrower candidate <InlineMath math="6-\frac{x^2}{3}" /> would be too steep there.</>}
+  labels={{
+    old: <>old dyke</>,
+    new: <>new dyke</>,
+    steep: <>too steep</>,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -7, max: 7 },
+      y: { min: -1, max: 7 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "ground", kind: "segment", appearance: "reference", from: { x: -7, y: 0 }, to: { x: 7, y: 0 } },
+      { id: "steep", kind: "function", appearance: "warning", formula: "6 - x^2/3", domain: { min: -4.24, max: 4.24 } },
+      { id: "new", kind: "function", appearance: "answer", formula: "6 - x^2/6", domain: { min: -6, max: 6 } },
+      { id: "old", kind: "function", appearance: "primary", formula: "3 - x^2/3", domain: { min: -3, max: 3 } },
+    ],
+    labels: [
+      { key: "old", objectId: "old", at: { x: 0, y: 3 }, placement: "below" },
+      { key: "new", objectId: "new", at: { x: 5, y: 1.83 }, placement: "above-right" },
+      { key: "steep", objectId: "steep", at: { x: -3, y: 3 }, placement: "left" },
+    ],
+  }}
+/>
+
+# As little earth as the rule allows
+
+A wider foot means more earth, because with <InlineMath math="r^2=\frac6a" /> the area simplifies to <InlineMath math="8r" />, which grows with the half-width <InlineMath math="r" />. **Least earth means the largest allowed <InlineMath math="a" />, which is <InlineMath math="\frac16" />**:
+
+<BlockMath math="\begin{aligned}
+A(a)&=\int_{-r}^{r}\left(6-ax^2\right)dx=12r-\frac{2a}{3}r^3=8r\\
+a=\tfrac16&:\ r=6,\quad A=48\text{ m}^2\\
+V&=(48-12)\cdot50=1800\text{ m}^3
+\end{aligned}" />
+
+This dyke still covers the old one, since <InlineMath math="g(x)-f(x)=3+\frac{x^2}{6}>0" />. The whole new dyke would be <InlineMath math="2400\text{ m}^3" />, but <InlineMath math="600\text{ m}^3" /> of it are already there.

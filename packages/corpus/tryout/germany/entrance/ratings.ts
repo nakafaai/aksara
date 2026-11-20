@@ -27,8 +27,11 @@ export const darmstadtRatings: readonly SetRating[] = [
  * of two step-counting prompts, that saw every item of the set with its key.
  * Set 1 was rated on 20 Nov 2026 (3.60 and 3.98, 3.60 and 3.65), then its eight
  * weakest items were rewritten and rated again (3.56 and 3.56, 3.9 and 3.88),
- * then three of those once more (4.0 and 4.17, 4.33 and 4.33).
+ * then three of those once more (4.0 and 4.17, 4.33 and 4.33). Set 2 was rated
+ * on 20 Nov 2026 (3.90 and 3.62, 3.88 and 3.67). Its six weakest items were then
+ * rewritten, two of them twice, and rated again (4.08 and 4.0, 4.25 and 4.25).
  */
 export const kaiserslauternRatings: readonly SetRating[] = [
   { items: 20, level: 3.98, raters: 4 },
+  { items: 20, level: 4.02, raters: 4 },
 ];

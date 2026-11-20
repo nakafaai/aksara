@@ -1,0 +1,44 @@
+# Where the cloud starts
+
+Think of two hikers walking towards each other: the temperature drops fast as the air rises, the dew point drops slowly, so the gap between them shrinks. **Clouds form where the two lines meet**. Both are linear in the height <InlineMath math="h" />:
+
+<BlockMath math="\begin{aligned}
+T(h)&=15-0.01\,(h-500)\\
+\tau(h)&=7-0.002\,(h-500)\\
+T-\tau&=8-0.008\,(h-500)=0\\
+h&=500+1000=1500\text{ m}
+\end{aligned}" />
+
+The gap of <InlineMath math="8\,^\circ\text{C}" /> closes by <InlineMath math="0.8\,^\circ\text{C}" /> per <InlineMath math="100\text{ m}" />, so it is gone after <InlineMath math="1000\text{ m}" /> of climbing.
+
+# Inside the cloud the air cools more slowly
+
+When water vapour turns into droplets it releases heat, like a radiator switched on inside the rising air. **From <InlineMath math="1500\text{ m}" /> up to the ridge the air loses only <InlineMath math="0.5\,^\circ\text{C}" /> per <InlineMath math="100\text{ m}" />**:
+
+<BlockMath math="\begin{aligned}
+T(1500)&=15-10=5\,^\circ\text{C}\\
+T_{\text{K}}&=5-0.005\cdot1500=-2.5\,^\circ\text{C}
+\end{aligned}" />
+
+Using <InlineMath math="1\,^\circ\text{C}" /> per <InlineMath math="100\text{ m}" /> all the way up would put the ridge at <InlineMath math="-10\,^\circ\text{C}" /> and bring the air back down at exactly <InlineMath math="15\,^\circ\text{C}" />, with no warm wind at all.
+
+<Chart
+  title={<>Temperature and dew point on the way over the ridge</>}
+  description={<>Up to the cloud base at <InlineMath math="1500\text{ m}" /> the temperature and the dew point close in, above it the air cools more slowly. On the lee side it warms quickly again and arrives at <InlineMath math="22.5\,^\circ\text{C}" />.</>}
+  categories={["windward 500 m", "windward 1000 m", "windward 1500 m", "windward 2000 m", "windward 2500 m", "ridge 3000 m", "lee 2500 m", "lee 2000 m", "lee 1500 m", "lee 1000 m", "lee 500 m"]}
+  series={[
+    { label: "temperature", mark: "line", values: [15.0, 10.0, 5.0, 2.5, 0.0, -2.5, 2.5, 7.5, 12.5, 17.5, 22.5] },
+    { label: "dew point", mark: "line", values: [7.0, 6.0, 5.0, null, null, null, null, null, null, null, null] },
+  ]}
+  valueLabel="Temperature in °C"
+/>
+
+# Down the lee side
+
+The clouds stay on the windward side, so the sinking air is dry again. **It warms by <InlineMath math="1\,^\circ\text{C}" /> per <InlineMath math="100\text{ m}" /> over the full drop of <InlineMath math="2500\text{ m}" />**:
+
+<BlockMath math="\begin{aligned}
+T_{\text{L}}&=-2.5+0.01\cdot2500=22.5\,^\circ\text{C}
+\end{aligned}" />
+
+The air reaches the lee town <InlineMath math="7.5\,^\circ\text{C}" /> warmer than it left the windward town, which is exactly the warm fall wind called foehn.

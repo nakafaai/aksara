@@ -1,0 +1,52 @@
+# Zwei Ankünfte werden ein Punkt
+
+Schreib Annas Ankunft als <InlineMath math="x" /> und Bens Ankunft als <InlineMath math="y" />, in Minuten nach 17:00, beide zwischen <InlineMath math="0" /> und <InlineMath math="40" />. **Jedes Paar von Ankünften ist ein Punkt in einem Quadrat mit der Seite <InlineMath math="40" />, und weil jeder Zeitpunkt gleich wahrscheinlich ist, ist eine Wahrscheinlichkeit ein Anteil an seiner Fläche <InlineMath math="1600" />**. Es ist wie ein Regentropfen, der irgendwo auf eine quadratische Fliese fällt: Die Chance, ein Gebiet zu treffen, ist dessen Anteil an der Fliese.
+
+# Ben zuerst: ein glatter Schnitt
+
+Ist Ben zuerst da, also <InlineMath math="y<x" />, zählt nur seine Geduld. **Er wartet <InlineMath math="20" /> Minuten, also verpassen sich die beiden bei <InlineMath math="x-y>20" />**. Das ist die Ecke unterhalb der Geraden <InlineMath math="y=x-20" />, ein rechtwinkliges Dreieck mit den Katheten <InlineMath math="20" />:
+
+<BlockMath math="\begin{aligned}
+A_1&=\tfrac12\cdot20\cdot20=200
+\end{aligned}" />
+
+# Anna zuerst: ihre Grenze knickt ab
+
+Anna geht zum späteren von zwei Zeitpunkten: um 17:30 Uhr oder <InlineMath math="10" /> Minuten nach ihrer Ankunft. Bis <InlineMath math="x=20" /> ist 17:30 Uhr der spätere Zeitpunkt, danach gewinnen ihre <InlineMath math="10" /> Minuten. **Ihre Grenze ist also keine einzelne Gerade: Sie läuft waagerecht bei <InlineMath math="y=30" /> bis <InlineMath math="x=20" /> und steigt dann entlang <InlineMath math="y=x+10" /> bis zur Ecke <InlineMath math="(30\mid40)" />**. Darüber kommt Ben zu spät, ein Streifen von <InlineMath math="20" /> mal <InlineMath math="10" /> und ein kleines Dreieck mit den Katheten <InlineMath math="10" />:
+
+<BlockMath math="\begin{aligned}
+A_2&=20\cdot10+\tfrac12\cdot10\cdot10=250\\
+P&=\frac{1600-200-250}{1600}=\frac{1150}{1600}=0{,}71875
+\end{aligned}" />
+
+Die beiden treffen sich mit der Wahrscheinlichkeit <InlineMath math="0{,}71875" />. Lässt du Anna immer nur <InlineMath math="10" /> Minuten warten, wird die obere Ecke ein Dreieck von <InlineMath math="450" /> und du erhältst <InlineMath math="0{,}59375" />. Ginge sie immer um 17:30 Uhr, selbst direkt nach einer späten Ankunft, kämst du auf <InlineMath math="0{,}65625" />.
+
+<MathVisual
+  title={<>Das Treffquadrat mit geknickter Grenze</>}
+  description={<>Annas Ankunft <InlineMath math="x" /> und Bens Ankunft <InlineMath math="y" /> in Minuten nach 17:00. Annas Grenze läuft waagerecht bei <InlineMath math="y=30" /> bis <InlineMath math="x=20" /> und steigt dann entlang <InlineMath math="y=x+10" />. Die beiden Verlustflächen sind <InlineMath math="250" /> und <InlineMath math="200" /> groß, die Treffläche <InlineMath math="1150" />.</>}
+  labels={{
+    meet: <>Treffen</>,
+    anna: <>Ben schon weg</>,
+    ben: <>Anna schon weg</>,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -2, max: 42 },
+      y: { min: -2, max: 42 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "square", kind: "polygon", appearance: "reference", vertices: [{ x: 0, y: 0 }, { x: 40, y: 0 }, { x: 40, y: 40 }, { x: 0, y: 40 }] },
+      { id: "meet", kind: "polygon", appearance: "answer", vertices: [{ x: 0, y: 0 }, { x: 20, y: 0 }, { x: 40, y: 20 }, { x: 40, y: 40 }, { x: 30, y: 40 }, { x: 20, y: 30 }, { x: 0, y: 30 }] },
+      { id: "anna", kind: "polygon", appearance: "warning", vertices: [{ x: 0, y: 30 }, { x: 20, y: 30 }, { x: 30, y: 40 }, { x: 0, y: 40 }] },
+      { id: "ben", kind: "polygon", appearance: "warning", vertices: [{ x: 20, y: 0 }, { x: 40, y: 0 }, { x: 40, y: 20 }] },
+    ],
+    labels: [
+      { key: "meet", objectId: "meet", at: { x: 20, y: 16 }, placement: "center" },
+      { key: "anna", objectId: "anna", at: { x: 10, y: 35 }, placement: "center" },
+      { key: "ben", objectId: "ben", at: { x: 34, y: 6 }, placement: "below-right" },
+    ],
+  }}
+/>

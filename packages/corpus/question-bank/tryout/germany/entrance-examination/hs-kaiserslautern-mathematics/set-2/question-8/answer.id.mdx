@@ -1,0 +1,72 @@
+# Berapa banyak tempat untuk satu meter kabel
+
+Bayangkan segulung selotip: lilitan luar jauh lebih panjang daripada lilitan dalam, jadi satu milimeter ketebalan di bagian luar memuat jauh lebih banyak selotip. **Karena itu panjang kabel mengikuti luas cincin <InlineMath math="\pi\left(R^2-r^2\right)" />, bukan jari-jarinya**. Gabungkan <InlineMath math="\pi" /> dan semua hal tentang kabel tipis ke dalam satu konstanta <InlineMath math="k" />, lalu ukur jari-jari dalam cm. Saat penuh <InlineMath math="R=30" /> dan <InlineMath math="L=40" />, setelah diurai <InlineMath math="R=20" /> dan <InlineMath math="L=15" />:
+
+<BlockMath math="\begin{aligned}
+L&=k\left(R^2-r^2\right)\\
+40&=k\left(900-r^2\right)\\
+15&=k\left(400-r^2\right)
+\end{aligned}" />
+
+Kurangkan kedua baris itu, maka inti yang tidak diketahui hilang. Kabel <InlineMath math="25\text{ m}" /> yang diurai tadi mengisi tepat cincin antara <InlineMath math="20" /> dan <InlineMath math="30\text{ cm}" />:
+
+<BlockMath math="\begin{aligned}
+40-15&=k\left(900-400\right)\\
+25&=500k,\qquad k=0{,}05
+\end{aligned}" />
+
+# Inti yang tidak disebut soal
+
+Untuk mengisi gulungan kosong, kamu perlu tahu dari mana lilitan dimulai. **Masukkan <InlineMath math="k=0{,}05" /> ke keadaan penuh, maka jari-jari inti muncul**:
+
+<BlockMath math="\begin{aligned}
+40&=0{,}05\left(900-r^2\right)\\
+900-r^2&=800\\
+r^2&=100,\qquad r=10
+\end{aligned}" />
+
+Jadi intinya selebar <InlineMath math="20\text{ cm}" />. Kalau kabel dianggap mulai dari sumbu, kamu mendapat <InlineMath math="R^2-r^2=1225" />, bukan <InlineMath math="1125" />, jadi tempatnya lebih banyak daripada yang ada.
+
+<MathVisual
+  title={<>Dari inti sampai tepi</>}
+  description={<>Inti gulungan berjari-jari <InlineMath math="10\text{ cm}" />. Kabel tipis <InlineMath math="25\text{ m}" /> yang diurai tadi berada di cincin antara <InlineMath math="20" /> dan <InlineMath math="30\text{ cm}" />. Seluruh cincin dari inti sampai tepi di <InlineMath math="35\text{ cm}" /> memuat <InlineMath math="36\text{ m}" /> kabel yang lebih tebal.</>}
+  labels={{
+    core: <>inti</>,
+    mid: <><InlineMath math="R=20" /></>,
+    full: <><InlineMath math="R=30" /></>,
+    rim: <>tepi</>,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -38, max: 38 },
+      y: { min: -38, max: 38 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "rim", kind: "circle", appearance: "answer", center: { x: 0, y: 0 }, radius: 35 },
+      { id: "full", kind: "circle", appearance: "construction", center: { x: 0, y: 0 }, radius: 30 },
+      { id: "mid", kind: "circle", appearance: "construction", center: { x: 0, y: 0 }, radius: 20 },
+      { id: "core", kind: "circle", appearance: "reference", center: { x: 0, y: 0 }, radius: 10 },
+    ],
+    labels: [
+      { key: "core", objectId: "core", at: { x: 0, y: 0 }, placement: "center" },
+      { key: "mid", objectId: "mid", at: { x: 20, y: 0 }, placement: "left" },
+      { key: "full", objectId: "full", at: { x: 30, y: 0 }, placement: "left" },
+      { key: "rim", objectId: "rim", at: { x: 0, y: -35 }, placement: "below" },
+    ],
+  }}
+/>
+
+# Kabel yang lebih tebal lebih cepat memenuhi cincin
+
+Bayangkan mi di dalam toples: spageti yang tebal memenuhinya dengan lebih sedikit batang. **Kalau diameternya <InlineMath math="1{,}25" /> kali lipat, tiap meter butuh tempat <InlineMath math="1{,}25^2=1{,}5625" /> kali lipat, jadi konstantanya mengecil dengan faktor itu**. Dari inti di <InlineMath math="r=10" /> sampai tepi di <InlineMath math="R=35" />:
+
+<BlockMath math="\begin{aligned}
+k_2&=\frac{0{,}05}{1{,}25^2}=\frac{0{,}05}{1{,}5625}=0{,}032\\
+L_2&=0{,}032\cdot\left(35^2-10^2\right)\\
+&=0{,}032\cdot1125=36\text{ m}
+\end{aligned}" />
+
+Jadi gulungan memuat paling banyak <InlineMath math="36\text{ m}" /> kabel yang lebih tebal. Kalau kamu hanya membagi dengan <InlineMath math="1{,}25" />, seolah tempatnya tumbuh seperti diameternya, hasilnya <InlineMath math="45\text{ m}" />, dan kabel tipis bisa mencapai <InlineMath math="56{,}25\text{ m}" />.

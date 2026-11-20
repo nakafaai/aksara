@@ -1,0 +1,55 @@
+# Ein Polter ist eine Zahlentreppe
+
+Schau den Polter von vorne an: Jede Lage ist einen Stamm kürzer als die darunter, wie die Stufen einer Treppe. **Bei <InlineMath math="n" /> Lagen und <InlineMath math="a" /> Stämmen oben hat die unterste Lage <InlineMath math="a+n-1" /> Stämme, und die Gesamtzahl ist Lagenzahl mal mittlere Lage**:
+
+<BlockMath math="\begin{aligned}
+n\cdot\frac{a+(a+n-1)}{2}&=75\\
+n\,(2a+n-1)&=150
+\end{aligned}" />
+
+# Hundertfünfzig in zwei Faktoren zerlegen
+
+Beide Faktoren sind ganze Zahlen, und <InlineMath math="2a+n-1" /> ist größer als <InlineMath math="n" />, weil <InlineMath math="a\ge1" /> gilt. **Ihr Unterschied <InlineMath math="2a-1" /> ist ungerade, also ist ein Faktor gerade und der andere ungerade**. Damit gibt es genau sechs Zerlegungen von <InlineMath math="150" />:
+
+<BlockMath math="\begin{aligned}
+n=1&:\ 2a=150,\ a=75\\
+n=2&:\ 2a+1=75,\ a=37\\
+n=3&:\ 2a+2=50,\ a=24\\
+n=5&:\ 2a+4=30,\ a=13\\
+n=6&:\ 2a+5=25,\ a=10\\
+n=10&:\ 2a+9=15,\ a=3
+\end{aligned}" />
+
+# Breite und Höhe wählen den Polter aus
+
+Die untersten Lagen haben <InlineMath math="75, 38, 26, 17, 15" /> und <InlineMath math="12" /> Stämme. **Nur <InlineMath math="15" /> und <InlineMath math="12" /> passen auf die <InlineMath math="16" /> Plätze nebeneinander**. Jetzt entscheidet die Höhe zwischen sechs und zehn Lagen:
+
+<BlockMath math="\begin{aligned}
+30+26\,(n-1)&\le200\\
+n-1&\le6{,}5
+\end{aligned}" />
+
+Höchstens sieben Lagen sind also erlaubt, zehn Lagen wären <InlineMath math="264\text{ cm}" /> hoch. Wer nach der Breite aufhört, hat noch zwei Antworten, <InlineMath math="15" /> und <InlineMath math="12" />. **Der Polter hat sechs Lagen, und unten liegen <InlineMath math="15" /> Stämme**.
+
+<Mermaid
+  title={<>Welche Polter übrig bleiben</>}
+  description={<>Alle Polter aus <InlineMath math="75" /> Stämmen mit Lagen, die nach oben um je einen Stamm schrumpfen, geschrieben als Lagen und Stämme von unten nach oben. Die Breite streicht vier, die Höhe noch einen.</>}
+  chart={`
+    flowchart TD
+      T["75 Stämme"] --> A["1 Lage: 75"]
+      T --> B["2 Lagen: 38 bis 37"]
+      T --> C["3 Lagen: 26 bis 24"]
+      T --> D["5 Lagen: 17 bis 13"]
+      T --> E["6 Lagen: 15 bis 10"]
+      T --> F["10 Lagen: 12 bis 3"]
+      A --> X["zu breit"]
+      B --> X
+      C --> X
+      D --> X
+      E --> W["unten höchstens 16"]
+      F --> W
+      W --> H["höchstens 200 cm hoch"]
+      H --> G["10 Lagen: 264 cm, zu hoch"]
+      H --> K["6 Lagen: 160 cm, passt"]
+  `}
+/>

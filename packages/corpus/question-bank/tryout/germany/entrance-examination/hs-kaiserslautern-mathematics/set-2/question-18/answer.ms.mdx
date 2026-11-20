@@ -1,0 +1,75 @@
+# Satu peraturan untuk kedua-dua jalan
+
+Di pantai kamu lebih suka berjalan sekejap di atas pasir basah yang padat daripada memotong melalui pasir lembut, walaupun laluannya sedikit lebih panjang. **Rahsianya ialah meninggalkan padang rumput pada titik yang betul**. Ambil jalan raya yang berjarak <InlineMath math="d" /> dari pondok. Katakan <InlineMath math="x" /> ialah jarak di sepanjang jalan dari titik terdekat pondok hingga tempat pendaki memasuki jalan, dan kampung terletak <InlineMath math="a" /> dari titik terdekat itu. Masanya dalam jam:
+
+<BlockMath math="\begin{aligned}
+T(x)&=\frac{\sqrt{d^2+x^2}}{3}+\frac{a-x}{5}\\
+T'(x)&=\frac{x}{3\sqrt{d^2+x^2}}-\frac15=0\\
+5x&=3\sqrt{d^2+x^2}\\
+16x^2&=9d^2,\qquad x=0.75\,d
+\end{aligned}" />
+
+Kedua-dua jalan mematuhi peraturan ini, masing-masing dengan <InlineMath math="d" /> dan <InlineMath math="a" /> tersendiri.
+
+# Jalan yang jauh terus ke kampung
+
+Bagi jalan yang berjarak <InlineMath math="4\text{ km}" />, <InlineMath math="d=4" /> dan kampung terletak <InlineMath math="a=3\text{ km}" /> di sepanjangnya. **Titik masuk terbaik ialah <InlineMath math="x=0.75\cdot4=3" />, iaitu kampung itu sendiri**. Sebelum titik itu <InlineMath math="T'<0" />, jadi setiap langkah ke arah kampung masih berbaloi, dan jalan ini langsung tidak membantu. Yang tinggal ialah laluan lurus merentas padang:
+
+<BlockMath math="\begin{aligned}
+\sqrt{3^2+4^2}&=5\text{ km}\\
+T&=\frac53\text{ h}=100\text{ min}
+\end{aligned}" />
+
+# Jalan yang dekat menjimatkan masa
+
+Bagi jalan yang berjarak <InlineMath math="3\text{ km}" />, <InlineMath math="d=3" /> dan <InlineMath math="a=4" />. **Kini titik masuk <InlineMath math="x=0.75\cdot3=2.25" /> terletak sebelum kampung, jadi jalan itu benar-benar membantu**:
+
+<BlockMath math="\begin{aligned}
+\sqrt{3^2+2.25^2}&=3.75\text{ km}\\
+T&=\frac{3.75}{3}+\frac{4-2.25}{5}\\
+&=1.25+0.35=1.6\text{ h}=96\text{ min}
+\end{aligned}" />
+
+Ini <InlineMath math="4" /> minit lebih cepat daripada laluan lurus, jadi laluan terpantas mengambil <InlineMath math="96" /> minit. Berjalan tegak lurus ke jalan yang dekat lalu menyusurinya mengambil <InlineMath math="1+0.8=1.8\text{ h}" />, iaitu <InlineMath math="108" /> minit.
+
+<MathVisual
+  title={<>Dua jalan dan sebuah kampung</>}
+  description={<>Pondok <InlineMath math="H" /> berjarak <InlineMath math="3\text{ km}" /> dari jalan yang dekat dan <InlineMath math="4\text{ km}" /> dari jalan yang jauh. Laluan terpantas memasuki jalan yang dekat di titik <InlineMath math="P" />, <InlineMath math="1.75\text{ km}" /> sebelum kampung <InlineMath math="D" />. Garis kedua dari <InlineMath math="H" /> ke <InlineMath math="D" /> ialah laluan lurus merentas padang, yang juga tidak dapat diperbaiki oleh jalan yang jauh.</>}
+  labels={{
+    hut: <><InlineMath math="H" /></>,
+    village: <><InlineMath math="D" /></>,
+    turn: <><InlineMath math="P" /></>,
+    near: <>jalan dekat</>,
+    far: <>jalan jauh</>,
+    leg: <><InlineMath math="3.75\text{ km}" /></>,
+    road: <><InlineMath math="1.75\text{ km}" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -1, max: 6 },
+      y: { min: -1, max: 6 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "near", kind: "segment", appearance: "reference", from: { x: 0, y: 0 }, to: { x: 0, y: 6 } },
+      { id: "far", kind: "segment", appearance: "reference", from: { x: 0, y: 0 }, to: { x: 6, y: 0 } },
+      { id: "direct", kind: "segment", appearance: "construction", from: { x: 3, y: 4 }, to: { x: 0, y: 0 } },
+      { id: "leg", kind: "segment", appearance: "answer", from: { x: 3, y: 4 }, to: { x: 0, y: 1.75 } },
+      { id: "road", kind: "segment", appearance: "answer", from: { x: 0, y: 1.75 }, to: { x: 0, y: 0 } },
+      { id: "hut", kind: "point", appearance: "highlight", at: { x: 3, y: 4 } },
+      { id: "village", kind: "point", appearance: "highlight", at: { x: 0, y: 0 } },
+      { id: "turn", kind: "point", appearance: "answer", at: { x: 0, y: 1.75 } },
+    ],
+    labels: [
+      { key: "hut", objectId: "hut", at: { x: 3, y: 4 }, placement: "above-right" },
+      { key: "village", objectId: "village", at: { x: 0, y: 0 }, placement: "below-left" },
+      { key: "turn", objectId: "turn", at: { x: 0, y: 1.75 }, placement: "left" },
+      { key: "near", objectId: "near", at: { x: 0, y: 5.2 }, placement: "right" },
+      { key: "far", objectId: "far", at: { x: 5, y: 0 }, placement: "above" },
+      { key: "leg", objectId: "leg", at: { x: 1.5, y: 2.875 }, placement: "above-left" },
+      { key: "road", objectId: "road", at: { x: 0, y: 0.875 }, placement: "left" },
+    ],
+  }}
+/>

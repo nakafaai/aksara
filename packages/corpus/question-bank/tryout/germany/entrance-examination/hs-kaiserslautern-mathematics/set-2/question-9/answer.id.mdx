@@ -1,0 +1,52 @@
+# Dua kedatangan menjadi satu titik
+
+Tulis waktu tiba Anna sebagai <InlineMath math="x" /> dan waktu tiba Ben sebagai <InlineMath math="y" />, dalam menit setelah 17:00, keduanya antara <InlineMath math="0" /> dan <InlineMath math="40" />. **Setiap pasangan waktu tiba adalah satu titik di persegi bersisi <InlineMath math="40" />, dan karena setiap saat sama mungkin, peluang adalah bagian dari luasnya <InlineMath math="1600" />**. Mirip setetes hujan yang jatuh di sembarang tempat pada ubin persegi: peluang mengenai suatu daerah sama dengan bagian daerah itu dari ubin.
+
+# Ben lebih dulu: satu potongan lurus
+
+Kalau Ben datang lebih dulu, yaitu <InlineMath math="y<x" />, hanya kesabarannya yang berlaku. **Ia menunggu <InlineMath math="20" /> menit, jadi keduanya tidak bertemu bila <InlineMath math="x-y>20" />**. Itu sudut di bawah garis <InlineMath math="y=x-20" />, segitiga siku-siku dengan kaki <InlineMath math="20" />:
+
+<BlockMath math="\begin{aligned}
+A_1&=\tfrac12\cdot20\cdot20=200
+\end{aligned}" />
+
+# Anna lebih dulu: batasnya menekuk
+
+Anna pergi pada yang lebih akhir dari dua waktu: pukul 17:30 atau <InlineMath math="10" /> menit setelah ia tiba. Sampai <InlineMath math="x=20" /> pukul 17:30 yang lebih akhir, setelah itu <InlineMath math="10" /> menitnya yang menang. **Jadi batasnya bukan satu garis lurus: batas itu mendatar di <InlineMath math="y=30" /> sampai <InlineMath math="x=20" />, lalu naik sepanjang <InlineMath math="y=x+10" /> sampai sudut <InlineMath math="(30\mid40)" />**. Di atasnya Ben datang terlambat, berupa jalur <InlineMath math="20" /> kali <InlineMath math="10" /> dan segitiga kecil dengan kaki <InlineMath math="10" />:
+
+<BlockMath math="\begin{aligned}
+A_2&=20\cdot10+\tfrac12\cdot10\cdot10=250\\
+P&=\frac{1600-200-250}{1600}=\frac{1150}{1600}=0{,}71875
+\end{aligned}" />
+
+Keduanya bertemu dengan peluang <InlineMath math="0{,}71875" />. Kalau Anna hanya menunggu <InlineMath math="10" /> menit, sudut atas menjadi segitiga seluas <InlineMath math="450" /> dan hasilnya <InlineMath math="0{,}59375" />. Kalau ia selalu pergi pukul 17:30, bahkan tepat setelah datang terlambat, hasilnya <InlineMath math="0{,}65625" />.
+
+<MathVisual
+  title={<>Persegi pertemuan dengan batas yang menekuk</>}
+  description={<>Waktu tiba Anna <InlineMath math="x" /> dan waktu tiba Ben <InlineMath math="y" /> dalam menit setelah 17:00. Batas Anna mendatar di <InlineMath math="y=30" /> sampai <InlineMath math="x=20" />, lalu naik sepanjang <InlineMath math="y=x+10" />. Kedua daerah gagal bertemu luasnya <InlineMath math="250" /> dan <InlineMath math="200" />, daerah bertemu <InlineMath math="1150" />.</>}
+  labels={{
+    meet: <>bertemu</>,
+    anna: <>Ben sudah pergi</>,
+    ben: <>Anna sudah pergi</>,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -2, max: 42 },
+      y: { min: -2, max: 42 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "square", kind: "polygon", appearance: "reference", vertices: [{ x: 0, y: 0 }, { x: 40, y: 0 }, { x: 40, y: 40 }, { x: 0, y: 40 }] },
+      { id: "meet", kind: "polygon", appearance: "answer", vertices: [{ x: 0, y: 0 }, { x: 20, y: 0 }, { x: 40, y: 20 }, { x: 40, y: 40 }, { x: 30, y: 40 }, { x: 20, y: 30 }, { x: 0, y: 30 }] },
+      { id: "anna", kind: "polygon", appearance: "warning", vertices: [{ x: 0, y: 30 }, { x: 20, y: 30 }, { x: 30, y: 40 }, { x: 0, y: 40 }] },
+      { id: "ben", kind: "polygon", appearance: "warning", vertices: [{ x: 20, y: 0 }, { x: 40, y: 0 }, { x: 40, y: 20 }] },
+    ],
+    labels: [
+      { key: "meet", objectId: "meet", at: { x: 20, y: 16 }, placement: "center" },
+      { key: "anna", objectId: "anna", at: { x: 10, y: 35 }, placement: "center" },
+      { key: "ben", objectId: "ben", at: { x: 34, y: 6 }, placement: "below-right" },
+    ],
+  }}
+/>

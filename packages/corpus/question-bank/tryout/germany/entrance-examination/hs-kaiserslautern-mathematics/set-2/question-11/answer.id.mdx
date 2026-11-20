@@ -1,0 +1,43 @@
+# Dua spesies dengan jam yang sama
+
+Sebuah balon kehilangan separuh udaranya setiap dua bulan, balon lain menjadi dua kali lipat dalam waktu yang sama. Kedua perubahan berdetak dengan jam yang sama, yaitu pangkat <InlineMath math="2^{t/2}" /> dengan <InlineMath math="t" /> dalam bulan. **Rudd menyusut dengan <InlineMath math="2^{-t/2}" />, sunfish tumbuh dengan <InlineMath math="2^{t/2}" />**:
+
+<BlockMath math="\begin{aligned}
+R(t)&=800\cdot2^{-t/2}\\
+S(t)&=100\cdot2^{t/2}
+\end{aligned}" />
+
+# Satu huruf baru menghasilkan persamaan kuadrat
+
+Karena <InlineMath math="2^{-t/2}=\frac{1}{2^{t/2}}" />, semuanya bergantung pada satu bilangan <InlineMath math="u=2^{t/2}" /> yang selalu positif. **Tulis <InlineMath math="R+S=600" /> dalam <InlineMath math="u" /> lalu kalikan dengan <InlineMath math="u" />**:
+
+<BlockMath math="\begin{aligned}
+\frac{800}{u}+100u&=600\\
+100u^2-600u+800&=0\\
+u^2-6u+8&=0\\
+(u-2)(u-4)&=0
+\end{aligned}" />
+
+Kedua akar positif, jadi keduanya saat yang nyata. Kembali dari <InlineMath math="u" /> ke bulan:
+
+<BlockMath math="\begin{aligned}
+2^{t/2}=2&\ \Rightarrow\ t=2\\
+2^{t/2}=4&\ \Rightarrow\ t=4\\
+S(4)&=100\cdot4=400
+\end{aligned}" />
+
+# Saat kedua, bukan yang pertama
+
+Setelah <InlineMath math="2" /> bulan ada <InlineMath math="400" /> rudd dan <InlineMath math="200" /> sunfish, dan jumlahnya masih turun. Di antara kedua saat itu jumlahnya di bawah <InlineMath math="600" />, dan **setelah <InlineMath math="4" /> bulan naik lagi ke <InlineMath math="600" /> dengan <InlineMath math="200" /> rudd dan <InlineMath math="400" /> sunfish**. Memakai saat pertama akan memberi <InlineMath math="200" /> sunfish.
+
+<Chart
+  title={<>Kedua spesies dan jumlahnya</>}
+  description={<>Ikan rudd berkurang setengah dan ikan sunfish berlipat dua setiap <InlineMath math="2" /> bulan. Jumlah seluruhnya turun dari <InlineMath math="900" />, menjadi <InlineMath math="600" /> untuk pertama kali setelah <InlineMath math="2" /> bulan dan untuk kedua kali setelah <InlineMath math="4" /> bulan.</>}
+  categories={["0 bln", "1 bln", "2 bln", "3 bln", "4 bln", "5 bln", "6 bln", "7 bln", "8 bln"]}
+  series={[
+    { label: "rudd", mark: "line", values: [800.0, 565.69, 400.0, 282.84, 200.0, 141.42, 100.0, 70.71, 50.0] },
+    { label: "sunfish", mark: "line", values: [100.0, 141.42, 200.0, 282.84, 400.0, 565.69, 800.0, 1131.37, 1600.0] },
+    { label: "semua ikan", mark: "line", values: [900.0, 707.11, 600.0, 565.68, 600.0, 707.11, 900.0, 1202.08, 1650.0] },
+  ]}
+  valueLabel="Banyaknya"
+/>

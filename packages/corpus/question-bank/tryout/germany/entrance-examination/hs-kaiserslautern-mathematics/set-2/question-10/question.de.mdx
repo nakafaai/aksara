@@ -1,0 +1,50 @@
+Ein Getreidesilo besteht aus einem senkrechten Zylinder mit dem Radius <InlineMath math="3\text{ m}" /> und der Höhe <InlineMath math="8\text{ m}" />, der auf einem kegelförmigen Auslauftrichter steht. Der Trichter hat oben ebenfalls den Radius <InlineMath math="3\text{ m}" />, ist <InlineMath math="4\text{ m}" /> tief und hat seine Spitze unten. In dieser Spitze liegt der Auslauf. Das Fassungsvermögen des Silos ist das Volumen von Trichter und Zylinder zusammen.
+
+Das Getreide wird oben in der Mitte eingefüllt und bildet einen Schüttkegel: Seine Oberfläche ist ein Kegelmantel, dessen Spitze auf der Mittelachse liegt und dessen unterer Rand an der Zylinderwand anliegt. Die Mantellinie steigt auf <InlineMath math="3\text{ m}" /> waagerechte Strecke um <InlineMath math="2\text{ m}" /> an. Das Silo ist zu <InlineMath math="75\,\%" /> seines Fassungsvermögens gefüllt.
+
+Wie hoch über dem Auslauf liegt die Spitze des Schüttkegels? Geben Sie die Höhe in m an.
+
+<MathVisual
+  title={<>Querschnitt des Silos</>}
+  description={<>Senkrechter Schnitt durch die Mittelachse: unten der Trichter mit der Tiefe <InlineMath math="4\text{ m}" />, darüber der Zylinder mit der Höhe <InlineMath math="8\text{ m}" />, beide mit dem Radius <InlineMath math="3\text{ m}" />. Die Mantellinie des Schüttkegels steigt auf <InlineMath math="3\text{ m}" /> waagerechte Strecke um <InlineMath math="2\text{ m}" />. Die Füllhöhe ist in der Skizze frei gewählt.</>}
+  labels={{
+    radius: <><InlineMath math="3\text{ m}" /></>,
+    depth: <><InlineMath math="4\text{ m}" /></>,
+    height: <><InlineMath math="8\text{ m}" /></>,
+    run: <><InlineMath math="3\text{ m}" /></>,
+    rise: <><InlineMath math="2\text{ m}" /></>,
+    outlet: <>Auslauf</>,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -4.5, max: 5.5 },
+      y: { min: -1.5, max: 13 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "funnel-left", kind: "segment", appearance: "primary", from: { x: -3, y: 4 }, to: { x: 0, y: 0 } },
+      { id: "funnel-right", kind: "segment", appearance: "primary", from: { x: 0, y: 0 }, to: { x: 3, y: 4 } },
+      { id: "wall-left", kind: "segment", appearance: "primary", from: { x: -3, y: 4 }, to: { x: -3, y: 12 } },
+      { id: "wall-right", kind: "segment", appearance: "primary", from: { x: 3, y: 4 }, to: { x: 3, y: 12 } },
+      { id: "roof", kind: "segment", appearance: "primary", from: { x: -3, y: 12 }, to: { x: 3, y: 12 } },
+      { id: "radius", kind: "segment", appearance: "construction", from: { x: 0, y: 12 }, to: { x: 3, y: 12 } },
+      { id: "depth", kind: "segment", appearance: "construction", from: { x: 4, y: 0 }, to: { x: 4, y: 4 } },
+      { id: "height", kind: "segment", appearance: "construction", from: { x: 4, y: 4 }, to: { x: 4, y: 12 } },
+      { id: "flank-left", kind: "segment", appearance: "secondary", from: { x: -3, y: 6 }, to: { x: 0, y: 8 } },
+      { id: "flank-right", kind: "segment", appearance: "secondary", from: { x: 0, y: 8 }, to: { x: 3, y: 6 } },
+      { id: "run", kind: "segment", appearance: "construction", from: { x: 0, y: 6 }, to: { x: 3, y: 6 } },
+      { id: "rise", kind: "segment", appearance: "construction", from: { x: 0, y: 6 }, to: { x: 0, y: 8 } },
+      { id: "outlet", kind: "point", appearance: "highlight", at: { x: 0, y: 0 } },
+    ],
+    labels: [
+      { key: "radius", objectId: "radius", at: { x: 1.5, y: 12 }, placement: "above" },
+      { key: "depth", objectId: "depth", at: { x: 4, y: 2 }, placement: "right" },
+      { key: "height", objectId: "height", at: { x: 4, y: 8 }, placement: "right" },
+      { key: "run", objectId: "run", at: { x: 1.5, y: 6 }, placement: "below" },
+      { key: "rise", objectId: "rise", at: { x: 0, y: 7 }, placement: "left" },
+      { key: "outlet", objectId: "outlet", at: { x: 0, y: 0 }, placement: "below" },
+    ],
+  }}
+/>

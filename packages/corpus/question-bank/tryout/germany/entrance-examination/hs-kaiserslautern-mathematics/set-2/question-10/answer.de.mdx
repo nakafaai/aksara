@@ -1,0 +1,72 @@
+# Was das Silo fasst
+
+Stell dir eine Eistüte vor, auf der eine Konservendose steht: Die Tüte ist der Trichter, die Dose der Zylinder. **Das Fassungsvermögen sind beide Volumen zusammen, und drei Viertel davon sind im Silo**:
+
+<BlockMath math="\begin{aligned}
+V_1&=\tfrac13\pi\cdot3^2\cdot4=12\pi\\
+V_2&=\pi\cdot3^2\cdot8=72\pi\\
+0{,}75\cdot\left(12\pi+72\pi\right)&=63\pi
+\end{aligned}" />
+
+# Der Schüttkegel ist ein eigener Kegel
+
+Schüttest du Zucker von der Mitte aus in ein Glas, liegt er nicht flach, sondern türmt sich zu einem kleinen Berg. **Hier steigt die Mantellinie auf den <InlineMath math="3\text{ m}" /> von der Achse bis zur Wand um <InlineMath math="2\text{ m}" />, also sitzt über der Höhe, in der sie die Wand trifft, ein Kegel mit dem Radius <InlineMath math="3" /> und der Höhe <InlineMath math="2" />**:
+
+<BlockMath math="\begin{aligned}
+V_3&=\tfrac13\pi\cdot3^2\cdot2=6\pi
+\end{aligned}" />
+
+Darunter liegt eine ebene Schicht mit der unbekannten Höhe <InlineMath math="h" /> und ganz unten der volle Trichter.
+
+# Die ebene Schicht dazwischen
+
+**Für die Schicht bleibt nach Trichter und Schüttkegel <InlineMath math="63\pi-12\pi-6\pi=45\pi" />, verteilt auf die Kreisfläche <InlineMath math="9\pi" />**:
+
+<BlockMath math="\begin{aligned}
+12\pi+9\pi h+6\pi&=63\pi\\
+9\pi h&=45\pi\\
+h&=5
+\end{aligned}" />
+
+Wer die Oberfläche eben annimmt, steckt <InlineMath math="51\pi" /> in den Zylinder und bekommt eine Schicht von <InlineMath math="\approx5{,}67\text{ m}" /> mit der Oberkante bei <InlineMath math="\approx9{,}67\text{ m}" />. Wer den Trichter beim Fassungsvermögen vergisst, rechnet mit <InlineMath math="0{,}75\cdot72\pi=54\pi" />, bekommt nur <InlineMath math="4\text{ m}" /> Schicht und die Spitze bei <InlineMath math="10\text{ m}" />.
+
+<MathVisual
+  title={<>Die drei Teile der Füllung</>}
+  description={<>Schnitt durch das Silo: unten der volle Trichter mit <InlineMath math="12\pi\text{ m}^3" />, darüber die ebene Schicht mit <InlineMath math="45\pi\text{ m}^3" /> bis <InlineMath math="9\text{ m}" /> über dem Auslauf, oben der Schüttkegel mit <InlineMath math="6\pi\text{ m}^3" /> und seiner Spitze bei <InlineMath math="11\text{ m}" />. Das Dach liegt bei <InlineMath math="12\text{ m}" />.</>}
+  labels={{
+    funnel: <><InlineMath math="12\pi" /></>,
+    layer: <><InlineMath math="45\pi" /></>,
+    heap: <><InlineMath math="6\pi" /></>,
+    tip: <><InlineMath math="11\text{ m}" /></>,
+    roof: <>Dach</>,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -5.5, max: 5.5 },
+      y: { min: -1, max: 13 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "funnel", kind: "polygon", appearance: "reference", vertices: [{ x: -3, y: 4 }, { x: 0, y: 0 }, { x: 3, y: 4 }] },
+      { id: "layer", kind: "polygon", appearance: "secondary", vertices: [{ x: -3, y: 4 }, { x: 3, y: 4 }, { x: 3, y: 9 }, { x: -3, y: 9 }] },
+      { id: "heap", kind: "polygon", appearance: "answer", vertices: [{ x: -3, y: 9 }, { x: 3, y: 9 }, { x: 0, y: 11 }] },
+      { id: "wall-left", kind: "segment", appearance: "primary", from: { x: -3, y: 9 }, to: { x: -3, y: 12 } },
+      { id: "wall-right", kind: "segment", appearance: "primary", from: { x: 3, y: 9 }, to: { x: 3, y: 12 } },
+      { id: "roof", kind: "segment", appearance: "primary", from: { x: -3, y: 12 }, to: { x: 3, y: 12 } },
+      { id: "tip", kind: "point", appearance: "highlight", at: { x: 0, y: 11 } },
+    ],
+    labels: [
+      { key: "funnel", objectId: "funnel", at: { x: 0, y: 2.7 }, placement: "center" },
+      { key: "layer", objectId: "layer", at: { x: 0, y: 6.5 }, placement: "center" },
+      { key: "heap", objectId: "heap", at: { x: 0, y: 9.6 }, placement: "center" },
+      { key: "tip", objectId: "tip", at: { x: 0, y: 11 }, placement: "right" },
+      { key: "roof", objectId: "roof", at: { x: -1.5, y: 12 }, placement: "above" },
+    ],
+  }}
+/>
+
+# Vom Auslauf aus gezählt
+
+Der Trichter ist <InlineMath math="4\text{ m}" /> tief, die Schicht reicht <InlineMath math="5\text{ m}" /> höher, und der Schüttkegel setzt <InlineMath math="2\text{ m}" /> drauf. **Die Spitze liegt <InlineMath math="4+5+2=11\text{ m}" /> über dem Auslauf**. Das Dach liegt bei <InlineMath math="4+8=12\text{ m}" />, der Schüttkegel passt also darunter. Wer vom oberen Trichterrand statt vom Auslauf misst, kommt auf <InlineMath math="7\text{ m}" />.

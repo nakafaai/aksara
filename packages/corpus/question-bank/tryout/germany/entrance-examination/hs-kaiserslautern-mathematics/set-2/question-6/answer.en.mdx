@@ -1,0 +1,64 @@
+# Angles at the forester's feet
+
+Name the trunk's foot <InlineMath math="T" /> and its top <InlineMath math="S" />. The slope is a ramp tilted <InlineMath math="30^\circ" /> up, and the forester's gaze is tilted <InlineMath math="60^\circ" /> up. **So between the ramp and the gaze there are only <InlineMath math="30^\circ" /> left**. At <InlineMath math="T" /> the trunk points straight up, <InlineMath math="90^\circ" /> above the horizontal, while the slope back down to <InlineMath math="F" /> points <InlineMath math="30^\circ" /> below it:
+
+<BlockMath math="\begin{aligned}
+\angle TFS&=60^\circ-30^\circ=30^\circ\\
+\angle FTS&=90^\circ+30^\circ=120^\circ\\
+\angle FST&=180^\circ-30^\circ-120^\circ=30^\circ
+\end{aligned}" />
+
+# Two equal angles, two equal sides
+
+A triangle with two equal angles is isosceles: the sides facing those angles match. **The angles at <InlineMath math="F" /> and <InlineMath math="S" /> are both <InlineMath math="30^\circ" />, so the trunk <InlineMath math="TS" /> is as long as <InlineMath math="FT" />, which is <InlineMath math="24\text{ m}" />**. A right triangle with the <InlineMath math="24\text{ m}" /> laid flat on the ground would ignore the rising slope and make the spruce far too tall.
+
+# A right angle on the slope
+
+The sun sits behind the forester, so its rays come down at <InlineMath math="60^\circ" /> and travel uphill. Call the tip of the shadow <InlineMath math="P" />. **At <InlineMath math="P" /> the ray, <InlineMath math="60^\circ" /> above the horizontal looking back to the sun, and the slope, <InlineMath math="30^\circ" /> below it looking down to <InlineMath math="T" />, add up to exactly <InlineMath math="90^\circ" />**. At <InlineMath math="T" /> the trunk and the uphill slope enclose <InlineMath math="60^\circ" />:
+
+<BlockMath math="\begin{aligned}
+\angle STP&=90^\circ-30^\circ=60^\circ\\
+\angle TPS&=60^\circ+30^\circ=90^\circ\\
+\overline{TP}&=\overline{TS}\cdot\cos60^\circ=24\cdot\tfrac12=12\text{ m}
+\end{aligned}" />
+
+<MathVisual
+  title={<>Spruce, sight line and shadow on the slope</>}
+  description={<>The slope rises at <InlineMath math="30^\circ" />. The triangle of <InlineMath math="F" />, trunk foot and top has two angles of <InlineMath math="30^\circ" />, so the spruce is <InlineMath math="24\text{ m}" /> tall. The sun ray meets the slope at a right angle, and the shadow is <InlineMath math="12\text{ m}" /> long.</>}
+  labels={{
+    f: <><InlineMath math="F" /></>,
+    slope: <>slope</>,
+    tree: <>spruce</>,
+    sight: <>sight line</>,
+    ray: <>sun ray</>,
+    shadow: <>shadow</>,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -4, max: 40 },
+      y: { min: -4, max: 40 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "slope", kind: "segment", appearance: "reference", from: { x: 0, y: 0 }, to: { x: 34.64, y: 20 } },
+      { id: "ground", kind: "segment", appearance: "construction", from: { x: -4, y: 0 }, to: { x: 14, y: 0 } },
+      { id: "tree", kind: "segment", appearance: "primary", from: { x: 20.78, y: 12 }, to: { x: 20.78, y: 36 } },
+      { id: "sight", kind: "segment", appearance: "construction", from: { x: 0, y: 0 }, to: { x: 20.78, y: 36 } },
+      { id: "ray", kind: "segment", appearance: "secondary", from: { x: 20.78, y: 36 }, to: { x: 31.18, y: 18 } },
+      { id: "shadow", kind: "segment", appearance: "answer", from: { x: 20.78, y: 12 }, to: { x: 31.18, y: 18 } },
+      { id: "f", kind: "point", appearance: "highlight", at: { x: 0, y: 0 } },
+    ],
+    labels: [
+      { key: "f", objectId: "f", at: { x: 0, y: 0 }, placement: "below-left" },
+      { key: "slope", objectId: "slope", at: { x: 31.18, y: 18 }, placement: "below-right" },
+      { key: "tree", objectId: "tree", at: { x: 20.78, y: 28 }, placement: "left" },
+      { key: "sight", objectId: "sight", at: { x: 10.39, y: 18 }, placement: "left" },
+      { key: "ray", objectId: "ray", at: { x: 25.98, y: 27 }, placement: "right" },
+      { key: "shadow", objectId: "shadow", at: { x: 25.98, y: 15 }, placement: "below-right" },
+    ],
+  }}
+/>
+
+On flat ground the same spruce would throw a shadow of <InlineMath math="\frac{24}{\tan60^\circ}\approx13.9\text{ m}" />, but the rising slope catches it early, after <InlineMath math="12\text{ m}" />.

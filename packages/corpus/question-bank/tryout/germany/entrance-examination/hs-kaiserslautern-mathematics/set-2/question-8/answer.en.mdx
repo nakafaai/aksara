@@ -1,0 +1,72 @@
+# What one metre of cable costs in space
+
+Picture a roll of sticky tape: the outer turns are much longer than the inner ones, so a millimetre of thickness on the outside holds far more tape. **That is why the length follows the area of the ring, <InlineMath math="\pi\left(R^2-r^2\right)" />, and not the radius**. Put <InlineMath math="\pi" /> and everything about the thin cable into one constant <InlineMath math="k" /> and measure the radii in cm. Full, <InlineMath math="R=30" /> and <InlineMath math="L=40" />. After unwinding, <InlineMath math="R=20" /> and <InlineMath math="L=15" />:
+
+<BlockMath math="\begin{aligned}
+L&=k\left(R^2-r^2\right)\\
+40&=k\left(900-r^2\right)\\
+15&=k\left(400-r^2\right)
+\end{aligned}" />
+
+Subtract the two lines and the unknown core drops out. The <InlineMath math="25\text{ m}" /> you unwound filled exactly the ring between <InlineMath math="20" /> and <InlineMath math="30\text{ cm}" />:
+
+<BlockMath math="\begin{aligned}
+40-15&=k\left(900-400\right)\\
+25&=500k,\qquad k=0.05
+\end{aligned}" />
+
+# The core the text never names
+
+To fill an empty drum you have to know where the winding starts. **Put <InlineMath math="k=0.05" /> back into the full state and the core radius appears**:
+
+<BlockMath math="\begin{aligned}
+40&=0.05\left(900-r^2\right)\\
+900-r^2&=800\\
+r^2&=100,\qquad r=10
+\end{aligned}" />
+
+So the core is <InlineMath math="20\text{ cm}" /> across. Letting the cable start at the axis would give <InlineMath math="R^2-r^2=1225" /> instead of <InlineMath math="1125" />, more room than the drum has.
+
+<MathVisual
+  title={<>From the core to the rim</>}
+  description={<>The core has radius <InlineMath math="10\text{ cm}" />. The <InlineMath math="25\text{ m}" /> of thin cable that were unwound sat in the ring between <InlineMath math="20" /> and <InlineMath math="30\text{ cm}" />. The whole ring from the core to the rim at <InlineMath math="35\text{ cm}" /> takes <InlineMath math="36\text{ m}" /> of the thicker cable.</>}
+  labels={{
+    core: <>core</>,
+    mid: <><InlineMath math="R=20" /></>,
+    full: <><InlineMath math="R=30" /></>,
+    rim: <>rim</>,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -38, max: 38 },
+      y: { min: -38, max: 38 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "rim", kind: "circle", appearance: "answer", center: { x: 0, y: 0 }, radius: 35 },
+      { id: "full", kind: "circle", appearance: "construction", center: { x: 0, y: 0 }, radius: 30 },
+      { id: "mid", kind: "circle", appearance: "construction", center: { x: 0, y: 0 }, radius: 20 },
+      { id: "core", kind: "circle", appearance: "reference", center: { x: 0, y: 0 }, radius: 10 },
+    ],
+    labels: [
+      { key: "core", objectId: "core", at: { x: 0, y: 0 }, placement: "center" },
+      { key: "mid", objectId: "mid", at: { x: 20, y: 0 }, placement: "left" },
+      { key: "full", objectId: "full", at: { x: 30, y: 0 }, placement: "left" },
+      { key: "rim", objectId: "rim", at: { x: 0, y: -35 }, placement: "below" },
+    ],
+  }}
+/>
+
+# A fatter cable fills the ring sooner
+
+Think of pasta in a jar: thick spaghetti fills it with fewer strands. **A diameter <InlineMath math="1.25" /> times as big makes every metre take <InlineMath math="1.25^2=1.5625" /> times the space, so the constant shrinks by that factor**. From the core at <InlineMath math="r=10" /> to the rim at <InlineMath math="R=35" />:
+
+<BlockMath math="\begin{aligned}
+k_2&=\frac{0.05}{1.25^2}=\frac{0.05}{1.5625}=0.032\\
+L_2&=0.032\cdot\left(35^2-10^2\right)\\
+&=0.032\cdot1125=36\text{ m}
+\end{aligned}" />
+
+So the drum takes at most <InlineMath math="36\text{ m}" /> of the thicker cable. Dividing by <InlineMath math="1.25" /> alone, as if the space grew with the diameter itself, gives <InlineMath math="45\text{ m}" />, and the thin cable would have reached <InlineMath math="56.25\text{ m}" />.

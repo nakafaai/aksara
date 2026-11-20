@@ -1,0 +1,83 @@
+# Kabel sebagai parabola
+
+Pegang tali lompat di kedua ujungnya, maka tali itu melendut membentuk huruf U yang landai. Letakkan titik asal di lantai jembatan tepat di bawah titik terendah kabel. **Maka puncaknya <InlineMath math="(0\mid2)" /> dan tiap ujung pilon berada <InlineMath math="80\text{ m}" /> ke samping pada ketinggian <InlineMath math="42" />, sehingga parabolanya tertentu**:
+
+<BlockMath math="\begin{aligned}
+y&=2+ax^2\\
+42&=2+a\cdot80^2\\
+a&=\frac{40}{6400}=\frac{1}{160}
+\end{aligned}" />
+
+Penggantung di posisi <InlineMath math="x" /> terentang dari lantai sampai kabel, jadi panjangnya <InlineMath math="2+\frac{x^2}{160}" /> meter.
+
+# Posisi mana yang benar-benar diberi penggantung
+
+Rencananya ada di <InlineMath math="x=0,\pm10,\dots,\pm70" />, lima belas titik, karena langkah berikutnya <InlineMath math="\pm80" /> sudah pilon. **Aturan klem lalu mencoret setiap titik tempat kabel lebih rendah dari <InlineMath math="3\text{ m}" />**:
+
+<BlockMath math="\begin{aligned}
+2+\frac{x^2}{160}&<3\\
+x^2&<160
+\end{aligned}" />
+
+Karena <InlineMath math="10^2=100" /> di bawah <InlineMath math="160" /> dan <InlineMath math="20^2=400" /> di atasnya, hanya <InlineMath math="x=0" /> dan <InlineMath math="x=\pm10" /> yang memakai klem. Tersisa dua belas penggantung dari <InlineMath math="\pm20" /> sampai <InlineMath math="\pm70" />.
+
+<MathVisual
+  title={<>Kabel utama, penggantung, dan klem</>}
+  description={<>Kabel utama <InlineMath math="y=2+\frac{x^2}{160}" /> di antara pilon di <InlineMath math="x=\pm80" />. Dua belas penggantung berdiri di <InlineMath math="x=\pm20" /> sampai <InlineMath math="x=\pm70" />. Di <InlineMath math="x=0" /> dan <InlineMath math="x=\pm10" /> kabelnya lebih rendah dari <InlineMath math="3\text{ m}" />, jadi di sana dipasang klem.</>}
+  labels={{
+    cable: <>kabel utama</>,
+    deck: <>lantai jembatan</>,
+    clamp: <>klem</>,
+    hanger: <>penggantung</>,
+    pylon: <>pilon</>,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -90, max: 90 },
+      y: { min: -6, max: 48 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "cable", kind: "function", appearance: "primary", formula: "2 + x^2/160", domain: { min: -80, max: 80 } },
+      { id: "deck", kind: "segment", appearance: "reference", from: { x: -85, y: 0 }, to: { x: 85, y: 0 } },
+      { id: "pl", kind: "segment", appearance: "secondary", from: { x: -80, y: 0 }, to: { x: -80, y: 44 } },
+      { id: "pr", kind: "segment", appearance: "secondary", from: { x: 80, y: 0 }, to: { x: 80, y: 44 } },
+      { id: "k30", kind: "segment", appearance: "answer", from: { x: -70, y: 0 }, to: { x: -70, y: 32.625 } },
+      { id: "k40", kind: "segment", appearance: "answer", from: { x: -60, y: 0 }, to: { x: -60, y: 24.5 } },
+      { id: "k50", kind: "segment", appearance: "answer", from: { x: -50, y: 0 }, to: { x: -50, y: 17.625 } },
+      { id: "k60", kind: "segment", appearance: "answer", from: { x: -40, y: 0 }, to: { x: -40, y: 12 } },
+      { id: "k70", kind: "segment", appearance: "answer", from: { x: -30, y: 0 }, to: { x: -30, y: 7.625 } },
+      { id: "k80", kind: "segment", appearance: "answer", from: { x: -20, y: 0 }, to: { x: -20, y: 4.5 } },
+      { id: "k120", kind: "segment", appearance: "answer", from: { x: 20, y: 0 }, to: { x: 20, y: 4.5 } },
+      { id: "k130", kind: "segment", appearance: "answer", from: { x: 30, y: 0 }, to: { x: 30, y: 7.625 } },
+      { id: "k140", kind: "segment", appearance: "answer", from: { x: 40, y: 0 }, to: { x: 40, y: 12 } },
+      { id: "k150", kind: "segment", appearance: "answer", from: { x: 50, y: 0 }, to: { x: 50, y: 17.625 } },
+      { id: "k160", kind: "segment", appearance: "answer", from: { x: 60, y: 0 }, to: { x: 60, y: 24.5 } },
+      { id: "k170", kind: "segment", appearance: "answer", from: { x: 70, y: 0 }, to: { x: 70, y: 32.625 } },
+      { id: "c90", kind: "point", appearance: "warning", at: { x: -10, y: 2.625 } },
+      { id: "c100", kind: "point", appearance: "warning", at: { x: 0, y: 2 } },
+      { id: "c110", kind: "point", appearance: "warning", at: { x: 10, y: 2.625 } },
+    ],
+    labels: [
+      { key: "cable", objectId: "cable", at: { x: -55, y: 20.90625 }, placement: "above-left" },
+      { key: "deck", objectId: "deck", at: { x: -40, y: 0 }, placement: "below" },
+      { key: "clamp", objectId: "c100", at: { x: 0, y: 2 }, placement: "above" },
+      { key: "hanger", objectId: "k160", at: { x: 60, y: 12 }, placement: "left" },
+      { key: "pylon", objectId: "pr", at: { x: 80, y: 44 }, placement: "above" },
+    ],
+  }}
+/>
+
+# Menjumlahkan berpasangan
+
+Di kiri dan kanan tengah, penggantungnya berpasangan dengan panjang sama, jadi jumlahkan satu sisi lalu kalikan dua. **Dengan <InlineMath math="x=10k" /> kuadratnya menjadi <InlineMath math="100k^2" />, dan <InlineMath math="2^2+3^2+\dots+7^2=139" />**:
+
+<BlockMath math="\begin{aligned}
+L&=2\sum_{k=2}^{7}\left(2+\frac{(10k)^2}{160}\right)\\
+&=2\left(12+\frac{100}{160}\cdot139\right)\\
+&=2\left(12+86{,}875\right)=197{,}75\text{ m}
+\end{aligned}" />
+
+Kelima belas titik rencana sekaligus memberi <InlineMath math="205\text{ m}" />, dan klem menghemat tepat <InlineMath math="2+2\cdot2{,}625=7{,}25\text{ m}" /> dari jumlah itu.

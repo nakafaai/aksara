@@ -1,0 +1,65 @@
+# Memiringkan dinding
+
+Berdirikan buku yang terbuka di atas meja: sampulnya bisa tegak atau miring ke luar. Miring membuat bukaannya lebih lebar, tetapi dindingnya lebih rendah. **Misalkan <InlineMath math="\theta" /> sudut antara dinding samping dan garis mendatar di luar talang**. Setiap dinding naik <InlineMath math="10\sin\theta" /> dan menjorok <InlineMath math="10\cos\theta" /> ke luar, jadi lebar bukaan atasnya <InlineMath math="10+20\cos\theta" />:
+
+<BlockMath math="\begin{aligned}
+h&=10\sin\theta,\qquad o=10+20\cos\theta\\
+A(\theta)&=\frac{10+o}{2}\cdot h=100\sin\theta\,(1+\cos\theta)
+\end{aligned}" />
+
+# Di mana luasnya berhenti bertambah
+
+Pada luas terbesar turunannya nol. **Ganti <InlineMath math="\sin^2\theta" /> dengan <InlineMath math="1-\cos^2\theta" />, maka turunannya menjadi persamaan kuadrat dalam <InlineMath math="\cos\theta" /> yang bisa difaktorkan**:
+
+<BlockMath math="\begin{aligned}
+A'(\theta)&=100\left(\cos\theta+\cos^2\theta-\sin^2\theta\right)\\
+&=100\left(2\cos^2\theta+\cos\theta-1\right)\\
+&=100\,(2\cos\theta-1)(\cos\theta+1)
+\end{aligned}" />
+
+Faktor <InlineMath math="\cos\theta+1" /> hanya nol pada <InlineMath math="\theta=180^\circ" />, saat lembarannya rata dan tidak menampung apa pun. Jadi tersisa <InlineMath math="\cos\theta=\frac12" />.
+
+<MathVisual
+  title={<>Penampang talang yang terbaik</>}
+  description={<>Pada kemiringan <InlineMath math="60^\circ" /> terhadap garis mendatar, luasnya <InlineMath math="75\sqrt3\approx129{,}9\text{ cm}^2" />. Kotak putus-putus berdinding tegak hanya <InlineMath math="100\text{ cm}^2" />. Di bagian dalam, dasar dan dinding bertemu pada <InlineMath math="120^\circ" />.</>}
+  labels={{
+    bottom: <>dasar</>,
+    side: <>dinding samping</>,
+    box: <>dinding tegak</>,
+    angle: <>sudut dalam <InlineMath math="120^\circ" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -12, max: 12 },
+      y: { min: -2, max: 11 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "box", kind: "polyline", appearance: "construction", vertices: [{ x: -5, y: 10 }, { x: -5, y: 0 }, { x: 5, y: 0 }, { x: 5, y: 10 }] },
+      { id: "gutter", kind: "polygon", appearance: "answer", vertices: [{ x: -5, y: 0 }, { x: 5, y: 0 }, { x: 10, y: 8.66 }, { x: -10, y: 8.66 }] },
+      { id: "bottom", kind: "segment", appearance: "primary", from: { x: -5, y: 0 }, to: { x: 5, y: 0 } },
+      { id: "side", kind: "segment", appearance: "primary", from: { x: 5, y: 0 }, to: { x: 10, y: 8.66 } },
+      { id: "corner", kind: "point", appearance: "highlight", at: { x: 5, y: 0 } },
+    ],
+    labels: [
+      { key: "bottom", objectId: "bottom", at: { x: 0, y: 0 }, placement: "below" },
+      { key: "side", objectId: "side", at: { x: 7.5, y: 4.33 }, placement: "right" },
+      { key: "box", objectId: "box", at: { x: -5, y: 9 }, placement: "right" },
+      { key: "angle", objectId: "corner", at: { x: 5, y: 0 }, placement: "below-right" },
+    ],
+  }}
+/>
+
+# Sudut mana yang ditanyakan
+
+Kemiringan <InlineMath math="\theta" /> diukur di luar talang, terhadap perpanjangan dasar. **Di dalam, dasar dan dinding mengapit sudut yang melengkapi <InlineMath math="\theta" /> menjadi sudut lurus**:
+
+<BlockMath math="\begin{aligned}
+\cos\theta&=\tfrac12\ \Rightarrow\ \theta=60^\circ\\
+A(60^\circ)&=100\cdot\tfrac{\sqrt3}{2}\cdot\tfrac32=75\sqrt3\approx129{,}9\\
+180^\circ-60^\circ&=120^\circ
+\end{aligned}" />
+
+Dinding tegak hanya memberi <InlineMath math="100\text{ cm}^2" />, jadi <InlineMath math="60^\circ" /> memang maksimum. Mengetik kemiringan itu alih-alih sudut dalamnya adalah jebakannya.

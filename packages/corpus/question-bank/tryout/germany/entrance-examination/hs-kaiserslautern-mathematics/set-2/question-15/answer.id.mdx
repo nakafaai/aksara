@@ -1,0 +1,86 @@
+# Hitung perjalanan, bukan liter
+
+Truk tangki yang memuat <InlineMath math="3000" /> liter harus berangkat lagi setiap kali penuh. **Setiap peternakan memerlukan perjalanan sebanyak <InlineMath math="3000" /> liter muat dalam susunya, dibulatkan ke atas**:
+
+<BlockMath math="\begin{aligned}
+n_A&=\left\lceil\tfrac{2500}{3000}\right\rceil=1,\qquad n_B=\left\lceil\tfrac{10\,000}{3000}\right\rceil=4\\
+n_C&=\left\lceil\tfrac{5500}{3000}\right\rceil=2,\qquad n_D=\left\lceil\tfrac{3200}{3000}\right\rceil=2
+\end{aligned}" />
+
+Peternakan <InlineMath math="D" /> adalah jebakannya: <InlineMath math="3200" /> liter sedikit lebih dari satu muatan, jadi perlu <InlineMath math="2" /> perjalanan.
+
+# Jarak sebagai jumlah nilai mutlak
+
+Setiap perjalanan berangkat dari tempat pengumpulan di <InlineMath math="x" /> ke satu peternakan lalu kembali. **Dihitung sekali jalan, semua perjalanan sehari menjadi jumlah nilai mutlak, dan jarak hariannya dua kali lipat**:
+
+<BlockMath math="\begin{aligned}
+f(x)&=1\cdot|x|+4\,|x-6|+2\,|x-10|+2\,|x-16|\\
+D(x)&=2f(x)
+\end{aligned}" />
+
+Bayangkan kamu berjalan menyusuri jalan: satu langkah ke kanan membuatmu lebih dekat ke setiap perjalanan di sebelah kanan dan lebih jauh dari setiap perjalanan di sebelah kiri. **Jadi kemiringan <InlineMath math="f" /> adalah banyak perjalanan di kiri dikurangi banyak perjalanan di kanan**.
+
+# Titik terbaik terlarang
+
+Tanpa zona itu, titik terendah <InlineMath math="f" /> ada di tempat kemiringan berubah dari negatif ke positif. Dihitung dari kiri ada <InlineMath math="1" />, lalu <InlineMath math="1+4=5" /> perjalanan, lebih dari separuh dari <InlineMath math="9" />, dan itu terjadi di peternakan <InlineMath math="B" />. Jadi minimumnya di kilometer <InlineMath math="6" /> dengan <InlineMath math="f(6)=34" />. **Tetapi kilometer <InlineMath math="6" /> berada di dalam zona perlindungan air, jadi hanya kedua tepinya yang tersisa**:
+
+<BlockMath math="\begin{aligned}
+5\le x\le6&:\quad 1-(4+2+2)=-7,\qquad f(5)=34+7=41\\
+6\le x\le9&:\quad (1+4)-(2+2)=1,\qquad f(9)=34+3=37
+\end{aligned}" />
+
+<MathVisual
+  title={<>Jarak sekali jalan di sepanjang jalan raya</>}
+  description={<>Jarak sekali jalan <InlineMath math="f(x)" /> dari semua perjalanan sehari jika tempat pengumpulan berada di kilometer <InlineMath math="x" />, dengan banyak perjalanan tiap peternakan di dalam kurung. Kemiringan <InlineMath math="-7" />, <InlineMath math="+1" /> dan <InlineMath math="+5" /> adalah perjalanan di kiri dikurangi perjalanan di kanan. Minimum <InlineMath math="f(6)=34" /> berada di zona perlindungan yang ditandai, dan di tepinya <InlineMath math="f(9)=37" /> mengalahkan <InlineMath math="f(5)=41" />.</>}
+  labels={{
+    a: <><InlineMath math="A\,(1)" /></>,
+    b: <><InlineMath math="B\,(4)" /></>,
+    c: <><InlineMath math="C\,(2)" /></>,
+    d: <><InlineMath math="D\,(2)" /></>,
+    fall: <><InlineMath math="-7" /></>,
+    flat: <><InlineMath math="+1" /></>,
+    climb: <><InlineMath math="+5" /></>,
+    zone: <>zona perlindungan</>,
+    best: <><InlineMath math="f(9)=37" /></>,
+    edge: <><InlineMath math="f(5)=41" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -1, max: 17 },
+      y: { min: -8, max: 80 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "zone-left", kind: "segment", appearance: "warning", from: { x: 5, y: 0 }, to: { x: 5, y: 78 } },
+      { id: "zone-right", kind: "segment", appearance: "warning", from: { x: 9, y: 0 }, to: { x: 9, y: 78 } },
+      { id: "road", kind: "segment", appearance: "reference", from: { x: 0, y: 0 }, to: { x: 16, y: 0 } },
+      { id: "graph", kind: "polyline", appearance: "primary", vertices: [{ x: 0, y: 76 }, { x: 5, y: 41 }, { x: 6, y: 34 }, { x: 9, y: 37 }, { x: 10, y: 38 }, { x: 16, y: 68 }] },
+      { id: "farm-a", kind: "point", appearance: "reference", at: { x: 0, y: 0 } },
+      { id: "farm-b", kind: "point", appearance: "reference", at: { x: 6, y: 0 } },
+      { id: "farm-c", kind: "point", appearance: "reference", at: { x: 10, y: 0 } },
+      { id: "farm-d", kind: "point", appearance: "reference", at: { x: 16, y: 0 } },
+      { id: "edge", kind: "point", appearance: "highlight", at: { x: 5, y: 41 } },
+      { id: "best", kind: "point", appearance: "answer", at: { x: 9, y: 37 } },
+    ],
+    labels: [
+      { key: "a", objectId: "farm-a", at: { x: 0, y: 0 }, placement: "below" },
+      { key: "b", objectId: "farm-b", at: { x: 6, y: 0 }, placement: "below" },
+      { key: "c", objectId: "farm-c", at: { x: 10, y: 0 }, placement: "below" },
+      { key: "d", objectId: "farm-d", at: { x: 16, y: 0 }, placement: "below" },
+      { key: "fall", objectId: "graph", at: { x: 2.5, y: 58.5 }, placement: "above-right" },
+      { key: "flat", objectId: "graph", at: { x: 7.5, y: 35.5 }, placement: "below" },
+      { key: "climb", objectId: "graph", at: { x: 13, y: 53 }, placement: "above-left" },
+      { key: "zone", objectId: "zone-left", at: { x: 7, y: 70 }, placement: "center" },
+      { key: "best", objectId: "best", at: { x: 9, y: 37 }, placement: "right" },
+      { key: "edge", objectId: "edge", at: { x: 5, y: 41 }, placement: "left" },
+    ],
+  }}
+/>
+
+# Tepi yang jauh menang
+
+Tepi di kilometer <InlineMath math="5" /> lebih dekat ke minimum, tetapi <InlineMath math="f" /> curam di sana: setiap kilometer menambah <InlineMath math="7" />. Ke arah kilometer <InlineMath math="9" /> setiap kilometer hanya menambah <InlineMath math="1" />. **Jadi tempat pengumpulan dibangun di kilometer <InlineMath math="9" />, dan truk tangki menempuh <InlineMath math="2\cdot37=74\text{ km}" /> sehari**.
+
+Tepi yang lebih dekat di kilometer <InlineMath math="5" /> memberi <InlineMath math="82\text{ km}" />, dan tanpa perjalanan pulang hasilnya hanya <InlineMath math="37\text{ km}" />. Kalau diberi bobot ribuan liter, bukan perjalanan, hasilnya <InlineMath math="160{,}8" />, angka yang bahkan bukan jarak. Kalau <InlineMath math="D" /> dihitung satu perjalanan, hasilnya <InlineMath math="60\text{ km}" />.

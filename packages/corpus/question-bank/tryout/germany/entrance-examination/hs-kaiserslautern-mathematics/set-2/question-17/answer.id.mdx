@@ -1,0 +1,42 @@
+# Ukur antrean dalam menit-gerbang
+
+Bayangkan bak mandi yang kerannya terus mengalir sementara beberapa lubang pembuangan terbuka. Air yang sudah ada dan air yang terus masuk harus keluar lewat lubang itu. **Hitung semuanya dalam menit-gerbang, yaitu banyak penonton yang dilewatkan satu gerbang putar dalam satu menit**. Sebut antrean awal <InlineMath math="S" /> dan kedatangan per menit <InlineMath math="z" />. Pada kedua hari yang diketahui, gerbang putar melewatkan tepat antrean awal ditambah semua yang datang kemudian:
+
+<BlockMath math="\begin{aligned}
+4\cdot30&=S+30z\\
+6\cdot15&=S+15z
+\end{aligned}" />
+
+Selisihnya memberi <InlineMath math="30=15z" />, jadi <InlineMath math="z=2" /> dan <InlineMath math="S=60" />. Kamu tidak pernah tahu berapa penonton yang dilewatkan satu gerbang, dan kamu memang tidak memerlukannya.
+
+# Tiga gerbang hampir tidak mengalahkan arus
+
+Dengan <InlineMath math="3" /> gerbang, antrean hanya berkurang <InlineMath math="3-2=1" /> menit-gerbang tiap menit. Dengan laju itu, <InlineMath math="60" /> menit-gerbang perlu <InlineMath math="60" /> menit. **Tetapi sepak mula datang lebih dulu, setelah <InlineMath math="45" /> menit, jadi lajunya berubah sebelum antrean habis**. Saat sepak mula masih tersisa:
+
+<BlockMath math="\begin{aligned}
+S_{45}&=60-45\cdot1=15
+\end{aligned}" />
+
+Jawaban <InlineMath math="60" /> menit mengabaikan bahwa arus kedatangan berhenti.
+
+<Chart
+  title={<>Antrean sebelum dan sesudah sepak mula</>}
+  description={<>Antrean dalam menit-gerbang dengan <InlineMath math="3" /> gerbang putar terbuka. Sampai sepak mula setelah <InlineMath math="45" /> menit, antrean turun <InlineMath math="1" /> tiap menit, lalu <InlineMath math="3" /> tiap menit, dan habis setelah <InlineMath math="50" /> menit. Garis kedua menunjukkan jalannya yang keliru, ketika arus kedatangan tidak pernah berhenti.</>}
+  categories={["0 menit", "5 menit", "10 menit", "15 menit", "20 menit", "25 menit", "30 menit", "35 menit", "40 menit", "45 menit", "50 menit", "55 menit", "60 menit"]}
+  series={[
+    { label: "arus berhenti saat sepak mula", mark: "line", values: [60, 55, 50, 45, 40, 35, 30, 25, 20, 15, 0, null, null] },
+    { label: "arus tidak pernah berhenti", mark: "line", values: [60, 55, 50, 45, 40, 35, 30, 25, 20, 15, 10, 5, 0] },
+  ]}
+  valueLabel="Antrean (menit-gerbang)"
+/>
+
+# Setelah sepak mula arusnya berhenti
+
+Sekarang tidak ada lagi yang bergabung, dan ketiga gerbang menghabiskan sisanya. **Sisa <InlineMath math="15" /> menit-gerbang memerlukan**:
+
+<BlockMath math="\begin{aligned}
+t&=\frac{15}{3}=5\\
+T&=45+5=50\text{ min}
+\end{aligned}" />
+
+Antrean habis <InlineMath math="50" /> menit setelah gerbang stadion dibuka.

@@ -1,0 +1,72 @@
+# Berapa tinggi siling di setiap tempat
+
+Berjalan dari dinding luar ke tengah, dan siling condong di atas kamu naik seperti tanjakan. Biar <InlineMath math="u" /> jarak kamu dari dinding. **Setiap meter yang kamu jalan, bumbung naik dengan jumlah yang sama, jadi ketinggian bertambah mengikut nisbah teorem pintasan**:
+
+<BlockMath math="\begin{aligned}
+\frac{h-0.5}{u}&=\frac{4.5-0.5}{5}=0.8\\
+h(u)&=0.5+0.8u
+\end{aligned}" />
+
+Bumbung bermula pada ketinggian <InlineMath math="0.5\text{ m}" /> di atas dinding lutut, bukan dari lantai. Melukisnya dari sudut lantai memberi bumbung yang lebih landai dan had zon yang salah.
+
+# Di mana peraturan kiraan bertukar
+
+Peraturan itu melukis dua garis halimunan pada ketinggian <InlineMath math="1\text{ m}" /> dan <InlineMath math="2\text{ m}" />. **Cari tempat siling memotong setiap garis**:
+
+<BlockMath math="\begin{aligned}
+0.5+0.8u_1&=1\ \Rightarrow\ u_1=0.625\text{ m}\\
+0.5+0.8u_2&=2\ \Rightarrow\ u_2=1.875\text{ m}
+\end{aligned}" />
+
+<MathVisual
+  title={<>Keratan rentas dan tiga zonnya</>}
+  description={<>Dari dinding lutut setinggi <InlineMath math="0.5\text{ m}" />, bumbung naik <InlineMath math="4\text{ m}" /> sepanjang <InlineMath math="5\text{ m}" /> mendatar. Ketinggian <InlineMath math="1\text{ m}" /> dicapai <InlineMath math="0.625\text{ m}" /> dari dinding dan <InlineMath math="2\text{ m}" /> pada <InlineMath math="1.875\text{ m}" />. Di lantai, jalur paling luar tidak dikira, jalur seterusnya dikira separuh dan bahagian tengah dikira penuh.</>}
+  labels={{
+    none: <>tidak dikira</>,
+    half: <>separuh</>,
+    full: <>penuh</>,
+    roof: <>bumbung</>,
+    one: <><InlineMath math="1\text{ m}" /></>,
+    two: <><InlineMath math="2\text{ m}" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -0.5, max: 10.5 },
+      y: { min: -1, max: 5 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "floor", kind: "segment", appearance: "reference", from: { x: 0, y: 0 }, to: { x: 10, y: 0 } },
+      { id: "roof", kind: "polyline", appearance: "primary", vertices: [{ x: 0, y: 0 }, { x: 0, y: 0.5 }, { x: 5, y: 4.5 }, { x: 10, y: 0.5 }, { x: 10, y: 0 }] },
+      { id: "one", kind: "segment", appearance: "construction", from: { x: 0.625, y: 1 }, to: { x: 9.375, y: 1 } },
+      { id: "two", kind: "segment", appearance: "construction", from: { x: 1.875, y: 2 }, to: { x: 8.125, y: 2 } },
+      { id: "none", kind: "segment", appearance: "warning", from: { x: 0, y: -0.3 }, to: { x: 0.625, y: -0.3 } },
+      { id: "none2", kind: "segment", appearance: "warning", from: { x: 9.375, y: -0.3 }, to: { x: 10, y: -0.3 } },
+      { id: "half", kind: "segment", appearance: "secondary", from: { x: 0.625, y: -0.3 }, to: { x: 1.875, y: -0.3 } },
+      { id: "half2", kind: "segment", appearance: "secondary", from: { x: 8.125, y: -0.3 }, to: { x: 9.375, y: -0.3 } },
+      { id: "full", kind: "segment", appearance: "answer", from: { x: 1.875, y: -0.3 }, to: { x: 8.125, y: -0.3 } },
+    ],
+    labels: [
+      { key: "roof", objectId: "roof", at: { x: 3, y: 2.9 }, placement: "above-left" },
+      { key: "one", objectId: "one", at: { x: 5, y: 1 }, placement: "above" },
+      { key: "two", objectId: "two", at: { x: 5, y: 2 }, placement: "above" },
+      { key: "none", objectId: "none", at: { x: 0.3, y: -0.3 }, placement: "below" },
+      { key: "half", objectId: "half", at: { x: 1.25, y: -0.3 }, placement: "below-right" },
+      { key: "full", objectId: "full", at: { x: 5, y: -0.3 }, placement: "below" },
+    ],
+  }}
+/>
+
+# Memberi pemberat kepada jalur
+
+Pada setiap sisi, <InlineMath math="0.625\text{ m}" /> pertama tidak dikira dan <InlineMath math="1.25\text{ m}" /> berikutnya dikira separuh. Bahagian tengah dikira penuh. **Tambah lebar dengan pemberatnya dan darab dengan panjang**:
+
+<BlockMath math="\begin{aligned}
+b_{\text{penuh}}&=10-2\cdot1.875=6.25\text{ m}\\
+b_{\text{separuh}}&=2\cdot(1.875-0.625)=2.5\text{ m}\\
+A&=\left(6.25+\tfrac12\cdot2.5\right)\cdot8=60\text{ m}^2
+\end{aligned}" />
+
+Daripada <InlineMath math="80\text{ m}^2" /> lantai, <InlineMath math="60\text{ m}^2" /> dikira sebagai keluasan kediaman.

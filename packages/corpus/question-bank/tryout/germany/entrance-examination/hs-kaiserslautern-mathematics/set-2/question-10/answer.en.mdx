@@ -1,0 +1,72 @@
+# What the silo holds
+
+Picture an ice cream cone with a tin can standing on it: the cone is the funnel, the can is the cylinder. **The capacity is both volumes together, and three quarters of it is in the silo**:
+
+<BlockMath math="\begin{aligned}
+V_1&=\tfrac13\pi\cdot3^2\cdot4=12\pi\\
+V_2&=\pi\cdot3^2\cdot8=72\pi\\
+0.75\cdot\left(12\pi+72\pi\right)&=63\pi
+\end{aligned}" />
+
+# The heap is a cone of its own
+
+Pour sugar into a glass from the middle and it does not lie flat, it piles up into a little mountain. **Here the flank climbs <InlineMath math="2\text{ m}" /> over the <InlineMath math="3\text{ m}" /> from the axis to the wall, so above the level where it meets the wall sits a cone with radius <InlineMath math="3" /> and height <InlineMath math="2" />**:
+
+<BlockMath math="\begin{aligned}
+V_3&=\tfrac13\pi\cdot3^2\cdot2=6\pi
+\end{aligned}" />
+
+Below that level the grain is a flat layer of unknown height <InlineMath math="h" />, and below the layer the full funnel.
+
+# The flat layer in between
+
+**After the funnel and the heap, the layer gets what is left, <InlineMath math="63\pi-12\pi-6\pi=45\pi" />, spread over the circle <InlineMath math="9\pi" />**:
+
+<BlockMath math="\begin{aligned}
+12\pi+9\pi h+6\pi&=63\pi\\
+9\pi h&=45\pi\\
+h&=5
+\end{aligned}" />
+
+Treating the surface as flat would put <InlineMath math="51\pi" /> into the cylinder, a layer of <InlineMath math="\approx5.67\text{ m}" /> and a top at <InlineMath math="\approx9.67\text{ m}" />. Leaving the funnel out of the capacity gives <InlineMath math="0.75\cdot72\pi=54\pi" />, a layer of only <InlineMath math="4\text{ m}" /> and a tip at <InlineMath math="10\text{ m}" />.
+
+<MathVisual
+  title={<>The three parts of the fill</>}
+  description={<>Cross-section of the silo: at the bottom the full funnel with <InlineMath math="12\pi\text{ m}^3" />, above it the flat layer with <InlineMath math="45\pi\text{ m}^3" /> up to <InlineMath math="9\text{ m}" /> above the outlet, on top the heap with <InlineMath math="6\pi\text{ m}^3" /> and its tip at <InlineMath math="11\text{ m}" />. The roof is at <InlineMath math="12\text{ m}" />.</>}
+  labels={{
+    funnel: <><InlineMath math="12\pi" /></>,
+    layer: <><InlineMath math="45\pi" /></>,
+    heap: <><InlineMath math="6\pi" /></>,
+    tip: <><InlineMath math="11\text{ m}" /></>,
+    roof: <>roof</>,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -5.5, max: 5.5 },
+      y: { min: -1, max: 13 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "funnel", kind: "polygon", appearance: "reference", vertices: [{ x: -3, y: 4 }, { x: 0, y: 0 }, { x: 3, y: 4 }] },
+      { id: "layer", kind: "polygon", appearance: "secondary", vertices: [{ x: -3, y: 4 }, { x: 3, y: 4 }, { x: 3, y: 9 }, { x: -3, y: 9 }] },
+      { id: "heap", kind: "polygon", appearance: "answer", vertices: [{ x: -3, y: 9 }, { x: 3, y: 9 }, { x: 0, y: 11 }] },
+      { id: "wall-left", kind: "segment", appearance: "primary", from: { x: -3, y: 9 }, to: { x: -3, y: 12 } },
+      { id: "wall-right", kind: "segment", appearance: "primary", from: { x: 3, y: 9 }, to: { x: 3, y: 12 } },
+      { id: "roof", kind: "segment", appearance: "primary", from: { x: -3, y: 12 }, to: { x: 3, y: 12 } },
+      { id: "tip", kind: "point", appearance: "highlight", at: { x: 0, y: 11 } },
+    ],
+    labels: [
+      { key: "funnel", objectId: "funnel", at: { x: 0, y: 2.7 }, placement: "center" },
+      { key: "layer", objectId: "layer", at: { x: 0, y: 6.5 }, placement: "center" },
+      { key: "heap", objectId: "heap", at: { x: 0, y: 9.6 }, placement: "center" },
+      { key: "tip", objectId: "tip", at: { x: 0, y: 11 }, placement: "right" },
+      { key: "roof", objectId: "roof", at: { x: -1.5, y: 12 }, placement: "above" },
+    ],
+  }}
+/>
+
+# Counting up from the outlet
+
+The funnel is <InlineMath math="4\text{ m}" /> deep, the layer reaches <InlineMath math="5\text{ m}" /> higher, and the heap adds <InlineMath math="2\text{ m}" />. **The tip is <InlineMath math="4+5+2=11\text{ m}" /> above the outlet**. The roof is at <InlineMath math="4+8=12\text{ m}" />, so the heap fits under it. Measuring from the funnel's rim instead of the outlet would give <InlineMath math="7\text{ m}" />.

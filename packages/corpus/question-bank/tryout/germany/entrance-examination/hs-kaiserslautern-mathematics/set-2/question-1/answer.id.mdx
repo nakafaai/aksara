@@ -1,0 +1,37 @@
+# Suara setuju melewati empat saringan
+
+Bayangkan saringan bertingkat empat. Semua pemilih terdaftar dituang dari atas. Yang lolos lapisan pertama hanya yang datang memilih, lapisan kedua hanya surat suara sah, dan lapisan terakhir hanya suara setuju. **Jadi banyak suara setuju sama dengan jumlah pemilih terdaftar dikali tiga bagian**:
+
+<BlockMath math="\begin{aligned}
+J_1&=E\cdot0{,}60\cdot0{,}96\cdot0{,}40\\
+J_2&=0{,}96E\cdot0{,}75\cdot0{,}98\cdot0{,}42
+\end{aligned}" />
+
+Di sini <InlineMath math="E" /> adalah jumlah pemilih terdaftar pada pemungutan pertama. Pada pemungutan kedua jumlahnya <InlineMath math="4\,\%" /> lebih sedikit, itulah faktor <InlineMath math="0{,}96" /> di depan.
+
+# Poin persen bukan persen
+
+Kalau nilaimu naik dari <InlineMath math="60" /> menjadi <InlineMath math="75" /> dari seratus, kamu bertambah <InlineMath math="15" /> poin, padahal nilaimu jadi seperempat lebih besar. **Kenaikan <InlineMath math="15" /> poin persen mengubah partisipasi <InlineMath math="60\,\%" /> menjadi <InlineMath math="75\,\%" />, yaitu faktor <InlineMath math="\frac{75}{60}=1{,}25" />, dan <InlineMath math="2" /> poin persen menaikkan bagian suara setuju dari <InlineMath math="40\,\%" /> menjadi <InlineMath math="42\,\%" />, yaitu faktor <InlineMath math="1{,}05" />**. Memakai <InlineMath math="1{,}15" /> dan <InlineMath math="1{,}02" /> adalah kekeliruan yang paling sering di sini.
+
+Bagi kedua rantai itu. Jumlah pemilih yang tidak diketahui saling coret, begitu pula dua angka <InlineMath math="0{,}96" /> yang bersembunyi di tempat berbeda:
+
+<BlockMath math="\begin{aligned}
+\frac{J_2}{J_1}&=0{,}96\cdot\frac{0{,}75}{0{,}60}\cdot\frac{0{,}98}{0{,}96}\cdot\frac{0{,}42}{0{,}40}\\
+&=0{,}98\cdot1{,}25\cdot1{,}05=1{,}28625
+\end{aligned}" />
+
+<Chart
+  title={<>Dari hak pilih sampai suara setuju</>}
+  description={<>Kedua pemungutan suara, dihitung untuk <InlineMath math="10\,000" /> pemilih terdaftar pada pemungutan pertama. Tiap tahap hanya menyisakan sebagian dari tahap sebelumnya. Suara setuju berakhir di <InlineMath math="2304" /> dan <InlineMath math="2963{,}52" />.</>}
+  bars="apart"
+  categories={["terdaftar", "memilih", "sah", "setuju"]}
+  series={[
+    { label: "pemungutan pertama", mark: "bar", values: [10000.0, 6000.0, 5760.0, 2304.0] },
+    { label: "pemungutan kedua", mark: "bar", values: [9600.0, 7200.0, 7056.0, 2963.52] },
+  ]}
+  valueLabel="Orang"
+/>
+
+# Seberapa besar kenaikannya
+
+Faktor <InlineMath math="1{,}28625" /> berarti jumlah lama ditambah <InlineMath math="0{,}28625" /> bagiannya. **Suara setuju naik <InlineMath math="28{,}625\,\%" />**. Menjumlahkan perubahan begitu saja, misalnya <InlineMath math="-4+15+2" />, mencampur persen dengan poin persen dan tidak akan memberi hasil ini.

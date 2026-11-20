@@ -1,0 +1,83 @@
+# Das Tragseil als Parabel
+
+Halte ein Springseil an beiden Enden fest, dann hängt es als flaches U durch. Lege den Ursprung auf die Fahrbahn genau unter den tiefsten Punkt des Seils. **Dann ist der Scheitel <InlineMath math="(0\mid2)" />, und jede Pylonspitze liegt <InlineMath math="80\text{ m}" /> seitlich in der Höhe <InlineMath math="42" />, das legt die Parabel fest**:
+
+<BlockMath math="\begin{aligned}
+y&=2+ax^2\\
+42&=2+a\cdot80^2\\
+a&=\frac{40}{6400}=\frac{1}{160}
+\end{aligned}" />
+
+Ein Hänger an der Stelle <InlineMath math="x" /> reicht von der Fahrbahn bis zum Seil, er ist also <InlineMath math="2+\frac{x^2}{160}" /> Meter lang.
+
+# Wo wirklich ein Hänger hängt
+
+Geplant sind die Stellen <InlineMath math="x=0,\pm10,\dots,\pm70" />, fünfzehn Stück, denn der nächste Schritt <InlineMath math="\pm80" /> wäre schon ein Pylon. **Die Klemmenregel streicht jede Stelle, an der das Seil tiefer als <InlineMath math="3\text{ m}" /> hängt**:
+
+<BlockMath math="\begin{aligned}
+2+\frac{x^2}{160}&<3\\
+x^2&<160
+\end{aligned}" />
+
+Weil <InlineMath math="10^2=100" /> unter <InlineMath math="160" /> liegt und <InlineMath math="20^2=400" /> darüber, bekommen nur <InlineMath math="x=0" /> und <InlineMath math="x=\pm10" /> Klemmen. Es bleiben zwölf Hänger von <InlineMath math="\pm20" /> bis <InlineMath math="\pm70" />.
+
+<MathVisual
+  title={<>Tragseil, Hänger und Klemmen</>}
+  description={<>Das Tragseil <InlineMath math="y=2+\frac{x^2}{160}" /> zwischen den Pylonen bei <InlineMath math="x=\pm80" />. Die zwölf Hänger stehen bei <InlineMath math="x=\pm20" /> bis <InlineMath math="x=\pm70" />. Bei <InlineMath math="x=0" /> und <InlineMath math="x=\pm10" /> hängt das Seil tiefer als <InlineMath math="3\text{ m}" />, dort sitzen Klemmen.</>}
+  labels={{
+    cable: <>Tragseil</>,
+    deck: <>Fahrbahn</>,
+    clamp: <>Klemmen</>,
+    hanger: <>Hänger</>,
+    pylon: <>Pylon</>,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -90, max: 90 },
+      y: { min: -6, max: 48 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "cable", kind: "function", appearance: "primary", formula: "2 + x^2/160", domain: { min: -80, max: 80 } },
+      { id: "deck", kind: "segment", appearance: "reference", from: { x: -85, y: 0 }, to: { x: 85, y: 0 } },
+      { id: "pl", kind: "segment", appearance: "secondary", from: { x: -80, y: 0 }, to: { x: -80, y: 44 } },
+      { id: "pr", kind: "segment", appearance: "secondary", from: { x: 80, y: 0 }, to: { x: 80, y: 44 } },
+      { id: "k30", kind: "segment", appearance: "answer", from: { x: -70, y: 0 }, to: { x: -70, y: 32.625 } },
+      { id: "k40", kind: "segment", appearance: "answer", from: { x: -60, y: 0 }, to: { x: -60, y: 24.5 } },
+      { id: "k50", kind: "segment", appearance: "answer", from: { x: -50, y: 0 }, to: { x: -50, y: 17.625 } },
+      { id: "k60", kind: "segment", appearance: "answer", from: { x: -40, y: 0 }, to: { x: -40, y: 12 } },
+      { id: "k70", kind: "segment", appearance: "answer", from: { x: -30, y: 0 }, to: { x: -30, y: 7.625 } },
+      { id: "k80", kind: "segment", appearance: "answer", from: { x: -20, y: 0 }, to: { x: -20, y: 4.5 } },
+      { id: "k120", kind: "segment", appearance: "answer", from: { x: 20, y: 0 }, to: { x: 20, y: 4.5 } },
+      { id: "k130", kind: "segment", appearance: "answer", from: { x: 30, y: 0 }, to: { x: 30, y: 7.625 } },
+      { id: "k140", kind: "segment", appearance: "answer", from: { x: 40, y: 0 }, to: { x: 40, y: 12 } },
+      { id: "k150", kind: "segment", appearance: "answer", from: { x: 50, y: 0 }, to: { x: 50, y: 17.625 } },
+      { id: "k160", kind: "segment", appearance: "answer", from: { x: 60, y: 0 }, to: { x: 60, y: 24.5 } },
+      { id: "k170", kind: "segment", appearance: "answer", from: { x: 70, y: 0 }, to: { x: 70, y: 32.625 } },
+      { id: "c90", kind: "point", appearance: "warning", at: { x: -10, y: 2.625 } },
+      { id: "c100", kind: "point", appearance: "warning", at: { x: 0, y: 2 } },
+      { id: "c110", kind: "point", appearance: "warning", at: { x: 10, y: 2.625 } },
+    ],
+    labels: [
+      { key: "cable", objectId: "cable", at: { x: -55, y: 20.90625 }, placement: "above-left" },
+      { key: "deck", objectId: "deck", at: { x: -40, y: 0 }, placement: "below" },
+      { key: "clamp", objectId: "c100", at: { x: 0, y: 2 }, placement: "above" },
+      { key: "hanger", objectId: "k160", at: { x: 60, y: 12 }, placement: "left" },
+      { key: "pylon", objectId: "pr", at: { x: 80, y: 44 }, placement: "above" },
+    ],
+  }}
+/>
+
+# Addieren in Spiegelpaaren
+
+Links und rechts der Mitte stehen die Hänger in gleich langen Paaren, also addierst du eine Seite und verdoppelst. **Mit <InlineMath math="x=10k" /> werden die Quadrate zu <InlineMath math="100k^2" />, und <InlineMath math="2^2+3^2+\dots+7^2=139" />**:
+
+<BlockMath math="\begin{aligned}
+L&=2\sum_{k=2}^{7}\left(2+\frac{(10k)^2}{160}\right)\\
+&=2\left(12+\frac{100}{160}\cdot139\right)\\
+&=2\left(12+86{,}875\right)=197{,}75\text{ m}
+\end{aligned}" />
+
+Alle fünfzehn geplanten Stellen zusammen ergäben <InlineMath math="205\text{ m}" />. Die Klemmen sparen davon genau <InlineMath math="2+2\cdot2{,}625=7{,}25\text{ m}" />.

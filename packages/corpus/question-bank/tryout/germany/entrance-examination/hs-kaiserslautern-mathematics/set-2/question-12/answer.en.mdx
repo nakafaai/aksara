@@ -1,0 +1,47 @@
+# Which shirt is free depends on the third price
+
+Offer A is like a friend who pays for the cheapest item in your bag. Which item that is, nobody knows until you choose the third shirt. **Compare the savings, not the bills**:
+
+<BlockMath math="\begin{aligned}
+E_{\text{A}}&=\text{price of the cheapest shirt}\\
+E_{\text{B}}&=0.2\,(95+x)=19+0.2x
+\end{aligned}" />
+
+# A cheap third shirt
+
+If <InlineMath math="x\le45" />, the third shirt itself is the free one. **Then A saves only <InlineMath math="x" />, and a very cheap shirt makes A worse than <InlineMath math="20\,\%" /> off everything**:
+
+<BlockMath math="\begin{aligned}
+x&\ge19+0.2x\\
+0.8x&\ge19\\
+x&\ge23.75
+\end{aligned}" />
+
+So in this case A keeps up from <InlineMath math="23.75\text{ €}" /> to <InlineMath math="45\text{ €}" />. Assuming the <InlineMath math="45\text{ €}" /> shirt is always the free one hides this lower limit completely.
+
+# An expensive third shirt
+
+If <InlineMath math="x\ge45" />, the <InlineMath math="45\text{ €}" /> shirt is free and A saves a fixed <InlineMath math="45\text{ €}" />, while B keeps growing with the price. **A stays at least as good only up to**:
+
+<BlockMath math="\begin{aligned}
+45&\ge19+0.2x\\
+0.2x&\le26\\
+x&\le130
+\end{aligned}" />
+
+<Chart
+  title={<>What each offer saves</>}
+  description={<>Offer A saves the price of the cheapest shirt, at most <InlineMath math="45\text{ €}" />. Offer B saves <InlineMath math="0.2\,(95+x)" />. Between <InlineMath math="x=23.75" /> and <InlineMath math="x=130" /> A is on top or level.</>}
+  categories={["0 €", "10 €", "20 €", "30 €", "40 €", "50 €", "60 €", "70 €", "80 €", "90 €", "100 €", "110 €", "120 €", "130 €", "140 €", "150 €", "160 €"]}
+  series={[
+    { label: "offer A", mark: "line", values: [0.0, 10.0, 20.0, 30.0, 40.0, 45.0, 45.0, 45.0, 45.0, 45.0, 45.0, 45.0, 45.0, 45.0, 45.0, 45.0, 45.0] },
+    { label: "offer B", mark: "line", values: [19.0, 21.0, 23.0, 25.0, 27.0, 29.0, 31.0, 33.0, 35.0, 37.0, 39.0, 41.0, 43.0, 45.0, 47.0, 49.0, 51.0] },
+  ]}
+  valueLabel="Saving in €"
+/>
+
+Both cases join at <InlineMath math="45\text{ €}" /> into one range from <InlineMath math="23.75\text{ €}" /> to <InlineMath math="130\text{ €}" />:
+
+<BlockMath math="\begin{aligned}
+130-23.75&=106.25
+\end{aligned}" />
