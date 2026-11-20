@@ -1,6 +1,7 @@
 import { LEARNING_PROGRAM_KEYS } from "#corpus/program/keys";
 import { kssmProgramSource } from "#corpus/program/kssm";
 import { oberstufeProgramSource } from "#corpus/program/oberstufe";
+import { studienkollegProgramSource } from "#corpus/program/studienkolleg";
 
 /** Exact official school-program rows preserved from Nakafa's source registry. */
 export const schoolProgramSources = [
@@ -281,4 +282,5 @@ export const schoolProgramSources = [
   },
   kssmProgramSource,
   oberstufeProgramSource,
+  studienkollegProgramSource,
 ] as const;

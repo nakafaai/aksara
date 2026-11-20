@@ -37,7 +37,7 @@ layer(NodeServices.layer)("curriculum route projection", (it) => {
 
       const sitemapRoutes = Arr.filter(routes, ({ sitemap }) => sitemap);
       const locales = ["de", "en", "id", "ms"] as const;
-      expect(roots).toHaveLength(24);
+      expect(roots).toHaveLength(28);
       for (const locale of locales) {
         for (const share of [routes, materialRoutes, sitemapRoutes]) {
           expect(
@@ -54,6 +54,7 @@ layer(NodeServices.layer)("curriculum route projection", (it) => {
           "packages/corpus/curriculum/kssm",
           "packages/corpus/curriculum/merdeka",
           "packages/corpus/curriculum/singapore-moe",
+          "packages/corpus/curriculum/studienkolleg",
           "packages/corpus/curriculum/united-states",
         ])
       );

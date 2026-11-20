@@ -12,6 +12,7 @@ describe("learning program keys", () => {
       kssm: "kssm",
       merdeka: "merdeka",
       singaporeMoe: "singapore-moe",
+      studienkolleg: "studienkolleg",
       snbt: "snbt",
       tka: "tka",
       unitedStates: "united-states",
