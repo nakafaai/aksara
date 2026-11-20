@@ -1,0 +1,31 @@
+# Erst die Ziffern, dann ihre Reihenfolge
+
+Stell dir vor, du suchst erst vier verschiedene Sticker aus und entscheidest danach, wohin jeder kommt. Hier sind die Sticker Ziffern. **Wähle zuerst den Satz aus vier Ziffern**, dann zählst du, wie viele Anordnungen er hat.
+
+Vier verschiedene Ziffern mit der Summe <InlineMath math="10" /> beginnen beim kleinsten Satz, <InlineMath math="0+1+2+3=6" />. Es fehlen noch <InlineMath math="4" />, ohne dass zwei Ziffern gleich werden. Hebst du die größte Ziffer an, entstehen <InlineMath math="\{0,1,2,7\}" />, <InlineMath math="\{0,1,3,6\}" /> und <InlineMath math="\{0,1,4,5\}" />, dann <InlineMath math="\{0,2,3,5\}" />, und ohne <InlineMath math="0" /> nur <InlineMath math="\{1,2,3,4\}" />. Jeder andere Versuch wiederholt eine Ziffer oder überschreitet <InlineMath math="10" />.
+
+<Mermaid
+  title={<>Vom Ziffernsatz zur Zahl der Codes</>}
+  description={<>Die fünf Ziffernsätze mit der Summe <InlineMath math="10" />. Vier enthalten die <InlineMath math="0" /> und geben je <InlineMath math="18" /> Codes, einer enthält sie nicht und gibt <InlineMath math="24" /> Codes.</>}
+  chart={`
+    flowchart TD
+      A["0 1 2 7"] --> W["Sätze mit 0<br/>je 18 Codes"]
+      B["0 1 3 6"] --> W
+      C["0 1 4 5"] --> W
+      D["0 2 3 5"] --> W
+      E["1 2 3 4"] --> V["Satz ohne 0<br/>24 Codes"]
+      W --> T["zusammen 96"]
+      V --> T
+  `}
+/>
+
+# Der verbotene erste Ring
+
+Vier verschiedene Ziffern lassen sich auf <InlineMath math="4!=24" /> Arten anordnen. **Ein Satz mit <InlineMath math="0" /> verliert die Anordnungen, die mit <InlineMath math="0" /> beginnen**, und das sind die <InlineMath math="3!=6" /> Anordnungen der anderen drei Ziffern. Für jeden der vier Sätze mit <InlineMath math="0" /> bleiben <InlineMath math="18" /> Codes.
+
+<BlockMath math="\begin{aligned}
+4\cdot18+1\cdot24&=72+24\\
+&=96
+\end{aligned}" />
+
+Wer die Regel für den ersten Ring vergisst, kommt auf <InlineMath math="5\cdot24=120" />. Lena würde dann <InlineMath math="24" /> Codes ausprobieren, die die Regel schon ausschließt. **Es gibt <InlineMath math="96" /> mögliche Codes**.

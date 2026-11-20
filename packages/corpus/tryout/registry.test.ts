@@ -92,7 +92,7 @@ describe("tryout registry", () => {
       expect(Arr.map(sources, ({ sourceRevision }) => sourceRevision)).toEqual([
         "2026-10-02",
         "2026-09-27",
-        "2026-11-08",
+        "2026-11-20",
         "2026-11-15",
       ]);
     })

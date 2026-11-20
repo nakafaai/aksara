@@ -2,6 +2,7 @@ import { Array as Arr, Effect, MutableHashMap, Option, Schema } from "effect";
 
 import type { QuestionSet } from "#corpus/question-bank/source";
 import { tuDarmstadtEntranceReadiness } from "#corpus/tryout/germany/entrance/readiness/darmstadt";
+import { kaiserslauternEntranceReadiness } from "#corpus/tryout/germany/entrance/readiness/kaiserslautern";
 import { snbtReadiness } from "#corpus/tryout/indonesia/snbt/readiness";
 import { tkaAdvancedMathematicsReadiness } from "#corpus/tryout/indonesia/tka/readiness/advanced";
 import { tkaCompulsoryMathematicsReadiness } from "#corpus/tryout/indonesia/tka/readiness/compulsory";
@@ -21,6 +22,7 @@ const readinessPrograms = [
   tkaEnglishReadiness,
   tkaAdvancedMathematicsReadiness,
   tuDarmstadtEntranceReadiness,
+  kaiserslauternEntranceReadiness,
   spmPhysicsReadiness,
   spmChemistryReadiness,
   spmBiologyReadiness,

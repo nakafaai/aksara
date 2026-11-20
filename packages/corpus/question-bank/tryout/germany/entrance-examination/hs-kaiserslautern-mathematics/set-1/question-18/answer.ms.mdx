@@ -1,0 +1,53 @@
+# Garis yang hanya menyentuh
+
+Baring di atas tanah di belakang bukit dan gerakkan pembaris dari mata kamu sehingga ia tepat menyentuh lengkung bukit: semua yang di atas pembaris boleh kamu lihat. **Pembaris itu ialah tangen dari <InlineMath math="B(50\mid0)" /> kepada bukit**. Ia menyentuh di <InlineMath math="x=a" /> dengan kecerunan <InlineMath math="f'(a)=-\frac{a}{20}" /> dan mesti melalui <InlineMath math="B" />:
+
+<BlockMath math="\begin{aligned}
+f(a)+f'(a)\,(50-a)&=0\\
+40-\tfrac{a^2}{40}-\tfrac{a}{20}(50-a)&=0\\
+a^2-100a+1600&=0\\
+(a-20)(a-80)&=0
+\end{aligned}" />
+
+# Memilih titik sentuhan yang betul
+
+Bukit itu hanya terbentang dari <InlineMath math="x=-40" /> hingga <InlineMath math="x=40" />, jadi <InlineMath math="a=80" /> menyentuh parabola di tempat yang tiada bukit. **Titik sentuhan sebenar ialah <InlineMath math="P(20\mid30)" /> dengan kecerunan <InlineMath math="-1" />**, jadi garis penglihatannya <InlineMath math="y=30-(x-20)=-x+50" />.
+
+<MathVisual
+  title={<>Garis penglihatan menyentuh bukit</>}
+  description={<>Tangen dari <InlineMath math="B(50\mid0)" /> menyentuh bukit di <InlineMath math="P(20\mid30)" /> dan persamaannya <InlineMath math="y=-x+50" />. Pada <InlineMath math="x=-60" /> tingginya <InlineMath math="110\text{ m}" />. Sebaliknya, garis ke puncak bukit memotong ke dalam bukit.</>}
+  labels={{
+    b: <><InlineMath math="B" /></>,
+    p: <><InlineMath math="P(20\mid30)" /></>,
+    t: <><InlineMath math="110\text{ m}" /></>,
+    hill: <><InlineMath math="f" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -70, max: 60 },
+      y: { min: -10, max: 120 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "ground", kind: "segment", appearance: "reference", from: { x: -70, y: 0 }, to: { x: 60, y: 0 } },
+      { id: "hill", kind: "function", appearance: "primary", formula: "40 - x^2/40", domain: { min: -40, max: 40 } },
+      { id: "sight", kind: "segment", appearance: "secondary", from: { x: 50, y: 0 }, to: { x: -60, y: 110 } },
+      { id: "to-top", kind: "segment", appearance: "warning", from: { x: 50, y: 0 }, to: { x: 0, y: 40 } },
+      { id: "tower", kind: "segment", appearance: "answer", from: { x: -60, y: 0 }, to: { x: -60, y: 110 } },
+      { id: "pb", kind: "point", appearance: "reference", at: { x: 50, y: 0 } },
+      { id: "pp", kind: "point", appearance: "highlight", at: { x: 20, y: 30 } },
+    ],
+    labels: [
+      { key: "b", objectId: "pb", at: { x: 50, y: 0 }, placement: "below" },
+      { key: "p", objectId: "pp", at: { x: 20, y: 30 }, placement: "above-right" },
+      { key: "t", objectId: "tower", at: { x: -60, y: 55 }, placement: "left" },
+      { key: "hill", objectId: "hill", at: { x: -20, y: 30 }, placement: "above-left" },
+    ],
+  }}
+/>
+
+# Naik ke menara
+
+Pada <InlineMath math="x=-60" /> garis penglihatan berada <InlineMath math="60+50=110\text{ m}" /> tinggi. **Menara mesti sekurang-kurangnya <InlineMath math="110\text{ m}" /> tinggi**. Membidik puncak bukit <InlineMath math="(0\mid40)" /> memberi <InlineMath math="88\text{ m}" />, tetapi garis itu lalu di bawah bukit pada <InlineMath math="x=20" />, setinggi <InlineMath math="24\text{ m}" /> sedangkan bukit di situ <InlineMath math="30\text{ m}" />.

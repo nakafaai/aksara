@@ -1,0 +1,56 @@
+# Gerbang sebagai parabola
+
+Letakkan gambar itu di atas kertas grid: titik kaki pada paksi <InlineMath math="x" /> di <InlineMath math="x=\pm10" />, puncak pada paksi <InlineMath math="y" /> setinggi <InlineMath math="10" />. **Parabola yang bernilai <InlineMath math="0" /> di kedua-dua kaki dan <InlineMath math="10" /> di tengah** ialah <InlineMath math="y=10-\frac{x^2}{10}" />, kerana <InlineMath math="10-\frac{100}{10}=0" />.
+
+# Setinggi mana gerbang mesti berada
+
+Ukur semuanya dari titik kaki, seperti menyusun kotak di atas rak. Jalan menambah <InlineMath math="1\text{ m}" />, lori <InlineMath math="6\text{ m}" />, ruang bebas <InlineMath math="0.5\text{ m}" />. **Di mana-mana pun bumbungnya, gerbang di situ mesti sekurang-kurangnya <InlineMath math="7.5\text{ m}" /> tinggi**. Kalau kamu mengukur dari jalan dan lupa <InlineMath math="1\text{ m}" /> itu, lorinya jadi terlalu kecil.
+
+Gerbang paling rendah di atas tepi bumbung yang paling jauh dari tengah, jadi tepi itulah yang menentukan:
+
+<BlockMath math="\begin{aligned}
+10-\frac{x^2}{10}&\ge7.5\\
+x^2&\le25\\
+x&\le5
+\end{aligned}" />
+
+<MathVisual
+  title={<>Lori di bawah gerbang</>}
+  description={<>Gerbang <InlineMath math="y=10-\frac{x^2}{10}" /> di atas titik kaki, jalan pada <InlineMath math="y=1" /> dan lori dari <InlineMath math="x=1" /> hingga <InlineMath math="x=5" /> dengan bumbung pada <InlineMath math="y=7" />. Di atas tepi luar bumbung pada <InlineMath math="x=5" /> tinggal tepat <InlineMath math="0.5\text{ m}" />.</>}
+  labels={{
+    arch: <><InlineMath math="y=10-\frac{x^2}{10}" /></>,
+    road: <>jalan</>,
+    mid: <>garis tengah</>,
+    edge: <><InlineMath math="(5\mid7.5)" /></>,
+    w: <><InlineMath math="4\text{ m}" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -11, max: 11 },
+      y: { min: -1, max: 11 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "arch", kind: "function", appearance: "primary", formula: "10 - x^2/10", domain: { min: -10, max: 10 } },
+      { id: "road", kind: "segment", appearance: "reference", from: { x: -10, y: 1 }, to: { x: 10, y: 1 } },
+      { id: "mid", kind: "segment", appearance: "construction", from: { x: 0, y: 1 }, to: { x: 0, y: 10 } },
+      { id: "truck", kind: "polygon", appearance: "secondary", vertices: [{ x: 1, y: 1 }, { x: 5, y: 1 }, { x: 5, y: 7 }, { x: 1, y: 7 }] },
+      { id: "gap", kind: "segment", appearance: "highlight", from: { x: 5, y: 7 }, to: { x: 5, y: 7.5 } },
+      { id: "edge", kind: "point", appearance: "answer", at: { x: 5, y: 7.5 } },
+      { id: "width", kind: "segment", appearance: "answer", from: { x: 1, y: 4 }, to: { x: 5, y: 4 } },
+    ],
+    labels: [
+      { key: "arch", objectId: "arch", at: { x: -7, y: 5.1 }, placement: "left" },
+      { key: "road", objectId: "road", at: { x: -8, y: 1 }, placement: "below" },
+      { key: "mid", objectId: "mid", at: { x: 0, y: 9 }, placement: "left" },
+      { key: "edge", objectId: "edge", at: { x: 5, y: 7.5 }, placement: "above-right" },
+      { key: "w", objectId: "width", at: { x: 3, y: 4 }, placement: "above" },
+    ],
+  }}
+/>
+
+# Jarak dari garis tengah
+
+Lori tidak boleh rapat pada garis tengah. Sisi dalamnya berada di <InlineMath math="x=1" /> dan sisi luarnya paling jauh di <InlineMath math="x=5" />. **Jadi lebarnya paling banyak <InlineMath math="5-1=4\text{ m}" />**. Kalau lori bermula di <InlineMath math="x=0" />, kamu dapat <InlineMath math="5\text{ m}" /> dan peraturan jarak dilanggar.

@@ -1,0 +1,63 @@
+# Tariff B has three pieces
+
+A phone plan with a minimum fee works like this: use a little and you still pay the floor. Tariff B adds a second rule on top, the expensive kilowatt hours after the first <InlineMath math="100" />. **So B is <InlineMath math="18\text{ €}" /> flat up to <InlineMath math="90\text{ kWh}" />, then <InlineMath math="0.20x" /> up to <InlineMath math="100\text{ kWh}" />, and after that <InlineMath math="20+0.35\,(x-100)" />**.
+
+# The lower limit
+
+At very small use B still charges <InlineMath math="18\text{ €}" /> while A charges only a little more than <InlineMath math="15\text{ €}" />. **B wins once A climbs past the minimum**:
+
+<BlockMath math="\begin{aligned}
+18&<15+0.25x\\
+x&>12
+\end{aligned}" />
+
+Between <InlineMath math="90" /> and <InlineMath math="100\text{ kWh}" /> B costs at most <InlineMath math="20\text{ €}" /> while A costs at least <InlineMath math="37.5\text{ €}" />, so B stays cheaper there.
+
+# The upper limit
+
+Above <InlineMath math="100\text{ kWh}" /> each extra unit costs more with B than with A, so A catches up. **Only the units after the first <InlineMath math="100" /> cost <InlineMath math="0.35\text{ €}" />**:
+
+<BlockMath math="\begin{aligned}
+20+0.35\,(x-100)&<15+0.25x\\
+0.10x&<30\\
+x&<300
+\end{aligned}" />
+
+The value <InlineMath math="300" /> lies in this third piece, so it counts. Charging <InlineMath math="0.35\text{ €}" /> for every unit would wrongly give <InlineMath math="150\text{ kWh}" />.
+
+<MathVisual
+  title={<>The cost of both tariffs</>}
+  description={<>Tariff A as the line <InlineMath math="15+0.25x" />, tariff B with its minimum of <InlineMath math="18\text{ €}" /> up to <InlineMath math="90\text{ kWh}" />, then <InlineMath math="0.20\text{ €}" /> per kWh up to <InlineMath math="100\text{ kWh}" /> and <InlineMath math="0.35\text{ €}" /> per kWh after that. Tariff B lies below tariff A between <InlineMath math="12" /> and <InlineMath math="300\text{ kWh}" />.</>}
+  labels={{
+    ta: <>tariff A</>,
+    tb: <>tariff B</>,
+    lo: <><InlineMath math="(12\mid18)" /></>,
+    hi: <><InlineMath math="(300\mid90)" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -20, max: 360 },
+      y: { min: -10, max: 120 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "a", kind: "segment", appearance: "secondary", from: { x: 0, y: 15 }, to: { x: 350, y: 102.5 } },
+      { id: "b", kind: "polyline", appearance: "primary", vertices: [{ x: 0, y: 18 }, { x: 90, y: 18 }, { x: 100, y: 20 }, { x: 350, y: 107.5 }] },
+      { id: "lo", kind: "point", appearance: "answer", at: { x: 12, y: 18 } },
+      { id: "hi", kind: "point", appearance: "answer", at: { x: 300, y: 90 } },
+      { id: "band", kind: "segment", appearance: "highlight", from: { x: 12, y: 0 }, to: { x: 300, y: 0 } },
+    ],
+    labels: [
+      { key: "ta", objectId: "a", at: { x: 200, y: 65 }, placement: "above-left" },
+      { key: "tb", objectId: "b", at: { x: 200, y: 72.5 }, placement: "below-right" },
+      { key: "lo", objectId: "lo", at: { x: 12, y: 18 }, placement: "above" },
+      { key: "hi", objectId: "hi", at: { x: 300, y: 90 }, placement: "left" },
+    ],
+  }}
+/>
+
+# The width of the range
+
+B is cheaper from <InlineMath math="12" /> to <InlineMath math="300\text{ kWh}" />. **The limits lie <InlineMath math="300-12=288\text{ kWh}" /> apart**.

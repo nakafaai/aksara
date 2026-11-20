@@ -1,0 +1,27 @@
+# Price and bikes on one seesaw
+
+Price and demand sit on a seesaw: push the price up by <InlineMath math="1\text{ €}" /> and <InlineMath math="4" /> customers walk away. With price <InlineMath math="p" /> the shop rents <InlineMath math="n=40-4(p-12)=88-4p" /> bikes, and **each bike earns <InlineMath math="p-2" /> euros after cleaning**:
+
+<BlockMath math="\begin{aligned}
+G(p)&=(p-2)(88-4p)\\
+&=-4p^2+96p-176
+\end{aligned}" />
+
+# The top of the parabola is out of reach
+
+The parabola opens downwards, and its top sits halfway between its zeros <InlineMath math="p=2" /> and <InlineMath math="p=22" />, at <InlineMath math="p=12" /> with <InlineMath math="G=400\text{ €}" />. **But at <InlineMath math="12\text{ €}" /> the shop would need <InlineMath math="40" /> bikes, and it owns only <InlineMath math="36" />**. So <InlineMath math="88-4p\le36" /> forces <InlineMath math="p\ge13" />.
+
+<Chart
+  title={<>Daily profit for each price</>}
+  description={<>The profit <InlineMath math="G(p)=(p-2)(88-4p)" /> peaks at <InlineMath math="12\text{ €}" />, but that needs <InlineMath math="40" /> bikes. With <InlineMath math="36" /> bikes the price must be at least <InlineMath math="13\text{ €}" />, where <InlineMath math="G=396" />.</>}
+  categories={["9 €", "10 €", "11 €", "12 €", "13 €", "14 €", "15 €", "16 €", "17 €"]}
+  series={[
+    { label: "not enough bikes", mark: "line", values: [364.0, 384.0, 396.0, 400.0, 396.0, null, null, null, null] },
+    { label: "possible", mark: "line", values: [null, null, null, null, 396.0, 384.0, 364.0, 336.0, 300.0] },
+  ]}
+  valueLabel="Profit in euros"
+/>
+
+# The best allowed price
+
+Right of its top the parabola only falls, so on <InlineMath math="p\ge13" /> the best price is the edge itself. **At <InlineMath math="13\text{ €}" /> all <InlineMath math="36" /> bikes go out and <InlineMath math="G=11\cdot36=396\text{ €}" />**. The answer <InlineMath math="400\text{ €}" /> uses four bikes the shop does not have.

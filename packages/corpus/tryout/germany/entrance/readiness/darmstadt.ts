@@ -38,6 +38,6 @@ export const tuDarmstadtEntranceReadiness = defineAssessmentReadiness({
       },
     },
   ],
-  sourceRevision: "2026-11-08",
+  sourceRevision: "2026-11-20",
   trackKey: "tu-darmstadt-mathematics",
 });

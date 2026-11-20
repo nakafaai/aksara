@@ -1,0 +1,31 @@
+# Angkanya dulu, baru urutannya
+
+Bayangkan kamu memilih empat stiker yang berbeda dulu, baru menentukan letak masing-masing. Di sini stikernya adalah angka. **Pilih dulu himpunan empat angka**, lalu hitung cara menyusunnya.
+
+Empat angka berbeda berjumlah <InlineMath math="10" /> dimulai dari himpunan terkecil, <InlineMath math="0+1+2+3=6" />. Masih kurang <InlineMath math="4" /> tanpa membuat dua angka sama. Dengan menaikkan angka terbesar kamu dapat <InlineMath math="\{0,1,2,7\}" />, <InlineMath math="\{0,1,3,6\}" />, dan <InlineMath math="\{0,1,4,5\}" />, lalu <InlineMath math="\{0,2,3,5\}" />, dan tanpa <InlineMath math="0" /> hanya <InlineMath math="\{1,2,3,4\}" />. Percobaan lain mengulang angka atau melewati <InlineMath math="10" />.
+
+<Mermaid
+  title={<>Dari himpunan angka ke banyak kode</>}
+  description={<>Lima himpunan angka berjumlah <InlineMath math="10" />. Empat memuat <InlineMath math="0" /> dan masing-masing memberi <InlineMath math="18" /> kode, satu tidak memuatnya dan memberi <InlineMath math="24" /> kode.</>}
+  chart={`
+    flowchart TD
+      A["0 1 2 7"] --> W["himpunan dengan 0<br/>masing-masing 18 kode"]
+      B["0 1 3 6"] --> W
+      C["0 1 4 5"] --> W
+      D["0 2 3 5"] --> W
+      E["1 2 3 4"] --> V["himpunan tanpa 0<br/>24 kode"]
+      W --> T["total 96"]
+      V --> T
+  `}
+/>
+
+# Cincin pertama yang terlarang
+
+Empat angka berbeda bisa disusun dalam <InlineMath math="4!=24" /> urutan. **Himpunan yang memuat <InlineMath math="0" /> kehilangan urutan yang diawali <InlineMath math="0" />**, yaitu <InlineMath math="3!=6" /> susunan tiga angka lainnya. Tiap himpunan dengan <InlineMath math="0" /> menyisakan <InlineMath math="18" /> kode.
+
+<BlockMath math="\begin{aligned}
+4\cdot18+1\cdot24&=72+24\\
+&=96
+\end{aligned}" />
+
+Kalau aturan cincin pertama terlupa, hasilnya <InlineMath math="5\cdot24=120" />. Lena akan mencoba <InlineMath math="24" /> kode yang sebenarnya sudah dilarang. **Ada <InlineMath math="96" /> kode yang mungkin**.

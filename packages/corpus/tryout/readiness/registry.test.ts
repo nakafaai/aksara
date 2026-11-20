@@ -16,6 +16,7 @@ import {
 } from "#corpus/question-bank/source";
 import { corpusRoot } from "#corpus/test/root";
 import { tuDarmstadtEntranceReadiness } from "#corpus/tryout/germany/entrance/readiness/darmstadt";
+import { kaiserslauternEntranceReadiness } from "#corpus/tryout/germany/entrance/readiness/kaiserslautern";
 import { snbtReadiness } from "#corpus/tryout/indonesia/snbt/readiness";
 import { tkaAdvancedMathematicsReadiness } from "#corpus/tryout/indonesia/tka/readiness/advanced";
 import { tkaCompulsoryMathematicsReadiness } from "#corpus/tryout/indonesia/tka/readiness/compulsory";
@@ -45,6 +46,7 @@ const loadReadinessRegistry = Effect.gen(function* () {
     tkaEnglishReadiness,
     tkaAdvancedMathematicsReadiness,
     tuDarmstadtEntranceReadiness,
+    kaiserslauternEntranceReadiness,
     spmPhysicsReadiness,
     spmChemistryReadiness,
     spmBiologyReadiness,

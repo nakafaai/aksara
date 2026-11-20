@@ -1,0 +1,57 @@
+# How much water there is
+
+Before tilting, the water is a box of its own inside the tank. **Its volume is length times width times depth**:
+
+<BlockMath math="\begin{aligned}
+V_{0}&=60\cdot25\cdot30=45\,000\text{ cm}^3=45\text{ l}
+\end{aligned}" />
+
+# Where the surface ends at forty-five degrees
+
+Tip a full mug and the tea stays level while it pours over the low rim. The same happens here: the surface stays horizontal and passes through the rim of the lowered wall. **At <InlineMath math="45^\circ" /> that surface drops <InlineMath math="1\text{ cm}" /> for every centimetre along the floor, so it meets the floor <InlineMath math="40\text{ cm}" /> from the corner, before the far wall at <InlineMath math="60\text{ cm}" />**. The water is therefore a triangle, not a trapezoid. Treating it as a trapezoid would need a water height of <InlineMath math="40-60=-20\text{ cm}" /> at the far wall, which cannot be.
+
+<MathVisual
+  title={<>The cross-section at forty-five degrees</>}
+  description={<>The cross-section of the tank, <InlineMath math="60\text{ cm}" /> long and <InlineMath math="40\text{ cm}" /> high, drawn as the tank sees it. The water surface passes through the rim of the lowered wall and meets the floor after only <InlineMath math="40\text{ cm}" />. The water forms a triangle. Dashed is the old level of <InlineMath math="30\text{ cm}" />.</>}
+  labels={{
+    surf: <>water surface</>,
+    old: <>old level</>,
+    rim: <><InlineMath math="40\text{ cm}" /></>,
+    meet: <><InlineMath math="40\text{ cm}" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -8, max: 68 },
+      y: { min: -8, max: 48 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "tank", kind: "polygon", appearance: "reference", vertices: [{ x: 0, y: 0 }, { x: 60, y: 0 }, { x: 60, y: 40 }, { x: 0, y: 40 }] },
+      { id: "water", kind: "polygon", appearance: "primary", vertices: [{ x: 0, y: 0 }, { x: 40, y: 0 }, { x: 0, y: 40 }] },
+      { id: "surf", kind: "segment", appearance: "answer", from: { x: 0, y: 40 }, to: { x: 40, y: 0 } },
+      { id: "old", kind: "segment", appearance: "construction", from: { x: 0, y: 30 }, to: { x: 60, y: 30 } },
+      { id: "meet", kind: "point", appearance: "highlight", at: { x: 40, y: 0 } },
+      { id: "rim", kind: "point", appearance: "highlight", at: { x: 0, y: 40 } },
+    ],
+    labels: [
+      { key: "surf", objectId: "surf", at: { x: 20, y: 20 }, placement: "above-right" },
+      { key: "old", objectId: "old", at: { x: 50, y: 30 }, placement: "above" },
+      { key: "rim", objectId: "rim", at: { x: 0, y: 40 }, placement: "left" },
+      { key: "meet", objectId: "meet", at: { x: 40, y: 0 }, placement: "below" },
+    ],
+  }}
+/>
+
+# What stays and what spills
+
+The triangle has two legs of <InlineMath math="40\text{ cm}" />, and the tank is <InlineMath math="25\text{ cm}" /> deep behind it. **The rest of the water has run out**:
+
+<BlockMath math="\begin{aligned}
+A&=\tfrac12\cdot40\cdot40=800\text{ cm}^2\\
+V&=800\cdot25=20\,000\text{ cm}^3=20\text{ l}\\
+45-20&=25\text{ l}
+\end{aligned}" />
+
+So <InlineMath math="25" /> litres have spilled.

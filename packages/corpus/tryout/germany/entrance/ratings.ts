@@ -20,3 +20,15 @@ export const darmstadtRatings: readonly SetRating[] = [
   { items: 8, level: 4.17, raters: 8 },
   { items: 8, level: 3.98, raters: 8 },
 ];
+
+/**
+ * The level rating of each Hochschule Kaiserslautern Aufnahmeprüfung set, set
+ * 1 to 10 in order: the pooled mean of a four-rater panel, two raters with each
+ * of two step-counting prompts, that saw every item of the set with its key.
+ * Set 1 was rated on 20 Nov 2026 (3.60 and 3.98, 3.60 and 3.65), then its eight
+ * weakest items were rewritten and rated again (3.56 and 3.56, 3.9 and 3.88),
+ * then three of those once more (4.0 and 4.17, 4.33 and 4.33).
+ */
+export const kaiserslauternRatings: readonly SetRating[] = [
+  { items: 20, level: 3.98, raters: 4 },
+];

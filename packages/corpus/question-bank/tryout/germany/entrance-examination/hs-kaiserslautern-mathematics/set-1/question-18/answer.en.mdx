@@ -1,0 +1,53 @@
+# The line that just grazes
+
+Lie on the ground behind a hill and slide a ruler from your eye until it just touches the hilltop curve: anything above the ruler you can see. **That ruler is the tangent from <InlineMath math="B(50\mid0)" /> to the hill**. It touches at some <InlineMath math="x=a" /> with slope <InlineMath math="f'(a)=-\frac{a}{20}" /> and must pass through <InlineMath math="B" />:
+
+<BlockMath math="\begin{aligned}
+f(a)+f'(a)\,(50-a)&=0\\
+40-\tfrac{a^2}{40}-\tfrac{a}{20}(50-a)&=0\\
+a^2-100a+1600&=0\\
+(a-20)(a-80)&=0
+\end{aligned}" />
+
+# Choosing the right touch point
+
+The hill only runs from <InlineMath math="x=-40" /> to <InlineMath math="x=40" />, so <InlineMath math="a=80" /> touches the parabola where there is no hill. **The real touch point is <InlineMath math="P(20\mid30)" />, where the slope is <InlineMath math="-1" />**, so the sight line is <InlineMath math="y=30-(x-20)=-x+50" />.
+
+<MathVisual
+  title={<>The line of sight grazes the hill</>}
+  description={<>The tangent from <InlineMath math="B(50\mid0)" /> touches the hill at <InlineMath math="P(20\mid30)" /> and has the equation <InlineMath math="y=-x+50" />. At <InlineMath math="x=-60" /> it is <InlineMath math="110\text{ m}" /> high. The line to the hilltop, by contrast, cuts into the hill.</>}
+  labels={{
+    b: <><InlineMath math="B" /></>,
+    p: <><InlineMath math="P(20\mid30)" /></>,
+    t: <><InlineMath math="110\text{ m}" /></>,
+    hill: <><InlineMath math="f" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -70, max: 60 },
+      y: { min: -10, max: 120 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "ground", kind: "segment", appearance: "reference", from: { x: -70, y: 0 }, to: { x: 60, y: 0 } },
+      { id: "hill", kind: "function", appearance: "primary", formula: "40 - x^2/40", domain: { min: -40, max: 40 } },
+      { id: "sight", kind: "segment", appearance: "secondary", from: { x: 50, y: 0 }, to: { x: -60, y: 110 } },
+      { id: "to-top", kind: "segment", appearance: "warning", from: { x: 50, y: 0 }, to: { x: 0, y: 40 } },
+      { id: "tower", kind: "segment", appearance: "answer", from: { x: -60, y: 0 }, to: { x: -60, y: 110 } },
+      { id: "pb", kind: "point", appearance: "reference", at: { x: 50, y: 0 } },
+      { id: "pp", kind: "point", appearance: "highlight", at: { x: 20, y: 30 } },
+    ],
+    labels: [
+      { key: "b", objectId: "pb", at: { x: 50, y: 0 }, placement: "below" },
+      { key: "p", objectId: "pp", at: { x: 20, y: 30 }, placement: "above-right" },
+      { key: "t", objectId: "tower", at: { x: -60, y: 55 }, placement: "left" },
+      { key: "hill", objectId: "hill", at: { x: -20, y: 30 }, placement: "above-left" },
+    ],
+  }}
+/>
+
+# Up to the tower
+
+At <InlineMath math="x=-60" /> the sight line is <InlineMath math="60+50=110\text{ m}" /> high. **The tower must be at least <InlineMath math="110\text{ m}" /> tall**. Aiming at the hilltop <InlineMath math="(0\mid40)" /> gives <InlineMath math="88\text{ m}" />, but that line passes below the hill at <InlineMath math="x=20" />, where it is only <InlineMath math="24\text{ m}" /> high against the hill's <InlineMath math="30\text{ m}" />.

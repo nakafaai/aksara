@@ -1,0 +1,32 @@
+# How big the hall is
+
+The rows grow like stairs, two seats per step. From <InlineMath math="16" /> to <InlineMath math="54" /> there are <InlineMath math="\frac{54-16}{2}=19" /> steps, so **the hall has <InlineMath math="20" /> rows**. Pairing the first with the last row, the second with the second-to-last, and so on, every pair holds <InlineMath math="70" /> seats:
+
+<BlockMath math="\begin{aligned}
+S&=\tfrac{20}{2}\,(16+54)=700
+\end{aligned}" />
+
+# How many front rows may go
+
+Keeping <InlineMath math="560" /> seats means losing at most <InlineMath math="700-560=140" />. The first <InlineMath math="m" /> rows hold <InlineMath math="16+18+\dots" /> seats, an arithmetic sum, so **the front rows hold <InlineMath math="m(m+15)" /> seats**: <InlineMath math="m\cdot\tfrac{16+(14+2m)}{2}=m(m+15)" />.
+
+<BlockMath math="\begin{aligned}
+m(m+15)&\le140\\
+6\cdot21=126&\le140\\
+7\cdot22=154&>140
+\end{aligned}" />
+
+<Chart
+  title={<>Seats lost with the front rows</>}
+  description={<>If the first <InlineMath math="m" /> rows go, <InlineMath math="m(m+15)" /> seats go with them. At most <InlineMath math="140" /> may go. Six rows cost <InlineMath math="126" /> seats, seven already <InlineMath math="154" />.</>}
+  categories={["rows gone: 1", "rows gone: 2", "rows gone: 3", "rows gone: 4", "rows gone: 5", "rows gone: 6", "rows gone: 7", "rows gone: 8"]}
+  series={[
+    { label: "seats lost", mark: "line", values: [16, 34, 54, 76, 100, 126, 154, 184] },
+    { label: "allowed", mark: "line", values: [140, 140, 140, 140, 140, 140, 140, 140] },
+  ]}
+  valueLabel="Seats"
+/>
+
+# The first row still in use
+
+Six rows go, so the audience starts in row <InlineMath math="7" />. **It holds <InlineMath math="16+6\cdot2=28" /> seats**. Answering <InlineMath math="26" />, the last row removed, or using all <InlineMath math="7" /> removed rows, both miss by one step.

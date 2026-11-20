@@ -1,0 +1,57 @@
+# Berapa banyak air yang ada
+
+Sebelum dicondongkan, air di dalam tangki membentuk kuboid tersendiri. **Isi padunya ialah panjang darab lebar darab tinggi**:
+
+<BlockMath math="\begin{aligned}
+V_{0}&=60\cdot25\cdot30=45\,000\text{ cm}^3=45\text{ l}
+\end{aligned}" />
+
+# Di mana permukaan berakhir pada empat puluh lima darjah
+
+Kalau cawan penuh dicondongkan, tehnya kekal rata sambil melimpah melalui bibir yang rendah. Begitu juga di sini: permukaan air kekal mengufuk dan melalui bibir dinding yang direndahkan. **Pada <InlineMath math="45^\circ" /> permukaan itu turun <InlineMath math="1\text{ cm}" /> bagi setiap sentimeter dasar, jadi ia menyentuh dasar <InlineMath math="40\text{ cm}" /> dari bucu, sebelum dinding jauh pada <InlineMath math="60\text{ cm}" />**. Oleh itu air membentuk segi tiga, bukan trapezium. Trapezium memerlukan tinggi air <InlineMath math="40-60=-20\text{ cm}" /> di dinding jauh, dan itu mustahil.
+
+<MathVisual
+  title={<>Keratan rentas pada empat puluh lima darjah</>}
+  description={<>Keratan rentas akuarium, panjang <InlineMath math="60\text{ cm}" /> dan tinggi <InlineMath math="40\text{ cm}" />, dilukis mengikut kedudukan tangki. Permukaan air melalui bibir dinding yang direndahkan dan sudah menyentuh dasar selepas <InlineMath math="40\text{ cm}" />. Air membentuk segi tiga. Garis putus-putus ialah aras lama <InlineMath math="30\text{ cm}" />.</>}
+  labels={{
+    surf: <>permukaan air</>,
+    old: <>aras lama</>,
+    rim: <><InlineMath math="40\text{ cm}" /></>,
+    meet: <><InlineMath math="40\text{ cm}" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -8, max: 68 },
+      y: { min: -8, max: 48 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "tank", kind: "polygon", appearance: "reference", vertices: [{ x: 0, y: 0 }, { x: 60, y: 0 }, { x: 60, y: 40 }, { x: 0, y: 40 }] },
+      { id: "water", kind: "polygon", appearance: "primary", vertices: [{ x: 0, y: 0 }, { x: 40, y: 0 }, { x: 0, y: 40 }] },
+      { id: "surf", kind: "segment", appearance: "answer", from: { x: 0, y: 40 }, to: { x: 40, y: 0 } },
+      { id: "old", kind: "segment", appearance: "construction", from: { x: 0, y: 30 }, to: { x: 60, y: 30 } },
+      { id: "meet", kind: "point", appearance: "highlight", at: { x: 40, y: 0 } },
+      { id: "rim", kind: "point", appearance: "highlight", at: { x: 0, y: 40 } },
+    ],
+    labels: [
+      { key: "surf", objectId: "surf", at: { x: 20, y: 20 }, placement: "above-right" },
+      { key: "old", objectId: "old", at: { x: 50, y: 30 }, placement: "above" },
+      { key: "rim", objectId: "rim", at: { x: 0, y: 40 }, placement: "left" },
+      { key: "meet", objectId: "meet", at: { x: 40, y: 0 }, placement: "below" },
+    ],
+  }}
+/>
+
+# Apa yang tinggal dan apa yang tumpah
+
+Segi tiga itu ada dua sisi tegak <InlineMath math="40\text{ cm}" />, dan di belakangnya tangki selebar <InlineMath math="25\text{ cm}" />. **Baki air yang lain sudah melimpah keluar**:
+
+<BlockMath math="\begin{aligned}
+A&=\tfrac12\cdot40\cdot40=800\text{ cm}^2\\
+V&=800\cdot25=20\,000\text{ cm}^3=20\text{ l}\\
+45-20&=25\text{ l}
+\end{aligned}" />
+
+Jadi sebanyak <InlineMath math="25" /> liter air sudah tumpah.

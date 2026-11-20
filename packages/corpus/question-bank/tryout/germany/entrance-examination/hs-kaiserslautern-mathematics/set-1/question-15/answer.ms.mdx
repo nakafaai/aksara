@@ -1,0 +1,74 @@
+# Dua segi tiga dengan kecuraman sama
+
+Tangga itu memotong dua segi tiga kecil, satu di atas bangsal dan satu di hadapannya. Seperti dua gelongsor yang sama curamnya, bentuk kedua-duanya serupa. **Namakan <InlineMath math="x" /> tinggi hujung atas tangga di atas bangsal dan <InlineMath math="y" /> jarak kaki tangga dari bangsal**:
+
+<BlockMath math="\begin{aligned}
+\frac{x}{3}&=\frac{3}{y}\\
+xy&=9
+\end{aligned}" />
+
+# Pythagoras untuk seluruh tangga
+
+Seluruh tangga ialah sisi panjang segi tiga bersudut tegak dengan sisi tegak <InlineMath math="x+3" /> dan <InlineMath math="y+3" />. **Helahnya ialah hasil tambah <InlineMath math="s=x+y" />, kerana <InlineMath math="x^2+y^2=s^2-2xy=s^2-18" />**:
+
+<BlockMath math="\begin{aligned}
+(x+3)^2+(y+3)^2&=8.75^2\\
+x^2+y^2+6\,(x+y)+18&=76.5625\\
+s^2-18+6s+18&=76.5625\\
+s^2+6s-76.5625&=0\\
+s&=\frac{-6+18.5}{2}=6.25
+\end{aligned}" />
+
+Punca yang satu lagi, <InlineMath math="-12.25" />, negatif dan bukan panjang.
+
+# Hasil tambah dan hasil darab memberi dua panjang
+
+Dua nombor dengan hasil tambah <InlineMath math="6.25" /> dan hasil darab <InlineMath math="9" /> ialah punca bagi satu persamaan kuadratik. **Jadi <InlineMath math="x" /> dan <InlineMath math="y" /> ialah <InlineMath math="4" /> dan <InlineMath math="2.25" />, dalam susunan yang belum diketahui**:
+
+<BlockMath math="\begin{aligned}
+z^2-6.25z+9&=0\\
+z&=\frac{6.25\pm1.75}{2}\\
+z&=4\ \vee\ z=2.25
+\end{aligned}" />
+
+# Susunan yang betul
+
+Kaki tangga paling jauh <InlineMath math="3\text{ m}" /> di hadapan bangsal. **Jadi <InlineMath math="y=2.25" /> dan <InlineMath math="x=4" />, dan hujung atas bersandar pada ketinggian <InlineMath math="4+3=7\text{ m}" />**. Pilihan yang bertukar meletakkan kaki <InlineMath math="4\text{ m}" /> di hadapan bangsal dan hujung atas hanya pada <InlineMath math="5.25\text{ m}" />.
+
+<MathVisual
+  title={<>Tangga di atas bangsal</>}
+  description={<>Dinding rumah sebagai paksi tegak, bangsal sebagai segi empat sama bersisi <InlineMath math="3\text{ m}" /> dan tangga melalui bucunya <InlineMath math="(3\mid3)" />. Kakinya <InlineMath math="2.25\text{ m}" /> di hadapan bangsal dan hujung atasnya setinggi <InlineMath math="7\text{ m}" />. Garis putus-putus ialah kedudukan lain dengan kaki <InlineMath math="4\text{ m}" /> di hadapan bangsal, yang ditolak oleh teks.</>}
+  labels={{
+    shed: <>bangsal</>,
+    ladder: <>tangga</>,
+    top: <><InlineMath math="(0\mid7)" /></>,
+    foot: <><InlineMath math="(5.25\mid0)" /></>,
+    corner: <><InlineMath math="(3\mid3)" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -1.5, max: 8.5 },
+      y: { min: -1, max: 8.5 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "wall", kind: "segment", appearance: "reference", from: { x: 0, y: 0 }, to: { x: 0, y: 8 } },
+      { id: "ground", kind: "segment", appearance: "reference", from: { x: 0, y: 0 }, to: { x: 8, y: 0 } },
+      { id: "shed", kind: "polygon", appearance: "secondary", vertices: [{ x: 0, y: 0 }, { x: 3, y: 0 }, { x: 3, y: 3 }, { x: 0, y: 3 }] },
+      { id: "ladder", kind: "segment", appearance: "answer", from: { x: 5.25, y: 0 }, to: { x: 0, y: 7 } },
+      { id: "other", kind: "segment", appearance: "construction", from: { x: 7, y: 0 }, to: { x: 0, y: 5.25 } },
+      { id: "top", kind: "point", appearance: "answer", at: { x: 0, y: 7 } },
+      { id: "foot", kind: "point", appearance: "highlight", at: { x: 5.25, y: 0 } },
+      { id: "corner", kind: "point", appearance: "highlight", at: { x: 3, y: 3 } },
+    ],
+    labels: [
+      { key: "shed", objectId: "shed", at: { x: 1.5, y: 1.5 }, placement: "center" },
+      { key: "ladder", objectId: "ladder", at: { x: 1.5, y: 5 }, placement: "right" },
+      { key: "top", objectId: "top", at: { x: 0, y: 7 }, placement: "left" },
+      { key: "foot", objectId: "foot", at: { x: 5.25, y: 0 }, placement: "below" },
+      { key: "corner", objectId: "corner", at: { x: 3, y: 3 }, placement: "above-right" },
+    ],
+  }}
+/>

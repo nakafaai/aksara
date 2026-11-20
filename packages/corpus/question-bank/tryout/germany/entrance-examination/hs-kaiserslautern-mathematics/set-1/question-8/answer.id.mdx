@@ -1,0 +1,57 @@
+# Berapa banyak airnya
+
+Sebelum dimiringkan, air di dalam bak membentuk balok tersendiri. **Volumenya adalah panjang kali lebar kali tinggi**:
+
+<BlockMath math="\begin{aligned}
+V_{0}&=60\cdot25\cdot30=45\,000\text{ cm}^3=45\text{ l}
+\end{aligned}" />
+
+# Di mana permukaan berakhir pada empat puluh lima derajat
+
+Kalau gelas penuh dimiringkan, tehnya tetap datar sambil tumpah lewat bibir yang rendah. Begitu juga di sini: permukaan air tetap mendatar dan melewati bibir dinding yang diturunkan. **Pada <InlineMath math="45^\circ" /> permukaan itu turun <InlineMath math="1\text{ cm}" /> untuk setiap sentimeter dasar, jadi menyentuh dasar <InlineMath math="40\text{ cm}" /> dari sudut, sebelum dinding jauh pada <InlineMath math="60\text{ cm}" />**. Karena itu airnya berbentuk segitiga, bukan trapesium. Trapesium memerlukan tinggi air <InlineMath math="40-60=-20\text{ cm}" /> di dinding jauh, dan itu mustahil.
+
+<MathVisual
+  title={<>Penampang pada empat puluh lima derajat</>}
+  description={<>Penampang akuarium, panjang <InlineMath math="60\text{ cm}" /> dan tinggi <InlineMath math="40\text{ cm}" />, digambar menurut posisi bak. Permukaan air melewati bibir dinding yang diturunkan dan sudah menyentuh dasar setelah <InlineMath math="40\text{ cm}" />. Airnya membentuk segitiga. Garis putus-putus menunjukkan permukaan lama <InlineMath math="30\text{ cm}" />.</>}
+  labels={{
+    surf: <>permukaan air</>,
+    old: <>permukaan lama</>,
+    rim: <><InlineMath math="40\text{ cm}" /></>,
+    meet: <><InlineMath math="40\text{ cm}" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -8, max: 68 },
+      y: { min: -8, max: 48 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "tank", kind: "polygon", appearance: "reference", vertices: [{ x: 0, y: 0 }, { x: 60, y: 0 }, { x: 60, y: 40 }, { x: 0, y: 40 }] },
+      { id: "water", kind: "polygon", appearance: "primary", vertices: [{ x: 0, y: 0 }, { x: 40, y: 0 }, { x: 0, y: 40 }] },
+      { id: "surf", kind: "segment", appearance: "answer", from: { x: 0, y: 40 }, to: { x: 40, y: 0 } },
+      { id: "old", kind: "segment", appearance: "construction", from: { x: 0, y: 30 }, to: { x: 60, y: 30 } },
+      { id: "meet", kind: "point", appearance: "highlight", at: { x: 40, y: 0 } },
+      { id: "rim", kind: "point", appearance: "highlight", at: { x: 0, y: 40 } },
+    ],
+    labels: [
+      { key: "surf", objectId: "surf", at: { x: 20, y: 20 }, placement: "above-right" },
+      { key: "old", objectId: "old", at: { x: 50, y: 30 }, placement: "above" },
+      { key: "rim", objectId: "rim", at: { x: 0, y: 40 }, placement: "left" },
+      { key: "meet", objectId: "meet", at: { x: 40, y: 0 }, placement: "below" },
+    ],
+  }}
+/>
+
+# Yang tersisa dan yang tumpah
+
+Segitiga itu punya dua sisi siku <InlineMath math="40\text{ cm}" />, dan di belakangnya bak selebar <InlineMath math="25\text{ cm}" />. **Sisa air lainnya sudah tumpah**:
+
+<BlockMath math="\begin{aligned}
+A&=\tfrac12\cdot40\cdot40=800\text{ cm}^2\\
+V&=800\cdot25=20\,000\text{ cm}^3=20\text{ l}\\
+45-20&=25\text{ l}
+\end{aligned}" />
+
+Jadi air yang tumpah <InlineMath math="25" /> liter.

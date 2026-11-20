@@ -1,0 +1,37 @@
+# Two clues, one ratio
+
+Think of a set of nesting boxes where each box is the same fraction of the one below. That fixed fraction is the ratio <InlineMath math="q" /> of a geometric sequence. **The second cube gives <InlineMath math="a_1=\frac{1.2}{q}" />, and the first plus the third cube give the equation for <InlineMath math="q" />**:
+
+<BlockMath math="\begin{aligned}
+a_1q&=1.2,\qquad a_1+a_1q^2=2.6\\
+\frac{1.2}{q}\left(1+q^2\right)&=2.6\\
+6q^2-13q+6&=0\\
+q&=\tfrac{3}{2}\ \text{or}\ q=\tfrac{2}{3}
+\end{aligned}" />
+
+# The overhang rule picks the ratio
+
+Put a big cube on a small one and it hangs over the edge like a hat that is too wide. The text forbids that, because every cube must rest on the one below with its whole base. **So each cube is smaller than the one under it, and <InlineMath math="q=\frac{2}{3}" />**. Then <InlineMath math="a_1=1.8\text{ m}" />, and the cubes are <InlineMath math="1.8" />, <InlineMath math="1.2" />, <InlineMath math="0.8\text{ m}" /> and so on. Keeping <InlineMath math="q=\frac{3}{2}" /> builds a tower that widens upwards and passes <InlineMath math="5\text{ m}" /> after only <InlineMath math="4" /> cubes.
+
+# How tall the tower can get
+
+Adding smaller and smaller cubes is like walking half of the rest of a path again and again: you get closer to an end you never pass. **Even endless cubes stay below <InlineMath math="\frac{1.8}{1-\frac{2}{3}}=5.4\text{ m}" />, so <InlineMath math="5\text{ m}" /> is reached only late**.
+
+<BlockMath math="\begin{aligned}
+S_n&=\frac{1.8\left(1-\left(\frac{2}{3}\right)^n\right)}{1-\frac{2}{3}}=5.4\left(1-\left(\tfrac{2}{3}\right)^n\right)\\
+5.4\left(1-\left(\tfrac{2}{3}\right)^n\right)&>5\\
+\left(\tfrac{2}{3}\right)^n&<\tfrac{2}{27}
+\end{aligned}" />
+
+Compare the fractions over the same denominator <InlineMath math="3^n" />. For <InlineMath math="n=6" /> you get <InlineMath math="64" /> against <InlineMath math="2\cdot27=54" />, still too big. For <InlineMath math="n=7" /> you get <InlineMath math="128" /> against <InlineMath math="2\cdot81=162" />, small enough. **The tower needs at least <InlineMath math="7" /> cubes**.
+
+<Chart
+  title={<>The height of the tower</>}
+  description={<>The height of the tower after <InlineMath math="n" /> cubes with <InlineMath math="q=\frac{2}{3}" /> and <InlineMath math="a_1=1.8\text{ m}" />, together with the limit of <InlineMath math="5\text{ m}" />. Only the seventh cube lifts the tower above the limit, and no number of cubes reaches <InlineMath math="5.4\text{ m}" />.</>}
+  categories={["1", "2", "3", "4", "5", "6", "7", "8"]}
+  series={[
+    { label: "Tower height", mark: "line", values: [1.8, 3.0, 3.8, 4.33, 4.69, 4.93, 5.08, 5.19] },
+    { label: "Limit", mark: "line", values: [5, 5, 5, 5, 5, 5, 5, 5] },
+  ]}
+  valueLabel="Height (m)"
+/>

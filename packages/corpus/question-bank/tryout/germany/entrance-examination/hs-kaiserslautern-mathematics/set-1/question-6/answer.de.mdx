@@ -1,0 +1,63 @@
+# Der Winkel steckt in der Boje
+
+Der Text nennt den Kurswinkel nicht, aber die Boje legt ihn fest, so wie ein Hering ein Zelt festhält. **Hafen, Insel und Boje bilden ein Dreieck mit den Seiten <InlineMath math="5" />, <InlineMath math="7" /> und <InlineMath math="8\text{ km}" />, also liefert der Kosinussatz den Winkel bei <InlineMath math="A" />**:
+
+<BlockMath math="\begin{aligned}
+\cos\angle DAB&=\frac{5^2+8^2-7^2}{2\cdot5\cdot8}=\frac{40}{80}=\frac12\\
+\angle DAB&=60^\circ
+\end{aligned}" />
+
+# Zwei Punkte auf dem Kurs
+
+Stell dir einen runden Zaun mit Radius <InlineMath math="7\text{ km}" /> um die Insel vor. Ein gerader Kurs kreuzt so einen Zaun zweimal. **Setze <InlineMath math="x=\overline{AC}" /> und wende den Kosinussatz im Dreieck <InlineMath math="ABC" /> mit dem Winkel <InlineMath math="60^\circ" /> an**:
+
+<BlockMath math="\begin{aligned}
+7^2&=8^2+x^2-2\cdot8\cdot x\cdot\cos60^\circ\\
+0&=x^2-8x+15=(x-3)(x-5)
+\end{aligned}" />
+
+Der zweite Punkt, <InlineMath math="x=5" />, ist die Boje selbst. Der erste, <InlineMath math="x=3" />, kommt früher.
+
+# Das erste Mal zählt
+
+Geh auf eine Laterne zu und an ihr vorbei: Erst kommst du näher, dann entfernst du dich wieder. **Auf dem Weg zur Boje ist das Boot nach <InlineMath math="3\text{ km}" /> zum ersten Mal <InlineMath math="7\text{ km}" /> von der Insel entfernt, kommt dann noch näher und ist an der Boje wieder <InlineMath math="7\text{ km}" /> entfernt**. Also wendet es bei <InlineMath math="C" /> mit <InlineMath math="\overline{AC}=3\text{ km}" />. Fährt man bis zur Boje, sind es <InlineMath math="5+7=12\text{ km}" /> und <InlineMath math="48" /> Minuten, und genau das ist die Falle.
+
+<MathVisual
+  title={<>Zwei Punkte gleich weit von der Insel</>}
+  description={<>Der Kurs vom Hafen <InlineMath math="A" /> zur Boje <InlineMath math="D" /> und der Kreis mit Radius <InlineMath math="7\text{ km}" /> um die Insel <InlineMath math="B" />. Der Kreis schneidet den Kurs bei <InlineMath math="C" /> nach <InlineMath math="3\text{ km}" /> und an der Boje nach <InlineMath math="5\text{ km}" />. Das Boot wendet schon bei <InlineMath math="C" /> und fährt zur Insel.</>}
+  labels={{
+    a: <><InlineMath math="A" /></>,
+    b: <><InlineMath math="B" /></>,
+    c: <><InlineMath math="C" /></>,
+    d: <><InlineMath math="D" /></>,
+    course: <>Kurs</>,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -1.5, max: 16 },
+      y: { min: -7.5, max: 7.5 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "range", kind: "circle", appearance: "construction", center: { x: 8, y: 0 }, radius: 7 },
+      { id: "ab", kind: "segment", appearance: "reference", from: { x: 0, y: 0 }, to: { x: 8, y: 0 } },
+      { id: "course", kind: "segment", appearance: "primary", from: { x: 0, y: 0 }, to: { x: 2.5, y: 4.33 } },
+      { id: "route", kind: "segment", appearance: "answer", from: { x: 1.5, y: 2.598 }, to: { x: 8, y: 0 } },
+      { id: "pa", kind: "point", appearance: "reference", at: { x: 0, y: 0 } },
+      { id: "pb", kind: "point", appearance: "reference", at: { x: 8, y: 0 } },
+      { id: "pc", kind: "point", appearance: "answer", at: { x: 1.5, y: 2.598 } },
+      { id: "pd", kind: "point", appearance: "warning", at: { x: 2.5, y: 4.33 } },
+    ],
+    labels: [
+      { key: "a", objectId: "pa", at: { x: 0, y: 0 }, placement: "below-left" },
+      { key: "b", objectId: "pb", at: { x: 8, y: 0 }, placement: "below-right" },
+      { key: "c", objectId: "pc", at: { x: 1.5, y: 2.598 }, placement: "left" },
+      { key: "d", objectId: "pd", at: { x: 2.5, y: 4.33 }, placement: "above-left" },
+      { key: "course", objectId: "course", at: { x: 2, y: 3.464 }, placement: "right" },
+    ],
+  }}
+/>
+
+Die ganze Fahrt ist <InlineMath math="3+7=10\text{ km}" /> lang und dauert bei <InlineMath math="15\text{ km/h}" /> genau <InlineMath math="\frac{10}{15}\text{ h}=40" /> Minuten.

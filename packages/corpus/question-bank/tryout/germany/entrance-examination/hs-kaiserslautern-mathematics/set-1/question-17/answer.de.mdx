@@ -1,0 +1,44 @@
+# Wann der Bus steht
+
+Eine rollende Kugel, die jede Sekunde gleich viel langsamer wird, bleibt nach einer festen Zeit stehen und rührt sich dann nicht mehr. **Der Bus verliert jede Sekunde <InlineMath math="1{,}5\text{ m/s}" />, er steht also nach <InlineMath math="10" /> Sekunden und legt dabei mittlere Geschwindigkeit mal Zeit zurück**:
+
+<BlockMath math="\begin{aligned}
+t_{\text{H}}&=\frac{15}{1{,}5}=10\text{ s}\\
+s_{\text{H}}&=\frac{15\cdot10}{2}=75\text{ m}
+\end{aligned}" />
+
+# Die Gleichung, die rückwärts rollt
+
+Die beiden Orte gleichzusetzen liegt nahe:
+
+<BlockMath math="\begin{aligned}
+5t&=100+15t-0{,}75t^2\\
+0&=3t^2-40t-400\\
+t&=20\text{ s}
+\end{aligned}" />
+
+**Aber die Bremsformel gilt nur bis <InlineMath math="t=10\text{ s}" />**. Danach würde sie den Bus rückwärts auf die Läuferin zufahren lassen, und genau das beschreibt <InlineMath math="t=20" />. Bei <InlineMath math="t=10\text{ s}" /> hat die Läuferin erst <InlineMath math="50\text{ m}" /> geschafft, während die Tür schon bei <InlineMath math="175\text{ m}" /> wartet.
+
+<Chart
+  title={<>Die Orte von Läuferin und Bustür</>}
+  description={<>Der Ort der Läuferin und der Ort der hinteren Bustür, gemessen vom Startpunkt der Läuferin. Der Bus steht ab <InlineMath math="10\text{ s}" /> bei <InlineMath math="175\text{ m}" />, und die Läuferin erreicht ihn nach <InlineMath math="35\text{ s}" />. Die Parabel ohne Halt würde nach <InlineMath math="20\text{ s}" /> auf die Läuferin zurückrollen, was ein bremsender Bus nicht tut.</>}
+  categories={["0 s", "5 s", "10 s", "15 s", "20 s", "25 s", "30 s", "35 s", "40 s"]}
+  series={[
+    { label: "Läuferin", mark: "line", values: [0.0, 25.0, 50.0, 75.0, 100.0, 125.0, 150.0, 175.0, 200.0] },
+    { label: "Bustür", mark: "line", values: [100.0, 156.25, 175.0, 175.0, 175.0, 175.0, 175.0, 175.0, 175.0] },
+    { label: "Parabel ohne Halt", mark: "line", values: [100.0, 156.25, 175.0, 156.25, 100.0, null, null, null, null] },
+  ]}
+  valueLabel="Ort (m)"
+/>
+
+# Den stehenden Bus einholen
+
+Ab <InlineMath math="10\text{ s}" /> bewegt sich die Tür nicht mehr, die Läuferin muss also einfach die ganzen <InlineMath math="175\text{ m}" /> laufen. **Der Bus fährt bei <InlineMath math="10+30=40\text{ s}" /> ab**:
+
+<BlockMath math="\begin{aligned}
+5t&=100+75=175\\
+t&=35\text{ s}\\
+10+30-35&=5\text{ s}
+\end{aligned}" />
+
+Sie erreicht die Tür <InlineMath math="5" /> Sekunden vor der Abfahrt. Die falschen <InlineMath math="20\text{ s}" /> würden ihr bequeme <InlineMath math="20" /> Sekunden versprechen.

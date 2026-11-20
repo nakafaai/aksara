@@ -1,0 +1,53 @@
+# Three fences around the plan
+
+Each limit is like a fence on a map: you may stand anywhere inside all the fences. With <InlineMath math="x" /> hectares of potatoes and <InlineMath math="y" /> of wheat, **three fences close the plan in**:
+
+<BlockMath math="\begin{aligned}
+x+y&\le40\\
+30x+10y&\le900\quad\Leftrightarrow\quad3x+y\le90\\
+400x+300y&\le13000\quad\Leftrightarrow\quad4x+3y\le130
+\end{aligned}" />
+
+<MathVisual
+  title={<>The allowed plantings</>}
+  description={<>Across <InlineMath math="x" /> hectares of potatoes, up <InlineMath math="y" /> hectares of wheat. Allowed is the pentagon with corners <InlineMath math="(0\mid0)" />, <InlineMath math="(30\mid0)" />, <InlineMath math="(28\mid6)" />, <InlineMath math="(10\mid30)" /> and <InlineMath math="(0\mid40)" />. The highest profit is at <InlineMath math="(28\mid6)" />.</>}
+  labels={{
+    best: <><InlineMath math="(28\mid6)" /></>,
+    land: <>land</>,
+    labour: <>labour</>,
+    capital: <>capital</>,
+    c2: <><InlineMath math="(10\mid30)" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -2, max: 42 },
+      y: { min: -2, max: 48 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "region", kind: "polygon", appearance: "secondary", vertices: [{ x: 0, y: 0 }, { x: 30, y: 0 }, { x: 28, y: 6 }, { x: 10, y: 30 }, { x: 0, y: 40 }] },
+      { id: "land", kind: "segment", appearance: "construction", from: { x: 0, y: 40 }, to: { x: 40, y: 0 } },
+      { id: "labour", kind: "segment", appearance: "construction", from: { x: 30, y: 0 }, to: { x: 15, y: 45 } },
+      { id: "capital", kind: "segment", appearance: "construction", from: { x: 32.5, y: 0 }, to: { x: 1, y: 42 } },
+      { id: "corner", kind: "point", appearance: "answer", at: { x: 28, y: 6 } },
+      { id: "corner-2", kind: "point", appearance: "highlight", at: { x: 10, y: 30 } },
+    ],
+    labels: [
+      { key: "best", objectId: "corner", at: { x: 28, y: 6 }, placement: "right" },
+      { key: "c2", objectId: "corner-2", at: { x: 10, y: 30 }, placement: "left" },
+      { key: "land", objectId: "land", at: { x: 36, y: 4 }, placement: "above-right" },
+      { key: "labour", objectId: "labour", at: { x: 16, y: 42 }, placement: "right" },
+      { key: "capital", objectId: "capital", at: { x: 4, y: 38 }, placement: "left" },
+    ],
+  }}
+/>
+
+# Where the corners are
+
+A straight profit line <InlineMath math="900x+400y" /> slid across a region with straight edges touches it last at a corner, so **only the corners need checking**. Land and labour cross at <InlineMath math="(25\mid15)" />, but that needs <InlineMath math="14{,}500\text{ €}" /> of capital, more than she has. The corners that count are <InlineMath math="(30\mid0)" />, <InlineMath math="(28\mid6)" /> from labour and capital, <InlineMath math="(10\mid30)" /> from capital and land, and <InlineMath math="(0\mid40)" />.
+
+# Comparing the corners
+
+Profits: <InlineMath math="(30\mid0)" /> gives <InlineMath math="27{,}000\text{ €}" />, <InlineMath math="(28\mid6)" /> gives <InlineMath math="25{,}200+2400=27{,}600\text{ €}" />, <InlineMath math="(10\mid30)" /> gives <InlineMath math="21{,}000\text{ €}" />, <InlineMath math="(0\mid40)" /> gives <InlineMath math="16{,}000\text{ €}" />. **The best plan is <InlineMath math="28\text{ ha}" /> of potatoes and <InlineMath math="6\text{ ha}" /> of wheat, for <InlineMath math="27{,}600\text{ €}" />**, with <InlineMath math="6\text{ ha}" /> left bare. Planting all <InlineMath math="40\text{ ha}" /> feels thrifty but earns <InlineMath math="6600\text{ €}" /> less.

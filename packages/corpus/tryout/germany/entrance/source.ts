@@ -2,7 +2,9 @@ import { Effect } from "effect";
 
 import { germanyTryoutCountry } from "#corpus/tryout/germany/country";
 import { tuDarmstadtEntranceReadiness } from "#corpus/tryout/germany/entrance/readiness/darmstadt";
+import { kaiserslauternEntranceReadiness } from "#corpus/tryout/germany/entrance/readiness/kaiserslautern";
 import { tuDarmstadtEntranceTrack } from "#corpus/tryout/germany/entrance/tracks/darmstadt";
+import { kaiserslauternEntranceTrack } from "#corpus/tryout/germany/entrance/tracks/kaiserslautern";
 import { validateAssessmentSourceReadiness } from "#corpus/tryout/readiness/validation";
 import { defineExamSource } from "#corpus/tryout/schema";
 
@@ -55,17 +57,46 @@ const entranceTryoutCatalog = defineExamSource({
           ms: { title: "Studienkolleg TU Darmstadt" },
         },
       },
+      {
+        key: "hs-kaiserslautern",
+        order: 2,
+        routeSlugs: {
+          de: "internationales-studienkolleg-der-hochschule-kaiserslautern",
+          en: "hochschule-kaiserslautern-international-studienkolleg",
+          id: "studienkolleg-internasional-hochschule-kaiserslautern",
+          ms: "studienkolleg-antarabangsa-hochschule-kaiserslautern",
+        },
+        translations: {
+          de: {
+            title:
+              "Internationales Studienkolleg der Hochschule Kaiserslautern",
+          },
+          en: {
+            title: "Hochschule Kaiserslautern International Studienkolleg",
+          },
+          id: {
+            title: "Studienkolleg Internasional Hochschule Kaiserslautern",
+          },
+          ms: {
+            title: "Studienkolleg Antarabangsa Hochschule Kaiserslautern",
+          },
+        },
+      },
     ],
   },
-  sourceRevision: "2026-11-08",
-  tracks: [tuDarmstadtEntranceTrack],
+  sourceRevision: "2026-11-20",
+  tracks: [tuDarmstadtEntranceTrack, kaiserslauternEntranceTrack],
 });
 
 /** Validates the Studienkolleg entrance catalog against official readiness. */
 export const entranceTryoutSource = Effect.gen(function* () {
-  const [source, readiness] = yield* Effect.all([
+  const [source, ...readinessEntries] = yield* Effect.all([
     entranceTryoutCatalog,
     tuDarmstadtEntranceReadiness,
+    kaiserslauternEntranceReadiness,
   ]);
-  return yield* validateAssessmentSourceReadiness(source, readiness);
+  for (const readiness of readinessEntries) {
+    yield* validateAssessmentSourceReadiness(source, readiness);
+  }
+  return source;
 });
