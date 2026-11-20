@@ -1,3 +1,4 @@
+import { additionalMathematicsStandards } from "#corpus/curriculum/kssm/documents";
 import { materialNode, unitNode } from "#corpus/curriculum/schema";
 
 /** The KSSM Form 5 Additional Mathematics chapter on the kinematics of linear motion. */
@@ -9,6 +10,12 @@ export const kssmForm5AdditionalMathematicsKinematicsNodes = [
         level: "lesson",
         materialKeys: ["lesson.mathematics.linear-kinematics"],
         order: 10,
+        outcomes: [
+          {
+            code: "Form 5, Content Standards 8.1 to 8.4",
+            document: additionalMathematicsStandards,
+          },
+        ],
       }),
     ],
     key: "form-5-additional-mathematics-kinematics-of-linear-motion",

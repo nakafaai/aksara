@@ -4,6 +4,7 @@ import { Effect, HashMap } from "effect";
 import { resolveCurriculumMaterial } from "#corpus/curriculum/material";
 import { defineCurriculum, materialNode } from "#corpus/curriculum/schema";
 import { decodeMaterialDomains } from "#corpus/material/domain";
+import { citedOutcomes } from "#corpus/test/curriculum";
 import { lessonMaterialSource } from "#corpus/test/material";
 
 describe("curriculum material", () => {
@@ -17,6 +18,7 @@ describe("curriculum material", () => {
           level: "lesson",
           materialKeys: [material.key],
           order: 1,
+          outcomes: citedOutcomes,
         });
         const curriculum = yield* defineCurriculum({
           programKey: "merdeka",

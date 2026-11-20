@@ -1,3 +1,4 @@
+import { mathematicsSyllabus } from "#corpus/curriculum/cambridge-international/documents";
 import { materialNode, unitNode } from "#corpus/curriculum/schema";
 
 export const igcseMathematicsUnitNodes = [
@@ -8,24 +9,37 @@ export const igcseMathematicsUnitNodes = [
         level: "lesson",
         materialKeys: ["lesson.mathematics.linear-equation-inequality"],
         order: 10,
+        outcomes: [
+          { code: "E2.5 Equations", document: mathematicsSyllabus },
+          { code: "E2.6 Inequalities", document: mathematicsSyllabus },
+        ],
       }),
       materialNode({
         key: "mathematics-0580-algebra-graphs-quadratics",
         level: "lesson",
         materialKeys: ["lesson.mathematics.quadratic-function"],
         order: 20,
+        outcomes: [{ code: "E2.5 Equations", document: mathematicsSyllabus }],
       }),
       materialNode({
         key: "mathematics-0580-algebra-graphs-sequences",
         level: "lesson",
         materialKeys: ["lesson.mathematics.sequence-series"],
         order: 30,
+        outcomes: [{ code: "E2.7 Sequences", document: mathematicsSyllabus }],
       }),
       materialNode({
         key: "mathematics-0580-algebra-graphs-functions",
         level: "lesson",
         materialKeys: ["lesson.mathematics.function-modeling"],
         order: 40,
+        outcomes: [
+          { code: "E2.10 Graphs of functions", document: mathematicsSyllabus },
+          {
+            code: "E6.4 Trigonometric functions",
+            document: mathematicsSyllabus,
+          },
+        ],
       }),
     ],
     key: "mathematics-0580-algebra-graphs",
@@ -71,42 +85,56 @@ export const igcseMathematicsUnitNodes = [
         level: "lesson",
         materialKeys: ["lesson.mathematics.circle"],
         order: 10,
+        outcomes: [
+          { code: "E4.7 Circle theorems I", document: mathematicsSyllabus },
+          { code: "E4.8 Circle theorems II", document: mathematicsSyllabus },
+        ],
       }),
       materialNode({
         key: "mathematics-0580-geometry-arcs-sectors",
         level: "lesson",
         materialKeys: ["lesson.mathematics.circle-arc-sector"],
         order: 20,
-      }),
-      materialNode({
-        key: "mathematics-0580-geometry-coordinate-geometry",
-        level: "lesson",
-        materialKeys: ["lesson.mathematics.analytic-geometry"],
-        order: 30,
+        outcomes: [
+          {
+            code: "E5.3 Circles, arcs and sectors",
+            document: mathematicsSyllabus,
+          },
+        ],
       }),
       materialNode({
         key: "mathematics-0580-geometry-trigonometry",
         level: "lesson",
         materialKeys: ["lesson.mathematics.trigonometry"],
         order: 40,
+        outcomes: [
+          {
+            code: "E6.2 Right-angled triangles",
+            document: mathematicsSyllabus,
+          },
+          {
+            code: "E6.3 Exact trigonometric values",
+            document: mathematicsSyllabus,
+          },
+        ],
       }),
     ],
     key: "mathematics-0580-geometry",
     materialCard: {
       de: {
-        description: "Arbeite mit Kreisen, Koordinaten und Trigonometrie.",
+        description: "Arbeite mit Kreisen, Kreisbögen und Trigonometrie.",
         title: "Geometrie, Größenberechnung und Trigonometrie",
       },
       en: {
-        description: "Work with circles, coordinates, and trigonometry.",
+        description: "Work with circles, arcs, sectors, and trigonometry.",
         title: "Geometry, mensuration, and trigonometry",
       },
       id: {
-        description: "Latih lingkaran, koordinat, dan trigonometri.",
+        description: "Latih lingkaran, busur, juring, dan trigonometri.",
         title: "Geometri, pengukuran, dan trigonometri",
       },
       ms: {
-        description: "Guna bulatan, koordinat dan trigonometri.",
+        description: "Guna bulatan, lengkok, sektor dan trigonometri.",
         title: "Geometri, pengukuran dan trigonometri",
       },
     },
@@ -137,12 +165,22 @@ export const igcseMathematicsUnitNodes = [
         level: "lesson",
         materialKeys: ["lesson.mathematics.geometric-transformation"],
         order: 10,
+        outcomes: [
+          { code: "E7.1 Transformations", document: mathematicsSyllabus },
+        ],
       }),
       materialNode({
         key: "mathematics-0580-transformations-vectors-vectors",
         level: "lesson",
         materialKeys: ["lesson.mathematics.vector-operations"],
         order: 20,
+        outcomes: [
+          {
+            code: "E7.2 Vectors in two dimensions",
+            document: mathematicsSyllabus,
+          },
+          { code: "E7.3 Magnitude of a vector", document: mathematicsSyllabus },
+        ],
       }),
     ],
     key: "mathematics-0580-transformations-vectors",
@@ -191,12 +229,29 @@ export const igcseMathematicsUnitNodes = [
         level: "lesson",
         materialKeys: ["lesson.mathematics.probability"],
         order: 10,
+        outcomes: [
+          {
+            code: "E8.1 Introduction to probability",
+            document: mathematicsSyllabus,
+          },
+          {
+            code: "E8.3 Probability of combined events",
+            document: mathematicsSyllabus,
+          },
+        ],
       }),
       materialNode({
         key: "mathematics-0580-probability-statistics-summary-statistics",
         level: "lesson",
         materialKeys: ["lesson.mathematics.statistics-foundations"],
         order: 20,
+        outcomes: [
+          {
+            code: "E9.3 Averages and measures of spread",
+            document: mathematicsSyllabus,
+          },
+          { code: "E9.7 Histograms", document: mathematicsSyllabus },
+        ],
       }),
     ],
     key: "mathematics-0580-probability-statistics",

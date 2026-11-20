@@ -1,3 +1,4 @@
+import { additionalMathematicsStandards } from "#corpus/curriculum/kssm/documents";
 import { materialNode, unitNode } from "#corpus/curriculum/schema";
 
 /** The KSSM Form 4 Additional Mathematics geometry chapters, coordinate geometry to the solution of triangles, in the order of their DSKP. */
@@ -9,6 +10,12 @@ export const kssmForm4AdditionalMathematicsGeometryNodes = [
         level: "lesson",
         materialKeys: ["lesson.mathematics.coordinate-geometry"],
         order: 10,
+        outcomes: [
+          {
+            code: "Form 4, Content Standards 7.1 to 7.4",
+            document: additionalMathematicsStandards,
+          },
+        ],
       }),
     ],
     key: "form-4-additional-mathematics-coordinate-geometry",
@@ -45,6 +52,12 @@ export const kssmForm4AdditionalMathematicsGeometryNodes = [
         level: "lesson",
         materialKeys: ["lesson.mathematics.vector-operations"],
         order: 10,
+        outcomes: [
+          {
+            code: "Form 4, Content Standards 8.1 to 8.3",
+            document: additionalMathematicsStandards,
+          },
+        ],
       }),
     ],
     key: "form-4-additional-mathematics-vectors",
@@ -81,6 +94,12 @@ export const kssmForm4AdditionalMathematicsGeometryNodes = [
         level: "lesson",
         materialKeys: ["lesson.mathematics.triangle-solution"],
         order: 10,
+        outcomes: [
+          {
+            code: "Form 4, Content Standards 9.1 to 9.4",
+            document: additionalMathematicsStandards,
+          },
+        ],
       }),
     ],
     key: "form-4-additional-mathematics-solution-of-triangles",

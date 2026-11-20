@@ -25,6 +25,7 @@ import {
 import { singaporeMoeCurriculum } from "#corpus/curriculum/singapore-moe/source";
 import { decodeCurriculumCatalog } from "#corpus/curriculum/source";
 import { unitedStatesCurriculum } from "#corpus/curriculum/united-states/source";
+import { citedOutcomes } from "#corpus/test/curriculum";
 import { importCorpusModules } from "#corpus/test/imports";
 
 /** Collects every curriculum node key inside one exported registry value. */
@@ -54,6 +55,7 @@ describe("curriculum schema", () => {
         level: "lesson",
         materialKeys: ["lesson.mathematics.function-concept"],
         order: 1,
+        outcomes: citedOutcomes,
       });
       const nodes = [
         classNode({
@@ -122,6 +124,7 @@ describe("curriculum schema", () => {
             level: "lesson",
             materialKeys: [],
             order: 1,
+            outcomes: citedOutcomes,
           },
         ],
       });
@@ -131,6 +134,42 @@ describe("curriculum schema", () => {
         "Invalid curriculum node key."
       );
       expect(Exit.isFailure(emptyMaterial)).toBe(true);
+    })
+  );
+
+  it.effect("rejects a mapping without an official citation", () =>
+    Effect.sync(() => {
+      const mapping = {
+        key: "uncited-material",
+        level: "lesson",
+        materialKeys: ["lesson.mathematics.matrix"],
+        order: 1,
+      };
+      /** Decodes a tree holding only the given mapping. */
+      const decode = (node: object) =>
+        Schema.decodeUnknownExit(CurriculumSourceSchema)({
+          programKey: "merdeka",
+          tree: [node],
+        });
+
+      expect(Exit.isFailure(decode(mapping))).toBe(true);
+      expect(Exit.isFailure(decode({ ...mapping, outcomes: [] }))).toBe(true);
+      expect(
+        Exit.isFailure(
+          decode({
+            ...mapping,
+            outcomes: [
+              {
+                code: "Bab 1 Matriks",
+                document: { title: "Buku Matematika", url: "matriks.pdf" },
+              },
+            ],
+          })
+        )
+      ).toBe(true);
+      expect(
+        Exit.isSuccess(decode({ ...mapping, outcomes: citedOutcomes }))
+      ).toBe(true);
     })
   );
 
@@ -183,6 +222,7 @@ describe("curriculum schema", () => {
     () =>
       Effect.gen(function* () {
         const modules = yield* importCorpusModules("curriculum/**/*.ts", [
+          "curriculum/*/documents.ts",
           "curriculum/context.ts",
           "curriculum/material.ts",
           "curriculum/node.ts",

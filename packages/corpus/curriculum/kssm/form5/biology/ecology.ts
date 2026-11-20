@@ -1,3 +1,4 @@
+import { biologyStandards } from "#corpus/curriculum/kssm/documents";
 import { materialNode, unitNode } from "#corpus/curriculum/schema";
 
 /** The KSSM Form 5 Biology chapters on biodiversity, ecosystems and environmental sustainability, Bab 8 to Bab 10. */
@@ -9,6 +10,12 @@ export const kssmForm5BiologyEcologyNodes = [
         level: "lesson",
         materialKeys: ["lesson.biology.biodiversity"],
         order: 10,
+        outcomes: [
+          {
+            code: "Form 5, Content Standards 23.1 to 23.3",
+            document: biologyStandards,
+          },
+        ],
       }),
     ],
     key: "form-5-biology-biodiversity",
@@ -58,6 +65,12 @@ export const kssmForm5BiologyEcologyNodes = [
         level: "lesson",
         materialKeys: ["lesson.biology.climate-change"],
         order: 10,
+        outcomes: [
+          {
+            code: "Form 5, Learning Standard 25.1.2 (climate change, global warming)",
+            document: biologyStandards,
+          },
+        ],
       }),
     ],
     key: "form-5-biology-environmental-sustainability",

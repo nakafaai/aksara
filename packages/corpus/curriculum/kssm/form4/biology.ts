@@ -1,3 +1,4 @@
+import { biologyStandards } from "#corpus/curriculum/kssm/documents";
 import { materialNode, unitNode } from "#corpus/curriculum/schema";
 
 /** The KSSM Form 4 Biology chapters on cells, chapters 1 to 7 of the DSKP. */
@@ -31,6 +32,12 @@ export const kssmForm4BiologyTopicNodes = [
         level: "lesson",
         materialKeys: ["lesson.biology.cell-organisation"],
         order: 10,
+        outcomes: [
+          {
+            code: "Form 4, Content Standards 2.1 to 2.4",
+            document: biologyStandards,
+          },
+        ],
       }),
     ],
     key: "form-4-biology-cell-biology-and-cell-organisation",
@@ -79,6 +86,12 @@ export const kssmForm4BiologyTopicNodes = [
         level: "lesson",
         materialKeys: ["lesson.biology.membrane-transport"],
         order: 10,
+        outcomes: [
+          {
+            code: "Form 4, Content Standards 3.1 to 3.4",
+            document: biologyStandards,
+          },
+        ],
       }),
     ],
     key: "form-4-biology-movement-of-substances-across-a-plasma-membrane",

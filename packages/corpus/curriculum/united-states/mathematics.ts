@@ -1,4 +1,7 @@
 import { courseNode, materialNode, unitNode } from "#corpus/curriculum/schema";
+import { mathematicsStandards } from "#corpus/curriculum/united-states/documents";
+import { usHighSchoolGeometryUnit } from "#corpus/curriculum/united-states/mathematics/geometry";
+import { usHighSchoolStatisticsProbabilityUnit } from "#corpus/curriculum/united-states/mathematics/statistics";
 
 export const usHighSchoolMathematicsCourseNode = courseNode({
   children: [
@@ -9,18 +12,36 @@ export const usHighSchoolMathematicsCourseNode = courseNode({
           level: "lesson",
           materialKeys: ["lesson.mathematics.complex-number"],
           order: 10,
+          outcomes: [
+            {
+              code: "N-CN The Complex Number System",
+              document: mathematicsStandards,
+            },
+          ],
         }),
         materialNode({
           key: "us-high-school-mathematics-number-vectors",
           level: "lesson",
           materialKeys: ["lesson.mathematics.vector-operations"],
           order: 20,
+          outcomes: [
+            {
+              code: "N-VM Vector and Matrix Quantities",
+              document: mathematicsStandards,
+            },
+          ],
         }),
         materialNode({
           key: "us-high-school-mathematics-number-matrices",
           level: "lesson",
           materialKeys: ["lesson.mathematics.matrix"],
           order: 30,
+          outcomes: [
+            {
+              code: "N-VM Vector and Matrix Quantities",
+              document: mathematicsStandards,
+            },
+          ],
         }),
       ],
       key: "high-school-mathematics-number-quantity",
@@ -60,24 +81,56 @@ export const usHighSchoolMathematicsCourseNode = courseNode({
           level: "lesson",
           materialKeys: ["lesson.mathematics.linear-equation-inequality"],
           order: 10,
+          outcomes: [
+            {
+              code: "A-REI Reasoning with Equations and Inequalities",
+              document: mathematicsStandards,
+            },
+          ],
         }),
         materialNode({
           key: "us-high-school-mathematics-algebra-quadratic",
           level: "lesson",
           materialKeys: ["lesson.mathematics.quadratic-function"],
           order: 20,
+          outcomes: [
+            {
+              code: "A-REI Reasoning with Equations and Inequalities",
+              document: mathematicsStandards,
+            },
+            {
+              code: "A-SSE Seeing Structure in Expressions",
+              document: mathematicsStandards,
+            },
+          ],
         }),
         materialNode({
           key: "us-high-school-mathematics-algebra-polynomial",
           level: "lesson",
           materialKeys: ["lesson.mathematics.polynomial"],
           order: 30,
+          outcomes: [
+            {
+              code: "A-APR Arithmetic with Polynomials and Rational Expressions",
+              document: mathematicsStandards,
+            },
+          ],
         }),
         materialNode({
           key: "us-high-school-mathematics-algebra-exponential",
           level: "lesson",
           materialKeys: ["lesson.mathematics.exponential-logarithm"],
           order: 40,
+          outcomes: [
+            {
+              code: "N-RN The Real Number System",
+              document: mathematicsStandards,
+            },
+            {
+              code: "F-LE Linear, Quadratic, and Exponential Models",
+              document: mathematicsStandards,
+            },
+          ],
         }),
       ],
       key: "high-school-mathematics-algebra",
@@ -114,6 +167,16 @@ export const usHighSchoolMathematicsCourseNode = courseNode({
           level: "lesson",
           materialKeys: ["lesson.mathematics.function-modeling"],
           order: 10,
+          outcomes: [
+            {
+              code: "F-IF Interpreting Functions",
+              document: mathematicsStandards,
+            },
+            {
+              code: "F-TF Trigonometric Functions",
+              document: mathematicsStandards,
+            },
+          ],
         }),
         materialNode({
           key: "us-high-school-mathematics-functions-composition",
@@ -122,12 +185,18 @@ export const usHighSchoolMathematicsCourseNode = courseNode({
             "lesson.mathematics.function-composition-inverse-function",
           ],
           order: 20,
+          outcomes: [
+            { code: "F-BF Building Functions", document: mathematicsStandards },
+          ],
         }),
         materialNode({
           key: "us-high-school-mathematics-functions-transformations",
           level: "lesson",
           materialKeys: ["lesson.mathematics.function-transformation"],
           order: 30,
+          outcomes: [
+            { code: "F-BF Building Functions", document: mathematicsStandards },
+          ],
         }),
       ],
       key: "high-school-mathematics-functions",
@@ -157,114 +226,8 @@ export const usHighSchoolMathematicsCourseNode = courseNode({
         ms: { routeSlug: "fungsi", title: "Fungsi" },
       },
     }),
-    unitNode({
-      children: [
-        materialNode({
-          key: "us-high-school-mathematics-geometry-circle",
-          level: "lesson",
-          materialKeys: ["lesson.mathematics.circle"],
-          order: 10,
-        }),
-        materialNode({
-          key: "us-high-school-mathematics-geometry-coordinate",
-          level: "lesson",
-          materialKeys: ["lesson.mathematics.analytic-geometry"],
-          order: 20,
-        }),
-        materialNode({
-          key: "us-high-school-mathematics-geometry-trigonometry",
-          level: "lesson",
-          materialKeys: ["lesson.mathematics.trigonometry"],
-          order: 30,
-        }),
-      ],
-      key: "high-school-mathematics-geometry",
-      materialCard: {
-        de: {
-          description: "Arbeite mit Kreisen, Koordinaten und Trigonometrie.",
-          title: "Geometrie",
-        },
-        en: {
-          description: "Use circles, coordinates, and trigonometry.",
-          title: "Geometry",
-        },
-        id: {
-          description: "Gunakan lingkaran, koordinat, dan trigonometri.",
-          title: "Geometri",
-        },
-        ms: {
-          description: "Guna bulatan, koordinat dan trigonometri.",
-          title: "Geometri",
-        },
-      },
-      order: 40,
-      translations: {
-        de: { routeSlug: "geometrie", title: "Geometrie" },
-        en: { routeSlug: "geometry", title: "Geometry" },
-        id: { routeSlug: "geometri", title: "Geometri" },
-        ms: { routeSlug: "geometri", title: "Geometri" },
-      },
-    }),
-    unitNode({
-      children: [
-        materialNode({
-          key: "us-high-school-mathematics-statistics",
-          level: "lesson",
-          materialKeys: ["lesson.mathematics.statistics-foundations"],
-          order: 10,
-        }),
-        materialNode({
-          key: "us-high-school-mathematics-probability",
-          level: "lesson",
-          materialKeys: ["lesson.mathematics.probability"],
-          order: 20,
-        }),
-        materialNode({
-          key: "us-high-school-mathematics-regression",
-          level: "lesson",
-          materialKeys: ["lesson.mathematics.statistics-regression"],
-          order: 30,
-        }),
-      ],
-      key: "high-school-mathematics-statistics-probability",
-      materialCard: {
-        de: {
-          description: "Werte Daten, Zufall und Regressionsmodelle aus.",
-          title: "Statistik und Wahrscheinlichkeit",
-        },
-        en: {
-          description: "Read data, chance, and regression models.",
-          title: "Statistics and Probability",
-        },
-        id: {
-          description: "Baca data, peluang, dan model regresi.",
-          title: "Statistika dan Peluang",
-        },
-        ms: {
-          description: "Baca data, kebarangkalian dan model regresi.",
-          title: "Statistik dan Kebarangkalian",
-        },
-      },
-      order: 50,
-      translations: {
-        de: {
-          routeSlug: "statistik-und-wahrscheinlichkeit",
-          title: "Statistik und Wahrscheinlichkeit",
-        },
-        en: {
-          routeSlug: "statistics-and-probability",
-          title: "Statistics and Probability",
-        },
-        id: {
-          routeSlug: "statistika-dan-peluang",
-          title: "Statistika dan Peluang",
-        },
-        ms: {
-          routeSlug: "statistik-dan-kebarangkalian",
-          title: "Statistik dan Kebarangkalian",
-        },
-      },
-    }),
+    usHighSchoolGeometryUnit,
+    usHighSchoolStatisticsProbabilityUnit,
   ],
   iconKey: "mathematics",
   key: "high-school-mathematics",

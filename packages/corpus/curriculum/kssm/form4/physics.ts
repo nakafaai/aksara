@@ -1,3 +1,4 @@
+import { physicsStandards } from "#corpus/curriculum/kssm/documents";
 import { materialNode, unitNode } from "#corpus/curriculum/schema";
 
 /** The KSSM Form 4 Physics chapters, in the order of their DSKP. */
@@ -9,6 +10,12 @@ export const kssmForm4PhysicsTopicNodes = [
         level: "lesson",
         materialKeys: ["lesson.physics.measurement"],
         order: 10,
+        outcomes: [
+          {
+            code: "Tingkatan 4, Standard Kandungan 1.1",
+            document: physicsStandards,
+          },
+        ],
       }),
     ],
     key: "form-4-physics-measurement",
@@ -45,12 +52,24 @@ export const kssmForm4PhysicsTopicNodes = [
         level: "lesson",
         materialKeys: ["lesson.physics.kinematics"],
         order: 10,
+        outcomes: [
+          {
+            code: "Tingkatan 4, Standard Kandungan 2.1 hingga 2.3",
+            document: physicsStandards,
+          },
+        ],
       }),
       materialNode({
         key: "form-4-physics-force-and-motion-i-momentum",
         level: "lesson",
         materialKeys: ["lesson.physics.momentum"],
         order: 20,
+        outcomes: [
+          {
+            code: "Tingkatan 4, Standard Kandungan 2.4 hingga 2.8",
+            document: physicsStandards,
+          },
+        ],
       }),
     ],
     key: "form-4-physics-force-and-motion-i",
@@ -87,6 +106,12 @@ export const kssmForm4PhysicsTopicNodes = [
         level: "lesson",
         materialKeys: ["lesson.physics.gravitation"],
         order: 10,
+        outcomes: [
+          {
+            code: "Tingkatan 4, Standard Kandungan 3.1 hingga 3.3",
+            document: physicsStandards,
+          },
+        ],
       }),
     ],
     key: "form-4-physics-gravitation",
@@ -123,6 +148,12 @@ export const kssmForm4PhysicsTopicNodes = [
         level: "lesson",
         materialKeys: ["lesson.physics.heat"],
         order: 10,
+        outcomes: [
+          {
+            code: "Tingkatan 4, Standard Kandungan 4.1 hingga 4.4",
+            document: physicsStandards,
+          },
+        ],
       }),
     ],
     key: "form-4-physics-heat",
@@ -159,6 +190,12 @@ export const kssmForm4PhysicsTopicNodes = [
         level: "lesson",
         materialKeys: ["lesson.physics.waves"],
         order: 10,
+        outcomes: [
+          {
+            code: "Tingkatan 4, Standard Kandungan 5.1 hingga 5.7",
+            document: physicsStandards,
+          },
+        ],
       }),
     ],
     key: "form-4-physics-waves",
@@ -195,6 +232,12 @@ export const kssmForm4PhysicsTopicNodes = [
         level: "lesson",
         materialKeys: ["lesson.physics.light-optics"],
         order: 10,
+        outcomes: [
+          {
+            code: "Tingkatan 4, Standard Kandungan 6.1 hingga 6.4",
+            document: physicsStandards,
+          },
+        ],
       }),
     ],
     key: "form-4-physics-light-and-optics",

@@ -14,6 +14,7 @@ import {
   MaterialDomainMissingError,
 } from "#corpus/material/domain";
 import { decodeMaterialSources } from "#corpus/material/source";
+import { citedOutcomes } from "#corpus/test/curriculum";
 import {
   earthScienceMaterialSource,
   findMaterial,
@@ -36,6 +37,7 @@ function merdekaLeaf(
         level: "lesson",
         materialKeys: input.materialKeys,
         order: 10,
+        outcomes: citedOutcomes,
       },
     ],
   });
@@ -240,6 +242,7 @@ layer(NodeServices.layer)("curriculum node projection", (it) => {
                   level: "lesson",
                   materialKeys: [material.key],
                   order: 1,
+                  outcomes: citedOutcomes,
                 },
               ],
               key: "class-10-mathematics",
