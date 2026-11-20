@@ -1,30 +1,27 @@
-import { MutableList } from "effect";
-import { hashBytes } from "#contracts/hash/digest";
+import { Effect } from "effect";
+import { Hex } from "effect/encoding";
+import { Sha256 } from "#contracts/hash/sha256";
+import { Sha256HashSchema } from "#contracts/ids";
 
 /**
- * Collects the UTF-8 bytes of one digest stream so that Web Crypto can digest
- * it in one call. Each piece is encoded on its own, exactly as an incremental
- * hash encoded it, so a lone surrogate keeps the bytes it always had.
+ * Hashes one digest stream piece by piece. Each piece is encoded to UTF-8 on its
+ * own, so a lone surrogate keeps the bytes it always had, and the running
+ * SHA-256 keeps memory constant however long the stream grows: a snapshot proof
+ * over a hundred megabytes of rows never holds those bytes at once.
  */
 export class DigestStream {
-  readonly #pieces = MutableList.make<Uint8Array>();
-  #length = 0;
+  readonly #hash = new Sha256();
+  readonly #encoder = new TextEncoder();
 
   /** Appends one piece of text in the order the stream was built. */
   add(text: string): void {
-    const bytes = new TextEncoder().encode(text);
-    MutableList.append(this.#pieces, bytes);
-    this.#length += bytes.byteLength;
+    this.#hash.update(this.#encoder.encode(text));
   }
 
-  /** Digests every piece in order and returns the branded sha256 identity. */
+  /** Finishes the stream once and returns its branded sha256 identity. */
   digest() {
-    const bytes = new Uint8Array(this.#length);
-    let offset = 0;
-    for (const piece of MutableList.toArray(this.#pieces)) {
-      bytes.set(piece, offset);
-      offset += piece.byteLength;
-    }
-    return hashBytes(bytes);
+    return Effect.sync(() =>
+      Sha256HashSchema.make(`sha256:${Hex.encode(this.#hash.digest())}`)
+    );
   }
 }
