@@ -1,32 +1,6 @@
 import { CorpusSourcePathSchema } from "@nakafa/aksara-contracts/ids";
-import { TypeScriptParser } from "@nakafa/aksara-utilities/typescript/parse";
-import {
-  Effect,
-  MutableHashMap,
-  MutableList,
-  Record as Rec,
-  Schema,
-} from "effect";
-import {
-  type Expression,
-  isArrayLiteralExpression,
-  isExportAssignment,
-  isIdentifier,
-  isImportDeclaration,
-  isNamedImports,
-  isNumericLiteral,
-  isObjectLiteralExpression,
-  isPropertyAssignment,
-  isStringLiteral,
-  isStringLiteralLikeNode,
-  isTypeReferenceNode,
-  isVariableStatement,
-  NodeFlags,
-  type PropertyName,
-  type SourceFile,
-  type Statement,
-  SyntaxKind,
-} from "tsrs/ast";
+import { Effect, Schema } from "effect";
+import { readConstantModule } from "#corpus/module/constant";
 import { ItemSourceSchema } from "#corpus/question-bank/item";
 import { validateItemLabels } from "#corpus/question-bank/label";
 
@@ -39,154 +13,20 @@ export class ItemSourceError extends Schema.TaggedError<
   sourcePath: CorpusSourcePathSchema,
 }) {}
 
-/** Reads one non-computed property name from a reviewed literal. */
-function readPropertyName(name: PropertyName) {
-  if (isIdentifier(name) || isStringLiteralLikeNode(name)) {
-    return name.text;
-  }
-}
-
-/** Reads one static authoring value without evaluating its module. */
-function readStaticValue(expression: Expression): unknown {
-  if (isStringLiteralLikeNode(expression)) {
-    return expression.text;
-  }
-  if (expression.kind === SyntaxKind.TrueKeyword) {
-    return true;
-  }
-  if (expression.kind === SyntaxKind.FalseKeyword) {
-    return false;
-  }
-  if (isNumericLiteral(expression)) {
-    return Number(expression.text);
-  }
-  if (isArrayLiteralExpression(expression)) {
-    const values = MutableList.make<unknown>();
-    for (const element of expression.elements) {
-      const value = readStaticValue(element);
-      if (value === undefined) {
-        return;
-      }
-      MutableList.append(values, value);
-    }
-    return MutableList.toArray(values);
-  }
-  if (!isObjectLiteralExpression(expression)) {
-    return;
-  }
-
-  const values = MutableHashMap.empty<string, unknown>();
-  for (const property of expression.properties) {
-    if (!isPropertyAssignment(property)) {
-      return;
-    }
-    const name = readPropertyName(property.name);
-    const value = readStaticValue(property.initializer);
-    if (
-      name === undefined ||
-      value === undefined ||
-      MutableHashMap.has(values, name)
-    ) {
-      return;
-    }
-    MutableHashMap.set(values, name, value);
-  }
-  return Rec.fromEntries(values);
-}
-
-/** Confirms the module's sole import is the authoring-only item type. */
-function isItemTypeImport(statement: Statement) {
-  if (!isImportDeclaration(statement) || statement.attributes !== undefined) {
-    return false;
-  }
-
-  const clause = statement.importClause;
-  if (
-    clause === undefined ||
-    clause.phaseModifier !== SyntaxKind.TypeKeyword ||
-    clause.name !== undefined
-  ) {
-    return false;
-  }
-
-  const bindings = clause.namedBindings;
-  if (
-    bindings === undefined ||
-    !isNamedImports(bindings) ||
-    bindings.elements.length !== 1
-  ) {
-    return false;
-  }
-
-  const [binding] = bindings.elements;
-  return (
-    binding?.propertyName === undefined &&
-    binding?.name.text === "ItemSource" &&
-    isStringLiteral(statement.moduleSpecifier) &&
-    statement.moduleSpecifier.text === "#corpus/question-bank/item"
-  );
-}
-
-/** Reads the sole typed `item` constant from the module. */
-function readItemDeclaration(statement: Statement) {
-  if (
-    !isVariableStatement(statement) ||
-    statement.declarationList.flags !== NodeFlags.Const ||
-    statement.declarationList.declarations.length !== 1
-  ) {
-    return;
-  }
-  const [declaration] = statement.declarationList.declarations;
-  if (
-    declaration === undefined ||
-    !isIdentifier(declaration.name) ||
-    declaration.name.text !== "item" ||
-    declaration.initializer === undefined ||
-    declaration.type === undefined ||
-    !isTypeReferenceNode(declaration.type) ||
-    !isIdentifier(declaration.type.typeName) ||
-    declaration.type.typeName.text !== "ItemSource"
-  ) {
-    return;
-  }
-  return readStaticValue(declaration.initializer);
-}
-
-/** Confirms the module exports only the reviewed `item` constant. */
-function isItemExport(statement: Statement) {
-  return (
-    isExportAssignment(statement) &&
-    !statement.isExportEquals &&
-    isIdentifier(statement.expression) &&
-    statement.expression.text === "item"
-  );
-}
-
-/** Reads the exact authoring module shape without evaluating its source. */
-function readItemModule(file: SourceFile) {
-  const [typeImport, declaration, exportAssignment] = file.statements;
-  if (
-    file.statements.length !== 3 ||
-    typeImport === undefined ||
-    declaration === undefined ||
-    exportAssignment === undefined ||
-    !isItemTypeImport(typeImport) ||
-    !isItemExport(exportAssignment)
-  ) {
-    return;
-  }
-  return readItemDeclaration(declaration);
-}
+/** The shape of every item module: `const item: ItemSource = { ... }`, default-exported. */
+const ITEM_MODULE = {
+  binding: "item",
+  typeModule: "#corpus/question-bank/item",
+  typeName: "ItemSource",
+} as const;
 
 /** Parses one item module through the native AST without evaluating code. */
 export const decodeItemSource = Effect.fn("AksaraCorpus.decodeItemSource")(
   function* (source: string, sourcePath: typeof CorpusSourcePathSchema.Type) {
-    const parser = yield* TypeScriptParser;
-    const input = yield* parser.inspect(
-      { fileName: sourcePath, source },
-      ({ diagnostics, sourceFile }) =>
-        diagnostics.length === 0 ? readItemModule(sourceFile) : undefined
-    );
+    const input = yield* readConstantModule(ITEM_MODULE, {
+      fileName: sourcePath,
+      source,
+    });
     if (input === undefined) {
       return yield* new ItemSourceError({ sourcePath });
     }

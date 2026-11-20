@@ -71,9 +71,23 @@ const selectedDocument = await Effect.runPromise(
     Effect.provide(NodeServices.layer)
   )
 );
+/** Every lesson and section module, which lesson discovery reads from the checkout. */
+const LESSON_MODULES = await runWithNodeServices(
+  Effect.gen(function* () {
+    const fileSystem = yield* FileSystem.FileSystem;
+    return yield* Effect.forEach(
+      [
+        "packages/corpus/material/lesson/*/*/source.ts",
+        "packages/corpus/material/lesson/*/*/*/section.ts",
+      ],
+      (pattern) => fileSystem.glob(pattern, { root: REPOSITORY_ROOT })
+    );
+  })
+);
 const selectedPaths = MutableHashSet.fromIterable([
   ...Arr.map(selectedDocument.files, ({ sourcePath }) => sourcePath),
   indonesianEntry.value.sourcePath,
+  ...Arr.flatten(LESSON_MODULES),
 ]);
 export const RENDERER_MANIFEST = await Effect.runPromise(
   createRendererManifest({
