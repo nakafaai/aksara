@@ -39,6 +39,7 @@ import { chanceVisuals } from "#contracts/visual/mathematics/chance";
 import { chartVisuals } from "#contracts/visual/mathematics/charts";
 import { functionVisuals } from "#contracts/visual/mathematics/function";
 import { geometryVisuals } from "#contracts/visual/mathematics/geometry";
+import { journeyVisuals } from "#contracts/visual/mathematics/journey";
 import { logicVisuals } from "#contracts/visual/mathematics/logic";
 import { networkVisuals } from "#contracts/visual/mathematics/network";
 import { numeralVisuals } from "#contracts/visual/mathematics/numeral";
@@ -102,6 +103,7 @@ export function visualCatalog<E>(rich: RichSlot<E>) {
     ...chartVisuals(rich),
     ...functionVisuals(rich),
     ...geometryVisuals(rich),
+    ...journeyVisuals(rich),
     ...logicVisuals(rich),
     ...networkVisuals(rich),
     ...numeralVisuals(rich),
