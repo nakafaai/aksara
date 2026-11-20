@@ -1,0 +1,334 @@
+export const metadata = {
+  title: "Metabolism and Enzyme Action for Form Four",
+  description:
+    "Tell anabolism from catabolism, see how enzymes lower activation energy, test the lock and key model and the factors that change an enzyme's rate.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2026-11-20",
+  subject: "Metabolism and Enzymes",
+};
+
+## Building Up and Breaking Down
+
+Your cells never take a break. They join small molecules into big ones and break big ones apart. All the chemical reactions in a cell are called **metabolism**. Joining molecules is **anabolism**, and it needs energy. Breaking molecules apart is **catabolism**, and it releases energy. Almost every step is sped up by an **enzyme**, a biological catalyst that living cells make. In the models here, you'll match sugars to enzymes, follow an enzyme out of a cell, heat it, fill its active sites and run milk through it.
+
+A growing muscle cell joins amino acids into proteins: that's anabolism. The same cell breaks down glucose in cellular respiration: that's catabolism. Watch which side the energy sits on:
+
+<MathContainer>
+<BlockMath math="\text{anabolism: amino acids} + \text{energy} \rightarrow \text{protein}" />
+<BlockMath math="\text{catabolism: glucose} + \mathrm{O_2} \rightarrow \mathrm{CO_2} + \mathrm{H_2O} + \text{energy}" />
+</MathContainer>
+
+**ATP carries the energy from catabolism to anabolism**.
+
+## Lower Hills for Reactions
+
+Why does a cell need enzymes? Picture pushing a ball over a small hill so it can roll down the other side. A substrate also needs enough energy to get over a top before it turns into products. That minimum energy is the **activation energy**. At body temperature, bumping molecules rarely get that much, so without enzymes most reactions would crawl. An enzyme offers **a path with a lower top**.
+
+In this graph, the flat line is the energy a substrate gets from collisions. Move slider <InlineMath math="k" /> and compare the energy each path still lacks.
+
+<MathVisual
+  title={<>Two Paths over an Energy Hill</>}
+  description={
+    <>
+      Across is how far the reaction has got, and up is energy in simple
+      units. The substrate starts at <InlineMath math="60" /> and the products
+      end at <InlineMath math="25" />.
+    </>
+  }
+  footer={<>Look at the flat line. Which path still has its top above it?</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 10 }, y: { min: 0, max: 150 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "k", min: 60, max: 150, value: 100, step: 5, label: "k" },
+    ],
+    objects: [
+      { id: "plain-rise", kind: "function", appearance: "secondary", formula: "60 + 70(sin(pi x/10))^2", domain: { min: 0, max: 5 } },
+      { id: "plain-fall", kind: "function", appearance: "secondary", formula: "25 + 105(cos(pi (x - 5)/10))^2", domain: { min: 5, max: 10 } },
+      { id: "enzyme-rise", kind: "function", appearance: "primary", formula: "60 + 30(sin(pi x/10))^2", domain: { min: 0, max: 5 } },
+      { id: "enzyme-fall", kind: "function", appearance: "primary", formula: "25 + 65(cos(pi (x - 5)/10))^2", domain: { min: 5, max: 10 } },
+      { id: "energy", kind: "function", appearance: "warning", formula: "k", domain: { min: 0, max: 10 } },
+      { id: "start", kind: "point", appearance: "highlight", at: { x: 0, y: 60 } },
+      { id: "end", kind: "point", appearance: "highlight", at: { x: 10, y: 25 } },
+    ],
+    labels: [
+      { key: "plain", objectId: "plain-rise", at: { x: 5, y: 130 }, placement: "above" },
+      { key: "enzyme", objectId: "enzyme-rise", at: { x: 5, y: 90 }, placement: "below" },
+      { key: "start", objectId: "start", at: { x: 0, y: 60 }, placement: "above-right" },
+      { key: "end", objectId: "end", at: { x: 10, y: 25 }, placement: "above-left" },
+    ],
+    readouts: [
+      { key: "plain-gap", formula: "max(0, 130 - k)" },
+      { key: "enzyme-gap", formula: "max(0, 90 - k)" },
+    ],
+  }}
+  labels={{
+    k: <>Energy from collisions <InlineMath math="k" /></>,
+    plain: <>Without an enzyme</>,
+    enzyme: <>With an enzyme</>,
+    start: <>Substrate</>,
+    end: <>Products</>,
+    "plain-gap": <>Energy still missing without the enzyme</>,
+    "enzyme-gap": <>Energy still missing with the enzyme</>,
+  }}
+/>
+
+The activation energy is the height of the top minus the substrate level:
+
+<MathContainer>
+<BlockMath math="\text{without the enzyme: } 130 - 60 = 70\text{ units}" />
+<BlockMath math="\text{with the enzyme: } 90 - 60 = 30\text{ units}" />
+<BlockMath math="\text{energy released: } 60 - 25 = 35\text{ units}" />
+</MathContainer>
+
+Both paths start at <InlineMath math="60" /> and end at <InlineMath math="25" />, so **the energy released stays the same**. The enzyme only lowers the top, without adding energy or changing the products.
+
+Most enzymes are proteins, but **not every enzyme is a protein**. Inside a ribosome, the enzyme that joins amino acids during protein synthesis is part of the ribosomal RNA.
+
+## Shape Match at the Active Site
+
+An enzyme does its work in one small pocket, the **active site**. Its shape matches one kind of substrate only, like one key for one padlock. That's the **lock and key hypothesis**. The substrate slips in and forms an enzyme-substrate complex, a bond breaks, the products leave, and the enzyme takes the next substrate. Lactase, for example, breaks down lactose, the sugar in milk:
+
+<BlockMath math="\text{lactose} + \mathrm{H_2O} \xrightarrow{\text{lactase}} \text{glucose} + \text{galactose}" />
+
+Later research showed the active site isn't as stiff as a metal padlock. As the substrate enters, the active site shifts a little and grips the substrate tightly. That's the **induced fit model**.
+
+<ActiveSiteLab
+  title={<>Active Sites of Lactase, Sucrase and Maltase</>}
+  description={
+    <>
+      Three enzymes and three sugars, each sugar made of two units. Pick an
+      enzyme and a substrate, then see whether the substrate fits the active
+      site.
+    </>
+  }
+  footer={<>Watch the pocket on the enzyme. Does its shape match the sugar ring going in?</>}
+  enzymes={["lactase", "sucrase", "maltase"]}
+  substrates={["lactose", "sucrose", "maltose"]}
+  models={["lockKey", "inducedFit"]}
+  labels={{
+    enzyme: "Enzyme",
+    enzymes: { lactase: "Lactase", sucrase: "Sucrase", maltase: "Maltase" },
+    substrate: "Substrate",
+    substrates: { lactose: "Lactose", sucrose: "Sucrose", maltose: "Maltose" },
+    model: "Model",
+    models: { lockKey: "Lock and key", inducedFit: "Induced fit" },
+    fits: <>Substrate fits the active site</>,
+    yes: <>yes</>,
+    no: <>no</>,
+    products: <>Products</>,
+    sugars: { glucose: "Glucose", galactose: "Galactose", fructose: "Fructose" },
+    reused: <>Substrates this one enzyme has broken down</>,
+    parts: { site: "Active site", complex: "Enzyme-substrate complex", water: "Water" },
+    view: "One enzyme molecule with its active site and sugar molecules around it",
+  }}
+/>
+
+The model shows the general properties of enzymes. An enzyme **acts on one specific substrate** and comes out unchanged, so it's used again and again and a cell needs only a little. Many enzyme reactions are reversible. Some enzymes need a helper: a cofactor is an inorganic ion such as magnesium, and a coenzyme is an organic molecule, most often made from a vitamin.
+
+Most enzyme names come from **adding -ase to the substrate's name**: maltose gives maltase and lipid gives lipase. The IUBMB system also gives every enzyme a number and a systematic name, such as *lactose galactohydrolase* for lactase, which names the substrate and the type of reaction.
+
+Try this before reading on. An enzyme breaks down lactose. What's its name, and can it break down sucrose too?
+
+It's **lactase**. Lactase recognises the galactose part of lactose, but sucrose is made of glucose and fructose. So **sucrose doesn't fit lactase's active site** and no complex forms. Check it in the model with lactase and sucrose.
+
+## Enzymes That Stay or Leave
+
+Ribosomes build protein enzymes, but enzymes work in different places. An **intracellular enzyme** works inside the cell that made it, like the enzymes of glycolysis. Free ribosomes build them, and they stay in the cytoplasm to work.
+
+An **extracellular enzyme** is secreted to work outside the cell, like the enzymes in pancreatic juice from the acinar cells of the pancreas. It passes through several [organelles of the cell](/en/subjects/biology/cell-and-organisation/cell-structure-and-specialised-cells). Ribosomes on the rough endoplasmic reticulum build it into the reticulum. A transport vesicle carries it to the Golgi apparatus, which modifies it and packs it into a secretory vesicle. The secretory vesicle fuses with the plasma membrane and releases the enzyme by **exocytosis**.
+
+<EnzymeSecretionLab
+  title={<>An Enzyme's Path from Ribosome to Workplace</>}
+  description={
+    <>
+      One acinar cell of the pancreas. Choose an enzyme that stays in the cell
+      or one that's secreted, then play its path step by step.
+    </>
+  }
+  footer={<>Follow the coloured dot from the ribosome. Which organelles does it pass on the way out?</>}
+  routes={["intracellular", "extracellular"]}
+  labels={{
+    route: "Kind of enzyme",
+    routes: { intracellular: "Intracellular enzyme", extracellular: "Extracellular enzyme" },
+    step: <>Step now</>,
+    steps: {
+      nucleus: <>mRNA carries the instructions out of the nucleus</>,
+      freeRibosome: <>A free ribosome builds the enzyme</>,
+      boundRibosome: <>A ribosome on the rough endoplasmic reticulum builds the enzyme</>,
+      reticulum: <>The enzyme folds inside the rough endoplasmic reticulum</>,
+      transport: <>A transport vesicle carries the enzyme to the Golgi apparatus</>,
+      golgi: <>The Golgi apparatus modifies and packs the enzyme</>,
+      secretory: <>A secretory vesicle moves to the plasma membrane</>,
+      exocytosis: <>Exocytosis releases the enzyme into the duct</>,
+      cytoplasm: <>The enzyme stays and works in the cytoplasm</>,
+    },
+    example: <>Example enzyme</>,
+    examples: { intracellular: <>Glycolysis enzymes</>, extracellular: <>Pancreatic amylase</> },
+    place: <>Where the enzyme works</>,
+    places: { intracellular: <>The cytoplasm of this cell</>, extracellular: <>The small intestine, after the pancreatic duct</> },
+    parts: {
+      nucleus: "Nucleus",
+      ribosome: "Ribosome",
+      reticulum: "Rough endoplasmic reticulum",
+      golgi: "Golgi apparatus",
+      vesicle: "Secretory vesicle",
+      membrane: "Plasma membrane",
+      duct: "Duct",
+    },
+    view: "One acinar cell of the pancreas opened up to show its organelles",
+  }}
+/>
+
+## Conditions That Set the Rate
+
+The rate of reaction is how fast the substrate gets used up or the products form. Temperature and pH change **the shape of the active site**. Substrate concentration and enzyme concentration change how many active sites are working.
+
+### Best Temperature and pH
+
+Warm a solution and its molecules move faster, because **their kinetic energy goes up**. More effective collisions happen, meaning substrates hit the active site the right way, so the rate rises. Most enzymes in your body work fastest near <InlineMath math="37^\circ\text{C}" />, their optimum temperature.
+
+Go hotter, and the bonds holding the enzyme's shape break. The active site changes shape, the substrate no longer fits, and the enzyme is **denatured**. Cooling it back down doesn't bring the active site back. Cold is different: the enzyme just slows down, and it works again once it's warmed up.
+
+The wrong pH changes the charges on the active site, so its shape changes and the enzyme can be denatured. Each enzyme has **an optimum pH that matches where it works**. Pepsin in the acidic stomach is most active near pH <InlineMath math="2" />, while salivary amylase works in your nearly neutral mouth, as you see in [digestion of food](/en/subjects/biology/digestive-system/digestion-and-absorption).
+
+<DenatureLab
+  title={<>Amylase at Different Temperatures and Pepsin at Different pH</>}
+  description={
+    <>
+      Amylase digests starch in a water bath, and iodine on a spotting tile
+      shows the starch left. Pepsin digests a cloudy albumen suspension.
+      Change the temperature or the pH, then look at the active site through
+      the lens.
+    </>
+  }
+  footer={<>Go back to the best conditions, then check the active site in the lens.</>}
+  enzymes={["amylase", "pepsin"]}
+  temperature={{ min: 0, max: 80, value: 20 }}
+  ph={{ min: 1, max: 13, value: 7 }}
+  labels={{
+    enzyme: "Experiment",
+    enzymes: { amylase: "Amylase and starch", pepsin: "Pepsin and albumen" },
+    temperature: "Water bath temperature",
+    ph: "pH of the solution",
+    restore: "Back to the best conditions",
+    test: <>Test now</>,
+    tests: {
+      starch: <>iodine blue-black, starch still there</>,
+      noStarch: <>iodine yellowish-brown, starch all gone</>,
+      cloudy: <>suspension still cloudy</>,
+      clear: <>suspension now clear</>,
+    },
+    endpoint: <>Time until the substrate is used up</>,
+    never: <>never reached</>,
+    rate: <>Relative rate of reaction</>,
+    active: <>Enzymes with an intact active site</>,
+    collisions: <>Effective collisions per second</>,
+    time: "Time",
+    parts: {
+      bath: "Water bath",
+      tube: "Test tube",
+      tile: "Spotting tile",
+      thermometer: "Thermometer",
+      lens: "Lens on the active site",
+    },
+    view: "A water bath with a test tube, a spotting tile with iodine and a lens on one enzyme",
+  }}
+/>
+
+Now plan a fair test to find pepsin's best pH. Pepsin digests a cloudy albumen suspension, cooked egg white in water, until it turns clear. Name the variables and predict the result.
+
+The manipulated variable is pH, for example pH <InlineMath math="2" />, <InlineMath math="7" /> and <InlineMath math="10" />. The responding variable is **the time until the suspension turns clear**. The fixed variables are the temperature, <InlineMath math="37^\circ\text{C}" />, and the volume and concentration of the pepsin and the suspension. The pH <InlineMath math="2" /> tube clears fastest. The pH <InlineMath math="7" /> and pH <InlineMath math="10" /> tubes stay cloudy, because pepsin's active site no longer has the right shape.
+
+### Every Active Site Busy
+
+Add substrate, and more substrate bumps into active sites, so the rate goes up. Once **every active site is busy**, extra substrate has to wait its turn, so the rate stops rising at its maximum. Now enzyme concentration is the limiting factor. Add enzyme, and the rate climbs again, as long as there's enough substrate.
+
+<EnzymeSaturationLab
+  title={<>Active Sites Filling Up</>}
+  description={
+    <>
+      Enzyme molecules float among substrate molecules. Add substrate or add
+      enzyme, then compare how many active sites are busy with the rate of
+      reaction.
+    </>
+  }
+  footer={<>Count the empty active sites. If none are empty, what can extra substrate do?</>}
+  enzymes={{ min: 1, max: 20, value: 10 }}
+  substrates={{ min: 0, max: 200, value: 20 }}
+  turnover={2}
+  labels={{
+    enzymes: "Enzyme molecules",
+    substrates: "Substrate molecules",
+    busy: <>Busy active sites</>,
+    rate: <>Substrates broken down per second</>,
+    limiting: <>Limiting factor</>,
+    limits: { substrate: <>substrate concentration</>, enzyme: <>enzyme concentration</> },
+    curve: <>Rate against substrate concentration</>,
+    time: "Time",
+    parts: { enzyme: "Enzyme", substrate: "Substrate", product: "Product" },
+    view: "Enzyme and substrate molecules in solution, seen close up",
+  }}
+/>
+
+In the model, each busy active site finishes <InlineMath math="2" /> substrates a second. Work out the maximum rate for <InlineMath math="10" /> enzyme molecules, then for <InlineMath math="20" />. If only <InlineMath math="4" /> substrate molecules are around at a time, what's the highest rate you can get?
+
+When every active site is busy, the rate is the number of active sites times <InlineMath math="2" />:
+
+<MathContainer>
+<BlockMath math="10 \times 2 = 20 \text{ substrates per second}" />
+<BlockMath math="20 \times 2 = 40 \text{ substrates per second}" />
+</MathContainer>
+
+Doubling the substrate leaves the rate at <InlineMath math="20" />, because no active site is empty, but doubling the enzyme takes it to <InlineMath math="40" />. With <InlineMath math="4" /> substrates, at most <InlineMath math="4" /> active sites can be busy:
+
+<BlockMath math="4 \times 2 = 8 \text{ substrates per second}" />
+
+Now **the substrate is the limiting factor**. The model shows values just under <InlineMath math="20" /> and <InlineMath math="8" />, because each active site sits empty for a moment between two substrates.
+
+## Enzymes in Food and Factories
+
+Factories make enzymes in bulk, mostly from microorganisms, and pick each enzyme by **the substrate that has to be broken down**:
+
+| Field | Enzyme | What the enzyme does |
+| :--- | :--- | :--- |
+| Biological detergent | Protease, lipase, amylase | Removes protein, fat and starch stains from fabric |
+| Fish processing | Protease | Removes fish skin without damaging the flesh |
+| Leather making | Protease | Removes hair from animal hides |
+| Medicine | Protease | Cleans dead skin from burns |
+| Lactose-free milk | Lactase | Breaks lactose into glucose and galactose |
+| Fruit juice | Pectinase | Breaks down pectin in cell walls so more juice comes out |
+
+Enzymes are expensive, so factories reuse them with enzyme immobilisation. The enzyme is trapped in an insoluble solid, such as alginate beads, and is then called an **immobilised enzyme**. It stays put, separates easily from the product and is often more stable to changes in temperature and pH.
+
+<LactaseColumnLab
+  title={<>Milk Flowing through Lactase Beads</>}
+  description={
+    <>
+      Lactase is trapped in alginate beads inside a column. Milk goes in at the
+      top and comes out at the bottom. Change the flow rate and compare with
+      lactase stirred straight into the milk.
+    </>
+  }
+  footer={<>Watch the beads in the column. Do they leave with the milk?</>}
+  methods={["immobilised", "free"]}
+  flow={{ min: 1, max: 10, value: 5 }}
+  labels={{
+    method: "Method",
+    methods: { immobilised: "Lactase in beads", free: "Lactase stirred into milk" },
+    flow: "Milk flow rate",
+    lactose: <>Lactose left in the milk coming out</>,
+    glucose: <>Glucose test strip</>,
+    positive: <>glucose present</>,
+    negative: <>no glucose</>,
+    enzyme: <>Lactase in the milk coming out</>,
+    none: <>none</>,
+    present: <>present</>,
+    batches: <>Batches of milk treated by the same lactase</>,
+    parts: { column: "Column", beads: "Alginate beads", milk: "Milk", strip: "Glucose test strip" },
+    view: "A glass column of alginate beads with milk flowing through it",
+  }}
+/>
+
+Run the milk slowly and it spends longer with the lactase, so **more lactose gets broken down**. A glucose test strip proves it, because the strip picks up the glucose that forms and doesn't react with lactose.

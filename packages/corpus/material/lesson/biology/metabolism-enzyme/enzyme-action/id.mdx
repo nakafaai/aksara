@@ -1,0 +1,334 @@
+export const metadata = {
+  title: "Metabolisme dan Cara Kerja Enzim",
+  description:
+    "Bedakan anabolisme dan katabolisme, pahami cara enzim menurunkan energi aktivasi, teori gembok dan kunci, serta faktor yang mengubah laju reaksi enzim.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2026-11-20",
+  subject: "Metabolisme dan Enzim",
+};
+
+## Menyusun dan Memecah Molekul
+
+Sel kamu tidak pernah libur. Kadang sel menyambung molekul kecil menjadi molekul besar, kadang sel memecah molekul besar. Seluruh reaksi kimia di dalam sel itu disebut **metabolisme**. Menyusun molekul disebut **anabolisme**, dan anabolisme butuh energi. Memecah molekul disebut **katabolisme**, dan katabolisme melepaskan energi. Hampir setiap langkahnya dipercepat oleh **enzim**, yaitu biokatalisator yang dibuat oleh sel hidup. Lewat beberapa model, kamu mencocokkan gula dengan enzim, mengikuti enzim keluar dari sel, memanaskannya, memenuhi sisi aktifnya, dan mengalirkan susu melewatinya.
+
+Sel otot yang sedang tumbuh menyambung asam amino menjadi protein, itu anabolisme. Sel yang sama memecah glukosa dalam respirasi sel, itu katabolisme. Perhatikan di sisi mana energinya berada:
+
+<MathContainer>
+<BlockMath math="\text{anabolisme: asam amino} + \text{energi} \rightarrow \text{protein}" />
+<BlockMath math="\text{katabolisme: glukosa} + \mathrm{O_2} \rightarrow \mathrm{CO_2} + \mathrm{H_2O} + \text{energi}" />
+</MathContainer>
+
+**ATP membawa energi dari katabolisme ke anabolisme**.
+
+## Bukit Energi Lebih Rendah
+
+Kenapa sel butuh enzim? Bayangkan kamu mendorong bola ke puncak bukit kecil supaya bola itu bisa menggelinding turun di sisi seberangnya. Substrat juga butuh energi yang cukup untuk melewati puncak sebelum berubah menjadi produk. Energi minimum itu disebut **energi aktivasi**. Pada suhu tubuh, tumbukan antarmolekul jarang memberi energi sebesar itu, jadi tanpa enzim reaksi berjalan sangat lambat. Enzim menyediakan **jalur dengan puncak yang lebih rendah**.
+
+Di grafik ini, garis mendatar adalah energi yang didapat substrat dari tumbukan. Geser penggeser <InlineMath math="k" /> dan bandingkan energi yang masih kurang pada kedua jalur.
+
+<MathVisual
+  title={<>Dua Jalur Melewati Bukit Energi</>}
+  description={
+    <>
+      Sumbu mendatar menunjukkan jalannya reaksi dan sumbu tegak menunjukkan
+      energi dalam satuan sederhana. Substrat mulai di{" "}
+      <InlineMath math="60" /> dan produk berakhir di{" "}
+      <InlineMath math="25" />.
+    </>
+  }
+  footer={<>Lihat garis mendatarnya. Puncak jalur mana yang masih ada di atas garis itu?</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 10 }, y: { min: 0, max: 150 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "k", min: 60, max: 150, value: 100, step: 5, label: "k" },
+    ],
+    objects: [
+      { id: "plain-rise", kind: "function", appearance: "secondary", formula: "60 + 70(sin(pi x/10))^2", domain: { min: 0, max: 5 } },
+      { id: "plain-fall", kind: "function", appearance: "secondary", formula: "25 + 105(cos(pi (x - 5)/10))^2", domain: { min: 5, max: 10 } },
+      { id: "enzyme-rise", kind: "function", appearance: "primary", formula: "60 + 30(sin(pi x/10))^2", domain: { min: 0, max: 5 } },
+      { id: "enzyme-fall", kind: "function", appearance: "primary", formula: "25 + 65(cos(pi (x - 5)/10))^2", domain: { min: 5, max: 10 } },
+      { id: "energy", kind: "function", appearance: "warning", formula: "k", domain: { min: 0, max: 10 } },
+      { id: "start", kind: "point", appearance: "highlight", at: { x: 0, y: 60 } },
+      { id: "end", kind: "point", appearance: "highlight", at: { x: 10, y: 25 } },
+    ],
+    labels: [
+      { key: "plain", objectId: "plain-rise", at: { x: 5, y: 130 }, placement: "above" },
+      { key: "enzyme", objectId: "enzyme-rise", at: { x: 5, y: 90 }, placement: "below" },
+      { key: "start", objectId: "start", at: { x: 0, y: 60 }, placement: "above-right" },
+      { key: "end", objectId: "end", at: { x: 10, y: 25 }, placement: "above-left" },
+    ],
+    readouts: [
+      { key: "plain-gap", formula: "max(0, 130 - k)" },
+      { key: "enzyme-gap", formula: "max(0, 90 - k)" },
+    ],
+  }}
+  labels={{
+    k: <>Energi dari tumbukan <InlineMath math="k" /></>,
+    plain: <>Tanpa enzim</>,
+    enzyme: <>Dengan enzim</>,
+    start: <>Substrat</>,
+    end: <>Produk</>,
+    "plain-gap": <>Energi yang masih kurang tanpa enzim</>,
+    "enzyme-gap": <>Energi yang masih kurang dengan enzim</>,
+  }}
+/>
+
+Energi aktivasi adalah tinggi puncak dikurangi tingkat energi substrat:
+
+<MathContainer>
+<BlockMath math="\text{tanpa enzim: } 130 - 60 = 70\text{ satuan}" />
+<BlockMath math="\text{dengan enzim: } 90 - 60 = 30\text{ satuan}" />
+<BlockMath math="\text{energi yang dilepaskan: } 60 - 25 = 35\text{ satuan}" />
+</MathContainer>
+
+Kedua jalur mulai di <InlineMath math="60" /> dan berakhir di <InlineMath math="25" />, jadi **energi yang dilepaskan tetap sama**. Enzim hanya menurunkan puncaknya, tanpa menambah energi atau mengubah produk.
+
+Sebagian besar enzim adalah protein, tetapi **tidak semua enzim berupa protein**. Di dalam ribosom, enzim yang menyambung asam amino saat sintesis protein adalah bagian dari RNA ribosom.
+
+## Kecocokan Bentuk Sisi Aktif
+
+Hanya satu lekukan kecil pada enzim yang bekerja, yaitu **sisi aktif**. Bentuknya cocok dengan satu jenis substrat saja, seperti satu anak kunci untuk satu gembok. Inilah **teori gembok dan kunci**. Substrat masuk ke sisi aktif dan membentuk kompleks enzim-substrat. Ikatan pada substrat diputus, produk dilepas, lalu enzim siap menerima substrat berikutnya. Misalnya, laktase memecah laktosa, gula pada susu:
+
+<BlockMath math="\text{laktosa} + \mathrm{H_2O} \xrightarrow{\text{laktase}} \text{glukosa} + \text{galaktosa}" />
+
+Penelitian yang lebih baru menunjukkan sisi aktif tidak sekaku gembok besi. Saat substrat masuk, sisi aktif sedikit berubah bentuk dan menjepit substrat lebih erat. Penjelasan ini disebut **teori kecocokan induksi**.
+
+<ActiveSiteLab
+  title={<>Sisi Aktif Laktase, Sukrase, dan Maltase</>}
+  description={
+    <>
+      Tiga enzim dan tiga gula yang masing-masing tersusun dari dua unit.
+      Pilih enzim dan substrat, lalu lihat apakah substrat itu cocok dengan
+      sisi aktifnya.
+    </>
+  }
+  footer={<>Perhatikan lekukan pada enzim. Apakah bentuknya cocok dengan cincin gula yang masuk?</>}
+  enzymes={["lactase", "sucrase", "maltase"]}
+  substrates={["lactose", "sucrose", "maltose"]}
+  models={["lockKey", "inducedFit"]}
+  labels={{
+    enzyme: "Enzim",
+    enzymes: { lactase: "Laktase", sucrase: "Sukrase", maltase: "Maltase" },
+    substrate: "Substrat",
+    substrates: { lactose: "Laktosa", sucrose: "Sukrosa", maltose: "Maltosa" },
+    model: "Teori",
+    models: { lockKey: "Gembok dan kunci", inducedFit: "Kecocokan induksi" },
+    fits: <>Substrat cocok dengan sisi aktif</>,
+    yes: <>ya</>,
+    no: <>tidak</>,
+    products: <>Produk</>,
+    sugars: { glucose: "Glukosa", galactose: "Galaktosa", fructose: "Fruktosa" },
+    reused: <>Substrat yang sudah dipecah oleh enzim ini</>,
+    parts: { site: "Sisi aktif", complex: "Kompleks enzim-substrat", water: "Air" },
+    view: "Satu molekul enzim dengan sisi aktifnya dan molekul gula di sekitarnya",
+  }}
+/>
+
+Model itu memperlihatkan sifat umum enzim. Enzim **bekerja spesifik** dan tidak berubah setelah reaksi, jadi molekul yang sama dipakai berulang kali dan sel hanya butuh sedikit. Banyak reaksi enzim bersifat bolak-balik. Sebagian enzim butuh pembantu: kofaktor berupa ion anorganik seperti ion magnesium, dan koenzim berupa molekul organik yang kebanyakan berasal dari vitamin.
+
+Nama enzim umumnya dibentuk dengan **menambahkan akhiran -ase pada nama substratnya**: maltosa menjadi maltase dan lipid menjadi lipase. Sistem IUBMB juga memberi setiap enzim nomor dan nama sistematis, misalnya *lactose galactohydrolase* untuk laktase, yang menyebut substrat sekaligus jenis reaksinya.
+
+Coba jawab dulu. Sebuah enzim memecah laktosa. Apa namanya, dan bisakah enzim itu memecah sukrosa?
+
+Namanya **laktase**. Laktase mengenali bagian galaktosa pada laktosa, sedangkan sukrosa tersusun dari glukosa dan fruktosa. Jadi **sukrosa tidak cocok dengan sisi aktif laktase**, kompleks enzim-substrat tidak terbentuk, dan tidak ada produk. Cek di model dengan memilih laktase dan sukrosa.
+
+## Enzim Tinggal atau Keluar
+
+Enzim protein dibuat oleh ribosom, tetapi tempat kerjanya berbeda. **Enzim intraseluler** bekerja di dalam sel yang membuatnya, misalnya enzim glikolisis. Enzim ini dibuat oleh ribosom bebas dan tetap bekerja di sitoplasma.
+
+**Enzim ekstraseluler** disekresikan untuk bekerja di luar sel, misalnya enzim dalam getah pankreas dari sel asinus pankreas. Enzim ini melewati beberapa [organel sel](/id/materi/biologi/sel-dan-organisasi/struktur-sel-dan-sel-khusus). Ribosom pada retikulum endoplasma kasar membuatnya langsung ke dalam retikulum itu. Vesikel transpor membawanya ke badan Golgi, yang memodifikasi dan mengemasnya ke dalam vesikel sekretori. Vesikel sekretori menyatu dengan membran plasma dan melepaskan enzim lewat **eksositosis**.
+
+<EnzymeSecretionLab
+  title={<>Jalan Enzim dari Ribosom ke Tempat Kerjanya</>}
+  description={
+    <>
+      Satu sel asinus pankreas. Pilih enzim yang tetap di dalam sel atau
+      enzim yang disekresikan, lalu putar jalannya langkah demi langkah.
+    </>
+  }
+  footer={<>Ikuti titik berwarna dari ribosom. Organel mana saja yang dilewatinya sebelum keluar?</>}
+  routes={["intracellular", "extracellular"]}
+  labels={{
+    route: "Jenis enzim",
+    routes: { intracellular: "Enzim intraseluler", extracellular: "Enzim ekstraseluler" },
+    step: <>Langkah sekarang</>,
+    steps: {
+      nucleus: <>mRNA membawa instruksi keluar dari nukleus</>,
+      freeRibosome: <>Ribosom bebas membuat enzim</>,
+      boundRibosome: <>Ribosom pada retikulum endoplasma kasar membuat enzim</>,
+      reticulum: <>Enzim terlipat di dalam retikulum endoplasma kasar</>,
+      transport: <>Vesikel transpor membawa enzim ke badan Golgi</>,
+      golgi: <>Badan Golgi memodifikasi dan mengemas enzim</>,
+      secretory: <>Vesikel sekretori bergerak ke membran plasma</>,
+      exocytosis: <>Eksositosis melepaskan enzim ke saluran</>,
+      cytoplasm: <>Enzim tetap bekerja di sitoplasma</>,
+    },
+    example: <>Contoh enzim</>,
+    examples: { intracellular: <>Enzim glikolisis</>, extracellular: <>Amilase pankreas</> },
+    place: <>Tempat enzim bekerja</>,
+    places: { intracellular: <>Sitoplasma sel ini</>, extracellular: <>Usus halus, setelah melewati saluran pankreas</> },
+    parts: {
+      nucleus: "Nukleus",
+      ribosome: "Ribosom",
+      reticulum: "Retikulum endoplasma kasar",
+      golgi: "Badan Golgi",
+      vesicle: "Vesikel sekretori",
+      membrane: "Membran plasma",
+      duct: "Saluran",
+    },
+    view: "Satu sel asinus pankreas yang dibuka untuk menunjukkan organelnya",
+  }}
+/>
+
+## Kondisi yang Menentukan Laju
+
+Laju reaksi adalah seberapa cepat substrat habis atau produk terbentuk. Suhu dan pH mengubah **bentuk sisi aktif**. Konsentrasi substrat dan konsentrasi enzim mengubah banyaknya sisi aktif yang sedang bekerja.
+
+### Suhu dan pH Terbaik
+
+Panaskan larutan, dan molekulnya bergerak lebih cepat karena **energi kinetiknya naik**. Tumbukan efektif makin sering terjadi, yaitu substrat menabrak sisi aktif dengan posisi yang tepat, jadi laju naik. Sebagian besar enzim di tubuhmu bekerja paling cepat di sekitar <InlineMath math="37^\circ\text{C}" />, suhu optimumnya.
+
+Kalau lebih panas lagi, ikatan yang menjaga bentuk enzim putus. Sisi aktif berubah bentuk, substrat tidak muat lagi, dan enzim mengalami **denaturasi**. Mendinginkannya kembali tidak memulihkan sisi aktif itu. Suhu dingin berbeda: enzim hanya melambat, dan bekerja lagi setelah dihangatkan.
+
+pH yang tidak sesuai mengubah muatan pada sisi aktif, jadi bentuknya berubah dan enzim bisa terdenaturasi. Setiap enzim punya **pH optimum yang sesuai dengan tempat kerjanya**. Pepsin di lambung yang asam paling aktif di sekitar pH <InlineMath math="2" />, sedangkan amilase ludah bekerja di mulut yang hampir netral, seperti pada [pencernaan makanan](/id/materi/biologi/sistem-pencernaan/pencernaan-dan-penyerapan).
+
+<DenatureLab
+  title={<>Amilase pada Berbagai Suhu dan Pepsin pada Berbagai pH</>}
+  description={
+    <>
+      Amilase mencerna amilum di penangas air, dan iodin di pelat tetes
+      menunjukkan amilum yang tersisa. Pepsin mencerna suspensi albumin yang
+      keruh. Ubah suhu atau pH, lalu lihat sisi aktif lewat lensa.
+    </>
+  }
+  footer={<>Kembalikan ke kondisi terbaik, lalu periksa sisi aktif di lensa.</>}
+  enzymes={["amylase", "pepsin"]}
+  temperature={{ min: 0, max: 80, value: 20 }}
+  ph={{ min: 1, max: 13, value: 7 }}
+  labels={{
+    enzyme: "Percobaan",
+    enzymes: { amylase: "Amilase dan amilum", pepsin: "Pepsin dan albumin" },
+    temperature: "Suhu penangas air",
+    ph: "pH larutan",
+    restore: "Kembali ke kondisi terbaik",
+    test: <>Hasil uji sekarang</>,
+    tests: {
+      starch: <>iodin biru kehitaman, amilum masih ada</>,
+      noStarch: <>iodin cokelat kekuningan, amilum sudah habis</>,
+      cloudy: <>suspensi masih keruh</>,
+      clear: <>suspensi sudah jernih</>,
+    },
+    endpoint: <>Waktu sampai substrat habis</>,
+    never: <>tidak tercapai</>,
+    rate: <>Laju reaksi relatif</>,
+    active: <>Enzim dengan sisi aktif yang masih utuh</>,
+    collisions: <>Tumbukan efektif per detik</>,
+    time: "Waktu",
+    parts: {
+      bath: "Penangas air",
+      tube: "Tabung reaksi",
+      tile: "Pelat tetes",
+      thermometer: "Termometer",
+      lens: "Lensa pada sisi aktif",
+    },
+    view: "Penangas air dengan tabung reaksi, pelat tetes berisi iodin, dan lensa pada satu enzim",
+  }}
+/>
+
+Sekarang rancang uji yang adil untuk mencari pH terbaik bagi pepsin. Pepsin mencerna suspensi albumin, yaitu putih telur rebus dalam air yang terlihat keruh, sampai suspensi itu jernih. Sebutkan variabelnya dan ramalkan hasilnya.
+
+Variabel bebasnya adalah pH, misalnya pH <InlineMath math="2" />, <InlineMath math="7" />, dan <InlineMath math="10" />. Variabel terikatnya adalah **waktu sampai suspensi menjadi jernih**. Variabel kontrolnya adalah suhu <InlineMath math="37^\circ\text{C}" /> serta volume dan konsentrasi pepsin dan suspensi. Tabung pH <InlineMath math="2" /> paling cepat jernih. Tabung pH <InlineMath math="7" /> dan <InlineMath math="10" /> tetap keruh karena sisi aktif pepsin tidak lagi berbentuk pas.
+
+### Semua Sisi Aktif Sibuk
+
+Tambahkan substrat, dan makin banyak substrat yang menabrak sisi aktif, jadi laju naik. Begitu **semua sisi aktif sudah sibuk**, substrat tambahan harus antre, jadi laju berhenti naik di laju maksimum. Sekarang konsentrasi enzim menjadi faktor pembatas. Tambahkan enzim, dan laju naik lagi selama substratnya cukup.
+
+<EnzymeSaturationLab
+  title={<>Sisi Aktif yang Mulai Penuh</>}
+  description={
+    <>
+      Molekul enzim melayang di antara molekul substrat. Tambahkan substrat
+      atau enzim, lalu bandingkan jumlah sisi aktif yang sibuk dengan laju
+      reaksinya.
+    </>
+  }
+  footer={<>Hitung sisi aktif yang kosong. Kalau semuanya terisi, apa gunanya substrat tambahan?</>}
+  enzymes={{ min: 1, max: 20, value: 10 }}
+  substrates={{ min: 0, max: 200, value: 20 }}
+  turnover={2}
+  labels={{
+    enzymes: "Molekul enzim",
+    substrates: "Molekul substrat",
+    busy: <>Sisi aktif yang sibuk</>,
+    rate: <>Substrat yang dipecah per detik</>,
+    limiting: <>Faktor pembatas</>,
+    limits: { substrate: <>konsentrasi substrat</>, enzyme: <>konsentrasi enzim</> },
+    curve: <>Laju terhadap konsentrasi substrat</>,
+    time: "Waktu",
+    parts: { enzyme: "Enzim", substrate: "Substrat", product: "Produk" },
+    view: "Molekul enzim dan substrat di dalam larutan, dilihat dari dekat",
+  }}
+/>
+
+Di model ini, setiap sisi aktif yang sibuk menyelesaikan <InlineMath math="2" /> substrat per detik. Hitung laju maksimum untuk <InlineMath math="10" /> molekul enzim, lalu untuk <InlineMath math="20" />. Kalau hanya ada <InlineMath math="4" /> substrat pada satu waktu, berapa laju tertingginya?
+
+Saat semua sisi aktif sibuk, lajunya sama dengan jumlah sisi aktif dikali <InlineMath math="2" />:
+
+<MathContainer>
+<BlockMath math="10 \times 2 = 20 \text{ substrat per detik}" />
+<BlockMath math="20 \times 2 = 40 \text{ substrat per detik}" />
+</MathContainer>
+
+Menggandakan substrat tidak menaikkan laju <InlineMath math="20" /> karena tidak ada sisi aktif yang kosong, tetapi menggandakan enzim membuatnya menjadi <InlineMath math="40" />. Dengan <InlineMath math="4" /> substrat, paling banyak <InlineMath math="4" /> sisi aktif yang sibuk:
+
+<BlockMath math="4 \times 2 = 8 \text{ substrat per detik}" />
+
+Sekarang **substrat yang menjadi faktor pembatas**. Model menunjukkan nilai sedikit di bawah <InlineMath math="20" /> dan <InlineMath math="8" />, karena sisi aktif sempat kosong sebentar di antara dua substrat.
+
+## Enzim di Dapur dan Pabrik
+
+Pabrik membuat enzim dalam jumlah besar, kebanyakan dari mikroorganisme, dan memilih enzim berdasarkan **substrat yang harus dipecah**:
+
+| Bidang | Enzim | Kerja enzim |
+| :--- | :--- | :--- |
+| Deterjen biologis | Protease, lipase, amilase | Mengangkat noda protein, lemak, dan amilum dari kain |
+| Pengolahan ikan | Protease | Melepas kulit ikan tanpa merusak dagingnya |
+| Penyamakan kulit | Protease | Merontokkan bulu dari kulit hewan |
+| Kedokteran | Protease | Membersihkan jaringan kulit mati pada luka bakar |
+| Susu bebas laktosa | Laktase | Memecah laktosa menjadi glukosa dan galaktosa |
+| Jus buah | Pektinase | Memecah pektin dinding sel supaya jus yang keluar lebih banyak |
+
+Enzim itu mahal, jadi pabrik memakainya berulang kali lewat imobilisasi enzim. Enzim dijebak di dalam bahan padat yang tidak larut, misalnya butiran alginat, dan disebut **enzim terimobilisasi**. Enzim itu tetap di tempatnya, mudah dipisahkan dari produk, dan sering lebih tahan terhadap perubahan suhu dan pH.
+
+<LactaseColumnLab
+  title={<>Susu Mengalir lewat Butiran Laktase</>}
+  description={
+    <>
+      Laktase dijebak dalam butiran alginat di dalam kolom. Susu masuk dari
+      atas dan keluar dari bawah. Ubah laju alirnya dan bandingkan dengan
+      laktase yang langsung diaduk ke dalam susu.
+    </>
+  }
+  footer={<>Perhatikan butiran di dalam kolom. Apakah butiran itu ikut keluar bersama susu?</>}
+  methods={["immobilised", "free"]}
+  flow={{ min: 1, max: 10, value: 5 }}
+  labels={{
+    method: "Cara",
+    methods: { immobilised: "Laktase dalam butiran", free: "Laktase diaduk ke dalam susu" },
+    flow: "Laju alir susu",
+    lactose: <>Laktosa yang tersisa di susu yang keluar</>,
+    glucose: <>Strip uji glukosa</>,
+    positive: <>ada glukosa</>,
+    negative: <>tidak ada glukosa</>,
+    enzyme: <>Laktase di susu yang keluar</>,
+    none: <>tidak ada</>,
+    present: <>ada</>,
+    batches: <>Jumlah gelombang susu yang diolah laktase yang sama</>,
+    parts: { column: "Kolom", beads: "Butiran alginat", milk: "Susu", strip: "Strip uji glukosa" },
+    view: "Kolom kaca berisi butiran alginat dengan susu yang mengalir melewatinya",
+  }}
+/>
+
+Alirkan susu dengan pelan, dan susu itu lebih lama bersentuhan dengan laktase, jadi **lebih banyak laktosa yang terpecah**. Strip uji glukosa membuktikannya, karena strip itu mendeteksi glukosa yang terbentuk dan tidak bereaksi dengan laktosa.

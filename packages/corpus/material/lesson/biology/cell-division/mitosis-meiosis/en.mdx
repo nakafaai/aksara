@@ -1,0 +1,368 @@
+export const metadata = {
+  title: "Cell Division Notes for Form Four Biology",
+  description:
+    "Form 4 Biology Chapter 6: the cell cycle, the stages of mitosis and meiosis, how they compare, the mitotic index, cancer and Down syndrome.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2026-11-17",
+  subject: "Cell Division",
+};
+
+## Two Ways a Cell Divides
+
+**Cell division** is the process in which a parent cell produces daughter cells. It has two parts: **karyokinesis**, the division of the nucleus, and **cytokinesis**, the division of the cytoplasm. Eukaryotic cells divide in two ways:
+
+- **Mitosis** produces two daughter cells that are genetically identical to the parent cell and have the same number of chromosomes, <InlineMath math="2n \rightarrow 2n" />. Mitosis happens in body cells for growth, tissue repair and asexual reproduction.
+- **Meiosis** produces four daughter cells with half the number of chromosomes, <InlineMath math="2n \rightarrow n" />, and they are genetically different. Meiosis happens in the testes and ovaries of animals, and in the anthers and ovules of flowering plants, to make gametes.
+
+In these notes you track the DNA content through the cell cycle, look at an onion root tip under a microscope, count the cells after several rounds of mitosis, and follow gamete chromosomes all the way to fertilisation.
+
+## Chromosomes and Chromatids in a Diploid Set
+
+During interphase, the DNA in the nucleus exists as fine threads called **chromatin**. Before the cell divides, the chromatin shortens and thickens into **chromosomes** that are visible with a light microscope. Once the DNA has been copied, each chromosome is made of two **sister chromatids** joined at the **centromere**.
+
+| Term | Meaning | Example |
+| :--- | :--- | :--- |
+| Homologous chromosomes | A pair of chromosomes with the same size, shape and gene order, one from each parent | Human chromosome pair <InlineMath math="1" /> |
+| Diploid, <InlineMath math="2n" /> | A cell with two sets of chromosomes | Human body cells, <InlineMath math="2n = 46" /> |
+| Haploid, <InlineMath math="n" /> | A cell with one set of chromosomes | Human sperm and egg, <InlineMath math="n = 23" /> |
+
+The onion, *Allium cepa*, has <InlineMath math="2n = 16" />. An onion root tip cell has <InlineMath math="16" /> chromosomes, while its gametes have **half that number**, <InlineMath math="8" />.
+
+## The Cell Cycle from Interphase to M Phase
+
+The **cell cycle** is the sequence of events from one cell division to the next. It consists of **interphase** and the **M phase**. Interphase has three phases:
+
+- <InlineMath math="\mathrm{G_1}" /> phase: the cell grows and makes new proteins and organelles.
+- <InlineMath math="\mathrm{S}" /> phase: the DNA is replicated, so each chromosome now has two sister chromatids.
+- <InlineMath math="\mathrm{G_2}" /> phase: the cell stores energy and makes the proteins for the spindle fibres.
+
+The M phase covers mitosis and cytokinesis. In a rapidly dividing human cell with a <InlineMath math="24" />-hour cycle, <InlineMath math="\mathrm{G_1}" /> takes about <InlineMath math="11" /> hours, <InlineMath math="\mathrm{S}" /> <InlineMath math="8" /> hours, <InlineMath math="\mathrm{G_2}" /> <InlineMath math="4" /> hours and the M phase only <InlineMath math="1" /> hour. Cells that stop dividing, such as mature nerve cells, leave the cycle and enter <InlineMath math="\mathrm{G_0}" />.
+
+Move the time slider below. The DNA content stays at <InlineMath math="2" /> units during <InlineMath math="\mathrm{G_1}" />, rises during <InlineMath math="\mathrm{S}" />, and drops again when cytokinesis splits the DNA between two daughter cells.
+
+<MathVisual
+  title={<>DNA Content of One Cell through the Cell Cycle</>}
+  description={
+    <>
+      The horizontal axis is time in hours and the vertical axis is DNA content
+      in relative units. The <InlineMath math="\mathrm{S}" /> phase runs from
+      hour <InlineMath math="11" /> to hour <InlineMath math="19" />, and
+      cytokinesis happens at hour <InlineMath math="24" />.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 26 }, y: { min: 0, max: 5 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "h", min: 0, max: 24, value: 15, step: 0.5, label: "h" },
+    ],
+    objects: [
+      { id: "growth", kind: "segment", appearance: "primary", from: { x: 0, y: 2 }, to: { x: 11, y: 2 } },
+      { id: "synthesis", kind: "segment", appearance: "primary", from: { x: 11, y: 2 }, to: { x: 19, y: 4 } },
+      { id: "second", kind: "segment", appearance: "primary", from: { x: 19, y: 4 }, to: { x: 23, y: 4 } },
+      { id: "mitosis", kind: "segment", appearance: "warning", from: { x: 23, y: 4 }, to: { x: 24, y: 4 } },
+      { id: "split", kind: "segment", appearance: "construction", from: { x: 24, y: 4 }, to: { x: 24, y: 2 } },
+      { id: "daughter", kind: "segment", appearance: "primary", from: { x: 24, y: 2 }, to: { x: 26, y: 2 } },
+      { id: "now", kind: "marker", appearance: "highlight", x: "h", y: "2 + min(max(h - 11, 0), 8)/4" },
+    ],
+    labels: [
+      { key: "growth", objectId: "growth", at: { x: 5.5, y: 2 }, placement: "above" },
+      { key: "synthesis", objectId: "synthesis", at: { x: 15, y: 3 }, placement: "above-left" },
+      { key: "second", objectId: "second", at: { x: 21, y: 4 }, placement: "above" },
+      { key: "mitosis", objectId: "mitosis", at: { x: 23.5, y: 4 }, placement: "below" },
+    ],
+    readouts: [
+      { key: "dna", formula: "2 + min(max(h - 11, 0), 8)/4" },
+    ],
+  }}
+  labels={{
+    h: <>Time <InlineMath math="h" /> in hours</>,
+    growth: <><InlineMath math="\mathrm{G_1}" /></>,
+    synthesis: <><InlineMath math="\mathrm{S}" /></>,
+    second: <><InlineMath math="\mathrm{G_2}" /></>,
+    mitosis: <>M phase</>,
+    dna: <>DNA content in relative units</>,
+  }}
+/>
+
+DNA replication in the <InlineMath math="\mathrm{S}" /> phase is **semi-conservative**. The two strands of the double helix open, and each old strand becomes the template for a new strand. Move the copying slider and watch new nucleotides pair with both old strands.
+
+<DnaHelixLab
+  title={<>DNA Copied Base by Base in the S Phase</>}
+  description={
+    <>
+      A stretch of DNA <InlineMath math="27" /> base pairs long. Each old
+      strand guides the building of one new strand, so the two sister
+      chromatids carry the same DNA.
+    </>
+  }
+  copy
+  sequence="ATG GCT AGC TTA GGC ATC GAT CCG TAA"
+  labels={{
+    copy: "Copying progress",
+    length: <>Base pairs</>,
+    span: <>Length</>,
+    copied: <>New bases paired</>,
+    turns: <>Turns of the helix</>,
+    viewLabel: "DNA helix opening and being copied",
+  }}
+/>
+
+Work out the share of the cycle spent in the M phase. The M phase takes <InlineMath math="1" /> hour out of <InlineMath math="24" /> hours:
+
+<BlockMath math="\frac{1\text{ hour}}{24\text{ hours}} \times 100\% \approx 4.2\%" />
+
+Check against the rest of the cycle: interphase takes <InlineMath math="23" /> hours, about <InlineMath math="95.8\%" />. Because interphase is the longest, **most cells in an actively dividing tissue are in interphase** when you look under a microscope.
+
+## The Four Stages of Mitosis
+
+Mitosis is one continuous process, but biologists split it into four stages to describe it:
+
+| Stage | Main events |
+| :--- | :--- |
+| Prophase | Chromatin shortens into chromosomes with two sister chromatids. The nucleolus disappears, spindle fibres form and the nuclear membrane breaks down. |
+| Metaphase | Chromosomes line up in a single row on the metaphase plate. Spindle fibres attach to the centromeres. |
+| Anaphase | The centromeres split and the sister chromatids are pulled to opposite poles. |
+| Telophase | Chromosomes reach the poles and uncoil again. The nuclear membrane and nucleolus re-form. |
+
+Cytokinesis differs between animal and plant cells. In an animal cell, a ring of microfilaments under the plasma membrane contracts and forms a **cleavage furrow** that pinches the cell in two. A plant cell has a rigid cell wall, so vesicles from the Golgi apparatus gather in the middle of the cell and fuse into a **cell plate**, which becomes the new cell wall.
+
+An onion root tip is a tissue that divides actively. Look at a squash of a root tip and switch objectives. At high power, find cells in prophase, metaphase, anaphase and telophase among the interphase cells.
+
+<MicroscopeLab
+  title={<>Onion Root Tip Squash</>}
+  description={
+    <>
+      A <InlineMath math="\times 10" /> eyepiece with three objectives. Most
+      cells are in interphase, and only a few show chromosomes that are
+      dividing.
+    </>
+  }
+  eyepiece={10}
+  objectives={[4, 10, 40]}
+  specimen="root"
+  labels={{
+    across: <>Cells across the field</>,
+    cell: <>Length of one cell</>,
+    division: <>Value of one division</>,
+    field: <>Field diameter</>,
+    magnification: <>Magnification</>,
+    objective: "Objective lens",
+    span: <>Divisions spanned</>,
+    view: "Light microscope and the view down the eyepiece",
+    views: { eyepiece: "Eyepiece", stand: "Microscope" },
+  }}
+/>
+
+Work out the **mitotic index** from one count. A student counts <InlineMath math="200" /> cells in one field: <InlineMath math="180" /> in interphase, <InlineMath math="10" /> in prophase, <InlineMath math="4" /> in metaphase, <InlineMath math="3" /> in anaphase and <InlineMath math="3" /> in telophase.
+
+<Chart
+  title={<>Number of Cells in Each Stage</>}
+  description={
+    <>
+      A count of <InlineMath math="200" /> cells in one field of an onion root
+      tip. The interphase bar is far taller than the bars for the stages of
+      mitosis.
+    </>
+  }
+  bars="apart"
+  categories={["Interphase", "Prophase", "Metaphase", "Anaphase", "Telophase"]}
+  series={[
+    { label: "Number of cells", mark: "bar", values: [180, 10, 4, 3, 3] },
+  ]}
+  valueLabel="Number of cells"
+/>
+
+<MathContainer>
+<BlockMath math="\text{mitotic index} = \frac{\text{cells in mitosis}}{\text{total cells}} = \frac{10 + 4 + 3 + 3}{200} = 0.10" />
+<BlockMath math="\text{time in prophase} = \frac{10}{200} \times 20\text{ hours} = 1\text{ hour}" />
+</MathContainer>
+
+The mitotic index is <InlineMath math="0.10" />, or <InlineMath math="10\%" />. If the cell cycle of this root tip takes <InlineMath math="20" /> hours, the time in each stage is **proportional to the number of cells in that stage**, so prophase takes about <InlineMath math="1" /> hour. Check: all four stages together take <InlineMath math="0.10 \times 20 = 2" /> hours.
+
+## Mitosis for Growth and Tissue Culture
+
+Every round of mitosis doubles the number of cells. Starting from one cell, after <InlineMath math="n" /> rounds of mitosis there are <InlineMath math="2^n" /> cells, all genetically identical. This chart shows the number of cells for <InlineMath math="n = 0" /> to <InlineMath math="n = 10" />.
+
+<FunctionChart
+  a={2}
+  p={1}
+  n={11}
+  mode="discrete"
+  title={<>Number of Cells after Each Mitosis</>}
+  description={
+    <>
+      The model <InlineMath math="N = 2^n" /> starts from one cell. After{" "}
+      <InlineMath math="10" /> rounds there are <InlineMath math="1{,}024" />{" "}
+      cells.
+    </>
+  }
+/>
+
+This doubling explains **why mitosis matters**. A zygote grows into an organism with billions of cells through mitosis. A wound heals when skin cells at its edge divide and replace the damaged cells. Organisms such as *Hydra* and yeast reproduce asexually by mitosis, so their offspring are genetically identical to the parent.
+
+People use mitosis in biotechnology. **Tissue culture** grows a small piece of plant tissue in a sterile medium that contains nutrients and hormones. The cells divide by mitosis into plantlets that are identical to the parent plant. **Cloning** produces individuals that are genetically identical to one parent, and after the nucleus is transferred, the cloned embryo grows by mitosis.
+
+Mitosis is normally tightly controlled. Cells stop dividing when the tissue has enough cells or when the DNA is damaged. If **genes that control the cell cycle mutate**, cells can divide without stopping and form a cancer.
+
+## Meiosis Produces Four Haploid Cells
+
+Meiosis is two divisions in a row, **meiosis I** and **meiosis II**, after the DNA is copied only once during interphase. Meiosis I separates homologous chromosomes, and meiosis II separates sister chromatids.
+
+- **Prophase I**: homologous chromosomes pair up by **synapsis** and form bivalents. **Crossing over** happens at the chiasmata, where non-sister chromatids swap segments of DNA.
+- **Metaphase I**: homologous pairs line up on the metaphase plate. Each pair lines up independently of the others.
+- **Anaphase I**: homologous chromosomes separate to opposite poles, while sister chromatids stay joined.
+- **Telophase I**: two haploid cells form.
+- **Meiosis II**: in each haploid cell, chromosomes line up in a single row, the centromeres split and the sister chromatids separate. The result is four haploid cells.
+
+Move the slider below and compare it with the cell cycle graph. In meiosis the DNA content drops **twice**, from <InlineMath math="4" /> to <InlineMath math="2" /> and then to <InlineMath math="1" /> unit.
+
+<MathVisual
+  title={<>DNA Content of One Cell during Meiosis</>}
+  description={
+    <>
+      The horizontal axis is the stage of the process and the vertical axis is
+      DNA content in relative units. The final gamete has half the DNA of a{" "}
+      <InlineMath math="\mathrm{G_1}" /> cell.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 10 }, y: { min: 0, max: 5 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "q", min: 0, max: 10, value: 6, step: 0.25, label: "q" },
+    ],
+    objects: [
+      { id: "growth", kind: "segment", appearance: "primary", from: { x: 0, y: 2 }, to: { x: 2, y: 2 } },
+      { id: "synthesis", kind: "segment", appearance: "primary", from: { x: 2, y: 2 }, to: { x: 4, y: 4 } },
+      { id: "second", kind: "segment", appearance: "primary", from: { x: 4, y: 4 }, to: { x: 5, y: 4 } },
+      { id: "first", kind: "segment", appearance: "warning", from: { x: 5, y: 4 }, to: { x: 7, y: 4 } },
+      { id: "split-one", kind: "segment", appearance: "construction", from: { x: 7, y: 4 }, to: { x: 7, y: 2 } },
+      { id: "next", kind: "segment", appearance: "warning", from: { x: 7, y: 2 }, to: { x: 9, y: 2 } },
+      { id: "split-two", kind: "segment", appearance: "construction", from: { x: 9, y: 2 }, to: { x: 9, y: 1 } },
+      { id: "gamete", kind: "segment", appearance: "secondary", from: { x: 9, y: 1 }, to: { x: 10, y: 1 } },
+      { id: "now", kind: "marker", appearance: "highlight", x: "q", y: "2 + min(max(q - 2, 0), 2) - 2sign(max(q - 7, 0)) - sign(max(q - 9, 0))" },
+    ],
+    labels: [
+      { key: "first", objectId: "first", at: { x: 6, y: 4 }, placement: "above" },
+      { key: "next", objectId: "next", at: { x: 8, y: 2 }, placement: "above" },
+      { key: "gamete", objectId: "gamete", at: { x: 9.5, y: 1 }, placement: "below" },
+    ],
+    readouts: [
+      { key: "dna", formula: "2 + min(max(q - 2, 0), 2) - 2sign(max(q - 7, 0)) - sign(max(q - 9, 0))" },
+    ],
+  }}
+  labels={{
+    q: <>Stage of the process <InlineMath math="q" /></>,
+    first: <>Meiosis I</>,
+    next: <>Meiosis II</>,
+    gamete: <>Gamete</>,
+    dna: <>DNA content in relative units</>,
+  }}
+/>
+
+Meiosis keeps a species' chromosome number the same from one generation to the next. In an onion flower, body cells with <InlineMath math="2n = 16" /> make gametes with <InlineMath math="n = 8" /> by meiosis. When a male gamete fuses with the egg, the embryo is back to <InlineMath math="16" /> chromosomes. Move the fertilisation slider and read the chromosome number of each part of the seed.
+
+<FertilisationLab
+  title={<>Chromosome Numbers from Gamete to Seed</>}
+  description={
+    <>
+      Both parents have <InlineMath math="2n = 16" />. Meiosis makes gametes
+      with <InlineMath math="8" /> chromosomes, and double fertilisation forms
+      the embryo and the endosperm.
+    </>
+  }
+  mother={16}
+  father={16}
+  labels={{
+    embryo: <>Embryo</>,
+    endosperm: <>Endosperm</>,
+    gamete: <>Male gamete</>,
+    grains: <>Pollen grains</>,
+    progress: "Fertilisation progress",
+    seedCoat: <>Seed coat</>,
+    stages: {
+      pollination: "Pollination",
+      tube: "Pollen tube grows",
+      entry: "Tube enters the ovule",
+      fusion: "Double fertilisation",
+    },
+    view: "A flower cut lengthwise",
+  }}
+/>
+
+Meiosis also creates **variation**. Crossing over mixes genes between homologous chromosomes, and independent assortment in metaphase I gives <InlineMath math="2^n" /> combinations of chromosomes. For an onion with <InlineMath math="n = 8" />, that is <InlineMath math="2^8 = 256" /> combinations before crossing over is counted.
+
+| Feature | Mitosis | Meiosis |
+| :--- | :--- | :--- |
+| Number of divisions | One | Two |
+| Daughter cells | Two, diploid | Four, haploid |
+| Genetic content | Identical to the parent | Different from each other |
+| Synapsis and crossing over | None | In prophase I |
+| Where | Body cells | Testes, ovaries, anthers and ovules |
+
+## Cancer and Down Syndrome
+
+Two kinds of error in cell division have a big effect on human health. The first happens in mitosis. **Cancer** starts when mutations damage the genes that control the cell cycle, so cells divide by mitosis without control. The cells form a growth called a **tumour**. A malignant tumour invades nearby tissue, and its cells can spread to other parts of the body through the blood or lymph. Carcinogens in cigarette smoke, ultraviolet light and ionising radiation raise the rate of mutation.
+
+The second happens in meiosis. In **non-disjunction**, homologous chromosomes or sister chromatids fail to separate during anaphase. One gamete gets an extra chromosome and another is missing one. If an egg carrying two copies of chromosome <InlineMath math="21" /> is fertilised by a normal sperm, the zygote has three copies of chromosome <InlineMath math="21" />:
+
+<BlockMath math="24 + 23 = 47 \text{ chromosomes}" />
+
+This condition is **Down syndrome**, or trisomy <InlineMath math="21" />. Check the total: a normal human cell has <InlineMath math="46" /> chromosomes, so this person's cells have one extra chromosome.
+
+## Common Mistakes about Cell Division
+
+| Mistake | Why it's wrong | How to check |
+| :--- | :--- | :--- |
+| Interphase is a resting phase. | The cell is busy growing and copying its DNA during interphase. | Find the <InlineMath math="\mathrm{S}" /> phase on the DNA graph. |
+| A chromatid and a chromosome are the same thing. | A replicated chromosome has two chromatids. | Count centromeres: one centromere, one chromosome. |
+| Homologous chromosomes separate in mitosis. | Mitosis separates sister chromatids. Homologues separate in anaphase I of meiosis. | Ask whether the daughter cells are still diploid. |
+| Meiosis makes two cells. | Meiosis has two divisions, so four cells form. | Follow the DNA graph: <InlineMath math="4 \rightarrow 2 \rightarrow 1" />. |
+| Plant cells form a cleavage furrow. | The cell wall is rigid, so plant cells form a cell plate. | Look for a cell wall. |
+
+The third mistake turns up most in comparison questions. The rule to write down: **mitosis separates sister chromatids, meiosis I separates homologous chromosomes**.
+
+## Cell Division Practice
+
+These questions start with chromosome numbers and end with calculations from data. **State whether the cell is diploid or haploid** before you calculate.
+
+1. A human body cell has <InlineMath math="46" /> chromosomes. How many chromosomes are in a daughter cell after mitosis, in a gamete after meiosis, and how many chromatids are in a cell at metaphase of mitosis?
+
+2. A cell divides by mitosis again and again, and every daughter cell keeps dividing. How many cells are there after <InlineMath math="6" /> rounds? How many rounds does it take to pass <InlineMath math="1{,}000" /> cells?
+
+3. In a root tip squash, <InlineMath math="36" /> of <InlineMath math="400" /> cells are in mitosis. The cell cycle of the tissue takes <InlineMath math="22" /> hours. Calculate the mitotic index and estimate how long mitosis takes.
+
+4. An onion has <InlineMath math="2n = 16" />. State the number of chromosomes in a male gamete, the embryo and the endosperm. Explain why the endosperm doesn't have <InlineMath math="16" /> chromosomes.
+
+### Solutions
+
+**Solution 1**: Mitosis keeps the chromosome number, so a daughter cell has **<InlineMath math="46" /> chromosomes**. Meiosis makes haploid cells with <InlineMath math="46 \div 2 = 23" /> chromosomes. At metaphase of mitosis, each chromosome has two sister chromatids:
+
+<BlockMath math="46 \times 2 = 92 \text{ chromatids}" />
+
+**Solution 2**: The number of cells doubles every round, <InlineMath math="N = 2^n" />:
+
+<MathContainer>
+<BlockMath math="2^6 = 64 \text{ cells}" />
+<BlockMath math="2^9 = 512 < 1{,}000 < 2^{10} = 1{,}024" />
+</MathContainer>
+
+After <InlineMath math="6" /> rounds there are <InlineMath math="64" /> cells, and it takes **<InlineMath math="10" /> rounds** to pass <InlineMath math="1{,}000" /> cells.
+
+**Solution 3**: Divide the cells in mitosis by the total, then multiply by the cycle time:
+
+<MathContainer>
+<BlockMath math="\text{mitotic index} = \frac{36}{400} = 0.09" />
+<BlockMath math="\text{time in mitosis} = 0.09 \times 22\text{ hours} = 1.98\text{ hours} \approx 2\text{ hours}" />
+</MathContainer>
+
+The estimate works because **the share of cells in a stage is proportional to the time that stage takes**, as long as the cells divide at random rather than all together.
+
+**Solution 4**: A male gamete is made by meiosis, so it has <InlineMath math="16 \div 2 = 8" /> chromosomes. The embryo forms from the egg and one male gamete, <InlineMath math="8 + 8 = 16" />. The endosperm forms from **two polar nuclei and one male gamete**:
+
+<BlockMath math="8 + 8 + 8 = 24 \text{ chromosomes}" />
+
+So the endosperm is triploid, <InlineMath math="3n" />, not diploid.

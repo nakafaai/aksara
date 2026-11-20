@@ -1,0 +1,336 @@
+export const metadata = {
+  title: "Stoffwechsel und Enzymwirkung",
+  description:
+    "Unterscheide Anabolismus und Katabolismus, sieh, wie Enzyme die Aktivierungsenergie senken, und prüfe das Schlüssel-Schloss-Prinzip und Einflussfaktoren.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2026-11-20",
+  subject: "Stoffwechsel und Enzyme",
+};
+
+## Aufbau und Abbau von Molekülen
+
+Deine Zellen machen nie Pause. Mal baut eine Zelle aus kleinen Molekülen große, mal zerlegt sie große Moleküle. Alle chemischen Reaktionen in einer Zelle zusammen heißen **Stoffwechsel**. Das Aufbauen von Molekülen ist der **Anabolismus**, und er braucht Energie. Das Abbauen ist der **Katabolismus**, und er setzt Energie frei. Fast jeden Schritt beschleunigt ein **Enzym**, ein Biokatalysator, den lebende Zellen herstellen. In den Modellen ordnest du Zucker den passenden Enzymen zu, verfolgst ein Enzym auf dem Weg aus der Zelle, erhitzt es, füllst seine aktiven Zentren und lässt Milch hindurchfließen.
+
+Eine wachsende Muskelzelle verknüpft Aminosäuren zu Proteinen, das ist Anabolismus. Dieselbe Zelle baut in der Zellatmung Glucose ab, das ist Katabolismus. Achte darauf, auf welcher Seite die Energie steht:
+
+<MathContainer>
+<BlockMath math="\text{Anabolismus: Aminosäuren} + \text{Energie} \rightarrow \text{Protein}" />
+<BlockMath math="\text{Katabolismus: Glucose} + \mathrm{O_2} \rightarrow \mathrm{CO_2} + \mathrm{H_2O} + \text{Energie}" />
+</MathContainer>
+
+**ATP bringt die Energie aus dem Katabolismus zum Anabolismus**.
+
+## Niedrigere Energieberge
+
+Warum braucht eine Zelle überhaupt Enzyme? Stell dir vor, du schiebst eine Kugel auf einen kleinen Hügel, damit sie auf der anderen Seite hinunterrollen kann. Auch ein Substrat braucht genug Energie, um über so einen Gipfel zu kommen, bevor es zum Produkt wird. Diese Mindestenergie heißt **Aktivierungsenergie**. Bei Körpertemperatur bekommen Moleküle durch Zusammenstöße selten so viel Energie, deshalb liefen die meisten Reaktionen ohne Enzym viel zu langsam. Ein Enzym bietet **einen Weg mit niedrigerem Gipfel**.
+
+Im Diagramm ist die waagerechte Linie die Energie, die ein Substrat aus Zusammenstößen bekommt. Verschiebe den Regler <InlineMath math="k" /> und vergleiche, wie viel Energie auf jedem Weg noch fehlt.
+
+<MathVisual
+  title={<>Zwei Wege über einen Energieberg</>}
+  description={
+    <>
+      Nach rechts geht der Reaktionsverlauf, nach oben die Energie in
+      einfachen Einheiten. Das Substrat startet bei{" "}
+      <InlineMath math="60" />, die Produkte enden bei{" "}
+      <InlineMath math="25" />.
+    </>
+  }
+  footer={<>Schau auf die waagerechte Linie. Welcher Weg ragt mit seinem Gipfel noch darüber?</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 10 }, y: { min: 0, max: 150 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "k", min: 60, max: 150, value: 100, step: 5, label: "k" },
+    ],
+    objects: [
+      { id: "plain-rise", kind: "function", appearance: "secondary", formula: "60 + 70(sin(pi x/10))^2", domain: { min: 0, max: 5 } },
+      { id: "plain-fall", kind: "function", appearance: "secondary", formula: "25 + 105(cos(pi (x - 5)/10))^2", domain: { min: 5, max: 10 } },
+      { id: "enzyme-rise", kind: "function", appearance: "primary", formula: "60 + 30(sin(pi x/10))^2", domain: { min: 0, max: 5 } },
+      { id: "enzyme-fall", kind: "function", appearance: "primary", formula: "25 + 65(cos(pi (x - 5)/10))^2", domain: { min: 5, max: 10 } },
+      { id: "energy", kind: "function", appearance: "warning", formula: "k", domain: { min: 0, max: 10 } },
+      { id: "start", kind: "point", appearance: "highlight", at: { x: 0, y: 60 } },
+      { id: "end", kind: "point", appearance: "highlight", at: { x: 10, y: 25 } },
+    ],
+    labels: [
+      { key: "plain", objectId: "plain-rise", at: { x: 5, y: 130 }, placement: "above" },
+      { key: "enzyme", objectId: "enzyme-rise", at: { x: 5, y: 90 }, placement: "below" },
+      { key: "start", objectId: "start", at: { x: 0, y: 60 }, placement: "above-right" },
+      { key: "end", objectId: "end", at: { x: 10, y: 25 }, placement: "above-left" },
+    ],
+    readouts: [
+      { key: "plain-gap", formula: "max(0, 130 - k)" },
+      { key: "enzyme-gap", formula: "max(0, 90 - k)" },
+    ],
+  }}
+  labels={{
+    k: <>Energie aus Zusammenstößen <InlineMath math="k" /></>,
+    plain: <>Ohne Enzym</>,
+    enzyme: <>Mit Enzym</>,
+    start: <>Substrat</>,
+    end: <>Produkte</>,
+    "plain-gap": <>Fehlende Energie ohne Enzym</>,
+    "enzyme-gap": <>Fehlende Energie mit Enzym</>,
+  }}
+/>
+
+Die Aktivierungsenergie ist die Höhe des Gipfels minus die Energie des Substrats:
+
+<MathContainer>
+<BlockMath math="\text{ohne Enzym: } 130 - 60 = 70\text{ Einheiten}" />
+<BlockMath math="\text{mit Enzym: } 90 - 60 = 30\text{ Einheiten}" />
+<BlockMath math="\text{freigesetzte Energie: } 60 - 25 = 35\text{ Einheiten}" />
+</MathContainer>
+
+Beide Wege starten bei <InlineMath math="60" /> und enden bei <InlineMath math="25" />, also **bleibt die freigesetzte Energie gleich**. Das Enzym senkt nur den Gipfel, ohne Energie hinzuzufügen oder die Produkte zu ändern.
+
+Die meisten Enzyme sind Proteine, aber **nicht jedes Enzym ist ein Protein**. Im Ribosom ist das Enzym, das bei der Proteinbiosynthese Aminosäuren verknüpft, ein Teil der ribosomalen RNA.
+
+## Passform im aktiven Zentrum
+
+Nur eine kleine Tasche am Enzym erledigt die Arbeit: das **aktive Zentrum**. Seine Form passt zu nur einer Sorte Substrat, so wie ein Schlüssel nur in ein Schloss passt. Das ist das **Schlüssel-Schloss-Prinzip**. Das Substrat gleitet ins aktive Zentrum und bildet einen Enzym-Substrat-Komplex. Eine Bindung wird gespalten, die Produkte lösen sich, und das Enzym ist bereit für das nächste Substrat. Lactase zum Beispiel spaltet Lactose, den Milchzucker:
+
+<BlockMath math="\text{Lactose} + \mathrm{H_2O} \xrightarrow{\text{Lactase}} \text{Glucose} + \text{Galactose}" />
+
+Spätere Forschung zeigte, dass das aktive Zentrum nicht so starr ist wie ein Metallschloss. Wenn das Substrat hineinkommt, verformt sich das aktive Zentrum ein wenig und umschließt das Substrat enger. Das ist die **induzierte Passform**.
+
+<ActiveSiteLab
+  title={<>Aktive Zentren von Lactase, Saccharase und Maltase</>}
+  description={
+    <>
+      Drei Enzyme und drei Zucker, die jeweils aus zwei Bausteinen bestehen.
+      Wähle ein Enzym und ein Substrat und schau, ob das Substrat ins aktive
+      Zentrum passt.
+    </>
+  }
+  footer={<>Achte auf die Tasche am Enzym. Passt ihre Form zum Zuckerring, der hineinwill?</>}
+  enzymes={["lactase", "sucrase", "maltase"]}
+  substrates={["lactose", "sucrose", "maltose"]}
+  models={["lockKey", "inducedFit"]}
+  labels={{
+    enzyme: "Enzym",
+    enzymes: { lactase: "Lactase", sucrase: "Saccharase", maltase: "Maltase" },
+    substrate: "Substrat",
+    substrates: { lactose: "Lactose", sucrose: "Saccharose", maltose: "Maltose" },
+    model: "Modell",
+    models: { lockKey: "Schlüssel-Schloss", inducedFit: "Induzierte Passform" },
+    fits: <>Substrat passt ins aktive Zentrum</>,
+    yes: <>ja</>,
+    no: <>nein</>,
+    products: <>Produkte</>,
+    sugars: { glucose: "Glucose", galactose: "Galactose", fructose: "Fructose" },
+    reused: <>Substrate, die dieses eine Enzym schon gespalten hat</>,
+    parts: { site: "Aktives Zentrum", complex: "Enzym-Substrat-Komplex", water: "Wasser" },
+    view: "Ein Enzymmolekül mit seinem aktiven Zentrum und Zuckermolekülen ringsum",
+  }}
+/>
+
+Das Modell zeigt die allgemeinen Eigenschaften von Enzymen. Ein Enzym **wirkt substratspezifisch** und kommt unverändert aus der Reaktion, also arbeitet dasselbe Molekül immer wieder und die Zelle braucht nur wenig davon. Viele Enzymreaktionen sind umkehrbar. Manche Enzyme brauchen Helfer: Ein Cofaktor ist ein anorganisches Ion wie Magnesium, ein Coenzym ein organisches Molekül, das meist aus einem Vitamin entsteht.
+
+Die meisten Enzymnamen entstehen, **indem man -ase an den Namen des Substrats hängt**: Aus Maltose wird Maltase, aus Lipid Lipase. Das IUBMB-System gibt jedem Enzym zusätzlich eine Nummer und einen systematischen Namen, etwa *lactose galactohydrolase* für die Lactase, der Substrat und Reaktionsart nennt.
+
+Probier es, bevor du weiterliest. Ein Enzym spaltet Lactose. Wie heißt es, und kann es auch Saccharose spalten?
+
+Es heißt **Lactase**. Lactase erkennt den Galactose-Teil der Lactose, Saccharose besteht aber aus Glucose und Fructose. Also **passt Saccharose nicht ins aktive Zentrum der Lactase**, es bildet sich kein Enzym-Substrat-Komplex und es entsteht nichts. Prüf es im Modell mit Lactase und Saccharose.
+
+## Enzyme drinnen und draußen
+
+Ribosomen bauen Enzyme aus Protein, aber die Enzyme arbeiten an verschiedenen Orten. Ein **intrazelluläres Enzym** arbeitet in der Zelle, die es gebildet hat, zum Beispiel die Enzyme der Glykolyse. Freie Ribosomen bauen sie, und sie bleiben zum Arbeiten im Cytoplasma.
+
+Ein **extrazelluläres Enzym** wird ausgeschieden und arbeitet außerhalb der Zelle, zum Beispiel die Enzyme im Bauchspeichel aus den Azinuszellen der Bauchspeicheldrüse. Es durchläuft mehrere [Zellorganellen](/de/faecher/biologie/zelle-und-organisation/zellbau-und-spezialisierte-zellen). Ribosomen am rauen endoplasmatischen Retikulum bauen es direkt ins Retikulum hinein. Ein Transportvesikel bringt es zum Golgi-Apparat, der es verändert und in ein sekretorisches Vesikel verpackt. Das Vesikel verschmilzt mit der Zellmembran und gibt das Enzym durch **Exocytose** ab.
+
+<EnzymeSecretionLab
+  title={<>Der Weg eines Enzyms vom Ribosom zum Arbeitsort</>}
+  description={
+    <>
+      Eine Azinuszelle der Bauchspeicheldrüse. Wähle ein Enzym, das in der
+      Zelle bleibt, oder eins, das ausgeschieden wird, und spiel seinen Weg
+      Schritt für Schritt ab.
+    </>
+  }
+  footer={<>Folge dem farbigen Punkt. Durch welche Organellen wandert er nach draußen?</>}
+  routes={["intracellular", "extracellular"]}
+  labels={{
+    route: "Art des Enzyms",
+    routes: { intracellular: "Intrazelluläres Enzym", extracellular: "Extrazelluläres Enzym" },
+    step: <>Aktueller Schritt</>,
+    steps: {
+      nucleus: <>mRNA bringt die Bauanleitung aus dem Zellkern</>,
+      freeRibosome: <>Ein freies Ribosom baut das Enzym</>,
+      boundRibosome: <>Ein Ribosom am rauen endoplasmatischen Retikulum baut das Enzym</>,
+      reticulum: <>Das Enzym faltet sich im rauen endoplasmatischen Retikulum</>,
+      transport: <>Ein Transportvesikel bringt das Enzym zum Golgi-Apparat</>,
+      golgi: <>Der Golgi-Apparat verändert und verpackt das Enzym</>,
+      secretory: <>Ein sekretorisches Vesikel wandert zur Zellmembran</>,
+      exocytosis: <>Exocytose gibt das Enzym in den Ausführungsgang ab</>,
+      cytoplasm: <>Das Enzym bleibt und arbeitet im Cytoplasma</>,
+    },
+    example: <>Beispielenzym</>,
+    examples: { intracellular: <>Enzyme der Glykolyse</>, extracellular: <>Pankreas-Amylase</> },
+    place: <>Wo das Enzym arbeitet</>,
+    places: { intracellular: <>Im Cytoplasma dieser Zelle</>, extracellular: <>Im Dünndarm, nach dem Pankreasgang</> },
+    parts: {
+      nucleus: "Zellkern",
+      ribosome: "Ribosom",
+      reticulum: "Raues endoplasmatisches Retikulum",
+      golgi: "Golgi-Apparat",
+      vesicle: "Sekretorisches Vesikel",
+      membrane: "Zellmembran",
+      duct: "Ausführungsgang",
+    },
+    view: "Eine aufgeschnittene Azinuszelle der Bauchspeicheldrüse mit ihren Organellen",
+  }}
+/>
+
+## Faktoren der Enzymaktivität
+
+Die Reaktionsgeschwindigkeit sagt, wie schnell das Substrat verbraucht wird oder Produkte entstehen. Temperatur und pH-Wert verändern **die Form des aktiven Zentrums**. Substratkonzentration und Enzymkonzentration verändern, wie viele aktive Zentren gerade arbeiten.
+
+### Temperatur und pH
+
+Erwärmst du eine Lösung, bewegen sich ihre Moleküle schneller, weil **ihre kinetische Energie steigt**. Es gibt mehr wirksame Zusammenstöße, bei denen das Substrat richtig ins aktive Zentrum trifft, also steigt die Geschwindigkeit. Die meisten Enzyme deines Körpers arbeiten am schnellsten bei etwa <InlineMath math="37^\circ\text{C}" />, ihrem Temperaturoptimum.
+
+Wird es noch heißer, brechen die Bindungen, die die Form des Enzyms halten. Das aktive Zentrum verformt sich, das Substrat passt nicht mehr, und das Enzym ist **denaturiert**. Abkühlen bringt das aktive Zentrum nicht zurück. Kälte ist etwas anderes: Das Enzym wird nur langsamer und arbeitet wieder, sobald es warm wird.
+
+Ein falscher pH-Wert verändert die Ladungen im aktiven Zentrum, dadurch ändert sich seine Form und das Enzym kann denaturieren. Jedes Enzym hat **ein pH-Optimum, das zu seinem Arbeitsort passt**. Pepsin im sauren Magen ist bei etwa pH <InlineMath math="2" /> am aktivsten, die Speichel-Amylase arbeitet im fast neutralen Mund, wie bei der [Verdauung der Nahrung](/de/faecher/biologie/verdauungssystem/verdauung-und-aufnahme).
+
+<DenatureLab
+  title={<>Amylase bei verschiedenen Temperaturen und Pepsin bei verschiedenem pH</>}
+  description={
+    <>
+      Amylase verdaut Stärke im Wasserbad, und Iod-Kaliumiodid-Lösung auf
+      einer Tüpfelplatte zeigt die übrige Stärke. Pepsin verdaut eine trübe
+      Eiklarsuspension. Ändere Temperatur oder pH-Wert und schau dir das
+      aktive Zentrum durch die Lupe an.
+    </>
+  }
+  footer={<>Geh zurück zu den besten Bedingungen und schau dann in der Lupe aufs aktive Zentrum.</>}
+  enzymes={["amylase", "pepsin"]}
+  temperature={{ min: 0, max: 80, value: 20 }}
+  ph={{ min: 1, max: 13, value: 7 }}
+  labels={{
+    enzyme: "Versuch",
+    enzymes: { amylase: "Amylase und Stärke", pepsin: "Pepsin und Eiklar" },
+    temperature: "Temperatur des Wasserbads",
+    ph: "pH-Wert der Lösung",
+    restore: "Zurück zu den besten Bedingungen",
+    test: <>Test gerade</>,
+    tests: {
+      starch: <>blauschwarz, noch Stärke da</>,
+      noStarch: <>gelbbraun, Stärke abgebaut</>,
+      cloudy: <>Suspension noch trüb</>,
+      clear: <>Suspension jetzt klar</>,
+    },
+    endpoint: <>Zeit, bis das Substrat abgebaut ist</>,
+    never: <>nie erreicht</>,
+    rate: <>Relative Reaktionsgeschwindigkeit</>,
+    active: <>Enzyme mit intaktem aktivem Zentrum</>,
+    collisions: <>Wirksame Zusammenstöße pro Sekunde</>,
+    time: "Zeit",
+    parts: {
+      bath: "Wasserbad",
+      tube: "Reagenzglas",
+      tile: "Tüpfelplatte",
+      thermometer: "Thermometer",
+      lens: "Lupe auf dem aktiven Zentrum",
+    },
+    view: "Ein Wasserbad mit Reagenzglas, eine Tüpfelplatte mit Iodlösung und eine Lupe auf einem Enzym",
+  }}
+/>
+
+Plane jetzt einen fairen Versuch, um den besten pH-Wert für Pepsin zu finden. Pepsin verdaut eine Eiklarsuspension, also gekochtes Eiweiß in Wasser, das trüb aussieht, bis die Suspension klar wird. Nenne die Variablen und sag das Ergebnis voraus.
+
+Die unabhängige Variable ist der pH-Wert, zum Beispiel pH <InlineMath math="2" />, <InlineMath math="7" /> und <InlineMath math="10" />. Die abhängige Variable ist **die Zeit, bis die Suspension klar wird**. Konstant hältst du die Temperatur von <InlineMath math="37^\circ\text{C}" /> sowie Volumen und Konzentration von Pepsin und Suspension. Das Glas mit pH <InlineMath math="2" /> wird am schnellsten klar. Die Gläser mit pH <InlineMath math="7" /> und pH <InlineMath math="10" /> bleiben trüb, weil das aktive Zentrum von Pepsin nicht mehr die richtige Form hat.
+
+### Besetzte aktive Zentren
+
+Gibst du Substrat dazu, stoßen mehr Substratmoleküle auf aktive Zentren, und die Geschwindigkeit steigt. Sobald **jedes aktive Zentrum besetzt ist**, muss zusätzliches Substrat warten, bis es dran ist, also steigt die Geschwindigkeit nicht weiter und bleibt beim Maximum. Jetzt ist die Enzymkonzentration der begrenzende Faktor. Gibst du Enzym dazu, steigt die Geschwindigkeit wieder, solange genug Substrat da ist.
+
+<EnzymeSaturationLab
+  title={<>Aktive Zentren füllen sich</>}
+  description={
+    <>
+      Enzymmoleküle schweben zwischen Substratmolekülen. Gib Substrat oder
+      Enzym dazu und vergleiche die Zahl der besetzten aktiven Zentren mit der
+      Reaktionsgeschwindigkeit.
+    </>
+  }
+  footer={<>Zähl die freien aktiven Zentren. Wenn keins frei ist, was bringt dann mehr Substrat?</>}
+  enzymes={{ min: 1, max: 20, value: 10 }}
+  substrates={{ min: 0, max: 200, value: 20 }}
+  turnover={2}
+  labels={{
+    enzymes: "Enzymmoleküle",
+    substrates: "Substratmoleküle",
+    busy: <>Besetzte aktive Zentren</>,
+    rate: <>Gespaltene Substrate pro Sekunde</>,
+    limiting: <>Begrenzender Faktor</>,
+    limits: { substrate: <>Substratkonzentration</>, enzyme: <>Enzymkonzentration</> },
+    curve: <>Geschwindigkeit gegen Substratkonzentration</>,
+    time: "Zeit",
+    parts: { enzyme: "Enzym", substrate: "Substrat", product: "Produkt" },
+    view: "Enzym- und Substratmoleküle in einer Lösung, aus der Nähe gesehen",
+  }}
+/>
+
+Im Modell erledigt jedes besetzte aktive Zentrum <InlineMath math="2" /> Substrate pro Sekunde. Berechne die Höchstgeschwindigkeit für <InlineMath math="10" /> Enzymmoleküle, dann für <InlineMath math="20" />. Wenn immer nur <InlineMath math="4" /> Substratmoleküle da sind, wie schnell kann es höchstens gehen?
+
+Wenn alle aktiven Zentren besetzt sind, ist die Geschwindigkeit die Zahl der aktiven Zentren mal <InlineMath math="2" />:
+
+<MathContainer>
+<BlockMath math="10 \cdot 2 = 20 \text{ Substrate pro Sekunde}" />
+<BlockMath math="20 \cdot 2 = 40 \text{ Substrate pro Sekunde}" />
+</MathContainer>
+
+Doppelt so viel Substrat lässt die Geschwindigkeit bei <InlineMath math="20" />, weil kein aktives Zentrum frei ist, doppelt so viel Enzym hebt sie auf <InlineMath math="40" />. Mit <InlineMath math="4" /> Substratmolekülen sind höchstens <InlineMath math="4" /> aktive Zentren besetzt:
+
+<BlockMath math="4 \cdot 2 = 8 \text{ Substrate pro Sekunde}" />
+
+Jetzt **ist das Substrat der begrenzende Faktor**. Das Modell zeigt Werte knapp unter <InlineMath math="20" /> und <InlineMath math="8" />, weil jedes aktive Zentrum zwischen zwei Substraten kurz leer ist.
+
+## Enzyme in Küche und Fabrik
+
+Fabriken stellen Enzyme in großen Mengen her, meist mit Mikroorganismen, und wählen jedes Enzym nach **dem Substrat, das abgebaut werden soll**:
+
+| Bereich | Enzym | Was das Enzym tut |
+| :--- | :--- | :--- |
+| Waschmittel | Protease, Lipase, Amylase | Löst Eiweiß-, Fett- und Stärkeflecken aus dem Stoff |
+| Fischverarbeitung | Protease | Löst die Fischhaut, ohne das Fleisch zu beschädigen |
+| Lederherstellung | Protease | Entfernt Haare von Tierhäuten |
+| Medizin | Protease | Reinigt Brandwunden von abgestorbener Haut |
+| Laktosefreie Milch | Lactase | Spaltet Lactose in Glucose und Galactose |
+| Fruchtsaft | Pektinase | Baut Pektin in Zellwänden ab, damit mehr Saft herauskommt |
+
+Enzyme sind teuer, darum verwenden Fabriken sie mit der Immobilisierung mehrfach. Das Enzym wird in einem unlöslichen Feststoff eingeschlossen, etwa in Alginatkügelchen, und heißt dann **immobilisiertes Enzym**. Es bleibt an seinem Platz, lässt sich leicht vom Produkt trennen und ist oft stabiler gegenüber Temperatur und pH-Wert.
+
+<LactaseColumnLab
+  title={<>Milch fließt durch Lactase-Kügelchen</>}
+  description={
+    <>
+      Lactase steckt in Alginatkügelchen in einer Säule. Die Milch läuft oben
+      hinein und unten heraus. Ändere die Durchflussrate und vergleiche mit
+      Lactase, die direkt in die Milch gerührt wird.
+    </>
+  }
+  footer={<>Schau auf die Kügelchen in der Säule. Fließen sie mit der Milch hinaus?</>}
+  methods={["immobilised", "free"]}
+  flow={{ min: 1, max: 10, value: 5 }}
+  labels={{
+    method: "Verfahren",
+    methods: { immobilised: "Lactase in Kügelchen", free: "Lactase in die Milch gerührt" },
+    flow: "Durchflussrate der Milch",
+    lactose: <>Lactose in der Milch, die herauskommt</>,
+    glucose: <>Glucose-Teststreifen</>,
+    positive: <>Glucose da</>,
+    negative: <>keine Glucose</>,
+    enzyme: <>Lactase in der Milch, die herauskommt</>,
+    none: <>keine</>,
+    present: <>vorhanden</>,
+    batches: <>Milchportionen, die dieselbe Lactase behandelt hat</>,
+    parts: { column: "Säule", beads: "Alginatkügelchen", milk: "Milch", strip: "Glucose-Teststreifen" },
+    view: "Eine Glassäule mit Alginatkügelchen, durch die Milch fließt",
+  }}
+/>
+
+Lässt du die Milch langsam laufen, bleibt sie länger bei der Lactase, also **wird mehr Lactose gespalten**. Ein Glucose-Teststreifen beweist das, weil er die entstandene Glucose anzeigt und nicht auf Lactose reagiert.
