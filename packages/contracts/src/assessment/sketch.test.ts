@@ -1,10 +1,15 @@
 import { describe, expect, it } from "@effect/vitest";
 import { Array as Arr } from "effect";
 
+import { hasKeyedRubrics } from "#contracts/assessment/fit";
 import { InteractionSchema } from "#contracts/assessment/interaction";
 import { ItemVersionSchema } from "#contracts/assessment/item";
-import { InteractionKeySchema } from "#contracts/assessment/key";
-import { ScoringRuleSchema, supportsRule } from "#contracts/assessment/scoring";
+import { InteractionKeySchema, ItemKeySchema } from "#contracts/assessment/key";
+import {
+  ScoringOverrideSchema,
+  ScoringRuleSchema,
+  supportsRule,
+} from "#contracts/assessment/scoring";
 import { hasSameKeyStructure } from "#contracts/assessment/structure";
 import {
   decodeStrict,
@@ -15,6 +20,7 @@ import {
 import { sketchInteraction } from "#contracts/test/assessment/interaction";
 import { hash } from "#contracts/test/assessment/item";
 import {
+  choiceKey,
   sketchLeft as left,
   sketchRight as right,
   sketchKey,
@@ -95,11 +101,19 @@ describe("a sketch", () => {
       },
       { direction: "falling", from: null, kind: "interval", to: null },
       { direction: "falling", from: "-1.5", kind: "interval", to: "-1" },
+      { kind: "inflection", x: "0", y: "0" },
+      { kind: "point", x: "2", y: "3" },
+      { end: "open", kind: "point", x: "-2", y: "1" },
     ]) {
       expect(
         failsStrict(InteractionKeySchema, {
           ...withFeature(feature),
-          tolerances: { ...sketchKey.tolerances, extremum: "0.5" },
+          tolerances: {
+            ...sketchKey.tolerances,
+            extremum: "0.5",
+            inflection: "0.5",
+            point: "0.25",
+          },
         })
       ).toBe(false);
     }
@@ -111,6 +125,8 @@ describe("a sketch", () => {
       { direction: "rising", from: "2", kind: "interval", to: "-2" },
       { direction: "level", from: null, kind: "interval", to: null },
       { kind: "end", limit: "infinity", side: "right" },
+      { end: "half", kind: "point", x: "0", y: "0" },
+      { kind: "inflection", x: "0" },
     ]) {
       expect(failsStrict(InteractionKeySchema, withFeature(feature))).toBe(
         true
@@ -194,5 +210,57 @@ describe("a sketch", () => {
       )
     ).toBe(false);
     expect(failsStrict(ItemVersionSchema, versionWith([]))).toBe(true);
+  });
+});
+
+/** The key of one item version that holds one answer. */
+function itemKey(answer: object) {
+  return { answers: [answer], version: hash("1") };
+}
+
+/** Decodes one scoring override. */
+function decodeOverride(override: unknown) {
+  return decodeStrict(ScoringOverrideSchema, override);
+}
+
+describe("a sketch's key and its rubric", () => {
+  const version = {
+    scoring: [decodeOverride({ interaction: "graph", rule: sketchRule })],
+  };
+
+  it("meet when the key checks exactly the criteria the rubric scores", () => {
+    expect(
+      hasKeyedRubrics(version, decodeStrict(ItemKeySchema, itemKey(sketchKey)))
+    ).toBe(true);
+    expect(
+      hasKeyedRubrics(
+        { scoring: [] },
+        decodeStrict(ItemKeySchema, itemKey(choiceKey))
+      )
+    ).toBe(true);
+  });
+
+  it("refuse a feature worth no points, and points with no feature", () => {
+    const unscored = withCriteria(...sketchKey.criteria, {
+      ...zero,
+      criterion: "extra",
+    });
+    const unchecked = withCriteria(
+      ...Arr.filter(sketchKey.criteria, ({ criterion }) => criterion !== "end")
+    );
+
+    for (const [scoring, key] of [
+      [[{ interaction: "graph", rule: sketchRule }], unscored],
+      [[{ interaction: "graph", rule: sketchRule }], unchecked],
+      [[], sketchKey],
+      [[{ interaction: "other", rule: sketchRule }], sketchKey],
+    ] as const) {
+      expect(
+        hasKeyedRubrics(
+          { scoring: Arr.map(scoring, decodeOverride) },
+          decodeStrict(ItemKeySchema, itemKey(key))
+        )
+      ).toBe(false);
+    }
   });
 });

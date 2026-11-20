@@ -68,7 +68,16 @@ const IntervalFeatureSchema = Schema.Struct({
   })
 );
 
-/** Where the graph goes at one side: up or down without bound, or towards a value. */
+/**
+ * Where the graph goes at one side: up or down without bound, or towards a
+ * value. An end without bound is earned when the graph's outermost stretch on
+ * that side moves away in the limit's direction as it goes out along that side,
+ * up for `positiveInfinity` and down for `negativeInfinity`: on the left that
+ * stretch falls from left to right for `positiveInfinity`, on the right it
+ * rises. No distance measures it, so it takes no tolerance. An end towards a
+ * value is earned when the graph's last point on that side lies within the end
+ * tolerance of it.
+ */
 const EndFeatureSchema = Schema.Struct({
   kind: Schema.Literal("end"),
   limit: Schema.Union([
@@ -76,6 +85,25 @@ const EndFeatureSchema = Schema.Struct({
     DecimalSchema,
   ]),
   side: Schema.Literals(["left", "right"]),
+});
+
+/** A point where the graph changes how it bends, from concave up to concave down or back. */
+const InflectionFeatureSchema = Schema.Struct({
+  kind: Schema.Literal("inflection"),
+  x: DecimalSchema,
+  y: DecimalSchema,
+});
+
+/**
+ * A point the graph passes through, such as a given point or an end of its
+ * domain. `end`, when present, says that the graph stops there and whether the
+ * point belongs to it (`closed`, drawn filled) or not (`open`, drawn hollow).
+ */
+const PointFeatureSchema = Schema.Struct({
+  end: Schema.optionalKey(Schema.Literals(["closed", "open"])),
+  kind: Schema.Literal("point"),
+  x: DecimalSchema,
+  y: DecimalSchema,
 });
 
 /** One key feature of a graph, in the units of the plane. */
@@ -86,21 +114,26 @@ export const SketchFeatureSchema = Schema.Union([
   AsymptoteFeatureSchema,
   IntervalFeatureSchema,
   EndFeatureSchema,
+  InflectionFeatureSchema,
+  PointFeatureSchema,
 ]);
 export type SketchFeature = typeof SketchFeatureSchema.Type;
 
 /**
  * How far a drawn feature may lie from the key's and still earn its
  * criterion, in the units of the plane, for each kind of feature the key
- * holds. A zero, an intercept, an extremum and an interval's ends are judged
- * along the axis they lie on; an asymptote by its distance across the frame;
- * an end only when it tends towards a value.
+ * holds. A zero, an intercept and an interval's ends are judged along the
+ * axis they lie on; an extremum, an inflection and a point by their distance in
+ * each axis; an asymptote by its distance across the frame; an end only when
+ * it tends towards a value.
  */
 const SketchTolerancesSchema = Schema.Struct({
   asymptote: Schema.optionalKey(PositiveDecimalSchema),
   end: Schema.optionalKey(PositiveDecimalSchema),
   extremum: Schema.optionalKey(PositiveDecimalSchema),
+  inflection: Schema.optionalKey(PositiveDecimalSchema),
   interval: Schema.optionalKey(PositiveDecimalSchema),
+  point: Schema.optionalKey(PositiveDecimalSchema),
   yIntercept: Schema.optionalKey(PositiveDecimalSchema),
   zero: Schema.optionalKey(PositiveDecimalSchema),
 });
