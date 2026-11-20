@@ -26,11 +26,11 @@ layer(NodeServices.layer)("program snapshot preparation", (it) => {
         activeAppLocales: ["en", "id", "de", "ms"],
         curriculumRowCount: curriculumRows.length,
         format: "localized-program-snapshot",
-        programRowCount: 7,
-        rowCount: curriculumRows.length + 7,
+        programRowCount: 8,
+        rowCount: curriculumRows.length + 8,
         sitemapCount: Arr.filter(curriculumRows, ({ row }) => row.sitemap)
           .length,
-        slugCount: 28,
+        slugCount: 32,
       });
       for (const appLocale of prepared.manifest.activeAppLocales) {
         expect(
@@ -94,6 +94,13 @@ layer(NodeServices.layer)("program snapshot preparation", (it) => {
           ms: "amerika-syarikat",
         },
         { de: "kssm", en: "kssm", id: "kssm", key: "kssm", ms: "kssm" },
+        {
+          de: "gymnasiale-oberstufe",
+          en: "gymnasiale-oberstufe",
+          id: "gymnasiale-oberstufe",
+          key: "gymnasiale-oberstufe",
+          ms: "gymnasiale-oberstufe",
+        },
         { de: "tka", en: "tka", id: "tka", key: "tka", ms: "tka" },
         { de: "snbt", en: "snbt", id: "snbt", key: "snbt", ms: "snbt" },
       ]);
@@ -170,10 +177,10 @@ layer(NodeServices.layer)("program snapshot preparation", (it) => {
 
       expect(expanded.manifest).toMatchObject({
         curriculumRowCount: base.manifest.curriculumRowCount,
-        programRowCount: 8,
+        programRowCount: 9,
         rowCount: base.manifest.rowCount + 1,
         sitemapCount: base.manifest.sitemapCount,
-        slugCount: 32,
+        slugCount: 36,
       });
     })
   );
