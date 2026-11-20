@@ -13,6 +13,7 @@ import {
   PositiveMeasureSchema,
   samePlanePoint,
 } from "#contracts/math/base";
+import { strictBoundaryIssues } from "#contracts/math/boundary";
 import { planeBoundsIssues } from "#contracts/math/bounds";
 import { PlaneCurveObjectSchemas } from "#contracts/math/curve";
 import {
@@ -33,6 +34,7 @@ import {
   MATH_SEGMENT_MESSAGE,
   MATH_VECTOR_MESSAGE,
   MathObjectFields,
+  MathStrokeFields,
   mathLabelAnchorFields,
 } from "#contracts/math/object";
 import { planeResolutionIssues } from "#contracts/math/resolution";
@@ -102,6 +104,7 @@ const PlaneShapeSchema = Schema.TupleWithRest(
 
 const PlaneLineObjectSchema = Schema.Struct({
   ...MathObjectFields,
+  ...MathStrokeFields,
   kind: Schema.Literal("line"),
   through: Schema.Tuple([PlanePointSchema, PlanePointSchema]),
 }).pipe(
@@ -114,6 +117,7 @@ const PlaneLineObjectSchema = Schema.Struct({
 
 const PlaneRayObjectSchema = Schema.Struct({
   ...MathObjectFields,
+  ...MathStrokeFields,
   from: PlanePointSchema,
   kind: Schema.Literal("ray"),
   through: PlanePointSchema,
@@ -127,6 +131,7 @@ const PlaneRayObjectSchema = Schema.Struct({
 
 const PlaneSegmentObjectSchema = Schema.Struct({
   ...MathObjectFields,
+  ...MathStrokeFields,
   from: PlanePointSchema,
   kind: Schema.Literal("segment"),
   to: PlanePointSchema,
@@ -157,6 +162,7 @@ const PlaneVectorObjectSchema = Schema.Struct({
 
 const PlanePolylineObjectSchema = Schema.Struct({
   ...MathObjectFields,
+  ...MathStrokeFields,
   kind: Schema.Literal("polyline"),
   vertices: PlanePathSchema,
 }).pipe(
@@ -288,6 +294,7 @@ export const PlaneMathVisualSchema = Schema.Struct({
           parameterScope(parameters)
         ),
         ...planeResolutionIssues(frame, objects, labels, view),
+        ...strictBoundaryIssues(objects),
       ]
     )
   )

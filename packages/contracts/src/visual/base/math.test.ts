@@ -26,6 +26,65 @@ describe("MathVisual props", () => {
     expect(failsStrict(MathVisualSchema, withoutLabels)).toBe(true);
   });
 
+  it("keeps a label anchored in the scene to 32 visible characters", () => {
+    const long = [text("a".repeat(33))];
+    expect(
+      failsStrict(MathVisualSchema, {
+        ...tankProps,
+        labels: { ...tankProps.labels, height: [text("a".repeat(32))] },
+      })
+    ).toBe(false);
+    expect(
+      failsStrict(MathVisualSchema, {
+        ...tankProps,
+        labels: { ...tankProps.labels, height: long },
+      })
+    ).toBe(true);
+  });
+
+  it("lets a readout label say more than a scene label", () => {
+    const scene = {
+      frame: {
+        kind: "cartesian",
+        x: { max: 1.5, min: -1.5 },
+        y: { max: 1.5, min: -1.5 },
+      },
+      objects: [
+        { appearance: "primary", formula: "x", id: "line", kind: "function" },
+      ],
+      readouts: [{ formula: "1", key: "one" }],
+      space: "plane",
+      view: { kind: "fit" },
+    };
+    const { readouts: _readouts, ...unlabeled } = scene;
+    expect(
+      failsStrict(MathVisualSchema, {
+        description: [text("A line.")],
+        labels: { one: [text("a".repeat(48))] },
+        scene,
+        title: [text("Line")],
+      })
+    ).toBe(false);
+    expect(
+      failsStrict(MathVisualSchema, {
+        description: [text("A line.")],
+        scene: unlabeled,
+        title: [text("Line")],
+      })
+    ).toBe(false);
+  });
+
+  it("takes a footer of at most 90 visible characters", () => {
+    for (const [footer, fails] of [
+      [[text("a".repeat(90))], false],
+      [[text("a".repeat(91))], true],
+    ] as const) {
+      expect(failsStrict(MathVisualSchema, { ...tankProps, footer })).toBe(
+        fails
+      );
+    }
+  });
+
   it("reuses the strict scene contract", () => {
     expect(
       failsStrict(MathVisualSchema, {

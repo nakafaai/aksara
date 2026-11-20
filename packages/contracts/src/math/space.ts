@@ -23,6 +23,7 @@ import {
   MATH_SEGMENT_MESSAGE,
   MATH_VECTOR_MESSAGE,
   MathObjectFields,
+  MathStrokeFields,
   mathLabelAnchorFields,
 } from "#contracts/math/object";
 import { spaceResolutionIssues } from "#contracts/math/resolution";
@@ -47,6 +48,7 @@ const SpaceShapeSchema = Schema.TupleWithRest(
 
 const SpaceLineObjectSchema = Schema.Struct({
   ...MathObjectFields,
+  ...MathStrokeFields,
   kind: Schema.Literal("line"),
   through: Schema.Tuple([SpacePointSchema, SpacePointSchema]),
 }).pipe(
@@ -59,6 +61,7 @@ const SpaceLineObjectSchema = Schema.Struct({
 
 const SpaceRayObjectSchema = Schema.Struct({
   ...MathObjectFields,
+  ...MathStrokeFields,
   from: SpacePointSchema,
   kind: Schema.Literal("ray"),
   through: SpacePointSchema,
@@ -72,6 +75,7 @@ const SpaceRayObjectSchema = Schema.Struct({
 
 const SpaceSegmentObjectSchema = Schema.Struct({
   ...MathObjectFields,
+  ...MathStrokeFields,
   from: SpacePointSchema,
   kind: Schema.Literal("segment"),
   to: SpacePointSchema,
@@ -102,6 +106,7 @@ const SpaceVectorObjectSchema = Schema.Struct({
 
 const SpacePolylineObjectSchema = Schema.Struct({
   ...MathObjectFields,
+  ...MathStrokeFields,
   kind: Schema.Literal("polyline"),
   vertices: SpacePathSchema,
 }).pipe(

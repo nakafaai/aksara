@@ -7,16 +7,18 @@ import {
   InequalityTextSchema,
   PlaneFormulaPointSchema,
 } from "#contracts/math/formula/field";
-import { MathObjectFields } from "#contracts/math/object";
+import { MathObjectFields, MathStrokeFields } from "#contracts/math/object";
 
 /**
  * The graph of y = f(x), or of x = f(y) when its input axis is y. The renderer
  * samples it inside the frame, at least 200 times per visible branch, exactly
  * at its domain ends and labels, and splits it at every break and asymptote.
- * Without a domain it spans the frame along its input axis.
+ * Without a domain it spans the frame along its input axis. A straight graph
+ * on the boundary of a strict inequality draws dashed (`MathStrokeSchema`).
  */
 const PlaneFunctionObjectSchema = Schema.Struct({
   ...MathObjectFields,
+  ...MathStrokeFields,
   domain: Schema.optionalKey(MathAxisRangeSchema),
   formula: FormulaTextSchema,
   inputAxis: Schema.optionalKey(Schema.Literals(["x", "y"])),

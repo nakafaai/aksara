@@ -2,6 +2,7 @@ import { Schema } from "effect";
 
 import type { RichText } from "#contracts/assessment/inline";
 import { PlainTextSchema } from "#contracts/assessment/scalar";
+import { atMostVisible } from "#contracts/visual/length";
 
 /**
  * The schema of rich text in one document kind. Every kind decodes rich text
@@ -16,9 +17,32 @@ export type RichSlot<Encoded = unknown> = Schema.Codec<RichText, Encoded>;
  */
 export const TextSchema = PlainTextSchema;
 
-/** The title and description every card shows, each rich text. */
+/**
+ * The most visible characters a card's footer shows (`visibleLength`): two
+ * lines of the footer's text in a card on a 360 px phone.
+ */
+export const FOOTER_CHARACTERS = 90;
+
+/**
+ * The words every card shows, each rich text: its title and description above
+ * the visual, and its footer under it. The footer is written for this one
+ * visual, never generated: what it shows and what to notice in it, in a
+ * sentence or two. In a prompt it describes how to read the figure and never
+ * gives its result.
+ */
 export function cardFields<E>(rich: RichSlot<E>) {
-  return { description: rich, title: rich };
+  return {
+    description: rich,
+    footer: Schema.optionalKey(
+      rich.check(
+        atMostVisible(
+          FOOTER_CHARACTERS,
+          `Expected a card footer of at most ${FOOTER_CHARACTERS} visible characters, so it reads in one or two lines on a phone; keep what to notice and leave the rest to the lesson.`
+        )
+      )
+    ),
+    title: rich,
+  };
 }
 
 /**
