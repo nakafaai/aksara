@@ -52,9 +52,18 @@ describe("topHeadings", () => {
       expect(
         yield* topHeadings(
           "answer.de.mdx",
-          "# a) Ableitung\n\n## Schritt\n\nWeil.\n\n# 1.2) Grenzwert\n\n# Lösung\n"
+          "# Teil a: Ableitung\n\n## Schritt\n\nWeil.\n\n# Teil 1.2: Grenzwert\n\n# Teil b:\n\n# Part c: Monotonie\n\n# Lösung\n"
         )
-      ).toEqual(["a", "1.2", "Lösung"]);
+      ).toEqual(["a", "1.2", "Teil b:", "Part c: Monotonie", "Lösung"]);
+      expect(
+        yield* topHeadings(
+          "answer.ms.mdx",
+          "# Bahagian a: Terbitan\n\n# Bagian b: Turunan\n"
+        )
+      ).toEqual(["a", "Bagian b: Turunan"]);
+      expect(
+        yield* topHeadings("answer.xx.mdx", "# Part a: Derivative\n")
+      ).toEqual(["Part a: Derivative"]);
       expect(
         yield* Effect.flip(topHeadings("answer.de.mdx", "<Broken title="))
       ).toMatchObject({ _tag: "PageParseError", file: "answer.de.mdx" });
@@ -71,9 +80,9 @@ describe("partReport", () => {
         const files = {
           [`${FSP}/question-1/item.ts`]: partsItem(["a", "b"]),
           [`${FSP}/question-1/answer.de.mdx`]:
-            "# a) Ableitung\n\n## Schritt\n\nWeil.\n\n# b) Monotonie\n\nWeil.\n",
+            "# Teil a: Ableitung\n\n## Schritt\n\nWeil.\n\n# Teil b: Monotonie\n\nWeil.\n",
           [`${FSP}/question-1/answer.en.mdx`]:
-            "# a) Derivative\n\nBecause.\n\n# Monotony\n\nBecause.\n",
+            "# Part a: Derivative\n\nBecause.\n\n# Monotony\n\nBecause.\n",
           [`${FSP}/question-2/item.ts`]: partsItem(["1"]),
           [`${FSP}/question-2/answer.de.mdx`]: "Weil.\n",
           [`${FSP}/question-3/item.ts`]: itemModule(

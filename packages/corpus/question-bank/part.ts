@@ -88,12 +88,24 @@ const TextEntryPartSchema = Schema.Struct({
   );
 
 /**
+ * What a learner reads about one criterion after grading, in a teacher's
+ * voice: `earned` when the work meets it, `missed` when it does not. A grader
+ * never writes this text; the learner sees these words, not model prose.
+ */
+const CriterionFeedbackSchema = Schema.Struct({
+  earned: TextSchema,
+  missed: TextSchema,
+}).mapFields(Struct.map(Schema.mutableKey));
+
+/**
  * One criterion of a rubric, met or missed. Its `label` is what a learner
  * sees before answering, so it names the step and never its result; `met` is
  * what the work must show to earn the `points`, which only a grader reads and
- * which may state the result.
+ * which may state the result; `feedback` is what the learner reads after
+ * grading.
  */
 const CriterionSourceSchema = Schema.Struct({
+  feedback: CriterionFeedbackSchema,
   label: TextSchema,
   met: TextSchema,
   points: PointsSchema,

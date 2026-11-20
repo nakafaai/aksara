@@ -1,5 +1,7 @@
 import { describe, expect, it } from "@effect/vitest";
 import { Array as Arr, Effect } from "effect";
+import { CALIBRATION_FILE } from "#corpus/question-bank/calibration";
+import type { ItemSource } from "#corpus/question-bank/item";
 import { setSourcePath } from "#corpus/question-bank/path";
 import { readQuestionSets } from "#corpus/question-bank/source";
 import {
@@ -12,6 +14,34 @@ import {
 } from "#corpus/test/bank";
 
 const onReading = { ...TEST_ITEM, stimulus: "passage-1" };
+
+/** An item with one written part, which a calibration file can sit beside. */
+const written: ItemSource = {
+  versions: {
+    id: {
+      kind: "parts",
+      parts: [
+        {
+          kind: "extendedText",
+          label: "a",
+          points: 1,
+          rubric: [
+            {
+              feedback: { earned: "Tepat.", missed: "Belum lengkap." },
+              label: "Alasan",
+              met: "Menjelaskan alasannya.",
+              points: 1,
+            },
+          ],
+        },
+      ],
+    },
+  },
+};
+
+/** A calibration of part `a` of `written` whose one sample marks the given criterion. */
+const calibration = (part: string) =>
+  `{"${part}":[{"grade":"good","id":"good-1","marks":[{"criterion":1,"met":true,"reason":"Lengkap."}],"text":"Karena."}]}`;
 
 /** Reads the one test set from a virtual checkout of the given files. */
 function read(files: Iterable<readonly [string, string]>) {
@@ -60,6 +90,28 @@ describe("readQuestionSets", () => {
             sourceRoot: setSourcePath(TEST_SET, "passage-1"),
           },
         ]);
+      })
+  );
+
+  it.effect(
+    "reads a calibration file beside an item and checks it against the item",
+    () =>
+      Effect.gen(function* () {
+        const file = setSourcePath(TEST_SET, `question-1/${CALIBRATION_FILE}`);
+        const [set] = yield* read([
+          ...questionFiles(1, written),
+          [file, calibration("a")],
+        ]);
+        const wrong = yield* reject([
+          ...questionFiles(1, written),
+          [file, calibration("b")],
+        ]);
+
+        expect(set?.questions[0]?.item).toEqual(written);
+        expect(wrong).toMatchObject({
+          _tag: "CalibrationError",
+          problems: ["b is not a written part of the item"],
+        });
       })
   );
 
