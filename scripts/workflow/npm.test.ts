@@ -4,7 +4,7 @@ import { Effect } from "effect";
 import { readSource } from "#scripts/source";
 import type { NpmWorkflowContract } from "#scripts/workflow/npm";
 import { verifyNpmWorkflow } from "#scripts/workflow/npm";
-import { workflowFailure } from "#scripts/workflow/test/failure";
+import { expectRefusal, workflowFailure } from "#scripts/workflow/test/failure";
 import { mutateJob } from "#scripts/workflow/test/mutation";
 
 const contract: NpmWorkflowContract = {
@@ -90,5 +90,89 @@ describe("npm trusted publication digest", () => {
 
         expect(error).toMatchObject({ _tag: "WorkflowError" });
       })
+  );
+});
+
+describe("pinned pnpm publication", () => {
+  it.effect("refuses another pnpm, an install, or a dropped assertion", () =>
+    Effect.gen(function* () {
+      const source = yield* readSource(".github/workflows/cli.yml");
+      const cases = [
+        [
+          "publish",
+          "          version: 12.21.0",
+          "          version: 12.22.0",
+          "npm publication must set up only the pinned pnpm 12.21.0",
+        ],
+        [
+          "verify",
+          "          install: false",
+          "          install: true",
+          "npm verification must set up only the pinned pnpm 12.21.0",
+        ],
+        [
+          "publish",
+          "          PINNED_PNPM: 12.21.0",
+          "          PINNED_PNPM: 12.22.0",
+          "npm publication must assert the pinned pnpm 12.21.0",
+        ],
+        [
+          "verify",
+          '"$pnpm_version" != "$PINNED_PNPM"',
+          '"$pnpm_version" == "$PINNED_PNPM"',
+          "npm verification must assert the pinned pnpm 12.21.0",
+        ],
+      ] as const;
+      for (const [job, from, to, message] of cases) {
+        yield* expectRefusal(
+          verifyNpmWorkflow(mutateJob(source, job, from, to), contract),
+          message
+        );
+      }
+    }).pipe(Effect.provide(NodeServices.layer))
+  );
+
+  it.effect("refuses every publisher but one pinned pnpm publish", () =>
+    Effect.gen(function* () {
+      const source = yield* readSource(".github/workflows/cli.yml");
+      const publish = '          pnpm publish "$TARBALL" \\';
+      const foreign =
+        "npm publication must publish only through the pinned pnpm CLI";
+      const cases = [
+        ['          bun publish "$TARBALL"', foreign],
+        ['          npm publish "$TARBALL"', foreign],
+        ['          npx --yes npm@12.0.2 publish "$TARBALL"', foreign],
+        [
+          '          pnpm publish "$TARBALL"',
+          "npm publication may execute only one publish command",
+        ],
+      ] as const;
+      for (const [command, message] of cases) {
+        yield* expectRefusal(
+          verifyNpmWorkflow(
+            mutateJob(source, "publish", publish, `${command}\n${publish}`),
+            contract
+          ),
+          message
+        );
+      }
+    }).pipe(Effect.provide(NodeServices.layer))
+  );
+
+  it.effect("refuses npm and pnpm registry tokens", () =>
+    Effect.gen(function* () {
+      const source = yield* readSource(".github/workflows/cli.yml");
+      for (const credential of [
+        "NPM_TOKEN",
+        "NODE_AUTH_TOKEN",
+        "pnpm_config__auth",
+        "PNPM_CONFIG__AUTH",
+      ]) {
+        yield* expectRefusal(
+          verifyNpmWorkflow(`${source}\n# ${credential}: secret`, contract),
+          "npm workflow must not contain registry credentials"
+        );
+      }
+    }).pipe(Effect.provide(NodeServices.layer))
   );
 });

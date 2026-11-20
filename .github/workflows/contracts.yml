@@ -214,11 +214,11 @@ jobs:
           name: contract-package
           path: ${{ runner.temp }}/contract-release
 
-      - name: Setup Node
-        uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+      - name: Setup pnpm
+        uses: pnpm/setup@731dfb6463bbd11c11fd0ee11fe00ed0e36d48a1 # v3.2.0
         with:
-          node-version: 26.13.1
-          package-manager-cache: false
+          install: false
+          version: 12.21.0
 
       - name: Verify transported archive
         env:
@@ -322,13 +322,13 @@ jobs:
       - name: Publish public package
         if: steps.state.outputs.mode == 'create'
         env:
-          NPM_CLI: npm@12.0.2
-          NPM_CONFIG_REGISTRY: https://registry.npmjs.org
+          PINNED_PNPM: 12.21.0
+          PNPM_CONFIG_REGISTRY: https://registry.npmjs.org
           TARBALL: ${{ runner.temp }}/contract-release/${{ needs.build.outputs.asset_name }}
         run: |
-          npm_version=$(npx --yes "$NPM_CLI" --version)
-          if [[ "$npm_version" != "${NPM_CLI#npm@}" ]]; then
-            echo "The trusted publisher requires the pinned npm CLI." >&2
+          pnpm_version=$(pnpm --version)
+          if [[ "$pnpm_version" != "$PINNED_PNPM" ]]; then
+            echo "The trusted publisher requires the pinned pnpm CLI." >&2
             exit 1
           fi
           if [[ -z "${ACTIONS_ID_TOKEN_REQUEST_URL:-}" \
@@ -350,11 +350,11 @@ jobs:
 
           read_metadata() {
             local error_file raw
-            error_file=$(mktemp "$RUNNER_TEMP/npm-view.XXXXXX")
-            if ! raw=$(npx --yes "$NPM_CLI" view "$package_specifier" \
+            error_file=$(mktemp "$RUNNER_TEMP/pnpm-view.XXXXXX")
+            if ! raw=$(pnpm view "$package_specifier" \
               name version dist.shasum dist.integrity \
               --json 2>"$error_file"); then
-              if grep -Fq "npm error code E404" "$error_file"; then
+              if grep -Eq "ERR_PNPM_(FETCH_404|PACKAGE_NOT_FOUND)" "$error_file"; then
                 rm -f -- "$error_file"
                 return 2
               fi
@@ -411,9 +411,10 @@ jobs:
             exit 1
           fi
 
-          npx --yes "$NPM_CLI" publish "$TARBALL" \
+          pnpm publish "$TARBALL" \
             --access public \
             --ignore-scripts \
+            --no-git-checks \
             --provenance
 
           PUBLICATION_WINDOW_SECONDS=300
@@ -500,6 +501,12 @@ jobs:
           node-version: 26.13.1
           package-manager-cache: false
 
+      - name: Setup pnpm
+        uses: pnpm/setup@731dfb6463bbd11c11fd0ee11fe00ed0e36d48a1 # v3.2.0
+        with:
+          install: false
+          version: 12.21.0
+
       - name: Verify exact publication
         env:
           EXPECTED_SHA256: ${{ needs.build.outputs.sha256 }}
@@ -508,12 +515,16 @@ jobs:
           EXPECTED_VERIFIER_SIZE: ${{ needs.build.outputs.verifier_size }}
           NPM_CLI: npm@12.0.2
           NPM_CONFIG_REGISTRY: https://registry.npmjs.org
+          PINNED_PNPM: 12.21.0
+          PNPM_CONFIG_REGISTRY: https://registry.npmjs.org
           TARBALL: ${{ runner.temp }}/contract-release/${{ needs.build.outputs.asset_name }}
           VERIFIER: ${{ runner.temp }}/contract-release/provenance.mjs
         run: |
           npm_version=$(npx --yes "$NPM_CLI" --version)
-          if [[ "$npm_version" != "${NPM_CLI#npm@}" ]]; then
-            echo "Publication verification requires the pinned npm CLI." >&2
+          pnpm_version=$(pnpm --version)
+          if [[ "$npm_version" != "${NPM_CLI#npm@}" \
+            || "$pnpm_version" != "$PINNED_PNPM" ]]; then
+            echo "Publication verification requires the pinned npm and pnpm CLIs." >&2
             exit 1
           fi
           if [[ -n "${ACTIONS_ID_TOKEN_REQUEST_URL:-}" \
@@ -551,7 +562,7 @@ jobs:
 
           read_metadata() {
             local raw
-            if ! raw=$(npx --yes "$NPM_CLI" view "$package_specifier" \
+            if ! raw=$(pnpm view "$package_specifier" \
               name version dist.shasum dist.integrity dist.attestations \
               --json 2>/dev/null); then
               return 1

