@@ -1,0 +1,44 @@
+Sebuah tiub pemfotogandaan mengesan cahaya yang sangat malap. Di dalam tiub vakum itu, elektron meninggalkan katod, yang berada pada <InlineMath math="0\text{ V}" />, dalam keadaan hampir pegun. Elektron itu ditarik ke plat pertama daripada enam plat logam yang dinamakan dinod. Dinod-dinod itu berada pada <InlineMath math="+100\text{ V}" />, <InlineMath math="+200\text{ V}" /> dan seterusnya dalam langkah <InlineMath math="100\text{ V}" /> hingga <InlineMath math="+600\text{ V}" />, dan selepas dinod terakhir elektron ditarik ke anod pengumpul pada <InlineMath math="+700\text{ V}" />. Setiap elektron yang menghentam dinod mengeluarkan <InlineMath math="3" /> elektron, yang meninggalkan dinod itu dalam keadaan hampir pegun dan ditarik ke dinod seterusnya. Anod hanya mengumpul elektron. Dalam cahaya malap, <InlineMath math="5.0\times10^{6}" /> elektron meninggalkan katod setiap saat. Jisim elektron ialah <InlineMath math="9.11\times10^{-31}\text{ kg}" />, dan casnya <InlineMath math="1.6\times10^{-19}\text{ C}" />.
+
+<MathVisual
+  title={<>Di dalam tiub pemfotogandaan</>}
+  description={<>Elektron dari katod melompat dari satu dinod ke dinod seterusnya, setiap dinod <InlineMath math="100\text{ V}" /> lebih tinggi daripada dinod sebelumnya, dan berakhir di anod. Lukisan ini tidak mengikut skala.</>}
+  labels={{
+    cathode: <>katod, <InlineMath math="0\text{ V}" /></>,
+    d1: <><InlineMath math="+100\text{ V}" /></>,
+    d2: <><InlineMath math="+200\text{ V}" /></>,
+    d3: <><InlineMath math="+300\text{ V}" /></>,
+    d4: <><InlineMath math="+400\text{ V}" /></>,
+    d5: <><InlineMath math="+500\text{ V}" /></>,
+    d6: <><InlineMath math="+600\text{ V}" /></>,
+    anode: <>anod, <InlineMath math="+700\text{ V}" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -3.6, max: 15.4 }, y: { min: -1.2, max: 5.2 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "cathode", kind: "segment", appearance: "primary", from: { x: 0, y: 1 }, to: { x: 0, y: 3 } },
+      { id: "d1", kind: "segment", appearance: "primary", from: { x: 1.5, y: 0 }, to: { x: 2.5, y: 0 } },
+      { id: "d2", kind: "segment", appearance: "primary", from: { x: 3, y: 4 }, to: { x: 4, y: 4 } },
+      { id: "d3", kind: "segment", appearance: "primary", from: { x: 4.5, y: 0 }, to: { x: 5.5, y: 0 } },
+      { id: "d4", kind: "segment", appearance: "primary", from: { x: 6, y: 4 }, to: { x: 7, y: 4 } },
+      { id: "d5", kind: "segment", appearance: "primary", from: { x: 7.5, y: 0 }, to: { x: 8.5, y: 0 } },
+      { id: "d6", kind: "segment", appearance: "primary", from: { x: 9, y: 4 }, to: { x: 10, y: 4 } },
+      { id: "anode", kind: "segment", appearance: "highlight", from: { x: 11.5, y: 1 }, to: { x: 11.5, y: 3 } },
+      { id: "path", kind: "polyline", appearance: "construction", vertices: [{ x: 0.1, y: 2 }, { x: 2, y: 0.1 }, { x: 3.5, y: 3.9 }, { x: 5, y: 0.1 }, { x: 6.5, y: 3.9 }, { x: 8, y: 0.1 }, { x: 9.5, y: 3.9 }, { x: 11.4, y: 2 }] },
+    ],
+    labels: [
+      { key: "cathode", objectId: "cathode", at: { x: 0, y: 2 }, placement: "left" },
+      { key: "anode", objectId: "anode", at: { x: 11.5, y: 2 }, placement: "right" },
+      { key: "d1", objectId: "d1", at: { x: 2, y: 0 }, placement: "below" },
+      { key: "d2", objectId: "d2", at: { x: 3.5, y: 4 }, placement: "above" },
+      { key: "d3", objectId: "d3", at: { x: 5, y: 0 }, placement: "below" },
+      { key: "d4", objectId: "d4", at: { x: 6.5, y: 4 }, placement: "above" },
+      { key: "d5", objectId: "d5", at: { x: 8, y: 0 }, placement: "below" },
+      { key: "d6", objectId: "d6", at: { x: 9.5, y: 4 }, placement: "above" },
+    ],
+  }}
+/>
+
+Dengan laju berapakah sebuah elektron menghentam dinod keenam, berapakah bilangan elektron yang sampai ke anod bagi setiap elektron yang meninggalkan katod, dan berapakah arus yang mengalir ke dalam anod?

@@ -1,0 +1,31 @@
+# Wie weit das Lineal wirklich fiel
+
+Stell dir eine Laufbahn vor, deren erste Entfernungsmarke einen Meter hinter der echten Startlinie aufgemalt ist. Wer an dieser Marke steht, ist schon einen Meter weiter gelaufen, als dort steht. Mit dem Lineal ist es genauso. Der Finger beginnt ganz unten am Lineal, einen Zentimeter unter der gedruckten Null. **Eine Ablesung von <InlineMath math="20{,}0\text{ cm}" /> bedeutet eine Fallstrecke von <InlineMath math="20{,}0+1{,}0=21{,}0\text{ cm}" />**, und <InlineMath math="s=\tfrac12gt^2" /> macht daraus <InlineMath math="t=\sqrt{2\times0{,}210/9{,}8}=0{,}21\text{ s}" />. Wer die gedruckte Zahl als Fallstrecke nimmt, kommt auf <InlineMath math="0{,}20\text{ s}" />, und diese Gewohnheit verdirbt auch jeden späteren Schritt.
+
+# Wo die Ratelinie auf der Skala liegt
+
+Beim Sprint gilt als Fehlstart, wer innerhalb von <InlineMath math="0{,}100\text{ s}" /> nach dem Schuss den Block verlässt, denn so schnell reagiert kein Mensch. Hier wird dieselbe Grenze zu einer Marke auf dem Lineal. In <InlineMath math="0{,}100\text{ s}" /> fällt das Lineal <InlineMath math="4{,}9\text{ cm}" />, also landet der Finger <InlineMath math="4{,}9\text{ cm}" /> über dem unteren Ende. Auf der gedruckten Skala liegt diese Stelle einen Zentimeter tiefer.
+
+<BlockMath math="\begin{aligned}
+s&=\tfrac12\times9{,}8\times0{,}100^2=0{,}049\text{ m}=4{,}9\text{ cm}\\
+R&=4{,}9-1{,}0=3{,}9\text{ cm}
+\end{aligned}" />
+
+**Jeder Fang mit einer Ablesung unter <InlineMath math="3{,}9\text{ cm}" /> ist geraten**. Wer die Linie bei <InlineMath math="4{,}9\text{ cm}" /> lässt, vergleicht eine gedruckte Ablesung mit einer Fallstrecke, also zwei Maße mit verschiedenem Nullpunkt.
+
+# Die Versuche des schnellen Fängers sortieren
+
+Sei jetzt Schiedsrichter und prüfe jeden Start an dieser Linie. Der Versuch bei <InlineMath math="3{,}0\text{ cm}" /> liegt unter <InlineMath math="3{,}9\text{ cm}" />. Seine Fallstrecke von <InlineMath math="4{,}0\text{ cm}" /> hieße <InlineMath math="0{,}090\text{ s}" />, was großartig aussieht, aber geraten ist, also behält die Antwort mit <InlineMath math="0{,}090\text{ s}" /> einen Versuch, den die Regel streicht. Der Versuch bei <InlineMath math="4{,}2\text{ cm}" /> kommt knapp über die Linie. Seine Fallstrecke ist <InlineMath math="5{,}2\text{ cm}" />, also <InlineMath math="t=\sqrt{2\times0{,}052/9{,}8}=0{,}103\text{ s}" />. **Die kürzeste gültige Reaktionszeit des schnellen Fängers beträgt <InlineMath math="0{,}103\text{ s}" />**. Wer die Versuche an <InlineMath math="4{,}9\text{ cm}" /> misst, wirft diesen ehrlichen Fang weg und behält <InlineMath math="6{,}1\text{ cm}" />, also <InlineMath math="0{,}120\text{ s}" />. Wer den Versatz überall weglässt, streicht ihn ebenfalls, als <InlineMath math="0{,}093\text{ s}" />, und macht aus <InlineMath math="6{,}1\text{ cm}" /> dann <InlineMath math="0{,}112\text{ s}" />.
+
+<Chart
+  title={<>Die vier Versuche des schnellen Fängers an der Ratelinie</>}
+  description={<>Jedes Balkenpaar ist ein Versuch, beschriftet mit seiner gedruckten Ablesung, in Millisekunden. Der erste Balken zählt den Versatz von <InlineMath math="1{,}0\text{ cm}" /> zur Ablesung dazu, der zweite nimmt die Ablesung als ganze Fallstrecke. Ein Versuch zählt nur, wenn sein Balken die Linie bei <InlineMath math="100\text{ ms}" /> erreicht.</>}
+  bars="apart"
+  categories={["3,0 cm", "7,3 cm", "4,2 cm", "6,1 cm"]}
+  series={[
+    { label: "Echte Fallstrecke, Versatz dazu", mark: "bar", values: [90, 130, 103, 120] },
+    { label: "Ablesung als Fallstrecke", mark: "bar", values: [78, 122, 93, 112] },
+    { label: "Grenze fürs Raten", mark: "line", values: [100, 100, 100, 100] },
+  ]}
+  valueLabel="Reaktionszeit (ms)"
+/>

@@ -1,0 +1,46 @@
+A home alarm panel is powered by a mains adapter of e.m.f. <InlineMath math="9.0\text{ V}" /> and internal resistance <InlineMath math="10\,\Omega" />, connected to the panel through diode <InlineMath math="D_1" />. A backup battery of e.m.f. <InlineMath math="7.5\text{ V}" /> and negligible internal resistance is connected to the same panel terminals through diode <InlineMath math="D_2" />. Both diodes point towards the panel. A diode conducts only when it is forward biased, and then it has <InlineMath math="0.70\text{ V}" /> across it. The panel behaves as a fixed <InlineMath math="40\,\Omega" /> resistor.
+
+<MathVisual
+  title={<>The alarm panel and its two supplies</>}
+  description={<>The adapter feeds the panel through diode <InlineMath math="D_1" />, and the backup battery feeds the same panel through diode <InlineMath math="D_2" />. Both diodes point towards the panel.</>}
+  labels={{
+    adapter: <>adapter, <InlineMath math="9.0\text{ V}" />, <InlineMath math="10\,\Omega" /></>,
+    d1: <><InlineMath math="D_1" /></>,
+    panel: <>panel, <InlineMath math="40\,\Omega" /></>,
+    d2: <><InlineMath math="D_2" /></>,
+    battery: <>battery, <InlineMath math="7.5\text{ V}" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -6.6, max: 14.6 }, y: { min: -3.5, max: 8 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "rail", kind: "segment", appearance: "secondary", from: { x: 0, y: 0 }, to: { x: 10, y: 0 } },
+      { id: "adapter", kind: "polygon", appearance: "secondary", vertices: [{ x: -0.7, y: 1.2 }, { x: 0.7, y: 1.2 }, { x: 0.7, y: 2.8 }, { x: -0.7, y: 2.8 }] },
+      { id: "adapter-down", kind: "segment", appearance: "secondary", from: { x: 0, y: 1.2 }, to: { x: 0, y: 0 } },
+      { id: "adapter-up", kind: "segment", appearance: "secondary", from: { x: 0, y: 2.8 }, to: { x: 0, y: 4 } },
+      { id: "wire-a", kind: "segment", appearance: "secondary", from: { x: 0, y: 4 }, to: { x: 2.2, y: 4 } },
+      { id: "d1", kind: "polygon", appearance: "primary", vertices: [{ x: 2.2, y: 3.6 }, { x: 2.2, y: 4.4 }, { x: 3, y: 4 }] },
+      { id: "d1-bar", kind: "segment", appearance: "primary", from: { x: 3, y: 3.6 }, to: { x: 3, y: 4.4 } },
+      { id: "wire-b", kind: "segment", appearance: "secondary", from: { x: 3, y: 4 }, to: { x: 7, y: 4 } },
+      { id: "panel", kind: "polygon", appearance: "highlight", vertices: [{ x: 4.4, y: 1.2 }, { x: 5.6, y: 1.2 }, { x: 5.6, y: 2.8 }, { x: 4.4, y: 2.8 }] },
+      { id: "panel-up", kind: "segment", appearance: "secondary", from: { x: 5, y: 2.8 }, to: { x: 5, y: 4 } },
+      { id: "panel-down", kind: "segment", appearance: "secondary", from: { x: 5, y: 1.2 }, to: { x: 5, y: 0 } },
+      { id: "d2", kind: "polygon", appearance: "primary", vertices: [{ x: 7.8, y: 3.6 }, { x: 7.8, y: 4.4 }, { x: 7, y: 4 }] },
+      { id: "d2-bar", kind: "segment", appearance: "primary", from: { x: 7, y: 3.6 }, to: { x: 7, y: 4.4 } },
+      { id: "wire-c", kind: "segment", appearance: "secondary", from: { x: 7.8, y: 4 }, to: { x: 10, y: 4 } },
+      { id: "battery", kind: "polygon", appearance: "secondary", vertices: [{ x: 9.3, y: 1.2 }, { x: 10.7, y: 1.2 }, { x: 10.7, y: 2.8 }, { x: 9.3, y: 2.8 }] },
+      { id: "battery-up", kind: "segment", appearance: "secondary", from: { x: 10, y: 2.8 }, to: { x: 10, y: 4 } },
+      { id: "battery-down", kind: "segment", appearance: "secondary", from: { x: 10, y: 1.2 }, to: { x: 10, y: 0 } },
+    ],
+    labels: [
+      { key: "adapter", objectId: "adapter", at: { x: -0.7, y: 2 }, placement: "left" },
+      { key: "d1", objectId: "d1", at: { x: 2.6, y: 4.4 }, placement: "above" },
+      { key: "panel", objectId: "panel", at: { x: 5.6, y: 2 }, placement: "right" },
+      { key: "d2", objectId: "d2", at: { x: 7.4, y: 4.4 }, placement: "above" },
+      { key: "battery", objectId: "battery", at: { x: 10.7, y: 2 }, placement: "right" },
+    ],
+  }}
+/>
+
+What current flows through the panel, what current does the backup battery supply, and what is the largest current the panel could draw while the battery still supplies nothing?

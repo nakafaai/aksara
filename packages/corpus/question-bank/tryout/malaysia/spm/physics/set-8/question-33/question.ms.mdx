@@ -1,0 +1,42 @@
+Di sebuah kilang peleburan aluminium, arus terus yang besar dibawa oleh tiga batang yang panjang, lurus dan selari dalam satu barisan, setiap satunya <InlineMath math="0.20\text{ m}" /> dari batang sebelahnya. Batang tengah membawa arus ke sel, dan dua batang luar masing-masing membawa separuh daripadanya kembali, jadi arus batang luar sama besar dan mengalir bertentangan dengan arus batang tengah. Setiap batang dipegang oleh penyokong penebat yang dipasang setiap <InlineMath math="2.0\text{ m}" />, dan daya magnet pada setiap rentang <InlineMath math="2.0\text{ m}" /> sebatang batang ditanggung oleh satu penyokong. Seutas wayar lurus yang panjang dan membawa arus <InlineMath math="I" /> menghasilkan medan magnet <InlineMath math="B=2.0\times10^{-7}\,I/d" /> tesla pada jarak <InlineMath math="d" /> meter daripadanya, dan di mana-mana batang lain medan ini berserenjang dengan batang itu. Dalam penggunaan biasa, batang tengah membawa <InlineMath math="3000\text{ A}" />, dan setiap penyokong boleh menanggung daya paling banyak <InlineMath math="1000\text{ N}" />.
+
+<MathVisual
+  title={<>Tiga batang itu dilihat dari hujung</>}
+  description={<>Keratan rentas tiga batang itu. Titik menandakan arus yang keluar dari halaman, dan pangkah menandakan arus yang masuk ke dalam halaman. Lukisan ini tidak mengikut skala.</>}
+  labels={{
+    "bar-a": <>A, <InlineMath math="1500\text{ A}" /> masuk ke dalam halaman</>,
+    "bar-b": <>B, <InlineMath math="3000\text{ A}" /> keluar dari halaman</>,
+    "bar-c": <>C, <InlineMath math="1500\text{ A}" /> masuk ke dalam halaman</>,
+    "gap-ab": <><InlineMath math="0.20\text{ m}" /></>,
+    "gap-bc": <><InlineMath math="0.20\text{ m}" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -11, max: 11 }, y: { min: -6, max: 6 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "bar-a", kind: "polygon", appearance: "primary", vertices: [{ x: -4.5, y: -0.5 }, { x: -3.5, y: -0.5 }, { x: -3.5, y: 0.5 }, { x: -4.5, y: 0.5 }] },
+      { id: "cross-a1", kind: "segment", appearance: "highlight", from: { x: -4.3, y: -0.3 }, to: { x: -3.7, y: 0.3 } },
+      { id: "cross-a2", kind: "segment", appearance: "highlight", from: { x: -4.3, y: 0.3 }, to: { x: -3.7, y: -0.3 } },
+      { id: "bar-b", kind: "polygon", appearance: "primary", vertices: [{ x: -0.5, y: -0.5 }, { x: 0.5, y: -0.5 }, { x: 0.5, y: 0.5 }, { x: -0.5, y: 0.5 }] },
+      { id: "dot", kind: "point", appearance: "highlight", at: { x: 0, y: 0 } },
+      { id: "bar-c", kind: "polygon", appearance: "primary", vertices: [{ x: 3.5, y: -0.5 }, { x: 4.5, y: -0.5 }, { x: 4.5, y: 0.5 }, { x: 3.5, y: 0.5 }] },
+      { id: "cross-c1", kind: "segment", appearance: "highlight", from: { x: 3.7, y: -0.3 }, to: { x: 4.3, y: 0.3 } },
+      { id: "cross-c2", kind: "segment", appearance: "highlight", from: { x: 3.7, y: 0.3 }, to: { x: 4.3, y: -0.3 } },
+      { id: "gap-ab", kind: "segment", appearance: "construction", from: { x: -4, y: -1.3 }, to: { x: 0, y: -1.3 } },
+      { id: "gap-bc", kind: "segment", appearance: "construction", from: { x: 0, y: -1.3 }, to: { x: 4, y: -1.3 } },
+      { id: "tick-a", kind: "segment", appearance: "construction", from: { x: -4, y: -1.1 }, to: { x: -4, y: -1.5 } },
+      { id: "tick-b", kind: "segment", appearance: "construction", from: { x: 0, y: -1.1 }, to: { x: 0, y: -1.5 } },
+      { id: "tick-c", kind: "segment", appearance: "construction", from: { x: 4, y: -1.1 }, to: { x: 4, y: -1.5 } },
+    ],
+    labels: [
+      { key: "bar-a", objectId: "bar-a", at: { x: -4.5, y: 0 }, placement: "left" },
+      { key: "bar-b", objectId: "bar-b", at: { x: 0, y: 0.5 }, placement: "above" },
+      { key: "bar-c", objectId: "bar-c", at: { x: 4.5, y: 0 }, placement: "right" },
+      { key: "gap-ab", objectId: "gap-ab", at: { x: -2, y: -1.3 }, placement: "below" },
+      { key: "gap-bc", objectId: "gap-bc", at: { x: 2, y: -1.3 }, placement: "below" },
+    ],
+  }}
+/>
+
+Berapakah daya magnet bersih pada rentang <InlineMath math="2.0\text{ m}" /> batang tengah, berapakah daya magnet bersih pada rentang <InlineMath math="2.0\text{ m}" /> sebatang batang luar, dan berapakah arus terbesar yang boleh dibawa oleh batang tengah semasa kerosakan, dengan batang-batang luar masih berkongsi arus itu sama rata, sebelum daya pada satu rentang melebihi daya yang boleh ditanggung oleh penyokong?

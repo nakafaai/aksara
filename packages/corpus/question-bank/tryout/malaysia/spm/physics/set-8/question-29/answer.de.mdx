@@ -1,0 +1,38 @@
+# Zwei Wege vom Gehäuse zur Erde
+
+Regen auf einem Dach läuft fast ganz durch das breite Fallrohr ab, und nur ein Rinnsal sickert durch einen Schwamm daneben. Vom Gehäuse führen Schutzleiter und Mensch nebeneinander zur Erde. Zusammen ergeben sie <InlineMath math="0{,}49975\,\Omega" />, fast genau die <InlineMath math="0{,}50\,\Omega" /> des Schutzleiters, und davor liegen in Reihe die <InlineMath math="0{,}30\,\Omega" /> des Außenleiters.
+
+<BlockMath math="\begin{aligned}
+R&=0{,}30+\frac{0{,}50\times1000}{0{,}50+1000}=0{,}30+0{,}49975=0{,}79975\,\Omega\\
+I&=\frac{240}{0{,}79975}=300\text{ A}
+\end{aligned}" />
+
+**Etwa <InlineMath math="300\text{ A}" /> fließen durch die Sicherung, mehr als das Zwanzigfache ihres Nennwerts, also schmilzt sie schnell durch**. Ohne die <InlineMath math="0{,}30\,\Omega" /> des Außenleiters kommt man auf <InlineMath math="480\text{ A}" />, als säße der Fehler direkt an der Steckdose.
+
+# Für einen Moment steht das Gehäuse unter Spannung
+
+Auch ein breites Fallrohr schluckt einen Wolkenbruch nur, wenn sich oben etwas Wasser staut. Um <InlineMath math="300\text{ A}" /> durch die <InlineMath math="0{,}50\,\Omega" /> des Schutzleiters zu treiben, braucht es <InlineMath math="300\times0{,}50=150\text{ V}" /> an ihm, also liegt das Gehäuse bei etwa <InlineMath math="150\text{ V}" />, bis die Sicherung durchschmilzt. Am Menschen liegen dieselben <InlineMath math="150\text{ V}" />. **Durch den Menschen fließen etwa <InlineMath math="150/1000=0{,}150\text{ A}" />, bevor die Sicherung durchschmilzt**. Die Antwort <InlineMath math="0\text{ A}" /> nimmt an, der Schutzleiter halte das Gehäuse auf <InlineMath math="0\text{ V}" />. Das kann er nicht, solange ein großer Strom durch ihn fließt. Seine Aufgabe ist, den Fehlerstrom so groß zu machen, dass die Sicherung in Sekundenbruchteilen durchschmilzt.
+
+<Mermaid
+  title={<>Wohin der Fehlerstrom fließt</>}
+  description={<>Solange der Schutzleiter angeschlossen ist, nimmt fast der ganze Strom diesen Weg, und das Gehäuse liegt bis zum Durchschmelzen der Sicherung bei etwa <InlineMath math="150\text{ V}" />. Ist der Schutzleiter lose, verbindet nur noch der Mensch das Gehäuse mit der Erde.</>}
+  chart={`
+    flowchart TD
+      N0["Netz, 240 V"]
+      N1["Sicherung und Außenleiter, 0,30 Ω"]
+      N2["Metallgehäuse, etwa 150 V"]
+      N3["Schutzleiter, 0,50 Ω, etwa 300 A"]
+      N4["Mensch und nasser Boden, 1000 Ω, 0,150 A"]
+      N5["Erde, 0 V"]
+      N0 --> N1
+      N1 --> N2
+      N2 --> N3
+      N2 --> N4
+      N3 --> N5
+      N4 --> N5
+  `}
+/>
+
+# Ohne Schutzleiter merkt die Sicherung nichts
+
+Ein Rauchmelder, der nur auf ein Lagerfeuer anspringt, würde neben einer qualmenden Kerze weiterschlafen. Ist der Schutzleiter lose, führt der einzige Weg vom Gehäuse zur Erde durch den Menschen, also fließen <InlineMath math="240/(0{,}30+1000)=0{,}240\text{ A}" />. **Durch den Menschen fließen etwa <InlineMath math="0{,}240\text{ A}" />, und die Sicherung schmilzt nicht**, denn <InlineMath math="0{,}240\text{ A}" /> liegen weit unter <InlineMath math="13\text{ A}" />. Der Stromschlag geht einfach weiter. Wer erwartet, dass die Sicherung durchschmilzt, verwechselt ihre Aufgabe, Ströme zu stoppen, die die Leitungen überhitzen würden, mit dem Schutz von Menschen. Ein Strom, der eine Sicherung nicht im Geringsten stört, kann für einen Menschen trotzdem sehr gefährlich sein.

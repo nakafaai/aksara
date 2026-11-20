@@ -1,0 +1,38 @@
+In air, a camera sees everything within <InlineMath math="30°" /> of the straight-ahead direction, a full field of view of <InlineMath math="60°" />. For diving it is sealed in a housing with a flat glass window in front of the lens. The glass is thin, so treat light as passing straight from water, of refractive index <InlineMath math="1.33" />, into the air inside the housing.
+
+<MathVisual
+  title={<>The camera in its diving housing</>}
+  description={<>Seen from above. Inside the housing the camera sees everything within <InlineMath math="30°" /> of straight ahead, shown by the two edge lines that reach the window. Water lies outside the window. The drawing is not to scale.</>}
+  labels={{
+    camera: <>camera</>,
+    window: <>glass window</>,
+    angle: <><InlineMath math="30°" /></>,
+    air: <>air</>,
+    water: <>water</>,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -4.2, max: 3 }, y: { min: -2, max: 2.2 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "housing", kind: "polyline", appearance: "secondary", vertices: [{ x: 0, y: 1.5 }, { x: -3.6, y: 1.5 }, { x: -3.6, y: -1.5 }, { x: 0, y: -1.5 }] },
+      { id: "window", kind: "segment", appearance: "primary", from: { x: 0, y: -1.5 }, to: { x: 0, y: 1.5 } },
+      { id: "camera", kind: "polygon", appearance: "secondary", vertices: [{ x: -3.2, y: -0.5 }, { x: -2, y: -0.5 }, { x: -2, y: 0.5 }, { x: -3.2, y: 0.5 }] },
+      { id: "axis", kind: "segment", appearance: "reference", from: { x: -2, y: 0 }, to: { x: 2.4, y: 0 } },
+      { id: "edge-up", kind: "segment", appearance: "construction", from: { x: -2, y: 0 }, to: { x: 0, y: 1.1547 } },
+      { id: "edge-down", kind: "segment", appearance: "construction", from: { x: -2, y: 0 }, to: { x: 0, y: -1.1547 } },
+      { id: "angle", kind: "arc", appearance: "construction", center: { x: -2, y: 0 }, radius: 0.9, startDegrees: 0, sweepDegrees: 30 },
+      { id: "air", kind: "point", appearance: "reference", at: { x: -1, y: -1 } },
+      { id: "water", kind: "point", appearance: "reference", at: { x: 1.6, y: 1 } },
+    ],
+    labels: [
+      { key: "camera", objectId: "camera", at: { x: -2.6, y: -0.5 }, placement: "below" },
+      { key: "window", objectId: "window", at: { x: 0, y: 1.5 }, placement: "above" },
+      { key: "angle", objectId: "angle", at: { x: -1.1, y: 0.25 }, placement: "right" },
+      { key: "air", objectId: "air", at: { x: -1, y: -1 }, placement: "below" },
+      { key: "water", objectId: "water", at: { x: 1.6, y: 1 }, placement: "above" },
+    ],
+  }}
+/>
+
+What is the camera's full field of view under water, how far away does a fish <InlineMath math="2.0\text{ m}" /> straight in front of the window appear to the camera, and how far from the window must the diver be to fit a reef wall <InlineMath math="3.0\text{ m}" /> wide, square on to the camera, just across the picture?

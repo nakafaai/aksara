@@ -1,0 +1,48 @@
+# Pengisian menaikkan pembacaan terminal
+
+Pintu dengan engsel seret lebih susah didorong terbuka dan lebih pelan saat mengayun balik, karena keseretan itu selalu melawan gerakan. Hambatan dalam bekerja dengan cara yang sama. Selama pengisi mendorong arus masuk, terminal harus berada di atas GGL sebesar <InlineMath math="Ir" />, jadi <InlineMath math="E+5{,}0r=12{,}5" />. Selama aki mendorong arus keluar ke lampu, terminal berada di bawahnya, jadi <InlineMath math="E-2{,}0r=11{,}8" />.
+
+<BlockMath math="\begin{aligned}
+E+5{,}0r&=12{,}5\\
+E-2{,}0r&=11{,}8\ \Rightarrow\ 7{,}0r=0{,}70,\quad r=0{,}10\,\Omega,\quad E=12{,}0\text{ V}
+\end{aligned}" />
+
+**Hambatan dalam aki <InlineMath math="0{,}10\,\Omega" />, dan GGL-nya <InlineMath math="12{,}0\text{ V}" />**. Menganggap pembacaan <InlineMath math="12{,}5\text{ V}" /> sebagai GGL itu sendiri memberi <InlineMath math="0{,}70/2{,}0=0{,}35\,\Omega" />, padahal pembacaan itu terdorong naik oleh arus pengisian.
+
+<Chart
+  title={<>Pembacaan terminal terhadap arus keluar dari aki</>}
+  description={<>Arus dalam ampere di sumbu bawah, negatif saat aki diisi dan positif saat aki memasok arus. Kedua pembacaan terletak pada satu garis lurus yang melewati GGL <InlineMath math="12{,}0\text{ V}" /> dan turun <InlineMath math="0{,}10\text{ V}" /> tiap ampere yang ditarik, lalu bertemu batas <InlineMath math="10{,}0\text{ V}" /> milik inverter pada <InlineMath math="20\text{ A}" />.</>}
+  categories={["-5", "0", "2", "5", "10", "15", "20", "25"]}
+  series={[
+    { label: "Pembacaan terminal aki", mark: "line", values: [12.5, 12.0, 11.8, 11.5, 11.0, 10.5, 10.0, 9.5] },
+    { label: "Batas mati inverter", mark: "line", values: [10.0, 10.0, 10.0, 10.0, 10.0, 10.0, 10.0, 10.0] },
+  ]}
+  valueLabel="Pembacaan (V)"
+/>
+
+# Pengisi daya kehilangan sebagian dorongan di dalam dirinya
+
+Pompa air yang mendorong lewat pipa keluarnya sendiri yang sempit harus membuat tekanan lebih besar daripada yang sampai di ujung. Terminal pengisi dihubungkan ke terminal aki dengan kabel tanpa hambatan, jadi pembacaannya juga <InlineMath math="12{,}5\text{ V}" />, dan GGL pengisi harus lebih tinggi sebesar penurunan di dalam dirinya, <InlineMath math="5{,}0\times0{,}50=2{,}5\text{ V}" />. **GGL pengisi daya <InlineMath math="15{,}0\text{ V}" />**. Berangkat dari <InlineMath math="12{,}0\text{ V}" /> milik aki, bukan <InlineMath math="12{,}5\text{ V}" /> di terminal, memberi <InlineMath math="14{,}5\text{ V}" />, yang melupakan penurunan di dalam aki.
+
+# Batas bawah inverter menentukan batasnya
+
+Banyak ponsel mematikan dirinya saat baterainya masih tersisa sedikit, untuk melindungi baterai. Inverter berbuat serupa dengan tegangan. Setiap ampere tambahan yang ditariknya menurunkan terminal <InlineMath math="0{,}10\text{ V}" />, jadi meminta daya lebih besar akhirnya menyeret pembacaan di bawah <InlineMath math="10{,}0\text{ V}" />, dan inverter mati.
+
+<BlockMath math="\begin{aligned}
+12{,}0-0{,}10\,I&\ge10{,}0\ \Rightarrow\ I\le20\text{ A}\\
+P&=10{,}0\times20=200\text{ W}
+\end{aligned}" />
+
+**Aki bisa memberi paling banyak <InlineMath math="200\text{ W}" /> ke inverter**. Mengalikan GGL dengan arus memberi <InlineMath math="12{,}0\times20=240\text{ W}" />, tetapi <InlineMath math="20^2\times0{,}10=40\text{ W}" /> di antaranya menjadi panas di dalam aki dan tidak pernah sampai ke inverter.
+
+<Chart
+  title={<>Daya yang bisa ditarik inverter</>}
+  description={<>Arus yang ditarik dari aki dalam ampere di sumbu bawah. Daya sampai ke inverter pada tegangan terminal, jadi naik sampai <InlineMath math="200\text{ W}" /> pada <InlineMath math="20\text{ A}" />, saat inverter mati. Garis paling atas, GGL kali arus, ikut menghitung panas yang timbul di dalam aki.</>}
+  categories={["0", "5", "10", "15", "20", "25", "30"]}
+  series={[
+    { label: "Daya yang sampai ke inverter", mark: "line", values: [0.0, 57.5, 110.0, 157.5, 200.0, null, null] },
+    { label: "Lewat batas mati", mark: "line", values: [null, null, null, null, 200.0, 237.5, 270.0] },
+    { label: "GGL kali arus", mark: "line", values: [0.0, 60.0, 120.0, 180.0, 240.0, 300.0, 360.0] },
+  ]}
+  valueLabel="Daya (W)"
+/>

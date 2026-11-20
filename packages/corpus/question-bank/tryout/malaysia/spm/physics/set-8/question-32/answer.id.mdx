@@ -1,0 +1,39 @@
+# Satu lintasan lewat rahang adalah satu lilitan
+
+Jungkat-jungkit seimbang ketika anak yang ringan duduk jauh di ujung dan orang dewasa yang berat duduk dekat poros. Trafo menyeimbangkan lilitan dengan arus dengan cara yang sama, jadi <InlineMath math="N_pI_p=N_sI_s" />, dan sisi dengan lilitan lebih banyak membawa arus lebih kecil. Kabel fase adalah kumparan primer satu lilitan, jadi arus ketel <InlineMath math="2000\times4{,}6\text{ mA}=9{,}2\text{ A}" />. **Ketel itu memakai <InlineMath math="240\times9{,}2=2{,}21\text{ kW}" />**.
+
+# Rahang hanya merasakan arus bersih
+
+Dalam tarik tambang, tali baru bergerak kalau satu tim menarik lebih kuat daripada tim lainnya. Kabel fase membawa arus ke ketel dan kabel netral membawanya kembali, jadi efek magnet keduanya di besi saling meniadakan. Namun kerusakan itu membuat arus bocor dari kabel fase lewat badan ketel ke kabel arde, yang pulang di luar rahang.
+
+<BlockMath math="\begin{aligned}
+I_{\text{bocor}}&=\frac{240}{8000}=0{,}030\text{ A}\\
+I_s&=\frac{1\times0{,}030}{2000}=1{,}50\times10^{-5}\text{ A}
+\end{aligned}" />
+
+**Meter menunjukkan <InlineMath math="15{,}0\,\mu\text{A}" />**, kecil tetapi bukan nol. Mengharapkan <InlineMath math="0\text{ A}" /> berarti lupa bahwa arus bocor tidak pernah kembali lewat kabel netral. Mengharapkan <InlineMath math="4{,}6\text{ mA}" /> yang lama justru melupakan kabel netral sama sekali, seakan rahang masih menjepit kabel fase saja. Pemutus arus sisa di kotak sekring mengawasi selisih inilah.
+
+# Arus yang tetap tidak memberi bacaan
+
+Dinamo sepeda menyalakan lampunya hanya selama roda berputar. Hentikan rodanya dan lampu padam, sekuat apa pun magnet di dalamnya. Trafo bekerja dengan cara yang sama: kumparan sekunder hanya merasakan fluks yang berubah. Arus tetap <InlineMath math="6{,}0\text{ A}" /> dari pengisi aki memang memagnetkan rahang besi, tetapi kemagnetan itu tidak pernah berubah, jadi tidak ada GGL yang terinduksi di kumparan. **Meter menunjukkan <InlineMath math="0\text{ A}" /> pada kabel pengisi aki**. Membagi <InlineMath math="6{,}0\text{ A}" /> dengan <InlineMath math="2000" /> menjadi <InlineMath math="3{,}00\text{ mA}" /> menganggap arus tetap itu naik turun seperti listrik rumah. Karena itulah tang ampere untuk arus searah mengukur medannya dengan jenis sensor lain.
+
+<Mermaid
+  title={<>Apa yang dirasakan rahang di tiap susunan</>}
+  description={<>Tiap rantai dimulai dari arus yang melewati rahang dan berakhir di meter. Hanya arus bersih yang berubah lewat rahang yang menghasilkan bacaan, dan meter menunjukkan arus bersih itu dibagi <InlineMath math="2000" />.</>}
+  chart={`
+    flowchart TD
+      N0["Kabel fase saja, 9,2 A"]
+      N1["Meter menunjukkan 4,6 mA"]
+      N2["Fase 9,23 A pergi, netral 9,20 A kembali"]
+      N3["Bersih 0,030 A melewati rahang"]
+      N4["Meter menunjukkan 15,0 µA"]
+      N5["Kabel pengisi aki, tetap 6,0 A"]
+      N6["Fluks di rahang tidak pernah berubah"]
+      N7["Meter menunjukkan 0"]
+      N0 --> N1
+      N2 --> N3
+      N3 --> N4
+      N5 --> N6
+      N6 --> N7
+  `}
+/>

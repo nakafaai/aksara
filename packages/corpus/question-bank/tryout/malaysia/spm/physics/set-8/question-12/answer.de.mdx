@@ -1,0 +1,42 @@
+# Ein Sieden, das von selbst aufhört
+
+Gieß Wasser in eine heiße Pfanne, und es zischt nur, bis die Pfanne abgekühlt ist. Der Stickstoff siedet aus demselben Grund und hört auf, sobald der Block bei <InlineMath math="-196\text{ °C}" /> angekommen ist. Der Block kühlt um <InlineMath math="27+196=223\text{ °C}" /> ab, und jedes Joule, das er abgibt, verdampft etwas Stickstoff.
+
+<BlockMath math="\begin{aligned}
+m&=\frac{0{,}20\times900\times(27+196)}{2{,}0\times10^{5}}=\frac{40140}{2{,}0\times10^{5}}=0{,}20\text{ kg}
+\end{aligned}" />
+
+**Etwa <InlineMath math="0{,}20\text{ kg}" /> Stickstoff verdampfen**. Wer erst ab <InlineMath math="0\text{ °C}" /> zählt, also nur <InlineMath math="196\text{ °C}" />, vergisst die ersten <InlineMath math="27\text{ °C}" /> Abkühlung und erhält <InlineMath math="0{,}18\text{ kg}" />.
+
+# Die erste Kanne hat Wärme übrig
+
+Bevor ihr euch eine Pizza teilt, zählst du, ob die Stücke für alle reichen. Hier sind die Stücke Joule. Um <InlineMath math="0\text{ °C}" /> zu erreichen, braucht der Block <InlineMath math="0{,}20\times900\times196=35280\text{ J}" />. Kühlte das Wasser von <InlineMath math="0{,}50\text{ kg}" /> ganz auf <InlineMath math="0\text{ °C}" /> ab, gäbe es <InlineMath math="0{,}50\times4200\times20=42000\text{ J}" /> ab, also mehr. Das Wasser erreicht <InlineMath math="0\text{ °C}" /> also nie, es bildet sich kein Eis, und eine gewöhnliche Wärmebilanz genügt.
+
+<BlockMath math="\begin{aligned}
+0{,}50\times4200\times(20-T)&=0{,}20\times900\times(T+196)\ \Rightarrow\ T=\frac{6720}{2280}=2{,}9\text{ °C}
+\end{aligned}" />
+
+**Die erste Kanne endet bei <InlineMath math="2{,}9\text{ °C}" />**, knapp über dem Gefrierpunkt.
+
+# Der zweiten Kanne geht die Wärme aus
+
+Mit <InlineMath math="0{,}40\text{ kg}" /> Wasser scheitert dieselbe Probe. Beim Abkühlen auf <InlineMath math="0\text{ °C}" /> werden nur <InlineMath math="33600\text{ J}" /> frei, weniger als die <InlineMath math="35280\text{ J}" /> des Blocks. Flüssiges Wasser kann nicht unter <InlineMath math="0\text{ °C}" /> abkühlen, so wie ein Teich nicht kälter als sein eigenes Eis wird, also muss die fehlende Wärme aus dem Gefrieren kommen.
+
+<BlockMath math="\begin{aligned}
+35280-33600&=1680\text{ J}\\
+m_{\text{ice}}&=\frac{1680}{3{,}34\times10^{5}}=5{,}0\times10^{-3}\text{ kg}
+\end{aligned}" />
+
+**Die zweite Kanne kommt bei <InlineMath math="0\text{ °C}" /> mit etwa <InlineMath math="5{,}0\text{ g}" /> Eis zur Ruhe**, einer dünnen Schale auf dem Block, und fast die ganzen <InlineMath math="400\text{ g}" /> bleiben flüssig. Wer beide Kannen mit derselben Bilanz rechnet, erhält <InlineMath math="-0{,}90\text{ °C}" />, eine Flüssigkeit unter ihrem eigenen Gefrierpunkt, und genau das schließt der Gefrierschritt aus. Wer die ganzen <InlineMath math="35280\text{ J}" /> in Eis umrechnet, erhält <InlineMath math="106\text{ g}" /> und vergisst die <InlineMath math="33600\text{ J}" />, die das Wasser vorher schon abgegeben hat.
+
+<Chart
+  title={<>Wem zuerst die Wärme ausgeht</>}
+  description={<>Wärme in Kilojoule für jede Thermoskanne. Der erste Balken ist, was der kalte Block braucht, um sich auf <InlineMath math="0\text{ °C}" /> zu erwärmen. Der zweite ist, was das Wasser beim Abkühlen auf <InlineMath math="0\text{ °C}" /> abgibt. In der ersten Kanne hat das Wasser Wärme übrig, also bildet sich kein Eis. In der zweiten fehlen dem Wasser <InlineMath math="1{,}68\text{ kJ}" />, und das Gefrieren bezahlt den Rest.</>}
+  bars="apart"
+  categories={["Erste Kanne, 0,50 kg Wasser", "Zweite Kanne, 0,40 kg Wasser"]}
+  series={[
+    { label: "Block erwärmt sich auf 0 °C", mark: "bar", values: [35.28, 35.28] },
+    { label: "Wasser kühlt auf 0 °C ab", mark: "bar", values: [42, 33.6] },
+  ]}
+  valueLabel="Wärme (kJ)"
+/>

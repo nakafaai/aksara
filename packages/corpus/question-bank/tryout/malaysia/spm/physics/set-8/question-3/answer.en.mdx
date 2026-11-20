@@ -1,0 +1,35 @@
+# The tape's own clock
+
+When a child starts to run, their footprints spread further apart with every step, and the dots on a ticker tape behave the same way. At <InlineMath math="50" /> dots a second, one dot space lasts <InlineMath math="0.02\text{ s}" />, so **each strip of <InlineMath math="10" /> spaces lasts <InlineMath math="0.20\text{ s}" />**. The first three strips grow by the same <InlineMath math="2.4\text{ cm}" /> each time, the mark of a steady acceleration, and <InlineMath math="a=\Delta s/T^2=0.024/0.20^2=0.60\text{ m s}^{-2}" />. Using <InlineMath math="0.10\text{ s}" /> a strip, a habit from tapes cut every five spaces, makes the acceleration <InlineMath math="2.4\text{ m s}^{-2}" /> and later the load <InlineMath math="0.30\text{ kg}" />.
+
+# The landing hides inside the fourth strip
+
+A cyclist who stops pedalling halfway along a street covers that street partly speeding up and partly coasting. Strips <InlineMath math="5" /> and <InlineMath math="6" /> are both <InlineMath math="8.4\text{ cm}" />, so after the landing the trolley coasts at a steady <InlineMath math="0.42\text{ m s}^{-1}" />. Strip <InlineMath math="4" />, at <InlineMath math="8.1\text{ cm}" />, is shorter than a coasting strip, so the load had not landed when it began. It cannot be a whole strip of speeding up either, so the landing falls inside it. The speed grows by <InlineMath math="0.60\text{ m s}^{-1}" /> each second, so it reaches <InlineMath math="0.42\text{ m s}^{-1}" /> at <InlineMath math="0.70\text{ s}" />, halfway through strip <InlineMath math="4" />.
+
+<BlockMath math="\begin{aligned}
+v&=\frac{0.084}{0.20}=0.42\text{ m s}^{-1},\qquad t=\frac{0.42}{0.60}=0.70\text{ s}\\
+h&=\tfrac12at^2=\tfrac12\times0.60\times0.70^2=0.147\text{ m}
+\end{aligned}" />
+
+**The load started <InlineMath math="14.7\text{ cm}" /> above the floor**. Adding all four strips that are not yet steady, <InlineMath math="1.2+3.6+6.0+8.1=18.9\text{ cm}" />, counts the coasting half of strip <InlineMath math="4" /> as part of the fall.
+
+<Chart
+  title={<>When the pull stops</>}
+  description={<>The trolley's speed through the run. It rises by <InlineMath math="0.06\text{ m s}^{-1}" /> every <InlineMath math="0.1\text{ s}" /> until the load lands at <InlineMath math="0.70\text{ s}" />, in the middle of strip <InlineMath math="4" />, and then stays flat. The second line shows the speed if the load had kept falling. The area under the rising part is the load's fall.</>}
+  categories={["0.0 s", "0.1 s", "0.2 s", "0.3 s", "0.4 s", "0.5 s", "0.6 s", "0.7 s", "0.8 s", "0.9 s", "1.0 s", "1.1 s", "1.2 s"]}
+  series={[
+    { label: "Trolley", mark: "line", values: [0.0, 0.06, 0.12, 0.18, 0.24, 0.3, 0.36, 0.42, 0.42, 0.42, 0.42, 0.42, 0.42] },
+    { label: "If the load had kept falling", mark: "line", values: [null, null, null, null, null, null, null, 0.42, 0.48, 0.54, 0.6, 0.66, 0.72] },
+  ]}
+  valueLabel="Speed (m/s)"
+/>
+
+# One falling weight speeds up two masses
+
+A tow truck that pulls a car has to speed up itself as well as the car. The load's weight <InlineMath math="mg" /> is in the same position: part of it pulls the string with tension <InlineMath math="T" />, and the rest speeds up the load itself. For the load <InlineMath math="mg-T=ma" />, and for the trolley <InlineMath math="T=Ma" />.
+
+<BlockMath math="\begin{aligned}
+m&=\frac{Ma}{g-a}=\frac{0.94\times0.60}{10-0.60}=0.060\text{ kg}
+\end{aligned}" />
+
+**The load has a mass of <InlineMath math="60\text{ g}" />**. Writing <InlineMath math="mg=Ma" /> hands the whole weight to the trolley, as if the load needed no push of its own, and gives <InlineMath math="56\text{ g}" />.

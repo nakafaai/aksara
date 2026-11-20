@@ -1,0 +1,36 @@
+# Die Austrittsgeschwindigkeit kommt vom Höhenunterschied
+
+Ein Achterbahnwagen, der über einen Buckel rollt und dann hinabstürzt, kommt unten mit einer Geschwindigkeit an, die davon abhängt, wie tief unter dem Start er landet, nicht von den Buckeln unterwegs. Die Oberfläche im Tank und der Auslass liegen beide an der freien Luft, also heben sich die Druckglieder weg, und das Wasser tritt aus, als wäre es <InlineMath math="2{,}0\text{ m}" /> gefallen, mit <InlineMath math="\tfrac12\rho v^2=\rho g\times2{,}0" />. **Das Wasser verlässt den Auslass mit <InlineMath math="v=\sqrt{2\times10\times2{,}0}=6{,}32\text{ m s}^{-1}" />**. Der Anstieg um <InlineMath math="3{,}0\text{ m}" /> über die Mauer ändert daran nichts, denn auf dem Weg hinunter bekommt das Wasser diese Höhe zurück.
+
+# Oben teilen sich Höhe und Geschwindigkeit das Budget
+
+Stell dir die <InlineMath math="100\text{ kPa}" /> an der ruhigen Oberfläche als Taschengeld für die Reise vor. Das Wasser gibt <InlineMath math="\rho gh=30\text{ kPa}" /> für den Anstieg um <InlineMath math="3{,}0\text{ m}" /> aus, und weil der Schlauch überall gleich weit ist, fließt an jeder Stelle pro Sekunde dasselbe Volumen durch, also strömt das Wasser oben schon mit <InlineMath math="6{,}32\text{ m s}^{-1}" /> und hat <InlineMath math="\tfrac12\rho v^2=20\text{ kPa}" /> für die Geschwindigkeit ausgegeben. **Übrig bleibt oben auf der Mauer ein Druck von <InlineMath math="50\text{ kPa}" />**.
+
+<BlockMath math="\begin{aligned}
+p&=1{,}0\times10^{5}-1000\times10\times3{,}0-\tfrac12\times1000\times40\\
+&=100000-30000-20000=50000\text{ Pa}
+\end{aligned}" />
+
+Ohne das Geschwindigkeitsglied kommen <InlineMath math="70\text{ kPa}" /> heraus, als stünde das Wasser oben still. Wer die Höhe vom Auslass aus misst, <InlineMath math="5{,}0\text{ m}" />, erhält <InlineMath math="30\text{ kPa}" />, doch das Budget beginnt an der Oberfläche im Tank, also zählen die Höhen von dort.
+
+# Eine Düse schafft Druck für mehr Höhe
+
+Halt den Daumen auf das Ende eines Gartenschlauchs, und der Strahl wird schnell, während das Wasser weiter hinten im Schlauch gemächlich fließt. Die Düse ändert die Austrittsgeschwindigkeit nicht, sie hängt weiter nur vom Höhenunterschied von <InlineMath math="2{,}0\text{ m}" /> ab. Aber dasselbe Volumen pro Sekunde muss jetzt durch die halbe Fläche, also fließt das Wasser im Schlauch nur halb so schnell, <InlineMath math="3{,}16\text{ m s}^{-1}" />, und der Anteil für die Geschwindigkeit sinkt oben auf ein Viertel, <InlineMath math="5\text{ kPa}" />. Der Heber versagt, wenn der Druck oben null erreicht.
+
+<BlockMath math="\begin{aligned}
+1{,}0\times10^{5}-1000\times10\,z-\tfrac12\times1000\times\left(\tfrac{6{,}32}{2}\right)^2&=0\ \Rightarrow\ z=\frac{100000-5000}{10000}=9{,}5\text{ m}
+\end{aligned}" />
+
+**Mit der Düse darf der Scheitel des Schlauchs <InlineMath math="9{,}5\text{ m}" /> über der Wasseroberfläche im Tank liegen**. Wer die <InlineMath math="20\text{ kPa}" /> für die Geschwindigkeit beibehält, kommt nur auf <InlineMath math="8{,}0\text{ m}" /> und übersieht, dass das Wasser im Schlauch langsamer geworden ist.
+
+<Chart
+  title={<>Aufteilung des Luftdrucks am höchsten Punkt des Schlauchs</>}
+  description={<>Die drei Anteile oben auf der Mauer ergeben zusammen immer die <InlineMath math="100\text{ kPa}" /> der ruhigen Wasseroberfläche. Die Düse bremst das Wasser im Schlauch, also sinkt der Anteil für die Geschwindigkeit von <InlineMath math="20" /> auf <InlineMath math="5\text{ kPa}" />, und genau dieser übrige Druck erlaubt einen höheren Scheitel.</>}
+  bars="apart"
+  categories={["Druck, der im Wasser bleibt", "Für die Höhe verbraucht", "Für die Geschwindigkeit verbraucht"]}
+  series={[
+    { label: "Schlauch ohne Düse", mark: "bar", values: [50, 30, 20] },
+    { label: "Mit Düse", mark: "bar", values: [65, 30, 5] },
+  ]}
+  valueLabel="Druck (kPa)"
+/>

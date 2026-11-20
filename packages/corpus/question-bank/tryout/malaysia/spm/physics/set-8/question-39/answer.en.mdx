@@ -1,0 +1,30 @@
+# Two ways out of the body
+
+A paddling pool with a small leak empties faster on a hot day, when the sun dries it out as well. In <InlineMath math="24" /> days, decay alone halves the iodine three times, a factor of <InlineMath math="\tfrac18" />, and the urine halves what is left once more. Together that is <InlineMath math="\tfrac18\times\tfrac12=\tfrac1{16}" />, which is four halvings in <InlineMath math="24" /> days. **The activity inside the body halves every <InlineMath math="6.0" /> days**. Keeping <InlineMath math="8.0" /> days counts only the decay, as if nothing left the body, and that slip goes on to <InlineMath math="32" /> days and an empty tank.
+
+# Counting halvings down to the limit
+
+Fold a sheet of paper in half four times and it becomes sixteen times smaller. The body's activity has to fall from <InlineMath math="1600\text{ MBq}" /> to <InlineMath math="100\text{ MBq}" />, through <InlineMath math="800" />, <InlineMath math="400" /> and <InlineMath math="200\text{ MBq}" />.
+
+<BlockMath math="\begin{aligned}
+1600\times\left(\frac{1}{2}\right)^{n}&=100\ \Rightarrow\ 2^{n}=16,\quad n=4\\
+t&=4\times6.0=24
+\end{aligned}" />
+
+**The patient may go home <InlineMath math="24" /> days after the dose**, the moment four of the <InlineMath math="6.0" />-day halvings have passed.
+
+# The tank is still radioactive
+
+Leaving the body does not switch the iodine off, any more than moving a candle to another room puts it out. Every iodine-131 nucleus decays with the same <InlineMath math="8.0" />-day half-life wherever it is, so all the iodine together is down to <InlineMath math="1600\times\tfrac18=200\text{ MBq}" /> on day <InlineMath math="24" />. The body holds <InlineMath math="100\text{ MBq}" /> of that. **The holding tank has an activity of <InlineMath math="100\text{ MBq}" />**, as much as the patient carries home. Answering <InlineMath math="1.50\text{ GBq}" /> subtracts the body's <InlineMath math="100\text{ MBq}" /> from the original dose, as if the iodine in the tank stopped decaying. Answering <InlineMath math="200\text{ MBq}" /> puts all the remaining iodine in the tank and forgets the half still inside the patient.
+
+<Chart
+  title={<>Iodine-131 in the body, in the tank and in all</>}
+  description={<>Days after the dose along the bottom. The body's activity halves every <InlineMath math="6.0" /> days and reaches <InlineMath math="100\text{ MBq}" /> on day <InlineMath math="24" />. All the iodine together only halves every <InlineMath math="8.0" /> days, so on that day it still holds <InlineMath math="200\text{ MBq}" />, and the tank holds the other half.</>}
+  categories={["0", "6", "12", "18", "24", "30"]}
+  series={[
+    { label: "Inside the body", mark: "line", values: [1600, 800, 400, 200, 100, 50] },
+    { label: "All the iodine", mark: "line", values: [1600, 951, 566, 336, 200, 119] },
+    { label: "In the holding tank", mark: "line", values: [0, 151, 166, 136, 100, 69] },
+  ]}
+  valueLabel="Activity (MBq)"
+/>

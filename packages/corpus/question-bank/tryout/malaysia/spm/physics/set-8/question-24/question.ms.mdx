@@ -1,0 +1,32 @@
+Sebuah tong kayu setinggi <InlineMath math="1.0\text{ m}" /> diisi penuh dengan air dan ditutup dengan penutup yang rata. Penutup dan dasar tong yang rata masing-masing mempunyai luas <InlineMath math="0.20\text{ m}^2" />. Sebatang tiub tegak yang panjang dan halus, dengan luas keratan rentas dalam <InlineMath math="0.50\text{ cm}^2" />, dipasang kedap melalui penutup, dengan hujung bawahnya terbuka kepada air tepat di bawah penutup. Air kemudian dituang perlahan-lahan ke dalam hujung atas tiub. Pengikat penutup boleh menahannya daripada daya ke luar paling banyak <InlineMath math="12\text{ kN}" />, dan pengikat dasar boleh menahannya daripada daya ke luar paling banyak <InlineMath math="13\text{ kN}" />. Tekanan atmosfera bertindak pada bahagian luar tong dan pada permukaan air di dalam tiub. Ambil ketumpatan air sebagai <InlineMath math="1000\text{ kg m}^{-3}" /> dan <InlineMath math="g=10\text{ m s}^{-2}" />.
+
+<MathVisual
+  title={<>Tong dengan tiub melalui penutupnya</>}
+  description={<>Tong itu penuh dengan air, dan tiub halus berdiri tegak melalui penutup dengan hujung atasnya terbuka. Lukisan ini tidak mengikut skala.</>}
+  labels={{
+    lid: <>penutup, <InlineMath math="0.20\text{ m}^2" /></>,
+    base: <>dasar, <InlineMath math="0.20\text{ m}^2" /></>,
+    height: <><InlineMath math="1.0\text{ m}" /></>,
+    tube: <>tiub, <InlineMath math="0.50\text{ cm}^2" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -2.6, max: 8.2 }, y: { min: -0.8, max: 9.6 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "barrel", kind: "polygon", appearance: "reference", vertices: [{ x: 0, y: 0 }, { x: 4, y: 0 }, { x: 4, y: 3 }, { x: 0, y: 3 }] },
+      { id: "lid", kind: "segment", appearance: "highlight", from: { x: -0.2, y: 3 }, to: { x: 4.2, y: 3 } },
+      { id: "base", kind: "segment", appearance: "primary", from: { x: 0, y: 0 }, to: { x: 4, y: 0 } },
+      { id: "tube", kind: "polygon", appearance: "secondary", vertices: [{ x: 1.85, y: 3 }, { x: 2.15, y: 3 }, { x: 2.15, y: 9 }, { x: 1.85, y: 9 }] },
+      { id: "height", kind: "segment", appearance: "construction", from: { x: -0.8, y: 0 }, to: { x: -0.8, y: 3 } },
+    ],
+    labels: [
+      { key: "lid", objectId: "lid", at: { x: 4.2, y: 3 }, placement: "right" },
+      { key: "base", objectId: "base", at: { x: 4, y: 0 }, placement: "right" },
+      { key: "height", objectId: "height", at: { x: -0.8, y: 1.5 }, placement: "left" },
+      { key: "tube", objectId: "tube", at: { x: 2.15, y: 7 }, placement: "right" },
+    ],
+  }}
+/>
+
+Yang manakah tercabut dahulu, penutup atau dasar, berapakah tinggi air di dalam tiub di atas penutup pada saat itu, dan berapakah daya ke luar yang dikenakan pada penutup oleh tekanan air yang melebihi tekanan atmosfera ketika itu?

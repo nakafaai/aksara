@@ -1,0 +1,35 @@
+# Voll durchgeschaltet heißt, die Matte bestimmt den Strom
+
+Dreh einen Gartenhahn ganz auf, und den Durchfluss bestimmt der Schlauch, nicht mehr der Hahn. Ein voll durchgeschalteter Transistor ist dieser offene Hahn: Die Matte bekommt <InlineMath math="12-0{,}20=11{,}8\text{ V}" />, und die Basis muss mindestens ein Fünfzigstel des Stroms liefern, den die Matte dann zieht. Der Basiswiderstand führt diesen Basisstrom, mit <InlineMath math="3{,}3-0{,}70\text{ V}" /> an ihm.
+
+<BlockMath math="\begin{aligned}
+I_C&=\frac{12-0{,}20}{24}=0{,}492\text{ A},\qquad I_B=\frac{0{,}492}{50}=9{,}83\times10^{-3}\text{ A}\\
+R_B&\le\frac{3{,}3-0{,}70}{9{,}83\times10^{-3}}=264\,\Omega
+\end{aligned}" />
+
+**Der größte Basiswiderstand, der den Transistor noch voll durchschaltet, beträgt <InlineMath math="264\,\Omega" />**. Wer die ganzen <InlineMath math="3{,}3\text{ V}" /> an <InlineMath math="R_B" /> legt, kommt auf <InlineMath math="336\,\Omega" />, doch die Basis behält <InlineMath math="0{,}70\text{ V}" /> für sich, also lässt dieser Widerstand nur <InlineMath math="7{,}75\text{ mA}" /> durch, und der Transistor schaltet nicht ganz durch.
+
+# Ein voll durchgeschalteter Schalter bleibt fast kalt
+
+Durch eine weit offene Tür kommt eine Menschenmenge, ohne dass jemand am Rahmen streift. Die Wärme im Transistor ist die Spannung an ihm mal der Strom durch ihn, und voll durchgeschaltet liegen nur <InlineMath math="0{,}20\text{ V}" /> an ihm. **Voll durchgeschaltet setzt der Transistor <InlineMath math="0{,}20\times0{,}492=0{,}0983\text{ W}" /> in Wärme um**, während die Matte <InlineMath math="11{,}8\times0{,}492=5{,}80\text{ W}" /> bekommt. Das schafft ein kleiner Transistor ohne Kühlkörper.
+
+# Halb leitend ist die heißeste Stelle
+
+Halte im Gedränge eine Tür halb offen, und die Leute drängeln gegen sie. Mit <InlineMath math="1{,}0\text{ k}\Omega" /> beträgt der Basisstrom nur <InlineMath math="2{,}60\text{ mA}" />, der Kollektorstrom also das Fünfzigfache, <InlineMath math="0{,}130\text{ A}" />, weit unter den <InlineMath math="0{,}492\text{ A}" /> im durchgeschalteten Zustand. Jetzt bekommt die Matte nur <InlineMath math="0{,}130\times24=3{,}12\text{ V}" />, und den Rest muss der Transistor halten.
+
+<BlockMath math="\begin{aligned}
+I_C&=50\times\frac{3{,}3-0{,}70}{1000}=0{,}130\text{ A}\\
+P&=I_C\,(12-24I_C)=0{,}130\times8{,}88=1{,}15\text{ W}
+\end{aligned}" />
+
+**Der Transistor setzt jetzt <InlineMath math="1{,}15\text{ W}" /> in Wärme um**, etwa das Zwölffache wie im durchgeschalteten Zustand, während die Matte selbst nur <InlineMath math="0{,}406\text{ W}" /> bekommt. Mit <InlineMath math="0{,}0983\text{ W}" /> rechnet nur, wer annimmt, der größere Widerstand schalte ihn noch voll durch. Die Antwort <InlineMath math="0{,}406\text{ W}" /> ist die Wärme in der Matte, nicht im Transistor.
+
+<Chart
+  title={<>Wärme im Transistor für jeden Basiswiderstand</>}
+  description={<>Basiswiderstand in Ohm auf der unteren Achse. Bis <InlineMath math="264\,\Omega" /> ist der Transistor voll durchgeschaltet und bleibt kühl. Darüber leitet er nur teilweise, und seine Wärme erreicht bei etwa <InlineMath math="520\,\Omega" /> ihr Maximum von <InlineMath math="1{,}5\text{ W}" />, wenn sich Matte und Transistor die <InlineMath math="12\text{ V}" /> gleichmäßig teilen. Bei sehr großem Widerstand sperrt der Transistor fast, und die Wärme sinkt wieder.</>}
+  categories={["200", "300", "400", "500", "700", "1000", "2000", "4000"]}
+  series={[
+    { label: "Wärme im Transistor", mark: "line", values: [0.098, 0.693, 1.365, 1.498, 1.401, 1.154, 0.679, 0.365] },
+  ]}
+  valueLabel="Leistung (W)"
+/>

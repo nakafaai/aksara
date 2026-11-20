@@ -1,0 +1,28 @@
+# Nach zwei Sekunden ist der Lkw fertig
+
+Wenn ein Bus scharf bremst, rutscht eine Tasche auf dem Sitz nach vorn, weil der Sitz sie nur so fest halten kann. Die Kiste ist diese Tasche. Der Lkw verliert jede Sekunde <InlineMath math="10\text{ m s}^{-1}" />, also steht er nach <InlineMath math="2{,}0\text{ s}" />. **Er fährt <InlineMath math="v^2/(2a)=20^2/(2\times10)=20\text{ m}" />**, mit der mittleren Geschwindigkeit <InlineMath math="10\text{ m s}^{-1}" /> für <InlineMath math="2{,}0\text{ s}" />. Wer die <InlineMath math="2" /> in <InlineMath math="v^2/(2a)" /> weglässt, verdoppelt das auf <InlineMath math="40\text{ m}" />. Die Reibung bremst die Kiste nur mit <InlineMath math="4{,}0\text{ m s}^{-2}" />, also fährt sie nach <InlineMath math="2{,}0\text{ s}" /> noch <InlineMath math="12\text{ m s}^{-1}" /> und hat <InlineMath math="32\text{ m}" /> zurückgelegt. Sie hat <InlineMath math="12\text{ m}" /> auf den Lkw gutgemacht, weniger als die Lücke von <InlineMath math="14\text{ m}" />. Eine Kiste ohne Reibung hätte die <InlineMath math="14\text{ m}" /> schon bei <InlineMath math="1{,}7\text{ s}" /> geschafft und mit <InlineMath math="17\text{ m s}^{-1}" /> eingeschlagen, aber diese wird gebremst.
+
+# Die letzten zwei Meter
+
+Ein stehender Lkw rollt nicht rückwärts, nur weil der Fahrer weiter auf der Bremse steht. Ab <InlineMath math="2{,}0\text{ s}" /> steht der Lkw, und nur die Kiste bewegt sich. **Die Kiste muss die letzten <InlineMath math="2\text{ m}" /> schaffen, während sie von <InlineMath math="12\text{ m s}^{-1}" /> mit <InlineMath math="4{,}0\text{ m s}^{-2}" /> langsamer wird**: <InlineMath math="12\tau-2\tau^2=2" />, also <InlineMath math="\tau=3-2\sqrt2=0{,}172\text{ s}" />, und sie schlägt bei <InlineMath math="2{,}17\text{ s}" /> ein, etwa <InlineMath math="2{,}2\text{ s}" />. Wer die ganze Zeit mit einer relativen Verzögerung von <InlineMath math="6\text{ m s}^{-2}" /> rechnet, lässt den Lkw unter null weiterbremsen. Die Zeit landet ebenfalls nahe <InlineMath math="2{,}2\text{ s}" />, aber die Geschwindigkeit der Kiste stimmt dann nicht.
+
+<Chart
+  title={<>Geschwindigkeit von Lkw und Kiste beim Bremsen</>}
+  description={<>Die Geschwindigkeit des Lkw fällt bei <InlineMath math="2{,}0\text{ s}" /> auf null und bleibt dort. Die Kiste wird sanfter langsamer und hat noch <InlineMath math="11{,}3\text{ m s}^{-1}" />, wenn sie bei <InlineMath math="2{,}17\text{ s}" /> das Fahrerhaus erreicht. Die Fläche zwischen den beiden Linien ist die Strecke, die die Kiste über die Ladefläche rutscht.</>}
+  categories={["0 s", "0,5 s", "1 s", "1,5 s", "2 s", "2,17 s"]}
+  series={[
+    { label: "Lkw", mark: "line", values: [20.0, 15.0, 10.0, 5.0, 0.0, 0.0] },
+    { label: "Kiste", mark: "line", values: [20.0, 18.0, 16.0, 14.0, 12.0, 11.3] },
+  ]}
+  valueLabel="Geschwindigkeit (m/s)"
+/>
+
+# Wie hart die Kiste einschlägt
+
+Ein Schlitten auf Sand bleibt früher stehen als auf Eis, weil der Sand ihm ständig Tempo nimmt. Die Kiste verliert auf dem letzten Stück <InlineMath math="4{,}0\times0{,}172=0{,}69\text{ m s}^{-1}" />. **Sie trifft das Fahrerhaus mit <InlineMath math="12-0{,}69=11\text{ m s}^{-1}" />, und weil der Lkw steht, ist das auch ihre Geschwindigkeit relativ zum Lkw**. Die falsche gleichbleibende Verzögerung von <InlineMath math="6\text{ m s}^{-2}" /> gäbe <InlineMath math="6\times2{,}16=13\text{ m s}^{-1}" />.
+
+<BlockMath math="\begin{aligned}
+s_L&=\frac{20^2}{2\times10}=20\text{ m},\qquad s_C=20\times2{,}0-\tfrac12\times4{,}0\times2{,}0^2=32\text{ m}\\
+12\tau-2\tau^2&=2\ \Rightarrow\ \tau=3-2\sqrt2=0{,}172\text{ s},\qquad t=2{,}0+0{,}172=2{,}2\text{ s}\\
+v&=12-4{,}0\times0{,}172=11\text{ m s}^{-1}
+\end{aligned}" />

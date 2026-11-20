@@ -1,0 +1,31 @@
+# Sejauh mana pembaris itu benar-benar jatuh
+
+Bayangkan trek lumba lari yang penanda jarak pertamanya dicat satu meter selepas garisan mula yang sebenar. Pelari di penanda itu sudah berlari satu meter lebih daripada yang tertulis. Pembaris ini berkelakuan sama. Jari bermula di hujung paling bawah pembaris, satu sentimeter di bawah sifar bercetak. **Bacaan <InlineMath math="20.0\text{ cm}" /> bermakna pembaris jatuh <InlineMath math="20.0+1.0=21.0\text{ cm}" />**, dan <InlineMath math="s=\tfrac12gt^2" /> menukarkannya kepada <InlineMath math="t=\sqrt{2\times0.210/9.8}=0.21\text{ s}" />. Menganggap nombor bercetak sebagai jarak jatuh memberi <InlineMath math="0.20\text{ s}" />, dan tabiat itu merosakkan setiap langkah seterusnya juga.
+
+# Di mana garis tekaan terletak pada skala
+
+Dalam lumba lari pecut, pelari yang meninggalkan blok dalam <InlineMath math="0.100\text{ s}" /> selepas tembakan pistol dikira membuat permulaan palsu, kerana tiada manusia yang dapat bertindak balas sepantas itu. Di sini had yang sama menjadi satu tanda pada pembaris. Dalam <InlineMath math="0.100\text{ s}" /> pembaris jatuh <InlineMath math="4.9\text{ cm}" />, jadi jari berakhir <InlineMath math="4.9\text{ cm}" /> di atas hujung bawah. Pada skala bercetak, tempat itu satu sentimeter lebih rendah.
+
+<BlockMath math="\begin{aligned}
+s&=\tfrac12\times9.8\times0.100^2=0.049\text{ m}=4.9\text{ cm}\\
+R&=4.9-1.0=3.9\text{ cm}
+\end{aligned}" />
+
+**Sebarang tangkapan dengan bacaan di bawah <InlineMath math="3.9\text{ cm}" /> ialah tekaan**. Membiarkan garis itu pada <InlineMath math="4.9\text{ cm}" /> membandingkan bacaan bercetak dengan jarak jatuh, iaitu dua pembaris yang berbeza.
+
+# Menyaring cubaan penangkap pantas
+
+Sekarang jadilah pengadil dan semak setiap permulaan berbanding garis itu. Cubaan <InlineMath math="3.0\text{ cm}" /> berada di bawah <InlineMath math="3.9\text{ cm}" />. Jarak jatuhnya <InlineMath math="4.0\text{ cm}" /> bermakna <InlineMath math="0.090\text{ s}" />, yang nampak hebat tetapi sebenarnya tekaan, jadi pilihan <InlineMath math="0.090\text{ s}" /> menyimpan cubaan yang sepatutnya dibuang. Cubaan <InlineMath math="4.2\text{ cm}" /> melepasi garis itu dengan tipis. Jarak jatuhnya <InlineMath math="5.2\text{ cm}" />, jadi <InlineMath math="t=\sqrt{2\times0.052/9.8}=0.103\text{ s}" />. **Masa tindak balas terpendek penangkap pantas yang dikira ialah <InlineMath math="0.103\text{ s}" />**. Menilai cubaan berbanding <InlineMath math="4.9\text{ cm}" /> membuang tangkapan jujur ini dan meninggalkan <InlineMath math="6.1\text{ cm}" />, yang bernilai <InlineMath math="0.120\text{ s}" />. Mengabaikan ofset di mana-mana juga menggugurkannya, sebagai <InlineMath math="0.093\text{ s}" />, dan menukar <InlineMath math="6.1\text{ cm}" /> kepada <InlineMath math="0.112\text{ s}" />.
+
+<Chart
+  title={<>Empat cubaan penangkap pantas berbanding garis tekaan</>}
+  description={<>Setiap pasangan bar ialah satu cubaan, dilabel dengan bacaan bercetaknya, dalam milisaat. Bar pertama menambah ofset <InlineMath math="1.0\text{ cm}" /> pada bacaan, dan bar kedua menganggap bacaan itu sebagai seluruh jarak jatuh. Satu cubaan dikira hanya jika barnya mencapai garis <InlineMath math="100\text{ ms}" />.</>}
+  bars="apart"
+  categories={["3.0 cm", "7.3 cm", "4.2 cm", "6.1 cm"]}
+  series={[
+    { label: "Jatuh sebenar, ofset ditambah", mark: "bar", values: [90, 130, 103, 120] },
+    { label: "Bacaan dianggap jarak jatuh", mark: "bar", values: [78, 122, 93, 112] },
+    { label: "Had tekaan", mark: "line", values: [100, 100, 100, 100] },
+  ]}
+  valueLabel="Masa tindak balas (ms)"
+/>

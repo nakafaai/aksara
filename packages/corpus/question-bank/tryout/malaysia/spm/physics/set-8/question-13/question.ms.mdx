@@ -1,0 +1,42 @@
+Sebuah pemancar radio T dan sebuah penerima R berada di atas tanah rata dengan jarak <InlineMath math="600\text{ km}" /> di antara keduanya. R menerima gelombang bumi, yang bergerak lurus di sepanjang tanah, dan gelombang langit, yang dipantulkan sekali oleh satu lapisan mendatar atmosfera atas di titik tengah antara T dan R. Pada waktu siang gelombang langit tiba <InlineMath math="0.50\text{ ms}" /> selepas gelombang bumi. Gelombang radio bergerak pada <InlineMath math="3.0\times10^{8}\text{ m s}^{-1}" />, dan lapisan itu memantulkan gelombang hanya jika gelombang itu tiba dengan sudut tuju sekurang-kurangnya <InlineMath math="40°" />. Gelombang yang tiba lebih curam akan menembusi lapisan itu dan hilang. Anggap Bumi rata.
+
+<MathVisual
+  title={<>Gelombang bumi dan gelombang langit pada waktu siang</>}
+  description={<>Gelombang langit dipantulkan pada titik lapisan di tengah-tengah antara T dan R. Ketinggian lapisan tidak mengikut skala.</>}
+  labels={{
+    t: <>T</>,
+    r: <>R</>,
+    span: <><InlineMath math="600\text{ km}" /></>,
+    h: <><InlineMath math="h" /></>,
+    layer: <>lapisan pemantul</>,
+    sky: <>gelombang langit</>,
+    ground: <>gelombang bumi</>,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1.6, max: 7.6 }, y: { min: -1.6, max: 3 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "ground", kind: "segment", appearance: "reference", from: { x: -0.8, y: 0 }, to: { x: 6.8, y: 0 } },
+      { id: "layer", kind: "segment", appearance: "secondary", from: { x: -0.8, y: 2.25 }, to: { x: 6.8, y: 2.25 } },
+      { id: "sky", kind: "polyline", appearance: "primary", vertices: [{ x: 0, y: 0 }, { x: 3, y: 2.25 }, { x: 6, y: 0 }] },
+      { id: "height", kind: "segment", appearance: "construction", from: { x: 3, y: 0 }, to: { x: 3, y: 2.25 } },
+      { id: "span", kind: "segment", appearance: "construction", from: { x: 0, y: -0.9 }, to: { x: 6, y: -0.9 } },
+      { id: "t", kind: "point", appearance: "highlight", at: { x: 0, y: 0 } },
+      { id: "r", kind: "point", appearance: "highlight", at: { x: 6, y: 0 } },
+    ],
+    labels: [
+      { key: "t", objectId: "t", at: { x: 0, y: 0 }, placement: "left" },
+      { key: "r", objectId: "r", at: { x: 6, y: 0 }, placement: "right" },
+      { key: "span", objectId: "span", at: { x: 3, y: -0.9 }, placement: "below" },
+      { key: "h", objectId: "height", at: { x: 3, y: 1.1 }, placement: "right" },
+      { key: "layer", objectId: "layer", at: { x: 5.6, y: 2.25 }, placement: "above" },
+      { key: "sky", objectId: "sky", at: { x: 1.5, y: 1.125 }, placement: "left" },
+      { key: "ground", objectId: "ground", at: { x: 4.6, y: 0 }, placement: "above" },
+    ],
+  }}
+/>
+
+Pada waktu malam lapisan itu naik ke ketinggian <InlineMath math="400\text{ km}" />.
+
+Berapakah tinggi lapisan itu pada waktu siang, apakah yang berlaku kepada gelombang langit di R pada waktu malam, dan berapakah jarak paling dekat dari T di mana gelombang langit boleh sampai ke tanah pada waktu malam?

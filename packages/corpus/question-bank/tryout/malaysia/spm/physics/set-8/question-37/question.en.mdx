@@ -1,0 +1,44 @@
+A photomultiplier tube detects very faint light. Inside the evacuated tube, electrons leave the cathode, which is at <InlineMath math="0\text{ V}" />, almost at rest. They are pulled to the first of six metal plates called dynodes. The dynodes are held at <InlineMath math="+100\text{ V}" />, <InlineMath math="+200\text{ V}" /> and so on in steps of <InlineMath math="100\text{ V}" /> up to <InlineMath math="+600\text{ V}" />, and after the last dynode the electrons are pulled to a collecting anode at <InlineMath math="+700\text{ V}" />. Every electron that strikes a dynode knocks out <InlineMath math="3" /> electrons, which leave that dynode almost at rest and are pulled on to the next one. The anode only collects electrons. In faint light, <InlineMath math="5.0\times10^{6}" /> electrons leave the cathode each second. The mass of an electron is <InlineMath math="9.11\times10^{-31}\text{ kg}" />, and its charge is <InlineMath math="1.6\times10^{-19}\text{ C}" />.
+
+<MathVisual
+  title={<>Inside the photomultiplier tube</>}
+  description={<>Electrons from the cathode hop from dynode to dynode, each dynode <InlineMath math="100\text{ V}" /> above the one before, and end at the anode. The drawing is not to scale.</>}
+  labels={{
+    cathode: <>cathode, <InlineMath math="0\text{ V}" /></>,
+    d1: <><InlineMath math="+100\text{ V}" /></>,
+    d2: <><InlineMath math="+200\text{ V}" /></>,
+    d3: <><InlineMath math="+300\text{ V}" /></>,
+    d4: <><InlineMath math="+400\text{ V}" /></>,
+    d5: <><InlineMath math="+500\text{ V}" /></>,
+    d6: <><InlineMath math="+600\text{ V}" /></>,
+    anode: <>anode, <InlineMath math="+700\text{ V}" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -3.6, max: 15.4 }, y: { min: -1.2, max: 5.2 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "cathode", kind: "segment", appearance: "primary", from: { x: 0, y: 1 }, to: { x: 0, y: 3 } },
+      { id: "d1", kind: "segment", appearance: "primary", from: { x: 1.5, y: 0 }, to: { x: 2.5, y: 0 } },
+      { id: "d2", kind: "segment", appearance: "primary", from: { x: 3, y: 4 }, to: { x: 4, y: 4 } },
+      { id: "d3", kind: "segment", appearance: "primary", from: { x: 4.5, y: 0 }, to: { x: 5.5, y: 0 } },
+      { id: "d4", kind: "segment", appearance: "primary", from: { x: 6, y: 4 }, to: { x: 7, y: 4 } },
+      { id: "d5", kind: "segment", appearance: "primary", from: { x: 7.5, y: 0 }, to: { x: 8.5, y: 0 } },
+      { id: "d6", kind: "segment", appearance: "primary", from: { x: 9, y: 4 }, to: { x: 10, y: 4 } },
+      { id: "anode", kind: "segment", appearance: "highlight", from: { x: 11.5, y: 1 }, to: { x: 11.5, y: 3 } },
+      { id: "path", kind: "polyline", appearance: "construction", vertices: [{ x: 0.1, y: 2 }, { x: 2, y: 0.1 }, { x: 3.5, y: 3.9 }, { x: 5, y: 0.1 }, { x: 6.5, y: 3.9 }, { x: 8, y: 0.1 }, { x: 9.5, y: 3.9 }, { x: 11.4, y: 2 }] },
+    ],
+    labels: [
+      { key: "cathode", objectId: "cathode", at: { x: 0, y: 2 }, placement: "left" },
+      { key: "anode", objectId: "anode", at: { x: 11.5, y: 2 }, placement: "right" },
+      { key: "d1", objectId: "d1", at: { x: 2, y: 0 }, placement: "below" },
+      { key: "d2", objectId: "d2", at: { x: 3.5, y: 4 }, placement: "above" },
+      { key: "d3", objectId: "d3", at: { x: 5, y: 0 }, placement: "below" },
+      { key: "d4", objectId: "d4", at: { x: 6.5, y: 4 }, placement: "above" },
+      { key: "d5", objectId: "d5", at: { x: 8, y: 0 }, placement: "below" },
+      { key: "d6", objectId: "d6", at: { x: 9.5, y: 4 }, placement: "above" },
+    ],
+  }}
+/>
+
+With what speed does an electron strike the sixth dynode, how many electrons reach the anode for each electron that leaves the cathode, and what current flows into the anode?

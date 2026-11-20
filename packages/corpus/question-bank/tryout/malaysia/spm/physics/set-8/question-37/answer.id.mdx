@@ -1,0 +1,29 @@
+# Setiap lompatan dimulai dari diam
+
+Bola yang langsung berhenti di setiap anak tangga akan mendarat di tiap anak tangga dengan laju yang sama, berapa pun anak tangga yang sudah dituruninya. Elektron yang menghantam dinode keenam dilepaskan dari dinode kelima dalam keadaan hampir diam, jadi ia hanya menempuh <InlineMath math="600-500=100\text{ V}" />. Energi kinetiknya <InlineMath math="e\times100" /> joule.
+
+<BlockMath math="\begin{aligned}
+\frac{1}{2}mv^2&=e\,(600-500)=1{,}6\times10^{-19}\times100=1{,}6\times10^{-17}\text{ J}\\
+v&=\sqrt{\frac{2\times1{,}6\times10^{-17}}{9{,}11\times10^{-31}}}=5{,}93\times10^{6}\text{ m s}^{-1}
+\end{aligned}" />
+
+**Tiap elektron menghantam dinode keenam dengan <InlineMath math="5{,}93\times10^{6}\text{ m s}^{-1}" />**. Memakai <InlineMath math="600\text{ V}" /> penuh dari katode memberi <InlineMath math="1{,}45\times10^{7}\text{ m s}^{-1}" />, padahal tidak ada elektron yang menempuh seluruh perjalanan itu. Elektron yang meninggalkan katode sudah berhenti di dinode pertama.
+
+# Tiga kali lipat di tiap dinode
+
+Kabar burung menyebar cepat kalau setiap orang yang mendengarnya memberi tahu tiga orang baru: tiga, lalu sembilan, lalu dua puluh tujuh. Satu elektron dari katode menjadi <InlineMath math="3" /> di dinode pertama, <InlineMath math="3^2" /> di dinode kedua, dan seterusnya melewati keenam dinode. **Untuk tiap elektron yang meninggalkan katode, <InlineMath math="3^6=729" /> elektron sampai di anode**. Menambahkan tiga di tiap dinode hanya memberi <InlineMath math="18" />, yang lupa bahwa setiap elektron baru juga melepaskan elektronnya sendiri. Menghitung anode sebagai pelipatan ketujuh memberi <InlineMath math="2187" />, padahal anode hanya mengumpulkan.
+
+# Dari elektron ke arus
+
+Arus hanyalah muatan yang dihitung tiap detik, seperti air yang dihitung dalam ember tiap menit. Anode menerima <InlineMath math="5{,}0\times10^{6}\times729=3{,}65\times10^{9}" /> elektron tiap detik, masing-masing membawa <InlineMath math="1{,}6\times10^{-19}\text{ C}" />. **Sekitar <InlineMath math="5{,}83\times10^{-10}\text{ A}" /> mengalir ke anode**. Nilai itu masih kecil, tetapi meter yang peka bisa membacanya, sedangkan <InlineMath math="8{,}0\times10^{-13}\text{ A}" /> yang keluar dari katode saja akan tenggelam dalam derau.
+
+<Chart
+  title={<>Elektron yang tiba tiap detik di tiap tahap</>}
+  description={<>Tiap batang tiga kali batang sebelumnya, karena setiap elektron yang mendarat di dinode melepaskan tiga elektron. Anode mengumpulkan <InlineMath math="3{,}65\times10^{9}" /> elektron tiap detik tanpa melipatgandakannya sendiri.</>}
+  bars="apart"
+  categories={["Dinode 1", "Dinode 2", "Dinode 3", "Dinode 4", "Dinode 5", "Dinode 6", "Anode"]}
+  series={[
+    { label: "Elektron yang tiba", mark: "bar", values: [5, 15, 45, 135, 405, 1215, 3645] },
+  ]}
+  valueLabel="Elektron per detik (juta)"
+/>

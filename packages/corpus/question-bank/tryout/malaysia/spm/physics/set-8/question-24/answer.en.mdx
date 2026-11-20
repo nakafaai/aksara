@@ -1,0 +1,37 @@
+# Each fixing has its own breaking height
+
+Your ears feel the squeeze grow as you swim down, and they feel it just the same in a narrow well as in the open sea. Water pressure depends only on how far below the free surface you are, and here that surface is in the tube. The lid sits right under the tube, so it feels the column <InlineMath math="h" /> in the tube. The base sits <InlineMath math="1.0\text{ m}" /> lower, so it feels <InlineMath math="h+1.0" />. Setting each force equal to its own fixing gives two breaking heights.
+
+<BlockMath math="\begin{aligned}
+0.20\times1000\times10\times h&=12000\ \Rightarrow\ h=6.0\text{ m}\\
+0.20\times1000\times10\times(h+1.0)&=13000\ \Rightarrow\ h=6.5-1.0=5.5\text{ m}
+\end{aligned}" />
+
+**The breaking heights are <InlineMath math="6.0\text{ m}" /> for the lid and <InlineMath math="5.5\text{ m}" /> for the base**. Reading <InlineMath math="6.5\text{ m}" /> as the height above the lid forgets that this column is measured from the base. Only <InlineMath math="5.5\text{ m}" /> of it stands in the tube.
+
+# The stronger fixing fails first
+
+A dam is built thickest at the bottom, because that is where the water pushes hardest. The base's fixings are the stronger pair, yet the base also carries the extra metre of water. As the tube fills, the base reaches its limit at <InlineMath math="5.5\text{ m}" />, half a metre before the lid would. **The base gives way first, with the water in the tube <InlineMath math="5.5\text{ m}" /> above the lid**. Checking only the lid, or trusting the bigger number on the fixings, leaves the lid bursting at <InlineMath math="6.0\text{ m}" /> with <InlineMath math="12\text{ kN}" /> on it, a moment that never comes.
+
+<Chart
+  title={<>Which fixing reaches its limit first</>}
+  description={<>Height of water in the tube above the lid, in metres, along the bottom. The base line always runs <InlineMath math="2\text{ kN}" /> above the lid line, because the base has an extra <InlineMath math="1.0\text{ m}" /> of water over it. The base line meets its <InlineMath math="13\text{ kN}" /> limit at <InlineMath math="5.5\text{ m}" />, before the lid line reaches <InlineMath math="12\text{ kN}" /> at <InlineMath math="6.0\text{ m}" />.</>}
+  categories={["0 m", "1 m", "2 m", "3 m", "4 m", "5 m", "5.5 m", "6 m", "6.5 m"]}
+  series={[
+    { label: "Force on the base", mark: "line", values: [2, 4, 6, 8, 10, 12, 13.0, 14, 15.0] },
+    { label: "Force on the lid", mark: "line", values: [0, 2, 4, 6, 8, 10, 11.0, 12, 13.0] },
+    { label: "Base limit", mark: "line", values: [13, 13, 13, 13, 13, 13, 13, 13, 13] },
+    { label: "Lid limit", mark: "line", values: [12, 12, 12, 12, 12, 12, 12, 12, 12] },
+  ]}
+  valueLabel="Force (kN)"
+/>
+
+# What the lid feels at that moment
+
+When the base goes, the lid is still holding. Its gauge pressure comes only from the <InlineMath math="5.5\text{ m}" /> column in the tube.
+
+<BlockMath math="\begin{aligned}
+F&=1000\times10\times5.5\times0.20=11000\text{ N}=11\text{ kN}
+\end{aligned}" />
+
+**The water pushes the lid out with <InlineMath math="11\text{ kN}" />**, <InlineMath math="1\text{ kN}" /> short of its limit. Giving the lid the base's <InlineMath math="13\text{ kN}" /> treats the pressure as equal everywhere in the barrel. A push added at the top does reach every part equally, but the extra metre of depth still adds its own <InlineMath math="10\text{ kPa}" /> at the bottom.

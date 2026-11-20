@@ -1,0 +1,31 @@
+# Seberapa jauh penggaris benar-benar jatuh
+
+Bayangkan lintasan lari yang penanda jarak pertamanya dicat satu meter setelah garis start yang sebenarnya. Pelari di penanda itu sudah berlari satu meter lebih jauh daripada yang tertulis. Penggaris ini bekerja dengan cara yang sama. Jari mulai di ujung paling bawah penggaris, satu sentimeter di bawah nol tercetak. **Bacaan <InlineMath math="20{,}0\text{ cm}" /> berarti penggaris jatuh <InlineMath math="20{,}0+1{,}0=21{,}0\text{ cm}" />**, dan <InlineMath math="s=\tfrac12gt^2" /> mengubahnya menjadi <InlineMath math="t=\sqrt{2\times0{,}210/9{,}8}=0{,}21\text{ s}" />. Menganggap angka tercetak sebagai jarak jatuh memberi <InlineMath math="0{,}20\text{ s}" />, dan kebiasaan itu merusak setiap langkah berikutnya juga.
+
+# Letak garis tebakan pada skala
+
+Dalam lari cepat, pelari yang meninggalkan balok start dalam <InlineMath math="0{,}100\text{ s}" /> setelah tembakan dinyatakan curi start, karena tidak ada manusia yang bereaksi secepat itu. Di sini batas yang sama menjadi satu tanda pada penggaris. Dalam <InlineMath math="0{,}100\text{ s}" /> penggaris jatuh <InlineMath math="4{,}9\text{ cm}" />, jadi jari berakhir <InlineMath math="4{,}9\text{ cm}" /> di atas ujung bawah. Pada skala tercetak, titik itu satu sentimeter lebih rendah.
+
+<BlockMath math="\begin{aligned}
+s&=\tfrac12\times9{,}8\times0{,}100^2=0{,}049\text{ m}=4{,}9\text{ cm}\\
+R&=4{,}9-1{,}0=3{,}9\text{ cm}
+\end{aligned}" />
+
+**Setiap tangkapan dengan bacaan di bawah <InlineMath math="3{,}9\text{ cm}" /> adalah tebakan**. Membiarkan garisnya di <InlineMath math="4{,}9\text{ cm}" /> berarti membandingkan bacaan tercetak dengan jarak jatuh, padahal keduanya diukur dari titik yang berbeda.
+
+# Memilah percobaan penangkap cepat
+
+Sekarang jadilah wasit dan periksa setiap start terhadap garis itu. Percobaan <InlineMath math="3{,}0\text{ cm}" /> ada di bawah <InlineMath math="3{,}9\text{ cm}" />. Jarak jatuhnya <InlineMath math="4{,}0\text{ cm}" /> berarti <InlineMath math="0{,}090\text{ s}" />, yang tampak hebat tetapi sebenarnya tebakan, jadi pilihan <InlineMath math="0{,}090\text{ s}" /> menyimpan percobaan yang mestinya dibuang. Percobaan <InlineMath math="4{,}2\text{ cm}" /> lolos dari garis itu dengan tipis. Jarak jatuhnya <InlineMath math="5{,}2\text{ cm}" />, jadi <InlineMath math="t=\sqrt{2\times0{,}052/9{,}8}=0{,}103\text{ s}" />. **Waktu reaksi terpendek penangkap cepat yang dihitung adalah <InlineMath math="0{,}103\text{ s}" />**. Menilai percobaan terhadap <InlineMath math="4{,}9\text{ cm}" /> membuang tangkapan jujur ini dan menyisakan <InlineMath math="6{,}1\text{ cm}" />, yang bernilai <InlineMath math="0{,}120\text{ s}" />. Mengabaikan offset di semua langkah juga membuangnya, sebagai <InlineMath math="0{,}093\text{ s}" />, dan mengubah <InlineMath math="6{,}1\text{ cm}" /> menjadi <InlineMath math="0{,}112\text{ s}" />.
+
+<Chart
+  title={<>Empat percobaan penangkap cepat dibanding garis tebakan</>}
+  description={<>Tiap pasang batang adalah satu percobaan, diberi label bacaan tercetaknya, dalam milidetik. Batang pertama menambahkan offset <InlineMath math="1{,}0\text{ cm}" /> pada bacaan, dan batang kedua menganggap bacaan itu sebagai seluruh jarak jatuh. Satu percobaan dihitung hanya jika batangnya mencapai garis <InlineMath math="100\text{ ms}" />.</>}
+  bars="apart"
+  categories={["3,0 cm", "7,3 cm", "4,2 cm", "6,1 cm"]}
+  series={[
+    { label: "Jatuh sebenarnya, offset ditambah", mark: "bar", values: [90, 130, 103, 120] },
+    { label: "Bacaan dianggap jarak jatuh", mark: "bar", values: [78, 122, 93, 112] },
+    { label: "Batas tebakan", mark: "line", values: [100, 100, 100, 100] },
+  ]}
+  valueLabel="Waktu reaksi (ms)"
+/>

@@ -1,0 +1,30 @@
+# Die Feder bezahlt auch die Fahrt auf dem Kolben
+
+Drück eine Spielzeugfeder hinter einer Murmel zusammen und lass los, dann bekommt die Murmel nicht die ganze Energie der Feder, denn sie steigt schon und reibt, während die Feder noch schiebt. Die Haltekraft wächst über den Auszug von <InlineMath math="10\text{ cm}" /> gleichmäßig von <InlineMath math="0" /> auf <InlineMath math="10\text{ N}" />, also speichert die Feder die Fläche unter dieser Geraden, <InlineMath math="\tfrac12\times10\times0{,}10=0{,}50\text{ J}" />. Die Bahn hinauf verliert die Kugel die Hangabtriebskraft <InlineMath math="0{,}080\times10\times0{,}10=0{,}080\text{ N}" /> plus die Widerstandskraft von <InlineMath math="0{,}020\text{ N}" />, zusammen <InlineMath math="0{,}10\text{ N}" />, und das zahlt sie schon auf den <InlineMath math="0{,}10\text{ m}" />, die sie auf dem Kolben mitfährt. **Die Kugel verlässt den Kolben mit <InlineMath math="0{,}49\text{ J}" /> Bewegungsenergie, also <InlineMath math="v=\sqrt{2\times0{,}49/0{,}080}=3{,}50\text{ m s}^{-1}" />**. Wer der Kugel die vollen <InlineMath math="0{,}50\text{ J}" /> gibt, erhält <InlineMath math="3{,}54\text{ m s}^{-1}" />, als wäre die Fahrt auf dem Kolben umsonst.
+
+# Eine Gebühr für jeden Meter
+
+Wer mit dem Fahrrad ohne zu treten einen sanften Hang hinaufrollt, wird auf jedem Stück gleich viel langsamer, weil Hang und Luft pro Meter einen festen Anteil Energie nehmen. Die Kugel zahlt <InlineMath math="0{,}10\text{ J}" /> pro Meter Bahn, also kosten die <InlineMath math="2{,}0\text{ m}" /> bis zum Bumper <InlineMath math="0{,}20\text{ J}" />, und <InlineMath math="0{,}29\text{ J}" /> bleiben übrig. **Sie erreicht den Bumper mit <InlineMath math="v=\sqrt{2\times0{,}29/0{,}080}=2{,}69\text{ m s}^{-1}" />**. Ohne die Widerstandskraft auf diesem Stück blieben <InlineMath math="0{,}33\text{ J}" /> und damit <InlineMath math="2{,}87\text{ m s}^{-1}" />, aber die Reibung hört nicht auf, wenn die Feder loslässt.
+
+# Gerade weit genug ausziehen
+
+Für Punkte muss die Kugel am Bumper noch <InlineMath math="\tfrac12\times0{,}080\times1{,}0^2=0{,}040\text{ J}" /> haben. Mit <InlineMath math="k=10/0{,}10=100\text{ N m}^{-1}" /> speichert ein Auszug <InlineMath math="x" /> die Energie <InlineMath math="\tfrac12\times100\,x^2=50x^2" /> in Joule. Der Haken ist, dass <InlineMath math="x" /> auch auf der Kostenseite auftaucht, denn so weit fährt die Kugel auf dem Kolben mit, bevor ihre <InlineMath math="2{,}0\text{ m}" /> beginnen, also kostet alles <InlineMath math="0{,}10\,(x+2{,}0)" /> Joule. Das ergibt eine quadratische Gleichung.
+
+<BlockMath math="\begin{aligned}
+50x^2&=0{,}10\,(x+2{,}0)+0{,}040\\
+50x^2-0{,}10x-0{,}24&=0\ \Rightarrow\ x=\frac{0{,}10+\sqrt{0{,}010+48}}{100}=0{,}0703\text{ m}
+\end{aligned}" />
+
+**Der kleinste Auszug, der noch Punkte bringt, ist <InlineMath math="7{,}03\text{ cm}" />**. Ohne die Mindestgeschwindigkeit kommt <InlineMath math="6{,}43\text{ cm}" /> heraus, womit die Kugel am Bumper gerade stehen bliebe, und ohne das <InlineMath math="x" /> auf der Kostenseite <InlineMath math="6{,}93\text{ cm}" />.
+
+<Chart
+  title={<>Bewegungsenergie der Kugel entlang der Bahn</>}
+  description={<>Weg die Bahn hinauf in Metern, gemessen ab der Stelle, an der die Kugel den Kolben verlässt. Jede Linie fällt um <InlineMath math="0{,}10\text{ J}" /> pro Meter. Mit <InlineMath math="10\text{ cm}" /> Auszug kommt reichlich Energie an, mit <InlineMath math="7{,}03\text{ cm}" /> genau die <InlineMath math="0{,}040\text{ J}" />, die der Bumper braucht.</>}
+  categories={["0", "0,5", "1,0", "1,5", "2,0"]}
+  series={[
+    { label: "10 cm ausgezogen", mark: "line", values: [0.49, 0.44, 0.39, 0.34, 0.29] },
+    { label: "7,03 cm ausgezogen", mark: "line", values: [0.24, 0.19, 0.14, 0.09, 0.04] },
+    { label: "Nötig für Punkte", mark: "line", values: [0.04, 0.04, 0.04, 0.04, 0.04] },
+  ]}
+  valueLabel="Bewegungsenergie (J)"
+/>

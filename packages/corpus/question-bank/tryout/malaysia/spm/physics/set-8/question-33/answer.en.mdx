@@ -1,0 +1,46 @@
+# The centre bar is pushed both ways
+
+Two friends who pull a child by the arms with equal strength in opposite directions leave the child standing still. Each outer bar carries <InlineMath math="1500\text{ A}" /> against the centre bar's <InlineMath math="3000\text{ A}" />, and opposite currents push apart.
+
+<BlockMath math="\begin{aligned}
+F&=\left(2.0\times10^{-7}\times\frac{1500}{0.20}\right)\times3000\times2.0=9.0\text{ N}
+\end{aligned}" />
+
+Bar A pushes the centre bar towards C, and bar C pushes it towards A with the same <InlineMath math="9.0\text{ N}" />. **The net force on a span of the centre bar is zero**, even though it carries the biggest current. Adding the two pushes to <InlineMath math="18.0\text{ N}" /> ignores their directions, and it would then make the centre bar's supports the weak point at <InlineMath math="22.4\text{ kA}" />.
+
+# An outer bar feels a push and a pull
+
+A magnet on the fridge door can be pushed by one magnet and pulled by another at the same time, and what it feels is the difference. Bar A is pushed away by the centre bar, whose current runs the other way. Bar C, <InlineMath math="0.40\text{ m}" /> away, carries current the same way as A, so it pulls A back towards the middle, only more weakly because it is twice as far and carries half the current.
+
+<BlockMath math="\begin{aligned}
+F_{\text{B}}&=\left(2.0\times10^{-7}\times\frac{3000}{0.20}\right)\times1500\times2.0=9.0\text{ N}\\
+F_{\text{C}}&=\left(2.0\times10^{-7}\times\frac{1500}{0.40}\right)\times1500\times2.0=2.25\text{ N}\\
+F&=9.0-2.25=6.75\text{ N}
+\end{aligned}" />
+
+**Each outer bar is pushed outwards, away from the centre bar, with <InlineMath math="6.75\text{ N}" /> per span**. Forgetting the far bar leaves <InlineMath math="9.00\text{ N}" />. Letting the far bar push as well, as if every pair of currents repelled, gives <InlineMath math="11.25\text{ N}" />, but like currents attract.
+
+<Chart
+  title={<>The pushes and pulls on each bar</>}
+  description={<>Force in newtons on a <InlineMath math="2.0\text{ m}" /> span, positive to the right, for bars A, B and C from left to right. On the centre bar the two pushes are equal and opposite. On an outer bar the push from the centre bar beats the pull from the far bar, leaving <InlineMath math="6.75\text{ N}" /> outwards.</>}
+  bars="apart"
+  categories={["Bar A", "Bar B, centre", "Bar C"]}
+  series={[
+    { label: "From bar A", mark: "bar", values: [0.0, 9.0, -2.25] },
+    { label: "From bar B", mark: "bar", values: [-9.0, 0.0, 9.0] },
+    { label: "From bar C", mark: "bar", values: [2.25, -9.0, 0.0] },
+    { label: "Net force", mark: "bar", values: [-6.75, 0.0, 6.75] },
+  ]}
+  valueLabel="Force (N)"
+/>
+
+# A fault hits the force twice
+
+Double the side of a square tile and you need four times the paint, because both the length and the width have grown. In a fault every current grows by the same factor, so every field grows by it too, and the force on a bar goes as the current squared. The outer bars carry the only non-zero force, so they set the limit.
+
+<BlockMath math="\begin{aligned}
+\frac{F}{6.75}&=\left(\frac{I}{3000}\right)^2\le\frac{1000}{6.75}=148\\
+I&\le3000\times\sqrt{148}=3.65\times10^{4}\text{ A}
+\end{aligned}" />
+
+**The centre bar can carry up to about <InlineMath math="36.5\text{ kA}" /> in a fault**, about twelve times its normal current. The options built on <InlineMath math="9.00\text{ N}" /> and <InlineMath math="11.25\text{ N}" /> carry their slips into this step and give <InlineMath math="31.6\text{ kA}" /> and <InlineMath math="28.3\text{ kA}" />.

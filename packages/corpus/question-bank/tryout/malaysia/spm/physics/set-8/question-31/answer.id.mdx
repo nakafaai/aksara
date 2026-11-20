@@ -1,0 +1,29 @@
+# Daya pengereman mengecil saat mobil melambat
+
+Remas rem sepeda saat melaju kencang dan peleknya cepat panas, sedangkan remasan yang sama saat secepat orang berjalan hampir tidak menghangatkannya. Gaya pengereman mobil tetap <InlineMath math="F=ma=1500\times4{,}0=6000\text{ N}" /> sepanjang waktu, tetapi dayanya adalah <InlineMath math="Fv" />. Di awal nilainya <InlineMath math="6000\times20=120\text{ kW}" />, tiga kali lipat batas yang boleh diterima baterai. Baterai sanggup menerima semuanya begitu <InlineMath math="6000\,v\le40\,000" />. **Seluruh daya pengereman masuk ke baterai hanya di bawah <InlineMath math="6{,}67\text{ m s}^{-1}" />**. Kalau kamu mengira hal itu sudah terjadi sejak <InlineMath math="20\text{ m s}^{-1}" />, batas <InlineMath math="40\text{ kW}" /> terlupakan, dan kekeliruan yang sama lalu memberi <InlineMath math="300\text{ kJ}" /> dan <InlineMath math="150\text{ A}" />.
+
+# Bagian cepat dan bagian lambat
+
+Corong hanya bisa menelan sejumlah air tiap detik, dan air yang dituang lebih deras akan tumpah dari bibirnya. Dari <InlineMath math="20" /> sampai <InlineMath math="6{,}67\text{ m s}^{-1}" /> baterai menerima <InlineMath math="40\text{ kW}" /> yang tetap, dan pada <InlineMath math="4{,}0\text{ m s}^{-2}" /> bagian ini berlangsung <InlineMath math="(20-6{,}67)/4{,}0=3{,}33\text{ s}" />. Di bawah <InlineMath math="6{,}67\text{ m s}^{-1}" /> tidak ada yang tumpah, jadi seluruh energi kinetik yang tersisa berakhir di baterai.
+
+<BlockMath math="\begin{aligned}
+E&=40\,000\times3{,}33+\frac{1}{2}\times1500\times6{,}67^2\\
+&=1{,}333\times10^{5}+0{,}333\times10^{5}=1{,}67\times10^{5}\text{ J}
+\end{aligned}" />
+
+**Baterai mendapat <InlineMath math="167\text{ kJ}" /> selama mobil berhenti**, sedikit di atas separuh dari <InlineMath math="300\text{ kJ}" /> yang dimiliki mobil. Berhenti di <InlineMath math="133\text{ kJ}" /> berarti bagian lambat terlewat, dan hasilnya nanti <InlineMath math="66{,}7\text{ A}" />. Mengalikan <InlineMath math="40\text{ kW}" /> dengan seluruh <InlineMath math="5{,}0\text{ s}" /> memberi <InlineMath math="200\text{ kJ}" />, seolah-olah baterai masih menerima <InlineMath math="40\text{ kW}" /> penuh menjelang akhir, padahal saat itu mobil butuh daya pengereman yang jauh lebih kecil.
+
+<Chart
+  title={<>Daya pengereman dan bagian yang masuk ke baterai</>}
+  description={<>Waktu dalam sekon di sumbu bawah. Daya pengereman turun lurus dari <InlineMath math="120\text{ kW}" /> sampai nol. Baterai mengikuti batas datar <InlineMath math="40\text{ kW}" /> sampai <InlineMath math="3{,}33\text{ s}" />, lalu mengikuti garis yang turun. Celah di antara kedua garis adalah panas rem gesek.</>}
+  categories={["0,0", "0,5", "1,0", "1,5", "2,0", "2,5", "3,0", "3,5", "4,0", "4,5", "5,0"]}
+  series={[
+    { label: "Daya pengereman yang dibutuhkan", mark: "line", values: [120, 108, 96, 84, 72, 60, 48, 36, 24, 12, 0] },
+    { label: "Daya yang masuk ke baterai", mark: "line", values: [40, 40, 40, 40, 40, 40, 40, 36, 24, 12, 0] },
+  ]}
+  valueLabel="Daya (kW)"
+/>
+
+# Dari joule ke coulomb
+
+Setiap coulomb yang mengalir ke baterai <InlineMath math="400\text{ V}" /> meninggalkan <InlineMath math="400\text{ J}" /> di sana, seperti lift yang menyimpan energi yang sama untuk tiap penumpang yang diangkutnya ke lantai yang sama. Muatannya <InlineMath math="166\,700/400=417\text{ C}" />, tersebar selama <InlineMath math="5{,}0\text{ s}" /> pengereman. **Arus pengisian rata-ratanya <InlineMath math="417/5{,}0=83{,}3\text{ A}" />**. Meski begitu, arusnya jauh dari tetap. Arus bertahan di <InlineMath math="40\,000/400=100\text{ A}" /> selama bagian cepat, lalu surut sampai nol ketika mobil berhenti.

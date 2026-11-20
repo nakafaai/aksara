@@ -1,0 +1,35 @@
+# Fully on means the mat sets the current
+
+Open a garden tap all the way and the flow is set by the hose, not by the tap any more. A fully-on transistor is that open tap: the mat gets <InlineMath math="12-0.20=11.8\text{ V}" />, and the base has to supply at least a fiftieth of the current the mat then takes. The base resistor carries that base current with <InlineMath math="3.3-0.70\text{ V}" /> across it.
+
+<BlockMath math="\begin{aligned}
+I_C&=\frac{12-0.20}{24}=0.492\text{ A},\qquad I_B=\frac{0.492}{50}=9.83\times10^{-3}\text{ A}\\
+R_B&\le\frac{3.3-0.70}{9.83\times10^{-3}}=264\,\Omega
+\end{aligned}" />
+
+**The largest base resistor that still turns the transistor fully on is <InlineMath math="264\,\Omega" />**. Putting the whole <InlineMath math="3.3\text{ V}" /> across <InlineMath math="R_B" /> gives <InlineMath math="336\,\Omega" />, but the base keeps <InlineMath math="0.70\text{ V}" /> for itself, so that resistor passes only <InlineMath math="7.75\text{ mA}" /> and the transistor stops short of fully on.
+
+# A fully-on switch barely warms
+
+A wide-open doorway lets a crowd through without anyone rubbing against the frame. The heat made in the transistor is the voltage across it times the current through it, and fully on it has only <InlineMath math="0.20\text{ V}" /> across it. **Fully on, the transistor turns <InlineMath math="0.20\times0.492=0.0983\text{ W}" /> into heat**, while the mat gets <InlineMath math="11.8\times0.492=5.80\text{ W}" />. A small transistor handles that without a heat sink.
+
+# Half on is the hot spot
+
+Hold a door half open in a rush and the crowd jostles against it. With <InlineMath math="1.0\text{ k}\Omega" /> the base current is only <InlineMath math="2.60\text{ mA}" />, so the collector current is fifty times that, <InlineMath math="0.130\text{ A}" />, well below the <InlineMath math="0.492\text{ A}" /> of fully on. Now the mat takes only <InlineMath math="0.130\times24=3.12\text{ V}" />, and the transistor is left holding the rest.
+
+<BlockMath math="\begin{aligned}
+I_C&=50\times\frac{3.3-0.70}{1000}=0.130\text{ A}\\
+P&=I_C\,(12-24I_C)=0.130\times8.88=1.15\text{ W}
+\end{aligned}" />
+
+**The transistor now turns <InlineMath math="1.15\text{ W}" /> into heat**, about twelve times as much as when fully on, while the mat itself gets only <InlineMath math="0.406\text{ W}" />. Keeping <InlineMath math="0.0983\text{ W}" /> assumes the larger resistor still turns it fully on. Answering <InlineMath math="0.406\text{ W}" /> gives the heat in the mat, not in the transistor.
+
+<Chart
+  title={<>Heat in the transistor for each base resistor</>}
+  description={<>Base resistor in ohms along the bottom. Up to <InlineMath math="264\,\Omega" /> the transistor is fully on and stays cool. Beyond that it is only partly on, and its heat peaks at <InlineMath math="1.5\text{ W}" /> near <InlineMath math="520\,\Omega" />, where the mat and the transistor share the <InlineMath math="12\text{ V}" /> equally. With a very large resistor the transistor is nearly off and the heat falls again.</>}
+  categories={["200", "300", "400", "500", "700", "1000", "2000", "4000"]}
+  series={[
+    { label: "Heat in the transistor", mark: "line", values: [0.098, 0.693, 1.365, 1.498, 1.401, 1.154, 0.679, 0.365] },
+  ]}
+  valueLabel="Power (W)"
+/>

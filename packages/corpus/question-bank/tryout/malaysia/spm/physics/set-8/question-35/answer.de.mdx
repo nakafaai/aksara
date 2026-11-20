@@ -1,0 +1,30 @@
+# Erst raten, dann prüfen
+
+Zwei Regentonnen füllen einen Gartentrog über Rückschlagklappen, und die Klappe der tieferen Tonne öffnet sich nur, wenn der Wasserstand im Trog unter diese Tonne sinkt. Weil <InlineMath math="9{,}0\text{ V}" /> mehr sind als <InlineMath math="7{,}5\text{ V}" />, liegt es nahe, das Netzteil allein arbeiten zu lassen. Dann fließen <InlineMath math="(9{,}0-0{,}70)/(10+40)=0{,}166\text{ A}" />, und am Bedienteil liegen <InlineMath math="0{,}166\times40=6{,}64\text{ V}" />. Doch <InlineMath math="D_2" /> ist in Durchlassrichtung gepolt, sobald das Bedienteil unter <InlineMath math="7{,}5-0{,}70=6{,}80\text{ V}" /> liegt, und <InlineMath math="6{,}64\text{ V}" /> liegen darunter. **Die Batterie kann nicht untätig bleiben**, also sind <InlineMath math="0{,}166\text{ A}" /> mit <InlineMath math="0\text{ A}" /> aus der Batterie nur die Vermutung, nicht die Antwort. Die <InlineMath math="10\,\Omega" /> des Netzteils verschenken so viel Spannung, dass die schwächere Quelle mitmacht.
+
+# Die Batterie stützt das Bedienteil
+
+Ein Hocker unter einem durchhängenden Regalbrett trägt mit, sobald das Brett auf ihm aufliegt, und das Brett sinkt nicht weiter. Leitet <InlineMath math="D_2" />, wird das Bedienteil bei den <InlineMath math="7{,}5\text{ V}" /> der Batterie minus den <InlineMath math="0{,}70\text{ V}" /> ihrer Diode gehalten. Das ohmsche Gesetz liefert den Strom durch das Bedienteil, und der Strom des Netzteils folgt aus der Spannung, die an seinen eigenen <InlineMath math="10\,\Omega" /> übrig bleibt.
+
+<BlockMath math="\begin{aligned}
+I&=\frac{6{,}80}{40}=0{,}170\text{ A}\\
+I_1&=\frac{9{,}0-0{,}70-6{,}80}{10}=0{,}150\text{ A},\qquad I_2=0{,}170-0{,}150=0{,}0200\text{ A}
+\end{aligned}" />
+
+**Das Bedienteil zieht <InlineMath math="0{,}170\text{ A}" />, davon liefert die Batterie <InlineMath math="0{,}0200\text{ A}" />**. Wer die <InlineMath math="0{,}70\text{ V}" /> an <InlineMath math="D_2" /> weglässt, legt die vollen <InlineMath math="7{,}5\text{ V}" /> an das Bedienteil und erhält <InlineMath math="0{,}188\text{ A}" />, <InlineMath math="0{,}108\text{ A}" /> und <InlineMath math="0{,}0800\text{ A}" />, als koste die Diode der Batterie nichts.
+
+# Wie viel das Netzteil allein schafft
+
+Ein ermüdender Radfahrer bleibt nur so lange vor einem gleichmäßigen Fußgänger, wie er noch schneller ist als dieser. Das Netzteil hält das Bedienteil bei <InlineMath math="8{,}30-10I" /> Volt, und die Batterie bleibt nur draußen, solange das mindestens <InlineMath math="6{,}80\text{ V}" /> sind. Das heißt <InlineMath math="10I\le1{,}50" />. **Bis <InlineMath math="0{,}150\text{ A}" /> liefe ein Bedienteil allein am Netzteil**. Die beiden Diodenspannungen heben sich hier auf, also ist die Grenze einfach <InlineMath math="(9{,}0-7{,}5)/10" />. Wer <InlineMath math="D_1" /> vergisst und mit <InlineMath math="9{,}0-6{,}80" /> rechnet, erhält <InlineMath math="0{,}220\text{ A}" /> und nimmt dem Netzteil die eigene Diode aus dem Weg.
+
+<Chart
+  title={<>Spannung, die jeder Zweig am Bedienteil halten kann</>}
+  description={<>Strom durch das Bedienteil in Ampere auf der unteren Achse. Die Linie des Netzteils sinkt mit wachsendem Strom, die Linie der Batterie bleibt bei <InlineMath math="6{,}80\text{ V}" />, und die Linie des Bedienteils steigt. Netzteil und Bedienteil träfen sich bei <InlineMath math="6{,}64\text{ V}" />, unter dem Niveau der Batterie, also hilft die Batterie mit, und das Bedienteil liegt bei <InlineMath math="6{,}80\text{ V}" />. Allein schafft es das Netzteil nur links von <InlineMath math="0{,}150\text{ A}" />.</>}
+  categories={["0,00", "0,05", "0,10", "0,15", "0,20", "0,25"]}
+  series={[
+    { label: "Netzteil über seine Diode", mark: "line", values: [8.3, 7.8, 7.3, 6.8, 6.3, 5.8] },
+    { label: "Batterie über ihre Diode", mark: "line", values: [6.8, 6.8, 6.8, 6.8, 6.8, 6.8] },
+    { label: "Spannung, die das Bedienteil braucht", mark: "line", values: [0.0, 2.0, 4.0, 6.0, 8.0, 10.0] },
+  ]}
+  valueLabel="Spannung (V)"
+/>

@@ -1,0 +1,28 @@
+# Kembalikan dulu kesalahan nol
+
+Timbangan badan yang menunjukkan <InlineMath math="-1\text{ kg}" /> saat kosong menimbang setiap orang <InlineMath math="1\text{ kg}" /> terlalu ringan, jadi kamu tambahkan lagi kilogram itu. Jangka sorong yang dirapatkan menunjukkan <InlineMath math="-0{,}02\text{ cm}" />, jadi setiap bacaan <InlineMath math="0{,}02\text{ cm}" /> terlalu kecil. **Panjang kumparan sebenarnya <InlineMath math="2{,}86+0{,}02=2{,}88\text{ cm}" />**. Ke-<InlineMath math="40" /> lilitan itu berjajar rapat, dan tiap lilitan menambah satu tebal kawat, jadi diameternya <InlineMath math="2{,}88/40=0{,}0720\text{ cm}" />, yaitu <InlineMath math="0{,}720\text{ mm}" />. Kalau <InlineMath math="0{,}02\text{ cm}" /> itu malah dikurangkan, hasilnya <InlineMath math="2{,}84\text{ cm}" /> dan kawat <InlineMath math="0{,}710\text{ mm}" />, terlalu tipis.
+
+# Dari hambatan ke hambatan jenis
+
+Air lebih mudah mengalir lewat selang yang gemuk daripada yang kurus, dan yang menentukan adalah ukuran lubangnya. Penampang kawat berbentuk lingkaran yang jari-jarinya setengah diameter, <InlineMath math="0{,}360\text{ mm}" />. **Luasnya <InlineMath math="A=\pi r^2=3{,}14\times(0{,}360\times10^{-3})^2=4{,}07\times10^{-7}\text{ m}^2" />**. Hambatan jenis adalah hambatan logam itu kalau panjangnya <InlineMath math="1\text{ m}" /> dengan penampang <InlineMath math="1\text{ m}^2" />, jadi <InlineMath math="\rho=RA/L=2{,}4\times4{,}07\times10^{-7}/2{,}00=4{,}9\times10^{-7}\,\Omega\text{ m}" />. Memakai diameter sebagai jari-jari membuat luasnya empat kali terlalu besar dan memberi <InlineMath math="2{,}0\times10^{-6}\,\Omega\text{ m}" />.
+
+# Makin banyak lilitan, makin kecil kesalahannya
+
+Untuk mencari tebal selembar kertas, kamu mengukur setumpuk kertas yang tebal, karena kesalahan kecil penggaris lalu dibagi ke banyak lembar. Kumparan ini bekerja dengan cara yang sama. <InlineMath math="\pm0{,}01\text{ cm}" /> itu tersebar pada <InlineMath math="N" /> lilitan, jadi ketidakpastian diameter adalah <InlineMath math="0{,}01/(0{,}0720N)" /> dari nilainya. **Diameter dikuadratkan dalam luas, jadi ketidakpastian persennya terhitung dua kali dalam hambatan jenis**. Dengan <InlineMath math="40" /> lilitan nilainya <InlineMath math="2\times0{,}01/2{,}88=0{,}69\%" />, melewati batas. Syarat <InlineMath math="2\times0{,}01/(0{,}0720N)\le0{,}0050" /> memberi <InlineMath math="N\ge55{,}6" />. Lilitan harus bulat, dan <InlineMath math="55" /> lilitan masih memberi <InlineMath math="0{,}505\%" />, jadi siswa itu butuh <InlineMath math="56" />. Kalau faktor dua terlupa, jawabannya jadi setengah, <InlineMath math="28" /> lilitan.
+
+<Chart
+  title={<>Ketidakpastian hambatan jenis terhadap jumlah lilitan</>}
+  description={<>Bagian ketidakpastian persen hambatan jenis yang berasal dari pembacaan <InlineMath math="\pm0{,}01\text{ cm}" />, untuk kumparan dengan jumlah lilitan berbeda. Garis datar adalah batas <InlineMath math="0{,}50\%" />. <InlineMath math="40" /> lilitan memberi <InlineMath math="0{,}69\%" />, dan <InlineMath math="56" /> lilitan adalah yang pertama turun di bawah batas itu.</>}
+  categories={["20 lilitan", "28 lilitan", "40 lilitan", "56 lilitan", "80 lilitan"]}
+  series={[
+    { label: "Dari pembacaan panjang", mark: "line", values: [1.389, 0.992, 0.694, 0.496, 0.347] },
+    { label: "Batas", mark: "line", values: [0.5, 0.5, 0.5, 0.5, 0.5] },
+  ]}
+  valueLabel="Ketidakpastian (%)"
+/>
+
+<BlockMath math="\begin{aligned}
+L&=2{,}86-(-0{,}02)=2{,}88\text{ cm},\quad d=\frac{2{,}88}{40}=0{,}0720\text{ cm}\\
+\rho&=\frac{RA}{L}=\frac{2{,}4\times3{,}14\times(0{,}360\times10^{-3})^2}{2{,}00}=4{,}9\times10^{-7}\,\Omega\text{ m}\\
+2\times\frac{0{,}01}{0{,}0720N}&\le0{,}0050\ \Rightarrow\ N\ge55{,}6\ \Rightarrow\ N=56
+\end{aligned}" />

@@ -1,0 +1,45 @@
+A microcontroller switches a heating mat in a reptile tank through an npn transistor. The mat behaves as a fixed <InlineMath math="24\,\Omega" /> resistor and is connected between a <InlineMath math="12\text{ V}" /> supply and the collector, and the emitter is connected to <InlineMath math="0\text{ V}" />. The microcontroller's output gives <InlineMath math="3.3\text{ V}" /> and is connected to the base through a resistor <InlineMath math="R_B" />. While the transistor conducts, the base-emitter voltage is <InlineMath math="0.70\text{ V}" />, and the collector current is <InlineMath math="50" /> times the base current until the transistor is fully on. When it is fully on, the collector-emitter voltage is <InlineMath math="0.20\text{ V}" />.
+
+<MathVisual
+  title={<>The heating mat switched by a transistor</>}
+  description={<>The mat sits between the <InlineMath math="12\text{ V}" /> supply and the collector. The microcontroller's <InlineMath math="3.3\text{ V}" /> output reaches the base through <InlineMath math="R_B" />, and the emitter goes to <InlineMath math="0\text{ V}" />.</>}
+  labels={{
+    supply: <><InlineMath math="12\text{ V}" /></>,
+    mat: <>heating mat, <InlineMath math="24\,\Omega" /></>,
+    transistor: <>npn</>,
+    rb: <><InlineMath math="R_B" /></>,
+    output: <>output, <InlineMath math="3.3\text{ V}" /></>,
+    ground: <><InlineMath math="0\text{ V}" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -4.4, max: 12.6 }, y: { min: 1.2, max: 9.8 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "supply", kind: "segment", appearance: "secondary", from: { x: 4, y: 9 }, to: { x: 9, y: 9 } },
+      { id: "mat-top", kind: "segment", appearance: "secondary", from: { x: 7.2, y: 9 }, to: { x: 7.2, y: 8 } },
+      { id: "mat", kind: "polygon", appearance: "highlight", vertices: [{ x: 6.7, y: 6.2 }, { x: 7.7, y: 6.2 }, { x: 7.7, y: 8 }, { x: 6.7, y: 8 }] },
+      { id: "mat-bottom", kind: "segment", appearance: "secondary", from: { x: 7.2, y: 6.2 }, to: { x: 7.2, y: 5.4 } },
+      { id: "transistor", kind: "circle", appearance: "secondary", center: { x: 6.6, y: 4.3 }, radius: 1.1 },
+      { id: "base-bar", kind: "segment", appearance: "primary", from: { x: 6, y: 3.6 }, to: { x: 6, y: 5 } },
+      { id: "collector", kind: "segment", appearance: "primary", from: { x: 6, y: 4.7 }, to: { x: 7.2, y: 5.4 } },
+      { id: "emitter", kind: "vector", appearance: "primary", from: { x: 6, y: 3.9 }, to: { x: 7.2, y: 3.2 } },
+      { id: "emitter-wire", kind: "segment", appearance: "secondary", from: { x: 7.2, y: 3.2 }, to: { x: 7.2, y: 2 } },
+      { id: "ground", kind: "segment", appearance: "secondary", from: { x: 4, y: 2 }, to: { x: 9, y: 2 } },
+      { id: "base-lead", kind: "segment", appearance: "secondary", from: { x: 4.2, y: 4.3 }, to: { x: 6, y: 4.3 } },
+      { id: "rb", kind: "polygon", appearance: "primary", vertices: [{ x: 2.4, y: 3.95 }, { x: 4.2, y: 3.95 }, { x: 4.2, y: 4.65 }, { x: 2.4, y: 4.65 }] },
+      { id: "output-lead", kind: "segment", appearance: "secondary", from: { x: 1, y: 4.3 }, to: { x: 2.4, y: 4.3 } },
+      { id: "output", kind: "point", appearance: "primary", at: { x: 1, y: 4.3 } },
+    ],
+    labels: [
+      { key: "supply", objectId: "supply", at: { x: 9, y: 9 }, placement: "right" },
+      { key: "mat", objectId: "mat", at: { x: 7.7, y: 7.1 }, placement: "right" },
+      { key: "transistor", objectId: "transistor", at: { x: 7.7, y: 4.3 }, placement: "right" },
+      { key: "rb", objectId: "rb", at: { x: 3.3, y: 4.65 }, placement: "above" },
+      { key: "output", objectId: "output", at: { x: 1, y: 4.3 }, placement: "left" },
+      { key: "ground", objectId: "ground", at: { x: 9, y: 2 }, placement: "right" },
+    ],
+  }}
+/>
+
+What is the largest <InlineMath math="R_B" /> that turns the transistor fully on, what power is turned into heat in the transistor when it is fully on, and what power is turned into heat in the transistor if a <InlineMath math="1.0\text{ k}\Omega" /> resistor is fitted as <InlineMath math="R_B" /> instead?

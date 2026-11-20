@@ -1,0 +1,28 @@
+# Two walls, two round trips
+
+Shout down a well and the echo is the trip down plus the trip back up. Each of the first two echoes is a round trip to one wall, so the near wall is <InlineMath math="340\times1.2/2=204\text{ m}" /> away and the far wall <InlineMath math="340\times2.0/2=340\text{ m}" />. **The hiker stands between them, so the canyon is <InlineMath math="204+340=544\text{ m}" /> wide**. Adding the two round trips gives <InlineMath math="1088\text{ m}" />, twice the width, because every metre was walked by the sound both ways.
+
+# The echo that visits both walls
+
+A squash ball hit at one wall can fly across the court, hit the other wall and come back to you. The third echo goes <InlineMath math="204\text{ m}" /> to the near wall, <InlineMath math="544\text{ m}" /> across to the far wall and <InlineMath math="340\text{ m}" /> back, <InlineMath math="1088\text{ m}" /> in all, and starting with the far wall gives the same path. **It arrives <InlineMath math="1088/340=3.2\text{ s}" /> after the clap**, which is also <InlineMath math="1.2+2.0" />. The <InlineMath math="0.8\text{ s}" /> between the first two echoes is only a gap, not an echo.
+
+# Stepping off the middle
+
+Stand halfway between two friends and step towards one of them: you get nearer to that friend and further from the other, both at once. At the middle both echoes travel <InlineMath math="544\text{ m}" /> and arrive together. A step <InlineMath math="x" /> towards one wall shortens that round trip by <InlineMath math="2x" /> and lengthens the other by <InlineMath math="2x" />, so the two paths differ by <InlineMath math="4x" />. **The echoes merge while <InlineMath math="4x/340<0.10\text{ s}" />, so the hiker must stand less than <InlineMath math="8.5\text{ m}" /> from the middle**. Changing only one path gives <InlineMath math="17\text{ m}" />, which counts half of the difference.
+
+<Chart
+  title={<>Gap between the first two echoes as the hiker leaves the middle</>}
+  description={<>Distance from the middle along the bottom. Each metre moved changes the gap by <InlineMath math="4/340\text{ s}" />, so the gap reaches the <InlineMath math="0.10\text{ s}" /> limit at <InlineMath math="8.5\text{ m}" />.</>}
+  categories={["0 m", "5 m", "8.5 m", "10 m", "15 m", "20 m"]}
+  series={[
+    { label: "Gap between echoes", mark: "line", values: [0, 0.059, 0.1, 0.118, 0.176, 0.235] },
+    { label: "Limit for one sound", mark: "line", values: [0.1, 0.1, 0.1, 0.1, 0.1, 0.1] },
+  ]}
+  valueLabel="Gap (s)"
+/>
+
+<BlockMath math="\begin{aligned}
+d_1&=\frac{340\times1.2}{2}=204\text{ m},\qquad d_2=\frac{340\times2.0}{2}=340\text{ m}\\
+t_3&=\frac{204+544+340}{340}=\frac{1088}{340}=3.2\text{ s}\\
+\frac{4x}{340}&<0.10\ \Rightarrow\ x<8.5\text{ m}
+\end{aligned}" />

@@ -1,0 +1,53 @@
+# The bend at the surface
+
+A straw standing in a glass of water looks snapped where it meets the surface. In the empty mug the line of sight is the long side of a <InlineMath math="6" />, <InlineMath math="8" />, <InlineMath math="10" /> triangle, so <InlineMath math="\sin\theta=8/10=0.80" /> and the angle in the air is <InlineMath math="53.1°" />. That air part never moves, because the eye and the rim stay put. At the surface <InlineMath math="\sin\theta=\tfrac43\sin r" /> gives <InlineMath math="\sin r=0.60" />. **In the water the line runs at <InlineMath math="r=36.9°" />, about <InlineMath math="37°" /> to the vertical**. The <InlineMath math="53°" /> belongs to the same line before it reaches the water.
+
+# One line of sight in two pieces
+
+Walk along a road that turns at a junction, and the distance you cover sideways is the straight stretch plus the turned stretch. With water <InlineMath math="h" /> deep, the air piece drops <InlineMath math="6.0-h" /> and moves <InlineMath math="\tfrac43(6.0-h)" /> across, and the water piece drops <InlineMath math="h" /> and moves <InlineMath math="0.75h" /> across. The landing point is <InlineMath math="8.0-\tfrac{7}{12}h" /> from the near wall, and it reaches the ring at <InlineMath math="5.2\text{ cm}" />. **The ring first appears when the water is <InlineMath math="4.8\text{ cm}" /> deep**. Sideways movement needs <InlineMath math="\tan r=0.75" />, so using <InlineMath math="\sin r=0.60" /> in its place gives <InlineMath math="3.8\text{ cm}" />.
+
+<MathVisual
+  title={<>The line of sight once the ring appears</>}
+  description={<>The line of sight from the eye keeps its direction in the air, at <InlineMath math="53°" /> to the vertical, and bends to <InlineMath math="37°" /> at the water surface. It now ends on the ring instead of the far corner.</>}
+  labels={{
+    ring: <>ring</>,
+    surface: <>water surface</>,
+    "air-angle": <><InlineMath math="53°" /></>,
+    "water-angle": <><InlineMath math="37°" /></>,
+    depth: <><InlineMath math="4.8\text{ cm}" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -5.6, max: 10.6 }, y: { min: -1.2, max: 10 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "mug", kind: "polyline", appearance: "secondary", vertices: [{ x: 0, y: 6 }, { x: 0, y: 0 }, { x: 8, y: 0 }, { x: 8, y: 6 }] },
+      { id: "surface", kind: "segment", appearance: "reference", from: { x: 0, y: 4.8 }, to: { x: 8, y: 4.8 } },
+      { id: "air-ray", kind: "segment", appearance: "primary", from: { x: -4, y: 9 }, to: { x: 1.6, y: 4.8 } },
+      { id: "water-ray", kind: "segment", appearance: "primary", from: { x: 1.6, y: 4.8 }, to: { x: 5.2, y: 0 } },
+      { id: "old-ray", kind: "segment", appearance: "construction", from: { x: 1.6, y: 4.8 }, to: { x: 8, y: 0 } },
+      { id: "normal", kind: "segment", appearance: "construction", from: { x: 1.6, y: 6 }, to: { x: 1.6, y: 3.6 } },
+      { id: "air-angle", kind: "arc", appearance: "construction", center: { x: 1.6, y: 4.8 }, radius: 0.9, startDegrees: 90, sweepDegrees: 53.13 },
+      { id: "water-angle", kind: "arc", appearance: "construction", center: { x: 1.6, y: 4.8 }, radius: 0.9, startDegrees: 270, sweepDegrees: 36.87 },
+      { id: "ring", kind: "point", appearance: "highlight", at: { x: 5.2, y: 0 } },
+      { id: "depth", kind: "segment", appearance: "construction", from: { x: 9, y: 0 }, to: { x: 9, y: 4.8 } },
+    ],
+    labels: [
+      { key: "ring", objectId: "ring", at: { x: 5.2, y: 0 }, placement: "below" },
+      { key: "surface", objectId: "surface", at: { x: 6.4, y: 4.8 }, placement: "above" },
+      { key: "air-angle", objectId: "air-angle", at: { x: 1.1, y: 5.8 }, placement: "left" },
+      { key: "water-angle", objectId: "water-angle", at: { x: 1.95, y: 3.75 }, placement: "right" },
+      { key: "depth", objectId: "depth", at: { x: 9, y: 2.4 }, placement: "right" },
+    ],
+  }}
+/>
+
+<BlockMath math="\begin{aligned}
+\sin\theta&=\frac{8.0}{10}=0.80,\qquad \sin r=\frac{0.80}{4/3}=0.60\ \Rightarrow\ r=36.9°\\
+x&=\tfrac43(6.0-h)+0.75h=8.0-\tfrac{7}{12}h=5.2\ \Rightarrow\ h=4.8\text{ cm}\\
+x_0&=6.0\times0.75=4.5\text{ cm}
+\end{aligned}" />
+
+# Full to the brim
+
+When a bath is full, the tiles on its floor seem to rise towards you. With the mug full, the line of sight enters the water right at the rim and runs at <InlineMath math="37°" /> all the way down, landing <InlineMath math="6.0\times0.75=4.5\text{ cm}" /> across. **The nearest point of the bottom the observer can see is <InlineMath math="4.5\text{ cm}" /> from the near wall**, and the strip closer to the near wall stays hidden. The <InlineMath math="3.5\text{ cm}" /> is the same point measured from the far wall.

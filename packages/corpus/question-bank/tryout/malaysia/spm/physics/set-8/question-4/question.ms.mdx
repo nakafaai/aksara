@@ -1,0 +1,43 @@
+Sebuah gerabak kereta api berjisim <InlineMath math="2000\text{ kg}" /> bergerak bebas pada <InlineMath math="3.0\text{ m s}^{-1}" /> di sepanjang landasan yang rata. Semasa ia melalui bawah sebuah corong, <InlineMath math="500\text{ kg}" /> pasir jatuh ke dalamnya sekali gus. Pasir itu tidak mempunyai halaju mengufuk, jatuh <InlineMath math="0.80\text{ m}" /> dan menjadi pegun di dalam gerabak. Gerabak itu kemudian melanggar sebuah penampan, iaitu spring dengan kekerasan <InlineMath math="1.8\times10^{6}\text{ N m}^{-1}" /> yang boleh dimampatkan paling banyak <InlineMath math="8.0\text{ cm}" /> sebelum gerabak melanggar satu penghadang tegar. Ambil <InlineMath math="g=10\text{ m s}^{-2}" /> dan abaikan geseran.
+
+<MathVisual
+  title={<>Gerabak, corong dan penampan</>}
+  description={<>Gerabak bergerak ke kanan di bawah corong. Pasir jatuh <InlineMath math="0.80\text{ m}" /> ke dalamnya. Lebih jauh di landasan, spring penampan boleh memendek sebanyak <InlineMath math="8.0\text{ cm}" /> sebelum gerabak bertemu penghadang tegar di belakangnya.</>}
+  labels={{
+    wagon: <>gerabak <InlineMath math="2000\text{ kg}" /></>,
+    speed: <><InlineMath math="3.0\text{ m s}^{-1}" /></>,
+    hopper: <>corong dengan <InlineMath math="500\text{ kg}" /> pasir</>,
+    fall: <><InlineMath math="0.80\text{ m}" /></>,
+    buffer: <>spring penampan</>,
+    gap: <><InlineMath math="8.0\text{ cm}" /></>,
+    stop: <>penghadang tegar</>,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 25.5 }, y: { min: -3, max: 11.5 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "track", kind: "segment", appearance: "reference", from: { x: 0, y: 0 }, to: { x: 25, y: 0 } },
+      { id: "wagon", kind: "polyline", appearance: "primary", vertices: [{ x: 2, y: 3.5 }, { x: 2, y: 0.8 }, { x: 9, y: 0.8 }, { x: 9, y: 3.5 }] },
+      { id: "wheel-a", kind: "circle", appearance: "secondary", center: { x: 3.5, y: 0.4 }, radius: 0.4 },
+      { id: "wheel-b", kind: "circle", appearance: "secondary", center: { x: 7.5, y: 0.4 }, radius: 0.4 },
+      { id: "speed", kind: "vector", appearance: "highlight", from: { x: 9.6, y: 2.2 }, to: { x: 12.4, y: 2.2 } },
+      { id: "hopper", kind: "polygon", appearance: "secondary", vertices: [{ x: 3, y: 8.5 }, { x: 8, y: 8.5 }, { x: 6.2, y: 6.4 }, { x: 4.8, y: 6.4 }] },
+      { id: "fall", kind: "segment", appearance: "construction", from: { x: 10, y: 6.4 }, to: { x: 10, y: 3.5 } },
+      { id: "buffer", kind: "polyline", appearance: "warning", vertices: [{ x: 19, y: 1.5 }, { x: 19.4, y: 1.9 }, { x: 19.8, y: 1.1 }, { x: 20.2, y: 1.9 }, { x: 20.6, y: 1.1 }, { x: 21, y: 1.9 }, { x: 21.4, y: 1.1 }, { x: 21.8, y: 1.9 }, { x: 22.2, y: 1.1 }, { x: 22.6, y: 1.5 }] },
+      { id: "gap", kind: "segment", appearance: "construction", from: { x: 22.6, y: 0.6 }, to: { x: 23.4, y: 0.6 } },
+      { id: "stop", kind: "polygon", appearance: "reference", vertices: [{ x: 23.4, y: 0 }, { x: 24.4, y: 0 }, { x: 24.4, y: 3.4 }, { x: 23.4, y: 3.4 }] },
+    ],
+    labels: [
+      { key: "wagon", objectId: "wagon", at: { x: 5.5, y: 0.8 }, placement: "below" },
+      { key: "speed", objectId: "speed", at: { x: 11, y: 2.2 }, placement: "above" },
+      { key: "hopper", objectId: "hopper", at: { x: 5.5, y: 8.5 }, placement: "above" },
+      { key: "fall", objectId: "fall", at: { x: 10, y: 4.95 }, placement: "right" },
+      { key: "buffer", objectId: "buffer", at: { x: 20.8, y: 1.9 }, placement: "above" },
+      { key: "gap", objectId: "gap", at: { x: 23, y: 0.6 }, placement: "below" },
+      { key: "stop", objectId: "stop", at: { x: 23.9, y: 3.4 }, placement: "above" },
+    ],
+  }}
+/>
+
+Berapakah laju gerabak sejurus selepas pasir mendarat, pada laju berapakah gerabak melanggar penghadang tegar, dan berapakah tenaga kinetik yang bertukar menjadi haba dan bunyi semasa pasir mendarat?

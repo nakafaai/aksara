@@ -1,0 +1,36 @@
+Dua bintang, A dan B, bergerak dalam bulatan mengelilingi pusat jisim sepunya mereka, C. Kedua-duanya sentiasa berada pada sisi bertentangan C, dan setiap satu melengkapkan satu orbit dalam <InlineMath math="1.0\times10^{8}\text{ s}" />. Bintang A bergerak pada bulatan berjejari <InlineMath math="1.0\times10^{11}\text{ m}" /> dan bintang B pada bulatan berjejari <InlineMath math="2.0\times10^{11}\text{ m}" />. Satu-satunya daya pada setiap bintang ialah tarikan graviti bintang yang satu lagi. Ambil <InlineMath math="G=6.67\times10^{-11}\text{ N m}^2\text{ kg}^{-2}" /> dan <InlineMath math="\pi=3.14" />.
+
+<MathVisual
+  title={<>Dua bintang mengelilingi pusat jisim mereka</>}
+  description={<>Kedua-dua bulatan berpusat di C. Bintang A berada pada bulatan dalam dan bintang B pada bulatan luar, sentiasa pada sisi bertentangan C. Lukisan ini tidak mengikut skala.</>}
+  labels={{
+    "label-a": <>bintang A</>,
+    "label-b": <>bintang B</>,
+    "label-c": <>C</>,
+    ra: <><InlineMath math="1.0\times10^{11}\text{ m}" /></>,
+    rb: <><InlineMath math="2.0\times10^{11}\text{ m}" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -3.2, max: 3.2 }, y: { min: -2.4, max: 2.4 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "orbit-a", kind: "circle", appearance: "construction", center: { x: 0, y: 0 }, radius: 1 },
+      { id: "orbit-b", kind: "circle", appearance: "construction", center: { x: 0, y: 0 }, radius: 2 },
+      { id: "radius-a", kind: "segment", appearance: "secondary", from: { x: -1, y: 0 }, to: { x: 0, y: 0 } },
+      { id: "radius-b", kind: "segment", appearance: "secondary", from: { x: 0, y: 0 }, to: { x: 2, y: 0 } },
+      { id: "star-a", kind: "circle", appearance: "primary", center: { x: -1, y: 0 }, radius: 0.16 },
+      { id: "star-b", kind: "circle", appearance: "primary", center: { x: 2, y: 0 }, radius: 0.11 },
+      { id: "centre", kind: "point", appearance: "reference", at: { x: 0, y: 0 } },
+    ],
+    labels: [
+      { key: "label-a", objectId: "star-a", at: { x: -1.16, y: 0 }, placement: "left" },
+      { key: "label-b", objectId: "star-b", at: { x: 2.11, y: 0 }, placement: "right" },
+      { key: "label-c", objectId: "centre", at: { x: 0, y: 0 }, placement: "below" },
+      { key: "ra", objectId: "radius-a", at: { x: -0.5, y: 0 }, placement: "above" },
+      { key: "rb", objectId: "radius-b", at: { x: 1, y: 0 }, placement: "above" },
+    ],
+  }}
+/>
+
+Berapakah jisim <InlineMath math="m_A" /> dan <InlineMath math="m_B" /> kedua-dua bintang itu, dan berapakah laju orbit bintang B?

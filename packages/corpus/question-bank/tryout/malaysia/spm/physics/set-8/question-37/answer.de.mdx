@@ -1,0 +1,29 @@
+# Jeder Sprung beginnt aus der Ruhe
+
+Ein Ball, der auf jeder Treppenstufe liegen bleibt, landet auf jeder Stufe mit derselben Geschwindigkeit, egal wie viele Stufen er schon hinter sich hat. Ein Elektron, das die sechste Dynode trifft, wurde fast ruhend aus der fünften geschlagen, also hat es nur <InlineMath math="600-500=100\text{ V}" /> durchlaufen. Seine Bewegungsenergie beträgt <InlineMath math="e\times100" /> Joule.
+
+<BlockMath math="\begin{aligned}
+\frac{1}{2}mv^2&=e\,(600-500)=1{,}6\times10^{-19}\times100=1{,}6\times10^{-17}\text{ J}\\
+v&=\sqrt{\frac{2\times1{,}6\times10^{-17}}{9{,}11\times10^{-31}}}=5{,}93\times10^{6}\text{ m s}^{-1}
+\end{aligned}" />
+
+**Jedes Elektron trifft die sechste Dynode mit <InlineMath math="5{,}93\times10^{6}\text{ m s}^{-1}" />**. Wer die vollen <InlineMath math="600\text{ V}" /> ab der Kathode ansetzt, erhält <InlineMath math="1{,}45\times10^{7}\text{ m s}^{-1}" />, doch kein Elektron legt diesen ganzen Weg zurück. Die Elektronen aus der Kathode sind schon an der ersten Dynode gelandet.
+
+# Verdreifachen an jeder Dynode
+
+Ein Gerücht verbreitet sich schnell, wenn jeder, der es hört, es drei neuen Leuten erzählt: drei, dann neun, dann siebenundzwanzig. Aus einem Elektron der Kathode werden an der ersten Dynode <InlineMath math="3" />, an der zweiten <InlineMath math="3^2" />, und so weiter durch alle sechs. **Für jedes Elektron, das die Kathode verlässt, erreichen <InlineMath math="3^6=729" /> die Anode**. Wer an jeder Dynode nur drei addiert, kommt auf <InlineMath math="18" /> und vergisst, dass jedes neue Elektron selbst wieder Elektronen herausschlägt. Wer die Anode als siebte Verdreifachung zählt, erhält <InlineMath math="2187" />, doch die Anode sammelt nur.
+
+# Von Elektronen zum Strom
+
+Ein Strom ist nichts anderes als Ladung pro Sekunde, so wie Wasser, das man in Eimern pro Minute zählt. Die Anode empfängt <InlineMath math="5{,}0\times10^{6}\times729=3{,}65\times10^{9}" /> Elektronen pro Sekunde, jedes mit <InlineMath math="1{,}6\times10^{-19}\text{ C}" />. **In die Anode fließen etwa <InlineMath math="5{,}83\times10^{-10}\text{ A}" />**. Das ist immer noch winzig, aber ein empfindliches Messgerät kann es lesen, während die <InlineMath math="8{,}0\times10^{-13}\text{ A}" /> aus der Kathode allein im Rauschen untergingen.
+
+<Chart
+  title={<>Elektronen, die pro Sekunde an jeder Stufe ankommen</>}
+  description={<>Von Stufe zu Stufe wächst der Balken auf das Dreifache, weil jedes Elektron, das auf eine Dynode trifft, drei herausschlägt. Die Anode sammelt <InlineMath math="3{,}65\times10^{9}" /> Elektronen pro Sekunde und verdreifacht selbst nichts.</>}
+  bars="apart"
+  categories={["Dynode 1", "Dynode 2", "Dynode 3", "Dynode 4", "Dynode 5", "Dynode 6", "Anode"]}
+  series={[
+    { label: "Ankommende Elektronen", mark: "bar", values: [5, 15, 45, 135, 405, 1215, 3645] },
+  ]}
+  valueLabel="Elektronen pro Sekunde (Millionen)"
+/>

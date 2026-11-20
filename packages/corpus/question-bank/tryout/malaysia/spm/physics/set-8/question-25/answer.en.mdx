@@ -1,0 +1,29 @@
+# Slack until the water lifts the buoy
+
+A balloon tied to a chair by a long string bobs about with the string hanging loose, until it rises far enough to pull the string straight. Floating freely, the buoy sinks until the water it pushes aside weighs as much as it does, <InlineMath math="1500\text{ N}" />. That takes a depth of <InlineMath math="1500/(1000\times10\times0.50)=0.30\text{ m}" /> under the surface. Its base is <InlineMath math="4.0\text{ m}" /> above the bed only when the water is <InlineMath math="4.0+0.30" /> metres deep. **The cable first goes tight when the water is <InlineMath math="4.3\text{ m}" /> deep**. Answering <InlineMath math="4.0\text{ m}" /> treats the buoy as if it rode on top of the water instead of floating partly under it.
+
+# The cable holds the buoy under
+
+Push a beach ball under the water and it pushes back harder the deeper you hold it. Once the cable is tight, the base cannot rise above <InlineMath math="4.0\text{ m}" />, so at a depth of <InlineMath math="4.8\text{ m}" /> the buoy is held <InlineMath math="0.80\text{ m}" /> under. The upthrust grows to <InlineMath math="4000\text{ N}" />, more than its weight, and the cable supplies the difference. **The tension is <InlineMath math="2500\text{ N}" />**.
+
+<BlockMath math="\begin{aligned}
+U&=1000\times10\times0.50\times(4.8-4.0)=4000\text{ N}\\
+T&=4000-1500=2500\text{ N}
+\end{aligned}" />
+
+Giving the whole upthrust to the cable, <InlineMath math="4000\text{ N}" />, forgets that part of it already holds up the buoy's own <InlineMath math="1500\text{ N}" />.
+
+# Extra weight eases the cable
+
+When a child sits on an inflatable that is tied down against the wind, its tie-down rope goes slacker, because the child's weight does part of the rope's job. The worker adds <InlineMath math="600\text{ N}" /> downwards, but the cable cannot let the buoy sink any further, because it does not stretch. So the buoy stays <InlineMath math="0.80\text{ m}" /> under, and the upthrust stays <InlineMath math="4000\text{ N}" />. Now <InlineMath math="4000=1500+600+T" />. **The tension falls to <InlineMath math="1900\text{ N}" />**. Adding the worker's weight to the cable, <InlineMath math="3100\text{ N}" />, pictures the worker hanging from it, yet the worker stands on top and presses the buoy down with the cable. The cable stays tight because <InlineMath math="1900\text{ N}" /> is still more than zero. A load of more than <InlineMath math="2500\text{ N}" /> would leave it slack and make the buoy sink further.
+
+<Chart
+  title={<>Cable tension as the reservoir fills</>}
+  description={<>Water depth in metres along the bottom. The cable stays slack until the floating buoy is lifted to the end of it, and after that every extra <InlineMath math="0.10\text{ m}" /> of water adds <InlineMath math="500\text{ N}" /> of upthrust and of tension. With the worker aboard, the cable goes tight a little later and then carries <InlineMath math="600\text{ N}" /> less.</>}
+  categories={["4.0", "4.2", "4.4", "4.6", "4.8", "5.0", "5.2"]}
+  series={[
+    { label: "Buoy alone", mark: "line", values: [0, 0, 500, 1500, 2500, 3500, 4500] },
+    { label: "Worker aboard", mark: "line", values: [0, 0, 0, 900, 1900, 2900, 3900] },
+  ]}
+  valueLabel="Tension (N)"
+/>

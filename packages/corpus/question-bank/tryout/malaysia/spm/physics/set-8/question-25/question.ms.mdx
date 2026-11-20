@@ -1,0 +1,32 @@
+Sebuah pelampung penanda di dalam sebuah takungan air ialah silinder tegak yang tertutup rapat, setinggi <InlineMath math="1.2\text{ m}" />, dengan luas keratan rentas <InlineMath math="0.50\text{ m}^2" /> dan jisim <InlineMath math="150\text{ kg}" />. Seutas kabel keluli ringan sepanjang <InlineMath math="4.0\text{ m}" /> menyambungkan bahagian tengah dasarnya yang rata kepada sebuah sauh di dasar takungan yang rata. Kabel itu tidak meregang, dan pelampung sentiasa terapung tegak. Ketumpatan air ialah <InlineMath math="1000\text{ kg m}^{-3}" />. Ambil <InlineMath math="g=10\text{ m s}^{-2}" />.
+
+<MathVisual
+  title={<>Pelampung penanda dan kabelnya</>}
+  description={<>Pelampung terapung tegak di atas sauhnya, ditunjukkan di sini dengan kabel yang tegang. Lukisan ini tidak mengikut skala.</>}
+  labels={{
+    buoy: <>pelampung, tinggi <InlineMath math="1.2\text{ m}" />, <InlineMath math="0.50\text{ m}^2" /></>,
+    cable: <>kabel, <InlineMath math="4.0\text{ m}" /></>,
+    anchor: <>sauh</>,
+    surface: <>permukaan air</>,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -3.4, max: 8.6 }, y: { min: -1, max: 8.2 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "bed", kind: "segment", appearance: "reference", from: { x: -3, y: 0 }, to: { x: 6, y: 0 } },
+      { id: "anchor", kind: "point", appearance: "highlight", at: { x: 1.5, y: 0 } },
+      { id: "cable", kind: "segment", appearance: "secondary", from: { x: 1.5, y: 0 }, to: { x: 1.5, y: 5 } },
+      { id: "buoy", kind: "polygon", appearance: "primary", vertices: [{ x: 0.6, y: 5 }, { x: 2.4, y: 5 }, { x: 2.4, y: 7 }, { x: 0.6, y: 7 }] },
+      { id: "surface", kind: "segment", appearance: "reference", from: { x: -3, y: 6.2 }, to: { x: 6, y: 6.2 } },
+    ],
+    labels: [
+      { key: "buoy", objectId: "buoy", at: { x: 2.4, y: 6.6 }, placement: "right" },
+      { key: "cable", objectId: "cable", at: { x: 1.5, y: 2.5 }, placement: "left" },
+      { key: "anchor", objectId: "anchor", at: { x: 1.5, y: 0 }, placement: "below" },
+      { key: "surface", objectId: "surface", at: { x: -1.8, y: 6.2 }, placement: "above" },
+    ],
+  }}
+/>
+
+Selepas hujan lebat, paras air naik. Pada kedalaman air berapakah kabel mula menjadi tegang, berapakah tegangan dalam kabel apabila air sedalam <InlineMath math="4.8\text{ m}" />, dan berapakah tegangan itu apabila, pada kedalaman yang sama, seorang pekerja <InlineMath math="60\text{ kg}" /> memanjat ke atas pelampung?

@@ -1,0 +1,31 @@
+# How far the rule really fell
+
+Picture a race track where the first distance marker is painted one metre past the real start line. A runner at that marker has already run one metre more than it says. The rule works the same way. The finger starts at the very bottom of the rule, one centimetre below the printed zero. **A reading of <InlineMath math="20.0\text{ cm}" /> means a fall of <InlineMath math="20.0+1.0=21.0\text{ cm}" />**, and <InlineMath math="s=\tfrac12gt^2" /> turns it into <InlineMath math="t=\sqrt{2\times0.210/9.8}=0.21\text{ s}" />. Taking the printed number as the fall gives <InlineMath math="0.20\text{ s}" />, and that habit spoils every later step as well.
+
+# Where the guess line sits on the scale
+
+In a sprint, a runner who leaves the blocks within <InlineMath math="0.100\text{ s}" /> of the gun is called for a false start, because no human reacts that fast. Here the same limit becomes a mark on the rule. In <InlineMath math="0.100\text{ s}" /> the rule falls <InlineMath math="4.9\text{ cm}" />, so the finger ends up <InlineMath math="4.9\text{ cm}" /> above the bottom end. On the printed scale that spot is one centimetre lower.
+
+<BlockMath math="\begin{aligned}
+s&=\tfrac12\times9.8\times0.100^2=0.049\text{ m}=4.9\text{ cm}\\
+R&=4.9-1.0=3.9\text{ cm}
+\end{aligned}" />
+
+**Any catch that reads below <InlineMath math="3.9\text{ cm}" /> is a guess**. Leaving the line at <InlineMath math="4.9\text{ cm}" /> compares a printed reading with a fall, which are two different rulers.
+
+# Sorting the fast catcher's trials
+
+Now be the referee and check each start against that line. The <InlineMath math="3.0\text{ cm}" /> trial is under <InlineMath math="3.9\text{ cm}" />. Its fall of <InlineMath math="4.0\text{ cm}" /> would mean <InlineMath math="0.090\text{ s}" />, which looks brilliant but is a guess, so the <InlineMath math="0.090\text{ s}" /> option keeps a trial the rule throws out. The <InlineMath math="4.2\text{ cm}" /> trial clears the line by a whisker. Its fall is <InlineMath math="5.2\text{ cm}" />, so <InlineMath math="t=\sqrt{2\times0.052/9.8}=0.103\text{ s}" />. **The faster catcher's shortest reaction time that counts is <InlineMath math="0.103\text{ s}" />**. Judging the trials against <InlineMath math="4.9\text{ cm}" /> throws this honest catch away and leaves <InlineMath math="6.1\text{ cm}" />, worth <InlineMath math="0.120\text{ s}" />. Ignoring the offset everywhere also drops it, as <InlineMath math="0.093\text{ s}" />, and turns <InlineMath math="6.1\text{ cm}" /> into <InlineMath math="0.112\text{ s}" />.
+
+<Chart
+  title={<>The fast catcher's four trials against the guess line</>}
+  description={<>Each pair of bars is one trial, labelled by its printed reading, in milliseconds. The first bar adds the <InlineMath math="1.0\text{ cm}" /> offset to the reading, and the second takes the reading as the whole fall. A trial counts only if its bar reaches the <InlineMath math="100\text{ ms}" /> line.</>}
+  bars="apart"
+  categories={["3.0 cm", "7.3 cm", "4.2 cm", "6.1 cm"]}
+  series={[
+    { label: "True fall, offset added", mark: "bar", values: [90, 130, 103, 120] },
+    { label: "Reading taken as the fall", mark: "bar", values: [78, 122, 93, 112] },
+    { label: "Guess limit", mark: "line", values: [100, 100, 100, 100] },
+  ]}
+  valueLabel="Reaction time (ms)"
+/>

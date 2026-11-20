@@ -1,0 +1,36 @@
+An empty mug with straight sides is <InlineMath math="8.0\text{ cm}" /> wide inside and <InlineMath math="6.0\text{ cm}" /> tall. A small ring lies on the bottom, <InlineMath math="5.2\text{ cm}" /> from the near wall. An observer keeps one eye still and looks over the near rim. The line of sight just grazes the rim and meets the bottom exactly at the far corner, so the ring is hidden. Water of refractive index <InlineMath math="\dfrac{4}{3}" /> is then poured in slowly while the eye stays still. Treat the ring as a point, and measure angles from the vertical.
+
+<MathVisual
+  title={<>The empty mug and the line of sight</>}
+  description={<>A side view through the middle of the mug. The line of sight grazes the near rim and meets the bottom at the far corner. The drawing is not to scale.</>}
+  labels={{
+    eye: <>eye</>,
+    ring: <>ring</>,
+    width: <><InlineMath math="8.0\text{ cm}" /></>,
+    gap: <><InlineMath math="5.2\text{ cm}" /></>,
+    height: <><InlineMath math="6.0\text{ cm}" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -5.6, max: 10.6 }, y: { min: -3, max: 10 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "mug", kind: "polyline", appearance: "secondary", vertices: [{ x: 0, y: 6 }, { x: 0, y: 0 }, { x: 8, y: 0 }, { x: 8, y: 6 }] },
+      { id: "sight", kind: "segment", appearance: "primary", from: { x: -4, y: 9 }, to: { x: 8, y: 0 } },
+      { id: "eye", kind: "point", appearance: "highlight", at: { x: -4, y: 9 } },
+      { id: "ring", kind: "point", appearance: "highlight", at: { x: 5.2, y: 0 } },
+      { id: "gap", kind: "segment", appearance: "construction", from: { x: 0, y: -0.8 }, to: { x: 5.2, y: -0.8 } },
+      { id: "width", kind: "segment", appearance: "construction", from: { x: 0, y: -2 }, to: { x: 8, y: -2 } },
+      { id: "height", kind: "segment", appearance: "construction", from: { x: 9, y: 0 }, to: { x: 9, y: 6 } },
+    ],
+    labels: [
+      { key: "eye", objectId: "eye", at: { x: -4, y: 9 }, placement: "left" },
+      { key: "ring", objectId: "ring", at: { x: 5.2, y: 0 }, placement: "above" },
+      { key: "gap", objectId: "gap", at: { x: 2.6, y: -0.8 }, placement: "below" },
+      { key: "width", objectId: "width", at: { x: 4, y: -2 }, placement: "below" },
+      { key: "height", objectId: "height", at: { x: 9, y: 3 }, placement: "right" },
+    ],
+  }}
+/>
+
+Once there is water in the mug, at what angle to the vertical does that line of sight travel in the water, what depth of water first lets the observer see the ring, and how far from the near wall is the nearest point of the bottom the observer can see when the mug is full to the brim?

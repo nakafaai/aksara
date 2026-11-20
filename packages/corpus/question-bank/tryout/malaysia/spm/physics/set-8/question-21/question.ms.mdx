@@ -1,0 +1,29 @@
+Seorang pekerja pindah rumah menolak sebuah peti <InlineMath math="50\text{ kg}" /> ke atas sebuah landasan condong pemunggahan yang lurus dan condong pada <InlineMath math="30^\circ" /> kepada ufuk. Tolakan itu mengufuk, dan peti bergerak ke atas landasan dengan laju seragam. Daya geseran pada peti, setiap kali ia menggelongsor atau hampir menggelongsor, ialah <InlineMath math="0.40" /> kali daya normal antara peti dengan landasan. Ambil <InlineMath math="g=10\text{ m s}^{-2}" />, <InlineMath math="\sin30^\circ=0.500" /> dan <InlineMath math="\cos30^\circ=0.866" />.
+
+<MathVisual
+  title={<>Peti di atas landasan condong pemunggahan</>}
+  description={<>Landasan naik pada <InlineMath math="30^\circ" /> kepada ufuk. Tolakan pekerja pada peti adalah mengufuk. Lukisan ini tidak mengikut skala.</>}
+  labels={{
+    crate: <>peti, <InlineMath math="50\text{ kg}" /></>,
+    push: <>tolakan mengufuk</>,
+    angle: <><InlineMath math="30^\circ" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1, max: 9 }, y: { min: -0.8, max: 5.2 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "ramp", kind: "polygon", appearance: "reference", vertices: [{ x: 0, y: 0 }, { x: 8, y: 0 }, { x: 8, y: 4.619 }] },
+      { id: "crate", kind: "polygon", appearance: "primary", vertices: [{ x: 3.031, y: 1.75 }, { x: 4.33, y: 2.5 }, { x: 3.58, y: 3.799 }, { x: 2.281, y: 3.049 }] },
+      { id: "push", kind: "vector", appearance: "highlight", from: { x: -0.4, y: 2.4 }, to: { x: 2.6, y: 2.4 } },
+      { id: "arc", kind: "arc", appearance: "construction", center: { x: 0, y: 0 }, radius: 1.6, startDegrees: 0, sweepDegrees: 30 },
+    ],
+    labels: [
+      { key: "crate", objectId: "crate", at: { x: 3.58, y: 3.8 }, placement: "above" },
+      { key: "push", objectId: "push", at: { x: 0.6, y: 2.4 }, placement: "above" },
+      { key: "angle", objectId: "arc", at: { x: 1.9, y: 0.45 }, placement: "right" },
+    ],
+  }}
+/>
+
+Berapakah tolakan mengufuk yang menggerakkan peti ke atas landasan dengan laju seragam, berapakah daya geseran pada peti semasa ia bergerak, dan melebihi sudut landasan berapakah tiada tolakan mengufuk, walau sebesar mana pun, dapat menggerakkan peti ke atas landasan?

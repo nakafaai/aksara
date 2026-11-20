@@ -1,0 +1,59 @@
+# Up to the layer and down again
+
+Bounce a ball off the floor to a friend and it comes down one slope and up an equal one, so the bounce point sits halfway between you. The ground wave covers <InlineMath math="600\text{ km}" />. In <InlineMath math="0.50\text{ ms}" /> radio covers another <InlineMath math="150\text{ km}" />, so the sky wave travels <InlineMath math="750\text{ km}" />, or <InlineMath math="375\text{ km}" /> on each slant leg above <InlineMath math="300\text{ km}" /> of ground. **By Pythagoras the layer is <InlineMath math="\sqrt{375^2-300^2}=225\text{ km}" /> up**. Putting the whole <InlineMath math="600\text{ km}" /> under a single <InlineMath math="750\text{ km}" /> leg gives <InlineMath math="450\text{ km}" />, but each leg only spans half the ground.
+
+<BlockMath math="\begin{aligned}
+\Delta s&=3.0\times10^{8}\times0.50\times10^{-3}=1.5\times10^{5}\text{ m}=150\text{ km}\\
+h&=\sqrt{375^2-300^2}=225\text{ km}
+\end{aligned}" />
+
+# Too steep to bounce
+
+A flat stone skips off a pond only when you throw it low and glancing. Thrown steeply, it plunges in. The angle of incidence is measured from the vertical, the normal to the layer, and the layer behaves like that pond. At night the wave aimed at R climbs <InlineMath math="400\text{ km}" /> while it moves <InlineMath math="300\text{ km}" /> sideways, so <InlineMath math="\tan i=300/400" /> and <InlineMath math="i=36.9°" />, below the <InlineMath math="40°" /> limit. **That wave goes through the layer, so no sky wave reaches R at night**. Working out a delay of <InlineMath math="1.33\text{ ms}" /> from a <InlineMath math="1000\text{ km}" /> path assumes a reflection that never happens.
+
+# A quiet ring round the transmitter
+
+A garden sprinkler that throws water in a high arc leaves a dry patch near its own foot. The nearest point the night sky wave can land is set by the steepest wave that still reflects, the one meeting the layer at exactly <InlineMath math="40°" />. It moves <InlineMath math="400\tan40°=336\text{ km}" /> sideways on the way up and the same again on the way down. **So no sky wave lands closer than <InlineMath math="671\text{ km}" /> from T**. Stopping at <InlineMath math="336\text{ km}" /> marks the point under the reflection, where the wave is still high in the sky.
+
+<MathVisual
+  title={<>The layer at night</>}
+  description={<>The layer is <InlineMath math="400\text{ km}" /> up. The wave aimed at R meets it at <InlineMath math="36.9°" /> from the vertical and goes straight through. The wave that meets it at exactly <InlineMath math="40°" /> comes down <InlineMath math="671\text{ km}" /> from T, the nearest landing point.</>}
+  labels={{
+    t: <>T</>,
+    r: <>R</>,
+    span: <><InlineMath math="671\text{ km}" /></>,
+    limit: <><InlineMath math="40°" /></>,
+    through: <>passes through</>,
+    layer: <>layer at <InlineMath math="400\text{ km}" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1.6, max: 8.2 }, y: { min: -2, max: 5.4 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "ground", kind: "segment", appearance: "reference", from: { x: -0.8, y: 0 }, to: { x: 7.6, y: 0 } },
+      { id: "layer", kind: "segment", appearance: "secondary", from: { x: -0.8, y: 4 }, to: { x: 7.6, y: 4 } },
+      { id: "to-r", kind: "segment", appearance: "primary", from: { x: 0, y: 0 }, to: { x: 3, y: 4 } },
+      { id: "through", kind: "segment", appearance: "construction", from: { x: 3, y: 4 }, to: { x: 3.6, y: 4.8 } },
+      { id: "limit-ray", kind: "polyline", appearance: "highlight", vertices: [{ x: 0, y: 0 }, { x: 3.3565, y: 4 }, { x: 6.713, y: 0 }] },
+      { id: "normal", kind: "segment", appearance: "construction", from: { x: 3.3565, y: 4 }, to: { x: 3.3565, y: 2.8 } },
+      { id: "limit", kind: "arc", appearance: "construction", center: { x: 3.3565, y: 4 }, radius: 0.7, startDegrees: 230, sweepDegrees: 40 },
+      { id: "span", kind: "segment", appearance: "construction", from: { x: 0, y: -1.2 }, to: { x: 6.713, y: -1.2 } },
+      { id: "t", kind: "point", appearance: "reference", at: { x: 0, y: 0 } },
+      { id: "r", kind: "point", appearance: "reference", at: { x: 6, y: 0 } },
+    ],
+    labels: [
+      { key: "t", objectId: "t", at: { x: 0, y: 0 }, placement: "left" },
+      { key: "r", objectId: "r", at: { x: 6, y: 0 }, placement: "below" },
+      { key: "span", objectId: "span", at: { x: 3.3565, y: -1.2 }, placement: "below" },
+      { key: "limit", objectId: "limit", at: { x: 3.1, y: 3.2 }, placement: "left" },
+      { key: "through", objectId: "through", at: { x: 3.6, y: 4.8 }, placement: "left" },
+      { key: "layer", objectId: "layer", at: { x: 6.4, y: 4 }, placement: "above" },
+    ],
+  }}
+/>
+
+<BlockMath math="\begin{aligned}
+\tan i&=\frac{300}{400}\ \Rightarrow\ i=36.9°<40°\\
+x&=2\times400\times\tan40°=671\text{ km}
+\end{aligned}" />

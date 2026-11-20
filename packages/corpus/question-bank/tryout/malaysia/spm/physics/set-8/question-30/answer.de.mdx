@@ -1,0 +1,36 @@
+# Hin über einen Leiter, zurück über den anderen
+
+Wer ein Paket <InlineMath math="25\text{ m}" /> die Straße hinunter bringt, fährt insgesamt <InlineMath math="50\text{ m}" />, denn zur Fahrt gehört der Rückweg. Der Strom erreicht das Werkzeug über den Außenleiter und kehrt über den Neutralleiter zurück, er fließt also durch <InlineMath math="2\times25=50\text{ m}" /> Kupfer. Mit <InlineMath math="R=\rho L/A" /> sind das <InlineMath math="1{,}7\times10^{-8}\times50/(1{,}0\times10^{-6})" /> Ohm. **Das Kabel bringt <InlineMath math="0{,}850\,\Omega" /> in den Stromkreis**. Wer nur einen Leiter zählt, erhält <InlineMath math="0{,}425\,\Omega" /> und lässt dem Strom keinen Heimweg.
+
+# Das Werkzeug bekommt weniger, als draufsteht
+
+Ein Rasensprenger am Ende eines langen, dünnen Schlauchs spritzt schwächer als einer direkt am Hahn. Die Nennwerte verraten den Widerstand des Werkzeugs, <InlineMath math="R_t=240^2/2000=28{,}8\,\Omega" />, und der bleibt gleich. In Reihe mit dem Kabel fließt ein kleinerer Strom, also bekommt das Werkzeug selbst nur <InlineMath math="8{,}094\times28{,}8=233\text{ V}" />.
+
+<BlockMath math="\begin{aligned}
+R_t&=\frac{240^2}{2000}=28{,}8\,\Omega,\qquad I=\frac{240}{28{,}8+0{,}85}=8{,}094\text{ A}\\
+P&=I^2R_t=8{,}094^2\times28{,}8=1{,}89\times10^{3}\text{ W}
+\end{aligned}" />
+
+**Das Werkzeug nimmt tatsächlich <InlineMath math="1{,}89\text{ kW}" /> auf**. Strom mal die <InlineMath math="240\text{ V}" /> der Steckdose ergibt <InlineMath math="1{,}94\text{ kW}" />, doch darin steckt auch die Wärme, die im Kabel entsteht.
+
+# Dick genug gewähltes Kupfer
+
+Auf einer breiteren Straße staut sich derselbe Verkehr weniger. Kabel und Werkzeug teilen sich die Steckdosenspannung im Verhältnis ihrer Widerstände, also ist der Anteil des Kabels <InlineMath math="R_c/(R_c+28{,}8)" />, und der darf höchstens <InlineMath math="0{,}02" /> sein. Beachte, dass der Kabelwiderstand selbst auch in der Summe steht.
+
+<BlockMath math="\begin{aligned}
+\frac{R_c}{R_c+28{,}8}&\le0{,}02\ \Rightarrow\ R_c\le\frac{0{,}02\times28{,}8}{0{,}98}=0{,}588\,\Omega\\
+A&\ge\frac{1{,}7\times10^{-8}\times50}{0{,}588}=1{,}45\times10^{-6}\text{ m}^2=1{,}45\text{ mm}^2
+\end{aligned}" />
+
+**Jeder Leiter braucht mindestens <InlineMath math="1{,}45\text{ mm}^2" /> Querschnitt**. Wer <InlineMath math="R_c=0{,}02\times28{,}8=0{,}576\,\Omega" /> ansetzt, erhält <InlineMath math="1{,}48\text{ mm}^2" />. Das vergleicht das Kabel nur mit dem Werkzeug, als bliebe der Strom bei den Nennwerten von <InlineMath math="8{,}33\text{ A}" />.
+
+<Chart
+  title={<>Anteil der Steckdosenspannung, der im Kabel verloren geht</>}
+  description={<>Querschnitt jedes Leiters in Quadratmillimetern auf der unteren Achse. Der Verlust sinkt, je dicker das Kupfer ist. Er unterschreitet die Linie von <InlineMath math="2\%" /> bei <InlineMath math="1{,}45\text{ mm}^2" />, knapp vor <InlineMath math="1{,}5\text{ mm}^2" />, während das benutzte Kabel mit <InlineMath math="1{,}0\text{ mm}^2" /> <InlineMath math="2{,}87\%" /> verliert.</>}
+  categories={["0,75", "1,0", "1,25", "1,5", "2", "2,5"]}
+  series={[
+    { label: "Spannungsverlust im Kabel", mark: "line", values: [3.79, 2.87, 2.31, 1.93, 1.45, 1.17] },
+    { label: "Grenze von 2 %", mark: "line", values: [2, 2, 2, 2, 2, 2] },
+  ]}
+  valueLabel="Anteil der Steckdosenspannung (%)"
+/>

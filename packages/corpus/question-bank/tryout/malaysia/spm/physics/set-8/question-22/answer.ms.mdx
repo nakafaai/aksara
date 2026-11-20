@@ -1,0 +1,30 @@
+# Spring turut membayar perjalanan di atas pelocok
+
+Mampatkan sebuah spring mainan di belakang sebiji guli dan lepaskan, dan guli itu tidak menerima semua tenaga spring, kerana ia sudah mendaki dan bergesel semasa spring masih menolak. Daya penahan bertambah secara garis lurus dari <InlineMath math="0" /> hingga <InlineMath math="10\text{ N}" /> sepanjang tarikan <InlineMath math="10\text{ cm}" />, jadi spring menyimpan luas di bawah garis itu, <InlineMath math="\tfrac12\times10\times0.10=0.50\text{ J}" />. Di sepanjang lorong, bola kehilangan komponen berat <InlineMath math="0.080\times10\times0.10=0.080\text{ N}" /> ditambah daya rintangan <InlineMath math="0.020\text{ N}" />, iaitu <InlineMath math="0.10\text{ N}" /> semuanya, dan ia sudah membayarnya sepanjang <InlineMath math="0.10\text{ m}" /> semasa ditolak oleh pelocok. **Bola meninggalkan pelocok dengan tenaga kinetik <InlineMath math="0.49\text{ J}" />, jadi <InlineMath math="v=\sqrt{2\times0.49/0.080}=3.50\text{ m s}^{-1}" />**. Memberikan seluruh <InlineMath math="0.50\text{ J}" /> kepada bola memberi <InlineMath math="3.54\text{ m s}^{-1}" />, seolah-olah perjalanan di atas pelocok itu percuma.
+
+# Bayaran bagi setiap meter
+
+Penunggang basikal yang meluncur mendaki bukit landai menjadi perlahan sebanyak yang sama pada setiap bahagian jalan, kerana bukit dan udara mengambil bahagian tenaga yang tetap bagi setiap meter. Bola membayar <InlineMath math="0.10\text{ J}" /> bagi setiap meter lorong, jadi <InlineMath math="2.0\text{ m}" /> hingga ke bumper menelan <InlineMath math="0.20\text{ J}" /> dan meninggalkan <InlineMath math="0.29\text{ J}" />. **Bola sampai ke bumper pada <InlineMath math="v=\sqrt{2\times0.29/0.080}=2.69\text{ m s}^{-1}" />**. Mengabaikan daya rintangan pada bahagian ini mengekalkan <InlineMath math="0.33\text{ J}" /> dan memberi <InlineMath math="2.87\text{ m s}^{-1}" />, tetapi geseran tidak berhenti apabila spring melepaskan bola.
+
+# Menarik cukup-cukup sahaja
+
+Untuk mendapat markah, bola mesti masih membawa <InlineMath math="\tfrac12\times0.080\times1.0^2=0.040\text{ J}" /> apabila sampai ke bumper. Dengan <InlineMath math="k=10/0.10=100\text{ N m}^{-1}" />, tarikan sejauh <InlineMath math="x" /> menyimpan <InlineMath math="\tfrac12\times100\,x^2=50x^2" /> joule. Perangkapnya ialah <InlineMath math="x" /> juga muncul di sebelah kos, kerana bola menumpang pelocok sejauh itu sebelum larian <InlineMath math="2.0\text{ m}" />, jadi kosnya ialah <InlineMath math="0.10\,(x+2.0)" /> joule. Ini menghasilkan persamaan kuadratik.
+
+<BlockMath math="\begin{aligned}
+50x^2&=0.10\,(x+2.0)+0.040\\
+50x^2-0.10x-0.24&=0\ \Rightarrow\ x=\frac{0.10+\sqrt{0.010+48}}{100}=0.0703\text{ m}
+\end{aligned}" />
+
+**Tarikan paling kecil yang masih memberi markah ialah <InlineMath math="7.03\text{ cm}" />**. Meninggalkan laju markah memberi <InlineMath math="6.43\text{ cm}" />, yang hanya membawa bola berhenti di bumper, dan membuang <InlineMath math="x" /> di sebelah kos memberi <InlineMath math="6.93\text{ cm}" />.
+
+<Chart
+  title={<>Tenaga kinetik bola di sepanjang lorong</>}
+  description={<>Jarak ke atas lorong dalam meter, diukur dari titik bola meninggalkan pelocok. Setiap garis menurun sebanyak <InlineMath math="0.10\text{ J}" /> bagi setiap meter. Tarikan <InlineMath math="10\text{ cm}" /> sampai dengan tenaga yang berlebihan, manakala tarikan <InlineMath math="7.03\text{ cm}" /> sampai dengan tepat <InlineMath math="0.040\text{ J}" /> yang diperlukan oleh bumper.</>}
+  categories={["0", "0.5", "1.0", "1.5", "2.0"]}
+  series={[
+    { label: "Ditarik 10 cm", mark: "line", values: [0.49, 0.44, 0.39, 0.34, 0.29] },
+    { label: "Ditarik 7.03 cm", mark: "line", values: [0.24, 0.19, 0.14, 0.09, 0.04] },
+    { label: "Diperlukan untuk markah", mark: "line", values: [0.04, 0.04, 0.04, 0.04, 0.04] },
+  ]}
+  valueLabel="Tenaga kinetik (J)"
+/>

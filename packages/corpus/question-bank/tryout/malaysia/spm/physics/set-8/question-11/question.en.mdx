@@ -1,0 +1,39 @@
+A football is topped up with a hand pump. Treat the ball as rigid, with a volume of <InlineMath math="5.0\text{ L}" />. At the start it holds air at <InlineMath math="100\text{ kPa}" /> and <InlineMath math="27\text{ °C}" />, the same as the air outside. The pump barrel is <InlineMath math="30\text{ cm}" /> long and holds <InlineMath math="0.20\text{ L}" /> of outside air when the plunger is pulled right back. On each stroke the plunger is pushed all the way in, and a valve lets air into the ball only once the air in the barrel is at a higher pressure than the air in the ball. The hose and the valve hold no air, and the air stays at the outside temperature while it is pumped. All pressures are absolute.
+
+<MathVisual
+  title={<>The hand pump and the football</>}
+  description={<>The plunger is pulled right back, so the barrel is full of outside air. The valve sits in the hose between the barrel and the ball. The drawing is not to scale.</>}
+  labels={{
+    barrel: <>barrel, <InlineMath math="0.20\text{ L}" /></>,
+    plunger: <>plunger</>,
+    valve: <>valve</>,
+    ball: <>ball, <InlineMath math="5.0\text{ L}" /></>,
+    length: <><InlineMath math="30\text{ cm}" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -2.5, max: 12 }, y: { min: -3.5, max: 4.5 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "barrel", kind: "polygon", appearance: "secondary", vertices: [{ x: 0, y: 0 }, { x: 6, y: 0 }, { x: 6, y: 1.2 }, { x: 0, y: 1.2 }] },
+      { id: "head", kind: "polygon", appearance: "primary", vertices: [{ x: 0.2, y: 0.05 }, { x: 0.5, y: 0.05 }, { x: 0.5, y: 1.15 }, { x: 0.2, y: 1.15 }] },
+      { id: "rod", kind: "segment", appearance: "secondary", from: { x: -1.6, y: 0.6 }, to: { x: 0.2, y: 0.6 } },
+      { id: "handle", kind: "segment", appearance: "primary", from: { x: -1.6, y: -0.3 }, to: { x: -1.6, y: 1.5 } },
+      { id: "hose", kind: "segment", appearance: "secondary", from: { x: 6, y: 0.6 }, to: { x: 8.6, y: 0.6 } },
+      { id: "valve", kind: "point", appearance: "highlight", at: { x: 7.3, y: 0.6 } },
+      { id: "ball", kind: "circle", appearance: "primary", center: { x: 10, y: 0.6 }, radius: 1.4 },
+      { id: "length", kind: "segment", appearance: "construction", from: { x: 0, y: -0.9 }, to: { x: 6, y: -0.9 } },
+    ],
+    labels: [
+      { key: "barrel", objectId: "barrel", at: { x: 3, y: 1.2 }, placement: "above" },
+      { key: "plunger", objectId: "handle", at: { x: -1.6, y: 1.5 }, placement: "above" },
+      { key: "valve", objectId: "valve", at: { x: 7.3, y: 0.6 }, placement: "above" },
+      { key: "ball", objectId: "ball", at: { x: 10, y: 2 }, placement: "above" },
+      { key: "length", objectId: "length", at: { x: 3, y: -0.9 }, placement: "below" },
+    ],
+  }}
+/>
+
+The ball is pumped to <InlineMath math="160\text{ kPa}" /> and then taken to a pitch high in the hills, where the air is at <InlineMath math="90\text{ kPa}" /> and <InlineMath math="-3\text{ °C}" />. When the ball has cooled to <InlineMath math="-3\text{ °C}" />, it is pumped back up to at least <InlineMath math="160\text{ kPa}" /> with the same pump, which now draws in the outside air there.
+
+How many strokes take the ball to <InlineMath math="160\text{ kPa}" /> at the start, how far does the plunger move on the last of those strokes before air enters the ball, and what is the least number of strokes needed on the hill pitch?

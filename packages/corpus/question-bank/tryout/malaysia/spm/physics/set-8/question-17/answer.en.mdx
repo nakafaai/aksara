@@ -1,0 +1,37 @@
+# Let every row vote
+
+If four kitchen scales agree on a bag of rice and a fifth says something else, you trust the four. Each row of the table gives its own value of <InlineMath math="1/u+1/v" />, and a good row must give <InlineMath math="1/f" />.
+
+<BlockMath math="\begin{aligned}
+\frac{1}{15}+\frac{1}{60}&=\frac{1}{20}+\frac{1}{30}=\frac{1}{24}+\frac{1}{24}=\frac{1}{36}+\frac{1}{18}=\frac{1}{12}\\
+\frac{1}{30}+\frac{1}{22}&=\frac{1}{12.7}\neq\frac{1}{12}
+\end{aligned}" />
+
+**The focal length is <InlineMath math="12\text{ cm}" />, and the reading at <InlineMath math="u=30\text{ cm}" /> is the wrong one**, since it should read <InlineMath math="v=20\text{ cm}" />. Its <InlineMath math="22" /> sits so smoothly between <InlineMath math="24" /> and <InlineMath math="18" /> that judging by the trend points at the <InlineMath math="60\text{ cm}" /> row instead, which is large but exactly right.
+
+# When is the image taller than the lamp?
+
+A slide projector makes a huge picture because the slide sits just beyond the lens's focus and the wall is far away. An image is taller than the object when <InlineMath math="v" /> is bigger than <InlineMath math="u" />. The row with <InlineMath math="u=v=24\text{ cm}" /> shows where the two are equal, at <InlineMath math="2f" />. **Nearer than <InlineMath math="24\text{ cm}" /> the image is taller, and farther away it is shorter**. A lamp inside <InlineMath math="12\text{ cm}" /> gives a virtual image, which no screen can catch. That is the textbook range, between <InlineMath math="12\text{ cm}" /> and <InlineMath math="24\text{ cm}" />. Taking every lamp position the bench allows, up to <InlineMath math="40\text{ cm}" />, forgets this taller condition and leads to the <InlineMath math="40\text{ cm}" /> option.
+
+# The bench runs out
+
+A camera on a short tripod can't step back far enough for a group photo, however good the lens is. Here the screen side of the bench is only <InlineMath math="100-40=60\text{ cm}" /> long. As the lamp creeps towards <InlineMath math="12\text{ cm}" />, the sharp image races away to great distances, and past <InlineMath math="60\text{ cm}" /> the screen would have to leave the bench.
+
+<BlockMath math="\begin{aligned}
+v&\le100-40=60\text{ cm}\\
+\frac{1}{u}&=\frac{1}{12}-\frac{1}{v}\le\frac{1}{12}-\frac{1}{60}=\frac{1}{15}\ \Rightarrow\ u\ge15\text{ cm}
+\end{aligned}" />
+
+**The screen shows a taller image only for lamp distances between <InlineMath math="15\text{ cm}" /> and <InlineMath math="24\text{ cm}" />**, with the image as tall as the lamp at <InlineMath math="24\text{ cm}" /> itself. The first row of the table, <InlineMath math="u=15\text{ cm}" /> with the screen at the far end, is the bench's own limit. Quoting <InlineMath math="12\text{ cm}" /> to <InlineMath math="24\text{ cm}" /> is the textbook answer for an endless bench, not for this one.
+
+<Chart
+  title={<>Where the image is both taller and on the bench</>}
+  description={<>Lamp distance from the lens along the bottom, in centimetres. The image is taller than the lamp wherever the image line lies above the lamp line, which stops at <InlineMath math="24\text{ cm}" />. The screen can catch it only where the image line is at or below <InlineMath math="60\text{ cm}" />, which starts at <InlineMath math="15\text{ cm}" />.</>}
+  categories={["14", "15", "16", "18", "20", "22", "24", "27", "30", "36", "40"]}
+  series={[
+    { label: "Image distance v", mark: "line", values: [84.0, 60.0, 48.0, 36.0, 30.0, 26.4, 24.0, 21.6, 20.0, 18.0, 17.1] },
+    { label: "Lamp distance u", mark: "line", values: [14, 15, 16, 18, 20, 22, 24, 27, 30, 36, 40] },
+    { label: "Farthest the screen can go", mark: "line", values: [60, 60, 60, 60, 60, 60, 60, 60, 60, 60, 60] },
+  ]}
+  valueLabel="Distance from the lens (cm)"
+/>

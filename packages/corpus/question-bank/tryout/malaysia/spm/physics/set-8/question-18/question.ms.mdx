@@ -1,0 +1,36 @@
+Sebiji kole kosong yang bersisi lurus mempunyai lebar dalam <InlineMath math="8.0\text{ cm}" /> dan tinggi <InlineMath math="6.0\text{ cm}" />. Sebentuk cincin kecil terletak di dasar, <InlineMath math="5.2\text{ cm}" /> dari dinding dekat. Seorang pemerhati menetapkan sebelah matanya dan melihat melalui atas bibir dinding dekat. Garis penglihatannya tepat menyentuh bibir itu dan bertemu dasar tepat di sudut jauh, jadi cincin itu tersembunyi. Air dengan indeks biasan <InlineMath math="\dfrac{4}{3}" /> kemudian dituang perlahan-lahan sementara mata itu tidak bergerak. Anggap cincin sebagai satu titik, dan ukur sudut dari garis tegak.
+
+<MathVisual
+  title={<>Kole kosong dan garis penglihatan</>}
+  description={<>Pandangan sisi melalui bahagian tengah kole. Garis penglihatan menyentuh bibir dinding dekat dan bertemu dasar di sudut jauh. Lukisan ini tidak mengikut skala.</>}
+  labels={{
+    eye: <>mata</>,
+    ring: <>cincin</>,
+    width: <><InlineMath math="8.0\text{ cm}" /></>,
+    gap: <><InlineMath math="5.2\text{ cm}" /></>,
+    height: <><InlineMath math="6.0\text{ cm}" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -5.6, max: 10.6 }, y: { min: -3, max: 10 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "mug", kind: "polyline", appearance: "secondary", vertices: [{ x: 0, y: 6 }, { x: 0, y: 0 }, { x: 8, y: 0 }, { x: 8, y: 6 }] },
+      { id: "sight", kind: "segment", appearance: "primary", from: { x: -4, y: 9 }, to: { x: 8, y: 0 } },
+      { id: "eye", kind: "point", appearance: "highlight", at: { x: -4, y: 9 } },
+      { id: "ring", kind: "point", appearance: "highlight", at: { x: 5.2, y: 0 } },
+      { id: "gap", kind: "segment", appearance: "construction", from: { x: 0, y: -0.8 }, to: { x: 5.2, y: -0.8 } },
+      { id: "width", kind: "segment", appearance: "construction", from: { x: 0, y: -2 }, to: { x: 8, y: -2 } },
+      { id: "height", kind: "segment", appearance: "construction", from: { x: 9, y: 0 }, to: { x: 9, y: 6 } },
+    ],
+    labels: [
+      { key: "eye", objectId: "eye", at: { x: -4, y: 9 }, placement: "left" },
+      { key: "ring", objectId: "ring", at: { x: 5.2, y: 0 }, placement: "above" },
+      { key: "gap", objectId: "gap", at: { x: 2.6, y: -0.8 }, placement: "below" },
+      { key: "width", objectId: "width", at: { x: 4, y: -2 }, placement: "below" },
+      { key: "height", objectId: "height", at: { x: 9, y: 3 }, placement: "right" },
+    ],
+  }}
+/>
+
+Apabila sudah ada air di dalam kole, pada sudut berapakah dari garis tegak garis penglihatan itu bergerak di dalam air, berapakah kedalaman air yang mula-mula membolehkan pemerhati melihat cincin itu, dan sejauh manakah dari dinding dekat titik dasar yang paling dekat yang dapat dilihat pemerhati apabila kole penuh hingga ke bibir?

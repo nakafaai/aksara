@@ -1,0 +1,37 @@
+# Jembatan yang terbebani berayun lebih lambat
+
+Papan loncat bergoyang lebih pelan di bawah peloncat yang berat daripada di bawah anak kecil. Jembatan juga begitu. Frekuensi <InlineMath math="1{,}08\text{ Hz}" /> itu milik lantai yang kosong, tetapi rombongan menambah <InlineMath math="44\%" /> pada massa yang bergerak selama mereka berjalan, dan frekuensinya turun dengan faktor <InlineMath math="\sqrt{1{,}44}=1{,}2" />.
+
+<BlockMath math="\begin{aligned}
+f&=\frac{1{,}08}{\sqrt{1{,}44}}=\frac{1{,}08}{1{,}2}=0{,}90\text{ Hz}
+\end{aligned}" />
+
+**Dengan rombongan di atasnya, jembatan berayun pada <InlineMath math="0{,}90\text{ Hz}" />**. Mencocokkan irama jalan dengan <InlineMath math="1{,}08\text{ Hz}" /> dari para insinyur memberi <InlineMath math="1{,}62\text{ m s}^{-1}" />, irama yang akan mengguncang jembatan kosong, bukan jembatan tempat rombongan itu sedang berdiri.
+
+# Kiri, kanan, kiri
+
+Di ayunan taman bermain kamu mendorong sekali tiap satu ayunan penuh. Tubuh pejalan kaki condong ke kiri pada langkah kiri dan ke kanan pada langkah kanan, jadi satu dorongan penuh ke samping butuh dua langkah. Agar cocok dengan <InlineMath math="0{,}90\text{ Hz}" />, rombongan harus melangkah pada <InlineMath math="1{,}8\text{ Hz}" />.
+
+<BlockMath math="\begin{aligned}
+f_{\text{step}}&=2\times0{,}90=1{,}8\text{ Hz},\qquad v=0{,}75\times1{,}8=1{,}35\text{ m s}^{-1}\\
+N&=0{,}90\times\frac{54}{1{,}35}=0{,}90\times40=36
+\end{aligned}" />
+
+**Rombongan memicu resonansi ayunan pada <InlineMath math="1{,}35\text{ m s}^{-1}" />, dan jembatan berayun <InlineMath math="36" /> kali selama penyeberangan <InlineMath math="40\text{ s}" />**. Tiap ayunan memakai dua langkah, jadi <InlineMath math="54\text{ m}" /> langkah sepanjang <InlineMath math="0{,}75\text{ m}" /> memberi <InlineMath math="36" /> yang sama. Melangkah pada <InlineMath math="0{,}90\text{ Hz}" />, seolah tiap langkah adalah satu dorongan penuh, membuat iramanya tinggal separuh, <InlineMath math="0{,}68\text{ m s}^{-1}" />, dan memperpanjang penyeberangan menjadi <InlineMath math="72" /> ayunan.
+
+# Seorang pelari bertemu jembatan kosong
+
+Setiap mendarat di trampolin kamu menekan alasnya ke bawah, kaki mana pun yang mendarat. Untuk gerak naik turun, dorongan datang di setiap langkah. Pelari yang sendirian nyaris tidak menambah massa, jadi pantulan naik turun tetap memakai <InlineMath math="2{,}4\text{ Hz}" /> milik jembatan kosong, dan kaki pelari harus mendarat <InlineMath math="2{,}4" /> kali per detik. **Pelari itu butuh <InlineMath math="1{,}20\times2{,}4=2{,}88\text{ m s}^{-1}" />, sekitar <InlineMath math="2{,}9\text{ m s}^{-1}" />**. Membagi dengan faktor <InlineMath math="1{,}2" /> milik rombongan menurunkan pantulan menjadi <InlineMath math="2{,}0\text{ Hz}" /> dan kelajuan menjadi <InlineMath math="2{,}4\text{ m s}^{-1}" />, padahal tidak ada rombongan di jembatan hari itu.
+
+<Chart
+  title={<>Irama siapa yang harus dicocokkan dorongan</>}
+  description={<>Frekuensi dalam hertz. Dorongan ke samping dari rombongan cocok dengan jembatan hanya selama rombongan membebaninya, yaitu pada <InlineMath math="0{,}90\text{ Hz}" />. Pelari yang sendirian bertemu jembatan kosong, jadi dorongannya harus cocok dengan <InlineMath math="2{,}4\text{ Hz}" /> milik jembatan kosong.</>}
+  bars="apart"
+  categories={["Rombongan, ayunan ke samping", "Pelari sendirian, pantulan naik turun"]}
+  series={[
+    { label: "Frekuensi alami, jembatan kosong", mark: "bar", values: [1.08, 2.4] },
+    { label: "Frekuensi alami, jembatan berisi rombongan", mark: "bar", values: [0.9, 2.0] },
+    { label: "Frekuensi dorongan", mark: "bar", values: [0.9, 2.4] },
+  ]}
+  valueLabel="Frekuensi (Hz)"
+/>

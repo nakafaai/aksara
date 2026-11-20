@@ -1,0 +1,37 @@
+# The ring is one turn of thick wire
+
+Picture the ring as a hula hoop made of metal, a single loop that current can run round. Its length is the circle it traces, <InlineMath math="2\pi\times0.025=0.157\text{ m}" />, and <InlineMath math="R=\rho L/A" /> turns that into a resistance. In the first trial the e.m.f. is <InlineMath math="3.0\times10^{-4}/0.015=0.020\text{ V}" />.
+
+<BlockMath math="\begin{aligned}
+R&=\frac{\rho\,(2\pi r)}{A}=\frac{2.8\times10^{-8}\times2\pi\times0.025}{8.0\times10^{-6}}=5.50\times10^{-4}\,\Omega\\
+I&=\frac{\Delta\Phi/\Delta t}{R}=\frac{3.0\times10^{-4}/0.015}{5.50\times10^{-4}}=36.4\text{ A}
+\end{aligned}" />
+
+**About <InlineMath math="36.4\text{ A}" /> flows round the ring in the first trial**, a large current from a tiny e.m.f., because a thick aluminium loop has almost no resistance. Putting the diameter, <InlineMath math="5.0\text{ cm}" />, into <InlineMath math="2\pi r" /> doubles the length and halves the current to <InlineMath math="18.2\text{ A}" />, and the charge later halves with it, to <InlineMath math="0.27\text{ C}" />.
+
+# The charge does not care how fast
+
+Fill a bucket from a tap opened wide or just a trickle, and the bucket ends up holding the same water. A slower rise makes a smaller e.m.f., so a smaller current, but it flows for longer, and the two changes cancel exactly. In the second trial the e.m.f. is a quarter, <InlineMath math="0.0050\text{ V}" />, and the current is <InlineMath math="9.09\text{ A}" /> for <InlineMath math="60\text{ ms}" />.
+
+<BlockMath math="\begin{aligned}
+Q&=I\,\Delta t=\frac{\Delta\Phi}{R\,\Delta t}\,\Delta t=\frac{\Delta\Phi}{R}\\
+Q&=\frac{3.0\times10^{-4}}{5.50\times10^{-4}}=0.55\text{ C}
+\end{aligned}" />
+
+**The same <InlineMath math="0.55\text{ C}" /> flows round the ring in the second trial as in the first**. Keeping <InlineMath math="36.4\text{ A}" /> for the whole <InlineMath math="60\text{ ms}" /> gives <InlineMath math="2.2\text{ C}" />, but four times slower change means only a quarter of the e.m.f.
+
+# A push weaker than the weight lifts nothing
+
+Pull up on a heavy shopping bag with less force than its weight, and it stays on the floor, however long you keep pulling. In the first trial the coil pushes up with <InlineMath math="2.5\times36.4=91\text{ mN}" />, almost three times the ring's weight of <InlineMath math="3.4\times10^{-3}\times10=34\text{ mN}" />, so the ring jumps. In the second trial the push is only <InlineMath math="2.5\times9.09=22.7\text{ mN}" />, less than the weight at every moment. **The ring stays on the coil in the second trial**, pressing on it a little less while the flux rises. Reading the equal charge as an equal kick, and so an equal jump, forgets that the push must first beat the weight before any kick can lift the ring.
+
+<Chart
+  title={<>Upward push against the ring's weight</>}
+  description={<>Forces in millinewtons while the flux rises. In the first trial the push is almost three times the ring's weight, so the ring jumps. In the second trial the same charge flows, but the push stays below the weight the whole time, so the ring never lifts.</>}
+  bars="apart"
+  categories={["First trial, 15 ms", "Second trial, 60 ms"]}
+  series={[
+    { label: "Upward push from the coil", mark: "bar", values: [90.9, 22.7] },
+    { label: "Weight of the ring", mark: "line", values: [34, 34] },
+  ]}
+  valueLabel="Force (mN)"
+/>

@@ -1,0 +1,42 @@
+# A boil that stops by itself
+
+Pour water into a hot pan and it sizzles only until the pan has cooled. The nitrogen boils for the same reason, and it stops once the block has fallen to <InlineMath math="-196\text{ °C}" />. The block drops <InlineMath math="27+196=223\text{ °C}" />, and every joule it gives out boils some nitrogen.
+
+<BlockMath math="\begin{aligned}
+m&=\frac{0.20\times900\times(27+196)}{2.0\times10^{5}}=\frac{40140}{2.0\times10^{5}}=0.20\text{ kg}
+\end{aligned}" />
+
+**About <InlineMath math="0.20\text{ kg}" /> of nitrogen boils away**. Counting the drop from <InlineMath math="0\text{ °C}" />, only <InlineMath math="196\text{ °C}" />, forgets the first <InlineMath math="27\text{ °C}" /> of cooling and gives <InlineMath math="0.18\text{ kg}" />.
+
+# The first flask has warmth to spare
+
+Before you sit down to share a pizza, you check there are enough slices to go round. Here the slices are joules. To reach <InlineMath math="0\text{ °C}" /> the block needs <InlineMath math="0.20\times900\times196=35280\text{ J}" />. Cooling <InlineMath math="0.50\text{ kg}" /> of water all the way to <InlineMath math="0\text{ °C}" /> would release <InlineMath math="0.50\times4200\times20=42000\text{ J}" />, which is more. So the water never reaches <InlineMath math="0\text{ °C}" />, no ice forms, and one ordinary balance settles it.
+
+<BlockMath math="\begin{aligned}
+0.50\times4200\times(20-T)&=0.20\times900\times(T+196)\ \Rightarrow\ T=\frac{6720}{2280}=2.9\text{ °C}
+\end{aligned}" />
+
+**The first flask ends at <InlineMath math="2.9\text{ °C}" />**, just above freezing.
+
+# The second flask runs out of warmth
+
+With <InlineMath math="0.40\text{ kg}" /> of water the same check fails. Cooling to <InlineMath math="0\text{ °C}" /> releases only <InlineMath math="33600\text{ J}" />, less than the block's <InlineMath math="35280\text{ J}" />. Liquid water cannot cool below <InlineMath math="0\text{ °C}" />, just as a pond cannot get colder than its own ice, so the missing heat has to come from freezing.
+
+<BlockMath math="\begin{aligned}
+35280-33600&=1680\text{ J}\\
+m_{\text{ice}}&=\frac{1680}{3.34\times10^{5}}=5.0\times10^{-3}\text{ kg}
+\end{aligned}" />
+
+**The second flask settles at <InlineMath math="0\text{ °C}" /> with about <InlineMath math="5.0\text{ g}" /> of ice**, a thin shell on the block, and almost all of the <InlineMath math="400\text{ g}" /> stays liquid. Putting both flasks through the same balance gives <InlineMath math="-0.90\text{ °C}" />, a liquid colder than its own freezing point, which the freezing step rules out. Freezing the whole <InlineMath math="35280\text{ J}" /> into ice gives <InlineMath math="106\text{ g}" />, because it forgets the <InlineMath math="33600\text{ J}" /> the water gave out first.
+
+<Chart
+  title={<>Who runs out first</>}
+  description={<>Heat in kilojoules for each flask. The first bar is what the cold block takes to warm up to <InlineMath math="0\text{ °C}" />. The second is what the water gives out by cooling to <InlineMath math="0\text{ °C}" />. In the first flask the water has heat to spare, so no ice forms. In the second the water comes up <InlineMath math="1.68\text{ kJ}" /> short, and freezing pays the rest.</>}
+  bars="apart"
+  categories={["First flask, 0.50 kg of water", "Second flask, 0.40 kg of water"]}
+  series={[
+    { label: "Block warming to 0 °C", mark: "bar", values: [35.28, 35.28] },
+    { label: "Water cooling to 0 °C", mark: "bar", values: [42, 33.6] },
+  ]}
+  valueLabel="Heat (kJ)"
+/>

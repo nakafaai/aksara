@@ -1,0 +1,29 @@
+# Braking power shrinks as the car slows
+
+Squeeze a bicycle brake at full speed and the rim gets hot fast, while the same squeeze at walking pace barely warms it. The car's braking force stays at <InlineMath math="F=ma=1500\times4.0=6000\text{ N}" /> all the way down, but the power it takes is <InlineMath math="Fv" />. At the start that is <InlineMath math="6000\times20=120\text{ kW}" />, three times what the battery may accept. The battery can swallow everything once <InlineMath math="6000\,v\le40\,000" />. **All the braking power goes into the battery only below <InlineMath math="6.67\text{ m s}^{-1}" />**. Claiming it does so from <InlineMath math="20\text{ m s}^{-1}" /> forgets the <InlineMath math="40\text{ kW}" /> limit, and the same slip then gives <InlineMath math="300\text{ kJ}" /> and <InlineMath math="150\text{ A}" />.
+
+# A fast stretch and a slow stretch
+
+A funnel can only swallow so much water each second, and whatever you pour in faster spills over its rim. From <InlineMath math="20" /> down to <InlineMath math="6.67\text{ m s}^{-1}" /> the battery takes a steady <InlineMath math="40\text{ kW}" />, and at <InlineMath math="4.0\text{ m s}^{-2}" /> that stretch lasts <InlineMath math="(20-6.67)/4.0=3.33\text{ s}" />. Below <InlineMath math="6.67\text{ m s}^{-1}" /> nothing spills, so all of the kinetic energy still left ends up in the battery.
+
+<BlockMath math="\begin{aligned}
+E&=40\,000\times3.33+\frac{1}{2}\times1500\times6.67^2\\
+&=1.333\times10^{5}+0.333\times10^{5}=1.67\times10^{5}\text{ J}
+\end{aligned}" />
+
+**The battery gains <InlineMath math="167\text{ kJ}" /> during the stop**, a little over half of the <InlineMath math="300\text{ kJ}" /> the car had. Stopping at <InlineMath math="133\text{ kJ}" /> leaves out the slow stretch, and it leads on to <InlineMath math="66.7\text{ A}" />. Multiplying <InlineMath math="40\text{ kW}" /> by the whole <InlineMath math="5.0\text{ s}" /> gives <InlineMath math="200\text{ kJ}" />, as if the battery still took its full <InlineMath math="40\text{ kW}" /> near the end, when the car needs far less braking power than that.
+
+<Chart
+  title={<>Braking power and the battery's share</>}
+  description={<>Time in seconds along the bottom. The braking power falls in a straight line from <InlineMath math="120\text{ kW}" /> to zero. The battery follows the flat <InlineMath math="40\text{ kW}" /> cap until <InlineMath math="3.33\text{ s}" /> and the falling line after that. The gap between the two lines is the friction brakes' heat.</>}
+  categories={["0.0", "0.5", "1.0", "1.5", "2.0", "2.5", "3.0", "3.5", "4.0", "4.5", "5.0"]}
+  series={[
+    { label: "Braking power needed", mark: "line", values: [120, 108, 96, 84, 72, 60, 48, 36, 24, 12, 0] },
+    { label: "Power into the battery", mark: "line", values: [40, 40, 40, 40, 40, 40, 40, 36, 24, 12, 0] },
+  ]}
+  valueLabel="Power (kW)"
+/>
+
+# From joules to coulombs
+
+Every coulomb that flows into a <InlineMath math="400\text{ V}" /> battery leaves <InlineMath math="400\text{ J}" /> there, the way a lift stores the same energy for each passenger it carries up to the same floor. The charge is <InlineMath math="166\,700/400=417\text{ C}" />, spread over the <InlineMath math="5.0\text{ s}" /> stop. **The average charging current is <InlineMath math="417/5.0=83.3\text{ A}" />**. The current is far from steady, though. It holds at <InlineMath math="40\,000/400=100\text{ A}" /> through the fast stretch and then dies away to zero as the car comes to rest.

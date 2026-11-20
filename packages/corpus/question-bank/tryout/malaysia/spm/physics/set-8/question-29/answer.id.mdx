@@ -1,0 +1,38 @@
+# Dua jalur dari badan logam ke tanah
+
+Air hujan di atap sebagian besar mengalir turun lewat talang yang lebar, dan hanya sedikit yang merembes lewat spons di sebelahnya. Dari badan logam, kabel arde dan orang itu sama-sama menuju tanah, berdampingan. Bersama-sama keduanya membentuk <InlineMath math="0{,}49975\,\Omega" />, hampir persis <InlineMath math="0{,}50\,\Omega" /> milik kabel arde, dan <InlineMath math="0{,}30\,\Omega" /> kabel fase ada di depannya secara seri.
+
+<BlockMath math="\begin{aligned}
+R&=0{,}30+\frac{0{,}50\times1000}{0{,}50+1000}=0{,}30+0{,}49975=0{,}79975\,\Omega\\
+I&=\frac{240}{0{,}79975}=300\text{ A}
+\end{aligned}" />
+
+**Sekitar <InlineMath math="300\text{ A}" /> mengalir lewat sekering, lebih dari dua puluh kali batasnya, jadi sekering cepat putus**. Melupakan <InlineMath math="0{,}30\,\Omega" /> kabel fase memberi <InlineMath math="480\text{ A}" />, seakan-akan gangguan itu tepat di stopkontak.
+
+# Sesaat badan logam itu bertegangan
+
+Talang yang lebar pun hanya bisa mengalirkan hujan deras jika ada sedikit air yang menumpuk di bagian atasnya. Mendorong <InlineMath math="300\text{ A}" /> lewat <InlineMath math="0{,}50\,\Omega" /> kabel arde butuh <InlineMath math="300\times0{,}50=150\text{ V}" /> di ujung-ujungnya, jadi badan logam berada di sekitar <InlineMath math="150\text{ V}" /> sampai sekering putus. Orang itu juga menerima <InlineMath math="150\text{ V}" /> yang sama. **Sekitar <InlineMath math="150/1000=0{,}150\text{ A}" /> mengalir lewat orang itu sesaat sebelum sekering putus**. Jawaban <InlineMath math="0\text{ A}" /> menganggap kabel arde menahan badan logam pada <InlineMath math="0\text{ V}" />. Kabel arde tidak bisa begitu selama arus besar mengalir lewatnya. Tugasnya membuat arus gangguan begitu besar sehingga sekering putus dalam sekejap.
+
+<Mermaid
+  title={<>Ke mana arus gangguan mengalir</>}
+  description={<>Selama kabel arde terpasang, hampir seluruh arus lewat kabel arde, dan badan logam berada di sekitar <InlineMath math="150\text{ V}" /> sampai sekering putus. Saat kabel arde lepas, hanya orang itu yang menghubungkan badan logam ke tanah.</>}
+  chart={`
+    flowchart TD
+      N0["Sumber, 240 V"]
+      N1["Sekering dan kabel fase, 0,30 Ω"]
+      N2["Badan logam, sekitar 150 V"]
+      N3["Kabel arde, 0,50 Ω, sekitar 300 A"]
+      N4["Orang dan lantai basah, 1000 Ω, 0,150 A"]
+      N5["Tanah, 0 V"]
+      N0 --> N1
+      N1 --> N2
+      N2 --> N3
+      N2 --> N4
+      N3 --> N5
+      N4 --> N5
+  `}
+/>
+
+# Tanpa kabel arde, sekering tidak menyadarinya
+
+Alarm asap yang hanya bereaksi pada api unggun akan tetap diam di dekat lilin yang berasap. Saat kabel arde lepas, satu-satunya jalur dari badan logam ke tanah lewat orang itu, jadi arusnya <InlineMath math="240/(0{,}30+1000)=0{,}240\text{ A}" />. **Sekitar <InlineMath math="0{,}240\text{ A}" /> mengalir lewat orang itu, dan sekering tidak putus**, karena <InlineMath math="0{,}240\text{ A}" /> jauh di bawah <InlineMath math="13\text{ A}" />. Sengatan itu terus berlangsung. Mengira sekering akan putus mencampuradukkan tugasnya, yaitu menghentikan arus yang cukup besar untuk memanaskan instalasi, dengan melindungi manusia. Arus yang terlalu kecil untuk mengusik sekering tetap bisa sangat berbahaya bagi manusia.

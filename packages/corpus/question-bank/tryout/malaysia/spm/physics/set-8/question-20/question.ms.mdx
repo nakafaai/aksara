@@ -1,0 +1,38 @@
+Dalam udara, sebuah kamera melihat semua benda dalam lingkungan <InlineMath math="30°" /> dari arah lurus ke hadapan, iaitu medan pandangan penuh <InlineMath math="60°" />. Untuk menyelam ia dimasukkan ke dalam perumah kedap dengan tingkap kaca rata di hadapan kanta. Kaca itu nipis, jadi anggap cahaya bergerak terus dari air, dengan indeks biasan <InlineMath math="1.33" />, ke udara di dalam perumah.
+
+<MathVisual
+  title={<>Kamera di dalam perumah selamnya</>}
+  description={<>Dilihat dari atas. Di dalam perumah, kamera melihat semua benda dalam lingkungan <InlineMath math="30°" /> dari arah lurus ke hadapan, ditunjukkan oleh dua garis tepi yang sampai ke tingkap. Air berada di luar tingkap. Lukisan ini tidak mengikut skala.</>}
+  labels={{
+    camera: <>kamera</>,
+    window: <>tingkap kaca</>,
+    angle: <><InlineMath math="30°" /></>,
+    air: <>udara</>,
+    water: <>air</>,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -4.2, max: 3 }, y: { min: -2, max: 2.2 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "housing", kind: "polyline", appearance: "secondary", vertices: [{ x: 0, y: 1.5 }, { x: -3.6, y: 1.5 }, { x: -3.6, y: -1.5 }, { x: 0, y: -1.5 }] },
+      { id: "window", kind: "segment", appearance: "primary", from: { x: 0, y: -1.5 }, to: { x: 0, y: 1.5 } },
+      { id: "camera", kind: "polygon", appearance: "secondary", vertices: [{ x: -3.2, y: -0.5 }, { x: -2, y: -0.5 }, { x: -2, y: 0.5 }, { x: -3.2, y: 0.5 }] },
+      { id: "axis", kind: "segment", appearance: "reference", from: { x: -2, y: 0 }, to: { x: 2.4, y: 0 } },
+      { id: "edge-up", kind: "segment", appearance: "construction", from: { x: -2, y: 0 }, to: { x: 0, y: 1.1547 } },
+      { id: "edge-down", kind: "segment", appearance: "construction", from: { x: -2, y: 0 }, to: { x: 0, y: -1.1547 } },
+      { id: "angle", kind: "arc", appearance: "construction", center: { x: -2, y: 0 }, radius: 0.9, startDegrees: 0, sweepDegrees: 30 },
+      { id: "air", kind: "point", appearance: "reference", at: { x: -1, y: -1 } },
+      { id: "water", kind: "point", appearance: "reference", at: { x: 1.6, y: 1 } },
+    ],
+    labels: [
+      { key: "camera", objectId: "camera", at: { x: -2.6, y: -0.5 }, placement: "below" },
+      { key: "window", objectId: "window", at: { x: 0, y: 1.5 }, placement: "above" },
+      { key: "angle", objectId: "angle", at: { x: -1.1, y: 0.25 }, placement: "right" },
+      { key: "air", objectId: "air", at: { x: -1, y: -1 }, placement: "below" },
+      { key: "water", objectId: "water", at: { x: 1.6, y: 1 }, placement: "above" },
+    ],
+  }}
+/>
+
+Berapakah medan pandangan penuh kamera dalam air, sejauh manakah seekor ikan yang berada <InlineMath math="2.0\text{ m}" /> tepat di hadapan tingkap kelihatan kepada kamera, dan sejauh manakah penyelam mesti berada dari tingkap untuk memuatkan dinding terumbu selebar <InlineMath math="3.0\text{ m}" />, yang menghadap kamera, tepat merentasi gambar?

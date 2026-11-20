@@ -1,0 +1,39 @@
+# Ein Durchgang durch die Zange ist eine Windung
+
+Eine Wippe ist im Gleichgewicht, wenn ein leichtes Kind weit außen sitzt und ein schwerer Erwachsener nah am Drehpunkt. Ein Transformator gleicht Windungen und Strom genauso aus, also gilt <InlineMath math="N_pI_p=N_sI_s" />, und die Seite mit mehr Windungen führt weniger Strom. Der Außenleiter ist eine Primärspule mit einer Windung, also fließen im Wasserkocher <InlineMath math="2000\times4{,}6\text{ mA}=9{,}2\text{ A}" />. **Der Wasserkocher nimmt <InlineMath math="240\times9{,}2=2{,}21\text{ kW}" /> auf**.
+
+# Die Zange spürt nur den Nettostrom
+
+Beim Tauziehen bewegt sich das Seil erst, wenn eine Mannschaft stärker zieht als die andere. Der Außenleiter bringt den Strom zum Wasserkocher, der Neutralleiter führt ihn zurück, also heben sich ihre magnetischen Wirkungen im Eisen auf. Der Fehler lässt aber Strom vom Außenleiter über das Gehäuse in den Schutzleiter fließen, der außerhalb der Zange heimkehrt.
+
+<BlockMath math="\begin{aligned}
+I_{\text{Fehler}}&=\frac{240}{8000}=0{,}030\text{ A}\\
+I_s&=\frac{1\times0{,}030}{2000}=1{,}50\times10^{-5}\text{ A}
+\end{aligned}" />
+
+**Das Messgerät zeigt <InlineMath math="15{,}0\,\mu\text{A}" />**, wenig, aber nicht null. Wer <InlineMath math="0\text{ A}" /> erwartet, übersieht, dass der Fehlerstrom nie über den Neutralleiter zurückkommt. Wer die alten <InlineMath math="4{,}6\text{ mA}" /> erwartet, vergisst den Neutralleiter ganz, als läge noch der Außenleiter allein in der Zange. Ein Fehlerstromschutzschalter im Sicherungskasten überwacht genau diesen Unterschied.
+
+# Ein konstanter Strom zeigt nichts an
+
+Ein Fahrraddynamo lässt seine Lampe nur leuchten, solange sich das Rad dreht. Steht das Rad, geht die Lampe aus, wie stark der Magnet darin auch ist. Ein Transformator funktioniert genauso: Die Sekundärspule spürt nur einen sich ändernden Fluss. Die konstanten <InlineMath math="6{,}0\text{ A}" /> des Ladegeräts magnetisieren die Eisenzange zwar, doch diese Magnetisierung ändert sich nie, also wird in der Spule keine Spannung induziert. **Am Ladekabel zeigt das Messgerät <InlineMath math="0\text{ A}" />**. Wer <InlineMath math="6{,}0\text{ A}" /> durch <InlineMath math="2000" /> teilt und <InlineMath math="3{,}00\text{ mA}" /> erhält, tut so, als stiege und fiele der konstante Strom wie der Netzstrom. Darum messen Stromzangen für Gleichstrom das Feld mit einer anderen Art von Sensor.
+
+<Mermaid
+  title={<>Was die Zange in jedem Aufbau spürt</>}
+  description={<>Jede Kette beginnt mit dem Strom, der durch die Zange läuft, und endet am Messgerät. Nur ein sich ändernder Nettostrom durch die Zange erzeugt eine Anzeige, und das Gerät zeigt diesen Nettostrom geteilt durch <InlineMath math="2000" />.</>}
+  chart={`
+    flowchart TD
+      N0["Nur Außenleiter, 9,2 A"]
+      N1["Anzeige 4,6 mA"]
+      N2["Außenleiter 9,23 A hin, Neutralleiter 9,20 A zurück"]
+      N3["Netto 0,030 A durch die Zange"]
+      N4["Anzeige 15,0 µA"]
+      N5["Ladekabel, konstant 6,0 A"]
+      N6["Fluss in der Zange ändert sich nie"]
+      N7["Anzeige 0"]
+      N0 --> N1
+      N2 --> N3
+      N3 --> N4
+      N5 --> N6
+      N6 --> N7
+  `}
+/>

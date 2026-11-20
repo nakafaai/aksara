@@ -1,0 +1,36 @@
+Two stars, A and B, move in circles about their common centre of mass C. They stay on opposite sides of C, and each completes one orbit in <InlineMath math="1.0\times10^{8}\text{ s}" />. Star A moves on a circle of radius <InlineMath math="1.0\times10^{11}\text{ m}" /> and star B on a circle of radius <InlineMath math="2.0\times10^{11}\text{ m}" />. The only force on each star is the gravitational pull of the other star. Take <InlineMath math="G=6.67\times10^{-11}\text{ N m}^2\text{ kg}^{-2}" /> and <InlineMath math="\pi=3.14" />.
+
+<MathVisual
+  title={<>Two stars circling their centre of mass</>}
+  description={<>Both circles are centred on C. Star A is on the inner circle and star B is on the outer circle, always on the opposite side of C. The drawing is not to scale.</>}
+  labels={{
+    "label-a": <>star A</>,
+    "label-b": <>star B</>,
+    "label-c": <>C</>,
+    ra: <><InlineMath math="1.0\times10^{11}\text{ m}" /></>,
+    rb: <><InlineMath math="2.0\times10^{11}\text{ m}" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -3.2, max: 3.2 }, y: { min: -2.4, max: 2.4 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "orbit-a", kind: "circle", appearance: "construction", center: { x: 0, y: 0 }, radius: 1 },
+      { id: "orbit-b", kind: "circle", appearance: "construction", center: { x: 0, y: 0 }, radius: 2 },
+      { id: "radius-a", kind: "segment", appearance: "secondary", from: { x: -1, y: 0 }, to: { x: 0, y: 0 } },
+      { id: "radius-b", kind: "segment", appearance: "secondary", from: { x: 0, y: 0 }, to: { x: 2, y: 0 } },
+      { id: "star-a", kind: "circle", appearance: "primary", center: { x: -1, y: 0 }, radius: 0.16 },
+      { id: "star-b", kind: "circle", appearance: "primary", center: { x: 2, y: 0 }, radius: 0.11 },
+      { id: "centre", kind: "point", appearance: "reference", at: { x: 0, y: 0 } },
+    ],
+    labels: [
+      { key: "label-a", objectId: "star-a", at: { x: -1.16, y: 0 }, placement: "left" },
+      { key: "label-b", objectId: "star-b", at: { x: 2.11, y: 0 }, placement: "right" },
+      { key: "label-c", objectId: "centre", at: { x: 0, y: 0 }, placement: "below" },
+      { key: "ra", objectId: "radius-a", at: { x: -0.5, y: 0 }, placement: "above" },
+      { key: "rb", objectId: "radius-b", at: { x: 1, y: 0 }, placement: "above" },
+    ],
+  }}
+/>
+
+What are the masses <InlineMath math="m_A" /> and <InlineMath math="m_B" /> of the two stars, and what is the orbital speed of star B?

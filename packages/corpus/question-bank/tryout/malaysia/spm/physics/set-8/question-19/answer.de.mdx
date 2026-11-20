@@ -1,0 +1,97 @@
+# Die Halbe-Höhe-Regel
+
+Prellst du einen Ball gegen eine Wand zu einem Freund, der genauso weit von der Wand steht wie du, trifft er die Wand genau auf halber Höhe zwischen deiner und seiner Hand. Licht folgt derselben Regel, denn es verlässt einen Spiegel unter dem Winkel, unter dem es ankam. Beim Erwachsenen trifft Licht vom Kopf den Spiegel auf halber Höhe zwischen Kopf und Augen, Licht von den Füßen auf halber Höhe zwischen Füßen und Augen. Das Kind sieht seine Füße nur, wenn die Unterkante nicht höher als die Hälfte von <InlineMath math="1{,}00\text{ m}" /> liegt.
+
+<BlockMath math="\begin{aligned}
+y_1&=\frac{1{,}70+1{,}60}{2}=1{,}65\text{ m},\qquad y_2=\frac{1{,}60}{2}=0{,}80\text{ m}\\
+\frac{1{,}00}{2}&=0{,}50\text{ m},\qquad 0{,}80-0{,}50=0{,}30\text{ m}
+\end{aligned}" />
+
+**Der Spiegel wandert <InlineMath math="0{,}30\text{ m}" /> nach unten**. Wer ihn um den ganzen Unterschied der Augenhöhen von <InlineMath math="0{,}60\text{ m}" /> verschiebt, vergisst, dass die Kante auf halber Augenhöhe liegt und sich deshalb nur halb so weit bewegen muss, und dann sähe der Erwachsene nichts mehr oberhalb von <InlineMath math="0{,}50\text{ m}" />.
+
+# Was der Erwachsene oben verliert
+
+Ziehst du eine Jalousie herunter, verschwinden zuerst die Baumkronen, während der Garten unten sichtbar bleibt. Die Oberkante liegt jetzt bei <InlineMath math="1{,}65-0{,}30=1{,}35\text{ m}" />. Rückwärts angewandt führen die Augen bei <InlineMath math="1{,}60\text{ m}" /> und die Kante bei <InlineMath math="1{,}35\text{ m}" /> zu einem Punkt am Körper bei <InlineMath math="2\times1{,}35-1{,}60" />. **Der höchste Punkt, den der Erwachsene sieht, liegt <InlineMath math="1{,}10\text{ m}" /> über dem Boden**, die Verschiebung kostet also die oberen <InlineMath math="0{,}60\text{ m}" /> des Körpers. Der sichtbare Punkt wandert doppelt so weit wie der Spiegel. Wer ihn nur um die <InlineMath math="0{,}30\text{ m}" /> des Spiegels senkt, kommt auf <InlineMath math="1{,}40\text{ m}" />, zu großzügig.
+
+<MathVisual
+  title={<>Der tiefer gehängte Spiegel von der Seite</>}
+  description={<>Höhen in Metern, unten der Boden. Der Strahl des Kindes trifft die Unterkante bei <InlineMath math="0{,}50\text{ m}" /> und reicht genau bis zu seinen Füßen. Der Strahl des Erwachsenen trifft die Oberkante, jetzt bei <InlineMath math="1{,}35\text{ m}" />, und kommt <InlineMath math="1{,}10\text{ m}" /> über dem Boden zu seinem Körper zurück.</>}
+  labels={{
+    mirror: <>Spiegel</>,
+    adult: <>Erwachsener</>,
+    child: <>Kind</>,
+    seen: <><InlineMath math="1{,}10\text{ m}" /></>,
+    edge: <><InlineMath math="0{,}50\text{ m}" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1.2, max: 2.6 }, y: { min: -0.3, max: 2.1 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "floor", kind: "segment", appearance: "reference", from: { x: 0, y: 0 }, to: { x: 2.2, y: 0 } },
+      { id: "wall", kind: "segment", appearance: "reference", from: { x: 0, y: 0 }, to: { x: 0, y: 2 } },
+      { id: "mirror", kind: "polygon", appearance: "secondary", vertices: [{ x: -0.06, y: 0.5 }, { x: 0, y: 0.5 }, { x: 0, y: 1.35 }, { x: -0.06, y: 1.35 }] },
+      { id: "adult", kind: "segment", appearance: "secondary", from: { x: 1.6, y: 0 }, to: { x: 1.6, y: 1.7 } },
+      { id: "child", kind: "segment", appearance: "secondary", from: { x: 0.9, y: 0 }, to: { x: 0.9, y: 1.1 } },
+      { id: "adult-ray", kind: "polyline", appearance: "highlight", vertices: [{ x: 1.6, y: 1.6 }, { x: 0, y: 1.35 }, { x: 1.6, y: 1.1 }] },
+      { id: "child-ray", kind: "polyline", appearance: "primary", vertices: [{ x: 0.9, y: 1 }, { x: 0, y: 0.5 }, { x: 0.9, y: 0 }] },
+      { id: "seen", kind: "point", appearance: "highlight", at: { x: 1.6, y: 1.1 } },
+      { id: "edge", kind: "segment", appearance: "construction", from: { x: -0.4, y: 0 }, to: { x: -0.4, y: 0.5 } },
+    ],
+    labels: [
+      { key: "mirror", objectId: "mirror", at: { x: -0.06, y: 0.95 }, placement: "left" },
+      { key: "adult", objectId: "adult", at: { x: 1.6, y: 1.7 }, placement: "above" },
+      { key: "child", objectId: "child", at: { x: 0.9, y: 1.1 }, placement: "above" },
+      { key: "seen", objectId: "seen", at: { x: 1.6, y: 1.1 }, placement: "right" },
+      { key: "edge", objectId: "edge", at: { x: -0.4, y: 0.25 }, placement: "left" },
+    ],
+  }}
+/>
+
+# Ein Spiegel für zwei
+
+Eine Familie, die sich einen Badezimmerspiegel teilt, braucht einen Spiegel, der bis zum Kopf des großen Elternteils und bis zu den Füßen des kleinen Kindes reicht, nicht bloß halb so hoch wie irgendwer. Jede Person braucht ihren eigenen Wandstreifen, den die Halbe-Höhe-Regel festlegt. Für seinen Kopf braucht das Kind den Spiegel bis zur Mitte zwischen <InlineMath math="1{,}10" /> und <InlineMath math="1{,}00\text{ m}" />.
+
+<BlockMath math="\begin{aligned}
+\text{Erwachsener}&:\ 0{,}80\text{ m bis }1{,}65\text{ m},\qquad \text{Kind}:\ 0{,}50\text{ m bis }\frac{1{,}10+1{,}00}{2}=1{,}05\text{ m}\\
+L&=1{,}65-0{,}50=1{,}15\text{ m}
+\end{aligned}" />
+
+**Der kürzeste gemeinsame Spiegel ist <InlineMath math="1{,}15\text{ m}" /> lang und reicht von <InlineMath math="0{,}50" /> bis <InlineMath math="1{,}65\text{ m}" /> über dem Boden**. Die Halbe-Höhe-Regel sagt, wie lang der Streifen jeder Person ist, <InlineMath math="0{,}85\text{ m}" /> und <InlineMath math="0{,}55\text{ m}" />, aber nicht, wo er liegt. Wer <InlineMath math="0{,}85\text{ m}" /> wählt, die halbe Größe der größeren Person, lässt die Füße des Kindes draußen, weil die beiden Streifen auf verschiedenen Höhen beginnen.
+
+<MathVisual
+  title={<>Ein Spiegel für beide</>}
+  description={<>Höhen in Metern. Die Strahlen jeder Person zu ihrem eigenen Kopf und ihren Füßen markieren den Wandstreifen, den sie braucht. Der Streifen des Erwachsenen reicht von <InlineMath math="0{,}80" /> bis <InlineMath math="1{,}65\text{ m}" />, der des Kindes von <InlineMath math="0{,}50" /> bis <InlineMath math="1{,}05\text{ m}" />, also muss ein gemeinsamer Spiegel <InlineMath math="0{,}50" /> bis <InlineMath math="1{,}65\text{ m}" /> abdecken.</>}
+  labels={{
+    mirror: <>gemeinsamer Spiegel</>,
+    adult: <>Erwachsener</>,
+    child: <>Kind</>,
+    high: <><InlineMath math="1{,}65\text{ m}" /></>,
+    low: <><InlineMath math="0{,}50\text{ m}" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1.2, max: 2.6 }, y: { min: -0.3, max: 2.1 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "floor", kind: "segment", appearance: "reference", from: { x: 0, y: 0 }, to: { x: 2.2, y: 0 } },
+      { id: "wall", kind: "segment", appearance: "reference", from: { x: 0, y: 0 }, to: { x: 0, y: 2 } },
+      { id: "mirror", kind: "polygon", appearance: "secondary", vertices: [{ x: -0.06, y: 0.5 }, { x: 0, y: 0.5 }, { x: 0, y: 1.65 }, { x: -0.06, y: 1.65 }] },
+      { id: "adult", kind: "segment", appearance: "secondary", from: { x: 1.6, y: 0 }, to: { x: 1.6, y: 1.7 } },
+      { id: "child", kind: "segment", appearance: "secondary", from: { x: 0.9, y: 0 }, to: { x: 0.9, y: 1.1 } },
+      { id: "adult-head", kind: "polyline", appearance: "highlight", vertices: [{ x: 1.6, y: 1.7 }, { x: 0, y: 1.65 }, { x: 1.6, y: 1.6 }] },
+      { id: "adult-feet", kind: "polyline", appearance: "highlight", vertices: [{ x: 1.6, y: 0 }, { x: 0, y: 0.8 }, { x: 1.6, y: 1.6 }] },
+      { id: "child-head", kind: "polyline", appearance: "primary", vertices: [{ x: 0.9, y: 1.1 }, { x: 0, y: 1.05 }, { x: 0.9, y: 1 }] },
+      { id: "child-feet", kind: "polyline", appearance: "primary", vertices: [{ x: 0.9, y: 0 }, { x: 0, y: 0.5 }, { x: 0.9, y: 1 }] },
+      { id: "high", kind: "point", appearance: "reference", at: { x: 0, y: 1.65 } },
+      { id: "low", kind: "point", appearance: "reference", at: { x: 0, y: 0.5 } },
+    ],
+    labels: [
+      { key: "mirror", objectId: "mirror", at: { x: -0.06, y: 1.1 }, placement: "left" },
+      { key: "adult", objectId: "adult", at: { x: 1.6, y: 1.7 }, placement: "above" },
+      { key: "child", objectId: "child", at: { x: 0.9, y: 1.1 }, placement: "above" },
+      { key: "high", objectId: "high", at: { x: 0, y: 1.65 }, placement: "above" },
+      { key: "low", objectId: "low", at: { x: 0, y: 0.5 }, placement: "below" },
+    ],
+  }}
+/>

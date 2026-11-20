@@ -1,0 +1,28 @@
+# Was das Dach unten hält
+
+Ein Topfdeckel bleibt durch sein eigenes Gewicht liegen, beim Schnellkochtopf hilft noch ein Bügel. Das Dach wird auf dieselben zwei Arten gehalten, durch sein Gewicht von <InlineMath math="12\text{ kN}" /> und durch Befestigungen, die höchstens <InlineMath math="30\text{ kN}" /> schaffen, zusammen <InlineMath math="42\text{ kN}" />. Verteilt auf <InlineMath math="8{,}0\times10=80\text{ m}^2" /> sind das <InlineMath math="42000/80" /> Pascal. **Das Dach hebt ab, sobald die Luft darunter um <InlineMath math="525\text{ Pa}" /> stärker drückt als die Luft darüber**. Ohne das Gewicht kommt man auf <InlineMath math="375\text{ Pa}" />, als hielten nur die Befestigungen das Dach.
+
+# Schnelle Luft über dem Dach
+
+Halt einen Papierstreifen unter deine Unterlippe und blas über ihn hinweg, dann hebt er sich, weil schnell strömende Luft weniger drückt. Über dem Dach strömt die Luft mit <InlineMath math="1{,}5u" />, bei geschlossenen Fenstern spürt das Dach also den Druckunterschied <InlineMath math="\tfrac12\rho\,(1{,}5u)^2" />. Gleichgesetzt mit <InlineMath math="525\text{ Pa}" /> ergibt das <InlineMath math="u=19{,}7\text{ m s}^{-1}" />, und mal <InlineMath math="3{,}6" /> sind es Kilometer pro Stunde. **Bei geschlossenen Fenstern hebt das Dach bei <InlineMath math="71{,}0\text{ km h}^{-1}" /> Wind ab**. Wer für die Luft über dem Dach die Windgeschwindigkeit selbst nimmt, erhält <InlineMath math="106\text{ km h}^{-1}" /> und übersieht, dass die Luft über der Dachkante schneller wird.
+
+<BlockMath math="\begin{aligned}
+\tfrac12\rho\,(1{,}5u)^2&=525\ \Rightarrow\ u^2=\frac{525}{0{,}6\times2{,}25}=389\ \Rightarrow\ u=19{,}7\text{ m s}^{-1}=71{,}0\text{ km h}^{-1}\\
+\tfrac12\rho u^2\,(2{,}25+1)&=525\ \Rightarrow\ u^2=\frac{525}{0{,}6\times3{,}25}=269\ \Rightarrow\ u=16{,}4\text{ m s}^{-1}=59{,}1\text{ km h}^{-1}
+\end{aligned}" />
+
+# Ein zerbrochenes Fenster drückt von innen
+
+Blas durch die offene Seite in eine Papiertüte, und sie bläht sich auf. Das zerbrochene Fenster macht genau das mit der Werkstatt. Der Wind, der drinnen zur Ruhe kommt, hebt den Innendruck um <InlineMath math="\tfrac12\rho u^2" />, während die Luft über dem Dach weiterhin <InlineMath math="\tfrac12\rho\,(1{,}5u)^2" /> von oben wegnimmt. Beides addiert sich jetzt, <InlineMath math="\tfrac12\rho u^2\,(2{,}25+1)=525" />, also <InlineMath math="u=16{,}4\text{ m s}^{-1}" />. **Mit zerbrochenem Fenster zur Windseite hebt das Dach schon bei <InlineMath math="59{,}1\text{ km h}^{-1}" /> ab**. Wer meint, durch das zerbrochene Fenster sauge der Wind Luft aus der Werkstatt, sodass der Innendruck sinkt, kommt auf <InlineMath math="95{,}2\text{ km h}^{-1}" />, und das ist für ein Fenster zur Windseite genau verkehrt herum.
+
+<Chart
+  title={<>Druckunterschied am Dach gegen die Windgeschwindigkeit</>}
+  description={<>Windgeschwindigkeit im freien Gelände in Kilometern pro Stunde auf der unteren Achse. Beide Kurven wachsen mit dem Quadrat der Geschwindigkeit. Mit zerbrochenem Fenster kommt der Druck von innen hinzu, also erreicht diese Kurve die Linie von <InlineMath math="525\text{ Pa}" /> früher, bei etwa <InlineMath math="59\text{ km h}^{-1}" /> statt <InlineMath math="71\text{ km h}^{-1}" />.</>}
+  categories={["0", "10", "20", "30", "40", "50", "60", "70", "80"]}
+  series={[
+    { label: "Alle Fenster zu", mark: "line", values: [0, 10, 42, 94, 167, 260, 375, 510, 667] },
+    { label: "Fenster zum Wind zerbrochen", mark: "line", values: [0, 15, 60, 135, 241, 376, 542, 737, 963] },
+    { label: "Nötig zum Abheben", mark: "line", values: [525, 525, 525, 525, 525, 525, 525, 525, 525] },
+  ]}
+  valueLabel="Druckunterschied (Pa)"
+/>

@@ -1,0 +1,39 @@
+# One pass through the jaws is one turn
+
+A see-saw balances when a light child sits far out and a heavy adult sits close in. A transformer balances turns against current the same way, so <InlineMath math="N_pI_p=N_sI_s" />, and the side with more turns carries less current. The live wire is a primary of one turn, so the kettle current is <InlineMath math="2000\times4.6\text{ mA}=9.2\text{ A}" />. **The kettle takes <InlineMath math="240\times9.2=2.21\text{ kW}" />**.
+
+# The jaws only feel the net current
+
+In a tug of war the rope only moves when one team pulls harder than the other. The live wire carries current to the kettle and the neutral carries it back, so their magnetic effects in the iron cancel. The fault, though, lets current leak from the live wire through the case into the earth wire, which comes home outside the jaws.
+
+<BlockMath math="\begin{aligned}
+I_{\text{leak}}&=\frac{240}{8000}=0.030\text{ A}\\
+I_s&=\frac{1\times0.030}{2000}=1.50\times10^{-5}\text{ A}
+\end{aligned}" />
+
+**The meter reads <InlineMath math="15.0\,\mu\text{A}" />**, small but not zero. Expecting <InlineMath math="0\text{ A}" /> forgets that the leaked current never returns along the neutral. Expecting the old <InlineMath math="4.6\text{ mA}" /> forgets the neutral altogether, as if the jaws still held the live wire alone. A residual current device in a fuse box watches exactly this difference.
+
+# A steady current makes no reading
+
+A bicycle dynamo lights its lamp only while the wheel turns. Stop the wheel and the lamp dies, however strong the magnet inside. A transformer works the same way: the secondary only feels a changing flux. The charger's steady <InlineMath math="6.0\text{ A}" /> does magnetise the iron jaws, but that magnetism never changes, so no e.m.f. is induced in the coil. **The meter reads <InlineMath math="0\text{ A}" /> on the charger lead**. Dividing <InlineMath math="6.0\text{ A}" /> by <InlineMath math="2000" /> to get <InlineMath math="3.00\text{ mA}" /> treats the steady current as if it rose and fell like the mains. Clamp meters made for d.c. measure the field with a different kind of sensor for this reason.
+
+<Mermaid
+  title={<>What the jaws feel in each set-up</>}
+  description={<>Each chain starts with the current that threads the jaws and ends at the meter. Only a changing net current through the jaws makes a reading, and the meter shows that net current divided by <InlineMath math="2000" />.</>}
+  chart={`
+    flowchart TD
+      N0["Live wire alone, 9.2 A"]
+      N1["Meter reads 4.6 mA"]
+      N2["Live 9.23 A out, neutral 9.20 A back"]
+      N3["Net 0.030 A through the jaws"]
+      N4["Meter reads 15.0 µA"]
+      N5["Charger lead, steady 6.0 A"]
+      N6["Flux in the jaws never changes"]
+      N7["Meter reads 0"]
+      N0 --> N1
+      N2 --> N3
+      N3 --> N4
+      N5 --> N6
+      N6 --> N7
+  `}
+/>

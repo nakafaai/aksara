@@ -1,0 +1,53 @@
+# Der Knick an der Oberfläche
+
+Ein Strohhalm in einem Glas Wasser sieht an der Wasseroberfläche wie abgeknickt aus. In der leeren Tasse ist die Sichtlinie die lange Seite eines Dreiecks mit <InlineMath math="6" />, <InlineMath math="8" /> und <InlineMath math="10" />, also <InlineMath math="\sin\theta=8/10=0{,}80" />, und der Winkel in der Luft beträgt <InlineMath math="53{,}1°" />. Dieser Teil in der Luft ändert sich nie, denn Auge und Rand bleiben, wo sie sind. An der Oberfläche liefert <InlineMath math="\sin\theta=\tfrac43\sin r" /> den Wert <InlineMath math="\sin r=0{,}60" />. **Im Wasser verläuft die Linie unter <InlineMath math="r=36{,}9°" />, etwa <InlineMath math="37°" /> zur Senkrechten**. Die <InlineMath math="53°" /> gehören zu derselben Linie, bevor sie das Wasser erreicht.
+
+# Eine Sichtlinie aus zwei Stücken
+
+Gehst du eine Straße entlang, die an einer Kreuzung abbiegt, ist dein seitlicher Weg das gerade Stück plus das abgebogene Stück. Bei <InlineMath math="h" /> Wassertiefe fällt das Luftstück um <InlineMath math="6{,}0-h" /> und läuft <InlineMath math="\tfrac43(6{,}0-h)" /> seitwärts, das Wasserstück fällt um <InlineMath math="h" /> und läuft <InlineMath math="0{,}75h" /> seitwärts. Der Auftreffpunkt liegt <InlineMath math="8{,}0-\tfrac{7}{12}h" /> von der nahen Wand entfernt und erreicht den Ring bei <InlineMath math="5{,}2\text{ cm}" />. **Der Ring taucht auf, wenn das Wasser <InlineMath math="4{,}8\text{ cm}" /> tief ist**. Für den seitlichen Weg braucht es <InlineMath math="\tan r=0{,}75" />, wer stattdessen <InlineMath math="\sin r=0{,}60" /> nimmt, erhält <InlineMath math="3{,}8\text{ cm}" />.
+
+<MathVisual
+  title={<>Die Sichtlinie, sobald der Ring auftaucht</>}
+  description={<>Die Sichtlinie vom Auge behält in der Luft ihre Richtung, <InlineMath math="53°" /> zur Senkrechten, und knickt an der Wasseroberfläche auf <InlineMath math="37°" /> ab. Jetzt endet sie am Ring statt in der fernen Ecke.</>}
+  labels={{
+    ring: <>Ring</>,
+    surface: <>Wasseroberfläche</>,
+    "air-angle": <><InlineMath math="53°" /></>,
+    "water-angle": <><InlineMath math="37°" /></>,
+    depth: <><InlineMath math="4{,}8\text{ cm}" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -5.6, max: 10.6 }, y: { min: -1.2, max: 10 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "mug", kind: "polyline", appearance: "secondary", vertices: [{ x: 0, y: 6 }, { x: 0, y: 0 }, { x: 8, y: 0 }, { x: 8, y: 6 }] },
+      { id: "surface", kind: "segment", appearance: "reference", from: { x: 0, y: 4.8 }, to: { x: 8, y: 4.8 } },
+      { id: "air-ray", kind: "segment", appearance: "primary", from: { x: -4, y: 9 }, to: { x: 1.6, y: 4.8 } },
+      { id: "water-ray", kind: "segment", appearance: "primary", from: { x: 1.6, y: 4.8 }, to: { x: 5.2, y: 0 } },
+      { id: "old-ray", kind: "segment", appearance: "construction", from: { x: 1.6, y: 4.8 }, to: { x: 8, y: 0 } },
+      { id: "normal", kind: "segment", appearance: "construction", from: { x: 1.6, y: 6 }, to: { x: 1.6, y: 3.6 } },
+      { id: "air-angle", kind: "arc", appearance: "construction", center: { x: 1.6, y: 4.8 }, radius: 0.9, startDegrees: 90, sweepDegrees: 53.13 },
+      { id: "water-angle", kind: "arc", appearance: "construction", center: { x: 1.6, y: 4.8 }, radius: 0.9, startDegrees: 270, sweepDegrees: 36.87 },
+      { id: "ring", kind: "point", appearance: "highlight", at: { x: 5.2, y: 0 } },
+      { id: "depth", kind: "segment", appearance: "construction", from: { x: 9, y: 0 }, to: { x: 9, y: 4.8 } },
+    ],
+    labels: [
+      { key: "ring", objectId: "ring", at: { x: 5.2, y: 0 }, placement: "below" },
+      { key: "surface", objectId: "surface", at: { x: 6.4, y: 4.8 }, placement: "above" },
+      { key: "air-angle", objectId: "air-angle", at: { x: 1.1, y: 5.8 }, placement: "left" },
+      { key: "water-angle", objectId: "water-angle", at: { x: 1.95, y: 3.75 }, placement: "right" },
+      { key: "depth", objectId: "depth", at: { x: 9, y: 2.4 }, placement: "right" },
+    ],
+  }}
+/>
+
+<BlockMath math="\begin{aligned}
+\sin\theta&=\frac{8{,}0}{10}=0{,}80,\qquad \sin r=\frac{0{,}80}{4/3}=0{,}60\ \Rightarrow\ r=36{,}9°\\
+x&=\tfrac43(6{,}0-h)+0{,}75h=8{,}0-\tfrac{7}{12}h=5{,}2\ \Rightarrow\ h=4{,}8\text{ cm}\\
+x_0&=6{,}0\times0{,}75=4{,}5\text{ cm}
+\end{aligned}" />
+
+# Bis zum Rand voll
+
+Ist eine Badewanne voll, scheinen die Fliesen auf ihrem Boden zu dir heraufzukommen. Bei voller Tasse tritt die Sichtlinie direkt am Rand ins Wasser und läuft den ganzen Weg unter <InlineMath math="37°" /> hinunter, sodass sie <InlineMath math="6{,}0\times0{,}75=4{,}5\text{ cm}" /> seitlich auftrifft. **Der nächste sichtbare Punkt des Bodens liegt <InlineMath math="4{,}5\text{ cm}" /> von der nahen Wand entfernt**, und der Streifen näher an dieser Wand bleibt verborgen. Die <InlineMath math="3{,}5\text{ cm}" /> sind derselbe Punkt, von der fernen Wand aus gemessen.

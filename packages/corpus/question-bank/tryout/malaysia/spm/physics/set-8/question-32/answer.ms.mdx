@@ -1,0 +1,39 @@
+# Satu laluan melalui rahang ialah satu lilitan
+
+Jungkat-jungkit seimbang apabila kanak-kanak yang ringan duduk jauh di hujung dan orang dewasa yang berat duduk dekat dengan pangsi. Transformer mengimbangkan lilitan dengan arus dengan cara yang sama, jadi <InlineMath math="N_pI_p=N_sI_s" />, dan bahagian yang mempunyai lebih banyak lilitan membawa arus yang lebih kecil. Wayar hidup ialah gegelung primer satu lilitan, jadi arus cerek ialah <InlineMath math="2000\times4.6\text{ mA}=9.2\text{ A}" />. **Cerek mengambil <InlineMath math="240\times9.2=2.21\text{ kW}" />**.
+
+# Rahang hanya merasai arus bersih
+
+Dalam pertandingan tarik tali, tali hanya bergerak apabila satu pasukan menarik lebih kuat daripada pasukan yang lain. Wayar hidup membawa arus ke cerek dan wayar neutral membawanya kembali, jadi kesan magnet kedua-duanya dalam besi saling membatalkan. Namun kerosakan itu membiarkan arus bocor dari wayar hidup melalui badan cerek ke wayar bumi, yang kembali di luar rahang.
+
+<BlockMath math="\begin{aligned}
+I_{\text{bocor}}&=\frac{240}{8000}=0.030\text{ A}\\
+I_s&=\frac{1\times0.030}{2000}=1.50\times10^{-5}\text{ A}
+\end{aligned}" />
+
+**Meter membaca <InlineMath math="15.0\,\mu\text{A}" />**, kecil tetapi bukan sifar. Menjangka <InlineMath math="0\text{ A}" /> bermakna kamu terlupa bahawa arus yang bocor tidak pernah kembali melalui wayar neutral. Menjangka <InlineMath math="4.6\text{ mA}" /> yang lama pula melupakan wayar neutral sama sekali, seolah-olah rahang masih mengapit wayar hidup sahaja. Peranti arus baki di dalam kotak fius memerhatikan beza inilah.
+
+# Arus yang tetap tidak memberi bacaan
+
+Dinamo basikal menyalakan lampunya hanya semasa roda berpusing. Hentikan roda dan lampu padam, walau sekuat mana pun magnet di dalamnya. Transformer bekerja dengan cara yang sama: gegelung sekunder hanya merasai fluks yang berubah. Arus tetap <InlineMath math="6.0\text{ A}" /> pengecas itu memang memagnetkan rahang besi, tetapi kemagnetan itu tidak pernah berubah, jadi tiada d.g.e. diaruhkan dalam gegelung. **Meter membaca <InlineMath math="0\text{ A}" /> pada wayar pengecas**. Membahagi <InlineMath math="6.0\text{ A}" /> dengan <InlineMath math="2000" /> untuk mendapat <InlineMath math="3.00\text{ mA}" /> menganggap arus tetap itu naik dan turun seperti bekalan utama. Atas sebab inilah meter apit untuk a.t. mengukur medan dengan jenis penderia yang lain.
+
+<Mermaid
+  title={<>Apa yang dirasai rahang dalam setiap susunan</>}
+  description={<>Setiap rantai bermula dengan arus yang melalui rahang dan berakhir pada meter. Hanya arus bersih yang berubah melalui rahang menghasilkan bacaan, dan meter menunjukkan arus bersih itu dibahagi dengan <InlineMath math="2000" />.</>}
+  chart={`
+    flowchart TD
+      N0["Wayar hidup sahaja, 9.2 A"]
+      N1["Meter membaca 4.6 mA"]
+      N2["Hidup 9.23 A keluar, neutral 9.20 A kembali"]
+      N3["Bersih 0.030 A melalui rahang"]
+      N4["Meter membaca 15.0 µA"]
+      N5["Wayar pengecas, tetap 6.0 A"]
+      N6["Fluks dalam rahang tidak pernah berubah"]
+      N7["Meter membaca 0"]
+      N0 --> N1
+      N2 --> N3
+      N3 --> N4
+      N5 --> N6
+      N6 --> N7
+  `}
+/>

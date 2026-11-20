@@ -1,0 +1,37 @@
+# Wie lang ist jede Welle an der Lücke?
+
+Schwingst du ein Springseil langsam, macht es lange Bögen. Schwingst du es schnell, werden die Bögen kurz. Eine Welle legt in einer Periode eine Wellenlänge zurück, also liefert <InlineMath math="\lambda=vT" /> an der Lücke am ruhigen Tag <InlineMath math="30\text{ m}" /> und im Sturm <InlineMath math="90\text{ m}" />. Wie weit eine Welle hinter einer Lücke auffächert, hängt von ihrer Wellenlänge im Vergleich zur Breite der Lücke ab.
+
+<BlockMath math="\begin{aligned}
+\lambda_{\text{ruhig}}&=10\times3{,}0=30\text{ m},\qquad \lambda_{\text{Sturm}}=10\times9{,}0=90\text{ m}\\
+\frac{30}{60}&=0{,}50,\qquad \frac{90}{60}=1{,}5,\qquad \frac{30}{120}=0{,}25,\qquad \frac{30}{20}=1{,}5
+\end{aligned}" />
+
+**Die Sturmwellen, länger als die Lücke selbst, fächern viel weiter auf, also ist Aussage I richtig**. Wer erwartet, dass sich die kurzen, kabbeligen Wellen des ruhigen Tages stärker ausbreiten, stellt die Regel auf den Kopf.
+
+# Nur das Verhältnis zählt
+
+Durch einen breiten Stadionausgang geht eine Menge einfach geradeaus weiter, durch ein enges Drehkreuz verteilen sich die Leute dahinter in alle Richtungen. Eine Lücke von <InlineMath math="120\text{ m}" /> senkt das Verhältnis am ruhigen Tag von <InlineMath math="0{,}50" /> auf <InlineMath math="0{,}25" />, also gehen diese Wellen eher wie ein gerader Strahl hindurch, und Aussage II ist falsch. Eine Lücke von <InlineMath math="20\text{ m}" /> bewirkt das Gegenteil und hebt das Verhältnis auf <InlineMath math="1{,}5" />, genau die <InlineMath math="90/60" /> des Sturms. **Gleiche Verhältnisse bedeuten gleiche Ausbreitung, also ist Aussage IV richtig**. Wer IV verwirft, weil die beiden Wellen verschiedene Wellenlängen haben, übersieht, dass nur das Verhältnis zählt, und landet bei I und III.
+
+# Der Hafenboden ändert die Wellenlänge
+
+Eine Blaskapelle, die von der Straße auf weichen Sand marschiert, wird langsamer, doch der Trommler hält denselben Takt, also rücken die Reihen enger zusammen. Wellen, die in den flacheren Hafen laufen, machen es genauso. Ihre Periode gibt das Meer draußen vor, <InlineMath math="9{,}0\text{ s}" /> beim Sturm, aber ihre Geschwindigkeit sinkt auf <InlineMath math="6{,}0\text{ m s}^{-1}" />.
+
+<BlockMath math="\begin{aligned}
+\lambda&=6{,}0\times9{,}0=54\text{ m}\neq90\text{ m}
+\end{aligned}" />
+
+Der Durchgang durch die Lücke allein änderte die Wellenlänge nicht, und genau das ist die Falle. **Das flachere Wasser verkürzt die Sturmwellen auf <InlineMath math="54\text{ m}" />, also ist Aussage III falsch, und nur I und IV sind richtig**. Wer I, III und IV wählt, wendet die Regel der Lücke an und übersieht die Änderung der Tiefe, die in der Frage steht.
+
+<Chart
+  title={<>Wellenlänge an der Lücke und im Hafen</>}
+  description={<>Wellenlängen in Metern, die Breite der Lücke als Linie. An der Lücke ist die Sturmwelle länger als die Lücke selbst und fächert deshalb weit auf. Im flacheren Hafen werden beide Wellen um denselben Faktor kürzer, weil sie langsamer werden und ihre Periode behalten.</>}
+  bars="apart"
+  categories={["Ruhiger Tag", "Sturm"]}
+  series={[
+    { label: "Offenes Meer und Lücke", mark: "bar", values: [30, 90] },
+    { label: "Im Hafen", mark: "bar", values: [18, 54] },
+    { label: "Breite der Lücke", mark: "line", values: [60, 60] },
+  ]}
+  valueLabel="Länge (m)"
+/>

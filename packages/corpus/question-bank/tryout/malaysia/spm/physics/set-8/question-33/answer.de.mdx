@@ -1,0 +1,46 @@
+# Die mittlere Schiene wird in beide Richtungen gedrückt
+
+Zwei Freunde, die ein Kind gleich stark an beiden Armen in entgegengesetzte Richtungen ziehen, lassen es einfach stehen. Jede äußere Schiene führt <InlineMath math="1500\text{ A}" /> entgegen den <InlineMath math="3000\text{ A}" /> der mittleren, und entgegengesetzte Ströme stoßen sich ab.
+
+<BlockMath math="\begin{aligned}
+F&=\left(2{,}0\times10^{-7}\times\frac{1500}{0{,}20}\right)\times3000\times2{,}0=9{,}0\text{ N}
+\end{aligned}" />
+
+Schiene A drückt die mittlere Schiene Richtung C, und Schiene C drückt sie mit denselben <InlineMath math="9{,}0\text{ N}" /> Richtung A. **Die Gesamtkraft auf ein Feld der mittleren Schiene ist null**, obwohl sie den größten Strom führt. Wer die beiden Stöße zu <InlineMath math="18{,}0\text{ N}" /> addiert, übergeht ihre Richtungen und macht dann die Stützen der Mitte bei <InlineMath math="22{,}4\text{ kA}" /> zur Schwachstelle.
+
+# Eine äußere Schiene spürt Stoß und Zug
+
+Ein Magnet an der Kühlschranktür kann gleichzeitig von einem Magneten weggedrückt und von einem anderen angezogen werden, und er spürt den Unterschied. Schiene A wird von der mittleren Schiene weggedrückt, deren Strom andersherum fließt. Schiene C, <InlineMath math="0{,}40\text{ m}" /> entfernt, führt Strom in derselben Richtung wie A, zieht A also zur Mitte zurück, nur schwächer, weil sie doppelt so weit weg ist und halb so viel Strom führt.
+
+<BlockMath math="\begin{aligned}
+F_{\text{B}}&=\left(2{,}0\times10^{-7}\times\frac{3000}{0{,}20}\right)\times1500\times2{,}0=9{,}0\text{ N}\\
+F_{\text{C}}&=\left(2{,}0\times10^{-7}\times\frac{1500}{0{,}40}\right)\times1500\times2{,}0=2{,}25\text{ N}\\
+F&=9{,}0-2{,}25=6{,}75\text{ N}
+\end{aligned}" />
+
+**Jede äußere Schiene wird mit <InlineMath math="6{,}75\text{ N}" /> pro Feld nach außen gedrückt, weg von der Mitte**. Wer die ferne Schiene vergisst, behält <InlineMath math="9{,}00\text{ N}" />. Wer auch die ferne Schiene drücken lässt, als stießen sich alle Ströme ab, erhält <InlineMath math="11{,}25\text{ N}" />, doch gleich gerichtete Ströme ziehen sich an.
+
+<Chart
+  title={<>Stöße und Züge an jeder Schiene</>}
+  description={<>Kraft in Newton auf ein Feld von <InlineMath math="2{,}0\text{ m}" />, positiv nach rechts, für die Schienen A, B und C von links nach rechts. Auf die mittlere Schiene wirken zwei gleich große, entgegengesetzte Stöße. Bei einer äußeren Schiene schlägt der Stoß der Mitte den Zug der fernen Schiene, und es bleiben <InlineMath math="6{,}75\text{ N}" /> nach außen.</>}
+  bars="apart"
+  categories={["Schiene A", "Schiene B, Mitte", "Schiene C"]}
+  series={[
+    { label: "Von Schiene A", mark: "bar", values: [0.0, 9.0, -2.25] },
+    { label: "Von Schiene B", mark: "bar", values: [-9.0, 0.0, 9.0] },
+    { label: "Von Schiene C", mark: "bar", values: [2.25, -9.0, 0.0] },
+    { label: "Gesamtkraft", mark: "bar", values: [-6.75, 0.0, 6.75] },
+  ]}
+  valueLabel="Kraft (N)"
+/>
+
+# Ein Fehler trifft die Kraft doppelt
+
+Verdopple die Seitenlänge einer quadratischen Fliese, und du brauchst viermal so viel Farbe, weil Länge und Breite gewachsen sind. Im Fehlerfall wächst jeder Strom um denselben Faktor, also auch jedes Feld, und die Kraft auf eine Schiene geht mit dem Quadrat des Stroms. Nur die äußeren Schienen spüren eine Kraft, also setzen sie die Grenze.
+
+<BlockMath math="\begin{aligned}
+\frac{F}{6{,}75}&=\left(\frac{I}{3000}\right)^2\le\frac{1000}{6{,}75}=148\\
+I&\le3000\times\sqrt{148}=3{,}65\times10^{4}\text{ A}
+\end{aligned}" />
+
+**Die mittlere Schiene verträgt im Fehlerfall bis etwa <InlineMath math="36{,}5\text{ kA}" />**, rund das Zwölffache ihres Normalstroms. Die Antworten mit <InlineMath math="9{,}00\text{ N}" /> und <InlineMath math="11{,}25\text{ N}" /> tragen ihren Fehler in diesen Schritt und kommen auf <InlineMath math="31{,}6\text{ kA}" /> und <InlineMath math="28{,}3\text{ kA}" />.

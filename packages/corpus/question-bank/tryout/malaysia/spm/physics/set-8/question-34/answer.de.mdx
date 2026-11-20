@@ -1,0 +1,37 @@
+# Der Ring ist eine Windung aus dickem Draht
+
+Stell dir den Ring als Hula-Hoop-Reifen aus Metall vor, eine einzige Schleife, um die ein Strom laufen kann. Seine Länge ist der Kreis, den er bildet, <InlineMath math="2\pi\times0{,}025=0{,}157\text{ m}" />, und <InlineMath math="R=\rho L/A" /> macht daraus einen Widerstand. Im ersten Versuch beträgt die Induktionsspannung <InlineMath math="3{,}0\times10^{-4}/0{,}015=0{,}020\text{ V}" />.
+
+<BlockMath math="\begin{aligned}
+R&=\frac{\rho\,(2\pi r)}{A}=\frac{2{,}8\times10^{-8}\times2\pi\times0{,}025}{8{,}0\times10^{-6}}=5{,}50\times10^{-4}\,\Omega\\
+I&=\frac{\Delta\Phi/\Delta t}{R}=\frac{3{,}0\times10^{-4}/0{,}015}{5{,}50\times10^{-4}}=36{,}4\text{ A}
+\end{aligned}" />
+
+**Im ersten Versuch fließen etwa <InlineMath math="36{,}4\text{ A}" /> um den Ring**, ein großer Strom aus einer winzigen Spannung, weil eine dicke Aluminiumschleife kaum Widerstand hat. Wer den Durchmesser, <InlineMath math="5{,}0\text{ cm}" />, in <InlineMath math="2\pi r" /> einsetzt, verdoppelt die Länge und halbiert den Strom auf <InlineMath math="18{,}2\text{ A}" />, und später halbiert sich mit ihm die Ladung auf <InlineMath math="0{,}27\text{ C}" />.
+
+# Der Ladung ist das Tempo egal
+
+Füll einen Eimer am weit geöffneten Hahn oder an einem dünnen Rinnsal, am Ende ist dasselbe Wasser drin. Ein langsamerer Anstieg gibt eine kleinere Spannung, also einen kleineren Strom, doch der fließt länger, und beide Änderungen heben sich genau auf. Im zweiten Versuch beträgt die Spannung ein Viertel, <InlineMath math="0{,}0050\text{ V}" />, und der Strom <InlineMath math="9{,}09\text{ A}" /> für <InlineMath math="60\text{ ms}" />.
+
+<BlockMath math="\begin{aligned}
+Q&=I\,\Delta t=\frac{\Delta\Phi}{R\,\Delta t}\,\Delta t=\frac{\Delta\Phi}{R}\\
+Q&=\frac{3{,}0\times10^{-4}}{5{,}50\times10^{-4}}=0{,}55\text{ C}
+\end{aligned}" />
+
+**Im zweiten Versuch fließen dieselben <InlineMath math="0{,}55\text{ C}" /> um den Ring wie im ersten**. Wer die <InlineMath math="36{,}4\text{ A}" /> die ganzen <InlineMath math="60\text{ ms}" /> lang beibehält, erhält <InlineMath math="2{,}2\text{ C}" />, doch eine viermal langsamere Änderung liefert nur ein Viertel der Spannung.
+
+# Ein Stoß unter dem Gewicht hebt nichts
+
+Zieh an einer schweren Einkaufstasche mit weniger Kraft als ihrem Gewicht, und sie bleibt am Boden, egal wie lange du ziehst. Im ersten Versuch drückt die Spule mit <InlineMath math="2{,}5\times36{,}4=91\text{ mN}" /> nach oben, fast dem Dreifachen der Gewichtskraft des Rings von <InlineMath math="3{,}4\times10^{-3}\times10=34\text{ mN}" />, also springt er. Im zweiten Versuch beträgt der Stoß nur <InlineMath math="2{,}5\times9{,}09=22{,}7\text{ mN}" />, in jedem Moment weniger als das Gewicht. **Im zweiten Versuch bleibt der Ring auf der Spule liegen** und drückt nur etwas weniger auf sie, solange der Fluss steigt. Wer gleiche Ladung als gleichen Stoß und damit als gleichen Sprung liest, vergisst, dass der Stoß erst das Gewicht übertreffen muss, bevor er den Ring heben kann.
+
+<Chart
+  title={<>Aufwärtsstoß gegen das Gewicht des Rings</>}
+  description={<>Kräfte in Millinewton, solange der Fluss steigt. Im ersten Versuch ist der Stoß fast dreimal so groß wie das Gewicht des Rings, also springt er. Im zweiten fließt dieselbe Ladung, doch der Stoß bleibt die ganze Zeit unter dem Gewicht, also hebt der Ring nie ab.</>}
+  bars="apart"
+  categories={["Erster Versuch, 15 ms", "Zweiter Versuch, 60 ms"]}
+  series={[
+    { label: "Aufwärtsstoß der Spule", mark: "bar", values: [90.9, 22.7] },
+    { label: "Gewichtskraft des Rings", mark: "line", values: [34, 34] },
+  ]}
+  valueLabel="Kraft (mN)"
+/>

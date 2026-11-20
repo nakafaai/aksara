@@ -1,0 +1,37 @@
+# Jambatan yang dibebani berayun lebih perlahan
+
+Papan anjal terhenjut lebih perlahan di bawah penerjun yang berat berbanding di bawah kanak-kanak kecil. Jambatan juga begitu. Frekuensi <InlineMath math="1.08\text{ Hz}" /> itu milik lantai yang kosong, tetapi kumpulan itu menambah <InlineMath math="44\%" /> pada jisim yang bergerak semasa mereka berjalan, dan frekuensinya turun dengan faktor <InlineMath math="\sqrt{1.44}=1.2" />.
+
+<BlockMath math="\begin{aligned}
+f&=\frac{1.08}{\sqrt{1.44}}=\frac{1.08}{1.2}=0.90\text{ Hz}
+\end{aligned}" />
+
+**Dengan kumpulan di atasnya, jambatan berayun pada <InlineMath math="0.90\text{ Hz}" />**. Menyesuaikan rentak berjalan dengan <InlineMath math="1.08\text{ Hz}" /> yang diberi oleh jurutera memberi <InlineMath math="1.62\text{ m s}^{-1}" />, iaitu rentak yang akan menggoncang jambatan kosong, bukan jambatan tempat kumpulan itu sedang berdiri.
+
+# Kiri, kanan, kiri
+
+Pada buaian taman permainan, kamu menolak sekali bagi setiap ayunan penuh. Badan pejalan kaki condong ke kiri pada langkah kiri dan ke kanan pada langkah kanan, jadi satu tolakan penuh ke sisi memerlukan dua langkah. Untuk sepadan dengan <InlineMath math="0.90\text{ Hz}" />, kumpulan itu mesti melangkah pada <InlineMath math="1.8\text{ Hz}" />.
+
+<BlockMath math="\begin{aligned}
+f_{\text{step}}&=2\times0.90=1.8\text{ Hz},\qquad v=0.75\times1.8=1.35\text{ m s}^{-1}\\
+N&=0.90\times\frac{54}{1.35}=0.90\times40=36
+\end{aligned}" />
+
+**Kumpulan itu menghasilkan resonans ayunan pada <InlineMath math="1.35\text{ m s}^{-1}" />, dan jambatan berayun <InlineMath math="36" /> kali sepanjang penyeberangan selama <InlineMath math="40\text{ s}" />**. Setiap ayunan menggunakan dua langkah, jadi <InlineMath math="54\text{ m}" /> langkah sepanjang <InlineMath math="0.75\text{ m}" /> memberi <InlineMath math="36" /> yang sama. Melangkah pada <InlineMath math="0.90\text{ Hz}" />, seolah-olah setiap langkah ialah satu tolakan penuh, menjadikan rentak separuh, iaitu <InlineMath math="0.68\text{ m s}^{-1}" />, dan memanjangkan penyeberangan kepada <InlineMath math="72" /> ayunan.
+
+# Seorang pelari bertemu jambatan kosong
+
+Setiap kali mendarat di atas trampolin, kamu menekan tikarnya ke bawah, tidak kira kaki mana yang mendarat. Bagi gerakan atas bawah, tolakan datang pada setiap langkah. Pelari bersendirian hampir tidak menambah jisim, jadi lantunan mengekalkan <InlineMath math="2.4\text{ Hz}" /> jambatan kosong, dan kaki pelari mesti mendarat <InlineMath math="2.4" /> kali sesaat. **Pelari itu memerlukan <InlineMath math="1.20\times2.4=2.88\text{ m s}^{-1}" />, kira-kira <InlineMath math="2.9\text{ m s}^{-1}" />**. Membahagi dengan faktor <InlineMath math="1.2" /> milik kumpulan menurunkan lantunan kepada <InlineMath math="2.0\text{ Hz}" /> dan laju kepada <InlineMath math="2.4\text{ m s}^{-1}" />, sedangkan tiada kumpulan di atas jambatan pada hari itu.
+
+<Chart
+  title={<>Rentak siapa yang mesti dipadankan oleh tolakan</>}
+  description={<>Frekuensi dalam hertz. Tolakan ke sisi oleh kumpulan sepadan dengan jambatan hanya ketika kumpulan itu membebaninya, iaitu pada <InlineMath math="0.90\text{ Hz}" />. Pelari bersendirian bertemu jambatan yang kosong, jadi tolakannya mesti sepadan dengan <InlineMath math="2.4\text{ Hz}" /> jambatan kosong.</>}
+  bars="apart"
+  categories={["Kumpulan, ayunan ke sisi", "Pelari bersendirian, lantunan"]}
+  series={[
+    { label: "Frekuensi asli, jambatan kosong", mark: "bar", values: [1.08, 2.4] },
+    { label: "Frekuensi asli, jambatan dengan kumpulan", mark: "bar", values: [0.9, 2.0] },
+    { label: "Frekuensi tolakan", mark: "bar", values: [0.9, 2.4] },
+  ]}
+  valueLabel="Frekuensi (Hz)"
+/>

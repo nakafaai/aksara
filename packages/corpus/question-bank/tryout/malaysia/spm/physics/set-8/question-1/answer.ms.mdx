@@ -1,0 +1,28 @@
+# Pulangkan dahulu ralat sifar
+
+Penimbang badan yang menunjukkan <InlineMath math="-1\text{ kg}" /> tanpa sesiapa di atasnya menimbang setiap orang <InlineMath math="1\text{ kg}" /> terlalu ringan, jadi kamu tambah semula kilogram itu. Angkup yang dirapatkan menunjukkan <InlineMath math="-0.02\text{ cm}" />, jadi setiap bacaan <InlineMath math="0.02\text{ cm}" /> terlalu kecil. **Panjang sebenar gegelung ialah <InlineMath math="2.86+0.02=2.88\text{ cm}" />**. <InlineMath math="40" /> lilitan itu terletak bersebelahan, dan setiap lilitan menambah satu ketebalan dawai, jadi diameternya <InlineMath math="2.88/40=0.0720\text{ cm}" />, iaitu <InlineMath math="0.720\text{ mm}" />. Jika kamu menolak <InlineMath math="0.02\text{ cm}" />, kamu dapat <InlineMath math="2.84\text{ cm}" /> dan dawai <InlineMath math="0.710\text{ mm}" />, terlalu nipis.
+
+# Daripada rintangan kepada kerintangan
+
+Air mengalir lebih mudah melalui hos yang besar berbanding hos yang kecil, dan yang penting ialah saiz lubangnya. Keratan rentas dawai ialah bulatan yang jejarinya separuh daripada diameter, <InlineMath math="0.360\text{ mm}" />. **Luasnya <InlineMath math="A=\pi r^2=3.14\times(0.360\times10^{-3})^2=4.07\times10^{-7}\text{ m}^2" />**. Kerintangan ialah rintangan logam itu jika ia sepanjang <InlineMath math="1\text{ m}" /> dengan keratan rentas <InlineMath math="1\text{ m}^2" />, jadi <InlineMath math="\rho=RA/L=2.4\times4.07\times10^{-7}/2.00=4.9\times10^{-7}\,\Omega\text{ m}" />. Memasukkan diameter sebagai jejari menjadikan luas empat kali terlalu besar dan memberi <InlineMath math="2.0\times10^{-6}\,\Omega\text{ m}" />.
+
+# Lebih banyak lilitan, ralat lebih kecil
+
+Untuk mencari ketebalan sehelai kertas, kamu ukur setimbun kertas yang tebal, kerana ralat kecil pembaris dikongsi oleh banyak helai. Gegelung ini berfungsi dengan cara yang sama. <InlineMath math="\pm0.01\text{ cm}" /> itu tersebar pada <InlineMath math="N" /> lilitan, jadi ketidakpastian diameter ialah <InlineMath math="0.01/(0.0720N)" /> daripada nilainya. **Diameter dikuasaduakan dalam luas, jadi ketidakpastian peratusnya dikira dua kali dalam kerintangan**. Dengan <InlineMath math="40" /> lilitan, nilainya <InlineMath math="2\times0.01/2.88=0.69\%" />, melebihi had. Syarat <InlineMath math="2\times0.01/(0.0720N)\le0.0050" /> memberi <InlineMath math="N\ge55.6" />. Lilitan mesti nombor bulat, dan <InlineMath math="55" /> lilitan masih memberi <InlineMath math="0.505\%" />, jadi murid itu perlukan <InlineMath math="56" />. Jika faktor dua dilupakan, jawapannya separuh, iaitu <InlineMath math="28" /> lilitan.
+
+<Chart
+  title={<>Ketidakpastian kerintangan melawan bilangan lilitan</>}
+  description={<>Bahagian ketidakpastian peratus kerintangan yang datang daripada bacaan <InlineMath math="\pm0.01\text{ cm}" />, bagi gegelung dengan bilangan lilitan yang berbeza. Garis mendatar ialah had <InlineMath math="0.50\%" />. <InlineMath math="40" /> lilitan memberi <InlineMath math="0.69\%" />, dan <InlineMath math="56" /> lilitan ialah yang pertama jatuh di bawah had itu.</>}
+  categories={["20 lilitan", "28 lilitan", "40 lilitan", "56 lilitan", "80 lilitan"]}
+  series={[
+    { label: "Daripada bacaan panjang", mark: "line", values: [1.389, 0.992, 0.694, 0.496, 0.347] },
+    { label: "Had", mark: "line", values: [0.5, 0.5, 0.5, 0.5, 0.5] },
+  ]}
+  valueLabel="Ketidakpastian (%)"
+/>
+
+<BlockMath math="\begin{aligned}
+L&=2.86-(-0.02)=2.88\text{ cm},\quad d=\frac{2.88}{40}=0.0720\text{ cm}\\
+\rho&=\frac{RA}{L}=\frac{2.4\times3.14\times(0.360\times10^{-3})^2}{2.00}=4.9\times10^{-7}\,\Omega\text{ m}\\
+2\times\frac{0.01}{0.0720N}&\le0.0050\ \Rightarrow\ N\ge55.6\ \Rightarrow\ N=56
+\end{aligned}" />

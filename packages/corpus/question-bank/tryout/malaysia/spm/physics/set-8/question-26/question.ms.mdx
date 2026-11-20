@@ -1,0 +1,32 @@
+Sebuah bengkel mempunyai bumbung rata berukuran <InlineMath math="8.0\text{ m}" /> kali <InlineMath math="10\text{ m}" /> dengan jisim <InlineMath math="1200\text{ kg}" />. Pengikatnya boleh menahan bumbung ke bawah dengan daya paling banyak <InlineMath math="30\text{ kN}" /> sebagai tambahan kepada beratnya. Semasa ribut, angin bertiup merentasi bumbung. Di atas bumbung, udara bergerak <InlineMath math="1.5" /> kali lebih laju daripada angin di kawasan lapang, dan tekanannya di situ lebih rendah daripada tekanan atmosfera sebanyak <InlineMath math="\tfrac12\rho v^2" />, dengan <InlineMath math="v" /> ialah laju udara di atas bumbung dan <InlineMath math="\rho=1.2\text{ kg m}^{-3}" />. Apabila semua pintu dan tingkap ditutup, udara di dalam kekal pegun pada tekanan atmosfera. Jika sebuah tingkap pada dinding yang menghadap angin pecah, angin yang masuk memberhentikan udara di dalam dan menaikkan tekanannya melebihi tekanan atmosfera sebanyak <InlineMath math="\tfrac12\rho u^2" />, dengan <InlineMath math="u" /> ialah laju angin di kawasan lapang. Ambil <InlineMath math="g=10\text{ m s}^{-2}" />.
+
+<MathVisual
+  title={<>Bengkel semasa ribut, dilihat dari sisi</>}
+  description={<>Angin bertiup dari kiri, merentasi bumbung rata dan menghala ke dinding yang mempunyai tingkap. Lukisan ini tidak mengikut skala.</>}
+  labels={{
+    wind: <>angin</>,
+    roof: <>bumbung, <InlineMath math="1200\text{ kg}" /></>,
+    window: <>tingkap</>,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -6.5, max: 12.5 }, y: { min: -2, max: 8 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "ground", kind: "segment", appearance: "reference", from: { x: -6, y: 0 }, to: { x: 12, y: 0 } },
+      { id: "leftwall", kind: "segment", appearance: "secondary", from: { x: 0, y: 0 }, to: { x: 0, y: 4 } },
+      { id: "rightwall", kind: "segment", appearance: "secondary", from: { x: 10, y: 0 }, to: { x: 10, y: 4 } },
+      { id: "roof", kind: "polygon", appearance: "primary", vertices: [{ x: -0.3, y: 4 }, { x: 10.3, y: 4 }, { x: 10.3, y: 4.5 }, { x: -0.3, y: 4.5 }] },
+      { id: "window", kind: "segment", appearance: "highlight", from: { x: 0, y: 1.4 }, to: { x: 0, y: 2.8 } },
+      { id: "windtop", kind: "vector", appearance: "primary", from: { x: -5.5, y: 5.4 }, to: { x: -1, y: 5.4 } },
+      { id: "windlow", kind: "vector", appearance: "primary", from: { x: -5.5, y: 2.1 }, to: { x: -1, y: 2.1 } },
+    ],
+    labels: [
+      { key: "wind", objectId: "windtop", at: { x: -3.2, y: 5.4 }, placement: "above" },
+      { key: "roof", objectId: "roof", at: { x: 5, y: 4.5 }, placement: "above" },
+      { key: "window", objectId: "window", at: { x: 0.1, y: 2.1 }, placement: "right" },
+    ],
+  }}
+/>
+
+Berapakah beza tekanan merentasi bumbung yang baru dapat mengangkatnya, pada laju angin berapakah di kawasan lapang bumbung terangkat apabila semua tingkap ditutup, dan pada laju angin berapakah bumbung terangkat setelah tingkap yang menghadap angin pecah? Berikan laju dalam kilometer sejam.

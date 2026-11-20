@@ -1,0 +1,39 @@
+An electrician checks a kettle with a clamp meter. The meter's iron jaws close around a cable, and a coil of <InlineMath math="2000" /> turns wound on the jaws is connected to the meter, which shows the r.m.s. current in that coil. The clamp works as an ideal transformer: a wire that passes once through the jaws is a primary coil of one turn, and the coil on the jaws is the secondary. The kettle runs on the <InlineMath math="240\text{ V}" /> a.c. mains, and its flex holds a live, a neutral and an earth wire. With the jaws around the live wire alone, the meter reads <InlineMath math="4.6\text{ mA}" />.
+
+<MathVisual
+  title={<>The clamp meter around the kettle's live wire</>}
+  description={<>Looking along the flex. The live wire passes once through the iron jaws, and the neutral and earth wires stay outside. The coil on the jaws feeds the meter.</>}
+  labels={{
+    jaws: <>iron jaws</>,
+    coil: <>coil, <InlineMath math="2000" /> turns</>,
+    meter: <>meter</>,
+    live: <>live wire</>,
+    neutral: <>neutral wire</>,
+    earth: <>earth wire</>,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -5.2, max: 7.6 }, y: { min: -3.5, max: 3.5 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "jaws", kind: "circle", appearance: "reference", center: { x: 0, y: 0 }, radius: 2 },
+      { id: "coil", kind: "polygon", appearance: "primary", vertices: [{ x: 1.6, y: -0.7 }, { x: 2.4, y: -0.7 }, { x: 2.4, y: 0.7 }, { x: 1.6, y: 0.7 }] },
+      { id: "lead-top", kind: "segment", appearance: "secondary", from: { x: 2.4, y: 0.4 }, to: { x: 4.2, y: 0.4 } },
+      { id: "lead-bottom", kind: "segment", appearance: "secondary", from: { x: 2.4, y: -0.4 }, to: { x: 4.2, y: -0.4 } },
+      { id: "meter", kind: "polygon", appearance: "secondary", vertices: [{ x: 4.2, y: -0.9 }, { x: 5.8, y: -0.9 }, { x: 5.8, y: 0.9 }, { x: 4.2, y: 0.9 }] },
+      { id: "live", kind: "circle", appearance: "highlight", center: { x: 0, y: 0 }, radius: 0.35 },
+      { id: "neutral", kind: "circle", appearance: "secondary", center: { x: -3.6, y: 1 }, radius: 0.35 },
+      { id: "earth", kind: "circle", appearance: "secondary", center: { x: -3.6, y: -1 }, radius: 0.35 },
+    ],
+    labels: [
+      { key: "jaws", objectId: "jaws", at: { x: 0, y: 2 }, placement: "above" },
+      { key: "coil", objectId: "coil", at: { x: 2, y: -0.7 }, placement: "below" },
+      { key: "meter", objectId: "meter", at: { x: 5.8, y: 0 }, placement: "right" },
+      { key: "live", objectId: "live", at: { x: 0, y: -0.35 }, placement: "below" },
+      { key: "neutral", objectId: "neutral", at: { x: -3.6, y: 1.35 }, placement: "above" },
+      { key: "earth", objectId: "earth", at: { x: -3.6, y: -1.35 }, placement: "below" },
+    ],
+  }}
+/>
+
+What power does the kettle take, what does the meter read when the jaws are closed around the live and neutral wires together, with the earth wire outside, while a fault of resistance <InlineMath math="8.0\text{ k}\Omega" /> joins the live wire to the kettle's earthed case, and what does it read when the jaws are closed around one lead of a car battery charger that carries a steady direct current of <InlineMath math="6.0\text{ A}" />?
