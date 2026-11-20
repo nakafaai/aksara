@@ -1,28 +1,39 @@
-# Every bond joins two atoms, so halve the count per atom
+# What stays on the filter paper
 
-Each carbon in diamond makes four bonds, but **every bond is shared by the two atoms it joins**, so diamond holds two bonds per atom. Graphite's three bonds per atom give one and a half.
+Stir sugar and sand into tea. The sugar disappears, the sand sits at the bottom. Here carbon disulfide plays the tea. **Small molecules like <InlineMath math="\text{S}_8" /> dissolve in an organic solvent, but a giant covalent lattice like diamond cannot**. So the <InlineMath math="6.00\text{ g}" /> on the paper is diamond. The sulfur that dissolved is what is missing, <InlineMath math="12.40-6.00=6.40\text{ g}" />.
 
-<Chart
-  title={<>Bonds per carbon atom</>}
-  description={<>Diamond has <InlineMath math="2" /> bonds per carbon atom, graphite <InlineMath math="1.5" />.</>}
-  bars="apart"
-  categories={["Diamond", "Graphite"]}
-  series={[
-    { label: "Bonds per atom", mark: "bar", values: [2, 1.5] },
-  ]}
-  valueLabel="Bonds per atom"
+<Mermaid
+  title={<>Following each solid through the filter</>}
+  description={<>The organic solvent carries off the sulfur molecules and leaves the diamond lattice behind, then the bonds in each part are counted.</>}
+  chart={`
+    flowchart TD
+      N0["Powder, 12.40 g"]
+      N1["Shaken with carbon disulfide, then filtered"]
+      N2["On the paper: diamond, 6.00 g"]
+      N3["In the solution: S₈ rings, 6.40 g"]
+      N4["0.500 mol C, 1.00 mol of C-C bonds"]
+      N5["0.0250 mol S₈, 0.200 mol of S-S bonds"]
+      N0 --> N1
+      N1 --> N2
+      N1 --> N3
+      N2 --> N4
+      N3 --> N5
+  `}
 />
 
+Mix up which solid stays and you put <InlineMath math="6.00\text{ g}" /> of sulfur on the paper and <InlineMath math="6.40\text{ g}" /> of diamond in the solution. Your bond counts then come out as <InlineMath math="1.13\times10^{23}" /> for the paper and <InlineMath math="6.42\times10^{23}" /> for the solution.
+
+# Each bond has two ends
+
+A handshake needs two hands. If you count hands, you count every handshake twice. Bonds are the same. A carbon in diamond reaches out to four neighbours, but each bond is shared with the neighbour. **So diamond has two bonds per carbon atom**. In an <InlineMath math="\text{S}_8" /> ring, eight friends stand in a circle holding hands, and that makes eight handshakes, one bond per sulfur atom.
+
 <BlockMath math="\begin{aligned}
-n(\text{C})&=\tfrac{6.0}{12}=0.50\text{ mol}\\
-\text{diamond}&:\ 0.50\times\tfrac{4}{2}=1.0\text{ mol}=6.02\times10^{23}\\
-\text{graphite}&:\ 0.50\times\tfrac{3}{2}=0.75\text{ mol}=4.52\times10^{23}
+\text{C}:\ \tfrac{6.00}{12}\times2&=1.00\text{ mol}\ \Rightarrow\ 6.02\times10^{23}\\
+\text{S}_8:\ \tfrac{6.40}{256}\times8&=0.200\text{ mol}\ \Rightarrow\ 1.20\times10^{23}
 \end{aligned}" />
 
-Graphite's fourth electron is delocalised along the layer and forms no bond between two particular atoms, which is why graphite conducts.
+Counting four bonds per carbon and two per sulfur counts each bond from both ends. Both answers double, to <InlineMath math="1.20\times10^{24}" /> and <InlineMath math="2.41\times10^{23}" />.
 
-# Why the other options are wrong
+# Dissolving keeps the rings whole
 
-- <InlineMath math="1.20\times10^{24}" /> counts every bond twice, once from each atom at its ends.
-- Equal counts ignore that a graphite atom makes three bonds, not four.
-- <InlineMath math="3.01\times10^{23}" /> halves the count twice. **Halve once, for the two ends of each bond**.
+Tip a box of bead bracelets into water. The bracelets drift apart, but each bracelet stays closed. Dissolving sulfur works like that. **The solvent only pulls whole <InlineMath math="\text{S}_8" /> rings away from each other, so it beats the weak forces between molecules and breaks <InlineMath math="0" /> covalent bonds**. If the rings had opened, the answer would be <InlineMath math="1.20\times10^{23}" />, but then letting the solvent evaporate could not give you rhombic sulfur back, and it does.

@@ -1,26 +1,28 @@
-# Der billigste Sack ist nicht der billigste Stickstoff
+# Kilogramm verstecken die Anzahl
 
-Der Stickstoffanteil jeder Formel bestimmt, wie viel vom Sack nützt. **Je zwei Stickstoffatome pro Formeleinheit, aber sehr verschiedene Massen**, also trägt der leichte Harnstoff am meisten. Der Preis geteilt durch den Stickstoff gibt die Kosten eines Kilogramms Stickstoff.
+Der Tetroxidtank ist schwerer, also sieht es aus, als ginge das Hydrazin zuerst aus. **Rechne beide Massen zuerst in Mol um**: <InlineMath math="\tfrac{6400}{32}=200\text{ mol}" /> Hydrazin und <InlineMath math="\tfrac{8280}{92}=90{,}0\text{ mol}" /> Tetroxid. Wer den Massen traut, wählt Hydrazin und bekommt <InlineMath math="300\text{ mol}" /> Stickstoff, <InlineMath math="7{,}20\text{ m}^3" />, aus Treibstoff, den das Triebwerk gar nicht verbrennen kann.
 
-<Chart
-  title={<>Kosten eines Kilogramms Stickstoff</>}
-  description={<>Harnstoff <InlineMath math="\text{RM}{.}5{,}14" />, Ammoniumnitrat <InlineMath math="\text{RM}{.}5{,}43" />, Ammoniumsulfat <InlineMath math="\text{RM}{.}5{,}66" />.</>}
-  bars="apart"
-  categories={["Harnstoff", "Ammoniumnitrat", "Ammoniumsulfat"]}
-  series={[
-    { label: "Kosten", mark: "bar", values: [5.14, 5.43, 5.66] },
-  ]}
-  valueLabel="Kosten (RM pro kg N)"
+# Das Verhältnis zwei zu eins entscheidet
+
+Jedes Tetroxidmolekül braucht zwei Hydrazinmoleküle, also würden <InlineMath math="90{,}0\text{ mol}" /> Tetroxid <InlineMath math="180\text{ mol}" /> Hydrazin verbrauchen, und <InlineMath math="200\text{ mol}" /> sind an Bord. **Das Tetroxid geht zuerst aus und lässt <InlineMath math="20{,}0\text{ mol}" /> Hydrazin übrig**, <InlineMath math="0{,}640\text{ kg}" />. Wer beide eins zu eins paart, verbrennt nur <InlineMath math="90{,}0\text{ mol}" /> Hydrazin und lässt <InlineMath math="3{,}52\text{ kg}" /> zurück.
+
+<Mermaid
+  title={<>Zwei Tanks, eine Grenze</>}
+  description={<>Mol aus jedem Tank, das Verhältnis, das den begrenzenden bestimmt, und der Stickstoff, der entsteht.</>}
+  chart={`
+    flowchart LR
+      N0["6,40 kg N₂H₄: 200 mol"]
+      N1["8,28 kg N₂O₄: 90,0 mol"]
+      N2["90,0 mol N₂O₄ verbrauchen 180 mol N₂H₄"]
+      N3["N₂H₄ übrig: 20,0 mol, 0,640 kg"]
+      N4["N₂ gebildet: 270 mol, 6,48 m³"]
+      N0 --> N2
+      N1 --> N2
+      N2 --> N3
+      N2 --> N4
+  `}
 />
 
-<BlockMath math="\begin{aligned}
-\text{Harnstoff}&:\ \tfrac{28}{60}\times50=23{,}3\text{ kg N},\ \tfrac{120}{23{,}3}=5{,}14\text{ RM pro kg}\\
-\text{NH}_4\text{NO}_3&:\ \tfrac{28}{80}\times50=17{,}5\text{ kg N},\ \tfrac{95}{17{,}5}=5{,}43\text{ RM pro kg}\\
-(\text{NH}_4)_2\text{SO}_4&:\ \tfrac{28}{132}\times50=10{,}6\text{ kg N},\ \tfrac{60}{10{,}6}=5{,}66\text{ RM pro kg}
-\end{aligned}" />
+# Stickstoff aus beiden Tanks
 
-# Warum die anderen Antworten falsch sind
-
-- <InlineMath math="10{,}6\text{ kg}" /> nimmt den billigsten Sack, doch sein Stickstoff ist pro Kilogramm am teuersten.
-- <InlineMath math="8{,}75\text{ kg}" /> zählt nur den Ammonium-Stickstoff. **Auch das Nitration trägt ein Stickstoffatom**.
-- <InlineMath math="11{,}7\text{ kg}" /> zählt einen Stickstoff im Harnstoff, obwohl <InlineMath math="\text{CO(NH}_2)_2" /> zwei hat.
+Jedes reagierende Tetroxid liefert drei Stickstoffmoleküle, also ergeben <InlineMath math="90{,}0\text{ mol}" /> davon <InlineMath math="270\text{ mol}" />, <InlineMath math="6480\text{ dm}^3" /> oder <InlineMath math="6{,}48\text{ m}^3" />. **Beide Edukte liefern Stickstoffatome ins Produkt**: <InlineMath math="360\text{ mol}" /> aus dem verbrannten Hydrazin und <InlineMath math="180\text{ mol}" /> aus dem Tetroxid, <InlineMath math="540\text{ mol}" /> Atome in <InlineMath math="270\text{ mol}" /> Molekülen. Wer jedem Tetroxid nur ein Stickstoffmolekül gibt, zählt nur dessen eigene Atome und vergisst die des Hydrazins, <InlineMath math="2{,}16\text{ m}^3" />.

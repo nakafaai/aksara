@@ -1,21 +1,31 @@
-# Kenaikan suhu memberi perubahan entalpi, dan cecair panas mengecut apabila sejuk
+# Membaca buret dua kali
 
-Air menjadi panas, jadi pelarutan membebaskan haba dan **perubahan entalpinya negatif**. Cecair mengecut apabila sejuk, jadi kelalang yang diisi hingga tanda semasa panas mengandungi kurang daripada <InlineMath math="250\text{ cm}^3" /> apabila sejuk. <InlineMath math="0.100\text{ mol}" /> yang sama dalam isi padu lebih kecil adalah lebih pekat.
+Dengan fenolftalein, bacaan bergerak dari <InlineMath math="0.50" /> ke <InlineMath math="22.50\text{ cm}^3" />, iaitu nilai titratan <InlineMath math="22.00\text{ cm}^3" />. Metil jingga meneruskannya ke <InlineMath math="25.50" />, jadi **nilai titratan kedua hanya <InlineMath math="3.00\text{ cm}^3" />**, diukur dari tempat yang pertama berhenti, bukan dari sifar.
 
-<Mermaid
-  title={<>Mengapa kelalang panas memberi larutan lebih pekat</>}
-  description={<>Diisi semasa panas, larutan mengecut apabila sejuk, jadi bilangan mol yang sama berada dalam kurang daripada <InlineMath math="250\text{ cm}^3" />.</>}
-  chart={"flowchart LR\n  W[\"Panas: diisi hingga tanda\"] --> C[\"Menyejuk dan mengecut\"]\n  C --> V[\"Isi padu kurang daripada 250 cm3\"]\n  V --> H[\"Mol sama dalam isi padu lebih kecil: melebihi 0.400 mol dm-3\"]"}
+# Nilai titratan kedua mengira karbonat
+
+Apabila fenolftalein menjadi tidak berwarna, setiap ion karbonat sudah menjadi satu ion hidrogen karbonat. **Metil jingga kemudian memerlukan tepat satu lagi ion hidrogen bagi setiap ion itu**, jadi <InlineMath math="0.300\text{ mmol}" /> asid pada peringkat kedua bermakna <InlineMath math="0.300\text{ mmol}" /> karbonat, iaitu <InlineMath math="0.0120\text{ mol dm}^{-3}" />. Membahagi dua nilai titratan kedua, seolah-olah kedua-dua langkah karbonat berlaku selepas perubahan warna pertama, memberi <InlineMath math="0.00600" />.
+
+<Chart
+  title={<>pH sampel semasa asid ditambah</>}
+  description={<>Penurunan pertama berhampiran <InlineMath math="22.0\text{ cm}^3" /> ialah tempat fenolftalein berubah, penurunan kedua berhampiran <InlineMath math="25.0\text{ cm}^3" /> ialah tempat metil jingga berubah.</>}
+  categories={["0 cm³", "4 cm³", "8 cm³", "12 cm³", "16 cm³", "20 cm³", "21 cm³", "22 cm³", "23 cm³", "24 cm³", "25 cm³", "26 cm³", "28 cm³"]}
+  series={[
+    { label: "pH", mark: "line", values: [12.88, 12.71, 12.52, 12.28, 11.88, 10.53, 10.0, 8.33, 6.65, 6.05, 4.29, 2.71, 2.25] },
+  ]}
+  valueLabel="pH"
 />
 
+# Mengeluarkan karbonat daripada nilai titratan pertama
+
+<InlineMath math="2.20\text{ mmol}" /> asid yang pertama membuat dua kerja serentak. Ia meneutralkan hidroksida dan **memberi setiap ion karbonat ion hidrogen pertamanya**, jadi hidroksida ialah <InlineMath math="2.20-0.300=1.90\text{ mmol}" />, iaitu <InlineMath math="0.0760\text{ mol dm}^{-3}" />. Menganggap seluruh nilai titratan pertama sebagai hidroksida memberi <InlineMath math="0.0880" />, dan menolak karbonat dua kali memberi <InlineMath math="0.0640" />.
+
+# Kembali kepada gas yang diserap botol itu
+
+**Setiap ion karbonat terbentuk daripada satu molekul karbon dioksida**, jadi setiap <InlineMath math="\text{dm}^3" /> larutan telah menyerap <InlineMath math="0.0120\text{ mol}" /> gas itu, iaitu <InlineMath math="288\text{ cm}^3" /> pada keadaan bilik.
+
 <BlockMath math="\begin{aligned}
-Q&=100\times4.2\times10.6=4452\text{ J}=4.452\text{ kJ}\\
-n(\text{NaOH})&=\tfrac{4.00}{40}=0.100\text{ mol}\\
-\Delta H&=-\tfrac{4.452}{0.100}=-44.5\text{ kJ mol}^{-1}
+n(\text{CO}_3^{\,2-})&=0.100\times3.00=0.300\text{ mmol}\ \Rightarrow\ c=\tfrac{0.300}{25.0}=0.0120\text{ mol dm}^{-3}\\
+n(\text{OH}^-)&=0.100\times22.00-0.300=1.90\text{ mmol}\ \Rightarrow\ c=\tfrac{1.90}{25.0}=0.0760\text{ mol dm}^{-3}\\
+V(\text{CO}_2)&=0.0120\times24\,000=288\text{ cm}^3
 \end{aligned}" />
-
-# Kenapa pilihan lain salah
-
-- Kenaikan suhu bermaksud haba dibebaskan, jadi tandanya negatif, bukan positif.
-- Larutan kurang pekat memerlukan isi padu bertambah. **Penyejukan menjadikan cecair mengecut**.
-- <InlineMath math="-4.45\text{ kJ mol}^{-1}" /> membahagi dengan <InlineMath math="1.00\text{ mol}" /> dan bukan <InlineMath math="0.100\text{ mol}" />, dan isi padu kelalang memang bergantung pada suhu.

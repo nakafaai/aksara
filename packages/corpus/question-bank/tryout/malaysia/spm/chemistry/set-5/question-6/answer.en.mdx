@@ -1,28 +1,114 @@
-# Equal volumes hold equal numbers of molecules, so count molecules
+# The volume rise counts the ammonia that broke
 
-At the same temperature and pressure, **volume follows the number of gas molecules**. Each two molecules of ammonia that break up give four, so the volume grows, and the acid then removes only the ammonia that is left.
+Two volumes of ammonia become four volumes of gas, one of nitrogen and three of hydrogen. **Each volume of ammonia that breaks adds exactly one volume to the total**, so the rise from <InlineMath math="60" /> to <InlineMath math="84\text{ cm}^3" /> means <InlineMath math="24\text{ cm}^3" /> decomposed, <InlineMath math="40\%" />. Reading the rise as two volumes per ammonia halves this to <InlineMath math="12\text{ cm}^3" /> and <InlineMath math="20\%" />, and every later volume shrinks with it.
+
+<CombiningVolumesLab
+  title={<>Two volumes in, four volumes out</>}
+  description={<>In this item <InlineMath math="24\text{ cm}^3" /> of ammonia breaks into <InlineMath math="12\text{ cm}^3" /> of nitrogen and <InlineMath math="36\text{ cm}^3" /> of hydrogen, a gain of <InlineMath math="24\text{ cm}^3" />.</>}
+  labels={{
+    chooseMode: "Choose gas reaction",
+    reactants: "Reactants",
+    products: "Products",
+    reactionView: "Law of combining volumes gas model",
+    ratioLabel: "Volume ratio",
+    exampleLabel: "Scaled example",
+    volumeUnit: "vol",
+    modes: {
+      "water-vapor": {
+        tab: "Steam",
+        tabLabel: "Water vapor formation",
+        helperCaption: (
+          <>
+            Two equal-volume portions of <InlineMath math="\mathrm{H_2}" /> react
+            with one equal-volume portion of <InlineMath math="\mathrm{O_2}" /> and form two equal-volume portions of{" "}
+            <InlineMath math="\mathrm{H_2O(g)}" /> at the same temperature and
+            pressure.
+          </>
+        ),
+        ratio: (
+          <>
+            <InlineMath math="\mathrm{H_2:O_2:H_2O} = 2:1:2" />.
+          </>
+        ),
+        example: (
+          <>
+            <InlineMath math="200\ \mathrm{mL}" /> of{" "}
+            <InlineMath math="\mathrm{H_2}" /> reacts with{" "}
+            <InlineMath math="100\ \mathrm{mL}" /> of{" "}
+            <InlineMath math="\mathrm{O_2}" />.
+          </>
+        ),
+      },
+      "ammonia-synthesis": {
+        tab: "Ammonia",
+        tabLabel: "Ammonia formation",
+        helperCaption: (
+          <>
+            One volume of <InlineMath math="\mathrm{N_2}" /> reacts with three
+            volumes of <InlineMath math="\mathrm{H_2}" /> to form two volumes of{" "}
+            <InlineMath math="\mathrm{NH_3}" />.
+          </>
+        ),
+        ratio: (
+          <>
+            <InlineMath math="\mathrm{N_2:H_2:NH_3} = 1:3:2" />.
+          </>
+        ),
+        example: (
+          <>
+            <InlineMath math="1\ \mathrm{L}" /> of{" "}
+            <InlineMath math="\mathrm{N_2}" /> reacts with{" "}
+            <InlineMath math="3\ \mathrm{L}" /> of{" "}
+            <InlineMath math="\mathrm{H_2}" />.
+          </>
+        ),
+      },
+      "ammonia-decomposition": {
+        tab: "Decompose",
+        tabLabel: "Ammonia decomposition",
+        helperCaption: (
+          <>
+            Two parts of <InlineMath math="\mathrm{NH_3}" /> break into three
+            parts of <InlineMath math="\mathrm{H_2}" /> and one part of{" "}
+            <InlineMath math="\mathrm{N_2}" />.
+          </>
+        ),
+        ratio: (
+          <>
+            <InlineMath math="\mathrm{NH_3:H_2:N_2} = 2:3:1" />.
+          </>
+        ),
+        example: (
+          <>
+            <InlineMath math="24\ \mathrm{cm^3}" /> of{" "}
+            <InlineMath math="\mathrm{NH_3}" /> produces{" "}
+            <InlineMath math="36\ \mathrm{cm^3}" /> of{" "}
+            <InlineMath math="\mathrm{H_2}" /> and{" "}
+            <InlineMath math="12\ \mathrm{cm^3}" /> of{" "}
+            <InlineMath math="\mathrm{N_2}" />.
+          </>
+        ),
+      },
+    },
+  }}
+/>
+
+# What each step takes out
+
+The <InlineMath math="24\text{ cm}^3" /> that broke gave <InlineMath math="12\text{ cm}^3" /> of nitrogen and <InlineMath math="36\text{ cm}^3" /> of hydrogen, and <InlineMath math="36\text{ cm}^3" /> of ammonia survived. **The acid removes only the ammonia**, so <InlineMath math="48\text{ cm}^3" /> leaves it.
 
 <Chart
-  title={<>Gas volumes at each stage</>}
-  description={<>At the start <InlineMath math="60\text{ cm}^3" /> of ammonia. After heating <InlineMath math="36\text{ cm}^3" /> of ammonia, <InlineMath math="12\text{ cm}^3" /> of nitrogen and <InlineMath math="36\text{ cm}^3" /> of hydrogen. After the acid the ammonia is gone.</>}
+  title={<>Each gas through the stages</>}
+  description={<>Volumes in cubic centimetres after each step. Nitrogen passes through untouched, while ammonia, hydrogen and then the spare oxygen change.</>}
   bars="apart"
-  categories={["Ammonia", "Nitrogen", "Hydrogen"]}
+  categories={["After decomposing", "After the acid", "Oxygen added", "After sparking"]}
   series={[
-    { label: "Start", mark: "bar", values: [60, 0, 0] },
-    { label: "After heating", mark: "bar", values: [36, 12, 36] },
-    { label: "After acid", mark: "bar", values: [0, 12, 36] },
+    { label: "Ammonia", mark: "bar", values: [36, 0, 0, 0] },
+    { label: "Nitrogen", mark: "bar", values: [12, 12, 12, 12] },
+    { label: "Hydrogen", mark: "bar", values: [36, 36, 36, 0] },
+    { label: "Oxygen", mark: "bar", values: [0, 0, 30, 12] },
   ]}
   valueLabel="Volume (cm³)"
 />
 
-<BlockMath math="\begin{aligned}
-\text{decomposed}&=0.40\times60=24\text{ cm}^3\rightarrow12\text{ cm}^3\ \text{N}_2+36\text{ cm}^3\ \text{H}_2\\
-\text{after}&=36+12+36=84\text{ cm}^3\\
-\text{after acid}&=84-36=48\text{ cm}^3
-\end{aligned}" />
-
-# Why the other options are wrong
-
-- <InlineMath math="60\text{ cm}^3" /> ignores that decomposition makes more molecules than it uses.
-- <InlineMath math="60\text{ cm}^3" /> after the acid subtracts the ammonia that decomposed, <InlineMath math="24\text{ cm}^3" />, instead of the ammonia that remained.
-- <InlineMath math="96\text{ cm}^3" /> lets <InlineMath math="60\%" /> decompose. **<InlineMath math="40\%" /> broke up and <InlineMath math="60\%" /> stayed as ammonia**.
+Sparking with <InlineMath math="30\text{ cm}^3" /> of oxygen burns the <InlineMath math="36\text{ cm}^3" /> of hydrogen and uses <InlineMath math="18\text{ cm}^3" /> of the oxygen. Left behind are the <InlineMath math="12\text{ cm}^3" /> of nitrogen and <InlineMath math="12\text{ cm}^3" /> of unused oxygen, <InlineMath math="24\text{ cm}^3" /> in all. **The steam condenses, so it takes up no volume**. Keeping it as gas adds <InlineMath math="36\text{ cm}^3" /> and gives <InlineMath math="60\text{ cm}^3" />, and forgetting the spare oxygen leaves only the nitrogen, <InlineMath math="12\text{ cm}^3" />.

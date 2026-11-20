@@ -13,22 +13,22 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "$$+184\\text{ kJ mol}^{-1}$$, and $$18.4\\text{ kJ}$$ is absorbed",
+            "$$-462\\text{ kJ mol}^{-1}$$, $$-315\\text{ kJ mol}^{-1}$$, $$78.8\\text{ kJ}$$",
         },
         {
           correct: false,
           label:
-            "$$-92\\text{ kJ mol}^{-1}$$, and $$9.2\\text{ kJ}$$ is released",
+            "$$-462\\text{ kJ mol}^{-1}$$, $$-895\\text{ kJ mol}^{-1}$$, $$224\\text{ kJ}$$",
         },
         {
           correct: false,
           label:
-            "$$-184\\text{ kJ mol}^{-1}$$, and $$18.4\\text{ kJ}$$ is released",
+            "$$-462\\text{ kJ mol}^{-1}$$, $$-601\\text{ kJ mol}^{-1}$$, $$90.2\\text{ kJ}$$",
         },
         {
           correct: true,
           label:
-            "$$-92\\text{ kJ mol}^{-1}$$, and $$18.4\\text{ kJ}$$ is released",
+            "$$-462\\text{ kJ mol}^{-1}$$, $$-601\\text{ kJ mol}^{-1}$$, $$150\\text{ kJ}$$",
         },
       ],
     },
@@ -38,22 +38,22 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "$$+184\\text{ kJ mol}^{-1}$$, dan $$18.4\\text{ kJ}$$ diserap",
+            "$$-462\\text{ kJ mol}^{-1}$$, $$-315\\text{ kJ mol}^{-1}$$, $$78.8\\text{ kJ}$$",
         },
         {
           correct: false,
           label:
-            "$$-92\\text{ kJ mol}^{-1}$$, dan $$9.2\\text{ kJ}$$ dibebaskan",
+            "$$-462\\text{ kJ mol}^{-1}$$, $$-895\\text{ kJ mol}^{-1}$$, $$224\\text{ kJ}$$",
         },
         {
           correct: false,
           label:
-            "$$-184\\text{ kJ mol}^{-1}$$, dan $$18.4\\text{ kJ}$$ dibebaskan",
+            "$$-462\\text{ kJ mol}^{-1}$$, $$-601\\text{ kJ mol}^{-1}$$, $$90.2\\text{ kJ}$$",
         },
         {
           correct: true,
           label:
-            "$$-92\\text{ kJ mol}^{-1}$$, dan $$18.4\\text{ kJ}$$ dibebaskan",
+            "$$-462\\text{ kJ mol}^{-1}$$, $$-601\\text{ kJ mol}^{-1}$$, $$150\\text{ kJ}$$",
         },
       ],
     },

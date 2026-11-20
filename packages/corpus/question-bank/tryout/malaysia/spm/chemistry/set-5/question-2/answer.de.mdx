@@ -1,26 +1,29 @@
-# Die Steigung des Feststoffs gibt die Heizleistung, beide Trends legen Beginn und Ende des Schmelzens fest
+# Die feste Phase misst die Heizleistung
 
-Die Leistung ist unbekannt, also folgt sie aus dem Teil des Graphen, in dem nur der Feststoff warm wird: <InlineMath math="20^\circ\text{C}" /> pro Minute in <InlineMath math="12{,}8\text{ g}" /> Feststoff. **Der flache Abschnitt beginnt und endet nicht auf einem Rasterpunkt**. Die Gerade des Feststoffs erreicht <InlineMath math="80^\circ\text{C}" /> eine halbe Minute nach der Messung bei <InlineMath math="2\text{ min}" />, die der Flüssigkeit verlässt <InlineMath math="80^\circ\text{C}" /> eine Dreiviertelminute vor der Messung bei <InlineMath math="9\text{ min}" />. Beim Schmelzen trennt die Wärme Moleküle gegen ihre Anziehung, also bleiben ihre kinetische Energie und die Temperatur konstant.
+Die Leistung des Heizers steht nirgends, aber der sich erwärmende Feststoff verrät sie. **Unter <InlineMath math="80^\circ\text{C}" /> geht jedes Joule in die Temperaturerhöhung**, <InlineMath math="20^\circ\text{C}" /> pro Minute, also liefert der Heizer <InlineMath math="12{,}8\times1{,}30\times20=332{,}8\text{ J}" /> pro Minute. Die Flüssigkeit steigt langsamer, <InlineMath math="15{,}3^\circ\text{C}" /> pro Minute, weil flüssiges Naphthalin Wärme anders speichert. Wer diese Steigung mit der Wärmekapazität des Feststoffs rechnet, unterschätzt den Heizer und landet bei <InlineMath math="15{,}3\text{ kJ mol}^{-1}" />.
+
+# Die flache Strecke stoppen
+
+Du musst keine Linie verlängern, denn die Aufgabe nennt dir beide Enden. Der erste Tropfen Flüssigkeit erscheint genau bei Minute <InlineMath math="3" />, und der letzte Kristall verschwindet genau bei Minute <InlineMath math="9" />. Also **dauert das Schmelzen sechs Minuten, die Abstände zwischen den Messungen, nicht die sieben Messwerte von <InlineMath math="80^\circ\text{C}" />**. Denk an Zaunpfosten: Zwischen sieben Pfosten liegen nur sechs Lücken. Wer die Messwerte als Minuten zählt, kommt auf <InlineMath math="23{,}3\text{ kJ mol}^{-1}" />.
 
 <Chart
-  title={<>Schmelzdauer auf drei Arten abgelesen</>}
-  description={<>Nur die flachen Rasterpunkte geben <InlineMath math="5{,}0\text{ min}" />, beide Trends bis <InlineMath math="80^\circ\text{C}" /> verlängert geben <InlineMath math="5{,}75\text{ min}" />, und vom letzten Punkt darunter zum ersten darüber sind es <InlineMath math="7{,}0\text{ min}" />.</>}
+  title={<>Heizenergie in jeder Phase</>}
+  description={<>Der Heizer liefert <InlineMath math="332{,}8\text{ J}" /> pro Minute, also ist jeder Balken diese Rate mal die Minuten, die das Naphthalin in der Phase verbringt.</>}
   bars="apart"
-  categories={["Rasterpunkte 3 bis 8", "Trends treffen 80 °C", "Letzter unter bis erster über"]}
+  categories={["Feststoff erwärmt sich", "Schmelzen", "Flüssigkeit erwärmt sich"]}
   series={[
-    { label: "Zeit", mark: "bar", values: [5.0, 5.75, 7.0] },
+    { label: "Energie (J)", mark: "bar", values: [998.4, 1996.8, 665.6] },
   ]}
-  valueLabel="Zeit (min)"
+  valueLabel="Energie (J)"
 />
 
+# Von der Probe zum Mol
+
+Sechs Minuten mit <InlineMath math="332{,}8\text{ J}" /> pro Minute sind <InlineMath math="1997\text{ J}" /> für <InlineMath math="\tfrac{12{,}8}{128}=0{,}100\text{ mol}" />, also <InlineMath math="20{,}0\text{ kJ mol}^{-1}" />.
+
 <BlockMath math="\begin{aligned}
-P&=12{,}8\times1{,}30\times\tfrac{70-30}{2}=332{,}8\text{ J min}^{-1}\\
-t_1&=2+\tfrac{80-70}{20}=2{,}50\text{ min},\quad t_2=9-\tfrac{91{,}5-80}{106{,}8-91{,}5}=8{,}25\text{ min}\\
-\Delta H&=\tfrac{332{,}8\times(8{,}25-2{,}50)}{12{,}8\div128}=19{.}100\text{ J mol}^{-1}=19{,}1\text{ kJ mol}^{-1}
+12{,}8\times1{,}30\times20&=332{,}8\text{ J}\\
+\Delta H&=\tfrac{332{,}8\times(9-3)}{0{,}100}=19\,968\text{ J mol}^{-1}=20{,}0\text{ kJ mol}^{-1}
 \end{aligned}" />
 
-# Warum die anderen Antworten falsch sind
-
-- <InlineMath math="16{,}6\text{ kJ mol}^{-1}" /> zählt nur die Rasterpunkte bei <InlineMath math="80^\circ\text{C}" />, von <InlineMath math="3" /> bis <InlineMath math="8\text{ min}" />, und übersieht das Schmelzen davor und danach.
-- Konstante Temperatur heißt konstante mittlere kinetische Energie. **Die Wärme erhöht die potenzielle Energie der Moleküle, während sie sich trennen**.
-- <InlineMath math="23{,}3\text{ kJ mol}^{-1}" /> nimmt die ganze Spanne von <InlineMath math="2" /> bis <InlineMath math="9\text{ min}" />, die das Erwärmen von Feststoff und Flüssigkeit einschließt.
+**Die Temperatur bewegt sich nicht, während diese Energie hineingeht**, also bleibt die mittlere kinetische Energie der Moleküle gleich, und die Energie überwindet die Anziehung zwischen ihnen. Schnellere Moleküle würden sich als steigende Temperatur zeigen, und die flache Linie schließt das aus.

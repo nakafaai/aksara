@@ -1,26 +1,29 @@
-# Erst das schon genommene Paracetamol zählen, dann prüfen, welche Grenze zuerst erreicht ist
+# Drei Grenzen für ein Kind
 
-Der Grippesirup ist auch ein Paracetamol-Arzneimittel, also zählen seine zwei Dosen, <InlineMath math="240\text{ mg}" /> und zwei der vier Dosen. Das Tageslimit von <InlineMath math="1080\text{ mg}" /> lässt <InlineMath math="840\text{ mg}" /> Raum. **Doch es bleiben nur zwei Dosen mit je höchstens <InlineMath math="270\text{ mg}" />**, also stoppt die Dosenzahl das Kind bei <InlineMath math="540\text{ mg}" /> mehr, deutlich unter dem Tageslimit.
+Bei <InlineMath math="18\text{ kg}" /> darf das Kind <InlineMath math="270\text{ mg}" /> pro Dosis und <InlineMath math="1080\text{ mg}" /> pro Tag bekommen, in höchstens vier Dosen. **Alle drei Grenzen gelten gleichzeitig**, und die kleinste gewinnt.
+
+# Was der Erkältungssaft schon verbraucht hat
+
+Jede Dosis von <InlineMath math="7{,}5\text{ mL}" /> Erkältungssaft enthielt <InlineMath math="7{,}5/5{,}0\times80=120\text{ mg}" />, das Kind hat also <InlineMath math="240\text{ mg}" /> bekommen. **Die Zahl der Dosen gilt für jedes Paracetamolmittel**, diese zwei Dosen verbrauchen also auch die Hälfte der vier, und zwei bleiben. Wer nur von der Tagesgrenze <InlineMath math="1080\text{ mg}" /> ausgeht, als wäre noch nichts genommen, landet bei der Option mit <InlineMath math="45{,}0\text{ mL}" />.
 
 <Chart
-  title={<>Paracetamol gegen das Tageslimit</>}
-  description={<>Das Kind nimmt <InlineMath math="240\text{ mg}" /> im Grippesirup und höchstens <InlineMath math="540\text{ mg}" /> mehr, unter dem Limit von <InlineMath math="1080\text{ mg}" />.</>}
+  title={<>Paracetamol-Kontingent für den Tag</>}
+  description={<>Die Tagesgrenze lässt noch <InlineMath math="840\text{ mg}" /> übrig, aber zwei Dosen von höchstens <InlineMath math="270\text{ mg}" /> deckeln den einfachen Sirup bei <InlineMath math="540\text{ mg}" />.</>}
   bars="apart"
-  categories={["Grippesirup genommen", "Zwei weitere Dosen", "Tageslimit"]}
+  categories={["Tagesgrenze", "Als Erkältungssaft genommen", "Rest nach Tagesgrenze", "Rest in zwei weiteren Dosen"]}
   series={[
-    { label: "Paracetamol", mark: "bar", values: [240, 540, 1080] },
+    { label: "Paracetamol", mark: "bar", values: [1080, 240, 840, 540] },
   ]}
   valueLabel="Paracetamol (mg)"
 />
 
+# Die strengere Grenze entscheidet
+
+Nach der Tagesgrenze ist Platz für <InlineMath math="840\text{ mg}" />, also <InlineMath math="35{,}0\text{ mL}" /> einfachen Sirup, aber dafür bräuchte es eine Dosis über <InlineMath math="270\text{ mg}" /> oder eine fünfte Dosis. **Zwei Dosen zu <InlineMath math="270\text{ mg}" /> erlauben nur <InlineMath math="540\text{ mg}" />**, und bei <InlineMath math="120\text{ mg}" /> pro <InlineMath math="5{,}0\text{ mL}" /> sind das <InlineMath math="22{,}5\text{ mL}" />.
+
 <BlockMath math="\begin{aligned}
-\text{Grippesirup}&=2\times7{,}5\times\tfrac{80}{5{,}0}=240\text{ mg},\quad\text{Tagesrest}=18\times60-240=840\text{ mg}\\
-\text{zwei Dosen übrig}&=2\times18\times15=540\text{ mg}<840\text{ mg}\Rightarrow V=540\times\tfrac{5{,}0}{120}=22{,}5\text{ mL}\\
-n&=\tfrac{0{,}240+0{,}540}{151}=5{,}17\times10^{-3}\text{ mol}
+2\times270&=540\text{ mg}<1080-240=840\text{ mg}\ \Rightarrow\ V=\tfrac{540}{120}\times5{,}0=22{,}5\text{ mL}\\
+n&=\tfrac{0{,}240+0{,}540}{151}=\tfrac{0{,}780}{151}=5{,}17\times10^{-3}\text{ mol}
 \end{aligned}" />
 
-# Warum die anderen Antworten falsch sind
-
-- <InlineMath math="35{,}0\text{ mL}" /> schöpft das Massenlimit aus. **Dafür wären insgesamt mehr als vier Dosen nötig**, denn eine Dosis fasst höchstens <InlineMath math="270\text{ mg}" />.
-- <InlineMath math="45{,}0\text{ mL}" /> vergisst, dass der Grippesirup schon Paracetamol enthält.
-- <InlineMath math="3{,}58\times10^{-3}\text{ mol}" /> zählt nur den einfachen Sirup und lässt die vorher genommenen <InlineMath math="240\text{ mg}" /> weg.
+Der Tag endet bei <InlineMath math="780\text{ mg}" /> Paracetamol mit <InlineMath math="M_r=151" />. Wer nur den einfachen Sirup zählt, kommt auf <InlineMath math="3{,}58\times10^{-3}\text{ mol}" /> und vergisst den Erkältungssaft vom Morgen.

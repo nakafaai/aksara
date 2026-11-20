@@ -12,22 +12,23 @@ const item: ItemSource = {
       options: [
         {
           correct: false,
-          label: "Both give $$240\\text{ cm}^3$$, and II is faster",
+          label:
+            "$$3.00\\text{ cm}^3\\text{ s}^{-1}$$, $$0.112\\text{ g}$$, $$192\\text{ cm}^3$$",
         },
         {
           correct: true,
           label:
-            "I gives $$240\\text{ cm}^3$$ and II gives $$216\\text{ cm}^3$$, and II is faster",
+            "$$3.00\\text{ cm}^3\\text{ s}^{-1}$$, $$0.112\\text{ g}$$, $$96.0\\text{ cm}^3$$",
         },
         {
           correct: false,
           label:
-            "I gives $$240\\text{ cm}^3$$ and II gives $$216\\text{ cm}^3$$, and II is slower",
+            "$$3.00\\text{ cm}^3\\text{ s}^{-1}$$, $$0\\text{ g}$$, $$96.0\\text{ cm}^3$$",
         },
         {
           correct: false,
           label:
-            "I gives $$240\\text{ cm}^3$$ and II gives $$264\\text{ cm}^3$$, and II is faster",
+            "$$1.60\\text{ cm}^3\\text{ s}^{-1}$$, $$0.112\\text{ g}$$, $$96.0\\text{ cm}^3$$",
         },
       ],
     },
@@ -37,22 +38,22 @@ const item: ItemSource = {
         {
           correct: false,
           label:
-            "Kedua-duanya memberi $$240\\text{ cm}^3$$, dan II lebih cepat",
+            "$$3.00\\text{ cm}^3\\text{ s}^{-1}$$, $$0.112\\text{ g}$$, $$192\\text{ cm}^3$$",
         },
         {
           correct: true,
           label:
-            "I memberi $$240\\text{ cm}^3$$ dan II memberi $$216\\text{ cm}^3$$, dan II lebih cepat",
+            "$$3.00\\text{ cm}^3\\text{ s}^{-1}$$, $$0.112\\text{ g}$$, $$96.0\\text{ cm}^3$$",
         },
         {
           correct: false,
           label:
-            "I memberi $$240\\text{ cm}^3$$ dan II memberi $$216\\text{ cm}^3$$, dan II lebih perlahan",
+            "$$3.00\\text{ cm}^3\\text{ s}^{-1}$$, $$0\\text{ g}$$, $$96.0\\text{ cm}^3$$",
         },
         {
           correct: false,
           label:
-            "I memberi $$240\\text{ cm}^3$$ dan II memberi $$264\\text{ cm}^3$$, dan II lebih cepat",
+            "$$1.60\\text{ cm}^3\\text{ s}^{-1}$$, $$0.112\\text{ g}$$, $$96.0\\text{ cm}^3$$",
         },
       ],
     },

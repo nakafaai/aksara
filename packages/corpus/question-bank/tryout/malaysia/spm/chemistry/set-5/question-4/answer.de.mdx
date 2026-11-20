@@ -1,27 +1,29 @@
-# Die verlorene Masse ist Sauerstoff, und nur das Chlorat hat ihn geliefert
+# Nur das Carbid liefert Gas
 
-Der Katalysator bleibt unverändert, also **ist der gesamte Massenverlust Sauerstoff**. Die Gleichung rechnet den Sauerstoff zurück auf das Chlorat, das ihn freigesetzt hat.
+Calciumoxid reagiert auch mit Wasser, aber leise, ohne Gas. **Jede Ethinblase stammt aus einer Calciumcarbid-Einheit**, also bedeuten <InlineMath math="\tfrac{480}{24\,000}=0{,}0200\text{ mol}" /> Ethin <InlineMath math="0{,}0200\text{ mol}" /> Carbid, <InlineMath math="0{,}0200\times64=1{,}28\text{ g}" /> der <InlineMath math="1{,}84\text{ g}" />. Das sind <InlineMath math="69{,}6\%" />. Teilt man die Masse des Ethins selbst, <InlineMath math="0{,}520\text{ g}" />, durch die Probe, erhält man <InlineMath math="28{,}3\%" />, und das misst das Gas, nicht den Feststoff, aus dem es kam. Die übrigen <InlineMath math="30{,}4\%" /> sind das Oxid, der andere Teil der Probe.
 
-<Chart
-  title={<>Massen im Versuch</>}
-  description={<>Das Gemisch wiegt <InlineMath math="7{,}00\text{ g}" />, es enthielt <InlineMath math="4{,}90\text{ g}" /> Kaliumchlorat, und <InlineMath math="1{,}92\text{ g}" /> Sauerstoff entwichen.</>}
-  bars="apart"
-  categories={["Gemisch", "Kaliumchlorat", "Abgegebener Sauerstoff"]}
-  series={[
-    { label: "Masse", mark: "bar", values: [7.00, 4.90, 1.92] },
-  ]}
-  valueLabel="Masse (g)"
+# Beide Feststoffe enden als Calciumhydroxid
+
+Die restlichen <InlineMath math="0{,}560\text{ g}" /> sind Calciumoxid, <InlineMath math="0{,}0100\text{ mol}" />, und es wird genauso zu Calciumhydroxid wie das Carbid. **Jedes Calciumatom endet in einem <InlineMath math="\text{Ca(OH)}_2" />, egal aus welchem Feststoff es kommt**.
+
+<Mermaid
+  title={<>Wohin das Calcium geht</>}
+  description={<>Das Gas legt das Carbid fest, der Rest der Masse ist Oxid, und beide Wege enden in Calciumhydroxid.</>}
+  chart={`
+    flowchart TD
+      N0["480 cm³ C₂H₂: 0,0200 mol"]
+      N1["CaC₂: 0,0200 mol, 1,28 g"]
+      N2["CaO: 0,560 g, 0,0100 mol"]
+      N3["Ca(OH)₂ aus CaC₂: 0,0200 mol"]
+      N4["Ca(OH)₂ aus CaO: 0,0100 mol"]
+      N5["Ca(OH)₂ insgesamt: 0,0300 mol, 2,22 g"]
+      N0 --> N1
+      N1 --> N2
+      N1 --> N3
+      N2 --> N4
+      N3 --> N5
+      N4 --> N5
+  `}
 />
 
-<BlockMath math="\begin{aligned}
-m(\text{O}_2)&=7{,}00-5{,}08=1{,}92\text{ g},\quad n=\frac{1{,}92}{32}=0{,}0600\text{ mol}\\
-n(\text{KClO}_3)&=\tfrac{2}{3}\times0{,}0600=0{,}0400\text{ mol}\\
-m&=0{,}0400\times122{,}5=4{,}90\text{ g}\Rightarrow\frac{4{,}90}{7{,}00}\times100\%=70{,}0\%\\
-V(\text{O}_2)&=0{,}0600\times24=1{,}44\text{ dm}^3
-\end{aligned}" />
-
-# Warum die anderen Antworten falsch sind
-
-- <InlineMath math="0{,}96\text{ dm}^3" /> rechnet die Stoffmenge des Chlorats, <InlineMath math="0{,}0400" />, in Gas um statt die des Sauerstoffs.
-- <InlineMath math="27{,}4\%" /> ist der Anteil des Sauerstoffs am Gemisch, nicht der des Chlorats.
-- <InlineMath math="35{,}0\%" /> setzt ein Chlorat gegen drei Sauerstoffmoleküle. **Zwei Chlorateinheiten geben drei Sauerstoffmoleküle**.
+Es entstehen also <InlineMath math="0{,}0300\text{ mol}" /> Hydroxid, <InlineMath math="2{,}22\text{ g}" />. Wer nur das Calcium aus dem Carbid zählt, kommt auf <InlineMath math="1{,}48\text{ g}" /> und übersieht die leise Reaktion.

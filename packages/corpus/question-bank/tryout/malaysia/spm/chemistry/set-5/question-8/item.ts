@@ -10,19 +10,51 @@ const item: ItemSource = {
     en: {
       kind: "choice",
       options: [
-        { correct: false, label: "$$3.3\\%$$, $$0.04\\text{ g}$$" },
-        { correct: true, label: "$$20\\%$$, $$0.20\\text{ g}$$" },
-        { correct: false, label: "$$20\\%$$, $$0.60\\text{ g}$$" },
-        { correct: false, label: "$$6.7\\%$$, $$0.20\\text{ g}$$" },
+        {
+          correct: false,
+          label:
+            "$$\\text{Pb}_3\\text{O}_4$$, $$0.640\\text{ g}$$, $$\\tfrac{1}{3}$$",
+        },
+        {
+          correct: true,
+          label:
+            "$$\\text{Pb}_3\\text{O}_4$$, $$0.720\\text{ g}$$, $$\\tfrac{1}{3}$$",
+        },
+        {
+          correct: false,
+          label:
+            "$$\\text{Pb}_3\\text{O}_4$$, $$0.720\\text{ g}$$, $$\\tfrac{2}{3}$$",
+        },
+        {
+          correct: false,
+          label:
+            "$$\\text{Pb}_3\\text{O}_4$$, $$1.44\\text{ g}$$, $$\\tfrac{1}{3}$$",
+        },
       ],
     },
     ms: {
       kind: "choice",
       options: [
-        { correct: false, label: "$$3.3\\%$$, $$0.04\\text{ g}$$" },
-        { correct: true, label: "$$20\\%$$, $$0.20\\text{ g}$$" },
-        { correct: false, label: "$$20\\%$$, $$0.60\\text{ g}$$" },
-        { correct: false, label: "$$6.7\\%$$, $$0.20\\text{ g}$$" },
+        {
+          correct: false,
+          label:
+            "$$\\text{Pb}_3\\text{O}_4$$, $$0.640\\text{ g}$$, $$\\tfrac{1}{3}$$",
+        },
+        {
+          correct: true,
+          label:
+            "$$\\text{Pb}_3\\text{O}_4$$, $$0.720\\text{ g}$$, $$\\tfrac{1}{3}$$",
+        },
+        {
+          correct: false,
+          label:
+            "$$\\text{Pb}_3\\text{O}_4$$, $$0.720\\text{ g}$$, $$\\tfrac{2}{3}$$",
+        },
+        {
+          correct: false,
+          label:
+            "$$\\text{Pb}_3\\text{O}_4$$, $$1.44\\text{ g}$$, $$\\tfrac{1}{3}$$",
+        },
       ],
     },
   },

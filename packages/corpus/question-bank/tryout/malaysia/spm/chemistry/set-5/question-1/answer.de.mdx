@@ -1,30 +1,28 @@
-# Die Unsicherheit des Volumens, nicht der Masse, entscheidet, was du behaupten kannst
+# Zwei Ablesungen, also doppelter Fehler
 
-Das Volumen des Metalls ist der Anstieg des Pegels, <InlineMath math="31{,}0-25{,}0=6{,}0\text{ cm}^3" />. Jede Ablesung kann um <InlineMath math="0{,}5\text{ cm}^3" /> abweichen, also **trägt der Anstieg beide Fehler**, <InlineMath math="\pm 1{,}0\text{ cm}^3" />, das sind <InlineMath math="16{,}7\%" />. Die Waage trägt nur <InlineMath math="0{,}02\%" /> bei.
+Der Messzylinder misst nie direkt das Volumen des Metalls. Er misst zwei Wasserstände, und **das Volumen ist ihre Differenz, also addieren sich die Unsicherheiten beider Ablesungen**. In Messung I sind das <InlineMath math="6{,}0\pm1{,}0\text{ cm}^3" />, eine Unsicherheit von <InlineMath math="16{,}7\%" />, während die <InlineMath math="\pm0{,}01\text{ g}" /> bei der Masse kaum ins Gewicht fallen. Die Dichte <InlineMath math="9{,}05\text{ g cm}^{-3}" /> kann also irgendwo zwischen <InlineMath math="7{,}54" /> und <InlineMath math="10{,}56\text{ g cm}^{-3}" /> liegen, breit genug für Eisen, Nickel, Kupfer und Silber.
+
+# Warum sich das zweite Stück trotz gröberer Waage lohnt
+
+Messung II nimmt eine gröbere Waage und gewinnt trotzdem. Das Volumen wächst auf <InlineMath math="15{,}0\pm1{,}0\text{ cm}^3" />, nur <InlineMath math="6{,}7\%" />, und die <InlineMath math="\pm0{,}5\text{ g}" /> auf <InlineMath math="135{,}8\text{ g}" /> bringen bloß <InlineMath math="0{,}37\%" /> dazu. Bei einem Quotienten wie Masse durch Volumen **addieren sich die prozentualen Unsicherheiten**, das ergibt <InlineMath math="7{,}0\%" />. Wer nur eine Wasserablesung ansetzt, als wäre der Anfangsstand exakt, halbiert den Volumenanteil und landet bei <InlineMath math="3{,}7\%" />.
+
+<BlockMath math="\begin{aligned}
+\rho&=\tfrac{135{,}8}{65{,}0-50{,}0}=9{,}05\text{ g cm}^{-3},\quad \tfrac{1{,}0}{15{,}0}\times100+\tfrac{0{,}5}{135{,}8}\times100=6{,}67\%+0{,}37\%=7{,}0\%\\
+\rho&=9{,}05\pm0{,}64\text{ g cm}^{-3}:\quad 8{,}42\le\rho\le9{,}69
+\end{aligned}" />
+
+# Welche Balken ins Fenster fallen
 
 <Chart
-  title={<>Gemessener Bereich</>}
-  description={<>Die gemessene Dichte reicht von <InlineMath math="7{,}54\text{ g cm}^{-3}" /> bis <InlineMath math="10{,}56\text{ g cm}^{-3}" />. Eisen, Kupfer und Silber liegen darin, Zink darunter.</>}
-  bars="apart"
-  categories={["Zink", "Eisen", "Kupfer", "Silber"]}
+  title={<>Metalldichten im Vergleich zum zweiten Fenster</>}
+  description={<>Die zwei waagrechten Linien markieren die kleinste und größte Dichte, die Messung II zulässt. Nur Nickel und Kupfer liegen dazwischen.</>}
+  categories={["Zink", "Eisen", "Nickel", "Kupfer", "Silber", "Blei"]}
   series={[
-    { label: "Dichte", mark: "bar", values: [7.14, 7.87, 8.96, 10.5] },
-    { label: "Unterste", mark: "line", values: [7.54, 7.54, 7.54, 7.54] },
-    { label: "Oberste", mark: "line", values: [10.56, 10.56, 10.56, 10.56] },
+    { label: "Dichte des Metalls", mark: "line", values: [7.14, 7.87, 8.91, 8.96, 10.5, 11.3] },
+    { label: "Kleinste zulässige", mark: "line", values: [8.42, 8.42, 8.42, 8.42, 8.42, 8.42] },
+    { label: "Größte zulässige", mark: "line", values: [9.69, 9.69, 9.69, 9.69, 9.69, 9.69] },
   ]}
   valueLabel="Dichte (g cm⁻³)"
 />
 
-<BlockMath math="\begin{aligned}
-\rho&=\frac{54{,}32}{6{,}0}=9{,}05\text{ g cm}^{-3}\\
-\frac{1{,}0}{6{,}0}\times100\%&=16{,}7\%\\
-9{,}05\pm16{,}7\%&\Rightarrow 7{,}54\text{ bis }10{,}56\text{ g cm}^{-3}
-\end{aligned}" />
-
-Der Messzylinder kann die drei Metalle also nicht unterscheiden. Ein Pyknometer oder eine Bürette könnte es.
-
-# Warum die anderen Antworten falsch sind
-
-- <InlineMath math="8{,}3\%" /> zählt nur eine Ablesung, obwohl der Anstieg zwei braucht.
-- Nur Kupfer übersieht die Unsicherheit. **Jede Dichte von <InlineMath math="7{,}54" /> bis <InlineMath math="10{,}56\text{ g cm}^{-3}" /> passt zu den Daten**.
-- <InlineMath math="1{,}75\text{ g cm}^{-3}" /> teilt durch die Endablesung, <InlineMath math="31{,}0\text{ cm}^3" />, die das Wasser mitzählt.
+Nur zwei Balken liegen zwischen <InlineMath math="8{,}42" /> und <InlineMath math="9{,}69\text{ g cm}^{-3}" />: Nickel mit <InlineMath math="8{,}91" /> und Kupfer mit <InlineMath math="8{,}96" />. **Ihre Dichten unterscheiden sich um weniger als ein Zehntel der Unsicherheit**, also kann diese Methode sie nicht trennen. Kupfer zu wählen, nur weil <InlineMath math="9{,}05" /> am nächsten daran liegt, liest mehr aus der Zahl heraus, als die Messung hergibt. Die vier Metalle aus Messung I zu behalten, wirft die bessere Messung weg, denn der Block muss in beide Fenster zugleich passen.

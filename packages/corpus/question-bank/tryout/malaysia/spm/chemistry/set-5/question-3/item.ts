@@ -12,19 +12,19 @@ const item: ItemSource = {
       options: [
         {
           correct: true,
-          label: "$$50$$ per ion, $$6.02\\times10^{23}$$ in total",
+          label: "$$4.86\\text{ g}$$, $$50$$, $$6.98\\times10^{23}$$",
         },
         {
           correct: false,
-          label: "$$46$$ per ion, $$5.54\\times10^{23}$$ in total",
+          label: "$$4.66\\text{ g}$$, $$50$$, $$5.78\\times10^{23}$$",
         },
         {
           correct: false,
-          label: "$$50$$ per ion, $$6.65\\times10^{23}$$ in total",
+          label: "$$4.86\\text{ g}$$, $$48$$, $$6.98\\times10^{23}$$",
         },
         {
           correct: false,
-          label: "$$48$$ per ion, $$5.78\\times10^{23}$$ in total",
+          label: "$$4.86\\text{ g}$$, $$50$$, $$3.37\\times10^{23}$$",
         },
       ],
     },
@@ -33,19 +33,19 @@ const item: ItemSource = {
       options: [
         {
           correct: true,
-          label: "$$50$$ bagi setiap ion, $$6.02\\times10^{23}$$ kesemuanya",
+          label: "$$4.86\\text{ g}$$, $$50$$, $$6.98\\times10^{23}$$",
         },
         {
           correct: false,
-          label: "$$46$$ bagi setiap ion, $$5.54\\times10^{23}$$ kesemuanya",
+          label: "$$4.66\\text{ g}$$, $$50$$, $$5.78\\times10^{23}$$",
         },
         {
           correct: false,
-          label: "$$50$$ bagi setiap ion, $$6.65\\times10^{23}$$ kesemuanya",
+          label: "$$4.86\\text{ g}$$, $$48$$, $$6.98\\times10^{23}$$",
         },
         {
           correct: false,
-          label: "$$48$$ bagi setiap ion, $$5.78\\times10^{23}$$ kesemuanya",
+          label: "$$4.86\\text{ g}$$, $$50$$, $$3.37\\times10^{23}$$",
         },
       ],
     },

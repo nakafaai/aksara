@@ -1,27 +1,41 @@
-# Pemutusan ikatan memerlukan tenaga, pembentukan ikatan membebaskannya, dan bezanya ialah perubahan entalpi
+# Setiap cawan memberi satu perubahan entalpi
 
-Pemutusan satu ikatan <InlineMath math="\text{H–H}" /> dan satu ikatan <InlineMath math="\text{Cl–Cl}" /> menyerap tenaga, dan pembentukan dua ikatan <InlineMath math="\text{H–Cl}" /> membebaskan lebih banyak, jadi tindak balas ini eksotermik. **<InlineMath math="-184\text{ kJ}" /> itu bagi dua mol hidrogen klorida**, jadi satu mol ialah <InlineMath math="-92\text{ kJ}" />. Satu mol klorin bertindak balas dalam persamaan itu, jadi <InlineMath math="0.10\text{ mol}" /> klorin membebaskan sepersepuluh daripada <InlineMath math="184\text{ kJ}" />.
-
-<Chart
-  title={<>Tenaga bagi satu mol setiap bahan</>}
-  description={<>Pemutusan ikatan menyerap <InlineMath math="678\text{ kJ}" />, pembentukan ikatan baharu membebaskan <InlineMath math="862\text{ kJ}" />, jadi <InlineMath math="184\text{ kJ}" /> dibebaskan secara keseluruhan.</>}
-  bars="apart"
-  categories={["Memutus ikatan", "Membentuk ikatan", "Keseluruhan"]}
-  series={[
-    { label: "Tenaga", mark: "bar", values: [678, -862, -184] },
-  ]}
-  valueLabel="Tenaga (kJ)"
-/>
+Kedua-dua pepejal ialah <InlineMath math="0.0100\text{ mol}" />, dan asid melebihi keperluan kedua-duanya. **<InlineMath math="50.0\text{ g}" /> larutan itulah yang menjadi panas**, bukan pepejal yang dimasukkan, dan kenaikan suhu bermakna haba keluar daripada tindak balas, jadi kedua-dua tanda negatif.
 
 <BlockMath math="\begin{aligned}
-\text{diputuskan}&=436+242=678\text{ kJ}\\
-\text{dibentuk}&=2\times431=862\text{ kJ}\\
-\Delta H&=678-862=-184\text{ kJ bagi }2\text{ HCl}=-92\text{ kJ mol}^{-1}\\
-n(\text{Cl}_2)&=\tfrac{7.1}{71}=0.10\text{ mol}\Rightarrow0.10\times184=18.4\text{ kJ}
+\Delta H_1&=-\tfrac{50.0\times4.2\times22.0}{0.0100}=-462\,000\text{ J mol}^{-1}=-462\text{ kJ mol}^{-1}\\
+\Delta H_2&=-\tfrac{50.0\times4.2\times7.0}{0.0100}=-147\,000\text{ J mol}^{-1}=-147\text{ kJ mol}^{-1}
 \end{aligned}" />
 
-# Kenapa pilihan lain salah
+# Membina kitaran
 
-- <InlineMath math="+184" /> menolak dengan arah yang salah. **Tenaga yang dibebaskan semasa pembentukan ikatan lebih besar daripada yang diserap semasa pemutusan**.
-- <InlineMath math="9.2\text{ kJ}" /> menggunakan nilai bagi setiap mol hidrogen klorida, walhal <InlineMath math="0.10\text{ mol}" /> klorin menghasilkan <InlineMath math="0.20\text{ mol}" /> daripadanya.
-- <InlineMath math="-184\text{ kJ mol}^{-1}" /> memberi nilai bagi keseluruhan persamaan, yang membentuk dua mol hidrogen klorida.
+Magnesium tidak terbakar dalam mana-mana cawan, jadi tindak balas sasaran perlu dicantum. Hantar magnesium melalui asid (<InlineMath math="\Delta H_1" />), bakar hidrogen yang terbebas menjadi air (<InlineMath math="-286\text{ kJ}" />), kemudian jalankan Eksperimen II secara terbalik supaya magnesium klorida dan air menjadi magnesium oksida dan asid. **Menterbalikkan tindak balas menukar tanda <InlineMath math="\Delta H" />**, jadi langkah itu <InlineMath math="+147\text{ kJ}" />, dan asid serta magnesium klorida saling membatalkan.
+
+<Mermaid
+  title={<>Kitaran yang membina magnesium oksida</>}
+  description={<>Melalui asid, <InlineMath math="-462-286+147" /> memberi perubahan yang sama seperti membakar magnesium terus, <InlineMath math="-601\text{ kJ mol}^{-1}" />.</>}
+  chart={`
+    flowchart TD
+      N0["Mg + ½O₂ + 2HCl"]
+      N1["MgCl₂ + H₂ + ½O₂"]
+      N2["MgCl₂ + H₂O"]
+      N3["MgO + 2HCl"]
+      N0 -->|"ΔH₁ = −462 kJ"| N1
+      N1 -->|"hidrogen terbakar: −286 kJ"| N2
+      N2 -->|"Eksperimen II diterbalikkan: +147 kJ"| N3
+      N0 -->|"laluan terus: −601 kJ"| N3
+  `}
+/>
+
+Kalau hidrogen tidak dibakar, kitaran berhenti pada <InlineMath math="-315\text{ kJ mol}^{-1}" />, dan oksigen tidak pernah bergabung dengan magnesium. Kalau kamu menambah <InlineMath math="\Delta H_2" /> tanpa menukar tandanya, kamu dapat <InlineMath math="-895\text{ kJ mol}^{-1}" />, seolah-olah melarutkan oksida membebaskan haba sekali lagi.
+
+# Daripada satu mol kepada jalur enam gram
+
+Jalur itu ialah <InlineMath math="0.250\text{ mol}" /> magnesium, dan **setiap mol yang terbakar membebaskan <InlineMath math="601\text{ kJ}" />**.
+
+<BlockMath math="\begin{aligned}
+\Delta H_f(\text{MgO})&=\Delta H_1+(-286)-\Delta H_2=-462-286+147=-601\text{ kJ mol}^{-1}\\
+Q&=\tfrac{6.00}{24}\times601=150\text{ kJ}
+\end{aligned}" />
+
+Membahagi <InlineMath math="6.00\text{ g}" /> dengan <InlineMath math="40" />, jisim molar oksida, memberi <InlineMath math="90.2\text{ kJ}" />, tetapi soalan menimbang logam, bukan abunya.

@@ -1,21 +1,31 @@
-# The rise in temperature gives the enthalpy change, and the warm liquid shrinks as it cools
+# Reading the burette twice
 
-The water warms, so dissolving releases heat and **the enthalpy change is negative**. A liquid contracts as it cools, so a flask filled to the mark while warm holds less than <InlineMath math="250\text{ cm}^3" /> once cold. The same <InlineMath math="0.100\text{ mol}" /> in a smaller volume is more concentrated.
+With phenolphthalein the reading runs from <InlineMath math="0.50" /> to <InlineMath math="22.50\text{ cm}^3" />, a titre of <InlineMath math="22.00\text{ cm}^3" />. Methyl orange carries it on to <InlineMath math="25.50" />, so **the second titre is only <InlineMath math="3.00\text{ cm}^3" />**, measured from where the first stopped, not from zero.
 
-<Mermaid
-  title={<>Why the warm flask gives a stronger solution</>}
-  description={<>Filled while warm, the solution contracts as it cools, so the same moles sit in less than <InlineMath math="250\text{ cm}^3" />.</>}
-  chart={"flowchart LR\n  W[\"Warm: filled to the mark\"] --> C[\"Cools and contracts\"]\n  C --> V[\"Volume below 250 cm3\"]\n  V --> H[\"Same moles in less volume: above 0.400 mol dm-3\"]"}
+# The second titre counts the carbonate
+
+By the time phenolphthalein turns colourless, every carbonate ion has become one hydrogencarbonate ion. **Methyl orange then needs exactly one more hydrogen ion for each of them**, so <InlineMath math="0.300\text{ mmol}" /> of acid in the second stage means <InlineMath math="0.300\text{ mmol}" /> of carbonate, <InlineMath math="0.0120\text{ mol dm}^{-3}" />. Halving the second titre, as if both steps of the carbonate happened after the first colour change, gives <InlineMath math="0.00600" />.
+
+<Chart
+  title={<>pH of the sample as the acid goes in</>}
+  description={<>The first fall near <InlineMath math="22.0\text{ cm}^3" /> is where phenolphthalein changes, the second near <InlineMath math="25.0\text{ cm}^3" /> is where methyl orange changes.</>}
+  categories={["0 cm³", "4 cm³", "8 cm³", "12 cm³", "16 cm³", "20 cm³", "21 cm³", "22 cm³", "23 cm³", "24 cm³", "25 cm³", "26 cm³", "28 cm³"]}
+  series={[
+    { label: "pH", mark: "line", values: [12.88, 12.71, 12.52, 12.28, 11.88, 10.53, 10.0, 8.33, 6.65, 6.05, 4.29, 2.71, 2.25] },
+  ]}
+  valueLabel="pH"
 />
 
+# Taking the carbonate out of the first titre
+
+The first <InlineMath math="2.20\text{ mmol}" /> of acid did two jobs at once. It neutralised the hydroxide and **gave each carbonate ion its first hydrogen ion**, so the hydroxide is <InlineMath math="2.20-0.300=1.90\text{ mmol}" />, <InlineMath math="0.0760\text{ mol dm}^{-3}" />. Calling the whole first titre hydroxide gives <InlineMath math="0.0880" />, and taking the carbonate off twice gives <InlineMath math="0.0640" />.
+
+# Back to the gas the bottle swallowed
+
+**Each carbonate ion was made from one carbon dioxide molecule**, so every <InlineMath math="\text{dm}^3" /> of the solution took in <InlineMath math="0.0120\text{ mol}" /> of the gas, <InlineMath math="288\text{ cm}^3" /> at room conditions.
+
 <BlockMath math="\begin{aligned}
-Q&=100\times4.2\times10.6=4452\text{ J}=4.452\text{ kJ}\\
-n(\text{NaOH})&=\tfrac{4.00}{40}=0.100\text{ mol}\\
-\Delta H&=-\tfrac{4.452}{0.100}=-44.5\text{ kJ mol}^{-1}
+n(\text{CO}_3^{\,2-})&=0.100\times3.00=0.300\text{ mmol}\ \Rightarrow\ c=\tfrac{0.300}{25.0}=0.0120\text{ mol dm}^{-3}\\
+n(\text{OH}^-)&=0.100\times22.00-0.300=1.90\text{ mmol}\ \Rightarrow\ c=\tfrac{1.90}{25.0}=0.0760\text{ mol dm}^{-3}\\
+V(\text{CO}_2)&=0.0120\times24\,000=288\text{ cm}^3
 \end{aligned}" />
-
-# Why the other options are wrong
-
-- A temperature rise means heat is released, so the sign is negative, not positive.
-- A less concentrated solution would need the volume to grow. **Cooling makes the liquid shrink**.
-- <InlineMath math="-4.45\text{ kJ mol}^{-1}" /> divides by <InlineMath math="1.00\text{ mol}" /> instead of <InlineMath math="0.100\text{ mol}" />, and the flask's volume does depend on temperature.

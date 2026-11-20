@@ -1,26 +1,30 @@
-# Kembali berarti mendaki dari produk ke puncak yang sama
+# Sisa penghalang setelah ada katalis
 
-Katalis menurunkan puncak menjadi <InlineMath math="58\text{ kJ mol}^{-1}" /> di atas pereaksi, dan produk berada <InlineMath math="98\text{ kJ mol}^{-1}" /> di bawahnya. **Reaksi balik dimulai dari produk, jadi mendaki seluruh <InlineMath math="58+98" />**. Kalor yang dilepas hanya bergantung pada banyaknya hidrogen peroksida yang terurai, bukan pada katalis.
+Menurunkan <InlineMath math="250\text{ kJ}" /> sebesar <InlineMath math="60\%" /> menyisakan <InlineMath math="100\text{ kJ}" /> untuk didaki. **Pendakian balik mulai dari produk, yang letaknya <InlineMath math="746\text{ kJ}" /> lebih rendah**, jadi di katalis nilainya <InlineMath math="100+746=846\text{ kJ}" />. Katalis menurunkan kedua arah dengan besar yang sama, makanya <InlineMath math="996\text{ kJ}" /> tanpa katalis milik pipa knalpot kosong, bukan konverternya.
 
 <Chart
-  title={<>Profil energi penguraian</>}
-  description={<>Relatif terhadap pereaksi di <InlineMath math="0" />, puncaknya <InlineMath math="75" /> tanpa katalis dan <InlineMath math="58" /> dengan katalis, dan produk di <InlineMath math="-98\text{ kJ mol}^{-1}" />.</>}
-  categories={["Pereaksi", "Transisi", "Produk"]}
+  title={<>Profil energi dengan dan tanpa katalis</>}
+  description={<>Kedua jalur mulai dari pereaksi dan berakhir <InlineMath math="746\text{ kJ}" /> lebih rendah. Puncak berkatalis ada <InlineMath math="100\text{ kJ}" /> di atas pereaksi, jadi mendaki balik dari produk butuh <InlineMath math="846\text{ kJ}" />.</>}
+  categories={["Pereaksi", "Awal", "Mendaki", "Puncak", "Lewat puncak", "Menurun", "Akhir", "Mendatar", "Produk"]}
   series={[
-    { label: "Tanpa katalis", mark: "line", values: [0, 75, -98] },
-    { label: "Dengan katalis", mark: "line", values: [0, 58, -98] },
+    { label: "Tanpa katalis", mark: "line", values: [0, 40, 150, 250, 100, -300, -600, -730, -746] },
+    { label: "Di platina dan rodium", mark: "line", values: [0, 15, 60, 100, -60, -380, -640, -735, -746] },
   ]}
-  valueLabel="Energi (kJ mol⁻¹)"
+  valueLabel="Energi (kJ)"
 />
 
+# Gas mana yang habis
+
+Gas buangnya membawa <InlineMath math="0{,}150\text{ mol}" /> karbon monoksida dan <InlineMath math="0{,}100\text{ mol}" /> nitrogen monoksida, dan persamaannya memakai dua banding dua, alias satu banding satu. **Nitrogen monoksida habis lebih dulu**, setelah masing-masing <InlineMath math="0{,}100\text{ mol}" /> bereaksi. Itu hanya separuh persamaan seperti tertulis, karena <InlineMath math="\Delta H" /> milik dua mol nitrogen monoksida, jadi kalornya <InlineMath math="37{,}3\text{ kJ}" />. Mengalikan <InlineMath math="746" /> dengan <InlineMath math="0{,}100" /> memberi <InlineMath math="74{,}6\text{ kJ}" /> dan diam-diam membaca nilainya per mol gas.
+
+# Yang keluar dari knalpot
+
+**Tiap nitrogen monoksida membawa tepat satu karbon monoksida**, jadi <InlineMath math="0{,}0500\text{ mol}" /> karbon monoksida lewat tanpa berubah.
+
 <BlockMath math="\begin{aligned}
-E_a(\text{balik})&=58+98=156\text{ kJ mol}^{-1}\\
-n(\text{H}_2\text{O}_2)&=0{,}100\times2{,}0=0{,}20\text{ mol}\\
-Q&=0{,}20\times98=19{,}6\text{ kJ}
+E_a(\text{Pt})&=0{,}40\times250=100\text{ kJ}\ \Rightarrow\ E_a(\leftarrow)=100+746=846\text{ kJ}\\
+n(\text{NO})&=\tfrac{2{,}40}{24}=0{,}100<n(\text{CO})=\tfrac{3{,}60}{24}=0{,}150\ \Rightarrow\ Q=\tfrac{0{,}100}{2}\times746=37{,}3\text{ kJ}\\
+V(\text{CO})&=(0{,}150-0{,}100)\times24=1{,}20\text{ dm}^3
 \end{aligned}" />
 
-# Kenapa pilihan lain salah
-
-- <InlineMath math="17\text{ kJ mol}^{-1}" /> adalah seberapa besar katalis menurunkan puncak, bukan energi aktivasi reaksi balik.
-- <InlineMath math="9{,}8\text{ kJ}" /> membagi dua kalornya, seolah <InlineMath math="98\text{ kJ}" /> untuk dua mol. **Nilainya per mol hidrogen peroksida**.
-- <InlineMath math="173\text{ kJ mol}^{-1}" /> memakai puncak tanpa katalis, padahal soalnya tentang reaksi dengan katalis.
+Memasangkan tiap nitrogen monoksida dengan setengah karbon monoksida menyisakan <InlineMath math="2{,}40\text{ dm}^3" />, perbandingan yang tidak pernah ditulis persamaannya.

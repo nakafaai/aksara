@@ -1,26 +1,32 @@
-# The chloride runs out a third of the way through, and the anode switches to oxygen
+# The chloride runs out early
 
-The solution holds only <InlineMath math="0.100\text{ mol}" /> of chloride ions, enough for <InlineMath math="0.10\text{ mol}" /> of the electrons. **Once the chloride is used up, hydroxide ions are discharged at the anode instead**, and each oxygen molecule takes four electrons, not two. At the cathode hydrogen forms the whole time. The sodium ions stay with the hydroxide ions left behind.
+Twenty cubic centimetres of brine is not much, so start by counting what it holds: <InlineMath math="0.0200\text{ dm}^3\times5.0=0.10\text{ mol}" /> of chloride ions. While chloride lasts it is discharged first at the anode, and **two electrons pass for every chlorine molecule**, so the first <InlineMath math="0.10\text{ mol}" /> of electrons empties the solution of chloride and gives <InlineMath math="0.050\text{ mol}" /> of chlorine, <InlineMath math="1.2\text{ dm}^3" />.
+
+An anode reading of <InlineMath math="3.6\text{ dm}^3" /> pretends chlorine kept coming for all <InlineMath math="0.30\text{ mol}" /> of electrons, from a solution that never had that much chloride.
 
 <Chart
-  title={<>Gases from the electrolysis</>}
-  description={<>The anode gives <InlineMath math="0.050\text{ mol}" /> of chlorine and then <InlineMath math="0.050\text{ mol}" /> of oxygen, and the cathode <InlineMath math="0.15\text{ mol}" /> of hydrogen.</>}
-  bars="apart"
-  categories={["Chlorine", "Oxygen", "Hydrogen"]}
+  title={<>Gas collected as the charge passes</>}
+  description={<>The anode line bends at <InlineMath math="0.10\text{ mol}" /> of electrons, where the chloride is used up and oxygen, at four electrons a molecule, takes over at half the rate.</>}
+  categories={["0 mol", "0.05 mol", "0.1 mol", "0.15 mol", "0.2 mol", "0.25 mol", "0.3 mol"]}
   series={[
-    { label: "Amount", mark: "bar", values: [0.050, 0.050, 0.15] },
+    { label: "Gas at the anode", mark: "line", values: [0.0, 0.6, 1.2, 1.5, 1.8, 2.1, 2.4] },
+    { label: "Gas at the cathode", mark: "line", values: [0.0, 0.6, 1.2, 1.8, 2.4, 3.0, 3.6] },
   ]}
-  valueLabel="Amount (mol)"
+  valueLabel="Gas volume (dm³)"
 />
 
+# Then the anode switches to oxygen
+
+The remaining <InlineMath math="0.20\text{ mol}" /> of electrons still has to leave the solution at the anode, and with the chloride gone **water itself is oxidised**, <InlineMath math="2\text{H}_2\text{O}\rightarrow\text{O}_2+4\text{H}^++4e^-" />. Four electrons per oxygen molecule makes <InlineMath math="0.050\text{ mol}" />, another <InlineMath math="1.2\text{ dm}^3" />, so the anode collects <InlineMath math="2.4\text{ dm}^3" /> in total. The <InlineMath math="1.2\text{ dm}^3" /> row switches the current off in your head the moment the chloride is used up.
+
+# The cathode, and what stays in the beaker
+
+At the cathode nothing changes during the run. Water is reduced to hydrogen and hydroxide ions, **two electrons for every hydrogen molecule**, so <InlineMath math="0.15\text{ mol}" /> or <InlineMath math="3.6\text{ dm}^3" /> of hydrogen forms.
+
 <BlockMath math="\begin{aligned}
-n(\text{Cl}^-)&=5.0\times0.0200=0.100\text{ mol}\Rightarrow0.050\text{ mol Cl}_2\ (0.10\text{ mol }e^-)\\
-4\text{OH}^-&\rightarrow\text{O}_2+2\text{H}_2\text{O}+4e^-:\ \tfrac{0.30-0.10}{4}=0.050\text{ mol O}_2\\
-V_{\text{anode}}&=(0.050+0.050)\times24=2.4\text{ dm}^3,\quad V_{\text{cathode}}=\tfrac{0.30}{2}\times24=3.6\text{ dm}^3
+n(\text{Cl}^-)&=0.0200\times5.0=0.10\text{ mol}\ \Rightarrow\ V(\text{Cl}_2)=\tfrac{0.10}{2}\times24=1.2\text{ dm}^3\\
+V(\text{O}_2)&=\tfrac{0.30-0.10}{4}\times24=1.2\text{ dm}^3,\quad V(\text{H}_2)=\tfrac{0.30}{2}\times24=3.6\text{ dm}^3\\
+n(\text{OH}^-)&=0.30-0.20=0.10\text{ mol}=n(\text{Na}^+)
 \end{aligned}" />
 
-# Why the other options are wrong
-
-- <InlineMath math="3.6\text{ dm}^3" /> at the anode treats all the electrons as making chlorine, but only <InlineMath math="0.100\text{ mol}" /> of chloride is present.
-- <InlineMath math="1.2\text{ dm}^3" /> stops the anode gas when the chloride runs out. **The current keeps flowing and discharges hydroxide ions**.
-- The hydrogen ions removed at the cathode outnumber the hydroxide ions removed at the anode, so <InlineMath math="0.100\text{ mol}" /> of hydroxide ions stays in solution with the sodium ions.
+The ion count settles the last part. The cathode made <InlineMath math="0.30\text{ mol}" /> of hydroxide ions and the oxygen step made <InlineMath math="0.20\text{ mol}" /> of hydrogen ions, which cancel the same amount of hydroxide. That leaves <InlineMath math="0.10\text{ mol}" /> of hydroxide beside <InlineMath math="0.10\text{ mol}" /> of sodium ions, a sodium hydroxide solution. An acidic answer counts the hydrogen ions from the oxygen step and forgets that the cathode made more hydroxide.

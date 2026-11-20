@@ -1,26 +1,35 @@
-# Ketten mit der Kettenmasse zählen, Kohlenstoff aber mit der Wiederholungseinheit
+# Vom Stück zurück zum ganzen Kuchen
 
-Jede Kette ist ein Molekül der Masse <InlineMath math="28{.}000" />, also gibt es wenige Ketten. **Dem Kohlenstoff ist egal, wie die Einheiten verknüpft sind**: Polyethen ist <InlineMath math="(\text{CH}_2)_n" />, und je <InlineMath math="14\text{ g}" /> enthalten ein Mol Kohlenstoffatome, die je ein Kohlenstoffdioxidmolekül ergeben.
+Ist ein Stück ein Zehntel des Kuchens, dann ist der ganze Kuchen zehn Stücke. Mit dem Kolben ist es genauso. Die Probe hat <InlineMath math="0{,}0300\times0{,}500=0{,}0150\text{ mol}" /> Brom verbraucht. Jedes Styrol nimmt ein Brommolekül auf, also enthielten die <InlineMath math="25{,}0\text{ cm}^3" /> <InlineMath math="0{,}0150\text{ mol}" /> Styrol. **Diese Probe ist aber nur ein Zehntel der <InlineMath math="250\text{ cm}^3" />**, die ganze Lösung enthält also <InlineMath math="0{,}150\text{ mol}" />. Ein Mol Styrol wiegt <InlineMath math="104\text{ g}" />, die ganze Lösung hält also <InlineMath math="15{,}6\text{ g}" />.
 
-<Chart
-  title={<>Stoffmengen in der Tüte</>}
-  description={<>Die Tüte enthält <InlineMath math="2{,}5\times10^{-4}\text{ mol}" /> Ketten, aber <InlineMath math="0{,}50\text{ mol}" /> <InlineMath math="\text{CH}_2" />-Einheiten, die <InlineMath math="0{,}50\text{ mol}" /> Kohlenstoffdioxid ergeben.</>}
-  bars="apart"
-  categories={["CH₂-Einheiten", "Kohlenstoffdioxid"]}
-  series={[
-    { label: "Stoffmenge", mark: "bar", values: [0.50, 0.50] },
-  ]}
-  valueLabel="Stoffmenge (mol)"
+<Mermaid
+  title={<>Von der Bürette rückwärts gerechnet</>}
+  description={<>Das Brom, das eine Probe verbraucht, legt das Styrol in der ganzen Lösung fest, das dann mit den Einheiten im Block verglichen wird.</>}
+  chart={`
+    flowchart TD
+      N0["Bromwasser: 30,0 cm³ × 0,500 = 0,0150 mol Br₂"]
+      N1["Probe von 25,0 cm³: 0,0150 mol Styrol"]
+      N2["Ganze 250 cm³: 0,150 mol Styrol, 15,6 g"]
+      N3["Block von 20,8 g: 0,200 mol Wiederholungseinheiten"]
+      N4["Zurückgewonnen: 75,0 %"]
+      N0 --> N1
+      N1 --> N2
+      N2 --> N4
+      N3 --> N4
+  `}
 />
 
+Vergisst du den Faktor zehn, bleibst du bei <InlineMath math="1{,}56\text{ g}" /> und einer Rückgewinnung von nur <InlineMath math="7{,}50\%" /> stehen.
+
+# Wie viel vom Schaum zurückkam
+
+Ein Polymer zu machen ist wie Perlen auf eine Kette zu fädeln. Jede Perle behält alle ihre Atome, nur die Verbindung ändert sich. **Eine Wiederholungseinheit hat also dieselben Atome wie Styrol, <InlineMath math="\text{C}_8\text{H}_8" />**. Der Block enthält <InlineMath math="0{,}200\text{ mol}" /> Einheiten, und <InlineMath math="0{,}150\text{ mol}" /> davon kamen zurück.
+
 <BlockMath math="\begin{aligned}
-n(\text{Ketten})&=\tfrac{7{,}0}{28{.}000}=2{,}5\times10^{-4}\text{ mol}\Rightarrow2{,}5\times10^{-4}\times6{,}02\times10^{23}=1{,}51\times10^{20}\\
-n(\text{CH}_2)&=\tfrac{7{,}0}{14}=0{,}50\text{ mol}\Rightarrow n(\text{CO}_2)=0{,}50\text{ mol}\\
-V&=0{,}50\times24=12{,}0\text{ dm}^3
+n(\text{C}_8\text{H}_8)&=\tfrac{20{,}8}{104}=0{,}200\text{ mol}\\
+\tfrac{0{,}150}{0{,}200}\times100\%&=75{,}0\%
 \end{aligned}" />
 
-# Warum die anderen Antworten falsch sind
+# Nur das Stück hat Brom gesehen
 
-- <InlineMath math="6{,}0\text{ dm}^3" /> zählt einen Kohlenstoff pro Etheneinheit, <InlineMath math="\text{C}_2\text{H}_4" />, die zwei hat.
-- <InlineMath math="1{,}51\times10^{23}" /> zählt die <InlineMath math="\text{CH}_2" />-Einheiten als Ketten. **Eine Kette ist ein Molekül aus tausend Etheneinheiten**.
-- <InlineMath math="24{,}0\text{ dm}^3" /> zählt jedes Kohlenstoffatom doppelt.
+Du hast nur ein Stück getestet, also ist nur dieses Stück zu Produkt geworden. **Das Produkt im Kolben stammt aus <InlineMath math="0{,}0150\text{ mol}" /> Styrol**. Jedes <InlineMath math="\text{C}_8\text{H}_8\text{Br}_2" /> hat <InlineMath math="M_r=104+160=264" />, im Kolben sind also <InlineMath math="3{,}96\text{ g}" />. Für die ganzen <InlineMath math="250\text{ cm}^3" /> wären es <InlineMath math="39{,}6\text{ g}" />, doch die sind nie entstanden. Und mit nur einem Bromatom statt zwei kommst du auf <InlineMath math="M_r=184" /> und <InlineMath math="2{,}76\text{ g}" />.

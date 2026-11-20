@@ -1,26 +1,29 @@
-# Copper(II) ions speed the reaction up, but they are not a true catalyst here
+# Reading the rate off the curve
 
-Zinc displaces copper from the copper(II) ions, and the copper that coats the zinc **makes a tiny cell that speeds up the release of hydrogen**. But the displacement uses <InlineMath math="0.0010\text{ mol}" /> of zinc that never reaches the acid, so flask II makes less hydrogen.
+At <InlineMath math="40\text{ s}" /> the syringe holds <InlineMath math="120\text{ cm}^3" />, so **the average rate over that stretch is <InlineMath math="3.00\text{ cm}^3\text{ s}^{-1}" />**. Spreading the final <InlineMath math="192\text{ cm}^3" /> over the <InlineMath math="120\text{ s}" /> it took gives <InlineMath math="1.60" />, an average for the whole run rather than for the opening.
+
+# The acid gives out before the iron
+
+Iron is <InlineMath math="0.0100\text{ mol}" /> and the sulfuric acid <InlineMath math="0.00800\text{ mol}" />, and they react one to one. **The curve flattens at <InlineMath math="192\text{ cm}^3" />, which is <InlineMath math="0.00800\text{ mol}" /> of hydrogen**, exactly the acid's worth, so <InlineMath math="0.00200\text{ mol}" /> of iron, <InlineMath math="0.112\text{ g}" />, is still lying in the flask. Taking all the iron as used up ignores that the graph stops short of the <InlineMath math="240\text{ cm}^3" /> the iron could give.
 
 <Chart
-  title={<>Hydrogen collected with time</>}
-  description={<>Flask I rises steadily to <InlineMath math="240\text{ cm}^3" />. Flask II rises faster at first and levels off at <InlineMath math="216\text{ cm}^3" />, about <InlineMath math="80\text{ s}" /> in.</>}
-  categories={["0", "20", "40", "60", "80", "100", "120"]}
+  title={<>Hydrogen ions supplied and hydrogen formed</>}
+  description={<>In both flasks the acid runs out first. The iron could have given <InlineMath math="10.0\text{ mmol}" /> of hydrogen each time.</>}
+  bars="apart"
+  categories={["Sulfuric acid", "Hydrochloric acid"]}
   series={[
-    { label: "Flask I", mark: "line", values: [0, 70, 125, 170, 205, 228, 240] },
-    { label: "Flask II", mark: "line", values: [0, 110, 175, 205, 216, 216, 216] },
+    { label: "Hydrogen ions supplied", mark: "bar", values: [16.0, 8.0] },
+    { label: "Hydrogen formed", mark: "bar", values: [8.0, 4.0] },
+    { label: "Hydrogen the iron could give", mark: "bar", values: [10.0, 10.0] },
   ]}
-  valueLabel="Volume of hydrogen (cm³)"
+  valueLabel="Amount (mmol)"
 />
 
+# Same concentration, half the hydrogen
+
+The hydrochloric acid holds <InlineMath math="0.00800\text{ mol}" /> of hydrogen ions, half of what the sulfuric acid carried. **Two hydrochloric acid molecules make each hydrogen molecule**, so the second flask gives <InlineMath math="0.00400\text{ mol}" />, <InlineMath math="96.0\text{ cm}^3" />, and iron is again left over. Expecting <InlineMath math="192\text{ cm}^3" /> a second time treats the two acids as if equal concentrations meant equal hydrogen.
+
 <BlockMath math="\begin{aligned}
-n(\text{Zn})&=\tfrac{0.65}{65}=0.010\text{ mol}\Rightarrow V_{\text{I}}=0.010\times24\,000=240\text{ cm}^3\\
-n(\text{Cu}^{2+})&=0.0050\times0.20=0.0010\text{ mol, which takes }0.0010\text{ mol Zn}\\
-V_{\text{II}}&=(0.010-0.0010)\times24\,000=216\text{ cm}^3
+\bar r&=\tfrac{120\text{ cm}^3}{40\text{ s}}=3.00\text{ cm}^3\text{ s}^{-1},\quad n(\text{Fe})'=0.0100-0.00800=0.00200\text{ mol}=0.112\text{ g}\\
+n(\text{H}_2)&=\tfrac{0.00800}{2}=0.00400\text{ mol}\ \Rightarrow\ V=0.00400\times24\,000=96.0\text{ cm}^3
 \end{aligned}" />
-
-# Why the other options are wrong
-
-- <InlineMath math="240\text{ cm}^3" /> for both ignores the zinc that went into displacing copper.
-- A slower II misses the effect of the copper on the zinc, which speeds the reaction up.
-- <InlineMath math="264\text{ cm}^3" /> imagines that copper also gives hydrogen. **Copper is below hydrogen and does not react with the acid**.

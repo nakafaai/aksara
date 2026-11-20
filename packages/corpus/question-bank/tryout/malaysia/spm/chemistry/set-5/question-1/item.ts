@@ -12,23 +12,19 @@ const item: ItemSource = {
       options: [
         {
           correct: false,
-          label:
-            "$$9.05\\text{ g cm}^{-3} \\pm 8.3\\%$$, so the metal is copper",
+          label: "$$7.0\\%$$, copper only",
         },
         {
           correct: true,
-          label:
-            "$$9.05\\text{ g cm}^{-3} \\pm 16.7\\%$$, so iron, copper and silver all fit",
+          label: "$$7.0\\%$$, nickel or copper",
         },
         {
           correct: false,
-          label:
-            "$$9.05\\text{ g cm}^{-3} \\pm 16.7\\%$$, so the metal is copper",
+          label: "$$3.7\\%$$, nickel or copper",
         },
         {
           correct: false,
-          label:
-            "$$1.75\\text{ g cm}^{-3} \\pm 3.2\\%$$, so none of the metals fit",
+          label: "$$7.0\\%$$, iron, nickel, copper or silver",
         },
       ],
     },
@@ -37,23 +33,19 @@ const item: ItemSource = {
       options: [
         {
           correct: false,
-          label:
-            "$$9.05\\text{ g cm}^{-3} \\pm 8.3\\%$$, jadi logam itu ialah kuprum",
+          label: "$$7.0\\%$$, kuprum sahaja",
         },
         {
           correct: true,
-          label:
-            "$$9.05\\text{ g cm}^{-3} \\pm 16.7\\%$$, jadi besi, kuprum dan argentum semuanya sepadan",
+          label: "$$7.0\\%$$, nikel atau kuprum",
         },
         {
           correct: false,
-          label:
-            "$$9.05\\text{ g cm}^{-3} \\pm 16.7\\%$$, jadi logam itu ialah kuprum",
+          label: "$$3.7\\%$$, nikel atau kuprum",
         },
         {
           correct: false,
-          label:
-            "$$1.75\\text{ g cm}^{-3} \\pm 3.2\\%$$, jadi tiada logam yang sepadan",
+          label: "$$7.0\\%$$, besi, nikel, kuprum atau argentum",
         },
       ],
     },

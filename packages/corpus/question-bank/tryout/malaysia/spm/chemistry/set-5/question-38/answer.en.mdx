@@ -1,17 +1,28 @@
-# How many cross-links a polymer has decides how it behaves when heated or stretched
+# Counting acid groups
 
-Melamine is a thermoset: **its chains are tied together by many covalent cross-links**, so heat cannot make them slide. Polyethene is a thermoplastic, its chains held only by weak forces between molecules. An elastomer sits between them, with a few cross-links that pull the stretched chains back.
+The repeating unit <InlineMath math="\text{C}_3\text{H}_4\text{O}_2" /> has <InlineMath math="M_r=72" />, so the batch holds <InlineMath math="0.200\text{ mol}" /> of units, and **every unit carries exactly one <InlineMath math="\text{-COOH}" /> group**. Only three quarters of them meet the alkali: <InlineMath math="0.150\text{ mol}" /> of sodium hydroxide, <InlineMath math="75.0\text{ cm}^3" />. Neutralising every group would take <InlineMath math="100\text{ cm}^3" />.
 
-<Mermaid
-  title={<>Structure and behaviour of three kinds of polymer</>}
-  description={<>A thermoplastic softens, an elastomer stretches and springs back, and a thermoset does not soften.</>}
-  chart={"flowchart LR\n  A[\"Thermoplastic: weak forces between chains\"] --> A2[\"softens, can be remoulded\"]\n  B[\"Elastomer: a few cross-links\"] --> B2[\"stretches and springs back\"]\n  C[\"Thermoset: many cross-links\"] --> C2[\"does not soften\"]"}
+<Chart
+  title={<>Acid groups before and after the alkali</>}
+  description={<>All <InlineMath math="200\text{ mmol}" /> of units start as acid groups. The alkali converts <InlineMath math="150\text{ mmol}" /> of them and leaves <InlineMath math="50\text{ mmol}" /> untouched.</>}
+  bars="apart"
+  categories={["Before", "After"]}
+  series={[
+    { label: "Acid groups", mark: "bar", values: [200, 50] },
+    { label: "Sodium salt groups", mark: "bar", values: [0, 150] },
+  ]}
+  valueLabel="Groups (mmol)"
 />
 
-So statements I and II are correct.
+# What the dried solid gains
 
-# Why the other options are wrong
+**Each converted group swaps one hydrogen atom for one sodium atom**, so it gains <InlineMath math="23-1=22" /> in mass, and the water formed is driven off when the product dries. Adding the whole sodium hydroxide, <InlineMath math="40" /> per group, gives <InlineMath math="20.4\text{ g}" /> and keeps the water that left. Converting all <InlineMath math="0.200\text{ mol}" /> gives <InlineMath math="18.8\text{ g}" />.
 
-- I alone leaves out II, the reason a thermoplastic softens.
-- III is wrong. **Without any cross-links, stretched chains would slide apart and not spring back**.
-- IV is wrong: a thermoset cannot be melted down, which is why it is the hardest to recycle.
+<BlockMath math="\begin{aligned}
+n&=\tfrac{14.4}{72}=0.200\text{ mol},\quad n(\text{NaOH})=0.750\times0.200=0.150\text{ mol}\ \Rightarrow\ V=\tfrac{0.150}{2.00}=0.0750\text{ dm}^3\\
+m&=14.4+0.150\times(23-1)=17.7\text{ g},\quad 200\times17.7=3540\text{ g}=3.54\text{ kg}
+\end{aligned}" />
+
+# Two hundred times the dried mass
+
+The absorbency belongs to the finished product, whose ionic groups pull water into the network, so **the factor of <InlineMath math="200" /> multiplies <InlineMath math="17.7\text{ g}" />**. Applying it to the <InlineMath math="14.4\text{ g}" /> of starting polymer gives <InlineMath math="2.88\text{ kg}" />, a polymer that has not met the alkali yet.

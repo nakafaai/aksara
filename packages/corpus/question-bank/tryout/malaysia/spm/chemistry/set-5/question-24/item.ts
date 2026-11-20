@@ -10,19 +10,51 @@ const item: ItemSource = {
     en: {
       kind: "choice",
       options: [
-        { correct: true, label: "$$0.48\\text{ g}$$, two thirds" },
-        { correct: false, label: "$$0.96\\text{ g}$$, two thirds" },
-        { correct: false, label: "$$0.48\\text{ g}$$, one third" },
-        { correct: false, label: "$$0.32\\text{ g}$$, two thirds" },
+        {
+          correct: true,
+          label:
+            "$$2.13\\text{ g}$$, $$\\tfrac{1}{6}$$, $$0.800\\text{ mol dm}^{-3}$$",
+        },
+        {
+          correct: false,
+          label:
+            "$$2.13\\text{ g}$$, $$\\tfrac{5}{6}$$, $$0.800\\text{ mol dm}^{-3}$$",
+        },
+        {
+          correct: false,
+          label:
+            "$$6.39\\text{ g}$$, $$\\tfrac{1}{6}$$, $$0.800\\text{ mol dm}^{-3}$$",
+        },
+        {
+          correct: false,
+          label:
+            "$$2.13\\text{ g}$$, $$\\tfrac{1}{6}$$, $$1.40\\text{ mol dm}^{-3}$$",
+        },
       ],
     },
     ms: {
       kind: "choice",
       options: [
-        { correct: true, label: "$$0.48\\text{ g}$$, dua pertiga" },
-        { correct: false, label: "$$0.96\\text{ g}$$, dua pertiga" },
-        { correct: false, label: "$$0.48\\text{ g}$$, satu pertiga" },
-        { correct: false, label: "$$0.32\\text{ g}$$, dua pertiga" },
+        {
+          correct: true,
+          label:
+            "$$2.13\\text{ g}$$, $$\\tfrac{1}{6}$$, $$0.800\\text{ mol dm}^{-3}$$",
+        },
+        {
+          correct: false,
+          label:
+            "$$2.13\\text{ g}$$, $$\\tfrac{5}{6}$$, $$0.800\\text{ mol dm}^{-3}$$",
+        },
+        {
+          correct: false,
+          label:
+            "$$6.39\\text{ g}$$, $$\\tfrac{1}{6}$$, $$0.800\\text{ mol dm}^{-3}$$",
+        },
+        {
+          correct: false,
+          label:
+            "$$2.13\\text{ g}$$, $$\\tfrac{1}{6}$$, $$1.40\\text{ mol dm}^{-3}$$",
+        },
       ],
     },
   },

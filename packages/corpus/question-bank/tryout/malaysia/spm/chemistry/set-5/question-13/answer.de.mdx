@@ -1,28 +1,39 @@
-# Jede Bindung verbindet zwei Atome, also die Zahl pro Atom halbieren
+# Was auf dem Filterpapier bleibt
 
-Jedes Kohlenstoffatom im Diamant bildet vier Bindungen, aber **jede Bindung teilen sich die zwei Atome, die sie verbindet**, also hat Diamant zwei Bindungen pro Atom. Die drei Bindungen pro Atom im Graphit geben anderthalb.
+Rühr Zucker und Sand in Tee. Der Zucker verschwindet, der Sand bleibt unten liegen. Hier spielt Schwefelkohlenstoff den Tee. **Kleine Moleküle wie <InlineMath math="\text{S}_8" /> lösen sich in einem organischen Lösungsmittel, ein riesiges kovalentes Gitter wie Diamant nicht**. Die <InlineMath math="6{,}00\text{ g}" /> auf dem Papier sind also Diamant. Der gelöste Schwefel ist das, was fehlt, <InlineMath math="12{,}40-6{,}00=6{,}40\text{ g}" />.
 
-<Chart
-  title={<>Bindungen pro Kohlenstoffatom</>}
-  description={<>Diamant hat <InlineMath math="2" /> Bindungen pro Kohlenstoffatom, Graphit <InlineMath math="1{,}5" />.</>}
-  bars="apart"
-  categories={["Diamant", "Graphit"]}
-  series={[
-    { label: "Bindungen pro Atom", mark: "bar", values: [2, 1.5] },
-  ]}
-  valueLabel="Bindungen pro Atom"
+<Mermaid
+  title={<>Jeder Feststoff durch den Filter verfolgt</>}
+  description={<>Das organische Lösungsmittel nimmt die Schwefelmoleküle mit und lässt das Diamantgitter zurück, dann werden die Bindungen in jedem Teil gezählt.</>}
+  chart={`
+    flowchart TD
+      N0["Pulver, 12,40 g"]
+      N1["Mit Schwefelkohlenstoff geschüttelt, dann filtriert"]
+      N2["Auf dem Papier: Diamant, 6,00 g"]
+      N3["In der Lösung: S₈-Ringe, 6,40 g"]
+      N4["0,500 mol C, 1,00 mol C-C-Bindungen"]
+      N5["0,0250 mol S₈, 0,200 mol S-S-Bindungen"]
+      N0 --> N1
+      N1 --> N2
+      N1 --> N3
+      N2 --> N4
+      N3 --> N5
+  `}
 />
 
+Verwechselst du, welcher Feststoff bleibt, liegen <InlineMath math="6{,}00\text{ g}" /> Schwefel auf dem Papier und <InlineMath math="6{,}40\text{ g}" /> Diamant in der Lösung. Dann kommen <InlineMath math="1{,}13\times10^{23}" /> und <InlineMath math="6{,}42\times10^{23}" /> heraus.
+
+# Jede Bindung hat zwei Enden
+
+Ein Händedruck braucht zwei Hände. Zählst du Hände, zählst du jeden Händedruck doppelt. Bei Bindungen ist es genauso. Ein Kohlenstoffatom im Diamant greift nach vier Nachbarn, aber jede Bindung teilt es mit dem Nachbarn. **Diamant hat also zwei Bindungen pro Kohlenstoffatom**. Im <InlineMath math="\text{S}_8" />-Ring stehen acht Freunde im Kreis und halten sich an den Händen, das sind acht Händedrücke, eine Bindung pro Schwefelatom.
+
 <BlockMath math="\begin{aligned}
-n(\text{C})&=\tfrac{6{,}0}{12}=0{,}50\text{ mol}\\
-\text{Diamant}&:\ 0{,}50\times\tfrac{4}{2}=1{,}0\text{ mol}=6{,}02\times10^{23}\\
-\text{Graphit}&:\ 0{,}50\times\tfrac{3}{2}=0{,}75\text{ mol}=4{,}52\times10^{23}
+\text{C}:\ \tfrac{6{,}00}{12}\times2&=1{,}00\text{ mol}\ \Rightarrow\ 6{,}02\times10^{23}\\
+\text{S}_8:\ \tfrac{6{,}40}{256}\times8&=0{,}200\text{ mol}\ \Rightarrow\ 1{,}20\times10^{23}
 \end{aligned}" />
 
-Das vierte Elektron im Graphit ist entlang der Schicht delokalisiert und bildet keine Bindung zwischen zwei bestimmten Atomen, darum leitet Graphit.
+Vier Bindungen pro Kohlenstoff und zwei pro Schwefel zählen jede Bindung von beiden Enden. Beide Antworten verdoppeln sich auf <InlineMath math="1{,}20\times10^{24}" /> und <InlineMath math="2{,}41\times10^{23}" />.
 
-# Warum die anderen Antworten falsch sind
+# Lösen lässt die Ringe ganz
 
-- <InlineMath math="1{,}20\times10^{24}" /> zählt jede Bindung doppelt, einmal von jedem Atom an ihren Enden.
-- Gleiche Zahlen übersehen, dass ein Graphitatom drei Bindungen bildet, nicht vier.
-- <InlineMath math="3{,}01\times10^{23}" /> halbiert zweimal. **Einmal halbieren, für die zwei Enden jeder Bindung**.
+Kipp eine Schachtel Perlenarmbänder ins Wasser. Die Armbänder treiben auseinander, aber jedes bleibt geschlossen. So löst sich Schwefel. **Das Lösungsmittel zieht nur ganze <InlineMath math="\text{S}_8" />-Ringe voneinander weg, es überwindet die schwachen Kräfte zwischen den Molekülen und bricht <InlineMath math="0" /> kovalente Bindungen**. Wären die Ringe aufgegangen, wären es <InlineMath math="1{,}20\times10^{23}" />, doch dann käme beim Verdunsten des Lösungsmittels kein rhombischer Schwefel zurück, und genau der kommt zurück.

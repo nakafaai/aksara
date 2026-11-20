@@ -1,26 +1,30 @@
-# Die Titration gibt die molare Masse, die molare Masse die Säure, und die Säure benennt den Ester
+# Zuerst die Elektrodenreaktion ausgleichen
 
-Eine einprotonige Säure reagiert eins zu eins mit Natronlauge, also ist die Stoffmenge der Lauge die der Säure. **Ihre molare Masse, <InlineMath math="74" />, passt nur zu <InlineMath math="n=2" />**, Propansäure. Mit Methanol gibt sie Methylpropanoat, <InlineMath math="\text{C}_2\text{H}_5\text{COOCH}_3" />, dessen Name mit dem Alkoholteil beginnt.
+Atome und Ladung müssen beide stimmen. Links stehen acht Wasserstoffatome, sechs im Ethanol und zwei im Wasser, und die Ethansäure behält nur vier, also **gehen vier Wasserstoffionen weg und vier Elektronen mit ihnen**, <InlineMath math="x=4" />. Wer mit <InlineMath math="x=2" /> ausgleicht, verliert zwei Wasserstoffatome, halbiert die Elektronen pro Molekül und verdoppelt jede Ethanolmasse, und dann liegen alle drei Fahrer darüber.
 
-<Chart
-  title={<>Massen bei der Veresterung</>}
-  description={<>Die Säure wiegt <InlineMath math="0{,}74\text{ g}" />, volle Ausbeute an Ester wären <InlineMath math="0{,}88\text{ g}" />, und <InlineMath math="75\%" /> davon sind <InlineMath math="0{,}66\text{ g}" />.</>}
-  bars="apart"
-  categories={["Säure", "Ester, volle Ausbeute", "Ester, 75 % Ausbeute"]}
-  series={[
-    { label: "Masse", mark: "bar", values: [0.74, 0.88, 0.66] },
-  ]}
-  valueLabel="Masse (g)"
-/>
+# Vom Messwert zu Mikrogramm
+
+Die <InlineMath math="0{,}193\text{ C}" /> von Fahrer Q sind <InlineMath math="2{,}00\times10^{-6}\text{ mol}" /> Elektronen, also **ist ein Viertel davon, <InlineMath math="5{,}00\times10^{-7}\text{ mol}" />, das Ethanol**, <InlineMath math="23{,}0\ \mu\text{g}" />. Das steckte in <InlineMath math="50{,}0\text{ cm}^3" />, der Grenzwert gilt aber je <InlineMath math="100\text{ cm}^3" />, also trägt Qs Atem <InlineMath math="46{,}0\ \mu\text{g}" /> in jeden <InlineMath math="100\text{ cm}^3" />.
 
 <BlockMath math="\begin{aligned}
-n&=0{,}0250\times0{,}20=0{,}0050\text{ mol}\Rightarrow M_r=\tfrac{0{,}37}{0{,}0050}=74\\
-14n+46&=74\Rightarrow n=2:\ \text{C}_2\text{H}_5\text{COOH}\\
-m(\text{C}_2\text{H}_5\text{COOCH}_3)&=\tfrac{0{,}74}{74}\times88\times0{,}75=0{,}66\text{ g}
+n(e^-)&=\tfrac{0{,}193}{96\,500}=2{,}00\times10^{-6}\text{ mol},\quad n(\text{C}_2\text{H}_5\text{OH})=\tfrac{2{,}00\times10^{-6}}{4}=5{,}00\times10^{-7}\text{ mol}\\
+m&=2\times5{,}00\times10^{-7}\times46=4{,}60\times10^{-5}\text{ g}=46{,}0\ \mu\text{g}
 \end{aligned}" />
 
-# Warum die anderen Antworten falsch sind
+Der direkte Vergleich der <InlineMath math="23{,}0\ \mu\text{g}" /> mit dem Grenzwert übersieht, dass die Probe nur halb so groß wie das Bezugsvolumen war, und dann wirkt niemand schuldig. Wiegt man das Produkt, Ethansäure mit <InlineMath math="M_r=60" />, statt des Ethanols, kommen <InlineMath math="60{,}0\ \mu\text{g}" /> heraus.
 
-- <InlineMath math="\text{CH}_3\text{COOH}" /> hat die molare Masse <InlineMath math="60" />, die nicht zur Titration passt.
-- Propylmethanoat vertauscht die Teile. **Der Alkohol, Methanol, gibt den Methylteil des Namens**.
-- <InlineMath math="0{,}88\text{ g}" /> ist die Masse bei voller Ausbeute und lässt die <InlineMath math="75\%" /> weg.
+# Drei Fahrer gegen eine Linie
+
+Dieselben Schritte machen aus der Ladung von P <InlineMath math="23{,}0\ \mu\text{g}" /> und aus der von R <InlineMath math="35{,}8\ \mu\text{g}" /> je <InlineMath math="100\text{ cm}^3" />. **R liegt um weniger als ein Mikrogramm darüber**, und genau deshalb gibt das Gerät die Ladung auf drei signifikante Stellen an. Q und R liegen über dem Grenzwert, P nicht.
+
+<Chart
+  title={<>Jeder Fahrer gegen den Grenzwert</>}
+  description={<>Q liegt deutlich darüber, und R überschreitet die Linie um weniger als ein Mikrogramm.</>}
+  bars="apart"
+  categories={["Fahrer P", "Fahrer Q", "Fahrer R"]}
+  series={[
+    { label: "Ethanol im Atem", mark: "bar", values: [23.0, 46.0, 35.8] },
+    { label: "Gesetzlicher Grenzwert", mark: "bar", values: [35, 35, 35] },
+  ]}
+  valueLabel="Ethanol je 100 cm³ (µg)"
+/>

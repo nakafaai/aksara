@@ -1,27 +1,41 @@
-# Breaking bonds costs energy, forming bonds releases it, and the difference is the enthalpy change
+# Each cup gives one enthalpy change
 
-Breaking one <InlineMath math="\text{H–H}" /> and one <InlineMath math="\text{Cl–Cl}" /> bond takes in energy, and forming two <InlineMath math="\text{H–Cl}" /> bonds gives out more, so the reaction is exothermic. **That <InlineMath math="-184\text{ kJ}" /> belongs to two moles of hydrogen chloride**, so one mole is <InlineMath math="-92\text{ kJ}" />. One mole of chlorine reacts in that equation, so <InlineMath math="0.10\text{ mol}" /> of chlorine releases a tenth of <InlineMath math="184\text{ kJ}" />.
-
-<Chart
-  title={<>Energy for one mole of each reactant</>}
-  description={<>Breaking the bonds takes in <InlineMath math="678\text{ kJ}" />, forming the new ones releases <InlineMath math="862\text{ kJ}" />, so overall <InlineMath math="184\text{ kJ}" /> is released.</>}
-  bars="apart"
-  categories={["Breaking bonds", "Forming bonds", "Overall"]}
-  series={[
-    { label: "Energy", mark: "bar", values: [678, -862, -184] },
-  ]}
-  valueLabel="Energy (kJ)"
-/>
+Both solids weigh in at <InlineMath math="0.0100\text{ mol}" />, and the acid outnumbers what either needs. **The <InlineMath math="50.0\text{ g}" /> of solution is what warms up**, not the solid dropped into it, and a rise in temperature means heat left the reaction, so both signs are negative.
 
 <BlockMath math="\begin{aligned}
-\text{broken}&=436+242=678\text{ kJ}\\
-\text{formed}&=2\times431=862\text{ kJ}\\
-\Delta H&=678-862=-184\text{ kJ for }2\text{ HCl}=-92\text{ kJ mol}^{-1}\\
-n(\text{Cl}_2)&=\tfrac{7.1}{71}=0.10\text{ mol}\Rightarrow0.10\times184=18.4\text{ kJ}
+\Delta H_1&=-\tfrac{50.0\times4.2\times22.0}{0.0100}=-462\,000\text{ J mol}^{-1}=-462\text{ kJ mol}^{-1}\\
+\Delta H_2&=-\tfrac{50.0\times4.2\times7.0}{0.0100}=-147\,000\text{ J mol}^{-1}=-147\text{ kJ mol}^{-1}
 \end{aligned}" />
 
-# Why the other options are wrong
+# Building the cycle
 
-- <InlineMath math="+184" /> subtracts the wrong way. **More energy is released by forming bonds than is taken in by breaking them**.
-- <InlineMath math="9.2\text{ kJ}" /> uses the value per mole of hydrogen chloride, though <InlineMath math="0.10\text{ mol}" /> of chlorine makes <InlineMath math="0.20\text{ mol}" /> of it.
-- <InlineMath math="-184\text{ kJ mol}^{-1}" /> gives the value for the whole equation, which forms two moles of hydrogen chloride.
+Magnesium never burns in either cup, so the target reaction has to be assembled. Send magnesium through the acid (<InlineMath math="\Delta H_1" />), burn the hydrogen it gives off into water (<InlineMath math="-286\text{ kJ}" />), then run Experiment II backwards so that magnesium chloride and water turn into magnesium oxide and acid. **Running a reaction backwards flips the sign of its <InlineMath math="\Delta H" />**, so that leg is <InlineMath math="+147\text{ kJ}" />, and the acid and magnesium chloride cancel out.
+
+<Mermaid
+  title={<>The cycle that builds magnesium oxide</>}
+  description={<>Going round through the acid, <InlineMath math="-462-286+147" /> gives the same change as burning magnesium directly, <InlineMath math="-601\text{ kJ mol}^{-1}" />.</>}
+  chart={`
+    flowchart TD
+      N0["Mg + ½O₂ + 2HCl"]
+      N1["MgCl₂ + H₂ + ½O₂"]
+      N2["MgCl₂ + H₂O"]
+      N3["MgO + 2HCl"]
+      N0 -->|"ΔH₁ = −462 kJ"| N1
+      N1 -->|"hydrogen burns: −286 kJ"| N2
+      N2 -->|"Experiment II reversed: +147 kJ"| N3
+      N0 -->|"direct route: −601 kJ"| N3
+  `}
+/>
+
+Leave the hydrogen unburnt and the cycle stops at <InlineMath math="-315\text{ kJ mol}^{-1}" />, with no oxygen ever joining the magnesium. Add <InlineMath math="\Delta H_2" /> without flipping it and you reach <InlineMath math="-895\text{ kJ mol}^{-1}" />, which treats dissolving the oxide as a second burst of heat.
+
+# From one mole to a six gram strip
+
+The strip is <InlineMath math="0.250\text{ mol}" /> of magnesium, and **each mole that burns releases <InlineMath math="601\text{ kJ}" />**.
+
+<BlockMath math="\begin{aligned}
+\Delta H_f(\text{MgO})&=\Delta H_1+(-286)-\Delta H_2=-462-286+147=-601\text{ kJ mol}^{-1}\\
+Q&=\tfrac{6.00}{24}\times601=150\text{ kJ}
+\end{aligned}" />
+
+Dividing <InlineMath math="6.00\text{ g}" /> by <InlineMath math="40" />, the molar mass of the oxide, gives <InlineMath math="90.2\text{ kJ}" />, but the stem weighs the metal, not the ash.

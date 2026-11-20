@@ -10,19 +10,43 @@ const item: ItemSource = {
     en: {
       kind: "choice",
       options: [
-        { correct: false, label: "$$150\\text{ g}$$, $$0\\text{ g}$$" },
-        { correct: false, label: "$$256\\text{ g}$$, $$106\\text{ g}$$" },
-        { correct: false, label: "$$513\\text{ g}$$, $$185\\text{ g}$$" },
-        { correct: true, label: "$$256\\text{ g}$$, $$185\\text{ g}$$" },
+        {
+          correct: false,
+          label: "$$265\\text{ g}$$, $$96.0\\text{ dm}^3$$",
+        },
+        {
+          correct: false,
+          label: "$$212\\text{ g}$$, $$48.0\\text{ dm}^3$$",
+        },
+        {
+          correct: false,
+          label: "$$212\\text{ g}$$, $$96.0\\text{ dm}^3$$",
+        },
+        {
+          correct: true,
+          label: "$$212\\text{ g}$$, $$76.8\\text{ dm}^3$$",
+        },
       ],
     },
     ms: {
       kind: "choice",
       options: [
-        { correct: false, label: "$$150\\text{ g}$$, $$0\\text{ g}$$" },
-        { correct: false, label: "$$256\\text{ g}$$, $$106\\text{ g}$$" },
-        { correct: false, label: "$$513\\text{ g}$$, $$185\\text{ g}$$" },
-        { correct: true, label: "$$256\\text{ g}$$, $$185\\text{ g}$$" },
+        {
+          correct: false,
+          label: "$$265\\text{ g}$$, $$96.0\\text{ dm}^3$$",
+        },
+        {
+          correct: false,
+          label: "$$212\\text{ g}$$, $$48.0\\text{ dm}^3$$",
+        },
+        {
+          correct: false,
+          label: "$$212\\text{ g}$$, $$96.0\\text{ dm}^3$$",
+        },
+        {
+          correct: true,
+          label: "$$212\\text{ g}$$, $$76.8\\text{ dm}^3$$",
+        },
       ],
     },
   },

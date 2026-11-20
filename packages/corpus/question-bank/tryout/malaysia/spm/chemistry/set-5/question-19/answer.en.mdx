@@ -1,25 +1,27 @@
-# Temperature sets how fast each bit of surface dissolves, and a longer strip has more surface
+# Two doublings from the temperature
 
-From <InlineMath math="30" /> to <InlineMath math="50^\circ\text{C}" /> the rate doubles twice. **A strip twice as long has twice the surface but the same thickness**, so each part of it still dissolves in the same time: the longer strip does not take longer. It does give twice the hydrogen.
+From <InlineMath math="30^\circ\text{C}" /> to <InlineMath math="50^\circ\text{C}" /> is two rises of <InlineMath math="10^\circ\text{C}" />, so **every part of the metal's surface now reacts <InlineMath math="2\times2=4" /> times as fast**.
+
+# The longer strip brings surface and metal
+
+Twice the length is twice the surface touching the acid, so the strip loses mass <InlineMath math="8" /> times as fast as the first one did. **It also has twice as much metal to get through**, so the time is <InlineMath math="120\times2\div8=30\text{ s}" />. Ignoring the extra surface gives <InlineMath math="60\text{ s}" />. Dividing <InlineMath math="120\text{ s}" /> by eight without the extra metal gives <InlineMath math="15\text{ s}" />.
 
 <Chart
-  title={<>Time to dissolve at each temperature</>}
-  description={<>The strip takes <InlineMath math="120\text{ s}" /> at <InlineMath math="30^\circ\text{C}" />, <InlineMath math="60\text{ s}" /> at <InlineMath math="40^\circ\text{C}" /> and <InlineMath math="30\text{ s}" /> at <InlineMath math="50^\circ\text{C}" />.</>}
+  title={<>How much faster the longer strip loses mass</>}
+  description={<>Temperature multiplies the rate at each part of the surface, and the extra length multiplies the surface itself.</>}
   bars="apart"
-  categories={["30", "40", "50"]}
+  categories={["Temperature", "Surface area", "Both together"]}
   series={[
-    { label: "Time (s)", mark: "bar", values: [120, 60, 30] },
+    { label: "Times faster", mark: "bar", values: [4, 2, 8] },
   ]}
-  valueLabel="Time (s)"
+  valueLabel="Factor"
 />
 
+# The gas depends only on the magnesium
+
+<InlineMath math="0.096\text{ g}" /> is <InlineMath math="0.0040\text{ mol}" />, and **each magnesium atom frees one hydrogen molecule whatever the temperature**, so <InlineMath math="96\text{ cm}^3" /> forms. The <InlineMath math="48\text{ cm}^3" /> in two choices is the shorter strip's gas.
+
 <BlockMath math="\begin{aligned}
-30\rightarrow50^\circ\text{C}&:\ 2\times2=4\ \text{times faster}\Rightarrow t=\tfrac{120}{4}=30\text{ s}\\
-n(\text{Mg})&=\tfrac{0.096}{24}=0.0040\text{ mol}\Rightarrow V(\text{H}_2)=0.0040\times24\,000=96\text{ cm}^3
+k&=2^{(50-30)/10}\times2=8,\quad t=\tfrac{120\times2}{8}=30\text{ s}\\
+V(\text{H}_2)&=\tfrac{0.096}{24}\times24\,000=96\text{ cm}^3
 \end{aligned}" />
-
-# Why the other options are wrong
-
-- <InlineMath math="60\text{ s}" /> doubles the rate only once, but <InlineMath math="20^\circ\text{C}" /> is two steps of <InlineMath math="10^\circ\text{C}" />.
-- <InlineMath math="15\text{ s}" /> halves the time again for the longer strip, though its thickness, not its length, sets how long it lasts.
-- <InlineMath math="48\text{ cm}^3" /> forgets the strip holds twice the magnesium. **More metal, more hydrogen**.

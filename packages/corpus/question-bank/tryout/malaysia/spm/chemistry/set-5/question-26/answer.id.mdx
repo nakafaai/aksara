@@ -1,25 +1,34 @@
-# Elektron yang diberikan magnesium menetapkan muatan tiap ion logam, dan massanya menetapkan logamnya
+# Hidrogen mengukur asamnya
 
-Magnesiumnya <InlineMath math="0{,}0150\text{ mol}" />, dan **tiap atom magnesium memberi dua elektron**, seluruhnya <InlineMath math="0{,}0300\text{ mol}" />. Elektron ini mereduksi <InlineMath math="0{,}0100\text{ mol}" /> ion logam, jadi tiap ion menerima tiga elektron dan <InlineMath math="n=3" />. Massa molar logamnya <InlineMath math="1{,}97\div0{,}0100=197" />, yaitu emas.
+Seng bereaksi dengan ion emas(III) dan juga dengan asam, jadi gasnya satu-satunya pengukuran yang bersih. <InlineMath math="120\text{ cm}^3" /> itu <InlineMath math="5{,}00\times10^{-3}\text{ mol}" /> hidrogen, dan **tiap molekul hidrogen mengambil dua ion hidrogen**, jadi limbah itu berisi <InlineMath math="0{,}0100\text{ mol}" /> asam, <InlineMath math="0{,}100\text{ mol dm}^{-3}" /> dalam <InlineMath math="100\text{ cm}^3" />. Satu ion hidrogen per molekul memberi <InlineMath math="0{,}0500\text{ mol dm}^{-3}" />.
 
-<Chart
-  title={<>Jumlah zat dalam pemulihan</>}
-  description={<><InlineMath math="0{,}0150\text{ mol}" /> magnesium memberi <InlineMath math="0{,}0300\text{ mol}" /> elektron ke <InlineMath math="0{,}0100\text{ mol}" /> ion logam.</>}
-  bars="apart"
-  categories={["Atom magnesium", "Elektron", "Ion logam"]}
-  series={[
-    { label: "Jumlah zat", mark: "bar", values: [0.0150, 0.0300, 0.0100] },
-  ]}
-  valueLabel="Jumlah zat (mol)"
+# Sisa seng membeli emas
+
+Dari <InlineMath math="\tfrac{1{,}30}{65}=0{,}0200\text{ mol}" /> seng, <InlineMath math="5{,}00\times10^{-3}\text{ mol}" /> dipakai asam. Sisa <InlineMath math="0{,}0150\text{ mol}" /> menyerahkan elektronnya ke ion emas(III), dan karena **tiga atom seng mereduksi dua ion emas**, emas yang didapat <InlineMath math="0{,}0100\text{ mol}" />, yaitu <InlineMath math="1{,}97\text{ g}" />.
+
+<Mermaid
+  title={<>Ke mana seng pergi</>}
+  description={<>Hidrogen menentukan bagian seng untuk asam. Sisanya mereduksi emas, dan kedua jalur berakhir sebagai ion seng.</>}
+  chart={`
+    flowchart TD
+      N0["1,30 g Zn: 0,0200 mol"]
+      N1["0,00500 mol Zn ke H⁺: 120 cm³ H₂"]
+      N2["0,0150 mol Zn ke Au³⁺: 0,0100 mol Au, 1,97 g"]
+      N3["0,0200 mol Zn²⁺ dalam 100 cm³"]
+      N0 --> N1
+      N0 --> N2
+      N1 --> N3
+      N2 --> N3
+  `}
 />
 
+Seandainya tidak ada hidrogen dan semua seng lari ke emas, hasilnya <InlineMath math="2{,}63\text{ g}" />. Memberi tiap atom seng yang larut satu atom emas memberi <InlineMath math="3{,}94\text{ g}" />, padahal satu atom seng hanya membawa dua elektron dan ion emas butuh tiga.
+
+# Tiap atom seng berakhir sebagai ion
+
+Dengan pasangan mana pun ia bereaksi, **tiap atom seng yang larut sekarang menjadi ion seng di larutan**: <InlineMath math="0{,}0200\text{ mol}" /> dalam <InlineMath math="0{,}100\text{ dm}^3" />, yaitu <InlineMath math="0{,}200\text{ mol dm}^{-3}" />.
+
 <BlockMath math="\begin{aligned}
-n&=\tfrac{2\times\tfrac{0{,}36}{24}}{0{,}0100}=\tfrac{0{,}0300}{0{,}0100}=3\\
-M&=\tfrac{1{,}97}{0{,}0100}=197\ (\text{Au})
+n(\text{H}^+)&=2\times\tfrac{120}{24\,000}=0{,}0100\text{ mol}\ \Rightarrow\ c(\text{HCl})=\tfrac{0{,}0100}{0{,}100}=0{,}100\text{ mol dm}^{-3}\\
+n(\text{Au})&=\tfrac{2}{3}\times(0{,}0200-0{,}00500)=0{,}0100\text{ mol}=1{,}97\text{ g},\quad c(\text{Zn}^{2+})=\tfrac{0{,}0200}{0{,}100}=0{,}200\text{ mol dm}^{-3}
 \end{aligned}" />
-
-# Kenapa pilihan lain salah
-
-- <InlineMath math="n=2" /> menukar satu ion logam untuk tiap atom magnesium. **Hitung elektron, bukan atom**.
-- Massa atom relatif platina adalah <InlineMath math="195" />, tetapi datanya memberi <InlineMath math="197" />.
-- Platina sering membentuk <InlineMath math="\text{Pt}^{4+}" />, tetapi jumlah elektron memberi muatan <InlineMath math="+3" /> dan massanya memberi <InlineMath math="197" />.

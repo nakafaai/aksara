@@ -1,26 +1,32 @@
-# Das Chlorid ist nach einem Drittel verbraucht, und die Anode wechselt zu Sauerstoff
+# Das Chlorid ist früh verbraucht
 
-Die Lösung enthält nur <InlineMath math="0{,}100\text{ mol}" /> Chloridionen, genug für <InlineMath math="0{,}10\text{ mol}" /> Elektronen. **Ist das Chlorid verbraucht, werden an der Anode Hydroxidionen entladen**, und jedes Sauerstoffmolekül braucht vier Elektronen, nicht zwei. An der Kathode entsteht die ganze Zeit Wasserstoff. Die Natriumionen bleiben mit den übrigen Hydroxidionen zurück.
+Zwanzig Kubikzentimeter Salzlösung sind nicht viel, also zähl zuerst, was drin ist: <InlineMath math="0{,}0200\text{ dm}^3\times5{,}0=0{,}10\text{ mol}" /> Chloridionen. Solange Chlorid da ist, wird es an der Anode bevorzugt entladen, und **für jedes Chlormolekül fließen zwei Elektronen**, also leeren die ersten <InlineMath math="0{,}10\text{ mol}" /> Elektronen die Lösung an Chlorid und liefern <InlineMath math="0{,}050\text{ mol}" /> Chlor, <InlineMath math="1{,}2\text{ dm}^3" />.
+
+Ein Anodenwert von <InlineMath math="3{,}6\text{ dm}^3" /> tut so, als käme für alle <InlineMath math="0{,}30\text{ mol}" /> Elektronen weiter Chlor, aus einer Lösung, die nie so viel Chlorid hatte.
 
 <Chart
-  title={<>Gase der Elektrolyse</>}
-  description={<>Die Anode gibt <InlineMath math="0{,}050\text{ mol}" /> Chlor und danach <InlineMath math="0{,}050\text{ mol}" /> Sauerstoff, die Kathode <InlineMath math="0{,}15\text{ mol}" /> Wasserstoff.</>}
-  bars="apart"
-  categories={["Chlor", "Sauerstoff", "Wasserstoff"]}
+  title={<>Gesammeltes Gas, während die Ladung fließt</>}
+  description={<>Die Anodenlinie knickt bei <InlineMath math="0{,}10\text{ mol}" /> Elektronen ab, wo das Chlorid verbraucht ist und Sauerstoff mit vier Elektronen je Molekül halb so schnell übernimmt.</>}
+  categories={["0 mol", "0,05 mol", "0,1 mol", "0,15 mol", "0,2 mol", "0,25 mol", "0,3 mol"]}
   series={[
-    { label: "Stoffmenge", mark: "bar", values: [0.050, 0.050, 0.15] },
+    { label: "Gas an der Anode", mark: "line", values: [0.0, 0.6, 1.2, 1.5, 1.8, 2.1, 2.4] },
+    { label: "Gas an der Kathode", mark: "line", values: [0.0, 0.6, 1.2, 1.8, 2.4, 3.0, 3.6] },
   ]}
-  valueLabel="Stoffmenge (mol)"
+  valueLabel="Gasvolumen (dm³)"
 />
 
+# Dann wechselt die Anode zu Sauerstoff
+
+Die übrigen <InlineMath math="0{,}20\text{ mol}" /> Elektronen müssen trotzdem an der Anode die Lösung verlassen, und ohne Chlorid **wird das Wasser selbst oxidiert**, <InlineMath math="2\text{H}_2\text{O}\rightarrow\text{O}_2+4\text{H}^++4e^-" />. Vier Elektronen je Sauerstoffmolekül ergeben <InlineMath math="0{,}050\text{ mol}" />, noch einmal <InlineMath math="1{,}2\text{ dm}^3" />, also sammelt die Anode insgesamt <InlineMath math="2{,}4\text{ dm}^3" />. Bleibt man bei <InlineMath math="1{,}2\text{ dm}^3" /> stehen, schaltet man den Strom in Gedanken ab, sobald das Chlorid weg ist.
+
+# Die Kathode, und was im Becherglas bleibt
+
+An der Kathode ändert sich während des ganzen Laufs nichts. Wasser wird zu Wasserstoff und Hydroxidionen reduziert, **zwei Elektronen je Wasserstoffmolekül**, also entstehen <InlineMath math="0{,}15\text{ mol}" /> oder <InlineMath math="3{,}6\text{ dm}^3" /> Wasserstoff.
+
 <BlockMath math="\begin{aligned}
-n(\text{Cl}^-)&=5{,}0\times0{,}0200=0{,}100\text{ mol}\Rightarrow0{,}050\text{ mol Cl}_2\ (0{,}10\text{ mol }e^-)\\
-4\text{OH}^-&\rightarrow\text{O}_2+2\text{H}_2\text{O}+4e^-:\ \tfrac{0{,}30-0{,}10}{4}=0{,}050\text{ mol O}_2\\
-V_{\text{Anode}}&=(0{,}050+0{,}050)\times24=2{,}4\text{ dm}^3,\quad V_{\text{Kathode}}=\tfrac{0{,}30}{2}\times24=3{,}6\text{ dm}^3
+n(\text{Cl}^-)&=0{,}0200\times5{,}0=0{,}10\text{ mol}\ \Rightarrow\ V(\text{Cl}_2)=\tfrac{0{,}10}{2}\times24=1{,}2\text{ dm}^3\\
+V(\text{O}_2)&=\tfrac{0{,}30-0{,}10}{4}\times24=1{,}2\text{ dm}^3,\quad V(\text{H}_2)=\tfrac{0{,}30}{2}\times24=3{,}6\text{ dm}^3\\
+n(\text{OH}^-)&=0{,}30-0{,}20=0{,}10\text{ mol}=n(\text{Na}^+)
 \end{aligned}" />
 
-# Warum die anderen Antworten falsch sind
-
-- <InlineMath math="3{,}6\text{ dm}^3" /> an der Anode lässt alle Elektronen Chlor bilden, doch es gibt nur <InlineMath math="0{,}100\text{ mol}" /> Chlorid.
-- <InlineMath math="1{,}2\text{ dm}^3" /> stoppt das Anodengas, wenn das Chlorid verbraucht ist. **Der Strom fließt weiter und entlädt Hydroxidionen**.
-- An der Kathode werden mehr Wasserstoffionen entfernt als an der Anode Hydroxidionen, also bleiben <InlineMath math="0{,}100\text{ mol}" /> Hydroxidionen mit den Natriumionen in Lösung.
+Die Ionenbilanz entscheidet den letzten Teil. Die Kathode hat <InlineMath math="0{,}30\text{ mol}" /> Hydroxidionen gebildet und der Sauerstoffschritt <InlineMath math="0{,}20\text{ mol}" /> Wasserstoffionen, die genauso viel Hydroxid neutralisieren. Übrig sind <InlineMath math="0{,}10\text{ mol}" /> Hydroxid neben <InlineMath math="0{,}10\text{ mol}" /> Natriumionen, also Natronlauge. Sauer wäre die Lösung nur, wenn man die Wasserstoffionen aus dem Sauerstoffschritt zählt und vergisst, dass die Kathode mehr Hydroxid geliefert hat.

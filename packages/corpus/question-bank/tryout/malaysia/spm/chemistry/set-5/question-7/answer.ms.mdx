@@ -1,26 +1,28 @@
-# Beg paling murah bukan nitrogen paling murah
+# Kilogram menyembunyikan bilangannya
 
-Bahagian nitrogen dalam setiap formula menentukan berapa banyak beg itu berguna. **Dua atom nitrogen dalam setiap unit formula, tetapi jisimnya sangat berbeza**, jadi urea yang ringan membawa paling banyak. Membahagi harga dengan jisim nitrogen memberi kos satu kilogram nitrogen.
+Tangki tetroksida lebih berat, jadi hidrazin nampak seperti yang akan habis dahulu. **Tukar kedua-dua jisim kepada mol dahulu**: <InlineMath math="\tfrac{6400}{32}=200\text{ mol}" /> hidrazin dan <InlineMath math="\tfrac{8280}{92}=90.0\text{ mol}" /> tetroksida. Kalau kamu percaya jisim, kamu pilih hidrazin dan dapat <InlineMath math="300\text{ mol}" /> nitrogen, <InlineMath math="7.20\text{ m}^3" />, daripada bahan api yang sebenarnya tidak dapat dibakar oleh pendorong itu.
 
-<Chart
-  title={<>Kos satu kilogram nitrogen</>}
-  description={<>Urea <InlineMath math="\text{RM}\,5.14" />, ammonium nitrat <InlineMath math="\text{RM}\,5.43" />, ammonium sulfat <InlineMath math="\text{RM}\,5.66" />.</>}
-  bars="apart"
-  categories={["Urea", "Ammonium nitrat", "Ammonium sulfat"]}
-  series={[
-    { label: "Kos", mark: "bar", values: [5.14, 5.43, 5.66] },
-  ]}
-  valueLabel="Kos (RM per kg N)"
+# Nisbah dua kepada satu yang menentukan
+
+Setiap molekul tetroksida memerlukan dua molekul hidrazin, jadi <InlineMath math="90.0\text{ mol}" /> tetroksida akan menggunakan <InlineMath math="180\text{ mol}" /> hidrazin, sedangkan ada <InlineMath math="200\text{ mol}" />. **Tetroksida habis dahulu dan meninggalkan <InlineMath math="20.0\text{ mol}" /> hidrazin**, iaitu <InlineMath math="0.640\text{ kg}" />. Memasangkan kedua-duanya satu dengan satu hanya membakar <InlineMath math="90.0\text{ mol}" /> hidrazin dan meninggalkan <InlineMath math="3.52\text{ kg}" />.
+
+<Mermaid
+  title={<>Dua tangki, satu had</>}
+  description={<>Mol daripada setiap tangki, nisbah yang menentukan bahan pengehad, dan nitrogen yang terbentuk.</>}
+  chart={`
+    flowchart LR
+      N0["6.40 kg N₂H₄: 200 mol"]
+      N1["8.28 kg N₂O₄: 90.0 mol"]
+      N2["90.0 mol N₂O₄ menggunakan 180 mol N₂H₄"]
+      N3["N₂H₄ berbaki: 20.0 mol, 0.640 kg"]
+      N4["N₂ terbentuk: 270 mol, 6.48 m³"]
+      N0 --> N2
+      N1 --> N2
+      N2 --> N3
+      N2 --> N4
+  `}
 />
 
-<BlockMath math="\begin{aligned}
-\text{urea}&:\ \tfrac{28}{60}\times50=23.3\text{ kg N},\ \tfrac{120}{23.3}=5.14\text{ RM per kg}\\
-\text{NH}_4\text{NO}_3&:\ \tfrac{28}{80}\times50=17.5\text{ kg N},\ \tfrac{95}{17.5}=5.43\text{ RM per kg}\\
-(\text{NH}_4)_2\text{SO}_4&:\ \tfrac{28}{132}\times50=10.6\text{ kg N},\ \tfrac{60}{10.6}=5.66\text{ RM per kg}
-\end{aligned}" />
+# Nitrogen daripada kedua-dua tangki
 
-# Kenapa pilihan lain salah
-
-- <InlineMath math="10.6\text{ kg}" /> memilih beg paling murah, tetapi nitrogennya paling mahal bagi setiap kilogram.
-- <InlineMath math="8.75\text{ kg}" /> mengira nitrogen ammonium sahaja. **Ion nitrat juga membawa satu atom nitrogen**.
-- <InlineMath math="11.7\text{ kg}" /> mengira satu nitrogen dalam urea, walhal <InlineMath math="\text{CO(NH}_2)_2" /> ada dua.
+Setiap tetroksida yang bertindak balas menghasilkan tiga molekul nitrogen, jadi <InlineMath math="90.0\text{ mol}" /> memberi <InlineMath math="270\text{ mol}" />, iaitu <InlineMath math="6480\text{ dm}^3" /> atau <InlineMath math="6.48\text{ m}^3" />. **Kedua-dua bahan tindak balas menyumbang atom nitrogen kepada hasil**: <InlineMath math="360\text{ mol}" /> daripada hidrazin yang terbakar dan <InlineMath math="180\text{ mol}" /> daripada tetroksida, <InlineMath math="540\text{ mol}" /> atom dalam <InlineMath math="270\text{ mol}" /> molekul. Memberi setiap tetroksida satu molekul nitrogen sahaja hanya mengira atomnya sendiri dan melupakan atom hidrazin, <InlineMath math="2.16\text{ m}^3" />.

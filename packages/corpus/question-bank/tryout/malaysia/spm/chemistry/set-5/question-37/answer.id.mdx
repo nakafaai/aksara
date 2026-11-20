@@ -1,26 +1,35 @@
-# Hitung rantai dengan massa rantai, tetapi hitung karbon dengan unit ulangnya
+# Dari satu potong kembali ke seluruh kue
 
-Tiap rantai adalah satu molekul bermassa <InlineMath math="28{.}000" />, jadi jumlah rantainya sedikit. **Karbon tidak peduli bagaimana unitnya tersambung**: polietena adalah <InlineMath math="(\text{CH}_2)_n" />, dan tiap <InlineMath math="14\text{ g}" /> berisi satu mol atom karbon, masing-masing menjadi satu molekul karbon dioksida.
+Kalau satu potong adalah sepersepuluh kue, seluruh kue adalah sepuluh potong. Labunya juga begitu. Bagian itu memakai <InlineMath math="0{,}0300\times0{,}500=0{,}0150\text{ mol}" /> bromin. Satu molekul bromin masuk ke tiap stirena, jadi <InlineMath math="25{,}0\text{ cm}^3" /> itu berisi <InlineMath math="0{,}0150\text{ mol}" /> stirena. **Tetapi bagian itu hanya sepersepuluh dari <InlineMath math="250\text{ cm}^3" />**, jadi seluruh larutan berisi <InlineMath math="0{,}150\text{ mol}" />. Dengan <InlineMath math="M_r=104" />, massanya <InlineMath math="15{,}6\text{ g}" />.
 
-<Chart
-  title={<>Jumlah zat dalam kantong</>}
-  description={<>Kantong berisi <InlineMath math="2{,}5\times10^{-4}\text{ mol}" /> rantai tetapi <InlineMath math="0{,}50\text{ mol}" /> unit <InlineMath math="\text{CH}_2" />, yang menghasilkan <InlineMath math="0{,}50\text{ mol}" /> karbon dioksida.</>}
-  bars="apart"
-  categories={["Unit CH₂", "Karbon dioksida"]}
-  series={[
-    { label: "Jumlah zat", mark: "bar", values: [0.50, 0.50] },
-  ]}
-  valueLabel="Jumlah zat (mol)"
+<Mermaid
+  title={<>Menghitung mundur dari buret</>}
+  description={<>Bromin yang dipakai satu bagian menentukan stirena di seluruh larutan, lalu dibandingkan dengan satuan di balok.</>}
+  chart={`
+    flowchart TD
+      N0["Air bromin: 30,0 cm³ × 0,500 = 0,0150 mol Br₂"]
+      N1["Bagian 25,0 cm³: 0,0150 mol stirena"]
+      N2["Seluruh 250 cm³: 0,150 mol stirena, 15,6 g"]
+      N3["Balok 20,8 g: 0,200 mol satuan berulang"]
+      N4["Kembali: 75,0%"]
+      N0 --> N1
+      N1 --> N2
+      N2 --> N4
+      N3 --> N4
+  `}
 />
 
+Kalau faktor sepuluh itu terlupa, kamu berhenti di <InlineMath math="1{,}56\text{ g}" /> dan perolehan kembali hanya <InlineMath math="7{,}50\%" />.
+
+# Seberapa banyak busa yang kembali
+
+Membuat polimer itu seperti merangkai manik menjadi kalung. Tiap manik menyimpan semua atomnya, hanya sambungannya yang berubah. **Jadi satuan berulang punya atom yang sama dengan stirena, <InlineMath math="\text{C}_8\text{H}_8" />**. Balok itu berisi <InlineMath math="0{,}200\text{ mol}" /> satuan, dan <InlineMath math="0{,}150\text{ mol}" /> di antaranya kembali.
+
 <BlockMath math="\begin{aligned}
-n(\text{rantai})&=\tfrac{7{,}0}{28{.}000}=2{,}5\times10^{-4}\text{ mol}\Rightarrow2{,}5\times10^{-4}\times6{,}02\times10^{23}=1{,}51\times10^{20}\\
-n(\text{CH}_2)&=\tfrac{7{,}0}{14}=0{,}50\text{ mol}\Rightarrow n(\text{CO}_2)=0{,}50\text{ mol}\\
-V&=0{,}50\times24=12{,}0\text{ dm}^3
+n(\text{C}_8\text{H}_8)&=\tfrac{20{,}8}{104}=0{,}200\text{ mol}\\
+\tfrac{0{,}150}{0{,}200}\times100\%&=75{,}0\%
 \end{aligned}" />
 
-# Kenapa pilihan lain salah
+# Hanya potongan itu yang bertemu bromin
 
-- <InlineMath math="6{,}0\text{ dm}^3" /> menghitung satu karbon untuk tiap unit etena, <InlineMath math="\text{C}_2\text{H}_4" />, yang punya dua.
-- <InlineMath math="1{,}51\times10^{23}" /> menghitung unit <InlineMath math="\text{CH}_2" /> sebagai rantai. **Satu rantai adalah satu molekul dari seribu unit etena**.
-- <InlineMath math="24{,}0\text{ dm}^3" /> menghitung tiap atom karbon dua kali.
+Kamu hanya menguji satu potong, jadi hanya potongan itu yang menjadi produk. **Produk di labu berasal dari <InlineMath math="0{,}0150\text{ mol}" /> stirena**. Tiap <InlineMath math="\text{C}_8\text{H}_8\text{Br}_2" /> punya <InlineMath math="M_r=104+160=264" />, jadi labu itu berisi <InlineMath math="3{,}96\text{ g}" />. Produk untuk seluruh <InlineMath math="250\text{ cm}^3" /> memang <InlineMath math="39{,}6\text{ g}" />, tetapi jumlah itu tidak pernah terbentuk. Menambahkan satu atom bromin saja memberi <InlineMath math="M_r=184" /> dan <InlineMath math="2{,}76\text{ g}" />.

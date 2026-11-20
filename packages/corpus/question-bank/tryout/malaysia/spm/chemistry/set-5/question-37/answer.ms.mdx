@@ -1,26 +1,35 @@
-# Kira rantai dengan jisim rantai, tetapi kira karbon dengan unit berulang
+# Daripada sepotong kembali kepada seluruh kek
 
-Setiap rantai ialah satu molekul berjisim <InlineMath math="28\,000" />, jadi bilangan rantai kecil. **Karbon tidak bergantung pada cara unit disambung**: polietena ialah <InlineMath math="(\text{CH}_2)_n" />, dan setiap <InlineMath math="14\text{ g}" /> mengandungi satu mol atom karbon, setiap satunya menjadi satu molekul karbon dioksida.
+Kalau sepotong kek ialah satu persepuluh, seluruh kek ialah sepuluh potong. Kelalang itu pun begitu. Bahagian itu menggunakan <InlineMath math="0.0300\times0.500=0.0150\text{ mol}" /> bromin. Satu molekul bromin bertindak balas dengan setiap stirena, jadi <InlineMath math="25.0\text{ cm}^3" /> itu mengandungi <InlineMath math="0.0150\text{ mol}" /> stirena. **Tetapi bahagian itu hanya satu persepuluh daripada <InlineMath math="250\text{ cm}^3" />**, jadi seluruh larutan mengandungi <InlineMath math="0.150\text{ mol}" />. Dengan <InlineMath math="M_r=104" />, jisimnya <InlineMath math="15.6\text{ g}" />.
 
-<Chart
-  title={<>Kuantiti dalam beg</>}
-  description={<>Beg mengandungi <InlineMath math="2.5\times10^{-4}\text{ mol}" /> rantai tetapi <InlineMath math="0.50\text{ mol}" /> unit <InlineMath math="\text{CH}_2" />, yang menghasilkan <InlineMath math="0.50\text{ mol}" /> karbon dioksida.</>}
-  bars="apart"
-  categories={["Unit CH₂", "Karbon dioksida"]}
-  series={[
-    { label: "Bilangan mol", mark: "bar", values: [0.50, 0.50] },
-  ]}
-  valueLabel="Bilangan mol (mol)"
+<Mermaid
+  title={<>Mengira ke belakang dari buret</>}
+  description={<>Bromin yang digunakan oleh satu bahagian menentukan stirena dalam seluruh larutan, yang kemudian dibandingkan dengan unit dalam blok.</>}
+  chart={`
+    flowchart TD
+      N0["Air bromin: 30.0 cm³ × 0.500 = 0.0150 mol Br₂"]
+      N1["Bahagian 25.0 cm³: 0.0150 mol stirena"]
+      N2["Seluruh 250 cm³: 0.150 mol stirena, 15.6 g"]
+      N3["Blok 20.8 g: 0.200 mol unit berulang"]
+      N4["Diperoleh semula: 75.0%"]
+      N0 --> N1
+      N1 --> N2
+      N2 --> N4
+      N3 --> N4
+  `}
 />
 
+Kalau kamu lupa faktor sepuluh itu, kamu berhenti pada <InlineMath math="1.56\text{ g}" /> dan peratus perolehan semula hanya <InlineMath math="7.50\%" />.
+
+# Berapa banyak busa yang kembali
+
+Membuat polimer macam menyambung manik pada rantai. Setiap manik menyimpan semua atomnya, cuma penyambungnya yang berubah. **Jadi unit berulang mempunyai atom yang sama dengan stirena, <InlineMath math="\text{C}_8\text{H}_8" />**. Blok itu mengandungi <InlineMath math="0.200\text{ mol}" /> unit, dan <InlineMath math="0.150\text{ mol}" /> daripadanya kembali.
+
 <BlockMath math="\begin{aligned}
-n(\text{rantai})&=\tfrac{7.0}{28\,000}=2.5\times10^{-4}\text{ mol}\Rightarrow2.5\times10^{-4}\times6.02\times10^{23}=1.51\times10^{20}\\
-n(\text{CH}_2)&=\tfrac{7.0}{14}=0.50\text{ mol}\Rightarrow n(\text{CO}_2)=0.50\text{ mol}\\
-V&=0.50\times24=12.0\text{ dm}^3
+n(\text{C}_8\text{H}_8)&=\tfrac{20.8}{104}=0.200\text{ mol}\\
+\tfrac{0.150}{0.200}\times100\%&=75.0\%
 \end{aligned}" />
 
-# Kenapa pilihan lain salah
+# Hanya potongan itu yang bertemu bromin
 
-- <InlineMath math="6.0\text{ dm}^3" /> mengira satu karbon bagi setiap unit etena, <InlineMath math="\text{C}_2\text{H}_4" />, yang ada dua.
-- <InlineMath math="1.51\times10^{23}" /> mengira unit <InlineMath math="\text{CH}_2" /> sebagai rantai. **Satu rantai ialah satu molekul yang terdiri daripada seribu unit etena**.
-- <InlineMath math="24.0\text{ dm}^3" /> mengira setiap atom karbon dua kali.
+Kamu hanya menguji sepotong, jadi hanya potongan itu yang menjadi hasil. **Hasil dalam kelalang datang daripada <InlineMath math="0.0150\text{ mol}" /> stirena**. Setiap <InlineMath math="\text{C}_8\text{H}_8\text{Br}_2" /> mempunyai <InlineMath math="M_r=104+160=264" />, jadi kelalang itu mengandungi <InlineMath math="3.96\text{ g}" />. Hasil bagi seluruh <InlineMath math="250\text{ cm}^3" /> ialah <InlineMath math="39.6\text{ g}" />, tetapi jumlah itu tidak pernah terbentuk. Menambah satu atom bromin sahaja pula memberi <InlineMath math="M_r=184" /> dan <InlineMath math="2.76\text{ g}" />.

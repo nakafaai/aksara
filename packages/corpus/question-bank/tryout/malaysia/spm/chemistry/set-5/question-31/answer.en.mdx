@@ -1,26 +1,39 @@
-# The two isomers use different amounts of dichromate, so two equations fix the mixture
+# Two alcohols with different appetites
 
-Both alcohols have a molar mass of <InlineMath math="60" />, so the mixture is <InlineMath math="0.0150\text{ mol}" />. **Propan-1-ol is oxidised to an acid and needs twice the dichromate per mole that propan-2-ol needs**, since propan-2-ol stops at the ketone propanone. Solving the two equations gives <InlineMath math="0.0090\text{ mol}" /> of propan-1-ol. Only propanoic acid is acidic, and propanone is neutral.
+Both isomers have <InlineMath math="M_r=60" />, so <InlineMath math="0.90\text{ g}" /> is <InlineMath math="0.0150\text{ mol}" /> of alcohol however it is split, and the flask used <InlineMath math="0.00800\text{ mol}" /> of dichromate. **Propan-1-ol needs two dichromate ions for every three molecules, propan-2-ol only one**, because the primary alcohol is pushed all the way to an acid while the secondary one stops at a ketone.
 
-<Chart
-  title={<>Dichromate used by each alcohol</>}
-  description={<>Propan-1-ol uses <InlineMath math="0.0060\text{ mol}" /> of dichromate and propan-2-ol <InlineMath math="0.0020\text{ mol}" />, which add up to the <InlineMath math="0.00800\text{ mol}" /> used.</>}
-  bars="apart"
-  categories={["Propan-1-ol", "Propan-2-ol"]}
-  series={[
-    { label: "Dichromate", mark: "bar", values: [0.0060, 0.0020] },
-  ]}
-  valueLabel="Dichromate (mol)"
+<Mermaid
+  title={<>How the dichromate is shared</>}
+  description={<>Propan-1-ol takes <InlineMath math="0.00600\text{ mol}" /> of the dichromate and propan-2-ol the other <InlineMath math="0.00200\text{ mol}" />. Only the acid reddens the litmus.</>}
+  chart={`
+    flowchart TD
+      N0["15.0 mmol of alcohol in 0.90 g"]
+      N1["9.00 mmol propan-1-ol"]
+      N2["6.00 mmol propan-2-ol"]
+      N3["6.00 mmol dichromate"]
+      N4["2.00 mmol dichromate"]
+      N5["Propanoic acid: litmus turns red"]
+      N6["Propanone: litmus stays blue"]
+      N0 --> N1
+      N0 --> N2
+      N1 --> N3
+      N2 --> N4
+      N3 --> N5
+      N4 --> N6
+  `}
 />
 
+# Splitting the fifteen millimoles
+
+Pretend every molecule is propan-2-ol: the mixture would then use only <InlineMath math="0.00500\text{ mol}" /> of dichromate. The extra <InlineMath math="0.00300\text{ mol}" /> comes from propan-1-ol, and **each propan-1-ol molecule costs one third of a dichromate ion more than its isomer**, so there are <InlineMath math="0.00900\text{ mol}" /> of it.
+
 <BlockMath math="\begin{aligned}
-x+y&=\tfrac{0.90}{60}=0.0150\text{ mol}\\
-\tfrac{2}{3}x+\tfrac{1}{3}y&=0.100\times0.0800=0.00800\text{ mol}\\
-x&=0.0090\text{ mol}\Rightarrow m=0.0090\times60=0.54\text{ g}
+n(\text{C}_3\text{H}_8\text{O})&=\tfrac{0.90}{60}=0.0150\text{ mol},\quad n(\text{Cr}_2\text{O}_7^{2-})=0.0800\times0.100=0.00800\text{ mol}\\
+\tfrac23x+\tfrac13(0.0150-x)&=0.00800\ \Rightarrow\ x=0.00900\text{ mol},\quad m=0.00900\times60=0.54\text{ g}
 \end{aligned}" />
 
-# Why the other options are wrong
+Swap the two amounts and you get <InlineMath math="0.36\text{ g}" />, which is the propan-2-ol. Calling the whole <InlineMath math="0.90\text{ g}" /> propan-1-ol would need <InlineMath math="0.0100\text{ mol}" /> of dichromate, more than the burette delivered.
 
-- <InlineMath math="0.36\text{ g}" /> is the mass of propan-2-ol. **The isomer that needs more dichromate is the larger share here**.
-- Propanone is a ketone, which has no acidic hydrogen and leaves litmus unchanged.
-- <InlineMath math="0.90\text{ g}" /> treats the whole mixture as propan-1-ol, which would need <InlineMath math="100\text{ cm}^3" /> of the dichromate, not <InlineMath math="80.0\text{ cm}^3" />.
+# Only one product is an acid
+
+Propanoic acid releases hydrogen ions in water, so **only the product of propan-1-ol turns moist blue litmus red**. Propanone is a neutral ketone and leaves the paper blue, even though it also came out of an oxidation.
