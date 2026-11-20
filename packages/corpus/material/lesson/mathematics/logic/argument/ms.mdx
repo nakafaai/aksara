@@ -1,178 +1,186 @@
 export const metadata = {
-  title: "Nota Penaakulan Logik Tingkatan Empat",
+  title: "Hujah Deduktif dan Induktif",
   description:
-    "Nota Matematik Tingkatan 4 Bab 3: kenal pasti pernyataan, bina implikasi, akas, songsangan dan kontrapositif, serta buat hujah deduktif dan induktif.",
+    "Bezakan hujah deduktif dan induktif, guna Bentuk I, II dan III hujah yang sah, nilai kekuatan pola induktif, dan selesaikan teka-teki kad dengan logik.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-11-17",
+  dateModified: "2026-11-20",
   subject: "Penaakulan Logik",
 };
 
-## Penaakulan Logik Menguji Kebenaran Pernyataan
+## Premis Membawa Kesimpulan
 
-**Pernyataan** ialah ayat yang sama ada benar atau palsu, tetapi tidak kedua-duanya. Ayat <InlineMath math="7" /> ialah nombor perdana ialah pernyataan benar. Ayat tanya dan ayat perintah bukan pernyataan. Daripada pernyataan, kita membina pernyataan majmuk, implikasi dan hujah. **Hujah deduktif** bergerak daripada premis umum kepada kesimpulan khusus, manakala **hujah induktif** bergerak daripada kes khusus kepada kesimpulan umum. Dalam model di sini, kamu menguji implikasi dengan contoh penyangkal, melihat premis sebagai rajah set dan membina kesimpulan umum daripada pola.
+Hujah ialah rantaian pernyataan: beberapa pernyataan yang kamu terima, dipanggil **premis**, membawa kepada satu pernyataan yang kamu dakwa, dipanggil **kesimpulan**. Ada dua arah penaakulan. Hujah deduktif bergerak daripada premis umum kepada kesimpulan khusus. Hujah induktif bergerak daripada kes-kes khusus kepada kesimpulan umum.
 
-## Pernyataan Majmuk dan Penafian
-
-**Penafian** sesuatu pernyataan <InlineMath math="p" /> ditulis <InlineMath math="\sim p" /> dan mempunyai nilai kebenaran yang bertentangan. Dua pernyataan boleh digabungkan dengan **dan** atau **atau**.
-
-| <InlineMath math="p" /> | <InlineMath math="q" /> | <InlineMath math="p \text{ dan } q" /> | <InlineMath math="p \text{ atau } q" /> |
-| :--- | :--- | :--- | :--- |
-| Benar | Benar | Benar | Benar |
-| Benar | Palsu | Palsu | Benar |
-| Palsu | Benar | Palsu | Benar |
-| Palsu | Palsu | Palsu | Palsu |
-
-Pernyataan dengan **dan** benar hanya apabila kedua-dua bahagian benar. Pernyataan dengan **atau** palsu hanya apabila kedua-dua bahagian palsu. Carta ini membandingkan bilangan baris benar dalam jadual kebenaran setiap jenis pernyataan.
-
-<BarChart
-  title={<>Bilangan Baris Benar dalam Jadual Kebenaran</>}
-  description={
-    <>
-      Daripada empat gabungan nilai kebenaran <InlineMath math="p" /> dan{" "}
-      <InlineMath math="q" />, berapa banyak yang menjadikan setiap pernyataan
-      majmuk benar.
-    </>
-  }
-  yAxisLabel="Baris benar"
-  data={[
-    { name: "p dan q", value: 1 },
-    { name: "p atau q", value: 3 },
-    { name: "Jika p, maka q", value: 3 },
-  ]}
-  chartConfig={{ value: { label: "Baris benar", colors: { light: ["var(--chart-2)"], dark: ["var(--chart-2)"] } } }}
-/>
-
-## Implikasi dan Akasnya
-
-**Implikasi** berbentuk jika <InlineMath math="p" />, maka <InlineMath math="q" />. Bahagian <InlineMath math="p" /> ialah antejadian dan <InlineMath math="q" /> ialah akibat. Implikasi hanya palsu apabila <InlineMath math="p" /> benar tetapi <InlineMath math="q" /> palsu.
-
-| Bentuk | Pernyataan | Contoh |
+| Arah | Premis | Kesimpulan |
 | :--- | :--- | :--- |
-| Implikasi | Jika <InlineMath math="p" />, maka <InlineMath math="q" /> | Jika <InlineMath math="x > 2" />, maka <InlineMath math="x^2 > 4" /> |
-| Akas | Jika <InlineMath math="q" />, maka <InlineMath math="p" /> | Jika <InlineMath math="x^2 > 4" />, maka <InlineMath math="x > 2" /> |
-| Songsangan | Jika <InlineMath math="\sim p" />, maka <InlineMath math="\sim q" /> | Jika <InlineMath math="x \le 2" />, maka <InlineMath math="x^2 \le 4" /> |
-| Kontrapositif | Jika <InlineMath math="\sim q" />, maka <InlineMath math="\sim p" /> | Jika <InlineMath math="x^2 \le 4" />, maka <InlineMath math="x \le 2" /> |
+| Deduktif | Hasil tambah sudut pedalaman setiap sisi empat ialah <InlineMath math="360^\circ" />. <InlineMath math="PQRS" /> ialah sisi empat. | Hasil tambah sudut pedalaman <InlineMath math="PQRS" /> ialah <InlineMath math="360^\circ" />. |
+| Induktif | <InlineMath math="1 + 3 = 2^2" />, <InlineMath math="1 + 3 + 5 = 3^2" />, <InlineMath math="1 + 3 + 5 + 7 = 4^2" /> | Hasil tambah <InlineMath math="n" /> nombor ganjil yang pertama ialah <InlineMath math="n^2" />. |
 
-**Kontrapositif sentiasa mempunyai nilai kebenaran yang sama dengan implikasi**, manakala akas dan songsangan boleh berbeza. Model ini menguji implikasi dan akasnya. Gerakkan <InlineMath math="x" /> dan cari nilai yang menjadikan akas palsu.
+Bezanya terletak pada kepastian. Jika premis hujah deduktif benar dan bentuknya sah, kesimpulannya **pasti benar**. Kesimpulan induktif hanya **mungkin benar**, jadi kamu mengujinya pada kes baharu. Bagi <InlineMath math="n = 5" /> pola itu masih bertahan, kerana <InlineMath math="1 + 3 + 5 + 7 + 9 = 25 = 5^2" />. Walaupun begitu, satu kes tambahan tetap bukan bukti untuk semua <InlineMath math="n" />.
 
-<MathVisual
-  title={<>Menguji Akas dengan Contoh Penyangkal</>}
-  description={
-    <>
-      Lengkung <InlineMath math="y = x^2" /> dan garis{" "}
-      <InlineMath math="y = 4" />. Akas jika <InlineMath math="x^2 > 4" />, maka{" "}
-      <InlineMath math="x > 2" /> gagal apabila titik berada di atas garis
-      tetapi di sebelah kiri <InlineMath math="x = 2" />.
-    </>
-  }
-  scene={{
-    space: "plane",
-    frame: { kind: "cartesian", x: { min: -4, max: 4 }, y: { min: -1, max: 12 } },
-    view: { kind: "fit", padding: 0.06 },
-    parameters: [
-      { name: "a", min: -3.5, max: 3.5, value: -3, step: 0.1, label: "a" },
-    ],
-    objects: [
-      { id: "square", kind: "function", appearance: "primary", formula: "x^2", domain: { min: -3.5, max: 3.5 } },
-      { id: "four", kind: "function", appearance: "construction", formula: "4 + 0x", domain: { min: -4, max: 4 } },
-      { id: "now", kind: "marker", x: "a", y: "a^2", appearance: "warning" },
-    ],
-    readouts: [
-      { key: "square", formula: "a^2" },
-    ],
-  }}
-  labels={{
-    a: <>Nilai <InlineMath math="x" /></>,
-    square: <>Nilai <InlineMath math="x^2" /></>,
-  }}
-/>
+## Tiga Bentuk Hujah Sah
 
-### Contoh Menentukan Nilai Kebenaran
-
-Tentukan sama ada **akas** bagi pernyataan jika <InlineMath math="x > 2" />, maka <InlineMath math="x^2 > 4" /> benar atau palsu.
-
-Akasnya ialah jika <InlineMath math="x^2 > 4" />, maka <InlineMath math="x > 2" />. Ambil <InlineMath math="x = -3" />:
-
-<BlockMath math="(-3)^2 = 9 > 4 \quad\text{tetapi}\quad -3 < 2" />
-
-Satu contoh penyangkal sudah cukup, jadi akas itu palsu. Semak dengan model: pada <InlineMath math="x = -3" />, titik berada di atas garis <InlineMath math="y = 4" /> tetapi di sebelah kiri <InlineMath math="x = 2" />. Implikasi asal pula benar, kerana setiap <InlineMath math="x > 2" /> memberi <InlineMath math="x^2 > 4" />.
-
-### Implikasi Dua Hala
-
-Jika implikasi dan akasnya kedua-duanya benar, kedua-duanya boleh ditulis sebagai satu pernyataan **jika dan hanya jika**. Contohnya, <InlineMath math="x^3 = 8" /> jika dan hanya jika <InlineMath math="x = 2" />, kerana setiap arah benar.
-
-## Hujah Deduktif
-
-Hujah deduktif terdiri daripada premis dan kesimpulan. Jika premis benar dan bentuk hujah sah, **kesimpulan pasti benar**. Tiga bentuk yang sah:
+Sesetengah bentuk hujah sentiasa berjaya: jika premisnya benar, kesimpulannya tidak mungkin palsu. Hujah dengan bentuk seperti itu dipanggil **sah**. Tiga bentuk dalam jadual ini ialah bentuk yang paling kerap kamu gunakan.
 
 | Bentuk | Premis 1 | Premis 2 | Kesimpulan |
 | :--- | :--- | :--- | :--- |
-| Bentuk satu | Semua <InlineMath math="A" /> ialah <InlineMath math="B" /> | <InlineMath math="C" /> ialah <InlineMath math="A" /> | <InlineMath math="C" /> ialah <InlineMath math="B" /> |
-| Bentuk dua | Jika <InlineMath math="p" />, maka <InlineMath math="q" /> | <InlineMath math="p" /> benar | <InlineMath math="q" /> benar |
-| Bentuk tiga | Jika <InlineMath math="p" />, maka <InlineMath math="q" /> | <InlineMath math="\sim q" /> benar | <InlineMath math="\sim p" /> benar |
+| I | Semua <InlineMath math="A" /> ialah <InlineMath math="B" />. | <InlineMath math="C" /> ialah <InlineMath math="A" />. | <InlineMath math="C" /> ialah <InlineMath math="B" />. |
+| II | Jika <InlineMath math="p" />, maka <InlineMath math="q" />. | <InlineMath math="p" /> adalah benar. | <InlineMath math="q" /> adalah benar. |
+| III | Jika <InlineMath math="p" />, maka <InlineMath math="q" />. | Bukan <InlineMath math="q" /> adalah benar. | Bukan <InlineMath math="p" /> adalah benar. |
 
-### Premis sebagai Rajah Set
+Bentuk I berjaya kerana jika setiap ahli <InlineMath math="A" /> berada di dalam <InlineMath math="B" />, maka mana-mana ahli <InlineMath math="A" />, termasuk <InlineMath math="C" />, juga berada di dalam <InlineMath math="B" />. Bentuk III berjaya kerana sesuatu implikasi dan [kontrapositifnya sentiasa mempunyai nilai yang sama](/ms/subjek/matematik/penaakulan-logik/implikasi-dan-kontrapositif). Rantai di bawah sudah memegang premis 1 bagi hujah Bentuk III. Di sini <InlineMath math="PQRS" /> ialah lelayang dengan sisi <InlineMath math="3\text{ cm}" />, <InlineMath math="3\text{ cm}" />, <InlineMath math="5\text{ cm}" /> dan <InlineMath math="5\text{ cm}" />.
 
-Premis semua <InlineMath math="A" /> ialah <InlineMath math="B" /> bermaksud **set <InlineMath math="A" /> terletak di dalam set <InlineMath math="B" />**. Gerakkan bulatan <InlineMath math="A" /> dan lihat bila ia berada sepenuhnya di dalam <InlineMath math="B" />.
-
-<MathVisual
-  title={<>Premis Semua A ialah B sebagai Rajah Set</>}
+<ArgumentChainLab
+  title={<>Dua Kad, Dua Susunan</>}
   description={
     <>
-      Bulatan besar ialah set <InlineMath math="B" /> dengan jejari{" "}
-      <InlineMath math="3" />, dan bulatan kecil ialah set{" "}
-      <InlineMath math="A" /> dengan jejari <InlineMath math="1" /> yang
-      berpusat pada <InlineMath math="(h, 0)" />.
+      Letakkan kedua-dua kad ke dalam premis 2 dan kesimpulan, kemudian tukar
+      kedudukannya. Rantai itu menguji setiap susunan.
     </>
   }
-  scene={{
-    space: "plane",
-    frame: { kind: "cartesian", x: { min: -4.5, max: 6.5 }, y: { min: -3.5, max: 3.5 } },
-    view: { kind: "fit", padding: 0.06 },
-    parameters: [
-      { name: "h", min: -2, max: 5, value: 1, step: 0.1, label: "h" },
-    ],
-    objects: [
-      { id: "setb", kind: "parametric", appearance: "reference", x: "3cos(t)", y: "3sin(t)", parameter: { min: 0, max: 2 * Math.PI } },
-      { id: "seta", kind: "parametric", appearance: "primary", x: "h + cos(t)", y: "sin(t)", parameter: { min: 0, max: 2 * Math.PI } },
-    ],
-    readouts: [
-      { key: "margin", formula: "2 - abs(h)" },
-    ],
-    labels: [
-      { key: "setb", objectId: "setb", at: { x: -2.1, y: 2.1 }, placement: "above-left" },
-      { key: "seta", objectId: "seta", at: { x: "h", y: "1" }, placement: "above" },
-    ],
-  }}
+  footer={<>Kadnya sama, tetapi satu susunan mengunci rantai dan susunan yang lain memutuskannya.</>}
+  premises={[
+    {
+      statement: { kind: "conditional", antecedent: "square", consequent: "equal-sides" },
+      text: "Jika PQRS ialah segi empat sama, maka keempat-empat sisi PQRS sama panjang.",
+      truth: true,
+    },
+    "open",
+  ]}
+  conclusion="open"
+  hand={[
+    {
+      statement: { kind: "claim", negated: true, statement: "equal-sides" },
+      text: "Keempat-empat sisi PQRS tidak sama panjang.",
+      truth: true,
+    },
+    {
+      statement: { kind: "claim", negated: true, statement: "square" },
+      text: "PQRS bukan segi empat sama.",
+      truth: true,
+    },
+  ]}
   labels={{
-    setb: <InlineMath math="B" />,
-    seta: <InlineMath math="A" />,
-    h: <>Kedudukan pusat set <InlineMath math="A" /> <InlineMath math="h" /></>,
-    margin: <>Jarak ruang antara tepi <InlineMath math="A" /> dan tepi <InlineMath math="B" /></>,
+    conclusion: "Kesimpulan",
+    fallacies: {
+      antecedent: <>Menafikan anteseden</>,
+      consequent: <>Mengiakan akibat</>,
+      middle: <>Sebutan tengah tidak teragih</>,
+    },
+    form: <>Bentuk</>,
+    forms: {
+      I: <>Bentuk I</>,
+      II: <>Bentuk II</>,
+      III: <>Bentuk III</>,
+    },
+    hand: "Kad",
+    no: <>Tidak</>,
+    premises: ["Premis 1", "Premis 2"],
+    sound: <>Munasabah</>,
+    truth: <>Premis benar</>,
+    unfollowed: <>Kesimpulan tidak mengikut premis</>,
+    unlinked: <>Premis tidak bersambung</>,
+    valid: <>Sah</>,
+    viewLabel: "Tiga kad di atas rel, disambung dua mata rantai",
+    yes: <>Ya</>,
   }}
+  showVerdict
 />
 
-Apabila jarak ruang positif, iaitu <InlineMath math="-2 < h < 2" />, set <InlineMath math="A" /> berada sepenuhnya di dalam <InlineMath math="B" /> dan premis itu benar. Mana-mana unsur <InlineMath math="C" /> dalam <InlineMath math="A" /> juga berada dalam <InlineMath math="B" />, itulah sebabnya bentuk satu sah.
+Susunan pertama meletakkan keempat-empat sisi <InlineMath math="PQRS" /> tidak sama panjang sebagai premis 2 dan <InlineMath math="PQRS" /> bukan segi empat sama sebagai kesimpulan. Itulah **Bentuk III**, dan rantainya terkunci. Susunan kedua menterbalikkan langkahnya: daripada <InlineMath math="PQRS" /> bukan segi empat sama, rantai menyimpulkan bahawa sisinya tidak sama panjang. Langkah itu ialah kesilapan penaakulan yang dipanggil **menafikan anteseden**. Bagi lelayang ini kesimpulannya kebetulan benar, tetapi bentuknya tetap tidak sah. Rombus juga bukan segi empat sama, namun keempat-empat sisinya sama panjang.
 
-### Contoh Melengkapkan Hujah Deduktif
+### Sah dan Munasabah
 
-Lengkapkan **kesimpulan**. Premis 1: Jika sebuah segi empat ialah segi empat sama, maka semua sisinya sama panjang. Premis 2: Sisi segi empat <InlineMath math="PQRS" /> tidak semuanya sama panjang.
+Sah hanya berkaitan dengan bentuk. Hujah yang sah dan **semua premisnya benar** dipanggil munasabah, dan hanya hujah yang munasabah menjamin kesimpulan yang benar. Rantai di bawah memegang premis yang palsu: semua nombor perdana ialah nombor ganjil.
 
-Ini bentuk tiga dengan <InlineMath math="\sim q" /> benar, jadi kesimpulannya: <InlineMath math="PQRS" /> bukan segi empat sama. Semak: jika <InlineMath math="PQRS" /> segi empat sama, semua sisinya mesti sama, yang bercanggah dengan premis 2.
+<ArgumentChainLab
+  title={<>Bentuk Betul, Premis Palsu</>}
+  description={
+    <>
+      Letakkan kedua-dua kad tentang nombor <InlineMath math="2" />, kemudian
+      baca keputusan rantai bagi setiap susunan.
+    </>
+  }
+  footer={<>Meterai menandakan kad yang palsu. Rantai boleh terkunci walaupun ada kad bermeterai.</>}
+  premises={[
+    {
+      statement: { kind: "all", subject: "prime", predicate: "odd" },
+      text: "Semua nombor perdana ialah nombor ganjil.",
+      truth: false,
+    },
+    "open",
+  ]}
+  conclusion="open"
+  hand={[
+    {
+      statement: { kind: "member", member: "2", set: "prime" },
+      text: "2 ialah nombor perdana.",
+      truth: true,
+    },
+    {
+      statement: { kind: "member", member: "2", set: "odd" },
+      text: "2 ialah nombor ganjil.",
+      truth: false,
+    },
+  ]}
+  labels={{
+    conclusion: "Kesimpulan",
+    fallacies: {
+      antecedent: <>Menafikan anteseden</>,
+      consequent: <>Mengiakan akibat</>,
+      middle: <>Sebutan tengah tidak teragih</>,
+    },
+    form: <>Bentuk</>,
+    forms: {
+      I: <>Bentuk I</>,
+      II: <>Bentuk II</>,
+      III: <>Bentuk III</>,
+    },
+    hand: "Kad",
+    no: <>Tidak</>,
+    premises: ["Premis 1", "Premis 2"],
+    sound: <>Munasabah</>,
+    truth: <>Premis benar</>,
+    unfollowed: <>Kesimpulan tidak mengikut premis</>,
+    unlinked: <>Premis tidak bersambung</>,
+    valid: <>Sah</>,
+    viewLabel: "Tiga kad di atas rel, disambung dua mata rantai",
+    yes: <>Ya</>,
+  }}
+  showVerdict
+/>
 
-## Hujah Induktif
+Dengan <InlineMath math="2" /> ialah nombor perdana sebagai premis 2, rantai itu ialah **Bentuk I** dan sah: jika semua nombor perdana memang ganjil, <InlineMath math="2" /> pasti ganjil. Masalahnya, premis 1 palsu, kerana <InlineMath math="2" /> ialah nombor perdana yang genap. Hujah itu sah tetapi tidak munasabah, dan kesimpulannya, <InlineMath math="2" /> ialah nombor ganjil, adalah palsu.
 
-Hujah induktif membina kesimpulan umum daripada **pola dalam kes khusus**. Kesimpulannya mungkin benar tetapi tidak dijamin, jadi ia perlu diuji pada kes baharu. Graf ini menunjukkan bilangan pepenjuru bagi poligon dengan <InlineMath math="n" /> sisi.
+Susunan sebaliknya, daripada <InlineMath math="2" /> ganjil kepada <InlineMath math="2" /> perdana, ialah kesilapan penaakulan yang dipanggil **sebutan tengah tidak teragih**. Semua nombor perdana ganjil tidak bermakna setiap nombor ganjil ialah nombor perdana, sama seperti <InlineMath math="9" /> yang ganjil tetapi bukan nombor perdana. Bandingkan dengan hujah yang munasabah: semua gandaan <InlineMath math="4" /> ialah nombor genap, <InlineMath math="36" /> ialah gandaan <InlineMath math="4" />, jadi <InlineMath math="36" /> ialah nombor genap. Semak: <InlineMath math="36 = 4 \times 9" />.
+
+### Menulis Hujah yang Sah
+
+Untuk menulis hujah yang sah tentang sesuatu situasi, **pilih bentuknya dahulu**, kemudian isi ayatnya. Contoh pertama menggunakan Bentuk I. Premis 1: semua gandaan <InlineMath math="9" /> mempunyai hasil tambah digit yang boleh dibahagi dengan <InlineMath math="9" />. Premis 2: <InlineMath math="7{,}263" /> ialah gandaan <InlineMath math="9" />. Kesimpulan: hasil tambah digit <InlineMath math="7{,}263" /> boleh dibahagi dengan <InlineMath math="9" />. Semak kedua-dua bahagian:
+
+<BlockMath math="7{,}263 = 9 \times 807, \qquad 7 + 2 + 6 + 3 = 18 = 9 \times 2" />
+
+Contoh kedua meminta premis yang hilang. Premis 1: jika sisi segi empat sama <InlineMath math="K" /> ialah <InlineMath math="5\text{ cm}" />, maka luasnya <InlineMath math="25\text{ cm}^2" />. Kesimpulan: sisi segi empat sama <InlineMath math="K" /> bukan <InlineMath math="5\text{ cm}" />. Kesimpulan itu berbentuk bukan <InlineMath math="p" />, jadi hujahnya Bentuk III, dan premis 2 mestilah bukan <InlineMath math="q" />: luas segi empat sama <InlineMath math="K" /> bukan <InlineMath math="25\text{ cm}^2" />. Semak: sisi <InlineMath math="5\text{ cm}" /> memberi luas <InlineMath math="5 \times 5 = 25\text{ cm}^2" />, yang bercanggah dengan premis 2. Jadi sisinya memang bukan <InlineMath math="5\text{ cm}" />.
+
+## Hujah Induktif Kuat dan Lemah
+
+Hujah induktif meneka peraturan umum daripada beberapa kes. Jika premisnya memberi sebab yang baik untuk mempercayai peraturan itu, hujahnya **kuat**. Jika sebabnya nipis, hujahnya **lemah**. Contoh hujah yang lemah: <InlineMath math="3" />, <InlineMath math="5" /> dan <InlineMath math="7" /> ialah nombor perdana, jadi setiap nombor ganjil yang lebih besar daripada <InlineMath math="1" /> ialah nombor perdana. Tiga kes terlalu sedikit, dan <InlineMath math="9 = 3 \times 3" /> terus mematahkan kesimpulannya.
+
+### Pola Menjadi Rumus
+
+Kira pepenjuru poligon dengan <InlineMath math="n" /> sisi bagi <InlineMath math="n = 3" /> hingga <InlineMath math="n = 7" />. Rajah ini mencatat kiraan yang dibuat terus pada setiap poligon.
 
 <ScatterDiagram
   title={<>Bilangan Pepenjuru Poligon</>}
   description={
     <>
-      Bilangan pepenjuru bagi poligon dengan tiga hingga tujuh sisi, dikira
-      secara langsung pada rajah.
+      Bilangan pepenjuru poligon bersisi tiga hingga tujuh, dikira terus
+      pada setiap poligon.
     </>
   }
-  xAxisLabel="Bilangan sisi n"
+  footer={<>Dari satu titik ke titik berikutnya, bilangannya bertambah <InlineMath math="2, 3, 4, 5" />.</>}
+  xAxisLabel="Bilangan sisi"
   yAxisLabel="Bilangan pepenjuru"
   datasets={[
     {
@@ -189,29 +197,27 @@ Hujah induktif membina kesimpulan umum daripada **pola dalam kes khusus**. Kesim
   ]}
 />
 
-### Daripada Pola kepada Rumus
-
-Setiap bucu disambung ke <InlineMath math="n - 3" /> bucu lain dengan pepenjuru, dan **setiap pepenjuru dikira dua kali**, jadi kesimpulan induktifnya ialah <InlineMath math="\dfrac{n(n - 3)}{2}" />. Model ini melukis rumus itu bersama titik data.
+Pola itu ada sebabnya. Setiap bucu disambungkan kepada <InlineMath math="n - 3" /> bucu lain melalui pepenjuru, kerana bucu itu tidak bersambung dengan dirinya sendiri dan dua bucu jirannya. Terdapat <InlineMath math="n" /> bucu, tetapi **setiap pepenjuru terkira dua kali**, sekali dari setiap hujungnya. Hujah induktifnya boleh ditulis begini. Premis: poligon bersisi tiga hingga tujuh mempunyai <InlineMath math="0, 2, 5, 9, 14" /> pepenjuru, dan setiap nilai itu sama dengan <InlineMath math="\tfrac{n(n - 3)}{2}" />. Kesimpulan: poligon dengan <InlineMath math="n" /> sisi mempunyai <InlineMath math="\tfrac{n(n - 3)}{2}" /> pepenjuru.
 
 <MathVisual
   title={<>Rumus Pepenjuru daripada Pola</>}
   description={
     <>
-      Lengkung <InlineMath math="\dfrac{n(n - 3)}{2}" /> dalam unit{" "}
-      <InlineMath math="2" /> pepenjuru terhadap bilangan sisi{" "}
-      <InlineMath math="n" />.
+      Lengkung <InlineMath math="y = \tfrac{n(n - 3)}{2}" /> melawan bilangan
+      sisi <InlineMath math="n" />. Gerakkan <InlineMath math="n" /> untuk
+      membaca bilangan pepenjuru yang diramalkan oleh rumus itu. Titik itu hanya mewakili poligon pada nilai bulat <InlineMath math="n" />.
     </>
   }
   scene={{
     space: "plane",
-    frame: { kind: "cartesian", x: { min: 0, max: 10.5 }, y: { min: 0, max: 18.5 } },
+    frame: { kind: "cartesian", x: { min: 0, max: 9 }, y: { min: -1, max: 21 } },
     view: { kind: "fit", padding: 0.06 },
     parameters: [
-      { name: "n", min: 3, max: 10, value: 8, step: 1, label: "n" },
+      { name: "n", min: 3, max: 8, value: 8, step: 1, label: "n" },
     ],
     objects: [
-      { id: "rule", kind: "function", appearance: "primary", formula: "x(x - 3)/4", domain: { min: 3, max: 10 } },
-      { id: "now", kind: "marker", x: "n", y: "n(n - 3)/4", appearance: "warning" },
+      { id: "rule", kind: "function", appearance: "primary", formula: "x(x - 3)/2", domain: { min: 3, max: 8 } },
+      { id: "now", kind: "marker", x: "n", y: "n(n - 3)/2", appearance: "warning" },
     ],
     readouts: [
       { key: "diagonals", formula: "n(n - 3)/2" },
@@ -223,47 +229,33 @@ Setiap bucu disambung ke <InlineMath math="n - 3" /> bucu lain dengan pepenjuru,
   }}
 />
 
-### Contoh Menguji Kesimpulan Induktif
-
-Gunakan rumus untuk **meramal** bilangan pepenjuru oktagon, kemudian semak dengan model.
+Uji kesimpulan itu pada oktagon. Rumus itu meramalkan
 
 <BlockMath math="\frac{8(8 - 3)}{2} = \frac{40}{2} = 20" />
 
-Semak dengan model: pada <InlineMath math="n = 8" />, bacaan ialah <InlineMath math="20" />. Kiraan terus juga memberi <InlineMath math="20" />: setiap satu daripada <InlineMath math="8" /> bucu mempunyai <InlineMath math="5" /> pepenjuru, dan <InlineMath math="8 \times 5 \div 2 = 20" />.
+Kiraan terus memberi hasil yang sama: setiap satu daripada <InlineMath math="8" /> bucu mempunyai <InlineMath math="5" /> pepenjuru, dan <InlineMath math="8 \times 5 \div 2 = 20" />. Gerakkan <InlineMath math="n" /> ke <InlineMath math="8" /> pada graf, dan titiknya berada pada ketinggian <InlineMath math="20" />.
 
-## Kesilapan Lazim tentang Penaakulan Logik
+### Kuat dan Meyakinkan
 
-| Kesilapan | Sebab salah | Cara semak |
+Hujah induktif yang kuat dan **semua premisnya benar** dipanggil meyakinkan. Hujah pepenjuru tadi meyakinkan, kerana setiap kiraan dalam premisnya sudah disemak. Bandingkan dengan hujah ini. Premis: <InlineMath math="2^2 - 1 = 3" />, <InlineMath math="2^3 - 1 = 7" />, <InlineMath math="2^5 - 1 = 31" />, <InlineMath math="2^7 - 1 = 127" /> dan <InlineMath math="2^{11} - 1 = 2{,}047" /> semuanya nombor perdana. Kesimpulan: <InlineMath math="2^p - 1" /> ialah nombor perdana bagi setiap nombor perdana <InlineMath math="p" />.
+
+Premis terakhirnya palsu.
+
+<BlockMath math="2^{11} - 1 = 2{,}047 = 23 \times 89" />
+
+Oleh sebab satu premisnya palsu, **hujah itu tidak meyakinkan**, walau sekemas mana pun polanya. Kes <InlineMath math="p = 11" /> malah menjadi contoh penyangkal bagi kesimpulannya. Semak hasil darabnya: <InlineMath math="23 \times 89 = 23 \times 90 - 23 = 2{,}070 - 23 = 2{,}047" />.
+
+## Kad Mana Perlu Dibalikkan
+
+Teka-teki ini menggunakan semua alat sekali gus. Setiap satu daripada empat kad mempunyai nombor pada satu muka dan warna pada muka yang lain. Muka yang menghadap ke atas menunjukkan <InlineMath math="8" />, <InlineMath math="3" />, merah dan biru. Peraturannya: jika sesuatu kad mempunyai nombor genap pada satu muka, maka muka yang satu lagi berwarna merah. Kad mana yang mesti dibalikkan untuk menguji peraturan itu?
+
+Peraturan ini ialah implikasi, jadi hanya contoh penyangkal yang boleh mematahkannya: kad dengan **nombor genap dan warna yang bukan merah**. Tanya soalan itu tentang setiap kad.
+
+| Kad | Yang mungkin ada di sebaliknya | Boleh mematahkan peraturan? |
 | :--- | :--- | :--- |
-| Akas sentiasa benar jika implikasi benar. | Akas boleh palsu, seperti contoh <InlineMath math="x = -3" />. | Cari satu contoh penyangkal. |
-| Pernyataan dengan atau memerlukan kedua-dua bahagian benar. | Pernyataan dengan atau benar jika sekurang-kurangnya satu bahagian benar. | Semak jadual kebenaran. |
-| Kesimpulan induktif pasti benar. | Kesimpulan induktif hanya kemungkinan dan mesti diuji. | Uji rumus pada kes baharu. |
-| Penafian semua <InlineMath math="A" /> ialah <InlineMath math="B" /> ialah tiada <InlineMath math="A" /> ialah <InlineMath math="B" />. | Penafiannya ialah bukan semua <InlineMath math="A" /> ialah <InlineMath math="B" />. | Satu unsur di luar <InlineMath math="B" /> sudah cukup. |
+| <InlineMath math="8" /> | merah atau biru | Ya, jika sebaliknya biru |
+| <InlineMath math="3" /> | merah atau biru | Tidak, antesedennya palsu |
+| merah | genap atau ganjil | Tidak, akibatnya sudah benar |
+| biru | genap atau ganjil | Ya, jika sebaliknya genap |
 
-Kesilapan pertama paling kerap muncul dalam soalan implikasi. **Satu contoh penyangkal membuktikan pernyataan palsu**.
-
-## Latihan Penaakulan Logik
-
-Soalan ini bergerak dari pernyataan ke hujah deduktif dan induktif. **Nyatakan bentuk hujah** dalam setiap jawapan deduktif.
-
-1. Tentukan nilai kebenaran pernyataan <InlineMath math="5 > 3" /> dan <InlineMath math="2^3 = 6" />.
-
-2. Tulis kontrapositif bagi jika <InlineMath math="n" /> ialah gandaan <InlineMath math="4" />, maka <InlineMath math="n" /> ialah nombor genap, dan nyatakan nilai kebenarannya.
-
-3. Lengkapkan hujah. Premis 1: Semua gandaan <InlineMath math="6" /> ialah gandaan <InlineMath math="3" />. Premis 2: <InlineMath math="42" /> ialah gandaan <InlineMath math="6" />.
-
-4. Jujukan <InlineMath math="5, 8, 11, 14, \ldots" /> mengikut pola <InlineMath math="3n + 2" /> bagi <InlineMath math="n = 1, 2, 3, \ldots" />. Gunakan kesimpulan induktif untuk mencari sebutan ke-<InlineMath math="20" />.
-
-### Penyelesaian
-
-**Penyelesaian 1**: <InlineMath math="5 > 3" /> benar, tetapi <InlineMath math="2^3 = 8" />, bukan <InlineMath math="6" />, jadi bahagian kedua palsu. Pernyataan dengan **dan** memerlukan kedua-dua bahagian benar, jadi pernyataan itu **palsu**.
-
-**Penyelesaian 2**: Kontrapositifnya ialah jika <InlineMath math="n" /> bukan nombor genap, maka <InlineMath math="n" /> bukan gandaan <InlineMath math="4" />. Implikasi asal benar, dan **kontrapositif mempunyai nilai kebenaran yang sama**, jadi ia juga benar.
-
-**Penyelesaian 3**: Ini bentuk satu, jadi kesimpulannya <InlineMath math="42" /> ialah gandaan <InlineMath math="3" />. Semak: <InlineMath math="42 = 3 \times 14" />.
-
-**Penyelesaian 4**: Gantikan <InlineMath math="n = 20" /> ke dalam pola:
-
-<BlockMath math="3(20) + 2 = 62" />
-
-Semak pola pada sebutan yang diketahui: <InlineMath math="3(4) + 2 = 14" />, sama dengan sebutan keempat.
+Jadi kamu mesti membalikkan **kad <InlineMath math="8" /> dan kad biru**. Kad <InlineMath math="8" /> diuji dengan Bentuk II: jika peraturan itu benar, sebaliknya mesti merah. Kad biru diuji dengan Bentuk III: jika peraturan itu benar, sebaliknya tidak boleh genap. Ramai memilih kad merah, sedangkan apa-apa pun di sebaliknya tidak boleh melanggar peraturan. Membuat kesimpulan daripada kad merah sama dengan mengiakan akibat.

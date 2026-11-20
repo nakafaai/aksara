@@ -1,0 +1,180 @@
+export const metadata = {
+  title: "Implication and Contrapositive",
+  description:
+    "Write implications and biconditionals, form the converse, inverse and contrapositive, compare them, and break a claim with one counterexample.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2026-11-20",
+  subject: "Logical Reasoning",
+};
+
+## Sentences with If and Then
+
+An implication links two statements with one rule: **whenever the first part is true, the second part is true too**. It has the form if <InlineMath math="p" />, then <InlineMath math="q" />. The part <InlineMath math="p" /> is called the antecedent, and the part <InlineMath math="q" /> is called the consequent. For example, if <InlineMath math="m > 5" />, then <InlineMath math="m > 2" />. The antecedent is <InlineMath math="m > 5" />, and the consequent is <InlineMath math="m > 2" />.
+
+When is an implication false? Only when the antecedent is true and the consequent is false. When the antecedent is false, the implication asks nothing of the consequent, so **the implication stays true**.
+
+| <InlineMath math="p" /> | <InlineMath math="q" /> | If <InlineMath math="p" />, then <InlineMath math="q" /> |
+| :--- | :--- | :--- |
+| True | True | True |
+| True | False | False |
+| False | True | True |
+| False | False | True |
+
+Check the implication if <InlineMath math="m > 5" />, then <InlineMath math="m > 2" />. To make it false, you'd need a number bigger than <InlineMath math="5" /> that isn't bigger than <InlineMath math="2" />. No such number exists, because every number above <InlineMath math="5" /> is already past <InlineMath math="2" />. The true then false row never happens, so the implication is true. For <InlineMath math="m = 3" /> the antecedent is false and the consequent is true, and that row breaks nothing.
+
+## Two Directions in One Sentence
+
+Sometimes an implication works in both directions. If <InlineMath math="x + 3 = 10" />, then <InlineMath math="x = 7" />, and if <InlineMath math="x = 7" />, then <InlineMath math="x + 3 = 10" />. Both implications are true, so you can join them into a **biconditional**: <InlineMath math="x + 3 = 10" /> if and only if <InlineMath math="x = 7" />. The general form is <InlineMath math="p" /> if and only if <InlineMath math="q" />, and a biconditional is true when **both of its implications are true**.
+
+Now split a biconditional into its two implications. For whole numbers, a number is even if and only if its last digit is <InlineMath math="0, 2, 4, 6" /> or <InlineMath math="8" />.
+
+| Direction | Implication | Truth value |
+| :--- | :--- | :--- |
+| <InlineMath math="p" /> to <InlineMath math="q" /> | If a whole number is even, then its last digit is <InlineMath math="0, 2, 4, 6" /> or <InlineMath math="8" />. | True |
+| <InlineMath math="q" /> to <InlineMath math="p" /> | If the last digit of a whole number is <InlineMath math="0, 2, 4, 6" /> or <InlineMath math="8" />, then the number is even. | True |
+
+Check both at once. Any whole number can be written as <InlineMath math="10k + d" />, where <InlineMath math="d" /> is its last digit. The part <InlineMath math="10k" /> is always even, so only <InlineMath math="d" /> decides whether the number is even.
+
+Go back to the implication about <InlineMath math="m" />. If <InlineMath math="m > 5" />, then <InlineMath math="m > 2" /> is true, but <InlineMath math="m > 5" /> if and only if <InlineMath math="m > 2" /> is false. The reverse direction, if <InlineMath math="m > 2" />, then <InlineMath math="m > 5" />, breaks at <InlineMath math="m = 3" />. One broken direction is enough to make **the biconditional false**.
+
+## Turning an Implication Around
+
+From one implication if <InlineMath math="p" />, then <InlineMath math="q" />, you can build three new ones: swap the two parts, negate both parts, or do both. Each has its own name, and its truth value **isn't always the same** as the original's.
+
+### Three New Implications
+
+Take the implication if <InlineMath math="x > 2" />, then <InlineMath math="x^2 > 4" />, for real numbers <InlineMath math="x" />. The negation of <InlineMath math="x > 2" /> is <InlineMath math="x \le 2" />, and the negation of <InlineMath math="x^2 > 4" /> is <InlineMath math="x^2 \le 4" />.
+
+| Name | How it's built | Example | Truth value |
+| :--- | :--- | :--- | :--- |
+| Implication | the original | If <InlineMath math="x > 2" />, then <InlineMath math="x^2 > 4" /> | True |
+| Converse | swap the parts | If <InlineMath math="x^2 > 4" />, then <InlineMath math="x > 2" /> | False |
+| Inverse | negate both parts | If <InlineMath math="x \le 2" />, then <InlineMath math="x^2 \le 4" /> | False |
+| Contrapositive | swap, then negate | If <InlineMath math="x^2 \le 4" />, then <InlineMath math="x \le 2" /> | True |
+
+This graph tests the converse. Move <InlineMath math="x" /> and look for a point above the line <InlineMath math="y = 4" /> that sits to the left of <InlineMath math="x = 2" />.
+
+<MathVisual
+  title={<>Testing a Converse with a Counterexample</>}
+  description={
+    <>
+      The curve <InlineMath math="y = x^2" /> and the line{" "}
+      <InlineMath math="y = 4" />. A point above the line has{" "}
+      <InlineMath math="x^2 > 4" />.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -4, max: 4 }, y: { min: -1, max: 12 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "a", min: -3.5, max: 3.5, value: -3, step: 0.1, label: "a" },
+    ],
+    objects: [
+      { id: "square", kind: "function", appearance: "primary", formula: "x^2", domain: { min: -3.5, max: 3.5 } },
+      { id: "four", kind: "function", appearance: "construction", formula: "4 + 0x", domain: { min: -4, max: 4 } },
+      { id: "now", kind: "marker", x: "a", y: "a^2", appearance: "warning" },
+    ],
+    readouts: [
+      { key: "square", formula: "a^2" },
+    ],
+  }}
+  labels={{
+    a: <>Value of <InlineMath math="x" /></>,
+    square: <>Value of <InlineMath math="x^2" /></>,
+  }}
+/>
+
+At <InlineMath math="x = -3" /> the point is above the line but to the left of <InlineMath math="x = 2" />.
+
+<BlockMath math="(-3)^2 = 9 > 4 \quad\text{but}\quad -3 < 2" />
+
+So <InlineMath math="x = -3" /> satisfies <InlineMath math="x^2 > 4" /> without satisfying <InlineMath math="x > 2" />, and **the converse is false**. The same number breaks the inverse: <InlineMath math="-3 \le 2" />, but <InlineMath math="(-3)^2 = 9" /> is more than <InlineMath math="4" />. The contrapositive is true. If <InlineMath math="x^2 \le 4" />, then <InlineMath math="x" /> lies between <InlineMath math="-2" /> and <InlineMath math="2" />, so <InlineMath math="x \le 2" /> for sure.
+
+### Pairs That Always Agree
+
+That result isn't luck. The truth table of all four forms shows that an implication and its contrapositive **always have the same truth value**, and so do the converse and the inverse.
+
+| <InlineMath math="p" /> | <InlineMath math="q" /> | Implication | Contrapositive | Converse | Inverse |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| True | True | True | True | True | True |
+| True | False | False | False | True | True |
+| False | True | True | True | False | False |
+| False | False | True | True | True | True |
+
+Once you've proved an implication, you've proved its contrapositive too. The converse doesn't come along. It can be false, as with <InlineMath math="x > 2" />, but it can also be true. For a whole number <InlineMath math="n" />, if <InlineMath math="n" /> is a multiple of <InlineMath math="10" />, then the last digit of <InlineMath math="n" /> is <InlineMath math="0" />. Its converse, if the last digit of <InlineMath math="n" /> is <InlineMath math="0" />, then <InlineMath math="n" /> is a multiple of <InlineMath math="10" />, is true as well, and so is the inverse that pairs with it. So **you check a converse on its own**, never copy it from the original.
+
+## One Case That Breaks a Claim
+
+To bring down a claim about every case, you only need one case where it fails. That case is called a **counterexample**. For an implication if <InlineMath math="p" />, then <InlineMath math="q" />, a counterexample is a case where <InlineMath math="p" /> is true and <InlineMath math="q" /> is false, the one row that makes an implication false. It works the same way as bringing down [a claim with the word all](/en/subjects/mathematics/logical-reasoning/statements-and-truth-values) on the tile board.
+
+The board below holds nine tiles and two claims that are converses of each other. Every tile you check drops into one of the four case boxes for <InlineMath math="p" /> and <InlineMath math="q" />.
+
+<CounterexampleGridLab
+  title={<>A Board of Four Cases</>}
+  description={
+    <>
+      Pick a claim, then check the tiles one at a time. Each tile moves into
+      the box for its own case.
+    </>
+  }
+  footer={<>Only the box with <InlineMath math="p" /> true and <InlineMath math="q" /> false can break an if then claim.</>}
+  tiles={[
+    { name: "4", tile: { kind: "number", value: 4 } },
+    { name: "6", tile: { kind: "number", value: 6 } },
+    { name: "8", tile: { kind: "number", value: 8 } },
+    { name: "9", tile: { kind: "number", value: 9 } },
+    { name: "12", tile: { kind: "number", value: 12 } },
+    { name: "15", tile: { kind: "number", value: 15 } },
+    { name: "18", tile: { kind: "number", value: 18 } },
+    { name: "20", tile: { kind: "number", value: 20 } },
+    { name: "24", tile: { kind: "number", value: 24 } },
+  ]}
+  claims={[
+    {
+      name: "Implication",
+      text: "If a number here is a multiple of 6, then it is a multiple of 3.",
+      claim: {
+        kind: "if",
+        p: { name: "Multiple of 6", test: { kind: "multiple", of: 6 } },
+        q: { name: "Multiple of 3", test: { kind: "multiple", of: 3 } },
+      },
+    },
+    {
+      name: "Converse",
+      text: "If a number here is a multiple of 3, then it is a multiple of 6.",
+      claim: {
+        kind: "if",
+        p: { name: "Multiple of 3", test: { kind: "multiple", of: 3 } },
+        q: { name: "Multiple of 6", test: { kind: "multiple", of: 6 } },
+      },
+    },
+  ]}
+  labels={{
+    claim: <>The claim</>,
+    claims: "Claim",
+    false: "False",
+    none: <>No tile picked yet</>,
+    picked: <>Picked tile</>,
+    tile: "Tile",
+    true: "True",
+    verdicts: {
+      breaks: <>Counterexample</>,
+      fits: <>Fits</>,
+      misses: <>Not an example</>,
+      outside: <>Outside the claim</>,
+      proves: <>Example</>,
+      safe: <>Condition false</>,
+    },
+    viewLabel: "Nine number tiles and a board of four cases",
+  }}
+  showAnswer
+/>
+
+The first implication holds right up to the last tile. The box with <InlineMath math="p" /> true and <InlineMath math="q" /> false stays empty, because every multiple of <InlineMath math="6" /> has the form <InlineMath math="6k = 3(2k)" />, so it's a multiple of <InlineMath math="3" /> too. The converse breaks at the tile <InlineMath math="9" />, which is a multiple of <InlineMath math="3" /> but not of <InlineMath math="6" />, and the tile <InlineMath math="15" /> breaks it as well. The tiles <InlineMath math="4" />, <InlineMath math="8" /> and <InlineMath math="20" /> aren't multiples of <InlineMath math="3" />, so for both claims their condition is false and they **can't break anything**.
+
+A counterexample can hide a long way out. Look at this claim: for every whole number <InlineMath math="n" />, the value of <InlineMath math="n^2 + n + 41" /> is prime. For <InlineMath math="n = 0, 1, 2" /> you get <InlineMath math="41, 43, 47" />, all prime. The claim even holds for <InlineMath math="n = 0" /> up to <InlineMath math="n = 39" />, forty cases in a row. Now try <InlineMath math="n = 40" />.
+
+<BlockMath math="40^2 + 40 + 41 = 1{,}600 + 40 + 41 = 1{,}681 = 41 \times 41" />
+
+The number <InlineMath math="1{,}681" /> is divisible by <InlineMath math="41" />, so it isn't prime, and **this one case brings the claim down**. Check the product: <InlineMath math="41 \times 41 = 1{,}640 + 41 = 1{,}681" />. Forty cases that fit don't prove a claim about every number, while a single counterexample is enough to show it's false.

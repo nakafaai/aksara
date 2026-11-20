@@ -11,23 +11,26 @@ const lesson: LessonModule = {
     id: "logika-matematika",
     ms: "penaakulan-logik",
   },
-  sections: ["argument"],
+  sections: ["statement", "implication", "argument"],
   slug: "logic",
   translations: {
     de: {
-      description: "Prüfe Implikationen und ziehe gültige Schlüsse.",
+      description:
+        "Prüfe Aussagen und Implikationen und ziehe gültige Schlüsse.",
       title: "Logisches Schließen",
     },
     en: {
-      description: "Test implications and build valid arguments.",
+      description:
+        "Check statements, test implications and build valid arguments.",
       title: "Logical Reasoning",
     },
     id: {
-      description: "Uji implikasi dan susun penalaran yang sah.",
+      description:
+        "Cek pernyataan, uji implikasi, dan susun penalaran yang sah.",
       title: "Logika Matematika",
     },
     ms: {
-      description: "Uji implikasi dan bina hujah yang sah.",
+      description: "Semak pernyataan, uji implikasi dan bina hujah yang sah.",
       title: "Penaakulan Logik",
     },
   },
