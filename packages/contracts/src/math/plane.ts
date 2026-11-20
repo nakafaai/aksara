@@ -39,6 +39,7 @@ import {
   mathLabelAnchorFields,
 } from "#contracts/math/object";
 import { planeResolutionIssues } from "#contracts/math/resolution";
+import { figureAspectIssues } from "#contracts/math/shape";
 
 /** Checks a plane polygon has non-zero signed area. */
 function hasPlaneArea(
@@ -298,6 +299,7 @@ export const PlaneMathVisualSchema = Schema.Struct({
         ...strictBoundaryIssues(objects),
         ...graphAsParametricIssues(objects),
         ...inventedEdgeIssues(frame, objects),
+        ...figureAspectIssues(frame, objects, view),
       ]
     )
   )

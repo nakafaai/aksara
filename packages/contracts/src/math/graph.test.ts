@@ -30,6 +30,22 @@ describe("graphAsParametricIssues", () => {
     }
   });
 
+  it("asks for a function when y reads t only through the formula of x", () => {
+    for (const [x, y] of [
+      ["exp(t)", "log_2(exp(t))"],
+      ["(2 - exp(t))", "(((2 - exp(t)) + 3) / ((2 - exp(t)) - 2))"],
+      ["cos(t)", "3"],
+      ["exp(t)", "-sin(exp(t))"],
+    ] as const) {
+      assert.deepStrictEqual(graphAsParametricIssues([parametric(x, y)]), [
+        {
+          issue: `Expected the parametric curve "curve", whose y reads t only through its x (x = ${x}), to be written as { kind: "function", formula, domain }: it is the graph y = f(x), and a graph lets each axis scale on its own.`,
+          path: ["objects", 0],
+        },
+      ]);
+    }
+  });
+
   it("keeps a curve whose x turns back or stands still", () => {
     for (const x of ["4 * cos(t)", "t * t", "exp(t)", "0", "3 + 0 * t"]) {
       assert.deepStrictEqual(

@@ -122,6 +122,13 @@ publishes once Nakafa's production renderer draws it.
   figure as drawn up to a value ("drawn up to x = 4"): draw open regions and
   lines whole, and say what they show. Authored frames have no grid override.
   Keep the subject dominant.
+- A plane scene that draws a figure, an `arc`, `circle`, `implicit`,
+  `parametric` or `polar` curve, `polygon`, `ray` or `vector`, keeps one scale
+  on both axes, so its frame is between 0.7 and 2 times as wide as it is tall,
+  padding included. Frame the part the figure teaches, not a far point a
+  curve reaches: a frame stretched to hold the top of a parabola only shrinks
+  the arrows and points that the figure is about. A graph with no figure may
+  take any frame, because each of its axes scales on its own.
 - Never shade a part of the plane that lines cut out as a `polygon` closed
   near the frame's edge: that edge is invented, and it turns an open region
   into a closed one. Write it as `{ kind: "region", inequalities: [...] }`

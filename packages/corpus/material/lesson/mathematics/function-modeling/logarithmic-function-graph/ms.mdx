@@ -33,9 +33,9 @@ Graf berikut membandingkan <InlineMath math="y = \log_b x" /> untuk beberapa asa
     frame: { kind: "cartesian", x: { min: -1.5, max: 13.5 }, y: { min: -6, max: 4.5 } },
     view: { kind: "fit", padding: 0.2 },
     objects: [
-      { id: "s1", kind: "parametric", x: "exp(t)", y: "log_2(exp(t))", parameter: { min: -3.5, max: 2.5 }, appearance: "primary" },
-      { id: "s2", kind: "parametric", x: "exp(t)", y: "log(exp(t))", parameter: { min: -3.5, max: 2.5 }, appearance: "secondary" },
-      { id: "s3", kind: "parametric", x: "exp(t)", y: "ln(exp(t))", parameter: { min: -3.5, max: 2.5 }, appearance: "answer" },
+      { id: "s1", kind: "function", formula: "log_2(x)", domain: { min: 0.0301, max: 12.2 }, appearance: "primary" },
+      { id: "s2", kind: "function", formula: "log(x)", domain: { min: 0.0301, max: 12.2 }, appearance: "secondary" },
+      { id: "s3", kind: "function", formula: "ln(x)", domain: { min: 0.0301, max: 12.2 }, appearance: "answer" },
     ],
     labels: [
       { key: "l1", objectId: "s1", at: { x: 7.17, y: 2.84 }, placement: "above-left" },
@@ -88,7 +88,7 @@ Untuk melukis graf ini, kita bina jadual nilai dengan memilih nilai <InlineMath 
     frame: { kind: "cartesian", x: { min: -1.5, max: 13.5 }, y: { min: -6, max: 4.5 } },
     view: { kind: "fit", padding: 0.2 },
     objects: [
-      { id: "s1", kind: "parametric", x: "exp(t)", y: "log_2(exp(t))", parameter: { min: -3.5, max: 2.5 }, appearance: "primary" },
+      { id: "s1", kind: "function", formula: "log_2(x)", domain: { min: 0.0301, max: 12.2 }, appearance: "primary" },
       { id: "s2", kind: "point", at: { x: 0.13, y: -3 }, appearance: "secondary" },
       { id: "s3", kind: "point", at: { x: 0.25, y: -2 }, appearance: "secondary" },
       { id: "s4", kind: "point", at: { x: 0.5, y: -1 }, appearance: "secondary" },
@@ -128,7 +128,7 @@ Untuk asas <InlineMath math="0 < b < 1" />, graf akan **menyusut**:
     frame: { kind: "cartesian", x: { min: -1.5, max: 13.5 }, y: { min: -3, max: 4 } },
     view: { kind: "fit", padding: 0.2 },
     objects: [
-      { id: "s1", kind: "parametric", x: "exp(t)", y: "(ln(exp(t)) / ln((1 / 3)))", parameter: { min: -3.5, max: 2.5 }, appearance: "primary" },
+      { id: "s1", kind: "function", formula: "(ln(x) / ln((1 / 3)))", domain: { min: 0.0301, max: 12.2 }, appearance: "primary" },
       { id: "s2", kind: "point", at: { x: 0.04, y: 3 }, appearance: "secondary" },
       { id: "s3", kind: "point", at: { x: 0.11, y: 2 }, appearance: "secondary" },
       { id: "s4", kind: "point", at: { x: 0.33, y: 1 }, appearance: "secondary" },
@@ -217,9 +217,9 @@ Tambahkan satu pemalar **di luar logaritma** untuk menggerakkan setiap output. D
       frame: { kind: "cartesian", x: { min: -1.5, max: 13.5 }, y: { min: -8.5, max: 7 } },
       view: { kind: "fit", padding: 0.2 },
       objects: [
-        { id: "s1", kind: "parametric", x: "exp(t)", y: "log_2(exp(t))", parameter: { min: -3.5, max: 2.5 }, appearance: "primary" },
-        { id: "s2", kind: "parametric", x: "exp(t)", y: "(log_2(exp(t)) + 2)", parameter: { min: -3.5, max: 2.5 }, appearance: "secondary" },
-        { id: "s3", kind: "parametric", x: "exp(t)", y: "(log_2(exp(t)) + (-2))", parameter: { min: -3.5, max: 2.5 }, appearance: "answer" },
+        { id: "s1", kind: "function", formula: "log_2(x)", domain: { min: 0.0301, max: 12.2 }, appearance: "primary" },
+        { id: "s2", kind: "function", formula: "(log_2(x) + 2)", domain: { min: 0.0301, max: 12.2 }, appearance: "secondary" },
+        { id: "s3", kind: "function", formula: "(log_2(x) + (-2))", domain: { min: 0.0301, max: 12.2 }, appearance: "answer" },
       ],
       labels: [
         { key: "l1", objectId: "s1", at: { x: 4.14, y: 2.05 }, placement: "below-right" },
@@ -348,8 +348,8 @@ Khususnya, pintasan-<InlineMath math="y" /> memerlukan <InlineMath math="x=0" />
       frame: { kind: "cartesian", x: { min: -1.5, max: 13.5 }, y: { min: -4.5, max: 6 } },
       view: { kind: "fit", padding: 0.2 },
       objects: [
-        { id: "s1", kind: "parametric", x: "exp(t)", y: "(ln(exp(t)) / ln(3))", parameter: { min: -3.5, max: 2.5 }, appearance: "primary" },
-        { id: "s2", kind: "parametric", x: "exp(t)", y: "((ln(exp(t)) / ln(3)) + 2)", parameter: { min: -3.5, max: 2.5 }, appearance: "secondary" },
+        { id: "s1", kind: "function", formula: "(ln(x) / ln(3))", domain: { min: 0.0301, max: 12.2 }, appearance: "primary" },
+        { id: "s2", kind: "function", formula: "((ln(x) / ln(3)) + 2)", domain: { min: 0.0301, max: 12.2 }, appearance: "secondary" },
         { id: "s3", kind: "point", at: { x: 0.11, y: 0 }, appearance: "answer" },
         { id: "s4", kind: "point", at: { x: 0.33, y: 1 }, appearance: "answer" },
         { id: "s5", kind: "point", at: { x: 1, y: 2 }, appearance: "answer" },
