@@ -1,3 +1,7 @@
+import {
+  merdekaLearningOutcomes,
+  scienceBookX,
+} from "#corpus/curriculum/merdeka/documents";
 import { materialNode, unitNode } from "#corpus/curriculum/schema";
 
 export const merdekaClass10BiologyTopicNodes = [
@@ -8,6 +12,16 @@ export const merdekaClass10BiologyTopicNodes = [
         level: "lesson",
         materialKeys: ["lesson.biology.biodiversity"],
         order: 10,
+        outcomes: [
+          {
+            code: "IPA, Fase E, elemen Pemahaman IPA",
+            ...merdekaLearningOutcomes,
+          },
+          {
+            code: "Bab VI Keanekaragaman Makhluk Hidup, Interaksi dan Peranannya di Lingkungan",
+            ...scienceBookX,
+          },
+        ],
       }),
     ],
     key: "class-10-biology-biodiversity",
@@ -56,6 +70,13 @@ export const merdekaClass10BiologyTopicNodes = [
         level: "lesson",
         materialKeys: ["lesson.biology.climate-change"],
         order: 10,
+        outcomes: [
+          {
+            code: "IPA, Fase E, elemen Pemahaman IPA",
+            ...merdekaLearningOutcomes,
+          },
+          { code: "Bab VIII Perubahan Iklim", ...scienceBookX },
+        ],
       }),
     ],
     key: "class-10-biology-climate-change",
@@ -92,6 +113,13 @@ export const merdekaClass10BiologyTopicNodes = [
         level: "lesson",
         materialKeys: ["lesson.biology.virus-role"],
         order: 10,
+        outcomes: [
+          {
+            code: "IPA, Fase E, elemen Pemahaman IPA",
+            ...merdekaLearningOutcomes,
+          },
+          { code: "Bab II Virus dan Peranannya", ...scienceBookX },
+        ],
       }),
     ],
     key: "class-10-biology-virus-role",

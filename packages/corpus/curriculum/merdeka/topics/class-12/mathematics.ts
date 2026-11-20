@@ -1,4 +1,9 @@
 import {
+  advancedMathematicsBookXII,
+  mathematicsBookXI,
+  merdekaLearningOutcomes,
+} from "#corpus/curriculum/merdeka/documents";
+import {
   merdekaClass12CombinatoricsUnit,
   merdekaClass12DataAnalysisProbabilityUnit,
 } from "#corpus/curriculum/merdeka/topics/class-12/statistics";
@@ -12,6 +17,16 @@ export const merdekaClass12MathematicsTopicNodes = [
         level: "lesson",
         materialKeys: ["lesson.mathematics.analytic-geometry"],
         order: 10,
+        outcomes: [
+          {
+            code: "Matematika Tingkat Lanjut, Fase F, elemen Geometri",
+            ...merdekaLearningOutcomes,
+          },
+          {
+            code: "Bab 1 Lingkaran, Elips, dan Garis Singgung Lingkaran",
+            ...advancedMathematicsBookXII,
+          },
+        ],
       }),
     ],
     key: "class-12-mathematics-analytic-geometry",
@@ -51,6 +66,16 @@ export const merdekaClass12MathematicsTopicNodes = [
         level: "lesson",
         materialKeys: ["lesson.mathematics.circle-arc-sector"],
         order: 10,
+        outcomes: [
+          {
+            code: "Matematika, Fase F, elemen Geometri",
+            ...merdekaLearningOutcomes,
+          },
+          {
+            code: "Bab 4 Lingkaran, A Lingkaran dan Busur Lingkaran",
+            ...mathematicsBookXI,
+          },
+        ],
       }),
     ],
     key: "class-12-mathematics-circle-arc-sector",
@@ -95,6 +120,16 @@ export const merdekaClass12MathematicsTopicNodes = [
         level: "lesson",
         materialKeys: ["lesson.mathematics.derivative-function"],
         order: 10,
+        outcomes: [
+          {
+            code: "Matematika Tingkat Lanjut, Fase F, elemen Kalkulus",
+            ...merdekaLearningOutcomes,
+          },
+          {
+            code: "Bab 2 Turunan Fungsi",
+            ...advancedMathematicsBookXII,
+          },
+        ],
       }),
     ],
     key: "class-12-mathematics-derivative-function",
@@ -131,6 +166,13 @@ export const merdekaClass12MathematicsTopicNodes = [
         level: "lesson",
         materialKeys: ["lesson.mathematics.function-transformation"],
         order: 10,
+        outcomes: [
+          {
+            code: "Matematika, Fase F, elemen Aljabar dan Fungsi",
+            ...merdekaLearningOutcomes,
+          },
+          { code: "Bab 3 Transformasi Fungsi", ...mathematicsBookXI },
+        ],
       }),
     ],
     key: "class-12-mathematics-function-transformation",
@@ -173,6 +215,13 @@ export const merdekaClass12MathematicsTopicNodes = [
         level: "lesson",
         materialKeys: ["lesson.mathematics.integral"],
         order: 10,
+        outcomes: [
+          {
+            code: "Matematika Tingkat Lanjut, Fase F, elemen Kalkulus",
+            ...merdekaLearningOutcomes,
+          },
+          { code: "Bab 3 Integral", ...advancedMathematicsBookXII },
+        ],
       }),
     ],
     key: "class-12-mathematics-integral",
@@ -206,6 +255,16 @@ export const merdekaClass12MathematicsTopicNodes = [
         level: "lesson",
         materialKeys: ["lesson.mathematics.limit"],
         order: 10,
+        outcomes: [
+          {
+            code: "Matematika Tingkat Lanjut, elemen Kalkulus (deskripsi elemen)",
+            ...merdekaLearningOutcomes,
+          },
+          {
+            code: "Bab 2 Turunan Fungsi, A.1 Limit dan Kontinuitas Fungsi",
+            ...advancedMathematicsBookXII,
+          },
+        ],
       }),
     ],
     key: "class-12-mathematics-limit",

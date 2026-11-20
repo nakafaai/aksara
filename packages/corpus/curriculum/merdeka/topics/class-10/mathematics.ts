@@ -1,4 +1,12 @@
 import {
+  mathematicsBookX,
+  merdekaLearningOutcomes,
+} from "#corpus/curriculum/merdeka/documents";
+import {
+  merdekaClass10TrigonometryUnit,
+  merdekaClass10VectorOperationsUnit,
+} from "#corpus/curriculum/merdeka/topics/class-10/geometry";
+import {
   merdekaClass10ProbabilityUnit,
   merdekaClass10StatisticsFoundationsUnit,
 } from "#corpus/curriculum/merdeka/topics/class-10/statistics";
@@ -12,6 +20,17 @@ export const merdekaClass10MathematicsTopicNodes = [
         level: "lesson",
         materialKeys: ["lesson.mathematics.exponential-logarithm"],
         order: 10,
+        outcomes: [
+          {
+            code: "Matematika, Fase E, elemen Bilangan",
+            ...merdekaLearningOutcomes,
+          },
+          {
+            code: "Matematika, Fase E, elemen Aljabar dan Fungsi",
+            ...merdekaLearningOutcomes,
+          },
+          { code: "Bab 1 Eksponen", ...mathematicsBookX },
+        ],
       }),
     ],
     key: "class-10-mathematics-exponential-logarithm",
@@ -57,6 +76,16 @@ export const merdekaClass10MathematicsTopicNodes = [
         level: "lesson",
         materialKeys: ["lesson.mathematics.linear-equation-inequality"],
         order: 10,
+        outcomes: [
+          {
+            code: "Matematika, Fase E, elemen Aljabar dan Fungsi",
+            ...merdekaLearningOutcomes,
+          },
+          {
+            code: "Bab 4 Sistem Persamaan dan Pertidaksamaan Linear",
+            ...mathematicsBookX,
+          },
+        ],
       }),
     ],
     key: "class-10-mathematics-linear-equation-inequality",
@@ -106,6 +135,16 @@ export const merdekaClass10MathematicsTopicNodes = [
         level: "lesson",
         materialKeys: ["lesson.mathematics.quadratic-function"],
         order: 10,
+        outcomes: [
+          {
+            code: "Matematika, Fase E, elemen Aljabar dan Fungsi",
+            ...merdekaLearningOutcomes,
+          },
+          {
+            code: "Bab 5 Persamaan dan Fungsi Kuadrat",
+            ...mathematicsBookX,
+          },
+        ],
       }),
     ],
     key: "class-10-mathematics-quadratic-function",
@@ -148,6 +187,7 @@ export const merdekaClass10MathematicsTopicNodes = [
         level: "lesson",
         materialKeys: ["lesson.mathematics.sequence-series"],
         order: 10,
+        outcomes: [{ code: "Bab 2 Barisan dan Deret", ...mathematicsBookX }],
       }),
     ],
     key: "class-10-mathematics-sequence-series",
@@ -178,76 +218,6 @@ export const merdekaClass10MathematicsTopicNodes = [
     },
   }),
   merdekaClass10StatisticsFoundationsUnit,
-  unitNode({
-    children: [
-      materialNode({
-        key: "class-10-mathematics-trigonometry-material",
-        level: "lesson",
-        materialKeys: ["lesson.mathematics.trigonometry"],
-        order: 10,
-      }),
-    ],
-    key: "class-10-mathematics-trigonometry",
-    materialCard: {
-      de: {
-        description: "Ordne Dreiecksseiten den passenden Verhältnissen zu.",
-        title: "Trigonometrie",
-      },
-      en: {
-        description: "Match triangle sides to ratios.",
-        title: "Trigonometry",
-      },
-      id: {
-        description: "Cocokkan sisi segitiga dengan rasio.",
-        title: "Trigonometri",
-      },
-      ms: {
-        description: "Padankan sisi segi tiga dengan nisbahnya.",
-        title: "Trigonometri",
-      },
-    },
-    order: 70,
-    translations: {
-      de: { routeSlug: "trigonometrie", title: "Trigonometrie" },
-      en: { routeSlug: "trigonometry", title: "Trigonometry" },
-      id: { routeSlug: "trigonometri", title: "Trigonometri" },
-      ms: { routeSlug: "trigonometri", title: "Trigonometri" },
-    },
-  }),
-  unitNode({
-    children: [
-      materialNode({
-        key: "class-10-mathematics-vector-operations-material",
-        level: "lesson",
-        materialKeys: ["lesson.mathematics.vector-operations"],
-        order: 10,
-      }),
-    ],
-    key: "class-10-mathematics-vector-operations",
-    materialCard: {
-      de: {
-        description: "Arbeite mit Vektorschreibweise, Betrag und Richtung.",
-        title: "Vektorrechnung",
-      },
-      en: {
-        description: "Work with vector notation and direction.",
-        title: "Vector Operations",
-      },
-      id: {
-        description: "Olah notasi dan arah vektor.",
-        title: "Operasi Vektor",
-      },
-      ms: {
-        description: "Guna tatatanda dan arah vektor.",
-        title: "Operasi Vektor",
-      },
-    },
-    order: 80,
-    translations: {
-      de: { routeSlug: "vektorrechnung", title: "Vektorrechnung" },
-      en: { routeSlug: "vector-operations", title: "Vector Operations" },
-      id: { routeSlug: "vektor-dan-operasinya", title: "Operasi Vektor" },
-      ms: { routeSlug: "operasi-vektor", title: "Operasi Vektor" },
-    },
-  }),
+  merdekaClass10TrigonometryUnit,
+  merdekaClass10VectorOperationsUnit,
 ];

@@ -1,3 +1,4 @@
+import { chemistryStandards } from "#corpus/curriculum/kssm/documents";
 import { materialNode, unitNode } from "#corpus/curriculum/schema";
 
 /** The KSSM Form 4 Chemistry chapters of the themes Importance of Chemistry and Fundamentals of Chemistry, Bab 1 to Bab 5. */
@@ -9,6 +10,12 @@ export const kssmForm4ChemistryFoundationNodes = [
         level: "lesson",
         materialKeys: ["lesson.chemistry.chemistry-introduction"],
         order: 10,
+        outcomes: [
+          {
+            code: "Form 4, Content Standards 1.1 to 1.3",
+            ...chemistryStandards,
+          },
+        ],
       }),
     ],
     key: "form-4-chemistry-introduction-to-chemistry",
@@ -54,6 +61,12 @@ export const kssmForm4ChemistryFoundationNodes = [
         level: "lesson",
         materialKeys: ["lesson.chemistry.structure-matter"],
         order: 10,
+        outcomes: [
+          {
+            code: "Form 4, Content Standards 2.2 to 2.4",
+            ...chemistryStandards,
+          },
+        ],
       }),
     ],
     key: "form-4-chemistry-matter-and-the-atomic-structure",
@@ -99,12 +112,12 @@ export const kssmForm4ChemistryFoundationNodes = [
         level: "lesson",
         materialKeys: ["lesson.chemistry.mole-concept"],
         order: 10,
-      }),
-      materialNode({
-        key: "form-4-chemistry-the-mole-concept-chemical-formula-and-equation-basic-chemistry-laws",
-        level: "lesson",
-        materialKeys: ["lesson.chemistry.basic-chemistry-laws"],
-        order: 20,
+        outcomes: [
+          {
+            code: "Form 4, Content Standards 3.1 to 3.4",
+            ...chemistryStandards,
+          },
+        ],
       }),
     ],
     key: "form-4-chemistry-the-mole-concept-chemical-formula-and-equation",
@@ -149,16 +162,16 @@ export const kssmForm4ChemistryFoundationNodes = [
   unitNode({
     children: [
       materialNode({
-        key: "form-4-chemistry-the-periodic-table-of-elements-structure-matter",
-        level: "lesson",
-        materialKeys: ["lesson.chemistry.structure-matter"],
-        order: 10,
-      }),
-      materialNode({
         key: "form-4-chemistry-the-periodic-table-of-elements-periodic-groups",
         level: "lesson",
         materialKeys: ["lesson.chemistry.periodic-groups"],
         order: 20,
+        outcomes: [
+          {
+            code: "Form 4, Content Standards 4.3 to 4.7",
+            ...chemistryStandards,
+          },
+        ],
       }),
     ],
     key: "form-4-chemistry-the-periodic-table-of-elements",
@@ -204,6 +217,12 @@ export const kssmForm4ChemistryFoundationNodes = [
         level: "lesson",
         materialKeys: ["lesson.chemistry.chemical-bond"],
         order: 10,
+        outcomes: [
+          {
+            code: "Form 4, Content Standards 5.1 to 5.7",
+            ...chemistryStandards,
+          },
+        ],
       }),
     ],
     key: "form-4-chemistry-chemical-bond",

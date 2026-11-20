@@ -1,3 +1,4 @@
+import { additionalMathematicsStandards } from "#corpus/curriculum/kssm/documents";
 import { materialNode, unitNode } from "#corpus/curriculum/schema";
 
 /** The KSSM Form 5 Additional Mathematics chapter on linear programming. */
@@ -9,6 +10,12 @@ export const kssmForm5AdditionalMathematicsProgrammingNodes = [
         level: "lesson",
         materialKeys: ["lesson.mathematics.linear-programming"],
         order: 10,
+        outcomes: [
+          {
+            code: "Form 5, Content Standards 7.1 to 7.2",
+            ...additionalMathematicsStandards,
+          },
+        ],
       }),
     ],
     key: "form-5-additional-mathematics-linear-programming",

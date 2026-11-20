@@ -1,3 +1,7 @@
+import {
+  merdekaLearningOutcomes,
+  scienceBookX,
+} from "#corpus/curriculum/merdeka/documents";
 import { materialNode, unitNode } from "#corpus/curriculum/schema";
 
 export const merdekaClass10ChemistryTopicNodes = [
@@ -8,6 +12,13 @@ export const merdekaClass10ChemistryTopicNodes = [
         level: "lesson",
         materialKeys: ["lesson.chemistry.basic-chemistry-laws"],
         order: 10,
+        outcomes: [
+          {
+            code: "IPA, Fase E, elemen Pemahaman IPA",
+            ...merdekaLearningOutcomes,
+          },
+          { code: "Bab IV Hukum Dasar Kimia", ...scienceBookX },
+        ],
       }),
     ],
     key: "class-10-chemistry-basic-chemistry-laws",
@@ -50,6 +61,7 @@ export const merdekaClass10ChemistryTopicNodes = [
         level: "lesson",
         materialKeys: ["lesson.chemistry.green-chemistry"],
         order: 10,
+        outcomes: [{ code: "Bab V Kimia Hijau", ...scienceBookX }],
       }),
     ],
     key: "class-10-chemistry-green-chemistry",
@@ -86,6 +98,13 @@ export const merdekaClass10ChemistryTopicNodes = [
         level: "lesson",
         materialKeys: ["lesson.chemistry.structure-matter"],
         order: 10,
+        outcomes: [
+          {
+            code: "IPA, Fase E, elemen Pemahaman IPA",
+            ...merdekaLearningOutcomes,
+          },
+          { code: "Bab III Struktur Atom", ...scienceBookX },
+        ],
       }),
     ],
     key: "class-10-chemistry-structure-matter",

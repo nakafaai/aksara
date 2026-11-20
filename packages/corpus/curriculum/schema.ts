@@ -7,6 +7,7 @@ import {
   ProgramNavigationLevelSchema,
 } from "@nakafa/aksara-contracts/program/spec";
 import { MaterialKeySchema } from "@nakafa/aksara-contracts/projection/material";
+import { isHttpsUrl } from "@nakafa/aksara-contracts/text/syntax";
 import { Array as Arr, Effect, MutableHashSet, Schema } from "effect";
 import { localizedSourceMapSchema } from "#corpus/locale/source";
 import { MaterialCardDescriptionSchema } from "#corpus/material/description";
@@ -39,6 +40,18 @@ const CurriculumMaterialCardSchema = Schema.Struct({
 export const CurriculumMaterialCardMapSchema = localizedSourceMapSchema(
   CurriculumMaterialCardSchema
 );
+
+/**
+ * The curriculum-neutral level band of a structure node and everything below
+ * it, set from the evidence of what its official outcomes teach. A lesson maps
+ * only inside its own band, so one lesson can serve every curriculum of a band.
+ */
+const CurriculumLevelBandSchema = Schema.Literals([
+  "primary",
+  "lower-secondary",
+  "upper-secondary",
+  "tertiary",
+]);
 
 type CurriculumStructureNodeShape = typeof CurriculumStructureNodeSchema.Type;
 
@@ -81,18 +94,39 @@ const CurriculumStructureNodeSchema = Schema.Struct({
   iconKey: Schema.optional(ProgramNavigationIconKeySchema),
   key: CurriculumNodeKeySchema,
   level: ProgramNavigationLevelSchema,
+  levelBand: Schema.optional(CurriculumLevelBandSchema),
   materialCard: Schema.optional(CurriculumMaterialCardMapSchema),
   materialDomain: Schema.optional(MaterialDomainSchema),
   order: Schema.Int.pipe(Schema.check(Schema.isGreaterThanOrEqualTo(0))),
   translations: CurriculumNodeTranslationMapSchema,
 });
 
+/**
+ * One official outcome a mapped material teaches: where it stands in its
+ * document (an outcome code, a phase and element, or a book chapter), the
+ * document's citation, and the https address where the document is published.
+ */
+const CurriculumOutcomeSchema = Schema.Struct({
+  citation: Schema.Trimmed.check(Schema.isNonEmpty()),
+  code: Schema.Trimmed.check(Schema.isNonEmpty()),
+  url: Schema.String.pipe(
+    Schema.check(
+      Schema.makeFilter(isHttpsUrl, { message: "Expected an https address." })
+    )
+  ),
+});
+
+/**
+ * One material mapped to a curriculum unit. Every mapping cites the official
+ * outcomes its materials teach, so no mapping rests on a title alone.
+ */
 const CurriculumMaterialNodeSchema = Schema.Struct({
   displayOverride: Schema.optional(CurriculumNodeTranslationMapSchema),
   key: CurriculumNodeKeySchema,
   level: ProgramNavigationLevelSchema,
   materialKeys: Schema.NonEmptyArray(MaterialKeySchema),
   order: Schema.Int.pipe(Schema.check(Schema.isGreaterThanOrEqualTo(0))),
+  outcomes: Schema.NonEmptyArray(CurriculumOutcomeSchema),
 });
 
 export const CurriculumTreeNodeSchema: Schema.Codec<
@@ -128,6 +162,21 @@ export class CurriculumDuplicateError extends Schema.TaggedError<
   { readonly brand: unique symbol }
 >()("CurriculumDuplicateError", {
   nodeKey: CurriculumNodeKeySchema,
+  programKey: LearningProgramKeySchema,
+}) {}
+
+/** Why a node breaks the level-band rule: a material outside every band, or a band inside another. */
+const LevelBandBreakSchema = Schema.Struct({
+  nodeKey: CurriculumNodeKeySchema,
+  reason: Schema.Literals(["missing", "nested"]),
+});
+
+/** A curriculum maps a material outside every level band, or declares a band inside another. */
+export class CurriculumLevelBandError extends Schema.TaggedError<
+  CurriculumLevelBandError,
+  { readonly brand: unique symbol }
+>()("CurriculumLevelBandError", {
+  ...LevelBandBreakSchema.fields,
   programKey: LearningProgramKeySchema,
 }) {}
 
@@ -186,7 +235,28 @@ function flattenCurriculumTree(
   );
 }
 
-/** Strictly decodes one authored curriculum and rejects duplicate node keys. */
+/** Lists every node below `nodes` that breaks the level-band rule, given whether an ancestor sets a band. */
+function levelBandBreaks(
+  nodes: readonly CurriculumTreeNode[],
+  banded: boolean
+): (typeof LevelBandBreakSchema.Type)[] {
+  return Arr.flatMap(nodes, (node) => {
+    if ("materialKeys" in node) {
+      return banded ? [] : [{ nodeKey: node.key, reason: "missing" as const }];
+    }
+    const declares = node.levelBand !== undefined;
+    const nested = banded && declares;
+    return [
+      ...(nested ? [{ nodeKey: node.key, reason: "nested" as const }] : []),
+      ...levelBandBreaks(node.children ?? [], banded || declares),
+    ];
+  });
+}
+
+/**
+ * Strictly decodes one authored curriculum, rejects duplicate node keys, and
+ * requires every material to sit inside exactly one level band.
+ */
 export const defineCurriculum = Effect.fn("AksaraCorpus.defineCurriculum")(
   function* (input: CurriculumSourceInput) {
     const curriculum = yield* Schema.decodeEffect(CurriculumSourceSchema)(
@@ -210,6 +280,12 @@ export const defineCurriculum = Effect.fn("AksaraCorpus.defineCurriculum")(
         });
       }
       MutableHashSet.add(nodeKeys, node.key);
+    }
+    for (const levelBandBreak of levelBandBreaks(curriculum.tree, false)) {
+      return yield* new CurriculumLevelBandError({
+        ...levelBandBreak,
+        programKey: curriculum.programKey,
+      });
     }
     return curriculum;
   }

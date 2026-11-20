@@ -1,3 +1,4 @@
+import { additionalMathematicsStandards } from "#corpus/curriculum/kssm/documents";
 import { materialNode, unitNode } from "#corpus/curriculum/schema";
 
 /** The KSSM Form 5 Additional Mathematics trigonometry chapter, trigonometric functions. */
@@ -9,6 +10,12 @@ export const kssmForm5AdditionalMathematicsTrigonometryNodes = [
         level: "lesson",
         materialKeys: ["lesson.mathematics.trigonometric-function"],
         order: 10,
+        outcomes: [
+          {
+            code: "Form 5, Content Standards 6.1 and 6.3 to 6.6",
+            ...additionalMathematicsStandards,
+          },
+        ],
       }),
     ],
     key: "form-5-additional-mathematics-trigonometric-functions",

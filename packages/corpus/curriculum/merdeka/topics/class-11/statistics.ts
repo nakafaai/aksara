@@ -1,3 +1,7 @@
+import {
+  mathematicsBookXI,
+  merdekaLearningOutcomes,
+} from "#corpus/curriculum/merdeka/documents";
 import { materialNode, unitNode } from "#corpus/curriculum/schema";
 
 /** The Kurikulum Merdeka class 11 mathematics unit `statistics-regression`. */
@@ -8,6 +12,13 @@ export const merdekaClass11StatisticsRegressionUnit = unitNode({
       level: "lesson",
       materialKeys: ["lesson.mathematics.statistics-regression"],
       order: 10,
+      outcomes: [
+        {
+          code: "Matematika, Fase F, elemen Analisis Data dan Peluang",
+          ...merdekaLearningOutcomes,
+        },
+        { code: "Bab 1 Analisis Data Bivariat", ...mathematicsBookXI },
+      ],
     }),
   ],
   key: "class-11-mathematics-statistics-regression",

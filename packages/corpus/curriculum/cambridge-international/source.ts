@@ -43,6 +43,7 @@ export const cambridgeInternationalCurriculum = defineCurriculum({
       displayGroupIconKey: "school",
       iconKey: "primary-school",
       key: "primary",
+      levelBand: "primary",
       order: 20,
       translations: {
         de: { routeSlug: "grundschule", title: "Grundschule" },
@@ -70,6 +71,7 @@ export const cambridgeInternationalCurriculum = defineCurriculum({
       displayGroupIconKey: "school",
       iconKey: "middle-school",
       key: "lower-secondary",
+      levelBand: "lower-secondary",
       order: 30,
       translations: {
         de: { routeSlug: "sekundarstufe-1", title: "Sekundarstufe I" },
@@ -98,6 +100,7 @@ export const cambridgeInternationalCurriculum = defineCurriculum({
       displayGroupIconKey: "school",
       iconKey: "high-school",
       key: "upper-secondary",
+      levelBand: "upper-secondary",
       order: 40,
       translations: {
         de: { routeSlug: "sekundarstufe-2", title: "Sekundarstufe II" },
@@ -125,6 +128,7 @@ export const cambridgeInternationalCurriculum = defineCurriculum({
       displayGroupIconKey: "school",
       iconKey: "advanced",
       key: "advanced",
+      levelBand: "upper-secondary",
       order: 50,
       translations: {
         de: { routeSlug: "fortgeschritten", title: "Fortgeschrittene Stufe" },

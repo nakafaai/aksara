@@ -1,4 +1,12 @@
 import { courseNode, materialNode, unitNode } from "#corpus/curriculum/schema";
+import {
+  earthActivityStandards,
+  energyStandards,
+  evolutionStandards,
+  forceStandards,
+  mathematicsStandards,
+  matterStandards,
+} from "#corpus/curriculum/united-states/documents";
 
 export const usHighSchoolScienceCourseNode = courseNode({
   children: [
@@ -9,30 +17,46 @@ export const usHighSchoolScienceCourseNode = courseNode({
           level: "lesson",
           materialKeys: ["lesson.physics.measurement"],
           order: 10,
+          outcomes: [{ code: "N-Q Quantities", ...mathematicsStandards }],
         }),
         materialNode({
           key: "us-high-school-science-physical-motion",
           level: "lesson",
           materialKeys: ["lesson.physics.kinematics"],
           order: 20,
+          outcomes: [{ code: "PS2.A Forces and Motion", ...forceStandards }],
         }),
         materialNode({
           key: "us-high-school-science-physical-energy",
           level: "lesson",
           materialKeys: ["lesson.physics.renewable-energy"],
           order: 30,
+          outcomes: [
+            { code: "PS3.A Definitions of Energy", ...energyStandards },
+            {
+              code: "PS3.B Conservation of Energy and Energy Transfer",
+              ...energyStandards,
+            },
+          ],
         }),
         materialNode({
           key: "us-high-school-science-physical-matter",
           level: "lesson",
           materialKeys: ["lesson.chemistry.structure-matter"],
           order: 40,
+          outcomes: [
+            {
+              code: "PS1.A Structure and Properties of Matter",
+              ...matterStandards,
+            },
+          ],
         }),
         materialNode({
           key: "us-high-school-science-physical-reactions",
           level: "lesson",
           materialKeys: ["lesson.chemistry.basic-chemistry-laws"],
           order: 50,
+          outcomes: [{ code: "PS1.B Chemical Reactions", ...matterStandards }],
         }),
       ],
       key: "high-school-science-physical-sciences",
@@ -81,30 +105,34 @@ export const usHighSchoolScienceCourseNode = courseNode({
           level: "lesson",
           materialKeys: ["lesson.biology.biodiversity"],
           order: 10,
-        }),
-        materialNode({
-          key: "us-high-school-science-life-virus",
-          level: "lesson",
-          materialKeys: ["lesson.biology.virus-role"],
-          order: 20,
+          outcomes: [
+            {
+              code: "LS4.A Evidence of Common Ancestry and Diversity",
+              ...evolutionStandards,
+            },
+            {
+              code: "LS4.D Biodiversity and Humans",
+              ...evolutionStandards,
+            },
+          ],
         }),
       ],
       key: "high-school-science-life-sciences",
       materialCard: {
         de: {
-          description: "Vergleiche Lebewesen, Viren und biologische Vielfalt.",
+          description: "Vergleiche Lebewesen und biologische Vielfalt.",
           title: "Lebenswissenschaften",
         },
         en: {
-          description: "Compare living systems, viruses, and diversity.",
+          description: "Compare living systems and the diversity of life.",
           title: "Life Sciences",
         },
         id: {
-          description: "Bandingkan sistem hayati, virus, dan keragaman.",
+          description: "Bandingkan sistem hayati dan keragaman makhluk hidup.",
           title: "Ilmu hayati",
         },
         ms: {
-          description: "Bandingkan sistem hidupan, virus dan kepelbagaian.",
+          description: "Bandingkan sistem hidupan dan kepelbagaian hidupan.",
           title: "Sains Hayat",
         },
       },
@@ -135,6 +163,12 @@ export const usHighSchoolScienceCourseNode = courseNode({
           level: "lesson",
           materialKeys: ["lesson.biology.climate-change"],
           order: 10,
+          outcomes: [
+            {
+              code: "ESS3.D Global Climate Change",
+              ...earthActivityStandards,
+            },
+          ],
         }),
       ],
       key: "high-school-science-earth-space-sciences",

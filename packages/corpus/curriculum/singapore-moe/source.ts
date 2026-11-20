@@ -20,6 +20,7 @@ export const singaporeMoeCurriculum = defineCurriculum({
       displayGroupIconKey: "school",
       iconKey: "primary-school",
       key: "primary",
+      levelBand: "primary",
       order: 10,
       translations: {
         de: { routeSlug: "grundschule", title: "Grundschule" },
@@ -79,6 +80,7 @@ export const singaporeMoeCurriculum = defineCurriculum({
       displayGroupIconKey: "school",
       iconKey: "advanced",
       key: "pre-university",
+      levelBand: "upper-secondary",
       order: 30,
       translations: {
         de: { routeSlug: "studienvorbereitung", title: "Studienvorbereitung" },

@@ -1,3 +1,8 @@
+import {
+  biologySyllabus,
+  chemistrySyllabus,
+  physicsSyllabus,
+} from "#corpus/curriculum/cambridge-international/documents";
 import { materialNode, unitNode } from "#corpus/curriculum/schema";
 
 export const igcseBiologyUnitNodes = [
@@ -8,6 +13,14 @@ export const igcseBiologyUnitNodes = [
         level: "lesson",
         materialKeys: ["lesson.biology.biodiversity"],
         order: 10,
+        outcomes: [
+          {
+            code: "1.2 Concept and uses of classification systems",
+            ...biologySyllabus,
+          },
+          { code: "1.3 Features of organisms", ...biologySyllabus },
+          { code: "19.2 Food chains and food webs", ...biologySyllabus },
+        ],
       }),
     ],
     key: "biology-0610-living-organisms",
@@ -44,12 +57,14 @@ export const igcseBiologyUnitNodes = [
         level: "lesson",
         materialKeys: ["lesson.biology.virus-role"],
         order: 10,
+        outcomes: [{ code: "10.1 Diseases and immunity", ...biologySyllabus }],
       }),
       materialNode({
         key: "biology-0610-disease-ecosystems-climate",
         level: "lesson",
         materialKeys: ["lesson.biology.climate-change"],
         order: 20,
+        outcomes: [{ code: "20.3 Pollution", ...biologySyllabus }],
       }),
     ],
     key: "biology-0610-disease-ecosystems",
@@ -101,12 +116,20 @@ export const igcseChemistryUnitNodes = [
         level: "lesson",
         materialKeys: ["lesson.chemistry.structure-matter"],
         order: 10,
+        outcomes: [
+          {
+            code: "2.2 Atomic structure and the Periodic Table",
+            ...chemistrySyllabus,
+          },
+          { code: "2.3 Isotopes", ...chemistrySyllabus },
+        ],
       }),
       materialNode({
         key: "chemistry-0620-matter-reactions-basic-laws",
         level: "lesson",
         materialKeys: ["lesson.chemistry.basic-chemistry-laws"],
         order: 20,
+        outcomes: [{ code: "3.1 Formulae", ...chemistrySyllabus }],
       }),
     ],
     key: "chemistry-0620-matter-reactions",
@@ -142,45 +165,6 @@ export const igcseChemistryUnitNodes = [
       },
     },
   }),
-  unitNode({
-    children: [
-      materialNode({
-        key: "chemistry-0620-environment-green-chemistry",
-        level: "lesson",
-        materialKeys: ["lesson.chemistry.green-chemistry"],
-        order: 10,
-      }),
-    ],
-    key: "chemistry-0620-environment",
-    materialCard: {
-      de: {
-        description: "Bewerte Reaktionen nach den Regeln der grünen Chemie.",
-        title: "Umweltchemie",
-      },
-      en: {
-        description: "Judge reactions with greener chemistry choices.",
-        title: "Environmental chemistry",
-      },
-      id: {
-        description: "Nilai reaksi dengan pilihan kimia hijau.",
-        title: "Kimia lingkungan",
-      },
-      ms: {
-        description: "Nilai tindak balas dengan pilihan kimia lebih hijau.",
-        title: "Kimia alam sekitar",
-      },
-    },
-    order: 20,
-    translations: {
-      de: { routeSlug: "umweltchemie", title: "Umweltchemie" },
-      en: {
-        routeSlug: "environmental-chemistry",
-        title: "Environmental chemistry",
-      },
-      id: { routeSlug: "kimia-lingkungan", title: "Kimia lingkungan" },
-      ms: { routeSlug: "kimia-alam-sekitar", title: "Kimia alam sekitar" },
-    },
-  }),
 ];
 
 export const igcsePhysicsUnitNodes = [
@@ -191,18 +175,31 @@ export const igcsePhysicsUnitNodes = [
         level: "lesson",
         materialKeys: ["lesson.physics.measurement"],
         order: 10,
+        outcomes: [
+          {
+            code: "1.1 Physical quantities and measurement techniques",
+            ...physicsSyllabus,
+          },
+        ],
       }),
       materialNode({
         key: "physics-0625-measurement-motion-kinematics",
         level: "lesson",
         materialKeys: ["lesson.physics.kinematics"],
         order: 20,
+        outcomes: [{ code: "1.2 Motion", ...physicsSyllabus }],
       }),
       materialNode({
         key: "physics-0625-measurement-motion-vector",
         level: "lesson",
         materialKeys: ["lesson.physics.vector"],
         order: 30,
+        outcomes: [
+          {
+            code: "1.1 Physical quantities and measurement techniques",
+            ...physicsSyllabus,
+          },
+        ],
       }),
     ],
     key: "physics-0625-measurement-motion",
@@ -251,6 +248,7 @@ export const igcsePhysicsUnitNodes = [
         level: "lesson",
         materialKeys: ["lesson.physics.renewable-energy"],
         order: 10,
+        outcomes: [{ code: "1.7 Energy, work and power", ...physicsSyllabus }],
       }),
     ],
     key: "physics-0625-energy",

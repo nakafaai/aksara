@@ -1,3 +1,4 @@
+import { additionalMathematicsStandards } from "#corpus/curriculum/kssm/documents";
 import { materialNode, unitNode } from "#corpus/curriculum/schema";
 
 /** The KSSM Form 5 Additional Mathematics statistics chapters, permutation and combination then probability distribution. */
@@ -9,6 +10,12 @@ export const kssmForm5AdditionalMathematicsStatisticsNodes = [
         level: "lesson",
         materialKeys: ["lesson.mathematics.combinatorics"],
         order: 10,
+        outcomes: [
+          {
+            code: "Form 5, Content Standards 4.1 to 4.2",
+            ...additionalMathematicsStandards,
+          },
+        ],
       }),
     ],
     key: "form-5-additional-mathematics-permutation-and-combination",
@@ -57,6 +64,12 @@ export const kssmForm5AdditionalMathematicsStatisticsNodes = [
         level: "lesson",
         materialKeys: ["lesson.mathematics.data-analysis-probability"],
         order: 10,
+        outcomes: [
+          {
+            code: "Form 5, Content Standards 5.1 to 5.3",
+            ...additionalMathematicsStandards,
+          },
+        ],
       }),
     ],
     key: "form-5-additional-mathematics-probability-distribution",

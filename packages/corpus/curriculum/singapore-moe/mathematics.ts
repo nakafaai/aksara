@@ -1,4 +1,8 @@
 import { courseNode, materialNode, unitNode } from "#corpus/curriculum/schema";
+import {
+  additionalMathematicsSyllabus,
+  mathematicsSyllabus,
+} from "#corpus/curriculum/singapore-moe/documents";
 
 export const singaporeSecondaryMathematicsCourseNode = courseNode({
   children: [
@@ -9,18 +13,42 @@ export const singaporeSecondaryMathematicsCourseNode = courseNode({
           level: "lesson",
           materialKeys: ["lesson.mathematics.linear-equation-inequality"],
           order: 10,
+          outcomes: [
+            {
+              code: "N7 Equations and inequalities",
+              ...mathematicsSyllabus,
+            },
+          ],
         }),
         materialNode({
           key: "singapore-secondary-mathematics-quadratics",
           level: "lesson",
           materialKeys: ["lesson.mathematics.quadratic-function"],
           order: 20,
+          outcomes: [
+            {
+              code: "N7 Equations and inequalities",
+              ...mathematicsSyllabus,
+            },
+            { code: "N6 Functions and graphs", ...mathematicsSyllabus },
+          ],
         }),
         materialNode({
           key: "singapore-secondary-mathematics-exponents",
           level: "lesson",
           materialKeys: ["lesson.mathematics.exponential-logarithm"],
           order: 30,
+          outcomes: [
+            {
+              code: "N1 Numbers and their operations",
+              ...mathematicsSyllabus,
+            },
+            { code: "A3 Surds", ...additionalMathematicsSyllabus },
+            {
+              code: "A6 Exponential and logarithmic functions",
+              ...additionalMathematicsSyllabus,
+            },
+          ],
         }),
       ],
       key: "secondary-mathematics-number-algebra",
@@ -66,18 +94,31 @@ export const singaporeSecondaryMathematicsCourseNode = courseNode({
           level: "lesson",
           materialKeys: ["lesson.mathematics.trigonometry"],
           order: 10,
+          outcomes: [
+            {
+              code: "G4 Pythagoras’ theorem and trigonometry",
+              ...mathematicsSyllabus,
+            },
+          ],
         }),
         materialNode({
           key: "singapore-secondary-mathematics-statistics",
           level: "lesson",
           materialKeys: ["lesson.mathematics.statistics-foundations"],
           order: 20,
+          outcomes: [
+            {
+              code: "S1 Data handling and analysis",
+              ...mathematicsSyllabus,
+            },
+          ],
         }),
         materialNode({
           key: "singapore-secondary-mathematics-probability",
           level: "lesson",
           materialKeys: ["lesson.mathematics.probability"],
           order: 30,
+          outcomes: [{ code: "S2 Probability", ...mathematicsSyllabus }],
         }),
       ],
       key: "secondary-mathematics-geometry-statistics",
@@ -122,6 +163,7 @@ export const singaporeSecondaryMathematicsCourseNode = courseNode({
   ],
   iconKey: "advanced",
   key: "secondary-mathematics",
+  levelBand: "upper-secondary",
   materialDomain: "mathematics",
   order: 10,
   translations: {
@@ -150,18 +192,40 @@ export const singaporeSecondaryAdditionalMathematicsCourseNode = courseNode({
           level: "lesson",
           materialKeys: ["lesson.mathematics.function-modeling"],
           order: 10,
+          outcomes: [
+            {
+              code: "A6 Exponential and logarithmic functions",
+              ...additionalMathematicsSyllabus,
+            },
+            {
+              code: "G1 Trigonometric functions, identities and equations",
+              ...additionalMathematicsSyllabus,
+            },
+          ],
         }),
         materialNode({
           key: "singapore-secondary-additional-mathematics-derivative",
           level: "lesson",
           materialKeys: ["lesson.mathematics.derivative-function"],
           order: 20,
+          outcomes: [
+            {
+              code: "C1 Differentiation and integration",
+              ...additionalMathematicsSyllabus,
+            },
+          ],
         }),
         materialNode({
           key: "singapore-secondary-additional-mathematics-integral",
           level: "lesson",
           materialKeys: ["lesson.mathematics.integral"],
           order: 30,
+          outcomes: [
+            {
+              code: "C1 Differentiation and integration",
+              ...additionalMathematicsSyllabus,
+            },
+          ],
         }),
       ],
       key: "secondary-additional-mathematics-functions-calculus",
@@ -206,6 +270,7 @@ export const singaporeSecondaryAdditionalMathematicsCourseNode = courseNode({
   ],
   iconKey: "mathematics",
   key: "secondary-additional-mathematics",
+  levelBand: "upper-secondary",
   materialDomain: "mathematics",
   order: 20,
   translations: {

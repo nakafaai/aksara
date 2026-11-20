@@ -1,3 +1,8 @@
+import {
+  advancedMathematicsBookXII,
+  mathematicsBookXII,
+  merdekaLearningOutcomes,
+} from "#corpus/curriculum/merdeka/documents";
 import { materialNode, unitNode } from "#corpus/curriculum/schema";
 
 /** The Kurikulum Merdeka class 12 mathematics unit `combinatorics`. */
@@ -8,6 +13,14 @@ export const merdekaClass12CombinatoricsUnit = unitNode({
       level: "lesson",
       materialKeys: ["lesson.mathematics.combinatorics"],
       order: 10,
+      outcomes: [
+        {
+          code: "Matematika, Fase F, elemen Analisis Data dan Peluang",
+          ...merdekaLearningOutcomes,
+        },
+        { code: "Bab 3 Kaidah Pencacahan", ...mathematicsBookXII },
+        { code: "Bab 4 Peluang", ...mathematicsBookXII },
+      ],
     }),
   ],
   key: "class-12-mathematics-combinatorics",
@@ -46,6 +59,16 @@ export const merdekaClass12DataAnalysisProbabilityUnit = unitNode({
       level: "lesson",
       materialKeys: ["lesson.mathematics.data-analysis-probability"],
       order: 10,
+      outcomes: [
+        {
+          code: "Matematika Tingkat Lanjut, Fase F, elemen Analisis Data dan Peluang",
+          ...merdekaLearningOutcomes,
+        },
+        {
+          code: "Bab 4 Analisis Data dan Peluang",
+          ...advancedMathematicsBookXII,
+        },
+      ],
     }),
   ],
   key: "class-12-mathematics-data-analysis-probability",

@@ -1,3 +1,4 @@
+import { mathematicsStandards } from "#corpus/curriculum/kssm/documents";
 import { materialNode, unitNode } from "#corpus/curriculum/schema";
 
 /** The KSSM Form 5 Mathematics chapters, in the order of their DSKP. */
@@ -19,6 +20,12 @@ export const kssmForm5MathematicsTopicNodes = [
         level: "lesson",
         materialKeys: ["lesson.mathematics.matrix"],
         order: 10,
+        outcomes: [
+          {
+            code: "Tingkatan 5, Standard Kandungan 2.1 hingga 2.2, Standard Pembelajaran 2.1.1 hingga 2.2.7",
+            ...mathematicsStandards,
+          },
+        ],
       }),
     ],
     key: "form-5-mathematics-matrices",
@@ -99,6 +106,12 @@ export const kssmForm5MathematicsTopicNodes = [
         level: "lesson",
         materialKeys: ["lesson.mathematics.geometric-transformation"],
         order: 10,
+        outcomes: [
+          {
+            code: "Tingkatan 5, Standard Kandungan 5.2 dan 5.3",
+            ...mathematicsStandards,
+          },
+        ],
       }),
     ],
     key: "form-5-mathematics-congruency-enlargement-and-combined-transformations",
@@ -143,16 +156,16 @@ export const kssmForm5MathematicsTopicNodes = [
   unitNode({
     children: [
       materialNode({
-        key: "form-5-mathematics-ratios-and-graphs-of-trigonometric-functions-trigonometry",
+        key: "form-5-mathematics-ratios-and-graphs-of-trigonometric-functions-trigonometric-function",
         level: "lesson",
-        materialKeys: ["lesson.mathematics.trigonometry"],
+        materialKeys: ["lesson.mathematics.trigonometric-function"],
         order: 10,
-      }),
-      materialNode({
-        key: "form-5-mathematics-ratios-and-graphs-of-trigonometric-functions-function-modeling",
-        level: "lesson",
-        materialKeys: ["lesson.mathematics.function-modeling"],
-        order: 20,
+        outcomes: [
+          {
+            code: "Tingkatan 5, Standard Kandungan 6.1 hingga 6.2",
+            ...mathematicsStandards,
+          },
+        ],
       }),
     ],
     key: "form-5-mathematics-ratios-and-graphs-of-trigonometric-functions",
@@ -201,6 +214,12 @@ export const kssmForm5MathematicsTopicNodes = [
         level: "lesson",
         materialKeys: ["lesson.mathematics.statistics-foundations"],
         order: 10,
+        outcomes: [
+          {
+            code: "Tingkatan 5, Standard Kandungan 7.1 hingga 7.2",
+            ...mathematicsStandards,
+          },
+        ],
       }),
     ],
     key: "form-5-mathematics-measures-of-dispersion-for-grouped-data",

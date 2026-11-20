@@ -1,3 +1,7 @@
+import {
+  mathematicsBookX,
+  merdekaLearningOutcomes,
+} from "#corpus/curriculum/merdeka/documents";
 import { materialNode, unitNode } from "#corpus/curriculum/schema";
 
 /** The Kurikulum Merdeka class 10 mathematics unit `probability`. */
@@ -8,6 +12,7 @@ export const merdekaClass10ProbabilityUnit = unitNode({
       level: "lesson",
       materialKeys: ["lesson.mathematics.probability"],
       order: 10,
+      outcomes: [{ code: "Bab 7 Peluang", ...mathematicsBookX }],
     }),
   ],
   key: "class-10-mathematics-probability",
@@ -46,6 +51,16 @@ export const merdekaClass10StatisticsFoundationsUnit = unitNode({
       level: "lesson",
       materialKeys: ["lesson.mathematics.statistics-foundations"],
       order: 10,
+      outcomes: [
+        {
+          code: "Matematika, Fase E, elemen Analisis Data dan Peluang",
+          ...merdekaLearningOutcomes,
+        },
+        {
+          code: "Bab 6 Representasi dan Interpretasi Data",
+          ...mathematicsBookX,
+        },
+      ],
     }),
   ],
   key: "class-10-mathematics-statistics-foundations",

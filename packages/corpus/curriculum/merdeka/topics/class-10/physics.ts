@@ -1,3 +1,7 @@
+import {
+  merdekaLearningOutcomes,
+  scienceBookX,
+} from "#corpus/curriculum/merdeka/documents";
 import { materialNode, unitNode } from "#corpus/curriculum/schema";
 
 export const merdekaClass10PhysicsTopicNodes = [
@@ -8,6 +12,16 @@ export const merdekaClass10PhysicsTopicNodes = [
         level: "lesson",
         materialKeys: ["lesson.physics.measurement"],
         order: 10,
+        outcomes: [
+          {
+            code: "IPA, Fase E, elemen Pemahaman IPA",
+            ...merdekaLearningOutcomes,
+          },
+          {
+            code: "Bab I Sistem Pengukuran dalam Kerja Ilmiah",
+            ...scienceBookX,
+          },
+        ],
       }),
     ],
     key: "class-10-physics-measurement",
@@ -47,6 +61,13 @@ export const merdekaClass10PhysicsTopicNodes = [
         level: "lesson",
         materialKeys: ["lesson.physics.renewable-energy"],
         order: 10,
+        outcomes: [
+          {
+            code: "IPA, Fase E, elemen Pemahaman IPA",
+            ...merdekaLearningOutcomes,
+          },
+          { code: "Bab VII Energi Terbarukan", ...scienceBookX },
+        ],
       }),
     ],
     key: "class-10-physics-renewable-energy",

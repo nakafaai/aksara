@@ -1,3 +1,4 @@
+import { chemistryStandards } from "#corpus/curriculum/kssm/documents";
 import { materialNode, unitNode } from "#corpus/curriculum/schema";
 
 /** The KSSM Form 4 Chemistry chapters of the theme Interaction between Matter, Bab 6 and Bab 7. */
@@ -9,6 +10,12 @@ export const kssmForm4ChemistryInteractionNodes = [
         level: "lesson",
         materialKeys: ["lesson.chemistry.acid-base-salt"],
         order: 10,
+        outcomes: [
+          {
+            code: "Form 4, Content Standards 6.1 to 6.9",
+            ...chemistryStandards,
+          },
+        ],
       }),
     ],
     key: "form-4-chemistry-acid-base-and-salt",
@@ -48,6 +55,12 @@ export const kssmForm4ChemistryInteractionNodes = [
         level: "lesson",
         materialKeys: ["lesson.chemistry.reaction-rate"],
         order: 10,
+        outcomes: [
+          {
+            code: "Form 4, Content Standards 7.1 to 7.4",
+            ...chemistryStandards,
+          },
+        ],
       }),
     ],
     key: "form-4-chemistry-rate-of-reaction",

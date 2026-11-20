@@ -1,3 +1,7 @@
+import {
+  merdekaLearningOutcomes,
+  physicsBookXI,
+} from "#corpus/curriculum/merdeka/documents";
 import { materialNode, unitNode } from "#corpus/curriculum/schema";
 
 export const merdekaClass11PhysicsTopicNodes = [
@@ -8,6 +12,7 @@ export const merdekaClass11PhysicsTopicNodes = [
         level: "lesson",
         materialKeys: ["lesson.physics.kinematics"],
         order: 10,
+        outcomes: [{ code: "Bab 2 Kinematika", ...physicsBookXI }],
       }),
     ],
     key: "class-11-physics-kinematics",
@@ -44,6 +49,13 @@ export const merdekaClass11PhysicsTopicNodes = [
         level: "lesson",
         materialKeys: ["lesson.physics.vector"],
         order: 10,
+        outcomes: [
+          {
+            code: "Fisika, Fase F, elemen Pemahaman Fisika",
+            ...merdekaLearningOutcomes,
+          },
+          { code: "Bab 1 Vektor", ...physicsBookXI },
+        ],
       }),
     ],
     key: "class-11-physics-vector",
