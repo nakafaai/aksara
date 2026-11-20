@@ -1,0 +1,41 @@
+# One gap is really two
+
+Picture stepping stones for a child whose strides grow by the same amount each time. If one stone is missing, one jump looks far too long. The gaps between the images seen are <InlineMath math="19.6" />, <InlineMath math="68.6" />, <InlineMath math="49.0" /> and <InlineMath math="58.8\text{ cm}" />. The last two differ by <InlineMath math="9.8\text{ cm}" />, so steady falling makes each gap <InlineMath math="9.8\text{ cm}" /> longer than the one before. **The <InlineMath math="68.6\text{ cm}" /> gap covers two flashes, <InlineMath math="29.4+39.2=68.6\text{ cm}" />**. The full list is <InlineMath math="19.6" />, <InlineMath math="29.4" />, <InlineMath math="39.2" />, <InlineMath math="49.0" /> and <InlineMath math="58.8\text{ cm}" />, and the growth <InlineMath math="\Delta s=aT^2" /> gives <InlineMath math="a=0.098/0.10^2=9.8\text{ m s}^{-2}" />.
+
+# Where the hidden ball was
+
+The short part always comes first, because the ball is still speeding up. **At the hidden flash the ball was <InlineMath math="19.6+29.4=49.0\text{ cm}" /> below image <InlineMath math="1" />**. Putting the longer <InlineMath math="39.2\text{ cm}" /> part first gives <InlineMath math="58.8" />, about <InlineMath math="59\text{ cm}" />, and cutting the long gap in half gives <InlineMath math="54\text{ cm}" />, as if the ball had moved at a steady speed there.
+
+<Chart
+  title={<>Where the ball was at each flash</>}
+  description={<>The ball's distance below image <InlineMath math="1" /> at each flash. At the third flash it was behind the clamp, <InlineMath math="49.0\text{ cm}" /> down, so the photograph has no image there.</>}
+  categories={["Flash 1", "Flash 2", "Flash 3", "Flash 4", "Flash 5", "Flash 6"]}
+  series={[
+    { label: "Position of the ball", mark: "line", values: [0, 19.6, 49.0, 88.2, 137.2, 196.0] },
+    { label: "Images in the photograph", mark: "line", values: [0, 19.6, null, 88.2, 137.2, 196.0] },
+  ]}
+  valueLabel="Distance below the first image (cm)"
+/>
+
+# Back to the release
+
+Think of a car passing two lamp posts. Its average speed between them is its speed halfway along. **Half a flash after image <InlineMath math="1" /> the ball moved at <InlineMath math="0.196/0.10=1.96\text{ m s}^{-1}" />, so at image <InlineMath math="1" /> itself it moved at <InlineMath math="1.96-9.8\times0.05=1.47\text{ m s}^{-1}" />**. From rest, gaining <InlineMath math="9.8\text{ m s}^{-1}" /> every second, it needed <InlineMath math="1.47/9.8=0.15\text{ s}" />. Pinning the <InlineMath math="1.96\text{ m s}^{-1}" /> average on image <InlineMath math="1" /> gives <InlineMath math="0.20\text{ s}" />, half a flash too late.
+
+<StrobePhotoMotionLab
+  shot="drop"
+  title={<>The same flashes, starting from release</>}
+  description={<>Each image is one flash, <InlineMath math="0.10\text{ s}" /> apart, counted from the release. In the photograph in the question the lamp first flashed <InlineMath math="0.15\text{ s}" /> after release, and the third flash found the ball behind the clamp.</>}
+  labels={{
+    airTime: <>Time in the air</>,
+    height: <>Start height</>,
+    interval: <>Time between flashes</>,
+    outcome: <>Speed at the floor</>,
+    viewLabel: "Strobe photograph built up flash by flash",
+  }}
+/>
+
+<BlockMath math="\begin{aligned}
+\Delta s&=39.2-29.4=9.8\text{ cm},\quad a=\frac{0.098}{0.10^2}=9.8\text{ m s}^{-2}\\
+s_3&=19.6+29.4=49.0\text{ cm}\\
+v_1&=\frac{0.196}{0.10}-9.8\times0.05=1.47\text{ m s}^{-1},\quad t_1=\frac{1.47}{9.8}=0.15\text{ s}
+\end{aligned}" />

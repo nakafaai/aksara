@@ -1,0 +1,32 @@
+A model railway transformer has a primary coil of <InlineMath math="2400" /> turns connected to the <InlineMath math="240\text{ V}" /> mains and two separate secondary coils. The track coil gives <InlineMath math="16\text{ V}" /> to a train that draws <InlineMath math="1.5\text{ A}" />. The accessory coil gives <InlineMath math="12\text{ V}" /> to six lamps, each rated <InlineMath math="12\text{ V}" />, <InlineMath math="3.0\text{ W}" />, connected in parallel. With the train and all six lamps running, the transformer is <InlineMath math="84\%" /> efficient. The power lost in the transformer, as heat in its coils and core, stays the same whatever the load.
+
+<MathVisual
+  title={<>The model railway transformer</>}
+  description={<>The primary coil of <InlineMath math="2400" /> turns is connected to the <InlineMath math="240\text{ V}" /> mains. On the same core, the track coil gives <InlineMath math="16\text{ V}" /> to a train drawing <InlineMath math="1.5\text{ A}" />, and the accessory coil gives <InlineMath math="12\text{ V}" /> to six lamps, each rated <InlineMath math="12\text{ V}" />, <InlineMath math="3.0\text{ W}" />, in parallel.</>}
+  labels={{
+    primary: <>primary, <InlineMath math="2400" /> turns, <InlineMath math="240\text{ V}" /></>,
+    track: <>track coil, <InlineMath math="16\text{ V}" />, train <InlineMath math="1.5\text{ A}" /></>,
+    accessory: <>accessory coil, <InlineMath math="12\text{ V}" />, six lamps</>,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -8, max: 18 }, y: { min: -0.5, max: 6.5 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "core-outer", kind: "polyline", appearance: "reference", vertices: [{ x: 0, y: 0 }, { x: 8, y: 0 }, { x: 8, y: 6 }, { x: 0, y: 6 }] },
+      { id: "core-outer-side", kind: "segment", appearance: "reference", from: { x: 0, y: 6 }, to: { x: 0, y: 0 } },
+      { id: "core-inner", kind: "polyline", appearance: "reference", vertices: [{ x: 1.5, y: 1.5 }, { x: 6.5, y: 1.5 }, { x: 6.5, y: 4.5 }, { x: 1.5, y: 4.5 }] },
+      { id: "core-inner-side", kind: "segment", appearance: "reference", from: { x: 1.5, y: 4.5 }, to: { x: 1.5, y: 1.5 } },
+      { id: "primary", kind: "polyline", appearance: "primary", vertices: [{ x: -0.3, y: 1.8 }, { x: 1.8, y: 2.1 }, { x: -0.3, y: 2.4 }, { x: 1.8, y: 2.7 }, { x: -0.3, y: 3 }, { x: 1.8, y: 3.3 }, { x: -0.3, y: 3.6 }, { x: 1.8, y: 3.9 }, { x: -0.3, y: 4.2 }] },
+      { id: "track", kind: "polyline", appearance: "secondary", vertices: [{ x: 8.3, y: 3.3 }, { x: 6.2, y: 3.6 }, { x: 8.3, y: 3.9 }, { x: 6.2, y: 4.2 }, { x: 8.3, y: 4.5 }] },
+      { id: "accessory", kind: "polyline", appearance: "highlight", vertices: [{ x: 8.3, y: 1.5 }, { x: 6.2, y: 1.8 }, { x: 8.3, y: 2.1 }, { x: 6.2, y: 2.4 }, { x: 8.3, y: 2.7 }] },
+    ],
+    labels: [
+      { key: "primary", objectId: "primary", at: { x: -0.3, y: 3 }, placement: "left" },
+      { key: "track", objectId: "track", at: { x: 8.3, y: 3.9 }, placement: "right" },
+      { key: "accessory", objectId: "accessory", at: { x: 8.3, y: 2.1 }, placement: "right" },
+    ],
+  }}
+/>
+
+How many turns does the track coil have, what is the current in the primary coil when the lamps are switched off and the train still draws <InlineMath math="1.5\text{ A}" />, and what is the efficiency of the transformer then?

@@ -1,0 +1,46 @@
+A laser beam strikes a vertical plane mirror at an angle of incidence of <InlineMath math="30°" />. The reflected beam makes a spot on a wall that is parallel to the mirror and <InlineMath math="3.0\text{ m}" /> from it. Point P on the wall is directly opposite the point where the beam meets the mirror. The laser is fixed and does not block the reflected beam.
+
+<MathVisual
+  title={<>The laser, the mirror and the wall, seen from above</>}
+  description={<>Seen from above. The laser beam meets the vertical mirror at <InlineMath math="O" /> with an angle of incidence of <InlineMath math="30^\circ" />, and the reflected beam makes a spot on a wall that is parallel to the mirror and <InlineMath math="3.0\text{ m}" /> from it. Point <InlineMath math="P" /> on the wall is directly opposite <InlineMath math="O" />.</>}
+  labels={{
+    mirror: <>mirror</>,
+    wall: <>wall</>,
+    o: <><InlineMath math="O" /></>,
+    p: <><InlineMath math="P" /></>,
+    laser: <>laser</>,
+    angle: <><InlineMath math="30^\circ" /></>,
+    spot: <>spot</>,
+    gap: <><InlineMath math="3.0\text{ m}" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1, max: 4.4 }, y: { min: -2.6, max: 4.3 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "mirror", kind: "segment", appearance: "primary", from: { x: 0, y: -1.6 }, to: { x: 0, y: 2.4 } },
+      { id: "wall", kind: "segment", appearance: "reference", from: { x: 3, y: -1.6 }, to: { x: 3, y: 3.8 } },
+      { id: "normal", kind: "segment", appearance: "construction", from: { x: 0, y: 0 }, to: { x: 3, y: 0 } },
+      { id: "o", kind: "point", appearance: "primary", at: { x: 0, y: 0 } },
+      { id: "p", kind: "point", appearance: "reference", at: { x: 3, y: 0 } },
+      { id: "laser", kind: "point", appearance: "secondary", at: { x: 1.8, y: -1.8 * Math.tan(Math.PI / 6) } },
+      { id: "incident", kind: "vector", appearance: "secondary", from: { x: 1.8, y: -1.8 * Math.tan(Math.PI / 6) }, to: { x: 0, y: 0 } },
+      { id: "reflected", kind: "vector", appearance: "secondary", from: { x: 0, y: 0 }, to: { x: 3, y: 3 * Math.tan(Math.PI / 6) } },
+      { id: "spot", kind: "point", appearance: "highlight", at: { x: 3, y: 3 * Math.tan(Math.PI / 6) } },
+      { id: "angle", kind: "arc", appearance: "construction", center: { x: 0, y: 0 }, radius: 0.9, startDegrees: 330, sweepDegrees: 30 },
+      { id: "gap", kind: "segment", appearance: "construction", from: { x: 0, y: -2 }, to: { x: 3, y: -2 } },
+    ],
+    labels: [
+      { key: "mirror", objectId: "mirror", at: { x: 0, y: 2.4 }, placement: "above" },
+      { key: "wall", objectId: "wall", at: { x: 3, y: 3.8 }, placement: "above" },
+      { key: "o", objectId: "o", at: { x: 0, y: 0 }, placement: "left" },
+      { key: "p", objectId: "p", at: { x: 3, y: 0 }, placement: "right" },
+      { key: "laser", objectId: "laser", at: { x: 1.8, y: -1.8 * Math.tan(Math.PI / 6) }, placement: "below-right" },
+      { key: "angle", objectId: "angle", at: { x: 0.9 * Math.cos(Math.PI / 12), y: -0.9 * Math.sin(Math.PI / 12) }, placement: "right" },
+      { key: "spot", objectId: "spot", at: { x: 3, y: 3 * Math.tan(Math.PI / 6) }, placement: "right" },
+      { key: "gap", objectId: "gap", at: { x: 1.5, y: -2 }, placement: "below" },
+    ],
+  }}
+/>
+
+The mirror is turned through <InlineMath math="5.0°" /> about a vertical axis through the point where the beam meets it, in the direction that makes the angle of incidence larger. How far along the wall does the spot move, through what angle must the mirror be turned from its starting position, in the same direction, to put the spot <InlineMath math="3.0\text{ m}" /> from P, and when the mirror spins steadily in that direction at <InlineMath math="2.0" /> revolutions per second, how long does the spot take to travel from its starting position to <InlineMath math="3.0\text{ m}" /> from P, and what is its average speed over that stretch?

@@ -1,0 +1,38 @@
+A car is stuck in mud. Its driver ties one end of a strong rope to the car and the other end to a tree <InlineMath math="10.0\text{ m}" /> away, with the rope almost straight. The driver then pushes the midpoint of the rope sideways, at right angles to the line from the car to the tree, with a force of <InlineMath math="400\text{ N}" />. The midpoint moves <InlineMath math="0.50\text{ m}" /> to the side and each half of the rope stays straight, but the car does not move. The car starts to move only when the pull on it reaches <InlineMath math="2500\text{ N}" />.
+
+<MathVisual
+  title={<>The rope from the car to the tree, seen from above</>}
+  description={<>Seen from above. The rope runs from the car to a tree <InlineMath math="10.0\text{ m}" /> away. A sideways push of <InlineMath math="400\text{ N}" /> at the midpoint of the rope, at right angles to the line from the car to the tree, moves the midpoint <InlineMath math="0.50\text{ m}" /> to the side, and each half of the rope stays straight.</>}
+  labels={{
+    car: <>car</>,
+    tree: <>tree</>,
+    rope: <>rope</>,
+    push: <><InlineMath math="400\text{ N}" /></>,
+    side: <><InlineMath math="0.50\text{ m}" /></>,
+    span: <><InlineMath math="10.0\text{ m}" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -2.2, max: 11.2 }, y: { min: -2.1, max: 2.9 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "car", kind: "polygon", appearance: "secondary", vertices: [{ x: -1.8, y: -0.7 }, { x: 0, y: -0.7 }, { x: 0, y: 0.7 }, { x: -1.8, y: 0.7 }] },
+      { id: "tree", kind: "circle", appearance: "secondary", center: { x: 10.4, y: 0 }, radius: 0.4 },
+      { id: "line", kind: "segment", appearance: "construction", from: { x: 0, y: 0 }, to: { x: 10, y: 0 } },
+      { id: "rope", kind: "polyline", appearance: "primary", vertices: [{ x: 0, y: 0 }, { x: 5, y: 0.5 }, { x: 10, y: 0 }] },
+      { id: "push", kind: "vector", appearance: "highlight", from: { x: 5, y: 0.5 }, to: { x: 5, y: 2.3 } },
+      { id: "side", kind: "segment", appearance: "construction", from: { x: 5, y: 0 }, to: { x: 5, y: 0.5 } },
+      { id: "span", kind: "segment", appearance: "construction", from: { x: 0, y: -1.3 }, to: { x: 10, y: -1.3 } },
+    ],
+    labels: [
+      { key: "car", objectId: "car", at: { x: -0.9, y: -0.7 }, placement: "below" },
+      { key: "tree", objectId: "tree", at: { x: 10.4, y: -0.4 }, placement: "below" },
+      { key: "rope", objectId: "rope", at: { x: 2.5, y: 0.25 }, placement: "above-left" },
+      { key: "push", objectId: "push", at: { x: 5, y: 2.3 }, placement: "above" },
+      { key: "side", objectId: "side", at: { x: 5, y: 0 }, placement: "below" },
+      { key: "span", objectId: "span", at: { x: 5, y: -1.3 }, placement: "below" },
+    ],
+  }}
+/>
+
+What is the tension in the rope, what is the smallest sideways push that frees the car with the midpoint <InlineMath math="0.50\text{ m}" /> to the side, and, if the rope is retied with a different amount of slack, what is the greatest sideways distance of the midpoint at which a <InlineMath math="400\text{ N}" /> push still frees the car?

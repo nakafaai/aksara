@@ -1,0 +1,43 @@
+# Jari hanyalah satu hambatan lagi
+
+Kulitmu meloloskan sedikit arus, dan lebih banyak saat basah. Jadi jari itu hanyalah **satu hambatan lagi di jalur basis**, seri dengan hambatan <InlineMath math="22\text{ k}\Omega" />. Sambungan basis-emitor menyimpan <InlineMath math="0{,}70\text{ V}" /> untuk dirinya, jadi tersisa <InlineMath math="8{,}3\text{ V}" /> untuk mendorong arus lewat kedua hambatan.
+
+<BlockMath math="\begin{aligned}
+I_B&=\frac{9{,}0-0{,}70}{(50+22)\times10^{3}}=1{,}15\times10^{-4}\text{ A},\qquad 200\,I_B=23\text{ mA}
+\end{aligned}" />
+
+Melupakan <InlineMath math="0{,}70\text{ V}" /> itu membuat tiap arus basis sedikit terlalu besar.
+
+# Sisi LED memasang batas
+
+Transistor melipatgandakan arus basis, tetapi hanya sejauh yang bisa dibawa sisi kolektor. Mirip membuka keran sampai penuh: begitu terbuka lebar, **pipanya yang menentukan seberapa banyak air mengalir**, bukan kerannya. Saat menyala penuh, transistor tidak punya tegangan, jadi hambatan <InlineMath math="350\,\Omega" /> mendapat <InlineMath math="9{,}0-2{,}0=7{,}0\text{ V}" />.
+
+<BlockMath math="\begin{aligned}
+I_{C,\max}&=\frac{9{,}0-2{,}0}{350}=0{,}020\text{ A}=20\text{ mA}
+\end{aligned}" />
+
+Jadi jari basah memberi <InlineMath math="20\text{ mA}" />. Menulis <InlineMath math="23\text{ mA}" /> meminta arus yang lebih besar daripada yang mampu dibawa rangkaian kolektor.
+
+Dengan jari kering, arus basisnya sangat kecil, <InlineMath math="8{,}3\text{ V}\div2{,}022\text{ M}\Omega=4{,}1\ \mu\text{A}" />. Kolektor mendapat <InlineMath math="200" /> kalinya, <InlineMath math="0{,}82\text{ mA}" />, dan LED hanya menyala redup. Tanpa <InlineMath math="0{,}70\text{ V}" /> kamu akan mendapat <InlineMath math="0{,}89\text{ mA}" />.
+
+<Chart
+  title={<>Arus kolektor terhadap hambatan jari</>}
+  description={<>Sampai jari <InlineMath math="61\text{ k}\Omega" />, transistor menyala penuh dan arusnya tertahan di batas <InlineMath math="20\text{ mA}" />. Jari yang lebih kering membuat arusnya turun.</>}
+  categories={["0 kΩ", "20 kΩ", "40 kΩ", "61 kΩ", "80 kΩ", "100 kΩ", "150 kΩ", "200 kΩ"]}
+  series={[
+    { label: "Arus kolektor", mark: "line", values: [20.0, 20.0, 20.0, 20.0, 16.27, 13.61, 9.65, 7.48] },
+    { label: "Tanpa batas", mark: "line", values: [75.45, 39.52, 26.77, 20.0, 16.27, 13.61, 9.65, 7.48] },
+  ]}
+  valueLabel="Arus kolektor (mA)"
+/>
+
+# Jari paling kering yang masih bekerja
+
+Nyala paling terang butuh arus kolektor <InlineMath math="20\text{ mA}" />, jadi basis butuh <InlineMath math="200" /> kali lebih kecil. Itu menetapkan hambatan **total** di jalur basis, dan jari hanya mendapat sisanya setelah hambatan tetap.
+
+<BlockMath math="\begin{aligned}
+I_B&=\frac{20\text{ mA}}{200}=100\ \mu\text{A},\qquad R=\frac{8{,}3}{100\times10^{-6}}=83\text{ k}\Omega\\
+R_f&=83-22=61\text{ k}\Omega
+\end{aligned}" />
+
+Berhenti di <InlineMath math="83\text{ k}\Omega" /> memberi jari itu jatah hambatan basis juga.

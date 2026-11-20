@@ -1,0 +1,36 @@
+# The wavelength from the first line
+
+On the <InlineMath math="8.0\text{ m}" /> line the quiet points are <InlineMath math="1.5\text{ m}" /> apart, so <InlineMath math="\lambda=ax/D=2.0\times1.5/8.0=0.375\text{ m}" /> and the signal is <InlineMath math="330/0.375=880\text{ Hz}" />. **<InlineMath math="a" /> is the gap between the loudspeakers and <InlineMath math="D" /> the distance to the line**. Swapping them gives a <InlineMath math="6.0\text{ m}" /> wavelength and only <InlineMath math="55\text{ Hz}" />.
+
+# Farther away the pattern spreads out
+
+The spacing grows in step with the distance, <InlineMath math="x=\lambda D/a" />, so **on the <InlineMath math="12\text{ m}" /> line the quiet points are <InlineMath math="0.375\times12/2.0=2.25\text{ m}" /> apart**, about <InlineMath math="2.3\text{ m}" />. Keeping <InlineMath math="1.5\text{ m}" /> treats the pattern as painted on the ground, when it really fans out from the loudspeakers.
+
+<SpeakerInterferenceLab
+  title={<>Two loudspeakers driven in phase</>}
+  description={<>The loudspeakers are <InlineMath math="2.0\text{ m}" /> apart and play <InlineMath math="880\text{ Hz}" />. On the line <InlineMath math="12\text{ m}" /> away the loud points are <InlineMath math="2.25\text{ m}" /> apart.</>}
+  distance={12}
+  frequency={880}
+  separation={2}
+  speed={330}
+  labels={{
+    frequency: <>Frequency</>,
+    frequencyName: "Frequency",
+    spacing: <>Distance between loud points</>,
+    viewLabel: "Two loudspeakers seen from above",
+    wavelength: <>Wavelength</>,
+  }}
+/>
+
+# Swapping the wires on one loudspeaker
+
+In antiphase, waves that travel equal paths arrive half a cycle apart and cancel. **The centre line turns quiet, and every loud point swaps places with a quiet one**. So the nearest loud point sits halfway to the old first quiet point, <InlineMath math="2.25/2\approx1.1\text{ m}" /> from the centre. Answering <InlineMath math="2.3\text{ m}" /> moves the pattern a whole spacing instead of half.
+
+# Counting the quiet points
+
+The quiet points now sit at <InlineMath math="0" />, <InlineMath math="\pm2.25" /> and <InlineMath math="\pm4.5\text{ m}" />, and the next pair at <InlineMath math="\pm6.75\text{ m}" /> is outside the <InlineMath math="5.0\text{ m}" /> stretch. **That is five quiet points, the centre one included**. With the old <InlineMath math="1.5\text{ m}" /> spacing you would count seven, and with the <InlineMath math="55\text{ Hz}" /> slip the spacing is so wide that only the centre remains.
+
+<BlockMath math="\begin{aligned}
+\lambda&=\frac{ax}{D}=\frac{2.0\times1.5}{8.0}=0.375\text{ m},\quad f=\frac{v}{\lambda}=\frac{330}{0.375}=880\text{ Hz}\\
+x'&=\frac{\lambda D'}{a}=\frac{0.375\times12}{2.0}=2.25\text{ m},\quad x_n=0,\ \pm2.25,\ \pm4.5\text{ m}
+\end{aligned}" />

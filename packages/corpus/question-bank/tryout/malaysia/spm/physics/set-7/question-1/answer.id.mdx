@@ -1,0 +1,31 @@
+# Temukan bacaan yang merusak pola
+
+Sampai <InlineMath math="4{,}0\text{ N}" />, tiap newton tambahan menggeser penunjuk sekitar <InlineMath math="2{,}0\text{ cm}" />. Newton terakhir menggesernya <InlineMath math="3{,}5\text{ cm}" />, jadi **bacaan <InlineMath math="5{,}0\text{ N}" /> diambil setelah batas elastis terlewati** dan harus dibuang. Kalau kamu tetap memakainya, kamu dapat <InlineMath math="5{,}0\text{ N}" /> untuk <InlineMath math="11{,}5\text{ cm}" />, sekitar <InlineMath math="43\text{ N m}^{-1}" />, kekakuan yang tidak pernah dimiliki pegas itu selama masih mengikuti hukum Hooke.
+
+<Chart
+  title={<>Bacaan penunjuk dibandingkan garis Hooke</>}
+  description={<>Sampai <InlineMath math="4{,}0\text{ N}" /> bacaannya berada pada garis yang naik <InlineMath math="2{,}0\text{ cm}" /> tiap newton. Di <InlineMath math="5{,}0\text{ N}" /> bacaannya melonjak <InlineMath math="1{,}5\text{ cm}" /> di atas garis itu.</>}
+  categories={["0,0 N", "1,0 N", "2,0 N", "3,0 N", "4,0 N", "5,0 N"]}
+  series={[
+    { label: "Bacaan", mark: "line", values: [12.0, 14.0, 16.1, 17.9, 20.0, 23.5] },
+    { label: "Garis hukum Hooke", mark: "line", values: [12.0, 14.0, 16.0, 18.0, 20.0, 22.0] },
+  ]}
+  valueLabel="Bacaan penunjuk (cm)"
+/>
+
+Bacaan yang bersih memberi <InlineMath math="4{,}0\text{ N}" /> untuk <InlineMath math="8{,}0\text{ cm}" />, jadi <InlineMath math="k=50\text{ N m}^{-1}" />.
+
+# Energinya segitiga, bukan persegi panjang
+
+Gayanya tumbuh dari nol sampai <InlineMath math="4{,}0\text{ N}" /> selama pegas meregang, jadi usahanya adalah luas segitiga di bawah garis gaya-pertambahan panjang, **setengah dari gaya kali pertambahan panjang**: <InlineMath math="0{,}16\text{ J}" />. Mengalikan <InlineMath math="4{,}0\text{ N}" /> dengan <InlineMath math="0{,}080\text{ m}" /> tanpa setengah itu menggandakannya menjadi <InlineMath math="0{,}32\text{ J}" />.
+
+# Setengah pegas dua kali lebih kaku
+
+Tiap setengah pegas menahan beban penuh, tetapi lilitannya hanya separuh untuk berbagi regangan, jadi **setengah pegas itu punya <InlineMath math="k=100\text{ N m}^{-1}" />** dan hanya meregang <InlineMath math="0{,}040\text{ m}" /> di bawah <InlineMath math="4{,}0\text{ N}" />. Energi yang tersimpan <InlineMath math="0{,}080\text{ J}" />, dan hanya itu yang bisa diterima bola.
+
+<BlockMath math="\begin{aligned}
+k&=\frac{4{,}0\text{ N}}{0{,}080\text{ m}}=50\text{ N m}^{-1},\qquad E=\tfrac12Fx=\tfrac12\times4{,}0\times0{,}080=0{,}16\text{ J}\\
+k'&=2k=100\text{ N m}^{-1},\quad x'=0{,}040\text{ m},\quad E'=0{,}080\text{ J}=\tfrac12\times0{,}020\times v^2\ \Rightarrow\ v=2{,}8\text{ m s}^{-1}
+\end{aligned}" />
+
+Memberi bola <InlineMath math="0{,}16\text{ J}" /> milik pegas utuh akan melontarkannya <InlineMath math="4{,}0\text{ m s}^{-1}" />, padahal pegas yang lebih pendek hanya menyimpan separuh energi pada beban yang sama.

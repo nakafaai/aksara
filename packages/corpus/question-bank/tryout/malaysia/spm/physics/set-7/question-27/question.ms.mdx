@@ -1,0 +1,31 @@
+Sebuah kampung di kawasan tanah tinggi mengambil air dari sebuah perigi dengan pam sedutan tangan di hujung atas sebatang paip tegak. Barometer kampung itu ialah sebatang tiub merkuri yang condong pada <InlineMath math="30^\circ" /> kepada garis tegak, dan turus merkuri di dalamnya sepanjang <InlineMath math="69.3\text{ cm}" /> diukur di sepanjang tiub. Pam itu paling baik dapat menurunkan tekanan dalam paip di atas air kepada <InlineMath math="12\text{ kPa}" />. Apabila perigi tenang, permukaan airnya <InlineMath math="9.5\text{ m}" /> di bawah tanah, tetapi semasa pam bekerja permukaan air turun lagi <InlineMath math="1.5\text{ m}" /> dan kekal di situ. Ketumpatan merkuri dan air ialah <InlineMath math="13600\text{ kg m}^{-3}" /> dan <InlineMath math="1000\text{ kg m}^{-3}" />, dan <InlineMath math="g=10\text{ m s}^{-2}" />.
+
+<MathVisual
+  title={<>Barometer yang condong</>}
+  description={<>Tiub merkuri barometer kampung itu condong pada <InlineMath math="30^\circ" /> kepada garis tegak. Turus merkuri di dalamnya sepanjang <InlineMath math="69.3\text{ cm}" />, diukur di sepanjang tiub dari permukaan merkuri di dalam bekas.</>}
+  labels={{
+    thread: <><InlineMath math="69.3\text{ cm}" /></>,
+    angle: <><InlineMath math="30^\circ" /></>,
+    dish: <>merkuri</>,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -27, max: 52 }, y: { min: -12, max: 84 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "dish", kind: "polygon", appearance: "secondary", vertices: [{ x: -22, y: -8 }, { x: 22, y: -8 }, { x: 22, y: 0 }, { x: -22, y: 0 }] },
+      { id: "bowl", kind: "polyline", appearance: "reference", vertices: [{ x: -24, y: 4 }, { x: -24, y: -10 }, { x: 24, y: -10 }, { x: 24, y: 4 }] },
+      { id: "tube", kind: "segment", appearance: "reference", from: { x: -6 * Math.sin(Math.PI / 6), y: -6 * Math.cos(Math.PI / 6) }, to: { x: 92 * Math.sin(Math.PI / 6), y: 92 * Math.cos(Math.PI / 6) } },
+      { id: "thread", kind: "segment", appearance: "primary", from: { x: 0, y: 0 }, to: { x: 69.3 * Math.sin(Math.PI / 6), y: 69.3 * Math.cos(Math.PI / 6) } },
+      { id: "vertical", kind: "segment", appearance: "construction", from: { x: 0, y: 0 }, to: { x: 0, y: 45 } },
+      { id: "angle", kind: "arc", appearance: "construction", center: { x: 0, y: 0 }, radius: 18, startDegrees: 60, sweepDegrees: 30 },
+    ],
+    labels: [
+      { key: "thread", objectId: "thread", at: { x: 34.65 * Math.sin(Math.PI / 6), y: 34.65 * Math.cos(Math.PI / 6) }, placement: "below-right" },
+      { key: "angle", objectId: "angle", at: { x: 18 * Math.cos(75 * Math.PI / 180), y: 18 * Math.sin(75 * Math.PI / 180) }, placement: "above" },
+      { key: "dish", objectId: "dish", at: { x: -12, y: -4 }, placement: "center" },
+    ],
+  }}
+/>
+
+Berapakah tekanan atmosfera di kampung itu, berapakah ketinggian maksimum di atas permukaan air yang boleh dicapai oleh air yang dinaikkan pam, dan berapakah kedalaman minimum lubang tempat pam itu mesti diletakkan supaya pam terus berfungsi?

@@ -1,0 +1,35 @@
+# Pressure comes from the water above the tap
+
+Dive to the bottom of a pool and your ears feel all the water above you. A tap feels the same thing, the water standing between it and the tower's surface. **On floor <InlineMath math="3" /> that column is <InlineMath math="25-9.0=16\text{ m}" /> tall, so the gauge reads <InlineMath math="1000\times10\times16=1.6\times10^{5}\text{ Pa}" />**. A gauge shows only the pressure above the air's, so adding atmospheric pressure to reach <InlineMath math="2.6\times10^{5}\text{ Pa}" /> puts in something the gauge leaves out.
+
+# Five metres of water for the machine
+
+Poke two holes in a full plastic bottle, one near the bottom and one near the top. The low hole squirts harder, because more water presses down on it. The machine wants <InlineMath math="5.0\times10^{4}\text{ Pa}" />, which is what <InlineMath math="5.0\text{ m}" /> of water gives. **So a floor works only while the tower's surface is at least <InlineMath math="5.0\text{ m}" /> above its tap**. With the tank full, taps up to <InlineMath math="20\text{ m}" /> high qualify. Floor <InlineMath math="6" /> at <InlineMath math="18\text{ m}" /> makes it, and floor <InlineMath math="7" /> at <InlineMath math="21\text{ m}" /> does not.
+
+<Chart
+  title={<>Water standing above each floor's tap</>}
+  description={<>The machine needs <InlineMath math="5.0\text{ m}" />. With the tank full, floor <InlineMath math="6" /> still has <InlineMath math="7.0\text{ m}" />. In the evening the surface is <InlineMath math="3.0\text{ m}" /> lower and floor <InlineMath math="5" /> is the last to clear the line.</>}
+  bars="apart"
+  categories={["Floor 3", "Floor 4", "Floor 5", "Floor 6", "Floor 7"]}
+  series={[
+    { label: "Tank full", mark: "bar", values: [16, 13, 10, 7, 4] },
+    { label: "Evening", mark: "bar", values: [13, 10, 7, 4, 1] },
+    { label: "Needed by the machine", mark: "line", values: [5, 5, 5, 5, 5] },
+  ]}
+  valueLabel="Water above the tap (m)"
+/>
+
+# The evening level
+
+Scoop water out of a wide basin and the level hardly drops. The wider the basin, the smaller the drop. **Here <InlineMath math="30\text{ m}^3" /> spread over <InlineMath math="10\text{ m}^2" /> is a drop of <InlineMath math="3.0\text{ m}" />**, so the surface sits at <InlineMath math="22\text{ m}" /> and taps up to <InlineMath math="17\text{ m}" /> still work. Floor <InlineMath math="5" /> at <InlineMath math="15\text{ m}" /> is now the top working floor. Reading <InlineMath math="30\text{ m}^3" /> as a <InlineMath math="30\text{ m}" /> drop would empty the tank on paper and leave no floor working at all.
+
+# When floor <InlineMath math="6" /> stops
+
+A teapot stops pouring while some tea is still inside, below the spout. The floor <InlineMath math="6" /> tap at <InlineMath math="18\text{ m}" /> needs the surface at <InlineMath math="18+5.0=23\text{ m}" /> or higher. The tank's bottom is at <InlineMath math="20\text{ m}" />, so at that moment **<InlineMath math="3.0\text{ m}" /> of water is still in it, <InlineMath math="3.0\times10=30\text{ m}^3" />**. The <InlineMath math="20\text{ m}^3" /> you meet on the way is the water already drawn off by then, and <InlineMath math="3.0\text{ m}^3" /> forgets to multiply the depth by the area.
+
+<BlockMath math="\begin{aligned}
+p_3&=1000\times10\times(25-9.0)=1.6\times10^{5}\text{ Pa}\\
+h_{\min}&=\frac{5.0\times10^{4}}{1000\times10}=5.0\text{ m}\ \Rightarrow\ 3.0n\le20\ \Rightarrow\ n=6\\
+\Delta h&=\frac{30}{10}=3.0\text{ m}\ \Rightarrow\ 3.0n\le17\ \Rightarrow\ n=5\\
+V&=(23-20)\times10=30\text{ m}^3
+\end{aligned}" />

@@ -1,0 +1,36 @@
+# One photon, one bond
+
+Light arrives in tiny packets called **photons**. Each packet either has enough energy to snap one bond or it does not, and weak packets cannot team up to do it together.
+
+<BlockMath math="\begin{aligned}
+E&=\frac{hc}{\lambda}=\frac{6.63\times10^{-34}\times3.0\times10^{8}}{254\times10^{-9}}=7.83\times10^{-19}\text{ J}\\
+E_b&=\frac{348\times10^{3}}{6.02\times10^{23}}=5.78\times10^{-19}\text{ J},\qquad \lambda_{\max}=\frac{hc}{E_b}=3.44\times10^{-7}\text{ m}\approx340\text{ nm}
+\end{aligned}" />
+
+Longer waves carry less energy, so the limit has to be longer than <InlineMath math="254\text{ nm}" />. Scaling the wavelength the wrong way round, <InlineMath math="254\times5.78/7.83" />, gives <InlineMath math="190\text{ nm}" />.
+
+<Chart
+  title={<>Photon energies against the bond energy</>}
+  description={<>A <InlineMath math="254\text{ nm}" /> photon clears the bar a bond sets. A <InlineMath math="365\text{ nm}" /> photon falls just short of it.</>}
+  bars="apart"
+  categories={["254 nm photon", "365 nm photon", "One carbon-carbon bond"]}
+  series={[
+    { label: "Energy", mark: "bar", values: [7.83, 5.45, 5.78] },
+  ]}
+  valueLabel="Energy (10⁻¹⁹ J)"
+/>
+
+# From watts to moles of bonds
+
+The lamp sends out <InlineMath math="5.0" /> joules every second, and each photon carries <InlineMath math="7.83\times10^{-19}\text{ J}" />, so dividing tells you how many photons leave each second. **Only one photon in fifty actually breaks a bond**.
+
+<BlockMath math="\begin{aligned}
+N&=\frac{5.0}{7.83\times10^{-19}}=6.39\times10^{18}\text{ s}^{-1},\qquad 0.020\times6.39\times10^{18}\times3600=4.60\times10^{20}\\
+n&=\frac{4.60\times10^{20}}{6.02\times10^{23}}=7.6\times10^{-4}\text{ mol},\qquad t=\frac{1.0\times10^{-3}}{7.64\times10^{-4}}\times60=79\text{ min}
+\end{aligned}" />
+
+Forgetting the <InlineMath math="2.0\%" /> makes the lamp fifty times faster: <InlineMath math="3.8\times10^{-2}\text{ mol}" /> an hour and under two minutes for the job.
+
+# Why the other lamp never manages
+
+A <InlineMath math="365\text{ nm}" /> photon carries <InlineMath math="5.45\times10^{-19}\text{ J}" />, just under the <InlineMath math="5.78\times10^{-19}\text{ J}" /> one bond needs. **Not one of them is strong enough**, and sending more of them each second does not help. So the answer is never. Working out <InlineMath math="55" /> minutes from the larger number of photons forgets that each photon has to do the job alone.

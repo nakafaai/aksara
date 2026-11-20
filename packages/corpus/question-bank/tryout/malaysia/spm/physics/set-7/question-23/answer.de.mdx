@@ -1,0 +1,29 @@
+# Das Spannseil trägt das Schild
+
+Denk an einen Besenstiel, der gerade aus der Wand ragt, mit einer Tasche am Ende und einer Schnur hinauf zur Wand. Die Schnur zieht nach oben und nach innen, der Stiel drückt nach außen. Hier bilden Wand, Stange und Spannseil ein Dreieck mit <InlineMath math="0{,}90" />, <InlineMath math="1{,}2" /> und <InlineMath math="1{,}5\text{ m}" />, also steigt das Seil unter einem Winkel <InlineMath math="\theta" /> mit <InlineMath math="\sin\theta=0{,}60" /> und <InlineMath math="\cos\theta=0{,}80" /> an. **Nur das Seil kann das Schild halten, also trägt sein senkrechter Anteil die ganzen <InlineMath math="30\text{ N}" />**: <InlineMath math="0{,}60T=30" /> und <InlineMath math="T=50\text{ N}" />.
+
+# Die Stange drückt zurück
+
+Lehn dich mit gestreckten Armen an eine Wand, und deine Arme drücken entlang ihrer Länge zurück. Die Stange macht dasselbe. Das Seil zieht das Stangenende auch zur Wand hin, und **die Stange drückt genauso stark nach außen, <InlineMath math="0{,}80\times50=40\text{ N}" />**. Das liegt unter den <InlineMath math="45\text{ N}" />, die die Stange aushält, also ist dieses Schild sicher. Vertauschst du Sinus und Kosinus, kommen <InlineMath math="38\text{ N}" /> und <InlineMath math="23\text{ N}" /> heraus, als stiege das Seil unter dem steileren Winkel an.
+
+# Welches Teil zuerst nachgibt
+
+Eine Kette reißt am schwächsten Glied, und bei der Halterung ist es genauso. Häng das doppelte Gewicht an, und jede Kraft in der Halterung verdoppelt sich. **Jedes Newton Schild bringt <InlineMath math="1{,}33\text{ N}" /> Druck auf die Stange und <InlineMath math="1{,}67\text{ N}" /> Zug auf das Seil**. Die Stange erreicht ihre <InlineMath math="45\text{ N}" /> bei einem Schild von <InlineMath math="45/1{,}33=34\text{ N}" />, das Seil hielte bis <InlineMath math="100/1{,}67=60\text{ N}" />. Das schwächere Teil setzt die Grenze, also hält die Halterung höchstens <InlineMath math="34\text{ N}" />. Ein Schild von <InlineMath math="60\text{ N}" /> würde die Stange knicken, lange bevor das Seil reißt, und <InlineMath math="45\text{ N}" /> ist die Grenze der Stange selbst, kein Schildgewicht.
+
+<Chart
+  title={<>Wie die Kräfte der Halterung mit dem Schild wachsen</>}
+  description={<>Die Stange erreicht ihre Grenze von <InlineMath math="45\text{ N}" /> bei einem Schild von <InlineMath math="34\text{ N}" />. Das Seil erreicht seine <InlineMath math="100\text{ N}" /> erst bei <InlineMath math="60\text{ N}" />.</>}
+  bars="apart"
+  categories={["Schild 30 N", "Schild 34 N", "Schild 60 N"]}
+  series={[
+    { label: "Seilspannung", mark: "bar", values: [50.0, 56.2, 100.0] },
+    { label: "Druck in der Stange", mark: "bar", values: [40.0, 45.0, 80.0] },
+  ]}
+  valueLabel="Kraft (N)"
+/>
+
+<BlockMath math="\begin{aligned}
+\sin\theta&=\frac{0{,}90}{1{,}5}=0{,}60,\qquad\cos\theta=\frac{1{,}2}{1{,}5}=0{,}80\\
+T&=\frac{30}{0{,}60}=50\text{ N},\qquad P=0{,}80\times50=40\text{ N}\\
+W_{\max}&=30\times\frac{45}{40}=34\text{ N}
+\end{aligned}" />

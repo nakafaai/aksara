@@ -1,0 +1,27 @@
+# Closing speed when boat and waves meet
+
+Heading out, the boat and the crests move towards each other, so **their speeds add**. Crests <InlineMath math="12\text{ m}" /> apart met every <InlineMath math="1.2\text{ s}" /> means a closing speed of <InlineMath math="10\text{ m s}^{-1}" />, and the waves supply <InlineMath math="6.0" /> of it, leaving <InlineMath math="4.0\text{ m s}^{-1}" /> for the boat. Calling the whole <InlineMath math="10\text{ m s}^{-1}" /> the boat's speed forgets that the crests were coming to meet it.
+
+# Running home with the waves
+
+Back towards the shore, the crests catch the boat from behind at only <InlineMath math="6.0-4.0=2.0\text{ m s}^{-1}" />, so **a crest passes every <InlineMath math="12/2.0=6.0\text{ s}" />**. Keeping <InlineMath math="1.2\text{ s}" /> ignores that the boat now runs with the waves.
+
+# Shallow water keeps the period
+
+The waves still arrive every <InlineMath math="12/6.0=2.0\text{ s}" />, because **the source sets the period and the shallow water only slows the crests**. At <InlineMath math="3.0\text{ m s}^{-1}" /> they are <InlineMath math="3.0\times2.0=6.0\text{ m}" /> apart, so the boat meets one every <InlineMath math="6.0/(3.0+4.0)=0.86\text{ s}" />, and a <InlineMath math="1.0\text{ s}" /> interval needs a closing speed of <InlineMath math="6.0\text{ m s}^{-1}" />, a boat speed of <InlineMath math="3.0\text{ m s}^{-1}" />. Keeping the <InlineMath math="12\text{ m}" /> spacing gives <InlineMath math="1.7\text{ s}" /> and <InlineMath math="9.0\text{ m s}^{-1}" /> instead.
+
+<Chart
+  title={<>Time between crests met heading out to sea</>}
+  description={<>In deep water a boat at <InlineMath math="4.0\text{ m s}^{-1}" /> meets a crest every <InlineMath math="1.2\text{ s}" />. In shallow water the crests are closer, so <InlineMath math="3.0\text{ m s}^{-1}" /> already gives one every <InlineMath math="1.0\text{ s}" />.</>}
+  categories={["0 m/s", "1 m/s", "2 m/s", "3 m/s", "4 m/s", "5 m/s", "6 m/s"]}
+  series={[
+    { label: "Deep water", mark: "line", values: [2.0, 1.714, 1.5, 1.333, 1.2, 1.091, 1.0] },
+    { label: "Shallow water", mark: "line", values: [2.0, 1.5, 1.2, 1.0, 0.857, 0.75, 0.667] },
+  ]}
+  valueLabel="Time between crests (s)"
+/>
+
+<BlockMath math="\begin{aligned}
+v_b&=\frac{12}{1.2}-6.0=4.0\text{ m s}^{-1},\quad T_{\leftarrow}=\frac{12}{6.0-4.0}=6.0\text{ s}\\
+\lambda'&=3.0\times2.0=6.0\text{ m},\quad T'=\frac{6.0}{3.0+4.0}=0.86\text{ s},\quad v'=\frac{6.0}{1.0}-3.0=3.0\text{ m s}^{-1}
+\end{aligned}" />

@@ -1,0 +1,46 @@
+# Bending into the sapphire
+
+At the window <InlineMath math="\sin r=\sin50^\circ/1.77=0.433" />, so the beam runs at <InlineMath math="25.6^\circ" /> to the normal inside, and **statement I is right**. Sapphire bends light harder than glass because its refractive index is larger.
+
+<GlassBlockLab
+  title={<>The beam inside the sapphire</>}
+  description={<>At <InlineMath math="50^\circ" /> incidence the beam bends to about <InlineMath math="26^\circ" /> inside sapphire of refractive index <InlineMath math="1.77" />.</>}
+  incidence={50}
+  index={1.77}
+  labels={{
+    critical: <>Critical angle <InlineMath math="c" /></>,
+    incidence: <>Angle of incidence <InlineMath math="i" /></>,
+    incidenceName: "Angle of incidence",
+    next: <>Angle at the side face</>,
+    outcome: <>At the side face</>,
+    reflected: <>Total internal reflection</>,
+    refracted: <>Leaves the sapphire</>,
+    refraction: <>Angle of refraction <InlineMath math="r" /></>,
+    viewLabel: "A ray through a sapphire window",
+  }}
+/>
+
+# A slanted path through the window
+
+The beam crosses <InlineMath math="3.0\text{ mm}" /> of thickness at <InlineMath math="25.6^\circ" />, so its path is <InlineMath math="3.0/\cos25.6^\circ=3.33\text{ mm}" />, and **statement II holds**. Inside, light travels at <InlineMath math="3.0\times10^{8}/1.77=1.69\times10^{8}\text{ m s}^{-1}" />, so the crossing takes about <InlineMath math="2.0\times10^{-11}\text{ s}" />, and statement III holds too. Dividing the bare thickness by that speed gives <InlineMath math="1.8\times10^{-11}\text{ s}" />, which misses the slant.
+
+<BlockMath math="\begin{aligned}
+\sin r&=\frac{\sin50^\circ}{1.77}=0.433\ \Rightarrow\ r=25.6^\circ,\quad s=\frac{3.0\text{ mm}}{\cos25.6^\circ}=3.33\text{ mm}\\
+v&=\frac{3.0\times10^{8}}{1.77}=1.69\times10^{8}\text{ m s}^{-1},\quad t=\frac{3.33\times10^{-3}}{1.69\times10^{8}}=2.0\times10^{-11}\text{ s}\\
+\lambda'&=\frac{633\text{ nm}}{1.77}=358\text{ nm},\quad f=\frac{3.0\times10^{8}}{633\times10^{-9}}=4.7\times10^{14}\text{ Hz}
+\end{aligned}" />
+
+# Wavelength changes but the colour does not
+
+Statement IV gets its number right, <InlineMath math="633/1.77=358\text{ nm}" />, and then draws the wrong conclusion. **Colour is set by frequency, which the sapphire cannot change**: it stays <InlineMath math="4.7\times10^{14}\text{ Hz}" />, so the light inside is still red, and it is red again when it leaves. That leaves I, II and III as the correct set.
+
+<Chart
+  title={<>Wavelength of the beam in air and in sapphire</>}
+  description={<>Inside the sapphire the red beam's wavelength drops to <InlineMath math="358\text{ nm}" />, below violet light in air, yet its frequency and colour stay the same.</>}
+  bars="apart"
+  categories={["Red in air", "Red in sapphire", "Violet in air"]}
+  series={[
+    { label: "Wavelength", mark: "bar", values: [633, 358, 400] },
+  ]}
+  valueLabel="Wavelength (nm)"
+/>

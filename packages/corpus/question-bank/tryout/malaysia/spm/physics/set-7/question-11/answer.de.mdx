@@ -1,0 +1,28 @@
+# Druck und Temperatur ändern sich beide
+
+Am Grund drückt auf die Blase die Luft über dem See plus <InlineMath math="20\text{ m}" /> Wasser, zusammen <InlineMath math="3{,}0\times10^{5}\text{ Pa}" />. Beim Aufsteigen sinkt der Druck und das Wasser wird wärmer, also **gehen Druck und Kelvintemperatur beide in <InlineMath math="pV/T" /> ein**. Die Temperaturen müssen in Kelvin stehen, <InlineMath math="280" />, <InlineMath math="290" /> und <InlineMath math="300\text{ K}" />. Celsius-Verhältnisse wie <InlineMath math="17/7" /> blähen die Blase auf <InlineMath math="23\text{ cm}^3" /> auf und schieben den Verdopplungspunkt auf <InlineMath math="26\text{ m}" />. Der andere Fehler ist, die Luft über dem See beim Druck am Grund wegzulassen. Dann scheint die Blase bei <InlineMath math="2{,}0\times10^{5}\text{ Pa}" /> zu starten und erreicht nur <InlineMath math="4{,}3\text{ cm}^3" />.
+
+# Wo sich die Blase verdoppelt hat
+
+Bei <InlineMath math="17^\circ\text{C}" /> hat sie <InlineMath math="4{,}0\text{ cm}^3" />, also liefert das Gasgesetz dort <InlineMath math="1{,}55\times10^{5}\text{ Pa}" />, und das Wasser steuert die zusätzlichen <InlineMath math="0{,}55\times10^{5}\text{ Pa}" /> aus <InlineMath math="5{,}5\text{ m}" /> Tiefe bei. **Die Erwärmung hat einen Teil der Verdopplung erledigt**, also musste der Druck nur auf etwas mehr als die Hälfte fallen. Nur mit dem Druck bräuchte es genau die Hälfte, <InlineMath math="1{,}5\times10^{5}\text{ Pa}" /> in <InlineMath math="5{,}0\text{ m}" />. Lässt man die Luft über dem See wieder weg, wird der Druck proportional zur Tiefe, und der Verdopplungspunkt rutscht auf die halbe Tiefe, <InlineMath math="10\text{ m}" />.
+
+<Chart
+  title={<>Blasenvolumen beim Aufsteigen</>}
+  description={<>Mit der Erwärmung erreicht die Blase <InlineMath math="4{,}0\text{ cm}^3" /> in <InlineMath math="5{,}5\text{ m}" /> Tiefe und <InlineMath math="6{,}4\text{ cm}^3" /> an der Oberfläche. Der Druck allein gäbe nur <InlineMath math="3{,}9\text{ cm}^3" /> und <InlineMath math="6{,}0\text{ cm}^3" />.</>}
+  categories={["20 m tief", "5,5 m tief", "Oberfläche"]}
+  series={[
+    { label: "Mit Erwärmung", mark: "line", values: [2.0, 4.0, 6.43] },
+    { label: "Nur Druck", mark: "line", values: [2.0, 3.86, 6.0] },
+  ]}
+  valueLabel="Blasenvolumen (cm³)"
+/>
+
+# Volumen an der Oberfläche und Radius
+
+An der Oberfläche herrschen <InlineMath math="1{,}0\times10^{5}\text{ Pa}" /> und <InlineMath math="300\text{ K}" />, also hat die Blase <InlineMath math="6{,}4\text{ cm}^3" />, etwa das <InlineMath math="3{,}2" />-Fache ihres Startvolumens. **Ein Radius wächst nur mit der dritten Wurzel des Volumens**, also ist der Faktor <InlineMath math="\sqrt[3]{3{,}2}\approx1{,}5" />. Ohne Erwärmung wären es <InlineMath math="6{,}0\text{ cm}^3" /> und der Faktor <InlineMath math="1{,}4" />.
+
+<BlockMath math="\begin{aligned}
+p_1&=1{,}0\times10^{5}+1000\times10\times20=3{,}0\times10^{5}\text{ Pa},\quad T_1=280\text{ K}\\
+p_2&=\frac{p_1V_1T_2}{T_1V_2}=\frac{3{,}0\times10^{5}\times2{,}0\times290}{280\times4{,}0}=1{,}55\times10^{5}\text{ Pa}\ \Rightarrow\ h=\frac{0{,}55\times10^{5}}{1000\times10}=5{,}5\text{ m}\\
+V_3&=\frac{3{,}0\times10^{5}\times2{,}0\times300}{1{,}0\times10^{5}\times280}=6{,}4\text{ cm}^3,\quad \frac{r_3}{r_1}=\sqrt[3]{3{,}2}=1{,}5
+\end{aligned}" />

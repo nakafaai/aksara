@@ -1,0 +1,43 @@
+# Ein Finger ist nur ein weiterer Widerstand
+
+Deine Haut lässt ein wenig Strom durch, und mehr, wenn sie nass ist. Der Finger ist also einfach **ein weiterer Widerstand im Basiskreis**, in Reihe mit den <InlineMath math="22\text{ k}\Omega" />. Die Basis-Emitter-Strecke behält <InlineMath math="0{,}70\text{ V}" /> für sich, also bleiben <InlineMath math="8{,}3\text{ V}" />, um Strom durch die beiden Widerstände zu treiben.
+
+<BlockMath math="\begin{aligned}
+I_B&=\frac{9{,}0-0{,}70}{(50+22)\times10^{3}}=1{,}15\times10^{-4}\text{ A},\qquad 200\,I_B=23\text{ mA}
+\end{aligned}" />
+
+Vergisst du die <InlineMath math="0{,}70\text{ V}" /> am Übergang, wird jeder Basisstrom ein bisschen zu groß.
+
+# Die LED-Seite setzt eine Obergrenze
+
+Ein Transistor vervielfacht den Basisstrom, aber nur so weit, wie die Kollektorseite tragen kann. Das ist wie ein Wasserhahn, den du ganz aufdrehst: Ist er weit offen, **entscheidet das Rohr, wie viel Wasser fließt**, nicht der Hahn. Voll durchgeschaltet liegt am Transistor keine Spannung, also bekommt der <InlineMath math="350\,\Omega" /> Widerstand <InlineMath math="9{,}0-2{,}0=7{,}0\text{ V}" />.
+
+<BlockMath math="\begin{aligned}
+I_{C,\max}&=\frac{9{,}0-2{,}0}{350}=0{,}020\text{ A}=20\text{ mA}
+\end{aligned}" />
+
+Der nasse Finger liefert also <InlineMath math="20\text{ mA}" />. Wer <InlineMath math="23\text{ mA}" /> schreibt, verlangt mehr Strom, als der Kollektorkreis je tragen kann.
+
+Mit dem trockenen Finger ist der Basisstrom winzig, <InlineMath math="8{,}3\text{ V}\div2{,}022\text{ M}\Omega=4{,}1\ \mu\text{A}" />. Der Kollektor bekommt das <InlineMath math="200" />-Fache, <InlineMath math="0{,}82\text{ mA}" />, und die LED glimmt nur schwach. Ohne die <InlineMath math="0{,}70\text{ V}" /> kämen <InlineMath math="0{,}89\text{ mA}" /> heraus.
+
+<Chart
+  title={<>Kollektorstrom gegen Fingerwiderstand</>}
+  description={<>Bis zu einem Finger von <InlineMath math="61\text{ k}\Omega" /> ist der Transistor voll durchgeschaltet, und der Strom bleibt an der Grenze von <InlineMath math="20\text{ mA}" />. Trockenere Finger lassen ihn absinken.</>}
+  categories={["0 kΩ", "20 kΩ", "40 kΩ", "61 kΩ", "80 kΩ", "100 kΩ", "150 kΩ", "200 kΩ"]}
+  series={[
+    { label: "Kollektorstrom", mark: "line", values: [20.0, 20.0, 20.0, 20.0, 16.27, 13.61, 9.65, 7.48] },
+    { label: "Ohne Grenze", mark: "line", values: [75.45, 39.52, 26.77, 20.0, 16.27, 13.61, 9.65, 7.48] },
+  ]}
+  valueLabel="Kollektorstrom (mA)"
+/>
+
+# Der trockenste Finger, der noch reicht
+
+Volle Helligkeit braucht <InlineMath math="20\text{ mA}" /> am Kollektor, die Basis also <InlineMath math="200" />-mal weniger. Das legt den **gesamten** Widerstand im Basiskreis fest, und der Finger bekommt nur, was nach dem festen Widerstand übrig bleibt.
+
+<BlockMath math="\begin{aligned}
+I_B&=\frac{20\text{ mA}}{200}=100\ \mu\text{A},\qquad R=\frac{8{,}3}{100\times10^{-6}}=83\text{ k}\Omega\\
+R_f&=83-22=61\text{ k}\Omega
+\end{aligned}" />
+
+Wer bei <InlineMath math="83\text{ k}\Omega" /> aufhört, schenkt dem Finger auch den Anteil des Basiswiderstands.

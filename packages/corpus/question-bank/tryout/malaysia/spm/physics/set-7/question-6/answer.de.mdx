@@ -1,0 +1,41 @@
+# Eine Lücke sind in Wahrheit zwei
+
+Stell dir Trittsteine für ein Kind vor, dessen Schritte jedes Mal um gleich viel länger werden. Fehlt ein Stein, wirkt ein Sprung viel zu weit. Die Abstände zwischen den sichtbaren Bildern sind <InlineMath math="19{,}6" />, <InlineMath math="68{,}6" />, <InlineMath math="49{,}0" /> und <InlineMath math="58{,}8\text{ cm}" />. Die letzten beiden unterscheiden sich um <InlineMath math="9{,}8\text{ cm}" />, also wird beim gleichmäßig beschleunigten Fall jeder Abstand um <InlineMath math="9{,}8\text{ cm}" /> länger als der vorige. **Der Abstand von <InlineMath math="68{,}6\text{ cm}" /> umfasst zwei Blitze, <InlineMath math="29{,}4+39{,}2=68{,}6\text{ cm}" />**. Die vollständige Reihe ist <InlineMath math="19{,}6" />, <InlineMath math="29{,}4" />, <InlineMath math="39{,}2" />, <InlineMath math="49{,}0" /> und <InlineMath math="58{,}8\text{ cm}" />, und der Zuwachs <InlineMath math="\Delta s=aT^2" /> liefert <InlineMath math="a=0{,}098/0{,}10^2=9{,}8\text{ m s}^{-2}" />.
+
+# Wo der verdeckte Ball war
+
+Der kurze Teil kommt immer zuerst, denn der Ball wird noch schneller. **Beim verdeckten Blitz war der Ball <InlineMath math="19{,}6+29{,}4=49{,}0\text{ cm}" /> unter Bild <InlineMath math="1" />**. Wer den längeren Teil von <InlineMath math="39{,}2\text{ cm}" /> zuerst setzt, landet bei <InlineMath math="58{,}8" />, also etwa <InlineMath math="59\text{ cm}" />, und wer den langen Abstand halbiert, bei <InlineMath math="54\text{ cm}" />, als wäre der Ball dort gleichmäßig schnell gewesen.
+
+<Chart
+  title={<>Wo der Ball bei jedem Blitz war</>}
+  description={<>Der Abstand des Balls unter Bild <InlineMath math="1" /> bei jedem Blitz. Beim dritten Blitz war er hinter der Klemme, <InlineMath math="49{,}0\text{ cm}" /> tiefer, daher zeigt das Foto dort kein Bild.</>}
+  categories={["Blitz 1", "Blitz 2", "Blitz 3", "Blitz 4", "Blitz 5", "Blitz 6"]}
+  series={[
+    { label: "Lage des Balls", mark: "line", values: [0, 19.6, 49.0, 88.2, 137.2, 196.0] },
+    { label: "Bilder im Foto", mark: "line", values: [0, 19.6, null, 88.2, 137.2, 196.0] },
+  ]}
+  valueLabel="Abstand unter dem ersten Bild (cm)"
+/>
+
+# Zurück zum Loslassen
+
+Denk an ein Auto zwischen zwei Laternen. Seine mittlere Geschwindigkeit zwischen ihnen ist seine Geschwindigkeit auf halber Strecke. **Einen halben Blitz nach Bild <InlineMath math="1" /> war der Ball <InlineMath math="0{,}196/0{,}10=1{,}96\text{ m s}^{-1}" /> schnell, bei Bild <InlineMath math="1" /> selbst also <InlineMath math="1{,}96-9{,}8\times0{,}05=1{,}47\text{ m s}^{-1}" />**. Aus der Ruhe, mit <InlineMath math="9{,}8\text{ m s}^{-1}" /> mehr in jeder Sekunde, brauchte er dafür <InlineMath math="1{,}47/9{,}8=0{,}15\text{ s}" />. Wer die mittleren <InlineMath math="1{,}96\text{ m s}^{-1}" /> an Bild <InlineMath math="1" /> heftet, kommt auf <InlineMath math="0{,}20\text{ s}" />, einen halben Blitz zu spät.
+
+<StrobePhotoMotionLab
+  shot="drop"
+  title={<>Dieselben Blitze, ab dem Loslassen</>}
+  description={<>Jedes Bild ist ein Blitz, im Abstand von <InlineMath math="0{,}10\text{ s}" />, gezählt ab dem Loslassen. Im Foto der Aufgabe blitzte die Lampe zum ersten Mal <InlineMath math="0{,}15\text{ s}" /> nach dem Loslassen, und beim dritten Blitz war der Ball hinter der Klemme.</>}
+  labels={{
+    airTime: <>Zeit in der Luft</>,
+    height: <>Starthöhe</>,
+    interval: <>Zeit zwischen den Blitzen</>,
+    outcome: <>Schnelligkeit am Boden</>,
+    viewLabel: "Stroboskopfoto, Blitz für Blitz aufgebaut",
+  }}
+/>
+
+<BlockMath math="\begin{aligned}
+\Delta s&=39{,}2-29{,}4=9{,}8\text{ cm},\quad a=\frac{0{,}098}{0{,}10^2}=9{,}8\text{ m s}^{-2}\\
+s_3&=19{,}6+29{,}4=49{,}0\text{ cm}\\
+v_1&=\frac{0{,}196}{0{,}10}-9{,}8\times0{,}05=1{,}47\text{ m s}^{-1},\quad t_1=\frac{1{,}47}{9{,}8}=0{,}15\text{ s}
+\end{aligned}" />

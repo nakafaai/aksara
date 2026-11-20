@@ -1,0 +1,37 @@
+# Orbitnya mengukur planet
+
+Wahana itu nyaris menyentuh permukaan, jadi **jari-jari orbitnya adalah jari-jari planet**: satu putaran <InlineMath math="2\pi R" /> dengan <InlineMath math="3{,}0\text{ km s}^{-1}" /> butuh <InlineMath math="5400\text{ s}" />, sehingga <InlineMath math="R=2{,}58\times10^{6}\text{ m}" />.
+
+<Mermaid
+  title={<>Dari satu orbit ke semua yang lain</>}
+  description={<>Periode dan kelajuan orbit yang nyaris menyentuh permukaan menentukan jari-jarinya lebih dulu. Massa jenis, massa, dan orbit yang lebih lebar semuanya menyusul dari situ.</>}
+  chart={`
+    flowchart TD
+      N0["T = 1,5 jam dan v = 3,0 km/s"]
+      N1["R = vT/2π = 2,58 × 10⁶ m"]
+      N2["ρ = 3π/(GT²) = 4,8 × 10³ kg/m³"]
+      N3["M = v²R/G = 3,5 × 10²³ kg"]
+      N4["r = 2R: T naik 2^1,5 kali menjadi 4,2 jam"]
+      N5["v turun √2 kali menjadi 2,1 km/s"]
+      N0 --> N1
+      N1 --> N2
+      N1 --> N3
+      N1 --> N4
+      N4 --> N5
+  `}
+/>
+
+# Massa jenis langsung dari periode
+
+Gravitasi memberi gaya sentripetal, <InlineMath math="GM/R^2=4\pi^2R/T^2" />, dan <InlineMath math="M=\tfrac43\pi R^3\rho" />. Gabungkan keduanya dan **<InlineMath math="R" /> saling menghapus**, jadi periode orbit yang nyaris menyentuh permukaan sudah cukup untuk menentukan massa jenis.
+
+<BlockMath math="\begin{aligned}
+R&=\frac{vT}{2\pi}=\frac{3000\times5400}{2\times3{,}14}=2{,}58\times10^{6}\text{ m},\qquad \rho=\frac{3\pi}{GT^2}=4{,}8\times10^{3}\text{ kg m}^{-3}\\
+M&=\frac{v^2R}{G}=3{,}5\times10^{23}\text{ kg},\qquad T'=1{,}5\times2^{1{,}5}=4{,}2\text{ jam},\qquad v'=\frac{3{,}0}{\sqrt2}=2{,}1\text{ km s}^{-1}
+\end{aligned}" />
+
+Setelah <InlineMath math="R" /> diketahui, massanya <InlineMath math="v^2R/G=3{,}5\times10^{23}\text{ kg}" />. Kalau kamu lewat <InlineMath math="GM=4\pi^2R^3/T^2" /> lalu faktor <InlineMath math="4" />-nya tertinggal, kedua jawaban menyusut jadi seperempat, <InlineMath math="1{,}2\times10^{3}\text{ kg m}^{-3}" /> dan <InlineMath math="8{,}7\times10^{22}\text{ kg}" />.
+
+# Dua kali lebih jauh
+
+Hukum ketiga Kepler, <InlineMath math="T^2\propto r^3" />, membuat periode naik <InlineMath math="2^{1{,}5}=2{,}83" /> kali, menjadi <InlineMath math="4{,}2\text{ jam}" />, dan kelajuan turun <InlineMath math="\sqrt2" /> kali, menjadi <InlineMath math="2{,}1\text{ km s}^{-1}" />. **Menggandakan jari-jari tidak menggandakan periode**. Mempertahankan kelajuan <InlineMath math="3{,}0\text{ km s}^{-1}" /> pada lintasan dua kali lebih panjang memberi <InlineMath math="3{,}0\text{ jam}" />, sedangkan <InlineMath math="12\text{ jam}" /> dengan <InlineMath math="0{,}75\text{ km s}^{-1}" /> berasal dari <InlineMath math="T\propto r^3" /> dan <InlineMath math="v\propto r^{-2}" />, pangkat tanpa akar kuadratnya.

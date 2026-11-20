@@ -1,0 +1,30 @@
+# The pump is a small heater too
+
+A phone gets warm while it charges, because the energy it uses turns into heat. The pump does the same. **Every second the water gets <InlineMath math="10\text{ J}" /> from the pump on top of what the heater gives**. At <InlineMath math="22\text{ °C}" /> the heater gives <InlineMath math="30\%\times100=30\text{ W}" /> on average, so the tank loses <InlineMath math="30+10=40\text{ W}" /> through a <InlineMath math="4\text{ °C}" /> difference, which is <InlineMath math="k=10\text{ W}" /> for every degree. Leaving the pump out makes <InlineMath math="k=7.5\text{ W}" /> per degree, and every later answer slides to <InlineMath math="75\%" />, <InlineMath math="1.3\text{ °C h}^{-1}" /> and <InlineMath math="25\text{ °C}" />.
+
+# The cold night
+
+A bigger gap between inside and outside makes heat leak faster, like a balloon with a bigger hole. **At <InlineMath math="16\text{ °C}" /> the gap is <InlineMath math="10\text{ °C}" />, so the loss is <InlineMath math="100\text{ W}" />, and the heater must supply <InlineMath math="100-10=90\text{ W}" />, which means being on <InlineMath math="90\%" /> of the time**. If the heater breaks, the pump still adds <InlineMath math="10\text{ W}" />, so the water loses only <InlineMath math="90\text{ W}" /> overall. That is <InlineMath math="90/(50\times4200)" /> degrees each second, or <InlineMath math="1.5\text{ °C}" /> each hour. Forgetting the pump here makes the fall <InlineMath math="1.7\text{ °C h}^{-1}" />.
+
+<Chart
+  title={<>Heat lost against the most the tank can get</>}
+  description={<>With the water at <InlineMath math="26\text{ °C}" /> the tank loses <InlineMath math="10\text{ W}" /> for every degree above the room. In a room at <InlineMath math="12\text{ °C}" /> it would lose <InlineMath math="140\text{ W}" />, more than the <InlineMath math="110\text{ W}" /> the heater and pump can give together.</>}
+  bars="apart"
+  categories={["Room 22 °C", "Room 16 °C", "Room 12 °C"]}
+  series={[
+    { label: "Heat lost with the water at its set temperature", mark: "bar", values: [40, 100, 140] },
+    { label: "Heater and pump together", mark: "line", values: [110, 110, 110] },
+  ]}
+  valueLabel="Power (W)"
+/>
+
+# The coldest night
+
+When you run as fast as you can, your speed levels off at your top speed. The water cools in the same way until the heat it leaks matches the most it can be given. **With the heater on all the time the water gets <InlineMath math="100+10=110\text{ W}" />, and the leak matches that <InlineMath math="110/10=11\text{ °C}" /> above the room, at <InlineMath math="23\text{ °C}" />**. Counting the heater alone gives <InlineMath math="22\text{ °C}" />.
+
+<BlockMath math="\begin{aligned}
+k&=\frac{0.30\times100+10}{26-22}=10\text{ W °C}^{-1}\\
+P&=10\times(26-16)-10=90\text{ W}\ \Rightarrow\ 90\%\\
+\frac{\Delta\theta}{\Delta t}&=\frac{100-10}{50\times4200}\times3600=1.5\text{ °C h}^{-1}\\
+\theta_{\max}&=12+\frac{100+10}{10}=23\text{ °C}
+\end{aligned}" />

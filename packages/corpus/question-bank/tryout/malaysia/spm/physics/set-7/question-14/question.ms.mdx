@@ -1,0 +1,51 @@
+Dua pembesar suara yang terpisah sejauh <InlineMath math="2.0\text{ m}" /> dipacu sefasa oleh isyarat yang sama di sebuah padang terbuka. Seorang murid yang berjalan di sepanjang garis lurus yang selari dengan pembesar suara dan <InlineMath math="8.0\text{ m}" /> di hadapannya mendapati titik senyap terpisah <InlineMath math="1.5\text{ m}" />, dengan titik kuat pada garis tengah. Laju bunyi ialah <InlineMath math="330\text{ m s}^{-1}" />. Gunakan <InlineMath math="\lambda=\dfrac{ax}{D}" />, dengan <InlineMath math="x" /> ialah jarak antara titik senyap yang bersebelahan.
+
+<MathVisual
+  title={<>Dua pembesar suara dan dua garis berjalan</>}
+  description={<>Pembesar suara <InlineMath math="S_1" /> dan <InlineMath math="S_2" /> terletak <InlineMath math="2.0\text{ m}" /> antara satu sama lain dan dipacu sefasa. Pada garis <InlineMath math="8.0\text{ m}" /> di hadapannya, titik senyap terletak <InlineMath math="1.5\text{ m}" /> antara satu sama lain, dengan titik kuat pada garis tengah. Garis selari kedua terletak <InlineMath math="12\text{ m}" /> di hadapannya.</>}
+  labels={{
+    s1: <><InlineMath math="S_1" /></>,
+    s2: <><InlineMath math="S_2" /></>,
+    apart: <><InlineMath math="2.0\text{ m}" /></>,
+    quiet: <>titik senyap</>,
+    loud: <>titik kuat</>,
+    gap: <><InlineMath math="1.5\text{ m}" /></>,
+    near: <><InlineMath math="8.0\text{ m}" /></>,
+    far: <><InlineMath math="12\text{ m}" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -2.5, max: 13.5 }, y: { min: -8.3, max: 6 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "speaker-1", kind: "point", appearance: "secondary", at: { x: 0, y: 1 } },
+      { id: "speaker-2", kind: "point", appearance: "secondary", at: { x: 0, y: -1 } },
+      { id: "apart", kind: "segment", appearance: "construction", from: { x: -0.8, y: 1 }, to: { x: -0.8, y: -1 } },
+      { id: "centre", kind: "segment", appearance: "construction", from: { x: 0, y: 0 }, to: { x: 12, y: 0 } },
+      { id: "line-8", kind: "segment", appearance: "primary", from: { x: 8, y: -5 }, to: { x: 8, y: 5 } },
+      { id: "line-12", kind: "segment", appearance: "secondary", from: { x: 12, y: -5.5 }, to: { x: 12, y: 5.5 } },
+      { id: "loud", kind: "point", appearance: "highlight", at: { x: 8, y: 0 } },
+      { id: "gap", kind: "segment", appearance: "construction", from: { x: 8.7, y: 0.75 }, to: { x: 8.7, y: 2.25 } },
+      { id: "near", kind: "segment", appearance: "construction", from: { x: 0, y: -6.3 }, to: { x: 8, y: -6.3 } },
+      { id: "far", kind: "segment", appearance: "construction", from: { x: 0, y: -7.3 }, to: { x: 12, y: -7.3 } },
+      { id: "quiet-1", kind: "point", appearance: "warning", at: { x: 8, y: 3.75 } },
+      { id: "quiet-2", kind: "point", appearance: "warning", at: { x: 8, y: 2.25 } },
+      { id: "quiet-3", kind: "point", appearance: "warning", at: { x: 8, y: 0.75 } },
+      { id: "quiet-4", kind: "point", appearance: "warning", at: { x: 8, y: -0.75 } },
+      { id: "quiet-5", kind: "point", appearance: "warning", at: { x: 8, y: -2.25 } },
+      { id: "quiet-6", kind: "point", appearance: "warning", at: { x: 8, y: -3.75 } },
+    ],
+    labels: [
+      { key: "s1", objectId: "speaker-1", at: { x: 0, y: 1 }, placement: "above" },
+      { key: "s2", objectId: "speaker-2", at: { x: 0, y: -1 }, placement: "below" },
+      { key: "apart", objectId: "apart", at: { x: -0.8, y: 0 }, placement: "left" },
+      { key: "quiet", objectId: "quiet-1", at: { x: 8, y: 3.75 }, placement: "left" },
+      { key: "loud", objectId: "loud", at: { x: 8, y: 0 }, placement: "above-left" },
+      { key: "gap", objectId: "gap", at: { x: 8.7, y: 1.5 }, placement: "right" },
+      { key: "near", objectId: "near", at: { x: 4, y: -6.3 }, placement: "above" },
+      { key: "far", objectId: "far", at: { x: 6, y: -7.3 }, placement: "below" },
+    ],
+  }}
+/>
+
+Berapakah frekuensi isyarat itu, berapakah jarak antara titik senyap pada garis selari yang <InlineMath math="12\text{ m}" /> dari pembesar suara, berapakah jarak titik kuat yang paling dekat dari garis tengah pada garis <InlineMath math="12\text{ m}" /> selepas wayar salah satu pembesar suara ditukar supaya kedua-duanya dipacu berlawanan fasa, dan berapa banyakkah titik senyap yang kemudian terletak pada garis <InlineMath math="12\text{ m}" /> dalam lingkungan <InlineMath math="5.0\text{ m}" /> dari garis tengah, termasuk titik senyap pada garis tengah itu sendiri?

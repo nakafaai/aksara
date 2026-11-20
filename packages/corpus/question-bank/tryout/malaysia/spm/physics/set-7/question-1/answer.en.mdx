@@ -1,0 +1,31 @@
+# Find the reading that broke the pattern
+
+Up to <InlineMath math="4.0\text{ N}" /> every extra newton moves the pointer about <InlineMath math="2.0\text{ cm}" />. The last newton moves it <InlineMath math="3.5\text{ cm}" />, so **the <InlineMath math="5.0\text{ N}" /> reading was taken past the elastic limit** and has to go. Keep it and you get <InlineMath math="5.0\text{ N}" /> over <InlineMath math="11.5\text{ cm}" />, about <InlineMath math="43\text{ N m}^{-1}" />, a stiffness the spring never had while it obeyed Hooke's law.
+
+<Chart
+  title={<>Pointer readings against the Hooke line</>}
+  description={<>Up to <InlineMath math="4.0\text{ N}" /> the readings sit on a line rising <InlineMath math="2.0\text{ cm}" /> per newton. At <InlineMath math="5.0\text{ N}" /> the reading jumps <InlineMath math="1.5\text{ cm}" /> above that line.</>}
+  categories={["0.0 N", "1.0 N", "2.0 N", "3.0 N", "4.0 N", "5.0 N"]}
+  series={[
+    { label: "Reading", mark: "line", values: [12.0, 14.0, 16.1, 17.9, 20.0, 23.5] },
+    { label: "Hooke's law line", mark: "line", values: [12.0, 14.0, 16.0, 18.0, 20.0, 22.0] },
+  ]}
+  valueLabel="Pointer reading (cm)"
+/>
+
+The clean readings give <InlineMath math="4.0\text{ N}" /> for <InlineMath math="8.0\text{ cm}" />, so <InlineMath math="k=50\text{ N m}^{-1}" />.
+
+# The energy is a triangle, not a rectangle
+
+The force grew from zero to <InlineMath math="4.0\text{ N}" /> while the spring stretched, so the work done is the area of a triangle under the force-extension line, **half of force times extension**: <InlineMath math="0.16\text{ J}" />. Multiplying <InlineMath math="4.0\text{ N}" /> by <InlineMath math="0.080\text{ m}" /> without the half doubles it to <InlineMath math="0.32\text{ J}" />.
+
+# Half a spring is twice as stiff
+
+Each half of the spring carries the full load but has only half the coils to share the stretch, so **the half spring has <InlineMath math="k=100\text{ N m}^{-1}" />** and stretches just <InlineMath math="0.040\text{ m}" /> under <InlineMath math="4.0\text{ N}" />. It stores <InlineMath math="0.080\text{ J}" />, and that is all the ball can get.
+
+<BlockMath math="\begin{aligned}
+k&=\frac{4.0\text{ N}}{0.080\text{ m}}=50\text{ N m}^{-1},\qquad E=\tfrac12Fx=\tfrac12\times4.0\times0.080=0.16\text{ J}\\
+k'&=2k=100\text{ N m}^{-1},\quad x'=0.040\text{ m},\quad E'=0.080\text{ J}=\tfrac12\times0.020\times v^2\ \Rightarrow\ v=2.8\text{ m s}^{-1}
+\end{aligned}" />
+
+Handing the ball the whole spring's <InlineMath math="0.16\text{ J}" /> would launch it at <InlineMath math="4.0\text{ m s}^{-1}" />, but the shorter spring stores only half as much at the same load.

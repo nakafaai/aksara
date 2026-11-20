@@ -1,0 +1,38 @@
+Sebuah kereta tersangkut dalam lumpur. Pemandunya mengikat satu hujung tali yang kuat pada kereta dan hujung yang satu lagi pada sebatang pokok sejauh <InlineMath math="10.0\text{ m}" />, dengan tali itu hampir lurus. Pemandu itu kemudian menolak titik tengah tali ke sisi, berserenjang dengan garis dari kereta ke pokok, dengan daya <InlineMath math="400\text{ N}" />. Titik tengah itu beralih <InlineMath math="0.50\text{ m}" /> ke sisi dan setiap separuh tali kekal lurus, tetapi kereta tidak bergerak. Kereta itu hanya mula bergerak apabila tarikan padanya mencapai <InlineMath math="2500\text{ N}" />.
+
+<MathVisual
+  title={<>Tali dari kereta ke pokok, dilihat dari atas</>}
+  description={<>Dilihat dari atas. Tali itu terbentang dari kereta ke sebatang pokok yang jaraknya <InlineMath math="10.0\text{ m}" />. Tolakan ke sisi sebanyak <InlineMath math="400\text{ N}" /> pada titik tengah tali, berserenjang dengan garis dari kereta ke pokok, mengalihkan titik tengah itu <InlineMath math="0.50\text{ m}" /> ke sisi, dan setiap separuh tali kekal lurus.</>}
+  labels={{
+    car: <>kereta</>,
+    tree: <>pokok</>,
+    rope: <>tali</>,
+    push: <><InlineMath math="400\text{ N}" /></>,
+    side: <><InlineMath math="0.50\text{ m}" /></>,
+    span: <><InlineMath math="10.0\text{ m}" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -2.2, max: 11.2 }, y: { min: -2.1, max: 2.9 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "car", kind: "polygon", appearance: "secondary", vertices: [{ x: -1.8, y: -0.7 }, { x: 0, y: -0.7 }, { x: 0, y: 0.7 }, { x: -1.8, y: 0.7 }] },
+      { id: "tree", kind: "circle", appearance: "secondary", center: { x: 10.4, y: 0 }, radius: 0.4 },
+      { id: "line", kind: "segment", appearance: "construction", from: { x: 0, y: 0 }, to: { x: 10, y: 0 } },
+      { id: "rope", kind: "polyline", appearance: "primary", vertices: [{ x: 0, y: 0 }, { x: 5, y: 0.5 }, { x: 10, y: 0 }] },
+      { id: "push", kind: "vector", appearance: "highlight", from: { x: 5, y: 0.5 }, to: { x: 5, y: 2.3 } },
+      { id: "side", kind: "segment", appearance: "construction", from: { x: 5, y: 0 }, to: { x: 5, y: 0.5 } },
+      { id: "span", kind: "segment", appearance: "construction", from: { x: 0, y: -1.3 }, to: { x: 10, y: -1.3 } },
+    ],
+    labels: [
+      { key: "car", objectId: "car", at: { x: -0.9, y: -0.7 }, placement: "below" },
+      { key: "tree", objectId: "tree", at: { x: 10.4, y: -0.4 }, placement: "below" },
+      { key: "rope", objectId: "rope", at: { x: 2.5, y: 0.25 }, placement: "above-left" },
+      { key: "push", objectId: "push", at: { x: 5, y: 2.3 }, placement: "above" },
+      { key: "side", objectId: "side", at: { x: 5, y: 0 }, placement: "below" },
+      { key: "span", objectId: "span", at: { x: 5, y: -1.3 }, placement: "below" },
+    ],
+  }}
+/>
+
+Berapakah tegangan dalam tali, berapakah tolakan ke sisi terkecil yang dapat melepaskan kereta dengan titik tengah <InlineMath math="0.50\text{ m}" /> ke sisi, dan jika tali diikat semula dengan kelonggaran yang berbeza, berapakah jarak ke sisi terbesar bagi titik tengah supaya tolakan <InlineMath math="400\text{ N}" /> masih dapat melepaskan kereta?

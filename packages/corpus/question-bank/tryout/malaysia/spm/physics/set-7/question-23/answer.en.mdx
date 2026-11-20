@@ -1,0 +1,29 @@
+# The tie holds the sign up
+
+Picture a broom handle sticking straight out from a wall, with a bag hanging on its end and a string running up to the wall. The string pulls up and in, and the handle pushes out. Here the wall, the rod and the tie make a <InlineMath math="0.90" />, <InlineMath math="1.2" />, <InlineMath math="1.5\text{ m}" /> triangle, so the tie rises at an angle <InlineMath math="\theta" /> with <InlineMath math="\sin\theta=0.60" /> and <InlineMath math="\cos\theta=0.80" />. **Only the tie can hold the sign up, so its upward part carries all <InlineMath math="30\text{ N}" />**: <InlineMath math="0.60T=30" /> and <InlineMath math="T=50\text{ N}" />.
+
+# The rod pushes back
+
+Lean on a wall with straight arms and your arms push back along their length. The rod does the same job. The tie also tugs the rod's end in towards the wall, and **the rod pushes outwards just as hard, <InlineMath math="0.80\times50=40\text{ N}" />**. That is under the <InlineMath math="45\text{ N}" /> the rod can take, so this sign is safe. Swapping sine and cosine gives <InlineMath math="38\text{ N}" /> and <InlineMath math="23\text{ N}" />, as if the tie climbed at the steeper angle.
+
+# Which part gives up first
+
+A chain snaps at its weakest link, and a bracket is no different. Hang twice the weight and every force in the bracket doubles. **Each newton of sign puts <InlineMath math="1.33\text{ N}" /> of push on the rod and <InlineMath math="1.67\text{ N}" /> of pull on the tie**. The rod hits its <InlineMath math="45\text{ N}" /> with a sign of <InlineMath math="45/1.33=34\text{ N}" />, while the tie would last until <InlineMath math="100/1.67=60\text{ N}" />. The weaker part sets the limit, so the bracket holds at most <InlineMath math="34\text{ N}" />. A <InlineMath math="60\text{ N}" /> sign would buckle the rod long before the tie snapped, and <InlineMath math="45\text{ N}" /> is the rod's own limit, not a sign.
+
+<Chart
+  title={<>How the bracket's forces grow with the sign</>}
+  description={<>The rod reaches its <InlineMath math="45\text{ N}" /> limit under a <InlineMath math="34\text{ N}" /> sign. The tie reaches its <InlineMath math="100\text{ N}" /> only under a <InlineMath math="60\text{ N}" /> sign.</>}
+  bars="apart"
+  categories={["Sign of 30 N", "Sign of 34 N", "Sign of 60 N"]}
+  series={[
+    { label: "Tie tension", mark: "bar", values: [50.0, 56.2, 100.0] },
+    { label: "Rod push", mark: "bar", values: [40.0, 45.0, 80.0] },
+  ]}
+  valueLabel="Force (N)"
+/>
+
+<BlockMath math="\begin{aligned}
+\sin\theta&=\frac{0.90}{1.5}=0.60,\qquad\cos\theta=\frac{1.2}{1.5}=0.80\\
+T&=\frac{30}{0.60}=50\text{ N},\qquad P=0.80\times50=40\text{ N}\\
+W_{\max}&=30\times\frac{45}{40}=34\text{ N}
+\end{aligned}" />

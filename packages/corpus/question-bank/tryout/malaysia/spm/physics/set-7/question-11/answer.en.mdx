@@ -1,0 +1,28 @@
+# Pressure and temperature both change
+
+At the bottom the bubble feels the air above the lake plus <InlineMath math="20\text{ m}" /> of water, <InlineMath math="3.0\times10^{5}\text{ Pa}" />. On the way up the pressure falls and the water warms, so **both the pressure and the kelvin temperature go into <InlineMath math="pV/T" />**. The temperatures must be in kelvin, <InlineMath math="280" />, <InlineMath math="290" /> and <InlineMath math="300\text{ K}" />. Celsius ratios like <InlineMath math="17/7" /> make the bubble balloon to <InlineMath math="23\text{ cm}^3" /> and push the doubling point down to <InlineMath math="26\text{ m}" />. The other way to go wrong is to leave the air above the lake out of the bottom pressure. The bubble then seems to start at <InlineMath math="2.0\times10^{5}\text{ Pa}" /> and only reaches <InlineMath math="4.3\text{ cm}^3" />.
+
+# Where the bubble has doubled
+
+At <InlineMath math="17^\circ\text{C}" /> the volume is <InlineMath math="4.0\text{ cm}^3" />, so the gas law gives a pressure of <InlineMath math="1.55\times10^{5}\text{ Pa}" /> there, and the water supplies the extra <InlineMath math="0.55\times10^{5}\text{ Pa}" /> from a depth of <InlineMath math="5.5\text{ m}" />. **The warming did part of the doubling**, so the pressure only had to fall to a little more than half. Pressure alone would need exactly half, <InlineMath math="1.5\times10^{5}\text{ Pa}" /> at <InlineMath math="5.0\text{ m}" />. Leave the air above the lake out again and the pressure becomes proportional to depth, so the doubling point drops in at half the depth, <InlineMath math="10\text{ m}" />.
+
+<Chart
+  title={<>Bubble volume on the way up</>}
+  description={<>With the warming included the bubble reaches <InlineMath math="4.0\text{ cm}^3" /> at <InlineMath math="5.5\text{ m}" /> and <InlineMath math="6.4\text{ cm}^3" /> at the surface. Pressure alone would give only <InlineMath math="3.9\text{ cm}^3" /> and <InlineMath math="6.0\text{ cm}^3" />.</>}
+  categories={["20 m deep", "5.5 m deep", "Surface"]}
+  series={[
+    { label: "With warming", mark: "line", values: [2.0, 4.0, 6.43] },
+    { label: "Pressure alone", mark: "line", values: [2.0, 3.86, 6.0] },
+  ]}
+  valueLabel="Bubble volume (cm³)"
+/>
+
+# The surface volume and the radius
+
+At the surface the pressure is <InlineMath math="1.0\times10^{5}\text{ Pa}" /> and the water <InlineMath math="300\text{ K}" />, so the bubble holds <InlineMath math="6.4\text{ cm}^3" />, about <InlineMath math="3.2" /> times its starting volume. **A radius grows only as the cube root of the volume**, so the radius factor is <InlineMath math="\sqrt[3]{3.2}\approx1.5" />. Without the warming the volume would be <InlineMath math="6.0\text{ cm}^3" /> and the factor <InlineMath math="1.4" />.
+
+<BlockMath math="\begin{aligned}
+p_1&=1.0\times10^{5}+1000\times10\times20=3.0\times10^{5}\text{ Pa},\quad T_1=280\text{ K}\\
+p_2&=\frac{p_1V_1T_2}{T_1V_2}=\frac{3.0\times10^{5}\times2.0\times290}{280\times4.0}=1.55\times10^{5}\text{ Pa}\ \Rightarrow\ h=\frac{0.55\times10^{5}}{1000\times10}=5.5\text{ m}\\
+V_3&=\frac{3.0\times10^{5}\times2.0\times300}{1.0\times10^{5}\times280}=6.4\text{ cm}^3,\quad \frac{r_3}{r_1}=\sqrt[3]{3.2}=1.5
+\end{aligned}" />

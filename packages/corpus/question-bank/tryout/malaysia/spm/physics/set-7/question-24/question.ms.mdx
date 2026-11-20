@@ -1,0 +1,33 @@
+Sebuah tiub-U yang seragam diameternya berdiri tegak dan mengandungi air. Kedua-dua permukaan air berada <InlineMath math="8.0\text{ cm}" /> di bawah hujung atas lengan tiub. Minyak yang tidak bercampur dengan air dituang perlahan-lahan ke dalam lengan kiri. Apabila turus minyak sepanjang <InlineMath math="12.0\text{ cm}" />, permukaan minyak dalam lengan kiri berada <InlineMath math="2.0\text{ cm}" /> lebih tinggi daripada permukaan air dalam lengan kanan. Ketumpatan air ialah <InlineMath math="1000\text{ kg m}^{-3}" />.
+
+<MathVisual
+  title={<>Tiub-U sebelum minyak dituang</>}
+  description={<>Kedua-dua lengan tiub-U mengandungi air, dan setiap permukaan air berada <InlineMath math="8.0\text{ cm}" /> di bawah bahagian atas lengannya. Minyak kemudian dituang perlahan-lahan ke dalam lengan kiri.</>}
+  labels={{
+    left: <><InlineMath math="8.0\text{ cm}" /></>,
+    right: <><InlineMath math="8.0\text{ cm}" /></>,
+    oil: <>minyak dituang</>,
+    water: <>air</>,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -5, max: 21 }, y: { min: -2, max: 39 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "water", kind: "polygon", appearance: "secondary", vertices: [{ x: 0, y: 22 }, { x: 0, y: 0 }, { x: 16, y: 0 }, { x: 16, y: 22 }, { x: 13, y: 22 }, { x: 13, y: 3 }, { x: 3, y: 3 }, { x: 3, y: 22 }] },
+      { id: "outer", kind: "polyline", appearance: "reference", vertices: [{ x: 0, y: 30 }, { x: 0, y: 0 }, { x: 16, y: 0 }, { x: 16, y: 30 }] },
+      { id: "inner", kind: "polyline", appearance: "reference", vertices: [{ x: 3, y: 30 }, { x: 3, y: 3 }, { x: 13, y: 3 }, { x: 13, y: 30 }] },
+      { id: "left", kind: "segment", appearance: "construction", from: { x: -1.5, y: 22 }, to: { x: -1.5, y: 30 } },
+      { id: "right", kind: "segment", appearance: "construction", from: { x: 17.5, y: 22 }, to: { x: 17.5, y: 30 } },
+      { id: "oil", kind: "vector", appearance: "highlight", from: { x: 1.5, y: 36 }, to: { x: 1.5, y: 31 } },
+    ],
+    labels: [
+      { key: "left", objectId: "left", at: { x: -1.5, y: 26 }, placement: "left" },
+      { key: "right", objectId: "right", at: { x: 17.5, y: 26 }, placement: "right" },
+      { key: "oil", objectId: "oil", at: { x: 1.5, y: 36 }, placement: "above" },
+      { key: "water", objectId: "water", at: { x: 8, y: 1.5 }, placement: "center" },
+    ],
+  }}
+/>
+
+Berapakah ketumpatan minyak itu, berapa jauhkah permukaan air dalam lengan kanan telah naik dari aras asalnya, dan berapakah panjang maksimum turus minyak yang boleh ditampung oleh tiub itu sebelum ada cecair yang melimpah?

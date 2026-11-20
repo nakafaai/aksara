@@ -1,0 +1,35 @@
+# The gradient of the log graph is the power
+
+Taking lg of <InlineMath math="t=kd^{\,n}" /> gives <InlineMath math="\lg t=\lg k+n\lg d" />, a straight line whose **gradient is the power <InlineMath math="n" />**. The end points give <InlineMath math="(1.000-2.505)\div(0.903-0.301)=-2.50" />. Dividing the other way round, <InlineMath math="\Delta\lg d\div\Delta\lg t" />, gives <InlineMath math="-0.40" />, and that slip then sends the <InlineMath math="5.0\text{ mm}" /> time out to about <InlineMath math="220\text{ s}" />.
+
+# Scaling to the wider hole
+
+The first point is the <InlineMath math="2.0\text{ mm}" /> hole, <InlineMath math="10^{2.505}=320\text{ s}" />. A <InlineMath math="5.0\text{ mm}" /> hole is <InlineMath math="2.5" /> times as wide, so its time is <InlineMath math="320" /> divided by <InlineMath math="2.5^{2.5}=9.88" />, **about <InlineMath math="32\text{ s}" />**.
+
+# Two small holes against one bigger hole
+
+With two <InlineMath math="4.0\text{ mm}" /> holes, **the flow rates add, the times do not**. Each hole alone needs <InlineMath math="56.6\text{ s}" />, so together they pour twice as fast and empty the funnel in <InlineMath math="28.3\text{ s}" />. One hole does that only if its time is halved, so its diameter must grow by <InlineMath math="2^{1/2.5}=1.32" />, to <InlineMath math="5.3\text{ mm}" />.
+
+<Chart
+  title={<>Time to empty the funnel for each set of holes</>}
+  description={<>Two <InlineMath math="4.0\text{ mm}" /> holes together empty the funnel in <InlineMath math="28.3\text{ s}" />, faster than one <InlineMath math="5.0\text{ mm}" /> hole and exactly as fast as one <InlineMath math="5.3\text{ mm}" /> hole.</>}
+  bars="apart"
+  categories={["One 4.0 mm hole", "One 5.0 mm hole", "Two 4.0 mm holes", "One 5.3 mm hole"]}
+  series={[
+    { label: "Time", mark: "bar", values: [56.6, 32.4, 28.3, 28.3] },
+  ]}
+  valueLabel="Time (s)"
+/>
+
+Doubling the area instead, a factor <InlineMath math="\sqrt2" /> to <InlineMath math="5.7\text{ mm}" />, assumes the flow grows with the area. The graph says the time falls as <InlineMath math="d^{2.5}" />, faster than <InlineMath math="d^{2}" />, so a smaller step in diameter is enough.
+
+# How fast the sand pours through it
+
+That hole lets <InlineMath math="0.40\text{ kg}" /> through in <InlineMath math="28.3\text{ s}" />, **twice the rate of one small hole**.
+
+<BlockMath math="\begin{aligned}
+n&=\frac{1.000-2.505}{0.903-0.301}=-2.50,\qquad t_{5.0}=320\times2.5^{-2.5}=32\text{ s}\\
+t_{2\times4.0}&=\tfrac12\times56.6=28.3\text{ s},\quad d=4.0\times2^{1/2.5}=5.3\text{ mm},\quad \frac{0.40\text{ kg}}{28.3\text{ s}}=14\text{ g s}^{-1}
+\end{aligned}" />
+
+Quoting <InlineMath math="7.1\text{ g s}^{-1}" /> gives the rate of just one of the two small holes.

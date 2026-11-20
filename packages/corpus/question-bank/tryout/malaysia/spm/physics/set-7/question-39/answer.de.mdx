@@ -1,0 +1,28 @@
+# Ein winziger Massenverlust
+
+Wenn Holz brennt, wird ein wenig davon zu Wärme und Licht. Bei einem Zerfall wird ein wenig Masse selbst zu Energie. **Das Heliumatom ist <InlineMath math="3{,}016049-3{,}016029=0{,}000020\text{ u}" /> leichter, und <InlineMath math="E=mc^2" /> macht daraus <InlineMath math="0{,}000020\times1{,}66\times10^{-27}\times(3{,}0\times10^{8})^2=3{,}0\times10^{-15}\text{ J}" /> pro Zerfall**. Die Atommassen zählen die Elektronen auf beiden Seiten schon mit, also wird nichts weiter abgezogen. Wer vergisst, <InlineMath math="c" /> zu quadrieren, kommt auf <InlineMath math="1{,}0\times10^{-23}\text{ J}" />, viel zu wenig.
+
+# Eine halbe Halbwertszeit ist kein Viertel weg
+
+Falte ein Blatt Papier in der Mitte und dann noch einmal. Es schrumpft jedes Mal um denselben Anteil, nicht um dieselbe Menge. Zerfall funktioniert genauso. **Nach <InlineMath math="6{,}15" /> Jahren, einer halben Halbwertszeit, beträgt die Aktivität <InlineMath math="\left(\tfrac12\right)^{0{,}5}=0{,}71" /> des Anfangswerts, <InlineMath math="2{,}6\times10^{11}\text{ Bq}" />**, nicht drei Viertel davon. Jeder Zerfall schickt <InlineMath math="0{,}30\times3{,}0\times10^{-15}=9{,}0\times10^{-16}\text{ J}" /> in den Leuchtstoff, also beträgt die Leistung jetzt <InlineMath math="2{,}6\times10^{11}\times9{,}0\times10^{-16}=2{,}3\times10^{-4}\text{ W}" />. Wer einen geradlinigen Abfall auf drei Viertel annimmt, kommt auf <InlineMath math="2{,}5\times10^{-4}\text{ W}" />.
+
+<Chart
+  title={<>Leistung am Leuchtstoff mit dem Alter des Schilds</>}
+  description={<>Die Leistung halbiert sich alle <InlineMath math="12{,}3" /> Jahre. Jetzt, <InlineMath math="6{,}15" /> Jahre nach dem Füllen, beträgt sie <InlineMath math="0{,}71" /> des Anfangswerts, und ein Achtel, die Grenze für den Austausch, erreicht sie <InlineMath math="36{,}9" /> Jahre nach dem Füllen.</>}
+  categories={["0 Jahre", "6,15 Jahre", "12,3 Jahre", "24,6 Jahre", "36,9 Jahre"]}
+  series={[
+    { label: "Leistung am Leuchtstoff", mark: "line", values: [0.332, 0.235, 0.166, 0.083, 0.041] },
+    { label: "Grenze für den Austausch", mark: "line", values: [0.041, 0.041, 0.041, 0.041, 0.041] },
+  ]}
+  valueLabel="Leistung (mW)"
+/>
+
+# Ab dem Fülltag zählen
+
+Eine Garantie von <InlineMath math="12" /> Monaten zählt ab dem Kauftag des Handys, nicht ab heute. **Ein Achtel sind drei Halbierungen, also <InlineMath math="3\times12{,}3=36{,}9" /> Jahre nach dem Füllen, und das Schild ist schon <InlineMath math="6{,}15" /> Jahre alt, es bleiben also <InlineMath math="36{,}9-6{,}15=30{,}75" />, rund <InlineMath math="31" /> Jahre**. Wer <InlineMath math="36{,}9" /> Jahre ab heute zählt, behält das Schild etwa <InlineMath math="6" /> Jahre zu lange.
+
+<BlockMath math="\begin{aligned}
+E&=0{,}000020\times1{,}66\times10^{-27}\times(3{,}0\times10^{8})^2=3{,}0\times10^{-15}\text{ J}\\
+A&=3{,}7\times10^{11}\times\left(\tfrac12\right)^{6{,}15/12{,}3}=2{,}6\times10^{11}\text{ Bq},\quad P=2{,}6\times10^{11}\times0{,}30\times3{,}0\times10^{-15}=2{,}3\times10^{-4}\text{ W}\\
+t&=3\times12{,}3-6{,}15=30{,}75\approx31
+\end{aligned}" />

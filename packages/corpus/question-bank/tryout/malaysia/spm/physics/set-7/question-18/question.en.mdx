@@ -1,0 +1,36 @@
+A thick glass block with a flat horizontal top lies at the bottom of a tank of water. A ray of light in the air strikes the water surface at an angle of incidence of <InlineMath math="50°" />, passes through the water and enters the glass. The refractive index of water is <InlineMath math="1.33" /> and that of glass is <InlineMath math="1.50" />.
+
+<MathVisual
+  title={<>A ray striking water above a glass block</>}
+  description={<>A ray in air strikes the water surface at an angle of incidence of <InlineMath math="50^\circ" />. The water is <InlineMath math="10\text{ cm}" /> deep above a glass block <InlineMath math="6.0\text{ cm}" /> thick that lies on the bottom of the tank. The refractive index is <InlineMath math="1.33" /> for water and <InlineMath math="1.50" /> for glass.</>}
+  labels={{
+    angle: <><InlineMath math="50^\circ" /></>,
+    water: <>water, <InlineMath math="n=1.33" /></>,
+    glass: <>glass, <InlineMath math="n=1.50" /></>,
+    depth: <><InlineMath math="10\text{ cm}" /></>,
+    thick: <><InlineMath math="6.0\text{ cm}" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1, max: 31 }, y: { min: -1, max: 23 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "glass", kind: "polygon", appearance: "secondary", vertices: [{ x: 0, y: 0 }, { x: 24, y: 0 }, { x: 24, y: 6 }, { x: 0, y: 6 }] },
+      { id: "water", kind: "polygon", appearance: "highlight", vertices: [{ x: 0, y: 6 }, { x: 24, y: 6 }, { x: 24, y: 16 }, { x: 0, y: 16 }] },
+      { id: "normal", kind: "segment", appearance: "construction", from: { x: 8, y: 16 }, to: { x: 8, y: 22 } },
+      { id: "ray", kind: "vector", appearance: "primary", from: { x: 8 - 7 * Math.sin(50 * Math.PI / 180), y: 16 + 7 * Math.cos(50 * Math.PI / 180) }, to: { x: 8, y: 16 } },
+      { id: "angle", kind: "arc", appearance: "construction", center: { x: 8, y: 16 }, radius: 4, startDegrees: 90, sweepDegrees: 50 },
+      { id: "depth", kind: "segment", appearance: "construction", from: { x: 26, y: 6 }, to: { x: 26, y: 16 } },
+      { id: "thick", kind: "segment", appearance: "construction", from: { x: 26, y: 0 }, to: { x: 26, y: 6 } },
+    ],
+    labels: [
+      { key: "angle", objectId: "angle", at: { x: 8 + 4 * Math.cos(115 * Math.PI / 180), y: 16 + 4 * Math.sin(115 * Math.PI / 180) }, placement: "above" },
+      { key: "water", objectId: "water", at: { x: 16, y: 11 }, placement: "center" },
+      { key: "glass", objectId: "glass", at: { x: 16, y: 3 }, placement: "center" },
+      { key: "depth", objectId: "depth", at: { x: 26, y: 11 }, placement: "right" },
+      { key: "thick", objectId: "thick", at: { x: 26, y: 3 }, placement: "right" },
+    ],
+  }}
+/>
+
+The water is <InlineMath math="10\text{ cm}" /> deep above the block, and the block is <InlineMath math="6.0\text{ cm}" /> thick. What is the angle of refraction in the glass, how far sideways from the point where it entered the water does the ray reach the bottom of the block, and what is the critical angle for light passing from the glass into the water?

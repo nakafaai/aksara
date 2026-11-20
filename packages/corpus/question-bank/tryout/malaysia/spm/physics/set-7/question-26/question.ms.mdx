@@ -1,0 +1,38 @@
+Sebuah blok rumah pangsa dibekalkan oleh menara air yang permukaan airnya <InlineMath math="25\text{ m}" /> di atas tanah. Pili di tingkat bawah berada pada aras tanah, dan setiap tingkat ialah <InlineMath math="3.0\text{ m}" /> di atas tingkat di bawahnya, jadi pili di tingkat <InlineMath math="3" /> berada <InlineMath math="9.0\text{ m}" /> di atas tanah. Sebuah mesin basuh memerlukan tekanan tolok sekurang-kurangnya <InlineMath math="5.0\times10^{4}\text{ Pa}" /> pada pilinya. Ketumpatan air ialah <InlineMath math="1000\text{ kg m}^{-3}" /> dan <InlineMath math="g=10\text{ m s}^{-2}" />. Abaikan aliran dalam paip.
+
+<MathVisual
+  title={<>Menara air dan sebuah pili di rumah pangsa</>}
+  description={<>Permukaan air dalam tangki yang penuh berada <InlineMath math="25\text{ m}" /> di atas tanah, dan dasar tangki berada <InlineMath math="20\text{ m}" /> di atas tanah. Sebatang paip dari tangki membekalkan air kepada sebuah pili di tingkat <InlineMath math="3" />, <InlineMath math="9.0\text{ m}" /> di atas tanah.</>}
+  labels={{
+    tank: <>tangki</>,
+    surface: <><InlineMath math="25\text{ m}" /></>,
+    bottom: <><InlineMath math="20\text{ m}" /></>,
+    tap: <>pili di tingkat <InlineMath math="3" /></>,
+    height: <><InlineMath math="9.0\text{ m}" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -4.5, max: 15.5 }, y: { min: -1, max: 27 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "ground", kind: "segment", appearance: "reference", from: { x: -4, y: 0 }, to: { x: 15, y: 0 } },
+      { id: "tank", kind: "polygon", appearance: "secondary", vertices: [{ x: 0, y: 20 }, { x: 4, y: 20 }, { x: 4, y: 25 }, { x: 0, y: 25 }] },
+      { id: "leg-1", kind: "segment", appearance: "reference", from: { x: 0.4, y: 20 }, to: { x: 0.4, y: 0 } },
+      { id: "leg-2", kind: "segment", appearance: "reference", from: { x: 3.6, y: 20 }, to: { x: 3.6, y: 0 } },
+      { id: "pipe", kind: "polyline", appearance: "construction", vertices: [{ x: 2, y: 20 }, { x: 2, y: 1 }, { x: 10, y: 1 }, { x: 10, y: 9 }, { x: 10.8, y: 9 }] },
+      { id: "tap", kind: "point", appearance: "primary", at: { x: 10.8, y: 9 } },
+      { id: "surface", kind: "segment", appearance: "construction", from: { x: -1.2, y: 0 }, to: { x: -1.2, y: 25 } },
+      { id: "bottom", kind: "segment", appearance: "construction", from: { x: 5, y: 0 }, to: { x: 5, y: 20 } },
+      { id: "height", kind: "segment", appearance: "construction", from: { x: 12.5, y: 0 }, to: { x: 12.5, y: 9 } },
+    ],
+    labels: [
+      { key: "tank", objectId: "tank", at: { x: 4, y: 22.5 }, placement: "right" },
+      { key: "surface", objectId: "surface", at: { x: -1.2, y: 12.5 }, placement: "left" },
+      { key: "bottom", objectId: "bottom", at: { x: 5, y: 12 }, placement: "right" },
+      { key: "tap", objectId: "tap", at: { x: 10.8, y: 9 }, placement: "above" },
+      { key: "height", objectId: "height", at: { x: 12.5, y: 4.5 }, placement: "right" },
+    ],
+  }}
+/>
+
+Tangki itu mempunyai keratan rentas mengufuk <InlineMath math="10\text{ m}^2" /> dan sedalam <InlineMath math="5.0\text{ m}" />, jadi dasarnya <InlineMath math="20\text{ m}" /> di atas tanah. Menjelang petang, rumah pangsa telah mengambil <InlineMath math="30\text{ m}^3" /> air daripadanya, dan ia belum diisi semula. Berapakah bacaan tekanan tolok bagi pili di tingkat <InlineMath math="3" /> apabila tangki penuh, apakah tingkat tertinggi di mana mesin basuh berfungsi ketika itu, apakah tingkat tertinggi di mana ia berfungsi pada waktu petang, dan berapakah isi padu air yang masih ada dalam tangki pada saat mesin basuh di tingkat <InlineMath math="6" /> berhenti berfungsi?

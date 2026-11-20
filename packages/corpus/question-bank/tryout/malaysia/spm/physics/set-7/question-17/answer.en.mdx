@@ -1,0 +1,32 @@
+# Where the spot starts
+
+The beam leaves the mirror at <InlineMath math="30^\circ" /> to the normal, and the normal points straight at P. So **the spot starts <InlineMath math="3.0\tan30^\circ=1.73\text{ m}" /> from P**, already off to one side, and every later distance is measured from there.
+
+# The beam turns twice as far as the mirror
+
+Turning the mirror by <InlineMath math="5.0^\circ" /> turns its normal by <InlineMath math="5.0^\circ" /> and raises the angle of incidence to <InlineMath math="35^\circ" />, so the reflected beam swings from <InlineMath math="30^\circ" /> to <InlineMath math="40^\circ" /> on the other side. **The reflected beam always turns through twice the mirror's angle**. The spot lands <InlineMath math="3.0\tan40^\circ=2.52\text{ m}" /> from P and has moved <InlineMath math="0.79\text{ m}" />. Turning the beam by only <InlineMath math="5^\circ" /> gives <InlineMath math="0.37\text{ m}" />, and the arc estimate <InlineMath math="3.0\times0.175=0.52\text{ m}" /> only fits a spot right opposite the mirror, where the tangent still grows like a straight line.
+
+<Chart
+  title={<>Spot position as the mirror turns</>}
+  description={<>The true position follows <InlineMath math="3.0\tan(30^\circ+2\theta)" /> and pulls away from a straight-line guess. At a <InlineMath math="7.5^\circ" /> turn it reaches <InlineMath math="3.0\text{ m}" />.</>}
+  categories={["0°", "1.5°", "3.0°", "4.5°", "6.0°", "7.5°"]}
+  series={[
+    { label: "Actual spot", mark: "line", values: [1.732, 1.948, 2.18, 2.429, 2.701, 3.0] },
+    { label: "Straight-line guess", mark: "line", values: [1.732, 1.889, 2.046, 2.203, 2.36, 2.517] },
+  ]}
+  valueLabel="Distance of the spot from P (m)"
+/>
+
+# Aiming the spot three metres from P
+
+A spot <InlineMath math="3.0\text{ m}" /> from P on a wall <InlineMath math="3.0\text{ m}" /> away needs the beam at <InlineMath math="45^\circ" />, since <InlineMath math="\tan45^\circ=1" />. The beam must turn <InlineMath math="15^\circ" /> from its start, so **the mirror turns only half of that, <InlineMath math="7.5^\circ" />**. Turning the mirror the full <InlineMath math="15^\circ" /> would sweep the beam out to <InlineMath math="60^\circ" />, more than <InlineMath math="5\text{ m}" /> from P.
+
+# Timing the spinning mirror
+
+At <InlineMath math="2.0" /> revolutions per second the mirror turns <InlineMath math="720^\circ" /> every second, so its <InlineMath math="7.5^\circ" /> takes <InlineMath math="0.0104\text{ s}" />. In that time **the spot covers <InlineMath math="3.0-1.73=1.27\text{ m}" />, an average of <InlineMath math="122\text{ m s}^{-1}" />**. The value <InlineMath math="2\omega D=75\text{ m s}^{-1}" /> is the speed of a spot sitting right at P. Out here the beam hits the wall at a slant, so the spot runs faster, and it keeps speeding up as it moves away from P.
+
+<BlockMath math="\begin{aligned}
+x_0&=3.0\tan30^\circ=1.73\text{ m},\quad x_1=3.0\tan(30^\circ+2\times5.0^\circ)=2.52\text{ m},\quad \Delta x=0.79\text{ m}\\
+\tan\phi&=\frac{3.0}{3.0}\ \Rightarrow\ \phi=45^\circ,\quad \theta=\frac{45^\circ-30^\circ}{2}=7.5^\circ\\
+t&=\frac{7.5^\circ}{720^\circ\text{ s}^{-1}}=0.0104\text{ s},\quad \bar v=\frac{1.27\text{ m}}{0.0104\text{ s}}=122\text{ m s}^{-1}
+\end{aligned}" />

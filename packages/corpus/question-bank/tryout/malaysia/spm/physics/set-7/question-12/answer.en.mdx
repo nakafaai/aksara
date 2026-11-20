@@ -1,0 +1,28 @@
+# How much sweat one hour needs
+
+In one hour the excess is <InlineMath math="600\text{ W}" /> times <InlineMath math="3600\text{ s}" />, <InlineMath math="2.16\times10^{6}\text{ J}" />, and evaporating <InlineMath math="0.90\text{ kg}" /> of sweat carries exactly that away. **That <InlineMath math="0.90\text{ kg}" /> is only the three quarters that evaporates**, so the skin must make <InlineMath math="0.90/0.75=1.2\text{ kg}" />. Taking <InlineMath math="0.90\text{ kg}" /> as everything forgets the drips, and multiplying by <InlineMath math="0.75" /> to get <InlineMath math="0.68\text{ kg}" /> shrinks the sweat when it should grow.
+
+<Chart
+  title={<>Sweat in one hour of riding</>}
+  description={<>The cyclist makes <InlineMath math="1.2\text{ kg}" /> of sweat. Only <InlineMath math="0.90\text{ kg}" /> evaporates and carries the heat away, and <InlineMath math="0.30\text{ kg}" /> drips off.</>}
+  bars="apart"
+  categories={["Produced", "Evaporates", "Drips off"]}
+  series={[
+    { label: "Sweat", mark: "bar", values: [1.2, 0.9, 0.3] },
+  ]}
+  valueLabel="Mass of sweat (kg)"
+/>
+
+# If the cooling failed
+
+With no evaporation, the whole <InlineMath math="2.16\times10^{6}\text{ J}" /> would heat <InlineMath math="70\text{ kg}" /> of body, a rise of <InlineMath math="8.8^\circ\text{C}" />. **The rise follows the heat left behind**, so if only half the usual sweat evaporated, half the energy stays in the body and the rise is <InlineMath math="4.4^\circ\text{C}" />. Working with one minute instead of one hour gives <InlineMath math="0.15^\circ\text{C}" />, sixty times too small.
+
+# The price of a cold drink
+
+The cyclist drinks back all <InlineMath math="1.2\text{ kg}" />, and **warming it from <InlineMath math="10^\circ\text{C}" /> to <InlineMath math="37^\circ\text{C}" /> takes <InlineMath math="1.36\times10^{5}\text{ J}" />** of body heat. At <InlineMath math="600\text{ W}" /> that is <InlineMath math="227\text{ s}" />, close to <InlineMath math="3.8\text{ min}" /> of the excess. Replacing only the evaporated <InlineMath math="0.90\text{ kg}" /> gives <InlineMath math="2.8\text{ min}" />, but the drips leave the body too.
+
+<BlockMath math="\begin{aligned}
+Q&=600\times3600=2.16\times10^{6}\text{ J},\quad m_1=\frac{2.16\times10^{6}}{2.4\times10^{6}}=0.90\text{ kg},\quad m_2=\frac{0.90}{0.75}=1.2\text{ kg}\\
+\Delta\theta&=\frac{2.16\times10^{6}}{70\times3500}=8.8^\circ\text{C},\qquad \Delta\theta'=\frac{1.08\times10^{6}}{70\times3500}=4.4^\circ\text{C}\\
+Q_2&=1.2\times4200\times27=1.36\times10^{5}\text{ J},\quad t=\frac{1.36\times10^{5}\text{ J}}{600\text{ W}}=227\text{ s}=3.8\text{ min}
+\end{aligned}" />

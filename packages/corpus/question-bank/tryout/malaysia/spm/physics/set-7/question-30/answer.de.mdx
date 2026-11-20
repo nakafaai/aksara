@@ -1,0 +1,28 @@
+# Licht, das schräg auf das Paneel fällt
+
+Leuchte mit einer Taschenlampe gerade auf ein Blatt Papier und kipp dann das Blatt. Derselbe Lichtkegel verteilt sich jetzt auf mehr Papier, also bekommt jede Stelle weniger Licht. **Licht unter <InlineMath math="37^\circ" /> zur Normalen trifft das Paneel, als wäre es nur <InlineMath math="1{,}2\cos37^\circ=0{,}96\text{ m}^2" /> groß**, also fängt es <InlineMath math="800\times0{,}96=767\text{ W}" /> Licht ein und liefert <InlineMath math="0{,}18\times767=138\text{ W}" />. Ohne die Schräglage kämen <InlineMath math="173\text{ W}" /> heraus, die Leistung eines Paneels, das direkt zur Sonne zeigt.
+
+# Die obere Hälfte füllen
+
+Diesen Akku zu laden ist wie einen undichten Eimer zu füllen. Nur ein Teil von dem, was du hineingießt, bleibt drin. Der Akku fasst <InlineMath math="12\text{ V}\times100\text{ Ah}=1200\text{ Wh}" /> und startet halb voll, also fehlen <InlineMath math="600\text{ Wh}" />. **Nur drei Viertel der Paneelleistung werden gespeichert, <InlineMath math="0{,}75\times138=104\text{ W}" />, also dauert das Volladen <InlineMath math="600/104=5{,}8\text{ h}" />**, knapp vor dem Ende der <InlineMath math="6{,}0\text{ h}" /> Sonne. Mit den ganzen <InlineMath math="138\text{ W}" /> wärst du nach <InlineMath math="4{,}3\text{ h}" /> fertig, als ginge unterwegs nichts verloren.
+
+# Was die Nacht nutzen darf
+
+Denk an ein Handy, das nie unter die Hälfte fallen darf. Nur die obere Hälfte der Ladung gehört dir. **Der Kühlschrank darf nur die oberen <InlineMath math="600\text{ Wh}" /> nutzen, und die reichen <InlineMath math="600/60=10\text{ h}" />**. Die letzten <InlineMath math="0{,}2\text{ h}" /> Sonne treffen auf einen vollen Akku, und diese Energie geht verloren. Zählst du alle <InlineMath math="6{,}0\text{ h}" /> Laden als gespeichert, kommst du auf <InlineMath math="621\text{ Wh}" /> und <InlineMath math="10{,}4\text{ h}" />, mehr als ein voller Akku fassen kann.
+
+<Chart
+  title={<>Ladung des Akkus über Tag und Nacht</>}
+  description={<>Das Laden füllt den Akku nach <InlineMath math="5{,}8\text{ h}" />. Ab Sonnenuntergang bei <InlineMath math="6{,}0\text{ h}" /> nimmt der Kühlschrank <InlineMath math="5\%" /> pro Stunde, bis die Ladung wieder bei der Hälfte ist.</>}
+  categories={["0 h", "2 h", "4 h", "5,8 h", "6 h", "10 h", "14 h", "16 h"]}
+  series={[
+    { label: "Ladung des Akkus", mark: "line", values: [50, 67.3, 84.5, 100, 100, 80, 60, 50] },
+    { label: "Tiefster erlaubter Stand", mark: "line", values: [50, 50, 50, 50, 50, 50, 50, 50] },
+  ]}
+  valueLabel="Ladung (% von voll)"
+/>
+
+<BlockMath math="\begin{aligned}
+P&=0{,}18\times800\times1{,}2\cos37^\circ=138\text{ W}\\
+t&=\frac{600\text{ Wh}}{0{,}75\times138\text{ W}}=5{,}8\text{ h}<6{,}0\text{ h}\\
+t'&=\frac{600\text{ Wh}}{60\text{ W}}=10\text{ h}
+\end{aligned}" />

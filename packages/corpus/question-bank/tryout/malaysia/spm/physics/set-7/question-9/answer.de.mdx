@@ -1,0 +1,37 @@
+# Die Bahn vermisst den Planeten
+
+Die Sonde streift die Oberfläche, also **ist ihr Bahnradius der Planetenradius**: eine Runde <InlineMath math="2\pi R" /> mit <InlineMath math="3{,}0\text{ km s}^{-1}" /> dauert <InlineMath math="5400\text{ s}" />, daraus folgt <InlineMath math="R=2{,}58\times10^{6}\text{ m}" />.
+
+<Mermaid
+  title={<>Von einer Bahn zu allem anderen</>}
+  description={<>Periode und Geschwindigkeit der Bahn knapp über dem Boden legen zuerst den Radius fest. Dichte, Masse und die weitere Bahn folgen daraus.</>}
+  chart={`
+    flowchart TD
+      N0["T = 1,5 h und v = 3,0 km/s"]
+      N1["R = vT/2π = 2,58 × 10⁶ m"]
+      N2["ρ = 3π/(GT²) = 4,8 × 10³ kg/m³"]
+      N3["M = v²R/G = 3,5 × 10²³ kg"]
+      N4["r = 2R: T wächst um 2^1,5 auf 4,2 h"]
+      N5["v sinkt um √2 auf 2,1 km/s"]
+      N0 --> N1
+      N1 --> N2
+      N1 --> N3
+      N1 --> N4
+      N4 --> N5
+  `}
+/>
+
+# Die Dichte direkt aus der Periode
+
+Die Gravitation liefert die Zentripetalkraft, <InlineMath math="GM/R^2=4\pi^2R/T^2" />, und <InlineMath math="M=\tfrac43\pi R^3\rho" />. Setzt du beides zusammen, **kürzt sich <InlineMath math="R" /> heraus**, und die Periode einer Bahn knapp über dem Boden legt die Dichte allein fest.
+
+<BlockMath math="\begin{aligned}
+R&=\frac{vT}{2\pi}=\frac{3000\times5400}{2\times3{,}14}=2{,}58\times10^{6}\text{ m},\qquad \rho=\frac{3\pi}{GT^2}=4{,}8\times10^{3}\text{ kg m}^{-3}\\
+M&=\frac{v^2R}{G}=3{,}5\times10^{23}\text{ kg},\qquad T'=1{,}5\times2^{1{,}5}=4{,}2\text{ h},\qquad v'=\frac{3{,}0}{\sqrt2}=2{,}1\text{ km s}^{-1}
+\end{aligned}" />
+
+Mit bekanntem <InlineMath math="R" /> ergibt sich die Masse <InlineMath math="v^2R/G=3{,}5\times10^{23}\text{ kg}" />. Gehst du über <InlineMath math="GM=4\pi^2R^3/T^2" /> und verlierst die <InlineMath math="4" />, schrumpfen beide Ergebnisse auf ein Viertel, <InlineMath math="1{,}2\times10^{3}\text{ kg m}^{-3}" /> und <InlineMath math="8{,}7\times10^{22}\text{ kg}" />.
+
+# Doppelt so weit draußen
+
+Nach dem dritten Keplerschen Gesetz, <InlineMath math="T^2\propto r^3" />, wächst die Periode um <InlineMath math="2^{1{,}5}=2{,}83" /> auf <InlineMath math="4{,}2\text{ h}" />, und die Geschwindigkeit sinkt um <InlineMath math="\sqrt2" /> auf <InlineMath math="2{,}1\text{ km s}^{-1}" />. **Der doppelte Radius verdoppelt die Periode nicht**. Wer die <InlineMath math="3{,}0\text{ km s}^{-1}" /> auf einer doppelt so langen Bahn beibehält, kommt auf <InlineMath math="3{,}0\text{ h}" />, und <InlineMath math="12\text{ h}" /> mit <InlineMath math="0{,}75\text{ km s}^{-1}" /> stammen aus <InlineMath math="T\propto r^3" /> und <InlineMath math="v\propto r^{-2}" />, den Potenzen ohne ihre Wurzeln.

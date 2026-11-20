@@ -1,0 +1,27 @@
+# Measure every speed in escalator lengths
+
+Call the escalator one length <InlineMath math="L" />. The steps move at <InlineMath math="L" /> per <InlineMath math="60\text{ s}" /> and Aina walks at <InlineMath math="L" /> per <InlineMath math="40\text{ s}" /> relative to them. Walking up a rising escalator **adds the two speeds**, so she covers <InlineMath math="L" /> in <InlineMath math="24\text{ s}" />. In that time she treads only <InlineMath math="24/40" /> of the <InlineMath math="60" /> steps, <InlineMath math="36" /> steps, because the escalator does part of the climbing.
+
+# Walking down against the steps
+
+Going down, her velocity relative to the ground is the difference of the speeds, <InlineMath math="L" /> per <InlineMath math="120\text{ s}" />. **The steps keep rising under her for the whole two minutes**, and she treads them at her usual rate of <InlineMath math="60" /> steps per <InlineMath math="40\text{ s}" />, so she treads <InlineMath math="180" /> steps. Using <InlineMath math="36" /> again forgets that the downward trip lasts five times as long as the upward one.
+
+<BlockMath math="\begin{aligned}
+v_{\uparrow}&=\tfrac{L}{60}+\tfrac{L}{40}=\tfrac{L}{24},\qquad v_{\downarrow}=\tfrac{L}{40}-\tfrac{L}{60}=\tfrac{L}{120}\\
+N&=\tfrac{120}{40}\times60=180,\qquad v_{b}=\tfrac{L}{60}-\tfrac{L}{75}=+\tfrac{L}{300}
+\end{aligned}" />
+
+<Chart
+  title={<>Velocity along the escalator, upwards positive</>}
+  description={<>Only Aina walking down on the moving escalator has a negative velocity. Her brother walks down too, yet his velocity stays positive at <InlineMath math="0.2" /> lengths per minute.</>}
+  bars="apart"
+  categories={["Steps alone", "Aina, escalator off", "Aina up, escalator on", "Aina down, escalator on", "Brother down, escalator on"]}
+  series={[
+    { label: "Velocity", mark: "bar", values: [1.0, 1.5, 2.5, -0.5, 0.2] },
+  ]}
+  valueLabel="Escalator lengths per minute"
+/>
+
+# The brother who walks too slowly
+
+He walks at <InlineMath math="L" /> per <InlineMath math="75\text{ s}" /> relative to the steps, slower than the steps rise. So **his velocity relative to the ground still points up**, at <InlineMath math="L" /> per <InlineMath math="300\text{ s}" />. He walks downwards the whole time and still arrives at the top after <InlineMath math="300\text{ s}" />. Expecting him to step off at the bottom gets the sign of his velocity wrong, and <InlineMath math="60\text{ s}" /> leaves out the walking that slows his ride.

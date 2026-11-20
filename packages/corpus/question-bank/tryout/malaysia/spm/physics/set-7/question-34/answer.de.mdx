@@ -1,0 +1,30 @@
+# Die Windungen folgen der Spannung
+
+Ein Transformator verteilt Spannung wie eine Treppe die Höhe, mit derselben Stufe für jede Windung. **<InlineMath math="240\text{ V}" /> auf <InlineMath math="2400" /> Windungen sind <InlineMath math="0{,}10\text{ V}" /> pro Windung, also brauchen <InlineMath math="16\text{ V}" /> genau <InlineMath math="160" /> Windungen**. Wer das Verhältnis umdreht, kommt auf <InlineMath math="36\,000" /> Windungen, die die Spannung hochsetzen würden.
+
+# Der Verlust, der bleibt
+
+Ein Laden zahlt im vollen Monat dieselbe Miete wie im ruhigen. Der Wärmeverlust des Transformators ist wie diese Miete. **Mit beiden Lasten beträgt die Ausgangsleistung <InlineMath math="16\times1{,}5+6\times3{,}0=42\text{ W}" /> und die Eingangsleistung <InlineMath math="42/0{,}84=50\text{ W}" />, also verliert der Transformator <InlineMath math="8{,}0\text{ W}" />**, und diese <InlineMath math="8{,}0\text{ W}" /> bleiben, wenn die Lampen ausgehen.
+
+<Chart
+  title={<>Wohin die Netzleistung geht</>}
+  description={<>Der Verlust bleibt in beiden Fällen bei <InlineMath math="8{,}0\text{ W}" />, also ist er mit ausgeschalteten Lampen ein größerer Teil einer kleineren Eingangsleistung.</>}
+  bars="apart"
+  categories={["Zug und Lampen", "Nur Zug"]}
+  series={[
+    { label: "Leistung aus dem Netz", mark: "bar", values: [50, 32] },
+    { label: "Leistung an die Lasten", mark: "bar", values: [42, 24] },
+    { label: "Verlust als Wärme", mark: "bar", values: [8, 8] },
+  ]}
+  valueLabel="Leistung (W)"
+/>
+
+# Lampen aus
+
+Kommen weniger Gäste zum Fest, kostet der Saal trotzdem gleich viel, und ein größerer Teil des Geldes geht an den Saal. **Das Netz liefert nun <InlineMath math="24+8{,}0=32\text{ W}" />, also <InlineMath math="I_p=32/240=0{,}13\text{ A}" />, und der Wirkungsgrad sinkt auf <InlineMath math="24/32=75\%" />**. Hält man an <InlineMath math="84\%" /> fest, ergibt sich <InlineMath math="0{,}12\text{ A}" />, als schrumpfe der Verlust mit der Last. Wer die Eingangsleistung bei <InlineMath math="50\text{ W}" /> lässt, bekommt <InlineMath math="0{,}21\text{ A}" /> und <InlineMath math="48\%" />, als zögen die dunklen Lampen noch Strom.
+
+<BlockMath math="\begin{aligned}
+N_s&=2400\times\frac{16}{240}=160\\
+P_p&=\frac{16\times1{,}5+6\times3{,}0}{0{,}84}=50\text{ W},\quad P_L=50-42=8{,}0\text{ W}\\
+I_p&=\frac{24+8{,}0}{240}=0{,}13\text{ A},\quad \eta=\frac{24}{32}=75\%
+\end{aligned}" />

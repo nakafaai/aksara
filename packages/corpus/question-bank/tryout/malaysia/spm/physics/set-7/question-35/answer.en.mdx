@@ -1,0 +1,29 @@
+# From the screen to the cups
+
+A merry-go-round that turns ten times a second carries its riders a long way every second. **One wave covers <InlineMath math="5.0" /> divisions of <InlineMath math="20\text{ ms}" />, so one turn takes <InlineMath math="0.10\text{ s}" /> and the cups turn <InlineMath math="10" /> times a second**. Each turn carries a cup centre round <InlineMath math="2\pi\times0.070=0.44\text{ m}" />, so the cups move at <InlineMath math="0.44\times10=4.4\text{ m s}^{-1}" />.
+
+# The wind is faster than the cups
+
+A leaf floating down a stream never quite keeps up with the water that carries it. The cups and the wind are the same. **The cups move at one third of the wind speed, so the wind blows at <InlineMath math="3\times4.4=13\text{ m s}^{-1}" />**. Stopping at <InlineMath math="4.4\text{ m s}^{-1}" /> gives the cups' speed, not the wind's.
+
+# A faster wind makes a taller wave
+
+Pedal a bicycle faster and its dynamo lamp glows brighter. **Twice the wind turns the magnet twice as fast, so the peaks double from <InlineMath math="3.0\text{ V}" /> to <InlineMath math="6.0\text{ V}" />**. Only <InlineMath math="4" /> divisions lie above the zero line, so the Y-gain must be at least <InlineMath math="6.0/4=1.5\text{ V}" /> per division, which means the <InlineMath math="2.0\text{ V}" /> setting. Treating all <InlineMath math="8" /> divisions as room for the peak lets <InlineMath math="1.0\text{ V}" /> through, but then the peaks sit <InlineMath math="6" /> divisions up, off the top of the screen. Sticking with the old <InlineMath math="3.0\text{ V}" /> forgets that a faster magnet makes a bigger voltage.
+
+<Chart
+  title={<>Height of the peaks at each Y-gain setting</>}
+  description={<>In the stronger wind the peaks reach <InlineMath math="6.0\text{ V}" />. At <InlineMath math="2.0\text{ V}" /> per division they rise <InlineMath math="3" /> divisions, inside the <InlineMath math="4" /> divisions above the zero line.</>}
+  bars="apart"
+  categories={["0.5 V", "1.0 V", "2.0 V", "5.0 V"]}
+  series={[
+    { label: "Height of the peak", mark: "bar", values: [12, 6, 3, 1.2] },
+    { label: "Room above the zero line", mark: "line", values: [4, 4, 4, 4] },
+  ]}
+  valueLabel="Height (div)"
+/>
+
+<BlockMath math="\begin{aligned}
+T&=5.0\times20\text{ ms}=0.10\text{ s},\quad f=10\text{ Hz}\\
+v_c&=2\pi\times0.070\times10=4.4\text{ m s}^{-1},\quad v_w=3\times4.4=13\text{ m s}^{-1}\\
+V_0&=2\times3.0=6.0\text{ V},\quad \frac{6.0}{4}=1.5\text{ V}\ \Rightarrow\ 2.0\text{ V}
+\end{aligned}" />

@@ -1,0 +1,30 @@
+# Turns follow the voltage
+
+A transformer shares out voltage the way a staircase shares out height, with the same step for every turn. **<InlineMath math="240\text{ V}" /> over <InlineMath math="2400" /> turns is <InlineMath math="0.10\text{ V}" /> per turn, so <InlineMath math="16\text{ V}" /> needs <InlineMath math="160" /> turns**. Turning the ratio upside down gives <InlineMath math="36\,000" /> turns, which would step the voltage up instead.
+
+# The loss that never changes
+
+A shop pays the same rent in a busy month and in a quiet one. The transformer's heat loss is like that rent. **With both loads the output is <InlineMath math="16\times1.5+6\times3.0=42\text{ W}" /> and the input <InlineMath math="42/0.84=50\text{ W}" />, so the transformer loses <InlineMath math="8.0\text{ W}" />**, and it still loses <InlineMath math="8.0\text{ W}" /> when the lamps go off.
+
+<Chart
+  title={<>Where the mains power goes</>}
+  description={<>The loss stays at <InlineMath math="8.0\text{ W}" /> in both cases, so with the lamps off it is a larger share of a smaller input.</>}
+  bars="apart"
+  categories={["Train and lamps", "Train only"]}
+  series={[
+    { label: "Power from the mains", mark: "bar", values: [50, 32] },
+    { label: "Power to the loads", mark: "bar", values: [42, 24] },
+    { label: "Power lost as heat", mark: "bar", values: [8, 8] },
+  ]}
+  valueLabel="Power (W)"
+/>
+
+# Lamps off
+
+When fewer guests come to a party, the hall still costs the same, so more of the money goes on the hall. **The mains now supply <InlineMath math="24+8.0=32\text{ W}" />, so <InlineMath math="I_p=32/240=0.13\text{ A}" />, and the efficiency falls to <InlineMath math="24/32=75\%" />**. Keeping <InlineMath math="84\%" /> gives <InlineMath math="0.12\text{ A}" />, as if the loss shrank with the load. Leaving the input at <InlineMath math="50\text{ W}" /> gives <InlineMath math="0.21\text{ A}" /> and <InlineMath math="48\%" />, as if the dark lamps still drew power.
+
+<BlockMath math="\begin{aligned}
+N_s&=2400\times\frac{16}{240}=160\\
+P_p&=\frac{16\times1.5+6\times3.0}{0.84}=50\text{ W},\quad P_L=50-42=8.0\text{ W}\\
+I_p&=\frac{24+8.0}{240}=0.13\text{ A},\quad \eta=\frac{24}{32}=75\%
+\end{aligned}" />

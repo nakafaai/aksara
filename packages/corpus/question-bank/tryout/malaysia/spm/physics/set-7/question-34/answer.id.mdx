@@ -1,0 +1,30 @@
+# Lilitan mengikuti tegangan
+
+Transformator membagi tegangan seperti tangga membagi ketinggian, dengan anak tangga yang sama untuk tiap lilitan. **<InlineMath math="240\text{ V}" /> untuk <InlineMath math="2400" /> lilitan berarti <InlineMath math="0{,}10\text{ V}" /> per lilitan, jadi <InlineMath math="16\text{ V}" /> butuh <InlineMath math="160" /> lilitan**. Membalik perbandingannya memberi <InlineMath math="36\,000" /> lilitan, yang justru menaikkan tegangan.
+
+# Kerugian yang tidak berubah
+
+Sebuah toko membayar sewa yang sama di bulan ramai maupun bulan sepi. Kerugian kalor transformator seperti sewa itu. **Dengan kedua beban, keluarannya <InlineMath math="16\times1{,}5+6\times3{,}0=42\text{ W}" /> dan masukannya <InlineMath math="42/0{,}84=50\text{ W}" />, jadi transformator kehilangan <InlineMath math="8{,}0\text{ W}" />**, dan tetap kehilangan <InlineMath math="8{,}0\text{ W}" /> saat lampu dimatikan.
+
+<Chart
+  title={<>Ke mana daya dari jaringan pergi</>}
+  description={<>Kerugiannya tetap <InlineMath math="8{,}0\text{ W}" /> dalam kedua keadaan, jadi saat lampu dimatikan kerugian itu menjadi bagian yang lebih besar dari masukan yang lebih kecil.</>}
+  bars="apart"
+  categories={["Kereta dan lampu", "Kereta saja"]}
+  series={[
+    { label: "Daya dari jaringan", mark: "bar", values: [50, 32] },
+    { label: "Daya ke beban", mark: "bar", values: [42, 24] },
+    { label: "Daya hilang sebagai kalor", mark: "bar", values: [8, 8] },
+  ]}
+  valueLabel="Daya (W)"
+/>
+
+# Lampu dimatikan
+
+Kalau tamu yang datang ke pesta lebih sedikit, sewa gedung tetap sama, jadi lebih banyak uang habis untuk gedung. **Jaringan listrik kini memasok <InlineMath math="24+8{,}0=32\text{ W}" />, jadi <InlineMath math="I_p=32/240=0{,}13\text{ A}" />, dan efisiensinya turun menjadi <InlineMath math="24/32=75\%" />**. Mempertahankan <InlineMath math="84\%" /> memberi <InlineMath math="0{,}12\text{ A}" />, seolah-olah kerugian ikut mengecil bersama beban. Membiarkan masukan tetap <InlineMath math="50\text{ W}" /> memberi <InlineMath math="0{,}21\text{ A}" /> dan <InlineMath math="48\%" />, seolah-olah lampu yang padam masih memakai daya.
+
+<BlockMath math="\begin{aligned}
+N_s&=2400\times\frac{16}{240}=160\\
+P_p&=\frac{16\times1{,}5+6\times3{,}0}{0{,}84}=50\text{ W},\quad P_L=50-42=8{,}0\text{ W}\\
+I_p&=\frac{24+8{,}0}{240}=0{,}13\text{ A},\quad \eta=\frac{24}{32}=75\%
+\end{aligned}" />

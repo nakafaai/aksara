@@ -1,0 +1,41 @@
+A tuning fork of frequency <InlineMath math="512\text{ Hz}" /> is held vibrating over the open top of a tall glass tube full of water. Water is let out slowly through a tap at the bottom, so the air column above the water grows. A loud sound is first heard when the air column, measured from the water surface to the rim of the tube, is <InlineMath math="15.5\text{ cm}" /> long, and next when it is <InlineMath math="49.5\text{ cm}" /> long. At each loud sound the air column vibrates with a node at the water surface and an antinode at the open end, but that antinode sits a short distance above the rim.
+
+<MathVisual
+  title={<>Air columns at the first two loud sounds</>}
+  description={<>The same tube is shown at the first loud sound, with an air column of <InlineMath math="15.5\text{ cm}" />, and at the next loud sound, with an air column of <InlineMath math="49.5\text{ cm}" />. Each length is measured from the water surface to the rim of the tube. A <InlineMath math="512\text{ Hz}" /> tuning fork vibrates above the open top.</>}
+  labels={{
+    fork: <><InlineMath math="512\text{ Hz}" /></>,
+    first: <>first loud sound</>,
+    next: <>next loud sound</>,
+    short: <><InlineMath math="15.5\text{ cm}" /></>,
+    long: <><InlineMath math="49.5\text{ cm}" /></>,
+    water: <>water</>,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -14, max: 44 }, y: { min: -10, max: 136 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "water-1", kind: "polygon", appearance: "secondary", vertices: [{ x: 0, y: 0 }, { x: 10, y: 0 }, { x: 10, y: 94.5 }, { x: 0, y: 94.5 }] },
+      { id: "tube-1", kind: "polyline", appearance: "reference", vertices: [{ x: 0, y: 110 }, { x: 0, y: 0 }, { x: 10, y: 0 }, { x: 10, y: 110 }] },
+      { id: "fork-1", kind: "polyline", appearance: "primary", vertices: [{ x: 3, y: 113 }, { x: 3, y: 123 }, { x: 7, y: 123 }, { x: 7, y: 113 }] },
+      { id: "handle-1", kind: "segment", appearance: "primary", from: { x: 5, y: 123 }, to: { x: 5, y: 131 } },
+      { id: "column-1", kind: "segment", appearance: "construction", from: { x: -4, y: 94.5 }, to: { x: -4, y: 110 } },
+      { id: "water-2", kind: "polygon", appearance: "secondary", vertices: [{ x: 30, y: 0 }, { x: 40, y: 0 }, { x: 40, y: 60.5 }, { x: 30, y: 60.5 }] },
+      { id: "tube-2", kind: "polyline", appearance: "reference", vertices: [{ x: 30, y: 110 }, { x: 30, y: 0 }, { x: 40, y: 0 }, { x: 40, y: 110 }] },
+      { id: "fork-2", kind: "polyline", appearance: "primary", vertices: [{ x: 33, y: 113 }, { x: 33, y: 123 }, { x: 37, y: 123 }, { x: 37, y: 113 }] },
+      { id: "handle-2", kind: "segment", appearance: "primary", from: { x: 35, y: 123 }, to: { x: 35, y: 131 } },
+      { id: "column-2", kind: "segment", appearance: "construction", from: { x: 26, y: 60.5 }, to: { x: 26, y: 110 } },
+    ],
+    labels: [
+      { key: "fork", objectId: "handle-1", at: { x: 5, y: 131 }, placement: "above" },
+      { key: "first", objectId: "tube-1", at: { x: 5, y: 0 }, placement: "below" },
+      { key: "next", objectId: "tube-2", at: { x: 35, y: 0 }, placement: "below" },
+      { key: "short", objectId: "column-1", at: { x: -4, y: 102.25 }, placement: "left" },
+      { key: "long", objectId: "column-2", at: { x: 26, y: 85.25 }, placement: "left" },
+      { key: "water", objectId: "water-2", at: { x: 35, y: 30 }, placement: "center" },
+    ],
+  }}
+/>
+
+What is the speed of sound in the air, how long is the air column at the first loud sound when a <InlineMath math="384\text{ Hz}" /> tuning fork is used instead, and how many loud sounds does the <InlineMath math="512\text{ Hz}" /> fork give as the air column grows from zero to <InlineMath math="100\text{ cm}" />?

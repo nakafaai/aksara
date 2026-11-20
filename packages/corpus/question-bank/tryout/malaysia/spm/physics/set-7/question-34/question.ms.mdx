@@ -1,0 +1,32 @@
+Sebuah transformer kereta api mainan mempunyai gegelung primer <InlineMath math="2400" /> lilitan yang disambung kepada bekalan utama <InlineMath math="240\text{ V}" /> dan dua gegelung sekunder yang berasingan. Gegelung landasan memberi <InlineMath math="16\text{ V}" /> kepada sebuah kereta api yang menarik arus <InlineMath math="1.5\text{ A}" />. Gegelung aksesori memberi <InlineMath math="12\text{ V}" /> kepada enam lampu, setiap satu berkadar <InlineMath math="12\text{ V}" />, <InlineMath math="3.0\text{ W}" />, yang disambung secara selari. Apabila kereta api dan keenam-enam lampu berfungsi, kecekapan transformer ialah <InlineMath math="84\%" />. Kuasa yang hilang dalam transformer, sebagai haba dalam gegelung dan terasnya, tetap sama walau apa pun bebannya.
+
+<MathVisual
+  title={<>Transformer kereta api mainan</>}
+  description={<>Gegelung primer <InlineMath math="2400" /> lilitan disambung kepada bekalan utama <InlineMath math="240\text{ V}" />. Pada teras yang sama, gegelung landasan memberi <InlineMath math="16\text{ V}" /> kepada kereta api yang menarik <InlineMath math="1.5\text{ A}" />, dan gegelung aksesori memberi <InlineMath math="12\text{ V}" /> kepada enam lampu, setiap satu berkadar <InlineMath math="12\text{ V}" />, <InlineMath math="3.0\text{ W}" />, secara selari.</>}
+  labels={{
+    primary: <>primer, <InlineMath math="2400" /> lilitan, <InlineMath math="240\text{ V}" /></>,
+    track: <>gegelung landasan, <InlineMath math="16\text{ V}" />, kereta api <InlineMath math="1.5\text{ A}" /></>,
+    accessory: <>gegelung aksesori, <InlineMath math="12\text{ V}" />, enam lampu</>,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -8, max: 18 }, y: { min: -0.5, max: 6.5 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "core-outer", kind: "polyline", appearance: "reference", vertices: [{ x: 0, y: 0 }, { x: 8, y: 0 }, { x: 8, y: 6 }, { x: 0, y: 6 }] },
+      { id: "core-outer-side", kind: "segment", appearance: "reference", from: { x: 0, y: 6 }, to: { x: 0, y: 0 } },
+      { id: "core-inner", kind: "polyline", appearance: "reference", vertices: [{ x: 1.5, y: 1.5 }, { x: 6.5, y: 1.5 }, { x: 6.5, y: 4.5 }, { x: 1.5, y: 4.5 }] },
+      { id: "core-inner-side", kind: "segment", appearance: "reference", from: { x: 1.5, y: 4.5 }, to: { x: 1.5, y: 1.5 } },
+      { id: "primary", kind: "polyline", appearance: "primary", vertices: [{ x: -0.3, y: 1.8 }, { x: 1.8, y: 2.1 }, { x: -0.3, y: 2.4 }, { x: 1.8, y: 2.7 }, { x: -0.3, y: 3 }, { x: 1.8, y: 3.3 }, { x: -0.3, y: 3.6 }, { x: 1.8, y: 3.9 }, { x: -0.3, y: 4.2 }] },
+      { id: "track", kind: "polyline", appearance: "secondary", vertices: [{ x: 8.3, y: 3.3 }, { x: 6.2, y: 3.6 }, { x: 8.3, y: 3.9 }, { x: 6.2, y: 4.2 }, { x: 8.3, y: 4.5 }] },
+      { id: "accessory", kind: "polyline", appearance: "highlight", vertices: [{ x: 8.3, y: 1.5 }, { x: 6.2, y: 1.8 }, { x: 8.3, y: 2.1 }, { x: 6.2, y: 2.4 }, { x: 8.3, y: 2.7 }] },
+    ],
+    labels: [
+      { key: "primary", objectId: "primary", at: { x: -0.3, y: 3 }, placement: "left" },
+      { key: "track", objectId: "track", at: { x: 8.3, y: 3.9 }, placement: "right" },
+      { key: "accessory", objectId: "accessory", at: { x: 8.3, y: 2.1 }, placement: "right" },
+    ],
+  }}
+/>
+
+Berapakah bilangan lilitan gegelung landasan, berapakah arus dalam gegelung primer apabila lampu-lampu dimatikan dan kereta api masih menarik <InlineMath math="1.5\text{ A}" />, dan berapakah kecekapan transformer ketika itu?

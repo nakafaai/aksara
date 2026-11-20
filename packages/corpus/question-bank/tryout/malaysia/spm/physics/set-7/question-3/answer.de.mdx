@@ -1,0 +1,27 @@
+# Alle Geschwindigkeiten in Rolltreppenlängen messen
+
+Nenn die Rolltreppe eine Länge <InlineMath math="L" />. Die Stufen schaffen <InlineMath math="L" /> in <InlineMath math="60\text{ s}" />, Aina geht relativ zu ihnen <InlineMath math="L" /> in <InlineMath math="40\text{ s}" />. Geht sie auf der laufenden Treppe hinauf, **addieren sich beide Geschwindigkeiten**, und sie ist nach <InlineMath math="24\text{ s}" /> oben. Dabei betritt sie nur <InlineMath math="24/40" /> der <InlineMath math="60" /> Stufen, also <InlineMath math="36" />, weil die Treppe einen Teil des Steigens übernimmt.
+
+# Abwärts gegen die Stufen
+
+Abwärts ist ihre Geschwindigkeit gegenüber dem Boden die Differenz, <InlineMath math="L" /> in <InlineMath math="120\text{ s}" />. **Die Stufen laufen die ganzen zwei Minuten unter ihr nach oben**, und sie tritt sie in ihrem gewohnten Takt von <InlineMath math="60" /> Stufen pro <InlineMath math="40\text{ s}" />, also <InlineMath math="180" /> Stufen. Wer wieder <InlineMath math="36" /> ansetzt, übersieht, dass der Weg nach unten fünfmal so lange dauert wie der nach oben.
+
+<BlockMath math="\begin{aligned}
+v_{\uparrow}&=\tfrac{L}{60}+\tfrac{L}{40}=\tfrac{L}{24},\qquad v_{\downarrow}=\tfrac{L}{40}-\tfrac{L}{60}=\tfrac{L}{120}\\
+N&=\tfrac{120}{40}\times60=180,\qquad v_{b}=\tfrac{L}{60}-\tfrac{L}{75}=+\tfrac{L}{300}
+\end{aligned}" />
+
+<Chart
+  title={<>Geschwindigkeit entlang der Rolltreppe, aufwärts positiv</>}
+  description={<>Nur Aina beim Abwärtsgehen auf der laufenden Rolltreppe hat eine negative Geschwindigkeit. Ihr Bruder geht auch abwärts, seine Geschwindigkeit bleibt aber positiv bei <InlineMath math="0{,}2" /> Rolltreppenlängen pro Minute.</>}
+  bars="apart"
+  categories={["Nur die Stufen", "Aina, Treppe aus", "Aina hoch, Treppe an", "Aina runter, Treppe an", "Bruder runter, Treppe an"]}
+  series={[
+    { label: "Geschwindigkeit", mark: "bar", values: [1.0, 1.5, 2.5, -0.5, 0.2] },
+  ]}
+  valueLabel="Rolltreppenlängen pro Minute"
+/>
+
+# Der Bruder, der zu langsam geht
+
+Er geht relativ zu den Stufen <InlineMath math="L" /> in <InlineMath math="75\text{ s}" />, langsamer als die Stufen steigen. Also **zeigt seine Geschwindigkeit gegenüber dem Boden weiter nach oben**, <InlineMath math="L" /> in <InlineMath math="300\text{ s}" />. Er geht die ganze Zeit abwärts und kommt trotzdem nach <InlineMath math="300\text{ s}" /> oben an. Wer erwartet, dass er unten aussteigt, hat das Vorzeichen falsch, und <InlineMath math="60\text{ s}" /> lässt seine bremsenden Schritte weg.

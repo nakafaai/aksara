@@ -1,0 +1,33 @@
+# Hanya sebahagian tolakan angin yang menggerakkan perahu
+
+Tolak troli pasar raya dari tepi secara condong, dan hanya sebahagian tolakan kamu yang menggerakkannya ke hadapan. Selebihnya cuma menekan roda ke sisi. Layar pun begitu. Angin menolak berserenjang dengan layar, jadi apabila layar pada <InlineMath math="30^\circ" /> kepada arah perahu, tolakan itu menghala <InlineMath math="60^\circ" /> dari arah tersebut. **Bahagian ke hadapan ialah <InlineMath math="400\sin30^\circ=200\text{ N}" /> dan bahagian ke sisi <InlineMath math="400\cos30^\circ=346\text{ N}" />**, yang ditahan oleh lunas. Pada laju malar <InlineMath math="3.0\text{ m s}^{-1}" /> tiada daya yang berbaki, jadi air menahan dengan tepat <InlineMath math="200\text{ N}" />. Jika sin dan kos tertukar, perahu seolah-olah mendapat <InlineMath math="346\text{ N}" /> daya ke hadapan, dan melepaskan layar pula akan memperlahankannya.
+
+# Sejurus selepas layar dilepaskan
+
+Apabila kamu mula mengayuh basikal lebih kuat, basikal tidak terus melompat ke laju baharu. Untuk seketika, udara masih menolak balik sama seperti tadi. Melepaskan layar ke <InlineMath math="50^\circ" /> menaikkan bahagian ke hadapan kepada <InlineMath math="400\sin50^\circ=306\text{ N}" />, tetapi perahu masih pada <InlineMath math="3.0\text{ m s}^{-1}" />, jadi **air masih menahan dengan <InlineMath math="200\text{ N}" /> yang lama**. Hanya <InlineMath math="106\text{ N}" /> yang berbaki mempercepat perahu, jadi <InlineMath math="a=106/200=0.53\text{ m s}^{-2}" />. Membahagi seluruh <InlineMath math="306\text{ N}" /> dengan jisim memberi <InlineMath math="1.5\text{ m s}^{-2}" />, seolah-olah air tiba-tiba berhenti menahan.
+
+# Laju akhir perahu
+
+Cuba berjalan laju dalam kolam renang. Air melawan jauh lebih kuat, bukan sedikit sahaja. Di sini rintangan berkadar dengan kuasa dua laju, <InlineMath math="F=kv^2" />. **Daripada pergerakan malar tadi, <InlineMath math="k=200/3.0^2=22.2\text{ N s}^2\text{ m}^{-2}" />**. Perahu berhenti memecut apabila rintangan sudah naik ke <InlineMath math="306\text{ N}" />, jadi <InlineMath math="v=\sqrt{306/22.2}=3.7\text{ m s}^{-1}" />. Daya <InlineMath math="1.53" /> kali ganda hanya memberi laju <InlineMath math="\sqrt{1.53}=1.24" /> kali ganda. Menaikkan laju mengikut nisbah daya memberi <InlineMath math="4.6\text{ m s}^{-1}" />, yang hanya sesuai bagi rintangan yang naik seiring laju.
+
+<BlockMath math="\begin{aligned}
+400\sin30^\circ&=200\text{ N}=k(3.0)^2\ \Rightarrow\ k=22.2\text{ N s}^2\text{ m}^{-2}\\
+a&=\frac{400\sin50^\circ-200}{200}=\frac{306-200}{200}=0.53\text{ m s}^{-2}\\
+v&=\sqrt{\frac{306}{22.2}}=3.7\text{ m s}^{-1},\qquad 400\cos\alpha\le360\ \Rightarrow\ \alpha\ge25.8^\circ
+\end{aligned}" />
+
+# Sejauh mana layar boleh ditarik rapat
+
+Lunas itu seperti tangan di sisi perahu yang hanya mampu menahan setakat had tertentu. Menarik layar lebih rapat kepada arah perahu membuatkan tolakan angin lebih condong ke sisi. **Bahagian ke sisi <InlineMath math="400\cos\alpha" /> mesti tidak melebihi <InlineMath math="360\text{ N}" />**, jadi <InlineMath math="\cos\alpha\le0.90" /> dan <InlineMath math="\alpha\ge26^\circ" />. Lebih rapat daripada itu, perahu mula tergelincir ke sisi. Menulis bahagian ke sisi sebagai <InlineMath math="400\sin\alpha" /> memberi <InlineMath math="64^\circ" />, tetapi pada sudut itu daya ke hadapan pula yang mencapai <InlineMath math="360\text{ N}" />, iaitu hujung julat yang bertentangan.
+
+<Chart
+  title={<>Daya ke hadapan dan tolakan ke sisi apabila layar dilepaskan</>}
+  description={<>Pada <InlineMath math="26^\circ" />, tolakan ke sisi mencapai <InlineMath math="360\text{ N}" /> yang mampu ditahan lunas. Melepaskan layar dari <InlineMath math="30^\circ" /> ke <InlineMath math="50^\circ" /> menaikkan daya ke hadapan dari <InlineMath math="200\text{ N}" /> kepada <InlineMath math="306\text{ N}" />.</>}
+  categories={["20°", "26°", "30°", "40°", "50°", "60°"]}
+  series={[
+    { label: "Daya ke hadapan", mark: "line", values: [136.8, 175.3, 200.0, 257.1, 306.4, 346.4] },
+    { label: "Tolakan ke sisi", mark: "line", values: [375.9, 359.5, 346.4, 306.4, 257.1, 200.0] },
+    { label: "Had lunas", mark: "line", values: [360, 360, 360, 360, 360, 360] },
+  ]}
+  valueLabel="Daya (N)"
+/>

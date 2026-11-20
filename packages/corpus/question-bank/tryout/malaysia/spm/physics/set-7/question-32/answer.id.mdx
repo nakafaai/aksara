@@ -1,0 +1,38 @@
+# Kenapa logam cair itu terdorong
+
+Bayangkan paduan cair itu sebagai kerumunan kawat kecil yang melintang di saluran, dari dinding ke dinding. Tiap kawat membawa arus, dan arus di dalam medan magnet akan didorong ke samping. Di sini dorongannya mengarah sepanjang saluran, jadi **medan mendorong cairan maju**, tanpa satu pun bagian yang bergerak.
+
+Arus melintasi lebar <InlineMath math="4{,}0\text{ cm}" />, jadi lebar itulah panjang kawat di dalam medan, dan gayanya <InlineMath math="F=BIw" />.
+
+# Gaya yang tersebar di muka saluran
+
+Tekanan adalah gaya yang dibagi ke suatu luas. Dorongan itu bekerja pada cairan yang mengisi penampang saluran, yaitu persegi panjang kecil yang kamu lihat kalau mengintip ke dalam pipa, <InlineMath math="w\times h" />. Perhatikan: lebarnya hilang dari rumus, dan **hanya tinggi saluran yang tersisa** di bawah garis.
+
+<BlockMath math="\begin{aligned}
+F&=BIw=0{,}50\times500\times0{,}040=10\text{ N}\\
+\Delta p&=\frac{F}{wh}=\frac{BI}{h}=\frac{0{,}50\times500}{0{,}010}=2{,}5\times10^{4}\text{ Pa}
+\end{aligned}" />
+
+Dua luas yang menggoda memberi tekanan yang salah. Membagi dengan lantai saluran, <InlineMath math="10\text{ cm}\times4{,}0\text{ cm}" />, memberi <InlineMath math="2{,}5\text{ kPa}" />. Membiarkan arus naik sepanjang tinggi <InlineMath math="1{,}0\text{ cm}" /> alih-alih melintasi lebar memberi <InlineMath math="6{,}3\text{ kPa}" />.
+
+# Setinggi apa kolom yang bisa ditahan
+
+Kolom cairan menekan ke bawah dengan <InlineMath math="\rho g H" /> di dasarnya. Pompa menahan kolom itu selama **dorongannya sama dengan berat per luas itu**.
+
+<BlockMath math="\begin{aligned}
+H&=\frac{\Delta p}{\rho g}=\frac{2{,}5\times10^{4}}{850\times9{,}81}=3{,}0\text{ m}\\
+I&=\frac{\rho g H h}{B}=\frac{850\times9{,}81\times4{,}5\times0{,}020}{0{,}50}=1{,}5\times10^{3}\text{ A}
+\end{aligned}" />
+
+<Chart
+  title={<>Kolom yang ditahan terhadap arus pompa</>}
+  description={<>Tingginya naik sebanding dengan arus. Saluran yang dua kali lebih tinggi butuh dua kali arus untuk kolom yang sama, jadi <InlineMath math="4{,}5\text{ m}" /> butuh <InlineMath math="750\text{ A}" /> di saluran lama tetapi <InlineMath math="1500\text{ A}" /> di saluran baru.</>}
+  categories={["0 A", "250 A", "500 A", "750 A", "1000 A", "1250 A", "1500 A"]}
+  series={[
+    { label: "Saluran setinggi 1,0 cm", mark: "line", values: [0.0, 1.5, 3.0, 4.5, 6.0, 7.5, 8.99] },
+    { label: "Saluran setinggi 2,0 cm", mark: "line", values: [0.0, 0.75, 1.5, 2.25, 3.0, 3.75, 4.5] },
+  ]}
+  valueLabel="Tinggi kolom (m)"
+/>
+
+Di saluran yang lebih tinggi, gaya yang sama tersebar di muka yang dua kali lebih besar, jadi kamu butuh dua kali arus. Tetap memakai <InlineMath math="750\text{ A}" /> yang lama melupakan bahwa tinggi saluran ada di dalam <InlineMath math="\Delta p=BI/h" />.

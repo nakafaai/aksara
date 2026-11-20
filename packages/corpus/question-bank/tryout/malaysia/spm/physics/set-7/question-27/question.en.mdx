@@ -1,0 +1,31 @@
+A village high in the hills draws water from a well with a hand suction pump at the top of a vertical pipe. The village barometer is a mercury tube that leans at <InlineMath math="30^\circ" /> to the vertical, and the mercury thread inside it is <InlineMath math="69.3\text{ cm}" /> long, measured along the tube. The best the pump can do is lower the pressure in the pipe above the water to <InlineMath math="12\text{ kPa}" />. When the well is still, its water surface is <InlineMath math="9.5\text{ m}" /> below the ground, but while the pump is working the water surface falls a further <InlineMath math="1.5\text{ m}" /> and stays there. The densities of mercury and water are <InlineMath math="13600\text{ kg m}^{-3}" /> and <InlineMath math="1000\text{ kg m}^{-3}" />, and <InlineMath math="g=10\text{ m s}^{-2}" />.
+
+<MathVisual
+  title={<>The leaning barometer</>}
+  description={<>The mercury tube of the village barometer leans at <InlineMath math="30^\circ" /> to the vertical. The mercury thread inside it is <InlineMath math="69.3\text{ cm}" /> long, measured along the tube from the mercury surface in the dish.</>}
+  labels={{
+    thread: <><InlineMath math="69.3\text{ cm}" /></>,
+    angle: <><InlineMath math="30^\circ" /></>,
+    dish: <>mercury</>,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -27, max: 52 }, y: { min: -12, max: 84 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "dish", kind: "polygon", appearance: "secondary", vertices: [{ x: -22, y: -8 }, { x: 22, y: -8 }, { x: 22, y: 0 }, { x: -22, y: 0 }] },
+      { id: "bowl", kind: "polyline", appearance: "reference", vertices: [{ x: -24, y: 4 }, { x: -24, y: -10 }, { x: 24, y: -10 }, { x: 24, y: 4 }] },
+      { id: "tube", kind: "segment", appearance: "reference", from: { x: -6 * Math.sin(Math.PI / 6), y: -6 * Math.cos(Math.PI / 6) }, to: { x: 92 * Math.sin(Math.PI / 6), y: 92 * Math.cos(Math.PI / 6) } },
+      { id: "thread", kind: "segment", appearance: "primary", from: { x: 0, y: 0 }, to: { x: 69.3 * Math.sin(Math.PI / 6), y: 69.3 * Math.cos(Math.PI / 6) } },
+      { id: "vertical", kind: "segment", appearance: "construction", from: { x: 0, y: 0 }, to: { x: 0, y: 45 } },
+      { id: "angle", kind: "arc", appearance: "construction", center: { x: 0, y: 0 }, radius: 18, startDegrees: 60, sweepDegrees: 30 },
+    ],
+    labels: [
+      { key: "thread", objectId: "thread", at: { x: 34.65 * Math.sin(Math.PI / 6), y: 34.65 * Math.cos(Math.PI / 6) }, placement: "below-right" },
+      { key: "angle", objectId: "angle", at: { x: 18 * Math.cos(75 * Math.PI / 180), y: 18 * Math.sin(75 * Math.PI / 180) }, placement: "above" },
+      { key: "dish", objectId: "dish", at: { x: -12, y: -4 }, placement: "center" },
+    ],
+  }}
+/>
+
+What is the atmospheric pressure in the village, what is the greatest height above the water surface to which the pump can raise water, and what is the least depth of the pit the pump must stand in so that it keeps working?

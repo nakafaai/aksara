@@ -1,0 +1,33 @@
+# Hanya sebagian dorongan angin yang memajukan perahu
+
+Dorong troli belanja dari samping dengan miring, dan hanya sebagian doronganmu yang membuatnya maju. Sisanya cuma menekan roda ke samping. Layar juga begitu. Angin mendorong tegak lurus layar, jadi dengan layar pada <InlineMath math="30^\circ" /> terhadap arah perahu, dorongan itu mengarah <InlineMath math="60^\circ" /> dari arah tersebut. **Bagian majunya <InlineMath math="400\sin30^\circ=200\text{ N}" /> dan bagian sampingnya <InlineMath math="400\cos30^\circ=346\text{ N}" />**, yang ditahan lunas. Pada kelajuan tetap <InlineMath math="3{,}0\text{ m s}^{-1}" /> tidak ada gaya yang tersisa, jadi air menahan tepat <InlineMath math="200\text{ N}" />. Kalau sinus dan kosinus tertukar, perahu seolah mendapat dorongan maju <InlineMath math="346\text{ N}" />, lalu mengulur layar malah akan memperlambatnya.
+
+# Sesaat setelah layar diulur
+
+Saat kamu mulai mengayuh sepeda lebih kuat, sepedanya tidak langsung melompat ke kelajuan baru. Sesaat, udara masih menahan seperti tadi. Mengulur layar ke <InlineMath math="50^\circ" /> menaikkan bagian maju menjadi <InlineMath math="400\sin50^\circ=306\text{ N}" />, tetapi perahu masih melaju <InlineMath math="3{,}0\text{ m s}^{-1}" />, jadi **air masih menahan dengan <InlineMath math="200\text{ N}" /> yang lama**. Hanya sisa <InlineMath math="106\text{ N}" /> yang mempercepat perahu, sehingga <InlineMath math="a=106/200=0{,}53\text{ m s}^{-2}" />. Membagi seluruh <InlineMath math="306\text{ N}" /> dengan massa menghasilkan <InlineMath math="1{,}5\text{ m s}^{-2}" />, seolah air mendadak berhenti menahan.
+
+# Kelajuan akhir perahu
+
+Coba berjalan cepat di kolam renang. Air melawan jauh lebih keras, bukan cuma sedikit. Di sini hambatan sebanding dengan kuadrat kelajuan, <InlineMath math="F=kv^2" />. **Dari gerak tetap tadi, <InlineMath math="k=200/3{,}0^2=22{,}2\text{ N s}^2\text{ m}^{-2}" />**. Perahu berhenti bertambah cepat ketika hambatannya sudah naik ke <InlineMath math="306\text{ N}" />, jadi <InlineMath math="v=\sqrt{306/22{,}2}=3{,}7\text{ m s}^{-1}" />. Gaya <InlineMath math="1{,}53" /> kali lipat hanya memberi kelajuan <InlineMath math="\sqrt{1{,}53}=1{,}24" /> kali lipat. Menaikkan kelajuan sebanding gaya menghasilkan <InlineMath math="4{,}6\text{ m s}^{-1}" />, yang hanya cocok untuk hambatan yang naik sebanding kelajuan.
+
+<BlockMath math="\begin{aligned}
+400\sin30^\circ&=200\text{ N}=k(3{,}0)^2\ \Rightarrow\ k=22{,}2\text{ N s}^2\text{ m}^{-2}\\
+a&=\frac{400\sin50^\circ-200}{200}=\frac{306-200}{200}=0{,}53\text{ m s}^{-2}\\
+v&=\sqrt{\frac{306}{22{,}2}}=3{,}7\text{ m s}^{-1},\qquad 400\cos\alpha\le360\ \Rightarrow\ \alpha\ge25{,}8^\circ
+\end{aligned}" />
+
+# Seberapa rapat layar boleh ditarik
+
+Lunas itu seperti tangan di sisi perahu yang hanya kuat menahan sampai batas tertentu. Menarik layar makin rapat ke arah perahu membuat dorongan angin makin miring ke samping. **Bagian samping <InlineMath math="400\cos\alpha" /> tidak boleh melebihi <InlineMath math="360\text{ N}" />**, jadi <InlineMath math="\cos\alpha\le0{,}90" /> dan <InlineMath math="\alpha\ge26^\circ" />. Lebih rapat lagi, perahu mulai tergelincir ke samping. Menulis bagian samping sebagai <InlineMath math="400\sin\alpha" /> menghasilkan <InlineMath math="64^\circ" />, padahal pada sudut itu justru dorongan maju yang mencapai <InlineMath math="360\text{ N}" />, ujung rentang yang berlawanan.
+
+<Chart
+  title={<>Dorongan maju dan dorongan samping saat layar diulur</>}
+  description={<>Pada <InlineMath math="26^\circ" />, dorongan samping mencapai <InlineMath math="360\text{ N}" /> yang sanggup ditahan lunas. Mengulur layar dari <InlineMath math="30^\circ" /> ke <InlineMath math="50^\circ" /> menaikkan dorongan maju dari <InlineMath math="200\text{ N}" /> menjadi <InlineMath math="306\text{ N}" />.</>}
+  categories={["20°", "26°", "30°", "40°", "50°", "60°"]}
+  series={[
+    { label: "Dorongan maju", mark: "line", values: [136.8, 175.3, 200.0, 257.1, 306.4, 346.4] },
+    { label: "Dorongan samping", mark: "line", values: [375.9, 359.5, 346.4, 306.4, 257.1, 200.0] },
+    { label: "Batas lunas", mark: "line", values: [360, 360, 360, 360, 360, 360] },
+  ]}
+  valueLabel="Gaya (N)"
+/>

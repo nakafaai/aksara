@@ -1,0 +1,27 @@
+# Two waves meeting head on
+
+The FM wavelength is <InlineMath math="3.0\times10^{8}/1.0\times10^{8}=3.0\text{ m}" />. The direct and reflected waves run along the road in opposite directions and set up a standing pattern, and **neighbouring fades in a standing pattern are half a wavelength apart, <InlineMath math="1.5\text{ m}" />**. A full <InlineMath math="3.0\text{ m}" /> spacing pushes the blur speed up to <InlineMath math="12\text{ m s}^{-1}" />, and <InlineMath math="0.75\text{ m}" /> is the gap from a fade to the strong signal beside it, not to the next fade.
+
+# When the fading turns into a hiss
+
+A car at speed <InlineMath math="v" /> crosses <InlineMath math="v/1.5" /> fades every second. **The radio blurs once that rate passes <InlineMath math="4" /> per second**, which happens at <InlineMath math="v=4\times1.5=6.0\text{ m s}^{-1}" />.
+
+<Chart
+  title={<>Fading rate as the car speeds up</>}
+  description={<>The fading rate climbs with the car's speed and reaches <InlineMath math="4" /> per second after <InlineMath math="3.75\text{ s}" />, when the car is doing <InlineMath math="6.0\text{ m s}^{-1}" />.</>}
+  categories={["0 s", "0.75 s", "1.5 s", "2.25 s", "3.0 s", "3.75 s"]}
+  series={[
+    { label: "Fades per second", mark: "line", values: [0.0, 0.8, 1.6, 2.4, 3.2, 4.0] },
+    { label: "Blur limit", mark: "line", values: [4.0, 4.0, 4.0, 4.0, 4.0, 4.0] },
+  ]}
+  valueLabel="Fades per second"
+/>
+
+# Fades heard on the way to the blur
+
+Accelerating at <InlineMath math="1.6\text{ m s}^{-2}" />, the car needs <InlineMath math="3.75\text{ s}" /> to reach <InlineMath math="6.0\text{ m s}^{-1}" /> and covers <InlineMath math="\tfrac12\times1.6\times3.75^2=11.25\text{ m}" />. It started sitting in a fade, so **the fades heard after moving off are the ones at <InlineMath math="1.5" />, <InlineMath math="3.0" /> and so on up to <InlineMath math="10.5\text{ m}" />**, seven of them. Using the final speed for the whole <InlineMath math="3.75\text{ s}" /> pretends the car covered <InlineMath math="22.5\text{ m}" /> and gives fifteen.
+
+<BlockMath math="\begin{aligned}
+\lambda&=\frac{3.0\times10^{8}}{1.0\times10^{8}}=3.0\text{ m},\quad d=\frac{\lambda}{2}=1.5\text{ m},\quad v=4\times1.5=6.0\text{ m s}^{-1}\\
+t&=\frac{6.0}{1.6}=3.75\text{ s},\quad s=\tfrac12\times1.6\times3.75^2=11.25\text{ m},\quad \frac{11.25}{1.5}=7.5\ \Rightarrow\ 7
+\end{aligned}" />

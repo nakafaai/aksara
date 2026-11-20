@@ -1,0 +1,46 @@
+Satu alur laser menuju cermin satah menegak dengan sudut tuju <InlineMath math="30°" />. Alur pantulan membuat satu titik cahaya pada dinding yang selari dengan cermin dan <InlineMath math="3.0\text{ m}" /> daripadanya. Titik P pada dinding terletak betul-betul bertentangan dengan titik alur itu mengenai cermin. Laser itu tetap dan tidak menghalang alur pantulan.
+
+<MathVisual
+  title={<>Laser, cermin dan dinding, dilihat dari atas</>}
+  description={<>Dilihat dari atas. Alur laser mengenai cermin tegak di <InlineMath math="O" /> dengan sudut tuju <InlineMath math="30^\circ" />, dan alur yang dipantulkan membentuk satu tompok pada dinding yang selari dengan cermin dan <InlineMath math="3.0\text{ m}" /> daripadanya. Titik <InlineMath math="P" /> pada dinding bertentangan terus dengan <InlineMath math="O" />.</>}
+  labels={{
+    mirror: <>cermin</>,
+    wall: <>dinding</>,
+    o: <><InlineMath math="O" /></>,
+    p: <><InlineMath math="P" /></>,
+    laser: <>laser</>,
+    angle: <><InlineMath math="30^\circ" /></>,
+    spot: <>tompok</>,
+    gap: <><InlineMath math="3.0\text{ m}" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1, max: 4.4 }, y: { min: -2.6, max: 4.3 } },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "mirror", kind: "segment", appearance: "primary", from: { x: 0, y: -1.6 }, to: { x: 0, y: 2.4 } },
+      { id: "wall", kind: "segment", appearance: "reference", from: { x: 3, y: -1.6 }, to: { x: 3, y: 3.8 } },
+      { id: "normal", kind: "segment", appearance: "construction", from: { x: 0, y: 0 }, to: { x: 3, y: 0 } },
+      { id: "o", kind: "point", appearance: "primary", at: { x: 0, y: 0 } },
+      { id: "p", kind: "point", appearance: "reference", at: { x: 3, y: 0 } },
+      { id: "laser", kind: "point", appearance: "secondary", at: { x: 1.8, y: -1.8 * Math.tan(Math.PI / 6) } },
+      { id: "incident", kind: "vector", appearance: "secondary", from: { x: 1.8, y: -1.8 * Math.tan(Math.PI / 6) }, to: { x: 0, y: 0 } },
+      { id: "reflected", kind: "vector", appearance: "secondary", from: { x: 0, y: 0 }, to: { x: 3, y: 3 * Math.tan(Math.PI / 6) } },
+      { id: "spot", kind: "point", appearance: "highlight", at: { x: 3, y: 3 * Math.tan(Math.PI / 6) } },
+      { id: "angle", kind: "arc", appearance: "construction", center: { x: 0, y: 0 }, radius: 0.9, startDegrees: 330, sweepDegrees: 30 },
+      { id: "gap", kind: "segment", appearance: "construction", from: { x: 0, y: -2 }, to: { x: 3, y: -2 } },
+    ],
+    labels: [
+      { key: "mirror", objectId: "mirror", at: { x: 0, y: 2.4 }, placement: "above" },
+      { key: "wall", objectId: "wall", at: { x: 3, y: 3.8 }, placement: "above" },
+      { key: "o", objectId: "o", at: { x: 0, y: 0 }, placement: "left" },
+      { key: "p", objectId: "p", at: { x: 3, y: 0 }, placement: "right" },
+      { key: "laser", objectId: "laser", at: { x: 1.8, y: -1.8 * Math.tan(Math.PI / 6) }, placement: "below-right" },
+      { key: "angle", objectId: "angle", at: { x: 0.9 * Math.cos(Math.PI / 12), y: -0.9 * Math.sin(Math.PI / 12) }, placement: "right" },
+      { key: "spot", objectId: "spot", at: { x: 3, y: 3 * Math.tan(Math.PI / 6) }, placement: "right" },
+      { key: "gap", objectId: "gap", at: { x: 1.5, y: -2 }, placement: "below" },
+    ],
+  }}
+/>
+
+Cermin dipusingkan sebanyak <InlineMath math="5.0°" /> pada paksi menegak yang melalui titik alur itu mengenai cermin, dalam arah yang menambah sudut tuju. Sejauh manakah titik cahaya itu bergerak di sepanjang dinding, melalui sudut berapakah cermin mesti dipusingkan dari kedudukan asalnya, dalam arah yang sama, untuk meletakkan titik cahaya itu <InlineMath math="3.0\text{ m}" /> dari P, dan apabila cermin berputar dengan tetap dalam arah itu pada <InlineMath math="2.0" /> putaran sesaat, berapa lamakah masa untuk titik cahaya itu bergerak dari kedudukan asalnya ke <InlineMath math="3.0\text{ m}" /> dari P, dan berapakah laju puratanya sepanjang jarak itu?

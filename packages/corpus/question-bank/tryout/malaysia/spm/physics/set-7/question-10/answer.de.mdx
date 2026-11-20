@@ -1,0 +1,30 @@
+# Die Pumpe heizt mit
+
+Ein Handy wird beim Laden warm, weil die Energie, die es nutzt, zu Wärme wird. Bei der Pumpe ist es genauso. **Jede Sekunde bekommt das Wasser <InlineMath math="10\text{ J}" /> von der Pumpe, zusätzlich zur Wärme des Heizstabs**. Bei <InlineMath math="22\text{ °C}" /> liefert der Heizstab im Mittel <InlineMath math="30\%\times100=30\text{ W}" />, also verliert das Becken <InlineMath math="30+10=40\text{ W}" /> bei <InlineMath math="4\text{ °C}" /> Unterschied, das sind <InlineMath math="k=10\text{ W}" /> pro Grad. Wer die Pumpe vergisst, bekommt <InlineMath math="k=7{,}5\text{ W}" /> pro Grad, und alle weiteren Antworten verrutschen zu <InlineMath math="75\%" />, <InlineMath math="1{,}3\text{ °C h}^{-1}" /> und <InlineMath math="25\text{ °C}" />.
+
+# Die kalte Nacht
+
+Ein größerer Unterschied zwischen innen und außen lässt die Wärme schneller entweichen, wie bei einem Ballon mit größerem Loch. **Bei <InlineMath math="16\text{ °C}" /> beträgt der Unterschied <InlineMath math="10\text{ °C}" />, der Verlust also <InlineMath math="100\text{ W}" />, und der Heizstab muss <InlineMath math="100-10=90\text{ W}" /> liefern, also <InlineMath math="90\%" /> der Zeit laufen**. Fällt der Heizstab aus, liefert die Pumpe weiter <InlineMath math="10\text{ W}" />, und das Wasser verliert unterm Strich nur <InlineMath math="90\text{ W}" />. Das sind <InlineMath math="90/(50\times4200)" /> Grad pro Sekunde oder <InlineMath math="1{,}5\text{ °C}" /> pro Stunde. Wer hier die Pumpe vergisst, kommt auf <InlineMath math="1{,}7\text{ °C h}^{-1}" />.
+
+<Chart
+  title={<>Wärmeverlust gegen die größte Zufuhr des Beckens</>}
+  description={<>Mit Wasser bei <InlineMath math="26\text{ °C}" /> verliert das Becken <InlineMath math="10\text{ W}" /> für jedes Grad über der Raumtemperatur. In einem Raum mit <InlineMath math="12\text{ °C}" /> würde es <InlineMath math="140\text{ W}" /> verlieren, mehr als die <InlineMath math="110\text{ W}" />, die Heizstab und Pumpe zusammen liefern.</>}
+  bars="apart"
+  categories={["Raum 22 °C", "Raum 16 °C", "Raum 12 °C"]}
+  series={[
+    { label: "Wärmeverlust bei Solltemperatur", mark: "bar", values: [40, 100, 140] },
+    { label: "Heizstab und Pumpe zusammen", mark: "line", values: [110, 110, 110] },
+  ]}
+  valueLabel="Leistung (W)"
+/>
+
+# Die kälteste Nacht
+
+Wenn du so schnell rennst, wie du kannst, pendelt sich dein Tempo bei einem Höchstwert ein. Das Wasser kühlt ebenso ab, bis der Wärmeverlust der größten möglichen Zufuhr gleicht. **Läuft der Heizstab ständig, bekommt das Wasser <InlineMath math="100+10=110\text{ W}" />, und der Verlust erreicht das <InlineMath math="110/10=11\text{ °C}" /> über der Raumtemperatur, also bei <InlineMath math="23\text{ °C}" />**. Nur mit dem Heizstab gerechnet ergibt sich <InlineMath math="22\text{ °C}" />.
+
+<BlockMath math="\begin{aligned}
+k&=\frac{0{,}30\times100+10}{26-22}=10\text{ W °C}^{-1}\\
+P&=10\times(26-16)-10=90\text{ W}\ \Rightarrow\ 90\%\\
+\frac{\Delta\theta}{\Delta t}&=\frac{100-10}{50\times4200}\times3600=1{,}5\text{ °C h}^{-1}\\
+\theta_{\max}&=12+\frac{100+10}{10}=23\text{ °C}
+\end{aligned}" />

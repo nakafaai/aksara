@@ -1,0 +1,30 @@
+# Lilitan mengikut voltan
+
+Transformer membahagikan voltan seperti tangga membahagikan ketinggian, dengan anak tangga yang sama bagi setiap lilitan. **<InlineMath math="240\text{ V}" /> bagi <InlineMath math="2400" /> lilitan ialah <InlineMath math="0.10\text{ V}" /> setiap lilitan, jadi <InlineMath math="16\text{ V}" /> memerlukan <InlineMath math="160" /> lilitan**. Menterbalikkan nisbah itu memberi <InlineMath math="36\,000" /> lilitan, yang akan menaikkan voltan pula.
+
+# Kehilangan yang tidak berubah
+
+Sebuah kedai membayar sewa yang sama pada bulan yang sibuk dan bulan yang lengang. Kehilangan haba transformer seperti sewa itu. **Dengan kedua-dua beban, output ialah <InlineMath math="16\times1.5+6\times3.0=42\text{ W}" /> dan input <InlineMath math="42/0.84=50\text{ W}" />, jadi transformer kehilangan <InlineMath math="8.0\text{ W}" />**, dan ia masih kehilangan <InlineMath math="8.0\text{ W}" /> apabila lampu dimatikan.
+
+<Chart
+  title={<>Ke mana kuasa bekalan utama pergi</>}
+  description={<>Kehilangan kekal <InlineMath math="8.0\text{ W}" /> dalam kedua-dua keadaan, jadi apabila lampu dimatikan ia menjadi bahagian yang lebih besar daripada input yang lebih kecil.</>}
+  bars="apart"
+  categories={["Kereta api dan lampu", "Kereta api sahaja"]}
+  series={[
+    { label: "Kuasa daripada bekalan utama", mark: "bar", values: [50, 32] },
+    { label: "Kuasa kepada beban", mark: "bar", values: [42, 24] },
+    { label: "Kuasa hilang sebagai haba", mark: "bar", values: [8, 8] },
+  ]}
+  valueLabel="Kuasa (W)"
+/>
+
+# Lampu dimatikan
+
+Apabila tetamu yang datang ke majlis lebih sedikit, sewa dewan tetap sama, jadi lebih banyak wang pergi kepada dewan. **Bekalan utama kini memberi <InlineMath math="24+8.0=32\text{ W}" />, jadi <InlineMath math="I_p=32/240=0.13\text{ A}" />, dan kecekapan jatuh kepada <InlineMath math="24/32=75\%" />**. Mengekalkan <InlineMath math="84\%" /> memberi <InlineMath math="0.12\text{ A}" />, seolah-olah kehilangan mengecil bersama beban. Membiarkan input pada <InlineMath math="50\text{ W}" /> memberi <InlineMath math="0.21\text{ A}" /> dan <InlineMath math="48\%" />, seolah-olah lampu yang padam masih menggunakan kuasa.
+
+<BlockMath math="\begin{aligned}
+N_s&=2400\times\frac{16}{240}=160\\
+P_p&=\frac{16\times1.5+6\times3.0}{0.84}=50\text{ W},\quad P_L=50-42=8.0\text{ W}\\
+I_p&=\frac{24+8.0}{240}=0.13\text{ A},\quad \eta=\frac{24}{32}=75\%
+\end{aligned}" />

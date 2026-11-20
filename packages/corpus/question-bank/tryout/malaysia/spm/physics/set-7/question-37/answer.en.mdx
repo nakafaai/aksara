@@ -1,0 +1,27 @@
+# What the circuit wants
+
+Think of the pump as a gardener who waters when the soil is dry and it is not raining, or whenever you press the button, but never from an empty tank. **That is <InlineMath math="P=(S\cdot\overline{R}+M)\cdot\overline{E}" />**. With <InlineMath math="E=1" /> nothing runs. With <InlineMath math="E=0" /> the pump runs for all four combinations with <InlineMath math="M=1" /> and for one more, dry soil with no rain, so <InlineMath math="5" /> of the <InlineMath math="16" />. Leaving <InlineMath math="E" /> out of the count doubles it to <InlineMath math="10" />.
+
+# The tank decides for itself
+
+A torch whose battery lasts three hours goes dark after three hours of use, not after three hours on the clock. **The pump wants to run in hours <InlineMath math="1" />, <InlineMath math="3" />, <InlineMath math="4" />, <InlineMath math="5" />, <InlineMath math="6" />, <InlineMath math="7" /> and <InlineMath math="8" />, but hours <InlineMath math="1" />, <InlineMath math="3" /> and <InlineMath math="4" /> use up the tank, so hours <InlineMath math="5" /> and <InlineMath math="6" /> start with <InlineMath math="E=1" />**. The refill brings hours <InlineMath math="7" /> and <InlineMath math="8" /> back, so the pump runs for <InlineMath math="5" /> hours. Ignoring the tank gives <InlineMath math="7" />.
+
+<Chart
+  title={<>Water left in the tank at the start of each hour</>}
+  description={<>Measured in hours of pumping. The working pump empties the tank by the start of hour <InlineMath math="5" />, the faulty one by the start of hour <InlineMath math="6" />.</>}
+  categories={["Hour 1", "Hour 2", "Hour 3", "Hour 4", "Hour 5", "Hour 6", "Hour 7", "Hour 8"]}
+  series={[
+    { label: "Working circuit", mark: "line", values: [3, 2, 2, 1, 0, 0, 3, 2] },
+    { label: "Without the NOT gate on R", mark: "line", values: [3, 3, 2, 1, 1, 0, 3, 2] },
+  ]}
+  valueLabel="Water left (hours of pumping)"
+/>
+
+# Without the NOT gate
+
+Now the gardener waters when the soil is dry and it is raining, the wrong way round. **Hour <InlineMath math="1" /> stops, hour <InlineMath math="2" /> starts, and hours <InlineMath math="3" /> and <InlineMath math="5" /> still run on <InlineMath math="M" />, so the tank is empty after hour <InlineMath math="5" />. After the refill only hour <InlineMath math="7" /> runs, so the faulty pump runs for <InlineMath math="4" /> hours**. Copying the empty hours of the working pump, <InlineMath math="5" /> and <InlineMath math="6" />, wrongly stops hour <InlineMath math="5" /> and gives <InlineMath math="3" />.
+
+<BlockMath math="\begin{aligned}
+P&=(S\cdot\overline{R}+M)\cdot\overline{E}\\
+P'&=(S\cdot R+M)\cdot\overline{E}
+\end{aligned}" />

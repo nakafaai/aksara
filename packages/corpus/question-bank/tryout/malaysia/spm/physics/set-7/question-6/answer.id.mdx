@@ -1,0 +1,41 @@
+# Satu celah sebenarnya dua
+
+Bayangkan batu pijakan untuk anak kecil yang langkahnya bertambah panjang dengan jumlah yang sama setiap kali. Kalau satu batu hilang, satu lompatan terlihat terlalu jauh. Celah antara bayangan yang terlihat adalah <InlineMath math="19{,}6" />, <InlineMath math="68{,}6" />, <InlineMath math="49{,}0" />, dan <InlineMath math="58{,}8\text{ cm}" />. Dua yang terakhir berselisih <InlineMath math="9{,}8\text{ cm}" />, jadi jatuh dengan percepatan tetap membuat tiap celah <InlineMath math="9{,}8\text{ cm}" /> lebih panjang dari sebelumnya. **Celah <InlineMath math="68{,}6\text{ cm}" /> itu mencakup dua kilatan, <InlineMath math="29{,}4+39{,}2=68{,}6\text{ cm}" />**. Daftar lengkapnya <InlineMath math="19{,}6" />, <InlineMath math="29{,}4" />, <InlineMath math="39{,}2" />, <InlineMath math="49{,}0" />, dan <InlineMath math="58{,}8\text{ cm}" />, dan pertambahan <InlineMath math="\Delta s=aT^2" /> memberi <InlineMath math="a=0{,}098/0{,}10^2=9{,}8\text{ m s}^{-2}" />.
+
+# Di mana bola yang tersembunyi
+
+Bagian yang pendek selalu datang lebih dulu, karena bola masih makin cepat. **Pada kilatan yang tersembunyi, bola berada <InlineMath math="19{,}6+29{,}4=49{,}0\text{ cm}" /> di bawah bayangan <InlineMath math="1" />**. Menaruh bagian <InlineMath math="39{,}2\text{ cm}" /> yang lebih panjang lebih dulu memberi <InlineMath math="58{,}8" />, sekitar <InlineMath math="59\text{ cm}" />, dan membagi dua celah panjang itu memberi <InlineMath math="54\text{ cm}" />, seolah-olah bola bergerak dengan kelajuan tetap di sana.
+
+<Chart
+  title={<>Posisi bola pada tiap kilatan</>}
+  description={<>Jarak bola di bawah bayangan <InlineMath math="1" /> pada tiap kilatan. Pada kilatan ketiga bola ada di balik penjepit, <InlineMath math="49{,}0\text{ cm}" /> ke bawah, jadi foto tidak punya bayangan di sana.</>}
+  categories={["Kilatan 1", "Kilatan 2", "Kilatan 3", "Kilatan 4", "Kilatan 5", "Kilatan 6"]}
+  series={[
+    { label: "Posisi bola", mark: "line", values: [0, 19.6, 49.0, 88.2, 137.2, 196.0] },
+    { label: "Bayangan dalam foto", mark: "line", values: [0, 19.6, null, 88.2, 137.2, 196.0] },
+  ]}
+  valueLabel="Jarak di bawah bayangan pertama (cm)"
+/>
+
+# Mundur ke saat bola dilepas
+
+Bayangkan mobil yang melewati dua tiang lampu. Kelajuan rata-ratanya di antara kedua tiang adalah kelajuannya di tengah jalan. **Setengah kilatan setelah bayangan <InlineMath math="1" /> kelajuan bola <InlineMath math="0{,}196/0{,}10=1{,}96\text{ m s}^{-1}" />, jadi tepat di bayangan <InlineMath math="1" /> kelajuannya <InlineMath math="1{,}96-9{,}8\times0{,}05=1{,}47\text{ m s}^{-1}" />**. Dari diam, dengan tambahan <InlineMath math="9{,}8\text{ m s}^{-1}" /> tiap detik, bola butuh <InlineMath math="1{,}47/9{,}8=0{,}15\text{ s}" />. Menaruh kelajuan rata-rata <InlineMath math="1{,}96\text{ m s}^{-1}" /> di bayangan <InlineMath math="1" /> memberi <InlineMath math="0{,}20\text{ s}" />, terlambat setengah kilatan.
+
+<StrobePhotoMotionLab
+  shot="drop"
+  title={<>Kilatan yang sama, dimulai dari pelepasan</>}
+  description={<>Tiap bayangan adalah satu kilatan, berselang <InlineMath math="0{,}10\text{ s}" />, dihitung dari saat bola dilepas. Pada foto di soal, lampu pertama berkilat <InlineMath math="0{,}15\text{ s}" /> setelah bola dilepas, dan kilatan ketiga mendapati bola di balik penjepit.</>}
+  labels={{
+    airTime: <>Waktu di udara</>,
+    height: <>Tinggi awal</>,
+    interval: <>Selang antarkilatan</>,
+    outcome: <>Kelajuan saat menyentuh lantai</>,
+    viewLabel: "Foto stroboskop yang terbentuk kilatan demi kilatan",
+  }}
+/>
+
+<BlockMath math="\begin{aligned}
+\Delta s&=39{,}2-29{,}4=9{,}8\text{ cm},\quad a=\frac{0{,}098}{0{,}10^2}=9{,}8\text{ m s}^{-2}\\
+s_3&=19{,}6+29{,}4=49{,}0\text{ cm}\\
+v_1&=\frac{0{,}196}{0{,}10}-9{,}8\times0{,}05=1{,}47\text{ m s}^{-1},\quad t_1=\frac{1{,}47}{9{,}8}=0{,}15\text{ s}
+\end{aligned}" />

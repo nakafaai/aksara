@@ -1,0 +1,41 @@
+# Satu jurang sebenarnya dua
+
+Bayangkan batu loncatan untuk seorang budak yang langkahnya bertambah panjang dengan jumlah yang sama setiap kali. Jika satu batu hilang, satu lompatan kelihatan terlalu jauh. Jurang antara imej yang kelihatan ialah <InlineMath math="19.6" />, <InlineMath math="68.6" />, <InlineMath math="49.0" /> dan <InlineMath math="58.8\text{ cm}" />. Dua yang terakhir berbeza <InlineMath math="9.8\text{ cm}" />, jadi jatuh dengan pecutan seragam memanjangkan setiap jurang sebanyak <InlineMath math="9.8\text{ cm}" />. **Jurang <InlineMath math="68.6\text{ cm}" /> itu meliputi dua kelipan, <InlineMath math="29.4+39.2=68.6\text{ cm}" />**. Senarai penuhnya ialah <InlineMath math="19.6" />, <InlineMath math="29.4" />, <InlineMath math="39.2" />, <InlineMath math="49.0" /> dan <InlineMath math="58.8\text{ cm}" />, dan pertambahan <InlineMath math="\Delta s=aT^2" /> memberi <InlineMath math="a=0.098/0.10^2=9.8\text{ m s}^{-2}" />.
+
+# Di mana bola yang tersorok itu
+
+Bahagian yang pendek sentiasa datang dahulu, kerana bola itu masih semakin laju. **Pada kelipan yang tersorok, bola berada <InlineMath math="19.6+29.4=49.0\text{ cm}" /> di bawah imej <InlineMath math="1" />**. Meletakkan bahagian <InlineMath math="39.2\text{ cm}" /> yang lebih panjang dahulu memberi <InlineMath math="58.8" />, iaitu kira-kira <InlineMath math="59\text{ cm}" />, dan membahagi dua jurang panjang itu memberi <InlineMath math="54\text{ cm}" />, seolah-olah bola bergerak dengan laju seragam di situ.
+
+<Chart
+  title={<>Kedudukan bola pada setiap kelipan</>}
+  description={<>Jarak bola di bawah imej <InlineMath math="1" /> pada setiap kelipan. Pada kelipan ketiga bola berada di belakang pengapit, <InlineMath math="49.0\text{ cm}" /> ke bawah, jadi foto tidak mempunyai imej di situ.</>}
+  categories={["Kelipan 1", "Kelipan 2", "Kelipan 3", "Kelipan 4", "Kelipan 5", "Kelipan 6"]}
+  series={[
+    { label: "Kedudukan bola", mark: "line", values: [0, 19.6, 49.0, 88.2, 137.2, 196.0] },
+    { label: "Imej dalam foto", mark: "line", values: [0, 19.6, null, 88.2, 137.2, 196.0] },
+  ]}
+  valueLabel="Jarak di bawah imej pertama (cm)"
+/>
+
+# Kembali ke saat bola dilepaskan
+
+Fikirkan sebuah kereta yang melalui dua tiang lampu. Laju puratanya antara dua tiang itu ialah lajunya di pertengahan jalan. **Setengah kelipan selepas imej <InlineMath math="1" /> laju bola ialah <InlineMath math="0.196/0.10=1.96\text{ m s}^{-1}" />, jadi tepat pada imej <InlineMath math="1" /> lajunya <InlineMath math="1.96-9.8\times0.05=1.47\text{ m s}^{-1}" />**. Dari pegun, dengan tambahan <InlineMath math="9.8\text{ m s}^{-1}" /> setiap saat, bola memerlukan <InlineMath math="1.47/9.8=0.15\text{ s}" />. Meletakkan laju purata <InlineMath math="1.96\text{ m s}^{-1}" /> pada imej <InlineMath math="1" /> memberi <InlineMath math="0.20\text{ s}" />, lewat setengah kelipan.
+
+<StrobePhotoMotionLab
+  shot="drop"
+  title={<>Kelipan yang sama, bermula dari pelepasan</>}
+  description={<>Setiap imej ialah satu kelipan, <InlineMath math="0.10\text{ s}" /> selang, dikira dari saat bola dilepaskan. Dalam foto pada soalan, lampu mula berkelip <InlineMath math="0.15\text{ s}" /> selepas bola dilepaskan, dan pada kelipan ketiga bola berada di belakang pengapit.</>}
+  labels={{
+    airTime: <>Masa di udara</>,
+    height: <>Tinggi awal</>,
+    interval: <>Masa antara kilatan</>,
+    outcome: <>Laju ketika mencecah lantai</>,
+    viewLabel: "Foto strob yang terbina kilatan demi kilatan",
+  }}
+/>
+
+<BlockMath math="\begin{aligned}
+\Delta s&=39.2-29.4=9.8\text{ cm},\quad a=\frac{0.098}{0.10^2}=9.8\text{ m s}^{-2}\\
+s_3&=19.6+29.4=49.0\text{ cm}\\
+v_1&=\frac{0.196}{0.10}-9.8\times0.05=1.47\text{ m s}^{-1},\quad t_1=\frac{1.47}{9.8}=0.15\text{ s}
+\end{aligned}" />

@@ -1,0 +1,28 @@
+# Cahaya mengenai panel secara miring
+
+Sorotkan senter tegak lurus ke selembar kertas, lalu miringkan kertasnya. Berkas cahaya yang sama kini tersebar di kertas yang lebih luas, jadi tiap bagian kebagian cahaya lebih sedikit. **Cahaya yang datang dengan sudut <InlineMath math="37^\circ" /> terhadap garis normal mengenai panel seolah luasnya hanya <InlineMath math="1{,}2\cos37^\circ=0{,}96\text{ m}^2" />**, jadi panel menangkap <InlineMath math="800\times0{,}96=767\text{ W}" /> cahaya dan menghasilkan <InlineMath math="0{,}18\times767=138\text{ W}" />. Melupakan kemiringan itu menghasilkan <InlineMath math="173\text{ W}" />, daya panel yang menghadap lurus ke Matahari.
+
+# Mengisi setengah bagian atas baterai
+
+Mengisi baterai ini seperti mengisi ember bocor. Hanya sebagian dari yang kamu tuang yang tertinggal. Baterai itu menampung <InlineMath math="12\text{ V}\times100\text{ Ah}=1200\text{ Wh}" /> dan mulai dari setengah penuh, jadi butuh <InlineMath math="600\text{ Wh}" /> lagi untuk penuh. **Hanya tiga perempat daya panel yang tersimpan, <InlineMath math="0{,}75\times138=104\text{ W}" />, jadi waktu sampai penuh <InlineMath math="600/104=5{,}8\text{ jam}" />**, sedikit sebelum <InlineMath math="6{,}0\text{ jam}" /> sinar matahari berakhir. Memakai seluruh <InlineMath math="138\text{ W}" /> menghasilkan <InlineMath math="4{,}3\text{ jam}" />, seolah tidak ada yang bocor saat masuk.
+
+# Energi yang boleh dipakai malam itu
+
+Bayangkan ponsel yang tidak boleh dibiarkan turun di bawah setengah. Hanya setengah bagian atas muatannya yang boleh kamu pakai. **Kulkas hanya boleh memakai <InlineMath math="600\text{ Wh}" /> bagian atas, yang cukup untuk <InlineMath math="600/60=10\text{ jam}" />**. Sinar matahari <InlineMath math="0{,}2\text{ jam}" /> terakhir mendapati baterai sudah penuh, jadi energinya terbuang. Menghitung seluruh <InlineMath math="6{,}0\text{ jam}" /> pengisian sebagai energi tersimpan menghasilkan <InlineMath math="621\text{ Wh}" /> dan <InlineMath math="10{,}4\text{ jam}" />, lebih dari yang bisa ditampung baterai penuh.
+
+<Chart
+  title={<>Muatan baterai sepanjang siang dan malam</>}
+  description={<>Pengisian membuat baterai penuh pada <InlineMath math="5{,}8\text{ jam}" />. Sejak matahari terbenam pada <InlineMath math="6{,}0\text{ jam}" />, kulkas memakai <InlineMath math="5\%" /> per jam sampai muatannya kembali setengah.</>}
+  categories={["0 jam", "2 jam", "4 jam", "5,8 jam", "6 jam", "10 jam", "14 jam", "16 jam"]}
+  series={[
+    { label: "Muatan baterai", mark: "line", values: [50, 67.3, 84.5, 100, 100, 80, 60, 50] },
+    { label: "Batas terendah yang diizinkan", mark: "line", values: [50, 50, 50, 50, 50, 50, 50, 50] },
+  ]}
+  valueLabel="Muatan (% dari penuh)"
+/>
+
+<BlockMath math="\begin{aligned}
+P&=0{,}18\times800\times1{,}2\cos37^\circ=138\text{ W}\\
+t&=\frac{600\text{ Wh}}{0{,}75\times138\text{ W}}=5{,}8\text{ jam}<6{,}0\text{ jam}\\
+t'&=\frac{600\text{ Wh}}{60\text{ W}}=10\text{ jam}
+\end{aligned}" />

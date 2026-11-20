@@ -1,0 +1,43 @@
+# A finger is just another resistor
+
+Your skin lets a little current through, and more when it is wet. So the finger is simply **one more resistor in the base path**, in series with the <InlineMath math="22\text{ k}\Omega" /> one. The base-emitter junction keeps <InlineMath math="0.70\text{ V}" /> for itself, so <InlineMath math="8.3\text{ V}" /> is left to push current through the two resistors.
+
+<BlockMath math="\begin{aligned}
+I_B&=\frac{9.0-0.70}{(50+22)\times10^{3}}=1.15\times10^{-4}\text{ A},\qquad 200\,I_B=23\text{ mA}
+\end{aligned}" />
+
+Leaving out the <InlineMath math="0.70\text{ V}" /> makes every base current a little too big.
+
+# The LED side sets a ceiling
+
+A transistor multiplies the base current, but only up to what the collector side can carry. It is like opening a tap all the way: once it is wide open, **the pipe decides how much water flows**, not the tap. Fully on, the transistor has no voltage across it, so the <InlineMath math="350\,\Omega" /> resistor gets <InlineMath math="9.0-2.0=7.0\text{ V}" />.
+
+<BlockMath math="\begin{aligned}
+I_{C,\max}&=\frac{9.0-2.0}{350}=0.020\text{ A}=20\text{ mA}
+\end{aligned}" />
+
+So the wet finger gives <InlineMath math="20\text{ mA}" />. Writing <InlineMath math="23\text{ mA}" /> asks for more current than the collector circuit can ever carry.
+
+With the dry finger the base current is tiny, <InlineMath math="8.3\text{ V}\div2.022\text{ M}\Omega=4.1\ \mu\text{A}" />. The collector gets <InlineMath math="200" /> times that, <InlineMath math="0.82\text{ mA}" />, and the LED only glows dimly. Without the <InlineMath math="0.70\text{ V}" /> you would get <InlineMath math="0.89\text{ mA}" />.
+
+<Chart
+  title={<>Collector current against finger resistance</>}
+  description={<>Up to a finger of <InlineMath math="61\text{ k}\Omega" /> the transistor is fully on and the current sits at the <InlineMath math="20\text{ mA}" /> ceiling. Drier fingers let it fall away.</>}
+  categories={["0 kΩ", "20 kΩ", "40 kΩ", "61 kΩ", "80 kΩ", "100 kΩ", "150 kΩ", "200 kΩ"]}
+  series={[
+    { label: "Collector current", mark: "line", values: [20.0, 20.0, 20.0, 20.0, 16.27, 13.61, 9.65, 7.48] },
+    { label: "Without the ceiling", mark: "line", values: [75.45, 39.52, 26.77, 20.0, 16.27, 13.61, 9.65, 7.48] },
+  ]}
+  valueLabel="Collector current (mA)"
+/>
+
+# The driest finger that still works
+
+Full brightness needs the collector at <InlineMath math="20\text{ mA}" />, so the base needs <InlineMath math="200" /> times less. That fixes the **total** resistance in the base path, and the finger only gets what is left after the fixed resistor.
+
+<BlockMath math="\begin{aligned}
+I_B&=\frac{20\text{ mA}}{200}=100\ \mu\text{A},\qquad R=\frac{8.3}{100\times10^{-6}}=83\text{ k}\Omega\\
+R_f&=83-22=61\text{ k}\Omega
+\end{aligned}" />
+
+Stopping at <InlineMath math="83\text{ k}\Omega" /> gives the finger the base resistor's share as well.
