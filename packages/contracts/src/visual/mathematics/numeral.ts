@@ -102,8 +102,11 @@ function binaryLampLab<E>(rich: RichSlot<E>) {
   );
 }
 
-/** The places the bundling desk fills: loose sticks, bundles, boxes and trays. */
-const BUNDLE_PLACES = 4;
+/**
+ * How many trays the bundling desk has room for. A tray holds b boxes, so the
+ * highest place, b^3, shows a digit of at most this.
+ */
+const DESK_TRAYS = 1;
 
 /** The most sticks one heap on the bundling desk holds. */
 const HEAP_STICKS = 300;
@@ -121,19 +124,22 @@ const BundleStartSchema = Schema.Struct({
   ),
 });
 
-/** Whether each base is offered once and the first base's four places hold the count. */
+/**
+ * Whether each base is offered once and the first base's desk holds the count:
+ * loose sticks, bundles and boxes below b each, and at most one full tray.
+ */
 function fitsDesk({ bases, value }: typeof BundleStartSchema.Type) {
   const [first] = bases;
   return (
     Arr.dedupe(bases).length === bases.length &&
-    value <= first ** BUNDLE_PLACES - 1
+    value <= (DESK_TRAYS + 1) * first ** 3 - 1
   );
 }
 
 /**
  * Props of `BundleCountLab`: a desk where a heap of `value` sticks is tied
  * into bundles of b, the bundles boxed b to a box and the boxes set b to a
- * tray, one division by b per round, in the base the learner picks from
+ * tray (one tray fits the desk), one division by b per round, in the base the learner picks from
  * `bases`. With `showReadout`, the slider shows the count, each place shows
  * its digit, a caption reads each division, and the footer reads the
  * division ladder and the numeral, so it is answer state.
@@ -154,7 +160,7 @@ function bundleCountLab<E>(rich: RichSlot<E>) {
     }).check(
       Schema.makeFilter(fitsDesk, {
         message:
-          "Expected each base once and a count the first base's four places can hold.",
+          "Expected each base once and a count the first base's desk holds with one tray.",
       })
     ),
     answerAt(["showReadout"])

@@ -117,7 +117,7 @@ describe("BundleCountLab", () => {
     expect(decodeStrict(numeral.BundleCountLab.props, lab)).toEqual(lab);
   });
 
-  it("refuses a base beyond nine, a repeated base, and a count too large", () => {
+  it("refuses a base beyond nine, a repeated base, and a count the desk cannot hold", () => {
     expect(
       failsStrict(numeral.BundleCountLab.props, { ...lab, bases: [10] })
     ).toBe(true);
@@ -130,6 +130,20 @@ describe("BundleCountLab", () => {
     expect(
       failsStrict(numeral.BundleCountLab.props, { ...lab, value: 301 })
     ).toBe(true);
+    expect(
+      failsStrict(numeral.BundleCountLab.props, {
+        ...lab,
+        bases: [3],
+        value: 54,
+      })
+    ).toBe(true);
+    expect(
+      decodeStrict(numeral.BundleCountLab.props, {
+        ...lab,
+        bases: [3],
+        value: 53,
+      })
+    ).toMatchObject({ value: 53 });
   });
 
   it("holds the readout as answer state", () => {
