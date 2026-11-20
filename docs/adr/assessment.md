@@ -65,10 +65,10 @@ keeps its learners).
 
 ### Interactions
 
-There are twelve kinds, aligned with QTI 3.0.1: `choice`, `matrix`, `match`,
+There are thirteen kinds, aligned with QTI 3.0.1: `choice`, `matrix`, `match`,
 `order`, `inlineChoice`, `textEntry`, `numericEntry`, `mathEntry`, `hotspot`,
-`gapMatch`, `graphPoint`, and `extendedText`. Upload and audio are planned and
-are not part of this decision.
+`gapMatch`, `graphPoint`, `extendedText`, and `sketch`. Upload and audio are
+planned and are not part of this decision.
 
 - Every interaction has an identifier and a label for screen readers, and none
   holds an answer key.
@@ -83,6 +83,16 @@ are not part of this decision.
   package: Nakafa ADR 0031 decides them in section 3 and gives answer evaluation
   to its `response` module in section 9. This package has no engine and tests
   none.
+- A `sketch` is a graph the learner draws on a plane that opens on a frame and
+  pans and zooms past it, with the points and asymptotes the item lets them
+  place. Its key lists the features the graph must show (zeros that cross or
+  touch, the y-intercept, turning points, asymptotes, where it rises or falls,
+  and how it ends), each as exact decimals and each a criterion of the item's
+  rubric with the feedback the learner reads when it is earned or missed. A
+  criterion may require earlier ones, so the shape is earned before any of its
+  points. Nakafa reads the features of the drawn strokes exactly, in the
+  plane's units with the key's tolerance for each kind of feature, and never
+  from pixels.
 - A field may sit inside a line of text only when its kind allows it: an inline
   choice, a text entry, a numeric entry, or a math entry. A gap match sits in the
   text once for each of its gaps. Every other kind sits as a block of its own.
@@ -102,7 +112,8 @@ The key counts the parts of every other kind, so the check of those belongs to
 the key-fit check below. The exam profile sets a default rule for every
 interaction kind, and an item may override it for one interaction. A default is
 `allOrNothing`, `perPart`, or `wrongParts`, never a rubric, so an extended text
-always carries its own. An exam scores its outcomes with one strategy: `irt`,
+and a sketch always carry their own (`takesRubric`). Each criterion of a
+sketch's rubric is missed or earned: two levels, the lower worth no points. An exam scores its outcomes with one strategy: `irt`,
 `raw`, `penalized` (whole marks for a correct, a wrong, and a blank answer), or
 `composite` (a formula written out in every language).
 
@@ -145,7 +156,8 @@ interaction.
   is not part of the task: the structure check of a family compares the sets, and
   the hash keeps the exact listing. A joint item names at least two of its
   interactions and sets no scoring override, so one rule scores it. An extended
-  text cannot join, because it needs a rubric override and a joint item has none.
+  text or a sketch cannot join, because each needs a rubric override and a joint
+  item has none.
   Its ceiling is the points of its first level (`jointCeiling`), not the sum of
   its interactions.
 - A version is immutable once published: a change is a new version. Its `hash`
@@ -253,6 +265,7 @@ so every attribute name below needs an XSD check before any QTI XML is written.
 | `gapMatch`      | `qti-gap-match-interaction` with `qti-gap-text` (`match-max`) and `qti-gap`                                                                   |
 | `graphPoint`    | `qti-select-point-interaction` for points, `qti-portable-custom-interaction` for lines                                                        |
 | `extendedText`  | `qti-extended-text-interaction` (`expected-lines`); QTI leaves its scoring to a person                                                        |
+| `sketch`        | `qti-portable-custom-interaction`, because QTI has no interaction for a drawn graph                                                           |
 | `allOrNothing`  | the `match_correct` response processing template                                                                                              |
 | `perPart`       | the `map_response` template with a `qti-mapping` (`qti-map-entry`, `default-value`, `lower-bound`)                                            |
 | `wrongParts`    | no standard template holds a table over the wrong parts: general response processing (Best Practices and Implementation Guide, section 3.4.2) |
