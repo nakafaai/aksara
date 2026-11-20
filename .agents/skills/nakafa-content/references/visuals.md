@@ -85,11 +85,11 @@ publishes once Nakafa's production renderer draws it.
   without changing the mathematical meaning. Confirm whether the owning
   component preserves the authored pose or explicitly fits finite content.
   The owning card composes its header, an optional toolbar, the scene body,
-  an actions band, and a footer of facts, separated by full-width lines. The
+  an actions band, and its footer, separated by full-width lines. The
   actions band holds the shared scene actions (Play, Reset, Full screen, and
-  Grid on a coordinate scene); the footer reads out what the scene shows as
-  labels and values in even columns, never as badges or coloured text. Do not
-  add a gizmo or overlay controls on the mathematical subject.
+  Grid on a coordinate scene). Do not add a gizmo or overlay controls on the
+  mathematical subject. The footer is written, never generated: see
+  [the card footer](#the-card-footer).
   Use the established EvilCharts components, tables, and diagrams when their
   axes, values, comparisons, or structure explain real data more clearly. The
   chart library's own renderer is a data display, not a hand-drawn
@@ -109,16 +109,29 @@ publishes once Nakafa's production renderer draws it.
   Verify eight vertices, twelve straight edges, four edges of each
   declared dimension, and a camera view that still reads as a cuboid after
   rotation.
-- Use the shared `CoordinateSystem` grid as a quiet spatial reference. Authored
-  frames have no grid override. Their ranges bound geometry and clipping,
-  independently of the camera's visible focus. Keep the subject dominant.
+- The coordinate world of a `MathVisual` has no edge. The X, Y and Z axes run
+  through the true origin and on past every view, the grid fills the whole
+  world in mathematical units and re-steps as the learner zooms, and every
+  unbounded object, a `line`, `ray`, `region` or `implicit` equation,
+  continues past the frame. The `frame` is only the region the first view
+  shows: frame what the figure teaches, never where it stops. A function
+  without a `domain` spans the frame along its input axis. Never describe a
+  figure as drawn up to a value ("drawn up to x = 4"): draw open regions and
+  lines whole, and say what they show. Authored frames have no grid override.
+  Keep the subject dominant.
 - Reserve red `#dc2626`, green `#16a34a`, and blue `#2563eb` for the Cartesian
   X, Y, and Z axes respectively. Use other colors for mathematical subject
   objects, and keep each label the same color as its owning object. Keep
   authored color descriptions consistent with the rendered scene.
 - Every `MathVisual` label names its owning object's `objectId`. Its color comes
   from that object's appearance. Never duplicate a label color or infer its
-  owner from visual proximity.
+  owner from visual proximity. A label anchored in the scene shows at most 32
+  visible characters (letters, plus the glyphs of its math), so it names its
+  object without covering the figure; the contract refuses a longer one.
+  Readout and slider labels sit outside the scene and may say more. Shorten a
+  long label to the name the figure needs, `sea phages: nutrients recycled`
+  rather than `phages, sea bacteria: nutrients recycled`, and leave the story
+  to the card's words.
 - Place labels in open regions clear of every subject line, including their
   owning line. An anchor on the correct object does not prove that the rendered
   label is clear. Check the full label bounds, especially equations, against
@@ -130,6 +143,34 @@ publishes once Nakafa's production renderer draws it.
 - Render every locale sibling that changes learner-facing labels or prose around
   a visual. Longer localized text must not clip, overlap, obscure data, or
   detach from the representation it explains.
+
+## The card footer
+
+Every visual card ends with a footer its author writes for that one visual:
+`footer={<>...</>}` beside `title` and `description`, rich text with
+`<InlineMath />` where it holds math, at most 90 visible characters, so it
+reads in one or two lines on a phone. It says what this visual shows and what
+to notice in it, in the voice of the lesson. The footer is never generated
+and never a template: two figures never share a footer sentence, and a
+revised figure gets a footer that names what changed. Live readouts may sit
+beside it; the written sentence is the part every card keeps.
+
+Good footers name a feature of this figure and what it means:
+
+- `Both edges are dashed: the corner (2, 1) is not a solution.`
+- `Follow the pink line: it keeps its height after the water cools.`
+- `Each dot is one way to spend the budget; the shading keeps the cheaper ones.`
+
+Bad footers say nothing about this figure, repeat its header, or give away an
+answer:
+
+- `This graph shows the function.` It names no feature of the figure.
+- `A quadratic function and its vertex.` It repeats the title.
+- `The answer is the shaded point (15, 15).` In a prompt, a reading or an
+  option a footer tells how to read the figure, never its result.
+
+Write the footer in every locale as its own sentence in that language, with
+the same plain-number and math rules as the header.
 
 ## Math in visual text
 
@@ -206,7 +247,7 @@ graph teaches the wrong mathematics on an education platform.
   | plane | `parametric` | `x`, `y` in `t`, `parameter: { min, max }` | a curve traced by `t` |
   | plane | `polar` | `radius` in `theta`, `angle: { min, max }` | `r = f(theta)` |
   | plane | `implicit` | `equation`, such as `"x^2 + y^2 = 4"` | every point where it holds, such as a conic |
-  | plane | `region` | `inequalities`, such as `["x + y <= 10", "y > 0"]` | the shaded part where all hold; `<=` and `>=` edges solid, `<` and `>` dashed |
+  | plane | `region` | `inequalities`, such as `["x + y <= 10", "y > 0"]` | the shaded part where all hold, past the frame; `<=` and `>=` edges solid, `<` and `>` dashed |
   | space | `function` | `formula` in `x` and `y`, optional `domain: { x, y }` | the surface `z = f(x, y)` |
   | space | `parametric` | `x`, `y`, `z` in `t`, `parameter` | a space curve, such as a helix |
   | space | `surface` | `x`, `y`, `z` in `u` and `v`, `u`, `v` | a parametric surface, such as a sphere or torus |
@@ -228,6 +269,18 @@ graph teaches the wrong mathematics on an education platform.
   picture, each beside the rich label its key names. Labels, readouts, and
   slider labels read only the declared slider names. Exact points, segments,
   and polygons keep constant coordinates.
+- **A strict boundary is dashed everywhere it is drawn.** A `region` draws
+  each `<` or `>` edge dashed by itself. A `line`, `ray`, `segment` or
+  straight `function` that runs along such an edge, to name it or carry its
+  label, takes `stroke: "dashed"`: its points are not solutions, and the
+  contract refuses it solid. Lines, rays, segments, polylines and graphs take
+  the same field wherever a dashed stroke means "not included"; leave it out
+  for a solid stroke.
+
+  ```tsx
+  { id: "budget", kind: "line", appearance: "secondary", stroke: "dashed", through: [{ x: 5, y: 0 }, { x: 0, y: 2 }] }
+  ```
+
 - **A smooth function renders smooth.** Draw a smooth curve as its formula
   object, which the renderer samples densely and only inside the frame, so no
   corner shows at the largest card size, including full screen.
@@ -328,8 +381,8 @@ designed: it carries a teaching job and never decorates.
   molecules, and machines must match their cited references in parts,
   proportions where stated, labels, and motion.
 - Every visual renders inside its renderer-owned card: a header with a title
-  and description, the scene with its actions, and a footer of facts that reads
-  out what the scene shows.
+  and description, the scene with its actions, and the footer its author
+  wrote for it ([the card footer](#the-card-footer)).
 - The still frame teaches on its own, because a learner may pause the motion
   or read the page with reduced motion.
 - Be creative inside these limits. A good visual surprises the learner with a

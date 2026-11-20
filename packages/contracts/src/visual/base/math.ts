@@ -1,4 +1,6 @@
-import { Array as Arr, Predicate, Record as Rec, Schema } from "effect";
+import { Array as Arr, Option, Predicate, Record as Rec, Schema } from "effect";
+
+import { RichTextSchema } from "#contracts/assessment/inline";
 
 import {
   MathAppearanceSchema,
@@ -8,6 +10,7 @@ import { MathVisualSchema, mathVisualLabelKeys } from "#contracts/math/visual";
 import { NoPropsSchema } from "#contracts/visual/base/layout";
 import { cardFields, type RichSlot } from "#contracts/visual/card";
 import { type AnswerReader, figure, markup } from "#contracts/visual/entry";
+import { visibleLength } from "#contracts/visual/length";
 
 /** A scene and the keys of the rich labels it anchors, as the check reads them. */
 const LabeledSceneSchema = Schema.Struct({
@@ -33,17 +36,56 @@ function hasSceneLabels({ labels = {}, scene }: LabeledScene) {
   );
 }
 
+/** The most visible characters a label anchored in the scene shows (`visibleLength`). */
+export const LABEL_CHARACTERS = 32;
+
+/** The rich labels of a scene, decoded, with the scene that anchors them. */
+const RichSceneSchema = Schema.Struct({
+  labels: Schema.optionalKey(Schema.Record(Schema.String, RichTextSchema)),
+  scene: MathVisualSchema,
+});
+type RichScene = typeof RichSceneSchema.Type;
+
+/**
+ * Guardrail G7: a label anchored in the scene shows at most `LABEL_CHARACTERS`
+ * visible characters, so it names its object without covering the figure. The
+ * labels of readouts and sliders stand outside the scene and may say more.
+ */
+function longSceneLabels({
+  labels = {},
+  scene,
+}: RichScene): readonly Schema.FilterIssue[] {
+  const anchored = Arr.dedupe(Arr.map(scene.labels ?? [], ({ key }) => key));
+  return Arr.flatMap(anchored, (key): Schema.FilterIssue[] =>
+    Rec.get(labels, key).pipe(
+      Option.map(visibleLength),
+      Option.filter((length) => length > LABEL_CHARACTERS),
+      Option.match({
+        onNone: () => [],
+        onSome: (length) => [
+          {
+            issue: `Expected a scene label of at most ${LABEL_CHARACTERS} visible characters, so it names its object without covering the figure; this one shows ${length}. Leave the rest to the card's words.`,
+            path: ["labels", key],
+          },
+        ],
+      })
+    )
+  );
+}
+
 /** Props of `MathVisual`: a plane or space scene and the rich labels it anchors. */
 function mathVisual<E>(rich: RichSlot<E>) {
   return Schema.Struct({
     ...cardFields(rich),
     labels: Schema.optionalKey(Schema.Record(MathVisualKeySchema, rich)),
     scene: MathVisualSchema,
-  }).check(
-    Schema.makeFilter(hasSceneLabels, {
-      message: "Expected one rich label for each label anchor of the scene.",
-    })
-  );
+  })
+    .check(
+      Schema.makeFilter(hasSceneLabels, {
+        message: "Expected one rich label for each label anchor of the scene.",
+      })
+    )
+    .check(Schema.makeFilter(longSceneLabels));
 }
 
 /**

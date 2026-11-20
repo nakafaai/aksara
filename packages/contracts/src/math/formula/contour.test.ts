@@ -36,6 +36,29 @@ describe("contourLines", () => {
     );
   });
 
+  it("traces a straight edge as one line whichever way its cells point", () => {
+    // Steep and shallow lines, rising and falling: the grid's column order meets each from a different end.
+    for (const field of [
+      (x: number, y: number) => 6 * x + 2 * y - 1,
+      (x: number, y: number) => 2 * x + 5 * y - 1,
+      (x: number, y: number) => 6 * x - 2 * y - 1,
+      (x: number, y: number) => -(2 * x - 5 * y - 1),
+    ]) {
+      const lines = contourLines(field, box, 60);
+
+      assert.strictEqual(lines.length, 1);
+      const [line = []] = lines;
+      const ends = Option.all([Arr.head(line), Arr.last(line)]);
+      // The line runs from one edge of the frame to the other.
+      assert.isTrue(
+        Option.exists(
+          ends,
+          ([first, last]) => Math.hypot(first.x - last.x, first.y - last.y) > 5
+        )
+      );
+    }
+  });
+
   it("resolves a saddle by the cell center and crosses through it", () => {
     const lines = contourLines((x, y) => x * y, box, 5);
     const points = Arr.flatten(lines);

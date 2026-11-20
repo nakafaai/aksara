@@ -178,7 +178,12 @@ function cellSegments(
   });
 }
 
-/** Joins segments that share an edge crossing into continuous polylines. */
+/**
+ * Joins segments that share an edge crossing into continuous polylines. A
+ * line grows from its first segment in both directions: the grid lists cells
+ * column by column, so a segment found first may lie in the middle of its
+ * curve, and its two ends may point either way along it.
+ */
 function join(segments: readonly Segment[]) {
   const byKey = MutableHashMap.empty<string, readonly Segment[]>();
   Arr.forEach(segments, (segment) => {
@@ -188,15 +193,10 @@ function join(segments: readonly Segment[]) {
     }
   });
   const used = MutableHashSet.empty<number>();
-  return Arr.filterMap(segments, (start) => {
-    if (MutableHashSet.has(used, start.index)) {
-      return Result.failVoid;
-    }
-    MutableHashSet.add(used, start.index);
-    const line = MutableList.make<SamplePoint>();
-    MutableList.append(line, start.from.point);
-    MutableList.append(line, start.to.point);
-    let { key } = start.to;
+  /** The points of the unused segments that continue a line from one crossing, in order. */
+  const follow = (from: string) => {
+    const points = MutableList.make<SamplePoint>();
+    let key = from;
     let next = Option.none<Segment>();
     do {
       next = Arr.findFirst(
@@ -208,13 +208,28 @@ function join(segments: readonly Segment[]) {
         MutableHashSet.add(used, segment.index);
         const forward = segment.from.key === key;
         MutableList.append(
-          line,
+          points,
           forward ? segment.to.point : segment.from.point
         );
         key = forward ? segment.to.key : segment.from.key;
       }
     } while (Option.isSome(next));
-    return Result.succeed<SampleBranch>(MutableList.toArray(line));
+    return MutableList.toArray(points);
+  };
+  return Arr.filterMap(segments, (start) => {
+    if (MutableHashSet.has(used, start.index)) {
+      return Result.failVoid;
+    }
+    MutableHashSet.add(used, start.index);
+    // A closed curve comes back to the start ahead, which leaves nothing behind it.
+    const ahead = follow(start.to.key);
+    const behind = follow(start.from.key);
+    return Result.succeed<SampleBranch>([
+      ...Arr.reverse(behind),
+      start.from.point,
+      start.to.point,
+      ...ahead,
+    ]);
   });
 }
 

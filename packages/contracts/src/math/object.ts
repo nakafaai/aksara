@@ -13,6 +13,20 @@ export const MathObjectFields = {
 };
 
 /**
+ * How a straight object draws its line when not solid. `dashed` marks points
+ * that do not belong to what the line shows, such as the boundary of a strict
+ * inequality: the points on `2x + 5y = 10` are not solutions of
+ * `2x + 5y < 10`. A line without a stroke is solid.
+ */
+export const MathStrokeSchema = Schema.Literals(["dashed"]);
+export type MathStroke = typeof MathStrokeSchema.Type;
+
+/** Fields of an object drawn as one stroke: a line, ray, segment, polyline or graph. */
+export const MathStrokeFields = {
+  stroke: Schema.optionalKey(MathStrokeSchema),
+};
+
+/**
  * Fields that every rich-label anchor shares. Each dimension supplies its own
  * point schema, so the struct built from these fields stays fully typed.
  */

@@ -61,7 +61,12 @@ describe("plane formula objects in a scene", () => {
             x: "cos(t)",
             y: "sin(t)",
           },
-          { ...fields, id: "half", inequalities: ["y > x"], kind: "region" },
+          {
+            ...fields,
+            id: "half",
+            inequalities: ["y > x + 1"],
+            kind: "region",
+          },
         ],
         parameters: [{ max: 2, min: -2, name: "a", value: 1 }],
       }),
