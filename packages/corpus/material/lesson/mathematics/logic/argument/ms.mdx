@@ -1,0 +1,269 @@
+export const metadata = {
+  title: "Nota Penaakulan Logik Tingkatan Empat",
+  description:
+    "Nota Matematik Tingkatan 4 Bab 3: kenal pasti pernyataan, bina implikasi, akas, songsangan dan kontrapositif, serta buat hujah deduktif dan induktif.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2026-11-17",
+  subject: "Penaakulan Logik",
+};
+
+## Penaakulan Logik Menguji Kebenaran Pernyataan
+
+**Pernyataan** ialah ayat yang sama ada benar atau palsu, tetapi tidak kedua-duanya. Ayat <InlineMath math="7" /> ialah nombor perdana ialah pernyataan benar. Ayat tanya dan ayat perintah bukan pernyataan. Daripada pernyataan, kita membina pernyataan majmuk, implikasi dan hujah. **Hujah deduktif** bergerak daripada premis umum kepada kesimpulan khusus, manakala **hujah induktif** bergerak daripada kes khusus kepada kesimpulan umum. Dalam model di sini, kamu menguji implikasi dengan contoh penyangkal, melihat premis sebagai rajah set dan membina kesimpulan umum daripada pola.
+
+## Pernyataan Majmuk dan Penafian
+
+**Penafian** sesuatu pernyataan <InlineMath math="p" /> ditulis <InlineMath math="\sim p" /> dan mempunyai nilai kebenaran yang bertentangan. Dua pernyataan boleh digabungkan dengan **dan** atau **atau**.
+
+| <InlineMath math="p" /> | <InlineMath math="q" /> | <InlineMath math="p \text{ dan } q" /> | <InlineMath math="p \text{ atau } q" /> |
+| :--- | :--- | :--- | :--- |
+| Benar | Benar | Benar | Benar |
+| Benar | Palsu | Palsu | Benar |
+| Palsu | Benar | Palsu | Benar |
+| Palsu | Palsu | Palsu | Palsu |
+
+Pernyataan dengan **dan** benar hanya apabila kedua-dua bahagian benar. Pernyataan dengan **atau** palsu hanya apabila kedua-dua bahagian palsu. Carta ini membandingkan bilangan baris benar dalam jadual kebenaran setiap jenis pernyataan.
+
+<BarChart
+  title={<>Bilangan Baris Benar dalam Jadual Kebenaran</>}
+  description={
+    <>
+      Daripada empat gabungan nilai kebenaran <InlineMath math="p" /> dan{" "}
+      <InlineMath math="q" />, berapa banyak yang menjadikan setiap pernyataan
+      majmuk benar.
+    </>
+  }
+  yAxisLabel="Baris benar"
+  data={[
+    { name: "p dan q", value: 1 },
+    { name: "p atau q", value: 3 },
+    { name: "Jika p, maka q", value: 3 },
+  ]}
+  chartConfig={{ value: { label: "Baris benar", colors: { light: ["var(--chart-2)"], dark: ["var(--chart-2)"] } } }}
+/>
+
+## Implikasi dan Akasnya
+
+**Implikasi** berbentuk jika <InlineMath math="p" />, maka <InlineMath math="q" />. Bahagian <InlineMath math="p" /> ialah antejadian dan <InlineMath math="q" /> ialah akibat. Implikasi hanya palsu apabila <InlineMath math="p" /> benar tetapi <InlineMath math="q" /> palsu.
+
+| Bentuk | Pernyataan | Contoh |
+| :--- | :--- | :--- |
+| Implikasi | Jika <InlineMath math="p" />, maka <InlineMath math="q" /> | Jika <InlineMath math="x > 2" />, maka <InlineMath math="x^2 > 4" /> |
+| Akas | Jika <InlineMath math="q" />, maka <InlineMath math="p" /> | Jika <InlineMath math="x^2 > 4" />, maka <InlineMath math="x > 2" /> |
+| Songsangan | Jika <InlineMath math="\sim p" />, maka <InlineMath math="\sim q" /> | Jika <InlineMath math="x \le 2" />, maka <InlineMath math="x^2 \le 4" /> |
+| Kontrapositif | Jika <InlineMath math="\sim q" />, maka <InlineMath math="\sim p" /> | Jika <InlineMath math="x^2 \le 4" />, maka <InlineMath math="x \le 2" /> |
+
+**Kontrapositif sentiasa mempunyai nilai kebenaran yang sama dengan implikasi**, manakala akas dan songsangan boleh berbeza. Model ini menguji implikasi dan akasnya. Gerakkan <InlineMath math="x" /> dan cari nilai yang menjadikan akas palsu.
+
+<MathVisual
+  title={<>Menguji Akas dengan Contoh Penyangkal</>}
+  description={
+    <>
+      Lengkung <InlineMath math="y = x^2" /> dan garis{" "}
+      <InlineMath math="y = 4" />. Akas jika <InlineMath math="x^2 > 4" />, maka{" "}
+      <InlineMath math="x > 2" /> gagal apabila titik berada di atas garis
+      tetapi di sebelah kiri <InlineMath math="x = 2" />.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -4, max: 4 }, y: { min: -1, max: 12 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "a", min: -3.5, max: 3.5, value: -3, step: 0.1, label: "a" },
+    ],
+    objects: [
+      { id: "square", kind: "function", appearance: "primary", formula: "x^2", domain: { min: -3.5, max: 3.5 } },
+      { id: "four", kind: "function", appearance: "construction", formula: "4 + 0x", domain: { min: -4, max: 4 } },
+      { id: "now", kind: "marker", x: "a", y: "a^2", appearance: "warning" },
+    ],
+    readouts: [
+      { key: "square", formula: "a^2" },
+    ],
+  }}
+  labels={{
+    a: <>Nilai <InlineMath math="x" /></>,
+    square: <>Nilai <InlineMath math="x^2" /></>,
+  }}
+/>
+
+### Contoh Menentukan Nilai Kebenaran
+
+Tentukan sama ada **akas** bagi pernyataan jika <InlineMath math="x > 2" />, maka <InlineMath math="x^2 > 4" /> benar atau palsu.
+
+Akasnya ialah jika <InlineMath math="x^2 > 4" />, maka <InlineMath math="x > 2" />. Ambil <InlineMath math="x = -3" />:
+
+<BlockMath math="(-3)^2 = 9 > 4 \quad\text{tetapi}\quad -3 < 2" />
+
+Satu contoh penyangkal sudah cukup, jadi akas itu palsu. Semak dengan model: pada <InlineMath math="x = -3" />, titik berada di atas garis <InlineMath math="y = 4" /> tetapi di sebelah kiri <InlineMath math="x = 2" />. Implikasi asal pula benar, kerana setiap <InlineMath math="x > 2" /> memberi <InlineMath math="x^2 > 4" />.
+
+### Implikasi Dua Hala
+
+Jika implikasi dan akasnya kedua-duanya benar, kedua-duanya boleh ditulis sebagai satu pernyataan **jika dan hanya jika**. Contohnya, <InlineMath math="x^3 = 8" /> jika dan hanya jika <InlineMath math="x = 2" />, kerana setiap arah benar.
+
+## Hujah Deduktif
+
+Hujah deduktif terdiri daripada premis dan kesimpulan. Jika premis benar dan bentuk hujah sah, **kesimpulan pasti benar**. Tiga bentuk yang sah:
+
+| Bentuk | Premis 1 | Premis 2 | Kesimpulan |
+| :--- | :--- | :--- | :--- |
+| Bentuk satu | Semua <InlineMath math="A" /> ialah <InlineMath math="B" /> | <InlineMath math="C" /> ialah <InlineMath math="A" /> | <InlineMath math="C" /> ialah <InlineMath math="B" /> |
+| Bentuk dua | Jika <InlineMath math="p" />, maka <InlineMath math="q" /> | <InlineMath math="p" /> benar | <InlineMath math="q" /> benar |
+| Bentuk tiga | Jika <InlineMath math="p" />, maka <InlineMath math="q" /> | <InlineMath math="\sim q" /> benar | <InlineMath math="\sim p" /> benar |
+
+### Premis sebagai Rajah Set
+
+Premis semua <InlineMath math="A" /> ialah <InlineMath math="B" /> bermaksud **set <InlineMath math="A" /> terletak di dalam set <InlineMath math="B" />**. Gerakkan bulatan <InlineMath math="A" /> dan lihat bila ia berada sepenuhnya di dalam <InlineMath math="B" />.
+
+<MathVisual
+  title={<>Premis Semua A ialah B sebagai Rajah Set</>}
+  description={
+    <>
+      Bulatan besar ialah set <InlineMath math="B" /> dengan jejari{" "}
+      <InlineMath math="3" />, dan bulatan kecil ialah set{" "}
+      <InlineMath math="A" /> dengan jejari <InlineMath math="1" /> yang
+      berpusat pada <InlineMath math="(h, 0)" />.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -4.5, max: 6.5 }, y: { min: -3.5, max: 3.5 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "h", min: -2, max: 5, value: 1, step: 0.1, label: "h" },
+    ],
+    objects: [
+      { id: "setb", kind: "parametric", appearance: "reference", x: "3cos(t)", y: "3sin(t)", parameter: { min: 0, max: 2 * Math.PI } },
+      { id: "seta", kind: "parametric", appearance: "primary", x: "h + cos(t)", y: "sin(t)", parameter: { min: 0, max: 2 * Math.PI } },
+    ],
+    readouts: [
+      { key: "margin", formula: "2 - abs(h)" },
+    ],
+    labels: [
+      { key: "setb", objectId: "setb", at: { x: -2.1, y: 2.1 }, placement: "above-left" },
+      { key: "seta", objectId: "seta", at: { x: "h", y: "1" }, placement: "above" },
+    ],
+  }}
+  labels={{
+    setb: <InlineMath math="B" />,
+    seta: <InlineMath math="A" />,
+    h: <>Kedudukan pusat set <InlineMath math="A" /> <InlineMath math="h" /></>,
+    margin: <>Jarak ruang antara tepi <InlineMath math="A" /> dan tepi <InlineMath math="B" /></>,
+  }}
+/>
+
+Apabila jarak ruang positif, iaitu <InlineMath math="-2 < h < 2" />, set <InlineMath math="A" /> berada sepenuhnya di dalam <InlineMath math="B" /> dan premis itu benar. Mana-mana unsur <InlineMath math="C" /> dalam <InlineMath math="A" /> juga berada dalam <InlineMath math="B" />, itulah sebabnya bentuk satu sah.
+
+### Contoh Melengkapkan Hujah Deduktif
+
+Lengkapkan **kesimpulan**. Premis 1: Jika sebuah segi empat ialah segi empat sama, maka semua sisinya sama panjang. Premis 2: Sisi segi empat <InlineMath math="PQRS" /> tidak semuanya sama panjang.
+
+Ini bentuk tiga dengan <InlineMath math="\sim q" /> benar, jadi kesimpulannya: <InlineMath math="PQRS" /> bukan segi empat sama. Semak: jika <InlineMath math="PQRS" /> segi empat sama, semua sisinya mesti sama, yang bercanggah dengan premis 2.
+
+## Hujah Induktif
+
+Hujah induktif membina kesimpulan umum daripada **pola dalam kes khusus**. Kesimpulannya mungkin benar tetapi tidak dijamin, jadi ia perlu diuji pada kes baharu. Graf ini menunjukkan bilangan pepenjuru bagi poligon dengan <InlineMath math="n" /> sisi.
+
+<ScatterDiagram
+  title={<>Bilangan Pepenjuru Poligon</>}
+  description={
+    <>
+      Bilangan pepenjuru bagi poligon dengan tiga hingga tujuh sisi, dikira
+      secara langsung pada rajah.
+    </>
+  }
+  xAxisLabel="Bilangan sisi n"
+  yAxisLabel="Bilangan pepenjuru"
+  datasets={[
+    {
+      name: "Poligon",
+      color: "var(--chart-1)",
+      points: [
+        { x: 3, y: 0 },
+        { x: 4, y: 2 },
+        { x: 5, y: 5 },
+        { x: 6, y: 9 },
+        { x: 7, y: 14 },
+      ],
+    },
+  ]}
+/>
+
+### Daripada Pola kepada Rumus
+
+Setiap bucu disambung ke <InlineMath math="n - 3" /> bucu lain dengan pepenjuru, dan **setiap pepenjuru dikira dua kali**, jadi kesimpulan induktifnya ialah <InlineMath math="\dfrac{n(n - 3)}{2}" />. Model ini melukis rumus itu bersama titik data.
+
+<MathVisual
+  title={<>Rumus Pepenjuru daripada Pola</>}
+  description={
+    <>
+      Lengkung <InlineMath math="\dfrac{n(n - 3)}{2}" /> dalam unit{" "}
+      <InlineMath math="2" /> pepenjuru terhadap bilangan sisi{" "}
+      <InlineMath math="n" />.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 10.5 }, y: { min: 0, max: 18.5 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "n", min: 3, max: 10, value: 8, step: 1, label: "n" },
+    ],
+    objects: [
+      { id: "rule", kind: "function", appearance: "primary", formula: "x(x - 3)/4", domain: { min: 3, max: 10 } },
+      { id: "now", kind: "marker", x: "n", y: "n(n - 3)/4", appearance: "warning" },
+    ],
+    readouts: [
+      { key: "diagonals", formula: "n(n - 3)/2" },
+    ],
+  }}
+  labels={{
+    n: <>Bilangan sisi <InlineMath math="n" /></>,
+    diagonals: <>Bilangan pepenjuru</>,
+  }}
+/>
+
+### Contoh Menguji Kesimpulan Induktif
+
+Gunakan rumus untuk **meramal** bilangan pepenjuru oktagon, kemudian semak dengan model.
+
+<BlockMath math="\frac{8(8 - 3)}{2} = \frac{40}{2} = 20" />
+
+Semak dengan model: pada <InlineMath math="n = 8" />, bacaan ialah <InlineMath math="20" />. Kiraan terus juga memberi <InlineMath math="20" />: setiap satu daripada <InlineMath math="8" /> bucu mempunyai <InlineMath math="5" /> pepenjuru, dan <InlineMath math="8 \times 5 \div 2 = 20" />.
+
+## Kesilapan Lazim tentang Penaakulan Logik
+
+| Kesilapan | Sebab salah | Cara semak |
+| :--- | :--- | :--- |
+| Akas sentiasa benar jika implikasi benar. | Akas boleh palsu, seperti contoh <InlineMath math="x = -3" />. | Cari satu contoh penyangkal. |
+| Pernyataan dengan atau memerlukan kedua-dua bahagian benar. | Pernyataan dengan atau benar jika sekurang-kurangnya satu bahagian benar. | Semak jadual kebenaran. |
+| Kesimpulan induktif pasti benar. | Kesimpulan induktif hanya kemungkinan dan mesti diuji. | Uji rumus pada kes baharu. |
+| Penafian semua <InlineMath math="A" /> ialah <InlineMath math="B" /> ialah tiada <InlineMath math="A" /> ialah <InlineMath math="B" />. | Penafiannya ialah bukan semua <InlineMath math="A" /> ialah <InlineMath math="B" />. | Satu unsur di luar <InlineMath math="B" /> sudah cukup. |
+
+Kesilapan pertama paling kerap muncul dalam soalan implikasi. **Satu contoh penyangkal membuktikan pernyataan palsu**.
+
+## Latihan Penaakulan Logik
+
+Soalan ini bergerak dari pernyataan ke hujah deduktif dan induktif. **Nyatakan bentuk hujah** dalam setiap jawapan deduktif.
+
+1. Tentukan nilai kebenaran pernyataan <InlineMath math="5 > 3" /> dan <InlineMath math="2^3 = 6" />.
+
+2. Tulis kontrapositif bagi jika <InlineMath math="n" /> ialah gandaan <InlineMath math="4" />, maka <InlineMath math="n" /> ialah nombor genap, dan nyatakan nilai kebenarannya.
+
+3. Lengkapkan hujah. Premis 1: Semua gandaan <InlineMath math="6" /> ialah gandaan <InlineMath math="3" />. Premis 2: <InlineMath math="42" /> ialah gandaan <InlineMath math="6" />.
+
+4. Jujukan <InlineMath math="5, 8, 11, 14, \ldots" /> mengikut pola <InlineMath math="3n + 2" /> bagi <InlineMath math="n = 1, 2, 3, \ldots" />. Gunakan kesimpulan induktif untuk mencari sebutan ke-<InlineMath math="20" />.
+
+### Penyelesaian
+
+**Penyelesaian 1**: <InlineMath math="5 > 3" /> benar, tetapi <InlineMath math="2^3 = 8" />, bukan <InlineMath math="6" />, jadi bahagian kedua palsu. Pernyataan dengan **dan** memerlukan kedua-dua bahagian benar, jadi pernyataan itu **palsu**.
+
+**Penyelesaian 2**: Kontrapositifnya ialah jika <InlineMath math="n" /> bukan nombor genap, maka <InlineMath math="n" /> bukan gandaan <InlineMath math="4" />. Implikasi asal benar, dan **kontrapositif mempunyai nilai kebenaran yang sama**, jadi ia juga benar.
+
+**Penyelesaian 3**: Ini bentuk satu, jadi kesimpulannya <InlineMath math="42" /> ialah gandaan <InlineMath math="3" />. Semak: <InlineMath math="42 = 3 \times 14" />.
+
+**Penyelesaian 4**: Gantikan <InlineMath math="n = 20" /> ke dalam pola:
+
+<BlockMath math="3(20) + 2 = 62" />
+
+Semak pola pada sebutan yang diketahui: <InlineMath math="3(4) + 2 = 14" />, sama dengan sebutan keempat.

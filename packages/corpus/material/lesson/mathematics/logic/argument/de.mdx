@@ -1,0 +1,270 @@
+export const metadata = {
+  title: "Aussagenlogik und Schlussfolgern",
+  description:
+    "Erkenne Aussagen, bilde Implikation, Umkehrung, Inversion und Kontraposition und ziehe deduktive und induktive Schlüsse mit Modellen und Übungen.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2026-11-17",
+  subject: "Logisches Schließen",
+};
+
+## Logisches Schließen prüft den Wahrheitswert von Aussagen
+
+Eine **Aussage** ist ein Satz, der entweder wahr oder falsch ist, aber nicht beides. Der Satz <InlineMath math="7" /> ist eine Primzahl ist eine wahre Aussage. Fragen und Aufforderungen sind keine Aussagen. Aus Aussagen bilden wir zusammengesetzte Aussagen, Implikationen und Argumente. Ein **deduktiver Schluss** führt von allgemeinen Prämissen zu einer besonderen Folgerung, ein **induktiver Schluss** von besonderen Fällen zu einer allgemeinen Folgerung. In den Modellen hier prüfst du eine Implikation mit einem Gegenbeispiel, siehst eine Prämisse als Mengendiagramm und gewinnst eine allgemeine Folgerung aus einem Muster.
+
+## Zusammengesetzte Aussagen und Verneinung
+
+Die **Verneinung** einer Aussage <InlineMath math="p" /> schreibt man <InlineMath math="\sim p" />, sie hat den entgegengesetzten Wahrheitswert. Zwei Aussagen lassen sich mit **und** oder **oder** verbinden.
+
+| <InlineMath math="p" /> | <InlineMath math="q" /> | <InlineMath math="p \text{ und } q" /> | <InlineMath math="p \text{ oder } q" /> |
+| :--- | :--- | :--- | :--- |
+| Wahr | Wahr | Wahr | Wahr |
+| Wahr | Falsch | Falsch | Wahr |
+| Falsch | Wahr | Falsch | Wahr |
+| Falsch | Falsch | Falsch | Falsch |
+
+Eine Aussage mit **und** ist nur wahr, wenn beide Teile wahr sind. Eine Aussage mit **oder** ist nur falsch, wenn beide Teile falsch sind. Dieses Diagramm vergleicht die Zahl der wahren Zeilen in der Wahrheitstafel jeder Aussageart.
+
+<BarChart
+  title={<>Zahl der wahren Zeilen in einer Wahrheitstafel</>}
+  description={
+    <>
+      Von den vier Kombinationen der Wahrheitswerte von <InlineMath math="p" />{" "}
+      und <InlineMath math="q" />, wie viele jede zusammengesetzte Aussage wahr
+      machen.
+    </>
+  }
+  yAxisLabel="Wahre Zeilen"
+  data={[
+    { name: "p und q", value: 1 },
+    { name: "p oder q", value: 3 },
+    { name: "Wenn p, dann q", value: 3 },
+  ]}
+  chartConfig={{ value: { label: "Wahre Zeilen", colors: { light: ["var(--chart-2)"], dark: ["var(--chart-2)"] } } }}
+/>
+
+## Implikationen und ihre Umkehrung
+
+Eine **Implikation** hat die Form wenn <InlineMath math="p" />, dann <InlineMath math="q" />. Der Teil <InlineMath math="p" /> heißt Voraussetzung, <InlineMath math="q" /> heißt Folgerung. Eine Implikation ist nur falsch, wenn <InlineMath math="p" /> wahr, aber <InlineMath math="q" /> falsch ist.
+
+| Form | Aussage | Beispiel |
+| :--- | :--- | :--- |
+| Implikation | Wenn <InlineMath math="p" />, dann <InlineMath math="q" /> | Wenn <InlineMath math="x > 2" />, dann <InlineMath math="x^2 > 4" /> |
+| Umkehrung | Wenn <InlineMath math="q" />, dann <InlineMath math="p" /> | Wenn <InlineMath math="x^2 > 4" />, dann <InlineMath math="x > 2" /> |
+| Inversion | Wenn <InlineMath math="\sim p" />, dann <InlineMath math="\sim q" /> | Wenn <InlineMath math="x \le 2" />, dann <InlineMath math="x^2 \le 4" /> |
+| Kontraposition | Wenn <InlineMath math="\sim q" />, dann <InlineMath math="\sim p" /> | Wenn <InlineMath math="x^2 \le 4" />, dann <InlineMath math="x \le 2" /> |
+
+**Die Kontraposition hat immer denselben Wahrheitswert wie die Implikation**, Umkehrung und Inversion können abweichen. Dieses Modell prüft eine Implikation und ihre Umkehrung. Verschiebe <InlineMath math="x" /> und finde einen Wert, der die Umkehrung falsch macht.
+
+<MathVisual
+  title={<>Eine Umkehrung mit einem Gegenbeispiel prüfen</>}
+  description={
+    <>
+      Die Kurve <InlineMath math="y = x^2" /> und die Gerade{" "}
+      <InlineMath math="y = 4" />. Die Umkehrung wenn{" "}
+      <InlineMath math="x^2 > 4" />, dann <InlineMath math="x > 2" /> scheitert,
+      wenn der Punkt über der Geraden, aber links von{" "}
+      <InlineMath math="x = 2" /> liegt.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -4, max: 4 }, y: { min: -1, max: 12 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "a", min: -3.5, max: 3.5, value: -3, step: 0.1, label: "a" },
+    ],
+    objects: [
+      { id: "square", kind: "function", appearance: "primary", formula: "x^2", domain: { min: -3.5, max: 3.5 } },
+      { id: "four", kind: "function", appearance: "construction", formula: "4 + 0x", domain: { min: -4, max: 4 } },
+      { id: "now", kind: "marker", x: "a", y: "a^2", appearance: "warning" },
+    ],
+    readouts: [
+      { key: "square", formula: "a^2" },
+    ],
+  }}
+  labels={{
+    a: <>Wert von <InlineMath math="x" /></>,
+    square: <>Wert von <InlineMath math="x^2" /></>,
+  }}
+/>
+
+### Beispiel Einen Wahrheitswert bestimmen
+
+Entscheide, ob **die Umkehrung** von wenn <InlineMath math="x > 2" />, dann <InlineMath math="x^2 > 4" /> wahr oder falsch ist.
+
+Die Umkehrung lautet wenn <InlineMath math="x^2 > 4" />, dann <InlineMath math="x > 2" />. Nimm <InlineMath math="x = -3" />:
+
+<BlockMath math="(-3)^2 = 9 > 4 \quad\text{aber}\quad -3 < 2" />
+
+Ein Gegenbeispiel genügt, also ist die Umkehrung falsch. Prüfe mit dem Modell: Bei <InlineMath math="x = -3" /> liegt der Punkt über der Geraden <InlineMath math="y = 4" />, aber links von <InlineMath math="x = 2" />. Die ursprüngliche Implikation ist wahr, denn jedes <InlineMath math="x > 2" /> liefert <InlineMath math="x^2 > 4" />.
+
+### Äquivalenzen
+
+Sind eine Implikation und ihre Umkehrung beide wahr, lassen sie sich als eine Aussage mit **genau dann, wenn** schreiben. Zum Beispiel gilt <InlineMath math="x^3 = 8" /> genau dann, wenn <InlineMath math="x = 2" />, weil beide Richtungen wahr sind.
+
+## Deduktive Schlüsse
+
+Ein deduktiver Schluss besteht aus Prämissen und einer Folgerung. Sind die Prämissen wahr und ist die Form gültig, **ist die Folgerung sicher wahr**. Drei gültige Formen:
+
+| Form | Prämisse 1 | Prämisse 2 | Folgerung |
+| :--- | :--- | :--- | :--- |
+| Syllogismus | Alle <InlineMath math="A" /> sind <InlineMath math="B" /> | <InlineMath math="C" /> ist ein <InlineMath math="A" /> | <InlineMath math="C" /> ist ein <InlineMath math="B" /> |
+| Modus ponens | Wenn <InlineMath math="p" />, dann <InlineMath math="q" /> | <InlineMath math="p" /> ist wahr | <InlineMath math="q" /> ist wahr |
+| Modus tollens | Wenn <InlineMath math="p" />, dann <InlineMath math="q" /> | <InlineMath math="\sim q" /> ist wahr | <InlineMath math="\sim p" /> ist wahr |
+
+### Prämissen als Mengendiagramm
+
+Die Prämisse alle <InlineMath math="A" /> sind <InlineMath math="B" /> bedeutet: **Die Menge <InlineMath math="A" /> liegt in der Menge <InlineMath math="B" />**. Verschiebe den Kreis <InlineMath math="A" /> und sieh, wann er ganz in <InlineMath math="B" /> liegt.
+
+<MathVisual
+  title={<>Die Prämisse alle A sind B als Mengendiagramm</>}
+  description={
+    <>
+      Der große Kreis ist die Menge <InlineMath math="B" /> mit Radius{" "}
+      <InlineMath math="3" />, der kleine Kreis die Menge{" "}
+      <InlineMath math="A" /> mit Radius <InlineMath math="1" /> und
+      Mittelpunkt <InlineMath math="(h, 0)" />.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -4.5, max: 6.5 }, y: { min: -3.5, max: 3.5 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "h", min: -2, max: 5, value: 1, step: 0.1, label: "h" },
+    ],
+    objects: [
+      { id: "setb", kind: "parametric", appearance: "reference", x: "3cos(t)", y: "3sin(t)", parameter: { min: 0, max: 2 * Math.PI } },
+      { id: "seta", kind: "parametric", appearance: "primary", x: "h + cos(t)", y: "sin(t)", parameter: { min: 0, max: 2 * Math.PI } },
+    ],
+    readouts: [
+      { key: "margin", formula: "2 - abs(h)" },
+    ],
+    labels: [
+      { key: "setb", objectId: "setb", at: { x: -2.1, y: 2.1 }, placement: "above-left" },
+      { key: "seta", objectId: "seta", at: { x: "h", y: "1" }, placement: "above" },
+    ],
+  }}
+  labels={{
+    setb: <InlineMath math="B" />,
+    seta: <InlineMath math="A" />,
+    h: <>Mittelpunkt der Menge <InlineMath math="A" /> <InlineMath math="h" /></>,
+    margin: <>Abstand zwischen dem Rand von <InlineMath math="A" /> und dem Rand von <InlineMath math="B" /></>,
+  }}
+/>
+
+Ist der Abstand positiv, also <InlineMath math="-2 < h < 2" />, liegt die Menge <InlineMath math="A" /> ganz in <InlineMath math="B" />, und die Prämisse ist wahr. Jedes Element <InlineMath math="C" /> von <InlineMath math="A" /> liegt dann auch in <InlineMath math="B" />, deshalb ist der Syllogismus gültig.
+
+### Beispiel Einen deduktiven Schluss vervollständigen
+
+Ergänze **die Folgerung**. Prämisse 1: Wenn ein Viereck ein Quadrat ist, dann sind alle seine Seiten gleich lang. Prämisse 2: Die Seiten des Vierecks <InlineMath math="PQRS" /> sind nicht alle gleich lang.
+
+Das ist ein Modus tollens mit wahrem <InlineMath math="\sim q" />, also lautet die Folgerung: <InlineMath math="PQRS" /> ist kein Quadrat. Prüfe: Wäre <InlineMath math="PQRS" /> ein Quadrat, wären alle Seiten gleich lang, was Prämisse 2 widerspricht.
+
+## Induktive Schlüsse
+
+Ein induktiver Schluss gewinnt eine allgemeine Folgerung aus **einem Muster in besonderen Fällen**. Die Folgerung kann wahr sein, ist aber nicht gesichert und muss an neuen Fällen geprüft werden. Dieses Diagramm zeigt die Zahl der Diagonalen eines Vielecks mit <InlineMath math="n" /> Seiten.
+
+<ScatterDiagram
+  title={<>Zahl der Diagonalen eines Vielecks</>}
+  description={
+    <>
+      Die Zahl der Diagonalen von Vielecken mit drei bis sieben Seiten, direkt
+      an einer Zeichnung abgezählt.
+    </>
+  }
+  xAxisLabel="Zahl der Seiten n"
+  yAxisLabel="Zahl der Diagonalen"
+  datasets={[
+    {
+      name: "Vieleck",
+      color: "var(--chart-1)",
+      points: [
+        { x: 3, y: 0 },
+        { x: 4, y: 2 },
+        { x: 5, y: 5 },
+        { x: 6, y: 9 },
+        { x: 7, y: 14 },
+      ],
+    },
+  ]}
+/>
+
+### Vom Muster zur Regel
+
+Jede Ecke ist mit <InlineMath math="n - 3" /> anderen Ecken durch eine Diagonale verbunden, und **jede Diagonale wird doppelt gezählt**, also lautet die induktive Folgerung <InlineMath math="\dfrac{n(n - 3)}{2}" />. Dieses Modell zeichnet diese Regel.
+
+<MathVisual
+  title={<>Die Diagonalenregel aus einem Muster</>}
+  description={
+    <>
+      Die Kurve <InlineMath math="\dfrac{n(n - 3)}{2}" /> in Einheiten von{" "}
+      <InlineMath math="2" /> Diagonalen gegen die Zahl der Seiten{" "}
+      <InlineMath math="n" />.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 10.5 }, y: { min: 0, max: 18.5 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "n", min: 3, max: 10, value: 8, step: 1, label: "n" },
+    ],
+    objects: [
+      { id: "rule", kind: "function", appearance: "primary", formula: "x(x - 3)/4", domain: { min: 3, max: 10 } },
+      { id: "now", kind: "marker", x: "n", y: "n(n - 3)/4", appearance: "warning" },
+    ],
+    readouts: [
+      { key: "diagonals", formula: "n(n - 3)/2" },
+    ],
+  }}
+  labels={{
+    n: <>Zahl der Seiten <InlineMath math="n" /></>,
+    diagonals: <>Zahl der Diagonalen</>,
+  }}
+/>
+
+### Beispiel Eine induktive Folgerung prüfen
+
+Nutze die Regel, um die Zahl der Diagonalen eines Achtecks **vorherzusagen**, und prüfe dann mit dem Modell.
+
+<BlockMath math="\frac{8(8 - 3)}{2} = \frac{40}{2} = 20" />
+
+Prüfe mit dem Modell: Bei <InlineMath math="n = 8" /> zeigt es <InlineMath math="20" />. Direktes Zählen ergibt ebenfalls <InlineMath math="20" />: Jede der <InlineMath math="8" /> Ecken hat <InlineMath math="5" /> Diagonalen, und <InlineMath math="8 \times 5 \div 2 = 20" />.
+
+## Häufige Fehler beim logischen Schließen
+
+| Fehler | Warum er falsch ist | So prüfst du es |
+| :--- | :--- | :--- |
+| Die Umkehrung ist immer wahr, wenn die Implikation wahr ist. | Die Umkehrung kann falsch sein, wie das Beispiel <InlineMath math="x = -3" /> zeigt. | Suche ein Gegenbeispiel. |
+| Eine Aussage mit oder braucht zwei wahre Teile. | Eine Aussage mit oder ist wahr, wenn mindestens ein Teil wahr ist. | Prüfe die Wahrheitstafel. |
+| Eine induktive Folgerung ist sicher wahr. | Eine induktive Folgerung ist nur wahrscheinlich und muss geprüft werden. | Teste die Regel an einem neuen Fall. |
+| Die Verneinung von alle <InlineMath math="A" /> sind <InlineMath math="B" /> ist kein <InlineMath math="A" /> ist <InlineMath math="B" />. | Die Verneinung lautet nicht alle <InlineMath math="A" /> sind <InlineMath math="B" />. | Ein Element außerhalb von <InlineMath math="B" /> genügt. |
+
+Der erste Fehler kommt in Aufgaben zu Implikationen am häufigsten vor. **Ein Gegenbeispiel beweist, dass eine Aussage falsch ist**.
+
+## Übungen zum logischen Schließen
+
+Diese Aufgaben führen von Aussagen zu deduktiven und induktiven Schlüssen. **Nenne bei jeder deduktiven Antwort die Schlussform**.
+
+1. Bestimme den Wahrheitswert der Aussage <InlineMath math="5 > 3" /> und <InlineMath math="2^3 = 6" />.
+
+2. Schreibe die Kontraposition von wenn <InlineMath math="n" /> ein Vielfaches von <InlineMath math="4" /> ist, dann ist <InlineMath math="n" /> gerade, und gib ihren Wahrheitswert an.
+
+3. Vervollständige den Schluss. Prämisse 1: Alle Vielfachen von <InlineMath math="6" /> sind Vielfache von <InlineMath math="3" />. Prämisse 2: <InlineMath math="42" /> ist ein Vielfaches von <InlineMath math="6" />.
+
+4. Die Folge <InlineMath math="5, 8, 11, 14, \ldots" /> folgt dem Muster <InlineMath math="3n + 2" /> für <InlineMath math="n = 1, 2, 3, \ldots" />. Bestimme mit der induktiven Folgerung das Glied Nummer <InlineMath math="20" />.
+
+### Lösungen
+
+**Lösung 1**: <InlineMath math="5 > 3" /> ist wahr, aber <InlineMath math="2^3 = 8" />, nicht <InlineMath math="6" />, also ist der zweite Teil falsch. Eine Aussage mit **und** braucht zwei wahre Teile, also ist die Aussage **falsch**.
+
+**Lösung 2**: Die Kontraposition lautet wenn <InlineMath math="n" /> nicht gerade ist, dann ist <InlineMath math="n" /> kein Vielfaches von <InlineMath math="4" />. Die ursprüngliche Implikation ist wahr, und **die Kontraposition hat denselben Wahrheitswert**, also ist sie ebenfalls wahr.
+
+**Lösung 3**: Das ist ein Syllogismus, also lautet die Folgerung <InlineMath math="42" /> ist ein Vielfaches von <InlineMath math="3" />. Prüfe: <InlineMath math="42 = 3 \times 14" />.
+
+**Lösung 4**: Setze <InlineMath math="n = 20" /> in das Muster ein:
+
+<BlockMath math="3(20) + 2 = 62" />
+
+Prüfe das Muster an einem bekannten Glied: <InlineMath math="3(4) + 2 = 14" />, genau das vierte Glied.

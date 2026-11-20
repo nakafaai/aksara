@@ -1,0 +1,269 @@
+export const metadata = {
+  title: "Logika Matematika dan Penarikan Kesimpulan",
+  description:
+    "Kenali pernyataan, susun implikasi, konvers, invers, dan kontraposisi, lalu buat penarikan kesimpulan deduktif dan induktif lewat model, contoh, dan latihan.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2026-11-17",
+  subject: "Logika Matematika",
+};
+
+## Logika Menguji Kebenaran Pernyataan
+
+**Pernyataan** adalah kalimat yang bernilai benar atau salah, tetapi tidak keduanya. Kalimat <InlineMath math="7" /> adalah bilangan prima merupakan pernyataan yang benar. Kalimat tanya dan kalimat perintah bukan pernyataan. Dari pernyataan, kita menyusun pernyataan majemuk, implikasi, dan argumen. **Penalaran deduktif** bergerak dari premis umum ke kesimpulan khusus, sedangkan **penalaran induktif** bergerak dari kasus khusus ke kesimpulan umum. Dalam model di sini, kamu menguji implikasi dengan contoh penyangkal, melihat premis sebagai diagram himpunan, dan menyusun kesimpulan umum dari pola.
+
+## Pernyataan Majemuk dan Negasi
+
+**Negasi** pernyataan <InlineMath math="p" /> ditulis <InlineMath math="\sim p" /> dan punya nilai kebenaran yang berlawanan. Dua pernyataan bisa digabung dengan **dan** atau **atau**.
+
+| <InlineMath math="p" /> | <InlineMath math="q" /> | <InlineMath math="p \text{ dan } q" /> | <InlineMath math="p \text{ atau } q" /> |
+| :--- | :--- | :--- | :--- |
+| Benar | Benar | Benar | Benar |
+| Benar | Salah | Salah | Benar |
+| Salah | Benar | Salah | Benar |
+| Salah | Salah | Salah | Salah |
+
+Pernyataan dengan **dan** benar hanya jika kedua bagiannya benar. Pernyataan dengan **atau** salah hanya jika kedua bagiannya salah. Grafik ini membandingkan banyak baris benar dalam tabel kebenaran setiap jenis pernyataan.
+
+<BarChart
+  title={<>Banyak Baris Benar dalam Tabel Kebenaran</>}
+  description={
+    <>
+      Dari empat kombinasi nilai kebenaran <InlineMath math="p" /> dan{" "}
+      <InlineMath math="q" />, berapa yang membuat setiap pernyataan majemuk
+      benar.
+    </>
+  }
+  yAxisLabel="Baris benar"
+  data={[
+    { name: "p dan q", value: 1 },
+    { name: "p atau q", value: 3 },
+    { name: "Jika p, maka q", value: 3 },
+  ]}
+  chartConfig={{ value: { label: "Baris benar", colors: { light: ["var(--chart-2)"], dark: ["var(--chart-2)"] } } }}
+/>
+
+## Implikasi dan Konversnya
+
+**Implikasi** berbentuk jika <InlineMath math="p" />, maka <InlineMath math="q" />. Bagian <InlineMath math="p" /> disebut anteseden dan <InlineMath math="q" /> disebut konsekuen. Implikasi hanya salah jika <InlineMath math="p" /> benar tetapi <InlineMath math="q" /> salah.
+
+| Bentuk | Pernyataan | Contoh |
+| :--- | :--- | :--- |
+| Implikasi | Jika <InlineMath math="p" />, maka <InlineMath math="q" /> | Jika <InlineMath math="x > 2" />, maka <InlineMath math="x^2 > 4" /> |
+| Konvers | Jika <InlineMath math="q" />, maka <InlineMath math="p" /> | Jika <InlineMath math="x^2 > 4" />, maka <InlineMath math="x > 2" /> |
+| Invers | Jika <InlineMath math="\sim p" />, maka <InlineMath math="\sim q" /> | Jika <InlineMath math="x \le 2" />, maka <InlineMath math="x^2 \le 4" /> |
+| Kontraposisi | Jika <InlineMath math="\sim q" />, maka <InlineMath math="\sim p" /> | Jika <InlineMath math="x^2 \le 4" />, maka <InlineMath math="x \le 2" /> |
+
+**Kontraposisi selalu punya nilai kebenaran yang sama dengan implikasinya**, sedangkan konvers dan invers bisa berbeda. Model ini menguji implikasi dan konversnya. Geser <InlineMath math="x" /> dan cari nilai yang membuat konvers salah.
+
+<MathVisual
+  title={<>Menguji Konvers dengan Contoh Penyangkal</>}
+  description={
+    <>
+      Kurva <InlineMath math="y = x^2" /> dan garis <InlineMath math="y = 4" />.
+      Konvers jika <InlineMath math="x^2 > 4" />, maka{" "}
+      <InlineMath math="x > 2" /> gagal saat titik berada di atas garis tetapi
+      di sebelah kiri <InlineMath math="x = 2" />.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -4, max: 4 }, y: { min: -1, max: 12 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "a", min: -3.5, max: 3.5, value: -3, step: 0.1, label: "a" },
+    ],
+    objects: [
+      { id: "square", kind: "function", appearance: "primary", formula: "x^2", domain: { min: -3.5, max: 3.5 } },
+      { id: "four", kind: "function", appearance: "construction", formula: "4 + 0x", domain: { min: -4, max: 4 } },
+      { id: "now", kind: "marker", x: "a", y: "a^2", appearance: "warning" },
+    ],
+    readouts: [
+      { key: "square", formula: "a^2" },
+    ],
+  }}
+  labels={{
+    a: <>Nilai <InlineMath math="x" /></>,
+    square: <>Nilai <InlineMath math="x^2" /></>,
+  }}
+/>
+
+### Contoh Menentukan Nilai Kebenaran
+
+Tentukan apakah **konvers** dari jika <InlineMath math="x > 2" />, maka <InlineMath math="x^2 > 4" /> benar atau salah.
+
+Konversnya adalah jika <InlineMath math="x^2 > 4" />, maka <InlineMath math="x > 2" />. Ambil <InlineMath math="x = -3" />:
+
+<BlockMath math="(-3)^2 = 9 > 4 \quad\text{tetapi}\quad -3 < 2" />
+
+Satu contoh penyangkal sudah cukup, jadi konvers itu salah. Cek dengan model: pada <InlineMath math="x = -3" />, titik berada di atas garis <InlineMath math="y = 4" /> tetapi di sebelah kiri <InlineMath math="x = 2" />. Implikasi aslinya benar, karena setiap <InlineMath math="x > 2" /> memberi <InlineMath math="x^2 > 4" />.
+
+### Biimplikasi
+
+Jika implikasi dan konversnya sama-sama benar, keduanya bisa ditulis sebagai satu pernyataan **jika dan hanya jika**. Misalnya, <InlineMath math="x^3 = 8" /> jika dan hanya jika <InlineMath math="x = 2" />, karena kedua arahnya benar.
+
+## Penalaran Deduktif
+
+Argumen deduktif terdiri dari premis dan kesimpulan. Jika premisnya benar dan bentuk argumennya sah, **kesimpulannya pasti benar**. Tiga bentuk yang sah:
+
+| Bentuk | Premis 1 | Premis 2 | Kesimpulan |
+| :--- | :--- | :--- | :--- |
+| Silogisme | Semua <InlineMath math="A" /> adalah <InlineMath math="B" /> | <InlineMath math="C" /> adalah <InlineMath math="A" /> | <InlineMath math="C" /> adalah <InlineMath math="B" /> |
+| Modus ponens | Jika <InlineMath math="p" />, maka <InlineMath math="q" /> | <InlineMath math="p" /> benar | <InlineMath math="q" /> benar |
+| Modus tollens | Jika <InlineMath math="p" />, maka <InlineMath math="q" /> | <InlineMath math="\sim q" /> benar | <InlineMath math="\sim p" /> benar |
+
+### Premis sebagai Diagram Himpunan
+
+Premis semua <InlineMath math="A" /> adalah <InlineMath math="B" /> berarti **himpunan <InlineMath math="A" /> terletak di dalam himpunan <InlineMath math="B" />**. Geser lingkaran <InlineMath math="A" /> dan lihat kapan lingkaran itu berada seluruhnya di dalam <InlineMath math="B" />.
+
+<MathVisual
+  title={<>Premis Semua A adalah B sebagai Diagram Himpunan</>}
+  description={
+    <>
+      Lingkaran besar adalah himpunan <InlineMath math="B" /> dengan jari-jari{" "}
+      <InlineMath math="3" />, dan lingkaran kecil adalah himpunan{" "}
+      <InlineMath math="A" /> dengan jari-jari <InlineMath math="1" /> yang
+      berpusat di <InlineMath math="(h, 0)" />.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -4.5, max: 6.5 }, y: { min: -3.5, max: 3.5 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "h", min: -2, max: 5, value: 1, step: 0.1, label: "h" },
+    ],
+    objects: [
+      { id: "setb", kind: "parametric", appearance: "reference", x: "3cos(t)", y: "3sin(t)", parameter: { min: 0, max: 2 * Math.PI } },
+      { id: "seta", kind: "parametric", appearance: "primary", x: "h + cos(t)", y: "sin(t)", parameter: { min: 0, max: 2 * Math.PI } },
+    ],
+    readouts: [
+      { key: "margin", formula: "2 - abs(h)" },
+    ],
+    labels: [
+      { key: "setb", objectId: "setb", at: { x: -2.1, y: 2.1 }, placement: "above-left" },
+      { key: "seta", objectId: "seta", at: { x: "h", y: "1" }, placement: "above" },
+    ],
+  }}
+  labels={{
+    setb: <InlineMath math="B" />,
+    seta: <InlineMath math="A" />,
+    h: <>Pusat himpunan <InlineMath math="A" /> <InlineMath math="h" /></>,
+    margin: <>Jarak antara tepi <InlineMath math="A" /> dan tepi <InlineMath math="B" /></>,
+  }}
+/>
+
+Saat jaraknya positif, yaitu <InlineMath math="-2 < h < 2" />, himpunan <InlineMath math="A" /> berada seluruhnya di dalam <InlineMath math="B" /> dan premis itu benar. Setiap anggota <InlineMath math="C" /> dari <InlineMath math="A" /> juga berada di <InlineMath math="B" />, itulah sebabnya silogisme sah.
+
+### Contoh Melengkapi Argumen Deduktif
+
+Lengkapi **kesimpulannya**. Premis 1: Jika suatu segi empat adalah persegi, maka semua sisinya sama panjang. Premis 2: Sisi segi empat <InlineMath math="PQRS" /> tidak semuanya sama panjang.
+
+Ini modus tollens dengan <InlineMath math="\sim q" /> benar, jadi kesimpulannya: <InlineMath math="PQRS" /> bukan persegi. Cek: jika <InlineMath math="PQRS" /> persegi, semua sisinya pasti sama panjang, dan itu bertentangan dengan premis 2.
+
+## Penalaran Induktif
+
+Penalaran induktif menyusun kesimpulan umum dari **pola pada kasus-kasus khusus**. Kesimpulannya mungkin benar tetapi tidak dijamin, jadi harus diuji pada kasus baru. Grafik ini menunjukkan banyak diagonal segi-<InlineMath math="n" />.
+
+<ScatterDiagram
+  title={<>Banyak Diagonal Segi Banyak</>}
+  description={
+    <>
+      Banyak diagonal segi banyak dengan tiga sampai tujuh sisi, dihitung
+      langsung pada gambar.
+    </>
+  }
+  xAxisLabel="Banyak sisi n"
+  yAxisLabel="Banyak diagonal"
+  datasets={[
+    {
+      name: "Segi banyak",
+      color: "var(--chart-1)",
+      points: [
+        { x: 3, y: 0 },
+        { x: 4, y: 2 },
+        { x: 5, y: 5 },
+        { x: 6, y: 9 },
+        { x: 7, y: 14 },
+      ],
+    },
+  ]}
+/>
+
+### Dari Pola ke Rumus
+
+Setiap titik sudut terhubung ke <InlineMath math="n - 3" /> titik sudut lain lewat diagonal, dan **setiap diagonal terhitung dua kali**, jadi kesimpulan induktifnya adalah <InlineMath math="\dfrac{n(n - 3)}{2}" />. Model ini menggambar rumus itu.
+
+<MathVisual
+  title={<>Rumus Diagonal dari Pola</>}
+  description={
+    <>
+      Kurva <InlineMath math="\dfrac{n(n - 3)}{2}" /> dalam satuan{" "}
+      <InlineMath math="2" /> diagonal terhadap banyak sisi{" "}
+      <InlineMath math="n" />.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 10.5 }, y: { min: 0, max: 18.5 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "n", min: 3, max: 10, value: 8, step: 1, label: "n" },
+    ],
+    objects: [
+      { id: "rule", kind: "function", appearance: "primary", formula: "x(x - 3)/4", domain: { min: 3, max: 10 } },
+      { id: "now", kind: "marker", x: "n", y: "n(n - 3)/4", appearance: "warning" },
+    ],
+    readouts: [
+      { key: "diagonals", formula: "n(n - 3)/2" },
+    ],
+  }}
+  labels={{
+    n: <>Banyak sisi <InlineMath math="n" /></>,
+    diagonals: <>Banyak diagonal</>,
+  }}
+/>
+
+### Contoh Menguji Kesimpulan Induktif
+
+Gunakan rumus untuk **memprediksi** banyak diagonal segi delapan, lalu cek dengan model.
+
+<BlockMath math="\frac{8(8 - 3)}{2} = \frac{40}{2} = 20" />
+
+Cek dengan model: pada <InlineMath math="n = 8" />, terbaca <InlineMath math="20" />. Menghitung langsung juga memberi <InlineMath math="20" />: setiap dari <InlineMath math="8" /> titik sudut punya <InlineMath math="5" /> diagonal, dan <InlineMath math="8 \times 5 \div 2 = 20" />.
+
+## Kesalahan Umum tentang Logika
+
+| Kesalahan | Mengapa salah | Cara mengecek |
+| :--- | :--- | :--- |
+| Konvers selalu benar jika implikasinya benar. | Konvers bisa salah, seperti contoh <InlineMath math="x = -3" />. | Cari satu contoh penyangkal. |
+| Pernyataan dengan atau memerlukan kedua bagian benar. | Pernyataan dengan atau benar jika minimal satu bagian benar. | Cek tabel kebenaran. |
+| Kesimpulan induktif pasti benar. | Kesimpulan induktif hanya mungkin dan harus diuji. | Uji rumus pada kasus baru. |
+| Negasi dari semua <InlineMath math="A" /> adalah <InlineMath math="B" /> adalah tidak ada <InlineMath math="A" /> yang <InlineMath math="B" />. | Negasinya adalah tidak semua <InlineMath math="A" /> adalah <InlineMath math="B" />. | Satu anggota di luar <InlineMath math="B" /> sudah cukup. |
+
+Kesalahan pertama paling sering muncul dalam soal implikasi. **Satu contoh penyangkal membuktikan pernyataan salah**.
+
+## Latihan Logika Matematika
+
+Soal-soal ini bergerak dari pernyataan ke penalaran deduktif dan induktif. **Sebutkan bentuk argumennya** di setiap jawaban deduktif.
+
+1. Tentukan nilai kebenaran pernyataan <InlineMath math="5 > 3" /> dan <InlineMath math="2^3 = 6" />.
+
+2. Tulis kontraposisi dari jika <InlineMath math="n" /> kelipatan <InlineMath math="4" />, maka <InlineMath math="n" /> bilangan genap, dan sebutkan nilai kebenarannya.
+
+3. Lengkapi argumen. Premis 1: Semua kelipatan <InlineMath math="6" /> adalah kelipatan <InlineMath math="3" />. Premis 2: <InlineMath math="42" /> adalah kelipatan <InlineMath math="6" />.
+
+4. Barisan <InlineMath math="5, 8, 11, 14, \ldots" /> mengikuti pola <InlineMath math="3n + 2" /> untuk <InlineMath math="n = 1, 2, 3, \ldots" />. Gunakan kesimpulan induktif untuk mencari suku ke-<InlineMath math="20" />.
+
+### Pembahasan
+
+**Pembahasan 1**: <InlineMath math="5 > 3" /> benar, tetapi <InlineMath math="2^3 = 8" />, bukan <InlineMath math="6" />, jadi bagian kedua salah. Pernyataan dengan **dan** memerlukan kedua bagian benar, jadi pernyataan itu **salah**.
+
+**Pembahasan 2**: Kontraposisinya adalah jika <InlineMath math="n" /> bukan bilangan genap, maka <InlineMath math="n" /> bukan kelipatan <InlineMath math="4" />. Implikasi aslinya benar, dan **kontraposisi punya nilai kebenaran yang sama**, jadi kontraposisinya juga benar.
+
+**Pembahasan 3**: Ini silogisme, jadi kesimpulannya <InlineMath math="42" /> adalah kelipatan <InlineMath math="3" />. Cek: <InlineMath math="42 = 3 \times 14" />.
+
+**Pembahasan 4**: Substitusikan <InlineMath math="n = 20" /> ke dalam pola:
+
+<BlockMath math="3(20) + 2 = 62" />
+
+Cek pola pada suku yang diketahui: <InlineMath math="3(4) + 2 = 14" />, sama dengan suku keempat.

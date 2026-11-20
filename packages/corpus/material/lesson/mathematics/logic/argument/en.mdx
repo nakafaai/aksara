@@ -1,0 +1,268 @@
+export const metadata = {
+  title: "Logical Reasoning Notes for Form Four",
+  description:
+    "Form 4 Mathematics Chapter 3: identify statements, form implications, converses, inverses and contrapositives, and build deductive and inductive arguments.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2026-11-17",
+  subject: "Logical Reasoning",
+};
+
+## Logical Reasoning Tests Whether Statements Are True
+
+A **statement** is a sentence that is either true or false, but not both. The sentence <InlineMath math="7" /> is a prime number is a true statement. Questions and commands are not statements. From statements, we build compound statements, implications and arguments. A **deductive argument** moves from general premises to a specific conclusion, while an **inductive argument** moves from specific cases to a general conclusion. In the models here, you test an implication with a counterexample, see a premise as a set diagram and build a general conclusion from a pattern.
+
+## Compound Statements and Negation
+
+The **negation** of a statement <InlineMath math="p" /> is written <InlineMath math="\sim p" /> and has the opposite truth value. Two statements can be joined with **and** or **or**.
+
+| <InlineMath math="p" /> | <InlineMath math="q" /> | <InlineMath math="p \text{ and } q" /> | <InlineMath math="p \text{ or } q" /> |
+| :--- | :--- | :--- | :--- |
+| True | True | True | True |
+| True | False | False | True |
+| False | True | False | True |
+| False | False | False | False |
+
+A statement with **and** is true only when both parts are true. A statement with **or** is false only when both parts are false. This chart compares the number of true rows in the truth table of each kind of statement.
+
+<BarChart
+  title={<>Number of True Rows in a Truth Table</>}
+  description={
+    <>
+      Out of the four combinations of truth values of <InlineMath math="p" />{" "}
+      and <InlineMath math="q" />, how many make each compound statement true.
+    </>
+  }
+  yAxisLabel="True rows"
+  data={[
+    { name: "p and q", value: 1 },
+    { name: "p or q", value: 3 },
+    { name: "If p, then q", value: 3 },
+  ]}
+  chartConfig={{ value: { label: "True rows", colors: { light: ["var(--chart-2)"], dark: ["var(--chart-2)"] } } }}
+/>
+
+## Implications and Their Converses
+
+An **implication** has the form if <InlineMath math="p" />, then <InlineMath math="q" />. The part <InlineMath math="p" /> is the antecedent and <InlineMath math="q" /> is the consequent. An implication is false only when <InlineMath math="p" /> is true but <InlineMath math="q" /> is false.
+
+| Form | Statement | Example |
+| :--- | :--- | :--- |
+| Implication | If <InlineMath math="p" />, then <InlineMath math="q" /> | If <InlineMath math="x > 2" />, then <InlineMath math="x^2 > 4" /> |
+| Converse | If <InlineMath math="q" />, then <InlineMath math="p" /> | If <InlineMath math="x^2 > 4" />, then <InlineMath math="x > 2" /> |
+| Inverse | If <InlineMath math="\sim p" />, then <InlineMath math="\sim q" /> | If <InlineMath math="x \le 2" />, then <InlineMath math="x^2 \le 4" /> |
+| Contrapositive | If <InlineMath math="\sim q" />, then <InlineMath math="\sim p" /> | If <InlineMath math="x^2 \le 4" />, then <InlineMath math="x \le 2" /> |
+
+**The contrapositive always has the same truth value as the implication**, while the converse and inverse may differ. This model tests an implication and its converse. Move <InlineMath math="x" /> and find a value that makes the converse false.
+
+<MathVisual
+  title={<>Testing a Converse with a Counterexample</>}
+  description={
+    <>
+      The curve <InlineMath math="y = x^2" /> and the line{" "}
+      <InlineMath math="y = 4" />. The converse if <InlineMath math="x^2 > 4" />,
+      then <InlineMath math="x > 2" /> fails when the point is above the line
+      but to the left of <InlineMath math="x = 2" />.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -4, max: 4 }, y: { min: -1, max: 12 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "a", min: -3.5, max: 3.5, value: -3, step: 0.1, label: "a" },
+    ],
+    objects: [
+      { id: "square", kind: "function", appearance: "primary", formula: "x^2", domain: { min: -3.5, max: 3.5 } },
+      { id: "four", kind: "function", appearance: "construction", formula: "4 + 0x", domain: { min: -4, max: 4 } },
+      { id: "now", kind: "marker", x: "a", y: "a^2", appearance: "warning" },
+    ],
+    readouts: [
+      { key: "square", formula: "a^2" },
+    ],
+  }}
+  labels={{
+    a: <>Value of <InlineMath math="x" /></>,
+    square: <>Value of <InlineMath math="x^2" /></>,
+  }}
+/>
+
+### Example Deciding a Truth Value
+
+Decide whether **the converse** of if <InlineMath math="x > 2" />, then <InlineMath math="x^2 > 4" /> is true or false.
+
+The converse is if <InlineMath math="x^2 > 4" />, then <InlineMath math="x > 2" />. Take <InlineMath math="x = -3" />:
+
+<BlockMath math="(-3)^2 = 9 > 4 \quad\text{but}\quad -3 < 2" />
+
+One counterexample is enough, so the converse is false. Check with the model: at <InlineMath math="x = -3" />, the point is above the line <InlineMath math="y = 4" /> but to the left of <InlineMath math="x = 2" />. The original implication is true, because every <InlineMath math="x > 2" /> gives <InlineMath math="x^2 > 4" />.
+
+### Biconditional Statements
+
+If an implication and its converse are both true, they can be written as one **if and only if** statement. For example, <InlineMath math="x^3 = 8" /> if and only if <InlineMath math="x = 2" />, because each direction is true.
+
+## Deductive Arguments
+
+A deductive argument has premises and a conclusion. If the premises are true and the form is valid, **the conclusion must be true**. Three valid forms:
+
+| Form | Premise 1 | Premise 2 | Conclusion |
+| :--- | :--- | :--- | :--- |
+| Form one | All <InlineMath math="A" /> are <InlineMath math="B" /> | <InlineMath math="C" /> is <InlineMath math="A" /> | <InlineMath math="C" /> is <InlineMath math="B" /> |
+| Form two | If <InlineMath math="p" />, then <InlineMath math="q" /> | <InlineMath math="p" /> is true | <InlineMath math="q" /> is true |
+| Form three | If <InlineMath math="p" />, then <InlineMath math="q" /> | <InlineMath math="\sim q" /> is true | <InlineMath math="\sim p" /> is true |
+
+### Premises as Set Diagrams
+
+The premise all <InlineMath math="A" /> are <InlineMath math="B" /> means **set <InlineMath math="A" /> lies inside set <InlineMath math="B" />**. Move circle <InlineMath math="A" /> and see when it sits entirely inside <InlineMath math="B" />.
+
+<MathVisual
+  title={<>The Premise All A Are B as a Set Diagram</>}
+  description={
+    <>
+      The large circle is set <InlineMath math="B" /> with radius{" "}
+      <InlineMath math="3" />, and the small circle is set{" "}
+      <InlineMath math="A" /> with radius <InlineMath math="1" /> centred at{" "}
+      <InlineMath math="(h, 0)" />.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -4.5, max: 6.5 }, y: { min: -3.5, max: 3.5 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "h", min: -2, max: 5, value: 1, step: 0.1, label: "h" },
+    ],
+    objects: [
+      { id: "setb", kind: "parametric", appearance: "reference", x: "3cos(t)", y: "3sin(t)", parameter: { min: 0, max: 2 * Math.PI } },
+      { id: "seta", kind: "parametric", appearance: "primary", x: "h + cos(t)", y: "sin(t)", parameter: { min: 0, max: 2 * Math.PI } },
+    ],
+    readouts: [
+      { key: "margin", formula: "2 - abs(h)" },
+    ],
+    labels: [
+      { key: "setb", objectId: "setb", at: { x: -2.1, y: 2.1 }, placement: "above-left" },
+      { key: "seta", objectId: "seta", at: { x: "h", y: "1" }, placement: "above" },
+    ],
+  }}
+  labels={{
+    setb: <InlineMath math="B" />,
+    seta: <InlineMath math="A" />,
+    h: <>Centre of set <InlineMath math="A" /> <InlineMath math="h" /></>,
+    margin: <>Gap between the edge of <InlineMath math="A" /> and the edge of <InlineMath math="B" /></>,
+  }}
+/>
+
+When the gap is positive, that is <InlineMath math="-2 < h < 2" />, set <InlineMath math="A" /> lies entirely inside <InlineMath math="B" /> and the premise is true. Any element <InlineMath math="C" /> of <InlineMath math="A" /> is then also in <InlineMath math="B" />, which is why form one is valid.
+
+### Example Completing a Deductive Argument
+
+Complete **the conclusion**. Premise 1: If a quadrilateral is a square, then all its sides are equal. Premise 2: The sides of quadrilateral <InlineMath math="PQRS" /> are not all equal.
+
+This is form three with <InlineMath math="\sim q" /> true, so the conclusion is: <InlineMath math="PQRS" /> is not a square. Check: if <InlineMath math="PQRS" /> were a square, all its sides would be equal, which contradicts premise 2.
+
+## Inductive Arguments
+
+An inductive argument builds a general conclusion from **a pattern in specific cases**. The conclusion may be true but isn't guaranteed, so it has to be tested on new cases. This graph shows the number of diagonals of a polygon with <InlineMath math="n" /> sides.
+
+<ScatterDiagram
+  title={<>Number of Diagonals of a Polygon</>}
+  description={
+    <>
+      The number of diagonals of polygons with three to seven sides, counted
+      directly on a drawing.
+    </>
+  }
+  xAxisLabel="Number of sides n"
+  yAxisLabel="Number of diagonals"
+  datasets={[
+    {
+      name: "Polygon",
+      color: "var(--chart-1)",
+      points: [
+        { x: 3, y: 0 },
+        { x: 4, y: 2 },
+        { x: 5, y: 5 },
+        { x: 6, y: 9 },
+        { x: 7, y: 14 },
+      ],
+    },
+  ]}
+/>
+
+### From Pattern to Rule
+
+Each vertex joins <InlineMath math="n - 3" /> other vertices by a diagonal, and **each diagonal is counted twice**, so the inductive conclusion is <InlineMath math="\dfrac{n(n - 3)}{2}" />. This model draws that rule.
+
+<MathVisual
+  title={<>The Diagonal Rule from a Pattern</>}
+  description={
+    <>
+      The curve <InlineMath math="\dfrac{n(n - 3)}{2}" /> in units of{" "}
+      <InlineMath math="2" /> diagonals against the number of sides{" "}
+      <InlineMath math="n" />.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 10.5 }, y: { min: 0, max: 18.5 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "n", min: 3, max: 10, value: 8, step: 1, label: "n" },
+    ],
+    objects: [
+      { id: "rule", kind: "function", appearance: "primary", formula: "x(x - 3)/4", domain: { min: 3, max: 10 } },
+      { id: "now", kind: "marker", x: "n", y: "n(n - 3)/4", appearance: "warning" },
+    ],
+    readouts: [
+      { key: "diagonals", formula: "n(n - 3)/2" },
+    ],
+  }}
+  labels={{
+    n: <>Number of sides <InlineMath math="n" /></>,
+    diagonals: <>Number of diagonals</>,
+  }}
+/>
+
+### Example Testing an Inductive Conclusion
+
+Use the rule to **predict** the number of diagonals of an octagon, then check with the model.
+
+<BlockMath math="\frac{8(8 - 3)}{2} = \frac{40}{2} = 20" />
+
+Check with the model: at <InlineMath math="n = 8" />, it reads <InlineMath math="20" />. A direct count also gives <InlineMath math="20" />: each of the <InlineMath math="8" /> vertices has <InlineMath math="5" /> diagonals, and <InlineMath math="8 \times 5 \div 2 = 20" />.
+
+## Common Mistakes about Logical Reasoning
+
+| Mistake | Why it's wrong | How to check |
+| :--- | :--- | :--- |
+| The converse is always true when the implication is true. | The converse can be false, as the example <InlineMath math="x = -3" /> shows. | Look for one counterexample. |
+| A statement with or needs both parts true. | A statement with or is true if at least one part is true. | Check the truth table. |
+| An inductive conclusion is certainly true. | An inductive conclusion is only probable and must be tested. | Test the rule on a new case. |
+| The negation of all <InlineMath math="A" /> are <InlineMath math="B" /> is no <InlineMath math="A" /> are <InlineMath math="B" />. | The negation is not all <InlineMath math="A" /> are <InlineMath math="B" />. | One element outside <InlineMath math="B" /> is enough. |
+
+The first mistake is the most common one in implication questions. **One counterexample proves a statement false**.
+
+## Practice on Logical Reasoning
+
+These questions move from statements to deductive and inductive arguments. **Name the argument form** in every deductive answer.
+
+1. Decide the truth value of the statement <InlineMath math="5 > 3" /> and <InlineMath math="2^3 = 6" />.
+
+2. Write the contrapositive of if <InlineMath math="n" /> is a multiple of <InlineMath math="4" />, then <InlineMath math="n" /> is even, and state its truth value.
+
+3. Complete the argument. Premise 1: All multiples of <InlineMath math="6" /> are multiples of <InlineMath math="3" />. Premise 2: <InlineMath math="42" /> is a multiple of <InlineMath math="6" />.
+
+4. The sequence <InlineMath math="5, 8, 11, 14, \ldots" /> follows the pattern <InlineMath math="3n + 2" /> for <InlineMath math="n = 1, 2, 3, \ldots" />. Use the inductive conclusion to find term <InlineMath math="20" />.
+
+### Solutions
+
+**Solution 1**: <InlineMath math="5 > 3" /> is true, but <InlineMath math="2^3 = 8" />, not <InlineMath math="6" />, so the second part is false. A statement with **and** needs both parts true, so the statement is **false**.
+
+**Solution 2**: The contrapositive is if <InlineMath math="n" /> is not even, then <InlineMath math="n" /> is not a multiple of <InlineMath math="4" />. The original implication is true, and **the contrapositive has the same truth value**, so it's also true.
+
+**Solution 3**: This is form one, so the conclusion is <InlineMath math="42" /> is a multiple of <InlineMath math="3" />. Check: <InlineMath math="42 = 3 \times 14" />.
+
+**Solution 4**: Substitute <InlineMath math="n = 20" /> into the pattern:
+
+<BlockMath math="3(20) + 2 = 62" />
+
+Check the pattern on a known term: <InlineMath math="3(4) + 2 = 14" />, the same as the fourth term.
