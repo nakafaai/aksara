@@ -1,21 +1,59 @@
 import { materialNode, unitNode } from "#corpus/curriculum/schema";
 import { mathematicsStandards } from "#corpus/curriculum/united-states/documents";
 
-/** The CCSS high school conceptual category Geometry. */
-export const usHighSchoolGeometryUnit = unitNode({
+/** United States high school, CCSS conceptual category Geometry. */
+export const usGeometryUnit = unitNode({
   children: [
+    materialNode({
+      key: "us-high-school-mathematics-geometry-transformations",
+      level: "lesson",
+      materialKeys: ["lesson.mathematics.geometric-transformation"],
+      order: 10,
+      outcomes: [{ code: "G-CO Congruence", ...mathematicsStandards }],
+    }),
+    materialNode({
+      key: "us-high-school-mathematics-geometry-trigonometry",
+      level: "lesson",
+      materialKeys: ["lesson.mathematics.trigonometry"],
+      order: 20,
+      outcomes: [
+        {
+          code: "G-SRT Similarity, Right Triangles, and Trigonometry",
+          ...mathematicsStandards,
+        },
+      ],
+    }),
+    materialNode({
+      key: "us-high-school-mathematics-geometry-any-triangle",
+      level: "lesson",
+      materialKeys: ["lesson.mathematics.triangle-solution"],
+      order: 30,
+      outcomes: [
+        {
+          code: "G-SRT Similarity, Right Triangles, and Trigonometry",
+          ...mathematicsStandards,
+        },
+      ],
+    }),
     materialNode({
       key: "us-high-school-mathematics-geometry-circle",
       level: "lesson",
       materialKeys: ["lesson.mathematics.circle"],
-      order: 10,
+      order: 40,
+      outcomes: [{ code: "G-C Circles", ...mathematicsStandards }],
+    }),
+    materialNode({
+      key: "us-high-school-mathematics-geometry-arcs-sectors",
+      level: "lesson",
+      materialKeys: ["lesson.mathematics.circle-arc-sector"],
+      order: 50,
       outcomes: [{ code: "G-C Circles", ...mathematicsStandards }],
     }),
     materialNode({
       key: "us-high-school-mathematics-geometry-coordinate",
       level: "lesson",
       materialKeys: ["lesson.mathematics.analytic-geometry"],
-      order: 20,
+      order: 60,
       outcomes: [
         {
           code: "G-GPE Expressing Geometric Properties with Equations",
@@ -24,13 +62,13 @@ export const usHighSchoolGeometryUnit = unitNode({
       ],
     }),
     materialNode({
-      key: "us-high-school-mathematics-geometry-trigonometry",
+      key: "us-high-school-mathematics-geometry-lines",
       level: "lesson",
-      materialKeys: ["lesson.mathematics.trigonometry"],
-      order: 30,
+      materialKeys: ["lesson.mathematics.coordinate-geometry"],
+      order: 70,
       outcomes: [
         {
-          code: "G-SRT Similarity, Right Triangles, and Trigonometry",
+          code: "G-GPE Expressing Geometric Properties with Equations",
           ...mathematicsStandards,
         },
       ],

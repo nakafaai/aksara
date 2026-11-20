@@ -45,3 +45,37 @@ export const earthActivityStandards = {
     "Next Generation Science Standards, HS-ESS3 Earth and Human Activity",
   url: `${arrangementHost}/hs-ess3-earth-and-human-activity`,
 };
+
+/** NGSS HS-PS4 Waves and Their Applications in Technologies for Information Transfer. */
+export const wavesStandards = {
+  citation:
+    "Next Generation Science Standards, HS-PS4 Waves and Their Applications in Technologies for Information Transfer",
+  url: `${arrangementHost}/hs-ps4-waves-and-their-applications-technologies-information-transfer`,
+};
+
+/** NGSS HS-LS1 From Molecules to Organisms: Structures and Processes. */
+export const organismStandards = {
+  citation:
+    "Next Generation Science Standards, HS-LS1 From Molecules to Organisms: Structures and Processes",
+  url: `${arrangementHost}/hs-ls1-molecules-organisms-structures-and-processes`,
+};
+
+/** NGSS HS-LS2 Ecosystems: Interactions, Energy, and Dynamics. */
+export const ecosystemStandards = {
+  citation:
+    "Next Generation Science Standards, HS-LS2 Ecosystems: Interactions, Energy, and Dynamics",
+  url: `${arrangementHost}/hs-ls2-ecosystems-interactions-energy-and-dynamics`,
+};
+
+/** NGSS HS-LS3 Heredity: Inheritance and Variation of Traits. */
+export const heredityStandards = {
+  citation:
+    "Next Generation Science Standards, HS-LS3 Heredity: Inheritance and Variation of Traits",
+  url: `${arrangementHost}/hs-ls3-heredity-inheritance-and-variation-traits`,
+};
+
+/** NGSS HS-ESS2 Earth's Systems. */
+export const earthSystemsStandards = {
+  citation: "Next Generation Science Standards, HS-ESS2 Earth's Systems",
+  url: `${arrangementHost}/hs-ess2-earths-systems`,
+};
