@@ -4,7 +4,39 @@ import { materialNode, unitNode } from "#corpus/curriculum/schema";
 /** The KSSM Form 4 Biology chapters on the laboratory and the cell, Bab 1 to Bab 4 of the DSKP. */
 export const kssmForm4BiologyStructureNodes = [
   unitNode({
+    children: [
+      materialNode({
+        key: "form-4-biology-introduction-to-biology-and-laboratory-rules-biology-introduction",
+        level: "lesson",
+        materialKeys: ["lesson.biology.biology-introduction"],
+        order: 10,
+        outcomes: [
+          {
+            code: "Form 4, Content Standards 1.1 to 1.4",
+            ...biologyStandards,
+          },
+        ],
+      }),
+    ],
     key: "form-4-biology-introduction-to-biology-and-laboratory-rules",
+    materialCard: {
+      de: {
+        description: "Kenne Fachgebiete, Laborregeln und faire Versuche.",
+        title: "Einführung in die Biologie",
+      },
+      en: {
+        description: "Explore biology fields, lab safety and investigations.",
+        title: "Introduction to Biology",
+      },
+      id: {
+        description: "Kenali bidang biologi, aturan lab, dan metode ilmiah.",
+        title: "Pengantar Biologi",
+      },
+      ms: {
+        description: "Kenali bidang biologi, peraturan makmal dan penyiasatan.",
+        title: "Pengenalan kepada Biologi",
+      },
+    },
     order: 10,
     translations: {
       de: {
