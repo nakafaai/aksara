@@ -7,11 +7,16 @@ import { mathVisuals } from "#contracts/visual/base/math";
 import { mediaVisuals } from "#contracts/visual/base/media";
 import { biologyVisuals } from "#contracts/visual/biology";
 import { bacteriaVisuals } from "#contracts/visual/biology/bacteria";
+import { bloodVisuals } from "#contracts/visual/biology/blood";
 import { cellVisuals } from "#contracts/visual/biology/cell";
 import { climateVisuals } from "#contracts/visual/biology/climate";
 import { ecologyVisuals } from "#contracts/visual/biology/ecology";
+import { heartVisuals } from "#contracts/visual/biology/heart";
+import { neuronVisuals } from "#contracts/visual/biology/neuron";
 import { physiologyVisuals } from "#contracts/visual/biology/physiology";
 import { plantVisuals } from "#contracts/visual/biology/plant";
+import { synapseVisuals } from "#contracts/visual/biology/synapse";
+import { vesselVisuals } from "#contracts/visual/biology/vessel";
 import type { RichSlot } from "#contracts/visual/card";
 import { atomVisuals } from "#contracts/visual/chemistry/atom";
 import { balanceVisuals } from "#contracts/visual/chemistry/balance";
@@ -101,6 +106,11 @@ export function visualCatalog<E>(rich: RichSlot<E>) {
     ...ecologyVisuals(rich),
     ...physiologyVisuals(rich),
     ...plantVisuals(rich),
+    ...heartVisuals(rich),
+    ...vesselVisuals(rich),
+    ...bloodVisuals(rich),
+    ...neuronVisuals(rich),
+    ...synapseVisuals(rich),
     ...balanceVisuals(rich),
     ...bondingVisuals(rich),
     ...discoveryVisuals(rich),
