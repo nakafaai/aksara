@@ -3,7 +3,7 @@ export const metadata = {
     description: "Selesaikan sistem pertidaksamaan linear dengan grafik, modelkan batasannya, lalu tentukan solusi optimum sederhana.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2025-04-18",
-  dateModified: "2026-11-08",
+  dateModified: "2026-11-20",
   subject: "Sistem Persamaan dan Pertidaksamaan Linear",
 };
 
@@ -100,7 +100,7 @@ Arsir kedua syarat sekaligus. Titik <InlineMath math="(2, 1)" /> lolos kedua uji
 
 <MathVisual
   title={<>Irisan memuat <InlineMath math="(2, 1)" /></>}
-  description={<>Garis batas <InlineMath math="2x + 5y = 10" /> dan <InlineMath math="6x + 2y = 10" />, baji tempat <InlineMath math="2x + 5y < 10" /> dan <InlineMath math="6x + 2y > 10" /> sama-sama berlaku, digambar sampai <InlineMath math="x = 4" />, dan titik uji <InlineMath math="(2, 1)" />.</>}
+  description={<>Baji tempat <InlineMath math="2x + 5y < 10" /> dan <InlineMath math="6x + 2y > 10" /> sama-sama berlaku. Tepinya terletak pada <InlineMath math="2x + 5y = 10" /> dan <InlineMath math="6x + 2y = 10" /> dan digambar putus-putus, karena kedua pertidaksamaan bersifat tegas. Titik uji <InlineMath math="(2, 1)" /> berada di dalamnya.</>}
   labels={{
     l1: <InlineMath math="2x + 5y = 10" />,
     l2: <InlineMath math="6x + 2y = 10" />,
@@ -108,18 +108,16 @@ Arsir kedua syarat sekaligus. Titik <InlineMath math="(2, 1)" /> lolos kedua uji
   }}
   scene={{
     space: "plane",
-    frame: { kind: "cartesian", x: { min: -1, max: 5 }, y: { min: -7.5, max: 5.5 } },
+    frame: { kind: "cartesian", x: { min: -1, max: 6 }, y: { min: -2.5, max: 4.5 } },
     view: { kind: "fit", padding: 0.3 },
     objects: [
-      { id: "region", kind: "polygon", vertices: [{ x: 15 / 13, y: 20 / 13 }, { x: 4, y: 2 / 5 }, { x: 4, y: -7 }], appearance: "answer" },
-      { id: "l1", kind: "line", through: [{ x: 0, y: 2 }, { x: 5, y: 0 }], appearance: "primary" },
-      { id: "l2", kind: "line", through: [{ x: 0, y: 5 }, { x: 5 / 3, y: 0 }], appearance: "secondary" },
+      { id: "region", kind: "region", inequalities: ["2x + 5y < 10", "6x + 2y > 10"], appearance: "answer" },
       { id: "test", kind: "point", at: { x: 2, y: 1 }, appearance: "highlight" },
     ],
     labels: [
-      { key: "l1", objectId: "l1", at: { x: 0, y: 2 }, placement: "above-right" },
-      { key: "l2", objectId: "l2", at: { x: 0, y: 5 }, placement: "right" },
-      { key: "test", objectId: "test", at: { x: 2, y: 1 }, placement: "right" },
+      { key: "l1", objectId: "region", at: { x: 3, y: 4 / 5 }, placement: "above-right" },
+      { key: "l2", objectId: "region", at: { x: 2, y: -1 }, placement: "above-right" },
+      { key: "test", objectId: "test", at: { x: 2, y: 1 }, placement: "below" },
     ],
   }}
 />
@@ -166,7 +164,7 @@ Gambar kedua garis batas melalui titik temunya <InlineMath math="(2, 4)" />. Dae
 
 <MathVisual
   title={<>Menguji <InlineMath math="(2, 3)" /> dan <InlineMath math="(1, 5)" /></>}
-  description={<>Daerah tempat <InlineMath math="x + y \leq 6" /> dan <InlineMath math="2x - y \geq 0" />, digambar sampai <InlineMath math="y = -2" />, dengan titik pojok <InlineMath math="(2, 4)" />, penyelesaian <InlineMath math="(2, 3)" />, dan bukan penyelesaian <InlineMath math="(1, 5)" />.</>}
+  description={<>Daerah tempat <InlineMath math="x + y \leq 6" /> dan <InlineMath math="2x - y \geq 0" />, dengan titik pojok <InlineMath math="(2, 4)" />, penyelesaian <InlineMath math="(2, 3)" />, dan bukan penyelesaian <InlineMath math="(1, 5)" />.</>}
   labels={{
     l1: <InlineMath math="x + y = 6" />,
     l2: <InlineMath math="y = 2x" />,
@@ -176,10 +174,10 @@ Gambar kedua garis batas melalui titik temunya <InlineMath math="(2, 4)" />. Dae
   }}
   scene={{
     space: "plane",
-    frame: { kind: "cartesian", x: { min: -2, max: 9 }, y: { min: -3, max: 7 } },
+    frame: { kind: "cartesian", x: { min: -2, max: 8 }, y: { min: -3, max: 7 } },
     view: { kind: "fit", padding: 0.3 },
     objects: [
-      { id: "region", kind: "polygon", vertices: [{ x: 2, y: 4 }, { x: 8, y: -2 }, { x: -1, y: -2 }], appearance: "answer" },
+      { id: "region", kind: "region", inequalities: ["x + y <= 6", "2x - y >= 0"], appearance: "answer" },
       { id: "l1", kind: "line", through: [{ x: 0, y: 6 }, { x: 6, y: 0 }], appearance: "primary" },
       { id: "l2", kind: "line", through: [{ x: 0, y: 0 }, { x: 1, y: 2 }], appearance: "secondary" },
       { id: "corner", kind: "point", at: { x: 2, y: 4 }, appearance: "answer" },
@@ -283,19 +281,17 @@ Irisan kedua daerah adalah solusi dari sistem pertidaksamaan linear tersebut.
   }}
   scene={{
     space: "plane",
-    frame: { kind: "cartesian", x: { min: -1, max: 12.5 }, y: { min: -6.5, max: 14.5 } },
+    frame: { kind: "cartesian", x: { min: -1, max: 13 }, y: { min: -3, max: 11 } },
     view: { kind: "fit", padding: 0.3 },
     objects: [
-      { id: "h1", kind: "polygon", vertices: [{ x: -1, y: -6 }, { x: 12, y: -6 }, { x: 12, y: -2 }, { x: -1, y: 11 }], appearance: "primary" },
-      { id: "h2", kind: "polygon", vertices: [{ x: -2 / 5, y: 14 }, { x: 12, y: 14 }, { x: 12, y: -6 }, { x: 58 / 5, y: -6 }], appearance: "secondary" },
-      { id: "region", kind: "polygon", vertices: [{ x: 5, y: 5 }, { x: 12, y: -2 }, { x: 12, y: -6 }, { x: 58 / 5, y: -6 }], appearance: "answer" },
-      { id: "l1", kind: "line", through: [{ x: 0, y: 10 }, { x: 10, y: 0 }], appearance: "primary" },
-      { id: "l2", kind: "line", through: [{ x: 8, y: 0 }, { x: 2, y: 10 }], appearance: "secondary" },
+      { id: "h1", kind: "region", inequalities: ["x + y <= 10"], appearance: "primary" },
+      { id: "h2", kind: "region", inequalities: ["15x + 9y >= 120"], appearance: "secondary" },
+      { id: "region", kind: "region", inequalities: ["x + y <= 10", "15x + 9y >= 120"], appearance: "answer" },
       { id: "corner", kind: "point", at: { x: 5, y: 5 }, appearance: "answer" },
     ],
     labels: [
-      { key: "l1", objectId: "l1", at: { x: 1, y: 9 }, placement: "right" },
-      { key: "l2", objectId: "l2", at: { x: 16 / 5, y: 8 }, placement: "right" },
+      { key: "l1", objectId: "h1", at: { x: 3, y: 7 }, placement: "below-left" },
+      { key: "l2", objectId: "h2", at: { x: 16 / 5, y: 8 }, placement: "right" },
       { key: "corner", objectId: "corner", at: { x: 5, y: 5 }, placement: "right" },
     ],
   }}
