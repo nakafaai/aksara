@@ -72,7 +72,39 @@ export const kssmForm4MathematicsTopicNodes = [
     },
   }),
   unitNode({
+    children: [
+      materialNode({
+        key: "form-4-mathematics-logical-reasoning-logic",
+        level: "lesson",
+        materialKeys: ["lesson.mathematics.logic"],
+        order: 10,
+        outcomes: [
+          {
+            code: "Tingkatan 4, Standard Kandungan 3.1 hingga 3.2",
+            ...mathematicsStandards,
+          },
+        ],
+      }),
+    ],
     key: "form-4-mathematics-logical-reasoning",
+    materialCard: {
+      de: {
+        description: "Prüfe Implikationen und ziehe gültige Schlüsse.",
+        title: "Logisches Schließen",
+      },
+      en: {
+        description: "Test implications and build valid arguments.",
+        title: "Logical Reasoning",
+      },
+      id: {
+        description: "Uji implikasi dan susun penalaran yang sah.",
+        title: "Penalaran Logis",
+      },
+      ms: {
+        description: "Uji implikasi dan bina hujah yang sah.",
+        title: "Penaakulan Logik",
+      },
+    },
     order: 30,
     translations: {
       de: { routeSlug: "logisches-schliessen", title: "Logisches Schließen" },
