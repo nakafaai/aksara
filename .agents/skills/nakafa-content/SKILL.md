@@ -124,8 +124,9 @@ Read only what the task needs. Each reference owns one concern.
   contract](references/emphasis.md) owns where they belong and how dense they
   may be.
 - Every lesson meets the [lesson standard](references/lesson.md): the answer
-  first, a teacher talking to one learner, rich interactive 3D scenes or
-  animations that model its main ideas (never fewer than before a revision),
+  first, a teacher talking to one learner, at least three custom 3D scenes or
+  animations that model its main ideas (aiming for five, never fewer than
+  before a revision),
   complete worked examples, common mistakes, practice with answers, and search
   metadata in every locale.
 - Every plotted coordinate is computed in the source from the formula it

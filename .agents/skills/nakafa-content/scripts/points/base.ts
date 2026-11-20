@@ -1,4 +1,4 @@
-import { Effect, Schema, Stream } from "effect";
+import { Array as Arr, Effect, Schema, Stream } from "effect";
 import { ChildProcess } from "effect/process";
 import {
   PointsCheckError,
@@ -114,6 +114,43 @@ export const changedFiles = Effect.fn("PointsCheck.changedFiles")(function* (
     "unreadable-entry"
   );
   return yield* parseChanges(output);
+});
+
+/**
+ * Lists every file below the paths that this change added, modified, renamed,
+ * or has not committed yet, relative to the repository root. A new lesson
+ * counts as changed from its first draft, before Git tracks it.
+ */
+export const touchedFiles = Effect.fn("PointsCheck.touchedFiles")(function* (
+  root: string,
+  base: string,
+  paths: readonly string[]
+) {
+  const committed = yield* runGit(
+    root,
+    [
+      "diff",
+      "--name-only",
+      "-z",
+      "--no-renames",
+      "--relative",
+      base,
+      "--",
+      ...paths,
+    ],
+    "unreadable-entry"
+  );
+  const untracked = yield* runGit(
+    root,
+    ["ls-files", "-z", "--others", "--exclude-standard", "--", ...paths],
+    "unreadable-entry"
+  );
+  return Arr.dedupe(
+    Arr.filter(
+      Arr.appendAll(committed.split("\0"), untracked.split("\0")),
+      (file) => file.length > 0
+    )
+  );
 });
 
 /** Reads one file as it was committed at the base revision. */

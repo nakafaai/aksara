@@ -228,10 +228,18 @@ revision from ending with fewer interactive visuals than it started with. It
 parses each MDX file with the checker's own MDX tooling and reads the ESTree of
 every JSX attribute and every expression of the page, never raw text. The
 three findings, the thresholds, and the one scoped skip live in
-[computed and exact visuals](visuals.md#computed-and-exact-visuals). It also
-fails every lesson folder below the visual bar, fewer than three interactive
-visual cards, and lists them with their count, as the
-[every-lesson rule](visuals.md#interactive-visual-in-every-lesson) requires.
+[computed and exact visuals](visuals.md#computed-and-exact-visuals).
+
+It also holds every lesson folder that the change touched to the
+[scene bar](visuals.md#interactive-visual-in-every-lesson). It counts the
+distinct custom scenes across all sections of the lesson, in the locale with
+the fewest, and reads the sections that the targets left out. Fewer than three
+fails the gate with `[custom-scenes]`; three or four prints a
+`[review: custom-scenes]` signal that asks for five. A custom scene is every
+Visual Catalog figure (`FIGURE_NAMES` in `@nakafa/aksara-contracts`) except the
+standard visuals in `STANDARD_VISUALS` of `points/scene.ts`, so a new catalog
+figure counts without a change to the gate. A lesson the change never touched
+keeps its count until a change touches it.
 
 ```sh
 bun run points

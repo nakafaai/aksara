@@ -1,12 +1,21 @@
 #!/usr/bin/env node
 
 import { NodeRuntime, NodeServices } from "@effect/platform-node";
-import { Console, Effect, FileSystem, Path } from "effect";
+import {
+  Array as Arr,
+  Console,
+  Effect,
+  FileSystem,
+  HashSet,
+  Option,
+  Path,
+} from "effect";
 import { parseLessonMdx } from "#nakafa-content/mdx/parse";
 import {
   changedFiles,
   readBase,
   resolveBase,
+  touchedFiles,
 } from "#nakafa-content/points/base";
 import {
   type DocumentParts,
@@ -26,7 +35,12 @@ import {
   printReport,
   shortRevision,
 } from "#nakafa-content/points/report";
-import { findVisualLoss, lessonsBelowBar } from "#nakafa-content/points/visual";
+import {
+  lessonOf,
+  lessonScenes,
+  sceneShortfalls,
+} from "#nakafa-content/points/scene";
+import { findVisualLoss } from "#nakafa-content/points/visual";
 
 /** Orders findings by their position in one document. */
 function byPosition(left: PointsFinding, right: PointsFinding): number {
@@ -60,6 +74,53 @@ const loadDocument = Effect.fn("PointsCheck.loadDocument")(function* (
   return { document, source };
 });
 
+/** The lesson folders below the targets that this change touched. */
+const changedLessons = Effect.fn("PointsCheck.changedLessons")(function* (
+  root: string,
+  base: string,
+  targets: readonly string[]
+) {
+  const touched = yield* touchedFiles(root, base, targets);
+  return HashSet.fromIterable(
+    Arr.flatMap(touched, (file) =>
+      Option.toArray(Option.map(lessonOf(file), ({ lesson }) => lesson))
+    )
+  );
+});
+
+/**
+ * Adds every section file of the changed lessons that the targets left out,
+ * because a lesson's scenes are counted across all of its sections.
+ */
+const lessonDocuments = Effect.fn("PointsCheck.lessonDocuments")(function* (
+  root: string,
+  lessons: HashSet.HashSet<string>,
+  documents: readonly (readonly [string, DocumentParts])[]
+) {
+  const fileSystem = yield* FileSystem.FileSystem;
+  const path = yield* Path.Path;
+  const loaded = HashSet.fromIterable(Arr.map(documents, ([file]) => file));
+  const present = yield* Effect.filter(Arr.fromIterable(lessons), (lesson) =>
+    fileSystem
+      .exists(path.join(root, lesson))
+      .pipe(Effect.mapError(unreadable(lesson)))
+  );
+  if (present.length === 0) {
+    return documents;
+  }
+  const missing = Arr.filter(
+    yield* collectFiles(root, present),
+    (file) => !HashSet.has(loaded, file)
+  );
+  const added = yield* Effect.forEach(missing, (file) =>
+    Effect.map(
+      loadDocument(root, file),
+      ({ document }) => [file, document] as const
+    )
+  );
+  return Arr.appendAll(documents, added);
+});
+
 /** Checks every document below the targets against the rules and its base. */
 const checkPoints = Effect.fn("PointsCheck.checkPoints")(function* (
   root: string,
@@ -68,13 +129,10 @@ const checkPoints = Effect.fn("PointsCheck.checkPoints")(function* (
   const path = yield* Path.Path;
   const files = yield* collectFiles(root, options.targets);
   const base = yield* resolveBase(root, options.base);
-  const changed = yield* changedFiles(
-    root,
-    base,
-    options.targets.map(
-      (target) => path.relative(root, path.resolve(root, target)) || "."
-    )
+  const targets = options.targets.map(
+    (target) => path.relative(root, path.resolve(root, target)) || "."
   );
+  const changed = yield* changedFiles(root, base, targets);
   const findings: FileFinding[] = [];
   const documents: [string, DocumentParts][] = [];
   let compared = 0;
@@ -99,12 +157,14 @@ const checkPoints = Effect.fn("PointsCheck.checkPoints")(function* (
       ...found.sort(byPosition).map((entry) => ({ ...entry, file }))
     );
   }
+  const lessons = yield* changedLessons(root, base, targets);
+  const scenes = yield* lessonDocuments(root, lessons, documents);
   return {
     base,
-    belowBar: lessonsBelowBar(documents),
     compared,
     files: files.length,
     findings,
+    scenes: sceneShortfalls(lessonScenes(scenes), lessons),
   } satisfies PointsReport;
 });
 

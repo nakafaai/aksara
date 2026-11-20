@@ -1,3 +1,4 @@
+import { Array as Arr, HashMap, HashSet, Option, Order, pipe } from "effect";
 import {
   isCodeComponentName,
   isHighlightComponentName,
@@ -10,33 +11,27 @@ import type { PointsFinding } from "#nakafa-content/points/finding";
  * Renderer names that lay out content, draw a static diagram, embed a video, or
  * carry agent context, so they never model a concept interactively. Text,
  * notation, code, and emphasis components come from the shared role predicates
- * in `mdx/fields`. No Aksara module lists the renderer names: the contracts
- * package defines only the manifest schema, and the live renderer supplies the
- * names when a document compiles. Every other PascalCase name is therefore an
- * interactive visual, so a newly deployed visual counts without a change here.
+ * in `mdx/fields`. Every other PascalCase name is an interactive visual, so a
+ * newly deployed visual counts without a change here.
  */
-const NON_VISUAL_COMPONENTS: ReadonlySet<string> = new Set([
+const NON_VISUAL_COMPONENTS = HashSet.make(
   "AgentContext",
   "ContentBlock",
   "ContentGrid",
   "ContentStack",
   "MathContainer",
   "Mermaid",
-  "Youtube",
-]);
+  "Youtube"
+);
 
 /** Semantic HTML elements such as table and sup begin with a lowercase letter. */
 const HTML_ELEMENT = /^[a-z]/u;
-
-/** A lesson is one folder below the lesson root with one MDX file per locale. */
-const LESSON_FILE =
-  /(?:^|\/)(?<folder>packages\/corpus\/material\/lesson\/.+)\/[^/]+\.mdx$/u;
 
 /** Tells whether one renderer component name models a concept interactively. */
 export function isInteractiveVisual(name: string): boolean {
   return !(
     HTML_ELEMENT.test(name) ||
-    NON_VISUAL_COMPONENTS.has(name) ||
+    HashSet.has(NON_VISUAL_COMPONENTS, name) ||
     isMathComponentName(name) ||
     isCodeComponentName(name) ||
     isHighlightComponentName(name)
@@ -49,52 +44,26 @@ export function isInteractiveVisual(name: string): boolean {
  */
 export function countVisuals(
   document: DocumentParts
-): ReadonlyMap<string, number> {
-  const counts = new Map<string, number>();
-  for (const name of document.elements) {
-    if (isInteractiveVisual(name)) {
-      counts.set(name, (counts.get(name) ?? 0) + 1);
-    }
-  }
-  return counts;
-}
-
-/** Names the lesson folder of one locale file, or nothing for any other page. */
-export function lessonFolder(file: string): string | undefined {
-  return LESSON_FILE.exec(file)?.groups?.folder;
-}
-
-/** A lesson carries at least this many interactive visual cards. */
-export const MIN_INTERACTIVE_VISUALS = 3;
-
-/**
- * Lists every lesson folder with a locale file below the visual bar, in path
- * order: fewer than three interactive visual cards. A Mermaid diagram, a
- * table, or a video never counts toward the bar.
- */
-export function lessonsBelowBar(
-  documents: Iterable<readonly [file: string, document: DocumentParts]>
-): readonly string[] {
-  const below = new Set<string>();
-  for (const [file, document] of documents) {
-    const folder = lessonFolder(file);
-    if (
-      folder !== undefined &&
-      total(countVisuals(document)) < MIN_INTERACTIVE_VISUALS
-    ) {
-      below.add(folder);
-    }
-  }
-  return [...below].sort();
+): HashMap.HashMap<string, number> {
+  return Arr.reduce(
+    Arr.filter(document.elements, isInteractiveVisual),
+    HashMap.empty<string, number>(),
+    (counts, name) =>
+      HashMap.set(
+        counts,
+        name,
+        Option.getOrElse(HashMap.get(counts, name), () => 0) + 1
+      )
+  );
 }
 
 /** Sums the counts of every component name. */
-function total(counts: ReadonlyMap<string, number>): number {
-  let sum = 0;
-  for (const count of counts.values()) {
-    sum += count;
-  }
-  return sum;
+function total(counts: HashMap.HashMap<string, number>): number {
+  return Arr.reduce(
+    Arr.fromIterable(HashMap.values(counts)),
+    0,
+    (sum, count) => sum + count
+  );
 }
 
 /** Reports a document whose interactive visuals fell below its base version. */
@@ -107,14 +76,21 @@ export function findVisualLoss(
   if (total(after) >= total(before)) {
     return undefined;
   }
-  const fell = [...before]
-    .filter(([name, count]) => (after.get(name) ?? 0) < count)
-    .sort(([left], [right]) => left.localeCompare(right))
-    .map(([name, count]) => `${name} ${count} to ${after.get(name) ?? 0}`);
+  /** The visuals of one component name that the head still holds. */
+  const remaining = (name: string) =>
+    Option.getOrElse(HashMap.get(after, name), () => 0);
+  const fell = pipe(
+    Arr.fromIterable(before),
+    Arr.filter(([name, count]) => remaining(name) < count),
+    Arr.sort(
+      Order.mapInput(Order.String, ([name]: readonly [string, number]) => name)
+    ),
+    Arr.map(([name, count]) => `${name} ${count} to ${remaining(name)}`)
+  );
   return {
     column: 1,
     line: 1,
-    message: `interactive visuals fell from ${total(before)} to ${total(after)} (${fell.join(", ")}): a revision never removes 3D or animation`,
+    message: `interactive visuals fell from ${total(before)} to ${total(after)} (${Arr.join(fell, ", ")}): a revision never removes 3D or animation`,
     rule: "interactive-visuals-fell",
   };
 }

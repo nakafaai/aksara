@@ -16,10 +16,10 @@ describe("points report", () => {
       const result = yield* capture(
         printReport({
           base: BASE,
-          belowBar: [],
           compared: 2,
           files: 5,
           findings: [],
+          scenes: [],
         })
       );
 
@@ -43,7 +43,6 @@ describe("points report", () => {
       const result = yield* capture(
         printReport({
           base: BASE,
-          belowBar: [],
           compared: 1,
           files: 3,
           findings: [
@@ -51,6 +50,7 @@ describe("points report", () => {
             { ...finding, line: 20, rule: "long-decimal" },
             { ...finding, file: "lessons/b/en.mdx" },
           ],
+          scenes: [],
         })
       );
 
@@ -65,26 +65,68 @@ describe("points report", () => {
     })
   );
 
-  it.effect("fails every lesson below the visual bar", () =>
+  it.effect(
+    "fails a lesson below the scene bar and notes one below the target",
+    () =>
+      Effect.gen(function* () {
+        const result = yield* capture(
+          printReport({
+            base: BASE,
+            compared: 0,
+            files: 4,
+            findings: [],
+            scenes: [
+              { blocking: true, lesson: "lessons/a", locale: "id", scenes: [] },
+              {
+                blocking: true,
+                lesson: "lessons/b",
+                locale: "en",
+                scenes: ["CellLab", "HeartLab"],
+              },
+              {
+                blocking: false,
+                lesson: "lessons/c",
+                locale: "de",
+                scenes: ["CellLab", "HeartLab", "LungLab"],
+              },
+            ],
+          })
+        );
+
+        assert.strictEqual(result.code, 1);
+        assert.deepStrictEqual(result.error, [
+          "lessons/a [custom-scenes] 0 distinct custom scene(s) in id (none); a lesson needs at least 3 custom 3D, p5, or animated catalog visuals across its sections, and MathVisual, charts, Mermaid, and tables never count. Build the scenes its main ideas need.",
+          "lessons/b [custom-scenes] 2 distinct custom scene(s) in en (CellLab, HeartLab); a lesson needs at least 3 custom 3D, p5, or animated catalog visuals across its sections, and MathVisual, charts, Mermaid, and tables never count. Build the scenes its main ideas need.",
+          "Points check found 2 lesson(s) below the custom scene bar, compared with 0123456.",
+        ]);
+        assert.deepStrictEqual(result.log, [
+          "lessons/c [review: custom-scenes] 3 distinct custom scenes in de (CellLab, HeartLab, LungLab); aim for 5.",
+        ]);
+      })
+  );
+
+  it.effect("passes a lesson between the bar and the target", () =>
     Effect.gen(function* () {
       const result = yield* capture(
         printReport({
           base: BASE,
-          belowBar: ["lessons/a", "lessons/b"],
-          compared: 0,
-          files: 4,
+          compared: 1,
+          files: 1,
           findings: [],
+          scenes: [
+            {
+              blocking: false,
+              lesson: "lessons/c",
+              locale: "en",
+              scenes: ["CellLab", "HeartLab", "LungLab", "SkinLab"],
+            },
+          ],
         })
       );
 
-      assert.strictEqual(result.code, 1);
-      assert.deepStrictEqual(result.error, [
-        "2 lesson(s) below the visual bar, which needs at least 3 interactive visual cards:",
-        "  lessons/a",
-        "  lessons/b",
-        "Points check found 2 lesson(s) below the visual bar, compared with 0123456.",
-      ]);
-      assert.deepStrictEqual(result.log, []);
+      assert.strictEqual(result.code, 0);
+      assert.deepStrictEqual(result.error, []);
+      assert.strictEqual(result.log.length, 2);
     })
   );
 });

@@ -23,17 +23,13 @@ const FAILED_SUMMARY =
   /^Points check found 3 finding\(s\) in 1 of 1 files, compared with [0-9a-f]{7}\.$/u;
 const PASSED_SUMMARY =
   /^Points check passed for 1 files and compared 1 changed files with [0-9a-f]{7}\.$/u;
-const BELOW_SUMMARY =
-  /^Points check found 1 lesson\(s\) below the visual bar, compared with [0-9a-f]{7}\.$/u;
 /**
- * An article has no visual bar, so the gate tests below see only the finding
- * each one makes. The bar has its own test on a lesson folder.
+ * An article has no scene bar, so the gate tests below see only the finding
+ * each one makes. The bar has its own gate tests in `scene.test.ts`.
  */
 const ROOT = "packages/corpus/articles/politics/parabola";
 const LESSON = `${ROOT}/en.mdx`;
 const SIBLING = `${ROOT}/id.mdx`;
-const BAR_ROOT = "packages/corpus/material/lesson/mathematics/parabola";
-const BAR_LESSON = `${BAR_ROOT}/en.mdx`;
 
 /** Runs the gate over the lesson folder with its repository as the root. */
 const check = Effect.fn("PointsTest.check")(
@@ -134,23 +130,6 @@ layer(NodeServices.layer, { excludeTestServices: true })(
           result.log.at(-1),
           "passed for 2 files and compared 0 changed files"
         );
-      })
-    );
-
-    it.effect("fails a lesson folder below the visual bar", () =>
-      Effect.gen(function* () {
-        const root = yield* commitLesson(COMPUTED_CURVE);
-        yield* writeFiles(root, { [BAR_LESSON]: lesson(COMPUTED_CURVE) });
-        const result = yield* capture(
-          runMain([BAR_ROOT, "--base", "HEAD"], root)
-        );
-
-        assert.strictEqual(result.code, 1);
-        assert.deepStrictEqual(result.error.slice(0, 2), [
-          "1 lesson(s) below the visual bar, which needs at least 3 interactive visual cards:",
-          `  ${BAR_ROOT}`,
-        ]);
-        assert.match(result.error[2] ?? "", BELOW_SUMMARY);
       })
     );
 
