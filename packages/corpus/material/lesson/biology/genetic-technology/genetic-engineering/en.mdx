@@ -1,0 +1,318 @@
+export const metadata = {
+  title: "Genetic Technology Notes for Form Five Biology",
+  description:
+    "Form 5 Biology Chapter 13: see how genetic engineering makes insulin and GMOs, and how PCR and DNA profiling use biotechnology, with examples and practice.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2026-11-17",
+  subject: "Genetic Technology",
+};
+
+## Genetic Engineering Changes the DNA of an Organism
+
+**Genetic engineering** is changing an organism's DNA on purpose, usually by moving a gene from one organism into another. The result is a **genetically modified organism (GMO)**: an organism whose DNA was altered this way. DNA that joins genes from two different sources is called **recombinant DNA**. **Biotechnology** is the wider field: using living things, or parts of them, to make products or solve problems. Next you look inside a bacterium, grow a colony that makes insulin, copy DNA with PCR, and run a gel to match a DNA profile.
+
+Moving a gene takes three tools. A **restriction enzyme** cuts DNA at one exact base sequence. **DNA ligase** joins two cut pieces back into one strand. A **vector** carries the new gene into the host cell, and the vector used most often is a **plasmid**: a small ring of DNA that sits in a bacterium apart from its main chromosome.
+
+[Bacteria](/en/subjects/biology/biodiversity/bacteria) make good hosts because they copy their plasmids every time they divide, and they read a human gene with the same genetic code that human cells use. Open the bacterium below and find the small ring beside the tangled nucleoid.
+
+<BacteriaStructureLab
+  title={<>Inside the Bacterium That Hosts a New Gene</>}
+  description={
+    <>
+      A rod-shaped bacterium like Escherichia coli, cut open. The tangled
+      nucleoid holds its main DNA, and the small ring beside it is a plasmid.
+    </>
+  }
+  labels={{
+    chooseMode: "Choose a view",
+    focusLabel: "Look at",
+    takeawayLabel: "Why it matters",
+    viewLabel: "Model of a bacterium with its nucleoid and plasmid",
+    items: [
+      {
+        tab: "Shape",
+        scene: { kind: "shape", bacillusLabel: "Bacillus" },
+        caption: <>Escherichia coli is a bacillus, a rod about <InlineMath math="2\ \mu\text{m}" /> long.</>,
+        focus: <>A whole bacterium is one cell, so one cell that takes up a new gene can grow into a whole colony.</>,
+        takeaway: <>Every daughter cell of that one cell carries the new gene too.</>,
+      },
+      {
+        tab: "Inside",
+        scene: { kind: "structure", nucleoidDnaLabel: "Nucleoid DNA" },
+        caption: <>The nucleoid holds the main chromosome. The small ring beside it is a plasmid, and the granules are ribosomes.</>,
+        focus: <>A plasmid is small and separate, so a gene can be cut into it and the ring put back into a cell.</>,
+        takeaway: <>Ribosomes read the gene on the plasmid and build its protein.</>,
+      },
+    ],
+  }}
+/>
+
+## Bacteria Can Make Human Insulin
+
+Some people with diabetes cannot make enough **insulin**, the hormone that lowers blood glucose. Insulin used to come from the pancreas of pigs and cattle. Since 1982, **recombinant human insulin** made by bacteria has been sold, and it has exactly the same amino acid sequence as the insulin a human pancreas makes.
+
+The steps follow the three tools in order:
+
+1. Cut the **human insulin gene** out of human DNA with a restriction enzyme.
+2. Cut a plasmid open with **the same restriction enzyme**, so both cuts leave matching single-stranded ends, called sticky ends.
+3. Mix the gene and the plasmid. Their sticky ends pair up, and **DNA ligase** seals them into a recombinant plasmid.
+4. Put the recombinant plasmids into bacteria. Only some cells take one up, so those cells are selected and kept.
+5. Grow the selected bacteria in a large fermenter. Each cell reads the insulin gene and makes insulin, which is then extracted and purified.
+
+<Mermaid
+  title={<>From Human Gene to Insulin in a Vial</>}
+  description={<>The order of the steps that turn one human gene into insulin made by bacteria.</>}
+  chart={`flowchart TD
+    A["Insulin gene cut from human DNA"] --> C["Gene joined into plasmid by ligase"]
+    B["Plasmid cut by the same enzyme"] --> C
+    C --> D["Recombinant plasmid enters a bacterium"]
+    D --> E["Bacteria multiply in a fermenter"]
+    E --> F["Insulin extracted and purified"]`}
+/>
+
+Step 5 works because bacteria multiply fast. One cell of Escherichia coli splits into two about every <InlineMath math="20" /> minutes at <InlineMath math="37^\circ\text{C}" />, and **each daughter cell gets a copy of the plasmid**. Drag the time slider and count the cells.
+
+<BinaryFissionLab
+  title={<>One Recombinant Bacterium Becomes a Colony</>}
+  description={
+    <>
+      A single cell of Escherichia coli on agar, splitting about every{" "}
+      <InlineMath math="20" /> minutes. Every new cell carries the plasmid
+      with the insulin gene.
+    </>
+  }
+  labels={{
+    cells: <>Cells</>,
+    generations: <>Generations</>,
+    minutes: "Minutes",
+    viewLabel: "A colony of Escherichia coli growing by binary fission",
+  }}
+/>
+
+Here is the count worked out. One recombinant bacterium doubles every <InlineMath math="20" /> minutes. How many cells does it give after <InlineMath math="2" /> hours, and after <InlineMath math="10" /> hours? First find the number of doublings, then raise <InlineMath math="2" /> to that power:
+
+<MathContainer>
+<BlockMath math="n = \frac{120\text{ min}}{20\text{ min}} = 6, \qquad N = 2^6 = 64" />
+<BlockMath math="n = \frac{600\text{ min}}{20\text{ min}} = 30, \qquad N = 2^{30} = 1{,}073{,}741{,}824 \approx 1.07 \times 10^9" />
+</MathContainer>
+
+Check the first answer against the colony: at <InlineMath math="120" /> minutes the counter reads <InlineMath math="6" /> generations and <InlineMath math="64" /> cells. Over <InlineMath math="10" /> hours, one cell gives about a billion insulin factories, which is why a fermenter can supply insulin for millions of patients.
+
+## Genetically Modified Organisms and Food
+
+A GMO gets a gene that gives it a trait it did not have. Food made from a GMO, or containing parts of one, is called **genetically modified food (GMF)**. Read each row as "which gene went in, and what did it change?"
+
+| GMO | Gene added | New trait |
+| :--- | :--- | :--- |
+| Bt maize and Bt cotton | A toxin gene from the bacterium Bacillus thuringiensis | Kills the caterpillars that eat the plant, so farmers spray less insecticide |
+| Golden rice | Genes that make beta-carotene in the rice grain | Grains supply vitamin A, which plain rice lacks |
+| Herbicide-tolerant soybean | A gene that lets the plant survive one herbicide | Farmers can kill weeds without killing the crop |
+| Fast-growing salmon | A growth hormone gene from another salmon species | Reaches market size sooner |
+| Bacteria that make insulin | The human insulin gene | Make human insulin in a fermenter |
+
+The benefits are real: **higher yields, fewer pesticides, better nutrition and cheaper medicine**. The risks are real too, and they need checking case by case. A gene can spread through pollen to wild relatives. Insects that keep eating Bt crops can evolve resistance to the toxin. A new protein in food has to be tested so it does not trigger allergies. Malaysia controls the release and import of GMOs under the **Biosafety Act 2007**, so a GMO is assessed before it reaches farms or food shops.
+
+## Biotechnology Puts Living Things to Work
+
+Biotechnology is older than genetic engineering. Making tempeh with a mould and yogurt with bacteria are biotechnology, because living things do the work. Genetic engineering is the modern part of it that changes the organism's DNA first. Biotechnology is grouped by **the field it serves**:
+
+| Field | Example | What the living thing does |
+| :--- | :--- | :--- |
+| Medicine | Insulin, the hepatitis B vaccine | Bacteria or yeast make a human protein or a virus protein |
+| Agriculture | GM crops, tissue culture of oil palm | Plants carry a new gene, or one plant is cloned into thousands |
+| Industry | Enzymes in washing powder | Microbes make enzymes that break down protein and fat stains |
+| Environment | Cleaning oil spills | Bacteria break down oil into harmless substances |
+| Forensics | DNA profiling | DNA identifies a person from a drop of blood or a hair |
+
+**Gene therapy** is a medical use that treats a genetic disease by putting a working copy of a gene into the patient's own cells. A harmless virus often serves as the vector. It aims at the cause, the faulty gene, instead of treating the symptoms for life.
+
+## PCR Makes Millions of Copies of a DNA Sample
+
+A hair or a drop of blood holds too little DNA to test. The **polymerase chain reaction (PCR)** copies one stretch of DNA again and again. Each cycle has three steps. Heating to about <InlineMath math="95^\circ\text{C}" /> separates the two strands. Cooling lets short primers attach at the start of the stretch. At about <InlineMath math="72^\circ\text{C}" /> a heat-stable DNA polymerase builds a new strand on each old one. Drag the copying slider and watch **each old strand become the template of a new one**.
+
+<DnaHelixLab
+  title={<>One PCR Cycle Copies Both Strands</>}
+  description={
+    <>
+      A stretch of <InlineMath math="20" /> base pairs opens from one end, and
+      new nucleotides pair with each old strand: A with T, and C with G.
+    </>
+  }
+  sequence="GATTACACGTGCATGCAATG"
+  copy
+  labels={{
+    copy: "Copying",
+    copied: <>Base pairs copied</>,
+    length: <>Base pairs</>,
+    span: <>Length</>,
+    turns: <>Turns</>,
+    viewLabel: "A DNA double helix being copied strand by strand",
+  }}
+/>
+
+One cycle turns one double helix into two, so every cycle **doubles** the number of copies. After <InlineMath math="n" /> cycles, one starting copy becomes <InlineMath math="2^n" /> copies. Read the table under the chart for the first <InlineMath math="10" /> cycles.
+
+<FunctionChart
+  a={2}
+  p={1}
+  mode="discrete"
+  n={11}
+  title={<>Copies of One DNA Stretch after Each PCR Cycle</>}
+  description={
+    <>
+      The model <InlineMath math="f(x) = 1 \cdot 2^x" />, where{" "}
+      <InlineMath math="x" /> is the number of cycles. After{" "}
+      <InlineMath math="10" /> cycles one copy has become{" "}
+      <InlineMath math="1{,}024" />.
+    </>
+  }
+/>
+
+Try it with a real sample. A swab holds <InlineMath math="10" /> copies of the stretch, and the PCR machine runs <InlineMath math="25" /> cycles. Multiply the starting copies by <InlineMath math="2" /> once for each cycle:
+
+<BlockMath math="N = 10 \times 2^{25} = 10 \times 33{,}554{,}432 = 335{,}544{,}320 \approx 3.4 \times 10^8" />
+
+Check with a quick estimate: <InlineMath math="2^{10} \approx 10^3" />, so <InlineMath math="2^{25} = 2^5 \times 2^{10} \times 2^{10} \approx 32 \times 10^6" />. Times <InlineMath math="10" /> gives about <InlineMath math="3.2 \times 10^8" />, close to the exact answer.
+
+## DNA Profiling Compares Band Patterns
+
+**DNA profiling**, also called DNA fingerprinting, identifies a person from their DNA. About <InlineMath math="99.9\%" /> of the DNA of any two people is the same, so a profile looks only at regions where people differ. The most useful regions hold a short sequence repeated many times, and the **number of repeats differs from person to person**. Only identical twins share the same profile. Switch between the two people below and count the bases that differ in one stretch.
+
+<DnaHelixLab
+  title={<>Two People, One Stretch of DNA</>}
+  description={
+    <>
+      The same <InlineMath math="24" /> base pairs from two people. The bases
+      that differ glow when you switch between them.
+    </>
+  }
+  sequence="ATGCCTAGGCATTGACCGTAGCTA"
+  variant="ATGCCTAGTCATTGACAGTAGCTA"
+  labels={{
+    choose: "Choose a person",
+    strands: { first: <>Person P</>, second: <>Person Q</> },
+    differences: <>Bases that differ</>,
+    identity: <>Bases that match</>,
+    length: <>Base pairs</>,
+    span: <>Length</>,
+    viewLabel: "The same stretch of DNA from two people, with the differing bases highlighted",
+  }}
+/>
+
+To read a profile, the lab copies the repeat regions with PCR and loads them into wells at one end of a gel. An electric current pulls the DNA, which is negatively charged, toward the positive end. **Shorter fragments slip through the gel faster**, so they travel farther. In this model a fragment of length <InlineMath math="L" /> base pairs travels <InlineMath math="d = h(7 - 2\log L)" /> centimetres in <InlineMath math="h" /> hours. Move the running time and watch the bands separate.
+
+<MathVisual
+  title={<>A Gel Separates DNA Fragments by Length</>}
+  description={
+    <>
+      Three lanes: DNA from a crime scene and from two suspects. Each band
+      moves down <InlineMath math="d = h(7 - 2\log L)" /> cm, so the{" "}
+      <InlineMath math="150" /> base pair band moves farthest.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 4 }, y: { min: -6, max: 1 } },
+    view: { kind: "fit", padding: 0.08 },
+    parameters: [
+      { name: "h", min: 0.5, max: 2, value: 1.5, step: 0.1, label: "h" },
+    ],
+    objects: [
+      { id: "well-scene", kind: "segment", appearance: "reference", from: { x: 0.6, y: 0 }, to: { x: 1.4, y: 0 } },
+      { id: "well-p", kind: "segment", appearance: "reference", from: { x: 1.6, y: 0 }, to: { x: 2.4, y: 0 } },
+      { id: "well-q", kind: "segment", appearance: "reference", from: { x: 2.6, y: 0 }, to: { x: 3.4, y: 0 } },
+      { id: "scene-150", kind: "path", appearance: "primary", points: [{ x: "0.6", y: "-h(7 - 2 log(150))" }, { x: "1.4", y: "-h(7 - 2 log(150))" }] },
+      { id: "scene-320", kind: "path", appearance: "primary", points: [{ x: "0.6", y: "-h(7 - 2 log(320))" }, { x: "1.4", y: "-h(7 - 2 log(320))" }] },
+      { id: "p-150", kind: "path", appearance: "secondary", points: [{ x: "1.6", y: "-h(7 - 2 log(150))" }, { x: "2.4", y: "-h(7 - 2 log(150))" }] },
+      { id: "p-320", kind: "path", appearance: "secondary", points: [{ x: "1.6", y: "-h(7 - 2 log(320))" }, { x: "2.4", y: "-h(7 - 2 log(320))" }] },
+      { id: "q-210", kind: "path", appearance: "warning", points: [{ x: "2.6", y: "-h(7 - 2 log(210))" }, { x: "3.4", y: "-h(7 - 2 log(210))" }] },
+      { id: "q-400", kind: "path", appearance: "warning", points: [{ x: "2.6", y: "-h(7 - 2 log(400))" }, { x: "3.4", y: "-h(7 - 2 log(400))" }] },
+    ],
+    labels: [
+      { key: "scene", objectId: "well-scene", at: { x: 1, y: 0 }, placement: "above" },
+      { key: "suspect-p", objectId: "well-p", at: { x: 2, y: 0 }, placement: "above" },
+      { key: "suspect-q", objectId: "well-q", at: { x: 3, y: 0 }, placement: "above" },
+    ],
+    readouts: [
+      { key: "short", formula: "h(7 - 2 log(150))" },
+      { key: "long", formula: "h(7 - 2 log(400))" },
+    ],
+  }}
+  labels={{
+    h: <>Running time <InlineMath math="h" /> in hours</>,
+    scene: <>Crime scene</>,
+    "suspect-p": <>Suspect P</>,
+    "suspect-q": <>Suspect Q</>,
+    short: <>Distance of the <InlineMath math="150" /> base pair band in cm</>,
+    long: <>Distance of the <InlineMath math="400" /> base pair band in cm</>,
+  }}
+/>
+
+Now decide which suspect matches. The crime scene sample has fragments of <InlineMath math="150" /> and <InlineMath math="320" /> base pairs. Suspect P has the same two, and suspect Q has <InlineMath math="210" /> and <InlineMath math="400" />. After <InlineMath math="1.5" /> hours, work out where each band sits:
+
+<MathContainer>
+<BlockMath math="d_{150} = 1.5(7 - 2\log 150) = 1.5(7 - 4.352) = 3.97\text{ cm}" />
+<BlockMath math="d_{320} = 1.5(7 - 2\log 320) = 1.5(7 - 5.010) = 2.98\text{ cm}" />
+<BlockMath math="d_{210} = 3.53\text{ cm}, \qquad d_{400} = 2.69\text{ cm}" />
+</MathContainer>
+
+Suspect P's bands sit at <InlineMath math="3.97\text{ cm}" /> and <InlineMath math="2.98\text{ cm}" />, exactly level with the crime scene bands, so **suspect P's profile matches**. Suspect Q's bands sit at different heights, so suspect Q is excluded. Check the order: the shortest fragment, <InlineMath math="150" /> base pairs, has the largest distance, as it should. A real lab compares many repeat regions at once, so a full match by chance becomes extremely unlikely.
+
+## Benefits and Limits of Genetic Technology
+
+Genetic technology **solves problems that older methods could not**. Insulin no longer depends on animal organs. A crop can carry a trait that years of cross-breeding could never give it, such as a bacterial toxin gene. A tiny trace of DNA can identify a suspect, free a wrongly accused person, or name a victim after a disaster.
+
+The same power is why it needs rules. A gene released in a crop cannot be recalled. A DNA profile is private information about a person and their relatives. Changing human genes raises the question of which changes are treatments and which are not. So **each use is judged by its evidence**: what the change does, what it might harm, and who decides.
+
+## Common Mistakes in Genetic Technology
+
+| Mistake | Why it is wrong | How to check |
+| :--- | :--- | :--- |
+| The gene and the plasmid can be cut with different restriction enzymes. | Only the same enzyme leaves sticky ends that match and pair. | Name one enzyme for both cuts. |
+| Ligase cuts DNA. | Restriction enzymes cut, and ligase joins the cut ends. | Ligase links, restriction enzymes cut. |
+| Every GMO is a crop. | Bacteria, animals and plants can all be GMOs. | Ask whether the organism's DNA was changed. |
+| PCR adds a fixed number of copies each cycle. | Each cycle doubles the copies, so the growth is <InlineMath math="2^n" />. | Ten cycles must give <InlineMath math="1{,}024" /> copies from one. |
+| Larger DNA fragments travel farther in a gel. | Larger fragments move more slowly through the gel. | The smallest fragment sits farthest from the well. |
+
+The fourth mistake leads to answers that are far too small. If you add <InlineMath math="2" /> copies per cycle, ten cycles give <InlineMath math="21" /> copies instead of <InlineMath math="1{,}024" />. Remember: **each cycle doubles what is already there**.
+
+## Practice with Genetic Technology
+
+The problems go from the tools to the numbers behind insulin, PCR and profiling. **Write the formula first** in each calculation, then substitute.
+
+1. A student cuts the insulin gene with enzyme X and the plasmid with enzyme Y. Explain why the gene will not join the plasmid, and name the enzyme that joins DNA.
+
+2. A fermenter starts with <InlineMath math="100" /> recombinant bacteria that double every <InlineMath math="30" /> minutes. How many bacteria are there after <InlineMath math="3" /> hours?
+
+3. How many PCR cycles turn one copy of a DNA stretch into more than one million copies?
+
+4. In the gel model <InlineMath math="d = h(7 - 2\log L)" />, how far apart are a <InlineMath math="250" /> base pair band and a <InlineMath math="500" /> base pair band after <InlineMath math="1" /> hour?
+
+### Answers
+
+**Answer 1**: Enzymes X and Y cut at different sequences, so the ends they leave **do not pair**. The single-stranded ends of the gene cannot match the ends of the plasmid, and the gene cannot slot in. Cutting both with the same enzyme fixes it, and **DNA ligase** then seals the joins. Check: in the insulin steps, step 2 uses the same enzyme for exactly this reason.
+
+**Answer 2**: Three hours is <InlineMath math="180" /> minutes, so the bacteria double <InlineMath math="6" /> times:
+
+<BlockMath math="n = \frac{180}{30} = 6, \qquad N = 100 \times 2^6 = 100 \times 64 = 6{,}400" />
+
+Check by doubling step by step: <InlineMath math="100, 200, 400, 800, 1{,}600, 3{,}200, 6{,}400" />. That is six doublings.
+
+**Answer 3**: You need the smallest <InlineMath math="n" /> with <InlineMath math="2^n > 1{,}000{,}000" />:
+
+<MathContainer>
+<BlockMath math="2^{19} = 524{,}288 < 1{,}000{,}000" />
+<BlockMath math="2^{20} = 1{,}048{,}576 > 1{,}000{,}000" />
+</MathContainer>
+
+So **<InlineMath math="20" /> cycles** are needed. Check: <InlineMath math="2^{10} = 1{,}024 \approx 10^3" />, and <InlineMath math="(10^3)^2 = 10^6" />, so about twenty cycles is right.
+
+**Answer 4**: Find each distance at <InlineMath math="h = 1" />, then subtract:
+
+<MathContainer>
+<BlockMath math="d_{250} = 7 - 2\log 250 = 7 - 4.796 = 2.204\text{ cm}" />
+<BlockMath math="d_{500} = 7 - 2\log 500 = 7 - 5.398 = 1.602\text{ cm}" />
+<BlockMath math="d_{250} - d_{500} = 0.602\text{ cm}" />
+</MathContainer>
+
+The bands are about <InlineMath math="0.60\text{ cm}" /> apart, and **the shorter fragment is lower**, farther from the well. Check: <InlineMath math="500" /> is twice <InlineMath math="250" />, so the gap is <InlineMath math="2\log 2 = 0.602" />, the same answer.

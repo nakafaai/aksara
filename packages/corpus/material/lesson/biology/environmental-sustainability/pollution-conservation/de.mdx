@@ -1,0 +1,349 @@
+export const metadata = {
+  title: "Umweltverschmutzung und Naturschutz",
+  description:
+    "Verfolge Abholzung und fünf Arten der Verschmutzung, berechne den BSB und vergleiche Naturschutz und grüne Technologie, mit Beispielen und Übungen.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2026-11-17",
+  subject: "Ökologische Nachhaltigkeit",
+};
+
+## Nachhaltigkeit heißt Natur nutzen statt verbrauchen
+
+**Ökologische Nachhaltigkeit** bedeutet, die Bedürfnisse der Menschen heute zu decken und die Ökosysteme dabei so gesund zu halten, dass auch künftige Generationen ihre Bedürfnisse decken können. Die größten Bedrohungen kommen vom Menschen: **Abholzung, Verschmutzung, Verlust der Artenvielfalt, Eutrophierung und schnelles Bevölkerungswachstum**. Menschen antworten darauf auf drei Arten. **Bewahrung** lässt ein Ökosystem unberührt, **Schutz durch nachhaltige Nutzung** verwendet es so klug, dass es erhalten bleibt, und **Renaturierung** repariert ein geschädigtes. Grüne Technologie verringert den Schaden dann schon an der Quelle. Du lässt gleich einen Fluss mit Abwasser laufen, erwärmst Wasser, entfernst dich von einer lauten Maschine, lässt Eulen ein Reisfeld bewachen und fütterst eine Biogasanlage.
+
+Auch der Klimawandel ist eine Bedrohung. Wie Treibhausgase Wärme zurückhalten, erklären [die Ursachen des Klimawandels](/de/faecher/biologie/klimawandel/ursachen) ausführlich, deshalb geht es hier um die anderen Bedrohungen und darum, was Menschen gegen sie tun.
+
+## Abholzung nimmt mehr als nur Bäume
+
+**Abholzung** ist das dauerhafte Roden von Wald für Felder, Plantagen, Straßen, Bergbau oder Städte. Eine wachsende Bevölkerung braucht mehr Land, Nahrung, Wasser und Holz, also steigt mit ihr der Druck auf die Wälder. Fehlen die Bäume, folgt eine ganze Kette von Wirkungen, denn **Wurzeln, Blätter und Laubstreu halten Boden und Wasser an ihrem Platz**.
+
+<Mermaid
+  title={<>Was passiert, wenn ein Wald gerodet ist</>}
+  description={<>Jeder Pfeil verbindet eine Veränderung mit der Wirkung, die sie auslöst.</>}
+  chart={`flowchart TD
+    A["Wald gerodet"] --> B["Lebensräume verschwinden"]
+    A --> C["Boden liegt offen im Regen"]
+    B --> D["Arten gehen zurück oder sterben aus"]
+    C --> E["Bodenerosion und Erdrutsche"]
+    E --> F["Flüsse verschlammen"]
+    C --> G["Regen fließt schneller ab"]
+    G --> H["Sturzfluten flussabwärts"]`}
+/>
+
+Lies das Diagramm von oben. Regen im Wald versickert in der lockeren Laubstreu und erreicht den Fluss langsam. Regen auf nacktem Boden fließt sofort oberflächlich ab und reißt Erde mit. Der Schlamm trübt das Flusswasser, nimmt Wasserpflanzen das Licht und füllt die Flussbetten auf, sodass derselbe Sturm jetzt das Land flussabwärts überflutet. Tiere, die nur in diesem Wald lebten, verlieren Nahrung und Unterschlupf. So führt **der Verlust von Lebensräumen zum Verlust der Artenvielfalt**.
+
+## Wasserverschmutzung verbraucht den Sauerstoff im Fluss
+
+Abwasser, Abfälle aus der Landwirtschaft und Industrieabwässer tragen organisches Material in Flüsse. Bakterien bauen dieses Material ab und verbrauchen dabei gelösten Sauerstoff. Die Sauerstoffmenge, die Mikroorganismen zum Abbau des organischen Materials in einer Wasserprobe verbrauchen, heißt **biochemischer Sauerstoffbedarf (BSB)**. **Je höher der BSB, desto stärker ist das Wasser verschmutzt**, denn mehr Futter für Bakterien bedeutet mehr Sauerstoff, der den Fischen fehlt.
+
+Unterhalb eines Abwassereinlaufs sinkt der Sauerstoff zuerst und erholt sich dann, sobald das organische Material abgebaut ist und wieder Luft ins Wasser gelangt. Diese Delle heißt **Sauerstoffsenke**. Das Modell unten nimmt an, dass sauberes Wasser <InlineMath math="8\text{ mg/L}" /> Sauerstoff enthält und Abbau und Belüftung mit festen Raten ablaufen. Erhöhe den BSB des einströmenden Wassers und beobachte den tiefsten Punkt.
+
+<MathVisual
+  title={<>Die Sauerstoffsenke unterhalb eines Abwassereinlaufs</>}
+  description={
+    <>
+      Gelöster Sauerstoff{" "}
+      <InlineMath math="O(t) = 8 - b(e^{-0{,}3t} - e^{-0{,}6t})" /> mg/L,
+      wobei <InlineMath math="t" /> die Fließzeit in Tagen und{" "}
+      <InlineMath math="b" /> der BSB am Einlauf ist. Der schraffierte Bereich
+      liegt unter <InlineMath math="5\text{ mg/L}" />.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 10 }, y: { min: 0, max: 9 } },
+    view: { kind: "fit", padding: 0.08 },
+    parameters: [
+      { name: "b", min: 0, max: 30, value: 20, step: 1, label: "b" },
+    ],
+    objects: [
+      { id: "oxygen", kind: "function", appearance: "primary", formula: "8 - b(exp(-0.3x) - exp(-0.6x))", domain: { min: 0, max: 10 } },
+      { id: "fish", kind: "region", appearance: "warning", inequalities: ["y < 5", "y > 0", "x > 0", "x < 10"] },
+      { id: "lowest", kind: "marker", appearance: "answer", x: "ln(2)/0.3", y: "8 - 0.25b" },
+    ],
+    labels: [
+      { key: "lowest", objectId: "lowest", at: { x: "ln(2)/0.3", y: "8 - 0.25b" }, placement: "below-right" },
+    ],
+    readouts: [
+      { key: "minimum", formula: "8 - 0.25b" },
+    ],
+  }}
+  labels={{
+    b: <>BSB am Einlauf <InlineMath math="b" /> in mg/L</>,
+    lowest: <>Tiefster Sauerstoff</>,
+    minimum: <>Niedrigster gelöster Sauerstoff in mg/L</>,
+  }}
+/>
+
+Rechne das für einen BSB von <InlineMath math="20\text{ mg/L}" /> durch. In diesem Modell liegt der tiefste Punkt dort, wo <InlineMath math="e^{-0{,}3t} = \tfrac{1}{2}" /> ist, also wird die Klammer zu <InlineMath math="\tfrac{1}{2} - \tfrac{1}{4} = \tfrac{1}{4}" />:
+
+<MathContainer>
+<BlockMath math="t = \frac{\ln 2}{0{,}3} = 2{,}31\text{ Tage}" />
+<BlockMath math="O_{\min} = 8 - \frac{b}{4} = 8 - \frac{20}{4} = 3\text{ mg/L}" />
+</MathContainer>
+
+Unter etwa <InlineMath math="5\text{ mg/L}" /> Sauerstoff geraten Fische und andere Wassertiere in Stress, also würden sie in dem Flussabschnitt um den zweiten Tag herum ersticken. Prüf mit dem Regler: Bei <InlineMath math="b = 20" /> zeigt die Anzeige <InlineMath math="3" />. Der größte BSB, bei dem die Senke über dem schraffierten Bereich bleibt, erfüllt <InlineMath math="8 - b/4 = 5" />, also <InlineMath math="b = 12\text{ mg/L}" />.
+
+Dünger, der von Feldern abgeschwemmt wird, löst eine langsamere Form desselben Problems aus, die **Eutrophierung**. Nitrate und Phosphate lassen Algen an der Oberfläche massenhaft wachsen. Die Algenschicht nimmt das Licht, die Pflanzen darunter sterben, und wenn auch die Algen absterben, zersetzen Bakterien alles. **Die Zersetzer treiben den BSB nach oben**, der Sauerstoff sinkt, und Fische sterben, obwohl kein Abwasser ins Wasser kam.
+
+## Vier weitere Arten der Verschmutzung
+
+Wasser ist eine von fünf Arten der Verschmutzung. Die Tabelle nennt jeweils die wichtigste Quelle und die Wirkung. Lies jede Zeile als Ursache und Folge.
+
+| Verschmutzung | Wichtigste Quellen | Wirkung auf Lebewesen |
+| :--- | :--- | :--- |
+| Luft | Abgase von Fahrzeugen und Fabriken, offenes Verbrennen | Dunstpartikel schädigen die Lunge, Schwefeldioxid und Stickoxide bilden sauren Regen |
+| Wasser | Abwasser, Abschwemmung von Feldern, Industrieabwasser | Hoher BSB, Eutrophierung, Fischsterben |
+| Boden | Pestizide, Schwermetalle, Sickerwasser aus Mülldeponien | Gifte reichern sich in Nahrungsketten an und töten Bodenlebewesen |
+| Wärme | Heißes Kühlwasser aus Kraftwerken und Fabriken | Warmes Wasser hält weniger Sauerstoff, also ersticken Fische |
+| Lärm | Baustellen, Verkehr, Maschinen | Hörschäden, Stress und gestörter Schlaf |
+
+**Saurer Regen** entsteht, wenn sich Schwefeldioxid und Stickoxide im Regenwasser lösen und Schwefelsäure und Salpetersäure bilden. Er senkt den pH-Wert von Seen und Böden, schädigt Blätter und greift Gebäude an. Pestizide im Boden zeigen eine andere Gefahr: Ein Gift, das nicht abgebaut wird, wandert von der Beute zum Räuber und **wird auf jeder Stufe der Nahrungskette konzentrierter**, sodass Spitzenprädatoren die höchste Dosis tragen.
+
+Wärmebelastung wirkt über eine physikalische Tatsache: **Warmes Wasser hält weniger gelösten Sauerstoff** als kaltes. Bewege den Temperaturregler und lies ab, wie viel Sauerstoff Süßwasser höchstens aufnehmen kann.
+
+<MathVisual
+  title={<>Wärmeres Wasser hält weniger Sauerstoff</>}
+  description={
+    <>
+      Die größte Sauerstoffmenge, die sich in Süßwasser auf Meereshöhe lösen
+      kann, in mg/L, von <InlineMath math="0^\circ\text{C}" /> bis{" "}
+      <InlineMath math="40^\circ\text{C}" />, nach der Gleichung von Benson und
+      Krause, die Wasserlabore verwenden.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 40 }, y: { min: 0, max: 16 } },
+    view: { kind: "fit", padding: 0.08 },
+    parameters: [
+      { name: "w", min: 0, max: 40, value: 28, step: 1, label: "w" },
+    ],
+    objects: [
+      { id: "solubility", kind: "function", appearance: "primary", formula: "exp(-139.34411 + 157570.1/(x + 273.15) - 66423080/(x + 273.15)^2 + 12438000000/(x + 273.15)^3 - 862194900000/(x + 273.15)^4)", domain: { min: 0, max: 40 } },
+      { id: "river", kind: "marker", appearance: "answer", x: "w", y: "exp(-139.34411 + 157570.1/(w + 273.15) - 66423080/(w + 273.15)^2 + 12438000000/(w + 273.15)^3 - 862194900000/(w + 273.15)^4)" },
+    ],
+    labels: [
+      { key: "river", objectId: "river", at: { x: "w", y: "exp(-139.34411 + 157570.1/(w + 273.15) - 66423080/(w + 273.15)^2 + 12438000000/(w + 273.15)^3 - 862194900000/(w + 273.15)^4)" }, placement: "above-right" },
+    ],
+    readouts: [
+      { key: "saturation", formula: "exp(-139.34411 + 157570.1/(w + 273.15) - 66423080/(w + 273.15)^2 + 12438000000/(w + 273.15)^3 - 862194900000/(w + 273.15)^4)" },
+    ],
+  }}
+  labels={{
+    w: <>Wassertemperatur <InlineMath math="w" /> in <InlineMath math="^\circ\text{C}" /></>,
+    river: <>Flusswasser</>,
+    saturation: <>Höchster gelöster Sauerstoff in mg/L</>,
+  }}
+/>
+
+Ein Fluss mit <InlineMath math="28^\circ\text{C}" /> kann <InlineMath math="7{,}83\text{ mg/L}" /> Sauerstoff halten. Heißes Kühlwasser aus einem Kraftwerk erwärmt ihn auf <InlineMath math="32^\circ\text{C}" />, und dort hält er nur noch <InlineMath math="7{,}31\text{ mg/L}" />. Das sind <InlineMath math="0{,}52\text{ mg/L}" /> weniger, während Fische in wärmerem Wasser schneller atmen und mehr Sauerstoff brauchen. Beide Veränderungen wirken in dieselbe Richtung, gegen die Fische.
+
+Lärm wird mit der Entfernung leiser. Bei einer kleinen Quelle im Freien sinkt der Schallpegel in <InlineMath math="r" /> Metern um <InlineMath math="20\log r" /> Dezibel gegenüber dem Pegel in <InlineMath math="1" /> Meter Abstand. <InlineMath math="85" /> Dezibel über einen ganzen Arbeitstag können das Gehör schädigen. Dreh die Quelle lauter und such die Entfernung, in der der Pegel auf diese Grenze fällt.
+
+<MathVisual
+  title={<>Eine laute Maschine ist aus der Ferne leiser</>}
+  description={
+    <>
+      Schallpegel <InlineMath math="L = s - 20\log r" /> Dezibel in{" "}
+      <InlineMath math="r" /> Metern, wobei <InlineMath math="s" /> der Pegel in{" "}
+      <InlineMath math="1" /> Meter Abstand ist. Der schraffierte Bereich liegt
+      über <InlineMath math="85" /> Dezibel.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 40 }, y: { min: 40, max: 120 } },
+    view: { kind: "fit", padding: 0.08 },
+    parameters: [
+      { name: "s", min: 90, max: 115, value: 110, step: 1, label: "s" },
+    ],
+    objects: [
+      { id: "level", kind: "function", appearance: "primary", formula: "s - 20 log(x)", domain: { min: 1, max: 40 } },
+      { id: "loud", kind: "region", appearance: "warning", inequalities: ["y > 85", "y < 120", "x > 0", "x < 40"] },
+      { id: "limit", kind: "marker", appearance: "answer", x: "10^((s - 85)/20)", y: "85" },
+    ],
+    labels: [
+      { key: "limit", objectId: "limit", at: { x: "10^((s - 85)/20)", y: "85" }, placement: "below-right" },
+    ],
+    readouts: [
+      { key: "distance", formula: "10^((s - 85)/20)" },
+    ],
+  }}
+  labels={{
+    s: <>Pegel in <InlineMath math="1" /> Meter <InlineMath math="s" /> in dB</>,
+    limit: <>Fällt auf <InlineMath math="85" /> dB</>,
+    distance: <>Entfernung bis <InlineMath math="85" /> dB in Metern</>,
+  }}
+/>
+
+Nimm eine Rammmaschine mit <InlineMath math="110" /> Dezibel, gemessen in <InlineMath math="1" /> Meter Abstand. Setz den Pegel gleich <InlineMath math="85" /> und löse nach <InlineMath math="r" /> auf:
+
+<MathContainer>
+<BlockMath math="110 - 20\log r = 85" />
+<BlockMath math="\log r = \frac{25}{20} = 1{,}25 \quad\Rightarrow\quad r = 10^{1{,}25} = 17{,}8\text{ m}" />
+</MathContainer>
+
+Prüf durch Verdoppeln: Jedes Mal, wenn sich die Entfernung verdoppelt, sinkt der Pegel um <InlineMath math="20\log 2 = 6{,}0" /> Dezibel. Bei <InlineMath math="16\text{ m}" />, vier Verdopplungen von <InlineMath math="1\text{ m}" />, liegt er bei <InlineMath math="110 - 24 = 86" /> Dezibel, knapp über der Grenze, also passt <InlineMath math="17{,}8\text{ m}" />. Wer näher arbeitet, braucht **Gehörschutz**.
+
+## Drei Wege zum Schutz eines Ökosystems
+
+Die drei Wege unterscheiden sich darin, **wie stark Menschen das Ökosystem nutzen**. Lies jede Zeile von der Bedeutung zum Beispiel.
+
+| Weg | Bedeutung | Beispiel in Malaysia |
+| :--- | :--- | :--- |
+| Bewahrung | Ein Ökosystem so lassen, wie es ist, mit möglichst wenig menschlicher Nutzung | Taman Negara und der Kinabalu-Park schützen Wald vor Holzeinschlag |
+| Nachhaltige Nutzung | Ressourcen klug bewirtschaften und nutzen, damit sie erhalten bleiben | Dauerwaldreservate mit selektivem Einschlag, Brutstationen für Meeresschildkröten |
+| Renaturierung | Ein geschädigtes Ökosystem in Richtung seines natürlichen Zustands reparieren | Mangroven an erodierten Küsten neu pflanzen, Bäume auf alten Bergbauflächen pflanzen |
+
+Jeder Weg wird aus einem anderen Grund gebraucht. Bewahrung erhält Arten und ihre Gene, die es sonst nirgends gibt, darunter Pflanzen, die künftige Medikamente liefern könnten. Nachhaltige Nutzung erlaubt es, weiter Holz, Fisch und Wasser zu entnehmen, ohne dass sie ausgehen. Renaturierung bringt Verlorenes zurück: Neu gepflanzte Mangroven bieten jungen Fischen wieder Schutz und brechen die Kraft der Wellen. **Ein Ökosystem zu erhalten ist billiger, als es zu reparieren**, und das ist der stärkste Grund, zuerst zu bewahren und nachhaltig zu nutzen.
+
+## Nachhaltige Praxis schützt Natur und Ernährung
+
+**Nachhaltige Entwicklung** ist eine Entwicklung, die die Bedürfnisse von heute deckt, ohne künftigen Generationen die Möglichkeit zu nehmen, ihre eigenen zu decken. 2015 einigten sich die Mitglieder der Vereinten Nationen auf <InlineMath math="17" /> Ziele für nachhaltige Entwicklung bis 2030, die diese Idee in Zielwerte fassen. Zu den passenden Praktiken gehören, Abfall zu vermeiden, wiederzuverwenden und zu recyceln, Abwasser zu klären, bevor es in Flüsse gelangt, und Gefälltes wieder aufzuforsten.
+
+Am dringendsten braucht die Landwirtschaft nachhaltige Praxis, denn sie ernährt alle und nutzt die meiste Fläche. **Biologische Schädlingsbekämpfung** hält einen Schädling mit einem natürlichen Feind statt mit Gift in Schach. Reis- und Ölpalmbauern in Malaysia hängen Nistkästen für Schleiereulen auf, die Ratten jagen. Leg fest, mit wie vielen Eulen das Feld startet, und beobachte die Rattenpopulation über zwanzig Jahre.
+
+<PredatorPreyLab
+  title={<>Schleiereulen halten Ratten in Schach</>}
+  description={
+    <>
+      Ein Reisfeld, das bis zu <InlineMath math="500" /> Ratten ernähren
+      könnte. Die Ratten fressen das Korn und die Schleiereulen jagen die
+      Ratten, wie das Lotka-Volterra-Modell beide Populationen rechnet.
+    </>
+  }
+  capacity={500}
+  labels={{
+    start: "Eulen zu Beginn",
+    prey: <>Ratten</>,
+    predators: <>Schleiereulen</>,
+    peak: <>Höchste Rattenzahl</>,
+    year: <>Jahr</>,
+    viewLabel: "Ein Reisfeld von oben mit Ratten und Schleiereulen",
+  }}
+/>
+
+Egal mit wie vielen Eulen du startest, die Populationen schwanken und pendeln sich dann bei etwa <InlineMath math="100" /> Ratten ein, einem Fünftel der <InlineMath math="500" />, die der Reis ernähren könnte. Die Eulen schaffen das ohne Gift, also reichert sich kein Rattengift in der Nahrungskette an und tötet auch nicht die Eulen selbst.
+
+Nachhaltige Landwirtschaft stützt außerdem die **Ernährungssicherheit**: Alle Menschen haben jederzeit Zugang zu genug sicherer und nahrhafter Nahrung. Ein Maß, das ein Land beobachtet, ist sein **Selbstversorgungsgrad (SSR)**, also der Anteil der verbrauchten Nahrung, den es selbst erzeugt:
+
+<BlockMath math="\text{SSR} = \frac{\text{Erzeugung}}{\text{Erzeugung} + \text{Einfuhr} - \text{Ausfuhr}} \cdot 100\,\%" />
+
+Angenommen, ein Land erntet in einem Jahr <InlineMath math="2{,}4" /> Millionen Tonnen Reis, führt <InlineMath math="1{,}5" /> Millionen Tonnen ein und <InlineMath math="0{,}1" /> Millionen Tonnen aus:
+
+<BlockMath math="\text{SSR} = \frac{2{,}4}{2{,}4 + 1{,}5 - 0{,}1} \cdot 100\,\% = \frac{2{,}4}{3{,}8} \cdot 100\,\% = 63{,}2\,\%" />
+
+Prüf: Ein SSR unter <InlineMath math="100\,\%" /> heißt, dass das Land mehr Reis verbraucht, als es erntet. Hier ist <InlineMath math="2{,}4 < 3{,}8" />, also muss das Ergebnis unter <InlineMath math="100\,\%" /> liegen, und das tut es. Auch Malaysias SSR bei Reis liegt unter <InlineMath math="100\,\%" />, ein Teil des Reises wird also eingeführt. Deshalb zählen höhere Erträge aus nachhaltiger Landwirtschaft.
+
+## Grüne Technologie verringert Verschmutzung an der Quelle
+
+**Grüne Technologie** ist jedes Produkt, System oder Verfahren, das die Umwelt weniger schädigt: Es braucht weniger Energie und Rohstoffe, erzeugt wenig oder keine Verschmutzung und Treibhausgase und ist sicher in der Anwendung. Malaysias Nationale Politik für grüne Technologie von 2009 ruht auf **vier Säulen: Energie, Umwelt, Wirtschaft und Gesellschaft**. Grüne Technologie findest du bei der Stromerzeugung, in Gebäuden, im Verkehr und in der Wasser- und Abfallbehandlung.
+
+Eine **Biogasanlage** macht aus Abfall Brennstoff. Mikroben bauen Tiermist ohne Sauerstoff ab und geben Biogas ab, das zu etwa <InlineMath math="60\,\%" /> aus Methan besteht und in einem Herd brennt. Mist, der sonst offen verrotten und Bäche verschmutzen würde, wird zu Kochgas. Ändere, wie viel Mist täglich hineinkommt.
+
+<BiogasDigesterLab
+  title={<>Eine Biogasanlage macht aus Mist Kochgas</>}
+  description={
+    <>
+      Eine Haushaltsbiogasanlage im Querschnitt. Jedes Kilogramm frischer Mist
+      liefert etwa <InlineMath math="0{,}04\text{ m}^3" /> Biogas, und eine
+      Herdflamme verbraucht <InlineMath math="0{,}4\text{ m}^3" /> pro Stunde.
+    </>
+  }
+  dung={25}
+  labels={{
+    dungControl: "Mist pro Tag",
+    gas: <>Biogas pro Tag</>,
+    methane: <>Methan pro Tag</>,
+    energy: <>Chemische Energie</>,
+    cooking: <>Kochzeit</>,
+    viewLabel: "Eine Biogasanlage, die mit einem Küchenherd verbunden ist",
+  }}
+/>
+
+Rechne einen Tag mit <InlineMath math="25\text{ kg}" /> Mist durch. Multipliziere mit dem Ertrag, nimm den Methananteil und teile durch den Verbrauch der Flamme:
+
+<MathContainer>
+<BlockMath math="V_{\text{Biogas}} = 25 \cdot 0{,}04 = 1{,}0\text{ m}^3" />
+<BlockMath math="V_{\text{Methan}} = 1{,}0 \cdot 0{,}60 = 0{,}60\text{ m}^3" />
+<BlockMath math="t = \frac{1{,}0\text{ m}^3}{0{,}4\text{ m}^3/\text{h}} = 2{,}5\text{ h}" />
+</MathContainer>
+
+Prüf mit den Anzeigen der Anlage bei <InlineMath math="25\text{ kg}" />: Biogas <InlineMath math="1{,}0\text{ m}^3" />, Methan <InlineMath math="0{,}60\text{ m}^3" />, Kochzeit <InlineMath math="2{,}5" /> Stunden. Palmölmühlen nutzen dieselbe Idee im Großen und fangen das Biogas aus ihrem Abwasser auf, statt das Methan entweichen zu lassen.
+
+Solarmodule sind grüne Technologie für Strom, aber ihre Herstellung braucht ebenfalls Energie. Ein fairer Test fragt, wie lange die Module brauchen, um diese Energie zurückzuzahlen. Ändere, wie viel Sonne das Dach bekommt.
+
+<SolarRoofPaybackLab
+  title={<>Wie schnell ein Solardach seine Energie zurückzahlt</>}
+  description={
+    <>
+      Ein Solardach mit <InlineMath math="3\text{ kWp}" />, dessen Herstellung{" "}
+      <InlineMath math="3{.}900\text{ kWh}" /> gekostet hat, verglichen mit dem
+      Strom, den es jedes Jahr über <InlineMath math="25" /> Jahre liefert.
+    </>
+  }
+  yieldPerPeak={1300}
+  labels={{
+    yieldControl: "Jahresertrag pro kWp",
+    invested: <>Energie für die Herstellung</>,
+    yearly: <>Energie pro Jahr</>,
+    payback: <>Jahre bis zur Rückzahlung</>,
+    lifetime: <>Zurückgegebene Energie über die Lebensdauer</>,
+    viewLabel: "Ein Diagramm der Energiebilanz eines Solardachs über seine Lebensdauer",
+  }}
+/>
+
+Bei <InlineMath math="1{.}300\text{ kWh}" /> pro kWp und Jahr liefert das Dach <InlineMath math="3 \cdot 1{.}300 = 3{.}900\text{ kWh}" /> im Jahr, zahlt also die Herstellungsenergie in etwa einem Jahr zurück und gibt danach über seine Lebensdauer rund das <InlineMath math="25" />-Fache dieser Energie zurück. Selbst bei der niedrigsten Einstellung ist die Energie in weniger als zwei Jahren zurückgezahlt. **Beurteile grüne Technologie über ihre ganze Lebensdauer**, nicht nur im Betrieb.
+
+## Typische Fehler zur ökologischen Nachhaltigkeit
+
+| Fehler | Warum er falsch ist | So prüfst du es |
+| :--- | :--- | :--- |
+| Ein hoher BSB heißt, das Wasser ist sauber, weil es viel Sauerstoff enthält. | Der BSB ist Sauerstoff, den Mikroben verbrauchen, also bedeutet ein hoher BSB viel organische Verschmutzung. | Hoher BSB geht mit wenig gelöstem Sauerstoff einher. |
+| Bewahrung und nachhaltige Nutzung bedeuten dasselbe. | Bewahrung hält menschliche Nutzung fern, nachhaltige Nutzung erlaubt einen klugen Gebrauch der Ressourcen. | Frag, ob die Ressource noch genutzt wird. |
+| Eutrophierung tötet Fische, weil Dünger giftig ist. | Fische sterben an Sauerstoffmangel, wenn Bakterien die toten Algen zersetzen. | Verfolge die Kette bis zum Sauerstoff, nicht bis zum Dünger. |
+| Wärme ist keine Verschmutzung, weil kein Stoff hinzukommt. | Warmes Wasser hält weniger Sauerstoff und verändert, wie Lebewesen leben. | Vergleiche den Sauerstoff, den Wasser bei zwei Temperaturen hält. |
+| Halbierst du den Abstand zu einer Lärmquelle, verdoppeln sich die Dezibel. | Der Pegel ändert sich bei jeder Halbierung um <InlineMath math="20\log 2 = 6" /> dB. | Eine Quelle mit <InlineMath math="110" /> dB hat in <InlineMath math="2" /> Metern <InlineMath math="104" /> dB. |
+
+Der erste Fehler kostet beim BSB-Versuch die meisten Punkte. Methylenblau entfärbt sich, wenn der Sauerstoff in einer Wasserprobe verbraucht ist, also gilt: **Je schneller die Probe farblos wird, desto höher ist ihr BSB** und desto stärker ist sie verschmutzt.
+
+## Übungen zur ökologischen Nachhaltigkeit
+
+Die Aufgaben führen vom Auswerten eines BSB-Versuchs zum Rechnen mit den Modellen. **Nenne zu jeder Zahl die Ursache**, bevor du rechnest.
+
+1. In drei Wasserproben wurde Methylenblau gegeben. Es entfärbte sich nach <InlineMath math="40" /> Minuten in Probe P, nach <InlineMath math="3" /> Stunden in Probe Q und nach <InlineMath math="5" /> Tagen in Probe R. Ordne die Proben von der am stärksten zur am wenigsten verschmutzten und begründe.
+
+2. Im Modell der Sauerstoffsenke <InlineMath math="O_{\min} = 8 - b/4" /> leitet eine Fabrik Abwasser mit einem BSB von <InlineMath math="16\text{ mg/L}" /> ein. Überleben die Fische flussabwärts? Bei welchem BSB läge der tiefste Punkt genau bei <InlineMath math="5\text{ mg/L}" />?
+
+3. Ein Generator misst <InlineMath math="100" /> Dezibel in <InlineMath math="1" /> Meter Abstand. In welcher Entfernung fällt sein Pegel auf <InlineMath math="85" /> Dezibel?
+
+4. Ein Hof gibt täglich <InlineMath math="40\text{ kg}" /> Mist in die Biogasanlage. Wie viel Biogas entsteht, und wie lange kann damit gekocht werden?
+
+### Lösungen
+
+**Lösung 1**: Von der am stärksten verschmutzten Probe an lautet die Reihenfolge **P, Q, R**. Methylenblau entfärbt sich, wenn der Sauerstoff verbraucht ist. Probe P hat ihren Sauerstoff am schnellsten verbraucht, enthält also die meisten Mikroorganismen und das meiste organische Material und hat den höchsten BSB. Prüf: Probe R hielt ihren Sauerstoff tagelang, das passt zu fast sauberem Wasser.
+
+**Lösung 2**: Setz <InlineMath math="b = 16" /> in das Modell ein:
+
+<BlockMath math="O_{\min} = 8 - \frac{16}{4} = 4\text{ mg/L}" />
+
+Der tiefste Punkt liegt unter <InlineMath math="5\text{ mg/L}" />, also **geraten die Fische in Stress und können sterben**, etwa am zweiten Tag flussabwärts. Für einen tiefsten Punkt von genau <InlineMath math="5\text{ mg/L}" /> löst du <InlineMath math="8 - b/4 = 5" /> und erhältst <InlineMath math="b = 12\text{ mg/L}" />. Prüf: <InlineMath math="8 - 12/4 = 5" />.
+
+**Lösung 3**: Setz den Pegel gleich <InlineMath math="85" /> Dezibel und löse auf:
+
+<MathContainer>
+<BlockMath math="100 - 20\log r = 85" />
+<BlockMath math="\log r = \frac{15}{20} = 0{,}75 \quad\Rightarrow\quad r = 10^{0{,}75} = 5{,}6\text{ m}" />
+</MathContainer>
+
+Prüf durch Verdoppeln: Bei <InlineMath math="4\text{ m}" />, zwei Verdopplungen, liegt der Pegel bei <InlineMath math="100 - 12 = 88" /> Dezibel, bei <InlineMath math="8\text{ m}" /> bei <InlineMath math="82" />. Das Ergebnis <InlineMath math="5{,}6\text{ m}" /> liegt dazwischen, wie es sein muss.
+
+**Lösung 4**: Multipliziere mit dem Ertrag und teile dann durch den Verbrauch der Flamme:
+
+<MathContainer>
+<BlockMath math="V_{\text{Biogas}} = 40 \cdot 0{,}04 = 1{,}6\text{ m}^3" />
+<BlockMath math="t = \frac{1{,}6}{0{,}4} = 4{,}0\text{ h}" />
+</MathContainer>
+
+Der Hof erzeugt <InlineMath math="1{,}6\text{ m}^3" /> Biogas und kann damit **<InlineMath math="4" /> Stunden** am Tag kochen. Prüf mit der Anlage: Stell den Mist auf <InlineMath math="40\text{ kg}" /> und lies dieselben beiden Werte ab.

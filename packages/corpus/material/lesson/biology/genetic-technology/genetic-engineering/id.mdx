@@ -1,0 +1,320 @@
+export const metadata = {
+  title: "Rekayasa Genetika dan Bioteknologi",
+  description:
+    "Telusuri cara rekayasa genetika menghasilkan insulin dan GMO, juga cara PCR dan sidik DNA memakai bioteknologi, lengkap dengan contoh dan latihan.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2026-11-17",
+  subject: "Teknologi Genetika",
+};
+
+## Rekayasa Genetika Mengubah DNA Makhluk Hidup
+
+**Rekayasa genetika** adalah pengubahan DNA suatu organisme secara sengaja, biasanya dengan memindahkan gen dari satu organisme ke organisme lain. Hasilnya disebut **organisme hasil rekayasa genetika (GMO)**, yaitu organisme yang DNA-nya sudah diubah dengan cara ini. DNA yang menggabungkan gen dari dua sumber berbeda disebut **DNA rekombinan**. **Bioteknologi** adalah bidang yang lebih luas: memakai makhluk hidup, atau bagiannya, untuk membuat produk atau memecahkan masalah. Berikutnya kamu akan melihat isi sel bakteri, menumbuhkan koloni penghasil insulin, menyalin DNA dengan PCR, dan menjalankan gel untuk mencocokkan profil DNA.
+
+Memindahkan gen butuh tiga alat. **Enzim restriksi** memotong DNA tepat di satu urutan basa tertentu. **DNA ligase** menyambung dua potongan menjadi satu untai lagi. **Vektor** membawa gen baru masuk ke sel inang, dan vektor yang paling sering dipakai adalah **plasmid**, yaitu cincin kecil DNA di dalam bakteri yang terpisah dari kromosom utamanya.
+
+[Bakteri](/id/materi/biologi/keanekaragaman-makhluk-hidup/bakteri) cocok jadi inang karena bakteri menyalin plasmidnya setiap kali membelah, dan bakteri membaca gen manusia dengan kode genetik yang sama seperti sel manusia. Buka sel bakteri di bawah dan cari cincin kecil di samping nukleoid yang kusut.
+
+<BacteriaStructureLab
+  title={<>Isi Sel Bakteri yang Menjadi Inang Gen Baru</>}
+  description={
+    <>
+      Sel bakteri berbentuk batang seperti Escherichia coli yang dibelah.
+      Nukleoid yang kusut menyimpan DNA utamanya, dan cincin kecil di
+      sampingnya adalah plasmid.
+    </>
+  }
+  labels={{
+    chooseMode: "Pilih tampilan",
+    focusLabel: "Perhatikan",
+    takeawayLabel: "Kenapa penting",
+    viewLabel: "Model sel bakteri dengan nukleoid dan plasmidnya",
+    items: [
+      {
+        tab: "Bentuk",
+        scene: { kind: "shape", bacillusLabel: "Basil" },
+        caption: <>Escherichia coli berbentuk basil, yaitu batang sepanjang sekitar <InlineMath math="2\ \mu\text{m}" />.</>,
+        focus: <>Satu bakteri hanyalah satu sel, jadi satu sel yang menerima gen baru bisa tumbuh menjadi satu koloni.</>,
+        takeaway: <>Setiap sel anak dari sel itu juga membawa gen baru tadi.</>,
+      },
+      {
+        tab: "Isi sel",
+        scene: { kind: "structure", nucleoidDnaLabel: "DNA nukleoid" },
+        caption: <>Nukleoid menyimpan kromosom utama. Cincin kecil di sampingnya adalah plasmid, dan butiran kecil itu ribosom.</>,
+        focus: <>Plasmid kecil dan terpisah, jadi gen bisa disisipkan ke dalamnya lalu cincin itu dimasukkan kembali ke sel.</>,
+        takeaway: <>Ribosom membaca gen pada plasmid dan membuat proteinnya.</>,
+      },
+    ],
+  }}
+/>
+
+## Bakteri Bisa Membuat Insulin Manusia
+
+Sebagian penderita diabetes tidak bisa membuat cukup **insulin**, yaitu hormon yang menurunkan kadar glukosa darah. Dulu insulin diambil dari pankreas babi dan sapi. Sejak 1982, **insulin manusia rekombinan** buatan bakteri sudah dijual, dan urutan asam aminonya persis sama dengan insulin dari pankreas manusia.
+
+Langkahnya mengikuti tiga alat tadi:
+
+1. Potong **gen insulin manusia** dari DNA manusia dengan enzim restriksi.
+2. Potong plasmid dengan **enzim restriksi yang sama**, supaya kedua potongan menyisakan ujung untai tunggal yang cocok, yang disebut ujung lengket.
+3. Campurkan gen dan plasmid. Ujung lengket keduanya saling berpasangan, lalu **DNA ligase** merekatkannya menjadi plasmid rekombinan.
+4. Masukkan plasmid rekombinan ke dalam bakteri. Hanya sebagian sel yang menerimanya, jadi sel itulah yang dipilih dan disimpan.
+5. Tumbuhkan bakteri terpilih dalam fermentor besar. Setiap sel membaca gen insulin dan membuat insulin, yang kemudian diekstraksi dan dimurnikan.
+
+<Mermaid
+  title={<>Dari Gen Manusia sampai Insulin dalam Botol</>}
+  description={<>Urutan langkah yang mengubah satu gen manusia menjadi insulin buatan bakteri.</>}
+  chart={`flowchart TD
+    A["Gen insulin dipotong dari DNA manusia"] --> C["Gen disambung ke plasmid oleh ligase"]
+    B["Plasmid dipotong enzim yang sama"] --> C
+    C --> D["Plasmid rekombinan masuk ke bakteri"]
+    D --> E["Bakteri berkembang biak di fermentor"]
+    E --> F["Insulin diekstraksi dan dimurnikan"]`}
+/>
+
+Langkah 5 berhasil karena bakteri berkembang biak dengan cepat. Satu sel Escherichia coli membelah menjadi dua kira-kira setiap <InlineMath math="20" /> menit pada <InlineMath math="37^\circ\text{C}" />, dan **setiap sel anak mendapat salinan plasmid**. Geser penggeser waktu dan hitung jumlah selnya.
+
+<BinaryFissionLab
+  title={<>Satu Bakteri Rekombinan Menjadi Koloni</>}
+  description={
+    <>
+      Satu sel Escherichia coli di atas agar membelah kira-kira setiap{" "}
+      <InlineMath math="20" /> menit. Setiap sel baru membawa plasmid berisi
+      gen insulin.
+    </>
+  }
+  labels={{
+    cells: <>Sel</>,
+    generations: <>Generasi</>,
+    minutes: "Menit",
+    viewLabel: "Koloni Escherichia coli yang tumbuh lewat pembelahan biner",
+  }}
+/>
+
+Sekarang hitung jumlahnya. Satu bakteri rekombinan menjadi dua kali lipat setiap <InlineMath math="20" /> menit. Berapa jumlah selnya setelah <InlineMath math="2" /> jam, dan setelah <InlineMath math="10" /> jam? Cari dulu berapa kali sel membelah, lalu pangkatkan <InlineMath math="2" /> dengan bilangan itu:
+
+<MathContainer>
+<BlockMath math="n = \frac{120\text{ menit}}{20\text{ menit}} = 6, \qquad N = 2^6 = 64" />
+<BlockMath math="n = \frac{600\text{ menit}}{20\text{ menit}} = 30, \qquad N = 2^{30} = 1{.}073{.}741{.}824 \approx 1{,}07 \times 10^9" />
+</MathContainer>
+
+Cek jawaban pertama dengan koloni tadi: pada menit ke-<InlineMath math="120" />, penghitung menunjukkan <InlineMath math="6" /> generasi dan <InlineMath math="64" /> sel. Dalam <InlineMath math="10" /> jam, satu sel menjadi sekitar satu miliar pabrik insulin. Itu sebabnya satu fermentor sanggup memasok insulin untuk jutaan pasien.
+
+## Organisme dan Pangan Hasil Rekayasa Genetika
+
+GMO menerima gen yang memberinya sifat yang sebelumnya tidak ia miliki. Pangan yang dibuat dari GMO, atau mengandung bagian GMO, disebut **pangan hasil rekayasa genetika (GMF)**. Baca setiap baris dengan pertanyaan ini: gen apa yang dimasukkan, dan apa yang berubah?
+
+| GMO | Gen yang dimasukkan | Sifat baru |
+| :--- | :--- | :--- |
+| Jagung Bt dan kapas Bt | Gen racun dari bakteri Bacillus thuringiensis | Membunuh ulat pemakan tanaman, jadi petani lebih jarang menyemprot insektisida |
+| Golden rice | Gen pembuat beta-karoten di dalam bulir beras | Bulirnya memasok vitamin A, yang tidak ada pada beras biasa |
+| Kedelai tahan herbisida | Gen ketahanan terhadap satu jenis herbisida | Petani bisa membasmi gulma tanpa mematikan tanaman |
+| Salmon cepat tumbuh | Gen hormon pertumbuhan dari spesies salmon lain | Lebih cepat mencapai ukuran jual |
+| Bakteri penghasil insulin | Gen insulin manusia | Membuat insulin manusia di fermentor |
+
+Manfaatnya nyata: **panen lebih tinggi, pestisida berkurang, gizi lebih baik, dan obat lebih murah**. Risikonya juga nyata, jadi tiap kasus perlu diperiksa sendiri. Gen bisa menyebar lewat serbuk sari ke kerabat liar tanaman itu. Serangga yang terus memakan tanaman Bt bisa berevolusi menjadi kebal terhadap racunnya. Protein baru dalam pangan perlu diuji agar tidak memicu alergi. Malaysia mengatur pelepasan dan impor GMO lewat **Biosafety Act 2007**, jadi setiap GMO dinilai dulu sebelum sampai ke ladang atau toko pangan.
+
+## Bioteknologi Memanfaatkan Makhluk Hidup
+
+Bioteknologi lebih tua daripada rekayasa genetika. Membuat tempe dengan jamur dan yoghurt dengan bakteri juga termasuk bioteknologi, karena makhluk hidup yang mengerjakannya. Rekayasa genetika adalah bagian modern bioteknologi yang lebih dulu mengubah DNA organismenya. Bioteknologi dikelompokkan menurut **bidang yang dilayaninya**:
+
+| Bidang | Contoh | Peran makhluk hidup |
+| :--- | :--- | :--- |
+| Kedokteran | Insulin, vaksin hepatitis B | Bakteri atau ragi membuat protein manusia atau protein virus |
+| Pertanian | Tanaman GM, kultur jaringan kelapa sawit | Tanaman membawa gen baru, atau satu tanaman diklon menjadi ribuan |
+| Industri | Enzim dalam deterjen | Mikroba membuat enzim yang mengurai noda protein dan lemak |
+| Lingkungan | Pembersihan tumpahan minyak | Bakteri mengurai minyak menjadi zat yang tidak berbahaya |
+| Forensik | Sidik DNA | DNA mengenali seseorang dari setetes darah atau sehelai rambut |
+
+**Terapi gen** adalah pemanfaatan di bidang kedokteran yang mengobati penyakit genetik dengan memasukkan salinan gen yang berfungsi ke sel pasien sendiri. Virus yang tidak berbahaya sering dipakai sebagai vektornya. Terapi ini menyasar penyebab penyakit, yaitu gen yang rusak, bukan sekadar meredakan gejalanya seumur hidup.
+
+## PCR Menyalin Sampel DNA Jutaan Kali
+
+Sehelai rambut atau setetes darah berisi DNA yang terlalu sedikit untuk diuji. **Reaksi berantai polimerase (PCR)** menyalin satu ruas DNA berulang kali. Setiap siklus terdiri atas tiga tahap. Pemanasan sampai sekitar <InlineMath math="95^\circ\text{C}" /> memisahkan kedua untai DNA. Pendinginan membuat primer pendek menempel di awal ruas itu. Pada sekitar <InlineMath math="72^\circ\text{C}" />, DNA polimerase tahan panas menyusun untai baru di setiap untai lama. Geser penggeser penyalinan dan perhatikan **setiap untai lama menjadi cetakan untai baru**.
+
+<DnaHelixLab
+  title={<>Satu Siklus PCR Menyalin Kedua Untai</>}
+  description={
+    <>
+      Ruas DNA sepanjang <InlineMath math="20" /> pasang basa terbuka dari
+      satu ujung, dan nukleotida baru berpasangan dengan setiap untai lama:
+      A dengan T, serta C dengan G.
+    </>
+  }
+  sequence="GATTACACGTGCATGCAATG"
+  copy
+  labels={{
+    copy: "Penyalinan",
+    copied: <>Pasang basa yang tersalin</>,
+    length: <>Pasang basa</>,
+    span: <>Panjang</>,
+    turns: <>Putaran</>,
+    viewLabel: "Heliks ganda DNA yang disalin untai demi untai",
+  }}
+/>
+
+Satu siklus mengubah satu heliks ganda menjadi dua, jadi setiap siklus **menggandakan** jumlah salinan. Setelah <InlineMath math="n" /> siklus, satu salinan awal menjadi <InlineMath math="2^n" /> salinan. Baca tabel di bawah grafik untuk <InlineMath math="10" /> siklus pertama.
+
+<FunctionChart
+  a={2}
+  p={1}
+  mode="discrete"
+  n={11}
+  title={<>Salinan Satu Ruas DNA setelah Setiap Siklus PCR</>}
+  description={
+    <>
+      Model <InlineMath math="f(x) = 1 \cdot 2^x" />, dengan{" "}
+      <InlineMath math="x" /> adalah banyaknya siklus. Setelah{" "}
+      <InlineMath math="10" /> siklus, satu salinan menjadi{" "}
+      <InlineMath math="1{.}024" />.
+    </>
+  }
+/>
+
+Coba dengan sampel nyata. Satu usapan berisi <InlineMath math="10" /> salinan ruas itu, dan mesin PCR menjalankan <InlineMath math="25" /> siklus. Kalikan salinan awal dengan <InlineMath math="2" /> sekali untuk setiap siklus:
+
+<BlockMath math="N = 10 \times 2^{25} = 10 \times 33{.}554{.}432 = 335{.}544{.}320 \approx 3{,}4 \times 10^8" />
+
+Cek dengan perkiraan cepat: <InlineMath math="2^{10} \approx 10^3" />, jadi <InlineMath math="2^{25} = 2^5 \times 2^{10} \times 2^{10} \approx 32 \times 10^6" />. Dikali <InlineMath math="10" /> hasilnya sekitar <InlineMath math="3{,}2 \times 10^8" />, dekat dengan jawaban tepatnya.
+
+## Sidik DNA Membandingkan Pola Pita
+
+**Sidik DNA**, disebut juga profil DNA, mengenali seseorang dari DNA-nya. Sekitar <InlineMath math="99{,}9\%" /> DNA dua orang mana pun sama, jadi profil hanya melihat bagian yang berbeda antarorang. Bagian paling berguna berisi urutan pendek yang berulang berkali-kali, dan **jumlah ulangannya berbeda dari orang ke orang**. Hanya kembar identik yang punya profil sama. Pindah-pindah antara dua orang di bawah dan hitung basa yang berbeda pada satu ruas.
+
+<DnaHelixLab
+  title={<>Dua Orang, Satu Ruas DNA</>}
+  description={
+    <>
+      <InlineMath math="24" /> pasang basa yang sama dari dua orang. Basa yang
+      berbeda menyala saat kamu berpindah di antara keduanya.
+    </>
+  }
+  sequence="ATGCCTAGGCATTGACCGTAGCTA"
+  variant="ATGCCTAGTCATTGACAGTAGCTA"
+  labels={{
+    choose: "Pilih orang",
+    strands: { first: <>Orang P</>, second: <>Orang Q</> },
+    differences: <>Basa yang berbeda</>,
+    identity: <>Basa yang cocok</>,
+    length: <>Pasang basa</>,
+    span: <>Panjang</>,
+    viewLabel: "Ruas DNA yang sama dari dua orang, dengan basa yang berbeda disorot",
+  }}
+/>
+
+Untuk membaca profil, laboratorium menyalin bagian berulang itu dengan PCR lalu memasukkannya ke sumur di salah satu ujung gel. Arus listrik menarik DNA, yang bermuatan negatif, ke arah ujung positif. **Potongan yang lebih pendek menyelinap lebih cepat lewat gel**, jadi potongan itu menempuh jarak lebih jauh. Dalam model ini, potongan sepanjang <InlineMath math="L" /> pasang basa menempuh <InlineMath math="d = h(7 - 2\log L)" /> sentimeter dalam <InlineMath math="h" /> jam. Ubah lama elektroforesis dan perhatikan pitanya memisah.
+
+<MathVisual
+  title={<>Gel Memisahkan Potongan DNA Menurut Panjangnya</>}
+  description={
+    <>
+      Tiga lajur: DNA dari tempat kejadian perkara dan dari dua tersangka.
+      Setiap pita turun sejauh <InlineMath math="d = h(7 - 2\log L)" /> cm,
+      jadi pita <InlineMath math="150" /> pasang basa turun paling jauh.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 4 }, y: { min: -6, max: 1 } },
+    view: { kind: "fit", padding: 0.08 },
+    parameters: [
+      { name: "h", min: 0.5, max: 2, value: 1.5, step: 0.1, label: "h" },
+    ],
+    objects: [
+      { id: "well-scene", kind: "segment", appearance: "reference", from: { x: 0.6, y: 0 }, to: { x: 1.4, y: 0 } },
+      { id: "well-p", kind: "segment", appearance: "reference", from: { x: 1.6, y: 0 }, to: { x: 2.4, y: 0 } },
+      { id: "well-q", kind: "segment", appearance: "reference", from: { x: 2.6, y: 0 }, to: { x: 3.4, y: 0 } },
+      { id: "scene-150", kind: "path", appearance: "primary", points: [{ x: "0.6", y: "-h(7 - 2 log(150))" }, { x: "1.4", y: "-h(7 - 2 log(150))" }] },
+      { id: "scene-320", kind: "path", appearance: "primary", points: [{ x: "0.6", y: "-h(7 - 2 log(320))" }, { x: "1.4", y: "-h(7 - 2 log(320))" }] },
+      { id: "p-150", kind: "path", appearance: "secondary", points: [{ x: "1.6", y: "-h(7 - 2 log(150))" }, { x: "2.4", y: "-h(7 - 2 log(150))" }] },
+      { id: "p-320", kind: "path", appearance: "secondary", points: [{ x: "1.6", y: "-h(7 - 2 log(320))" }, { x: "2.4", y: "-h(7 - 2 log(320))" }] },
+      { id: "q-210", kind: "path", appearance: "warning", points: [{ x: "2.6", y: "-h(7 - 2 log(210))" }, { x: "3.4", y: "-h(7 - 2 log(210))" }] },
+      { id: "q-400", kind: "path", appearance: "warning", points: [{ x: "2.6", y: "-h(7 - 2 log(400))" }, { x: "3.4", y: "-h(7 - 2 log(400))" }] },
+    ],
+    labels: [
+      { key: "scene", objectId: "well-scene", at: { x: 1, y: 0 }, placement: "above" },
+      { key: "suspect-p", objectId: "well-p", at: { x: 2, y: 0 }, placement: "above" },
+      { key: "suspect-q", objectId: "well-q", at: { x: 3, y: 0 }, placement: "above" },
+    ],
+    readouts: [
+      { key: "short", formula: "h(7 - 2 log(150))" },
+      { key: "long", formula: "h(7 - 2 log(400))" },
+    ],
+  }}
+  labels={{
+    h: <>Lama elektroforesis <InlineMath math="h" /> dalam jam</>,
+    scene: <>Tempat kejadian</>,
+    "suspect-p": <>Tersangka P</>,
+    "suspect-q": <>Tersangka Q</>,
+    short: <>Jarak pita <InlineMath math="150" /> pasang basa dalam cm</>,
+    long: <>Jarak pita <InlineMath math="400" /> pasang basa dalam cm</>,
+  }}
+/>
+
+Sekarang tentukan tersangka yang cocok. Sampel dari tempat kejadian berisi potongan <InlineMath math="150" /> dan <InlineMath math="320" /> pasang basa. Tersangka P punya dua potongan yang sama, sedangkan tersangka Q punya <InlineMath math="210" /> dan <InlineMath math="400" />. Setelah <InlineMath math="1{,}5" /> jam, hitung posisi setiap pita:
+
+<MathContainer>
+<BlockMath math="d_{150} = 1{,}5(7 - 2\log 150) = 1{,}5(7 - 4{,}352) = 3{,}97\text{ cm}" />
+<BlockMath math="d_{320} = 1{,}5(7 - 2\log 320) = 1{,}5(7 - 5{,}010) = 2{,}98\text{ cm}" />
+<BlockMath math="d_{210} = 3{,}53\text{ cm}, \qquad d_{400} = 2{,}69\text{ cm}" />
+</MathContainer>
+
+Pita tersangka P ada di <InlineMath math="3{,}97\text{ cm}" /> dan <InlineMath math="2{,}98\text{ cm}" />, sejajar dengan pita sampel tempat kejadian, jadi **profil tersangka P cocok**. Pita tersangka Q ada di ketinggian lain, jadi tersangka Q tersingkir. Cek urutannya: potongan terpendek, <InlineMath math="150" /> pasang basa, menempuh jarak terjauh, sesuai harapan. Laboratorium sungguhan membandingkan banyak bagian berulang sekaligus, jadi kecocokan penuh karena kebetulan menjadi sangat kecil kemungkinannya.
+
+## Manfaat dan Batas Teknologi Genetika
+
+Teknologi genetika **memecahkan masalah yang tidak sanggup dipecahkan cara lama**. Insulin tidak lagi bergantung pada organ hewan. Tanaman bisa membawa sifat yang mustahil didapat lewat persilangan bertahun-tahun, misalnya gen racun dari bakteri. Jejak DNA yang sangat sedikit bisa mengenali tersangka, membebaskan orang yang salah dituduh, atau mengenali korban bencana.
+
+Kekuatan yang sama itulah yang membuatnya perlu aturan. Gen yang sudah dilepas dalam tanaman tidak bisa ditarik kembali. Profil DNA adalah informasi pribadi tentang seseorang dan kerabatnya. Mengubah gen manusia memunculkan pertanyaan tentang perubahan mana yang termasuk pengobatan dan mana yang bukan. Jadi **setiap pemanfaatan dinilai dari buktinya**: apa yang diubah, apa yang mungkin dirugikan, dan siapa yang memutuskan.
+
+## Kesalahan Umum dalam Teknologi Genetika
+
+| Kesalahan | Kenapa salah | Cara mengecek |
+| :--- | :--- | :--- |
+| Gen dan plasmid boleh dipotong dengan enzim restriksi yang berbeda. | Hanya enzim yang sama yang menyisakan ujung lengket yang cocok dan bisa berpasangan. | Sebutkan satu enzim untuk kedua potongan. |
+| Ligase memotong DNA. | Enzim restriksi memotong, dan ligase menyambung ujung yang terpotong. | Ligase menyambung, enzim restriksi memotong. |
+| Semua GMO adalah tanaman. | Bakteri, hewan, dan tumbuhan semuanya bisa menjadi GMO. | Tanyakan apakah DNA organisme itu sudah diubah. |
+| PCR menambah jumlah salinan yang tetap di setiap siklus. | Setiap siklus menggandakan salinan, jadi pertambahannya <InlineMath math="2^n" />. | Sepuluh siklus harus menghasilkan <InlineMath math="1{.}024" /> salinan dari satu. |
+| Potongan DNA yang lebih besar menempuh jarak lebih jauh di gel. | Potongan yang lebih besar bergerak lebih lambat lewat gel. | Potongan terkecil berada paling jauh dari sumur. |
+
+Kesalahan keempat menghasilkan jawaban yang jauh terlalu kecil. Kalau kamu menambah <InlineMath math="2" /> salinan per siklus, sepuluh siklus hanya memberi <InlineMath math="21" /> salinan, bukan <InlineMath math="1{.}024" />. Ingat: **setiap siklus menggandakan salinan yang sudah ada**.
+
+## Latihan Teknologi Genetika
+
+Soal-soal ini bergerak dari alat rekayasa genetika ke hitungan di balik insulin, PCR, dan sidik DNA. **Tulis rumusnya dulu** di setiap perhitungan, lalu substitusikan nilainya.
+
+1. Seorang siswa memotong gen insulin dengan enzim X dan plasmid dengan enzim Y. Jelaskan kenapa gen itu tidak akan tersambung ke plasmid, dan sebutkan enzim yang menyambung DNA.
+
+2. Sebuah fermentor diawali dengan <InlineMath math="100" /> bakteri rekombinan yang jumlahnya berlipat dua setiap <InlineMath math="30" /> menit. Berapa jumlah bakteri setelah <InlineMath math="3" /> jam?
+
+3. Berapa siklus PCR yang dibutuhkan agar satu salinan ruas DNA menjadi lebih dari satu juta salinan?
+
+4. Dalam model gel <InlineMath math="d = h(7 - 2\log L)" />, berapa jarak antara pita <InlineMath math="250" /> pasang basa dan pita <InlineMath math="500" /> pasang basa setelah <InlineMath math="1" /> jam?
+
+### Pembahasan
+
+**Pembahasan 1**: Enzim X dan Y memotong di urutan yang berbeda, jadi ujung yang ditinggalkannya **tidak bisa berpasangan**. Ujung untai tunggal gen tidak cocok dengan ujung plasmid, sehingga gen tidak bisa masuk. Masalahnya selesai kalau keduanya dipotong dengan enzim yang sama, lalu **DNA ligase** merekatkan sambungannya. Cek: dalam langkah pembuatan insulin, langkah 2 memakai enzim yang sama justru karena alasan ini.
+
+**Pembahasan 2**: Tiga jam sama dengan <InlineMath math="180" /> menit, jadi bakteri berlipat dua sebanyak <InlineMath math="6" /> kali:
+
+<BlockMath math="n = \frac{180}{30} = 6, \qquad N = 100 \times 2^6 = 100 \times 64 = 6{.}400" />
+
+Cek dengan melipatgandakan satu per satu: <InlineMath math="100; 200; 400; 800; 1{.}600; 3{.}200; 6{.}400" />. Itu enam kali berlipat dua.
+
+**Pembahasan 3**: Cari <InlineMath math="n" /> terkecil yang memenuhi <InlineMath math="2^n > 1{.}000{.}000" />:
+
+<MathContainer>
+<BlockMath math="2^{19} = 524{.}288 < 1{.}000{.}000" />
+<BlockMath math="2^{20} = 1{.}048{.}576 > 1{.}000{.}000" />
+</MathContainer>
+
+Jadi dibutuhkan **<InlineMath math="20" /> siklus**. Cek: <InlineMath math="2^{10} = 1{.}024 \approx 10^3" />, dan <InlineMath math="(10^3)^2 = 10^6" />, jadi sekitar dua puluh siklus memang benar.
+
+**Pembahasan 4**: Hitung tiap jarak pada <InlineMath math="h = 1" />, lalu kurangkan:
+
+<MathContainer>
+<BlockMath math="d_{250} = 7 - 2\log 250 = 7 - 4{,}796 = 2{,}204\text{ cm}" />
+<BlockMath math="d_{500} = 7 - 2\log 500 = 7 - 5{,}398 = 1{,}602\text{ cm}" />
+<BlockMath math="d_{250} - d_{500} = 0{,}602\text{ cm}" />
+</MathContainer>
+
+Kedua pita terpisah sekitar <InlineMath math="0{,}60\text{ cm}" />, dan **potongan yang lebih pendek berada lebih bawah**, lebih jauh dari sumur. Cek: <InlineMath math="500" /> adalah dua kali <InlineMath math="250" />, jadi selisihnya <InlineMath math="2\log 2 = 0{,}602" />, jawaban yang sama.
