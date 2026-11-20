@@ -8,6 +8,29 @@ Ein Teilstrich des Objektmikrometers entspricht <InlineMath math="\frac{1\text{ 
   chart={"flowchart LR\n  A[40 Teilstriche = 100 µm bei ×10] --> B[1 Teilstrich = 2.5 µm]\n  B -->|Objektiv ×40: ÷4| C[1 Teilstrich = 0.625 µm]\n  C -->|32 Teilstriche| D[Zelle = 20 µm]\n  D -->|Zeichnung 60 mm| E[Vergrößerung ×3000]"}
 />
 
+Wechsel das Objektiv und schau, wie die Okularskala stehen bleibt, während die Zelle über sie wächst.
+
+<MicroscopeLab
+  title={<>Okularskala mit zwei Objektiven</>}
+  description={<>Bei <InlineMath math="\times10" /> ist ein Teilstrich <InlineMath math="2{,}5\,\mu\text{m}" />. Wechsel zu <InlineMath math="\times40" />, und dieselbe Skala misst viermal feiner.</>}
+  labels={{
+    across: <>Zellen über das Sichtfeld</>,
+    cell: <>Länge einer Zelle</>,
+    division: <>Ein Okularteilstrich</>,
+    field: <>Durchmesser des Sichtfelds</>,
+    magnification: <>Gesamtvergrößerung</>,
+    objective: "Objektiv wählen",
+    span: <>Zelllänge in Teilstrichen</>,
+    view: "Lichtmikroskop",
+    views: { eyepiece: "Okular", stand: "Mikroskop" },
+  }}
+  cell={20}
+  eyepiece={10}
+  graticule={{ eyepiece: 40, micrometer: 10 }}
+  objectives={[10, 40]}
+  specimen="onion"
+/>
+
 <BlockMath math="40\text{ Okularteilstriche}=10\times10\,\mu\text{m}=100\,\mu\text{m},\qquad 1\text{ Okularteilstrich}=2.5\,\mu\text{m}." />
 
 Die Okularskala liegt im Okular und wird beim Objektivwechsel nicht größer, das Bild des Präparats aber schon. Das Objektiv <InlineMath math="\times40" /> vergrößert **viermal stärker**, also deckt ein Okularteilstrich jetzt **ein Viertel** so viel vom Präparat ab:

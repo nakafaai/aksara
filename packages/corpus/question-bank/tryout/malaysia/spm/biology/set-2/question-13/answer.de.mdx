@@ -14,6 +14,29 @@ Die pro Minute gefilterte Glucose ist das Filtratvolumen mal seiner Konzentratio
   description={<>Bei <InlineMath math="2{,}0" /> und <InlineMath math="3{,}0\text{ mg}" /> pro Kubikzentimeter wird alle gefilterte Glucose rückresorbiert. Bei <InlineMath math="4{,}2" /> resorbieren die Tubuli ihr Maximum von <InlineMath math="375\text{ mg}" />, und <InlineMath math="150\text{ mg}" /> gehen in den Harn, bei <InlineMath math="5{,}0" /> sind es <InlineMath math="250\text{ mg}" />.</>}
 />
 
+Verschieb die Plasmaglucose und schau, wie das Kanälchen aufhört, jedes Körnchen zurückzuholen.
+
+<NephronLab
+  title={<>Glucose über der Nierenschwelle</>}
+  description={<>Schieb die Plasmaglucose über <InlineMath math="3{,}0\text{ mg cm}^{-3}" /> und schau, wie goldene Körnchen ins Sammelrohr rutschen.</>}
+  labels={{
+    daily: <>Harn pro Tag</>,
+    factor: <>Wie stark Harnstoff konzentriert wird</>,
+    filtrate: <>Primärharn pro Tag</>,
+    flow: <>Harn pro Minute</>,
+    load: <>Filtrierte Glucose</>,
+    plasma: "Plasmaglucose",
+    reabsorbed: <>Rückresorbierte Glucose</>,
+    solute: "Stoff wählen",
+    solutes: { glucose: "Glucose", urea: "Harnstoff" },
+    threshold: <>Nierenschwelle</>,
+    urine: <>Glucose im Harn</>,
+    view: "Ein Nephron mit seiner Blutversorgung",
+  }}
+  filtration={125}
+  glucose={{ maximum: 375, plasma: 4.2 }}
+/>
+
 Die Schwelle ist die Konzentration, bei der die gefilterte Menge genau dem Höchstwert entspricht:
 
 <BlockMath math="125\times c=375\quad\Rightarrow\quad c=\frac{375}{125}=3.0\text{ mg cm}^{-3}." />

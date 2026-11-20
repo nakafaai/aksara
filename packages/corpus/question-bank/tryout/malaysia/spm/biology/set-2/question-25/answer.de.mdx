@@ -8,6 +8,32 @@ Ein Organ krümmt sich zur Seite, die weniger wächst. Auxin sammelt sich nur da
   chart={"flowchart TD\n  A[Keimling liegend] --> B[Wurzelhaube spürt Schwerkraft: Auxin sammelt sich unten]\n  B --> C[Spross: Unterseite schneller, krümmt sich nach oben]\n  B --> D[Wurzel: Unterseite langsamer, krümmt sich nach unten]\n  K[Auf dem Klinostaten] --> E[Keine Seite bleibt unten: Auxin gleichmäßig] --> F[Beide wachsen gerade]\n  R[Wurzelhaube entfernt] --> G[Schwerkraft nicht gespürt: keine Ansammlung] --> H[Wurzel wächst gerade]"}
 />
 
+Wähl jeden Keimling und vergleich, wie sich Spross und Wurzel krümmen.
+
+<TropismLab
+  title={<>Keimlinge liegend im Dunkeln</>}
+  description={<>A liegt still, B dreht sich auf einem Klinostaten, und C fehlt die Wurzelhaube. Folg dem Auxin und den Krümmungen.</>}
+  labels={{
+    bend: <>Krümmung des Sprosses</>,
+    directions: { away: <>gegen die Schwerkraft</>, straight: <>Wächst gerade</>, toward: <>mit der Schwerkraft</> },
+    far: <>Auxin auf der Oberseite</>,
+    growth: <>Wachstum</>,
+    hours: "Zeit",
+    near: <>Auxin auf der Unterseite</>,
+    root: <>Krümmung der Wurzel</>,
+    seedling: "Keimling wählen",
+    view: "Bohnenkeimlinge liegend im Dunkeln",
+  }}
+  setup={{
+    seedlings: [
+      { name: "A", treatment: "flat" },
+      { name: "B", treatment: "klinostat" },
+      { name: "C", treatment: "decapped" },
+    ],
+    stimulus: "gravity",
+  }}
+/>
+
 - I stimmt: Im Spross beschleunigt das Auxin unten die Streckung, die Unterseite wächst schneller, und der Spross krümmt sich nach oben.
 - II stimmt: In der Wurzel hemmt dasselbe Auxin die Streckung, die Unterseite wächst langsamer, und die Wurzel krümmt sich nach unten.
 - III stimmt: Auf dem Klinostaten ist jede Seite abwechselnd unten, Auxin verteilt sich gleichmäßig, und kein Organ krümmt sich.

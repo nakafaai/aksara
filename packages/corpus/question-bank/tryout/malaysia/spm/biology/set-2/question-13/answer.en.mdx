@@ -14,6 +14,29 @@ The glucose filtered each minute is the filtrate volume times its concentration.
   description={<>At <InlineMath math="2.0" /> and <InlineMath math="3.0\text{ mg}" /> per cubic centimetre all filtered glucose is reabsorbed. At <InlineMath math="4.2" /> the tubules reabsorb their maximum of <InlineMath math="375\text{ mg}" /> and <InlineMath math="150\text{ mg}" /> passes into the urine, and at <InlineMath math="5.0" /> it is <InlineMath math="250\text{ mg}" />.</>}
 />
 
+Slide the plasma glucose and watch the tubule stop taking every grain back.
+
+<NephronLab
+  title={<>Glucose Past the Renal Threshold</>}
+  description={<>Slide the plasma glucose past <InlineMath math="3.0\text{ mg cm}^{-3}" /> and watch golden grains slip into the duct.</>}
+  labels={{
+    daily: <>Urine a day</>,
+    factor: <>How concentrated urea gets</>,
+    filtrate: <>Filtrate a day</>,
+    flow: <>Urine per minute</>,
+    load: <>Glucose filtered</>,
+    plasma: "Plasma glucose",
+    reabsorbed: <>Glucose taken back</>,
+    solute: "Choose a solute",
+    solutes: { glucose: "Glucose", urea: "Urea" },
+    threshold: <>Renal threshold</>,
+    urine: <>Glucose in the urine</>,
+    view: "One nephron with its blood supply",
+  }}
+  filtration={125}
+  glucose={{ maximum: 375, plasma: 4.2 }}
+/>
+
 The threshold is the concentration at which the filtered load just equals the maximum:
 
 <BlockMath math="125\times c=375\quad\Rightarrow\quad c=\frac{375}{125}=3.0\text{ mg cm}^{-3}." />
