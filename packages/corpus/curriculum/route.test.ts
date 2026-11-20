@@ -65,7 +65,7 @@ layer(NodeServices.layer)("curriculum route projection", (it) => {
               appLocale === "en" &&
               programKey === "merdeka" &&
               publicPath.endsWith(
-                "/mathematics/linear-equation-inequality/linear-equation-inequality"
+                "/mathematics/systems-of-linear-equations-and-inequalities/linear-equation-inequality"
               )
           )
         )
@@ -75,7 +75,7 @@ layer(NodeServices.layer)("curriculum route projection", (it) => {
           "class-10-mathematics-linear-equation-inequality",
         materialContextParentPath: "curriculum/merdeka/class-10/mathematics",
         materialContextPublicPath:
-          "curriculum/merdeka/class-10/mathematics/linear-equation-inequality",
+          "curriculum/merdeka/class-10/mathematics/systems-of-linear-equations-and-inequalities",
         materialKey: "lesson.mathematics.linear-equation-inequality",
       });
     })

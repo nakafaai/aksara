@@ -2,9 +2,11 @@ import { merdekaClass10BiologyTopicNodes } from "#corpus/curriculum/merdeka/topi
 import { merdekaClass10ChemistryTopicNodes } from "#corpus/curriculum/merdeka/topics/class-10/chemistry";
 import { merdekaClass10MathematicsTopicNodes } from "#corpus/curriculum/merdeka/topics/class-10/mathematics";
 import { merdekaClass10PhysicsTopicNodes } from "#corpus/curriculum/merdeka/topics/class-10/physics";
+import { merdekaClass11AdvancedMathematicsTopicNodes } from "#corpus/curriculum/merdeka/topics/class-11/advanced";
 import { merdekaClass11ChemistryTopicNodes } from "#corpus/curriculum/merdeka/topics/class-11/chemistry";
 import { merdekaClass11MathematicsTopicNodes } from "#corpus/curriculum/merdeka/topics/class-11/mathematics";
 import { merdekaClass11PhysicsTopicNodes } from "#corpus/curriculum/merdeka/topics/class-11/physics";
+import { merdekaClass12AdvancedMathematicsTopicNodes } from "#corpus/curriculum/merdeka/topics/class-12/advanced";
 import { merdekaClass12MathematicsTopicNodes } from "#corpus/curriculum/merdeka/topics/class-12/mathematics";
 import { subjectNode } from "#corpus/curriculum/schema";
 
@@ -130,6 +132,30 @@ export const merdekaClass11SubjectNodes = [
     },
   }),
   subjectNode({
+    children: merdekaClass11AdvancedMathematicsTopicNodes,
+    key: "class-11-advanced-mathematics",
+    materialDomain: "mathematics",
+    order: 35,
+    translations: {
+      de: {
+        routeSlug: "weiterfuehrende-mathematik",
+        title: "Weiterführende Mathematik",
+      },
+      en: {
+        routeSlug: "advanced-mathematics",
+        title: "Advanced Mathematics",
+      },
+      id: {
+        routeSlug: "matematika-tingkat-lanjut",
+        title: "Matematika Tingkat Lanjut",
+      },
+      ms: {
+        routeSlug: "matematik-lanjutan",
+        title: "Matematik Lanjutan",
+      },
+    },
+  }),
+  subjectNode({
     children: merdekaClass11PhysicsTopicNodes,
     key: "class-11-physics",
     materialDomain: "physics",
@@ -171,6 +197,30 @@ export const merdekaClass12SubjectNodes = [
       ms: {
         routeSlug: "matematik",
         title: "Matematik",
+      },
+    },
+  }),
+  subjectNode({
+    children: merdekaClass12AdvancedMathematicsTopicNodes,
+    key: "class-12-advanced-mathematics",
+    materialDomain: "mathematics",
+    order: 35,
+    translations: {
+      de: {
+        routeSlug: "weiterfuehrende-mathematik",
+        title: "Weiterführende Mathematik",
+      },
+      en: {
+        routeSlug: "advanced-mathematics",
+        title: "Advanced Mathematics",
+      },
+      id: {
+        routeSlug: "matematika-tingkat-lanjut",
+        title: "Matematika Tingkat Lanjut",
+      },
+      ms: {
+        routeSlug: "matematik-lanjutan",
+        title: "Matematik Lanjutan",
       },
     },
   }),
