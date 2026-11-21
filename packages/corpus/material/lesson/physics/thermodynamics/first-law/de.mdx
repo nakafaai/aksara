@@ -31,50 +31,56 @@ Stell dir vor, das Gas schiebt einen Kolben der Fläche <InlineMath math="A" /> 
 
 <BlockMath math="W = F\,\Delta s = pA\,\Delta s = p\,\Delta V" />
 
-Im Graphen von <InlineMath math="p" /> gegen <InlineMath math="V" /> ist das Produkt <InlineMath math="p\,\Delta V" /> die Fläche des Rechtecks unter einem waagerechten Weg. Ändert sich der Druck während der Ausdehnung, zerlegst du den Weg in kleine Schritte, die jeweils fast konstanten Druck haben. Alle diese schmalen Rechtecke zusammen ergeben die **Fläche unter dem Weg**, und diese Fläche ist die Arbeit des Gases. Druck in Kilopascal mal Volumen in Litern ergibt direkt Joule, denn <InlineMath math="1\text{ kPa} \times 1\text{ L} = (10^3\text{ Pa})(10^{-3}\text{ m}^3) = 1\text{ J}" />.
+Im Graphen von <InlineMath math="p" /> gegen <InlineMath math="V" /> ist das Produkt <InlineMath math="p\,\Delta V" /> die Fläche des Rechtecks unter einem waagerechten Weg. Ändert sich der Druck während der Ausdehnung, zerlegst du den Weg in kleine Schritte, die jeweils fast konstanten Druck haben. Alle diese schmalen Rechtecke zusammen ergeben die **Fläche unter dem Weg**, und diese Fläche ist die Arbeit des Gases. Druck in Kilopascal mal Volumen in Litern ergibt direkt Joule, denn <InlineMath math="1\text{ kPa} \times 1\text{ L} = (10^3\text{ Pa})(10^{-3}\text{ m}^3) = 1\text{ J}" />. Verschieb unten das Endvolumen, um den waagerechten isobaren Weg mit dem gekrümmten isothermen Weg vom selben Start zu vergleichen.
 
-<GasProcessLab
+<MathVisual
   title={<>Zwei Wege der Ausdehnung vom selben Start</>}
   description={
     <>
       <InlineMath math="0{,}25" /> mol Gas starten bei{" "}
       <InlineMath math="300\text{ kPa}" /> und <InlineMath math="2\text{ L}" />.
-      Wähle isobar oder isotherm, zieh das Endvolumen und vergleiche die Flächen
-      unter beiden Wegen.
+      Verschieb das Endvolumen, um die Arbeit entlang des waagerechten isobaren
+      und des gekrümmten isothermen Wegs zu vergleichen.
     </>
   }
   footer={
     <>
-      Beim Ausdehnen hat der waagerechte Weg mehr Fläche unter sich, also mehr Arbeit.
+      Zwischen denselben Volumen schließt der isobare Weg immer mehr Fläche
+      ein.
     </>
   }
-  labels={{
-    endPressure: "Enddruck",
-    endState: <>Endzustand</>,
-    endVolume: "Endvolumen",
-    energy: "Energie bei diesem Prozess",
-    heat: <>Zugeführte Wärme, <InlineMath math="Q" /></>,
-    internal: <>Änderung der inneren Energie, <InlineMath math="\Delta U" /></>,
-    law: <>Was dieser Prozess konstant hält</>,
-    pressureAxis: <InlineMath math="p\ (\text{kPa})" />,
-    process: "Prozess",
-    processes: {
-      adiabatic: "Adiabatisch",
-      isobaric: "Isobar",
-      isochoric: "Isochor",
-      isothermal: "Isotherm",
-    },
-    startState: <>Anfangszustand</>,
-    viewLabel: "Ein Gaszylinder mit Kolben neben seinem Diagramm von Druck gegen Volumen",
-    volumeAxis: <InlineMath math="V\ (\text{L})" />,
-    work: <>Vom Gas verrichtete Arbeit, <InlineMath math="W" /></>,
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 9 }, y: { min: 0, max: 650 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "r", min: 1, max: 8, value: 6, step: 0.5, label: "end-volume" },
+    ],
+    objects: [
+      { id: "isobaric", kind: "function", appearance: "primary", formula: "300", domain: { min: 1, max: 8 } },
+      { id: "isothermal", kind: "function", appearance: "secondary", formula: "600/x", domain: { min: 1, max: 8 } },
+      { id: "start", kind: "point", appearance: "reference", at: { x: 2, y: 300 } },
+      { id: "end-isobaric", kind: "marker", appearance: "primary", x: "r", y: "300" },
+      { id: "end-isothermal", kind: "marker", appearance: "secondary", x: "r", y: "600/r" },
+    ],
+    labels: [
+      { key: "start-label", objectId: "start", at: { x: 2, y: 300 }, placement: "above-right" },
+      { key: "isobaric-line", objectId: "isobaric", at: { x: 6.5, y: 300 }, placement: "above" },
+      { key: "isothermal-line", objectId: "isothermal", at: { x: 6.5, y: 92 }, placement: "above" },
+    ],
+    readouts: [
+      { key: "work-isobaric", formula: "300*(r - 2)" },
+      { key: "work-isothermal", formula: "600*ln(r/2)" },
+    ],
   }}
-  moles={0.25}
-  processes={[
-    { process: "isobaric", volume: { end: 6, max: 8, min: 1 } },
-    { process: "isothermal", volume: { end: 6, max: 8, min: 1 } },
-  ]}
-  start={{ pressure: 300, volume: 2 }}
+  labels={{
+    "end-volume": <>Endvolumen in <InlineMath math="\text{L}" /></>,
+    "start-label": <>Start</>,
+    "isobaric-line": <>Isobar</>,
+    "isothermal-line": <>Isotherm</>,
+    "work-isobaric": <>Isobare Arbeit in <InlineMath math="\text{J}" /></>,
+    "work-isothermal": <>Isotherme Arbeit in <InlineMath math="\text{J}" /></>,
+  }}
 />
 
 Lass das Gas sich auf <InlineMath math="6\text{ L}" /> ausdehnen. Bei konstantem Druck ist die Fläche ein Rechteck: <InlineMath math="W = (300)(6 - 2) = 1200\text{ J}" />. Bei konstanter Temperatur fällt der Druck entlang <InlineMath math="p = 600/V" /> auf <InlineMath math="100\text{ kPa}" />. Die Fläche unter einer solchen Kurve ist <InlineMath math="nRT\ln(V_2/V_1)" />, mit <InlineMath math="nRT = p_1V_1 = 600\text{ J}" />:
@@ -216,6 +222,12 @@ Der Kreisprozess im Graphen nutzt dasselbe Gas. Es dehnt sich bei <InlineMath ma
       Nach rechts steht das Volumen in Litern, nach oben der Druck in
       Kilopascal. Verschieb den oberen Druck und das rechte Volumen und
       beobachte die Nettoarbeit und die aufgenommene Wärme.
+    </>
+  }
+  footer={
+    <>
+      Die Fläche innerhalb von <InlineMath math="ABCD" /> ist die Nettoarbeit
+      pro Umlauf.
     </>
   }
   scene={{

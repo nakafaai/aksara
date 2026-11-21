@@ -13,7 +13,7 @@ Der **zweite Hauptsatz der Thermodynamik** sagt: Wärme fließt von selbst nur v
 
 <BlockMath math="\eta_{\text{Carnot}} = 1 - \frac{T_c}{T_h}" />
 
-Im Dampfkraftwerk-Labor weiter unten vergleichst du den Wirkungsgrad echter Kraftwerke mit dieser Grenze.
+Im Eisschmelz-Labor weiter unten siehst du, wie warmes Wasser und Eis eine gemeinsame Temperatur erreichen, ein einseitiger Ablauf, den der zweite Hauptsatz erzwingt.
 
 Der erste Hauptsatz zählt nur Energie, eine Richtung kennt er nicht. Tauchst du einen kalten Löffel in heiße Suppe, wird der Löffel warm, und die Suppe kühlt ein wenig ab. Nie wird der Löffel kälter, während er die Suppe aufheizt, obwohl die Energie in beide Richtungen erhalten bliebe. Der zweite Hauptsatz legt die Richtung fest, meist in zwei gleichwertigen Formulierungen:
 
@@ -40,41 +40,43 @@ Ein Beispiel: <InlineMath math="600\text{ J}" /> Wärme fließen von einem groß
 
 Die Summe ist positiv, also läuft dieser Wärmefluss von selbst ab. Kehrst du ihn um, wird die Summe <InlineMath math="-0{,}5\text{ J/K}" />, und das verbietet der zweite Hauptsatz. Achte auch darauf, was das heißt: Dieselbe Wärme bringt dem kälteren Körper mehr Entropie. Hat sich Wärme erst einmal an einen kälteren Ort verteilt, **lässt sich ihre Energie schwerer nutzen**, um Arbeit zu verrichten.
 
-## Wärme teilweise in Arbeit
+Sieh dir diesen einseitigen Wärmefluss unten in einem isolierten Becher an, wenn <InlineMath math="50\text{ g}" /> Eis bei <InlineMath math="0^\circ\text{C}" /> in <InlineMath math="200\text{ g}" /> warmes Wasser von <InlineMath math="50^\circ\text{C}" /> fallen.
 
-Eine **Wärmekraftmaschine** nimmt Wärme <InlineMath math="Q_h" /> aus einer heißen Quelle auf, wandelt einen Teil davon in Arbeit <InlineMath math="W" /> um und gibt den Rest, <InlineMath math="Q_c" />, an einen kälteren Ort ab, immer wieder in einem Kreisprozess. Die innere Energie kehrt nach jedem Umlauf zu ihrem Anfangswert zurück, also gilt <InlineMath math="Q_h = W + Q_c" />. Ein Dampfkraftwerk ist eine riesige Wärmekraftmaschine: Der Kessel liefert <InlineMath math="Q_h" />, Turbine und Generator liefern <InlineMath math="W" /> als elektrische Energie, und der Kondensator führt <InlineMath math="Q_c" /> ab.
-
-<SteamPlantCycleLab
-  title={<>Ein Dampfkraftwerk als Wärmekraftmaschine</>}
+<IceMeltingLab
+  title={<>Einseitiger Wärmefluss beim Schmelzen von Eis</>}
   description={
     <>
-      Jede Sekunde nimmt dieses Kraftwerk <InlineMath math="1000\text{ MJ}" />{" "}
-      Wärme auf. Wähle die Wärmequelle und vergleiche elektrische Energie,
-      Abwärme und die Carnot-Grenze aus der Dampftemperatur.
+      Drück auf Abspielen und beobachte, wie <InlineMath math="50\text{ g}" />{" "}
+      Eis bei <InlineMath math="0^\circ\text{C}" /> in{" "}
+      <InlineMath math="200\text{ g}" /> warmem Wasser von{" "}
+      <InlineMath math="50^\circ\text{C}" /> in einem isolierten Becher
+      schmelzen, bis eine gemeinsame Temperatur erreicht ist.
     </>
   }
   footer={
     <>
-      Elektrische Energie und Abwärme ergeben zusammen immer die aufgenommene Wärme.
+      Warmes Wasser kühlt auf <InlineMath math="24^\circ\text{C}" /> ab,
+      während das Eis schmilzt, nie umgekehrt.
     </>
   }
-  fuel="coal"
+  iceMass={50}
+  waterMass={200}
+  waterTemperature={50}
+  latentHeat={336000}
+  specificHeat={4200}
   labels={{
-    chooseFuel: "Wärmequelle",
-    electric: <>Arbeit als elektrische Energie, <InlineMath math="W" /></>,
-    fuelUse: <>Brennstoff pro Stunde</>,
-    fuels: {
-      coal: <>Kohle</>,
-      gas: <>Erdgas</>,
-      uranium: <>Uran</>,
-    },
-    heat: <>Wärme aus der heißen Quelle, <InlineMath math="Q_h" /></>,
-    ideal: <>Carnot-Grenze</>,
-    steam: <>Dampftemperatur an der Turbine</>,
-    viewLabel: "Ein Dampfkraftwerk mit Kessel, Turbine, Generator, Kondensator und Kühlturm",
-    waste: <>Wärme an den Kondensator, <InlineMath math="Q_c" /></>,
+    final: <>Endtemperatur</>,
+    given: <>Wärme, die das Wasser bis <InlineMath math="0^\circ\text{C}" /> abgeben kann</>,
+    melt: <>Schmelzwärme für das Eis</>,
+    viewLabel: "Ein isolierter Becher mit warmem Wasser, schmelzendem Eiswürfel, Thermometer und zwei Wärmebalken",
   }}
 />
+
+Das warme Wasser gibt <InlineMath math="21{.}840\text{ J}" /> ab, während es von <InlineMath math="50^\circ\text{C}" /> (<InlineMath math="323\text{ K}" />) auf <InlineMath math="24^\circ\text{C}" /> (<InlineMath math="297\text{ K}" />) abkühlt: <InlineMath math="16{.}800\text{ J}" /> schmelzen das Eis bei <InlineMath math="273\text{ K}" />, und die übrigen <InlineMath math="5{.}040\text{ J}" /> erwärmen das Schmelzwasser auf <InlineMath math="24^\circ\text{C}" />. Die Energie wäre genauso erhalten, wenn lauwarmes Wasser von <InlineMath math="24^\circ\text{C}" /> einen Eiswürfel gefrieren ließe und sich selbst wieder auf <InlineMath math="50^\circ\text{C}" /> aufheizte. Doch das Schmelzen und Erwärmen des Eises fügt <InlineMath math="+61{,}5 + 17{,}7 = +79{,}2\text{ J/K}" /> Entropie hinzu, während das abkühlende Wasser nur <InlineMath math="70{,}5\text{ J/K}" /> verliert, insgesamt also <InlineMath math="+8{,}7\text{ J/K}" />. Der umgekehrte Weg würde die Gesamtentropie um <InlineMath math="8{,}7\text{ J/K}" /> senken, darum bleibt die Mischung bei <InlineMath math="24^\circ\text{C}" /> stehen.
+
+## Wärme teilweise in Arbeit
+
+Eine **Wärmekraftmaschine** nimmt Wärme <InlineMath math="Q_h" /> aus einer heißen Quelle auf, wandelt einen Teil davon in Arbeit <InlineMath math="W" /> um und gibt den Rest, <InlineMath math="Q_c" />, an einen kälteren Ort ab, immer wieder in einem Kreisprozess. Die innere Energie kehrt nach jedem Umlauf zu ihrem Anfangswert zurück, also gilt <InlineMath math="Q_h = W + Q_c" />. Ein Dampfkraftwerk ist eine riesige Wärmekraftmaschine: Der Kessel liefert <InlineMath math="Q_h" />, Turbine und Generator liefern <InlineMath math="W" /> als elektrische Energie, und der Kondensator führt <InlineMath math="Q_c" /> ab.
 
 ### Nutzen durch Aufwand
 
@@ -82,23 +84,29 @@ Der **Wirkungsgrad** ist der Anteil der aufgenommenen Wärme, der zu Arbeit wird
 
 <BlockMath math="\eta = \frac{W}{Q_h} = 1 - \frac{Q_c}{Q_h}" />
 
-Beim Kohlekraftwerk im Labor sind es pro Sekunde <InlineMath math="Q_h = 1000\text{ MJ}" />, <InlineMath math="W = 380\text{ MJ}" /> und <InlineMath math="Q_c = 620\text{ MJ}" />. Der Wirkungsgrad ist <InlineMath math="380/1000 = 0{,}38 = 38\,\%" />, und die Probe über die Abwärme liefert ebenfalls <InlineMath math="1 - 620/1000 = 0{,}38" />. Wähle Uran: <InlineMath math="W = 330\text{ MJ}" /> und <InlineMath math="Q_c = 670\text{ MJ}" />, also ein Wirkungsgrad von <InlineMath math="33\,\%" />. In beiden Kraftwerken wird **der größte Teil der Wärme nicht zu Strom**.
+Nimm ein typisches Kohlekraftwerk, das pro Sekunde <InlineMath math="Q_h = 1000\text{ MJ}" /> Wärme aufnimmt, <InlineMath math="W = 380\text{ MJ}" /> als Strom liefert und <InlineMath math="Q_c = 620\text{ MJ}" /> an den Kondensator abgibt. Sein Wirkungsgrad ist <InlineMath math="380/1000 = 0{,}38 = 38\,\%" />, und die Probe über die Abwärme liefert ebenfalls <InlineMath math="1 - 620/1000 = 0{,}38" />. Ein typisches Kernkraftwerk liefert bei denselben <InlineMath math="1000\text{ MJ}" /> Wärme nur <InlineMath math="W = 330\text{ MJ}" /> und <InlineMath math="Q_c = 670\text{ MJ}" />, also einen Wirkungsgrad von <InlineMath math="33\,\%" />. In beiden Kraftwerken wird **der größte Teil der Wärme nicht zu Strom**.
 
 ### Die Grenze nach Carnot
 
-Carnot hat bewiesen, dass eine reversible Maschine zwischen zwei gegebenen Temperaturen die effizienteste Maschine überhaupt ist und dass ihr Wirkungsgrad nur von diesen beiden Temperaturen abhängt. Ihr Kreisprozess besteht aus zwei isothermen und zwei adiabatischen Schritten. Im Kohlekraftwerk hat der Dampf <InlineMath math="540^\circ\text{C} = 813\text{ K}" /> und der Kondensator <InlineMath math="30^\circ\text{C} = 303\text{ K}" />:
+Carnot hat bewiesen, dass eine reversible Maschine zwischen zwei gegebenen Temperaturen die effizienteste Maschine überhaupt ist und dass ihr Wirkungsgrad nur von diesen beiden Temperaturen abhängt. Ihr Kreisprozess besteht aus zwei isothermen und zwei adiabatischen Schritten. In jenem Kohlekraftwerk hat der Dampf <InlineMath math="540^\circ\text{C} = 813\text{ K}" /> und der Kondensator <InlineMath math="30^\circ\text{C} = 303\text{ K}" />:
 
 <BlockMath math="\eta_{\text{Carnot}} = 1 - \frac{303}{813} = 0{,}627 = 62{,}7\,\%" />
 
-Das echte Kraftwerk erreicht <InlineMath math="38\,\%" />, etwa sechs Zehntel seiner Grenze, wegen Reibung, Wärmeverlusten und irreversibler Schritte. Selbst eine perfekte Maschine müsste bei diesen Temperaturen jede Sekunde <InlineMath math="(1000)(303/813) = 372{,}7\text{ MJ}" /> abgeben. Der Dampf aus dem Uranreaktor im Labor ist kühler, <InlineMath math="285^\circ\text{C} = 558\text{ K}" />, deshalb **liegt seine Grenze tiefer**, bei <InlineMath math="1 - 303/558 = 45{,}7\,\%" />.
+Das echte Kraftwerk erreicht <InlineMath math="38\,\%" />, etwa sechs Zehntel seiner Grenze, wegen Reibung, Wärmeverlusten und irreversibler Schritte. Selbst eine perfekte Maschine müsste bei diesen Temperaturen jede Sekunde <InlineMath math="(1000)(303/813) = 372{,}7\text{ MJ}" /> abgeben. Der Dampf aus einem Uranreaktor ist kühler, <InlineMath math="285^\circ\text{C} = 558\text{ K}" />, deshalb **liegt seine Grenze tiefer**, bei <InlineMath math="1 - 303/558 = 45{,}7\,\%" />.
 
 <MathVisual
   title={<>Carnot-Grenze und Dampftemperatur</>}
   description={
     <>
       Die Kurve ist die Carnot-Grenze in Prozent für jede Dampftemperatur in
-      Kelvin. Die beiden Punkte darunter sind die Wirkungsgrade der Kraftwerke
-      im Labor. Verschieb die Kondensatortemperatur.
+      Kelvin. Die beiden Punkte darunter sind die Wirkungsgrade des Kohle- und
+      des Urankraftwerks von oben. Verschieb die Kondensatortemperatur.
+    </>
+  }
+  footer={
+    <>
+      Echte Kraftwerke liegen unter der Carnot-Kurve, kältere Kondensatoren
+      heben sie an.
     </>
   }
   scene={{
@@ -150,7 +158,7 @@ Eine rückwärts laufende Carnot-Maschine setzt die Grenze, <InlineMath math="\t
 
 ## Kraftwerke und Klimawandel
 
-Zurück zum Kohlekraftwerk im Labor. Jede Sekunde gehen <InlineMath math="620\text{ MJ}" /> Abwärme in einen Fluss, ins Meer oder über einen Kühlturm in die Luft, und jede Stunde verbrennt das Kraftwerk <InlineMath math="150" /> Tonnen Kohle. Die Abwärme erwärmt die Umgebung in der Nähe des Kraftwerks. Das Klima als Ganzes erwärmt sich aber vor allem durch Treibhausgase: Laut dem [Synthesebericht des IPCC von 2023](https://www.ipcc.ch/report/ar6/syr/summary-for-policymakers/) haben menschliche Aktivitäten durch Treibhausgasemissionen die Oberflächentemperatur der Erde gegenüber 1850 bis 1900 um etwa <InlineMath math="1{,}1^\circ\text{C}" /> erhöht.
+Zurück zu jenem Kohlekraftwerk. Jede Sekunde gehen <InlineMath math="620\text{ MJ}" /> Abwärme in einen Fluss, ins Meer oder über einen Kühlturm in die Luft, und jede Stunde verbrennt das Kraftwerk rund <InlineMath math="150" /> Tonnen Kohle. Die Abwärme erwärmt die Umgebung in der Nähe des Kraftwerks. Das Klima als Ganzes erwärmt sich aber vor allem durch Treibhausgase: Laut dem [Synthesebericht des IPCC von 2023](https://www.ipcc.ch/report/ar6/syr/summary-for-policymakers/) haben menschliche Aktivitäten durch Treibhausgasemissionen die Oberflächentemperatur der Erde gegenüber 1850 bis 1900 um etwa <InlineMath math="1{,}1^\circ\text{C}" /> erhöht.
 
 Der zweite Hauptsatz verbindet beides. Jedes Kraftwerk, das Brennstoff verbrennt, muss Wärme abgeben, also **bestimmt der Wirkungsgrad, wie viel Brennstoff** verbrannt und wie viel Kohlenstoffdioxid freigesetzt wird, für jedes Joule elektrischer Energie. Käme das Kraftwerk auf <InlineMath math="45\,\%" />, bräuchten dieselben <InlineMath math="380\text{ MW}" /> elektrischer Leistung nur <InlineMath math="380/0{,}45 = 844{,}4\text{ MW}" /> Wärme:
 

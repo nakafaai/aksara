@@ -13,7 +13,7 @@ export const metadata = {
 
 <BlockMath math="\eta_{\text{Carnot}} = 1 - \frac{T_c}{T_h}" />
 
-Dalam makmal loji stim nanti, kamu membandingkan kecekapan loji janakuasa sebenar dengan had ini.
+Dalam makmal peleburan ais di bawah nanti, kamu melihat air suam dan ais mencapai satu suhu bersama, aliran sehala yang dikunci oleh hukum kedua.
 
 Hukum pertama hanya mengira jumlah tenaga, bukan arahnya. Celup sudu sejuk ke dalam sup panas, dan sudu itu menjadi hangat manakala sup menyejuk sedikit. Sudu itu tidak pernah menjadi makin sejuk sambil memanaskan sup, walaupun tenaga tetap terabadi dalam kedua-dua arah. Hukum kedua memilih arahnya, dan biasanya dinyatakan dalam dua bentuk yang setara:
 
@@ -40,41 +40,43 @@ Contohnya, haba <InlineMath math="600\text{ J}" /> mengalir dari objek besar ber
 
 Jumlahnya positif, jadi aliran ini berlaku dengan sendirinya. Jika arahnya diterbalikkan, jumlahnya menjadi <InlineMath math="-0.5\text{ J/K}" />, dan hukum kedua melarangnya. Perhatikan juga maksudnya: haba yang sama menambah lebih banyak entropi pada objek yang lebih sejuk. Apabila haba sudah tersebar ke tempat yang lebih sejuk, **tenaganya lebih sukar digunakan** untuk melakukan kerja.
 
-## Sebahagian Haba Menjadi Kerja
+Perhatikan aliran sehala itu dalam cawan berpenebat di bawah, apabila <InlineMath math="50\text{ g}" /> ais pada <InlineMath math="0^\circ\text{C}" /> dijatuhkan ke dalam <InlineMath math="200\text{ g}" /> air suam pada <InlineMath math="50^\circ\text{C}" />.
 
-**Enjin haba** menyerap haba <InlineMath math="Q_h" /> daripada sumber panas, menukar sebahagiannya kepada kerja <InlineMath math="W" />, dan membebaskan bakinya, <InlineMath math="Q_c" />, ke tempat yang lebih sejuk, kemudian mengulanginya dalam kitaran. Tenaga dalam kembali kepada nilai asal setiap kitaran, jadi <InlineMath math="Q_h = W + Q_c" />. Loji janakuasa stim ialah enjin haba yang sangat besar: dandang membekalkan <InlineMath math="Q_h" />, turbin dan penjana menghasilkan <InlineMath math="W" /> sebagai elektrik, dan pemeluwap membuang <InlineMath math="Q_c" />.
-
-<SteamPlantCycleLab
-  title={<>Loji Stim sebagai Enjin Haba</>}
+<IceMeltingLab
+  title={<>Aliran Haba Sehala Semasa Ais Melebur</>}
   description={
     <>
-      Setiap saat loji ini menerima haba <InlineMath math="1000\text{ MJ}" />.
-      Pilih sumber habanya, kemudian bandingkan elektrik, haba buangan dan had
-      Carnot daripada suhu stimnya.
+      Tekan Main untuk melihat <InlineMath math="50\text{ g}" /> ais pada{" "}
+      <InlineMath math="0^\circ\text{C}" /> melebur dalam{" "}
+      <InlineMath math="200\text{ g}" /> air suam pada{" "}
+      <InlineMath math="50^\circ\text{C}" /> dalam cawan berpenebat hingga
+      kedua-duanya mencapai satu suhu.
     </>
   }
   footer={
     <>
-      Elektrik ditambah haba buangan sentiasa sama dengan haba yang masuk.
+      Air suam menyejuk ke <InlineMath math="24^\circ\text{C}" /> semasa ais
+      melebur, tidak pernah sebaliknya.
     </>
   }
-  fuel="coal"
+  iceMass={50}
+  waterMass={200}
+  waterTemperature={50}
+  latentHeat={336000}
+  specificHeat={4200}
   labels={{
-    chooseFuel: "Sumber haba",
-    electric: <>Kerja sebagai elektrik, <InlineMath math="W" /></>,
-    fuelUse: <>Bahan api setiap jam</>,
-    fuels: {
-      coal: <>Arang batu</>,
-      gas: <>Gas asli</>,
-      uranium: <>Uranium</>,
-    },
-    heat: <>Haba daripada sumber panas, <InlineMath math="Q_h" /></>,
-    ideal: <>Had Carnot</>,
-    steam: <>Suhu stim yang masuk ke turbin</>,
-    viewLabel: "Loji stim dengan dandang, turbin, penjana, pemeluwap dan menara penyejuk",
-    waste: <>Haba ke pemeluwap, <InlineMath math="Q_c" /></>,
+    final: <>Suhu akhir</>,
+    given: <>Haba yang boleh dibebaskan air hingga <InlineMath math="0^\circ\text{C}" /></>,
+    melt: <>Haba untuk meleburkan ais</>,
+    viewLabel: "Cawan berpenebat berisi air suam dan kiub ais yang melebur, termometer dan dua bar haba",
   }}
 />
+
+Air suam membebaskan <InlineMath math="21{,}840\text{ J}" /> semasa menyejuk daripada <InlineMath math="50^\circ\text{C}" /> (<InlineMath math="323\text{ K}" />) kepada <InlineMath math="24^\circ\text{C}" /> (<InlineMath math="297\text{ K}" />): <InlineMath math="16{,}800\text{ J}" /> meleburkan ais pada <InlineMath math="273\text{ K}" />, dan baki <InlineMath math="5{,}040\text{ J}" /> memanaskan air leburan itu hingga <InlineMath math="24^\circ\text{C}" />. Tenaga tetap seimbang andai air suam <InlineMath math="24^\circ\text{C}" /> membekukan semula kiub ais sambil memanaskan dirinya balik kepada <InlineMath math="50^\circ\text{C}" />. Namun peleburan dan pemanasan ais menambah entropi <InlineMath math="+61.5 + 17.7 = +79.2\text{ J/K}" />, manakala penyejukan air suam hanya mengurangkan <InlineMath math="70.5\text{ J/K}" />, meninggalkan kenaikan bersih <InlineMath math="+8.7\text{ J/K}" />. Menterbalikkan proses ini akan menurunkan jumlah entropi sebanyak <InlineMath math="8.7\text{ J/K}" />, jadi campuran berhenti pada <InlineMath math="24^\circ\text{C}" /> dan kekal di situ.
+
+## Sebahagian Haba Menjadi Kerja
+
+**Enjin haba** menyerap haba <InlineMath math="Q_h" /> daripada sumber panas, menukar sebahagiannya kepada kerja <InlineMath math="W" />, dan membebaskan bakinya, <InlineMath math="Q_c" />, ke tempat yang lebih sejuk, kemudian mengulanginya dalam kitaran. Tenaga dalam kembali kepada nilai asal setiap kitaran, jadi <InlineMath math="Q_h = W + Q_c" />. Loji janakuasa stim ialah enjin haba yang sangat besar: dandang membekalkan <InlineMath math="Q_h" />, turbin dan penjana menghasilkan <InlineMath math="W" /> sebagai elektrik, dan pemeluwap membuang <InlineMath math="Q_c" />.
 
 ### Kecekapan Enjin Haba
 
@@ -82,23 +84,29 @@ Jumlahnya positif, jadi aliran ini berlaku dengan sendirinya. Jika arahnya diter
 
 <BlockMath math="\eta = \frac{W}{Q_h} = 1 - \frac{Q_c}{Q_h}" />
 
-Bagi loji arang batu dalam makmal, setiap saat <InlineMath math="Q_h = 1000\text{ MJ}" />, <InlineMath math="W = 380\text{ MJ}" /> dan <InlineMath math="Q_c = 620\text{ MJ}" />. Kecekapannya <InlineMath math="380/1000 = 0.38 = 38\%" />, dan semakan melalui haba buangan memberi <InlineMath math="1 - 620/1000 = 0.38" /> juga. Pilih uranium: <InlineMath math="W = 330\text{ MJ}" /> dan <InlineMath math="Q_c = 670\text{ MJ}" />, jadi kecekapannya <InlineMath math="33\%" />. Pada kedua-dua loji, **sebahagian besar haba tidak menjadi elektrik**.
+Ambil contoh loji arang batu biasa yang setiap saat menerima haba <InlineMath math="Q_h = 1000\text{ MJ}" />, menghasilkan elektrik <InlineMath math="W = 380\text{ MJ}" /> dan menyalurkan <InlineMath math="Q_c = 620\text{ MJ}" /> ke pemeluwapnya. Kecekapannya <InlineMath math="380/1000 = 0.38 = 38\%" />, dan semakan melalui haba buangan memberi <InlineMath math="1 - 620/1000 = 0.38" /> juga. Loji stim nuklear dengan masukan <InlineMath math="1000\text{ MJ}" /> yang sama menghasilkan <InlineMath math="W = 330\text{ MJ}" /> dan <InlineMath math="Q_c = 670\text{ MJ}" />, jadi kecekapannya <InlineMath math="33\%" />. Pada kedua-dua loji, **sebahagian besar haba tidak menjadi elektrik**.
 
 ### Had daripada Suhu Sumber
 
-Carnot membuktikan bahawa enjin berbalik yang bekerja antara dua suhu tertentu ialah enjin yang paling cekap, dan kecekapannya hanya bergantung pada kedua-dua suhu itu. Kitarannya terdiri daripada dua proses isoterma dan dua proses adiabatik. Dalam loji arang batu, stimnya <InlineMath math="540^\circ\text{C} = 813\text{ K}" /> dan pemeluwapnya <InlineMath math="30^\circ\text{C} = 303\text{ K}" />:
+Carnot membuktikan bahawa enjin berbalik yang bekerja antara dua suhu tertentu ialah enjin yang paling cekap, dan kecekapannya hanya bergantung pada kedua-dua suhu itu. Kitarannya terdiri daripada dua proses isoterma dan dua proses adiabatik. Dalam loji arang batu tadi, stimnya <InlineMath math="540^\circ\text{C} = 813\text{ K}" /> dan pemeluwapnya <InlineMath math="30^\circ\text{C} = 303\text{ K}" />:
 
 <BlockMath math="\eta_{\text{Carnot}} = 1 - \frac{303}{813} = 0.627 = 62.7\%" />
 
-Loji sebenar mencapai <InlineMath math="38\%" />, lebih kurang enam persepuluh daripada hadnya, kerana geseran, kebocoran haba dan langkah yang tak berbalik. Malah enjin sempurna pada suhu-suhu ini tetap mesti membebaskan <InlineMath math="(1000)(303/813) = 372.7\text{ MJ}" /> setiap saat. Stim daripada reaktor uranium dalam makmal lebih sejuk, <InlineMath math="285^\circ\text{C} = 558\text{ K}" />, jadi **hadnya lebih rendah**, <InlineMath math="1 - 303/558 = 45.7\%" />.
+Loji sebenar mencapai <InlineMath math="38\%" />, lebih kurang enam persepuluh daripada hadnya, kerana geseran, kebocoran haba dan langkah yang tak berbalik. Malah enjin sempurna pada suhu-suhu ini tetap mesti membebaskan <InlineMath math="(1000)(303/813) = 372.7\text{ MJ}" /> setiap saat. Stim daripada reaktor uranium lebih sejuk, <InlineMath math="285^\circ\text{C} = 558\text{ K}" />, jadi **hadnya lebih rendah**, <InlineMath math="1 - 303/558 = 45.7\%" />.
 
 <MathVisual
   title={<>Had Carnot dan Suhu Stim</>}
   description={
     <>
       Lengkung ialah had Carnot dalam peratus bagi setiap suhu stim dalam
-      kelvin. Dua titik di bawahnya ialah kecekapan loji dalam makmal. Gerakkan
-      suhu pemeluwap.
+      kelvin. Dua titik di bawahnya ialah kecekapan loji arang batu dan uranium
+      di atas. Gerakkan suhu pemeluwap.
+    </>
+  }
+  footer={
+    <>
+      Loji sebenar di bawah lengkung Carnot, dan pemeluwap lebih sejuk menaikkan
+      hadnya.
     </>
   }
   scene={{
@@ -150,7 +158,7 @@ Enjin Carnot yang diterbalikkan memberi hadnya, <InlineMath math="\text{COP}_R =
 
 ## Enjin dan Iklim yang Memanas
 
-Kembali kepada loji arang batu dalam makmal. Setiap saat, haba buangan <InlineMath math="620\text{ MJ}" /> mengalir ke sungai, laut atau udara melalui menara penyejuk, dan setiap jam loji itu membakar <InlineMath math="150" /> tan arang batu. Haba buangan memanaskan persekitaran berhampiran loji. Iklim bumi secara keseluruhan memanas terutamanya kerana gas rumah hijau: menurut [laporan sintesis IPCC 2023](https://www.ipcc.ch/report/ar6/syr/summary-for-policymakers/), aktiviti manusia melalui pelepasan gas rumah hijau telah menaikkan suhu permukaan bumi lebih kurang <InlineMath math="1.1^\circ\text{C}" /> berbanding tahun 1850 hingga 1900.
+Kembali kepada loji arang batu tadi. Setiap saat, haba buangan <InlineMath math="620\text{ MJ}" /> mengalir ke sungai, laut atau udara melalui menara penyejuk, dan setiap jam loji itu membakar lebih kurang <InlineMath math="150" /> tan arang batu. Haba buangan memanaskan persekitaran berhampiran loji. Iklim bumi secara keseluruhan memanas terutamanya kerana gas rumah hijau: menurut [laporan sintesis IPCC 2023](https://www.ipcc.ch/report/ar6/syr/summary-for-policymakers/), aktiviti manusia melalui pelepasan gas rumah hijau telah menaikkan suhu permukaan bumi lebih kurang <InlineMath math="1.1^\circ\text{C}" /> berbanding tahun 1850 hingga 1900.
 
 Hukum kedua menghubungkan kedua-duanya. Setiap loji yang membakar bahan api mesti membebaskan haba, jadi **kecekapan menentukan berapa banyak bahan api** dibakar, dan berapa banyak karbon dioksida dilepaskan, bagi setiap joule elektrik. Jika loji tadi mencapai <InlineMath math="45\%" />, elektrik <InlineMath math="380\text{ MW}" /> yang sama hanya memerlukan haba <InlineMath math="380/0.45 = 844.4\text{ MW}" />:
 

@@ -50,6 +50,8 @@ For a fixed amount of gas, combining the two means **<InlineMath math="pV/T" /> 
 
 <BlockMath math="\frac{pV}{T} = nR \quad\Longrightarrow\quad pV = nRT" />
 
+Watch that constant ratio in action on the cylinder below, where the gas is first squeezed and then heated.
+
 <GasPistonLab
   title={<>A Gas Squeezed, Then Heated</>}
   description={
@@ -115,13 +117,19 @@ For carbon dioxide, <InlineMath math="a = 3.59\text{ L}^2\,\text{atm mol}^{-2}" 
       packing.
     </>
   }
+  footer={
+    <>
+      Low packing and high temperature pull carbon dioxide right back onto the
+      ideal line.
+    </>
+  }
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: 0, max: 5 }, y: { min: 0, max: 1.2 } },
     view: { kind: "fit", padding: 0.06 },
     parameters: [
-      { name: "s", min: 300, max: 700, value: 300, step: 10, label: "s" },
-      { name: "d", min: 0.04, max: 5, value: 1, step: 0.02, label: "d" },
+      { name: "s", min: 300, max: 700, value: 300, step: 10, label: "temperature" },
+      { name: "d", min: 0.04, max: 5, value: 1, step: 0.02, label: "density" },
     ],
     objects: [
       { id: "ideal", kind: "line", appearance: "reference", through: [{ x: 0, y: 1 }, { x: 5, y: 1 }] },
@@ -138,8 +146,8 @@ For carbon dioxide, <InlineMath math="a = 3.59\text{ L}^2\,\text{atm mol}^{-2}" 
     ],
   }}
   labels={{
-    s: <>Temperature <InlineMath math="T" /> in <InlineMath math="\text{K}" /></>,
-    d: <>Packing in <InlineMath math="\text{mol/L}" /></>,
+    temperature: <>Temperature <InlineMath math="T" /> in <InlineMath math="\text{K}" /></>,
+    density: <>Packing in <InlineMath math="\text{mol/L}" /></>,
     "ideal-line": <>Ideal gas</>,
     "ideal-pressure": <>Ideal gas pressure in <InlineMath math="\text{kPa}" /></>,
     "real-pressure": <>Carbon dioxide pressure in <InlineMath math="\text{kPa}" /></>,

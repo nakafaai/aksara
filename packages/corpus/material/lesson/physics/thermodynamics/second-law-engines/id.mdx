@@ -13,7 +13,7 @@ export const metadata = {
 
 <BlockMath math="\eta_{\text{Carnot}} = 1 - \frac{T_c}{T_h}" />
 
-Di lab pembangkit uap nanti, kamu membandingkan efisiensi pembangkit listrik sungguhan dengan batas ini.
+Di lab pencairan es di bawah nanti, kamu melihat air hangat dan es mencapai satu suhu bersama, aliran satu arah yang dikunci oleh hukum kedua.
 
 Hukum pertama hanya mencatat jumlah energi, bukan arahnya. Sendok dingin yang dicelupkan ke sup panas ikut menghangat sementara supnya sedikit mendingin. Sendok itu tidak pernah menjadi makin dingin sambil memanaskan supnya, padahal energi tetap kekal di kedua arah. Hukum kedua memilih arahnya, dan biasanya ditulis dalam dua rumusan yang setara:
 
@@ -40,41 +40,43 @@ Contohnya, <InlineMath math="600\text{ J}" /> kalor mengalir dari benda besar be
 
 Totalnya positif, jadi aliran ini terjadi dengan sendirinya. Kalau arahnya dibalik, totalnya menjadi <InlineMath math="-0{,}5\text{ J/K}" />, dan hukum kedua melarangnya. Perhatikan juga artinya: kalor yang sama menambah entropi lebih banyak di benda yang dingin. Begitu kalor menyebar ke tempat yang lebih dingin, **energinya makin sulit dipakai** untuk melakukan usaha.
 
-## Sebagian Kalor Menjadi Usaha
+Amati aliran satu arah itu di cangkir berpenyekat berikut, saat <InlineMath math="50\text{ g}" /> es bersuhu <InlineMath math="0^\circ\text{C}" /> dijatuhkan ke <InlineMath math="200\text{ g}" /> air hangat bersuhu <InlineMath math="50^\circ\text{C}" />.
 
-**Mesin kalor** menyerap kalor <InlineMath math="Q_h" /> dari sumber panas, mengubah sebagian menjadi usaha <InlineMath math="W" />, dan membuang sisanya <InlineMath math="Q_c" /> ke tempat yang lebih dingin, lalu mengulanginya dalam siklus. Energi dalam kembali ke nilai awal setiap siklus, jadi <InlineMath math="Q_h = W + Q_c" />. Pembangkit listrik tenaga uap adalah mesin kalor raksasa: boiler memberi <InlineMath math="Q_h" />, turbin dan generator menghasilkan <InlineMath math="W" /> sebagai listrik, dan kondensor membuang <InlineMath math="Q_c" />.
-
-<SteamPlantCycleLab
-  title={<>Pembangkit Uap sebagai Mesin Kalor</>}
+<IceMeltingLab
+  title={<>Aliran Kalor Satu Arah Saat Es Mencair</>}
   description={
     <>
-      Setiap detik pembangkit ini menerima kalor <InlineMath math="1000\text{ MJ}" />.
-      Pilih sumber kalornya, lalu bandingkan listrik, kalor buangan, dan batas
-      Carnot dari suhu uapnya.
+      Tekan Putar untuk melihat <InlineMath math="50\text{ g}" /> es pada{" "}
+      <InlineMath math="0^\circ\text{C}" /> mencair dalam{" "}
+      <InlineMath math="200\text{ g}" /> air hangat pada{" "}
+      <InlineMath math="50^\circ\text{C}" /> di cangkir berpenyekat sampai
+      keduanya mencapai satu suhu.
     </>
   }
   footer={
     <>
-      Listrik ditambah kalor buangan selalu sama dengan kalor yang masuk.
+      Air hangat mendingin ke <InlineMath math="24^\circ\text{C}" /> saat es
+      mencair, tidak pernah sebaliknya.
     </>
   }
-  fuel="coal"
+  iceMass={50}
+  waterMass={200}
+  waterTemperature={50}
+  latentHeat={336000}
+  specificHeat={4200}
   labels={{
-    chooseFuel: "Sumber kalor",
-    electric: <>Usaha sebagai listrik, <InlineMath math="W" /></>,
-    fuelUse: <>Bahan bakar setiap jam</>,
-    fuels: {
-      coal: <>Batu bara</>,
-      gas: <>Gas alam</>,
-      uranium: <>Uranium</>,
-    },
-    heat: <>Kalor dari sumber panas, <InlineMath math="Q_h" /></>,
-    ideal: <>Batas Carnot</>,
-    steam: <>Suhu uap masuk turbin</>,
-    viewLabel: "Pembangkit uap dengan boiler, turbin, generator, kondensor, dan menara pendingin",
-    waste: <>Kalor ke kondensor, <InlineMath math="Q_c" /></>,
+    final: <>Suhu akhir</>,
+    given: <>Kalor yang bisa dilepas air sampai <InlineMath math="0^\circ\text{C}" /></>,
+    melt: <>Kalor untuk mencairkan es</>,
+    viewLabel: "Cangkir berpenyekat berisi air hangat dan kubus es yang mencair, termometer, serta dua batang kalor",
   }}
 />
+
+Air hangat melepas <InlineMath math="21{.}840\text{ J}" /> saat mendingin dari <InlineMath math="50^\circ\text{C}" /> (<InlineMath math="323\text{ K}" />) ke <InlineMath math="24^\circ\text{C}" /> (<InlineMath math="297\text{ K}" />): <InlineMath math="16{.}800\text{ J}" /> mencairkan es pada <InlineMath math="273\text{ K}" />, dan sisa <InlineMath math="5{.}040\text{ J}" /> menghangatkan air lelehan itu sampai <InlineMath math="24^\circ\text{C}" />. Energi tetap seimbang seandainya air hangat kuku <InlineMath math="24^\circ\text{C}" /> membekukan lagi sekotak es sambil memanaskan dirinya kembali ke <InlineMath math="50^\circ\text{C}" />. Namun pencairan dan pemanasan es menambah entropi <InlineMath math="+61{,}5 + 17{,}7 = +79{,}2\text{ J/K}" />, sedangkan pendinginan air hangat hanya mengurangi <InlineMath math="70{,}5\text{ J/K}" />, menyisakan kenaikan bersih <InlineMath math="+8{,}7\text{ J/K}" />. Membalik prosesnya akan menurunkan entropi total sebesar <InlineMath math="8{,}7\text{ J/K}" />, jadi campuran berhenti di <InlineMath math="24^\circ\text{C}" /> dan tidak pernah balik sendiri.
+
+## Sebagian Kalor Menjadi Usaha
+
+**Mesin kalor** menyerap kalor <InlineMath math="Q_h" /> dari sumber panas, mengubah sebagian menjadi usaha <InlineMath math="W" />, dan membuang sisanya <InlineMath math="Q_c" /> ke tempat yang lebih dingin, lalu mengulanginya dalam siklus. Energi dalam kembali ke nilai awal setiap siklus, jadi <InlineMath math="Q_h = W + Q_c" />. Pembangkit listrik tenaga uap adalah mesin kalor raksasa: boiler memberi <InlineMath math="Q_h" />, turbin dan generator menghasilkan <InlineMath math="W" /> sebagai listrik, dan kondensor membuang <InlineMath math="Q_c" />.
 
 ### Efisiensi Mesin Kalor
 
@@ -82,23 +84,29 @@ Totalnya positif, jadi aliran ini terjadi dengan sendirinya. Kalau arahnya dibal
 
 <BlockMath math="\eta = \frac{W}{Q_h} = 1 - \frac{Q_c}{Q_h}" />
 
-Untuk pembangkit batu bara di lab, setiap detik <InlineMath math="Q_h = 1000\text{ MJ}" />, <InlineMath math="W = 380\text{ MJ}" />, dan <InlineMath math="Q_c = 620\text{ MJ}" />. Efisiensinya <InlineMath math="380/1000 = 0{,}38 = 38\%" />, dan cek lewat kalor buangan memberi <InlineMath math="1 - 620/1000 = 0{,}38" /> juga. Pilih uranium: <InlineMath math="W = 330\text{ MJ}" /> dan <InlineMath math="Q_c = 670\text{ MJ}" />, jadi efisiensinya <InlineMath math="33\%" />. Pada kedua pembangkit, **sebagian besar kalor tidak menjadi listrik**.
+Ambil contoh pembangkit batu bara yang setiap detik menerima kalor <InlineMath math="Q_h = 1000\text{ MJ}" />, menghasilkan <InlineMath math="W = 380\text{ MJ}" /> listrik, dan membuang <InlineMath math="Q_c = 620\text{ MJ}" /> ke kondensor. Efisiensinya <InlineMath math="380/1000 = 0{,}38 = 38\%" />, dan cek lewat kalor buangan memberi <InlineMath math="1 - 620/1000 = 0{,}38" /> juga. Pembangkit uap nuklir dengan masukan <InlineMath math="1000\text{ MJ}" /> yang sama menghasilkan <InlineMath math="W = 330\text{ MJ}" /> dan <InlineMath math="Q_c = 670\text{ MJ}" />, jadi efisiensinya <InlineMath math="33\%" />. Pada kedua pembangkit, **sebagian besar kalor tidak menjadi listrik**.
 
 ### Batas dari Suhu Sumber
 
-Carnot membuktikan bahwa mesin reversibel di antara dua suhu tertentu adalah mesin yang paling efisien, dan efisiensinya hanya bergantung pada kedua suhu itu. Siklusnya terdiri atas dua proses isotermal dan dua proses adiabatik. Pada pembangkit batu bara, uapnya <InlineMath math="540^\circ\text{C} = 813\text{ K}" /> dan kondensornya <InlineMath math="30^\circ\text{C} = 303\text{ K}" />:
+Carnot membuktikan bahwa mesin reversibel di antara dua suhu tertentu adalah mesin yang paling efisien, dan efisiensinya hanya bergantung pada kedua suhu itu. Siklusnya terdiri atas dua proses isotermal dan dua proses adiabatik. Pada pembangkit batu bara tadi, uapnya <InlineMath math="540^\circ\text{C} = 813\text{ K}" /> dan kondensornya <InlineMath math="30^\circ\text{C} = 303\text{ K}" />:
 
 <BlockMath math="\eta_{\text{Carnot}} = 1 - \frac{303}{813} = 0{,}627 = 62{,}7\%" />
 
-Pembangkit sungguhan mencapai <InlineMath math="38\%" />, sekitar enam persepuluh batasnya, karena gesekan, kebocoran kalor, dan proses yang ireversibel. Bahkan mesin sempurna pada suhu-suhu ini tetap harus membuang <InlineMath math="(1000)(303/813) = 372{,}7\text{ MJ}" /> setiap detik. Uap dari reaktor uranium di lab lebih dingin, <InlineMath math="285^\circ\text{C} = 558\text{ K}" />, sehingga **batasnya lebih rendah**, <InlineMath math="1 - 303/558 = 45{,}7\%" />.
+Pembangkit sungguhan mencapai <InlineMath math="38\%" />, sekitar enam persepuluh batasnya, karena gesekan, kebocoran kalor, dan proses yang ireversibel. Bahkan mesin sempurna pada suhu-suhu ini tetap harus membuang <InlineMath math="(1000)(303/813) = 372{,}7\text{ MJ}" /> setiap detik. Uap dari reaktor uranium lebih dingin, <InlineMath math="285^\circ\text{C} = 558\text{ K}" />, sehingga **batasnya lebih rendah**, <InlineMath math="1 - 303/558 = 45{,}7\%" />.
 
 <MathVisual
   title={<>Batas Carnot dan Suhu Uap</>}
   description={
     <>
       Kurva adalah batas Carnot dalam persen untuk setiap suhu uap dalam
-      kelvin. Kedua titik di bawahnya adalah efisiensi pembangkit di lab. Geser
-      suhu kondensornya.
+      kelvin. Kedua titik di bawahnya adalah efisiensi pembangkit batu bara dan
+      uranium di atas. Geser suhu kondensornya.
+    </>
+  }
+  footer={
+    <>
+      Pembangkit nyata di bawah kurva Carnot, dan kondensor lebih dingin
+      menaikkan batasnya.
     </>
   }
   scene={{
@@ -150,7 +158,7 @@ Mesin Carnot yang dibalik memberi batasnya, <InlineMath math="\text{COP}_R = T_c
 
 ## Efisiensi dan Pemanasan Iklim
 
-Kembali ke pembangkit batu bara di lab. Setiap detik <InlineMath math="620\text{ MJ}" /> kalor buangan masuk ke air sungai, laut, atau udara lewat menara pendingin, dan setiap jam pembangkit itu membakar <InlineMath math="150" /> ton batu bara. Kalor buangan menghangatkan lingkungan di dekat pembangkit. Iklim bumi secara keseluruhan menghangat terutama karena gas rumah kaca: menurut [laporan sintesis IPCC 2023](https://www.ipcc.ch/report/ar6/syr/summary-for-policymakers/), kegiatan manusia lewat emisi gas rumah kaca telah menaikkan suhu permukaan bumi sekitar <InlineMath math="1{,}1^\circ\text{C}" /> dibandingkan tahun 1850 sampai 1900.
+Kembali ke pembangkit batu bara tadi. Setiap detik <InlineMath math="620\text{ MJ}" /> kalor buangan masuk ke air sungai, laut, atau udara lewat menara pendingin, dan setiap jam pembangkit itu membakar sekitar <InlineMath math="150" /> ton batu bara. Kalor buangan menghangatkan lingkungan di dekat pembangkit. Iklim bumi secara keseluruhan menghangat terutama karena gas rumah kaca: menurut [laporan sintesis IPCC 2023](https://www.ipcc.ch/report/ar6/syr/summary-for-policymakers/), kegiatan manusia lewat emisi gas rumah kaca telah menaikkan suhu permukaan bumi sekitar <InlineMath math="1{,}1^\circ\text{C}" /> dibandingkan tahun 1850 sampai 1900.
 
 Hukum kedua menghubungkan keduanya. Setiap pembangkit berbahan bakar harus membuang kalor, jadi **efisiensi menentukan berapa banyak bahan bakar**, dan berapa banyak karbon dioksida, untuk setiap joule listrik. Seandainya pembangkit tadi mencapai <InlineMath math="45\%" />, listrik <InlineMath math="380\text{ MW}" /> yang sama hanya memerlukan kalor <InlineMath math="380/0{,}45 = 844{,}4\text{ MW}" />:
 

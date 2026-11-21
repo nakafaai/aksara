@@ -50,6 +50,8 @@ Für eine feste Gasmenge heißt das zusammen: **<InlineMath math="pV/T" /> ände
 
 <BlockMath math="\frac{pV}{T} = nR \quad\Longrightarrow\quad pV = nRT" />
 
+Sieh dir dieses feste Verhältnis im Zylinder unten an, wo das Gas zuerst zusammengedrückt und dann erhitzt wird.
+
 <GasPistonLab
   title={<>Ein Gas wird zusammengedrückt und dann erhitzt</>}
   description={
@@ -115,13 +117,19 @@ Für Kohlenstoffdioxid gilt <InlineMath math="a = 3{,}59\text{ L}^2\,\text{atm m
       Dichte.
     </>
   }
+  footer={
+    <>
+      Geringe Dichte und hohe Temperatur ziehen Kohlenstoffdioxid zurück zur
+      Ideallinie.
+    </>
+  }
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: 0, max: 5 }, y: { min: 0, max: 1.2 } },
     view: { kind: "fit", padding: 0.06 },
     parameters: [
-      { name: "s", min: 300, max: 700, value: 300, step: 10, label: "s" },
-      { name: "d", min: 0.04, max: 5, value: 1, step: 0.02, label: "d" },
+      { name: "s", min: 300, max: 700, value: 300, step: 10, label: "temperature" },
+      { name: "d", min: 0.04, max: 5, value: 1, step: 0.02, label: "density" },
     ],
     objects: [
       { id: "ideal", kind: "line", appearance: "reference", through: [{ x: 0, y: 1 }, { x: 5, y: 1 }] },
@@ -138,8 +146,8 @@ Für Kohlenstoffdioxid gilt <InlineMath math="a = 3{,}59\text{ L}^2\,\text{atm m
     ],
   }}
   labels={{
-    s: <>Temperatur <InlineMath math="T" /> in <InlineMath math="\text{K}" /></>,
-    d: <>Dichte in <InlineMath math="\text{mol/L}" /></>,
+    temperature: <>Temperatur <InlineMath math="T" /> in <InlineMath math="\text{K}" /></>,
+    density: <>Dichte in <InlineMath math="\text{mol/L}" /></>,
     "ideal-line": <>Ideales Gas</>,
     "ideal-pressure": <>Druck des idealen Gases in <InlineMath math="\text{kPa}" /></>,
     "real-pressure": <>Druck von Kohlenstoffdioxid in <InlineMath math="\text{kPa}" /></>,

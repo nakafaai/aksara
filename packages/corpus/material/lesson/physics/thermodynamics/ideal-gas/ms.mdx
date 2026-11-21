@@ -50,6 +50,8 @@ Bagi gas yang jumlahnya tetap, gabungan itu bermakna **<InlineMath math="pV/T" /
 
 <BlockMath math="\frac{pV}{T} = nR \quad\Longrightarrow\quad pV = nRT" />
 
+Lihat nisbah malar itu bekerja dalam silinder di bawah, apabila gas dimampatkan dahulu lalu dipanaskan.
+
 <GasPistonLab
   title={<>Gas Dimampatkan, kemudian Dipanaskan</>}
   description={
@@ -115,13 +117,19 @@ Bagi karbon dioksida, <InlineMath math="a = 3.59\text{ L}^2\,\text{atm mol}^{-2}
       kepadatannya.
     </>
   }
+  footer={
+    <>
+      Kepadatan rendah dan suhu tinggi menarik karbon dioksida mendekati garis
+      gas unggul.
+    </>
+  }
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: 0, max: 5 }, y: { min: 0, max: 1.2 } },
     view: { kind: "fit", padding: 0.06 },
     parameters: [
-      { name: "s", min: 300, max: 700, value: 300, step: 10, label: "s" },
-      { name: "d", min: 0.04, max: 5, value: 1, step: 0.02, label: "d" },
+      { name: "s", min: 300, max: 700, value: 300, step: 10, label: "temperature" },
+      { name: "d", min: 0.04, max: 5, value: 1, step: 0.02, label: "density" },
     ],
     objects: [
       { id: "ideal", kind: "line", appearance: "reference", through: [{ x: 0, y: 1 }, { x: 5, y: 1 }] },
@@ -138,8 +146,8 @@ Bagi karbon dioksida, <InlineMath math="a = 3.59\text{ L}^2\,\text{atm mol}^{-2}
     ],
   }}
   labels={{
-    s: <>Suhu <InlineMath math="T" /> dalam <InlineMath math="\text{K}" /></>,
-    d: <>Kepadatan dalam <InlineMath math="\text{mol/L}" /></>,
+    temperature: <>Suhu <InlineMath math="T" /> dalam <InlineMath math="\text{K}" /></>,
+    density: <>Kepadatan dalam <InlineMath math="\text{mol/L}" /></>,
     "ideal-line": <>Gas unggul</>,
     "ideal-pressure": <>Tekanan gas unggul dalam <InlineMath math="\text{kPa}" /></>,
     "real-pressure": <>Tekanan karbon dioksida dalam <InlineMath math="\text{kPa}" /></>,

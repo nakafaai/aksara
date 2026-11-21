@@ -9,35 +9,59 @@ export const metadata = {
 
 ## Übertrag bei vollem Stab
 
-Du kannst direkt zur Basis <InlineMath math="b" /> addieren und subtrahieren, ohne vorher ins Zehnersystem umzurechnen. Es läuft wie die schriftliche Addition, die du kennst, nur die Grenze ist eine andere: **Übertrag eine Eins nach links, sobald eine Spalte <InlineMath math="b" /> erreicht**, nicht zehn. Beim Subtrahieren ist eine Eins, die du dir aus der linken Spalte holst, <InlineMath math="b" /> wert. Dieser Abakus zeigt dir den Übertrag an den Perlen. Tippe auf Abspielen, und jeder Schritt legt eine Perle auf den Einerstab.
+Du kannst direkt zur Basis <InlineMath math="b" /> addieren und subtrahieren, ohne vorher ins Zehnersystem umzurechnen. Es läuft wie die schriftliche Addition, die du kennst, nur die Grenze ist eine andere: **Übertrag eine Eins nach links, sobald eine Spalte <InlineMath math="b" /> erreicht**, nicht zehn. Beim Subtrahieren ist eine Eins, die du dir aus der linken Spalte holst, <InlineMath math="b" /> wert. Verschieb unten die Basis <InlineMath math="b" /> und die Spaltensumme <InlineMath math="s" />, um zu sehen, wann eine Spalte <InlineMath math="1" /> überträgt und welche Ziffer stehen bleibt.
 
-<AbacusBaseLab
-  title={<>Eins nach dem anderen zur Basis vier</>}
+<MathVisual
+  title={<>Wann eine Spalte zur Basis <InlineMath math="b" /> überträgt</>}
   description={
     <>
-      Tippe auf Abspielen. Jeder Schritt legt eine Perle auf den Einerstab,
-      und ein voller Stab schickt eine Perle auf den Stab links daneben.
+      Nach rechts steht die Basis <InlineMath math="b" />, nach oben die
+      Spaltensumme <InlineMath math="s" />. Das schraffierte Band zeigt Summen
+      von <InlineMath math="b" /> bis <InlineMath math="2b - 1" />, bei denen
+      die Spalte <InlineMath math="1" /> nach links schickt.
     </>
   }
-  footer={<>Trägt ein Stab vier Perlen, gehen alle vier zurück und eine Perle wandert nach links.</>}
-  bases={[4, 3]}
-  value={61}
-  labels={{
-    base: "Basis",
-    decimal: <>Wert im Zehnersystem</>,
-    digits: <>In dieser Basis geschrieben</>,
-    expanded: <>Ausführliche Schreibweise</>,
-    value: "Zahl",
-    viewLabel: "Ein Abakus mit vier Stäben und einer Schale Perlen daneben",
+  footer={
+    <>
+      Über der Linie <InlineMath math="s = b" /> schickt die Spalte{" "}
+      <InlineMath math="1" /> nach links.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 4, max: 10 }, y: { min: 0, max: 12 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "b", min: 5, max: 9, value: 5, step: 1, label: "base" },
+      { name: "s", min: 0, max: 9, value: 7, step: 1, label: "sum" },
+    ],
+    objects: [
+      { id: "carry-band", kind: "region", appearance: "construction", inequalities: ["y >= x", "y <= 2x - 1", "x >= 2"] },
+      { id: "threshold", kind: "function", appearance: "primary", formula: "x", domain: { min: 2, max: 10 } },
+      { id: "state", kind: "marker", appearance: "answer", x: "b", y: "s" },
+    ],
+    labels: [
+      { key: "threshold-label", objectId: "threshold", at: { x: 7, y: 7 }, placement: "below-right" },
+    ],
+    readouts: [
+      { key: "digit", formula: "s - b * floor(s / b)" },
+      { key: "carry", formula: "floor(s / b)" },
+    ],
   }}
-  showReadout
+  labels={{
+    base: <>Basis <InlineMath math="b" /></>,
+    sum: <>Spaltensumme <InlineMath math="s" /></>,
+    "threshold-label": <InlineMath math="s = b" />,
+    digit: <>Ziffer in dieser Spalte</>,
+    carry: <>Übertrag nach links</>,
+  }}
 />
 
-Der Abakus beginnt bei <InlineMath math="61 = 331_4" />. Die ersten beiden Schritte legen nur Perlen auf den Einerstab: <InlineMath math="332_4" />, dann <InlineMath math="333_4" />. Der dritte Schritt bringt den Einerstab auf vier Perlen. Diese vier gehen zurück in die Schale, und eine Perle wandert auf den zweiten Stab, der dadurch auch voll wird, also läuft der Übertrag bis zum vierten Stab durch. Heraus kommt <InlineMath math="1000_4 = 64" />: **Eine einzige Perle kann dreimal hintereinander einen Übertrag auslösen**. Wähl die Basis drei und spiel noch einmal ab. Von <InlineMath math="2021_3" /> kommst du zu <InlineMath math="2100_3" />, mit zwei Überträgen in einem Schritt.
+Starte bei Basis <InlineMath math="5" /> mit der Spaltensumme <InlineMath math="7" />. Der Punkt liegt im schraffierten Übertragsband über <InlineMath math="s = b" />, also schickt die Spalte <InlineMath math="1" /> nach links und schreibt <InlineMath math="7 - 5 = 2" />. Schieb nun die Basis auf <InlineMath math="8" />, ohne die Summe zu ändern. Dieselbe <InlineMath math="7" /> rutscht unter die Linie <InlineMath math="s = b" />, also gibt es keinen Übertrag, und du schreibst direkt <InlineMath math="7" />. **Die Basis setzt genau die Grenze, ab der ein Übertrag beginnt**, und diese Grenze wandert mit jeder Basis mit.
 
 ## Spaltenweise addieren
 
-Die schriftliche Addition wendet die Abakusregel auf jede Spalte an. Addier die Spalten von rechts, samt Übertrag aus der vorigen Spalte. Ist die Summe kleiner als <InlineMath math="b" />, schreibst du sie hin. Ist sie <InlineMath math="b" /> oder größer, **schreibst du die Summe minus <InlineMath math="b" /> und überträgst <InlineMath math="1" />**. Der Übertrag ist nie größer als <InlineMath math="1" />, denn eine Spalte aus zwei Zahlen ergibt höchstens <InlineMath math="(b - 1) + (b - 1) + 1 = 2b - 1" />.
+Die schriftliche Addition wendet diese Übertragsregel auf jede Spalte an. Addier die Spalten von rechts, samt Übertrag aus der vorigen Spalte. Ist die Summe kleiner als <InlineMath math="b" />, schreibst du sie hin. Ist sie <InlineMath math="b" /> oder größer, **schreibst du die Summe minus <InlineMath math="b" /> und überträgst <InlineMath math="1" />**. Der Übertrag ist nie größer als <InlineMath math="1" />, denn eine Spalte aus zwei Zahlen ergibt höchstens <InlineMath math="(b - 1) + (b - 1) + 1 = 2b - 1" />.
 
 ### Überträge in Folge
 
@@ -107,24 +131,29 @@ Diese quadratische Gleichung löst du durch [Faktorisieren einer quadratischen G
   title={<>Zwei Lösungen, eine Basis</>}
   description={
     <>
-      Die Kurve ist <InlineMath math="b^2 + 2b - 35" /> geteilt durch{" "}
-      <InlineMath math="10" />, damit sie passt. Das Teilen verschiebt ihre
-      Schnittpunkte mit der waagrechten Achse nicht. Verschieb{" "}
-      <InlineMath math="b" /> und lies den Wert von <InlineMath math="123_b" />.{" "}
-      Gültige Basen liegen nur im schraffierten Bereich rechts der gestrichelten Linie <InlineMath math="b = 3" />.
+      Die Kurve zeigt <InlineMath math="b^2 + 2b - 35" />, und gültige Basen
+      liegen nur im schraffierten Bereich rechts der gestrichelten Linie{" "}
+      <InlineMath math="b = 3" />. Verschieb <InlineMath math="b" /> und lies
+      den Wert von <InlineMath math="123_b" />.
+    </>
+  }
+  footer={
+    <>
+      Nur die Nullstelle im schraffierten Bereich, <InlineMath math="b = 5" />,
+      ist gültig.
     </>
   }
   scene={{
     space: "plane",
-    frame: { kind: "cartesian", x: { min: -8.5, max: 6.5 }, y: { min: -4, max: 2 } },
+    frame: { kind: "cartesian", x: { min: -8.5, max: 6.5 }, y: { min: -42, max: 20 } },
     view: { kind: "fit", padding: 0.06 },
     parameters: [{ name: "b", min: 4, max: 6, value: 4, step: 1, label: "b" }],
     objects: [
       { id: "valid", kind: "region", appearance: "construction", inequalities: ["x > 3"] },
-      { id: "curve", kind: "function", appearance: "primary", formula: "(x^2 + 2x - 35)/10" },
+      { id: "curve", kind: "function", appearance: "primary", formula: "x^2 + 2x - 35" },
       { id: "rejected", kind: "point", appearance: "warning", at: { x: -7, y: 0 } },
       { id: "root", kind: "point", appearance: "answer", at: { x: 5, y: 0 } },
-      { id: "now", kind: "marker", appearance: "highlight", x: "b", y: "(b^2 + 2b - 35)/10" },
+      { id: "now", kind: "marker", appearance: "highlight", x: "b", y: "b^2 + 2b - 35" },
     ],
     labels: [
       { key: "rejected", objectId: "rejected", at: { x: -7, y: 0 }, placement: "above" },
