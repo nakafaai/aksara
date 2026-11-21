@@ -75,23 +75,35 @@ const SlotNameSchema = TextSchema.check(Schema.isMaxLength(SLOT_NAME_LIMIT));
 
 const sameStatement = Schema.toEquivalence(StatementSchema);
 
+type Chain = readonly [ArgumentCard, ArgumentCard, ArgumentCard];
+
+/** Every card a single slot can take, paired with the hand left after placing it. */
+function picksFor(
+  slot: ArgumentSlot,
+  hand: readonly ArgumentCard[]
+): readonly (readonly [ArgumentCard, readonly ArgumentCard[]])[] {
+  return slot === "open"
+    ? Arr.map(hand, (card, index) => [card, Arr.remove(hand, index)] as const)
+    : [[slot, hand] as const];
+}
+
 /** Every way the hand fills the open slots, one card to a slot and no card twice, with the placed cards kept. */
 function dealsOf(
-  slots: readonly ArgumentSlot[],
+  [firstSlot, secondSlot, thirdSlot]: readonly [
+    ArgumentSlot,
+    ArgumentSlot,
+    ArgumentSlot,
+  ],
   hand: readonly ArgumentCard[]
-): readonly (readonly ArgumentCard[])[] {
-  return Arr.match(slots, {
-    onEmpty: () => [[]],
-    onNonEmpty: ([slot, ...rest]) =>
-      slot === "open"
-        ? Arr.flatMap(hand, (card, index) =>
-            Arr.map(dealsOf(rest, Arr.remove(hand, index)), (tail) => [
-              card,
-              ...tail,
-            ])
-          )
-        : Arr.map(dealsOf(rest, hand), (tail) => [slot, ...tail]),
-  });
+): readonly Chain[] {
+  return Arr.flatMap(picksFor(firstSlot, hand), ([first, afterFirst]) =>
+    Arr.flatMap(picksFor(secondSlot, afterFirst), ([second, afterSecond]) =>
+      Arr.map(
+        picksFor(thirdSlot, afterSecond),
+        ([conclusion]): Chain => [first, second, conclusion]
+      )
+    )
+  );
 }
 
 /** Whether a statement is general: a rule about every member or every case. */
@@ -116,10 +128,7 @@ function contradicts(left: Statement, right: Statement) {
  * a conclusion that repeats a premise follows trivially; none of these may
  * be dealt.
  */
-function isJudgeable([first, second, conclusion]: readonly ArgumentCard[]) {
-  if (first === undefined || second === undefined || conclusion === undefined) {
-    return false;
-  }
+function isJudgeable([first, second, conclusion]: Chain) {
   return !(
     (isGeneral(first.statement) && isGeneral(second.statement)) ||
     contradicts(first.statement, second.statement) ||
@@ -138,7 +147,11 @@ function isDealable({
   hand,
   premises,
 }: typeof ArgumentChainSchema.Type) {
-  const slots = [...premises, conclusion];
+  const slots: readonly [ArgumentSlot, ArgumentSlot, ArgumentSlot] = [
+    premises[0],
+    premises[1],
+    conclusion,
+  ];
   const open = Arr.filter(slots, (slot) => slot === "open").length;
   const texts = Arr.map(hand, ({ text }) => text);
   return (
