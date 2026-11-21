@@ -1,0 +1,323 @@
+export const metadata = {
+  title: "Chemisches Gleichgewicht für die elfte Klasse",
+  description:
+    "Kurikulum Merdeka Chemie Klasse 11, Chemisches Gleichgewicht: umkehrbare Reaktionen und dynamisches Gleichgewicht, die Gleichgewichtskonstanten Kc und Kp, Gleichgewichtskonzentrationen berechnen, der Reaktionsquotient und das Prinzip von Le Chatelier im Haber-Bosch-Verfahren.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2026-11-17",
+  subject: "Chemisches Gleichgewicht",
+};
+
+## Umkehrbare Reaktionen erreichen ein dynamisches Gleichgewicht
+
+Viele Reaktionen hören nicht auf, wenn die Edukte verbraucht sind, weil auch die Produkte wieder zu Edukten reagieren. Eine solche Reaktion heißt **umkehrbare Reaktion** und wird mit einem Doppelpfeil geschrieben:
+
+<BlockMath math="\mathrm{A} \rightleftharpoons \mathrm{B}" />
+
+Zu Beginn gibt es nur <InlineMath math="\mathrm{A}" />, also läuft die Hinreaktion schnell. Je mehr <InlineMath math="\mathrm{B}" /> entsteht, desto schneller wird die Rückreaktion. Schließlich ist die Geschwindigkeit der Hinreaktion gleich der der Rückreaktion. Dieser Zustand heißt **dynamisches Gleichgewicht**: Beide Reaktionen laufen weiter, aber die Konzentration jedes Stoffes ändert sich nicht mehr.
+
+Ändere unten die Geschwindigkeitskonstanten der Hin- und Rückreaktion. Die Konzentration von <InlineMath math="\mathrm{A}" /> sinkt, die von <InlineMath math="\mathrm{B}" /> steigt, und dann bleiben beide bei Gleichgewichtswerten stehen, die meist nicht gleich sind.
+
+<MathVisual
+  title={<>Konzentrationen auf dem Weg ins Gleichgewicht</>}
+  description={
+    <>
+      Die Reaktion <InlineMath math="\mathrm{A} \rightleftharpoons \mathrm{B}" /> beginnt
+      bei <InlineMath math="[\mathrm{A}] = 1\text{ M}" />. Mit der Konstante{" "}
+      <InlineMath math="0{,}6" /> für die Hinreaktion und <InlineMath math="0{,}2" /> für die
+      Rückreaktion sind die Gleichgewichtskonzentrationen{" "}
+      <InlineMath math="[\mathrm{A}] = 0{,}25\text{ M}" /> und{" "}
+      <InlineMath math="[\mathrm{B}] = 0{,}75\text{ M}" />.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 10 }, y: { min: 0, max: 1 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "a", min: 0.1, max: 1, value: 0.6, step: 0.05, label: "a" },
+      { name: "b", min: 0.1, max: 1, value: 0.2, step: 0.05, label: "b" },
+    ],
+    objects: [
+      { id: "reactant", kind: "function", appearance: "secondary", formula: "b/(a + b) + (a/(a + b))*exp(-(a + b)*x)", domain: { min: 0, max: 10 } },
+      { id: "product", kind: "function", appearance: "primary", formula: "(a/(a + b))*(1 - exp(-(a + b)*x))", domain: { min: 0, max: 10 } },
+    ],
+    readouts: [
+      { key: "reactant-end", formula: "b/(a + b)" },
+      { key: "product-end", formula: "a/(a + b)" },
+      { key: "constant", formula: "a/b" },
+    ],
+  }}
+  labels={{
+    a: <>Geschwindigkeitskonstante der Hinreaktion <InlineMath math="k_1" /></>,
+    b: <>Geschwindigkeitskonstante der Rückreaktion <InlineMath math="k_2" /></>,
+    "reactant-end": <><InlineMath math="[\mathrm{A}]" /> im Gleichgewicht in <InlineMath math="\text{M}" /></>,
+    "product-end": <><InlineMath math="[\mathrm{B}]" /> im Gleichgewicht in <InlineMath math="\text{M}" /></>,
+    constant: <>Gleichgewichtskonstante <InlineMath math="K = \dfrac{k_1}{k_2}" /></>,
+  }}
+/>
+
+Der Graph der Geschwindigkeiten zeigt dasselbe von der anderen Seite. Die Hinreaktion <InlineMath math="k_1[\mathrm{A}]" /> wird langsamer, die Rückreaktion <InlineMath math="k_2[\mathrm{B}]" /> schneller, und **das Gleichgewicht ist erreicht, wenn beide Geschwindigkeiten gleich sind**.
+
+<MathVisual
+  title={<>Geschwindigkeit der Hin- und Rückreaktion</>}
+  description={
+    <>
+      Beide Geschwindigkeiten treffen sich bei <InlineMath math="0{,}15\text{ M s}^{-1}" />{" "}
+      für <InlineMath math="k_1 = 0{,}6" /> und <InlineMath math="k_2 = 0{,}2" />. Danach
+      bleiben sie gleich, also ändern sich die Konzentrationen nicht mehr.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 10 }, y: { min: 0, max: 1 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "a", min: 0.1, max: 1, value: 0.6, step: 0.05, label: "a" },
+      { name: "b", min: 0.1, max: 1, value: 0.2, step: 0.05, label: "b" },
+    ],
+    objects: [
+      { id: "forward", kind: "function", appearance: "primary", formula: "a*(b/(a + b) + (a/(a + b))*exp(-(a + b)*x))", domain: { min: 0, max: 10 } },
+      { id: "reverse", kind: "function", appearance: "secondary", formula: "b*(a/(a + b))*(1 - exp(-(a + b)*x))", domain: { min: 0, max: 10 } },
+    ],
+    readouts: [
+      { key: "equal-rate", formula: "a*b/(a + b)" },
+    ],
+  }}
+  labels={{
+    a: <>Geschwindigkeitskonstante der Hinreaktion <InlineMath math="k_1" /></>,
+    b: <>Geschwindigkeitskonstante der Rückreaktion <InlineMath math="k_2" /></>,
+    "equal-rate": <>Geschwindigkeit im Gleichgewicht in <InlineMath math="\text{M s}^{-1}" /></>,
+  }}
+/>
+
+## Die Gleichgewichtskonstante
+
+Für die allgemeine Reaktion <InlineMath math="a\mathrm{A} + b\mathrm{B} \rightleftharpoons c\mathrm{C} + d\mathrm{D}" /> hat das Verhältnis der Konzentrationen im Gleichgewicht bei einer bestimmten Temperatur immer denselben Wert. Dieser Wert heißt **Gleichgewichtskonstante der Konzentrationen**:
+
+<BlockMath math="K_c = \frac{[\mathrm{C}]^c\,[\mathrm{D}]^d}{[\mathrm{A}]^a\,[\mathrm{B}]^b}" />
+
+Jede Konzentration wird mit ihrem Koeffizienten potenziert. Feststoffe und reine Flüssigkeiten werden weggelassen, weil ihre Konzentration konstant ist. Bei Gasreaktionen kann man statt Konzentrationen Partialdrücke verwenden, und der Zusammenhang lautet:
+
+<BlockMath math="K_p = K_c\,(RT)^{\Delta n}, \qquad R = 0{,}0821\ \text{L atm mol}^{-1}\,\text{K}^{-1}" />
+
+Dabei ist <InlineMath math="\Delta n" /> die Stoffmenge der gasförmigen Produkte minus die der gasförmigen Edukte.
+
+Beispiel: Für <InlineMath math="\mathrm{N_2}(g) + 3\mathrm{H_2}(g) \rightleftharpoons 2\mathrm{NH_3}(g)" /> lautet der Ausdruck <InlineMath math="K_c = \dfrac{[\mathrm{NH_3}]^2}{[\mathrm{N_2}][\mathrm{H_2}]^3}" />. Für <InlineMath math="\mathrm{CaCO_3}(s) \rightleftharpoons \mathrm{CaO}(s) + \mathrm{CO_2}(g)" /> bleibt nur das Gas übrig, also <InlineMath math="K_c = [\mathrm{CO_2}]" />.
+
+Angenommen, <InlineMath math="\mathrm{N_2O_4}(g) \rightleftharpoons 2\mathrm{NO_2}(g)" /> hat bei <InlineMath math="298\text{ K}" /> den Wert <InlineMath math="K_c = 4{,}0 \times 10^{-3}" />. Weil <InlineMath math="\Delta n = 2 - 1 = 1" /> ist:
+
+<BlockMath math="K_p = 4{,}0 \times 10^{-3} \times (0{,}0821 \times 298)^1 = 0{,}098" />
+
+## Gleichgewichtskonzentrationen berechnen
+
+Gleichgewichtskonzentrationen findet man mit einer **Tabelle aus Anfang, Änderung und Gleichgewicht**. Angenommen, <InlineMath math="1\text{ mol}" /> <InlineMath math="\mathrm{H_2}" /> und <InlineMath math="1\text{ mol}" /> <InlineMath math="\mathrm{I_2}" /> kommen in einen Behälter von <InlineMath math="1\text{ L}" />, und für <InlineMath math="\mathrm{H_2} + \mathrm{I_2} \rightleftharpoons 2\mathrm{HI}" /> gilt <InlineMath math="K_c = 64" />.
+
+| Stoff | <InlineMath math="\mathrm{H_2}" /> | <InlineMath math="\mathrm{I_2}" /> | <InlineMath math="\mathrm{HI}" /> |
+| :--- | :--- | :--- | :--- |
+| Anfang | <InlineMath math="1" /> | <InlineMath math="1" /> | <InlineMath math="0" /> |
+| Änderung | <InlineMath math="-x" /> | <InlineMath math="-x" /> | <InlineMath math="+2x" /> |
+| Gleichgewicht | <InlineMath math="1 - x" /> | <InlineMath math="1 - x" /> | <InlineMath math="2x" /> |
+
+Setze die Werte in den Ausdruck der Konstante ein und ziehe auf beiden Seiten die Wurzel:
+
+<MathContainer>
+<BlockMath math="\frac{(2x)^2}{(1 - x)^2} = 64 \quad\Rightarrow\quad \frac{2x}{1 - x} = 8" />
+<BlockMath math="2x = 8 - 8x \quad\Rightarrow\quad x = 0{,}8" />
+</MathContainer>
+
+Im Gleichgewicht gilt also <InlineMath math="[\mathrm{H_2}] = [\mathrm{I_2}] = 0{,}2\text{ M}" /> und <InlineMath math="[\mathrm{HI}] = 1{,}6\text{ M}" />. Probe: <InlineMath math="\dfrac{1{,}6^2}{0{,}2 \times 0{,}2} = 64" />.
+
+<Chart
+  title={<>Anfangs- und Gleichgewichtskonzentrationen</>}
+  bars="apart"
+  categories={["Wasserstoff", "Iod", "Iodwasserstoff"]}
+  series={[
+    { label: "Anfang (M)", mark: "bar", values: [1, 1, 0] },
+    { label: "Gleichgewicht (M)", mark: "bar", values: [0.2, 0.2, 1.6] },
+  ]}
+  valueLabel="Konzentration (M)"
+  valueRange={{ min: 0, max: 1.8 }}
+  description={
+    <>
+      Je <InlineMath math="0{,}8\text{ M}" /> Wasserstoff und Iod, die reagieren, bilden{" "}
+      <InlineMath math="1{,}6\text{ M}" /> Iodwasserstoff, passend zu den Koeffizienten{" "}
+      <InlineMath math="1 : 1 : 2" />.
+    </>
+  }
+/>
+
+## Der Reaktionsquotient zeigt die Richtung
+
+Vor dem Gleichgewicht heißt dasselbe Verhältnis wie im Ausdruck für <InlineMath math="K_c" /> **Reaktionsquotient** <InlineMath math="Q" />. Der Vergleich von <InlineMath math="Q" /> mit <InlineMath math="K" /> zeigt die Richtung der Reaktion:
+
+| Lage | Bedeutung | Richtung der Verschiebung |
+| :--- | :--- | :--- |
+| <InlineMath math="Q < K" /> | noch zu wenig Produkt | nach rechts, zu den Produkten |
+| <InlineMath math="Q = K" /> | bereits im Gleichgewicht | keine Verschiebung |
+| <InlineMath math="Q > K" /> | zu viel Produkt | nach links, zu den Edukten |
+
+Im System <InlineMath math="\mathrm{H_2} + \mathrm{I_2} \rightleftharpoons 2\mathrm{HI}" /> mit <InlineMath math="K_c = 64" /> nimm ein Gemisch mit <InlineMath math="[\mathrm{H_2}] = [\mathrm{I_2}] = 0{,}5\text{ M}" />. Verschiebe unten die Konzentration von <InlineMath math="\mathrm{HI}" /> und sieh nach, wann <InlineMath math="Q" /> die Linie <InlineMath math="K" /> berührt.
+
+<MathVisual
+  title={<>Reaktionsquotient gegen die Konzentration von Iodwasserstoff</>}
+  description={
+    <>
+      Mit <InlineMath math="[\mathrm{H_2}] = [\mathrm{I_2}] = 0{,}5\text{ M}" /> gilt{" "}
+      <InlineMath math="Q = 4[\mathrm{HI}]^2" />. Für{" "}
+      <InlineMath math="[\mathrm{HI}] = 2\text{ M}" /> ist <InlineMath math="Q = 16" />{" "}
+      kleiner als <InlineMath math="64" />, also verschiebt sich die Reaktion nach
+      rechts. Dieses Gemisch ist bei <InlineMath math="[\mathrm{HI}] = 4\text{ M}" /> im
+      Gleichgewicht.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 6 }, y: { min: 0, max: 150 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "d", min: 0, max: 6, value: 2, step: 0.1, label: "d" },
+    ],
+    objects: [
+      { id: "quotient", kind: "function", appearance: "primary", formula: "4*x^2", domain: { min: 0, max: 6 } },
+      { id: "constant", kind: "function", appearance: "reference", formula: "64", domain: { min: 0, max: 6 } },
+      { id: "now", kind: "marker", x: "d", y: "4*d^2", appearance: "answer" },
+    ],
+    readouts: [
+      { key: "quotient-value", formula: "4*d^2" },
+    ],
+  }}
+  labels={{
+    d: <>Konzentration <InlineMath math="[\mathrm{HI}]" /> in <InlineMath math="\text{M}" /></>,
+    "quotient-value": <>Reaktionsquotient <InlineMath math="Q" /></>,
+  }}
+/>
+
+## Das Prinzip von Le Chatelier
+
+Das **Prinzip von Le Chatelier** besagt, dass ein System im Gleichgewicht bei einer Störung so ausweicht, dass die Störung kleiner wird. Drei Störungen kommen am häufigsten vor:
+
+- **Konzentration**: Mehr Edukt verschiebt das Gleichgewicht nach rechts, mehr Produkt verschiebt es nach links. Der Wert von <InlineMath math="K" /> ändert sich nicht.
+- **Druck oder Volumen**: Ein höherer Druck durch ein kleineres Volumen verschiebt das Gleichgewicht zur Seite mit weniger Gasteilchen.
+- **Temperatur**: Eine höhere Temperatur verschiebt das Gleichgewicht in Richtung der endothermen Reaktion. Nur eine Temperaturänderung ändert den Wert von <InlineMath math="K" />.
+
+Ein Katalysator verschiebt das Gleichgewicht nicht. Er beschleunigt Hin- und Rückreaktion gleich stark, sodass das Gleichgewicht nur schneller erreicht wird.
+
+Die Wirkung des Drucks zeigt sich bei <InlineMath math="\mathrm{N_2O_4} \rightleftharpoons 2\mathrm{NO_2}" />. Ist <InlineMath math="\alpha" /> der Dissoziationsgrad, dann gilt <InlineMath math="K_p = \dfrac{4\alpha^2 P}{1 - \alpha^2}" />, also <InlineMath math="\alpha = \sqrt{\dfrac{K_p}{K_p + 4P}}" />. Erhöhe unten den Gesamtdruck: Der Dissoziationsgrad sinkt, weil das System zur linken Seite ausweicht, die nur ein Mol Gas hat.
+
+<MathVisual
+  title={<>Dissoziationsgrad gegen den Gesamtdruck</>}
+  description={
+    <>
+      Für <InlineMath math="K_p = 0{,}15" /> sinkt der Dissoziationsgrad von etwa{" "}
+      <InlineMath math="52\%" /> bei <InlineMath math="0{,}1\text{ atm}" /> auf{" "}
+      <InlineMath math="19\%" /> bei <InlineMath math="1\text{ atm}" />.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 5 }, y: { min: 0, max: 1 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "c", min: 0.05, max: 1, value: 0.15, step: 0.01, label: "c" },
+      { name: "p", min: 0.1, max: 5, value: 1, step: 0.1, label: "p" },
+    ],
+    objects: [
+      { id: "dissociation", kind: "function", appearance: "primary", formula: "sqrt(c/(c + 4*x))", domain: { min: 0.05, max: 5 } },
+      { id: "now", kind: "marker", x: "p", y: "sqrt(c/(c + 4*p))", appearance: "answer" },
+    ],
+    readouts: [
+      { key: "percent", formula: "100*sqrt(c/(c + 4*p))" },
+    ],
+  }}
+  labels={{
+    c: <>Konstante <InlineMath math="K_p" /> in <InlineMath math="\text{atm}" /></>,
+    p: <>Gesamtdruck <InlineMath math="P" /> in <InlineMath math="\text{atm}" /></>,
+    percent: <>Dissoziationsgrad in Prozent</>,
+  }}
+/>
+
+Die Wirkung der Temperatur folgt dem Vorzeichen der Enthalpieänderung <InlineMath math="\Delta H" />. Bei einer exothermen Reaktion sinkt <InlineMath math="K" />, wenn die Temperatur steigt. Bei einer endothermen Reaktion steigt <InlineMath math="K" />. Der Graph unten nutzt die Van-'t-Hoff-Gleichung für eine Reaktion mit <InlineMath math="K = 1" /> bei <InlineMath math="298\text{ K}" />.
+
+<MathVisual
+  title={<>Logarithmus der Gleichgewichtskonstante gegen die Temperatur</>}
+  description={
+    <>
+      Mit <InlineMath math="\Delta H = -92\text{ kJ}" />, wie bei der
+      Ammoniaksynthese, fällt <InlineMath math="\log K" /> mit steigender Temperatur
+      steil ab. Mache <InlineMath math="\Delta H" /> positiv, und die Richtung kehrt sich
+      um.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 250, max: 800 }, y: { min: -12, max: 12 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "h", min: -100, max: 100, value: -92, step: 1, label: "h" },
+      { name: "s", min: 250, max: 800, value: 700, step: 10, label: "s" },
+    ],
+    objects: [
+      { id: "log-constant", kind: "function", appearance: "primary", formula: "-52.2*h*(1/x - 1/298)", domain: { min: 250, max: 800 } },
+      { id: "now", kind: "marker", x: "s", y: "-52.2*h*(1/s - 1/298)", appearance: "answer" },
+    ],
+    readouts: [
+      { key: "log-value", formula: "-52.2*h*(1/s - 1/298)" },
+    ],
+  }}
+  labels={{
+    h: <>Enthalpieänderung <InlineMath math="\Delta H" /> in <InlineMath math="\text{kJ}" /></>,
+    s: <>Temperatur <InlineMath math="T" /> in <InlineMath math="\text{K}" /></>,
+    "log-value": <>Wert von <InlineMath math="\log K" /></>,
+  }}
+/>
+
+Das Haber-Bosch-Verfahren, <InlineMath math="\mathrm{N_2} + 3\mathrm{H_2} \rightleftharpoons 2\mathrm{NH_3}" /> mit <InlineMath math="\Delta H = -92{,}2\text{ kJ}" />, nutzt all diese Regeln. Hoher Druck verschiebt das Gleichgewicht nach rechts, weil aus vier Mol Gas zwei werden. Eine niedrige Temperatur begünstigt ebenfalls das Produkt, aber dann ist die Reaktion zu langsam. Deshalb arbeitet die Industrie mit einem Eisenkatalysator bei mittleren <InlineMath math="400" /> bis <InlineMath math="500^\circ\text{C}" /> und entfernt laufend Ammoniak, damit sich das Gleichgewicht weiter nach rechts verschiebt.
+
+## Häufige Fehler beim chemischen Gleichgewicht
+
+| Fehler | Warum er falsch ist | Wie du prüfst |
+| :--- | :--- | :--- |
+| Glauben, Edukt- und Produktkonzentration seien im Gleichgewicht gleich. | Gleich sind die Geschwindigkeiten, nicht die Konzentrationen. | Sieh dir die Konzentrationskurven an, die bei verschiedenen Werten waagerecht werden. |
+| Feststoffe oder reine Flüssigkeiten in <InlineMath math="K_c" /> schreiben. | Ihre Konzentration ist konstant und steckt schon in <InlineMath math="K" />. | Schreibe nur Stoffe in der Phase <InlineMath math="(g)" /> oder <InlineMath math="(aq)" />. |
+| Glauben, <InlineMath math="K" /> ändere sich bei Zugabe eines Stoffes. | Eine Konzentrationsänderung verschiebt nur die Lage des Gleichgewichts. | Der Wert von <InlineMath math="K" /> ändert sich nur mit der Temperatur. |
+| Meinen, ein Katalysator liefere mehr Produkt. | Ein Katalysator beschleunigt Hin- und Rückreaktion gleich stark. | Ein Katalysator taucht im Ausdruck für <InlineMath math="K" /> nie auf. |
+| Vergessen, Konzentrationen mit den Koeffizienten zu potenzieren. | Der Ausdruck für <InlineMath math="K_c" /> nutzt die Koeffizienten als Exponenten. | Vergleiche jeden Exponenten mit dem Koeffizienten der ausgeglichenen Gleichung. |
+
+Der erste Fehler ist der häufigste. **Gleichgewicht bedeutet gleiche Geschwindigkeiten**, während die Konzentrationen nur aufhören, sich zu ändern.
+
+## Übungen zum chemischen Gleichgewicht
+
+Schreibe zuerst die ausgeglichene Gleichung und die Phase jedes Stoffes auf, damit **der Ausdruck der Konstante richtig wird**.
+
+1. Schreibe die Ausdrücke für <InlineMath math="K_c" /> und <InlineMath math="K_p" /> für <InlineMath math="2\mathrm{SO_2}(g) + \mathrm{O_2}(g) \rightleftharpoons 2\mathrm{SO_3}(g)" /> auf und bestimme <InlineMath math="\Delta n" />.
+
+2. Für <InlineMath math="\mathrm{A} + \mathrm{B} \rightleftharpoons \mathrm{C} + \mathrm{D}" /> mit <InlineMath math="K_c = 4" /> kommen <InlineMath math="1\text{ mol}" /> <InlineMath math="\mathrm{A}" /> und <InlineMath math="1\text{ mol}" /> <InlineMath math="\mathrm{B}" /> in einen Behälter von <InlineMath math="1\text{ L}" />. Berechne die Gleichgewichtskonzentrationen aller Stoffe.
+
+3. Für <InlineMath math="\mathrm{N_2} + 3\mathrm{H_2} \rightleftharpoons 2\mathrm{NH_3}" /> mit <InlineMath math="K_c = 0{,}5" /> enthält ein Gemisch <InlineMath math="1\text{ M}" /> von jedem Stoff. Bestimme die Richtung der Reaktion.
+
+4. Erkläre, wie eine höhere Temperatur, ein höherer Druck und ein Katalysator die Ammoniakausbeute im Haber-Bosch-Verfahren beeinflussen.
+
+### Lösungen
+
+**Lösung 1**: Potenziere jede Konzentration mit ihrem Koeffizienten:
+
+<BlockMath math="K_c = \frac{[\mathrm{SO_3}]^2}{[\mathrm{SO_2}]^2[\mathrm{O_2}]}, \qquad K_p = \frac{P_{\mathrm{SO_3}}^2}{P_{\mathrm{SO_2}}^2\,P_{\mathrm{O_2}}}" />
+
+Die Stoffmenge an Gas sinkt von drei auf zwei, also <InlineMath math="\Delta n = 2 - 3 = -1" />.
+
+**Lösung 2**: Aus der Tabelle aus Anfang, Änderung und Gleichgewicht folgt <InlineMath math="[\mathrm{C}] = [\mathrm{D}] = x" /> und <InlineMath math="[\mathrm{A}] = [\mathrm{B}] = 1 - x" />:
+
+<MathContainer>
+<BlockMath math="\frac{x^2}{(1 - x)^2} = 4 \quad\Rightarrow\quad \frac{x}{1 - x} = 2" />
+<BlockMath math="x = \frac{2}{3} \approx 0{,}67" />
+</MathContainer>
+
+Also **<InlineMath math="[\mathrm{C}] = [\mathrm{D}] = 0{,}67\text{ M}" />** und <InlineMath math="[\mathrm{A}] = [\mathrm{B}] = 0{,}33\text{ M}" />.
+
+**Lösung 3**: Berechne den Reaktionsquotienten:
+
+<BlockMath math="Q = \frac{1^2}{1 \times 1^3} = 1" />
+
+Weil <InlineMath math="Q > K_c" /> ist, gibt es zu viel Produkt, also **verschiebt sich die Reaktion nach links**.
+
+**Lösung 4**: Die Reaktion ist exotherm und verringert die Stoffmenge an Gas von vier auf zwei. Eine höhere Temperatur verschiebt das Gleichgewicht nach links und **senkt die Ammoniakausbeute**, weil <InlineMath math="K" /> kleiner wird. Ein höherer Druck verschiebt das Gleichgewicht nach rechts und erhöht die Ausbeute. Ein Katalysator ändert die Ausbeute nicht, aber das Gleichgewicht stellt sich schneller ein.

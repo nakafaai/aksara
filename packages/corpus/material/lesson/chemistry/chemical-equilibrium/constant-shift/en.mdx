@@ -1,0 +1,320 @@
+export const metadata = {
+  title: "Chemical Equilibrium Notes for Grade Eleven",
+  description:
+    "Kurikulum Merdeka Grade 11 Chemistry, Chemical Equilibrium: reversible reactions and dynamic equilibrium, the equilibrium constants Kc and Kp, working out equilibrium concentrations, the reaction quotient, and Le Chatelier's principle in the Haber-Bosch process.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2026-11-17",
+  subject: "Chemical Equilibrium",
+};
+
+## Reversible Reactions Reach Dynamic Equilibrium
+
+Many reactions do not stop when the reactants run out, because the products also react back into reactants. Such a reaction is called a **reversible reaction** and is written with a double arrow:
+
+<BlockMath math="\mathrm{A} \rightleftharpoons \mathrm{B}" />
+
+At first there is only <InlineMath math="\mathrm{A}" />, so the forward reaction is fast. The more <InlineMath math="\mathrm{B}" /> forms, the faster the reverse reaction becomes. In the end the forward rate equals the reverse rate. This state is called **dynamic equilibrium**: both reactions keep going, but the concentration of each substance no longer changes.
+
+Change the forward and reverse rate constants below. The concentration of <InlineMath math="\mathrm{A}" /> falls, the concentration of <InlineMath math="\mathrm{B}" /> rises, and then both level off at equilibrium values that are usually not equal.
+
+<MathVisual
+  title={<>Concentrations Approaching Equilibrium</>}
+  description={
+    <>
+      The reaction <InlineMath math="\mathrm{A} \rightleftharpoons \mathrm{B}" /> starts
+      from <InlineMath math="[\mathrm{A}] = 1\text{ M}" />. With a forward rate constant
+      of <InlineMath math="0.6" /> and a reverse one of <InlineMath math="0.2" />, the
+      equilibrium concentrations are <InlineMath math="[\mathrm{A}] = 0.25\text{ M}" />{" "}
+      and <InlineMath math="[\mathrm{B}] = 0.75\text{ M}" />.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 10 }, y: { min: 0, max: 1 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "a", min: 0.1, max: 1, value: 0.6, step: 0.05, label: "a" },
+      { name: "b", min: 0.1, max: 1, value: 0.2, step: 0.05, label: "b" },
+    ],
+    objects: [
+      { id: "reactant", kind: "function", appearance: "secondary", formula: "b/(a + b) + (a/(a + b))*exp(-(a + b)*x)", domain: { min: 0, max: 10 } },
+      { id: "product", kind: "function", appearance: "primary", formula: "(a/(a + b))*(1 - exp(-(a + b)*x))", domain: { min: 0, max: 10 } },
+    ],
+    readouts: [
+      { key: "reactant-end", formula: "b/(a + b)" },
+      { key: "product-end", formula: "a/(a + b)" },
+      { key: "constant", formula: "a/b" },
+    ],
+  }}
+  labels={{
+    a: <>Forward rate constant <InlineMath math="k_1" /></>,
+    b: <>Reverse rate constant <InlineMath math="k_2" /></>,
+    "reactant-end": <>Equilibrium <InlineMath math="[\mathrm{A}]" /> in <InlineMath math="\text{M}" /></>,
+    "product-end": <>Equilibrium <InlineMath math="[\mathrm{B}]" /> in <InlineMath math="\text{M}" /></>,
+    constant: <>Equilibrium constant <InlineMath math="K = \dfrac{k_1}{k_2}" /></>,
+  }}
+/>
+
+The rate graph shows the same thing from the other side. The forward rate <InlineMath math="k_1[\mathrm{A}]" /> falls, the reverse rate <InlineMath math="k_2[\mathrm{B}]" /> rises, and **equilibrium is reached when the two rates are equal**.
+
+<MathVisual
+  title={<>Forward and Reverse Rates</>}
+  description={
+    <>
+      The two rates meet at <InlineMath math="0.15\text{ M s}^{-1}" /> for{" "}
+      <InlineMath math="k_1 = 0.6" /> and <InlineMath math="k_2 = 0.2" />. After that
+      they stay equal, so the concentrations no longer change.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 10 }, y: { min: 0, max: 1 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "a", min: 0.1, max: 1, value: 0.6, step: 0.05, label: "a" },
+      { name: "b", min: 0.1, max: 1, value: 0.2, step: 0.05, label: "b" },
+    ],
+    objects: [
+      { id: "forward", kind: "function", appearance: "primary", formula: "a*(b/(a + b) + (a/(a + b))*exp(-(a + b)*x))", domain: { min: 0, max: 10 } },
+      { id: "reverse", kind: "function", appearance: "secondary", formula: "b*(a/(a + b))*(1 - exp(-(a + b)*x))", domain: { min: 0, max: 10 } },
+    ],
+    readouts: [
+      { key: "equal-rate", formula: "a*b/(a + b)" },
+    ],
+  }}
+  labels={{
+    a: <>Forward rate constant <InlineMath math="k_1" /></>,
+    b: <>Reverse rate constant <InlineMath math="k_2" /></>,
+    "equal-rate": <>Rate at equilibrium in <InlineMath math="\text{M s}^{-1}" /></>,
+  }}
+/>
+
+## The Equilibrium Constant
+
+For the general reaction <InlineMath math="a\mathrm{A} + b\mathrm{B} \rightleftharpoons c\mathrm{C} + d\mathrm{D}" />, the ratio of concentrations at equilibrium always has the same value at a given temperature. This value is called the **concentration equilibrium constant**:
+
+<BlockMath math="K_c = \frac{[\mathrm{C}]^c\,[\mathrm{D}]^d}{[\mathrm{A}]^a\,[\mathrm{B}]^b}" />
+
+Each concentration is raised to the power of its coefficient. Solids and pure liquids are left out, because their concentrations are fixed. For gas reactions, partial pressures can be used instead of concentrations, and the link is:
+
+<BlockMath math="K_p = K_c\,(RT)^{\Delta n}, \qquad R = 0.0821\ \text{L atm mol}^{-1}\,\text{K}^{-1}" />
+
+Here <InlineMath math="\Delta n" /> is the number of moles of gaseous products minus the number of moles of gaseous reactants.
+
+Example: for <InlineMath math="\mathrm{N_2}(g) + 3\mathrm{H_2}(g) \rightleftharpoons 2\mathrm{NH_3}(g)" />, the expression is <InlineMath math="K_c = \dfrac{[\mathrm{NH_3}]^2}{[\mathrm{N_2}][\mathrm{H_2}]^3}" />. For <InlineMath math="\mathrm{CaCO_3}(s) \rightleftharpoons \mathrm{CaO}(s) + \mathrm{CO_2}(g)" />, only the gas is left, so <InlineMath math="K_c = [\mathrm{CO_2}]" />.
+
+Suppose <InlineMath math="\mathrm{N_2O_4}(g) \rightleftharpoons 2\mathrm{NO_2}(g)" /> has <InlineMath math="K_c = 4.0 \times 10^{-3}" /> at <InlineMath math="298\text{ K}" />. Because <InlineMath math="\Delta n = 2 - 1 = 1" />:
+
+<BlockMath math="K_p = 4.0 \times 10^{-3} \times (0.0821 \times 298)^1 = 0.098" />
+
+## Working Out Equilibrium Concentrations
+
+Equilibrium concentrations are found with an **initial, change, equilibrium table**. Suppose <InlineMath math="1\text{ mol}" /> of <InlineMath math="\mathrm{H_2}" /> and <InlineMath math="1\text{ mol}" /> of <InlineMath math="\mathrm{I_2}" /> are put into a <InlineMath math="1\text{ L}" /> container, and <InlineMath math="K_c = 64" /> for <InlineMath math="\mathrm{H_2} + \mathrm{I_2} \rightleftharpoons 2\mathrm{HI}" />.
+
+| Substance | <InlineMath math="\mathrm{H_2}" /> | <InlineMath math="\mathrm{I_2}" /> | <InlineMath math="\mathrm{HI}" /> |
+| :--- | :--- | :--- | :--- |
+| Initial | <InlineMath math="1" /> | <InlineMath math="1" /> | <InlineMath math="0" /> |
+| Change | <InlineMath math="-x" /> | <InlineMath math="-x" /> | <InlineMath math="+2x" /> |
+| Equilibrium | <InlineMath math="1 - x" /> | <InlineMath math="1 - x" /> | <InlineMath math="2x" /> |
+
+Put these into the expression for the constant, then take the square root of both sides:
+
+<MathContainer>
+<BlockMath math="\frac{(2x)^2}{(1 - x)^2} = 64 \quad\Rightarrow\quad \frac{2x}{1 - x} = 8" />
+<BlockMath math="2x = 8 - 8x \quad\Rightarrow\quad x = 0.8" />
+</MathContainer>
+
+So at equilibrium <InlineMath math="[\mathrm{H_2}] = [\mathrm{I_2}] = 0.2\text{ M}" /> and <InlineMath math="[\mathrm{HI}] = 1.6\text{ M}" />. Check: <InlineMath math="\dfrac{1.6^2}{0.2 \times 0.2} = 64" />.
+
+<Chart
+  title={<>Initial and Equilibrium Concentrations</>}
+  bars="apart"
+  categories={["Hydrogen", "Iodine", "Hydrogen iodide"]}
+  series={[
+    { label: "Initial (M)", mark: "bar", values: [1, 1, 0] },
+    { label: "Equilibrium (M)", mark: "bar", values: [0.2, 0.2, 1.6] },
+  ]}
+  valueLabel="Concentration (M)"
+  valueRange={{ min: 0, max: 1.8 }}
+  description={
+    <>
+      Each <InlineMath math="0.8\text{ M}" /> of hydrogen and iodine that reacts makes{" "}
+      <InlineMath math="1.6\text{ M}" /> of hydrogen iodide, matching the coefficients{" "}
+      <InlineMath math="1 : 1 : 2" />.
+    </>
+  }
+/>
+
+## The Reaction Quotient Gives the Direction
+
+Before equilibrium, the same ratio as the expression for <InlineMath math="K_c" /> is called the **reaction quotient** <InlineMath math="Q" />. Comparing <InlineMath math="Q" /> with <InlineMath math="K" /> tells the direction of the reaction:
+
+| Situation | Meaning | Direction of shift |
+| :--- | :--- | :--- |
+| <InlineMath math="Q < K" /> | too little product so far | to the right, towards products |
+| <InlineMath math="Q = K" /> | already at equilibrium | no shift |
+| <InlineMath math="Q > K" /> | too much product | to the left, towards reactants |
+
+In the system <InlineMath math="\mathrm{H_2} + \mathrm{I_2} \rightleftharpoons 2\mathrm{HI}" /> with <InlineMath math="K_c = 64" />, take a mixture with <InlineMath math="[\mathrm{H_2}] = [\mathrm{I_2}] = 0.5\text{ M}" />. Slide the concentration of <InlineMath math="\mathrm{HI}" /> below and see when <InlineMath math="Q" /> touches the line <InlineMath math="K" />.
+
+<MathVisual
+  title={<>Reaction Quotient against Hydrogen Iodide Concentration</>}
+  description={
+    <>
+      With <InlineMath math="[\mathrm{H_2}] = [\mathrm{I_2}] = 0.5\text{ M}" />,{" "}
+      <InlineMath math="Q = 4[\mathrm{HI}]^2" />. For{" "}
+      <InlineMath math="[\mathrm{HI}] = 2\text{ M}" />, <InlineMath math="Q = 16" /> is
+      less than <InlineMath math="64" />, so the reaction shifts to the right. This
+      mixture is at equilibrium when <InlineMath math="[\mathrm{HI}] = 4\text{ M}" />.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 6 }, y: { min: 0, max: 150 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "d", min: 0, max: 6, value: 2, step: 0.1, label: "d" },
+    ],
+    objects: [
+      { id: "quotient", kind: "function", appearance: "primary", formula: "4*x^2", domain: { min: 0, max: 6 } },
+      { id: "constant", kind: "function", appearance: "reference", formula: "64", domain: { min: 0, max: 6 } },
+      { id: "now", kind: "marker", x: "d", y: "4*d^2", appearance: "answer" },
+    ],
+    readouts: [
+      { key: "quotient-value", formula: "4*d^2" },
+    ],
+  }}
+  labels={{
+    d: <>Concentration <InlineMath math="[\mathrm{HI}]" /> in <InlineMath math="\text{M}" /></>,
+    "quotient-value": <>Reaction quotient <InlineMath math="Q" /></>,
+  }}
+/>
+
+## The Principle of Le Chatelier
+
+**The principle of Le Chatelier** says that when a system at equilibrium is disturbed, it shifts to reduce the disturbance. There are three main disturbances:
+
+- **Concentration**: adding a reactant shifts the equilibrium to the right, while adding a product shifts it to the left. The value of <InlineMath math="K" /> does not change.
+- **Pressure or volume**: raising the pressure by making the volume smaller shifts the equilibrium to the side with fewer moles of gas.
+- **Temperature**: raising the temperature shifts the equilibrium in the endothermic direction. Only a change of temperature changes the value of <InlineMath math="K" />.
+
+A catalyst does not shift the equilibrium. It speeds up the forward and reverse reactions equally, so equilibrium is only reached sooner.
+
+The effect of pressure shows in <InlineMath math="\mathrm{N_2O_4} \rightleftharpoons 2\mathrm{NO_2}" />. If <InlineMath math="\alpha" /> is the degree of dissociation, then <InlineMath math="K_p = \dfrac{4\alpha^2 P}{1 - \alpha^2}" />, so <InlineMath math="\alpha = \sqrt{\dfrac{K_p}{K_p + 4P}}" />. Raise the total pressure below: the degree of dissociation falls, because the system shifts to the left side, which has only one mole of gas.
+
+<MathVisual
+  title={<>Degree of Dissociation against Total Pressure</>}
+  description={
+    <>
+      For <InlineMath math="K_p = 0.15" />, the degree of dissociation falls from about{" "}
+      <InlineMath math="52\%" /> at <InlineMath math="0.1\text{ atm}" /> to{" "}
+      <InlineMath math="19\%" /> at <InlineMath math="1\text{ atm}" />.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 5 }, y: { min: 0, max: 1 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "c", min: 0.05, max: 1, value: 0.15, step: 0.01, label: "c" },
+      { name: "p", min: 0.1, max: 5, value: 1, step: 0.1, label: "p" },
+    ],
+    objects: [
+      { id: "dissociation", kind: "function", appearance: "primary", formula: "sqrt(c/(c + 4*x))", domain: { min: 0.05, max: 5 } },
+      { id: "now", kind: "marker", x: "p", y: "sqrt(c/(c + 4*p))", appearance: "answer" },
+    ],
+    readouts: [
+      { key: "percent", formula: "100*sqrt(c/(c + 4*p))" },
+    ],
+  }}
+  labels={{
+    c: <>Constant <InlineMath math="K_p" /> in <InlineMath math="\text{atm}" /></>,
+    p: <>Total pressure <InlineMath math="P" /> in <InlineMath math="\text{atm}" /></>,
+    percent: <>Degree of dissociation as a percentage</>,
+  }}
+/>
+
+The effect of temperature follows the sign of the enthalpy change <InlineMath math="\Delta H" />. For an exothermic reaction, <InlineMath math="K" /> falls as the temperature rises. For an endothermic reaction, <InlineMath math="K" /> rises. The graph below uses the van 't Hoff equation for a reaction with <InlineMath math="K = 1" /> at <InlineMath math="298\text{ K}" />.
+
+<MathVisual
+  title={<>Logarithm of the Equilibrium Constant against Temperature</>}
+  description={
+    <>
+      With <InlineMath math="\Delta H = -92\text{ kJ}" />, as in ammonia synthesis,{" "}
+      <InlineMath math="\log K" /> falls steeply as the temperature rises. Make{" "}
+      <InlineMath math="\Delta H" /> positive and the direction turns around.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 250, max: 800 }, y: { min: -12, max: 12 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "h", min: -100, max: 100, value: -92, step: 1, label: "h" },
+      { name: "s", min: 250, max: 800, value: 700, step: 10, label: "s" },
+    ],
+    objects: [
+      { id: "log-constant", kind: "function", appearance: "primary", formula: "-52.2*h*(1/x - 1/298)", domain: { min: 250, max: 800 } },
+      { id: "now", kind: "marker", x: "s", y: "-52.2*h*(1/s - 1/298)", appearance: "answer" },
+    ],
+    readouts: [
+      { key: "log-value", formula: "-52.2*h*(1/s - 1/298)" },
+    ],
+  }}
+  labels={{
+    h: <>Enthalpy change <InlineMath math="\Delta H" /> in <InlineMath math="\text{kJ}" /></>,
+    s: <>Temperature <InlineMath math="T" /> in <InlineMath math="\text{K}" /></>,
+    "log-value": <>Value of <InlineMath math="\log K" /></>,
+  }}
+/>
+
+The Haber-Bosch process, <InlineMath math="\mathrm{N_2} + 3\mathrm{H_2} \rightleftharpoons 2\mathrm{NH_3}" /> with <InlineMath math="\Delta H = -92.2\text{ kJ}" />, uses all of these ideas. High pressure shifts the equilibrium to the right, because four moles of gas become two. A low temperature also favours the product, but the reaction is then too slow. So industry uses an iron catalyst at a moderate <InlineMath math="400" /> to <InlineMath math="500^\circ\text{C}" />, and keeps removing ammonia so that the equilibrium keeps shifting to the right.
+
+## Common Mistakes in Chemical Equilibrium
+
+| Mistake | Why it is wrong | How to check |
+| :--- | :--- | :--- |
+| Thinking reactant and product concentrations are equal at equilibrium. | The rates are equal, not the concentrations. | Look at the concentration graph levelling off at different values. |
+| Writing solids or pure liquids in <InlineMath math="K_c" />. | Their concentrations are fixed, so they are already part of <InlineMath math="K" />. | Write only substances in phase <InlineMath math="(g)" /> or <InlineMath math="(aq)" />. |
+| Thinking <InlineMath math="K" /> changes when a concentration is added. | A concentration change only shifts the position of equilibrium. | The value of <InlineMath math="K" /> changes only with temperature. |
+| Believing a catalyst gives more product. | A catalyst speeds up the forward and reverse reactions equally. | A catalyst never appears in the expression for <InlineMath math="K" />. |
+| Forgetting to raise concentrations to their coefficients. | The expression for <InlineMath math="K_c" /> uses the coefficients as powers. | Compare each power with the coefficient in the balanced equation. |
+
+The first mistake is the most common. **Equilibrium means equal rates**, while the concentrations only stop changing.
+
+## Chemical Equilibrium Practice
+
+Write the balanced equation and the phase of every substance first so that **the expression for the constant is written correctly**.
+
+1. Write the expressions for <InlineMath math="K_c" /> and <InlineMath math="K_p" /> for <InlineMath math="2\mathrm{SO_2}(g) + \mathrm{O_2}(g) \rightleftharpoons 2\mathrm{SO_3}(g)" />, then find <InlineMath math="\Delta n" />.
+
+2. For <InlineMath math="\mathrm{A} + \mathrm{B} \rightleftharpoons \mathrm{C} + \mathrm{D}" /> with <InlineMath math="K_c = 4" />, <InlineMath math="1\text{ mol}" /> of <InlineMath math="\mathrm{A}" /> and <InlineMath math="1\text{ mol}" /> of <InlineMath math="\mathrm{B}" /> are put into a <InlineMath math="1\text{ L}" /> container. Work out the equilibrium concentrations of every substance.
+
+3. For <InlineMath math="\mathrm{N_2} + 3\mathrm{H_2} \rightleftharpoons 2\mathrm{NH_3}" /> with <InlineMath math="K_c = 0.5" />, a mixture holds <InlineMath math="1\text{ M}" /> of each substance. Find the direction of the reaction.
+
+4. Explain the effect of raising the temperature, raising the pressure and adding a catalyst on the yield of ammonia in the Haber-Bosch process.
+
+### Solutions
+
+**Solution 1**: Raise each concentration to the power of its coefficient:
+
+<BlockMath math="K_c = \frac{[\mathrm{SO_3}]^2}{[\mathrm{SO_2}]^2[\mathrm{O_2}]}, \qquad K_p = \frac{P_{\mathrm{SO_3}}^2}{P_{\mathrm{SO_2}}^2\,P_{\mathrm{O_2}}}" />
+
+The moles of gas change from three to two, so <InlineMath math="\Delta n = 2 - 3 = -1" />.
+
+**Solution 2**: From an initial, change, equilibrium table, <InlineMath math="[\mathrm{C}] = [\mathrm{D}] = x" /> and <InlineMath math="[\mathrm{A}] = [\mathrm{B}] = 1 - x" />:
+
+<MathContainer>
+<BlockMath math="\frac{x^2}{(1 - x)^2} = 4 \quad\Rightarrow\quad \frac{x}{1 - x} = 2" />
+<BlockMath math="x = \frac{2}{3} \approx 0.67" />
+</MathContainer>
+
+So **<InlineMath math="[\mathrm{C}] = [\mathrm{D}] = 0.67\text{ M}" />** and <InlineMath math="[\mathrm{A}] = [\mathrm{B}] = 0.33\text{ M}" />.
+
+**Solution 3**: Work out the reaction quotient:
+
+<BlockMath math="Q = \frac{1^2}{1 \times 1^3} = 1" />
+
+Because <InlineMath math="Q > K_c" />, there is too much product, so **the reaction shifts to the left**.
+
+**Solution 4**: The reaction is exothermic and cuts the moles of gas from four to two. Raising the temperature shifts the equilibrium to the left and **lowers the yield of ammonia**, because <InlineMath math="K" /> gets smaller. Raising the pressure shifts the equilibrium to the right and raises the yield. A catalyst does not change the yield, but equilibrium is reached sooner.
