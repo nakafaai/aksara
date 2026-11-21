@@ -114,7 +114,39 @@ export const kssmForm4MathematicsTopicNodes = [
     },
   }),
   unitNode({
+    children: [
+      materialNode({
+        key: "form-4-mathematics-operations-on-sets-set-operation",
+        level: "lesson",
+        materialKeys: ["lesson.mathematics.set-operation"],
+        order: 10,
+        outcomes: [
+          {
+            code: "Tingkatan 4, Standard Kandungan 4.1 hingga 4.3",
+            ...mathematicsStandards,
+          },
+        ],
+      }),
+    ],
     key: "form-4-mathematics-operations-on-sets",
+    materialCard: {
+      de: {
+        description: "Bilde Schnitt und Vereinigung und zähle Elemente.",
+        title: "Mengenoperationen",
+      },
+      en: {
+        description: "Form intersections and unions and count elements.",
+        title: "Operations on Sets",
+      },
+      id: {
+        description: "Tentukan irisan, gabungan, dan banyak anggota.",
+        title: "Operasi Himpunan",
+      },
+      ms: {
+        description: "Tentukan persilangan, kesatuan dan bilangan unsur.",
+        title: "Operasi Set",
+      },
+    },
     order: 40,
     translations: {
       de: { routeSlug: "mengenoperationen", title: "Mengenoperationen" },

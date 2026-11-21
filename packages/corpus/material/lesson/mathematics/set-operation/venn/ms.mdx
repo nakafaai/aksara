@@ -1,0 +1,274 @@
+export const metadata = {
+  title: "Nota Operasi Set Tingkatan Empat",
+  description:
+    "Nota Matematik Tingkatan 4 Bab 4: tentukan persilangan, kesatuan dan pelengkap set, gabungkan operasi, dan selesaikan masalah dengan gambar rajah Venn.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2026-11-17",
+  subject: "Operasi Set",
+};
+
+## Operasi Set Menggabungkan atau Memilih Unsur
+
+**Persilangan** <InlineMath math="A \cap B" /> ialah set unsur yang berada dalam kedua-dua <InlineMath math="A" /> dan <InlineMath math="B" />. **Kesatuan** <InlineMath math="A \cup B" /> ialah set unsur yang berada dalam <InlineMath math="A" />, dalam <InlineMath math="B" />, atau dalam kedua-duanya. **Pelengkap** <InlineMath math="A'" /> ialah set unsur dalam set semesta <InlineMath math="\xi" /> yang tidak berada dalam <InlineMath math="A" />. Gambar rajah Venn menunjukkan operasi ini sebagai kawasan. Dalam model di sini, kamu menggerakkan set untuk melihat persilangan, mengira unsur dengan prinsip inklusi dan eksklusi, dan menyelesaikan masalah tinjauan.
+
+## Persilangan dan Kesatuan
+
+Ambil <InlineMath math="\xi = \{1, 2, 3, \ldots, 10\}" />, <InlineMath math="A = \{2, 4, 6, 8, 10\}" /> dan <InlineMath math="B = \{3, 6, 9\}" />.
+
+<MathContainer>
+<BlockMath math="A \cap B = \{6\}" />
+<BlockMath math="A \cup B = \{2, 3, 4, 6, 8, 9, 10\}" />
+<BlockMath math="(A \cup B)' = \{1, 5, 7\}" />
+</MathContainer>
+
+Model ini melukis dua set sebagai bulatan dalam set semesta. Gerakkan set <InlineMath math="B" /> dan perhatikan bila **persilangan** wujud dan bila ia menjadi set kosong.
+
+<MathVisual
+  title={<>Dua Set dalam Set Semesta</>}
+  description={
+    <>
+      Set <InlineMath math="A" /> berpusat pada <InlineMath math="(-1, 0)" /> dan
+      set <InlineMath math="B" /> berpusat pada <InlineMath math="(h, 0)" />,
+      kedua-duanya dengan jejari <InlineMath math="2" />.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -4.5, max: 6.5 }, y: { min: -3, max: 3 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "h", min: -1, max: 5, value: 1.5, step: 0.1, label: "h" },
+    ],
+    objects: [
+      { id: "seta", kind: "parametric", appearance: "primary", x: "-1 + 2cos(t)", y: "2sin(t)", parameter: { min: 0, max: 2 * Math.PI } },
+      { id: "setb", kind: "parametric", appearance: "secondary", x: "h + 2cos(t)", y: "2sin(t)", parameter: { min: 0, max: 2 * Math.PI } },
+    ],
+    readouts: [
+      { key: "overlap", formula: "max(0, 4 - abs(h + 1))" },
+    ],
+    labels: [
+      { key: "seta", objectId: "seta", at: { x: -2.4, y: 1.4 }, placement: "above-left" },
+      { key: "setb", objectId: "setb", at: { x: "h + 1.4", y: "1.4" }, placement: "above-right" },
+    ],
+  }}
+  labels={{
+    seta: <InlineMath math="A" />,
+    setb: <InlineMath math="B" />,
+    h: <>Pusat set <InlineMath math="B" /> <InlineMath math="h" /></>,
+    overlap: <>Lebar kawasan persilangan</>,
+  }}
+/>
+
+Apabila <InlineMath math="h \ge 3" />, lebar persilangan menjadi sifar dan <InlineMath math="A \cap B = \varnothing" />. Dua set seperti ini dipanggil **set terpisah**.
+
+### Hukum de Morgan
+
+**Pelengkap kesatuan sama dengan persilangan pelengkap**, dan sebaliknya:
+
+<BlockMath math="(A \cup B)' = A' \cap B', \qquad (A \cap B)' = A' \cup B'" />
+
+Semak dengan contoh di atas: <InlineMath math="A' = \{1, 3, 5, 7, 9\}" /> dan <InlineMath math="B' = \{1, 2, 4, 5, 7, 8, 10\}" />, jadi <InlineMath math="A' \cap B' = \{1, 5, 7\}" />, sama dengan <InlineMath math="(A \cup B)'" />.
+
+### Operasi Gabungan
+
+Dalam operasi gabungan, **selesaikan kurungan dahulu**. Contohnya, dengan <InlineMath math="C = \{1, 2, 3\}" />:
+
+<BlockMath math="(A \cup B) \cap C = \{2, 3, 4, 6, 8, 9, 10\} \cap \{1, 2, 3\} = \{2, 3\}" />
+
+## Bilangan Unsur dan Prinsip Inklusi dan Eksklusi
+
+Tatatanda <InlineMath math="n(A)" /> bermaksud **bilangan unsur** dalam set <InlineMath math="A" />. Bilangan unsur sesuatu kesatuan boleh dikira tanpa menyenaraikan semua unsurnya. Cara ini penting dalam masalah tinjauan, kerana data biasanya diberi sebagai bilangan, bukan senarai nama. Dalam contoh awal, <InlineMath math="n(A) = 5" />, <InlineMath math="n(B) = 3" /> dan <InlineMath math="n(A \cap B) = 1" />.
+
+### Rumus Bilangan Unsur Kesatuan
+
+Apabila kita menjumlahkan <InlineMath math="n(A)" /> dan <InlineMath math="n(B)" />, unsur dalam persilangan dikira dua kali. Jadi:
+
+<BlockMath math="n(A \cup B) = n(A) + n(B) - n(A \cap B)" />
+
+Model ini melukis <InlineMath math="n(A \cup B)" /> bagi setiap nilai <InlineMath math="n(A \cap B)" />. Ubah saiz kedua-dua set dan perhatikan **kesatuan mengecil apabila persilangan membesar**.
+
+<MathVisual
+  title={<>Bilangan Unsur Kesatuan</>}
+  description={
+    <>
+      Garis <InlineMath math="n(A \cup B) = a + b - x" /> terhadap{" "}
+      <InlineMath math="x = n(A \cap B)" />, dengan <InlineMath math="n(A) = a" />{" "}
+      dan <InlineMath math="n(B) = b" />.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 20 }, y: { min: 0, max: 40 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "a", min: 5, max: 20, value: 18, step: 1, label: "a" },
+      { name: "b", min: 5, max: 20, value: 15, step: 1, label: "b" },
+      { name: "c", min: 0, max: 15, value: 6, step: 1, label: "c" },
+    ],
+    objects: [
+      { id: "union", kind: "function", appearance: "primary", formula: "a + b - x", domain: { min: 0, max: 20 } },
+      { id: "now", kind: "marker", x: "c", y: "a + b - c", appearance: "warning" },
+    ],
+    readouts: [
+      { key: "union", formula: "a + b - c" },
+    ],
+  }}
+  labels={{
+    a: <>Bilangan unsur <InlineMath math="A" /></>,
+    b: <>Bilangan unsur <InlineMath math="B" /></>,
+    c: <>Bilangan unsur persilangan</>,
+    union: <>Bilangan unsur kesatuan</>,
+  }}
+/>
+
+### Contoh Masalah Tinjauan
+
+Dalam sebuah kelas <InlineMath math="35" /> orang murid, <InlineMath math="18" /> orang suka bola sepak, <InlineMath math="15" /> orang suka badminton dan <InlineMath math="6" /> orang suka kedua-duanya. Cari **bilangan murid yang tidak suka kedua-dua sukan**.
+
+<MathContainer>
+<BlockMath math="n(F \cup B) = 18 + 15 - 6 = 27" />
+<BlockMath math="n(F \cup B)' = 35 - 27 = 8" />
+</MathContainer>
+
+Semak dengan model: pada <InlineMath math="a = 18" />, <InlineMath math="b = 15" /> dan <InlineMath math="c = 6" />, bacaan kesatuan ialah <InlineMath math="27" />. Carta ini menunjukkan bilangan murid dalam setiap kawasan gambar rajah Venn.
+
+<BarChart
+  title={<>Murid dalam Setiap Kawasan Gambar Rajah Venn</>}
+  description={
+    <>
+      Empat kawasan yang tidak bertindih. Jumlahnya ialah{" "}
+      <InlineMath math="35" /> orang murid.
+    </>
+  }
+  yAxisLabel="Bilangan murid"
+  data={[
+    { name: "Bola sepak sahaja", value: 18 - 6 },
+    { name: "Kedua-duanya", value: 6 },
+    { name: "Badminton sahaja", value: 15 - 6 },
+    { name: "Tiada", value: 35 - 27 },
+  ]}
+  chartConfig={{ value: { label: "Bilangan murid", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>
+
+Semak: <InlineMath math="12 + 6 + 9 + 8 = 35" />. Isi kawasan persilangan dahulu, kemudian kawasan sahaja, supaya tiada murid dikira dua kali.
+
+## Tiga Set
+
+Prinsip yang sama diperluas kepada **tiga set**, tetapi kini terdapat lebih banyak kawasan bertindih yang perlu diambil kira. Persilangan dua set ditolak sekali setiap satu, dan kawasan tengah ditambah semula kerana ia telah ditolak terlalu banyak kali:
+
+<BlockMath math="n(A \cup B \cup C) = n(A) + n(B) + n(C) - n(A \cap B) - n(A \cap C) - n(B \cap C) + n(A \cap B \cap C)" />
+
+### Lapan Kawasan Tiga Set
+
+Tiga set yang bertindih menghasilkan lapan kawasan. **Mulakan dengan kawasan tengah** <InlineMath math="A \cap B \cap C" />, kemudian persilangan dua set, kemudian kawasan sahaja. Gerakkan set <InlineMath math="C" /> dalam model ini dan lihat bagaimana kawasan tengah muncul dan hilang.
+
+<MathVisual
+  title={<>Tiga Set yang Bertindih</>}
+  description={
+    <>
+      Set <InlineMath math="A" /> dan <InlineMath math="B" /> tetap, manakala set{" "}
+      <InlineMath math="C" /> berpusat pada <InlineMath math="(0, k)" />. Semua
+      bulatan berjejari <InlineMath math="2" />.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -4, max: 4 }, y: { min: -4.5, max: 3 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "k", min: -2.5, max: 2.5, value: -1.5, step: 0.1, label: "k" },
+    ],
+    objects: [
+      { id: "seta", kind: "parametric", appearance: "primary", x: "-1 + 2cos(t)", y: "0.6 + 2sin(t)", parameter: { min: 0, max: 2 * Math.PI } },
+      { id: "setb", kind: "parametric", appearance: "secondary", x: "1 + 2cos(t)", y: "0.6 + 2sin(t)", parameter: { min: 0, max: 2 * Math.PI } },
+      { id: "setc", kind: "parametric", appearance: "reference", x: "2cos(t)", y: "k + 2sin(t)", parameter: { min: 0, max: 2 * Math.PI } },
+    ],
+    readouts: [
+      { key: "centre", formula: "k" },
+    ],
+    labels: [
+      { key: "seta", objectId: "seta", at: { x: -2.4, y: 2 }, placement: "above-left" },
+      { key: "setb", objectId: "setb", at: { x: 2.4, y: 2 }, placement: "above-right" },
+      { key: "setc", objectId: "setc", at: { x: "0", y: "k - 2" }, placement: "below" },
+    ],
+  }}
+  labels={{
+    seta: <InlineMath math="A" />,
+    setb: <InlineMath math="B" />,
+    setc: <InlineMath math="C" />,
+    k: <>Pusat set <InlineMath math="C" /> <InlineMath math="k" /></>,
+    centre: <>Kedudukan pusat <InlineMath math="C" /></>,
+  }}
+/>
+
+### Contoh Masalah Tiga Set
+
+Seramai <InlineMath math="50" /> orang murid ditanya tentang kelab. <InlineMath math="20" /> orang menyertai kelab sains, <InlineMath math="18" /> kelab matematik dan <InlineMath math="15" /> kelab seni. <InlineMath math="7" /> orang menyertai sains dan matematik, <InlineMath math="5" /> sains dan seni, <InlineMath math="4" /> matematik dan seni, dan <InlineMath math="2" /> orang menyertai ketiga-tiganya. Cari **bilangan murid yang tidak menyertai mana-mana kelab**.
+
+<BlockMath math="n(S \cup M \cup A) = 20 + 18 + 15 - 7 - 5 - 4 + 2 = 39" />
+
+Jadi <InlineMath math="50 - 39 = 11" /> orang murid tidak menyertai mana-mana kelab. Carta ini memecahkan jumlah itu mengikut kawasan.
+
+<BarChart
+  title={<>Murid dalam Kawasan Tiga Set</>}
+  description={
+    <>
+      Bilangan murid dalam setiap kawasan, diisi dari tengah ke luar.
+    </>
+  }
+  yAxisLabel="Bilangan murid"
+  data={[
+    { name: "Ketiga-tiga", value: 2 },
+    { name: "Sains dan matematik sahaja", value: 7 - 2 },
+    { name: "Sains dan seni sahaja", value: 5 - 2 },
+    { name: "Matematik dan seni sahaja", value: 4 - 2 },
+    { name: "Sains sahaja", value: 20 - 5 - 3 - 2 },
+    { name: "Matematik sahaja", value: 18 - 5 - 2 - 2 },
+    { name: "Seni sahaja", value: 15 - 3 - 2 - 2 },
+    { name: "Tiada", value: 11 },
+  ]}
+  chartConfig={{ value: { label: "Bilangan murid", colors: { light: ["var(--chart-2)"], dark: ["var(--chart-2)"] } } }}
+/>
+
+Semak: <InlineMath math="2 + 5 + 3 + 2 + 10 + 9 + 8 + 11 = 50" />.
+
+## Kesilapan Lazim tentang Operasi Set
+
+| Kesilapan | Sebab salah | Cara semak |
+| :--- | :--- | :--- |
+| <InlineMath math="n(A \cup B) = n(A) + n(B)" /> sentiasa. | Unsur persilangan dikira dua kali, jadi tolak <InlineMath math="n(A \cap B)" />. | Semak sama ada set bertindih. |
+| <InlineMath math="(A \cup B)' = A' \cup B'" />. | Hukum de Morgan menukar kesatuan kepada persilangan. | Uji dengan senarai unsur. |
+| Mengisi kawasan sahaja sebelum persilangan. | Bilangan kawasan sahaja bergantung pada persilangan. | Isi dari tengah ke luar. |
+| Melupakan unsur di luar semua set. | Set semesta termasuk unsur yang tidak berada dalam mana-mana set. | Jumlah semua kawasan mesti sama dengan <InlineMath math="n(\xi)" />. |
+
+Kesilapan pertama paling kerap muncul dalam soalan tinjauan. **Tolak persilangan sekali**.
+
+## Latihan Operasi Set
+
+Soalan ini bergerak dari senarai unsur ke masalah tiga set. **Semak setiap jawapan dengan jumlah semua kawasan**.
+
+1. Diberi <InlineMath math="\xi = \{x : 1 \le x \le 12\}" />, <InlineMath math="P" /> ialah set gandaan <InlineMath math="3" /> dan <InlineMath math="Q" /> ialah set nombor genap. Senaraikan <InlineMath math="P \cap Q" /> dan <InlineMath math="(P \cup Q)'" />.
+
+2. Diberi <InlineMath math="n(A) = 25" />, <InlineMath math="n(B) = 30" /> dan <InlineMath math="n(A \cup B) = 45" />. Cari <InlineMath math="n(A \cap B)" />.
+
+3. Dalam sebuah kumpulan <InlineMath math="40" /> orang, <InlineMath math="22" /> orang minum kopi, <InlineMath math="19" /> orang minum teh dan <InlineMath math="5" /> orang tidak minum kedua-duanya. Berapa orang minum kedua-duanya?
+
+4. Tunjukkan bahawa <InlineMath math="(A \cap B)' = A' \cup B'" /> bagi set <InlineMath math="A" /> dan <InlineMath math="B" /> dalam contoh awal nota ini.
+
+### Penyelesaian
+
+**Penyelesaian 1**: <InlineMath math="P = \{3, 6, 9, 12\}" /> dan <InlineMath math="Q = \{2, 4, 6, 8, 10, 12\}" />, jadi <InlineMath math="P \cap Q = \{6, 12\}" />. **Kesatuan** ialah <InlineMath math="\{2, 3, 4, 6, 8, 9, 10, 12\}" />, jadi <InlineMath math="(P \cup Q)' = \{1, 5, 7, 11\}" />.
+
+**Penyelesaian 2**: Susun semula prinsip inklusi dan eksklusi:
+
+<BlockMath math="n(A \cap B) = 25 + 30 - 45 = 10" />
+
+Semak: <InlineMath math="25 + 30 - 10 = 45" />.
+
+**Penyelesaian 3**: Seramai <InlineMath math="40 - 5 = 35" /> orang minum sekurang-kurangnya satu minuman:
+
+<BlockMath math="n(K \cap T) = 22 + 19 - 35 = 6" />
+
+Semak: <InlineMath math="16 + 6 + 13 + 5 = 40" />.
+
+**Penyelesaian 4**: <InlineMath math="A \cap B = \{6\}" />, jadi <InlineMath math="(A \cap B)'" /> mengandungi semua unsur kecuali <InlineMath math="6" />. **Kesatuan pelengkap** <InlineMath math="A' \cup B' = \{1, 2, 3, 4, 5, 7, 8, 9, 10\}" /> juga mengandungi semua unsur kecuali <InlineMath math="6" />, jadi kedua-dua set sama.
