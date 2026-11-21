@@ -1,15 +1,36 @@
 import { NodeServices } from "@effect/platform-node";
 import { describe, expect, it } from "@effect/vitest";
-import { Array as Arr, Effect, FileSystem, Path, String as Str } from "effect";
+import {
+  Array as Arr,
+  Effect,
+  FileSystem,
+  HashSet,
+  Path,
+  String as Str,
+} from "effect";
 import { corpusRoot } from "#corpus/test/root";
 import { loadTryoutContent } from "#corpus/tryout/content";
+import { servedExams } from "#corpus/tryout/held";
+import { examSetPaths } from "#corpus/tryout/projection";
+import { decodeTryoutRegistry } from "#corpus/tryout/registry";
+
+/** The set paths of every held track, which no release serves. */
+const heldSetPaths = Effect.fn("test.heldSetPaths")(function* () {
+  const exams = yield* decodeTryoutRegistry();
+  const served = HashSet.fromIterable(examSetPaths(servedExams(exams)));
+  return HashSet.fromIterable(
+    Arr.filter(examSetPaths(exams), (path) => !HashSet.has(served, path))
+  );
+});
 
 /**
- * Counts the try-out bank on disk, apart from the loader: its set folders,
- * and in every set its question folders and its reading folders. A file of
- * the bank sits at `country/exam/section/set/folder/file`.
+ * Counts the served try-out bank on disk, apart from the loader: its set
+ * folders, and in every set its question folders and its reading folders,
+ * leaving out the sets of held tracks. A file of the bank sits at
+ * `country/exam/section/set/folder/file`.
  */
 const countBank = Effect.fn("test.countBank")(function* (root: string) {
+  const held = yield* heldSetPaths();
   const fileSystem = yield* FileSystem.FileSystem;
   const path = yield* Path.Path;
   const listed = yield* fileSystem.readDirectory(
@@ -18,7 +39,9 @@ const countBank = Effect.fn("test.countBank")(function* (root: string) {
   );
   const files = Arr.filter(
     Arr.map(listed, (entry) => Str.split(entry, path.sep)),
-    (segments) => Arr.length(segments) === 6
+    (segments) =>
+      Arr.length(segments) === 6 &&
+      !HashSet.has(held, Arr.join(Arr.take(segments, 4), "/"))
   );
   const folders = Arr.dedupe(
     Arr.map(files, (segments) => Arr.join(Arr.take(segments, 5), "/"))

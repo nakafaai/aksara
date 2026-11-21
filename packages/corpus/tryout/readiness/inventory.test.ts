@@ -21,7 +21,17 @@ const written: TaskSource = {
       kind: "extendedText",
       label: "b",
       points: 1,
-      rubric: [{ label: "Alasan", met: "Menjelaskan alasannya.", points: 1 }],
+      rubric: [
+        {
+          feedback: {
+            earned: "Richtig gezeigt.",
+            missed: "Hier fehlt noch ein Schritt.",
+          },
+          label: "Alasan",
+          met: "Menjelaskan alasannya.",
+          points: 1,
+        },
+      ],
     },
   ],
 };

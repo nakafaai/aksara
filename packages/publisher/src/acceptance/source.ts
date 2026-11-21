@@ -9,6 +9,7 @@ import { decodeMaterialRegistry } from "@nakafa/aksara-corpus/material/registry"
 import { decodePageRegistry } from "@nakafa/aksara-corpus/pages/registry";
 import { readQuestionSets } from "@nakafa/aksara-corpus/question-bank/source";
 import type { loadTryoutContent } from "@nakafa/aksara-corpus/tryout/content";
+import { servedExams } from "@nakafa/aksara-corpus/tryout/held";
 import {
   examSetPaths,
   planTryoutPapers,
@@ -106,7 +107,7 @@ export const loadAcceptanceTryout: (
 > = Effect.fn("AksaraPublisher.loadAcceptanceTryout")(function* (
   checkoutRoot: string
 ) {
-  const registry = yield* decodeTryoutRegistry();
+  const registry = servedExams(yield* decodeTryoutRegistry());
   const exams = yield* Effect.forEach(registry, (source) =>
     Effect.gen(function* () {
       const tracks = yield* Effect.forEach(source.tracks, (track) =>

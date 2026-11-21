@@ -142,9 +142,24 @@ and a conclusion stated by content rather than an option letter. Keep notation
 consistent with the prompt. Use the [heading rules](headings.md):
 answer sections start at `#` and name real subgoals. Never delete reasoning
 to reduce line count. The answer of an item with parts opens one `#` heading
-per part, in the parts' order, each starting with the part's label and a
-parenthesis, such as `# a) Die Ableitung`, and works each part under its own
-heading with `##` for its steps. The explanations check refuses any other top
+per part, in the parts' order, each opening with the word for a part in the
+answer's language (`Teil`, `Part`, `Bagian`, `Bahagian`), the part's label, a
+colon, and the concept the part is about, such as `# Teil a: Die Ableitung` or
+`# Part a: The derivative`. A heading never opens with a list marker such as
+`a)`, which the compiler refuses. Work each part under its own heading with
+`##` for its steps.
+
+Every criterion of a written part carries `feedback: { earned, missed }` in
+each language: the line a learner reads after grading, in a teacher's voice,
+never model prose. Expert-marked answers that calibrate the grader go in
+`calibration.json` beside `item.ts`, by part label:
+`{ "b": [{ "id", "grade": "good" | "partial" | "wrong", "text", "marks": [{
+"criterion": 1, "met": true, "reason" }] }] }`. Each sample marks every
+criterion of its part once, numbered from 1 in rubric order; the file is
+checked with its item and never published. A track that Nakafa cannot serve
+yet, such as one with written or typed math parts before their graders ship,
+is authored with `held: true`: it is read and checked like any other and stays
+out of every release, with any group or exam left empty. The explanations check refuses any other top
 heading in such an answer.
 
 ## Items
