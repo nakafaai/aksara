@@ -25,43 +25,43 @@ export type DependencyHold = typeof DependencyHoldSchema.Type;
 /** Explicit review decisions for dependency cohorts that cannot float safely. */
 export const DEPENDENCY_HOLDS: readonly DependencyHold[] = [
   {
-    approvedCurrent: "4.1.4",
+    approvedCurrent: "4.1.5",
     cohort: "Effect",
     dependency: "effect",
     reason:
-      "The contracts and both consumers share one exact Effect v4 peer cohort, and the contracts lead it (docs/adr/compiler.md): a contracts release peers one exact Effect version, and nakafa.com moves to it when it adopts that release. Effect 4.1.0 replaced effect/Crypto with the effect/crypto services. 4.1.3 and 4.1.4 are patch releases: Rational, CLI completion and validation fixes, cluster workflow retries, and a TestClock finalizer fix; Alchemy 2.0.0-beta.87 peers effect ^4.1.4. Contracts 7.1.0 peers 4.1.4.",
+      "The contracts and both consumers share one exact Effect v4 peer cohort, and the contracts lead it (docs/adr/compiler.md): a contracts release peers one exact Effect version, and nakafa.com moves to it when it adopts that release. Effect 4.1.0 replaced effect/Crypto with the effect/crypto services. 4.1.5 is a patch release: Arbitrary diagnostics and string shrinking, Cache expiry under a provided clock, Chunk.fromIterable copying its array, field discovery over own enumerable string and symbol fields (an interface field map is no longer accepted), cluster redelivery fixes, effect/crypto/Password, and a Node HTTP server that answers 503 while not serving; Alchemy 2.0.0-beta.87 peers effect ^4.1.4. Contracts 8.9.1 peers 4.1.5, the cohort nakafa.com moved to first.",
     registry: "effect@latest",
-    reviewedLatest: "4.1.4",
+    reviewedLatest: "4.1.5",
     source: "catalog",
   },
   {
-    approvedCurrent: "4.1.4",
+    approvedCurrent: "4.1.5",
     cohort: "Effect",
     dependency: "@effect/platform-node",
     reason:
       "All Effect ecosystem packages must use one exact cohort. The cohort moves with the contracts as described on the effect entry.",
     registry: "@effect/platform-node@latest",
-    reviewedLatest: "4.1.4",
+    reviewedLatest: "4.1.5",
     source: "catalog",
   },
   {
-    approvedCurrent: "4.1.4",
+    approvedCurrent: "4.1.5",
     cohort: "Effect",
     dependency: "@effect/vitest",
     reason:
       "The test adapter must match the installed Effect cohort. The cohort moves with the contracts as described on the effect entry.",
     registry: "@effect/vitest@latest",
-    reviewedLatest: "4.1.4",
+    reviewedLatest: "4.1.5",
     source: "catalog",
   },
   {
-    approvedCurrent: "4.1.4",
+    approvedCurrent: "4.1.5",
     cohort: "Effect",
     dependency: "@effect/platform-node-shared",
     reason:
       "An override that pins the shared platform package to the Effect cohort. The cohort moves with the contracts as described on the effect entry.",
     registry: "@effect/platform-node-shared@latest",
-    reviewedLatest: "4.1.4",
+    reviewedLatest: "4.1.5",
     source: "override",
   },
   {
@@ -69,7 +69,7 @@ export const DEPENDENCY_HOLDS: readonly DependencyHold[] = [
     cohort: "Effect testing",
     dependency: "vitest",
     reason:
-      "The Effect 4 test adapter requires Vitest version 5; @effect/vitest 4.1.4 admits >=5.0.0 <6.0.0, and nakafa.com runs the same 5.1.1.",
+      "The Effect 4 test adapter requires Vitest version 5; @effect/vitest 4.1.5 admits >=5.0.0 <6.0.0, and nakafa.com runs the same 5.1.1.",
     registry: "vitest@latest",
     reviewedLatest: "5.1.1",
     source: "catalog",
