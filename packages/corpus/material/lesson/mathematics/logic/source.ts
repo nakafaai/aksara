@@ -15,22 +15,19 @@ const lesson: LessonModule = {
   slug: "logic",
   translations: {
     de: {
-      description:
-        "Prüfe Aussagen und Implikationen und ziehe gültige Schlüsse.",
+      description: "Prüfe Aussagen, Implikationen und gültige Schlüsse.",
       title: "Logisches Schließen",
     },
     en: {
-      description:
-        "Check statements, test implications and build valid arguments.",
+      description: "Check statements, implications, and valid arguments.",
       title: "Logical Reasoning",
     },
     id: {
-      description:
-        "Cek pernyataan, uji implikasi, dan susun penalaran yang sah.",
+      description: "Uji pernyataan, implikasi, dan penalaran yang sah.",
       title: "Logika Matematika",
     },
     ms: {
-      description: "Semak pernyataan, uji implikasi dan bina hujah yang sah.",
+      description: "Semak pernyataan, implikasi dan hujah yang sah.",
       title: "Penaakulan Logik",
     },
   },
