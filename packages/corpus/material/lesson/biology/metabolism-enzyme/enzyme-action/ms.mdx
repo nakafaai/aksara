@@ -1,0 +1,336 @@
+export const metadata = {
+  title: "Metabolisme dan Tindakan Enzim",
+  description:
+    "Kenali anabolisme dan katabolisme, cara enzim merendahkan tenaga pengaktifan, hipotesis mangga dan kunci, faktor kadar tindak balas dan kegunaan enzim.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2026-11-20",
+  subject: "Metabolisme dan Enzim",
+};
+
+## Membina dan Mengurai dalam Sel
+
+Sel kamu tidak pernah rehat. Ada masa sel menyambung molekul kecil menjadi molekul besar, dan ada masa sel memecahkan molekul besar. Semua tindak balas kimia dalam sel itu dipanggil **metabolisme**. Menyambung molekul ialah **anabolisme** dan memerlukan tenaga. Memecahkan molekul ialah **katabolisme** dan membebaskan tenaga. Hampir setiap langkah dipercepat oleh **enzim**, iaitu biomangkin yang dihasilkan oleh sel hidup. Dalam model di sini, kamu memadankan gula dengan enzim, mengikut enzim keluar dari sel, memanaskannya, memenuhkan tapak aktifnya dan mengalirkan susu melaluinya.
+
+Satu sel otot yang sedang membesar menyambung asid amino menjadi protein, iaitu anabolisme. Sel yang sama memecahkan glukosa dalam respirasi sel, iaitu katabolisme. Perhatikan di sebelah mana tenaga berada:
+
+<MathContainer>
+<BlockMath math="\text{anabolisme: asid amino} + \text{tenaga} \rightarrow \text{protein}" />
+<BlockMath math="\text{katabolisme: glukosa} + \mathrm{O_2} \rightarrow \mathrm{CO_2} + \mathrm{H_2O} + \text{tenaga}" />
+</MathContainer>
+
+**Tenaga daripada katabolisme dibawa oleh ATP kepada anabolisme**.
+
+## Bukit Tenaga yang Lebih Rendah
+
+Kenapa sel perlukan enzim? Bayangkan kamu menolak bola ke puncak bukit kecil supaya bola itu boleh bergolek turun di sebelah sana. Substrat pun perlu cukup tenaga untuk melepasi puncak sebelum bertukar menjadi hasil. Tenaga minimum itu dipanggil **tenaga pengaktifan**. Pada suhu badan, perlanggaran molekul jarang memberi tenaga sebanyak itu, jadi tanpa enzim tindak balas terlalu perlahan. Enzim menyediakan **laluan dengan puncak yang lebih rendah**.
+
+Dalam graf ini, garis mendatar ialah tenaga yang dikutip substrat daripada perlanggaran. Gerakkan gelangsar <InlineMath math="k" /> dan bandingkan tenaga yang masih kurang pada kedua-dua laluan.
+
+<MathVisual
+  title={<>Dua Laluan Melepasi Bukit Tenaga</>}
+  description={
+    <>
+      Paksi mengufuk ialah perjalanan tindak balas dan paksi menegak ialah
+      tenaga dalam unit mudah. Substrat bermula pada{" "}
+      <InlineMath math="60" /> dan hasil berakhir pada{" "}
+      <InlineMath math="25" />.
+    </>
+  }
+  footer={<>Lihat garis mendatar. Puncak laluan mana yang masih berada di atasnya?</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 10 }, y: { min: 0, max: 150 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "k", min: 60, max: 150, value: 100, step: 5, label: "k" },
+    ],
+    objects: [
+      { id: "plain-rise", kind: "function", appearance: "secondary", formula: "60 + 70(sin(pi x/10))^2", domain: { min: 0, max: 5 } },
+      { id: "plain-fall", kind: "function", appearance: "secondary", formula: "25 + 105(cos(pi (x - 5)/10))^2", domain: { min: 5, max: 10 } },
+      { id: "enzyme-rise", kind: "function", appearance: "primary", formula: "60 + 30(sin(pi x/10))^2", domain: { min: 0, max: 5 } },
+      { id: "enzyme-fall", kind: "function", appearance: "primary", formula: "25 + 65(cos(pi (x - 5)/10))^2", domain: { min: 5, max: 10 } },
+      { id: "energy", kind: "function", appearance: "warning", formula: "k", domain: { min: 0, max: 10 } },
+      { id: "start", kind: "point", appearance: "highlight", at: { x: 0, y: 60 } },
+      { id: "end", kind: "point", appearance: "highlight", at: { x: 10, y: 25 } },
+    ],
+    labels: [
+      { key: "plain", objectId: "plain-rise", at: { x: 5, y: 130 }, placement: "above" },
+      { key: "enzyme", objectId: "enzyme-rise", at: { x: 5, y: 90 }, placement: "below" },
+      { key: "start", objectId: "start", at: { x: 0, y: 60 }, placement: "above-right" },
+      { key: "end", objectId: "end", at: { x: 10, y: 25 }, placement: "above-left" },
+    ],
+    readouts: [
+      { key: "plain-gap", formula: "max(0, 130 - k)" },
+      { key: "enzyme-gap", formula: "max(0, 90 - k)" },
+    ],
+  }}
+  labels={{
+    k: <>Tenaga daripada perlanggaran <InlineMath math="k" /></>,
+    plain: <>Tanpa enzim</>,
+    enzyme: <>Dengan enzim</>,
+    start: <>Substrat</>,
+    end: <>Hasil</>,
+    "plain-gap": <>Tenaga yang masih kurang tanpa enzim</>,
+    "enzyme-gap": <>Tenaga yang masih kurang dengan enzim</>,
+  }}
+/>
+
+Tenaga pengaktifan ialah tinggi puncak tolak aras substrat:
+
+<MathContainer>
+<BlockMath math="\text{tanpa enzim: } 130 - 60 = 70\text{ unit}" />
+<BlockMath math="\text{dengan enzim: } 90 - 60 = 30\text{ unit}" />
+<BlockMath math="\text{tenaga dibebaskan: } 60 - 25 = 35\text{ unit}" />
+</MathContainer>
+
+Kedua-dua laluan bermula pada <InlineMath math="60" /> dan berakhir pada <InlineMath math="25" />, jadi **tenaga yang dibebaskan tetap sama**. Enzim cuma merendahkan puncak, tanpa menambah tenaga atau mengubah hasil.
+
+Kebanyakan enzim ialah protein, tetapi **bukan semua enzim protein**. Dalam ribosom, enzim yang menyambung asid amino semasa sintesis protein ialah sebahagian daripada RNA ribosom.
+
+## Padanan Bentuk di Tapak Aktif
+
+Hanya satu lekuk kecil pada enzim yang bekerja, iaitu **tapak aktif**. Bentuknya sepadan dengan satu jenis substrat sahaja, macam anak kunci dengan mangganya. Inilah **hipotesis mangga dan kunci**. Substrat masuk ke tapak aktif dan membentuk kompleks enzim-substrat. Ikatan dalam substrat diputuskan, hasil dilepaskan, dan enzim sedia menerima substrat seterusnya. Contohnya, laktase memecahkan laktosa, iaitu gula susu:
+
+<BlockMath math="\text{laktosa} + \mathrm{H_2O} \xrightarrow{\text{laktase}} \text{glukosa} + \text{galaktosa}" />
+
+Kajian yang lebih baharu menunjukkan tapak aktif tidak keras seperti mangga besi. Apabila substrat masuk, tapak aktif berubah bentuk sedikit dan memegang substrat dengan lebih ketat. Itulah **model padanan teraruh**.
+
+<ActiveSiteLab
+  title={<>Tapak Aktif Laktase, Sukrase dan Maltase</>}
+  description={
+    <>
+      Tiga enzim dan tiga gula yang masing-masing terdiri daripada dua unit.
+      Pilih enzim dan substrat, kemudian lihat sama ada substrat itu muat
+      dalam tapak aktif.
+    </>
+  }
+  footer={<>Perhatikan lekuk pada enzim. Cuba padankan bentuknya dengan cincin gula yang masuk.</>}
+  enzymes={["lactase", "sucrase", "maltase"]}
+  substrates={["lactose", "sucrose", "maltose"]}
+  models={["lockKey", "inducedFit"]}
+  labels={{
+    enzyme: "Enzim",
+    enzymes: { lactase: "Laktase", sucrase: "Sukrase", maltase: "Maltase" },
+    substrate: "Substrat",
+    substrates: { lactose: "Laktosa", sucrose: "Sukrosa", maltose: "Maltosa" },
+    model: "Model",
+    models: { lockKey: "Mangga dan kunci", inducedFit: "Padanan teraruh" },
+    fits: <>Substrat muat dalam tapak aktif</>,
+    yes: <>ya</>,
+    no: <>tidak</>,
+    products: <>Hasil</>,
+    sugars: { glucose: "Glukosa", galactose: "Galaktosa", fructose: "Fruktosa" },
+    reused: <>Substrat yang sudah dipecahkan oleh enzim ini</>,
+    parts: { site: "Tapak aktif", complex: "Kompleks enzim-substrat", water: "Air" },
+    view: "Satu molekul enzim dengan tapak aktifnya dan molekul gula di sekelilingnya",
+  }}
+/>
+
+Model itu menunjukkan ciri am enzim. Enzim **bertindak spesifik** dan tidak berubah selepas tindak balas, jadi molekul yang sama digunakan semula dan sel cuma perlukan sedikit. Banyak tindak balas berenzim boleh berbalik. Sesetengah enzim perlukan kofaktor, iaitu ion tak organik seperti ion magnesium, atau koenzim, iaitu molekul organik yang kebanyakannya berasal daripada vitamin.
+
+Kebanyakan nama enzim dibina dengan menambah **-ase pada nama substrat**: maltosa menjadi maltase dan lipid menjadi lipase. Kaedah IUBMB pula memberi setiap enzim satu nombor dan satu nama sistematik, seperti *lactose galactohydrolase* bagi laktase, yang menyebut substrat dan jenis tindak balasnya.
+
+Cuba fikir dahulu. Satu enzim memecahkan laktosa. Apakah namanya, dan bolehkah enzim itu memecahkan sukrosa?
+
+Namanya **laktase**. Laktase mengenal bahagian galaktosa dalam laktosa, tetapi sukrosa terdiri daripada glukosa dan fruktosa. Jadi **sukrosa tidak sepadan dengan tapak aktif laktase**, kompleks enzim-substrat tidak terbentuk dan tiada hasil. Semak dalam model dengan memilih laktase dan sukrosa.
+
+## Enzim yang Kekal atau Keluar
+
+Enzim protein dibina oleh ribosom, tetapi tempat kerjanya berbeza. **Enzim intrasel** bekerja di dalam sel yang menghasilkannya, contohnya enzim glikolisis. Enzim ini dibina oleh ribosom bebas dan terus bekerja dalam sitoplasma.
+
+**Enzim ekstrasel** dirembeskan untuk bekerja di luar sel, contohnya enzim dalam jus pankreas daripada sel asinus pankreas. Enzim itu melalui beberapa [organel sel](/ms/subjek/biologi/sel-dan-organisasi/struktur-sel-dan-sel-khusus). Ribosom pada jalinan endoplasma kasar membinanya ke dalam jalinan itu. Vesikel angkutan membawanya ke jasad Golgi, yang mengubah suai dan membungkusnya dalam vesikel rembesan. Vesikel rembesan bercantum dengan membran plasma dan melepaskan enzim secara **eksositosis**.
+
+<EnzymeSecretionLab
+  title={<>Laluan Enzim dari Ribosom ke Tempat Kerjanya</>}
+  description={
+    <>
+      Satu sel asinus pankreas. Pilih enzim yang kekal di dalam sel atau enzim
+      yang dirembeskan, kemudian mainkan laluannya langkah demi langkah.
+    </>
+  }
+  footer={<>Ikut titik berwarna dari ribosom. Organel mana yang dilaluinya sebelum keluar?</>}
+  routes={["intracellular", "extracellular"]}
+  labels={{
+    route: "Jenis enzim",
+    routes: { intracellular: "Enzim intrasel", extracellular: "Enzim ekstrasel" },
+    step: <>Langkah sekarang</>,
+    steps: {
+      nucleus: <>mRNA membawa arahan keluar dari nukleus</>,
+      freeRibosome: <>Ribosom bebas membina enzim</>,
+      boundRibosome: <>Ribosom pada jalinan endoplasma kasar membina enzim</>,
+      reticulum: <>Enzim dilipat di dalam jalinan endoplasma kasar</>,
+      transport: <>Vesikel angkutan membawa enzim ke jasad Golgi</>,
+      golgi: <>Jasad Golgi mengubah suai dan membungkus enzim</>,
+      secretory: <>Vesikel rembesan bergerak ke membran plasma</>,
+      exocytosis: <>Eksositosis melepaskan enzim ke dalam duktus</>,
+      cytoplasm: <>Enzim terus bekerja dalam sitoplasma</>,
+    },
+    example: <>Contoh enzim</>,
+    examples: { intracellular: <>Enzim glikolisis</>, extracellular: <>Amilase pankreas</> },
+    place: <>Tempat enzim bekerja</>,
+    places: { intracellular: <>Sitoplasma sel ini</>, extracellular: <>Usus kecil, selepas melalui duktus pankreas</> },
+    parts: {
+      nucleus: "Nukleus",
+      ribosome: "Ribosom",
+      reticulum: "Jalinan endoplasma kasar",
+      golgi: "Jasad Golgi",
+      vesicle: "Vesikel rembesan",
+      membrane: "Membran plasma",
+      duct: "Duktus",
+    },
+    view: "Satu sel asinus pankreas yang dibuka untuk menunjukkan organelnya",
+  }}
+/>
+
+Mainkan kedua-dua laluan dalam model untuk melihat bezanya sekali pandang. Enzim intrasel berhenti sebaik sahaja dibina oleh ribosom bebas kerana tempat kerjanya dalam sitoplasma, manakala enzim ekstrasel melalui jalinan endoplasma kasar, vesikel angkutan dan jasad Golgi supaya dilipat, dibungkus dan dilepaskan dengan selamat merentas membran plasma ke dalam duktus.
+
+## Keadaan yang Menentukan Kadar
+
+Kadar tindak balas ialah berapa cepat substrat habis atau hasil terbentuk. Suhu dan pH mengubah **bentuk tapak aktif**. Kepekatan substrat dan kepekatan enzim pula mengubah bilangan tapak aktif yang sedang bekerja.
+
+### Suhu dan pH Optimum
+
+Panaskan larutan, dan molekul bergerak lebih laju kerana **tenaga kinetiknya bertambah**. Lebih banyak perlanggaran berkesan berlaku, iaitu substrat melanggar tapak aktif pada kedudukan yang betul, jadi kadar naik. Kebanyakan enzim dalam badan kamu paling cepat dekat <InlineMath math="37^\circ\text{C}" />, iaitu suhu optimumnya.
+
+Lebih panas lagi, ikatan yang memegang bentuk enzim putus. Tapak aktif berubah bentuk, substrat tidak lagi muat, dan enzim **ternyahasli**. Menyejukkannya semula tidak memulihkan tapak aktif itu. Suhu rendah berbeza: enzim cuma perlahan, dan bekerja semula apabila dipanaskan.
+
+pH yang tidak sesuai mengubah cas pada tapak aktif, jadi bentuknya berubah dan enzim boleh ternyahasli. Setiap enzim ada **pH optimum yang sepadan dengan tempat kerjanya**. Pepsin dalam perut yang berasid paling aktif dekat pH <InlineMath math="2" />, dan amilase liur bekerja dalam mulut yang hampir neutral, seperti dalam [pencernaan makanan](/ms/subjek/biologi/sistem-pencernaan/pencernaan-dan-penyerapan).
+
+<DenatureLab
+  title={<>Amilase pada Pelbagai Suhu dan Pepsin pada Pelbagai pH</>}
+  description={
+    <>
+      Amilase mencernakan kanji dalam kukus air, dan iodin pada jubin berlekuk
+      menunjukkan kanji yang tinggal. Pepsin mencernakan ampaian albumen yang
+      keruh. Tukar suhu atau pH, kemudian lihat tapak aktif melalui kanta.
+    </>
+  }
+  footer={<>Tekan butang kembali ke keadaan optimum, kemudian lihat tapak aktif dalam kanta.</>}
+  enzymes={["amylase", "pepsin"]}
+  temperature={{ min: 0, max: 80, value: 20 }}
+  ph={{ min: 1, max: 13, value: 7 }}
+  labels={{
+    enzyme: "Eksperimen",
+    enzymes: { amylase: "Amilase dan kanji", pepsin: "Pepsin dan albumen" },
+    temperature: "Suhu kukus air",
+    ph: "pH larutan",
+    restore: "Kembali ke keadaan optimum",
+    test: <>Ujian sekarang</>,
+    tests: {
+      starch: <>iodin biru tua, kanji masih ada</>,
+      noStarch: <>iodin perang kekuningan, kanji sudah habis</>,
+      cloudy: <>ampaian masih keruh</>,
+      clear: <>ampaian sudah jernih</>,
+    },
+    endpoint: <>Masa sehingga substrat habis</>,
+    never: <>tidak sampai</>,
+    rate: <>Kadar tindak balas relatif</>,
+    active: <>Enzim yang tapak aktifnya masih utuh</>,
+    collisions: <>Perlanggaran berkesan sesaat</>,
+    time: "Masa",
+    parts: {
+      bath: "Kukus air",
+      tube: "Tabung uji",
+      tile: "Jubin berlekuk",
+      thermometer: "Termometer",
+      lens: "Kanta pada tapak aktif",
+    },
+    view: "Kukus air dengan tabung uji, jubin berlekuk berisi iodin dan kanta pada satu enzim",
+  }}
+/>
+
+Sekarang reka ujian adil untuk mencari pH terbaik bagi pepsin. Pepsin mencernakan ampaian albumen, iaitu putih telur masak dalam air yang keruh, sehingga ampaian itu jernih. Namakan pemboleh ubahnya dan ramal hasilnya.
+
+Pemboleh ubah dimanipulasi ialah pH, contohnya pH <InlineMath math="2" />, <InlineMath math="7" /> dan <InlineMath math="10" />. Pemboleh ubah bergerak balas ialah **masa sehingga ampaian menjadi jernih**. Pemboleh ubah dimalarkan ialah suhu <InlineMath math="37^\circ\text{C}" /> serta isi padu dan kepekatan pepsin dan ampaian. Tabung pH <InlineMath math="2" /> jernih paling cepat. Tabung pH <InlineMath math="7" /> dan <InlineMath math="10" /> kekal keruh kerana tapak aktif pepsin tidak lagi berbentuk sesuai.
+
+### Semua Tapak Aktif Sibuk
+
+Tambah substrat, dan lebih banyak substrat berlanggar dengan tapak aktif, jadi kadar naik. Apabila **setiap tapak aktif sudah sibuk**, substrat tambahan terpaksa menunggu giliran, jadi kadar berhenti pada kadar maksimum. Sekarang kepekatan enzim ialah faktor pengehad. Tambah enzim, dan kadar naik semula selagi substrat cukup.
+
+<EnzymeSaturationLab
+  title={<>Tapak Aktif yang Penuh</>}
+  description={
+    <>
+      Molekul enzim terapung bersama substrat. Tambah substrat atau tambah
+      enzim, kemudian bandingkan bilangan tapak aktif yang sibuk dengan kadar
+      tindak balas.
+    </>
+  }
+  footer={<>Kira tapak aktif yang kosong. Jika tiada yang kosong, apa gunanya substrat tambahan?</>}
+  enzymes={{ min: 1, max: 20, value: 10 }}
+  substrates={{ min: 0, max: 200, value: 20 }}
+  turnover={2}
+  labels={{
+    enzymes: "Molekul enzim",
+    substrates: "Molekul substrat",
+    busy: <>Tapak aktif yang sibuk</>,
+    rate: <>Substrat yang dipecahkan sesaat</>,
+    limiting: <>Faktor pengehad</>,
+    limits: { substrate: <>kepekatan substrat</>, enzyme: <>kepekatan enzim</> },
+    curve: <>Kadar melawan kepekatan substrat</>,
+    time: "Masa",
+    parts: { enzyme: "Enzim", substrate: "Substrat", product: "Hasil" },
+    view: "Molekul enzim dan substrat dalam larutan, dilihat dari dekat",
+  }}
+/>
+
+Dalam model, setiap tapak aktif yang sibuk menyiapkan <InlineMath math="2" /> substrat sesaat. Kira kadar maksimum bagi <InlineMath math="10" /> molekul enzim, kemudian bagi <InlineMath math="20" />. Jika hanya <InlineMath math="4" /> substrat ada pada satu masa, berapakah kadar paling tinggi?
+
+Apabila semua tapak aktif sibuk, kadar ialah bilangan tapak aktif darab <InlineMath math="2" />:
+
+<MathContainer>
+<BlockMath math="10 \times 2 = 20 \text{ substrat sesaat}" />
+<BlockMath math="20 \times 2 = 40 \text{ substrat sesaat}" />
+</MathContainer>
+
+Menggandakan substrat tidak menaikkan kadar <InlineMath math="20" /> kerana tiada tapak aktif yang kosong, tetapi menggandakan enzim menjadikannya <InlineMath math="40" />. Dengan <InlineMath math="4" /> substrat, paling banyak <InlineMath math="4" /> tapak aktif sibuk:
+
+<BlockMath math="4 \times 2 = 8 \text{ substrat sesaat}" />
+
+Kini **substrat pula faktor pengehad**. Model menunjukkan nilai sedikit di bawah <InlineMath math="20" /> dan <InlineMath math="8" />, kerana tapak aktif kosong sekejap antara dua substrat.
+
+## Enzim dalam Makanan dan Kilang
+
+Kilang menghasilkan enzim secara besar-besaran, kebanyakannya daripada mikroorganisma, dan memilih enzim mengikut **substrat yang perlu dipecahkan**:
+
+| Bidang | Enzim | Kerja enzim |
+| :--- | :--- | :--- |
+| Bio-detergen | Protease, lipase, amilase | Menanggalkan kotoran protein, lemak dan kanji pada kain |
+| Pemprosesan ikan | Protease | Menanggalkan kulit ikan tanpa merosakkan isinya |
+| Pemprosesan kulit | Protease | Menanggalkan bulu daripada kulit haiwan |
+| Perubatan | Protease | Membersihkan kulit mati pada luka terbakar |
+| Susu tanpa laktosa | Laktase | Memecahkan laktosa kepada glukosa dan galaktosa |
+| Jus buah-buahan | Pektinase | Memecahkan pektin dinding sel supaya lebih banyak jus keluar |
+
+Enzim mahal, jadi kilang menggunakannya berulang kali melalui teknologi imobilisasi enzim. Enzim diperangkap dalam bahan pepejal yang tidak larut, seperti manik alginat, dan dipanggil **enzim tersekat gerak**. Enzim itu kekal di tempatnya, mudah diasingkan daripada hasil dan selalunya lebih tahan terhadap perubahan suhu dan pH.
+
+<LactaseColumnLab
+  title={<>Susu Mengalir melalui Manik Laktase</>}
+  description={
+    <>
+      Laktase diperangkap dalam manik alginat di dalam turus. Susu masuk dari
+      atas dan keluar dari bawah. Tukar kadar aliran dan bandingkan dengan
+      laktase yang dicampur terus ke dalam susu.
+    </>
+  }
+  footer={<>Perhatikan manik dalam turus. Adakah manik itu ikut keluar bersama susu?</>}
+  methods={["immobilised", "free"]}
+  flow={{ min: 1, max: 10, value: 5 }}
+  labels={{
+    method: "Cara",
+    methods: { immobilised: "Laktase dalam manik", free: "Laktase dicampur ke dalam susu" },
+    flow: "Kadar aliran susu",
+    lactose: <>Laktosa yang tinggal dalam susu yang keluar</>,
+    glucose: <>Jalur ujian glukosa</>,
+    positive: <>ada glukosa</>,
+    negative: <>tiada glukosa</>,
+    enzyme: <>Laktase dalam susu yang keluar</>,
+    none: <>tiada</>,
+    present: <>ada</>,
+    batches: <>Kelompok susu yang dirawat oleh laktase yang sama</>,
+    parts: { column: "Turus", beads: "Manik alginat", milk: "Susu", strip: "Jalur ujian glukosa" },
+    view: "Turus kaca berisi manik alginat dengan susu mengalir melaluinya",
+  }}
+/>
+
+Alirkan susu dengan perlahan, dan susu itu tinggal lebih lama bersama laktase, jadi **lebih banyak laktosa dipecahkan**. Jalur ujian glukosa membuktikannya, kerana jalur itu mengesan glukosa yang terhasil dan tidak bertindak balas dengan laktosa.

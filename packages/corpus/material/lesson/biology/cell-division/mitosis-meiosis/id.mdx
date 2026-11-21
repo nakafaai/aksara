@@ -1,0 +1,369 @@
+export const metadata = {
+  title: "Pembelahan Sel Mitosis dan Meiosis",
+  description:
+    "Ikuti siklus sel, bedakan tahap mitosis dan meiosis, hitung indeks mitosis, dan hubungkan kesalahan pembelahan sel dengan kanker dan sindrom Down.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2026-11-17",
+  subject: "Pembelahan Sel",
+};
+
+## Dua Cara Sel Membelah
+
+**Pembelahan sel** adalah proses satu sel induk menghasilkan sel anak. Prosesnya terdiri atas dua bagian: **kariokinesis**, yaitu pembelahan inti, dan **sitokinesis**, yaitu pembelahan sitoplasma. Sel eukariot membelah dengan dua cara:
+
+- **Mitosis** menghasilkan dua sel anak yang identik secara genetik dengan sel induk dan punya jumlah kromosom yang sama, <InlineMath math="2n \rightarrow 2n" />. Mitosis terjadi di sel tubuh untuk pertumbuhan, perbaikan jaringan, dan reproduksi aseksual.
+- **Meiosis** menghasilkan empat sel anak dengan setengah jumlah kromosom, <InlineMath math="2n \rightarrow n" />, dan susunan genetiknya berbeda. Meiosis terjadi di testis dan ovarium hewan, serta di kepala sari dan bakal biji tumbuhan berbunga, untuk membentuk gamet.
+
+Di materi ini kamu melacak kandungan DNA sepanjang siklus sel, mengamati ujung akar bawang di bawah mikroskop, menghitung jumlah sel setelah beberapa kali mitosis, dan mengikuti kromosom gamet sampai pembuahan.
+
+## Kromosom dan Kromatid pada Sel Diploid
+
+Selama interfase, DNA di dalam inti berbentuk benang halus yang disebut **kromatin**. Sebelum sel membelah, kromatin memendek dan menebal menjadi **kromosom** yang terlihat dengan mikroskop cahaya. Setelah DNA disalin, setiap kromosom terdiri atas dua **kromatid saudara** yang menyatu di **sentromer**.
+
+| Istilah | Arti | Contoh |
+| :--- | :--- | :--- |
+| Kromosom homolog | Sepasang kromosom dengan ukuran, bentuk, dan urutan gen yang sama, satu dari tiap induk | Pasangan kromosom <InlineMath math="1" /> manusia |
+| Diploid, <InlineMath math="2n" /> | Sel yang punya dua set kromosom | Sel tubuh manusia, <InlineMath math="2n = 46" /> |
+| Haploid, <InlineMath math="n" /> | Sel yang punya satu set kromosom | Sperma dan ovum manusia, <InlineMath math="n = 23" /> |
+
+Bawang, *Allium cepa*, punya <InlineMath math="2n = 16" />. Sel ujung akar bawang berisi <InlineMath math="16" /> kromosom, sedangkan gametnya berisi **setengah dari jumlah itu**, yaitu <InlineMath math="8" />.
+
+## Siklus Sel dari Interfase sampai Fase M
+
+**Siklus sel** adalah urutan peristiwa dari satu pembelahan sel sampai pembelahan berikutnya. Siklus sel terdiri atas **interfase** dan **fase M**. Interfase punya tiga fase:
+
+- Fase <InlineMath math="\mathrm{G_1}" />: sel tumbuh dan menyintesis protein serta organel baru.
+- Fase <InlineMath math="\mathrm{S}" />: DNA bereplikasi, jadi setiap kromosom sekarang punya dua kromatid saudara.
+- Fase <InlineMath math="\mathrm{G_2}" />: sel mengumpulkan energi dan menyintesis protein untuk benang spindel.
+
+Fase M mencakup mitosis dan sitokinesis. Pada sel manusia yang membelah cepat dengan siklus <InlineMath math="24" /> jam, <InlineMath math="\mathrm{G_1}" /> berlangsung sekitar <InlineMath math="11" /> jam, <InlineMath math="\mathrm{S}" /> <InlineMath math="8" /> jam, <InlineMath math="\mathrm{G_2}" /> <InlineMath math="4" /> jam, dan fase M hanya <InlineMath math="1" /> jam. Sel yang berhenti membelah, seperti sel saraf dewasa, keluar dari siklus dan masuk ke fase <InlineMath math="\mathrm{G_0}" />.
+
+Geser penggeser waktu di bawah. Kandungan DNA tetap <InlineMath math="2" /> satuan selama <InlineMath math="\mathrm{G_1}" />, naik selama <InlineMath math="\mathrm{S}" />, lalu turun lagi saat sitokinesis membagi DNA ke dua sel anak.
+
+<MathVisual
+  title={<>Kandungan DNA Satu Sel sepanjang Siklus Sel</>}
+  description={
+    <>
+      Sumbu mendatar adalah waktu dalam jam dan sumbu tegak adalah kandungan
+      DNA dalam satuan relatif. Fase <InlineMath math="\mathrm{S}" />{" "}
+      berlangsung dari jam ke-<InlineMath math="11" /> sampai{" "}
+      jam ke-<InlineMath math="19" />, dan sitokinesis terjadi pada{" "}
+      jam ke-<InlineMath math="24" />.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 26 }, y: { min: 0, max: 5 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "h", min: 0, max: 24, value: 15, step: 0.5, label: "h" },
+    ],
+    objects: [
+      { id: "growth", kind: "segment", appearance: "primary", from: { x: 0, y: 2 }, to: { x: 11, y: 2 } },
+      { id: "synthesis", kind: "segment", appearance: "primary", from: { x: 11, y: 2 }, to: { x: 19, y: 4 } },
+      { id: "second", kind: "segment", appearance: "primary", from: { x: 19, y: 4 }, to: { x: 23, y: 4 } },
+      { id: "mitosis", kind: "segment", appearance: "warning", from: { x: 23, y: 4 }, to: { x: 24, y: 4 } },
+      { id: "split", kind: "segment", appearance: "construction", from: { x: 24, y: 4 }, to: { x: 24, y: 2 } },
+      { id: "daughter", kind: "segment", appearance: "primary", from: { x: 24, y: 2 }, to: { x: 26, y: 2 } },
+      { id: "now", kind: "marker", appearance: "highlight", x: "h", y: "2 + min(max(h - 11, 0), 8)/4" },
+    ],
+    labels: [
+      { key: "growth", objectId: "growth", at: { x: 5.5, y: 2 }, placement: "above" },
+      { key: "synthesis", objectId: "synthesis", at: { x: 15, y: 3 }, placement: "above-left" },
+      { key: "second", objectId: "second", at: { x: 21, y: 4 }, placement: "above" },
+      { key: "mitosis", objectId: "mitosis", at: { x: 23.5, y: 4 }, placement: "below" },
+    ],
+    readouts: [
+      { key: "dna", formula: "2 + min(max(h - 11, 0), 8)/4" },
+    ],
+  }}
+  labels={{
+    h: <>Waktu <InlineMath math="h" /> dalam jam</>,
+    growth: <><InlineMath math="\mathrm{G_1}" /></>,
+    synthesis: <><InlineMath math="\mathrm{S}" /></>,
+    second: <><InlineMath math="\mathrm{G_2}" /></>,
+    mitosis: <>Fase M</>,
+    dna: <>Kandungan DNA dalam satuan relatif</>,
+  }}
+/>
+
+Replikasi DNA pada fase <InlineMath math="\mathrm{S}" /> bersifat **semikonservatif**. Dua untai heliks ganda membuka, dan setiap untai lama menjadi cetakan untuk untai baru. Geser penggeser penyalinan dan perhatikan nukleotida baru berpasangan dengan kedua untai lama.
+
+<DnaHelixLab
+  title={<>DNA Disalin Basa demi Basa pada Fase S</>}
+  description={
+    <>
+      Seruas DNA sepanjang <InlineMath math="27" /> pasang basa. Setiap untai
+      lama menuntun pembentukan satu untai baru, jadi dua kromatid saudara
+      membawa DNA yang sama.
+    </>
+  }
+  copy
+  sequence="ATG GCT AGC TTA GGC ATC GAT CCG TAA"
+  labels={{
+    copy: "Kemajuan penyalinan",
+    length: <>Pasang basa</>,
+    span: <>Panjang</>,
+    copied: <>Basa baru yang berpasangan</>,
+    turns: <>Putaran heliks</>,
+    viewLabel: "Heliks DNA membuka dan disalin",
+  }}
+/>
+
+Hitung bagian siklus yang dipakai untuk fase M. Fase M memakan <InlineMath math="1" /> jam dari <InlineMath math="24" /> jam:
+
+<BlockMath math="\frac{1\text{ jam}}{24\text{ jam}} \times 100\% \approx 4{,}2\%" />
+
+Cek dengan sisa siklus: interfase memakan <InlineMath math="23" /> jam, sekitar <InlineMath math="95{,}8\%" />. Karena interfase paling panjang, **sebagian besar sel di jaringan yang aktif membelah berada dalam interfase** saat diamati di bawah mikroskop.
+
+## Empat Tahap Mitosis
+
+Mitosis adalah satu proses yang berkesinambungan, tetapi para ahli biologi membaginya menjadi empat tahap agar mudah dijelaskan:
+
+| Tahap | Peristiwa utama |
+| :--- | :--- |
+| Profase | Kromatin memendek menjadi kromosom dengan dua kromatid saudara. Nukleolus menghilang, benang spindel terbentuk, dan membran inti hancur. |
+| Metafase | Kromosom berjajar dalam satu baris di bidang ekuator. Benang spindel menempel pada sentromer. |
+| Anafase | Sentromer membelah dan kromatid saudara ditarik ke kutub yang berlawanan. |
+| Telofase | Kromosom tiba di kutub dan memanjang lagi. Membran inti dan nukleolus terbentuk kembali. |
+
+Sitokinesis berbeda antara sel hewan dan sel tumbuhan. Pada sel hewan, cincin mikrofilamen di bawah membran plasma mengerut dan membentuk **alur pembelahan** yang menjepit sel menjadi dua. Sel tumbuhan punya dinding sel yang kaku, jadi vesikel dari badan Golgi berkumpul di tengah sel dan menyatu menjadi **lempeng sel**, yang kemudian menjadi dinding sel baru.
+
+Ujung akar bawang adalah jaringan yang aktif membelah. Amati preparat pencet ujung akar dan ganti lensa objektif. Pada perbesaran kuat, cari sel yang sedang profase, metafase, anafase, dan telofase di antara sel interfase.
+
+<MicroscopeLab
+  title={<>Preparat Pencet Ujung Akar Bawang</>}
+  description={
+    <>
+      Lensa okuler <InlineMath math="\times 10" /> dengan tiga lensa objektif.
+      Sebagian besar sel berada dalam interfase, dan hanya sedikit yang
+      menunjukkan kromosom yang sedang membelah.
+    </>
+  }
+  eyepiece={10}
+  objectives={[4, 10, 40]}
+  specimen="root"
+  labels={{
+    across: <>Sel sepanjang medan pandang</>,
+    cell: <>Panjang satu sel</>,
+    division: <>Nilai satu skala</>,
+    field: <>Diameter medan pandang</>,
+    magnification: <>Perbesaran</>,
+    objective: "Lensa objektif",
+    span: <>Jumlah skala</>,
+    view: "Mikroskop cahaya dan pandangan lensa okuler",
+    views: { eyepiece: "Lensa okuler", stand: "Mikroskop" },
+  }}
+/>
+
+Hitung **indeks mitosis** dari satu penghitungan. Seorang siswa menghitung <InlineMath math="200" /> sel dalam satu medan pandang: <InlineMath math="180" /> dalam interfase, <InlineMath math="10" /> dalam profase, <InlineMath math="4" /> dalam metafase, <InlineMath math="3" /> dalam anafase, dan <InlineMath math="3" /> dalam telofase.
+
+<Chart
+  title={<>Jumlah Sel pada Setiap Tahap</>}
+  description={
+    <>
+      Hasil penghitungan <InlineMath math="200" /> sel dalam satu medan pandang
+      ujung akar bawang. Batang interfase jauh lebih tinggi daripada batang
+      tahap mitosis.
+    </>
+  }
+  bars="apart"
+  categories={["Interfase", "Profase", "Metafase", "Anafase", "Telofase"]}
+  series={[
+    { label: "Jumlah sel", mark: "bar", values: [180, 10, 4, 3, 3] },
+  ]}
+  valueLabel="Jumlah sel"
+/>
+
+<MathContainer>
+<BlockMath math="\text{indeks mitosis} = \frac{\text{sel dalam mitosis}}{\text{jumlah sel}} = \frac{10 + 4 + 3 + 3}{200} = 0{,}10" />
+<BlockMath math="\text{waktu profase} = \frac{10}{200} \times 20\text{ jam} = 1\text{ jam}" />
+</MathContainer>
+
+Indeks mitosisnya <InlineMath math="0{,}10" />, atau <InlineMath math="10\%" />. Kalau siklus sel ujung akar ini berlangsung <InlineMath math="20" /> jam, waktu setiap tahap **sebanding dengan jumlah sel pada tahap itu**, jadi profase berlangsung sekitar <InlineMath math="1" /> jam. Cek: keempat tahap bersama berlangsung <InlineMath math="0{,}10 \times 20 = 2" /> jam.
+
+## Mitosis untuk Pertumbuhan dan Kultur Jaringan
+
+Setiap mitosis menggandakan jumlah sel. Mulai dari satu sel, setelah <InlineMath math="n" /> kali mitosis ada <InlineMath math="2^n" /> sel, semuanya identik secara genetik. Grafik ini menunjukkan jumlah sel untuk <InlineMath math="n = 0" /> sampai <InlineMath math="n = 10" />.
+
+<FunctionChart
+  a={2}
+  p={1}
+  n={11}
+  mode="discrete"
+  title={<>Jumlah Sel setelah Setiap Mitosis</>}
+  description={
+    <>
+      Model <InlineMath math="N = 2^n" /> dimulai dari satu sel. Setelah{" "}
+      <InlineMath math="10" /> kali pembelahan, ada <InlineMath math="1{.}024" />{" "}
+      sel.
+    </>
+  }
+/>
+
+Penggandaan ini menjelaskan **pentingnya mitosis**. Zigot tumbuh menjadi organisme dengan miliaran sel melalui mitosis. Luka sembuh saat sel kulit di tepi luka membelah dan mengganti sel yang rusak. Organisme seperti *Hydra* dan khamir bereproduksi secara aseksual dengan mitosis, jadi keturunannya identik secara genetik dengan induknya.
+
+Manusia memanfaatkan mitosis dalam bioteknologi. **Kultur jaringan** menumbuhkan potongan kecil jaringan tumbuhan di medium steril yang berisi nutrien dan hormon. Sel membelah secara mitosis menjadi tanaman kecil yang identik dengan tanaman induk. **Kloning** menghasilkan individu yang identik secara genetik dengan satu induk, dan setelah inti dipindahkan, embrio klon tumbuh melalui mitosis.
+
+Mitosis biasanya dikendalikan dengan ketat. Sel berhenti membelah saat jaringan sudah cukup atau saat DNA rusak. Kalau **gen pengendali siklus sel bermutasi**, sel bisa membelah tanpa henti dan membentuk kanker.
+
+## Meiosis Menghasilkan Empat Sel Haploid
+
+Meiosis terdiri atas dua pembelahan berturut-turut, **meiosis I** dan **meiosis II**, setelah DNA disalin satu kali saja selama interfase. Meiosis I memisahkan kromosom homolog, dan meiosis II memisahkan kromatid saudara.
+
+- **Profase I**: kromosom homolog berpasangan melalui **sinapsis** dan membentuk bivalen. **Pindah silang** terjadi di kiasma, tempat kromatid bukan saudara bertukar ruas DNA.
+- **Metafase I**: pasangan homolog berjajar di bidang ekuator. Setiap pasangan berjajar secara bebas dari pasangan lain.
+- **Anafase I**: kromosom homolog berpisah ke kutub yang berlawanan, sedangkan kromatid saudara masih menyatu.
+- **Telofase I**: terbentuk dua sel haploid.
+- **Meiosis II**: di setiap sel haploid, kromosom berjajar dalam satu baris, sentromer membelah, dan kromatid saudara berpisah. Hasilnya empat sel haploid.
+
+Geser penggeser di bawah dan bandingkan dengan grafik siklus sel tadi. Pada meiosis, kandungan DNA turun **dua kali**, dari <InlineMath math="4" /> ke <InlineMath math="2" /> lalu ke <InlineMath math="1" /> satuan.
+
+<MathVisual
+  title={<>Kandungan DNA Satu Sel selama Meiosis</>}
+  description={
+    <>
+      Sumbu mendatar adalah tahap proses dan sumbu tegak adalah kandungan DNA
+      dalam satuan relatif. Gamet akhir punya setengah DNA sel{" "}
+      <InlineMath math="\mathrm{G_1}" />.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 10 }, y: { min: 0, max: 5 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "q", min: 0, max: 10, value: 6, step: 0.25, label: "q" },
+    ],
+    objects: [
+      { id: "growth", kind: "segment", appearance: "primary", from: { x: 0, y: 2 }, to: { x: 2, y: 2 } },
+      { id: "synthesis", kind: "segment", appearance: "primary", from: { x: 2, y: 2 }, to: { x: 4, y: 4 } },
+      { id: "second", kind: "segment", appearance: "primary", from: { x: 4, y: 4 }, to: { x: 5, y: 4 } },
+      { id: "first", kind: "segment", appearance: "warning", from: { x: 5, y: 4 }, to: { x: 7, y: 4 } },
+      { id: "split-one", kind: "segment", appearance: "construction", from: { x: 7, y: 4 }, to: { x: 7, y: 2 } },
+      { id: "next", kind: "segment", appearance: "warning", from: { x: 7, y: 2 }, to: { x: 9, y: 2 } },
+      { id: "split-two", kind: "segment", appearance: "construction", from: { x: 9, y: 2 }, to: { x: 9, y: 1 } },
+      { id: "gamete", kind: "segment", appearance: "secondary", from: { x: 9, y: 1 }, to: { x: 10, y: 1 } },
+      { id: "now", kind: "marker", appearance: "highlight", x: "q", y: "2 + min(max(q - 2, 0), 2) - 2sign(max(q - 7, 0)) - sign(max(q - 9, 0))" },
+    ],
+    labels: [
+      { key: "first", objectId: "first", at: { x: 6, y: 4 }, placement: "above" },
+      { key: "next", objectId: "next", at: { x: 8, y: 2 }, placement: "above" },
+      { key: "gamete", objectId: "gamete", at: { x: 9.5, y: 1 }, placement: "below" },
+    ],
+    readouts: [
+      { key: "dna", formula: "2 + min(max(q - 2, 0), 2) - 2sign(max(q - 7, 0)) - sign(max(q - 9, 0))" },
+    ],
+  }}
+  labels={{
+    q: <>Tahap proses <InlineMath math="q" /></>,
+    first: <>Meiosis I</>,
+    next: <>Meiosis II</>,
+    gamete: <>Gamet</>,
+    dna: <>Kandungan DNA dalam satuan relatif</>,
+  }}
+/>
+
+Meiosis menjaga jumlah kromosom suatu spesies tetap sama dari satu generasi ke generasi berikutnya. Pada bunga bawang, sel tubuh <InlineMath math="2n = 16" /> menghasilkan gamet <InlineMath math="n = 8" /> melalui meiosis. Saat gamet jantan bergabung dengan sel telur, embrio kembali punya <InlineMath math="16" /> kromosom. Geser penggeser pembuahan dan baca jumlah kromosom setiap bagian biji.
+
+<FertilisationLab
+  title={<>Jumlah Kromosom dari Gamet sampai Biji</>}
+  description={
+    <>
+      Kedua induk punya <InlineMath math="2n = 16" />. Meiosis menghasilkan
+      gamet dengan <InlineMath math="8" /> kromosom, dan pembuahan ganda
+      membentuk embrio serta endosperma.
+    </>
+  }
+  mother={16}
+  father={16}
+  labels={{
+    embryo: <>Embrio</>,
+    endosperm: <>Endosperma</>,
+    gamete: <>Gamet jantan</>,
+    grains: <>Serbuk sari</>,
+    progress: "Kemajuan pembuahan",
+    seedCoat: <>Kulit biji</>,
+    stages: {
+      pollination: "Penyerbukan",
+      tube: "Buluh serbuk sari tumbuh",
+      entry: "Buluh masuk bakal biji",
+      fusion: "Pembuahan ganda",
+    },
+    view: "Bunga yang dibelah memanjang",
+  }}
+/>
+
+Meiosis juga menghasilkan **variasi**. Pindah silang mencampur gen antara kromosom homolog, dan pemisahan bebas pada metafase I menghasilkan <InlineMath math="2^n" /> kombinasi kromosom. Untuk bawang dengan <InlineMath math="n = 8" />, ada <InlineMath math="2^8 = 256" /> kombinasi sebelum pindah silang ikut dihitung.
+
+| Ciri | Mitosis | Meiosis |
+| :--- | :--- | :--- |
+| Jumlah pembelahan | Satu | Dua |
+| Sel anak | Dua, diploid | Empat, haploid |
+| Isi genetik | Identik dengan induk | Berbeda satu sama lain |
+| Sinapsis dan pindah silang | Tidak ada | Terjadi pada profase I |
+| Tempat | Sel tubuh | Testis, ovarium, kepala sari, dan bakal biji |
+
+## Kanker dan Sindrom Down
+
+Dua jenis kesalahan pembelahan sel berdampak besar pada kesehatan manusia. Kesalahan pertama terjadi pada mitosis. **Kanker** bermula saat mutasi merusak gen pengendali siklus sel, sehingga sel membelah secara mitosis tanpa kendali. Sel itu membentuk benjolan yang disebut **tumor**. Tumor ganas menyerang jaringan di sekitarnya, dan selnya bisa menyebar ke bagian tubuh lain lewat darah atau limfa. Karsinogen dalam asap rokok, sinar ultraviolet, dan radiasi pengion menaikkan laju mutasi.
+
+Kesalahan kedua terjadi pada meiosis. Pada **nondisjungsi**, kromosom homolog atau kromatid saudara gagal berpisah saat anafase. Satu gamet mendapat kromosom tambahan dan gamet lain kekurangan satu kromosom. Kalau ovum yang membawa dua kromosom <InlineMath math="21" /> dibuahi sperma normal, zigotnya punya tiga kromosom <InlineMath math="21" />:
+
+<BlockMath math="24 + 23 = 47 \text{ kromosom}" />
+
+Kondisi ini disebut **sindrom Down**, atau trisomi <InlineMath math="21" />. Cek jumlahnya: sel manusia normal punya <InlineMath math="46" /> kromosom, jadi sel orang dengan kondisi ini punya satu kromosom lebih.
+
+## Kesalahan Umum tentang Pembelahan Sel
+
+| Kesalahan | Mengapa salah | Cara mengecek |
+| :--- | :--- | :--- |
+| Interfase adalah fase istirahat. | Sel sibuk tumbuh dan menyalin DNA selama interfase. | Cari fase <InlineMath math="\mathrm{S}" /> pada grafik DNA. |
+| Kromatid dan kromosom adalah hal yang sama. | Satu kromosom yang sudah bereplikasi punya dua kromatid. | Hitung sentromer: satu sentromer, satu kromosom. |
+| Kromosom homolog berpisah pada mitosis. | Mitosis memisahkan kromatid saudara. Homolog berpisah pada anafase I meiosis. | Tanyakan apakah sel anak masih diploid. |
+| Meiosis menghasilkan dua sel. | Meiosis punya dua pembelahan, jadi terbentuk empat sel. | Ikuti grafik DNA: <InlineMath math="4 \rightarrow 2 \rightarrow 1" />. |
+| Sel tumbuhan membentuk alur pembelahan. | Dinding selnya kaku, jadi sel tumbuhan membentuk lempeng sel. | Lihat apakah sel punya dinding sel. |
+
+Kesalahan ketiga paling sering muncul di soal perbandingan. Catat aturan ini: **mitosis memisahkan kromatid saudara, meiosis I memisahkan kromosom homolog**.
+
+## Latihan Pembelahan Sel
+
+Soal ini dimulai dari jumlah kromosom dan berakhir dengan perhitungan dari data. **Tentukan dulu apakah sel itu diploid atau haploid** sebelum menghitung.
+
+1. Sel tubuh manusia punya <InlineMath math="46" /> kromosom. Berapa jumlah kromosom di sel anak setelah mitosis, di gamet setelah meiosis, dan berapa jumlah kromatid di sel pada metafase mitosis?
+
+2. Satu sel membelah secara mitosis berulang kali, dan semua sel anak terus membelah. Berapa jumlah sel setelah <InlineMath math="6" /> kali pembelahan? Berapa kali pembelahan yang dibutuhkan untuk melewati <InlineMath math="1{.}000" /> sel?
+
+3. Pada satu preparat pencet ujung akar, <InlineMath math="36" /> dari <InlineMath math="400" /> sel sedang mitosis. Siklus sel jaringan itu berlangsung <InlineMath math="22" /> jam. Hitung indeks mitosis dan perkirakan lama mitosis.
+
+4. Bawang punya <InlineMath math="2n = 16" />. Tentukan jumlah kromosom di gamet jantan, embrio, dan endosperma. Jelaskan mengapa endosperma tidak punya <InlineMath math="16" /> kromosom.
+
+### Pembahasan
+
+**Pembahasan 1**: Mitosis mempertahankan jumlah kromosom, jadi sel anak punya **<InlineMath math="46" /> kromosom**. Meiosis menghasilkan sel haploid dengan <InlineMath math="46 \div 2 = 23" /> kromosom. Pada metafase mitosis, setiap kromosom punya dua kromatid saudara:
+
+<BlockMath math="46 \times 2 = 92 \text{ kromatid}" />
+
+**Pembahasan 2**: Jumlah sel berlipat dua setiap pembelahan, <InlineMath math="N = 2^n" />:
+
+<MathContainer>
+<BlockMath math="2^6 = 64 \text{ sel}" />
+<BlockMath math="2^9 = 512 < 1{.}000 < 2^{10} = 1{.}024" />
+</MathContainer>
+
+Setelah <InlineMath math="6" /> kali pembelahan ada <InlineMath math="64" /> sel, dan butuh **<InlineMath math="10" /> kali pembelahan** untuk melewati <InlineMath math="1{.}000" /> sel.
+
+**Pembahasan 3**: Bagi jumlah sel yang sedang mitosis dengan jumlah seluruh sel, lalu kalikan dengan waktu siklus:
+
+<MathContainer>
+<BlockMath math="\text{indeks mitosis} = \frac{36}{400} = 0{,}09" />
+<BlockMath math="\text{waktu mitosis} = 0{,}09 \times 22\text{ jam} = 1{,}98\text{ jam} \approx 2\text{ jam}" />
+</MathContainer>
+
+Perkiraan ini berlaku karena **bagian sel pada suatu tahap sebanding dengan lama tahap itu**, selama sel membelah secara acak dan tidak serentak.
+
+**Pembahasan 4**: Gamet jantan dibentuk melalui meiosis, jadi punya <InlineMath math="16 \div 2 = 8" /> kromosom. Embrio terbentuk dari sel telur dan satu gamet jantan, <InlineMath math="8 + 8 = 16" />. Endosperma terbentuk dari **dua inti kutub dan satu gamet jantan**:
+
+<BlockMath math="8 + 8 + 8 = 24 \text{ kromosom}" />
+
+Jadi endosperma bersifat triploid, <InlineMath math="3n" />, bukan diploid.

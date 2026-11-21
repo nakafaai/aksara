@@ -1,0 +1,369 @@
+export const metadata = {
+  title: "Zellteilung durch Mitose und Meiose",
+  description:
+    "Verfolge den Zellzyklus, unterscheide die Phasen von Mitose und Meiose, berechne den Mitoseindex und verbinde Teilungsfehler mit Krebs und Trisomie 21.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2026-11-17",
+  subject: "Zellteilung",
+};
+
+## Zwei Wege der Zellteilung
+
+**Zellteilung** ist der Vorgang, bei dem eine Mutterzelle Tochterzellen bildet. Sie besteht aus zwei Teilen: der **Karyokinese**, der Teilung des Zellkerns, und der **Zytokinese**, der Teilung des Zytoplasmas. Eukaryotische Zellen teilen sich auf zwei Arten:
+
+- Die **Mitose** bildet zwei Tochterzellen, die genetisch mit der Mutterzelle identisch sind und dieselbe Chromosomenzahl haben, <InlineMath math="2n \rightarrow 2n" />. Mitose findet in Körperzellen statt, für Wachstum, Gewebereparatur und ungeschlechtliche Fortpflanzung.
+- Die **Meiose** bildet vier Tochterzellen mit halber Chromosomenzahl, <InlineMath math="2n \rightarrow n" />, die sich genetisch unterscheiden. Meiose findet in Hoden und Eierstöcken von Tieren statt und in Staubbeuteln und Samenanlagen von Blütenpflanzen, um Keimzellen zu bilden.
+
+In diesem Text verfolgst du den DNA-Gehalt durch den Zellzyklus, schaust dir eine Zwiebelwurzelspitze unter dem Mikroskop an, zählst die Zellen nach mehreren Mitosen und begleitest die Chromosomen der Keimzellen bis zur Befruchtung.
+
+## Chromosomen und Chromatiden im diploiden Satz
+
+In der Interphase liegt die DNA im Zellkern als feine Fäden vor, das **Chromatin**. Bevor sich die Zelle teilt, verkürzt und verdickt sich das Chromatin zu **Chromosomen**, die im Lichtmikroskop sichtbar sind. Nachdem die DNA kopiert wurde, besteht jedes Chromosom aus zwei **Schwesterchromatiden**, die am **Zentromer** zusammenhängen.
+
+| Begriff | Bedeutung | Beispiel |
+| :--- | :--- | :--- |
+| Homologe Chromosomen | Ein Paar Chromosomen mit gleicher Größe, Form und Genreihenfolge, eines von jedem Elternteil | Chromosomenpaar <InlineMath math="1" /> des Menschen |
+| Diploid, <InlineMath math="2n" /> | Eine Zelle mit zwei Chromosomensätzen | Körperzellen des Menschen, <InlineMath math="2n = 46" /> |
+| Haploid, <InlineMath math="n" /> | Eine Zelle mit einem Chromosomensatz | Spermium und Eizelle des Menschen, <InlineMath math="n = 23" /> |
+
+Die Küchenzwiebel, *Allium cepa*, hat <InlineMath math="2n = 16" />. Eine Zelle der Zwiebelwurzelspitze hat <InlineMath math="16" /> Chromosomen, ihre Keimzellen haben **die Hälfte davon**, also <InlineMath math="8" />.
+
+## Der Zellzyklus von der Interphase bis zur Mitose
+
+Der **Zellzyklus** ist die Abfolge der Ereignisse von einer Zellteilung bis zur nächsten. Er besteht aus der **Interphase** und der **M-Phase**. Die Interphase hat drei Abschnitte:
+
+- <InlineMath math="\mathrm{G_1}" />-Phase: Die Zelle wächst und bildet neue Proteine und Organellen.
+- <InlineMath math="\mathrm{S}" />-Phase: Die DNA wird repliziert, also hat jedes Chromosom jetzt zwei Schwesterchromatiden.
+- <InlineMath math="\mathrm{G_2}" />-Phase: Die Zelle speichert Energie und bildet die Proteine für die Spindelfasern.
+
+Die M-Phase umfasst Mitose und Zytokinese. Bei einer sich schnell teilenden menschlichen Zelle mit einem Zyklus von <InlineMath math="24" /> Stunden dauert <InlineMath math="\mathrm{G_1}" /> etwa <InlineMath math="11" /> Stunden, <InlineMath math="\mathrm{S}" /> <InlineMath math="8" /> Stunden, <InlineMath math="\mathrm{G_2}" /> <InlineMath math="4" /> Stunden und die M-Phase nur <InlineMath math="1" /> Stunde. Zellen, die sich nicht mehr teilen, etwa reife Nervenzellen, verlassen den Zyklus und gehen in die <InlineMath math="\mathrm{G_0}" />-Phase.
+
+Verschiebe den Zeitregler unten. Der DNA-Gehalt bleibt in <InlineMath math="\mathrm{G_1}" /> bei <InlineMath math="2" /> Einheiten, steigt in <InlineMath math="\mathrm{S}" /> und fällt wieder, wenn die Zytokinese die DNA auf zwei Tochterzellen verteilt.
+
+<MathVisual
+  title={<>DNA-Gehalt einer Zelle im Zellzyklus</>}
+  description={
+    <>
+      Die waagerechte Achse ist die Zeit in Stunden, die senkrechte Achse der
+      DNA-Gehalt in relativen Einheiten. Die{" "}
+      <InlineMath math="\mathrm{S}" />-Phase dauert von Stunde{" "}
+      <InlineMath math="11" /> bis Stunde <InlineMath math="19" />, die
+      Zytokinese findet bei Stunde <InlineMath math="24" /> statt.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 26 }, y: { min: 0, max: 5 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "h", min: 0, max: 24, value: 15, step: 0.5, label: "h" },
+    ],
+    objects: [
+      { id: "growth", kind: "segment", appearance: "primary", from: { x: 0, y: 2 }, to: { x: 11, y: 2 } },
+      { id: "synthesis", kind: "segment", appearance: "primary", from: { x: 11, y: 2 }, to: { x: 19, y: 4 } },
+      { id: "second", kind: "segment", appearance: "primary", from: { x: 19, y: 4 }, to: { x: 23, y: 4 } },
+      { id: "mitosis", kind: "segment", appearance: "warning", from: { x: 23, y: 4 }, to: { x: 24, y: 4 } },
+      { id: "split", kind: "segment", appearance: "construction", from: { x: 24, y: 4 }, to: { x: 24, y: 2 } },
+      { id: "daughter", kind: "segment", appearance: "primary", from: { x: 24, y: 2 }, to: { x: 26, y: 2 } },
+      { id: "now", kind: "marker", appearance: "highlight", x: "h", y: "2 + min(max(h - 11, 0), 8)/4" },
+    ],
+    labels: [
+      { key: "growth", objectId: "growth", at: { x: 5.5, y: 2 }, placement: "above" },
+      { key: "synthesis", objectId: "synthesis", at: { x: 15, y: 3 }, placement: "above-left" },
+      { key: "second", objectId: "second", at: { x: 21, y: 4 }, placement: "above" },
+      { key: "mitosis", objectId: "mitosis", at: { x: 23.5, y: 4 }, placement: "below" },
+    ],
+    readouts: [
+      { key: "dna", formula: "2 + min(max(h - 11, 0), 8)/4" },
+    ],
+  }}
+  labels={{
+    h: <>Zeit <InlineMath math="h" /> in Stunden</>,
+    growth: <><InlineMath math="\mathrm{G_1}" /></>,
+    synthesis: <><InlineMath math="\mathrm{S}" /></>,
+    second: <><InlineMath math="\mathrm{G_2}" /></>,
+    mitosis: <>M-Phase</>,
+    dna: <>DNA-Gehalt in relativen Einheiten</>,
+  }}
+/>
+
+Die Replikation der DNA in der <InlineMath math="\mathrm{S}" />-Phase ist **semikonservativ**. Die beiden Stränge der Doppelhelix öffnen sich, und jeder alte Strang dient als Vorlage für einen neuen. Verschiebe den Kopierregler und beobachte, wie sich neue Nukleotide an beide alten Stränge anlagern.
+
+<DnaHelixLab
+  title={<>DNA wird in der S-Phase Base für Base kopiert</>}
+  description={
+    <>
+      Ein DNA-Abschnitt mit <InlineMath math="27" /> Basenpaaren. Jeder alte
+      Strang steuert den Aufbau eines neuen Strangs, deshalb tragen die beiden
+      Schwesterchromatiden dieselbe DNA.
+    </>
+  }
+  copy
+  sequence="ATG GCT AGC TTA GGC ATC GAT CCG TAA"
+  labels={{
+    copy: "Kopierfortschritt",
+    length: <>Basenpaare</>,
+    span: <>Länge</>,
+    copied: <>Neu gepaarte Basen</>,
+    turns: <>Windungen der Helix</>,
+    viewLabel: "DNA-Helix öffnet sich und wird kopiert",
+  }}
+/>
+
+Berechne den Anteil des Zyklus, der auf die M-Phase entfällt. Die M-Phase dauert <InlineMath math="1" /> Stunde von <InlineMath math="24" /> Stunden:
+
+<BlockMath math="\frac{1\text{ h}}{24\text{ h}} \times 100\% \approx 4{,}2\%" />
+
+Prüf mit dem Rest des Zyklus: Die Interphase dauert <InlineMath math="23" /> Stunden, etwa <InlineMath math="95{,}8\%" />. Weil die Interphase am längsten ist, **befinden sich die meisten Zellen eines sich aktiv teilenden Gewebes in der Interphase**, wenn du sie unter dem Mikroskop betrachtest.
+
+## Die vier Phasen der Mitose
+
+Die Mitose ist ein fortlaufender Vorgang, aber Biologen teilen sie in vier Phasen ein, um sie zu beschreiben:
+
+| Phase | Wichtigste Ereignisse |
+| :--- | :--- |
+| Prophase | Das Chromatin verkürzt sich zu Chromosomen mit zwei Schwesterchromatiden. Der Nukleolus verschwindet, Spindelfasern bilden sich und die Kernhülle zerfällt. |
+| Metaphase | Die Chromosomen ordnen sich in einer Reihe in der Äquatorialebene an. Spindelfasern setzen an den Zentromeren an. |
+| Anaphase | Die Zentromere teilen sich, und die Schwesterchromatiden werden zu entgegengesetzten Polen gezogen. |
+| Telophase | Die Chromosomen erreichen die Pole und entspiralisieren sich. Kernhülle und Nukleolus bilden sich neu. |
+
+Die Zytokinese verläuft bei Tier- und Pflanzenzellen verschieden. In einer Tierzelle zieht sich ein Ring aus Mikrofilamenten unter der Zellmembran zusammen und bildet eine **Teilungsfurche**, die die Zelle in zwei schnürt. Eine Pflanzenzelle hat eine starre Zellwand, deshalb sammeln sich Vesikel aus dem Golgi-Apparat in der Zellmitte und verschmelzen zu einer **Zellplatte**, aus der die neue Zellwand wird.
+
+Eine Zwiebelwurzelspitze ist ein Gewebe, das sich aktiv teilt. Sieh dir ein Quetschpräparat einer Wurzelspitze an und wechsle das Objektiv. Suche bei starker Vergrößerung Zellen in Prophase, Metaphase, Anaphase und Telophase zwischen den Zellen in der Interphase.
+
+<MicroscopeLab
+  title={<>Quetschpräparat einer Zwiebelwurzelspitze</>}
+  description={
+    <>
+      Ein Okular <InlineMath math="\times 10" /> mit drei Objektiven. Die
+      meisten Zellen sind in der Interphase, und nur wenige zeigen
+      Chromosomen, die sich gerade teilen.
+    </>
+  }
+  eyepiece={10}
+  objectives={[4, 10, 40]}
+  specimen="root"
+  labels={{
+    across: <>Zellen über das Sehfeld</>,
+    cell: <>Länge einer Zelle</>,
+    division: <>Wert eines Teilstrichs</>,
+    field: <>Durchmesser des Sehfelds</>,
+    magnification: <>Vergrößerung</>,
+    objective: "Objektiv",
+    span: <>Überspannte Teilstriche</>,
+    view: "Lichtmikroskop und Blick durch das Okular",
+    views: { eyepiece: "Okular", stand: "Mikroskop" },
+  }}
+/>
+
+Berechne den **Mitoseindex** aus einer Zählung. Eine Schülerin zählt <InlineMath math="200" /> Zellen in einem Sehfeld: <InlineMath math="180" /> in der Interphase, <InlineMath math="10" /> in der Prophase, <InlineMath math="4" /> in der Metaphase, <InlineMath math="3" /> in der Anaphase und <InlineMath math="3" /> in der Telophase.
+
+<Chart
+  title={<>Anzahl der Zellen in jeder Phase</>}
+  description={
+    <>
+      Eine Zählung von <InlineMath math="200" /> Zellen in einem Sehfeld einer
+      Zwiebelwurzelspitze. Der Balken der Interphase ist viel höher als die
+      Balken der Mitosephasen.
+    </>
+  }
+  bars="apart"
+  categories={["Interphase", "Prophase", "Metaphase", "Anaphase", "Telophase"]}
+  series={[
+    { label: "Anzahl der Zellen", mark: "bar", values: [180, 10, 4, 3, 3] },
+  ]}
+  valueLabel="Anzahl der Zellen"
+/>
+
+<MathContainer>
+<BlockMath math="\text{Mitoseindex} = \frac{\text{Zellen in Mitose}}{\text{alle Zellen}} = \frac{10 + 4 + 3 + 3}{200} = 0{,}10" />
+<BlockMath math="\text{Dauer der Prophase} = \frac{10}{200} \times 20\text{ h} = 1\text{ h}" />
+</MathContainer>
+
+Der Mitoseindex beträgt <InlineMath math="0{,}10" />, also <InlineMath math="10\%" />. Wenn der Zellzyklus dieser Wurzelspitze <InlineMath math="20" /> Stunden dauert, ist die Dauer jeder Phase **proportional zur Zahl der Zellen in dieser Phase**, also dauert die Prophase etwa <InlineMath math="1" /> Stunde. Prüf: Alle vier Phasen zusammen dauern <InlineMath math="0{,}10 \times 20 = 2" /> Stunden.
+
+## Mitose für Wachstum und Gewebekultur
+
+Jede Mitose verdoppelt die Zahl der Zellen. Aus einer Zelle werden nach <InlineMath math="n" /> Mitosen <InlineMath math="2^n" /> Zellen, alle genetisch identisch. Das Diagramm zeigt die Zellzahl für <InlineMath math="n = 0" /> bis <InlineMath math="n = 10" />.
+
+<FunctionChart
+  a={2}
+  p={1}
+  n={11}
+  mode="discrete"
+  title={<>Zellzahl nach jeder Mitose</>}
+  description={
+    <>
+      Das Modell <InlineMath math="N = 2^n" /> startet mit einer Zelle. Nach{" "}
+      <InlineMath math="10" /> Teilungsrunden gibt es{" "}
+      <InlineMath math="1{.}024" /> Zellen.
+    </>
+  }
+/>
+
+Diese Verdopplung zeigt, **warum die Mitose so wichtig ist**. Eine Zygote wächst durch Mitose zu einem Organismus mit Milliarden Zellen heran. Eine Wunde heilt, wenn sich Hautzellen am Wundrand teilen und die geschädigten Zellen ersetzen. Organismen wie *Hydra* und Hefe vermehren sich ungeschlechtlich durch Mitose, deshalb sind ihre Nachkommen genetisch mit dem Elternteil identisch.
+
+Menschen nutzen die Mitose in der Biotechnologie. Bei der **Gewebekultur** wächst ein kleines Stück Pflanzengewebe in einem sterilen Nährmedium mit Nährstoffen und Hormonen. Die Zellen teilen sich durch Mitose zu Jungpflanzen, die mit der Mutterpflanze identisch sind. Beim **Klonen** entstehen Individuen, die genetisch mit einem Elternteil identisch sind, und nach dem Kerntransfer wächst der geklonte Embryo durch Mitose.
+
+Die Mitose wird normalerweise streng gesteuert. Zellen hören auf, sich zu teilen, wenn das Gewebe genug Zellen hat oder die DNA beschädigt ist. Wenn **Gene, die den Zellzyklus steuern, mutieren**, können sich Zellen ohne Halt teilen und einen Krebs bilden.
+
+## Die Meiose bildet vier haploide Zellen
+
+Die Meiose besteht aus zwei aufeinanderfolgenden Teilungen, **Meiose I** und **Meiose II**, nachdem die DNA in der Interphase nur einmal kopiert wurde. Meiose I trennt die homologen Chromosomen, Meiose II die Schwesterchromatiden.
+
+- **Prophase I**: Homologe Chromosomen legen sich durch **Synapsis** aneinander und bilden Bivalente. An den Chiasmata findet **Crossing-over** statt: Nicht-Schwesterchromatiden tauschen DNA-Abschnitte aus.
+- **Metaphase I**: Die homologen Paare ordnen sich in der Äquatorialebene an. Jedes Paar ordnet sich unabhängig von den anderen an.
+- **Anaphase I**: Die homologen Chromosomen wandern zu entgegengesetzten Polen, die Schwesterchromatiden bleiben verbunden.
+- **Telophase I**: Zwei haploide Zellen entstehen.
+- **Meiose II**: In jeder haploiden Zelle ordnen sich die Chromosomen in einer Reihe an, die Zentromere teilen sich und die Schwesterchromatiden trennen sich. Das Ergebnis sind vier haploide Zellen.
+
+Verschiebe den Regler unten und vergleiche mit dem Diagramm des Zellzyklus. In der Meiose fällt der DNA-Gehalt **zweimal**, von <InlineMath math="4" /> auf <InlineMath math="2" /> und dann auf <InlineMath math="1" /> Einheit.
+
+<MathVisual
+  title={<>DNA-Gehalt einer Zelle während der Meiose</>}
+  description={
+    <>
+      Die waagerechte Achse ist der Abschnitt des Vorgangs, die senkrechte
+      Achse der DNA-Gehalt in relativen Einheiten. Die fertige Keimzelle hat
+      halb so viel DNA wie eine Zelle in <InlineMath math="\mathrm{G_1}" />.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 10 }, y: { min: 0, max: 5 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "q", min: 0, max: 10, value: 6, step: 0.25, label: "q" },
+    ],
+    objects: [
+      { id: "growth", kind: "segment", appearance: "primary", from: { x: 0, y: 2 }, to: { x: 2, y: 2 } },
+      { id: "synthesis", kind: "segment", appearance: "primary", from: { x: 2, y: 2 }, to: { x: 4, y: 4 } },
+      { id: "second", kind: "segment", appearance: "primary", from: { x: 4, y: 4 }, to: { x: 5, y: 4 } },
+      { id: "first", kind: "segment", appearance: "warning", from: { x: 5, y: 4 }, to: { x: 7, y: 4 } },
+      { id: "split-one", kind: "segment", appearance: "construction", from: { x: 7, y: 4 }, to: { x: 7, y: 2 } },
+      { id: "next", kind: "segment", appearance: "warning", from: { x: 7, y: 2 }, to: { x: 9, y: 2 } },
+      { id: "split-two", kind: "segment", appearance: "construction", from: { x: 9, y: 2 }, to: { x: 9, y: 1 } },
+      { id: "gamete", kind: "segment", appearance: "secondary", from: { x: 9, y: 1 }, to: { x: 10, y: 1 } },
+      { id: "now", kind: "marker", appearance: "highlight", x: "q", y: "2 + min(max(q - 2, 0), 2) - 2sign(max(q - 7, 0)) - sign(max(q - 9, 0))" },
+    ],
+    labels: [
+      { key: "first", objectId: "first", at: { x: 6, y: 4 }, placement: "above" },
+      { key: "next", objectId: "next", at: { x: 8, y: 2 }, placement: "above" },
+      { key: "gamete", objectId: "gamete", at: { x: 9.5, y: 1 }, placement: "below" },
+    ],
+    readouts: [
+      { key: "dna", formula: "2 + min(max(q - 2, 0), 2) - 2sign(max(q - 7, 0)) - sign(max(q - 9, 0))" },
+    ],
+  }}
+  labels={{
+    q: <>Abschnitt des Vorgangs <InlineMath math="q" /></>,
+    first: <>Meiose I</>,
+    next: <>Meiose II</>,
+    gamete: <>Keimzelle</>,
+    dna: <>DNA-Gehalt in relativen Einheiten</>,
+  }}
+/>
+
+Die Meiose hält die Chromosomenzahl einer Art von Generation zu Generation gleich. In einer Zwiebelblüte bilden Körperzellen mit <InlineMath math="2n = 16" /> durch Meiose Keimzellen mit <InlineMath math="n = 8" />. Verschmilzt eine männliche Keimzelle mit der Eizelle, hat der Embryo wieder <InlineMath math="16" /> Chromosomen. Verschiebe den Befruchtungsregler und lies die Chromosomenzahl jedes Teils des Samens ab.
+
+<FertilisationLab
+  title={<>Chromosomenzahlen von der Keimzelle bis zum Samen</>}
+  description={
+    <>
+      Beide Eltern haben <InlineMath math="2n = 16" />. Die Meiose bildet
+      Keimzellen mit <InlineMath math="8" /> Chromosomen, und die doppelte
+      Befruchtung bildet Embryo und Endosperm.
+    </>
+  }
+  mother={16}
+  father={16}
+  labels={{
+    embryo: <>Embryo</>,
+    endosperm: <>Endosperm</>,
+    gamete: <>Männliche Keimzelle</>,
+    grains: <>Pollenkörner</>,
+    progress: "Fortschritt der Befruchtung",
+    seedCoat: <>Samenschale</>,
+    stages: {
+      pollination: "Bestäubung",
+      tube: "Pollenschlauch wächst",
+      entry: "Schlauch erreicht die Samenanlage",
+      fusion: "Doppelte Befruchtung",
+    },
+    view: "Längs aufgeschnittene Blüte",
+  }}
+/>
+
+Die Meiose erzeugt außerdem **Vielfalt**. Crossing-over mischt Gene zwischen homologen Chromosomen, und die unabhängige Verteilung in der Metaphase I ergibt <InlineMath math="2^n" /> Kombinationen von Chromosomen. Für die Zwiebel mit <InlineMath math="n = 8" /> sind das <InlineMath math="2^8 = 256" /> Kombinationen, noch ohne Crossing-over.
+
+| Merkmal | Mitose | Meiose |
+| :--- | :--- | :--- |
+| Zahl der Teilungen | Eine | Zwei |
+| Tochterzellen | Zwei, diploid | Vier, haploid |
+| Erbinformation | Identisch mit der Mutterzelle | Untereinander verschieden |
+| Synapsis und Crossing-over | Keine | In der Prophase I |
+| Ort | Körperzellen | Hoden, Eierstöcke, Staubbeutel und Samenanlagen |
+
+## Krebs und ein zusätzliches Chromosom
+
+Zwei Arten von Teilungsfehlern wirken sich stark auf die Gesundheit des Menschen aus. Der erste passiert in der Mitose. **Krebs** beginnt, wenn Mutationen die Gene schädigen, die den Zellzyklus steuern, sodass sich Zellen unkontrolliert durch Mitose teilen. Die Zellen bilden eine Wucherung, einen **Tumor**. Ein bösartiger Tumor dringt in benachbartes Gewebe ein, und seine Zellen können über Blut oder Lymphe in andere Körperteile gelangen. Karzinogene im Zigarettenrauch, UV-Strahlung und ionisierende Strahlung erhöhen die Mutationsrate.
+
+Der zweite passiert in der Meiose. Bei der **Non-Disjunction** trennen sich homologe Chromosomen oder Schwesterchromatiden in der Anaphase nicht. Eine Keimzelle bekommt ein zusätzliches Chromosom, einer anderen fehlt eines. Wird eine Eizelle mit zwei Chromosomen <InlineMath math="21" /> von einem normalen Spermium befruchtet, hat die Zygote drei Chromosomen <InlineMath math="21" />:
+
+<BlockMath math="24 + 23 = 47 \text{ Chromosomen}" />
+
+Dieser Zustand heißt **Down-Syndrom** oder Trisomie <InlineMath math="21" />. Prüf die Summe: Eine normale menschliche Zelle hat <InlineMath math="46" /> Chromosomen, also haben die Zellen dieses Menschen ein Chromosom mehr.
+
+## Typische Fehler bei der Zellteilung
+
+| Fehler | Warum falsch | So prüfst du es |
+| :--- | :--- | :--- |
+| Die Interphase ist eine Ruhephase. | Die Zelle wächst in der Interphase und kopiert ihre DNA. | Such die <InlineMath math="\mathrm{S}" />-Phase im DNA-Diagramm. |
+| Chromatid und Chromosom sind dasselbe. | Ein repliziertes Chromosom hat zwei Chromatiden. | Zähl die Zentromere: ein Zentromer, ein Chromosom. |
+| Homologe Chromosomen trennen sich in der Mitose. | Die Mitose trennt Schwesterchromatiden. Homologe trennen sich in der Anaphase I der Meiose. | Frag, ob die Tochterzellen noch diploid sind. |
+| Die Meiose bildet zwei Zellen. | Die Meiose hat zwei Teilungen, also entstehen vier Zellen. | Folge dem DNA-Diagramm: <InlineMath math="4 \rightarrow 2 \rightarrow 1" />. |
+| Pflanzenzellen bilden eine Teilungsfurche. | Die Zellwand ist starr, deshalb bilden Pflanzenzellen eine Zellplatte. | Achte darauf, ob die Zelle eine Zellwand hat. |
+
+Der dritte Fehler kommt in Vergleichsaufgaben am häufigsten vor. Die Regel für deine Notizen: **Mitose trennt Schwesterchromatiden, Meiose I trennt homologe Chromosomen**.
+
+## Übungen zur Zellteilung
+
+Die Aufgaben beginnen mit Chromosomenzahlen und enden mit Rechnungen aus Daten. **Klär zuerst, ob die Zelle diploid oder haploid ist**, bevor du rechnest.
+
+1. Eine menschliche Körperzelle hat <InlineMath math="46" /> Chromosomen. Wie viele Chromosomen hat eine Tochterzelle nach der Mitose, eine Keimzelle nach der Meiose, und wie viele Chromatiden hat eine Zelle in der Metaphase der Mitose?
+
+2. Eine Zelle teilt sich immer wieder durch Mitose, und alle Tochterzellen teilen sich weiter. Wie viele Zellen gibt es nach <InlineMath math="6" /> Runden? Wie viele Runden braucht es, um <InlineMath math="1{.}000" /> Zellen zu überschreiten?
+
+3. In einem Quetschpräparat einer Wurzelspitze sind <InlineMath math="36" /> von <InlineMath math="400" /> Zellen in der Mitose. Der Zellzyklus des Gewebes dauert <InlineMath math="22" /> Stunden. Berechne den Mitoseindex und schätze, wie lange die Mitose dauert.
+
+4. Die Zwiebel hat <InlineMath math="2n = 16" />. Gib die Chromosomenzahl einer männlichen Keimzelle, des Embryos und des Endosperms an. Erkläre, warum das Endosperm nicht <InlineMath math="16" /> Chromosomen hat.
+
+### Lösungen
+
+**Lösung 1**: Die Mitose erhält die Chromosomenzahl, also hat eine Tochterzelle **<InlineMath math="46" /> Chromosomen**. Die Meiose bildet haploide Zellen mit <InlineMath math="46 \div 2 = 23" /> Chromosomen. In der Metaphase der Mitose hat jedes Chromosom zwei Schwesterchromatiden:
+
+<BlockMath math="46 \times 2 = 92 \text{ Chromatiden}" />
+
+**Lösung 2**: Die Zellzahl verdoppelt sich jede Runde, <InlineMath math="N = 2^n" />:
+
+<MathContainer>
+<BlockMath math="2^6 = 64 \text{ Zellen}" />
+<BlockMath math="2^9 = 512 < 1{.}000 < 2^{10} = 1{.}024" />
+</MathContainer>
+
+Nach <InlineMath math="6" /> Runden gibt es <InlineMath math="64" /> Zellen, und es braucht **<InlineMath math="10" /> Runden**, um <InlineMath math="1{.}000" /> Zellen zu überschreiten.
+
+**Lösung 3**: Teile die Zellen in Mitose durch alle Zellen und multipliziere mit der Zykluszeit:
+
+<MathContainer>
+<BlockMath math="\text{Mitoseindex} = \frac{36}{400} = 0{,}09" />
+<BlockMath math="\text{Dauer der Mitose} = 0{,}09 \times 22\text{ h} = 1{,}98\text{ h} \approx 2\text{ h}" />
+</MathContainer>
+
+Die Schätzung funktioniert, weil **der Anteil der Zellen in einer Phase proportional zur Dauer dieser Phase ist**, solange sich die Zellen zufällig und nicht gleichzeitig teilen.
+
+**Lösung 4**: Eine männliche Keimzelle entsteht durch Meiose, also hat sie <InlineMath math="16 \div 2 = 8" /> Chromosomen. Der Embryo entsteht aus der Eizelle und einer männlichen Keimzelle, <InlineMath math="8 + 8 = 16" />. Das Endosperm entsteht aus **zwei Polkernen und einer männlichen Keimzelle**:
+
+<BlockMath math="8 + 8 + 8 = 24 \text{ Chromosomen}" />
+
+Das Endosperm ist also triploid, <InlineMath math="3n" />, nicht diploid.
