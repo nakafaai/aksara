@@ -46,9 +46,6 @@ const NODE_PACKAGE_JSON_INPUTS = [
   ],
 ] as const;
 const PNPM_ACTION_PREFIX = "pnpm/";
-/** The reviewed pnpm/setup v3.2.0 commit, the one pnpm action a workflow may use. It installs pnpm's signature-verified registry release without npm. A newer release needs a new review. */
-export const PNPM_SETUP_ACTION =
-  "pnpm/setup@731dfb6463bbd11c11fd0ee11fe00ed0e36d48a1";
 
 /** Returns every step mapping declared by one workflow job. */
 const jobSteps = Effect.fn("AksaraScripts.workflowJobSteps")(function* (
@@ -181,8 +178,8 @@ const verifyBunSelectors = Effect.fn("AksaraScripts.verifyBunSelectors")(
 
       const uses = scalarText(mapValue(step, "uses")) ?? "";
       yield* ensure(
-        !uses.startsWith(PNPM_ACTION_PREFIX) || uses === PNPM_SETUP_ACTION,
-        "Workflows may use only the reviewed pnpm/setup release"
+        !uses.startsWith(PNPM_ACTION_PREFIX),
+        "Workflows must not use pnpm actions"
       );
     }
   }
