@@ -1,0 +1,305 @@
+export const metadata = {
+  title: "Response in Plants Notes for Form Five",
+  description:
+    "Form 5 Biology Chapter 5: tell tropisms from nastic responses, explain how auxin bends shoots and roots, and calculate bending angles, with practice.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2026-11-17",
+  subject: "Response in Plants",
+};
+
+## Plants Respond through Tropisms and Nastic Responses
+
+**A response in a plant** is a change in growth or in the position of a plant part when it receives a stimulus such as light, gravity, water or touch. There are two kinds. A **tropism** is growth whose direction is set by the direction of the stimulus, like a shoot bending towards light. A **nastic response** doesn't depend on the stimulus direction, like a touch-me-not leaf folding up when you touch it.
+
+Most tropisms are controlled by **plant hormones**, chemicals a plant makes in tiny amounts. In these notes you run a seedling experiment, calculate how far a shoot bends and compare what auxin does to roots and shoots.
+
+## Tropisms and Nastic Responses Differ in Direction and Speed
+
+A plant can't move to a better spot, so it responds by changing the direction it grows or the position of its leaves. Shoots need light for photosynthesis, roots need water and mineral salts, and climbing plants need support to reach the light. A tropism towards the stimulus is a **positive tropism**, and a tropism away from it is a **negative tropism**.
+
+| Response | Stimulus | Example |
+| :--- | :--- | :--- |
+| Phototropism | Light from one direction | Shoot grows towards the light (positive) |
+| Geotropism | Gravity | Root grows down (positive), shoot grows up (negative) |
+| Hydrotropism | Water | Root grows towards damp soil (positive) |
+| Thigmotropism | Touch on one side | Tendril coils around a support (positive) |
+| Thigmonasty | Touch | Touch-me-not leaflets fold up |
+| Photonasty | Change in light intensity | Petals of some flowers open in bright light and close in the dark |
+
+The two kinds differ in how they work and how fast they are. A tropism happens through **uneven growth**, so it's slow, takes hours and is permanent. A nastic response usually happens through **changes in cell turgor**, so it's fast and reversible. When you touch a touch-me-not leaf, potassium ions leave the pulvinus cells at the base of the leaf. Water follows them out by osmosis, the pulvinus cells go flaccid and the leaflets fold. A few minutes later the cells are turgid again and the leaf opens.
+
+## Auxin Bends a Shoot towards the Light
+
+**Auxin** is a plant hormone made in the shoot tip. It diffuses down to the **zone of elongation** and makes the cells there elongate. When light comes from one side, auxin moves to the **shaded side**. Cells on the shaded side elongate more than cells on the lit side, so the shoot bends towards the light.
+
+The model below repeats the classic experiments on seedlings lit from the right. Seedling A is left intact. Seedling B has its tip cut off. Seedling C has its tip covered with an opaque cap. Seedling D has a mica plate pushed in below the tip on the lit side. Seedling E has the same plate on the shaded side. Pick each seedling and move the time up to <InlineMath math="48" /> hours.
+
+<TropismLab
+  title={<>Phototropism Experiment with Five Seedlings</>}
+  description={
+    <>
+      Seedlings lit from the right for <InlineMath math="48" /> hours. The
+      readings show the percentage of auxin on each side of the zone of
+      elongation and how far the shoot bends.
+    </>
+  }
+  setup={{
+    stimulus: "light",
+    seedlings: [
+      { name: "A", treatment: "intact" },
+      { name: "B", treatment: "cut" },
+      { name: "C", treatment: "cap" },
+      { name: "D", treatment: "micaLit" },
+      { name: "E", treatment: "micaShade" },
+    ],
+  }}
+  labels={{
+    bend: <>Shoot bend</>,
+    directions: {
+      away: <>away from the light</>,
+      straight: <>upright</>,
+      toward: <>towards the light</>,
+    },
+    far: <>Auxin on the shaded side</>,
+    near: <>Auxin on the lit side</>,
+    growth: <>Growth compared with an intact seedling</>,
+    hours: "Time",
+    root: <>Root bend</>,
+    seedling: "Seedling",
+    view: "Seedlings lit from the right",
+  }}
+/>
+
+Compare the five results. Seedling A bends towards the light because <InlineMath math="65\%" /> of its auxin is on the shaded side. Seedling B doesn't elongate or bend, because **the shoot tip is the source of auxin**. Seedling C grows upright: its tip gets no light, so the auxin is shared evenly. The mica in seedling D blocks auxin on the lit side only, so all the auxin travels down the shaded side and the shoot bends more sharply. The mica in seedling E blocks the shaded side, where the tip has sent its auxin, so neither side below elongates and the shoot stays upright. Seedlings D and E are the pair Peter Boysen-Jensen compared in 1913. Together they show that the bend needs auxin to travel down the shaded side.
+
+## An Agar Block Shows That Auxin Is a Chemical
+
+In 1928, Frits Went placed several coleoptile tips on an agar block so that auxin diffused into the agar. Then he put the block on one side of a coleoptile whose tip had been cut off, in the dark. The coleoptile **bent away from the side with the block**, because the cells under the block elongated more. No light was involved, so a chemical from the tips caused the bend. Went also found that, within a range, **the bending angle is directly proportional to the number of tips** placed on the block.
+
+<MathVisual
+  title={<>Coleoptile Bending Angle and Auxin in an Agar Block</>}
+  description={
+    <>
+      Bending angle in degrees against the number of coleoptile tips placed on
+      the block, following <InlineMath math="\theta = kn" />. The slider{" "}
+      <InlineMath math="k" /> sets the angle for one tip.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 8.5 }, y: { min: 0, max: 42 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "k", min: 2, max: 5, value: 4, step: 0.5, label: "k" },
+      { name: "n", min: 0, max: 8, value: 5, step: 1, label: "n" },
+    ],
+    objects: [
+      { id: "angle", kind: "function", appearance: "primary", formula: "kx", domain: { min: 0, max: 8 } },
+      { id: "now", kind: "marker", x: "n", y: "kn", appearance: "warning" },
+    ],
+    readouts: [{ key: "angle", formula: "kn" }],
+  }}
+  labels={{
+    k: <>Angle for one tip <InlineMath math="k" /> in degrees</>,
+    n: <>Number of tips <InlineMath math="n" /></>,
+    angle: <>Bending angle in degrees</>,
+  }}
+/>
+
+**Example 1.** An agar block that took auxin from <InlineMath math="2" /> tips gives a bend of <InlineMath math="8^\circ" />. Predict the bending angle for a block that took auxin from <InlineMath math="5" /> tips, assuming the angle is directly proportional to the number of tips.
+
+<MathContainer>
+<BlockMath math="k = \frac{8^\circ}{2} = 4^\circ \text{ per tip}" />
+<BlockMath math="\theta = kn = 4^\circ \times 5 = 20^\circ" />
+</MathContainer>
+
+Check with the model: at <InlineMath math="k = 4" /> and <InlineMath math="n = 5" />, the angle reading is <InlineMath math="20" />. The ratio matches too: <InlineMath math="8 \div 2 = 20 \div 5 = 4" />.
+
+## The Growth Difference Sets the Bending Angle
+
+A shoot bends because its two sides elongate by different amounts. Picture the zone of elongation as a strip of width <InlineMath math="w" />. If the shaded side grows <InlineMath math="d" /> more than the lit side, the two sides become concentric arcs of a circle. An arc's length is its radius times its angle in radians, so the two sides differ in length by <InlineMath math="w\theta" />. That gives **the bending angle as the growth difference divided by the shoot's width**.
+
+<BlockMath math="\theta = \frac{d}{w}\ \text{radians} = \frac{180d}{\pi w}\ \text{degrees}" />
+
+<MathVisual
+  title={<>Bending Angle from the Growth Difference between Two Sides</>}
+  description={
+    <>
+      Bending angle in degrees against the growth difference{" "}
+      <InlineMath math="d" /> in millimetres, following{" "}
+      <InlineMath math="\theta = 180d/(\pi w)" /> for a shoot{" "}
+      <InlineMath math="w" /> millimetres wide.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 2.1 }, y: { min: 0, max: 120 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "w", min: 1, max: 3, value: 1, step: 0.5, label: "w" },
+      { name: "d", min: 0, max: 2, value: 0.8, step: 0.1, label: "d" },
+    ],
+    objects: [
+      { id: "bend", kind: "function", appearance: "primary", formula: "180x/(pi w)", domain: { min: 0, max: 2 } },
+      { id: "now", kind: "marker", x: "d", y: "180d/(pi w)", appearance: "warning" },
+    ],
+    readouts: [{ key: "bend", formula: "180d/(pi w)" }],
+  }}
+  labels={{
+    w: <>Shoot width <InlineMath math="w" /> in millimetres</>,
+    d: <>Growth difference <InlineMath math="d" /> in millimetres</>,
+    bend: <>Bending angle in degrees</>,
+  }}
+/>
+
+Move <InlineMath math="w" /> up. The line gets flatter: **a thicker shoot needs a bigger growth difference** to bend by the same angle.
+
+**Example 2.** A coleoptile <InlineMath math="1.0\text{ mm}" /> wide is lit from one side. In the zone of elongation, the shaded side grows <InlineMath math="0.80\text{ mm}" /> more than the lit side. Calculate the bending angle.
+
+<MathContainer>
+<BlockMath math="\theta = \frac{d}{w} = \frac{0.80}{1.0} = 0.80\text{ radians}" />
+<BlockMath math="\theta = 0.80 \times \frac{180^\circ}{\pi} = 45.8^\circ" />
+</MathContainer>
+
+Check with the model: at <InlineMath math="w = 1" /> and <InlineMath math="d = 0.8" />, the angle reading is <InlineMath math="45.84" />. Check the geometry too: if the lit side is <InlineMath math="5.0\text{ mm}" /> long, its radius is <InlineMath math="5.0 \div 0.80 = 6.25\text{ mm}" />, and the shaded side is <InlineMath math="7.25 \times 0.80 = 5.80\text{ mm}" />, which is <InlineMath math="0.80\text{ mm}" /> longer.
+
+## Roots and Shoots Respond to Gravity in Opposite Ways
+
+When a seedling lies on its side, gravity collects auxin on the **lower side** of both the root and the shoot. In the shoot, the extra auxin speeds up elongation, so the lower side grows faster and the shoot bends up. In the root, the same concentration **slows elongation down**, so the upper side grows faster and the root bends down. The root cap senses gravity. This model compares a seedling left still, a seedling on a slowly turning klinostat and a seedling with its root cap removed.
+
+<TropismLab
+  title={<>Geotropism Experiment with Three Seedlings Laid Flat</>}
+  description={
+    <>
+      Seedlings laid flat in the dark for <InlineMath math="48" /> hours. The
+      readings show the percentage of auxin on the upper and lower sides of the
+      shoot and how far the shoot and root bend.
+    </>
+  }
+  setup={{
+    stimulus: "gravity",
+    seedlings: [
+      { name: "A", treatment: "flat" },
+      { name: "B", treatment: "klinostat" },
+      { name: "C", treatment: "decapped" },
+    ],
+  }}
+  labels={{
+    bend: <>Shoot bend</>,
+    directions: {
+      away: <>upwards</>,
+      straight: <>straight</>,
+      toward: <>downwards</>,
+    },
+    far: <>Auxin on the upper side of the shoot</>,
+    near: <>Auxin on the lower side of the shoot</>,
+    growth: <>Growth compared with a seedling left still</>,
+    hours: "Time",
+    root: <>Root bend</>,
+    seedling: "Seedling",
+    view: "Seedlings laid flat in the dark",
+  }}
+/>
+
+Seedling A shows **positive geotropism in the root** and **negative geotropism in the shoot**. On the klinostat each side takes turns being underneath, so the auxin is shared evenly and seedling B grows straight. Seedling C shows what the root cap does: its shoot still bends up, but its root grows straight because nothing is left to sense gravity.
+
+Why does the same auxin have opposite effects? **Roots are far more sensitive to auxin** than shoots. The curves below model the classic shape of auxin's effect. The horizontal axis is the logarithm of concentration, so each unit to the right means ten times the concentration.
+
+<MathVisual
+  title={<>Effect of Auxin Concentration on Root and Shoot Elongation</>}
+  description={
+    <>
+      Elongation response in percent against <InlineMath math="\log_{10}" /> of
+      the auxin concentration in <InlineMath math="\text{mol dm}^{-3}" />.
+      Positive values promote and negative values inhibit. The root peaks near{" "}
+      <InlineMath math="10^{-10}" /> and the shoot near{" "}
+      <InlineMath math="10^{-5}\text{ mol dm}^{-3}" />.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -12, max: -2 }, y: { min: -110, max: 110 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "c", min: -12, max: -2, value: -6, step: 0.5, label: "c" },
+    ],
+    objects: [
+      { id: "root", kind: "function", appearance: "secondary", formula: "100exp(-((x + 10)/1.2)^2) - 100/(1 + exp(-2(x + 8)))", domain: { min: -12, max: -2 } },
+      { id: "shoot", kind: "function", appearance: "primary", formula: "100exp(-((x + 5)/1.2)^2) - 100/(1 + exp(-2(x + 3)))", domain: { min: -12, max: -2 } },
+      { id: "root-now", kind: "marker", x: "c", y: "100exp(-((c + 10)/1.2)^2) - 100/(1 + exp(-2(c + 8)))", appearance: "warning" },
+      { id: "shoot-now", kind: "marker", x: "c", y: "100exp(-((c + 5)/1.2)^2) - 100/(1 + exp(-2(c + 3)))", appearance: "warning" },
+    ],
+    readouts: [
+      { key: "root", formula: "100exp(-((c + 10)/1.2)^2) - 100/(1 + exp(-2(c + 8)))" },
+      { key: "shoot", formula: "100exp(-((c + 5)/1.2)^2) - 100/(1 + exp(-2(c + 3)))" },
+    ],
+  }}
+  labels={{
+    c: <>Logarithm of auxin concentration <InlineMath math="c" /></>,
+    root: <>Root response in percent</>,
+    shoot: <>Shoot response in percent</>,
+  }}
+/>
+
+**Example 3.** Read the model at <InlineMath math="c = -6" />, a concentration of <InlineMath math="10^{-6}\text{ mol dm}^{-3}" />, and explain which way a root and a shoot lying flat will bend if their lower sides reach this concentration.
+
+<MathContainer>
+<BlockMath math="\text{shoot: } 100e^{-(1/1.2)^2} - \frac{100}{1 + e^{6}} = 49.9 - 0.2 = 49.7" />
+<BlockMath math="\text{root: } 100e^{-(4/1.2)^2} - \frac{100}{1 + e^{-4}} = 0.0 - 98.2 = -98.2" />
+</MathContainer>
+
+At this concentration, elongation on the lower side of the shoot is promoted by about <InlineMath math="50\%" />, so the shoot bends up. Elongation on the lower side of the root almost stops, so the upper side of the root grows more and the root bends down. Check with the model: at <InlineMath math="c = -6" />, the shoot reading is <InlineMath math="49.69" /> and the root reading is <InlineMath math="-98.2" />.
+
+## Five Plant Hormones and Their Uses in Farming
+
+Besides auxin, plants make four other main hormones. Each one has a natural effect that farmers put to work.
+
+| Plant hormone | Effect in the plant | Use in farming |
+| :--- | :--- | :--- |
+| Auxin | Cell elongation, tropisms, root formation | Rooting powder for stem cuttings, seedless fruit, weedkillers |
+| Gibberellin | Stem elongation, seed germination | Bigger seedless grapes, breaking seed dormancy |
+| Cytokinin | Cell division, delaying leaf ageing | Tissue culture, keeping vegetables and cut flowers fresh |
+| Ethylene | Fruit ripening, dropping of leaves and fruit | Ripening bananas and mangoes all at once |
+| Abscisic acid | Closing stomata in drought, seed and bud dormancy | Helping crops survive water shortage |
+
+Weedkillers such as **2,4-D are synthetic auxins**. At high concentration they make broad-leaved dicot plants grow out of control and die, while grasses and rice, which are monocots, are affected much less. Farmers use them to kill broad-leaved weeds in rice fields. **Parthenocarpic fruit**, fruit without seeds, forms when auxin or gibberellin is sprayed on unpollinated flowers, so the ovary swells into a fruit without fertilisation.
+
+## Common Mistakes about Plant Responses
+
+| Mistake | Why it's wrong | How to check |
+| :--- | :--- | :--- |
+| Light destroys auxin, so the lit side grows slowly. | In 1957, Briggs and colleagues found the total auxin barely changed. Auxin moves to the shaded side. | Add up the auxin on both sides of seedling A: <InlineMath math="65\% + 35\% = 100\%" />. |
+| Auxin always speeds up growth. | A concentration that promotes shoot growth inhibits root growth. | Compare the two curves at <InlineMath math="c = -6" />. |
+| A touch-me-not leaf folds because it grows. | Thigmonasty happens because pulvinus cells lose water. | Ask whether the response is fast and reversible. |
+| A root bends down because its lower side grows more. | The upper side of the root grows faster. | Find the side with more auxin, then apply the root's sensitivity. |
+
+The second mistake costs the most marks in geotropism answers. **Roots and shoots get the same auxin distribution**, but their sensitivity differs, so they bend in opposite directions.
+
+## Practice on Plant Responses
+
+The questions move from predicting experiments to calculations and applications. **Name the side that gets more auxin** in every explanation.
+
+1. A seedling's tip is covered with an opaque cap, and the seedling is lit from the left. Predict which way it grows and explain why.
+
+2. Explain, with reference to auxin, why the root of a seedling lying flat bends down.
+
+3. A stem <InlineMath math="2.0\text{ mm}" /> wide lies flat. The lower side of its zone of elongation grows <InlineMath math="1.4\text{ mm}" /> more than the upper side. Calculate the bending angle in degrees.
+
+4. A grower wants to ripen a basket of bananas all at once and to kill broad-leaved weeds in a rice field. Name the plant hormone for each job and explain your choice.
+
+### Solutions
+
+**Solution 1**: The opaque cap stops the tip from detecting the direction of the light. Auxin is shared **evenly on both sides**, so both sides elongate by the same amount and the seedling grows straight up. This matches seedling C in the phototropism model.
+
+**Solution 2**: Gravity collects auxin on the **lower side of the root**. Roots are very sensitive, so this high concentration slows cell elongation on the lower side. The upper side, with less auxin, elongates faster, so the root bends down. This is positive geotropism.
+
+**Solution 3**: Use <InlineMath math="\theta = d/w" />, then convert to degrees:
+
+<MathContainer>
+<BlockMath math="\theta = \frac{1.4}{2.0} = 0.70\text{ radians}" />
+<BlockMath math="\theta = 0.70 \times \frac{180^\circ}{\pi} = 40.1^\circ" />
+</MathContainer>
+
+Check with the bending model: at <InlineMath math="w = 2" /> and <InlineMath math="d = 1.4" />, the reading is <InlineMath math="40.11" />. The lower side is longer, so the stem bends up.
+
+**Solution 4**: For the bananas, use **ethylene**, a gas that speeds up fruit ripening, so every banana in the basket ripens at the same time. For the rice field, use **a synthetic auxin such as 2,4-D**. At high concentration it kills broad-leaved dicot weeds, while rice is a monocot and is affected much less.
