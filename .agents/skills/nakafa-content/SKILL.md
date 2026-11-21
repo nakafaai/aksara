@@ -124,12 +124,18 @@ Read only what the task needs. Each reference owns one concern.
 contract](references/emphasis.md) owns where they belong and how dense they
   may be.
 - Every lesson meets the [lesson standard](references/lesson.md): the answer
-  first, a teacher talking to one learner, at least three custom 3D scenes or
-  animations that model its main ideas (aiming for five, never fewer than
-  before a revision),
-  complete worked examples, mistakes and practice only where the topic needs
-  them (never a template tail), an outline that is this topic's own, and search
-  metadata in every locale.
+  first, a teacher talking to one learner, one continuous crystal-clear story
+  with plain-language intuition before symbols or jargon, zero phantom
+  references, tight text-to-visual anchoring (lead-in question before each
+  visual and concrete takeaway interpretation right after it), at least three
+  unique custom 3D scenes or animations owned by this lesson alone (zero
+  cross-lesson reuse and zero within-lesson filler repetition, aiming for five,
+  never fewer than before a revision), an authored `footer` on every visual
+  card (D3), complete worked examples, mistakes and practice only where the
+  topic needs them (never a template tail), a non-flat outline with zero lone
+  H3 subsections (no exemption for solution headings), clean comma-and-period
+  search metadata with no curriculum or chapter prefixes, and a mandatory
+  four-locale (`en`, `id`, `ms`, `de`) clarity trace (D29).
 - Every plotted coordinate is computed in the source from the formula it
   draws, and a smooth function renders smooth. Illustrations use only Nakafa's
   three.js foundation or p5, never SVG, HTML drawings, canvas code, or images.

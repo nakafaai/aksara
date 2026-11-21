@@ -22,6 +22,17 @@ source, never in the lesson.
   lesson does not contain.
 - The `description` states in one or two sentences what the learner can do
   after reading, between about 120 and 155 characters.
+- Write `metadata.description` as natural, direct prose using **only commas
+  (`,`) and periods (`.`)** as punctuation (word-internal hyphens such as
+  `rata-rata` or `x-axis` and word-internal apostrophes such as `don't` remain
+  valid). Colons (`:`), semicolons (`;`), parentheses `()`, brackets `[]`,
+  exclamation or question marks, slashes (`/`), quotes, and standalone dashes
+  are forbidden (`metadata-description-punctuation`).
+- Never start or tag `metadata.description` with a curriculum, syllabus, grade,
+  or chapter prefix such as `Form 4 Biology Chapter 7`, `Nota Biologi Tingkatan
+  4 Bab 2`, `Bab 3`, `Chapter 5`, `Kelas 11`, `Klasse 10`, `KSSM`, or `IGCSE`
+  (`metadata-description-prefix`). Lessons are curriculum-neutral and mapped
+  across multiple curricula, so descriptions explain the concept directly.
 - Each locale writes for its own language's searches. Do not translate an
   Indonesian keyword phrase into German or English; research what German and
   English learners call the concept.

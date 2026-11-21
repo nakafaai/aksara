@@ -5,12 +5,13 @@
   skipped levels, and every heading deeper than `###`. In lesson exercises,
   it also rejects further headings after the H3 solution boundary until the
   next H2 teaching section.
-- Preserve the teaching hierarchy: a lesson exercise section stays at `##`, and
-  its worked solutions stay at `###` beneath it. Never promote the solutions to
-  `##` merely to remove deeper headings. Inside the solutions, connect subgoals
-  through complete prose, with selective emphasis, derivations, tables, or
-  diagrams when they help. Remove deeper headings by rewriting their transitions
-  in context, never by flattening the outline or replacing them with bold titles.
+- Never open a lone H3 under any H2 (`lone-subsection`), including worked
+  solutions. Practice and worked answers integrate into the teaching sections
+  they test or use 2 to 4 topic-specific H3 subsections under an H2 (never a
+  lone `### Pembahasan`, `### Kunci Jawaban`, `### Solutions`, `### Worked
+  Solutions`, `### Penyelesaian`, `### Jalan Kerja`, or `### Lösungen`).
+  Inside worked answers, connect subgoals through complete prose, with
+  selective emphasis, derivations, tables, or diagrams when they help.
   Numbered question identifiers such as `**Soal 1**.` belong at the start of
   the answer prose so the learner can match questions and answers. Follow the
   [worked-solution mapping](solutions.md#mapping-exercises-to-answers).

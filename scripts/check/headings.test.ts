@@ -132,6 +132,8 @@ describe("checkHeadings and relabelFindings", () => {
         }
         const sections = [
           "## Busur Satu",
+          "### Arah Putar",
+          "### Besar Sudut",
           "## Busur Dua",
           "## Busur Tiga",
           "## Busur Empat",
@@ -144,6 +146,8 @@ describe("checkHeadings and relabelFindings", () => {
           `${ROOT}/reflection/id.mdx`,
           page("Refleksi", [
             "## Cermin Satu",
+            "### Sumbu Datar",
+            "### Sumbu Tegak",
             "## Cermin Dua",
             "## Cermin Tiga",
             "## Cermin Empat",
@@ -164,6 +168,8 @@ describe("checkHeadings and relabelFindings", () => {
           `${ROOT}/dilation/id.mdx`,
           page("Dilatasi", [
             "## Busur Satu",
+            "### Faktor Besar",
+            "### Faktor Kecil",
             "## Skala Dua",
             "## Skala Tiga",
             "## Skala Empat",
@@ -189,6 +195,8 @@ describe("checkHeadings and relabelFindings", () => {
         const renamed = page("Rotasi", [...sections, "## Latihan Rotasi"]);
         const mirrored = page("Refleksi", [
           "## Cermin Pertama",
+          "### Sumbu Datar",
+          "### Sumbu Tegak",
           "## Cermin Dua",
           "## Cermin Tiga",
           "## Cermin Empat",

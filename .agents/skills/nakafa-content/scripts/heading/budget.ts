@@ -18,8 +18,8 @@ export const MOST_SECTIONS = 8;
 export const FEWEST_SECTIONS = 4;
 /** The most H3 subsections one H2 opens. */
 export const MOST_SUBSECTIONS = 4;
-/** From this many H2 sections a page groups related sections. */
-export const FLAT_SECTIONS = 7;
+/** From this many H2 sections a page groups related sections under subsections. */
+export const FLAT_SECTIONS = 4;
 
 const SECTION_DEPTH = 2;
 const SUBSECTION_DEPTH = 3;
@@ -108,15 +108,26 @@ function findSectionCount(
     : [];
 }
 
-/** R3: an H2 opens no subsection or two to four. */
+/** R3: an H2 opens no subsection or two to four; a single subsection always blocks. */
 function findFanout(
   sections: readonly {
     readonly heading: OutlineHeading;
     readonly subsections: readonly OutlineHeading[];
   }[]
 ): HeadingFinding[] {
-  return Arr.flatMap(sections, ({ heading, subsections }) =>
-    subsections.length > MOST_SUBSECTIONS - 1
+  return Arr.flatMap(sections, ({ heading, subsections }) => {
+    const [only] = subsections;
+    if (subsections.length === 1 && only !== undefined) {
+      return [
+        findingAt(
+          only,
+          "lone-subsection",
+          true,
+          `'${heading.words}' opens only one subsection ('${only.words}'); keep 0 or 2 to 4 subsections, with no exemption for solution headings. Merge it into its section, split the section into two real subtopics, or weave exercises and solutions directly into the section they test.`
+        ),
+      ];
+    }
+    return subsections.length > MOST_SUBSECTIONS - 1
       ? [
           findingAt(
             heading,
@@ -125,11 +136,11 @@ function findFanout(
             `'${heading.words}' opens ${subsections.length} subsections; keep 2 to 4. Turn parallel cases into a table or an ordered list, or split the section by teaching job.`
           ),
         ]
-      : []
-  );
+      : [];
+  });
 }
 
-/** R4: a page with seven or more H2 groups related sections under one H2. */
+/** R4: a page with four or more H2 groups related sections under one H2. */
 function findFlatSections(
   locale: LessonVoiceLocale,
   sections: readonly {

@@ -1,7 +1,9 @@
 import { assert, it } from "@effect/vitest";
-import { findOutlineIssues } from "#nakafa-content/heading/outline";
+import {
+  findCorpusOutlineIssues,
+  findOutlineIssues,
+} from "#nakafa-content/heading/outline";
 import { parseLessonMdx } from "#nakafa-content/mdx/parse";
-import type { LessonVoiceLocale } from "#nakafa-content/voice/types";
 
 const BODY = "A full paragraph teaches the idea before the next heading.";
 
@@ -11,8 +13,8 @@ function lesson(headings: readonly string[]): string {
 }
 
 /** The rule and line of every outline finding in one lesson. */
-function outline(source: string, locale: LessonVoiceLocale = "en"): string[] {
-  return findOutlineIssues(source, parseLessonMdx(source), locale).map(
+function outline(source: string): string[] {
+  return findOutlineIssues(source, parseLessonMdx(source)).map(
     ({ line, rule }) => `${rule} ${line}`
   );
 }
@@ -48,24 +50,50 @@ it("reports the single subsection of a section at its own line", () => {
   );
 });
 
-it("keeps a single worked-solution subsection in every locale", () => {
+it("blocks a single worked-solution subsection in every locale with no exemption", () => {
   const cases = [
+    ["en", "## Exercises", "### Solutions"],
     ["en", "## Exercises", "### Worked Solutions"],
+    ["en", "## Example", "### Answers"],
     ["id", "## Latihan", "### Pembahasan"],
-    ["de", "## Übungen", "### Lösungen"],
+    ["id", "## Latihan", "### Kunci Jawaban"],
     ["ms", "## Latihan", "### Penyelesaian"],
+    ["ms", "## Latihan", "### Jalan Kerja"],
+    ["de", "## Übungen", "### Lösungen"],
   ] as const;
   for (const [locale, exercise, solutions] of cases) {
     const source = lesson(["## Answer", "## Method", exercise, solutions]);
-    assert.deepEqual(outline(source, locale), [], locale);
+    assert.deepEqual(
+      outline(source),
+      ["lone-subsection 13"],
+      `${locale}: ${solutions}`
+    );
   }
-  assert.deepEqual(
-    outline(lesson(["## Answer", "## Example", "### Answers", "## Method"])),
-    []
-  );
   assert.deepEqual(
     outline(lesson(["## Answer", "## Method", "## Exercises", "### Hint"])),
     ["lone-subsection 13"]
+  );
+});
+
+it("reports section count and anchor collisions for the whole-corpus outline check", () => {
+  const source = lesson([
+    "## Answer",
+    "## Method",
+    "## Exercises",
+    "### Solutions",
+  ]);
+  assert.deepEqual(
+    findCorpusOutlineIssues(source, parseLessonMdx(source)).map(
+      ({ line, rule }) => `${rule} ${line}`
+    ),
+    []
+  );
+  const flat = lesson(["## Answer", "## Method"]);
+  assert.deepEqual(
+    findCorpusOutlineIssues(flat, parseLessonMdx(flat)).map(
+      ({ line, rule }) => `${rule} ${line}`
+    ),
+    ["flat-outline 1"]
   );
 });
 
@@ -74,7 +102,7 @@ it("reports a flat lesson with fewer than three sections at its first section", 
     "flat-outline 1",
   ]);
   assert.deepEqual(outline(BODY), []);
-  assert.deepEqual(findOutlineIssues("", { type: "root" }, "en"), []);
+  assert.deepEqual(findOutlineIssues("", { type: "root" }), []);
 });
 
 it("reports a crowded lesson with more than ten sections at its eleventh", () => {
@@ -94,8 +122,7 @@ it("reports a heading whose anchor an earlier heading renders", () => {
         "## sudut   pusat",
         "## Nilai `x`",
         "## Sudut Keliling",
-      ]),
-      "id"
+      ])
     ),
     ["heading-anchor 9", "heading-anchor 13"]
   );

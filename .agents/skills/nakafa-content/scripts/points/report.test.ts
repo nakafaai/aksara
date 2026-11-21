@@ -129,4 +129,34 @@ describe("points report", () => {
       assert.strictEqual(result.log.length, 2);
     })
   );
+
+  it.effect("prints custom visual uniqueness violations and exits with 1", () =>
+    Effect.gen(function* () {
+      const result = yield* capture(
+        printReport({
+          base: BASE,
+          compared: 1,
+          files: 2,
+          findings: [],
+          scenes: [],
+          uniqueness: [
+            {
+              lesson: "lessons/a",
+              message:
+                "reuses custom visual <CellLab> already owned by lessons/b.",
+              rule: "duplicate-scene-across-lessons",
+              scene: "CellLab",
+            },
+          ],
+        })
+      );
+
+      assert.strictEqual(result.code, 1);
+      assert.deepStrictEqual(result.error, [
+        "lessons/a [duplicate-scene-across-lessons] reuses custom visual <CellLab> already owned by lessons/b.",
+        "Points check found 1 custom visual uniqueness violation(s), compared with 0123456.",
+      ]);
+      assert.deepStrictEqual(result.log, []);
+    })
+  );
 });

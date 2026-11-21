@@ -1,6 +1,8 @@
 import { assert, it } from "@effect/vitest";
+import { outlineHeadings } from "#nakafa-content/heading/outline";
 import { findPageFindings } from "#nakafa-content/heading/page";
 import { corpusPage } from "#nakafa-content/heading/test";
+import { parseLessonMdx } from "#nakafa-content/mdx/parse";
 
 /** The rule, tier, and line of every finding of one page. */
 function rules(page: ReturnType<typeof corpusPage>): string[] {
@@ -26,7 +28,40 @@ it("reads the outline budget, the title, the scaffold labels, and the width of a
   ]);
 });
 
-it("holds an article to the title, scaffold, and width rules only", () => {
+it("runs clean description and cohesion rules on lessons and descriptions on articles", () => {
+  const source = [
+    'export const metadata = { title: "Respirasi", description: "Form 4 Biology Chapter 7: ATP." };',
+    "",
+    "## Glikolisis",
+    "",
+    "Tahap tersebut memecah glukosa.",
+  ].join("\n");
+  const tree = parseLessonMdx(source);
+  const lessonFindings = findPageFindings({
+    headings: outlineHeadings(source, tree),
+    kind: "lesson",
+    locale: "id",
+    title: "Respirasi",
+    tree,
+  }).map(({ rule }) => rule);
+
+  assert.include(lessonFindings, "metadata-description-prefix");
+  assert.include(lessonFindings, "metadata-description-punctuation");
+  assert.include(lessonFindings, "stiff-formal-prose");
+
+  const articleFindings = findPageFindings({
+    headings: outlineHeadings(source, tree),
+    kind: "article",
+    locale: "id",
+    title: "Respirasi",
+    tree,
+  }).map(({ rule }) => rule);
+  assert.include(articleFindings, "metadata-description-prefix");
+  assert.include(articleFindings, "metadata-description-punctuation");
+  assert.notInclude(articleFindings, "stiff-formal-prose");
+});
+
+it("holds an article to the description, title, scaffold, and width rules only", () => {
   const article = corpusPage(
     "b/id.mdx",
     "Politik Dinasti",

@@ -3,13 +3,9 @@ import {
   headingWords,
 } from "@nakafa/aksara-compiler/policy/anchor";
 import { HashSet } from "effect";
-import { isSolutionHeading } from "#nakafa-content/exercise/context";
 import { headingText } from "#nakafa-content/heading/label";
 import type { MdxNode } from "#nakafa-content/mdx/parse";
-import type {
-  LessonVoiceIssue,
-  LessonVoiceLocale,
-} from "#nakafa-content/voice/types";
+import type { LessonVoiceIssue } from "#nakafa-content/voice/types";
 
 /**
  * The fewest and the most H2 sections a lesson holds. Measured on the 383
@@ -77,11 +73,10 @@ function issueAt(heading: OutlineHeading, rule: string): LessonVoiceIssue {
 /**
  * Finds each H2 that opens exactly one H3. A lone subsection splits one
  * teaching job across two headings, so merge it into its section or give the
- * section the second subsection it lacks. A worked-solution H3 stays alone,
- * because the heading rules keep an exercise's solutions one level below it.
+ * section the second subsection it lacks. No heading is exempt, including
+ * worked-solution subsections in any locale.
  */
-function findLoneSubsections(
-  locale: LessonVoiceLocale,
+export function findLoneSubsections(
   headings: readonly OutlineHeading[]
 ): LessonVoiceIssue[] {
   const issues: LessonVoiceIssue[] = [];
@@ -102,9 +97,7 @@ function findLoneSubsections(
       return;
     }
     for (const only of subsections) {
-      if (!isSolutionHeading(locale, only.label)) {
-        issues.push(issueAt(only, "lone-subsection"));
-      }
+      issues.push(issueAt(only, "lone-subsection"));
     }
   });
   return issues;
@@ -148,21 +141,37 @@ function findAnchorCollisions(
 }
 
 /**
+ * Holds the whole corpus to the outline invariants every existing page already
+ * meets: three to ten H2 sections and no two headings with one anchor. Changed
+ * and new pages additionally run `budget.ts` in `bun run headings`, which
+ * blocks every lone subsection (including solution headings) and flat outlines.
+ */
+export function findCorpusOutlineIssues(
+  source: string,
+  tree: MdxNode
+): LessonVoiceIssue[] {
+  const headings = outlineHeadings(source, tree);
+  return [
+    ...findSectionCountIssues(headings),
+    ...findAnchorCollisions(headings),
+  ];
+}
+
+/**
  * Holds one lesson's outline to its measured shape: three to ten H2
- * sections, no H2 with a single H3 except an exercise's worked solutions, and
+ * sections, no H2 with a single H3 (no exemption for solution headings), and
  * no two headings with one anchor.
  * The heading-order rule owns the depth limit and the section-body rules own
  * the words under each heading.
  */
 export function findOutlineIssues(
   source: string,
-  tree: MdxNode,
-  locale: LessonVoiceLocale
+  tree: MdxNode
 ): LessonVoiceIssue[] {
   const headings = outlineHeadings(source, tree);
   return [
     ...findSectionCountIssues(headings),
-    ...findLoneSubsections(locale, headings),
+    ...findLoneSubsections(headings),
     ...findAnchorCollisions(headings),
   ];
 }

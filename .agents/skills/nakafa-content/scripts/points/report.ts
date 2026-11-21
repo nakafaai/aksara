@@ -2,6 +2,7 @@ import { Array as Arr, Console, Effect } from "effect";
 import type { PointsFinding } from "#nakafa-content/points/finding";
 import type { SceneShortfall } from "#nakafa-content/points/scene";
 import { FEWEST_SCENES, TARGET_SCENES } from "#nakafa-content/points/scene";
+import type { SceneUniquenessFinding } from "#nakafa-content/points/unique";
 
 const SHORT_REVISION_LENGTH = 7;
 
@@ -17,6 +18,7 @@ export interface PointsReport {
   readonly files: number;
   readonly findings: readonly FileFinding[];
   readonly scenes: readonly SceneShortfall[];
+  readonly uniqueness?: readonly SceneUniquenessFinding[];
 }
 
 /** Shortens a revision to the length that messages and labels show. */
@@ -49,6 +51,15 @@ const printScenes = Effect.fn("PointsCheck.printScenes")(function* (
   }
 });
 
+/** Prints every custom visual uniqueness violation (cross-lesson or within-lesson). */
+const printUniqueness = Effect.fn("PointsCheck.printUniqueness")(function* (
+  uniqueness: readonly SceneUniquenessFinding[]
+) {
+  for (const { lesson, message, rule } of uniqueness) {
+    yield* Console.error(`${lesson} [${rule}] ${message}`);
+  }
+});
+
 /** Prints one report and returns the stable process exit code. */
 export const printReport = Effect.fn("PointsCheck.printReport")(function* (
   report: PointsReport
@@ -56,10 +67,12 @@ export const printReport = Effect.fn("PointsCheck.printReport")(function* (
   for (const { column, file, line, message, rule } of report.findings) {
     yield* Console.error(`${file}:${line}:${column} [${rule}] ${message}`);
   }
+  const uniqueness = report.uniqueness ?? [];
   yield* printScenes(report.scenes);
+  yield* printUniqueness(uniqueness);
   const revision = shortRevision(report.base);
   const short = Arr.filter(report.scenes, ({ blocking }) => blocking).length;
-  if (report.findings.length === 0 && short === 0) {
+  if (report.findings.length === 0 && short === 0 && uniqueness.length === 0) {
     yield* Console.log(
       `Points check passed for ${report.files} files and compared ${report.compared} changed files with ${revision}.`
     );
@@ -73,6 +86,9 @@ export const printReport = Effect.fn("PointsCheck.printReport")(function* (
           `${report.findings.length} finding(s) in ${affected} of ${report.files} files`,
         ]),
     ...(short === 0 ? [] : [`${short} lesson(s) below the custom scene bar`]),
+    ...(uniqueness.length === 0
+      ? []
+      : [`${uniqueness.length} custom visual uniqueness violation(s)`]),
   ];
   yield* Console.error(
     `Points check found ${found.join(" and ")}, compared with ${revision}.`

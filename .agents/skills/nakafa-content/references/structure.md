@@ -123,22 +123,38 @@ contains. Its structural parts are enforced here:
   ordered list or a table, and split the page only when it answers two main
   questions. `flat-outline` still blocks fewer than three H2 sections and
   `heading-order` keeps every heading at H2 or H3.
-- Give an H2 no subsections or 2 to 4. `lone-subsection` blocks one, because
-  one subsection splits one teaching job across two headings: merge it into its
-  section when the two together stay a short section, or make it a section of
-  its own when each part carries its own job. `section-fanout` asks for a
-  review at four and blocks a fifth. A worked-solution H3 stays alone, since an
-  exercise keeps its solutions one level below it.
-- Do not leave a long page flat. With 7 or more H2 sections, group the sections
-  that develop one idea under a shared H2 (`flat-sections`). Depth follows the
-  topic structure; never add an H3 to satisfy the rule.
+- Give an H2 no subsections or 2 to 4. `lone-subsection` blocks ANY H2 with
+  exactly one H3, with **no exemption for solution headings** (`### Kunci
+  Jawaban`, `### Pembahasan`, `### Solutions`, `### Worked Solutions`,
+  `### Penyelesaian`, `### Jalan Kerja`, `### Lösungen` are all blocked). One
+  subsection splits one teaching job across two headings: merge it into its
+  section, give the section two real subtopics, or integrate practice and
+  worked answers directly into the section they test. `section-fanout` asks for
+  a review at four and blocks a fifth.
+- Do not leave a lesson flat. With 4 or more H2 sections (`FLAT_SECTIONS = 4`),
+  group the sections that develop one idea under a shared H2 with 2 to 4
+  teaching subsections (`flat-sections`). Depth follows the topic structure;
+  never add an H3 merely to satisfy the rule, and never stuff unrelated
+  subtopics under one H2.
+- Anchor every visual and formula into a continuous narrative (Rule 16):
+  - Introduce every visual (`visual-missing-intro`) and every displayed formula
+    (`formula-without-intro`) with plain-language prose that states the
+    question or intuition first.
+  - Follow every visual with a concrete takeaway paragraph that tells the
+    learner what to notice and connects it back to the concept
+    (`visual-missing-takeaway`).
+  - Never stack two visuals back-to-back with zero bridging prose
+    (`back-to-back-visuals`).
+  - Never leave a paragraph ending with a colon followed by another plain
+    paragraph (`dangling-colon`).
+  - Never use axis-scaling workaround hacks (`unit-scaling-hack`).
 - A procedure is not an outline. Steps such as drawing a boundary, choosing a
   side, and shading the overlap become numbered steps or the H3 subsections of
   one method section, never a run of imperative headings, one for every step.
 - An interactive visual belongs inside the section whose idea it models. Never
   give a visual its own section such as `Visualisasi Interaktif ...`, and never
-  add a section that explains how to read a visual: its description and the
-  sentence around it do that.
+  add a section that explains how to read a visual: its description, footer, and
+  the prose right before and after it do that.
 - The outline comes from the topic's own teaching job and its hardest ideas,
   never from a template. Mistakes, examples, and practice appear only where they
   teach something specific to this topic, in the form that fits it: a
@@ -151,9 +167,11 @@ contains. Its structural parts are enforced here:
 - Never reach these rules by renaming. A change that only relabels the headings
   of a page that failed them keeps the repeated structure and text, and
   `heading-only-change` flags it for review. Restructure and rewrite instead.
-- Keep paragraphs to about seventy words. A paragraph near a hundred words
-  usually hides a derivation, comparison, or process that a math block, table,
-  diagram, or interactive visual would show better.
+- Keep paragraphs concise and readable on small phones: target about 70 words;
+  paragraphs above 85 words trigger a `wall-of-text` review signal and
+  paragraphs above 120 words block (`wall-of-text`). A dense paragraph usually
+  hides a derivation, comparison, or process that a math block, table, diagram,
+  or interactive visual would show better.
 - Do not nest lists in lessons. Turn a nested list into a sequence of short
   paragraphs, a table, or separate steps with their own explanation.
 - Wherever a mistake or a practice problem teaches something specific, give it

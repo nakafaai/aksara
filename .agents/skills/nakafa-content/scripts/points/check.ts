@@ -10,6 +10,8 @@ import {
   Option,
   Path,
 } from "effect";
+import { correctsFiguresOnly } from "#nakafa-content/mdx/figure";
+import type { MdxNode } from "#nakafa-content/mdx/parse";
 import { parseLessonMdx } from "#nakafa-content/mdx/parse";
 import {
   changedFiles,
@@ -23,6 +25,7 @@ import { PointsCheckError, unreadable } from "#nakafa-content/points/error";
 import { figureCorrections, keptScenes } from "#nakafa-content/points/figure";
 import { collectFiles } from "#nakafa-content/points/files";
 import type { PointsFinding } from "#nakafa-content/points/finding";
+import { findMissingFooters } from "#nakafa-content/points/footer";
 import { findLiteralPoints } from "#nakafa-content/points/literal";
 import type { CheckOptions } from "#nakafa-content/points/options";
 import { parseOptions } from "#nakafa-content/points/options";
@@ -33,7 +36,10 @@ import {
   lessonScenes,
   sceneShortfalls,
 } from "#nakafa-content/points/scene";
+import { sceneUniquenessFindings } from "#nakafa-content/points/unique";
 import { findVisualLoss } from "#nakafa-content/points/visual";
+
+const LESSON_CORPUS_ROOT = "packages/corpus/material/lesson";
 
 /** Orders findings by their position in one document. */
 function byPosition(left: PointsFinding, right: PointsFinding): number {
@@ -49,7 +55,10 @@ const parseDocument = Effect.fn("PointsCheck.parseDocument")(
           detail: `Cannot parse ${label}: ${String(cause)}`,
           reason: "unparseable-document",
         }),
-      try: () => inspectDocument(parseLessonMdx(source, label)),
+      try: () => {
+        const tree: MdxNode = parseLessonMdx(source, label);
+        return { document: inspectDocument(tree), tree };
+      },
     })
 );
 
@@ -63,8 +72,8 @@ const loadDocument = Effect.fn("PointsCheck.loadDocument")(function* (
   const source = yield* fileSystem
     .readFileString(path.join(root, file))
     .pipe(Effect.mapError(unreadable(file)));
-  const document = yield* parseDocument(file, source);
-  return { document, source };
+  const { document, tree } = yield* parseDocument(file, source);
+  return { document, source, tree };
 });
 
 /** The lesson folders that the touched files belong to. */
@@ -77,37 +86,45 @@ function lessonsOf(touched: readonly string[]) {
 }
 
 /**
- * Adds every section file of the changed lessons that the targets left out,
- * because a lesson's scenes are counted across all of its sections.
+ * Adds every section file of the corpus lessons that the targets left out,
+ * because a lesson's scene count spans all of its sections and cross-lesson
+ * visual uniqueness compares against every other lesson in the corpus.
  */
-const lessonDocuments = Effect.fn("PointsCheck.lessonDocuments")(function* (
-  root: string,
-  lessons: HashSet.HashSet<string>,
-  documents: readonly (readonly [string, DocumentParts])[]
-) {
-  const fileSystem = yield* FileSystem.FileSystem;
-  const path = yield* Path.Path;
-  const loaded = HashSet.fromIterable(Arr.map(documents, ([file]) => file));
-  const present = yield* Effect.filter(Arr.fromIterable(lessons), (lesson) =>
-    fileSystem
-      .exists(path.join(root, lesson))
-      .pipe(Effect.mapError(unreadable(lesson)))
-  );
-  if (present.length === 0) {
-    return documents;
+const corpusLessonDocuments = Effect.fn("PointsCheck.corpusLessonDocuments")(
+  function* (
+    root: string,
+    lessons: HashSet.HashSet<string>,
+    documents: readonly (readonly [string, DocumentParts])[]
+  ) {
+    const fileSystem = yield* FileSystem.FileSystem;
+    const path = yield* Path.Path;
+    const loaded = HashSet.fromIterable(Arr.map(documents, ([file]) => file));
+    const hasCorpusRoot = yield* fileSystem
+      .exists(path.join(root, LESSON_CORPUS_ROOT))
+      .pipe(Effect.mapError(unreadable(LESSON_CORPUS_ROOT)));
+    const roots = hasCorpusRoot
+      ? [LESSON_CORPUS_ROOT]
+      : yield* Effect.filter(Arr.fromIterable(lessons), (lesson) =>
+          fileSystem
+            .exists(path.join(root, lesson))
+            .pipe(Effect.mapError(unreadable(lesson)))
+        );
+    if (roots.length === 0) {
+      return documents;
+    }
+    const missing = Arr.filter(
+      yield* collectFiles(root, roots),
+      (file) => !HashSet.has(loaded, file)
+    );
+    const added = yield* Effect.forEach(missing, (file) =>
+      Effect.map(
+        loadDocument(root, file),
+        ({ document }) => [file, document] as const
+      )
+    );
+    return Arr.appendAll(documents, added);
   }
-  const missing = Arr.filter(
-    yield* collectFiles(root, present),
-    (file) => !HashSet.has(loaded, file)
-  );
-  const added = yield* Effect.forEach(missing, (file) =>
-    Effect.map(
-      loadDocument(root, file),
-      ({ document }) => [file, document] as const
-    )
-  );
-  return Arr.appendAll(documents, added);
-});
+);
 
 /** Checks every document below the targets against the rules and its base. */
 const checkPoints = Effect.fn("PointsCheck.checkPoints")(function* (
@@ -121,33 +138,44 @@ const checkPoints = Effect.fn("PointsCheck.checkPoints")(function* (
     (target) => path.relative(root, path.resolve(root, target)) || "."
   );
   const changed = yield* changedFiles(root, base, targets);
+  const touched = yield* touchedFiles(root, base, targets);
+  const touchedSet = HashSet.fromIterable(touched);
   const findings: FileFinding[] = [];
   const documents: [string, DocumentParts][] = [];
   let compared = 0;
   for (const file of files) {
-    const { document, source } = yield* loadDocument(root, file);
+    const { document, source, tree } = yield* loadDocument(root, file);
     documents.push([file, document]);
     const found = findLiteralPoints(source, document);
     const baseFile = changed.get(file);
+    let figureOnly = false;
     if (baseFile !== undefined) {
       compared += 1;
       const baseSource = yield* readBase(root, base, baseFile);
-      const baseDocument = yield* parseDocument(
+      const { document: baseDocument, tree: baseTree } = yield* parseDocument(
         `${baseFile} at ${shortRevision(base)}`,
         baseSource
       );
+      figureOnly =
+        baseFile === file &&
+        correctsFiguresOnly(
+          { source: baseSource, tree: baseTree },
+          { source, tree }
+        );
       const loss = findVisualLoss(baseDocument, document);
       if (loss) {
         found.push(loss);
       }
     }
+    if (options.all || (HashSet.has(touchedSet, file) && !figureOnly)) {
+      found.push(...findMissingFooters(tree));
+    }
     findings.push(
       ...found.sort(byPosition).map((entry) => ({ ...entry, file }))
     );
   }
-  const touched = yield* touchedFiles(root, base, targets);
   const lessons = lessonsOf(touched);
-  const scenes = yield* lessonDocuments(root, lessons, documents);
+  const scenes = yield* corpusLessonDocuments(root, lessons, documents);
   // A lesson whose change only corrects its figures keeps its count (D26).
   const corrections = yield* figureCorrections(root, base, touched, changed);
   const now = lessonScenes(scenes);
@@ -158,16 +186,16 @@ const checkPoints = Effect.fn("PointsCheck.checkPoints")(function* (
         [file, corrections.baseParts.get(file) ?? document] as const
     )
   );
-  const held = HashSet.difference(
-    lessons,
-    keptScenes(corrections.lessons, now, before)
-  );
+  const checked = options.all
+    ? HashSet.fromIterable(Arr.map(now, ({ lesson }) => lesson))
+    : HashSet.difference(lessons, keptScenes(corrections.lessons, now, before));
   return {
     base,
     compared,
     files: files.length,
     findings,
-    scenes: sceneShortfalls(now, held),
+    scenes: sceneShortfalls(now, checked),
+    uniqueness: sceneUniquenessFindings(scenes, checked),
   } satisfies PointsReport;
 });
 
