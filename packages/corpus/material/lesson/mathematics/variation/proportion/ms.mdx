@@ -1,0 +1,271 @@
+export const metadata = {
+  title: "Nota Ubahan Tingkatan Lima",
+  description:
+    "Nota Matematik Tingkatan 5 Bab 1: kenal pasti ubahan langsung, ubahan songsang, ubahan tercantum dan ubahan bergabung, cari pemalar dan selesaikan masalah.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2026-11-17",
+  subject: "Ubahan",
+};
+
+## Ubahan Menghubungkan Kuantiti dengan Satu Pemalar
+
+Dalam **ubahan langsung**, <InlineMath math="y" /> bertambah apabila <InlineMath math="x" /> bertambah, dan <InlineMath math="y = kx^n" />. Dalam **ubahan songsang**, <InlineMath math="y" /> berkurang apabila <InlineMath math="x" /> bertambah, dan <InlineMath math="y = \dfrac{k}{x^n}" />. Nombor <InlineMath math="k" /> ialah **pemalar ubahan**. Apabila <InlineMath math="y" /> berubah dengan dua atau lebih pemboleh ubah sekali gus, kita mendapat ubahan tercantum atau ubahan bergabung. Langkah penyelesaian sentiasa sama: tulis persamaan, cari <InlineMath math="k" /> daripada nilai yang diberi, kemudian gunakan persamaan itu. Dalam model di sini, kamu mengubah pemalar dan kuasa, menguji data eksperimen dan melihat kesan dua pemboleh ubah.
+
+## Ubahan Langsung
+
+Jika <InlineMath math="y" /> berubah secara langsung dengan <InlineMath math="x^n" />, ditulis <InlineMath math="y \propto x^n" />, maka <InlineMath math="y = kx^n" /> dan **nisbah** <InlineMath math="\dfrac{y}{x^n}" /> sentiasa sama dengan <InlineMath math="k" />. Ubah pemalar dan kuasa dalam model ini. Semua lengkung melalui asalan.
+
+<MathVisual
+  title={<>Ubahan Langsung y sama dengan kx kuasa n</>}
+  description={
+    <>
+      Lengkung <InlineMath math="y = kx^n" /> bagi <InlineMath math="x \ge 0" />.
+      Nilai <InlineMath math="n = 1" /> memberi garis lurus melalui asalan.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 5 }, y: { min: 0, max: 10 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "k", min: 0.5, max: 4, value: 1, step: 0.5, label: "k" },
+      { name: "n", min: 0.5, max: 3, value: 2, step: 0.5, label: "n" },
+      { name: "a", min: 0, max: 5, value: 2, step: 0.1, label: "a" },
+    ],
+    objects: [
+      { id: "direct", kind: "function", appearance: "primary", formula: "k x^n", domain: { min: 0, max: 5 } },
+      { id: "now", kind: "marker", x: "a", y: "k a^n", appearance: "warning" },
+    ],
+    readouts: [
+      { key: "value", formula: "k a^n" },
+    ],
+  }}
+  labels={{
+    k: <>Pemalar <InlineMath math="k" /></>,
+    n: <>Kuasa <InlineMath math="n" /></>,
+    a: <>Nilai <InlineMath math="x" /></>,
+    value: <>Nilai <InlineMath math="y" /></>,
+  }}
+/>
+
+### Contoh Ubahan Langsung dengan Kuasa Dua
+
+Diberi <InlineMath math="y \propto x^2" /> dan <InlineMath math="y = 36" /> apabila <InlineMath math="x = 3" />. Cari **nilai** <InlineMath math="y" /> apabila <InlineMath math="x = 5" />.
+
+<MathContainer>
+<BlockMath math="36 = k(3)^2 \quad\Rightarrow\quad k = 4" />
+<BlockMath math="y = 4(5)^2 = 100" />
+</MathContainer>
+
+Semak dengan nisbah: <InlineMath math="\dfrac{36}{3^2} = 4" /> dan <InlineMath math="\dfrac{100}{5^2} = 4" />. Dalam model, letak <InlineMath math="k = 4" />, <InlineMath math="n = 2" /> dan <InlineMath math="x = 1.5" />, dan bacaan ialah <InlineMath math="9" />, iaitu <InlineMath math="4 \times 1.5^2" />.
+
+### Menguji Data Eksperimen
+
+Sebiji bola dilepaskan dan jarak jatuhnya diukur. Untuk menguji sama ada jarak berubah secara langsung dengan kuasa dua masa, **kira nisbah**, iaitu <InlineMath math="\dfrac{d}{t^2}" /> bagi setiap pasangan data.
+
+<ScatterDiagram
+  title={<>Jarak Jatuh Melawan Masa</>}
+  description={
+    <>
+      Jarak jatuh dalam meter selepas setiap selang masa. Titik melengkung ke
+      atas, bukan garis lurus.
+    </>
+  }
+  xAxisLabel="Masa t (s)"
+  yAxisLabel="Jarak d (m)"
+  datasets={[
+    {
+      name: "Bola jatuh",
+      color: "var(--chart-1)",
+      points: [
+        { x: 0.2, y: 0.20 },
+        { x: 0.4, y: 0.78 },
+        { x: 0.6, y: 1.76 },
+        { x: 0.8, y: 3.14 },
+        { x: 1.0, y: 4.90 },
+      ],
+    },
+  ]}
+/>
+
+Carta ini menunjukkan nisbah <InlineMath math="\dfrac{d}{t^2}" /> bagi setiap titik. Nisbah yang hampir tetap membuktikan <InlineMath math="d \propto t^2" /> dengan <InlineMath math="k \approx 4.9" />.
+
+<BarChart
+  title={<>Nisbah d per t Kuasa Dua bagi Setiap Titik</>}
+  description={
+    <>
+      Nilai <InlineMath math="\dfrac{d}{t^2}" /> dibundarkan kepada satu tempat
+      perpuluhan. Semuanya hampir <InlineMath math="4.9" />.
+    </>
+  }
+  yAxisLabel="d per t kuasa dua"
+  data={[
+    { name: "t = 0.2", value: 4.9 },
+    { name: "t = 0.4", value: 4.9 },
+    { name: "t = 0.6", value: 4.9 },
+    { name: "t = 0.8", value: 4.9 },
+    { name: "t = 1.0", value: 4.9 },
+  ]}
+  chartConfig={{ value: { label: "Nisbah", colors: { light: ["var(--chart-2)"], dark: ["var(--chart-2)"] } } }}
+/>
+
+## Ubahan Songsang
+
+Jika <InlineMath math="y" /> berubah secara songsang dengan <InlineMath math="x^n" />, ditulis <InlineMath math="y \propto \dfrac{1}{x^n}" />, maka <InlineMath math="y = \dfrac{k}{x^n}" /> dan **hasil darab** <InlineMath math="yx^n" /> sentiasa sama dengan <InlineMath math="k" />. Contohnya, masa untuk menyiapkan kerja berubah secara songsang dengan bilangan pekerja.
+
+### Graf Ubahan Songsang
+
+Graf ubahan songsang ialah lengkung yang menurun dan menghampiri kedua-dua paksi tanpa menyentuhnya. **Menggandakan** <InlineMath math="x" /> apabila <InlineMath math="n = 1" /> menjadikan <InlineMath math="y" /> separuh.
+
+<MathVisual
+  title={<>Ubahan Songsang y sama dengan k per x kuasa n</>}
+  description={
+    <>
+      Lengkung <InlineMath math="y = \dfrac{k}{x^n}" /> bagi{" "}
+      <InlineMath math="x > 0" />. Lengkung tidak pernah menyentuh paksi.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 12 }, y: { min: 0, max: 12 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "k", min: 1, max: 24, value: 24, step: 1, label: "k" },
+      { name: "n", min: 0.5, max: 2, value: 1, step: 0.5, label: "n" },
+      { name: "a", min: 0.5, max: 12, value: 3, step: 0.1, label: "a" },
+    ],
+    objects: [
+      { id: "inverse", kind: "function", appearance: "primary", formula: "k/x^n", domain: { min: 0.5, max: 12 } },
+      { id: "now", kind: "marker", x: "a", y: "k/a^n", appearance: "warning" },
+    ],
+    readouts: [
+      { key: "value", formula: "k/a^n" },
+    ],
+  }}
+  labels={{
+    k: <>Pemalar <InlineMath math="k" /></>,
+    n: <>Kuasa <InlineMath math="n" /></>,
+    a: <>Nilai <InlineMath math="x" /></>,
+    value: <>Nilai <InlineMath math="y" /></>,
+  }}
+/>
+
+### Contoh Ubahan Songsang
+
+Empat orang pekerja menyiapkan sebuah pagar dalam <InlineMath math="6" /> hari. Masa <InlineMath math="T" /> berubah secara songsang dengan bilangan pekerja <InlineMath math="P" />. Berapa harikah yang diperlukan oleh **tiga orang pekerja**?
+
+<MathContainer>
+<BlockMath math="T = \frac{k}{P} \quad\Rightarrow\quad 6 = \frac{k}{4} \quad\Rightarrow\quad k = 24" />
+<BlockMath math="T = \frac{24}{3} = 8 \text{ hari}" />
+</MathContainer>
+
+Semak: <InlineMath math="4 \times 6 = 3 \times 8 = 24" />, jadi hasil darab tetap. Dalam model, letak <InlineMath math="k = 24" />, <InlineMath math="n = 1" /> dan <InlineMath math="x = 3" />, dan bacaan ialah <InlineMath math="8" />.
+
+## Ubahan Tercantum dan Ubahan Bergabung
+
+Dalam **ubahan tercantum**, <InlineMath math="y" /> berubah secara langsung dengan hasil darab dua atau lebih pemboleh ubah, contohnya <InlineMath math="y = kxz" />. Dalam **ubahan bergabung**, <InlineMath math="y" /> berubah secara langsung dengan satu pemboleh ubah dan secara songsang dengan yang lain, contohnya <InlineMath math="y = \dfrac{kx}{z}" />.
+
+### Kesan Dua Pemboleh Ubah
+
+Model ini melukis <InlineMath math="y = \dfrac{kx}{z}" /> dengan <InlineMath math="k = 6" />. **Menambah <InlineMath math="z" /> mengurangkan <InlineMath math="y" />** bagi setiap nilai <InlineMath math="x" />. Ubah <InlineMath math="z" /> dan lihat kecerunan garis berubah.
+
+<MathVisual
+  title={<>Ubahan Bergabung y sama dengan kx per z</>}
+  description={
+    <>
+      Garis <InlineMath math="y = \dfrac{6x}{z}" /> terhadap{" "}
+      <InlineMath math="x" />. Menambah <InlineMath math="z" /> menjadikan garis
+      kurang curam.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 8 }, y: { min: 0, max: 12 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "c", min: 1, max: 6, value: 3, step: 0.5, label: "c" },
+      { name: "a", min: 0, max: 8, value: 4, step: 0.5, label: "a" },
+    ],
+    objects: [
+      { id: "combined", kind: "function", appearance: "primary", formula: "6x/c", domain: { min: 0, max: 8 } },
+      { id: "now", kind: "marker", x: "a", y: "6a/c", appearance: "warning" },
+    ],
+    readouts: [
+      { key: "value", formula: "6a/c" },
+    ],
+  }}
+  labels={{
+    c: <>Nilai <InlineMath math="z" /></>,
+    a: <>Nilai <InlineMath math="x" /></>,
+    value: <>Nilai <InlineMath math="y" /></>,
+  }}
+/>
+
+### Contoh Ubahan Bergabung
+
+Diberi <InlineMath math="y \propto \dfrac{x}{z}" />, dan <InlineMath math="y = 8" /> apabila <InlineMath math="x = 4" /> dan <InlineMath math="z = 3" />. Cari **nilai** <InlineMath math="y" /> apabila <InlineMath math="x = 6" /> dan <InlineMath math="z = 2" />.
+
+<MathContainer>
+<BlockMath math="8 = \frac{k(4)}{3} \quad\Rightarrow\quad k = 6" />
+<BlockMath math="y = \frac{6(6)}{2} = 18" />
+</MathContainer>
+
+Semak dengan model: dengan <InlineMath math="k = 6" />, letak <InlineMath math="z = 2" /> dan <InlineMath math="x = 6" />, dan bacaan ialah <InlineMath math="18" />. Pada <InlineMath math="z = 3" /> dan <InlineMath math="x = 4" />, bacaan ialah <InlineMath math="8" />, sama dengan data asal.
+
+## Kesilapan Lazim tentang Ubahan
+
+| Kesilapan | Sebab salah | Cara semak |
+| :--- | :--- | :--- |
+| Menulis <InlineMath math="y = x + k" /> bagi ubahan langsung. | Ubahan langsung ialah hasil darab, <InlineMath math="y = kx^n" />. | Nisbah <InlineMath math="\tfrac{y}{x^n}" /> mesti tetap. |
+| Menggunakan <InlineMath math="k" /> daripada soalan lain. | Setiap situasi ada pemalarnya sendiri. | Cari <InlineMath math="k" /> daripada data soalan itu. |
+| Menyamakan ubahan songsang dengan nilai negatif. | Ubahan songsang bermaksud satu bertambah, satu lagi berkurang, tetapi kedua-duanya positif. | Hasil darab <InlineMath math="yx^n" /> mesti tetap. |
+| Melupakan kuasa semasa mencari <InlineMath math="k" />. | Jika <InlineMath math="y \propto x^2" />, kuasa dua mesti digunakan. | Gantikan semula nilai asal. |
+
+Kesilapan keempat paling kerap muncul dalam soalan ubahan. **Tulis kuasa dalam persamaan sebelum menggantikan nilai**.
+
+## Latihan Ubahan
+
+Soalan ini bergerak dari ubahan langsung ke ubahan bergabung. **Cari pemalar dahulu** dalam setiap soalan.
+
+1. Diberi <InlineMath math="p \propto \sqrt{q}" /> dan <InlineMath math="p = 12" /> apabila <InlineMath math="q = 9" />. Cari <InlineMath math="p" /> apabila <InlineMath math="q = 25" />.
+
+2. Diberi <InlineMath math="y \propto \dfrac{1}{x^2}" /> dan <InlineMath math="y = 5" /> apabila <InlineMath math="x = 2" />. Cari <InlineMath math="y" /> apabila <InlineMath math="x = 5" />.
+
+3. Luas <InlineMath math="L" /> sebuah segi tiga berubah secara tercantum dengan tapak <InlineMath math="t" /> dan tinggi <InlineMath math="h" />. Diberi <InlineMath math="L = 15" /> apabila <InlineMath math="t = 6" /> dan <InlineMath math="h = 5" />. Cari pemalar dan terangkan maknanya.
+
+4. Diberi <InlineMath math="w \propto \dfrac{u^2}{v}" />, dan <InlineMath math="w = 18" /> apabila <InlineMath math="u = 3" /> dan <InlineMath math="v = 2" />. Cari <InlineMath math="w" /> apabila <InlineMath math="u = 4" /> dan <InlineMath math="v = 8" />.
+
+### Penyelesaian
+
+**Penyelesaian 1**: Tulis <InlineMath math="p = k\sqrt{q}" /> dan cari pemalar:
+
+<MathContainer>
+<BlockMath math="12 = k\sqrt{9} = 3k \quad\Rightarrow\quad k = 4" />
+<BlockMath math="p = 4\sqrt{25} = 20" />
+</MathContainer>
+
+Semak: <InlineMath math="\dfrac{20}{\sqrt{25}} = 4" />.
+
+**Penyelesaian 2**: Tulis <InlineMath math="y = \dfrac{k}{x^2}" /> dan **cari pemalar**:
+
+<MathContainer>
+<BlockMath math="5 = \frac{k}{4} \quad\Rightarrow\quad k = 20" />
+<BlockMath math="y = \frac{20}{25} = 0.8" />
+</MathContainer>
+
+Semak: <InlineMath math="0.8 \times 5^2 = 20" />.
+
+**Penyelesaian 3**: Tulis <InlineMath math="L = kth" />:
+
+<BlockMath math="15 = k(6)(5) \quad\Rightarrow\quad k = \frac{1}{2}" />
+
+Pemalar <InlineMath math="\tfrac{1}{2}" /> ialah faktor dalam rumus luas segi tiga, <InlineMath math="L = \tfrac{1}{2}th" />.
+
+**Penyelesaian 4**: Tulis <InlineMath math="w = \dfrac{ku^2}{v}" />:
+
+<MathContainer>
+<BlockMath math="18 = \frac{k(9)}{2} \quad\Rightarrow\quad k = 4" />
+<BlockMath math="w = \frac{4(16)}{8} = 8" />
+</MathContainer>
+
+Semak: <InlineMath math="\dfrac{8 \times 8}{16} = 4" />, sama dengan pemalar.
