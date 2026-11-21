@@ -1,0 +1,323 @@
+export const metadata = {
+  title: "Nota Pengangkutan dalam Tumbuhan Tingkatan Lima",
+  description:
+    "Nota Biologi Tingkatan 5 Bab 4: bandingkan xilem dan floem, kira daya yang menaikkan air, ukur penyerapan dengan potometer, terangkan translokasi dan fitoremediasi.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2026-11-17",
+  subject: "Pengangkutan dalam Tumbuhan",
+};
+
+## Xilem Mengangkut Air dan Floem Mengangkut Makanan
+
+Tumbuhan mengangkut bahan melalui **tisu vaskular**. **Xilem** mengangkut air dan garam mineral ke atas, dari akar ke daun. **Floem** mengangkut bahan organik seperti sukrosa dari daun ke bahagian lain, satu proses yang dipanggil **translokasi**. Air naik melalui tiga daya: tekanan akar, tindakan kapilari dan tarikan transpirasi. Daripada ketiga-tiganya, **tarikan transpirasi** paling kuat kerana air yang tersejat dari daun menarik turus air di dalam xilem. Fitoremediasi pula menggunakan penyerapan oleh akar untuk mencuci tanah dan air yang tercemar.
+
+## Struktur Xilem dan Floem
+
+Xilem dan floem tersusun bersama dalam berkas vaskular, tetapi selnya sangat berbeza kerana tugasnya berbeza.
+
+| Ciri | Xilem | Floem |
+| :--- | :--- | :--- |
+| Bahan diangkut | Air dan garam mineral | Bahan organik seperti sukrosa dan asid amino |
+| Arah | Ke atas, dari akar ke daun | Ke atas dan ke bawah, dari sumber ke sinki |
+| Sel utama | Salur xilem dan trakeid | Tiub tapis dan sel rakan |
+| Keadaan sel | Mati, tanpa sitoplasma | Hidup |
+| Dinding | Ditebalkan dengan lignin | Selulosa yang nipis |
+| Hujung sel | Dinding hujung hilang, jadi salur berterusan | Plat tapis yang berliang |
+
+**Salur xilem** ialah tiub berongga yang panjang kerana dinding hujung selnya sudah hilang, dan lignin menguatkannya supaya tidak kemek apabila air ditarik. **Tiub tapis** floem hampir tiada organel, jadi sap mengalir dengan mudah. Sel rakan di sebelahnya mempunyai nukleus dan banyak mitokondria untuk membekalkan ATP.
+
+Dalam batang dikotiledon, berkas vaskular tersusun dalam satu bulatan, dengan xilem di sebelah dalam dan floem di sebelah luar. Dalam akar dikotiledon, xilem berbentuk bintang di tengah dan floem terletak di antara lengan bintang itu.
+
+## Laluan Air dari Tanah ke Daun
+
+Air memasuki akar rambut secara osmosis kerana sap selnya lebih pekat daripada larutan tanah. Air kemudian bergerak dari sel ke sel merentasi korteks dan endodermis hingga ke xilem di tengah akar. Dari situ air naik melalui xilem batang, masuk ke urat daun dan sel mesofil, lalu tersejat dan meresap keluar melalui stoma sebagai **transpirasi**. Tiga daya menolak dan menarik air sepanjang laluan ini, dan **setiap daya boleh dianggarkan dengan nombor**.
+
+## Tiga Daya yang Menaikkan Air
+
+Untuk menaikkan air ke ketinggian <InlineMath math="h" />, xilem mesti mengatasi **berat turus air** itu. Tanpa mengambil kira geseran, perbezaan tekanan yang diperlukan ialah <InlineMath math="\rho g h" />:
+
+<BlockMath math="\Delta P = \rho g h = 1000 \times 9.81 \times h\text{ Pa} = 0.00981\,h\text{ MPa}" />
+
+Setiap daya dibandingkan dengan nilai ini.
+
+### Tekanan Akar
+
+Sel akar mengepam ion mineral ke dalam xilem secara pengangkutan aktif. Air kemudian mengikut secara osmosis dan menolak turus air ke atas dengan **tekanan akar**. Buktinya ialah **gutasi**, iaitu titisan air di tepi daun pada awal pagi, dan sap yang terus keluar dari batang yang dipotong dekat tanah. Tekanan akar yang diukur adalah kecil, dan sesetengah tumbuhan langsung tiada tekanan akar.
+
+<MathVisual
+  title={<>Tekanan Akar Berbanding Tekanan yang Diperlukan</>}
+  description={
+    <>
+      Tekanan <InlineMath math="0.00981x" /> dalam MPa yang diperlukan untuk
+      menyokong turus air setinggi <InlineMath math="x" /> meter, dan garis
+      tekanan akar <InlineMath math="p" />.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 120 }, y: { min: 0, max: 1.3 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "h", min: 0, max: 120, value: 40, step: 1, label: "h" },
+      { name: "p", min: 0.05, max: 0.6, value: 0.1, step: 0.05, label: "p" },
+    ],
+    objects: [
+      { id: "needed", kind: "function", appearance: "primary", formula: "0.00981x", domain: { min: 0, max: 120 } },
+      { id: "root", kind: "function", appearance: "reference", formula: "p", domain: { min: 0, max: 120 } },
+      { id: "now", kind: "marker", x: "h", y: "0.00981h", appearance: "warning" },
+    ],
+    readouts: [
+      { key: "needed", formula: "0.00981h" },
+      { key: "reach", formula: "p/0.00981" },
+    ],
+  }}
+  labels={{
+    h: <>Ketinggian pokok <InlineMath math="h" /> dalam meter</>,
+    p: <>Tekanan akar <InlineMath math="p" /> dalam MPa</>,
+    needed: <>Tekanan diperlukan dalam MPa</>,
+    reach: <>Ketinggian yang dicapai oleh tekanan akar sahaja, dalam meter</>,
+  }}
+/>
+
+Pokok tertinggi di dunia mencecah kira-kira <InlineMath math="116\text{ m}" />. Tekanan yang diperlukan ialah:
+
+<BlockMath math="\Delta P = 0.00981 \times 116 = 1.14\text{ MPa}" />
+
+Tekanan akar <InlineMath math="0.1\text{ MPa}" /> hanya mampu menyokong <InlineMath math="0.1 \div 0.00981 = 10.2\text{ m}" />. Semak dengan model: dengan <InlineMath math="p = 0.1" />, bacaan ketinggian ialah kira-kira <InlineMath math="10" />, dan garis rujukan memotong garis tekanan diperlukan di situ. **Tekanan akar sahaja tidak cukup** untuk pokok yang tinggi.
+
+### Tindakan Kapilari
+
+Molekul air melekat pada dinding xilem melalui **daya lekatan** dan bertarikan sesama sendiri melalui **daya lekitan**. Dalam tiub yang sempit, kedua-dua daya ini menaikkan air. Ketinggian kenaikan bergantung pada jejari tiub <InlineMath math="r" />:
+
+<BlockMath math="h = \frac{2\gamma}{\rho g r} = \frac{2(0.0728)}{1000 \times 9.81 \times r} = \frac{14.84}{r}\text{ m, dengan } r \text{ dalam }\mu\text{m}" />
+
+<MathVisual
+  title={<>Kenaikan Kapilari dalam Salur Xilem</>}
+  description={
+    <>
+      Ketinggian kenaikan <InlineMath math="\dfrac{14.84}{x}" /> dalam meter
+      terhadap jejari salur <InlineMath math="x" /> dalam mikrometer, bagi air
+      pada <InlineMath math="20^\circ\text{C}" />.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 200 }, y: { min: 0, max: 1.6 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "r", min: 10, max: 200, value: 25, step: 1, label: "r" },
+    ],
+    objects: [
+      { id: "rise", kind: "function", appearance: "primary", formula: "14.84/x", domain: { min: 10, max: 200 } },
+      { id: "now", kind: "marker", x: "r", y: "14.84/r", appearance: "warning" },
+    ],
+    readouts: [
+      { key: "rise", formula: "14.84/r" },
+    ],
+  }}
+  labels={{
+    r: <>Jejari salur <InlineMath math="r" /> dalam mikrometer</>,
+    rise: <>Ketinggian kenaikan dalam meter</>,
+  }}
+/>
+
+Jejari salur xilem boleh sekecil <InlineMath math="25\,\mu\text{m}" />. Pada jejari itu:
+
+<BlockMath math="h = \frac{14.84}{25} = 0.59\text{ m}" />
+
+Semak dengan model: pada <InlineMath math="r = 25" />, bacaan ketinggian ialah <InlineMath math="0.59" />. Salur yang lebih lebar menaikkan air lebih rendah lagi. Jadi **tindakan kapilari penting dalam tumbuhan kecil** tetapi tidak dapat menerangkan air yang sampai ke puncak pokok.
+
+### Tarikan Transpirasi
+
+Air tersejat dari dinding sel mesofil dan meresap keluar melalui stoma. Sel mesofil yang kehilangan air menarik air dari xilem daun. Kerana daya lekitan, molekul air dalam xilem bersambung sebagai satu turus yang berterusan, jadi tarikan di daun memindahkan seluruh turus air dari akar ke atas. Inilah **tarikan transpirasi**, dan tenaganya datang daripada haba matahari yang menyejatkan air, bukan daripada ATP tumbuhan.
+
+Potometer gelembung menunjukkan kesan ini. Pucuk berdaun dipasang pada tiub berisi air, dan gelembung udara dalam kapilari bergerak apabila pucuk menyerap air. Vaselin pada permukaan daun menutup stoma di situ. Pilih setiap pucuk dan bandingkan jarak gelembung.
+
+<PotometerLab
+  title={<>Penyerapan Air oleh Pucuk Berdaun</>}
+  description={
+    <>
+      Potometer berkapilari jejari <InlineMath math="1\text{ mm}" /> selama{" "}
+      <InlineMath math="10" /> minit, dengan vaselin pada permukaan daun yang
+      berbeza.
+    </>
+  }
+  labels={{
+    distance: <>Jarak gelembung</>,
+    rate: <>Kadar penyerapan</>,
+    shoot: "Pilih pucuk",
+    time: "Masa",
+    view: "Potometer gelembung dengan pucuk berdaun",
+    volume: <>Isi padu air diserap</>,
+  }}
+  minutes={10}
+  radius={1}
+  shoots={[
+    { coat: "none", name: "Tanpa vaselin", rate: 1.8 },
+    { coat: "lower", name: "Permukaan bawah", rate: 0.6 },
+    { coat: "both", name: "Kedua-dua permukaan", rate: 0.15 },
+  ]}
+/>
+
+Pucuk tanpa vaselin menyerap <InlineMath math="1.8\text{ cm}^3" /> air sejam. Dalam <InlineMath math="10" /> minit, isi padu air dan jarak gelembung ialah:
+
+<MathContainer>
+<BlockMath math="V = 1.8 \times \frac{10}{60} = 0.30\text{ cm}^3" />
+<BlockMath math="l = \frac{V}{\pi r^2} = \frac{0.30}{\pi(0.1)^2} = 9.55\text{ cm}" />
+</MathContainer>
+
+Semak dengan model: pada <InlineMath math="t = 10" /> minit, bacaan jarak gelembung ialah <InlineMath math="9.55\text{ cm}" />. Apabila permukaan bawah disapu vaselin, penyerapan jatuh kepada satu pertiga kerana kebanyakan stoma terletak di permukaan bawah. Apabila kedua-dua permukaan disapu, **penyerapan hampir berhenti**. Kurang transpirasi bermaksud kurang tarikan.
+
+## Translokasi Makanan dalam Floem
+
+Daun yang berfotosintesis ialah **sumber**: ia menghasilkan sukrosa. Bahagian yang menggunakan atau menyimpan makanan, seperti akar, buah, biji benih dan pucuk muda, ialah **sinki**. Sel rakan mengepam sukrosa ke dalam tiub tapis di sumber secara pengangkutan aktif. Air dari xilem pun masuk secara osmosis dan menaikkan tekanan. Di sinki, sukrosa dikeluarkan, air keluar, dan tekanan menjadi rendah. Sap floem mengalir dari tekanan tinggi ke tekanan rendah.
+
+Tekanan osmosis sap boleh dianggarkan daripada kepekatan sukrosanya. Sap floem boleh mengandungi sehingga <InlineMath math="30\%" /> gula. Larutan <InlineMath math="x\%" /> sukrosa mengandungi <InlineMath math="10x" /> gram per liter, dan jisim molar sukrosa ialah <InlineMath math="342.3\text{ g mol}^{-1}" />.
+
+<MathVisual
+  title={<>Tekanan Osmosis di Sumber dan di Sinki</>}
+  description={
+    <>
+      Anggaran tekanan osmosis <InlineMath math="2.48 \times \dfrac{10x}{342.3}" />{" "}
+      dalam MPa terhadap kepekatan sukrosa <InlineMath math="x" /> dalam
+      peratus, dengan penanda bagi sumber <InlineMath math="a" /> dan sinki{" "}
+      <InlineMath math="b" />.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 30 }, y: { min: 0, max: 2.4 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "a", min: 0, max: 30, value: 20, step: 1, label: "a" },
+      { name: "b", min: 0, max: 30, value: 2, step: 1, label: "b" },
+    ],
+    objects: [
+      { id: "pressure", kind: "function", appearance: "primary", formula: "2.48(10x/342.3)", domain: { min: 0, max: 30 } },
+      { id: "source", kind: "marker", x: "a", y: "2.48(10a/342.3)", appearance: "warning" },
+      { id: "sink", kind: "marker", x: "b", y: "2.48(10b/342.3)", appearance: "highlight" },
+    ],
+    readouts: [
+      { key: "source", formula: "2.48(10a/342.3)" },
+      { key: "sink", formula: "2.48(10b/342.3)" },
+      { key: "difference", formula: "2.48(10(a - b)/342.3)" },
+    ],
+  }}
+  labels={{
+    a: <>Sukrosa di sumber <InlineMath math="a" /> dalam peratus</>,
+    b: <>Sukrosa di sinki <InlineMath math="b" /> dalam peratus</>,
+    source: <>Tekanan osmosis di sumber dalam MPa</>,
+    sink: <>Tekanan osmosis di sinki dalam MPa</>,
+    difference: <>Perbezaan yang menolak sap dalam MPa</>,
+  }}
+/>
+
+### Contoh Perbezaan Tekanan dalam Floem
+
+Sap di tiub tapis berhampiran daun mengandungi <InlineMath math="20\%" /> sukrosa, dan sap berhampiran akar <InlineMath math="2\%" />. Anggarkan **perbezaan tekanan yang menolak sap**.
+
+<MathContainer>
+<BlockMath math="\pi_{\text{sumber}} = 2.48 \times \frac{10 \times 20}{342.3} = 1.45\text{ MPa}" />
+<BlockMath math="\pi_{\text{sinki}} = 2.48 \times \frac{10 \times 2}{342.3} = 0.14\text{ MPa}" />
+<BlockMath math="\Delta \pi = 1.45 - 0.14 = 1.30\text{ MPa}" />
+</MathContainer>
+
+Perbezaan <InlineMath math="1.30\text{ MPa}" /> lebih besar daripada tekanan untuk menyokong turus air setinggi <InlineMath math="100\text{ m}" />, iaitu <InlineMath math="0.98\text{ MPa}" />. Semak dengan model: pada <InlineMath math="a = 20" /> dan <InlineMath math="b = 2" />, bacaan perbezaan ialah <InlineMath math="1.30" />. Anggaran ini menganggap larutan unggul, jadi nilai sebenar sedikit berbeza.
+
+### Bukti Translokasi Berlaku dalam Floem
+
+Tiga eksperimen menunjukkan bahawa makanan bergerak melalui floem. Dalam **eksperimen gelang**, satu gelang kulit kayu yang mengandungi floem dibuang daripada batang berkayu. Xilem masih utuh, jadi daun tidak layu. Selepas beberapa minggu, kulit di atas gelang membengkak kerana sukrosa terkumpul di situ dan tidak dapat bergerak ke bawah. Bahagian di bawah gelang kekurangan makanan.
+
+Dalam eksperimen kedua, **stilet afid** yang menusuk batang dipotong, dan cecair yang menitis dari stilet itu didapati kaya dengan sukrosa. Stilet itu berakhir di dalam tiub tapis. Dalam eksperimen ketiga, daun dibekalkan karbon dioksida berlabel radioaktif <InlineMath math="^{14}\mathrm{CO_2}" />. Gula radioaktif yang terhasil kemudian dikesan dalam floem, di atas dan di bawah daun itu.
+
+## Fitoremediasi Membersihkan Tanah dan Air Tercemar
+
+**Fitoremediasi** ialah penggunaan tumbuhan untuk menyingkirkan bahan pencemar seperti logam berat dari tanah atau air. Akar menyerap logam bersama air dan ion mineral, dan xilem mengangkutnya ke pucuk. Pucuk itu dituai dan dilupuskan dengan selamat. Sawi India dan rumput vetiver digunakan untuk logam berat dalam tanah, manakala keladi bunting menyerap logam berat dari air yang tercemar.
+
+Model ringkas ini menganggap setiap tuaian menyingkirkan pecahan <InlineMath math="f" /> daripada logam yang masih tinggal. Kepekatan yang tinggal selepas <InlineMath math="n" /> tuaian ialah <InlineMath math="100(1 - f)^n" /> peratus daripada kepekatan asal.
+
+<MathVisual
+  title={<>Logam Berat yang Tinggal Selepas Setiap Tuaian</>}
+  description={
+    <>
+      Peratus logam yang tinggal <InlineMath math="100(1 - f)^x" /> terhadap
+      bilangan tuaian <InlineMath math="x" />, dengan pecahan{" "}
+      <InlineMath math="f" /> disingkirkan setiap tuaian.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 20 }, y: { min: 0, max: 110 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "f", min: 0.05, max: 0.5, value: 0.2, step: 0.05, label: "f" },
+      { name: "n", min: 0, max: 20, value: 5, step: 1, label: "n" },
+    ],
+    objects: [
+      { id: "left", kind: "function", appearance: "primary", formula: "100(1 - f)^x", domain: { min: 0, max: 20 } },
+      { id: "now", kind: "marker", x: "n", y: "100(1 - f)^n", appearance: "warning" },
+    ],
+    readouts: [
+      { key: "left", formula: "100(1 - f)^n" },
+    ],
+  }}
+  labels={{
+    f: <>Pecahan disingkirkan setiap tuaian <InlineMath math="f" /></>,
+    n: <>Bilangan tuaian <InlineMath math="n" /></>,
+    left: <>Logam yang tinggal dalam peratus</>,
+  }}
+/>
+
+Jika setiap tuaian menyingkirkan <InlineMath math="20\%" /> logam yang tinggal, selepas <InlineMath math="5" /> tuaian:
+
+<BlockMath math="100(1 - 0.2)^5 = 100 \times 0.8^5 = 32.8\%" />
+
+Untuk turun di bawah <InlineMath math="10\%" />, kita perlukan <InlineMath math="0.8^n < 0.1" />. Oleh sebab <InlineMath math="0.8^{10} = 0.107" /> dan <InlineMath math="0.8^{11} = 0.086" />, **sebelas tuaian** diperlukan. Semak dengan model: pada <InlineMath math="f = 0.2" /> dan <InlineMath math="n = 11" />, bacaan ialah <InlineMath math="8.6" />. Fitoremediasi murah dan tidak merosakkan tanah, tetapi ia lambat dan hanya berkesan sedalam akar.
+
+## Kesilapan Lazim tentang Pengangkutan dalam Tumbuhan
+
+| Kesilapan | Sebab salah | Cara semak |
+| :--- | :--- | :--- |
+| Xilem mengangkut makanan. | Xilem mengangkut air dan garam mineral. Makanan diangkut oleh floem. | Tanya bahan apa yang diangkut, bukan arah sahaja. |
+| Floem hanya mengangkut ke bawah. | Floem mengangkut dari sumber ke sinki, ke atas atau ke bawah. | Cari sinki: buah dan pucuk muda berada di atas daun. |
+| Tindakan kapilari menaikkan air ke puncak pokok. | Kenaikan kapilari dalam salur xilem kurang daripada <InlineMath math="1\text{ m}" />. | Kira <InlineMath math="14.84 \div r" /> bagi jejari salur. |
+| Tumbuhan menggunakan ATP untuk menarik air ke daun. | Tarikan transpirasi digerakkan oleh penyejatan air dengan haba matahari. | Salur xilem terdiri daripada sel mati yang tidak boleh mengepam. |
+
+Kesilapan kedua paling kerap muncul dalam soalan eksperimen gelang. **Sukrosa terkumpul di sebelah sumber**, iaitu di atas gelang jika daun berada di atas.
+
+## Latihan Pengangkutan dalam Tumbuhan
+
+Soalan bergerak daripada pengiraan daya kepada eksperimen. **Tunjukkan unit** dalam setiap pengiraan.
+
+1. Sebatang salur xilem berjejari <InlineMath math="50\,\mu\text{m}" />. Hitung ketinggian kenaikan kapilari dan terangkan sama ada daya ini cukup untuk pokok setinggi <InlineMath math="30\text{ m}" />.
+
+2. Dalam potometer berkapilari jejari <InlineMath math="0.5\text{ mm}" />, gelembung bergerak <InlineMath math="4.0\text{ cm}" /> dalam <InlineMath math="5" /> minit. Hitung kadar penyerapan air dalam <InlineMath math="\text{cm}^3\text{ min}^{-1}" />.
+
+3. Satu gelang kulit kayu dibuang daripada batang sebatang pokok di bawah dahan yang berdaun. Ramalkan apa yang berlaku pada kulit di atas dan di bawah gelang selepas beberapa minggu, dan terangkan sebabnya.
+
+4. Setiap tuaian sawi India menyingkirkan <InlineMath math="30\%" /> plumbum yang tinggal dalam tanah. Hitung bilangan tuaian paling sedikit untuk menurunkan plumbum di bawah <InlineMath math="20\%" /> kepekatan asal.
+
+### Penyelesaian
+
+**Penyelesaian 1**: Guna rumus kenaikan kapilari:
+
+<BlockMath math="h = \frac{14.84}{50} = 0.30\text{ m}" />
+
+Kenaikan <InlineMath math="0.30\text{ m}" /> jauh lebih rendah daripada <InlineMath math="30\text{ m}" />, jadi **tindakan kapilari tidak cukup**. Tarikan transpirasi yang menaikkan air ke puncak. Semak: menggandakan jejari daripada <InlineMath math="25" /> kepada <InlineMath math="50\,\mu\text{m}" /> menjadikan ketinggian separuh, daripada <InlineMath math="0.59" /> kepada <InlineMath math="0.30\text{ m}" />.
+
+**Penyelesaian 2**: Tukar jejari kepada sentimeter, <InlineMath math="0.5\text{ mm} = 0.05\text{ cm}" />, kemudian kira isi padu dan bahagikan dengan masa:
+
+<MathContainer>
+<BlockMath math="V = \pi r^2 l = \pi(0.05)^2(4.0) = 0.0314\text{ cm}^3" />
+<BlockMath math="\text{Kadar} = \frac{0.0314}{5} = 0.00628\text{ cm}^3\text{ min}^{-1}" />
+</MathContainer>
+
+Semak: <InlineMath math="0.00628 \times 60 = 0.38\text{ cm}^3" /> sejam, satu nilai yang munasabah untuk pucuk kecil.
+
+**Penyelesaian 3**: Kulit **di atas gelang membengkak** kerana sukrosa dari daun bergerak ke bawah melalui floem dan terkumpul di tepi gelang. Bahagian di bawah gelang tidak menerima makanan, jadi akar akhirnya mati jika gelang itu tidak sembuh. Daun tidak layu kerana xilem di bahagian dalam batang masih utuh. Semak: gelang hanya membuang floem, bukan xilem.
+
+**Penyelesaian 4**: Cari <InlineMath math="n" /> paling kecil dengan <InlineMath math="0.7^n < 0.2" />:
+
+<BlockMath math="0.7^4 = 0.240, \qquad 0.7^5 = 0.168" />
+
+Selepas empat tuaian masih tinggal <InlineMath math="24.0\%" />, jadi **lima tuaian** diperlukan. Semak dengan model: pada <InlineMath math="f = 0.3" /> dan <InlineMath math="n = 5" />, bacaan ialah <InlineMath math="16.8" />.
