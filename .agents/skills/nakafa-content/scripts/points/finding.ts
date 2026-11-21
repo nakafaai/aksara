@@ -3,7 +3,8 @@ import { issueAtOffset } from "#nakafa-content/math/finding";
 type PointsRule =
   | "interactive-visuals-fell"
   | "literal-points"
-  | "long-decimal";
+  | "long-decimal"
+  | "missing-visual-footer";
 
 /** One violation of the points gate at a position inside one document. */
 export interface PointsFinding {

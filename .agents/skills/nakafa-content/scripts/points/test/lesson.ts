@@ -25,6 +25,7 @@ export function lesson(...blocks: readonly string[]): string {
 export const COMPUTED_CURVE = `<FunctionChart
   title="Parabola"
   description="The curve y = x squared, sampled from its formula."
+  footer={<>Notice the vertex sits at the origin.</>}
   data={[
     {
       points: Array.from({ length: 401 }, (_, i) => {
@@ -42,6 +43,7 @@ export const COMPUTED_CURVE = `<FunctionChart
 export const PASTED_CURVE = `<FunctionChart
   title="Parabola"
   description="The curve y = x squared from nine typed points."
+  footer={<>Compare how both branches climb symmetrically.</>}
   data={[
     {
       points: [
@@ -66,6 +68,7 @@ export const PASTED_CURVE = `<FunctionChart
 export const HOUSE_OUTLINE = `<MathVisual
   title="A house outline"
   description="A polygon with five exact corners."
+  footer={<>Check the five corners meet cleanly.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -1, max: 5 }, y: { min: -1, max: 6 } },
@@ -94,6 +97,7 @@ export function curveWith(points: string): string {
   return `<FunctionChart
   title="Series"
   description="One series whose points come from the given source."
+  footer={<>Read the plotted points along the curve.</>}
   data={[{ points: ${points}, smooth: false, showPoints: false }]}
 />`;
 }
@@ -131,6 +135,7 @@ export function lineFigure(x: number, title = "A line") {
   return `<MathVisual
   title="${title}"
   description="A line through the origin."
+  footer={<>Follow how the slope changes through the origin.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -2, max: 2 }, y: { min: -2, max: 2 } },

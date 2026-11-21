@@ -7,6 +7,8 @@ import type { OutlineHeading } from "#nakafa-content/heading/outline";
 import { findTitleFindings } from "#nakafa-content/heading/title";
 import { findWidthFindings } from "#nakafa-content/heading/width";
 import type { MdxNode } from "#nakafa-content/mdx/parse";
+import { findCohesionFindings } from "#nakafa-content/prose/cohesion";
+import { findDescriptionFindings } from "#nakafa-content/prose/description";
 import type { LessonVoiceLocale } from "#nakafa-content/voice/types";
 
 /** One page the outline rules read: a lesson section or an article. */
@@ -38,17 +40,22 @@ function findGenericFindings(page: OutlinePage): HeadingFinding[] {
 }
 
 /**
- * Every rule that reads one page alone: the outline budget for a lesson, the
- * title repeat, the scaffold label, the label width, and the length signals.
+ * Every rule that reads one page alone: the outline budget and cohesion rules
+ * for a lesson, clean metadata descriptions, title repeats, scaffold labels,
+ * label widths, and length signals.
  */
 export function findPageFindings(page: OutlinePage): HeadingFinding[] {
   return [
     ...(page.kind === "lesson"
       ? findBudgetFindings(page.locale, page.headings)
       : []),
+    ...findDescriptionFindings(page.tree),
     ...findTitleFindings(page.title, page.headings),
     ...findGenericFindings(page),
     ...findWidthFindings(page.headings),
     ...(page.kind === "lesson" ? findLengthFindings(page.tree) : []),
+    ...(page.kind === "lesson"
+      ? findCohesionFindings(page.locale, page.tree)
+      : []),
   ];
 }

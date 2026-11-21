@@ -171,14 +171,18 @@ learning text.
 
 ## The card footer
 
-Every visual card ends with a footer its author writes for that one visual:
-`footer={<>...</>}` beside `title` and `description`, rich text with
-`<InlineMath />` where it holds math, at most 90 visible characters, so it
-reads in one or two lines on a phone. It tells the student what to look at in
-this visual and what it means. The footer is never generated and never a
-template: two figures never share a footer sentence, and a revised figure gets
-a footer that names what changed. Live readouts may sit beside it; the written
-sentence is the part every card keeps.
+Every visual card (`MathVisual`, charts, `Mermaid`, and every custom lab,
+everything in `FIGURE_NAMES` except `Youtube`) requires an authored footer
+written for that one visual: `footer={<>...</>}` beside `title` and
+`description`, rich text with `<InlineMath />` where it holds math, at most 90
+visible characters, so it reads in one or two lines on a phone. The
+[points gate](verification.md#points-gate) blocks any changed or new page whose
+visual card omits `footer` (`missing-visual-footer`), and `--all` audits the
+whole corpus. It tells the student what to look at in this visual and what it
+means. The footer is never generated and never a template: two figures never
+share a footer sentence, and a revised figure gets a footer that names what
+changed. Live readouts may sit beside it; the written sentence is the part
+every card keeps.
 
 Good footers point at something in this figure, in plain words first:
 
@@ -400,10 +404,26 @@ designed: it carries a teaching job and never decorates.
 - The interaction answers a question the lesson asks: change a parameter and
   watch the result, step through a process, rotate a structure, or run a
   random experiment many times. A picture that only illustrates does not count.
-- The visual models this lesson's concept. Reusing a component is right when
-  its configuration teaches this lesson's question; the same component showing
-  the same kind of picture as a neighboring lesson is redundant, and the lesson
-  needs a visual of its own.
+- **Zero cross-lesson visual reuse and zero within-lesson filler repetition.**
+  Every lesson owns its own unique custom visual components. Never reuse a
+  custom 3D, p5, or animated lab component across two different lessons
+  (`duplicate-scene-across-lessons`), and never repeat the same custom lab
+  component more than once inside a single lesson as filler
+  (`repeated-scene-in-lesson`). When another lesson already owns a lab
+  component, build a new component designed specifically for this lesson's
+  concept and question.
+- **Plot true units directly, with zero axis-scaling hacks.** Never divide axis
+  values by `10`, `2`, or `100` and explain in prose or a caption that values
+  are "in tens", "dalam puluhan", "dalam satuan 2 kPa", or "satu kotak tegak
+  bernilai 10" (`unit-scaling-hack`). Plot the real physical or mathematical
+  quantities directly on properly framed axes so learners never convert grid
+  units mentally.
+- **Anchor every visual into the narrative.** Surround every visual with a
+  lead-in sentence that raises the exact question the visual answers
+  (`visual-missing-intro`) and a concrete takeaway paragraph right after it
+  interpreting what the learner saw (`visual-missing-takeaway`). Never stack
+  two visuals back-to-back with no bridging prose between them
+  (`back-to-back-visuals`).
 - Choose the technology by the teaching job. Geometry, graphs, vectors, fields,
   and 3D structures use the shared three.js foundation described above. Data
   exploration uses the established EvilCharts components. When no component in

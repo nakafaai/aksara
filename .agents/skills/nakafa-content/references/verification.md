@@ -233,25 +233,36 @@ every JSX attribute and every expression of the page, never raw text. The
 three findings, the thresholds, and the one scoped skip live in
 [computed and exact visuals](visuals.md#computed-and-exact-visuals).
 
-It also holds every lesson folder that the change touched to the
-[scene bar](visuals.md#interactive-visual-in-every-lesson). It counts the
-distinct custom scenes across all sections of the lesson, in the locale with
-the fewest, and reads the sections that the targets left out. Fewer than three
-fails the gate with `[custom-scenes]`; three or four prints a
-`[review: custom-scenes]` signal that asks for five. A custom scene is every
-Visual Catalog figure (`FIGURE_NAMES` in `@nakafa/aksara-contracts`) except the
-standard visuals in `STANDARD_VISUALS` of `points/scene.ts`, so a new catalog
-figure counts without a change to the gate. A lesson the change never touched
-keeps its count until a change touches it. A change that only corrects figures
-(rule D26) does not revise a lesson either: when every touched file of a lesson
-is modified in place and reads the same once each `MathVisual`'s `scene`
-attribute is left out, and the lesson keeps every custom scene, the bar does not
-hold it. Any change to text, a title, a description, a label, a section, or the
-outline holds the lesson to the bar as before.
+It also holds every lesson folder that the change touched (or every lesson
+under `--all`) to the [scene bar](visuals.md#interactive-visual-in-every-lesson),
+global custom visual uniqueness (Rule 18), and required card footers (D3):
+
+- `[custom-scenes]`: counts distinct custom scenes across all sections of the
+  lesson, in the locale with the fewest. Fewer than three blocks; three or four
+  prints `[review: custom-scenes]` asking for five. A custom scene is every
+  Visual Catalog figure (`FIGURE_NAMES` in `@nakafa/aksara-contracts`) except
+  the standard visuals in `STANDARD_VISUALS` of `points/scene.ts`.
+- `[duplicate-scene-across-lessons]`: blocks any changed or new lesson that
+  reuses a custom visual component already owned by another lesson folder.
+- `[repeated-scene-in-lesson]`: blocks any changed or new lesson that renders
+  the same custom visual component more than once in the same locale as filler.
+- `[missing-visual-footer]`: blocks any changed or new lesson or article whose
+  visual card (`FIGURE_NAMES` except `Youtube`) omits an authored `footer`
+  prop.
+
+A lesson or file the change never touched keeps its state until a revision
+touches it; `--all` audits every lesson and visual across the whole corpus. A
+change that only corrects figures (rule D26) does not revise a lesson either:
+when every touched file of a lesson is modified in place and reads the same
+once each `MathVisual`'s `scene` attribute is left out, and the lesson keeps
+every custom scene, the bar does not hold it. Any change to text, a title, a
+description, a footer, a label, a section, or the outline holds the lesson to
+every rule.
 
 ```sh
 bun run points
-bun run points --base <ref>
+bun run points -- --all
+bun run points -- --base <ref>
 node --conditions=aksara-source .agents/skills/nakafa-content/scripts/points/check.ts packages/corpus/material/lesson/mathematics/<topic> --base origin/main
 ```
 
@@ -298,25 +309,36 @@ bun run headings --base <ref>
 bun run headings --all
 ```
 
-| Rule                   | Tier                                    | What it holds                                                                                                 |
-| ---------------------- | --------------------------------------- | ------------------------------------------------------------------------------------------------------------- |
-| `outline-budget`       | block above 12 entries, review above 10 | H2 and H3 entries of a lesson page                                                                            |
-| `section-count`        | block above 8 H2, review below 4        | H2 sections of a lesson page                                                                                  |
-| `section-fanout`       | block above 4 H3, review at 4           | H3 subsections under one H2                                                                                   |
-| `flat-sections`        | block                                   | 7 or more H2 with no teaching H3                                                                              |
-| `heading-title`        | block when equal, review when contained | a heading that repeats the page title                                                                         |
-| `generic-heading`      | block                                   | a scaffold label alone, or a section about the visual                                                         |
-| `title-unique`         | block                                   | the page title, per locale                                                                                    |
-| `heading-unique`       | block                                   | every heading, per locale, across lessons and articles, except an article's standard scientific section names |
-| `heading-names-lesson` | block                                   | a heading that is another page's title                                                                        |
-| `shared-skeleton`      | block                                   | the scaffold sections a lesson page ends with, shared with another page                                       |
-| `repeated-sentence`    | block                                   | a sentence of 6 or more words, formulas aside, that another lesson page of the locale also has                |
-| `repeated-paragraph`   | block                                   | a paragraph of 20 or more words sharing half its five-word runs with another lesson page's                    |
-| `heading-width`        | review                                  | about 30 characters for an H2, 24 for an H3                                                                   |
-| `section-span`         | review                                  | a leaf section above 300 words of text alone                                                                  |
-| `lesson-length`        | review                                  | a page above 1,400 visible words                                                                              |
-| `heading-density`      | review                                  | more than 15 headings per 1,000 visible words                                                                 |
-| `heading-only-change`  | review                                  | a change that only renames the headings of a page that failed the rules                                       |
+| Rule                               | Tier                                    | What it holds                                                                                                                     |
+| ---------------------------------- | --------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------- |
+| `outline-budget`                   | block above 12 entries, review above 10 | H2 and H3 entries of a lesson page                                                                                                |
+| `section-count`                    | block above 8 H2, review below 4        | H2 sections of a lesson page                                                                                                      |
+| `lone-subsection`                  | block                                   | any H2 with exactly 1 H3 (no exemption for solution headings in any locale)                                                       |
+| `section-fanout`                   | block above 4 H3, review at 4           | H3 subsections under one H2                                                                                                       |
+| `flat-sections`                    | block                                   | 4 or more H2 with no teaching H3                                                                                                  |
+| `metadata-description-punctuation` | block                                   | `metadata.description` allows only commas and periods (no `:`, `;`, `()`, `[]`, `!`, `?`, `/`, quotes, dashes)                    |
+| `metadata-description-prefix`      | block                                   | `metadata.description` carries no curriculum or chapter prefix (`Form X`, `Tingkatan X`, `Bab X`, `Chapter X`, `Nota`, `Kelas X`) |
+| `visual-missing-intro`             | block                                   | visual dropped directly under a heading with zero lead-in prose                                                                   |
+| `visual-missing-takeaway`          | block                                   | visual followed directly by the next heading or end of file with zero takeaway prose                                              |
+| `back-to-back-visuals`             | block                                   | two visuals placed back-to-back with zero bridging prose                                                                          |
+| `formula-without-intro`            | block                                   | displayed formula dumped directly under a heading with zero plain-language intuition before it                                    |
+| `dangling-colon`                   | block                                   | prose paragraph ending in `:` followed by another plain paragraph                                                                 |
+| `unit-scaling-hack`                | block                                   | axis-scaling workaround text in prose or visual text across all four locales                                                      |
+| `stiff-formal-prose`               | block                                   | stiff textbook connectors (`tersebut`, `merupakan`, `yakni`, `adapun`, etc.) across all four locales                              |
+| `wall-of-text`                     | block above 120 words, review above 85  | dense single prose paragraph                                                                                                      |
+| `heading-title`                    | block when equal, review when contained | a heading that repeats the page title                                                                                             |
+| `generic-heading`                  | block                                   | a scaffold label alone, or a section about the visual                                                                             |
+| `title-unique`                     | block                                   | the page title, per locale                                                                                                        |
+| `heading-unique`                   | block                                   | every heading, per locale, across lessons and articles, except an article's standard scientific section names                     |
+| `heading-names-lesson`             | block                                   | a heading that is another page's title                                                                                            |
+| `shared-skeleton`                  | block                                   | the scaffold sections a lesson page ends with, shared with another page                                                           |
+| `repeated-sentence`                | block                                   | a sentence of 6 or more words, formulas aside, that another lesson page of the locale also has                                    |
+| `repeated-paragraph`               | block                                   | a paragraph of 20 or more words sharing half its five-word runs with another lesson page's                                        |
+| `heading-width`                    | review                                  | about 30 characters for an H2, 24 for an H3                                                                                       |
+| `section-span`                     | review                                  | a leaf section above 300 words of text alone                                                                                      |
+| `lesson-length`                    | review                                  | a page above 1,400 visible words                                                                                                  |
+| `heading-density`                  | review                                  | more than 15 headings per 1,000 visible words                                                                                     |
+| `heading-only-change`              | review                                  | a change that only renames the headings of a page that failed the rules                                                           |
 
 A page that no change touched keeps its findings until a change touches it,
 so the corpus rises to the rules one revision at a time; `--all` reports

@@ -6,25 +6,37 @@ describe("points options", () => {
   it.effect("reads the targets and compares with origin/main by default", () =>
     Effect.gen(function* () {
       assert.deepStrictEqual(yield* parseOptions(["lessons", "a/id.mdx"]), {
+        all: false,
         base: "origin/main",
         targets: ["lessons", "a/id.mdx"],
       });
     })
   );
 
-  it.effect("reads an explicit base before or after the targets", () =>
-    Effect.gen(function* () {
-      const expected = { base: "abc1234", targets: ["lessons"] as const };
+  it.effect(
+    "reads --all and an explicit base before or after the targets",
+    () =>
+      Effect.gen(function* () {
+        const expected = {
+          all: false,
+          base: "abc1234",
+          targets: ["lessons"] as const,
+        };
 
-      assert.deepStrictEqual(
-        yield* parseOptions(["--base", "abc1234", "lessons"]),
-        expected
-      );
-      assert.deepStrictEqual(
-        yield* parseOptions(["lessons", "--base=abc1234"]),
-        expected
-      );
-    })
+        assert.deepStrictEqual(
+          yield* parseOptions(["--base", "abc1234", "lessons"]),
+          expected
+        );
+        assert.deepStrictEqual(
+          yield* parseOptions(["lessons", "--base=abc1234"]),
+          expected
+        );
+        assert.deepStrictEqual(yield* parseOptions(["lessons", "--all"]), {
+          all: true,
+          base: "origin/main",
+          targets: ["lessons"],
+        });
+      })
   );
 
   it.effect("rejects missing, unknown, and incomplete arguments", () =>

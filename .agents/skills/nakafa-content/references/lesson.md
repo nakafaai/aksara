@@ -12,21 +12,42 @@ misses an element below is not finished.
    or formula with its conditions, and what the interactive visual lets the
    learner see. A learner who arrives from a search result finds the answer
    without scrolling. [Search](search.md) owns the metadata side.
-2. **A teacher talks to one learner.** Short sentences, direct address, named
-   objects and actions, and the next likely question answered in the next
-   sentence. [Voice](voice.md) owns the register for each locale.
-3. **Custom scenes model the concept.** Learners skim long text, so 3D
-   scenes and animations carry Nakafa's lessons. Every lesson folder in every
-   subject holds at least three distinct custom scenes across its sections, and
-   aims for five: Visual Catalog figures drawn in three.js or p5, or animated
-   labs. `MathVisual`, the charts, Mermaid diagrams, tables, and videos come on
-   top and never count toward the three. Every main idea a learner can see
-   gets its own interactive visual, usually one in each teaching section, and
-   the lesson never has fewer than it had before a revision.
-   Changing a parameter, stepping through a process, rotating a structure, or
-   running an experiment answers a question the lesson asks. Every plotted
-   point is computed from its formula. [Visuals](visuals.md) owns the choice,
-   the component families, the computation, and the verification.
+2. **100% cohesive, crystal-clear story with plain intuition first (Rule 16).**
+   The whole lesson reads as one continuous, easy-to-follow thread so a
+   first-time learner immediately sees what every sentence is talking about.
+   - Give plain-language intuition before symbols, formulas, or jargon; never
+     dump a complex formula right under a heading without explaining the idea
+     in ordinary words first (`formula-without-intro`).
+   - Connect every paragraph directly to the one before it. Never leave
+     dangling colons followed by another plain paragraph (`dangling-colon`),
+     never refer to a number or example that has not been introduced yet
+     (zero phantom references), and never stuff unrelated subtopics under one
+     H2.
+   - Anchor every visual tightly into the prose: raise the visual's question
+     immediately before it (`visual-missing-intro`), interpret what the learner
+     just saw immediately after it (`visual-missing-takeaway`), never place
+     visuals back-to-back without bridging prose (`back-to-back-visuals`), and
+     never use axis-scaling workaround hacks (`unit-scaling-hack`).
+   - Keep paragraphs crisp and scannable on phones (target <= 85 words, hard
+     cap 120 words, `wall-of-text`).
+   - Speak like a warm teacher to one learner, never stiff textbook prose
+     (`stiff-formal-prose`). [Voice](voice.md) owns the register for each
+     locale.
+3. **Unique custom scenes model the concept (Rule 18).** Learners skim long
+   text, so 3D scenes and animations carry Nakafa's lessons. Every lesson
+   folder in every subject holds at least three distinct custom scenes across
+   its sections, and aims for five: Visual Catalog figures drawn in three.js or
+   p5, or animated labs. Every custom visual component is unique to its lesson
+   (zero cross-lesson reuse and zero within-lesson filler repetition), and
+   every visual card carries an authored `footer` (D3). `MathVisual`, the
+   charts, Mermaid diagrams, tables, and videos come on top and never count
+   toward the three. Every main idea a learner can see gets its own
+   interactive visual, usually one in each teaching section, and the lesson
+   never has fewer than it had before a revision. Changing a parameter,
+   stepping through a process, rotating a structure, or running an experiment
+   answers a question the lesson asks. Every plotted point is computed from its
+   formula in true units. [Visuals](visuals.md) owns the choice, uniqueness,
+   footer, computation, and verification.
 4. **At least two worked examples, inside the sections they apply.** Every
    transformation is written in a math block and each example ends with a
    check. In biology, chemistry, and programming lessons a worked example may
@@ -42,22 +63,30 @@ misses an element below is not finished.
    learner can retrieve what was just taught, each answered with complete
    reasoning under the [worked solutions](solutions.md) rules. The form and
    place come from the topic, never from a template tail.
-7. **A clear shape that is this topic's own.** 4 to 8 H2 sections and at most
-   12 outline entries, each with a real teaching job, under the
-   [structure](structure.md#lesson-shape) rules. No section whose body is only a
-   list, no nested lists, and paragraphs of about seventy words at most. No
-   outline, paragraph, opening, transition, or example scenario is reused from
-   another lesson in any locale (`repeated-sentence`, `repeated-paragraph`,
-   `shared-skeleton`).
+7. **A clear, non-flat shape that is this topic's own (Rule 18).** 4 to 8 H2
+   sections and at most 12 outline entries, each with a real teaching job,
+   grouped with 2 to 4 H3 subsections whenever a page has 4 or more H2
+   sections (`flat-sections`), and zero lone H3 subsections (`lone-subsection`,
+   with no exemption for solution headings), under the
+   [structure](structure.md#lesson-shape) rules. No section whose body is only
+   a list, no nested lists, and paragraphs kept to about 70 to 85 words (hard
+   cap 120). No outline, paragraph, opening, transition, or example scenario is
+   reused from another lesson in any locale (`repeated-sentence`,
+   `repeated-paragraph`, `shared-skeleton`).
 8. **Emphasis like a student's highlighter.** Each section marks the few terms,
    conditions, and results a learner would copy into notes.
    [Emphasis](emphasis.md) owns the marker rules.
 9. **Woven internal links.** The lesson links its prerequisite and its natural
    next concept wherever the corpus teaches them, inside sentences that use the
    relation. [Links](links.md) owns the policy.
-10. **Search metadata.** Each locale carries its own `title` and
-    `description` written for that language's learners. [Search](search.md)
+10. **Clean search metadata (Rule 17).** Each locale carries its own `title`
+    and `description` written for that language's learners using only commas
+    and periods, with zero curriculum or chapter prefixes. [Search](search.md)
     owns the rules.
+11. **Mandatory four-locale clarity trace (D29).** Every lesson and try-out PR
+    traces all four locales (`en`, `id`, `ms`, `de`) end to end, confirming
+    zero ambiguity, connected narrative flow, plain-language intuition before
+    notation, zero phantom references, and tight text-to-visual integration.
 
 Length follows the concept. Count the words a learner reads (paragraphs,
 lists, tables, and headings, without display math, code, and component props):
@@ -75,23 +104,23 @@ invented context never count toward it.
    exercise, and plotted value independently with a computer algebra system
    such as SymPy or with exact arithmetic, and record the result.
 3. Inventory every interactive visual the lesson has today, with its teaching
-   job. Keep every one, fixing any that is wrong, and add a visual for each
-   main idea that has none. Reuse an existing Nakafa component when its
-   configuration teaches this lesson's question and differs from its
-   neighbors; otherwise specify an instance of a component family under
-   [visuals](visuals.md). A rewrite never ends with fewer interactive visuals
-   than it started with.
+   job. Keep every one, fixing any that is wrong, and add a unique custom
+   visual for each main idea that has none. Never reuse a custom lab from
+   another lesson or repeat a custom lab as filler inside one lesson; build a
+   dedicated component when needed under [visuals](visuals.md). Write an
+   authored `footer` for every visual card. A rewrite never ends with fewer
+   interactive visuals than it started with.
 4. Rewrite the Indonesian lesson to this standard through the
-   [editorial workflow](editorial.md), then recreate English and
-   German from the corrected meaning under [locale sources](locales.md).
-5. Run the gate on the lesson directory with `--strict-review` and read the
-   `--pedagogy-review` inventory ([verification](verification.md)). Every
-   finding reaches zero, and every signal is either fixed or retained with a
-   stated teaching reason. Run the
-   [points gate](verification.md#points-gate) on the same directory: it fails
-   a typed coordinate list, a long decimal coordinate, any file with fewer
-   interactive visuals than before, and a changed lesson with fewer than three
-   distinct custom scenes.
+   [editorial workflow](editorial.md), then recreate English, Malay, and German
+   from the corrected meaning under [locale sources](locales.md). Complete the
+   four-locale clarity trace (D29) across `en`, `id`, `ms`, and `de`: check
+   that every paragraph connects to the one before it, every symbol is
+   introduced in plain words first, every number or example is introduced
+   before it is referenced, and every visual has lead-in and takeaway prose.
+5. Run the gate on the lesson directory with `--strict-review`, `bun run
+   headings --strict-review`, and `bun run points` ([verification](verification.md)).
+   Every blocking finding reaches zero, and every signal is either fixed or
+   retained with a stated teaching reason.
 6. Compile the lesson and preview it through Nakafa's renderer at 390 and 1440
    pixels in light and dark themes. Rotate every 3D scene and play every
    animation.

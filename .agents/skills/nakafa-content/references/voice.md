@@ -108,10 +108,28 @@ push the learner away.
 - Answer the question a learner would ask next, in the next sentence. When a
   rule has a condition, say why the condition matters with a case where it
   fails.
-- State facts directly. Indonesian framing such as `dapat dilihat bahwa`,
-  `dapat disimpulkan bahwa`, and `perlu diperhatikan bahwa`, the Malay
-  `kita boleh lihat bahawa` and `perlu diingat bahawa`, and the English and
-  German equivalents, usually hide the fact behind a frame; say the fact.
+- State facts directly. Drop stiff textbook connectors and frames across all
+  four locales (`stiff-formal-prose` blocks them on changed lessons):
+  - Indonesian: replace `tersebut`, `merupakan`, `yakni`, `adapun`, `dengan
+    demikian`, `oleh karena itu`, `sehubungan dengan itu`, `berdasarkan hal
+    tersebut`, `perlu diketahui bahwa`, and `dapat disimpulkan bahwa` with
+    plain, direct phrasing (`itu`, `adalah`, `yaitu`, `jadi`, or a direct verb).
+  - Malaysian Malay: replace `tersebut`, `merupakan`, `yakni`, `adapun`, `oleh
+    yang demikian`, `oleh kerana itu`, `sehubungan dengan itu`, `berdasarkan
+    perkara tersebut`, `dapat dirumuskan bahawa`, and `perlu diingat bahawa`
+    with direct teacher phrasing (`itu`, `ialah`, `jadi`, or a direct verb).
+  - English: replace `it should be noted that`, `it is worth noting that`,
+    `one must`, `the reader should`, `aforementioned`, `hereby`, and `thus it
+    can be concluded that` with direct active sentences addressed to `you`.
+  - German: replace `es ist festzuhalten, dass`, `hierbei handelt es sich um`,
+    `man beachte, dass`, `im Rahmen dessen`, `diesbezüglich`, and `somit lässt
+    sich festhalten` with direct `du` phrasing.
+- Never open a complex idea with unexplained jargon or a raw formula dump. Say
+  what happens in plain, concrete language first so a beginner understands what
+  the symbols measure before seeing the notation.
+- Never reference a number, symbol, or example that has not been introduced in
+  the preceding text (zero phantom references), and never end a paragraph with
+  a colon followed by another plain paragraph (`dangling-colon`).
 - Treat these generated-sounding shapes as review signals, judged in context:
   sweeping openers about everyday life or importance; closers that summarize
   what was just said; inflated significance such as `memainkan peran penting`,
