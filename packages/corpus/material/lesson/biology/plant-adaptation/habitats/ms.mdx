@@ -1,0 +1,358 @@
+export const metadata = {
+  title: "Nota Penyesuaian Tumbuhan pada Habitat Berlainan",
+  description:
+    "Nota Biologi Tingkatan 5 Bab 7: kelaskan mesofit, hidrofit, halofit dan xerofit, dan terangkan penyesuaian untuk air, gas, sokongan dan fotosintesis.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2026-11-17",
+  subject: "Penyesuaian Tumbuhan pada Habitat Berlainan",
+};
+
+## Empat Kumpulan Tumbuhan Mengikut Habitat
+
+Tumbuhan dikelaskan mengikut **jumlah air dan garam di habitatnya**. **Mesofit** hidup di tanah yang cukup air, **hidrofit** hidup di dalam atau di permukaan air, **halofit** hidup di tanah berlumpur yang masin seperti paya bakau, dan **xerofit** hidup di kawasan kering seperti gurun. Setiap kumpulan mempunyai penyesuaian untuk empat keperluan yang sama: **pengambilan air dan garam mineral, pertukaran gas, sokongan dan fotosintesis**.
+
+| Kumpulan | Habitat | Masalah utama | Contoh |
+| :--- | :--- | :--- | :--- |
+| Mesofit | Tanah lembap, air sederhana | Mengimbangi transpirasi dengan pengambilan air | Pokok bunga raya, pokok rambutan |
+| Hidrofit | Kolam, tasik, sungai | Air berlebihan, oksigen dan cahaya sedikit | Teratai, keladi bunting, Hydrilla |
+| Halofit | Paya bakau, pantai berlumpur | Air masin, lumpur tanpa oksigen, tanah lembut | Pokok bakau minyak, pokok api-api |
+| Xerofit | Gurun, kawasan kering | Air sangat sedikit, panas | Kaktus, lidah buaya |
+
+Dalam model di sini, kamu mengukur air yang diserap oleh pucuk berdaun, mengira gelembung oksigen daripada Hydrilla, membandingkan nisbah luas permukaan kepada isi padu batang kaktus, merendam jalur tisu dalam larutan pekat, dan memutar model akar bakau.
+
+## Mesofit Mengawal Kehilangan Air melalui Stoma
+
+Mesofit menjadi titik rujukan kerana airnya cukup tetapi tidak berlebihan. Daunnya lebar dan nipis untuk menyerap cahaya. Kutikelnya nipis hingga sederhana. Kebanyakan **stoma terletak pada epidermis bawah**, yang terlindung daripada cahaya matahari terus, jadi kurang air hilang semasa stoma terbuka untuk pertukaran gas. Akarnya bercabang luas untuk menyerap air dan garam mineral daripada tanah.
+
+Potometer mengukur kadar air diserap oleh pucuk, yang hampir sama dengan kadar transpirasi. Jeli petroleum menutup stoma pada permukaan yang disapu. Pilih setiap pucuk dan bandingkan jarak gelembung udara bergerak dalam <InlineMath math="10" /> minit.
+
+<PotometerLab
+  title={<>Stoma Mesofit pada Permukaan Atas dan Bawah</>}
+  description={
+    <>
+      Empat pucuk yang sama dalam potometer berliang{" "}
+      <InlineMath math="0.5\text{ mm}" />. Jeli petroleum disapu pada tiada
+      permukaan, permukaan atas, permukaan bawah atau kedua-dua permukaan daun.
+    </>
+  }
+  minutes={10}
+  radius={0.5}
+  shoots={[
+    { coat: "none", name: "Tiada jeli", rate: 1.2 },
+    { coat: "upper", name: "Permukaan atas", rate: 1.0 },
+    { coat: "lower", name: "Permukaan bawah", rate: 0.3 },
+    { coat: "both", name: "Kedua-dua permukaan", rate: 0.1 },
+  ]}
+  labels={{
+    distance: <>Jarak gelembung</>,
+    rate: <>Kadar pengambilan air</>,
+    shoot: "Pucuk",
+    time: "Masa",
+    view: "Potometer gelembung dengan pucuk berdaun",
+    volume: <>Isi padu air diserap</>,
+  }}
+/>
+
+Pucuk yang permukaan bawahnya disapu jeli hampir berhenti menyerap air. Ini bukti bahawa kebanyakan stoma mesofit berada di bawah daun.
+
+### Contoh Membaca Potometer
+
+Dalam pucuk tanpa jeli, gelembung bergerak <InlineMath math="25.5\text{ cm}" /> dalam <InlineMath math="10" /> minit. Jejari liang kapilari ialah <InlineMath math="0.05\text{ cm}" />. Air yang diserap memenuhi silinder sepanjang jarak itu, jadi **isi padu ialah luas keratan rentas darab jarak**:
+
+<MathContainer>
+<BlockMath math="V = \pi r^2 l = \pi (0.05)^2 (25.5) = 0.200\text{ cm}^3" />
+<BlockMath math="\text{Kadar} = \frac{0.200\text{ cm}^3}{10\text{ min}} = 0.020\text{ cm}^3\text{ min}^{-1}" />
+</MathContainer>
+
+Darab dengan <InlineMath math="60" /> untuk mendapat <InlineMath math="1.2\text{ cm}^3" /> sejam, sama dengan kadar pucuk tanpa jeli dalam model. Semak unit: <InlineMath math="\text{cm}^2 \times \text{cm} = \text{cm}^3" />.
+
+### Contoh Mencari Peratus Air Melalui Permukaan Bawah
+
+Gunakan empat kadar dalam model, dalam <InlineMath math="\text{cm}^3" /> sejam. Biar <InlineMath math="B" /> air yang keluar melalui permukaan bawah, <InlineMath math="A" /> melalui permukaan atas, dan <InlineMath math="S" /> melalui batang. Pucuk yang kedua-dua permukaannya ditutup hanya kehilangan air melalui batang, jadi <InlineMath math="S = 0.1" />. Pucuk yang permukaan atasnya ditutup kehilangan air melalui permukaan bawah dan batang:
+
+<MathContainer>
+<BlockMath math="B = 1.0 - S = 1.0 - 0.1 = 0.9" />
+<BlockMath math="A = 0.3 - S = 0.3 - 0.1 = 0.2" />
+<BlockMath math="\frac{B}{1.2} \times 100\% = \frac{0.9}{1.2} \times 100\% = 75\%" />
+</MathContainer>
+
+Semak: <InlineMath math="B + A + S = 0.9 + 0.2 + 0.1 = 1.2" />, iaitu kadar pucuk tanpa jeli. **Tiga perempat air hilang melalui permukaan bawah**.
+
+## Hidrofit Hidup dengan Air Berlebihan
+
+Bagi hidrofit, air tidak pernah kurang. Masalahnya ialah **oksigen dan karbon dioksida meresap sangat perlahan dalam air**, dan cahaya semakin malap apabila air semakin dalam. Hidrofit terbahagi kepada tumbuhan terapung, seperti teratai dan keladi bunting, dan tumbuhan tenggelam, seperti Hydrilla.
+
+**Tumbuhan terapung** mempunyai daun lebar yang terapung di permukaan air. **Stomanya terletak pada epidermis atas**, yang bersentuhan dengan udara, kerana permukaan bawah tenggelam dalam air. Kutikel tebal berlilin di permukaan atas menolak air hujan supaya stoma tidak tersumbat. Tangkai daun dan batangnya mengandungi **tisu aerenkima**, tisu berongga udara besar yang menyimpan udara untuk respirasi dan memberikan keapungan. Tangkai daun keladi bunting yang mengembung ialah aerenkima yang mengapungkan seluruh tumbuhan.
+
+**Tumbuhan tenggelam** seperti Hydrilla tiada stoma dan hampir tiada kutikel. Daunnya kecil dan nipis, jadi air, garam mineral dan karbon dioksida terlarut meresap terus ke dalam sel melalui seluruh permukaan daun. Akarnya kecil kerana fungsinya lebih untuk mencengkam dasar daripada menyerap air. Xilemnya kurang berkembang, dan batangnya lembut serta lentur kerana **air menyokong tumbuhan itu**. Aerenkima menyimpan oksigen daripada fotosintesis dan karbon dioksida daripada respirasi supaya boleh digunakan semula.
+
+Dalam eksperimen ini, Hydrilla direndam dalam air dan lampu diletakkan pada jarak berlainan. Gelembung yang keluar daripada batang yang dipotong ialah oksigen daripada fotosintesis. Pilih setiap bacaan dan bandingkan kadar gelembung.
+
+<PhotosynthesisLab
+  title={<>Hydrilla Bertukar Gas Terus dengan Air</>}
+  description={
+    <>
+      Lampu pada jarak <InlineMath math="10" /> hingga{" "}
+      <InlineMath math="40\text{ cm}" />. Satu bacaan pada{" "}
+      <InlineMath math="20\text{ cm}" /> ditambah natrium hidrogen karbonat
+      untuk membekalkan lebih banyak karbon dioksida terlarut.
+    </>
+  }
+  readings={[
+    { distance: 10, bubbles: 40 },
+    { distance: 20, bubbles: 22 },
+    { distance: 20, bubbles: 34, bicarbonate: true },
+    { distance: 30, bubbles: 11 },
+    { distance: 40, bubbles: 6 },
+  ]}
+  labels={{
+    bubbles: <>Gelembung seminit</>,
+    carbon: <>Karbon dioksida tambahan</>,
+    carbonSources: { added: <>Natrium hidrogen karbonat</>, none: <>Tiada</> },
+    distance: <>Jarak lampu</>,
+    intensity: <>Keamatan cahaya relatif</>,
+    reading: "Bacaan",
+    view: "Hydrilla dalam tabung didih di dalam kukus air dengan lampu",
+  }}
+/>
+
+Pada jarak <InlineMath math="20\text{ cm}" />, kadar naik daripada <InlineMath math="22" /> kepada <InlineMath math="34" /> gelembung seminit apabila karbon dioksida ditambah. Jadi **karbon dioksida terlarut mengehadkan fotosintesis** Hydrilla, dan daun yang nipis tanpa kutikel memendekkan jarak resapan gas itu.
+
+Cahaya juga berkurang dengan kedalaman. Model ringkas menganggap setiap meter air menyerap pecahan cahaya yang sama, jadi peratus cahaya pada kedalaman <InlineMath math="x" /> meter ialah <InlineMath math="100e^{-kx}" />. Pemalar <InlineMath math="k" /> besar dalam air keruh dan kecil dalam air jernih. Gerakkan kedua-dua gelangsar dan baca cahaya yang sampai ke daun.
+
+<MathVisual
+  title={<>Cahaya Semakin Malap dengan Kedalaman Air</>}
+  description={
+    <>
+      Peratus cahaya permukaan, <InlineMath math="100e^{-kx}" />, melawan
+      kedalaman <InlineMath math="x" /> dalam meter. Titik menunjukkan daun
+      pada kedalaman <InlineMath math="d" />.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 10 }, y: { min: 0, max: 105 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "k", min: 0.1, max: 1.5, value: 0.5, step: 0.05, label: "k" },
+      { name: "d", min: 0, max: 10, value: 2, step: 0.1, label: "d" },
+    ],
+    objects: [
+      { id: "light", kind: "function", appearance: "primary", formula: "100exp(-k x)", domain: { min: 0, max: 10 } },
+      { id: "leaf", kind: "marker", x: "d", y: "100exp(-k d)", appearance: "warning" },
+    ],
+    readouts: [
+      { key: "percent", formula: "100exp(-k d)" },
+    ],
+  }}
+  labels={{
+    k: <>Kekeruhan air <InlineMath math="k" /></>,
+    d: <>Kedalaman daun <InlineMath math="d" /> dalam meter</>,
+    percent: <>Cahaya pada daun dalam <InlineMath math="\%" /></>,
+  }}
+/>
+
+Dengan <InlineMath math="k = 0.5" />, daun pada kedalaman <InlineMath math="2" /> meter hanya menerima kira-kira <InlineMath math="37\%" /> cahaya permukaan. Sebab itu kloroplas Hydrilla terdapat juga dalam sel epidermis, dan tumbuhan tenggelam hidup di air cetek yang jernih.
+
+## Xerofit Menyimpan dan Menjimatkan Air
+
+Xerofit menghadapi masalah yang bertentangan dengan hidrofit: air sangat sedikit dan panas menambah transpirasi. Penyesuaiannya mengurangkan kehilangan air, menyimpan air dan mencari air sejauh mungkin.
+
+- **Pengambilan air**: akar tunjang yang panjang mencapai air bawah tanah, manakala akar serabut yang tersebar luas dekat permukaan menyerap air hujan dengan cepat sebelum air itu tersejat.
+- **Pertukaran gas**: daun kaktus menjadi duri, jadi luas permukaan untuk transpirasi sangat kecil. Stomanya sedikit dan **terbenam dalam lekuk**, jadi wap air terkumpul di atas liang dan aliran udara tidak membawanya pergi. Stoma kaktus **terbuka pada waktu malam** yang sejuk dan menyimpan karbon dioksida untuk digunakan pada siang hari ketika stoma tertutup.
+- **Sokongan**: batang yang tebal dan berisi menyimpan air dalam sel parenkima yang besar, dan tekanan air itu menegangkan batang.
+- **Fotosintesis**: batang kaktus berwarna hijau dan menjalankan fotosintesis kerana daunnya sudah menjadi duri. Kutikel yang tebal dan berlilin mengurangkan kehilangan air melalui permukaan batang.
+
+Batang kaktus yang berbentuk silinder gemuk mempunyai luas permukaan yang kecil berbanding isi padunya. Bagi silinder berjejari <InlineMath math="r" /> dan tinggi <InlineMath math="h" />, nisbah luas permukaan kepada isi padu ialah:
+
+<BlockMath math="\frac{A}{V} = \frac{2\pi r h + 2\pi r^2}{\pi r^2 h} = \frac{2}{r} + \frac{2}{h}" />
+
+Model ini menetapkan <InlineMath math="h = 20\text{ cm}" />. Gerakkan gelangsar jejari dan perhatikan nisbah itu jatuh apabila batang semakin gemuk.
+
+<MathVisual
+  title={<>Batang Gemuk Mempunyai Nisbah Luas Permukaan kepada Isi Padu yang Kecil</>}
+  description={
+    <>
+      Lengkung <InlineMath math="A/V = 2/r + 2/20" /> dalam{" "}
+      <InlineMath math="\text{cm}^{-1}" /> melawan jejari batang{" "}
+      <InlineMath math="r" /> dalam cm, bagi batang setinggi{" "}
+      <InlineMath math="20\text{ cm}" />.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 10.5 }, y: { min: 0, max: 4.5 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "r", min: 0.5, max: 10, value: 5, step: 0.1, label: "r" },
+    ],
+    objects: [
+      { id: "ratio", kind: "function", appearance: "primary", formula: "2/x + 2/20", domain: { min: 0.5, max: 10 } },
+      { id: "stem", kind: "marker", x: "r", y: "2/r + 2/20", appearance: "warning" },
+    ],
+    readouts: [
+      { key: "value", formula: "2/r + 2/20" },
+    ],
+  }}
+  labels={{
+    r: <>Jejari batang <InlineMath math="r" /> dalam cm</>,
+    value: <>Nisbah <InlineMath math="A/V" /> dalam <InlineMath math="\text{cm}^{-1}" /></>,
+  }}
+/>
+
+Sekarang bandingkan dua bentuk tisu dengan nombor. Batang kaktus berjejari <InlineMath math="5\text{ cm}" /> dan setinggi <InlineMath math="20\text{ cm}" />. Daun mesofit pula sekeping helaian setebal <InlineMath math="0.05\text{ cm}" />. Bagi helaian nipis, hampir semua luas datang daripada dua mukanya, jadi <InlineMath math="A/V \approx 2/t" />:
+
+<MathContainer>
+<BlockMath math="\left(\frac{A}{V}\right)_{\text{kaktus}} = \frac{2}{5} + \frac{2}{20} = 0.5\text{ cm}^{-1}" />
+<BlockMath math="\left(\frac{A}{V}\right)_{\text{daun}} = \frac{2}{0.05} = 40\text{ cm}^{-1}" />
+<BlockMath math="\frac{40}{0.5} = 80" />
+</MathContainer>
+
+Setiap sentimeter padu tisu daun mempunyai <InlineMath math="80" /> kali luas permukaan tisu batang kaktus. Air hilang melalui permukaan, jadi **batang kaktus kehilangan jauh lebih sedikit air bagi setiap unit isi padu**. Semak dengan model: pada <InlineMath math="r = 5" />, bacaan nisbah ialah <InlineMath math="0.5" />.
+
+## Halofit Paya Bakau Menghadapi Garam dan Lumpur
+
+Pokok bakau hidup di pantai berlumpur yang ditenggelami air laut setiap kali air pasang. Pokok itu menghadapi tiga masalah serentak: **air laut lebih pekat daripada sap sel tumbuhan biasa**, lumpur yang tepu air hampir tiada oksigen, dan tanahnya lembut serta dipukul ombak.
+
+Tisu tumbuhan biasa kehilangan air dalam larutan pekat. Jalur ubi kentang dalam model ini direndam dalam larutan sukrosa sehingga <InlineMath math="1.0\text{ mol dm}^{-3}" />, jauh lebih pekat daripada sap selnya, seperti air laut bagi akar mesofit. Gerakkan gelangsar kepekatan dan baca perubahan jisim.
+
+<OsmosisLab
+  title={<>Tisu Tumbuhan Biasa dalam Larutan yang Semakin Pekat</>}
+  description={
+    <>
+      Enam tabung dari <InlineMath math="0" /> hingga{" "}
+      <InlineMath math="1.0\text{ mol dm}^{-3}" /> sukrosa. Air keluar dari sel
+      apabila larutan lebih pekat daripada sap sel.
+    </>
+  }
+  strips={[
+    { concentration: 0, change: 20 },
+    { concentration: 0.2, change: 5 },
+    { concentration: 0.4, change: -6 },
+    { concentration: 0.6, change: -14 },
+    { concentration: 0.8, change: -19 },
+    { concentration: 1.0, change: -22 },
+  ]}
+  mass={4}
+  labels={{
+    change: <>Perubahan jisim</>,
+    concentration: "Kepekatan sukrosa",
+    isotonic: <>Larutan isotonik</>,
+    mass: <>Jisim jalur</>,
+    none: <>Tiada</>,
+    solution: <>Larutan</>,
+    tonicities: {
+      hypertonic: <>hipertonik</>,
+      hypotonic: <>hipotonik</>,
+      isotonic: <>isotonik</>,
+    },
+    view: "Jalur ubi kentang dalam tabung larutan sukrosa",
+  }}
+/>
+
+Jalur kentang mula kehilangan jisim selepas kira-kira <InlineMath math="0.3\text{ mol dm}^{-3}" />. Akar bakau mengatasi masalah ini dengan **sap sel akar yang lebih pekat daripada air laut**, jadi air masih meresap masuk secara osmosis. Akar sesetengah spesies, seperti bakau minyak, menapis kebanyakan garam di permukaan akar. Spesies lain, seperti api-api, mengeluarkan garam berlebihan melalui **kelenjar garam pada daun**, dan sesetengahnya mengumpul garam dalam daun tua yang kemudian gugur.
+
+Model tiga dimensi ini menunjukkan dua jenis akar pada aras lumpur dan aras air pasang. Putar model itu dan bandingkan bahagian akar yang berada di atas lumpur.
+
+<MathVisual
+  title={<>Akar Jangkang dan Pneumatofor di Paya Bakau</>}
+  description={
+    <>
+      Kiri: pokok bakau minyak dengan akar jangkang yang melengkung dari
+      batang ke lumpur. Kanan: pokok api-api dengan pneumatofor yang tegak
+      dari akar di bawah lumpur. Satu selang grid mewakili kira-kira{" "}
+      <InlineMath math="1\text{ m}" />.
+    </>
+  }
+  scene={{
+    space: "space",
+    frame: { kind: "cartesian", x: { min: -3, max: 9 }, y: { min: -1, max: 3.5 }, z: { min: -3, max: 3 } },
+    view: { kind: "camera", position: { x: 4, y: 6, z: 12 }, target: { x: 3, y: 1, z: 0 } },
+    objects: [
+      { id: "mud", kind: "polygon", appearance: "construction", vertices: [{ x: -3, y: 0, z: -3 }, { x: 9, y: 0, z: -3 }, { x: 9, y: 0, z: 3 }, { x: -3, y: 0, z: 3 }] },
+      { id: "tide", kind: "polygon", appearance: "reference", vertices: [{ x: -3, y: 1.2, z: -3 }, { x: 9, y: 1.2, z: -3 }, { x: 9, y: 1.2, z: 3 }, { x: -3, y: 1.2, z: 3 }] },
+      { id: "mangrove-trunk", kind: "segment", appearance: "secondary", from: { x: 0, y: 1.8, z: 0 }, to: { x: 0, y: 3.4, z: 0 } },
+      { id: "prop-east", kind: "polyline", appearance: "primary", vertices: [{ x: 0, y: 1.8, z: 0 }, { x: 0.9, y: 1.3, z: 0 }, { x: 1.5, y: 0, z: 0 }] },
+      { id: "prop-west", kind: "polyline", appearance: "primary", vertices: [{ x: 0, y: 1.8, z: 0 }, { x: -0.9, y: 1.3, z: 0 }, { x: -1.5, y: 0, z: 0 }] },
+      { id: "prop-south", kind: "polyline", appearance: "primary", vertices: [{ x: 0, y: 1.8, z: 0 }, { x: 0, y: 1.3, z: 0.9 }, { x: 0, y: 0, z: 1.5 }] },
+      { id: "prop-north", kind: "polyline", appearance: "primary", vertices: [{ x: 0, y: 1.8, z: 0 }, { x: 0, y: 1.3, z: -0.9 }, { x: 0, y: 0, z: -1.5 }] },
+      { id: "api-trunk", kind: "segment", appearance: "secondary", from: { x: 6, y: -0.4, z: 0 }, to: { x: 6, y: 3.4, z: 0 } },
+      { id: "cable-east", kind: "segment", appearance: "highlight", from: { x: 6, y: -0.4, z: 0 }, to: { x: 8, y: -0.4, z: 0 } },
+      { id: "cable-west", kind: "segment", appearance: "highlight", from: { x: 6, y: -0.4, z: 0 }, to: { x: 4, y: -0.4, z: 0 } },
+      { id: "pneumatophore-1", kind: "segment", appearance: "warning", from: { x: 7, y: -0.4, z: 0 }, to: { x: 7, y: 0.5, z: 0 } },
+      { id: "pneumatophore-2", kind: "segment", appearance: "warning", from: { x: 8, y: -0.4, z: 0 }, to: { x: 8, y: 0.5, z: 0 } },
+      { id: "pneumatophore-3", kind: "segment", appearance: "warning", from: { x: 5, y: -0.4, z: 0 }, to: { x: 5, y: 0.5, z: 0 } },
+      { id: "pneumatophore-4", kind: "segment", appearance: "warning", from: { x: 4, y: -0.4, z: 0 }, to: { x: 4, y: 0.5, z: 0 } },
+    ],
+    labels: [
+      { key: "prop", objectId: "prop-east", at: { x: 0.9, y: 1.3, z: 0 }, placement: "right" },
+      { key: "pneumatophore", objectId: "pneumatophore-1", at: { x: 7, y: 0.5, z: 0 }, placement: "above" },
+      { key: "cable", objectId: "cable-east", at: { x: 8, y: -0.4, z: 0 }, placement: "right" },
+      { key: "tide", objectId: "tide", at: { x: -3, y: 1.2, z: 3 }, placement: "left" },
+      { key: "mud", objectId: "mud", at: { x: -3, y: 0, z: 3 }, placement: "left" },
+    ],
+  }}
+  labels={{
+    prop: <>Akar jangkang</>,
+    pneumatophore: <>Pneumatofor</>,
+    cable: <>Akar di bawah lumpur</>,
+    tide: <>Aras air pasang</>,
+    mud: <>Permukaan lumpur</>,
+  }}
+/>
+
+Akar jangkang dan pneumatofor mempunyai banyak **lentisel**, iaitu liang kecil untuk pertukaran gas. Semasa air surut, oksigen meresap masuk melalui lentisel dan bergerak melalui aerenkima ke akar yang tertanam dalam lumpur tanpa oksigen. Akar jangkang yang tersebar luas juga **mencengkam lumpur lembut** dan menyokong pokok daripada tumbang dipukul ombak. Daun bakau yang tebal, berisi dan berkutikel tebal menyimpan air dan mengurangkan transpirasi, jadi fotosintesis berterusan walaupun air tawar sukar diperoleh.
+
+Biji benih bakau juga bercambah semasa buahnya masih pada pokok induk. Penyesuaian ini dipanggil **vivipari**. Anak benih yang berat dan tajam jatuh lalu tercacak dalam lumpur atau dihanyutkan air sehingga tersangkut di lumpur lain.
+
+## Bandingkan Penyesuaian bagi Empat Keperluan
+
+Jadual di bawah menyusun penyesuaian mengikut empat keperluan tumbuhan. Baca satu baris merentasi tiga habitat: **masalah yang sama mendapat penyelesaian yang berbeza**, kerana air berlebihan, air masin dan air yang sangat sedikit menuntut struktur yang berlainan.
+
+| Keperluan | Hidrofit | Halofit | Xerofit |
+| :--- | :--- | :--- | :--- |
+| Air dan garam mineral | Diserap terus melalui permukaan daun tenggelam | Sap sel akar lebih pekat daripada air laut, garam ditapis atau dikeluarkan | Akar tunjang dalam dan akar serabut luas, air disimpan dalam batang |
+| Pertukaran gas | Stoma di epidermis atas daun terapung, aerenkima menyimpan udara | Pneumatofor dan akar jangkang berlentisel | Stoma sedikit, terbenam dan terbuka pada waktu malam |
+| Sokongan | Air dan aerenkima mengapungkan tumbuhan | Akar jangkang mencengkam lumpur lembut | Batang tebal yang tegang kerana menyimpan air |
+| Fotosintesis | Daun lebar terapung, kloroplas dalam epidermis daun tenggelam | Daun tebal berkutikel tebal | Batang hijau menggantikan daun yang menjadi duri |
+
+## Kesilapan Lazim tentang Penyesuaian Tumbuhan
+
+| Kesilapan | Sebab salah | Cara semak |
+| :--- | :--- | :--- |
+| Daun terapung mempunyai stoma di permukaan bawah. | Permukaan bawahnya tenggelam dalam air, jadi gas tidak boleh bertukar dengan udara di situ. | Tanya permukaan mana yang menyentuh udara. |
+| Kaktus tidak menjalankan fotosintesis kerana tiada daun. | Batang hijau kaktus mengandungi kloroplas dan menjalankan fotosintesis. | Cari bahagian hijau tumbuhan. |
+| Pneumatofor menyerap air. | Pneumatofor menyerap oksigen melalui lentisel untuk akar dalam lumpur tanpa oksigen. | Kaitkan struktur dengan masalah habitat: lumpur kekurangan oksigen. |
+| Akar bakau menyerap air laut kerana air laut banyak. | Air hanya masuk jika sap sel akar lebih pekat daripada air laut. | Bandingkan kepekatan di dalam dan di luar sel. |
+
+Satu peraturan menyelesaikan kesilapan pertama: **stoma berfungsi hanya pada permukaan yang menyentuh udara**.
+
+## Latihan Penyesuaian Tumbuhan
+
+Soalan ini bermula dengan pengelasan dan berakhir dengan pengiraan. **Kaitkan setiap struktur dengan masalah habitatnya** dalam jawapan kamu.
+
+1. Sejenis tumbuhan mempunyai daun lebar yang terapung, stoma pada epidermis atas dan tangkai daun berongga udara. Kelaskan tumbuhan itu dan terangkan fungsi tangkai daunnya.
+
+2. Terangkan mengapa Hydrilla tidak memerlukan stoma dan xilem yang berkembang baik.
+
+3. Dalam model cahaya, air keruh mempunyai <InlineMath math="k = 0.8" />. Hitung peratus cahaya permukaan yang sampai ke daun pada kedalaman <InlineMath math="2" /> meter.
+
+4. Jalur ubi kentang <InlineMath math="4.00\text{ g}" /> direndam dalam larutan <InlineMath math="0.8\text{ mol dm}^{-3}" /> dan jisimnya berubah <InlineMath math="-19\%" />. Hitung jisim akhirnya, kemudian terangkan mengapa akar bakau tidak mengalami perkara yang sama dalam air laut.
+
+### Penyelesaian
+
+**Penyelesaian 1**: Tumbuhan itu **hidrofit terapung**, contohnya teratai atau keladi bunting. Stoma di epidermis atas bersentuhan dengan udara. Tangkai daun yang berongga udara ialah aerenkima, yang memberikan keapungan supaya daun kekal di permukaan untuk menerima cahaya, dan menyimpan udara untuk respirasi.
+
+**Penyelesaian 2**: Hydrilla tenggelam sepenuhnya, jadi air, garam mineral dan karbon dioksida terlarut **meresap terus melalui permukaan daun yang nipis tanpa kutikel**. Tiada udara di sekeliling daun, jadi stoma tidak berguna. Xilem kurang diperlukan kerana air tidak perlu diangkut jauh, dan air sendiri menyokong batang yang lembut.
+
+**Penyelesaian 3**: Gantikan <InlineMath math="k = 0.8" /> dan <InlineMath math="x = 2" />:
+
+<BlockMath math="100e^{-0.8 \times 2} = 100e^{-1.6} = 20.2\%" />
+
+Semak dengan model: tetapkan <InlineMath math="k = 0.8" /> dan <InlineMath math="d = 2" />, dan bacaan cahaya ialah kira-kira <InlineMath math="20\%" />. Air keruh mengurangkan cahaya hampir separuh berbanding <InlineMath math="37\%" /> dalam air yang lebih jernih.
+
+**Penyelesaian 4**: Jisim akhir ialah:
+
+<BlockMath math="4.00 \times (1 - 0.19) = 4.00 \times 0.81 = 3.24\text{ g}" />
+
+Semak: kehilangan <InlineMath math="0.76\text{ g}" /> ialah <InlineMath math="19\%" /> daripada <InlineMath math="4.00\text{ g}" />. Larutan itu hipertonik kepada sap sel kentang, jadi air keluar secara osmosis. Akar bakau **mengekalkan sap sel yang lebih pekat daripada air laut**, jadi bagi akar bakau air laut ialah larutan hipotonik dan air masih meresap masuk.
