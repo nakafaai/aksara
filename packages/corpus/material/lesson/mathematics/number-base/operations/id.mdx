@@ -9,35 +9,59 @@ export const metadata = {
 
 ## Menyimpan Saat Paku Penuh
 
-Kamu bisa menjumlahkan dan mengurangkan langsung dalam basis <InlineMath math="b" />, tanpa mengubahnya ke basis sepuluh dulu. Caranya sama dengan penjumlahan bersusun yang sudah kamu kenal, hanya batasnya berbeda: **simpan satu ke kolom kiri setiap kali sebuah kolom mencapai <InlineMath math="b" />**, bukan sepuluh. Dalam pengurangan, satu pinjaman dari kolom kiri bernilai <InlineMath math="b" />. Abakus ini menunjukkan penyimpanan itu terjadi pada manik. Tekan Putar, dan setiap langkah menambah satu manik ke paku satuan.
+Kamu bisa menjumlahkan dan mengurangkan langsung dalam basis <InlineMath math="b" />, tanpa mengubahnya ke basis sepuluh dulu. Caranya sama dengan penjumlahan bersusun yang sudah kamu kenal, hanya batasnya berbeda: **simpan satu ke kolom kiri setiap kali sebuah kolom mencapai <InlineMath math="b" />**, bukan sepuluh. Dalam pengurangan, satu pinjaman dari kolom kiri bernilai <InlineMath math="b" />. Geser basis <InlineMath math="b" /> dan jumlah kolom <InlineMath math="s" /> di bawah ini untuk melihat kapan sebuah kolom menyimpan <InlineMath math="1" /> dan angka apa yang ditulis.
 
-<AbacusBaseLab
-  title={<>Menambah Satu demi Satu dalam Basis Empat</>}
+<MathVisual
+  title={<>Kapan Sebuah Kolom Menyimpan dalam Basis <InlineMath math="b" /></>}
   description={
     <>
-      Tekan Putar. Setiap langkah menambah satu manik ke paku satuan, dan
-      paku yang penuh mengirim satu manik ke paku di kirinya.
+      Sumbu mendatar adalah basis <InlineMath math="b" /> dan sumbu tegak adalah
+      jumlah kolom <InlineMath math="s" />. Pita berarsir menandai jumlah dari{" "}
+      <InlineMath math="b" /> sampai <InlineMath math="2b - 1" />, saat kolom
+      mengirim <InlineMath math="1" /> ke kiri.
     </>
   }
-  footer={<>Begitu sebuah paku berisi empat manik, keempatnya pulang dan satu manik naik ke kiri.</>}
-  bases={[4, 3]}
-  value={61}
-  labels={{
-    base: "Basis",
-    decimal: <>Nilai dalam basis sepuluh</>,
-    digits: <>Ditulis dalam basis ini</>,
-    expanded: <>Bentuk panjang</>,
-    value: "Bilangan",
-    viewLabel: "Abakus empat paku dengan pot manik di sampingnya",
+  footer={
+    <>
+      Lewati garis <InlineMath math="s = b" />, lalu kolom mengirim{" "}
+      <InlineMath math="1" /> ke kiri.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 4, max: 10 }, y: { min: 0, max: 12 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "b", min: 5, max: 9, value: 5, step: 1, label: "base" },
+      { name: "s", min: 0, max: 9, value: 7, step: 1, label: "sum" },
+    ],
+    objects: [
+      { id: "carry-band", kind: "region", appearance: "construction", inequalities: ["y >= x", "y <= 2x - 1", "x >= 2"] },
+      { id: "threshold", kind: "function", appearance: "primary", formula: "x", domain: { min: 2, max: 10 } },
+      { id: "state", kind: "marker", appearance: "answer", x: "b", y: "s" },
+    ],
+    labels: [
+      { key: "threshold-label", objectId: "threshold", at: { x: 7, y: 7 }, placement: "below-right" },
+    ],
+    readouts: [
+      { key: "digit", formula: "s - b * floor(s / b)" },
+      { key: "carry", formula: "floor(s / b)" },
+    ],
   }}
-  showReadout
+  labels={{
+    base: <>Basis <InlineMath math="b" /></>,
+    sum: <>Jumlah kolom <InlineMath math="s" /></>,
+    "threshold-label": <InlineMath math="s = b" />,
+    digit: <>Angka yang ditulis di kolom ini</>,
+    carry: <>Simpanan ke kolom kiri</>,
+  }}
 />
 
-Abakus mulai dari <InlineMath math="61 = 331_4" />. Dua langkah pertama hanya menambah manik di paku satuan: <InlineMath math="332_4" />, lalu <InlineMath math="333_4" />. Langkah ketiga membuat paku satuan berisi empat manik. Keempat manik itu pulang ke pot dan satu manik naik ke paku kedua, yang juga jadi penuh, jadi penyimpanan berlanjut sampai paku keempat. Hasilnya <InlineMath math="1000_4 = 64" />: **satu manik tambahan bisa menyimpan tiga kali berturut-turut**. Pilih basis tiga dan putar lagi. Dari <InlineMath math="2021_3" /> kamu sampai di <InlineMath math="2100_3" />, dengan dua penyimpanan dalam satu langkah.
+Mulai dari basis <InlineMath math="5" /> dengan jumlah kolom <InlineMath math="7" />. Titiknya berada di dalam pita simpanan di atas garis <InlineMath math="s = b" />, jadi kolom mengirim <InlineMath math="1" /> ke kiri dan menulis <InlineMath math="7 - 5 = 2" />. Sekarang geser basisnya ke <InlineMath math="8" /> tanpa mengubah jumlahnya. Jumlah <InlineMath math="7" /> yang sama langsung turun ke bawah garis <InlineMath math="s = b" />, sehingga tidak ada simpanan dan kamu langsung menulis <InlineMath math="7" />. **Basis menetapkan batas pasti tempat penyimpanan dimulai**, dan batas itu bergeser setiap kali basisnya berganti.
 
 ## Menjumlahkan Secara Bersusun
 
-Penjumlahan bersusun memakai aturan abakus tadi di setiap kolom. Jumlahkan kolom dari kanan, termasuk simpanan dari kolom sebelumnya. Kalau jumlahnya kurang dari <InlineMath math="b" />, tulis jumlah itu. Kalau jumlahnya <InlineMath math="b" /> atau lebih, **tulis jumlah dikurangi <InlineMath math="b" /> dan simpan <InlineMath math="1" />**. Simpanannya tidak pernah lebih dari <InlineMath math="1" />, karena satu kolom dua bilangan paling banyak berisi <InlineMath math="(b - 1) + (b - 1) + 1 = 2b - 1" />.
+Penjumlahan bersusun memakai aturan simpanan ini di setiap kolom. Jumlahkan kolom dari kanan, termasuk simpanan dari kolom sebelumnya. Kalau jumlahnya kurang dari <InlineMath math="b" />, tulis jumlah itu. Kalau jumlahnya <InlineMath math="b" /> atau lebih, **tulis jumlah dikurangi <InlineMath math="b" /> dan simpan <InlineMath math="1" />**. Simpanannya tidak pernah lebih dari <InlineMath math="1" />, karena satu kolom dua bilangan paling banyak berisi <InlineMath math="(b - 1) + (b - 1) + 1 = 2b - 1" />.
 
 ### Simpanan yang Berantai
 
@@ -107,24 +131,29 @@ Persamaan kuadrat ini kamu selesaikan dengan [memfaktorkan persamaan kuadrat](/i
   title={<>Dua Akar, Satu Basis</>}
   description={
     <>
-      Kurva <InlineMath math="b^2 + 2b - 35" /> dibagi <InlineMath math="10" />{" "}
-      supaya muat. Pembagian itu tidak memindahkan titik potongnya dengan
-      sumbu mendatar. Geser <InlineMath math="b" /> dan baca nilai{" "}
-      <InlineMath math="123_b" />.{" "}
-      Basis yang sah hanya ada di daerah berarsir, di kanan garis putus-putus <InlineMath math="b = 3" />.
+      Kurva menggambar <InlineMath math="b^2 + 2b - 35" />, dan basis yang sah
+      hanya ada di daerah berarsir di kanan garis putus-putus{" "}
+      <InlineMath math="b = 3" />. Geser <InlineMath math="b" /> dan baca nilai{" "}
+      <InlineMath math="123_b" />.
+    </>
+  }
+  footer={
+    <>
+      Hanya perpotongan di daerah berarsir, <InlineMath math="b = 5" />, yang
+      menjadi basis sah.
     </>
   }
   scene={{
     space: "plane",
-    frame: { kind: "cartesian", x: { min: -8.5, max: 6.5 }, y: { min: -4, max: 2 } },
+    frame: { kind: "cartesian", x: { min: -8.5, max: 6.5 }, y: { min: -42, max: 20 } },
     view: { kind: "fit", padding: 0.06 },
     parameters: [{ name: "b", min: 4, max: 6, value: 4, step: 1, label: "b" }],
     objects: [
       { id: "valid", kind: "region", appearance: "construction", inequalities: ["x > 3"] },
-      { id: "curve", kind: "function", appearance: "primary", formula: "(x^2 + 2x - 35)/10" },
+      { id: "curve", kind: "function", appearance: "primary", formula: "x^2 + 2x - 35" },
       { id: "rejected", kind: "point", appearance: "warning", at: { x: -7, y: 0 } },
       { id: "root", kind: "point", appearance: "answer", at: { x: 5, y: 0 } },
-      { id: "now", kind: "marker", appearance: "highlight", x: "b", y: "(b^2 + 2b - 35)/10" },
+      { id: "now", kind: "marker", appearance: "highlight", x: "b", y: "b^2 + 2b - 35" },
     ],
     labels: [
       { key: "rejected", objectId: "rejected", at: { x: -7, y: 0 }, placement: "above" },

@@ -9,35 +9,59 @@ export const metadata = {
 
 ## Membawa Apabila Batang Penuh
 
-Kamu boleh menambah dan menolak terus dalam asas <InlineMath math="b" />, tanpa menukarnya kepada asas sepuluh dahulu. Caranya sama seperti tambah dalam bentuk lazim yang sudah kamu kenal, cuma hadnya berbeza: **bawa satu ke lajur kiri setiap kali sesuatu lajur mencapai <InlineMath math="b" />**, bukan sepuluh. Dalam penolakan, satu yang dipinjam dari lajur kiri bernilai <InlineMath math="b" />. Kedua-duanya dipanggil pengumpulan semula. Abakus ini menunjukkan pengumpulan semula itu berlaku pada manik. Tekan butang Main, dan setiap langkah menambah satu manik pada batang sa.
+Kamu boleh menambah dan menolak terus dalam asas <InlineMath math="b" />, tanpa menukarnya kepada asas sepuluh dahulu. Caranya sama seperti tambah dalam bentuk lazim yang sudah kamu kenal, cuma hadnya berbeza: **bawa satu ke lajur kiri setiap kali sesuatu lajur mencapai <InlineMath math="b" />**, bukan sepuluh. Dalam penolakan, satu yang dipinjam dari lajur kiri bernilai <InlineMath math="b" />. Kedua-duanya dipanggil pengumpulan semula. Gerakkan asas <InlineMath math="b" /> dan jumlah lajur <InlineMath math="s" /> di bawah untuk melihat bila sesuatu lajur membawa <InlineMath math="1" /> dan digit apa yang tinggal.
 
-<AbacusBaseLab
-  title={<>Menambah Satu demi Satu dalam Asas Empat</>}
+<MathVisual
+  title={<>Bila Lajur Membawa dalam Asas <InlineMath math="b" /></>}
   description={
     <>
-      Tekan butang Main. Setiap langkah menambah satu manik pada batang sa,
-      dan batang yang penuh menghantar satu manik ke batang di kirinya.
+      Paksi mendatar ialah asas <InlineMath math="b" /> dan paksi menegak ialah
+      jumlah lajur <InlineMath math="s" />. Jalur berlorek menandakan jumlah
+      dari <InlineMath math="b" /> hingga <InlineMath math="2b - 1" />, apabila
+      lajur membawa <InlineMath math="1" /> ke kiri.
     </>
   }
-  footer={<>Apabila batang memuatkan empat manik, keempat-empatnya pulang dan satu manik naik.</>}
-  bases={[4, 3]}
-  value={61}
-  labels={{
-    base: "Asas",
-    decimal: <>Nilai dalam asas sepuluh</>,
-    digits: <>Ditulis dalam asas ini</>,
-    expanded: <>Bentuk kembangan</>,
-    value: "Nombor",
-    viewLabel: "Abakus empat batang dengan bekas manik di sebelahnya",
+  footer={
+    <>
+      Melepasi garis <InlineMath math="s = b" />, lajur membawa{" "}
+      <InlineMath math="1" /> ke kiri.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 4, max: 10 }, y: { min: 0, max: 12 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "b", min: 5, max: 9, value: 5, step: 1, label: "base" },
+      { name: "s", min: 0, max: 9, value: 7, step: 1, label: "sum" },
+    ],
+    objects: [
+      { id: "carry-band", kind: "region", appearance: "construction", inequalities: ["y >= x", "y <= 2x - 1", "x >= 2"] },
+      { id: "threshold", kind: "function", appearance: "primary", formula: "x", domain: { min: 2, max: 10 } },
+      { id: "state", kind: "marker", appearance: "answer", x: "b", y: "s" },
+    ],
+    labels: [
+      { key: "threshold-label", objectId: "threshold", at: { x: 7, y: 7 }, placement: "below-right" },
+    ],
+    readouts: [
+      { key: "digit", formula: "s - b * floor(s / b)" },
+      { key: "carry", formula: "floor(s / b)" },
+    ],
   }}
-  showReadout
+  labels={{
+    base: <>Asas <InlineMath math="b" /></>,
+    sum: <>Jumlah lajur <InlineMath math="s" /></>,
+    "threshold-label": <InlineMath math="s = b" />,
+    digit: <>Digit yang ditulis pada lajur ini</>,
+    carry: <>Bawa ke lajur kiri</>,
+  }}
 />
 
-Abakus bermula pada <InlineMath math="61 = 331_4" />. Dua langkah pertama hanya menambah manik pada batang sa: <InlineMath math="332_4" />, kemudian <InlineMath math="333_4" />. Langkah ketiga menjadikan batang sa berisi empat manik. Keempat-empat manik itu pulang ke bekas dan satu manik naik ke batang kedua, yang turut menjadi penuh, jadi pembawaan berterusan hingga batang keempat. Hasilnya <InlineMath math="1000_4 = 64" />: **satu manik tambahan boleh membawa tiga kali berturut-turut**. Pilih asas tiga dan main sekali lagi. Dari <InlineMath math="2021_3" /> kamu sampai ke <InlineMath math="2100_3" />, dengan dua pembawaan dalam satu langkah.
+Mulakan pada asas <InlineMath math="5" /> dengan jumlah lajur <InlineMath math="7" />. Titiknya berada di dalam jalur bawaan di atas garis <InlineMath math="s = b" />, jadi lajur membawa <InlineMath math="1" /> ke kiri dan menulis <InlineMath math="7 - 5 = 2" />. Sekarang gerakkan asasnya kepada <InlineMath math="8" /> tanpa mengubah jumlahnya. Jumlah <InlineMath math="7" /> yang sama terus turun ke bawah garis <InlineMath math="s = b" />, jadi tiada pembawaan berlaku dan kamu terus menulis <InlineMath math="7" />. **Asas menetapkan sempadan tepat bermulanya pembawaan**, dan sempadan itu beralih setiap kali asas berubah.
 
 ## Menambah dalam Bentuk Lazim
 
-Tambah dalam bentuk lazim menggunakan peraturan abakus tadi pada setiap lajur. Tambah setiap lajur dari kanan, termasuk satu yang dibawa dari lajur sebelumnya. Jika jumlahnya kurang daripada <InlineMath math="b" />, tulis jumlah itu. Jika jumlahnya <InlineMath math="b" /> atau lebih, **tulis jumlah tolak <InlineMath math="b" /> dan bawa <InlineMath math="1" />**. Yang dibawa tidak pernah lebih daripada <InlineMath math="1" />, kerana satu lajur dua nombor paling banyak berjumlah <InlineMath math="(b - 1) + (b - 1) + 1 = 2b - 1" />.
+Tambah dalam bentuk lazim menggunakan peraturan pembawaan ini pada setiap lajur. Tambah setiap lajur dari kanan, termasuk satu yang dibawa dari lajur sebelumnya. Jika jumlahnya kurang daripada <InlineMath math="b" />, tulis jumlah itu. Jika jumlahnya <InlineMath math="b" /> atau lebih, **tulis jumlah tolak <InlineMath math="b" /> dan bawa <InlineMath math="1" />**. Yang dibawa tidak pernah lebih daripada <InlineMath math="1" />, kerana satu lajur dua nombor paling banyak berjumlah <InlineMath math="(b - 1) + (b - 1) + 1 = 2b - 1" />.
 
 ### Pembawaan Berantai
 
@@ -107,24 +131,29 @@ Persamaan kuadratik ini kamu selesaikan dengan [pemfaktoran persamaan kuadratik]
   title={<>Dua Punca, Satu Asas</>}
   description={
     <>
-      Lengkung <InlineMath math="b^2 + 2b - 35" /> dibahagi dengan{" "}
-      <InlineMath math="10" /> supaya muat. Pembahagian itu tidak
-      mengalihkan titik persilangannya dengan paksi mengufuk. Gerakkan{" "}
-      <InlineMath math="b" /> dan baca nilai <InlineMath math="123_b" />.{" "}
-      Asas yang sah hanya di kawasan berlorek, di kanan garis putus-putus <InlineMath math="b = 3" />.
+      Lengkung melukis <InlineMath math="b^2 + 2b - 35" />, dan asas yang sah
+      hanya di kawasan berlorek di kanan garis putus-putus{" "}
+      <InlineMath math="b = 3" />. Gerakkan <InlineMath math="b" /> dan baca
+      nilai <InlineMath math="123_b" />.
+    </>
+  }
+  footer={
+    <>
+      Hanya persilangan di kawasan berlorek, <InlineMath math="b = 5" />,
+      menjadi asas yang sah.
     </>
   }
   scene={{
     space: "plane",
-    frame: { kind: "cartesian", x: { min: -8.5, max: 6.5 }, y: { min: -4, max: 2 } },
+    frame: { kind: "cartesian", x: { min: -8.5, max: 6.5 }, y: { min: -42, max: 20 } },
     view: { kind: "fit", padding: 0.06 },
     parameters: [{ name: "b", min: 4, max: 6, value: 4, step: 1, label: "b" }],
     objects: [
       { id: "valid", kind: "region", appearance: "construction", inequalities: ["x > 3"] },
-      { id: "curve", kind: "function", appearance: "primary", formula: "(x^2 + 2x - 35)/10" },
+      { id: "curve", kind: "function", appearance: "primary", formula: "x^2 + 2x - 35" },
       { id: "rejected", kind: "point", appearance: "warning", at: { x: -7, y: 0 } },
       { id: "root", kind: "point", appearance: "answer", at: { x: 5, y: 0 } },
-      { id: "now", kind: "marker", appearance: "highlight", x: "b", y: "(b^2 + 2b - 35)/10" },
+      { id: "now", kind: "marker", appearance: "highlight", x: "b", y: "b^2 + 2b - 35" },
     ],
     labels: [
       { key: "rejected", objectId: "rejected", at: { x: -7, y: 0 }, placement: "above" },

@@ -13,7 +13,7 @@ The **second law of thermodynamics** says heat flows by itself only from a hot o
 
 <BlockMath math="\eta_{\text{Carnot}} = 1 - \frac{T_c}{T_h}" />
 
-In the steam plant lab further down, you compare the efficiency of real power plants with this limit.
+In the ice-melting lab further down, you watch warm water and ice settle at one shared temperature, a one-way flow the second law locks in.
 
 The first law only counts energy, it says nothing about direction. Dip a cold spoon into hot soup and the spoon warms up while the soup cools a little. The spoon never gets colder while making the soup hotter, even though energy would be conserved either way. The second law picks the direction, and it's usually stated in two equivalent ways:
 
@@ -40,41 +40,43 @@ For example, <InlineMath math="600\text{ J}" /> of heat flows from a large objec
 
 The total is positive, so this flow happens on its own. Reverse it and the total becomes <InlineMath math="-0.5\text{ J/K}" />, which the second law forbids. Notice what that means: the same heat adds more entropy to the colder object. Once heat has spread out to a colder place, **its energy is harder to use** for doing work.
 
-## Turning Some Heat into Work
+Watch that one-way flow in an insulated cup below, where <InlineMath math="50\text{ g}" /> of ice at <InlineMath math="0^\circ\text{C}" /> drops into <InlineMath math="200\text{ g}" /> of warm water at <InlineMath math="50^\circ\text{C}" />.
 
-A **heat engine** takes in heat <InlineMath math="Q_h" /> from a hot source, turns part of it into work <InlineMath math="W" />, and gives the rest, <InlineMath math="Q_c" />, to a colder place, then repeats this in a cycle. The internal energy returns to its starting value every cycle, so <InlineMath math="Q_h = W + Q_c" />. A steam power plant is a giant heat engine: the boiler supplies <InlineMath math="Q_h" />, the turbine and generator deliver <InlineMath math="W" /> as electricity, and the condenser gets rid of <InlineMath math="Q_c" />.
-
-<SteamPlantCycleLab
-  title={<>A Steam Plant as a Heat Engine</>}
+<IceMeltingLab
+  title={<>One-Way Heat Flow as Ice Melts</>}
   description={
     <>
-      Every second this plant takes in <InlineMath math="1000\text{ MJ}" /> of
-      heat. Choose the heat source, then compare the electricity, the waste
-      heat and the Carnot limit set by the steam temperature.
+      Press Play to watch <InlineMath math="50\text{ g}" /> of ice at{" "}
+      <InlineMath math="0^\circ\text{C}" /> melt inside{" "}
+      <InlineMath math="200\text{ g}" /> of warm water at{" "}
+      <InlineMath math="50^\circ\text{C}" /> in an insulated cup until both
+      reach one temperature.
     </>
   }
   footer={
     <>
-      Electricity plus waste heat always adds up to the heat that went in.
+      Warm water cools to <InlineMath math="24^\circ\text{C}" /> as the ice
+      melts, never the reverse.
     </>
   }
-  fuel="coal"
+  iceMass={50}
+  waterMass={200}
+  waterTemperature={50}
+  latentHeat={336000}
+  specificHeat={4200}
   labels={{
-    chooseFuel: "Heat source",
-    electric: <>Work as electricity, <InlineMath math="W" /></>,
-    fuelUse: <>Fuel used each hour</>,
-    fuels: {
-      coal: <>Coal</>,
-      gas: <>Natural gas</>,
-      uranium: <>Uranium</>,
-    },
-    heat: <>Heat from the hot source, <InlineMath math="Q_h" /></>,
-    ideal: <>Carnot limit</>,
-    steam: <>Steam temperature at the turbine</>,
-    viewLabel: "A steam plant with boiler, turbine, generator, condenser and cooling tower",
-    waste: <>Heat to the condenser, <InlineMath math="Q_c" /></>,
+    final: <>Final temperature</>,
+    given: <>Heat water can give down to <InlineMath math="0^\circ\text{C}" /></>,
+    melt: <>Heat needed to melt the ice</>,
+    viewLabel: "An insulated cup of warm water with a melting ice cube, a thermometer and two heat bars",
   }}
 />
+
+The warm water releases <InlineMath math="21{,}840\text{ J}" /> as it cools from <InlineMath math="50^\circ\text{C}" /> (<InlineMath math="323\text{ K}" />) to <InlineMath math="24^\circ\text{C}" /> (<InlineMath math="297\text{ K}" />): <InlineMath math="16{,}800\text{ J}" /> melts the ice at <InlineMath math="273\text{ K}" />, and the remaining <InlineMath math="5{,}040\text{ J}" /> warms that melted water to <InlineMath math="24^\circ\text{C}" />. Energy would still balance if lukewarm <InlineMath math="24^\circ\text{C}" /> water froze an ice cube and heated itself back to <InlineMath math="50^\circ\text{C}" />. Yet melting and warming the ice adds <InlineMath math="+61.5 + 17.7 = +79.2\text{ J/K}" /> of entropy while cooling the warm water removes only <InlineMath math="70.5\text{ J/K}" />, leaving a net rise of <InlineMath math="+8.7\text{ J/K}" />. Running it backwards would drop the total entropy by <InlineMath math="8.7\text{ J/K}" />, so the mixture settles at <InlineMath math="24^\circ\text{C}" /> and stays there.
+
+## Turning Some Heat into Work
+
+A **heat engine** takes in heat <InlineMath math="Q_h" /> from a hot source, turns part of it into work <InlineMath math="W" />, and gives the rest, <InlineMath math="Q_c" />, to a colder place, then repeats this in a cycle. The internal energy returns to its starting value every cycle, so <InlineMath math="Q_h = W + Q_c" />. A steam power plant is a giant heat engine: the boiler supplies <InlineMath math="Q_h" />, the turbine and generator deliver <InlineMath math="W" /> as electricity, and the condenser gets rid of <InlineMath math="Q_c" />.
 
 ### Heat Engine Efficiency
 
@@ -82,23 +84,29 @@ A **heat engine** takes in heat <InlineMath math="Q_h" /> from a hot source, tur
 
 <BlockMath math="\eta = \frac{W}{Q_h} = 1 - \frac{Q_c}{Q_h}" />
 
-For the coal plant in the lab, every second <InlineMath math="Q_h = 1000\text{ MJ}" />, <InlineMath math="W = 380\text{ MJ}" /> and <InlineMath math="Q_c = 620\text{ MJ}" />. Its efficiency is <InlineMath math="380/1000 = 0.38 = 38\%" />, and checking with the waste heat gives <InlineMath math="1 - 620/1000 = 0.38" /> too. Choose uranium: <InlineMath math="W = 330\text{ MJ}" /> and <InlineMath math="Q_c = 670\text{ MJ}" />, so the efficiency is <InlineMath math="33\%" />. In both plants, **most of the heat never becomes electricity**.
+Take a typical coal plant that receives <InlineMath math="Q_h = 1000\text{ MJ}" /> of heat every second, delivers <InlineMath math="W = 380\text{ MJ}" /> as electricity, and sends <InlineMath math="Q_c = 620\text{ MJ}" /> to its condenser. Its efficiency is <InlineMath math="380/1000 = 0.38 = 38\%" />, and checking with the waste heat gives <InlineMath math="1 - 620/1000 = 0.38" /> too. A typical nuclear steam plant with the same <InlineMath math="1000\text{ MJ}" /> input produces <InlineMath math="W = 330\text{ MJ}" /> and <InlineMath math="Q_c = 670\text{ MJ}" />, giving <InlineMath math="33\%" />. In both plants, **most of the heat never becomes electricity**.
 
 ### The Temperature Limit
 
-Carnot proved that a reversible engine working between two given temperatures is the most efficient engine there can be, and that its efficiency depends only on those two temperatures. Its cycle is made of two isothermal and two adiabatic processes. In the coal plant the steam is at <InlineMath math="540^\circ\text{C} = 813\text{ K}" /> and the condenser at <InlineMath math="30^\circ\text{C} = 303\text{ K}" />:
+Carnot proved that a reversible engine working between two given temperatures is the most efficient engine there can be, and that its efficiency depends only on those two temperatures. Its cycle is made of two isothermal and two adiabatic processes. In that coal plant the steam is at <InlineMath math="540^\circ\text{C} = 813\text{ K}" /> and the condenser at <InlineMath math="30^\circ\text{C} = 303\text{ K}" />:
 
 <BlockMath math="\eta_{\text{Carnot}} = 1 - \frac{303}{813} = 0.627 = 62.7\%" />
 
-The real plant reaches <InlineMath math="38\%" />, about six tenths of its limit, because of friction, heat leaking away and irreversible steps. Even a perfect engine at these temperatures would still have to give out <InlineMath math="(1000)(303/813) = 372.7\text{ MJ}" /> every second. The steam from the uranium reactor in the lab is cooler, <InlineMath math="285^\circ\text{C} = 558\text{ K}" />, so **its limit is lower**, <InlineMath math="1 - 303/558 = 45.7\%" />.
+The real plant reaches <InlineMath math="38\%" />, about six tenths of its limit, because of friction, heat leaking away and irreversible steps. Even a perfect engine at these temperatures would still have to give out <InlineMath math="(1000)(303/813) = 372.7\text{ MJ}" /> every second. Steam from a uranium reactor is cooler, <InlineMath math="285^\circ\text{C} = 558\text{ K}" />, so **its limit is lower**, <InlineMath math="1 - 303/558 = 45.7\%" />.
 
 <MathVisual
   title={<>The Carnot Limit and Steam Temperature</>}
   description={
     <>
       The curve is the Carnot limit in percent for each steam temperature in
-      kelvin. The two points below it are the efficiencies of the plants in the
-      lab. Move the condenser temperature.
+      kelvin. The two points below it show the real coal and uranium plants
+      above. Move the condenser temperature.
+    </>
+  }
+  footer={
+    <>
+      Real plants sit below the Carnot curve, and cooler condensers lift the
+      curve higher.
     </>
   }
   scene={{
@@ -150,7 +158,7 @@ A Carnot engine run backwards sets the limit, <InlineMath math="\text{COP}_R = T
 
 ## Engines and a Warming Climate
 
-Go back to the coal plant in the lab. Every second, <InlineMath math="620\text{ MJ}" /> of waste heat goes into a river, the sea or the air through a cooling tower, and every hour the plant burns <InlineMath math="150" /> tonnes of coal. The waste heat warms the surroundings near the plant. The climate as a whole is warming mainly because of greenhouse gases: according to the [IPCC synthesis report of 2023](https://www.ipcc.ch/report/ar6/syr/summary-for-policymakers/), human activities, through greenhouse gas emissions, have raised Earth's surface temperature by about <InlineMath math="1.1^\circ\text{C}" /> compared with 1850 to 1900.
+Go back to that coal plant. Every second, <InlineMath math="620\text{ MJ}" /> of waste heat goes into a river, the sea or the air through a cooling tower, and every hour the plant burns about <InlineMath math="150" /> tonnes of coal. The waste heat warms the surroundings near the plant. The climate as a whole is warming mainly because of greenhouse gases: according to the [IPCC synthesis report of 2023](https://www.ipcc.ch/report/ar6/syr/summary-for-policymakers/), human activities, through greenhouse gas emissions, have raised Earth's surface temperature by about <InlineMath math="1.1^\circ\text{C}" /> compared with 1850 to 1900.
 
 The second law ties the two together. Every fuel-burning plant has to give out heat, so **efficiency sets how much fuel is burned**, and how much carbon dioxide is released, for each joule of electricity. If the plant reached <InlineMath math="45\%" />, the same <InlineMath math="380\text{ MW}" /> of electricity would need only <InlineMath math="380/0.45 = 844.4\text{ MW}" /> of heat:
 

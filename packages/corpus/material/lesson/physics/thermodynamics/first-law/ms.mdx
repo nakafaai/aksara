@@ -31,50 +31,56 @@ Bayangkan gas menolak omboh yang luasnya <InlineMath math="A" /> sejauh <InlineM
 
 <BlockMath math="W = F\,\Delta s = pA\,\Delta s = p\,\Delta V" />
 
-Pada graf <InlineMath math="p" /> melawan <InlineMath math="V" />, hasil darab <InlineMath math="p\,\Delta V" /> ialah luas segi empat tepat di bawah laluan mendatar. Jika tekanan berubah semasa gas mengembang, potong laluan itu kepada langkah kecil yang setiap satunya hampir bertekanan malar. Jumlah semua segi empat tepat nipis itu ialah **luas di bawah laluan**, dan luas itulah kerja yang dilakukan oleh gas. Tekanan dalam kPa darab isi padu dalam liter terus memberi joule, kerana <InlineMath math="1\text{ kPa} \times 1\text{ L} = (10^3\text{ Pa})(10^{-3}\text{ m}^3) = 1\text{ J}" />.
+Pada graf <InlineMath math="p" /> melawan <InlineMath math="V" />, hasil darab <InlineMath math="p\,\Delta V" /> ialah luas segi empat tepat di bawah laluan mendatar. Jika tekanan berubah semasa gas mengembang, potong laluan itu kepada langkah kecil yang setiap satunya hampir bertekanan malar. Jumlah semua segi empat tepat nipis itu ialah **luas di bawah laluan**, dan luas itulah kerja yang dilakukan oleh gas. Tekanan dalam kPa darab isi padu dalam liter terus memberi joule, kerana <InlineMath math="1\text{ kPa} \times 1\text{ L} = (10^3\text{ Pa})(10^{-3}\text{ m}^3) = 1\text{ J}" />. Gerakkan isi padu akhir di bawah untuk membandingkan laluan isobarik mendatar dengan laluan isoterma melengkung dari mula yang sama.
 
-<GasProcessLab
+<MathVisual
   title={<>Dua Laluan Pengembangan dari Satu Keadaan</>}
   description={
     <>
       Sebanyak <InlineMath math="0.25" /> mol gas bermula pada{" "}
       <InlineMath math="300\text{ kPa}" /> dan <InlineMath math="2\text{ L}" />.
-      Pilih isobarik atau isoterma, gerakkan isi padu akhir, dan bandingkan
-      luas di bawah kedua-dua laluan.
+      Gerakkan isi padu akhir untuk membandingkan kerja di sepanjang laluan
+      isobarik mendatar dan laluan isoterma melengkung.
     </>
   }
   footer={
     <>
-      Semasa mengembang, luas di bawah laluan mendatar lebih besar, jadi kerjanya lebih banyak.
+      Antara dua isi padu yang sama, laluan isobarik sentiasa meliputi luas
+      lebih besar.
     </>
   }
-  labels={{
-    endPressure: "Tekanan akhir",
-    endState: <>Keadaan akhir</>,
-    endVolume: "Isi padu akhir",
-    energy: "Tenaga dalam proses ini",
-    heat: <>Haba yang masuk ke gas, <InlineMath math="Q" /></>,
-    internal: <>Perubahan tenaga dalam, <InlineMath math="\Delta U" /></>,
-    law: <>Yang dikekalkan proses ini</>,
-    pressureAxis: <InlineMath math="p\ (\text{kPa})" />,
-    process: "Proses",
-    processes: {
-      adiabatic: "Adiabatik",
-      isobaric: "Isobarik",
-      isochoric: "Isokorik",
-      isothermal: "Isoterma",
-    },
-    startState: <>Keadaan awal</>,
-    viewLabel: "Silinder gas dengan omboh di sebelah rajah tekanan melawan isi padu",
-    volumeAxis: <InlineMath math="V\ (\text{L})" />,
-    work: <>Kerja oleh gas, <InlineMath math="W" /></>,
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 9 }, y: { min: 0, max: 650 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "r", min: 1, max: 8, value: 6, step: 0.5, label: "end-volume" },
+    ],
+    objects: [
+      { id: "isobaric", kind: "function", appearance: "primary", formula: "300", domain: { min: 1, max: 8 } },
+      { id: "isothermal", kind: "function", appearance: "secondary", formula: "600/x", domain: { min: 1, max: 8 } },
+      { id: "start", kind: "point", appearance: "reference", at: { x: 2, y: 300 } },
+      { id: "end-isobaric", kind: "marker", appearance: "primary", x: "r", y: "300" },
+      { id: "end-isothermal", kind: "marker", appearance: "secondary", x: "r", y: "600/r" },
+    ],
+    labels: [
+      { key: "start-label", objectId: "start", at: { x: 2, y: 300 }, placement: "above-right" },
+      { key: "isobaric-line", objectId: "isobaric", at: { x: 6.5, y: 300 }, placement: "above" },
+      { key: "isothermal-line", objectId: "isothermal", at: { x: 6.5, y: 92 }, placement: "above" },
+    ],
+    readouts: [
+      { key: "work-isobaric", formula: "300*(r - 2)" },
+      { key: "work-isothermal", formula: "600*ln(r/2)" },
+    ],
   }}
-  moles={0.25}
-  processes={[
-    { process: "isobaric", volume: { end: 6, max: 8, min: 1 } },
-    { process: "isothermal", volume: { end: 6, max: 8, min: 1 } },
-  ]}
-  start={{ pressure: 300, volume: 2 }}
+  labels={{
+    "end-volume": <>Isi padu akhir dalam <InlineMath math="\text{L}" /></>,
+    "start-label": <>Mula</>,
+    "isobaric-line": <>Isobarik</>,
+    "isothermal-line": <>Isoterma</>,
+    "work-isobaric": <>Kerja isobarik dalam <InlineMath math="\text{J}" /></>,
+    "work-isothermal": <>Kerja isoterma dalam <InlineMath math="\text{J}" /></>,
+  }}
 />
 
 Biarkan gas itu mengembang hingga <InlineMath math="6\text{ L}" />. Pada tekanan malar, luasnya ialah segi empat tepat: <InlineMath math="W = (300)(6 - 2) = 1200\text{ J}" />. Pada suhu malar, tekanan jatuh mengikut <InlineMath math="p = 600/V" /> hingga <InlineMath math="100\text{ kPa}" />. Luas di bawah lengkung seperti itu ialah <InlineMath math="nRT\ln(V_2/V_1)" />, dengan <InlineMath math="nRT = p_1V_1 = 600\text{ J}" />:
@@ -215,6 +221,12 @@ Kitaran pada graf memakai gas yang sama. Gas mengembang dari <InlineMath math="A
       Paksi mendatar ialah isi padu dalam liter, paksi menegak tekanan dalam
       kPa. Gerakkan tekanan atas dan isi padu kanan, kemudian lihat kerja
       bersih dan haba yang masuk.
+    </>
+  }
+  footer={
+    <>
+      Luas di dalam gelung <InlineMath math="ABCD" /> ialah kerja bersih bagi
+      satu kitaran.
     </>
   }
   scene={{

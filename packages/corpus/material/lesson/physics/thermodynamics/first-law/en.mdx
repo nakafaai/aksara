@@ -31,50 +31,56 @@ Picture a gas pushing a piston of area <InlineMath math="A" /> a distance <Inlin
 
 <BlockMath math="W = F\,\Delta s = pA\,\Delta s = p\,\Delta V" />
 
-On a graph of <InlineMath math="p" /> against <InlineMath math="V" />, the product <InlineMath math="p\,\Delta V" /> is the area of the rectangle under a flat path. If the pressure changes as the gas expands, cut the path into small steps, each at nearly constant pressure. Adding up all those thin rectangles gives the **area under the path**, and that area is the work done by the gas. Pressure in kPa times volume in litres comes out straight in joules, since <InlineMath math="1\text{ kPa} \times 1\text{ L} = (10^3\text{ Pa})(10^{-3}\text{ m}^3) = 1\text{ J}" />.
+On a graph of <InlineMath math="p" /> against <InlineMath math="V" />, the product <InlineMath math="p\,\Delta V" /> is the area of the rectangle under a flat path. If the pressure changes as the gas expands, cut the path into small steps, each at nearly constant pressure. Adding up all those thin rectangles gives the **area under the path**, and that area is the work done by the gas. Pressure in kPa times volume in litres comes out straight in joules, since <InlineMath math="1\text{ kPa} \times 1\text{ L} = (10^3\text{ Pa})(10^{-3}\text{ m}^3) = 1\text{ J}" />. Slide the end volume below to compare the flat isobaric path and the curved isothermal path from the same start.
 
-<GasProcessLab
+<MathVisual
   title={<>Two Ways to Expand from One Start</>}
   description={
     <>
-      There's <InlineMath math="0.25" /> mol of gas starting at{" "}
+      A gas of <InlineMath math="0.25" /> mol starts at{" "}
       <InlineMath math="300\text{ kPa}" /> and <InlineMath math="2\text{ L}" />.
-      Pick isobaric or isothermal, drag the end volume, and compare the areas
-      under the two paths.
+      Slide the end volume to compare the work done along the flat isobaric
+      path and the curved isothermal path.
     </>
   }
   footer={
     <>
-      As the gas expands, the flat path covers more area, so it does more work.
+      Between the same two volumes, the flat isobaric line always encloses more
+      area.
     </>
   }
-  labels={{
-    endPressure: "End pressure",
-    endState: <>End state</>,
-    endVolume: "End volume",
-    energy: "Energy in this process",
-    heat: <>Heat into the gas, <InlineMath math="Q" /></>,
-    internal: <>Change in internal energy, <InlineMath math="\Delta U" /></>,
-    law: <>What this process keeps</>,
-    pressureAxis: <InlineMath math="p\ (\text{kPa})" />,
-    process: "Process",
-    processes: {
-      adiabatic: "Adiabatic",
-      isobaric: "Isobaric",
-      isochoric: "Isochoric",
-      isothermal: "Isothermal",
-    },
-    startState: <>Start state</>,
-    viewLabel: "A cylinder of gas with a piston beside its pressure against volume diagram",
-    volumeAxis: <InlineMath math="V\ (\text{L})" />,
-    work: <>Work done by the gas, <InlineMath math="W" /></>,
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 9 }, y: { min: 0, max: 650 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "r", min: 1, max: 8, value: 6, step: 0.5, label: "end-volume" },
+    ],
+    objects: [
+      { id: "isobaric", kind: "function", appearance: "primary", formula: "300", domain: { min: 1, max: 8 } },
+      { id: "isothermal", kind: "function", appearance: "secondary", formula: "600/x", domain: { min: 1, max: 8 } },
+      { id: "start", kind: "point", appearance: "reference", at: { x: 2, y: 300 } },
+      { id: "end-isobaric", kind: "marker", appearance: "primary", x: "r", y: "300" },
+      { id: "end-isothermal", kind: "marker", appearance: "secondary", x: "r", y: "600/r" },
+    ],
+    labels: [
+      { key: "start-label", objectId: "start", at: { x: 2, y: 300 }, placement: "above-right" },
+      { key: "isobaric-line", objectId: "isobaric", at: { x: 6.5, y: 300 }, placement: "above" },
+      { key: "isothermal-line", objectId: "isothermal", at: { x: 6.5, y: 92 }, placement: "above" },
+    ],
+    readouts: [
+      { key: "work-isobaric", formula: "300*(r - 2)" },
+      { key: "work-isothermal", formula: "600*ln(r/2)" },
+    ],
   }}
-  moles={0.25}
-  processes={[
-    { process: "isobaric", volume: { end: 6, max: 8, min: 1 } },
-    { process: "isothermal", volume: { end: 6, max: 8, min: 1 } },
-  ]}
-  start={{ pressure: 300, volume: 2 }}
+  labels={{
+    "end-volume": <>End volume in <InlineMath math="\text{L}" /></>,
+    "start-label": <>Start</>,
+    "isobaric-line": <>Isobaric</>,
+    "isothermal-line": <>Isothermal</>,
+    "work-isobaric": <>Isobaric work in <InlineMath math="\text{J}" /></>,
+    "work-isothermal": <>Isothermal work in <InlineMath math="\text{J}" /></>,
+  }}
 />
 
 Let the gas expand to <InlineMath math="6\text{ L}" />. At constant pressure the area is a rectangle: <InlineMath math="W = (300)(6 - 2) = 1200\text{ J}" />. At constant temperature the pressure falls along <InlineMath math="p = 600/V" /> down to <InlineMath math="100\text{ kPa}" />. The area under a curve like that is <InlineMath math="nRT\ln(V_2/V_1)" />, where <InlineMath math="nRT = p_1V_1 = 600\text{ J}" />:
@@ -215,6 +221,12 @@ The cycle on the graph uses the same gas. It expands from <InlineMath math="A" /
       Across is the volume in litres, up is the pressure in kPa. Move the top
       pressure and the right-hand volume, and watch the net work and the heat
       taken in.
+    </>
+  }
+  footer={
+    <>
+      The area enclosed inside <InlineMath math="ABCD" /> is the net work
+      delivered in one loop.
     </>
   }
   scene={{

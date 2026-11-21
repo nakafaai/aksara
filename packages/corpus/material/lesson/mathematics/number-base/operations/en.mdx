@@ -9,35 +9,59 @@ export const metadata = {
 
 ## Carrying When a Spike Fills
 
-You can add and subtract directly in base <InlineMath math="b" />, without converting to base ten first. It works like the column addition you already know, only the limit changes: **carry one to the left whenever a column reaches <InlineMath math="b" />**, not ten. In subtraction, one borrowed from the column on the left is worth <InlineMath math="b" />. This abacus shows carrying happen to beads. Press Play, and each step adds one bead to the ones spike.
+You can add and subtract directly in base <InlineMath math="b" />, without converting to base ten first. It works like the column addition you already know, only the limit changes: **carry one to the left whenever a column reaches <InlineMath math="b" />**, not ten. In subtraction, one borrowed from the column on the left is worth <InlineMath math="b" />. Slide the base <InlineMath math="b" /> and the column total <InlineMath math="s" /> below to see when a column carries <InlineMath math="1" /> and what digit stays behind.
 
-<AbacusBaseLab
-  title={<>Adding One at a Time in Base Four</>}
+<MathVisual
+  title={<>When a Column Carries in Base <InlineMath math="b" /></>}
   description={
     <>
-      Press Play. Each step adds one bead to the ones spike, and a full spike
-      sends one bead to the spike on its left.
+      Across is the base <InlineMath math="b" /> and up is a column total{" "}
+      <InlineMath math="s" />. The shaded band marks totals from{" "}
+      <InlineMath math="b" /> to <InlineMath math="2b - 1" />, where the column
+      sends <InlineMath math="1" /> to the left.
     </>
   }
-  footer={<>As soon as a spike holds four beads, all four go home and one bead moves left.</>}
-  bases={[4, 3]}
-  value={61}
-  labels={{
-    base: "Base",
-    decimal: <>Value in base ten</>,
-    digits: <>Written in this base</>,
-    expanded: <>Expanded form</>,
-    value: "Number",
-    viewLabel: "A four-spike abacus with a pot of beads beside it",
+  footer={
+    <>
+      Cross the line <InlineMath math="s = b" /> and the column sends{" "}
+      <InlineMath math="1" /> to the left.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 4, max: 10 }, y: { min: 0, max: 12 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "b", min: 5, max: 9, value: 5, step: 1, label: "base" },
+      { name: "s", min: 0, max: 9, value: 7, step: 1, label: "sum" },
+    ],
+    objects: [
+      { id: "carry-band", kind: "region", appearance: "construction", inequalities: ["y >= x", "y <= 2x - 1", "x >= 2"] },
+      { id: "threshold", kind: "function", appearance: "primary", formula: "x", domain: { min: 2, max: 10 } },
+      { id: "state", kind: "marker", appearance: "answer", x: "b", y: "s" },
+    ],
+    labels: [
+      { key: "threshold-label", objectId: "threshold", at: { x: 7, y: 7 }, placement: "below-right" },
+    ],
+    readouts: [
+      { key: "digit", formula: "s - b * floor(s / b)" },
+      { key: "carry", formula: "floor(s / b)" },
+    ],
   }}
-  showReadout
+  labels={{
+    base: <>Base <InlineMath math="b" /></>,
+    sum: <>Column total <InlineMath math="s" /></>,
+    "threshold-label": <InlineMath math="s = b" />,
+    digit: <>Digit written in this column</>,
+    carry: <>Carry sent to the left</>,
+  }}
 />
 
-The abacus starts at <InlineMath math="61 = 331_4" />. The first two steps only add beads to the ones spike: <InlineMath math="332_4" />, then <InlineMath math="333_4" />. The third step puts four beads on the ones spike. Those four beads go back to the pot and one bead moves to the second spike, which fills up too, so the carrying runs all the way to the fourth spike. The result is <InlineMath math="1000_4 = 64" />: **one extra bead can carry three times in a row**. Pick base three and play again. From <InlineMath math="2021_3" /> you reach <InlineMath math="2100_3" />, with two carries in a single step.
+Start at base <InlineMath math="5" /> with a column total of <InlineMath math="7" />. The point sits inside the shaded carry band above <InlineMath math="s = b" />, so the column sends <InlineMath math="1" /> to the left and writes <InlineMath math="7 - 5 = 2" />. Now slide the base up to <InlineMath math="8" /> without changing the total. The same <InlineMath math="7" /> drops below the line <InlineMath math="s = b" />, so no carry happens and you write <InlineMath math="7" /> straight down. **The base sets the exact wall where carrying begins**, and that wall shifts every time you change bases.
 
 ## Column Addition in Any Base
 
-Column addition uses the abacus rule in every column. Add each column from the right, including any carry from the column before. If the total is less than <InlineMath math="b" />, write it down. If it's <InlineMath math="b" /> or more, **write the total minus <InlineMath math="b" /> and carry <InlineMath math="1" />**. The carry is never more than <InlineMath math="1" />, because one column of two numbers holds at most <InlineMath math="(b - 1) + (b - 1) + 1 = 2b - 1" />.
+Column addition uses this carry rule in every column. Add each column from the right, including any carry from the column before. If the total is less than <InlineMath math="b" />, write it down. If it's <InlineMath math="b" /> or more, **write the total minus <InlineMath math="b" /> and carry <InlineMath math="1" />**. The carry is never more than <InlineMath math="1" />, because one column of two numbers holds at most <InlineMath math="(b - 1) + (b - 1) + 1 = 2b - 1" />.
 
 ### A Chain of Carries
 
@@ -107,24 +131,29 @@ You solve this quadratic by [factoring a quadratic equation](/en/subjects/mathem
   title={<>Two Roots, One Base</>}
   description={
     <>
-      The curve is <InlineMath math="b^2 + 2b - 35" /> divided by{" "}
-      <InlineMath math="10" /> so it fits. Dividing doesn't move the points
-      where it crosses the horizontal axis. Slide <InlineMath math="b" /> and
-      read the value of <InlineMath math="123_b" />.{" "}
-      Valid bases lie only in the shaded region, right of the dashed line <InlineMath math="b = 3" />.
+      The curve plots <InlineMath math="b^2 + 2b - 35" />, and valid bases sit
+      only in the shaded region right of the dashed line <InlineMath math="b = 3" />.
+      Slide <InlineMath math="b" /> and read the value of{" "}
+      <InlineMath math="123_b" />.
+    </>
+  }
+  footer={
+    <>
+      Only the crossing inside the shaded region, <InlineMath math="b = 5" />,
+      is a valid base.
     </>
   }
   scene={{
     space: "plane",
-    frame: { kind: "cartesian", x: { min: -8.5, max: 6.5 }, y: { min: -4, max: 2 } },
+    frame: { kind: "cartesian", x: { min: -8.5, max: 6.5 }, y: { min: -42, max: 20 } },
     view: { kind: "fit", padding: 0.06 },
     parameters: [{ name: "b", min: 4, max: 6, value: 4, step: 1, label: "b" }],
     objects: [
       { id: "valid", kind: "region", appearance: "construction", inequalities: ["x > 3"] },
-      { id: "curve", kind: "function", appearance: "primary", formula: "(x^2 + 2x - 35)/10" },
+      { id: "curve", kind: "function", appearance: "primary", formula: "x^2 + 2x - 35" },
       { id: "rejected", kind: "point", appearance: "warning", at: { x: -7, y: 0 } },
       { id: "root", kind: "point", appearance: "answer", at: { x: 5, y: 0 } },
-      { id: "now", kind: "marker", appearance: "highlight", x: "b", y: "(b^2 + 2b - 35)/10" },
+      { id: "now", kind: "marker", appearance: "highlight", x: "b", y: "b^2 + 2b - 35" },
     ],
     labels: [
       { key: "rejected", objectId: "rejected", at: { x: -7, y: 0 }, placement: "above" },
