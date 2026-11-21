@@ -34,7 +34,7 @@ describe("public page registry", () => {
       Effect.gen(function* () {
         const entries = yield* decodePageRegistry();
 
-        expect(entries).toHaveLength(24);
+        expect(entries).toHaveLength(28);
         expect(
           Rec.fromEntries(
             Arr.map(["en", "id", "de", "ms"], (appLocale) => [
@@ -45,7 +45,7 @@ describe("public page registry", () => {
               ).length,
             ])
           )
-        ).toEqual({ de: 6, en: 6, id: 6, ms: 6 });
+        ).toEqual({ de: 7, en: 7, id: 7, ms: 7 });
         const englishImprint = Option.getOrUndefined(
           Arr.findFirst(
             entries,

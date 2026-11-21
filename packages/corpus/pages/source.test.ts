@@ -85,6 +85,7 @@ layer(Path.layer)("public page source", (it) => {
         const injected = yield* decodePageSources([pageSource()]);
 
         expect(Arr.map(defaults, ({ pageKey }) => pageKey)).toEqual([
+          "about",
           "data-processing-agreement",
           "developers",
           "imprint",
@@ -190,12 +191,13 @@ layer(Path.layer)("public page source", (it) => {
   );
 
   it.effect(
-    "keeps every locale of each legal page in the English block order",
+    "keeps every locale of the about page and each legal page in the English block order",
     () =>
       Effect.gen(function* () {
         const corpusRoot = yield* resolveCorpusRoot;
         const registry = yield* decodePageRegistry();
         for (const pageKey of [
+          "about",
           "data-processing-agreement",
           "imprint",
           "privacy-policy",

@@ -119,8 +119,8 @@ layer(publishedPageTestLayer)("page plan", (it) => {
             rebuild,
             scope: pageFamilyScope,
           })
-        ).toHaveLength(rebuild ? 24 : 0);
-        expect(compilerState.calls).toBe(rebuild ? 24 : 0);
+        ).toHaveLength(rebuild ? 28 : 0);
+        expect(compilerState.calls).toBe(rebuild ? 28 : 0);
       })
   );
 
@@ -179,8 +179,8 @@ layer(publishedPageTestLayer)("page plan", (it) => {
         heads: publishedHeads,
         renderer,
       });
-      expect(records).toHaveLength(24);
-      expect(compilerState.calls).toBe(24);
+      expect(records).toHaveLength(28);
+      expect(compilerState.calls).toBe(28);
     })
   );
 
@@ -214,11 +214,11 @@ layer(publishedPageTestLayer)("page plan", (it) => {
   it.effect("compiles every canonical source for the first release", () =>
     Effect.gen(function* () {
       const records = yield* collectPagePublication({ heads: [] });
-      expect(records).toHaveLength(24);
+      expect(records).toHaveLength(28);
       expect(
         Arr.every(records, ({ record }) => record.change.operation === "upsert")
       ).toBe(true);
-      expect(compilerState.calls).toBe(24);
+      expect(compilerState.calls).toBe(28);
     })
   );
 
@@ -234,7 +234,7 @@ layer(publishedPageTestLayer)("page plan", (it) => {
           record.change.artifactLocale,
         ])
       ).toEqual(pageFixtureIdentities);
-      expect(compilerState.calls).toBe(24);
+      expect(compilerState.calls).toBe(28);
     })
   );
 
