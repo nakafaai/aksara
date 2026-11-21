@@ -1,166 +1,10 @@
-import { courseNode, materialNode, unitNode } from "#corpus/curriculum/schema";
-import {
-  additionalMathematicsSyllabus,
-  mathematicsSyllabus,
-} from "#corpus/curriculum/singapore-moe/documents";
+import { courseNode } from "#corpus/curriculum/schema";
+import { singaporeAdditionalMathematicsUnitNodes } from "#corpus/curriculum/singapore-moe/units/additional/additional";
+import { singaporeMathematicsUnitNodes } from "#corpus/curriculum/singapore-moe/units/mathematics/mathematics";
 
+/** Singapore SEC G3 Mathematics (K310), the successor of O-Level 4052. */
 export const singaporeSecondaryMathematicsCourseNode = courseNode({
-  children: [
-    unitNode({
-      children: [
-        materialNode({
-          key: "singapore-secondary-mathematics-linear-equations",
-          level: "lesson",
-          materialKeys: ["lesson.mathematics.linear-equation-inequality"],
-          order: 10,
-          outcomes: [
-            {
-              code: "N7 Equations and inequalities",
-              ...mathematicsSyllabus,
-            },
-          ],
-        }),
-        materialNode({
-          key: "singapore-secondary-mathematics-quadratics",
-          level: "lesson",
-          materialKeys: ["lesson.mathematics.quadratic-function"],
-          order: 20,
-          outcomes: [
-            {
-              code: "N7 Equations and inequalities",
-              ...mathematicsSyllabus,
-            },
-            { code: "N6 Functions and graphs", ...mathematicsSyllabus },
-          ],
-        }),
-        materialNode({
-          key: "singapore-secondary-mathematics-exponents",
-          level: "lesson",
-          materialKeys: ["lesson.mathematics.exponential-logarithm"],
-          order: 30,
-          outcomes: [
-            {
-              code: "N1 Numbers and their operations",
-              ...mathematicsSyllabus,
-            },
-            { code: "A3 Surds", ...additionalMathematicsSyllabus },
-            {
-              code: "A6 Exponential and logarithmic functions",
-              ...additionalMathematicsSyllabus,
-            },
-          ],
-        }),
-      ],
-      key: "secondary-mathematics-number-algebra",
-      materialCard: {
-        de: {
-          description: "Vertiefe Algebra anhand von Gleichungen und Potenzen.",
-          title: "Zahlen und Algebra",
-        },
-        en: {
-          description: "Build algebra skills from equations and powers.",
-          title: "Number and algebra",
-        },
-        id: {
-          description: "Bangun aljabar dari persamaan dan pangkat.",
-          title: "Bilangan dan aljabar",
-        },
-        ms: {
-          description: "Bina kemahiran algebra melalui persamaan dan kuasa.",
-          title: "Nombor dan algebra",
-        },
-      },
-      order: 10,
-      translations: {
-        de: { routeSlug: "zahlen-und-algebra", title: "Zahlen und Algebra" },
-        en: {
-          routeSlug: "number-and-algebra",
-          title: "Number and algebra",
-        },
-        id: {
-          routeSlug: "bilangan-dan-aljabar",
-          title: "Bilangan dan aljabar",
-        },
-        ms: {
-          routeSlug: "nombor-dan-algebra",
-          title: "Nombor dan algebra",
-        },
-      },
-    }),
-    unitNode({
-      children: [
-        materialNode({
-          key: "singapore-secondary-mathematics-geometry",
-          level: "lesson",
-          materialKeys: ["lesson.mathematics.trigonometry"],
-          order: 10,
-          outcomes: [
-            {
-              code: "G4 Pythagoras’ theorem and trigonometry",
-              ...mathematicsSyllabus,
-            },
-          ],
-        }),
-        materialNode({
-          key: "singapore-secondary-mathematics-statistics",
-          level: "lesson",
-          materialKeys: ["lesson.mathematics.statistics-foundations"],
-          order: 20,
-          outcomes: [
-            {
-              code: "S1 Data handling and analysis",
-              ...mathematicsSyllabus,
-            },
-          ],
-        }),
-        materialNode({
-          key: "singapore-secondary-mathematics-probability",
-          level: "lesson",
-          materialKeys: ["lesson.mathematics.probability"],
-          order: 30,
-          outcomes: [{ code: "S2 Probability", ...mathematicsSyllabus }],
-        }),
-      ],
-      key: "secondary-mathematics-geometry-statistics",
-      materialCard: {
-        de: {
-          description: "Nutze Formen, Daten und Zufall in Sachaufgaben.",
-          title: "Geometrie, Statistik und Wahrscheinlichkeit",
-        },
-        en: {
-          description: "Use shapes, data, and chance in problems.",
-          title: "Geometry, statistics, and probability",
-        },
-        id: {
-          description: "Gunakan bentuk, data, dan peluang dalam soal.",
-          title: "Geometri, statistika, dan peluang",
-        },
-        ms: {
-          description: "Guna bentuk, data dan kebarangkalian dalam soalan.",
-          title: "Geometri, statistik dan kebarangkalian",
-        },
-      },
-      order: 20,
-      translations: {
-        de: {
-          routeSlug: "geometrie-statistik-und-wahrscheinlichkeit",
-          title: "Geometrie, Statistik und Wahrscheinlichkeit",
-        },
-        en: {
-          routeSlug: "geometry-statistics-and-probability",
-          title: "Geometry, statistics, and probability",
-        },
-        id: {
-          routeSlug: "geometri-statistika-dan-peluang",
-          title: "Geometri, statistika, dan peluang",
-        },
-        ms: {
-          routeSlug: "geometri-statistik-dan-kebarangkalian",
-          title: "Geometri, statistik dan kebarangkalian",
-        },
-      },
-    }),
-  ],
+  children: singaporeMathematicsUnitNodes,
   iconKey: "advanced",
   key: "secondary-mathematics",
   levelBand: "upper-secondary",
@@ -168,106 +12,15 @@ export const singaporeSecondaryMathematicsCourseNode = courseNode({
   order: 10,
   translations: {
     de: { routeSlug: "mathematik", title: "Mathematik" },
-    en: {
-      routeSlug: "mathematics",
-      title: "Mathematics",
-    },
-    id: {
-      routeSlug: "matematika",
-      title: "Matematika",
-    },
-    ms: {
-      routeSlug: "matematik",
-      title: "Matematik",
-    },
+    en: { routeSlug: "mathematics", title: "Mathematics" },
+    id: { routeSlug: "matematika", title: "Matematika" },
+    ms: { routeSlug: "matematik", title: "Matematik" },
   },
 });
 
+/** Singapore SEC G3 Additional Mathematics (K341), the successor of O-Level 4049. */
 export const singaporeSecondaryAdditionalMathematicsCourseNode = courseNode({
-  children: [
-    unitNode({
-      children: [
-        materialNode({
-          key: "singapore-secondary-additional-mathematics-functions",
-          level: "lesson",
-          materialKeys: ["lesson.mathematics.function-modeling"],
-          order: 10,
-          outcomes: [
-            {
-              code: "A6 Exponential and logarithmic functions",
-              ...additionalMathematicsSyllabus,
-            },
-            {
-              code: "G1 Trigonometric functions, identities and equations",
-              ...additionalMathematicsSyllabus,
-            },
-          ],
-        }),
-        materialNode({
-          key: "singapore-secondary-additional-mathematics-derivative",
-          level: "lesson",
-          materialKeys: ["lesson.mathematics.derivative-function"],
-          order: 20,
-          outcomes: [
-            {
-              code: "C1 Differentiation and integration",
-              ...additionalMathematicsSyllabus,
-            },
-          ],
-        }),
-        materialNode({
-          key: "singapore-secondary-additional-mathematics-integral",
-          level: "lesson",
-          materialKeys: ["lesson.mathematics.integral"],
-          order: 30,
-          outcomes: [
-            {
-              code: "C1 Differentiation and integration",
-              ...additionalMathematicsSyllabus,
-            },
-          ],
-        }),
-      ],
-      key: "secondary-additional-mathematics-functions-calculus",
-      materialCard: {
-        de: {
-          description: "Verbinde Funktionen mit Änderungsraten und Summen.",
-          title: "Funktionen und Analysis",
-        },
-        en: {
-          description: "Connect functions with rates and accumulated change.",
-          title: "Functions and calculus",
-        },
-        id: {
-          description: "Hubungkan fungsi dengan laju dan akumulasi.",
-          title: "Fungsi dan kalkulus",
-        },
-        ms: {
-          description: "Kaitkan fungsi dengan kadar dan perubahan terkumpul.",
-          title: "Fungsi dan kalkulus",
-        },
-      },
-      order: 10,
-      translations: {
-        de: {
-          routeSlug: "funktionen-und-analysis",
-          title: "Funktionen und Analysis",
-        },
-        en: {
-          routeSlug: "functions-and-calculus",
-          title: "Functions and calculus",
-        },
-        id: {
-          routeSlug: "fungsi-dan-kalkulus",
-          title: "Fungsi dan kalkulus",
-        },
-        ms: {
-          routeSlug: "fungsi-dan-kalkulus",
-          title: "Fungsi dan kalkulus",
-        },
-      },
-    }),
-  ],
+  children: singaporeAdditionalMathematicsUnitNodes,
   iconKey: "mathematics",
   key: "secondary-additional-mathematics",
   levelBand: "upper-secondary",
@@ -286,9 +39,6 @@ export const singaporeSecondaryAdditionalMathematicsCourseNode = courseNode({
       routeSlug: "additional-mathematics",
       title: "Additional Mathematics",
     },
-    ms: {
-      routeSlug: "matematik-tambahan",
-      title: "Matematik Tambahan",
-    },
+    ms: { routeSlug: "matematik-tambahan", title: "Matematik Tambahan" },
   },
 });

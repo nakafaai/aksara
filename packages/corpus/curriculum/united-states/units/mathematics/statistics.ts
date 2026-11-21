@@ -1,11 +1,11 @@
 import { materialNode, unitNode } from "#corpus/curriculum/schema";
 import { mathematicsStandards } from "#corpus/curriculum/united-states/documents";
 
-/** The CCSS high school conceptual category Statistics and Probability. */
-export const usHighSchoolStatisticsProbabilityUnit = unitNode({
+/** United States high school, CCSS conceptual category Statistics and Probability. */
+export const usStatisticsProbabilityUnit = unitNode({
   children: [
     materialNode({
-      key: "us-high-school-mathematics-statistics",
+      key: "us-high-school-mathematics-statistics-probability-statistics",
       level: "lesson",
       materialKeys: ["lesson.mathematics.statistics-foundations"],
       order: 10,
@@ -17,10 +17,22 @@ export const usHighSchoolStatisticsProbabilityUnit = unitNode({
       ],
     }),
     materialNode({
-      key: "us-high-school-mathematics-probability",
+      key: "us-high-school-mathematics-statistics-probability-regression",
+      level: "lesson",
+      materialKeys: ["lesson.mathematics.statistics-regression"],
+      order: 20,
+      outcomes: [
+        {
+          code: "S-ID Interpreting Categorical and Quantitative Data",
+          ...mathematicsStandards,
+        },
+      ],
+    }),
+    materialNode({
+      key: "us-high-school-mathematics-statistics-probability-probability",
       level: "lesson",
       materialKeys: ["lesson.mathematics.probability"],
-      order: 20,
+      order: 30,
       outcomes: [
         {
           code: "S-CP Conditional Probability and the Rules of Probability",
@@ -29,11 +41,27 @@ export const usHighSchoolStatisticsProbabilityUnit = unitNode({
       ],
     }),
     materialNode({
-      key: "us-high-school-mathematics-regression",
+      key: "us-high-school-mathematics-statistics-probability-counting",
       level: "lesson",
-      materialKeys: ["lesson.mathematics.statistics-regression"],
-      order: 30,
+      materialKeys: ["lesson.mathematics.combinatorics"],
+      order: 40,
       outcomes: [
+        {
+          code: "S-CP Conditional Probability and the Rules of Probability",
+          ...mathematicsStandards,
+        },
+      ],
+    }),
+    materialNode({
+      key: "us-high-school-mathematics-statistics-probability-distributions",
+      level: "lesson",
+      materialKeys: ["lesson.mathematics.data-analysis-probability"],
+      order: 50,
+      outcomes: [
+        {
+          code: "S-MD Using Probability to Make Decisions",
+          ...mathematicsStandards,
+        },
         {
           code: "S-ID Interpreting Categorical and Quantitative Data",
           ...mathematicsStandards,

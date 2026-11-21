@@ -1,220 +1,56 @@
-import { courseNode, materialNode, unitNode } from "#corpus/curriculum/schema";
-import {
-  biologySyllabus,
-  chemistrySyllabus,
-  physicsSyllabus,
-} from "#corpus/curriculum/singapore-moe/documents";
+import { courseNode } from "#corpus/curriculum/schema";
+import { singaporeBiologyUnitNodes } from "#corpus/curriculum/singapore-moe/units/biology/biology";
+import { singaporeChemistryUnitNodes } from "#corpus/curriculum/singapore-moe/units/chemistry/chemistry";
+import { singaporePhysicsUnitNodes } from "#corpus/curriculum/singapore-moe/units/physics/physics";
 
-export const singaporeSecondaryScienceCourseNode = courseNode({
-  children: [
-    unitNode({
-      children: [
-        materialNode({
-          key: "singapore-secondary-science-physics-measurement",
-          level: "lesson",
-          materialKeys: ["lesson.physics.measurement"],
-          order: 10,
-          outcomes: [
-            {
-              code: "1 Physical Quantities, Units and Measurement",
-              ...physicsSyllabus,
-            },
-          ],
-        }),
-        materialNode({
-          key: "singapore-secondary-science-physics-kinematics",
-          level: "lesson",
-          materialKeys: ["lesson.physics.kinematics"],
-          order: 20,
-          outcomes: [{ code: "2 Kinematics", ...physicsSyllabus }],
-        }),
-        materialNode({
-          key: "singapore-secondary-science-physics-energy",
-          level: "lesson",
-          materialKeys: ["lesson.physics.renewable-energy"],
-          order: 30,
-          outcomes: [{ code: "6 Energy", ...physicsSyllabus }],
-        }),
-      ],
-      key: "secondary-science-physics",
-      materialCard: {
-        de: {
-          description: "Miss Bewegung, Vektoren und Energie präzise.",
-          title: "Physik",
-        },
-        en: {
-          description: "Measure motion, vectors, and energy clearly.",
-          title: "Physics",
-        },
-        id: {
-          description: "Ukur gerak, vektor, dan energi dengan jelas.",
-          title: "Fisika",
-        },
-        ms: {
-          description: "Ukur gerakan, vektor dan tenaga dengan jelas.",
-          title: "Fizik",
-        },
-      },
-      materialDomain: "physics",
-      order: 10,
-      translations: {
-        de: { routeSlug: "physik", title: "Physik" },
-        en: {
-          routeSlug: "physics",
-          title: "Physics",
-        },
-        id: {
-          routeSlug: "fisika",
-          title: "Fisika",
-        },
-        ms: {
-          routeSlug: "fizik",
-          title: "Fizik",
-        },
-      },
-    }),
-    unitNode({
-      children: [
-        materialNode({
-          key: "singapore-secondary-science-chemistry-matter",
-          level: "lesson",
-          materialKeys: ["lesson.chemistry.structure-matter"],
-          order: 10,
-          outcomes: [{ code: "2.2 Atomic Structure", ...chemistrySyllabus }],
-        }),
-        materialNode({
-          key: "singapore-secondary-science-chemistry-reactions",
-          level: "lesson",
-          materialKeys: ["lesson.chemistry.basic-chemistry-laws"],
-          order: 20,
-          outcomes: [
-            {
-              code: "4.1 Formulae and Equation Writing",
-              ...chemistrySyllabus,
-            },
-          ],
-        }),
-      ],
-      key: "secondary-science-chemistry",
-      materialCard: {
-        de: {
-          description:
-            "Erkläre Stoffe und Reaktionen anhand von Beobachtungen.",
-          title: "Chemie",
-        },
-        en: {
-          description: "Model matter and reactions from evidence.",
-          title: "Chemistry",
-        },
-        id: {
-          description: "Modelkan materi dan reaksi dari bukti.",
-          title: "Kimia",
-        },
-        ms: {
-          description: "Bina model jirim dan tindak balas daripada bukti.",
-          title: "Kimia",
-        },
-      },
-      materialDomain: "chemistry",
-      order: 20,
-      translations: {
-        de: { routeSlug: "chemie", title: "Chemie" },
-        en: {
-          routeSlug: "chemistry",
-          title: "Chemistry",
-        },
-        id: {
-          routeSlug: "kimia",
-          title: "Kimia",
-        },
-        ms: {
-          routeSlug: "kimia",
-          title: "Kimia",
-        },
-      },
-    }),
-    unitNode({
-      children: [
-        materialNode({
-          key: "singapore-secondary-science-biology-living-systems",
-          level: "lesson",
-          materialKeys: ["lesson.biology.biodiversity"],
-          order: 10,
-          outcomes: [
-            {
-              code: "11 Organisms and their Environment",
-              ...biologySyllabus,
-            },
-          ],
-        }),
-        materialNode({
-          key: "singapore-secondary-science-biology-ecosystems",
-          level: "lesson",
-          materialKeys: ["lesson.biology.climate-change"],
-          order: 20,
-          outcomes: [
-            {
-              code: "11 Organisms and their Environment",
-              ...biologySyllabus,
-            },
-          ],
-        }),
-      ],
-      key: "secondary-science-biology",
-      materialCard: {
-        de: {
-          description: "Untersuche Lebewesen und Veränderungen in Ökosystemen.",
-          title: "Biologie",
-        },
-        en: {
-          description: "Study living systems and ecosystem change.",
-          title: "Biology",
-        },
-        id: {
-          description: "Pelajari sistem hayati dan perubahan ekosistem.",
-          title: "Biologi",
-        },
-        ms: {
-          description: "Kaji sistem hidupan dan perubahan ekosistem.",
-          title: "Biologi",
-        },
-      },
-      materialDomain: "biology",
-      order: 30,
-      translations: {
-        de: { routeSlug: "biologie", title: "Biologie" },
-        en: {
-          routeSlug: "biology",
-          title: "Biology",
-        },
-        id: {
-          routeSlug: "biologi",
-          title: "Biologi",
-        },
-        ms: {
-          routeSlug: "biologi",
-          title: "Biologi",
-        },
-      },
-    }),
-  ],
+/**
+ * Singapore SEC G3 Physics (K323), the successor of O-Level 6091. SEAB
+ * examines Physics, Chemistry and Biology as separate G3 subjects, so each is
+ * its own course; combined Science is a different set of syllabuses.
+ */
+export const singaporeSecondaryPhysicsCourseNode = courseNode({
+  children: singaporePhysicsUnitNodes,
   iconKey: "science",
-  key: "secondary-science",
+  key: "secondary-physics",
   levelBand: "upper-secondary",
+  materialDomain: "physics",
   order: 30,
   translations: {
-    de: { routeSlug: "naturwissenschaften", title: "Naturwissenschaften" },
-    en: {
-      routeSlug: "science",
-      title: "Science",
-    },
-    id: {
-      routeSlug: "sains",
-      title: "Sains",
-    },
-    ms: {
-      routeSlug: "sains",
-      title: "Sains",
-    },
+    de: { routeSlug: "physik", title: "Physik" },
+    en: { routeSlug: "physics", title: "Physics" },
+    id: { routeSlug: "fisika", title: "Fisika" },
+    ms: { routeSlug: "fizik", title: "Fizik" },
+  },
+});
+
+/** Singapore SEC G3 Chemistry (K324), the successor of O-Level 6092. */
+export const singaporeSecondaryChemistryCourseNode = courseNode({
+  children: singaporeChemistryUnitNodes,
+  iconKey: "science",
+  key: "secondary-chemistry",
+  levelBand: "upper-secondary",
+  materialDomain: "chemistry",
+  order: 40,
+  translations: {
+    de: { routeSlug: "chemie", title: "Chemie" },
+    en: { routeSlug: "chemistry", title: "Chemistry" },
+    id: { routeSlug: "kimia", title: "Kimia" },
+    ms: { routeSlug: "kimia", title: "Kimia" },
+  },
+});
+
+/** Singapore SEC G3 Biology (K325), the successor of O-Level 6093. */
+export const singaporeSecondaryBiologyCourseNode = courseNode({
+  children: singaporeBiologyUnitNodes,
+  iconKey: "science",
+  key: "secondary-biology",
+  levelBand: "upper-secondary",
+  materialDomain: "biology",
+  order: 50,
+  translations: {
+    de: { routeSlug: "biologie", title: "Biologie" },
+    en: { routeSlug: "biology", title: "Biology" },
+    id: { routeSlug: "biologi", title: "Biologi" },
+    ms: { routeSlug: "biologi", title: "Biologi" },
   },
 });

@@ -1,9 +1,7 @@
-import { igcseMathematicsUnitNodes } from "#corpus/curriculum/cambridge-international/igcse/units/mathematics";
-import {
-  igcseBiologyUnitNodes,
-  igcseChemistryUnitNodes,
-  igcsePhysicsUnitNodes,
-} from "#corpus/curriculum/cambridge-international/igcse/units/science";
+import { igcseBiologyUnitNodes } from "#corpus/curriculum/cambridge-international/igcse/units/biology/biology";
+import { igcseChemistryUnitNodes } from "#corpus/curriculum/cambridge-international/igcse/units/chemistry/chemistry";
+import { igcseMathematicsUnitNodes } from "#corpus/curriculum/cambridge-international/igcse/units/mathematics/mathematics";
+import { igcsePhysicsUnitNodes } from "#corpus/curriculum/cambridge-international/igcse/units/physics/physics";
 import { courseNode } from "#corpus/curriculum/schema";
 
 export const igcseCourseNodes = [
