@@ -17,6 +17,16 @@ const DEVELOPER_PAGE_KEY = "developers";
 
 const pageSourceInputs: readonly PageSourceInput[] = [
   {
+    pageKey: "about",
+    publicPaths: {
+      de: "ueber-uns",
+      en: "about",
+      id: "tentang",
+      ms: "tentang-kami",
+    },
+    sourceRoot: "pages/about",
+  },
+  {
     pageKey: "data-processing-agreement",
     publicPaths: {
       de: "data-processing-agreement",
