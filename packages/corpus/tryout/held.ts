@@ -9,7 +9,7 @@ import { paperId } from "#corpus/tryout/track";
  * authored and checked like any other, and stays out of every release until
  * it is no longer held, such as a track whose items Nakafa cannot grade yet.
  */
-export function servedExams(exams: readonly ExamSource[]) {
+export function servedExams(exams: readonly ExamSource[]): ExamSource[] {
   return Arr.filterMap(exams, (exam) => {
     const tracks = Arr.filter(exam.tracks, ({ held }) => held !== true);
     const used = HashSet.fromIterable(Arr.map(tracks, ({ group }) => group));

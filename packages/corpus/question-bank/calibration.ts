@@ -122,7 +122,7 @@ export const decodeCalibration = Effect.fn("AksaraCorpus.decodeCalibration")(
     path: typeof CorpusSourcePathSchema.Type,
     item: ItemSource
   ) {
-    const calibration = yield* Schema.decodeUnknownEffect(
+    const calibration = yield* Schema.decodeEffect(
       Schema.fromJsonString(CalibrationSchema)
     )(text).pipe(
       Effect.mapError(

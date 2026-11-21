@@ -9,6 +9,7 @@ import { decodeArticleRegistry } from "@nakafa/aksara-corpus/articles/registry";
 import { decodeMaterialRegistry } from "@nakafa/aksara-corpus/material/registry";
 import type { MaterialOrigin } from "@nakafa/aksara-corpus/material/source";
 import { decodePageRegistry } from "@nakafa/aksara-corpus/pages/registry";
+import { servedExams } from "@nakafa/aksara-corpus/tryout/held";
 import { decodeTryoutRegistry } from "@nakafa/aksara-corpus/tryout/registry";
 import { Array as Arr, Effect, HashSet, Order, Path } from "effect";
 import {
@@ -167,7 +168,7 @@ layer(NodeServices.layer)("acceptance source selection", (it) => {
           expect(ACTIVE_APP_LOCALES).toContain(entry.route.artifactLocale);
         }
         expect(selected.article).toHaveLength(2 * ACTIVE_APP_LOCALES.length);
-        const registry = yield* decodeTryoutRegistry();
+        const registry = servedExams(yield* decodeTryoutRegistry());
         const { tryout } = selected;
         const tracks = Arr.flatMap(registry, (exam) =>
           Arr.map(exam.tracks, (track) => ({ exam, track }))

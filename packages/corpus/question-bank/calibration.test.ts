@@ -40,7 +40,7 @@ const path = CorpusSourcePathSchema.make(
 );
 
 /** One sample of part `b` with the given id and marked criteria. */
-const sample = (id: string, criteria: readonly number[]) => ({
+const sample = (id: string, criteria: readonly [number, ...number[]]) => ({
   grade: "partial" as const,
   id,
   marks: Arr.map(criteria, (number) => ({
