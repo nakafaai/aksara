@@ -10,7 +10,7 @@ import { verifyWorkflowToolchains } from "#scripts/workflow/toolchain";
 import { verifyTurboEnvironment } from "#scripts/workflow/turbo";
 
 const FORBIDDEN_REGISTRY_PATTERN =
-  /NPM_BOOTSTRAP_TOKEN|pnpm publish(?! "\$TARBALL")|pnpm stage|\b(?:bun|npm) publish\b|changesets|package-proof/iu;
+  /NPM_BOOTSTRAP_TOKEN|pnpm publish|pnpm stage|bun publish|changesets|package-proof/iu;
 const REGISTRY_REFERENCE_PATTERN =
   /(?:https?:\/\/|\/\/)?registry\.npmjs\.org(?:[^\s"'`]+)?/giu;
 const NPM_ATTESTATION_URL =

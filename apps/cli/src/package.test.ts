@@ -17,7 +17,7 @@ import {
   readPackageVersion,
 } from "#cli/package";
 
-/** An isolated package smoke command returned a non-zero exit status. */
+/** An isolated npm smoke command returned a non-zero exit status. */
 class CliTestCommandError extends Schema.TaggedError<
   CliTestCommandError,
   { readonly brand: unique symbol }
@@ -29,7 +29,14 @@ class CliTestCommandError extends Schema.TaggedError<
 
 const packageRoot = `${import.meta.dirname}/..`;
 const distributionRoot = `${packageRoot}/dist/package`;
-const ARCHIVE_ROOT_PATTERN = /^package\//u;
+const PackResultSchema = Schema.fromJsonString(
+  Schema.NonEmptyArray(
+    Schema.Struct({
+      filename: Schema.String,
+      files: Schema.Array(Schema.Struct({ path: Schema.String })),
+    })
+  )
+);
 
 /** Collects one isolated command without leaking a child process. */
 const readCommand = Effect.fn("AksaraCliTest.readCommand")(function* (
@@ -129,28 +136,20 @@ describe("Aksara CLI package", () => {
           new URL(import.meta.resolve("effect/package.json"))
         );
         yield* runCommand("bun", ["run", "build"], packageRoot);
-        const packed = yield* runCommand(
-          "bun",
+        const packOutput = yield* runCommand(
+          "npm",
           [
-            "pm",
             "pack",
             "--ignore-scripts",
-            "--quiet",
-            "--destination",
+            "--json",
+            "--pack-destination",
             directory,
           ],
           distributionRoot
         );
-        const tarballPath = packed.trim();
-        const listing = yield* runCommand(
-          "tar",
-          ["-tzf", tarballPath],
-          directory
-        );
-        const files = Arr.map(
-          Arr.filter(listing.split("\n"), (entry) => entry.length > 0),
-          (entry) => entry.replace(ARCHIVE_ROOT_PATTERN, "")
-        );
+        const [pack] = yield* Schema.decodeEffect(PackResultSchema)(packOutput);
+        const files = Arr.map(pack.files, ({ path: file }) => file);
+        const tarballPath = path.join(directory, pack.filename);
 
         yield* fileSystem.writeFileString(
           path.join(directory, "package.json"),

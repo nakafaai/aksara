@@ -133,14 +133,14 @@ layer(workflowSourcesLayer)("workflow toolchain policy", (layered) => {
   it("requires exactly one Bun setup", ({ cli }) =>
     refuses(cli.replace(`\n\n${BUN_SETUP_STEP}`, ""), BUN_ONCE));
 
-  it("rejects unreviewed pnpm and setup actions", ({ cli }) =>
+  it("rejects pnpm actions and unreviewed setup actions", ({ cli }) =>
     Effect.gen(function* () {
       yield* refuses(
         cli.replace(
           TOOLCHAIN_SETUP_ACTION,
           "pnpm/setup@a0881977cd8ea73b1ed212236c99ca10dcc80cf4"
         ),
-        "Workflows may use only the reviewed pnpm/setup release"
+        "Workflows must not use pnpm actions"
       );
       yield* refuses(
         cli.replace(
