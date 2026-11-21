@@ -212,7 +212,39 @@ export const kssmForm4MathematicsTopicNodes = [
   kssmForm4UngroupedDispersionUnit,
   kssmForm4CombinedProbabilityUnit,
   unitNode({
+    children: [
+      materialNode({
+        key: "form-4-mathematics-consumer-mathematics-financial-management-financial-planning",
+        level: "lesson",
+        materialKeys: ["lesson.mathematics.financial-planning"],
+        order: 10,
+        outcomes: [
+          {
+            code: "Tingkatan 4, Standard Kandungan 10.1",
+            ...mathematicsStandards,
+          },
+        ],
+      }),
+    ],
     key: "form-4-mathematics-consumer-mathematics-financial-management",
+    materialCard: {
+      de: {
+        description: "Stelle ein Budget auf und plane ein Sparziel.",
+        title: "Finanzplanung",
+      },
+      en: {
+        description: "Build a budget and plan a savings goal.",
+        title: "Financial Management",
+      },
+      id: {
+        description: "Susun anggaran dan rencanakan target tabungan.",
+        title: "Pengelolaan Keuangan",
+      },
+      ms: {
+        description: "Bina belanjawan dan rancang sasaran simpanan.",
+        title: "Pengurusan Kewangan",
+      },
+    },
     order: 100,
     translations: {
       de: {

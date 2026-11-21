@@ -1,0 +1,238 @@
+export const metadata = {
+  title: "Nota Matematik Pengguna Pengurusan Kewangan Tingkatan Empat",
+  description:
+    "Nota Matematik Tingkatan 4 Bab 10: tetapkan matlamat kewangan SMART, bina belanjawan, kira aliran tunai dan rancang simpanan untuk mencapai matlamat.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2026-11-17",
+  subject: "Matematik Pengguna: Pengurusan Kewangan",
+};
+
+## Pengurusan Kewangan Bermula dengan Matlamat dan Belanjawan
+
+**Pengurusan kewangan** ialah proses merancang dan mengawal penggunaan wang untuk mencapai matlamat. Proses ini ada lima langkah: **tetapkan matlamat, nilai kedudukan kewangan, bina pelan, laksanakan pelan, dan semak semula**. Alat utamanya ialah **belanjawan**, iaitu senarai pendapatan dan perbelanjaan bagi satu tempoh. Beza antara pendapatan dan perbelanjaan dipanggil **aliran tunai**. Dalam model di sini, kamu menganalisis belanjawan bulanan, menjejak aliran tunai dan mengira berapa lama untuk mencapai sasaran simpanan.
+
+## Matlamat Kewangan SMART
+
+Matlamat yang baik bersifat **SMART**: spesifik, boleh diukur, boleh dicapai, realistik dan mempunyai tempoh masa. Matlamat saya mahu berjimat tidak cukup jelas. Matlamat saya mahu menyimpan <InlineMath math="\text{RM}\,6{,}000" /> untuk dana kecemasan dalam <InlineMath math="12" /> bulan ialah matlamat SMART, kerana jumlah dan tempohnya jelas.
+
+| Jangka masa | Tempoh | Contoh |
+| :--- | :--- | :--- |
+| Pendek | Kurang daripada setahun | Membeli telefon bimbit |
+| Sederhana | Satu hingga lima tahun | Wang pendahuluan kereta |
+| Panjang | Lebih daripada lima tahun | Wang pendahuluan rumah atau persaraan |
+
+## Belanjawan dan Aliran Tunai
+
+Encik Amir menerima gaji bersih <InlineMath math="\text{RM}\,4{,}500" /> sebulan. **Perbelanjaan tetap** ialah jumlah yang sama setiap bulan, seperti sewa dan ansuran kereta. **Perbelanjaan tidak tetap** berubah dari bulan ke bulan, seperti makanan dan bil elektrik. Carta ini menunjukkan belanjawan bulanannya.
+
+<BarChart
+  title={<>Belanjawan Bulanan Encik Amir</>}
+  description={
+    <>
+      Pendapatan bersih dan pembahagian perbelanjaan dalam ringgit bagi satu
+      bulan.
+    </>
+  }
+  yAxisLabel="Jumlah (RM)"
+  data={[
+    { name: "Pendapatan bersih", value: 4500 },
+    { name: "Perbelanjaan tetap", value: 1200 + 650 + 150 },
+    { name: "Perbelanjaan tidak tetap", value: 900 + 250 + 300 + 350 },
+    { name: "Simpanan", value: 450 },
+  ]}
+  chartConfig={{ value: { label: "Jumlah", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>
+
+### Contoh Mengira Aliran Tunai
+
+Perbelanjaan tetap Encik Amir ialah sewa <InlineMath math="\text{RM}\,1{,}200" />, ansuran kereta <InlineMath math="\text{RM}\,650" /> dan insurans <InlineMath math="\text{RM}\,150" />. Perbelanjaan tidak tetapnya berjumlah <InlineMath math="\text{RM}\,1{,}800" />, dan dia menyimpan <InlineMath math="\text{RM}\,450" />. Kira **aliran tunai bulanannya**.
+
+<MathContainer>
+<BlockMath math="\text{Perbelanjaan tetap} = 1{,}200 + 650 + 150 = 2{,}000" />
+<BlockMath math="\text{Aliran tunai} = 4{,}500 - 2{,}000 - 1{,}800 - 450 = 250" />
+</MathContainer>
+
+Aliran tunai <InlineMath math="\text{RM}\,250" /> ialah **lebihan**, jadi Encik Amir hidup dalam kemampuannya. Semak: <InlineMath math="2{,}000 + 1{,}800 + 450 + 250 = 4{,}500" />.
+
+### Aliran Tunai dari Bulan ke Bulan
+
+Aliran tunai berubah setiap bulan kerana perbelanjaan tidak tetap berubah. Graf ini menunjukkan lebihan atau **defisit** Encik Amir selama enam bulan. Bulan ketiga defisit kerana perbelanjaan perayaan.
+
+<ScatterDiagram
+  title={<>Aliran Tunai Bulanan Encik Amir</>}
+  description={
+    <>
+      Lebihan atau defisit dalam ringgit bagi setiap bulan. Nilai negatif
+      bermaksud perbelanjaan melebihi pendapatan.
+    </>
+  }
+  xAxisLabel="Bulan"
+  yAxisLabel="Aliran tunai (RM)"
+  datasets={[
+    {
+      name: "Aliran tunai",
+      color: "var(--chart-1)",
+      points: [
+        { x: 1, y: 250 },
+        { x: 2, y: 180 },
+        { x: 3, y: -120 },
+        { x: 4, y: 300 },
+        { x: 5, y: 260 },
+        { x: 6, y: 240 },
+      ],
+    },
+  ]}
+/>
+
+Jumlah aliran tunai enam bulan ialah <InlineMath math="250 + 180 - 120 + 300 + 260 + 240 = 1{,}110" /> ringgit. Defisit satu bulan masih boleh ditampung oleh lebihan bulan lain jika belanjawan dirancang.
+
+## Panduan Belanjawan Lima Puluh Tiga Puluh Dua Puluh
+
+Satu panduan yang biasa digunakan membahagikan pendapatan bersih kepada **keperluan**, **kehendak** dan **simpanan** dalam nisbah <InlineMath math="50\% : 30\% : 20\%" />. Bagi pendapatan <InlineMath math="\text{RM}\,4{,}500" />, panduan ini memberi <InlineMath math="\text{RM}\,2{,}250" />, <InlineMath math="\text{RM}\,1{,}350" /> dan <InlineMath math="\text{RM}\,900" />. Carta ini membandingkannya dengan belanjawan sebenar Encik Amir.
+
+<BarChart
+  title={<>Panduan Berbanding Belanjawan Sebenar</>}
+  description={
+    <>
+      Ringgit bagi keperluan, kehendak dan simpanan termasuk lebihan, menurut
+      panduan dan menurut belanjawan Encik Amir.
+    </>
+  }
+  yAxisLabel="Jumlah (RM)"
+  data={[
+    { name: "Keperluan, panduan", value: 2250 },
+    { name: "Keperluan, sebenar", value: 2000 + 900 + 250 + 300 },
+    { name: "Kehendak, panduan", value: 1350 },
+    { name: "Kehendak, sebenar", value: 350 },
+    { name: "Simpanan, panduan", value: 900 },
+    { name: "Simpanan, sebenar", value: 450 + 250 },
+  ]}
+  chartConfig={{ value: { label: "Jumlah", colors: { light: ["var(--chart-2)"], dark: ["var(--chart-2)"] } } }}
+/>
+
+Keperluan Encik Amir, <InlineMath math="\text{RM}\,3{,}450" />, melebihi panduan kerana sewa dan ansuran keretanya tinggi, jadi ruang untuk simpanan lebih kecil. Panduan ini titik permulaan, bukan peraturan tetap.
+
+## Merancang Simpanan untuk Mencapai Matlamat
+
+Untuk mencapai sasaran simpanan <InlineMath math="T" /> dengan simpanan bulanan <InlineMath math="m" />, **bilangan bulan yang diperlukan** ialah <InlineMath math="\left\lceil \dfrac{T}{m} \right\rceil" />, iaitu dibundarkan ke atas. Ubah simpanan bulanan dan lihat bila garis simpanan melepasi sasaran <InlineMath math="\text{RM}\,6{,}000" />.
+
+<MathVisual
+  title={<>Simpanan Terkumpul Menuju Sasaran</>}
+  description={
+    <>
+      Simpanan terkumpul dalam ribu ringgit, <InlineMath math="\dfrac{mx}{1000}" />,
+      terhadap bulan <InlineMath math="x" />. Garis mendatar ialah sasaran{" "}
+      <InlineMath math="6" /> ribu ringgit.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 24 }, y: { min: 0, max: 12 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "m", min: 200, max: 1000, value: 700, step: 50, label: "m" },
+    ],
+    objects: [
+      { id: "saved", kind: "function", appearance: "primary", formula: "m x/1000", domain: { min: 0, max: 24 } },
+      { id: "target", kind: "function", appearance: "construction", formula: "6 + 0x", domain: { min: 0, max: 24 } },
+    ],
+    readouts: [
+      { key: "months", formula: "ceil(6000/m)" },
+    ],
+  }}
+  labels={{
+    m: <>Simpanan bulanan <InlineMath math="m" /> dalam ringgit</>,
+    months: <>Bulan untuk mencapai sasaran</>,
+  }}
+/>
+
+### Contoh Tempoh Mencapai Sasaran
+
+Encik Amir menyimpan <InlineMath math="\text{RM}\,450" /> dan memindahkan lebihan <InlineMath math="\text{RM}\,250" /> ke akaun simpanan setiap bulan. Berapa bulankah dia memerlukan untuk **mengumpul** <InlineMath math="\text{RM}\,6{,}000" />?
+
+<BlockMath math="\frac{6{,}000}{450 + 250} = \frac{6{,}000}{700} = 8.57 \quad\Rightarrow\quad 9 \text{ bulan}" />
+
+Selepas <InlineMath math="8" /> bulan dia baru ada <InlineMath math="\text{RM}\,5{,}600" />, jadi bulan kesembilan diperlukan. Semak dengan model: pada <InlineMath math="m = 700" />, bacaan ialah <InlineMath math="9" />. Matlamat <InlineMath math="12" /> bulannya boleh dicapai lebih awal.
+
+### Simpanan dengan Faedah Kompaun
+
+Bagi matlamat jangka panjang, **faedah kompaun** membantu wang bertambah. Simpanan <InlineMath math="P" /> pada kadar <InlineMath math="r\%" /> setahun menjadi <InlineMath math="P\left(1 + \dfrac{r}{100}\right)^t" /> selepas <InlineMath math="t" /> tahun. Ubah kadar dan tempoh bagi simpanan <InlineMath math="\text{RM}\,10{,}000" />.
+
+<MathVisual
+  title={<>Pertumbuhan Simpanan dengan Faedah Kompaun</>}
+  description={
+    <>
+      Nilai simpanan dalam ribu ringgit,{" "}
+      <InlineMath math="10\left(1 + \dfrac{r}{100}\right)^x" />, terhadap tahun{" "}
+      <InlineMath math="x" />.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 20 }, y: { min: 0, max: 35 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "r", min: 1, max: 6, value: 4, step: 0.5, label: "r" },
+      { name: "n", min: 0, max: 20, value: 10, step: 1, label: "n" },
+    ],
+    objects: [
+      { id: "growth", kind: "function", appearance: "primary", formula: "10(1 + r/100)^x", domain: { min: 0, max: 20 } },
+      { id: "now", kind: "marker", x: "n", y: "10(1 + r/100)^n", appearance: "warning" },
+    ],
+    readouts: [
+      { key: "value", formula: "10000(1 + r/100)^n" },
+    ],
+  }}
+  labels={{
+    r: <>Kadar faedah <InlineMath math="r" /> peratus setahun</>,
+    n: <>Tempoh <InlineMath math="n" /> dalam tahun</>,
+    value: <>Nilai simpanan dalam ringgit</>,
+  }}
+/>
+
+Pada kadar <InlineMath math="4\%" /> selama <InlineMath math="10" /> tahun, <InlineMath math="10{,}000 \times 1.04^{10} = 14{,}802" /> ringgit, iaitu faedah <InlineMath math="\text{RM}\,4{,}802" /> tanpa menambah simpanan baharu.
+
+## Kesilapan Lazim tentang Pengurusan Kewangan
+
+| Kesilapan | Sebab salah | Cara semak |
+| :--- | :--- | :--- |
+| Menggunakan gaji kasar dalam belanjawan. | Belanjawan menggunakan pendapatan bersih selepas potongan. | Semak jumlah yang benar-benar masuk ke akaun. |
+| Membundarkan bulan ke bawah. | Bulan terakhir yang tidak penuh masih diperlukan. | Darab bilangan bulan dengan simpanan bulanan. |
+| Menganggap simpanan sebagai baki selepas berbelanja. | Simpanan dirancang dahulu sebagai sebahagian belanjawan. | Simpanan mesti tersenarai dalam belanjawan. |
+| Matlamat tanpa tempoh masa. | Matlamat SMART mesti mempunyai tempoh untuk diukur. | Tanya bila matlamat itu perlu dicapai. |
+
+Kesilapan kedua paling kerap muncul dalam soalan tempoh simpanan. **Bundarkan bilangan bulan ke atas**.
+
+## Latihan Pengurusan Kewangan
+
+Soalan ini bergerak dari belanjawan ke perancangan simpanan. **Semak setiap jawapan dengan menjumlahkan semula**.
+
+1. Puan Siti berpendapatan bersih <InlineMath math="\text{RM}\,3{,}800" />. Perbelanjaan tetapnya <InlineMath math="\text{RM}\,1{,}650" />, perbelanjaan tidak tetap <InlineMath math="\text{RM}\,1{,}400" /> dan simpanan <InlineMath math="\text{RM}\,380" />. Kira aliran tunainya.
+
+2. Tukar matlamat saya mahu ada banyak duit kepada matlamat SMART.
+
+3. Sebuah komputer riba berharga <InlineMath math="\text{RM}\,3{,}200" />. Jika seorang murid menyimpan <InlineMath math="\text{RM}\,350" /> sebulan, berapa bulan diperlukan?
+
+4. Menurut panduan <InlineMath math="50\% : 30\% : 20\%" />, berapakah simpanan bulanan bagi pendapatan bersih <InlineMath math="\text{RM}\,3{,}800" />?
+
+### Penyelesaian
+
+**Penyelesaian 1**: Tolak semua perbelanjaan dan simpanan daripada pendapatan:
+
+<BlockMath math="3{,}800 - 1{,}650 - 1{,}400 - 380 = 370" />
+
+Aliran tunai **lebihan** <InlineMath math="\text{RM}\,370" />. Semak: <InlineMath math="1{,}650 + 1{,}400 + 380 + 370 = 3{,}800" />.
+
+**Penyelesaian 2**: Contohnya, saya mahu menyimpan <InlineMath math="\text{RM}\,2{,}400" /> dalam <InlineMath math="12" /> bulan dengan menyimpan <InlineMath math="\text{RM}\,200" /> setiap bulan. Matlamat ini **spesifik, boleh diukur dan bertempoh**.
+
+**Penyelesaian 3**: Bahagi dan bundarkan ke atas:
+
+<BlockMath math="\frac{3{,}200}{350} = 9.14 \quad\Rightarrow\quad 10 \text{ bulan}" />
+
+Semak: <InlineMath math="9 \times 350 = 3{,}150" /> belum cukup, tetapi <InlineMath math="10 \times 350 = 3{,}500" /> sudah melebihi harga.
+
+**Penyelesaian 4**: Ambil <InlineMath math="20\%" /> daripada pendapatan bersih:
+
+<BlockMath math="0.20 \times 3{,}800 = 760" />
+
+Simpanan yang disyorkan ialah <InlineMath math="\text{RM}\,760" /> sebulan.

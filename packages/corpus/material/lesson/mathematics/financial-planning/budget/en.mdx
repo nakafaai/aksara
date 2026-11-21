@@ -1,0 +1,238 @@
+export const metadata = {
+  title: "Consumer Mathematics Financial Management Notes",
+  description:
+    "Form 4 Mathematics Chapter 10: set SMART financial goals, build a budget, work out cash flow and plan savings to reach a goal, with worked examples and practice.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2026-11-17",
+  subject: "Consumer Mathematics: Financial Management",
+};
+
+## Financial Management Starts with Goals and a Budget
+
+**Financial management** is the process of planning and controlling how money is used to reach goals. It has five steps: **set goals, evaluate your financial position, build a plan, carry out the plan, and review it**. Its main tool is a **budget**, a list of income and spending for a period. The difference between income and spending is called **cash flow**. In the models here, you analyse a monthly budget, track cash flow and work out how long it takes to reach a savings target.
+
+## SMART Financial Goals
+
+A good goal is **SMART**: specific, measurable, attainable, realistic and time-bound. The goal I want to save money isn't clear enough. The goal I want to save <InlineMath math="\text{RM}\,6{,}000" /> for an emergency fund in <InlineMath math="12" /> months is a SMART goal, because its amount and time frame are clear.
+
+| Term | Time frame | Example |
+| :--- | :--- | :--- |
+| Short | Less than a year | Buying a mobile phone |
+| Medium | One to five years | A car down payment |
+| Long | More than five years | A house down payment or retirement |
+
+## Budgets and Cash Flow
+
+Mr Amir earns a net salary of <InlineMath math="\text{RM}\,4{,}500" /> a month. **Fixed expenses** are the same every month, such as rent and car instalments. **Variable expenses** change from month to month, such as food and electricity bills. This chart shows his monthly budget.
+
+<BarChart
+  title={<>Mr Amir's Monthly Budget</>}
+  description={
+    <>
+      Net income and how spending is divided, in ringgit, for one month.
+    </>
+  }
+  yAxisLabel="Amount (RM)"
+  data={[
+    { name: "Net income", value: 4500 },
+    { name: "Fixed expenses", value: 1200 + 650 + 150 },
+    { name: "Variable expenses", value: 900 + 250 + 300 + 350 },
+    { name: "Savings", value: 450 },
+  ]}
+  chartConfig={{ value: { label: "Amount", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>
+
+### Example Working Out Cash Flow
+
+Mr Amir's fixed expenses are rent of <InlineMath math="\text{RM}\,1{,}200" />, a car instalment of <InlineMath math="\text{RM}\,650" /> and insurance of <InlineMath math="\text{RM}\,150" />. His variable expenses total <InlineMath math="\text{RM}\,1{,}800" />, and he saves <InlineMath math="\text{RM}\,450" />. Work out **his monthly cash flow**.
+
+<MathContainer>
+<BlockMath math="\text{Fixed expenses} = 1{,}200 + 650 + 150 = 2{,}000" />
+<BlockMath math="\text{Cash flow} = 4{,}500 - 2{,}000 - 1{,}800 - 450 = 250" />
+</MathContainer>
+
+A cash flow of <InlineMath math="\text{RM}\,250" /> is a **surplus**, so Mr Amir lives within his means. Check: <InlineMath math="2{,}000 + 1{,}800 + 450 + 250 = 4{,}500" />.
+
+### Cash Flow from Month to Month
+
+Cash flow changes every month because variable expenses change. This graph shows Mr Amir's surplus or **deficit** over six months. The third month is a deficit because of festive spending.
+
+<ScatterDiagram
+  title={<>Mr Amir's Monthly Cash Flow</>}
+  description={
+    <>
+      Surplus or deficit in ringgit for each month. A negative value means
+      spending was more than income.
+    </>
+  }
+  xAxisLabel="Month"
+  yAxisLabel="Cash flow (RM)"
+  datasets={[
+    {
+      name: "Cash flow",
+      color: "var(--chart-1)",
+      points: [
+        { x: 1, y: 250 },
+        { x: 2, y: 180 },
+        { x: 3, y: -120 },
+        { x: 4, y: 300 },
+        { x: 5, y: 260 },
+        { x: 6, y: 240 },
+      ],
+    },
+  ]}
+/>
+
+The total cash flow over six months is <InlineMath math="250 + 180 - 120 + 300 + 260 + 240 = 1{,}110" /> ringgit. A deficit in one month can still be covered by surpluses in other months when the budget is planned.
+
+## The Fifty Thirty Twenty Budget Guide
+
+A common guide splits net income into **needs**, **wants** and **savings** in the ratio <InlineMath math="50\% : 30\% : 20\%" />. For an income of <InlineMath math="\text{RM}\,4{,}500" />, the guide gives <InlineMath math="\text{RM}\,2{,}250" />, <InlineMath math="\text{RM}\,1{,}350" /> and <InlineMath math="\text{RM}\,900" />. This chart compares it with Mr Amir's actual budget.
+
+<BarChart
+  title={<>The Guide Compared with the Actual Budget</>}
+  description={
+    <>
+      Ringgit for needs, wants and savings including the surplus, according to
+      the guide and to Mr Amir's budget.
+    </>
+  }
+  yAxisLabel="Amount (RM)"
+  data={[
+    { name: "Needs, guide", value: 2250 },
+    { name: "Needs, actual", value: 2000 + 900 + 250 + 300 },
+    { name: "Wants, guide", value: 1350 },
+    { name: "Wants, actual", value: 350 },
+    { name: "Savings, guide", value: 900 },
+    { name: "Savings, actual", value: 450 + 250 },
+  ]}
+  chartConfig={{ value: { label: "Amount", colors: { light: ["var(--chart-2)"], dark: ["var(--chart-2)"] } } }}
+/>
+
+Mr Amir's needs, <InlineMath math="\text{RM}\,3{,}450" />, are above the guide because his rent and car instalment are high, so there's less room for savings. The guide is a starting point, not a fixed rule.
+
+## Planning Savings to Reach a Goal
+
+To reach a savings target <InlineMath math="T" /> with monthly savings <InlineMath math="m" />, **the number of months needed** is <InlineMath math="\left\lceil \dfrac{T}{m} \right\rceil" />, rounded up. Change the monthly savings and see when the savings line passes the <InlineMath math="\text{RM}\,6{,}000" /> target.
+
+<MathVisual
+  title={<>Accumulated Savings Heading for a Target</>}
+  description={
+    <>
+      Accumulated savings in thousands of ringgit,{" "}
+      <InlineMath math="\dfrac{mx}{1000}" />, against month{" "}
+      <InlineMath math="x" />. The horizontal line is the target of{" "}
+      <InlineMath math="6" /> thousand ringgit.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 24 }, y: { min: 0, max: 12 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "m", min: 200, max: 1000, value: 700, step: 50, label: "m" },
+    ],
+    objects: [
+      { id: "saved", kind: "function", appearance: "primary", formula: "m x/1000", domain: { min: 0, max: 24 } },
+      { id: "target", kind: "function", appearance: "construction", formula: "6 + 0x", domain: { min: 0, max: 24 } },
+    ],
+    readouts: [
+      { key: "months", formula: "ceil(6000/m)" },
+    ],
+  }}
+  labels={{
+    m: <>Monthly savings <InlineMath math="m" /> in ringgit</>,
+    months: <>Months to reach the target</>,
+  }}
+/>
+
+### Example Time to Reach a Target
+
+Mr Amir saves <InlineMath math="\text{RM}\,450" /> and moves his <InlineMath math="\text{RM}\,250" /> surplus into a savings account every month. How many months does he need to **collect** <InlineMath math="\text{RM}\,6{,}000" />?
+
+<BlockMath math="\frac{6{,}000}{450 + 250} = \frac{6{,}000}{700} = 8.57 \quad\Rightarrow\quad 9 \text{ months}" />
+
+After <InlineMath math="8" /> months he has only <InlineMath math="\text{RM}\,5{,}600" />, so the ninth month is needed. Check with the model: at <InlineMath math="m = 700" />, it reads <InlineMath math="9" />. He can reach his <InlineMath math="12" />-month goal early.
+
+### Savings with Compound Interest
+
+For long-term goals, **compound interest** helps money grow. Savings <InlineMath math="P" /> at a rate of <InlineMath math="r\%" /> a year become <InlineMath math="P\left(1 + \dfrac{r}{100}\right)^t" /> after <InlineMath math="t" /> years. Change the rate and period for savings of <InlineMath math="\text{RM}\,10{,}000" />.
+
+<MathVisual
+  title={<>Savings Growing with Compound Interest</>}
+  description={
+    <>
+      Value of the savings in thousands of ringgit,{" "}
+      <InlineMath math="10\left(1 + \dfrac{r}{100}\right)^x" />, against year{" "}
+      <InlineMath math="x" />.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 20 }, y: { min: 0, max: 35 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "r", min: 1, max: 6, value: 4, step: 0.5, label: "r" },
+      { name: "n", min: 0, max: 20, value: 10, step: 1, label: "n" },
+    ],
+    objects: [
+      { id: "growth", kind: "function", appearance: "primary", formula: "10(1 + r/100)^x", domain: { min: 0, max: 20 } },
+      { id: "now", kind: "marker", x: "n", y: "10(1 + r/100)^n", appearance: "warning" },
+    ],
+    readouts: [
+      { key: "value", formula: "10000(1 + r/100)^n" },
+    ],
+  }}
+  labels={{
+    r: <>Interest rate <InlineMath math="r" /> percent a year</>,
+    n: <>Period <InlineMath math="n" /> in years</>,
+    value: <>Value of the savings in ringgit</>,
+  }}
+/>
+
+At <InlineMath math="4\%" /> for <InlineMath math="10" /> years, <InlineMath math="10{,}000 \times 1.04^{10} = 14{,}802" /> ringgit, which is <InlineMath math="\text{RM}\,4{,}802" /> of interest without adding any new savings.
+
+## Common Mistakes about Financial Management
+
+| Mistake | Why it's wrong | How to check |
+| :--- | :--- | :--- |
+| Using gross salary in a budget. | A budget uses net income after deductions. | Check the amount that actually reaches the account. |
+| Rounding the number of months down. | The last, partial month is still needed. | Multiply the number of months by the monthly savings. |
+| Treating savings as whatever is left after spending. | Savings are planned first as part of the budget. | Savings must be listed in the budget. |
+| A goal with no time frame. | A SMART goal needs a time frame so it can be measured. | Ask when the goal has to be reached. |
+
+The second mistake is the most common one in questions on saving periods. **Round the number of months up**.
+
+## Practice on Financial Management
+
+These questions move from budgets to savings plans. **Check every answer by adding back up**.
+
+1. Mrs Siti has a net income of <InlineMath math="\text{RM}\,3{,}800" />. Her fixed expenses are <InlineMath math="\text{RM}\,1{,}650" />, variable expenses <InlineMath math="\text{RM}\,1{,}400" /> and savings <InlineMath math="\text{RM}\,380" />. Work out her cash flow.
+
+2. Turn the goal I want to have lots of money into a SMART goal.
+
+3. A laptop costs <InlineMath math="\text{RM}\,3{,}200" />. If a student saves <InlineMath math="\text{RM}\,350" /> a month, how many months are needed?
+
+4. Under the <InlineMath math="50\% : 30\% : 20\%" /> guide, what are the monthly savings for a net income of <InlineMath math="\text{RM}\,3{,}800" />?
+
+### Solutions
+
+**Solution 1**: Subtract all spending and savings from income:
+
+<BlockMath math="3{,}800 - 1{,}650 - 1{,}400 - 380 = 370" />
+
+The cash flow is a **surplus** of <InlineMath math="\text{RM}\,370" />. Check: <InlineMath math="1{,}650 + 1{,}400 + 380 + 370 = 3{,}800" />.
+
+**Solution 2**: For example, I want to save <InlineMath math="\text{RM}\,2{,}400" /> in <InlineMath math="12" /> months by saving <InlineMath math="\text{RM}\,200" /> every month. This goal is **specific, measurable and time-bound**.
+
+**Solution 3**: Divide and round up:
+
+<BlockMath math="\frac{3{,}200}{350} = 9.14 \quad\Rightarrow\quad 10 \text{ months}" />
+
+Check: <InlineMath math="9 \times 350 = 3{,}150" /> isn't enough yet, but <InlineMath math="10 \times 350 = 3{,}500" /> is more than the price.
+
+**Solution 4**: Take <InlineMath math="20\%" /> of net income:
+
+<BlockMath math="0.20 \times 3{,}800 = 760" />
+
+The suggested savings are <InlineMath math="\text{RM}\,760" /> a month.
