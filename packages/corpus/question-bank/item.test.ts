@@ -35,7 +35,17 @@ const aufgabe = {
       kind: "extendedText",
       label: "c",
       points: 2,
-      rubric: [{ label: "Begründung", met: "Nennt f'(4) = 8 > 0.", points: 2 }],
+      rubric: [
+        {
+          feedback: {
+            earned: "Richtig gezeigt.",
+            missed: "Hier fehlt noch ein Schritt.",
+          },
+          label: "Begründung",
+          met: "Nennt f'(4) = 8 > 0.",
+          points: 2,
+        },
+      ],
     },
     { accepted: ["steigt"], kind: "textEntry", label: "d", points: 1 },
   ],
@@ -48,7 +58,17 @@ const english = {
     { ...aufgabe.parts[1], unit: "in" },
     {
       ...aufgabe.parts[2],
-      rubric: [{ label: "Reason", met: "States f'(4) = 8 > 0.", points: 2 }],
+      rubric: [
+        {
+          feedback: {
+            earned: "Richtig gezeigt.",
+            missed: "Hier fehlt noch ein Schritt.",
+          },
+          label: "Reason",
+          met: "States f'(4) = 8 > 0.",
+          points: 2,
+        },
+      ],
     },
     { ...aufgabe.parts[3], accepted: ["rises", "increases"] },
   ],
@@ -166,8 +186,24 @@ describe("item source", () => {
           {
             ...essay,
             rubric: [
-              { label: "Sign", met: "f'(4) > 0", points: 1 },
-              { label: "Value", met: "f'(4) = 8", points: 1 },
+              {
+                feedback: {
+                  earned: "Richtig gezeigt.",
+                  missed: "Hier fehlt noch ein Schritt.",
+                },
+                label: "Sign",
+                met: "f'(4) > 0",
+                points: 1,
+              },
+              {
+                feedback: {
+                  earned: "Richtig gezeigt.",
+                  missed: "Hier fehlt noch ein Schritt.",
+                },
+                label: "Value",
+                met: "f'(4) = 8",
+                points: 1,
+              },
             ],
           },
           english.parts[3],

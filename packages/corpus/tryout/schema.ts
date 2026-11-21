@@ -148,6 +148,12 @@ export type SetSource = typeof SetSourceSchema.Type;
  */
 export const TrackSourceSchema = Schema.Struct({
   group: KebabKeySchema,
+  /**
+   * Keeps the track and its sets out of every release while they are checked
+   * like any other, such as a track whose items Nakafa cannot grade yet. A
+   * group or exam left with no track is left out with it.
+   */
+  held: Schema.optionalKey(Schema.Literal(true)),
   key: KebabKeySchema,
   order: PositiveIntSchema,
   profile: ProfileSourceSchema,
