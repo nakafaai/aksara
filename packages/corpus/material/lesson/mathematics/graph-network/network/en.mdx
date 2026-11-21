@@ -1,0 +1,318 @@
+export const metadata = {
+  title: "Network in Graph Theory Notes for Form Four",
+  description:
+    "Form 4 Mathematics Chapter 5: identify vertices, edges and degrees, tell directed and weighted graphs apart, recognise trees and find the shortest path.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2026-11-17",
+  subject: "Network in Graph Theory",
+};
+
+## A Graph Shows Connections between Objects
+
+A **graph** is made of **vertices** that stand for objects and **edges** that stand for connections between them. Vertices might be towns and edges roads, or vertices might be students and edges friendships. The **degree** of a vertex is the number of edges that meet at it. The sum of the degrees of all vertices is always twice the number of edges, because every edge has two ends. In the models here, you read a weighted graph, compare a tree with a complete graph and find the shortest path.
+
+## Degrees of Vertices in a Graph
+
+The graph below shows five towns, <InlineMath math="A" /> to <InlineMath math="E" />, and the roads between them. The number on each edge is the distance in kilometres. A graph whose edges carry values like this is called a **weighted graph**.
+
+<MathVisual
+  title={<>A Weighted Graph of Five Towns</>}
+  description={
+    <>
+      Five vertices and seven edges. The weight of each edge is the road
+      distance in kilometres.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 7 }, y: { min: 0, max: 6 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "ab", kind: "segment", from: { x: 0.6, y: 3 }, to: { x: 2.6, y: 5 }, appearance: "reference" },
+      { id: "ad", kind: "segment", from: { x: 0.6, y: 3 }, to: { x: 2.6, y: 1 }, appearance: "reference" },
+      { id: "bc", kind: "segment", from: { x: 2.6, y: 5 }, to: { x: 5.6, y: 5 }, appearance: "reference" },
+      { id: "bd", kind: "segment", from: { x: 2.6, y: 5 }, to: { x: 2.6, y: 1 }, appearance: "reference" },
+      { id: "be", kind: "segment", from: { x: 2.6, y: 5 }, to: { x: 5.6, y: 1 }, appearance: "reference" },
+      { id: "de", kind: "segment", from: { x: 2.6, y: 1 }, to: { x: 5.6, y: 1 }, appearance: "reference" },
+      { id: "ce", kind: "segment", from: { x: 5.6, y: 5 }, to: { x: 5.6, y: 1 }, appearance: "reference" },
+      { id: "pa", kind: "point", at: { x: 0.6, y: 3 }, appearance: "primary" },
+      { id: "pb", kind: "point", at: { x: 2.6, y: 5 }, appearance: "primary" },
+      { id: "pc", kind: "point", at: { x: 5.6, y: 5 }, appearance: "primary" },
+      { id: "pd", kind: "point", at: { x: 2.6, y: 1 }, appearance: "primary" },
+      { id: "pe", kind: "point", at: { x: 5.6, y: 1 }, appearance: "primary" },
+    ],
+    labels: [
+      { key: "va", objectId: "pa", at: { x: 0.6, y: 3 }, placement: "left" },
+      { key: "vb", objectId: "pb", at: { x: 2.6, y: 5 }, placement: "above" },
+      { key: "vc", objectId: "pc", at: { x: 5.6, y: 5 }, placement: "above-right" },
+      { key: "vd", objectId: "pd", at: { x: 2.6, y: 1 }, placement: "below" },
+      { key: "ve", objectId: "pe", at: { x: 5.6, y: 1 }, placement: "below-right" },
+      { key: "wab", objectId: "ab", at: { x: 1.6, y: 4 }, placement: "above-left" },
+      { key: "wad", objectId: "ad", at: { x: 1.6, y: 2 }, placement: "below-left" },
+      { key: "wbc", objectId: "bc", at: { x: 4.1, y: 5 }, placement: "above" },
+      { key: "wbd", objectId: "bd", at: { x: 2.6, y: 3 }, placement: "left" },
+      { key: "wbe", objectId: "be", at: { x: 4.1, y: 3 }, placement: "above-right" },
+      { key: "wde", objectId: "de", at: { x: 4.1, y: 1 }, placement: "below" },
+      { key: "wce", objectId: "ce", at: { x: 5.6, y: 3 }, placement: "right" },
+    ],
+  }}
+  labels={{
+    va: <InlineMath math="A" />,
+    vb: <InlineMath math="B" />,
+    vc: <InlineMath math="C" />,
+    vd: <InlineMath math="D" />,
+    ve: <InlineMath math="E" />,
+    wab: <InlineMath math="4" />,
+    wad: <InlineMath math="2" />,
+    wbc: <InlineMath math="5" />,
+    wbd: <InlineMath math="3" />,
+    wbe: <InlineMath math="6" />,
+    wde: <InlineMath math="7" />,
+    wce: <InlineMath math="2" />,
+  }}
+/>
+
+This chart shows the degree of each vertex. Vertex <InlineMath math="B" /> connects to four other vertices, so its degree is <InlineMath math="4" />.
+
+<BarChart
+  title={<>Degree of Each Vertex</>}
+  description={
+    <>
+      The number of edges meeting at each vertex of the five-town graph. The
+      total is <InlineMath math="14" />.
+    </>
+  }
+  yAxisLabel="Degree"
+  data={[
+    { name: "A", value: 2 },
+    { name: "B", value: 4 },
+    { name: "C", value: 2 },
+    { name: "D", value: 3 },
+    { name: "E", value: 3 },
+  ]}
+  chartConfig={{ value: { label: "Degree", colors: { light: ["var(--chart-2)"], dark: ["var(--chart-2)"] } } }}
+/>
+
+### Example Sum of Degrees
+
+Check **the link between degrees and edges** for the five-town graph.
+
+<BlockMath math="2 + 4 + 2 + 3 + 3 = 14 = 2 \times 7" />
+
+The graph has <InlineMath math="7" /> edges, so its degrees add up to <InlineMath math="14" />. As a result, the number of vertices with an odd degree is always even. Here <InlineMath math="D" /> and <InlineMath math="E" /> are the two vertices with an odd degree.
+
+### Types of Graph
+
+Graphs are classified by **the shape of their edges**.
+
+| Type | Feature |
+| :--- | :--- |
+| Simple graph | No loops and no multiple edges |
+| Graph with a loop | An edge starts and ends at the same vertex and adds <InlineMath math="2" /> to its degree |
+| Multigraph | More than one edge joins the same two vertices |
+| Directed graph | Every edge has a direction |
+| Weighted graph | Every edge carries a value such as distance, time or cost |
+
+## Directed Graphs
+
+In a **directed graph**, each edge is drawn as an arrow, such as one-way streets in a housing estate. For each vertex, the **in-degree** is the number of arrows pointing into it, and the **out-degree** is the number of arrows leaving it.
+
+<MathVisual
+  title={<>A Directed Graph of One-Way Streets</>}
+  description={
+    <>
+      Four junctions <InlineMath math="P" />, <InlineMath math="Q" />,{" "}
+      <InlineMath math="R" /> and <InlineMath math="S" /> with five one-way
+      streets.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 5.4 }, y: { min: 0, max: 4.4 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "pq", kind: "vector", from: { x: 0.6, y: 0.6 }, to: { x: 4.6, y: 0.6 }, appearance: "primary" },
+      { id: "qr", kind: "vector", from: { x: 4.6, y: 0.6 }, to: { x: 4.6, y: 3.6 }, appearance: "primary" },
+      { id: "rs", kind: "vector", from: { x: 4.6, y: 3.6 }, to: { x: 0.6, y: 3.6 }, appearance: "primary" },
+      { id: "sp", kind: "vector", from: { x: 0.6, y: 3.6 }, to: { x: 0.6, y: 0.6 }, appearance: "primary" },
+      { id: "pr", kind: "vector", from: { x: 0.6, y: 0.6 }, to: { x: 4.6, y: 3.6 }, appearance: "secondary" },
+    ],
+    labels: [
+      { key: "vp", objectId: "pq", at: { x: 0.6, y: 0.6 }, placement: "below-left" },
+      { key: "vq", objectId: "qr", at: { x: 4.6, y: 0.6 }, placement: "below-right" },
+      { key: "vr", objectId: "rs", at: { x: 4.6, y: 3.6 }, placement: "above-right" },
+      { key: "vs", objectId: "sp", at: { x: 0.6, y: 3.6 }, placement: "above-left" },
+    ],
+  }}
+  labels={{
+    vp: <InlineMath math="P" />,
+    vq: <InlineMath math="Q" />,
+    vr: <InlineMath math="R" />,
+    vs: <InlineMath math="S" />,
+  }}
+/>
+
+Vertex <InlineMath math="P" /> has an out-degree of <InlineMath math="2" />, to <InlineMath math="Q" /> and to <InlineMath math="R" />, and an in-degree of <InlineMath math="1" />, from <InlineMath math="S" />. The out-degrees of all vertices add up to the same total as the in-degrees, <InlineMath math="5" />, the number of arrows.
+
+## Subgraphs and Trees
+
+A **subgraph** is a graph whose vertices and edges are all taken from the original graph. A **tree** is a connected graph with no cycles. A tree with <InlineMath math="n" /> vertices always has exactly <InlineMath math="n - 1" /> edges. In contrast, a **complete graph**, where every pair of vertices is joined, has <InlineMath math="\dfrac{n(n - 1)}{2}" /> edges. Change the number of vertices and compare the two.
+
+<MathVisual
+  title={<>Edges of a Tree and a Complete Graph</>}
+  description={
+    <>
+      Number of edges in units of <InlineMath math="5" /> against the number of
+      vertices <InlineMath math="n" />: <InlineMath math="n - 1" /> for a tree
+      and <InlineMath math="\dfrac{n(n - 1)}{2}" /> for a complete graph.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 10.5 }, y: { min: 0, max: 9.5 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "n", min: 2, max: 10, value: 5, step: 1, label: "n" },
+    ],
+    objects: [
+      { id: "tree", kind: "function", appearance: "primary", formula: "(x - 1)/5", domain: { min: 1, max: 10 } },
+      { id: "complete", kind: "function", appearance: "secondary", formula: "x(x - 1)/10", domain: { min: 1, max: 10 } },
+      { id: "now", kind: "marker", x: "n", y: "n(n - 1)/10", appearance: "warning" },
+    ],
+    readouts: [
+      { key: "tree", formula: "n - 1" },
+      { key: "complete", formula: "n(n - 1)/2" },
+    ],
+  }}
+  labels={{
+    n: <>Number of vertices <InlineMath math="n" /></>,
+    tree: <>Edges of a tree</>,
+    complete: <>Edges of a complete graph</>,
+  }}
+/>
+
+For five towns, a tree needs only <InlineMath math="4" /> roads to connect them all, but a complete graph has <InlineMath math="10" />. That's why networks of pipes or cables built to keep costs down usually take the shape of a tree.
+
+## Shortest Path
+
+In a weighted graph, the **shortest path** is the path with the smallest total weight. Drivers looking for the nearest route, delivery companies planning trips and map apps all solve this problem. The path with the fewest edges isn't necessarily the shortest, because one long edge can outweigh two short ones.
+
+### Listing Every Path
+
+For a small graph, **list every path** that doesn't repeat a vertex and compare their totals.
+
+<BarChart
+  title={<>Length of Each Path from A to E</>}
+  description={
+    <>
+      The total weight of each path that doesn't repeat a vertex in the
+      five-town graph, in kilometres.
+    </>
+  }
+  yAxisLabel="Distance (km)"
+  data={[
+    { name: "A-D-E", value: 2 + 7 },
+    { name: "A-B-E", value: 4 + 6 },
+    { name: "A-B-C-E", value: 4 + 5 + 2 },
+    { name: "A-D-B-E", value: 2 + 3 + 6 },
+    { name: "A-D-B-C-E", value: 2 + 3 + 5 + 2 },
+  ]}
+  chartConfig={{ value: { label: "Distance", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>
+
+### Example Finding the Shortest Path
+
+Find **the shortest path** from town <InlineMath math="A" /> to town <InlineMath math="E" />.
+
+<MathContainer>
+<BlockMath math="A \to D \to E: \; 2 + 7 = 9" />
+<BlockMath math="A \to B \to E: \; 4 + 6 = 10" />
+<BlockMath math="A \to B \to C \to E: \; 4 + 5 + 2 = 11" />
+</MathContainer>
+
+The shortest path is <InlineMath math="A \to D \to E" />, with a distance of <InlineMath math="9\text{ km}" />. This model highlights that path on the graph.
+
+<MathVisual
+  title={<>Shortest Path from A to E</>}
+  description={
+    <>
+      The path <InlineMath math="A \to D \to E" /> of{" "}
+      <InlineMath math="9\text{ km}" /> highlighted on the five-town graph.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 7 }, y: { min: 0, max: 6 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "ab", kind: "segment", from: { x: 0.6, y: 3 }, to: { x: 2.6, y: 5 }, appearance: "reference" },
+      { id: "bc", kind: "segment", from: { x: 2.6, y: 5 }, to: { x: 5.6, y: 5 }, appearance: "reference" },
+      { id: "bd", kind: "segment", from: { x: 2.6, y: 5 }, to: { x: 2.6, y: 1 }, appearance: "reference" },
+      { id: "be", kind: "segment", from: { x: 2.6, y: 5 }, to: { x: 5.6, y: 1 }, appearance: "reference" },
+      { id: "ce", kind: "segment", from: { x: 5.6, y: 5 }, to: { x: 5.6, y: 1 }, appearance: "reference" },
+      { id: "route", kind: "polyline", vertices: [{ x: 0.6, y: 3 }, { x: 2.6, y: 1 }, { x: 5.6, y: 1 }], appearance: "answer" },
+      { id: "pa", kind: "point", at: { x: 0.6, y: 3 }, appearance: "primary" },
+      { id: "pd", kind: "point", at: { x: 2.6, y: 1 }, appearance: "primary" },
+      { id: "pe", kind: "point", at: { x: 5.6, y: 1 }, appearance: "primary" },
+      { id: "pb", kind: "point", at: { x: 2.6, y: 5 }, appearance: "reference" },
+      { id: "pc", kind: "point", at: { x: 5.6, y: 5 }, appearance: "reference" },
+    ],
+    labels: [
+      { key: "vb", objectId: "pb", at: { x: 2.6, y: 5 }, placement: "above" },
+      { key: "vc", objectId: "pc", at: { x: 5.6, y: 5 }, placement: "above-right" },
+      { key: "va", objectId: "pa", at: { x: 0.6, y: 3 }, placement: "left" },
+      { key: "vd", objectId: "pd", at: { x: 2.6, y: 1 }, placement: "below" },
+      { key: "ve", objectId: "pe", at: { x: 5.6, y: 1 }, placement: "below-right" },
+    ],
+  }}
+  labels={{
+    vb: <InlineMath math="B" />,
+    vc: <InlineMath math="C" />,
+    va: <InlineMath math="A" />,
+    vd: <InlineMath math="D" />,
+    ve: <InlineMath math="E" />,
+  }}
+/>
+
+Check: the next nearest path, <InlineMath math="A \to B \to E" />, is <InlineMath math="10\text{ km}" />, so <InlineMath math="9\text{ km}" /> really is the smallest in the chart.
+
+## Common Mistakes about Networks
+
+| Mistake | Why it's wrong | How to check |
+| :--- | :--- | :--- |
+| A loop adds <InlineMath math="1" /> to the degree. | A loop has both ends at the same vertex, so it adds <InlineMath math="2" />. | The degrees must add up to twice the number of edges. |
+| The path with the fewest edges is the shortest path. | The shortest path depends on total weight, not on the number of edges. | Add up the weights of each path. |
+| A tree can have a cycle. | A tree has no cycles at all. | A tree with <InlineMath math="n" /> vertices must have <InlineMath math="n - 1" /> edges. |
+| In-degree and out-degree are always equal for every vertex. | Only their totals over the whole graph are equal. | Count the arrows at each vertex separately. |
+
+The second mistake is the most common one in shortest path questions. **Compare total weights, not numbers of edges**.
+
+## Practice on Networks in Graph Theory
+
+These questions move from degrees to trees and shortest paths. **Check every answer with the sum of degrees or the total weight**.
+
+1. A graph has vertices with degrees <InlineMath math="1, 2, 2, 3, 4" />. Find the number of edges.
+
+2. A tree has <InlineMath math="12" /> vertices. How many edges does it have?
+
+3. How many edges does a complete graph with <InlineMath math="7" /> vertices have?
+
+4. In the five-town graph, the road from <InlineMath math="D" /> to <InlineMath math="E" /> is closed. Find the new shortest path from <InlineMath math="A" /> to <InlineMath math="E" />.
+
+### Solutions
+
+**Solution 1**: The sum of degrees is twice the number of edges:
+
+<BlockMath math="\frac{1 + 2 + 2 + 3 + 4}{2} = \frac{12}{2} = 6" />
+
+Check: there are two vertices with an odd degree, an even number, as expected.
+
+**Solution 2**: A tree with <InlineMath math="n" /> vertices has <InlineMath math="n - 1" /> edges, so **<InlineMath math="11" /> edges**.
+
+**Solution 3**: Use the complete graph rule:
+
+<BlockMath math="\frac{7 \times 6}{2} = 21" />
+
+Check with the model: at <InlineMath math="n = 7" />, it shows <InlineMath math="21" /> edges for the complete graph.
+
+**Solution 4**: Without edge <InlineMath math="DE" />, the remaining paths are <InlineMath math="A \to B \to E = 10" />, <InlineMath math="A \to B \to C \to E = 11" />, <InlineMath math="A \to D \to B \to E = 11" /> and <InlineMath math="A \to D \to B \to C \to E = 12" />. **The new shortest path** is <InlineMath math="A \to B \to E" />, at <InlineMath math="10\text{ km}" />.

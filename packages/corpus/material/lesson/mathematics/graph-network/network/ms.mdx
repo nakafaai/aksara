@@ -1,0 +1,318 @@
+export const metadata = {
+  title: "Nota Rangkaian dalam Teori Graf Tingkatan Empat",
+  description:
+    "Nota Matematik Tingkatan 4 Bab 5: kenal pasti bucu, tepi dan darjah, bezakan graf terarah dan berpemberat, kenal pokok dan cari laluan terpendek.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2026-11-17",
+  subject: "Rangkaian dalam Teori Graf",
+};
+
+## Graf Mewakili Hubungan antara Objek
+
+**Graf** terdiri daripada **bucu** yang mewakili objek dan **tepi** yang mewakili hubungan antara objek. Bucu boleh mewakili bandar dan tepi pula jalan raya, atau bucu mewakili murid dan tepi mewakili persahabatan. **Darjah** sesuatu bucu ialah bilangan tepi yang bertemu pada bucu itu. Jumlah darjah semua bucu sentiasa dua kali bilangan tepi, kerana setiap tepi mempunyai dua hujung. Dalam model di sini, kamu membaca graf berpemberat, membandingkan pokok dengan graf lengkap dan mencari laluan terpendek.
+
+## Darjah Bucu dalam Graf
+
+Graf di bawah mewakili lima pekan, <InlineMath math="A" /> hingga <InlineMath math="E" />, dan jalan yang menghubungkannya. Nombor pada setiap tepi ialah jarak dalam kilometer. Graf yang tepinya mempunyai nilai seperti ini dipanggil **graf berpemberat**.
+
+<MathVisual
+  title={<>Graf Berpemberat bagi Lima Pekan</>}
+  description={
+    <>
+      Lima bucu dan tujuh tepi. Pemberat setiap tepi ialah jarak jalan dalam
+      kilometer.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 7 }, y: { min: 0, max: 6 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "ab", kind: "segment", from: { x: 0.6, y: 3 }, to: { x: 2.6, y: 5 }, appearance: "reference" },
+      { id: "ad", kind: "segment", from: { x: 0.6, y: 3 }, to: { x: 2.6, y: 1 }, appearance: "reference" },
+      { id: "bc", kind: "segment", from: { x: 2.6, y: 5 }, to: { x: 5.6, y: 5 }, appearance: "reference" },
+      { id: "bd", kind: "segment", from: { x: 2.6, y: 5 }, to: { x: 2.6, y: 1 }, appearance: "reference" },
+      { id: "be", kind: "segment", from: { x: 2.6, y: 5 }, to: { x: 5.6, y: 1 }, appearance: "reference" },
+      { id: "de", kind: "segment", from: { x: 2.6, y: 1 }, to: { x: 5.6, y: 1 }, appearance: "reference" },
+      { id: "ce", kind: "segment", from: { x: 5.6, y: 5 }, to: { x: 5.6, y: 1 }, appearance: "reference" },
+      { id: "pa", kind: "point", at: { x: 0.6, y: 3 }, appearance: "primary" },
+      { id: "pb", kind: "point", at: { x: 2.6, y: 5 }, appearance: "primary" },
+      { id: "pc", kind: "point", at: { x: 5.6, y: 5 }, appearance: "primary" },
+      { id: "pd", kind: "point", at: { x: 2.6, y: 1 }, appearance: "primary" },
+      { id: "pe", kind: "point", at: { x: 5.6, y: 1 }, appearance: "primary" },
+    ],
+    labels: [
+      { key: "va", objectId: "pa", at: { x: 0.6, y: 3 }, placement: "left" },
+      { key: "vb", objectId: "pb", at: { x: 2.6, y: 5 }, placement: "above" },
+      { key: "vc", objectId: "pc", at: { x: 5.6, y: 5 }, placement: "above-right" },
+      { key: "vd", objectId: "pd", at: { x: 2.6, y: 1 }, placement: "below" },
+      { key: "ve", objectId: "pe", at: { x: 5.6, y: 1 }, placement: "below-right" },
+      { key: "wab", objectId: "ab", at: { x: 1.6, y: 4 }, placement: "above-left" },
+      { key: "wad", objectId: "ad", at: { x: 1.6, y: 2 }, placement: "below-left" },
+      { key: "wbc", objectId: "bc", at: { x: 4.1, y: 5 }, placement: "above" },
+      { key: "wbd", objectId: "bd", at: { x: 2.6, y: 3 }, placement: "left" },
+      { key: "wbe", objectId: "be", at: { x: 4.1, y: 3 }, placement: "above-right" },
+      { key: "wde", objectId: "de", at: { x: 4.1, y: 1 }, placement: "below" },
+      { key: "wce", objectId: "ce", at: { x: 5.6, y: 3 }, placement: "right" },
+    ],
+  }}
+  labels={{
+    va: <InlineMath math="A" />,
+    vb: <InlineMath math="B" />,
+    vc: <InlineMath math="C" />,
+    vd: <InlineMath math="D" />,
+    ve: <InlineMath math="E" />,
+    wab: <InlineMath math="4" />,
+    wad: <InlineMath math="2" />,
+    wbc: <InlineMath math="5" />,
+    wbd: <InlineMath math="3" />,
+    wbe: <InlineMath math="6" />,
+    wde: <InlineMath math="7" />,
+    wce: <InlineMath math="2" />,
+  }}
+/>
+
+Carta ini menunjukkan darjah setiap bucu. Bucu <InlineMath math="B" /> bersambung dengan empat bucu lain, jadi darjahnya <InlineMath math="4" />.
+
+<BarChart
+  title={<>Darjah Setiap Bucu</>}
+  description={
+    <>
+      Bilangan tepi yang bertemu pada setiap bucu graf lima pekan. Jumlahnya{" "}
+      <InlineMath math="14" />.
+    </>
+  }
+  yAxisLabel="Darjah"
+  data={[
+    { name: "A", value: 2 },
+    { name: "B", value: 4 },
+    { name: "C", value: 2 },
+    { name: "D", value: 3 },
+    { name: "E", value: 3 },
+  ]}
+  chartConfig={{ value: { label: "Darjah", colors: { light: ["var(--chart-2)"], dark: ["var(--chart-2)"] } } }}
+/>
+
+### Contoh Jumlah Darjah
+
+Semak **hubungan antara darjah dan tepi** bagi graf lima pekan.
+
+<BlockMath math="2 + 4 + 2 + 3 + 3 = 14 = 2 \times 7" />
+
+Graf itu mempunyai <InlineMath math="7" /> tepi, jadi jumlah darjahnya <InlineMath math="14" />. Akibatnya, bilangan bucu berdarjah ganjil sentiasa genap. Di sini <InlineMath math="D" /> dan <InlineMath math="E" /> ialah dua bucu berdarjah ganjil.
+
+### Jenis Graf
+
+Graf dikelaskan mengikut **bentuk tepinya**.
+
+| Jenis | Ciri |
+| :--- | :--- |
+| Graf mudah | Tiada gelung dan tiada tepi berganda |
+| Graf dengan gelung | Satu tepi bermula dan berakhir pada bucu yang sama, menyumbang <InlineMath math="2" /> kepada darjah |
+| Graf berganda | Lebih daripada satu tepi menghubungkan dua bucu yang sama |
+| Graf terarah | Setiap tepi mempunyai arah |
+| Graf berpemberat | Setiap tepi mempunyai nilai seperti jarak, masa atau kos |
+
+## Graf Terarah
+
+Dalam **graf terarah**, setiap tepi ditunjukkan sebagai anak panah. Contohnya, jalan sehala dalam sebuah taman perumahan. Bagi setiap bucu, **darjah masuk** ialah bilangan anak panah yang menuju ke bucu itu, dan **darjah keluar** ialah bilangan anak panah yang meninggalkannya.
+
+<MathVisual
+  title={<>Graf Terarah Jalan Sehala</>}
+  description={
+    <>
+      Empat simpang <InlineMath math="P" />, <InlineMath math="Q" />,{" "}
+      <InlineMath math="R" /> dan <InlineMath math="S" /> dengan lima jalan
+      sehala.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 5.4 }, y: { min: 0, max: 4.4 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "pq", kind: "vector", from: { x: 0.6, y: 0.6 }, to: { x: 4.6, y: 0.6 }, appearance: "primary" },
+      { id: "qr", kind: "vector", from: { x: 4.6, y: 0.6 }, to: { x: 4.6, y: 3.6 }, appearance: "primary" },
+      { id: "rs", kind: "vector", from: { x: 4.6, y: 3.6 }, to: { x: 0.6, y: 3.6 }, appearance: "primary" },
+      { id: "sp", kind: "vector", from: { x: 0.6, y: 3.6 }, to: { x: 0.6, y: 0.6 }, appearance: "primary" },
+      { id: "pr", kind: "vector", from: { x: 0.6, y: 0.6 }, to: { x: 4.6, y: 3.6 }, appearance: "secondary" },
+    ],
+    labels: [
+      { key: "vp", objectId: "pq", at: { x: 0.6, y: 0.6 }, placement: "below-left" },
+      { key: "vq", objectId: "qr", at: { x: 4.6, y: 0.6 }, placement: "below-right" },
+      { key: "vr", objectId: "rs", at: { x: 4.6, y: 3.6 }, placement: "above-right" },
+      { key: "vs", objectId: "sp", at: { x: 0.6, y: 3.6 }, placement: "above-left" },
+    ],
+  }}
+  labels={{
+    vp: <InlineMath math="P" />,
+    vq: <InlineMath math="Q" />,
+    vr: <InlineMath math="R" />,
+    vs: <InlineMath math="S" />,
+  }}
+/>
+
+Bucu <InlineMath math="P" /> mempunyai darjah keluar <InlineMath math="2" />, ke <InlineMath math="Q" /> dan ke <InlineMath math="R" />, dan darjah masuk <InlineMath math="1" />, dari <InlineMath math="S" />. Jumlah darjah keluar semua bucu sama dengan jumlah darjah masuk, iaitu <InlineMath math="5" />, sama dengan bilangan anak panah.
+
+## Subgraf dan Pokok
+
+**Subgraf** ialah graf yang semua bucu dan tepinya diambil daripada graf asal. **Pokok** ialah graf terkait yang tiada kitaran. Pokok dengan <InlineMath math="n" /> bucu sentiasa mempunyai tepat <InlineMath math="n - 1" /> tepi. Sebaliknya, **graf lengkap** yang setiap pasang bucunya bersambung mempunyai <InlineMath math="\dfrac{n(n - 1)}{2}" /> tepi. Ubah bilangan bucu dan bandingkan kedua-duanya.
+
+<MathVisual
+  title={<>Tepi bagi Pokok dan Graf Lengkap</>}
+  description={
+    <>
+      Bilangan tepi dalam unit <InlineMath math="5" /> terhadap bilangan bucu{" "}
+      <InlineMath math="n" />: <InlineMath math="n - 1" /> bagi pokok dan{" "}
+      <InlineMath math="\dfrac{n(n - 1)}{2}" /> bagi graf lengkap.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 10.5 }, y: { min: 0, max: 9.5 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "n", min: 2, max: 10, value: 5, step: 1, label: "n" },
+    ],
+    objects: [
+      { id: "tree", kind: "function", appearance: "primary", formula: "(x - 1)/5", domain: { min: 1, max: 10 } },
+      { id: "complete", kind: "function", appearance: "secondary", formula: "x(x - 1)/10", domain: { min: 1, max: 10 } },
+      { id: "now", kind: "marker", x: "n", y: "n(n - 1)/10", appearance: "warning" },
+    ],
+    readouts: [
+      { key: "tree", formula: "n - 1" },
+      { key: "complete", formula: "n(n - 1)/2" },
+    ],
+  }}
+  labels={{
+    n: <>Bilangan bucu <InlineMath math="n" /></>,
+    tree: <>Tepi bagi pokok</>,
+    complete: <>Tepi bagi graf lengkap</>,
+  }}
+/>
+
+Bagi lima pekan, pokok memerlukan hanya <InlineMath math="4" /> jalan untuk menghubungkan semua pekan, tetapi graf lengkap mempunyai <InlineMath math="10" /> jalan. Itulah sebabnya rangkaian paip atau kabel yang menjimatkan kos biasanya berbentuk pokok.
+
+## Laluan Terpendek
+
+Dalam graf berpemberat, **laluan terpendek** ialah laluan dengan jumlah pemberat paling kecil. Pemandu yang mencari jalan terdekat, syarikat penghantaran yang merancang laluan dan aplikasi peta semuanya menyelesaikan masalah ini. Laluan dengan tepi paling sedikit belum tentu paling pendek, kerana satu tepi yang panjang boleh melebihi dua tepi yang pendek.
+
+### Senarai Semua Laluan
+
+Untuk graf kecil, **senaraikan setiap laluan** yang tidak mengulang bucu dan bandingkan jumlahnya.
+
+<BarChart
+  title={<>Panjang Setiap Laluan dari A ke E</>}
+  description={
+    <>
+      Jumlah pemberat bagi setiap laluan yang tidak mengulang bucu dalam graf
+      lima pekan, dalam kilometer.
+    </>
+  }
+  yAxisLabel="Jarak (km)"
+  data={[
+    { name: "A-D-E", value: 2 + 7 },
+    { name: "A-B-E", value: 4 + 6 },
+    { name: "A-B-C-E", value: 4 + 5 + 2 },
+    { name: "A-D-B-E", value: 2 + 3 + 6 },
+    { name: "A-D-B-C-E", value: 2 + 3 + 5 + 2 },
+  ]}
+  chartConfig={{ value: { label: "Jarak", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>
+
+### Contoh Mencari Laluan Terpendek
+
+Cari **laluan terpendek** dari pekan <InlineMath math="A" /> ke pekan <InlineMath math="E" />.
+
+<MathContainer>
+<BlockMath math="A \to D \to E: \; 2 + 7 = 9" />
+<BlockMath math="A \to B \to E: \; 4 + 6 = 10" />
+<BlockMath math="A \to B \to C \to E: \; 4 + 5 + 2 = 11" />
+</MathContainer>
+
+Laluan terpendek ialah <InlineMath math="A \to D \to E" /> dengan jarak <InlineMath math="9\text{ km}" />. Model ini menyerlahkan laluan itu pada graf.
+
+<MathVisual
+  title={<>Laluan Terpendek dari A ke E</>}
+  description={
+    <>
+      Laluan <InlineMath math="A \to D \to E" /> sejauh{" "}
+      <InlineMath math="9\text{ km}" /> diserlahkan pada graf lima pekan.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 7 }, y: { min: 0, max: 6 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "ab", kind: "segment", from: { x: 0.6, y: 3 }, to: { x: 2.6, y: 5 }, appearance: "reference" },
+      { id: "bc", kind: "segment", from: { x: 2.6, y: 5 }, to: { x: 5.6, y: 5 }, appearance: "reference" },
+      { id: "bd", kind: "segment", from: { x: 2.6, y: 5 }, to: { x: 2.6, y: 1 }, appearance: "reference" },
+      { id: "be", kind: "segment", from: { x: 2.6, y: 5 }, to: { x: 5.6, y: 1 }, appearance: "reference" },
+      { id: "ce", kind: "segment", from: { x: 5.6, y: 5 }, to: { x: 5.6, y: 1 }, appearance: "reference" },
+      { id: "route", kind: "polyline", vertices: [{ x: 0.6, y: 3 }, { x: 2.6, y: 1 }, { x: 5.6, y: 1 }], appearance: "answer" },
+      { id: "pa", kind: "point", at: { x: 0.6, y: 3 }, appearance: "primary" },
+      { id: "pd", kind: "point", at: { x: 2.6, y: 1 }, appearance: "primary" },
+      { id: "pe", kind: "point", at: { x: 5.6, y: 1 }, appearance: "primary" },
+      { id: "pb", kind: "point", at: { x: 2.6, y: 5 }, appearance: "reference" },
+      { id: "pc", kind: "point", at: { x: 5.6, y: 5 }, appearance: "reference" },
+    ],
+    labels: [
+      { key: "vb", objectId: "pb", at: { x: 2.6, y: 5 }, placement: "above" },
+      { key: "vc", objectId: "pc", at: { x: 5.6, y: 5 }, placement: "above-right" },
+      { key: "va", objectId: "pa", at: { x: 0.6, y: 3 }, placement: "left" },
+      { key: "vd", objectId: "pd", at: { x: 2.6, y: 1 }, placement: "below" },
+      { key: "ve", objectId: "pe", at: { x: 5.6, y: 1 }, placement: "below-right" },
+    ],
+  }}
+  labels={{
+    vb: <InlineMath math="B" />,
+    vc: <InlineMath math="C" />,
+    va: <InlineMath math="A" />,
+    vd: <InlineMath math="D" />,
+    ve: <InlineMath math="E" />,
+  }}
+/>
+
+Semak: laluan terdekat seterusnya, <InlineMath math="A \to B \to E" />, ialah <InlineMath math="10\text{ km}" />, jadi <InlineMath math="9\text{ km}" /> memang paling kecil dalam carta.
+
+## Kesilapan Lazim tentang Rangkaian
+
+| Kesilapan | Sebab salah | Cara semak |
+| :--- | :--- | :--- |
+| Gelung menyumbang <InlineMath math="1" /> kepada darjah. | Gelung mempunyai dua hujung pada bucu yang sama, jadi ia menyumbang <InlineMath math="2" />. | Jumlah darjah mesti dua kali bilangan tepi. |
+| Laluan dengan bilangan tepi paling sedikit ialah laluan terpendek. | Laluan terpendek bergantung pada jumlah pemberat, bukan bilangan tepi. | Jumlahkan pemberat setiap laluan. |
+| Pokok boleh mempunyai kitaran. | Pokok tidak mempunyai kitaran sama sekali. | Pokok dengan <InlineMath math="n" /> bucu mesti ada <InlineMath math="n - 1" /> tepi. |
+| Darjah masuk dan darjah keluar sentiasa sama bagi setiap bucu. | Hanya jumlahnya bagi seluruh graf yang sama. | Kira anak panah bagi setiap bucu secara berasingan. |
+
+Kesilapan kedua paling kerap muncul dalam soalan laluan terpendek. **Bandingkan jumlah pemberat, bukan bilangan tepi**.
+
+## Latihan Rangkaian dalam Teori Graf
+
+Soalan ini bergerak dari darjah ke pokok dan laluan terpendek. **Semak setiap jawapan dengan jumlah darjah atau jumlah pemberat**.
+
+1. Sebuah graf mempunyai bucu dengan darjah <InlineMath math="1, 2, 2, 3, 4" />. Cari bilangan tepi.
+
+2. Sebuah pokok mempunyai <InlineMath math="12" /> bucu. Berapakah bilangan tepinya?
+
+3. Berapakah bilangan tepi graf lengkap dengan <InlineMath math="7" /> bucu?
+
+4. Dalam graf lima pekan, jalan <InlineMath math="D" /> ke <InlineMath math="E" /> ditutup. Cari laluan terpendek baharu dari <InlineMath math="A" /> ke <InlineMath math="E" />.
+
+### Penyelesaian
+
+**Penyelesaian 1**: Jumlah darjah ialah dua kali bilangan tepi:
+
+<BlockMath math="\frac{1 + 2 + 2 + 3 + 4}{2} = \frac{12}{2} = 6" />
+
+Semak: terdapat dua bucu berdarjah ganjil, iaitu nombor genap, seperti yang dijangka.
+
+**Penyelesaian 2**: Pokok dengan <InlineMath math="n" /> bucu mempunyai <InlineMath math="n - 1" /> tepi, jadi **<InlineMath math="11" /> tepi**.
+
+**Penyelesaian 3**: Gunakan rumus graf lengkap:
+
+<BlockMath math="\frac{7 \times 6}{2} = 21" />
+
+Semak dengan model: pada <InlineMath math="n = 7" />, bacaan graf lengkap ialah <InlineMath math="21" />.
+
+**Penyelesaian 4**: Tanpa tepi <InlineMath math="DE" />, laluan yang tinggal ialah <InlineMath math="A \to B \to E = 10" />, <InlineMath math="A \to B \to C \to E = 11" />, <InlineMath math="A \to D \to B \to E = 11" /> dan <InlineMath math="A \to D \to B \to C \to E = 12" />. **Laluan terpendek baharu** ialah <InlineMath math="A \to B \to E" /> sejauh <InlineMath math="10\text{ km}" />.

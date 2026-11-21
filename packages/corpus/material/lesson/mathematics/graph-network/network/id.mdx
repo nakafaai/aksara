@@ -1,0 +1,318 @@
+export const metadata = {
+  title: "Jaringan dalam Teori Graf",
+  description:
+    "Kenali simpul, sisi, dan derajat, bedakan graf berarah dan graf berbobot, kenali pohon, lalu cari lintasan terpendek lewat model interaktif dan latihan.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2026-11-17",
+  subject: "Jaringan dalam Teori Graf",
+};
+
+## Graf Menunjukkan Hubungan antar Objek
+
+**Graf** terdiri dari **simpul** yang mewakili objek dan **sisi** yang mewakili hubungan antar objek. Simpul bisa mewakili kota dan sisi mewakili jalan, atau simpul mewakili siswa dan sisi mewakili pertemanan. **Derajat** suatu simpul adalah banyak sisi yang bertemu di simpul itu. Jumlah derajat semua simpul selalu dua kali banyak sisi, karena setiap sisi punya dua ujung. Dalam model di sini, kamu membaca graf berbobot, membandingkan pohon dengan graf lengkap, dan mencari lintasan terpendek.
+
+## Derajat Simpul dalam Graf
+
+Graf di bawah ini menggambarkan lima kota, <InlineMath math="A" /> sampai <InlineMath math="E" />, dan jalan yang menghubungkannya. Angka pada setiap sisi adalah jarak dalam kilometer. Graf yang sisinya punya nilai seperti ini disebut **graf berbobot**.
+
+<MathVisual
+  title={<>Graf Berbobot Lima Kota</>}
+  description={
+    <>
+      Lima simpul dan tujuh sisi. Bobot setiap sisi adalah jarak jalan dalam
+      kilometer.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 7 }, y: { min: 0, max: 6 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "ab", kind: "segment", from: { x: 0.6, y: 3 }, to: { x: 2.6, y: 5 }, appearance: "reference" },
+      { id: "ad", kind: "segment", from: { x: 0.6, y: 3 }, to: { x: 2.6, y: 1 }, appearance: "reference" },
+      { id: "bc", kind: "segment", from: { x: 2.6, y: 5 }, to: { x: 5.6, y: 5 }, appearance: "reference" },
+      { id: "bd", kind: "segment", from: { x: 2.6, y: 5 }, to: { x: 2.6, y: 1 }, appearance: "reference" },
+      { id: "be", kind: "segment", from: { x: 2.6, y: 5 }, to: { x: 5.6, y: 1 }, appearance: "reference" },
+      { id: "de", kind: "segment", from: { x: 2.6, y: 1 }, to: { x: 5.6, y: 1 }, appearance: "reference" },
+      { id: "ce", kind: "segment", from: { x: 5.6, y: 5 }, to: { x: 5.6, y: 1 }, appearance: "reference" },
+      { id: "pa", kind: "point", at: { x: 0.6, y: 3 }, appearance: "primary" },
+      { id: "pb", kind: "point", at: { x: 2.6, y: 5 }, appearance: "primary" },
+      { id: "pc", kind: "point", at: { x: 5.6, y: 5 }, appearance: "primary" },
+      { id: "pd", kind: "point", at: { x: 2.6, y: 1 }, appearance: "primary" },
+      { id: "pe", kind: "point", at: { x: 5.6, y: 1 }, appearance: "primary" },
+    ],
+    labels: [
+      { key: "va", objectId: "pa", at: { x: 0.6, y: 3 }, placement: "left" },
+      { key: "vb", objectId: "pb", at: { x: 2.6, y: 5 }, placement: "above" },
+      { key: "vc", objectId: "pc", at: { x: 5.6, y: 5 }, placement: "above-right" },
+      { key: "vd", objectId: "pd", at: { x: 2.6, y: 1 }, placement: "below" },
+      { key: "ve", objectId: "pe", at: { x: 5.6, y: 1 }, placement: "below-right" },
+      { key: "wab", objectId: "ab", at: { x: 1.6, y: 4 }, placement: "above-left" },
+      { key: "wad", objectId: "ad", at: { x: 1.6, y: 2 }, placement: "below-left" },
+      { key: "wbc", objectId: "bc", at: { x: 4.1, y: 5 }, placement: "above" },
+      { key: "wbd", objectId: "bd", at: { x: 2.6, y: 3 }, placement: "left" },
+      { key: "wbe", objectId: "be", at: { x: 4.1, y: 3 }, placement: "above-right" },
+      { key: "wde", objectId: "de", at: { x: 4.1, y: 1 }, placement: "below" },
+      { key: "wce", objectId: "ce", at: { x: 5.6, y: 3 }, placement: "right" },
+    ],
+  }}
+  labels={{
+    va: <InlineMath math="A" />,
+    vb: <InlineMath math="B" />,
+    vc: <InlineMath math="C" />,
+    vd: <InlineMath math="D" />,
+    ve: <InlineMath math="E" />,
+    wab: <InlineMath math="4" />,
+    wad: <InlineMath math="2" />,
+    wbc: <InlineMath math="5" />,
+    wbd: <InlineMath math="3" />,
+    wbe: <InlineMath math="6" />,
+    wde: <InlineMath math="7" />,
+    wce: <InlineMath math="2" />,
+  }}
+/>
+
+Grafik ini menunjukkan derajat setiap simpul. Simpul <InlineMath math="B" /> terhubung ke empat simpul lain, jadi derajatnya <InlineMath math="4" />.
+
+<BarChart
+  title={<>Derajat Setiap Simpul</>}
+  description={
+    <>
+      Banyak sisi yang bertemu di setiap simpul graf lima kota. Jumlahnya{" "}
+      <InlineMath math="14" />.
+    </>
+  }
+  yAxisLabel="Derajat"
+  data={[
+    { name: "A", value: 2 },
+    { name: "B", value: 4 },
+    { name: "C", value: 2 },
+    { name: "D", value: 3 },
+    { name: "E", value: 3 },
+  ]}
+  chartConfig={{ value: { label: "Derajat", colors: { light: ["var(--chart-2)"], dark: ["var(--chart-2)"] } } }}
+/>
+
+### Contoh Jumlah Derajat
+
+Cek **hubungan antara derajat dan sisi** pada graf lima kota.
+
+<BlockMath math="2 + 4 + 2 + 3 + 3 = 14 = 2 \times 7" />
+
+Graf itu punya <InlineMath math="7" /> sisi, jadi jumlah derajatnya <InlineMath math="14" />. Akibatnya, banyak simpul berderajat ganjil selalu genap. Di sini <InlineMath math="D" /> dan <InlineMath math="E" /> adalah dua simpul berderajat ganjil.
+
+### Jenis Graf
+
+Graf dikelompokkan menurut **bentuk sisinya**.
+
+| Jenis | Ciri |
+| :--- | :--- |
+| Graf sederhana | Tidak ada gelang dan tidak ada sisi ganda |
+| Graf dengan gelang | Satu sisi berawal dan berakhir di simpul yang sama, menyumbang <InlineMath math="2" /> pada derajat |
+| Graf ganda | Lebih dari satu sisi menghubungkan dua simpul yang sama |
+| Graf berarah | Setiap sisi punya arah |
+| Graf berbobot | Setiap sisi punya nilai seperti jarak, waktu, atau biaya |
+
+## Graf Berarah
+
+Dalam **graf berarah**, setiap sisi digambar sebagai anak panah, misalnya jalan satu arah di sebuah perumahan. Untuk setiap simpul, **derajat masuk** adalah banyak anak panah yang menuju simpul itu, dan **derajat keluar** adalah banyak anak panah yang meninggalkannya.
+
+<MathVisual
+  title={<>Graf Berarah Jalan Satu Arah</>}
+  description={
+    <>
+      Empat persimpangan <InlineMath math="P" />, <InlineMath math="Q" />,{" "}
+      <InlineMath math="R" />, dan <InlineMath math="S" /> dengan lima jalan
+      satu arah.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 5.4 }, y: { min: 0, max: 4.4 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "pq", kind: "vector", from: { x: 0.6, y: 0.6 }, to: { x: 4.6, y: 0.6 }, appearance: "primary" },
+      { id: "qr", kind: "vector", from: { x: 4.6, y: 0.6 }, to: { x: 4.6, y: 3.6 }, appearance: "primary" },
+      { id: "rs", kind: "vector", from: { x: 4.6, y: 3.6 }, to: { x: 0.6, y: 3.6 }, appearance: "primary" },
+      { id: "sp", kind: "vector", from: { x: 0.6, y: 3.6 }, to: { x: 0.6, y: 0.6 }, appearance: "primary" },
+      { id: "pr", kind: "vector", from: { x: 0.6, y: 0.6 }, to: { x: 4.6, y: 3.6 }, appearance: "secondary" },
+    ],
+    labels: [
+      { key: "vp", objectId: "pq", at: { x: 0.6, y: 0.6 }, placement: "below-left" },
+      { key: "vq", objectId: "qr", at: { x: 4.6, y: 0.6 }, placement: "below-right" },
+      { key: "vr", objectId: "rs", at: { x: 4.6, y: 3.6 }, placement: "above-right" },
+      { key: "vs", objectId: "sp", at: { x: 0.6, y: 3.6 }, placement: "above-left" },
+    ],
+  }}
+  labels={{
+    vp: <InlineMath math="P" />,
+    vq: <InlineMath math="Q" />,
+    vr: <InlineMath math="R" />,
+    vs: <InlineMath math="S" />,
+  }}
+/>
+
+Simpul <InlineMath math="P" /> punya derajat keluar <InlineMath math="2" />, ke <InlineMath math="Q" /> dan ke <InlineMath math="R" />, dan derajat masuk <InlineMath math="1" />, dari <InlineMath math="S" />. Jumlah derajat keluar semua simpul sama dengan jumlah derajat masuknya, yaitu <InlineMath math="5" />, sama dengan banyak anak panah.
+
+## Subgraf dan Pohon
+
+**Subgraf** adalah graf yang semua simpul dan sisinya diambil dari graf asal. **Pohon** adalah graf terhubung yang tidak punya sirkuit. Pohon dengan <InlineMath math="n" /> simpul selalu punya tepat <InlineMath math="n - 1" /> sisi. Sebaliknya, **graf lengkap** yang setiap pasang simpulnya terhubung punya <InlineMath math="\dfrac{n(n - 1)}{2}" /> sisi. Ubah banyak simpul dan bandingkan keduanya.
+
+<MathVisual
+  title={<>Sisi pada Pohon dan Graf Lengkap</>}
+  description={
+    <>
+      Banyak sisi dalam satuan <InlineMath math="5" /> terhadap banyak simpul{" "}
+      <InlineMath math="n" />: <InlineMath math="n - 1" /> untuk pohon dan{" "}
+      <InlineMath math="\dfrac{n(n - 1)}{2}" /> untuk graf lengkap.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 10.5 }, y: { min: 0, max: 9.5 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "n", min: 2, max: 10, value: 5, step: 1, label: "n" },
+    ],
+    objects: [
+      { id: "tree", kind: "function", appearance: "primary", formula: "(x - 1)/5", domain: { min: 1, max: 10 } },
+      { id: "complete", kind: "function", appearance: "secondary", formula: "x(x - 1)/10", domain: { min: 1, max: 10 } },
+      { id: "now", kind: "marker", x: "n", y: "n(n - 1)/10", appearance: "warning" },
+    ],
+    readouts: [
+      { key: "tree", formula: "n - 1" },
+      { key: "complete", formula: "n(n - 1)/2" },
+    ],
+  }}
+  labels={{
+    n: <>Banyak simpul <InlineMath math="n" /></>,
+    tree: <>Sisi pada pohon</>,
+    complete: <>Sisi pada graf lengkap</>,
+  }}
+/>
+
+Untuk lima kota, pohon hanya memerlukan <InlineMath math="4" /> jalan untuk menghubungkan semuanya, sedangkan graf lengkap punya <InlineMath math="10" /> jalan. Itulah sebabnya jaringan pipa atau kabel yang hemat biaya biasanya berbentuk pohon.
+
+## Lintasan Terpendek
+
+Dalam graf berbobot, **lintasan terpendek** adalah lintasan dengan jumlah bobot paling kecil. Pengemudi yang mencari rute terdekat, perusahaan ekspedisi yang merencanakan rute, dan aplikasi peta semuanya menyelesaikan masalah ini. Lintasan dengan sisi paling sedikit belum tentu paling pendek, karena satu sisi yang panjang bisa melebihi dua sisi yang pendek.
+
+### Mendaftar Semua Lintasan
+
+Untuk graf kecil, **daftarkan setiap lintasan** yang tidak mengulang simpul dan bandingkan jumlahnya.
+
+<BarChart
+  title={<>Panjang Setiap Lintasan dari A ke E</>}
+  description={
+    <>
+      Jumlah bobot setiap lintasan yang tidak mengulang simpul pada graf lima
+      kota, dalam kilometer.
+    </>
+  }
+  yAxisLabel="Jarak (km)"
+  data={[
+    { name: "A-D-E", value: 2 + 7 },
+    { name: "A-B-E", value: 4 + 6 },
+    { name: "A-B-C-E", value: 4 + 5 + 2 },
+    { name: "A-D-B-E", value: 2 + 3 + 6 },
+    { name: "A-D-B-C-E", value: 2 + 3 + 5 + 2 },
+  ]}
+  chartConfig={{ value: { label: "Jarak", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>
+
+### Contoh Mencari Lintasan Terpendek
+
+Tentukan **lintasan terpendek** dari kota <InlineMath math="A" /> ke kota <InlineMath math="E" />.
+
+<MathContainer>
+<BlockMath math="A \to D \to E: \; 2 + 7 = 9" />
+<BlockMath math="A \to B \to E: \; 4 + 6 = 10" />
+<BlockMath math="A \to B \to C \to E: \; 4 + 5 + 2 = 11" />
+</MathContainer>
+
+Lintasan terpendek adalah <InlineMath math="A \to D \to E" /> dengan jarak <InlineMath math="9\text{ km}" />. Model ini menyorot lintasan itu pada graf.
+
+<MathVisual
+  title={<>Lintasan Terpendek dari A ke E</>}
+  description={
+    <>
+      Lintasan <InlineMath math="A \to D \to E" /> sejauh{" "}
+      <InlineMath math="9\text{ km}" /> disorot pada graf lima kota.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 7 }, y: { min: 0, max: 6 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "ab", kind: "segment", from: { x: 0.6, y: 3 }, to: { x: 2.6, y: 5 }, appearance: "reference" },
+      { id: "bc", kind: "segment", from: { x: 2.6, y: 5 }, to: { x: 5.6, y: 5 }, appearance: "reference" },
+      { id: "bd", kind: "segment", from: { x: 2.6, y: 5 }, to: { x: 2.6, y: 1 }, appearance: "reference" },
+      { id: "be", kind: "segment", from: { x: 2.6, y: 5 }, to: { x: 5.6, y: 1 }, appearance: "reference" },
+      { id: "ce", kind: "segment", from: { x: 5.6, y: 5 }, to: { x: 5.6, y: 1 }, appearance: "reference" },
+      { id: "route", kind: "polyline", vertices: [{ x: 0.6, y: 3 }, { x: 2.6, y: 1 }, { x: 5.6, y: 1 }], appearance: "answer" },
+      { id: "pa", kind: "point", at: { x: 0.6, y: 3 }, appearance: "primary" },
+      { id: "pd", kind: "point", at: { x: 2.6, y: 1 }, appearance: "primary" },
+      { id: "pe", kind: "point", at: { x: 5.6, y: 1 }, appearance: "primary" },
+      { id: "pb", kind: "point", at: { x: 2.6, y: 5 }, appearance: "reference" },
+      { id: "pc", kind: "point", at: { x: 5.6, y: 5 }, appearance: "reference" },
+    ],
+    labels: [
+      { key: "vb", objectId: "pb", at: { x: 2.6, y: 5 }, placement: "above" },
+      { key: "vc", objectId: "pc", at: { x: 5.6, y: 5 }, placement: "above-right" },
+      { key: "va", objectId: "pa", at: { x: 0.6, y: 3 }, placement: "left" },
+      { key: "vd", objectId: "pd", at: { x: 2.6, y: 1 }, placement: "below" },
+      { key: "ve", objectId: "pe", at: { x: 5.6, y: 1 }, placement: "below-right" },
+    ],
+  }}
+  labels={{
+    vb: <InlineMath math="B" />,
+    vc: <InlineMath math="C" />,
+    va: <InlineMath math="A" />,
+    vd: <InlineMath math="D" />,
+    ve: <InlineMath math="E" />,
+  }}
+/>
+
+Cek: lintasan terdekat berikutnya, <InlineMath math="A \to B \to E" />, sejauh <InlineMath math="10\text{ km}" />, jadi <InlineMath math="9\text{ km}" /> memang yang terkecil pada grafik.
+
+## Kesalahan Umum tentang Jaringan
+
+| Kesalahan | Mengapa salah | Cara mengecek |
+| :--- | :--- | :--- |
+| Gelang menyumbang <InlineMath math="1" /> pada derajat. | Gelang punya dua ujung di simpul yang sama, jadi menyumbang <InlineMath math="2" />. | Jumlah derajat harus dua kali banyak sisi. |
+| Lintasan dengan sisi paling sedikit adalah lintasan terpendek. | Lintasan terpendek bergantung pada jumlah bobot, bukan banyak sisi. | Jumlahkan bobot setiap lintasan. |
+| Pohon bisa punya sirkuit. | Pohon sama sekali tidak punya sirkuit. | Pohon dengan <InlineMath math="n" /> simpul harus punya <InlineMath math="n - 1" /> sisi. |
+| Derajat masuk dan keluar selalu sama untuk setiap simpul. | Hanya jumlahnya untuk seluruh graf yang sama. | Hitung anak panah di setiap simpul secara terpisah. |
+
+Kesalahan kedua paling sering muncul dalam soal lintasan terpendek. **Bandingkan jumlah bobot, bukan banyak sisi**.
+
+## Latihan Jaringan dalam Teori Graf
+
+Soal-soal ini bergerak dari derajat ke pohon dan lintasan terpendek. **Cek setiap jawaban dengan jumlah derajat atau jumlah bobot**.
+
+1. Sebuah graf punya simpul dengan derajat <InlineMath math="1, 2, 2, 3, 4" />. Tentukan banyak sisinya.
+
+2. Sebuah pohon punya <InlineMath math="12" /> simpul. Berapa banyak sisinya?
+
+3. Berapa banyak sisi graf lengkap dengan <InlineMath math="7" /> simpul?
+
+4. Pada graf lima kota, jalan dari <InlineMath math="D" /> ke <InlineMath math="E" /> ditutup. Tentukan lintasan terpendek yang baru dari <InlineMath math="A" /> ke <InlineMath math="E" />.
+
+### Pembahasan
+
+**Pembahasan 1**: Jumlah derajat sama dengan dua kali banyak sisi:
+
+<BlockMath math="\frac{1 + 2 + 2 + 3 + 4}{2} = \frac{12}{2} = 6" />
+
+Cek: ada dua simpul berderajat ganjil, bilangan genap, sesuai harapan.
+
+**Pembahasan 2**: Pohon dengan <InlineMath math="n" /> simpul punya <InlineMath math="n - 1" /> sisi, jadi **<InlineMath math="11" /> sisi**.
+
+**Pembahasan 3**: Gunakan rumus graf lengkap:
+
+<BlockMath math="\frac{7 \times 6}{2} = 21" />
+
+Cek dengan model: pada <InlineMath math="n = 7" />, graf lengkap terbaca <InlineMath math="21" />.
+
+**Pembahasan 4**: Tanpa sisi <InlineMath math="DE" />, lintasan yang tersisa adalah <InlineMath math="A \to B \to E = 10" />, <InlineMath math="A \to B \to C \to E = 11" />, <InlineMath math="A \to D \to B \to E = 11" />, dan <InlineMath math="A \to D \to B \to C \to E = 12" />. **Lintasan terpendek yang baru** adalah <InlineMath math="A \to B \to E" /> sejauh <InlineMath math="10\text{ km}" />.
