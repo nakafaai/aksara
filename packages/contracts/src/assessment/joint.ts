@@ -112,9 +112,10 @@ export function hasJointParts(version: {
 
 /**
  * Checks that a version with a joint rule sets no scoring override: one rule
- * scores the item. This also refuses an extended text in a joint item, because
- * an extended text needs a rubric override (`fit`), and a joint item has none. A
- * person judges an extended text, so no key can say that it is correct.
+ * scores the item. This also refuses an extended text or a sketch in a joint
+ * item, because each needs a rubric override (`fit`), and a joint item has
+ * none. No key can say that either is correct as a whole: each earns its
+ * criteria one by one.
  */
 export function hasOneItemRule(version: {
   readonly joint?: JointRule;

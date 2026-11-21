@@ -9,6 +9,7 @@ import {
   Stream,
 } from "effect";
 
+import { hasKeyedRubrics } from "#contracts/assessment/fit";
 import { catalogLocaleBreach } from "#contracts/assessment/locales";
 import type { Paper } from "#contracts/assessment/paper";
 import {
@@ -178,7 +179,10 @@ const verifyItems = Effect.fn("AksaraContracts.verifyAssessmentItems")(
           rows.stimuli,
           stimulusIdentity(version.stimulus)
         ), "stimulus", version.family);
-      yield* require(HashMap.has(rows.keys, version.hash), "key", version.hash);
+      yield* require(Option.exists(
+        HashMap.get(rows.keys, version.hash),
+        (key) => hasKeyedRubrics(version, key)
+      ), "key", version.hash);
       yield* require(HashSet.has(
         placed,
         version.hash

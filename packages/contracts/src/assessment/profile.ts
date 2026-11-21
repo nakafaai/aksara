@@ -15,6 +15,7 @@ import {
   ScoreScaleSchema,
   ScoringStrategySchema,
   supportsRule,
+  takesRubric,
 } from "#contracts/assessment/scoring";
 import { ToolSetSchema } from "#contracts/assessment/tools";
 
@@ -169,14 +170,14 @@ function hasBreaksBetweenSections(profile: typeof ProfileFieldsSchema.Type) {
 
 /**
  * Checks that every kind a section allows has one default rule, except an
- * extended text, which carries a rubric of its own, and that no other kind has
- * one.
+ * extended text and a sketch, which carry a rubric of their own, and that no
+ * other kind has one.
  */
 function hasDefaultRules(profile: typeof ProfileFieldsSchema.Type) {
   const allowed = HashSet.fromIterable(
     Arr.filter(
       Arr.flatMap(profile.sections, ({ interactions }) => interactions),
-      (kind) => kind !== "extendedText"
+      (kind) => !takesRubric(kind)
     )
   );
   const defaulted = Arr.map(profile.defaults, ({ interaction }) => interaction);

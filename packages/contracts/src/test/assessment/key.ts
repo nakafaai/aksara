@@ -131,6 +131,84 @@ export const extendedTextKey = {
   kind: "extendedText",
 };
 
+/** Builds one criterion of the sketch key, checked by code from the drawn graph. */
+function featureCriterion(
+  criterion: string,
+  feature: object,
+  extra: object = {}
+) {
+  return {
+    check: { feature, kind: "feature" },
+    criterion,
+    feedback: {
+      earned: "Kamu sudah menggambar bagian ini dengan tepat.",
+      missed: "Coba lihat lagi bagian ini pada grafikmu.",
+    },
+    ...extra,
+  };
+}
+
+/**
+ * The graph of y = (x - 1) / (x + 2): its shape first, rising on both sides of
+ * its vertical asymptote, then its zero, its intercept, and its asymptotes.
+ */
+/** The left side of the shape: rising up to the vertical asymptote. */
+export const sketchLeft = featureCriterion("left", {
+  direction: "rising",
+  from: null,
+  kind: "interval",
+  to: "-2",
+});
+
+/** The right side of the shape: rising away from the vertical asymptote. */
+export const sketchRight = featureCriterion("right", {
+  direction: "rising",
+  from: "-2",
+  kind: "interval",
+  to: null,
+});
+
+/** The zero, earned only with the shape. */
+export const sketchZero = featureCriterion(
+  "zero",
+  { contact: "cross", kind: "zero", x: "1" },
+  { requires: ["left", "right"] }
+);
+
+export const sketchKey = {
+  criteria: [
+    sketchLeft,
+    sketchRight,
+    sketchZero,
+    featureCriterion(
+      "intercept",
+      { kind: "yIntercept", y: "-0.5" },
+      { requires: ["left", "right"] }
+    ),
+    featureCriterion("vertical", {
+      kind: "asymptote",
+      line: { kind: "vertical", x: "-2" },
+    }),
+    featureCriterion("horizontal", {
+      kind: "asymptote",
+      line: { intercept: "1", kind: "sloped", slope: "0" },
+    }),
+    featureCriterion("end", {
+      kind: "end",
+      limit: "positiveInfinity",
+      side: "left",
+    }),
+  ],
+  interaction: "graph",
+  kind: "sketch",
+  tolerances: {
+    asymptote: "0.25",
+    interval: "0.25",
+    yIntercept: "0.25",
+    zero: "0.25",
+  },
+};
+
 /** One key of every kind, in the order of the contract. */
 export const ALL_KEYS = Arr.make(
   choiceKey,
@@ -144,5 +222,6 @@ export const ALL_KEYS = Arr.make(
   hotspotKey,
   gapMatchKey,
   graphPointKey,
-  extendedTextKey
+  extendedTextKey,
+  sketchKey
 );

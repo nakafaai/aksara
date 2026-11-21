@@ -7,6 +7,10 @@ import {
 import { hasDistinctIds, LocalIdSchema } from "#contracts/assessment/identity";
 import { isWithinRecordLimit } from "#contracts/assessment/record";
 import { LatexSchema, PlainTextSchema } from "#contracts/assessment/scalar";
+import {
+  CriterionFeedbackSchema,
+  SketchKeySchema,
+} from "#contracts/assessment/sketch";
 import { Sha256HashSchema } from "#contracts/ids";
 import {
   PlanePointSchema,
@@ -161,12 +165,16 @@ const GraphPointKeySchema = Schema.Struct({
 /**
  * The rubric descriptors: for each criterion, what earns each level. They are
  * for a grader and are never shown to a learner before the key is released.
+ * `feedback`, when present, is what the learner reads about the criterion once
+ * it is scored: `earned` at its highest level and `missed` below it, the same
+ * shape a sketch's criteria carry, so one results view serves both.
  */
 const ExtendedTextKeySchema = Schema.Struct({
   ...KeyFields,
   criteria: Schema.NonEmptyArray(
     Schema.Struct({
       criterion: LocalIdSchema,
+      feedback: Schema.optionalKey(CriterionFeedbackSchema),
       levels: Schema.NonEmptyArray(
         Schema.Struct({ descriptor: PlainTextSchema, level: LocalIdSchema })
       ).check(
@@ -200,6 +208,7 @@ export const InteractionKeySchema = Schema.Union([
   GapMatchKeySchema,
   GraphPointKeySchema,
   ExtendedTextKeySchema,
+  SketchKeySchema,
 ]);
 export type InteractionKey = typeof InteractionKeySchema.Type;
 
