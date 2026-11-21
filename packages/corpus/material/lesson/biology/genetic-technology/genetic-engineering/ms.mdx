@@ -1,0 +1,320 @@
+export const metadata = {
+  title: "Nota Teknologi Genetik Biologi Tingkatan Lima",
+  description:
+    "Nota Biologi Tingkatan 5 Bab 13: fahami cara kejuruteraan genetik menghasilkan insulin dan GMO, serta PCR dan pemprofilan DNA, dengan contoh dan latihan.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2026-11-17",
+  subject: "Teknologi Genetik",
+};
+
+## Kejuruteraan Genetik Mengubah DNA Sesuatu Organisma
+
+**Kejuruteraan genetik** ialah pengubahan DNA sesuatu organisma secara sengaja, biasanya dengan memindahkan gen daripada satu organisma ke organisma lain. Hasilnya ialah **organisma terubah suai secara genetik (GMO)**, iaitu organisma yang DNAnya telah diubah dengan cara ini. DNA yang menggabungkan gen daripada dua sumber berbeza dipanggil **DNA rekombinan**. **Bioteknologi** pula bidang yang lebih luas: penggunaan organisma hidup, atau bahagiannya, untuk menghasilkan produk atau menyelesaikan masalah. Seterusnya kamu meneroka isi sel bakteria, membiakkan koloni penghasil insulin, menyalin DNA dengan PCR, dan menjalankan gel untuk memadankan profil DNA.
+
+Pemindahan gen memerlukan tiga alat. **Enzim pembatasan** memotong DNA pada satu jujukan bes yang tepat. **DNA ligase** mencantumkan dua kepingan yang dipotong menjadi satu bebenang. **Vektor** membawa gen baharu masuk ke dalam sel perumah, dan vektor yang paling kerap digunakan ialah **plasmid**, iaitu gelang kecil DNA dalam bakteria yang terpisah daripada kromosom utamanya.
+
+[Bakteria](/ms/subjek/biologi/biodiversiti/bakteria) sesuai dijadikan perumah kerana bakteria menyalin plasmidnya setiap kali membahagi, dan bakteria membaca gen manusia dengan kod genetik yang sama seperti sel manusia. Buka sel bakteria di bawah dan cari gelang kecil di sebelah nukleoid yang berselirat.
+
+<BacteriaStructureLab
+  title={<>Isi Sel Bakteria yang Menjadi Perumah Gen Baharu</>}
+  description={
+    <>
+      Sel bakteria berbentuk rod seperti Escherichia coli yang dibelah. Nukleoid
+      yang berselirat menyimpan DNA utamanya, dan gelang kecil di sebelahnya
+      ialah plasmid.
+    </>
+  }
+  labels={{
+    chooseMode: "Pilih paparan",
+    focusLabel: "Perhatikan",
+    takeawayLabel: "Kepentingannya",
+    viewLabel: "Model sel bakteria dengan nukleoid dan plasmidnya",
+    items: [
+      {
+        tab: "Bentuk",
+        scene: { kind: "shape", bacillusLabel: "Basilus" },
+        caption: <>Escherichia coli ialah basilus, iaitu rod sepanjang kira-kira <InlineMath math="2\ \mu\text{m}" />.</>,
+        focus: <>Seluruh bakteria hanya satu sel, jadi satu sel yang menerima gen baharu boleh membiak menjadi satu koloni.</>,
+        takeaway: <>Setiap sel anak daripada sel itu turut membawa gen baharu tersebut.</>,
+      },
+      {
+        tab: "Isi sel",
+        scene: { kind: "structure", nucleoidDnaLabel: "DNA nukleoid" },
+        caption: <>Nukleoid menyimpan kromosom utama. Gelang kecil di sebelahnya ialah plasmid, dan butiran kecil ialah ribosom.</>,
+        focus: <>Plasmid kecil dan terpisah, jadi gen boleh dicantumkan ke dalamnya dan gelang itu dimasukkan semula ke dalam sel.</>,
+        takeaway: <>Ribosom membaca gen pada plasmid dan membina proteinnya.</>,
+      },
+    ],
+  }}
+/>
+
+## Bakteria Boleh Menghasilkan Insulin Manusia
+
+Sesetengah pesakit diabetes tidak dapat menghasilkan **insulin** yang cukup, iaitu hormon yang menurunkan aras glukosa darah. Dahulu insulin diperoleh daripada pankreas babi dan lembu. Sejak tahun 1982, **insulin manusia rekombinan** yang dihasilkan oleh bakteria telah dijual, dan jujukan asid aminonya sama tepat dengan insulin daripada pankreas manusia.
+
+Langkahnya mengikut tiga alat tadi:
+
+1. Potong **gen insulin manusia** daripada DNA manusia dengan enzim pembatasan.
+2. Potong plasmid dengan **enzim pembatasan yang sama**, supaya kedua-dua potongan meninggalkan hujung bebenang tunggal yang sepadan, dipanggil hujung melekit.
+3. Campurkan gen dengan plasmid. Hujung melekit kedua-duanya berpasangan, dan **DNA ligase** mencantumkannya menjadi plasmid rekombinan.
+4. Masukkan plasmid rekombinan ke dalam bakteria. Hanya sebahagian sel menerimanya, jadi sel itu dipilih dan disimpan.
+5. Biakkan bakteria terpilih dalam fermenter yang besar. Setiap sel membaca gen insulin dan menghasilkan insulin, yang kemudian diekstrak dan ditulenkan.
+
+<Mermaid
+  title={<>Daripada Gen Manusia kepada Insulin dalam Botol</>}
+  description={<>Urutan langkah yang menukar satu gen manusia menjadi insulin yang dihasilkan oleh bakteria.</>}
+  chart={`flowchart TD
+    A["Gen insulin dipotong daripada DNA manusia"] --> C["Gen dicantum ke plasmid oleh ligase"]
+    B["Plasmid dipotong oleh enzim yang sama"] --> C
+    C --> D["Plasmid rekombinan masuk ke dalam bakteria"]
+    D --> E["Bakteria membiak dalam fermenter"]
+    E --> F["Insulin diekstrak dan ditulenkan"]`}
+/>
+
+Langkah 5 berjaya kerana bakteria membiak dengan pantas. Satu sel Escherichia coli membahagi menjadi dua kira-kira setiap <InlineMath math="20" /> minit pada <InlineMath math="37^\circ\text{C}" />, dan **setiap sel anak menerima salinan plasmid**. Gerakkan gelangsar masa dan kira bilangan sel.
+
+<BinaryFissionLab
+  title={<>Satu Bakteria Rekombinan Menjadi Koloni</>}
+  description={
+    <>
+      Satu sel Escherichia coli di atas agar membahagi kira-kira setiap{" "}
+      <InlineMath math="20" /> minit. Setiap sel baharu membawa plasmid
+      dengan gen insulin.
+    </>
+  }
+  labels={{
+    cells: <>Sel</>,
+    generations: <>Generasi</>,
+    minutes: "Minit",
+    viewLabel: "Koloni Escherichia coli yang membiak secara belahan dedua",
+  }}
+/>
+
+Sekarang kira bilangannya. Satu bakteria rekombinan berganda setiap <InlineMath math="20" /> minit. Berapakah bilangan sel selepas <InlineMath math="2" /> jam, dan selepas <InlineMath math="10" /> jam? Cari bilangan kali berganda dahulu, kemudian naikkan <InlineMath math="2" /> kepada kuasa itu:
+
+<MathContainer>
+<BlockMath math="n = \frac{120\text{ min}}{20\text{ min}} = 6, \qquad N = 2^6 = 64" />
+<BlockMath math="n = \frac{600\text{ min}}{20\text{ min}} = 30, \qquad N = 2^{30} = 1{,}073{,}741{,}824 \approx 1.07 \times 10^9" />
+</MathContainer>
+
+Semak jawapan pertama dengan koloni tadi: pada <InlineMath math="120" /> minit, pembilang menunjukkan <InlineMath math="6" /> generasi dan <InlineMath math="64" /> sel. Dalam <InlineMath math="10" /> jam, satu sel menjadi kira-kira satu bilion kilang insulin. Sebab itu satu fermenter mampu membekalkan insulin kepada berjuta-juta pesakit.
+
+## Organisma dan Makanan Terubah Suai secara Genetik
+
+GMO menerima gen yang memberinya sifat yang tidak dimilikinya sebelum ini. Makanan yang dihasilkan daripada GMO, atau yang mengandungi bahagian GMO, dipanggil **makanan terubah suai secara genetik (GMF)**. Baca setiap baris dengan soalan ini: gen apa yang dimasukkan, dan apa yang berubah?
+
+| GMO | Gen yang dimasukkan | Sifat baharu |
+| :--- | :--- | :--- |
+| Jagung Bt dan kapas Bt | Gen toksin daripada bakteria Bacillus thuringiensis | Membunuh ulat yang memakan tanaman, jadi petani kurang menyembur racun serangga |
+| Beras emas | Gen yang menghasilkan beta-karotena dalam bijirin beras | Bijirin membekalkan vitamin A, yang tiada dalam beras biasa |
+| Kacang soya tahan racun rumpai | Gen yang membolehkan tumbuhan hidup walaupun disembur satu jenis racun rumpai | Petani boleh membunuh rumpai tanpa membunuh tanaman |
+| Ikan salmon cepat membesar | Gen hormon pertumbuhan daripada spesies salmon lain | Mencapai saiz pasaran lebih awal |
+| Bakteria penghasil insulin | Gen insulin manusia | Menghasilkan insulin manusia dalam fermenter |
+
+Manfaatnya nyata: **hasil tanaman lebih tinggi, kurang racun perosak, nutrisi lebih baik dan ubat lebih murah**. Risikonya juga nyata, jadi setiap kes perlu disemak. Gen boleh tersebar melalui debunga kepada tumbuhan liar yang berkerabat. Serangga yang terus memakan tanaman Bt boleh berevolusi menjadi rintang terhadap toksin itu. Protein baharu dalam makanan perlu diuji supaya tidak mencetuskan alahan. Malaysia mengawal pelepasan dan pengimportan GMO di bawah **Akta Biokeselamatan 2007**, jadi setiap GMO dinilai sebelum sampai ke ladang atau kedai makanan.
+
+## Bioteknologi Menggunakan Organisma Hidup
+
+Bioteknologi lebih tua daripada kejuruteraan genetik. Pembuatan tempe dengan kulapuk dan yogurt dengan bakteria juga bioteknologi, kerana organisma hidup yang melakukan kerjanya. Kejuruteraan genetik ialah bahagian moden bioteknologi yang mengubah DNA organisma terlebih dahulu. Bioteknologi dikelaskan mengikut **bidang yang dibantunya**:
+
+| Bidang | Contoh | Peranan organisma hidup |
+| :--- | :--- | :--- |
+| Perubatan | Insulin, vaksin hepatitis B | Bakteria atau yis menghasilkan protein manusia atau protein virus |
+| Pertanian | Tanaman GM, kultur tisu kelapa sawit | Tumbuhan membawa gen baharu, atau satu pokok diklon menjadi beribu-ribu |
+| Industri | Enzim dalam serbuk pencuci | Mikroorganisma menghasilkan enzim yang mengurai kotoran protein dan lemak |
+| Alam sekitar | Pembersihan tumpahan minyak | Bakteria mengurai minyak menjadi bahan yang tidak berbahaya |
+| Forensik | Pemprofilan DNA | DNA mengenal pasti seseorang daripada setitik darah atau sehelai rambut |
+
+**Terapi gen** ialah kegunaan perubatan yang merawat penyakit genetik dengan memasukkan salinan gen yang berfungsi ke dalam sel pesakit sendiri. Virus yang tidak berbahaya sering digunakan sebagai vektor. Terapi ini menyasarkan punca penyakit, iaitu gen yang rosak, dan bukan sekadar merawat simptomnya sepanjang hayat.
+
+## PCR Menyalin Sampel DNA Berjuta Kali
+
+Sehelai rambut atau setitik darah mengandungi DNA yang terlalu sedikit untuk diuji. **Tindak balas berantai polimerase (PCR)** menyalin satu bahagian DNA berulang-ulang kali. Setiap kitaran ada tiga langkah. Pemanasan pada kira-kira <InlineMath math="95^\circ\text{C}" /> memisahkan dua bebenang DNA. Penyejukan membolehkan primer pendek melekat pada permulaan bahagian itu. Pada kira-kira <InlineMath math="72^\circ\text{C}" />, DNA polimerase yang tahan haba membina bebenang baharu pada setiap bebenang lama. Gerakkan gelangsar penyalinan dan perhatikan **setiap bebenang lama menjadi templat bebenang baharu**.
+
+<DnaHelixLab
+  title={<>Satu Kitaran PCR Menyalin Kedua-dua Bebenang</>}
+  description={
+    <>
+      Bahagian DNA sepanjang <InlineMath math="20" /> pasangan bes terbuka
+      dari satu hujung, dan nukleotida baharu berpasangan dengan setiap
+      bebenang lama: A dengan T, serta C dengan G.
+    </>
+  }
+  sequence="GATTACACGTGCATGCAATG"
+  copy
+  labels={{
+    copy: "Penyalinan",
+    copied: <>Pasangan bes yang disalin</>,
+    length: <>Pasangan bes</>,
+    span: <>Panjang</>,
+    turns: <>Pusingan</>,
+    viewLabel: "Heliks ganda dua DNA yang disalin bebenang demi bebenang",
+  }}
+/>
+
+Satu kitaran menukar satu heliks ganda dua menjadi dua, jadi setiap kitaran **menggandakan** bilangan salinan. Selepas <InlineMath math="n" /> kitaran, satu salinan asal menjadi <InlineMath math="2^n" /> salinan. Baca jadual di bawah carta untuk <InlineMath math="10" /> kitaran pertama.
+
+<FunctionChart
+  a={2}
+  p={1}
+  mode="discrete"
+  n={11}
+  title={<>Salinan Satu Bahagian DNA selepas Setiap Kitaran PCR</>}
+  description={
+    <>
+      Model <InlineMath math="f(x) = 1 \cdot 2^x" />, dengan{" "}
+      <InlineMath math="x" /> ialah bilangan kitaran. Selepas{" "}
+      <InlineMath math="10" /> kitaran, satu salinan menjadi{" "}
+      <InlineMath math="1{,}024" />.
+    </>
+  }
+/>
+
+Cuba dengan sampel sebenar. Satu calitan mengandungi <InlineMath math="10" /> salinan bahagian DNA itu, dan mesin PCR menjalankan <InlineMath math="25" /> kitaran. Darabkan salinan asal dengan <InlineMath math="2" /> sekali bagi setiap kitaran:
+
+<BlockMath math="N = 10 \times 2^{25} = 10 \times 33{,}554{,}432 = 335{,}544{,}320 \approx 3.4 \times 10^8" />
+
+Semak dengan anggaran cepat: <InlineMath math="2^{10} \approx 10^3" />, jadi <InlineMath math="2^{25} = 2^5 \times 2^{10} \times 2^{10} \approx 32 \times 10^6" />. Darab dengan <InlineMath math="10" /> memberi kira-kira <InlineMath math="3.2 \times 10^8" />, hampir sama dengan jawapan tepat.
+
+## Pemprofilan DNA Membandingkan Corak Jalur
+
+**Pemprofilan DNA**, juga dipanggil cap jari DNA, mengenal pasti seseorang melalui DNAnya. Kira-kira <InlineMath math="99.9\%" /> DNA mana-mana dua orang sama, jadi profil hanya melihat kawasan yang berbeza antara individu. Kawasan yang paling berguna mengandungi jujukan pendek yang berulang banyak kali, dan **bilangan ulangannya berbeza antara individu**. Hanya kembar seiras berkongsi profil yang sama. Tukar antara dua orang di bawah dan kira bes yang berbeza dalam satu bahagian DNA.
+
+<DnaHelixLab
+  title={<>Dua Orang, Satu Bahagian DNA</>}
+  description={
+    <>
+      <InlineMath math="24" /> pasangan bes yang sama daripada dua orang. Bes
+      yang berbeza akan bercahaya apabila kamu menukar antara mereka.
+    </>
+  }
+  sequence="ATGCCTAGGCATTGACCGTAGCTA"
+  variant="ATGCCTAGTCATTGACAGTAGCTA"
+  labels={{
+    choose: "Pilih individu",
+    strands: { first: <>Individu P</>, second: <>Individu Q</> },
+    differences: <>Bes yang berbeza</>,
+    identity: <>Bes yang sepadan</>,
+    length: <>Pasangan bes</>,
+    span: <>Panjang</>,
+    viewLabel: "Bahagian DNA yang sama daripada dua orang, dengan bes yang berbeza ditonjolkan",
+  }}
+/>
+
+Untuk membaca profil, makmal menyalin kawasan ulangan dengan PCR dan memasukkannya ke dalam telaga di satu hujung gel. Arus elektrik menarik DNA, yang bercas negatif, ke arah hujung positif. **Serpihan yang lebih pendek bergerak lebih laju melalui gel**, jadi serpihan itu bergerak lebih jauh. Dalam model ini, serpihan sepanjang <InlineMath math="L" /> pasangan bes bergerak sejauh <InlineMath math="d = h(7 - 2\log L)" /> sentimeter dalam <InlineMath math="h" /> jam. Ubah masa larian dan perhatikan jalur berpisah.
+
+<MathVisual
+  title={<>Gel Memisahkan Serpihan DNA Mengikut Panjang</>}
+  description={
+    <>
+      Tiga lorong: DNA dari tempat kejadian jenayah dan daripada dua suspek.
+      Setiap jalur bergerak ke bawah sejauh <InlineMath math="d = h(7 - 2\log L)" />{" "}
+      cm, jadi jalur <InlineMath math="150" /> pasangan bes bergerak paling jauh.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 4 }, y: { min: -6, max: 1 } },
+    view: { kind: "fit", padding: 0.08 },
+    parameters: [
+      { name: "h", min: 0.5, max: 2, value: 1.5, step: 0.1, label: "h" },
+    ],
+    objects: [
+      { id: "well-scene", kind: "segment", appearance: "reference", from: { x: 0.6, y: 0 }, to: { x: 1.4, y: 0 } },
+      { id: "well-p", kind: "segment", appearance: "reference", from: { x: 1.6, y: 0 }, to: { x: 2.4, y: 0 } },
+      { id: "well-q", kind: "segment", appearance: "reference", from: { x: 2.6, y: 0 }, to: { x: 3.4, y: 0 } },
+      { id: "scene-150", kind: "path", appearance: "primary", points: [{ x: "0.6", y: "-h(7 - 2 log(150))" }, { x: "1.4", y: "-h(7 - 2 log(150))" }] },
+      { id: "scene-320", kind: "path", appearance: "primary", points: [{ x: "0.6", y: "-h(7 - 2 log(320))" }, { x: "1.4", y: "-h(7 - 2 log(320))" }] },
+      { id: "p-150", kind: "path", appearance: "secondary", points: [{ x: "1.6", y: "-h(7 - 2 log(150))" }, { x: "2.4", y: "-h(7 - 2 log(150))" }] },
+      { id: "p-320", kind: "path", appearance: "secondary", points: [{ x: "1.6", y: "-h(7 - 2 log(320))" }, { x: "2.4", y: "-h(7 - 2 log(320))" }] },
+      { id: "q-210", kind: "path", appearance: "warning", points: [{ x: "2.6", y: "-h(7 - 2 log(210))" }, { x: "3.4", y: "-h(7 - 2 log(210))" }] },
+      { id: "q-400", kind: "path", appearance: "warning", points: [{ x: "2.6", y: "-h(7 - 2 log(400))" }, { x: "3.4", y: "-h(7 - 2 log(400))" }] },
+    ],
+    labels: [
+      { key: "scene", objectId: "well-scene", at: { x: 1, y: 0 }, placement: "above" },
+      { key: "suspect-p", objectId: "well-p", at: { x: 2, y: 0 }, placement: "above" },
+      { key: "suspect-q", objectId: "well-q", at: { x: 3, y: 0 }, placement: "above" },
+    ],
+    readouts: [
+      { key: "short", formula: "h(7 - 2 log(150))" },
+      { key: "long", formula: "h(7 - 2 log(400))" },
+    ],
+  }}
+  labels={{
+    h: <>Masa larian <InlineMath math="h" /> dalam jam</>,
+    scene: <>Tempat kejadian</>,
+    "suspect-p": <>Suspek P</>,
+    "suspect-q": <>Suspek Q</>,
+    short: <>Jarak jalur <InlineMath math="150" /> pasangan bes dalam cm</>,
+    long: <>Jarak jalur <InlineMath math="400" /> pasangan bes dalam cm</>,
+  }}
+/>
+
+Sekarang tentukan suspek yang sepadan. Sampel dari tempat kejadian mempunyai serpihan <InlineMath math="150" /> dan <InlineMath math="320" /> pasangan bes. Suspek P mempunyai dua serpihan yang sama, manakala suspek Q mempunyai <InlineMath math="210" /> dan <InlineMath math="400" />. Selepas <InlineMath math="1.5" /> jam, kira kedudukan setiap jalur:
+
+<MathContainer>
+<BlockMath math="d_{150} = 1.5(7 - 2\log 150) = 1.5(7 - 4.352) = 3.97\text{ cm}" />
+<BlockMath math="d_{320} = 1.5(7 - 2\log 320) = 1.5(7 - 5.010) = 2.98\text{ cm}" />
+<BlockMath math="d_{210} = 3.53\text{ cm}, \qquad d_{400} = 2.69\text{ cm}" />
+</MathContainer>
+
+Jalur suspek P berada pada <InlineMath math="3.97\text{ cm}" /> dan <InlineMath math="2.98\text{ cm}" />, sama aras dengan jalur sampel tempat kejadian, jadi **profil suspek P sepadan**. Jalur suspek Q berada pada aras yang berbeza, jadi suspek Q dikecualikan. Semak urutannya: serpihan terpendek, <InlineMath math="150" /> pasangan bes, mempunyai jarak paling besar, tepat seperti yang dijangka. Makmal sebenar membandingkan banyak kawasan ulangan sekali gus, jadi padanan penuh secara kebetulan menjadi sangat tidak mungkin.
+
+## Manfaat dan Batasan Teknologi Genetik
+
+Teknologi genetik **menyelesaikan masalah yang tidak dapat diselesaikan oleh kaedah lama**. Insulin tidak lagi bergantung pada organ haiwan. Tanaman boleh membawa sifat yang tidak mungkin diperoleh melalui pembiakbakaan bertahun-tahun, seperti gen toksin bakteria. Kesan DNA yang sangat sedikit boleh mengenal pasti suspek, membebaskan orang yang dituduh secara salah, atau mengenal pasti mangsa selepas bencana.
+
+Kuasa yang sama inilah yang memerlukan peraturan. Gen yang telah dilepaskan dalam tanaman tidak boleh ditarik balik. Profil DNA ialah maklumat peribadi tentang seseorang dan saudara-maranya. Pengubahan gen manusia menimbulkan persoalan tentang perubahan yang dikira rawatan dan yang tidak. Jadi **setiap kegunaan dinilai berdasarkan buktinya**: apa yang diubah, apa yang mungkin terjejas, dan siapa yang membuat keputusan.
+
+## Kesilapan Lazim dalam Teknologi Genetik
+
+| Kesilapan | Sebab salah | Cara semak |
+| :--- | :--- | :--- |
+| Gen dan plasmid boleh dipotong dengan enzim pembatasan yang berbeza. | Hanya enzim yang sama meninggalkan hujung melekit yang sepadan dan boleh berpasangan. | Namakan satu enzim untuk kedua-dua potongan. |
+| Ligase memotong DNA. | Enzim pembatasan memotong, dan ligase mencantumkan hujung yang dipotong. | Ligase mencantum, enzim pembatasan memotong. |
+| Semua GMO ialah tanaman. | Bakteria, haiwan dan tumbuhan semuanya boleh menjadi GMO. | Tanya sama ada DNA organisma itu telah diubah. |
+| PCR menambah bilangan salinan yang tetap dalam setiap kitaran. | Setiap kitaran menggandakan salinan, jadi pertambahannya ialah <InlineMath math="2^n" />. | Sepuluh kitaran mesti memberi <InlineMath math="1{,}024" /> salinan daripada satu. |
+| Serpihan DNA yang lebih besar bergerak lebih jauh dalam gel. | Serpihan yang lebih besar bergerak lebih perlahan melalui gel. | Serpihan terkecil berada paling jauh dari telaga. |
+
+Kesilapan keempat menghasilkan jawapan yang terlalu kecil. Jika kamu menambah <InlineMath math="2" /> salinan setiap kitaran, sepuluh kitaran memberi <InlineMath math="21" /> salinan, bukan <InlineMath math="1{,}024" />. Ingat: **setiap kitaran menggandakan salinan yang sedia ada**.
+
+## Latihan Teknologi Genetik
+
+Soalan ini bergerak daripada alat kejuruteraan genetik kepada kiraan di sebalik insulin, PCR dan pemprofilan. **Tulis rumus dahulu** dalam setiap pengiraan, kemudian gantikan nilainya.
+
+1. Seorang murid memotong gen insulin dengan enzim X dan plasmid dengan enzim Y. Terangkan sebab gen itu tidak akan bercantum dengan plasmid, dan namakan enzim yang mencantumkan DNA.
+
+2. Sebuah fermenter bermula dengan <InlineMath math="100" /> bakteria rekombinan yang berganda setiap <InlineMath math="30" /> minit. Berapakah bilangan bakteria selepas <InlineMath math="3" /> jam?
+
+3. Berapakah bilangan kitaran PCR yang diperlukan untuk menukar satu salinan bahagian DNA menjadi lebih daripada sejuta salinan?
+
+4. Dalam model gel <InlineMath math="d = h(7 - 2\log L)" />, berapakah jarak antara jalur <InlineMath math="250" /> pasangan bes dengan jalur <InlineMath math="500" /> pasangan bes selepas <InlineMath math="1" /> jam?
+
+### Penyelesaian
+
+**Penyelesaian 1**: Enzim X dan Y memotong pada jujukan yang berbeza, jadi hujung yang ditinggalkan **tidak dapat berpasangan**. Hujung bebenang tunggal gen tidak sepadan dengan hujung plasmid, jadi gen tidak dapat masuk. Masalah ini selesai jika kedua-duanya dipotong dengan enzim yang sama, dan **DNA ligase** kemudian mencantumkan sambungannya. Semak: dalam langkah penghasilan insulin, langkah 2 menggunakan enzim yang sama atas sebab ini.
+
+**Penyelesaian 2**: Tiga jam bersamaan <InlineMath math="180" /> minit, jadi bakteria berganda sebanyak <InlineMath math="6" /> kali:
+
+<BlockMath math="n = \frac{180}{30} = 6, \qquad N = 100 \times 2^6 = 100 \times 64 = 6{,}400" />
+
+Semak dengan menggandakan satu demi satu: <InlineMath math="100, 200, 400, 800, 1{,}600, 3{,}200, 6{,}400" />. Itu enam kali berganda.
+
+**Penyelesaian 3**: Cari nilai <InlineMath math="n" /> terkecil yang memberi <InlineMath math="2^n > 1{,}000{,}000" />:
+
+<MathContainer>
+<BlockMath math="2^{19} = 524{,}288 < 1{,}000{,}000" />
+<BlockMath math="2^{20} = 1{,}048{,}576 > 1{,}000{,}000" />
+</MathContainer>
+
+Jadi **<InlineMath math="20" /> kitaran** diperlukan. Semak: <InlineMath math="2^{10} = 1{,}024 \approx 10^3" />, dan <InlineMath math="(10^3)^2 = 10^6" />, jadi kira-kira dua puluh kitaran memang betul.
+
+**Penyelesaian 4**: Kira setiap jarak pada <InlineMath math="h = 1" />, kemudian tolak:
+
+<MathContainer>
+<BlockMath math="d_{250} = 7 - 2\log 250 = 7 - 4.796 = 2.204\text{ cm}" />
+<BlockMath math="d_{500} = 7 - 2\log 500 = 7 - 5.398 = 1.602\text{ cm}" />
+<BlockMath math="d_{250} - d_{500} = 0.602\text{ cm}" />
+</MathContainer>
+
+Kedua-dua jalur terpisah kira-kira <InlineMath math="0.60\text{ cm}" />, dan **serpihan yang lebih pendek berada lebih rendah**, lebih jauh dari telaga. Semak: <InlineMath math="500" /> ialah dua kali <InlineMath math="250" />, jadi jaraknya <InlineMath math="2\log 2 = 0.602" />, jawapan yang sama.
