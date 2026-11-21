@@ -9,7 +9,9 @@ export const metadata = {
 
 ## A Bus Trip Becomes a Graph
 
-Write down how far something is from its starting point at every moment, then plot it with time across and distance up. That picture is a **distance-time graph**. One idea unlocks it: **the gradient of the line is the speed**. A steeper line means faster, a flat line means the object is standing still, and a line going down means it's heading back to the start. In the bus lab, you watch that graph draw itself while the bus drives.
+Write down how far something is from its starting point at every moment, then plot it with time across and distance up. That picture is a **distance-time graph**.
+
+One idea unlocks it: **the gradient of the line is the speed**. A steeper line means faster, a flat line means the object is standing still, and a line going down means it's heading back to the start. First trace the graph point by point, then watch the bus drive alongside it later on this page.
 
 Follow one town bus. It leaves the Terminal, stops at the Clinic, carries on to the Stadium, waits there, then drives straight back to the Terminal. Assume the bus keeps a **steady speed within each part** of the trip. A real bus speeds up and slows down gradually, but this assumption turns every part into one straight line.
 
@@ -23,55 +25,42 @@ Follow one town bus. It leaves the Terminal, stops at the Clinic, carries on to 
 
 To draw the graph, **mark a point every time the bus changes what it's doing**, with time as the first coordinate and distance as the second. The points are <InlineMath math="O(0, 0)" />, <InlineMath math="A(12, 8)" />, <InlineMath math="B(18, 8)" />, <InlineMath math="C(28, 12)" />, <InlineMath math="D(33, 12)" />, and <InlineMath math="E(48, 0)" />. Join neighbouring points with straight lines, because the bus's speed doesn't change between them.
 
-<JourneyGraphLab
+<MathVisual
   title={<>A Town Bus from the Terminal to the Stadium</>}
   description={
     <>
-      Press play or drag the clock, and watch the bus on the road and its
-      point on the graph paper move together. Pick a part to see its rise and
-      how long it takes.
+      Distance from the Terminal in km against time in minutes. Slide the time
+      and read where the bus is along the route.
     </>
   }
   footer={
     <>
-      A flat line appears whenever the bus stops, and a falling line when it
-      heads back.
+      A flat stretch marks each stop, and a falling line shows the bus heading
+      back.
     </>
   }
-  bus={{
-    name: "Bus",
-    legs: [
-      { change: 8, minutes: 12 },
-      { change: 0, minutes: 6 },
-      { change: 4, minutes: 10 },
-      { change: 0, minutes: 5 },
-      { change: -12, minutes: 15 },
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 50 }, y: { min: 0, max: 14 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "w", min: 0, max: 48, value: 15, step: 0.5, label: "w" },
+    ],
+    objects: [
+      { id: "trip", kind: "polyline", vertices: [{ x: 0, y: 0 }, { x: 12, y: 8 }, { x: 18, y: 8 }, { x: 28, y: 12 }, { x: 33, y: 12 }, { x: 48, y: 0 }], appearance: "primary" },
+      { id: "now", kind: "marker", x: "w", y: "min(min(2w / 3, max(8, 8 + 0.4(w - 18))), min(12, 12 - 0.8(w - 33)))", appearance: "warning" },
+    ],
+    readouts: [
+      { key: "distance", formula: "min(min(2w / 3, max(8, 8 + 0.4(w - 18))), min(12, 12 - 0.8(w - 33)))" },
     ],
   }}
-  stops={[
-    { at: 0, name: "Terminal" },
-    { at: 8, name: "Clinic" },
-    { at: 12, name: "Stadium" },
-  ]}
   labels={{
-    average: <>Average speed for the whole trip</>,
-    axes: { distance: "Distance from the Terminal (km)", time: "Time (min)" },
-    distance: <>Bus's distance from the Terminal</>,
-    motion: {
-      away: <>the bus moves away from the Terminal</>,
-      back: <>the bus heads back to the Terminal</>,
-      still: <>the bus stands still</>,
-    },
-    parts: "Part of the trip",
-    speed: <>Speed</>,
-    time: "Time since the bus left",
-    units: { distance: "km", speed: "km/h", time: "min" },
-    viewLabel: "A straight road with a town bus, beside a sheet of graph paper",
-    whole: "All",
+    w: <>Time since the bus left, in minutes</>,
+    distance: <>Distance from the Terminal, in km</>,
   }}
 />
 
-Drag the clock to minute <InlineMath math="15" />. The bus is waiting at the Clinic, so its point sits on the flat line <InlineMath math="AB" /> at <InlineMath math="8\text{ km}" />. Each part's speed still shows a question mark, because that's the number you're about to work out yourself from the gradient.
+Slide the time to minute <InlineMath math="15" />. The bus is waiting at the Clinic, so its point sits on the flat line <InlineMath math="AB" /> at <InlineMath math="8\text{ km}" />. Next, work out how fast the bus drives on each part from the gradient.
 
 ## Steeper Means Faster
 
@@ -83,55 +72,6 @@ On part <InlineMath math="OA" />, the bus's distance rises by <InlineMath math="
 </MathContainer>
 
 You multiply by <InlineMath math="60" /> because an hour has <InlineMath math="60" /> minutes. On part <InlineMath math="BC" />, the bus only rises <InlineMath math="4\text{ km}" /> in <InlineMath math="10" /> minutes, so the gradient gives <InlineMath math="\tfrac{4}{10} \times 60 = 24\text{ km/h}" />. Line <InlineMath math="BC" /> looks less steep than <InlineMath math="OA" />, and the bus really is slower there.
-
-<JourneyGraphLab
-  title={<>The Speed of Each Part of the Bus Trip</>}
-  description={
-    <>
-      Pick <InlineMath math="OA" />, <InlineMath math="BC" />, or{" "}
-      <InlineMath math="DE" />. The lab draws the rise and the time, then
-      divides one by the other to give the speed in km/h.
-    </>
-  }
-  footer={
-    <>
-      Compare <InlineMath math="OA" /> with <InlineMath math="BC" />: the
-      steeper line has the higher speed.
-    </>
-  }
-  showSpeeds
-  bus={{
-    name: "Bus",
-    legs: [
-      { change: 8, minutes: 12 },
-      { change: 0, minutes: 6 },
-      { change: 4, minutes: 10 },
-      { change: 0, minutes: 5 },
-      { change: -12, minutes: 15 },
-    ],
-  }}
-  stops={[
-    { at: 0, name: "Terminal" },
-    { at: 8, name: "Clinic" },
-    { at: 12, name: "Stadium" },
-  ]}
-  labels={{
-    average: <>Average speed for the whole trip</>,
-    axes: { distance: "Distance from the Terminal (km)", time: "Time (min)" },
-    distance: <>Bus's distance from the Terminal</>,
-    motion: {
-      away: <>the bus moves away from the Terminal</>,
-      back: <>the bus heads back to the Terminal</>,
-      still: <>the bus stands still</>,
-    },
-    parts: "Part of the trip",
-    speed: <>Speed</>,
-    time: "Time since the bus left",
-    units: { distance: "km", speed: "km/h", time: "min" },
-    viewLabel: "A straight road with a town bus, beside a sheet of graph paper",
-    whole: "All",
-  }}
-/>
 
 Two other line shapes often get misread: the flat line and the line that goes down.
 
@@ -166,7 +106,7 @@ The total distance counts every kilometre the bus covers, the trip back included
 <BlockMath math="\text{average speed} = \frac{24\text{ km}}{48\text{ minutes}} = 0.5\text{ km per minute} = 30\text{ km/h}" />
 </MathContainer>
 
-Check it backwards: <InlineMath math="48" /> minutes is <InlineMath math="0.8" /> of an hour, and <InlineMath math="30 \times 0.8 = 24\text{ km}" />. Pick All in the speed lab and the same number appears there. Notice too that the bus ends up <InlineMath math="0\text{ km}" /> from the Terminal, yet the distance it travelled is still <InlineMath math="24\text{ km}" />.
+Check it backwards: <InlineMath math="48" /> minutes is <InlineMath math="0.8" /> of an hour, and <InlineMath math="30 \times 0.8 = 24\text{ km}" />. You can verify that number by picking All in the bus lab below. Notice too that the bus ends up <InlineMath math="0\text{ km}" /> from the Terminal, yet the distance it travelled is still <InlineMath math="24\text{ km}" />.
 
 A common slip is to average the five speeds of the parts:
 

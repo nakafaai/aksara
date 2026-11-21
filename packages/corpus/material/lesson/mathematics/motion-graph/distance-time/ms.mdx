@@ -9,7 +9,9 @@ export const metadata = {
 
 ## Perjalanan Bas Menjadi Graf
 
-Catat sejauh mana sesuatu objek dari titik mulanya pada setiap saat, kemudian lukis catatan itu dengan masa pada paksi mengufuk dan jarak pada paksi mencancang. Hasilnya ialah **graf jarak-masa**. Satu idea membuka graf ini: **kecerunan garis ialah laju**. Garis yang lebih curam bermakna lebih laju, garis mengufuk bermakna objek itu pegun, dan garis yang menurun bermakna objek itu sedang kembali ke titik mula. Dalam makmal bas nanti, kamu melihat graf itu terlukis sendiri semasa bas bergerak.
+Catat sejauh mana sesuatu objek dari titik mulanya pada setiap saat, kemudian lukis catatan itu dengan masa pada paksi mengufuk dan jarak pada paksi mencancang. Hasilnya ialah **graf jarak-masa**.
+
+Satu idea membuka graf ini: **kecerunan garis ialah laju**. Garis yang lebih curam bermakna lebih laju, garis mengufuk bermakna objek itu pegun, dan garis yang menurun bermakna objek itu sedang kembali ke titik mula. Mula-mula ikuti grafnya titik demi titik, kemudian lihat bas bergerak bersama graf pada bahagian akhir halaman ini.
 
 Ikut sebuah bas bandar. Bas bertolak dari Terminal, berhenti di Klinik, terus ke Stadium, menunggu sekejap, kemudian pulang ke Terminal tanpa berhenti. Anggap bas bergerak dengan **laju seragam dalam setiap bahagian** perjalanan. Bas sebenar menambah dan mengurangkan laju sedikit demi sedikit, tetapi anggapan ini menjadikan setiap bahagian satu garis lurus.
 
@@ -23,55 +25,42 @@ Ikut sebuah bas bandar. Bas bertolak dari Terminal, berhenti di Klinik, terus ke
 
 Untuk melukis grafnya, **tanda satu titik setiap kali gerakan bas berubah**, dengan masa sebagai koordinat pertama dan jarak sebagai koordinat kedua. Titik-titiknya ialah <InlineMath math="O(0, 0)" />, <InlineMath math="A(12, 8)" />, <InlineMath math="B(18, 8)" />, <InlineMath math="C(28, 12)" />, <InlineMath math="D(33, 12)" /> dan <InlineMath math="E(48, 0)" />. Sambungkan titik yang berturutan dengan garis lurus, kerana laju bas tidak berubah di antara dua titik itu.
 
-<JourneyGraphLab
+<MathVisual
   title={<>Bas Bandar dari Terminal ke Stadium</>}
   description={
     <>
-      Tekan main atau seret jam, kemudian lihat bas di jalan dan titiknya di
-      kertas graf bergerak bersama. Pilih satu bahagian untuk melihat
-      kenaikan dan tempohnya.
+      Jarak dari Terminal dalam km melawan masa dalam minit. Gerakkan masa dan
+      baca kedudukan bas sepanjang laluan.
     </>
   }
   footer={
     <>
-      Garis mengufuk muncul apabila bas berhenti, dan garis menurun apabila
-      bas pulang.
+      Garis mengufuk menandakan bas berhenti, dan garis menurun menunjukkan bas
+      pulang.
     </>
   }
-  bus={{
-    name: "Bas",
-    legs: [
-      { change: 8, minutes: 12 },
-      { change: 0, minutes: 6 },
-      { change: 4, minutes: 10 },
-      { change: 0, minutes: 5 },
-      { change: -12, minutes: 15 },
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 50 }, y: { min: 0, max: 14 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "w", min: 0, max: 48, value: 15, step: 0.5, label: "w" },
+    ],
+    objects: [
+      { id: "trip", kind: "polyline", vertices: [{ x: 0, y: 0 }, { x: 12, y: 8 }, { x: 18, y: 8 }, { x: 28, y: 12 }, { x: 33, y: 12 }, { x: 48, y: 0 }], appearance: "primary" },
+      { id: "now", kind: "marker", x: "w", y: "min(min(2w / 3, max(8, 8 + 0.4(w - 18))), min(12, 12 - 0.8(w - 33)))", appearance: "warning" },
+    ],
+    readouts: [
+      { key: "distance", formula: "min(min(2w / 3, max(8, 8 + 0.4(w - 18))), min(12, 12 - 0.8(w - 33)))" },
     ],
   }}
-  stops={[
-    { at: 0, name: "Terminal" },
-    { at: 8, name: "Klinik" },
-    { at: 12, name: "Stadium" },
-  ]}
   labels={{
-    average: <>Laju purata seluruh perjalanan</>,
-    axes: { distance: "Jarak dari Terminal (km)", time: "Masa (minit)" },
-    distance: <>Jarak bas dari Terminal</>,
-    motion: {
-      away: <>bas bergerak menjauhi Terminal</>,
-      back: <>bas kembali ke Terminal</>,
-      still: <>bas pegun</>,
-    },
-    parts: "Bahagian perjalanan",
-    speed: <>Laju</>,
-    time: "Masa sejak bas bertolak",
-    units: { distance: "km", speed: "km/j", time: "minit" },
-    viewLabel: "Jalan lurus dengan bas bandar dan kertas graf di sebelahnya",
-    whole: "Semua",
+    w: <>Masa sejak bas bertolak, dalam minit</>,
+    distance: <>Jarak dari Terminal, dalam km</>,
   }}
 />
 
-Seret jam ke minit <InlineMath math="15" />. Bas sedang menunggu di Klinik, jadi titiknya berada pada garis mengufuk <InlineMath math="AB" /> pada jarak <InlineMath math="8\text{ km}" />. Laju setiap bahagian masih tertulis tanda soal, kerana laju itulah yang akan kamu kira sendiri daripada kecerunan garisnya.
+Gerakkan masa ke minit <InlineMath math="15" />. Bas sedang menunggu di Klinik, jadi titiknya berada pada garis mengufuk <InlineMath math="AB" /> pada jarak <InlineMath math="8\text{ km}" />. Seterusnya, kira sendiri laju bas bagi setiap bahagian daripada kecerunan garisnya.
 
 ## Lebih Curam Lebih Laju
 
@@ -83,55 +72,6 @@ Pada bahagian <InlineMath math="OA" />, jarak bas naik <InlineMath math="8\text{
 </MathContainer>
 
 Darabkan dengan <InlineMath math="60" /> kerana satu jam ada <InlineMath math="60" /> minit. Pada bahagian <InlineMath math="BC" />, bas hanya naik <InlineMath math="4\text{ km}" /> dalam <InlineMath math="10" /> minit, jadi kecerunannya memberi <InlineMath math="\tfrac{4}{10} \times 60 = 24\text{ km/j}" />. Garis <InlineMath math="BC" /> memang kelihatan lebih landai daripada <InlineMath math="OA" />, dan bas di situ memang lebih perlahan.
-
-<JourneyGraphLab
-  title={<>Laju Setiap Bahagian Perjalanan Bas</>}
-  description={
-    <>
-      Pilih <InlineMath math="OA" />, <InlineMath math="BC" /> atau{" "}
-      <InlineMath math="DE" />. Makmal ini melukis kenaikan dan tempohnya,
-      kemudian membahagikan kedua-duanya untuk mendapat laju dalam km/j.
-    </>
-  }
-  footer={
-    <>
-      Bandingkan <InlineMath math="OA" /> dengan <InlineMath math="BC" />:
-      garis yang lebih curam mempunyai laju yang lebih tinggi.
-    </>
-  }
-  showSpeeds
-  bus={{
-    name: "Bas",
-    legs: [
-      { change: 8, minutes: 12 },
-      { change: 0, minutes: 6 },
-      { change: 4, minutes: 10 },
-      { change: 0, minutes: 5 },
-      { change: -12, minutes: 15 },
-    ],
-  }}
-  stops={[
-    { at: 0, name: "Terminal" },
-    { at: 8, name: "Klinik" },
-    { at: 12, name: "Stadium" },
-  ]}
-  labels={{
-    average: <>Laju purata seluruh perjalanan</>,
-    axes: { distance: "Jarak dari Terminal (km)", time: "Masa (minit)" },
-    distance: <>Jarak bas dari Terminal</>,
-    motion: {
-      away: <>bas bergerak menjauhi Terminal</>,
-      back: <>bas kembali ke Terminal</>,
-      still: <>bas pegun</>,
-    },
-    parts: "Bahagian perjalanan",
-    speed: <>Laju</>,
-    time: "Masa sejak bas bertolak",
-    units: { distance: "km", speed: "km/j", time: "minit" },
-    viewLabel: "Jalan lurus dengan bas bandar dan kertas graf di sebelahnya",
-    whole: "Semua",
-  }}
-/>
 
 Dua bentuk garis lain sering tersalah baca: garis yang mengufuk dan garis yang menurun.
 
@@ -166,7 +106,7 @@ Jumlah jarak mengira setiap kilometer yang dilalui bas, termasuk perjalanan pula
 <BlockMath math="\text{laju purata} = \frac{24\text{ km}}{48\text{ minit}} = 0.5\text{ km seminit} = 30\text{ km/j}" />
 </MathContainer>
 
-Semak semula: <InlineMath math="48" /> minit sama dengan <InlineMath math="0.8" /> jam, dan <InlineMath math="30 \times 0.8 = 24\text{ km}" />. Pilih Semua dalam makmal laju tadi, dan nombor yang sama muncul di situ. Perhatikan juga, pada akhir perjalanan bas kembali berjarak <InlineMath math="0\text{ km}" /> dari Terminal, tetapi jarak yang dilaluinya tetap <InlineMath math="24\text{ km}" />.
+Semak semula: <InlineMath math="48" /> minit sama dengan <InlineMath math="0.8" /> jam, dan <InlineMath math="30 \times 0.8 = 24\text{ km}" />. Kamu boleh menyemak nombor itu dengan memilih Semua dalam makmal bas di bawah. Perhatikan juga, pada akhir perjalanan bas kembali berjarak <InlineMath math="0\text{ km}" /> dari Terminal, tetapi jarak yang dilaluinya tetap <InlineMath math="24\text{ km}" />.
 
 Kesilapan yang kerap berlaku ialah mempuratakan laju kelima-lima bahagian:
 

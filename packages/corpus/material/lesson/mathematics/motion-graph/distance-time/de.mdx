@@ -9,7 +9,9 @@ export const metadata = {
 
 ## Die Busfahrt als Diagramm
 
-Notiere zu jedem Zeitpunkt, wie weit etwas von seinem Startpunkt entfernt ist, und trage das mit der Zeit nach rechts und dem Weg nach oben ein. So entsteht ein **Weg-Zeit-Diagramm**. Ein Gedanke schließt es auf: **Die Steigung der Linie ist die Geschwindigkeit**. Je steiler die Linie, desto schneller. Eine waagerechte Linie heißt, dass der Körper steht, und eine fallende Linie heißt, dass er zum Start zurückfährt. Im Bus-Labor siehst du, wie sich dieses Diagramm während der Fahrt selbst zeichnet.
+Notiere zu jedem Zeitpunkt, wie weit etwas von seinem Startpunkt entfernt ist, und trage das mit der Zeit nach rechts und dem Weg nach oben ein. So entsteht ein **Weg-Zeit-Diagramm**.
+
+Ein Gedanke schließt es auf: **Die Steigung der Linie ist die Geschwindigkeit**. Je steiler die Linie, desto schneller. Eine waagerechte Linie heißt, dass der Körper steht, und eine fallende Linie heißt, dass er zum Start zurückfährt. Geh das Diagramm zuerst Punkt für Punkt durch, und beobachte später auf dieser Seite, wie der Bus daneben fährt.
 
 Folge einem Stadtbus. Er fährt am Busbahnhof los, hält an der Klinik, fährt weiter zum Stadion, wartet dort kurz und fährt dann ohne Halt zum Busbahnhof zurück. Nimm an, dass der Bus **in jedem Abschnitt mit konstanter Geschwindigkeit** fährt. Ein echter Bus wird allmählich schneller und langsamer, aber mit dieser Annahme wird jeder Abschnitt zu einer geraden Linie.
 
@@ -23,55 +25,41 @@ Folge einem Stadtbus. Er fährt am Busbahnhof los, hält an der Klinik, fährt w
 
 Zum Zeichnen **setzt du jedes Mal einen Punkt, wenn der Bus seine Bewegung ändert**: die Zeit als erste Koordinate, den Weg als zweite. Die Punkte sind <InlineMath math="O(0, 0)" />, <InlineMath math="A(12, 8)" />, <InlineMath math="B(18, 8)" />, <InlineMath math="C(28, 12)" />, <InlineMath math="D(33, 12)" /> und <InlineMath math="E(48, 0)" />. Verbinde benachbarte Punkte mit geraden Linien, denn dazwischen ändert sich das Tempo des Busses nicht.
 
-<JourneyGraphLab
+<MathVisual
   title={<>Ein Stadtbus vom Busbahnhof zum Stadion</>}
   description={
     <>
-      Drück auf Abspielen oder zieh die Uhr, und sieh zu, wie sich der Bus
-      auf der Straße und sein Punkt auf dem Millimeterpapier gemeinsam
-      bewegen. Wähl einen Abschnitt, um Anstieg und Dauer zu sehen.
+      Weg vom Busbahnhof in km über der Zeit in Minuten. Verschieb die Zeit und
+      lies ab, wo der Bus gerade steht.
     </>
   }
   footer={
     <>
-      Waagerecht wird die Linie, wenn der Bus hält, und fallend, wenn er
-      zurückfährt.
+      Waagerechte Stücke zeigen Halte, die fallende Linie zeigt den Rückweg.
     </>
   }
-  bus={{
-    name: "Bus",
-    legs: [
-      { change: 8, minutes: 12 },
-      { change: 0, minutes: 6 },
-      { change: 4, minutes: 10 },
-      { change: 0, minutes: 5 },
-      { change: -12, minutes: 15 },
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 50 }, y: { min: 0, max: 14 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "w", min: 0, max: 48, value: 15, step: 0.5, label: "w" },
+    ],
+    objects: [
+      { id: "trip", kind: "polyline", vertices: [{ x: 0, y: 0 }, { x: 12, y: 8 }, { x: 18, y: 8 }, { x: 28, y: 12 }, { x: 33, y: 12 }, { x: 48, y: 0 }], appearance: "primary" },
+      { id: "now", kind: "marker", x: "w", y: "min(min(2w / 3, max(8, 8 + 0.4(w - 18))), min(12, 12 - 0.8(w - 33)))", appearance: "warning" },
+    ],
+    readouts: [
+      { key: "distance", formula: "min(min(2w / 3, max(8, 8 + 0.4(w - 18))), min(12, 12 - 0.8(w - 33)))" },
     ],
   }}
-  stops={[
-    { at: 0, name: "Busbahnhof" },
-    { at: 8, name: "Klinik" },
-    { at: 12, name: "Stadion" },
-  ]}
   labels={{
-    average: <>Durchschnittsgeschwindigkeit der ganzen Fahrt</>,
-    axes: { distance: "Weg vom Busbahnhof (km)", time: "Zeit (min)" },
-    distance: <>Abstand des Busses vom Busbahnhof</>,
-    motion: {
-      away: <>der Bus entfernt sich vom Busbahnhof</>,
-      back: <>der Bus fährt zum Busbahnhof zurück</>,
-      still: <>der Bus steht</>,
-    },
-    parts: "Abschnitt der Fahrt",
-    speed: <>Geschwindigkeit</>,
-    time: "Zeit seit der Abfahrt",
-    units: { distance: "km", speed: "km/h", time: "min" },
-    viewLabel: "Eine gerade Straße mit einem Stadtbus neben einem Blatt Millimeterpapier",
-    whole: "Alle",
+    w: <>Zeit seit der Abfahrt, in Minuten</>,
+    distance: <>Weg vom Busbahnhof, in km</>,
   }}
 />
 
-Zieh die Uhr auf Minute <InlineMath math="15" />. Der Bus wartet an der Klinik, also liegt sein Punkt auf der waagerechten Linie <InlineMath math="AB" /> bei <InlineMath math="8\text{ km}" />. Das Tempo der Abschnitte steht noch als Fragezeichen da, weil du genau diese Zahlen gleich selbst aus der Steigung berechnest.
+Schieb die Zeit auf Minute <InlineMath math="15" />. Der Bus wartet an der Klinik, also liegt sein Punkt auf der waagerechten Linie <InlineMath math="AB" /> bei <InlineMath math="8\text{ km}" />. Als Nächstes berechnest du das Tempo jedes Abschnitts direkt aus der Steigung.
 
 ## Steiler heißt schneller
 
@@ -83,55 +71,6 @@ Im Abschnitt <InlineMath math="OA" /> wächst der Weg des Busses in <InlineMath 
 </MathContainer>
 
 Du multiplizierst mit <InlineMath math="60" />, weil eine Stunde <InlineMath math="60" /> Minuten hat. Im Abschnitt <InlineMath math="BC" /> steigt der Weg in <InlineMath math="10" /> Minuten nur um <InlineMath math="4\text{ km}" />, also ergibt die Steigung <InlineMath math="\tfrac{4}{10} \times 60 = 24\text{ km/h}" />. Die Linie <InlineMath math="BC" /> sieht flacher aus als <InlineMath math="OA" />, und dort ist der Bus auch wirklich langsamer.
-
-<JourneyGraphLab
-  title={<>Das Tempo jedes Abschnitts der Busfahrt</>}
-  description={
-    <>
-      Wähl <InlineMath math="OA" />, <InlineMath math="BC" /> oder{" "}
-      <InlineMath math="DE" />. Das Labor zeichnet Anstieg und Dauer ein und
-      teilt beides zur Geschwindigkeit in km/h.
-    </>
-  }
-  footer={
-    <>
-      Vergleiche <InlineMath math="OA" /> mit <InlineMath math="BC" />: Die
-      steilere Linie hat das höhere Tempo.
-    </>
-  }
-  showSpeeds
-  bus={{
-    name: "Bus",
-    legs: [
-      { change: 8, minutes: 12 },
-      { change: 0, minutes: 6 },
-      { change: 4, minutes: 10 },
-      { change: 0, minutes: 5 },
-      { change: -12, minutes: 15 },
-    ],
-  }}
-  stops={[
-    { at: 0, name: "Busbahnhof" },
-    { at: 8, name: "Klinik" },
-    { at: 12, name: "Stadion" },
-  ]}
-  labels={{
-    average: <>Durchschnittsgeschwindigkeit der ganzen Fahrt</>,
-    axes: { distance: "Weg vom Busbahnhof (km)", time: "Zeit (min)" },
-    distance: <>Abstand des Busses vom Busbahnhof</>,
-    motion: {
-      away: <>der Bus entfernt sich vom Busbahnhof</>,
-      back: <>der Bus fährt zum Busbahnhof zurück</>,
-      still: <>der Bus steht</>,
-    },
-    parts: "Abschnitt der Fahrt",
-    speed: <>Geschwindigkeit</>,
-    time: "Zeit seit der Abfahrt",
-    units: { distance: "km", speed: "km/h", time: "min" },
-    viewLabel: "Eine gerade Straße mit einem Stadtbus neben einem Blatt Millimeterpapier",
-    whole: "Alle",
-  }}
-/>
 
 Zwei andere Linienformen werden oft falsch gelesen: die waagerechte und die fallende Linie.
 
@@ -166,7 +105,7 @@ Der Gesamtweg zählt jeden Kilometer, den der Bus fährt, auch den Rückweg. Die
 <BlockMath math="\text{Durchschnittsgeschwindigkeit} = \frac{24\text{ km}}{48\text{ Minuten}} = 0{,}5\text{ km pro Minute} = 30\text{ km/h}" />
 </MathContainer>
 
-Rechne rückwärts nach: <InlineMath math="48" /> Minuten sind <InlineMath math="0{,}8" /> Stunden, und <InlineMath math="30 \times 0{,}8 = 24\text{ km}" />. Wähl im Tempo-Labor die Option Alle, dann erscheint dort dieselbe Zahl. Am Ende steht der Bus wieder <InlineMath math="0\text{ km}" /> vom Busbahnhof entfernt, und trotzdem ist er <InlineMath math="24\text{ km}" /> gefahren.
+Rechne rückwärts nach: <InlineMath math="48" /> Minuten sind <InlineMath math="0{,}8" /> Stunden, und <InlineMath math="30 \times 0{,}8 = 24\text{ km}" />. Du kannst diese Zahl im Bus-Labor unten mit der Option Alle überprüfen. Am Ende steht der Bus wieder <InlineMath math="0\text{ km}" /> vom Busbahnhof entfernt, und trotzdem ist er <InlineMath math="24\text{ km}" /> gefahren.
 
 Ein häufiger Fehler ist, die fünf Abschnittstempos zu mitteln:
 

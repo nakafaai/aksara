@@ -9,7 +9,9 @@ export const metadata = {
 
 ## Perjalanan Bus Menjadi Grafik
 
-Catat seberapa jauh sebuah benda dari titik awalnya pada setiap saat, lalu gambar catatan itu dengan waktu di sumbu mendatar dan jarak di sumbu tegak. Hasilnya disebut **grafik jarak-waktu**. Kuncinya satu: **kemiringan garis adalah kelajuan**. Garis yang lebih curam berarti lebih cepat, garis datar berarti benda diam, dan garis yang turun berarti benda sedang kembali ke titik awal. Di lab bus nanti, kamu melihat grafik itu tergambar sendiri selama bus berjalan.
+Catat seberapa jauh sebuah benda dari titik awalnya pada setiap saat, lalu gambar catatan itu dengan waktu di sumbu mendatar dan jarak di sumbu tegak. Hasilnya disebut **grafik jarak-waktu**.
+
+Kuncinya satu: **kemiringan garis adalah kelajuan**. Garis yang lebih curam berarti lebih cepat, garis datar berarti benda diam, dan garis yang turun berarti benda sedang kembali ke titik awal. Pertama telusuri grafiknya titik demi titik, lalu amati bus berjalan di samping grafik pada bagian akhir halaman ini.
 
 Kita ikuti satu bus kota. Bus berangkat dari Terminal, berhenti di Klinik, lanjut ke Stadion, menunggu sebentar, lalu pulang ke Terminal tanpa berhenti. Anggap bus melaju dengan **kelajuan tetap di setiap bagian** perjalanan. Bus sungguhan tentu menambah dan mengurangi kelajuan pelan-pelan, tetapi anggapan ini membuat setiap bagian menjadi satu garis lurus.
 
@@ -23,54 +25,41 @@ Kita ikuti satu bus kota. Bus berangkat dari Terminal, berhenti di Klinik, lanju
 
 Untuk menggambar grafiknya, **tandai satu titik setiap kali gerak bus berubah**, dengan waktu sebagai koordinat pertama dan jarak sebagai koordinat kedua. Titik-titiknya adalah <InlineMath math="O(0, 0)" />, <InlineMath math="A(12, 8)" />, <InlineMath math="B(18, 8)" />, <InlineMath math="C(28, 12)" />, <InlineMath math="D(33, 12)" />, dan <InlineMath math="E(48, 0)" />. Hubungkan titik yang berurutan dengan garis lurus, karena di antara dua titik itu kelajuan bus tidak berubah.
 
-<JourneyGraphLab
+<MathVisual
   title={<>Bus Kota dari Terminal ke Stadion</>}
   description={
     <>
-      Tekan putar atau geser jam, lalu lihat bus di jalan dan titiknya di
-      kertas grafik bergerak bersama. Pilih satu bagian untuk melihat
-      kenaikan dan lamanya.
+      Jarak dari Terminal dalam km terhadap waktu dalam menit. Geser waktunya
+      dan baca posisi bus di sepanjang rute.
     </>
   }
   footer={
     <>
-      Garis datar muncul saat bus berhenti, dan garis turun saat bus pulang.
+      Garis datar menandai bus berhenti, dan garis turun menunjukkan bus pulang.
     </>
   }
-  bus={{
-    name: "Bus",
-    legs: [
-      { change: 8, minutes: 12 },
-      { change: 0, minutes: 6 },
-      { change: 4, minutes: 10 },
-      { change: 0, minutes: 5 },
-      { change: -12, minutes: 15 },
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 50 }, y: { min: 0, max: 14 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "w", min: 0, max: 48, value: 15, step: 0.5, label: "w" },
+    ],
+    objects: [
+      { id: "trip", kind: "polyline", vertices: [{ x: 0, y: 0 }, { x: 12, y: 8 }, { x: 18, y: 8 }, { x: 28, y: 12 }, { x: 33, y: 12 }, { x: 48, y: 0 }], appearance: "primary" },
+      { id: "now", kind: "marker", x: "w", y: "min(min(2w / 3, max(8, 8 + 0.4(w - 18))), min(12, 12 - 0.8(w - 33)))", appearance: "warning" },
+    ],
+    readouts: [
+      { key: "distance", formula: "min(min(2w / 3, max(8, 8 + 0.4(w - 18))), min(12, 12 - 0.8(w - 33)))" },
     ],
   }}
-  stops={[
-    { at: 0, name: "Terminal" },
-    { at: 8, name: "Klinik" },
-    { at: 12, name: "Stadion" },
-  ]}
   labels={{
-    average: <>Kelajuan rata-rata seluruh perjalanan</>,
-    axes: { distance: "Jarak dari Terminal (km)", time: "Waktu (menit)" },
-    distance: <>Jarak bus dari Terminal</>,
-    motion: {
-      away: <>bus menjauhi Terminal</>,
-      back: <>bus kembali ke Terminal</>,
-      still: <>bus berhenti</>,
-    },
-    parts: "Bagian perjalanan",
-    speed: <>Kelajuan</>,
-    time: "Waktu sejak bus berangkat",
-    units: { distance: "km", speed: "km/jam", time: "menit" },
-    viewLabel: "Jalan lurus dengan bus kota dan kertas grafik di sampingnya",
-    whole: "Semua",
+    w: <>Waktu sejak bus berangkat, dalam menit</>,
+    distance: <>Jarak dari Terminal, dalam km</>,
   }}
 />
 
-Geser jam ke menit <InlineMath math="15" />. Bus sedang menunggu di Klinik, jadi titiknya ada di garis datar <InlineMath math="AB" /> dengan jarak <InlineMath math="8\text{ km}" />. Kelajuan setiap bagian masih tertulis tanda tanya, karena kelajuan itulah yang akan kamu hitung sendiri dari kemiringan garisnya.
+Geser waktunya ke menit <InlineMath math="15" />. Bus sedang menunggu di Klinik, jadi titiknya ada di garis datar <InlineMath math="AB" /> dengan jarak <InlineMath math="8\text{ km}" />. Selanjutnya, kamu hitung sendiri kelajuan bus pada setiap bagian dari kemiringan garisnya.
 
 ## Makin Curam Makin Cepat
 
@@ -82,55 +71,6 @@ Pada bagian <InlineMath math="OA" />, jarak bus naik <InlineMath math="8\text{ k
 </MathContainer>
 
 Kalikan dengan <InlineMath math="60" /> karena satu jam berisi <InlineMath math="60" /> menit. Pada bagian <InlineMath math="BC" />, bus hanya naik <InlineMath math="4\text{ km}" /> dalam <InlineMath math="10" /> menit, jadi gradiennya <InlineMath math="\tfrac{4}{10} \times 60 = 24\text{ km/jam}" />. Garis <InlineMath math="BC" /> memang terlihat lebih landai daripada <InlineMath math="OA" />, dan bus di situ memang lebih lambat.
-
-<JourneyGraphLab
-  title={<>Kelajuan Setiap Bagian Perjalanan Bus</>}
-  description={
-    <>
-      Pilih <InlineMath math="OA" />, <InlineMath math="BC" />, atau{" "}
-      <InlineMath math="DE" />. Lab menggambar kenaikan dan lamanya, lalu
-      membagi keduanya menjadi kelajuan dalam km/jam.
-    </>
-  }
-  footer={
-    <>
-      Bandingkan <InlineMath math="OA" /> dan <InlineMath math="BC" />: garis
-      yang lebih curam punya kelajuan lebih besar.
-    </>
-  }
-  showSpeeds
-  bus={{
-    name: "Bus",
-    legs: [
-      { change: 8, minutes: 12 },
-      { change: 0, minutes: 6 },
-      { change: 4, minutes: 10 },
-      { change: 0, minutes: 5 },
-      { change: -12, minutes: 15 },
-    ],
-  }}
-  stops={[
-    { at: 0, name: "Terminal" },
-    { at: 8, name: "Klinik" },
-    { at: 12, name: "Stadion" },
-  ]}
-  labels={{
-    average: <>Kelajuan rata-rata seluruh perjalanan</>,
-    axes: { distance: "Jarak dari Terminal (km)", time: "Waktu (menit)" },
-    distance: <>Jarak bus dari Terminal</>,
-    motion: {
-      away: <>bus menjauhi Terminal</>,
-      back: <>bus kembali ke Terminal</>,
-      still: <>bus berhenti</>,
-    },
-    parts: "Bagian perjalanan",
-    speed: <>Kelajuan</>,
-    time: "Waktu sejak bus berangkat",
-    units: { distance: "km", speed: "km/jam", time: "menit" },
-    viewLabel: "Jalan lurus dengan bus kota dan kertas grafik di sampingnya",
-    whole: "Semua",
-  }}
-/>
 
 Dua bentuk garis lain sering membuat orang salah baca: garis yang datar dan garis yang turun.
 
@@ -165,7 +105,7 @@ Jarak total menghitung setiap kilometer yang dilalui bus, termasuk jalan pulang.
 <BlockMath math="\text{kelajuan rata-rata} = \frac{24\text{ km}}{48\text{ menit}} = 0{,}5\text{ km per menit} = 30\text{ km/jam}" />
 </MathContainer>
 
-Cek balik: <InlineMath math="48" /> menit sama dengan <InlineMath math="0{,}8" /> jam, dan <InlineMath math="30 \times 0{,}8 = 24\text{ km}" />. Pilih Semua di lab kelajuan tadi, dan angka yang sama muncul di sana. Perhatikan juga bahwa di akhir perjalanan bus kembali berjarak <InlineMath math="0" /> dari Terminal, tetapi jarak yang ditempuhnya tetap <InlineMath math="24\text{ km}" />.
+Cek balik: <InlineMath math="48" /> menit sama dengan <InlineMath math="0{,}8" /> jam, dan <InlineMath math="30 \times 0{,}8 = 24\text{ km}" />. Kamu bisa mengecek angka itu dengan memilih Semua di lab bus di bawah. Perhatikan juga bahwa di akhir perjalanan bus kembali berjarak <InlineMath math="0" /> dari Terminal, tetapi jarak yang ditempuhnya tetap <InlineMath math="24\text{ km}" />.
 
 Kesalahan yang sering muncul adalah merata-ratakan kelima kelajuan bagian:
 
