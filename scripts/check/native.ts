@@ -17,9 +17,9 @@ const REPOSITORY_URL = "https://github.com/nakafaai/nakafa.com.git";
  * (nakafa.com#2354), whose compiler is @effect/tsgo 0.73.2 on tsrs
  * 7.1.0-beta.tsrs3 with its five new rules decided (nakafa.com#2763), and whose
  * Biome 2.6.8 and Ultracite 8.3.1 write mixed imports as separate type imports
- * (nakafa.com#2767).
+ * (nakafa.com#2767), and whose Effect cohort is 4.1.5 (nakafa.com#2798).
  */
-export const NAKAFA_COMMIT = "efa9a08fc9193b1d9423279dd4b17b97e8972cf5";
+export const NAKAFA_COMMIT = "dc6ef8f82e5cffbc6d5539b761006a2920b20c16";
 
 /** The steps of the native check, in the order they run. */
 const NativeStepSchema = Schema.Literals(["clone", "install", "check"]);
