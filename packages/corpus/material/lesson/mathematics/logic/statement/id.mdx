@@ -9,7 +9,9 @@ export const metadata = {
 
 ## Kalimat yang Bisa Dicek
 
-Pernyataan adalah kalimat yang bisa kamu cek, dan hasil ceknya **benar atau salah, tidak keduanya**. Benar atau salahnya kalimat itu disebut **nilai kebenaran**. Pertanyaan dan perintah tidak bisa dicek seperti itu, jadi keduanya bukan pernyataan. Dari pernyataan, kamu menyusun klaim dengan kata semua dan beberapa, membalik nilainya dengan kata bukan, lalu menggabungkan dua pernyataan dengan dan serta atau. Setiap aturan itu kamu coba sendiri di papan ubin, di rangkaian sakelar, dan pada gerbang yang tersembunyi.
+Pernyataan adalah kalimat yang bisa kamu cek, dan hasil ceknya **benar atau salah, tidak keduanya**. Benar atau salahnya kalimat itu disebut **nilai kebenaran**. Pertanyaan dan perintah tidak bisa dicek seperti itu, jadi keduanya bukan pernyataan.
+
+Dari pernyataan, kamu menyusun klaim dengan kata semua dan beberapa, membalik nilainya dengan kata bukan, lalu menggabungkan dua pernyataan dengan dan serta atau. Setiap aturan itu kamu uji lewat tabel, rangkaian sakelar, dan gerbang yang tersembunyi.
 
 | Kalimat | Pernyataan? | Nilai kebenaran |
 | :--- | :--- | :--- |
@@ -23,80 +25,15 @@ Baris pertama menunjukkan bahwa **kalimat yang salah tetap pernyataan**. Kalimat
 
 ## Kata Semua dan Beberapa
 
-Klaim dengan kata semua baru benar kalau **setiap anggota yang dibicarakan lolos**. Klaim dengan kata beberapa sudah benar kalau **paling sedikit satu anggota lolos**. Kata seperti semua dan beberapa disebut kuantor. Papan di bawah memuat sepuluh ubin bilangan dan tiga klaim tentang ubin itu. Pilih satu klaim, jalankan pengecekan, dan perhatikan ubin mana yang memutuskan nilainya.
+Klaim dengan kata semua baru benar kalau **setiap anggota yang dibicarakan lolos**. Klaim dengan kata beberapa sudah benar kalau **paling sedikit satu anggota lolos**. Kata seperti semua dan beberapa disebut kuantor. Uji tiga klaim pada sepuluh bilangan <InlineMath math="1, 4, 6, 9, 12, 16, 20, 25, 30, 36" /> dan lihat bilangan mana yang memutuskan nilainya.
 
-<CounterexampleGridLab
-  title={<>Satu Papan, Tiga Klaim</>}
-  description={
-    <>
-      Pilih klaim, lalu jalankan pengecekan ubin satu per satu. Kamu juga
-      bisa mengetuk ubin mana pun untuk mengeceknya sendiri.
-    </>
-  }
-  footer={<>Satu ubin gagal menjatuhkan klaim semua. Satu ubin lolos cukup untuk klaim beberapa.</>}
-  tiles={[
-    { name: "1", tile: { kind: "number", value: 1 } },
-    { name: "4", tile: { kind: "number", value: 4 } },
-    { name: "6", tile: { kind: "number", value: 6 } },
-    { name: "9", tile: { kind: "number", value: 9 } },
-    { name: "12", tile: { kind: "number", value: 12 } },
-    { name: "16", tile: { kind: "number", value: 16 } },
-    { name: "20", tile: { kind: "number", value: 20 } },
-    { name: "25", tile: { kind: "number", value: 25 } },
-    { name: "30", tile: { kind: "number", value: 30 } },
-    { name: "36", tile: { kind: "number", value: 36 } },
-  ]}
-  claims={[
-    {
-      name: "Semua kuadrat",
-      text: "Semua bilangan kuadrat di sini genap.",
-      claim: {
-        kind: "all",
-        subject: { name: "Bilangan kuadrat", test: { kind: "square-number" } },
-        predicate: { name: "Bilangan genap", test: { kind: "even" } },
-      },
-    },
-    {
-      name: "Beberapa kuadrat",
-      text: "Beberapa bilangan kuadrat di sini genap.",
-      claim: {
-        kind: "some",
-        subject: { name: "Bilangan kuadrat", test: { kind: "square-number" } },
-        predicate: { name: "Bilangan genap", test: { kind: "even" } },
-      },
-    },
-    {
-      name: "Semua kelipatan empat",
-      text: "Semua kelipatan 4 di sini genap.",
-      claim: {
-        kind: "all",
-        subject: { name: "Kelipatan 4", test: { kind: "multiple", of: 4 } },
-        predicate: { name: "Bilangan genap", test: { kind: "even" } },
-      },
-    },
-  ]}
-  labels={{
-    claim: <>Klaim</>,
-    claims: "Klaim",
-    false: "Salah",
-    none: <>Belum ada ubin yang dipilih</>,
-    picked: <>Ubin yang dipilih</>,
-    tile: "Ubin",
-    true: "Benar",
-    verdicts: {
-      breaks: <>Contoh penyangkal</>,
-      fits: <>Cocok</>,
-      misses: <>Bukan contoh</>,
-      outside: <>Di luar klaim</>,
-      proves: <>Contoh</>,
-      safe: <>Syarat salah</>,
-    },
-    viewLabel: "Sepuluh ubin bilangan di depan kartu klaim",
-  }}
-  showAnswer
-/>
+| Klaim | Bilangan yang dicek | Nilai kebenaran | Penentunya |
+| :--- | :--- | :--- | :--- |
+| Semua bilangan kuadrat di sini genap. | <InlineMath math="1, 4, 9, 16, 25, 36" /> | Salah | <InlineMath math="1" />, <InlineMath math="9" />, dan <InlineMath math="25" /> ganjil |
+| Beberapa bilangan kuadrat di sini genap. | <InlineMath math="1, 4, 9, 16, 25, 36" /> | Benar | <InlineMath math="4" /> genap |
+| Semua kelipatan <InlineMath math="4" /> di sini genap. | <InlineMath math="4, 12, 16, 20, 36" /> | Benar | Kelimanya genap |
 
-Klaim pertama jatuh di ubin pertama. Bilangan <InlineMath math="1 = 1^2" /> adalah bilangan kuadrat, tetapi ganjil, dan ubin <InlineMath math="9" /> serta <InlineMath math="25" /> menjatuhkannya juga. Klaim kedua langsung benar di ubin <InlineMath math="4 = 2^2" />, karena satu contoh sudah cukup. Klaim ketiga lebih berat dibuktikan. Kamu harus mengecek kelima kelipatan <InlineMath math="4" />, yaitu <InlineMath math="4, 12, 16, 20, 36" />, dan semuanya genap. Jadi **klaim semua yang benar menuntut pengecekan penuh**, sedangkan klaim semua yang salah cukup dijatuhkan oleh satu ubin.
+Klaim pertama langsung jatuh di kuadrat pertama: <InlineMath math="1 = 1^2" /> ganjil, dan <InlineMath math="9" /> serta <InlineMath math="25" /> menjatuhkannya juga. Klaim kedua langsung benar di <InlineMath math="4 = 2^2" />, karena satu contoh sudah cukup. Klaim ketiga lebih berat dibuktikan. Kamu harus mengecek kelima kelipatan <InlineMath math="4" />, dan semuanya genap. Jadi **klaim semua yang benar menuntut pengecekan penuh**, sedangkan yang salah cukup dijatuhkan oleh satu kasus gagal.
 
 ## Kata Bukan Membalik Nilai
 
@@ -109,7 +46,7 @@ Tambahkan kata bukan atau tidak ke sebuah pernyataan, dan nilai kebenarannya ber
 
 Ambil <InlineMath math="p" />: <InlineMath math="91" /> adalah bilangan prima. Pernyataan ini salah, jadi negasinya, <InlineMath math="91" /> bukan bilangan prima, bernilai benar. Cek: <InlineMath math="91 = 7 \times 13" />, jadi <InlineMath math="91" /> punya faktor selain <InlineMath math="1" /> dan dirinya sendiri.
 
-Kata semua butuh perhatian lebih. Di papan tadi, klaim semua bilangan kuadrat di sini genap bernilai salah. Banyak orang menulis negasinya sebagai tidak ada bilangan kuadrat di sini yang genap. Kalimat itu juga salah, karena <InlineMath math="4" /> genap. Negasi harus selalu berlawanan nilai dengan pernyataan asalnya, jadi kalimat itu bukan negasinya. Negasi yang tepat adalah **tidak semua bilangan kuadrat di sini genap**, dan ubin <InlineMath math="1" /> membuktikannya benar.
+Kata semua butuh perhatian lebih. Pada daftar tadi, klaim semua bilangan kuadrat di sini genap bernilai salah. Banyak orang menulis negasinya sebagai tidak ada bilangan kuadrat di sini yang genap. Kalimat itu juga salah, karena <InlineMath math="4" /> genap. Negasi harus selalu berlawanan nilai dengan pernyataan asalnya, jadi kalimat itu bukan negasinya. Negasi yang tepat adalah **tidak semua bilangan kuadrat di sini genap**, dan bilangan <InlineMath math="1" /> membuktikannya benar.
 
 ## Menggabungkan Dua Pernyataan
 
@@ -146,6 +83,8 @@ Kata dan serta atau menggabungkan dua pernyataan menjadi satu **pernyataan majem
     viewLabel: "Baterai, dua sakelar, dan lampu di papan pasak",
   }}
 />
+
+Lihat bedanya kedua rangkaian saat kamu hanya menutup sakelar P. Pada rangkaian berderet lampu tetap padam, sedangkan pada rangkaian berdampingan lampu langsung menyala. Perbedaan itulah yang melahirkan dua aturan di bawah.
 
 ### Kapan Dan Bernilai Benar
 

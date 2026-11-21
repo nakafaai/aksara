@@ -88,70 +88,20 @@ Form I funktioniert, weil jedes Element von <InlineMath math="A" />, auch <Inlin
   showVerdict
 />
 
-Die erste Reihenfolge legt die vier Seiten von <InlineMath math="PQRS" /> sind nicht alle gleich lang in Prämisse 2 und <InlineMath math="PQRS" /> ist kein Quadrat in die Konklusion. Das ist **Form III**, und die Kette schließt sich. Die zweite Reihenfolge geht den Schritt rückwärts: Aus <InlineMath math="PQRS" /> ist kein Quadrat folgert sie, dass die Seiten nicht alle gleich lang sind. Dieser Schritt ist ein Fehlschluss namens **Verneinung des Antezedens**. Beim Drachenviereck ist die Konklusion zufällig wahr, aber die Form bleibt ungültig. Auch eine Raute ist kein Quadrat, und trotzdem sind ihre vier Seiten gleich lang.
+Die erste Reihenfolge legt die vier Seiten von <InlineMath math="PQRS" /> sind nicht alle gleich lang in Prämisse 2 und <InlineMath math="PQRS" /> ist kein Quadrat in die Konklusion. Das ist **Form III**, und die Kette schließt sich.
+
+Die zweite Reihenfolge geht den Schritt rückwärts: Aus <InlineMath math="PQRS" /> ist kein Quadrat folgert sie, dass die Seiten nicht alle gleich lang sind. Dieser Schritt ist ein Fehlschluss namens **Verneinung des Antezedens**. Beim Drachenviereck ist die Konklusion zufällig wahr, aber die Form bleibt ungültig. Auch eine Raute ist kein Quadrat, und trotzdem sind ihre vier Seiten gleich lang.
 
 ### Gültig und schlüssig
 
-Gültig sagt nur etwas über die Form. Ein Argument, das gültig ist und dessen **Prämissen alle wahr sind**, heißt schlüssig, und nur ein schlüssiges Argument garantiert eine wahre Konklusion. Die Kette unten hält eine falsche Prämisse: Alle Primzahlen sind ungerade.
+Gültig sagt nur etwas über die Form. Ein Argument, das gültig ist und dessen **Prämissen alle wahr sind**, heißt schlüssig, und nur ein schlüssiges Argument garantiert eine wahre Konklusion. Vergleiche beide Reihenfolgen unten mit einer falschen Prämisse: Alle Primzahlen sind ungerade.
 
-<ArgumentChainLab
-  title={<>Richtige Form, falsche Prämisse</>}
-  description={
-    <>
-      Leg beide Karten über die Zahl <InlineMath math="2" /> an und lies dann
-      das Urteil der Kette für jede Reihenfolge.
-    </>
-  }
-  footer={<>Ein Siegel markiert jede falsche Karte. Die Kette kann sich trotz Siegel schließen.</>}
-  premises={[
-    {
-      statement: { kind: "all", subject: "prime", predicate: "odd" },
-      text: "Alle Primzahlen sind ungerade.",
-      truth: false,
-    },
-    "open",
-  ]}
-  conclusion="open"
-  hand={[
-    {
-      statement: { kind: "member", member: "2", set: "prime" },
-      text: "2 ist eine Primzahl.",
-      truth: true,
-    },
-    {
-      statement: { kind: "member", member: "2", set: "odd" },
-      text: "2 ist eine ungerade Zahl.",
-      truth: false,
-    },
-  ]}
-  labels={{
-    conclusion: "Konklusion",
-    fallacies: {
-      antecedent: <>Verneinung des Antezedens</>,
-      consequent: <>Bejahung des Konsequens</>,
-      middle: <>Unverteilter Mittelbegriff</>,
-    },
-    form: <>Form</>,
-    forms: {
-      I: <>Form I</>,
-      II: <>Form II</>,
-      III: <>Form III</>,
-    },
-    hand: "Karten",
-    no: <>Nein</>,
-    premises: ["Prämisse 1", "Prämisse 2"],
-    sound: <>Schlüssig</>,
-    truth: <>Prämissen wahr</>,
-    unfollowed: <>Die Konklusion folgt nicht</>,
-    unlinked: <>Die Prämissen hängen nicht zusammen</>,
-    valid: <>Gültig</>,
-    viewLabel: "Drei Karten auf einer Schiene, verbunden durch zwei Kettenglieder",
-    yes: <>Ja</>,
-  }}
-  showVerdict
-/>
+| Prämisse 1 | Prämisse 2 | Konklusion | Urteil |
+| :--- | :--- | :--- | :--- |
+| Alle Primzahlen sind ungerade. (Falsch) | <InlineMath math="2" /> ist eine Primzahl. (Wahr) | <InlineMath math="2" /> ist ungerade. (Falsch) | Form I, gültig, nicht schlüssig |
+| Alle Primzahlen sind ungerade. (Falsch) | <InlineMath math="2" /> ist ungerade. (Falsch) | <InlineMath math="2" /> ist eine Primzahl. (Wahr) | Ungültig, unverteilter Mittelbegriff |
 
-Mit <InlineMath math="2" /> ist eine Primzahl als Prämisse 2 ist die Kette **Form I** und gültig: Wären wirklich alle Primzahlen ungerade, müsste <InlineMath math="2" /> ungerade sein. Das Problem ist Prämisse 1, denn <InlineMath math="2" /> ist eine gerade Primzahl. Das Argument ist gültig, aber nicht schlüssig, und seine Konklusion, <InlineMath math="2" /> ist eine ungerade Zahl, ist falsch.
+Mit <InlineMath math="2" /> ist eine Primzahl als Prämisse 2 hat das erste Argument **Form I** und ist gültig: Wären wirklich alle Primzahlen ungerade, müsste <InlineMath math="2" /> ungerade sein. Das Problem ist Prämisse 1, denn <InlineMath math="2" /> ist eine gerade Primzahl. Das Argument ist gültig, aber nicht schlüssig, und seine Konklusion, <InlineMath math="2" /> ist eine ungerade Zahl, ist falsch.
 
 Die andere Reihenfolge, von <InlineMath math="2" /> ist ungerade zu <InlineMath math="2" /> ist eine Primzahl, ist der Fehlschluss des **unverteilten Mittelbegriffs**. Dass alle Primzahlen ungerade sind, macht nicht jede ungerade Zahl zur Primzahl, wie <InlineMath math="9" /> zeigt: ungerade, aber keine Primzahl. Vergleiche ein schlüssiges Argument: Alle Vielfachen von <InlineMath math="4" /> sind gerade, <InlineMath math="36" /> ist ein Vielfaches von <InlineMath math="4" />, also ist <InlineMath math="36" /> gerade. Prüfe: <InlineMath math="36 = 4 \times 9" />.
 
@@ -208,6 +158,7 @@ Das Muster hat einen Grund. Jede Ecke ist mit <InlineMath math="n - 3" /> andere
       lies ab, wie viele Diagonalen die Regel vorhersagt. Nur bei ganzen Werten von <InlineMath math="n" /> steht der Punkt für ein Vieleck.
     </>
   }
+  footer={<>Schieb <InlineMath math="n" /> auf <InlineMath math="8" />: die Regel liefert <InlineMath math="20" /> Diagonalen.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: 0, max: 9 }, y: { min: -1, max: 21 } },

@@ -9,7 +9,9 @@ export const metadata = {
 
 ## Prüfbare Sätze
 
-Eine Aussage ist ein Satz, den du prüfen kannst, und die Prüfung ergibt **entweder wahr oder falsch, nie beides**. Ob der Satz wahr oder falsch ist, heißt sein **Wahrheitswert**. Eine Frage oder eine Aufforderung lässt sich so nicht prüfen, deshalb ist keine von beiden eine Aussage. Aus Aussagen baust du Behauptungen mit alle und einige, drehst sie mit nicht um und verbindest zwei davon durch das Wort und oder das Wort oder. Jede dieser Regeln probierst du selbst aus: auf einem Brett mit Plättchen, in einem Schalterkreis und an einem versteckten Gatter.
+Eine Aussage ist ein Satz, den du prüfen kannst, und die Prüfung ergibt **entweder wahr oder falsch, nie beides**. Ob der Satz wahr oder falsch ist, heißt sein **Wahrheitswert**. Eine Frage oder eine Aufforderung lässt sich so nicht prüfen, deshalb ist keine von beiden eine Aussage.
+
+Aus Aussagen baust du Behauptungen mit alle und einige, drehst sie mit nicht um und verbindest zwei davon durch das Wort und oder das Wort oder. Jede dieser Regeln probierst du selbst aus: in Tabellen, in einem Schalterkreis und an einem versteckten Gatter.
 
 | Satz | Aussage? | Wahrheitswert |
 | :--- | :--- | :--- |
@@ -23,80 +25,15 @@ Die erste Zeile zeigt: **Auch ein falscher Satz ist eine Aussage**. Du kannst ih
 
 ## Die Wörter alle und einige
 
-Eine Behauptung mit alle ist nur wahr, wenn **jedes Element, um das es geht, die Prüfung besteht**. Eine Behauptung mit einige ist schon wahr, wenn **mindestens ein Element besteht**. Wörter wie alle und einige heißen Quantoren. Das Brett unten trägt zehn Zahlenplättchen und drei Behauptungen über sie. Wähle eine Behauptung, starte die Prüfung und achte darauf, welches Plättchen den Wahrheitswert entscheidet.
+Eine Behauptung mit alle ist nur wahr, wenn **jedes Element, um das es geht, die Prüfung besteht**. Eine Behauptung mit einige ist schon wahr, wenn **mindestens ein Element besteht**. Wörter wie alle und einige heißen Quantoren. Prüfe drei Behauptungen an den zehn Zahlen <InlineMath math="1, 4, 6, 9, 12, 16, 20, 25, 30, 36" /> und achte darauf, welche Zahl den Wahrheitswert entscheidet.
 
-<CounterexampleGridLab
-  title={<>Ein Brett, drei Behauptungen</>}
-  description={
-    <>
-      Wähle eine Behauptung und prüfe die Plättchen nacheinander. Du kannst
-      auch jedes Plättchen antippen und selbst prüfen.
-    </>
-  }
-  footer={<>Ein Plättchen, das durchfällt, kippt alle. Für einige reicht ein Plättchen, das besteht.</>}
-  tiles={[
-    { name: "1", tile: { kind: "number", value: 1 } },
-    { name: "4", tile: { kind: "number", value: 4 } },
-    { name: "6", tile: { kind: "number", value: 6 } },
-    { name: "9", tile: { kind: "number", value: 9 } },
-    { name: "12", tile: { kind: "number", value: 12 } },
-    { name: "16", tile: { kind: "number", value: 16 } },
-    { name: "20", tile: { kind: "number", value: 20 } },
-    { name: "25", tile: { kind: "number", value: 25 } },
-    { name: "30", tile: { kind: "number", value: 30 } },
-    { name: "36", tile: { kind: "number", value: 36 } },
-  ]}
-  claims={[
-    {
-      name: "Alle Quadratzahlen",
-      text: "Alle Quadratzahlen hier sind gerade.",
-      claim: {
-        kind: "all",
-        subject: { name: "Quadratzahl", test: { kind: "square-number" } },
-        predicate: { name: "Gerade Zahl", test: { kind: "even" } },
-      },
-    },
-    {
-      name: "Einige Quadratzahlen",
-      text: "Einige Quadratzahlen hier sind gerade.",
-      claim: {
-        kind: "some",
-        subject: { name: "Quadratzahl", test: { kind: "square-number" } },
-        predicate: { name: "Gerade Zahl", test: { kind: "even" } },
-      },
-    },
-    {
-      name: "Alle Vielfachen von vier",
-      text: "Alle Vielfachen von 4 hier sind gerade.",
-      claim: {
-        kind: "all",
-        subject: { name: "Vielfaches von 4", test: { kind: "multiple", of: 4 } },
-        predicate: { name: "Gerade Zahl", test: { kind: "even" } },
-      },
-    },
-  ]}
-  labels={{
-    claim: <>Die Behauptung</>,
-    claims: "Behauptung",
-    false: "Falsch",
-    none: <>Noch kein Plättchen gewählt</>,
-    picked: <>Gewähltes Plättchen</>,
-    tile: "Plättchen",
-    true: "Wahr",
-    verdicts: {
-      breaks: <>Gegenbeispiel</>,
-      fits: <>Passt</>,
-      misses: <>Kein Beispiel</>,
-      outside: <>Nicht betroffen</>,
-      proves: <>Beispiel</>,
-      safe: <>Bedingung falsch</>,
-    },
-    viewLabel: "Zehn Zahlenplättchen vor einer Karte mit der Behauptung",
-  }}
-  showAnswer
-/>
+| Behauptung | Geprüfte Zahlen | Wahrheitswert | Was entscheidet |
+| :--- | :--- | :--- | :--- |
+| Alle Quadratzahlen hier sind gerade. | <InlineMath math="1, 4, 9, 16, 25, 36" /> | Falsch | <InlineMath math="1" />, <InlineMath math="9" /> und <InlineMath math="25" /> sind ungerade |
+| Einige Quadratzahlen hier sind gerade. | <InlineMath math="1, 4, 9, 16, 25, 36" /> | Wahr | <InlineMath math="4" /> ist gerade |
+| Alle Vielfachen von <InlineMath math="4" /> hier sind gerade. | <InlineMath math="4, 12, 16, 20, 36" /> | Wahr | Alle fünf sind gerade |
 
-Die erste Behauptung fällt schon beim ersten Plättchen. Die Zahl <InlineMath math="1 = 1^2" /> ist eine Quadratzahl, aber ungerade, und auch die Plättchen <InlineMath math="9" /> und <InlineMath math="25" /> kippen die Behauptung. Die zweite ist wahr, sobald du bei <InlineMath math="4 = 2^2" /> ankommst, denn ein Beispiel reicht. Die dritte macht mehr Arbeit. Du musst alle fünf Vielfachen von <InlineMath math="4" /> prüfen, also <InlineMath math="4, 12, 16, 20, 36" />, und jedes davon ist gerade. Eine **wahre Behauptung mit alle braucht also die volle Prüfung**, eine falsche nur ein einziges Plättchen.
+Die erste Behauptung fällt schon bei der ersten Quadratzahl: <InlineMath math="1 = 1^2" /> ist ungerade, und auch <InlineMath math="9" /> und <InlineMath math="25" /> kippen sie. Die zweite ist wahr, sobald du bei <InlineMath math="4 = 2^2" /> ankommst, denn ein Beispiel reicht. Die dritte macht mehr Arbeit. Du musst alle fünf Vielfachen von <InlineMath math="4" /> prüfen, und jedes davon ist gerade. Eine **wahre Behauptung mit alle braucht also die volle Prüfung**, eine falsche nur einen einzigen Gegenfall.
 
 ## Nicht dreht den Wahrheitswert
 
@@ -109,7 +46,7 @@ Setz nicht in eine Aussage ein, und ihr Wahrheitswert kippt: Aus wahr wird falsc
 
 Nimm <InlineMath math="p" />: <InlineMath math="91" /> ist eine Primzahl. Das ist falsch, also ist die Verneinung, <InlineMath math="91" /> ist keine Primzahl, wahr. Prüfe: <InlineMath math="91 = 7 \times 13" />, also hat <InlineMath math="91" /> einen Teiler außer <InlineMath math="1" /> und sich selbst.
 
-Bei alle musst du aufpassen. Auf dem Brett ist die Behauptung alle Quadratzahlen hier sind gerade falsch. Viele schreiben als Verneinung keine Quadratzahl hier ist gerade. Dieser Satz ist ebenfalls falsch, denn <InlineMath math="4" /> ist gerade. Eine Verneinung hat immer den entgegengesetzten Wahrheitswert, also ist dieser Satz nicht die Verneinung. Richtig ist **nicht alle Quadratzahlen hier sind gerade**, und das Plättchen <InlineMath math="1" /> zeigt, dass diese Aussage wahr ist.
+Bei alle musst du aufpassen. In der Liste oben ist die Behauptung alle Quadratzahlen hier sind gerade falsch. Viele schreiben als Verneinung keine Quadratzahl hier ist gerade. Dieser Satz ist ebenfalls falsch, denn <InlineMath math="4" /> ist gerade. Eine Verneinung hat immer den entgegengesetzten Wahrheitswert, also ist dieser Satz nicht die Verneinung. Richtig ist **nicht alle Quadratzahlen hier sind gerade**, und die Zahl <InlineMath math="1" /> zeigt, dass diese Aussage wahr ist.
 
 ## Zwei Aussagen verbinden
 
@@ -146,6 +83,8 @@ Mit dem Wort und oder dem Wort oder verbindest du zwei Aussagen zu einer **zusam
     viewLabel: "Eine Batterie, zwei Schalter und eine Lampe auf einer Steckplatte",
   }}
 />
+
+Achte darauf, wie unterschiedlich beide Kreise reagieren, wenn du nur Schalter P schließt. Hintereinander bleibt die Lampe dunkel, nebeneinander leuchtet sie sofort. Genau dieser Unterschied steckt in den zwei Regeln unten.
 
 ### Wann und wahr ist
 

@@ -9,7 +9,9 @@ export const metadata = {
 
 ## Ayat yang Boleh Disemak
 
-Pernyataan ialah ayat yang boleh kamu semak, dan hasil semakannya **sama ada benar atau palsu, bukan kedua-duanya**. Benar atau palsunya ayat itu dipanggil **nilai kebenaran**. Soalan dan arahan tidak boleh disemak begitu, jadi kedua-duanya bukan pernyataan. Daripada pernyataan, kamu akan membina dakwaan dengan semua dan sebilangan, menukar nilainya dengan bukan, dan menggabungkan dua pernyataan dengan dan serta atau. Kamu cuba setiap peraturan itu sendiri pada papan jubin, pada litar suis dan pada get yang tersembunyi.
+Pernyataan ialah ayat yang boleh kamu semak, dan hasil semakannya **sama ada benar atau palsu, bukan kedua-duanya**. Benar atau palsunya ayat itu dipanggil **nilai kebenaran**. Soalan dan arahan tidak boleh disemak begitu, jadi kedua-duanya bukan pernyataan.
+
+Daripada pernyataan, kamu akan membina dakwaan dengan semua dan sebilangan, menukar nilainya dengan bukan, dan menggabungkan dua pernyataan dengan dan serta atau. Kamu uji setiap peraturan itu sendiri melalui jadual, litar suis dan get yang tersembunyi.
 
 | Ayat | Pernyataan? | Nilai kebenaran |
 | :--- | :--- | :--- |
@@ -23,80 +25,15 @@ Baris pertama menunjukkan bahawa **ayat yang palsu tetap pernyataan**. Ayat itu 
 
 ## Perkataan Semua dan Sebilangan
 
-Dakwaan dengan semua hanya benar jika **setiap ahli yang disebut lulus ujian**. Dakwaan dengan sebilangan sudah benar jika **sekurang-kurangnya satu ahli lulus**. Perkataan seperti semua dan sebilangan dipanggil pengkuantiti. Papan di bawah memuatkan sepuluh jubin nombor dan tiga dakwaan tentang jubin itu. Pilih satu dakwaan, jalankan semakan, dan perhatikan jubin mana yang menentukan nilainya.
+Dakwaan dengan semua hanya benar jika **setiap ahli yang disebut lulus ujian**. Dakwaan dengan sebilangan sudah benar jika **sekurang-kurangnya satu ahli lulus**. Perkataan seperti semua dan sebilangan dipanggil pengkuantiti. Uji tiga dakwaan pada sepuluh nombor <InlineMath math="1, 4, 6, 9, 12, 16, 20, 25, 30, 36" /> dan lihat nombor mana yang menentukan nilainya.
 
-<CounterexampleGridLab
-  title={<>Satu Papan, Tiga Dakwaan</>}
-  description={
-    <>
-      Pilih dakwaan, kemudian semak jubin satu demi satu. Kamu juga boleh
-      menyentuh mana-mana jubin untuk menyemaknya sendiri.
-    </>
-  }
-  footer={<>Satu jubin gagal menjatuhkan dakwaan semua. Satu jubin lulus cukup untuk sebilangan.</>}
-  tiles={[
-    { name: "1", tile: { kind: "number", value: 1 } },
-    { name: "4", tile: { kind: "number", value: 4 } },
-    { name: "6", tile: { kind: "number", value: 6 } },
-    { name: "9", tile: { kind: "number", value: 9 } },
-    { name: "12", tile: { kind: "number", value: 12 } },
-    { name: "16", tile: { kind: "number", value: 16 } },
-    { name: "20", tile: { kind: "number", value: 20 } },
-    { name: "25", tile: { kind: "number", value: 25 } },
-    { name: "30", tile: { kind: "number", value: 30 } },
-    { name: "36", tile: { kind: "number", value: 36 } },
-  ]}
-  claims={[
-    {
-      name: "Semua kuasa dua",
-      text: "Semua nombor kuasa dua di sini ialah nombor genap.",
-      claim: {
-        kind: "all",
-        subject: { name: "Nombor kuasa dua", test: { kind: "square-number" } },
-        predicate: { name: "Nombor genap", test: { kind: "even" } },
-      },
-    },
-    {
-      name: "Sebilangan kuasa dua",
-      text: "Sebilangan nombor kuasa dua di sini ialah nombor genap.",
-      claim: {
-        kind: "some",
-        subject: { name: "Nombor kuasa dua", test: { kind: "square-number" } },
-        predicate: { name: "Nombor genap", test: { kind: "even" } },
-      },
-    },
-    {
-      name: "Semua gandaan empat",
-      text: "Semua gandaan 4 di sini ialah nombor genap.",
-      claim: {
-        kind: "all",
-        subject: { name: "Gandaan 4", test: { kind: "multiple", of: 4 } },
-        predicate: { name: "Nombor genap", test: { kind: "even" } },
-      },
-    },
-  ]}
-  labels={{
-    claim: <>Dakwaan</>,
-    claims: "Dakwaan",
-    false: "Palsu",
-    none: <>Belum ada jubin dipilih</>,
-    picked: <>Jubin yang dipilih</>,
-    tile: "Jubin",
-    true: "Benar",
-    verdicts: {
-      breaks: <>Contoh penyangkal</>,
-      fits: <>Padan</>,
-      misses: <>Bukan contoh</>,
-      outside: <>Di luar dakwaan</>,
-      proves: <>Contoh</>,
-      safe: <>Syarat palsu</>,
-    },
-    viewLabel: "Sepuluh jubin nombor di hadapan kad dakwaan",
-  }}
-  showAnswer
-/>
+| Dakwaan | Nombor disemak | Nilai kebenaran | Penentunya |
+| :--- | :--- | :--- | :--- |
+| Semua nombor kuasa dua di sini ialah nombor genap. | <InlineMath math="1, 4, 9, 16, 25, 36" /> | Palsu | <InlineMath math="1" />, <InlineMath math="9" /> dan <InlineMath math="25" /> ganjil |
+| Sebilangan nombor kuasa dua di sini ialah nombor genap. | <InlineMath math="1, 4, 9, 16, 25, 36" /> | Benar | <InlineMath math="4" /> genap |
+| Semua gandaan <InlineMath math="4" /> di sini ialah nombor genap. | <InlineMath math="4, 12, 16, 20, 36" /> | Benar | Kelima-limanya genap |
 
-Dakwaan pertama jatuh pada jubin yang pertama. Nombor <InlineMath math="1 = 1^2" /> ialah nombor kuasa dua, tetapi nombor ganjil, dan jubin <InlineMath math="9" /> serta <InlineMath math="25" /> turut menjatuhkannya. Dakwaan kedua terus benar pada jubin <InlineMath math="4 = 2^2" />, kerana satu contoh sudah cukup. Dakwaan ketiga lebih berat untuk dibuktikan. Kamu perlu menyemak kelima-lima gandaan <InlineMath math="4" />, iaitu <InlineMath math="4, 12, 16, 20, 36" />, dan semuanya genap. Jadi **dakwaan semua yang benar memerlukan semakan penuh**, manakala dakwaan semua yang palsu cukup dijatuhkan oleh satu jubin.
+Dakwaan pertama terus jatuh pada nombor kuasa dua yang pertama: <InlineMath math="1 = 1^2" /> ganjil, dan <InlineMath math="9" /> serta <InlineMath math="25" /> turut menjatuhkannya. Dakwaan kedua terus benar pada <InlineMath math="4 = 2^2" />, kerana satu contoh sudah cukup. Dakwaan ketiga lebih berat untuk dibuktikan. Kamu perlu menyemak kelima-lima gandaan <InlineMath math="4" />, dan semuanya genap. Jadi **dakwaan semua yang benar memerlukan semakan penuh**, manakala yang palsu cukup dijatuhkan oleh satu kes gagal.
 
 ## Perkataan Bukan Menukar Nilai
 
@@ -109,7 +46,7 @@ Masukkan perkataan bukan atau tidak ke dalam sesuatu pernyataan, dan nilai keben
 
 Ambil <InlineMath math="p" />: <InlineMath math="91" /> ialah nombor perdana. Pernyataan ini palsu, jadi penafiannya, <InlineMath math="91" /> bukan nombor perdana, adalah benar. Semak: <InlineMath math="91 = 7 \times 13" />, jadi <InlineMath math="91" /> mempunyai faktor selain <InlineMath math="1" /> dan dirinya sendiri.
 
-Perkataan semua perlu diberi perhatian. Pada papan tadi, dakwaan semua nombor kuasa dua di sini ialah nombor genap adalah palsu. Ramai menulis penafiannya sebagai tiada nombor kuasa dua di sini yang genap. Ayat itu juga palsu, kerana <InlineMath math="4" /> genap. Penafian mesti sentiasa berlawanan nilai dengan pernyataan asalnya, jadi ayat itu bukan penafiannya. Penafian yang betul ialah **bukan semua nombor kuasa dua di sini genap**, dan jubin <InlineMath math="1" /> menunjukkan bahawa penafian itu benar.
+Perkataan semua perlu diberi perhatian. Dalam senarai tadi, dakwaan semua nombor kuasa dua di sini ialah nombor genap adalah palsu. Ramai menulis penafiannya sebagai tiada nombor kuasa dua di sini yang genap. Ayat itu juga palsu, kerana <InlineMath math="4" /> genap. Penafian mesti sentiasa berlawanan nilai dengan pernyataan asalnya, jadi ayat itu bukan penafiannya. Penafian yang betul ialah **bukan semua nombor kuasa dua di sini genap**, dan nombor <InlineMath math="1" /> menunjukkan bahawa penafian itu benar.
 
 ## Menggabungkan Dua Pernyataan
 
@@ -146,6 +83,8 @@ Perkataan dan serta atau menggabungkan dua pernyataan menjadi satu **pernyataan 
     viewLabel: "Bateri, dua suis dan mentol pada papan pasak",
   }}
 />
+
+Lihat perbezaan kedua-dua litar apabila kamu menutup suis P sahaja. Dalam litar bersiri mentol tetap padam, manakala dalam litar selari mentol terus menyala. Perbezaan itulah yang menentukan dua peraturan di bawah.
 
 ### Bila Dan Bernilai Benar
 

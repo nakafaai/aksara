@@ -88,70 +88,20 @@ Form I works because if every member of <InlineMath math="A" /> sits inside <Inl
   showVerdict
 />
 
-The first order puts the four sides of <InlineMath math="PQRS" /> are not all equal in premise 2 and <InlineMath math="PQRS" /> is not a square in the conclusion. That's **Form III**, and the chain locks. The second order runs the step backwards: from <InlineMath math="PQRS" /> is not a square, it concludes that the sides aren't all equal. That step is a fallacy called **denying the antecedent**. For this kite the conclusion happens to be true, but the form is still invalid. A rhombus isn't a square either, yet all four of its sides are equal.
+The first order puts the four sides of <InlineMath math="PQRS" /> are not all equal in premise 2 and <InlineMath math="PQRS" /> is not a square in the conclusion. That's **Form III**, and the chain locks.
+
+The second order runs the step backwards: from <InlineMath math="PQRS" /> is not a square, it concludes that the sides aren't all equal. That step is a fallacy called **denying the antecedent**. For this kite the conclusion happens to be true, but the form is still invalid. A rhombus isn't a square either, yet all four of its sides are equal.
 
 ### Valid but Not Sound
 
-Valid is only about the form. An argument that's valid and has **all its premises true** is called sound, and only a sound argument guarantees a true conclusion. The chain below holds a false premise: all prime numbers are odd.
+Valid is only about the form. An argument that's valid and has **all its premises true** is called sound, and only a sound argument guarantees a true conclusion. Compare the two orders below built from one false premise: all prime numbers are odd.
 
-<ArgumentChainLab
-  title={<>Right Form, Wrong Premise</>}
-  description={
-    <>
-      Deal both cards about the number <InlineMath math="2" />, then read the
-      chain's verdict for each order.
-    </>
-  }
-  footer={<>A seal marks each false card. The chain can lock even with a sealed card in it.</>}
-  premises={[
-    {
-      statement: { kind: "all", subject: "prime", predicate: "odd" },
-      text: "All prime numbers are odd.",
-      truth: false,
-    },
-    "open",
-  ]}
-  conclusion="open"
-  hand={[
-    {
-      statement: { kind: "member", member: "2", set: "prime" },
-      text: "2 is a prime number.",
-      truth: true,
-    },
-    {
-      statement: { kind: "member", member: "2", set: "odd" },
-      text: "2 is an odd number.",
-      truth: false,
-    },
-  ]}
-  labels={{
-    conclusion: "Conclusion",
-    fallacies: {
-      antecedent: <>Denying the antecedent</>,
-      consequent: <>Affirming the consequent</>,
-      middle: <>Undistributed middle</>,
-    },
-    form: <>Form</>,
-    forms: {
-      I: <>Form I</>,
-      II: <>Form II</>,
-      III: <>Form III</>,
-    },
-    hand: "Cards",
-    no: <>No</>,
-    premises: ["Premise 1", "Premise 2"],
-    sound: <>Sound</>,
-    truth: <>Premises true</>,
-    unfollowed: <>The conclusion doesn't follow</>,
-    unlinked: <>The premises don't connect</>,
-    valid: <>Valid</>,
-    viewLabel: "Three cards on a rail, joined by two chain links",
-    yes: <>Yes</>,
-  }}
-  showVerdict
-/>
+| Premise 1 | Premise 2 | Conclusion | Verdict |
+| :--- | :--- | :--- | :--- |
+| All prime numbers are odd. (False) | <InlineMath math="2" /> is a prime number. (True) | <InlineMath math="2" /> is an odd number. (False) | Form I, valid, not sound |
+| All prime numbers are odd. (False) | <InlineMath math="2" /> is an odd number. (False) | <InlineMath math="2" /> is a prime number. (True) | Invalid, undistributed middle |
 
-With <InlineMath math="2" /> is a prime number as premise 2, the chain is **Form I** and valid: if every prime really were odd, <InlineMath math="2" /> would have to be odd. The trouble is that premise 1 is false, because <InlineMath math="2" /> is a prime number that's even. The argument is valid but not sound, and its conclusion, <InlineMath math="2" /> is an odd number, is false.
+With <InlineMath math="2" /> is a prime number as premise 2, the first argument has **Form I** and is valid: if every prime really were odd, <InlineMath math="2" /> would have to be odd. The trouble is that premise 1 is false, because <InlineMath math="2" /> is a prime number that's even. The argument is valid but not sound, and its conclusion, <InlineMath math="2" /> is an odd number, is false.
 
 The other order, from <InlineMath math="2" /> is odd to <InlineMath math="2" /> is prime, is the fallacy called the **undistributed middle**. All primes being odd doesn't make every odd number prime, just as <InlineMath math="9" /> is odd but not prime. Compare a sound argument: all multiples of <InlineMath math="4" /> are even, <InlineMath math="36" /> is a multiple of <InlineMath math="4" />, so <InlineMath math="36" /> is even. Check: <InlineMath math="36 = 4 \times 9" />.
 
@@ -208,6 +158,7 @@ The pattern has a reason. Each vertex joins <InlineMath math="n - 3" /> other ve
       read the number of diagonals the rule predicts. The point only means a polygon at whole values of <InlineMath math="n" />.
     </>
   }
+  footer={<>Move <InlineMath math="n" /> to <InlineMath math="8" />: the formula jumps to <InlineMath math="20" /> diagonals.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: 0, max: 9 }, y: { min: -1, max: 21 } },

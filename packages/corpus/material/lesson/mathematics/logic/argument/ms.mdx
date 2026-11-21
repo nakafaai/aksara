@@ -88,70 +88,20 @@ Bentuk I berjaya kerana jika setiap ahli <InlineMath math="A" /> berada di dalam
   showVerdict
 />
 
-Susunan pertama meletakkan keempat-empat sisi <InlineMath math="PQRS" /> tidak sama panjang sebagai premis 2 dan <InlineMath math="PQRS" /> bukan segi empat sama sebagai kesimpulan. Itulah **Bentuk III**, dan rantainya terkunci. Susunan kedua menterbalikkan langkahnya: daripada <InlineMath math="PQRS" /> bukan segi empat sama, rantai menyimpulkan bahawa sisinya tidak sama panjang. Langkah itu ialah kesilapan penaakulan yang dipanggil **menafikan anteseden**. Bagi lelayang ini kesimpulannya kebetulan benar, tetapi bentuknya tetap tidak sah. Rombus juga bukan segi empat sama, namun keempat-empat sisinya sama panjang.
+Susunan pertama meletakkan keempat-empat sisi <InlineMath math="PQRS" /> tidak sama panjang sebagai premis 2 dan <InlineMath math="PQRS" /> bukan segi empat sama sebagai kesimpulan. Itulah **Bentuk III**, dan rantainya terkunci.
+
+Susunan kedua menterbalikkan langkahnya: daripada <InlineMath math="PQRS" /> bukan segi empat sama, rantai menyimpulkan bahawa sisinya tidak sama panjang. Langkah itu ialah kesilapan penaakulan yang dipanggil **menafikan anteseden**. Bagi lelayang ini kesimpulannya kebetulan benar, tetapi bentuknya tetap tidak sah. Rombus juga bukan segi empat sama, namun keempat-empat sisinya sama panjang.
 
 ### Sah dan Munasabah
 
-Sah hanya berkaitan dengan bentuk. Hujah yang sah dan **semua premisnya benar** dipanggil munasabah, dan hanya hujah yang munasabah menjamin kesimpulan yang benar. Rantai di bawah memegang premis yang palsu: semua nombor perdana ialah nombor ganjil.
+Sah hanya berkaitan dengan bentuk. Hujah yang sah dan **semua premisnya benar** dipanggil munasabah, dan hanya hujah yang munasabah menjamin kesimpulan yang benar. Bandingkan dua susunan di bawah yang memakai satu premis palsu: semua nombor perdana ialah nombor ganjil.
 
-<ArgumentChainLab
-  title={<>Bentuk Betul, Premis Palsu</>}
-  description={
-    <>
-      Letakkan kedua-dua kad tentang nombor <InlineMath math="2" />, kemudian
-      baca keputusan rantai bagi setiap susunan.
-    </>
-  }
-  footer={<>Meterai menandakan kad yang palsu. Rantai boleh terkunci walaupun ada kad bermeterai.</>}
-  premises={[
-    {
-      statement: { kind: "all", subject: "prime", predicate: "odd" },
-      text: "Semua nombor perdana ialah nombor ganjil.",
-      truth: false,
-    },
-    "open",
-  ]}
-  conclusion="open"
-  hand={[
-    {
-      statement: { kind: "member", member: "2", set: "prime" },
-      text: "2 ialah nombor perdana.",
-      truth: true,
-    },
-    {
-      statement: { kind: "member", member: "2", set: "odd" },
-      text: "2 ialah nombor ganjil.",
-      truth: false,
-    },
-  ]}
-  labels={{
-    conclusion: "Kesimpulan",
-    fallacies: {
-      antecedent: <>Menafikan anteseden</>,
-      consequent: <>Mengiakan akibat</>,
-      middle: <>Sebutan tengah tidak teragih</>,
-    },
-    form: <>Bentuk</>,
-    forms: {
-      I: <>Bentuk I</>,
-      II: <>Bentuk II</>,
-      III: <>Bentuk III</>,
-    },
-    hand: "Kad",
-    no: <>Tidak</>,
-    premises: ["Premis 1", "Premis 2"],
-    sound: <>Munasabah</>,
-    truth: <>Premis benar</>,
-    unfollowed: <>Kesimpulan tidak mengikut premis</>,
-    unlinked: <>Premis tidak bersambung</>,
-    valid: <>Sah</>,
-    viewLabel: "Tiga kad di atas rel, disambung dua mata rantai",
-    yes: <>Ya</>,
-  }}
-  showVerdict
-/>
+| Premis 1 | Premis 2 | Kesimpulan | Keputusan |
+| :--- | :--- | :--- | :--- |
+| Semua nombor perdana ialah nombor ganjil. (Palsu) | <InlineMath math="2" /> ialah nombor perdana. (Benar) | <InlineMath math="2" /> ialah nombor ganjil. (Palsu) | Bentuk I, sah, tidak munasabah |
+| Semua nombor perdana ialah nombor ganjil. (Palsu) | <InlineMath math="2" /> ialah nombor ganjil. (Palsu) | <InlineMath math="2" /> ialah nombor perdana. (Benar) | Tidak sah, sebutan tengah tidak teragih |
 
-Dengan <InlineMath math="2" /> ialah nombor perdana sebagai premis 2, rantai itu ialah **Bentuk I** dan sah: jika semua nombor perdana memang ganjil, <InlineMath math="2" /> pasti ganjil. Masalahnya, premis 1 palsu, kerana <InlineMath math="2" /> ialah nombor perdana yang genap. Hujah itu sah tetapi tidak munasabah, dan kesimpulannya, <InlineMath math="2" /> ialah nombor ganjil, adalah palsu.
+Dengan <InlineMath math="2" /> ialah nombor perdana sebagai premis 2, hujah pertama memakai **Bentuk I** dan sah: jika semua nombor perdana memang ganjil, <InlineMath math="2" /> pasti ganjil. Masalahnya, premis 1 palsu, kerana <InlineMath math="2" /> ialah nombor perdana yang genap. Hujah itu sah tetapi tidak munasabah, dan kesimpulannya, <InlineMath math="2" /> ialah nombor ganjil, adalah palsu.
 
 Susunan sebaliknya, daripada <InlineMath math="2" /> ganjil kepada <InlineMath math="2" /> perdana, ialah kesilapan penaakulan yang dipanggil **sebutan tengah tidak teragih**. Semua nombor perdana ganjil tidak bermakna setiap nombor ganjil ialah nombor perdana, sama seperti <InlineMath math="9" /> yang ganjil tetapi bukan nombor perdana. Bandingkan dengan hujah yang munasabah: semua gandaan <InlineMath math="4" /> ialah nombor genap, <InlineMath math="36" /> ialah gandaan <InlineMath math="4" />, jadi <InlineMath math="36" /> ialah nombor genap. Semak: <InlineMath math="36 = 4 \times 9" />.
 
@@ -208,6 +158,7 @@ Pola itu ada sebabnya. Setiap bucu disambungkan kepada <InlineMath math="n - 3" 
       membaca bilangan pepenjuru yang diramalkan oleh rumus itu. Titik itu hanya mewakili poligon pada nilai bulat <InlineMath math="n" />.
     </>
   }
+  footer={<>Gerakkan <InlineMath math="n" /> ke <InlineMath math="8" />: rumusnya memberi <InlineMath math="20" /> pepenjuru.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: 0, max: 9 }, y: { min: -1, max: 21 } },

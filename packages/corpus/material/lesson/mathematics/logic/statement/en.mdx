@@ -9,7 +9,9 @@ export const metadata = {
 
 ## Sentences You Can Check
 
-A statement is a sentence you can check, and the check comes out **either true or false, never both**. Whether it's true or false is called its **truth value**. You can't check a question or a command that way, so neither one is a statement. From statements you'll build claims with all and some, flip them with not, and join two of them with and or or. You'll try each rule yourself on a board of tiles, in a circuit of switches and on a hidden gate.
+A statement is a sentence you can check, and the check comes out **either true or false, never both**. Whether it's true or false is called its **truth value**. You can't check a question or a command that way, so neither one is a statement.
+
+From statements you'll build claims with all and some, flip them with not, and join two of them with and or or. You'll test those rules in tables, in a circuit of switches and on a hidden gate.
 
 | Sentence | Statement? | Truth value |
 | :--- | :--- | :--- |
@@ -23,80 +25,15 @@ The first row shows that **a false sentence is still a statement**. You can chec
 
 ## The Words All and Some
 
-A claim with all is true only when **every member it talks about passes**. A claim with some is already true when **at least one member passes**. Words such as all and some are called quantifiers. The board below holds ten number tiles and three claims about them. Pick a claim, run the check and watch which tile decides its truth value.
+A claim with all is true only when **every member it talks about passes**. A claim with some is already true when **at least one member passes**. Words such as all and some are called quantifiers. Test three claims on the ten numbers <InlineMath math="1, 4, 6, 9, 12, 16, 20, 25, 30, 36" /> and see which number decides each truth value.
 
-<CounterexampleGridLab
-  title={<>One Board, Three Claims</>}
-  description={
-    <>
-      Pick a claim, then check the tiles one at a time. You can also tap any
-      tile to check it yourself.
-    </>
-  }
-  footer={<>One failing tile brings down an all claim. One passing tile is enough for a some claim.</>}
-  tiles={[
-    { name: "1", tile: { kind: "number", value: 1 } },
-    { name: "4", tile: { kind: "number", value: 4 } },
-    { name: "6", tile: { kind: "number", value: 6 } },
-    { name: "9", tile: { kind: "number", value: 9 } },
-    { name: "12", tile: { kind: "number", value: 12 } },
-    { name: "16", tile: { kind: "number", value: 16 } },
-    { name: "20", tile: { kind: "number", value: 20 } },
-    { name: "25", tile: { kind: "number", value: 25 } },
-    { name: "30", tile: { kind: "number", value: 30 } },
-    { name: "36", tile: { kind: "number", value: 36 } },
-  ]}
-  claims={[
-    {
-      name: "All squares",
-      text: "All square numbers here are even.",
-      claim: {
-        kind: "all",
-        subject: { name: "Square number", test: { kind: "square-number" } },
-        predicate: { name: "Even number", test: { kind: "even" } },
-      },
-    },
-    {
-      name: "Some squares",
-      text: "Some square numbers here are even.",
-      claim: {
-        kind: "some",
-        subject: { name: "Square number", test: { kind: "square-number" } },
-        predicate: { name: "Even number", test: { kind: "even" } },
-      },
-    },
-    {
-      name: "All multiples of four",
-      text: "All multiples of 4 here are even.",
-      claim: {
-        kind: "all",
-        subject: { name: "Multiple of 4", test: { kind: "multiple", of: 4 } },
-        predicate: { name: "Even number", test: { kind: "even" } },
-      },
-    },
-  ]}
-  labels={{
-    claim: <>The claim</>,
-    claims: "Claim",
-    false: "False",
-    none: <>No tile picked yet</>,
-    picked: <>Picked tile</>,
-    tile: "Tile",
-    true: "True",
-    verdicts: {
-      breaks: <>Counterexample</>,
-      fits: <>Fits</>,
-      misses: <>Not an example</>,
-      outside: <>Outside the claim</>,
-      proves: <>Example</>,
-      safe: <>Condition false</>,
-    },
-    viewLabel: "Ten number tiles in front of a claim card",
-  }}
-  showAnswer
-/>
+| Claim | Numbers tested | Truth value | What decides it |
+| :--- | :--- | :--- | :--- |
+| All square numbers here are even. | <InlineMath math="1, 4, 9, 16, 25, 36" /> | False | <InlineMath math="1" />, <InlineMath math="9" /> and <InlineMath math="25" /> are odd |
+| Some square numbers here are even. | <InlineMath math="1, 4, 9, 16, 25, 36" /> | True | <InlineMath math="4" /> is even |
+| All multiples of <InlineMath math="4" /> here are even. | <InlineMath math="4, 12, 16, 20, 36" /> | True | All five are even |
 
-The first claim falls at the very first tile. The number <InlineMath math="1 = 1^2" /> is a square number, but it's odd, and the tiles <InlineMath math="9" /> and <InlineMath math="25" /> bring the claim down too. The second claim is true as soon as you reach <InlineMath math="4 = 2^2" />, because one example is enough. The third claim takes more work. You have to check all five multiples of <InlineMath math="4" />, which are <InlineMath math="4, 12, 16, 20, 36" />, and every one is even. So **a true all claim needs a full check**, while a false one needs just one tile.
+The first claim falls at the very first square: <InlineMath math="1 = 1^2" /> is odd, and <InlineMath math="9" /> and <InlineMath math="25" /> bring it down too. The second claim is true as soon as you reach <InlineMath math="4 = 2^2" />, because one example is enough. The third claim takes more work. You have to check all five multiples of <InlineMath math="4" />, and every one is even. So **a true all claim needs a full check**, while a false one needs just one failing case.
 
 ## Saying Not Flips the Truth
 
@@ -109,7 +46,7 @@ Put not into a statement and its truth value flips: true becomes false, and fals
 
 Take <InlineMath math="p" />: <InlineMath math="91" /> is a prime number. That's false, so its negation, <InlineMath math="91" /> is not a prime number, is true. Check: <InlineMath math="91 = 7 \times 13" />, so <InlineMath math="91" /> has a factor other than <InlineMath math="1" /> and itself.
 
-Be careful with all. On the board, the claim all square numbers here are even is false. People often write its negation as no square number here is even. That sentence is false too, because <InlineMath math="4" /> is even. A negation always has the opposite truth value, so that sentence can't be the negation. The right negation is **not all square numbers here are even**, and the tile <InlineMath math="1" /> shows it's true.
+Be careful with all. In the list above, the claim all square numbers here are even is false. People often write its negation as no square number here is even. That sentence is false too, because <InlineMath math="4" /> is even. A negation always has the opposite truth value, so that sentence can't be the negation. The right negation is **not all square numbers here are even**, and the number <InlineMath math="1" /> shows it's true.
 
 ## Joining Two Statements
 
@@ -146,6 +83,8 @@ The words and and or join two statements into one **compound statement**, and it
     viewLabel: "A battery, two switches and a lamp on a pegboard",
   }}
 />
+
+Watch how differently the two circuits behave when you close only switch P. In a row the lamp stays dark, while side by side it lights straight away. That difference gives the two rules below.
 
 ### When And Is True
 
