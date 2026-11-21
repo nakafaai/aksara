@@ -95,10 +95,11 @@ and `finalize`, and the repository owner approves its `npm-production` gate.
 2. `publish` runs only in a dispatched run from protected `main`, in the
    `npm-production` environment. It downloads the attested archive, verifies
    its digest and size, creates a same-SHA draft GitHub Release, and publishes
-   the archive with the pinned npm CLI, OIDC, public access, ignored lifecycle
-   scripts, and npm provenance.
+   the archive with `pnpm publish` from the pinned pnpm, OIDC, public access,
+   ignored lifecycle scripts, and npm provenance.
 3. `verify` has no permissions and no OIDC identity. It reads the public npm
-   metadata, proves exact shasum and integrity, installs the exact package, runs
+   metadata with the pinned pnpm, proves exact shasum and integrity, installs
+   the exact package with the pinned npm CLI, runs
    `npm audit signatures --include-attestations`, and checks provenance against
    this repository, workflow, branch, commit, and environment.
 4. `finalize` publishes the draft GitHub Release only after npm publication and
@@ -109,6 +110,16 @@ and `finalize`, and the repository owner approves its `npm-production` gate.
 The `npm-production` environment allows only protected branches, requires the
 repository owner review, has no wait timer, and disallows administrator bypass.
 Readiness is evidence based. There is no fixed quiet window.
+
+The release tools follow one order: Bun first, then pnpm, npm last. The
+`publish` and `verify` jobs never check out repository code, so they cannot set
+up Bun from `package.json`; both get pnpm, pinned in `scripts/workflow/pnpm.ts`,
+only from the reviewed `pnpm/setup` action, which verifies npm's signature on
+the pnpm it installs. npm remains for one check alone: in `verify`, a throwaway
+npm install of the published package feeds
+`npm audit signatures --include-attestations`. pnpm's own `audit signatures`
+checks registry signatures but returns no attestation bundles, and the
+provenance verifier reads those bundles from npm's audit.
 
 The jobs are intentionally direct in `contracts.yml`. npm trusted-publisher
 identity includes the configured workflow filename, and reusable workflows can
@@ -147,7 +158,7 @@ CONTRACT_SPECIFIER="${CONTRACT_PACKAGE}@${CONTRACT_VERSION}"
 CONTRACT_TAG="${CONTRACT_SPECIFIER}"
 CONTRACT_ASSET="nakafa-aksara-contracts-${CONTRACT_VERSION}.tgz"
 
-npm view "$CONTRACT_SPECIFIER" \
+bun info "$CONTRACT_SPECIFIER" \
   name version dist.shasum dist.integrity dist.attestations --json
 
 VERIFY_ROOT="$(mktemp -d)"
@@ -194,5 +205,7 @@ References:
 - [npm provenance](https://docs.npmjs.com/generating-provenance-statements/)
 - [bun pm pack](https://bun.com/docs/pm/cli/pm#pack)
 - [bun install](https://bun.com/docs/pm/cli/install)
+- [pnpm publish](https://pnpm.io/cli/publish)
+- [pnpm/setup](https://github.com/pnpm/setup)
 - [GitHub artifact attestations](https://docs.github.com/en/actions/how-tos/secure-your-work/use-artifact-attestations/use-artifact-attestations)
 - [GitHub immutable releases](https://docs.github.com/en/code-security/concepts/supply-chain-security/immutable-releases)

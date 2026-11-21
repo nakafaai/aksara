@@ -15,6 +15,7 @@ import {
   executableSource,
   jobSource,
 } from "#scripts/workflow/decode";
+import { verifyPnpmPublication } from "#scripts/workflow/pnpm";
 import { ensure, WorkflowError } from "#scripts/workflow/requirement";
 
 const NpmWorkflowContractSchema = Schema.Struct({
@@ -35,7 +36,8 @@ const SETUP_NODE_ACTION =
 const UPLOAD_ACTION =
   "actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9";
 const JsonTextSchema = Schema.fromJsonString(Schema.Unknown);
-const FORBIDDEN_CREDENTIAL = /NODE_AUTH_TOKEN|NPM_TOKEN|_authToken/u;
+const FORBIDDEN_CREDENTIAL =
+  /NODE_AUTH_TOKEN|NPM_TOKEN|_authToken|pnpm_config__auth/iu;
 const FORBIDDEN_SOURCE =
   /@base64d|bundle\.dsseEnvelope\.payload|is_exact_provenance\(\)/u;
 const PUBLICATION_WINDOW_PATTERN =
@@ -186,18 +188,17 @@ export const verifyNpmWorkflow = Effect.fn("AksaraScripts.verifyNpmWorkflow")(
     ]);
     yield* requireSource("npm publication", publishSource, [
       DOWNLOAD_ACTION,
-      SETUP_NODE_ACTION,
       contract.packageArtifact,
       "EXPECTED_SHA256",
       "EXPECTED_SIZE",
-      "NPM_CONFIG_REGISTRY",
+      "PNPM_CONFIG_REGISTRY",
       "ACTIONS_ID_TOKEN_REQUEST_URL",
       "ACTIONS_ID_TOKEN_REQUEST_TOKEN",
       "expected_shasum",
       "expected_integrity",
-      "npm error code E404",
+      "ERR_PNPM_(FETCH_404|PACKAGE_NOT_FOUND)",
       "for attempt in {1..5}",
-      'npx --yes "$NPM_CLI" publish "$TARBALL"',
+      'pnpm publish "$TARBALL"',
       "--ignore-scripts",
       "--provenance",
     ]);
@@ -209,6 +210,7 @@ export const verifyNpmWorkflow = Effect.fn("AksaraScripts.verifyNpmWorkflow")(
       "EXPECTED_VERIFIER_SHA256",
       "EXPECTED_VERIFIER_SIZE",
       "NPM_CONFIG_REGISTRY",
+      "PNPM_CONFIG_REGISTRY",
       "ACTIONS_ID_TOKEN_REQUEST_URL",
       "ACTIONS_ID_TOKEN_REQUEST_TOKEN",
       "npm/v1/attestations/",
@@ -231,34 +233,19 @@ export const verifyNpmWorkflow = Effect.fn("AksaraScripts.verifyNpmWorkflow")(
       "npm build artifacts must be replaceable on rerun"
     );
 
-    for (const [owner, job] of [
-      ["publication", publish],
-      ["verification", verify],
-    ] as const) {
-      const setup = Option.getOrUndefined(
-        Arr.findFirst(job.steps, ({ uses }) => uses === SETUP_NODE_ACTION)
-      );
-      yield* ensure(
-        setup?.with?.["node-version"] === "26.13.1",
-        `npm ${owner} must use the repository Node runtime`
-      );
-      yield* ensure(
-        setup?.with?.["package-manager-cache"] === false,
-        `npm ${owner} must disable package-manager caching`
-      );
-    }
-
-    const publishCommands = pipe(
-      publish.steps,
-      Arr.flatMap(({ run }) => (run === undefined ? [] : [run])),
-      Arr.map(executableSource),
-      Arr.join("\n")
+    const nodeSetup = Option.getOrUndefined(
+      Arr.findFirst(verify.steps, ({ uses }) => uses === SETUP_NODE_ACTION)
     );
     yield* ensure(
-      publishCommands.split('npx --yes "$NPM_CLI" publish "$TARBALL"')
-        .length === 2,
-      "npm publication may execute only one publish command"
+      nodeSetup?.with?.["node-version"] === "26.13.1",
+      "npm verification must use the repository Node runtime"
     );
+    yield* ensure(
+      nodeSetup?.with?.["package-manager-cache"] === false,
+      "npm verification must disable package-manager caching"
+    );
+
+    yield* verifyPnpmPublication(publish, verify);
     yield* ensure(
       !(
         publishSource.includes(contract.verifierArtifact) ||

