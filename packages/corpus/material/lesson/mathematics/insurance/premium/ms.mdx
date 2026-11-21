@@ -1,0 +1,256 @@
+export const metadata = {
+  title: "Nota Matematik Pengguna Insurans Tingkatan Lima",
+  description:
+    "Nota Matematik Tingkatan 5 Bab 3: terangkan risiko dan insurans, kira premium insurans hayat, deduktibel dan pampasan dengan peruntukan koinsurans.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2026-11-17",
+  subject: "Matematik Pengguna: Insurans",
+};
+
+## Insurans Memindahkan Risiko Kerugian kepada Syarikat Insurans
+
+**Risiko** ialah kemungkinan berlakunya kerugian, seperti kemalangan, kebakaran atau kematian. **Insurans** memindahkan risiko itu kepada syarikat insurans. Pemegang polisi membayar **premium** secara berkala, dan syarikat insurans membayar **pampasan** apabila kerugian yang dilindungi berlaku. Jumlah perlindungan dalam polisi dipanggil **nilai muka** atau jumlah diinsuranskan. Dalam model di sini, kamu mengira premium daripada jadual kadar, melihat kesan deduktibel dan mengira pampasan dengan peruntukan koinsurans.
+
+## Jenis Insurans
+
+| Jenis | Perlindungan | Contoh |
+| :--- | :--- | :--- |
+| Insurans hayat | Kematian atau hilang upaya kekal | Polisi hayat bertempoh |
+| Insurans kesihatan | Kos rawatan perubatan | Polisi perubatan |
+| Insurans motor | Kerosakan kenderaan dan tuntutan pihak ketiga | Polisi komprehensif |
+| Insurans harta | Kebakaran, banjir atau kecurian harta | Polisi kebakaran rumah |
+
+Insurans hayat dan kesihatan dipanggil **insurans hayat**, manakala insurans motor dan harta dipanggil **insurans am**.
+
+## Premium Insurans Hayat
+
+Premium insurans hayat bergantung pada umur, jantina, kesihatan dan nilai muka. Syarikat insurans menyediakan **jadual kadar premium** bagi setiap <InlineMath math="\text{RM}\,1{,}000" /> nilai muka. Carta ini menunjukkan jadual contoh sebuah syarikat rekaan bagi polisi hayat bertempoh.
+
+<BarChart
+  title={<>Jadual Contoh Premium Tahunan Mengikut Umur</>}
+  description={
+    <>
+      Premium tahunan dalam ringgit bagi setiap{" "}
+      <InlineMath math="\text{RM}\,1{,}000" /> nilai muka. Kadar ini contoh
+      untuk latihan, bukan kadar syarikat sebenar.
+    </>
+  }
+  yAxisLabel="Premium per RM 1000 (RM)"
+  data={[
+    { name: "20 tahun", value: 1.8 },
+    { name: "25 tahun", value: 2.1 },
+    { name: "30 tahun", value: 2.6 },
+    { name: "35 tahun", value: 3.3 },
+    { name: "40 tahun", value: 4.4 },
+    { name: "45 tahun", value: 6.0 },
+    { name: "50 tahun", value: 8.4 },
+  ]}
+  chartConfig={{ value: { label: "Premium", colors: { light: ["var(--chart-2)"], dark: ["var(--chart-2)"] } } }}
+/>
+
+### Rumus Premium Tahunan
+
+Premium tahunan dikira dengan **rumus**:
+
+<BlockMath math="\text{Premium} = \frac{\text{nilai muka}}{1{,}000} \times \text{kadar premium}" />
+
+Model ini melukis premium tahunan bagi nilai muka hingga <InlineMath math="\text{RM}\,300{,}000" />. Ubah kadar mengikut umur dan baca premiumnya.
+
+<MathVisual
+  title={<>Premium Tahunan Mengikut Nilai Muka</>}
+  description={
+    <>
+      Premium dalam ratus ringgit terhadap nilai muka dalam puluh ribu ringgit,
+      bagi kadar premium <InlineMath math="r" /> per{" "}
+      <InlineMath math="\text{RM}\,1{,}000" />.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 30 }, y: { min: 0, max: 26 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "r", min: 1.8, max: 8.4, value: 2.6, step: 0.1, label: "r" },
+      { name: "f", min: 1, max: 30, value: 15, step: 1, label: "f" },
+    ],
+    objects: [
+      { id: "premium", kind: "function", appearance: "primary", formula: "r x/10", domain: { min: 0, max: 30 } },
+      { id: "now", kind: "marker", x: "f", y: "r f/10", appearance: "warning" },
+    ],
+    readouts: [
+      { key: "premium", formula: "10r f" },
+    ],
+  }}
+  labels={{
+    r: <>Kadar premium <InlineMath math="r" /></>,
+    f: <>Nilai muka <InlineMath math="f" /> dalam puluh ribu ringgit</>,
+    premium: <>Premium tahunan dalam ringgit</>,
+  }}
+/>
+
+### Contoh Mengira Premium Insurans Hayat
+
+Encik Hafiz berumur <InlineMath math="30" /> tahun dan mahu membeli polisi hayat bertempoh dengan nilai muka <InlineMath math="\text{RM}\,150{,}000" />. Menggunakan jadual contoh, kira **premium tahunannya**.
+
+<BlockMath math="\frac{150{,}000}{1{,}000} \times 2.60 = 150 \times 2.60 = 390" />
+
+Premium tahunannya <InlineMath math="\text{RM}\,390" />. Semak dengan model: pada <InlineMath math="r = 2.6" /> dan <InlineMath math="f = 15" />, bacaan ialah <InlineMath math="390" />. Jika dia membeli polisi yang sama pada umur <InlineMath math="45" /> tahun, premiumnya menjadi <InlineMath math="150 \times 6.00 = \text{RM}\,900" />.
+
+## Deduktibel
+
+Dalam insurans am, **deduktibel** ialah jumlah kerugian yang ditanggung sendiri oleh pemegang polisi sebelum syarikat insurans membayar. Jika kerugian kurang daripada deduktibel, tiada pampasan dibayar. Ubah deduktibel dan saiz kerugian dalam model ini.
+
+<MathVisual
+  title={<>Pampasan selepas Deduktibel</>}
+  description={
+    <>
+      Pampasan dalam ribu ringgit, <InlineMath math="\max(0, k - d)" />,
+      terhadap kerugian <InlineMath math="k" /> dalam ribu ringgit, bagi
+      deduktibel <InlineMath math="d" />.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 20 }, y: { min: 0, max: 20 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "d", min: 0, max: 5, value: 1, step: 0.5, label: "d" },
+      { name: "k", min: 0, max: 20, value: 8, step: 0.5, label: "k" },
+    ],
+    objects: [
+      { id: "payout", kind: "function", appearance: "primary", formula: "max(0, x - d)", domain: { min: 0, max: 20 } },
+      { id: "now", kind: "marker", x: "k", y: "max(0, k - d)", appearance: "warning" },
+    ],
+    readouts: [
+      { key: "payout", formula: "1000max(0, k - d)" },
+    ],
+  }}
+  labels={{
+    d: <>Deduktibel <InlineMath math="d" /> dalam ribu ringgit</>,
+    k: <>Kerugian <InlineMath math="k" /> dalam ribu ringgit</>,
+    payout: <>Pampasan dalam ringgit</>,
+  }}
+/>
+
+Dengan deduktibel <InlineMath math="\text{RM}\,1{,}000" /> dan kerugian <InlineMath math="\text{RM}\,8{,}000" />, pampasan ialah <InlineMath math="8{,}000 - 1{,}000 = \text{RM}\,7{,}000" />. Semak dengan model: pada <InlineMath math="d = 1" /> dan <InlineMath math="k = 8" />, bacaan ialah <InlineMath math="7{,}000" />.
+
+## Peruntukan Koinsurans dalam Insurans Harta
+
+Polisi harta biasanya mempunyai **peruntukan koinsurans**: pemilik mesti menginsuranskan sekurang-kurangnya peratus tertentu daripada nilai harta, contohnya <InlineMath math="80\%" />. Jika jumlah diinsuranskan kurang daripada jumlah yang dikehendaki, pampasan dikurangkan secara berkadar:
+
+<BlockMath math="\text{Pampasan} = \frac{\text{jumlah diinsuranskan}}{\text{jumlah insurans yang dikehendaki}} \times \text{kerugian} - \text{deduktibel}" />
+
+### Kesan Jumlah Diinsuranskan
+
+**Pampasan tidak boleh melebihi jumlah diinsuranskan**. Model ini melukis pampasan bagi kerugian <InlineMath math="\text{RM}\,60{,}000" /> pada rumah bernilai <InlineMath math="\text{RM}\,400{,}000" /> dengan koinsurans <InlineMath math="80\%" /> dan deduktibel <InlineMath math="\text{RM}\,1{,}000" />.
+
+<MathVisual
+  title={<>Pampasan Mengikut Jumlah Diinsuranskan</>}
+  description={
+    <>
+      Pampasan dalam ribu ringgit terhadap jumlah diinsuranskan dalam puluh ribu
+      ringgit. Jumlah yang dikehendaki ialah <InlineMath math="80\%" /> daripada{" "}
+      <InlineMath math="\text{RM}\,400{,}000" />, iaitu{" "}
+      <InlineMath math="\text{RM}\,320{,}000" />.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 40 }, y: { min: 0, max: 62 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "i", min: 4, max: 40, value: 24, step: 1, label: "i" },
+    ],
+    objects: [
+      { id: "payout", kind: "function", appearance: "primary", formula: "60min(x/32, 1) - 1", domain: { min: 1, max: 40 } },
+      { id: "now", kind: "marker", x: "i", y: "60min(i/32, 1) - 1", appearance: "warning" },
+    ],
+    readouts: [
+      { key: "payout", formula: "1000(60min(i/32, 1) - 1)" },
+    ],
+  }}
+  labels={{
+    i: <>Jumlah diinsuranskan <InlineMath math="i" /> dalam puluh ribu ringgit</>,
+    payout: <>Pampasan dalam ringgit</>,
+  }}
+/>
+
+### Contoh Pampasan dengan Koinsurans
+
+Rumah Puan Lim bernilai <InlineMath math="\text{RM}\,400{,}000" /> dan diinsuranskan sebanyak <InlineMath math="\text{RM}\,240{,}000" />. Polisi itu mempunyai koinsurans <InlineMath math="80\%" /> dan deduktibel <InlineMath math="\text{RM}\,1{,}000" />. Kebakaran menyebabkan kerugian <InlineMath math="\text{RM}\,60{,}000" />. Kira **pampasan** dan bahagian yang ditanggung sendiri oleh Puan Lim.
+
+<MathContainer>
+<BlockMath math="\text{Jumlah dikehendaki} = 80\% \times 400{,}000 = 320{,}000" />
+<BlockMath math="\text{Pampasan} = \frac{240{,}000}{320{,}000} \times 60{,}000 - 1{,}000 = 45{,}000 - 1{,}000 = 44{,}000" />
+<BlockMath math="\text{Ditanggung sendiri} = 60{,}000 - 44{,}000 = 16{,}000" />
+</MathContainer>
+
+Semak dengan model: pada <InlineMath math="i = 24" />, bacaan ialah <InlineMath math="44{,}000" />. Jika Puan Lim menginsuranskan sekurang-kurangnya <InlineMath math="\text{RM}\,320{,}000" />, pampasan naik kepada <InlineMath math="60{,}000 - 1{,}000 = \text{RM}\,59{,}000" />. Carta ini membandingkan dua keadaan itu.
+
+<BarChart
+  title={<>Pembahagian Kerugian antara Syarikat dan Pemilik</>}
+  description={
+    <>
+      Ringgit yang dibayar oleh syarikat insurans dan yang ditanggung oleh
+      pemilik bagi kerugian <InlineMath math="\text{RM}\,60{,}000" />, apabila jumlah
+      diinsuranskan ialah <InlineMath math="\text{RM}\,240{,}000" /> atau{" "}
+      <InlineMath math="\text{RM}\,320{,}000" />.
+    </>
+  }
+  yAxisLabel="Jumlah (RM)"
+  data={[
+    { name: "Syarikat, 240 ribu", value: 44000 },
+    { name: "Pemilik, 240 ribu", value: 16000 },
+    { name: "Syarikat, 320 ribu", value: 59000 },
+    { name: "Pemilik, 320 ribu", value: 1000 },
+  ]}
+  chartConfig={{ value: { label: "Jumlah", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>
+
+## Kesilapan Lazim tentang Insurans
+
+| Kesilapan | Sebab salah | Cara semak |
+| :--- | :--- | :--- |
+| Menggunakan nilai harta, bukan jumlah dikehendaki, dalam pecahan koinsurans. | Penyebutnya ialah peratus koinsurans darab nilai harta. | Kira jumlah dikehendaki dahulu. |
+| Melupakan deduktibel. | Deduktibel ditolak daripada pampasan setiap tuntutan. | Semak syarat polisi. |
+| Membahagikan nilai muka dengan <InlineMath math="100" /> untuk premium. | Kadar diberi bagi setiap <InlineMath math="\text{RM}\,1{,}000" />. | Baca unit dalam jadual kadar. |
+| Pampasan melebihi jumlah diinsuranskan. | Syarikat tidak membayar lebih daripada jumlah diinsuranskan. | Bandingkan jawapan dengan nilai muka. |
+
+Kesilapan pertama paling kerap muncul dalam soalan koinsurans. **Kira jumlah dikehendaki sebelum pecahan**.
+
+## Latihan Insurans
+
+Soalan ini bergerak dari premium ke pampasan. **Nyatakan jumlah yang ditanggung sendiri** dalam setiap soalan pampasan.
+
+1. Menggunakan jadual contoh, kira premium tahunan bagi polisi hayat <InlineMath math="\text{RM}\,200{,}000" /> untuk seorang yang berumur <InlineMath math="40" /> tahun.
+
+2. Sebuah kereta rosak dengan kos baiki <InlineMath math="\text{RM}\,3{,}500" />. Deduktibel polisi ialah <InlineMath math="\text{RM}\,500" />. Kira pampasan.
+
+3. Harta bernilai <InlineMath math="\text{RM}\,250{,}000" /> diinsuranskan <InlineMath math="\text{RM}\,150{,}000" /> dengan koinsurans <InlineMath math="80\%" /> dan deduktibel <InlineMath math="\text{RM}\,2{,}000" />. Kerugian ialah <InlineMath math="\text{RM}\,40{,}000" />. Kira pampasan.
+
+4. Dalam soalan ketiga, berapakah jumlah minimum yang patut diinsuranskan supaya pampasan tidak dikurangkan?
+
+### Penyelesaian
+
+**Penyelesaian 1**: Bahagi nilai muka dengan <InlineMath math="1{,}000" />, kemudian darab dengan kadar:
+
+<BlockMath math="\frac{200{,}000}{1{,}000} \times 4.40 = 200 \times 4.40 = 880" />
+
+Premium tahunan <InlineMath math="\text{RM}\,880" />. Semak dengan model: pada <InlineMath math="r = 4.4" /> dan <InlineMath math="f = 20" />, bacaan ialah <InlineMath math="880" />.
+
+**Penyelesaian 2**: Tolak deduktibel daripada kerugian:
+
+<BlockMath math="3{,}500 - 500 = 3{,}000" />
+
+Pampasan <InlineMath math="\text{RM}\,3{,}000" />, dan pemilik **menanggung sendiri** <InlineMath math="\text{RM}\,500" />.
+
+**Penyelesaian 3**: Kira jumlah dikehendaki dahulu:
+
+<MathContainer>
+<BlockMath math="80\% \times 250{,}000 = 200{,}000" />
+<BlockMath math="\frac{150{,}000}{200{,}000} \times 40{,}000 - 2{,}000 = 30{,}000 - 2{,}000 = 28{,}000" />
+</MathContainer>
+
+Pampasan <InlineMath math="\text{RM}\,28{,}000" />, dan pemilik menanggung <InlineMath math="40{,}000 - 28{,}000 = \text{RM}\,12{,}000" />.
+
+**Penyelesaian 4**: Jumlah minimum ialah **jumlah dikehendaki**, iaitu <InlineMath math="80\% \times 250{,}000 = \text{RM}\,200{,}000" />. Pada jumlah itu, pecahan koinsurans menjadi <InlineMath math="1" /> dan hanya deduktibel ditolak.
