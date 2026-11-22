@@ -99,9 +99,9 @@ export const DEPENDENCY_HOLDS: readonly DependencyHold[] = [
     cohort: "TypeScript",
     dependency: "tsrs",
     reason:
-      "tsrs is the Rust port of the TypeScript 7.1 compiler: every typecheck, package build, language server, and AST reader runs it, pinned to 7.1.0-beta.tsrs3, the latest release and one of the two that @effect/tsgo 0.73.2 patches. Its version now names the TypeScript release it targets and a tsrs revision, so a newer revision of the same beta is one release channel (scripts/dependencies/release.ts), and its JavaScript API and tsdk are unchanged from 0.25.0-ts7.1.0-beta.",
+      "tsrs is the Rust port of the TypeScript 7.1 compiler: every typecheck, package build, language server, and AST reader runs it, pinned to 7.1.0-beta.tsrs3, one of the two that @effect/tsgo 0.73.2, the latest, patches. 7.1.0-beta.tsrs4 is the latest release, and it waits for an @effect/tsgo release that patches it, because every typecheck runs the patched compiler. Its version now names the TypeScript release it targets and a tsrs revision, so a newer revision of the same beta is one release channel (scripts/dependencies/release.ts), and its JavaScript API and tsdk are unchanged from 0.25.0-ts7.1.0-beta.",
     registry: "tsrs@latest",
-    reviewedLatest: "7.1.0-beta.tsrs3",
+    reviewedLatest: "7.1.0-beta.tsrs4",
     source: "catalog",
   },
   {
