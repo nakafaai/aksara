@@ -1,0 +1,67 @@
+# Tracking the masses before and after jettisoning
+
+Think of a hiker who drops a heavy empty water bottle before the final climb: stage two never carries stage one's empty <InlineMath math="200\text{ kg}" /> hull. **Call stage two's fuel <InlineMath math="x=T_2" />, so stage one gets <InlineMath math="T_1=600-x" />, and write the four masses in terms of <InlineMath math="x" />**.
+
+<BlockMath math="\begin{aligned}
+m_{\text{start},1}=50+50+200+600=900\text{ kg},\qquad m_{\text{end},1}=900-(600-x)=300+x\\
+m_{\text{start},2}=100+x,\qquad m_{\text{end},2}=50+50=100\text{ kg}
+\end{aligned}" />
+
+# Collapsing the logarithms into one quadratic
+
+**Divide both sides by <InlineMath math="2" /> and use <InlineMath math="2\ln A+\ln B=\ln(A^2 B)" /> so every logarithm disappears at once**.
+
+<BlockMath math="\begin{aligned}
+4\ln\!\left(\frac{900}{300+x}\right)+2\ln\!\left(\frac{100+x}{100}\right)=2\ln(10)\\
+\left(\frac{900}{300+x}\right)^2\cdot\frac{100+x}{100}=10\ \Longleftrightarrow\ 810\,(100+x)=(300+x)^2\\
+x^2-210x+9000=0\ \Longleftrightarrow\ (x-60)(x-150)=0
+\end{aligned}" />
+
+Two fuel splits hit the exact target speed: <InlineMath math="x=60\text{ kg}" /> and <InlineMath math="x=150\text{ kg}" />. Notice that forgetting the exponent <InlineMath math="2" /> on stage one's ratio breaks the equation completely.
+
+<MathVisual
+  title={<>Combined mass ratio over second-stage fuel</>}
+  description={<>The curve shows <InlineMath math="K(x)=\tfrac{8100\,(100+x)}{(300+x)^2}" />, which must equal the target <InlineMath math="10" />. It hits <InlineMath math="10" /> at <InlineMath math="x=60" /> and <InlineMath math="x=150" />, yet left of <InlineMath math="x=100" /> the second stage falls short of <InlineMath math="2\ln(2)" />.</>}
+  footer={<>Only <InlineMath math="x=150\text{ kg}" /> clears the <InlineMath math="x=100" /> line, leaving <InlineMath math="450\text{ kg}" /> for stage one.</>}
+  labels={{
+    target: <>target <InlineMath math="10" /></>,
+    bad: <>too small <InlineMath math="x=60" /></>,
+    ok: <>valid <InlineMath math="x=150" /></>,
+    cut: <><InlineMath math="x=100" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: 0, max: 240 },
+      y: { min: 6.5, max: 11.2 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "curve", kind: "function", appearance: "primary", formula: "8100*(100 + x)/(300 + x)^2", domain: { min: 10, max: 230 } },
+      { id: "target", kind: "segment", appearance: "reference", from: { x: 10, y: 10 }, to: { x: 230, y: 10 } },
+      { id: "cut", kind: "segment", appearance: "warning", from: { x: 100, y: 6.8 }, to: { x: 100, y: 10.8 } },
+      { id: "bad", kind: "point", appearance: "warning", at: { x: 60, y: 10 } },
+      { id: "ok", kind: "point", appearance: "answer", at: { x: 150, y: 10 } },
+    ],
+    labels: [
+      { key: "target", objectId: "target", at: { x: 210, y: 10 }, placement: "above" },
+      { key: "cut", objectId: "cut", at: { x: 100, y: 7.1 }, placement: "right" },
+      { key: "bad", objectId: "bad", at: { x: 60, y: 10 }, placement: "below-left" },
+      { key: "ok", objectId: "ok", at: { x: 150, y: 10 }, placement: "above-right" },
+    ],
+  }}
+/>
+
+The peak sits at <InlineMath math="x=100\text{ kg}" />, so the horizontal target line cuts the curve once on each side of the dashed boundary.
+
+# Applying stage two's minimum speed rule
+
+**Stage two must contribute at least <InlineMath math="2\ln(2)\,\tfrac{\text{km}}{\text{s}}" /> on its own, which rules out <InlineMath math="x=60\text{ kg}" /> because <InlineMath math="\tfrac{160}{100}=1.6<2" />**.
+
+<BlockMath math="\begin{aligned}
+2\ln\!\left(\frac{100+x}{100}\right)\ge2\ln(2)\ \Longleftrightarrow\ \frac{100+x}{100}\ge2\ \Longleftrightarrow\ x\ge100\\
+T_2=150\text{ kg}\ \Longrightarrow\ T_1=600-150=450\text{ kg}
+\end{aligned}" />
+
+As a check, with <InlineMath math="T_1=450\text{ kg}" /> and <InlineMath math="T_2=150\text{ kg}" />, stage one has ratio <InlineMath math="\tfrac{900}{450}=2" /> and stage two has ratio <InlineMath math="\tfrac{250}{100}=2.5" />, giving <InlineMath math="4\ln 2+2\ln 2.5=2\ln(4\cdot2.5)=2\ln 10" />. Keeping <InlineMath math="x=60\text{ kg}" /> would give the trap <InlineMath math="540\text{ kg}" />. **Stage one receives <InlineMath math="450\text{ kg}" /> of fuel**.

@@ -1,0 +1,62 @@
+# How the small sphere wedges inside
+
+Drop a marble into a paper cone: it stops when its sides press against the slanted wall, well above the pointed tip. **In the axial cross-section, the wall makes a half-angle <InlineMath math="\alpha" /> with the vertical axis, fixed by a <InlineMath math="3" />-<InlineMath math="4" />-<InlineMath math="5" /> right triangle**.
+
+<BlockMath math="\begin{aligned}
+s=\sqrt{18^2+24^2}=30\text{ cm},\qquad \sin\alpha=\tfrac{18}{30}=\tfrac35,\qquad \cos\alpha=\tfrac{24}{30}=\tfrac45
+\end{aligned}" />
+
+The radius to the contact point stands perpendicular to the wall, so <InlineMath math="y_1\sin\alpha=r_1" />. **We also check that the contact height <InlineMath math="y_{B,1}=y_1\cos^2\alpha" /> actually lies below the <InlineMath math="24\text{ cm}" /> rim**.
+
+<BlockMath math="\begin{aligned}
+y_1=\frac{r_1}{\sin\alpha}=\frac{4.5}{0.6}=7.5\text{ cm},\qquad y_{B,1}=y_1\cos^2\alpha=7.5\cdot\tfrac{16}{25}=4.8\text{ cm}<24\text{ cm}\\
+y_{\text{top},1}=7.5+4.5=12\text{ cm}
+\end{aligned}" />
+
+The small sphere wedges cleanly inside the funnel, and its top sits at <InlineMath math="12\text{ cm}" /> above the tip (not <InlineMath math="9\text{ cm}" /> as if it touched the tip).
+
+# Why the large sphere misses the cone wall
+
+**Apply the same wall formula to the <InlineMath math="30\text{ cm}" /> sphere and the contact check fails: the tangent point would sit at <InlineMath math="32\text{ cm}" />, well above the <InlineMath math="24\text{ cm}" /> rim where there is no wall left**. So the large sphere slides further down until it catches on the circular rim of radius <InlineMath math="18\text{ cm}" />.
+
+<BlockMath math="\begin{aligned}
+y_{2,\text{wall}}=\frac{30}{0.6}=50\text{ cm}\ \Longrightarrow\ y_{B,2}=50\cdot\tfrac{16}{25}=32\text{ cm}>24\text{ cm}\\
+y_2=24+\sqrt{30^2-18^2}=24+24=48\text{ cm},\qquad y_{\text{bottom},2}=48-30=18\text{ cm}
+\end{aligned}" />
+
+<MathVisual
+  title={<>Both spheres in the cone cross-section</>}
+  description={<>The small sphere touches the wall at height <InlineMath math="4.8\text{ cm}" /> and reaches up to <InlineMath math="12\text{ cm}" />. The large sphere rests on the upper rim, so its lowest point sits at <InlineMath math="18\text{ cm}" />.</>}
+  footer={<>The big sphere rests on the rim rather than the wall, leaving a <InlineMath math="6\text{ cm}" /> gap.</>}
+  labels={{
+    s1: <>small sphere</>,
+    s2: <>large sphere</>,
+    rim: <>rim contact</>,
+    gap: <><InlineMath math="6\text{ cm}" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -36, max: 36 },
+      y: { min: -4, max: 82 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "left", kind: "segment", appearance: "reference", from: { x: 0, y: 0 }, to: { x: -18, y: 24 } },
+      { id: "right", kind: "segment", appearance: "reference", from: { x: 0, y: 0 }, to: { x: 18, y: 24 } },
+      { id: "small", kind: "circle", appearance: "secondary", center: { x: 0, y: 7.5 }, radius: 4.5 },
+      { id: "large", kind: "circle", appearance: "primary", center: { x: 0, y: 48 }, radius: 30 },
+      { id: "rim", kind: "point", appearance: "highlight", at: { x: 18, y: 24 } },
+      { id: "gap", kind: "segment", appearance: "answer", from: { x: 0, y: 12 }, to: { x: 0, y: 18 } },
+    ],
+    labels: [
+      { key: "s1", objectId: "small", at: { x: -5, y: 6 }, placement: "left" },
+      { key: "s2", objectId: "large", at: { x: 0, y: 64 }, placement: "center" },
+      { key: "rim", objectId: "rim", at: { x: 18, y: 24 }, placement: "right" },
+      { key: "gap", objectId: "gap", at: { x: 0, y: 15 }, placement: "right" },
+    ],
+  }}
+/>
+
+Because the large sphere's lowest point sits at <InlineMath math="18\text{ cm}" />, above the small sphere's top at <InlineMath math="12\text{ cm}" />, the two spheres never collide and the large sphere truly rests on the rim. **The shortest distance between their surfaces along the axis is <InlineMath math="18-12=6\text{ cm}" />**. Using the infinite-wall formula without checking the rim gives the trap value <InlineMath math="20-12=8\text{ cm}" />.

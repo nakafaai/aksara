@@ -1,0 +1,70 @@
+# Even steps give a parabola away
+
+Walk down a staircase where every step is shorter than the last by one fixed amount: that is how a parabola changes when <InlineMath math="x" /> moves in equal steps. **For <InlineMath math="y=ax^2+bx+c" /> the first differences of the heights change by one fixed number, the second difference <InlineMath math="2a" />**.
+
+<BlockMath math="\begin{aligned}
+\Delta y&:\quad 1.40,\ 0.60,\ 0.40,\ 0.00\\
+\Delta^2 y&:\quad -0.80,\ -0.20,\ -0.40
+\end{aligned}" />
+
+Those second differences do not match, which immediately reveals the wrong reading.
+
+# Tracking down the wrong reading
+
+A height that is off by <InlineMath math="\delta" /> shifts each second difference it belongs to: by <InlineMath math="-2\delta" /> when it sits in the middle and by <InlineMath math="+\delta" /> when it sits at an end. **Only a mistake at <InlineMath math="x=1" /> leaves the last difference <InlineMath math="-0.40" /> intact while shifting the first two by <InlineMath math="-2\delta" /> and <InlineMath math="+\delta" />**.
+
+<BlockMath math="\begin{aligned}
+-0.80&=-0.40-2\delta\\
+-0.20&=-0.40+\delta\\
+\delta&=0.20
+\end{aligned}" />
+
+Both equations agree on <InlineMath math="\delta=0.20" />, so the true height at <InlineMath math="x=1" /> is <InlineMath math="3.25-0.20=3.05\text{ m}" />. An error at <InlineMath math="x=0" /> would touch only the first difference and one at <InlineMath math="x=4" /> only the last, while at <InlineMath math="x=2" /> or <InlineMath math="x=3" /> the untouched differences contradict each other.
+
+# The highest point
+
+The heights at <InlineMath math="x=3" /> and <InlineMath math="x=4" /> are equal and both exact, so the apex sits halfway between them at <InlineMath math="x=3.5" />. **The second difference <InlineMath math="2a=-0.40" /> gives <InlineMath math="a=-0.2" />, and substituting <InlineMath math="(3\mid4.25)" /> fixes the top**.
+
+<BlockMath math="\begin{aligned}
+y&=-0.2\,(x-3.5)^2+H\\
+4.25&=-0.2\cdot0.25+H\\
+H&=4.30
+\end{aligned}" />
+
+<MathVisual
+  title={<>The flight path and the wrong reading</>}
+  description={<>The parabola <InlineMath math="y=-0.2\,(x-3.5)^2+4.3" /> passes through the four correct readings. The reading <InlineMath math="3.25" /> at <InlineMath math="x=1" /> is <InlineMath math="0.2\text{ m}" /> too high, the true value is <InlineMath math="3.05" />. The apex sits halfway between the equal heights at <InlineMath math="x=3" /> and <InlineMath math="x=4" />.</>}
+  footer={<>Only the reading at <InlineMath math="x=1" /> sits off the curve, and the apex peaks at <InlineMath math="4.3\text{ m}" />.</>}
+  labels={{
+    wrong: <>misread</>,
+    true: <>true</>,
+    apex: <><InlineMath math="4.3\text{ m}" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -0.5, max: 6 },
+      y: { min: 0, max: 5 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "path", kind: "function", appearance: "primary", formula: "-0.2*(x - 3.5)^2 + 4.3", domain: { min: 0, max: 5.5 } },
+      { id: "p0", kind: "point", appearance: "reference", at: { x: 0, y: 1.85 } },
+      { id: "p2", kind: "point", appearance: "reference", at: { x: 2, y: 3.85 } },
+      { id: "p3", kind: "point", appearance: "reference", at: { x: 3, y: 4.25 } },
+      { id: "p4", kind: "point", appearance: "reference", at: { x: 4, y: 4.25 } },
+      { id: "wrong", kind: "point", appearance: "warning", at: { x: 1, y: 3.25 } },
+      { id: "true", kind: "point", appearance: "highlight", at: { x: 1, y: 3.05 } },
+      { id: "axis", kind: "segment", appearance: "construction", from: { x: 3.5, y: 0 }, to: { x: 3.5, y: 4.3 } },
+      { id: "apex", kind: "point", appearance: "answer", at: { x: 3.5, y: 4.3 } },
+    ],
+    labels: [
+      { key: "wrong", objectId: "wrong", at: { x: 1, y: 3.25 }, placement: "above-left" },
+      { key: "true", objectId: "true", at: { x: 1, y: 3.05 }, placement: "below-right" },
+      { key: "apex", objectId: "apex", at: { x: 3.5, y: 4.3 }, placement: "above" },
+    ],
+  }}
+/>
+
+The ball's centre climbs to **<InlineMath math="4.3\text{ m}" />**. Fitting a parabola through the first three readings, including the wrong one, peaks at <InlineMath math="3.875\text{ m}" /> near <InlineMath math="x=2.25" /> and already misses the reading at <InlineMath math="x=3" />.

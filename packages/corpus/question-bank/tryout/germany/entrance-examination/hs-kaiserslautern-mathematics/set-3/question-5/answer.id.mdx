@@ -1,0 +1,62 @@
+# Posisi bola kecil di dalam kerucut
+
+Kalau kamu menjatuhkan kelereng ke corong kertas, kelereng berhenti ketika sisinya menempel pada dinding miring, jauh di atas ujung runcing. **Pada penampang sumbu, dinding miring membentuk setengah sudut <InlineMath math="\alpha" /> dengan sumbu tegak dalam segitiga siku-siku <InlineMath math="3" />-<InlineMath math="4" />-<InlineMath math="5" />**.
+
+<BlockMath math="\begin{aligned}
+s=\sqrt{18^2+24^2}=30\text{ cm},\qquad \sin\alpha=\tfrac{18}{30}=\tfrac35,\qquad \cos\alpha=\tfrac{24}{30}=\tfrac45
+\end{aligned}" />
+
+Jari-jari ke titik sentuh tegak lurus dinding, sehingga <InlineMath math="y_1\sin\alpha=r_1" />. **Kamu juga harus mengecek apakah tinggi titik sentuh <InlineMath math="y_{B,1}=y_1\cos^2\alpha" /> memang masih di bawah bibir <InlineMath math="24\text{ cm}" />**.
+
+<BlockMath math="\begin{aligned}
+y_1=\frac{r_1}{\sin\alpha}=\frac{4{,}5}{0{,}6}=7{,}5\text{ cm},\qquad y_{B,1}=y_1\cos^2\alpha=7{,}5\cdot\tfrac{16}{25}=4{,}8\text{ cm}<24\text{ cm}\\
+y_{\text{atas},1}=7{,}5+4{,}5=12\text{ cm}
+\end{aligned}" />
+
+Bola kecil terjepit rapi di dalam dinding, dan titik tertingginya berada <InlineMath math="12\text{ cm}" /> di atas ujung kerucut (bukan <InlineMath math="9\text{ cm}" /> seolah menyentuh ujung).
+
+# Mengapa bola besar tertahan di bibir atas
+
+**Kalau rumus dinding yang sama kamu pakai untuk bola berjari-jari <InlineMath math="30\text{ cm}" />, cek tinggi sentuhnya gagal: titik singgungnya berada di <InlineMath math="32\text{ cm}" />, jauh di atas bibir <InlineMath math="24\text{ cm}" /> yang sudah tidak berdinding**. Jadi bola besar turun lebih dalam sampai bertumpu pada bibir lingkaran berjari-jari <InlineMath math="18\text{ cm}" />.
+
+<BlockMath math="\begin{aligned}
+y_{2,\text{dinding}}=\frac{30}{0{,}6}=50\text{ cm}\ \Longrightarrow\ y_{B,2}=50\cdot\tfrac{16}{25}=32\text{ cm}>24\text{ cm}\\
+y_2=24+\sqrt{30^2-18^2}=24+24=48\text{ cm},\qquad y_{\text{bawah},2}=48-30=18\text{ cm}
+\end{aligned}" />
+
+<MathVisual
+  title={<>Kedua bola pada penampang kerucut</>}
+  description={<>Bola kecil menyentuh dinding pada tinggi <InlineMath math="4{,}8\text{ cm}" /> dan mencapai <InlineMath math="12\text{ cm}" />. Bola besar bertumpu pada bibir atas, sehingga titik terendahnya berada di <InlineMath math="18\text{ cm}" />.</>}
+  footer={<>Bola besar bertumpu di bibir atas, bukan di dinding, menyisakan celah <InlineMath math="6\text{ cm}" />.</>}
+  labels={{
+    s1: <>bola kecil</>,
+    s2: <>bola besar</>,
+    rim: <>kontak bibir</>,
+    gap: <><InlineMath math="6\text{ cm}" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -36, max: 36 },
+      y: { min: -4, max: 82 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "left", kind: "segment", appearance: "reference", from: { x: 0, y: 0 }, to: { x: -18, y: 24 } },
+      { id: "right", kind: "segment", appearance: "reference", from: { x: 0, y: 0 }, to: { x: 18, y: 24 } },
+      { id: "small", kind: "circle", appearance: "secondary", center: { x: 0, y: 7.5 }, radius: 4.5 },
+      { id: "large", kind: "circle", appearance: "primary", center: { x: 0, y: 48 }, radius: 30 },
+      { id: "rim", kind: "point", appearance: "highlight", at: { x: 18, y: 24 } },
+      { id: "gap", kind: "segment", appearance: "answer", from: { x: 0, y: 12 }, to: { x: 0, y: 18 } },
+    ],
+    labels: [
+      { key: "s1", objectId: "small", at: { x: -5, y: 6 }, placement: "left" },
+      { key: "s2", objectId: "large", at: { x: 0, y: 64 }, placement: "center" },
+      { key: "rim", objectId: "rim", at: { x: 18, y: 24 }, placement: "right" },
+      { key: "gap", objectId: "gap", at: { x: 0, y: 15 }, placement: "right" },
+    ],
+  }}
+/>
+
+Karena titik terendah bola besar di <InlineMath math="18\text{ cm}" /> masih di atas puncak bola kecil di <InlineMath math="12\text{ cm}" />, kedua bola tidak bersentuhan dan bola besar benar-benar bertumpu pada bibir. **Jarak terpendek antara kedua permukaan bola sepanjang sumbu adalah <InlineMath math="18-12=6\text{ cm}" />**. Memakai rumus dinding tak terbatas tanpa mengecek bibir memberi jebakan <InlineMath math="20-12=8\text{ cm}" />.

@@ -1,0 +1,74 @@
+# Mulai dari diagonal bersama BD
+
+Belah segi empat di sepanjang <InlineMath math="BD" /> menjadi dua segitiga yang berbagi jembatan itu. **Pada segitiga <InlineMath math="ABD" /> kamu tahu dua sisi dan kosinus sudut apitnya, jadi aturan kosinus langsung memberi <InlineMath math="BD" />**. Tanda negatif pada kosinus mengubah pengurangan menjadi penjumlahan.
+
+<BlockMath math="\begin{aligned}
+BD^2=30^2+14^2-2\cdot30\cdot14\cdot\left(-\tfrac35\right)=900+196+504=1600\ \Longrightarrow\ BD=40\text{ m}
+\end{aligned}" />
+
+# Dua calon posisi untuk C
+
+Sekarang pindah ke segitiga <InlineMath math="BCD" /> dan misalkan <InlineMath math="x=CD" />. **Karena <InlineMath math="BC=30\text{ m}" /> lebih pendek dari <InlineMath math="BD=40\text{ m}" />, lingkaran berjari-jari <InlineMath math="30\text{ m}" /> berpusat di <InlineMath math="B" /> memotong sinar dari <InlineMath math="D" /> dua kali dan memberi dua calon nilai <InlineMath math="CD" />**.
+
+<BlockMath math="\begin{aligned}
+30^2=40^2+x^2-2\cdot40\cdot x\cdot\tfrac45\ \Longleftrightarrow\ x^2-64x+700=0\\
+(x-14)(x-50)=0\ \Longrightarrow\ CD=14\text{ m}\quad\text{atau}\quad CD=50\text{ m}
+\end{aligned}" />
+
+Sekarang syarat <InlineMath math="\angle BCD<90^\circ" /> yang menentukan. Untuk <InlineMath math="CD=14\text{ m}" /> berlaku <InlineMath math="30^2+14^2=1096<1600=40^2" />, jadi sudut di <InlineMath math="C'" /> tumpul dan gugur. Untuk <InlineMath math="CD=50\text{ m}" /> berlaku <InlineMath math="30^2+40^2=2500=50^2" /> (siku-siku di <InlineMath math="B" />), sehingga <InlineMath math="\angle BCD" /> lancip dan **<InlineMath math="CD=50\text{ m}" /> yang bertahan**.
+
+<MathVisual
+  title={<>Lahan dan titik sudut yang gugur</>}
+  description={<>Pada sinar dari <InlineMath math="D" /> dengan <InlineMath math="\cos(\angle BDC)=\tfrac45" />, baik <InlineMath math="C'" /> di <InlineMath math="14\text{ m}" /> maupun <InlineMath math="C" /> di <InlineMath math="50\text{ m}" /> berjarak <InlineMath math="30\text{ m}" /> dari <InlineMath math="B" />. Hanya <InlineMath math="C" /> yang memberi sudut lancip, sehingga diagonal <InlineMath math="AC=48\text{ m}" />.</>}
+  footer={<>Titik <InlineMath math="C'" /> membuat sudut tumpul, sedangkan <InlineMath math="C" /> menghasilkan diagonal <InlineMath math="48\text{ m}" />.</>}
+  labels={{
+    a: <><InlineMath math="A" /></>,
+    b: <><InlineMath math="B" /></>,
+    c: <><InlineMath math="C" /></>,
+    d: <><InlineMath math="D" /></>,
+    cp: <><InlineMath math="C'" /> (tumpul)</>,
+    ac: <><InlineMath math="48\text{ m}" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -6, max: 48 },
+      y: { min: -36, max: 16 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "quad", kind: "polygon", appearance: "secondary", vertices: [{ x: 11.2, y: 8.4 }, { x: 40, y: 0 }, { x: 40, y: -30 }, { x: 0, y: 0 }] },
+      { id: "bd", kind: "segment", appearance: "reference", from: { x: 0, y: 0 }, to: { x: 40, y: 0 } },
+      { id: "ac", kind: "segment", appearance: "answer", from: { x: 11.2, y: 8.4 }, to: { x: 40, y: -30 } },
+      { id: "bcp", kind: "segment", appearance: "construction", stroke: "dashed", from: { x: 40, y: 0 }, to: { x: 11.2, y: -8.4 } },
+      { id: "a", kind: "point", appearance: "highlight", at: { x: 11.2, y: 8.4 } },
+      { id: "b", kind: "point", appearance: "highlight", at: { x: 40, y: 0 } },
+      { id: "c", kind: "point", appearance: "answer", at: { x: 40, y: -30 } },
+      { id: "d", kind: "point", appearance: "highlight", at: { x: 0, y: 0 } },
+      { id: "cp", kind: "point", appearance: "warning", at: { x: 11.2, y: -8.4 } },
+    ],
+    labels: [
+      { key: "a", objectId: "a", at: { x: 11.2, y: 8.4 }, placement: "above" },
+      { key: "b", objectId: "b", at: { x: 40, y: 0 }, placement: "above-right" },
+      { key: "c", objectId: "c", at: { x: 40, y: -30 }, placement: "below-right" },
+      { key: "d", objectId: "d", at: { x: 0, y: 0 }, placement: "left" },
+      { key: "cp", objectId: "cp", at: { x: 11.2, y: -8.4 }, placement: "below-left" },
+      { key: "ac", objectId: "ac", at: { x: 25.6, y: -10.8 }, placement: "right" },
+    ],
+  }}
+/>
+
+Gambar memperlihatkan kedua titik potong pada sinar dari <InlineMath math="D" /> dan menjelaskan mengapa hanya titik yang lebih jauh yang menjaga sudut di <InlineMath math="C" /> tetap lancip.
+
+# Menggabungkan dua sudut di D
+
+Karena <InlineMath math="A" /> dan <InlineMath math="C" /> berada di sisi berlawanan dari <InlineMath math="BD" />, sudut di <InlineMath math="D" /> adalah <InlineMath math="\angle ADC=\angle ADB+\angle BDC" />. **Cari <InlineMath math="\cos(\angle ADB)" /> dari segitiga <InlineMath math="ABD" />, gunakan rumus penjumlahan kosinus, lalu tutup dengan aturan kosinus pada segitiga <InlineMath math="ADC" />**.
+
+<BlockMath math="\begin{aligned}
+\cos(\angle ADB)=\frac{14^2+40^2-30^2}{2\cdot14\cdot40}=\frac{896}{1120}=\tfrac45,\qquad \sin(\angle ADB)=\tfrac35\\
+\cos(\angle ADC)=\cos(\angle ADB+\angle BDC)=\tfrac45\cdot\tfrac45-\tfrac35\cdot\tfrac35=\tfrac{7}{25}\\
+AC^2=14^2+50^2-2\cdot14\cdot50\cdot\tfrac{7}{25}=196+2500-392=2304\ \Longrightarrow\ AC=48\text{ m}
+\end{aligned}" />
+
+Panjang diagonal <InlineMath math="AC" /> adalah **<InlineMath math="48\text{ m}" />**. Memilih titik <InlineMath math="C'" /> yang gugur dengan <InlineMath math="CD=14\text{ m}" /> memberi jebakan <InlineMath math="16{,}8\text{ m}" />.

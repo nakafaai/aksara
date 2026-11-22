@@ -1,0 +1,62 @@
+# Separating the two initial masses
+
+After <InlineMath math="6" /> hours, substance A has halved twice (factor <InlineMath math="\tfrac14" />) while substance B has halved only once (factor <InlineMath math="\tfrac12" />). **That contrast between the two decay speeds lets you solve for both initial masses <InlineMath math="a_0" /> and <InlineMath math="b_0" /> directly from the two total-mass readings**.
+
+<BlockMath math="\begin{aligned}
+a_0+b_0=176,\qquad \tfrac14 a_0+\tfrac12 b_0=56\ \Longrightarrow\ a_0+2b_0=224\\
+b_0=48\text{ mg},\qquad a_0=128\text{ mg}
+\end{aligned}" />
+
+# Turning the decay difference into a quadratic
+
+Set <InlineMath math="u=2^{-t/6}" />. Because A decays twice as fast as B, its factor is simply <InlineMath math="u^2" />. **Requiring <InlineMath math="B(t)-A(t)=4\text{ mg}" /> produces a quadratic with two clean power-of-two roots**.
+
+<BlockMath math="\begin{aligned}
+u=2^{-t/6}\ \Longrightarrow\ A(t)=128u^2,\quad B(t)=48u\\
+48u-128u^2=4\ \Longleftrightarrow\ 32u^2-12u+1=(4u-1)(8u-1)=0\\
+u_1=\tfrac14\ (t_1=12\text{ h}),\qquad u_2=\tfrac18\ (t_2=18\text{ h})
+\end{aligned}" />
+
+# Filtering with the purity requirement
+
+**Both times give a <InlineMath math="4\text{ mg}" /> lead, so picking the first hit <InlineMath math="12\text{ h}" /> is the hidden trap**. Check the share of B in the remaining total mass at each root:
+
+<BlockMath math="\begin{aligned}
+t_1=12\text{ h}:\quad A=8,\ B=12\ \Longrightarrow\ \frac{B}{A+B}=\frac{12}{20}=60\,\%<70\,\%\\
+t_2=18\text{ h}:\quad A=2,\ B=6\ \Longrightarrow\ \frac{B}{A+B}=\frac{6}{8}=75\,\%\ge70\,\%
+\end{aligned}" />
+
+<MathVisual
+  title={<>Lead of substance B over substance A over time</>}
+  description={<>The difference <InlineMath math="B(t)-A(t)" /> plotted against time <InlineMath math="t" /> in hours. The level <InlineMath math="4\text{ mg}" /> is reached twice, at <InlineMath math="12\text{ h}" /> with only <InlineMath math="60\,\%" /> share of B and at <InlineMath math="18\text{ h}" /> with <InlineMath math="75\,\%" />.</>}
+  footer={<>Only at <InlineMath math="t=18\text{ h}" /> does substance B meet the <InlineMath math="70\,\%" /> purity requirement.</>}
+  labels={{
+    curve: <>difference</>,
+    bad: <>rejected <InlineMath math="12\text{ h}" /></>,
+    good: <>valid <InlineMath math="18\text{ h}" /></>,
+    lvl: <><InlineMath math="4\text{ mg}" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: 8, max: 22 },
+      y: { min: -4, max: 8 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "curve", kind: "function", appearance: "primary", formula: "48*2^(-x/6) - 128*2^(-x/3)", domain: { min: 8.5, max: 21.5 } },
+      { id: "lvl", kind: "segment", appearance: "secondary", from: { x: 8.5, y: 4 }, to: { x: 21.5, y: 4 } },
+      { id: "bad", kind: "point", appearance: "warning", at: { x: 12, y: 4 } },
+      { id: "good", kind: "point", appearance: "answer", at: { x: 18, y: 4 } },
+    ],
+    labels: [
+      { key: "curve", objectId: "curve", at: { x: 9.8, y: 2 }, placement: "below-right" },
+      { key: "bad", objectId: "bad", at: { x: 12, y: 4 }, placement: "above-left" },
+      { key: "good", objectId: "good", at: { x: 18, y: 4 }, placement: "above-right" },
+      { key: "lvl", objectId: "lvl", at: { x: 20.5, y: 4 }, placement: "above" },
+    ],
+  }}
+/>
+
+At <InlineMath math="12\text{ h}" /> the sample still has too much of substance A (only <InlineMath math="60\,\%" /> B), whereas at <InlineMath math="18\text{ h}" /> substance B reaches <InlineMath math="75\,\%" />. **The required time is <InlineMath math="18" /> hours**.

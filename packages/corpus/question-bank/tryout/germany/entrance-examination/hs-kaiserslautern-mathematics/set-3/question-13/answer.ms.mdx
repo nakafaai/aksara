@@ -1,0 +1,58 @@
+# Memasang dari hadapan pintu
+
+Pasang laluan itu jubin demi jubin, bermula di hadapan pintu. **Lihat meter pertama: sama ada satu jubin melintang di situ, atau dua jubin membujur bersebelahan mengisi dua meter pertama, jadi bilangan corak <InlineMath math="a_n" /> tanpa segi empat sama mengikut ulangan Fibonacci**.
+
+<BlockMath math="\begin{aligned}
+a_n&=a_{n-1}+a_{n-2},\qquad a_0=a_1=1\\
+a_0,\dots,a_7&:\quad 1,\ 1,\ 2,\ 3,\ 5,\ 8,\ 13,\ 21
+\end{aligned}" />
+
+Tanpa jubin segi empat sama ada <InlineMath math="a_7=21" /> corak.
+
+# Kedudukan jubin segi empat sama
+
+**Jubin segi empat sama menutup seluruh lebar sepanjang dua meter, maka ia memotong laluan kepada bahagian kiri dan kanan yang dipasang secara berasingan**. Jika jubin itu menutup meter <InlineMath math="k" /> dan <InlineMath math="k+1" />, panjang kedua-dua bahagian ialah <InlineMath math="k-1" /> dan <InlineMath math="6-k" /> meter.
+
+<BlockMath math="\begin{aligned}
+\sum_{k=1}^{6}a_{k-1}\,a_{6-k}&=1\cdot8+1\cdot5+2\cdot3+3\cdot2+5\cdot1+8\cdot1\\
+&=38
+\end{aligned}" />
+
+<MathVisual
+  title={<>Satu corak dengan jubin segi empat sama</>}
+  description={<>Contoh apabila jubin segi empat sama menutup meter ketiga dan keempat. Di kiri tinggal <InlineMath math="2\text{ m}" /> dengan <InlineMath math="a_2=2" /> corak, di kanan <InlineMath math="3\text{ m}" /> dengan <InlineMath math="a_3=3" /> corak, jadi kedudukan ini memberi <InlineMath math="2\cdot3=6" /> corak.</>}
+  footer={<>Jubin segi empat sama membelah laluan kepada dua sisi bebas yang coraknya didarab.</>}
+  labels={{
+    square: <>segi empat sama</>,
+    left: <><InlineMath math="a_2=2" /></>,
+    right: <><InlineMath math="a_3=3" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -0.5, max: 7.5 },
+      y: { min: -1.2, max: 3.2 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "across-1", kind: "polygon", appearance: "reference", vertices: [{ x: 0, y: 0 }, { x: 1, y: 0 }, { x: 1, y: 2 }, { x: 0, y: 2 }] },
+      { id: "across-2", kind: "polygon", appearance: "reference", vertices: [{ x: 1, y: 0 }, { x: 2, y: 0 }, { x: 2, y: 2 }, { x: 1, y: 2 }] },
+      { id: "square", kind: "polygon", appearance: "answer", vertices: [{ x: 2, y: 0 }, { x: 4, y: 0 }, { x: 4, y: 2 }, { x: 2, y: 2 }] },
+      { id: "along-low", kind: "polygon", appearance: "secondary", vertices: [{ x: 4, y: 0 }, { x: 6, y: 0 }, { x: 6, y: 1 }, { x: 4, y: 1 }] },
+      { id: "along-high", kind: "polygon", appearance: "secondary", vertices: [{ x: 4, y: 1 }, { x: 6, y: 1 }, { x: 6, y: 2 }, { x: 4, y: 2 }] },
+      { id: "across-3", kind: "polygon", appearance: "reference", vertices: [{ x: 6, y: 0 }, { x: 7, y: 0 }, { x: 7, y: 2 }, { x: 6, y: 2 }] },
+    ],
+    labels: [
+      { key: "square", objectId: "square", at: { x: 3, y: 1 }, placement: "center" },
+      { key: "left", objectId: "across-1", at: { x: 1, y: 2 }, placement: "above" },
+      { key: "right", objectId: "along-high", at: { x: 5.5, y: 2 }, placement: "above" },
+    ],
+  }}
+/>
+
+Menambah keenam-enam hasil darab itu memberi <InlineMath math="38" /> corak yang menggunakan jubin segi empat sama.
+
+# Semua corak bersama
+
+Sesuatu corak sama ada tiada segi empat sama atau tepat satu, tidak pernah kedua-duanya, **jadi kedua-dua bilangan ditambah menjadi <InlineMath math="21+38=59" /> corak**. Dua jubin membujur yang bersebelahan memang menutup blok <InlineMath math="2\times2" /> juga, tetapi itu corak yang berbeza daripada satu jubin segi empat sama. Menambah <InlineMath math="6" /> kedudukan segi empat sama sahaja kepada <InlineMath math="21" /> memberi perangkap <InlineMath math="27" />.

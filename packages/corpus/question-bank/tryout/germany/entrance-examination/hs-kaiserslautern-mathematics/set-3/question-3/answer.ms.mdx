@@ -1,0 +1,35 @@
+# Petunjuk daripada kotak B tentang perintang yang dipindah
+
+Jika kamu memindahkan sekeping syiling tanpa melihat dari poket kiri ke poket kanan lalu menarik dua syiling emas dari poket kanan, jauh lebih besar kemungkinannya syiling yang dipindah ialah emas. **Tulis <InlineMath math="H_{100}" /> dan <InlineMath math="H_{200}" /> bagi dua jenis pemindahan dan <InlineMath math="E" /> bagi peristiwa kedua-dua perintang dari B bernilai <InlineMath math="200\,\Omega" />**. Sebelum melihat B, <InlineMath math="P(H_{100})=\tfrac13" /> dan <InlineMath math="P(H_{200})=\tfrac23" />.
+
+Selepas pemindahan, kotak B mengandungi lima perintang: dua <InlineMath math="100\,\Omega" /> dan tiga <InlineMath math="200\,\Omega" /> bagi <InlineMath math="H_{100}" />, atau satu <InlineMath math="100\,\Omega" /> dan empat <InlineMath math="200\,\Omega" /> bagi <InlineMath math="H_{200}" />. **Mencabut dua <InlineMath math="200\,\Omega" /> tanpa pengembalian dua kali lebih mungkin bagi <InlineMath math="H_{200}" />, jadi petua Bayes mengalihkan pemberatnya kepada <InlineMath math="20\,\%" /> dan <InlineMath math="80\,\%" />**.
+
+<BlockMath math="\begin{aligned}
+P(H_{100}\cap E)=\tfrac26\cdot\tfrac35\cdot\tfrac24=\tfrac1{10},\qquad P(H_{200}\cap E)=\tfrac46\cdot\tfrac45\cdot\tfrac34=\tfrac4{10}\\
+P(E)=\tfrac1{10}+\tfrac4{10}=\tfrac12,\qquad P(H_{100}\mid E)=\tfrac15=20\,\%,\qquad P(H_{200}\mid E)=\tfrac45=80\,\%
+\end{aligned}" />
+
+# Baki isi kotak A bagi setiap kes
+
+Sekarang kembali ke kotak A yang tinggal lima perintang, dan namakan <InlineMath math="G" /> sebagai peristiwa mendapat dua perintang yang sama nilai. **Di sinilah perangkapnya: bagi <InlineMath math="H_{100}" /> hanya tinggal satu perintang <InlineMath math="100\,\Omega" /> dalam A maka pasangan <InlineMath math="100\,\Omega" /> mustahil, sedangkan bagi <InlineMath math="H_{200}" /> kedua-dua pasangan <InlineMath math="200\,\Omega" /> dan pasangan <InlineMath math="100\,\Omega" /> dikira**.
+
+<BlockMath math="\begin{aligned}
+P(G\mid H_{100})=\tfrac45\cdot\tfrac34+0=\tfrac35=60\,\%\\
+P(G\mid H_{200})=\tfrac35\cdot\tfrac24+\tfrac25\cdot\tfrac14=\tfrac3{10}+\tfrac1{10}=\tfrac25=40\,\%\\
+P(G\mid E)=0.20\cdot0.60+0.80\cdot0.40=0.12+0.32=0.44=44\,\%
+\end{aligned}" />
+
+<Chart
+  title={<>Kesan cabutan dari kotak B pada pemberat kes</>}
+  description={<>Bagi setiap pemindahan yang mungkin, palang pertama menunjukkan kebarangkalian baharu selepas hasil kotak B, palang kedua menunjukkan kebarangkalian pasangan sama dari kotak A.</>}
+  footer={<>Kes pemindahan <InlineMath math="200\,\Omega" /> naik ke pemberat <InlineMath math="80\,\%" />, dengan <InlineMath math="40\,\%" /> pasangan sepadan.</>}
+  bars="apart"
+  categories={["100 Ω dipindah", "200 Ω dipindah"]}
+  series={[
+    { label: "Pemberat selepas kotak B", mark: "bar", values: [20.0, 80.0] },
+    { label: "Pasangan sama dari A", mark: "bar", values: [60.0, 40.0] },
+  ]}
+  valueLabel="Peratus"
+/>
+
+Menggabungkan <InlineMath math="60\,\%" /> dan <InlineMath math="40\,\%" /> dengan pemberat baharu <InlineMath math="20\,\%" /> dan <InlineMath math="80\,\%" /> memberi **<InlineMath math="44\,\%" />**. Jika pasangan <InlineMath math="100\,\Omega" /> bagi <InlineMath math="H_{200}" /> terlepas, jawapannya jatuh ke <InlineMath math="36\,\%" />, dan jika kotak B diabaikan, pecahannya kekal <InlineMath math="\tfrac{7}{15}" />.

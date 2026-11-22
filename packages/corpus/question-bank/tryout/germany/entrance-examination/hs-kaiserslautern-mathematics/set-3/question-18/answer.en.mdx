@@ -1,0 +1,64 @@
+# Two divider directions and two wall regimes
+
+Think of leaning a rectangle against a short garden wall: you don't have to stop at the end of the wall if fencing the extra overhang lets you build a better shape. **Call the side along the wall line <InlineMath math="x" /> and the perpendicular side <InlineMath math="y" />**. You must check both divider orientations and both regimes: staying inside the wall (<InlineMath math="x\le18" />) and extending past it (<InlineMath math="x\ge18" />), where the back side needs <InlineMath math="x-18" /> metres of fence.
+
+# Parallel divider stays stuck at the wall end
+
+**First place the divider parallel to the wall, so two runs have length <InlineMath math="y" /> and three runs have length <InlineMath math="x" /> minus the used wall**.
+
+<BlockMath math="\begin{aligned}
+x\le18&:\quad 2x+2y=72\ \Longrightarrow\ A_B(x)=x\,(36-x),\quad \max\text{ at }x=18:\ 324\\
+x\ge18&:\quad 3x-18+2y=72\ \Longrightarrow\ A_B(x)=x\,(45-1.5x),\quad A_B'(x)=45-3x<0\text{ for }x>18
+\end{aligned}" />
+
+Past <InlineMath math="x=18" /> the parabola already falls, because its vertex sits at <InlineMath math="x=15" />, so a parallel divider peaks at <InlineMath math="324\text{ m}^2" />.
+
+# Perpendicular divider climbs past the wall
+
+Now turn the divider perpendicular to the wall, giving three runs of length <InlineMath math="y" />. **Inside <InlineMath math="x\le18" /> the area also stops at <InlineMath math="324\text{ m}^2" />, which is the classic boundary trap, yet extending past the wall opens a new parabola whose peak lies strictly beyond <InlineMath math="18\text{ m}" />**.
+
+<BlockMath math="\begin{aligned}
+x\le18&:\quad x+3y=72\ \Longrightarrow\ A_A(x)=x\left(24-\tfrac13x\right),\quad A_A(18)=324\\
+x\ge18&:\quad (x-18)+x+3y=72\ \Longrightarrow\ y=30-\tfrac23x,\quad A_A(x)=x\left(30-\tfrac23x\right)\\
+A_A'(x)=30-\tfrac43x=0\ \Longrightarrow\ x=22.5,\quad y=15,\quad A_A(22.5)=337.5
+\end{aligned}" />
+
+<MathVisual
+  title={<>Enclosure area for both divider orientations</>}
+  description={<>Both curves bend at the wall length <InlineMath math="x=18\text{ m}" />. With a parallel divider the peak <InlineMath math="324\text{ m}^2" /> sits right at the kink, while a perpendicular divider climbs further to <InlineMath math="337.5\text{ m}^2" /> at <InlineMath math="x=22.5\text{ m}" />.</>}
+  footer={<>Past the <InlineMath math="18\text{ m}" /> wall, only the perpendicular divider climbs to <InlineMath math="337.5\text{ m}^2" />.</>}
+  labels={{
+    perp: <>divider perpendicular</>,
+    para: <>divider parallel</>,
+    wall: <>wall end</>,
+    kink: <><InlineMath math="324" /></>,
+    best: <><InlineMath math="337.5" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: 4, max: 34 },
+      y: { min: 100, max: 380 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "perp1", kind: "function", appearance: "primary", formula: "x*(24 - x/3)", domain: { min: 6, max: 18 } },
+      { id: "perp2", kind: "function", appearance: "primary", formula: "x*(30 - 2*x/3)", domain: { min: 18, max: 32 } },
+      { id: "para1", kind: "function", appearance: "secondary", formula: "x*(36 - x)", domain: { min: 6, max: 18 } },
+      { id: "para2", kind: "function", appearance: "secondary", formula: "x*(45 - 1.5*x)", domain: { min: 18, max: 26 } },
+      { id: "wall", kind: "segment", appearance: "construction", from: { x: 18, y: 110 }, to: { x: 18, y: 365 } },
+      { id: "kink", kind: "point", appearance: "warning", at: { x: 18, y: 324 } },
+      { id: "best", kind: "point", appearance: "answer", at: { x: 22.5, y: 337.5 } },
+    ],
+    labels: [
+      { key: "perp", objectId: "perp2", at: { x: 29, y: 309 }, placement: "right" },
+      { key: "para", objectId: "para1", at: { x: 11, y: 275 }, placement: "above-left" },
+      { key: "wall", objectId: "wall", at: { x: 18, y: 125 }, placement: "right" },
+      { key: "kink", objectId: "kink", at: { x: 18, y: 324 }, placement: "above-left" },
+      { key: "best", objectId: "best", at: { x: 22.5, y: 337.5 }, placement: "above" },
+    ],
+  }}
+/>
+
+Check the fence length at <InlineMath math="x=22.5\text{ m}" /> and <InlineMath math="y=15\text{ m}" />: overhang <InlineMath math="4.5" />, front <InlineMath math="22.5" />, and three sides <InlineMath math="3\cdot15=45" /> add up to <InlineMath math="72\text{ m}" />. Stopping at the wall gives the trap <InlineMath math="324\text{ m}^2" />, and pretending the wall is infinite gives <InlineMath math="432\text{ m}^2" />. **The largest possible area is <InlineMath math="337.5\text{ m}^2" />**.

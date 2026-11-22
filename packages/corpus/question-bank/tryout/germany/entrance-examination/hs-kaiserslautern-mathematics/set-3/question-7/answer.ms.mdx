@@ -1,0 +1,67 @@
+# Menjejak jisim sebelum dan selepas pelepasan
+
+Bayangkan pendaki yang meninggalkan botol kosong yang berat sebelum pendakian terakhir: peringkat kedua tidak lagi membawa badan kosong <InlineMath math="200\text{ kg}" /> peringkat pertama. **Katakan <InlineMath math="x=T_2" /> ialah bahan api peringkat kedua, jadi <InlineMath math="T_1=600-x" />, lalu tulis keempat-empat jisimnya dalam <InlineMath math="x" />**.
+
+<BlockMath math="\begin{aligned}
+m_{\text{mula},1}=50+50+200+600=900\text{ kg},\qquad m_{\text{akhir},1}=900-(600-x)=300+x\\
+m_{\text{mula},2}=100+x,\qquad m_{\text{akhir},2}=50+50=100\text{ kg}
+\end{aligned}" />
+
+# Menyatukan logaritma menjadi persamaan kuadratik
+
+**Bahagikan kedua-dua belah dengan <InlineMath math="2" /> dan gunakan <InlineMath math="2\ln A+\ln B=\ln(A^2 B)" /> supaya semua logaritma hilang serentak**.
+
+<BlockMath math="\begin{aligned}
+4\ln\!\left(\frac{900}{300+x}\right)+2\ln\!\left(\frac{100+x}{100}\right)=2\ln(10)\\
+\left(\frac{900}{300+x}\right)^2\cdot\frac{100+x}{100}=10\ \Longleftrightarrow\ 810\,(100+x)=(300+x)^2\\
+x^2-210x+9000=0\ \Longleftrightarrow\ (x-60)(x-150)=0
+\end{aligned}" />
+
+Dua pembahagian bahan api mencapai laju sasaran dengan tepat: <InlineMath math="x=60\text{ kg}" /> dan <InlineMath math="x=150\text{ kg}" />. Jika faktor <InlineMath math="2" /> terlupa dimasukkan sebagai kuasa dua, persamaannya terus tersasar.
+
+<MathVisual
+  title={<>Nisbah jisim gabungan mengikut bahan api peringkat dua</>}
+  description={<>Lengkung memaparkan <InlineMath math="K(x)=\tfrac{8100\,(100+x)}{(300+x)^2}" /> yang mesti sama dengan sasaran <InlineMath math="10" />. Lengkung memotong <InlineMath math="10" /> pada <InlineMath math="x=60" /> dan <InlineMath math="x=150" />, tetapi di kiri <InlineMath math="x=100" /> peringkat kedua tidak mencapai <InlineMath math="2\ln(2)" />.</>}
+  footer={<>Hanya <InlineMath math="x=150\text{ kg}" /> melepasi garis <InlineMath math="x=100" />, meninggalkan <InlineMath math="450\text{ kg}" /> bagi peringkat satu.</>}
+  labels={{
+    target: <>sasaran <InlineMath math="10" /></>,
+    bad: <>gugur <InlineMath math="x=60" /></>,
+    ok: <>sah <InlineMath math="x=150" /></>,
+    cut: <><InlineMath math="x=100" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: 0, max: 240 },
+      y: { min: 6.5, max: 11.2 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "curve", kind: "function", appearance: "primary", formula: "8100*(100 + x)/(300 + x)^2", domain: { min: 10, max: 230 } },
+      { id: "target", kind: "segment", appearance: "reference", from: { x: 10, y: 10 }, to: { x: 230, y: 10 } },
+      { id: "cut", kind: "segment", appearance: "warning", from: { x: 100, y: 6.8 }, to: { x: 100, y: 10.8 } },
+      { id: "bad", kind: "point", appearance: "warning", at: { x: 60, y: 10 } },
+      { id: "ok", kind: "point", appearance: "answer", at: { x: 150, y: 10 } },
+    ],
+    labels: [
+      { key: "target", objectId: "target", at: { x: 210, y: 10 }, placement: "above" },
+      { key: "cut", objectId: "cut", at: { x: 100, y: 7.1 }, placement: "right" },
+      { key: "bad", objectId: "bad", at: { x: 60, y: 10 }, placement: "below-left" },
+      { key: "ok", objectId: "ok", at: { x: 150, y: 10 }, placement: "above-right" },
+    ],
+  }}
+/>
+
+Puncak lengkung tepat pada <InlineMath math="x=100\text{ kg}" />, jadi garis sasaran memotong lengkung sekali di kiri dan sekali di kanan garis sempadan.
+
+# Menyemak syarat minimum peringkat kedua
+
+**Peringkat kedua sahaja mesti menyumbang sekurang-kurangnya <InlineMath math="2\ln(2)\,\tfrac{\text{km}}{\text{s}}" />, jadi <InlineMath math="x=60\text{ kg}" /> gugur kerana <InlineMath math="\tfrac{160}{100}=1.6<2" />**.
+
+<BlockMath math="\begin{aligned}
+2\ln\!\left(\frac{100+x}{100}\right)\ge2\ln(2)\ \Longleftrightarrow\ \frac{100+x}{100}\ge2\ \Longleftrightarrow\ x\ge100\\
+T_2=150\text{ kg}\ \Longrightarrow\ T_1=600-150=450\text{ kg}
+\end{aligned}" />
+
+Semakan ringkas: dengan <InlineMath math="T_1=450\text{ kg}" /> dan <InlineMath math="T_2=150\text{ kg}" />, nisbah peringkat satu ialah <InlineMath math="\tfrac{900}{450}=2" /> dan peringkat dua ialah <InlineMath math="\tfrac{250}{100}=2.5" />, memberi <InlineMath math="4\ln 2+2\ln 2.5=2\ln(4\cdot2.5)=2\ln 10" />. Mengekalkan <InlineMath math="x=60\text{ kg}" /> memberi perangkap <InlineMath math="540\text{ kg}" />. **Peringkat pertama menerima <InlineMath math="450\text{ kg}" /> bahan api**.

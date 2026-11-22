@@ -1,0 +1,66 @@
+# Beide Kennlinien und Abregelgrenzen bestimmen
+
+Unterhalb der Nennleistung wächst die Leistung proportional zu <InlineMath math="d^2" />, sodass Anlage B anfangs steiler steigt, bis ihr kleinerer Generator abregelt. **Bestimme <InlineMath math="k_A=c d_A^2" /> aus dem Messwert, skaliere mit <InlineMath math="\left(\tfrac{40}{30}\right)^2=\tfrac{16}{9}" /> zu <InlineMath math="k_B" /> und berechne beide Nennwindgeschwindigkeiten**.
+
+<BlockMath math="\begin{aligned}
+k_A=\frac{144}{4^3}=\frac94,\qquad \frac94 v_A^3=1152\ \Longrightarrow\ v_A^3=512\ \Longrightarrow\ v_A=8\,\tfrac{\text{m}}{\text{s}}\\
+k_B=\frac94\cdot\left(\frac{40}{30}\right)^2=4,\qquad 4v_B^3=500\ \Longrightarrow\ v_B^3=125\ \Longrightarrow\ v_B=5\,\tfrac{\text{m}}{\text{s}}
+\end{aligned}" />
+
+# Beide Windgeschwindigkeiten für den Vorsprung finden
+
+**Wer das Abregeln bei <InlineMath math="5\,\tfrac{\text{m}}{\text{s}}" /> übersieht, bekommt mit <InlineMath math="\tfrac74 v^3" /> eine streng wachsende Differenz und findet nur eine Lösung**. Sobald B bei <InlineMath math="500\text{ kW}" /> stehen bleibt und A weiter steigt, fällt der Vorsprung ein zweites Mal genau durch <InlineMath math="14\text{ kW}" />.
+
+<BlockMath math="\begin{aligned}
+v\le5:\quad \left(4-\tfrac94\right)v_1^3=\tfrac74 v_1^3=14\ \Longrightarrow\ v_1^3=8\ \Longrightarrow\ v_1=2\,\tfrac{\text{m}}{\text{s}}\\
+5\le v\le8:\quad 500-\tfrac94 v_2^3=14\ \Longrightarrow\ v_2^3=\frac{486\cdot4}{9}=216\ \Longrightarrow\ v_2=6\,\tfrac{\text{m}}{\text{s}}
+\end{aligned}" />
+
+<MathVisual
+  title={<>Leistungsvorsprung von Anlage B über Anlage A</>}
+  description={<>Bis <InlineMath math="5\,\tfrac{\text{m}}{\text{s}}" /> wächst der Vorsprung <InlineMath math="P_B-P_A" />, danach regelt B auf <InlineMath math="500\text{ kW}" /> ab und A holt auf. Deshalb tritt der Vorsprung <InlineMath math="14\text{ kW}" /> zweimal auf, bei <InlineMath math="v_1=2" /> und bei <InlineMath math="v_2=6\,\tfrac{\text{m}}{\text{s}}" />.</>}
+  footer={<>Vor dem Abregeln von B liegt <InlineMath math="v_1=2" />, dahinter holt A bei <InlineMath math="v_2=6\,\tfrac{\text{m}}{\text{s}}" /> fast auf.</>}
+  labels={{
+    a: <>Anlage A</>,
+    b: <>Anlage B</>,
+    v1: <><InlineMath math="v_1=2" /></>,
+    v2: <><InlineMath math="v_2=6" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: 0, max: 9.5 },
+      y: { min: -60, max: 1280 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "a-rise", kind: "function", appearance: "primary", formula: "2.25*x^3", domain: { min: 0, max: 8 } },
+      { id: "a-cap", kind: "segment", appearance: "primary", from: { x: 8, y: 1152 }, to: { x: 9.2, y: 1152 } },
+      { id: "b-rise", kind: "function", appearance: "secondary", formula: "4*x^3", domain: { min: 0, max: 5 } },
+      { id: "b-cap", kind: "segment", appearance: "secondary", from: { x: 5, y: 500 }, to: { x: 9.2, y: 500 } },
+      { id: "v1", kind: "point", appearance: "highlight", at: { x: 2, y: 32 } },
+      { id: "v2", kind: "point", appearance: "answer", at: { x: 6, y: 486 } },
+    ],
+    labels: [
+      { key: "a", objectId: "a-rise", at: { x: 7.5, y: 950 }, placement: "left" },
+      { key: "b", objectId: "b-cap", at: { x: 8.4, y: 500 }, placement: "below" },
+      { key: "v1", objectId: "v1", at: { x: 2, y: 32 }, placement: "above" },
+      { key: "v2", objectId: "v2", at: { x: 6, y: 486 }, placement: "below-right" },
+    ],
+  }}
+/>
+
+Wegen <InlineMath math="v_2=6<8" /> regelt A dort noch nicht ab, und ab <InlineMath math="v\ge8" /> liefert A schon <InlineMath math="1152\text{ kW}>500\text{ kW}" />, sodass dies die einzigen beiden Lösungen sind.
+
+# Gesamtenergie über alle acht Stunden addieren
+
+**Addiere die Leistungen beider Anlagen bei <InlineMath math="v_1=2" /> und <InlineMath math="v_2=6" /> und gewichte mit <InlineMath math="3" /> und <InlineMath math="5" /> Stunden**.
+
+<BlockMath math="\begin{aligned}
+v_1=2:\quad P_A=18\text{ kW},\ P_B=32\text{ kW}\ \Longrightarrow\ P_A+P_B=50\text{ kW}\\
+v_2=6:\quad P_A=486\text{ kW},\ P_B=500\text{ kW}\ \Longrightarrow\ P_A+P_B=986\text{ kW}\\
+E=3\cdot50+5\cdot986=150+4930=5080\text{ kWh}
+\end{aligned}" />
+
+**Zusammen liefern beide Anlagen genau <InlineMath math="5080\text{ kWh}" />**.

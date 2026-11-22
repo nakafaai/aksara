@@ -1,0 +1,61 @@
+# Kedua jarak saling bertukar
+
+Kalau kamu memegang kaca pembesar di antara lampu dan dinding, satu posisi tajam dekat lampu selalu punya pasangan yang sama dekatnya ke dinding. **Karena persamaan lensa simetris dalam <InlineMath math="g" /> dan <InlineMath math="b" />, posisi tajam kedua hanya menukar keduanya, jadi <InlineMath math="g_2=b_1" /> dan <InlineMath math="b_2=g_1" />**. Menggeser lensa ke arah layar membuat <InlineMath math="g_2>g_1" />, sehingga <InlineMath math="b_1>g_1" />.
+
+<BlockMath math="\begin{aligned}
+\frac1g+\frac1{L_1-g}=\frac1f\ &\Longleftrightarrow\ g\,(L_1-g)=f\,L_1\\
+g_2=b_1,\qquad b_2=g_1,\qquad \left(\frac{a_2'}{a_1'}\right)^2=\left(\frac{g_1/b_1}{b_1/g_1}\right)^2=\left(\frac{g_1}{b_1}\right)^4=\frac1{16}
+\end{aligned}" />
+
+Perhatikan pangkat empatnya. Bayangan pertama diperbesar sebesar <InlineMath math="\tfrac{b_1}{g_1}" /> sedangkan bayangan kedua diperkecil sebesar <InlineMath math="\tfrac{g_1}{b_1}" />, jadi rasio panjang sisinya saja sudah <InlineMath math="\left(\tfrac{g_1}{b_1}\right)^2" />, lalu dikuadratkan lagi untuk luas.
+
+# Menentukan jarak fokus
+
+**Mengambil akar pangkat empat memberi <InlineMath math="\tfrac{b_1}{g_1}=2" />, dan pergeseran <InlineMath math="36\text{ cm}" /> langsung menentukan kedua jarak serta jarak fokusnya**. Kalau rasio luas dianggap rasio sisi, hasilnya meleset ke <InlineMath math="\tfrac{b_1}{g_1}=4" /> dan jarak fokus keliru <InlineMath math="9{,}6\text{ cm}" />.
+
+<BlockMath math="\begin{aligned}
+\frac{b_1}{g_1}=2,\qquad b_1-g_1=36\ &\Longrightarrow\ g_1=36\text{ cm},\quad b_1=72\text{ cm}\\
+\frac1f=\frac1{36}+\frac1{72}=\frac{3}{72}\ &\Longrightarrow\ f=24\text{ cm}
+\end{aligned}" />
+
+# Menguji kedua posisi tajam pada bangku baru
+
+Kini <InlineMath math="L_2=100\text{ cm}" /> dengan lensa yang sama <InlineMath math="f=24\text{ cm}" />. **Menyelesaikan persamaan pecahan lagi menghasilkan dua posisi tajam**.
+
+<BlockMath math="\begin{aligned}
+\frac1g+\frac1{100-g}=\frac1{24}\ &\Longleftrightarrow\ g^2-100g+2400=0\\
+(g-40)(g-60)=0\ &\Longrightarrow\ g=40\text{ cm}\quad\text{atau}\quad g=60\text{ cm}
+\end{aligned}" />
+
+<MathVisual
+  title={<>Ukuran bayangan pada bangku baru</>}
+  description={<>Panjang sisi bayangan <InlineMath math="a'(g)=12\cdot\tfrac{100-g}{g}" /> untuk <InlineMath math="L_2=100\text{ cm}" /> dan batas layar di <InlineMath math="15\text{ cm}" />. Kedua posisi lensa tajam ditandai, tetapi pada <InlineMath math="g=40\text{ cm}" /> bayangan <InlineMath math="18\text{ cm}" /> melewati tepi layar.</>}
+  footer={<>Hanya <InlineMath math="g=60\text{ cm}" /> yang berada di bawah garis <InlineMath math="15\text{ cm}" />, sisi <InlineMath math="8\text{ cm}" /> dan luas <InlineMath math="64\text{ cm}^2" />.</>}
+  labels={{
+    cap: <>batas layar</>,
+    bad: <>terlalu besar <InlineMath math="(40\mid18)" /></>,
+    ok: <>muat <InlineMath math="(60\mid8)" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: 25, max: 82 },
+      y: { min: 0, max: 32 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "size", kind: "function", appearance: "primary", formula: "12*(100 - x)/x", domain: { min: 30, max: 80 } },
+      { id: "cap", kind: "segment", appearance: "warning", from: { x: 28, y: 15 }, to: { x: 80, y: 15 } },
+      { id: "bad", kind: "point", appearance: "warning", at: { x: 40, y: 18 } },
+      { id: "ok", kind: "point", appearance: "answer", at: { x: 60, y: 8 } },
+    ],
+    labels: [
+      { key: "cap", objectId: "cap", at: { x: 74, y: 15 }, placement: "above" },
+      { key: "bad", objectId: "bad", at: { x: 40, y: 18 }, placement: "above-right" },
+      { key: "ok", objectId: "ok", at: { x: 60, y: 8 }, placement: "above-right" },
+    ],
+  }}
+/>
+
+Sekarang uji kedua posisi terhadap layar berukuran <InlineMath math="15\text{ cm}" />. Pada <InlineMath math="g=40\text{ cm}" /> dan <InlineMath math="b=60\text{ cm}" />, sisi bayangan menjadi <InlineMath math="12\cdot\tfrac{60}{40}=18\text{ cm}" />, melewati layar sehingga gugur (jebakan luas <InlineMath math="324\text{ cm}^2" />). Pada <InlineMath math="g=60\text{ cm}" /> dan <InlineMath math="b=40\text{ cm}" />, sisinya <InlineMath math="12\cdot\tfrac{40}{60}=8\text{ cm}" /> dan muat penuh. **Luas bayangan tajamnya adalah <InlineMath math="8^2=64\text{ cm}^2" />**.

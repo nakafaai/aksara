@@ -1,0 +1,70 @@
+# Four minutes are two kilometres
+
+In a race where one runner starts a little later, you could just as well push that runner's start line back. **At <InlineMath math="30\,\tfrac{\text{km}}{\text{h}}" /> an engine covers <InlineMath math="0.5\text{ km}" /> a minute, so B's <InlineMath math="4" /> minutes of delay act like <InlineMath math="2\text{ km}" /> of extra distance**. Inside the city <InlineMath math="x" /> and <InlineMath math="y" /> are never negative, so A arrives first whenever this inequality holds.
+
+<BlockMath math="\begin{aligned}
+|x|+|y|&<|x-6|+|y-4|+2\\
+x+y&<|x-6|+|y-4|+2
+\end{aligned}" />
+
+# Four cases around B
+
+The absolute-value bars only switch signs on the lines <InlineMath math="x=6" /> and <InlineMath math="y=4" /> through B. **Cut the city into the four rectangles around B and drop the bars in each one**.
+
+<BlockMath math="\begin{aligned}
+x\le6,\ y\le4&:\quad x+y<12-x-y\ \Longleftrightarrow\ x+y<6\\
+x\le6,\ y\ge4&:\quad x+y<4-x+y\ \Longleftrightarrow\ x<2\\
+x\ge6,\ y\le4&:\quad x+y<x-y\ \Longleftrightarrow\ y<0\\
+x\ge6,\ y\ge4&:\quad x+y<x+y-8
+\end{aligned}" />
+
+The last two conditions never hold inside the city, so B wins everywhere east of <InlineMath math="x=6" />. North of <InlineMath math="y=4" /> every extra step north costs both engines the same, so only the east-west offset decides and the border turns straight up at <InlineMath math="x=2" />.
+
+<MathVisual
+  title={<>Who arrives first</>}
+  description={<>The city from above. In the highlighted pentagon the professional crew from <InlineMath math="A" /> arrives first. The border runs diagonally below <InlineMath math="y=4" /> and straight up along <InlineMath math="x=2" /> above it.</>}
+  footer={<>At <InlineMath math="y=4" /> the border turns straight north along <InlineMath math="x=2" />, adding an extra <InlineMath math="8\text{ km}^2" />.</>}
+  labels={{
+    a: <><InlineMath math="A" /></>,
+    b: <><InlineMath math="B" /></>,
+    afirst: <>A first</>,
+    bfirst: <>B first</>,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -1, max: 9 },
+      y: { min: -1, max: 9 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "district", kind: "polygon", appearance: "answer", vertices: [{ x: 0, y: 0 }, { x: 6, y: 0 }, { x: 2, y: 4 }, { x: 2, y: 8 }, { x: 0, y: 8 }] },
+      { id: "city", kind: "polygon", appearance: "reference", vertices: [{ x: 0, y: 0 }, { x: 8, y: 0 }, { x: 8, y: 8 }, { x: 0, y: 8 }] },
+      { id: "border", kind: "polyline", appearance: "primary", vertices: [{ x: 6, y: 0 }, { x: 2, y: 4 }, { x: 2, y: 8 }] },
+      { id: "split-x", kind: "segment", appearance: "construction", from: { x: 6, y: 0 }, to: { x: 6, y: 8 } },
+      { id: "split-y", kind: "segment", appearance: "construction", from: { x: 0, y: 4 }, to: { x: 8, y: 4 } },
+      { id: "a", kind: "point", appearance: "highlight", at: { x: 0, y: 0 } },
+      { id: "b", kind: "point", appearance: "highlight", at: { x: 6, y: 4 } },
+    ],
+    labels: [
+      { key: "a", objectId: "a", at: { x: 0, y: 0 }, placement: "below-left" },
+      { key: "b", objectId: "b", at: { x: 6, y: 4 }, placement: "above-right" },
+      { key: "afirst", objectId: "district", at: { x: 1.5, y: 2 }, placement: "center" },
+      { key: "bfirst", objectId: "city", at: { x: 5.5, y: 6.5 }, placement: "center" },
+    ],
+  }}
+/>
+
+The shaded pentagon shows both parts clearly: a trapezoid below <InlineMath math="y=4" /> and a vertical strip from <InlineMath math="y=4" /> to <InlineMath math="y=8" />.
+
+# The size of A's district
+
+**Add the trapezoid with parallel sides <InlineMath math="6" /> and <InlineMath math="2" /> and height <InlineMath math="4" /> to the <InlineMath math="2" /> by <InlineMath math="4" /> northern strip**.
+
+<BlockMath math="\begin{aligned}
+\tfrac{6+2}{2}\cdot4+2\cdot4&=16+8\\
+&=24
+\end{aligned}" />
+
+The professional crew arrives first on **<InlineMath math="24\text{ km}^2" />** of the <InlineMath math="64\text{ km}^2" />. Stopping at <InlineMath math="y=4" /> and missing the northern strip leaves only <InlineMath math="16\text{ km}^2" />.

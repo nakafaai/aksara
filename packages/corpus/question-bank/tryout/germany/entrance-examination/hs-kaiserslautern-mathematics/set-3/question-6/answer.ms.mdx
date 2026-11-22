@@ -1,0 +1,70 @@
+# Empat minit sama dengan dua kilometer
+
+Dalam perlumbaan, jika seorang pelari bermula sedikit lewat, kamu boleh mengundurkan garisan mulanya. **Pada <InlineMath math="30\,\tfrac{\text{km}}{\text{h}}" /> sebuah jentera menempuh <InlineMath math="0.5\text{ km}" /> seminit, jadi kelewatan B selama <InlineMath math="4" /> minit sama seperti jalan tambahan <InlineMath math="2\text{ km}" />**. Di dalam bandar <InlineMath math="x" /> dan <InlineMath math="y" /> tidak pernah negatif, dan A tiba dahulu apabila ketaksamaan ini benar.
+
+<BlockMath math="\begin{aligned}
+|x|+|y|&<|x-6|+|y-4|+2\\
+x+y&<|x-6|+|y-4|+2
+\end{aligned}" />
+
+# Empat kes di sekeliling B
+
+Tanda mutlak hanya bertukar tanda pada garis <InlineMath math="x=6" /> dan <InlineMath math="y=4" /> yang melalui B. **Potong bandar itu kepada empat segi empat tepat di sekeliling B, kemudian buang tanda mutlak dalam setiap satu**.
+
+<BlockMath math="\begin{aligned}
+x\le6,\ y\le4&:\quad x+y<12-x-y\ \Longleftrightarrow\ x+y<6\\
+x\le6,\ y\ge4&:\quad x+y<4-x+y\ \Longleftrightarrow\ x<2\\
+x\ge6,\ y\le4&:\quad x+y<x-y\ \Longleftrightarrow\ y<0\\
+x\ge6,\ y\ge4&:\quad x+y<x+y-8
+\end{aligned}" />
+
+Dua syarat terakhir tidak pernah benar di dalam bandar, jadi di timur <InlineMath math="x=6" /> B sentiasa menang. Di utara <InlineMath math="y=4" /> setiap langkah ke utara sama kosnya bagi kedua-dua jentera, hanya bahagian timur-barat yang menentukan, maka sempadannya menegak pada <InlineMath math="x=2" />.
+
+<MathVisual
+  title={<>Siapa yang tiba dahulu</>}
+  description={<>Kawasan bandar dilihat dari atas. Dalam pentagon yang diserlahkan, bomba profesional dari <InlineMath math="A" /> tiba dahulu. Sempadannya condong di bawah <InlineMath math="y=4" /> dan menegak pada <InlineMath math="x=2" /> di atasnya.</>}
+  footer={<>Mulai <InlineMath math="y=4" /> sempadannya membelok tegak di <InlineMath math="x=2" />, menambah jalur utara <InlineMath math="8\text{ km}^2" />.</>}
+  labels={{
+    a: <><InlineMath math="A" /></>,
+    b: <><InlineMath math="B" /></>,
+    afirst: <>A dahulu</>,
+    bfirst: <>B dahulu</>,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -1, max: 9 },
+      y: { min: -1, max: 9 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "district", kind: "polygon", appearance: "answer", vertices: [{ x: 0, y: 0 }, { x: 6, y: 0 }, { x: 2, y: 4 }, { x: 2, y: 8 }, { x: 0, y: 8 }] },
+      { id: "city", kind: "polygon", appearance: "reference", vertices: [{ x: 0, y: 0 }, { x: 8, y: 0 }, { x: 8, y: 8 }, { x: 0, y: 8 }] },
+      { id: "border", kind: "polyline", appearance: "primary", vertices: [{ x: 6, y: 0 }, { x: 2, y: 4 }, { x: 2, y: 8 }] },
+      { id: "split-x", kind: "segment", appearance: "construction", from: { x: 6, y: 0 }, to: { x: 6, y: 8 } },
+      { id: "split-y", kind: "segment", appearance: "construction", from: { x: 0, y: 4 }, to: { x: 8, y: 4 } },
+      { id: "a", kind: "point", appearance: "highlight", at: { x: 0, y: 0 } },
+      { id: "b", kind: "point", appearance: "highlight", at: { x: 6, y: 4 } },
+    ],
+    labels: [
+      { key: "a", objectId: "a", at: { x: 0, y: 0 }, placement: "below-left" },
+      { key: "b", objectId: "b", at: { x: 6, y: 4 }, placement: "above-right" },
+      { key: "afirst", objectId: "district", at: { x: 1.5, y: 2 }, placement: "center" },
+      { key: "bfirst", objectId: "city", at: { x: 5.5, y: 6.5 }, placement: "center" },
+    ],
+  }}
+/>
+
+Pentagon yang diserlahkan memaparkan kedua-dua bahagian dengan jelas: trapezium di bawah <InlineMath math="y=4" /> dan jalur menegak dari <InlineMath math="y=4" /> ke <InlineMath math="y=8" />.
+
+# Luas kawasan A
+
+**Tambah trapezium bersisi selari <InlineMath math="6" /> dan <InlineMath math="2" /> setinggi <InlineMath math="4" /> dengan jalur utara berukuran <InlineMath math="2" /> darab <InlineMath math="4" />**.
+
+<BlockMath math="\begin{aligned}
+\tfrac{6+2}{2}\cdot4+2\cdot4&=16+8\\
+&=24
+\end{aligned}" />
+
+Bomba profesional tiba dahulu di **<InlineMath math="24\text{ km}^2" />** daripada <InlineMath math="64\text{ km}^2" />. Jika kamu berhenti pada <InlineMath math="y=4" /> dan terlepas jalur utara, yang tinggal hanya <InlineMath math="16\text{ km}^2" />.

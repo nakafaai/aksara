@@ -1,0 +1,60 @@
+# Prozentwerte zuerst in kWh umrechnen
+
+Teilen sich zwei Gartenschläuche denselben Wasserhahn, bekommt der zweite sofort mehr Druck, sobald der erste gedrosselt oder zugedreht wird. **Rechne zuerst alle Ladestände in kWh um: Transporter A startet bei <InlineMath math="20\text{ kWh}" /> und drosselt bei <InlineMath math="80\text{ kWh}" />, Transporter B startet bei <InlineMath math="18\text{ kWh}" /> und drosselt bei <InlineMath math="144\text{ kWh}" />**. Zähle die Zeit <InlineMath math="t" /> in Minuten ab 8:00 Uhr.
+
+# Jeden Leistungswechsel Schritt für Schritt verfolgen
+
+**Prüfe in jedem Abschnitt, welcher Transporter seine nächste Schwelle zuerst erreicht, denn genau dann wechselt die Leistungsaufteilung**. Ab <InlineMath math="t=50" /> drosselt Transporter A auf <InlineMath math="30\text{ kW}" /> und ist in <InlineMath math="40" /> Minuten voll, während Transporter B bei <InlineMath math="90\text{ kW}" /> noch <InlineMath math="64" /> Minuten bis <InlineMath math="144\text{ kWh}" /> bräuchte, also steckt Transporter A bei <InlineMath math="t=90" /> zuerst ab und gibt volle <InlineMath math="120\text{ kW}" /> frei.
+
+<BlockMath math="\begin{aligned}
+0\to20\text{ min}&:\quad \text{A: }90\text{ kW}\implies 20+30=50\text{ kWh}\\
+20\to50\text{ min}&:\quad \text{beide }60\text{ kW}\implies \text{A: }80\text{ kWh}\,(80\,\%),\quad \text{B: }18+30=48\text{ kWh}\\
+50\to90\text{ min}&:\quad \text{A: }30\text{ kW}\,(20\text{ kWh in }40\text{ min}\implies 100\,\%),\quad \text{B: }90\text{ kW}\implies 48+60=108\text{ kWh}\\
+90\to108\text{ min}&:\quad \text{B allein }120\text{ kW}\,(36\text{ kWh in }18\text{ min}\implies 144\text{ kWh}=80\,\%)\\
+108\to156\text{ min}&:\quad \text{B: }45\text{ kW}\,(36\text{ kWh in }48\text{ min}\implies 180\text{ kWh}=100\,\%)
+\end{aligned}" />
+
+<MathVisual
+  title={<>Gespeicherte Energie beider Transporter über der Zeit</>}
+  description={<>Zeit in Minuten ab <InlineMath math="8" /> Uhr gegen Energie im Akku in kWh. Jeder Knick der Kurven markiert einen Leistungswechsel, bei <InlineMath math="50" />, <InlineMath math="90" /> und <InlineMath math="108" /> Minuten ändert sich die Ladeleistung von Transporter B.</>}
+  footer={<>Transporter B lädt von Minute <InlineMath math="20" /> bis <InlineMath math="156" />, also genau <InlineMath math="136" /> Minuten lang.</>}
+  labels={{
+    v1: <>Transporter A</>,
+    v2: <>Transporter B</>,
+    t50: <><InlineMath math="50" /></>,
+    t90: <><InlineMath math="90" /></>,
+    t108: <><InlineMath math="108" /></>,
+    t156: <><InlineMath math="156" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -8, max: 170 },
+      y: { min: -10, max: 198 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "v1", kind: "polyline", appearance: "secondary", vertices: [{ x: 0, y: 20 }, { x: 20, y: 50 }, { x: 50, y: 80 }, { x: 90, y: 100 }] },
+      { id: "v2", kind: "polyline", appearance: "primary", vertices: [{ x: 20, y: 18 }, { x: 50, y: 48 }, { x: 90, y: 108 }, { x: 108, y: 144 }, { x: 156, y: 180 }] },
+      { id: "p50", kind: "point", appearance: "highlight", at: { x: 50, y: 48 } },
+      { id: "p90", kind: "point", appearance: "highlight", at: { x: 90, y: 108 } },
+      { id: "p108", kind: "point", appearance: "highlight", at: { x: 108, y: 144 } },
+      { id: "p156", kind: "point", appearance: "answer", at: { x: 156, y: 180 } },
+    ],
+    labels: [
+      { key: "v1", objectId: "v1", at: { x: 20, y: 50 }, placement: "above-left" },
+      { key: "v2", objectId: "v2", at: { x: 130, y: 162 }, placement: "above-left" },
+      { key: "t50", objectId: "p50", at: { x: 50, y: 48 }, placement: "below-right" },
+      { key: "t90", objectId: "p90", at: { x: 90, y: 108 }, placement: "below-right" },
+      { key: "t108", objectId: "p108", at: { x: 108, y: 144 }, placement: "above-left" },
+      { key: "t156", objectId: "p156", at: { x: 156, y: 180 }, placement: "above" },
+    ],
+  }}
+/>
+
+Jeder steilere oder flachere Knick in der Kurve von Transporter B gehört zu einem dieser vier Leistungswechsel.
+
+# Den Startversatz abziehen
+
+**Transporter B startet bei <InlineMath math="t=20" /> und erreicht <InlineMath math="100\,\%" /> bei <InlineMath math="t=156" />, sein Ladevorgang dauert also <InlineMath math="156-20=136" /> Minuten** (direkt <InlineMath math="30+40+18+48=136" /> Minuten). Wer <InlineMath math="156" /> angibt, zählt ab 8:00 statt 8:20 Uhr, wer Transporter B im dritten Abschnitt bei <InlineMath math="60\text{ kW}" /> lässt, landet bei <InlineMath math="146" /> Minuten, und wer den Sprung von <InlineMath math="90" /> auf <InlineMath math="120\text{ kW}" /> bei <InlineMath math="t=90" /> übersieht, kommt auf <InlineMath math="142" /> Minuten.

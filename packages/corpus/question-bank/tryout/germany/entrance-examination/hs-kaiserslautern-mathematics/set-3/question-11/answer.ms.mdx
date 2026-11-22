@@ -1,0 +1,71 @@
+# Jongkang-jongkit dengan papan yang berat
+
+Di jongkang-jongkit, budak yang ringan dan duduk jauh di hujung boleh mengimbangi budak yang berat dan duduk dekat dengan paksi. **Di sini papannya juga mempunyai berat, dan batang yang sama tebal di semua tempat bertindak seolah-olah seluruh beratnya berada di titik tengahnya**. Titik tengah batang bawah berada <InlineMath math="15\text{ cm}" /> dari hujung kirinya, jadi <InlineMath math="5\text{ cm}" /> di kanan benangnya. Titik tengah batang atas berada <InlineMath math="25\text{ cm}" /> dari hujung kirinya, <InlineMath math="10\text{ cm}" /> di kanan benangnya.
+
+# Tiga keseimbangan, tiga persamaan
+
+**Setiap batang memberi satu persamaan, kesan putaran di kiri sama dengan kesan putaran di kanan, dan jumlah jisim memberi persamaan ketiga**. Kamu boleh menulis jisim dalam gram dan bukannya daya berat, kerana faktor <InlineMath math="g" /> terbatal pada kedua-dua belah.
+
+<BlockMath math="\begin{aligned}
+10\cdot A&=20\cdot B+5\cdot12\\
+15\cdot(A+B+12)&=35\cdot C+10\cdot10\\
+A+B+C+12+10&=200
+\end{aligned}" />
+
+# Menyelesaikan dari atas ke bawah
+
+Tulis <InlineMath math="s=A+B" />. **Batang atas dan jumlah jisim hanya mengandungi <InlineMath math="s" /> dan <InlineMath math="C" />, jadi selesaikan kedua-duanya dahulu**.
+
+<BlockMath math="\begin{aligned}
+15s+180&=35C+100\\
+s+C&=178\\
+15s+80&=35\,(178-s)\\
+50s&=6150,\qquad s=123,\qquad C=55
+\end{aligned}" />
+
+Batang bawah kemudian membahagikan <InlineMath math="s=123" />. Persamaannya menyatakan <InlineMath math="A=2B+6" />, jadi <InlineMath math="3B+6=123" />, <InlineMath math="B=39" /> dan <InlineMath math="A=84" />.
+
+<MathVisual
+  title={<>Semua berat pada buaian gantung</>}
+  description={<>Perhiasan dengan jisimnya dan batang dengan beratnya di titik tengah setiap batang. Titik tengah batang bawah <InlineMath math="5\text{ cm}" /> di kanan benangnya, titik tengah batang atas <InlineMath math="10\text{ cm}" /> di kanan benangnya.</>}
+  footer={<>Kedua-dua titik tengah batang berada di kanan benang, menetapkan bintang <InlineMath math="A=84\text{ g}" />.</>}
+  labels={{
+    a: <><InlineMath math="A=84\text{ g}" /></>,
+    b: <><InlineMath math="B=39\text{ g}" /></>,
+    c: <><InlineMath math="C=55\text{ g}" /></>,
+    lowmid: <><InlineMath math="12\text{ g}" /></>,
+    topmid: <><InlineMath math="10\text{ g}" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -16, max: 56 },
+      y: { min: 0, max: 16 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "top-thread", kind: "segment", appearance: "reference", from: { x: 15, y: 10 }, to: { x: 15, y: 14 } },
+      { id: "top-rod", kind: "segment", appearance: "primary", from: { x: 0, y: 10 }, to: { x: 50, y: 10 } },
+      { id: "c-thread", kind: "segment", appearance: "reference", from: { x: 50, y: 10 }, to: { x: 50, y: 6 } },
+      { id: "low-thread", kind: "segment", appearance: "reference", from: { x: 0, y: 10 }, to: { x: 0, y: 6 } },
+      { id: "low-rod", kind: "segment", appearance: "primary", from: { x: -10, y: 6 }, to: { x: 20, y: 6 } },
+      { id: "a-thread", kind: "segment", appearance: "reference", from: { x: -10, y: 6 }, to: { x: -10, y: 2 } },
+      { id: "b-thread", kind: "segment", appearance: "reference", from: { x: 20, y: 6 }, to: { x: 20, y: 2 } },
+      { id: "a", kind: "point", appearance: "answer", at: { x: -10, y: 2 } },
+      { id: "b", kind: "point", appearance: "highlight", at: { x: 20, y: 2 } },
+      { id: "c", kind: "point", appearance: "highlight", at: { x: 50, y: 6 } },
+      { id: "low-mid", kind: "point", appearance: "secondary", at: { x: 5, y: 6 } },
+      { id: "top-mid", kind: "point", appearance: "secondary", at: { x: 25, y: 10 } },
+    ],
+    labels: [
+      { key: "a", objectId: "a", at: { x: -10, y: 2 }, placement: "below" },
+      { key: "b", objectId: "b", at: { x: 20, y: 2 }, placement: "below" },
+      { key: "c", objectId: "c", at: { x: 50, y: 6 }, placement: "below" },
+      { key: "lowmid", objectId: "low-mid", at: { x: 5, y: 6 }, placement: "above" },
+      { key: "topmid", objectId: "top-mid", at: { x: 25, y: 10 }, placement: "above" },
+    ],
+  }}
+/>
+
+Bintang itu seberat **<InlineMath math="84\text{ g}" />**. Jika batang dianggap tidak berjisim, jawapannya <InlineMath math="A=\tfrac{280}{3}\approx93.3\text{ g}" />, tanda jelas ada sesuatu yang tertinggal.

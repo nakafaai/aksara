@@ -1,0 +1,61 @@
+# Mencari laju angin daripada penerbangan ujian
+
+Dalam ujian timur-barat, angin menolak penuh semasa pergi dan menentang penuh semasa pulang. **Gabungkan kedua-dua hala laluan <InlineMath math="7\text{ km}" /> itu untuk mencari laju angin <InlineMath math="w" /> daripada jumlah <InlineMath math="48" /> minit**.
+
+<BlockMath math="\begin{aligned}
+\frac{7}{40+w}+\frac{7}{40-w}=\frac{48}{60}=\frac45\ \Longleftrightarrow\ \frac{560}{1600-w^2}=\frac45\\
+1600-w^2=700\ \Longrightarrow\ w^2=900\ \Longrightarrow\ w=30\,\tfrac{\text{km}}{\text{h}}
+\end{aligned}" />
+
+# Menghuraikan angin serong selari dan serenjang laluan
+
+**Di sinilah perangkap utamanya: pada laluan <InlineMath math="(3\mid4)" /> angin timur mempunyai komponen selari dan melintang, dan dron mesti mengimbangi angin sisi dahulu**. Dengan vektor unit <InlineMath math="(\tfrac35\mid\tfrac45)" />, angin sisi <InlineMath math="24\,\tfrac{\text{km}}{\text{h}}" /> menurunkan komponen laju udara sepanjang laluan daripada <InlineMath math="40" /> kepada <InlineMath math="32\,\tfrac{\text{km}}{\text{h}}" />.
+
+<BlockMath math="\begin{aligned}
+w_\parallel=30\cdot\tfrac35=18\,\tfrac{\text{km}}{\text{h}},\qquad w_\perp=30\cdot\tfrac45=24\,\tfrac{\text{km}}{\text{h}}\\
+v_\parallel=\sqrt{40^2-24^2}=\sqrt{1024}=32\,\tfrac{\text{km}}{\text{h}}\\
+v_{\text{out}}=32+18=50\,\tfrac{\text{km}}{\text{h}},\qquad v_{\text{back}}=32-18=14\,\tfrac{\text{km}}{\text{h}}
+\end{aligned}" />
+
+<MathVisual
+  title={<>Segi tiga angin serong pada laluan penerbangan</>}
+  description={<>Angin timur <InlineMath math="30" /> terhurai pada laluan <InlineMath math="(3\mid4)" /> kepada <InlineMath math="18" /> selari dan <InlineMath math="24" /> melintang. Mengimbangi angin melintang meninggalkan <InlineMath math="32\,\tfrac{\text{km}}{\text{h}}" /> di laluan, iaitu <InlineMath math="50" /> pergi dan <InlineMath math="14" /> pulang.</>}
+  footer={<>Mengimbangi angin sisi <InlineMath math="24" /> meninggalkan <InlineMath math="32" />, maka laju tanah <InlineMath math="50" /> pergi dan <InlineMath math="14" /> pulang.</>}
+  labels={{
+    air: <>laju udara <InlineMath math="40" /></>,
+    wind: <>angin <InlineMath math="30" /></>,
+    ground: <>laluan pergi <InlineMath math="50" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -8, max: 44 },
+      y: { min: -6, max: 46 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "air", kind: "vector", appearance: "primary", from: { x: 0, y: 0 }, to: { x: 0, y: 40 } },
+      { id: "wind", kind: "vector", appearance: "warning", from: { x: 0, y: 40 }, to: { x: 30, y: 40 } },
+      { id: "ground", kind: "vector", appearance: "answer", from: { x: 0, y: 0 }, to: { x: 30, y: 40 } },
+    ],
+    labels: [
+      { key: "air", objectId: "air", at: { x: 0, y: 20 }, placement: "left" },
+      { key: "wind", objectId: "wind", at: { x: 15, y: 40 }, placement: "above" },
+      { key: "ground", objectId: "ground", at: { x: 16, y: 19 }, placement: "below-right" },
+    ],
+  }}
+/>
+
+Terlupa mengimbangi angin sisi dan memakai <InlineMath math="40\pm18" /> akan memberi jarak salah <InlineMath math="25.52\text{ km}" />, bukan <InlineMath math="17.5\text{ km}" />.
+
+# Mengira jarak maksimum daripada masa terbang bersih
+
+**Simpan <InlineMath math="20\,\%" /> baki bateri dan tolak <InlineMath math="4" /> minit berlegar, tinggal <InlineMath math="96" /> minit (<InlineMath math="\tfrac85\text{ h}" />) masa terbang**.
+
+<BlockMath math="\begin{aligned}
+t_{\text{fly}}=0.8\cdot125-4=96\text{ min}=\tfrac85\text{ h}\\
+\frac{d}{50}+\frac{d}{14}=\frac{32d}{350}=\frac{16d}{175}=\frac85\ \Longrightarrow\ d=17.5\text{ km}
+\end{aligned}" />
+
+Semakan pada <InlineMath math="17.5\text{ km}" />: <InlineMath math="21" /> minit pergi tambah <InlineMath math="75" /> minit pulang tepat <InlineMath math="96" /> minit. **Pelanggan boleh tinggal paling jauh <InlineMath math="17.5\text{ km}" />**.

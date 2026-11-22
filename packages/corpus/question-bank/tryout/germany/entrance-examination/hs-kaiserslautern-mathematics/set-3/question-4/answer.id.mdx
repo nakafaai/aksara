@@ -1,0 +1,70 @@
+# Langkah yang sama membongkar parabola
+
+Bayangkan menuruni tangga yang setiap anak tangganya lebih pendek dengan selisih yang selalu sama: begitulah parabola berubah ketika <InlineMath math="x" /> bertambah dengan langkah yang sama. **Untuk <InlineMath math="y=ax^2+bx+c" />, selisih pertama ketinggian selalu berubah dengan bilangan yang sama, yaitu selisih kedua <InlineMath math="2a" />**.
+
+<BlockMath math="\begin{aligned}
+\Delta y&:\quad 1{,}40,\ 0{,}60,\ 0{,}40,\ 0{,}00\\
+\Delta^2 y&:\quad -0{,}80,\ -0{,}20,\ -0{,}40
+\end{aligned}" />
+
+Selisih keduanya tidak sama, dan itulah tanda adanya nilai yang salah.
+
+# Melacak nilai yang salah
+
+Ketinggian yang meleset sebesar <InlineMath math="\delta" /> merusak setiap selisih kedua yang memuatnya: sebesar <InlineMath math="-2\delta" /> kalau ia di tengah dan <InlineMath math="+\delta" /> kalau ia di ujung. **Hanya kesalahan di <InlineMath math="x=1" /> yang membiarkan selisih terakhir <InlineMath math="-0{,}40" /> utuh sambil menggeser dua yang pertama sebesar <InlineMath math="-2\delta" /> dan <InlineMath math="+\delta" />**.
+
+<BlockMath math="\begin{aligned}
+-0{,}80&=-0{,}40-2\delta\\
+-0{,}20&=-0{,}40+\delta\\
+\delta&=0{,}20
+\end{aligned}" />
+
+Kedua baris memberi <InlineMath math="\delta=0{,}20" />, jadi tinggi sebenarnya di <InlineMath math="x=1" /> adalah <InlineMath math="3{,}25-0{,}20=3{,}05\text{ m}" />. Kesalahan di <InlineMath math="x=0" /> hanya mengenai selisih pertama, di <InlineMath math="x=4" /> hanya yang terakhir, sedangkan di <InlineMath math="x=2" /> atau <InlineMath math="x=3" /> selisih yang utuh saling bertentangan.
+
+# Titik tertinggi
+
+Tinggi di <InlineMath math="x=3" /> dan <InlineMath math="x=4" /> sama dan keduanya tepat, jadi puncaknya tepat di tengah di <InlineMath math="x=3{,}5" />. **Selisih kedua <InlineMath math="2a=-0{,}40" /> memberi <InlineMath math="a=-0{,}2" />, dan titik <InlineMath math="(3\mid4{,}25)" /> menentukan puncaknya**.
+
+<BlockMath math="\begin{aligned}
+y&=-0{,}2\,(x-3{,}5)^2+H\\
+4{,}25&=-0{,}2\cdot0{,}25+H\\
+H&=4{,}30
+\end{aligned}" />
+
+<MathVisual
+  title={<>Lintasan bola dan nilai yang salah</>}
+  description={<>Parabola <InlineMath math="y=-0{,}2\,(x-3{,}5)^2+4{,}3" /> melalui keempat titik ukur yang benar. Nilai <InlineMath math="3{,}25" /> di <InlineMath math="x=1" /> terlalu tinggi <InlineMath math="0{,}2\text{ m}" />, nilai sebenarnya <InlineMath math="3{,}05" />. Puncaknya tepat di tengah dua titik yang sama tinggi di <InlineMath math="x=3" /> dan <InlineMath math="x=4" />.</>}
+  footer={<>Hanya titik di <InlineMath math="x=1" /> yang meleset dari kurva, dan puncaknya mencapai <InlineMath math="4{,}3\text{ m}" />.</>}
+  labels={{
+    wrong: <>salah baca</>,
+    true: <>benar</>,
+    apex: <><InlineMath math="4{,}3\text{ m}" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -0.5, max: 6 },
+      y: { min: 0, max: 5 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "path", kind: "function", appearance: "primary", formula: "-0.2*(x - 3.5)^2 + 4.3", domain: { min: 0, max: 5.5 } },
+      { id: "p0", kind: "point", appearance: "reference", at: { x: 0, y: 1.85 } },
+      { id: "p2", kind: "point", appearance: "reference", at: { x: 2, y: 3.85 } },
+      { id: "p3", kind: "point", appearance: "reference", at: { x: 3, y: 4.25 } },
+      { id: "p4", kind: "point", appearance: "reference", at: { x: 4, y: 4.25 } },
+      { id: "wrong", kind: "point", appearance: "warning", at: { x: 1, y: 3.25 } },
+      { id: "true", kind: "point", appearance: "highlight", at: { x: 1, y: 3.05 } },
+      { id: "axis", kind: "segment", appearance: "construction", from: { x: 3.5, y: 0 }, to: { x: 3.5, y: 4.3 } },
+      { id: "apex", kind: "point", appearance: "answer", at: { x: 3.5, y: 4.3 } },
+    ],
+    labels: [
+      { key: "wrong", objectId: "wrong", at: { x: 1, y: 3.25 }, placement: "above-left" },
+      { key: "true", objectId: "true", at: { x: 1, y: 3.05 }, placement: "below-right" },
+      { key: "apex", objectId: "apex", at: { x: 3.5, y: 4.3 }, placement: "above" },
+    ],
+  }}
+/>
+
+Titik pusat bola naik sampai **<InlineMath math="4{,}3\text{ m}" />**. Parabola melalui tiga nilai pertama, termasuk yang salah, akan berpuncak di <InlineMath math="3{,}875\text{ m}" /> dekat <InlineMath math="x=2{,}25" /> dan sudah meleset dari nilai di <InlineMath math="x=3" />.

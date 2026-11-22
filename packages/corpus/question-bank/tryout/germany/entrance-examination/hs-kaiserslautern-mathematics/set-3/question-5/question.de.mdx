@@ -1,0 +1,35 @@
+Ein hohler, oben offener gerader Kreiskegel steht mit der Spitze senkrecht nach unten. Sein oberer kreisförmiger Rand hat den Innenradius <InlineMath math="18\text{ cm}" />, und die Innenhöhe von der Spitze bis zur Ebene des Rands beträgt <InlineMath math="24\text{ cm}" />.
+
+Zuerst wird eine feste Metallkugel mit dem Radius <InlineMath math="4{,}5\text{ cm}" /> von oben in den Kegel gelegt, bis sie unbeweglich ruht. Danach wird eine zweite feste Metallkugel mit dem Radius <InlineMath math="30\text{ cm}" /> zentriert von oben auf den Kegel abgesenkt, bis auch sie unbeweglich ruht. Beide Kugelmittelpunkte liegen auf der Kegelachse.
+
+Wie groß ist der kürzeste Abstand zwischen den Oberflächen der beiden Kugeln? Geben Sie den Abstand in cm an.
+
+<MathVisual
+  title={<>Querschnitt des Kreiskegels</>}
+  description={<>Axialschnitt des hohlen Kegels mit Innenradius <InlineMath math="18\text{ cm}" /> am oberen Rand und Innenhöhe <InlineMath math="24\text{ cm}" /> bis zur Spitze. Die Kugeln sind nicht eingezeichnet.</>}
+  footer={<>Kegelquerschnitt mit Achse und Maßen im Koordinatensystem.</>}
+  labels={{
+    rim: <><InlineMath math="18\text{ cm}" /></>,
+    height: <><InlineMath math="24\text{ cm}" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -26, max: 26 },
+      y: { min: -4, max: 30 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "left", kind: "segment", appearance: "primary", from: { x: 0, y: 0 }, to: { x: -18, y: 24 } },
+      { id: "right", kind: "segment", appearance: "primary", from: { x: 0, y: 0 }, to: { x: 18, y: 24 } },
+      { id: "top", kind: "segment", appearance: "construction", from: { x: -18, y: 24 }, to: { x: 18, y: 24 } },
+      { id: "axis", kind: "segment", appearance: "reference", from: { x: 0, y: 0 }, to: { x: 0, y: 24 } },
+      { id: "tip", kind: "point", appearance: "highlight", at: { x: 0, y: 0 } },
+    ],
+    labels: [
+      { key: "rim", objectId: "top", at: { x: 9, y: 24 }, placement: "above" },
+      { key: "height", objectId: "axis", at: { x: 0, y: 12 }, placement: "right" },
+    ],
+  }}
+/>

@@ -1,0 +1,68 @@
+# Wie tief das Seil sie hängen lässt
+
+Halte eine Halskette an beiden Enden und schieb einen Ring darauf entlang: Er kommt an der tiefsten Stelle zur Ruhe, die die Kette erlaubt. **Die Rolle kann nur dann in der Höhe <InlineMath math="y" /> hängen, wenn <InlineMath math="20\text{ m}" /> Seil reichen, um vom ersten Knoten auf diese Höhe hinunter und zum zweiten Knoten wieder hinauf zu laufen**. Du brauchst also für jede Höhe das kürzeste solche Seil.
+
+# Spiegeln liefert das kürzeste Seil
+
+Spiegle den zweiten Knoten <InlineMath math="B(16\mid9)" /> an der waagerechten Geraden in der Höhe <InlineMath math="y" />. **Von jedem Punkt dieser Geraden ist der Weg zu <InlineMath math="B" /> genauso lang wie der Weg zum Spiegelbild <InlineMath math="B'" />, das kürzeste Seil ist also die Strecke von <InlineMath math="A(0\mid12)" /> nach <InlineMath math="B'" />**.
+
+<BlockMath math="\begin{aligned}
+B'&=(16\mid2y-9)\\
+L_{\min}(y)^2&=16^2+\bigl(12-(2y-9)\bigr)^2=256+(21-2y)^2
+\end{aligned}" />
+
+Die Rolle kann die Höhe <InlineMath math="y" /> erreichen, solange diese Länge höchstens <InlineMath math="20\text{ m}" /> beträgt.
+
+<BlockMath math="\begin{aligned}
+256+(21-2y)^2&\le400\\
+(21-2y)^2&\le144\\
+21-2y&\le12,\qquad y\ge4{,}5
+\end{aligned}" />
+
+<MathVisual
+  title={<>Das Seil aufgeklappt</>}
+  description={<>Die Rolle hängt <InlineMath math="10\text{ m}" /> vom ersten Baum entfernt in <InlineMath math="4{,}5\text{ m}" /> Höhe. Spiegelt man das zweite Seilstück an der Höhe der Rolle, verlängert es das erste zu einer Geraden von <InlineMath math="(0\mid12)" /> nach <InlineMath math="(16\mid0)" /> mit der Länge <InlineMath math="20\text{ m}" />.</>}
+  footer={<>Das aufgeklappte <InlineMath math="20\text{ m}" />-Seil streckt sich genau bis <InlineMath math="(16\mid0)" /> und legt <InlineMath math="y=4{,}5\text{ m}" /> fest.</>}
+  labels={{
+    pulley: <>Rolle <InlineMath math="4{,}5\text{ m}" /></>,
+    image: <>gespiegelt</>,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -4, max: 20 },
+      y: { min: -1.5, max: 15 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "ground", kind: "segment", appearance: "reference", from: { x: -3, y: 0 }, to: { x: 19, y: 0 } },
+      { id: "tree-1", kind: "segment", appearance: "secondary", from: { x: 0, y: 0 }, to: { x: 0, y: 14 } },
+      { id: "tree-2", kind: "segment", appearance: "secondary", from: { x: 16, y: 0 }, to: { x: 16, y: 11 } },
+      { id: "knot-1", kind: "point", appearance: "highlight", at: { x: 0, y: 12 } },
+      { id: "knot-2", kind: "point", appearance: "highlight", at: { x: 16, y: 9 } },
+      { id: "rope", kind: "polyline", appearance: "primary", vertices: [{ x: 0, y: 12 }, { x: 10, y: 4.5 }, { x: 16, y: 9 }] },
+      { id: "mirror", kind: "segment", appearance: "construction", from: { x: 10, y: 4.5 }, to: { x: 16, y: 0 } },
+      { id: "level", kind: "segment", appearance: "construction", from: { x: 10, y: 4.5 }, to: { x: 16, y: 4.5 } },
+      { id: "pulley", kind: "point", appearance: "answer", at: { x: 10, y: 4.5 } },
+      { id: "image", kind: "point", appearance: "reference", at: { x: 16, y: 0 } },
+    ],
+    labels: [
+      { key: "pulley", objectId: "pulley", at: { x: 10, y: 4.5 }, placement: "below-left" },
+      { key: "image", objectId: "image", at: { x: 16, y: 0 }, placement: "below-right" },
+    ],
+  }}
+/>
+
+Bei <InlineMath math="y=4{,}5\text{ m}" /> liegt das Spiegelbild genau auf dem Boden bei <InlineMath math="(16\mid0)" />, und das aufgeklappte Seil bildet ein <InlineMath math="12" />-<InlineMath math="16" />-<InlineMath math="20" />-Dreieck.
+
+# Wo sie hängt, als Probe
+
+**In der tiefsten Höhe läuft das Seil geradlinig von <InlineMath math="A" /> nach <InlineMath math="B'(16\mid0)" />, also bilden beide Seilstücke mit der Waagerechten denselben Winkel**.
+
+<BlockMath math="\begin{aligned}
+\cos\alpha&=\tfrac{16}{20}=0{,}8,\qquad\tan\alpha=0{,}75\\
+x_1&=\tfrac{12-4{,}5}{0{,}75}=10,\qquad x_2=\tfrac{9-4{,}5}{0{,}75}=6
+\end{aligned}" />
+
+Die beiden Stücke sind <InlineMath math="12{,}5\text{ m}" /> und <InlineMath math="7{,}5\text{ m}" /> lang, zusammen <InlineMath math="20\text{ m}" />. **Die Rolle hängt <InlineMath math="4{,}5\text{ m}" /> über dem Boden**, nicht in der Mitte zwischen den Bäumen, sondern <InlineMath math="2\text{ m}" /> näher am tieferen Knoten.

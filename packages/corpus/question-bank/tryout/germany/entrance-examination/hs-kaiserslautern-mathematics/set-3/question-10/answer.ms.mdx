@@ -1,0 +1,67 @@
+# Garis yang menyentuh dua kali
+
+Letakkan pembaris di atas dua bonjol selimut yang berkedut, dan pembaris itu bertumpu pada satu titik sahaja di setiap bonjol. **Garis <InlineMath math="y=mx+c" /> menyentuh parabola yang terbuka ke bawah apabila kedua-duanya berkongsi tepat satu titik, jadi persamaan kuadratik bagi titik persilangannya mempunyai pembeza layan sifar**. Bagi bukit kedua gunakan <InlineMath math="u=x-10" />.
+
+<BlockMath math="\begin{aligned}
+4-\tfrac14x^2=mx+c\ &\Longleftrightarrow\ \tfrac14x^2+mx+c-4=0,\qquad c=m^2+4\\
+9-\tfrac14u^2=mu+10m+c\ &\Longleftrightarrow\ \tfrac14u^2+mu+10m+c-9=0,\qquad c=m^2-10m+9
+\end{aligned}" />
+
+# Satu garis untuk kedua-dua bukit
+
+**Kedua-dua syarat menerangkan tali yang sama, jadi kedua-dua ungkapan bagi <InlineMath math="c" /> adalah sama dan sebutan kuasa dua terbatal**.
+
+<BlockMath math="\begin{aligned}
+m^2+4&=m^2-10m+9\\
+m&=0.5,\qquad c=4.25\\
+x_1&=-2m=-1,\qquad x_2=10-2m=9
+\end{aligned}" />
+
+Tali itu menyentuh pada <InlineMath math="(-1\mid3.75)" /> dan <InlineMath math="(9\mid8.75)" />.
+
+# Celah terbesar berada di lembah
+
+Di antara titik sentuhan, jarak <InlineMath math="d(x)" /> ialah tali tolak <InlineMath math="f" /> hingga <InlineMath math="x=4" /> dan tali tolak <InlineMath math="g" /> selepas itu. Setiap bahagian ialah parabola yang terbuka ke atas, jadi pada julatnya ia paling besar di hujung. **Hujung-hujungnya ialah titik sentuhan, tempat <InlineMath math="d=0" />, dan lembah pada <InlineMath math="x=4" />, tempat kedua-dua bukit turun hingga ke tanah**.
+
+<BlockMath math="\begin{aligned}
+f(4)&=g(4)=0\\
+d(4)&=0.5\cdot4+4.25-0=6.25
+\end{aligned}" />
+
+<MathVisual
+  title={<>Tali, bukit dan celah terbesar</>}
+  description={<>Tali <InlineMath math="y=0.5x+4.25" /> menyentuh bukit pertama pada <InlineMath math="x=-1" /> dan bukit kedua pada <InlineMath math="x=9" />. Tali paling jauh di atas tanah di lembah <InlineMath math="x=4" />, tempat kedua-dua bukit sampai ke tanah.</>}
+  footer={<>Celah tegak terbesar <InlineMath math="6.25\text{ m}" /> terletak tepat pada sudut lembah <InlineMath math="x=4" />.</>}
+  labels={{
+    rope: <>tali</>,
+    gap: <><InlineMath math="6.25\text{ m}" /></>,
+    tf: <><InlineMath math="(-1\mid3.75)" /></>,
+    tg: <><InlineMath math="(9\mid8.75)" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -6, max: 18 },
+      y: { min: -1, max: 11 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "ground", kind: "segment", appearance: "reference", from: { x: -6, y: 0 }, to: { x: 18, y: 0 } },
+      { id: "hill-f", kind: "function", appearance: "primary", formula: "4 - x^2/4", domain: { min: -4, max: 4 } },
+      { id: "hill-g", kind: "function", appearance: "primary", formula: "9 - (x - 10)^2/4", domain: { min: 4, max: 16 } },
+      { id: "rope", kind: "function", appearance: "secondary", formula: "0.5*x + 4.25", domain: { min: -3, max: 12 } },
+      { id: "gap", kind: "segment", appearance: "answer", from: { x: 4, y: 0 }, to: { x: 4, y: 6.25 } },
+      { id: "touch-f", kind: "point", appearance: "highlight", at: { x: -1, y: 3.75 } },
+      { id: "touch-g", kind: "point", appearance: "highlight", at: { x: 9, y: 8.75 } },
+    ],
+    labels: [
+      { key: "rope", objectId: "rope", at: { x: 11, y: 9.75 }, placement: "above-left" },
+      { key: "gap", objectId: "gap", at: { x: 4, y: 3.1 }, placement: "right" },
+      { key: "tf", objectId: "touch-f", at: { x: -1, y: 3.75 }, placement: "above-left" },
+      { key: "tg", objectId: "touch-g", at: { x: 9, y: 8.75 }, placement: "above-left" },
+    ],
+  }}
+/>
+
+Tali itu tergantung paling tinggi **<InlineMath math="6.25\text{ m}" />** di atas tanah. Dengan <InlineMath math="d'(x)=0" /> kamu hanya menjumpai titik sentuhan, tempat jaraknya paling kecil.
