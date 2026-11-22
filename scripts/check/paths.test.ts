@@ -49,6 +49,10 @@ describe("path policy", () => {
         "packages/compiler/policy.config.test.ts",
         "packages/compiler/types.d.ts",
         "packages/compiler/release-2026.ts",
+        "packages/corpus/package.json",
+        "packages/corpus/tsconfig.json",
+        "packages/corpus/tsconfig.build.json",
+        "packages/corpus/quran/sources/german/publication.json",
         "packages/corpus/quran/sources/german/edition.pdf",
         "packages/corpus/quran/sources/tanzil/text.txt",
       ])
@@ -66,6 +70,7 @@ describe("path policy", () => {
         "packages/corpus/pages/privacy-policy/en.mdx",
         "packages/corpus/question-bank/reader.ts",
         "packages/corpus/question-bank/tryout/indonesia/snbt/reading-comprehension-and-writing/set-1/question-1/answer.id.mdx",
+        "packages/corpus/question-bank/tryout/indonesia/snbt/reading-comprehension-and-writing/set-1/question-1/calibration.ts",
         "packages/corpus/question-bank/tryout/indonesia/snbt/reading-comprehension-and-writing/set-1/question-1/item.ts",
         "packages/corpus/question-bank/tryout/indonesia/snbt/reading-comprehension-and-writing/set-1/question-1/question.en.mdx",
         "packages/corpus/question-bank/tryout/indonesia/snbt/reading-comprehension-and-writing/set-1/kite-frame/stimulus.id.mdx",
@@ -113,6 +118,7 @@ describe("path policy", () => {
     expect(
       pathViolations([
         "packages/contracts/dist/source-map.d.ts",
+        "packages/corpus/dist/manifest.json",
         "packages/backend/_generated/api-types.ts",
         "node_modules/left-pad/index.js",
       ])
@@ -137,6 +143,20 @@ describe("path policy", () => {
       "packages/compiler/worker.spec.ts: final tests must use .test.ts",
       "packages/compiler/runtime.test.mts: final tests must use .test.ts",
       "packages/compiler/server.spec.cts: final tests must use .test.ts",
+    ]);
+  });
+
+  it("rejects authored JSON files under packages/corpus outside package config and upstream Quran archives", () => {
+    expect(
+      pathViolations([
+        "packages/corpus/data.json",
+        "packages/corpus/material/lesson/very-long-source-slug/lesson.json",
+        "packages/corpus/question-bank/tryout/germany/feststellungspruefung/mathematics/set-1/question-1/calibration.json",
+      ])
+    ).toEqual([
+      "packages/corpus/data.json: authored JSON is not allowed under packages/corpus; use a typed TypeScript module",
+      "packages/corpus/material/lesson/very-long-source-slug/lesson.json: authored JSON is not allowed under packages/corpus; use a typed TypeScript module",
+      "packages/corpus/question-bank/tryout/germany/feststellungspruefung/mathematics/set-1/question-1/calibration.json: authored JSON is not allowed under packages/corpus; use a typed TypeScript module",
     ]);
   });
 

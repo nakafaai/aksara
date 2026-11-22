@@ -9,8 +9,10 @@ import {
   Record as Rec,
   Result,
   Schema,
+  Struct,
 } from "effect";
 
+import { readConstantModule } from "#corpus/module/constant";
 import type { ItemSource } from "#corpus/question-bank/item";
 import { itemVersions } from "#corpus/question-bank/item";
 
@@ -19,7 +21,14 @@ import { itemVersions } from "#corpus/question-bank/item";
  * parts, which a grader is calibrated against. It is checked with its item
  * and never published.
  */
-export const CALIBRATION_FILE = "calibration.json";
+export const CALIBRATION_FILE = "calibration.ts";
+
+/** The shape of every calibration module: `const calibration: Calibration = { ... }`, default-exported. */
+const CALIBRATION_MODULE = {
+  binding: "calibration",
+  typeModule: "#corpus/question-bank/calibration",
+  typeName: "Calibration",
+} as const;
 
 /** A trimmed note that says something: a sample's text or a mark's reason. */
 const NoteSchema = Schema.Trimmed.check(Schema.isNonEmpty());
@@ -29,7 +38,7 @@ const MarkSchema = Schema.Struct({
   criterion: Schema.Int.check(Schema.isGreaterThan(0)),
   met: Schema.Boolean,
   reason: NoteSchema,
-});
+}).mapFields(Struct.map(Schema.mutableKey));
 
 /** One expert-marked answer to a written part: good, partial, or wrong. */
 const SampleSchema = Schema.Struct({
@@ -37,7 +46,7 @@ const SampleSchema = Schema.Struct({
   id: KebabKeySchema,
   marks: Schema.NonEmptyArray(MarkSchema),
   text: NoteSchema,
-});
+}).mapFields(Struct.map(Schema.mutableKey));
 
 /** The samples of an item's written parts, by part label. */
 export const CalibrationSchema = Schema.Record(
@@ -115,16 +124,29 @@ export function calibrationProblems(
   ];
 }
 
-/** Decodes the calibration file of an item and checks it against the item's written parts. */
+/** Decodes the calibration module of an item without executing code and checks it against the item's written parts. */
 export const decodeCalibration = Effect.fn("AksaraCorpus.decodeCalibration")(
   function* (
-    text: string,
+    source: string,
     path: typeof CorpusSourcePathSchema.Type,
     item: ItemSource
   ) {
-    const calibration = yield* Schema.decodeEffect(
-      Schema.fromJsonString(CalibrationSchema)
-    )(text).pipe(
+    const input = yield* readConstantModule(CALIBRATION_MODULE, {
+      fileName: path,
+      source,
+    });
+    if (input === undefined) {
+      return yield* new CalibrationError({
+        path,
+        problems: [
+          "Expected a typed constant module exporting default calibration of type Calibration.",
+        ],
+      });
+    }
+    const calibration = yield* Schema.decodeUnknownEffect(CalibrationSchema)(
+      input,
+      { onExcessProperty: "error" }
+    ).pipe(
       Effect.mapError(
         (cause) => new CalibrationError({ path, problems: [String(cause)] })
       )

@@ -14,8 +14,16 @@ const NUMBER_PATTERN = /^\d+$/u;
 const EXTENSION_PATTERN = /(?<=[^.])\.[^.]+$/u;
 const DOCUMENT_PATTERN = /^[A-Z][A-Z\d]*(?:_[A-Z\d]+)+(?:\.md)?$/u;
 const JAVASCRIPT_PATTERN = /\.[cm]?jsx?$/u;
+const JSON_PATTERN = /\.json$/u;
 const RUNNABLE_TEST_FILE_PATTERN = /\.(?:spec|test)\.[cm]?[jt]sx?$/u;
 const FINAL_TEST_FILE_PATTERN = /\.test\.ts$/u;
+const CORPUS_ROOT = ["packages", "corpus"];
+const QURAN_SOURCES_ROOT = ["packages", "corpus", "quran", "sources"];
+const CORPUS_CONFIG_FILES = HashSet.make(
+  "packages/corpus/package.json",
+  "packages/corpus/tsconfig.build.json",
+  "packages/corpus/tsconfig.json"
+);
 const FORBIDDEN_FILE_NAMES = HashSet.make(
   ".node-version",
   ".npmrc",
@@ -47,7 +55,7 @@ const QUESTION_BANK_ROOT = ["packages", "corpus", "question-bank"];
 const QUESTION_BANK_PREFIX = [...QUESTION_BANK_ROOT, "tryout"];
 const QUESTION_SEGMENT_PATTERN = /^question-[1-9]\d*$/u;
 const QUESTION_SOURCE_PATTERN =
-  /^(?:item\.ts|(?:answer|question)\.[a-z]{2,3}(?:-[a-z0-9]+)*\.mdx)$/u;
+  /^(?:calibration\.ts|item\.ts|(?:answer|question)\.[a-z]{2,3}(?:-[a-z0-9]+)*\.mdx)$/u;
 const STIMULUS_SOURCE_PATTERN = /^stimulus\.[a-z]{2,3}(?:-[a-z0-9]+)*\.mdx$/u;
 const SOURCE_KEY_PATTERN = /^[a-z0-9]+(?:-[a-z0-9]+)*$/u;
 
@@ -165,9 +173,20 @@ function isConventionalFile(file: string, basename: string) {
   return isDocumentPath && DOCUMENT_PATTERN.test(basename);
 }
 
+/** Checks whether a path is an authored JSON file under `packages/corpus`, outside package config and upstream Quran archives. */
+function isForbiddenCorpusJson(file: string, segments: readonly string[]) {
+  return (
+    JSON_PATTERN.test(file) &&
+    !isGenerated(file) &&
+    hasPrefix(segments, CORPUS_ROOT) &&
+    !HashSet.has(CORPUS_CONFIG_FILES, file) &&
+    !hasPrefix(segments, QURAN_SOURCES_ROOT)
+  );
+}
+
 /**
- * Collects forbidden toolchains, JavaScript, multi-word path names, and names that repeat their folder's word. A
- * directory a tool writes keeps the names its tool gives it.
+ * Collects forbidden toolchains, JavaScript, authored corpus JSON, multi-word path names, and names that repeat their
+ * folder's word. A directory a tool writes keeps the names its tool gives it.
  */
 export function pathViolations(files: readonly string[]): readonly string[] {
   const tracked = HashSet.fromIterable(files);
@@ -180,6 +199,11 @@ export function pathViolations(files: readonly string[]): readonly string[] {
       : [];
     const sourceViolation = JAVASCRIPT_PATTERN.test(file)
       ? [`${file}: hand-written JavaScript source is not allowed`]
+      : [];
+    const corpusJsonViolation = isForbiddenCorpusJson(file, segments)
+      ? [
+          `${file}: authored JSON is not allowed under packages/corpus; use a typed TypeScript module`,
+        ]
       : [];
     const ownerPath = file.replace(FINAL_TEST_FILE_PATTERN, ".ts");
     const ownerViolation =
@@ -218,6 +242,7 @@ export function pathViolations(files: readonly string[]): readonly string[] {
     return [
       ...toolchainViolation,
       ...sourceViolation,
+      ...corpusJsonViolation,
       ...ownerViolation,
       ...testSourceViolation,
       ...nameViolations,

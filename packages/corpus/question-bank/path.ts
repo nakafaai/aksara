@@ -12,7 +12,7 @@ const QUESTION_FOLDER = /^question-(?<number>[1-9]\d*)$/u;
 
 /** One authored file of a question: its item, a prompt, or an explanation. */
 const QUESTION_FILE =
-  /^(?:item\.ts|calibration\.json|(?:question|answer)\.[a-z]{2}\.mdx)$/u;
+  /^(?:item\.ts|calibration\.ts|(?:question|answer)\.[a-z]{2}\.mdx)$/u;
 
 /** One authored file of a shared reading: its document in one language. */
 const STIMULUS_FILE = /^stimulus\.[a-z]{2}\.mdx$/u;

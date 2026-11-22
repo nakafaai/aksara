@@ -41,7 +41,7 @@ const written: ItemSource = {
 
 /** A calibration of part `a` of `written` whose one sample marks the given criterion. */
 const calibration = (part: string) =>
-  `{"${part}":[{"grade":"good","id":"good-1","marks":[{"criterion":1,"met":true,"reason":"Lengkap."}],"text":"Karena."}]}`;
+  `import type { Calibration } from "#corpus/question-bank/calibration";\n\nconst calibration: Calibration = {\n  ${part}: [\n    {\n      grade: "good",\n      id: "good-1",\n      marks: [{ criterion: 1, met: true, reason: "Lengkap." }],\n      text: "Karena.",\n    },\n  ],\n};\n\nexport default calibration;\n`;
 
 /** Reads the one test set from a virtual checkout of the given files. */
 function read(files: Iterable<readonly [string, string]>) {
