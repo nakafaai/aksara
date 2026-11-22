@@ -1,0 +1,64 @@
+# Zwei Lagen für den Zwischenzaun und zwei Bereiche
+
+Lehnst du ein Rechteck an eine kurze Gartenmauer, musst du am Mauerende nicht aufhören, solange der überstehende Zaun eine bessere Form ermöglicht. **Nenne die Seite entlang der Mauer <InlineMath math="x" /> und die Seite senkrecht dazu <InlineMath math="y" />**. Du prüfst beide Lagen des Zwischenzauns und jeweils beide Bereiche: bis zur Mauerlänge (<InlineMath math="x\le18" />) und darüber hinaus (<InlineMath math="x\ge18" />), wo der Überstand <InlineMath math="x-18" /> Meter Zaun kostet.
+
+# Ein paralleler Zwischenzaun bleibt am Mauerende stehen
+
+**Lege den Zwischenzaun zuerst parallel zur Mauer, dann gibt es zwei Zaunstücke der Länge <InlineMath math="y" /> und drei der Länge <InlineMath math="x" /> minus den genutzten Mauerabschnitt**.
+
+<BlockMath math="\begin{aligned}
+x\le18&:\quad 2x+2y=72\ \Longrightarrow\ A_B(x)=x\,(36-x),\quad \max\text{ bei }x=18:\ 324\\
+x\ge18&:\quad 3x-18+2y=72\ \Longrightarrow\ A_B(x)=x\,(45-1{,}5x),\quad A_B'(x)=45-3x<0\text{ für }x>18
+\end{aligned}" />
+
+Hinter <InlineMath math="x=18" /> fällt die Parabel schon wieder, weil ihr Scheitel bei <InlineMath math="x=15" /> liegt, hier bleibt es also bei höchstens <InlineMath math="324\text{ m}^2" />.
+
+# Der senkrechte Zwischenzaun klettert über das Mauerende hinaus
+
+Drehe den Zwischenzaun nun senkrecht zur Mauer, sodass es drei Stücke der Länge <InlineMath math="y" /> gibt. **Für <InlineMath math="x\le18" /> endet die Fläche wieder bei <InlineMath math="324\text{ m}^2" />, der typischen Randfalle, doch jenseits der Mauer öffnet sich eine neue Parabel mit ihrem Scheitel klar hinter <InlineMath math="18\text{ m}" />**.
+
+<BlockMath math="\begin{aligned}
+x\le18&:\quad x+3y=72\ \Longrightarrow\ A_A(x)=x\left(24-\tfrac13x\right),\quad A_A(18)=324\\
+x\ge18&:\quad (x-18)+x+3y=72\ \Longrightarrow\ y=30-\tfrac23x,\quad A_A(x)=x\left(30-\tfrac23x\right)\\
+A_A'(x)=30-\tfrac43x=0\ \Longrightarrow\ x=22{,}5,\quad y=15,\quad A_A(22{,}5)=337{,}5
+\end{aligned}" />
+
+<MathVisual
+  title={<>Flächeninhalt für beide Lagen des Zwischenzauns</>}
+  description={<>Beide Kurven knicken bei der Mauerlänge <InlineMath math="x=18\text{ m}" /> ab. Bei parallelem Zwischenzaun ist dort das Maximum <InlineMath math="324\text{ m}^2" /> erreicht, bei senkrechtem Zwischenzaun steigt die Kurve weiter bis <InlineMath math="337{,}5\text{ m}^2" /> bei <InlineMath math="x=22{,}5\text{ m}" />.</>}
+  footer={<>Über die <InlineMath math="18\text{ m}" />-Mauer hinaus steigt nur der senkrechte Fall bis zum Gipfel <InlineMath math="337{,}5\text{ m}^2" />.</>}
+  labels={{
+    perp: <>Zwischenzaun senkrecht</>,
+    para: <>Zwischenzaun parallel</>,
+    wall: <>Mauerende</>,
+    kink: <><InlineMath math="324" /></>,
+    best: <><InlineMath math="337{,}5" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: 4, max: 34 },
+      y: { min: 100, max: 380 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "perp1", kind: "function", appearance: "primary", formula: "x*(24 - x/3)", domain: { min: 6, max: 18 } },
+      { id: "perp2", kind: "function", appearance: "primary", formula: "x*(30 - 2*x/3)", domain: { min: 18, max: 32 } },
+      { id: "para1", kind: "function", appearance: "secondary", formula: "x*(36 - x)", domain: { min: 6, max: 18 } },
+      { id: "para2", kind: "function", appearance: "secondary", formula: "x*(45 - 1.5*x)", domain: { min: 18, max: 26 } },
+      { id: "wall", kind: "segment", appearance: "construction", from: { x: 18, y: 110 }, to: { x: 18, y: 365 } },
+      { id: "kink", kind: "point", appearance: "warning", at: { x: 18, y: 324 } },
+      { id: "best", kind: "point", appearance: "answer", at: { x: 22.5, y: 337.5 } },
+    ],
+    labels: [
+      { key: "perp", objectId: "perp2", at: { x: 29, y: 309 }, placement: "right" },
+      { key: "para", objectId: "para1", at: { x: 11, y: 275 }, placement: "above-left" },
+      { key: "wall", objectId: "wall", at: { x: 18, y: 125 }, placement: "right" },
+      { key: "kink", objectId: "kink", at: { x: 18, y: 324 }, placement: "above-left" },
+      { key: "best", objectId: "best", at: { x: 22.5, y: 337.5 }, placement: "above" },
+    ],
+  }}
+/>
+
+Probe bei <InlineMath math="x=22{,}5\text{ m}" /> und <InlineMath math="y=15\text{ m}" />: Überstand <InlineMath math="4{,}5" />, Vorderseite <InlineMath math="22{,}5" /> und drei Seiten <InlineMath math="3\cdot15=45" /> ergeben genau <InlineMath math="72\text{ m}" /> Zaun. Am Mauerende aufzuhören liefert die Falle <InlineMath math="324\text{ m}^2" />, eine unendliche Mauer anzunehmen sogar <InlineMath math="432\text{ m}^2" />. **Der größte mögliche Flächeninhalt beträgt <InlineMath math="337{,}5\text{ m}^2" />**.

@@ -1,0 +1,58 @@
+# Von der Haustür aus pflastern
+
+Leg den Weg Platte für Platte, beginnend an der Haustür. **Schau auf den ersten Meter: Entweder liegt dort eine Platte quer, oder zwei Platten liegen längs nebeneinander und füllen die ersten zwei Meter, also folgt <InlineMath math="a_n" /> der Fibonacci-Rekursion**.
+
+<BlockMath math="\begin{aligned}
+a_n&=a_{n-1}+a_{n-2},\qquad a_0=a_1=1\\
+a_0,\dots,a_7&:\quad 1,\ 1,\ 2,\ 3,\ 5,\ 8,\ 13,\ 21
+\end{aligned}" />
+
+Ohne die quadratische Platte gibt es <InlineMath math="a_7=21" /> Muster.
+
+# Wo das Quadrat liegen kann
+
+**Das Quadrat füllt auf zwei Metern die ganze Breite und zerlegt den Weg deshalb in ein linkes und ein rechtes Stück, die unabhängig voneinander belegt werden**. Belegt es die Meter <InlineMath math="k" /> und <InlineMath math="k+1" />, sind die Stücke <InlineMath math="k-1" /> und <InlineMath math="6-k" /> Meter lang.
+
+<BlockMath math="\begin{aligned}
+\sum_{k=1}^{6}a_{k-1}\,a_{6-k}&=1\cdot8+1\cdot5+2\cdot3+3\cdot2+5\cdot1+8\cdot1\\
+&=38
+\end{aligned}" />
+
+<MathVisual
+  title={<>Ein Muster mit dem Quadrat</>}
+  description={<>Ein Beispiel, bei dem die quadratische Platte den dritten und vierten Meter belegt. Links bleiben <InlineMath math="2\text{ m}" /> mit <InlineMath math="a_2=2" /> Mustern, rechts <InlineMath math="3\text{ m}" /> mit <InlineMath math="a_3=3" /> Mustern, für diese Lage also <InlineMath math="2\cdot3=6" /> Muster.</>}
+  footer={<>Das Quadrat teilt den Weg in zwei freie Stücke, deren Musterzahlen sich multiplizieren.</>}
+  labels={{
+    square: <>Quadrat</>,
+    left: <><InlineMath math="a_2=2" /></>,
+    right: <><InlineMath math="a_3=3" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -0.5, max: 7.5 },
+      y: { min: -1.2, max: 3.2 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "across-1", kind: "polygon", appearance: "reference", vertices: [{ x: 0, y: 0 }, { x: 1, y: 0 }, { x: 1, y: 2 }, { x: 0, y: 2 }] },
+      { id: "across-2", kind: "polygon", appearance: "reference", vertices: [{ x: 1, y: 0 }, { x: 2, y: 0 }, { x: 2, y: 2 }, { x: 1, y: 2 }] },
+      { id: "square", kind: "polygon", appearance: "answer", vertices: [{ x: 2, y: 0 }, { x: 4, y: 0 }, { x: 4, y: 2 }, { x: 2, y: 2 }] },
+      { id: "along-low", kind: "polygon", appearance: "secondary", vertices: [{ x: 4, y: 0 }, { x: 6, y: 0 }, { x: 6, y: 1 }, { x: 4, y: 1 }] },
+      { id: "along-high", kind: "polygon", appearance: "secondary", vertices: [{ x: 4, y: 1 }, { x: 6, y: 1 }, { x: 6, y: 2 }, { x: 4, y: 2 }] },
+      { id: "across-3", kind: "polygon", appearance: "reference", vertices: [{ x: 6, y: 0 }, { x: 7, y: 0 }, { x: 7, y: 2 }, { x: 6, y: 2 }] },
+    ],
+    labels: [
+      { key: "square", objectId: "square", at: { x: 3, y: 1 }, placement: "center" },
+      { key: "left", objectId: "across-1", at: { x: 1, y: 2 }, placement: "above" },
+      { key: "right", objectId: "along-high", at: { x: 5.5, y: 2 }, placement: "above" },
+    ],
+  }}
+/>
+
+Die sechs Produkte ergeben zusammen <InlineMath math="38" /> Muster mit der quadratischen Platte.
+
+# Alle Muster zusammen
+
+Ein Muster hat entweder kein Quadrat oder genau eins, nie beides, **also addieren sich beide Anzahlen zu <InlineMath math="21+38=59" /> Mustern**. Zwei längs nebeneinanderliegende Platten bedecken zwar auch ein <InlineMath math="2\times2" />-Feld, bilden aber ein anderes Muster als die quadratische Platte. Wer zu <InlineMath math="21" /> nur die <InlineMath math="6" /> Lagen des Quadrats zählt, landet bei der Falle <InlineMath math="27" />.

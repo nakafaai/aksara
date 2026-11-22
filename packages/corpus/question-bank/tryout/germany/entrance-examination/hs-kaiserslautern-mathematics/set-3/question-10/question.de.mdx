@@ -1,0 +1,33 @@
+Über zwei Hügel wird ein Seil straff gespannt. In einem Koordinatensystem mit der Einheit <InlineMath math="1\text{ m}" /> beschreibt die Gerade <InlineMath math="y=0" /> den ebenen Boden. Der Querschnitt des ersten Hügels ist der Graph von <InlineMath math="f(x)=4-\tfrac14x^2" /> für <InlineMath math="-4\le x\le4" />, der Querschnitt des zweiten Hügels der Graph von <InlineMath math="g(x)=9-\tfrac14(x-10)^2" /> für <InlineMath math="4\le x\le16" />.
+
+Das Seil verläuft in der Zeichenebene geradlinig. Es berührt jeden der beiden Hügel in genau einem Punkt und dringt nirgends in einen Hügel ein.
+
+Wie groß ist zwischen den beiden Berührpunkten der größte senkrechte Abstand zwischen dem Seil und dem Gelände darunter? Geben Sie den Abstand in m an.
+
+<MathVisual
+  title={<>Querschnitt der beiden Hügel</>}
+  description={<>Der Boden <InlineMath math="y=0" /> und die beiden Parabelbögen von <InlineMath math="f" /> und <InlineMath math="g" /> im Querschnitt.</>}
+  footer={<>Querschnitt der beiden Hügelprofile über dem ebenen Boden im Metermaßstab.</>}
+  labels={{
+    f: <><InlineMath math="f" /></>,
+    g: <><InlineMath math="g" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -6, max: 18 },
+      y: { min: -1, max: 11 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "ground", kind: "segment", appearance: "reference", from: { x: -6, y: 0 }, to: { x: 18, y: 0 } },
+      { id: "hill-f", kind: "function", appearance: "primary", formula: "4 - x^2/4", domain: { min: -4, max: 4 } },
+      { id: "hill-g", kind: "function", appearance: "primary", formula: "9 - (x - 10)^2/4", domain: { min: 4, max: 16 } },
+    ],
+    labels: [
+      { key: "f", objectId: "hill-f", at: { x: -2, y: 3 }, placement: "above-left" },
+      { key: "g", objectId: "hill-g", at: { x: 13, y: 6.75 }, placement: "above-right" },
+    ],
+  }}
+/>

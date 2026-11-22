@@ -1,0 +1,62 @@
+# Dua jag, satu campuran
+
+Tuang satu jag jus pekat dan satu jag jus cair ke dalam sebuah mangkuk. Betapa pekat isi mangkuk itu bergantung pada berapa banyak yang datang daripada setiap jag. **Peratus kemasukan keseluruhan berfungsi dengan cara yang sama: ia mencampurkan peratus kedua-dua bidang, dengan pemberat bilangan pemohon**. Bagi lelaki ada <InlineMath math="240" /> yang diterima dalam A dan <InlineMath math="20" /> dalam B.
+
+<BlockMath math="\begin{aligned}
+0.60\cdot400+0.20\cdot100&=240+20=260\\
+\frac{260}{500}&=0.52
+\end{aligned}" />
+
+Secara keseluruhan, <InlineMath math="52\,\%" /> pemohon lelaki mendapat tempat.
+
+# Peratus wanita bergantung pada x
+
+Katakan bilangan pemohon wanita dalam B ialah <InlineMath math="x" />. Maka <InlineMath math="70" /> wanita diterima dalam A dan <InlineMath math="0.25x" /> dalam B, daripada jumlah <InlineMath math="100+x" /> wanita. **Peratus keseluruhan mereka jatuh di bawah <InlineMath math="52\,\%" /> lelaki apabila bidang B yang lebih ketat mendapat pemberat yang cukup besar**.
+
+<BlockMath math="\begin{aligned}
+\frac{70+0.25x}{100+x}&<0.52\\
+70+0.25x&<52+0.52x\\
+18&<0.27x\\
+x&>\frac{200}{3}\approx66.67
+\end{aligned}" />
+
+<MathVisual
+  title={<>Peratus keseluruhan wanita</>}
+  description={<>Peratus kemasukan semua wanita jika <InlineMath math="x" /> wanita memohon dalam bidang B. Pada <InlineMath math="x=0" /> hanya bidang A dikira dengan <InlineMath math="70\,\%" />, dan apabila <InlineMath math="x" /> bertambah, bidang B menarik lengkung ke arah <InlineMath math="25\,\%" />. Lengkung itu memotong <InlineMath math="52\,\%" /> lelaki pada <InlineMath math="x\approx66.67" />.</>}
+  footer={<>Hanya pada titik <InlineMath math="x=68" /> lengkung berada di bawah <InlineMath math="52\,\%" /> dan <InlineMath math="x" /> boleh dibahagi dengan <InlineMath math="4" />.</>}
+  labels={{
+    women: <>semua wanita</>,
+    men: <>semua lelaki</>,
+    cross: <><InlineMath math="x\approx66.67" /></>,
+    answer: <><InlineMath math="x=68" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -10, max: 210 },
+      y: { min: 30, max: 75 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "men", kind: "segment", appearance: "reference", from: { x: 0, y: 52 }, to: { x: 200, y: 52 } },
+      { id: "women", kind: "function", appearance: "primary", formula: "(7000 + 25*x)/(100 + x)", domain: { min: 0, max: 200 } },
+      { id: "cross", kind: "point", appearance: "highlight", at: { x: 200 / 3, y: 52 } },
+      { id: "answer", kind: "point", appearance: "answer", at: { x: 68, y: 8700 / 168 } },
+    ],
+    labels: [
+      { key: "women", objectId: "women", at: { x: 20, y: 62.5 }, placement: "above-right" },
+      { key: "men", objectId: "men", at: { x: 160, y: 52 }, placement: "above" },
+      { key: "cross", objectId: "cross", at: { x: 200 / 3, y: 52 }, placement: "above-right" },
+      { key: "answer", objectId: "answer", at: { x: 68, y: 8700 / 168 }, placement: "below" },
+    ],
+  }}
+/>
+
+Dalam setiap bidang tiada apa-apa yang berubah. Hanya pemberat B yang bertambah, menarik lengkung campuran ke bawah garis mendatar lelaki.
+
+# Yang diterima sentiasa orang yang utuh
+
+Sekarang perkataan tepat dalam soalan menentukan nombor bulatnya. **Tepat <InlineMath math="25\,\%" /> pemohon wanita dalam B diterima, dan tiada orang yang diterima separuh, jadi <InlineMath math="x" /> mesti gandaan <InlineMath math="4" />**. Oleh itu <InlineMath math="67" /> gugur, dan gandaan <InlineMath math="4" /> seterusnya di atas <InlineMath math="66.67" /> ialah <InlineMath math="68" />.
+
+Semakan ringkas mengesahkannya. Dengan <InlineMath math="68" /> pemohon wanita dalam B, yang diterima ialah <InlineMath math="70+17=87" /> daripada <InlineMath math="168" />, sedangkan <InlineMath math="0.52\cdot168=87.36" />. Jadi wanita kekal sedikit di bawah lelaki. Dengan <InlineMath math="64" /> hasilnya <InlineMath math="86" /> daripada <InlineMath math="164" />, lebih kurang <InlineMath math="52.4\,\%" />. **Sekurang-kurangnya <InlineMath math="68" /> wanita memohon dalam bidang B**.

@@ -1,0 +1,37 @@
+Für eine Seilquerung über einen Bach wird ein Seil der Länge <InlineMath math="20\text{ m}" /> zwischen zwei senkrechten Bäumen befestigt, die auf ebenem Boden <InlineMath math="16\text{ m}" /> voneinander entfernt stehen. Am ersten Baum ist das Seil in <InlineMath math="12\text{ m}" /> Höhe festgeknotet, am zweiten Baum in <InlineMath math="9\text{ m}" /> Höhe. Auf dem Seil läuft eine Rolle, an der eine Kletterin hängt. Das Seil dehnt sich nicht, und die beiden Seilstücke zwischen den Knoten und der Rolle sind gerade gespannt.
+
+In der Ruhelage hängt die Rolle so tief, wie es das Seil zulässt.
+
+In welcher Höhe über dem Boden hängt die Rolle in der Ruhelage? Geben Sie die Höhe in m an.
+
+<MathVisual
+  title={<>Die beiden Bäume</>}
+  description={<>Die Knoten liegen <InlineMath math="12\text{ m}" /> und <InlineMath math="9\text{ m}" /> über dem Boden, die Bäume stehen <InlineMath math="16\text{ m}" /> auseinander. Das Seil ist <InlineMath math="20\text{ m}" /> lang, die Lage der Rolle ist nicht eingezeichnet.</>}
+  footer={<>Beide Knoten liegen verschieden hoch, der Boden verläuft waagerecht dazwischen.</>}
+  labels={{
+    one: <><InlineMath math="12\text{ m}" /></>,
+    two: <><InlineMath math="9\text{ m}" /></>,
+    gap: <><InlineMath math="16\text{ m}" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -4, max: 20 },
+      y: { min: -1.5, max: 15 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "ground", kind: "segment", appearance: "reference", from: { x: -3, y: 0 }, to: { x: 19, y: 0 } },
+      { id: "tree-1", kind: "segment", appearance: "secondary", from: { x: 0, y: 0 }, to: { x: 0, y: 14 } },
+      { id: "tree-2", kind: "segment", appearance: "secondary", from: { x: 16, y: 0 }, to: { x: 16, y: 11 } },
+      { id: "knot-1", kind: "point", appearance: "highlight", at: { x: 0, y: 12 } },
+      { id: "knot-2", kind: "point", appearance: "highlight", at: { x: 16, y: 9 } },
+    ],
+    labels: [
+      { key: "one", objectId: "knot-1", at: { x: 0, y: 12 }, placement: "left" },
+      { key: "two", objectId: "knot-2", at: { x: 16, y: 9 }, placement: "right" },
+      { key: "gap", objectId: "ground", at: { x: 8, y: 0 }, placement: "below" },
+    ],
+  }}
+/>

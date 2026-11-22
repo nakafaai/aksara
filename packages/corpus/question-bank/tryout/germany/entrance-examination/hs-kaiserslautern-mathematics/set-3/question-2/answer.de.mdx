@@ -1,0 +1,61 @@
+# Die beiden Abstände tauschen die Plätze
+
+Hältst du eine Lupe zwischen Lampe und Wand, gibt es zu einer scharfen Stelle nahe der Lampe immer eine zweite genau so nah an der Wand. **Weil die Linsengleichung in <InlineMath math="g" /> und <InlineMath math="b" /> symmetrisch ist, vertauscht die zweite scharfe Stellung beide Abstände einfach: <InlineMath math="g_2=b_1" /> und <InlineMath math="b_2=g_1" />**. Da die Linse Richtung Leinwand wandert, gilt <InlineMath math="g_2>g_1" />, also <InlineMath math="b_1>g_1" />.
+
+<BlockMath math="\begin{aligned}
+\frac1g+\frac1{L_1-g}=\frac1f\ &\Longleftrightarrow\ g\,(L_1-g)=f\,L_1\\
+g_2=b_1,\qquad b_2=g_1,\qquad \left(\frac{a_2'}{a_1'}\right)^2=\left(\frac{g_1/b_1}{b_1/g_1}\right)^2=\left(\frac{g_1}{b_1}\right)^4=\frac1{16}
+\end{aligned}" />
+
+Schau genau auf die vierte Potenz. Das erste Bild wird um <InlineMath math="\tfrac{b_1}{g_1}" /> vergrößert, das zweite um <InlineMath math="\tfrac{g_1}{b_1}" /> verkleinert, sodass schon das Verhältnis der Seitenlängen <InlineMath math="\left(\tfrac{g_1}{b_1}\right)^2" /> ist, und beim Flächeninhalt kommt noch ein Quadrat dazu.
+
+# Die Brennweite bestimmen
+
+**Die vierte Wurzel liefert <InlineMath math="\tfrac{b_1}{g_1}=2" />, und die Verschiebung um <InlineMath math="36\text{ cm}" /> legt beide Abstände und damit die Brennweite fest**. Wer den Flächenfaktor mit dem Seitenfaktor verwechselt, landet bei <InlineMath math="\tfrac{b_1}{g_1}=4" /> und einer falschen Brennweite von <InlineMath math="9{,}6\text{ cm}" />.
+
+<BlockMath math="\begin{aligned}
+\frac{b_1}{g_1}=2,\qquad b_1-g_1=36\ &\Longrightarrow\ g_1=36\text{ cm},\quad b_1=72\text{ cm}\\
+\frac1f=\frac1{36}+\frac1{72}=\frac{3}{72}\ &\Longrightarrow\ f=24\text{ cm}
+\end{aligned}" />
+
+# Beide scharfen Stellungen auf der neuen Bank prüfen
+
+Jetzt gilt <InlineMath math="L_2=100\text{ cm}" /> mit derselben Linse <InlineMath math="f=24\text{ cm}" />. **Die Bruchgleichung liefert wieder zwei scharfe Stellungen**.
+
+<BlockMath math="\begin{aligned}
+\frac1g+\frac1{100-g}=\frac1{24}\ &\Longleftrightarrow\ g^2-100g+2400=0\\
+(g-40)(g-60)=0\ &\Longrightarrow\ g=40\text{ cm}\quad\text{oder}\quad g=60\text{ cm}
+\end{aligned}" />
+
+<MathVisual
+  title={<>Bildgröße auf der neuen Bank</>}
+  description={<>Die Seitenlänge <InlineMath math="a'(g)=12\cdot\tfrac{100-g}{g}" /> für <InlineMath math="L_2=100\text{ cm}" /> und die Grenze der Leinwand bei <InlineMath math="15\text{ cm}" />. Beide scharfen Linsenstellungen sind markiert, doch bei <InlineMath math="g=40\text{ cm}" /> ragt das <InlineMath math="18\text{ cm}" /> große Bild über die Leinwand hinaus.</>}
+  footer={<>Nur <InlineMath math="g=60\text{ cm}" /> bleibt unter der <InlineMath math="15\text{ cm}" />-Linie, mit <InlineMath math="8\text{ cm}" /> Seite und <InlineMath math="64\text{ cm}^2" /> Fläche.</>}
+  labels={{
+    cap: <>Leinwandgrenze</>,
+    bad: <>zu groß <InlineMath math="(40\mid18)" /></>,
+    ok: <>passt <InlineMath math="(60\mid8)" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: 25, max: 82 },
+      y: { min: 0, max: 32 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "size", kind: "function", appearance: "primary", formula: "12*(100 - x)/x", domain: { min: 30, max: 80 } },
+      { id: "cap", kind: "segment", appearance: "warning", from: { x: 28, y: 15 }, to: { x: 80, y: 15 } },
+      { id: "bad", kind: "point", appearance: "warning", at: { x: 40, y: 18 } },
+      { id: "ok", kind: "point", appearance: "answer", at: { x: 60, y: 8 } },
+    ],
+    labels: [
+      { key: "cap", objectId: "cap", at: { x: 74, y: 15 }, placement: "above" },
+      { key: "bad", objectId: "bad", at: { x: 40, y: 18 }, placement: "above-right" },
+      { key: "ok", objectId: "ok", at: { x: 60, y: 8 }, placement: "above-right" },
+    ],
+  }}
+/>
+
+Prüfe nun beide Stellungen an der <InlineMath math="15\text{ cm}" /> großen Leinwand. Bei <InlineMath math="g=40\text{ cm}" /> und <InlineMath math="b=60\text{ cm}" /> wird die Bildseite <InlineMath math="12\cdot\tfrac{60}{40}=18\text{ cm}" /> groß und ragt über die Leinwand hinaus, diese Lösung scheidet aus (die Falle mit <InlineMath math="324\text{ cm}^2" />). Bei <InlineMath math="g=60\text{ cm}" /> und <InlineMath math="b=40\text{ cm}" /> beträgt die Seite <InlineMath math="12\cdot\tfrac{40}{60}=8\text{ cm}" /> und passt bequem drauf. **Das scharfe Bild hat den Flächeninhalt <InlineMath math="8^2=64\text{ cm}^2" />**.

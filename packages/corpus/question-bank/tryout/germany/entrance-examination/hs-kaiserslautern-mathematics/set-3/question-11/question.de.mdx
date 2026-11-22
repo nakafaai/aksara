@@ -1,0 +1,50 @@
+Ein Mobile über einem Kinderbett besteht aus zwei waagerecht hängenden Holzstäben und drei Figuren. Der obere Stab ist <InlineMath math="50\text{ cm}" /> lang, wiegt <InlineMath math="10\text{ g}" /> und hängt an einem Faden, der <InlineMath math="15\text{ cm}" /> von seinem linken Ende entfernt befestigt ist. An seinem rechten Ende hängt der Mond <InlineMath math="C" />, an seinem linken Ende hängt der untere Stab. Der untere Stab ist <InlineMath math="30\text{ cm}" /> lang, wiegt <InlineMath math="12\text{ g}" /> und hängt an einem Faden, der <InlineMath math="10\text{ cm}" /> von seinem linken Ende entfernt befestigt ist. An seinem linken Ende hängt der Stern <InlineMath math="A" />, an seinem rechten Ende die Wolke <InlineMath math="B" />.
+
+Beide Stäbe sind überall gleich dick und hängen genau waagerecht im Gleichgewicht. Ein Stab ist im Gleichgewicht, wenn auf beiden Seiten seines Aufhängepunkts die Summe der Produkte aus Gewichtskraft und Abstand zum Aufhängepunkt gleich groß ist. Die Fäden sind gewichtslos. Das ganze Mobile wiegt <InlineMath math="200\text{ g}" />.
+
+Wie schwer ist der Stern <InlineMath math="A" />? Geben Sie die Masse in g an.
+
+<MathVisual
+  title={<>Das Mobile</>}
+  description={<>Der obere Stab hängt <InlineMath math="15\text{ cm}" /> von seinem linken Ende entfernt, der untere <InlineMath math="10\text{ cm}" /> von seinem linken Ende entfernt. Die Zeichnung ist nicht maßstäblich.</>}
+  footer={<>Die Längen zeigen die Hebelarme links und rechts beider Aufhängepunkte.</>}
+  labels={{
+    a: <><InlineMath math="A" /></>,
+    b: <><InlineMath math="B" /></>,
+    c: <><InlineMath math="C" /></>,
+    left: <><InlineMath math="15\text{ cm}" /></>,
+    right: <><InlineMath math="35\text{ cm}" /></>,
+    short: <><InlineMath math="10\text{ cm}" /></>,
+    long: <><InlineMath math="20\text{ cm}" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -16, max: 56 },
+      y: { min: 0, max: 16 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "top-thread", kind: "segment", appearance: "reference", from: { x: 15, y: 10 }, to: { x: 15, y: 14 } },
+      { id: "top-rod", kind: "segment", appearance: "primary", from: { x: 0, y: 10 }, to: { x: 50, y: 10 } },
+      { id: "c-thread", kind: "segment", appearance: "reference", from: { x: 50, y: 10 }, to: { x: 50, y: 6 } },
+      { id: "low-thread", kind: "segment", appearance: "reference", from: { x: 0, y: 10 }, to: { x: 0, y: 6 } },
+      { id: "low-rod", kind: "segment", appearance: "primary", from: { x: -10, y: 6 }, to: { x: 20, y: 6 } },
+      { id: "a-thread", kind: "segment", appearance: "reference", from: { x: -10, y: 6 }, to: { x: -10, y: 2 } },
+      { id: "b-thread", kind: "segment", appearance: "reference", from: { x: 20, y: 6 }, to: { x: 20, y: 2 } },
+      { id: "a", kind: "point", appearance: "highlight", at: { x: -10, y: 2 } },
+      { id: "b", kind: "point", appearance: "highlight", at: { x: 20, y: 2 } },
+      { id: "c", kind: "point", appearance: "highlight", at: { x: 50, y: 6 } },
+    ],
+    labels: [
+      { key: "a", objectId: "a", at: { x: -10, y: 2 }, placement: "below" },
+      { key: "b", objectId: "b", at: { x: 20, y: 2 }, placement: "below" },
+      { key: "c", objectId: "c", at: { x: 50, y: 6 }, placement: "below" },
+      { key: "left", objectId: "top-rod", at: { x: 7.5, y: 10 }, placement: "above" },
+      { key: "right", objectId: "top-rod", at: { x: 32.5, y: 10 }, placement: "above" },
+      { key: "short", objectId: "low-rod", at: { x: -5, y: 6 }, placement: "above" },
+      { key: "long", objectId: "low-rod", at: { x: 10, y: 6 }, placement: "above" },
+    ],
+  }}
+/>

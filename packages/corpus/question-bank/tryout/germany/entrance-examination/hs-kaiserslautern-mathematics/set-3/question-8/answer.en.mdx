@@ -1,0 +1,74 @@
+# Start with the shared diagonal BD
+
+Split the quadrilateral along <InlineMath math="BD" /> into two triangles that share that bridge. **In <InlineMath math="\triangle ABD" /> you know two sides and the cosine of the angle between them, so the law of cosines gives <InlineMath math="BD" /> at once**. Notice the negative cosine turns the minus sign into a plus.
+
+<BlockMath math="\begin{aligned}
+BD^2=30^2+14^2-2\cdot30\cdot14\cdot\left(-\tfrac35\right)=900+196+504=1600\ \Longrightarrow\ BD=40\text{ m}
+\end{aligned}" />
+
+# Two candidate places for C
+
+Now move to <InlineMath math="\triangle BCD" /> and write <InlineMath math="x=CD" />. **Because <InlineMath math="BC=30\text{ m}" /> is shorter than <InlineMath math="BD=40\text{ m}" />, a circle of radius <InlineMath math="30\text{ m}" /> around <InlineMath math="B" /> cuts the ray from <InlineMath math="D" /> twice, giving two candidates for <InlineMath math="CD" />**.
+
+<BlockMath math="\begin{aligned}
+30^2=40^2+x^2-2\cdot40\cdot x\cdot\tfrac45\ \Longleftrightarrow\ x^2-64x+700=0\\
+(x-14)(x-50)=0\ \Longrightarrow\ CD=14\text{ m}\quad\text{or}\quad CD=50\text{ m}
+\end{aligned}" />
+
+Now the condition <InlineMath math="\angle BCD<90^\circ" /> decides. At <InlineMath math="CD=14\text{ m}" /> we have <InlineMath math="30^2+14^2=1096<1600=40^2" />, so the angle at <InlineMath math="C'" /> is obtuse and ruled out. At <InlineMath math="CD=50\text{ m}" /> we have <InlineMath math="30^2+40^2=2500=50^2" /> (a right angle at <InlineMath math="B" />), so <InlineMath math="\angle BCD" /> is acute and **<InlineMath math="CD=50\text{ m}" /> survives**.
+
+<MathVisual
+  title={<>The parcel and the rejected corner</>}
+  description={<>On the ray from <InlineMath math="D" /> with <InlineMath math="\cos(\angle BDC)=\tfrac45" />, both <InlineMath math="C'" /> at <InlineMath math="14\text{ m}" /> and <InlineMath math="C" /> at <InlineMath math="50\text{ m}" /> sit <InlineMath math="30\text{ m}" /> from <InlineMath math="B" />. Only <InlineMath math="C" /> leaves an acute angle, giving the diagonal <InlineMath math="AC=48\text{ m}" />.</>}
+  footer={<>The corner <InlineMath math="C'" /> creates an obtuse angle, while <InlineMath math="C" /> gives the true diagonal <InlineMath math="48\text{ m}" />.</>}
+  labels={{
+    a: <><InlineMath math="A" /></>,
+    b: <><InlineMath math="B" /></>,
+    c: <><InlineMath math="C" /></>,
+    d: <><InlineMath math="D" /></>,
+    cp: <><InlineMath math="C'" /> (obtuse)</>,
+    ac: <><InlineMath math="48\text{ m}" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -6, max: 48 },
+      y: { min: -36, max: 16 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "quad", kind: "polygon", appearance: "secondary", vertices: [{ x: 11.2, y: 8.4 }, { x: 40, y: 0 }, { x: 40, y: -30 }, { x: 0, y: 0 }] },
+      { id: "bd", kind: "segment", appearance: "reference", from: { x: 0, y: 0 }, to: { x: 40, y: 0 } },
+      { id: "ac", kind: "segment", appearance: "answer", from: { x: 11.2, y: 8.4 }, to: { x: 40, y: -30 } },
+      { id: "bcp", kind: "segment", appearance: "construction", stroke: "dashed", from: { x: 40, y: 0 }, to: { x: 11.2, y: -8.4 } },
+      { id: "a", kind: "point", appearance: "highlight", at: { x: 11.2, y: 8.4 } },
+      { id: "b", kind: "point", appearance: "highlight", at: { x: 40, y: 0 } },
+      { id: "c", kind: "point", appearance: "answer", at: { x: 40, y: -30 } },
+      { id: "d", kind: "point", appearance: "highlight", at: { x: 0, y: 0 } },
+      { id: "cp", kind: "point", appearance: "warning", at: { x: 11.2, y: -8.4 } },
+    ],
+    labels: [
+      { key: "a", objectId: "a", at: { x: 11.2, y: 8.4 }, placement: "above" },
+      { key: "b", objectId: "b", at: { x: 40, y: 0 }, placement: "above-right" },
+      { key: "c", objectId: "c", at: { x: 40, y: -30 }, placement: "below-right" },
+      { key: "d", objectId: "d", at: { x: 0, y: 0 }, placement: "left" },
+      { key: "cp", objectId: "cp", at: { x: 11.2, y: -8.4 }, placement: "below-left" },
+      { key: "ac", objectId: "ac", at: { x: 25.6, y: -10.8 }, placement: "right" },
+    ],
+  }}
+/>
+
+In the drawing you can see both intersections on the ray from <InlineMath math="D" /> and why only the farther one keeps <InlineMath math="\angle BCD" /> sharp.
+
+# Combining the two angles at D
+
+Since <InlineMath math="A" /> and <InlineMath math="C" /> lie on opposite sides of <InlineMath math="BD" />, the corner angle is <InlineMath math="\angle ADC=\angle ADB+\angle BDC" />. **Find <InlineMath math="\cos(\angle ADB)" /> from <InlineMath math="\triangle ABD" />, apply the cosine addition formula, and finish with the law of cosines in <InlineMath math="\triangle ADC" />**.
+
+<BlockMath math="\begin{aligned}
+\cos(\angle ADB)=\frac{14^2+40^2-30^2}{2\cdot14\cdot40}=\frac{896}{1120}=\tfrac45,\qquad \sin(\angle ADB)=\tfrac35\\
+\cos(\angle ADC)=\cos(\angle ADB+\angle BDC)=\tfrac45\cdot\tfrac45-\tfrac35\cdot\tfrac35=\tfrac{7}{25}\\
+AC^2=14^2+50^2-2\cdot14\cdot50\cdot\tfrac{7}{25}=196+2500-392=2304\ \Longrightarrow\ AC=48\text{ m}
+\end{aligned}" />
+
+The diagonal <InlineMath math="AC" /> is **<InlineMath math="48\text{ m}" />** long. Picking the rejected corner <InlineMath math="C'" /> with <InlineMath math="CD=14\text{ m}" /> would give the trap diagonal <InlineMath math="16.8\text{ m}" />.

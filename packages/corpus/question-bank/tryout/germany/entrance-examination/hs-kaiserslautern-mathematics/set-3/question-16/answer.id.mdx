@@ -1,0 +1,68 @@
+# Seberapa rendah tali membiarkannya tergantung
+
+Pegang seutas kalung di kedua ujungnya lalu geser sebuah cincin di atasnya: cincin itu berhenti di titik terendah yang diizinkan kalung. **Katrol hanya bisa tergantung pada ketinggian <InlineMath math="y" /> jika tali <InlineMath math="20\text{ m}" /> cukup untuk turun dari simpul pertama ke ketinggian itu lalu naik lagi ke simpul kedua**. Jadi untuk setiap ketinggian kamu perlu tali terpendek seperti itu.
+
+# Pencerminan memberi tali terpendek
+
+Cerminkan simpul kedua <InlineMath math="B(16\mid9)" /> terhadap garis mendatar pada ketinggian <InlineMath math="y" />. **Dari setiap titik pada garis itu, jalan ke <InlineMath math="B" /> sama panjang dengan jalan ke bayangannya <InlineMath math="B'" />, jadi tali terpendek adalah ruas garis dari <InlineMath math="A(0\mid12)" /> ke <InlineMath math="B'" />**.
+
+<BlockMath math="\begin{aligned}
+B'&=(16\mid2y-9)\\
+L_{\min}(y)^2&=16^2+\bigl(12-(2y-9)\bigr)^2=256+(21-2y)^2
+\end{aligned}" />
+
+Katrol bisa mencapai ketinggian <InlineMath math="y" /> selama panjang ini paling besar <InlineMath math="20\text{ m}" />.
+
+<BlockMath math="\begin{aligned}
+256+(21-2y)^2&\le400\\
+(21-2y)^2&\le144\\
+21-2y&\le12,\qquad y\ge4{,}5
+\end{aligned}" />
+
+<MathVisual
+  title={<>Tali yang dibuka lurus</>}
+  description={<>Katrol tergantung <InlineMath math="10\text{ m}" /> dari pohon pertama pada ketinggian <InlineMath math="4{,}5\text{ m}" />. Kalau potongan tali kedua dicerminkan terhadap ketinggian katrol, ia melanjutkan potongan pertama menjadi garis lurus dari <InlineMath math="(0\mid12)" /> ke <InlineMath math="(16\mid0)" /> sepanjang <InlineMath math="20\text{ m}" />.</>}
+  footer={<>Tali <InlineMath math="20\text{ m}" /> yang diluruskan ke <InlineMath math="(16\mid0)" /> menentukan tinggi katrol tepat di <InlineMath math="4{,}5\text{ m}" />.</>}
+  labels={{
+    pulley: <>katrol <InlineMath math="4{,}5\text{ m}" /></>,
+    image: <>dicerminkan</>,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -4, max: 20 },
+      y: { min: -1.5, max: 15 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "ground", kind: "segment", appearance: "reference", from: { x: -3, y: 0 }, to: { x: 19, y: 0 } },
+      { id: "tree-1", kind: "segment", appearance: "secondary", from: { x: 0, y: 0 }, to: { x: 0, y: 14 } },
+      { id: "tree-2", kind: "segment", appearance: "secondary", from: { x: 16, y: 0 }, to: { x: 16, y: 11 } },
+      { id: "knot-1", kind: "point", appearance: "highlight", at: { x: 0, y: 12 } },
+      { id: "knot-2", kind: "point", appearance: "highlight", at: { x: 16, y: 9 } },
+      { id: "rope", kind: "polyline", appearance: "primary", vertices: [{ x: 0, y: 12 }, { x: 10, y: 4.5 }, { x: 16, y: 9 }] },
+      { id: "mirror", kind: "segment", appearance: "construction", from: { x: 10, y: 4.5 }, to: { x: 16, y: 0 } },
+      { id: "level", kind: "segment", appearance: "construction", from: { x: 10, y: 4.5 }, to: { x: 16, y: 4.5 } },
+      { id: "pulley", kind: "point", appearance: "answer", at: { x: 10, y: 4.5 } },
+      { id: "image", kind: "point", appearance: "reference", at: { x: 16, y: 0 } },
+    ],
+    labels: [
+      { key: "pulley", objectId: "pulley", at: { x: 10, y: 4.5 }, placement: "below-left" },
+      { key: "image", objectId: "image", at: { x: 16, y: 0 }, placement: "below-right" },
+    ],
+  }}
+/>
+
+Pada batas <InlineMath math="y=4{,}5\text{ m}" /> bayangan simpul jatuh tepat di tanah di <InlineMath math="(16\mid0)" />, dan tali yang diluruskan membentuk segitiga siku-siku <InlineMath math="12" />-<InlineMath math="16" />-<InlineMath math="20" />.
+
+# Letak katrol sebagai pengecekan
+
+**Pada ketinggian terendah, tali lurus dari <InlineMath math="A" /> ke <InlineMath math="B'(16\mid0)" />, jadi kedua potongan tali membentuk sudut yang sama dengan garis mendatar**.
+
+<BlockMath math="\begin{aligned}
+\cos\alpha&=\tfrac{16}{20}=0{,}8,\qquad\tan\alpha=0{,}75\\
+x_1&=\tfrac{12-4{,}5}{0{,}75}=10,\qquad x_2=\tfrac{9-4{,}5}{0{,}75}=6
+\end{aligned}" />
+
+Panjang kedua potongan adalah <InlineMath math="12{,}5\text{ m}" /> dan <InlineMath math="7{,}5\text{ m}" />, jumlahnya <InlineMath math="20\text{ m}" />. **Katrol tergantung <InlineMath math="4{,}5\text{ m}" /> di atas tanah**, bukan di tengah antara kedua pohon, melainkan <InlineMath math="2\text{ m}" /> lebih dekat ke simpul yang lebih rendah.

@@ -1,0 +1,60 @@
+# Converting percentages to kWh first
+
+When two garden hoses share one main tap, shutting down one hose immediately sends more water to the other. **First turn every state of charge into kWh: van A starts at <InlineMath math="20\text{ kWh}" /> with its throttle at <InlineMath math="80\text{ kWh}" />, and van B starts at <InlineMath math="18\text{ kWh}" /> with its throttle at <InlineMath math="144\text{ kWh}" />**. Measure time <InlineMath math="t" /> in minutes from 8:00.
+
+# Following each power switch in order
+
+**At every milestone check which van hits its next threshold first, because that event shifts the charger's split immediately**. From <InlineMath math="t=50" /> van A throttles to <InlineMath math="30\text{ kW}" /> and finishes in <InlineMath math="40" /> minutes, whereas van B needs <InlineMath math="64" /> minutes at <InlineMath math="90\text{ kW}" /> to reach <InlineMath math="144\text{ kWh}" />, so van A unplugs first at <InlineMath math="t=90" /> and releases the full <InlineMath math="120\text{ kW}" /> to van B.
+
+<BlockMath math="\begin{aligned}
+0\to20\text{ min}&:\quad \text{A: }90\text{ kW}\implies 20+30=50\text{ kWh}\\
+20\to50\text{ min}&:\quad \text{both }60\text{ kW}\implies \text{A: }80\text{ kWh}\,(80\,\%),\quad \text{B: }18+30=48\text{ kWh}\\
+50\to90\text{ min}&:\quad \text{A: }30\text{ kW}\,(20\text{ kWh in }40\text{ min}\implies 100\,\%),\quad \text{B: }90\text{ kW}\implies 48+60=108\text{ kWh}\\
+90\to108\text{ min}&:\quad \text{B alone }120\text{ kW}\,(36\text{ kWh in }18\text{ min}\implies 144\text{ kWh}=80\,\%)\\
+108\to156\text{ min}&:\quad \text{B: }45\text{ kW}\,(36\text{ kWh in }48\text{ min}\implies 180\text{ kWh}=100\,\%)
+\end{aligned}" />
+
+<MathVisual
+  title={<>Stored energy of both vans over time</>}
+  description={<>Minutes after <InlineMath math="8" /> o'clock against battery energy in kWh. Every bend marks a power switch, so van B changes rate at minutes <InlineMath math="50" />, <InlineMath math="90" /> and <InlineMath math="108" />.</>}
+  footer={<>Van B charges from minute <InlineMath math="20" /> to minute <InlineMath math="156" />, for <InlineMath math="136" /> minutes in total.</>}
+  labels={{
+    v1: <>van A</>,
+    v2: <>van B</>,
+    t50: <><InlineMath math="50" /></>,
+    t90: <><InlineMath math="90" /></>,
+    t108: <><InlineMath math="108" /></>,
+    t156: <><InlineMath math="156" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -8, max: 170 },
+      y: { min: -10, max: 198 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "v1", kind: "polyline", appearance: "secondary", vertices: [{ x: 0, y: 20 }, { x: 20, y: 50 }, { x: 50, y: 80 }, { x: 90, y: 100 }] },
+      { id: "v2", kind: "polyline", appearance: "primary", vertices: [{ x: 20, y: 18 }, { x: 50, y: 48 }, { x: 90, y: 108 }, { x: 108, y: 144 }, { x: 156, y: 180 }] },
+      { id: "p50", kind: "point", appearance: "highlight", at: { x: 50, y: 48 } },
+      { id: "p90", kind: "point", appearance: "highlight", at: { x: 90, y: 108 } },
+      { id: "p108", kind: "point", appearance: "highlight", at: { x: 108, y: 144 } },
+      { id: "p156", kind: "point", appearance: "answer", at: { x: 156, y: 180 } },
+    ],
+    labels: [
+      { key: "v1", objectId: "v1", at: { x: 20, y: 50 }, placement: "above-left" },
+      { key: "v2", objectId: "v2", at: { x: 130, y: 162 }, placement: "above-left" },
+      { key: "t50", objectId: "p50", at: { x: 50, y: 48 }, placement: "below-right" },
+      { key: "t90", objectId: "p90", at: { x: 90, y: 108 }, placement: "below-right" },
+      { key: "t108", objectId: "p108", at: { x: 108, y: 144 }, placement: "above-left" },
+      { key: "t156", objectId: "p156", at: { x: 156, y: 180 }, placement: "above" },
+    ],
+  }}
+/>
+
+Each steepening or flattening bend on van B's graph matches one of those four power transitions.
+
+# Subtracting the start offset
+
+**Van B plugs in at <InlineMath math="t=20" /> and reaches <InlineMath math="100\,\%" /> at <InlineMath math="t=156" />, so its charging session lasts <InlineMath math="156-20=136" /> minutes** (or directly <InlineMath math="30+40+18+48=136" /> minutes). Answering <InlineMath math="156" /> counts from 8:00 instead of 8:20, leaving van B at <InlineMath math="60\text{ kW}" /> during phase three gives <InlineMath math="146" /> minutes, and forgetting the jump from <InlineMath math="90" /> to <InlineMath math="120\text{ kW}" /> at <InlineMath math="t=90" /> gives <InlineMath math="142" /> minutes.

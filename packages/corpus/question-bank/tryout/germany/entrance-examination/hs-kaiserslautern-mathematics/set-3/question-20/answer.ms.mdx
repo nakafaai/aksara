@@ -1,0 +1,61 @@
+# Meletakkan pusat pada pembahagi dua sama sudut
+
+Jika kamu menyelitkan syiling di bucu antara dua pembaris, pusatnya sentiasa sama jauh dari kedua-dua tepi. **Oleh sebab kolam menyentuh <InlineMath math="y=0" /> dari atas, pusatnya ialah <InlineMath math="M(x_M\mid r)" />, dan dalam kawasan sudut tirus <InlineMath math="4x-3y>0" /> jaraknya ke <InlineMath math="4x-3y=0" /> terus memberi <InlineMath math="x_M=2r" />**. Memasukkan titik <InlineMath math="P(7\mid1)" /> menghasilkan dua jejari calon.
+
+<BlockMath math="\begin{aligned}
+y_M=r,\qquad \frac{4x_M-3y_M}{\sqrt{4^2+(-3)^2}}=\frac{4x_M-3r}{5}=r\ \Longrightarrow\ x_M=2r\\
+(2r-7)^2+(r-1)^2=r^2\ \Longleftrightarrow\ 4r^2-30r+50=0\ \Longleftrightarrow\ (2r-5)(r-5)=0
+\end{aligned}" />
+
+Dua bulatan menepati kedua-dua laluan dan titik <InlineMath math="P" />: <InlineMath math="r_1=2.5\text{ m}" /> berpusat di <InlineMath math="M_1(5\mid2.5)" /> dan <InlineMath math="r_2=5\text{ m}" /> berpusat di <InlineMath math="M_2(10\mid5)" />.
+
+# Menyemak seluruh bulatan terhadap terusan
+
+**Di sinilah perangkapnya: menyemak pusat sahaja tidak mencukupi**. Bagi <InlineMath math="M_2(10\mid5)" /> memang benar <InlineMath math="3\cdot10+4\cdot5=50<65" /> jadi pusatnya di sebelah selamat, namun jaraknya ke terusan hanya <InlineMath math="3\text{ m}" />, lebih kecil daripada <InlineMath math="r_2=5\text{ m}" />, bermakna bulatan besar memotong terusan.
+
+<BlockMath math="\begin{aligned}
+M_2(10\mid5):\quad d(M_2,K)=\frac{65-(3\cdot10+4\cdot5)}{5}=\frac{15}{5}=3<5=r_2\\
+M_1(5\mid2.5):\quad d(M_1,K)=\frac{65-(3\cdot5+4\cdot2.5)}{5}=\frac{40}{5}=8>2.5=r_1\\
+d_{\min}=8-2.5=5.5\text{ m}
+\end{aligned}" />
+
+<MathVisual
+  title={<>Kedua-dua bulatan calon dan terusan</>}
+  description={<>Kedua-dua bulatan menyentuh laluan <InlineMath math="y=0" /> dan <InlineMath math="4x-3y=0" /> serta melalui <InlineMath math="P(7\mid1)" />. Walaupun <InlineMath math="M_2(10\mid5)" /> masih di sebelah selamat, bulatan besar memotong terusan maka hanya bulatan kecil yang tinggal dengan jarak <InlineMath math="5.5\text{ m}" />.</>}
+  footer={<>Hanya bulatan kecil kekal selamat daripada terusan, dengan ruang <InlineMath math="5.5\text{ m}" /> ke tebing.</>}
+  labels={{
+    canal: <>terusan</>,
+    bad: <>memotong terusan</>,
+    p: <><InlineMath math="P(7\mid1)" /></>,
+    m1: <><InlineMath math="M_1" /></>,
+    gap: <><InlineMath math="5.5\text{ m}" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -2, max: 24 },
+      y: { min: -2, max: 18 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "road1", kind: "ray", appearance: "reference", from: { x: 0, y: 0 }, through: { x: 20, y: 0 } },
+      { id: "road2", kind: "ray", appearance: "reference", from: { x: 0, y: 0 }, through: { x: 12, y: 16 } },
+      { id: "canal", kind: "line", appearance: "primary", through: [{ x: 5, y: 12.5 }, { x: 17, y: 3.5 }] },
+      { id: "c2", kind: "circle", appearance: "warning", center: { x: 10, y: 5 }, radius: 5 },
+      { id: "c1", kind: "circle", appearance: "answer", center: { x: 5, y: 2.5 }, radius: 2.5 },
+      { id: "gap", kind: "segment", appearance: "answer", from: { x: 6.5, y: 4.5 }, to: { x: 9.8, y: 8.9 } },
+      { id: "p", kind: "point", appearance: "highlight", at: { x: 7, y: 1 } },
+      { id: "m1", kind: "point", appearance: "answer", at: { x: 5, y: 2.5 } },
+    ],
+    labels: [
+      { key: "canal", objectId: "canal", at: { x: 16, y: 4.25 }, placement: "above-right" },
+      { key: "bad", objectId: "c2", at: { x: 14, y: 8 }, placement: "above-right" },
+      { key: "p", objectId: "p", at: { x: 7, y: 1 }, placement: "below-right" },
+      { key: "m1", objectId: "m1", at: { x: 5, y: 2.5 }, placement: "left" },
+      { key: "gap", objectId: "gap", at: { x: 8.15, y: 6.7 }, placement: "left" },
+    ],
+  }}
+/>
+
+Hanya kolam kecil berpusat di <InlineMath math="M_1(5\mid2.5)" /> yang kekal sepenuhnya di sebelah selamat, dan menolak jejari <InlineMath math="2.5\text{ m}" /> daripada jarak pusat <InlineMath math="8\text{ m}" /> memberi jarak terpendek **<InlineMath math="5.5\text{ m}" />** (terlupa menolak jejari memberi perangkap <InlineMath math="8\text{ m}" />).

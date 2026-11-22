@@ -1,0 +1,61 @@
+# Den Mittelpunkt auf der Winkelhalbierenden ansetzen
+
+Schiebst du eine Münze in die Ecke zwischen zwei Linealen, hat ihr Mittelpunkt immer denselben Abstand zu beiden Kanten. **Weil das Becken <InlineMath math="y=0" /> von oben berührt, gilt <InlineMath math="M(x_M\mid r)" />, und im spitzen Bereich <InlineMath math="4x-3y>0" /> liefert der Abstand zu <InlineMath math="4x-3y=0" /> direkt <InlineMath math="x_M=2r" />**. Einsetzen von <InlineMath math="P(7\mid1)" /> ergibt zwei mögliche Radien.
+
+<BlockMath math="\begin{aligned}
+y_M=r,\qquad \frac{4x_M-3y_M}{\sqrt{4^2+(-3)^2}}=\frac{4x_M-3r}{5}=r\ \Longrightarrow\ x_M=2r\\
+(2r-7)^2+(r-1)^2=r^2\ \Longleftrightarrow\ 4r^2-30r+50=0\ \Longleftrightarrow\ (2r-5)(r-5)=0
+\end{aligned}" />
+
+Zwei Kreise passen zu beiden Wegen und zum Schacht: <InlineMath math="r_1=2{,}5\text{ m}" /> um <InlineMath math="M_1(5\mid2{,}5)" /> und <InlineMath math="r_2=5\text{ m}" /> um <InlineMath math="M_2(10\mid5)" />.
+
+# Den ganzen Kreis gegen den Kanal prüfen
+
+**Hier steckt die Falle: Nur den Mittelpunkt zu prüfen reicht nicht**. Für <InlineMath math="M_2(10\mid5)" /> gilt zwar <InlineMath math="3\cdot10+4\cdot5=50<65" />, der Mittelpunkt liegt also auf der erlaubten Seite, doch sein Abstand zum Kanal ist nur <InlineMath math="3\text{ m}" /> und damit kleiner als <InlineMath math="r_2=5\text{ m}" />, sodass der große Kreis den Kanal schneidet.
+
+<BlockMath math="\begin{aligned}
+M_2(10\mid5):\quad d(M_2,K)=\frac{65-(3\cdot10+4\cdot5)}{5}=\frac{15}{5}=3<5=r_2\\
+M_1(5\mid2{,}5):\quad d(M_1,K)=\frac{65-(3\cdot5+4\cdot2{,}5)}{5}=\frac{40}{5}=8>2{,}5=r_1\\
+d_{\min}=8-2{,}5=5{,}5\text{ m}
+\end{aligned}" />
+
+<MathVisual
+  title={<>Beide möglichen Kreise und der Kanal</>}
+  description={<>Beide Kreise berühren die Wege <InlineMath math="y=0" /> und <InlineMath math="4x-3y=0" /> und gehen durch <InlineMath math="P(7\mid1)" />. Obwohl <InlineMath math="M_2(10\mid5)" /> noch vor dem Kanal liegt, schneidet der große Kreis den Kanal, sodass nur der kleine Kreis mit <InlineMath math="5{,}5\text{ m}" /> Abstand bleibt.</>}
+  footer={<>Nur der kleine Kreis bleibt vor dem Kanal, mit <InlineMath math="5{,}5\text{ m}" /> Luft bis zum Ufer.</>}
+  labels={{
+    canal: <>Kanal</>,
+    bad: <>schneidet Kanal</>,
+    p: <><InlineMath math="P(7\mid1)" /></>,
+    m1: <><InlineMath math="M_1" /></>,
+    gap: <><InlineMath math="5{,}5\text{ m}" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -2, max: 24 },
+      y: { min: -2, max: 18 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "road1", kind: "ray", appearance: "reference", from: { x: 0, y: 0 }, through: { x: 20, y: 0 } },
+      { id: "road2", kind: "ray", appearance: "reference", from: { x: 0, y: 0 }, through: { x: 12, y: 16 } },
+      { id: "canal", kind: "line", appearance: "primary", through: [{ x: 5, y: 12.5 }, { x: 17, y: 3.5 }] },
+      { id: "c2", kind: "circle", appearance: "warning", center: { x: 10, y: 5 }, radius: 5 },
+      { id: "c1", kind: "circle", appearance: "answer", center: { x: 5, y: 2.5 }, radius: 2.5 },
+      { id: "gap", kind: "segment", appearance: "answer", from: { x: 6.5, y: 4.5 }, to: { x: 9.8, y: 8.9 } },
+      { id: "p", kind: "point", appearance: "highlight", at: { x: 7, y: 1 } },
+      { id: "m1", kind: "point", appearance: "answer", at: { x: 5, y: 2.5 } },
+    ],
+    labels: [
+      { key: "canal", objectId: "canal", at: { x: 16, y: 4.25 }, placement: "above-right" },
+      { key: "bad", objectId: "c2", at: { x: 14, y: 8 }, placement: "above-right" },
+      { key: "p", objectId: "p", at: { x: 7, y: 1 }, placement: "below-right" },
+      { key: "m1", objectId: "m1", at: { x: 5, y: 2.5 }, placement: "left" },
+      { key: "gap", objectId: "gap", at: { x: 8.15, y: 6.7 }, placement: "left" },
+    ],
+  }}
+/>
+
+Nur das kleine Becken um <InlineMath math="M_1(5\mid2{,}5)" /> bleibt vollständig auf der erlaubten Seite, und zieht man den Radius <InlineMath math="2{,}5\text{ m}" /> vom Mittelpunktsabstand <InlineMath math="8\text{ m}" /> ab, bleiben **<InlineMath math="5{,}5\text{ m}" />** (wer den Radius vergisst, tappt in die Falle <InlineMath math="8\text{ m}" />).

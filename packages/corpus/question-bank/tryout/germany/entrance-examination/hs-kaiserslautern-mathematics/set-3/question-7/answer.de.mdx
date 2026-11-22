@@ -1,0 +1,67 @@
+# Massen vor und nach dem Abwurf verfolgen
+
+Stell dir eine Wanderin vor, die vor dem letzten Anstieg eine schwere leere Flasche abstellt: Die zweite Stufe schleppt die leeren <InlineMath math="200\text{ kg}" /> der ersten Stufe nicht mehr mit. **Setze <InlineMath math="x=T_2" /> für den Treibstoff der zweiten Stufe, dann gilt <InlineMath math="T_1=600-x" />, und alle vier Massen hängen nur von <InlineMath math="x" /> ab**.
+
+<BlockMath math="\begin{aligned}
+m_{\text{Start},1}=50+50+200+600=900\text{ kg},\qquad m_{\text{Ende},1}=900-(600-x)=300+x\\
+m_{\text{Start},2}=100+x,\qquad m_{\text{Ende},2}=50+50=100\text{ kg}
+\end{aligned}" />
+
+# Die Logarithmen zu einer quadratischen Gleichung zusammenfassen
+
+**Teile beide Seiten durch <InlineMath math="2" /> und nutze <InlineMath math="2\ln A+\ln B=\ln(A^2 B)" />, damit alle Logarithmen auf einen Schlag verschwinden**.
+
+<BlockMath math="\begin{aligned}
+4\ln\!\left(\frac{900}{300+x}\right)+2\ln\!\left(\frac{100+x}{100}\right)=2\ln(10)\\
+\left(\frac{900}{300+x}\right)^2\cdot\frac{100+x}{100}=10\ \Longleftrightarrow\ 810\,(100+x)=(300+x)^2\\
+x^2-210x+9000=0\ \Longleftrightarrow\ (x-60)(x-150)=0
+\end{aligned}" />
+
+Zwei Aufteilungen treffen das Ziel exakt: <InlineMath math="x=60\text{ kg}" /> und <InlineMath math="x=150\text{ kg}" />. Wer den Faktor <InlineMath math="2" /> vor dem ersten Logarithmus nicht als Quadrat in das Argument zieht, verfehlt beide Lösungen.
+
+<MathVisual
+  title={<>Das kombinierte Massenverhältnis über dem Zweitstufen-Treibstoff</>}
+  description={<>Die Kurve zeigt den Wert <InlineMath math="K(x)=\tfrac{8100\,(100+x)}{(300+x)^2}" />, der beim Ziel <InlineMath math="10" /> liegen muss. Beide Schnittpunkte liegen bei <InlineMath math="x=60" /> und <InlineMath math="x=150" />, aber links der Linie <InlineMath math="x=100" /> schafft die zweite Stufe keine <InlineMath math="2\ln(2)" />.</>}
+  footer={<>Nur <InlineMath math="x=150\text{ kg}" /> liegt rechts der Grenze <InlineMath math="x=100" /> und lässt <InlineMath math="450\text{ kg}" /> für Stufe eins.</>}
+  labels={{
+    target: <>Zielwert <InlineMath math="10" /></>,
+    bad: <>zu klein <InlineMath math="x=60" /></>,
+    ok: <>gültig <InlineMath math="x=150" /></>,
+    cut: <><InlineMath math="x=100" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: 0, max: 240 },
+      y: { min: 6.5, max: 11.2 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "curve", kind: "function", appearance: "primary", formula: "8100*(100 + x)/(300 + x)^2", domain: { min: 10, max: 230 } },
+      { id: "target", kind: "segment", appearance: "reference", from: { x: 10, y: 10 }, to: { x: 230, y: 10 } },
+      { id: "cut", kind: "segment", appearance: "warning", from: { x: 100, y: 6.8 }, to: { x: 100, y: 10.8 } },
+      { id: "bad", kind: "point", appearance: "warning", at: { x: 60, y: 10 } },
+      { id: "ok", kind: "point", appearance: "answer", at: { x: 150, y: 10 } },
+    ],
+    labels: [
+      { key: "target", objectId: "target", at: { x: 210, y: 10 }, placement: "above" },
+      { key: "cut", objectId: "cut", at: { x: 100, y: 7.1 }, placement: "right" },
+      { key: "bad", objectId: "bad", at: { x: 60, y: 10 }, placement: "below-left" },
+      { key: "ok", objectId: "ok", at: { x: 150, y: 10 }, placement: "above-right" },
+    ],
+  }}
+/>
+
+Der Hochpunkt liegt genau bei <InlineMath math="x=100\text{ kg}" />, sodass die Ziellinie die Kurve links und rechts der Grenze jeweils einmal trifft.
+
+# Die Mindestbedingung der zweiten Stufe prüfen
+
+**Die zweite Stufe muss allein mindestens <InlineMath math="2\ln(2)\,\tfrac{\text{km}}{\text{s}}" /> liefern, womit <InlineMath math="x=60\text{ kg}" /> wegen <InlineMath math="\tfrac{160}{100}=1{,}6<2" /> ausscheidet**.
+
+<BlockMath math="\begin{aligned}
+2\ln\!\left(\frac{100+x}{100}\right)\ge2\ln(2)\ \Longleftrightarrow\ \frac{100+x}{100}\ge2\ \Longleftrightarrow\ x\ge100\\
+T_2=150\text{ kg}\ \Longrightarrow\ T_1=600-150=450\text{ kg}
+\end{aligned}" />
+
+Zur Probe: Mit <InlineMath math="T_1=450\text{ kg}" /> und <InlineMath math="T_2=150\text{ kg}" /> liefert Stufe eins das Verhältnis <InlineMath math="\tfrac{900}{450}=2" /> und Stufe zwei <InlineMath math="\tfrac{250}{100}=2{,}5" />, zusammen <InlineMath math="4\ln 2+2\ln 2{,}5=2\ln(4\cdot2{,}5)=2\ln 10" />. Mit <InlineMath math="x=60\text{ kg}" /> kämst du in die Falle <InlineMath math="540\text{ kg}" />. **Die erste Stufe erhält <InlineMath math="450\text{ kg}" /> Treibstoff**.

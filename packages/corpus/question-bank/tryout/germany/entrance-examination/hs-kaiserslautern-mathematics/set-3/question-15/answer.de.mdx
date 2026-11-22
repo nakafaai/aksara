@@ -1,0 +1,55 @@
+# Tagesertrag als symmetrische Parabelfläche
+
+Mit <InlineMath math="u=t-12" /> liegt die Parabel mittig um zwölf Uhr, und jede waagerecht abgeschnittene Kappe der halben Breite <InlineMath math="w" /> hat die Fläche <InlineMath math="\tfrac23\int_{-w}^{w}(w^2-u^2)\,\mathrm du=\tfrac89 w^3" />. **Über den ganzen Tag mit <InlineMath math="w=6" /> liefert die Anlage genau <InlineMath math="192\text{ kWh}" />**.
+
+<BlockMath math="\begin{aligned}
+u=t-12:\quad P=\tfrac23(36-u^2),\qquad E_{\text{Tag}}=\tfrac23\int_{-6}^{6}(36-u^2)\,\mathrm du=\tfrac89\cdot6^3=192\text{ kWh}
+\end{aligned}" />
+
+# Ladeleistungsdeckel und Speicherkapazität gemeinsam prüfen
+
+**Hier steckt die doppelte Falle: Über <InlineMath math="10{,}5\text{ kW}" /> fallen <InlineMath math="81\text{ kWh}" /> Überschuss an, also mehr als die <InlineMath math="60\text{ kWh}" /> Kapazität, weshalb ein schneller Blick annimmt, der Speicher werde voll und nur <InlineMath math="21\text{ kWh}" /> gingen verloren**. Tatsächlich begrenzt der Wechselrichter das Laden auf <InlineMath math="7{,}5\text{ kW}" /> und schneidet zwischen <InlineMath math="9" /> und <InlineMath math="15" /> Uhr alles oberhalb von <InlineMath math="10{,}5+7{,}5=18\text{ kW}" /> ins Netz ab.
+
+<BlockMath math="\begin{aligned}
+P>10{,}5\iff u^2<\tfrac{81}{4}\iff |u|<4{,}5:\quad E_{\text{Überschuss}}=\tfrac89\cdot(4{,}5)^3=81\text{ kWh}\\
+P>10{,}5+7{,}5=18\iff u^2<9\iff |u|<3:\quad E_{\text{abgeschnitten}}=\tfrac89\cdot3^3=24\text{ kWh}\\
+E_{\text{Speicher}}=81-24=57\text{ kWh}<60\text{ kWh}\ \Longrightarrow\ \frac{192-24}{192}=\frac{168}{192}=\frac78=87{,}5\,\%
+\end{aligned}" />
+
+<MathVisual
+  title={<>Leistungskurve, Hallenbedarf und Ladeleistungsdeckel</>}
+  description={<>Über <InlineMath math="10{,}5\text{ kW}" /> entstehen <InlineMath math="81\text{ kWh}" /> Überschuss, doch über <InlineMath math="18\text{ kW}" /> schneidet der Ladelimit-Deckel <InlineMath math="24\text{ kWh}" /> ins Netz ab. Dadurch landen nur <InlineMath math="57\text{ kWh}" /> im <InlineMath math="60\text{ kWh}" />-Speicher, sodass er nie voll wird.</>}
+  footer={<>Die Kappe über <InlineMath math="18\text{ kW}" /> kostet <InlineMath math="24\text{ kWh}" />, daher bleiben <InlineMath math="57\text{ kWh}" /> unter dem <InlineMath math="60\text{ kWh}" />-Limit.</>}
+  labels={{
+    power: <>Leistung</>,
+    demand: <>Bedarf <InlineMath math="10{,}5" /></>,
+    cap: <>Ladelimit <InlineMath math="18" /></>,
+    t9: <><InlineMath math="9" /></>,
+    t15: <><InlineMath math="15" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: 4.5, max: 19.5 },
+      y: { min: -1.5, max: 26.5 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "power", kind: "function", appearance: "primary", formula: "2*(x - 6)*(18 - x)/3", domain: { min: 6, max: 18 } },
+      { id: "demand", kind: "segment", appearance: "secondary", from: { x: 6, y: 10.5 }, to: { x: 18, y: 10.5 } },
+      { id: "cap", kind: "segment", appearance: "warning", from: { x: 6, y: 18 }, to: { x: 18, y: 18 } },
+      { id: "t9", kind: "point", appearance: "answer", at: { x: 9, y: 18 } },
+      { id: "t15", kind: "point", appearance: "answer", at: { x: 15, y: 18 } },
+    ],
+    labels: [
+      { key: "power", objectId: "power", at: { x: 7.1, y: 8 }, placement: "left" },
+      { key: "demand", objectId: "demand", at: { x: 17.6, y: 10.5 }, placement: "below" },
+      { key: "cap", objectId: "cap", at: { x: 17.6, y: 18 }, placement: "above" },
+      { key: "t9", objectId: "t9", at: { x: 9, y: 18 }, placement: "above-left" },
+      { key: "t15", objectId: "t15", at: { x: 15, y: 18 }, placement: "above-right" },
+    ],
+  }}
+/>
+
+Nach Abzug dieser <InlineMath math="24\text{ kWh}" /> Mittagskappe gelangen nur <InlineMath math="57\text{ kWh}" /> in den Speicher, sodass er die <InlineMath math="60\text{ kWh}" />-Grenze gar nicht erreicht. Genau <InlineMath math="168\text{ kWh}" /> bleiben in der Halle, also **<InlineMath math="87{,}5\,\%" />** der Solarenergie.

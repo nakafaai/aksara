@@ -1,0 +1,74 @@
+# Zuerst die gemeinsame Diagonale BD
+
+Zerlege das Viereck entlang von <InlineMath math="BD" /> in zwei Dreiecke, die sich diese Brücke teilen. **Im Dreieck <InlineMath math="ABD" /> kennst du zwei Seiten und den Kosinus des eingeschlossenen Winkels, also liefert der Kosinussatz sofort <InlineMath math="BD" />**. Das Minuszeichen im Kosinus macht aus dem Minus ein Plus.
+
+<BlockMath math="\begin{aligned}
+BD^2=30^2+14^2-2\cdot30\cdot14\cdot\left(-\tfrac35\right)=900+196+504=1600\ \Longrightarrow\ BD=40\text{ m}
+\end{aligned}" />
+
+# Zwei mögliche Lagen für C
+
+Wechsle jetzt ins Dreieck <InlineMath math="BCD" /> und setze <InlineMath math="x=CD" />. **Weil <InlineMath math="BC=30\text{ m}" /> kürzer als <InlineMath math="BD=40\text{ m}" /> ist, schneidet der Kreis mit Radius <InlineMath math="30\text{ m}" /> um <InlineMath math="B" /> den Strahl von <InlineMath math="D" /> zweimal und liefert zwei Kandidaten für <InlineMath math="CD" />**.
+
+<BlockMath math="\begin{aligned}
+30^2=40^2+x^2-2\cdot40\cdot x\cdot\tfrac45\ \Longleftrightarrow\ x^2-64x+700=0\\
+(x-14)(x-50)=0\ \Longrightarrow\ CD=14\text{ m}\quad\text{oder}\quad CD=50\text{ m}
+\end{aligned}" />
+
+Jetzt entscheidet die Bedingung <InlineMath math="\angle BCD<90^\circ" />. Für <InlineMath math="CD=14\text{ m}" /> gilt <InlineMath math="30^2+14^2=1096<1600=40^2" />, der Winkel bei <InlineMath math="C'" /> ist also stumpf und fällt weg. Für <InlineMath math="CD=50\text{ m}" /> gilt <InlineMath math="30^2+40^2=2500=50^2" /> (rechter Winkel bei <InlineMath math="B" />), also ist <InlineMath math="\angle BCD" /> spitz und **<InlineMath math="CD=50\text{ m}" /> bleibt übrig**.
+
+<MathVisual
+  title={<>Das Grundstück und der verworfene Punkt</>}
+  description={<>Auf dem Strahl von <InlineMath math="D" /> mit <InlineMath math="\cos(\angle BDC)=\tfrac45" /> haben sowohl <InlineMath math="C'" /> bei <InlineMath math="14\text{ m}" /> als auch <InlineMath math="C" /> bei <InlineMath math="50\text{ m}" /> den Abstand <InlineMath math="30\text{ m}" /> zu <InlineMath math="B" />. Nur bei <InlineMath math="C" /> ist der Winkel spitz, und die gesuchte Diagonale <InlineMath math="AC" /> misst <InlineMath math="48\text{ m}" />.</>}
+  footer={<>Die gestrichelte Option <InlineMath math="C'" /> macht den Winkel stumpf, erst <InlineMath math="C" /> liefert <InlineMath math="AC=48\text{ m}" />.</>}
+  labels={{
+    a: <><InlineMath math="A" /></>,
+    b: <><InlineMath math="B" /></>,
+    c: <><InlineMath math="C" /></>,
+    d: <><InlineMath math="D" /></>,
+    cp: <><InlineMath math="C'" /> (stumpf)</>,
+    ac: <><InlineMath math="48\text{ m}" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -6, max: 48 },
+      y: { min: -36, max: 16 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "quad", kind: "polygon", appearance: "secondary", vertices: [{ x: 11.2, y: 8.4 }, { x: 40, y: 0 }, { x: 40, y: -30 }, { x: 0, y: 0 }] },
+      { id: "bd", kind: "segment", appearance: "reference", from: { x: 0, y: 0 }, to: { x: 40, y: 0 } },
+      { id: "ac", kind: "segment", appearance: "answer", from: { x: 11.2, y: 8.4 }, to: { x: 40, y: -30 } },
+      { id: "bcp", kind: "segment", appearance: "construction", stroke: "dashed", from: { x: 40, y: 0 }, to: { x: 11.2, y: -8.4 } },
+      { id: "a", kind: "point", appearance: "highlight", at: { x: 11.2, y: 8.4 } },
+      { id: "b", kind: "point", appearance: "highlight", at: { x: 40, y: 0 } },
+      { id: "c", kind: "point", appearance: "answer", at: { x: 40, y: -30 } },
+      { id: "d", kind: "point", appearance: "highlight", at: { x: 0, y: 0 } },
+      { id: "cp", kind: "point", appearance: "warning", at: { x: 11.2, y: -8.4 } },
+    ],
+    labels: [
+      { key: "a", objectId: "a", at: { x: 11.2, y: 8.4 }, placement: "above" },
+      { key: "b", objectId: "b", at: { x: 40, y: 0 }, placement: "above-right" },
+      { key: "c", objectId: "c", at: { x: 40, y: -30 }, placement: "below-right" },
+      { key: "d", objectId: "d", at: { x: 0, y: 0 }, placement: "left" },
+      { key: "cp", objectId: "cp", at: { x: 11.2, y: -8.4 }, placement: "below-left" },
+      { key: "ac", objectId: "ac", at: { x: 25.6, y: -10.8 }, placement: "right" },
+    ],
+  }}
+/>
+
+Die Zeichnung zeigt beide Schnittpunkte auf dem Strahl von <InlineMath math="D" /> und macht sichtbar, warum nur der weiter entfernte Punkt einen spitzen Winkel bei <InlineMath math="C" /> lässt.
+
+# Beide Teilwinkel bei D zusammensetzen
+
+Da <InlineMath math="A" /> und <InlineMath math="C" /> auf verschiedenen Seiten von <InlineMath math="BD" /> liegen, gilt <InlineMath math="\angle ADC=\angle ADB+\angle BDC" />. **Bestimme <InlineMath math="\cos(\angle ADB)" /> im Dreieck <InlineMath math="ABD" />, setze das Additionstheorem ein und rechne <InlineMath math="AC" /> im Dreieck <InlineMath math="ADC" /> aus**.
+
+<BlockMath math="\begin{aligned}
+\cos(\angle ADB)=\frac{14^2+40^2-30^2}{2\cdot14\cdot40}=\frac{896}{1120}=\tfrac45,\qquad \sin(\angle ADB)=\tfrac35\\
+\cos(\angle ADC)=\cos(\angle ADB+\angle BDC)=\tfrac45\cdot\tfrac45-\tfrac35\cdot\tfrac35=\tfrac{7}{25}\\
+AC^2=14^2+50^2-2\cdot14\cdot50\cdot\tfrac{7}{25}=196+2500-392=2304\ \Longrightarrow\ AC=48\text{ m}
+\end{aligned}" />
+
+Die Diagonale <InlineMath math="AC" /> ist **<InlineMath math="48\text{ m}" />** lang. Wer die verworfene Ecke <InlineMath math="C'" /> mit <InlineMath math="CD=14\text{ m}" /> wählt, landet bei der Falle <InlineMath math="16{,}8\text{ m}" />.

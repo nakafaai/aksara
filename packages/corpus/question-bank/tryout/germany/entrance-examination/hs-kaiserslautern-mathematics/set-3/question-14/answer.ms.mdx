@@ -1,0 +1,66 @@
+# Mengira kedua-dua lengkung dan laju hadnya
+
+Di bawah kuasa hadnya, rotor lebih lebar menangkap angin berkadar dengan <InlineMath math="d^2" /> maka turbin B naik lebih curam sehingga penjananya yang lebih kecil tersekat. **Cari <InlineMath math="k_A=c d_A^2" /> daripada bacaan awal, darab dengan <InlineMath math="\left(\tfrac{40}{30}\right)^2=\tfrac{16}{9}" /> untuk <InlineMath math="k_B" />, lalu kira kedua-dua laju hadnya**.
+
+<BlockMath math="\begin{aligned}
+k_A=\frac{144}{4^3}=\frac94,\qquad \frac94 v_A^3=1152\ \Longrightarrow\ v_A^3=512\ \Longrightarrow\ v_A=8\,\tfrac{\text{m}}{\text{s}}\\
+k_B=\frac94\cdot\left(\frac{40}{30}\right)^2=4,\qquad 4v_B^3=500\ \Longrightarrow\ v_B^3=125\ \Longrightarrow\ v_B=5\,\tfrac{\text{m}}{\text{s}}
+\end{aligned}" />
+
+# Mencari dua laju angin dengan kelebihan kuasa yang sama
+
+**Tanpa mengesan had <InlineMath math="5\,\tfrac{\text{m}}{\text{s}}" />, beza <InlineMath math="\tfrac74 v^3" /> terus meningkat dan hanya melintasi <InlineMath math="14\text{ kW}" /> sekali**. Sebaik B mendatar pada <InlineMath math="500\text{ kW}" /> manakala A terus naik, jurangnya turun melintasi <InlineMath math="14\text{ kW}" /> buat kali kedua.
+
+<BlockMath math="\begin{aligned}
+v\le5:\quad \left(4-\tfrac94\right)v_1^3=\tfrac74 v_1^3=14\ \Longrightarrow\ v_1^3=8\ \Longrightarrow\ v_1=2\,\tfrac{\text{m}}{\text{s}}\\
+5\le v\le8:\quad 500-\tfrac94 v_2^3=14\ \Longrightarrow\ v_2^3=\frac{486\cdot4}{9}=216\ \Longrightarrow\ v_2=6\,\tfrac{\text{m}}{\text{s}}
+\end{aligned}" />
+
+<MathVisual
+  title={<>Lengkung kuasa dan kedua-dua jurang <InlineMath math="14\text{ kW}" /></>}
+  description={<>Sehingga <InlineMath math="5\,\tfrac{\text{m}}{\text{s}}" /> beza <InlineMath math="P_B-P_A" /> membesar, lalu B tersekat pada <InlineMath math="500\text{ kW}" /> manakala A mengejar. Sebab itu beza <InlineMath math="14\text{ kW}" /> muncul dua kali, pada <InlineMath math="v_1=2" /> dan <InlineMath math="v_2=6\,\tfrac{\text{m}}{\text{s}}" />.</>}
+  footer={<>Beza <InlineMath math="14\text{ kW}" /> berlaku sebelum B mendatar pada <InlineMath math="2" /> dan selepasnya pada <InlineMath math="6\,\tfrac{\text{m}}{\text{s}}" />.</>}
+  labels={{
+    a: <>turbin A</>,
+    b: <>turbin B</>,
+    v1: <><InlineMath math="v_1=2" /></>,
+    v2: <><InlineMath math="v_2=6" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: 0, max: 9.5 },
+      y: { min: -60, max: 1280 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "a-rise", kind: "function", appearance: "primary", formula: "2.25*x^3", domain: { min: 0, max: 8 } },
+      { id: "a-cap", kind: "segment", appearance: "primary", from: { x: 8, y: 1152 }, to: { x: 9.2, y: 1152 } },
+      { id: "b-rise", kind: "function", appearance: "secondary", formula: "4*x^3", domain: { min: 0, max: 5 } },
+      { id: "b-cap", kind: "segment", appearance: "secondary", from: { x: 5, y: 500 }, to: { x: 9.2, y: 500 } },
+      { id: "v1", kind: "point", appearance: "highlight", at: { x: 2, y: 32 } },
+      { id: "v2", kind: "point", appearance: "answer", at: { x: 6, y: 486 } },
+    ],
+    labels: [
+      { key: "a", objectId: "a-rise", at: { x: 7.5, y: 950 }, placement: "left" },
+      { key: "b", objectId: "b-cap", at: { x: 8.4, y: 500 }, placement: "below" },
+      { key: "v1", objectId: "v1", at: { x: 2, y: 32 }, placement: "above" },
+      { key: "v2", objectId: "v2", at: { x: 6, y: 486 }, placement: "below-right" },
+    ],
+  }}
+/>
+
+Kerana <InlineMath math="v_2=6<8" />, turbin A masih di bawah hadnya sendiri, dan bagi <InlineMath math="v\ge8" /> kuasa A sudah <InlineMath math="1152\text{ kW}>500\text{ kW}" />, mengesahkan cuma ada dua penyelesaian ini.
+
+# Menjumlahkan tenaga kedua-dua turbin dalam lapan jam
+
+**Tambah kuasa kedua-dua turbin pada <InlineMath math="v_1=2" /> dan <InlineMath math="v_2=6" /> lalu darab dengan <InlineMath math="3" /> dan <InlineMath math="5" /> jam**.
+
+<BlockMath math="\begin{aligned}
+v_1=2:\quad P_A=18\text{ kW},\ P_B=32\text{ kW}\ \Longrightarrow\ P_A+P_B=50\text{ kW}\\
+v_2=6:\quad P_A=486\text{ kW},\ P_B=500\text{ kW}\ \Longrightarrow\ P_A+P_B=986\text{ kW}\\
+E=3\cdot50+5\cdot986=150+4930=5080\text{ kWh}
+\end{aligned}" />
+
+**Kedua-dua turbin bersama-sama menjana tepat <InlineMath math="5080\text{ kWh}" />**.

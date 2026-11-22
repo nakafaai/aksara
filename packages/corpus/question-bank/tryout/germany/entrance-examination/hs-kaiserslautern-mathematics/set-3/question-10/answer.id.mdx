@@ -1,0 +1,67 @@
+# Garis yang menyinggung dua kali
+
+Letakkan penggaris di atas dua tonjolan selimut yang kusut, maka penggaris itu bertumpu di satu titik saja pada tiap tonjolan. **Garis <InlineMath math="y=mx+c" /> menyinggung parabola yang terbuka ke bawah jika keduanya tepat punya satu titik bersama, jadi persamaan kuadrat titik potongnya berdiskriminan nol**. Untuk bukit kedua pakai <InlineMath math="u=x-10" />.
+
+<BlockMath math="\begin{aligned}
+4-\tfrac14x^2=mx+c\ &\Longleftrightarrow\ \tfrac14x^2+mx+c-4=0,\qquad c=m^2+4\\
+9-\tfrac14u^2=mu+10m+c\ &\Longleftrightarrow\ \tfrac14u^2+mu+10m+c-9=0,\qquad c=m^2-10m+9
+\end{aligned}" />
+
+# Satu garis untuk kedua bukit
+
+**Kedua syarat itu menggambarkan tali yang sama, jadi kedua bentuk <InlineMath math="c" /> harus sama dan suku kuadratnya saling hilang**.
+
+<BlockMath math="\begin{aligned}
+m^2+4&=m^2-10m+9\\
+m&=0{,}5,\qquad c=4{,}25\\
+x_1&=-2m=-1,\qquad x_2=10-2m=9
+\end{aligned}" />
+
+Tali menyinggung di <InlineMath math="(-1\mid3{,}75)" /> dan <InlineMath math="(9\mid8{,}75)" />.
+
+# Celah terbesar ada di lembah
+
+Di antara titik singgung, jarak <InlineMath math="d(x)" /> adalah tali dikurangi <InlineMath math="f" /> sampai <InlineMath math="x=4" /> dan tali dikurangi <InlineMath math="g" /> sesudahnya. Setiap potongan adalah parabola yang terbuka ke atas, jadi pada bagiannya ia paling besar di ujung. **Ujung-ujungnya adalah titik singgung, tempat <InlineMath math="d=0" />, dan lembah di <InlineMath math="x=4" />, tempat kedua bukit turun sampai ke tanah**.
+
+<BlockMath math="\begin{aligned}
+f(4)&=g(4)=0\\
+d(4)&=0{,}5\cdot4+4{,}25-0=6{,}25
+\end{aligned}" />
+
+<MathVisual
+  title={<>Tali, bukit dan celah terbesar</>}
+  description={<>Tali <InlineMath math="y=0{,}5x+4{,}25" /> menyinggung bukit pertama di <InlineMath math="x=-1" /> dan bukit kedua di <InlineMath math="x=9" />. Tali paling jauh di atas tanah di lembah <InlineMath math="x=4" />, tempat kedua bukit menyentuh tanah.</>}
+  footer={<>Celah tegak terbesar <InlineMath math="6{,}25\text{ m}" /> muncul tepat di tekukan lembah <InlineMath math="x=4" />.</>}
+  labels={{
+    rope: <>tali</>,
+    gap: <><InlineMath math="6{,}25\text{ m}" /></>,
+    tf: <><InlineMath math="(-1\mid3{,}75)" /></>,
+    tg: <><InlineMath math="(9\mid8{,}75)" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -6, max: 18 },
+      y: { min: -1, max: 11 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "ground", kind: "segment", appearance: "reference", from: { x: -6, y: 0 }, to: { x: 18, y: 0 } },
+      { id: "hill-f", kind: "function", appearance: "primary", formula: "4 - x^2/4", domain: { min: -4, max: 4 } },
+      { id: "hill-g", kind: "function", appearance: "primary", formula: "9 - (x - 10)^2/4", domain: { min: 4, max: 16 } },
+      { id: "rope", kind: "function", appearance: "secondary", formula: "0.5*x + 4.25", domain: { min: -3, max: 12 } },
+      { id: "gap", kind: "segment", appearance: "answer", from: { x: 4, y: 0 }, to: { x: 4, y: 6.25 } },
+      { id: "touch-f", kind: "point", appearance: "highlight", at: { x: -1, y: 3.75 } },
+      { id: "touch-g", kind: "point", appearance: "highlight", at: { x: 9, y: 8.75 } },
+    ],
+    labels: [
+      { key: "rope", objectId: "rope", at: { x: 11, y: 9.75 }, placement: "above-left" },
+      { key: "gap", objectId: "gap", at: { x: 4, y: 3.1 }, placement: "right" },
+      { key: "tf", objectId: "touch-f", at: { x: -1, y: 3.75 }, placement: "above-left" },
+      { key: "tg", objectId: "touch-g", at: { x: 9, y: 8.75 }, placement: "above-left" },
+    ],
+  }}
+/>
+
+Tali menggantung paling tinggi **<InlineMath math="6{,}25\text{ m}" />** di atas tanah. Dengan <InlineMath math="d'(x)=0" /> kamu hanya menemukan titik singgung, tempat jaraknya paling kecil.

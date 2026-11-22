@@ -1,0 +1,67 @@
+# A line that touches twice
+
+Lay a ruler across two bumps of a crumpled blanket and it rests on each bump at a single point. **A line <InlineMath math="y=mx+c" /> touches a downward parabola when line and parabola share exactly one point, so the quadratic for their meeting points has discriminant zero**. For the second hill write <InlineMath math="u=x-10" />.
+
+<BlockMath math="\begin{aligned}
+4-\tfrac14x^2=mx+c\ &\Longleftrightarrow\ \tfrac14x^2+mx+c-4=0,\qquad c=m^2+4\\
+9-\tfrac14u^2=mu+10m+c\ &\Longleftrightarrow\ \tfrac14u^2+mu+10m+c-9=0,\qquad c=m^2-10m+9
+\end{aligned}" />
+
+# One line for both hills
+
+**Both conditions describe the same rope, so the two expressions for <InlineMath math="c" /> are equal and the squares cancel**.
+
+<BlockMath math="\begin{aligned}
+m^2+4&=m^2-10m+9\\
+m&=0.5,\qquad c=4.25\\
+x_1&=-2m=-1,\qquad x_2=10-2m=9
+\end{aligned}" />
+
+The rope touches at <InlineMath math="(-1\mid3.75)" /> and <InlineMath math="(9\mid8.75)" />.
+
+# The widest gap sits in the valley
+
+Between the contact points the gap <InlineMath math="d(x)" /> is rope minus <InlineMath math="f" /> up to <InlineMath math="x=4" /> and rope minus <InlineMath math="g" /> after it. Each piece is an upward parabola, so on its stretch it is largest at an end. **The ends are the contact points, where <InlineMath math="d=0" />, and the valley at <InlineMath math="x=4" />, where both hills meet the ground**.
+
+<BlockMath math="\begin{aligned}
+f(4)&=g(4)=0\\
+d(4)&=0.5\cdot4+4.25-0=6.25
+\end{aligned}" />
+
+<MathVisual
+  title={<>Rope, hills and the widest gap</>}
+  description={<>The rope <InlineMath math="y=0.5x+4.25" /> touches the first hill at <InlineMath math="x=-1" /> and the second at <InlineMath math="x=9" />. It is farthest above the ground in the valley at <InlineMath math="x=4" />, where both hills reach the ground.</>}
+  footer={<>The widest vertical gap of <InlineMath math="6.25\text{ m}" /> sits right at the valley kink <InlineMath math="x=4" />.</>}
+  labels={{
+    rope: <>rope</>,
+    gap: <><InlineMath math="6.25\text{ m}" /></>,
+    tf: <><InlineMath math="(-1\mid3.75)" /></>,
+    tg: <><InlineMath math="(9\mid8.75)" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -6, max: 18 },
+      y: { min: -1, max: 11 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "ground", kind: "segment", appearance: "reference", from: { x: -6, y: 0 }, to: { x: 18, y: 0 } },
+      { id: "hill-f", kind: "function", appearance: "primary", formula: "4 - x^2/4", domain: { min: -4, max: 4 } },
+      { id: "hill-g", kind: "function", appearance: "primary", formula: "9 - (x - 10)^2/4", domain: { min: 4, max: 16 } },
+      { id: "rope", kind: "function", appearance: "secondary", formula: "0.5*x + 4.25", domain: { min: -3, max: 12 } },
+      { id: "gap", kind: "segment", appearance: "answer", from: { x: 4, y: 0 }, to: { x: 4, y: 6.25 } },
+      { id: "touch-f", kind: "point", appearance: "highlight", at: { x: -1, y: 3.75 } },
+      { id: "touch-g", kind: "point", appearance: "highlight", at: { x: 9, y: 8.75 } },
+    ],
+    labels: [
+      { key: "rope", objectId: "rope", at: { x: 11, y: 9.75 }, placement: "above-left" },
+      { key: "gap", objectId: "gap", at: { x: 4, y: 3.1 }, placement: "right" },
+      { key: "tf", objectId: "touch-f", at: { x: -1, y: 3.75 }, placement: "above-left" },
+      { key: "tg", objectId: "touch-g", at: { x: 9, y: 8.75 }, placement: "above-left" },
+    ],
+  }}
+/>
+
+The rope hangs at most **<InlineMath math="6.25\text{ m}" />** above the ground. Setting <InlineMath math="d'(x)=0" /> only finds the contact points, where the gap is smallest.

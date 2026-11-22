@@ -1,0 +1,35 @@
+# Every overhaul costs a fee plus one month of revenue
+
+Waiting until maintenance eats up the monthly revenue sounds sensible, yet resetting early saves quadratically growing costs. **First sum the arithmetic maintenance series for a run of <InlineMath math="n" /> months, and remember that <InlineMath math="k" /> overhauls leave only <InlineMath math="17-k" /> operating months split across <InlineMath math="k+1" /> runs**.
+
+<BlockMath math="\begin{aligned}
+W(n)=\sum_{j=0}^{n-1}(200+100j)=\frac{n}{2}\bigl(400+100\,(n-1)\bigr)=150n+50n^2\\
+G=1500\,(17-k)-400k-\sum_{i=1}^{k+1}\bigl(150n_i+50n_i^2\bigr)=22\,950-1750k-50\sum_{i=1}^{k+1}n_i^2
+\end{aligned}" />
+
+Because <InlineMath math="\sum n_i=17-k" />, each overhaul removes <InlineMath math="1500-150=1350\text{ €}" /> of linear margin plus the <InlineMath math="400\text{ €}" /> fee, or <InlineMath math="1750\text{ €}" /> in total, while shrinking the quadratic term <InlineMath math="50\sum n_i^2" />.
+
+# Balancing the runs minimizes the squares
+
+**For any fixed <InlineMath math="k" />, the sum of squares <InlineMath math="\sum n_i^2" /> is smallest when the run lengths differ by at most <InlineMath math="1" />**. Whenever two runs satisfy <InlineMath math="a-b\ge2" />, moving one month from the longer run to the shorter lowers the sum because <InlineMath math="(a-1)^2+(b+1)^2=a^2+b^2-2(a-b-1)<a^2+b^2" />.
+
+<BlockMath math="\begin{aligned}
+k=0\ (17)&:\quad 22\,950-50\cdot289=8500\\
+k=1\ (8,8)&:\quad 22\,950-1750-50\cdot128=14\,800\\
+k=2\ (5,5,5)&:\quad 22\,950-3500-50\cdot75=15\,700\\
+k=3\ (4,4,3,3)&:\quad 22\,950-5250-50\cdot50=15\,200
+\end{aligned}" />
+
+<Chart
+  title={<>Best net profit by number of overhauls</>}
+  description={<>Each bar shows the highest possible net profit for <InlineMath math="k" /> overhauls with balanced operating runs. The peak of <InlineMath math="15\,700\text{ €}" /> sits at two overhauls with three five-month runs.</>}
+  footer={<>Two overhauls with runs of <InlineMath math="5" />, <InlineMath math="5" />, <InlineMath math="5" /> clearly beat one or three overhauls.</>}
+  bars="apart"
+  categories={["0", "1", "2", "3", "4"]}
+  series={[
+    { label: "Net profit", mark: "bar", values: [8500.0, 14800.0, 15700.0, 15200.0, 14200.0] },
+  ]}
+  valueLabel="Euro"
+/>
+
+From <InlineMath math="k=3" /> onward the quadratic saving drops below <InlineMath math="1750\text{ €}" /> per extra overhaul (at <InlineMath math="k=4" /> runs of <InlineMath math="3,3,3,2,2" /> give only <InlineMath math="14\,200\text{ €}" />), so no larger <InlineMath math="k" /> can beat <InlineMath math="k=2" />. Waiting until month <InlineMath math="14" /> when monthly maintenance reaches <InlineMath math="1500\text{ €}" /> gives only <InlineMath math="11\,200\text{ €}" />. **The maximum net profit is <InlineMath math="15\,700\text{ €}" />**.

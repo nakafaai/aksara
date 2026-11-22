@@ -1,0 +1,71 @@
+# A seesaw with a heavy plank
+
+On a seesaw a light child sitting far out can balance a heavy child sitting close in. **Here the planks weigh something too, and a uniform rod acts as if all its weight sat at its middle**. The lower rod's middle is <InlineMath math="15\text{ cm}" /> from its left end, so <InlineMath math="5\text{ cm}" /> right of its thread. The upper rod's middle is <InlineMath math="25\text{ cm}" /> from its left end, <InlineMath math="10\text{ cm}" /> right of its thread.
+
+# Three balances, three equations
+
+**Each rod gives one equation, turning effect on the left equal to turning effect on the right, and the total mass gives the third**. You may write masses in grams instead of weights, because the factor <InlineMath math="g" /> cancels on both sides.
+
+<BlockMath math="\begin{aligned}
+10\cdot A&=20\cdot B+5\cdot12\\
+15\cdot(A+B+12)&=35\cdot C+10\cdot10\\
+A+B+C+12+10&=200
+\end{aligned}" />
+
+# Solving from the top down
+
+Write <InlineMath math="s=A+B" />. **The upper rod and the total mass only contain <InlineMath math="s" /> and <InlineMath math="C" />, so solve those two first**.
+
+<BlockMath math="\begin{aligned}
+15s+180&=35C+100\\
+s+C&=178\\
+15s+80&=35\,(178-s)\\
+50s&=6150,\qquad s=123,\qquad C=55
+\end{aligned}" />
+
+The lower rod then splits <InlineMath math="s=123" />. Its equation says <InlineMath math="A=2B+6" />, so <InlineMath math="3B+6=123" />, <InlineMath math="B=39" /> and <InlineMath math="A=84" />.
+
+<MathVisual
+  title={<>Every weight on the mobile</>}
+  description={<>The figures with their masses and the rods with their weight at the middle of each rod. The lower rod's middle is <InlineMath math="5\text{ cm}" /> right of its thread, the upper rod's middle <InlineMath math="10\text{ cm}" /> right of its thread.</>}
+  footer={<>Both rod centres sit right of their threads, fixing the star <InlineMath math="A" /> at <InlineMath math="84\text{ g}" />.</>}
+  labels={{
+    a: <><InlineMath math="A=84\text{ g}" /></>,
+    b: <><InlineMath math="B=39\text{ g}" /></>,
+    c: <><InlineMath math="C=55\text{ g}" /></>,
+    lowmid: <><InlineMath math="12\text{ g}" /></>,
+    topmid: <><InlineMath math="10\text{ g}" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -16, max: 56 },
+      y: { min: 0, max: 16 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "top-thread", kind: "segment", appearance: "reference", from: { x: 15, y: 10 }, to: { x: 15, y: 14 } },
+      { id: "top-rod", kind: "segment", appearance: "primary", from: { x: 0, y: 10 }, to: { x: 50, y: 10 } },
+      { id: "c-thread", kind: "segment", appearance: "reference", from: { x: 50, y: 10 }, to: { x: 50, y: 6 } },
+      { id: "low-thread", kind: "segment", appearance: "reference", from: { x: 0, y: 10 }, to: { x: 0, y: 6 } },
+      { id: "low-rod", kind: "segment", appearance: "primary", from: { x: -10, y: 6 }, to: { x: 20, y: 6 } },
+      { id: "a-thread", kind: "segment", appearance: "reference", from: { x: -10, y: 6 }, to: { x: -10, y: 2 } },
+      { id: "b-thread", kind: "segment", appearance: "reference", from: { x: 20, y: 6 }, to: { x: 20, y: 2 } },
+      { id: "a", kind: "point", appearance: "answer", at: { x: -10, y: 2 } },
+      { id: "b", kind: "point", appearance: "highlight", at: { x: 20, y: 2 } },
+      { id: "c", kind: "point", appearance: "highlight", at: { x: 50, y: 6 } },
+      { id: "low-mid", kind: "point", appearance: "secondary", at: { x: 5, y: 6 } },
+      { id: "top-mid", kind: "point", appearance: "secondary", at: { x: 25, y: 10 } },
+    ],
+    labels: [
+      { key: "a", objectId: "a", at: { x: -10, y: 2 }, placement: "below" },
+      { key: "b", objectId: "b", at: { x: 20, y: 2 }, placement: "below" },
+      { key: "c", objectId: "c", at: { x: 50, y: 6 }, placement: "below" },
+      { key: "lowmid", objectId: "low-mid", at: { x: 5, y: 6 }, placement: "above" },
+      { key: "topmid", objectId: "top-mid", at: { x: 25, y: 10 }, placement: "above" },
+    ],
+  }}
+/>
+
+The star weighs **<InlineMath math="84\text{ g}" />**. Treating the rods as weightless gives <InlineMath math="A=\tfrac{280}{3}\approx93.3\text{ g}" />, a clear sign that something was left out.

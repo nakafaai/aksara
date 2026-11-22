@@ -1,0 +1,62 @@
+# Two jugs, one mixture
+
+Pour a jug of strong juice and a jug of weak juice into one bowl. How strong the bowl tastes depends on how much came from each jug. **An overall admission rate works the same way: it mixes the two subject rates, weighted by the number of applicants**. For the men there are <InlineMath math="240" /> admissions in A and <InlineMath math="20" /> in B.
+
+<BlockMath math="\begin{aligned}
+0.60\cdot400+0.20\cdot100&=240+20=260\\
+\frac{260}{500}&=0.52
+\end{aligned}" />
+
+Overall, <InlineMath math="52\,\%" /> of the men get a place.
+
+# The women's rate depends on x
+
+Call the number of women applying for B <InlineMath math="x" />. Then <InlineMath math="70" /> women are admitted in A and <InlineMath math="0.25x" /> in B, out of <InlineMath math="100+x" /> women. **Their overall rate drops below the men's <InlineMath math="52\,\%" /> once the harder subject B carries enough weight**.
+
+<BlockMath math="\begin{aligned}
+\frac{70+0.25x}{100+x}&<0.52\\
+70+0.25x&<52+0.52x\\
+18&<0.27x\\
+x&>\frac{200}{3}\approx66.67
+\end{aligned}" />
+
+<MathVisual
+  title={<>The women's overall rate</>}
+  description={<>The admission rate of all women in percent when <InlineMath math="x" /> women apply for subject B. At <InlineMath math="x=0" /> only subject A counts with <InlineMath math="70\,\%" />, and as <InlineMath math="x" /> grows subject B pulls the curve towards <InlineMath math="25\,\%" />. It crosses the men's <InlineMath math="52\,\%" /> at <InlineMath math="x\approx66.67" />.</>}
+  footer={<>Only from the marked dot <InlineMath math="x=68" /> onward is the curve below <InlineMath math="52\,\%" /> with <InlineMath math="x" /> divisible by <InlineMath math="4" />.</>}
+  labels={{
+    women: <>all women</>,
+    men: <>all men</>,
+    cross: <><InlineMath math="x\approx66.67" /></>,
+    answer: <><InlineMath math="x=68" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -10, max: 210 },
+      y: { min: 30, max: 75 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "men", kind: "segment", appearance: "reference", from: { x: 0, y: 52 }, to: { x: 200, y: 52 } },
+      { id: "women", kind: "function", appearance: "primary", formula: "(7000 + 25*x)/(100 + x)", domain: { min: 0, max: 200 } },
+      { id: "cross", kind: "point", appearance: "highlight", at: { x: 200 / 3, y: 52 } },
+      { id: "answer", kind: "point", appearance: "answer", at: { x: 68, y: 8700 / 168 } },
+    ],
+    labels: [
+      { key: "women", objectId: "women", at: { x: 20, y: 62.5 }, placement: "above-right" },
+      { key: "men", objectId: "men", at: { x: 160, y: 52 }, placement: "above" },
+      { key: "cross", objectId: "cross", at: { x: 200 / 3, y: 52 }, placement: "above-right" },
+      { key: "answer", objectId: "answer", at: { x: 68, y: 8700 / 168 }, placement: "below" },
+    ],
+  }}
+/>
+
+Inside each subject nothing changes. Only the weight of B grows, pulling the mixed curve below the men's horizontal line.
+
+# Admissions come in whole people
+
+Now the word exactly in the text decides the integer value. **Exactly <InlineMath math="25\,\%" /> of the women in B are admitted, and nobody is admitted in part, so <InlineMath math="x" /> must be a multiple of <InlineMath math="4" />**. That rules out <InlineMath math="67" />, and the next multiple of <InlineMath math="4" /> above <InlineMath math="66.67" /> is <InlineMath math="68" />.
+
+A quick check confirms it. With <InlineMath math="68" /> women in B, <InlineMath math="70+17=87" /> of <InlineMath math="168" /> women are admitted, while <InlineMath math="0.52\cdot168=87.36" />, so the women stay just below the men. With <InlineMath math="64" /> they would have <InlineMath math="86" /> of <InlineMath math="164" />, about <InlineMath math="52.4\,\%" />. **At least <InlineMath math="68" /> women applied for subject B**.

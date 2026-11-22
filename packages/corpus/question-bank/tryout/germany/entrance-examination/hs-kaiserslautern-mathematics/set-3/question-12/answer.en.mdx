@@ -1,0 +1,61 @@
+# Finding the wind speed from the test flight
+
+An east-west round trip feels the wind straight behind on the way out and straight against on the way back. **Combine both legs of the <InlineMath math="7\text{ km}" /> test flight to pull the unknown wind speed <InlineMath math="w" /> directly from the <InlineMath math="48" />-minute total**.
+
+<BlockMath math="\begin{aligned}
+\frac{7}{40+w}+\frac{7}{40-w}=\frac{48}{60}=\frac45\ \Longleftrightarrow\ \frac{560}{1600-w^2}=\frac45\\
+1600-w^2=700\ \Longrightarrow\ w^2=900\ \Longrightarrow\ w=30\,\tfrac{\text{km}}{\text{h}}
+\end{aligned}" />
+
+# Splitting the oblique wind along and across the corridor
+
+**Here hides the key trap: because the corridor runs along <InlineMath math="(3\mid4)" />, the east wind has both an along-track part and a crosswind part, and you must spend airspeed cancelling the crosswind first**. Along the unit vector <InlineMath math="(\tfrac35\mid\tfrac45)" /> the crosswind is <InlineMath math="24\,\tfrac{\text{km}}{\text{h}}" />, cutting the forward airspeed component from <InlineMath math="40" /> down to <InlineMath math="32\,\tfrac{\text{km}}{\text{h}}" />.
+
+<BlockMath math="\begin{aligned}
+w_\parallel=30\cdot\tfrac35=18\,\tfrac{\text{km}}{\text{h}},\qquad w_\perp=30\cdot\tfrac45=24\,\tfrac{\text{km}}{\text{h}}\\
+v_\parallel=\sqrt{40^2-24^2}=\sqrt{1024}=32\,\tfrac{\text{km}}{\text{h}}\\
+v_{\text{out}}=32+18=50\,\tfrac{\text{km}}{\text{h}},\qquad v_{\text{back}}=32-18=14\,\tfrac{\text{km}}{\text{h}}
+\end{aligned}" />
+
+<MathVisual
+  title={<>Oblique wind triangle along the flight corridor</>}
+  description={<>The <InlineMath math="30" /> east wind splits along the <InlineMath math="(3\mid4)" /> corridor into <InlineMath math="18" /> tailwind and <InlineMath math="24" /> crosswind. Cancelling the crosswind leaves <InlineMath math="32\,\tfrac{\text{km}}{\text{h}}" /> along the track, giving <InlineMath math="50" /> out and <InlineMath math="14" /> back.</>}
+  footer={<>Cancelling the <InlineMath math="24" /> crosswind leaves <InlineMath math="32" /> along track, so speeds are <InlineMath math="50" /> out and <InlineMath math="14" /> back.</>}
+  labels={{
+    air: <>airspeed <InlineMath math="40" /></>,
+    wind: <>wind <InlineMath math="30" /></>,
+    ground: <>track out <InlineMath math="50" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -8, max: 44 },
+      y: { min: -6, max: 46 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "air", kind: "vector", appearance: "primary", from: { x: 0, y: 0 }, to: { x: 0, y: 40 } },
+      { id: "wind", kind: "vector", appearance: "warning", from: { x: 0, y: 40 }, to: { x: 30, y: 40 } },
+      { id: "ground", kind: "vector", appearance: "answer", from: { x: 0, y: 0 }, to: { x: 30, y: 40 } },
+    ],
+    labels: [
+      { key: "air", objectId: "air", at: { x: 0, y: 20 }, placement: "left" },
+      { key: "wind", objectId: "wind", at: { x: 15, y: 40 }, placement: "above" },
+      { key: "ground", objectId: "ground", at: { x: 16, y: 19 }, placement: "below-right" },
+    ],
+  }}
+/>
+
+Forgetting the crosswind compensation and taking <InlineMath math="40\pm18" /> would grossly overestimate the range at <InlineMath math="25.52\text{ km}" /> instead of <InlineMath math="17.5\text{ km}" />.
+
+# Computing the maximum distance from usable flight time
+
+**Keep <InlineMath math="20\,\%" /> battery reserve and subtract the <InlineMath math="4" />-minute hover, leaving <InlineMath math="96" /> minutes (<InlineMath math="\tfrac85\text{ h}" />) of flying time**.
+
+<BlockMath math="\begin{aligned}
+t_{\text{fly}}=0.8\cdot125-4=96\text{ min}=\tfrac85\text{ h}\\
+\frac{d}{50}+\frac{d}{14}=\frac{32d}{350}=\frac{16d}{175}=\frac85\ \Longrightarrow\ d=17.5\text{ km}
+\end{aligned}" />
+
+Check both legs at <InlineMath math="17.5\text{ km}" />: <InlineMath math="21" /> minutes out plus <InlineMath math="75" /> minutes back equals <InlineMath math="96" /> minutes. **The customer may live at most <InlineMath math="17.5\text{ km}" /> away**.

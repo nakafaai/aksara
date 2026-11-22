@@ -1,0 +1,64 @@
+# Dua arah sekat dan dua wilayah panjang dinding
+
+Kalau kamu menyandarkan kandang ke dinding pendek, kamu tidak harus berhenti di ujung dinding jika memagari bagian yang menjorok justru memberi bentuk lebih luas. **Sebut sisi sepanjang garis dinding <InlineMath math="x" /> dan sisi tegak lurusnya <InlineMath math="y" />**. Kamu harus memeriksa kedua arah sekat dan kedua wilayah: di dalam dinding (<InlineMath math="x\le18" />) serta melewati dinding (<InlineMath math="x\ge18" />) dengan pagar belakang tambahan <InlineMath math="x-18" /> meter.
+
+# Sekat sejajar mentok di ujung dinding
+
+**Pasang dulu sekat sejajar dinding, sehingga ada dua ruas pagar sepanjang <InlineMath math="y" /> dan tiga ruas sepanjang <InlineMath math="x" /> dikurangi dinding yang terpakai**.
+
+<BlockMath math="\begin{aligned}
+x\le18&:\quad 2x+2y=72\ \Longrightarrow\ A_B(x)=x\,(36-x),\quad \max\text{ di }x=18:\ 324\\
+x\ge18&:\quad 3x-18+2y=72\ \Longrightarrow\ A_B(x)=x\,(45-1{,}5x),\quad A_B'(x)=45-3x<0\text{ untuk }x>18
+\end{aligned}" />
+
+Setelah <InlineMath math="x=18" /> parabolanya sudah menurun karena puncaknya ada di <InlineMath math="x=15" />, jadi sekat sejajar berhenti di <InlineMath math="324\text{ m}^2" />.
+
+# Sekat tegak lurus naik melewati ujung dinding
+
+Sekarang putar sekat menjadi tegak lurus dinding, sehingga ada tiga ruas sepanjang <InlineMath math="y" />. **Pada <InlineMath math="x\le18" /> luasnya juga berhenti di <InlineMath math="324\text{ m}^2" /> yang menjadi jebakan batas, tetapi melewati dinding membuka parabola baru dengan puncak jelas di atas <InlineMath math="18\text{ m}" />**.
+
+<BlockMath math="\begin{aligned}
+x\le18&:\quad x+3y=72\ \Longrightarrow\ A_A(x)=x\left(24-\tfrac13x\right),\quad A_A(18)=324\\
+x\ge18&:\quad (x-18)+x+3y=72\ \Longrightarrow\ y=30-\tfrac23x,\quad A_A(x)=x\left(30-\tfrac23x\right)\\
+A_A'(x)=30-\tfrac43x=0\ \Longrightarrow\ x=22{,}5,\quad y=15,\quad A_A(22{,}5)=337{,}5
+\end{aligned}" />
+
+<MathVisual
+  title={<>Luas kandang untuk kedua arah sekat</>}
+  description={<>Kedua kurva menekuk pada panjang dinding <InlineMath math="x=18\text{ m}" />. Dengan sekat sejajar puncaknya berhenti di <InlineMath math="324\text{ m}^2" />, sedangkan sekat tegak lurus masih naik sampai <InlineMath math="337{,}5\text{ m}^2" /> di <InlineMath math="x=22{,}5\text{ m}" />.</>}
+  footer={<>Lewat dinding <InlineMath math="18\text{ m}" />, hanya sekat tegak lurus yang naik menuju puncak <InlineMath math="337{,}5\text{ m}^2" />.</>}
+  labels={{
+    perp: <>sekat tegak lurus</>,
+    para: <>sekat sejajar</>,
+    wall: <>ujung dinding</>,
+    kink: <><InlineMath math="324" /></>,
+    best: <><InlineMath math="337{,}5" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: 4, max: 34 },
+      y: { min: 100, max: 380 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "perp1", kind: "function", appearance: "primary", formula: "x*(24 - x/3)", domain: { min: 6, max: 18 } },
+      { id: "perp2", kind: "function", appearance: "primary", formula: "x*(30 - 2*x/3)", domain: { min: 18, max: 32 } },
+      { id: "para1", kind: "function", appearance: "secondary", formula: "x*(36 - x)", domain: { min: 6, max: 18 } },
+      { id: "para2", kind: "function", appearance: "secondary", formula: "x*(45 - 1.5*x)", domain: { min: 18, max: 26 } },
+      { id: "wall", kind: "segment", appearance: "construction", from: { x: 18, y: 110 }, to: { x: 18, y: 365 } },
+      { id: "kink", kind: "point", appearance: "warning", at: { x: 18, y: 324 } },
+      { id: "best", kind: "point", appearance: "answer", at: { x: 22.5, y: 337.5 } },
+    ],
+    labels: [
+      { key: "perp", objectId: "perp2", at: { x: 29, y: 309 }, placement: "right" },
+      { key: "para", objectId: "para1", at: { x: 11, y: 275 }, placement: "above-left" },
+      { key: "wall", objectId: "wall", at: { x: 18, y: 125 }, placement: "right" },
+      { key: "kink", objectId: "kink", at: { x: 18, y: 324 }, placement: "above-left" },
+      { key: "best", objectId: "best", at: { x: 22.5, y: 337.5 }, placement: "above" },
+    ],
+  }}
+/>
+
+Cek panjang pagar pada <InlineMath math="x=22{,}5\text{ m}" /> dan <InlineMath math="y=15\text{ m}" />: lebihan <InlineMath math="4{,}5" />, depan <InlineMath math="22{,}5" />, dan tiga sisi <InlineMath math="3\cdot15=45" /> berjumlah tepat <InlineMath math="72\text{ m}" />. Berhenti di ujung dinding memberi jebakan <InlineMath math="324\text{ m}^2" />, dan menganggap dinding tak terbatas memberi <InlineMath math="432\text{ m}^2" />. **Luas terbesar yang mungkin adalah <InlineMath math="337{,}5\text{ m}^2" />**.

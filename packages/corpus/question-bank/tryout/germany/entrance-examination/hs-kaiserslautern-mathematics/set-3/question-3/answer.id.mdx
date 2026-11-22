@@ -1,0 +1,35 @@
+# Petunjuk dari kotak B tentang resistor yang dipindah
+
+Kalau kamu memindahkan satu koin tanpa melihat dari saku kiri ke saku kanan lalu mengambil dua koin emas dari saku kanan, jauh lebih besar kemungkinannya koin yang pindah tadi adalah emas. **Tulis <InlineMath math="H_{100}" /> dan <InlineMath math="H_{200}" /> untuk dua jenis pemindahan dan <InlineMath math="E" /> untuk kejadian kedua resistor dari B bernilai <InlineMath math="200\,\Omega" />**. Sebelum melihat B, <InlineMath math="P(H_{100})=\tfrac13" /> dan <InlineMath math="P(H_{200})=\tfrac23" />.
+
+Sesudah pemindahan, kotak B berisi lima resistor: dua <InlineMath math="100\,\Omega" /> dan tiga <InlineMath math="200\,\Omega" /> pada <InlineMath math="H_{100}" />, atau satu <InlineMath math="100\,\Omega" /> dan empat <InlineMath math="200\,\Omega" /> pada <InlineMath math="H_{200}" />. **Mengambil dua <InlineMath math="200\,\Omega" /> tanpa pengembalian dua kali lebih mungkin pada <InlineMath math="H_{200}" />, jadi aturan Bayes menggeser bobotnya menjadi <InlineMath math="20\,\%" /> dan <InlineMath math="80\,\%" />**.
+
+<BlockMath math="\begin{aligned}
+P(H_{100}\cap E)=\tfrac26\cdot\tfrac35\cdot\tfrac24=\tfrac1{10},\qquad P(H_{200}\cap E)=\tfrac46\cdot\tfrac45\cdot\tfrac34=\tfrac4{10}\\
+P(E)=\tfrac1{10}+\tfrac4{10}=\tfrac12,\qquad P(H_{100}\mid E)=\tfrac15=20\,\%,\qquad P(H_{200}\mid E)=\tfrac45=80\,\%
+\end{aligned}" />
+
+# Isi kotak A yang tersisa pada tiap kasus
+
+Sekarang kembali ke kotak A yang masih berisi lima resistor, dan sebut <InlineMath math="G" /> sebagai kejadian terambil dua resistor bernilai sama. **Di sini letak jebakannya: pada <InlineMath math="H_{100}" /> hanya tersisa satu resistor <InlineMath math="100\,\Omega" /> di A sehingga pasangan <InlineMath math="100\,\Omega" /> mustahil, sedangkan pada <InlineMath math="H_{200}" /> pasangan <InlineMath math="200\,\Omega" /> dan pasangan <InlineMath math="100\,\Omega" /> sama-sama dihitung**.
+
+<BlockMath math="\begin{aligned}
+P(G\mid H_{100})=\tfrac45\cdot\tfrac34+0=\tfrac35=60\,\%\\
+P(G\mid H_{200})=\tfrac35\cdot\tfrac24+\tfrac25\cdot\tfrac14=\tfrac3{10}+\tfrac1{10}=\tfrac25=40\,\%\\
+P(G\mid E)=0{,}20\cdot0{,}60+0{,}80\cdot0{,}40=0{,}12+0{,}32=0{,}44=44\,\%
+\end{aligned}" />
+
+<Chart
+  title={<>Pengaruh pengambilan dari kotak B pada bobot kasus</>}
+  description={<>Untuk tiap kemungkinan pemindahan, batang pertama menunjukkan peluang terbaru sesudah hasil kotak B, batang kedua menunjukkan peluang pasangan sama dari kotak A.</>}
+  footer={<>Kasus pemindahan <InlineMath math="200\,\Omega" /> naik ke bobot <InlineMath math="80\,\%" />, dengan <InlineMath math="40\,\%" /> pasangan cocok.</>}
+  bars="apart"
+  categories={["100 Ω dipindah", "200 Ω dipindah"]}
+  series={[
+    { label: "Bobot sesudah kotak B", mark: "bar", values: [20.0, 80.0] },
+    { label: "Pasangan sama dari A", mark: "bar", values: [60.0, 40.0] },
+  ]}
+  valueLabel="Persen"
+/>
+
+Menggabungkan <InlineMath math="60\,\%" /> dan <InlineMath math="40\,\%" /> dengan bobot baru <InlineMath math="20\,\%" /> dan <InlineMath math="80\,\%" /> menghasilkan **<InlineMath math="44\,\%" />**. Kalau pasangan <InlineMath math="100\,\Omega" /> pada <InlineMath math="H_{200}" /> terlewat, hasilnya turun menjadi <InlineMath math="36\,\%" />, dan kalau kotak B diabaikan, pecahannya tetap <InlineMath math="\tfrac{7}{15}" />.

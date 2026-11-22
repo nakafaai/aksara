@@ -1,0 +1,61 @@
+# Kedua-dua jarak saling bertukar
+
+Jika kamu memegang kanta pembesar di antara lampu dan dinding, satu kedudukan tajam dekat lampu sentiasa ada pasangan yang sama dekat dengan dinding. **Oleh sebab persamaan kanta simetri dalam <InlineMath math="g" /> dan <InlineMath math="b" />, kedudukan tajam kedua hanya menukar keduanya, jadi <InlineMath math="g_2=b_1" /> dan <InlineMath math="b_2=g_1" />**. Menggerakkan kanta ke arah skrin menjadikan <InlineMath math="g_2>g_1" />, maka <InlineMath math="b_1>g_1" />.
+
+<BlockMath math="\begin{aligned}
+\frac1g+\frac1{L_1-g}=\frac1f\ &\Longleftrightarrow\ g\,(L_1-g)=f\,L_1\\
+g_2=b_1,\qquad b_2=g_1,\qquad \left(\frac{a_2'}{a_1'}\right)^2=\left(\frac{g_1/b_1}{b_1/g_1}\right)^2=\left(\frac{g_1}{b_1}\right)^4=\frac1{16}
+\end{aligned}" />
+
+Perhatikan kuasa empatnya. Imej pertama dibesarkan sebanyak <InlineMath math="\tfrac{b_1}{g_1}" /> manakala imej kedua dikecilkan sebanyak <InlineMath math="\tfrac{g_1}{b_1}" />, jadi nisbah sisinya sahaja sudah <InlineMath math="\left(\tfrac{g_1}{b_1}\right)^2" />, kemudian dikuasa duakan lagi untuk luas.
+
+# Menentukan jarak fokus
+
+**Mengambil punca kuasa empat memberi <InlineMath math="\tfrac{b_1}{g_1}=2" />, dan anjakan <InlineMath math="36\text{ cm}" /> terus menetapkan kedua-dua jarak serta jarak fokusnya**. Jika nisbah luas dianggap nisbah sisi, jawapannya tersasar kepada <InlineMath math="\tfrac{b_1}{g_1}=4" /> dan jarak fokus salah <InlineMath math="9.6\text{ cm}" />.
+
+<BlockMath math="\begin{aligned}
+\frac{b_1}{g_1}=2,\qquad b_1-g_1=36\ &\Longrightarrow\ g_1=36\text{ cm},\quad b_1=72\text{ cm}\\
+\frac1f=\frac1{36}+\frac1{72}=\frac{3}{72}\ &\Longrightarrow\ f=24\text{ cm}
+\end{aligned}" />
+
+# Menguji kedua-dua kedudukan tajam pada bangku baharu
+
+Kini <InlineMath math="L_2=100\text{ cm}" /> dengan kanta yang sama <InlineMath math="f=24\text{ cm}" />. **Menyelesaikan persamaan pecahan sekali lagi memberi dua kedudukan tajam**.
+
+<BlockMath math="\begin{aligned}
+\frac1g+\frac1{100-g}=\frac1{24}\ &\Longleftrightarrow\ g^2-100g+2400=0\\
+(g-40)(g-60)=0\ &\Longrightarrow\ g=40\text{ cm}\quad\text{atau}\quad g=60\text{ cm}
+\end{aligned}" />
+
+<MathVisual
+  title={<>Saiz imej pada bangku baharu</>}
+  description={<>Panjang sisi imej <InlineMath math="a'(g)=12\cdot\tfrac{100-g}{g}" /> bagi <InlineMath math="L_2=100\text{ cm}" /> dan had skrin pada <InlineMath math="15\text{ cm}" />. Kedua-dua kedudukan kanta tajam ditandakan, tetapi pada <InlineMath math="g=40\text{ cm}" /> imej <InlineMath math="18\text{ cm}" /> melebihi skrin.</>}
+  footer={<>Hanya <InlineMath math="g=60\text{ cm}" /> berada di bawah garis <InlineMath math="15\text{ cm}" />, dengan sisi <InlineMath math="8\text{ cm}" /> dan luas <InlineMath math="64\text{ cm}^2" />.</>}
+  labels={{
+    cap: <>had skrin</>,
+    bad: <>terlalu besar <InlineMath math="(40\mid18)" /></>,
+    ok: <>muat <InlineMath math="(60\mid8)" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: 25, max: 82 },
+      y: { min: 0, max: 32 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "size", kind: "function", appearance: "primary", formula: "12*(100 - x)/x", domain: { min: 30, max: 80 } },
+      { id: "cap", kind: "segment", appearance: "warning", from: { x: 28, y: 15 }, to: { x: 80, y: 15 } },
+      { id: "bad", kind: "point", appearance: "warning", at: { x: 40, y: 18 } },
+      { id: "ok", kind: "point", appearance: "answer", at: { x: 60, y: 8 } },
+    ],
+    labels: [
+      { key: "cap", objectId: "cap", at: { x: 74, y: 15 }, placement: "above" },
+      { key: "bad", objectId: "bad", at: { x: 40, y: 18 }, placement: "above-right" },
+      { key: "ok", objectId: "ok", at: { x: 60, y: 8 }, placement: "above-right" },
+    ],
+  }}
+/>
+
+Sekarang uji kedua-dua kedudukan terhadap skrin bersisi <InlineMath math="15\text{ cm}" />. Pada <InlineMath math="g=40\text{ cm}" /> dan <InlineMath math="b=60\text{ cm}" />, sisi imej ialah <InlineMath math="12\cdot\tfrac{60}{40}=18\text{ cm}" />, melebihi skrin lalu tersingkir (perangkap luas <InlineMath math="324\text{ cm}^2" />). Pada <InlineMath math="g=60\text{ cm}" /> dan <InlineMath math="b=40\text{ cm}" />, sisinya <InlineMath math="12\cdot\tfrac{40}{60}=8\text{ cm}" /> dan muat sepenuhnya. **Luas imej tajam ialah <InlineMath math="8^2=64\text{ cm}^2" />**.

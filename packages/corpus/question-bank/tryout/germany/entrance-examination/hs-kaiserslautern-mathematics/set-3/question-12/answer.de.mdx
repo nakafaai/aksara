@@ -1,0 +1,61 @@
+# Die Windgeschwindigkeit aus dem Testflug bestimmen
+
+Auf dem Ost-West-Testflug wirkt der Wind hin genau als Rückenwind und zurück genau als Gegenwind. **Fasse beide Strecken der <InlineMath math="7\text{ km}" />-Runde zusammen, um die Windgeschwindigkeit <InlineMath math="w" /> aus den <InlineMath math="48" /> Minuten zu berechnen**.
+
+<BlockMath math="\begin{aligned}
+\frac{7}{40+w}+\frac{7}{40-w}=\frac{48}{60}=\frac45\ \Longleftrightarrow\ \frac{560}{1600-w^2}=\frac45\\
+1600-w^2=700\ \Longrightarrow\ w^2=900\ \Longrightarrow\ w=30\,\tfrac{\text{km}}{\text{h}}
+\end{aligned}" />
+
+# Den schrägen Wind längs und quer zur Fluglinie zerlegen
+
+**Hier steckt die entscheidende Falle: Auf der <InlineMath math="(3\mid4)" />-Linie hat der Ostwind sowohl einen Bahn- als auch einen Queranteil, und die Drohne muss zuerst den Querwind ausgleichen**. Mit dem Einheitsvektor <InlineMath math="(\tfrac35\mid\tfrac45)" /> schrumpft die Eigenflugkomponente längs der Bahn durch den Querwind <InlineMath math="24\,\tfrac{\text{km}}{\text{h}}" /> von <InlineMath math="40" /> auf <InlineMath math="32\,\tfrac{\text{km}}{\text{h}}" />.
+
+<BlockMath math="\begin{aligned}
+w_\parallel=30\cdot\tfrac35=18\,\tfrac{\text{km}}{\text{h}},\qquad w_\perp=30\cdot\tfrac45=24\,\tfrac{\text{km}}{\text{h}}\\
+v_\parallel=\sqrt{40^2-24^2}=\sqrt{1024}=32\,\tfrac{\text{km}}{\text{h}}\\
+v_{\text{hin}}=32+18=50\,\tfrac{\text{km}}{\text{h}},\qquad v_{\text{rück}}=32-18=14\,\tfrac{\text{km}}{\text{h}}
+\end{aligned}" />
+
+<MathVisual
+  title={<>Schräges Winddreieck auf der Fluglinie</>}
+  description={<>Der Ostwind <InlineMath math="30" /> zerlegt sich entlang der <InlineMath math="(3\mid4)" />-Linie in <InlineMath math="18" /> Rückenwind und <InlineMath math="24" /> Querwind. Zum Ausgleich des Querwinds bleiben <InlineMath math="32\,\tfrac{\text{km}}{\text{h}}" /> entlang der Bahn, also <InlineMath math="50" /> hin und <InlineMath math="14" /> zurück.</>}
+  footer={<>Querwind <InlineMath math="24" /> frisst Flugkraft auf <InlineMath math="32" />, damit fliegst du <InlineMath math="50" /> hin und <InlineMath math="14" /> zurück.</>}
+  labels={{
+    air: <>Eigenflug <InlineMath math="40" /></>,
+    wind: <>Wind <InlineMath math="30" /></>,
+    ground: <>Bahn hin <InlineMath math="50" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -8, max: 44 },
+      y: { min: -6, max: 46 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "air", kind: "vector", appearance: "primary", from: { x: 0, y: 0 }, to: { x: 0, y: 40 } },
+      { id: "wind", kind: "vector", appearance: "warning", from: { x: 0, y: 40 }, to: { x: 30, y: 40 } },
+      { id: "ground", kind: "vector", appearance: "answer", from: { x: 0, y: 0 }, to: { x: 30, y: 40 } },
+    ],
+    labels: [
+      { key: "air", objectId: "air", at: { x: 0, y: 20 }, placement: "left" },
+      { key: "wind", objectId: "wind", at: { x: 15, y: 40 }, placement: "above" },
+      { key: "ground", objectId: "ground", at: { x: 16, y: 19 }, placement: "below-right" },
+    ],
+  }}
+/>
+
+Wer den Querwind vergisst und mit <InlineMath math="40\pm18" /> rechnet, landet weit daneben bei <InlineMath math="25{,}52\text{ km}" /> statt bei <InlineMath math="17{,}5\text{ km}" />.
+
+# Maximale Entfernung aus der reinen Flugzeit berechnen
+
+**Nach Abzug der <InlineMath math="20\,\%" /> Reserve und der <InlineMath math="4" /> Minuten Schweben bleiben genau <InlineMath math="96" /> Minuten (<InlineMath math="\tfrac85\text{ h}" />) reine Flugzeit**.
+
+<BlockMath math="\begin{aligned}
+t_{\text{Flug}}=0{,}8\cdot125-4=96\text{ min}=\tfrac85\text{ h}\\
+\frac{d}{50}+\frac{d}{14}=\frac{32d}{350}=\frac{16d}{175}=\frac85\ \Longrightarrow\ d=17{,}5\text{ km}
+\end{aligned}" />
+
+Probe bei <InlineMath math="17{,}5\text{ km}" />: <InlineMath math="21" /> Minuten hin plus <InlineMath math="75" /> Minuten zurück ergeben genau <InlineMath math="96" /> Minuten. **Der Kunde darf höchstens <InlineMath math="17{,}5\text{ km}" /> entfernt wohnen**.

@@ -1,0 +1,61 @@
+# Swapping the two distances
+
+Hold a magnifying glass between a lamp and a wall: once you find a sharp spot close to the lamp, there is a twin spot equally close to the wall. **Because the lens equation is symmetric in <InlineMath math="g" /> and <InlineMath math="b" />, the second sharp position simply swaps them, so <InlineMath math="g_2=b_1" /> and <InlineMath math="b_2=g_1" />**. Moving the lens towards the screen makes <InlineMath math="g_2>g_1" />, so <InlineMath math="b_1>g_1" />.
+
+<BlockMath math="\begin{aligned}
+\frac1g+\frac1{L_1-g}=\frac1f\ &\Longleftrightarrow\ g\,(L_1-g)=f\,L_1\\
+g_2=b_1,\qquad b_2=g_1,\qquad \left(\frac{a_2'}{a_1'}\right)^2=\left(\frac{g_1/b_1}{b_1/g_1}\right)^2=\left(\frac{g_1}{b_1}\right)^4=\frac1{16}
+\end{aligned}" />
+
+Look closely at that fourth power. The first image is enlarged by <InlineMath math="\tfrac{b_1}{g_1}" /> while the second is shrunk by <InlineMath math="\tfrac{g_1}{b_1}" />, so the ratio of their sides is already <InlineMath math="\left(\tfrac{g_1}{b_1}\right)^2" />, and squaring for the area brings it to the fourth power.
+
+# Finding the focal length
+
+**Taking the fourth root gives <InlineMath math="\tfrac{b_1}{g_1}=2" />, and the shift of <InlineMath math="36\text{ cm}" /> fixes both distances and the focal length**. Treating the area ratio as a plain side ratio would give <InlineMath math="\tfrac{b_1}{g_1}=4" /> and a wrong focal length of <InlineMath math="9.6\text{ cm}" />.
+
+<BlockMath math="\begin{aligned}
+\frac{b_1}{g_1}=2,\qquad b_1-g_1=36\ &\Longrightarrow\ g_1=36\text{ cm},\quad b_1=72\text{ cm}\\
+\frac1f=\frac1{36}+\frac1{72}=\frac{3}{72}\ &\Longrightarrow\ f=24\text{ cm}
+\end{aligned}" />
+
+# Checking both sharp positions on the new bench
+
+Now <InlineMath math="L_2=100\text{ cm}" /> with the same lens <InlineMath math="f=24\text{ cm}" />. **Solving the rational equation again produces two sharp positions**.
+
+<BlockMath math="\begin{aligned}
+\frac1g+\frac1{100-g}=\frac1{24}\ &\Longleftrightarrow\ g^2-100g+2400=0\\
+(g-40)(g-60)=0\ &\Longrightarrow\ g=40\text{ cm}\quad\text{or}\quad g=60\text{ cm}
+\end{aligned}" />
+
+<MathVisual
+  title={<>Image size on the new bench</>}
+  description={<>The image side <InlineMath math="a'(g)=12\cdot\tfrac{100-g}{g}" /> for <InlineMath math="L_2=100\text{ cm}" /> and the screen limit at <InlineMath math="15\text{ cm}" />. Both sharp lens positions are marked, yet at <InlineMath math="g=40\text{ cm}" /> the <InlineMath math="18\text{ cm}" /> image spills past the screen.</>}
+  footer={<>Only <InlineMath math="g=60\text{ cm}" /> stays under the <InlineMath math="15\text{ cm}" /> line, giving side <InlineMath math="8\text{ cm}" /> and area <InlineMath math="64\text{ cm}^2" />.</>}
+  labels={{
+    cap: <>screen limit</>,
+    bad: <>too large <InlineMath math="(40\mid18)" /></>,
+    ok: <>fits <InlineMath math="(60\mid8)" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: 25, max: 82 },
+      y: { min: 0, max: 32 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "size", kind: "function", appearance: "primary", formula: "12*(100 - x)/x", domain: { min: 30, max: 80 } },
+      { id: "cap", kind: "segment", appearance: "warning", from: { x: 28, y: 15 }, to: { x: 80, y: 15 } },
+      { id: "bad", kind: "point", appearance: "warning", at: { x: 40, y: 18 } },
+      { id: "ok", kind: "point", appearance: "answer", at: { x: 60, y: 8 } },
+    ],
+    labels: [
+      { key: "cap", objectId: "cap", at: { x: 74, y: 15 }, placement: "above" },
+      { key: "bad", objectId: "bad", at: { x: 40, y: 18 }, placement: "above-right" },
+      { key: "ok", objectId: "ok", at: { x: 60, y: 8 }, placement: "above-right" },
+    ],
+  }}
+/>
+
+Now test the <InlineMath math="15\text{ cm}" /> screen against both positions. At <InlineMath math="g=40\text{ cm}" /> and <InlineMath math="b=60\text{ cm}" />, the image side is <InlineMath math="12\cdot\tfrac{60}{40}=18\text{ cm}" />, which spills past the screen and is ruled out (the trap area <InlineMath math="324\text{ cm}^2" />). At <InlineMath math="g=60\text{ cm}" /> and <InlineMath math="b=40\text{ cm}" />, the side is <InlineMath math="12\cdot\tfrac{40}{60}=8\text{ cm}" />, which fits cleanly. **The sharp image has an area of <InlineMath math="8^2=64\text{ cm}^2" />**.

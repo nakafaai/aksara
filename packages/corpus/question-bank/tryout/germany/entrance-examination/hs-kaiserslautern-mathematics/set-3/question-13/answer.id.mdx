@@ -1,0 +1,58 @@
+# Memasang dari depan pintu
+
+Pasang jalannya ubin demi ubin, mulai dari depan pintu. **Lihat meter pertama: satu ubin melintang di sana, atau dua ubin membujur berdampingan mengisi dua meter pertama, sehingga banyak pola <InlineMath math="a_n" /> tanpa persegi mengikuti rekursi Fibonacci**.
+
+<BlockMath math="\begin{aligned}
+a_n&=a_{n-1}+a_{n-2},\qquad a_0=a_1=1\\
+a_0,\dots,a_7&:\quad 1,\ 1,\ 2,\ 3,\ 5,\ 8,\ 13,\ 21
+\end{aligned}" />
+
+Tanpa ubin persegi ada <InlineMath math="a_7=21" /> pola.
+
+# Letak ubin persegi
+
+**Ubin persegi menutup seluruh lebar sepanjang dua meter, sehingga memotong jalan menjadi bagian kiri dan kanan yang dipasang terpisah**. Kalau ubin itu menutup meter <InlineMath math="k" /> dan <InlineMath math="k+1" />, panjang kedua bagian adalah <InlineMath math="k-1" /> dan <InlineMath math="6-k" /> meter.
+
+<BlockMath math="\begin{aligned}
+\sum_{k=1}^{6}a_{k-1}\,a_{6-k}&=1\cdot8+1\cdot5+2\cdot3+3\cdot2+5\cdot1+8\cdot1\\
+&=38
+\end{aligned}" />
+
+<MathVisual
+  title={<>Satu pola dengan ubin persegi</>}
+  description={<>Contoh ketika ubin persegi menutup meter ketiga dan keempat. Di kiri tersisa <InlineMath math="2\text{ m}" /> dengan <InlineMath math="a_2=2" /> pola, di kanan <InlineMath math="3\text{ m}" /> dengan <InlineMath math="a_3=3" /> pola, jadi posisi ini memberi <InlineMath math="2\cdot3=6" /> pola.</>}
+  footer={<>Ubin persegi membelah jalan menjadi dua bagian terpisah yang polanya dikalikan.</>}
+  labels={{
+    square: <>persegi</>,
+    left: <><InlineMath math="a_2=2" /></>,
+    right: <><InlineMath math="a_3=3" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -0.5, max: 7.5 },
+      y: { min: -1.2, max: 3.2 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "across-1", kind: "polygon", appearance: "reference", vertices: [{ x: 0, y: 0 }, { x: 1, y: 0 }, { x: 1, y: 2 }, { x: 0, y: 2 }] },
+      { id: "across-2", kind: "polygon", appearance: "reference", vertices: [{ x: 1, y: 0 }, { x: 2, y: 0 }, { x: 2, y: 2 }, { x: 1, y: 2 }] },
+      { id: "square", kind: "polygon", appearance: "answer", vertices: [{ x: 2, y: 0 }, { x: 4, y: 0 }, { x: 4, y: 2 }, { x: 2, y: 2 }] },
+      { id: "along-low", kind: "polygon", appearance: "secondary", vertices: [{ x: 4, y: 0 }, { x: 6, y: 0 }, { x: 6, y: 1 }, { x: 4, y: 1 }] },
+      { id: "along-high", kind: "polygon", appearance: "secondary", vertices: [{ x: 4, y: 1 }, { x: 6, y: 1 }, { x: 6, y: 2 }, { x: 4, y: 2 }] },
+      { id: "across-3", kind: "polygon", appearance: "reference", vertices: [{ x: 6, y: 0 }, { x: 7, y: 0 }, { x: 7, y: 2 }, { x: 6, y: 2 }] },
+    ],
+    labels: [
+      { key: "square", objectId: "square", at: { x: 3, y: 1 }, placement: "center" },
+      { key: "left", objectId: "across-1", at: { x: 1, y: 2 }, placement: "above" },
+      { key: "right", objectId: "along-high", at: { x: 5.5, y: 2 }, placement: "above" },
+    ],
+  }}
+/>
+
+Menjumlahkan keenam hasil kali itu memberi <InlineMath math="38" /> pola yang memakai ubin persegi.
+
+# Semua pola bersama-sama
+
+Sebuah pola tidak memakai persegi atau memakai tepat satu, tidak pernah keduanya, **jadi kedua hitungan dijumlahkan menjadi <InlineMath math="21+38=59" /> pola**. Dua ubin membujur yang berdampingan memang menutup blok <InlineMath math="2\times2" /> juga, tetapi itu pola yang berbeda dari satu ubin persegi. Menambahkan <InlineMath math="6" /> posisi persegi saja ke <InlineMath math="21" /> memberi jebakan <InlineMath math="27" />.
