@@ -18,6 +18,18 @@ import { readSource } from "#scripts/source";
 
 const LINE_BREAK_PATTERN = /\r?\n/u;
 const MAXIMUM_LINES = 300;
+const QUESTION_DATA_PATTERN =
+  /^packages\/corpus\/question-bank\/tryout\/(?:[^/]+\/){4,}question-[1-9]\d*\/(?:calibration|item)\.ts$/u;
+
+/**
+ * Checks whether a file is an authored try-out data module (`item.ts` or
+ * `calibration.ts`) under the question bank. Those modules are pure constant
+ * records whose parser forbids imports, so multi-part items and calibration
+ * samples cannot split across files.
+ */
+function isQuestionDataModule(file: string): boolean {
+  return QUESTION_DATA_PATTERN.test(file);
+}
 
 /** Masks only parsed JSDoc ranges while preserving offsets and line breaks. */
 function maskDocumentation(sourceFile: SourceFile, sourceText: string) {
@@ -91,7 +103,8 @@ export const lineViolations = Effect.fn("AksaraPolicy.moduleLines")(function* <
   files: readonly string[],
   readText: (file: string) => Effect.Effect<string, E, FileSystem.FileSystem>
 ) {
-  const violations = yield* Effect.forEach(files, (file) =>
+  const checked = Arr.filter(files, (file) => !isQuestionDataModule(file));
+  const violations = yield* Effect.forEach(checked, (file) =>
     readText(file).pipe(
       Effect.mapError(
         (cause) => new TypeScriptSourceError({ cause, fileName: file })

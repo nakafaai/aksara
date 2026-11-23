@@ -40,6 +40,9 @@ describe("question bank path", () => {
     expect(readBankEntry(`${set}/question-12/item.ts`)).toEqual(
       Option.some({ file: "item.ts", kind: "question", number: 12, set })
     );
+    expect(readBankEntry(`${set}/question-1/calibration.ts`)).toEqual(
+      Option.some({ file: "calibration.ts", kind: "question", number: 1, set })
+    );
     expect(readBankEntry(`${set}/question-1/answer.de.mdx`)).toEqual(
       Option.some({ file: "answer.de.mdx", kind: "question", number: 1, set })
     );
@@ -57,6 +60,7 @@ describe("question bank path", () => {
     for (const path of [
       set,
       `${set}/question-1`,
+      `${set}/question-1/calibration.json`,
       `${set}/question-1/notes.md`,
       `${set}/question-0/item.ts`,
       `${set}/question-1/stimulus.id.mdx`,

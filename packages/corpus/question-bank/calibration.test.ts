@@ -1,5 +1,6 @@
-import { describe, expect, it } from "@effect/vitest";
+import { describe, expect, it, layer } from "@effect/vitest";
 import { CorpusSourcePathSchema } from "@nakafa/aksara-contracts/ids";
+import { TypeScriptParser } from "@nakafa/aksara-utilities/typescript/parse";
 import { Array as Arr, Effect } from "effect";
 
 import {
@@ -36,8 +37,13 @@ const item: ItemSource = {
 };
 
 const path = CorpusSourcePathSchema.make(
-  "packages/corpus/question-bank/tryout/zz/test/test/set-1/question-1/calibration.json"
+  "packages/corpus/question-bank/tryout/zz/test/test/set-1/question-1/calibration.ts"
 );
+
+/** Builds one typed calibration module around the given object literal. */
+function calibrationModule(body: string) {
+  return `import type { Calibration } from "#corpus/question-bank/calibration";\n\nconst calibration: Calibration = ${body};\n\nexport default calibration;\n`;
+}
 
 /** One sample of part `b` with the given id and marked criteria. */
 const sample = (id: string, criteria: readonly [number, ...number[]]) => ({
@@ -76,14 +82,28 @@ describe("calibrationProblems", () => {
   });
 });
 
-describe("decodeCalibration", () => {
-  it.effect(
-    "decodes a calibration that fits its item, and names what does not",
+layer(TypeScriptParser.layer)("decodeCalibration", (test) => {
+  test.effect(
+    "decodes a typed calibration module that fits its item, and rejects non-literal, excess, or mismatched ones",
     () =>
       Effect.gen(function* () {
         expect(
           yield* decodeCalibration(
-            '{"b":[{"grade":"good","id":"good-1","marks":[{"criterion":1,"met":true,"reason":"Lengkap."},{"criterion":2,"met":true,"reason":"Tepat."}],"text":"Karena f turun."}]}',
+            calibrationModule(
+              `{
+  b: [
+    {
+      grade: "good",
+      id: "good-1",
+      marks: [
+        { criterion: 1, met: true, reason: "Lengkap." },
+        { criterion: 2, met: true, reason: "Tepat." },
+      ],
+      text: "Karena f turun.",
+    },
+  ],
+}`
+            ),
             path,
             item
           )
@@ -105,8 +125,48 @@ describe("decodeCalibration", () => {
         ).toMatchObject({ _tag: "CalibrationError", path });
         expect(
           yield* Effect.flip(
+            decodeCalibration(calibrationModule("build()"), path, item)
+          )
+        ).toMatchObject({ _tag: "CalibrationError", path });
+        expect(
+          yield* Effect.flip(
             decodeCalibration(
-              '{"c":[{"grade":"wrong","id":"w-1","marks":[{"criterion":1,"met":false,"reason":"Salah."}],"text":"Salah."}]}',
+              calibrationModule(
+                `{
+  b: [
+    {
+      extra: true,
+      grade: "good",
+      id: "good-1",
+      marks: [
+        { criterion: 1, met: true, reason: "Lengkap." },
+        { criterion: 2, met: true, reason: "Tepat." },
+      ],
+      text: "Karena f turun.",
+    },
+  ],
+}`
+              ),
+              path,
+              item
+            )
+          )
+        ).toMatchObject({ _tag: "CalibrationError", path });
+        expect(
+          yield* Effect.flip(
+            decodeCalibration(
+              calibrationModule(
+                `{
+  c: [
+    {
+      grade: "wrong",
+      id: "w-1",
+      marks: [{ criterion: 1, met: false, reason: "Salah." }],
+      text: "Salah.",
+    },
+  ],
+}`
+              ),
               path,
               item
             )

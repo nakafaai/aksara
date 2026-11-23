@@ -60,6 +60,32 @@ export function documented() {}
       })
     );
 
+    it.effect(
+      "exempts authored question-bank item and calibration data modules while keeping code modules capped",
+      () =>
+        Effect.gen(function* () {
+          const sources: Readonly<Record<string, string>> = {
+            "packages/corpus/question-bank/calibration.ts": "value;\n".repeat(
+              301
+            ),
+            "packages/corpus/question-bank/item.ts": "value;\n".repeat(301),
+            "packages/corpus/question-bank/tryout/germany/feststellungspruefung/mathematics/set-1/question-1/calibration.ts":
+              "value;\n".repeat(450),
+            "packages/corpus/question-bank/tryout/germany/feststellungspruefung/mathematics/set-1/question-1/item.ts":
+              "value;\n".repeat(450),
+          };
+
+          expect(
+            yield* lineViolations(Rec.keys(sources), (file) =>
+              Effect.succeed(sources[file] ?? "")
+            )
+          ).toEqual([
+            "packages/corpus/question-bank/calibration.ts: 301 lines",
+            "packages/corpus/question-bank/item.ts: 301 lines",
+          ]);
+        })
+    );
+
     it.effect("reports oversized files through the line report", () =>
       Effect.gen(function* () {
         const fileSystem = yield* FileSystem.FileSystem;

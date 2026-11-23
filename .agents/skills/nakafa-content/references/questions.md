@@ -152,15 +152,17 @@ colon, and the concept the part is about, such as `# Teil a: Die Ableitung` or
 Every criterion of a written part carries `feedback: { earned, missed }` in
 each language: the line a learner reads after grading, in a teacher's voice,
 never model prose. Expert-marked answers that calibrate the grader go in
-`calibration.json` beside `item.ts`, by part label:
-`{ "b": [{ "id", "grade": "good" | "partial" | "wrong", "text", "marks": [{
-"criterion": 1, "met": true, "reason" }] }] }`. Each sample marks every
-criterion of its part once, numbered from 1 in rubric order; the file is
-checked with its item and never published. A track that Nakafa cannot serve
-yet, such as one with written or typed math parts before their graders ship,
-is authored with `held: true`: it is read and checked like any other and stays
-out of every release, with any group or exam left empty. The explanations check refuses any other top
-heading in such an answer.
+`calibration.ts` beside `item.ts`, as a typed constant module keyed by part
+label (`import type { Calibration } from "#corpus/question-bank/calibration";`,
+`const calibration: Calibration = { b: [{ id: "good-1", grade: "good", text: "...", marks: [{ criterion: 1, met: true, reason: "..." }] }] };`,
+`export default calibration;`). Authored JSON files are forbidden under
+`packages/corpus`. Each sample marks every criterion of its part once, numbered
+from 1 in rubric order; the file is checked with its item and never published.
+A track that Nakafa cannot serve yet, such as one with written or typed math
+parts before their graders ship, is authored with `held: true`: it is read and
+checked like any other and stays out of every release, with any group or exam
+left empty. The explanations check refuses any other top heading in such an
+answer.
 
 ## Items
 
