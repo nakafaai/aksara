@@ -35,8 +35,10 @@ import { rateVisuals } from "#contracts/visual/chemistry/rate";
 import { reactionVisuals } from "#contracts/visual/chemistry/reaction";
 import { titrationVisuals } from "#contracts/visual/chemistry/titration";
 import type { VisualEntry } from "#contracts/visual/entry";
+import { argumentVisuals } from "#contracts/visual/mathematics/argument";
 import { chanceVisuals } from "#contracts/visual/mathematics/chance";
 import { chartVisuals } from "#contracts/visual/mathematics/charts";
+import { counterexampleVisuals } from "#contracts/visual/mathematics/counterexample";
 import { functionVisuals } from "#contracts/visual/mathematics/function";
 import { geometryVisuals } from "#contracts/visual/mathematics/geometry";
 import { journeyVisuals } from "#contracts/visual/mathematics/journey";
@@ -100,8 +102,10 @@ export function visualCatalog<E>(rich: RichSlot<E>) {
     ...particleVisuals(rich),
     ...periodicVisuals(rich),
     ...reactionVisuals(rich),
+    ...argumentVisuals(rich),
     ...chanceVisuals(rich),
     ...chartVisuals(rich),
+    ...counterexampleVisuals(rich),
     ...functionVisuals(rich),
     ...geometryVisuals(rich),
     ...journeyVisuals(rich),
