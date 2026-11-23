@@ -40,16 +40,20 @@ function isHeadingNode(node: MdxNode): node is HeadingNode {
 }
 
 /**
- * Enforces the two authored heading levels owned by each document genre.
+ * Enforces the authored heading levels owned by each document genre.
  *
  * Lessons and articles use H2 and H3, including their worked solutions.
- * Question-bank explanations are documents of their own and use H1 and H2.
+ * Question-bank explanations are documents of their own: single-question
+ * answers start at H1 with optional H2 sub-steps, and multi-part answers use
+ * H1 for each part, H2 for the four standard sections, and optional H3
+ * sub-steps inside the solution.
  */
 export function findHeadingOrderIssues(
   source: string,
   tree: MdxNode = parseLessonMdx(source),
   bodyHeadingDepth = BODY_HEADING_DEPTH,
-  lessonLocale?: LessonVoiceLocale
+  lessonLocale?: LessonVoiceLocale,
+  maxHeadingDepth = bodyHeadingDepth + 1
 ): LessonVoiceIssue[] {
   const headings: {
     depth: number;
@@ -131,7 +135,7 @@ export function findHeadingOrderIssues(
       skipped ||
       misrooted ||
       heading.depth < bodyHeadingDepth ||
-      heading.depth > bodyHeadingDepth + 1
+      heading.depth > maxHeadingDepth
     ) {
       issues.push({
         column: heading.column,

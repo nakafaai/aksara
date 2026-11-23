@@ -190,41 +190,17 @@ A **review candidate** is a finding the gate emits at the `review` tier, so only
 inventory can locate structural signals, but the complete contextual read owns
 the decision. Only a review candidate appears in the gate's issue list.
 
-Several blocking rules encode one proven regression rather than a general
-class. Each stays narrow on purpose, and each names the report or corpus
-sentence that established it:
-
 The rule modules and `scripts/voice/policy.ts` own the rule ids and their tier
-in code. This reference names only the rules whose boundary a reviewer must
-know, so it is not the full id list.
+in code. `policy.ts` blocks only objective structural, address, spelling/EYD,
+math, emphasis, link, blockquote, and anti-AI-artifact regressions. Overly
+rigid rules that interfered with natural teacher voice (`anti-model-intensifier`,
+`corrective-decoration-metaphor`, `indonesian-bare-modal-adjective`,
+`indonesian-mathematical-family-calque`, `indonesian-stiff-interpret-instruction`,
+`vague-equation-truth`) were removed, and one-off single-lesson legacy patches
+stay at review tier rather than hard-blocking default runs. This reference
+names only the rules whose boundary a reviewer must know, so it is not the full
+id list.
 
-- `compressed-renewable-timescale-contrast` blocks the exact
-  human-timescale-versus-fossil-fuels contrast reported for the renewable
-  energy lessons. A direct explanation and a factual negation both stay valid.
-- `chemical-formula-personification` blocks a formula that `carries` a mass.
-  State the mass ratio instead.
-- `known-decorative-science-heading` blocks the literal decorative headings
-  recorded from the science corpus, such as `An Atom Identity Card`.
-- `abrupt-scenario-imperative` blocks the land-area scenario that turned a
-  teacher's explanation into an unexplained task.
-- `unsupported-evaluative-preface` blocks `this is the most common example`
-  where no factual basis for the ranking exists.
-- `vague-benefit-risk-reference` blocks a summarized risk reference that names
-  neither the risk nor the affected group.
-- `vague-equation-truth` blocks calling an equation `true` without the
-  operational check, such as `membuat persamaan tersebut benar` or `makes the
-  equation true`. Name the substitution and what both sides must equal instead;
-  the German `erfüllt` already states that operation and stays valid.
-- `vague-formula-gives-those` blocks a formula that only `gives those values`,
-  such as `memberikan nilai-nilai tersebut`. Name which roots the formula
-  computes and from which inputs instead.
-- `indonesian-water-ratio-gateway` and `indonesian-stiff-serampangan` block the
-  recorded mechanical phrasings `gerbang rasio air` and `serampangan`.
-- `anti-model-intensifier` blocks the recorded `not this simple`,
-  `nicht so einfach`, and `tidak sesederhana` aside from the exponential growth
-  example. That is the only instance of the sub-shape in the corpus, and the
-  shape is separable because its object is a judgment about difficulty rather
-  than a concept, quantity, condition, or misconception.
 - `abstract-concept-asks-question` and
   `abstract-concept-question-personification` both block a concept that asks a
   question. The first matches the generic subject list, the second the recorded
@@ -237,22 +213,24 @@ know, so it is not the full id list.
   or fenced code keeps `**` as programming syntax.
 - `heading-order` requires lesson and article bodies to start at `##` and use
   at most `###`, including lesson answer keys. Question-bank explanations start
-  at `#` and use at most `##`, because each is a document of its own.
-  The gate rejects skipped levels and headings outside the genre's two levels.
+  at `#`, never skip levels, and allow up to `###` so multi-part items can
+  nest `# Bagian a` -> `## Penyelesaian` -> `### Sub-step` (matching
+  `HeadingSchema` `[1, 2, 3]` and the assessment compiler).
 - `exercise-answer-reference` requires a visible answer reference for each
   uniquely numbered prompt in an explicitly labeled lesson exercise and solution.
   Prose identifiers, numbered answer lists, and table row or column labels are
   valid. Numbered steps inside an already labeled answer do not stand in for the
   next question. Restarted groups and the correctness of the mapping require the
   contextual [worked-solution review](solutions.md#mapping-exercises-to-answers).
-- `section-body-highlight` requires a selective phrase in every lesson and
-  worked-answer heading body, including the body below the app-owned answer heading. A
-  marked title or earlier section does not satisfy it. Exact balanced inline
-  and block quotations, code, and pure notation are excluded so protected source
-  text stays intact. If the only marker lies inside an inline quotation beside
-  authored prose, `quoted-emphasis-only` requests contextual review. The AST
-  cannot distinguish source evidence from an author's quoted term or question,
-  so that inventory signal does not block or authorize rewriting the quotation.
+- `section-body-highlight` requires a selective phrase in every lesson section
+  and worked-answer teaching section, including `# Diketahui` and
+  `# Penyelesaian`, while exempting concise one-line try-out sections
+  (`# Ditanyakan`, `# Jawaban`, `# Asked`, `# Answer`, `# Ditanya`, `# Jawapan`,
+  `# Gesucht`, `# Antwort`) so authors are never forced to add artificial
+  highlights there. Exact balanced inline and block quotations, code, and pure
+  notation are excluded so protected source text stays intact. If the only
+  marker lies inside an inline quotation beside authored prose,
+  `quoted-emphasis-only` requests contextual review.
 - `lesson-without-highlight` and `lesson-opening-highlight` recognize both
   Markdown strong emphasis and `<Highlight>` through the parsed tree, including
   rendered JSX labels. Marker text inside code does not count. There is no
@@ -293,9 +271,28 @@ know, so it is not the full id list.
   das Gesetz der konstanten Zusammensetzung` has the same shape as a legitimate
   preview. The [final review](review.md#final-language-review) owns them.
 - `blockquote-editorial-label` blocks an authored callout whose body opens with
-  a label such as `Quick check:`, `Kurzer Check:`, or `Cek cepat:`. A blockquote
-  body receives the address rules and this rule, so callout prose is checked,
-  while a real quotation with protected bytes stays valid.
+  any editorial prefix label and colon across all four locales (`Ingat bahwa:`,
+  `Konsep kunci:`, `Catatan:`, `Tips:`, `Cek cepat:`, `Key concept:`, `Note:`,
+  `Remember:`, `Quick check:`, `Tip:`, `Merke:`, `Hinweis:`, `Wichtig:`,
+  `Tipp:`, `Nota:`, `Ingat:`, etc.), while leaving mathematical ratios like
+  `3:2` untouched. A blockquote body receives the address rules and this rule,
+  so callout prose is checked, while a real quotation with protected bytes
+  stays valid.
+- `missing-blockquote` (diff-scoped on changed lessons via `bun run headings`
+  and changed try-out answers via `bun run explanations`) requires at least one
+  non-empty blockquote per lesson and per try-out worked answer.
+- `bloated-inline-math` (diff-scoped on changed lessons and changed try-out
+  answers) blocks full equations, multi-step derivations, complex fractions,
+  and long multi-term expressions inside `<InlineMath />` in prose, while
+  preserving single variables, numbers, short units, coordinates, simple
+  fractions, and brief conditions like `x \neq 0`, and skipping tables and
+  visual props where `<BlockMath />` cannot sit.
+- `answer-heading-structure` and `answer-heading-depth` (diff-scoped on changed
+  try-out answers via `bun run explanations`) enforce the four standard
+  headings in order (`#` for single-question items, `##` under `# Bagian a`
+  without colon for multi-part items), allow sub-steps only inside the solution
+  section, and enforce `heading-symbol` (zero `:` or symbols) on every answer
+  heading.
 - `jsx-dropped-space` blocks text and an inline element, such as
   `<InlineMath />`, `<strong>`, or `<a>`, that JSX joins without a space. In a
   prop, a fragment, or an expression, JSX drops whitespace that holds a line

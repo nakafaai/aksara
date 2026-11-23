@@ -31,11 +31,14 @@ publishes once Nakafa's production renderer draws it.
 - Use a short list for parallel items that do not need cross-column comparison.
 - Use a Markdown table for exact mappings or repeated comparisons. Keep cells
   compact and explain nuanced reasoning outside the table.
-- Use a blockquote only for a real quotation or a clearly identified claim,
-  misconception, or source excerpt that the surrounding prose analyzes. Do not
-  turn ordinary emphasis into decorative quotations. Start with the actual
-  teaching message, without editorial prefixes such as `Quick check:`,
-  `Cek cepat:`, `Kurzer Check:`, `Kurze Kontrolle:`, or `Kurz geprüft:`.
+- Include at least one blockquote (`> ...`) in every lesson and every try-out
+  worked answer to call out a key concept, intuition, or warning a learner must
+  remember (`missing-blockquote` enforces this on changed lessons and answers).
+  State the teaching point straight away with **no editorial prefix and no
+  colon** (`blockquote-editorial-label` blocks labels such as `Ingat bahwa:`,
+  `Konsep kunci:`, `Catatan:`, `Tips:`, `Cek cepat:`, `Key concept:`, `Note:`,
+  `Remember:`, `Quick check:`, `Merke:`, `Hinweis:`, `Wichtig:`, `Tipp:`,
+  `Nota:`, and `Ingat:`). Real source quotations also stay valid blockquotes.
 - Use Mermaid for a sequence, flow, hierarchy, state change, or relationship
   that is materially harder to understand in prose. Do not convert a simple
   list or one-step process into a diagram. Write the chart as static text in
@@ -377,10 +380,12 @@ perspective never changes the mathematical dimension of an authored object.
 
 Lessons and articles should not become uninterrupted walls of text when a
 meaningful structure or representation would reduce search and comparison
-effort. Tables, blockquotes, and Mermaid diagrams remain review decisions, not
-quotas, and none of them is added merely to make a document look more varied.
-A worked answer follows the visual-first rule of [solutions](solutions.md).
-Lessons also follow the interactive visual rule below.
+effort. Every lesson and try-out worked answer carries at least one core
+blockquote stating a key concept, intuition, or warning directly without a
+prefix label; tables and Mermaid diagrams remain review decisions chosen for
+their teaching job rather than added as decoration. A worked answer follows the
+visual-first rule of [solutions](solutions.md). Lessons also follow the
+interactive visual rule below.
 
 ## Interactive visual in every lesson
 

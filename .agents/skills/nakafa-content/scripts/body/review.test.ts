@@ -133,13 +133,24 @@ it("checks a document without metadata, as a bank explanation is written", () =>
   );
 });
 
-it("checks the unheaded body rendered beneath an app-owned answer heading", () => {
+it("checks the unheaded body rendered beneath an app-owned answer heading and skips forced highlights on brief answer headings", () => {
   const tree = parseLessonMdx(
     "export const metadata = {};\n\nThe two values have the same denominator."
   );
   assert.deepEqual(findBodyHighlightIssues(tree, true), [
     { column: 1, excerpt: "", line: 3, rule: "section-body-highlight" },
   ]);
+  const answer = parseLessonMdx(
+    "# Diketahui\n\nGaris punya **gradien positif**.\n\n# Ditanyakan\n\nTentukan nilai x.\n\n# Penyelesaian\n\nSubstitusi **titik potong**.\n\n# Jawaban\n\nNilai x adalah empat."
+  );
+  assert.deepEqual(findBodyHighlightIssues(answer, true), []);
+  const unmarked = parseLessonMdx(
+    "# Given\n\nThe **initial velocity** is zero.\n\n# Asked\n\nFind speed.\n\n# Solution\n\nMultiply by time.\n\n# Answer\n\nTen."
+  );
+  assert.deepEqual(
+    findBodyHighlightIssues(unmarked, true).map(({ excerpt }) => excerpt),
+    ["Solution"]
+  );
 });
 
 it("does not borrow emphasis from a quotation or a component label", () => {

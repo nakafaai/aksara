@@ -138,16 +138,25 @@ New try-out sets also follow [try-out sets](sets.md).
 Read [worked solutions](solutions.md) before editing any explanation.
 It owns the complete novice-safe reasoning contract, including method choice,
 subgoals, substitutions, conditions, cases, transformations, units, checks,
-and a conclusion stated by content rather than an option letter. Keep notation
-consistent with the prompt. Use the [heading rules](headings.md):
-answer sections start at `#` and name real subgoals. Never delete reasoning
-to reduce line count. The answer of an item with parts opens one `#` heading
-per part, in the parts' order, each opening with the word for a part in the
-answer's language (`Teil`, `Part`, `Bagian`, `Bahagian`), the part's label, a
-colon, and the concept the part is about, such as `# Teil a: Die Ableitung` or
-`# Part a: The derivative`. A heading never opens with a list marker such as
-`a)`, which the compiler refuses. Work each part under its own heading with
-`##` for its steps.
+distractor dissection, core blockquote (`>= 1`, zero prefix label or colon),
+clean `<InlineMath />` vs `<BlockMath />` split, and a conclusion stated by
+content rather than an option letter. Keep notation consistent with the prompt.
+Use the [heading rules](headings.md) with zero colons (`:`) or punctuation
+symbols in any heading:
+
+- **Single-question items:** start at `#` with the exact four standard headings
+  in order (`# Diketahui`, `# Ditanyakan`, `# Penyelesaian`, `# Jawaban` in
+  `id`; `# Given`, `# Asked`, `# Solution`, `# Answer` in `en`; `# Diberi`,
+  `# Ditanya`, `# Penyelesaian`, `# Jawapan` in `ms`; `# Gegeben`, `# Gesucht`,
+  `# Lösung`, `# Antwort` in `de`). Use optional `##` sub-headings only inside
+  the solution when real sub-steps are needed.
+- **Multi-part items (`kind: "parts"`):** open one `#` heading per part in the
+  parts' order using strictly the localized part word and label with **no colon
+  and no extra title** (`# Bagian a`, `# Part a`, `# Bahagian a`, `# Teil a`).
+  Place the four standard headings at `##` inside each part, and use optional
+  `###` sub-headings only inside `## Penyelesaian` when sub-steps are needed.
+  A heading never opens with a list marker such as `a)`, which the compiler
+  refuses. Never delete reasoning to reduce line count.
 
 Every criterion of a written part carries `feedback: { earned, missed }` in
 each language: the line a learner reads after grading, in a teacher's voice,

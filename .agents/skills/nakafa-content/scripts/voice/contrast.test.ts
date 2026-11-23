@@ -57,26 +57,17 @@ it("rejects rhetorical not just variants without banning not", () => {
   );
 });
 
-it("blocks an anti-model intensifier in every locale", () => {
-  const failures = {
+it("allows natural teacher warnings like not this simple in every locale", () => {
+  const natural = {
     de: "Ein echter Ausbruch verläuft natürlich nicht so einfach.",
     en: "Real outbreaks are not this simple.",
-    id: "Tentu saja, wabah yang sebenarnya tidak sesederhana ini.",
+    id: "Wabah yang sebenarnya tidak sesederhana ini.",
+    ms: "Keadaan sebenar tidak semudah yang disangka.",
   };
 
-  for (const [locale, source] of Object.entries(failures)) {
-    assert.deepEqual(
-      findLessonVoiceIssues(locale, source).map(({ rule }) => rule),
-      ["anti-model-intensifier"]
-    );
+  for (const [locale, source] of Object.entries(natural)) {
+    assert.deepEqual(findLessonVoiceIssues(locale, source), []);
   }
-
-  assert.deepEqual(
-    findLessonVoiceIssues("en", "Real outbreaks are\nnot this simple.").map(
-      ({ rule }) => rule
-    ),
-    ["anti-model-intensifier"]
-  );
 });
 
 it("keeps factual negation, definitional exclusion, and real comparison", () => {
@@ -111,7 +102,6 @@ it("keeps factual negation, definitional exclusion, and real comparison", () => 
 
 it("holds Malaysian Malay prose to the same rules", () => {
   const samples = {
-    "anti-model-intensifier": "Ini tidak semudah yang disangka.",
     "compressed-renewable-timescale-contrast":
       "Sumber tenaga boleh diperbaharui boleh tersedia semula melalui proses semula jadi dalam jangka masa manusia, bukan jutaan tahun seperti bahan api fosil.",
   };

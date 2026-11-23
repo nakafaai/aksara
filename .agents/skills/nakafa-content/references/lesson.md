@@ -28,12 +28,21 @@ misses an element below is not finished.
      just saw immediately after it (`visual-missing-takeaway`), never place
      visuals back-to-back without bridging prose (`back-to-back-visuals`), and
      never use axis-scaling workaround hacks (`unit-scaling-hack`).
-   - Keep paragraphs crisp and scannable on phones (target <= 85 words, hard
-     cap 120 words, `wall-of-text`).
+   - Keep paragraphs crisp and scannable on phones (target <= 60 words, hard
+     cap 85 words, `wall-of-text`) without cutting pedagogical depth.
+   - Keep `<InlineMath />` strictly for single variables, numbers, short
+     symbols, units, coordinates, or brief conditions; move equations,
+     inequalities, complex fractions, multi-term expressions, and calculation
+     steps into `<BlockMath />` (`bloated-inline-math`).
    - Speak like a warm teacher to one learner, never stiff textbook prose
      (`stiff-formal-prose`). [Voice](voice.md) owns the register for each
      locale.
-3. **Unique custom scenes model the concept (Rule 18).** Learners skim long
+3. **At least one core blockquote (`missing-blockquote`).** Every lesson
+   includes at least one blockquote (`> ...`) holding a decisive concept,
+   intuition, or warning a learner must remember. State the message directly
+   without any prefix label or colon (never `Ingat bahwa:`, `Konsep kunci:`,
+   `Catatan:`, `Tips:`, `Key concept:`, `Note:`, `Merke:`, `Nota:`).
+4. **Unique custom scenes model the concept (Rule 18).** Learners skim long
    text, so 3D scenes and animations carry Nakafa's lessons. Every lesson
    folder in every subject holds at least three distinct custom scenes across
    its sections, and aims for five: Visual Catalog figures drawn in three.js or
@@ -48,42 +57,44 @@ misses an element below is not finished.
    answers a question the lesson asks. Every plotted point is computed from its
    formula in true units. [Visuals](visuals.md) owns the choice, uniqueness,
    footer, computation, and verification.
-4. **At least two worked examples, inside the sections they apply.** Every
+5. **At least two worked examples, inside the sections they apply.** Every
    transformation is written in a math block and each example ends with a
    check. In biology, chemistry, and programming lessons a worked example may
    be an analyzed case: data, a reaction, or code traced step by step with the
    result explained. An example sits beside the rule it uses, named for what it
    works out, never in a generic `Contoh` section.
-5. **Mistakes where they happen.** A misconception that this topic invites is
+6. **Mistakes where they happen.** A misconception that this topic invites is
    named inside the section it belongs to, as a contrasted pair or a short
    check: the error, why it fails, and how the learner catches it. A lesson
    never carries a fixed `Common Mistakes` section because every lesson does.
-6. **Practice that fits the topic.** When the topic needs practice, give two to
+7. **Practice that fits the topic.** When the topic needs practice, give two to
    four problems of rising difficulty, or an interactive check, where the
    learner can retrieve what was just taught, each answered with complete
    reasoning under the [worked solutions](solutions.md) rules. The form and
    place come from the topic, never from a template tail.
-7. **A clear, non-flat shape that is this topic's own (Rule 18).** 4 to 8 H2
+8. **A clear, non-flat shape that is this topic's own (Rule 18).** 4 to 8 H2
    sections and at most 12 outline entries, each with a real teaching job,
    grouped with 2 to 4 H3 subsections whenever a page has 4 or more H2
    sections (`flat-sections`), and zero lone H3 subsections (`lone-subsection`,
    with no exemption for solution headings), under the
    [structure](structure.md#lesson-shape) rules. No section whose body is only
-   a list, no nested lists, and paragraphs kept to about 70 to 85 words (hard
-   cap 120). No outline, paragraph, opening, transition, or example scenario is
-   reused from another lesson in any locale (`repeated-sentence`,
+   a list, no nested lists, and paragraphs kept crisp for phones (target <= 60
+   words, hard cap 85). No outline, paragraph, opening, transition, or example
+   scenario is reused from another lesson in any locale (`repeated-sentence`,
    `repeated-paragraph`, `shared-skeleton`).
-8. **Emphasis like a student's highlighter.** Each section marks the few terms,
-   conditions, and results a learner would copy into notes.
-   [Emphasis](emphasis.md) owns the marker rules.
-9. **Woven internal links.** The lesson links its prerequisite and its natural
-   next concept wherever the corpus teaches them, inside sentences that use the
-   relation. [Links](links.md) owns the policy.
-10. **Clean search metadata (Rule 17).** Each locale carries its own `title`
+9. **Emphasis like a student's highlighter.** Each section highlights the key
+   concepts, deciding conditions, important rules, and calculation turning
+   points a learner would copy into notes so the page feels alive rather than
+   flat. Wrapping `<InlineMath />` inside `**...**` or `<Highlight>` is fully
+   supported. [Emphasis](emphasis.md) owns the marker rules.
+10. **Woven internal links.** The lesson links its prerequisite and its natural
+    next concept wherever the corpus teaches them, inside sentences that use
+    the relation. [Links](links.md) owns the policy.
+11. **Clean search metadata (Rule 17).** Each locale carries its own `title`
     and `description` written for that language's learners using only commas
     and periods, with zero curriculum or chapter prefixes. [Search](search.md)
     owns the rules.
-11. **Mandatory four-locale clarity trace (D29).** Every lesson and try-out PR
+12. **Mandatory four-locale clarity trace (D29).** Every lesson and try-out PR
     traces all four locales (`en`, `id`, `ms`, `de`) end to end, confirming
     zero ambiguity, connected narrative flow, plain-language intuition before
     notation, zero phantom references, and tight text-to-visual integration.

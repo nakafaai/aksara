@@ -6,16 +6,22 @@ import { parseLessonMdx } from "#nakafa-content/mdx/parse";
 
 const AUTHORED = "export const metadata = {};\n\n";
 
-it("keeps a bank explanation in its own two heading levels", () => {
-  const valid = "# Menentukan laju\n\n## Satuan laju\n\n# Menghitung waktu";
-  assert.deepEqual(findHeadingOrderIssues(valid, parseLessonMdx(valid), 1), []);
-  const invalid = "## Laju\n\n# Waktu\n\n### Keluar dari pembahasan";
+it("keeps a bank explanation in its own heading levels, including H3 sub-steps for multi-part answers", () => {
+  const valid =
+    "# Bagian a\n\n## Diketahui\n\nData.\n\n## Penyelesaian\n\n### Langkah\n\nHitung.\n\n## Jawaban\n\nHasil.";
   assert.deepEqual(
-    findHeadingOrderIssues(invalid, parseLessonMdx(invalid), 1).map(
-      ({ line }) => line
-    ),
-    [1, 5]
+    findHeadingOrderIssues(valid, parseLessonMdx(valid), 1, undefined, 3),
+    []
   );
+  const bad = "## Laju\n\n# Waktu\n\n### Lompat\n\n## A\n\n### B\n\n#### C";
+  const lines = findHeadingOrderIssues(
+    bad,
+    parseLessonMdx(bad),
+    1,
+    undefined,
+    3
+  ).map(({ line }) => line);
+  assert.deepEqual(lines, [1, 5, 11]);
 });
 
 it("rejects a body heading whose level jumps", () => {
@@ -59,47 +65,21 @@ it("rejects a body that opens below the second level", () => {
 });
 
 it("rejects deep lesson solutions even when no level is skipped", () => {
-  assert.deepEqual(
-    findHeadingOrderIssues(
-      [
-        "export const metadata = {};",
-        "",
-        "## Latihan",
-        "",
-        "### Pembahasan",
-        "",
-        "#### Menghitung nilai fungsi",
-        "",
-        "##### Kasus khusus",
-        "",
-        "Hitung pada titik yang diberikan.",
-        "",
-        "## Penutup",
-        "",
-        "Ringkasan aturan.",
-        "",
-        "### Tabel",
-        "",
-        "| Nilai | Arti |",
-        "| --- | --- |",
-        "| 1 | satu |",
-      ].join("\n")
-    ),
-    [
-      {
-        column: 1,
-        excerpt: "#### Menghitung nilai fungsi",
-        line: 7,
-        rule: "heading-order",
-      },
-      {
-        column: 1,
-        excerpt: "##### Kasus khusus",
-        line: 9,
-        rule: "heading-order",
-      },
-    ]
-  );
+  const source = `${AUTHORED}## Latihan\n\n### Pembahasan\n\n#### Menghitung nilai fungsi\n\n##### Kasus khusus\n\nHitung.\n\n## Penutup\n\nRingkasan.\n\n### Tabel\n\n| A | B |\n| --- | --- |\n| 1 | 2 |`;
+  assert.deepEqual(findHeadingOrderIssues(source), [
+    {
+      column: 1,
+      excerpt: "#### Menghitung nilai fungsi",
+      line: 7,
+      rule: "heading-order",
+    },
+    {
+      column: 1,
+      excerpt: "##### Kasus khusus",
+      line: 9,
+      rule: "heading-order",
+    },
+  ]);
 });
 
 it("checks documents without authored metadata, as bank explanations are", () => {

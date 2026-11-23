@@ -24,10 +24,9 @@ const QUESTION_FILE =
 const ANSWER_LANGUAGE = /answer\.(?<language>[a-z]+)\.mdx$/u;
 
 /**
- * The word a part's top heading opens with in each language, before the part's
- * label, a colon, and the concept the part is about: `Teil a: Die Ableitung`.
- * A heading names a concept and never opens with a list marker such as `a)`,
- * which the compiler refuses, so the label follows a word.
+ * The word a part's top heading opens with in each language, followed only by
+ * the part's label with no colon and no extra title: `Bagian a`, `Part a`,
+ * `Bahagian a`, or `Teil a`.
  */
 const PART_WORDS = {
   de: "Teil",
@@ -36,10 +35,10 @@ const PART_WORDS = {
   ms: "Bahagian",
 } satisfies Record<AppLocaleCode, string>;
 
-/** The label of a part heading in one language: `Teil a: Die Ableitung` names `a`. */
+/** The label of a part heading in one language: `Teil a` names `a`. */
 function partHeading(language: AppLocaleCode) {
   return new RegExp(
-    `^${PART_WORDS[language]} (?<label>[a-z0-9]+(?:\\.[a-z0-9]+)*): \\S`,
+    `^${PART_WORDS[language]} (?<label>[a-z0-9]+(?:\\.[a-z0-9]+)*)$`,
     "u"
   );
 }
@@ -75,8 +74,8 @@ export function questionFolder(file: string): Option.Option<string> {
 
 /**
  * Reads what each top heading of one worked answer names: the part label it
- * opens with in the answer's language, such as `a` for `Teil a: Die
- * Ableitung`, or its whole text when it opens with none.
+ * carries in the answer's language, such as `a` for `Teil a`, or its whole text
+ * when it carries none (including any colon or extra title).
  */
 export const topHeadings = Effect.fn("AksaraPolicy.topHeadings")(function* (
   file: string,
@@ -147,9 +146,9 @@ const folderFindings = Effect.fn("AksaraPolicy.folderFindings")(function* (
 /**
  * Holds every worked answer of each item with parts that this change touches,
  * through the item or an answer, to one top heading per part in the parts'
- * order, each opening with the word for a part in the answer's language, the
- * part's label, a colon, and the concept, such as `# Teil a: Die Ableitung`.
- * Steps inside a part use lower headings.
+ * order, written strictly as the localized part word and its label with no
+ * colon and no extra title, such as `# Bagian a`, `# Part a`, `# Bahagian a`,
+ * or `# Teil a`. The four standard sections sit as `##` inside each part.
  */
 export const partReport = Effect.fn("AksaraPolicy.partReport")(function* (
   files: readonly string[],
@@ -169,7 +168,7 @@ export const partReport = Effect.fn("AksaraPolicy.partReport")(function* (
   }
   for (const { expected, file, found } of findings) {
     yield* Effect.logError(
-      `${file}: an item with parts opens one top heading per part, in order, each opening with the word for a part, its label, a colon and the concept, such as "# Teil a: ..." or "# Part a: ..."; expected ${Arr.join(expected, ", ")}, found ${Arr.isReadonlyArrayNonEmpty(found) ? Arr.join(found, ", ") : "none"}`
+      `${file}: an item with parts opens one top heading per part, in order, with no colon and no extra title, such as "# Bagian a", "# Part a", "# Bahagian a", or "# Teil a"; expected ${Arr.join(expected, ", ")}, found ${Arr.isReadonlyArrayNonEmpty(found) ? Arr.join(found, ", ") : "none"}`
     );
   }
   return yield* new ExplanationPartError({ findings });

@@ -1,12 +1,19 @@
 # Voice and scope
 
+- **Priority #1 is genuine understanding in a warm 1-to-1 teacher voice.**
+  Never sacrifice clarity, warmth, or natural phrasing to satisfy a brittle
+  word ban. Speak to one reader in `id`, `en`, `ms`, and `de` the way a great
+  teacher sits next to one student: personal, direct, and exact, giving
+  plain-language intuition before symbols and keeping every reasoning step,
+  condition, and check intact.
 - Nakafa never writes formally, in any locale or on any surface. Lessons,
   worked answers, articles, metadata descriptions, labels, and program, route,
   page, and Quran shell copy all speak to one reader the way a good teacher
   talks to one learner: personal, warm, direct, and exact. The only exception
   is an assessed question: its prompt keeps the exam's source-owned language
   and must not be rewritten into Nakafa's voice. Its worked answer is Nakafa's
-  voice again.
+  voice again. Articles (`packages/corpus/articles/`) stay copywriter-owned
+  evidence-led prose and are excluded from pedagogical lesson rewrites.
 - Write like a teacher guiding one learner, not like a formal textbook,
   government letter, marketing page, or internal content note.
 - Casual is not cringe. No slang overload, forced jokes, invented anecdotes,

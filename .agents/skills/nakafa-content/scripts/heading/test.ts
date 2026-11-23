@@ -16,9 +16,13 @@ export function corpusPage(
     readonly locale?: LessonVoiceLocale;
   } = {}
 ): CorpusPage {
-  const source = headings
-    .map((heading) => `${heading}\n\nOne paragraph teaches this part.`)
-    .join("\n\n");
+  const kind = options.kind ?? "lesson";
+  const sections = headings.map(
+    (heading) => `${heading}\n\nOne paragraph teaches this part.`
+  );
+  const source = (
+    kind === "lesson" ? [...sections, `> ${title} holds.`] : sections
+  ).join("\n\n");
   const tree = parseLessonMdx(source);
   return {
     file,

@@ -62,11 +62,7 @@ it("finds known ambiguous claims and operational calques", () => {
   );
   assert.deepEqual(
     findLessonVoiceIssues("id", samples.id).map(({ rule }) => rule),
-    [
-      "indonesian-bare-modal-adjective",
-      "unexplained-output-scheduling",
-      "vague-benefit-risk-reference",
-    ]
+    ["unexplained-output-scheduling", "vague-benefit-risk-reference"]
   );
 });
 it("finds a proven vague antecedent across a paragraph line", () => {
@@ -94,7 +90,7 @@ it("rejects unqualified energy density and fuel storage claims", () => {
   );
   assert.deepEqual(
     findLessonVoiceIssues("id", samples.id).map(({ rule }) => rule),
-    ["indonesian-bare-modal-adjective", "unqualified-fuel-storage-claim"]
+    ["unqualified-fuel-storage-claim"]
   );
 
   assert.deepEqual(

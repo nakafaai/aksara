@@ -10,6 +10,7 @@ import {
   Schema,
 } from "effect";
 
+import { answerStandardsReport } from "#scripts/check/answers";
 import { trackedFiles } from "#scripts/check/files";
 import { partReport } from "#scripts/check/parts";
 import { changedFiles } from "#scripts/check/visuals";
@@ -156,7 +157,8 @@ export const explanationReport = Effect.fn("AksaraPolicy.explanationReport")(
 
 /**
  * The gate's check: every answer this change touches, measured from `ref`,
- * meets its kind, and every answer of an item with parts names its parts.
+ * meets its kind, names its parts when its item has parts, and meets the
+ * try-out answer heading, blockquote, inline-math, and readability standards.
  */
 export const checkExplanations = Effect.fn("AksaraPolicy.checkExplanations")(
   function* (ref: string) {
@@ -164,7 +166,8 @@ export const checkExplanations = Effect.fn("AksaraPolicy.checkExplanations")(
     const changed = yield* changedFiles(ref);
     const kinds = yield* explanationKinds();
     yield* explanationReport(files, changed, kinds);
-    return yield* partReport(files, changed);
+    yield* partReport(files, changed);
+    return yield* answerStandardsReport(files, changed);
   }
 );
 

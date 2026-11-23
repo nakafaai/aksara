@@ -37,18 +37,31 @@ source, never in the lesson.
   Indonesian keyword phrase into German or English; research what German and
   English learners call the concept.
 
-## Answering the question
+## People-First SEO and AEO (Google Search Central)
 
-- The opening section answers the lesson's main question directly (see the
-  [lesson standard](lesson.md)). Answer engines and featured snippets can quote
-  such a passage, although the search engine decides what it shows.
-- A heading names the question a section answers as a short phrase, such as
-  `Rotasi Titik Seperempat Putaran` for the question how a point turns through
-  90 degrees. The full question, with its digits and punctuation, belongs in
-  the first sentence below, as [headings](headings.md) requires.
-- Worked examples, mistakes, and practice answer the follow-up questions
-  learners search for, where they teach something specific to the topic.
-  Complete reasoning earns trust from both learners and search engines.
+Nakafa follows Google Search Central's People-First and E-E-A-T principles:
+content exists to build genuine student mastery, and clear pedagogy is what
+search and answer engines trust.
+
+- **Core answer in the first 100 words:** The opening section answers the
+  lesson's main question directly within its first 100 words (what the concept
+  is, the key rule or formula with its conditions, and what the interactive
+  visual lets the learner observe). Answer engines and featured snippets can
+  quote such a passage directly.
+- **Complete sub-question coverage (Query Fan-Out):** Anticipate and answer the
+  real follow-up questions learners ask next (conditions where a formula holds
+  or breaks, step-by-step worked examples, common mistakes, and verification
+  checks) inside the sections where they naturally belong.
+- **Full mobile and desktop parity:** Never hide core explanations, formulas,
+  or takeaways behind desktop-only interactions. Keep paragraphs scannable on
+  phones (target <= 60 words, hard cap 85) and move full equations into
+  `<BlockMath />` so mobile and desktop learners receive identical depth.
+- **Zero clickbait, filler, or keyword stuffing:** Never write sensational
+  promises, introductory fluff, hidden text, keyword lists, or artificial
+  keyword repetition. A heading names the concept plainly in the words that
+  locale's learners search (`Rotasi Titik Seperempat Putaran`), with the full
+  question and digits in the first sentence below, as [headings](headings.md)
+  requires.
 
 ## Links and duplication
 

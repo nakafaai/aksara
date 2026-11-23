@@ -54,6 +54,13 @@ function textNode(text: string, marks: readonly Mark[]): InlineNode {
     : { text, type: "text" };
 }
 
+/** Builds one inline math node with its marks, leaving out an empty mark set. */
+function mathInlineNode(latex: string, marks: readonly Mark[]): InlineNode {
+  return Arr.isReadonlyArrayNonEmpty(marks)
+    ? { attrs: { latex }, marks, type: "mathInline" }
+    : { attrs: { latex }, type: "mathInline" };
+}
+
 /** Reads the LaTeX of one math component, which must be a formula. */
 function latexOf(element: ContentTreeElement) {
   const { math } = element.props;
@@ -133,7 +140,7 @@ function inlineChild(
   }
   if (child.name === "InlineMath") {
     return Effect.map(latexOf(child), (latex) => [
-      { attrs: { latex }, type: "mathInline" },
+      mathInlineNode(latex, marks),
     ]);
   }
   if (child.name === "br") {

@@ -16,7 +16,7 @@ import { runGit } from "#scripts/git";
 
 const ROOT = "packages/corpus/material/lesson/math/geometry";
 
-/** A lesson page with a title and headings, each with one paragraph. */
+/** A lesson page with a title and headings, each with one paragraph and a core blockquote. */
 function page(title: string, headings: readonly string[]): string {
   return Arr.join(
     [
@@ -25,6 +25,7 @@ function page(title: string, headings: readonly string[]): string {
         headings,
         (heading) => `${heading}\n\nSatu paragraf mengajar bagian ini.`
       ),
+      `> Aturan ${title} selalu berlaku.`,
     ],
     "\n\n"
   );

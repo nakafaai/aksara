@@ -19,23 +19,63 @@ Each explanation must let the learner answer four questions:
 Do not optimize for fewer lines. Optimize for a complete reasoning path with
 low visual and verbal noise.
 
+## Mandatory four-heading structure for try-out answers
+
+Every try-out worked explanation (`answer.<locale>.mdx`) uses a clean, predictable
+four-heading structure with **zero colons (`:`) or punctuation symbols** in any
+heading. On `nakafa.com`, the question number sits at `<h2>`, so MDX `#` (H1)
+renders directly below it as `<h3>`.
+
+| Locale | 1. Given      | 2. Asked       | 3. Solution      | 4. Answer   | Multi-part prefix |
+| ------ | ------------- | -------------- | ---------------- | ----------- | ----------------- |
+| `id`   | `# Diketahui` | `# Ditanyakan` | `# Penyelesaian` | `# Jawaban` | `# Bagian a`      |
+| `en`   | `# Given`     | `# Asked`      | `# Solution`     | `# Answer`  | `# Part a`        |
+| `ms`   | `# Diberi`    | `# Ditanya`    | `# Penyelesaian` | `# Jawapan` | `# Bahagian a`    |
+| `de`   | `# Gegeben`   | `# Gesucht`    | `# Lösung`       | `# Antwort` | `# Teil a`        |
+
+- **Single-question try-out items:** Use the four standard `#` headings in exact
+  order. Optional `##` sub-headings are permitted **only** inside `# Penyelesaian`
+  (`# Solution` / `# Lösung`) when a multi-stage calculation genuinely benefits
+  from named sub-steps. Do not add `###` headings in a single-question answer.
+- **Multi-part try-out items (`kind: "parts"`):** Open each part with `# Bagian a`
+  (`# Part a`, `# Bahagian a`, `# Teil a`) in part order, with **no colon (`:`)
+  and no extra title**. Place the four standard headings as `##` inside each part
+  (`## Diketahui`, `## Ditanyakan`, `## Penyelesaian`, `## Jawaban`). Optional
+  `###` sub-headings are permitted **only** inside `## Penyelesaian` when
+  sub-steps are genuinely needed.
+- **Required core blockquote (`>= 1`):** Every try-out explanation must contain
+  at least one blockquote (`> ...`) stating the key concept, intuition, or
+  warning the learner should retain. Go straight to the point with **no prefix
+  label and no colon** (never `Ingat bahwa:`, `Catatan:`, `Tips:`, `Key concept:`,
+  `Note:`, `Merke:`, `Nota:`).
+- **Clean math and mobile readability:** Keep `<InlineMath />` strictly for
+  single variables, numbers, short symbols, units, coordinates, or brief
+  conditions (`x \neq 0`). Move equations, inequalities, complex fractions,
+  multi-term expressions, and every algebraic transformation step into
+  `<BlockMath />`. Keep each prose paragraph crisp for phone screens (target
+  <= 60 words, hard cap 85 words) without cutting reasoning depth.
+- **Natural highlighter emphasis:** Highlight key concepts, deciding conditions,
+  and turning points inside `# Diketahui` and `# Penyelesaian` (wrapping
+  `<InlineMath />` inside `**...**` or `<Highlight>` is fully supported). Do not
+  force unnatural highlights into short one-line `# Ditanyakan` or `# Jawaban`
+  sections.
+
 ## Required shape
 
-### Orient the learner
+### Given (`Diketahui` / `Given` / `Diberi` / `Gegeben`)
 
-Briefly identify the target and the decisive givens. Do not paste the entire
+Identify the decisive givens, constraints, and units. Do not paste the entire
 question unless that is necessary for the explanation to stand alone.
 
-### Choose the method
+### Asked (`Ditanyakan` / `Asked` / `Ditanya` / `Gesucht`)
 
-Name the method, theorem, representation, or case structure and explain why it
-fits. A routine one-operation item may need only one short sentence. Geometry,
-probability, modeling, and multi-stage algebra usually need more context.
+State clearly what quantity, proof, or conclusion the question asks for.
 
-### Work the solution
+### Solution (`Penyelesaian` / `Solution` / `Penyelesaian` / `Lösung`)
 
-Show every logically meaningful step. A student must be able to reproduce the
-path without inventing a missing transformation.
+Give plain-language intuition before symbols, name the method or theorem and why
+it applies, then show every logically meaningful step so a student can reproduce
+the path without inventing a missing transformation.
 
 Always retain:
 
@@ -45,22 +85,18 @@ Always retain:
 - probability cases, rejected cases, and sample-space assumptions;
 - domain restrictions, sign changes, boundary conditions, and units;
 - non-obvious arithmetic or algebra;
-- the reason a visual fact is valid.
+- the reason a visual fact is valid;
+- verification of the result (substituting back, checking units, rejecting
+  extraneous roots, or checking probability bounds);
+- misconception-based dissection of tempting distractors.
 
 Routine arithmetic may share one connected derivation. Grouping steps does not
 mean deleting them.
 
-### Check or interpret
+### Answer (`Jawaban` / `Answer` / `Jawapan` / `Antwort`)
 
-Verify the result when a check is informative. Examples include substituting a
-solution back, checking that a probability lies between zero and one,
-confirming a unit, rejecting an extraneous root, or connecting a numerical
-value to the quantity asked for.
-
-### Conclude
-
-State the result in the terms and units of the question. Do not reference an
-option letter.
+State the final result in the terms and units of the question. Do not reference
+an option letter alone.
 
 ## Lesson versus answer explanation
 
@@ -79,8 +115,11 @@ to a sibling H2 to satisfy the depth limit. Introduce a new problem or subgoal
 with a complete sentence that identifies the relevant givens or operation.
 Retain the derivations, checks, tables, and diagrams that support the reasoning.
 Use emphasis for a decisive phrase inside that prose, not a substitute heading.
-Standalone question-bank answers have a different renderer boundary and follow
-the H1/H2 contract of explanations in [headings](headings.md).
+Standalone question-bank answers follow the mandatory four-heading contract above
+and in [headings](headings.md): `#` for single-question answers (optional `##`
+under `# Penyelesaian`), and `# Bagian a` (`# Part a`, `# Bahagian a`, `# Teil a`)
+with `##` for the four standard sections and optional `###` under
+`## Penyelesaian` for multi-part items.
 
 ## Mapping exercises to answers
 

@@ -167,11 +167,16 @@ contains. Its structural parts are enforced here:
 - Never reach these rules by renaming. A change that only relabels the headings
   of a page that failed them keeps the repeated structure and text, and
   `heading-only-change` flags it for review. Restructure and rewrite instead.
-- Keep paragraphs concise and readable on small phones: target about 70 words;
-  paragraphs above 85 words trigger a `wall-of-text` review signal and
-  paragraphs above 120 words block (`wall-of-text`). A dense paragraph usually
-  hides a derivation, comparison, or process that a math block, table, diagram,
-  or interactive visual would show better.
+- Keep paragraphs concise and readable on small phones without cutting depth:
+  target <= 60 words; paragraphs above 60 words trigger a `wall-of-text` review
+  signal and paragraphs above 85 words block (`wall-of-text`) on both lessons
+  and try-out worked answers. A dense paragraph usually hides a derivation,
+  comparison, or process that a `<BlockMath />`, table, blockquote, diagram, or
+  interactive visual would show better.
+- Include at least one core blockquote (`> ...`) in every lesson and try-out
+  worked answer holding a decisive concept, intuition, or warning, stated
+  directly without any prefix label or colon (`missing-blockquote`,
+  `blockquote-editorial-label`).
 - Do not nest lists in lessons. Turn a nested list into a sequence of short
   paragraphs, a table, or separate steps with their own explanation.
 - Wherever a mistake or a practice problem teaches something specific, give it
