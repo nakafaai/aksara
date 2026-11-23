@@ -13,10 +13,10 @@ const BLOCKQUOTE_VOICE_RULES = [
   {
     id: "blockquote-editorial-label",
     patterns: {
-      de: /^\s*(?:Kurzer Check|Kurze Kontrolle|Kurz geprüft|Schnellcheck)\s*:/iu,
-      en: /^\s*(?:Quick check|Quick test|Checkpoint)\s*:/iu,
-      id: /^\s*(?:Cek cepat|Periksa cepat|Pemeriksaan cepat)\s*:/iu,
-      ms: /^\s*(?:Semakan pantas|Semak pantas|Semakan cepat|Semak cepat)\s*:/iu,
+      de: /^\s*(?:Kurzer Check|Kurze Kontrolle|Kurz geprüft|Schnellcheck|Merke(?: dir)?|Merkregel|Merksatz|Wichtiger Hinweis|Hinweis|Wichtig|Achtung|Vorsicht|Warnung|Tipps?|Kernidee|Kernkonzept|Schlüsselkonzept|Kurzfassung|Zusammenfassung|Fazit|Notiz)\s*:/iu,
+      en: /^\s*(?:Quick check|Quick test|Checkpoint|Key concept|Key idea|Key point|Key takeaway|Key rule|Core idea|Core concept|Important note|Note|Remember(?: that)?|Keep in mind|Pro tip|Quick tip|Tips?|Warning|Caution|Watch out|Important|Summary|Takeaway|Bottom line)\s*:/iu,
+      id: /^\s*(?:Cek cepat|Periksa cepat|Pemeriksaan cepat|Ingat(?: bahwa)?|Perlu diingat|Konsep kunci|Konsep penting|Ide kunci|Ide utama|Catatan penting|Catatan|Tips?|Kiat|Ringkasan|Rangkuman|Inti(?:nya)?|Perhatian|Peringatan|Waspada|Penting|Fakta penting|Kunci)\s*:/iu,
+      ms: /^\s*(?:Semakan pantas|Semak pantas|Semakan cepat|Semak cepat|Ingat(?: bahawa)?|Perlu diingat|Konsep kunci|Konsep utama|Konsep penting|Idea utama|Idea kunci|Nota penting|Nota|Catatan|Tips?|Petua|Ringkasan|Rumusan|Inti(?:nya)?|Perhatian|Amaran|Penting|Kunci)\s*:/iu,
     },
   },
 ] satisfies readonly LessonVoiceRule[];

@@ -63,14 +63,6 @@ export const VAGUE_VOICE_RULES = [
     },
   },
   {
-    id: "vague-equation-truth",
-    patterns: {
-      en: /\bmakes? the equation true\b/iu,
-      id: /\bmembuat persamaan [^.!?\n]{0,60}\bbenar\b/iu,
-      ms: /\b(?:membuat|menjadikan) persamaan [^.!?\n]{0,60}\bbenar\b/iu,
-    },
-  },
-  {
     id: "vague-formula-gives-those",
     patterns: {
       en: /\bgives? those values\b/iu,

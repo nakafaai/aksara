@@ -6,7 +6,9 @@ import { findLengthFindings } from "#nakafa-content/heading/length";
 import type { OutlineHeading } from "#nakafa-content/heading/outline";
 import { findTitleFindings } from "#nakafa-content/heading/title";
 import { findWidthFindings } from "#nakafa-content/heading/width";
+import { findBloatedInlineMathFindings } from "#nakafa-content/math/bloated";
 import type { MdxNode } from "#nakafa-content/mdx/parse";
+import { findBlockquoteFindings } from "#nakafa-content/prose/blockquote";
 import { findCohesionFindings } from "#nakafa-content/prose/cohesion";
 import { findDescriptionFindings } from "#nakafa-content/prose/description";
 import type { LessonVoiceLocale } from "#nakafa-content/voice/types";
@@ -55,7 +57,11 @@ export function findPageFindings(page: OutlinePage): HeadingFinding[] {
     ...findWidthFindings(page.headings),
     ...(page.kind === "lesson" ? findLengthFindings(page.tree) : []),
     ...(page.kind === "lesson"
-      ? findCohesionFindings(page.locale, page.tree)
+      ? [
+          ...findCohesionFindings(page.locale, page.tree),
+          ...findBlockquoteFindings(page.tree),
+          ...findBloatedInlineMathFindings(page.tree),
+        ]
       : []),
   ];
 }

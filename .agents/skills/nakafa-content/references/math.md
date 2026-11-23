@@ -18,10 +18,22 @@ strings with their own [math syntax](questions.md#response-items).
   equations such as `x = 2` never stand outside math. The
   [voice gate](verification.md#lesson-voice-gate) reports each one as
   `plain-math-text`.
-- Use `<InlineMath />` for mathematical expressions, variables, quantities,
-  units, coordinates, and calculated values in prose. Keep instructional
-  ordinals and references such as `Step 1`, `Example 2`, and `equation (3)` as
-  ordinary text. Mathematical indices and calculated positions remain math.
+- **Keep a clean separation between `<InlineMath />` and `<BlockMath />`.**
+  - Use `<InlineMath />` strictly for single variables (`x`, `v_0`), numbers and
+    constants (`2`, `3{,}14`, `25\%`), short symbols or notations (`f(x)`,
+    `\Delta H`, `\mathrm{H_2O}`), short units (`5\text{ cm}`, `9{,}8\text{ m/s}^2`),
+    small coordinates (`(2, -3)`), simple standalone fractions (`\frac{1}{2}`),
+    or brief inline conditions (`x \neq 0`, `x \ge 1`, `0 < x < 1`).
+  - Use `<BlockMath />` for equations, inequalities, complex or nested
+    fractions, multi-term expressions, chemical reaction equations, and every
+    algebraic transformation or calculation step. Keeping full formulas and
+    derivations in `<BlockMath />` keeps prose paragraphs airy and readable on
+    both phones and desktops (`bloated-inline-math` enforces this on changed
+    lessons and try-out answers; table cells and visual props stay exempt since
+    they cannot host `<BlockMath />`).
+  - Keep instructional ordinals and references such as `Step 1`, `Example 2`,
+    and `equation (3)` as ordinary text. Mathematical indices and calculated
+    positions remain math.
 - Every number a learner reads as a quantity is math, never plain digits
   beside rendered math (owner, 13 November 2026): a count, a measurement, an
   amount, a percentage, a value, a duration, and an ordinal index such as
@@ -66,12 +78,11 @@ strings with their own [math syntax](questions.md#response-items).
   notation as their descriptions and labels. Exempt code, code
   comments, URLs, immutable quotations, and string-only schema fields. Never
   insert JSX or LaTeX into a programming-language comment.
-- Use `<BlockMath />` for standalone formulas.
-- Move tall matrices, cases, long or nested fractions, or derivations out of
-  prose when they disrupt reading. Fitting the width alone does not prove good
-  line flow. Refer to an already displayed matrix instead of expanding it again
-  in a summary. Keep short expressions inline; decide from context, not length.
-  Response options keep math inline under the question-bank contract.
+- Use `<BlockMath />` for all standalone equations, inequalities, complex
+  fractions, multi-term expressions, matrices, cases, and every step of a
+  derivation or calculation. Refer to an already displayed equation or matrix
+  instead of expanding it again inside prose. Response options keep math inline
+  under the question-bank contract.
 - Compose displayed derivations around complete mathematical steps. Keep short
   equations whole. If a line must continue, align it with the side it belongs
   to and preserve the grouping of sums, products, and conditions. Do not leave

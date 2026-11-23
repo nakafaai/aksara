@@ -47,42 +47,47 @@ describe("questionFolder", () => {
 });
 
 describe("topHeadings", () => {
-  it.effect("reads the part label of each top heading, or its whole text", () =>
-    Effect.gen(function* () {
-      expect(
-        yield* topHeadings(
-          "answer.de.mdx",
-          "# Teil a: Ableitung\n\n## Schritt\n\nWeil.\n\n# Teil 1.2: Grenzwert\n\n# Teil b:\n\n# Part c: Monotonie\n\n# Lösung\n"
-        )
-      ).toEqual(["a", "1.2", "Teil b:", "Part c: Monotonie", "Lösung"]);
-      expect(
-        yield* topHeadings(
-          "answer.ms.mdx",
-          "# Bahagian a: Terbitan\n\n# Bagian b: Turunan\n"
-        )
-      ).toEqual(["a", "Bagian b: Turunan"]);
-      expect(
-        yield* topHeadings("answer.xx.mdx", "# Part a: Derivative\n")
-      ).toEqual(["Part a: Derivative"]);
-      expect(
-        yield* Effect.flip(topHeadings("answer.de.mdx", "<Broken title="))
-      ).toMatchObject({ _tag: "PageParseError", file: "answer.de.mdx" });
-    })
+  it.effect(
+    "reads the clean part label of each top heading, or its whole text",
+    () =>
+      Effect.gen(function* () {
+        expect(
+          yield* topHeadings(
+            "answer.de.mdx",
+            "# Teil a\n\n## Gegeben\n\nWeil.\n\n# Teil 1.2\n\n# Teil b: Ableitung\n\n# Part c\n\n# Lösung\n"
+          )
+        ).toEqual(["a", "1.2", "Teil b: Ableitung", "Part c", "Lösung"]);
+        expect(
+          yield* topHeadings("answer.ms.mdx", "# Bahagian a\n\n# Bagian b\n")
+        ).toEqual(["a", "Bagian b"]);
+        expect(
+          yield* topHeadings(
+            "answer.id.mdx",
+            "# Bagian a\n\n# Bagian b: Salah\n"
+          )
+        ).toEqual(["a", "Bagian b: Salah"]);
+        expect(yield* topHeadings("answer.xx.mdx", "# Part a\n")).toEqual([
+          "Part a",
+        ]);
+        expect(
+          yield* Effect.flip(topHeadings("answer.de.mdx", "<Broken title="))
+        ).toMatchObject({ _tag: "PageParseError", file: "answer.de.mdx" });
+      })
   );
 });
 
 describe("partReport", () => {
   it.effect(
-    "holds each answer of a changed item with parts to one top heading per part",
+    "holds each answer of a changed item with parts to one clean top heading per part",
     () =>
       Effect.gen(function* () {
         const root = yield* makeRepository();
         const files = {
           [`${FSP}/question-1/item.ts`]: partsItem(["a", "b"]),
           [`${FSP}/question-1/answer.de.mdx`]:
-            "# Teil a: Ableitung\n\n## Schritt\n\nWeil.\n\n# Teil b: Monotonie\n\nWeil.\n",
+            "# Teil a\n\n## Gegeben\n\nWeil.\n\n# Teil b\n\nWeil.\n",
           [`${FSP}/question-1/answer.en.mdx`]:
-            "# Part a: Derivative\n\nBecause.\n\n# Monotony\n\nBecause.\n",
+            "# Part a\n\nBecause.\n\n# Part b: Monotony\n\nBecause.\n",
           [`${FSP}/question-2/item.ts`]: partsItem(["1"]),
           [`${FSP}/question-2/answer.de.mdx`]: "Weil.\n",
           [`${FSP}/question-3/item.ts`]: itemModule(
@@ -109,7 +114,7 @@ describe("partReport", () => {
             {
               expected: ["a", "b"],
               file: `${FSP}/question-1/answer.en.mdx`,
-              found: ["a", "Monotony"],
+              found: ["a", "Part b: Monotony"],
             },
             {
               expected: ["1"],

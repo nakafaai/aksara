@@ -23,8 +23,32 @@ const PHYSICS = "packages/corpus/question-bank/tryout/malaysia/spm/physics";
 const READING =
   "packages/corpus/question-bank/tryout/indonesia/snbt/literacy-in-english";
 
-const CHART =
-  '# Read the graph\n\n<Chart title="Speed" description="Speed over time." categories={["0", "1"]} series={[{ label: "v", mark: "line", values: [0, 2] }]} />\n';
+const CHART = Arr.join(
+  [
+    "# Given",
+    "",
+    'The object starts at rest with speed <InlineMath math="0" />.',
+    "",
+    "# Asked",
+    "",
+    "Read the speed at one second.",
+    "",
+    "# Solution",
+    "",
+    "Trace the line on the speed chart below.",
+    "",
+    '<Chart title="Speed" description="Speed over time." categories={["0", "1"]} series={[{ label: "v", mark: "line", values: [0, 2] }]} />',
+    "",
+    "At one second the line reaches two.",
+    "",
+    "> The height of a speed graph gives the speed directly at that moment.",
+    "",
+    "# Answer",
+    "",
+    'The speed is <InlineMath math="2" />.',
+  ],
+  "\n"
+);
 const TEXT_ONLY = '# Work it out\n\nThe speed is <InlineMath math="2" />.\n';
 const TABLE =
   "# Compare\n\n| Option | Verdict |\n| --- | --- |\n| A | wrong |\n";

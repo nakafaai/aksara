@@ -11,6 +11,13 @@ import type { LessonVoiceIssue } from "#nakafa-content/voice/types";
 const STRUCTURAL_MARKER =
   /^(?:Soal|Jawaban|Pembahasan|Problem|Question|Answer|Solution|Aufgabe|Antwort|Lösung|Langkah|Step|Schritt|Contoh|Example|Beispiel)\s+\d+$/iu;
 
+/**
+ * Short single-purpose try-out headings whose concise one-line body should not
+ * be forced into unnatural highlighting.
+ */
+const BRIEF_ANSWER_HEADING =
+  /^(?:Ditanyakan|Jawaban|Asked|Answer|Ditanya|Jawapan|Gesucht|Antwort)$/iu;
+
 /** Observable section features that require a contextual teaching decision. */
 export interface TeachingSectionReview {
   components: string[];
@@ -190,6 +197,7 @@ export function findBodyHighlightIssues(
     .filter(
       ({ heading, signals }) =>
         (includeOpening || heading.length > 0) &&
+        !(includeOpening && BRIEF_ANSWER_HEADING.test(heading)) &&
         signals.includes("unmarked-body")
     )
     .map(({ heading, line }) => ({

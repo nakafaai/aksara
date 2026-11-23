@@ -107,8 +107,10 @@ export type TextNode = typeof TextNodeSchema.Type;
 /** Inline math. The attribute is the LaTeX source, never MathML. */
 export const MathInlineNodeSchema = Schema.Struct({
   attrs: Schema.Struct({ latex: LatexSchema }),
+  marks: Schema.optionalKey(MarkSetSchema),
   type: Schema.Literal("mathInline"),
 });
+export type MathInlineNode = typeof MathInlineNodeSchema.Type;
 
 /** A forced line break inside one paragraph. */
 export const HardBreakNodeSchema = Schema.Struct({

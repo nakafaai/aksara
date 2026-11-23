@@ -22,39 +22,16 @@ it("rejects known decorative lesson headings and preserves direct headings", () 
     assert.deepEqual(findLessonVoiceIssues(locale, directHeadings[locale]), []);
   }
 });
-it("rejects mathematical family calques but preserves literal family prose", () => {
-  const failures = [
-    "Integral tak tentu memuat keluarga antiturunan.",
-    "Untuk memperoleh satu anggota keluarga, pilih nilai a sama dengan satu.",
-    "Bandingkan dua senyawa sekeluarga.",
-  ];
-
-  for (const source of failures) {
-    assert.deepEqual(
-      findLessonVoiceIssues("id", source).map(({ rule }) => rule),
-      ["indonesian-mathematical-family-calque"]
-    );
-  }
-
+it("allows standard mathematical family terminology in Indonesian and Malay", () => {
   assert.deepEqual(
     findLessonVoiceIssues(
       "id",
-      "Sebuah keluarga yang terdiri dari enam anggota akan duduk berjajar untuk foto keluarga."
+      "Integral tak tentu memuat keluarga antiturunan."
     ),
     []
   );
   assert.deepEqual(
-    findLessonVoiceIssues(
-      "id",
-      "Gen TP53 termasuk dalam kelompok gen penekan tumor."
-    ),
-    []
-  );
-  assert.deepEqual(
-    findLessonVoiceIssues(
-      "id",
-      "> Integral tak tentu memuat keluarga antiturunan.\n> Genom virus mengambil alih kerja sel inang."
-    ),
+    findLessonVoiceIssues("ms", "Kamiran ini memberi keluarga antiterbitan."),
     []
   );
 });
@@ -191,18 +168,16 @@ it("rejects a journey metaphor for integration limits", () => {
   );
 });
 
-it("rejects corrective decoration metaphors with inserted qualifiers", () => {
+it("allows natural teacher phrasing about notation not being mere decoration", () => {
   const samples = {
     de: "Die Adjungierte ist also keine bloße Schreibweise.",
     en: "The adjoint is therefore not decorative notation.",
     id: "Adjoint bukan sekadar notasi kosong.",
+    ms: "Unit itu bukan sekadar hiasan.",
   };
 
   for (const [locale, source] of Object.entries(samples)) {
-    assert.deepEqual(
-      findLessonVoiceIssues(locale, source).map(({ rule }) => rule),
-      ["corrective-decoration-metaphor"]
-    );
+    assert.deepEqual(findLessonVoiceIssues(locale, source), []);
   }
 });
 
@@ -224,7 +199,6 @@ it("rejects a picture metaphor used in place of the calculation", () => {
 it("holds Malaysian Malay prose to the same rules", () => {
   const samples = {
     "chemical-formula-personification": "membawa dua kali jisim oksigen.",
-    "corrective-decoration-metaphor": "Unit itu bukan sekadar hiasan.",
     "decorative-integration-journey":
       "Kamiran membalikkan perjalanan itu melalui pengumpulan.",
     "decorative-picture-to-calculation":
@@ -234,8 +208,6 @@ it("holds Malaysian Malay prose to the same rules", () => {
     "formulaic-bridge-metaphor": "Kadar ialah jambatan antara jarak dan masa.",
     "formulaic-building-block-metaphor": "Atom ialah blok binaan jirim.",
     "formulaic-compass-metaphor": "Gunakan tanda sebagai kompas.",
-    "indonesian-mathematical-family-calque":
-      "Kamiran ini memberi keluarga antiterbitan.",
     "known-decorative-science-heading":
       "## Kad Pengenalan Atom\n\nSetiap atom mempunyai nombor proton.",
     "redirected-cell-machinery-metaphor":

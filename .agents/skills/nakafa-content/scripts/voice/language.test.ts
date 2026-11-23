@@ -90,28 +90,15 @@ it("rejects serampangan and preserves a concrete warning", () => {
     []
   );
 });
-it("rejects stiff interpretation instructions but preserves technical context", () => {
-  const failures = [
-    "Tafsirkan solusi dalam konteks masalah.",
-    "Interpretasikan solusi dalam konteks masalah.",
+it("allows standard Indonesian interpretation vocabulary in math and science", () => {
+  for (const source of [
+    "Tafsirkan gradien dalam konteks masalah.",
+    "Interpretasikan hasil pengukuran ini.",
     "## Interpretasi Hasil",
-    "| Nilai | Interpretasi |",
-  ];
-
-  for (const source of failures) {
-    assert.deepEqual(
-      findLessonVoiceIssues("id", source).map(({ rule }) => rule),
-      ["indonesian-stiff-interpret-instruction"]
-    );
+    "Suhu reaksi dapat tinggi saat tekanan naik.",
+  ]) {
+    assert.deepEqual(findLessonVoiceIssues("id", source), []);
   }
-
-  assert.deepEqual(
-    findLessonVoiceIssues(
-      "id",
-      "Interpreter Python menjalankan kode. Penafsiran Rutherford diperiksa melalui eksperimen lain. Jelaskan arti solusi dalam masalah awal."
-    ),
-    []
-  );
 });
 it("preserves familiar English programming terms in Indonesian prose", () => {
   const source = [
@@ -206,7 +193,6 @@ it("holds Malaysian Malay prose to the same rules", () => {
     "empty-important-term-label": "Istilah **isotop** penting.",
     "indonesian-ambiguous-calculation-reference": "Semak pengiraannya.",
     "indonesian-attached-dimana": "Rumah dimana dia tinggal.",
-    "indonesian-bare-modal-adjective": "Suhu itu boleh tinggi.",
     "indonesian-bare-visibility-adverb": "Gas itu bergerak tanpa kelihatan.",
     "indonesian-causative-modal": "Jadual ini membuat kita boleh mengira.",
     "indonesian-formal-filler": "Pada asasnya, kadar ialah nisbah.",
@@ -214,8 +200,6 @@ it("holds Malaysian Malay prose to the same rules", () => {
     "indonesian-nonstandard-apapun": "Pilih nilai apapun.",
     "indonesian-nonstandard-compound": "Murid seringkali lupa tanda.",
     "indonesian-relative-di-mana": "Kira luas, di mana panjangnya 5 cm.",
-    "indonesian-stiff-interpret-instruction":
-      "Interpretasikan nilai kecerunan.",
     "indonesian-stiff-serampangan": "Jangan pilih nilai sembarangan.",
     "indonesian-unnamed-effect-purpose-reference":
       "Kesannya boleh dirasai pada harga.",

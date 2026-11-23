@@ -209,14 +209,14 @@ describe("findCohesionFindings", () => {
     assert.deepStrictEqual(cohesion(quoted, "id"), []);
   });
 
-  it("flags walls of text at > 85 words (review) and > 120 words (blocking)", () => {
+  it("flags walls of text at > 60 words (review) and > 85 words (blocking)", () => {
+    const sixtyFive = Array.from({ length: 65 }, () => "word").join(" ");
     const ninety = Array.from({ length: 90 }, () => "word").join(" ");
-    const oneThirty = Array.from({ length: 130 }, () => "word").join(" ");
 
-    assert.deepStrictEqual(cohesion(`## Idea\n\n${ninety}.`), [
+    assert.deepStrictEqual(cohesion(`## Idea\n\n${sixtyFive}.`), [
       "wall-of-text review 3",
     ]);
-    assert.deepStrictEqual(cohesion(`## Idea\n\n${oneThirty}.`), [
+    assert.deepStrictEqual(cohesion(`## Idea\n\n${ninety}.`), [
       "wall-of-text block 3",
     ]);
   });

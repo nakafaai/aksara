@@ -27,9 +27,23 @@ export function text(value: string, ...marks: readonly string[]) {
       };
 }
 
-/** Builds one inline math node. */
-export function math(latex: string) {
-  return { attrs: { latex }, type: "mathInline" };
+/** Builds one inline math node, with optional marks in the order given. */
+export function math(latex: string, ...marks: readonly string[]) {
+  return marks.length === 0
+    ? { attrs: { latex }, type: "mathInline" }
+    : {
+        attrs: { latex },
+        marks: Arr.map(marks, (type) => {
+          if (type === "link") {
+            return { attrs: { href: "https://nakafa.com" }, type };
+          }
+          if (type === "highlight") {
+            return { attrs: { variant: null }, type };
+          }
+          return { type };
+        }),
+        type: "mathInline",
+      };
 }
 
 /** Builds one paragraph of inline nodes. */

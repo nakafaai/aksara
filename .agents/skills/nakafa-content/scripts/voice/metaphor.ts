@@ -12,13 +12,6 @@ export const METAPHOR_VOICE_RULES = [
     },
   },
   {
-    id: "indonesian-mathematical-family-calque",
-    patterns: {
-      id: /\b(?:keluarga (?:antiturunan|fungsi|polinomial|sudut koterminal)|anggota keluarga,?\s+(?:pilih|ambil|tentukan)|senyawa sekeluarga)\b/iu,
-      ms: /\b(?:keluarga (?:antiterbitan|fungsi|polinomial|sudut koterminal)|ahli keluarga,?\s+(?:pilih|ambil|tentukan)|sebatian sekeluarga)\b/iu,
-    },
-  },
-  {
     id: "redirected-cell-machinery-metaphor",
     patterns: {
       de: /(?:\b(?:lenkt|lenken)\b[^.!?\n]{0,45}\bMaschinerie\b[^.!?\n]{0,20}\bum\b|(?<![\p{L}\p{N}_])übernimmt\b[^.!?\n]{0,45}\bZellmaschinerie\b)/iu,
@@ -88,15 +81,6 @@ export const METAPHOR_VOICE_RULES = [
       en: /\breversing a journey\b[^.!?\n]{0,160}\baccumulat(?:ed|ion)\b/iu,
       id: /\b(?:membalik perjalanan|perjalanan pulang)\b[^.!?\n]{0,160}\bakumulasi(?:nya)?\b/iu,
       ms: /\b(?:membalikkan perjalanan|perjalanan pulang)\b[^.!?\n]{0,160}\bpengumpulan(?:nya)?\b/iu,
-    },
-  },
-  {
-    id: "corrective-decoration-metaphor",
-    patterns: {
-      de: /\b(?:ist|sind|war|waren)\b[^.!?\n]{0,60}\bkein(?:e|en|er|es)?\s+(?:bloße[rsnm]?\s+)?(?:Dekoration|Formalität|Schmuck|Schreibweise|Zusatz)\b/iu,
-      en: /\b(?:is|are|was|were)\b[^.!?\n]{0,30}\b(?:not|no)\s+(?:merely\s+|just\s+)?(?:a\s+|an\s+)?(?:decoration|decorations|decorative(?:\s+notation)?|formality|ornament|ornaments)\b/iu,
-      id: /\b(?:bukan|tidak sekadar)\s+(?:sekadar\s+)?(?:hiasan|dekorasi|formalitas|notasi kosong)(?:\s+visual)?\b/iu,
-      ms: /\b(?:bukan|tidak sekadar)\s+(?:sekadar\s+)?(?:hiasan|dekorasi|formaliti|notasi kosong)(?:\s+visual)?\b/iu,
     },
   },
   {

@@ -5,16 +5,16 @@ import { findLessonVoiceIssues } from "#nakafa-content/voice/scan";
 it("finds known vague and artificial wording with exact locations", () => {
   const source = [
     "Kalimat pembuka.",
-    "Syarat bukan hiasan setelah rumus.",
+    "Contoh ini memberi gambaran awal tentang kurva.",
     "Model ini membuat hubungan lebih nyata.",
   ].join("\n");
 
   assert.deepEqual(findLessonVoiceIssues("id", source), [
     {
-      column: 8,
-      excerpt: "Syarat bukan hiasan setelah rumus.",
+      column: 12,
+      excerpt: "Contoh ini memberi gambaran awal tentang kurva.",
       line: 2,
-      rule: "corrective-decoration-metaphor",
+      rule: "vague-picture-claim",
     },
     {
       column: 11,
@@ -33,11 +33,11 @@ it("finds known vague and artificial wording with exact locations", () => {
 
 it("finds proven prose across soft wraps and learner-visible props", () => {
   const source = [
-    "Syarat bukan",
-    "hiasan setelah rumus.",
+    "Contoh ini memberi",
+    "gambaran awal tentang kurva.",
     "",
     '<Callout description="Model ini membuat hubungan lebih nyata." />',
-    '<CodeBlock code="Syarat bukan hiasan setelah rumus." />',
+    '<CodeBlock code="Contoh ini memberi gambaran awal tentang kurva." />',
   ].join("\n");
 
   assert.deepEqual(
@@ -46,7 +46,7 @@ it("finds proven prose across soft wraps and learner-visible props", () => {
       rule,
     })),
     [
-      { line: 1, rule: "corrective-decoration-metaphor" },
+      { line: 1, rule: "vague-picture-claim" },
       { line: 4, rule: "vague-concretizing-claim" },
       { line: 4, rule: "vague-model-fidelity" },
     ]
@@ -76,30 +76,16 @@ it("rejects vague picture claims but accepts a concrete impression warning", () 
   );
 });
 
-it("rejects an equation truth without an operational check", () => {
+it("allows natural math teacher wording about values that make an equation true", () => {
   const samples = {
     en: "A root is any value of x that makes the equation true.",
-    id: "Akar adalah setiap nilai x yang membuat persamaan tersebut benar.",
+    id: "Akar adalah setiap nilai x yang membuat persamaan ini benar.",
+    ms: "Punca ialah nilai x yang menjadikan persamaan itu benar.",
   };
 
   for (const [locale, source] of Object.entries(samples)) {
-    assert.deepEqual(
-      findLessonVoiceIssues(locale, source).map(({ rule }) => rule),
-      ["vague-equation-truth"]
-    );
+    assert.deepEqual(findLessonVoiceIssues(locale, source), []);
   }
-
-  assert.deepEqual(
-    findLessonVoiceIssues(
-      "id",
-      "Kalau kamu masukkan ke persamaan, ruas kiri dan ruas kanannya sama."
-    ),
-    []
-  );
-  assert.deepEqual(
-    findLessonVoiceIssues("en", "Plug it in and both sides match."),
-    []
-  );
 });
 
 it("rejects a formula that only gives those values", () => {
@@ -135,7 +121,6 @@ it("holds Malaysian Malay prose to the same rules", () => {
   const samples = {
     "vague-concrete-transition": "Kita terangkan secara lebih konkrit.",
     "vague-concretizing-claim": "Contoh ini menjadikan idea itu lebih konkrit.",
-    "vague-equation-truth": "Nilai ini menjadikan persamaan itu benar.",
     "vague-formula-gives-those": "Rumus ini memberikan nilai-nilai itu.",
     "vague-model-fidelity": "Model kedua lebih realistik.",
     "vague-observation-claim": "Ulangan menjadikan pemerhatian lebih jelas.",

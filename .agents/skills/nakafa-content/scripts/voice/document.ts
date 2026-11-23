@@ -98,7 +98,8 @@ export function findDocumentIssues(
       source,
       tree,
       profile === "answer" ? 1 : 2,
-      profile === "answer" ? undefined : locale
+      profile === "answer" ? undefined : locale,
+      3
     ),
     ...(profile === "answer"
       ? []

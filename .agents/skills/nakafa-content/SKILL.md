@@ -84,6 +84,16 @@ Read only what the task needs. Each reference owns one concern.
 
 ## Content invariants
 
+- **Priority #1 is pedagogical depth and genuine student understanding.** Never
+  write shallow summaries or shortcut explanations. Speak like a warm,
+  knowledgeable teacher guiding one learner one-on-one in `id`, `en`, `ms`, and
+  `de`: give plain-language intuition before symbols or formulas, preserve every
+  reasoning step, state applicability conditions, verify the final result, and
+  dissect distractors on try-out items.
+- **People-First SEO and AEO (Google Search Central).** Answer the core question
+  within the first 100 words, cover the learner's natural follow-up questions
+  (Query Fan-Out), keep full parity between mobile and desktop content, and
+  never add clickbait, filler, or keyword stuffing.
 - Keep `appLocale` separate from assessed `deliveryLanguage`. Localize authored
   shell and explanations; preserve assessed prompts and responses in their
   owned language. Never Humanizer-rewrite protected quotations, code,
@@ -93,20 +103,46 @@ Read only what the task needs. Each reference owns one concern.
   examples, exercises, solutions, checks, lists, tables, diagrams, math, code,
   and components. Correct shared weaknesses in every affected sibling. Natural
   grammar and inline-math wrappers may differ; teaching support may not.
-- Write a complete explanation a teacher could say to the intended learner.
-  Name objects, actions, conditions, and results. Preserve technical meaning and
-  necessary reasoning. Follow the locale's voice and terminology rules without
-  imposing one lesson template or inventing anecdotes, settings, or metaphors.
-- Never write formally, in any locale or on any surface: Nakafa speaks to one
-  reader like a teacher to one learner, casual but never cringe, and the
-  [voice reference](references/voice.md) owns each locale's address. Only an
-  assessed prompt keeps the exam's own language.
 - Keep genre boundaries explicit. Lessons use teacher-led pedagogy. Articles
-  use plain, warm, evidence-led prose, preserve claim-matched sources and
-  author-written charts, tables, and other evidence, and never receive lesson
-  choreography. Assessed questions keep the source-owned real-exam language and
-  difficulty. Worked answers use complete post-attempt pedagogy without
-  rewriting the assessed prompt.
+  (`packages/corpus/articles/`) are copywriter-authored, evidence-led prose and
+  are excluded from pedagogical lesson rewrites: preserve claim-matched sources
+  and author-written charts, tables, and other evidence. Assessed questions keep
+  the source-owned real-exam language and difficulty. Worked try-out answers use
+  complete post-attempt pedagogy with the mandatory four-heading structure
+  without rewriting the assessed prompt.
+- **Highlighter emphasis (`**...**` / `<Highlight>`).** Use emphasis like a
+  student's highlighter for key concepts, deciding conditions, important rules,
+  and turning points so pages feel alive and scannable rather than flat (avoid
+  leaving a long page with only one or two highlights). Wrapping
+  `<InlineMath />` inside a highlighted phrase is fully supported end-to-end
+  (`mathInline.marks`). Do not force artificial highlights on concise one-line
+  try-out sections such as `# Ditanyakan` or `# Jawaban`. The
+  [emphasis contract](references/emphasis.md) owns the rules.
+- **Required core blockquote (`>= 1`).** Every lesson and every worked try-out
+  answer includes at least one blockquote (`> ...`) holding a core concept,
+  intuition, or warning a learner must remember. State the point directly with
+  zero prefix labels and zero colons (never `Ingat bahwa:`, `Konsep kunci:`,
+  `Catatan:`, `Tips:`, `Cek cepat:`, `Key concept:`, `Note:`, `Remember:`,
+  `Merke:`, `Hinweis:`, or `Nota:`).
+- **Clean separation of `<InlineMath />` and `<BlockMath />`.** Keep
+  `<InlineMath />` strictly for single variables, numbers, short symbols or
+  notations, brief units, small coordinates, or short inline conditions such as
+  `x \neq 0`. Equations, inequalities, complex fractions, multi-term
+  expressions, and every algebraic transformation or calculation step belong in
+  `<BlockMath />` so paragraphs stay breathable on phones and desktops
+  ([mathematics and code](references/math.md)).
+- **Mandatory four-heading try-out answer structure and zero heading symbols.**
+  Every try-out worked answer uses the four standard headings in exact order:
+  single-question answers at `#` (`Diketahui`, `Ditanyakan`, `Penyelesaian`,
+  `Jawaban` in `id`; `Given`, `Asked`, `Solution`, `Answer` in `en`; `Diberi`,
+  `Ditanya`, `Penyelesaian`, `Jawapan` in `ms`; `Gegeben`, `Gesucht`, `Lösung`,
+  `Antwort` in `de`) with optional `##` sub-steps only inside the solution;
+  multi-part answers (`kind: "parts"`) open each part with `# Bagian a`
+  (`# Part a`, `# Bahagian a`, `# Teil a`) with no colon and no extra title,
+  place the four standard headings at `##` inside each part, and allow `###`
+  sub-steps only inside `## Penyelesaian`. All headings across lessons and
+  try-out answers carry zero colons (`:`) or punctuation symbols
+  ([worked solutions](references/solutions.md), [headings](references/headings.md)).
 - Keep facts and source attribution verified. Preserve claim-matched provenance
   when changing the page outline or removing a resource. A learner-visible
   external resource must satisfy the [link policy](references/links.md).
@@ -119,23 +155,21 @@ Read only what the task needs. Each reference owns one concern.
   [question-bank contract](references/questions.md#response-items). Worked
   answers retain the complete post-attempt reasoning described in
   [worked solutions](references/solutions.md).
-- Mark an emphasised phrase, and no more of it than the phrase. `**` and
-  `<Highlight>` render the same treatment, so the [emphasis
-contract](references/emphasis.md) owns where they belong and how dense they
-  may be.
-- Every lesson meets the [lesson standard](references/lesson.md): the answer
-  first, a teacher talking to one learner, one continuous crystal-clear story
-  with plain-language intuition before symbols or jargon, zero phantom
-  references, tight text-to-visual anchoring (lead-in question before each
-  visual and concrete takeaway interpretation right after it), at least three
-  unique custom 3D scenes or animations owned by this lesson alone (zero
-  cross-lesson reuse and zero within-lesson filler repetition, aiming for five,
-  never fewer than before a revision), an authored `footer` on every visual
-  card (D3), complete worked examples, mistakes and practice only where the
-  topic needs them (never a template tail), a non-flat outline with zero lone
-  H3 subsections (no exemption for solution headings), clean comma-and-period
-  search metadata with no curriculum or chapter prefixes, and a mandatory
-  four-locale (`en`, `id`, `ms`, `de`) clarity trace (D29).
+- Every lesson meets the [lesson standard](references/lesson.md) and Rules 16 to
+  20: the answer first, a warm teacher talking to one learner, one continuous
+  crystal-clear story with plain-language intuition before symbols or jargon,
+  zero phantom references, tight text-to-visual anchoring (lead-in question
+  before each visual and concrete takeaway interpretation right after it), at
+  least one core blockquote, at least three unique custom 3D scenes or
+  animations owned by this lesson alone (zero cross-lesson reuse and zero
+  within-lesson filler repetition, aiming for five, never fewer than before a
+  revision), an authored `footer` on every visual card (D3), complete worked
+  examples, mistakes and practice only where the topic needs them (never a
+  template tail), a non-flat outline (`>= 4` H2 sections grouped with 2 to 4 H3
+  subsections and zero lone H3), globally unique headings per locale, clean
+  comma-and-period `metadata.description` with no curriculum or chapter
+  prefixes, zero em dashes (U+2014), and a mandatory four-locale (`en`, `id`,
+  `ms`, `de`) clarity trace (D29).
 - Every plotted coordinate is computed in the source from the formula it
   draws, and a smooth function renders smooth. Illustrations use only Nakafa's
   three.js foundation or p5, never SVG, HTML drawings, canvas code, or images.

@@ -16,9 +16,9 @@ import { maskBalancedQuotations } from "#nakafa-content/voice/text";
 import type { LessonVoiceLocale } from "#nakafa-content/voice/types";
 
 /** Paragraphs above this visible word count ask for a readability review. */
-export const REVIEW_PARAGRAPH_WORDS = 85;
+export const REVIEW_PARAGRAPH_WORDS = 60;
 /** Paragraphs above this visible word count block as walls of text. */
-export const BLOCK_PARAGRAPH_WORDS = 120;
+export const BLOCK_PARAGRAPH_WORDS = 85;
 
 const WORD_PATTERN = /[\p{L}\p{N}]+/gu;
 const VISUAL_TEXT_PROPS = HashSet.make("description", "footer", "title");
@@ -180,7 +180,7 @@ function findProseCohesionFindings(
  * - No dangling colons followed by another plain paragraph.
  * - No axis-scaling workaround hacks in prose or visual text.
  * - No stiff textbook connectors (`tersebut`, `merupakan`, `yakni`, `adapun`, etc.).
- * - No dense walls of text (> 85 words review, > 120 words blocking).
+ * - No dense walls of text (> 60 words review, > 85 words blocking).
  */
 export function findCohesionFindings(
   locale: LessonVoiceLocale,

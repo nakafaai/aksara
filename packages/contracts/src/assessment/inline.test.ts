@@ -77,6 +77,41 @@ describe("text marks", () => {
       expect(failsStrict(InlineContentSchema, nodes)).toBe(false);
     }
   });
+  it("keeps marks on inline math in the same canonical order and allows unmarked math", () => {
+    expect(failsStrict(InlineContentSchema, [math("x")])).toBe(false);
+    expect(failsStrict(InlineContentSchema, [math("x", "bold")])).toBe(false);
+    expect(
+      failsStrict(InlineContentSchema, [math("x", "bold", "highlight", "link")])
+    ).toBe(false);
+    expect(
+      failsStrict(RichTextSchema, [
+        text("koefisien di depan ", "bold"),
+        math("x", "bold"),
+      ])
+    ).toBe(false);
+    expect(
+      failsStrict(InlineContentSchema, [
+        {
+          attrs: { latex: "x^2" },
+          marks: [{ attrs: { variant: "success" }, type: "highlight" }],
+          type: "mathInline",
+        },
+      ])
+    ).toBe(false);
+    for (const marks of [
+      [],
+      [{ type: "italic" }, { type: "bold" }],
+      [{ type: "bold" }, { type: "bold" }],
+      [{ attrs: { variant: "danger" }, type: "highlight" }],
+      [{ type: "strike" }],
+    ]) {
+      expect(
+        failsStrict(InlineContentSchema, [
+          { attrs: { latex: "x" }, marks, type: "mathInline" },
+        ])
+      ).toBe(true);
+    }
+  });
 });
 
 describe("rich text", () => {

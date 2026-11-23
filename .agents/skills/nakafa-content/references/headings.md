@@ -15,13 +15,25 @@
   Numbered question identifiers such as `**Soal 1**.` belong at the start of
   the answer prose so the learner can match questions and answers. Follow the
   [worked-solution mapping](solutions.md#mapping-exercises-to-answers).
-- A standalone question-bank answer renders beneath an app-owned `###` heading.
-  Its sections start at `#` and may use `##` for real nested analysis, because the explanation is a document of its own.
-  This exception belongs only to question-bank answers, never lesson solutions.
+- A standalone question-bank answer renders beneath an app-owned `<h2>`
+  question number, so MDX `#` renders as `<h3>`. Single-question answers use
+  the four standard `#` headings in exact order (`Diketahui` -> `Ditanyakan` ->
+  `Penyelesaian` -> `Jawaban` in `id`; `Given` -> `Asked` -> `Solution` ->
+  `Answer` in `en`; `Diberi` -> `Ditanya` -> `Penyelesaian` -> `Jawapan` in
+  `ms`; `Gegeben` -> `Gesucht` -> `Lösung` -> `Antwort` in `de`), with
+  optional `##` sub-steps only inside the solution. Multi-part answers
+  (`kind: "parts"`) open each part with `# Bagian a` (`# Part a`,
+  `# Bahagian a`, `# Teil a`) with no colon and no extra title, place the four
+  standard headings at `##` inside each part, and allow optional `###`
+  sub-steps only inside `## Penyelesaian`. This hierarchy belongs only to
+  question-bank answers, never lesson solutions.
 - Leave one blank line after headings.
-- Page titles and body headings use one short phrase containing letters and
-  ordinary spaces. Put formulas, code tokens, aliases, digits, operators,
-  punctuation, emojis, and full questions in the first sentence below instead.
+- Page titles and ALL body headings (both lessons and try-out answers) use one
+  short, natural phrase containing letters and ordinary spaces with zero
+  colons (`:`) or punctuation symbols (the only exception for digits/dots is
+  the part label inside `# Bagian 1.2` on multi-part answers). Put formulas,
+  code tokens, aliases, digits, operators, punctuation, emojis, and full
+  questions in the first sentence below instead.
   A hyphen required by standard word formation remains valid: the Indonesian
   reduplication in `rata-rata` or `jari-jari`, and the German or English
   compound that joins one letter to a word, such as `y-Achse` or `x-axis`.

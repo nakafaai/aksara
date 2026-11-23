@@ -34,7 +34,7 @@ it("runs clean description and cohesion rules on lessons and descriptions on art
     "",
     "## Glikolisis",
     "",
-    "Tahap tersebut memecah glukosa.",
+    'Tahap tersebut memecah glukosa memakai <InlineMath math="2x^2 + 5x - 3 = 0" />.',
   ].join("\n");
   const tree = parseLessonMdx(source);
   const lessonFindings = findPageFindings({
@@ -48,6 +48,8 @@ it("runs clean description and cohesion rules on lessons and descriptions on art
   assert.include(lessonFindings, "metadata-description-prefix");
   assert.include(lessonFindings, "metadata-description-punctuation");
   assert.include(lessonFindings, "stiff-formal-prose");
+  assert.include(lessonFindings, "missing-blockquote");
+  assert.include(lessonFindings, "bloated-inline-math");
 
   const articleFindings = findPageFindings({
     headings: outlineHeadings(source, tree),
@@ -59,6 +61,8 @@ it("runs clean description and cohesion rules on lessons and descriptions on art
   assert.include(articleFindings, "metadata-description-prefix");
   assert.include(articleFindings, "metadata-description-punctuation");
   assert.notInclude(articleFindings, "stiff-formal-prose");
+  assert.notInclude(articleFindings, "missing-blockquote");
+  assert.notInclude(articleFindings, "bloated-inline-math");
 });
 
 it("holds an article to the description, title, scaffold, and width rules only", () => {

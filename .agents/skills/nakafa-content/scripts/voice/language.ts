@@ -58,13 +58,6 @@ export const LANGUAGE_VOICE_RULES = [
     },
   },
   {
-    id: "indonesian-stiff-interpret-instruction",
-    patterns: {
-      id: /(?:\b(?:tafsirkan|interpretasikan|menginterpretasi(?:kan)?)\b|^\s*(?:#{2,5}\s+|\*{2})(?:interpretasi|tafsiran)(?:\s+hasil)?\b|\|\s*(?:interpretasi|tafsiran)(?:\s+hasil)?\s*\|)/iu,
-      ms: /(?:\b(?:interpretasikan|menginterpretasi(?:kan)?)\b|^\s*(?:#{2,5}\s+|\*{2})(?:interpretasi|tafsiran)(?:\s+hasil)?\b|\|\s*(?:interpretasi|tafsiran)(?:\s+hasil)?\s*\|)/iu,
-    },
-  },
-  {
     id: "indonesian-bare-visibility-adverb",
     patterns: {
       id: /\btanpa\s+(?:terlihat|tampak)(?=\s*(?:[,.;:]|$)|\s+(?:dan|lalu|sehingga|tetapi)\b)/iu,
@@ -90,13 +83,6 @@ export const LANGUAGE_VOICE_RULES = [
     patterns: {
       id: /\b(?:Istilah|Kata)\s+(?:"[^"\n]+"|\*\*[^*\n]+\*\*|[\p{L}-]+)\s+penting(?:[.!?]|$)/iu,
       ms: /\b(?:Istilah|Perkataan|Kata)\s+(?:"[^"\n]+"|\*\*[^*\n]+\*\*|[\p{L}-]+)\s+penting(?:[.!?]|$)/iu,
-    },
-  },
-  {
-    id: "indonesian-bare-modal-adjective",
-    patterns: {
-      id: /\bdapat\s+(?:tinggi|rendah|mudah|sulit)\b/iu,
-      ms: /\bboleh\s+(?:tinggi|rendah|mudah|sukar)\b/iu,
     },
   },
   {

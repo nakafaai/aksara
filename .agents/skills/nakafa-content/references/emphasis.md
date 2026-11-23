@@ -14,21 +14,28 @@ Prefer native Markdown `**phrase**` for ordinary authored prose. Use
 Both syntaxes share the same styling and inherit the surrounding font weight:
 the marker surface provides the emphasis without making the text heavier.
 
-- Mark the phrase, not the sentence. Emphasis stays inside one sentence and
-  never wraps a whole sentence or a heading. Do not mark pure mathematical
-  notation; a meaningful prose phrase may include inline math. Name the one term,
-  condition, or quantity a learner would write down: a few load-bearing words
-  beat a highlighted sentence. A mark that spans a whole sentence is a smell;
-  narrow it to the decisive clause, and split a genuine pair such as two
-  contrasted invariants into two marks. A tight enumeration whose every word
-  carries criterion content may stay whole.
-- Keep emphasis sparse. A section that marks everything marks nothing, so mark
-  the few phrases a learner would write down.
+- Treat emphasis like a student's highlighter for everything worth remembering:
+  key concepts, deciding conditions, important rules, and calculation turning
+  points. A long page with only one or two highlights feels flat and lifeless;
+  mark enough decisive phrases across each section so a student scanning the
+  page can immediately see the backbone of the explanation, without turning
+  whole paragraphs yellow.
+- Mark the phrase, not the whole sentence. Emphasis stays inside one sentence
+  and never wraps a whole sentence or a heading. Wrapping `<InlineMath />`
+  inside a highlighted prose phrase, such as
+  `**koefisien di depan <InlineMath math="x" />**` or
+  `<Highlight>nilai <InlineMath math="x" /></Highlight>`, is fully supported
+  end-to-end across lessons and assessment documents (`mathInline.marks`), so
+  the highlight pill flows smoothly across text and math without breaking. Do
+  not highlight bare standalone mathematical notation with no surrounding
+  phrase. Name the term, condition, or quantity a learner would underline in
+  their notebook.
 - Review the marked phrases as a student's revision notes. Mark enough key
   terms, deciding conditions, and method changes to recover the reasoning when
-  scanning the page, including worked tryout answers. Do not substitute one
-  highlighted sentence for useful marks throughout a substantial explanation,
-  and do not add a quota of marks to every paragraph.
+  scanning the page, including worked try-out answers. Do not force unnatural
+  highlights into concise one-line try-out sections such as `# Ditanyakan` or
+  `# Jawaban` (`# Asked` / `# Answer`, `# Ditanya` / `# Jawapan`, `# Gesucht` /
+  `# Antwort`) when plain prose and math read more naturally.
 - Do not nest one marker inside the other. Both markers render the same
   surface, so nesting adds nothing for the learner. The gate traverses the
   authored tree and reports it (`highlight-nesting`). The
@@ -44,14 +51,18 @@ review](review.md#final-language-review).
   least one phrase (`lesson-opening-highlight`). Worked answers mark decisive
   conditions without copying a sibling's phrase. Article emphasis is optional
   and follows the scientific argument rather than a document-wide quota.
-- In lessons and worked answers, mark an important phrase inside every heading body, not only the opening.
-  Choose the deciding term, condition, operation, or interpretation in that
-  section. A marked title, diagram label, or earlier section does not signal
-  the current explanation. A short bridge also names the important relationship it introduces. The
-  `section-body-highlight` rule checks each lesson and worked-answer heading body independently, down
-  to nested answer sections. Exact quotations, code, and pure notation remain
-  untouched. Choose the phrase in context instead of highlighting the first
-  sentence mechanically.
+- In lessons and worked answers, mark an important phrase inside every teaching
+  heading body, not only the opening. Choose the deciding term, condition,
+  operation, or interpretation in that section. A marked title, diagram label,
+  or earlier section does not signal the current explanation. A short bridge
+  also names the important relationship it introduces. The
+  `section-body-highlight` rule checks each lesson section and worked-answer
+  teaching section (`# Diketahui`, `# Penyelesaian`, etc.) independently, while
+  exempting concise one-line try-out sections (`# Ditanyakan`, `# Jawaban`,
+  `# Asked`, `# Answer`, `# Ditanya`, `# Jawapan`, `# Gesucht`, `# Antwort`) so
+  authors never add forced highlights there. Exact quotations, code, and pure
+  notation remain untouched. Choose the phrase in context instead of
+  highlighting the first sentence mechanically.
 - Use the same judgment for both syntaxes. Do not enforce a component-only
   quota or switch to `**` to evade a limit. A comparison table can mark several
   distinct criteria, while a short paragraph may need only one phrase. Check
