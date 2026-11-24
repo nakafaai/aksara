@@ -1,26 +1,41 @@
-# Das Dreieck <InlineMath math="ABS" /> ist gleichseitig
+# Gegeben
 
-<InlineMath math="S" /> liegt auf dem Bogen um <InlineMath math="A" />, also ist <InlineMath math="\overline{AS}=6" />. Ebenso liegt <InlineMath math="S" /> auf dem Bogen um <InlineMath math="B" />, also ist <InlineMath math="\overline{BS}=6" />. Zusammen mit <InlineMath math="\overline{AB}=6" /> ist das Dreieck <InlineMath math="ABS" /> **gleichseitig**.
+Das Quadrat <InlineMath math="ABCD" /> hat die **Seitenlänge <InlineMath math="6\text{ cm}" />**.
 
-# Die Höhe über <InlineMath math="\overline{AB}" />
+Zwei Kreisbögen mit dem Radius <InlineMath math="6\text{ cm}" /> um <InlineMath math="A" /> und um <InlineMath math="B" /> schneiden sich im Inneren des Quadrats im Punkt <InlineMath math="S" />.
 
-Die Höhe eines gleichseitigen Dreiecks mit der Seite <InlineMath math="6" /> halbiert die Grundseite. Nach Pythagoras gilt:
+# Gesucht
 
-<BlockMath math="h=\sqrt{6^2-3^2}=\sqrt{27}=3\sqrt3" />
+Wie weit ist <InlineMath math="S" /> von der oberen Seite <InlineMath math="\overline{CD}" /> entfernt?
 
-<InlineMath math="S" /> liegt also **<InlineMath math="3\sqrt3" /> über der Seite <InlineMath math="\overline{AB}" />**.
+# Lösung
+
+Stell dir vor, du stichst mit dem Zirkel in <InlineMath math="A" /> ein, stellst ihn genau auf die Quadratseite <InlineMath math="6\text{ cm}" /> ein und wiederholst das in <InlineMath math="B" />. Der Schnittpunkt <InlineMath math="S" /> liegt damit **genau <InlineMath math="6\text{ cm}" /> von <InlineMath math="A" /> und von <InlineMath math="B" /> entfernt** und bildet ein gleichseitiges Dreieck über der Grundseite.
+
+> Zwei Bögen mit der Quadratseite als Radius erzeugen ein gleichseitiges Dreieck über der Grundseite, sodass der Abstand zur Gegenseite gleich Seitenlänge minus Dreieckshöhe ist.
+
+## Gleichseitiges Dreieck erkennen und Höhe berechnen
+
+Weil <InlineMath math="S" /> auf beiden Bögen vom Radius <InlineMath math="6\text{ cm}" /> liegt, gilt <InlineMath math="\overline{AS} = 6" /> und <InlineMath math="\overline{BS} = 6" />. Zusammen mit <InlineMath math="\overline{AB} = 6" /> ist **das Dreieck <InlineMath math="ABS" /> gleichseitig**.
+
+Die Höhe von <InlineMath math="S" /> fällt senkrecht auf die Mitte von <InlineMath math="\overline{AB}" /> und halbiert die Basis in zwei Abschnitte der Länge <InlineMath math="3\text{ cm}" />. Mit dem Satz des Pythagoras folgt:
+
+<BlockMath math="h = \sqrt{6^2 - 3^2} = \sqrt{36 - 9} = \sqrt{27} = 3\sqrt{3}" />
+
+Damit liegt <InlineMath math="S" /> genau <InlineMath math="3\sqrt{3}\text{ cm}" /> oberhalb von <InlineMath math="\overline{AB}" />.
 
 <MathVisual
-  title={<>Der Schnittpunkt der Bögen</>}
-  description={<>Das Quadrat <InlineMath math="ABCD" /> mit der Seite <InlineMath math="6" />. Die Bögen um <InlineMath math="A" /> und um <InlineMath math="B" /> schneiden sich in <InlineMath math="S" />. Das Dreieck <InlineMath math="ABS" /> ist gleichseitig mit der Höhe <InlineMath math="3\sqrt3" />. Von <InlineMath math="S" /> bis zur oberen Seite <InlineMath math="\overline{CD}" /> bleibt das kurze Stück <InlineMath math="6-3\sqrt3" />.</>}
+  title={<>Schnittpunkt der beiden Kreisbögen</>}
+  description={<>Im Quadrat <InlineMath math="ABCD" /> der Seitenlänge <InlineMath math="6" /> schneiden sich zwei Bögen vom Radius <InlineMath math="6" /> um <InlineMath math="A" /> und <InlineMath math="B" /> in <InlineMath math="S" />. Das gleichseitige Dreieck <InlineMath math="ABS" /> hat die Höhe <InlineMath math="3\sqrt{3}" />, sodass bis zur oberen Seite <InlineMath math="\overline{CD}" /> nur das kurze Stück <InlineMath math="6 - 3\sqrt{3}" /> bleibt.</>}
+  footer={<>Die Dreieckshöhe <InlineMath math="3\sqrt{3}\text{ cm}" /> lässt bis zur Oberkante nur <InlineMath math="(6 - 3\sqrt{3})\text{ cm}" /> übrig.</>}
   labels={{
     a: <><InlineMath math="A" /></>,
     b: <><InlineMath math="B" /></>,
     c: <><InlineMath math="C" /></>,
     d: <><InlineMath math="D" /></>,
     s: <><InlineMath math="S" /></>,
-    gap: <><InlineMath math="6-3\sqrt3" /></>,
-    h: <><InlineMath math="3\sqrt3" /></>,
+    gap: <><InlineMath math="6 - 3\sqrt{3}" /></>,
+    h: <><InlineMath math="3\sqrt{3}" /></>,
   }}
   scene={{
     space: "plane",
@@ -55,18 +70,28 @@ Die Höhe eines gleichseitigen Dreiecks mit der Seite <InlineMath math="6" /> ha
   }}
 />
 
-# Der Abstand zur gegenüberliegenden Seite
+Man sieht unmittelbar, wie dicht <InlineMath math="S" /> unter der oberen Kante <InlineMath math="\overline{CD}" /> sitzt.
 
-Die Seite <InlineMath math="\overline{CD}" /> liegt <InlineMath math="6" /> über <InlineMath math="\overline{AB}" />. Gesucht ist **der Rest bis dorthin**:
+## Die Höhe von der Quadratseite abziehen
 
-<BlockMath math="6-3\sqrt3\approx6-5{,}196=0{,}804" />
+Da <InlineMath math="\overline{CD}" /> genau <InlineMath math="6\text{ cm}" /> über <InlineMath math="\overline{AB}" /> liegt, beträgt **der Restabstand zur Gegenseite**:
 
-<InlineMath math="S" /> ist <InlineMath math="(6-3\sqrt3)\text{ cm}" /> von <InlineMath math="\overline{CD}" /> entfernt.
+<BlockMath math="d = 6 - 3\sqrt{3} \approx 6 - 5{,}196 = 0{,}804\text{ cm}" />
 
-# Warum die anderen Antworten falsch sind
+Ein schmaler Spalt von knapp unter <InlineMath math="1\text{ cm}" /> passt genau zur Figur.
 
-- <InlineMath math="3\sqrt3\text{ cm}" /> ist **der Abstand zur falschen Seite**, nämlich zu <InlineMath math="\overline{AB}" /> statt zu <InlineMath math="\overline{CD}" />.
-- <InlineMath math="3\text{ cm}" /> ist der Abstand von <InlineMath math="S" /> zu den Seiten <InlineMath math="\overline{AD}" /> und <InlineMath math="\overline{BC}" />.
-- <InlineMath math="(6-3\sqrt2)\text{ cm}" /> verwendet die halbe Diagonale des Quadrats, <InlineMath math="3\sqrt2" />, als Höhe.
-- <InlineMath math="(3\sqrt3-3)\text{ cm}" /> zieht die halbe Seitenlänge ab statt die Höhe von der ganzen Seite.
-- <InlineMath math="(6-2\sqrt3)\text{ cm}" /> verwechselt die Höhe <InlineMath math="3\sqrt3" /> mit dem Abstand <InlineMath math="2\sqrt3" /> vom Schwerpunkt des Dreiecks <InlineMath math="ABS" /> zu seiner Ecke <InlineMath math="S" />.
+## Falsche Antworten prüfen
+
+Die falschen Antworten messen **den Abstand zur falschen Seite oder verwechseln Wurzeln**:
+
+| Auswahl | Warum falsch |
+| --- | --- |
+| <InlineMath math="3\sqrt{3}\text{ cm}" /> | Ist der Abstand zur unteren Seite <InlineMath math="\overline{AB}" />, nicht zu <InlineMath math="\overline{CD}" />. |
+| <InlineMath math="3\text{ cm}" /> | Ist der Abstand von <InlineMath math="S" /> zu den Seiten <InlineMath math="\overline{AD}" /> und <InlineMath math="\overline{BC}" />. |
+| <InlineMath math="(6 - 3\sqrt{2})\text{ cm}" /> | Nutzt die halbe Quadratdiagonale <InlineMath math="3\sqrt{2}" /> statt der Dreieckshöhe. |
+| <InlineMath math="(3\sqrt{3} - 3)\text{ cm}" /> | Zieht die halbe Seite <InlineMath math="3" /> ab, statt die Höhe von der ganzen Seite <InlineMath math="6" /> abzuziehen. |
+| <InlineMath math="(6 - 2\sqrt{3})\text{ cm}" /> | Verwechselt die Höhe <InlineMath math="3\sqrt{3}" /> mit dem Schwerpunktabstand <InlineMath math="2\sqrt{3}" />. |
+
+# Antwort
+
+Der Punkt <InlineMath math="S" /> ist **<InlineMath math="(6 - 3\sqrt{3})\text{ cm}" />** von <InlineMath math="\overline{CD}" /> entfernt.

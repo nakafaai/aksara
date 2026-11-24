@@ -1,31 +1,56 @@
-# An equation in whole numbers
+# Given
 
-Call the number of tickets at <InlineMath math="7" /> euros <InlineMath math="a" /> and at <InlineMath math="11" /> euros <InlineMath math="b" />. Both are **whole numbers from <InlineMath math="0" /> up**, and
+A cinema sells two kinds of admission tickets (*Eintrittskarten*):
 
-<BlockMath math="7a+11b=200" />
+- Cheaper tickets at <InlineMath math="7\text{ €}" /> (quantity <InlineMath math="a" />).
+- Pricier tickets at <InlineMath math="11\text{ €}" /> (quantity <InlineMath math="b" />).
 
-You want the largest value of <InlineMath math="a+b" />.
+In one evening, **total revenue is exactly <InlineMath math="200\text{ €}" />**, where <InlineMath math="a" /> and <InlineMath math="b" /> are nonnegative integers.
 
-# Which values of <InlineMath math="b" /> work
+# Asked
 
-<InlineMath math="200-11b" /> must be divisible by <InlineMath math="7" />. Test <InlineMath math="b=0,1,2,\ldots" /> until <InlineMath math="11b>200" />. The remainders repeat with period <InlineMath math="7" />, and **only <InlineMath math="b=1" />, <InlineMath math="b=8" /> and <InlineMath math="b=15" /> work**:
+What is the **maximum** (*höchstens*) number of tickets the cinema could have sold that evening?
+
+# Solution
+
+If you have a fixed budget of <InlineMath math="200\text{ €}" /> and want as many tickets as possible, the strategy is obvious: **pack in as many cheap <InlineMath math="7\text{ €}" /> tickets as possible and use as few <InlineMath math="11\text{ €}" /> tickets as needed**. Since <InlineMath math="200" /> is not divisible by <InlineMath math="7" />, you trade in the smallest possible number of <InlineMath math="11\text{ €}" /> tickets until the remaining euros divide cleanly by <InlineMath math="7" />.
+
+> With fixed total revenue, ticket count is maximized by taking the smallest number of expensive tickets that leaves a remainder divisible by the cheap price.
+
+## Finding the valid counts of expensive tickets
+
+The revenue equation is:
+
+<BlockMath math="7a + 11b = 200 \quad \Longleftrightarrow \quad 7a = 200 - 11b" />
+
+So <InlineMath math="200 - 11b" /> **must be divisible by <InlineMath math="7" />**. Test from the smallest <InlineMath math="b" /> upward:
+
+- At <InlineMath math="b = 0" />, <InlineMath math="200" /> leaves remainder <InlineMath math="4" /> mod <InlineMath math="7" />.
+- At <InlineMath math="b = 1" />, the remainder is <InlineMath math="189" />, which equals <InlineMath math="7 \cdot 27" /> cleanly right away.
+
+Every time <InlineMath math="b" /> increases by <InlineMath math="7" />, <InlineMath math="a" /> drops by <InlineMath math="11" /> while keeping revenue at <InlineMath math="200" />. All valid integer pairs are:
 
 <BlockMath math="\begin{aligned}
-b=1:&\quad 7a=189,\quad a=27,\quad a+b=28 \\
-b=8:&\quad 7a=112,\quad a=16,\quad a+b=24 \\
-b=15:&\quad 7a=35,\quad a=5,\quad a+b=20
+b = 1: &\quad a = 27, \quad a + b = 28 \\
+b = 8: &\quad a = 16, \quad a + b = 24 \\
+b = 15: &\quad a = 5, \quad a + b = 20
 \end{aligned}" />
 
-For <InlineMath math="b=22" />, <InlineMath math="11b=242>200" />.
+At <InlineMath math="b = 22" />, <InlineMath math="11b" /> already hits <InlineMath math="242" /> (above <InlineMath math="200" />), so these three pairs are the entire list.
+
+## Comparing all lattice points on the line
+
+Look at the line <InlineMath math="7a + 11b = 200" /> and **the three integer lattice points** that sit on it.
 
 <MathVisual
-  title={<>Every possible ticket count</>}
-  description={<>The line <InlineMath math="7a+11b=200" /> in the first quadrant, with <InlineMath math="a" /> tickets at <InlineMath math="7" /> euros to the right and <InlineMath math="b" /> tickets at <InlineMath math="11" /> euros upwards. Exactly three whole-number points lie on it: <InlineMath math="(27\mid1)" />, <InlineMath math="(16\mid8)" /> and <InlineMath math="(5\mid15)" />. The point <InlineMath math="(27\mid1)" /> has the largest sum, <InlineMath math="a+b=28" />.</>}
+  title={<>All possible ticket counts</>}
+  description={<>The line <InlineMath math="7a + 11b = 200" /> in the first quadrant plots <InlineMath math="7\text{ €}" /> tickets horizontally and <InlineMath math="11\text{ €}" /> tickets vertically. Exactly three integer points lie on it: <InlineMath math="(27 \mid 1)" />, <InlineMath math="(16 \mid 8)" />, and <InlineMath math="(5 \mid 15)" />. The rightmost point gives the largest sum, <InlineMath math="28" />.</>}
+  footer={<>Only three lattice points fit on the revenue line, peaking at <InlineMath math="27 + 1 = 28" /> tickets.</>}
   labels={{
-    p1: <><InlineMath math="(27\mid1)" /></>,
-    p2: <><InlineMath math="(16\mid8)" /></>,
-    p3: <><InlineMath math="(5\mid15)" /></>,
-    l: <><InlineMath math="7a+11b=200" /></>,
+    p1: <><InlineMath math="(27 \mid 1)" /></>,
+    p2: <><InlineMath math="(16 \mid 8)" /></>,
+    p3: <><InlineMath math="(5 \mid 15)" /></>,
+    l: <><InlineMath math="7a + 11b = 200" /></>,
   }}
   scene={{
     space: "plane",
@@ -52,14 +77,24 @@ For <InlineMath math="b=22" />, <InlineMath math="11b=242>200" />.
   }}
 />
 
-# The largest number
+Revenue check for the maximum point:
 
-More cheap tickets mean more tickets in total. The most tickets are <InlineMath math="27" /> at <InlineMath math="7" /> euros and one at <InlineMath math="11" /> euros: **at most <InlineMath math="28" /> tickets**.
+<BlockMath math="7 \cdot 27 + 11 \cdot 1 = 189 + 11 = 200\text{ €}" />
 
-# Why the other answers are wrong
+It matches exact to the euro.
 
-- <InlineMath math="20" /> is the **smallest** possible number, <InlineMath math="5+15" />.
-- <InlineMath math="24" /> is the middle solution, <InlineMath math="16+8" />.
-- <InlineMath math="29" /> rounds <InlineMath math="\frac{200}{7}\approx28.6" /> up, as if there were only <InlineMath math="7" />-euro tickets. But <InlineMath math="200" /> isn't divisible by <InlineMath math="7" />.
-- <InlineMath math="18" /> is <InlineMath math="\frac{200}{11}" /> rounded down, only <InlineMath math="11" />-euro tickets. That doesn't come out exactly either.
-- <InlineMath math="27" /> counts only the <InlineMath math="7" />-euro tickets of the best solution and forgets the one <InlineMath math="11" />-euro ticket.
+## Checking the distractors
+
+See how the wrong options come from **non-maximum solutions or rough rounding**:
+
+| Option | Why it is wrong |
+| --- | --- |
+| <InlineMath math="20" /> | The minimum possible total, from <InlineMath math="5 + 15" />. |
+| <InlineMath math="24" /> | The middle solution <InlineMath math="16 + 8" />, not the maximum. |
+| <InlineMath math="29" /> | Rounds <InlineMath math="\frac{200}{7} \approx 28.6" /> up, yet even <InlineMath math="29" /> cheap tickets already cost <InlineMath math="203\text{ €}" />. |
+| <InlineMath math="18" /> | Rounds <InlineMath math="\frac{200}{11}" /> down, yet <InlineMath math="18 \cdot 11 = 198\text{ €}" /> falls short by <InlineMath math="2\text{ €}" />. |
+| <InlineMath math="27" /> | Counts only the <InlineMath math="7\text{ €}" /> tickets and forgets to add the single <InlineMath math="11\text{ €}" /> ticket. |
+
+# Answer
+
+The cinema sold at most **<InlineMath math="28" />** tickets.

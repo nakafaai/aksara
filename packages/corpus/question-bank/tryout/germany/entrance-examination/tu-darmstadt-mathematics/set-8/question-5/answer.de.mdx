@@ -1,24 +1,48 @@
-# Was ein Inkreis für die Seiten bedeutet
+# Gegeben
 
-Von jeder Ecke aus sind die beiden Tangentenabschnitte zum Inkreis gleich lang. Deshalb gilt in jedem Viereck mit Inkreis: **Die Summen gegenüberliegender Seiten sind gleich**. Für das Trapez mit den Schenkeln <InlineMath math="s" /> heißt das:
+Ein gleichschenkliges Trapez hat:
 
-<BlockMath math="8+2=s+s\quad\Longrightarrow\quad s=5" />
+- Parallele Grundseiten der Längen <InlineMath math="8\text{ cm}" /> und <InlineMath math="2\text{ cm}" />.
+- Einen **Inkreis**, der alle vier Seiten von innen berührt.
 
-# Die Höhe aus einem Stützdreieck
+# Gesucht
 
-Fälle von einer oberen Ecke das Lot auf die Grundseite. Wegen der Symmetrie steht es <InlineMath math="\frac{8-2}{2}=3" /> vom Ende der Grundseite entfernt. Es entsteht **ein rechtwinkliges Dreieck mit Hypotenuse <InlineMath math="5" />**:
+Wie groß ist der Flächeninhalt des Trapezes?
 
-<BlockMath math="h=\sqrt{5^2-3^2}=4" />
+# Lösung
+
+Stell dir eine Münze vor, die exakt in den Trapezrahmen eingepasst ist und alle vier Kanten berührt. Von jeder Ecke aus sind die beiden Tangentenabschnitte zum Kreis genau gleich lang. Addierst du diese Paare rund um das Viereck, entsteht der Tangentenviereckssatz: **gegenüberliegende Seiten haben dieselbe Summe**. Damit liegt die Schenkellänge sofort fest.
+
+> In jedem Tangentenviereck sind die Summen gegenüberliegender Seiten gleich, sodass die beiden parallelen Seiten eines gleichschenkligen Trapezes die Schenkellänge unmittelbar festlegen.
+
+## Die Schenkellänge aus der Inkreisbedingung bestimmen
+
+Nenne die Länge eines Schenkels <InlineMath math="s" />. Die Gleichheit der gegenüberliegenden Seitensummen liefert:
+
+<BlockMath math="8 + 2 = s + s \quad \Longleftrightarrow \quad 2s = 10 \quad \Longrightarrow \quad s = 5\text{ cm}" />
+
+Jeder der **beiden Schenkel misst also genau <InlineMath math="5\text{ cm}" />**.
+
+## Die Höhe über das Hilfsdreieck berechnen
+
+Fälle das Lot von einer oberen Ecke auf die untere Grundseite. Aus Symmetrie steht die untere Seite an beiden Enden jeweils um die halbe Differenz, also <InlineMath math="3\text{ cm}" />, über.
+
+So entsteht ein **rechtwinkliges Dreieck** mit Hypotenuse <InlineMath math="5" /> und Kathete <InlineMath math="3" />:
+
+<BlockMath math="h = \sqrt{5^2 - 3^2} = \sqrt{25 - 9} = 4\text{ cm}" />
+
+In der Skizze siehst du den Inkreis mit Radius <InlineMath math="r = 2\text{ cm}" />, dessen Durchmesser genau die Höhe des Trapezes ist.
 
 <MathVisual
-  title={<>Das Trapez mit Inkreis</>}
-  description={<>Ein gleichschenkliges Trapez mit der Grundseite <InlineMath math="8" /> unten, der Deckseite <InlineMath math="2" /> oben und zwei Schenkeln der Länge <InlineMath math="5" />. Der Inkreis berührt alle vier Seiten und hat den Radius <InlineMath math="2" />. Die Höhe <InlineMath math="h=4" /> ist so groß wie sein Durchmesser.</>}
+  title={<>Trapez mit Inkreis</>}
+  description={<>Ein gleichschenkliges Trapez mit Grundseite <InlineMath math="8" />, Deckseite <InlineMath math="2" /> und zwei Schenkeln der Länge <InlineMath math="5" /> umschließt einen Inkreis mit Radius <InlineMath math="2" />, der alle vier Seiten berührt. Die Höhe <InlineMath math="h = 4" /> entspricht genau dem Kreisdurchmesser.</>}
+  footer={<>Schenkel <InlineMath math="5\text{ cm}" /> und Überstand <InlineMath math="3\text{ cm}" /> liefern Höhe <InlineMath math="4\text{ cm}" /> und Inhalt <InlineMath math="20\text{ cm}^2" />.</>}
   labels={{
     long: <><InlineMath math="8" /></>,
     short: <><InlineMath math="2" /></>,
     leg: <><InlineMath math="5" /></>,
-    h: <><InlineMath math="h=4" /></>,
-    r: <><InlineMath math="r=2" /></>,
+    h: <><InlineMath math="h = 4" /></>,
+    r: <><InlineMath math="r = 2" /></>,
   }}
   scene={{
     space: "plane",
@@ -44,16 +68,24 @@ Fälle von einer oberen Ecke das Lot auf die Grundseite. Wegen der Symmetrie ste
   }}
 />
 
-# Der Flächeninhalt
+Jetzt greift die Trapezformel:
 
-<BlockMath math="A=\frac{8+2}{2}\cdot4=20\text{ cm}^2" />
+<BlockMath math="A = \frac{8 + 2}{2} \cdot 4 = 5 \cdot 4 = 20\text{ cm}^2" />
 
-Probe: Der Inkreis hat den Radius <InlineMath math="\frac h2=2" />, und es gilt <InlineMath math="A=r\cdot\frac{u}{2}=2\cdot\frac{8+2+5+5}{2}=20" />. Das Trapez hat **den Flächeninhalt <InlineMath math="20\text{ cm}^2" />**.
+Gegenprobe mit der Inkreisformel: Radius <InlineMath math="r = 2\text{ cm}" /> mal halber Umfang <InlineMath math="10\text{ cm}" /> ergibt ebenfalls <InlineMath math="2 \cdot 10 = 20\text{ cm}^2" />.
 
-# Warum die anderen Antworten falsch sind
+## Falsche Antworten prüfen
 
-- <InlineMath math="25\text{ cm}^2" /> nimmt **den Schenkel <InlineMath math="5" /> als Höhe**: <InlineMath math="\frac{8+2}{2}\cdot5" />.
-- <InlineMath math="40\text{ cm}^2" /> vergisst das Halbieren in der Trapezformel: <InlineMath math="(8+2)\cdot4" />.
-- <InlineMath math="15\text{ cm}^2" /> nimmt den Überstand <InlineMath math="3" /> als Höhe.
-- <InlineMath math="10\text{ cm}^2" /> nimmt den Radius <InlineMath math="2" /> statt des Durchmessers <InlineMath math="4" /> als Höhe.
-- <InlineMath math="30\text{ cm}^2" /> rechnet mit der Höhe <InlineMath math="3" /> und ohne das Halbieren: <InlineMath math="(8+2)\cdot3" />.
+Die falschen Werte entstehen durch **eine falsche Höhe oder fehlendes Halbieren**:
+
+| Auswahl | Warum falsch |
+| --- | --- |
+| <InlineMath math="25\text{ cm}^2" /> | Setzt den schrägen Schenkel <InlineMath math="5" /> als Höhe ein: <InlineMath math="\frac{8 + 2}{2} \cdot 5" />. |
+| <InlineMath math="40\text{ cm}^2" /> | Vergisst das Teilen durch zwei in der Trapezformel: <InlineMath math="(8 + 2) \cdot 4" />. |
+| <InlineMath math="15\text{ cm}^2" /> | Nutzt den Überstand <InlineMath math="3" /> statt der Höhe <InlineMath math="4" />. |
+| <InlineMath math="10\text{ cm}^2" /> | Nutzt den Inkreisradius <InlineMath math="2" /> statt des Durchmessers <InlineMath math="4" /> als Höhe. |
+| <InlineMath math="30\text{ cm}^2" /> | Nimmt <InlineMath math="3" /> als Höhe und teilt auch nicht durch zwei: <InlineMath math="(8 + 2) \cdot 3" />. |
+
+# Antwort
+
+Der Flächeninhalt des Trapezes beträgt **<InlineMath math="20\text{ cm}^2" />**.

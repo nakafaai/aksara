@@ -1,24 +1,48 @@
-# Arti lingkaran dalam bagi sisi-sisinya
+# Diketahui
 
-Dari setiap titik sudut, kedua ruas garis singgung ke lingkaran dalam sama panjang. Karena itu pada setiap segi empat yang punya lingkaran dalam, **jumlah sisi-sisi yang berhadapan sama**. Untuk trapesium dengan kaki <InlineMath math="s" />:
+Sebuah trapesium sama kaki (*gleichschenkliges Trapez*) memiliki:
 
-<BlockMath math="8+2=s+s\quad\Longrightarrow\quad s=5" />
+- Dua sisi sejajar sepanjang <InlineMath math="8\text{ cm}" /> dan <InlineMath math="2\text{ cm}" />.
+- Sebuah **lingkaran dalam** (*Inkreis*) yang menyinggung keempat sisinya dari dalam.
 
-# Tinggi dari segitiga bantu
+# Ditanyakan
 
-Tarik garis tegak dari salah satu titik sudut atas ke alas. Karena simetris, kaki garis itu berjarak <InlineMath math="\frac{8-2}{2}=3" /> dari ujung alas. Terbentuk **segitiga siku-siku dengan sisi miring <InlineMath math="5" />**:
+Berapakah luas (*Flächeninhalt*) trapesium itu?
 
-<BlockMath math="h=\sqrt{5^2-3^2}=4" />
+# Penyelesaian
+
+Bayangkan sebuah koin pas terjepit di dalam bingkai trapesium sehingga menyentuh keempat sisinya. Dari setiap sudut, dua ruas garis singgung ke koin selalu sama panjang. Saat keempat sudut dijumlahkan, muncul aturan rapi: **jumlah dua sisi yang berhadapan selalu sama persis**, sehingga panjang kedua kaki miring langsung ketahuan.
+
+> Pada setiap segi empat yang memiliki lingkaran dalam, jumlah panjang pasangan sisi berhadapan selalu sama, sehingga panjang kaki trapesium sama kaki langsung ditentukan oleh kedua sisi sejajarnya.
+
+## Menentukan panjang kaki dari sifat lingkaran dalam
+
+Misalkan panjang masing-masing kaki trapesium adalah <InlineMath math="s" />. Karena jumlah pasangan sisi berhadapan sama:
+
+<BlockMath math="8 + 2 = s + s \quad \Longleftrightarrow \quad 2s = 10 \quad \Longrightarrow \quad s = 5\text{ cm}" />
+
+Jadi **kedua kaki miringnya tepat <InlineMath math="5\text{ cm}" />**.
+
+## Menghitung tinggi lewat segitiga siku-siku bantu
+
+Tarik garis tinggi tegak lurus dari salah satu sudut atas ke alas bawah. Karena trapesium simetris, kelebihan alas di tiap ujung adalah setengah selisih kedua sisi sejajar, yaitu <InlineMath math="3\text{ cm}" />.
+
+Terbentuk **segitiga siku-siku** dengan sisi miring <InlineMath math="5" /> dan alas <InlineMath math="3" />:
+
+<BlockMath math="h = \sqrt{5^2 - 3^2} = \sqrt{25 - 9} = 4\text{ cm}" />
+
+Lihat posisi lingkaran dalam berjari-jari <InlineMath math="r = 2\text{ cm}" /> yang diameternya persis sama dengan tinggi trapesium.
 
 <MathVisual
   title={<>Trapesium dengan lingkaran dalam</>}
-  description={<>Trapesium sama kaki dengan alas <InlineMath math="8" /> di bawah, sisi atas <InlineMath math="2" />, dan dua kaki sepanjang <InlineMath math="5" />. Lingkaran dalamnya menyinggung keempat sisi dan berjari-jari <InlineMath math="2" />. Tinggi <InlineMath math="h=4" /> sama dengan diameternya.</>}
+  description={<>Trapesium sama kaki beralas <InlineMath math="8" />, sisi atas <InlineMath math="2" />, dan kedua kaki <InlineMath math="5" /> memuat lingkaran dalam berjari-jari <InlineMath math="2" /> yang menyinggung keempat sisi. Tinggi trapesium <InlineMath math="h = 4" /> sama persis dengan diameter lingkaran dalam.</>}
+  footer={<>Kaki <InlineMath math="5\text{ cm}" /> dan overhang <InlineMath math="3\text{ cm}" /> memberi tinggi <InlineMath math="4\text{ cm}" /> dan luas <InlineMath math="20\text{ cm}^2" />.</>}
   labels={{
     long: <><InlineMath math="8" /></>,
     short: <><InlineMath math="2" /></>,
     leg: <><InlineMath math="5" /></>,
-    h: <><InlineMath math="h=4" /></>,
-    r: <><InlineMath math="r=2" /></>,
+    h: <><InlineMath math="h = 4" /></>,
+    r: <><InlineMath math="r = 2" /></>,
   }}
   scene={{
     space: "plane",
@@ -44,16 +68,24 @@ Tarik garis tegak dari salah satu titik sudut atas ke alas. Karena simetris, kak
   }}
 />
 
-# Luasnya
+Sekarang hitung luas trapesium:
 
-<BlockMath math="A=\frac{8+2}{2}\cdot4=20\text{ cm}^2" />
+<BlockMath math="A = \frac{8 + 2}{2} \cdot 4 = 5 \cdot 4 = 20\text{ cm}^2" />
 
-Cek: lingkaran dalam berjari-jari <InlineMath math="\frac h2=2" />, dan <InlineMath math="A=r\cdot\frac{u}{2}=2\cdot\frac{8+2+5+5}{2}=20" />. Trapesium itu **luasnya <InlineMath math="20\text{ cm}^2" />**.
+Cek silang lewat rumus lingkaran dalam: jari-jari <InlineMath math="r = 2\text{ cm}" /> dan setengah keliling <InlineMath math="10\text{ cm}" /> memberi <InlineMath math="2 \cdot 10 = 20\text{ cm}^2" />.
 
-# Mengapa pilihan lain salah
+## Mengecek pilihan salah
 
-- <InlineMath math="25\text{ cm}^2" /> memakai **kaki <InlineMath math="5" /> sebagai tinggi**: <InlineMath math="\frac{8+2}{2}\cdot5" />.
-- <InlineMath math="40\text{ cm}^2" /> lupa membagi dua pada rumus trapesium: <InlineMath math="(8+2)\cdot4" />.
-- <InlineMath math="15\text{ cm}^2" /> memakai kelebihan alas <InlineMath math="3" /> sebagai tinggi.
-- <InlineMath math="10\text{ cm}^2" /> memakai jari-jari <InlineMath math="2" />, bukan diameter <InlineMath math="4" />, sebagai tinggi.
-- <InlineMath math="30\text{ cm}^2" /> memakai tinggi <InlineMath math="3" /> dan tidak membagi dua: <InlineMath math="(8+2)\cdot3" />.
+Perhatikan bagaimana pengecoh lain **tertukar memakai tinggi atau lupa membagi dua**:
+
+| Pilihan | Mengapa salah |
+| --- | --- |
+| <InlineMath math="25\text{ cm}^2" /> | Memakai panjang kaki miring <InlineMath math="5" /> sebagai tinggi: <InlineMath math="\frac{8 + 2}{2} \cdot 5" />. |
+| <InlineMath math="40\text{ cm}^2" /> | Lupa membagi dua pada rumus luas trapesium: <InlineMath math="(8 + 2) \cdot 4" />. |
+| <InlineMath math="15\text{ cm}^2" /> | Memakai kelebihan alas <InlineMath math="3" /> sebagai tinggi alih-alih <InlineMath math="4" />. |
+| <InlineMath math="10\text{ cm}^2" /> | Memakai jari-jari <InlineMath math="2" /> sebagai tinggi, padahal tingginya diameter <InlineMath math="4" />. |
+| <InlineMath math="30\text{ cm}^2" /> | Memakai <InlineMath math="3" /> sebagai tinggi sekaligus lupa membagi dua: <InlineMath math="(8 + 2) \cdot 3" />. |
+
+# Jawaban
+
+Luas trapesium itu adalah **<InlineMath math="20\text{ cm}^2" />**.

@@ -1,28 +1,49 @@
-# Den Term zerlegen
+# Gegeben
 
-Mit der dritten binomischen Formel zerfällt der gesuchte Term in **eine bekannte und eine unbekannte Klammer**:
+Für eine reelle Zahl <InlineMath math="x > 1" /> ist **die Summe aus Zahl und Kehrwert** bekannt:
 
-<BlockMath math="x^2-\frac1{x^2}=\left(x+\frac1x\right)\left(x-\frac1x\right)=3\left(x-\frac1x\right)" />
+<BlockMath math="x + \frac{1}{x} = 3" />
 
-# Die Differenz über ihr Quadrat finden
+# Gesucht
 
-Quadriere die Differenz und nutze die bekannte Summe. Die beiden Quadrate **unterscheiden sich nur im gemischten Glied** <InlineMath math="\pm2\cdot x\cdot\frac1x=\pm2" />:
+Welchen genauen Wert hat diese Differenz zweier Quadrate?
 
-<BlockMath math="\left(x-\frac1x\right)^2=\left(x+\frac1x\right)^2-4=9-4=5" />
+<BlockMath math="x^2 - \frac{1}{x^2}" />
 
-Also ist <InlineMath math="x-\frac1x=\sqrt5" /> oder <InlineMath math="x-\frac1x=-\sqrt5" />.
+# Lösung
 
-# Die Bedingung <InlineMath math="x>1" /> entscheidet das Vorzeichen
+Du musst <InlineMath math="x" /> nicht erst umständlich per Wurzelformel ausrechnen und dann quadrieren. Schau auf den Zielterm: <InlineMath math="x^2 - x^{-2}" /> ist eine **Differenz zweier Quadrate** und zerfällt sofort in Summe mal Differenz. Die Summe kennst du schon, also brauchst du nur noch die Differenz über ihr Quadrat.
 
-Für <InlineMath math="x>1" /> ist <InlineMath math="\frac1x<1<x" />, also ist **<InlineMath math="x-\frac1x" /> positiv**. Das schließt <InlineMath math="-\sqrt5" /> aus:
+> Die dritte binomische Formel zerlegt das Ziel in Summe mal Differenz, und die Größenbedingung legt das eindeutige Vorzeichen der Wurzel fest.
+
+## Den Zielterm in Summe mal Differenz zerlegen
+
+Faktorisiere den gesuchten Ausdruck mit **der dritten binomischen Formel**:
+
+<BlockMath math="x^2 - \frac{1}{x^2} = \left(x + \frac{1}{x}\right)\left(x - \frac{1}{x}\right) = 3\left(x - \frac{1}{x}\right)" />
+
+Das einzige fehlende Stück ist jetzt <InlineMath math="x - \frac{1}{x}" />.
+
+## Die Differenz über ihr Quadrat finden
+
+Vergleiche das Quadrat der Summe mit dem Quadrat der Differenz: beide **unterscheiden sich genau um vier**, weil sich <InlineMath math="x" /> im Mischterm herauskürzt:
+
+<BlockMath math="\left(x - \frac{1}{x}\right)^2 = \left(x + \frac{1}{x}\right)^2 - 4 = 3^2 - 4 = 5" />
+
+Damit bleiben zwei Kandidaten, nämlich <InlineMath math="\sqrt{5}" /> und <InlineMath math="-\sqrt{5}" />.
+
+## Mit der Bedingung das Vorzeichen festlegen
+
+Weil **<InlineMath math="x" /> größer als eins ist**, liegt der Kehrwert <InlineMath math="\frac{1}{x}" /> echt unter eins. Also ist <InlineMath math="x" /> größer als <InlineMath math="\frac{1}{x}" />, sodass die Differenz <InlineMath math="x - \frac{1}{x}" /> positiv und gleich <InlineMath math="\sqrt{5}" /> sein muss.
 
 <MathVisual
-  title={<>Zwei Zahlen mit <InlineMath math="x+\frac1x=3" /></>}
-  description={<>Der Graph von <InlineMath math="y=x+\frac1x" /> für positive <InlineMath math="x" /> trifft die Gerade <InlineMath math="y=3" /> zweimal: bei <InlineMath math="x\approx0{,}38" /> links von der senkrechten Linie <InlineMath math="x=1" /> und bei <InlineMath math="x\approx2{,}62" /> rechts davon. Nur der rechte Punkt erfüllt <InlineMath math="x>1" />.</>}
+  title={<>Zwei Zahlen mit <InlineMath math="x + \frac{1}{x} = 3" /></>}
+  description={<>Der Graph von <InlineMath math="y = x + \frac{1}{x}" /> für positive <InlineMath math="x" /> schneidet die Gerade <InlineMath math="y = 3" /> zweimal: bei <InlineMath math="x \approx 0{,}38" /> links von <InlineMath math="x = 1" /> und bei <InlineMath math="x \approx 2{,}62" /> rechts davon. Nur der rechte Punkt erfüllt <InlineMath math="x > 1" />.</>}
+  footer={<>Die Bedingung <InlineMath math="x > 1" /> wählt den rechten Punkt <InlineMath math="x \approx 2{,}62" /> mit positiver Differenz.</>}
   labels={{
-    small: <><InlineMath math="x\approx0{,}38" /></>,
-    big: <><InlineMath math="x\approx2{,}62" /></>,
-    f: <><InlineMath math="x+\frac1x" /></>,
+    small: <><InlineMath math="x \approx 0{,}38" /></>,
+    big: <><InlineMath math="x \approx 2{,}62" /></>,
+    f: <><InlineMath math="x + \frac{1}{x}" /></>,
     three: <><InlineMath math="3" /></>,
   }}
   scene={{
@@ -49,14 +70,24 @@ Für <InlineMath math="x>1" /> ist <InlineMath math="\frac1x<1<x" />, also ist *
   }}
 />
 
-<BlockMath math="x^2-\frac1{x^2}=3\sqrt5" />
+Multipliziere beide Faktoren zum Endergebnis:
 
-Probe mit <InlineMath math="x=\frac{3+\sqrt5}{2}\approx2{,}618" />: <InlineMath math="x^2\approx6{,}854" /> und <InlineMath math="\frac1{x^2}\approx0{,}146" />, die Differenz ist etwa <InlineMath math="6{,}708\approx3\sqrt5" />. Der Wert ist **genau <InlineMath math="3\sqrt5" />**.
+<BlockMath math="x^2 - \frac{1}{x^2} = 3 \cdot \sqrt{5} = 3\sqrt{5}" />
 
-# Warum die anderen Antworten falsch sind
+Zahlenprobe: für <InlineMath math="x \approx 2{,}618" /> gilt <InlineMath math="x^2 \approx 6{,}854" /> und <InlineMath math="x^{-2} \approx 0{,}146" />. Ihre Differenz <InlineMath math="6{,}708" /> passt exakt zu <InlineMath math="3\sqrt{5}" />.
 
-- <InlineMath math="-3\sqrt5" /> gehört zur zweiten Lösung <InlineMath math="x\approx0{,}38" />. Sie **erfüllt die Bedingung <InlineMath math="x>1" /> nicht**.
-- <InlineMath math="3\sqrt5" /> oder <InlineMath math="-3\sqrt5" /> übersieht, dass die Bedingung <InlineMath math="x>1" /> das Vorzeichen festlegt.
-- <InlineMath math="7" /> ist <InlineMath math="x^2+\frac1{x^2}=9-2" />, also die Summe der Quadrate statt der Differenz.
-- <InlineMath math="\sqrt5" /> ist nur die Differenz <InlineMath math="x-\frac1x" />. Der Faktor <InlineMath math="x+\frac1x=3" /> fehlt.
-- <InlineMath math="3\sqrt7" /> quadriert falsch: <InlineMath math="\left(x-\frac1x\right)^2=9-2=7" /> statt <InlineMath math="9-4=5" />.
+## Falsche Antworten prüfen
+
+Jede falsche Auswahl **übersieht das Vorzeichen oder zieht den falschen Mischterm ab**:
+
+| Auswahl | Warum falsch |
+| --- | --- |
+| <InlineMath math="-3\sqrt{5}" /> | Gehört zur linken Lösung <InlineMath math="x \approx 0{,}38" />, die <InlineMath math="x > 1" /> verletzt. |
+| <InlineMath math="3\sqrt{5}" /> oder <InlineMath math="-3\sqrt{5}" /> | Übersieht, dass <InlineMath math="x > 1" /> das positive Vorzeichen eindeutig festlegt. |
+| <InlineMath math="7" /> | Ist die Quadratsumme <InlineMath math="x^2 + \frac{1}{x^2} = 9 - 2" />, nicht die Differenz. |
+| <InlineMath math="\sqrt{5}" /> | Ist erst <InlineMath math="x - \frac{1}{x}" /> ohne den Faktor <InlineMath math="3" />. |
+| <InlineMath math="3\sqrt{7}" /> | Zieht beim Umformen der Quadrate <InlineMath math="2" /> statt <InlineMath math="4" /> ab. |
+
+# Antwort
+
+Der gesuchte Wert ist **<InlineMath math="3\sqrt{5}" />**.

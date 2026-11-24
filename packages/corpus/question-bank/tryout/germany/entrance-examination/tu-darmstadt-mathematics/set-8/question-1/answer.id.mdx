@@ -1,28 +1,49 @@
-# Uraikan bentuknya
+# Diketahui
 
-Dengan selisih dua kuadrat, bentuk yang dicari terurai menjadi **satu kurung yang diketahui dan satu yang belum**:
+Untuk sebuah bilangan real <InlineMath math="x > 1" />, berlaku **persamaan jumlah dengan kebalikannya**:
 
-<BlockMath math="x^2-\frac1{x^2}=\left(x+\frac1x\right)\left(x-\frac1x\right)=3\left(x-\frac1x\right)" />
+<BlockMath math="x + \frac{1}{x} = 3" />
 
-# Cari selisihnya lewat kuadratnya
+# Ditanyakan
 
-Kuadratkan selisih itu dan pakai jumlah yang sudah diketahui. Kedua kuadrat itu **hanya berbeda pada suku tengahnya** <InlineMath math="\pm2\cdot x\cdot\frac1x=\pm2" />:
+Berapakah nilai tepat dari selisih kuadrat berikut?
 
-<BlockMath math="\left(x-\frac1x\right)^2=\left(x+\frac1x\right)^2-4=9-4=5" />
+<BlockMath math="x^2 - \frac{1}{x^2}" />
 
-Jadi <InlineMath math="x-\frac1x=\sqrt5" /> atau <InlineMath math="x-\frac1x=-\sqrt5" />.
+# Penyelesaian
 
-# Syarat <InlineMath math="x>1" /> menentukan tandanya
+Kamu tidak perlu bersusah payah mencari nilai akar <InlineMath math="x" /> dulu lalu mengkuadratkannya. Lihat targetnya: bentuk <InlineMath math="x^2 - x^{-2}" /> adalah **selisih dua kuadrat** yang langsung terbelah menjadi jumlah dan selisih. Jumlahnya sudah ada di tangan, jadi kamu tinggal mencari selisihnya lewat kuadrat.
 
-Untuk <InlineMath math="x>1" /> berlaku <InlineMath math="\frac1x<1<x" />, jadi **<InlineMath math="x-\frac1x" /> positif**. Itu menyingkirkan <InlineMath math="-\sqrt5" />:
+> Selisih dua kuadrat memecah target menjadi hasil kali jumlah dan selisih, sementara syarat ukuran menentukan tanda akar yang sah.
+
+## Memecah bentuk target menjadi jumlah kali selisih
+
+Uraikan bentuk yang dicari dengan **pola selisih dua kuadrat**:
+
+<BlockMath math="x^2 - \frac{1}{x^2} = \left(x + \frac{1}{x}\right)\left(x - \frac{1}{x}\right) = 3\left(x - \frac{1}{x}\right)" />
+
+Sekarang satu-satunya kepingan yang masih hilang adalah <InlineMath math="x - \frac{1}{x}" />.
+
+## Menemukan selisih lewat kuadratnya
+
+Bandingkan kuadrat jumlah dan kuadrat selisih: keduanya **hanya berbeda tepat empat satuan** karena suku silangnya saling meniadakan <InlineMath math="x" />:
+
+<BlockMath math="\left(x - \frac{1}{x}\right)^2 = \left(x + \frac{1}{x}\right)^2 - 4 = 3^2 - 4 = 5" />
+
+Dari sini muncul dua kandidat, yaitu <InlineMath math="\sqrt{5}" /> dan <InlineMath math="-\sqrt{5}" />.
+
+## Memakai syarat untuk mengunci tanda
+
+Karena diketahui **bilangan lebih besar dari satu**, kebalikannya <InlineMath math="\frac{1}{x}" /> pasti lebih kecil dari satu. Artinya <InlineMath math="x" /> lebih besar daripada <InlineMath math="\frac{1}{x}" />, sehingga selisih <InlineMath math="x - \frac{1}{x}" /> wajib positif dan sama dengan <InlineMath math="\sqrt{5}" />.
 
 <MathVisual
-  title={<>Dua bilangan dengan <InlineMath math="x+\frac1x=3" /></>}
-  description={<>Grafik <InlineMath math="y=x+\frac1x" /> untuk <InlineMath math="x" /> positif memotong garis <InlineMath math="y=3" /> dua kali: di <InlineMath math="x\approx0{,}38" />, di kiri garis tegak <InlineMath math="x=1" />, dan di <InlineMath math="x\approx2{,}62" />, di kanannya. Hanya titik kanan yang memenuhi <InlineMath math="x>1" />.</>}
+  title={<>Dua bilangan dengan <InlineMath math="x + \frac{1}{x} = 3" /></>}
+  description={<>Grafik <InlineMath math="y = x + \frac{1}{x}" /> untuk <InlineMath math="x" /> positif memotong garis <InlineMath math="y = 3" /> di dua titik: <InlineMath math="x \approx 0{,}38" /> di kiri garis tegak <InlineMath math="x = 1" />, dan <InlineMath math="x \approx 2{,}62" /> di kanannya. Hanya titik kanan yang memenuhi <InlineMath math="x > 1" />.</>}
+  footer={<>Syarat <InlineMath math="x > 1" /> memilih titik kanan <InlineMath math="x \approx 2{,}62" />, sehingga selisihnya positif.</>}
   labels={{
-    small: <><InlineMath math="x\approx0{,}38" /></>,
-    big: <><InlineMath math="x\approx2{,}62" /></>,
-    f: <><InlineMath math="x+\frac1x" /></>,
+    small: <><InlineMath math="x \approx 0{,}38" /></>,
+    big: <><InlineMath math="x \approx 2{,}62" /></>,
+    f: <><InlineMath math="x + \frac{1}{x}" /></>,
     three: <><InlineMath math="3" /></>,
   }}
   scene={{
@@ -49,14 +70,24 @@ Untuk <InlineMath math="x>1" /> berlaku <InlineMath math="\frac1x<1<x" />, jadi 
   }}
 />
 
-<BlockMath math="x^2-\frac1{x^2}=3\sqrt5" />
+Kalikan kembali faktornya untuk memperoleh hasil akhir:
 
-Cek dengan <InlineMath math="x=\frac{3+\sqrt5}{2}\approx2{,}618" />: <InlineMath math="x^2\approx6{,}854" /> dan <InlineMath math="\frac1{x^2}\approx0{,}146" />, selisihnya sekitar <InlineMath math="6{,}708\approx3\sqrt5" />. Nilainya **tepat <InlineMath math="3\sqrt5" />**.
+<BlockMath math="x^2 - \frac{1}{x^2} = 3 \cdot \sqrt{5} = 3\sqrt{5}" />
 
-# Mengapa pilihan lain salah
+Cek numerik cepat: untuk <InlineMath math="x \approx 2{,}618" />, kita dapat <InlineMath math="x^2 \approx 6{,}854" /> dan <InlineMath math="x^{-2} \approx 0{,}146" />, selisihnya <InlineMath math="6{,}708" />, cocok tepat dengan <InlineMath math="3\sqrt{5}" />.
 
-- <InlineMath math="-3\sqrt5" /> milik penyelesaian lainnya, <InlineMath math="x\approx0{,}38" />. Penyelesaian itu **tidak memenuhi <InlineMath math="x>1" />**.
-- <InlineMath math="3\sqrt5" /> atau <InlineMath math="-3\sqrt5" /> melewatkan bahwa syarat <InlineMath math="x>1" /> menentukan tandanya.
-- <InlineMath math="7" /> adalah <InlineMath math="x^2+\frac1{x^2}=9-2" />, jumlah kuadratnya, bukan selisihnya.
-- <InlineMath math="\sqrt5" /> hanya selisih <InlineMath math="x-\frac1x" />. Faktor <InlineMath math="x+\frac1x=3" /> terlupa.
-- <InlineMath math="3\sqrt7" /> salah mengkuadratkan: <InlineMath math="\left(x-\frac1x\right)^2=9-2=7" />, padahal <InlineMath math="9-4=5" />.
+## Mengecek pilihan salah
+
+Perhatikan bagaimana setiap pengecoh **melupakan syarat tanda atau salah mengurangi suku tengah**:
+
+| Pilihan | Mengapa salah |
+| --- | --- |
+| <InlineMath math="-3\sqrt{5}" /> | Milik titik kiri <InlineMath math="x \approx 0{,}38" />, yang melanggar syarat <InlineMath math="x > 1" />. |
+| <InlineMath math="3\sqrt{5}" /> atau <InlineMath math="-3\sqrt{5}" /> | Mengabaikan bahwa syarat <InlineMath math="x > 1" /> sudah menentukan tanda tunggal. |
+| <InlineMath math="7" /> | Nilai jumlah kuadrat <InlineMath math="x^2 + \frac{1}{x^2} = 9 - 2" />, bukan selisih kuadrat. |
+| <InlineMath math="\sqrt{5}" /> | Baru nilai selisih <InlineMath math="x - \frac{1}{x}" />, melupakan faktor pengali <InlineMath math="3" />. |
+| <InlineMath math="3\sqrt{7}" /> | Salah mengurangkan <InlineMath math="2" /> alih-alih <InlineMath math="4" /> saat mengubah kuadrat jumlah menjadi kuadrat selisih. |
+
+# Jawaban
+
+Nilai tepat bentuk yang dicari adalah **<InlineMath math="3\sqrt{5}" />**.
