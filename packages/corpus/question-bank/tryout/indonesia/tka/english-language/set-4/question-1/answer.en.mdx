@@ -1,14 +1,36 @@
-Use the pass-holder column of the table: "First <InlineMath math="45" /> minutes free, then <InlineMath math="\text{Rp}3{,}000" /> for each started <InlineMath math="30" /> minutes after that", plus "<InlineMath math="\text{Rp}2{,}000" /> per ride" for an e-bike.
+# Given
 
-**Time past the free period**. <InlineMath math="1" /> hour <InlineMath math="20" /> minutes is <InlineMath math="80" /> minutes, so <InlineMath math="80 - 45 = 35" /> minutes are charged.
+A **monthly pass holder** rides an **e-bike** for **<InlineMath math="1" /> hour <InlineMath math="20" /> minutes** (<InlineMath math="80" /> minutes) and ends the ride properly in a dock.
 
-**Started half hours**. <InlineMath math="35" /> minutes is one full half hour and <InlineMath math="5" /> minutes of a second one. "A started half hour is charged in full", so that's <InlineMath math="2" /> half hours.
+From the monthly-pass column of the fare table:
+- First <InlineMath math="45" /> minutes are free, then <InlineMath math="\text{Rp}3{,}000" /> for each started <InlineMath math="30" />-minute block after that.
+- An e-bike adds <InlineMath math="\text{Rp}2{,}000" /> per ride.
 
-<BlockMath math="2 \times \text{Rp}3{,}000 + \text{Rp}2{,}000 = \text{Rp}8{,}000" />
+# Asked
 
-- <InlineMath math="\text{Rp}5{,}000" /> charges the <InlineMath math="35" /> minutes as only one half hour, forgetting that the extra <InlineMath math="5" /> minutes start a new one.
-- <InlineMath math="\text{Rp}11{,}000" /> ignores the free <InlineMath math="45" /> minutes and charges all <InlineMath math="80" /> minutes as <InlineMath math="3" /> half hours.
-- <InlineMath math="\text{Rp}10{,}000" /> uses the surcharge for riders without a pass, <InlineMath math="\text{Rp}4{,}000" />, instead of <InlineMath math="\text{Rp}2{,}000" />.
-- <InlineMath math="\text{Rp}6{,}000" /> forgets the e-bike surcharge.
+How much the ride costs.
 
-So the ride costs <InlineMath math="\text{Rp}8{,}000" />.
+# Solution
+
+Picture the meter starting only after the <InlineMath math="45" /> free minutes run out. Simply **subtract the free period**, count **how many <InlineMath math="30" />-minute blocks are started**, and add **the pass-holder e-bike surcharge**.
+
+> Even a few minutes past a boundary starts a brand-new half-hour block that is billed in full.
+
+## Finding chargeable time and total fare
+
+The text states <Highlight>A started half hour is charged in full</Highlight>, and the pass column sets <Highlight>First <InlineMath math="45" /> minutes free, then <InlineMath math="\text{Rp}3{,}000" /> for each started <InlineMath math="30" /> minutes after that</Highlight> plus <Highlight><InlineMath math="\text{Rp}2{,}000" /> per ride</Highlight>.
+
+An **<InlineMath math="80" />-minute ride** runs **<InlineMath math="35" /> minutes** past the free window (one full half hour plus <InlineMath math="5" /> minutes of a second), counting as **<InlineMath math="2" /> started half hours**:
+
+<BlockMath math="80 - 45 = 35\text{ minutes} \implies 2\text{ half hours}, \qquad 2 \times \text{Rp}3{,}000 + \text{Rp}2{,}000 = \text{Rp}8{,}000" />
+
+## Why the other options fail
+
+- **Option <InlineMath math="\text{Rp}5{,}000" />** charges <InlineMath math="35" /> minutes as just <InlineMath math="1" /> half hour instead of <InlineMath math="2" />.
+- **Option <InlineMath math="\text{Rp}11{,}000" />** ignores the <InlineMath math="45" /> free minutes and bills all <InlineMath math="80" /> minutes as <InlineMath math="3" /> half hours.
+- **Option <InlineMath math="\text{Rp}10{,}000" />** applies the non-pass e-bike surcharge (<InlineMath math="\text{Rp}4{,}000" />) instead of the pass surcharge (<InlineMath math="\text{Rp}2{,}000" />).
+- **Option <InlineMath math="\text{Rp}6{,}000" />** leaves out the <InlineMath math="\text{Rp}2{,}000" /> e-bike surcharge.
+
+# Answer
+
+The ride costs **<InlineMath math="\text{Rp}8{,}000" />**.

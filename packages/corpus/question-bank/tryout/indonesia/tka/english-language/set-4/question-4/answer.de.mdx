@@ -1,14 +1,43 @@
-Rechne jede Summe aus der Tabelle aus und denk daran: "A started half hour is charged in full" (eine angefangene halbe Stunde wird voll berechnet).
+# Gegeben
 
-**Normales Rad ohne Pass**. <InlineMath math="35" /> Minuten beginnen eine zweite halbe Stunde, jede Fahrt kostet also <InlineMath math="2 \times \text{Rp}3{.}000 = \text{Rp}6{.}000" />:
+Lina fährt **<InlineMath math="12" /> Mal im Monat** jeweils **<InlineMath math="35" /> Minuten** bis ins Dock. Ein Monatspass kostet <InlineMath math="\text{Rp}50{.}000" /> (<InlineMath math="45" /> Freiminuten, danach <InlineMath math="\text{Rp}3{.}000" /> je angefangene halbe Stunde, E-Bike <InlineMath math="+\text{Rp}2{.}000" />). Ohne Pass: <InlineMath math="\text{Rp}3{.}000" /> je angefangene halbe Stunde, E-Bike <InlineMath math="+\text{Rp}4{.}000" />.
 
-<BlockMath math="12 \times \text{Rp}6{.}000 = \text{Rp}72{.}000" />
+# Gesucht
 
-**Normales Rad mit Pass**. <InlineMath math="35" /> Minuten liegen in den freien <InlineMath math="45" />, sie zahlt also nur den Pass, <InlineMath math="\text{Rp}50{.}000" />.
+Welche nummerierten Aussagen zu Linas monatlichen Kosten mit und ohne Pass richtig sind.
 
-- **I stimmt**: <InlineMath math="\text{Rp}72{.}000" />.
-- **II stimmt**: <InlineMath math="\text{Rp}72{.}000 - \text{Rp}50{.}000 = \text{Rp}22{.}000" />.
-- III stimmt nicht. Bei <InlineMath math="50" />-Minuten-Fahrten zahlt der Passinhaber die <InlineMath math="5" /> Minuten über <InlineMath math="45" />: <InlineMath math="12 \times \text{Rp}3{.}000 + \text{Rp}50{.}000 = \text{Rp}86{.}000" />. Ohne Pass sind es <InlineMath math="12 \times \text{Rp}6{.}000 = \text{Rp}72{.}000" />, **der Pass wäre also teurer**.
-- **IV stimmt**. Mit dem E-Bike kostet eine Fahrt ohne Pass <InlineMath math="\text{Rp}6{.}000 + \text{Rp}4{.}000 = \text{Rp}10{.}000" />, im Monat also <InlineMath math="\text{Rp}120{.}000" />. Mit Pass kostet jede Fahrt nur den Zuschlag von <InlineMath math="\text{Rp}2{.}000" />: <InlineMath math="12 \times \text{Rp}2{.}000 + \text{Rp}50{.}000 = \text{Rp}74{.}000" />. Die Ersparnis ist <InlineMath math="\text{Rp}120{.}000 - \text{Rp}74{.}000 = \text{Rp}46{.}000" />.
+# Lösung
 
-Wahr sind also nur I, II und IV.
+Vergleiche Linas Monatsbudget sauber **ohne Pass** und **mit Monatspass**. Berechne zuerst **den Preis pro Einzelfahrt** (jede angefangene halbe Stunde zählt voll) und multipliziere dann mit <InlineMath math="12" /> Fahrten.
+
+> Ein Monatspass spart nur dann Geld, wenn die eingesparten Einzelfahrtgebühren höher sind als der Passpreis von <InlineMath math="\text{Rp}50{.}000" />.
+
+## Berechnung aller Monatsszenarien
+
+Wegen <Highlight>A started half hour is charged in full</Highlight> kostet **eine <InlineMath math="35" />-Minuten-Pedalfahrt ohne Pass** <InlineMath math="2" /> halbe Stunden (<InlineMath math="\text{Rp}6{.}000" />), während sie **mit Pass** in den <InlineMath math="45" /> Freiminuten bleibt:
+
+<BlockMath math="12 \times \text{Rp}6{.}000 = \text{Rp}72{.}000 \quad \text{vs.} \quad \text{Rp}50{.}000" />
+
+Für **<InlineMath math="50" />-Minuten-Pedalfahrten (Aussage III)** und **<InlineMath math="35" />-Minuten-E-Bike-Fahrten (Aussage IV)** ergibt sich:
+
+<BlockMath math="\text{50 Min. Pedal mit Pass: } 12 \times \text{Rp}3{.}000 + \text{Rp}50{.}000 = \text{Rp}86{.}000 > \text{Rp}72{.}000" />
+
+<BlockMath math="\text{35 Min. E-Bike ohne Pass: } 12 \times \text{Rp}10{.}000 = \text{Rp}120{.}000, \qquad \text{mit Pass: } 12 \times \text{Rp}2{.}000 + \text{Rp}50{.}000 = \text{Rp}74{.}000" />
+
+## Prüfung jeder Aussage
+
+| Aussage | Bewertung | Vergleichsergebnis |
+| --- | --- | --- |
+| I | **Richtig** | Ohne Pass zahlt sie beim Pedalrad genau <InlineMath math="\text{Rp}72{.}000" /> im Monat. |
+| II | Richtig | <InlineMath math="\text{Rp}72{.}000" /> minus <InlineMath math="\text{Rp}50{.}000" /> spart genau <InlineMath math="\text{Rp}22{.}000" /> im Monat. |
+| III | Falsch | Bei <InlineMath math="50" /> Minuten kostet der Pass <InlineMath math="\text{Rp}86{.}000" />, ohne Pass bleibt es bei <InlineMath math="\text{Rp}72{.}000" /> (<InlineMath math="2" /> halbe Stunden). Der Pass wäre also teurer. |
+| IV | Richtig | Beim E-Bike spart der Pass <InlineMath math="\text{Rp}120{.}000" /> minus <InlineMath math="\text{Rp}74{.}000" />, genau <InlineMath math="\text{Rp}46{.}000" /> im Monat. |
+
+## Warum die anderen Optionen falsch sind
+
+- **Optionen mit III** übersehen, dass <InlineMath math="50" /> Minuten ohne Pass weiter nur <InlineMath math="2" /> Blöcke kosten, mit Pass aber <InlineMath math="\text{Rp}36{.}000" /> Aufschlag auslösen.
+- **Nur I und II** oder **nur II und IV** lassen eine rechnerisch richtige Aussage weg.
+
+# Antwort
+
+Richtig sind **nur die Aussagen I, II und IV**.

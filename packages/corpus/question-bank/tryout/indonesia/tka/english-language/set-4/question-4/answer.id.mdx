@@ -1,14 +1,43 @@
-Hitung setiap biaya dari tabel, dan ingat *A started half hour is charged in full* (setengah jam yang sudah dimulai ditagih penuh).
+# Diketahui
 
-**Sepeda kayuh tanpa pass**. <InlineMath math="35" /> menit memulai setengah jam kedua, jadi tiap perjalanan <InlineMath math="2 \times \text{Rp}3{.}000 = \text{Rp}6{.}000" />:
+Lina bersepeda **<InlineMath math="12" /> kali sebulan**, setiap perjalanan berlangsung **<InlineMath math="35" /> menit** dan berakhir di dok. Kartu bulanan berharga <InlineMath math="\text{Rp}50{.}000" /> (gratis <InlineMath math="45" /> menit pertama, lalu <InlineMath math="\text{Rp}3{.}000" /> per setengah jam dimulai, e-bike <InlineMath math="+\text{Rp}2{.}000" />). Tanpa kartu: <InlineMath math="\text{Rp}3{.}000" /> per setengah jam dimulai, e-bike <InlineMath math="+\text{Rp}4{.}000" />.
 
-<BlockMath math="12 \times \text{Rp}6{.}000 = \text{Rp}72{.}000" />
+# Ditanyakan
 
-**Sepeda kayuh dengan pass**. <InlineMath math="35" /> menit masih di dalam <InlineMath math="45" /> menit gratis, jadi ia hanya membayar pass, <InlineMath math="\text{Rp}50{.}000" />.
+Pernyataan perbandingan biaya bernomor Romawi mana saja yang benar untuk Lina.
 
-- **I benar**: <InlineMath math="\text{Rp}72{.}000" />.
-- **II benar**: <InlineMath math="\text{Rp}72{.}000 - \text{Rp}50{.}000 = \text{Rp}22{.}000" />.
-- III salah. Dengan perjalanan <InlineMath math="50" /> menit, pemegang pass membayar <InlineMath math="5" /> menit lewat <InlineMath math="45" />: <InlineMath math="12 \times \text{Rp}3{.}000 + \text{Rp}50{.}000 = \text{Rp}86{.}000" />. Tanpa pass <InlineMath math="12 \times \text{Rp}6{.}000 = \text{Rp}72{.}000" />, jadi **pass justru lebih mahal**.
-- **IV benar**. Dengan sepeda listrik, satu perjalanan tanpa pass berbiaya <InlineMath math="\text{Rp}6{.}000 + \text{Rp}4{.}000 = \text{Rp}10{.}000" />, jadi <InlineMath math="\text{Rp}120{.}000" /> sebulan. Dengan pass, tiap perjalanan hanya kena biaya tambahan <InlineMath math="\text{Rp}2{.}000" />: <InlineMath math="12 \times \text{Rp}2{.}000 + \text{Rp}50{.}000 = \text{Rp}74{.}000" />. Hematnya <InlineMath math="\text{Rp}120{.}000 - \text{Rp}74{.}000 = \text{Rp}46{.}000" />.
+# Penyelesaian
 
-Jadi, pernyataan yang benar hanya I, II, dan IV.
+Bayangkan kamu membuat dua kolom anggaran bulanan Lina: **tanpa kartu** dan **dengan kartu bulanan**. Hitung **biaya satu perjalanan dulu** (ingat aturan setengah jam dimulai dihitung penuh), lalu kalikan dengan <InlineMath math="12" /> perjalanan untuk setiap skenario.
+
+> Kartu bulanan hanya menghemat uang jika biaya perjalanan yang dihematnya lebih besar daripada harga kartu <InlineMath math="\text{Rp}50{.}000" /> sendiri.
+
+## Menghitung seluruh skenario biaya bulanan Lina
+
+Karena teks menegaskan <Highlight>A started half hour is charged in full</Highlight>, **durasi <InlineMath math="35" /> menit tanpa kartu** memakan <InlineMath math="2" /> setengah jam (<InlineMath math="\text{Rp}6{.}000" /> per perjalanan), sedangkan **dengan kartu** masuk batas gratis <InlineMath math="45" /> menit:
+
+<BlockMath math="12 \times \text{Rp}6{.}000 = \text{Rp}72{.}000 \quad \text{vs.} \quad \text{Rp}50{.}000" />
+
+Untuk simulasi **<InlineMath math="50" /> menit (pernyataan III)** dan **e-bike <InlineMath math="35" /> menit (pernyataan IV)**:
+
+<BlockMath math="\text{Kayuh 50 mnt dengan kartu: } 12 \times \text{Rp}3{.}000 + \text{Rp}50{.}000 = \text{Rp}86{.}000 > \text{Rp}72{.}000" />
+
+<BlockMath math="\text{E-bike 35 mnt tanpa kartu: } 12 \times \text{Rp}10{.}000 = \text{Rp}120{.}000, \qquad \text{dengan kartu: } 12 \times \text{Rp}2{.}000 + \text{Rp}50{.}000 = \text{Rp}74{.}000" />
+
+## Memeriksa setiap pernyataan perbandingan
+
+| Pernyataan | Status | Hasil perbandingan |
+| --- | --- | --- |
+| I | **Benar** | Sepeda kayuh <InlineMath math="35" /> menit tanpa kartu tepat <InlineMath math="\text{Rp}72{.}000" /> per bulan. |
+| II | Benar | Selisih <InlineMath math="\text{Rp}72{.}000" /> dikurangi <InlineMath math="\text{Rp}50{.}000" /> tepat menghemat <InlineMath math="\text{Rp}22{.}000" /> per bulan. |
+| III | Salah | Pada <InlineMath math="50" /> menit, pemegang kartu kena <InlineMath math="\text{Rp}86{.}000" /> (karena lewat <InlineMath math="5" /> menit tiap perjalanan), sementara tanpa kartu tetap <InlineMath math="\text{Rp}72{.}000" /> (<InlineMath math="50" /> menit masih <InlineMath math="2" /> setengah jam). Kartu justru lebih mahal. |
+| IV | Benar | Pada e-bike, selisih <InlineMath math="\text{Rp}120{.}000" /> dikurangi <InlineMath math="\text{Rp}74{.}000" /> tepat menghemat <InlineMath math="\text{Rp}46{.}000" /> per bulan. |
+
+## Mengapa kombinasi pilihan lain salah
+
+- **Pilihan yang memuat III** tidak mengecek bahwa perjalanan <InlineMath math="50" /> menit tetap <InlineMath math="2" /> blok tanpa kartu tetapi memicu biaya ekstra <InlineMath math="\text{Rp}36{.}000" /> pada kartu bulanan.
+- **Pilihan I dan II saja** atau **II dan IV saja** melewatkan hitungan valid pada IV atau I.
+
+# Jawaban
+
+Pernyataan perbandingan biaya yang benar adalah **I, II, dan IV saja**.

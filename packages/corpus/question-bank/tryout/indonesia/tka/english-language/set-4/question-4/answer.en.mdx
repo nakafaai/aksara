@@ -1,14 +1,43 @@
-Work out each cost from the table, remembering that "A started half hour is charged in full".
+# Given
 
-**Pedal bike without a pass**. <InlineMath math="35" /> minutes starts a second half hour, so each ride costs <InlineMath math="2 \times \text{Rp}3{,}000 = \text{Rp}6{,}000" />:
+Lina takes **<InlineMath math="12" /> rides a month**, each lasting **<InlineMath math="35" /> minutes** and ending in a dock. A monthly pass costs <InlineMath math="\text{Rp}50{,}000" /> (<InlineMath math="45" /> free minutes, then <InlineMath math="\text{Rp}3{,}000" /> per started half hour, e-bike <InlineMath math="+\text{Rp}2{,}000" />). Without a pass: <InlineMath math="\text{Rp}3{,}000" /> per started half hour, e-bike <InlineMath math="+\text{Rp}4{,}000" />.
 
-<BlockMath math="12 \times \text{Rp}6{,}000 = \text{Rp}72{,}000" />
+# Asked
 
-**Pedal bike with a pass**. <InlineMath math="35" /> minutes is inside the free <InlineMath math="45" />, so she pays only the pass, <InlineMath math="\text{Rp}50{,}000" />.
+Which numbered statements comparing Lina's monthly costs with and without a pass are true.
 
-- **I is true**: <InlineMath math="\text{Rp}72{,}000" />.
-- **II is true**: <InlineMath math="\text{Rp}72{,}000 - \text{Rp}50{,}000 = \text{Rp}22{,}000" />.
-- III is false. With <InlineMath math="50" />-minute rides, the pass holder pays for the <InlineMath math="5" /> minutes past <InlineMath math="45" />: <InlineMath math="12 \times \text{Rp}3{,}000 + \text{Rp}50{,}000 = \text{Rp}86{,}000" />. Without a pass it's <InlineMath math="12 \times \text{Rp}6{,}000 = \text{Rp}72{,}000" />, so **the pass would cost more**.
-- **IV is true**. On an e-bike, a ride without a pass costs <InlineMath math="\text{Rp}6{,}000 + \text{Rp}4{,}000 = \text{Rp}10{,}000" />, so <InlineMath math="\text{Rp}120{,}000" /> a month. With a pass, each ride costs only the <InlineMath math="\text{Rp}2{,}000" /> surcharge: <InlineMath math="12 \times \text{Rp}2{,}000 + \text{Rp}50{,}000 = \text{Rp}74{,}000" />. The saving is <InlineMath math="\text{Rp}120{,}000 - \text{Rp}74{,}000 = \text{Rp}46{,}000" />.
+# Solution
 
-So the true statements are I, II and IV only.
+Build a quick side-by-side budget for Lina: **no pass** versus **monthly pass**. Compute **one ride's cost first** (remembering every started half hour is billed in full), then multiply by <InlineMath math="12" /> rides for each scenario.
+
+> A monthly pass saves money only when the per-ride fees it eliminates exceed its own <InlineMath math="\text{Rp}50{,}000" /> price.
+
+## Calculating all monthly cost scenarios
+
+Because <Highlight>A started half hour is charged in full</Highlight>, **a <InlineMath math="35" />-minute pedal ride without a pass** takes <InlineMath math="2" /> half hours (<InlineMath math="\text{Rp}6{,}000" /> per ride), while **with a pass** it stays inside the <InlineMath math="45" /> free minutes:
+
+<BlockMath math="12 \times \text{Rp}6{,}000 = \text{Rp}72{,}000 \quad \text{vs.} \quad \text{Rp}50{,}000" />
+
+Now compute **<InlineMath math="50" />-minute pedal rides (statement III)** and **<InlineMath math="35" />-minute e-bike rides (statement IV)**:
+
+<BlockMath math="\text{50-min pedal, with pass: } 12 \times \text{Rp}3{,}000 + \text{Rp}50{,}000 = \text{Rp}86{,}000 > \text{Rp}72{,}000" />
+
+<BlockMath math="\text{35-min e-bike, no pass: } 12 \times \text{Rp}10{,}000 = \text{Rp}120{,}000, \qquad \text{with pass: } 12 \times \text{Rp}2{,}000 + \text{Rp}50{,}000 = \text{Rp}74{,}000" />
+
+## Checking each comparison statement
+
+| Statement | Verdict | Comparison result |
+| --- | --- | --- |
+| I | **True** | Pedal bike without a pass totals <InlineMath math="\text{Rp}72{,}000" /> a month. |
+| II | True | Saving is <InlineMath math="\text{Rp}72{,}000" /> minus <InlineMath math="\text{Rp}50{,}000" />, which equals <InlineMath math="\text{Rp}22{,}000" />. |
+| III | False | At <InlineMath math="50" /> minutes, a pass costs <InlineMath math="\text{Rp}86{,}000" /> (paying for <InlineMath math="5" /> overage minutes per ride), while no pass still costs <InlineMath math="\text{Rp}72{,}000" /> (still <InlineMath math="2" /> half hours). The pass costs more. |
+| IV | True | On an e-bike, <InlineMath math="\text{Rp}120{,}000" /> minus <InlineMath math="\text{Rp}74{,}000" /> saves exactly <InlineMath math="\text{Rp}46{,}000" /> a month. |
+
+## Why the other options fail
+
+- **Options including III** overlook that <InlineMath math="50" /> minutes still fits inside <InlineMath math="2" /> paid half hours without a pass while adding <InlineMath math="\text{Rp}36{,}000" /> of overage with a pass.
+- **I and II only** or **II and IV only** leave out a verified calculation.
+
+# Answer
+
+The true cost-comparison statements are **I, II, and IV only**.
