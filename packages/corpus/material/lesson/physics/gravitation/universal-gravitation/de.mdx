@@ -1,7 +1,7 @@
 export const metadata = {
   title: "Gravitationsgesetz und Keplersche Gesetze",
   description:
-    "Wende Newtons Gravitationsgesetz an, berechne die Fallbeschleunigung, nutze die Keplerschen Gesetze und bestimme Bahn- und Fluchtgeschwindigkeit.",
+    "Newtons Gravitationsgesetz, Fallbeschleunigung auf Planeten, Kreisbahnen von Satelliten, die Keplerschen Gesetze und Fluchtgeschwindigkeiten.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-11-16",
   subject: "Gravitation",
@@ -9,27 +9,25 @@ export const metadata = {
 
 ## Newtons Gravitationsgesetz
 
-**Newtons Gravitationsgesetz** besagt, dass die Gravitationskraft zwischen zwei Körpern proportional zum Produkt ihrer Massen und umgekehrt proportional zum Quadrat des Abstands ihrer Mittelpunkte ist:
+Lass am Abend einen Stein fallen und blicke zugleich zum Mond hinauf. Beide folgen **Newtons Gravitationsgesetz**: Jede Masse im Universum zieht jede andere Masse entlang der Verbindungslinie ihrer Mittelpunkte an.
 
 <BlockMath math="F = \frac{G m_1 m_2}{r^2}" />
 
-Dabei ist <InlineMath math="G = 6{,}67 \cdot 10^{-11}\ \text{N m}^2\ \text{kg}^{-2}" /> die **Gravitationskonstante**, <InlineMath math="m_1" /> und <InlineMath math="m_2" /> sind die Massen in Kilogramm und <InlineMath math="r" /> ist der Abstand der Mittelpunkte in Metern. Dieselbe Kraft zieht einen Apfel zur Erde und hält den Mond auf seiner Bahn. Hier veränderst du den Abstand, steigst vom Erdmittelpunkt bis weit in den Weltraum auf und vergleichst echte Satellitenbahnen.
+Dabei beträgt <InlineMath math="G" /> genau <InlineMath math="6{,}67 \times 10^{-11}\text{ N m}^2\text{ kg}^{-2}" />, <InlineMath math="m_1" /> und <InlineMath math="m_2" /> sind die Massen in Kilogramm und <InlineMath math="r" /> ist der Mittelpunktsabstand in Metern. Weil <InlineMath math="G" /> winzig ist, fällt die Anziehung erst bei planetaren Massen spürbar ins Gewicht.
 
-Das Gesetz gilt für **alle** Körper mit Masse, auch für dich und dein Buch. Zwischen zwei kleinen Körpern ist die Kraft winzig, weil <InlineMath math="G" /> so klein ist. Spürbar wird die Gravitation erst, wenn mindestens ein Körper riesig ist, etwa ein Planet oder ein Stern.
+> Jeder Gravitationsabstand beginnt im Mittelpunkt eines Körpers, niemals an seiner Oberfläche.
 
-## Wie der Abstand die Gravitationskraft verändert
-
-Das <InlineMath math="r^2" /> im Nenner bedeutet, dass die Kraft schnell abnimmt, wenn der Abstand wächst. **Verdoppelt** sich der Abstand, sinkt die Kraft auf **ein Viertel**. Beweg den Abstandsregler und beobachte die Kurve des umgekehrten Quadrats.
+Verdoppelst du den Abstand, sinkt die Kraft auf ein Viertel statt auf die Hälfte, weil <InlineMath math="r" /> im Nenner quadriert steht. Bewege den Abstandsregler unten und verfolge den steilen Abfall der Kurve.
 
 <MathVisual
-  title={<>Gravitationskraft gegen Abstand</>}
+  title={<>Gravitationskraft über dem Abstand</>}
   description={
     <>
-      Die Gravitationskraft in Einheiten von <InlineMath math="F_0" />, der Kraft
-      beim Abstand <InlineMath math="r = 1" />. Die Kurve ist{" "}
-      <InlineMath math="F = F_0 / r^2" />.
+      Relative Gravitationskraft in Einheiten von <InlineMath math="F_0" />, der
+      Kraft bei einfachem Abstand.
     </>
   }
+  footer={<>Doppelter Abstand senkt die Kraft auf ein Viertel, dreifacher auf ein Neuntel.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: 0, max: 4.2 }, y: { min: 0, max: 1.3 } },
@@ -52,137 +50,148 @@ Das <InlineMath math="r^2" /> im Nenner bedeutet, dass die Kraft schnell abnimmt
   }}
 />
 
-### Beispiel Kraft zwischen Erde und Mond
+Bei dreifachem Abstand beträgt das Verhältnis ein Neuntel, sodass eine Kraft von <InlineMath math="36\text{ N}" /> auf <InlineMath math="4\text{ N}" /> schrumpft. Nach Newtons drittem Gesetz zieht die Erde den Mond mit exakt demselben Betrag an wie der Mond die Erde.
 
-Die Erdmasse beträgt <InlineMath math="5{,}97 \cdot 10^{24}\ \text{kg}" />, die Mondmasse <InlineMath math="7{,}35 \cdot 10^{22}\ \text{kg}" /> und der Abstand der Mittelpunkte <InlineMath math="3{,}84 \cdot 10^{8}\ \text{m}" />. Berechne **die Gravitationskraft zwischen Erde und Mond**.
+## Gravitation und Satelliten
 
-<BlockMath math="F = \frac{(6{,}67 \cdot 10^{-11})(5{,}97 \cdot 10^{24})(7{,}35 \cdot 10^{22})}{(3{,}84 \cdot 10^{8})^2} = 1{,}98 \cdot 10^{20}\ \text{N}" />
+Die Anziehung eines Planeten bestimmt sowohl das freie Fallen an seiner Oberfläche als auch das nötige Tempo jedes **natürlichen oder künstlichen Satelliten** im Orbit. Dieselbe Formel verknüpft dabei die Planetenmasse mit der Fallbeschleunigung am Boden und der Bahngeschwindigkeit weit oben im Raum.
 
-Prüf die Größenordnung: Der Zähler liegt bei etwa <InlineMath math="2{,}9 \cdot 10^{37}" />, der Nenner bei etwa <InlineMath math="1{,}5 \cdot 10^{17}" />, also liegt das Ergebnis um <InlineMath math="2 \cdot 10^{20}" />. Die Kraft ist auf Erde und Mond gleich groß, wie es das dritte newtonsche Gesetz verlangt.
+### Fallbeschleunigung
 
-### Beispiel dreifacher Abstand
-
-Zwei Körper ziehen sich mit <InlineMath math="36\ \text{N}" /> an. Der Abstand ihrer Mittelpunkte wird **verdreifacht**. Die neue Kraft beträgt:
-
-<BlockMath math="F' = \frac{36}{3^2} = 4\ \text{N}" />
-
-Prüf das im Modell: Bei <InlineMath math="r = 3" /> ist das Verhältnis <InlineMath math="F / F_0" /> gleich <InlineMath math="1/9" />, und <InlineMath math="36 : 9 = 4" />.
-
-## Fallbeschleunigung an und über der Erdoberfläche
-
-Die Gravitationskraft auf einen Körper der Masse <InlineMath math="m" /> ist seine Gewichtskraft <InlineMath math="mg" />. Setzt du sie mit dem Gravitationsgesetz gleich, kürzt sich <InlineMath math="m" /> heraus:
+Setzt man die Gewichtskraft eines fallenden Körpers gleich Newtons Gravitationskraft, kürzt sich seine Masse <InlineMath math="m" /> heraus und liefert die **Fallbeschleunigung** <InlineMath math="g" />.
 
 <BlockMath math="g = \frac{GM}{r^2}" />
 
-**Die Fallbeschleunigung hängt also nicht von der Masse des fallenden Körpers ab**. An der Erdoberfläche ist <InlineMath math="r = R = 6{,}37 \cdot 10^{6}\ \text{m}" /> und <InlineMath math="g = 9{,}81\ \text{m/s}^2" />. Das Modell zeigt, wie sich <InlineMath math="g" /> vom Erdmittelpunkt bis weit in den Weltraum ändert, wenn man die Erde als Kugel gleichmäßiger Dichte betrachtet. Im Erdinneren wächst <InlineMath math="g" /> linear, außerhalb fällt es mit dem umgekehrten Quadrat.
+Die Fallbeschleunigung hängt allein von der Planetenmasse <InlineMath math="M" /> und dem Abstand <InlineMath math="r" /> vom Mittelpunkt ab. An der Erdoberfläche mit dem Radius <InlineMath math="6{,}37 \times 10^{6}\text{ m}" /> beträgt <InlineMath math="g" /> rund <InlineMath math="9{,}81\text{ m s}^{-2}" />.
 
-<MathVisual
-  title={<>Fallbeschleunigung vom Erdmittelpunkt aus</>}
+Ändern sich Masse und Radius zugleich, reagieren Fallbeschleunigung, Bahngeschwindigkeit und Fluchtgeschwindigkeit unterschiedlich. Vergleiche die Erde unten mit einem Planeten doppelter Masse und doppelten Radius.
+
+<PlanetCompareLab
+  title={<>Oberflächengravitation zweier Planeten</>}
   description={
     <>
-      Waagerecht ist der Abstand vom Erdmittelpunkt in Erdradien{" "}
-      <InlineMath math="R" /> aufgetragen, senkrecht <InlineMath math="g" /> in{" "}
-      <InlineMath math="\text{m/s}^2" />. Der Höchstwert von{" "}
-      <InlineMath math="9{,}81\ \text{m/s}^2" /> liegt an der Oberfläche.
+      Planet Z besitzt die doppelte Masse und den doppelten Radius der Erde,
+      sodass seine Oberflächengravitation halbiert ist, die Bahngeschwindigkeit
+      dicht über dem Boden aber gleich bleibt.
     </>
   }
-  scene={{
-    space: "plane",
-    frame: { kind: "cartesian", x: { min: 0, max: 6 }, y: { min: 0, max: 10.5 } },
-    view: { kind: "fit", padding: 0.06 },
-    parameters: [
-      { name: "h", min: 0.2, max: 6, value: 2, step: 0.1, label: "h" },
-    ],
-    objects: [
-      { id: "inside", kind: "function", appearance: "secondary", formula: "9.81x", domain: { min: 0, max: 1 } },
-      { id: "outside", kind: "function", appearance: "primary", formula: "9.81/x^2", domain: { min: 1, max: 6 } },
-      { id: "surface", kind: "point", appearance: "answer", at: { x: 1, y: 9.81 } },
-      { id: "now", kind: "marker", x: "h", y: "9.81min(h, 1/h^2)", appearance: "warning" },
-    ],
-    labels: [
-      { key: "surface", objectId: "surface", at: { x: 1, y: 9.81 }, placement: "above-right" },
-    ],
-    readouts: [
-      { key: "gravity", formula: "9.81min(h, 1/h^2)" },
-    ],
-  }}
+  footer={<>Die Fallbeschleunigung skaliert mit Masse durch Radiusquadrat, Geschwindigkeiten mit Masse durch Radius.</>}
   labels={{
-    h: <>Abstand vom Mittelpunkt in <InlineMath math="R" /></>,
-    surface: <>Erdoberfläche</>,
-    gravity: <><InlineMath math="g" /> in <InlineMath math="\text{m/s}^2" /></>,
+    earthName: "Erde",
+    escape: <>Fluchtgeschwindigkeit</>,
+    gravity: <>Oberflächengravitation</>,
+    orbit: <>Bahngeschwindigkeit nah am Boden</>,
+    period: <>Umlaufzeit nah am Boden</>,
+    planetName: "Planet Z",
+    viewLabel: "Erde neben Planet Z mit doppelter Masse und doppeltem Radius",
   }}
+  mass={2}
+  radius={2}
 />
 
-Dass <InlineMath math="g" /> nicht von der Masse abhängt, kannst du selbst prüfen. In einer luftleeren Röhre fallen Münze und Feder gleichzeitig. In Luft bremst der Luftwiderstand die Feder.
+Auf Planet Z halbiert das Verdoppeln von <InlineMath math="M" /> und <InlineMath math="R" /> den Wert von <InlineMath math="g" />, weil der Radius im Nenner quadriert steht. Auf der Internationalen Raumstation in <InlineMath math="400\text{ km}" /> Höhe wirkt immer noch <InlineMath math="8{,}69\text{ m s}^{-2}" />. Astronauten schweben, weil sie gemeinsam mit der Station ständig um die Erde frei fallen.
 
-<FeatherCoinVacuumLab
-  title={<>Münze und Feder in der Röhre</>}
-  description={
-    <>
-      Wähle Luft oder Vakuum und lass dann beide gleichzeitig los. Vergleich,
-      wie lange jede fällt.
-    </>
-  }
-  labels={{
-    airs: { air: <>Luft</>, vacuum: <>Vakuum</> },
-    chooseAir: "Wähle die Füllung der Röhre",
-    coinTime: <>Fallzeit der Münze</>,
-    drop: <>Fallhöhe</>,
-    featherTime: <>Fallzeit der Feder</>,
-    viewLabel: "Münze und Feder fallen in einer Glasröhre",
-  }}
-/>
+### Satellitenkreisbahnen
 
-Die Internationale Raumstation kreist etwa <InlineMath math="400\ \text{km}" /> über der Oberfläche, also bei <InlineMath math="r = 6{,}77 \cdot 10^{6}\ \text{m}" />:
-
-<BlockMath math="g = \frac{3{,}98 \cdot 10^{14}}{(6{,}77 \cdot 10^{6})^2} = 8{,}69\ \text{m/s}^2" />
-
-Die Astronauten an Bord spüren noch fast <InlineMath math="90\ \%" /> der Schwerkraft an der Oberfläche. Sie schweben, weil sie und die Station gemeinsam frei um die Erde fallen, nicht weil die Gravitation verschwunden wäre.
-
-## Satelliten und die Keplerschen Gesetze
-
-Ein Satellit bleibt auf seiner Kreisbahn, weil die Gravitationskraft als **Zentripetalkraft** wirkt. Setzt du <InlineMath math="\dfrac{GMm}{r^2}" /> gleich <InlineMath math="\dfrac{mv^2}{r}" />, ergibt sich die Bahngeschwindigkeit:
+Ein Satellit bleibt auf einer Kreisbahn, weil die Gravitation exakt die **Zentripetalkraft** liefert, die seine Bahn fortlaufend um den Planeten krümmt.
 
 <BlockMath math="v = \sqrt{\frac{GM}{r}}" />
 
-Ein weiter entfernter Satellit ist langsamer und braucht länger für eine Umrundung. Wähle die drei echten Satelliten im Modell und vergleich Radius, Geschwindigkeit, Umlaufzeit und Beschleunigung.
+Die Satellitenmasse kürzt sich heraus, sodass ein schweres Teleskop und ein Kleinsatellit auf derselben Bahn gleich schnell fliegen. Ein größerer Bahnradius bedeutet eine schwächere Anziehung, geringere Bahngeschwindigkeit und längere Umlaufzeit.
 
-<SatelliteOrbitCircularLab
-  title={<>Drei echte Satellitenbahnen</>}
+Addiere stets den Planetenradius <InlineMath math="R" /> zur Flughöhe <InlineMath math="h" /> über der Oberfläche. Vergleiche unten zwei Satelliten in den Höhen <InlineMath math="3R" /> und <InlineMath math="R" /> über der Erdoberfläche.
+
+<OrbitRadiusLab
+  title={<>Zwei Satellitenbahnen um die Erde</>}
   description={
     <>
-      Raumstation, ein GPS-Satellit und ein geostationärer Satellit sind
-      maßstabsgetreu gezeichnet. Wähle eine Bahn und lies ihre Werte ab.
+      Satellit X kreist in Höhe <InlineMath math="3R" /> mit einer Umlaufzeit
+      von <InlineMath math="8{,}0\text{ Stunden}" />, Satellit Y in Höhe{" "}
+      <InlineMath math="R" />.
     </>
   }
+  footer={<>Addiere zuerst den Erdradius, damit X bei 4R und Y bei 2R vom Zentrum liegt.</>}
   labels={{
-    acceleration: <>Zentripetalbeschleunigung</>,
-    chooseOrbit: "Wähle eine Bahn",
-    orbits: {
-      station: <>Internationale Raumstation</>,
-      gps: <>GPS-Satellit</>,
-      geostationary: <>Geostationärer Satellit</>,
+    knownName: "Satellit X",
+    knownRadius: <>Bahnradius von X</>,
+    otherName: "Satellit Y",
+    otherPeriod: <>Umlaufzeit von Y</>,
+    otherRadius: <>Bahnradius von Y</>,
+    viewLabel: "Zwei Satelliten auf verschieden hohen Kreisbahnen um die Erde",
+  }}
+  knownHeight={3}
+  knownPeriod={8}
+  otherHeight={1}
+/>
+
+Da X den Bahnradius <InlineMath math="4R" /> und Y den Bahnradius <InlineMath math="2R" /> hat, verkürzt die Halbierung des Bahnradius die Umlaufzeit um den Faktor <InlineMath math="2\sqrt{2}" /> auf etwa <InlineMath math="2{,}8\text{ Stunden}" />.
+
+## Die drei Keplerschen Gesetze
+
+Johannes Kepler formulierte drei geometrische Gesetzmäßigkeiten für Planetenbahnen, noch bevor Newton die zugehörige Kraft herleitete:
+
+1. Jeder Planet bewegt sich auf einer **Ellipse**, in deren einem Brennpunkt die Sonne steht.
+2. Der Fahrstrahl von der Sonne zum Planeten überstreicht **gleiche Flächen in gleichen Zeiten**, weshalb ein Planet im Perihel schneller und im Aphel langsamer läuft.
+3. Die Quadrate der Umlaufzeiten verhalten sich wie die dritten Potenzen der mittleren Bahnradien.
+
+<BlockMath math="T^2 = \frac{4\pi^2}{GM} r^3" />
+
+> Im Perihel erreicht ein Planet sein Tempo-Maximum und im Aphel sein Minimum, weil die Gravitation ihn beim Annähern beschleunigt und beim Entfernen abbremst.
+
+Wechsle unten zwischen Himmelskörpern und verändere die Exzentrizität, um Brennpunktlage, flächengleiche Sektoren und das konstante Kepler-Verhältnis zu beobachten.
+
+<KeplerOrbitPeriodLab
+  title={<>Ellipsenbahnen und die Keplerschen Gesetze</>}
+  description={
+    <>
+      Wähle einen Himmelskörper und passe die Exzentrizität an, um
+      Geschwindigkeit im Perihel und Aphel, flächengleiche Sektoren und das
+      Kepler-Verhältnis zu prüfen.
+    </>
+  }
+  footer={<>Alle Körper um denselben Stern teilen denselben Quotienten aus T Quadrat durch r hoch drei.</>}
+  bodies={["mercury", "earth", "mars", "jupiter", "comet"]}
+  eccentricity={{ min: 0, max: 0.75, value: 0.25 }}
+  labels={{
+    body: "Himmelskörper",
+    bodies: {
+      mercury: "Merkur",
+      earth: "Erde",
+      mars: "Mars",
+      jupiter: "Jupiter",
+      comet: "Komet",
     },
+    eccentricity: "Exzentrizität",
+    radius: <>Mittlerer Bahnradius</>,
+    ratio: <>Kepler-Verhältnis</>,
     period: <>Umlaufzeit</>,
-    radius: <>Bahnradius</>,
-    speed: <>Bahngeschwindigkeit</>,
-    viewLabel: "Drei Satelliten kreisen maßstabsgetreu um die Erde",
+    speed: <>Aktuelle Bahngeschwindigkeit</>,
+    parts: {
+      sun: "Sonne",
+      planet: "Himmelskörper",
+      perihelion: "Perihel",
+      aphelion: "Aphel",
+      focus: "Leerer Brennpunkt",
+      areaSector: "Flächengleicher Sektor",
+    },
+    view: "Heliozentrische 3D-Ellipsenbahn mit Sonne in einem Brennpunkt, Perihel, Aphel und flächengleichen Sektoren",
   }}
 />
 
-Das **dritte Keplersche Gesetz** besagt, dass das Quadrat der Umlaufzeit proportional zur dritten Potenz des Bahnradius ist, <InlineMath math="T^2 \propto r^3" />. Es folgt aus der Bahngeschwindigkeit: <InlineMath math="T = 2\pi r / v" />, also <InlineMath math="T^2 = \dfrac{4\pi^2}{GM} r^3" />. Echte Planetendaten folgen diesem Gesetz. Mit Abständen in Astronomischen Einheiten und Umlaufzeiten in Erdjahren gilt <InlineMath math="T = r^{3/2}" />.
+Größere Exzentrizität streckt die Ellipse und verstärkt den Geschwindigkeitsunterschied zwischen Perihel und Aphel, doch das Verhältnis aus Quadrat der Umlaufzeit und dritter Potenz des mittleren Radius hängt allein von der Sonnenmasse ab.
+
+Messwerte von fünf Planeten bestätigen diesen steilen Zusammenhang in Astronomischen Einheiten und Erdjahren.
 
 <ScatterDiagram
   title={<>Umlaufzeiten von fünf Planeten</>}
   description={
     <>
-      Mittlerer Abstand zur Sonne in Astronomischen Einheiten gegen die
-      Umlaufzeit in Jahren, von Merkur (Abstand <InlineMath math="0{,}387" />, Umlaufzeit{" "}
-      <InlineMath math="0{,}241" />) bis Jupiter (Abstand <InlineMath math="5{,}203" />, Umlaufzeit{" "}
-      <InlineMath math="11{,}86" />).
+      Mittlerer Sonnenabstand in Astronomischen Einheiten gegen die Umlaufzeit
+      in Erdjahren, von Merkur bis Jupiter.
     </>
   }
-  xAxisLabel="Abstand zur Sonne (AE)"
+  footer={<>Äußere Planeten legen längere Bahnen langsamer zurück, daher wächst die Umlaufzeit stark.</>}
+  xAxisLabel="Sonnenabstand (AE)"
   yAxisLabel="Umlaufzeit (Jahre)"
   datasets={[
     {
@@ -199,35 +208,25 @@ Das **dritte Keplersche Gesetz** besagt, dass das Quadrat der Umlaufzeit proport
   ]}
 />
 
-Das erste Keplersche Gesetz besagt, dass jeder Planet die Sonne auf einer Ellipse umläuft, in deren einem Brennpunkt die Sonne steht. Das zweite besagt, dass die Verbindungslinie von der Sonne zum Planeten in gleichen Zeiten gleiche Flächen überstreicht. Ein Planet ist also schneller, wenn er der Sonne nahe ist.
-
-Jetzt wendest du das Gesetz an. Ein **geostationärer** Satellit umrundet die Erde einmal in <InlineMath math="24" /> Stunden, genau wie die Erde sich dreht, deshalb scheint er am Himmel stillzustehen. Bestimme seinen Bahnradius.
-
-<MathContainer>
-<BlockMath math="r^3 = \frac{GMT^2}{4\pi^2} = \frac{(3{,}98 \cdot 10^{14})(86{.}400)^2}{4\pi^2}" />
-<BlockMath math="r = 4{,}22 \cdot 10^{7}\ \text{m}" />
-</MathContainer>
-
-Das sind etwa <InlineMath math="36{.}000\ \text{km}" /> über der Oberfläche. Prüf das im Bahnmodell: Wähle den geostationären Satelliten und lies denselben Radius ab.
+Ein geostationärer Satellit nutzt dasselbe Gesetz mit einer Umlaufzeit von <InlineMath math="86{,}400\text{ s}" /> und kreist daher bei einem Bahnradius von <InlineMath math="4{,}22 \times 10^{7}\text{ m}" />, rund <InlineMath math="36{,}000\text{ km}" /> über dem Äquator.
 
 ## Fluchtgeschwindigkeit
 
-Die **Fluchtgeschwindigkeit** ist die kleinste Geschwindigkeit, die ein Körper an der Oberfläche eines Planeten braucht, um ohne weiteren Antrieb dessen Anziehung zu entkommen:
+Die **Fluchtgeschwindigkeit** ist die kleinste Startgeschwindigkeit ab Abstand <InlineMath math="r" />, mit der ein Körper das Gravitationsfeld eines Planeten ohne weiteren Antrieb verlässt.
 
-<BlockMath math="v_{\text{Flucht}} = \sqrt{\frac{2GM}{r}}" />
+<BlockMath math="v_{\text{flucht}} = \sqrt{\frac{2GM}{r}}" />
 
-Die Fluchtgeschwindigkeit ist <InlineMath math="\sqrt{2}" />-mal so groß wie die Bahngeschwindigkeit im selben Abstand. An der Erdoberfläche beträgt die Bahngeschwindigkeit <InlineMath math="7{,}91\ \text{km/s}" /> und die Fluchtgeschwindigkeit <InlineMath math="11{,}2\ \text{km/s}" />. Beweg den Abstandsregler und vergleich beide Kurven.
+In jeder Höhe liegt sie um den Faktor <InlineMath math="\sqrt{2}" /> über der Kreisbahngeschwindigkeit. An der Erdoberfläche beträgt die Kreisbahngeschwindigkeit <InlineMath math="7{,}91\text{ km s}^{-1}" />, die Fluchtgeschwindigkeit dagegen <InlineMath math="11{,}2\text{ km s}^{-1}" />. Verschiebe den Abstandsregler unten und vergleiche beide Kurven.
 
 <MathVisual
   title={<>Bahngeschwindigkeit und Fluchtgeschwindigkeit</>}
   description={
     <>
-      Waagerecht ist der Abstand vom Erdmittelpunkt in Erdradien{" "}
-      <InlineMath math="R" /> aufgetragen, senkrecht die Geschwindigkeit in{" "}
-      <InlineMath math="\text{km/s}" />. Die obere Kurve ist die
-      Fluchtgeschwindigkeit, die untere die Bahngeschwindigkeit.
+      Abstand vom Erdmittelpunkt in Erdradien <InlineMath math="R" /> gegen die
+      Geschwindigkeit in <InlineMath math="\text{km s}^{-1}" />.
     </>
   }
+  footer={<>Die Fluchtgeschwindigkeit bleibt in jeder Höhe exakt Wurzel zwei mal die Bahngeschwindigkeit.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: 0, max: 7 }, y: { min: 0, max: 12 } },
@@ -246,62 +245,29 @@ Die Fluchtgeschwindigkeit ist <InlineMath math="\sqrt{2}" />-mal so groß wie di
     ],
   }}
   labels={{
-    n: <>Abstand vom Mittelpunkt in <InlineMath math="R" /></>,
-    "orbit-speed": <>Bahngeschwindigkeit in <InlineMath math="\text{km/s}" /></>,
-    "escape-speed": <>Fluchtgeschwindigkeit in <InlineMath math="\text{km/s}" /></>,
+    n: <>Abstand in <InlineMath math="R" /></>,
+    "orbit-speed": <>Bahngeschwindigkeit (<InlineMath math="\text{km s}^{-1}" />)</>,
+    "escape-speed": <>Fluchtgeschwindigkeit (<InlineMath math="\text{km s}^{-1}" />)</>,
   }}
 />
 
-Ein Planet mit kleiner Masse hat eine kleine Fluchtgeschwindigkeit. Deshalb hat der Mond fast keine Atmosphäre: Heiße Gasmoleküle erreichen leicht die Fluchtgeschwindigkeit des Mondes und entweichen ins All.
+Massearme Himmelskörper haben niedrige Fluchtgeschwindigkeiten. Beim Mond genügen <InlineMath math="2{,}37\text{ km s}^{-1}" />, weshalb schnelle Gasmoleküle ins All entweichen und der Mond keine dauerhafte Atmosphäre hält.
 
-## Typische Fehler bei der Gravitation
+## Bahnberechnungen
 
-| Fehler | Warum er falsch ist | So prüfst du es |
-| :--- | :--- | :--- |
-| Doppelter Abstand halbiert die Kraft. | Die Kraft ist umgekehrt proportional zu <InlineMath math="r^2" />, sie sinkt also auf ein Viertel. | Quadriere den Faktor des Abstands. |
-| <InlineMath math="r" /> ist die Höhe über der Oberfläche. | <InlineMath math="r" /> wird vom Erdmittelpunkt aus gemessen, also <InlineMath math="r = R + h" />. | Addiere den Erdradius zur Höhe. |
-| Astronauten schweben, weil es im Orbit keine Schwerkraft gibt. | <InlineMath math="g" /> beträgt auf der Bahn der Raumstation noch <InlineMath math="8{,}69\ \text{m/s}^2" />. Sie fallen frei. | Berechne <InlineMath math="g" /> im Bahnabstand. |
-| Ein schwererer Satellit braucht eine höhere Bahngeschwindigkeit. | Die Masse des Satelliten kürzt sich in <InlineMath math="v = \sqrt{GM/r}" /> heraus. | Prüf, ob <InlineMath math="m" /> in der Endformel vorkommt. |
+Prüfe die folgenden zwei Rechenschritte mit SI-Einheiten und Mittelpunktsabständen.
 
-Der zweite Fehler kommt bei Rechenaufgaben am häufigsten vor. **Miss immer vom Mittelpunkt aus**, nicht von der Oberfläche.
+**Marsgravitation prüfen.** Mars hat die Masse <InlineMath math="6{,}42 \times 10^{23}\text{ kg}" /> und den Radius <InlineMath math="3{,}39 \times 10^{6}\text{ m}" />. Bestimme seine Fallbeschleunigung an der Oberfläche.
 
-## Übungen zur Gravitation
+<BlockMath math="g = \frac{(6{,}67 \times 10^{-11})(6{,}42 \times 10^{23})}{(3{,}39 \times 10^{6})^2} = 3{,}73\text{ m s}^{-2}" />
 
-Die Aufgaben beginnen mit einem einfachen Verhältnis und enden mit einem Satelliten. **Schreib <InlineMath math="r" /> in Metern**, bevor du einsetzt.
+Die Marsgravitation beträgt rund achtunddreißig Prozent des Erdwerts, passend zu seiner geringeren Masse.
 
-1. Die Gravitationskraft zwischen zwei Körpern ist <InlineMath math="F" />. Der Abstand ihrer Mittelpunkte wird halbiert. Wie groß ist die neue Kraft?
-
-2. Der Mars hat die Masse <InlineMath math="6{,}42 \cdot 10^{23}\ \text{kg}" /> und den Radius <InlineMath math="3{,}39 \cdot 10^{6}\ \text{m}" />. Berechne die Fallbeschleunigung an der Marsoberfläche.
-
-3. Der Mond hat die Masse <InlineMath math="7{,}35 \cdot 10^{22}\ \text{kg}" /> und den Radius <InlineMath math="1{,}74 \cdot 10^{6}\ \text{m}" />. Berechne die Fluchtgeschwindigkeit von der Mondoberfläche.
-
-4. Ein Satellit umkreist die Erde im Abstand <InlineMath math="2R" /> vom Erdmittelpunkt. Berechne seine Bahngeschwindigkeit und seine Umlaufzeit in Stunden.
-
-### Lösungen
-
-**Lösung 1**: Die Kraft ist umgekehrt proportional zu <InlineMath math="r^2" />. Wird <InlineMath math="r" /> zu <InlineMath math="\tfrac{1}{2}r" />:
-
-<BlockMath math="F' = \frac{F}{(1/2)^2} = 4F" />
-
-Der halbe Abstand macht die Kraft **viermal so groß**.
-
-**Lösung 2**: Nutze <InlineMath math="g = GM/R^2" />:
-
-<BlockMath math="g = \frac{(6{,}67 \cdot 10^{-11})(6{,}42 \cdot 10^{23})}{(3{,}39 \cdot 10^{6})^2} = 3{,}73\ \text{m/s}^2" />
-
-Probe: Das sind etwa <InlineMath math="38\ \%" /> von <InlineMath math="9{,}81\ \text{m/s}^2" />, plausibel für einen Planeten, der viel kleiner ist als die Erde.
-
-**Lösung 3**: Nutze die Formel der Fluchtgeschwindigkeit:
-
-<BlockMath math="v = \sqrt{\frac{2(6{,}67 \cdot 10^{-11})(7{,}35 \cdot 10^{22})}{1{,}74 \cdot 10^{6}}} = 2{,}37 \cdot 10^{3}\ \text{m/s}" />
-
-Die Fluchtgeschwindigkeit des Mondes beträgt <InlineMath math="2{,}37\ \text{km/s}" />, etwa ein Fünftel der Fluchtgeschwindigkeit der Erde.
-
-**Lösung 4**: Bei <InlineMath math="r = 2R" /> ist die Bahngeschwindigkeit der Wert an der Oberfläche geteilt durch <InlineMath math="\sqrt{2}" />:
+**Hohe Umlaufbahn prüfen.** Ein Satellit umkreist die Erde im Abstand <InlineMath math="2R" /> vom Erdmittelpunkt. Bestimme Bahngeschwindigkeit und Umlaufzeit.
 
 <MathContainer>
-<BlockMath math="v = \frac{7{,}91}{\sqrt{2}} = 5{,}59\ \text{km/s}" />
-<BlockMath math="T = \frac{2\pi r}{v} = \frac{2\pi (1{,}274 \cdot 10^{7})}{5590} = 1{,}43 \cdot 10^{4}\ \text{s} = 3{,}98\ \text{h}" />
+<BlockMath math="v = \frac{7{,}91}{\sqrt{2}} = 5{,}59\text{ km s}^{-1}" />
+<BlockMath math="T = \frac{2\pi (1{,}274 \times 10^{7})}{5{,}590} = 1{,}43 \times 10^{4}\text{ s} \approx 3{,}98\text{ Stunden}" />
 </MathContainer>
 
-Prüf das im Geschwindigkeitsmodell: Bei <InlineMath math="n = 2" /> liest du eine Bahngeschwindigkeit von <InlineMath math="5{,}59\ \text{km/s}" /> ab.
+Der Geschwindigkeitsgraph liefert bei <InlineMath math="n = 2" /> denselben Wert von <InlineMath math="5{,}59\text{ km s}^{-1}" />.

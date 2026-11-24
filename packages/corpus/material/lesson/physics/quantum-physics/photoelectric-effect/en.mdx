@@ -1,33 +1,72 @@
 export const metadata = {
-  title: "Quantum Physics Notes for Form Five",
+  title: "Blackbody Quanta and Matter Waves",
   description:
-    "Form 5 Physics Chapter 7: calculate photon energy with E = hf, explain the photoelectric effect with Einstein's equation and find de Broglie wavelengths.",
+    "Planck's quantized blackbody spectrum, photon energy and wavelength, Einstein's photoelectric equation, and de Broglie matter-wave diffraction.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-11-17",
   subject: "Quantum Physics",
 };
 
-## Light Comes in Packets of Energy
+## Blackbody Radiation Quanta
 
-**Quantum theory** says that light energy doesn't flow continuously but comes in small packets called **photons**. The energy of one photon depends only on its frequency:
+Heat an iron poker in a furnace and its glow shifts from dull red to bright orange and eventually white. Classical wave physics predicted that a hot cavity should pour out infinite ultraviolet energy, a breakdown known as the **ultraviolet catastrophe**.
+
+Max Planck resolved the crisis in 1900 by proposing that cavity walls exchange energy only in discrete packets called **quanta**. Compare Planck's quantized spectrum against the runaway classical curve across temperature below.
+
+<PlanckBlackbodyLab
+  title={<>Planck's Blackbody Spectrum versus Classical Theory</>}
+  description={
+    <>
+      Toggle between Planck's quantized curve and the classical Rayleigh-Jeans
+      prediction while raising cavity temperature from cool red to white-hot.
+    </>
+  }
+  footer={<>Higher cavity temperatures shift the emission peak toward shorter, higher-energy wavelengths.</>}
+  models={["planck", "classical"]}
+  temperature={{ min: 2000, max: 8000, value: 5800 }}
+  labels={{
+    model: "Radiation model",
+    models: {
+      planck: "Planck quantum",
+      classical: "Classical wave",
+    },
+    temperature: "Cavity temperature",
+    spectrum: <>Dominant band</>,
+    peakWavelength: <>Peak wavelength</>,
+    photonEnergy: <>Peak photon energy</>,
+    parts: {
+      cavity: "Heated cavity",
+      planckCurve: "Planck curve",
+      classicalCurve: "Classical curve",
+      visibleBand: "Visible band",
+      peakMarker: "Wien peak",
+    },
+    view: "3D heated blackbody cavity paired with Planck and classical Rayleigh-Jeans radiation curves",
+  }}
+/>
+
+Planck's curve bends smoothly back down at short wavelengths because high-frequency modes cost too much energy per quantum to excite thermally, matching real starlight and furnace spectra.
+
+## Photon Energy and Frequency
+
+Light itself travels in discrete packets called **photons**. Each photon carries an energy set solely by its frequency <InlineMath math="f" />, or inversely by its wavelength <InlineMath math="\lambda" />.
 
 <BlockMath math="E = hf = \frac{hc}{\lambda}" />
 
-Here <InlineMath math="h = 6.63 \times 10^{-34}\text{ J s}" /> is the Planck constant, <InlineMath math="f" /> the frequency and <InlineMath math="\lambda" /> the wavelength of the light. In these notes you watch a hydrogen atom emit spectral lines, change the frequency of light to knock electrons out of a metal, and calculate the wavelength of a moving particle.
+Here <InlineMath math="h" /> is the Planck constant (<InlineMath math="6.63 \times 10^{-34}\text{ J s}" />) and <InlineMath math="c" /> is the speed of light (<InlineMath math="3.00 \times 10^8\text{ m s}^{-1}" />). Shorter wavelengths carry more energy per photon, so violet light packs far more energy per packet than red light.
 
-Blue light carries more energy per photon than red light because its wavelength is shorter. Move the wavelength slider below and read the photon energy in electronvolts, where <InlineMath math="1\text{ eV} = 1.60 \times 10^{-19}\text{ J}" />.
+Move the wavelength slider below to read photon energy in electronvolts, where one electronvolt equals <InlineMath math="1.60 \times 10^{-19}\text{ J}" />.
 
 <MathVisual
   title={<>Photon Energy against Wavelength</>}
   description={
     <>
-      The photon energy in eV is{" "}
-      <InlineMath math="E = \dfrac{hc}{\lambda e} \approx \dfrac{1243}{\lambda}" />,
-      with <InlineMath math="\lambda" /> in nanometres. Green light at{" "}
-      <InlineMath math="500\text{ nm}" /> carries about{" "}
-      <InlineMath math="2.49\text{ eV}" />.
+      Photon energy in <InlineMath math="\text{eV}" /> across visible and near
+      ultraviolet wavelengths, giving <InlineMath math="2.49\text{ eV}" /> for{" "}
+      <InlineMath math="500\text{ nm}" /> green light.
     </>
   }
+  footer={<>Always convert wavelength from nanometres to metres before multiplying by hc.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: 300, max: 800 }, y: { min: 0, max: 5 } },
@@ -44,85 +83,72 @@ Blue light carries more energy per photon than red light because its wavelength 
     ],
   }}
   labels={{
-    w: <>Wavelength <InlineMath math="\lambda" /> in <InlineMath math="\text{nm}" /></>,
-    energy: <>Photon energy in <InlineMath math="\text{eV}" /></>,
+    w: <>Wavelength <InlineMath math="\lambda" /> (<InlineMath math="\text{nm}" />)</>,
+    energy: <>Photon energy (<InlineMath math="\text{eV}" />)</>,
   }}
 />
 
-Try an example. Calculate the energy of a photon of green light with a wavelength of <InlineMath math="500\text{ nm}" />.
+When an electron inside an atom drops between fixed energy levels, it emits one photon matching the exact level gap, producing crisp atomic line spectra instead of a continuous blur.
 
-**Convert nanometres to metres first**, then use <InlineMath math="E = \dfrac{hc}{\lambda}" />:
+## Photoelectric Emission
 
-<MathContainer>
-<BlockMath math="\lambda = 500 \times 10^{-9} = 5.00 \times 10^{-7}\text{ m}" />
-<BlockMath math="E = \frac{6.63 \times 10^{-34} \times 3.00 \times 10^8}{5.00 \times 10^{-7}} = 3.98 \times 10^{-19}\text{ J}" />
-<BlockMath math="E = \frac{3.98 \times 10^{-19}}{1.60 \times 10^{-19}} = 2.49\text{ eV}" />
-</MathContainer>
+When high-frequency light strikes a clean metal plate inside an evacuated tube, the **photoelectric effect** frees electrons straight from the surface. Measuring both the threshold frequency and the energy of those escaping electrons proved that light delivers energy in discrete single-photon collisions.
 
-Check with the graph above: at <InlineMath math="500\text{ nm}" /> the photon energy reading is also about <InlineMath math="2.49\text{ eV}" />.
+### Threshold and Intensity
 
-## Atoms Emit Photons at Fixed Energies
+Classical wave theory failed here because bright red light releases zero electrons from zinc, whereas dim ultraviolet light frees **photoelectrons** immediately.
 
-Electrons in an atom can only sit at **fixed energy levels**. When an electron drops from a high level to a low one, the atom emits one photon whose energy **equals the difference** between the two levels. Because the levels are fixed, the light comes out only at certain wavelengths, and you see a **line spectrum** instead of a continuous rainbow.
+> Frequency sets the energy of every individual photon, whereas intensity only changes how many photons arrive each second.
 
-Pick an electron transition in the hydrogen atom below and read the wavelength, energy and frequency of its photon.
+Test this one-photon-to-one-electron rule below by shifting wavelength across the metal's threshold and then varying light intensity.
 
-<BohrEmissionLab
-  title={<>Spectral Lines of the Hydrogen Atom</>}
+<PhotoelectricLab
+  title={<>Photoelectric Emission from a Metal Plate</>}
   description={
     <>
-      An electron drops to level <InlineMath math="n = 2" /> from level{" "}
-      <InlineMath math="3" />, <InlineMath math="4" /> or <InlineMath math="5" />.
-      Each transition emits one photon of visible light in a different colour.
+      Light illuminates a sodium-like plate with work function{" "}
+      <InlineMath math="2.3\text{ eV}" />. Compare violet{" "}
+      <InlineMath math="400\text{ nm}" /> light against orange{" "}
+      <InlineMath math="600\text{ nm}" /> light at different intensities.
     </>
   }
-  falls={[
-    { from: 3, to: 2 },
-    { from: 4, to: 2 },
-    { from: 5, to: 2 },
-  ]}
+  footer={<>Below the threshold frequency, raising intensity adds photons without freeing a single electron.</>}
   labels={{
-    choose: "Electron transition",
     energy: <>Photon energy</>,
-    frequency: <>Frequency</>,
-    transition: <>Transition</>,
-    view: "Bohr model of a hydrogen atom emitting a photon",
+    intensity: <>Light intensity</>,
+    intensityName: "Intensity",
+    kinetic: <>Maximum kinetic energy</>,
+    none: <>No electrons emitted</>,
+    viewLabel: "Evacuated photocell showing light hitting a metal cathode and ejecting photoelectrons",
     wavelength: <>Wavelength</>,
+    wavelengthName: "Wavelength",
   }}
+  charge={1.6e-19}
+  lightSpeed={3e8}
+  planck={6.63e-34}
+  wavelength={400}
+  workFunction={2.3}
 />
 
-The <InlineMath math="3 \rightarrow 2" /> transition gives a red line near <InlineMath math="656\text{ nm}" />, while <InlineMath math="5 \rightarrow 2" /> gives a violet line near <InlineMath math="434\text{ nm}" />. A bigger drop releases a higher-energy photon, so its wavelength is shorter.
+At <InlineMath math="400\text{ nm}" />, each photon carries <InlineMath math="3.1\text{ eV}" />, easily clearing the <InlineMath math="2.3\text{ eV}" /> barrier. At <InlineMath math="600\text{ nm}" />, each photon carries only <InlineMath math="2.1\text{ eV}" />, so electrons never escape regardless of brightness.
 
-## The Photoelectric Effect and the Threshold Frequency
+### Einstein Energy Law
 
-The **photoelectric effect** is the emission of electrons from a metal surface when light shines on it. The emitted electrons are called **photoelectrons**. Experiments show three things that wave theory can't explain:
-
-| Observation | What it means |
-| :--- | :--- |
-| No electrons come out below the **threshold frequency**, <InlineMath math="f_0" />, however bright the light. | One photon must carry enough energy to free one electron. |
-| Above <InlineMath math="f_0" />, electrons come out instantly. | Energy arrives in one packet instead of building up slowly. |
-| The maximum kinetic energy of the electrons depends on frequency, not intensity. | Intensity only adds photons. It doesn't change the energy of each one. |
-
-The minimum energy needed to free one electron is the **work function**, <InlineMath math="W" />. For sodium, <InlineMath math="W = 2.28\text{ eV}" />, and for zinc <InlineMath math="W = 4.3\text{ eV}" />. The threshold frequency is <InlineMath math="f_0 = \dfrac{W}{h}" />.
-
-## The Photoelectric Equation of Einstein
-
-Einstein explained the photoelectric effect with **conservation of energy** for one photon and one electron. The photon's energy pays the work function, and what's left becomes the electron's maximum kinetic energy:
+Albert Einstein explained photoelectric emission by applying energy conservation to a single photon absorbed by a single electron. Part of the photon's energy pays the metal's **work function** <InlineMath math="W" />, and any leftover energy becomes the electron's **maximum kinetic energy** <InlineMath math="K_{\text{max}}" />.
 
 <BlockMath math="hf = W + K_{\text{max}}" />
 
-Change the frequency of the light and the work function of the metal below. The line crosses the horizontal axis at the threshold frequency, and its gradient is the Planck constant.
+Adjust both the light frequency and the metal's work function below to see the straight-line relation whose horizontal intercept is the **threshold frequency** <InlineMath math="f_0" />.
 
 <MathVisual
-  title={<>Maximum Kinetic Energy of Photoelectrons against Frequency</>}
+  title={<>Photoelectron Kinetic Energy against Frequency</>}
   description={
     <>
-      <InlineMath math="K_{\text{max}} = hf - W" /> in eV, with{" "}
-      <InlineMath math="f" /> in units of <InlineMath math="10^{14}\text{ Hz}" />.
-      Below the threshold frequency, <InlineMath math="hf - W" /> is negative and
-      no electrons come out.
+      Maximum kinetic energy in <InlineMath math="\text{eV}" /> against light
+      frequency in units of <InlineMath math="10^{14}\text{ Hz}" />.
     </>
   }
+  footer={<>Every metal shares the same slope equal to Planck's constant h, shifted by its work function.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: 0, max: 16 }, y: { min: -5, max: 5 } },
@@ -141,133 +167,77 @@ Change the frequency of the light and the work function of the metal below. The 
     ],
   }}
   labels={{
-    f: <>Frequency <InlineMath math="f" /> in <InlineMath math="10^{14}\text{ Hz}" /></>,
-    w: <>Work function <InlineMath math="W" /> in <InlineMath math="\text{eV}" /></>,
-    kinetic: <><InlineMath math="hf - W" /> in <InlineMath math="\text{eV}" /></>,
-    threshold: <>Threshold frequency in <InlineMath math="10^{14}\text{ Hz}" /></>,
+    f: <>Frequency <InlineMath math="f" /> (<InlineMath math="10^{14}\text{ Hz}" />)</>,
+    w: <>Work function <InlineMath math="W" /> (<InlineMath math="\text{eV}" />)</>,
+    kinetic: <>Kinetic energy (<InlineMath math="\text{eV}" />)</>,
+    threshold: <>Threshold (<InlineMath math="10^{14}\text{ Hz}" />)</>,
   }}
 />
 
-Violet light at <InlineMath math="400\text{ nm}" /> shines on sodium. Calculate the maximum kinetic energy of the photoelectrons and the threshold frequency of sodium.
+Doubling light intensity above <InlineMath math="f_0" /> doubles the photocurrent because twice as many photons arrive each second, yet <InlineMath math="K_{\text{max}}" /> stays untouched because each photon's frequency never changed.
 
-<MathContainer>
-<BlockMath math="hf = \frac{6.63 \times 10^{-34} \times 3.00 \times 10^8}{4.00 \times 10^{-7}} = 4.97 \times 10^{-19}\text{ J} = 3.11\text{ eV}" />
-<BlockMath math="K_{\text{max}} = 3.11 - 2.28 = 0.83\text{ eV}" />
-<BlockMath math="f_0 = \frac{2.28 \times 1.60 \times 10^{-19}}{6.63 \times 10^{-34}} = 5.50 \times 10^{14}\text{ Hz}" />
-</MathContainer>
+## Matter Waves and Diffraction
 
-Check: the frequency of violet light is <InlineMath math="\dfrac{3.00 \times 10^8}{4.00 \times 10^{-7}} = 7.50 \times 10^{14}\text{ Hz}" />, higher than <InlineMath math="f_0" />, so electrons do come out. At <InlineMath math="f = 7.5" /> and <InlineMath math="W = 2.28" />, the graph above also gives about <InlineMath math="0.83\text{ eV}" />.
-
-The photoelectric effect is used in **photovoltaic cells** in solar panels, in the light sensors of automatic doors, and in digital cameras.
-
-## Particles Behave like Waves Too
-
-If light, which we treat as a wave, can act like a particle, then particles can act like waves too. This is **wave-particle duality**. De Broglie proposed that every particle with momentum <InlineMath math="p = mv" /> has a wavelength:
+Louis de Broglie reasoned that nature should be symmetric: if electromagnetic waves behave like particles, then moving particles with momentum <InlineMath math="p" /> must also carry a **matter wavelength** <InlineMath math="\lambda" />.
 
 <BlockMath math="\lambda = \frac{h}{p} = \frac{h}{mv}" />
 
-Electrons in a cathode-ray tube are deflected by an electric field like charged particles. Yet the same electron beam makes a diffraction pattern when it passes through a crystal, which is evidence of its wave nature. Watch electrons being deflected in the tube below.
+> Greater momentum compresses a particle's de Broglie wavelength, tightening the concentric diffraction rings formed through a crystal lattice.
 
-<CathodeRayLab
-  title={<>An Electron Beam in a Cathode-Ray Tube</>}
+Fire different particles through a thin graphite crystal and raise the accelerating voltage below to watch the standing matter wave shorten and the diffraction rings contract on the fluorescent screen.
+
+<DeBroglieMatterWaveLab
+  title={<>De Broglie Matter Waves and Electron Diffraction</>}
   description={
     <>
-      Electrons are accelerated towards the anode and pass between two charged
-      plates. The electric field deflects the beam, so electrons have charge and
-      mass like particles.
+      Switch between electrons, protons, neutrons, and alpha particles and vary
+      accelerating voltage to observe how momentum governs wavelength and ring
+      spacing.
     </>
   }
+  footer={<>Raising accelerating voltage increases momentum, shortening wavelength and shrinking rings.</>}
+  particles={["electron", "proton", "neutron", "alpha"]}
+  voltage={{ min: 500, max: 5000, value: 2000 }}
   labels={{
-    anode: <>Anode voltage</>,
-    field: <>Electric field between the plates</>,
-    plates: "Deflection plates",
-    spot: <>Position of the spot on the screen</>,
-    view: "Cathode-ray tube with an electron beam and deflection plates",
+    particle: "Particle",
+    particles: {
+      electron: "Electron",
+      proton: "Proton",
+      neutron: "Neutron",
+      alpha: "Alpha particle",
+    },
+    voltage: "Accelerating voltage",
+    momentum: <>Particle momentum</>,
+    diffraction: <>Diffraction ring spacing</>,
+    wavelength: <>De Broglie wavelength</>,
+    parts: {
+      electronGun: "Particle gun",
+      graphiteTarget: "Graphite target",
+      matterWave: "Matter wave",
+      diffractionRings: "Diffraction rings",
+      screen: "Fluorescent screen",
+    },
+    view: "3D electron diffraction tube showing particle gun, graphite target, matter wave, and diffraction rings",
   }}
 />
 
-Move the electron speed slider below. The faster the electron, the bigger its momentum and the shorter its wavelength.
+Because high-speed electrons reach wavelengths near <InlineMath math="0.1\text{ nm}" />, far shorter than visible light, electron microscopes resolve individual biological molecules and crystal planes.
 
-<MathVisual
-  title={<>De Broglie Wavelength of an Electron against Speed</>}
-  description={
-    <>
-      <InlineMath math="\lambda = \dfrac{h}{m_e v} \approx \dfrac{0.728}{v}\text{ nm}" />,
-      with <InlineMath math="v" /> in units of <InlineMath math="10^6\text{ m s}^{-1}" />.
-      At <InlineMath math="v = 2.0 \times 10^6\text{ m s}^{-1}" />,{" "}
-      <InlineMath math="\lambda \approx 0.364\text{ nm}" />.
-    </>
-  }
-  scene={{
-    space: "plane",
-    frame: { kind: "cartesian", x: { min: 0.5, max: 5 }, y: { min: 0, max: 1.6 } },
-    view: { kind: "fit", padding: 0.08 },
-    parameters: [
-      { name: "s", min: 0.5, max: 5, value: 2, step: 0.1, label: "s" },
-    ],
-    objects: [
-      { id: "wavelength", kind: "function", appearance: "primary", formula: "0.728/x", domain: { min: 0.5, max: 5 } },
-      { id: "now", kind: "marker", x: "s", y: "0.728/s", appearance: "warning" },
-    ],
-    readouts: [
-      { key: "length", formula: "0.728/s" },
-    ],
-  }}
-  labels={{
-    s: <>Electron speed <InlineMath math="v" /> in <InlineMath math="10^6\text{ m s}^{-1}" /></>,
-    length: <>Wavelength in <InlineMath math="\text{nm}" /></>,
-  }}
-/>
+## Quantum Calculation Checks
 
-Work out that example. An electron of mass <InlineMath math="9.11 \times 10^{-31}\text{ kg}" /> moves at <InlineMath math="2.0 \times 10^6\text{ m s}^{-1}" />:
+Check two benchmark problems using SI units throughout.
 
-<BlockMath math="\lambda = \frac{6.63 \times 10^{-34}}{9.11 \times 10^{-31} \times 2.0 \times 10^6} = 3.64 \times 10^{-10}\text{ m} = 0.364\text{ nm}" />
-
-Check: that wavelength is comparable to the spacing between atoms in a crystal, about <InlineMath math="0.1" /> to <InlineMath math="0.5\text{ nm}" />. That's why a crystal can diffract electrons, and why an electron microscope can see much finer detail than a light microscope.
-
-## Common Mistakes about Quantum Physics
-
-| Mistake | Why it's wrong | How to check |
-| :--- | :--- | :--- |
-| Brighter light knocks out faster electrons. | Intensity adds photons. The energy of each photon depends on frequency. | Change the intensity, and <InlineMath math="K_{\text{max}}" /> stays the same. |
-| Very bright red light can still free electrons from zinc. | If <InlineMath math="hf" /> is less than <InlineMath math="W" />, no photon has enough energy. | Compare the photon energy with the work function. |
-| A longer wavelength means a bigger photon energy. | <InlineMath math="E = \dfrac{hc}{\lambda}" />, so energy is inversely proportional to wavelength. | Blue light is more energetic than red light. |
-| A wavelength in nanometres goes straight into <InlineMath math="E = \dfrac{hc}{\lambda}" />. | The formula needs metres to give joules. | Multiply by <InlineMath math="10^{-9}" /> first. |
-| Only light behaves like a wave. | Electrons diffract too, so particles also have a wavelength. | Work out <InlineMath math="\lambda = \dfrac{h}{mv}" /> for the particle. |
-
-The first mistake comes up most often. Remember the split: **frequency sets the energy of each photon, intensity sets the number of photons**.
-
-## Practice on Quantum Physics
-
-These questions move from photon energy to the photoelectric effect and de Broglie wavelengths. **Convert every unit to SI** before you use the Planck constant.
-
-1. A <InlineMath math="1.0\text{ mW}" /> laser emits red light at <InlineMath math="650\text{ nm}" />. Calculate the number of photons it emits each second.
-
-2. The work function of zinc is <InlineMath math="4.3\text{ eV}" />. Does green light at <InlineMath math="500\text{ nm}" /> free electrons from zinc? Give a reason.
-
-3. Light above the threshold frequency shines on a metal. Its intensity is doubled without changing the frequency. State the effect on the number of photoelectrons and on their maximum kinetic energy.
-
-4. An electron and a proton move at the same speed. Calculate the ratio of the electron's de Broglie wavelength to the proton's, where <InlineMath math="m_p = 1836\,m_e" />.
-
-### Solutions
-
-**Solution 1**: Find the energy of one photon, then divide the power by it:
+**Laser photon check.** A <InlineMath math="1.0\text{ mW}" /> laser emits <InlineMath math="650\text{ nm}" /> red light. Find how many photons leave the laser every second.
 
 <MathContainer>
-<BlockMath math="E = \frac{6.63 \times 10^{-34} \times 3.00 \times 10^8}{6.50 \times 10^{-7}} = 3.06 \times 10^{-19}\text{ J}" />
+<BlockMath math="E = \frac{(6.63 \times 10^{-34})(3.00 \times 10^8)}{6.50 \times 10^{-7}} = 3.06 \times 10^{-19}\text{ J}" />
 <BlockMath math="N = \frac{1.0 \times 10^{-3}}{3.06 \times 10^{-19}} = 3.27 \times 10^{15}\text{ photons s}^{-1}" />
 </MathContainer>
 
-Check: <InlineMath math="3.27 \times 10^{15} \times 3.06 \times 10^{-19} = 1.0 \times 10^{-3}\text{ J}" /> each second, the same as the laser's power.
+Multiplying photon count by energy per photon recovers the exact <InlineMath math="1.0\text{ mW}" /> beam power.
 
-**Solution 2**: A <InlineMath math="500\text{ nm}" /> photon carries <InlineMath math="2.49\text{ eV}" />, as in the example above. That's **less than** the work function of zinc, <InlineMath math="4.3\text{ eV}" />, so **no electrons come out**, however bright the light. One photon doesn't carry enough energy, and an electron can't collect energy from several photons.
+**Electron wave check.** An electron (<InlineMath math="9.11 \times 10^{-31}\text{ kg}" />) travels at <InlineMath math="2.0 \times 10^6\text{ m s}^{-1}" />. Find its de Broglie wavelength.
 
-**Solution 3**: Doubling the intensity means **twice as many photons**, so **twice as many photoelectrons** come out and the photocurrent grows. The frequency hasn't changed, so each photon has the same energy and the **maximum kinetic energy stays the same**:
+<BlockMath math="\lambda = \frac{6.63 \times 10^{-34}}{(9.11 \times 10^{-31})(2.0 \times 10^6)} = 3.64 \times 10^{-10}\text{ m} = 0.364\text{ nm}" />
 
-<BlockMath math="K_{\text{max}} = hf - W" />
-
-**Solution 4**: At the same speed, the wavelength is inversely proportional to the mass:
-
-<BlockMath math="\frac{\lambda_e}{\lambda_p} = \frac{h / (m_e v)}{h / (m_p v)} = \frac{m_p}{m_e} = 1836" />
-
-The electron's wavelength is <InlineMath math="1836" /> times longer. Check: a lighter particle at the same speed has less momentum, so its wavelength is longer.
+That sub-nanometre wavelength matches atomic spacing in graphite, explaining why electrons diffract cleanly through thin crystal films.

@@ -1,103 +1,82 @@
 export const metadata = {
-  title: "Radioaktiver Zerfall mit Halbwertszeit und Kernenergie",
+  title: "Radioaktiver Zerfall und Kernbindungsenergie",
   description:
-    "Stell Zerfallsgleichungen für Alpha-, Beta- und Gammastrahlung auf, rechne mit der Halbwertszeit und berechne Kernenergie mit E = mc², mit Übungen.",
+    "Zerfallsgleichungen für Alpha, Beta und Gamma, Halbwertszeit mit Nulleffektkorrektur, die Bindungsenergiekurve pro Nukleon und Spaltenergie.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-11-17",
   subject: "Kernphysik",
 };
 
-## Instabile Kerne zerfallen zufällig
+## Arten des Kernzerfalls
 
-**Radioaktiver Zerfall** ist der Vorgang, bei dem ein instabiler Kern Alpha-, Beta- oder Gammastrahlung aussendet, um stabiler zu werden. Der Zerfall ist **zufällig**: Niemand kann vorhersagen, wann ein bestimmter Kern zerfällt. In einer großen Probe folgt die Zahl der verbleibenden Kerne aber dem Zerfallsgesetz <InlineMath math="N = N_0 \left(\tfrac{1}{2}\right)^{t/T_{1/2}}" />. Hier siehst du eine Probe aus Kohlenstoff-14 zerfallen, beobachtest, wie ein Magnetfeld Strahlung ablenkt, und berechnest die Energie aus einem Massendefekt.
+In einem schweren Atomkern stoßen sich positiv geladene Protonen heftig ab, während die **starke Kernkraft** den Kern zusammenhält. Kippt dieses Gleichgewicht, durchläuft ein instabiler Kern einen **radioaktiven Zerfall** in einen stabileren Zustand.
 
-Verschieb den Zeitregler unten. Jeder Punkt ist ein Kohlenstoff-14-Kern, der zu seinem eigenen Zeitpunkt zu Stickstoff-14 wird. Vergleich die gezählte Anzahl mit dem Erwartungswert.
+### Alpha Beta und Gamma
 
-<RadioactiveDecayLab
-  title={<>Eine zerfallende Probe aus Kohlenstoff-14</>}
-  description={
-    <>
-      <InlineMath math="400" /> Kohlenstoff-14-Kerne mit einer Halbwertszeit von{" "}
-      <InlineMath math="5730" /> Jahren. Jeder Kern zerfällt zufällig, doch ihre
-      Anzahl halbiert sich in jeder Halbwertszeit.
-    </>
-  }
-  labels={{
-    counted: <>Verbleibende Kerne, gezählt</>,
-    expected: <>Erwartungswert</>,
-    halfLives: <>Anzahl der Halbwertszeiten</>,
-    time: "Zeit",
-    view: "Eine Probe aus 400 Kohlenstoff-14-Kernen, die zu Stickstoff-14 zerfallen",
-    years: "Jahre",
-  }}
-/>
+Bei jedem Kernzerfall bleiben **Nukleonenzahl** und **Protonenzahl** auf beiden Seiten der Gleichung erhalten:
 
-Die gezählte Anzahl stimmt selten genau mit dem Erwartungswert überein. Genau daran erkennst du den zufälligen Zerfall. Je größer die Probe, desto näher bleibt die Zählung am Zerfallsgesetz.
-
-## Drei Arten des radioaktiven Zerfalls
-
-Bei jedem Zerfall bleiben die **Massenzahl** und die **Ordnungszahl** erhalten. Die Summe auf der linken Seite der Gleichung muss der Summe auf der rechten Seite entsprechen.
-
-Beim **Alphazerfall** wird ein Alphateilchen ausgesandt, also ein Heliumkern. Die Massenzahl sinkt um <InlineMath math="4" /> und die Ordnungszahl um <InlineMath math="2" />:
-
-<BlockMath math="{}^{238}_{92}\mathrm{U} \rightarrow {}^{234}_{90}\mathrm{Th} + {}^{4}_{2}\mathrm{He}" />
-
-Beim **Betazerfall** wandelt sich ein Neutron in ein Proton und ein Elektron um. Das Elektron verlässt den Kern als Betateilchen, also bleibt die Massenzahl gleich, aber die Ordnungszahl steigt um <InlineMath math="1" />:
-
-<BlockMath math="{}^{14}_{6}\mathrm{C} \rightarrow {}^{14}_{7}\mathrm{N} + {}^{0}_{-1}e" />
-
-Beim **Gammazerfall** sendet ein angeregter Kern eine energiereiche elektromagnetische Welle aus. Massenzahl und Ordnungszahl ändern sich nicht, nur die Energie des Kerns sinkt.
-
-Die drei Strahlungsarten unterscheiden sich in ihrer **Ladung**, deshalb trennt ein Magnetfeld sie. Alphateilchen sind positiv, Betateilchen negativ, und Gammastrahlung ist ungeladen. In der Kammer unten treten ein Elektron und ein Proton mit gleicher Geschwindigkeit in ein Magnetfeld ein. Verstärk das Feld und beobachte, wie sich der Radius jeder Bahn ändert.
-
-<ParticleTrackLab
-  title={<>Geladene Teilchen im Magnetfeld</>}
-  description={
-    <>
-      Ein Elektron, ein Proton und ein Neutron treten mit gleicher
-      Geschwindigkeit in ein Magnetfeld ein. Der Bahnradius ist{" "}
-      <InlineMath math="r = \dfrac{mv}{qB}" />. Negative und positive Teilchen
-      krümmen sich in entgegengesetzte Richtungen, das Neutron fliegt geradeaus.
-    </>
-  }
-  labels={{
-    electron: <>Bahnradius des Elektrons</>,
-    field: "Magnetische Flussdichte",
-    proton: <>Bahnradius des Protons</>,
-    ratio: <>Verhältnis der Radien</>,
-    view: "Kammer mit den Bahnen eines Elektrons, eines Protons und eines Neutrons im Magnetfeld",
-  }}
-/>
-
-Ein Betateilchen ist ein Elektron, also krümmt es sich wie das Elektron in der Kammer. Ein Alphateilchen ist positiv und viel schwerer, also wird es nur leicht in die Gegenrichtung abgelenkt, wie das Proton. Gammastrahlung ist ungeladen und läuft geradeaus wie das Neutron.
-
-## Halbwertszeit und Zerfallskurve
-
-Die **Halbwertszeit** <InlineMath math="T_{1/2}" /> ist die Zeit, in der die Hälfte der radioaktiven Kerne einer Probe zerfällt. Sie ist eine Eigenschaft des Nuklids selbst und ändert sich nicht mit Temperatur, Druck oder Masse der Probe. Iod-131 hat eine Halbwertszeit von <InlineMath math="8" /> Tagen, Kohlenstoff-14 von <InlineMath math="5730" /> Jahren.
-
-Probier ein Beispiel. Ein Krankenhaus erhält <InlineMath math="80\ \text{g}" /> Iod-131. Berechne die Masse an Iod-131, die nach <InlineMath math="24" /> Tagen übrig ist.
-
-**Zähl zuerst die Halbwertszeiten** und halbiere dann entsprechend oft:
+- **Alphazerfall** stößt einen Helium-4-Kern aus, sodass die Nukleonenzahl um <InlineMath math="4" /> und die Protonenzahl um <InlineMath math="2" /> sinkt.
+- **Betazerfall** wandelt ein Neutron in ein Proton und ein Elektron um, weshalb die Nukleonenzahl gleich bleibt, die Protonenzahl aber um <InlineMath math="1" /> steigt.
+- **Gammazerfall** gibt ein energiereiches Photon aus einem angeregten Kern ab, ohne eine der beiden Zahlen zu verändern.
 
 <MathContainer>
-<BlockMath math="\frac{t}{T_{1/2}} = \frac{24}{8} = 3" />
-<BlockMath math="80\ \text{g} \rightarrow 40\ \text{g} \rightarrow 20\ \text{g} \rightarrow 10\ \text{g}" />
+<BlockMath math="{}^{238}_{92}\mathrm{U} \rightarrow {}^{234}_{90}\mathrm{Th} + {}^{4}_{2}\mathrm{He}" />
+<BlockMath math="{}^{14}_{6}\mathrm{C} \rightarrow {}^{14}_{7}\mathrm{N} + {}^{0}_{-1}e" />
 </MathContainer>
 
-Prüf es mit der Formel: <InlineMath math="N = 80 \cdot \left(\tfrac{1}{2}\right)^{3} = 80 \cdot \tfrac{1}{8} = 10\ \text{g}" />. Beide Wege liefern <InlineMath math="10\ \text{g}" />.
+Ein Betazerfall erhöht die Protonenzahl statt sie zu senken, weil ein neutrales Neutron im Kern zu einem positiven Proton wird.
 
-Die Zerfallskurve unten zeigt den Prozentsatz der verbleibenden Kerne. Ändere die Halbwertszeit <InlineMath math="T" /> und die Zeit <InlineMath math="t" />. Jedes Mal, wenn <InlineMath math="t" /> um eine Halbwertszeit wächst, halbiert sich der angezeigte Prozentsatz.
+### Halbwertszeit messen
 
-<MathVisual
-  title={<>Zerfallskurve</>}
+Wann ein einzelner Kern zerfällt, bleibt rein zufällig und lässt sich weder durch Hitze noch durch Druck beeinflussen. Für eine große Probe liegt jedoch die **Halbwertszeit** <InlineMath math="T_{1/2}" /> fest, also die Zeitspanne, bis die Hälfte der verbliebenen instabilen Kerne zerfallen ist.
+
+Ein reales Geiger-Müller-Zählrohr erfasst immer auch kosmische und terrestrische **Hintergrundstrahlung**, den Nulleffekt, der nicht zerfällt. Ziehe diesen konstanten Nulleffekt im Labor unten von jedem Messwert ab, bevor du die Halbwertszeit bestimmst.
+
+<HalfLifeCounterLab
+  title={<>Halbwertszeit mit Nulleffektkorrektur bestimmen</>}
   description={
     <>
-      Der Prozentsatz der verbleibenden Kerne ist{" "}
-      <InlineMath math="100 \left(\tfrac{1}{2}\right)^{t/T}" />. Bei{" "}
-      <InlineMath math="T = 8" /> Tagen und <InlineMath math="t = 24" /> Tagen
-      bleiben <InlineMath math="12{,}5\ \%" /> übrig.
+      Das Zählrohr misst einen konstanten Nulleffekt von{" "}
+      <InlineMath math="20\text{ Impulsen min}^{-1}" />, anfangs{" "}
+      <InlineMath math="520\text{ Impulse min}^{-1}" /> und nach{" "}
+      <InlineMath math="12\text{ Stunden}" /> noch{" "}
+      <InlineMath math="145\text{ Impulse min}^{-1}" />.
     </>
   }
+  footer={<>Ziehe zuerst den Nulleffekt ab, damit sich nur die reine Probenrate je Halbwertszeit halbiert.</>}
+  labels={{
+    end: <>Probenrate nach <InlineMath math="12\text{ Stunden}" /></>,
+    halfLife: <>Halbwertszeit</>,
+    start: <>Anfängliche Probenrate</>,
+    viewLabel: "Geiger-Müller-Zählrohr vor einer radioaktiven Probe mit Nulleffektkorrektur",
+  }}
+  background={20}
+  first={520}
+  later={145}
+  time={12}
+/>
+
+Nach Abzug von <InlineMath math="20" /> Impulsen pro Minute bleiben <InlineMath math="500" /> und <InlineMath math="125" />, genau zwei Halbierungen in <InlineMath math="12\text{ Stunden}" />, also eine Halbwertszeit von <InlineMath math="6{,}0\text{ Stunden}" />.
+
+## Exponentielle Zerfallskurve
+
+Eine Halbwertszeit zieht keinen festen Betrag ab. Beim **exponentiellen Zerfall** halbiert sich der Restbestand in jeder Zeitspanne <InlineMath math="T_{1/2}" />, sodass nach zwei Halbwertszeiten noch ein Viertel übrig ist, nicht null.
+
+<BlockMath math="N = N_0 \left(\frac{1}{2}\right)^{t / T_{1/2}}" />
+
+> Jede Halbwertszeit halbiert erneut den verbliebenen Anteil, sodass sich die Zerfallskurve glatt an null annähert, ohne nach zwei Schritten zu enden.
+
+Verändere unten die Halbwertszeit <InlineMath math="T" /> und die verstrichene Zeit <InlineMath math="t" />, um kurzlebige und langlebige Isotope zu vergleichen.
+
+<MathVisual
+  title={<>Radioaktive Zerfallskurve</>}
+  description={
+    <>
+      Prozentanteil der unzerfallenen Kerne über der Zeit in Tagen, mit{" "}
+      <InlineMath math="12{,}5\%" /> Restbestand nach drei Halbwertszeiten.
+    </>
+  }
+  footer={<>Nach genau einer Halbwertszeit zeigt die Kurve unabhängig vom Isotop stets fünfzig Prozent.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: 0, max: 40 }, y: { min: 0, max: 100 } },
@@ -116,92 +95,117 @@ Die Zerfallskurve unten zeigt den Prozentsatz der verbleibenden Kerne. Ändere d
     ],
   }}
   labels={{
-    h: <>Halbwertszeit <InlineMath math="T" /> in Tagen</>,
-    s: <>Zeit <InlineMath math="t" /> in Tagen</>,
-    remaining: <>Verbleibender Anteil in Prozent</>,
-    halves: <>Anzahl der Halbwertszeiten</>,
+    h: <>Halbwertszeit <InlineMath math="T" /> (Tage)</>,
+    s: <>Zeit <InlineMath math="t" /> (Tage)</>,
+    remaining: <>Restanteil in Prozent</>,
+    halves: <>Anzahl Halbwertszeiten</>,
   }}
 />
 
-Prüf die Kurve: Bei <InlineMath math="t = T" /> zeigt sie immer <InlineMath math="50\ \%" />, egal wie groß <InlineMath math="T" /> ist. Die Kurve erreicht nie null, weil nach jeder Halbwertszeit noch die Hälfte des Rests übrig bleibt.
+Bei <InlineMath math="80\text{ g}" /> Iod-131 mit acht Tagen Halbwertszeit entsprechen vierundzwanzig Tage drei Halbwertszeiten, sodass <InlineMath math="10\text{ g}" /> übrig bleiben.
 
-## Massendefekt und Kernenergie
+## Bindungsenergie pro Nukleon
 
-Bei einer Kernreaktion ist die Gesamtmasse der Produkte **etwas kleiner** als die Gesamtmasse der Ausgangsstoffe. Diese Differenz ist der **Massendefekt** <InlineMath math="\Delta m" />, und die fehlende Masse wird nach Einsteins Gleichung zu Energie:
+Wiegt man einen Helium-4-Kern im Vergleich zu zwei einzelnen Protonen und zwei einzelnen Neutronen, ist der gebundene Kern leichter. Die fehlende Masse heißt **Massendefekt** <InlineMath math="\Delta m" /> und wird beim Binden der Nukleonen als **Bindungsenergie** frei.
 
 <BlockMath math="E = \Delta m\,c^2" />
 
-Dabei ist <InlineMath math="c = 3{,}00 \cdot 10^8\ \text{m/s}" /> die Lichtgeschwindigkeit, und <InlineMath math="\Delta m" /> muss in Kilogramm stehen. Kernmassen werden meist in **atomaren Masseneinheiten** angegeben, mit <InlineMath math="1\ \text{u} = 1{,}66 \cdot 10^{-27}\ \text{kg}" />.
+Dabei ist <InlineMath math="c" /> gleich <InlineMath math="3{,}00 \times 10^8\text{ m s}^{-1}" />, und <InlineMath math="\Delta m" /> muss mit <InlineMath math="1{,}66 \times 10^{-27}\text{ kg}" /> je atomarer Masseneinheit in Kilogramm umgerechnet werden, um Joule zu erhalten.
 
-Berechne die Energie, die bei der Fusion von Deuterium und Tritium frei wird:
+> Jeder Schritt hinauf zum Eisen-56-Maximum setzt Kernenergie frei, ob durch Verschmelzen leichter Kerne oder durch Spalten schwerer Kerne.
 
-<BlockMath math="{}^{2}_{1}\mathrm{H} + {}^{3}_{1}\mathrm{H} \rightarrow {}^{4}_{2}\mathrm{He} + {}^{1}_{0}n" />
+Untersuche unten den Nukleonenverbund und die Bindungsenergiekurve für leichte Fusionskerne, das Eisen-56-Maximum und schweres Uran-235.
 
-Die Massen sind <InlineMath math="2{,}014102\ \text{u}" />, <InlineMath math="3{,}016049\ \text{u}" />, <InlineMath math="4{,}002603\ \text{u}" /> und <InlineMath math="1{,}008665\ \text{u}" />. **Zieh die Masse der Produkte von der Masse der Ausgangsstoffe ab**, rechne in Kilogramm um und multipliziere dann mit <InlineMath math="c^2" />:
-
-<MathContainer>
-<BlockMath math="\Delta m = (2{,}014102 + 3{,}016049) - (4{,}002603 + 1{,}008665) = 0{,}018883\ \text{u}" />
-<BlockMath math="\Delta m = 0{,}018883 \cdot 1{,}66 \cdot 10^{-27} = 3{,}13 \cdot 10^{-29}\ \text{kg}" />
-<BlockMath math="E = 3{,}13 \cdot 10^{-29} \cdot (3{,}00 \cdot 10^8)^2 = 2{,}82 \cdot 10^{-12}\ \text{J}" />
-</MathContainer>
-
-Prüf es mit dem Energieäquivalent von <InlineMath math="1\ \text{u}" />, also <InlineMath math="931{,}5\ \text{MeV}" />: <InlineMath math="0{,}018883 \cdot 931{,}5 = 17{,}6\ \text{MeV}" />, und <InlineMath math="17{,}6\ \text{MeV} \cdot 1{,}60 \cdot 10^{-13}\ \text{J/MeV} = 2{,}82 \cdot 10^{-12}\ \text{J}" />. Das stimmt überein.
-
-Der Regler unten zeigt die Energie für verschiedene Massendefekte. Der Graph ist eine Gerade, weil <InlineMath math="E" /> proportional zu <InlineMath math="\Delta m" /> ist, und seine Steigung beträgt <InlineMath math="931{,}5\ \text{MeV}" /> pro atomarer Masseneinheit.
-
-<MathVisual
-  title={<>Kernenergie aus einem Massendefekt</>}
+<NuclearBindingCurveLab
+  title={<>Kernbindungsenergie pro Nukleon</>}
   description={
     <>
-      Die Energie in MeV ist <InlineMath math="E = 931{,}5\,\Delta m" />, mit{" "}
-      <InlineMath math="\Delta m" /> in atomaren Masseneinheiten. Der
-      Massendefekt der Fusion von <InlineMath math="0{,}0189\ \text{u}" /> liefert
-      etwa <InlineMath math="17{,}6\ \text{MeV}" />.
+      Wähle Nuklide entlang der Bindungsenergiekurve und wechsle zwischen Fusion
+      und Spaltung, um den Anstieg Richtung Eisen-56 zu verfolgen.
     </>
   }
-  scene={{
-    space: "plane",
-    frame: { kind: "cartesian", x: { min: 0, max: 0.25 }, y: { min: 0, max: 240 } },
-    view: { kind: "fit", padding: 0.08 },
-    parameters: [
-      { name: "d", min: 0, max: 0.25, value: 0.019, step: 0.001, label: "d" },
-    ],
-    objects: [
-      { id: "energy", kind: "function", appearance: "primary", formula: "931.5x", domain: { min: 0, max: 0.25 } },
-      { id: "now", kind: "marker", x: "d", y: "931.5d", appearance: "warning" },
-    ],
-    readouts: [
-      { key: "mev", formula: "931.5d" },
-      { key: "joule", formula: "931.5d*1.6*10^(-13)" },
-    ],
-  }}
+  footer={<>Eisen-56 liegt nahe dem Maximum der Bindungsenergie pro Nukleon und ist besonders stabil.</>}
+  nuclides={["deuterium", "helium4", "carbon12", "iron56", "uranium235"]}
+  processes={["fusion", "fission"]}
   labels={{
-    d: <>Massendefekt <InlineMath math="\Delta m" /> in <InlineMath math="\text{u}" /></>,
-    mev: <>Energie in <InlineMath math="\text{MeV}" /></>,
-    joule: <>Energie in <InlineMath math="\text{J}" /></>,
+    nuclide: "Nuklid",
+    nuclides: {
+      deuterium: "Deuterium (H-2)",
+      helium4: "Helium-4",
+      carbon12: "Kohlenstoff-12",
+      iron56: "Eisen-56",
+      uranium235: "Uran-235",
+    },
+    process: "Kernreaktionsweg",
+    processes: {
+      fusion: {
+        name: "Kernfusion",
+        detail: <>Verschmelzen leichter Kerne steigt steil auf der linken Flanke zu höherer Bindungsenergie.</>,
+      },
+      fission: {
+        name: "Kernspaltung",
+        detail: <>Spalten von Uran-235 verschiebt Bruchstücke nach links zum fester gebundenen Eisen-56.</>,
+      },
+    },
+    stability: <>Relative Stabilität</>,
+    bindingPerNucleon: <>Bindungsenergie pro Nukleon</>,
+    massDefect: <>Massendefekt</>,
+    parts: {
+      proton: "Proton",
+      neutron: "Neutron",
+      ironPeak: "Eisen-56-Maximum",
+      fusionZone: "Fusionsbereich",
+      fissionZone: "Spaltungsbereich",
+    },
+    view: "3D-Nukleonenverbund zusammen mit der Bindungsenergiekurve pro Nukleon für Fusion, Eisen-56 und Spaltung",
   }}
 />
 
-## Kernspaltung und Kernfusion
+Weil die linke Flanke von Deuterium zu Helium-4 extrem steil ansteigt, liefert Fusion gewaltige Energie pro Kilogramm Brennstoff und treibt Sterne wie die Sonne an.
 
-Bei der **Kernspaltung** zerfällt ein schwerer Kern in zwei leichtere Kerne, nachdem er ein Neutron eingefangen hat. Eine Spaltung von Uran-235 ist:
+## Spaltung und Kettenreaktion
+
+Fängt Uran-235 ein langsames Neutron ein, spaltet sich der Kern in zwei leichtere Bruchstücke und setzt zusätzliche Neutronen sowie Energie frei:
 
 <BlockMath math="{}^{235}_{92}\mathrm{U} + {}^{1}_{0}n \rightarrow {}^{141}_{56}\mathrm{Ba} + {}^{92}_{36}\mathrm{Kr} + 3\,{}^{1}_{0}n + \text{Energie}" />
 
-Der Massendefekt dieser Spaltung beträgt etwa <InlineMath math="0{,}186\ \text{u}" />, also eine Energie von etwa <InlineMath math="173\ \text{MeV}" />, das Zehnfache einer Fusion. Bei der **Kernfusion** verschmelzen zwei leichte Kerne zu einem schwereren, wie im Beispiel mit Deuterium und Tritium oben. Fusion braucht extrem hohe Temperaturen, und sie ist die Energiequelle der Sonne.
+Vergleiche im interaktiven Labor unten die Gesamtmasse vor und nach der Spaltung von Uran-235.
 
-Jede Spaltung setzt mehrere Neutronen frei, die weitere Kerne spalten können. Das ist eine **Kettenreaktion**. Wenn im Mittel <InlineMath math="k" /> Neutronen jeder Spaltung eine neue Spaltung auslösen, gibt es in der Generation <InlineMath math="g" /> genau <InlineMath math="k^g" /> Spaltungen. Ändere <InlineMath math="k" /> und vergleich <InlineMath math="k = 1" /> mit einem größeren <InlineMath math="k" />.
-
-<MathVisual
-  title={<>Anzahl der Spaltungen in einer Kettenreaktion</>}
+<FissionLab
+  title={<>Massendefekt bei der Spaltung von Uran-235</>}
   description={
     <>
-      In der Generation <InlineMath math="g" /> gibt es <InlineMath math="k^g" />{" "}
-      Spaltungen. Bei <InlineMath math="k = 1" /> bleibt es bei einer, und bei{" "}
-      <InlineMath math="k = 2" /> hat die Generation <InlineMath math="10" />{" "}
-      schon <InlineMath math="1024" /> Spaltungen.
+      Ein langsames Neutron spaltet Uran-235 in Barium-141, Krypton-92 und drei
+      Neutronen und wandelt <InlineMath math="0{,}1859\text{ u}" /> in Energie um.
     </>
   }
+  footer={<>Rechne atomare Masseneinheiten erst in Kilogramm um, bevor du mit c Quadrat multiplizierst.</>}
+  labels={{
+    defect: <>Massendefekt</>,
+    energy: <>Freigesetzte Energie</>,
+    kilograms: <>Massendefekt in kg</>,
+    viewLabel: "Uran-235-Kern spaltet sich in Barium-141, Krypton-92 und drei Neutronen",
+  }}
+  fragments={[140.9144, 91.9262]}
+  lightSpeed={3e8}
+  neutron={1.0087}
+  parent={235.0439}
+  released={3}
+  unit={1.66e-27}
+/>
+
+Die freigesetzten Neutronen können weitere Kerne spalten und eine **Kettenreaktion** auslösen. Löst jede Spaltung im Mittel <InlineMath math="k" /> neue Spaltungen aus, treten in Generation <InlineMath math="g" /> genau <InlineMath math="k^g" /> Spaltungen auf. Variiere <InlineMath math="k" /> unten, um stabilen Reaktorbetrieb und exponentielles Wachstum zu vergleichen.
+
+<MathVisual
+  title={<>Spaltungen in einer Kettenreaktion</>}
+  description={
+    <>
+      Anzahl der Spaltungen in Generation <InlineMath math="g" /> für den
+      Multiplikationsfaktor <InlineMath math="k" />, mit <InlineMath math="1024" />{" "}
+      Spaltungen in Generation zehn bei <InlineMath math="k" /> gleich zwei.
+    </>
+  }
+  footer={<>Bei k gleich eins bleibt die Leistung konstant, darüber wächst sie lawinenartig.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: 0, max: 10 }, y: { min: 0, max: 1100 } },
@@ -219,59 +223,29 @@ Jede Spaltung setzt mehrere Neutronen frei, die weitere Kerne spalten können. D
     ],
   }}
   labels={{
-    k: <>Wirksame Neutronen pro Spaltung <InlineMath math="k" /></>,
+    k: <>Neutronenfaktor <InlineMath math="k" /></>,
     g: <>Generation <InlineMath math="g" /></>,
-    fissions: <>Anzahl der Spaltungen</>,
+    fissions: <>Anzahl Spaltungen</>,
   }}
 />
 
-In einer Atombombe ist <InlineMath math="k" /> größer als <InlineMath math="1" />, also explodiert die Zahl der Spaltungen in sehr kurzer Zeit. In einem **Kernreaktor** fangen **Steuerstäbe** aus Bor oder Cadmium überzählige Neutronen ein, damit <InlineMath math="k = 1" /> bleibt und die Energie gleichmäßig frei wird. Ein **Moderator** wie Wasser oder Graphit bremst die Neutronen ab, damit Uran-235 sie leichter einfängt.
+In einem Kernreaktor bremsen **Moderatoren** wie Wasser oder Graphit schnelle Neutronen ab, damit Uran-235 sie besser einfängt, während **Steuerstäbe** aus Bor oder Cadmium überschüssige Neutronen absorbieren und <InlineMath math="k" /> genau bei eins halten.
 
-## Typische Fehler in der Kernphysik
+## Kernenergieberechnungen
 
-| Fehler | Warum er falsch ist | So prüfst du es |
-| :--- | :--- | :--- |
-| Nach zwei Halbwertszeiten ist die Probe vollständig zerfallen. | Jede Halbwertszeit halbiert den Rest, also bleibt nach zwei Halbwertszeiten ein Viertel. | Rechne <InlineMath math="\left(\tfrac{1}{2}\right)^2 = \tfrac{1}{4}" />. |
-| Der Betazerfall verringert die Ordnungszahl. | Ein Neutron wird zum Proton, also steigt die Ordnungszahl um <InlineMath math="1" />. | Die Ordnungszahlen rechts müssen in der Summe denen links entsprechen. |
-| Erhitzen verkürzt die Halbwertszeit einer Probe. | Die Halbwertszeit ist eine Eigenschaft des Kerns und hängt nicht von der Temperatur ab. | Kohlenstoff-14 behält seine <InlineMath math="5730" /> Jahre. |
-| Ein Massendefekt in <InlineMath math="\text{u}" /> wird direkt mit <InlineMath math="c^2" /> multipliziert. | <InlineMath math="E = \Delta m c^2" /> braucht Kilogramm, um Joule zu ergeben. | Rechne zuerst mit <InlineMath math="1\ \text{u} = 1{,}66 \cdot 10^{-27}\ \text{kg}" /> um. |
-| Steuerstäbe bremsen Neutronen ab. | Steuerstäbe fangen Neutronen ein. Abgebremst werden sie vom Moderator. | Frag dich, ob das Neutron verschwindet oder nur langsamer wird. |
+Prüfe zwei Kernrechnungen mit Erhaltungssätzen und sauberer SI-Umrechnung.
 
-Der erste Fehler kommt am häufigsten vor. Eine Halbwertszeit **zieht keine feste Menge ab**, sondern **halbiert** jedes Mal den Rest.
-
-## Übungen zur Kernphysik
-
-Die Aufgaben gehen von Zerfallsgleichungen über die Halbwertszeit zur Kernenergie. **Schreib in jede Gleichung Massenzahl und Ordnungszahl**, damit Fehler sofort auffallen.
-
-1. Radium-226, <InlineMath math="{}^{226}_{88}\mathrm{Ra}" />, zerfällt unter Aussendung eines Alphateilchens. Stell die Zerfallsgleichung auf.
-
-2. Die Aktivität einer radioaktiven Probe sinkt in <InlineMath math="15" /> Stunden von <InlineMath math="800" /> auf <InlineMath math="100" /> Impulse pro Minute. Berechne ihre Halbwertszeit.
-
-3. Eine Spaltung hat einen Massendefekt von <InlineMath math="0{,}20\ \text{u}" />. Berechne die freigesetzte Energie in Joule.
-
-4. Erklär die Aufgabe der Steuerstäbe in einem Kernreaktor mithilfe des Werts von <InlineMath math="k" />.
-
-### Lösungen
-
-**Lösung 1**: Ein Alphateilchen ist <InlineMath math="{}^{4}_{2}\mathrm{He}" />, also sinkt die Massenzahl um <InlineMath math="4" /> und die Ordnungszahl um <InlineMath math="2" />. Das Element mit der Ordnungszahl <InlineMath math="86" /> ist Radon:
+**Radiumzerfall prüfen.** Radium-226 (<InlineMath math="{}^{226}_{88}\mathrm{Ra}" />) sendet ein Alphateilchen aus. Stelle die ausgeglichene Zerfallsgleichung auf.
 
 <BlockMath math="{}^{226}_{88}\mathrm{Ra} \rightarrow {}^{222}_{86}\mathrm{Rn} + {}^{4}_{2}\mathrm{He}" />
 
-Prüf es: Massenzahlen <InlineMath math="222 + 4 = 226" /> und Ordnungszahlen <InlineMath math="86 + 2 = 88" />. Beides geht auf.
+Auf beiden Seiten summieren sich die Nukleonenzahlen auf <InlineMath math="226" /> und die Protonenzahlen auf <InlineMath math="88" />.
 
-**Lösung 2**: Zähl, wie oft sich die Aktivität halbiert:
-
-<BlockMath math="800 \rightarrow 400 \rightarrow 200 \rightarrow 100" />
-
-Das sind drei Halbwertszeiten in <InlineMath math="15" /> Stunden, also <InlineMath math="T_{1/2} = 15 : 3 = 5" /> Stunden. Prüf es: <InlineMath math="800 \cdot \left(\tfrac{1}{2}\right)^{15/5} = 800 \cdot \tfrac{1}{8} = 100" />.
-
-**Lösung 3**: Rechne den Massendefekt zuerst in Kilogramm um:
+**Spaltenergie prüfen.** Eine Kernspaltung weist einen Massendefekt von <InlineMath math="0{,}20\text{ u}" /> auf. Berechne die freigesetzte Energie in Joule.
 
 <MathContainer>
-<BlockMath math="\Delta m = 0{,}20 \cdot 1{,}66 \cdot 10^{-27} = 3{,}32 \cdot 10^{-28}\ \text{kg}" />
-<BlockMath math="E = 3{,}32 \cdot 10^{-28} \cdot (3{,}00 \cdot 10^8)^2 = 2{,}99 \cdot 10^{-11}\ \text{J}" />
+<BlockMath math="\Delta m = 0{,}20 \times 1{,}66 \times 10^{-27} = 3{,}32 \times 10^{-28}\text{ kg}" />
+<BlockMath math="E = (3{,}32 \times 10^{-28})(3{,}00 \times 10^8)^2 = 2{,}99 \times 10^{-11}\text{ J}" />
 </MathContainer>
 
-Prüf es mit MeV: <InlineMath math="0{,}20 \cdot 931{,}5 = 186\ \text{MeV}" />, und <InlineMath math="186 \cdot 1{,}60 \cdot 10^{-13} = 2{,}98 \cdot 10^{-11}\ \text{J}" />. Der kleine Unterschied kommt vom Runden der Konstanten.
-
-**Lösung 4**: Jede Spaltung setzt zwei oder drei Neutronen frei. Würden alle eine neue Spaltung auslösen, wäre <InlineMath math="k" /> größer als <InlineMath math="1" />, und die Zahl der Spaltungen würde exponentiell wachsen. **Steuerstäbe fangen die überzähligen Neutronen ein**, sodass im Mittel nur ein Neutron jeder Spaltung die nächste Spaltung auslöst, also <InlineMath math="k = 1" />. Tiefer eingefahrene Stäbe bremsen die Reaktion, herausgezogene beschleunigen sie.
+Die Gegenprobe über <InlineMath math="931{,}5\text{ MeV}" /> je Masseneinheit ergibt <InlineMath math="186\text{ MeV}" />, was gerundet ebenfalls <InlineMath math="2{,}98 \times 10^{-11}\text{ J}" /> entspricht.

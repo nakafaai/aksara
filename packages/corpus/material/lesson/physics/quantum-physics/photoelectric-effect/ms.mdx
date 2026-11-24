@@ -1,33 +1,72 @@
 export const metadata = {
-  title: "Nota Fizik Kuantum Tingkatan Lima",
+  title: "Kuantum Jasad Hitam dan Gelombang Jirim",
   description:
-    "Nota Fizik Tingkatan 5 Bab 7: kira tenaga foton dengan E = hf, terangkan kesan fotoelektrik dengan persamaan Einstein, dan kira panjang gelombang de Broglie.",
+    "Spektrum jasad hitam Planck, tenaga foton dan panjang gelombang, persamaan fotoelektrik Einstein, dan belauan gelombang jirim de Broglie.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-11-17",
   subject: "Fizik Kuantum",
 };
 
-## Cahaya Datang dalam Paket Tenaga
+## Kuantum Sinaran Jasad Hitam
 
-**Teori kuantum** menyatakan bahawa tenaga cahaya tidak mengalir secara berterusan, tetapi datang dalam paket kecil yang dipanggil **foton**. Tenaga satu foton bergantung pada frekuensinya sahaja:
+Panaskan batang besi di dalam relau sehingga cahayanya berubah daripada merah malap kepada jingga terang lalu putih menyala. Teori gelombang klasik meramalkan rongga panas memancarkan tenaga ultraungu tanpa had, iaitu kegagalan yang dikenali sebagai **bencana ultraungu**.
+
+Max Planck menyelesaikan masalah ini pada tahun 1900 dengan mencadangkan bahawa dinding rongga menukar tenaga hanya dalam paket diskret yang dipanggil **kuantum**. Bandingkan lengkung kuantum Planck dengan ramalan klasik merentasi suhu di bawah.
+
+<PlanckBlackbodyLab
+  title={<>Spektrum Jasad Hitam Planck melawan Teori Klasik</>}
+  description={
+    <>
+      Tukar antara lengkung kuantum Planck dengan ramalan klasik Rayleigh-Jeans
+      sambil menaikkan suhu rongga daripada merah malap ke putih pijar.
+    </>
+  }
+  footer={<>Suhu rongga lebih tinggi menganjak puncak pancaran ke panjang gelombang lebih pendek.</>}
+  models={["planck", "classical"]}
+  temperature={{ min: 2000, max: 8000, value: 5800 }}
+  labels={{
+    model: "Model sinaran",
+    models: {
+      planck: "Kuantum Planck",
+      classical: "Gelombang klasik",
+    },
+    temperature: "Suhu rongga",
+    spectrum: <>Jalur dominan</>,
+    peakWavelength: <>Panjang gelombang puncak</>,
+    photonEnergy: <>Tenaga foton puncak</>,
+    parts: {
+      cavity: "Rongga panas",
+      planckCurve: "Lengkung Planck",
+      classicalCurve: "Lengkung klasik",
+      visibleBand: "Jalur tampak",
+      peakMarker: "Puncak Wien",
+    },
+    view: "Rongga jasad hitam 3D bersama lengkung sinaran kuantum Planck dan klasik Rayleigh-Jeans",
+  }}
+/>
+
+Lengkung Planck melengkung turun dengan lancar pada panjang gelombang pendek kerana mod berfrekuensi tinggi memerlukan terlalu banyak tenaga per kuantum untuk teruja secara terma, sepadan dengan cahaya bintang sebenar.
+
+## Tenaga Foton dan Frekuensi
+
+Cahaya merambat dalam paket diskret yang dipanggil **foton**. Tenaga satu foton ditetapkan sepenuhnya oleh frekuensinya <InlineMath math="f" />, atau berkadar songsang dengan panjang gelombangnya <InlineMath math="\lambda" />.
 
 <BlockMath math="E = hf = \frac{hc}{\lambda}" />
 
-Di sini <InlineMath math="h = 6.63 \times 10^{-34}\text{ J s}" /> ialah pemalar Planck, <InlineMath math="f" /> frekuensi dan <InlineMath math="\lambda" /> panjang gelombang cahaya. Dalam nota ini kamu lihat atom hidrogen memancarkan garis spektrum, ubah frekuensi cahaya untuk mengeluarkan elektron daripada logam, dan kira panjang gelombang zarah yang bergerak.
+Di sini <InlineMath math="h" /> ialah pemalar Planck (<InlineMath math="6.63 \times 10^{-34}\text{ J s}" />) dan <InlineMath math="c" /> ialah laju cahaya (<InlineMath math="3.00 \times 10^8\text{ m s}^{-1}" />). Panjang gelombang yang lebih pendek membawa tenaga lebih besar bagi setiap foton, maka cahaya ungu lebih bertenaga per paket daripada cahaya merah.
 
-Cahaya biru membawa lebih banyak tenaga bagi setiap foton daripada cahaya merah, kerana panjang gelombangnya lebih pendek. Gerakkan gelangsar panjang gelombang di bawah dan baca tenaga foton dalam elektronvolt, dengan <InlineMath math="1\text{ eV} = 1.60 \times 10^{-19}\text{ J}" />.
+Gerakkan peluncur panjang gelombang di bawah untuk membaca tenaga foton dalam elektronvolt, dengan satu elektronvolt bersamaan <InlineMath math="1.60 \times 10^{-19}\text{ J}" />.
 
 <MathVisual
-  title={<>Tenaga Foton melawan Panjang Gelombang</>}
+  title={<>Tenaga Foton Melawan Panjang Gelombang</>}
   description={
     <>
-      Tenaga foton dalam eV ialah{" "}
-      <InlineMath math="E = \dfrac{hc}{\lambda e} \approx \dfrac{1243}{\lambda}" />,
-      dengan <InlineMath math="\lambda" /> dalam nanometer. Cahaya hijau{" "}
-      <InlineMath math="500\text{ nm}" /> membawa kira-kira{" "}
-      <InlineMath math="2.49\text{ eV}" />.
+      Tenaga foton dalam <InlineMath math="\text{eV}" /> bagi cahaya tampak dan
+      ultraungu dekat, memberi <InlineMath math="2.49\text{ eV}" /> pada cahaya
+      hijau <InlineMath math="500\text{ nm}" />.
     </>
   }
+  footer={<>Sentiasa tukar nanometer kepada meter sebelum memasukkan panjang gelombang ke rumus hc.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: 300, max: 800 }, y: { min: 0, max: 5 } },
@@ -44,85 +83,72 @@ Cahaya biru membawa lebih banyak tenaga bagi setiap foton daripada cahaya merah,
     ],
   }}
   labels={{
-    w: <>Panjang gelombang <InlineMath math="\lambda" /> dalam <InlineMath math="\text{nm}" /></>,
-    energy: <>Tenaga foton dalam <InlineMath math="\text{eV}" /></>,
+    w: <>Panjang gelombang <InlineMath math="\lambda" /> (<InlineMath math="\text{nm}" />)</>,
+    energy: <>Tenaga foton (<InlineMath math="\text{eV}" />)</>,
   }}
 />
 
-Cuba satu contoh. Hitung tenaga foton cahaya hijau berpanjang gelombang <InlineMath math="500\text{ nm}" />.
+Apabila elektron dalam atom turun antara aras tenaga tetap, atom memancarkan satu foton yang menyamai perbezaan aras lalu menghasilkan spektrum garis yang tajam.
 
-**Tukar nanometer kepada meter dulu**, kemudian gunakan <InlineMath math="E = \dfrac{hc}{\lambda}" />:
+## Kesan Fotoelektrik Logam
 
-<MathContainer>
-<BlockMath math="\lambda = 500 \times 10^{-9} = 5.00 \times 10^{-7}\text{ m}" />
-<BlockMath math="E = \frac{6.63 \times 10^{-34} \times 3.00 \times 10^8}{5.00 \times 10^{-7}} = 3.98 \times 10^{-19}\text{ J}" />
-<BlockMath math="E = \frac{3.98 \times 10^{-19}}{1.60 \times 10^{-19}} = 2.49\text{ eV}" />
-</MathContainer>
+Apabila cahaya berfrekuensi tinggi mengenai plat logam bersih di dalam tiub vakum, **kesan fotoelektrik** memancarkan elektron terus dari permukaannya. Ukuran frekuensi ambang dan tenaga elektron terlepas membuktikan cahaya memindahkan tenaga melalui perlanggaran satu foton secara diskret.
 
-Semak dengan graf di atas: pada <InlineMath math="500\text{ nm}" />, bacaan tenaga foton juga kira-kira <InlineMath math="2.49\text{ eV}" />.
+### Ambang dan Keamatan
 
-## Atom Memancarkan Foton pada Tenaga Tertentu
+Teori gelombang klasik gagal menjelaskan mengapa cahaya merah terang tidak membebaskan elektron daripada zink, sedangkan cahaya ultraungu malap terus membebaskan **fotoelektron**.
 
-Elektron dalam atom hanya boleh berada pada **aras tenaga tertentu**. Apabila elektron jatuh dari aras tinggi ke aras rendah, atom memancarkan satu foton yang tenaganya **sama dengan beza tenaga** dua aras itu. Oleh sebab aras tenaga itu tetap, cahaya yang dipancarkan hanya mempunyai panjang gelombang tertentu, dan kita nampak **spektrum garis**, bukan pelangi yang berterusan.
+> Frekuensi menentukan tenaga setiap foton, manakala keamatan hanya mengubah bilangan foton yang tiba setiap saat.
 
-Pilih peralihan elektron dalam atom hidrogen di bawah dan baca panjang gelombang, tenaga serta frekuensi fotonnya.
+Uji aturan satu foton kepada satu elektron di bawah dengan menggerakkan panjang gelombang merentasi ambang logam dan mengubah keamatan cahaya.
 
-<BohrEmissionLab
-  title={<>Garis Spektrum Atom Hidrogen</>}
+<PhotoelectricLab
+  title={<>Pemancaran Fotoelektron dari Plat Logam</>}
   description={
     <>
-      Elektron jatuh ke aras <InlineMath math="n = 2" /> daripada aras{" "}
-      <InlineMath math="3" />, <InlineMath math="4" /> atau <InlineMath math="5" />.
-      Setiap peralihan memancarkan satu foton cahaya nampak yang berbeza warna.
+      Cahaya menyinari plat logam dengan fungsi kerja{" "}
+      <InlineMath math="2.3\text{ eV}" />. Bandingkan cahaya ungu{" "}
+      <InlineMath math="400\text{ nm}" /> dengan jingga{" "}
+      <InlineMath math="600\text{ nm}" /> pada keamatan berbeza.
     </>
   }
-  falls={[
-    { from: 3, to: 2 },
-    { from: 4, to: 2 },
-    { from: 5, to: 2 },
-  ]}
+  footer={<>Di bawah frekuensi ambang, keamatan lebih tinggi menambah foton tanpa melepas satu elektron pun.</>}
   labels={{
-    choose: "Peralihan elektron",
     energy: <>Tenaga foton</>,
-    frequency: <>Frekuensi</>,
-    transition: <>Peralihan</>,
-    view: "Model atom hidrogen Bohr yang memancarkan foton",
+    intensity: <>Keamatan cahaya</>,
+    intensityName: "Keamatan",
+    kinetic: <>Tenaga kinetik maksimum</>,
+    none: <>Tiada elektron dipancarkan</>,
+    viewLabel: "Fotosel vakum menunjukkan cahaya mengenai katod logam dan memancarkan fotoelektron",
     wavelength: <>Panjang gelombang</>,
+    wavelengthName: "Panjang gelombang",
   }}
+  charge={1.6e-19}
+  lightSpeed={3e8}
+  planck={6.63e-34}
+  wavelength={400}
+  workFunction={2.3}
 />
 
-Peralihan <InlineMath math="3 \rightarrow 2" /> memberi garis merah sekitar <InlineMath math="656\text{ nm}" />, manakala <InlineMath math="5 \rightarrow 2" /> memberi garis ungu sekitar <InlineMath math="434\text{ nm}" />. Lompatan yang lebih besar membebaskan foton bertenaga lebih tinggi, jadi panjang gelombangnya lebih pendek.
+Pada <InlineMath math="400\text{ nm}" />, setiap foton membawa <InlineMath math="3.1\text{ eV}" /> yang melepasi halangan <InlineMath math="2.3\text{ eV}" />. Pada <InlineMath math="600\text{ nm}" />, setiap foton hanya membawa <InlineMath math="2.1\text{ eV}" />, jadi elektron tidak terlepas walau cahaya diterangkan.
 
-## Kesan Fotoelektrik dan Frekuensi Ambang
+### Persamaan Einstein
 
-**Kesan fotoelektrik** ialah pemancaran elektron daripada permukaan logam apabila logam itu disinari cahaya. Elektron yang terpancar dipanggil **fotoelektron**. Eksperimen menunjukkan tiga perkara yang tidak dapat diterangkan oleh teori gelombang:
-
-| Pemerhatian | Maksudnya |
-| :--- | :--- |
-| Tiada elektron terpancar di bawah **frekuensi ambang**, <InlineMath math="f_0" />, walaupun cahaya sangat terang. | Satu foton mesti cukup bertenaga untuk mengeluarkan satu elektron. |
-| Di atas <InlineMath math="f_0" />, elektron terpancar serta-merta. | Tenaga dipindahkan dalam satu paket, bukan dikumpul perlahan-lahan. |
-| Tenaga kinetik maksimum elektron bergantung pada frekuensi, bukan keamatan. | Keamatan hanya menambah bilangan foton, bukan tenaga setiap foton. |
-
-Tenaga minimum untuk mengeluarkan satu elektron dipanggil **fungsi kerja**, <InlineMath math="W" />. Bagi natrium, <InlineMath math="W = 2.28\text{ eV}" />, dan bagi zink <InlineMath math="W = 4.3\text{ eV}" />. Frekuensi ambang ialah <InlineMath math="f_0 = \dfrac{W}{h}" />.
-
-## Persamaan Fotoelektrik Einstein
-
-Einstein menerangkan kesan fotoelektrik dengan **keabadian tenaga** bagi satu foton dan satu elektron. Tenaga foton digunakan untuk membayar fungsi kerja, dan bakinya menjadi tenaga kinetik maksimum elektron:
+Albert Einstein menerangkan kesan fotoelektrik melalui pengabadian tenaga bagi satu foton yang diserap oleh satu elektron. Sebahagian tenaga foton membayar **fungsi kerja** logam <InlineMath math="W" />, dan bakinya menjadi **tenaga kinetik maksimum** elektron <InlineMath math="K_{\text{maks}}" />.
 
 <BlockMath math="hf = W + K_{\text{maks}}" />
 
-Ubah frekuensi cahaya dan fungsi kerja logam di bawah. Garis itu memotong paksi mengufuk pada frekuensi ambang, dan kecerunannya ialah pemalar Planck.
+Ubah frekuensi cahaya dan fungsi kerja logam di bawah untuk melihat garis lurus yang memintas paksi mengufuk tepat pada **frekuensi ambang** <InlineMath math="f_0" />.
 
 <MathVisual
-  title={<>Tenaga Kinetik Maksimum Fotoelektron melawan Frekuensi</>}
+  title={<>Tenaga Kinetik Fotoelektron Melawan Frekuensi</>}
   description={
     <>
-      <InlineMath math="K_{\text{maks}} = hf - W" />, dalam eV, dengan{" "}
-      <InlineMath math="f" /> dalam unit <InlineMath math="10^{14}\text{ Hz}" />.
-      Di bawah frekuensi ambang, nilai <InlineMath math="hf - W" /> negatif dan
-      tiada elektron terpancar.
+      Tenaga kinetik maksimum dalam <InlineMath math="\text{eV}" /> melawan
+      frekuensi cahaya dalam unit <InlineMath math="10^{14}\text{ Hz}" />.
     </>
   }
+  footer={<>Setiap logam berkongsi kecerunan sama iaitu pemalar Planck h, hanya berbeza pintasan.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: 0, max: 16 }, y: { min: -5, max: 5 } },
@@ -141,132 +167,77 @@ Ubah frekuensi cahaya dan fungsi kerja logam di bawah. Garis itu memotong paksi 
     ],
   }}
   labels={{
-    f: <>Frekuensi <InlineMath math="f" /> dalam <InlineMath math="10^{14}\text{ Hz}" /></>,
-    w: <>Fungsi kerja <InlineMath math="W" /> dalam <InlineMath math="\text{eV}" /></>,
-    kinetic: <><InlineMath math="hf - W" /> dalam <InlineMath math="\text{eV}" /></>,
-    threshold: <>Frekuensi ambang dalam <InlineMath math="10^{14}\text{ Hz}" /></>,
+    f: <>Frekuensi <InlineMath math="f" /> (<InlineMath math="10^{14}\text{ Hz}" />)</>,
+    w: <>Fungsi kerja <InlineMath math="W" /> (<InlineMath math="\text{eV}" />)</>,
+    kinetic: <>Tenaga kinetik (<InlineMath math="\text{eV}" />)</>,
+    threshold: <>Ambang (<InlineMath math="10^{14}\text{ Hz}" />)</>,
   }}
 />
 
-Cahaya ungu <InlineMath math="400\text{ nm}" /> menyinari natrium. Hitung tenaga kinetik maksimum fotoelektron dan frekuensi ambang natrium.
+Menggandakan keamatan melebihi <InlineMath math="f_0" /> menggandakan arus fotoelektron kerana bilangan foton sesaat berganda, tetapi <InlineMath math="K_{\text{maks}}" /> kekal sama kerana frekuensi setiap foton tidak berubah.
 
-<MathContainer>
-<BlockMath math="hf = \frac{6.63 \times 10^{-34} \times 3.00 \times 10^8}{4.00 \times 10^{-7}} = 4.97 \times 10^{-19}\text{ J} = 3.11\text{ eV}" />
-<BlockMath math="K_{\text{maks}} = 3.11 - 2.28 = 0.83\text{ eV}" />
-<BlockMath math="f_0 = \frac{2.28 \times 1.60 \times 10^{-19}}{6.63 \times 10^{-34}} = 5.50 \times 10^{14}\text{ Hz}" />
-</MathContainer>
+## Gelombang Jirim de Broglie
 
-Semak: frekuensi cahaya ungu ialah <InlineMath math="\dfrac{3.00 \times 10^8}{4.00 \times 10^{-7}} = 7.50 \times 10^{14}\text{ Hz}" />, lebih tinggi daripada <InlineMath math="f_0" />, jadi elektron memang terpancar. Pada <InlineMath math="f = 7.5" /> dan <InlineMath math="W = 2.28" />, graf di atas juga memberi kira-kira <InlineMath math="0.83\text{ eV}" />.
-
-Kesan fotoelektrik digunakan dalam **sel fotovolta** pada panel solar, penderia cahaya pintu automatik, dan kamera digital.
-
-## Zarah Juga Bersifat Gelombang
-
-Jika cahaya yang dianggap gelombang boleh bertindak seperti zarah, zarah juga boleh bertindak seperti gelombang. Inilah **dualiti gelombang-zarah**. De Broglie mencadangkan bahawa setiap zarah yang bermomentum <InlineMath math="p = mv" /> mempunyai panjang gelombang:
+Louis de Broglie berhujah bahawa alam bersifat simetri: jika gelombang cahaya berkelakuan seperti zarah, maka zarah bergerak bermomentum <InlineMath math="p" /> juga mempunyai **panjang gelombang jirim** <InlineMath math="\lambda" />.
 
 <BlockMath math="\lambda = \frac{h}{p} = \frac{h}{mv}" />
 
-Elektron dalam tiub sinar katod dipesongkan oleh medan elektrik seperti zarah bercas. Namun alur elektron yang sama juga menghasilkan corak pembelauan apabila melalui hablur, satu bukti sifat gelombangnya. Lihat elektron dipesongkan dalam tiub di bawah.
+> Momentum lebih besar memendekkan panjang gelombang de Broglie zarah lalu merapatkan gegelang belauan yang terbentuk melalui hablur.
 
-<CathodeRayLab
-  title={<>Alur Elektron dalam Tiub Sinar Katod</>}
+Tembakkan zarah berbeza melalui sasaran grafit nipis dan naikkan voltan pemecut di bawah untuk melihat gelombang jirim memendek serta gegelang belauan mengecil pada skrin.
+
+<DeBroglieMatterWaveLab
+  title={<>Gelombang Jirim de Broglie dan Belauan Elektron</>}
   description={
     <>
-      Elektron dipecutkan ke anod dan melalui dua plat bercas. Medan elektrik
-      memesongkan alur itu, jadi elektron mempunyai cas dan jisim seperti zarah.
+      Pilih elektron, proton, neutron, atau zarah alfa dan ubah voltan pemecut
+      untuk memerhatikan bagaimana momentum mengawal panjang gelombang dan jarak
+      gegelang.
     </>
   }
+  footer={<>Voltan pemecut lebih tinggi menaikkan momentum, memendekkan gelombang dan gegelang.</>}
+  particles={["electron", "proton", "neutron", "alpha"]}
+  voltage={{ min: 500, max: 5000, value: 2000 }}
   labels={{
-    anode: <>Voltan anod</>,
-    field: <>Medan elektrik antara plat</>,
-    plates: "Plat pemesongan",
-    spot: <>Kedudukan titik pada skrin</>,
-    view: "Tiub sinar katod dengan alur elektron dan plat pemesongan",
+    particle: "Zarah",
+    particles: {
+      electron: "Elektron",
+      proton: "Proton",
+      neutron: "Neutron",
+      alpha: "Zarah alfa",
+    },
+    voltage: "Voltan pemecut",
+    momentum: <>Momentum zarah</>,
+    diffraction: <>Jarak gegelang belauan</>,
+    wavelength: <>Panjang gelombang de Broglie</>,
+    parts: {
+      electronGun: "Senapang zarah",
+      graphiteTarget: "Sasaran grafit",
+      matterWave: "Gelombang jirim",
+      diffractionRings: "Gegelang belauan",
+      screen: "Skrin pendarfluor",
+    },
+    view: "Tiub belauan elektron 3D menunjukkan senapang zarah, sasaran grafit, gelombang jirim, dan gegelang belauan",
   }}
 />
 
-Gerakkan gelangsar laju elektron di bawah. Semakin laju elektron, semakin besar momentumnya dan semakin pendek panjang gelombangnya.
+Oleh sebab elektron laju mencapai panjang gelombang sekitar <InlineMath math="0.1\text{ nm}" />, jauh lebih pendek daripada cahaya tampak, mikroskop elektron berupaya meleraikan molekul dan satah hablur.
 
-<MathVisual
-  title={<>Panjang Gelombang de Broglie Elektron melawan Laju</>}
-  description={
-    <>
-      <InlineMath math="\lambda = \dfrac{h}{m_e v} \approx \dfrac{0.728}{v}\text{ nm}" />,
-      dengan <InlineMath math="v" /> dalam unit <InlineMath math="10^6\text{ m s}^{-1}" />.
-      Pada <InlineMath math="v = 2.0 \times 10^6\text{ m s}^{-1}" />,{" "}
-      <InlineMath math="\lambda \approx 0.364\text{ nm}" />.
-    </>
-  }
-  scene={{
-    space: "plane",
-    frame: { kind: "cartesian", x: { min: 0.5, max: 5 }, y: { min: 0, max: 1.6 } },
-    view: { kind: "fit", padding: 0.08 },
-    parameters: [
-      { name: "s", min: 0.5, max: 5, value: 2, step: 0.1, label: "s" },
-    ],
-    objects: [
-      { id: "wavelength", kind: "function", appearance: "primary", formula: "0.728/x", domain: { min: 0.5, max: 5 } },
-      { id: "now", kind: "marker", x: "s", y: "0.728/s", appearance: "warning" },
-    ],
-    readouts: [
-      { key: "length", formula: "0.728/s" },
-    ],
-  }}
-  labels={{
-    s: <>Laju elektron <InlineMath math="v" /> dalam <InlineMath math="10^6\text{ m s}^{-1}" /></>,
-    length: <>Panjang gelombang dalam <InlineMath math="\text{nm}" /></>,
-  }}
-/>
+## Semakan Kiraan Kuantum
 
-Kira contoh itu. Elektron berjisim <InlineMath math="9.11 \times 10^{-31}\text{ kg}" /> bergerak pada <InlineMath math="2.0 \times 10^6\text{ m s}^{-1}" />:
+Semak dua kiraan teras berikut dengan unit SI yang seragam.
 
-<BlockMath math="\lambda = \frac{6.63 \times 10^{-34}}{9.11 \times 10^{-31} \times 2.0 \times 10^6} = 3.64 \times 10^{-10}\text{ m} = 0.364\text{ nm}" />
-
-Semak: panjang gelombang itu setanding dengan jarak antara atom dalam hablur, kira-kira <InlineMath math="0.1" /> hingga <InlineMath math="0.5\text{ nm}" />. Itulah sebab hablur boleh membelaukan elektron, dan mikroskop elektron boleh melihat butiran yang jauh lebih halus daripada mikroskop cahaya.
-
-## Kesilapan Lazim tentang Fizik Kuantum
-
-| Kesilapan | Sebab salah | Cara semak |
-| :--- | :--- | :--- |
-| Cahaya yang lebih terang mengeluarkan elektron yang lebih laju. | Keamatan menambah bilangan foton. Tenaga setiap foton bergantung pada frekuensi. | Tukar keamatan, dan <InlineMath math="K_{\text{maks}}" /> kekal. |
-| Cahaya merah yang sangat terang tetap boleh mengeluarkan elektron daripada zink. | Jika <InlineMath math="hf" /> kurang daripada <InlineMath math="W" />, tiada foton yang cukup bertenaga. | Bandingkan tenaga foton dengan fungsi kerja. |
-| Panjang gelombang yang lebih panjang bermaksud tenaga foton lebih besar. | <InlineMath math="E = \dfrac{hc}{\lambda}" />, jadi tenaga berkadar songsang dengan panjang gelombang. | Cahaya biru lebih bertenaga daripada cahaya merah. |
-| Panjang gelombang dalam nanometer terus dimasukkan ke dalam <InlineMath math="E = \dfrac{hc}{\lambda}" />. | Rumus memerlukan meter untuk memberi joule. | Darab dengan <InlineMath math="10^{-9}" /> dulu. |
-| Hanya cahaya yang bersifat gelombang. | Elektron juga dibelaukan, jadi zarah juga mempunyai panjang gelombang. | Kira <InlineMath math="\lambda = \dfrac{h}{mv}" /> bagi zarah itu. |
-
-Kesilapan pertama paling kerap muncul. Ingat pembahagian kerja ini: **frekuensi menentukan tenaga setiap foton, keamatan menentukan bilangan foton**.
-
-## Latihan Fizik Kuantum
-
-Soalan ini bergerak daripada tenaga foton kepada kesan fotoelektrik dan panjang gelombang de Broglie. **Tukar semua unit kepada SI** sebelum menggunakan pemalar Planck.
-
-1. Sebuah laser <InlineMath math="1.0\text{ mW}" /> memancarkan cahaya merah <InlineMath math="650\text{ nm}" />. Hitung bilangan foton yang dipancarkan setiap saat.
-
-2. Fungsi kerja zink ialah <InlineMath math="4.3\text{ eV}" />. Adakah cahaya hijau <InlineMath math="500\text{ nm}" /> mengeluarkan elektron daripada zink? Berikan sebab.
-
-3. Cahaya di atas frekuensi ambang menyinari satu logam. Keamatannya digandakan tanpa mengubah frekuensi. Nyatakan kesan terhadap bilangan fotoelektron dan tenaga kinetik maksimumnya.
-
-4. Elektron dan proton bergerak pada laju yang sama. Hitung nisbah panjang gelombang de Broglie elektron kepada proton, dengan <InlineMath math="m_p = 1836\,m_e" />.
-
-### Penyelesaian
-
-**Penyelesaian 1**: Kira tenaga satu foton, kemudian bahagi kuasa dengan tenaga itu:
+**Semakan foton laser.** Laser <InlineMath math="1.0\text{ mW}" /> memancarkan cahaya merah <InlineMath math="650\text{ nm}" />. Kira bilangan foton yang dipancarkan setiap saat.
 
 <MathContainer>
-<BlockMath math="E = \frac{6.63 \times 10^{-34} \times 3.00 \times 10^8}{6.50 \times 10^{-7}} = 3.06 \times 10^{-19}\text{ J}" />
+<BlockMath math="E = \frac{(6.63 \times 10^{-34})(3.00 \times 10^8)}{6.50 \times 10^{-7}} = 3.06 \times 10^{-19}\text{ J}" />
 <BlockMath math="N = \frac{1.0 \times 10^{-3}}{3.06 \times 10^{-19}} = 3.27 \times 10^{15}\text{ foton s}^{-1}" />
 </MathContainer>
 
-Semak: <InlineMath math="3.27 \times 10^{15} \times 3.06 \times 10^{-19} = 1.0 \times 10^{-3}\text{ J}" /> setiap saat, sama dengan kuasa laser.
+Hasil darab bilangan foton dengan tenaga satu foton memulihkan kuasa alur tepat <InlineMath math="1.0\text{ mW}" />.
 
-**Penyelesaian 2**: Tenaga foton <InlineMath math="500\text{ nm}" /> ialah <InlineMath math="2.49\text{ eV}" />, seperti contoh tadi. Nilai itu **kurang daripada** fungsi kerja zink, <InlineMath math="4.3\text{ eV}" />, jadi **tiada elektron terpancar**, walau seterang mana pun cahaya itu. Satu foton tidak cukup bertenaga, dan elektron tidak boleh mengumpul tenaga daripada beberapa foton.
+**Semakan gelombang elektron.** Satu elektron berjisim <InlineMath math="9.11 \times 10^{-31}\text{ kg}" /> bergerak pada laju <InlineMath math="2.0 \times 10^6\text{ m s}^{-1}" />. Kira panjang gelombang de Broglie-nya.
 
-**Penyelesaian 3**: Keamatan yang berganda bermaksud **bilangan foton berganda**, jadi **bilangan fotoelektron juga berganda** dan arus fotoelektrik bertambah. Frekuensi tidak berubah, jadi tenaga setiap foton sama dan **tenaga kinetik maksimum kekal**:
+<BlockMath math="\lambda = \frac{6.63 \times 10^{-34}}{(9.11 \times 10^{-31})(2.0 \times 10^6)} = 3.64 \times 10^{-10}\text{ m} = 0.364\text{ nm}" />
 
-<BlockMath math="K_{\text{maks}} = hf - W" />
-
-**Penyelesaian 4**: Laju sama, jadi panjang gelombang berkadar songsang dengan jisim:
-
-<BlockMath math="\frac{\lambda_e}{\lambda_p} = \frac{h / (m_e v)}{h / (m_p v)} = \frac{m_p}{m_e} = 1836" />
-
-Panjang gelombang elektron <InlineMath math="1836" /> kali lebih panjang. Semak: zarah yang lebih ringan pada laju yang sama mempunyai momentum lebih kecil, jadi panjang gelombangnya lebih panjang.
+Nilai subnanometer ini sepadan dengan jarak antara atom grafit, sekali gus menjelaskan belauan tajam elektron melalui filem hablur nipis.

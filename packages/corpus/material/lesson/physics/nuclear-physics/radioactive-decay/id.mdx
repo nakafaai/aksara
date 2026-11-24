@@ -1,103 +1,81 @@
 export const metadata = {
-  title: "Fisika Inti dan Peluruhan Radioaktif",
+  title: "Peluruhan Radioaktif dan Energi Ikat Inti",
   description:
-    "Tulis persamaan peluruhan alfa, beta, dan gamma, hitung waktu paruh, dan hitung energi nuklir dengan E = mc² lewat contoh lengkap dan latihan bergambar.",
+    "Persamaan peluruhan alfa, beta, dan gamma, pengukuran waktu paruh tanpa radiasi latar, kurva energi ikat inti, dan energi fisi nuklir.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-11-17",
   subject: "Fisika Inti",
 };
 
-## Inti Tidak Stabil Meluruh secara Acak
+## Ragam Peluruhan Inti
 
-**Peluruhan radioaktif** adalah proses inti yang tidak stabil memancarkan radiasi alfa, beta, atau gamma supaya menjadi lebih stabil. Peluruhan terjadi **secara acak**: tidak ada yang bisa meramalkan kapan satu inti tertentu akan meluruh. Namun untuk sampel yang besar, jumlah inti yang tersisa mengikuti hukum waktu paruh, <InlineMath math="N = N_0 \left(\tfrac{1}{2}\right)^{t/T_{1/2}}" />. Di sini kamu menyaksikan sampel karbon-14 meluruh, melihat radiasi dibelokkan medan magnet, dan menghitung energi dari defek massa.
+Di dalam inti atom berat, proton bermuatan positif saling menolak dengan kuat sementara **gaya nuklir kuat** berusaha mengikatnya. Saat keseimbangan gagal, inti tidak stabil mengalami **peluruhan radioaktif** agar berpindah ke keadaan lebih stabil.
 
-Geser penggeser waktu di bawah. Setiap titik adalah satu inti karbon-14 yang berubah menjadi nitrogen-14 pada saatnya sendiri. Bandingkan jumlah yang terhitung dengan nilai harapan.
+### Peluruhan Alfa Beta
 
-<RadioactiveDecayLab
-  title={<>Sampel Karbon-14 yang Meluruh</>}
-  description={
-    <>
-      Sebanyak <InlineMath math="400" /> inti karbon-14 dengan waktu paruh{" "}
-      <InlineMath math="5730" /> tahun. Setiap inti meluruh secara acak, tetapi
-      jumlahnya tinggal separuh setiap satu waktu paruh.
-    </>
-  }
-  labels={{
-    counted: <>Inti yang tersisa, terhitung</>,
-    expected: <>Nilai harapan</>,
-    halfLives: <>Banyak waktu paruh</>,
-    time: "Waktu",
-    view: "Sampel 400 inti karbon-14 yang meluruh menjadi nitrogen-14",
-    years: "tahun",
-  }}
-/>
+Setiap peluruhan inti selalu melestarikan jumlah **nukleon** dan jumlah **proton** di kedua sisi persamaan:
 
-Jumlah yang terhitung jarang persis sama dengan nilai harapan. Itulah tanda peluruhan yang acak. Makin besar sampelnya, makin dekat hitungan dengan hukum waktu paruh.
-
-## Tiga Jenis Peluruhan Radioaktif
-
-Dalam setiap peluruhan, **nomor massa** dan **nomor atom** kekal. Jumlah di ruas kiri persamaan harus sama dengan jumlah di ruas kanan.
-
-**Peluruhan alfa** memancarkan partikel alfa, yaitu inti helium. Nomor massa berkurang <InlineMath math="4" /> dan nomor atom berkurang <InlineMath math="2" />:
-
-<BlockMath math="{}^{238}_{92}\mathrm{U} \rightarrow {}^{234}_{90}\mathrm{Th} + {}^{4}_{2}\mathrm{He}" />
-
-**Peluruhan beta** terjadi saat satu neutron berubah menjadi proton dan elektron. Elektron itu dipancarkan sebagai partikel beta, jadi nomor massa tetap tetapi nomor atom bertambah <InlineMath math="1" />:
-
-<BlockMath math="{}^{14}_{6}\mathrm{C} \rightarrow {}^{14}_{7}\mathrm{N} + {}^{0}_{-1}e" />
-
-**Peluruhan gamma** memancarkan gelombang elektromagnetik berenergi tinggi dari inti yang tereksitasi. Nomor massa dan nomor atom tidak berubah, hanya energi intinya yang turun.
-
-Ketiga radiasi berbeda **muatan**, jadi medan magnet memisahkannya. Partikel alfa bermuatan positif, partikel beta bermuatan negatif, dan sinar gamma tidak bermuatan. Di ruang di bawah, elektron dan proton memasuki medan magnet dengan kelajuan yang sama. Perkuat medannya dan lihat jari-jari lintasannya berubah.
-
-<ParticleTrackLab
-  title={<>Partikel Bermuatan dalam Medan Magnet</>}
-  description={
-    <>
-      Elektron, proton, dan neutron memasuki medan magnet dengan kelajuan yang
-      sama. Jari-jari lintasannya <InlineMath math="r = \dfrac{mv}{qB}" />.
-      Partikel bermuatan negatif dan positif berbelok berlawanan arah,
-      sedangkan neutron bergerak lurus.
-    </>
-  }
-  labels={{
-    electron: <>Jari-jari lintasan elektron</>,
-    field: "Kuat medan magnet",
-    proton: <>Jari-jari lintasan proton</>,
-    ratio: <>Perbandingan jari-jari</>,
-    view: "Ruang dengan lintasan elektron, proton, dan neutron dalam medan magnet",
-  }}
-/>
-
-Partikel beta adalah elektron, jadi partikel beta berbelok seperti elektron di ruang itu. Partikel alfa bermuatan positif dan jauh lebih berat, jadi partikel alfa hanya sedikit berbelok ke arah berlawanan, seperti proton. Sinar gamma tidak bermuatan, jadi sinar gamma bergerak lurus seperti neutron.
-
-## Waktu Paruh dan Kurva Peluruhan
-
-**Waktu paruh**, <InlineMath math="T_{1/2}" />, adalah waktu yang dibutuhkan agar separuh inti radioaktif dalam sampel meluruh. Waktu paruh adalah sifat nuklida itu sendiri dan tidak berubah oleh suhu, tekanan, atau massa sampel. Iodin-131 memiliki waktu paruh <InlineMath math="8" /> hari, sedangkan karbon-14 <InlineMath math="5730" /> tahun.
-
-Coba satu contoh. Sebuah rumah sakit menerima <InlineMath math="80\text{ g}" /> iodin-131. Hitung massa iodin-131 yang tersisa setelah <InlineMath math="24" /> hari.
-
-**Hitung banyaknya waktu paruh dulu**, lalu bagi dua sebanyak itu:
+- **Peluruhan alfa** melepaskan inti helium-4 sehingga nomor massa berkurang <InlineMath math="4" /> dan nomor atom berkurang <InlineMath math="2" />.
+- **Peluruhan beta** mengubah neutron menjadi proton sambil memancarkan elektron, sehingga nomor massa tetap tetapi nomor atom naik <InlineMath math="1" />.
+- **Peluruhan gamma** melepaskan foton berenergi tinggi dari inti tereksitasi tanpa mengubah nomor massa maupun nomor atom.
 
 <MathContainer>
-<BlockMath math="\frac{t}{T_{1/2}} = \frac{24}{8} = 3" />
-<BlockMath math="80\text{ g} \rightarrow 40\text{ g} \rightarrow 20\text{ g} \rightarrow 10\text{ g}" />
+<BlockMath math="{}^{238}_{92}\mathrm{U} \rightarrow {}^{234}_{90}\mathrm{Th} + {}^{4}_{2}\mathrm{He}" />
+<BlockMath math="{}^{14}_{6}\mathrm{C} \rightarrow {}^{14}_{7}\mathrm{N} + {}^{0}_{-1}e" />
 </MathContainer>
 
-Cek dengan rumus: <InlineMath math="N = 80 \times \left(\tfrac{1}{2}\right)^{3} = 80 \times \tfrac{1}{8} = 10\text{ g}" />. Kedua cara memberi <InlineMath math="10\text{ g}" />.
+Peluruhan beta menaikkan nomor atom, bukan menurunkannya, karena satu neutron netral berubah menjadi proton bermuatan positif di dalam inti.
 
-Kurva peluruhan di bawah menunjukkan persentase inti yang tersisa. Ubah waktu paruh <InlineMath math="T" /> dan waktu <InlineMath math="t" />. Setiap kali <InlineMath math="t" /> bertambah satu waktu paruh, angka persentasenya turun separuh.
+### Waktu Paruh dan Latar
+
+Peluruhan satu inti bersifat acak total dan tidak berubah oleh pemanasan atau tekanan. Namun dalam sampel besar, **waktu paruh** <InlineMath math="T_{1/2}" /> selalu tetap, yaitu waktu yang dibutuhkan agar separuh inti radioaktif tersisa meluruh.
+
+Pencacah Geiger-Muller nyata selalu menangkap **radiasi latar** dari sinar kosmik dan batuan sekitar yang tidak ikut meluruh. Kurangkan cacah latar konstan dari setiap pembacaan sebelum menghitung waktu paruh pada lab berikut.
+
+<HalfLifeCounterLab
+  title={<>Mengukur Waktu Paruh dengan Koreksi Latar</>}
+  description={
+    <>
+      Pencacah merekam latar konstan <InlineMath math="20\text{ cacah menit}^{-1}" />,
+      laju awal <InlineMath math="520\text{ cacah menit}^{-1}" />, lalu{" "}
+      <InlineMath math="145\text{ cacah menit}^{-1}" /> setelah{" "}
+      <InlineMath math="12\text{ jam}" />.
+    </>
+  }
+  footer={<>Kurangkan radiasi latar lebih dulu agar hanya laju sampel yang terbelah tiap waktu paruh.</>}
+  labels={{
+    end: <>Laju sampel setelah <InlineMath math="12\text{ jam}" /></>,
+    halfLife: <>Waktu paruh</>,
+    start: <>Laju sampel awal</>,
+    viewLabel: "Pencacah Geiger-Muller mengukur sumber radioaktif dengan koreksi radiasi latar",
+  }}
+  background={20}
+  first={520}
+  later={145}
+  time={12}
+/>
+
+Mengurangkan <InlineMath math="20" /> cacah per menit mengubah bacaan menjadi <InlineMath math="500" /> dan <InlineMath math="125" />, yaitu tepat dua kali pembelahan dalam <InlineMath math="12\text{ jam}" />, sehingga waktu paruhnya <InlineMath math="6{,}0\text{ jam}" />.
+
+## Kurva Peluruhan Radioaktif
+
+Waktu paruh tidak mengurangi jumlah tetap secara linear. Pola **peluruhan eksponensial** membelah sisa inti menjadi separuh pada setiap selang <InlineMath math="T_{1/2}" />, sehingga setelah dua waktu paruh masih tersisa seperempat, bukan nol.
+
+<BlockMath math="N = N_0 \left(\frac{1}{2}\right)^{t / T_{1/2}}" />
+
+> Setiap waktu paruh memotong sisa inti menjadi setengahnya lagi, sehingga kurva peluruhan mendekati nol secara mulus tanpa langsung habis dalam dua tahap.
+
+Ubah waktu paruh <InlineMath math="T" /> dan waktu berjalan <InlineMath math="t" /> di bawah ini untuk membandingkan peluruhan isotop berumur pendek dan panjang.
 
 <MathVisual
   title={<>Kurva Peluruhan Radioaktif</>}
   description={
     <>
-      Persentase inti yang tersisa adalah{" "}
-      <InlineMath math="100 \left(\tfrac{1}{2}\right)^{t/T}" />. Pada{" "}
-      <InlineMath math="T = 8" /> hari dan <InlineMath math="t = 24" /> hari,
-      tersisa <InlineMath math="12{,}5\%" />.
+      Persentase inti yang belum meluruh terhadap waktu dalam hari, menyisakan{" "}
+      <InlineMath math="12{,}5\%" /> setelah tiga waktu paruh.
     </>
   }
+  footer={<>Saat waktu sama dengan satu waktu paruh, kurva selalu tepat di lima puluh persen.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: 0, max: 40 }, y: { min: 0, max: 100 } },
@@ -116,92 +94,118 @@ Kurva peluruhan di bawah menunjukkan persentase inti yang tersisa. Ubah waktu pa
     ],
   }}
   labels={{
-    h: <>Waktu paruh <InlineMath math="T" /> dalam hari</>,
-    s: <>Waktu <InlineMath math="t" /> dalam hari</>,
-    remaining: <>Persentase yang tersisa</>,
-    halves: <>Banyak waktu paruh</>,
+    h: <>Waktu paruh <InlineMath math="T" /> (hari)</>,
+    s: <>Waktu <InlineMath math="t" /> (hari)</>,
+    remaining: <>Persentase tersisa</>,
+    halves: <>Jumlah waktu paruh</>,
   }}
 />
 
-Cek kurvanya: pada <InlineMath math="t = T" />, angkanya selalu <InlineMath math="50\%" />, berapa pun nilai <InlineMath math="T" />. Kurva tidak pernah mencapai nol, karena separuh dari sisa masih ada setelah setiap waktu paruh.
+Untuk <InlineMath math="80\text{ g}" /> iodin-131 dengan waktu paruh delapan hari, selang dua puluh empat hari sama dengan tiga waktu paruh sehingga menyisakan <InlineMath math="10\text{ g}" />.
 
-## Defek Massa dan Energi Nuklir
+## Energi Ikat dan Kestabilan
 
-Dalam reaksi inti, massa total hasil reaksi **sedikit lebih kecil** daripada massa total pereaksi. Selisih itu disebut **defek massa**, <InlineMath math="\Delta m" />, dan massa yang hilang berubah menjadi energi menurut persamaan Einstein:
+Bandingkan massa inti helium-4 dengan jumlah massa dua proton dan dua neutron terpisah. Inti yang terikat justru lebih ringan. Selisih massa hilang itu disebut **defek massa** <InlineMath math="\Delta m" />, yang berubah menjadi **energi ikat** saat nukleon bergabung.
 
 <BlockMath math="E = \Delta m\,c^2" />
 
-Di sini <InlineMath math="c = 3{,}00 \times 10^8\ \text{m/s}" /> adalah kelajuan cahaya, dan <InlineMath math="\Delta m" /> harus dalam kilogram. Massa inti biasanya dinyatakan dalam **satuan massa atom**, dengan <InlineMath math="1\ \text{u} = 1{,}66 \times 10^{-27}\ \text{kg}" />.
+Di sini <InlineMath math="c" /> bernilai <InlineMath math="3{,}00 \times 10^8\text{ m s}^{-1}" />, dan <InlineMath math="\Delta m" /> wajib diubah dari satuan massa atom ke kilogram dengan faktor <InlineMath math="1{,}66 \times 10^{-27}\text{ kg}" /> sebelum menghitung joule.
 
-Hitung energi yang dilepaskan dalam fusi deuterium dengan tritium:
+> Bergerak naik menuju puncak besi-56 selalu membebaskan energi nuklir, baik lewat penggabungan inti ringan maupun pemecahan inti berat.
 
-<BlockMath math="{}^{2}_{1}\mathrm{H} + {}^{3}_{1}\mathrm{H} \rightarrow {}^{4}_{2}\mathrm{He} + {}^{1}_{0}n" />
+Pilih berbagai nuklida dan bandingkan jalur fusi serta fisi pada kurva energi ikat per nukleon berikut ini.
 
-Massanya <InlineMath math="2{,}014102\ \text{u}" />, <InlineMath math="3{,}016049\ \text{u}" />, <InlineMath math="4{,}002603\ \text{u}" />, dan <InlineMath math="1{,}008665\ \text{u}" />. **Kurangkan massa hasil dari massa pereaksi**, ubah ke kilogram, lalu kalikan dengan <InlineMath math="c^2" />:
-
-<MathContainer>
-<BlockMath math="\Delta m = (2{,}014102 + 3{,}016049) - (4{,}002603 + 1{,}008665) = 0{,}018883\ \text{u}" />
-<BlockMath math="\Delta m = 0{,}018883 \times 1{,}66 \times 10^{-27} = 3{,}13 \times 10^{-29}\ \text{kg}" />
-<BlockMath math="E = 3{,}13 \times 10^{-29} \times (3{,}00 \times 10^8)^2 = 2{,}82 \times 10^{-12}\ \text{J}" />
-</MathContainer>
-
-Cek dengan kesetaraan energi <InlineMath math="1\ \text{u}" />, yaitu <InlineMath math="931{,}5\ \text{MeV}" />: <InlineMath math="0{,}018883 \times 931{,}5 = 17{,}6\ \text{MeV}" />, dan <InlineMath math="17{,}6\ \text{MeV} \times 1{,}60 \times 10^{-13}\ \text{J/MeV} = 2{,}82 \times 10^{-12}\ \text{J}" />. Sama.
-
-Penggeser di bawah menunjukkan energi untuk defek massa yang berbeda. Grafiknya lurus karena <InlineMath math="E" /> sebanding dengan <InlineMath math="\Delta m" />, dan gradiennya <InlineMath math="931{,}5\ \text{MeV}" /> untuk setiap satuan massa atom.
-
-<MathVisual
-  title={<>Energi Nuklir dari Defek Massa</>}
+<NuclearBindingCurveLab
+  title={<>Kurva Energi Ikat Inti per Nukleon</>}
   description={
     <>
-      Energi dalam MeV adalah <InlineMath math="E = 931{,}5\,\Delta m" />, dengan{" "}
-      <InlineMath math="\Delta m" /> dalam satuan massa atom. Defek massa fusi{" "}
-      <InlineMath math="0{,}0189\ \text{u}" /> memberi sekitar{" "}
-      <InlineMath math="17{,}6\ \text{MeV}" />.
+      Pilih nuklida di sepanjang kurva energi ikat lalu ganti antara fusi dan
+      fisi untuk melihat mengapa kedua reaksi mendaki menuju besi-56.
     </>
   }
-  scene={{
-    space: "plane",
-    frame: { kind: "cartesian", x: { min: 0, max: 0.25 }, y: { min: 0, max: 240 } },
-    view: { kind: "fit", padding: 0.08 },
-    parameters: [
-      { name: "d", min: 0, max: 0.25, value: 0.019, step: 0.001, label: "d" },
-    ],
-    objects: [
-      { id: "energy", kind: "function", appearance: "primary", formula: "931.5x", domain: { min: 0, max: 0.25 } },
-      { id: "now", kind: "marker", x: "d", y: "931.5d", appearance: "warning" },
-    ],
-    readouts: [
-      { key: "mev", formula: "931.5d" },
-      { key: "joule", formula: "931.5d*1.6*10^(-13)" },
-    ],
-  }}
+  footer={<>Besi-56 berada di puncak energi ikat per nukleon sehingga menjadi inti paling stabil.</>}
+  nuclides={["deuterium", "helium4", "carbon12", "iron56", "uranium235"]}
+  processes={["fusion", "fission"]}
   labels={{
-    d: <>Defek massa <InlineMath math="\Delta m" /> dalam <InlineMath math="\text{u}" /></>,
-    mev: <>Energi dalam <InlineMath math="\text{MeV}" /></>,
-    joule: <>Energi dalam <InlineMath math="\text{J}" /></>,
+    nuclide: "Nuklida",
+    nuclides: {
+      deuterium: "Deuterium (H-2)",
+      helium4: "Helium-4",
+      carbon12: "Karbon-12",
+      iron56: "Besi-56",
+      uranium235: "Uranium-235",
+    },
+    process: "Jalur reaksi inti",
+    processes: {
+      fusion: {
+        name: "Fusi Inti Ringan",
+        detail: <>Penggabungan inti ringan mendaki curam di sisi kiri menuju energi ikat lebih tinggi.</>,
+      },
+      fission: {
+        name: "Fisi Inti Berat",
+        detail: <>Pembelahan uranium-235 menggeser pecahan ke kiri mendekati puncak besi-56 yang lebih rapat.</>,
+      },
+    },
+    stability: <>Kestabilan relatif</>,
+    bindingPerNucleon: <>Energi ikat per nukleon</>,
+    massDefect: <>Defek massa</>,
+    parts: {
+      proton: "Proton",
+      neutron: "Neutron",
+      ironPeak: "Puncak besi-56",
+      fusionZone: "Zona fusi",
+      fissionZone: "Zona fisi",
+    },
+    view: "Gugus nukleon 3D bersama kurva energi ikat per nukleon yang menyorot fusi, besi-56, dan fisi",
   }}
 />
 
-## Fisi dan Fusi Inti
+Karena tanjakan dari deuterium menuju helium-4 amat curam, fusi membebaskan energi sangat besar per kilogram bahan bakar dan menjadi sumber tenaga Matahari.
 
-**Fisi inti** adalah pembelahan inti berat menjadi dua inti yang lebih ringan setelah inti itu menyerap neutron. Salah satu fisi uranium-235 adalah:
+## Fisi dan Reaksi Berantai
+
+Saat uranium-235 menangkap neutron lambat, inti membelah menjadi dua pecahan lebih ringan sambil melepaskan neutron tambahan serta energi:
 
 <BlockMath math="{}^{235}_{92}\mathrm{U} + {}^{1}_{0}n \rightarrow {}^{141}_{56}\mathrm{Ba} + {}^{92}_{36}\mathrm{Kr} + 3\,{}^{1}_{0}n + \text{energi}" />
 
-Defek massa fisi ini sekitar <InlineMath math="0{,}186\ \text{u}" />, setara energi sekitar <InlineMath math="173\ \text{MeV}" />, sepuluh kali energi satu fusi. **Fusi inti** adalah penggabungan dua inti ringan menjadi inti yang lebih berat, seperti contoh deuterium dan tritium tadi. Fusi butuh suhu yang sangat tinggi, dan inilah sumber energi Matahari.
+Bandingkan massa total sebelum dan sesudah fisi uranium-235 pada lab interaktif di bawah ini.
 
-Setiap fisi melepaskan beberapa neutron yang bisa membelah inti lain. Inilah **reaksi berantai**. Jika rata-rata <InlineMath math="k" /> neutron dari setiap fisi memicu fisi baru, banyaknya fisi pada generasi ke-<InlineMath math="g" /> adalah <InlineMath math="k^g" />. Ubah <InlineMath math="k" /> dan bandingkan <InlineMath math="k = 1" /> dengan <InlineMath math="k" /> yang lebih besar.
-
-<MathVisual
-  title={<>Banyaknya Fisi dalam Reaksi Berantai</>}
+<FissionLab
+  title={<>Defek Massa pada Fisi Uranium-235</>}
   description={
     <>
-      Banyaknya fisi pada generasi <InlineMath math="g" /> adalah{" "}
-      <InlineMath math="k^g" />. Pada <InlineMath math="k = 1" /> jumlahnya tetap
-      satu, dan pada <InlineMath math="k = 2" /> generasi ke-
-      <InlineMath math="10" /> memiliki <InlineMath math="1024" /> fisi.
+      Satu neutron lambat membelah uranium-235 menjadi barium-141, kripton-92,
+      dan tiga neutron, mengubah <InlineMath math="0{,}1859\text{ u}" /> menjadi
+      energi.
     </>
   }
+  footer={<>Ubah satuan massa atom ke kilogram terlebih dulu sebelum mengalikan dengan c kuadrat.</>}
+  labels={{
+    defect: <>Defek massa</>,
+    energy: <>Energi dilepaskan</>,
+    kilograms: <>Defek massa dalam kg</>,
+    viewLabel: "Inti uranium-235 membelah menjadi barium-141, kripton-92, dan tiga neutron",
+  }}
+  fragments={[140.9144, 91.9262]}
+  lightSpeed={3e8}
+  neutron={1.0087}
+  parent={235.0439}
+  released={3}
+  unit={1.66e-27}
+/>
+
+Neutron hasil fisi dapat memicu fisi berikutnya dan membentuk **reaksi berantai**. Jika rata-rata <InlineMath math="k" /> neutron dari tiap fisi memicu fisi baru, generasi ke-<InlineMath math="g" /> mengalami <InlineMath math="k^g" /> fisi. Ubah <InlineMath math="k" /> di bawah untuk membandingkan reaktor stabil dengan ledakan eksponensial.
+
+<MathVisual
+  title={<>Jumlah Fisi dalam Reaksi Berantai</>}
+  description={
+    <>
+      Jumlah fisi pada generasi <InlineMath math="g" /> untuk faktor pelipat{" "}
+      <InlineMath math="k" />, melonjak hingga <InlineMath math="1024" /> pada
+      generasi sepuluh saat <InlineMath math="k" /> bernilai dua.
+    </>
+  }
+  footer={<>Menjaga k tepat satu mempertahankan daya stabil, sedangkan k di atas satu meledak cepat.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: 0, max: 10 }, y: { min: 0, max: 1100 } },
@@ -219,59 +223,29 @@ Setiap fisi melepaskan beberapa neutron yang bisa membelah inti lain. Inilah **r
     ],
   }}
   labels={{
-    k: <>Neutron efektif per fisi <InlineMath math="k" /></>,
+    k: <>Faktor neutron <InlineMath math="k" /></>,
     g: <>Generasi <InlineMath math="g" /></>,
-    fissions: <>Banyaknya fisi</>,
+    fissions: <>Jumlah fisi</>,
   }}
 />
 
-Dalam bom atom, <InlineMath math="k" /> lebih besar daripada <InlineMath math="1" />, jadi banyaknya fisi melonjak dalam waktu sangat singkat. Dalam **reaktor nuklir**, **batang kendali** dari boron atau kadmium menyerap neutron berlebih sehingga <InlineMath math="k = 1" /> dan energi dilepaskan dengan laju tetap. **Moderator**, seperti air atau grafit, memperlambat neutron supaya neutron lebih mudah diserap uranium-235.
+Di reaktor nuklir, **moderator** seperti air atau grafit memperlambat neutron cepat agar mudah diserap uranium-235, sedangkan **batang kendali** dari boron atau kadmium menyerap kelebihan neutron untuk menahan <InlineMath math="k" /> tepat pada satu.
 
-## Kesalahan Umum tentang Fisika Inti
+## Uji Hitung Energi Inti
 
-| Kesalahan | Alasan keliru | Cara cek |
-| :--- | :--- | :--- |
-| Setelah dua waktu paruh, sampel habis meluruh. | Setiap waktu paruh membagi dua sisanya, jadi setelah dua waktu paruh tersisa seperempat. | Hitung <InlineMath math="\left(\tfrac{1}{2}\right)^2 = \tfrac{1}{4}" />. |
-| Peluruhan beta mengurangi nomor atom. | Neutron berubah menjadi proton, jadi nomor atom bertambah <InlineMath math="1" />. | Jumlah nomor atom di kanan harus sama dengan di kiri. |
-| Memanaskan sampel memperpendek waktu paruhnya. | Waktu paruh adalah sifat inti dan tidak bergantung pada suhu. | Waktu paruh karbon-14 tetap <InlineMath math="5730" /> tahun. |
-| Defek massa dalam <InlineMath math="\text{u}" /> langsung dikalikan <InlineMath math="c^2" />. | Persamaan <InlineMath math="E = \Delta m c^2" /> butuh kilogram agar hasilnya joule. | Ubah dulu dengan <InlineMath math="1\ \text{u} = 1{,}66 \times 10^{-27}\ \text{kg}" />. |
-| Batang kendali memperlambat neutron. | Batang kendali menyerap neutron, sedangkan moderator yang memperlambatnya. | Tanyakan apakah neutronnya hilang atau hanya melambat. |
+Periksa dua hitungan inti berikut memakai kekekalan nomor inti dan konversi satuan SI.
 
-Kesalahan pertama paling sering muncul. Waktu paruh **tidak mengurangi** jumlah yang tetap, tetapi **membagi dua** sisanya setiap kali.
-
-## Latihan Fisika Inti
-
-Soal-soal ini bergerak dari persamaan peluruhan ke waktu paruh dan energi nuklir. **Tulis nomor massa dan nomor atom** di setiap persamaan supaya kamu cepat menemukan kesalahan.
-
-1. Radium-226, <InlineMath math="{}^{226}_{88}\mathrm{Ra}" />, meluruh dengan memancarkan satu partikel alfa. Tulis persamaan peluruhannya.
-
-2. Aktivitas sebuah sampel radioaktif turun dari <InlineMath math="800" /> menjadi <InlineMath math="100" /> cacah per menit dalam <InlineMath math="15" /> jam. Hitung waktu paruhnya.
-
-3. Satu fisi memiliki defek massa <InlineMath math="0{,}20\ \text{u}" />. Hitung energi yang dilepaskan dalam joule.
-
-4. Jelaskan peran batang kendali dalam reaktor nuklir dengan mengacu pada nilai <InlineMath math="k" />.
-
-### Pembahasan
-
-**Pembahasan 1**: Partikel alfa adalah <InlineMath math="{}^{4}_{2}\mathrm{He}" />, jadi nomor massa berkurang <InlineMath math="4" /> dan nomor atom berkurang <InlineMath math="2" />. Unsur bernomor atom <InlineMath math="86" /> adalah radon:
+**Uji alfa radium.** Radium-226 (<InlineMath math="{}^{226}_{88}\mathrm{Ra}" />) memancarkan satu partikel alfa. Setarakan persamaan peluruhannya.
 
 <BlockMath math="{}^{226}_{88}\mathrm{Ra} \rightarrow {}^{222}_{86}\mathrm{Rn} + {}^{4}_{2}\mathrm{He}" />
 
-Cek: nomor massa <InlineMath math="222 + 4 = 226" /> dan nomor atom <InlineMath math="86 + 2 = 88" />. Keduanya setara.
+Jumlah nomor massa di kedua sisi sama dengan <InlineMath math="226" /> dan jumlah nomor proton sama dengan <InlineMath math="88" />.
 
-**Pembahasan 2**: Hitung berapa kali aktivitasnya terbagi dua:
-
-<BlockMath math="800 \rightarrow 400 \rightarrow 200 \rightarrow 100" />
-
-Itu tiga waktu paruh dalam <InlineMath math="15" /> jam, jadi <InlineMath math="T_{1/2} = 15 \div 3 = 5" /> jam. Cek: <InlineMath math="800 \times \left(\tfrac{1}{2}\right)^{15/5} = 800 \times \tfrac{1}{8} = 100" />.
-
-**Pembahasan 3**: Ubah defek massa ke kilogram dulu:
+**Uji energi fisi.** Satu peristiwa fisi mengalami defek massa <InlineMath math="0{,}20\text{ u}" />. Hitung energi yang dibebaskan dalam joule.
 
 <MathContainer>
-<BlockMath math="\Delta m = 0{,}20 \times 1{,}66 \times 10^{-27} = 3{,}32 \times 10^{-28}\ \text{kg}" />
-<BlockMath math="E = 3{,}32 \times 10^{-28} \times (3{,}00 \times 10^8)^2 = 2{,}99 \times 10^{-11}\ \text{J}" />
+<BlockMath math="\Delta m = 0{,}20 \times 1{,}66 \times 10^{-27} = 3{,}32 \times 10^{-28}\text{ kg}" />
+<BlockMath math="E = (3{,}32 \times 10^{-28})(3{,}00 \times 10^8)^2 = 2{,}99 \times 10^{-11}\text{ J}" />
 </MathContainer>
 
-Cek dengan MeV: <InlineMath math="0{,}20 \times 931{,}5 = 186\ \text{MeV}" />, dan <InlineMath math="186 \times 1{,}60 \times 10^{-13} = 2{,}98 \times 10^{-11}\ \text{J}" />. Selisih kecil itu berasal dari pembulatan konstanta.
-
-**Pembahasan 4**: Setiap fisi melepaskan dua atau tiga neutron. Jika semua neutron itu memicu fisi baru, <InlineMath math="k" /> lebih besar daripada <InlineMath math="1" /> dan banyaknya fisi naik secara eksponensial. **Batang kendali menyerap neutron berlebih** sehingga rata-rata hanya satu neutron dari setiap fisi yang memicu fisi berikutnya, yaitu <InlineMath math="k = 1" />. Batang diturunkan lebih dalam untuk memperlambat reaksi, dan dinaikkan untuk mempercepatnya.
+Semakan lewat konversi <InlineMath math="931{,}5\text{ MeV}" /> per satuan massa atom menghasilkan <InlineMath math="186\text{ MeV}" />, setara <InlineMath math="2{,}98 \times 10^{-11}\text{ J}" /> sesuai pembulatan.

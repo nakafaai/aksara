@@ -1,103 +1,82 @@
 export const metadata = {
-  title: "Nuclear Physics Notes for Form Five",
+  title: "Radioactive Decay and Nuclear Binding Energy",
   description:
-    "Form 5 Physics Chapter 6: write alpha, beta and gamma decay equations, work with half-life and calculate nuclear energy with E = mc², with practice.",
+    "Alpha, beta, and gamma decay equations, half-life measurement with background subtraction, the nuclear binding curve, and fission energy.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-11-17",
   subject: "Nuclear Physics",
 };
 
-## Unstable Nuclei Decay at Random
+## Radioactive Decay Modes
 
-**Radioactive decay** is the process in which an unstable nucleus emits alpha, beta or gamma radiation to become more stable. Decay happens **at random**: nobody can predict when one particular nucleus will decay. In a large sample, though, the number of nuclei left follows the half-life law, <InlineMath math="N = N_0 \left(\tfrac{1}{2}\right)^{t/T_{1/2}}" />. In these notes you watch a carbon-14 sample decay, see radiation bent by a magnetic field, and calculate the energy that comes from a mass defect.
+Inside a heavy atomic nucleus, positively charged protons repel one another intensely while the **strong nuclear force** tries to hold them together. When that balance fails, an unstable nucleus undergoes **radioactive decay** to drop into a more stable state.
 
-Move the time slider below. Each dot is one carbon-14 nucleus that turns into nitrogen-14 at its own moment. Compare the counted number with the expected value.
+### Alpha Beta and Gamma
 
-<RadioactiveDecayLab
-  title={<>A Decaying Carbon-14 Sample</>}
-  description={
-    <>
-      <InlineMath math="400" /> carbon-14 nuclei with a half-life of{" "}
-      <InlineMath math="5730" /> years. Each nucleus decays at random, but the
-      number halves every half-life.
-    </>
-  }
-  labels={{
-    counted: <>Nuclei left, counted</>,
-    expected: <>Expected value</>,
-    halfLives: <>Number of half-lives</>,
-    time: "Time",
-    view: "A sample of 400 carbon-14 nuclei decaying into nitrogen-14",
-    years: "years",
-  }}
-/>
+Every nuclear decay conserves both total **nucleon number** and total **proton number** across both sides of the equation:
 
-Notice that the counted number rarely matches the expected value exactly. That's the mark of random decay. The bigger the sample, the closer the count stays to the half-life law.
-
-## Three Types of Radioactive Decay
-
-In every decay, the **nucleon number** and the **proton number** are conserved. The total on the left of the equation must equal the total on the right.
-
-**Alpha decay** emits an alpha particle, which is a helium nucleus. The nucleon number falls by <InlineMath math="4" /> and the proton number by <InlineMath math="2" />:
-
-<BlockMath math="{}^{238}_{92}\mathrm{U} \rightarrow {}^{234}_{90}\mathrm{Th} + {}^{4}_{2}\mathrm{He}" />
-
-**Beta decay** happens when a neutron turns into a proton and an electron. The electron leaves as a beta particle, so the nucleon number stays the same but the proton number rises by <InlineMath math="1" />:
-
-<BlockMath math="{}^{14}_{6}\mathrm{C} \rightarrow {}^{14}_{7}\mathrm{N} + {}^{0}_{-1}e" />
-
-**Gamma decay** emits a high-energy electromagnetic wave from an excited nucleus. The nucleon number and the proton number don't change. Only the energy of the nucleus drops.
-
-The three radiations differ in **charge**, so a magnetic field separates them. Alpha particles are positive, beta particles are negative and gamma radiation has no charge. In the chamber below, an electron and a proton enter a magnetic field at the same speed. Strengthen the field and watch the radius of each path change.
-
-<ParticleTrackLab
-  title={<>Charged Particles in a Magnetic Field</>}
-  description={
-    <>
-      An electron, a proton and a neutron enter a magnetic field at the same
-      speed. The radius of each path is <InlineMath math="r = \dfrac{mv}{qB}" />.
-      The negative and positive particles curve opposite ways, while the
-      neutron goes straight.
-    </>
-  }
-  labels={{
-    electron: <>Radius of the electron's path</>,
-    field: "Magnetic field strength",
-    proton: <>Radius of the proton's path</>,
-    ratio: <>Ratio of the radii</>,
-    view: "Chamber with the paths of an electron, a proton and a neutron in a magnetic field",
-  }}
-/>
-
-A beta particle is an electron, so it curves like the electron in the chamber. An alpha particle is positive and much heavier, so it curves only slightly the opposite way, like the proton. Gamma radiation has no charge, so it goes straight like the neutron.
-
-## The Decay Curve
-
-The **half-life**, <InlineMath math="T_{1/2}" />, is the time it takes for half the radioactive nuclei in a sample to decay. Half-life is a property of the nuclide itself and doesn't change with temperature, pressure or the mass of the sample. Iodine-131 has a half-life of <InlineMath math="8" /> days, while carbon-14 has <InlineMath math="5730" /> years.
-
-Try an example. A hospital receives <InlineMath math="80\text{ g}" /> of iodine-131. Calculate the mass of iodine-131 left after <InlineMath math="24" /> days.
-
-**Count the half-lives first**, then halve that many times:
+- **Alpha decay** ejects a helium-4 nucleus, dropping the nucleon number by <InlineMath math="4" /> and the proton number by <InlineMath math="2" />.
+- **Beta decay** turns a neutron into a proton and emits an electron, leaving the nucleon number unchanged while raising the proton number by <InlineMath math="1" />.
+- **Gamma decay** releases a high-energy electromagnetic photon from an excited nucleus without changing either count.
 
 <MathContainer>
-<BlockMath math="\frac{t}{T_{1/2}} = \frac{24}{8} = 3" />
-<BlockMath math="80\text{ g} \rightarrow 40\text{ g} \rightarrow 20\text{ g} \rightarrow 10\text{ g}" />
+<BlockMath math="{}^{238}_{92}\mathrm{U} \rightarrow {}^{234}_{90}\mathrm{Th} + {}^{4}_{2}\mathrm{He}" />
+<BlockMath math="{}^{14}_{6}\mathrm{C} \rightarrow {}^{14}_{7}\mathrm{N} + {}^{0}_{-1}e" />
 </MathContainer>
 
-Check with the formula: <InlineMath math="N = 80 \times \left(\tfrac{1}{2}\right)^{3} = 80 \times \tfrac{1}{8} = 10\text{ g}" />. Both ways give <InlineMath math="10\text{ g}" />.
+Notice that beta decay raises the proton number rather than lowering it because a neutral neutron becomes a positive proton inside the nucleus.
 
-The decay curve below shows the percentage of nuclei left. Change the half-life <InlineMath math="T" /> and the time <InlineMath math="t" />. Each time <InlineMath math="t" /> grows by one half-life, the percentage reading halves.
+### Half Life Background
+
+Individual decays occur completely at random, and neither heating nor pressure can speed up a nucleus. Across billions of atoms, however, the **half-life** <InlineMath math="T_{1/2}" /> is fixed: the exact time required for half of the remaining unstable nuclei to decay.
+
+A real Geiger-Muller counter always detects stray cosmic and terrestrial **background radiation**, which does not decay. Subtract the constant background count from every measurement before counting half-lives in the lab below.
+
+<HalfLifeCounterLab
+  title={<>Measuring Half-Life with Background Subtraction</>}
+  description={
+    <>
+      A counter records a constant background of{" "}
+      <InlineMath math="20\text{ counts min}^{-1}" />, a starting rate of{" "}
+      <InlineMath math="520\text{ counts min}^{-1}" />, and{" "}
+      <InlineMath math="145\text{ counts min}^{-1}" /> after{" "}
+      <InlineMath math="12\text{ hours}" />.
+    </>
+  }
+  footer={<>Subtract background first so only the decaying sample rate halves each half-life.</>}
+  labels={{
+    end: <>Sample rate after <InlineMath math="12\text{ hours}" /></>,
+    halfLife: <>Half-life</>,
+    start: <>Initial sample rate</>,
+    viewLabel: "Geiger-Muller counter measuring a radioactive source with background subtraction",
+  }}
+  background={20}
+  first={520}
+  later={145}
+  time={12}
+/>
+
+Removing <InlineMath math="20" /> counts per minute turns the readings into <InlineMath math="500" /> and <InlineMath math="125" />, which is exactly two halvings in <InlineMath math="12\text{ hours}" />, giving a half-life of <InlineMath math="6.0\text{ hours}" />.
+
+## Exponential Decay Curves
+
+A half-life never subtracts a fixed amount. Instead, **exponential decay** multiplies what remains by one half across every interval of <InlineMath math="T_{1/2}" />, so after two half-lives one quarter remains, not zero.
+
+<BlockMath math="N = N_0 \left(\frac{1}{2}\right)^{t / T_{1/2}}" />
+
+> Each half-life cuts the remaining fraction in half again, so the decay curve approaches zero smoothly without ever hitting zero in finite steps.
+
+Adjust the half-life <InlineMath math="T" /> and elapsed time <InlineMath math="t" /> below to compare how short-lived and long-lived isotopes drop over time.
 
 <MathVisual
   title={<>Radioactive Decay Curve</>}
   description={
     <>
-      The percentage of nuclei left is{" "}
-      <InlineMath math="100 \left(\tfrac{1}{2}\right)^{t/T}" />. At{" "}
-      <InlineMath math="T = 8" /> days and <InlineMath math="t = 24" /> days,{" "}
-      <InlineMath math="12.5\%" /> is left.
+      Percentage of undecayed nuclei against elapsed time in days, showing{" "}
+      <InlineMath math="12.5\%" /> remaining after three half-lives.
     </>
   }
+  footer={<>At one half-life the curve always reads fifty percent regardless of the isotope.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: 0, max: 40 }, y: { min: 0, max: 100 } },
@@ -116,92 +95,117 @@ The decay curve below shows the percentage of nuclei left. Change the half-life 
     ],
   }}
   labels={{
-    h: <>Half-life <InlineMath math="T" /> in days</>,
-    s: <>Time <InlineMath math="t" /> in days</>,
-    remaining: <>Percentage left</>,
-    halves: <>Number of half-lives</>,
+    h: <>Half-life <InlineMath math="T" /> (days)</>,
+    s: <>Time <InlineMath math="t" /> (days)</>,
+    remaining: <>Percentage remaining</>,
+    halves: <>Half-lives elapsed</>,
   }}
 />
 
-Check the curve: at <InlineMath math="t = T" /> the reading is always <InlineMath math="50\%" />, whatever <InlineMath math="T" /> is. The curve never reaches zero, because half of what's left still remains after every half-life.
+For <InlineMath math="80\text{ g}" /> of iodine-131 with an eight-day half-life, twenty-four days equals three half-lives, leaving <InlineMath math="10\text{ g}" /> untouched.
 
-## Mass Defect and Nuclear Energy
+## Binding Energy and Stability
 
-In a nuclear reaction, the total mass of the products is **slightly less** than the total mass of the reactants. The difference is the **mass defect**, <InlineMath math="\Delta m" />, and the missing mass turns into energy according to Einstein's equation:
+Weigh a helium-4 nucleus and compare it with two separate protons plus two separate neutrons. The bound nucleus is lighter. That missing mass is the **mass defect** <InlineMath math="\Delta m" />, released as **binding energy** when nucleons lock together.
 
 <BlockMath math="E = \Delta m\,c^2" />
 
-Here <InlineMath math="c = 3.00 \times 10^8\text{ m s}^{-1}" /> is the speed of light, and <InlineMath math="\Delta m" /> must be in kilograms. Nuclear masses are usually given in **atomic mass units**, where <InlineMath math="1\text{ u} = 1.66 \times 10^{-27}\text{ kg}" />.
+Here <InlineMath math="c" /> is <InlineMath math="3.00 \times 10^8\text{ m s}^{-1}" />, and <InlineMath math="\Delta m" /> must be converted from atomic mass units into kilograms using <InlineMath math="1.66 \times 10^{-27}\text{ kg}" /> per unit before computing joules.
 
-Calculate the energy released when deuterium fuses with tritium:
+> Moving upward toward the iron-56 peak always releases nuclear energy, whether by fusing light nuclei together or by splitting a heavy nucleus apart.
 
-<BlockMath math="{}^{2}_{1}\mathrm{H} + {}^{3}_{1}\mathrm{H} \rightarrow {}^{4}_{2}\mathrm{He} + {}^{1}_{0}n" />
+Explore the nucleon cluster and binding-energy curve below to compare light fusion nuclei, the iron-56 peak, and heavy uranium-235.
 
-The masses are <InlineMath math="2.014102\text{ u}" />, <InlineMath math="3.016049\text{ u}" />, <InlineMath math="4.002603\text{ u}" /> and <InlineMath math="1.008665\text{ u}" />. **Subtract the product mass from the reactant mass**, convert to kilograms, then multiply by <InlineMath math="c^2" />:
-
-<MathContainer>
-<BlockMath math="\Delta m = (2.014102 + 3.016049) - (4.002603 + 1.008665) = 0.018883\text{ u}" />
-<BlockMath math="\Delta m = 0.018883 \times 1.66 \times 10^{-27} = 3.13 \times 10^{-29}\text{ kg}" />
-<BlockMath math="E = 3.13 \times 10^{-29} \times (3.00 \times 10^8)^2 = 2.82 \times 10^{-12}\text{ J}" />
-</MathContainer>
-
-Check with the energy equivalent of <InlineMath math="1\text{ u}" />, which is <InlineMath math="931.5\text{ MeV}" />: <InlineMath math="0.018883 \times 931.5 = 17.6\text{ MeV}" />, and <InlineMath math="17.6\text{ MeV} \times 1.60 \times 10^{-13}\text{ J MeV}^{-1} = 2.82 \times 10^{-12}\text{ J}" />. The same.
-
-The slider below shows the energy for different mass defects. The graph is straight because <InlineMath math="E" /> is directly proportional to <InlineMath math="\Delta m" />, and its gradient is <InlineMath math="931.5\text{ MeV}" /> per atomic mass unit.
-
-<MathVisual
-  title={<>Nuclear Energy from a Mass Defect</>}
+<NuclearBindingCurveLab
+  title={<>Nuclear Binding Energy per Nucleon</>}
   description={
     <>
-      The energy in MeV is <InlineMath math="E = 931.5\,\Delta m" />, with{" "}
-      <InlineMath math="\Delta m" /> in atomic mass units. The fusion mass defect
-      of <InlineMath math="0.0189\text{ u}" /> gives about{" "}
-      <InlineMath math="17.6\text{ MeV}" />.
+      Select nuclides across the binding-energy curve and toggle between fusion
+      and fission to see why both processes climb toward iron-56.
     </>
   }
-  scene={{
-    space: "plane",
-    frame: { kind: "cartesian", x: { min: 0, max: 0.25 }, y: { min: 0, max: 240 } },
-    view: { kind: "fit", padding: 0.08 },
-    parameters: [
-      { name: "d", min: 0, max: 0.25, value: 0.019, step: 0.001, label: "d" },
-    ],
-    objects: [
-      { id: "energy", kind: "function", appearance: "primary", formula: "931.5x", domain: { min: 0, max: 0.25 } },
-      { id: "now", kind: "marker", x: "d", y: "931.5d", appearance: "warning" },
-    ],
-    readouts: [
-      { key: "mev", formula: "931.5d" },
-      { key: "joule", formula: "931.5d*1.6*10^(-13)" },
-    ],
-  }}
+  footer={<>Iron-56 sits near the peak of binding energy per nucleon, marking peak nuclear stability.</>}
+  nuclides={["deuterium", "helium4", "carbon12", "iron56", "uranium235"]}
+  processes={["fusion", "fission"]}
   labels={{
-    d: <>Mass defect <InlineMath math="\Delta m" /> in <InlineMath math="\text{u}" /></>,
-    mev: <>Energy in <InlineMath math="\text{MeV}" /></>,
-    joule: <>Energy in <InlineMath math="\text{J}" /></>,
+    nuclide: "Nuclide",
+    nuclides: {
+      deuterium: "Deuterium (H-2)",
+      helium4: "Helium-4",
+      carbon12: "Carbon-12",
+      iron56: "Iron-56",
+      uranium235: "Uranium-235",
+    },
+    process: "Nuclear pathway",
+    processes: {
+      fusion: {
+        name: "Light Fusion",
+        detail: <>Fusing light nuclei climbs steeply up the left slope toward higher binding energy.</>,
+      },
+      fission: {
+        name: "Heavy Fission",
+        detail: <>Splitting uranium-235 shifts fragments leftward toward the tighter iron-56 peak.</>,
+      },
+    },
+    stability: <>Relative stability</>,
+    bindingPerNucleon: <>Binding energy per nucleon</>,
+    massDefect: <>Mass defect</>,
+    parts: {
+      proton: "Proton",
+      neutron: "Neutron",
+      ironPeak: "Iron-56 peak",
+      fusionZone: "Fusion zone",
+      fissionZone: "Fission zone",
+    },
+    view: "3D nucleon cluster paired with the binding energy per nucleon curve highlighting fusion, iron-56, and fission",
   }}
 />
 
-## Nuclear Fission and Fusion
+Because the left slope from deuterium to helium-4 is extremely steep, fusion releases huge energy per kilogram of fuel, powering stars like our Sun.
 
-**Nuclear fission** is the splitting of a heavy nucleus into two lighter nuclei after it absorbs a neutron. One fission of uranium-235 is:
+## Fission and Chain Reactions
+
+When uranium-235 absorbs a slow neutron, it splits into lighter fragments and emits extra neutrons plus energy:
 
 <BlockMath math="{}^{235}_{92}\mathrm{U} + {}^{1}_{0}n \rightarrow {}^{141}_{56}\mathrm{Ba} + {}^{92}_{36}\mathrm{Kr} + 3\,{}^{1}_{0}n + \text{energy}" />
 
-The mass defect of this fission is about <InlineMath math="0.186\text{ u}" />, an energy of about <InlineMath math="173\text{ MeV}" />, ten times the energy of one fusion. **Nuclear fusion** is the joining of two light nuclei into a heavier one, like the deuterium and tritium example above. Fusion needs extremely high temperatures, and it's what powers the Sun.
+Compare the total mass before and after uranium-235 fission in the interactive lab below.
 
-Each fission releases several neutrons that can split other nuclei. This is a **chain reaction**. If on average <InlineMath math="k" /> neutrons from each fission cause a new fission, the number of fissions in generation <InlineMath math="g" /> is <InlineMath math="k^g" />. Change <InlineMath math="k" /> and compare <InlineMath math="k = 1" /> with a larger <InlineMath math="k" />.
-
-<MathVisual
-  title={<>Number of Fissions in a Chain Reaction</>}
+<FissionLab
+  title={<>Mass Defect in Uranium-235 Fission</>}
   description={
     <>
-      The number of fissions in generation <InlineMath math="g" /> is{" "}
-      <InlineMath math="k^g" />. At <InlineMath math="k = 1" /> it stays at one,
-      and at <InlineMath math="k = 2" /> generation <InlineMath math="10" /> has{" "}
-      <InlineMath math="1024" /> fissions.
+      One slow neutron splits uranium-235 into barium-141, krypton-92, and three
+      neutrons, turning <InlineMath math="0.1859\text{ u}" /> into energy.
     </>
   }
+  footer={<>Convert atomic mass units into kilograms first before multiplying by speed of light squared.</>}
+  labels={{
+    defect: <>Mass defect</>,
+    energy: <>Energy released</>,
+    kilograms: <>Mass defect in kg</>,
+    viewLabel: "Uranium-235 nucleus splitting into barium-141, krypton-92, and three neutrons",
+  }}
+  fragments={[140.9144, 91.9262]}
+  lightSpeed={3e8}
+  neutron={1.0087}
+  parent={235.0439}
+  released={3}
+  unit={1.66e-27}
+/>
+
+Each emitted neutron can trigger another fission, creating a **chain reaction**. If an average of <InlineMath math="k" /> neutrons from each split cause a new split, generation <InlineMath math="g" /> undergoes <InlineMath math="k^g" /> fissions. Vary <InlineMath math="k" /> below to compare steady reactor output against runaway growth.
+
+<MathVisual
+  title={<>Fissions Across Chain-Reaction Generations</>}
+  description={
+    <>
+      Number of fissions in generation <InlineMath math="g" /> for multiplication
+      factor <InlineMath math="k" />, jumping to <InlineMath math="1024" /> at
+      generation ten when <InlineMath math="k" /> equals two.
+    </>
+  }
+  footer={<>Keeping k equal to one holds power steady while anything above one grows exponentially.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: 0, max: 10 }, y: { min: 0, max: 1100 } },
@@ -219,59 +223,29 @@ Each fission releases several neutrons that can split other nuclei. This is a **
     ],
   }}
   labels={{
-    k: <>Effective neutrons per fission <InlineMath math="k" /></>,
+    k: <>Multiplication factor <InlineMath math="k" /></>,
     g: <>Generation <InlineMath math="g" /></>,
-    fissions: <>Number of fissions</>,
+    fissions: <>Fissions in generation</>,
   }}
 />
 
-In an atomic bomb, <InlineMath math="k" /> is greater than <InlineMath math="1" />, so the number of fissions explodes in a very short time. In a **nuclear reactor**, **control rods** of boron or cadmium absorb the extra neutrons so that <InlineMath math="k = 1" /> and energy is released at a steady rate. A **moderator**, such as water or graphite, slows the neutrons down so uranium-235 absorbs them more easily.
+In a nuclear reactor, **moderators** such as water or graphite slow fast neutrons down so uranium-235 captures them readily, whereas **control rods** of boron or cadmium absorb surplus neutrons to hold <InlineMath math="k" /> right at one.
 
-## Common Mistakes about Nuclear Physics
+## Nuclear Energy Checks
 
-| Mistake | Why it's wrong | How to check |
-| :--- | :--- | :--- |
-| After two half-lives, the sample has fully decayed. | Each half-life halves what's left, so after two half-lives a quarter remains. | Work out <InlineMath math="\left(\tfrac{1}{2}\right)^2 = \tfrac{1}{4}" />. |
-| Beta decay lowers the proton number. | A neutron turns into a proton, so the proton number rises by <InlineMath math="1" />. | The proton numbers on the right must add up to the left. |
-| Heating a sample shortens its half-life. | Half-life is a property of the nucleus and doesn't depend on temperature. | Carbon-14 keeps its half-life of <InlineMath math="5730" /> years. |
-| A mass defect in <InlineMath math="\text{u}" /> is multiplied straight by <InlineMath math="c^2" />. | <InlineMath math="E = \Delta m c^2" /> needs kilograms to give joules. | Convert with <InlineMath math="1\text{ u} = 1.66 \times 10^{-27}\text{ kg}" /> first. |
-| Control rods slow neutrons down. | Control rods absorb neutrons. The moderator is what slows them down. | Ask whether the neutron disappears or only gets slower. |
+Verify two core calculations with exact conservation and SI unit conversions.
 
-The first mistake comes up most often. A half-life **doesn't subtract** a fixed amount. It **halves** what's left every time.
-
-## Practice on Nuclear Physics
-
-These questions move from decay equations to half-life and nuclear energy. **Write the nucleon and proton numbers** in every equation so mistakes are easy to catch.
-
-1. Radium-226, <InlineMath math="{}^{226}_{88}\mathrm{Ra}" />, decays by emitting one alpha particle. Write the decay equation.
-
-2. The activity of a radioactive sample falls from <InlineMath math="800" /> to <InlineMath math="100" /> counts per minute in <InlineMath math="15" /> hours. Calculate its half-life.
-
-3. One fission has a mass defect of <InlineMath math="0.20\text{ u}" />. Calculate the energy released in joules.
-
-4. Explain the role of control rods in a nuclear reactor in terms of the value of <InlineMath math="k" />.
-
-### Solutions
-
-**Solution 1**: An alpha particle is <InlineMath math="{}^{4}_{2}\mathrm{He}" />, so the nucleon number falls by <InlineMath math="4" /> and the proton number by <InlineMath math="2" />. The element with proton number <InlineMath math="86" /> is radon:
+**Radium alpha check.** Radium-226 (<InlineMath math="{}^{226}_{88}\mathrm{Ra}" />) emits one alpha particle. Balance its decay equation.
 
 <BlockMath math="{}^{226}_{88}\mathrm{Ra} \rightarrow {}^{222}_{86}\mathrm{Rn} + {}^{4}_{2}\mathrm{He}" />
 
-Check: nucleon numbers <InlineMath math="222 + 4 = 226" /> and proton numbers <InlineMath math="86 + 2 = 88" />. Both balance.
+Both top nucleon counts sum to <InlineMath math="226" /> and both bottom proton counts sum to <InlineMath math="88" />.
 
-**Solution 2**: Count how many times the activity halves:
-
-<BlockMath math="800 \rightarrow 400 \rightarrow 200 \rightarrow 100" />
-
-That's three half-lives in <InlineMath math="15" /> hours, so <InlineMath math="T_{1/2} = 15 \div 3 = 5" /> hours. Check: <InlineMath math="800 \times \left(\tfrac{1}{2}\right)^{15/5} = 800 \times \tfrac{1}{8} = 100" />.
-
-**Solution 3**: Convert the mass defect to kilograms first:
+**Fission mass check.** One nuclear fission loses <InlineMath math="0.20\text{ u}" /> of mass. Find the energy released in joules.
 
 <MathContainer>
 <BlockMath math="\Delta m = 0.20 \times 1.66 \times 10^{-27} = 3.32 \times 10^{-28}\text{ kg}" />
-<BlockMath math="E = 3.32 \times 10^{-28} \times (3.00 \times 10^8)^2 = 2.99 \times 10^{-11}\text{ J}" />
+<BlockMath math="E = (3.32 \times 10^{-28})(3.00 \times 10^8)^2 = 2.99 \times 10^{-11}\text{ J}" />
 </MathContainer>
 
-Check with MeV: <InlineMath math="0.20 \times 931.5 = 186\text{ MeV}" />, and <InlineMath math="186 \times 1.60 \times 10^{-13} = 2.98 \times 10^{-11}\text{ J}" />. The small difference comes from rounding the constants.
-
-**Solution 4**: Each fission releases two or three neutrons. If all of them caused new fissions, <InlineMath math="k" /> would be greater than <InlineMath math="1" /> and the number of fissions would grow exponentially. **Control rods absorb the extra neutrons** so that, on average, only one neutron from each fission causes the next fission, which means <InlineMath math="k = 1" />. Lowering the rods deeper slows the reaction, and raising them speeds it up.
+Cross-checking via <InlineMath math="931.5\text{ MeV}" /> per atomic mass unit gives <InlineMath math="186\text{ MeV}" />, matching <InlineMath math="2.98 \times 10^{-11}\text{ J}" /> within rounding.

@@ -1,39 +1,28 @@
 export const metadata = {
-  title: "Kalor Jenis Kalor Laten dan Hukum Gas",
+  title: "Kalorimetri Kalor Laten dan Hukum Gas",
   description:
-    "Pakai Q = mcΔT dan Q = mL, jelaskan kesetimbangan termal, baca kurva pemanasan, dan selesaikan hukum Boyle, Charles, serta Gay-Lussac dengan latihan.",
+    "Kesetimbangan termal, kalor jenis zat di kalorimeter, dataran kalor laten saat berubah wujud, serta hukum gas Boyle, Charles, dan Gay-Lussac.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-11-16",
   subject: "Kalor",
 };
 
-## Perbedaan Kalor dan Suhu
-
-**Kalor** adalah energi yang berpindah dari benda panas ke benda dingin, diukur dalam joule. **Suhu** adalah ukuran derajat panas, berkaitan dengan energi kinetik rata-rata partikel, diukur dalam derajat Celsius atau kelvin. Dua rumus utama bab ini memberi energi untuk menaikkan suhu dan energi untuk mengubah wujud zat:
-
-<MathContainer>
-<BlockMath math="Q = mc\Delta T" />
-<BlockMath math="Q = mL" />
-</MathContainer>
-
-Di sini <InlineMath math="m" /> adalah massa dalam kilogram, <InlineMath math="c" /> adalah **kalor jenis**, <InlineMath math="\Delta T" /> adalah perubahan suhu, dan <InlineMath math="L" /> adalah **kalor laten**. Di materi ini, kamu memanaskan air di ketel, memberi energi pada es sampai menjadi uap, dan memampatkan gas di dalam suntikan.
-
 ## Kesetimbangan Termal
 
-Saat dua benda bersentuhan, kalor mengalir dari benda yang lebih panas ke benda yang lebih dingin. Aliran bersihnya berhenti saat keduanya mencapai suhu yang sama. Keadaan ini disebut **kesetimbangan termal**. Termometer bekerja berkat prinsip ini: termometer mencapai kesetimbangan termal dengan benda, lalu bacaannya sama dengan suhu benda itu.
+Sentuh sendok logam yang terendam di sup panas dan energi langsung mengalir ke jari. **Kalor** adalah energi termal yang berpindah dari benda bersuhu tinggi ke rendah dalam satuan joule, sedangkan **suhu** mencerminkan energi kinetik rata-rata partikel dalam derajat Celsius atau kelvin.
 
-Model ini menunjukkan dua balok logam dengan massa dan bahan yang sama, satu bersuhu <InlineMath math="80^\circ\text{C}" /> dan satu <InlineMath math="20^\circ\text{C}" />, yang ditempelkan. Geser penggeser waktu dan lihat kedua suhu bertemu di <InlineMath math="50^\circ\text{C}" />.
+Ketika dua benda bersentuhan, aliran kalor bersih berlanjut sampai keduanya mencapai suhu sama, keadaan yang disebut **kesetimbangan termal**. Termometer bekerja persis dengan mencapai kesetimbangan termal bersama benda yang diukur. Geser waktu di bawah ini untuk mengamati dua balok logam identik dari <InlineMath math="80^\circ\text{C}" /> dan <InlineMath math="20^\circ\text{C}" /> bertemu.
 
 <MathVisual
   title={<>Dua Balok Mencapai Kesetimbangan Termal</>}
   description={
     <>
-      Suhu balok panas <InlineMath math="50 + 30e^{-t/10}" /> dan suhu balok
-      dingin <InlineMath math="50 - 30e^{-t/10}" />, dengan{" "}
-      <InlineMath math="t" /> dalam detik. Sumbu tegak adalah suhu dalam{" "}
-      <InlineMath math="^\circ\text{C}" />.
+      Suhu balok panas dan balok dingin identik yang saling bersentuhan,
+      bertemu mulus pada <InlineMath math="50^\circ\text{C}" /> tanpa kebocoran
+      kalor ke luar.
     </>
   }
+  footer={<>Aliran kalor bersih berhenti tepat saat kedua benda mencapai suhu yang sama.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: 0, max: 50 }, y: { min: 0, max: 90 } },
@@ -52,20 +41,28 @@ Model ini menunjukkan dua balok logam dengan massa dan bahan yang sama, satu ber
     ],
   }}
   labels={{
-    a: <>Waktu <InlineMath math="a" /> dalam detik</>,
-    "hot-reading": <>Balok panas dalam <InlineMath math="^\circ\text{C}" /></>,
-    "cold-reading": <>Balok dingin dalam <InlineMath math="^\circ\text{C}" /></>,
+    a: <>Waktu <InlineMath math="a" /> (s)</>,
+    "hot-reading": <>Balok panas (<InlineMath math="^\circ\text{C}" />)</>,
+    "cold-reading": <>Balok dingin (<InlineMath math="^\circ\text{C}" />)</>,
   }}
 />
 
-Suhu akhirnya tepat di tengah karena kedua balok punya massa dan bahan yang sama. Kalor yang dilepas balok panas sama dengan kalor yang diterima balok dingin, selama tidak ada kalor yang lolos ke lingkungan.
+Keduanya bertemu tepat di tengah karena massa dan bahannya identik. Bila massanya berbeda, suhu akhir condong ke benda bermassa lebih besar karena kalor dilepas benda panas sama dengan kalor diserap benda dingin.
 
-## Kalor Jenis
+## Kalor Jenis dan Laten
 
-**Kalor jenis**, <InlineMath math="c" />, adalah kalor yang dibutuhkan untuk menaikkan suhu <InlineMath math="1\text{ kg}" /> zat sebesar <InlineMath math="1^\circ\text{C}" />. Satuannya <InlineMath math="\text{J/kg}\,^\circ\text{C}" />. Zat dengan <InlineMath math="c" /> besar lambat panas dan lambat dingin.
+Pemberian kalor menaikkan **energi dalam** suatu zat lewat dua jalan: mempercepat gerak molekul sehingga suhu naik, atau memutus ikatan antarmolekul untuk mengubah wujudnya. Karena itulah grafik pemanasan selalu memisahkan ruas miring kenaikan suhu dari dataran perubahan wujud.
+
+### Kalor Jenis Zat
+
+**Kalor jenis** <InlineMath math="c" /> adalah energi yang dibutuhkan untuk menaikkan suhu <InlineMath math="1\text{ kg}" /> zat sebesar <InlineMath math="1^\circ\text{C}" />.
+
+<BlockMath math="Q = mc\Delta\theta" />
+
+Zat dengan <InlineMath math="c" /> besar menyerap banyak kalor sambil memanas perlahan. Bandingkan enam bahan umum berikut ini.
 
 <Chart
-  title={<>Kalor Jenis Beberapa Zat</>}
+  title={<>Kalor Jenis Enam Bahan Umum</>}
   bars="apart"
   categories={["Air", "Es", "Aluminium", "Besi", "Tembaga", "Timbal"]}
   series={[
@@ -74,165 +71,171 @@ Suhu akhirnya tepat di tengah karena kedua balok punya massa dan bahan yang sama
   valueLabel="Kalor jenis (J/kg °C)"
   description={
     <>
-      Nilai bulat yang biasa dipakai: air <InlineMath math="4{.}200" />, es{" "}
-      <InlineMath math="2{.}100" />, aluminium <InlineMath math="900" />, besi{" "}
-      <InlineMath math="450" />, tembaga <InlineMath math="390" />, dan timbal{" "}
-      <InlineMath math="130\text{ J/kg}\,^\circ\text{C}" />.
+      Nilai kalor jenis dibulatkan dari air sebesar{" "}
+      <InlineMath math="4{,}200" /> hingga timbal sebesar{" "}
+      <InlineMath math="130\text{ J kg}^{-1}\,^\circ\text{C}^{-1}" />.
     </>
   }
+  footer={<>Air menyimpan hampir sepuluh kali lebih banyak kalor per derajat dibanding besi atau tembaga.</>}
 />
 
-Air punya kalor jenis yang sangat besar. Itulah alasan air dipakai sebagai pendingin di radiator mobil, dan alasan laut lambat panas pada siang hari sehingga muncul angin laut.
+Karena kalor jenis air amat besar, air dipakai sebagai cairan pendingin radiator mobil dan menjaga iklim kota pesisir lebih sejuk daripada pedalaman.
 
-Ketel listrik di model ini memanaskan air dari <InlineMath math="25^\circ\text{C}" />. Pilih banyaknya air dan bandingkan energi serta waktu yang dibutuhkan.
+Di laboratorium, **kalorimeter** listrik berinsulasi menyalurkan energi terukur <InlineMath math="Pt" /> langsung ke sampel sementara pengaduk meratakan suhu. Ganti bahan lalu ubah massa, daya pemanas, dan waktu pemanasan di bawah ini.
 
-<KettleHeatingLab
-  title={<>Ketel Listrik Mendidihkan Air</>}
+<SpecificHeatCalorimeterLab
+  title={<>Kalorimeter Listrik untuk Kalor Jenis</>}
   description={
     <>
-      Pilih setengah, penuh, atau sampai bibir. Energi yang dibutuhkan
-      sebanding dengan massa air.
+      Bandingkan air, aluminium, tembaga, besi, dan minyak di dalam kalorimeter
+      berinsulasi sambil mengubah massa, daya pemanas, dan durasi pemanasan.
     </>
   }
+  footer={<>Energi listrik sama memanaskan logam berkalor jenis kecil jauh lebih tajam daripada air.</>}
+  materials={["water", "aluminium", "copper", "iron", "oil"]}
+  mass={{ min: 0.2, max: 2, value: 0.5 }}
+  power={{ min: 50, max: 500, value: 200 }}
+  minutes={{ min: 1, max: 15, value: 5 }}
   labels={{
-    chooseFill: "Pilih banyaknya air",
-    energy: <>Energi yang dibutuhkan</>,
-    power: <>Daya ketel</>,
-    rise: <>Kenaikan suhu</>,
-    time: <>Waktu pemanasan</>,
-    viewLabel: "Ketel listrik memanaskan air",
+    material: "Bahan sampel",
+    materials: {
+      water: "Air",
+      aluminium: "Aluminium",
+      copper: "Tembaga",
+      iron: "Besi",
+      oil: "Minyak goreng",
+    },
+    mass: "Massa sampel",
+    power: "Daya pemanas",
+    time: "Waktu pemanasan",
+    energy: <>Energi listrik disuplai</>,
+    specificHeat: <>Kalor jenis</>,
+    temperatureRise: <>Kenaikan suhu</>,
+    parts: {
+      heater: "Pemanas celup",
+      thermometer: "Termometer",
+      stirrer: "Pengaduk",
+      insulation: "Jaket isolasi",
+      sample: "Sampel uji",
+    },
+    view: "Kalorimeter listrik berinsulasi 3D dengan pemanas celup, termometer, pengaduk, dan sampel pilihan",
   }}
 />
 
-### Contoh Energi untuk Memanaskan Air
+Menggandakan massa sampel memotong kenaikan suhu menjadi separuh untuk energi pemanas yang sama, sedangkan menukar air dengan tembaga melipatgandakan kenaikan suhu lebih dari sepuluh kali.
 
-Hitung **kalor yang dibutuhkan** untuk memanaskan <InlineMath math="2{,}0\text{ kg}" /> air dari <InlineMath math="25^\circ\text{C}" /> sampai <InlineMath math="100^\circ\text{C}" />.
+### Kalor Laten Wujud
 
-<BlockMath math="Q = mc\Delta T = (2{,}0)(4{.}200)(100 - 25) = 630{.}000\text{ J}" />
+Selama melebur atau mendidih, termometer berhenti naik walau pemanas terus menyala. Jangan pakai <InlineMath math="Q = mc\Delta\theta" /> pada bagian datar karena suhu tidak berubah. Seluruh energi masuk dipakai memutus ikatan antarpartikel sebagai **kalor laten**:
 
-Cek satuannya: <InlineMath math="\text{kg} \times \text{J/kg}\,^\circ\text{C} \times {}^\circ\text{C} = \text{J}" />. Jawabannya <InlineMath math="6{,}3 \times 10^{5}\text{ J}" />.
+<BlockMath math="Q = ml" />
 
-### Contoh Waktu Pemanasan Ketel
+> Saat zat murni melebur atau mendidih, kalor memutus ikatan antarmolekul alih-alih menaikkan energi kinetik rata-rata partikel sehingga suhu tetap datar.
 
-Ketel <InlineMath math="2{.}000\text{ W}" /> memanaskan <InlineMath math="1{,}5\text{ kg}" /> air dari <InlineMath math="25^\circ\text{C}" /> sampai <InlineMath math="100^\circ\text{C}" />. Anggap tidak ada kalor yang hilang, jadi **energi listrik sama dengan kalor yang diterima**, <InlineMath math="Pt = mc\Delta T" />:
+Amati pemanas berdaya tetap meleburkan <InlineMath math="0{,}20\text{ kg}" /> padatan K pada <InlineMath math="80^\circ\text{C}" /> selama <InlineMath math="5{,}0\text{ menit}" /> lalu menghangatkan cairannya ke <InlineMath math="100^\circ\text{C}" /> dalam <InlineMath math="2{,}0\text{ menit}" /> berikut.
 
-<BlockMath math="t = \frac{mc\Delta T}{P} = \frac{(1{,}5)(4{.}200)(75)}{2{.}000} = 236\text{ s}" />
-
-Itu sekitar empat menit. Kenyataannya lebih lama, karena sebagian kalor memanaskan ketel dan udara.
-
-## Kalor Laten dan Kurva Pemanasan
-
-Saat zat berubah wujud, suhunya tetap walaupun kalor terus diberikan. Energi itu dipakai untuk **memutus ikatan antarpartikel**, bukan untuk menambah energi kinetik. Energi ini disebut **kalor laten**. Kalor lebur es adalah <InlineMath math="3{,}34 \times 10^{5}\text{ J/kg}" />, dan kalor uap air adalah <InlineMath math="2{,}26 \times 10^{6}\text{ J/kg}" />.
-
-Kurva berikut dihitung untuk <InlineMath math="0{,}1\text{ kg}" /> es yang mulai pada <InlineMath math="-20^\circ\text{C}" />. Geser penggeser energi dan perhatikan dua bagian mendatar, yaitu melebur dan mendidih.
-
-<MathVisual
-  title={<>Kurva Pemanasan dari Es sampai Uap</>}
+<HeatingCurveLab
+  title={<>Dataran Lebur dan Pemanasan Cairan Zat K</>}
   description={
     <>
-      Sumbu mendatar adalah energi yang diberikan dalam kJ. Sumbu tegak adalah
-      suhu dalam <InlineMath math="^\circ\text{C}" />. Bagian mendatar pertama
-      butuh <InlineMath math="33{,}4\text{ kJ}" /> dan bagian kedua{" "}
-      <InlineMath math="226\text{ kJ}" />.
+      Hitung daya pemanas dari ruas miring cairan terlebih dulu, lalu terapkan
+      daya sama pada dataran lebur lima menit.
     </>
   }
-  scene={{
-    space: "plane",
-    frame: { kind: "cartesian", x: { min: 0, max: 320 }, y: { min: -30, max: 130 } },
-    view: { kind: "fit", padding: 0.06 },
-    parameters: [
-      { name: "q", min: 0, max: 305, value: 20, step: 1, label: "q" },
-    ],
-    objects: [
-      { id: "ice", kind: "segment", appearance: "primary", from: { x: 0, y: -20 }, to: { x: 4.2, y: 0 } },
-      { id: "melting", kind: "segment", appearance: "secondary", from: { x: 4.2, y: 0 }, to: { x: 37.6, y: 0 } },
-      { id: "water", kind: "segment", appearance: "primary", from: { x: 37.6, y: 0 }, to: { x: 79.6, y: 100 } },
-      { id: "boiling", kind: "segment", appearance: "secondary", from: { x: 79.6, y: 100 }, to: { x: 305.6, y: 100 } },
-      { id: "now", kind: "marker", x: "q", y: "-20 + 20min(max(q, 0), 4.2)/4.2 + 100min(max(q - 37.6, 0), 42)/42", appearance: "warning" },
-    ],
-    labels: [
-      { key: "melting", objectId: "melting", at: { x: 20.9, y: 0 }, placement: "below" },
-      { key: "boiling", objectId: "boiling", at: { x: 192.6, y: 100 }, placement: "above" },
-    ],
-    readouts: [
-      { key: "temperature", formula: "-20 + 20min(max(q, 0), 4.2)/4.2 + 100min(max(q - 37.6, 0), 42)/42" },
-    ],
-  }}
+  footer={<>Daya pemanas tetap membuat energi serapan tiap tahap sebanding langsung dengan durasinya.</>}
   labels={{
-    q: <>Energi yang diberikan <InlineMath math="q" /> dalam kJ</>,
-    melting: <>Melebur</>,
-    boiling: <>Mendidih</>,
-    temperature: <>Suhu dalam <InlineMath math="^\circ\text{C}" /></>,
+    latent: <>Kalor laten lebur jenis</>,
+    power: <>Daya pemanas</>,
+    viewLabel: "Gelas kimia dengan pemanas celup meleburkan zat K dan memplot kurva pemanasannya",
   }}
+  finalTemperature={100}
+  liquidHeat={2000}
+  mass={0.2}
+  meltMinutes={5}
+  meltingPoint={80}
+  warmMinutes={2}
 />
 
-Energi totalnya dihitung bagian demi bagian:
+Menghangatkan cairan K menyerap <InlineMath math="8{,}000\text{ J}" /> dalam <InlineMath math="120\text{ s}" />, menghasilkan daya <InlineMath math="66{,}7\text{ W}" />. Selama <InlineMath math="300\text{ s}" /> peleburan, pemanas menyalurkan <InlineMath math="20{,}000\text{ J}" />, memberi kalor laten lebur jenis <InlineMath math="1{,}0 \times 10^5\text{ J kg}^{-1}" />.
 
-<MathContainer>
-<BlockMath math="Q_1 = (0{,}1)(2{.}100)(20) = 4{.}200\text{ J}" />
-<BlockMath math="Q_2 = (0{,}1)(3{,}34 \times 10^{5}) = 33{.}400\text{ J}" />
-<BlockMath math="Q_3 = (0{,}1)(4{.}200)(100) = 42{.}000\text{ J}" />
-<BlockMath math="Q_4 = (0{,}1)(2{,}26 \times 10^{6}) = 226{.}000\text{ J}" />
-</MathContainer>
+## Hukum Gas dan Tumbukan
 
-Bagian mendidih paling panjang. Mengubah air menjadi uap butuh sekitar lima kali energi untuk memanaskannya dari <InlineMath math="0^\circ\text{C}" /> sampai <InlineMath math="100^\circ\text{C}" />. Itu juga alasan uap bersuhu <InlineMath math="100^\circ\text{C}" /> melukai kulit lebih parah daripada air mendidih.
-
-## Hukum-Hukum Gas
-
-Untuk gas bermassa tetap, tekanan <InlineMath math="P" />, volume <InlineMath math="V" />, dan suhu mutlak <InlineMath math="T" /> terhubung lewat tiga hukum. Suhu harus dalam **kelvin**: <InlineMath math="T = t + 273" />.
+Gas terkurung membangkitkan **tekanan gas** karena miliaran molekul cepat menumbuk dinding wadah setiap detik. Menahan satu besaran tetap menghubungkan tekanan <InlineMath math="P" />, volume <InlineMath math="V" />, dan suhu mutlak <InlineMath math="T" /> lewat tiga hukum klasik:
 
 | Hukum | Besaran tetap | Hubungan |
 | :--- | :--- | :--- |
-| Hukum Boyle | Suhu | <InlineMath math="P_1V_1 = P_2V_2" /> |
-| Hukum Charles | Tekanan | <InlineMath math="\dfrac{V_1}{T_1} = \dfrac{V_2}{T_2}" /> |
-| Hukum Gay-Lussac | Volume | <InlineMath math="\dfrac{P_1}{T_1} = \dfrac{P_2}{T_2}" /> |
+| Hukum Boyle | Suhu | Tekanan berbanding terbalik dengan volume |
+| Hukum Charles | Tekanan | Volume berbanding lurus dengan suhu kelvin |
+| Hukum Gay-Lussac | Volume | Tekanan berbanding lurus dengan suhu kelvin |
 
-Teori kinetik menjelaskan **hukum Boyle**: saat volume mengecil pada suhu tetap, molekul gas lebih sering menumbuk dinding wadah, jadi tekanannya naik. Model ini memakai tekanan dalam satuan <InlineMath math="P_0" /> dan volume dalam satuan <InlineMath math="V_0" />. Geser penggesernya dan lihat hasil kali <InlineMath math="PV" /> tetap sama.
+Pilih ketiga hukum gas lalu ubah volume piston dan suhu pemanas di bawah ini untuk melihat laju tumbukan dinding dan jarum tekanan bereaksi langsung.
 
-<MathVisual
-  title={<>Hukum Boyle pada Suhu Tetap</>}
+<GasLawThermalLab
+  title={<>Hukum Gas dan Tumbukan Molekul dalam Silinder</>}
   description={
     <>
-      Kurvanya <InlineMath math="PV = 4" /> dalam satuan{" "}
-      <InlineMath math="P_0 V_0" />. Saat volume menjadi setengahnya, tekanan
-      menjadi dua kali lipat.
+      Pilih hukum Boyle, Charles, atau Gay-Lussac lalu atur suhu atau volume
+      untuk menghubungkan tumbukan dinding mikroskopis dengan tekanan gas.
     </>
   }
-  scene={{
-    space: "plane",
-    frame: { kind: "cartesian", x: { min: 0, max: 8.5 }, y: { min: 0, max: 8.5 } },
-    view: { kind: "fit", padding: 0.06 },
-    parameters: [
-      { name: "w", min: 0.5, max: 8, value: 2, step: 0.25, label: "w" },
-    ],
-    objects: [
-      { id: "isotherm", kind: "function", appearance: "primary", formula: "4/x", domain: { min: 0.5, max: 8 } },
-      { id: "state", kind: "marker", x: "w", y: "4/w", appearance: "warning" },
-    ],
-    readouts: [
-      { key: "pressure", formula: "4/w" },
-      { key: "product", formula: "w * 4/w" },
-    ],
-  }}
+  footer={<>Volume lebih kecil memadatkan tumbukan, suhu lebih tinggi membuat tumbukan lebih kencang.</>}
+  laws={["boyle", "charles", "gayLussac"]}
+  temperature={{ min: 200, max: 600, value: 300 }}
+  volume={{ min: 1, max: 8, value: 4 }}
   labels={{
-    w: <>Volume <InlineMath math="V" /> dalam satuan <InlineMath math="V_0" /></>,
-    pressure: <>Tekanan dalam satuan <InlineMath math="P_0" /></>,
-    product: <><InlineMath math="PV" /></>,
+    law: "Hukum gas",
+    laws: {
+      boyle: {
+        name: "Hukum Boyle",
+        relation: <>Suhu tetap menjaga hasil kali tekanan dan volume selalu konstan.</>,
+      },
+      charles: {
+        name: "Hukum Charles",
+        relation: <>Tekanan tetap membuat volume berbanding lurus dengan suhu kelvin.</>,
+      },
+      gayLussac: {
+        name: "Hukum Gay-Lussac",
+        relation: <>Volume tetap membuat tekanan berbanding lurus dengan suhu kelvin.</>,
+      },
+    },
+    temperature: "Suhu gas",
+    volume: "Volume silinder",
+    constant: <>Dijaga tetap</>,
+    collisions: <>Laju tumbukan dinding</>,
+    pressure: <>Tekanan gas</>,
+    parts: {
+      piston: "Piston gerak",
+      cylinder: "Silinder gas",
+      gauge: "Manometer tekanan",
+      heater: "Alas pemanas",
+      molecules: "Molekul gas",
+    },
+    view: "Ruang silinder piston 3D berisi molekul gas bergerak, manometer tekanan, dan alas pemanas",
   }}
 />
 
-**Hukum Charles** menunjukkan volume gas naik secara linear terhadap suhu pada tekanan tetap. Kalau garisnya diperpanjang ke belakang, volume menjadi nol pada <InlineMath math="-273^\circ\text{C}" />. Suhu itu adalah **nol mutlak**, yaitu <InlineMath math="0\text{ K}" />. Model ini memakai gas yang volumenya <InlineMath math="273\text{ mL}" /> pada <InlineMath math="0^\circ\text{C}" />.
+Memampatkan gas hingga sepertiga volumenya pada suhu tetap melipatgandakan frekuensi tumbukan per satuan luas dinding menjadi tiga kali lipat sehingga tekanan naik tiga kali lipat.
+
+## Nol Mutlak dan Skala Kelvin
+
+Plot volume gas terhadap suhu Celsius pada tekanan tetap lalu perpanjang garis lurusnya ke belakang. Setiap gas ideal mengekstrapolasi volume nol tepat pada <InlineMath math="-273^\circ\text{C}" />, mendefinisikan **nol mutlak** (<InlineMath math="0\text{ K}" />).
+
+<BlockMath math="T = \theta + 273" />
+
+> Setiap rasio hukum gas wajib memakai suhu mutlak kelvin karena nol Celsius hanyalah titik beku air, bukan berhentinya gerak molekul.
+
+Geser pengatur suhu di bawah ini untuk membandingkan bacaan Celsius, suhu kelvin, dan volume gas di sepanjang garis lurus Charles.
 
 <MathVisual
-  title={<>Hukum Charles dan Nol Mutlak</>}
+  title={<>Hukum Charles dan Ekstrapolasi ke Nol Mutlak</>}
   description={
     <>
-      Volume dalam <InlineMath math="\text{mL}" /> terhadap suhu dalam{" "}
-      <InlineMath math="^\circ\text{C}" />. Garis putus-putus adalah
-      perpanjangan ke nol mutlak, karena gas sungguhan mencair sebelum
-      mencapainya.
+      Volume gas dalam <InlineMath math="\text{cm}^3" /> terhadap suhu Celsius,
+      dengan garis putus-putus mencapai nol tepat di{" "}
+      <InlineMath math="-273^\circ\text{C}" />.
     </>
   }
+  footer={<>Tambahkan 273 ke setiap suhu Celsius sebelum memasukkan angka ke rasio hukum gas.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -300, max: 120 }, y: { min: 0, max: 420 } },
@@ -255,62 +258,30 @@ Teori kinetik menjelaskan **hukum Boyle**: saat volume mengecil pada suhu tetap,
     ],
   }}
   labels={{
-    c: <>Suhu <InlineMath math="t" /> dalam <InlineMath math="^\circ\text{C}" /></>,
-    zero: <>Nol mutlak, <InlineMath math="-273^\circ\text{C}" /></>,
-    volume: <>Volume dalam <InlineMath math="\text{mL}" /></>,
-    kelvin: <>Suhu mutlak dalam K</>,
+    c: <>Suhu <InlineMath math="\theta" /> (<InlineMath math="^\circ\text{C}" />)</>,
+    zero: <>Nol mutlak</>,
+    volume: <>Volume (<InlineMath math="\text{cm}^3" />)</>,
+    kelvin: <>Kelvin (<InlineMath math="\text{K}" />)</>,
   }}
 />
 
-Bacaan volume dan suhu mutlak di model ini selalu sama, jadi <InlineMath math="V/T" /> tetap. Itulah hukum Charles dalam bentuk paling sederhana.
+Gas nyata mencair sebelum mencapai <InlineMath math="0\text{ K}" />, namun ekstrapolasi linear ini menetapkan skala kelvin universal yang dipakai di seluruh termodinamika.
 
-## Kesalahan Umum tentang Kalor
+## Uji Hitung Kalor dan Gas
 
-| Kesalahan | Alasan keliru | Cara mengecek |
-| :--- | :--- | :--- |
-| Kalor dan suhu adalah hal yang sama. | Kalor adalah energi yang berpindah. Suhu adalah derajat panas. | Cek satuannya: joule untuk kalor, derajat atau kelvin untuk suhu. |
-| Suhu naik saat es melebur. | Energinya dipakai untuk memutus ikatan, jadi suhunya tetap. | Cari bagian mendatar pada kurva pemanasan. |
-| Memakai derajat Celsius di hukum gas. | Hukum gas butuh suhu mutlak. | Tambahkan <InlineMath math="273" /> sebelum memasukkan nilai. |
-| Memakai <InlineMath math="Q = mc\Delta T" /> saat mendidih. | Tidak ada perubahan suhu selama perubahan wujud. | Pakai <InlineMath math="Q = mL" /> untuk bagian mendatar. |
+Periksa dua hitungan kalor dan gas berikut dengan konversi satuan yang tepat.
 
-Kesalahan ketiga paling sering muncul di soal hukum gas. **Ubah ke kelvin dulu**, baru hitung.
-
-## Latihan Kalor
-
-Soal-soal ini dimulai dari satu rumus dan diakhiri dengan hukum gas. **Tulis satuan setiap besaran** sebelum memasukkan nilai.
-
-1. Hitung kalor yang dibutuhkan untuk menaikkan suhu <InlineMath math="0{,}5\text{ kg}" /> aluminium sebesar <InlineMath math="40^\circ\text{C}" />.
-
-2. Sebanyak <InlineMath math="0{,}4\text{ kg}" /> air bersuhu <InlineMath math="90^\circ\text{C}" /> dicampur dengan <InlineMath math="0{,}1\text{ kg}" /> air bersuhu <InlineMath math="15^\circ\text{C}" />. Hitung suhu akhirnya, anggap tidak ada kalor yang hilang.
-
-3. Gas di dalam suntikan bertekanan <InlineMath math="100\text{ kPa}" /> dan bervolume <InlineMath math="60\text{ mL}" />. Gas dimampatkan perlahan sampai <InlineMath math="20\text{ mL}" /> pada suhu tetap. Hitung tekanan barunya.
-
-4. Ban berisi udara bertekanan <InlineMath math="150\text{ kPa}" /> pada <InlineMath math="27^\circ\text{C}" />. Udaranya dipanaskan sampai <InlineMath math="127^\circ\text{C}" /> pada volume tetap. Hitung tekanan barunya.
-
-### Pembahasan
-
-**Pembahasan 1**: Pakai <InlineMath math="Q = mc\Delta T" /> dengan <InlineMath math="c = 900\text{ J/kg}\,^\circ\text{C}" />:
-
-<BlockMath math="Q = (0{,}5)(900)(40) = 18{.}000\text{ J}" />
-
-**Pembahasan 2**: Kalor yang dilepas air panas sama dengan kalor yang diterima air dingin. Misalkan suhu akhirnya <InlineMath math="T" />:
+**Uji campuran air.** Campurkan <InlineMath math="0{,}4\text{ kg}" /> air bersuhu <InlineMath math="90^\circ\text{C}" /> dengan <InlineMath math="0{,}1\text{ kg}" /> air bersuhu <InlineMath math="15^\circ\text{C}" /> dalam wadah terisolasi. Cari suhu kesetimbangan <InlineMath math="\theta" />.
 
 <MathContainer>
-<BlockMath math="(0{,}4)(4{.}200)(90 - T) = (0{,}1)(4{.}200)(T - 15)" />
-<BlockMath math="36 - 0{,}4T = 0{,}1T - 1{,}5" />
-<BlockMath math="T = \frac{37{,}5}{0{,}5} = 75^\circ\text{C}" />
+<BlockMath math="(0{,}4)(4{,}200)(90 - \theta) = (0{,}1)(4{,}200)(\theta - 15)" />
+<BlockMath math="36 - 0{,}4\theta = 0{,}1\theta - 1{,}5 \implies \theta = 75^\circ\text{C}" />
 </MathContainer>
 
-Cek: <InlineMath math="75^\circ\text{C}" /> berada di antara <InlineMath math="15^\circ\text{C}" /> dan <InlineMath math="90^\circ\text{C}" />, lebih dekat ke air panas karena massanya lebih besar.
+Suhu akhir jauh lebih dekat ke <InlineMath math="90^\circ\text{C}" /> karena massa air panas empat kali lipat lebih besar.
 
-**Pembahasan 3**: Suhunya tetap, jadi pakai hukum Boyle:
+**Uji tekanan ban.** Udara dalam ban kaku bertekanan <InlineMath math="150\text{ kPa}" /> pada <InlineMath math="27^\circ\text{C}" /> (<InlineMath math="300\text{ K}" />). Setelah melaju, suhunya naik ke <InlineMath math="127^\circ\text{C}" /> (<InlineMath math="400\text{ K}" />). Hitung tekanan barunya.
 
-<BlockMath math="P_2 = \frac{P_1V_1}{V_2} = \frac{(100)(60)}{20} = 300\text{ kPa}" />
+<BlockMath math="P_2 = \frac{P_1 T_2}{T_1} = \frac{(150)(400)}{300} = 200\text{ kPa}" />
 
-Volume menjadi sepertiganya, jadi **tekanan menjadi tiga kali lipat**.
-
-**Pembahasan 4**: Volumenya tetap, jadi pakai hukum Gay-Lussac dengan suhu mutlak: <InlineMath math="T_1 = 300\text{ K}" /> dan <InlineMath math="T_2 = 400\text{ K}" />.
-
-<BlockMath math="P_2 = \frac{P_1T_2}{T_1} = \frac{(150)(400)}{300} = 200\text{ kPa}" />
-
-Kalau kamu keliru memakai derajat Celsius, kamu akan mendapat <InlineMath math="150 \times 127 : 27 \approx 706\text{ kPa}" />, nilai yang mustahil untuk ban biasa.
+Kesalahan memakai derajat Celsius akan meramalkan <InlineMath math="706\text{ kPa}" />, menunjukkan alasan konversi kelvin wajib dilakukan pertama kali.
