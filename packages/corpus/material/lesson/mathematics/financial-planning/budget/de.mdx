@@ -1,0 +1,237 @@
+export const metadata = {
+  title: "Finanzplanung mit Budget und Sparziel",
+  description:
+    "Setze SMART-Finanzziele, stelle ein Budget auf, berechne den Geldfluss und plane das Sparen bis zum Ziel mit interaktiven Modellen, Beispielen und Übungen.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2026-11-17",
+  subject: "Verbrauchermathematik: Finanzplanung",
+};
+
+## Finanzplanung beginnt mit Zielen und einem Budget
+
+**Finanzplanung** ist der Vorgang, die Verwendung von Geld zu planen und zu steuern, um Ziele zu erreichen. Sie hat fünf Schritte: **Ziele setzen, die finanzielle Lage bewerten, einen Plan aufstellen, den Plan umsetzen und ihn überprüfen**. Ihr wichtigstes Werkzeug ist ein **Budget**, eine Aufstellung von Einnahmen und Ausgaben für einen Zeitraum. Die Differenz zwischen Einnahmen und Ausgaben heißt **Geldfluss**. In den Modellen hier untersuchst du ein Monatsbudget, verfolgst den Geldfluss und berechnest, wie lange es bis zu einem Sparziel dauert.
+
+## Finanzziele nach der SMART Regel
+
+Ein gutes Ziel ist **SMART**: spezifisch, messbar, erreichbar, realistisch und terminiert. Das Ziel ich will sparen ist nicht klar genug. Das Ziel ich will in <InlineMath math="12" /> Monaten <InlineMath math="\text{RM}\,6{.}000" /> als Notgroschen sparen ist ein SMART-Ziel, weil Betrag und Zeitraum klar sind.
+
+| Frist | Zeitraum | Beispiel |
+| :--- | :--- | :--- |
+| Kurz | Unter einem Jahr | Ein Handy kaufen |
+| Mittel | Ein bis fünf Jahre | Eine Anzahlung für ein Auto |
+| Lang | Über fünf Jahre | Eine Anzahlung für ein Haus oder die Altersvorsorge |
+
+## Budget und Geldfluss
+
+Herr Amir verdient netto <InlineMath math="\text{RM}\,4{.}500" /> im Monat. **Fixe Ausgaben** sind jeden Monat gleich, etwa Miete und Autorate. **Variable Ausgaben** ändern sich von Monat zu Monat, etwa Essen und Stromrechnung. Dieses Diagramm zeigt sein Monatsbudget.
+
+<BarChart
+  title={<>Das Monatsbudget von Herrn Amir</>}
+  description={
+    <>
+      Nettoeinkommen und Aufteilung der Ausgaben in Ringgit für einen Monat.
+    </>
+  }
+  yAxisLabel="Betrag (RM)"
+  data={[
+    { name: "Nettoeinkommen", value: 4500 },
+    { name: "Fixe Ausgaben", value: 1200 + 650 + 150 },
+    { name: "Variable Ausgaben", value: 900 + 250 + 300 + 350 },
+    { name: "Ersparnis", value: 450 },
+  ]}
+  chartConfig={{ value: { label: "Betrag", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>
+
+### Beispiel Den Geldfluss berechnen
+
+Die fixen Ausgaben von Herrn Amir sind Miete von <InlineMath math="\text{RM}\,1{.}200" />, eine Autorate von <InlineMath math="\text{RM}\,650" /> und eine Versicherung von <InlineMath math="\text{RM}\,150" />. Seine variablen Ausgaben betragen zusammen <InlineMath math="\text{RM}\,1{.}800" />, und er spart <InlineMath math="\text{RM}\,450" />. Berechne **seinen monatlichen Geldfluss**.
+
+<MathContainer>
+<BlockMath math="\text{Fixe Ausgaben} = 1{.}200 + 650 + 150 = 2{.}000" />
+<BlockMath math="\text{Geldfluss} = 4{.}500 - 2{.}000 - 1{.}800 - 450 = 250" />
+</MathContainer>
+
+Ein Geldfluss von <InlineMath math="\text{RM}\,250" /> ist ein **Überschuss**, also lebt Herr Amir im Rahmen seiner Mittel. Prüfe: <InlineMath math="2{.}000 + 1{.}800 + 450 + 250 = 4{.}500" />.
+
+### Der Geldfluss von Monat zu Monat
+
+Der Geldfluss ändert sich jeden Monat, weil sich die variablen Ausgaben ändern. Dieses Diagramm zeigt den Überschuss oder das **Defizit** von Herrn Amir über sechs Monate. Im dritten Monat gibt es wegen Feiertagsausgaben ein Defizit.
+
+<ScatterDiagram
+  title={<>Monatlicher Geldfluss von Herrn Amir</>}
+  description={
+    <>
+      Überschuss oder Defizit in Ringgit für jeden Monat. Ein negativer Wert
+      bedeutet, dass die Ausgaben die Einnahmen übersteigen.
+    </>
+  }
+  xAxisLabel="Monat"
+  yAxisLabel="Geldfluss (RM)"
+  datasets={[
+    {
+      name: "Geldfluss",
+      color: "var(--chart-1)",
+      points: [
+        { x: 1, y: 250 },
+        { x: 2, y: 180 },
+        { x: 3, y: -120 },
+        { x: 4, y: 300 },
+        { x: 5, y: 260 },
+        { x: 6, y: 240 },
+      ],
+    },
+  ]}
+/>
+
+Der gesamte Geldfluss über sechs Monate beträgt <InlineMath math="250 + 180 - 120 + 300 + 260 + 240 = 1{.}110" /> Ringgit. Ein Defizit in einem Monat lässt sich durch Überschüsse anderer Monate ausgleichen, wenn das Budget geplant ist.
+
+## Die Budgetregel Fünfzig Dreißig Zwanzig
+
+Eine verbreitete Regel teilt das Nettoeinkommen im Verhältnis <InlineMath math="50\% : 30\% : 20\%" /> auf **Bedürfnisse**, **Wünsche** und **Ersparnis** auf. Bei einem Einkommen von <InlineMath math="\text{RM}\,4{.}500" /> ergibt die Regel <InlineMath math="\text{RM}\,2{.}250" />, <InlineMath math="\text{RM}\,1{.}350" /> und <InlineMath math="\text{RM}\,900" />. Dieses Diagramm vergleicht sie mit dem tatsächlichen Budget von Herrn Amir.
+
+<BarChart
+  title={<>Die Regel im Vergleich zum tatsächlichen Budget</>}
+  description={
+    <>
+      Ringgit für Bedürfnisse, Wünsche und Ersparnis einschließlich Überschuss,
+      nach der Regel und nach dem Budget von Herrn Amir.
+    </>
+  }
+  yAxisLabel="Betrag (RM)"
+  data={[
+    { name: "Bedürfnisse, Regel", value: 2250 },
+    { name: "Bedürfnisse, tatsächlich", value: 2000 + 900 + 250 + 300 },
+    { name: "Wünsche, Regel", value: 1350 },
+    { name: "Wünsche, tatsächlich", value: 350 },
+    { name: "Ersparnis, Regel", value: 900 },
+    { name: "Ersparnis, tatsächlich", value: 450 + 250 },
+  ]}
+  chartConfig={{ value: { label: "Betrag", colors: { light: ["var(--chart-2)"], dark: ["var(--chart-2)"] } } }}
+/>
+
+Die Bedürfnisse von Herrn Amir, <InlineMath math="\text{RM}\,3{.}450" />, liegen über der Regel, weil Miete und Autorate hoch sind, also bleibt weniger Raum zum Sparen. Die Regel ist ein Ausgangspunkt, keine feste Vorschrift.
+
+## Das Sparen bis zum Ziel planen
+
+Um ein Sparziel <InlineMath math="T" /> mit einer monatlichen Sparrate <InlineMath math="m" /> zu erreichen, beträgt **die Zahl der nötigen Monate** <InlineMath math="\left\lceil \dfrac{T}{m} \right\rceil" />, aufgerundet. Ändere die Sparrate und sieh, wann die Sparlinie das Ziel von <InlineMath math="\text{RM}\,6{.}000" /> überschreitet.
+
+<MathVisual
+  title={<>Angesparter Betrag auf dem Weg zum Ziel</>}
+  description={
+    <>
+      Angesparter Betrag in tausend Ringgit, <InlineMath math="\dfrac{mx}{1000}" />,
+      gegen den Monat <InlineMath math="x" />. Die waagerechte Linie ist das
+      Ziel von <InlineMath math="6" /> tausend Ringgit.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 24 }, y: { min: 0, max: 12 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "m", min: 200, max: 1000, value: 700, step: 50, label: "m" },
+    ],
+    objects: [
+      { id: "saved", kind: "function", appearance: "primary", formula: "m x/1000", domain: { min: 0, max: 24 } },
+      { id: "target", kind: "function", appearance: "construction", formula: "6 + 0x", domain: { min: 0, max: 24 } },
+    ],
+    readouts: [
+      { key: "months", formula: "ceil(6000/m)" },
+    ],
+  }}
+  labels={{
+    m: <>Monatliche Sparrate <InlineMath math="m" /> in Ringgit</>,
+    months: <>Monate bis zum Ziel</>,
+  }}
+/>
+
+### Beispiel Die Zeit bis zum Ziel
+
+Herr Amir spart <InlineMath math="\text{RM}\,450" /> und überweist jeden Monat seinen Überschuss von <InlineMath math="\text{RM}\,250" /> auf ein Sparkonto. Wie viele Monate braucht er, um <InlineMath math="\text{RM}\,6{.}000" /> **anzusparen**?
+
+<BlockMath math="\frac{6{.}000}{450 + 250} = \frac{6{.}000}{700} = 8{,}57 \quad\Rightarrow\quad 9 \text{ Monate}" />
+
+Nach <InlineMath math="8" /> Monaten hat er erst <InlineMath math="\text{RM}\,5{.}600" />, also braucht er den neunten Monat. Prüfe mit dem Modell: Bei <InlineMath math="m = 700" /> zeigt es <InlineMath math="9" />. Sein Ziel von <InlineMath math="12" /> Monaten erreicht er früher.
+
+### Sparen mit Zinseszins
+
+Bei langfristigen Zielen lässt der **Zinseszins** das Geld wachsen. Ein Guthaben <InlineMath math="P" /> mit <InlineMath math="r\%" /> Zinsen pro Jahr wird nach <InlineMath math="t" /> Jahren zu <InlineMath math="P\left(1 + \dfrac{r}{100}\right)^t" />. Ändere Zinssatz und Laufzeit für ein Guthaben von <InlineMath math="\text{RM}\,10{.}000" />.
+
+<MathVisual
+  title={<>Wachstum eines Guthabens mit Zinseszins</>}
+  description={
+    <>
+      Wert des Guthabens in tausend Ringgit,{" "}
+      <InlineMath math="10\left(1 + \dfrac{r}{100}\right)^x" />, gegen das Jahr{" "}
+      <InlineMath math="x" />.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 20 }, y: { min: 0, max: 35 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "r", min: 1, max: 6, value: 4, step: 0.5, label: "r" },
+      { name: "n", min: 0, max: 20, value: 10, step: 1, label: "n" },
+    ],
+    objects: [
+      { id: "growth", kind: "function", appearance: "primary", formula: "10(1 + r/100)^x", domain: { min: 0, max: 20 } },
+      { id: "now", kind: "marker", x: "n", y: "10(1 + r/100)^n", appearance: "warning" },
+    ],
+    readouts: [
+      { key: "value", formula: "10000(1 + r/100)^n" },
+    ],
+  }}
+  labels={{
+    r: <>Zinssatz <InlineMath math="r" /> Prozent pro Jahr</>,
+    n: <>Laufzeit <InlineMath math="n" /> in Jahren</>,
+    value: <>Wert des Guthabens in Ringgit</>,
+  }}
+/>
+
+Bei <InlineMath math="4\%" /> über <InlineMath math="10" /> Jahre ergeben sich <InlineMath math="10{.}000 \times 1{,}04^{10} = 14{.}802" /> Ringgit, also <InlineMath math="\text{RM}\,4{.}802" /> Zinsen, ohne neues Geld einzuzahlen.
+
+## Häufige Fehler bei der Finanzplanung
+
+| Fehler | Warum er falsch ist | So prüfst du es |
+| :--- | :--- | :--- |
+| Das Bruttogehalt im Budget verwenden. | Ein Budget nutzt das Nettoeinkommen nach Abzügen. | Prüfe den Betrag, der wirklich auf dem Konto ankommt. |
+| Die Zahl der Monate abrunden. | Auch der letzte, angebrochene Monat wird gebraucht. | Multipliziere die Monate mit der Sparrate. |
+| Ersparnis als Rest nach dem Ausgeben sehen. | Ersparnis wird zuerst als Teil des Budgets geplant. | Die Ersparnis muss im Budget stehen. |
+| Ein Ziel ohne Zeitraum. | Ein SMART-Ziel braucht einen Zeitraum, damit es messbar ist. | Frag, bis wann das Ziel erreicht sein soll. |
+
+Der zweite Fehler kommt in Aufgaben zur Spardauer am häufigsten vor. **Runde die Zahl der Monate auf**.
+
+## Übungen zur Finanzplanung
+
+Diese Aufgaben führen vom Budget zum Sparplan. **Prüfe jede Antwort durch Zurückaddieren**.
+
+1. Frau Siti hat ein Nettoeinkommen von <InlineMath math="\text{RM}\,3{.}800" />. Ihre fixen Ausgaben betragen <InlineMath math="\text{RM}\,1{.}650" />, die variablen <InlineMath math="\text{RM}\,1{.}400" /> und die Ersparnis <InlineMath math="\text{RM}\,380" />. Berechne ihren Geldfluss.
+
+2. Mach aus dem Ziel ich will viel Geld haben ein SMART-Ziel.
+
+3. Ein Laptop kostet <InlineMath math="\text{RM}\,3{.}200" />. Wie viele Monate braucht ein Schüler, der <InlineMath math="\text{RM}\,350" /> im Monat spart?
+
+4. Wie hoch ist nach der Regel <InlineMath math="50\% : 30\% : 20\%" /> die monatliche Ersparnis bei einem Nettoeinkommen von <InlineMath math="\text{RM}\,3{.}800" />?
+
+### Lösungen
+
+**Lösung 1**: Ziehe alle Ausgaben und die Ersparnis vom Einkommen ab:
+
+<BlockMath math="3{.}800 - 1{.}650 - 1{.}400 - 380 = 370" />
+
+Der Geldfluss ist ein **Überschuss** von <InlineMath math="\text{RM}\,370" />. Prüfe: <InlineMath math="1{.}650 + 1{.}400 + 380 + 370 = 3{.}800" />.
+
+**Lösung 2**: Zum Beispiel: Ich will in <InlineMath math="12" /> Monaten <InlineMath math="\text{RM}\,2{.}400" /> sparen, indem ich jeden Monat <InlineMath math="\text{RM}\,200" /> zurücklege. Dieses Ziel ist **spezifisch, messbar und terminiert**.
+
+**Lösung 3**: Teile und runde auf:
+
+<BlockMath math="\frac{3{.}200}{350} = 9{,}14 \quad\Rightarrow\quad 10 \text{ Monate}" />
+
+Prüfe: <InlineMath math="9 \times 350 = 3{.}150" /> reicht noch nicht, aber <InlineMath math="10 \times 350 = 3{.}500" /> übersteigt den Preis.
+
+**Lösung 4**: Nimm <InlineMath math="20\%" /> des Nettoeinkommens:
+
+<BlockMath math="0{,}20 \times 3{.}800 = 760" />
+
+Die empfohlene Ersparnis beträgt <InlineMath math="\text{RM}\,760" /> im Monat.
