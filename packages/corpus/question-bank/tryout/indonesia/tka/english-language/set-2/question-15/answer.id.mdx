@@ -1,8 +1,28 @@
-Sebuah biji dihitung hanya jika lolos **dua syarat sekaligus**: akarnya paling sedikit <InlineMath math="2\text{ mm}" />, dan terjadi sampai hari terakhir lama uji, yaitu hari ke-<InlineMath math="7" /> untuk paket-paket ini.
+# Diketahui
 
-- Biji paket B yang berakar pada hari ke-<InlineMath math="8" />: tidak dihitung. Akarnya muncul sesudah hari ke-<InlineMath math="7" />, dan *Seeds that sprout after that day are left out* ("biji yang bertunas sesudah hari itu tidak dihitung"). Klub pun *left them out* ("tidak menghitungnya").
-- Biji paket A dengan akar <InlineMath math="3\text{ mm}" /> pada hari ke-<InlineMath math="4" />: dihitung. <InlineMath math="3\text{ mm}" /> paling sedikit <InlineMath math="2\text{ mm}" />, dan hari ke-<InlineMath math="4" /> masih dalam masa uji.
-- Biji dengan akar <InlineMath math="1\text{ mm}" /> pada hari ke-<InlineMath math="7" />: tidak dihitung. Masih dalam masa uji, tetapi <InlineMath math="1\text{ mm}" /> lebih pendek daripada <InlineMath math="2\text{ mm}" />, dan penghitungan berhenti pada hari ke-<InlineMath math="7" />.
-- Biji yang kulitnya pecah tetapi belum berakar: tidak dihitung. Membengkak bukan berkecambah, karena aturannya tentang akar.
+Teks menetapkan **dua syarat sekaligus** agar satu biji kacang hijau dihitung berkecambah: akarnya **minimal sepanjang <InlineMath math="2\text{ mm}" />** (paragraf kedua) dan muncul **paling lambat pada hari terakhir masa uji yaitu hari ke-<InlineMath math="7" />** (paragraf ketiga dan keempat).
 
-Jadi, hanya biji paket A dengan akar <InlineMath math="3\text{ mm}" /> pada hari ke-<InlineMath math="4" /> yang dihitung berkecambah, dan tiga lainnya tidak.
+# Ditanyakan
+
+Apakah masing-masing dari keempat biji pada daftar dihitung sebagai berkecambah atau tidak dihitung sebagai berkecambah.
+
+# Penyelesaian
+
+Bayangkan gerbang masuk wahana bermain yang punya dua pengukur sekaligus: **tinggi badan minimal <InlineMath math="2\text{ mm}" />** dan **datang sebelum gerbang tutup di hari ke-<InlineMath math="7" />**. Biji harus lulus keduanya bersama.
+
+> Paragraf kedua mensyaratkan <Highlight>its root is at least <InlineMath math="2\text{ mm}" /> long</Highlight> dan paragraf ketiga menegaskan <Highlight>Seeds that sprout after that day are left out</Highlight>.
+
+## Memeriksa setiap biji
+
+Cocokkan tiap biji terhadap **kedua syarat panjang akar dan batas waktu** pada tabel ringkas berikut:
+
+| Kondisi biji | Status | Pemeriksaan dua syarat |
+| --- | --- | --- |
+| Biji paket B yang akarnya baru muncul hari ke-<InlineMath math="8" /> | Tidak dihitung | Gagal syarat waktu karena melewati batas uji tujuh hari dan klub secara eksplisit membuangnya. |
+| Biji paket A dengan akar <InlineMath math="3\text{ mm}" /> pada hari ke-<InlineMath math="4" /> | Dihitung | Lulus keduanya: <InlineMath math="3\text{ mm}" /> melebihi <InlineMath math="2\text{ mm}" /> dan hari ke-<InlineMath math="4" /> masih dalam masa uji tujuh hari. |
+| Biji dengan akar <InlineMath math="1\text{ mm}" /> pada hari ke-<InlineMath math="7" /> | Tidak dihitung | Gagal syarat panjang akar karena <InlineMath math="1\text{ mm}" /> kurang dari <InlineMath math="2\text{ mm}" /> saat penghitungan berakhir di hari ke-<InlineMath math="7" />. |
+| Biji yang membengkak dan pecah kulit tetapi tanpa akar hingga hari ke-<InlineMath math="7" /> | Tidak dihitung | Gagal syarat akar karena membengkak tanpa akar belum memenuhi panjang akar minimal <InlineMath math="2\text{ mm}" />. |
+
+# Jawaban
+
+Hanya **biji paket A dengan akar <InlineMath math="3\text{ mm}" /> pada hari ke-<InlineMath math="4" />** yang dihitung berkecambah, sedangkan ketiga biji lainnya **tidak dihitung berkecambah**.

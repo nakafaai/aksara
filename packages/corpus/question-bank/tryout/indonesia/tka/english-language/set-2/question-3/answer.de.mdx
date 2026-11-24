@@ -1,19 +1,43 @@
-Die Änderung in der Frage **dreht eine Regel um**, und danach musst du auch die Abzugsregel anwenden.
+# Gegeben
 
-- Die Regel: Eine Stunde gilt nur als unvollständig, *if counting stopped for more than* <InlineMath math="15" /> *minutes* („wenn das Zählen länger als <InlineMath math="15" /> Minuten ruhte“). <InlineMath math="10" /> Minuten sind nicht mehr als <InlineMath math="15" />, also wäre die dritte Stunde vollständig und würde zählen.
-- Der Abzug: Jede vollständige Stunde zählt südwärts fliegende Vögel *minus* nordwärts fliegende, weil *a flock that turns back and crosses the line again would otherwise be counted twice* („ein Schwarm, der umkehrt und die Linie erneut kreuzt, sonst doppelt gezählt würde“).
+Im gedachten Fall unterbricht der Regenschauer das Zählen nur **<InlineMath math="10" /> Minuten** lang bei unveränderten Tabellenzahlen. Die drei vollständigen Stunden ergeben bereits **<InlineMath math="778" /> Vögel**, und die dritte Stunde zählt <InlineMath math="690" /> südwärts sowie <InlineMath math="25" /> nordwärts fliegende Vögel.
 
-Die echte Summe <InlineMath math="778" /> enthält schon die anderen drei Stunden. Addiere den Nettowert der dritten Stunde:
+# Gesucht
 
-<BlockMath math="778 + (690 - 25) = 778 + 665 = 1{.}443" />
+Welche Gesamtzahl hätte der Klub nach seinen Regeln an die regionale Erhebung gemeldet.
 
-Probe mit allen vier Stunden: südwärts <InlineMath math="146 + 512 + 690 + 233 = 1{.}581" />, nordwärts <InlineMath math="12 + 40 + 25 + 61 = 138" />, und <InlineMath math="1{.}581 - 138 = 1{.}443" />.
+# Lösung
 
-Warum die anderen Summen falsch sind:
+Stell dir die dritte Stunde wie einen Behälter vor, der nur wegen einer zu langen Pause aussortiert wurde. Mit nur <InlineMath math="10" /> Minuten Pause **zählt dieser Behälter wieder voll mit**, doch die nordwärts fliegenden Vögel werden weiterhin abgezogen.
 
-- <InlineMath math="1{.}468" /> addiert alle <InlineMath math="690" /> südwärts fliegenden Vögel und vergisst, die <InlineMath math="25" /> nordwärts fliegenden der dritten Stunde abzuziehen.
-- <InlineMath math="1{.}581" /> addiert alle südwärts fliegenden Vögel und zieht gar keine nordwärts fliegenden ab.
-- <InlineMath math="1{.}158" /> addiert die <InlineMath math="380" /> Strandläufer zu <InlineMath math="778" />, dabei steckt dieser Schwarm schon in der zweiten Stunde.
-- <InlineMath math="665" /> ist nur die dritte Stunde allein, ohne die anderen drei.
+> Zwei Regeln greifen zusammen: <InlineMath math="10" /> Minuten liegen unter der Grenze <Highlight>more than <InlineMath math="15" /> minutes</Highlight> aus Absatz zwei, und Absatz fünf zieht weiterhin die nordwärts fliegenden Vögel ab.
 
-Mit einer Pause von <InlineMath math="10" /> Minuten hätte der Club also insgesamt <InlineMath math="1{.}443" /> Vögel gemeldet.
+## Berechnung der neuen Gesamtzahl
+
+Addiere den Nettowert der dritten Stunde (<InlineMath math="690 - 25 = 665" />) zur bisherigen Summe (<InlineMath math="778" />):
+
+<BlockMath math="\begin{aligned}
+\text{Nettowert dritte Stunde} &= 690 - 25 = 665 \\
+\text{Neue Gesamtzahl} &= 778 + 665 = 1{,}443
+\end{aligned}" />
+
+Die Gegenprobe über alle vier Stunden bestätigt genau dasselbe Ergebnis:
+
+<BlockMath math="\begin{aligned}
+\text{Südwärts gesamt} &= 146 + 512 + 690 + 233 = 1{,}581 \\
+\text{Nordwärts gesamt} &= 12 + 40 + 25 + 61 = 138 \\
+\text{Nettosumme} &= 1{,}581 - 138 = 1{,}443
+\end{aligned}" />
+
+Damit ergibt sich als Gesamtzahl **<InlineMath math="1{,}443" /> Vögel**.
+
+## Warum die anderen Optionen falsch sind
+
+- **<InlineMath math="1{,}468" /> Vögel** addiert alle <InlineMath math="690" /> südwärts fliegenden Vögel und vergisst den Abzug der <InlineMath math="25" /> nordwärts fliegenden.
+- **<InlineMath math="1{,}581" /> Vögel** summiert alle südwärts fliegenden Vögel ohne jeden Abzug.
+- **<InlineMath math="1{,}158" /> Vögel** addiert die <InlineMath math="380" /> Strandläufer doppelt zu <InlineMath math="778" />, obwohl sie schon in Stunde zwei stecken.
+- **<InlineMath math="665" /> Vögel** gibt nur die dritte Stunde allein ohne die übrigen drei Stunden an.
+
+# Antwort
+
+Bei einer Pause von <InlineMath math="10" /> Minuten hätte der Klub insgesamt **<InlineMath math="1{,}443" /> Vögel** an die Erhebung gemeldet.

@@ -1,19 +1,43 @@
-Perubahan di soal **membalik satu aturan**, lalu kamu juga harus menerapkan aturan pengurangan.
+# Diketahui
 
-- Aturannya: satu jam ditandai tidak lengkap hanya *if counting stopped for more than* <InlineMath math="15" /> *minutes* ("jika penghitungan berhenti lebih dari <InlineMath math="15" /> menit"). Berhenti <InlineMath math="10" /> menit tidak lebih dari <InlineMath math="15" /> menit, jadi jam ketiga menjadi lengkap dan ikut dihitung.
-- Pengurangannya: setiap jam yang lengkap dihitung sebagai burung ke selatan *dikurangi* burung ke utara, karena *a flock that turns back and crosses the line again would otherwise be counted twice* ("kawanan yang berbalik dan melewati garis lagi akan terhitung dua kali").
+Dalam kondisi pengandaian, badai hanya menghentikan penghitungan selama **<InlineMath math="10" /> menit** (bukan <InlineMath math="25" /> menit), sementara semua angka tabel tetap sama. Total asli dari tiga jam lengkap adalah **<InlineMath math="778" /> ekor**, dan jam ketiga mencatat <InlineMath math="690" /> ke selatan serta <InlineMath math="25" /> ke utara.
 
-Total sebenarnya, <InlineMath math="778" />, sudah mencakup tiga jam lainnya. Tambahkan hitungan bersih jam ketiga:
+# Ditanyakan
 
-<BlockMath math="778 + (690 - 25) = 778 + 665 = 1{.}443" />
+Berapa total burung yang akan dikirim klub ke survei regional sesuai semua aturan klub.
 
-Cek dengan keempat jam: ke selatan <InlineMath math="146 + 512 + 690 + 233 = 1{.}581" />, ke utara <InlineMath math="12 + 40 + 25 + 61 = 138" />, dan <InlineMath math="1{.}581 - 138 = 1{.}443" />.
+# Penyelesaian
 
-Ini alasan total lain salah:
+Bayangkan jam ketiga seperti kotak koin yang tadinya disisihkan karena jeda badai terlalu lama. Begitu jedanya cuma <InlineMath math="10" /> menit, kotak itu **kembali sah dihitung**, tetapi kamu tetap harus mengurangkan burung yang berbalik ke utara.
 
-- <InlineMath math="1{.}468" /> menambahkan seluruh <InlineMath math="690" /> burung ke selatan dan lupa mengurangkan <InlineMath math="25" /> burung ke utara pada jam ketiga.
-- <InlineMath math="1{.}581" /> menjumlahkan semua burung ke selatan tanpa mengurangkan burung ke utara sama sekali.
-- <InlineMath math="1{.}158" /> menambahkan <InlineMath math="380" /> sandpiper ke <InlineMath math="778" />, padahal kawanan itu sudah termasuk di jam kedua.
-- <InlineMath math="665" /> hanya jam ketiga saja, tanpa tiga jam lainnya.
+> Dua aturan harus dijalankan bersama: jeda <InlineMath math="10" /> menit lolos batas <Highlight>more than <InlineMath math="15" /> minutes</Highlight> di paragraf kedua, lalu aturan paragraf kelima tetap mewajibkan pengurangan burung terbang ke utara.
 
-Jadi, kalau penghitungan hanya berhenti <InlineMath math="10" /> menit, klub akan mengirim total <InlineMath math="1{.}443" /> burung.
+## Menghitung total baru dengan dua cara
+
+Tambahkan hasil bersih jam ketiga (<InlineMath math="690 - 25 = 665" />) ke total asli tiga jam lengkap (<InlineMath math="778" />):
+
+<BlockMath math="\begin{aligned}
+\text{Bersih jam ketiga} &= 690 - 25 = 665 \\
+\text{Total baru} &= 778 + 665 = 1{,}443
+\end{aligned}" />
+
+Cek ulang langsung dari semua empat baris tabel juga mengonfirmasi hasilnya:
+
+<BlockMath math="\begin{aligned}
+\text{Total ke selatan} &= 146 + 512 + 690 + 233 = 1{,}581 \\
+\text{Total ke utara} &= 12 + 40 + 25 + 61 = 138 \\
+\text{Selisih bersih} &= 1{,}581 - 138 = 1{,}443
+\end{aligned}" />
+
+Hasil akhir yang terkirim adalah **<InlineMath math="1{,}443" /> burung**.
+
+## Mengapa pilihan lain salah
+
+- **<InlineMath math="1{,}468" /> burung** menambahkan seluruh <InlineMath math="690" /> burung ke selatan tanpa mengurangi <InlineMath math="25" /> burung ke utara pada jam ketiga.
+- **<InlineMath math="1{,}581" /> burung** menjumlahkan semua burung ke selatan tanpa mengurangkan burung ke utara sama sekali.
+- **<InlineMath math="1{,}158" /> burung** menambahkan kawanan <InlineMath math="380" /> sandpiper lagi ke <InlineMath math="778" />, padahal kawanan itu sudah termasuk di jam kedua.
+- **<InlineMath math="665" /> burung** hanya menghitung hasil bersih jam ketiga tanpa tiga jam lengkap lainnya.
+
+# Jawaban
+
+Dengan jeda badai <InlineMath math="10" /> menit, total yang akan dikirim klub ke survei adalah **<InlineMath math="1{,}443" /> burung**.

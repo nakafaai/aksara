@@ -1,8 +1,28 @@
-A seed counts only if it passes **two tests at once**: a root of at least <InlineMath math="2\text{ mm}" />, and by the last day of the test length, which is day <InlineMath math="7" /> for these packets.
+# Given
 
-- The packet B seed rooted on day <InlineMath math="8" />: does not count. Its root came after day <InlineMath math="7" />, and *Seeds that sprout after that day are left out*. The club *left them out*.
-- The packet A seed with a <InlineMath math="3\text{ mm}" /> root on day <InlineMath math="4" />: counts. <InlineMath math="3\text{ mm}" /> is at least <InlineMath math="2\text{ mm}" />, and day <InlineMath math="4" /> is inside the test.
-- The seed with a <InlineMath math="1\text{ mm}" /> root on day <InlineMath math="7" />: does not count. It's inside the test, but <InlineMath math="1\text{ mm}" /> is shorter than <InlineMath math="2\text{ mm}" />, and the counting stops on day <InlineMath math="7" />.
-- The seed that split its coat but has no root: does not count. Swelling isn't germination, because the rule is about the root.
+The procedure sets **two simultaneous criteria** for counting a mung bean seed as germinated: a root **at least <InlineMath math="2\text{ mm}" /> long** (paragraph two) appearing **no later than day <InlineMath math="7" />** (paragraphs three and four).
 
-So only the packet A seed with a <InlineMath math="3\text{ mm}" /> root on day <InlineMath math="4" /> counts as germinated, and the other three do not.
+# Asked
+
+Whether each of the four listed seeds counts as germinated or does not count as germinated.
+
+# Solution
+
+Picture a theme-park gate with two rules at once: **meet the <InlineMath math="2\text{ mm}" /> height bar** and **arrive before closing time on day <InlineMath math="7" />**. Failing either rule disqualifies the seed.
+
+> Paragraph two requires <Highlight>its root is at least <InlineMath math="2\text{ mm}" /> long</Highlight> and paragraph three adds <Highlight>Seeds that sprout after that day are left out</Highlight>.
+
+## Classifying every seed
+
+Check each seed against **both the root-length minimum and the seven-day deadline**:
+
+| Seed case | Status | Two-rule check |
+| --- | --- | --- |
+| Packet B seed whose root first appeared on day <InlineMath math="8" /> | Does not count | Fails the deadline because day <InlineMath math="8" /> is past the seven-day test length. |
+| Packet A seed with a <InlineMath math="3\text{ mm}" /> root on day <InlineMath math="4" /> | Counts | Passes both rules: <InlineMath math="3\text{ mm}" /> meets the <InlineMath math="2\text{ mm}" /> minimum and day <InlineMath math="4" /> is inside the seven-day window. |
+| Seed with a <InlineMath math="1\text{ mm}" /> root on day <InlineMath math="7" /> | Does not count | Fails the length rule because <InlineMath math="1\text{ mm}" /> is shorter than <InlineMath math="2\text{ mm}" /> when counting stops on day <InlineMath math="7" />. |
+| Seed that swelled and split its coat with no root by day <InlineMath math="7" /> | Does not count | Fails the root requirement because swelling without a root does not count as germination. |
+
+# Answer
+
+Only the **packet A seed with a <InlineMath math="3\text{ mm}" /> root on day <InlineMath math="4" />** counts as germinated, while the other three seeds **do not count as germinated**.
