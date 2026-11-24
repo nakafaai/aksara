@@ -1,20 +1,35 @@
-Gefragt ist nach der Wahrscheinlichkeit einer schweren Trockenzeit, nicht nach der von El Niño. Der vierte Absatz gibt zwei Hinweise: El Niño "tidak selalu mengeringkan setiap kabupaten" (trocknet nicht immer jeden Bezirk aus), und es gibt schwere Trockenzeiten, "yang terjadi tanpa El Nino" (die ohne El Niño auftreten). Das nächste Jahr hat also **zwei Wege zu einer schweren Trockenzeit**, und beide müssen gezählt werden.
+# Gegeben
 
-Wandle zuerst die Aufzeichnungen des Bezirks in Wahrscheinlichkeiten um. In einem El-Niño-Jahr tritt eine schwere Trockenzeit mit der Wahrscheinlichkeit <InlineMath math="\tfrac{6}{10}=0{,}6" /> auf. In einem Jahr ohne El Niño ist sie <InlineMath math="\tfrac{2}{20}=0{,}1" />. Die Wahrscheinlichkeit für El Niño ist <InlineMath math="0{,}7" />, die für kein El Niño also <InlineMath math="1-0{,}7=0{,}3" />.
+Laut Bezirksdaten trat schwere Dürre in **<InlineMath math="6" /> von <InlineMath math="10" /> El-Nino-Jahren** (<InlineMath math="0{,}6" />) und in **<InlineMath math="2" /> von <InlineMath math="20" /> Jahren ohne El Nino** (<InlineMath math="0{,}1" />) auf. Die El-Nino-Wahrscheinlichkeit liegt bei **<InlineMath math="70\%" />** (<InlineMath math="0{,}7" />), ohne El Nino also bei <InlineMath math="0{,}3" />.
 
-Multiplizier die Wahrscheinlichkeit jedes Wegs mit der Wahrscheinlichkeit einer schweren Trockenzeit auf diesem Weg und zähl dann zusammen:
+# Gesucht
+
+Die Gesamtwahrscheinlichkeit für eine schwere Dürre im Bezirk im nächsten Jahr.
+
+# Lösung
+
+Addiere die Wahrscheinlichkeiten **beider Pfade zu schwerer Dürre** (mit und ohne El Nino) nach dem Satz von der totalen Wahrscheinlichkeit.
 
 <BlockMath math="\begin{aligned}
-P(\text{schwer})&=0{,}7\times0{,}6+0{,}3\times0{,}1\\
-&=0{,}42+0{,}03\\
-&=0{,}45
+P(\text{schwer}) &= 0{,}7 \times \frac{6}{10} + 0{,}3 \times \frac{2}{20} \\
+&= 0{,}7 \times 0{,}6 + 0{,}3 \times 0{,}1 \\
+&= 0{,}42 + 0{,}03 = 0{,}45 = 45\%
 \end{aligned}" />
 
-Das sind <InlineMath math="45\%" />. Die Zahl ist plausibel: Sie liegt unter <InlineMath math="60\%" />, weil El Niño nicht sicher ist, aber über <InlineMath math="42\%" />, weil auch ein Jahr ohne El Niño trocken sein kann.
+> Der El-Nino-Pfad (<InlineMath math="42\%" />) plus der Pfad ohne El Nino (<InlineMath math="3\%" />) ergibt insgesamt <InlineMath math="45\%" />.
 
-- <InlineMath math="35\%" /> ist der einfache Mittelwert von <InlineMath math="60\%" /> und <InlineMath math="10\%" />. Er vergisst, dass El Niño wahrscheinlicher eintritt als ausbleibt.
-- <InlineMath math="42\%" /> zählt nur den Weg über El Niño und lässt schwere Trockenzeiten ohne El Niño weg.
-- <InlineMath math="60\%" /> ist die Wahrscheinlichkeit einer schweren Trockenzeit, **wenn El Niño sicher eintritt**, aber seine Wahrscheinlichkeit ist nur <InlineMath math="70\%" />.
-- <InlineMath math="70\%" /> ist die Wahrscheinlichkeit von El Niño. Der vierte Absatz betont, dass El Niño nicht immer eine schwere Trockenzeit bringt.
+## Herkunft der falschen Prozentwerte
 
-Die Wahrscheinlichkeit, dass der Bezirk nächstes Jahr eine schwere Trockenzeit erlebt, beträgt <InlineMath math="45\%" />.
+Der **Abgleich jeder Formel** zeigt ausgelassene Pfade oder fehlende Gewichtung.
+
+| Option | Rechnung | Bedeutung | Urteil |
+| --- | --- | --- | --- |
+| <InlineMath math="45\%" /> | <InlineMath math="0{,}7(0{,}6) + 0{,}3(0{,}1)" /> | Gewichtete Gesamtwahrscheinlichkeit beider Pfade | **Richtig** |
+| <InlineMath math="35\%" /> | <InlineMath math="(60\% + 10\%) : 2" /> | Ungewichtetes Mittel ohne <InlineMath math="70\%" />-Gewicht | **Falsch** |
+| <InlineMath math="42\%" /> | <InlineMath math="0{,}7 \times 0{,}6" /> | Nur El-Nino-Pfad ohne den <InlineMath math="3\%" />-Anteil | **Falsch** |
+| <InlineMath math="60\%" /> | <InlineMath math="6 : 10" /> | Unterstellt sicheren El Nino (<InlineMath math="100\%" />) | **Falsch** |
+| <InlineMath math="70\%" /> | Nur El-Nino-Chance | Setzt El Nino mit schwerer Dürre gleich | **Falsch** |
+
+# Antwort
+
+Die Wahrscheinlichkeit für eine schwere Dürre im nächsten Jahr beträgt **<InlineMath math="45\%" />**.

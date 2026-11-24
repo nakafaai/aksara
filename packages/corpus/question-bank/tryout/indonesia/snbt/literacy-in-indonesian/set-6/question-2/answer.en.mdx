@@ -1,20 +1,35 @@
-This question asks for the chance of a severe dry season, not the chance of El Nino. The fourth paragraph gives two hints: El Nino "tidak selalu mengeringkan setiap kabupaten" (doesn't always dry out every regency), and there are severe dry seasons "yang terjadi tanpa El Nino" (that happen without El Nino). So next year has **two roads to a severe dry season**, and both have to be counted.
+# Given
 
-First turn the regency's record into chances. In an El Nino year, a severe dry season happens with a chance of <InlineMath math="\tfrac{6}{10}=0.6" />. In a year without El Nino, the chance is <InlineMath math="\tfrac{2}{20}=0.1" />. The chance of El Nino is <InlineMath math="0.7" />, so the chance of no El Nino is <InlineMath math="1-0.7=0.3" />.
+District records show severe drought occurred in **<InlineMath math="6" /> of <InlineMath math="10" /> El Nino years** (<InlineMath math="0.6" />) and in **<InlineMath math="2" /> of <InlineMath math="20" /> non-El-Nino years** (<InlineMath math="0.1" />). Next year's El Nino probability is **<InlineMath math="70\%" />** (<InlineMath math="0.7" />), leaving <InlineMath math="0.3" /> for no El Nino.
 
-Multiply the chance of each road by the chance of a severe dry season on that road, then add them up:
+# Asked
+
+The probability that the district experiences severe drought next year.
+
+# Solution
+
+Add the probabilities of **both paths to severe drought** (with El Nino and without El Nino) via the law of total probability.
 
 <BlockMath math="\begin{aligned}
-P(\text{severe})&=0.7\times0.6+0.3\times0.1\\
-&=0.42+0.03\\
-&=0.45
+P(\text{severe}) &= 0.7 \times \frac{6}{10} + 0.3 \times \frac{2}{20} \\
+&= 0.7 \times 0.6 + 0.3 \times 0.1 \\
+&= 0.42 + 0.03 = 0.45 = 45\%
 \end{aligned}" />
 
-That's <InlineMath math="45\%" />. The figure makes sense: it's below <InlineMath math="60\%" /> because El Nino isn't certain, but above <InlineMath math="42\%" /> because a year without El Nino can be dry too.
+> Combining the El Nino branch (<InlineMath math="42\%" />) and the non-El-Nino branch (<InlineMath math="3\%" />) yields an overall probability of <InlineMath math="45\%" />.
 
-- <InlineMath math="35\%" /> is the plain average of <InlineMath math="60\%" /> and <InlineMath math="10\%" />. That average forgets El Nino is more likely to happen than not.
-- <InlineMath math="42\%" /> counts only the El Nino road and throws away severe dry seasons without El Nino.
-- <InlineMath math="60\%" /> is the chance of a severe dry season **if El Nino is certain**, but its chance is only <InlineMath math="70\%" />.
-- <InlineMath math="70\%" /> is the chance of El Nino. The fourth paragraph stresses that El Nino doesn't always bring a severe dry season.
+## Checking the distractor percentages
 
-The chance that the regency has a severe dry season next year is <InlineMath math="45\%" />.
+Tracing **how each number arises** exposes missing branches or unweighted averages.
+
+| Option | Formula | What it computes | Verdict |
+| --- | --- | --- | --- |
+| <InlineMath math="45\%" /> | <InlineMath math="0.7(0.6) + 0.3(0.1)" /> | Weighted total probability across both paths | **Correct** |
+| <InlineMath math="35\%" /> | <InlineMath math="(60\% + 10\%) : 2" /> | Unweighted average ignoring <InlineMath math="70\%" /> El Nino odds | **Incorrect** |
+| <InlineMath math="42\%" /> | <InlineMath math="0.7 \times 0.6" /> | El Nino path alone, dropping the <InlineMath math="3\%" /> branch | **Incorrect** |
+| <InlineMath math="60\%" /> | <InlineMath math="6 : 10" /> | Assumes El Nino is guaranteed (<InlineMath math="100\%" />) | **Incorrect** |
+| <InlineMath math="70\%" /> | El Nino odds only | Equates El Nino directly with severe drought | **Incorrect** |
+
+# Answer
+
+The probability that the district experiences a severe drought next year is **<InlineMath math="45\%" />**.
