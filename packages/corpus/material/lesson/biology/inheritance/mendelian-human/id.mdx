@@ -1,0 +1,492 @@
+export const metadata = {
+  title: "Hukum Mendel dan Pewarisan Sifat pada Manusia",
+  description:
+    "Persilangan monohibrid dan dihibrid Mendel, peluang diagram Punnett, golongan darah ABO, penentuan kelamin, serta silsilah keluarga.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2026-11-17",
+  subject: "Pewarisan Sifat",
+};
+
+## Cara Sifat Diturunkan dari Induk ke Keturunan
+
+**Pewarisan sifat** adalah penurunan sifat dari induk ke keturunannya melalui **gen**. Gen adalah segmen DNA di tempat tertentu pada kromosom, dan gen punya beberapa bentuk yang disebut **alel**. Setiap sel tubuh membawa dua alel untuk setiap gen, satu dari tiap induk. Gregor Mendel menemukan dua hukum dengan menyilangkan tanaman kacang ercis:
+
+> Diagram Punnett meramalkan peluang pada setiap pembuahan yang saling bebas, bukan jaminan jumlah pasti pada satu keluarga kecil.
+
+- **Hukum Segregasi**: dua alel dari satu gen berpisah saat gamet terbentuk, jadi setiap gamet hanya membawa satu alel. Dua induk yang sama-sama heterozigot menghasilkan keturunan dengan rasio fenotipe <InlineMath math="3:1" />.
+- **Hukum Asortasi Bebas**: alel dari gen yang berbeda masuk ke gamet secara bebas satu sama lain. Dua induk yang heterozigot untuk dua gen menghasilkan rasio <InlineMath math="9:3:3:1" />.
+
+Di sini kamu membandingkan hitungan asli Mendel dengan rasio itu, memperbesar diagram Punnett sampai seribu tanaman, membagi satu persegi peluang untuk dua gen, dan menelusuri golongan darah serta alel pada kromosom X di keluarga manusia.
+
+## Gen dan Alel pada Kromosom
+
+Genetika punya istilah sendiri, dan setiap soal memakainya. Contoh di tabel diambil dari tinggi tanaman kacang ercis. Alel untuk batang tinggi ditulis <InlineMath math="T" /> dan alel untuk batang pendek ditulis <InlineMath math="t" />.
+
+| Istilah | Arti | Contoh |
+| :--- | :--- | :--- |
+| Gen | Satuan pewarisan, yaitu segmen DNA yang mengatur satu karakter | Gen untuk tinggi tanaman |
+| Lokus | Letak tetap suatu gen pada kromosom | Gen tinggi tanaman berada di lokus yang sama pada kedua kromosom homolog |
+| Alel | Salah satu bentuk dari suatu gen | <InlineMath math="T" /> dan <InlineMath math="t" /> |
+| Alel dominan | Menampakkan sifatnya walaupun hanya ada satu salinan | <InlineMath math="T" /> |
+| Alel resesif | Menampakkan sifatnya hanya jika ada dua salinan | <InlineMath math="t" /> |
+| Genotipe | Pasangan alel yang dibawa suatu organisme | <InlineMath math="TT" />, <InlineMath math="Tt" />, atau <InlineMath math="tt" /> |
+| Fenotipe | Sifat yang bisa diamati, ditentukan oleh genotipe dan lingkungan | Tinggi atau pendek |
+| Homozigot | Dua alel yang sama pada satu lokus | <InlineMath math="TT" /> atau <InlineMath math="tt" /> |
+| Heterozigot | Dua alel yang berbeda pada satu lokus | <InlineMath math="Tt" /> |
+
+**Karakter** adalah ciri seperti tinggi tanaman, dan **sifat** adalah salah satu bentuk karakter itu, misalnya tinggi atau pendek. Alel dominan ditulis dengan huruf kapital, sedangkan alel resesif dengan huruf yang sama tetapi huruf kecil. Galur murni bersifat homozigot, jadi galur itu selalu menghasilkan keturunan yang sama dengannya. Dalam persilangan, induk disebut generasi <InlineMath math="P" />, keturunannya generasi <InlineMath math="F_1" />, dan keturunan dari tanaman <InlineMath math="F_1" /> disebut generasi <InlineMath math="F_2" />.
+
+## Mendel Menyilangkan Kacang Ercis Galur Murni
+
+Mendel memilih kacang ercis, *Pisum sativum*, karena beberapa alasan. Karakternya muncul dalam **pasangan sifat yang berlawanan** dan mudah dibedakan, misalnya bunga ungu atau putih. Bunga kacang ercis biasanya menyerbuk sendiri, jadi galur murni tetap murni, tetapi Mendel juga bisa menyilangkan dua tanaman dengan memindahkan serbuk sari pakai tangan. Kacang ercis cepat tumbuh dan menghasilkan banyak biji, jadi setiap persilangan memberinya hitungan yang besar.
+
+Dalam **persilangan monohibrid**, Mendel mengamati satu karakter saja. Ia menyilangkan tanaman tinggi galur murni dengan tanaman pendek galur murni, dan semua tanaman <InlineMath math="F_1" /> tinggi. Saat tanaman <InlineMath math="F_1" /> dibiarkan menyerbuk sendiri, sifat pendek muncul lagi: generasi <InlineMath math="F_2" /> berisi <InlineMath math="787" /> tanaman tinggi dan <InlineMath math="277" /> tanaman pendek. Sifat pendek tersembunyi di <InlineMath math="F_1" />, bukan hilang, dan itulah arti **resesif**.
+
+Mendel mengulang percobaan ini untuk tujuh karakter. Baca setiap batang di bawah dan bandingkan dengan garis di angka <InlineMath math="3" />.
+
+<Chart
+  title={<>Mendel Mendapat Hampir <InlineMath math="3:1" /> untuk Setiap Karakter</>}
+  description={
+    <>
+      Setiap batang adalah jumlah tanaman atau biji <InlineMath math="F_2" />{" "}
+      bersifat dominan dibagi jumlah yang bersifat resesif. Garisnya menandai
+      rasio harapan, yaitu <InlineMath math="3" />.
+    </>
+  }
+  footer={<>Ketujuh sifat Mendel sama-sama mendekati rasio F2 tiga banding satu.</>}
+  bars="apart"
+  categories={["Warna bunga", "Letak bunga", "Tinggi tanaman", "Bentuk biji", "Warna biji", "Bentuk polong", "Warna polong"]}
+  series={[
+    {
+      label: "Rasio pengamatan",
+      mark: "bar",
+      values: [705 / 224, 651 / 207, 787 / 277, 5474 / 1850, 6022 / 2001, 882 / 299, 428 / 152].map((ratio) => Math.round(ratio * 100) / 100),
+    },
+    { label: "Rasio harapan", mark: "line", values: [3, 3, 3, 3, 3, 3, 3] },
+  ]}
+  valueLabel="Dominan banding resesif"
+  valueRange={{ min: 0, max: 4 }}
+/>
+
+Setiap batang berada dekat angka <InlineMath math="3" />, tetapi tidak ada yang tepat. Dua sampel terbesar paling dekat: bentuk biji dari <InlineMath math="7{.}324" /> biji memberi <InlineMath math="2{,}96" />, dan warna biji dari <InlineMath math="8{.}023" /> biji memberi <InlineMath math="3{,}01" />. Warna polong, yang hanya dari <InlineMath math="580" /> tanaman, memberi <InlineMath math="2{,}82" />. **Sampel yang lebih besar lebih dekat ke rasio harapan**, karena pengaruh kebetulan makin seimbang kalau keturunannya banyak.
+
+### Hukum Segregasi dalam Diagram Punnett
+
+Mendel menjelaskan rasio <InlineMath math="3:1" /> dengan hukum pertamanya. Tanaman tinggi <InlineMath math="F_1" /> bergenotipe <InlineMath math="Tt" />. Saat tanaman itu membentuk gamet lewat meiosis, dua kromosom homolog berpisah, jadi **setiap gamet hanya membawa satu alel**: separuh gamet membawa <InlineMath math="T" /> dan separuhnya lagi membawa <InlineMath math="t" />. Saat fertilisasi, gamet jantan mana pun bisa bertemu gamet betina mana pun.
+
+Diagram persilangan menelusuri alel dari induk ke keturunan, dan **diagram Punnett** memasangkan setiap gamet dari satu induk dengan setiap gamet dari induk lainnya:
+
+| Gamet | <InlineMath math="T" /> | <InlineMath math="t" /> |
+| :--- | :--- | :--- |
+| <InlineMath math="T" /> | <InlineMath math="TT" />, tinggi | <InlineMath math="Tt" />, tinggi |
+| <InlineMath math="t" /> | <InlineMath math="Tt" />, tinggi | <InlineMath math="tt" />, pendek |
+
+<BlockMath math="TT : Tt : tt = 1 : 2 : 1, \qquad \text{tinggi} : \text{pendek} = 3 : 1" />
+
+Diagram itu memberi **peluang, bukan jumlah pasti**. Setiap keturunan <InlineMath math="F_2" /> punya peluang <InlineMath math="\tfrac{3}{4}" /> untuk tinggi. Geser penggeser untuk memilih jumlah tanaman <InlineMath math="F_2" />, lalu bandingkan jumlah harapan dengan hitungan asli Mendel untuk warna bunga.
+
+<MonohybridCrossLab
+  title={<>Persilangan Monohibrid Kacang Ercis dan Hukum Segregasi</>}
+  description={
+    <>
+      Pilih persilangan <InlineMath math="F_1" /> galur murni, <InlineMath math="F_2" /> heterozigot, atau uji silang untuk
+      melihat pemisahan alel ke gamet dan rasio keturunan kacang ercis.
+    </>
+  }
+  footer={<>Pemisahan alel saat meiosis menghasilkan rasio 3:1 pada F2 dan 1:1 saat uji silang.</>}
+  crosses={["pureF1", "heteroF2", "testCross"]}
+  labels={{
+    cross: "Pilih persilangan",
+    crosses: {
+      heteroF2: {
+        genotypeRatio: <>1 TT : 2 Tt : 1 tt</>,
+        name: "Silang F2 (Tt x Tt)",
+        phenotypeRatio: <>3 tinggi : 1 pendek</>,
+      },
+      pureF1: {
+        genotypeRatio: <>Semua Tt</>,
+        name: "Silang F1 (TT x tt)",
+        phenotypeRatio: <>Semua tinggi</>,
+      },
+      testCross: {
+        genotypeRatio: <>1 Tt : 1 tt</>,
+        name: "Uji silang (Tt x tt)",
+        phenotypeRatio: <>1 tinggi : 1 pendek</>,
+      },
+    },
+    genotypeRatio: <>Rasio genotipe</>,
+    parts: {
+      dwarfPea: "Ercis pendek",
+      gamete: "Gamet",
+      parentA: "Induk satu",
+      parentB: "Induk dua",
+      tallPea: "Ercis tinggi",
+    },
+    phenotypeRatio: <>Rasio fenotipe</>,
+    view: "Papan Punnett monohibrid tiga dimensi beserta keturunan kacang ercis",
+  }}
+/>
+
+Membandingkan ketiga persilangan itu memperjelas beda **rasio <InlineMath math="F_2" /> <InlineMath math="3:1" />** dan **rasio uji silang <InlineMath math="1:1" />**. Grafik berikut menunjukkan skala jumlah harapan saat sampel membesar.
+
+<MathVisual
+  title={<>Warna Bunga yang Diharapkan pada Generasi <InlineMath math="F_2" /></>}
+  description={
+    <>
+      Garis atas adalah <InlineMath math="\tfrac{3}{4}" /> dari tanaman dan garis
+      bawah adalah <InlineMath math="\tfrac{1}{4}" />. Dua titik bertanda adalah
+      hitungan Mendel untuk <InlineMath math="929" /> tanaman:{" "}
+      <InlineMath math="705" /> ungu dan <InlineMath math="224" /> putih.
+    </>
+  }
+  footer={<>Sampel F2 yang lebih besar makin mendekati perbandingan tiga banding satu.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 1000 }, y: { min: 0, max: 800 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "n", min: 0, max: 1000, value: 400, step: 4, label: "n" },
+    ],
+    objects: [
+      { id: "dominant", kind: "function", appearance: "primary", formula: "3x/4", domain: { min: 0, max: 1000 } },
+      { id: "recessive", kind: "function", appearance: "secondary", formula: "x/4", domain: { min: 0, max: 1000 } },
+      { id: "dominant-now", kind: "marker", appearance: "highlight", x: "n", y: "3n/4" },
+      { id: "recessive-now", kind: "marker", appearance: "highlight", x: "n", y: "n/4" },
+      { id: "violet", kind: "point", appearance: "warning", at: { x: 929, y: 705 } },
+      { id: "white", kind: "point", appearance: "warning", at: { x: 929, y: 224 } },
+    ],
+    labels: [
+      { key: "dominant", objectId: "dominant", at: { x: 600, y: 450 }, placement: "above-left" },
+      { key: "recessive", objectId: "recessive", at: { x: 600, y: 150 }, placement: "below-right" },
+      { key: "violet", objectId: "violet", at: { x: 929, y: 705 }, placement: "above-left" },
+      { key: "white", objectId: "white", at: { x: 929, y: 224 }, placement: "below-left" },
+    ],
+    readouts: [
+      { key: "expected-dominant", formula: "3n/4" },
+      { key: "expected-recessive", formula: "n/4" },
+    ],
+  }}
+  labels={{
+    n: <>Jumlah tanaman <InlineMath math="F_2" />, <InlineMath math="n" /></>,
+    dominant: <>Ungu, <InlineMath math="\tfrac{3}{4}n" /></>,
+    recessive: <>Putih, <InlineMath math="\tfrac{1}{4}n" /></>,
+    violet: <>Tanaman ungu Mendel</>,
+    white: <>Tanaman putih Mendel</>,
+    "expected-dominant": <>Harapan tanaman ungu</>,
+    "expected-recessive": <>Harapan tanaman putih</>,
+  }}
+/>
+
+Kerjakan persilangan bentuk biji Mendel. Biji bulat, <InlineMath math="R" />, dominan terhadap biji keriput, <InlineMath math="r" />, dan generasi <InlineMath math="F_2" /> dari <InlineMath math="Rr \times Rr" /> berisi <InlineMath math="7{.}324" /> biji. Kalikan jumlah itu dengan tiap peluang:
+
+<MathContainer>
+<BlockMath math="\text{bulat} = \tfrac{3}{4} \times 7{.}324 = 5{.}493" />
+<BlockMath math="\text{keriput} = \tfrac{1}{4} \times 7{.}324 = 1{.}831" />
+</MathContainer>
+
+Mendel menghitung <InlineMath math="5{.}474" /> biji bulat dan <InlineMath math="1{.}850" /> biji keriput, hanya selisih <InlineMath math="19" /> biji dari tiap jumlah harapan. Cek: <InlineMath math="5{.}493 + 1{.}831 = 7{.}324" />, yaitu seluruh sampel.
+
+Tanaman tinggi bisa <InlineMath math="TT" /> atau <InlineMath math="Tt" />, dan keduanya terlihat sama. **Uji silang** menentukan genotipenya: silangkan tanaman itu dengan tanaman homozigot resesif <InlineMath math="tt" />. Induk <InlineMath math="tt" /> hanya bisa memberi <InlineMath math="t" />, jadi setiap keturunan menampakkan alel yang datang dari induk yang belum diketahui. Kalau semua keturunan tinggi, induknya <InlineMath math="TT" />. Kalau kira-kira separuh keturunan pendek, induknya <InlineMath math="Tt" />.
+
+### Dua Sifat dalam Persilangan Dihibrid
+
+Dalam **persilangan dihibrid**, Mendel mengamati dua karakter sekaligus. Ia menyilangkan tanaman galur murni berbiji bulat kuning, <InlineMath math="RRYY" />, dengan tanaman galur murni berbiji keriput hijau, <InlineMath math="rryy" />. Semua tanaman <InlineMath math="F_1" /> berbiji bulat kuning dan bergenotipe <InlineMath math="RrYy" />.
+
+Hukum kedua Mendel, **Hukum Asortasi Bebas**, menyatakan bahwa pasangan alel untuk bentuk biji berpisah secara bebas dari pasangan alel untuk warna biji. Kedua gen ada di kromosom yang berbeda, dan setiap pasangan kromosom homolog berjajar di metafase I tanpa bergantung pada pasangan lain. Jadi tanaman <InlineMath math="RrYy" /> membentuk empat macam gamet dalam jumlah yang sama: <InlineMath math="RY" />, <InlineMath math="Ry" />, <InlineMath math="rY" />, dan <InlineMath math="ry" />.
+
+| Gamet | <InlineMath math="RY" /> | <InlineMath math="Ry" /> | <InlineMath math="rY" /> | <InlineMath math="ry" /> |
+| :--- | :--- | :--- | :--- | :--- |
+| <InlineMath math="RY" /> | <InlineMath math="RRYY" /> | <InlineMath math="RRYy" /> | <InlineMath math="RrYY" /> | <InlineMath math="RrYy" /> |
+| <InlineMath math="Ry" /> | <InlineMath math="RRYy" /> | <InlineMath math="RRyy" /> | <InlineMath math="RrYy" /> | <InlineMath math="Rryy" /> |
+| <InlineMath math="rY" /> | <InlineMath math="RrYY" /> | <InlineMath math="RrYy" /> | <InlineMath math="rrYY" /> | <InlineMath math="rrYy" /> |
+| <InlineMath math="ry" /> | <InlineMath math="RrYy" /> | <InlineMath math="Rryy" /> | <InlineMath math="rrYy" /> | <InlineMath math="rryy" /> |
+
+Hitung keenam belas kotak menurut fenotipenya: sembilan bulat kuning, tiga bulat hijau, tiga keriput kuning, dan satu keriput hijau. Jawaban yang sama didapat lebih cepat dari dua rasio monohibrid, karena **peluang kejadian yang saling bebas dikalikan**:
+
+<BlockMath math="P(\text{bulat dan kuning}) = \tfrac{3}{4} \times \tfrac{3}{4} = \tfrac{9}{16}" />
+
+Persegi di bawah punya sisi <InlineMath math="1" />. Penggeser <InlineMath math="p" /> adalah peluang biji bulat dan <InlineMath math="q" /> adalah peluang biji kuning, jadi luas setiap persegi panjang adalah peluang satu fenotipe. Atur keduanya ke <InlineMath math="0{,}75" /> untuk <InlineMath math="RrYy \times RrYy" />, lalu coba <InlineMath math="0{,}5" /> untuk uji silang.
+
+<DihybridCrossLab
+  title={<>Kotak Punnett Dihibrid 4x4 dan Hukum Asortasi Bebas</>}
+  description={
+    <>
+      Saring enam belas keturunan RrYy x RrYy untuk menyorot biji dominan ganda,
+      rekombinan, dan resesif ganda dalam rasio klasik <InlineMath math="9:3:3:1" />.
+    </>
+  }
+  footer={<>Asortasi bebas dua gen menghasilkan rasio klasik sembilan, tiga, tiga, dan satu.</>}
+  filters={["all", "dominantBoth", "recombinants", "recessiveBoth"]}
+  labels={{
+    count: <>Jumlah kotak cocok</>,
+    filter: "Sorot kelompok",
+    filters: {
+      all: { count: <>16 dari 16 biji</>, name: "Semua fenotipe", ratio: <>9 : 3 : 3 : 1</> },
+      dominantBoth: { count: <>9 dari 16 biji</>, name: "Bulat kuning", ratio: <>9 / 16</> },
+      recessiveBoth: { count: <>1 dari 16 biji</>, name: "Keriput hijau", ratio: <>1 / 16</> },
+      recombinants: { count: <>6 dari 16 biji</>, name: "Rekombinan", ratio: <>3 + 3 dari 16</> },
+    },
+    parts: {
+      roundGreen: "Bulat hijau",
+      roundYellow: "Bulat kuning",
+      wrinkledGreen: "Keriput hijau",
+      wrinkledYellow: "Keriput kuning",
+    },
+    ratio: <>Porsi fenotipe</>,
+    view: "Kubus Punnett dihibrid 4x4 tiga dimensi berisi biji kacang ercis",
+  }}
+/>
+
+Menyorot enam kotak rekombinan memperlihatkan mengapa **asortasi bebas** memunculkan kombinasi baru. Persegi peluang di bawah menghubungkannya dengan luas.
+
+<MathVisual
+  title={<>Dua Gen Membagi Satu Persegi Peluang</>}
+  description={
+    <>
+      Lebar <InlineMath math="p" /> adalah peluang biji bulat dan tinggi{" "}
+      <InlineMath math="q" /> adalah peluang biji kuning. Luas setiap persegi
+      panjang dikali <InlineMath math="16" /> adalah jumlah keturunan yang
+      diharapkan dari <InlineMath math="16" />.
+    </>
+  }
+  footer={<>Dua sifat bebas mengalikan peluangnya menjadi petak luas 9:3:3:1.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 1 }, y: { min: 0, max: 1 } },
+    view: { kind: "fit", padding: 0.08 },
+    parameters: [
+      { name: "p", min: 0.5, max: 1, value: 0.75, step: 0.25, label: "p" },
+      { name: "q", min: 0.5, max: 1, value: 0.75, step: 0.25, label: "q" },
+    ],
+    objects: [
+      { id: "both", kind: "region", appearance: "primary", inequalities: ["x >= 0", "x <= p", "y >= 0", "y <= q"] },
+      { id: "shape", kind: "region", appearance: "secondary", inequalities: ["x >= 0", "x <= p", "y >= q", "y <= 1"] },
+      { id: "colour", kind: "region", appearance: "highlight", inequalities: ["x >= p", "x <= 1", "y >= 0", "y <= q"] },
+      { id: "neither", kind: "region", appearance: "reference", inequalities: ["x >= p", "x <= 1", "y >= q", "y <= 1"] },
+    ],
+    labels: [
+      { key: "both", objectId: "both", at: { x: "p/2", y: "q/2" }, placement: "center" },
+      { key: "shape", objectId: "shape", at: { x: "p/2", y: "(1 + q)/2" }, placement: "center" },
+      { key: "colour", objectId: "colour", at: { x: "(1 + p)/2", y: "q/2" }, placement: "center" },
+      { key: "neither", objectId: "neither", at: { x: "(1 + p)/2", y: "(1 + q)/2" }, placement: "center" },
+    ],
+    readouts: [
+      { key: "round-yellow", formula: "16pq" },
+      { key: "round-green", formula: "16p(1 - q)" },
+      { key: "wrinkled-yellow", formula: "16(1 - p)q" },
+      { key: "wrinkled-green", formula: "16(1 - p)(1 - q)" },
+    ],
+  }}
+  labels={{
+    p: <>Peluang biji bulat <InlineMath math="p" /></>,
+    q: <>Peluang biji kuning <InlineMath math="q" /></>,
+    both: <>Bulat kuning</>,
+    shape: <>Bulat hijau</>,
+    colour: <>Keriput kuning</>,
+    neither: <>Keriput hijau</>,
+    "round-yellow": <>Bulat kuning, dari <InlineMath math="16" /></>,
+    "round-green": <>Bulat hijau, dari <InlineMath math="16" /></>,
+    "wrinkled-yellow": <>Keriput kuning, dari <InlineMath math="16" /></>,
+    "wrinkled-green": <>Keriput hijau, dari <InlineMath math="16" /></>,
+  }}
+/>
+
+Kerjakan satu uji silang dengan angka. Tanaman <InlineMath math="RrYy" /> disilangkan dengan tanaman <InlineMath math="rryy" /> dan menghasilkan <InlineMath math="200" /> biji. Induk <InlineMath math="rryy" /> hanya membentuk gamet <InlineMath math="ry" />, jadi peluang biji bulat adalah <InlineMath math="\tfrac{1}{2}" /> dan peluang biji kuning juga <InlineMath math="\tfrac{1}{2}" />:
+
+<BlockMath math="\text{bulat kuning} = \tfrac{1}{2} \times \tfrac{1}{2} \times 200 = 50" />
+
+Tiga fenotipe lainnya juga masing-masing <InlineMath math="50" />, jadi rasionya <InlineMath math="1:1:1:1" />. Cek: <InlineMath math="4 \times 50 = 200" />, dan persegi dengan <InlineMath math="p = 0{,}5" /> dan <InlineMath math="q = 0{,}5" /> menampilkan empat persegi panjang yang sama besar, masing-masing <InlineMath math="4" /> dari <InlineMath math="16" />.
+
+## Jenis Kelamin dan Golongan Darah Manusia
+
+Sel tubuh manusia punya <InlineMath math="23" /> pasang kromosom: <InlineMath math="22" /> pasang **autosom** dan satu pasang **kromosom seks**. Perempuan adalah <InlineMath math="XX" /> dan laki-laki adalah <InlineMath math="XY" />. Setiap sel telur membawa <InlineMath math="X" />, sedangkan separuh sperma membawa <InlineMath math="X" /> dan separuhnya lagi membawa <InlineMath math="Y" />. Jadi **spermalah yang menentukan jenis kelamin anak**, dan setiap anak punya peluang <InlineMath math="\tfrac{1}{2}" /> untuk menjadi laki-laki.
+
+Setiap kelahiran berasal dari pembuahan yang baru, jadi anak-anak sebelumnya tidak mengubah peluang untuk anak berikutnya. Peluang sebuah keluarga hanya punya anak perempuan makin kecil saat jumlah anaknya bertambah. Geser penggeser untuk memilih jumlah anak <InlineMath math="k" />.
+
+<MathVisual
+  title={<>Peluang Semua <InlineMath math="k" /> Anak Perempuan</>}
+  description={
+    <>
+      Garis datar adalah peluang satu anak perempuan,{" "}
+      <InlineMath math="\tfrac{1}{2}" />. Kurva yang turun adalah peluang semua{" "}
+      <InlineMath math="k" /> anak perempuan,{" "}
+      <InlineMath math="\left(\tfrac{1}{2}\right)^k" />.
+    </>
+  }
+  footer={<>Tiap kelahiran saling bebas sehingga peluang semua perempuan mengecil setengah.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 6 }, y: { min: 0, max: 1.1 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "k", min: 1, max: 6, value: 3, step: 1, label: "k" },
+    ],
+    objects: [
+      { id: "each", kind: "function", appearance: "secondary", formula: "1/2", domain: { min: 0, max: 6 } },
+      { id: "all", kind: "function", appearance: "primary", formula: "(1/2)^x", domain: { min: 0, max: 6 } },
+      { id: "now", kind: "marker", appearance: "highlight", x: "k", y: "(1/2)^k" },
+    ],
+    labels: [
+      { key: "each", objectId: "each", at: { x: 5, y: 0.5 }, placement: "above" },
+      { key: "all", objectId: "all", at: { x: 2, y: 0.25 }, placement: "above-right" },
+    ],
+    readouts: [
+      { key: "next", formula: "1/2" },
+      { key: "girls", formula: "(1/2)^k" },
+    ],
+  }}
+  labels={{
+    k: <>Jumlah anak <InlineMath math="k" /></>,
+    each: <>Satu anak perempuan</>,
+    all: <>Semua anak perempuan</>,
+    next: <>Peluang anak berikutnya perempuan</>,
+    girls: <>Peluang semua <InlineMath math="k" /> anak perempuan</>,
+  }}
+/>
+
+Golongan darah ABO diatur oleh satu gen yang punya **tiga alel**, yaitu <InlineMath math="I^A" />, <InlineMath math="I^B" />, dan <InlineMath math="i" />. Gen yang punya lebih dari dua alel dalam satu populasi disebut **alel ganda**, walaupun setiap orang tetap hanya membawa dua di antaranya. Alel <InlineMath math="I^A" /> dan <InlineMath math="I^B" /> bersifat **kodominan**: orang bergenotipe <InlineMath math="I^A I^B" /> membuat antigen A sekaligus antigen B. Keduanya dominan terhadap <InlineMath math="i" />.
+
+| Genotipe | Golongan darah |
+| :--- | :--- |
+| <InlineMath math="I^A I^A" /> atau <InlineMath math="I^A i" /> | A |
+| <InlineMath math="I^B I^B" /> atau <InlineMath math="I^B i" /> | B |
+| <InlineMath math="I^A I^B" /> | AB |
+| <InlineMath math="ii" /> | O |
+
+Faktor rhesus mengikuti pola yang lebih sederhana. Alel <InlineMath math="D" /> untuk rhesus positif dominan terhadap alel <InlineMath math="d" /> untuk rhesus negatif, jadi hanya orang bergenotipe <InlineMath math="dd" /> yang rhesus negatif.
+
+Cari golongan darah anak dari ayah bergolongan darah A, <InlineMath math="I^A i" />, dan ibu bergolongan darah B, <InlineMath math="I^B i" />. Setiap induk membentuk dua macam gamet dalam jumlah yang sama:
+
+| Gamet | <InlineMath math="I^B" /> | <InlineMath math="i" /> |
+| :--- | :--- | :--- |
+| <InlineMath math="I^A" /> | <InlineMath math="I^A I^B" />, golongan AB | <InlineMath math="I^A i" />, golongan A |
+| <InlineMath math="i" /> | <InlineMath math="I^B i" />, golongan B | <InlineMath math="ii" />, golongan O |
+
+<Chart
+  title={<>Anak dari Induk <InlineMath math="I^A i" /> dan <InlineMath math="I^B i" /></>}
+  description={
+    <>
+      Setiap kotak diagram Punnett punya peluang{" "}
+      <InlineMath math="\tfrac{1}{4}" />, jadi keempat golongan darah sama
+      mungkinnya untuk setiap anak.
+    </>
+  }
+  footer={<>Induk IAi dan IBi bisa melahirkan anak dari keempat golongan darah ABO.</>}
+  bars="apart"
+  categories={["Golongan A", "Golongan B", "Golongan AB", "Golongan O"]}
+  series={[
+    { label: "Peluang untuk setiap anak (%)", mark: "bar", values: [1, 1, 1, 1].map((boxes) => (boxes / 4) * 100) },
+  ]}
+  valueLabel="Peluang (%)"
+  valueRange={{ min: 0, max: 50 }}
+/>
+
+Setiap golongan darah punya peluang <InlineMath math="\tfrac{1}{4}" />, atau <InlineMath math="25\%" />. **Induk bergolongan darah A dan B bisa punya anak bergolongan darah O**, tetapi hanya kalau keduanya membawa <InlineMath math="i" />. Cek: <InlineMath math="4 \times \tfrac{1}{4} = 1" />, jadi keempat golongan mencakup setiap anak.
+
+## Silsilah Keluarga dan Kromosom X
+
+Sebagian gen terletak di kromosom <InlineMath math="X" /> dan tidak punya lokus pasangan di kromosom <InlineMath math="Y" /> yang jauh lebih kecil. Pewarisan gen seperti ini disebut **pewarisan terpaut kromosom X**. Buta warna merah-hijau dan hemofilia sama-sama disebabkan alel resesif di kromosom <InlineMath math="X" />. Tulis <InlineMath math="X^B" /> untuk penglihatan warna normal dan <InlineMath math="X^b" /> untuk buta warna.
+
+Perempuan perlu dua alel resesif, <InlineMath math="X^b X^b" />, untuk menjadi buta warna. Perempuan bergenotipe <InlineMath math="X^B X^b" /> melihat dengan normal tetapi menjadi **pembawa** atau carrier. Laki-laki hanya punya satu <InlineMath math="X" />, jadi satu <InlineMath math="X^b" /> sudah membuatnya buta warna. Itulah sebabnya **sifat resesif terpaut X lebih sering muncul pada laki-laki**. Silangkan ibu pembawa dengan ayah yang penglihatannya normal:
+
+| Gamet | <InlineMath math="X^B" /> | <InlineMath math="Y" /> |
+| :--- | :--- | :--- |
+| <InlineMath math="X^B" /> | <InlineMath math="X^B X^B" />, anak perempuan normal | <InlineMath math="X^B Y" />, anak laki-laki normal |
+| <InlineMath math="X^b" /> | <InlineMath math="X^B X^b" />, anak perempuan pembawa | <InlineMath math="X^b Y" />, anak laki-laki buta warna |
+
+<PedigreeSexLinkedLab
+  title={<>Golongan Darah ABO, Kromosom Kelamin, dan Silsilah Terpaut X</>}
+  description={
+    <>
+      Bandingkan kodominansi ABO, penentuan jenis kelamin XX-XY, dan silsilah
+      resesif terpaut X untuk melihat mengapa laki-laki cukup punya satu alel
+      resesif.
+    </>
+  }
+  footer={<>Laki-laki hanya punya satu kromosom X sehingga satu alel resesif langsung tampak.</>}
+  patterns={["aboBlood", "sexDetermination", "xLinked"]}
+  labels={{
+    parts: {
+      affected: "Penderita",
+      carrier: "Ibu pembawa",
+      female: "Perempuan (XX)",
+      male: "Laki-laki (XY)",
+      xChromosome: "Kromosom X",
+      yChromosome: "Kromosom Y",
+    },
+    pattern: "Pola pewarisan",
+    patterns: {
+      aboBlood: {
+        name: "Golongan darah ABO",
+        risk: <>Induk IAi x IBi dapat memiliki anak bergolongan A, B, AB, dan O</>,
+        rule: <>Alel IA dan IB kodominan serta sama-sama dominan atas IO</>,
+      },
+      sexDetermination: {
+        name: "Kromosom XX dan XY",
+        risk: <>Setiap kelahiran berpeluang sama antara laki-laki dan perempuan</>,
+        rule: <>Sperma pembawa X atau Y menentukan jenis kelamin anak</>,
+      },
+      xLinked: {
+        name: "Resesif terpaut X",
+        risk: <>Separuh anak laki-laki ibu pembawa mewarisi buta warna atau hemofilia</>,
+        rule: <>Alel resesif berada di kromosom X tanpa pasangan di kromosom Y</>,
+      },
+    },
+    risk: <>Peluang keturunan</>,
+    rule: <>Aturan pewarisan</>,
+    view: "Model silsilah tiga dimensi dan pewarisan kromosom kelamin manusia",
+  }}
+/>
+
+Bandingkan ibu pembawa dan ayah penderita pada ketiga pola manusia sebelum memeriksa peluang tepat keturunan pada diagram berikut.
+
+<Chart
+  title={<>Anak dari Ibu Pembawa <InlineMath math="X^B X^b" /> dan Ayah <InlineMath math="X^B Y" /></>}
+  description={
+    <>
+      Separuh anak laki-laki buta warna dan separuh anak perempuan adalah
+      pembawa. Tidak ada anak perempuan yang buta warna, karena setiap anak
+      perempuan menerima <InlineMath math="X^B" /> dari ayahnya.
+    </>
+  }
+  footer={<>Separuh anak laki-laki ibu pembawa mewarisi sifat resesif terpaut X.</>}
+  bars="apart"
+  categories={["Anak perempuan", "Anak laki-laki"]}
+  series={[
+    { label: "Penglihatan normal, tanpa alel resesif (%)", mark: "bar", values: [1, 1].map((boxes) => (boxes / 2) * 100) },
+    { label: "Pembawa dengan penglihatan normal (%)", mark: "bar", values: [1, 0].map((boxes) => (boxes / 2) * 100) },
+    { label: "Buta warna (%)", mark: "bar", values: [0, 1].map((boxes) => (boxes / 2) * 100) },
+  ]}
+  valueLabel="Persentase anak perempuan atau laki-laki (%)"
+  valueRange={{ min: 0, max: 100 }}
+/>
+
+Anak laki-laki selalu menerima <InlineMath math="X" /> dari ibunya dan <InlineMath math="Y" /> dari ayahnya, jadi **anak laki-laki yang buta warna mewarisi alelnya dari ibu**. Hemofilia, kelainan yang membuat darah lambat membeku, diwariskan dengan cara yang persis sama.
+
+**Silsilah** atau peta silsilah adalah bagan keluarga yang menunjukkan siapa saja yang punya suatu sifat. Kotak menandai laki-laki, lingkaran menandai perempuan, dan bentuk yang diarsir menandai orang yang menderita kelainan. Garis mendatar menghubungkan dua induk, dan garis tegak turun ke anak-anak mereka. Talasemia adalah kelainan darah yang membuat tubuh terlalu sedikit menghasilkan hemoglobin normal, dan kelainan ini disebabkan alel resesif pada autosom. Tulis <InlineMath math="A" /> untuk alel normal dan <InlineMath math="a" /> untuk alel talasemia.
+
+<Mermaid
+  title={<>Keluarga dengan Satu Anak Penderita Talasemia</>}
+  description={
+    <>
+      Kedua induk tidak menderita talasemia, tetapi anak laki-laki mereka
+      menderita, jadi setiap induk pasti membawa satu alel resesif. Anak
+      perempuan mereka yang sehat mungkin pembawa, mungkin juga bukan.
+    </>
+  }
+  footer={<>Dua orang tua pembawa yang sehat bisa memiliki anak penderita resesif.</>}
+  chart={`flowchart TD
+  F["Ayah, sehat: Aa"] --> S["Anak laki-laki, talasemia: aa"]
+  M["Ibu, sehat: Aa"] --> S
+  F --> D["Anak perempuan, sehat: AA atau Aa"]
+  M --> D`}
+/>
+
+Analisis silsilah itu. Anak laki-laki itu <InlineMath math="aa" /> dan menerima satu <InlineMath math="a" /> dari tiap induk. Kedua induk sehat, jadi masing-masing pasti <InlineMath math="Aa" />. Untuk anak berikutnya, persilangan <InlineMath math="Aa \times Aa" /> memberi <InlineMath math="AA : Aa : aa = 1 : 2 : 1" />:
+
+<MathContainer>
+<BlockMath math="P(\text{anak berikutnya menderita}) = \tfrac{1}{4}" />
+<BlockMath math="P(\text{anak perempuan yang sehat adalah pembawa}) = \frac{2}{1 + 2} = \frac{2}{3}" />
+</MathContainer>
+
+Anak perempuan itu sehat, jadi kotak <InlineMath math="aa" /> tidak berlaku baginya, dan **dua dari tiga kotak yang tersisa adalah pembawa**. Cek: <InlineMath math="\tfrac{1}{3} + \tfrac{2}{3} = 1" />, jadi anak perempuan itu pasti <InlineMath math="AA" /> atau <InlineMath math="Aa" />.

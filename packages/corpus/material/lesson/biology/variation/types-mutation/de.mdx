@@ -1,0 +1,404 @@
+export const metadata = {
+  title: "Variation und Mutation bei Lebewesen",
+  description:
+    "Kontinuierliche und diskontinuierliche Variation, polygene Glockenkurven, Neukombination in der Meiose, Genmutationen und Chromosomenmutationen.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2026-11-17",
+  subject: "Variation",
+};
+
+## Warum sich Individuen einer Art unterscheiden
+
+**Variation** ist der Unterschied in den Merkmalen zwischen Individuen derselben Art. Es gibt zwei Formen:
+
+> Meiose und Befruchtung mischen vorhandene Allele neu, während nur Mutationen wirklich neue Allele hervorbringen.
+
+- **Kontinuierliche Variation**: Das Merkmal kann jeden Wert in einem Bereich annehmen, etwa Körpergröße, Körpermasse oder Blattlänge. Viele Gene und die Umwelt steuern es, und sein Histogramm bildet eine glockenförmige **Normalverteilung**.
+- **Diskontinuierliche Variation**: Das Merkmal fällt in wenige klar getrennte Gruppen ohne Zwischenstufen, etwa die ABO-Blutgruppe, der Rhesusfaktor oder das Muster des Fingerabdrucks. Ein Gen oder wenige Gene steuern es, die Umwelt wirkt kaum, und ein Säulendiagramm zeigt es.
+
+Variation hat **genetische Ursachen**, nämlich Crossing-over, die unabhängige Verteilung der Chromosomen, die zufällige Befruchtung und Mutationen, und **Ursachen in der Umwelt**, wie Nahrung, Licht und Temperatur. Hier formst du eine Kurve der Körpergrößen um, sortierst Daten in ein Histogramm und ein Säulendiagramm, fügst Gene hinzu, bis Stufen zu einem Bereich verschmelzen, zählst Chromosomenkombinationen und vergleichst ein normales Allel mit einem Sichelzell-Allel Base für Base.
+
+### Kontinuierliche Variation bildet eine Glockenkurve
+
+Miss die Körpergröße einer großen Gruppe gleichaltriger Schülerinnen und Schüler. Die meisten Werte liegen in der Mitte, und je weiter du nach außen gehst, desto weniger sehr kleine oder sehr große Personen findest du. Trägst du die Anzahl gegen die Körpergröße auf, entsteht eine **Normalverteilungskurve**. Ihr Gipfel liegt beim **Mittelwert**, und ihre Breite zeigt, wie stark die Größen streuen.
+
+Die Gene legen den Bereich fest, in dem jemand wachsen kann, und Ernährung, Gesundheit und Bewegung bestimmen, wo im Bereich die Person landet. Beweg die Regler: <InlineMath math="m" /> verschiebt den Mittelwert, und <InlineMath math="s" /> macht die Streuung breiter oder schmaler. Eine breitere Kurve ist niedriger, weil sich dieselbe Gruppe auf mehr Zentimeter verteilt.
+
+<MathVisual
+  title={<>Körpergrößen von hundert Lernenden als Normalverteilung</>}
+  description={
+    <>
+      Die waagerechte Achse ist die Körpergröße in Zentimetern, die senkrechte
+      die Zahl der Lernenden pro Zentimeter Körpergröße. Etwa{" "}
+      <InlineMath math="95\%" /> der Lernenden liegen zwischen{" "}
+      <InlineMath math="m - 2s" /> und <InlineMath math="m + 2s" />.
+    </>
+  }
+  footer={<>Die meisten Werte sammeln sich um den Mittelwert, Extreme bleiben selten.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 140, max: 190 }, y: { min: 0, max: 14 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "m", min: 150, max: 175, value: 162, step: 1, label: "m" },
+      { name: "s", min: 3, max: 9, value: 6, step: 0.5, label: "s" },
+    ],
+    objects: [
+      { id: "curve", kind: "function", appearance: "primary", formula: "100/(s sqrt(2 pi)) exp(-(x - m)^2/(2 s^2))", domain: { min: 140, max: 190 } },
+      { id: "mean", kind: "path", appearance: "construction", points: [{ x: "m", y: "0" }, { x: "m", y: "100/(s sqrt(2 pi))" }] },
+      { id: "peak", kind: "marker", appearance: "highlight", x: "m", y: "100/(s sqrt(2 pi))" },
+    ],
+    labels: [
+      { key: "curve", objectId: "curve", at: { x: "m + s", y: "100 exp(-1/2)/(s sqrt(2 pi))" }, placement: "above-right" },
+      { key: "peak", objectId: "peak", at: { x: "m", y: "100/(s sqrt(2 pi))" }, placement: "above" },
+    ],
+    readouts: [
+      { key: "height", formula: "100/(s sqrt(2 pi))" },
+      { key: "low", formula: "m - 2s" },
+      { key: "high", formula: "m + 2s" },
+    ],
+  }}
+  labels={{
+    m: <>Mittelwert <InlineMath math="m" /> in cm</>,
+    s: <>Streuung <InlineMath math="s" /> in cm</>,
+    curve: <>Normalverteilung</>,
+    peak: <>Mittelwert</>,
+    height: <>Lernende pro cm am Mittelwert</>,
+    low: <>Untere Grenze der mittleren <InlineMath math="95\%" />, in cm</>,
+    high: <>Obere Grenze der mittleren <InlineMath math="95\%" />, in cm</>,
+  }}
+/>
+
+Echte Daten kommen in Klassen. Eine Klasse mit <InlineMath math="40" /> Lernenden hat ihre Körpergrößen gemessen und in Klassen von <InlineMath math="5\text{ cm}" /> eingeteilt. Die Balken eines Histogramms berühren sich, weil die Klassen lückenlos aneinanderschließen.
+
+<Chart
+  title={<>Körpergrößen von <InlineMath math="40" /> Lernenden einer Klasse</>}
+  description={
+    <>
+      Der höchste Balken ist die Klasse von <InlineMath math="160" /> bis{" "}
+      <InlineMath math="164\text{ cm}" />, und nach beiden Seiten fallen die
+      Balken ab, die typische Form kontinuierlicher Variation.
+    </>
+  }
+  footer={<>Körpergrößen verschmelzen zu einer geschlossenen glockenförmigen Kurve.</>}
+  bars="touching"
+  categories={["145 bis 149 cm", "150 bis 154 cm", "155 bis 159 cm", "160 bis 164 cm", "165 bis 169 cm", "170 bis 174 cm", "175 bis 179 cm"]}
+  series={[
+    { label: "Zahl der Lernenden", mark: "bar", values: [2, 5, 8, 11, 8, 4, 2] },
+  ]}
+  valueLabel="Zahl der Lernenden"
+/>
+
+Berechne den Mittelwert. Nimm die Klassenmitte jeder Klasse, multipliziere sie mit der Zahl der Lernenden in dieser Klasse, addiere die Produkte und teile durch die Gesamtzahl:
+
+<MathContainer>
+<BlockMath math="\sum f x = 2(147) + 5(152) + 8(157) + 11(162) + 8(167) + 4(172) + 2(177) = 6{.}470" />
+<BlockMath math="\bar{x} = \frac{\sum f x}{\sum f} = \frac{6{.}470}{40} = 161{,}75\text{ cm}" />
+</MathContainer>
+
+Der Mittelwert ist <InlineMath math="161{,}75\text{ cm}" />, und die **modale Klasse**, also der höchste Balken, reicht von <InlineMath math="160" /> bis <InlineMath math="164\text{ cm}" />. Probe: Die sieben Balkenhöhen ergeben zusammen <InlineMath math="40" />, und der Mittelwert liegt in der modalen Klasse, wie es bei einer fast symmetrischen Kurve sein muss.
+
+### Diskontinuierliche Variation zerfällt in Gruppen
+
+Ein Fingerabdruck zeigt eines von drei Grundmustern: eine **Schleife**, einen **Wirbel** oder einen **Bogen**. Jeder Abdruck gehört zu einem davon, und keiner liegt halb zwischen zwei Mustern. Bei der Blutgruppe ist es genauso: Ein Mensch hat A, B, AB oder O, je nach den geerbten Allelen, und **die Umwelt kann das nicht ändern**.
+
+Dieselbe Klasse hat das Muster am rechten Daumen jeder Person notiert. Diese Daten zeigt ein Säulendiagramm, dessen Säulen getrennt stehen, weil die Gruppen eigene Kategorien ohne Zwischenwerte sind.
+
+<Chart
+  title={<>Fingerabdruckmuster am rechten Daumen von <InlineMath math="40" /> Lernenden</>}
+  description={
+    <>
+      Jede Person gehört zu genau einer von drei Gruppen. Die Säule der
+      Schleife ist am höchsten, mit <InlineMath math="26" /> Lernenden.
+    </>
+  }
+  footer={<>Fingerabdruckmuster trennen sich in klare Säulen ohne Übergänge.</>}
+  bars="apart"
+  categories={["Schleife", "Wirbel", "Bogen"]}
+  series={[
+    { label: "Zahl der Lernenden", mark: "bar", values: [26, 12, 2] },
+  ]}
+  valueLabel="Zahl der Lernenden"
+/>
+
+Rechne die Zahlen in Prozent um. Teile jede Zahl durch die Klassengröße und multipliziere mit <InlineMath math="100\%" />:
+
+<BlockMath math="\text{Schleife} = \frac{26}{40} \times 100\% = 65\%, \qquad \text{Wirbel} = \frac{12}{40} \times 100\% = 30\%, \qquad \text{Bogen} = \frac{2}{40} \times 100\% = 5\%" />
+
+Probe: <InlineMath math="65\% + 30\% + 5\% = 100\%" />, also ist jede Person genau einmal gezählt. Die Tabelle stellt die beiden Formen nebeneinander.
+
+| Kennzeichen | Kontinuierliche Variation | Diskontinuierliche Variation |
+| :--- | :--- | :--- |
+| Werte | Jeder Wert in einem Bereich | Wenige klar getrennte Gruppen |
+| Gene | Viele Gene | Ein Gen oder wenige Gene |
+| Umwelt | Großer Einfluss | Kaum oder kein Einfluss |
+| Diagramm | Histogramm, Normalverteilung | Säulendiagramm mit Lücken |
+| Beispiele | Körpergröße, Körpermasse, Blattlänge | ABO-Blutgruppe, Rhesusfaktor, Fingerabdruckmuster |
+
+## Viele Gene und die Umwelt glätten die Spannweite
+
+Warum bildet die Körpergröße eine glatte Kurve, die Blutgruppe aber getrennte Säulen? Die Körpergröße wird von **vielen Genen** gesteuert, und jedes trägt nur ein wenig bei. Nimm ein Modellmerkmal, das drei Gene steuern, <InlineMath math="A" />, <InlineMath math="B" /> und <InlineMath math="C" />, wobei jedes großgeschriebene Allel gleich viel beiträgt. Kreuze zwei <InlineMath math="AaBbCc" />-Eltern und zähl die großgeschriebenen Allele in jedem Nachkommen.
+
+<VariationDistributionLab
+  title={<>Glockenkurve kontinuierlicher vs diskrete Balken diskontinuierlicher Variation</>}
+  description={
+    <>
+      Wechsle zwischen kontinuierlicher und diskontinuierlicher Variation und
+      erhöhe die Zahl der Genpaare, um den Übergang zur glatten Glockenkurve zu
+      sehen.
+    </>
+  }
+  footer={<>Viele Gene und Umwelteinflüsse glätten einzelne Stufen zu einer Glockenkurve.</>}
+  genePairs={{ min: 1, max: 6, value: 3 }}
+  kinds={["continuous", "discontinuous"]}
+  labels={{
+    basis: <>Genetische Steuerung</>,
+    genePairs: "Beteiligte Genpaare",
+    kind: "Variationsart",
+    kinds: {
+      continuous: {
+        basis: <>Viele Gene zusammen mit Umwelteinflüssen bestimmen das Merkmal</>,
+        name: "Kontinuierlich",
+        shape: <>Glatte Glockenkurve mit fließenden Übergängen</>,
+      },
+      discontinuous: {
+        basis: <>Ein einzelnes Gen ohne Umwelteinfluss legt die Gruppe fest</>,
+        name: "Diskontinuierlich",
+        shape: <>Klar getrennte Balken ohne Zwischenstufen</>,
+      },
+    },
+    parts: {
+      bellCurve: "Glockenkurve",
+      discreteBars: "Einzelbalken",
+      environment: "Umwelt",
+      meanLine: "Mittelwert",
+    },
+    shape: <>Verteilungsform</>,
+    view: "Dreidimensionales Populationshistogramm beider Variationsarten",
+  }}
+/>
+
+Mehr beteiligte Genpaare glätten einzelne Stufen zur Glockenkurve, was das **Drei-Gen-Kreuzungsdiagramm** direkt darunter bestätigt.
+
+<Chart
+  title={<>Nachkommen aus <InlineMath math="AaBbCc \times AaBbCc" /></>}
+  description={
+    <>
+      Jeder Nachkomme trägt <InlineMath math="0" /> bis{" "}
+      <InlineMath math="6" /> großgeschriebene Allele. Die Wahrscheinlichkeiten
+      folgen <InlineMath math="\tfrac{1}{64}" />,{" "}
+      <InlineMath math="\tfrac{6}{64}" />, <InlineMath math="\tfrac{15}{64}" />,{" "}
+      <InlineMath math="\tfrac{20}{64}" /> und wieder abwärts, schon fast eine
+      Glocke.
+    </>
+  }
+  footer={<>Mehr beteiligte Gene glätten einzelne Stufen zu einer feinen Kurve.</>}
+  bars="touching"
+  categories={["0", "1", "2", "3", "4", "5", "6"]}
+  series={[
+    { label: "Wahrscheinlichkeit (%)", mark: "bar", values: [1, 6, 15, 20, 15, 6, 1].map((ways) => Math.round((ways / 64) * 1000) / 10) },
+  ]}
+  valueLabel="Wahrscheinlichkeit (%)"
+/>
+
+Ein Genpaar ergibt drei Klassen, zwei Paare fünf und drei Paare sieben: Mit <InlineMath math="g" /> Genpaaren gibt es <InlineMath math="2g + 1" /> Klassen. Jedes weitere Gen **fügt Klassen hinzu und macht die Stufen kleiner**. Die Umwelt verwischt den Rest, sodass eine gut versorgte Pflanze einer Klasse so groß werden kann wie eine schlecht versorgte der Klasse darüber, und die Säulen verschmelzen zu einer glatten Kurve.
+
+Die Umwelt wirkt auf jedes Lebewesen. Eineiige Zwillinge haben dieselben Gene, also stammt jeder Unterschied zwischen ihnen, etwa in der Körpermasse, aus der Umwelt. Die Blätter eines Baumes tragen dieselben Gene, trotzdem werden Blätter im Schatten größer als Blätter in voller Sonne. Die Blüten der Hortensie werden in saurem Boden blau und in basischem Boden rosa. In jedem Fall **entsteht der Phänotyp aus Genotyp und Umwelt zusammen**.
+
+## Meiose und Befruchtung mischen die Allele
+
+Drei Vorgänge der geschlechtlichen Fortpflanzung mischen die Allele neu, die eine Art schon besitzt:
+
+- **Crossing-over** in der Prophase I tauscht Abschnitte zwischen Nicht-Schwesterchromatiden homologer Chromosomen aus, sodass ein Chromosom eine neue Kombination von Allelen trägt.
+- Die **unabhängige Verteilung** in der Metaphase I ordnet jedes homologe Paar an, ohne sich nach den anderen Paaren zu richten. Eine Zelle mit <InlineMath math="n" /> Paaren kann <InlineMath math="2^n" /> Kombinationen von Chromosomen in ihre Keimzellen geben.
+- Die **zufällige Befruchtung** lässt jedes Spermium mit jeder Eizelle verschmelzen, also multiplizieren sich die Kombinationen beider Eltern.
+
+Beweg den Regler für die haploide Zahl <InlineMath math="n" />. Die Kurve zeigt die Keimzellkombinationen allein aus der unabhängigen Verteilung, noch ohne Crossing-over.
+
+<MeiosisShufflingLab
+  title={<>Crossing-over, unabhängige Verteilung und zufällige Befruchtung</>}
+  description={
+    <>
+      Verfolge die drei Neukombinationsschritte der geschlechtlichen
+      Fortpflanzung und erhöhe die Zahl homologer Chromosomenpaare für die
+      Keimzellenvielfalt.
+    </>
+  }
+  footer={<>Crossing-over und unabhängige Verteilung mischen vorhandene Allele neu.</>}
+  chromosomePairs={{ min: 1, max: 8, value: 3 }}
+  stages={["crossingOver", "independentAssortment", "randomFertilisation"]}
+  labels={{
+    chromosomePairs: "Homologe Paare (n)",
+    combinations: <>Keimzellenkombinationen</>,
+    mechanism: <>Ursache der Vielfalt</>,
+    parts: {
+      centromere: "Centromer",
+      chiasma: "Chiasma",
+      gamete: "Rekombinante Keimzelle",
+      maternalChromatid: "Mütterliches Chromatid",
+      paternalChromatid: "Väterliches Chromatid",
+    },
+    stage: "Schritt",
+    stages: {
+      crossingOver: {
+        mechanism: <>Nicht-Schwesterchromatiden tauschen in Prophase I Abschnitte aus</>,
+        name: "Crossing-over",
+      },
+      independentAssortment: {
+        mechanism: <>Homologe Paare ordnen sich in Metaphase I frei an und liefern 2^n Keimzellen</>,
+        name: "Unabhängige Verteilung",
+      },
+      randomFertilisation: {
+        mechanism: <>Jedes Spermium kann jede Eizelle befruchten und die Vielfalt multiplizieren</>,
+        name: "Zufällige Befruchtung",
+      },
+    },
+    view: "Dreidimensionale homologe Chromosomen bei der Neukombination in der Meiose",
+  }}
+/>
+
+Crossing-over und unabhängige Verteilung lassen die Keimzellenvielfalt rasant wachsen, wie die Exponentialkurve für <InlineMath math="2^n" /> unten zeigt.
+
+<MathVisual
+  title={<>Chromosomenkombinationen durch unabhängige Verteilung</>}
+  description={
+    <>
+      Die waagerechte Achse ist die haploide Zahl <InlineMath math="n" />, die
+      senkrechte die Zahl verschiedener Keimzellen, <InlineMath math="2^n" />.
+      Ein Chromosomenpaar mehr verdoppelt sie.
+    </>
+  }
+  footer={<>Unabhängige Verteilung lässt die Keimzellenvielfalt mit Zweierpotenzen wachsen.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 10 }, y: { min: 0, max: 1100 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "n", min: 1, max: 10, value: 7, step: 1, label: "n" },
+    ],
+    objects: [
+      { id: "gametes", kind: "function", appearance: "primary", formula: "2^x", domain: { min: 0, max: 10 } },
+      { id: "now", kind: "marker", appearance: "highlight", x: "n", y: "2^n" },
+    ],
+    labels: [
+      { key: "gametes", objectId: "gametes", at: { x: 10, y: 1024 }, placement: "left" },
+    ],
+    readouts: [
+      { key: "gamete", formula: "2^n" },
+      { key: "zygote", formula: "4^n" },
+    ],
+  }}
+  labels={{
+    n: <>Haploide Zahl <InlineMath math="n" /></>,
+    gametes: <><InlineMath math="2^n" /> Keimzellen</>,
+    gamete: <>Verschiedene Keimzellen eines Elternteils</>,
+    zygote: <>Verschiedene Zygoten zweier Eltern</>,
+  }}
+/>
+
+Rechne die Zahl für den Menschen aus, mit <InlineMath math="n = 23" />:
+
+<MathContainer>
+<BlockMath math="\text{Keimzellen} = 2^{23} = 8{.}388{.}608" />
+<BlockMath math="\text{Zygoten} = 2^{23} \times 2^{23} = 2^{46} \approx 7{,}04 \times 10^{13}" />
+</MathContainer>
+
+Ein Paar kann rund <InlineMath math="70" /> Billionen verschiedene Zygoten bilden, bevor Crossing-over noch mehr hinzufügt. Prüf die Größenordnung: <InlineMath math="2^{10} \approx 10^3" />, also <InlineMath math="2^{23} \approx 8 \times 10^6" />. Diese drei Vorgänge mischen nur Allele, die es schon gibt. Mutationen sind **die einzige Quelle neuer Allele**.
+
+## Genmutationen verändern die Basenfolge
+
+Eine **Mutation** ist eine zufällige Veränderung der DNA eines Gens oder des Baus oder der Zahl der Chromosomen. Mutationen entstehen zufällig bei der Verdopplung der DNA, und **Mutagene** erhöhen ihre Rate:
+
+| Art des Mutagens | Beispiele |
+| :--- | :--- |
+| Physikalisch | UV-Strahlung, Röntgenstrahlung, Gammastrahlung |
+| Chemisch | Benzol, Formaldehyd, Teer im Zigarettenrauch, manche Pestizide |
+| Biologisch | Manche Viren, etwa humane Papillomviren |
+
+Eine Mutation in einer Keimzelle kann an die nächste Generation gehen. Eine Mutation in einer Körperzelle wird nicht vererbt, kann bei dieser Person aber zu Krebs führen. Eine **Genmutation** ändert die Basenfolge eines Gens auf drei Arten: Beim **Basenaustausch** ersetzt eine Base eine andere, bei der **Insertion** kommt eine Base hinzu, und bei der **Deletion** fällt eine weg. Eine Insertion oder Deletion verschiebt jedes folgende Codon, sie verändert das Protein deshalb meist viel stärker als ein Basenaustausch.
+
+Die Sichelzellanämie geht auf einen einzigen Basenaustausch im Gen für Beta-Globin zurück, einen Teil des Hämoglobins.
+
+
+Werte die Veränderung aus. Eine von <InlineMath math="27" /> Basen weicht ab, ein <InlineMath math="\mathrm{A}" /> wurde durch ein <InlineMath math="\mathrm{T}" /> ersetzt:
+
+<BlockMath math="\frac{26}{27} \times 100\% \approx 96{,}3\% \text{ der Basen stimmen überein}" />
+
+Aus dem Codon <InlineMath math="\mathrm{GAG}" /> wird <InlineMath math="\mathrm{GTG}" />, also wird im Protein eine Glutaminsäure zu Valin. Hämoglobin mit Valin an dieser Stelle lagert sich bei wenig Sauerstoff zu langen Fasern zusammen, die roten Blutkörperchen verbiegen sich zur **Sichelform** und verstopfen kleine Blutgefäße. Nur <InlineMath math="1" /> von <InlineMath math="27" /> Basen weicht ab, sodass <InlineMath math="96{,}3\%" /> übereinstimmen. Auch Albinismus ist eine Genmutation: Das Allel kann kein funktionierendes Enzym für den Farbstoff Melanin bilden, deshalb haben Haut, Haare und Augen kaum Farbe.
+
+## Chromosomenmutationen verändern Bau oder Anzahl
+
+Eine **Chromosomenmutation** verändert ein ganzes Stück eines Chromosoms oder die Zahl der Chromosomen und trifft damit viele Gene auf einmal. Ein Chromosom kann auf vier Arten brechen und falsch wieder zusammenwachsen:
+
+| Veränderung im Bau | Was passiert |
+| :--- | :--- |
+| Deletion | Ein Abschnitt geht verloren |
+| Duplikation | Ein Abschnitt wird verdoppelt und kommt zweimal vor |
+| Inversion | Ein Abschnitt bricht heraus, dreht sich um und wird wieder eingebaut |
+| Translokation | Ein Abschnitt wandert auf ein Chromosom, das nicht sein homologes ist |
+
+Die Chromosomenzahl ändert sich durch **Nondisjunction**, wenn sich Chromosomen in der Meiose nicht trennen. Eine Keimzelle hat dann ein Chromosom zu viel oder zu wenig, eine **Aneuploidie**. Weil hier die Zahl statt des Baus betroffen ist, nennt man das im Deutschen oft Genommutation:
+
+- **Down-Syndrom**: drei Kopien von Chromosom <InlineMath math="21" />, also <InlineMath math="47" /> Chromosomen.
+- **Turner-Syndrom**: eine Frau mit einem <InlineMath math="X" /> und ohne zweites Geschlechtschromosom, also <InlineMath math="45" /> Chromosomen.
+- **Klinefelter-Syndrom**: ein Mann mit <InlineMath math="XXY" />, also <InlineMath math="47" /> Chromosomen.
+
+Zähl die Chromosomen einer Zelle beim Turner-Syndrom. Sie hat die <InlineMath math="44" /> Autosomen einer normalen Zelle und ein Geschlechtschromosom, also <InlineMath math="44 + 1 = 45" />. Probe: Eine normale Zelle hat <InlineMath math="44 + 2 = 46" />, eines mehr.
+
+Bei der **Polyploidie** bekommt eine Zelle ganze zusätzliche Chromosomensätze. Bei Pflanzen ist das häufig: Brotweizen hat sechs Sätze, <InlineMath math="6n = 42" />, und kernlose Bananen haben drei. Polyploide Nutzpflanzen tragen oft größere Früchte und Körner.
+
+Mutationen können **schädlich, neutral oder nützlich** sein. Sichelzellanämie und Down-Syndrom schaden den Betroffenen, aber eine Mutation, durch die Bakterien ein Antibiotikum überleben, nützt diesen Bakterien. Variation gibt jeder Population eine Bandbreite an Merkmalen, sodass bei einer Veränderung der Umwelt manche Individuen eher überleben und sich fortpflanzen.
+
+<ChromosomeMutationLab
+  title={<>Chromosomenmutationen in Bau und Anzahl</>}
+  description={
+    <>
+      Vergleiche Deletion, Duplikation, Inversion, Translokation und
+      Nondisjunction am dreidimensionalen Chromosom, um Struktur- und
+      Zahländerungen direkt zu sehen.
+    </>
+  }
+  footer={<>Chromosomenmutationen verändern ganze Genblöcke oder die gesamte Chromosomenzahl.</>}
+  mutations={["deletion", "duplication", "inversion", "translocation", "nondisjunction"]}
+  labels={{
+    change: <>Änderung am Chromosom</>,
+    effect: <>Genetische Folge</>,
+    mutation: "Mutationsart",
+    mutations: {
+      deletion: {
+        change: <>Ein Chromosomenabschnitt bricht ab und geht verloren</>,
+        effect: <>Alle Gene auf dem verlorenen Abschnitt fehlen</>,
+        name: "Deletion",
+      },
+      duplication: {
+        change: <>Ein Abschnitt wird verdoppelt und doppelt eingebaut</>,
+        effect: <>Zusätzliche Genkopien liegen auf demselben Arm</>,
+        name: "Duplikation",
+      },
+      inversion: {
+        change: <>Ein herausgebrochenes Stück dreht sich um und wächst an</>,
+        effect: <>Die Reihenfolge der Gene kehrt sich um</>,
+        name: "Inversion",
+      },
+      nondisjunction: {
+        change: <>Homologe Chromosomen trennen sich in der Meiose nicht</>,
+        effect: <>Keimzellen erhalten ein Chromosom zu viel oder zu wenig</>,
+        name: "Nondisjunction",
+      },
+      translocation: {
+        change: <>Ein Abschnitt lagert sich an ein nicht-homologes Chromosom an</>,
+        effect: <>Ein ganzer Genblock wandert auf ein anderes Chromosom</>,
+        name: "Translokation",
+      },
+    },
+    parts: {
+      brokenSegment: "Bruchstück",
+      centromere: "Centromer",
+      extraCopy: "Zusatzchromosom",
+      normalArm: "Normaler Arm",
+    },
+    view: "Dreidimensionales Chromosom mit fünf Arten von Chromosomenmutationen",
+  }}
+/>
+
+Anders als ein einzelner Basentausch verändern **Strukturbrüche und Nondisjunction** ganze Genblöcke oder die gesamte Chromosomenzahl jeder Tochterzelle.
