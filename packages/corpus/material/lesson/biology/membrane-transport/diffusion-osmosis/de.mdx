@@ -1,67 +1,87 @@
 export const metadata = {
   title: "Stofftransport durch die Plasmamembran",
   description:
-    "Unterscheide einfache Diffusion, erleichterte Diffusion, Osmose und aktiven Transport und bestimme eine isotonische Lösung aus Daten von Kartoffelstreifen.",
+    "Flüssigmosaikmodell der Membran, einfache und erleichterte Diffusion, aktiver Transport mit ATP, Osmose an Kartoffelstreifen und Plasmolyse in Zellen.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-11-17",
   subject: "Stofftransport durch die Plasmamembran",
 };
 
-## Die Plasmamembran als Grenze der Zelle
+## Passive und aktive Wege
 
-Die **Plasmamembran** ist **selektiv permeabel**: Manche Stoffe lässt sie durch, andere hält sie zurück. Stoffe überqueren die Membran auf zwei Wegen. **Passiver Transport** folgt dem Konzentrationsgefälle, von hoher zu niedriger Konzentration, und braucht keine Energie. **Aktiver Transport** arbeitet gegen das Konzentrationsgefälle und braucht Energie aus ATP. In den Modellen hier beobachtest du diffundierende Moleküle, vergleichst einfache und erleichterte Diffusion und legst Kartoffelstreifen in Saccharoselösungen.
+Jede lebende Zelle nutzt ihre **Plasmamembran**, eine selektiv permeable Phospholipiddoppelschicht nach dem **Flüssigmosaikmodell**, um den Stoffaustausch genau zu steuern. Kleine unpolare Gase wie Sauerstoff gleiten frei durch die Lipidschicht, während Ionen und polare Zucker spezielle Kanal- oder Carrierproteine benötigen.
 
-Den Aufbau der Membran beschreibt das **Flüssig-Mosaik-Modell**: eine Lipiddoppelschicht aus Phospholipiden mit eingelagerten Proteinen. Kleine, unpolare Moleküle wie Sauerstoff gelangen direkt durch die Doppelschicht. Ionen und große Moleküle wie Glucose brauchen ein Carrierprotein oder ein Kanalprotein.
+Untersuche unten die Bestandteile der Doppelschicht und verändere die Temperatur, um zu sehen, wie Cholesterin die Membranfluidität puffert.
 
-## Einfache Diffusion
-
-**Einfache Diffusion** ist die Nettobewegung von Molekülen aus einem Bereich hoher Konzentration in einen Bereich niedriger Konzentration, bis ein dynamisches Gleichgewicht erreicht ist. Sauerstoff diffundiert aus den Lungenbläschen ins Blut, Kohlenstoffdioxid in die Gegenrichtung. Dieses Modell zeigt die Konzentration von Molekülen, die an einem Punkt freigesetzt werden. Verschiebe den Zeitregler und beobachte, wie der Gipfel niedriger und breiter wird, während sich die Moleküle verteilen.
-
-<MathVisual
-  title={<>Moleküle verteilen sich durch Diffusion</>}
+<FluidMosaicMembraneLab
+  title={<>Flüssigmosaikbau der Plasmamembran</>}
   description={
     <>
-      Relative Konzentration <InlineMath math="\dfrac{5}{\sqrt{4\pi s}}e^{-x^2/4s}" />{" "}
-      gegen den Abstand <InlineMath math="x" /> vom Freisetzungspunkt zur Zeit{" "}
-      <InlineMath math="s" />. Die Fläche unter der Kurve bleibt gleich, weil
-      keine Moleküle verloren gehen.
+      Wähle Phospholipide, Cholesterin, integrale Proteine oder Glykoproteine
+      und verändere die Temperatur für Lipidpackung und Membranfluidität.
     </>
   }
-  scene={{
-    space: "plane",
-    frame: { kind: "cartesian", x: { min: -6, max: 6 }, y: { min: 0, max: 3.5 } },
-    view: { kind: "fit", padding: 0.06 },
-    parameters: [
-      { name: "s", min: 0.2, max: 4, value: 0.5, step: 0.1, label: "s" },
-    ],
-    objects: [
-      { id: "profile", kind: "function", appearance: "primary", formula: "5exp(-x^2/(4s))/sqrt(4pi s)", domain: { min: -6, max: 6 } },
-    ],
-    readouts: [
-      { key: "peak", formula: "5/sqrt(4pi s)" },
-    ],
-  }}
+  footer={<>Cholesterin puffert die Fluidität bei Kälte und Wärme für stabile Membranen.</>}
+  components={["phospholipid", "cholesterol", "integralProtein", "glycoprotein"]}
+  temperature={{ min: 5, max: 45, value: 37 }}
   labels={{
-    s: <>Zeit <InlineMath math="s" /></>,
-    peak: <>Konzentration am Freisetzungspunkt</>,
+    component: "Membranbaustein",
+    components: {
+      phospholipid: {
+        name: "Phospholipiddoppelschicht",
+        role: <>Hydrophile Köpfe zeigen zum Wasser, während hydrophobe Schwänze polare Ionen abweisen.</>,
+      },
+      cholesterol: {
+        name: "Cholesterin",
+        role: <>Lagert zwischen Fettsäureschwänzen und verhindert Erstarren bei Kälte sowie zu hohe Fluidität bei Hitze.</>,
+      },
+      integralProtein: {
+        name: "Integrales Protein",
+        role: <>Durchspannt die Doppelschicht als selektiver Kanal oder Carrier für polare Teilchen.</>,
+      },
+      glycoprotein: {
+        name: "Glykoprotein",
+        role: <>Zuckerketten an Oberflächenproteinen dienen als Rezeptoren zur Zellerkennung.</>,
+      },
+    },
+    temperature: "Membrantemperatur",
+    role: <>Strukturfunktion</>,
+    fluidity: <>Membranfluidität</>,
+    parts: {
+      hydrophilicHead: "Hydrophiler Kopf",
+      hydrophobicTail: "Hydrophober Schwanz",
+      cholesterol: "Cholesterinring",
+      integralProtein: "Integrales Protein",
+      glycoprotein: "Glykoprotein",
+      glycolipid: "Glykolipid",
+    },
+    view: "3D-Flüssigmosaikmembran mit Phospholipidköpfen, hydrophoben Schwänzen, Cholesterin, integralen Proteinen und Glykoproteinen",
   }}
 />
 
-Die Diffusionsgeschwindigkeit steigt mit **einem steileren Konzentrationsgefälle**, höherer Temperatur, größerer Oberfläche und kleineren Molekülen. Deshalb haben Lungenbläschen und Darmzotten eine große Oberfläche und dünne Wände.
+Weil der hydrophobe Kern geladene Teilchen blockiert, ordnet jede Zelle ihre Stoffe vier klar getrennten Transportwegen zu:
 
-## Erleichterte Diffusion und aktiver Transport
+| Vorgang | Konzentrationsrichtung | ATP nötig | Membranprotein |
+| :--- | :--- | :--- | :--- |
+| Einfache Diffusion | Mit dem Gefälle | Nein | Keines |
+| Erleichterte Diffusion | Mit dem Gefälle | Nein | Kanal oder Carrier |
+| Osmose | Wasser entlang Wasserpotenzial | Nein | Bilayer oder Aquaporine |
+| Aktiver Transport | Gegen das Gefälle | Ja | Carrierpumpe |
 
-**Erleichterte Diffusion** nutzt Carrierproteine oder Kanalproteine, um Stoffe wie Glucose und Ionen entlang ihres Konzentrationsgefälles zu befördern. Sie bleibt passiv, aber es gibt nur eine begrenzte Zahl von Carrierproteinen. Sind alle Carrier besetzt, **erreicht die Diffusionsgeschwindigkeit ein Maximum**, auch wenn die Konzentration weiter steigt. Vergleiche die beiden Kurven und ändere die Zahl der Carrierproteine.
+### Carriersättigung
+
+Die **einfache Diffusion** steigt linear mit der Konzentration, weil Teilchen direkt zwischen Lipiden hindurchtreten. Die **erleichterte Diffusion** bleibt passiv ohne ATP, flacht aber ab, sobald alle Carrierproteine besetzt sind. Variiere unten die Carrieranzahl <InlineMath math="a" /> im Vergleich beider Kurven.
 
 <MathVisual
-  title={<>Einfache und erleichterte Diffusion im Vergleich</>}
+  title={<>Einfache gegen erleichterte Diffusion</>}
   description={
     <>
-      Die Gerade ist einfache Diffusion, <InlineMath math="0{,}5c" />. Die Kurve
-      ist erleichterte Diffusion, <InlineMath math="\dfrac{ac}{2 + c}" />, wobei{" "}
-      <InlineMath math="a" /> proportional zur Zahl der Carrierproteine ist.
+      Die einfache Diffusion wächst linear, während die erleichterte Diffusion
+      einem Höchstwert zustrebt, den die Anzahl der Carrier <InlineMath math="a" />{" "}
+      festlegt.
     </>
   }
+  footer={<>Sind alle Carrierproteine belegt, erhöht mehr gelöster Stoff die Transportrate nicht weiter.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: 0, max: 10 }, y: { min: 0, max: 5.5 } },
@@ -79,70 +99,87 @@ Die Diffusionsgeschwindigkeit steigt mit **einem steileren Konzentrationsgefäll
     ],
   }}
   labels={{
-    a: <>Zahl der Carrierproteine <InlineMath math="a" /></>,
-    limit: <>Höchstgeschwindigkeit der erleichterten Diffusion</>,
+    a: <>Carrieranzahl <InlineMath math="a" /></>,
+    limit: <>Maximale erleichterte Rate</>,
   }}
 />
 
-**Aktiver Transport** befördert Stoffe gegen das Konzentrationsgefälle mithilfe von Carrierproteinen und Energie aus ATP. Die **Natrium-Kalium-Pumpe** zum Beispiel pumpt Natriumionen aus Nervenzellen hinaus und Kaliumionen hinein. Auch Wurzelhaarzellen nehmen Mineralionen aktiv aus dem verdünnteren Bodenwasser auf.
+Verdoppelt eine Zelle ihre Carrierdichte, verdoppelt sich das Plateau, weil doppelt so viele Bindungsstellen polare Teilchen gleichzeitig durch die Membran schleusen.
 
-| Vorgang | Richtung | Energie | Protein |
-| :--- | :--- | :--- | :--- |
-| Einfache Diffusion | Mit dem Gefälle | Nein | Nein |
-| Erleichterte Diffusion | Mit dem Gefälle | Nein | Carrier oder Kanal |
-| Osmose | Wasser mit seinem Gefälle | Nein | Manchmal durch Aquaporine |
-| Aktiver Transport | Gegen das Gefälle | Ja, ATP | Carrier |
+### Aktive Transportpumpen
 
-## Osmose und die Konzentration von Lösungen
+Nimmt eine Wurzelhaarzelle Mineralionen aus verdünntem Boden auf oder pumpt ein Neuron Kalium hinein, müssen Teilchen bergauf von niedriger zu hoher Konzentration wandern. **Aktiver Transport** treibt selektive Carrierpumpen mit Energie aus der Spaltung von **ATP** zu ADP an.
 
-**Osmose** ist die Nettobewegung von Wassermolekülen aus einer **hypotonischen** Lösung (weniger konzentriert) in eine **hypertonische** Lösung (stärker konzentriert) durch eine selektiv permeable Membran. Sind beide Lösungen **isotonisch**, gibt es keine Nettobewegung von Wasser.
+> Erleichterte Diffusion verbraucht nie ATP, weil Stoffe bergab wandern, während aktiver Transport ATP spaltet, um Teilchen bergauf gegen das Gefälle zu pumpen.
 
-In einem klassischen Versuch liegen Kartoffelstreifen gleicher Masse eine Stunde lang in Saccharoselösungen verschiedener Konzentration. Wähle in diesem Modell jedes Röhrchen und vergleiche die Massenänderung des Streifens.
+Wechsle unten zwischen einfacher Diffusion, erleichterter Diffusion und aktiver Pumpe an der Phospholipiddoppelschicht und verändere den Konzentrationsgradienten.
 
-<OsmosisLab
-  title={<>Kartoffelstreifen in Saccharoselösungen</>}
+<ActiveTransportPumpLab
+  title={<>Transportarten durch eine Phospholipiddoppelschicht</>}
   description={
     <>
-      Sechs Röhrchen von <InlineMath math="0" /> bis{" "}
-      <InlineMath math="0{,}5\text{ mol dm}^{-3}" /> Saccharose. Ein Streifen
-      nimmt in hypotonischer Lösung an Masse zu und in hypertonischer ab.
+      Wechsle zwischen einfacher Diffusion, Kanalproteinen und ATP-getriebener
+      Carrierpumpe und verschiebe den Konzentrationsgradienten für Richtung und
+      ATP-Bedarf.
     </>
   }
-  strips={[
-    { concentration: 0, change: 20 },
-    { concentration: 0.1, change: 12 },
-    { concentration: 0.2, change: 5 },
-    { concentration: 0.3, change: 0 },
-    { concentration: 0.4, change: -6 },
-    { concentration: 0.5, change: -11 },
-  ]}
+  footer={<>Nur aktive Carrierpumpen verbrauchen ATP, um Stoffe gegen das Konzentrationsgefälle zu fördern.</>}
+  modes={["simpleDiffusion", "facilitated", "activePump"]}
+  gradient={{ min: 0, max: 10, value: 5 }}
   labels={{
-    change: <>Massenänderung</>,
-    concentration: "Saccharosekonzentration",
-    isotonic: <>Isotonische Lösung</>,
-    mass: <>Masse des Streifens</>,
-    none: <>Keine Änderung</>,
-    solution: <>Lösung</>,
-    tonicities: {
-      hypertonic: <>hypertonisch</>,
-      hypotonic: <>hypotonisch</>,
-      isotonic: <>isotonisch</>,
+    mode: "Transportart",
+    modes: {
+      simpleDiffusion: {
+        name: "Einfache Diffusion",
+        mechanism: <>Kleine unpolare Teilchen wandern direkt zwischen Phospholipiden bergab.</>,
+      },
+      facilitated: {
+        name: "Erleichterte Diffusion",
+        mechanism: <>Kanalproteine leiten polare Ionen passiv ohne ATP-Verbrauch mit dem Gefälle.</>,
+      },
+      activePump: {
+        name: "Aktive Carrierpumpe",
+        mechanism: <>ATP-Hydrolyse verformt den Carrier und pumpt Teilchen gegen das Gefälle.</>,
+      },
     },
-    view: "Kartoffelstreifen in Röhrchen mit Saccharoselösung",
+    gradient: "Konzentrationsgradient",
+    directions: {
+      downGradient: "Mit dem Konzentrationsgefälle",
+      againstGradient: "Gegen das Konzentrationsgefälle",
+    },
+    atpUse: <>ATP-Verbrauch</>,
+    direction: <>Nettotransportrichtung</>,
+    parts: {
+      bilayer: "Phospholipiddoppelschicht",
+      channelProtein: "Kanalprotein",
+      carrierPump: "Carrierpumpe",
+      solute: "Gelöste Teilchen",
+      atp: "ATP-Molekül",
+      adp: "ADP-Produkt",
+    },
+    view: "3D-Phospholipiddoppelschicht im Vergleich von einfacher Diffusion, Kanalproteinen und ATP-getriebener Pumpe",
   }}
 />
 
-Trage dieselben Ergebnisse in ein Diagramm ein. Die Ausgleichsgerade schneidet die waagerechte Achse bei der Konzentration, die **isotonisch zum Zellsaft der Kartoffel** ist.
+Blockiert man die Zellatmung, bricht der aktive Transport mangels ATP sofort ab, während passive Diffusion unvermindert weiterläuft.
+
+## Osmose und Tonizität
+
+**Osmose** ist die Nettobewegung allein von Wassermolekülen aus einer verdünnten **hypotonischen** Lösung in eine konzentrierte **hypertonische** Lösung durch eine selektiv permeable Membran. Bei gleicher Konzentration herrscht eine **isotonische** Lösung ohne Nettofluss.
+
+> Folge stets dem Wasser, nicht dem gelösten Stoff: Wasser strömt aus verdünnten hypotonischen Lösungen in konzentrierte hypertonische Lösungen.
+
+Im klassischen Kartoffelversuch liegen sechs gleiche Streifen in Saccharoselösungen von reinem Wasser bis <InlineMath math="0{,}5\text{ mol dm}^{-3}" />. Die Streifen nehmen im hypotonischen Bad an Masse zu, verlieren im hypertonischen Bad Wasser und bleiben exakt bei Zellsaftkonzentration unverändert.
 
 <ScatterDiagram
-  title={<>Prozentuale Massenänderung der Kartoffelstreifen</>}
+  title={<>Prozentuale Massenänderung von Kartoffelstreifen</>}
   description={
     <>
-      Prozentuale Massenänderung gegen die Saccharosekonzentration. Die
-      Ausgleichsgerade schneidet null bei etwa{" "}
-      <InlineMath math="0{,}30\text{ mol dm}^{-3}" />.
+      Prozentuale Massenänderung gegen die Saccharosekonzentration mit
+      Nulldurchgang bei <InlineMath math="0{,}30\text{ mol dm}^{-3}" />.
     </>
   }
+  footer={<>Der Schnittpunkt mit der Nullachse zeigt die exakt isotonische Saccharosekonzentration.</>}
   xAxisLabel="Saccharosekonzentration (mol dm⁻³)"
   yAxisLabel="Massenänderung (%)"
   calculateRegressionLine
@@ -162,97 +199,71 @@ Trage dieselben Ergebnisse in ein Diagramm ein. Die Ausgleichsgerade schneidet d
   ]}
 />
 
-### Beispiel Die isotonische Lösung bestimmen
+Da die Ausgleichsgerade bei <InlineMath math="0{,}30\text{ mol dm}^{-3}" /> durch null geht, entspricht der Vakuolensaft der Kartoffel einer <InlineMath math="0{,}30\text{ mol dm}^{-3}" />-Saccharoselösung.
 
-Bestimme aus den Daten der Kartoffelstreifen **die Konzentration des Zellsafts**. Die Ausgleichsgerade lautet etwa <InlineMath math="y = -61{,}1x + 18{,}6" />. Dort, wo die Massenänderung null ist:
+## Pflanzen und Tierzellen
 
-<BlockMath math="0 = -61{,}1x + 18{,}6 \quad\Rightarrow\quad x = \frac{18{,}6}{61{,}1} = 0{,}30\text{ mol dm}^{-3}" />
+Tierzellen fehlt eine starre Zellulosewand, sodass ein rotes Blutkörperchen in reinem Wasser platzt (**Hämolyse**) und in starker Salzlösung schrumpft (**Krenation**). Pflanzenzellen schützt ihre feste Zellwand: In reinem Wasser werden sie prall (**turgeszent**) ohne zu platzen, in hypertonischer Salzlösung schrumpft die Vakuole und die Plasmamembran löst sich von der Wand (**Plasmolyse**).
 
-Prüfe mit den Rohdaten: Das Röhrchen mit <InlineMath math="0{,}3\text{ mol dm}^{-3}" /> zeigt keine Massenänderung. Der Zellsaft der Kartoffel hat etwa <InlineMath math="0{,}30\text{ mol dm}^{-3}" />.
+Wechsle unten zwischen Pflanzenzelle und rotem Blutkörperchen in hypotonischer, isotonischer und hypertonischer Lösung, um Wasserfluss, Vakuolenvolumen und Membranablösung zu vergleichen.
 
-### Beispiel Die Endmasse berechnen
-
-Ein Kartoffelstreifen mit <InlineMath math="2{,}50\text{ g}" /> liegt in der Lösung mit <InlineMath math="0{,}5\text{ mol dm}^{-3}" />, die eine Änderung von <InlineMath math="-11\%" /> ergibt. Bestimme **seine Endmasse**.
-
-<BlockMath math="2{,}50 \times (1 - 0{,}11) = 2{,}50 \times 0{,}89 = 2{,}23\text{ g}" />
-
-Die Masse sinkt, weil Wasser durch Osmose aus den Zellen in die hypertonische Lösung strömt. Prüfe: <InlineMath math="2{,}50 - 2{,}23 = 0{,}27\text{ g}" />, also etwa <InlineMath math="11\%" /> von <InlineMath math="2{,}50" />.
-
-## Wirkung der Osmose auf Zellen von Tieren und Pflanzen
-
-Tierzellen haben keine Zellwand. In hypotonischer Lösung nimmt ein rotes Blutkörperchen Wasser auf, schwillt an und platzt schließlich, das ist **Hämolyse**. In hypertonischer Lösung verliert die Zelle Wasser und schrumpft, das ist **Krenation**. Dieses Modell einer idealen Zelle zeigt das relative Volumen einer Zelle, deren Saft <InlineMath math="0{,}3" /> mol gelöstem Stoff entspricht, wobei das Volumen umgekehrt proportional zur Außenkonzentration ist.
-
-<MathVisual
-  title={<>Relatives Zellvolumen in verschiedenen Lösungen</>}
+<PlasmolysisCellLab
+  title={<>Osmose bei Pflanzenzellen und roten Blutkörperchen</>}
   description={
     <>
-      Die waagerechte Achse ist die Außenkonzentration in Einheiten von{" "}
-      <InlineMath math="0{,}1\text{ mol dm}^{-3}" />. Die Kurve{" "}
-      <InlineMath math="V/V_0 = 3/k" /> ist <InlineMath math="1" />, wenn die
-      Lösung isotonisch ist, also bei <InlineMath math="k = 3" />.
+      Vergleiche eine Pflanzenzelle mit Zellwand und ein rotes Blutkörperchen
+      ohne Wand in hypotonischer, isotonischer und hypertonischer Umgebung.
     </>
   }
-  scene={{
-    space: "plane",
-    frame: { kind: "cartesian", x: { min: 0, max: 6.5 }, y: { min: 0, max: 3.5 } },
-    view: { kind: "fit", padding: 0.06 },
-    parameters: [
-      { name: "k", min: 1, max: 6, value: 3, step: 0.25, label: "k" },
-    ],
-    objects: [
-      { id: "volume", kind: "function", appearance: "primary", formula: "3/x", domain: { min: 0.9, max: 6.5 } },
-      { id: "isotonic", kind: "point", appearance: "answer", at: { x: 3, y: 1 } },
-      { id: "now", kind: "marker", x: "k", y: "3/k", appearance: "warning" },
-    ],
-    labels: [
-      { key: "isotonic", objectId: "isotonic", at: { x: 3, y: 1 }, placement: "above-right" },
-    ],
-    readouts: [
-      { key: "relative", formula: "3/k" },
-    ],
-  }}
+  footer={<>Zellulosewände verhindern das Platzen von Pflanzenzellen in reinem Wasser, während Erythrozyten hämolysieren.</>}
+  cells={["plant", "redBlood"]}
+  solutions={["hypotonic", "isotonic", "hypertonic"]}
   labels={{
-    k: <>Außenkonzentration <InlineMath math="k" /></>,
-    isotonic: <>Isotonisch</>,
-    relative: <>Relatives Volumen <InlineMath math="V/V_0" /></>,
+    cell: "Zelltyp",
+    cells: {
+      plant: "Pflanzenzelle",
+      redBlood: "Rotes Blutkörperchen",
+    },
+    solution: "Außenlösung",
+    solutions: {
+      hypotonic: "Hypotonisch",
+      isotonic: "Isotonisch",
+      hypertonic: "Hypertonisch",
+    },
+    outcomes: {
+      turgid: "Turgeszent",
+      plasmolysed: "Plasmolysiert",
+      haemolysed: "Hämolysiert",
+      crenated: "Geschrumpft",
+      normal: "Normalform",
+    },
+    outcome: <>Zellzustand</>,
+    waterFlow: <>Nettowasserfluss</>,
+    parts: {
+      cellWall: "Zellulosewand",
+      membrane: "Plasmamembran",
+      vacuole: "Zentralvakuole",
+      cytoplasm: "Zytoplasma",
+      waterArrow: "Wasserflusspfeil",
+    },
+    view: "3D-Pflanzenzelle und rotes Blutkörperchen im Vergleich in hypotonischer, isotonischer und hypertonischer Lösung",
   }}
 />
 
-Pflanzenzellen verhalten sich anders, weil sie eine Zellwand haben. In hypotonischer Lösung wird die Zelle **turgeszent**, und die Wand verhindert das Platzen. In hypertonischer Lösung schrumpft die Vakuole, und die Plasmamembran löst sich von der Zellwand, das ist **Plasmolyse**. Kommt die Zelle zurück in destilliertes Wasser, wird sie wieder turgeszent, das ist **Deplasmolyse**.
+Legt man eine plasmolysierte Blattzelle zurück in destilliertes Wasser, strömt Wasser wieder in die Vakuole (**Deplasmolyse**) und welke Blätter richten sich straff auf.
 
-## Häufige Fehler beim Stofftransport
+## Osmoseberechnungen
 
-| Fehler | Warum er falsch ist | So prüfst du es |
-| :--- | :--- | :--- |
-| Osmose ist die Bewegung des gelösten Stoffes. | Osmose ist nur die Bewegung von Wassermolekülen. | Frag, welches Molekül sich bewegt. |
-| Wasser fließt von konzentrierter zu verdünnter Lösung. | Wasser fließt von hypotonisch zu hypertonisch, also von verdünnt zu konzentriert. | Folge dem Wasser, nicht dem gelösten Stoff. |
-| Erleichterte Diffusion braucht ATP. | Erleichterte Diffusion ist passiv. Nur aktiver Transport braucht ATP. | Prüfe die Richtung des Konzentrationsgefälles. |
-| Eine Pflanzenzelle platzt in destilliertem Wasser. | Die Zellwand hält dem Druck stand, die Zelle wird turgeszent. | Unterscheide Tierzellen von Pflanzenzellen. |
+Prüfe zwei quantitative Osmoseaufgaben.
 
-Der zweite Fehler kommt in Osmoseaufgaben am häufigsten vor. **Wasser bewegt sich zur stärker konzentrierten Lösung**.
+**Isotonischen Zellsaft prüfen.** Die Ausgleichsgerade folgt <InlineMath math="y = -61{,}1x + 18{,}6" />. Bestimme die isotonische Saccharosekonzentration bei null Prozent Massenänderung.
 
-## Übungen zum Stofftransport
+<BlockMath math="x = \frac{18{,}6}{61{,}1} = 0{,}30\text{ mol dm}^{-3}" />
 
-Diese Aufgaben führen vom Benennen eines Vorgangs bis zu einer Osmoserechnung. **Nenne in jeder Antwort die Richtung des Gefälles**.
+Dieses Ergebnis deckt sich unmittelbar mit dem unveränderten Messwert im Reagenzglas bei <InlineMath math="0{,}3\text{ mol dm}^{-3}" />.
 
-1. Nenne den Vorgang, der Kaliumionen in eine Nervenzelle befördert, die schon eine hohe Kaliumkonzentration hat.
+**Kartoffelmasse prüfen.** Ein <InlineMath math="2{,}50\text{ g}" /> schwerer Streifen verliert in <InlineMath math="0{,}5\text{ mol dm}^{-3}" /> Saccharose genau <InlineMath math="11\%" /> seiner Masse. Bestimme seine Endmasse.
 
-2. Erkläre, warum die Geschwindigkeit der erleichterten Diffusion bei hohen Konzentrationen nicht weiter steigt.
+<BlockMath math="m_{\text{Ende}} = 2{,}50 \times (1 - 0{,}11) = 2{,}23\text{ g}" />
 
-3. Ein Kartoffelstreifen mit <InlineMath math="3{,}00\text{ g}" /> liegt in destilliertem Wasser, und seine Masse steigt um <InlineMath math="20\%" />. Berechne seine Endmasse.
-
-4. Eine Blattzelle liegt eine halbe Stunde in konzentrierter Salzlösung. Erkläre den Zustand der Zelle.
-
-### Lösungen
-
-**Lösung 1**: Die Kaliumionen bewegen sich von niedriger zu hoher Konzentration, also **gegen das Konzentrationsgefälle**. Der Vorgang ist darum **aktiver Transport** mit einem Carrierprotein und ATP.
-
-**Lösung 2**: Erleichterte Diffusion hängt von Carrierproteinen ab, und **ihre Zahl ist begrenzt**. Bei hohen Konzentrationen sind alle Carrier schon besetzt, also erhöht mehr Konzentration die Geschwindigkeit nicht. Die Kurve flacht beim Höchstwert ab.
-
-**Lösung 3**: Destilliertes Wasser ist hypotonisch, also strömt Wasser in die Zellen:
-
-<BlockMath math="3{,}00 \times (1 + 0{,}20) = 3{,}60\text{ g}" />
-
-Prüfe: Die Zunahme von <InlineMath math="0{,}60\text{ g}" /> sind <InlineMath math="20\%" /> von <InlineMath math="3{,}00\text{ g}" />.
-
-**Lösung 4**: Konzentrierte Salzlösung ist hypertonisch zum Zellsaft. Wasser verlässt die Vakuole durch Osmose, die Vakuole schrumpft, und die Plasmamembran löst sich von der Zellwand. Die Zelle ist **plasmolysiert**, und das Blatt welkt.
+Durch Osmose strömte Wasser aus der Vakuole in das hypertonische Bad und entzog dem Streifen <InlineMath math="0{,}27\text{ g}" /> Wasser.

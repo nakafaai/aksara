@@ -1,67 +1,87 @@
 export const metadata = {
   title: "Pergerakan Zat Melintasi Membran Plasma",
   description:
-    "Bedakan difusi sederhana, difusi terfasilitasi, osmosis, dan transpor aktif, lalu temukan larutan isotonik dari data jalur kentang lewat contoh dan latihan.",
+    "Struktur mosaik cair, difusi sederhana dan terfasilitasi, pompa transpor aktif berenergi ATP, kurva osmosis kentang, serta plasmolisis sel.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-11-17",
   subject: "Pergerakan Zat Melintasi Membran Plasma",
 };
 
-## Membran Plasma Mengatur Apa yang Masuk dan Keluar
+## Jalur Pasif dan Aktif
 
-**Membran plasma** bersifat **semipermeabel**: sebagian zat boleh lewat, sebagian lain tertahan. Zat melintasi membran dengan dua cara. **Transpor pasif** mengikuti gradien konsentrasi, dari konsentrasi tinggi ke rendah, tanpa memerlukan energi. **Transpor aktif** melawan gradien konsentrasi dan memerlukan energi dari ATP. Dalam model di sini, kamu melihat molekul berdifusi, membandingkan difusi sederhana dengan difusi terfasilitasi, dan merendam jalur kentang dalam larutan sukrosa.
+Setiap sel hidup bergantung pada **membran plasma**, lapisan ganda fosfolipid selektif permeabel menurut **model mosaik cair**, untuk menyaring zat keluar masuk. Gas kecil nonpolar seperti oksigen menembus lapisan lipid secara bebas, sedangkan ion dan gula polar memerlukan protein saluran atau pembawa.
 
-Struktur membran dijelaskan oleh **model mozaik cair**: lapisan ganda fosfolipid dengan protein yang tertanam di dalamnya. Molekul kecil dan nonpolar seperti oksigen langsung menembus lapisan fosfolipid. Ion dan molekul besar seperti glukosa memerlukan protein pembawa atau protein saluran.
+Amati setiap komponen penyusun bilayer dan ubah suhu di bawah ini untuk melihat bagaimana kolesterol menstabilkan fluiditas membran.
 
-## Difusi Sederhana
-
-**Difusi sederhana** adalah pergerakan bersih molekul dari daerah berkonsentrasi tinggi ke daerah berkonsentrasi rendah sampai tercapai keseimbangan dinamis. Oksigen berdifusi dari alveolus ke dalam darah, sedangkan karbon dioksida berdifusi ke arah sebaliknya. Model ini menunjukkan konsentrasi molekul yang dilepaskan di satu titik. Geser penggeser waktu dan perhatikan puncaknya makin rendah dan makin lebar saat molekul menyebar.
-
-<MathVisual
-  title={<>Molekul Menyebar secara Difusi</>}
+<FluidMosaicMembraneLab
+  title={<>Arsitektur Mosaik Cair Membran Plasma</>}
   description={
     <>
-      Konsentrasi relatif <InlineMath math="\dfrac{5}{\sqrt{4\pi s}}e^{-x^2/4s}" />{" "}
-      terhadap jarak <InlineMath math="x" /> dari titik pelepasan pada waktu{" "}
-      <InlineMath math="s" />. Luas di bawah kurva tetap sama karena tidak ada
-      molekul yang hilang.
+      Pilih fosfolipid, kolesterol, protein integral, atau glikoprotein lalu
+      geser suhu untuk mengamati perubahan kerapatan lipid dan fluiditas
+      membran.
     </>
   }
-  scene={{
-    space: "plane",
-    frame: { kind: "cartesian", x: { min: -6, max: 6 }, y: { min: 0, max: 3.5 } },
-    view: { kind: "fit", padding: 0.06 },
-    parameters: [
-      { name: "s", min: 0.2, max: 4, value: 0.5, step: 0.1, label: "s" },
-    ],
-    objects: [
-      { id: "profile", kind: "function", appearance: "primary", formula: "5exp(-x^2/(4s))/sqrt(4pi s)", domain: { min: -6, max: 6 } },
-    ],
-    readouts: [
-      { key: "peak", formula: "5/sqrt(4pi s)" },
-    ],
-  }}
+  footer={<>Kolesterol menyangga fluiditas membran saat dingin maupun panas.</>}
+  components={["phospholipid", "cholesterol", "integralProtein", "glycoprotein"]}
+  temperature={{ min: 5, max: 45, value: 37 }}
   labels={{
-    s: <>Waktu <InlineMath math="s" /></>,
-    peak: <>Konsentrasi di titik pelepasan</>,
+    component: "Komponen membran",
+    components: {
+      phospholipid: {
+        name: "Bilayer fosfolipid",
+        role: <>Kepala fosfat hidrofilik menghadap air sementara ekor hidrofobik menahan ion polar.</>,
+      },
+      cholesterol: {
+        name: "Kolesterol",
+        role: <>Menyelip di antara ekor asam lemak untuk mencegah pembekuan saat dingin dan kelenturan berlebih saat panas.</>,
+      },
+      integralProtein: {
+        name: "Protein integral",
+        role: <>Menembus bilayer membentuk saluran selektif dan pompa pembawa bagi zat polar.</>,
+      },
+      glycoprotein: {
+        name: "Glikoprotein",
+        role: <>Rantai karbohidrat pada protein permukaan berfungsi sebagai reseptor pengenalan sel.</>,
+      },
+    },
+    temperature: "Suhu membran",
+    role: <>Peran struktural</>,
+    fluidity: <>Fluiditas bilayer</>,
+    parts: {
+      hydrophilicHead: "Kepala hidrofilik",
+      hydrophobicTail: "Ekor hidrofobik",
+      cholesterol: "Cincin kolesterol",
+      integralProtein: "Protein integral",
+      glycoprotein: "Glikoprotein",
+      glycolipid: "Glikolipid",
+    },
+    view: "Membran plasma mosaik cair 3D menampilkan kepala fosfolipid, ekor hidrofobik, kolesterol, protein integral, dan glikoprotein",
   }}
 />
 
-Laju difusi meningkat jika **gradien konsentrasi makin curam**, suhu makin tinggi, luas permukaan makin besar, dan molekul makin kecil. Itulah sebabnya alveolus dan vili punya luas permukaan besar dan dinding yang tipis.
+Karena inti hidrofobik menolak partikel bermuatan, sel memadankan setiap zat dengan salah satu dari empat jalur transpor berikut:
 
-## Difusi Terfasilitasi dan Transpor Aktif
+| Proses | Arah gradien | Energi ATP | Protein membran |
+| :--- | :--- | :--- | :--- |
+| Difusi sederhana | Menuruni gradien | Tidak | Tidak ada |
+| Difusi terfasilitasi | Menuruni gradien | Tidak | Saluran atau pembawa |
+| Osmosis | Air mengikuti potensial air | Tidak | Bilayer atau akuaporin |
+| Transpor aktif | Melawan gradien | Ya | Pompa pembawa |
 
-**Difusi terfasilitasi** memakai protein pembawa atau protein saluran untuk memindahkan zat seperti glukosa dan ion menuruni gradien konsentrasinya. Prosesnya tetap pasif, tetapi jumlah protein pembawa terbatas. Saat semua pembawa sedang bekerja, laju difusi **mencapai nilai maksimum** walaupun konsentrasi terus naik. Bandingkan kedua kurva dan ubah jumlah protein pembawa.
+### Kejenuhan Pembawa
+
+**Difusi sederhana** naik lurus bersama konsentrasi karena molekul menyelip langsung di antara fosfolipid. **Difusi terfasilitasi** tetap pasif tanpa ATP, namun lajunya mendatar begitu seluruh protein pembawa penuh terpakai. Ubah jumlah pembawa <InlineMath math="a" /> di bawah ini untuk membandingkan kedua kurva.
 
 <MathVisual
-  title={<>Difusi Sederhana dan Difusi Terfasilitasi</>}
+  title={<>Difusi Sederhana melawan Difusi Terfasilitasi</>}
   description={
     <>
-      Garis lurus adalah difusi sederhana, <InlineMath math="0{,}5c" />. Kurva
-      adalah difusi terfasilitasi, <InlineMath math="\dfrac{ac}{2 + c}" />,
-      dengan <InlineMath math="a" /> sebanding dengan jumlah protein pembawa.
+      Difusi sederhana naik linear sedangkan difusi terfasilitasi mendekati
+      batas atas yang ditentukan oleh jumlah protein pembawa <InlineMath math="a" />.
     </>
   }
+  footer={<>Saat semua protein pembawa terpakai penuh, tambahan zat terlarut tidak lagi menaikkan laju.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: 0, max: 10 }, y: { min: 0, max: 5.5 } },
@@ -80,74 +100,92 @@ Laju difusi meningkat jika **gradien konsentrasi makin curam**, suhu makin tingg
   }}
   labels={{
     a: <>Jumlah protein pembawa <InlineMath math="a" /></>,
-    limit: <>Laju maksimum difusi terfasilitasi</>,
+    limit: <>Laju maksimum terfasilitasi</>,
   }}
 />
 
-**Transpor aktif** memindahkan zat melawan gradien konsentrasi dengan protein pembawa dan energi dari ATP. Contohnya, **pompa natrium kalium** memompa ion natrium keluar dari sel saraf dan ion kalium ke dalamnya. Sel rambut akar juga menyerap ion mineral secara aktif dari tanah yang lebih encer.
+Menggandakan kerapatan protein pembawa mengangkat batas dataran dua kali lebih tinggi karena dua kali lebih banyak situs ikat mengangkut zat polar secara serempak.
 
-| Proses | Arah | Energi | Protein |
-| :--- | :--- | :--- | :--- |
-| Difusi sederhana | Menuruni gradien | Tidak | Tidak |
-| Difusi terfasilitasi | Menuruni gradien | Tidak | Pembawa atau saluran |
-| Osmosis | Air menuruni gradiennya | Tidak | Kadang lewat akuaporin |
-| Transpor aktif | Melawan gradien | Ya, ATP | Pembawa |
+### Pompa Transpor Aktif
 
-## Osmosis dan Konsentrasi Larutan
+Saat sel rambut akar menyerap ion mineral dari tanah encer atau neuron memompa kalium ke dalam, zat terlarut bergerak menanjak dari konsentrasi rendah ke tinggi. **Transpor aktif** menggerakkan pompa pembawa khusus memakai energi pemecahan **ATP** menjadi ADP.
 
-**Osmosis** adalah pergerakan bersih molekul air dari larutan **hipotonik** (kurang pekat) ke larutan **hipertonik** (lebih pekat) melalui membran semipermeabel. Jika kedua larutan **isotonik**, tidak ada pergerakan bersih air.
+> Difusi terfasilitasi tidak pernah menghabiskan ATP karena zat tetap turun mengikuti gradien, sedangkan transpor aktif memakai ATP untuk mendorong zat melawan gradien.
 
-Dalam percobaan klasik, jalur kentang bermassa sama direndam dalam larutan sukrosa berbagai konsentrasi selama satu jam. Pilih setiap tabung dalam model ini dan bandingkan perubahan massa jalurnya.
+Ganti antara difusi sederhana, difusi terfasilitasi, dan pompa aktif melintasi bilayer fosfolipid berikut sambil mengatur gradien konsentrasi.
 
-<OsmosisLab
-  title={<>Jalur Kentang dalam Larutan Sukrosa</>}
+<ActiveTransportPumpLab
+  title={<>Ragam Transpor Melintasi Bilayer Fosfolipid</>}
   description={
     <>
-      Enam tabung dari <InlineMath math="0" /> sampai{" "}
-      <InlineMath math="0{,}5\text{ mol dm}^{-3}" /> sukrosa. Massa jalur
-      bertambah dalam larutan hipotonik dan berkurang dalam larutan hipertonik.
+      Ganti antara difusi sederhana, saluran terfasilitasi, dan pompa pembawa
+      berenergi ATP sambil mengubah gradien konsentrasi untuk melihat arah
+      transpor dan kebutuhan ATP.
     </>
   }
-  strips={[
-    { concentration: 0, change: 20 },
-    { concentration: 0.1, change: 12 },
-    { concentration: 0.2, change: 5 },
-    { concentration: 0.3, change: 0 },
-    { concentration: 0.4, change: -6 },
-    { concentration: 0.5, change: -11 },
-  ]}
+  footer={<>Hanya pompa pembawa aktif yang memakai ATP untuk memindahkan zat melawan gradien konsentrasi.</>}
+  modes={["simpleDiffusion", "facilitated", "activePump"]}
+  gradient={{ min: 0, max: 10, value: 5 }}
   labels={{
-    change: <>Perubahan massa</>,
-    concentration: "Konsentrasi sukrosa",
-    isotonic: <>Larutan isotonik</>,
-    mass: <>Massa jalur</>,
-    none: <>Tidak berubah</>,
-    solution: <>Larutan</>,
-    tonicities: {
-      hypertonic: <>hipertonik</>,
-      hypotonic: <>hipotonik</>,
-      isotonic: <>isotonik</>,
+    mode: "Mode transpor",
+    modes: {
+      simpleDiffusion: {
+        name: "Difusi sederhana",
+        mechanism: <>Molekul kecil nonpolar melintas langsung di antara fosfolipid menuruni gradien.</>,
+      },
+      facilitated: {
+        name: "Difusi terfasilitasi",
+        mechanism: <>Protein saluran mengalirkan ion polar secara pasif tanpa membakar ATP.</>,
+      },
+      activePump: {
+        name: "Pompa pembawa aktif",
+        mechanism: <>Hidrolisis ATP mengubah bentuk pembawa guna memompa zat melawan gradien.</>,
+      },
     },
-    view: "Jalur kentang dalam tabung larutan sukrosa",
+    gradient: "Gradien konsentrasi",
+    directions: {
+      downGradient: "Menuruni gradien konsentrasi",
+      againstGradient: "Melawan gradien konsentrasi",
+    },
+    atpUse: <>Pemakaian ATP</>,
+    direction: <>Arah transpor bersih</>,
+    parts: {
+      bilayer: "Bilayer fosfolipid",
+      channelProtein: "Protein saluran",
+      carrierPump: "Pompa pembawa",
+      solute: "Partikel zat terlarut",
+      atp: "Molekul ATP",
+      adp: "Produk ADP",
+    },
+    view: "Bilayer fosfolipid 3D membandingkan difusi sederhana, protein saluran, dan pompa aktif berenergi ATP",
   }}
 />
 
-Gambarkan hasil yang sama sebagai grafik. Garis kecocokan terbaik memotong sumbu mendatar pada konsentrasi yang **isotonik dengan cairan sel kentang**.
+Menghentikan respirasi sel langsung menghentikan transpor aktif karena pompa kehilangan pasokan ATP, sementara difusi pasif tetap berjalan normal.
+
+## Osmosis dan Tonisitas
+
+**Osmosis** adalah perpindahan bersih molekul air semata dari larutan encer **hipotonik** menuju larutan pekat **hipertonik** melewati membran selektif permeabel. Bila kepekatan kedua sisi sama, larutan disebut **isotonik** dan aliran bersih air bernilai nol.
+
+> Selalu ikuti gerak airnya, bukan zat terlarutnya: air keluar dari larutan hipotonik encer menuju larutan hipertonik yang lebih pekat.
+
+Pada percobaan klasik potongan kentang, enam potongan identik direndam dalam larutan sukrosa mulai dari air murni sampai <InlineMath math="0{,}5\text{ mol dm}^{-3}" />. Potongan bertambah massa di tabung hipotonik, menyusut di tabung hipertonik, dan tidak berubah saat konsentrasi sukrosa menyamai cairan sel.
 
 <ScatterDiagram
-  title={<>Persentase Perubahan Massa Jalur Kentang</>}
+  title={<>Persentase Perubahan Massa Potongan Kentang</>}
   description={
     <>
-      Persentase perubahan massa terhadap konsentrasi sukrosa. Garis kecocokan
-      terbaik memotong nol sekitar <InlineMath math="0{,}30\text{ mol dm}^{-3}" />.
+      Persentase perubahan massa potongan kentang terhadap konsentrasi sukrosa,
+      memotong nol di sekitar <InlineMath math="0{,}30\text{ mol dm}^{-3}" />.
     </>
   }
+  footer={<>Titik potong sumbu mendatar menentukan konsentrasi sukrosa yang isotonik dengan cairan sel.</>}
   xAxisLabel="Konsentrasi sukrosa (mol dm⁻³)"
   yAxisLabel="Perubahan massa (%)"
   calculateRegressionLine
   datasets={[
     {
-      name: "Jalur kentang",
+      name: "Potongan kentang",
       color: "var(--chart-1)",
       points: [
         { x: 0, y: 20 },
@@ -161,97 +199,72 @@ Gambarkan hasil yang sama sebagai grafik. Garis kecocokan terbaik memotong sumbu
   ]}
 />
 
-### Contoh Menentukan Larutan Isotonik
+Karena garis regresi memotong perubahan nol pada <InlineMath math="0{,}30\text{ mol dm}^{-3}" />, kepekatan cairan vakuola kentang setara dengan larutan sukrosa <InlineMath math="0{,}30\text{ mol dm}^{-3}" />.
 
-Dari data jalur kentang, tentukan **konsentrasi cairan sel kentang**. Garis kecocokan terbaiknya kira-kira <InlineMath math="y = -61{,}1x + 18{,}6" />. Saat perubahan massa nol:
+## Sel Tumbuhan dan Hewan
 
-<BlockMath math="0 = -61{,}1x + 18{,}6 \quad\Rightarrow\quad x = \frac{18{,}6}{61{,}1} = 0{,}30\text{ mol dm}^{-3}" />
+Sel hewan tidak memiliki dinding selulosa kaku sehingga sel darah merah membengkak lalu pecah (**hemolisis**) dalam air murni dan mengerut (**krenasi**) dalam larutan garam pekat. Sel tumbuhan berbeda berkat dinding selulosanya: dalam air murni sel menjadi kencang (**turgid**) tanpa pecah, sedangkan dalam larutan hipertonik vakuola menciut dan membran plasma lepas dari dinding sel (**plasmolisis**).
 
-Cek dengan data mentah: tabung <InlineMath math="0{,}3\text{ mol dm}^{-3}" /> menunjukkan perubahan massa nol. Cairan sel kentang sekitar <InlineMath math="0{,}30\text{ mol dm}^{-3}" />.
+Ganti antara sel tumbuhan dan sel darah merah dalam larutan hipotonik, isotonik, serta hipertonik di bawah ini untuk mengamati panah aliran air, volume vakuola, dan lepasnya membran.
 
-### Contoh Menghitung Massa Akhir
-
-Jalur kentang bermassa <InlineMath math="2{,}50\text{ g}" /> direndam dalam larutan <InlineMath math="0{,}5\text{ mol dm}^{-3}" />, yang memberi perubahan <InlineMath math="-11\%" />. Tentukan **massa akhirnya**.
-
-<BlockMath math="2{,}50 \times (1 - 0{,}11) = 2{,}50 \times 0{,}89 = 2{,}23\text{ g}" />
-
-Massanya turun karena air keluar dari sel ke larutan hipertonik secara osmosis. Cek: <InlineMath math="2{,}50 - 2{,}23 = 0{,}27\text{ g}" />, kira-kira <InlineMath math="11\%" /> dari <InlineMath math="2{,}50" />.
-
-## Pengaruh Osmosis pada Sel Hewan dan Sel Tumbuhan
-
-Sel hewan tidak punya dinding sel. Dalam larutan hipotonik, sel darah merah menyerap air, mengembang, lalu pecah, yang disebut **hemolisis**. Dalam larutan hipertonik, sel kehilangan air dan mengerut, yang disebut **krenasi**. Model sel ideal ini menunjukkan volume relatif sel yang cairannya setara dengan <InlineMath math="0{,}3" /> mol zat terlarut, dengan volume berbanding terbalik terhadap konsentrasi di luar sel.
-
-<MathVisual
-  title={<>Volume Relatif Sel dalam Berbagai Larutan</>}
+<PlasmolysisCellLab
+  title={<>Dampak Osmosis pada Sel Tumbuhan dan Sel Darah Merah</>}
   description={
     <>
-      Sumbu mendatar adalah konsentrasi di luar sel dalam satuan{" "}
-      <InlineMath math="0{,}1\text{ mol dm}^{-3}" />. Kurva{" "}
-      <InlineMath math="V/V_0 = 3/k" /> bernilai <InlineMath math="1" /> saat
-      larutan isotonik, yaitu pada <InlineMath math="k = 3" />.
+      Bandingkan sel tumbuhan berdinding dan sel darah merah tanpa dinding di
+      larutan hipotonik, isotonik, dan hipertonik untuk membedakan turgid,
+      plasmolisis, hemolisis, serta krenasi.
     </>
   }
-  scene={{
-    space: "plane",
-    frame: { kind: "cartesian", x: { min: 0, max: 6.5 }, y: { min: 0, max: 3.5 } },
-    view: { kind: "fit", padding: 0.06 },
-    parameters: [
-      { name: "k", min: 1, max: 6, value: 3, step: 0.25, label: "k" },
-    ],
-    objects: [
-      { id: "volume", kind: "function", appearance: "primary", formula: "3/x", domain: { min: 0.9, max: 6.5 } },
-      { id: "isotonic", kind: "point", appearance: "answer", at: { x: 3, y: 1 } },
-      { id: "now", kind: "marker", x: "k", y: "3/k", appearance: "warning" },
-    ],
-    labels: [
-      { key: "isotonic", objectId: "isotonic", at: { x: 3, y: 1 }, placement: "above-right" },
-    ],
-    readouts: [
-      { key: "relative", formula: "3/k" },
-    ],
-  }}
+  footer={<>Dinding selulosa menahan sel tumbuhan agar tidak pecah di air murni sementara eritrosit hemolisis.</>}
+  cells={["plant", "redBlood"]}
+  solutions={["hypotonic", "isotonic", "hypertonic"]}
   labels={{
-    k: <>Konsentrasi di luar sel <InlineMath math="k" /></>,
-    isotonic: <>Isotonik</>,
-    relative: <>Volume relatif <InlineMath math="V/V_0" /></>,
+    cell: "Jenis sel",
+    cells: {
+      plant: "Sel tumbuhan",
+      redBlood: "Sel darah merah",
+    },
+    solution: "Larutan luar",
+    solutions: {
+      hypotonic: "Hipotonik",
+      isotonic: "Isotonik",
+      hypertonic: "Hipertonik",
+    },
+    outcomes: {
+      turgid: "Turgid",
+      plasmolysed: "Plasmolisis",
+      haemolysed: "Hemolisis",
+      crenated: "Krenasi",
+      normal: "Bentuk normal",
+    },
+    outcome: <>Keadaan sel</>,
+    waterFlow: <>Aliran air bersih</>,
+    parts: {
+      cellWall: "Dinding selulosa",
+      membrane: "Membran plasma",
+      vacuole: "Vakuola pusat",
+      cytoplasm: "Sitoplasma",
+      waterArrow: "Panah aliran air",
+    },
+    view: "Sel tumbuhan 3D dan sel darah merah dibandingkan dalam larutan hipotonik, isotonik, dan hipertonik",
   }}
 />
 
-Sel tumbuhan berbeda karena punya dinding sel. Dalam larutan hipotonik, sel menjadi **turgid** dan dinding sel mencegahnya pecah. Dalam larutan hipertonik, vakuola mengecil dan membran plasma terlepas dari dinding sel, yang disebut **plasmolisis**. Jika sel dipindahkan ke air suling, sel kembali turgid, yang disebut **deplasmolisis**.
+Memindahkan sel daun terplasmolisis kembali ke air suling membalik aliran air masuk ke vakuola (**deplasmolisis**) sehingga daun layu kembali segar.
 
-## Kesalahan Umum tentang Pergerakan Melintasi Membran
+## Uji Hitung Membran
 
-| Kesalahan | Mengapa salah | Cara mengecek |
-| :--- | :--- | :--- |
-| Osmosis adalah pergerakan zat terlarut. | Osmosis hanya pergerakan molekul air. | Tanyakan molekul apa yang bergerak. |
-| Air bergerak dari larutan pekat ke larutan encer. | Air bergerak dari larutan hipotonik ke hipertonik, dari encer ke pekat. | Ikuti airnya, bukan zat terlarutnya. |
-| Difusi terfasilitasi memerlukan ATP. | Difusi terfasilitasi bersifat pasif. Hanya transpor aktif yang memerlukan ATP. | Periksa arah gradien konsentrasi. |
-| Sel tumbuhan pecah dalam air suling. | Dinding sel menahan tekanan sehingga sel menjadi turgid. | Bedakan sel hewan dan sel tumbuhan. |
+Periksa dua hitungan osmosis berikut ini.
 
-Kesalahan kedua paling sering muncul dalam soal osmosis. **Air bergerak menuju larutan yang lebih pekat**.
+**Uji cairan isotonik.** Garis regresi data kentang mengikuti <InlineMath math="y = -61{,}1x + 18{,}6" />. Cari konsentrasi sukrosa isotonik saat perubahan massa sama dengan nol.
 
-## Latihan Pergerakan Melintasi Membran
+<BlockMath math="x = \frac{18{,}6}{61{,}1} = 0{,}30\text{ mol dm}^{-3}" />
 
-Soal-soal ini bergerak dari menyebut nama proses sampai perhitungan osmosis. **Sebutkan arah gradien** di setiap jawaban.
+Hasil ini selaras langsung dengan bacaan tanpa perubahan pada tabung sukrosa <InlineMath math="0{,}3\text{ mol dm}^{-3}" />.
 
-1. Sebutkan proses yang memindahkan ion kalium ke dalam sel saraf yang konsentrasi kaliumnya sudah tinggi.
+**Uji massa kentang.** Potongan kentang <InlineMath math="2{,}50\text{ g}" /> menyusut <InlineMath math="11\%" /> dalam larutan sukrosa <InlineMath math="0{,}5\text{ mol dm}^{-3}" />. Hitung massa akhirnya.
 
-2. Jelaskan mengapa laju difusi terfasilitasi mendatar pada konsentrasi tinggi.
+<BlockMath math="m_{\text{akhir}} = 2{,}50 \times (1 - 0{,}11) = 2{,}23\text{ g}" />
 
-3. Jalur kentang bermassa <InlineMath math="3{,}00\text{ g}" /> direndam dalam air suling dan massanya naik <InlineMath math="20\%" />. Hitung massa akhirnya.
-
-4. Sel daun direndam dalam larutan garam pekat selama setengah jam. Jelaskan keadaan sel tersebut.
-
-### Pembahasan
-
-**Pembahasan 1**: Ion kalium bergerak dari konsentrasi rendah ke tinggi, yaitu **melawan gradien konsentrasi**, jadi prosesnya adalah **transpor aktif** yang memakai protein pembawa dan ATP.
-
-**Pembahasan 2**: Difusi terfasilitasi bergantung pada protein pembawa, dan **jumlahnya terbatas**. Pada konsentrasi tinggi semua pembawa sudah terpakai, sehingga menaikkan konsentrasi tidak menaikkan laju. Kurvanya mendatar pada laju maksimum.
-
-**Pembahasan 3**: Air suling bersifat hipotonik, jadi air masuk ke dalam sel:
-
-<BlockMath math="3{,}00 \times (1 + 0{,}20) = 3{,}60\text{ g}" />
-
-Cek: pertambahan <InlineMath math="0{,}60\text{ g}" /> adalah <InlineMath math="20\%" /> dari <InlineMath math="3{,}00\text{ g}" />.
-
-**Pembahasan 4**: Larutan garam pekat bersifat hipertonik terhadap cairan sel. Air keluar dari vakuola secara osmosis, vakuola mengecil, dan membran plasma terlepas dari dinding sel. Sel mengalami **plasmolisis** dan daun menjadi layu.
+Air keluar dari vakuola menuju larutan hipertonik secara osmosis sehingga mengurangi massa air sebesar <InlineMath math="0{,}27\text{ g}" />.

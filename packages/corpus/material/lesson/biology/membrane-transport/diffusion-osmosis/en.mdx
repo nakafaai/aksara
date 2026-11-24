@@ -1,68 +1,86 @@
 export const metadata = {
-  title: "Movement of Substances across a Plasma Membrane Notes",
+  title: "Movement of Substances Across a Plasma Membrane",
   description:
-    "Form 4 Biology Chapter 3: tell simple diffusion, facilitated diffusion, osmosis and active transport apart, and find an isotonic solution, with practice.",
+    "Fluid mosaic membrane structure, simple and facilitated diffusion, active transport pumps using ATP, potato osmosis curves, and plasmolysis in cells.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-11-17",
   subject: "Movement of Substances across a Plasma Membrane",
 };
 
-## The Plasma Membrane Controls What Goes In and Out
+## Passive and Active Routes
 
-The **plasma membrane** is **partially permeable**: it lets some substances through and blocks others. Substances cross the membrane in two ways. **Passive transport** follows the concentration gradient, from high concentration to low, with no energy needed. **Active transport** works against the concentration gradient and needs energy from ATP. In the models here, you watch molecules diffuse, compare simple and facilitated diffusion, and soak potato strips in sucrose solutions.
+Every living cell relies on its **plasma membrane**, a partially permeable phospholipid bilayer described by the **fluid mosaic model**, to decide what enters and what stays out. Small nonpolar gases like oxygen cross the lipid bilayer freely, whereas ions and polar sugars require embedded channel or carrier proteins.
 
-The membrane's structure is described by the **fluid mosaic model**: a phospholipid bilayer with proteins embedded in it. Small, non-polar molecules such as oxygen pass straight through the bilayer. Ions and large molecules such as glucose need a carrier protein or a channel protein.
+Inspect each structural component of the bilayer and vary temperature below to see how cholesterol buffers membrane fluidity.
 
-## Simple Diffusion
-
-**Simple diffusion** is the net movement of molecules from a region of high concentration to a region of low concentration until dynamic equilibrium is reached. Oxygen diffuses from the alveoli into the blood, and carbon dioxide diffuses the other way. This model shows the concentration of molecules released at one point. Move the time slider and watch the peak get lower and wider as the molecules spread out.
-
-<MathVisual
-  title={<>Molecules Spreading by Diffusion</>}
+<FluidMosaicMembraneLab
+  title={<>Fluid Mosaic Architecture of a Plasma Membrane</>}
   description={
     <>
-      Relative concentration <InlineMath math="\dfrac{5}{\sqrt{4\pi s}}e^{-x^2/4s}" />{" "}
-      against the distance <InlineMath math="x" /> from the release point, at
-      time <InlineMath math="s" />. The area under the curve stays the same
-      because no molecules are lost.
+      Select phospholipids, cholesterol, integral proteins, or glycoproteins and
+      slide temperature to observe how lipid packing and fluidity respond.
     </>
   }
-  scene={{
-    space: "plane",
-    frame: { kind: "cartesian", x: { min: -6, max: 6 }, y: { min: 0, max: 3.5 } },
-    view: { kind: "fit", padding: 0.06 },
-    parameters: [
-      { name: "s", min: 0.2, max: 4, value: 0.5, step: 0.1, label: "s" },
-    ],
-    objects: [
-      { id: "profile", kind: "function", appearance: "primary", formula: "5exp(-x^2/(4s))/sqrt(4pi s)", domain: { min: -6, max: 6 } },
-    ],
-    readouts: [
-      { key: "peak", formula: "5/sqrt(4pi s)" },
-    ],
-  }}
+  footer={<>Cholesterol buffers bilayer fluidity across both cold and warm temperatures.</>}
+  components={["phospholipid", "cholesterol", "integralProtein", "glycoprotein"]}
+  temperature={{ min: 5, max: 45, value: 37 }}
   labels={{
-    s: <>Time <InlineMath math="s" /></>,
-    peak: <>Concentration at the release point</>,
+    component: "Membrane component",
+    components: {
+      phospholipid: {
+        name: "Phospholipid bilayer",
+        role: <>Hydrophilic phosphate heads face water while hydrophobic tails block polar ions.</>,
+      },
+      cholesterol: {
+        name: "Cholesterol",
+        role: <>Sits between fatty-acid tails to prevent freezing in cold and excess fluidity in heat.</>,
+      },
+      integralProtein: {
+        name: "Integral protein",
+        role: <>Spans the bilayer to form selective channels and carrier pumps for polar solutes.</>,
+      },
+      glycoprotein: {
+        name: "Glycoprotein",
+        role: <>Carbohydrate chains on surface proteins act as cell-recognition receptors.</>,
+      },
+    },
+    temperature: "Membrane temperature",
+    role: <>Structural role</>,
+    fluidity: <>Bilayer fluidity</>,
+    parts: {
+      hydrophilicHead: "Hydrophilic head",
+      hydrophobicTail: "Hydrophobic tail",
+      cholesterol: "Cholesterol ring",
+      integralProtein: "Integral protein",
+      glycoprotein: "Glycoprotein",
+      glycolipid: "Glycolipid",
+    },
+    view: "3D fluid mosaic plasma membrane showing phospholipid heads, hydrophobic tails, cholesterol, integral proteins, and glycoproteins",
   }}
 />
 
-The rate of diffusion rises with **a steeper concentration gradient**, a higher temperature, a larger surface area and smaller molecules. That's why alveoli and villi have a large surface area and thin walls.
+Because the hydrophobic core repels charged particles, cells match every solute to one of four distinct transport pathways:
 
-## Facilitated Diffusion and Active Transport
+| Process | Gradient direction | ATP energy | Membrane protein |
+| :--- | :--- | :--- | :--- |
+| Simple diffusion | Down gradient | No | None |
+| Facilitated diffusion | Down gradient | No | Channel or carrier |
+| Osmosis | Water down water potential | No | Bilayer or aquaporins |
+| Active transport | Against gradient | Yes | Carrier pump |
 
-**Facilitated diffusion** uses carrier proteins or channel proteins to move substances such as glucose and ions down their concentration gradient. It's still passive, but there's only a limited number of carrier proteins. When every carrier is busy, the rate of diffusion **reaches a maximum** even if the concentration keeps rising. Compare the two curves and change the number of carrier proteins.
+### Carrier Saturation
+
+**Simple diffusion** rises linearly as concentration increases because molecules slip straight between phospholipids. **Facilitated diffusion** is still passive and needs zero ATP, yet its rate flattens once every carrier protein is occupied. Vary the carrier count <InlineMath math="a" /> below to compare both curves.
 
 <MathVisual
-  title={<>Simple Diffusion against Facilitated Diffusion</>}
+  title={<>Simple Diffusion versus Facilitated Diffusion</>}
   description={
     <>
-      The straight line is simple diffusion, <InlineMath math="0.5c" />. The
-      curve is facilitated diffusion, <InlineMath math="\dfrac{ac}{2 + c}" />,
-      with <InlineMath math="a" /> proportional to the number of carrier
-      proteins.
+      Simple diffusion rises linearly while facilitated diffusion approaches a
+      ceiling set by the available number of carrier proteins <InlineMath math="a" />.
     </>
   }
+  footer={<>Once every carrier protein is occupied, raising solute concentration cannot speed transport.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: 0, max: 10 }, y: { min: 0, max: 5.5 } },
@@ -80,69 +98,87 @@ The rate of diffusion rises with **a steeper concentration gradient**, a higher 
     ],
   }}
   labels={{
-    a: <>Number of carrier proteins <InlineMath math="a" /></>,
-    limit: <>Maximum rate of facilitated diffusion</>,
+    a: <>Carrier protein count <InlineMath math="a" /></>,
+    limit: <>Maximum facilitated rate</>,
   }}
 />
 
-**Active transport** moves substances against the concentration gradient using carrier proteins and energy from ATP. For example, the **sodium-potassium pump** pumps sodium ions out of nerve cells and potassium ions in. Root hair cells also absorb mineral ions actively from the more dilute soil.
+Doubling carrier protein density lifts the flat plateau twice as high because twice as many binding sites shuttle polar solutes across the bilayer simultaneously.
 
-| Process | Direction | Energy | Protein |
-| :--- | :--- | :--- | :--- |
-| Simple diffusion | Down the gradient | No | No |
-| Facilitated diffusion | Down the gradient | No | Carrier or channel |
-| Osmosis | Water down its gradient | No | Sometimes through aquaporins |
-| Active transport | Against the gradient | Yes, ATP | Carrier |
+### Active Transport Pumps
 
-## Osmosis and the Concentration of Solutions
+When a root hair cell absorbs mineral ions from dilute soil or a neuron pumps potassium inward, solutes must travel uphill from low to high concentration. **Active transport** drives specific carrier pumps using energy released by splitting **ATP** into ADP.
 
-**Osmosis** is the net movement of water molecules from a **hypotonic** solution (less concentrated) to a **hypertonic** solution (more concentrated) through a partially permeable membrane. If the two solutions are **isotonic**, there's no net movement of water.
+> Facilitated diffusion never spends ATP because solutes still move downhill, whereas active transport spends ATP to push solutes uphill against the gradient.
 
-In a classic experiment, potato strips of the same mass are soaked in sucrose solutions of different concentrations for an hour. Pick each tube in this model and compare the change in the strip's mass.
+Switch between simple diffusion, facilitated diffusion, and active pumping across the phospholipid bilayer below while adjusting the concentration gradient.
 
-<OsmosisLab
-  title={<>Potato Strips in Sucrose Solutions</>}
+<ActiveTransportPumpLab
+  title={<>Membrane Transport Modes Across a Phospholipid Bilayer</>}
   description={
     <>
-      Six tubes from <InlineMath math="0" /> to{" "}
-      <InlineMath math="0.5\text{ mol dm}^{-3}" /> sucrose. A strip gains mass in
-      a hypotonic solution and loses mass in a hypertonic one.
+      Toggle simple diffusion, facilitated channels, and ATP-driven carrier
+      pumps while varying the concentration gradient to compare transport
+      direction and ATP demand.
     </>
   }
-  strips={[
-    { concentration: 0, change: 20 },
-    { concentration: 0.1, change: 12 },
-    { concentration: 0.2, change: 5 },
-    { concentration: 0.3, change: 0 },
-    { concentration: 0.4, change: -6 },
-    { concentration: 0.5, change: -11 },
-  ]}
+  footer={<>Only active carrier pumps consume ATP to push solutes against their concentration gradient.</>}
+  modes={["simpleDiffusion", "facilitated", "activePump"]}
+  gradient={{ min: 0, max: 10, value: 5 }}
   labels={{
-    change: <>Change in mass</>,
-    concentration: "Sucrose concentration",
-    isotonic: <>Isotonic solution</>,
-    mass: <>Strip mass</>,
-    none: <>No change</>,
-    solution: <>Solution</>,
-    tonicities: {
-      hypertonic: <>hypertonic</>,
-      hypotonic: <>hypotonic</>,
-      isotonic: <>isotonic</>,
+    mode: "Transport mode",
+    modes: {
+      simpleDiffusion: {
+        name: "Simple diffusion",
+        mechanism: <>Small nonpolar molecules cross directly between phospholipids down the gradient.</>,
+      },
+      facilitated: {
+        name: "Facilitated diffusion",
+        mechanism: <>Channel proteins carry polar ions downhill passively without burning ATP.</>,
+      },
+      activePump: {
+        name: "Active carrier pump",
+        mechanism: <>ATP hydrolysis changes carrier shape to pump solutes uphill against the gradient.</>,
+      },
     },
-    view: "Potato strips in tubes of sucrose solution",
+    gradient: "Concentration gradient",
+    directions: {
+      downGradient: "Down concentration gradient",
+      againstGradient: "Against concentration gradient",
+    },
+    atpUse: <>ATP consumption</>,
+    direction: <>Net transport direction</>,
+    parts: {
+      bilayer: "Phospholipid bilayer",
+      channelProtein: "Channel protein",
+      carrierPump: "Carrier pump",
+      solute: "Solute particles",
+      atp: "ATP molecule",
+      adp: "ADP product",
+    },
+    view: "3D phospholipid bilayer contrasting simple diffusion, channel proteins, and ATP-driven active carrier pumps",
   }}
 />
 
-Plot the same results as a graph. The line of best fit crosses the horizontal axis at the concentration that is **isotonic with the potato's cell sap**.
+Stopping cell respiration halts active transport immediately because carrier pumps lose their ATP supply, while passive diffusion continues unaffected.
+
+## Osmosis and Tonicity
+
+**Osmosis** is the net movement of water molecules alone from a dilute **hypotonic** solution to a concentrated **hypertonic** solution across a partially permeable membrane. When both sides share equal solute concentration, the solution is **isotonic** and net water flow equals zero.
+
+> Always follow the water, not the solute: water flows out of dilute hypotonic solutions and into concentrated hypertonic solutions.
+
+In a standard potato-strip investigation, six identical strips are soaked in sucrose solutions from pure water up to <InlineMath math="0.5\text{ mol dm}^{-3}" />. Strips gain mass in hypotonic tubes, lose mass in hypertonic tubes, and show zero mass change where sucrose matches the cell sap.
 
 <ScatterDiagram
-  title={<>Percentage Change in Mass of Potato Strips</>}
+  title={<>Percentage Mass Change of Potato Strips</>}
   description={
     <>
-      Percentage change in mass against sucrose concentration. The line of best
-      fit crosses zero at about <InlineMath math="0.30\text{ mol dm}^{-3}" />.
+      Percentage change in strip mass against sucrose concentration, crossing
+      zero near <InlineMath math="0.30\text{ mol dm}^{-3}" />.
     </>
   }
+  footer={<>The horizontal intercept identifies the exact sucrose concentration isotonic to cell sap.</>}
   xAxisLabel="Sucrose concentration (mol dm⁻³)"
   yAxisLabel="Change in mass (%)"
   calculateRegressionLine
@@ -162,97 +198,74 @@ Plot the same results as a graph. The line of best fit crosses the horizontal ax
   ]}
 />
 
-### Example Finding the Isotonic Solution
+Because the best-fit line crosses zero change at <InlineMath math="0.30\text{ mol dm}^{-3}" />, the potato's vacuolar sap matches a <InlineMath math="0.30\text{ mol dm}^{-3}" /> sucrose solution.
 
-From the potato strip data, find **the concentration of the potato's cell sap**. The line of best fit is about <InlineMath math="y = -61.1x + 18.6" />. Where the change in mass is zero:
+## Plant and Animal Cells
 
-<BlockMath math="0 = -61.1x + 18.6 \quad\Rightarrow\quad x = \frac{18.6}{61.1} = 0.30\text{ mol dm}^{-3}" />
+Animal cells lack a rigid cellulose wall, so a red blood cell swells and bursts (**haemolysis**) in pure water and shrivels (**crenation**) in concentrated salt solution.
 
-Check with the raw data: the <InlineMath math="0.3\text{ mol dm}^{-3}" /> tube shows zero change in mass. The potato's cell sap is about <InlineMath math="0.30\text{ mol dm}^{-3}" />.
+Plant cells behave differently because their cellulose wall resists bursting. In pure water they turn firm and **turgid**, whereas in hypertonic salt solution the vacuole shrinks and the plasma membrane pulls away from the wall (**plasmolysis**).
 
-### Example Working Out the Final Mass
+Switch between a plant cell and a red blood cell across hypotonic, isotonic, and hypertonic baths below to watch water flow arrows, vacuole volume, and membrane separation.
 
-A <InlineMath math="2.50\text{ g}" /> potato strip is soaked in the <InlineMath math="0.5\text{ mol dm}^{-3}" /> solution, which gives a change of <InlineMath math="-11\%" />. Find **its final mass**.
-
-<BlockMath math="2.50 \times (1 - 0.11) = 2.50 \times 0.89 = 2.23\text{ g}" />
-
-The mass drops because water leaves the cells into the hypertonic solution by osmosis. Check: <InlineMath math="2.50 - 2.23 = 0.27\text{ g}" />, which is about <InlineMath math="11\%" /> of <InlineMath math="2.50" />.
-
-## Effects of Osmosis on Animal and Plant Cells
-
-Animal cells have no cell wall. In a hypotonic solution, a red blood cell takes in water, swells and eventually bursts, which is **haemolysis**. In a hypertonic solution, the cell loses water and shrinks, which is **crenation**. This ideal-cell model shows the relative volume of a cell whose sap is equivalent to <InlineMath math="0.3" /> mol of solute, with the volume inversely proportional to the outside concentration.
-
-<MathVisual
-  title={<>Relative Cell Volume in Different Solutions</>}
+<PlasmolysisCellLab
+  title={<>Osmotic Effects on Plant and Red Blood Cells</>}
   description={
     <>
-      The horizontal axis is the outside concentration in units of{" "}
-      <InlineMath math="0.1\text{ mol dm}^{-3}" />. The curve{" "}
-      <InlineMath math="V/V_0 = 3/k" /> equals <InlineMath math="1" /> when the
-      solution is isotonic, at <InlineMath math="k = 3" />.
+      Compare a walled plant cell and a wall-free red blood cell across
+      hypotonic, isotonic, and hypertonic solutions to contrast turgor,
+      plasmolysis, haemolysis, and crenation.
     </>
   }
-  scene={{
-    space: "plane",
-    frame: { kind: "cartesian", x: { min: 0, max: 6.5 }, y: { min: 0, max: 3.5 } },
-    view: { kind: "fit", padding: 0.06 },
-    parameters: [
-      { name: "k", min: 1, max: 6, value: 3, step: 0.25, label: "k" },
-    ],
-    objects: [
-      { id: "volume", kind: "function", appearance: "primary", formula: "3/x", domain: { min: 0.9, max: 6.5 } },
-      { id: "isotonic", kind: "point", appearance: "answer", at: { x: 3, y: 1 } },
-      { id: "now", kind: "marker", x: "k", y: "3/k", appearance: "warning" },
-    ],
-    labels: [
-      { key: "isotonic", objectId: "isotonic", at: { x: 3, y: 1 }, placement: "above-right" },
-    ],
-    readouts: [
-      { key: "relative", formula: "3/k" },
-    ],
-  }}
+  footer={<>Cellulose walls protect plant cells from bursting in pure water while red blood cells haemolyse.</>}
+  cells={["plant", "redBlood"]}
+  solutions={["hypotonic", "isotonic", "hypertonic"]}
   labels={{
-    k: <>Outside concentration <InlineMath math="k" /></>,
-    isotonic: <>Isotonic</>,
-    relative: <>Relative volume <InlineMath math="V/V_0" /></>,
+    cell: "Cell type",
+    cells: {
+      plant: "Plant cell",
+      redBlood: "Red blood cell",
+    },
+    solution: "External solution",
+    solutions: {
+      hypotonic: "Hypotonic",
+      isotonic: "Isotonic",
+      hypertonic: "Hypertonic",
+    },
+    outcomes: {
+      turgid: "Turgid",
+      plasmolysed: "Plasmolysed",
+      haemolysed: "Haemolysed",
+      crenated: "Crenated",
+      normal: "Normal shape",
+    },
+    outcome: <>Cell condition</>,
+    waterFlow: <>Net water movement</>,
+    parts: {
+      cellWall: "Cellulose cell wall",
+      membrane: "Plasma membrane",
+      vacuole: "Central vacuole",
+      cytoplasm: "Cytoplasm",
+      waterArrow: "Water flow arrow",
+    },
+    view: "3D plant cell and red blood cell compared across hypotonic, isotonic, and hypertonic baths",
   }}
 />
 
-Plant cells are different because they have a cell wall. In a hypotonic solution, the cell becomes **turgid** and the wall stops it from bursting. In a hypertonic solution, the vacuole shrinks and the plasma membrane pulls away from the cell wall, which is **plasmolysis**. If the cell is moved into distilled water, it becomes turgid again, which is **deplasmolysis**.
+Returning a plasmolysed leaf cell to distilled water reverses water flow back into the vacuole (**deplasmolysis**), restoring crisp turgor to wilted leaves.
 
-## Common Mistakes about Movement across Membranes
+## Membrane Transport Checks
 
-| Mistake | Why it's wrong | How to check |
-| :--- | :--- | :--- |
-| Osmosis is the movement of solute. | Osmosis is the movement of water molecules only. | Ask which molecule moves. |
-| Water moves from a concentrated solution to a dilute one. | Water moves from a hypotonic to a hypertonic solution, from dilute to concentrated. | Follow the water, not the solute. |
-| Facilitated diffusion needs ATP. | Facilitated diffusion is passive. Only active transport needs ATP. | Check the direction of the concentration gradient. |
-| A plant cell bursts in distilled water. | The cell wall resists the pressure, so the cell becomes turgid. | Separate animal cells from plant cells. |
+Check two quantitative osmosis calculations below.
 
-The second mistake is the most common one in osmosis questions. **Water moves towards the more concentrated solution**.
+**Isotonic sap check.** The potato regression line obeys <InlineMath math="y = -61.1x + 18.6" />. Solve for the isotonic sucrose concentration where mass change equals zero.
 
-## Practice on Movement across Membranes
+<BlockMath math="x = \frac{18.6}{61.1} = 0.30\text{ mol dm}^{-3}" />
 
-These questions move from naming a process to an osmosis calculation. **State the direction of the gradient** in every answer.
+This agrees directly with the zero-change reading recorded in the <InlineMath math="0.3\text{ mol dm}^{-3}" /> sucrose tube.
 
-1. Name the process that moves potassium ions into a nerve cell that already has a high potassium concentration.
+**Potato mass check.** A <InlineMath math="2.50\text{ g}" /> potato strip loses <InlineMath math="11\%" /> of its mass in <InlineMath math="0.5\text{ mol dm}^{-3}" /> sucrose. Find its final mass.
 
-2. Explain why the rate of facilitated diffusion levels off at high concentrations.
+<BlockMath math="m_{\text{final}} = 2.50 \times (1 - 0.11) = 2.23\text{ g}" />
 
-3. A <InlineMath math="3.00\text{ g}" /> potato strip is soaked in distilled water and its mass rises by <InlineMath math="20\%" />. Calculate its final mass.
-
-4. A leaf cell is soaked in concentrated salt solution for half an hour. Explain the state of the cell.
-
-### Solutions
-
-**Solution 1**: The potassium ions move from low to high concentration, which is **against the concentration gradient**, so the process is **active transport**, using a carrier protein and ATP.
-
-**Solution 2**: Facilitated diffusion depends on carrier proteins, and **there's only a limited number of them**. At high concentrations every carrier is already in use, so raising the concentration doesn't raise the rate. The curve levels off at the maximum rate.
-
-**Solution 3**: Distilled water is hypotonic, so water enters the cells:
-
-<BlockMath math="3.00 \times (1 + 0.20) = 3.60\text{ g}" />
-
-Check: the gain of <InlineMath math="0.60\text{ g}" /> is <InlineMath math="20\%" /> of <InlineMath math="3.00\text{ g}" />.
-
-**Solution 4**: Concentrated salt solution is hypertonic to the cell sap. Water leaves the vacuole by osmosis, the vacuole shrinks, and the plasma membrane pulls away from the cell wall. The cell is **plasmolysed** and the leaf wilts.
+Water exited the vacuole into the hypertonic bath by osmosis, removing <InlineMath math="0.27\text{ g}" /> of water mass.
