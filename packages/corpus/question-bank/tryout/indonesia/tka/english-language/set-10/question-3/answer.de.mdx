@@ -1,11 +1,42 @@
-Berechne jeden Vergleich aus Tabelle und Regeln.
+# Gegeben
 
-- **I ist gestützt**. Ein Buch lässt sich <InlineMath math="14 + 7 + 7 = 28" /> Tage behalten, eine Zeitschrift <InlineMath math="7" /> und eine verlängerte DVD <InlineMath math="3 + 3 = 6" />.
-- **II ist gestützt**. Eine DVD <InlineMath math="2" /> Tage zu spät kostet <InlineMath math="2 \times 2{.}000 = \text{Rp}4{.}000" />. Ein Buch <InlineMath math="7" /> Tage zu spät kostet <InlineMath math="7 \times 500 = \text{Rp}3{.}500" />.
-- III ist nicht gestützt. Die halbe DVD-Gebühr ist <InlineMath math="\text{Rp}1{.}000" /> pro Tag, doppelt so viel wie die <InlineMath math="\text{Rp}500" /> für ein Buch.
-- IV ist nicht gestützt. Ein Mitglied darf "no more than <InlineMath math="2" />" DVDs haben.
-- V ist nicht gestützt. Eine verlängerte DVD hält <InlineMath math="6" /> Tage, einen weniger als die <InlineMath math="7" /> einer Zeitschrift.
+Übersicht aus Tabelle und Bibliotheksregeln:
+- **Buch**: <InlineMath math="14" /> Tage plus bis zu <InlineMath math="2 \times 7" /> Tage = **<InlineMath math="28" /> Tage**, Gebühr <InlineMath math="\text{Rp}500" />/Tag.
+- **Zeitschrift**: **<InlineMath math="7" /> Tage**, keine Verlängerung, Gebühr <InlineMath math="\text{Rp}300" />/Tag.
+- **DVD**: <InlineMath math="3" /> Tage plus <InlineMath math="1 \times 3" /> Tage = **<InlineMath math="6" /> Tage**, Gebühr <InlineMath math="\text{Rp}2{.}000" />/Tag.
+- Höchstens <InlineMath math="6" /> Medien gleichzeitig (**höchstens <InlineMath math="2" /> DVDs**), Mitglieder unter <InlineMath math="12" /> zahlen die halbe Gebühr.
 
-Die Optionen mit V übersehen, dass eine DVD-Verlängerung nur <InlineMath math="3" /> Tage bringt. Die Option mit III halbiert die falsche Gebühr.
+# Gesucht
 
-Gestützt sind also nur I und II.
+Welche römisch nummerierten Vergleichsaussagen der Text stützt.
+
+# Lösung
+
+Berechne die maximale Leihdauer einschließlich Verlängerungen, vergleiche die genauen Gebührenbeträge und prüfe die DVD-Obergrenze direkt am Text.
+
+> Genaues Nachrechnen der maximalen Leihdauern und der halben Gebühr trennt die zwei belegten Aussagen sauber von den Zahlenfallen.
+
+## Jeden Vergleich mit der Tabelle prüfen
+
+Höchstdauern und Gebührenvergleich aus Aussage II ergeben:
+
+<BlockMath math="\text{Buch max.: } 14 + 7 + 7 = 28\text{ Tage}, \qquad \text{DVD max.: } 3 + 3 = 6\text{ Tage}" />
+
+<BlockMath math="\text{DVD 2 Tage: } 2 \times \text{Rp}2{.}000 = \text{Rp}4{.}000 > \text{Buch 7 Tage: } 7 \times \text{Rp}500 = \text{Rp}3{.}500" />
+
+| Aussage | Gestützt? | Beleg aus Tabelle und Regeln |
+| --- | --- | --- |
+| I | **Ja** | Ein Buch (<InlineMath math="28" /> Tage) bleibt länger ausleihbar als Zeitschrift (<InlineMath math="7" />) oder DVD (<InlineMath math="6" />). |
+| II | **Ja** | Zwei Tage DVD-Verspätung (<InlineMath math="\text{Rp}4{.}000" />) kosten mehr als sieben Tage Buch-Verspätung (<InlineMath math="\text{Rp}3{.}500" />). |
+| III | Nein | Die halbe DVD-Gebühr beträgt <InlineMath math="\text{Rp}1{.}000" />/Tag, das Doppelte der Buchgebühr (<InlineMath math="\text{Rp}500" />). |
+| IV | Nein | Erlaubt sind <Highlight>no more than <InlineMath math="2" /> of them DVDs</Highlight>, nicht <InlineMath math="3" />. |
+| V | Nein | Eine verlängerte DVD läuft <InlineMath math="6" /> Tage, einen Tag kürzer als eine Zeitschrift (<InlineMath math="7" /> Tage). |
+
+## Warum die anderen Optionen falsch sind
+
+- **Optionen mit III** halbieren <InlineMath math="\text{Rp}2{.}000" /> fälschlich auf <InlineMath math="\text{Rp}500" />.
+- **Optionen mit V** setzen <InlineMath math="6" /> DVD-Tage mit <InlineMath math="7" /> Zeitschriftentagen gleich.
+
+# Antwort
+
+Gestützt werden **nur I und II** (*I and II only*).

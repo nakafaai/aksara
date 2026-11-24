@@ -1,15 +1,38 @@
-The month begins on a Monday, so Sundays fall on dates <InlineMath math="7" />, <InlineMath math="14" />, <InlineMath math="21" /> and <InlineMath math="28" />. Add the loan period to the day of borrowing, which is day <InlineMath math="0" />.
+# Given
 
-**Statement 1**: no fine. <InlineMath math="1 + 7 = 8" />, so the magazine is due on Monday <InlineMath math="8" />, the day it comes back.
+In a month starting on **Monday the <InlineMath math="1" />st**, Sundays fall on **<InlineMath math="7" />, <InlineMath math="14" />, <InlineMath math="21" />, and <InlineMath math="28" />**.
 
-**Statement 2**: fined. <InlineMath math="6 + 14 = 20" />, so the book is due on Saturday <InlineMath math="20" />. Sunday <InlineMath math="21" /> is free, but Monday <InlineMath math="22" /> is a late day.
+Library due-date rules:
+- Borrowing day is day <InlineMath math="0" /> (Book <InlineMath math="14" /> days plus up to <InlineMath math="2" /> renewals of <InlineMath math="7" /> days, Magazine <InlineMath math="7" /> days with no renewal, DVD <InlineMath math="3" /> days).
+- An item falling due on a **Sunday** may be returned on **Monday without a fine**.
 
-**Statement 3**: no fine. <InlineMath math="4 + 3 = 7" />, Sunday <InlineMath math="7" />, and an item due on a Sunday "may be returned on the Monday without a fine".
+# Asked
 
-**Statement 4**: fined. <InlineMath math="1 + 14 + 7 + 7 = 29" />, Monday <InlineMath math="29" />. Tuesday <InlineMath math="30" /> is late.
+Whether each member pays **No fine** or is **Fined**.
 
-**Statement 5**: fined. <InlineMath math="2 + 7 = 9" />, Tuesday <InlineMath math="9" />, and magazines can't be renewed.
+# Solution
 
-Counting the day of borrowing as day <InlineMath math="1" /> gets statement 1 wrong. Forgetting the Sunday rule gets statement 3 wrong.
+Add the loan period and any renewals directly to the borrowing date since borrowing day is day <InlineMath math="0" />, then check whether a Sunday due date shifts the deadline to Monday.
 
-So the members in statements 1 and 3 pay no fine, and those in statements 2, 4 and 5 are fined.
+> The Monday grace rule protects only items actually due on Sunday, whereas an item due on Saturday still incurs a Monday fine even though Sunday itself is free.
+
+## Checking all five loan records
+
+The rules specify <Highlight>counts the day of borrowing as day <InlineMath math="0" /></Highlight> and <Highlight>An item that falls due on a Sunday may be returned on the Monday without a fine</Highlight>.
+
+| Statement | Due date | Returned | Status |
+| --- | --- | --- | --- |
+| Magazine, Monday <InlineMath math="1" /> | Monday <InlineMath math="8" /> (<InlineMath math="1 + 7" />) | Monday <InlineMath math="8" /> | **No fine** |
+| Book, Saturday <InlineMath math="6" /> | Saturday <InlineMath math="20" /> (<InlineMath math="6 + 14" />) | Monday <InlineMath math="22" /> (Monday is <InlineMath math="1" /> late day) | **Fined** |
+| DVD, Thursday <InlineMath math="4" /> | Sunday <InlineMath math="7" /> (<InlineMath math="4 + 3" />) | Monday <InlineMath math="8" /> (due Sunday, Monday free) | **No fine** |
+| Book, Monday <InlineMath math="1" />, renewed twice | Monday <InlineMath math="29" /> (<InlineMath math="1 + 14 + 7 + 7" />) | Tuesday <InlineMath math="30" /> (<InlineMath math="1" /> day late) | **Fined** |
+| Magazine, Tuesday <InlineMath math="2" /> | Tuesday <InlineMath math="9" /> (<InlineMath math="2 + 7" />) | Wednesday <InlineMath math="10" /> (<InlineMath math="1" /> day late) | **Fined** |
+
+## Common pitfalls to avoid
+
+- Counting borrowing day as day <InlineMath math="1" /> falsely marks statement 1 as fined.
+- Forgetting the Sunday-to-Monday rule falsely marks statement 3 as fined.
+
+# Answer
+
+Statements **1 and 3** pay **No fine**, while statements **2, 4, and 5** are **Fined**.

@@ -1,14 +1,40 @@
-Find each due date with day <InlineMath math="0" /> as the day of borrowing, then count the late days without Sundays.
+# Given
 
-**Book**. Due <InlineMath math="14" /> days after Wednesday <InlineMath math="3" /> July: Wednesday <InlineMath math="17" /> July. Late on Thursday <InlineMath math="18" />, Friday <InlineMath math="19" /> and Saturday <InlineMath math="20" />: <InlineMath math="3" /> days <InlineMath math="\times \text{Rp}500 = \text{Rp}1{,}500" />.
+Raka, aged **<InlineMath math="14" />** (full fine rate), borrows **<InlineMath math="1" /> book** and **<InlineMath math="1" /> DVD** on **Wednesday <InlineMath math="3" /> July**, renews the DVD once on time, forgets the book, and returns both on **Saturday <InlineMath math="20" /> July**.
 
-**DVD**. First due <InlineMath math="3" /> days after day <InlineMath math="3" />: Saturday <InlineMath math="6" /> July. The renewal "runs from the old due date": <InlineMath math="6 + 3 = 9" />, so Tuesday <InlineMath math="9" /> July. Late from Wednesday <InlineMath math="10" /> to Saturday <InlineMath math="20" /> is <InlineMath math="11" /> days, but Sunday <InlineMath math="14" /> is free, so <InlineMath math="10" /> days <InlineMath math="\times \text{Rp}2{,}000 = \text{Rp}20{,}000" />.
+Library rules:
+- Borrowing day is day <InlineMath math="0" />, and Sundays carry **no fine**.
+- **Book**: <InlineMath math="14" />-day loan, <InlineMath math="\text{Rp}500" /> per late day.
+- **DVD**: <InlineMath math="3" />-day loan, <InlineMath math="1" /> renewal of <InlineMath math="3" /> days running from the old due date, <InlineMath math="\text{Rp}2{,}000" /> per late day.
 
-**Total**. <InlineMath math="1{,}500 + 20{,}000 = \text{Rp}21{,}500" />. Raka is <InlineMath math="14" />, so he pays the full fine.
+# Asked
 
-- <InlineMath math="\text{Rp}25{,}500" /> forgets the renewal.
-- <InlineMath math="\text{Rp}23{,}500" /> charges the Sunday.
-- <InlineMath math="\text{Rp}22{,}000" /> counts the day of borrowing as day <InlineMath math="1" />, so the book falls due a day early.
-- <InlineMath math="\text{Rp}10{,}750" /> gives Raka the half fine for members under <InlineMath math="12" />.
+What total fine Raka pays when returning both items on Saturday <InlineMath math="20" /> July.
 
-So Raka pays <InlineMath math="\text{Rp}21{,}500" />.
+# Solution
+
+Compute each due date counting borrowing day as day <InlineMath math="0" />, count late days excluding Sunday <InlineMath math="14" /> July, and sum the two fines at the full adult rate.
+
+> Renewals add straight onto the old due date and Sundays are fine-free, turning the eleven calendar days from <InlineMath math="10" /> to <InlineMath math="20" /> July into ten chargeable DVD days.
+
+## Calculating late days and total fine
+
+The rules state that <Highlight>each renewal runs from the old due date</Highlight> and <Highlight>no fine is charged for a Sunday</Highlight>.
+
+- **Book**: due <InlineMath math="3 + 14 = 17" /> July (Wednesday). Late on Thursday <InlineMath math="18" />, Friday <InlineMath math="19" />, and Saturday <InlineMath math="20" /> July (<InlineMath math="3" /> days, no Sunday).
+- **DVD**: first due <InlineMath math="3 + 3 = 6" /> July (Saturday), renewed to <InlineMath math="6 + 3 = 9" /> July (Tuesday). From Wednesday <InlineMath math="10" /> to Saturday <InlineMath math="20" /> July is <InlineMath math="11" /> days minus Sunday <InlineMath math="14" /> July, giving <InlineMath math="10" /> late days.
+
+<BlockMath math="\text{Book fine: } 3 \times \text{Rp}500 = \text{Rp}1{,}500, \qquad \text{DVD fine: } 10 \times \text{Rp}2{,}000 = \text{Rp}20{,}000" />
+
+<BlockMath math="\text{Total fine: } \text{Rp}1{,}500 + \text{Rp}20{,}000 = \text{Rp}21{,}500" />
+
+## Why the other options fail
+
+- **<InlineMath math="\text{Rp}25{,}500" />** forgets Raka's DVD renewal.
+- **<InlineMath math="\text{Rp}23{,}500" />** charges a DVD fine for Sunday <InlineMath math="14" /> July.
+- **<InlineMath math="\text{Rp}22{,}000" />** counts borrowing day as day <InlineMath math="1" />, making the book fall due one day early.
+- **<InlineMath math="\text{Rp}10{,}750" />** halves the fine even though Raka is <InlineMath math="14" />, not under <InlineMath math="12" />.
+
+# Answer
+
+Raka pays a total fine of **<InlineMath math="\text{Rp}21{,}500" />**.

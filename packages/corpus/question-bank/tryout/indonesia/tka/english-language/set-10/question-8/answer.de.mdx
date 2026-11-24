@@ -1,11 +1,41 @@
-Der erste Strich ist der Start, Strich Nummer <InlineMath math="n" /> kommt also am Ende von Runde <InlineMath math="n - 1" />.
+# Gegeben
 
-- **R kommt zuerst**. Der erste Strich kam "as each runner set off".
-- **Q kommt danach**. Der fünfte Strich kommt am Ende von Runde <InlineMath math="4" />.
-- **P kommt nach Q**. Danach beendete Citra ihre fünfte Runde, als der sechste Strich kam.
-- **S kommt, als Citra fertig war**, und Bu Sinta die Zeit notierte.
-- **T kommt "a week later"**, nachdem Bu Sinta den Bogen mit ihren Zeiten verglichen hatte.
+Fünf Ereignisse (P, Q, R, S, T) rund um Citra beim Schullauf stehen in gemischter Reihenfolge:
+- **P**: Citra beendet ihre fünfte Runde.
+- **Q**: Der Erzähler macht den fünften Strich neben Citras Namen.
+- **R**: Der Erzähler macht den ersten Strich neben Citras Namen.
+- **S**: Bu Sinta notiert Citras Zielzeit.
+- **T**: Pak Guntur zahlt den Sponsoren Geld zurück.
 
-Die Reihenfolge mit P vor Q hält den fünften Strich für die fünfte Runde. Die Reihenfolge, die mit Q beginnt, setzt den fünften Strich vor den ersten, der beim Start kam. Die Reihenfolge mit S vor P lässt Bu Sinta die Zielzeit notieren, bevor Citra ihre fünfte Runde beendet hatte. Die Reihenfolge mit S am Ende setzt die Erstattung vor die Zeit, auf der sie beruht.
+# Gesucht
 
-Die Reihenfolge ist also R, Q, P, S, T.
+Die zeitlich richtige Reihenfolge dieser fünf Ereignisse.
+
+# Lösung
+
+Beachte die Verschiebung um eins durch den Startstrich: Der <InlineMath math="n" />-te Strich entsteht am Ende von Runde <InlineMath math="n - 1" />, weshalb der fünfte Strich (**Q**) vor dem Ende der fünften Runde (**P**) liegt.
+
+> Da der erste Strich den Start markiert, fällt der fünfte Strich schon am Ende der vierten Runde, eine ganze Runde vor dem Ende der fünften Runde.
+
+## Ereignisse zeitlich ordnen
+
+Der Erzähler schreibt <Highlight>I made the first mark as each runner set off</Highlight>, und die Rückzahlung folgte <Highlight>A week later</Highlight> nach Bu Sintas Zeitvergleich.
+
+| Schritt | Ereignis | Zeitpunkt |
+| --- | --- | --- |
+| Erstens | **R** | Strich <InlineMath math="1" /> beim Start von der Linie (Runde <InlineMath math="0" />). |
+| Zweitens | **Q** | Strich <InlineMath math="5" /> am Ende von Runde <InlineMath math="4" />. |
+| Drittens | **P** | Citra beendet Runde <InlineMath math="5" /> (gleichzeitig mit Strich <InlineMath math="6" />). |
+| Viertens | **S** | Im Ziel nach Runde <InlineMath math="11" /> notiert Bu Sinta die Zielzeit (<InlineMath math="22" /> Minuten). |
+| Fünftens | **T** | Eine Woche später erstattet Pak Guntur das zu viel gezahlte Geld. |
+
+## Warum die anderen Optionen falsch sind
+
+- **R, P, Q, S, T** setzt Runde fünf vor den fünften Strich und vergisst den Startstrich.
+- **Q, R, P, S, T** stellt den fünften Strich vor den ersten.
+- **R, Q, S, P, T** setzt die Zielzeit vor das Ende der fünften Runde.
+- **R, Q, P, T, S** setzt die Rückzahlung vor die Zielzeit, die den Fehler erst aufdeckte.
+
+# Antwort
+
+Die richtige Reihenfolge ist **R, Q, P, S, T**.

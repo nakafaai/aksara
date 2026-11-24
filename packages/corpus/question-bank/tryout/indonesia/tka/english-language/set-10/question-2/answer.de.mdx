@@ -1,15 +1,38 @@
-Der Monat beginnt an einem Montag, Sonntage fallen also auf die Tage <InlineMath math="7" />, <InlineMath math="14" />, <InlineMath math="21" /> und <InlineMath math="28" />. Zähl die Leihfrist zum Ausleihtag, der Tag <InlineMath math="0" /> ist.
+# Gegeben
 
-**Aussage 1**: keine Gebühr. <InlineMath math="1 + 7 = 8" />, die Zeitschrift ist also am Montag, dem <InlineMath math="8" />., fällig, dem Tag der Rückgabe.
+In einem Monat, der am **Montag, dem <InlineMath math="1" />.** beginnt, liegen die Sonntage am **<InlineMath math="7" />., <InlineMath math="14" />., <InlineMath math="21" />. und <InlineMath math="28" />.**.
 
-**Aussage 2**: Gebühr. <InlineMath math="6 + 14 = 20" />, das Buch ist am Samstag, dem <InlineMath math="20" />., fällig. Sonntag, der <InlineMath math="21" />., ist frei, aber Montag, der <InlineMath math="22" />., ist ein Verspätungstag.
+Rückgaberegeln:
+- Ausleihtag ist Tag <InlineMath math="0" /> (Buch <InlineMath math="14" /> Tage plus bis zu <InlineMath math="2" /> Verlängerungen à <InlineMath math="7" /> Tage, Zeitschrift <InlineMath math="7" /> Tage ohne Verlängerung, DVD <InlineMath math="3" /> Tage).
+- Ein am **Sonntag** fälliges Medium darf am **Montag ohne Gebühr** zurückgegeben werden.
 
-**Aussage 3**: keine Gebühr. <InlineMath math="4 + 3 = 7" />, Sonntag, der <InlineMath math="7" />., und ein am Sonntag fälliges Stück "may be returned on the Monday without a fine".
+# Gesucht
 
-**Aussage 4**: Gebühr. <InlineMath math="1 + 14 + 7 + 7 = 29" />, Montag, der <InlineMath math="29" />. Dienstag, der <InlineMath math="30" />., ist zu spät.
+Ob jeweils **keine Gebühr** (*No fine*) anfällt oder **eine Gebühr** (*Fined*) zu zahlen ist.
 
-**Aussage 5**: Gebühr. <InlineMath math="2 + 7 = 9" />, Dienstag, der <InlineMath math="9" />., und Zeitschriften lassen sich nicht verlängern.
+# Lösung
 
-Wer den Ausleihtag als Tag <InlineMath math="1" /> zählt, entscheidet Aussage 1 falsch. Wer die Sonntagsregel vergisst, entscheidet Aussage 3 falsch.
+Addiere Leihfrist und eventuelle Verlängerungen direkt zum Ausleihdatum und prüfe, ob ein Sonntagsdatum die Frist straffrei auf den Montag verschiebt.
 
-Keine Gebühr zahlen also die Mitglieder der Aussagen 1 und 3, eine Gebühr die der Aussagen 2, 4 und 5.
+> Die straffreie Rückgabe am Montag gilt nur für genau am Sonntag fällige Medien, nicht für Medien mit Rückgabedatum am Samstag.
+
+## Alle fünf Ausleihfälle prüfen
+
+Laut Text gilt <Highlight>counts the day of borrowing as day <InlineMath math="0" /></Highlight> und <Highlight>An item that falls due on a Sunday may be returned on the Monday without a fine</Highlight>.
+
+| Aussage | Fällig am | Zurück am | Status |
+| --- | --- | --- | --- |
+| Zeitschrift, Montag <InlineMath math="1" />. | Montag <InlineMath math="8" />. (<InlineMath math="1 + 7" />) | Montag <InlineMath math="8" />. | **Keine Gebühr** |
+| Buch, Samstag <InlineMath math="6" />. | Samstag <InlineMath math="20" />. (<InlineMath math="6 + 14" />) | Montag <InlineMath math="22" />. (Montag ist <InlineMath math="1" /> Tag zu spät) | **Gebühr** |
+| DVD, Donnerstag <InlineMath math="4" />. | Sonntag <InlineMath math="7" />. (<InlineMath math="4 + 3" />) | Montag <InlineMath math="8" />. (Sonntagsregel greift) | **Keine Gebühr** |
+| Buch, Montag <InlineMath math="1" />., zweimal verlängert | Montag <InlineMath math="29" />. (<InlineMath math="1 + 14 + 7 + 7" />) | Dienstag <InlineMath math="30" />. (<InlineMath math="1" /> Tag zu spät) | **Gebühr** |
+| Zeitschrift, Dienstag <InlineMath math="2" />. | Dienstag <InlineMath math="9" />. (<InlineMath math="2 + 7" />) | Mittwoch <InlineMath math="10" />. (<InlineMath math="1" /> Tag zu spät) | **Gebühr** |
+
+## Typische Stolperstellen
+
+- Wer den Ausleihtag als Tag <InlineMath math="1" /> zählt, stuft Aussage 1 falsch ein.
+- Wer die Sonntagsregel vergisst, stuft Aussage 3 falsch als gebührenpflichtig ein.
+
+# Antwort
+
+In den **Aussagen 1 und 3** fällt **keine Gebühr** (*No fine*) an, während in den **Aussagen 2, 4 und 5** **eine Gebühr** (*Fined*) anfällt.

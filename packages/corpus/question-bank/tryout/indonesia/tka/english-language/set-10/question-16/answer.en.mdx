@@ -1,14 +1,36 @@
-Count rows across the width and seedlings along the length, remembering that both start at an edge and include the far edge.
+# Given
 
-**Rows**. Across <InlineMath math="2.1" /> m, rows sit at <InlineMath math="0" />, <InlineMath math="70" />, <InlineMath math="140" /> and <InlineMath math="210" /> cm: <InlineMath math="4" /> rows.
+Bu Ani's planting bed measures **<InlineMath math="4" /> m (<InlineMath math="400" /> cm) long** and **<InlineMath math="2.1" /> m (<InlineMath math="210" /> cm) wide**.
 
-**Seedlings per row**. Along <InlineMath math="4" /> m, seedlings sit at <InlineMath math="0" />, <InlineMath math="50" />, <InlineMath math="100" />, and so on to <InlineMath math="400" /> cm: <InlineMath math="400 \div 50 + 1 = 9" />.
+Spacing rules:
+- Place the first row along one long edge, then another row every **<InlineMath math="70" /> cm** including the far edge.
+- Along each row, place the first seedling at one end, then one every **<InlineMath math="50" /> cm** including the far end.
 
-**Total**. <InlineMath math="4 \times 9 = 36" />.
+# Asked
 
-- <InlineMath math="24" /> forgets the far edge both times: <InlineMath math="3 \times 8" />.
-- <InlineMath math="32" /> forgets the far end of each row: <InlineMath math="4 \times 8" />.
-- <InlineMath math="27" /> forgets the row on the far edge: <InlineMath math="3 \times 9" />.
-- <InlineMath math="30" /> swaps the spacings: rows every <InlineMath math="50" /> cm and seedlings every <InlineMath math="70" /> cm.
+How many chili seedlings Bu Ani plants when following the instructions.
 
-So Bu Ani plants <InlineMath math="36" /> seedlings.
+# Solution
+
+Count rows across the width and seedlings along the length using fencepost counting (divide by the spacing and add one for the starting edge), then multiply the two counts together.
+
+> Starting at zero and including the far boundary means the number of positions along any span always equals the number of intervals plus one.
+
+## Counting rows and seedlings per row
+
+Steps <InlineMath math="3" /> and <InlineMath math="4" /> place rows every <InlineMath math="70" /> cm (<Highlight>the far edge included</Highlight>) and seedlings every <InlineMath math="50" /> cm (<Highlight>the far end included</Highlight>).
+
+<BlockMath math="\text{Rows: } \frac{210}{70} + 1 = 3 + 1 = 4\text{ rows} \quad (0, 70, 140, 210\text{ cm})" />
+
+<BlockMath math="\text{Seedlings per row: } \frac{400}{50} + 1 = 8 + 1 = 9, \qquad \text{Total: } 4 \times 9 = 36\text{ seedlings}" />
+
+## Why the other options fail
+
+- **<InlineMath math="24" />** drops the extra boundary post on both width and length (<InlineMath math="3 \times 8" />).
+- **<InlineMath math="32" />** forgets the far end of each row (<InlineMath math="4 \times 8" />).
+- **<InlineMath math="27" />** forgets the row along the far edge (<InlineMath math="3 \times 9" />).
+- **<InlineMath math="30" />** swaps the <InlineMath math="70" /> cm row spacing and the <InlineMath math="50" /> cm seedling spacing.
+
+# Answer
+
+Bu Ani plants **<InlineMath math="36" />** chili seedlings.

@@ -1,9 +1,32 @@
-Prüf jede Aussage an Tabelle und Regeln, mit dem Ausleihtag als Tag <InlineMath math="0" />.
+# Gegeben
 
-- **Ein am Samstag geliehenes, einmal verlängertes Buch ist drei Samstage später fällig: gestützt**. <InlineMath math="14 + 7 = 21" /> Tage, genau drei Wochen.
-- **Eine am Donnerstag geliehene DVD ist am Sonntag fällig und darf am Montag zurück: gestützt**. Donnerstag plus <InlineMath math="3" /> Tage ist Sonntag, und Sonntagsrückgaben gehen ohne Gebühr auf Montag.
-- **Ein Mitglied unter <InlineMath math="12" /> zahlt <InlineMath math="\text{Rp}3{.}000" /> für eine DVD <InlineMath math="3" /> Tage zu spät: gestützt**. Die Hälfte von <InlineMath math="\text{Rp}2{.}000" /> ist <InlineMath math="\text{Rp}1{.}000" /> pro Tag, und <InlineMath math="3 \times 1{.}000 = 3{.}000" />.
-- Eine Zeitschrift am folgenden Montag verlängern: nicht gestützt. Zeitschriften lassen sich nicht verlängern.
-- Mit <InlineMath math="4" /> Büchern und <InlineMath math="2" /> DVDs noch eine Zeitschrift leihen: nicht gestützt. Das wären <InlineMath math="7" /> Stücke, die Grenze ist <InlineMath math="6" />.
+Fünf Aussagen betreffen Rückgabedaten für ein verlängertes Buch, eine sonntags fällige DVD, die ermäßigte DVD-Gebühr, eine Zeitschriftenverlängerung und das Ausleihlimit.
 
-Gestützt sind also die Aussagen über das verlängerte Buch, die am Sonntag fällige DVD und die Gebühr von <InlineMath math="\text{Rp}3{.}000" />.
+# Gesucht
+
+Alle Aussagen, die durch Tabelle und Bibliotheksregeln gestützt werden (Mehrfachauswahl).
+
+# Lösung
+
+Prüfe jede Aussage einzeln mit dem Ausleihtag als Tag <InlineMath math="0" />, den Verlängerungsregeln, der halben Gebühr unter <InlineMath math="12" /> Jahren und dem Limit von <InlineMath math="6" /> Medien.
+
+> Drei Aussagen erfüllen alle Regeln exakt, während die anderen zwei gegen das Verlängerungsverbot für Zeitschriften und die Grenze von sechs Medien verstoßen.
+
+## Alle fünf Aussagen gegen die Regeln prüfen
+
+| Aussage | Gestützt? | Rechnung und Textbeleg |
+| --- | --- | --- |
+| Buch am Samstag geliehen und einmal verlängert ist drei Samstage später fällig | **Ja** | Gesamtdauer <InlineMath math="14 + 7 = 21" /> Tage, genau <InlineMath math="3" /> Wochen ab Tag <InlineMath math="0" />. |
+| DVD am Donnerstag geliehen ist sonntags fällig und Montag gebührenfrei abgebbar | **Ja** | Donnerstag plus <InlineMath math="3" /> Tage ist Sonntag, und <Highlight>An item that falls due on a Sunday may be returned on the Monday without a fine</Highlight>. |
+| Mitglied unter <InlineMath math="12" /> zahlt für <InlineMath math="3" /> Tage DVD-Verspätung ohne Sonntag <InlineMath math="\text{Rp}3{.}000" /> | **Ja** | Halbe DVD-Gebühr ist <InlineMath math="\text{Rp}1{.}000" />/Tag, mal <InlineMath math="3" /> ergibt <InlineMath math="\text{Rp}3{.}000" />. |
+| Zeitschrift am Montag geliehen ist am nächsten Montag verlängerbar | Nein | Zeitschriften erlauben keine Verlängerung (*none*), zudem wäre der Fälligkeitstag schon zu spät. |
+| Mit <InlineMath math="4" /> Büchern und <InlineMath math="2" /> DVDs noch eine Zeitschrift leihen | Nein | Das wären <InlineMath math="7" /> Medien und verstößt gegen <Highlight>hold up to <InlineMath math="6" /> items at a time</Highlight>. |
+
+## Warum die anderen zwei Aussagen falsch sind
+
+- Eine **Zeitschriftenverlängerung** ist laut Tabelle ausgeschlossen.
+- Ein **siebtes Medium** überschreitet das harte Limit von <InlineMath math="6" /> Medien.
+
+# Antwort
+
+Gestützt werden **A book borrowed on a Saturday and renewed once is due on the Saturday three weeks later.**, **A DVD borrowed on a Thursday falls due on the Sunday, so it may come back on the Monday without a fine.** und **A member under <InlineMath math="12" /> who returns a DVD <InlineMath math="3" /> days late, with no Sunday among them, pays <InlineMath math="\text{Rp}3{,}000" />.**.
