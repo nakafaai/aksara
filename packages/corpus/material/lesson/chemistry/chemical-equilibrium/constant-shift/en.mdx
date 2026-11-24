@@ -1,0 +1,555 @@
+export const metadata = {
+  title: "Dynamic Chemical Equilibrium and Shifts",
+  description:
+    "Calculate equilibrium constants Kc and Kp, predict reaction direction with the reaction quotient, and apply Le Chatelier shifts to the Haber-Bosch process.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2026-11-17",
+  subject: "Chemical Equilibrium",
+};
+
+## Dynamic Reversible Reactions
+
+Picture a bookshop with two doors. Every minute, <InlineMath math="5" /> people walk in through the front door and <InlineMath math="5" /> people walk out through the back. Nobody stops moving, yet the headcount inside stays steady.
+
+That's how **dynamic equilibrium** works in chemistry. In a reversible reaction, products can turn right back into reactants, so we write a double arrow.
+
+<BlockMath math="\mathrm{A} \rightleftharpoons \mathrm{B}" />
+
+At the start, the flask holds only <InlineMath math="\mathrm{A}" />, so the forward reaction runs fast. As <InlineMath math="\mathrm{B}" /> builds up, the reverse reaction speeds up too until **the forward rate equals the reverse rate**. Both reactions keep going, yet the concentrations of <InlineMath math="\mathrm{A}" /> and <InlineMath math="\mathrm{B}" /> stay constant.
+
+> Chemical equilibrium never means the reaction stops or that reactants and products reach equal amounts. Only the forward and reverse speeds become equal.
+
+Watch molecules react in both directions inside the 3D reactor below. Adjust the forward rate constant, reverse rate constant, and starting amount to see both rates converge while particles keep exchanging.
+
+<DynamicEquilibriumLab
+  title={<>Dynamic Equilibrium Particle Reactor</>}
+  description={
+    <>
+      Vary the forward rate constant <InlineMath math="k_f" />, reverse rate
+      constant <InlineMath math="k_r" />, and starting reactant concentration to
+      watch molecules collide both ways until <InlineMath math="r_f = r_r" />.
+    </>
+  }
+  footer={
+    <>
+      Molecules keep exchanging once <InlineMath math="r_f = r_r" /> while net
+      counts stay constant.
+    </>
+  }
+  systems={["generic", "nitrogenDioxide", "hydrogenIodide"]}
+  forwardRate={{ min: 0.1, max: 2, value: 0.6 }}
+  reverseRate={{ min: 0.1, max: 2, value: 0.2 }}
+  initialReactant={{ min: 0.2, max: 2, value: 1 }}
+  labels={{
+    equilibrium: <>Equilibrium ratio</>,
+    forwardRate: "Forward rate constant",
+    initial: "Initial concentration",
+    rateForward: <>Forward rate <InlineMath math="r_f" /></>,
+    rateReverse: <>Reverse rate <InlineMath math="r_r" /></>,
+    reverseRate: "Reverse rate constant",
+    state: <>System state</>,
+    states: {
+      approaching: "Approaching equilibrium",
+      balanced: "Dynamic equilibrium",
+    },
+    system: "Reaction system",
+    systems: {
+      generic: {
+        equation: <><InlineMath math="\mathrm{A} \rightleftharpoons \mathrm{B}" /></>,
+        name: "A <-> B",
+        product: "Product B",
+        reactant: "Reactant A",
+      },
+      nitrogenDioxide: {
+        equation: <><InlineMath math="\mathrm{N_2O_4} \rightleftharpoons 2\mathrm{NO_2}" /></>,
+        name: "N2O4 / NO2",
+        product: "NO2 gas",
+        reactant: "N2O4 gas",
+      },
+      hydrogenIodide: {
+        equation: <><InlineMath math="\mathrm{H_2} + \mathrm{I_2} \rightleftharpoons 2\mathrm{HI}" /></>,
+        name: "H2 + I2 / HI",
+        product: "HI gas",
+        reactant: "H2 + I2 gas",
+      },
+    },
+    view: "3D dynamic equilibrium particle reactor",
+  }}
+/>
+
+Inside the vessel, collisions never halt even after the particle counts flatten out. Now slide the forward rate constant <InlineMath math="k_1" /> and reverse rate constant <InlineMath math="k_2" /> on the concentration graph below. Notice whether the curves for <InlineMath math="[\mathrm{A}]" /> and <InlineMath math="[\mathrm{B}]" /> level off at the same height.
+
+<MathVisual
+  title={<>Concentrations Approaching Equilibrium</>}
+  description={
+    <>
+      The reaction <InlineMath math="\mathrm{A} \rightleftharpoons \mathrm{B}" />{" "}
+      starts at <InlineMath math="[\mathrm{A}] = 1\text{ M}" />. With{" "}
+      <InlineMath math="k_1 = 0.6" /> and <InlineMath math="k_2 = 0.2" />, it
+      settles at <InlineMath math="[\mathrm{A}] = 0.25\text{ M}" /> and{" "}
+      <InlineMath math="[\mathrm{B}] = 0.75\text{ M}" />.
+    </>
+  }
+  footer={
+    <>
+      Both curves flatten at different heights because <InlineMath math="k_1" /> is
+      three times <InlineMath math="k_2" />.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 10 }, y: { min: 0, max: 1 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "a", min: 0.1, max: 1, value: 0.6, step: 0.05, label: "a" },
+      { name: "b", min: 0.1, max: 1, value: 0.2, step: 0.05, label: "b" },
+    ],
+    objects: [
+      { id: "reactant", kind: "function", appearance: "secondary", formula: "b/(a + b) + (a/(a + b))*exp(-(a + b)*x)", domain: { min: 0, max: 10 } },
+      { id: "product", kind: "function", appearance: "primary", formula: "(a/(a + b))*(1 - exp(-(a + b)*x))", domain: { min: 0, max: 10 } },
+    ],
+    readouts: [
+      { key: "reactant-end", formula: "b/(a + b)" },
+      { key: "product-end", formula: "a/(a + b)" },
+      { key: "constant", formula: "a/b" },
+    ],
+  }}
+  labels={{
+    a: <>Forward rate constant <InlineMath math="k_1" /></>,
+    b: <>Reverse rate constant <InlineMath math="k_2" /></>,
+    "reactant-end": <>Equilibrium <InlineMath math="[\mathrm{A}]" /> in <InlineMath math="\text{M}" /></>,
+    "product-end": <>Equilibrium <InlineMath math="[\mathrm{B}]" /> in <InlineMath math="\text{M}" /></>,
+    constant: <>Equilibrium constant <InlineMath math="K = \dfrac{k_1}{k_2}" /></>,
+  }}
+/>
+
+You see both curves flatten at different heights. Many learners think <InlineMath math="[\mathrm{A}]" /> must equal <InlineMath math="[\mathrm{B}]" /> at equilibrium, yet **equilibrium concentrations simply stop changing**, locked in the ratio of <InlineMath math="k_1" /> to <InlineMath math="k_2" />.
+
+Now compare the speeds on the rate graph below. Watch the forward rate <InlineMath math="k_1[\mathrm{A}]" /> and reverse rate <InlineMath math="k_2[\mathrm{B}]" /> converge into one shared line.
+
+<MathVisual
+  title={<>Forward and Reverse Rates</>}
+  description={
+    <>
+      For <InlineMath math="k_1 = 0.6" /> and <InlineMath math="k_2 = 0.2" />, the
+      forward rate falls and the reverse rate climbs until they meet at{" "}
+      <InlineMath math="0.15\text{ M s}^{-1}" />.
+    </>
+  }
+  footer={
+    <>
+      Once both curves merge at <InlineMath math="0.15\text{ M s}^{-1}" />, the
+      system reaches dynamic equilibrium.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 10 }, y: { min: 0, max: 1 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "a", min: 0.1, max: 1, value: 0.6, step: 0.05, label: "a" },
+      { name: "b", min: 0.1, max: 1, value: 0.2, step: 0.05, label: "b" },
+    ],
+    objects: [
+      { id: "forward", kind: "function", appearance: "primary", formula: "a*(b/(a + b) + (a/(a + b))*exp(-(a + b)*x))", domain: { min: 0, max: 10 } },
+      { id: "reverse", kind: "function", appearance: "secondary", formula: "b*(a/(a + b))*(1 - exp(-(a + b)*x))", domain: { min: 0, max: 10 } },
+    ],
+    readouts: [
+      { key: "equal-rate", formula: "a*b/(a + b)" },
+    ],
+  }}
+  labels={{
+    a: <>Forward rate constant <InlineMath math="k_1" /></>,
+    b: <>Reverse rate constant <InlineMath math="k_2" /></>,
+    "equal-rate": <>Rate at equilibrium in <InlineMath math="\text{M s}^{-1}" /></>,
+  }}
+/>
+
+Once the two curves merge, **product forms and breaks down at the exact same speed**. That's why the flask looks still from outside while molecules keep colliding in both directions every second.
+
+## Equilibrium Constants
+
+At any fixed temperature, every reversible reaction carries one constant score showing whether the equilibrium mixture favors products or reactants. You can express that score through the **concentration constant <InlineMath math="K_c" />** for solutions and gases, or the **pressure constant <InlineMath math="K_p" />** for gas mixtures.
+
+### Concentration Constant
+
+Think of <InlineMath math="K_c" /> as a scoreboard with products on top and reactants on the bottom. A large <InlineMath math="K_c" /> means products dominate at equilibrium. For a balanced reaction, raise every concentration to its stoichiometric coefficient.
+
+<MathContainer>
+<BlockMath math="a\mathrm{A} + b\mathrm{B} \rightleftharpoons c\mathrm{C} + d\mathrm{D}" />
+<BlockMath math="K_c = \frac{[\mathrm{C}]^c\,[\mathrm{D}]^d}{[\mathrm{A}]^a\,[\mathrm{B}]^b}" />
+</MathContainer>
+
+A common slip is putting solids or pure liquids into the fraction. Their density doesn't change as the reaction proceeds, so **only <InlineMath math="(g)" /> and <InlineMath math="(aq)" /> species belong in <InlineMath math="K_c" />**. Always balance the equation first so every exponent matches its coefficient.
+
+Compare ammonia synthesis with limestone decomposition below. Every substance in ammonia synthesis is a gas, whereas limestone decomposition leaves only <InlineMath math="\mathrm{CO_2}" /> in the gas phase.
+
+<MathContainer>
+<BlockMath math="\mathrm{N_2}(g) + 3\mathrm{H_2}(g) \rightleftharpoons 2\mathrm{NH_3}(g) \implies K_c = \frac{[\mathrm{NH_3}]^2}{[\mathrm{N_2}][\mathrm{H_2}]^3}" />
+<BlockMath math="\mathrm{CaCO_3}(s) \rightleftharpoons \mathrm{CaO}(s) + \mathrm{CO_2}(g) \implies K_c = [\mathrm{CO_2}]" />
+</MathContainer>
+
+Try a quick check on sulfur dioxide oxidation below. Every substance is a gas, so the powers in <InlineMath math="K_c" /> follow the coefficients <InlineMath math="2" />, <InlineMath math="1" />, and <InlineMath math="2" /> directly.
+
+<BlockMath math="2\mathrm{SO_2}(g) + \mathrm{O_2}(g) \rightleftharpoons 2\mathrm{SO_3}(g) \implies K_c = \frac{[\mathrm{SO_3}]^2}{[\mathrm{SO_2}]^2[\mathrm{O_2}]}" />
+
+### Pressure Constant Kp
+
+For gas reactions, measuring partial pressures is often simpler than measuring molarities. Because ideal gas pressure scales with concentration through <InlineMath math="RT" />, we connect **<InlineMath math="K_p" /> and <InlineMath math="K_c" /> using the change in gas moles <InlineMath math="\Delta n" />**.
+
+<BlockMath math="K_p = K_c\,(RT)^{\Delta n}, \qquad R = 0.0821\ \text{L atm mol}^{-1}\,\text{K}^{-1}" />
+
+Find <InlineMath math="\Delta n" /> by subtracting the moles of gaseous reactants from the moles of gaseous products, and keep temperature <InlineMath math="T" /> in Kelvin.
+
+Take <InlineMath math="\mathrm{N_2O_4}" /> dissociation with <InlineMath math="K_c = 4.0 \times 10^{-3}" /> at <InlineMath math="298\text{ K}" />. The right side has <InlineMath math="2\text{ mol}" /> of gas and the left has <InlineMath math="1\text{ mol}" />, giving a difference of positive one.
+
+<MathContainer>
+<BlockMath math="\mathrm{N_2O_4}(g) \rightleftharpoons 2\mathrm{NO_2}(g), \qquad \Delta n = 2 - 1 = 1" />
+<BlockMath math="K_p = 4.0 \times 10^{-3} \times (0.0821 \times 298)^1 \approx 0.098" />
+</MathContainer>
+
+Check the calculation backward by dividing <InlineMath math="0.098" /> by <InlineMath math="24.47" />, which lands right back at <InlineMath math="4.0 \times 10^{-3}" />.
+
+## Finding Yield and Direction
+
+Knowing <InlineMath math="K_c" /> unlocks two practical jobs in chemical equilibrium problems. You can calculate **final equilibrium concentrations** from starting amounts, or predict **which way a fresh mixture will shift** before equilibrium arrives.
+
+### Equilibrium Table Steps
+
+To track how much of each substance gets used and made, build an **initial, change, equilibrium table**. Think of it like a simple bank ledger: starting balance plus or minus each transaction gives the final balance.
+
+Suppose you place <InlineMath math="1\text{ mol}" /> of <InlineMath math="\mathrm{H_2}" /> and <InlineMath math="1\text{ mol}" /> of <InlineMath math="\mathrm{I_2}" /> into a <InlineMath math="1\text{ L}" /> vessel with <InlineMath math="K_c = 64" /> for the reaction below.
+
+<BlockMath math="\mathrm{H_2}(g) + \mathrm{I_2}(g) \rightleftharpoons 2\mathrm{HI}(g)" />
+
+Since the vessel volume is <InlineMath math="1\text{ L}" />, both <InlineMath math="\mathrm{H_2}" /> and <InlineMath math="\mathrm{I_2}" /> start at <InlineMath math="1\text{ M}" />. Let <InlineMath math="x" /> react, so <InlineMath math="\mathrm{HI}" /> grows by <InlineMath math="2x" /> to match its coefficient.
+
+| Substance | <InlineMath math="\mathrm{H_2}" /> | <InlineMath math="\mathrm{I_2}" /> | <InlineMath math="\mathrm{HI}" /> |
+| :--- | :--- | :--- | :--- |
+| Initial | <InlineMath math="1" /> | <InlineMath math="1" /> | <InlineMath math="0" /> |
+| Change | <InlineMath math="-x" /> | <InlineMath math="-x" /> | <InlineMath math="+2x" /> |
+| Equilibrium | <InlineMath math="1 - x" /> | <InlineMath math="1 - x" /> | <InlineMath math="2x" /> |
+
+Substitute the equilibrium row into <InlineMath math="K_c" />. Both sides are perfect squares and <InlineMath math="x" /> lies between <InlineMath math="0" /> and <InlineMath math="1" />, so you can take the positive square root directly.
+
+<MathContainer>
+<BlockMath math="\frac{(2x)^2}{(1 - x)^2} = 64 \implies \frac{2x}{1 - x} = 8" />
+<BlockMath math="2x = 8 - 8x \implies x = 0.8" />
+</MathContainer>
+
+At equilibrium, <InlineMath math="[\mathrm{H_2}]" /> and <InlineMath math="[\mathrm{I_2}]" /> are each <InlineMath math="0.2\text{ M}" />, while **<InlineMath math="[\mathrm{HI}] = 1.6\text{ M}" />**. Plug those numbers back into the expression to verify your algebra.
+
+<BlockMath math="K_c = \frac{1.6^2}{0.2 \times 0.2} = \frac{2.56}{0.04} = 64" />
+
+Compare the starting and equilibrium bars on the chart below to see the mole ratio in action.
+
+<Chart
+  title={<>Initial and Equilibrium Concentrations</>}
+  bars="apart"
+  categories={["Hydrogen", "Iodine", "Hydrogen iodide"]}
+  series={[
+    { label: "Initial (M)", mark: "bar", values: [1, 1, 0] },
+    { label: "Equilibrium (M)", mark: "bar", values: [0.2, 0.2, 1.6] },
+  ]}
+  valueLabel="Concentration (M)"
+  valueRange={{ min: 0, max: 1.8 }}
+  description={
+    <>
+      Each <InlineMath math="0.8\text{ M}" /> of hydrogen and iodine consumed
+      creates <InlineMath math="1.6\text{ M}" /> of hydrogen iodide, matching the{" "}
+      <InlineMath math="1 : 1 : 2" /> stoichiometric ratio.
+    </>
+  }
+  footer={
+    <>
+      The hydrogen iodide bar rises twice as much as each reactant bar drops.
+    </>
+  }
+/>
+
+Losing <InlineMath math="0.8\text{ M}" /> from hydrogen and iodine produces exactly double that gain, <InlineMath math="1.6\text{ M}" />, on the hydrogen iodide side.
+
+Test the same method on the <InlineMath math="1 : 1" /> reaction below. Place <InlineMath math="1\text{ mol}" /> each of <InlineMath math="\mathrm{A}" /> and <InlineMath math="\mathrm{B}" /> into a <InlineMath math="1\text{ L}" /> vessel when <InlineMath math="K_c = 4" />.
+
+<MathContainer>
+<BlockMath math="\mathrm{A}(g) + \mathrm{B}(g) \rightleftharpoons \mathrm{C}(g) + \mathrm{D}(g)" />
+<BlockMath math="\frac{x^2}{(1 - x)^2} = 4 \implies \frac{x}{1 - x} = 2 \implies x = \frac{2}{3} \approx 0.67" />
+</MathContainer>
+
+That gives <InlineMath math="[\mathrm{C}]" /> and <InlineMath math="[\mathrm{D}]" /> at <InlineMath math="0.67\text{ M}" /> each, with <InlineMath math="[\mathrm{A}]" /> and <InlineMath math="[\mathrm{B}]" /> at <InlineMath math="0.33\text{ M}" /> each. Checking <InlineMath math="(2/3)^2 / (1/3)^2" /> confirms <InlineMath math="K_c = 4" />.
+
+### Direction from Quotient
+
+When you start with any mixture that might not be at equilibrium yet, compute the **reaction quotient <InlineMath math="Q" />** with the same formula as <InlineMath math="K_c" />, then compare <InlineMath math="Q" /> against <InlineMath math="K_c" /> to find the direction of shift.
+
+| Situation | Meaning | Direction of shift |
+| :--- | :--- | :--- |
+| <InlineMath math="Q < K" /> | too little product so far | to the right, forming products |
+| <InlineMath math="Q = K" /> | mixture already at equilibrium | no shift |
+| <InlineMath math="Q > K" /> | too much product | to the left, forming reactants |
+
+Test how <InlineMath math="Q_c" /> compares with <InlineMath math="K_c" /> directly inside the 3D reaction vessel below. Slide the reactant and product concentrations to watch the quotient scale tip in the direction of spontaneous shift.
+
+<EquilibriumQuotientLab
+  title={<>Reaction Quotient Balance against Kc</>}
+  description={
+    <>
+      Adjust initial reactant and product concentrations for{" "}
+      <InlineMath math="\mathrm{N_2O_4} \rightleftharpoons 2\mathrm{NO_2}" /> at{" "}
+      <InlineMath math="K_c = 4" /> to track the shift until{" "}
+      <InlineMath math="Q_c = K_c" />.
+    </>
+  }
+  footer={
+    <>
+      The scale tips right when <InlineMath math="Q_c < K_c" /> and left when{" "}
+      <InlineMath math="Q_c > K_c" />.
+    </>
+  }
+  kc={4}
+  stoichiometry="oneToTwo"
+  reactant={{ min: 0.1, max: 4, value: 1 }}
+  product={{ min: 0, max: 4, value: 1 }}
+  labels={{
+    direction: <>Shift direction</>,
+    directions: {
+      equilibrium: <>At equilibrium</>,
+      forward: <>Shifts right</>,
+      reverse: <>Shifts left</>,
+    },
+    equation: <><InlineMath math="\mathrm{N_2O_4}(g) \rightleftharpoons 2\mathrm{NO_2}(g)" /></>,
+    kc: <>Constant <InlineMath math="K_c" /></>,
+    product: "Product concentration",
+    quotient: <>Quotient <InlineMath math="Q_c" /></>,
+    reactant: "Reactant concentration",
+    view: "3D reaction vessel and quotient balance",
+  }}
+/>
+
+Push the product slider until <InlineMath math="Q_c" /> exceeds <InlineMath math="4" /> and the vessel drives the reverse reaction until the beam levels again. Take <InlineMath math="\mathrm{H_2} + \mathrm{I_2} \rightleftharpoons 2\mathrm{HI}" /> with <InlineMath math="K_c = 64" /> when <InlineMath math="[\mathrm{H_2}]" /> and <InlineMath math="[\mathrm{I_2}]" /> are each <InlineMath math="0.5\text{ M}" />. Slide <InlineMath math="[\mathrm{HI}]" /> below to see where <InlineMath math="Q" /> crosses the flat line at <InlineMath math="K_c = 64" />.
+
+<MathVisual
+  title={<>Reaction Quotient against Hydrogen Iodide Concentration</>}
+  description={
+    <>
+      With <InlineMath math="[\mathrm{H_2}] = [\mathrm{I_2}] = 0.5\text{ M}" />, the
+      quotient follows <InlineMath math="Q = 4[\mathrm{HI}]^2" />. At{" "}
+      <InlineMath math="[\mathrm{HI}] = 2\text{ M}" />, <InlineMath math="Q = 16" />{" "}
+      sits below <InlineMath math="64" />, so the reaction shifts right.
+    </>
+  }
+  footer={
+    <>
+      Points below the <InlineMath math="64" /> line shift right, and points above
+      it shift left.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 6 }, y: { min: 0, max: 150 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "d", min: 0, max: 6, value: 2, step: 0.1, label: "d" },
+    ],
+    objects: [
+      { id: "quotient", kind: "function", appearance: "primary", formula: "4*x^2", domain: { min: 0, max: 6 } },
+      { id: "constant", kind: "function", appearance: "reference", formula: "64", domain: { min: 0, max: 6 } },
+      { id: "now", kind: "marker", x: "d", y: "4*d^2", appearance: "answer" },
+    ],
+    readouts: [
+      { key: "quotient-value", formula: "4*d^2" },
+    ],
+  }}
+  labels={{
+    d: <>Concentration <InlineMath math="[\mathrm{HI}]" /> in <InlineMath math="\text{M}" /></>,
+    "quotient-value": <>Reaction quotient <InlineMath math="Q" /></>,
+  }}
+/>
+
+When <InlineMath math="[\mathrm{HI}]" /> hits <InlineMath math="4\text{ M}" />, <InlineMath math="Q" /> reaches <InlineMath math="64" /> and the shift stops. Push <InlineMath math="[\mathrm{HI}]" /> past <InlineMath math="4\text{ M}" /> and the marker climbs above the line, sending the reaction back to the left.
+
+Apply the same check to ammonia synthesis with <InlineMath math="K_c = 0.5" /> when every gas starts at <InlineMath math="1\text{ M}" />.
+
+<BlockMath math="Q = \frac{[\mathrm{NH_3}]^2}{[\mathrm{N_2}][\mathrm{H_2}]^3} = \frac{1^2}{1 \times 1^3} = 1" />
+
+Because <InlineMath math="Q = 1" /> is larger than <InlineMath math="K_c = 0.5" />, ammonia is in excess, so **the reaction shifts left** and breaks some ammonia back down.
+
+## Le Chatelier Shifts
+
+Imagine a balanced seesaw. Push down on one end and the system responds to relieve your push. That idea is **Le Chatelier's principle**: when you disturb a system at equilibrium, it shifts in the direction that partly cancels the disturbance.
+
+### Amount and Pressure
+
+Two disturbances move the equilibrium position without changing <InlineMath math="K" /> at all. First, **adding a reactant** pushes the reaction right to consume it, while adding a product pushes it left.
+
+Second, **raising pressure by shrinking the volume** crowds the gas molecules, so the reaction shifts toward the side with fewer moles of gas. When both sides carry the same number of gas moles, pressure changes cause no shift.
+
+> Adding reactants or products, changing pressure, or inserting a catalyst never changes the numerical value of the equilibrium constant <InlineMath math="K" />.
+
+Many learners think a catalyst increases the final yield. In reality, a catalyst speeds up the forward and reverse paths equally, so **a catalyst only shortens the time to reach equilibrium** without changing how much product you get.
+
+To see pressure at work quantitatively, look at <InlineMath math="\mathrm{N_2O_4}" /> dissociation and its degree of dissociation <InlineMath math="\alpha" />.
+
+<MathContainer>
+<BlockMath math="\mathrm{N_2O_4}(g) \rightleftharpoons 2\mathrm{NO_2}(g)" />
+<BlockMath math="K_p = \frac{4\alpha^2 P}{1 - \alpha^2} \implies \alpha = \sqrt{\frac{K_p}{K_p + 4P}}" />
+</MathContainer>
+
+Raise the total pressure <InlineMath math="P" /> on the graph below and watch how quickly the dissociation fraction <InlineMath math="\alpha" /> drops.
+
+<MathVisual
+  title={<>Degree of Dissociation against Total Pressure</>}
+  description={
+    <>
+      For <InlineMath math="K_p = 0.15\text{ atm}" />, dissociation falls from
+      about <InlineMath math="52\%" /> at <InlineMath math="0.1\text{ atm}" /> down
+      to <InlineMath math="19\%" /> at <InlineMath math="1\text{ atm}" />.
+    </>
+  }
+  footer={
+    <>
+      Higher pressure pulls the curve down because the left side holds only one mole
+      of gas.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 5 }, y: { min: 0, max: 1 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "c", min: 0.05, max: 1, value: 0.15, step: 0.01, label: "c" },
+      { name: "p", min: 0.1, max: 5, value: 1, step: 0.1, label: "p" },
+    ],
+    objects: [
+      { id: "dissociation", kind: "function", appearance: "primary", formula: "sqrt(c/(c + 4*x))", domain: { min: 0.05, max: 5 } },
+      { id: "now", kind: "marker", x: "p", y: "sqrt(c/(c + 4*p))", appearance: "answer" },
+    ],
+    readouts: [
+      { key: "percent", formula: "100*sqrt(c/(c + 4*p))" },
+    ],
+  }}
+  labels={{
+    c: <>Constant <InlineMath math="K_p" /> in <InlineMath math="\text{atm}" /></>,
+    p: <>Total pressure <InlineMath math="P" /> in <InlineMath math="\text{atm}" /></>,
+    percent: <>Degree of dissociation as a percentage</>,
+  }}
+/>
+
+Squeezing the vessel forces two <InlineMath math="\mathrm{NO_2}" /> molecules back into one <InlineMath math="\mathrm{N_2O_4}" /> molecule to ease the crowding, while <InlineMath math="K_p" /> itself stays locked at <InlineMath math="0.15\text{ atm}" />.
+
+### Heat and Haber Bosch
+
+**Temperature is the only disturbance that changes <InlineMath math="K" />**. Treat heat like a substance in the equation: raise the temperature and the system absorbs that extra heat by shifting in the endothermic direction.
+
+For an exothermic reaction (<InlineMath math="\Delta H < 0" />), heating shifts equilibrium left and shrinks <InlineMath math="K" />. For an endothermic reaction (<InlineMath math="\Delta H > 0" />), heating grows <InlineMath math="K" />. Flip the sign of <InlineMath math="\Delta H" /> in the van 't Hoff graph below to watch the slope reverse.
+
+<MathVisual
+  title={<>Logarithm of the Equilibrium Constant against Temperature</>}
+  description={
+    <>
+      With <InlineMath math="\Delta H = -92\text{ kJ}" />,{" "}
+      <InlineMath math="\log K" /> drops steeply as temperature rises. Switch{" "}
+      <InlineMath math="\Delta H" /> to a positive value to see the curve climb
+      instead.
+    </>
+  }
+  footer={
+    <>
+      The curve falls for exothermic reactions and climbs when{" "}
+      <InlineMath math="\Delta H" /> is positive.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 250, max: 800 }, y: { min: -12, max: 12 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "h", min: -100, max: 100, value: -92, step: 1, label: "h" },
+      { name: "s", min: 250, max: 800, value: 700, step: 10, label: "s" },
+    ],
+    objects: [
+      { id: "log-constant", kind: "function", appearance: "primary", formula: "-52.2*h*(1/x - 1/298)", domain: { min: 250, max: 800 } },
+      { id: "now", kind: "marker", x: "s", y: "-52.2*h*(1/s - 1/298)", appearance: "answer" },
+    ],
+    readouts: [
+      { key: "log-value", formula: "-52.2*h*(1/s - 1/298)" },
+    ],
+  }}
+  labels={{
+    h: <>Enthalpy change <InlineMath math="\Delta H" /> in <InlineMath math="\text{kJ}" /></>,
+    s: <>Temperature <InlineMath math="T" /> in <InlineMath math="\text{K}" /></>,
+    "log-value": <>Value of <InlineMath math="\log K" /></>,
+  }}
+/>
+
+That curve explains the industrial trade-off behind the **Haber-Bosch process** used to manufacture fertilizer ammonia.
+
+<BlockMath math="\mathrm{N_2}(g) + 3\mathrm{H_2}(g) \rightleftharpoons 2\mathrm{NH_3}(g), \qquad \Delta H = -92.2\text{ kJ}" />
+
+Because <InlineMath math="4\text{ mol}" /> of gas become <InlineMath math="2\text{ mol}" />, factories apply high pressure to push the equilibrium right. A cold reactor would give a larger <InlineMath math="K" />, yet the reaction would crawl too slowly for production.
+
+Engineers compromise with a **moderate <InlineMath math="400" /> to <InlineMath math="500^\circ\text{C}" /> and an iron catalyst**, while continually condensing and removing <InlineMath math="\mathrm{NH_3}" /> so equilibrium keeps shifting right.
+
+Test every Le Chatelier disturbance hands-on inside the 3D piston reactor below. Compare how piston pressure, heating or cooling, reactant injection, and a catalyst affect yield and <InlineMath math="K_c" />.
+
+<LeChatelierLab
+  title={<>Le Chatelier Piston Gas Reactor</>}
+  description={
+    <>
+      Compress the piston, vary temperature, inject reactant, or switch on the
+      catalyst for Haber-Bosch and{" "}
+      <InlineMath math="\mathrm{N_2O_4} \rightleftharpoons 2\mathrm{NO_2}" /> to
+      compare shifts and <InlineMath math="K_c" />.
+    </>
+  }
+  footer={
+    <>
+      Only temperature changes <InlineMath math="K_c" />, while a catalyst only
+      speeds arrival.
+    </>
+  }
+  systems={["haber", "nitrogenDioxide"]}
+  disturbances={["pressure", "temperature", "concentration", "catalyst"]}
+  labels={{
+    catalyst: "Catalyst active",
+    concentration: "Add reactant",
+    disturbance: "Disturbance",
+    disturbances: {
+      catalyst: "Catalyst",
+      concentration: "Concentration",
+      pressure: "Piston pressure",
+      temperature: "Temperature",
+    },
+    kcChange: <>Effect on <InlineMath math="K_c" /></>,
+    kcStates: {
+      constant: "Constant",
+      decreases: "Decreases",
+      increases: "Increases",
+    },
+    pressure: "Piston pressure",
+    shift: <>Equilibrium shift</>,
+    shifts: {
+      forward: <>Right (products)</>,
+      none: <>No shift</>,
+      reverse: <>Left (reactants)</>,
+    },
+    system: "Gas system",
+    systems: {
+      haber: {
+        enthalpy: "Exothermic",
+        equation: <><InlineMath math="\mathrm{N_2} + 3\mathrm{H_2} \rightleftharpoons 2\mathrm{NH_3}" /></>,
+        name: "Haber-Bosch",
+      },
+      nitrogenDioxide: {
+        enthalpy: "Endothermic",
+        equation: <><InlineMath math="\mathrm{N_2O_4} \rightleftharpoons 2\mathrm{NO_2}" /></>,
+        name: "N2O4 / NO2",
+      },
+    },
+    temperature: "Reactor temperature",
+    view: "3D Le Chatelier piston gas reactor",
+    yield: <>Product yield</>,
+  }}
+/>
+
+Switching on the catalyst makes the piston reactor settle faster without altering the final yield or <InlineMath math="K_c" />. Raising temperature on exothermic Haber-Bosch lowers <InlineMath math="K_c" /> and shifts the mixture left.
