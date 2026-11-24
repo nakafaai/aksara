@@ -1,18 +1,37 @@
-Hitung tingkat keseluruhan dari jumlah perjalanan, lalu tingkat untuk tiap jenis rute, dan bandingkan.
+# Diketahui
 
-**Keseluruhan**. Setiap operator menjalankan <InlineMath math="800+200=1{.}000" /> perjalanan.
+Tabel bus mencatat **Northline** menjalankan <InlineMath math="800" /> perjalanan kota (<InlineMath math="560" /> tepat waktu) dan <InlineMath math="200" /> perjalanan desa (<InlineMath math="180" /> tepat waktu), sedangkan **Southway** menjalankan <InlineMath math="200" /> perjalanan kota (<InlineMath math="130" /> tepat waktu) dan <InlineMath math="800" /> perjalanan desa (<InlineMath math="680" /> tepat waktu).
 
-<BlockMath math="\text{Northline: } \dfrac{560+180}{1{.}000}=74\% \qquad \text{Southway: } \dfrac{130+680}{1{.}000}=81\%" />
+# Ditanyakan
 
-**Per jenis rute**.
+Berapa tingkat ketepatan waktu keseluruhan kedua operator tahun lalu, dan bagaimana perbandingannya dengan tingkat ketepatan pada tiap jenis rute?
 
-<BlockMath math="\text{kota: } \dfrac{560}{800}=70\% \text{ dibanding } \dfrac{130}{200}=65\% \qquad \text{desa: } \dfrac{180}{200}=90\% \text{ dibanding } \dfrac{680}{800}=85\%" />
+# Penyelesaian
 
-Northline unggul di **kedua** jenis rute, tetapi Southway unggul secara keseluruhan.
+Hitung **persentase tepat waktu keseluruhan** dari <InlineMath math="1{.}000" /> perjalanan masing-masing operator, lalu sandingkan dengan **tingkat rute kota dan desa secara terpisah** (paradoks Simpson).
 
-- <InlineMath math="80\%" /> dan <InlineMath math="75\%" /> adalah rata-rata biasa dari dua tingkat rute tiap operator. Cara itu mengabaikan berapa banyak perjalanan di tiap jenis rute.
-- Tingkat keseluruhannya benar, tetapi Southway tertinggal di tiap jenis rute, bukan unggul.
-- <InlineMath math="70\%" /> dan <InlineMath math="85\%" /> adalah tingkat satu rute saja, rute kota Northline dan rute desa Southway. Keduanya bukan tingkat keseluruhan, dan Northline justru unggul di rute kota maupun desa.
-- Urutan di koran sudah benar: <InlineMath math="81\%" /> milik Southway adalah angka keseluruhan yang lebih tinggi.
+> Northline unggul lima poin di rute kota sekaligus unggul lima poin di rute desa, namun Southway justru unggul tujuh poin pada angka gabungan keseluruhan.
 
-Tingkat keseluruhannya adalah Northline <InlineMath math="74\%" /> dan Southway <InlineMath math="81\%" />, padahal Northline unggul di tiap jenis rute.
+## Angka keseluruhan dibanding angka tiap rute
+
+| Operator | Rute kota tepat waktu | Rute desa tepat waktu | Keseluruhan tepat waktu |
+| --- | ---: | ---: | ---: |
+| Northline | <InlineMath math="\frac{560}{800} = 70\%" /> | <InlineMath math="\frac{180}{200} = 90\%" /> | <InlineMath math="\frac{560 + 180}{1{.}000} = 74\%" /> |
+| Southway | <InlineMath math="\frac{130}{200} = 65\%" /> | <InlineMath math="\frac{680}{800} = 85\%" /> | <InlineMath math="\frac{130 + 680}{1{.}000} = 81\%" /> |
+
+Menghitung **kedua total** memastikan pembalikan hasil ini:
+
+<BlockMath math="\begin{aligned} \text{Northline keseluruhan} &= \frac{560 + 180}{800 + 200} = \frac{740}{1{.}000} = 74\% \\ \text{Southway keseluruhan} &= \frac{130 + 680}{200 + 800} = \frac{810}{1{.}000} = 81\% \end{aligned}" />
+
+Meskipun Southway unggul keseluruhan (<InlineMath math="81\%" /> lawan <InlineMath math="74\%" />), **Northline unggul di kedua jenis rute** (<InlineMath math="70\% > 65\%" /> kota dan <InlineMath math="90\% > 85\%" /> desa).
+
+## Mengapa pilihan lain salah
+
+- **<InlineMath math="80\%" /> dan <InlineMath math="75\%" />** memakai rata-rata tak berbobot dari dua rute sehingga mengabaikan porsi <InlineMath math="800" /> banding <InlineMath math="200" /> perjalanan.
+- **Southway unggul di tiap jenis rute** membalik fakta per rute karena Northline unggul di kota maupun desa.
+- **<InlineMath math="70\%" /> dan <InlineMath math="85\%" />** hanya mengambil persentase satu rute, bukan keseluruhan.
+- **Northline <InlineMath math="81\%" /> dan Southway <InlineMath math="74\%" />** menukar angka keseluruhan kedua operator.
+
+# Jawaban
+
+**Northline <InlineMath math="74\%" /> and Southway <InlineMath math="81\%" />, even though Northline was ahead on each kind of route**.
