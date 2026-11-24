@@ -1,7 +1,7 @@
 export const metadata = {
   title: "Geschlechtliche Fortpflanzung der Blütenpflanzen und doppelte Befruchtung",
   description:
-    "Erkläre den Bau der Blüte, die Bildung von Pollen und Embryosack und die doppelte Befruchtung, und berechne Chromosomenzahlen in Samen mit Übungen.",
+    "Blütenbau, Bildung von Pollen und Embryosack, Bestäubung, doppelte Befruchtung sowie Entwicklung von Samen und Früchten.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-11-17",
   subject: "Geschlechtliche Fortpflanzung der Blütenpflanzen",
@@ -10,6 +10,8 @@ export const metadata = {
 ## Blüten bilden Samen durch doppelte Befruchtung
 
 **Die geschlechtliche Fortpflanzung der Blütenpflanzen** findet in der Blüte statt. Der Staubbeutel bildet **Pollenkörner**, die die männlichen Keimzellen tragen, und jede Samenanlage im Fruchtknoten bildet einen **Embryosack** mit der Eizelle.
+
+> Bei der doppelten Befruchtung verschmilzt eine männliche Keimzelle mit der Eizelle zur diploiden Zygote und die zweite mit zwei Polkernen zum triploiden Endosperm.
 
 Landet Pollen auf der Narbe, wächst ein Pollenschlauch zu einer Samenanlage und bringt zwei männliche Keimzellen mit. Eine männliche Keimzelle verschmilzt mit der Eizelle zu einer **diploiden Zygote**. Die zweite verschmilzt mit den beiden Polkernen zu einem **triploiden Endospermkern**. Das ist die **doppelte Befruchtung**. Danach wird die Samenanlage zum Samen und der Fruchtknoten zur Frucht. Hier verfolgst du einen Pollenschlauch bis zur Befruchtung, zählst die Chromosomen jeder Struktur und berechnest, wie viel Pollen eine Frucht braucht.
 
@@ -30,7 +32,50 @@ Eine vollständige Blüte hat vier Kreise von Blütenteilen. Der männliche Teil
 
 Insektenbestäubte Blüten haben meist farbige Kronblätter, Nektar und klebrigen Pollen. Windbestäubte Blüten haben kleine Kronblätter, Staubbeutel, die aus der Blüte heraushängen, und federige Narben, die **leichten Pollen aus der Luft fangen**.
 
-## Pollen und Embryosack entstehen durch Meiose und Mitose
+<FlowerAnatomyLab
+  title={<>Blütenbau bei Insekten- und Windbestäubung</>}
+  description={
+    <>
+      Untersuche den dreidimensionalen Blütenschnitt und vergleiche insekten-
+      und windbestäubte Blüten anhand von Kronblättern, Staubbeuteln, Narben und
+      Pollen.
+    </>
+  }
+  footer={<>Bunte Kronblätter locken Insekten, federige Narben fangen leichten Windpollen.</>}
+  modes={["insect", "wind"]}
+  labels={{
+    adaptation: <>Blütenanpassung</>,
+    mode: "Bestäubungsart",
+    modes: {
+      insect: {
+        adaptation: <>Farbige duftende Kronblätter und Nektar locken Insekten an</>,
+        name: "Insektenbestäubt",
+        pollen: <>Größere klebrige Pollenkörner haften an Insektenkörpern</>,
+      },
+      wind: {
+        adaptation: <>Kleine Kronblätter, hängende Staubbeutel und breite federige Narben</>,
+        name: "Windbestäubt",
+        pollen: <>Unzählige winzige glatte Pollenkörner schweben im Luftstrom</>,
+      },
+    },
+    parts: {
+      anther: "Staubbeutel",
+      filament: "Staubfaden",
+      ovary: "Fruchtknoten",
+      ovule: "Samenanlage",
+      petal: "Kronblatt",
+      sepal: "Kelchblatt",
+      stigma: "Narbe",
+      style: "Griffel",
+    },
+    pollen: <>Pollenmerkmale</>,
+    view: "Dreidimensionaler Blütenschnitt für Insekten- und Windbestäubung",
+  }}
+/>
+
+Der Vergleich beider Blütenformen zeigt, wie **Kronblattgröße, Staubbeutellage und Narbenform** entweder Insekten oder Windströmungen nutzen.
+
+### Pollen und Embryosack entstehen durch Meiose und Mitose
 
 Im Staubbeutel durchläuft jede diploide **Pollenmutterzelle** eine Meiose und bildet eine Tetrade aus vier haploiden Mikrosporen. Der Kern jeder Mikrospore teilt sich einmal durch Mitose in einen **Schlauchkern** und einen **generativen Kern**, und die Mikrospore wird zu einem dickwandigen Pollenkorn. Der generative Kern teilt sich noch einmal durch Mitose und bildet zwei männliche Keimzellen.
 
@@ -46,6 +91,7 @@ In der Samenanlage durchläuft die diploide **Megasporenmutterzelle** eine Meios
       nur der generative Kern.
     </>
   }
+  footer={<>Jede Mitose verdoppelt die Kerne und erzeugt aus einer Megaspore acht Kerne.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -0.3, max: 3.3 }, y: { min: 0, max: 9 } },
@@ -82,7 +128,7 @@ In der Samenanlage durchläuft die diploide **Megasporenmutterzelle** eine Meios
 
 Die zweite Zeile addiert eine Eizelle, zwei Synergiden, drei Antipoden und zwei Polkerne. Prüf mit dem Modell: Bei <InlineMath math="m = 3" /> zeigt es für den Embryosack <InlineMath math="8" />, während das Pollenkorn bei <InlineMath math="3" /> Kernen stehen bleibt, einem Schlauchkern und zwei männlichen Keimzellen.
 
-## Die Bestäubung bringt Pollen auf die Narbe
+### Die Bestäubung bringt Pollen auf die Narbe
 
 **Bestäubung** ist die Übertragung von Pollenkörnern vom Staubbeutel auf die Narbe. **Selbstbestäubung** findet innerhalb einer Blüte oder zwischen Blüten derselben Pflanze statt. **Fremdbestäubung** findet zwischen Blüten zweier verschiedener Pflanzen derselben Art statt, sodass die Nachkommen eine Mischung der Gene beider Eltern erben. Insekten, Vögel, Wind und Wasser übertragen den Pollen.
 
@@ -97,6 +143,7 @@ Die Narbe gibt eine Zuckerlösung ab. Ein Pollenkorn nimmt die Lösung auf und k
       <InlineMath math="r" /> Millimeter pro Stunde wächst.
     </>
   }
+  footer={<>Ein längerer Griffel verlängert den Weg des Pollenschlauchs bis zur Samenanlage.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: 0, max: 20.5 }, y: { min: 0, max: 42 } },
@@ -137,6 +184,7 @@ Während der Pollenschlauch wächst, teilt sich der generative Kern in zwei män
       zeigen die Chromosomen in Embryo, Endosperm und Samenschale.
     </>
   }
+  footer={<>Die doppelte Befruchtung bildet eine diploide Zygote und triploides Endosperm.</>}
   mother={20}
   father={20}
   labels={{
@@ -167,6 +215,7 @@ Die Samenschale nimmt an der Befruchtung nicht teil. Sie entsteht aus den Integu
       Zygote zwei Sätze und der Endospermkern drei Sätze.
     </>
   }
+  footer={<>Das triploide Endosperm trägt drei Chromosomensätze statt zwei wie Körperzellen.</>}
   yAxisLabel="Zahl der Chromosomen"
   data={[
     { name: "Pollenmutterzelle", sets: 2 },
@@ -207,36 +256,6 @@ Nach der Befruchtung verändert sich jeder Teil von Samenanlage und Fruchtknoten
 
 Beim Mais bleibt das Endosperm im reifen Samen als Nährgewebe erhalten. Bei der Erbse nimmt der Embryo das Endosperm auf, während sich der Samen entwickelt, deshalb **liegen die Nährstoffe in den Keimblättern**. Das zweite Modell nutzt die Erbse, <InlineMath math="2n = 14" />, mit einem Fruchtknoten aus <InlineMath math="8" /> Samenanlagen.
 
-<FertilisationLab
-  title={<>Pollen für eine Erbsenhülse</>}
-  description={
-    <>
-      Ein Erbsenfruchtknoten mit <InlineMath math="8" /> Samenanlagen. Die
-      Körperzellen beider Eltern haben <InlineMath math="14" /> Chromosomen.
-      Der letzte Wert zählt die Pollenkörner, die jede Samenanlage zum Samen
-      machen.
-    </>
-  }
-  mother={14}
-  father={14}
-  ovules={8}
-  labels={{
-    embryo: <>Chromosomen im Embryo, Eizelle und männliche Keimzelle</>,
-    endosperm: <>Chromosomen im Endosperm, zwei Polkerne und männliche Keimzelle</>,
-    gamete: <>Chromosomen einer männlichen Keimzelle</>,
-    grains: <>Benötigte Pollenkörner</>,
-    progress: "Phase",
-    seedCoat: <>Chromosomen der Samenschale</>,
-    stages: {
-      pollination: "Bestäubung",
-      tube: "Pollenschlauch wächst",
-      entry: "Schlauch dringt durch die Mikropyle",
-      fusion: "Doppelte Befruchtung",
-    },
-    view: "Längs aufgeschnittene Erbsenblüte",
-  }}
-/>
-
 **Beispiel 4.** Wie viele Pollenkörner und männliche Keimzellen braucht es, damit alle <InlineMath math="8" /> Samenanlagen zu Samen werden?
 
 <BlockMath math="\text{Pollenkörner} = 8 \times 1 = 8, \quad \text{männliche Keimzellen} = 8 \times 2 = 16" />
@@ -245,51 +264,46 @@ Jede Samenanlage erhält einen Pollenschlauch, und jeder Schlauch bringt zwei m�
 
 Samen helfen der Pflanze zu überleben. **Die Testa schützt den Embryo**, die Nährstoffe in Endosperm oder Keimblättern liefern beim Keimen Energie, und ein Samen kann ruhen, bis die Bedingungen passen. Samen verbreiten sich außerdem weg von der Mutterpflanze, sodass die Jungpflanzen nicht mit ihr um Licht und Wasser konkurrieren. Jeder Samen aus geschlechtlicher Fortpflanzung trägt eine neue Mischung von Genen, deshalb kommt die Art mit veränderten Bedingungen besser zurecht.
 
-## Typische Fehler bei der Fortpflanzung der Blütenpflanzen
+<FruitSeedDispersalLab
+  title={<>Samenentwicklung sowie Einzel-, Sammel- und Fruchtverbände</>}
+  description={
+    <>
+      Vergleiche Einzelfrucht, Sammelfrucht und Fruchtverband und verfolge, wie
+      die Samenanlage zum Samen und die Fruchtknotenwand zum Perikarp reift.
+    </>
+  }
+  footer={<>Samenanlagen reifen zu Samen in einem Perikarp aus einem oder vielen Fruchtknoten.</>}
+  fruits={["simple", "aggregate", "multiple"]}
+  labels={{
+    fruit: "Fruchttyp",
+    fruits: {
+      aggregate: {
+        name: "Sammelfrucht",
+        origin: <>Entsteht aus vielen getrennten Fruchtblättern einer einzigen Blüte</>,
+        structure: <>Verbund kleiner Einzelfrüchtchen wie bei Erdbeere oder Himbeere</>,
+      },
+      multiple: {
+        name: "Fruchtverband",
+        origin: <>Entsteht durch Verwachsen der Fruchtknoten eines Blütenstands</>,
+        structure: <>Ein gemeinsamer Fruchtkörper wie bei Ananas oder Jackfrucht</>,
+      },
+      simple: {
+        name: "Einzelfrucht",
+        origin: <>Entsteht aus einem einzelnen Fruchtknoten einer Blüte</>,
+        structure: <>Perikarp umschließt Samen mit Samenschale, Embryo und Nährgewebe</>,
+      },
+    },
+    origin: <>Blütenursprung</>,
+    parts: {
+      cotyledon: "Keimblatt",
+      embryo: "Embryo",
+      endosperm: "Endosperm",
+      pericarp: "Perikarp",
+      testa: "Samenschale",
+    },
+    structure: <>Samen- und Fruchtbau</>,
+    view: "Dreidimensionaler Schnitt von Samenteilen und drei Fruchttypen",
+  }}
+/>
 
-| Fehler | Warum er falsch ist | So prüfst du es |
-| :--- | :--- | :--- |
-| Bestäubung und Befruchtung sind derselbe Vorgang. | Die Bestäubung überträgt Pollen, die Befruchtung verschmilzt Kerne. | Frag dich, ob der Pollenschlauch die Samenanlage schon erreicht hat. |
-| Das Endosperm ist diploid. | Das Endosperm entsteht aus zwei Polkernen und einer männlichen Keimzelle. | Zähl die Sätze: <InlineMath math="1 + 1 + 1 = 3" />. |
-| Der Samen entsteht aus dem Fruchtknoten. | Der Fruchtknoten wird zur Frucht, die Samenanlage zum Samen. | Zähl die Samen in einer Frucht: Jeder war eine Samenanlage. |
-| Ein Pollenkorn kann viele Samenanlagen befruchten. | Ein Pollenschlauch dringt nur in eine Samenanlage ein. | Vergleich die Zahl der Pollenkörner mit der Zahl der Samenanlagen. |
-| Die Samenschale trägt Chromosomen der Vaterpflanze. | Die Samenschale stammt aus den Integumenten der Mutterpflanze. | Vergleich den Wert der Samenschale mit der Chromosomenzahl der Mutterpflanze. |
-
-Der zweite Fehler taucht oft bei Aufgaben zur Chromosomenzahl auf. **Das Endosperm ist die einzige triploide Struktur** im Samen, also schreibst du dafür <InlineMath math="3n" />.
-
-## Übungen zur geschlechtlichen Fortpflanzung der Blütenpflanzen
-
-Die Aufgaben führen vom Bau zur Rechnung. **Schreib die Zahl der Chromosomensätze auf**, bevor du die Chromosomenzahl ausrechnest.
-
-1. Nenne die Strukturen, aus denen Testa, Perikarp und Endosperm entstehen.
-
-2. Die Körperzellen der Zwiebel haben <InlineMath math="2n = 16" /> Chromosomen. Gib die Chromosomenzahl im Schlauchkern, in einer Antipode, in der Zygote und im Endospermkern an.
-
-3. Ein Pollenschlauch erreicht die Samenanlage <InlineMath math="4{,}5" /> Stunden, nachdem das Pollenkorn auf der Narbe gekeimt ist. Der Griffel der Blüte ist <InlineMath math="18\text{ mm}" /> lang. Berechne das Wachstumstempo des Schlauchs.
-
-4. Eine Wassermelone enthält <InlineMath math="300" /> Samen. Berechne die Mindestzahl an Pollenkörnern und männlichen Keimzellen und begründe deine Antwort.
-
-### Lösungen
-
-**Lösung 1**: Die Testa entsteht aus den **Integumenten**, das Perikarp aus der **Fruchtknotenwand** und das Endosperm aus dem **triploiden Endospermkern**, der entsteht, wenn die zweite männliche Keimzelle mit den beiden Polkernen verschmilzt.
-
-**Lösung 2**: Schlauchkern und Antipoden sind haploid, die Zygote ist diploid und das Endosperm triploid:
-
-<MathContainer>
-<BlockMath math="n = \frac{16}{2} = 8 \text{ im Schlauchkern und in einer Antipode}" />
-<BlockMath math="\text{Zygote} = 2 \times 8 = 16, \quad \text{Endosperm} = 3 \times 8 = 24" />
-</MathContainer>
-
-Prüf: <InlineMath math="24 \div 16 = 1{,}5" />, dasselbe Verhältnis von Endosperm zu Zygote wie bei der Tomate.
-
-**Lösung 3**: Stell <InlineMath math="t = L/r" /> nach <InlineMath math="r = L/t" /> um:
-
-<BlockMath math="r = \frac{18\text{ mm}}{4{,}5\text{ h}} = 4{,}0\text{ mm h}^{-1}" />
-
-Prüf mit dem Modell für die Schlauchzeit: Bei <InlineMath math="r = 4" /> und <InlineMath math="L = 18" /> zeigt es die Zeit <InlineMath math="4{,}5" />.
-
-**Lösung 4**: Jeder Samen stammt aus einer Samenanlage, und jede Samenanlage braucht **einen Pollenschlauch** mit zwei männlichen Keimzellen:
-
-<BlockMath math="\text{Pollenkörner} = 300, \quad \text{männliche Keimzellen} = 300 \times 2 = 600" />
-
-Das ist ein Minimum, weil viele andere Pollenkörner nie eine Samenanlage erreichen. Prüf: <InlineMath math="600 \div 300 = 2" /> männliche Keimzellen pro Samen, eine für die Zygote und eine für das Endosperm.
+Wer jeden Samenteil zur Samenanlage zurückverfolgt, versteht sofort, wie sich **Einzelfrucht, Sammelfrucht und Fruchtverband** nach der Zahl der Fruchtknoten unterscheiden.

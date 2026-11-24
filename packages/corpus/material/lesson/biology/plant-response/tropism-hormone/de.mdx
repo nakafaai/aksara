@@ -1,7 +1,7 @@
 export const metadata = {
   title: "Tropismen und Nastien der Pflanzen",
   description:
-    "Unterscheide Tropismen von Nastien, erkläre, wie Auxin Spross und Wurzel krümmt, und berechne Krümmungswinkel mit Beispielen und Übungen.",
+    "Tropismen und Nastien, Auxinwirkung bei Sprosskrümmung und Wurzelwachstum sowie fünf Phytohormone im Anbau.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-11-17",
   subject: "Reaktionen der Pflanzen",
@@ -10,6 +10,8 @@ export const metadata = {
 ## Pflanzen reagieren mit Tropismen und Nastien
 
 **Eine Reaktion der Pflanze** ist eine Änderung im Wachstum oder in der Lage eines Pflanzenteils, wenn die Pflanze einen Reiz wie Licht, Schwerkraft, Wasser oder Berührung aufnimmt. Es gibt zwei Arten. Ein **Tropismus** ist Wachstum, dessen Richtung von der Richtung des Reizes abhängt, etwa ein Spross, der sich zum Licht krümmt. Eine **Nastie** hängt nicht von der Reizrichtung ab, etwa die Blätter der Mimose, die sich bei Berührung zusammenfalten.
+
+> Dieselbe Auxinkonzentration, die im Spross die Zellstreckung antreibt, hemmt das Wachstum in der Wurzel und bewirkt gegensätzliche Reaktionen auf die Schwerkraft.
 
 Die meisten Tropismen steuern **Phytohormone**, Stoffe, die die Pflanze in winzigen Mengen bildet. Hier führst du ein Keimlingsexperiment durch, berechnest, wie stark sich ein Spross krümmt, und vergleichst, was Auxin in Wurzel und Spross bewirkt.
 
@@ -43,6 +45,7 @@ Das Modell unten wiederholt die klassischen Versuche an Keimlingen, die von rech
       wie stark sich der Spross krümmt.
     </>
   }
+  footer={<>Sprosse krümmen sich nur zum Licht, wenn Auxin auf der Schattenseite absteigt.</>}
   setup={{
     stimulus: "light",
     seedlings: [
@@ -70,11 +73,44 @@ Das Modell unten wiederholt die klassischen Versuche an Keimlingen, die von rech
   }}
 />
 
-Vergleich die fünf Ergebnisse. Keimling A krümmt sich zum Licht, weil <InlineMath math="65\%" /> seines Auxins auf der Schattenseite liegen. Keimling B wächst weder in die Länge noch krümmt er sich, denn **die Sprossspitze ist die Quelle des Auxins**. Keimling C wächst aufrecht: Seine Spitze bekommt kein Licht, also verteilt sich das Auxin gleichmäßig. Das Glimmerplättchen bei Keimling D sperrt nur die Lichtseite, also wandert alles Auxin auf der Schattenseite nach unten, und der Spross krümmt sich stärker. Bei Keimling E sperrt das Glimmerplättchen die Schattenseite, auf die die Spitze ihr Auxin geschickt hat. Darum streckt sich keine der beiden Seiten darunter, und der Spross bleibt aufrecht. Die Keimlinge D und E sind das Paar, das Peter Boysen-Jensen 1913 verglichen hat: Zusammen zeigen sie, dass die Krümmung Auxin braucht, das auf der Schattenseite nach unten wandert.
+Vergleich die fünf Ergebnisse. Keimling A krümmt sich zum Licht, weil <InlineMath math="65\%" /> seines Auxins auf der Schattenseite liegen. Keimling B wächst weder in die Länge noch krümmt er sich, denn **die Sprossspitze ist die Quelle des Auxins**. Keimling C wächst aufrecht: Seine Spitze bekommt kein Licht, also verteilt sich das Auxin gleichmäßig.
 
-## Ein Agarblock beweist die chemische Natur des Auxins
+Das Glimmerplättchen bei Keimling D sperrt nur die Lichtseite, also wandert alles Auxin auf der Schattenseite nach unten, und der Spross krümmt sich stärker. Bei Keimling E sperrt das Glimmerplättchen die Schattenseite, auf die die Spitze ihr Auxin geschickt hat. Darum streckt sich keine der beiden Seiten darunter, und der Spross bleibt aufrecht.
 
-Im Jahr 1928 setzte Frits Went mehrere Koleoptilspitzen auf einen Agarblock, sodass Auxin in den Agar diffundierte. Dann legte er den Block im Dunkeln auf eine Seite einer Koleoptile, deren Spitze abgeschnitten war. Die Koleoptile **krümmte sich von der Blockseite weg**, weil sich die Zellen unter dem Block stärker streckten. Licht spielte keine Rolle, also verursachte ein Stoff aus den Spitzen die Krümmung. Went fand außerdem, dass in einem bestimmten Bereich **der Krümmungswinkel proportional zur Zahl der Spitzen** auf dem Block ist.
+Die Keimlinge D und E sind das Paar, das Peter Boysen-Jensen 1913 verglichen hat: Zusammen zeigen sie, dass die Krümmung Auxin braucht, das auf der Schattenseite nach unten wandert.
+
+### Ein Agarblock beweist die chemische Natur des Auxins
+
+Im Jahr 1928 setzte Frits Went mehrere Koleoptilspitzen auf einen Agarblock, sodass Auxin in den Agar diffundierte. Dann legte er den Block im Dunkeln auf eine Seite einer Koleoptile, deren Spitze abgeschnitten war. Die Koleoptile **krümmte sich von der Blockseite weg**, weil sich die Zellen unter dem Block stärker streckten. Licht spielte keine Rolle, also verursachte ein Stoff aus den Spitzen die Krümmung.
+
+Went fand außerdem, dass in einem bestimmten Bereich **der Krümmungswinkel proportional zur Zahl der Spitzen** auf dem Block ist.
+
+<AuxinAgarBendLab
+  title={<>Asymmetrischer Auxin-Agarblock im Dunkeln</>}
+  description={
+    <>
+      Verstelle die Auxinkonzentration im seitlichen Agarblock auf einer
+      geköpften Koleoptile und beobachte die Krümmung ganz ohne Lichteinfluss.
+    </>
+  }
+  footer={<>Mehr Auxin auf einer Seite streckt dortige Zellen stärker und krümmt den Spross.</>}
+  auxinLevel={{ min: 0, max: 100, value: 60 }}
+  labels={{
+    angle: <>Krümmungswinkel</>,
+    auxinLevel: "Auxin im Agarblock (%)",
+    elongation: <>Unterschied der Zellstreckung</>,
+    parts: {
+      agarBlock: "Agarblock",
+      auxinDot: "Auxinmolekül",
+      coleoptile: "Geköpfte Koleoptile",
+      litSide: "Gegenseite",
+      shadedSide: "Blockseite",
+    },
+    view: "Dreidimensionale Koleoptile unter einem seitlich aufgelegten Agarblock",
+  }}
+/>
+
+Höheres Auxin im seitlichen Agarblock vergrößert den Längenunterschied im Spross. Das Diagramm unten zeigt, wie der Krümmungswinkel mit der Zahl der Spitzen wächst.
 
 <MathVisual
   title={<>Krümmungswinkel der Koleoptile und Auxin im Agarblock</>}
@@ -85,6 +121,7 @@ Im Jahr 1928 setzte Frits Went mehrere Koleoptilspitzen auf einen Agarblock, sod
       <InlineMath math="k" /> legt den Winkel für eine Spitze fest.
     </>
   }
+  footer={<>Mehr Koleoptilspitzen laden mehr Auxin in den Agar und verstärken die Krümmung.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: 0, max: 8.5 }, y: { min: 0, max: 42 } },
@@ -113,9 +150,11 @@ Im Jahr 1928 setzte Frits Went mehrere Koleoptilspitzen auf einen Agarblock, sod
 <BlockMath math="\theta = kn = 4^\circ \times 5 = 20^\circ" />
 </MathContainer>
 
-Prüf mit dem Modell: Bei <InlineMath math="k = 4" /> und <InlineMath math="n = 5" /> zeigt es den Winkel <InlineMath math="20" />. Auch das Verhältnis passt: <InlineMath math="8 \div 2 = 20 \div 5 = 4" />.
+Prüf mit dem Modell: Bei <InlineMath math="k = 4" /> und <InlineMath math="n = 5" /> zeigt es den Winkel <InlineMath math="20" />. Auch das Verhältnis passt:
 
-## Der Längenunterschied bestimmt den Krümmungswinkel
+<BlockMath math="8 \div 2 = 20 \div 5 = 4" />
+
+### Der Längenunterschied bestimmt den Krümmungswinkel
 
 Ein Spross krümmt sich, weil seine beiden Seiten unterschiedlich stark wachsen. Stell dir die Streckungszone als Streifen der Breite <InlineMath math="w" /> vor. Wächst die Schattenseite um <InlineMath math="d" /> mehr als die Lichtseite, werden beide Seiten zu konzentrischen Kreisbögen. Ein Bogen ist so lang wie sein Radius mal sein Winkel im Bogenmaß, also unterscheiden sich die beiden Seiten um <InlineMath math="w\theta" />. Daraus folgt: **Der Krümmungswinkel ist der Längenunterschied geteilt durch die Breite des Sprosses**.
 
@@ -131,6 +170,7 @@ Ein Spross krümmt sich, weil seine beiden Seiten unterschiedlich stark wachsen.
       Breite <InlineMath math="w" /> in Millimetern.
     </>
   }
+  footer={<>Größerer Längenunterschied bei schmalem Spross erzeugt einen größeren Winkel.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: 0, max: 2.1 }, y: { min: 0, max: 120 } },
@@ -167,40 +207,6 @@ Prüf mit dem Modell: Bei <InlineMath math="w = 1" /> und <InlineMath math="d = 
 
 Liegt ein Keimling waagerecht, sammelt die Schwerkraft Auxin auf der **Unterseite** von Wurzel und Spross. Im Spross fördert das zusätzliche Auxin die Streckung, also wächst die Unterseite schneller, und der Spross krümmt sich nach oben. In der Wurzel **hemmt dieselbe Konzentration die Streckung**, also wächst die Oberseite schneller, und die Wurzel krümmt sich nach unten. Die Wurzelhaube nimmt die Schwerkraft wahr. Das Modell vergleicht einen ruhig liegenden Keimling, einen Keimling auf einem langsam drehenden Klinostaten und einen Keimling ohne Wurzelhaube.
 
-<TropismLab
-  title={<>Geotropismus-Versuch mit drei waagerechten Keimlingen</>}
-  description={
-    <>
-      Keimlinge, <InlineMath math="48" /> Stunden lang waagerecht im Dunkeln.
-      Die Werte zeigen den Auxinanteil auf der Ober- und Unterseite des
-      Sprosses und wie stark sich Spross und Wurzel krümmen.
-    </>
-  }
-  setup={{
-    stimulus: "gravity",
-    seedlings: [
-      { name: "A", treatment: "flat" },
-      { name: "B", treatment: "klinostat" },
-      { name: "C", treatment: "decapped" },
-    ],
-  }}
-  labels={{
-    bend: <>Krümmung des Sprosses</>,
-    directions: {
-      away: <>nach oben</>,
-      straight: <>gerade</>,
-      toward: <>nach unten</>,
-    },
-    far: <>Auxin auf der Oberseite des Sprosses</>,
-    near: <>Auxin auf der Unterseite des Sprosses</>,
-    growth: <>Wachstum im Vergleich zum ruhig liegenden Keimling</>,
-    hours: "Zeit",
-    root: <>Krümmung der Wurzel</>,
-    seedling: "Keimling",
-    view: "Waagerechte Keimlinge im Dunkeln",
-  }}
-/>
-
 Keimling A zeigt **positiven Geotropismus der Wurzel** und **negativen Geotropismus des Sprosses**. Auf dem Klinostaten liegt jede Seite abwechselnd unten, also verteilt sich das Auxin gleichmäßig, und Keimling B wächst gerade. Keimling C zeigt, was die Wurzelhaube leistet: Sein Spross krümmt sich weiter nach oben, seine Wurzel wächst aber gerade, weil nichts mehr die Schwerkraft wahrnimmt.
 
 Warum wirkt dasselbe Auxin gegensätzlich? **Wurzeln reagieren viel empfindlicher auf Auxin** als Sprosse. Die Kurven unten modellieren die klassische Form der Auxinwirkung. Die waagerechte Achse ist der Logarithmus der Konzentration, also bedeutet jede Einheit nach rechts die zehnfache Konzentration.
@@ -216,6 +222,7 @@ Warum wirkt dasselbe Auxin gegensätzlich? **Wurzeln reagieren viel empfindliche
       <InlineMath math="10^{-5}\text{ mol dm}^{-3}" />.
     </>
   }
+  footer={<>Dieselbe Auxinmenge fördert das Sprosswachstum, hemmt aber die Wurzel.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -12, max: -2 }, y: { min: -110, max: 110 } },
@@ -264,42 +271,57 @@ Neben Auxin bilden Pflanzen vier weitere wichtige Phytohormone. Jedes hat eine n
 
 Unkrautvernichter wie **2,4-D sind künstliche Auxine**. In hoher Konzentration lassen sie breitblättrige zweikeimblättrige Pflanzen unkontrolliert wachsen und absterben, während Gräser und Reis als Einkeimblättrige viel weniger leiden. Landwirte bekämpfen damit breitblättrige Unkräuter in Reisfeldern. **Parthenokarpe Früchte**, also Früchte ohne Samen, entstehen, wenn man Auxin oder Gibberellin auf unbestäubte Blüten sprüht: Der Fruchtknoten schwillt ohne Befruchtung zur Frucht an.
 
-## Typische Fehler bei Pflanzenreaktionen
+<PhytohormoneActionLab
+  title={<>Fünf wichtige Phytohormone in Wachstum und Landwirtschaft</>}
+  description={
+    <>
+      Wähle Auxin, Gibberellin, Cytokinin, Abscisinsäure oder Ethylen, um ihre
+      natürliche Wirkung auf Spross, Knospen, Blätter und Früchte sowie ihre
+      landwirtschaftliche Nutzung zu vergleichen.
+    </>
+  }
+  footer={<>Jedes Phytohormon steuert einen eigenen Schritt von Wachstum, Reife oder Ruhe.</>}
+  hormones={["auxin", "gibberellin", "cytokinin", "abscisicAcid", "ethylene"]}
+  labels={{
+    effect: <>Natürliche Wirkung</>,
+    farmUse: <>Nutzen im Anbau</>,
+    hormone: "Phytohormon",
+    hormones: {
+      abscisicAcid: {
+        effect: <>Schließt Spaltöffnungen bei Trockenheit und erhält die Samenruhe</>,
+        farmUse: <>Hilft Nutzpflanzen, Wasserknappheit zu überstehen</>,
+        name: "Abscisinsäure",
+      },
+      auxin: {
+        effect: <>Fördert Zellstreckung, Tropismen und Apikaldominanz</>,
+        farmUse: <>Bewurzelungspulver, kernlose Früchte und selektive Herbizide</>,
+        name: "Auxin",
+      },
+      cytokinin: {
+        effect: <>Fördert Zellteilung und verzögert die Alterung der Blätter</>,
+        farmUse: <>Gewebekultur und längere Haltbarkeit von Schnittblumen</>,
+        name: "Cytokinin",
+      },
+      ethylene: {
+        effect: <>Löst Fruchtreife sowie Blatt- und Fruchtfall aus</>,
+        farmUse: <>Lässt gelagerte Bananen und Mangos gleichmäßig reifen</>,
+        name: "Ethylen",
+      },
+      gibberellin: {
+        effect: <>Streckt Sprossachsen und bricht die Samenruhe</>,
+        farmUse: <>Erzeugt größere kernlose Trauben und fördert die Keimung</>,
+        name: "Gibberellin",
+      },
+    },
+    parts: {
+      fruit: "Frucht",
+      lateralBud: "Seitenknospe",
+      leaf: "Blatt",
+      shootTip: "Sprossspitze",
+      stemNode: "Sprossknoten",
+    },
+    view: "Dreidimensionales Pflanzenmodell zur Wirkung fünf wichtiger Phytohormone",
+  }}
+/>
 
-| Fehler | Warum er falsch ist | So prüfst du es |
-| :--- | :--- | :--- |
-| Licht zerstört Auxin, deshalb wächst die Lichtseite langsam. | Briggs und Kollegen fanden 1957, dass sich die Gesamtmenge an Auxin kaum ändert. Auxin wandert auf die Schattenseite. | Addiere das Auxin beider Seiten von Keimling A: <InlineMath math="65\% + 35\% = 100\%" />. |
-| Auxin fördert immer das Wachstum. | Eine Konzentration, die den Spross fördert, hemmt die Wurzel. | Vergleich die beiden Kurven bei <InlineMath math="c = -6" />. |
-| Das Mimosenblatt klappt zusammen, weil es wächst. | Thigmonastie entsteht, weil die Gelenkzellen Wasser verlieren. | Frag dich, ob die Reaktion schnell und umkehrbar ist. |
-| Die Wurzel krümmt sich nach unten, weil ihre Unterseite stärker wächst. | Die Oberseite der Wurzel wächst schneller. | Such die Seite mit mehr Auxin und wende dann die Empfindlichkeit der Wurzel an. |
-
-Der zweite Fehler kostet bei Aufgaben zum Geotropismus die meisten Punkte. **Wurzel und Spross bekommen dieselbe Auxinverteilung**, reagieren aber unterschiedlich empfindlich, also krümmen sie sich in entgegengesetzte Richtungen.
-
-## Übungen zu Pflanzenreaktionen
-
-Die Aufgaben führen vom Vorhersagen eines Versuchs zu Rechnungen und Anwendungen. **Nenne in jeder Erklärung die Seite mit mehr Auxin**.
-
-1. Die Spitze eines Keimlings steckt unter einer lichtdichten Kappe, und der Keimling wird von links beleuchtet. Sag voraus, in welche Richtung er wächst, und begründe.
-
-2. Erkläre mithilfe von Auxin, warum sich die Wurzel eines waagerecht liegenden Keimlings nach unten krümmt.
-
-3. Ein Stängel mit <InlineMath math="2{,}0\text{ mm}" /> Breite liegt waagerecht. Die Unterseite seiner Streckungszone wächst um <InlineMath math="1{,}4\text{ mm}" /> mehr als die Oberseite. Berechne den Krümmungswinkel in Grad.
-
-4. Eine Gärtnerin will einen Korb Bananen gleichzeitig reifen lassen und breitblättrige Unkräuter in einem Reisfeld bekämpfen. Nenne für jede Aufgabe das Phytohormon und begründe deine Wahl.
-
-### Lösungen
-
-**Lösung 1**: Die lichtdichte Kappe verhindert, dass die Spitze die Lichtrichtung erkennt. Das Auxin verteilt sich **gleichmäßig auf beide Seiten**, also strecken sich beide Seiten gleich stark, und der Keimling wächst gerade nach oben. Das entspricht Keimling C im Phototropismus-Modell.
-
-**Lösung 2**: Die Schwerkraft sammelt Auxin auf der **Unterseite der Wurzel**. Die Wurzel ist sehr empfindlich, also hemmt diese hohe Konzentration die Zellstreckung auf der Unterseite. Die Oberseite mit weniger Auxin streckt sich schneller, also krümmt sich die Wurzel nach unten. Das ist positiver Geotropismus.
-
-**Lösung 3**: Nutze <InlineMath math="\theta = d/w" /> und rechne dann in Grad um:
-
-<MathContainer>
-<BlockMath math="\theta = \frac{1{,}4}{2{,}0} = 0{,}70\text{ im Bogenmaß}" />
-<BlockMath math="\theta = 0{,}70 \times \frac{180^\circ}{\pi} = 40{,}1^\circ" />
-</MathContainer>
-
-Prüf mit dem Krümmungsmodell: Bei <InlineMath math="w = 2" /> und <InlineMath math="d = 1{,}4" /> zeigt es <InlineMath math="40{,}11" />. Die Unterseite ist länger, also krümmt sich der Stängel nach oben.
-
-**Lösung 4**: Für die Bananen nimmst du **Ethylen**, ein Gas, das die Fruchtreife beschleunigt, sodass alle Bananen im Korb gleichzeitig reif werden. Für das Reisfeld nimmst du **ein künstliches Auxin wie 2,4-D**. In hoher Konzentration tötet es breitblättrige zweikeimblättrige Unkräuter, während Reis als Einkeimblättrige viel weniger leidet.
+Vergleiche, wie **Auxin, Gibberellin, Cytokinin, Abscisinsäure und Ethylen** Sprosswachstum, Fruchtreife und Trockenschutz im praktischen Anbau steuern.

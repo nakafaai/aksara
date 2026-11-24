@@ -1,7 +1,7 @@
 export const metadata = {
   title: "Nota Gerak Balas dalam Tumbuhan Tingkatan Lima",
   description:
-    "Nota Biologi Tingkatan 5 Bab 5: bezakan tropisme dengan nasti, terangkan peranan auksin dan kira sudut lengkungan, dengan contoh dan latihan.",
+    "Tropisme dan nasti, peranan auksin membengkokkan pucuk dan akar, serta lima fitohormon utama dalam pertanian.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-11-17",
   subject: "Gerak Balas dalam Tumbuhan",
@@ -10,6 +10,8 @@ export const metadata = {
 ## Tumbuhan Bergerak Balas melalui Tropisme dan Nasti
 
 **Gerak balas dalam tumbuhan** ialah perubahan pertumbuhan atau pergerakan bahagian tumbuhan apabila ia menerima rangsangan seperti cahaya, graviti, air atau sentuhan. Ada dua jenis. **Tropisme** ialah pertumbuhan yang arahnya ditentukan oleh arah rangsangan, contohnya pucuk yang membengkok ke arah cahaya. **Nasti** ialah gerak balas yang tidak bergantung pada arah rangsangan, contohnya daun semalu yang menguncup apabila disentuh.
+
+> Kepekatan auksin yang sama yang merangsang pemanjangan sel pucuk merencat pemanjangan sel akar, lalu menghasilkan gerak balas graviti yang bertentangan.
 
 Kebanyakan tropisme dikawal oleh **fitohormon**, iaitu bahan kimia yang dihasilkan oleh tumbuhan dalam kuantiti yang sangat kecil. Dalam nota ini, kamu menjalankan eksperimen anak benih, mengira sudut lengkungan pucuk dan membandingkan kesan auksin pada akar dengan kesannya pada pucuk.
 
@@ -43,6 +45,7 @@ Model di bawah mengulang eksperimen klasik pada anak benih yang disinari dari ka
       lengkungan pucuk.
     </>
   }
+  footer={<>Pucuk membengkok ke arah cahaya hanya jika auksin bergerak ke sisi terlindung.</>}
   setup={{
     stimulus: "light",
     seedlings: [
@@ -70,11 +73,45 @@ Model di bawah mengulang eksperimen klasik pada anak benih yang disinari dari ka
   }}
 />
 
-Bandingkan lima keputusan itu. Anak benih A membengkok ke arah cahaya kerana <InlineMath math="65\%" /> auksin berada di sebelah terlindung. Anak benih B tidak memanjang dan tidak membengkok kerana **sumber auksin ialah hujung pucuk**. Anak benih C tumbuh tegak: hujungnya tidak menerima cahaya, jadi auksin terbahagi sama rata. Mika pada anak benih D menyekat auksin di sebelah bercahaya sahaja, jadi semua auksin turun di sebelah terlindung dan pucuk membengkok lebih tajam. Mika pada anak benih E pula menyekat sebelah terlindung, tempat hujung menghantar auksinnya, jadi kedua-dua sebelah di bawahnya tidak memanjang dan pucuk kekal tegak. Anak benih D dan E ialah pasangan yang dibandingkan oleh Peter Boysen-Jensen pada tahun 1913. Bersama-sama, kedua-duanya menunjukkan bahawa pucuk hanya membengkok apabila auksin dapat turun di sebelah terlindung.
+Bandingkan lima keputusan itu. Anak benih A membengkok ke arah cahaya kerana <InlineMath math="65\%" /> auksin berada di sebelah terlindung. Anak benih B tidak memanjang dan tidak membengkok kerana **sumber auksin ialah hujung pucuk**. Anak benih C tumbuh tegak: hujungnya tidak menerima cahaya, jadi auksin terbahagi sama rata.
 
-## Blok Agar Membuktikan Auksin ialah Bahan Kimia
+Mika pada anak benih D menyekat auksin di sebelah bercahaya sahaja, jadi semua auksin turun di sebelah terlindung dan pucuk membengkok lebih tajam. Mika pada anak benih E pula menyekat sebelah terlindung, tempat hujung menghantar auksinnya, jadi kedua-dua sebelah di bawahnya tidak memanjang dan pucuk kekal tegak. Anak benih D dan E ialah pasangan yang dibandingkan oleh Peter Boysen-Jensen pada tahun 1913.
 
-Pada tahun 1928, Frits Went meletakkan beberapa hujung koleoptil di atas blok agar supaya auksin meresap ke dalam agar. Kemudian dia meletakkan blok itu di satu sisi koleoptil yang sudah dipotong hujungnya, dalam keadaan gelap. Koleoptil itu **membengkok menjauhi sisi blok agar**, kerana sel di bawah blok memanjang lebih banyak. Tiada cahaya terlibat, jadi bahan kimia dari hujung itulah yang menyebabkan lengkungan. Went juga mendapati bahawa dalam julat tertentu, **sudut lengkungan berkadar terus dengan bilangan hujung** yang diletakkan di atas blok.
+Bersama-sama, kedua-duanya menunjukkan bahawa pucuk hanya membengkok apabila auksin dapat turun di sebelah terlindung.
+
+### Blok Agar Membuktikan Auksin ialah Bahan Kimia
+
+Pada tahun 1928, Frits Went meletakkan beberapa hujung koleoptil di atas blok agar supaya auksin meresap ke dalam agar. Kemudian dia meletakkan blok itu di satu sisi koleoptil yang sudah dipotong hujungnya, dalam keadaan gelap. Koleoptil itu **membengkok menjauhi sisi blok agar**, kerana sel di bawah blok memanjang lebih banyak. Tiada cahaya terlibat, jadi bahan kimia dari hujung itulah yang menyebabkan lengkungan.
+
+Went juga mendapati bahawa dalam julat tertentu, **sudut lengkungan berkadar terus dengan bilangan hujung** yang diletakkan di atas blok.
+
+<AuxinAgarBendLab
+  title={<>Blok Agar Berauksin Tidak Simetri dalam Gelap</>}
+  description={
+    <>
+      Gerakkan kepekatan auksin dalam blok agar di sebelah koleoptil tanpa
+      hujung untuk melihat pemanjangan sel tidak sekata membengkokkan pucuk
+      tanpa cahaya.
+    </>
+  }
+  footer={<>Auksin lebih tinggi di sebelah pucuk memanjangkan sel lebih cepat lalu membengkok.</>}
+  auxinLevel={{ min: 0, max: 100, value: 60 }}
+  labels={{
+    angle: <>Sudut lengkungan</>,
+    auxinLevel: "Kepekatan auksin (%)",
+    elongation: <>Beza pemanjangan sel</>,
+    parts: {
+      agarBlock: "Blok agar",
+      auxinDot: "Molekul auksin",
+      coleoptile: "Koleoptil tanpa hujung",
+      litSide: "Sisi jauh",
+      shadedSide: "Sisi blok",
+    },
+    view: "Koleoptil tiga dimensi membengkok di bawah blok agar berauksin",
+  }}
+/>
+
+Kepekatan auksin lebih tinggi dalam blok agar melebarkan beza pemanjangan sel. Graf di bawah memetakan sudut lengkungan terhadap bilangan hujung koleoptil.
 
 <MathVisual
   title={<>Sudut Lengkungan Koleoptil dan Auksin dalam Blok Agar</>}
@@ -85,6 +122,7 @@ Pada tahun 1928, Frits Went meletakkan beberapa hujung koleoptil di atas blok ag
       Gelangsar <InlineMath math="k" /> menetapkan sudut bagi satu hujung.
     </>
   }
+  footer={<>Lebih banyak hujung koleoptil meningkatkan auksin dan sudut lengkungan.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: 0, max: 8.5 }, y: { min: 0, max: 42 } },
@@ -113,9 +151,11 @@ Pada tahun 1928, Frits Went meletakkan beberapa hujung koleoptil di atas blok ag
 <BlockMath math="\theta = kn = 4^\circ \times 5 = 20^\circ" />
 </MathContainer>
 
-Semak dengan model: pada <InlineMath math="k = 4" /> dan <InlineMath math="n = 5" />, bacaan sudut ialah <InlineMath math="20" />. Nisbahnya juga sama: <InlineMath math="8 \div 2 = 20 \div 5 = 4" />.
+Semak dengan model: pada <InlineMath math="k = 4" /> dan <InlineMath math="n = 5" />, bacaan sudut ialah <InlineMath math="20" />. Nisbahnya juga sama:
 
-## Beza Pemanjangan Menentukan Sudut Lengkungan
+<BlockMath math="8 \div 2 = 20 \div 5 = 4" />
+
+### Beza Pemanjangan Menentukan Sudut Lengkungan
 
 Pucuk membengkok kerana dua sisinya memanjang dengan jumlah yang berbeza. Bayangkan zon pemanjangan sebagai jalur selebar <InlineMath math="w" />. Jika sisi terlindung memanjang <InlineMath math="d" /> lebih daripada sisi bercahaya, kedua-dua sisi menjadi lengkok bulatan yang sepusat. Panjang lengkok ialah jejari didarab sudut dalam radian, jadi beza panjang dua sisi ialah <InlineMath math="w\theta" />. Ini memberi **sudut lengkungan sama dengan beza pemanjangan dibahagi lebar pucuk**.
 
@@ -131,6 +171,7 @@ Pucuk membengkok kerana dua sisinya memanjang dengan jumlah yang berbeza. Bayang
       <InlineMath math="w" /> milimeter.
     </>
   }
+  footer={<>Beza pemanjangan lebih besar pada pucuk sempit menghasilkan lengkungan tajam.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: 0, max: 2.1 }, y: { min: 0, max: 120 } },
@@ -167,40 +208,6 @@ Semak dengan model: pada <InlineMath math="w = 1" /> dan <InlineMath math="d = 0
 
 Apabila anak benih diletakkan mendatar, graviti mengumpulkan auksin di **sebelah bawah** akar dan pucuk. Pada pucuk, auksin yang banyak merangsang pemanjangan, jadi sebelah bawah tumbuh lebih cepat dan pucuk membengkok ke atas. Pada akar, kepekatan yang sama **merencatkan pemanjangan**, jadi sebelah atas tumbuh lebih cepat dan akar membengkok ke bawah. Tudung akar mengesan graviti. Model ini membandingkan anak benih yang dibiarkan pegun, anak benih di atas klinostat yang berputar perlahan, dan anak benih yang tudung akarnya dibuang.
 
-<TropismLab
-  title={<>Eksperimen Geotropisme dengan Tiga Anak Benih Mendatar</>}
-  description={
-    <>
-      Anak benih diletakkan mendatar dalam gelap selama{" "}
-      <InlineMath math="48" /> jam. Bacaan menunjukkan peratus auksin di
-      sebelah atas dan bawah pucuk serta lengkungan pucuk dan akar.
-    </>
-  }
-  setup={{
-    stimulus: "gravity",
-    seedlings: [
-      { name: "A", treatment: "flat" },
-      { name: "B", treatment: "klinostat" },
-      { name: "C", treatment: "decapped" },
-    ],
-  }}
-  labels={{
-    bend: <>Lengkungan pucuk</>,
-    directions: {
-      away: <>ke atas</>,
-      straight: <>lurus</>,
-      toward: <>ke bawah</>,
-    },
-    far: <>Auksin di sebelah atas pucuk</>,
-    near: <>Auksin di sebelah bawah pucuk</>,
-    growth: <>Pertumbuhan berbanding anak benih pegun</>,
-    hours: "Masa",
-    root: <>Lengkungan akar</>,
-    seedling: "Anak benih",
-    view: "Anak benih mendatar dalam gelap",
-  }}
-/>
-
 Anak benih A menunjukkan **geotropisme positif pada akar** dan **geotropisme negatif pada pucuk**. Di atas klinostat, setiap sisi bergilir-gilir berada di bawah, jadi auksin terbahagi sama rata dan anak benih B tumbuh lurus. Anak benih C membuktikan peranan tudung akar: pucuknya masih membengkok ke atas, tetapi akarnya tumbuh lurus kerana tiada lagi bahagian yang mengesan graviti.
 
 Mengapakah auksin yang sama memberi kesan bertentangan? **Akar jauh lebih peka terhadap auksin** daripada pucuk. Lengkung di bawah ialah model bentuk klasik kesan auksin. Paksi mendatar ialah logaritma kepekatan, jadi setiap satu unit ke kanan bermaksud kepekatan sepuluh kali ganda.
@@ -217,6 +224,7 @@ Mengapakah auksin yang sama memberi kesan bertentangan? **Akar jauh lebih peka t
       <InlineMath math="10^{-5}\text{ mol dm}^{-3}" />.
     </>
   }
+  footer={<>Kepekatan auksin yang merangsang pucuk merencat pemanjangan sel akar.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -12, max: -2 }, y: { min: -110, max: 110 } },
@@ -265,42 +273,57 @@ Selain auksin, tumbuhan menghasilkan empat lagi fitohormon utama. Setiap satu me
 
 Racun rumpai seperti **2,4-D ialah auksin sintetik**. Pada kepekatan tinggi, ia menyebabkan tumbuhan dikotiledon berdaun lebar tumbuh tidak terkawal lalu mati, tetapi rumput dan padi, iaitu monokotiledon, kurang terjejas. Petani menggunakannya untuk membunuh rumpai berdaun lebar di sawah. **Buah partenokarpi**, iaitu buah tanpa biji, terhasil apabila auksin atau giberelin disembur pada bunga yang tidak didebungakan, jadi ovari membesar menjadi buah tanpa persenyawaan.
 
-## Kesilapan Lazim tentang Gerak Balas Tumbuhan
+<PhytohormoneActionLab
+  title={<>Lima Fitohormon Utama dalam Pertumbuhan dan Pertanian</>}
+  description={
+    <>
+      Pilih auksin, giberelin, sitokinin, asid absisik, atau etilena untuk
+      melihat kesan semula jadi pada pucuk, tunas, daun, dan buah serta
+      kegunaannya dalam pertanian.
+    </>
+  }
+  footer={<>Setiap fitohormon menyelaras peringkat pertumbuhan, pemasakan, atau kedormanan.</>}
+  hormones={["auxin", "gibberellin", "cytokinin", "abscisicAcid", "ethylene"]}
+  labels={{
+    effect: <>Kesan semula jadi</>,
+    farmUse: <>Kegunaan pertanian</>,
+    hormone: "Fitohormon",
+    hormones: {
+      abscisicAcid: {
+        effect: <>Menutup stoma semasa kemarau dan mengekalkan kedormanan biji benih</>,
+        farmUse: <>Membantu tanaman menjimatkan air semasa kekurangan air</>,
+        name: "Asid absisik",
+      },
+      auxin: {
+        effect: <>Merangsang pemanjangan sel, tropisme, dan kedominanan apeks</>,
+        farmUse: <>Serbuk pengakaran keratan batang, buah tanpa biji, dan racun rumpai</>,
+        name: "Auksin",
+      },
+      cytokinin: {
+        effect: <>Merangsang pembahagian sel dan melambatkan penuaan daun</>,
+        farmUse: <>Kultur tisu serta mengekalkan kesegaran bunga potong</>,
+        name: "Sitokinin",
+      },
+      ethylene: {
+        effect: <>Merangsang pemasakan buah dan pengguguran daun serta buah</>,
+        farmUse: <>Memasakkan pisang dan mangga secara serentak</>,
+        name: "Etilena",
+      },
+      gibberellin: {
+        effect: <>Memanjangkan batang dan merangsang percambahan biji benih</>,
+        farmUse: <>Menghasilkan anggur tanpa biji yang lebih besar</>,
+        name: "Giberelin",
+      },
+    },
+    parts: {
+      fruit: "Buah",
+      lateralBud: "Tunas sisi",
+      leaf: "Daun",
+      shootTip: "Hujung pucuk",
+      stemNode: "Buku batang",
+    },
+    view: "Model tumbuhan tiga dimensi menunjukkan tindakan lima fitohormon",
+  }}
+/>
 
-| Kesilapan | Sebab salah | Cara semak |
-| :--- | :--- | :--- |
-| Cahaya memusnahkan auksin, jadi sebelah bercahaya tumbuh perlahan. | Briggs dan rakan pada tahun 1957 mendapati jumlah auksin hampir tidak berubah. Auksin berpindah ke sebelah terlindung. | Jumlahkan auksin dua sisi anak benih A: <InlineMath math="65\% + 35\% = 100\%" />. |
-| Auksin sentiasa merangsang pertumbuhan. | Kepekatan yang merangsang pucuk merencatkan akar. | Bandingkan dua lengkung pada <InlineMath math="c = -6" />. |
-| Daun semalu menguncup kerana tumbuh. | Tigmonasti berlaku kerana sel pulvinus kehilangan air. | Tanya sama ada gerak balas itu pantas dan boleh berbalik. |
-| Akar membengkok ke bawah kerana sebelah bawah tumbuh lebih. | Sebelah atas akar yang tumbuh lebih cepat. | Cari sebelah yang mempunyai auksin lebih banyak, kemudian guna kepekaan akar. |
-
-Kesilapan kedua paling kerap menjejaskan jawapan geotropisme. **Akar dan pucuk menerima taburan auksin yang sama**, tetapi kepekaannya berbeza, jadi arah lengkungannya bertentangan.
-
-## Latihan Gerak Balas Tumbuhan
-
-Soalan bergerak daripada ramalan eksperimen kepada pengiraan dan aplikasi. **Namakan sisi yang menerima auksin lebih banyak** dalam setiap penerangan.
-
-1. Hujung sebatang anak benih ditutup dengan penutup legap, kemudian anak benih disinari dari kiri. Ramalkan arah pertumbuhannya dan terangkan.
-
-2. Terangkan, dengan merujuk kepada auksin, mengapa akar anak benih yang diletakkan mendatar membengkok ke bawah.
-
-3. Batang selebar <InlineMath math="2.0\text{ mm}" /> diletakkan mendatar. Sebelah bawah zon pemanjangannya memanjang <InlineMath math="1.4\text{ mm}" /> lebih daripada sebelah atas. Kira sudut lengkungan dalam darjah.
-
-4. Seorang pekebun mahu memasakkan sebakul pisang serentak dan mahu membunuh rumpai berdaun lebar di sawah padi. Namakan fitohormon bagi setiap tujuan dan terangkan pilihan kamu.
-
-### Penyelesaian
-
-**Penyelesaian 1**: Penutup legap menghalang hujung daripada mengesan arah cahaya. Auksin terbahagi **sama rata di kedua-dua sisi**, jadi kedua-dua sisi memanjang sama banyak dan anak benih tumbuh tegak ke atas. Keputusan ini sama dengan anak benih C dalam model fototropisme.
-
-**Penyelesaian 2**: Graviti mengumpulkan auksin di **sebelah bawah akar**. Akar sangat peka, jadi kepekatan tinggi ini merencatkan pemanjangan sel di sebelah bawah. Sebelah atas yang kurang auksin memanjang lebih cepat, jadi akar membengkok ke bawah. Ini geotropisme positif.
-
-**Penyelesaian 3**: Guna <InlineMath math="\theta = d/w" />, kemudian tukar kepada darjah:
-
-<MathContainer>
-<BlockMath math="\theta = \frac{1.4}{2.0} = 0.70\text{ radian}" />
-<BlockMath math="\theta = 0.70 \times \frac{180^\circ}{\pi} = 40.1^\circ" />
-</MathContainer>
-
-Semak dengan model lengkungan: pada <InlineMath math="w = 2" /> dan <InlineMath math="d = 1.4" />, bacaan ialah <InlineMath math="40.11" />. Sebelah bawah lebih panjang, jadi batang membengkok ke atas.
-
-**Penyelesaian 4**: Untuk pisang, gunakan **etilena** kerana etilena ialah gas yang mempercepat pemasakan buah, jadi semua pisang dalam bakul masak serentak. Untuk sawah, gunakan **auksin sintetik seperti 2,4-D**. Pada kepekatan tinggi, ia membunuh rumpai dikotiledon berdaun lebar, tetapi padi ialah monokotiledon yang kurang terjejas.
+Bandingkan bagaimana **auksin, giberelin, sitokinin, asid absisik, dan etilena** menyelaras pertumbuhan pucuk, pemasakan buah, dan ketahanan kemarau dalam pertanian.
