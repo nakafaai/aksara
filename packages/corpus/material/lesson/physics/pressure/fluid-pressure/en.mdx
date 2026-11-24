@@ -1,29 +1,28 @@
 export const metadata = {
-  title: "Pressure Notes for Form Five",
+  title: "Fluid Pressure Pascal Archimedes Bernoulli",
   description:
-    "Form 5 Physics Chapter 2: calculate liquid pressure with P = hρg, apply Pascal's, Archimedes' and Bernoulli's principles, and explain atmospheric pressure.",
+    "Calculate liquid pressure with depth, apply the Pascal principle in hydraulic jacks, test Archimedes buoyancy, and explain Bernoulli flow in Venturi tubes.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-11-17",
   subject: "Pressure",
 };
 
-## Pressure Grows with Depth
+## Pressure Inside Liquids
 
-**Pressure** is the force acting normally on a unit area, <InlineMath math="P = \dfrac{F}{A}" />, measured in pascals. In a liquid, pressure depends on the depth <InlineMath math="h" />, the density <InlineMath math="\rho" /> and the gravitational acceleration <InlineMath math="g" />:
+Picture diving deeper toward the bottom of a pool: your ears feel a stronger squeeze because the whole column of water above pushes down. **Pressure** is normal force per unit area, and **liquid pressure** at depth <InlineMath math="h" /> depends on depth, density <InlineMath math="\rho" />, and gravity <InlineMath math="g" />:
 
-<BlockMath math="P = h\rho g" />
+<BlockMath math="P = \frac{F}{A}, \qquad P = h\rho g" />
 
-Liquid pressure doesn't depend on the shape or area of the container, only on the depth and the kind of liquid. In these notes you change the depth and density, lift a car with a hydraulic jack, float an object in water, and calculate the lift on an aeroplane wing.
-
-Move the depth and density sliders below. Pressure is directly proportional to depth, so the graph is a straight line through the origin.
+Liquid pressure **never depends on container shape or width**, only on depth below the surface. That explains why a dam wall is always built thickest at its base.
 
 <MathVisual
   title={<>Liquid Pressure against Depth</>}
+  footer={<>Liquid pressure grows linearly with depth regardless of container width.</>}
   description={
     <>
-      <InlineMath math="P = h\rho g" /> in kPa, with{" "}
-      <InlineMath math="g = 9.81\text{ m s}^{-2}" />. Water,{" "}
-      <InlineMath math="\rho = 1000\text{ kg m}^{-3}" />, at a depth of{" "}
+      <InlineMath math="P = h\rho g" /> in kPa with{" "}
+      <InlineMath math="g = 9.81\text{ m s}^{-2}" />. Water of density{" "}
+      <InlineMath math="1000\text{ kg m}^{-3}" /> at{" "}
       <InlineMath math="10\text{ m}" /> gives <InlineMath math="98.1\text{ kPa}" />.
     </>
   }
@@ -50,45 +49,23 @@ Move the depth and density sliders below. Pressure is directly proportional to d
   }}
 />
 
-Check the starting reading: <InlineMath math="P = 10 \times 1000 \times 9.81 = 98\,100\text{ Pa} = 98.1\text{ kPa}" />.
+Drag the depth and density sliders above: every extra <InlineMath math="10\text{ m}" /> of fresh water adds nearly one full atmosphere of pressure.
 
-That's why a **dam** is built thicker at the bottom: the water pressure is highest there. Tall water behind a dam also rushes out faster at the bottom intake. Change the head of water below and watch the water's energy turn into electrical energy.
+## Atmospheric and Gas Pressure
 
-<HydroDamLab
-  title={<>A Hydroelectric Dam in Cross-Section</>}
-  description={
-    <>
-      Every second <InlineMath math="10\text{ m}^3" /> of water drops through a
-      head <InlineMath math="h" />. The higher the head, the greater the
-      pressure at the bottom intake and the more power is generated.
-    </>
-  }
-  labels={{
-    electric: <>Electrical power</>,
-    head: <>Head of water</>,
-    headControl: "Head of water",
-    kinetic: <>Kinetic power at the turbine</>,
-    potential: <>Gravitational potential power</>,
-    shaft: <>Shaft power</>,
-    speed: <>Water speed at the turbine</>,
-    viewLabel: "A hydroelectric dam in cross-section",
-  }}
-/>
-
-## Atmospheric Pressure and Gas Pressure
-
-**Atmospheric pressure** is the pressure exerted by the weight of the layer of air above the Earth. At sea level it supports a <InlineMath math="76\text{ cm}" /> column of mercury in a barometer:
+**Atmospheric pressure** comes from the weight of the air blanket above Earth. At sea level it supports a <InlineMath math="76\text{ cm}" /> mercury column inside a barometer:
 
 <BlockMath math="P_{\text{atm}} = h\rho g = 0.76 \times 13\,600 \times 9.81 = 1.01 \times 10^5\text{ Pa}" />
 
-The higher you go, the thinner the layer of air above you, so atmospheric pressure falls. The model below shows that drop. At Genting Highlands, about <InlineMath math="1.8\text{ km}" /> above sea level, the pressure is only about <InlineMath math="82\text{ kPa}" />.
+Climbing a mountain leaves less air overhead, so atmospheric pressure falls smoothly. Inside a closed vessel, **gas pressure** arises from molecules colliding with the walls and is measured with a manometer or Bourdon gauge.
 
 <MathVisual
   title={<>Atmospheric Pressure against Altitude</>}
+  footer={<>Air pressure drops exponentially with altitude as the air layer thins out.</>}
   description={
     <>
-      An isothermal atmosphere model <InlineMath math="P = 101e^{-h/8.4}" /> kPa,
-      with <InlineMath math="h" /> in km. At <InlineMath math="2\text{ km}" />, the
+      Isothermal atmosphere model <InlineMath math="P = 101e^{-h/8.4}" /> kPa
+      with <InlineMath math="h" /> in km. At <InlineMath math="2\text{ km}" />,
       pressure is about <InlineMath math="80\text{ kPa}" />.
     </>
   }
@@ -113,23 +90,22 @@ The higher you go, the thinner the layer of air above you, so atmospheric pressu
   }}
 />
 
-**Gas pressure** in a closed container comes from gas molecules hitting the container walls. It's measured with a **manometer** or a **Bourdon gauge**. Car tyre pressure, for example, is read with a Bourdon gauge.
+For a diver underwater, total pressure always equals the atmospheric pressure on the surface plus the liquid pressure of the water overhead.
 
-## Hydraulic Systems and the Principle of Pascal
+## Pascal Principle Hydraulics
 
-**Pascal's principle** says that pressure applied to a fluid in a closed container is transmitted **equally in all directions**. In a **hydraulic jack**, a small force on the small piston makes the same pressure on the large piston, so the large piston produces a large force:
+**Pascal's principle** states that pressure applied to an enclosed fluid transmits **equally in every direction**. In a **hydraulic jack**, the very same oil pressure pushes on both the small piston and the large piston:
 
-<BlockMath math="\frac{F_1}{A_1} = \frac{F_2}{A_2}" />
-
-Change the area of the large piston below. The input force is <InlineMath math="50\text{ N}" /> on a small piston of area <InlineMath math="20\text{ cm}^2" />.
+<BlockMath math="\frac{F_1}{A_1} = \frac{F_2}{A_2}, \qquad A_1 d_1 = A_2 d_2" />
 
 <MathVisual
   title={<>Output Force of a Hydraulic Jack against Large Piston Area</>}
+  footer={<>Output force scales directly with large piston area at equal oil pressure.</>}
   description={
     <>
-      <InlineMath math="F_2 = 50 \times \dfrac{A_2}{20}" />, with{" "}
-      <InlineMath math="A_2" /> in <InlineMath math="\text{cm}^2" />. A{" "}
-      <InlineMath math="1000\text{ cm}^2" /> large piston gives{" "}
+      With <InlineMath math="50\text{ N}" /> pushing a{" "}
+      <InlineMath math="20\text{ cm}^2" /> small piston, a{" "}
+      <InlineMath math="1000\text{ cm}^2" /> large piston outputs{" "}
       <InlineMath math="2500\text{ N}" />.
     </>
   }
@@ -154,31 +130,55 @@ Change the area of the large piston below. The input force is <InlineMath math="
   }}
 />
 
-Try an example. A force of <InlineMath math="50\text{ N}" /> acts on a small piston of area <InlineMath math="0.002\text{ m}^2" />. Calculate the force on a large piston of area <InlineMath math="0.1\text{ m}^2" />.
+A hydraulic jack **multiplies force, never energy**. You must push the small piston a long way down so the large piston rises slightly.
 
-<MathContainer>
-<BlockMath math="P = \frac{50}{0.002} = 25\,000\text{ Pa}" />
-<BlockMath math="F_2 = 25\,000 \times 0.1 = 2500\text{ N}" />
-</MathContainer>
+> Equal oil pressure in both cylinders multiplies force by the area ratio while reducing the lifting distance by that exact same factor.
 
-Check with the area ratio: the large piston is <InlineMath math="\dfrac{0.1}{0.002} = 50" /> times bigger, so the force is also <InlineMath math="50" /> times bigger, <InlineMath math="50 \times 50 = 2500\text{ N}" />. The small piston has to move <InlineMath math="50" /> times further, because the work doesn't grow.
+<HydraulicJackLab
+  title={<>Lifting a Heavy Load with a Hydraulic Jack</>}
+  description={
+    <>
+      Pistons of <InlineMath math="0.0020\text{ m}^2" /> and{" "}
+      <InlineMath math="0.10\text{ m}^2" /> with{" "}
+      <InlineMath math="150\text{ N}" /> pushing the small piston down{" "}
+      <InlineMath math="20\text{ cm}" />.
+    </>
+  }
+  footer={<>Fifty times the area gives 7500 N upward, yet the large piston rises only 0.40 cm.</>}
+  labels={{
+    force: <>Force on the small piston</>,
+    forceName: "Force on the small piston",
+    lifted: <>Force on the large piston</>,
+    mass: <>Mass lifted</>,
+    pressure: <>Pressure in the oil</>,
+    rise: <>Large piston rises</>,
+    viewLabel: "A hydraulic jack with two oil cylinders",
+  }}
+  force={150}
+  largeArea={0.1}
+  smallArea={0.002}
+  stroke={20}
+/>
 
-## Buoyancy and the Principle of Archimedes
+Because the large piston has <InlineMath math="50" /> times the area, <InlineMath math="150\text{ N}" /> becomes <InlineMath math="7500\text{ N}" />, while a <InlineMath math="20\text{ cm}" /> downward stroke lifts the load only <InlineMath math="0.40\text{ cm}" /> so work stays conserved.
 
-**Archimedes' principle** says that an object partly or fully immersed in a fluid feels a **buoyant force** equal to the **weight of the fluid it displaces**:
+## Buoyancy and Archimedes Law
+
+**Archimedes' principle** states that any body immersed in a fluid feels a **buoyant force** equal to the **weight of the fluid it displaces**:
 
 <BlockMath math="F_B = \rho V g" />
 
-Here <InlineMath math="V" /> is the volume of fluid displaced. An object **floats** when the buoyant force equals its weight. Change the immersed volume and the liquid's density below for an object weighing <InlineMath math="50\text{ N}" />.
+Always substitute the **fluid density** <InlineMath math="\rho" />, not the object's density. An object floats right where buoyant force matches its weight.
 
 <MathVisual
   title={<>Buoyant Force against Immersed Volume</>}
+  footer={<>An object floats right where the upward buoyant line meets its weight line.</>}
   description={
     <>
-      <InlineMath math="F_B = 9.81\rho V" /> in N, with <InlineMath math="V" /> in
-      litres and <InlineMath math="\rho" /> in <InlineMath math="\text{g cm}^{-3}" />.
-      The horizontal line is the object's weight, <InlineMath math="50\text{ N}" />.
-      The object floats where the lines cross.
+      <InlineMath math="F_B = 9.81\rho V" /> in N for a{" "}
+      <InlineMath math="50\text{ N}" /> body with <InlineMath math="V" /> in
+      litres and <InlineMath math="\rho" /> in{" "}
+      <InlineMath math="\text{g cm}^{-3}" />.
     </>
   }
   scene={{
@@ -207,28 +207,82 @@ Here <InlineMath math="V" /> is the volume of fluid displaced. An object **float
   }}
 />
 
-A block weighing <InlineMath math="50\text{ N}" /> with a volume of <InlineMath math="0.002\text{ m}^3" /> is fully immersed in water. Calculate the buoyant force and the block's apparent weight.
+When a floating wood block moves from water into lighter oil, its weight stays identical so it must **displace a larger volume of oil** to stay afloat.
 
-<MathContainer>
-<BlockMath math="F_B = 1000 \times 0.002 \times 9.81 = 19.62\text{ N}" />
-<BlockMath math="\text{Apparent weight} = 50 - 19.62 = 30.38\text{ N}" />
-</MathContainer>
+> In a less dense liquid, a floating body sinks deeper so the displaced liquid still weighs exactly as much as the body itself.
 
-Check with the graph: at <InlineMath math="V = 2" /> litres in water the buoyant force is <InlineMath math="19.6\text{ N}" />, still below the <InlineMath math="50\text{ N}" /> line, so the block sinks. A submarine controls its buoyancy by filling or emptying its ballast tanks.
+<FloatingBlockLab
+  title={<>A Wooden Block Floating in Water and Oil</>}
+  description={
+    <>
+      A <InlineMath math="500\text{ cm}^3" /> block floats with{" "}
+      <InlineMath math="300\text{ cm}^3" /> submerged in water, then moves into
+      oil of density <InlineMath math="0.80\text{ g cm}^{-3}" />.
+    </>
+  }
+  footer={<>In less dense oil, the submerged volume increases from 300 to 375 cubic cm.</>}
+  labels={{
+    above: <>Above the surface</>,
+    liquid: "Liquid",
+    liquids: { other: <>Oil</>, water: <>Water</> },
+    under: <>Under the surface</>,
+    viewLabel: "A floating wooden block in water and oil",
+  }}
+  density={0.8}
+  underWater={300}
+  volume={500}
+/>
 
-## Lift and the Principle of Bernoulli
+In water the block displaces <InlineMath math="300\text{ g}" />, fixing its mass at <InlineMath math="300\text{ g}" />. In <InlineMath math="0.80\text{ g cm}^{-3}" /> oil, supporting that mass requires <InlineMath math="300 / 0.80 = 375\text{ cm}^3" /> underwater.
 
-**Bernoulli's principle** says that when the speed of a fluid increases, its pressure decreases. An aeroplane wing, or **aerofoil**, is shaped so that air over the wing moves faster than air under it. The pressure above the wing becomes lower, and that pressure difference produces **lift**.
+## Bernoulli Flow and Lift
 
-The pressure difference between the bottom and the top of the wing is <InlineMath math="\Delta P = \tfrac{1}{2}\rho(v_{\text{top}}^2 - v_{\text{bottom}}^2)" />. Change the air speed over the wing below, with the air under the wing at <InlineMath math="60\text{ m s}^{-1}" />.
+In steady moving fluids, pressure energy and kinetic energy continuously trade places under energy conservation. **Bernoulli's principle** captures that trade-off directly: wherever fluid flows faster, its static pressure drops lower.
+
+### Venturi Tube Flow
+
+When steady water enters a narrower pipe, the same volume flow per second forces the liquid to speed up sharply. By **Bernoulli's principle**, **faster-moving fluid always exerts lower static pressure**.
+
+> A narrower pipe accelerates steady flow by continuity, and higher speed lowers static pressure inside the constriction.
+
+<VenturiTubeLab
+  title={<>Water Speeding Through a Venturi Constriction</>}
+  description={
+    <>
+      Water flows at <InlineMath math="0.50\text{ m s}^{-1}" /> inside a{" "}
+      <InlineMath math="4.0\text{ cm}" /> pipe that narrows to{" "}
+      <InlineMath math="2.0\text{ cm}" />.
+    </>
+  }
+  footer={<>Halving diameter cuts area to a quarter, quadruples speed, and drops the water column.</>}
+  labels={{
+    drop: <>Column lower by</>,
+    faster: <>Speed in the narrow part</>,
+    speed: <>Speed in the wide part</>,
+    speedName: "Speed in the wide part",
+    viewLabel: "Water flowing through a Venturi tube with vertical gauges",
+  }}
+  narrow={2}
+  speed={0.5}
+  wide={4}
+/>
+
+Halving the diameter reduces cross-sectional area to one quarter, multiplying flow speed fourfold to <InlineMath math="2.0\text{ m s}^{-1}" /> so the vertical tube above the narrow throat holds a lower water column.
+
+### Aerofoil Wing Lift
+
+That same Bernoulli trade-off powers an **aerofoil wing**: curved upper flow moves faster than lower flow, leaving **higher pressure underneath the wing** to push it upward with pressure difference:
+
+<BlockMath math="\Delta P = \frac{1}{2}\rho\left(v_{\text{top}}^2 - v_{\text{bottom}}^2\right)" />
 
 <MathVisual
   title={<>Pressure Difference on a Wing against Air Speed over the Top</>}
+  footer={<>Faster airflow across the top surface enlarges both pressure drop and wing lift.</>}
   description={
     <>
-      <InlineMath math="\Delta P = 0.6(v^2 - 60^2)" /> Pa for air,{" "}
-      <InlineMath math="\rho = 1.2\text{ kg m}^{-3}" />. At{" "}
-      <InlineMath math="v = 70\text{ m s}^{-1}" />, the pressure difference is{" "}
+      <InlineMath math="\Delta P = 0.6(v^2 - 60^2)" /> Pa for air of density{" "}
+      <InlineMath math="1.2\text{ kg m}^{-3}" />. At{" "}
+      <InlineMath math="70\text{ m s}^{-1}" />, the pressure gap is{" "}
       <InlineMath math="780\text{ Pa}" />.
     </>
   }
@@ -255,56 +309,4 @@ The pressure difference between the bottom and the top of the wing is <InlineMat
   }}
 />
 
-Check: at <InlineMath math="70\text{ m s}^{-1}" />, <InlineMath math="\Delta P = 0.6 \times (4900 - 3600) = 780\text{ Pa}" />, and on a wing of area <InlineMath math="20\text{ m}^2" /> the lift is <InlineMath math="780 \times 20 = 15\,600\text{ N}" />. The same principle explains a Bunsen burner and a paint sprayer.
-
-## Common Mistakes about Pressure
-
-| Mistake | Why it's wrong | How to check |
-| :--- | :--- | :--- |
-| A wider container gives more pressure at the bottom. | <InlineMath math="P = h\rho g" /> doesn't depend on the container's area or shape. | Compare two containers with the same liquid depth. |
-| A hydraulic jack produces extra energy. | The force grows but the large piston moves a shorter distance, so the work is the same. | Multiply force by distance for both pistons. |
-| The buoyant force depends on the object's weight. | The buoyant force equals the weight of the **fluid displaced**, not the object's weight. | Work out <InlineMath math="\rho V g" /> with the fluid's density. |
-| Depth is measured from the bottom of the container. | <InlineMath math="h" /> is measured from the liquid surface down to the point. | The liquid pressure at the surface must be zero, not counting the atmosphere. |
-| Faster air has a higher pressure. | Bernoulli's principle: speed goes up, pressure goes down. | Blow over a sheet of paper and watch it rise. |
-
-The third mistake comes up most often. The buoyant force comes from the **fluid**, so use the fluid's density, not the object's.
-
-## Practice on Pressure
-
-These questions move from liquid pressure to hydraulics and buoyancy. **Convert every unit to SI** before you use <InlineMath math="P = h\rho g" />.
-
-1. A diver is <InlineMath math="30\text{ m}" /> below the sea surface. Sea water has a density of <InlineMath math="1030\text{ kg m}^{-3}" /> and atmospheric pressure is <InlineMath math="1.01 \times 10^5\text{ Pa}" />. Calculate the liquid pressure and the total pressure on the diver.
-
-2. A hydraulic jack has a small piston of <InlineMath math="4\text{ cm}^2" /> and a large piston of <InlineMath math="200\text{ cm}^2" />. Calculate the minimum force on the small piston to lift a car weighing <InlineMath math="12\,000\text{ N}" />.
-
-3. A block of wood of mass <InlineMath math="0.50\text{ kg}" /> floats in water. Calculate the buoyant force and the volume of wood under water.
-
-4. Use Bernoulli's principle to explain why an aeroplane has to race along the runway before take-off.
-
-### Solutions
-
-**Solution 1**: Work out the liquid pressure, then add the atmospheric pressure:
-
-<MathContainer>
-<BlockMath math="P_{\text{liquid}} = 30 \times 1030 \times 9.81 = 3.03 \times 10^5\text{ Pa}" />
-<BlockMath math="P_{\text{total}} = 3.03 \times 10^5 + 1.01 \times 10^5 = 4.04 \times 10^5\text{ Pa}" />
-</MathContainer>
-
-Check: every <InlineMath math="10\text{ m}" /> of water adds about one atmosphere, so at <InlineMath math="30\text{ m}" /> the total is about four atmospheres.
-
-**Solution 2**: Use Pascal's principle:
-
-<BlockMath math="F_1 = F_2 \times \frac{A_1}{A_2} = 12\,000 \times \frac{4}{200} = 240\text{ N}" />
-
-Check: the large piston is <InlineMath math="50" /> times bigger, so the input force is <InlineMath math="50" /> times smaller, <InlineMath math="12\,000 \div 50 = 240\text{ N}" />.
-
-**Solution 3**: A floating block feels a buoyant force equal to its weight:
-
-<MathContainer>
-<BlockMath math="F_B = mg = 0.50 \times 9.81 = 4.905\text{ N}" />
-<BlockMath math="V = \frac{F_B}{\rho g} = \frac{4.905}{1000 \times 9.81} = 5.0 \times 10^{-4}\text{ m}^3" />
-</MathContainer>
-
-The volume under water is <InlineMath math="500\text{ cm}^3" />. Check: <InlineMath math="500\text{ cm}^3" /> of water has a mass of <InlineMath math="0.50\text{ kg}" />, the same as the wood.
-
-**Solution 4**: Lift comes from the **pressure difference** between the bottom and the top of the wing, and that difference depends on the **air speed** over the wing. At low speed the pressure difference is too small to hold up the aeroplane's weight. The aeroplane races along the runway so the air over the wing moves fast enough for the lift to exceed the weight.
+At <InlineMath math="70\text{ m s}^{-1}" />, a <InlineMath math="20\text{ m}^2" /> wing generates <InlineMath math="15\,600\text{ N}" /> of lift. Quick self-checks: a diver <InlineMath math="30\text{ m}" /> deep in sea water (<InlineMath math="1030\text{ kg m}^{-3}" />) feels <InlineMath math="4.04 \times 10^5\text{ Pa}" /> total pressure, and a <InlineMath math="4\text{ cm}^2" /> small piston needs <InlineMath math="240\text{ N}" /> to lift a <InlineMath math="12\,000\text{ N}" /> car on a <InlineMath math="200\text{ cm}^2" /> piston.

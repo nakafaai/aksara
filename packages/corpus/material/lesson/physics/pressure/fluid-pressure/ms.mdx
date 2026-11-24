@@ -1,29 +1,28 @@
 export const metadata = {
-  title: "Nota Tekanan Tingkatan Lima",
+  title: "Tekanan Bendalir Pascal Archimedes Bernoulli",
   description:
-    "Nota Fizik Tingkatan 5 Bab 2: kira tekanan cecair dengan P = hρg, guna prinsip Pascal, Archimedes dan Bernoulli, dan terangkan tekanan atmosfera.",
+    "Kira tekanan cecair mengikut kedalaman, guna prinsip Pascal pada jek hidraulik, uji keapungan Archimedes, dan terangkan aliran Bernoulli pada tiub Venturi.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-11-17",
   subject: "Tekanan",
 };
 
-## Tekanan Bertambah dengan Kedalaman
+## Tekanan dalam Cecair
 
-**Tekanan** ialah daya yang bertindak secara normal pada satu unit luas, <InlineMath math="P = \dfrac{F}{A}" />, diukur dalam pascal. Dalam cecair, tekanan bergantung pada kedalaman <InlineMath math="h" />, ketumpatan <InlineMath math="\rho" /> dan pecutan graviti <InlineMath math="g" />:
+Bayangkan menyelam semakin dalam ke dasar kolam: telinga terasa semakin tertekan kerana seluruh turus air di atas menekan ke bawah. **Tekanan** ialah daya normal per unit luas, manakala **tekanan cecair** pada kedalaman <InlineMath math="h" /> bergantung pada kedalaman, ketumpatan <InlineMath math="\rho" />, dan graviti <InlineMath math="g" />:
 
-<BlockMath math="P = h\rho g" />
+<BlockMath math="P = \frac{F}{A}, \qquad P = h\rho g" />
 
-Tekanan cecair tidak bergantung pada bentuk atau luas bekas, hanya pada kedalaman dan jenis cecair. Dalam nota ini kamu ubah kedalaman dan ketumpatan, angkat kereta dengan jek hidraulik, apungkan objek dalam air, dan kira daya angkat sayap kapal terbang.
-
-Gerakkan gelangsar kedalaman dan ketumpatan di bawah. Tekanan berkadar terus dengan kedalaman, jadi grafiknya lurus melalui asalan.
+Tekanan cecair **tidak bergantung pada bentuk atau lebar bekas**, hanya pada kedalaman di bawah permukaan. Sebab itulah dinding empangan sentiasa dibina paling tebal di bahagian dasarnya.
 
 <MathVisual
   title={<>Tekanan Cecair melawan Kedalaman</>}
+  footer={<>Tekanan cecair meningkat secara linear dengan kedalaman tanpa mengira lebar bekas.</>}
   description={
     <>
-      <InlineMath math="P = h\rho g" /> dalam kPa, dengan{" "}
-      <InlineMath math="g = 9.81\text{ m s}^{-2}" />. Air,{" "}
-      <InlineMath math="\rho = 1000\text{ kg m}^{-3}" />, pada kedalaman{" "}
+      <InlineMath math="P = h\rho g" /> dalam kPa dengan{" "}
+      <InlineMath math="g = 9.81\text{ m s}^{-2}" />. Air berketumpatan{" "}
+      <InlineMath math="1000\text{ kg m}^{-3}" /> pada{" "}
       <InlineMath math="10\text{ m}" /> memberi <InlineMath math="98.1\text{ kPa}" />.
     </>
   }
@@ -50,46 +49,25 @@ Gerakkan gelangsar kedalaman dan ketumpatan di bawah. Tekanan berkadar terus den
   }}
 />
 
-Semak bacaan permulaan: <InlineMath math="P = 10 \times 1000 \times 9.81 = 98\,100\text{ Pa} = 98.1\text{ kPa}" />.
+Gerakkan gelangsar kedalaman dan ketumpatan di atas: setiap tambahan <InlineMath math="10\text{ m}" /> dalam air tawar menambah hampir satu atmosfera tekanan.
 
-Inilah sebab **empangan** dibina lebih tebal di bahagian bawah, kerana tekanan air paling tinggi di situ. Air yang tinggi di belakang empangan juga keluar dengan laju yang lebih besar di salur bawah. Ubah turus air di bawah dan lihat tenaga air berubah menjadi tenaga elektrik.
+## Tekanan Atmosfera dan Gas
 
-<HydroDamLab
-  title={<>Empangan Hidroelektrik dalam Keratan Rentas</>}
-  description={
-    <>
-      Setiap saat <InlineMath math="10\text{ m}^3" /> air jatuh melalui turus{" "}
-      <InlineMath math="h" />. Semakin tinggi turus, semakin besar tekanan di
-      salur bawah dan semakin besar kuasa yang dijana.
-    </>
-  }
-  labels={{
-    electric: <>Kuasa elektrik</>,
-    head: <>Turus air</>,
-    headControl: "Turus air",
-    kinetic: <>Kuasa kinetik di turbin</>,
-    potential: <>Kuasa keupayaan graviti</>,
-    shaft: <>Kuasa aci</>,
-    speed: <>Laju air di turbin</>,
-    viewLabel: "Empangan hidroelektrik dalam keratan rentas",
-  }}
-/>
-
-## Tekanan Atmosfera dan Tekanan Gas
-
-**Tekanan atmosfera** ialah tekanan yang dikenakan oleh berat lapisan udara di atas Bumi. Pada aras laut, tekanan ini menyokong turus raksa setinggi <InlineMath math="76\text{ cm}" /> dalam barometer:
+**Tekanan atmosfera** wujud daripada berat seluruh lapisan udara di atas Bumi. Pada aras laut, tekanan ini menyokong turus merkuri setinggi <InlineMath math="76\text{ cm}" /> dalam barometer:
 
 <BlockMath math="P_{\text{atm}} = h\rho g = 0.76 \times 13\,600 \times 9.81 = 1.01 \times 10^5\text{ Pa}" />
 
-Semakin tinggi kita naik, semakin nipis lapisan udara di atas kita, jadi tekanan atmosfera berkurang. Model di bawah menunjukkan penurunan itu. Di Genting Highlands, kira-kira <InlineMath math="1.8\text{ km}" /> dari aras laut, tekanan hanya kira-kira <InlineMath math="82\text{ kPa}" />.
+Semakin tinggi kamu mendaki gunung, semakin nipis lapisan udara di atas kepala lalu tekanan atmosfera menurun. Dalam bekas tertutup pula, **tekanan gas** terhasil daripada perlanggaran molekul gas dengan dinding dan disukat menggunakan manometer atau tolok Bourdon.
 
 <MathVisual
   title={<>Tekanan Atmosfera melawan Ketinggian</>}
+  footer={<>Tekanan udara menyusut secara eksponen mengikut ketinggian kerana udara menipis.</>}
   description={
     <>
-      Model atmosfera suhu tetap <InlineMath math="P = 101e^{-h/8.4}" /> kPa,
-      dengan <InlineMath math="h" /> dalam km. Pada <InlineMath math="2\text{ km}" />,
-      tekanan kira-kira <InlineMath math="80\text{ kPa}" />.
+      Model atmosfera bersuhu tetap <InlineMath math="P = 101e^{-h/8.4}" /> kPa
+      dengan <InlineMath math="h" /> dalam km. Pada ketinggian{" "}
+      <InlineMath math="2\text{ km}" />, tekanannya sekitar{" "}
+      <InlineMath math="80\text{ kPa}" />.
     </>
   }
   scene={{
@@ -113,23 +91,22 @@ Semakin tinggi kita naik, semakin nipis lapisan udara di atas kita, jadi tekanan
   }}
 />
 
-**Tekanan gas** dalam bekas tertutup datang daripada molekul gas yang berlanggar dengan dinding bekas. Tekanan ini diukur dengan **manometer** atau **tolok Bourdon**. Tekanan tayar kereta, misalnya, dibaca dengan tolok Bourdon.
+Bagi penyelam di bawah laut, jumlah tekanan yang dialami sentiasa hasil tambah tekanan atmosfera permukaan dengan tekanan cecair air di atasnya.
 
-## Prinsip Pascal dan Sistem Hidraulik
+## Prinsip Pascal Hidraulik
 
-**Prinsip Pascal** menyatakan bahawa tekanan yang dikenakan pada bendalir dalam bekas tertutup dipindahkan **seragam ke semua arah**. Dalam **jek hidraulik**, daya kecil pada omboh kecil menghasilkan tekanan yang sama pada omboh besar, jadi omboh besar menghasilkan daya yang besar:
+**Prinsip Pascal** menyatakan bahawa tekanan yang dikenakan pada bendalir tertutup dipindahkan **seragam ke semua arah**. Dalam **jek hidraulik**, satu nilai tekanan minyak yang sama bertindak pada omboh kecil dan omboh besar:
 
-<BlockMath math="\frac{F_1}{A_1} = \frac{F_2}{A_2}" />
-
-Ubah luas omboh besar di bawah. Daya input <InlineMath math="50\text{ N}" /> pada omboh kecil berluas <InlineMath math="20\text{ cm}^2" />.
+<BlockMath math="\frac{F_1}{A_1} = \frac{F_2}{A_2}, \qquad A_1 d_1 = A_2 d_2" />
 
 <MathVisual
   title={<>Daya Output Jek Hidraulik melawan Luas Omboh Besar</>}
+  footer={<>Daya output meningkat berkadar terus dengan luas omboh besar pada tekanan sama.</>}
   description={
     <>
-      <InlineMath math="F_2 = 50 \times \dfrac{A_2}{20}" />, dengan{" "}
-      <InlineMath math="A_2" /> dalam <InlineMath math="\text{cm}^2" />. Omboh
-      besar <InlineMath math="1000\text{ cm}^2" /> memberi{" "}
+      Dengan input <InlineMath math="50\text{ N}" /> pada omboh kecil{" "}
+      <InlineMath math="20\text{ cm}^2" />, omboh besar{" "}
+      <InlineMath math="1000\text{ cm}^2" /> menghasilkan{" "}
       <InlineMath math="2500\text{ N}" />.
     </>
   }
@@ -154,31 +131,55 @@ Ubah luas omboh besar di bawah. Daya input <InlineMath math="50\text{ N}" /> pad
   }}
 />
 
-Cuba satu contoh. Daya <InlineMath math="50\text{ N}" /> dikenakan pada omboh kecil berluas <InlineMath math="0.002\text{ m}^2" />. Hitung daya pada omboh besar berluas <InlineMath math="0.1\text{ m}^2" />.
+Jek hidraulik **menggandakan daya, bukan tenaga**. Omboh kecil perlu ditekan jauh ke bawah supaya omboh besar naik sedikit sahaja.
 
-<MathContainer>
-<BlockMath math="P = \frac{50}{0.002} = 25\,000\text{ Pa}" />
-<BlockMath math="F_2 = 25\,000 \times 0.1 = 2500\text{ N}" />
-</MathContainer>
+> Tekanan minyak yang sama dalam kedua-dua silinder menggandakan daya mengikut nisbah luas sambil mengecilkan jarak angkatan dengan faktor sama.
 
-Semak dengan nisbah luas: omboh besar <InlineMath math="\dfrac{0.1}{0.002} = 50" /> kali lebih luas, jadi daya juga <InlineMath math="50" /> kali, <InlineMath math="50 \times 50 = 2500\text{ N}" />. Omboh kecil perlu bergerak <InlineMath math="50" /> kali lebih jauh, kerana kerja tidak bertambah.
+<HydraulicJackLab
+  title={<>Mengangkat Beban Berat dengan Jek Hidraulik</>}
+  description={
+    <>
+      Omboh kecil <InlineMath math="0.0020\text{ m}^2" /> dan omboh besar{" "}
+      <InlineMath math="0.10\text{ m}^2" /> dengan daya{" "}
+      <InlineMath math="150\text{ N}" /> menolak omboh kecil sejauh{" "}
+      <InlineMath math="20\text{ cm}" />.
+    </>
+  }
+  footer={<>Luas lima puluh kali memberi daya 7500 N, tetapi omboh besar naik 0.40 cm sahaja.</>}
+  labels={{
+    force: <>Daya pada omboh kecil</>,
+    forceName: "Daya pada omboh kecil",
+    lifted: <>Daya pada omboh besar</>,
+    mass: <>Jisim yang diangkat</>,
+    pressure: <>Tekanan dalam minyak</>,
+    rise: <>Omboh besar naik</>,
+    viewLabel: "Jek hidraulik dengan dua silinder minyak",
+  }}
+  force={150}
+  largeArea={0.1}
+  smallArea={0.002}
+  stroke={20}
+/>
 
-## Prinsip Archimedes dan Keapungan
+Kerana luas omboh besar <InlineMath math="50" /> kali lebih besar, daya <InlineMath math="150\text{ N}" /> menjadi <InlineMath math="7500\text{ N}" />, manakala lejang <InlineMath math="20\text{ cm}" /> hanya menaikkan beban <InlineMath math="0.40\text{ cm}" /> supaya kerja kekal sama.
 
-**Prinsip Archimedes** menyatakan bahawa objek yang tenggelam sebahagian atau sepenuhnya dalam bendalir mengalami **daya apungan** yang sama dengan **berat bendalir yang disesarkan**:
+## Daya Apungan Archimedes
+
+**Prinsip Archimedes** menyatakan bahawa objek yang tenggelam dalam bendalir mengalami **daya apungan** yang menyamai **berat bendalir yang disesarkan**:
 
 <BlockMath math="F_B = \rho V g" />
 
-Di sini <InlineMath math="V" /> ialah isi padu bendalir yang disesarkan. Objek **terapung** apabila daya apungan sama dengan beratnya. Ubah isi padu yang tenggelam dan ketumpatan cecair di bawah bagi objek seberat <InlineMath math="50\text{ N}" />.
+Sentiasa guna **ketumpatan bendalir** <InlineMath math="\rho" />, bukan ketumpatan objek. Objek terapung tepat apabila daya apungan menyamai beratnya.
 
 <MathVisual
   title={<>Daya Apungan melawan Isi Padu yang Tenggelam</>}
+  footer={<>Objek terapung tepat di titik garis daya apungan bersilang dengan garis beratnya.</>}
   description={
     <>
-      <InlineMath math="F_B = 9.81\rho V" /> dalam N, dengan <InlineMath math="V" />{" "}
-      dalam liter dan <InlineMath math="\rho" /> dalam{" "}
-      <InlineMath math="\text{g cm}^{-3}" />. Garis mendatar ialah berat objek,{" "}
-      <InlineMath math="50\text{ N}" />. Objek terapung pada titik persilangan.
+      <InlineMath math="F_B = 9.81\rho V" /> dalam N bagi objek seberat{" "}
+      <InlineMath math="50\text{ N}" /> dengan <InlineMath math="V" /> dalam
+      liter dan <InlineMath math="\rho" /> dalam{" "}
+      <InlineMath math="\text{g cm}^{-3}" />.
     </>
   }
   scene={{
@@ -207,28 +208,83 @@ Di sini <InlineMath math="V" /> ialah isi padu bendalir yang disesarkan. Objek *
   }}
 />
 
-Bongkah seberat <InlineMath math="50\text{ N}" /> dan berisi padu <InlineMath math="0.002\text{ m}^3" /> ditenggelamkan sepenuhnya dalam air. Hitung daya apungan dan berat ketara bongkah itu.
+Apabila blok kayu yang terapung dipindahkan dari air ke minyak yang kurang tumpat, beratnya kekal sama maka ia mesti **menyesarkan isi padu minyak lebih besar** untuk terus terapung.
 
-<MathContainer>
-<BlockMath math="F_B = 1000 \times 0.002 \times 9.81 = 19.62\text{ N}" />
-<BlockMath math="\text{Berat ketara} = 50 - 19.62 = 30.38\text{ N}" />
-</MathContainer>
+> Dalam cecair kurang tumpat, objek terapung tenggelam lebih dalam supaya berat cecair yang disesarkan masih menyamai berat objek itu.
 
-Semak dengan graf: pada <InlineMath math="V = 2" /> liter dalam air, daya apungan ialah <InlineMath math="19.6\text{ N}" />, masih di bawah garis <InlineMath math="50\text{ N}" />, jadi bongkah itu tenggelam. Kapal selam mengawal keapungan dengan mengisi atau mengosongkan tangki balast.
+<FloatingBlockLab
+  title={<>Blok Kayu Terapung dalam Air dan Minyak</>}
+  description={
+    <>
+      Blok <InlineMath math="500\text{ cm}^3" /> terapung dengan{" "}
+      <InlineMath math="300\text{ cm}^3" /> di bawah permukaan air, lalu
+      dipindahkan ke minyak berketumpatan{" "}
+      <InlineMath math="0.80\text{ g cm}^{-3}" />.
+    </>
+  }
+  footer={<>Dalam minyak kurang tumpat, isi padu tenggelam naik daripada 300 ke 375 cm padu.</>}
+  labels={{
+    above: <>Di atas permukaan</>,
+    liquid: "Cecair",
+    liquids: { other: <>Minyak</>, water: <>Air</> },
+    under: <>Di bawah permukaan</>,
+    viewLabel: "Blok kayu terapung dalam air dan minyak",
+  }}
+  density={0.8}
+  underWater={300}
+  volume={500}
+/>
 
-## Prinsip Bernoulli dan Daya Angkat
+Di dalam air blok menyesarkan <InlineMath math="300\text{ g}" /> air, jadi jisimnya ialah <InlineMath math="300\text{ g}" />. Dalam minyak <InlineMath math="0.80\text{ g cm}^{-3}" />, jisim sama memerlukan <InlineMath math="300 / 0.80 = 375\text{ cm}^3" /> tenggelam.
 
-**Prinsip Bernoulli** menyatakan bahawa apabila laju bendalir bertambah, tekanannya berkurang. Sayap kapal terbang, atau **aerofoil**, dibentuk supaya udara di atas sayap bergerak lebih laju daripada udara di bawahnya. Tekanan di atas sayap menjadi lebih rendah, dan beza tekanan itu menghasilkan **daya angkat**.
+## Prinsip Bernoulli
 
-Beza tekanan antara bawah dengan atas sayap ialah <InlineMath math="\Delta P = \tfrac{1}{2}\rho(v_{\text{atas}}^2 - v_{\text{bawah}}^2)" />. Ubah laju udara di atas sayap di bawah, dengan udara di bawah sayap pada <InlineMath math="60\text{ m s}^{-1}" />.
+Dalam bendalir yang mengalir mantap, tenaga tekanan dan tenaga kinetik sentiasa saling bertukar mengikut keabadian tenaga. **Prinsip Bernoulli** merumuskan pertukaran itu: semakin laju aliran bendalir di sesuatu kawasan, semakin rendah tekanan statiknya.
+
+### Aliran Tiub Venturi
+
+Apabila aliran air malar memasuki bahagian paip lebih sempit, kadar aliran sama memaksa cecair memecut jauh lebih laju. Mengikut **prinsip Bernoulli**, **bendalir yang bergerak lebih laju sentiasa mempunyai tekanan statik lebih rendah**.
+
+> Bahagian paip yang menyempit memecutkan aliran mengikut keselanjaran, dan laju lebih tinggi menurunkan tekanan statik pada penyempitan itu.
+
+<VenturiTubeLab
+  title={<>Air Memecut Melalui Penyempitan Tiub Venturi</>}
+  description={
+    <>
+      Air mengalir pada <InlineMath math="0.50\text{ m s}^{-1}" /> dalam paip
+      berdiameter <InlineMath math="4.0\text{ cm}" /> yang menyempit kepada{" "}
+      <InlineMath math="2.0\text{ cm}" />.
+    </>
+  }
+  footer={<>Diameter separuh memberi luas suku, laju empat kali, dan paras turus air menurun.</>}
+  labels={{
+    drop: <>Turus lebih rendah sebanyak</>,
+    faster: <>Laju di bahagian sempit</>,
+    speed: <>Laju di bahagian lebar</>,
+    speedName: "Laju di bahagian lebar",
+    viewLabel: "Air mengalir melalui tiub Venturi dengan tiub tegak",
+  }}
+  narrow={2}
+  speed={0.5}
+  wide={4}
+/>
+
+Diameter yang mengecil separuh memotong luas kepada suku sehingga laju melonjak empat kali ke <InlineMath math="2.0\text{ m s}^{-1}" /> dan turus air di atas bahagian sempit berdiri lebih rendah.
+
+### Daya Angkat Sayap
+
+Prinsip Bernoulli yang sama menghasilkan daya angkat pada **sayap aerofoil**: aliran udara di bahagian atas lebih laju berbanding bawah supaya **tekanan di bawah sayap lebih tinggi** lalu menolak sayap ke atas dengan beza tekanan:
+
+<BlockMath math="\Delta P = \frac{1}{2}\rho\left(v_{\text{atas}}^2 - v_{\text{bawah}}^2\right)" />
 
 <MathVisual
   title={<>Beza Tekanan pada Sayap melawan Laju Udara di Atas</>}
+  footer={<>Udara lebih laju di atas sayap membesarkan beza tekanan dan daya angkat sayap.</>}
   description={
     <>
-      <InlineMath math="\Delta P = 0.6(v^2 - 60^2)" /> Pa bagi udara,{" "}
-      <InlineMath math="\rho = 1.2\text{ kg m}^{-3}" />. Pada{" "}
-      <InlineMath math="v = 70\text{ m s}^{-1}" />, beza tekanan ialah{" "}
+      <InlineMath math="\Delta P = 0.6(v^2 - 60^2)" /> Pa bagi udara
+      berketumpatan <InlineMath math="1.2\text{ kg m}^{-3}" />. Pada{" "}
+      <InlineMath math="70\text{ m s}^{-1}" />, beza tekanan ialah{" "}
       <InlineMath math="780\text{ Pa}" />.
     </>
   }
@@ -255,56 +311,4 @@ Beza tekanan antara bawah dengan atas sayap ialah <InlineMath math="\Delta P = \
   }}
 />
 
-Semak: pada <InlineMath math="70\text{ m s}^{-1}" />, <InlineMath math="\Delta P = 0.6 \times (4900 - 3600) = 780\text{ Pa}" />, dan pada sayap berluas <InlineMath math="20\text{ m}^2" /> daya angkatnya <InlineMath math="780 \times 20 = 15\,600\text{ N}" />. Prinsip yang sama menerangkan penunu Bunsen dan semburan penyembur cat.
-
-## Kesilapan Lazim tentang Tekanan
-
-| Kesilapan | Sebab salah | Cara semak |
-| :--- | :--- | :--- |
-| Bekas yang lebih lebar memberi tekanan yang lebih besar di dasar. | <InlineMath math="P = h\rho g" /> tidak bergantung pada luas atau bentuk bekas. | Bandingkan dua bekas dengan kedalaman cecair yang sama. |
-| Jek hidraulik menghasilkan tenaga tambahan. | Daya bertambah tetapi jarak gerakan omboh besar berkurang, jadi kerja sama. | Darab daya dengan jarak bagi kedua-dua omboh. |
-| Daya apungan bergantung pada berat objek. | Daya apungan sama dengan berat **bendalir yang disesarkan**, bukan berat objek. | Kira <InlineMath math="\rho V g" /> menggunakan ketumpatan bendalir. |
-| Kedalaman diukur dari dasar bekas. | <InlineMath math="h" /> diukur dari permukaan cecair ke titik itu. | Tekanan di permukaan cecair mesti sifar, tidak termasuk atmosfera. |
-| Udara yang lebih laju memberi tekanan yang lebih tinggi. | Prinsip Bernoulli: laju bertambah, tekanan berkurang. | Tiup di atas sehelai kertas dan lihat kertas naik. |
-
-Kesilapan ketiga paling kerap muncul. Daya apungan datang daripada **bendalir**, jadi gunakan ketumpatan bendalir, bukan ketumpatan objek.
-
-## Latihan Tekanan
-
-Soalan ini bergerak daripada tekanan cecair kepada sistem hidraulik dan keapungan. **Tukar semua unit kepada SI** sebelum menggunakan <InlineMath math="P = h\rho g" />.
-
-1. Seorang penyelam berada <InlineMath math="30\text{ m}" /> di bawah permukaan laut. Ketumpatan air laut ialah <InlineMath math="1030\text{ kg m}^{-3}" /> dan tekanan atmosfera <InlineMath math="1.01 \times 10^5\text{ Pa}" />. Hitung tekanan cecair dan jumlah tekanan pada penyelam itu.
-
-2. Jek hidraulik mempunyai omboh kecil <InlineMath math="4\text{ cm}^2" /> dan omboh besar <InlineMath math="200\text{ cm}^2" />. Hitung daya minimum pada omboh kecil untuk mengangkat kereta seberat <InlineMath math="12\,000\text{ N}" />.
-
-3. Sebongkah kayu berjisim <InlineMath math="0.50\text{ kg}" /> terapung dalam air. Hitung daya apungan dan isi padu kayu yang tenggelam.
-
-4. Terangkan, menggunakan prinsip Bernoulli, sebab kapal terbang perlu berlari laju di landasan sebelum berlepas.
-
-### Penyelesaian
-
-**Penyelesaian 1**: Kira tekanan cecair, kemudian tambah tekanan atmosfera:
-
-<MathContainer>
-<BlockMath math="P_{\text{cecair}} = 30 \times 1030 \times 9.81 = 3.03 \times 10^5\text{ Pa}" />
-<BlockMath math="P_{\text{jumlah}} = 3.03 \times 10^5 + 1.01 \times 10^5 = 4.04 \times 10^5\text{ Pa}" />
-</MathContainer>
-
-Semak: setiap <InlineMath math="10\text{ m}" /> air menambah kira-kira satu atmosfera, jadi pada <InlineMath math="30\text{ m}" /> jumlahnya kira-kira empat atmosfera.
-
-**Penyelesaian 2**: Gunakan prinsip Pascal:
-
-<BlockMath math="F_1 = F_2 \times \frac{A_1}{A_2} = 12\,000 \times \frac{4}{200} = 240\text{ N}" />
-
-Semak: omboh besar <InlineMath math="50" /> kali lebih luas, jadi daya input <InlineMath math="50" /> kali lebih kecil, <InlineMath math="12\,000 \div 50 = 240\text{ N}" />.
-
-**Penyelesaian 3**: Kayu yang terapung mengalami daya apungan yang sama dengan beratnya:
-
-<MathContainer>
-<BlockMath math="F_B = mg = 0.50 \times 9.81 = 4.905\text{ N}" />
-<BlockMath math="V = \frac{F_B}{\rho g} = \frac{4.905}{1000 \times 9.81} = 5.0 \times 10^{-4}\text{ m}^3" />
-</MathContainer>
-
-Isi padu tenggelam ialah <InlineMath math="500\text{ cm}^3" />. Semak: <InlineMath math="500\text{ cm}^3" /> air berjisim <InlineMath math="0.50\text{ kg}" />, sama dengan jisim kayu.
-
-**Penyelesaian 4**: Daya angkat datang daripada **beza tekanan** antara bawah dengan atas sayap, dan beza itu bergantung pada **laju udara** melalui sayap. Pada laju rendah, beza tekanan terlalu kecil untuk menyokong berat kapal terbang. Kapal terbang berlari laju di landasan supaya udara di atas sayap cukup laju dan daya angkat melebihi berat.
+Pada <InlineMath math="70\text{ m s}^{-1}" />, sayap <InlineMath math="20\text{ m}^2" /> menjana <InlineMath math="15\,600\text{ N}" /> daya angkat. Semakan pantas kendiri: penyelam <InlineMath math="30\text{ m}" /> dalam air laut (<InlineMath math="1030\text{ kg m}^{-3}" />) menanggung tekanan jumlah <InlineMath math="4.04 \times 10^5\text{ Pa}" />, dan omboh kecil <InlineMath math="4\text{ cm}^2" /> perlu <InlineMath math="240\text{ N}" /> untuk mengangkat kereta <InlineMath math="12\,000\text{ N}" /> pada omboh <InlineMath math="200\text{ cm}^2" />.
