@@ -1,6 +1,28 @@
-Check each statement **against the numbers in the table, row by row**.
+# Given
 
-- _Most passengers in April_: true. <InlineMath math="1.650" /> is the largest passenger figure.
-- _Waiting time falls steadily_: false. It rises from <InlineMath math="25" /> to <InlineMath math="27" /> minutes in February.
-- _More than one and a half times_: false. One and a half times <InlineMath math="1.180" /> is <InlineMath math="1.770" />, but April had <InlineMath math="1.650" />.
-- _February fewest passengers and longest wait_: true. <InlineMath math="1.150" /> is the smallest passenger figure, and <InlineMath math="27" /> minutes the longest wait.
+The *minibus-schedule* table tracks **two monthly series** from January to April: average daily riders <InlineMath math="1{,}200" />, <InlineMath math="1{,}150" />, <InlineMath math="1{,}180" />, and <InlineMath math="1{,}650" />, alongside wait times of <InlineMath math="25" />, <InlineMath math="27" />, <InlineMath math="26" />, and <InlineMath math="12" /> minutes.
+
+# Asked
+
+Whether each of the four statements matches the table.
+
+# Solution
+
+Test each statement **independently against the exact figures on every row**.
+
+<BlockMath math="1.5 \times 1{,}180 = 1{,}770 > 1{,}650" />
+
+> Verify every matrix statement row by row so temporary reversals like February's longer wait time are never missed.
+
+## Verifying all four statements against the table
+
+| Statement | Exact table check | Verdict |
+| --- | --- | --- |
+| Average daily riders peaked in April | <InlineMath math="1{,}650" /> is the highest value in the rider column | **Consistent** |
+| Wait time fell steadily from January to April | Wait time rose from <InlineMath math="25" /> to <InlineMath math="27" /> minutes in February | **Not consistent** |
+| April riders exceeded one and a half times March riders | One and a half times <InlineMath math="1{,}180" /> is <InlineMath math="1{,}770" />, which exceeds <InlineMath math="1{,}650" /> | **Not consistent** |
+| February had both the fewest riders and the longest wait | Lowest ridership <InlineMath math="1{,}150" /> and longest wait <InlineMath math="27" /> minutes | **Consistent** |
+
+# Answer
+
+The four verdicts in order are **Consistent, Not consistent, Not consistent, Consistent** (*Sesuai, Tidak sesuai, Tidak sesuai, Sesuai*).
