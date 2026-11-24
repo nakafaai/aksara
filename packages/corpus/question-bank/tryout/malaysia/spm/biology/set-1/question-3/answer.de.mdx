@@ -1,17 +1,81 @@
-# Gleiches Volumen, andere Form
+# Gegeben
 
-Beide Zellen haben ein Volumen von <InlineMath math="1000\,\mu\text{m}^3" />, der Unterschied liegt also nur in der Oberfläche. **Eine flache Form verteilt dasselbe Volumen auf eine größere Oberfläche**.
+Zelle P ist ein Würfel mit der Kantenlänge <InlineMath math="10\,\mu\text{m}" />. Zelle R besitzt dasselbe Volumen, ist aber ein flacher Quader mit den Maßen <InlineMath math="40\,\mu\text{m} \times 10\,\mu\text{m} \times 2{,}5\,\mu\text{m}" />.
+
+Beide Zellen haben **genau dasselbe Volumen von <InlineMath math="1000\,\mu\text{m}^3" />**.
+
+# Gesucht
+
+Wie viel Mal größer ist das Verhältnis von Oberfläche zu Volumen bei Zelle R im Vergleich zu Zelle P?
+
+# Lösung
+
+Stell dir vor, du drückst einen Würfel aus Knete zu einer flachen Platte. Die Knetmenge innen bleibt gleich, aber **viel mehr Außenfläche berührt jetzt die Luft**.
+
+> Haben zwei Körper dasselbe Volumen, entspricht das Verhältnis ihrer Oberflächen-Volumen-Verhältnisse genau dem Verhältnis ihrer Oberflächen.
+
+Schieb im Graphen die Dicke <InlineMath math="h" /> bei fester Breite <InlineMath math="10\,\mu\text{m}" /> und festem Volumen <InlineMath math="1000\,\mu\text{m}^3" />, und vergleiche Würfel P mit dem flachen Quader R.
+
+<MathVisual
+  title={<>Oberfläche bei festem Volumen <InlineMath math="1000\,\mu\text{m}^3" /></>}
+  description={
+    <>
+      Bei fester Breite <InlineMath math="10\,\mu\text{m}" /> gilt für die Länge{" "}
+      <InlineMath math="100 / h" />. Schieb die Dicke <InlineMath math="h" /> von{" "}
+      <InlineMath math="10\,\mu\text{m}" /> auf <InlineMath math="2{,}5\,\mu\text{m}" /> und
+      beobachte Oberfläche und Verhältnis zu Zelle P.
+    </>
+  }
+  footer={<>Bei <InlineMath math="2{,}5\,\mu\text{m}" /> Dicke steigt die Fläche von <InlineMath math="600" /> auf <InlineMath math="1050\,\mu\text{m}^2" />.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 11 }, y: { min: 0, max: 1300 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [{ name: "h", min: 2, max: 10, value: 2.5, step: 0.5, label: "h" }],
+    objects: [
+      { id: "curve", kind: "function", appearance: "primary", formula: "2000 / x + 20 * x + 200", domain: { min: 2, max: 10 } },
+      { id: "cube-ref", kind: "segment", appearance: "construction", from: { x: 0, y: 600 }, to: { x: 10, y: 600 } },
+      { id: "cell-p", kind: "marker", appearance: "primary", x: "10", y: "600" },
+      { id: "cell-r", kind: "marker", appearance: "answer", x: "h", y: "2000 / h + 20 * h + 200" },
+    ],
+    labels: [
+      { key: "p-label", objectId: "cell-p", at: { x: "10", y: "600" }, placement: "below" },
+      { key: "r-label", objectId: "cell-r", at: { x: 2.5, y: 1050 }, placement: "above-right" },
+    ],
+    readouts: [
+      { key: "area", formula: "2000 / h + 20 * h + 200" },
+      { key: "ratio", formula: "(2000 / h + 20 * h + 200) / 600" },
+    ],
+  }}
+  labels={{
+    h: <>Zelldicke <InlineMath math="h" /> (<InlineMath math="\mu\text{m}" />)</>,
+    "p-label": <>Zelle P (<InlineMath math="600" />)</>,
+    "r-label": <>Zelle R</>,
+    area: <>Oberfläche (<InlineMath math="\mu\text{m}^2" />)</>,
+    ratio: <>Verhältnis zu Zelle P</>,
+  }}
+/>
+
+Je flacher die Zelle wird, desto steiler wächst ihre Oberfläche. Bei <InlineMath math="h = 2{,}5\,\mu\text{m}" /> liegt Zelle R deutlich über der Bezugslinie von Würfel P.
+
+## Oberfläche und Verhältnis berechnen
+
+Berechne beide Oberflächen und teile das **Verhältnis von Oberfläche zu Volumen** von Zelle R durch das von Zelle P.
 
 <BlockMath math="\begin{aligned}
-A_P&=6(10)^2=600\,\mu\text{m}^2\\
-A_R&=2(40\times10+40\times2{,}5+10\times2{,}5)=2(400+100+25)=1050\,\mu\text{m}^2\\
-\frac{A_R/V}{A_P/V}&=\frac{1050}{600}=1{,}75
+A_P &= 6 \cdot 10^2 = 600\,\mu\text{m}^2 \\
+A_R &= 2(40 \cdot 10 + 40 \cdot 2{,}5 + 10 \cdot 2{,}5) = 2(400 + 100 + 25) = 1050\,\mu\text{m}^2 \\
+\frac{A_R / V}{A_P / V} &= \frac{A_R}{A_P} = \frac{1050}{600} = 1{,}75
 \end{aligned}" />
 
-Das Verhältnis von Zelle R ist also <InlineMath math="1{,}75" />-mal so groß wie das von Zelle P. Dasselbe Prinzip gibt roten Blutkörperchen ihre flache Scheibenform.
+Kurze Probe: Zelle P erreicht <InlineMath math="0{,}60\,\mu\text{m}^{-1}" /> und Zelle R erreicht <InlineMath math="1{,}05\,\mu\text{m}^{-1}" />. Dasselbe Prinzip macht rote Blutkörperchen zu flachen Scheiben für schnellen Gasaustausch.
 
-# Warum die anderen Antworten falsch sind
+## Warum andere Optionen falsch sind
 
-- <InlineMath math="1{,}00" /> nimmt an, gleiche Volumina ergäben gleiche Verhältnisse, doch **die Oberflächen sind verschieden**.
-- <InlineMath math="4{,}00" /> vergleicht die längsten Kanten, <InlineMath math="40" /> und <InlineMath math="10" />, nicht die Oberflächen.
-- <InlineMath math="0{,}57" /> dreht den Vergleich um, doch Zelle R hat das größere Verhältnis.
+- Der Wert <InlineMath math="1{,}00" /> unterstellt gleiches Verhältnis bei gleichem Volumen, doch **die Oberflächen unterscheiden sich deutlich**.
+- Der Wert <InlineMath math="4{,}00" /> teilt nur die längsten Kanten <InlineMath math="40" /> und <InlineMath math="10" /> statt aller sechs Flächen.
+- Der Wert <InlineMath math="0{,}57" /> kehrt den Bruch um, obwohl die flache Zelle R das größere Verhältnis hat.
+
+# Antwort
+
+Das Verhältnis von Oberfläche zu Volumen ist bei Zelle R <InlineMath math="1{,}75" />-mal so groß wie bei Zelle P.

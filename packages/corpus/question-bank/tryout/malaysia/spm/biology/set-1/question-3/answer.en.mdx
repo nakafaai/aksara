@@ -1,17 +1,81 @@
-# Same volume, different shape
+# Given
 
-Both cells have a volume of <InlineMath math="1000\,\mu\text{m}^3" />, so the difference lies only in the surface area. **A flat shape spreads the same volume over a larger surface**.
+Cell P is a cube of side <InlineMath math="10\,\mu\text{m}" />. Cell R has the same volume as a flat cuboid measuring <InlineMath math="40\,\mu\text{m} \times 10\,\mu\text{m} \times 2.5\,\mu\text{m}" />.
+
+Both cells hold **the exact same volume of <InlineMath math="1000\,\mu\text{m}^3" />**.
+
+# Asked
+
+How many times larger is the surface area to volume ratio of cell R than that of cell P?
+
+# Solution
+
+Picture pressing a cube of clay into a thin flat tile. The amount of clay inside stays identical, yet **far more of its outer skin now faces the air**.
+
+> When two shapes share the same volume, the ratio of their surface area to volume ratios equals the ratio of their surface areas.
+
+Slide the cell thickness <InlineMath math="h" /> below while keeping width <InlineMath math="10\,\mu\text{m}" /> and volume fixed at <InlineMath math="1000\,\mu\text{m}^3" />, then compare cube P with flat cell R.
+
+<MathVisual
+  title={<>Surface area at fixed volume <InlineMath math="1000\,\mu\text{m}^3" /></>}
+  description={
+    <>
+      Width stays at <InlineMath math="10\,\mu\text{m}" />, so length equals{" "}
+      <InlineMath math="100 / h" />. Slide thickness <InlineMath math="h" /> from{" "}
+      <InlineMath math="10\,\mu\text{m}" /> down to <InlineMath math="2.5\,\mu\text{m}" /> to
+      watch surface area and its ratio to cell P climb.
+    </>
+  }
+  footer={<>Flattening thickness to <InlineMath math="2.5\,\mu\text{m}" /> lifts area from <InlineMath math="600" /> to <InlineMath math="1050\,\mu\text{m}^2" />.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 11 }, y: { min: 0, max: 1300 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [{ name: "h", min: 2, max: 10, value: 2.5, step: 0.5, label: "h" }],
+    objects: [
+      { id: "curve", kind: "function", appearance: "primary", formula: "2000 / x + 20 * x + 200", domain: { min: 2, max: 10 } },
+      { id: "cube-ref", kind: "segment", appearance: "construction", from: { x: 0, y: 600 }, to: { x: 10, y: 600 } },
+      { id: "cell-p", kind: "marker", appearance: "primary", x: "10", y: "600" },
+      { id: "cell-r", kind: "marker", appearance: "answer", x: "h", y: "2000 / h + 20 * h + 200" },
+    ],
+    labels: [
+      { key: "p-label", objectId: "cell-p", at: { x: "10", y: "600" }, placement: "below" },
+      { key: "r-label", objectId: "cell-r", at: { x: 2.5, y: 1050 }, placement: "above-right" },
+    ],
+    readouts: [
+      { key: "area", formula: "2000 / h + 20 * h + 200" },
+      { key: "ratio", formula: "(2000 / h + 20 * h + 200) / 600" },
+    ],
+  }}
+  labels={{
+    h: <>Cell thickness <InlineMath math="h" /> (<InlineMath math="\mu\text{m}" />)</>,
+    "p-label": <>Cell P (<InlineMath math="600" />)</>,
+    "r-label": <>Cell R</>,
+    area: <>Surface area (<InlineMath math="\mu\text{m}^2" />)</>,
+    ratio: <>Ratio to cell P</>,
+  }}
+/>
+
+The flatter the cell gets, the steeper its surface area climbs. At <InlineMath math="h = 2.5\,\mu\text{m}" />, cell R sits well above the cube P reference line.
+
+## Area and ratio calculation
+
+Compute both surface areas, then divide the **surface area to volume ratios** so the shared volume cancels out.
 
 <BlockMath math="\begin{aligned}
-A_P&=6(10)^2=600\,\mu\text{m}^2\\
-A_R&=2(40\times10+40\times2.5+10\times2.5)=2(400+100+25)=1050\,\mu\text{m}^2\\
-\frac{A_R/V}{A_P/V}&=\frac{1050}{600}=1.75
+A_P &= 6(10)^2 = 600\,\mu\text{m}^2 \\
+A_R &= 2(40 \times 10 + 40 \times 2.5 + 10 \times 2.5) = 2(400 + 100 + 25) = 1050\,\mu\text{m}^2 \\
+\frac{A_R / V}{A_P / V} &= \frac{A_R}{A_P} = \frac{1050}{600} = 1.75
 \end{aligned}" />
 
-So the ratio of cell R is <InlineMath math="1.75" /> times that of cell P. The same principle gives red blood cells their flat disc shape.
+Quick check: cell P has a ratio of <InlineMath math="0.60\,\mu\text{m}^{-1}" /> while cell R reaches <InlineMath math="1.05\,\mu\text{m}^{-1}" />. Red blood cells use this same flat disc design to exchange oxygen faster.
 
-# Why the other options are wrong
+## Why other options fail
 
-- <InlineMath math="1.00" /> assumes equal volumes give equal ratios, but **the surface areas differ**.
-- <InlineMath math="4.00" /> compares the longest sides, <InlineMath math="40" /> and <InlineMath math="10" />, not the surface areas.
-- <InlineMath math="0.57" /> inverts the comparison, but cell R has the larger ratio.
+- Choosing <InlineMath math="1.00" /> assumes equal volumes force equal ratios, yet **their surface areas differ sharply**.
+- Choosing <InlineMath math="4.00" /> only divides the longest edges <InlineMath math="40" /> and <InlineMath math="10" />, ignoring all six faces.
+- Choosing <InlineMath math="0.57" /> flips the division to P over R, even though flat cell R has the larger ratio.
+
+# Answer
+
+The surface area to volume ratio of cell R is <InlineMath math="1.75" /> times larger than that of cell P.

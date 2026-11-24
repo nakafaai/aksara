@@ -1,13 +1,76 @@
-# Membaca titik isotonik daripada data
+# Diberi
 
-Titik <InlineMath math="50\%" /> terletak antara <InlineMath math="0.4" /> dan <InlineMath math="0.6\text{ mol dm}^{-3}" />. Peratusan naik dari <InlineMath math="20\%" /> ke <InlineMath math="80\%" /> dalam julat itu, jadi <InlineMath math="50\%" /> berada di tengah-tengah, iaitu kira-kira <InlineMath math="0.5\text{ mol dm}^{-3}" />. Pernyataan I betul.
+Jalur epidermis bawang direndam <InlineMath math="30" /> minit dalam larutan sukrosa dengan peratus sel mengalami plasmolisis seperti berikut: <InlineMath math="0\%" /> pada <InlineMath math="0.2" />, <InlineMath math="20\%" /> pada <InlineMath math="0.4" />, <InlineMath math="80\%" /> pada <InlineMath math="0.6" />, dan <InlineMath math="100\%" /> pada <InlineMath math="0.8\text{ mol dm}^{-3}" />.
 
-Jika semua sel mempunyai sap sel yang sama pekat, semuanya akan terplasmolisis pada satu kepekatan sahaja. Peratusan yang naik secara beransur-ansur bermakna **kepekatan sap sel berbeza antara sel**, jadi pernyataan II betul.
+Larutan yang **menyebabkan tepat <InlineMath math="50\%" /> sel terplasmolisis** dianggap isotonik dengan purata sap sel.
 
-Dinding sel telap sepenuhnya, jadi ruang antara dinding dan membran plasma dipenuhi **larutan sukrosa**, bukan udara. Pernyataan III salah. Pada <InlineMath math="0.4\text{ mol dm}^{-3}" />, <InlineMath math="20\%" /> sel terplasmolisis, iaitu sel yang sapnya lebih cair daripada larutan itu, jadi pernyataan IV salah. Jadi, hanya I dan II yang betul.
+# Ditanya
 
-# Kenapa pilihan lain salah
+Pernyataan manakah antara I, II, III, dengan IV yang betul?
 
-- I dan IV menerima pernyataan IV, sedangkan **<InlineMath math="20\%" /> sel sudah terplasmolisis** pada <InlineMath math="0.4\text{ mol dm}^{-3}" />.
-- II dan III menerima pernyataan III, sedangkan larutan luar menembusi dinding sel yang telap sepenuhnya.
-- I, II dan IV juga menerima pernyataan IV yang bercanggah dengan data <InlineMath math="20\%" />.
+# Penyelesaian
+
+Bayangkan merendam banyak sel bawang dalam air gula yang semakin pekat. Apabila tepat separuh sel (<InlineMath math="50\%" />) mula mengecut, **kepekatan larutan luar menyamai purata kepekatan sap di dalam sel**.
+
+> Kepekatan isotonik sesuatu tisu tumbuhan terletak pada larutan luar yang menyebabkan tepat separuh daripada selnya mengalami plasmolisis.
+
+Gerakkan kepekatan sukrosa <InlineMath math="c" /> pada selang tengah graf berikut untuk melihat titik persilangan dengan garis <InlineMath math="50\%" />.
+
+<MathVisual
+  title={<>Peratus sel bawang terplasmolisis mengikut sukrosa</>}
+  description={
+    <>
+      Titik biru menandai data cerapan. Gerakkan kepekatan <InlineMath math="c" /> antara{" "}
+      <InlineMath math="0.4" /> dengan <InlineMath math="0.6\text{ mol dm}^{-3}" /> untuk
+      membaca bila lengkung melintasi garis isotonik <InlineMath math="50\%" />.
+    </>
+  }
+  footer={<>Lengkung melintasi garis <InlineMath math="50\%" /> tepat di tengah pada <InlineMath math="0.5\text{ mol dm}^{-3}" />.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0.1, max: 0.9 }, y: { min: -5, max: 110 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [{ name: "c", min: 0.4, max: 0.6, value: 0.5, step: 0.05, label: "c" }],
+    objects: [
+      { id: "seg-low", kind: "segment", appearance: "primary", from: { x: 0.2, y: 0 }, to: { x: 0.4, y: 20 } },
+      { id: "seg-mid", kind: "function", appearance: "primary", formula: "300 * x - 100", domain: { min: 0.4, max: 0.6 } },
+      { id: "seg-high", kind: "segment", appearance: "primary", from: { x: 0.6, y: 80 }, to: { x: 0.8, y: 100 } },
+      { id: "iso-line", kind: "segment", appearance: "construction", from: { x: 0.1, y: 50 }, to: { x: 0.9, y: 50 } },
+      { id: "pt1", kind: "marker", appearance: "primary", x: "0.2", y: "0" },
+      { id: "pt2", kind: "marker", appearance: "primary", x: "0.4", y: "20" },
+      { id: "pt3", kind: "marker", appearance: "primary", x: "0.6", y: "80" },
+      { id: "pt4", kind: "marker", appearance: "primary", x: "0.8", y: "100" },
+      { id: "probe", kind: "marker", appearance: "answer", x: "c", y: "300 * c - 100" },
+    ],
+    readouts: [
+      { key: "plasmolysed", formula: "300 * c - 100" },
+    ],
+  }}
+  labels={{
+    c: <>Kepekatan sukrosa (<InlineMath math="\text{mol dm}^{-3}" />)</>,
+    plasmolysed: <>Sel terplasmolisis (<InlineMath math="\%" />)</>,
+  }}
+/>
+
+Antara <InlineMath math="0.4" /> dengan <InlineMath math="0.6\text{ mol dm}^{-3}" />, peratus meningkat sekata daripada <InlineMath math="20\%" /> kepada <InlineMath math="80\%" />, meletakkan <InlineMath math="50\%" /> tepat di <InlineMath math="0.5\text{ mol dm}^{-3}" />.
+
+## Semakan empat pernyataan
+
+Sahkan titik <InlineMath math="50\%" /> secara kiraan lalu semak setiap pernyataan berdasarkan fisiologi sel tumbuhan.
+
+<BlockMath math="\text{kepekatan isotonik} = 0.4 + \frac{50 - 20}{80 - 20} \times (0.6 - 0.4) = 0.5\text{ mol dm}^{-3}" />
+
+- **Pernyataan I betul** kerana purata kepekatan sap sel setara dengan kira-kira <InlineMath math="0.5\text{ mol dm}^{-3}" /> sukrosa.
+- **Pernyataan II betul** kerana jika semua sel sama pekat, kesemuanya akan terplasmolisis serentak pada satu kepekatan sahaja.
+- **Pernyataan III salah** kerana dinding sel telap sepenuhnya, maka ruang antara dinding sel dengan membran plasma diisi **larutan sukrosa**, bukan udara.
+- **Pernyataan IV salah** kerana jadual menunjukkan **<InlineMath math="20\%" /> sel sudah terplasmolisis** pada <InlineMath math="0.4\text{ mol dm}^{-3}" />.
+
+## Mengapa pilihan lain salah
+
+- Pilihan I dan IV menerima pernyataan IV walaupun **sudah ada <InlineMath math="20\%" /> sel kehilangan air** pada <InlineMath math="0.4\text{ mol dm}^{-3}" />.
+- Pilihan II dan III menerima pernyataan III walaupun larutan sukrosa bebas merentas dinding sel.
+- Pilihan I, II, dan IV turut menerima pernyataan IV yang bercanggah dengan data <InlineMath math="20\%" />.
+
+# Jawapan
+
+Hanya pernyataan I dan II yang betul.

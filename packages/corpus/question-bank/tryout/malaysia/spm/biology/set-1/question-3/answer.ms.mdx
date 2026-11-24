@@ -1,17 +1,81 @@
-# Isi padu sama, bentuk berbeza
+# Diberi
 
-Kedua-dua sel mempunyai isi padu <InlineMath math="1000\,\mu\text{m}^3" />, jadi perbezaannya hanya pada luas permukaan. **Bentuk yang leper membentangkan isi padu yang sama pada permukaan yang lebih luas**.
+Sel P ialah kubus bersisi <InlineMath math="10\,\mu\text{m}" />. Sel R mempunyai isi padu yang sama tetapi berbentuk kuboid leper berukuran <InlineMath math="40\,\mu\text{m} \times 10\,\mu\text{m} \times 2.5\,\mu\text{m}" />.
+
+Kedua-dua sel berkongsi **isi padu tepat <InlineMath math="1000\,\mu\text{m}^3" />**.
+
+# Ditanya
+
+Berapa kali lebih besarkah nisbah jumlah luas permukaan per isi padu sel R berbanding sel P?
+
+# Penyelesaian
+
+Bayangkan seketul plastisin berbentuk dadu yang kamu tekan menjadi kepingan nipis. Jumlah plastisin di dalam tidak berubah, tetapi **permukaan luar yang terdedah menjadi jauh lebih luas**.
+
+> Apabila dua bentuk mempunyai isi padu sama, perbandingan nisbah luas permukaan per isi padu sama tepat dengan perbandingan luas permukaannya.
+
+Gerakkan ketebalan sel <InlineMath math="h" /> pada graf berikut sambil mengekalkan lebar <InlineMath math="10\,\mu\text{m}" /> dan isi padu <InlineMath math="1000\,\mu\text{m}^3" />, lalu bandingkan kubus P dengan sel leper R.
+
+<MathVisual
+  title={<>Luas permukaan pada isi padu tetap <InlineMath math="1000\,\mu\text{m}^3" /></>}
+  description={
+    <>
+      Lebar kekal <InlineMath math="10\,\mu\text{m}" /> supaya panjang ialah{" "}
+      <InlineMath math="100 / h" />. Gerakkan ketebalan <InlineMath math="h" /> dari{" "}
+      <InlineMath math="10\,\mu\text{m}" /> ke <InlineMath math="2.5\,\mu\text{m}" /> untuk melihat
+      peningkatan luas permukaan dan nisbahnya terhadap sel P.
+    </>
+  }
+  footer={<>Menipiskan tebal ke <InlineMath math="2.5\,\mu\text{m}" /> menaikkan luas dari <InlineMath math="600" /> ke <InlineMath math="1050\,\mu\text{m}^2" />.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 11 }, y: { min: 0, max: 1300 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [{ name: "h", min: 2, max: 10, value: 2.5, step: 0.5, label: "h" }],
+    objects: [
+      { id: "curve", kind: "function", appearance: "primary", formula: "2000 / x + 20 * x + 200", domain: { min: 2, max: 10 } },
+      { id: "cube-ref", kind: "segment", appearance: "construction", from: { x: 0, y: 600 }, to: { x: 10, y: 600 } },
+      { id: "cell-p", kind: "marker", appearance: "primary", x: "10", y: "600" },
+      { id: "cell-r", kind: "marker", appearance: "answer", x: "h", y: "2000 / h + 20 * h + 200" },
+    ],
+    labels: [
+      { key: "p-label", objectId: "cell-p", at: { x: "10", y: "600" }, placement: "below" },
+      { key: "r-label", objectId: "cell-r", at: { x: 2.5, y: 1050 }, placement: "above-right" },
+    ],
+    readouts: [
+      { key: "area", formula: "2000 / h + 20 * h + 200" },
+      { key: "ratio", formula: "(2000 / h + 20 * h + 200) / 600" },
+    ],
+  }}
+  labels={{
+    h: <>Ketebalan sel <InlineMath math="h" /> (<InlineMath math="\mu\text{m}" />)</>,
+    "p-label": <>Sel P (<InlineMath math="600" />)</>,
+    "r-label": <>Sel R</>,
+    area: <>Luas permukaan (<InlineMath math="\mu\text{m}^2" />)</>,
+    ratio: <>Nisbah terhadap sel P</>,
+  }}
+/>
+
+Semakin leper sel, semakin tinggi lengkung luas permukaannya. Pada <InlineMath math="h = 2.5\,\mu\text{m}" />, titik sel R berada jauh di atas garis rujukan kubus P.
+
+## Pengiraan luas dan nisbah
+
+Kira luas permukaan kubus P dan kuboid R, kemudian bahagikan **nisbah luas permukaan per isi padu** kedua-duanya.
 
 <BlockMath math="\begin{aligned}
-A_P&=6(10)^2=600\,\mu\text{m}^2\\
-A_R&=2(40\times10+40\times2.5+10\times2.5)=2(400+100+25)=1050\,\mu\text{m}^2\\
-\frac{A_R/V}{A_P/V}&=\frac{1050}{600}=1.75
+A_P &= 6(10)^2 = 600\,\mu\text{m}^2 \\
+A_R &= 2(40 \times 10 + 40 \times 2.5 + 10 \times 2.5) = 2(400 + 100 + 25) = 1050\,\mu\text{m}^2 \\
+\frac{A_R / V}{A_P / V} &= \frac{A_R}{A_P} = \frac{1050}{600} = 1.75
 \end{aligned}" />
 
-Jadi, nisbah sel R ialah <InlineMath math="1.75" /> kali nisbah sel P. Prinsip yang sama memberikan sel darah merah bentuk cakera leper.
+Semakan pantas: nisbah sel P ialah <InlineMath math="0.60\,\mu\text{m}^{-1}" /> manakala sel R ialah <InlineMath math="1.05\,\mu\text{m}^{-1}" />. Prinsip bentuk leper ini juga membolehkan sel darah merah menukar oksigen lebih cepat.
 
-# Kenapa pilihan lain salah
+## Mengapa pilihan lain salah
 
-- <InlineMath math="1.00" /> menganggap isi padu yang sama memberi nisbah yang sama, sedangkan **luas permukaannya berbeza**.
-- <InlineMath math="4.00" /> membandingkan sisi terpanjang, <InlineMath math="40" /> dengan <InlineMath math="10" />, bukan luas permukaan.
-- <InlineMath math="0.57" /> menyongsangkan perbandingan, sedangkan sel R yang mempunyai nisbah lebih besar.
+- Pilihan <InlineMath math="1.00" /> menganggap isi padu sama memberi nisbah sama, padahal **luas permukaannya jauh berbeza**.
+- Pilihan <InlineMath math="4.00" /> hanya membandingkan sisi terpanjang <InlineMath math="40" /> dengan <InlineMath math="10" />, bukan semua permukaan.
+- Pilihan <InlineMath math="0.57" /> menterbalikkan pembahagian kepada P per R, sedangkan sel R mempunyai nisbah lebih besar.
+
+# Jawapan
+
+Nisbah jumlah luas permukaan per isi padu sel R ialah <InlineMath math="1.75" /> kali lebih besar daripada sel P.

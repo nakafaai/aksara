@@ -1,18 +1,79 @@
-# Die Zellen in jeder Phase zählen
+# Gegeben
 
-Zwei Mitosen ergeben <InlineMath math="2^2=4" /> diploide Zellen. Jede davon durchläuft die Meiose, in der Metaphase II gibt es also <InlineMath math="4\times2=8" /> Zellen, und **jede dieser Zellen trägt <InlineMath math="4" /> Chromosomen aus noch je zwei Chromatiden**.
+Eine **diploide Ausgangszelle mit <InlineMath math="2n = 8" />** teilt sich zweimal nacheinander durch Mitose. Jede entstandene Zelle durchläuft danach die Meiose.
+
+# Gesucht
+
+Wie viele Gameten entstehen insgesamt, und wie viele Chromatiden befinden sich zusammen in allen Zellen in der Metaphase II?
+
+# Lösung
+
+Stell dir eine Zelle wie eine Kiste mit <InlineMath math="8" /> Stiften vor. Zwei Mitosen **verdoppeln die Kisten auf <InlineMath math="4" /> identische diploide Zellen**.
+
+Zu Beginn der Meiose teilt sich jede Kiste bis zur Metaphase II in <InlineMath math="2" /> Zellen (<InlineMath math="8" /> Zellen insgesamt). Jede Zelle trägt nur noch die halbe Chromosomenzahl (<InlineMath math="n = 4" />), doch jedes Chromosom besteht noch X-förmig aus <InlineMath math="2" /> Schwesterchromatiden.
+
+> In der Metaphase II ist die Chromosomenzahl pro Zelle bereits halbiert (<InlineMath math="n" />), aber jedes Chromosom besteht noch aus zwei Chromatiden.
+
+Schieb die Anzahl der Mitoserunden <InlineMath math="k" /> im Graphen, um die Gesamtzahl der Gameten und der Metaphase-II-Chromatiden zu vergleichen.
+
+<MathVisual
+  title={<>Gameten und Metaphase-II-Chromatiden je Mitoserunde</>}
+  description={
+    <>
+      Ausgehend von einer Zelle (<InlineMath math="2n = 8" />) mit folgender Meiose
+      gibt die blaue Kurve die Gameten (<InlineMath math="4 \cdot 2^k" />) und die
+      grüne Kurve die Chromatiden in Metaphase II (<InlineMath math="16 \cdot 2^k" />) an.
+    </>
+  }
+  footer={<>Nach <InlineMath math="k = 2" /> Mitosen entstehen <InlineMath math="16" /> Gameten und <InlineMath math="64" /> Chromatiden in Metaphase II.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 3.5 }, y: { min: 0, max: 140 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [{ name: "k", min: 1, max: 3, value: 2, step: 1, label: "k" }],
+    objects: [
+      { id: "gam-curve", kind: "function", appearance: "primary", formula: "4 * 2^x", domain: { min: 0, max: 3 } },
+      { id: "chr-curve", kind: "function", appearance: "answer", formula: "16 * 2^x", domain: { min: 0, max: 3 } },
+      { id: "m-gam", kind: "marker", appearance: "primary", x: "k", y: "4 * 2^k" },
+      { id: "m-chr", kind: "marker", appearance: "answer", x: "k", y: "16 * 2^k" },
+    ],
+    readouts: [
+      { key: "mitosis-cells", formula: "2^k" },
+      { key: "meta-cells", formula: "2 * 2^k" },
+      { key: "gametes", formula: "4 * 2^k" },
+      { key: "chromatids", formula: "16 * 2^k" },
+    ],
+  }}
+  labels={{
+    k: <>Mitoserunden <InlineMath math="k" /></>,
+    "mitosis-cells": <>Zellen nach Mitose</>,
+    "meta-cells": <>Zellen in Metaphase II</>,
+    gametes: <>Gameten gesamt</>,
+    chromatids: <>Chromatiden in Metaphase II</>,
+  }}
+/>
+
+Jede weitere Mitoserunde verdoppelt alle Anzahlen. Bei <InlineMath math="k = 2" /> zeigt der Graph exakt <InlineMath math="16" /> Gameten und <InlineMath math="64" /> Chromatiden.
+
+## Schrittweise Zählung
+
+Verfolge **Zellzahl und Chromatiden** von den beiden Mitosen bis zur Metaphase II und zum Abschluss der Meiose II.
 
 <BlockMath math="\begin{aligned}
-\text{nach der Mitose}&=2^2=4\text{ Zellen}\\
-\text{Keimzellen}&=4\times4=16\\
-\text{Zellen in der Metaphase II}&=4\times2=8\\
-\text{Chromatiden}&=8\times4\times2=64
+\text{Zellen nach }2\text{ Mitosen} &= 2^2 = 4\text{ diploide Zellen} \\
+\text{Gameten gesamt} &= 4 \cdot 4 = 16\text{ Gameten} \\
+\text{Zellen in Metaphase II} &= 4 \cdot 2 = 8\text{ haploide Zellen} \\
+\text{Chromatiden in Metaphase II} &= 8 \cdot 4 \cdot 2 = 64\text{ Chromatiden}
 \end{aligned}" />
 
-Es entstehen also <InlineMath math="16" /> Keimzellen, und in der Metaphase II gibt es <InlineMath math="64" /> Chromatiden.
+Gegenprobe: Nach der Metaphase II verteilen sich diese <InlineMath math="64" /> Chromatiden gleichmäßig auf <InlineMath math="16" /> Gameten, also <InlineMath math="4" /> Chromosomen pro Gamet (<InlineMath math="16 \cdot 4 = 64" />).
 
-# Warum die anderen Antworten falsch sind
+## Warum andere Optionen falsch sind
 
-- <InlineMath math="32" /> zählt Chromosomen in der Metaphase II, doch **jedes Chromosom besteht noch aus zwei Chromatiden**.
-- <InlineMath math="8" /> Keimzellen ist die Zahl der Zellen in der Metaphase II, doch jede dieser Zellen teilt sich noch einmal.
-- <InlineMath math="128" /> gibt jeder Zelle der Metaphase II <InlineMath math="8" /> Chromosomen, doch die Meiose I hat die Chromosomenzahl schon halbiert.
+- Die Angabe <InlineMath math="16" /> und <InlineMath math="32" /> zählt Chromosomen in Metaphase II, obwohl **jedes Chromosom noch zwei Chromatiden trägt**.
+- Die Angabe <InlineMath math="8" /> und <InlineMath math="64" /> verwechselt die Zellzahl in Metaphase II mit der endgültigen Gametenzahl.
+- Die Angabe <InlineMath math="16" /> und <InlineMath math="128" /> rechnet mit <InlineMath math="8" /> Chromosomen pro Zelle, obwohl Meiose I die Zahl bereits halbiert hat.
+
+# Antwort
+
+Insgesamt entstehen <InlineMath math="16" /> Gameten, und in der Metaphase II gibt es zusammen <InlineMath math="64" /> Chromatiden.

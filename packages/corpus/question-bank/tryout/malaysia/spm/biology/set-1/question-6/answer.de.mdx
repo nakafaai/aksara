@@ -1,17 +1,79 @@
-# Zwei Messwerte, ein Verdünnungsfaktor
+# Gegeben
 
-Portion A erfasst nur reduzierenden Zucker. Portion B erfasst reduzierenden Zucker plus den nicht reduzierenden Zucker nach der Hydrolyse. **Die Differenz der Messwerte ist der nicht reduzierende Zucker**, dann multiplizierst du mit dem Verdünnungsfaktor <InlineMath math="4" />.
+Die Benedict-Farben stehen für <InlineMath math="0{,}5\%" /> (grün), <InlineMath math="1{,}0\%" /> (gelb), <InlineMath math="1{,}5\%" /> (orange) und <InlineMath math="2{,}0\%" /> (ziegelrot). Der Fruchtsaft wird vor dem Test **<InlineMath math="4" />-fach verdünnt**.
+
+Probe A (direkt getestet) wird gelb (<InlineMath math="1{,}0\%" />), während Probe B (nach Säurehydrolyse und Neutralisation) ziegelrot (<InlineMath math="2{,}0\%" />) wird.
+
+# Gesucht
+
+Wie hoch sind die Anteile an reduzierendem und nicht reduzierendem Zucker im unverdünnten Originalsaft?
+
+# Lösung
+
+Stell dir vor, du verdünnst Sirup <InlineMath math="4" />-fach mit Wasser, bevor du ihn kostest. Für die echte Süße der Originalflasche **musst du jeden Messwert wieder mit <InlineMath math="4" /> multiplizieren**.
+
+Probe A erfasst nur reduzierenden Zucker, während Probe B nach der Hydrolyse den gesamten Zucker misst.
+
+> Die Differenz zwischen dem Wert nach Hydrolyse und dem Direktwert ergibt den nicht reduzierenden Zucker, und alle verdünnten Werte werden mit dem Verdünnungsfaktor multipliziert.
+
+Schieb den Verdünnungsfaktor <InlineMath math="d" /> im Graphen, um reduzierenden Zucker, Gesamtzucker und die Differenz auf den Originalsaft hochzurechnen.
+
+<MathVisual
+  title={<>Hochrechnung vom verdünnten Saft auf den Originalsaft</>}
+  description={
+    <>
+      Die blaue Linie zeigt reduzierenden Zucker (Probe A) und die orange Linie den
+      Gesamtzucker nach Hydrolyse (Probe B). Stell <InlineMath math="d" /> auf{" "}
+      <InlineMath math="4" /> für den Originalsaft.
+    </>
+  }
+  footer={<>Bei <InlineMath math="d = 4" /> liegen reduzierender Zucker und vertikale Differenz je bei <InlineMath math="4\%" />.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 6.5 }, y: { min: 0, max: 13 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [{ name: "d", min: 1, max: 6, value: 4, step: 1, label: "d" }],
+    objects: [
+      { id: "red", kind: "function", appearance: "primary", formula: "x", domain: { min: 0, max: 6 } },
+      { id: "tot", kind: "function", appearance: "warning", formula: "2 * x", domain: { min: 0, max: 6 } },
+      { id: "gap", kind: "segment", appearance: "answer", from: { x: 4, y: 4 }, to: { x: 4, y: 8 } },
+      { id: "m-red", kind: "marker", appearance: "primary", x: "d", y: "d" },
+      { id: "m-tot", kind: "marker", appearance: "answer", x: "d", y: "2 * d" },
+    ],
+    readouts: [
+      { key: "reducing", formula: "d" },
+      { key: "total", formula: "2 * d" },
+      { key: "non-reducing", formula: "2 * d - d" },
+    ],
+  }}
+  labels={{
+    d: <>Verdünnungsfaktor <InlineMath math="d" /></>,
+    reducing: <>Reduzierender Zucker (<InlineMath math="\%" />)</>,
+    total: <>Gesamtzucker (<InlineMath math="\%" />)</>,
+    "non-reducing": <>Nicht reduzierender Zucker (<InlineMath math="\%" />)</>,
+  }}
+/>
+
+Die senkrechte Differenz zwischen beiden Linien ist stets genauso hoch wie die blaue Linie. Bei <InlineMath math="d = 4" /> ergeben beide Zuckerarten genau <InlineMath math="4\%" />.
+
+## Berechnung für den Originalsaft
+
+Multipliziere beide Messwerte mit <InlineMath math="4" /> und ziehe dann **den reduzierenden Zucker vom Gesamtzucker ab**.
 
 <BlockMath math="\begin{aligned}
-\text{reduzierender Zucker}&=1{,}0\%\times4=4\%\\
-\text{Gesamtzucker}&=2{,}0\%\times4=8\%\\
-\text{nicht reduzierender Zucker}&=8\%-4\%=4\%
+\text{reduzierender Zucker} &= 1{,}0\% \cdot 4 = 4\% \\
+\text{Gesamtzucker} &= 2{,}0\% \cdot 4 = 8\% \\
+\text{nicht reduzierender Zucker} &= 8\% - 4\% = 4\%
 \end{aligned}" />
 
-Der ursprüngliche Saft enthält also <InlineMath math="4\%" /> reduzierenden und <InlineMath math="4\%" /> nicht reduzierenden Zucker.
+Gegenprobe: Verdünnt man <InlineMath math="4\%" /> reduzierenden und <InlineMath math="4\%" /> nicht reduzierenden Zucker <InlineMath math="4" />-fach, zeigt Probe A <InlineMath math="1{,}0\%" /> (gelb) und Probe B <InlineMath math="2{,}0\%" /> (ziegelrot).
 
-# Warum die anderen Antworten falsch sind
+## Warum andere Optionen falsch sind
 
-- <InlineMath math="1\%" /> und <InlineMath math="1\%" /> vergisst die Multiplikation mit <InlineMath math="4" />, doch **getestet wurde der verdünnte Saft**.
-- <InlineMath math="8\%" /> für den nicht reduzierenden Zucker nimmt den Wert von Portion B direkt, der aber noch den reduzierenden Zucker enthält.
-- <InlineMath math="8\%" /> für den reduzierenden Zucker vertauscht die Messwerte, doch reduzierender Zucker zeigt sich ohne Hydrolyse.
+- Die Angabe <InlineMath math="1\%" /> und <InlineMath math="1\%" /> vergisst den Faktor <InlineMath math="4" />, obwohl **eine verdünnte Probe getestet wurde**.
+- Die Angabe <InlineMath math="4\%" /> und <InlineMath math="8\%" /> setzt den Gesamtzucker aus Probe B direkt als nicht reduzierenden Zucker ein.
+- Die Angabe <InlineMath math="8\%" /> und <InlineMath math="4\%" /> vertauscht beide Zucker, obwohl Probe A nur gelb anzeigte.
+
+# Antwort
+
+Der unverdünnte Fruchtsaft enthält <InlineMath math="4\%" /> reduzierenden Zucker und <InlineMath math="4\%" /> nicht reduzierenden Zucker.

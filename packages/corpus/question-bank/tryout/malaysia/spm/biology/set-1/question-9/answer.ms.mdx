@@ -1,18 +1,79 @@
-# Kira sel pada setiap peringkat
+# Diberi
 
-Dua kali mitosis menghasilkan <InlineMath math="2^2=4" /> sel diploid. Setiap sel itu menjalani meiosis, jadi pada metafasa II terdapat <InlineMath math="4\times2=8" /> sel, dan **setiap sel itu membawa <InlineMath math="4" /> kromosom yang masing-masing masih terdiri daripada dua kromatid**.
+Satu **sel induk diploid dengan <InlineMath math="2n = 8" />** membahagi secara mitosis dua kali berturut-turut. Setiap sel anak yang terhasil kemudiannya menjalani meiosis.
+
+# Ditanya
+
+Berapakah jumlah gamet yang terhasil dan jumlah kromatid keseluruhan dalam semua sel pada metafasa II?
+
+# Penyelesaian
+
+Bayangkan satu sel seperti sebuah kotak berisi <InlineMath math="8" /> pensel. Dua kali mitosis **menggandakan kotak menjadi <InlineMath math="4" /> sel diploid yang seiras**.
+
+Apabila meiosis bermula, setiap kotak membahagi menjadi <InlineMath math="2" /> sel pada metafasa II (<InlineMath math="8" /> sel semuanya). Setiap sel membawa separuh bilangan kromosom (<InlineMath math="n = 4" />), tetapi setiap kromosom masih berbentuk X dengan <InlineMath math="2" /> kromatid kembar.
+
+> Pada metafasa II setiap sel sudah mempunyai bilangan kromosom haploid (<InlineMath math="n" />), namun setiap kromosom masih terdiri daripada dua kromatid kembar.
+
+Gerakkan bilangan pusingan mitosis <InlineMath math="k" /> di bawah untuk membandingkan pertambahan jumlah gamet dan jumlah kromatid pada metafasa II.
+
+<MathVisual
+  title={<>Jumlah gamet dan kromatid metafasa II mengikut pusingan mitosis</>}
+  description={
+    <>
+      Bermula daripada satu sel <InlineMath math="2n = 8" /> diikuti meiosis,
+      lengkung biru memberi jumlah gamet (<InlineMath math="4 \cdot 2^k" />) dan
+      lengkung hijau memberi jumlah kromatid metafasa II (<InlineMath math="16 \cdot 2^k" />).
+    </>
+  }
+  footer={<>Selepas <InlineMath math="k = 2" /> pusingan mitosis, terhasil <InlineMath math="16" /> gamet dan <InlineMath math="64" /> kromatid metafasa II.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 3.5 }, y: { min: 0, max: 140 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [{ name: "k", min: 1, max: 3, value: 2, step: 1, label: "k" }],
+    objects: [
+      { id: "gam-curve", kind: "function", appearance: "primary", formula: "4 * 2^x", domain: { min: 0, max: 3 } },
+      { id: "chr-curve", kind: "function", appearance: "answer", formula: "16 * 2^x", domain: { min: 0, max: 3 } },
+      { id: "m-gam", kind: "marker", appearance: "primary", x: "k", y: "4 * 2^k" },
+      { id: "m-chr", kind: "marker", appearance: "answer", x: "k", y: "16 * 2^k" },
+    ],
+    readouts: [
+      { key: "mitosis-cells", formula: "2^k" },
+      { key: "meta-cells", formula: "2 * 2^k" },
+      { key: "gametes", formula: "4 * 2^k" },
+      { key: "chromatids", formula: "16 * 2^k" },
+    ],
+  }}
+  labels={{
+    k: <>Pusingan mitosis <InlineMath math="k" /></>,
+    "mitosis-cells": <>Sel selepas mitosis</>,
+    "meta-cells": <>Sel pada metafasa II</>,
+    gametes: <>Jumlah gamet</>,
+    chromatids: <>Jumlah kromatid metafasa II</>,
+  }}
+/>
+
+Setiap tambahan satu pusingan mitosis menggandakan kesemua nilai. Pada <InlineMath math="k = 2" />, graf menunjukkan <InlineMath math="16" /> gamet dan <InlineMath math="64" /> kromatid.
+
+## Kiraan mengikut peringkat
+
+Jejaki **bilangan sel dan kromatid** secara berturutan daripada dua kali mitosis hingga metafasa II dan akhir meiosis II.
 
 <BlockMath math="\begin{aligned}
-\text{selepas mitosis}&=2^2=4\text{ sel}\\
-\text{gamet}&=4\times4=16\\
-\text{sel pada metafasa II}&=4\times2=8\\
-\text{kromatid}&=8\times4\times2=64
+\text{sel selepas }2\text{ mitosis} &= 2^2 = 4\text{ sel diploid} \\
+\text{jumlah gamet} &= 4 \times 4 = 16\text{ gamet} \\
+\text{sel pada metafasa II} &= 4 \times 2 = 8\text{ sel haploid} \\
+\text{jumlah kromatid metafasa II} &= 8 \times 4 \times 2 = 64\text{ kromatid}
 \end{aligned}" />
 
-Jadi, <InlineMath math="16" /> gamet terhasil dan terdapat <InlineMath math="64" /> kromatid pada metafasa II.
+Semakan pantas: selepas metafasa II, semua <InlineMath math="64" /> kromatid terpisah sama rata ke dalam <InlineMath math="16" /> gamet, memberi <InlineMath math="4" /> kromosom setiap gamet (<InlineMath math="16 \times 4 = 64" />).
 
-# Kenapa pilihan lain salah
+## Mengapa pilihan lain salah
 
-- <InlineMath math="32" /> mengira kromosom pada metafasa II, sedangkan **setiap kromosom masih terdiri daripada dua kromatid**.
-- <InlineMath math="8" /> gamet ialah bilangan sel pada metafasa II, sedangkan setiap sel itu masih membahagi sekali lagi.
-- <InlineMath math="128" /> memberikan <InlineMath math="8" /> kromosom kepada setiap sel metafasa II, sedangkan meiosis I sudah membahagi dua bilangan kromosom.
+- Pilihan <InlineMath math="16" /> dan <InlineMath math="32" /> mengira kromosom pada metafasa II, padahal **setiap kromosom masih mempunyai dua kromatid**.
+- Pilihan <InlineMath math="8" /> dan <InlineMath math="64" /> menggunakan bilangan sel metafasa II sebagai gamet, sedangkan setiap sel masih membahagi sekali lagi.
+- Pilihan <InlineMath math="16" /> dan <InlineMath math="128" /> memberi <InlineMath math="8" /> kromosom kepada setiap sel metafasa II, padahal meiosis I sudah menyeparuhkan bilangan kromosom.
+
+# Jawapan
+
+Sebanyak <InlineMath math="16" /> gamet terhasil dan terdapat <InlineMath math="64" /> kromatid keseluruhannya pada metafasa II.

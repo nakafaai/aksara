@@ -1,13 +1,77 @@
-# Reading the isotonic point from the data
+# Given
 
-The <InlineMath math="50\%" /> point lies between <InlineMath math="0.4" /> and <InlineMath math="0.6\text{ mol dm}^{-3}" />. The percentage rises from <InlineMath math="20\%" /> to <InlineMath math="80\%" /> over that range, so <InlineMath math="50\%" /> sits halfway, at about <InlineMath math="0.5\text{ mol dm}^{-3}" />. Statement I is correct.
+Onion epidermis strips are soaked for <InlineMath math="30" /> minutes in sucrose solutions, yielding plasmolysed cell percentages of <InlineMath math="0\%" /> at <InlineMath math="0.2" />, <InlineMath math="20\%" /> at <InlineMath math="0.4" />, <InlineMath math="80\%" /> at <InlineMath math="0.6" />, and <InlineMath math="100\%" /> at <InlineMath math="0.8\text{ mol dm}^{-3}" />.
 
-If every cell had sap of the same strength, all of them would plasmolyse at one concentration. A percentage that rises gradually means **the sap concentration differs from cell to cell**, so statement II is correct.
+The concentration that **plasmolyses exactly <InlineMath math="50\%" /> of the cells** is taken as isotonic with average cell sap.
 
-The cell wall is fully permeable, so the space between the wall and the plasma membrane fills with **the sucrose solution**, not air. Statement III is wrong. At <InlineMath math="0.4\text{ mol dm}^{-3}" />, <InlineMath math="20\%" /> of the cells are plasmolysed, namely those whose sap is weaker than the solution, so statement IV is wrong. So only I and II are correct.
+# Asked
 
-# Why the other options are wrong
+Which of statements I, II, III, and IV are correct?
 
-- I and IV accepts statement IV, but **<InlineMath math="20\%" /> of the cells are already plasmolysed** at <InlineMath math="0.4\text{ mol dm}^{-3}" />.
-- II and III accepts statement III, but the outside solution passes through the fully permeable cell wall.
-- I, II and IV also accepts statement IV, which contradicts the figure of <InlineMath math="20\%" />.
+# Solution
+
+Picture soaking dozens of onion cells in increasingly sugary water. The moment exactly half the cells (<InlineMath math="50\%" />) shrink away from their walls, **the outside sweetness matches the average inside sap**.
+
+> The isotonic concentration of a plant tissue sits at the external solute strength that plasmolyses exactly half of its cells.
+
+Slide sucrose concentration <InlineMath math="c" /> across the steep middle interval below to locate where the curve crosses the <InlineMath math="50\%" /> line.
+
+<MathVisual
+  title={<>Percentage of plasmolysed onion cells versus sucrose</>}
+  description={
+    <>
+      Blue markers show the four measured concentrations. Slide{" "}
+      <InlineMath math="c" /> between <InlineMath math="0.4" /> and{" "}
+      <InlineMath math="0.6\text{ mol dm}^{-3}" /> to read where the curve crosses
+      the <InlineMath math="50\%" /> isotonic mark.
+    </>
+  }
+  footer={<>The curve crosses the <InlineMath math="50\%" /> line right at the midpoint, <InlineMath math="0.5\text{ mol dm}^{-3}" />.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0.1, max: 0.9 }, y: { min: -5, max: 110 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [{ name: "c", min: 0.4, max: 0.6, value: 0.5, step: 0.05, label: "c" }],
+    objects: [
+      { id: "seg-low", kind: "segment", appearance: "primary", from: { x: 0.2, y: 0 }, to: { x: 0.4, y: 20 } },
+      { id: "seg-mid", kind: "function", appearance: "primary", formula: "300 * x - 100", domain: { min: 0.4, max: 0.6 } },
+      { id: "seg-high", kind: "segment", appearance: "primary", from: { x: 0.6, y: 80 }, to: { x: 0.8, y: 100 } },
+      { id: "iso-line", kind: "segment", appearance: "construction", from: { x: 0.1, y: 50 }, to: { x: 0.9, y: 50 } },
+      { id: "pt1", kind: "marker", appearance: "primary", x: "0.2", y: "0" },
+      { id: "pt2", kind: "marker", appearance: "primary", x: "0.4", y: "20" },
+      { id: "pt3", kind: "marker", appearance: "primary", x: "0.6", y: "80" },
+      { id: "pt4", kind: "marker", appearance: "primary", x: "0.8", y: "100" },
+      { id: "probe", kind: "marker", appearance: "answer", x: "c", y: "300 * c - 100" },
+    ],
+    readouts: [
+      { key: "plasmolysed", formula: "300 * c - 100" },
+    ],
+  }}
+  labels={{
+    c: <>Sucrose concentration (<InlineMath math="\text{mol dm}^{-3}" />)</>,
+    plasmolysed: <>Plasmolysed cells (<InlineMath math="\%" />)</>,
+  }}
+/>
+
+Between <InlineMath math="0.4" /> and <InlineMath math="0.6\text{ mol dm}^{-3}" />, the share climbs steadily from <InlineMath math="20\%" /> to <InlineMath math="80\%" />, placing <InlineMath math="50\%" /> exactly halfway at <InlineMath math="0.5\text{ mol dm}^{-3}" />.
+
+## Checking all four statements
+
+Verify the <InlineMath math="50\%" /> crossing algebraically, then test each statement against cell biology.
+
+<BlockMath math="\text{isotonic concentration} = 0.4 + \frac{50 - 20}{80 - 20} \times (0.6 - 0.4) = 0.5\text{ mol dm}^{-3}" />
+
+- **Statement I is correct** because the average cell sap matches about <InlineMath math="0.5\text{ mol dm}^{-3}" /> sucrose.
+- **Statement II is correct** because identical cell saps would all plasmolyse at one single concentration instead of rising gradually.
+- **Statement III is wrong** because the cell wall is fully permeable, so **the sucrose solution** fills the gap between wall and membrane, not air.
+- **Statement IV is wrong** because the table shows **<InlineMath math="20\%" /> of cells already plasmolysed** at <InlineMath math="0.4\text{ mol dm}^{-3}" />.
+
+## Why other options fail
+
+- Choosing I and IV accepts statement IV even though **<InlineMath math="20\%" /> of cells already lose water** at <InlineMath math="0.4\text{ mol dm}^{-3}" />.
+- Choosing II and III accepts statement III even though outside sucrose freely crosses the cell wall.
+- Choosing I, II, and IV also keeps statement IV, directly contradicting the measured <InlineMath math="20\%" />.
+
+# Answer
+
+Only statements I and II are correct.

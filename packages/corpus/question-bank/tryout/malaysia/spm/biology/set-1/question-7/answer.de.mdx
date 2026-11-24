@@ -1,17 +1,75 @@
-# Konstante Rate, dann die Temperatur berücksichtigen
+# Gegeben
 
-Da das Enzym gesättigt ist, **ist die Rate eine konstante Masse pro Zeit**. Bestimme die Rate bei <InlineMath math="37^\circ\text{C}" />, halbiere sie für <InlineMath math="27^\circ\text{C}" /> und berechne dann die Zeit für <InlineMath math="3{,}0\text{ g}" />.
+Bei <InlineMath math="37^\circ\text{C}" /> spaltet eine Amylaselösung <InlineMath math="1{,}0\text{ g}" /> Stärke in <InlineMath math="4" /> Minuten mit konstanter Sättigungsrate. Die Reaktion hat den **Temperaturkoeffizienten <InlineMath math="Q_{10} = 2" />**, sodass ein Temperaturabfall um <InlineMath math="10^\circ\text{C}" /> die Rate halbiert.
+
+# Gesucht
+
+Wie viele Minuten braucht dieselbe Amylaselösung, um <InlineMath math="3{,}0\text{ g}" /> Stärke bei <InlineMath math="27^\circ\text{C}" /> zu hydrolysieren?
+
+# Lösung
+
+Stell dir vor, ein Koch schneidet in einer warmen Küche <InlineMath math="1\text{ kg}" /> Karotten in <InlineMath math="4" /> Minuten. In einem kalten Raum arbeitet er halb so schnell, also **braucht die dreifache Menge dreimal zwei, nämlich sechsmal so lange**.
+
+> Bei konstanter Sättigungsrate wächst die Reaktionszeit direkt mit der Substratmasse und umgekehrt zur Enzymrate.
+
+Schieb die Zielmasse <InlineMath math="m" /> im Graphen, um die benötigte Zeit bei <InlineMath math="37^\circ\text{C}" /> und bei <InlineMath math="27^\circ\text{C}" /> für <InlineMath math="3{,}0\text{ g}" /> abzulesen.
+
+<MathVisual
+  title={<>Hydrolysierte Stärke über der Zeit bei zwei Temperaturen</>}
+  description={
+    <>
+      Die blaue Gerade zeigt die Rate bei <InlineMath math="37^\circ\text{C}" /> (
+      <InlineMath math="0{,}25\text{ g min}^{-1}" />) und die grüne Gerade die
+      halbierte Rate bei <InlineMath math="27^\circ\text{C}" /> (
+      <InlineMath math="0{,}125\text{ g min}^{-1}" />). Schieb <InlineMath math="m" />{" "}
+      auf <InlineMath math="3{,}0\text{ g}" />.
+    </>
+  }
+  footer={<>Für <InlineMath math="3{,}0\text{ g}" /> braucht es bei <InlineMath math="37^\circ\text{C}" /> genau <InlineMath math="12" /> min und bei <InlineMath math="27^\circ\text{C}" /> genau <InlineMath math="24" /> min.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 30 }, y: { min: 0, max: 4 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [{ name: "m", min: 1, max: 3.5, value: 3, step: 0.5, label: "m" }],
+    objects: [
+      { id: "warm", kind: "function", appearance: "primary", formula: "0.25 * x", domain: { min: 0, max: 16 } },
+      { id: "cool", kind: "function", appearance: "answer", formula: "0.125 * x", domain: { min: 0, max: 28 } },
+      { id: "target", kind: "function", appearance: "construction", formula: "m", domain: { min: 0, max: 28 } },
+      { id: "m-warm", kind: "marker", appearance: "primary", x: "4 * m", y: "m" },
+      { id: "m-cool", kind: "marker", appearance: "answer", x: "8 * m", y: "m" },
+    ],
+    readouts: [
+      { key: "time-warm", formula: "4 * m" },
+      { key: "time-cool", formula: "8 * m" },
+    ],
+  }}
+  labels={{
+    m: <>Zielmasse Stärke (<InlineMath math="\text{g}" />)</>,
+    "time-warm": <>Zeit bei <InlineMath math="37^\circ\text{C}" /> (min)</>,
+    "time-cool": <>Zeit bei <InlineMath math="27^\circ\text{C}" /> (min)</>,
+  }}
+/>
+
+Die Steigung bei <InlineMath math="27^\circ\text{C}" /> ist genau halb so groß wie bei <InlineMath math="37^\circ\text{C}" />, weshalb jede Masse doppelt so lange dauert.
+
+## Rate und Zeit berechnen
+
+Berechne die Rate bei <InlineMath math="37^\circ\text{C}" />, halbiere sie für <InlineMath math="27^\circ\text{C}" /> und teile **die Zielmasse <InlineMath math="3{,}0\text{ g}" />** durch diese Rate.
 
 <BlockMath math="\begin{aligned}
-\text{Rate bei }37^\circ\text{C}&=\frac{1{,}0}{4}=0{,}25\text{ g pro Minute}\\
-\text{Rate bei }27^\circ\text{C}&=\frac{0{,}25}{2}=0{,}125\text{ g pro Minute}\\
-t&=\frac{3{,}0}{0{,}125}=24\text{ Minuten}
+\text{Rate}_{37} &= \frac{1{,}0}{4} = 0{,}25\text{ g min}^{-1} \\
+\text{Rate}_{27} &= \frac{0{,}25}{2} = 0{,}125\text{ g min}^{-1} \\
+t &= \frac{3{,}0}{0{,}125} = 24\text{ min}
 \end{aligned}" />
 
-Es dauert also <InlineMath math="24" /> Minuten.
+Gegenprobe: Bei <InlineMath math="0{,}125\text{ g min}^{-1}" /> über <InlineMath math="24" /> Minuten werden genau <InlineMath math="3{,}0\text{ g}" /> Stärke gespalten.
 
-# Warum die anderen Antworten falsch sind
+## Warum andere Optionen falsch sind
 
-- <InlineMath math="6" /> Minuten verdoppelt die Rate, doch **eine sinkende Temperatur halbiert die Rate**.
-- <InlineMath math="12" /> Minuten übersieht die Temperaturänderung und berücksichtigt nur die dreifache Masse.
-- <InlineMath math="8" /> Minuten berücksichtigt nur die Temperatur und vergisst die dreifache Menge Stärke.
+- Die Zeit <InlineMath math="6" /> Minuten verdoppelt die Rate bei Abkühlung, obwohl **<InlineMath math="10^\circ\text{C}" /> weniger die Rate halbiert**.
+- Die Zeit <InlineMath math="12" /> Minuten berücksichtigt nur die dreifache Masse bei <InlineMath math="37^\circ\text{C}" /> ohne Temperaturkorrektur.
+- Die Zeit <InlineMath math="8" /> Minuten korrigiert nur die Temperatur für <InlineMath math="1{,}0\text{ g}" /> und vergisst die dreifache Masse.
+
+# Antwort
+
+Die Amylaselösung benötigt <InlineMath math="24" /> Minuten, um <InlineMath math="3{,}0\text{ g}" /> Stärke bei <InlineMath math="27^\circ\text{C}" /> zu hydrolysieren.

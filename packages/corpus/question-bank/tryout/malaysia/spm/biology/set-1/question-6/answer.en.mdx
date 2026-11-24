@@ -1,17 +1,79 @@
-# Two readings, one dilution factor
+# Given
 
-Portion A detects only reducing sugar. Portion B detects reducing sugar plus the non-reducing sugar after hydrolysis. **The difference between the readings is the non-reducing sugar**, then multiply by the dilution factor <InlineMath math="4" />.
+Benedict's colour standards are green (<InlineMath math="0.5\%" />), yellow (<InlineMath math="1.0\%" />), orange (<InlineMath math="1.5\%" />), and brick red (<InlineMath math="2.0\%" />). The fruit juice is **diluted <InlineMath math="4" /> times** before testing.
+
+Portion A (direct test) turns yellow (<InlineMath math="1.0\%" />), while Portion B (acid hydrolysis, neutralised, then tested) turns brick red (<InlineMath math="2.0\%" />).
+
+# Asked
+
+What are the percentages of reducing sugar and non-reducing sugar in the original undiluted juice?
+
+# Solution
+
+Picture watering down fruit syrup <InlineMath math="4" /> times before tasting it. To recover the true strength of the original bottle, **every diluted reading must be multiplied back by <InlineMath math="4" />**.
+
+Portion A detects only reducing sugar, whereas Portion B detects all sugar after hydrolysis breaks non-reducing sugar into reducing units.
+
+> The difference between the post-hydrolysis and direct readings gives the non-reducing sugar, and every diluted reading must be scaled by the dilution factor.
+
+Slide the dilution factor <InlineMath math="d" /> below to watch reducing sugar, total sugar, and their vertical non-reducing gap scale back to the original juice.
+
+<MathVisual
+  title={<>Scaling sugar percentages from diluted sample to original juice</>}
+  description={
+    <>
+      The blue line tracks reducing sugar (Portion A) and the orange line tracks
+      total sugar after hydrolysis (Portion B). Set dilution factor{" "}
+      <InlineMath math="d" /> to <InlineMath math="4" /> for the original juice.
+    </>
+  }
+  footer={<>At <InlineMath math="d = 4" />, reducing sugar is <InlineMath math="4\%" /> and the vertical gap is also <InlineMath math="4\%" />.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 6.5 }, y: { min: 0, max: 13 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [{ name: "d", min: 1, max: 6, value: 4, step: 1, label: "d" }],
+    objects: [
+      { id: "red", kind: "function", appearance: "primary", formula: "x", domain: { min: 0, max: 6 } },
+      { id: "tot", kind: "function", appearance: "warning", formula: "2 * x", domain: { min: 0, max: 6 } },
+      { id: "gap", kind: "segment", appearance: "answer", from: { x: 4, y: 4 }, to: { x: 4, y: 8 } },
+      { id: "m-red", kind: "marker", appearance: "primary", x: "d", y: "d" },
+      { id: "m-tot", kind: "marker", appearance: "answer", x: "d", y: "2 * d" },
+    ],
+    readouts: [
+      { key: "reducing", formula: "d" },
+      { key: "total", formula: "2 * d" },
+      { key: "non-reducing", formula: "2 * d - d" },
+    ],
+  }}
+  labels={{
+    d: <>Dilution factor <InlineMath math="d" /></>,
+    reducing: <>Reducing sugar (<InlineMath math="\%" />)</>,
+    total: <>Total sugar (<InlineMath math="\%" />)</>,
+    "non-reducing": <>Non-reducing sugar (<InlineMath math="\%" />)</>,
+  }}
+/>
+
+The vertical gap between the two lines matches the height of the blue line at every dilution. At <InlineMath math="d = 4" />, both sugars equal <InlineMath math="4\%" />.
+
+## Original juice calculation
+
+Multiply both diluted readings by <InlineMath math="4" />, then subtract **reducing sugar from total sugar**.
 
 <BlockMath math="\begin{aligned}
-\text{reducing sugar}&=1.0\%\times4=4\%\\
-\text{total sugar}&=2.0\%\times4=8\%\\
-\text{non-reducing sugar}&=8\%-4\%=4\%
+\text{reducing sugar} &= 1.0\% \times 4 = 4\% \\
+\text{total sugar} &= 2.0\% \times 4 = 8\% \\
+\text{non-reducing sugar} &= 8\% - 4\% = 4\%
 \end{aligned}" />
 
-So the original juice contains <InlineMath math="4\%" /> reducing sugar and <InlineMath math="4\%" /> non-reducing sugar.
+Quick check: diluting <InlineMath math="4\%" /> reducing and <InlineMath math="4\%" /> non-reducing sugar by <InlineMath math="4" /> yields <InlineMath math="1.0\%" /> (yellow) in Portion A and <InlineMath math="2.0\%" /> (brick red) in Portion B.
 
-# Why the other options are wrong
+## Why other options fail
 
-- <InlineMath math="1\%" /> and <InlineMath math="1\%" /> forgets to multiply by <InlineMath math="4" />, but **the juice tested had been diluted**.
-- <InlineMath math="8\%" /> for the non-reducing sugar uses the portion B reading directly, but that reading still includes the reducing sugar.
-- <InlineMath math="8\%" /> for the reducing sugar swaps the two readings, but reducing sugar shows up without hydrolysis.
+- Choosing <InlineMath math="1\%" /> and <InlineMath math="1\%" /> forgets to multiply by <InlineMath math="4" />, even though **the tested juice was diluted**.
+- Choosing <InlineMath math="4\%" /> and <InlineMath math="8\%" /> treats total sugar from Portion B as non-reducing sugar without subtracting Portion A.
+- Choosing <InlineMath math="8\%" /> and <InlineMath math="4\%" /> assigns total sugar to reducing sugar, even though Portion A only turned yellow.
+
+# Answer
+
+The original fruit juice contains <InlineMath math="4\%" /> reducing sugar and <InlineMath math="4\%" /> non-reducing sugar.

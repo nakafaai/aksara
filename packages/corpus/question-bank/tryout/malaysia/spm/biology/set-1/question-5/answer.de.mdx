@@ -1,13 +1,76 @@
-# Den isotonischen Punkt aus den Daten ablesen
+# Gegeben
 
-Der Punkt bei <InlineMath math="50\%" /> liegt zwischen <InlineMath math="0{,}4" /> und <InlineMath math="0{,}6\text{ mol dm}^{-3}" />. In diesem Bereich steigt der Anteil von <InlineMath math="20\%" /> auf <InlineMath math="80\%" />, <InlineMath math="50\%" /> liegt also genau in der Mitte, bei etwa <InlineMath math="0{,}5\text{ mol dm}^{-3}" />. Aussage I ist richtig.
+Streifen der Zwiebelepidermis liegen <InlineMath math="30" /> Minuten in Saccharoselösungen und zeigen folgende Anteile plasmolysierter Zellen: <InlineMath math="0\%" /> bei <InlineMath math="0{,}2" />, <InlineMath math="20\%" /> bei <InlineMath math="0{,}4" />, <InlineMath math="80\%" /> bei <InlineMath math="0{,}6" /> und <InlineMath math="100\%" /> bei <InlineMath math="0{,}8\text{ mol dm}^{-3}" />.
 
-Hätten alle Zellen gleich konzentrierten Zellsaft, würden alle bei einer einzigen Konzentration plasmolysieren. Ein allmählich steigender Anteil bedeutet, dass **die Zellsaftkonzentration von Zelle zu Zelle verschieden ist**. Aussage II ist also richtig.
+Die Lösung, die **genau <InlineMath math="50\%" /> der Zellen plasmolysiert**, gilt als isotonisch zum mittleren Zellsaft.
 
-Die Zellwand ist voll durchlässig, der Raum zwischen Wand und Plasmamembran füllt sich also mit **der Saccharoselösung**, nicht mit Luft. Aussage III ist falsch. Bei <InlineMath math="0{,}4\text{ mol dm}^{-3}" /> sind <InlineMath math="20\%" /> der Zellen plasmolysiert, nämlich die mit schwächerem Zellsaft als die Lösung. Aussage IV ist also falsch. Richtig sind also nur I und II.
+# Gesucht
 
-# Warum die anderen Antworten falsch sind
+Welche der Aussagen I, II, III und IV sind richtig?
 
-- I und IV übernimmt Aussage IV, doch **<InlineMath math="20\%" /> der Zellen sind bereits plasmolysiert** bei <InlineMath math="0{,}4\text{ mol dm}^{-3}" />.
-- II und III übernimmt Aussage III, doch die Außenlösung dringt durch die voll durchlässige Zellwand.
-- I, II und IV übernimmt ebenfalls Aussage IV, die dem Wert von <InlineMath math="20\%" /> widerspricht.
+# Lösung
+
+Stell dir viele Zwiebelzellen in immer süßerem Zuckerwasser vor. Genau dann, wenn die Hälfte der Zellen (<InlineMath math="50\%" />) schrumpft, **entspricht die Außenkonzentration dem mittleren Zellsaft**.
+
+> Die isotonische Konzentration eines Pflanzengewebes liegt genau bei der Außenlösung, in der die Hälfte aller Zellen plasmolysiert.
+
+Schieb die Saccharosekonzentration <InlineMath math="c" /> im mittleren Abschnitt, um den Schnittpunkt mit der <InlineMath math="50\%" />-Linie abzulesen.
+
+<MathVisual
+  title={<>Anteil plasmolysierter Zwiebelzellen je Saccharosekonzentration</>}
+  description={
+    <>
+      Die blauen Punkte zeigen die Messwerte. Schieb <InlineMath math="c" /> zwischen{" "}
+      <InlineMath math="0{,}4" /> und <InlineMath math="0{,}6\text{ mol dm}^{-3}" />, um
+      den Schnittpunkt bei <InlineMath math="50\%" /> abzulesen.
+    </>
+  }
+  footer={<>Die Kurve schneidet <InlineMath math="50\%" /> genau in der Mitte bei <InlineMath math="0{,}5\text{ mol dm}^{-3}" />.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0.1, max: 0.9 }, y: { min: -5, max: 110 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [{ name: "c", min: 0.4, max: 0.6, value: 0.5, step: 0.05, label: "c" }],
+    objects: [
+      { id: "seg-low", kind: "segment", appearance: "primary", from: { x: 0.2, y: 0 }, to: { x: 0.4, y: 20 } },
+      { id: "seg-mid", kind: "function", appearance: "primary", formula: "300 * x - 100", domain: { min: 0.4, max: 0.6 } },
+      { id: "seg-high", kind: "segment", appearance: "primary", from: { x: 0.6, y: 80 }, to: { x: 0.8, y: 100 } },
+      { id: "iso-line", kind: "segment", appearance: "construction", from: { x: 0.1, y: 50 }, to: { x: 0.9, y: 50 } },
+      { id: "pt1", kind: "marker", appearance: "primary", x: "0.2", y: "0" },
+      { id: "pt2", kind: "marker", appearance: "primary", x: "0.4", y: "20" },
+      { id: "pt3", kind: "marker", appearance: "primary", x: "0.6", y: "80" },
+      { id: "pt4", kind: "marker", appearance: "primary", x: "0.8", y: "100" },
+      { id: "probe", kind: "marker", appearance: "answer", x: "c", y: "300 * c - 100" },
+    ],
+    readouts: [
+      { key: "plasmolysed", formula: "300 * c - 100" },
+    ],
+  }}
+  labels={{
+    c: <>Saccharosekonzentration (<InlineMath math="\text{mol dm}^{-3}" />)</>,
+    plasmolysed: <>Plasmolysierte Zellen (<InlineMath math="\%" />)</>,
+  }}
+/>
+
+Zwischen <InlineMath math="0{,}4" /> und <InlineMath math="0{,}6\text{ mol dm}^{-3}" /> steigt der Anteil gleichmäßig von <InlineMath math="20\%" /> auf <InlineMath math="80\%" />, sodass <InlineMath math="50\%" /> genau bei <InlineMath math="0{,}5\text{ mol dm}^{-3}" /> liegt.
+
+## Prüfung der vier Aussagen
+
+Berechne den <InlineMath math="50\%" />-Wert rechnerisch und prüfe jede Aussage biologisch.
+
+<BlockMath math="\text{isotonische Konzentration} = 0{,}4 + \frac{50 - 20}{80 - 20} \cdot (0{,}6 - 0{,}4) = 0{,}5\text{ mol dm}^{-3}" />
+
+- **Aussage I ist richtig**, weil der mittlere Zellsaft etwa <InlineMath math="0{,}5\text{ mol dm}^{-3}" /> Saccharose entspricht.
+- **Aussage II ist richtig**, denn bei identischem Zellsaft würden alle Zellen auf einmal an einer einzigen Konzentration plasmolysieren.
+- **Aussage III ist falsch**, weil die Zellwand voll durchlässig ist und sich der Spalt mit **Saccharoselösung** statt mit Luft füllt.
+- **Aussage IV ist falsch**, weil bei <InlineMath math="0{,}4\text{ mol dm}^{-3}" /> bereits **<InlineMath math="20\%" /> der Zellen Wasser verlieren** und plasmolysieren.
+
+## Warum andere Optionen falsch sind
+
+- I und IV übernimmt Aussage IV, obwohl bei <InlineMath math="0{,}4\text{ mol dm}^{-3}" /> **schon <InlineMath math="20\%" /> plasmolysiert sind**.
+- II und III übernimmt Aussage III, obwohl die Außenlösung frei durch die Zellwand tritt.
+- I, II und IV enthält ebenfalls Aussage IV und widerspricht dem Messwert <InlineMath math="20\%" />.
+
+# Antwort
+
+Nur die Aussagen I und II sind richtig.

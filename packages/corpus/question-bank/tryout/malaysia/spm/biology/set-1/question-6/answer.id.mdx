@@ -1,17 +1,79 @@
-# Dua bacaan, satu faktor pengenceran
+# Diketahui
 
-Bagian A hanya mendeteksi gula pereduksi. Bagian B mendeteksi gula pereduksi ditambah gula nonpereduksi yang sudah dihidrolisis. **Selisih kedua bacaan adalah gula nonpereduksi**, lalu kalikan dengan faktor pengenceran <InlineMath math="4" />.
+Skala warna uji Benedict adalah hijau (<InlineMath math="0{,}5\%" />), kuning (<InlineMath math="1{,}0\%" />), jingga (<InlineMath math="1{,}5\%" />), dan merah bata (<InlineMath math="2{,}0\%" />). Jus buah **diencerkan <InlineMath math="4" /> kali** sebelum diuji.
+
+Bagian A (uji langsung) berubah kuning (<InlineMath math="1{,}0\%" />), sedangkan Bagian B (setelah hidrolisis asam dan penetralan) berubah merah bata (<InlineMath math="2{,}0\%" />).
+
+# Ditanyakan
+
+Berapakah persentase gula pereduksi dan gula nonpereduksi dalam jus buah asli?
+
+# Penyelesaian
+
+Bayangkan kamu mencampur sirup dengan air sampai encer <InlineMath math="4" /> kali sebelum mencicipinya. Untuk tahu manis botol aslinya, **angka hasil uji harus dikalikan <InlineMath math="4" />**.
+
+Bagian A hanya membaca gula pereduksi, sedangkan Bagian B membaca semua gula sekaligus karena hidrolisis memecah gula nonpereduksi menjadi gula pereduksi.
+
+> Selisih bacaan sesudah dan sebelum hidrolisis adalah gula nonpereduksi, lalu semua bacaan larutan encer wajib dikalikan faktor pengenceran.
+
+Geser faktor pengenceran <InlineMath math="d" /> di bawah untuk melihat bagaimana kadar gula pereduksi, gula total, dan selisih nonpereduksinya membesar dari larutan uji ke jus asli.
+
+<MathVisual
+  title={<>Skala kadar gula dari larutan encer ke jus asli</>}
+  description={
+    <>
+      Garis biru menunjukkan gula pereduksi (Bagian A) dan garis jingga menunjukkan
+      gula total sesudah hidrolisis (Bagian B). Geser faktor pengenceran{" "}
+      <InlineMath math="d" /> ke <InlineMath math="4" /> untuk membaca jus asli.
+    </>
+  }
+  footer={<>Pada <InlineMath math="d = 4" />, gula pereduksi <InlineMath math="4\%" /> dan selisih vertikalnya juga <InlineMath math="4\%" />.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 6.5 }, y: { min: 0, max: 13 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [{ name: "d", min: 1, max: 6, value: 4, step: 1, label: "d" }],
+    objects: [
+      { id: "red", kind: "function", appearance: "primary", formula: "x", domain: { min: 0, max: 6 } },
+      { id: "tot", kind: "function", appearance: "warning", formula: "2 * x", domain: { min: 0, max: 6 } },
+      { id: "gap", kind: "segment", appearance: "answer", from: { x: 4, y: 4 }, to: { x: 4, y: 8 } },
+      { id: "m-red", kind: "marker", appearance: "primary", x: "d", y: "d" },
+      { id: "m-tot", kind: "marker", appearance: "answer", x: "d", y: "2 * d" },
+    ],
+    readouts: [
+      { key: "reducing", formula: "d" },
+      { key: "total", formula: "2 * d" },
+      { key: "non-reducing", formula: "2 * d - d" },
+    ],
+  }}
+  labels={{
+    d: <>Faktor pengenceran <InlineMath math="d" /></>,
+    reducing: <>Gula pereduksi (<InlineMath math="\%" />)</>,
+    total: <>Gula total (<InlineMath math="\%" />)</>,
+    "non-reducing": <>Gula nonpereduksi (<InlineMath math="\%" />)</>,
+  }}
+/>
+
+Tinggi ruas vertikal di antara kedua garis selalu sama dengan tinggi garis biru. Pada pengenceran <InlineMath math="4" /> kali, keduanya bernilai tepat <InlineMath math="4\%" />.
+
+## Perhitungan kadar jus asli
+
+Kalikan masing-masing bacaan dengan faktor pengenceran <InlineMath math="4" />, lalu kurangkan **gula total dengan gula pereduksi**.
 
 <BlockMath math="\begin{aligned}
-\text{gula pereduksi}&=1{,}0\%\times4=4\%\\
-\text{gula total}&=2{,}0\%\times4=8\%\\
-\text{gula nonpereduksi}&=8\%-4\%=4\%
+\text{gula pereduksi} &= 1{,}0\% \times 4 = 4\% \\
+\text{gula total} &= 2{,}0\% \times 4 = 8\% \\
+\text{gula nonpereduksi} &= 8\% - 4\% = 4\%
 \end{aligned}" />
 
-Jadi, jus asli mengandung <InlineMath math="4\%" /> gula pereduksi dan <InlineMath math="4\%" /> gula nonpereduksi.
+Cek balik: jika <InlineMath math="4\%" /> dan <InlineMath math="4\%" /> diencerkan <InlineMath math="4" /> kali, Bagian A terbaca <InlineMath math="1{,}0\%" /> (kuning) dan Bagian B terbaca <InlineMath math="2{,}0\%" /> (merah bata).
 
-# Mengapa pilihan lain salah
+## Mengapa pilihan lain salah
 
-- <InlineMath math="1\%" /> dan <InlineMath math="1\%" /> lupa mengalikan dengan <InlineMath math="4" />, padahal **yang diuji adalah jus yang sudah diencerkan**.
-- <InlineMath math="8\%" /> untuk gula nonpereduksi memakai bacaan bagian B langsung, padahal bacaan itu masih memuat gula pereduksi.
-- <InlineMath math="8\%" /> untuk gula pereduksi menukar kedua bacaan, padahal gula pereduksi terbaca tanpa hidrolisis.
+- Pilihan <InlineMath math="1\%" /> dan <InlineMath math="1\%" /> lupa mengalikan dengan <InlineMath math="4" />, padahal **sampel yang diuji sudah diencerkan**.
+- Pilihan <InlineMath math="4\%" /> dan <InlineMath math="8\%" /> langsung mengambil angka gula total sebagai gula nonpereduksi tanpa mengurangi gula pereduksi.
+- Pilihan <InlineMath math="8\%" /> dan <InlineMath math="4\%" /> menukar gula total dengan gula pereduksi, padahal Bagian A hanya menghasilkan warna kuning.
+
+# Jawaban
+
+Jus buah asli mengandung <InlineMath math="4\%" /> gula pereduksi dan <InlineMath math="4\%" /> gula nonpereduksi.
