@@ -12,7 +12,7 @@ How many chili seedlings Bu Ani plants when following the instructions.
 
 # Solution
 
-Count rows across the width and seedlings along the length using fencepost counting (divide by the spacing and add one for the starting edge), then multiply the two counts together.
+Count rows across the width and seedlings along the length using **fencepost counting** (divide by the spacing and add one for the starting edge), then multiply the two counts together.
 
 > Starting at zero and including the far boundary means the number of positions along any span always equals the number of intervals plus one.
 
@@ -20,13 +20,14 @@ Count rows across the width and seedlings along the length using fencepost count
 
 Steps <InlineMath math="3" /> and <InlineMath math="4" /> place rows every <InlineMath math="70" /> cm (<Highlight>the far edge included</Highlight>) and seedlings every <InlineMath math="50" /> cm (<Highlight>the far end included</Highlight>).
 
-<BlockMath math="\text{Rows: } \frac{210}{70} + 1 = 3 + 1 = 4\text{ rows} \quad (0, 70, 140, 210\text{ cm})" />
-
-<BlockMath math="\text{Seedlings per row: } \frac{400}{50} + 1 = 8 + 1 = 9, \qquad \text{Total: } 4 \times 9 = 36\text{ seedlings}" />
+<BlockMath math="\begin{aligned}
+\text{Rows: } \frac{210}{70} + 1 = 3 + 1 = 4\text{ rows} \quad (0, 70, 140, 210\text{ cm}) \\
+\text{Seedlings per row: } \frac{400}{50} + 1 = 8 + 1 = 9, \qquad \text{Total: } 4 \times 9 = 36\text{ seedlings}
+\end{aligned}" />
 
 ## Why the other options fail
 
-- **<InlineMath math="24" />** drops the extra boundary post on both width and length (<InlineMath math="3 \times 8" />).
+- **<InlineMath math="24" />** **drops the extra boundary post** on both width and length (<InlineMath math="3 \times 8" />).
 - **<InlineMath math="32" />** forgets the far end of each row (<InlineMath math="4 \times 8" />).
 - **<InlineMath math="27" />** forgets the row along the far edge (<InlineMath math="3 \times 9" />).
 - **<InlineMath math="30" />** swaps the <InlineMath math="70" /> cm row spacing and the <InlineMath math="50" /> cm seedling spacing.
