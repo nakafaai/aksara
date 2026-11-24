@@ -166,7 +166,39 @@ export const kssmForm4BiologyStructureNodes = [
     },
   }),
   unitNode({
+    children: [
+      materialNode({
+        key: "form-4-biology-chemical-composition-in-a-cell-cell-chemistry",
+        level: "lesson",
+        materialKeys: ["lesson.biology.cell-chemistry"],
+        order: 10,
+        outcomes: [
+          {
+            code: "Form 4, Content Standards 4.1 to 4.5",
+            ...biologyStandards,
+          },
+        ],
+      }),
+    ],
     key: "form-4-biology-chemical-composition-in-a-cell",
+    materialCard: {
+      de: {
+        description: "Wasser, Kohlenhydrate, Proteine, Lipide, Nukleinsäuren.",
+        title: "Chemie der Zelle",
+      },
+      en: {
+        description: "Water, carbohydrates, proteins, lipids, nucleic acids.",
+        title: "Cell Chemistry",
+      },
+      id: {
+        description: "Air, karbohidrat, protein, lipid, dan asam nukleat.",
+        title: "Kimia Sel",
+      },
+      ms: {
+        description: "Air, karbohidrat, protein, lipid dan asid nukleik.",
+        title: "Kimia Sel",
+      },
+    },
     order: 40,
     translations: {
       de: {
