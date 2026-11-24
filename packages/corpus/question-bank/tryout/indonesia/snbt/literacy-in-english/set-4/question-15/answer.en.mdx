@@ -1,20 +1,36 @@
-The error rates stay the same, but **how common the condition is** changes. Rebuild the positive row for a group of <InlineMath math="1{,}000" /> such adults.
+# Given
 
-**With the condition**. <InlineMath math="1" /> in <InlineMath math="10" /> is <InlineMath math="100" /> adults, and <InlineMath math="90\%" /> of them test positive:
+The town restricts testing to adults with a family history, where **<InlineMath math="1" /> in <InlineMath math="10" />** (<InlineMath math="10\%" />) have the condition. Test rates remain unchanged: **<InlineMath math="90\%" />** true-positive rate and **<InlineMath math="5\%" />** false-alarm rate.
 
-<BlockMath math="90\%\times 100=90" />
+# Asked
 
-**Without the condition**. <InlineMath math="900" /> adults, and <InlineMath math="5\%" /> are wrongly flagged:
+In this higher-risk group, about what share of positive results would be correct?
 
-<BlockMath math="5\%\times 900=45" />
+# Solution
 
-**Share of positives that are correct**.
+Rebuild the positive row for a clean sample of **<InlineMath math="1{,}000" /> high-risk adults** (<InlineMath math="100" /> affected, <InlineMath math="900" /> unaffected), then divide true positives by all positives.
 
-<BlockMath math="\dfrac{90}{90+45}=\dfrac{90}{135}\approx 67\%" />
+> Raising prevalence from one in a hundred to one in ten produces ninety true positives and forty-five false alarms per thousand adults, making two thirds or about sixty-seven percent of positives correct.
 
-- <InlineMath math="15\%" /> is last year's share, when only <InlineMath math="1" /> in <InlineMath math="100" /> had the condition.
-- <InlineMath math="90\%" /> is the share of the ill who test positive, which doesn't change. It isn't the share of positives that are right.
-- <InlineMath math="95\%" /> is the maker's overall figure, not a share of positive results.
-- <InlineMath math="50\%" /> would need equal numbers of true and false positives. Here the true ones are twice as many.
+## Rebuilding the positive row per thousand adults
 
-About <InlineMath math="67\%" /> of positive results would then be correct.
+| Subgroup (per <InlineMath math="1{,}000" /> tested) | Adults | Positive rate | Positive results |
+| --- | ---: | ---: | ---: |
+| Has the condition (<InlineMath math="10\%" />) | <InlineMath math="100" /> | <InlineMath math="90\%" /> | <InlineMath math="90" /> |
+| Does not have it (<InlineMath math="90\%" />) | <InlineMath math="900" /> | <InlineMath math="5\%" /> | <InlineMath math="45" /> |
+| Total positive results | <InlineMath math="1{,}000" /> | | <InlineMath math="135" /> |
+
+Computing the **new positive predictive share**:
+
+<BlockMath math="\begin{aligned} \text{True positives} &= 90\% \times 100 = 90 \\ \text{False alarms} &= 5\% \times 900 = 45 \\ \text{Share of positives correct} &= \frac{90}{90 + 45} = \frac{90}{135} = \frac{2}{3} \approx 67\% \end{aligned}" />
+
+## Why the other options fail
+
+- **<InlineMath math="15\%" />** reflects the old **<InlineMath math="1" /> in <InlineMath math="100" />** general-population rate.
+- **<InlineMath math="90\%" />** is the detection rate among affected people, not the share of positives that are right.
+- **<InlineMath math="95\%" />** is the maker's overall accuracy across all tested adults.
+- **<InlineMath math="50\%" />** would require equal true and false positives, whereas <InlineMath math="90" /> is twice <InlineMath math="45" />.
+
+# Answer
+
+**About <InlineMath math="67\%" />**
