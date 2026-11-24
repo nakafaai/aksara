@@ -1,0 +1,517 @@
+export const metadata = {
+  title: "Independent and Dependent Events",
+  description:
+    "Tell independent from dependent events, find combined probabilities with tree diagrams, and test the rules with dice and marble draws.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2026-11-17",
+  subject: "Probability",
+};
+
+## When Chance Stays Put
+
+Picture tossing a coin and then rolling a die. The coin can't whisper to the die, so the coin's result never changes the die's chances. By contrast, if you pull a sweet from a jar and eat it, the jar changes for the next pick.
+
+Two events are **independent** when <InlineMath math="A" /> happening doesn't change the probability of <InlineMath math="B" />. The probability that both happen is the product of their probabilities:
+
+<BlockMath math="P(A \cap B) = P(A) \times P(B)" />
+
+Two events are **dependent** when <InlineMath math="A" /> happening changes the probability of <InlineMath math="B" />. You still multiply, but the second factor uses **the probability of <InlineMath math="B" /> after <InlineMath math="A" /> happens**, written <InlineMath math="P(B \mid A)" />:
+
+<BlockMath math="P(A \cap B) = P(A) \times P(B \mid A)" />
+
+> Two events are independent only when the first trial's result leaves the sample space for the second trial untouched.
+
+For independent events, <InlineMath math="P(B \mid A)" /> equals <InlineMath math="P(B)" />, so the second formula simplifies to the first. The area diagram below shows why multiplication works for independent events.
+
+<MathVisual
+  title={<>The Product of Probabilities as an Area</>}
+  description={
+    <>
+      A unit square stands for the full sample space. The vertical strip is{" "}
+      <InlineMath math="P(A) = 0.6" />, the horizontal strip is{" "}
+      <InlineMath math="P(B) = 0.5" />, and their overlap has area{" "}
+      <InlineMath math="0.3" />.
+    </>
+  }
+  footer={
+    <>
+      Inside strip <InlineMath math="A" />, the <InlineMath math="B" /> portion
+      stays one half, just like in the whole square.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.2, max: 1.2 }, y: { min: -0.2, max: 1.2 } },
+    view: { kind: "fit", padding: 0.05 },
+    objects: [
+      { id: "space", kind: "polygon", vertices: [{ x: 0, y: 0 }, { x: 1, y: 0 }, { x: 1, y: 1 }, { x: 0, y: 1 }], appearance: "reference" },
+      { id: "a", kind: "polygon", vertices: [{ x: 0, y: 0 }, { x: 0.6, y: 0 }, { x: 0.6, y: 1 }, { x: 0, y: 1 }], appearance: "primary" },
+      { id: "b", kind: "polygon", vertices: [{ x: 0, y: 0 }, { x: 1, y: 0 }, { x: 1, y: 0.5 }, { x: 0, y: 0.5 }], appearance: "secondary" },
+      { id: "both", kind: "polygon", vertices: [{ x: 0, y: 0 }, { x: 0.6, y: 0 }, { x: 0.6, y: 0.5 }, { x: 0, y: 0.5 }], appearance: "highlight" },
+    ],
+    labels: [
+      { key: "a", objectId: "a", at: { x: 0.3, y: 1 }, placement: "above" },
+      { key: "b", objectId: "b", at: { x: 1, y: 0.25 }, placement: "right" },
+      { key: "both", objectId: "both", at: { x: 0.3, y: 0.25 }, placement: "above" },
+    ],
+  }}
+  labels={{
+    a: <InlineMath math="P(A) = 0.6" />,
+    b: <InlineMath math="P(B) = 0.5" />,
+    both: <InlineMath math="0.3" />,
+  }}
+/>
+
+Look at the height ratio inside strip <InlineMath math="A" />. Knowing that <InlineMath math="A" /> happened leaves the share of <InlineMath math="B" /> unchanged, so **the overlap probability <InlineMath math="P(A \cap B)" />** matches the rectangle area <InlineMath math="0.6 \times 0.5" />.
+
+## Testing Two Trials
+
+To decide whether two events are independent, check whether **the first result changes the second event's chance**. Let's test that rule on dice rolls and separate it from the mutually exclusive trap.
+
+### Memoryless Dice Rolls
+
+When you roll two dice, the first die has no effect on the second. The probability that both show <InlineMath math="6" /> for a sum of <InlineMath math="12" /> comes straight from multiplying:
+
+<BlockMath math="P(6 \text{ and } 6) = \frac{1}{6} \times \frac{1}{6} = \frac{1}{36}" />
+
+Roll two dice three hundred times in the tray below and watch whether **the share of sum <InlineMath math="12" />** settles near its theoretical probability.
+
+<DiceRollLab
+  title={<>Rolling Two Dice Hundreds of Times</>}
+  description={
+    <>
+      Two dice roll together three hundred times. The stack on sum{" "}
+      <InlineMath math="12" /> marks the rolls where both dice land on{" "}
+      <InlineMath math="6" />.
+    </>
+  }
+  footer={
+    <>
+      Only the pair <InlineMath math="(6, 6)" /> sums to{" "}
+      <InlineMath math="12" />, giving a probability of{" "}
+      <InlineMath math="\frac{1}{36}" />.
+    </>
+  }
+  dice={2}
+  target={12}
+  labels={{
+    frequency: <>Observed share</>,
+    hits: <>Sum of <InlineMath math="12" /></>,
+    probability: <>Exact probability</>,
+    trials: <>Total rolls</>,
+    viewLabel: "A felt tray with two dice and chip stacks tracking each roll sum",
+  }}
+/>
+
+The experimental share hovers around <InlineMath math="\frac{1}{36}" />, because out of <InlineMath math="36" /> equally likely pairs, only <InlineMath math="(6, 6)" /> gives a sum of <InlineMath math="12" />.
+
+Now compare that with a single die roll. Let <InlineMath math="A" /> be getting an even number and <InlineMath math="B" /> be getting a number above <InlineMath math="3" />. Their overlap is <InlineMath math="\{4, 6\}" />, so compare these two values:
+
+<MathContainer>
+  <BlockMath math="P(A \cap B) = \frac{2}{6} = \frac{1}{3}" />
+  <BlockMath math="P(A) \times P(B) = \frac{3}{6} \times \frac{3}{6} = \frac{1}{4}" />
+</MathContainer>
+
+Since <InlineMath math="\frac{1}{3}" /> doesn't equal <InlineMath math="\frac{1}{4}" />, the two events are **dependent**. Check the meaning: once you know the roll is even, only <InlineMath math="\{2, 4, 6\}" /> remain, so <InlineMath math="P(B \mid A)" /> jumps to <InlineMath math="\frac{2}{3}" />.
+
+### Not Mutually Exclusive
+
+People often confuse independent events with [mutually exclusive events](/en/subjects/mathematics/probability/two-events-mutually-exclusive), yet they pull in opposite directions. When two mutually exclusive events both have nonzero chance, <InlineMath math="A" /> happening forces **the chance of <InlineMath math="B" /> straight to zero**.
+
+<BlockMath math="P(A \cap B) = 0 \neq P(A) \times P(B)" />
+
+Because their product is positive while their overlap is zero, two such mutually exclusive events are always dependent. Compare four everyday situations below before choosing a formula.
+
+| Situation | Type | Reason |
+| :--- | :--- | :--- |
+| Tossing a coin twice | Independent | The coin never remembers the first toss |
+| Drawing two marbles with replacement | Independent | The first marble goes back, keeping the bag unchanged |
+| Drawing two marbles without replacement | Dependent | The bag loses one marble, so the fractions shift |
+| Picking two students for two distinct roles | Dependent | The first student chosen can't be picked again |
+
+The flowchart below maps out the quick check to run before multiplying probabilities.
+
+<Mermaid
+  title={<>Choosing the Combined Probability Rule</>}
+  description={
+    <>
+      Check whether the first outcome alters the sample space before multiplying.
+    </>
+  }
+  footer={
+    <>
+      Independent uses the original chance, dependent uses the updated chance.
+    </>
+  }
+  chart={`flowchart TD
+  A["Write events A and B"] --> B{"Does A change the chance of B?"}
+  B -->|"no, independent"| C["P(A) x P(B)"]
+  B -->|"yes, dependent"| D["P(A) x P(B after A)"]
+  C --> E["Check: all tree paths add up to 1"]
+  D --> E`}
+/>
+
+That final check catches almost every slip. If **the sum of all tree paths** isn't <InlineMath math="1" />, at least one branch fraction is off.
+
+## Marbles Inside a Bag
+
+Take a jar holding <InlineMath math="3" /> red marbles and <InlineMath math="2" /> green marbles, and draw two in a row. In the lab below, switch between **put back** and **keep out** to watch the chance of two reds shift.
+
+<MarbleDrawLab
+  title={<>Drawing Two Marbles from a Jar</>}
+  description={
+    <>
+      Compare drawing with and without replacement from a jar of{" "}
+      <InlineMath math="3" /> red and <InlineMath math="2" /> green marbles
+      across a thousand trials.
+    </>
+  }
+  footer={
+    <>
+      Keeping the first marble out drops the chance of two reds from{" "}
+      <InlineMath math="0.36" /> to <InlineMath math="0.3" />.
+    </>
+  }
+  marbles={[
+    { color: "red", count: 3 },
+    { color: "green", count: 2 },
+  ]}
+  rule="keep"
+  event={{ first: "red", second: "red" }}
+  labels={{
+    both: <>Both red</>,
+    first: <>First draw</>,
+    frequency: <>Thousand-trial share</>,
+    rule: "Draw rule",
+    rules: {
+      keep: "Without replacement",
+      replace: "With replacement",
+    },
+    second: <>Second draw</>,
+    trials: <>Trials run</>,
+    viewLabel: "A jar holding three red and two green marbles next to a trial tally board",
+  }}
+/>
+
+That gap comes straight from what sits inside the jar on the second draw. Let's trace both cases on tree diagrams so every branch is crystal clear.
+
+### Replacement Tree
+
+When you note the first marble's colour and **put it back**, the jar still holds <InlineMath math="3" /> red <InlineMath math="(R)" /> and <InlineMath math="2" /> green <InlineMath math="(G)" />. Every second-stage branch keeps the exact same fractions as the first stage.
+
+<MathVisual
+  title={<>Tree Diagram with Replacement</>}
+  description={
+    <>
+      Every red branch stays <InlineMath math="\frac{3}{5}" /> and every green
+      branch stays <InlineMath math="\frac{2}{5}" />. Multiply along each path
+      for its outcome probability.
+    </>
+  }
+  footer={
+    <>
+      Second-stage fractions stay identical because the jar never loses a marble.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 10 }, y: { min: 0, max: 6 } },
+    view: { kind: "fit", padding: 0.05 },
+    objects: [
+      { id: "root", kind: "point", at: { x: 0.4, y: 3 }, appearance: "reference" },
+      { id: "m1", kind: "point", at: { x: 3.4, y: 4.6 }, appearance: "primary" },
+      { id: "h1", kind: "point", at: { x: 3.4, y: 1.4 }, appearance: "secondary" },
+      { id: "mm", kind: "point", at: { x: 6.8, y: 5.4 }, appearance: "primary" },
+      { id: "mh", kind: "point", at: { x: 6.8, y: 3.8 }, appearance: "secondary" },
+      { id: "hm", kind: "point", at: { x: 6.8, y: 2.2 }, appearance: "primary" },
+      { id: "hh", kind: "point", at: { x: 6.8, y: 0.6 }, appearance: "secondary" },
+      { id: "to-m1", kind: "segment", from: { x: 0.4, y: 3 }, to: { x: 3.4, y: 4.6 }, appearance: "primary" },
+      { id: "to-h1", kind: "segment", from: { x: 0.4, y: 3 }, to: { x: 3.4, y: 1.4 }, appearance: "secondary" },
+      { id: "to-mm", kind: "segment", from: { x: 3.4, y: 4.6 }, to: { x: 6.8, y: 5.4 }, appearance: "primary" },
+      { id: "to-mh", kind: "segment", from: { x: 3.4, y: 4.6 }, to: { x: 6.8, y: 3.8 }, appearance: "secondary" },
+      { id: "to-hm", kind: "segment", from: { x: 3.4, y: 1.4 }, to: { x: 6.8, y: 2.2 }, appearance: "primary" },
+      { id: "to-hh", kind: "segment", from: { x: 3.4, y: 1.4 }, to: { x: 6.8, y: 0.6 }, appearance: "secondary" },
+    ],
+    labels: [
+      { key: "to-m1", objectId: "to-m1", at: { x: 1.9, y: 3.8 }, placement: "above-left" },
+      { key: "to-h1", objectId: "to-h1", at: { x: 1.9, y: 2.2 }, placement: "below-left" },
+      { key: "to-mm", objectId: "to-mm", at: { x: 5.1, y: 5 }, placement: "above" },
+      { key: "to-mh", objectId: "to-mh", at: { x: 5.1, y: 4.2 }, placement: "below" },
+      { key: "to-hm", objectId: "to-hm", at: { x: 5.1, y: 1.8 }, placement: "above" },
+      { key: "to-hh", objectId: "to-hh", at: { x: 5.1, y: 1 }, placement: "below" },
+      { key: "mm", objectId: "mm", at: { x: 6.8, y: 5.4 }, placement: "right" },
+      { key: "mh", objectId: "mh", at: { x: 6.8, y: 3.8 }, placement: "right" },
+      { key: "hm", objectId: "hm", at: { x: 6.8, y: 2.2 }, placement: "right" },
+      { key: "hh", objectId: "hh", at: { x: 6.8, y: 0.6 }, placement: "right" },
+    ],
+  }}
+  labels={{
+    "to-m1": <InlineMath math="\tfrac{3}{5}" />,
+    "to-h1": <InlineMath math="\tfrac{2}{5}" />,
+    "to-mm": <InlineMath math="\tfrac{3}{5}" />,
+    "to-mh": <InlineMath math="\tfrac{2}{5}" />,
+    "to-hm": <InlineMath math="\tfrac{3}{5}" />,
+    "to-hh": <InlineMath math="\tfrac{2}{5}" />,
+    mm: <InlineMath math="RR = \tfrac{9}{25}" />,
+    mh: <InlineMath math="RG = \tfrac{6}{25}" />,
+    hm: <InlineMath math="GR = \tfrac{6}{25}" />,
+    hh: <InlineMath math="GG = \tfrac{4}{25}" />,
+  }}
+/>
+
+Multiply the top path for two reds, then check that all four paths sum to one:
+
+<MathContainer>
+  <BlockMath math="P(RR) = \frac{3}{5} \times \frac{3}{5} = \frac{9}{25} = 0.36" />
+  <BlockMath math="\frac{9 + 6 + 6 + 4}{25} = \frac{25}{25} = 1" />
+</MathContainer>
+
+The four outcomes add up to <InlineMath math="1" />, confirming that no case was missed.
+
+### No Replacement Tree
+
+Now the first marble stays **out of the jar**. Only <InlineMath math="4" /> marbles remain, so every second-stage denominator drops to <InlineMath math="4" /> and the numerators adjust to whichever colour left first.
+
+<MathVisual
+  title={<>Tree Diagram without Replacement</>}
+  description={
+    <>
+      After a red draw, <InlineMath math="2" /> red and <InlineMath math="2" />{" "}
+      green remain. After a green draw, <InlineMath math="3" /> red and{" "}
+      <InlineMath math="1" /> green remain.
+    </>
+  }
+  footer={
+    <>
+      Every second-stage denominator drops to <InlineMath math="4" /> after one
+      marble leaves.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 10 }, y: { min: 0, max: 6 } },
+    view: { kind: "fit", padding: 0.05 },
+    objects: [
+      { id: "root", kind: "point", at: { x: 0.4, y: 3 }, appearance: "reference" },
+      { id: "m1", kind: "point", at: { x: 3.4, y: 4.6 }, appearance: "primary" },
+      { id: "h1", kind: "point", at: { x: 3.4, y: 1.4 }, appearance: "secondary" },
+      { id: "mm", kind: "point", at: { x: 6.8, y: 5.4 }, appearance: "primary" },
+      { id: "mh", kind: "point", at: { x: 6.8, y: 3.8 }, appearance: "secondary" },
+      { id: "hm", kind: "point", at: { x: 6.8, y: 2.2 }, appearance: "primary" },
+      { id: "hh", kind: "point", at: { x: 6.8, y: 0.6 }, appearance: "secondary" },
+      { id: "to-m1", kind: "segment", from: { x: 0.4, y: 3 }, to: { x: 3.4, y: 4.6 }, appearance: "primary" },
+      { id: "to-h1", kind: "segment", from: { x: 0.4, y: 3 }, to: { x: 3.4, y: 1.4 }, appearance: "secondary" },
+      { id: "to-mm", kind: "segment", from: { x: 3.4, y: 4.6 }, to: { x: 6.8, y: 5.4 }, appearance: "primary" },
+      { id: "to-mh", kind: "segment", from: { x: 3.4, y: 4.6 }, to: { x: 6.8, y: 3.8 }, appearance: "secondary" },
+      { id: "to-hm", kind: "segment", from: { x: 3.4, y: 1.4 }, to: { x: 6.8, y: 2.2 }, appearance: "primary" },
+      { id: "to-hh", kind: "segment", from: { x: 3.4, y: 1.4 }, to: { x: 6.8, y: 0.6 }, appearance: "secondary" },
+    ],
+    labels: [
+      { key: "to-m1", objectId: "to-m1", at: { x: 1.9, y: 3.8 }, placement: "above-left" },
+      { key: "to-h1", objectId: "to-h1", at: { x: 1.9, y: 2.2 }, placement: "below-left" },
+      { key: "to-mm", objectId: "to-mm", at: { x: 5.1, y: 5 }, placement: "above" },
+      { key: "to-mh", objectId: "to-mh", at: { x: 5.1, y: 4.2 }, placement: "below" },
+      { key: "to-hm", objectId: "to-hm", at: { x: 5.1, y: 1.8 }, placement: "above" },
+      { key: "to-hh", objectId: "to-hh", at: { x: 5.1, y: 1 }, placement: "below" },
+      { key: "mm", objectId: "mm", at: { x: 6.8, y: 5.4 }, placement: "right" },
+      { key: "mh", objectId: "mh", at: { x: 6.8, y: 3.8 }, placement: "right" },
+      { key: "hm", objectId: "hm", at: { x: 6.8, y: 2.2 }, placement: "right" },
+      { key: "hh", objectId: "hh", at: { x: 6.8, y: 0.6 }, placement: "right" },
+    ],
+  }}
+  labels={{
+    "to-m1": <InlineMath math="\tfrac{3}{5}" />,
+    "to-h1": <InlineMath math="\tfrac{2}{5}" />,
+    "to-mm": <InlineMath math="\tfrac{2}{4}" />,
+    "to-mh": <InlineMath math="\tfrac{2}{4}" />,
+    "to-hm": <InlineMath math="\tfrac{3}{4}" />,
+    "to-hh": <InlineMath math="\tfrac{1}{4}" />,
+    mm: <InlineMath math="RR = \tfrac{6}{20}" />,
+    mh: <InlineMath math="RG = \tfrac{6}{20}" />,
+    hm: <InlineMath math="GR = \tfrac{6}{20}" />,
+    hh: <InlineMath math="GG = \tfrac{2}{20}" />,
+  }}
+/>
+
+The chance of two reds drops because fewer red marbles remain after the first red draw, while the four paths still sum to <InlineMath math="1" />:
+
+<MathContainer>
+  <BlockMath math="P(RR) = \frac{3}{5} \times \frac{2}{4} = \frac{6}{20} = \frac{3}{10} = 0.3" />
+  <BlockMath math="\frac{6 + 6 + 6 + 2}{20} = \frac{20}{20} = 1" />
+</MathContainer>
+
+This bar chart sets all four without-replacement outcome probabilities side by side.
+
+<BarChart
+  title={<>Outcome Distribution without Replacement</>}
+  description={
+    <>
+      Probabilities of the four colour pairs drawn without replacement from{" "}
+      <InlineMath math="3" /> red and <InlineMath math="2" /> green marbles.
+    </>
+  }
+  footer={
+    <>
+      The first three pairs tie at <InlineMath math="0.3" />, while{" "}
+      <InlineMath math="GG" /> sits lowest at <InlineMath math="0.1" />.
+    </>
+  }
+  data={[
+    { name: "RR", value: 0.3 },
+    { name: "RG", value: 0.3 },
+    { name: "GR", value: 0.3 },
+    { name: "GG", value: 0.1 },
+  ]}
+  yAxisLabel="Probability"
+  chartConfig={{
+    value: {
+      label: "Probability",
+      colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] },
+    },
+  }}
+/>
+
+Notice that getting **two different colours** means adding the <InlineMath math="RG" /> and <InlineMath math="GR" /> paths to get <InlineMath math="0.6" />. Distinct tree paths can't happen together, so you add them instead of multiplying.
+
+## Large Bags and Pin Boards
+
+Suppose a bag of <InlineMath math="n" /> marbles has a red fraction <InlineMath math="x" />. With replacement the chance of two reds is <InlineMath math="x^2" />, whereas without replacement it follows the formula below:
+
+<BlockMath math="P(\text{two reds without replacement}) = x \times \frac{nx - 1}{n - 1}" />
+
+Move <InlineMath math="n" /> in the graph below and watch **the without-replacement curve close in on <InlineMath math="x^2" />** as the bag gets larger.
+
+<MathVisual
+  title={<>Two Red Marbles with and without Replacement</>}
+  description={
+    <>
+      Horizontal axis shows the red marble fraction and vertical axis shows the
+      chance of two reds. The marker tracks <InlineMath math="r" /> red marbles
+      in a bag of <InlineMath math="n" />.
+    </>
+  }
+  footer={
+    <>
+      The larger <InlineMath math="n" /> grows, the smaller the gap between the
+      two curves.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 1 }, y: { min: 0, max: 1 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "n", min: 2, max: 40, value: 5, step: 1, label: "n" },
+      { name: "r", min: 1, max: 40, value: 3, step: 1, label: "r" },
+    ],
+    objects: [
+      { id: "with", kind: "function", appearance: "reference", formula: "x^2", domain: { min: 0, max: 1 } },
+      { id: "without", kind: "function", appearance: "primary", formula: "max(0, x (n x - 1)/(n - 1))", domain: { min: 0, max: 1 } },
+      { id: "bag", kind: "marker", x: "min(r, n)/n", y: "(min(r, n)/n) (min(r, n) - 1)/(n - 1)", appearance: "warning" },
+    ],
+    readouts: [
+      { key: "replace", formula: "(min(r, n)/n)^2" },
+      { key: "keep", formula: "(min(r, n)/n) (min(r, n) - 1)/(n - 1)" },
+    ],
+  }}
+  labels={{
+    n: <>Total marbles <InlineMath math="n" /></>,
+    r: <>Red marbles <InlineMath math="r" /></>,
+    replace: <>With replacement</>,
+    keep: <>Without replacement</>,
+  }}
+/>
+
+At <InlineMath math="n = 5" /> and <InlineMath math="r = 3" />, the readings sit noticeably apart at <InlineMath math="0.36" /> and <InlineMath math="0.3" />. At <InlineMath math="n = 40" /> and <InlineMath math="r = 24" />, the fraction is still <InlineMath math="\frac{3}{5}" />, yet the without-replacement chance climbs close to <InlineMath math="0.36" />:
+
+<BlockMath math="\frac{24}{40} \times \frac{23}{39} \approx 0.354" />
+
+Removing one marble barely nudges a large bag, so the two curves almost overlap.
+
+When every step is **independent in a chain**, you find the probability of any path by multiplying step by step. On the Galton board below, each ball bounces left or right at every row of pins without remembering earlier bounces.
+
+<GaltonBoardLab
+  title={<>Balls Bouncing through Six Rows of Pins</>}
+  description={
+    <>
+      Three hundred balls drop through six pin rows with the same chance of
+      going right at each pin. Glass marks show the distribution predicted by
+      independent steps.
+    </>
+  }
+  footer={
+    <>
+      Each pin bounce is independent, so most balls pile up in the middle bins.
+    </>
+  }
+  rows={6}
+  probability={0.5}
+  showExpected
+  labels={{
+    balls: <>Balls dropped</>,
+    expected: <>Expected count</>,
+    mean: <>Mean bin</>,
+    rows: "Pin rows",
+    spread: <>Standard deviation</>,
+    tilt: "Right-bounce chance",
+    viewLabel: "A walnut Galton board with six rows of pins and collection bins below",
+  }}
+/>
+
+The same rule runs two factory machines that break down independently. Say machine <InlineMath math="A" /> works with probability <InlineMath math="0.9" /> and machine <InlineMath math="B" /> with <InlineMath math="0.8" />. For **at least one machine working**, the complement is fastest:
+
+<MathContainer>
+  <BlockMath math="P(A \cap B) = 0.9 \times 0.8 = 0.72" />
+  <BlockMath math="P(\text{both fail}) = 0.1 \times 0.2 = 0.02" />
+  <BlockMath math="P(\text{at least one works}) = 1 - 0.02 = 0.98" />
+</MathContainer>
+
+Check <InlineMath math="0.98" /> by summing the three separate cases where at least one machine runs:
+
+<BlockMath math="0.9 \times 0.8 + 0.9 \times 0.2 + 0.1 \times 0.8 = 0.72 + 0.18 + 0.08 = 0.98" />
+
+Both routes land on the exact same answer, and the complement saves you from dropping a case.
+
+## Put the Rules to Work
+
+Before solving these three problems, check **whether the sample space shifts** on the second step. If nothing goes back in, lower the denominator by one, then verify every result with the path sum or complement.
+
+1. A box holds <InlineMath math="4" /> blue cards and <InlineMath math="6" /> yellow cards. Two cards are drawn one after another without replacement. Find the probability of two yellow cards and the probability of two different colours.
+
+2. Events <InlineMath math="A" /> and <InlineMath math="B" /> are independent with <InlineMath math="P(A) = 0.3" /> and <InlineMath math="P(B) = 0.6" />. Find <InlineMath math="P(A \cap B)" /> and <InlineMath math="P(A \cup B)" />.
+
+3. An archer hits the target with probability <InlineMath math="0.8" /> on each independent shot and shoots three times. Find the probability that all three hit and the probability that at least one misses.
+
+**Problem 1**. These draws are dependent because the first card stays out, so the card total drops from <InlineMath math="10" /> to <InlineMath math="9" />:
+
+<MathContainer>
+  <BlockMath math="P(\text{yellow, yellow}) = \frac{6}{10} \times \frac{5}{9} = \frac{30}{90} = \frac{1}{3}" />
+  <BlockMath math="P(\text{different colours}) = \frac{4}{10} \times \frac{6}{9} + \frac{6}{10} \times \frac{4}{9} = \frac{48}{90} = \frac{8}{15}" />
+</MathContainer>
+
+Check with the remaining path, two blue cards:
+
+<MathContainer>
+  <BlockMath math="P(\text{blue, blue}) = \frac{4}{10} \times \frac{3}{9} = \frac{12}{90}" />
+  <BlockMath math="\frac{30 + 48 + 12}{90} = \frac{90}{90} = 1" />
+</MathContainer>
+
+**Problem 2**. Multiply for the overlap, then apply the [addition rule](/en/subjects/mathematics/probability/addition-rule) for the union:
+
+<MathContainer>
+  <BlockMath math="P(A \cap B) = 0.3 \times 0.6 = 0.18" />
+  <BlockMath math="P(A \cup B) = 0.3 + 0.6 - 0.18 = 0.72" />
+</MathContainer>
+
+Check with the complement where neither <InlineMath math="A" /> nor <InlineMath math="B" /> occurs:
+
+<BlockMath math="1 - (0.7 \times 0.4) = 1 - 0.28 = 0.72" />
+
+**Problem 3**. All three shots are independent, so multiply three times for all hits, then take the complement for at least one miss:
+
+<MathContainer>
+  <BlockMath math="P(\text{three hits}) = 0.8 \times 0.8 \times 0.8 = 0.512" />
+  <BlockMath math="P(\text{at least one miss}) = 1 - 0.512 = 0.488" />
+</MathContainer>
+
+Quick check: the two events are complements, and <InlineMath math="0.512 + 0.488" /> adds right back to <InlineMath math="1" />.

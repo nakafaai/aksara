@@ -1,0 +1,519 @@
+export const metadata = {
+  title: "Unabhängige und abhängige Ereignisse",
+  description:
+    "Unterscheide unabhängige und abhängige Ereignisse, berechne Verbundwahrscheinlichkeiten am Baumdiagramm und prüfe sie mit Würfel und Urne.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2026-11-17",
+  subject: "Wahrscheinlichkeit",
+};
+
+## Wenn Chancen gleich bleiben
+
+Stell dir vor, du wirfst erst eine Münze und dann einen Würfel. Die Münze kann dem Würfel nichts zuflüstern, also ändert ihr Ergebnis die Würfelchance nie. Nimmst du dagegen ein Bonbon aus einem Glas und isst es, ändert sich der Inhalt für den nächsten Griff.
+
+Zwei Ereignisse sind **unabhängig**, wenn das Eintreten von <InlineMath math="A" /> die Wahrscheinlichkeit von <InlineMath math="B" /> nicht ändert. Die Wahrscheinlichkeit für beide zusammen ist das Produkt ihrer Einzelwahrscheinlichkeiten:
+
+<BlockMath math="P(A \cap B) = P(A) \times P(B)" />
+
+Zwei Ereignisse sind **abhängig**, wenn das Eintreten von <InlineMath math="A" /> die Wahrscheinlichkeit von <InlineMath math="B" /> ändert. Du multiplizierst trotzdem, nutzt aber als zweiten Faktor **die Wahrscheinlichkeit von <InlineMath math="B" /> nach <InlineMath math="A" />**, geschrieben <InlineMath math="P(B \mid A)" />:
+
+<BlockMath math="P(A \cap B) = P(A) \times P(B \mid A)" />
+
+> Zwei Ereignisse sind nur dann unabhängig, wenn das Ergebnis des ersten Versuchs den Ergebnisraum für den zweiten Versuch unverändert lässt.
+
+Bei unabhängigen Ereignissen ist <InlineMath math="P(B \mid A)" /> gleich <InlineMath math="P(B)" />, sodass die zweite Formel zur ersten wird. Das Flächendiagramm unten zeigt, warum das Produkt bei Unabhängigkeit funktioniert.
+
+<MathVisual
+  title={<>Das Produkt von Wahrscheinlichkeiten als Fläche</>}
+  description={
+    <>
+      Ein Einheitsquadrat steht für den gesamten Ergebnisraum. Der senkrechte
+      Streifen ist <InlineMath math="P(A) = 0{,}6" />, der waagerechte ist{" "}
+      <InlineMath math="P(B) = 0{,}5" />, und ihre Schnittfläche ist{" "}
+      <InlineMath math="0{,}3" />.
+    </>
+  }
+  footer={
+    <>
+      Im Streifen <InlineMath math="A" /> bleibt der Anteil von{" "}
+      <InlineMath math="B" /> genau die Hälfte, wie im ganzen Quadrat.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.2, max: 1.2 }, y: { min: -0.2, max: 1.2 } },
+    view: { kind: "fit", padding: 0.05 },
+    objects: [
+      { id: "space", kind: "polygon", vertices: [{ x: 0, y: 0 }, { x: 1, y: 0 }, { x: 1, y: 1 }, { x: 0, y: 1 }], appearance: "reference" },
+      { id: "a", kind: "polygon", vertices: [{ x: 0, y: 0 }, { x: 0.6, y: 0 }, { x: 0.6, y: 1 }, { x: 0, y: 1 }], appearance: "primary" },
+      { id: "b", kind: "polygon", vertices: [{ x: 0, y: 0 }, { x: 1, y: 0 }, { x: 1, y: 0.5 }, { x: 0, y: 0.5 }], appearance: "secondary" },
+      { id: "both", kind: "polygon", vertices: [{ x: 0, y: 0 }, { x: 0.6, y: 0 }, { x: 0.6, y: 0.5 }, { x: 0, y: 0.5 }], appearance: "highlight" },
+    ],
+    labels: [
+      { key: "a", objectId: "a", at: { x: 0.3, y: 1 }, placement: "above" },
+      { key: "b", objectId: "b", at: { x: 1, y: 0.25 }, placement: "right" },
+      { key: "both", objectId: "both", at: { x: 0.3, y: 0.25 }, placement: "above" },
+    ],
+  }}
+  labels={{
+    a: <InlineMath math="P(A) = 0{,}6" />,
+    b: <InlineMath math="P(B) = 0{,}5" />,
+    both: <InlineMath math="0{,}3" />,
+  }}
+/>
+
+Achte auf den Höhenanteil im Streifen <InlineMath math="A" />. Zu wissen, dass <InlineMath math="A" /> eingetreten ist, ändert den Anteil von <InlineMath math="B" /> nicht, also entspricht **die Schnittwahrscheinlichkeit <InlineMath math="P(A \cap B)" />** genau der Rechteckfläche <InlineMath math="0{,}6 \times 0{,}5" />.
+
+## Zwei Versuche prüfen
+
+Um Unabhängigkeit zu prüfen, fragst du dich immer, ob **das erste Ergebnis die Chance des zweiten ändert**. Teste diese Regel zuerst an Würfelwürfen und trenne sie sauber von unvereinbaren Ereignissen.
+
+### Würfel ohne Gedächtnis
+
+Wirfst du zwei Würfel, beeinflusst der erste Würfel den zweiten nicht. Die Wahrscheinlichkeit, dass beide eine <InlineMath math="6" /> zeigen und die Summe <InlineMath math="12" /> entsteht, rechnest du direkt als Produkt:
+
+<BlockMath math="P(6 \text{ und } 6) = \frac{1}{6} \times \frac{1}{6} = \frac{1}{36}" />
+
+Wirf zwei Würfel im Versuch unten dreihundert Mal und beobachte, ob sich **der Anteil der Summe <InlineMath math="12" />** dem theoretischen Wert nähert.
+
+<DiceRollLab
+  title={<>Zwei Würfel dreihundert Mal werfen</>}
+  description={
+    <>
+      Zwei Würfel fallen dreihundert Mal gemeinsam in die Schale. Der Stapel bei
+      Summe <InlineMath math="12" /> zählt die Würfe mit zweimal{" "}
+      <InlineMath math="6" />.
+    </>
+  }
+  footer={
+    <>
+      Nur das Paar <InlineMath math="(6, 6)" /> ergibt Summe{" "}
+      <InlineMath math="12" />, daher liegt die Chance bei{" "}
+      <InlineMath math="\frac{1}{36}" />.
+    </>
+  }
+  dice={2}
+  target={12}
+  labels={{
+    frequency: <>Beobachteter Anteil</>,
+    hits: <>Summe <InlineMath math="12" /></>,
+    probability: <>Theoretische Chance</>,
+    trials: <>Anzahl der Würfe</>,
+    viewLabel: "Eine Filzschale mit zwei Würfeln und Chipstapeln für jede Augensumme",
+  }}
+/>
+
+Die relative Häufigkeit pendelt um <InlineMath math="\frac{1}{36}" />, weil unter <InlineMath math="36" /> gleich wahrscheinlichen Paaren nur <InlineMath math="(6, 6)" /> die Summe <InlineMath math="12" /> liefert.
+
+Vergleiche das mit einem einzigen Würfelwurf. Sei <InlineMath math="A" /> das Ereignis einer geraden Zahl und <InlineMath math="B" /> das Ereignis einer Zahl über <InlineMath math="3" />. Ihre Schnittmenge ist <InlineMath math="\{4, 6\}" />, also vergleiche diese beiden Werte:
+
+<MathContainer>
+  <BlockMath math="P(A \cap B) = \frac{2}{6} = \frac{1}{3}" />
+  <BlockMath math="P(A) \times P(B) = \frac{3}{6} \times \frac{3}{6} = \frac{1}{4}" />
+</MathContainer>
+
+Da <InlineMath math="\frac{1}{3}" /> ungleich <InlineMath math="\frac{1}{4}" /> ist, sind beide Ereignisse **abhängig**. Die Probe über den Sinn bestätigt es: Weißt du schon, dass die Zahl gerade ist, bleiben nur <InlineMath math="\{2, 4, 6\}" />, und <InlineMath math="P(B \mid A)" /> steigt auf <InlineMath math="\frac{2}{3}" />.
+
+### Nicht unvereinbar
+
+Oft werden unabhängige Ereignisse mit [unvereinbaren Ereignissen](/de/faecher/mathematik/wahrscheinlichkeit/zwei-unvereinbare-ereignisse) verwechselt, obwohl sie gegenteilig wirken. Haben zwei unvereinbare Ereignisse beide eine positive Chance, drückt das Eintreten von <InlineMath math="A" /> **die Chance von <InlineMath math="B" /> sofort auf null**.
+
+<BlockMath math="P(A \cap B) = 0 \neq P(A) \times P(B)" />
+
+Weil das Produkt positiv und der Schnitt null ist, sind zwei solche unvereinbaren Ereignisse immer abhängig. Die Tabelle ordnet typische Alltagssituationen vor der Formelwahl ein.
+
+| Situation | Art | Grund |
+| :--- | :--- | :--- |
+| Eine Münze zweimal werfen | Unabhängig | Die Münze erinnert sich nicht an den ersten Wurf |
+| Zwei Kugeln mit Zurücklegen ziehen | Unabhängig | Die erste Kugel kommt zurück, die Urne bleibt gleich |
+| Zwei Kugeln ohne Zurücklegen ziehen | Abhängig | Die Urne verliert eine Kugel, die Brüche ändern sich |
+| Zwei Jugendliche für zwei verschiedene Ämter wählen | Abhängig | Wer zuerst gewählt wurde, scheidet für das zweite Amt aus |
+
+Das Ablaufdiagramm fasst die Entscheidung vor dem Multiplizieren zusammen.
+
+<Mermaid
+  title={<>Die richtige Regel für beide Ereignisse wählen</>}
+  description={
+    <>
+      Prüfe vor dem Multiplizieren, ob das erste Ergebnis den Ergebnisraum
+      verändert.
+    </>
+  }
+  footer={
+    <>
+      Unabhängig nutzt den alten Bruch, abhängig nutzt den geänderten Bruch.
+    </>
+  }
+  chart={`flowchart TD
+  A["Ereignisse A und B aufschreiben"] --> B{"Ändert A die Chance von B?"}
+  B -->|"nein, unabhängig"| C["P(A) x P(B)"]
+  B -->|"ja, abhängig"| D["P(A) x P(B nach A)"]
+  C --> E["Prüfen: alle Pfade im Baum ergeben zusammen 1"]
+  D --> E`}
+/>
+
+Dieser letzte Prüfschritt fängt fast jeden Rechenfehler ab. Wenn **die Summe aller Pfade im Baum** nicht <InlineMath math="1" /> ergibt, stimmt mindestens ein Zweig nicht.
+
+## Kugeln in der Urne
+
+Nimm ein Glas mit <InlineMath math="3" /> roten und <InlineMath math="2" /> grünen Kugeln und ziehe zweimal hintereinander. Wechsle im Labor unten zwischen **Zurücklegen** und **Draußen lassen**, um zu sehen, wie sich die Chance auf zweimal Rot verschiebt.
+
+<MarbleDrawLab
+  title={<>Zwei Kugeln aus einer Urne ziehen</>}
+  description={
+    <>
+      Vergleiche Ziehen mit und ohne Zurücklegen aus einem Glas mit{" "}
+      <InlineMath math="3" /> roten und <InlineMath math="2" /> grünen Kugeln
+      über tausend Versuche.
+    </>
+  }
+  footer={
+    <>
+      Bleibt die erste Kugel draußen, sinkt die Chance auf zweimal Rot von{" "}
+      <InlineMath math="0{,}36" /> auf <InlineMath math="0{,}3" />.
+    </>
+  }
+  marbles={[
+    { color: "red", count: 3 },
+    { color: "green", count: 2 },
+  ]}
+  rule="keep"
+  event={{ first: "red", second: "red" }}
+  labels={{
+    both: <>Zweimal Rot</>,
+    first: <>Erster Zug</>,
+    frequency: <>Anteil bei tausend Zügen</>,
+    rule: "Ziehregel",
+    rules: {
+      keep: "Ohne Zurücklegen",
+      replace: "Mit Zurücklegen",
+    },
+    second: <>Zweiter Zug</>,
+    trials: <>Durchläufe</>,
+    viewLabel: "Ein Glas mit drei roten und zwei grünen Kugeln neben einer Zähltafel",
+  }}
+/>
+
+Dieser Unterschied entsteht direkt durch den Inhalt der Urne beim zweiten Zug. Gehen wir beide Fälle am Baumdiagramm durch, damit jeder Pfad klar vor dir liegt.
+
+### Baum mit Zurücklegen
+
+Notierst du die Farbe der ersten Kugel und **legst sie zurück**, liegen weiterhin <InlineMath math="3" /> rote <InlineMath math="(R)" /> und <InlineMath math="2" /> grüne <InlineMath math="(G)" /> Kugeln im Glas. Jeder Zweig der zweiten Stufe behält genau dieselben Brüche wie auf der ersten Stufe.
+
+<MathVisual
+  title={<>Baumdiagramm mit Zurücklegen</>}
+  description={
+    <>
+      Der rote Zweig bleibt stets <InlineMath math="\frac{3}{5}" /> und der
+      grüne stets <InlineMath math="\frac{2}{5}" />. Multipliziere entlang eines
+      Pfads für seine Ergebniswahrscheinlichkeit.
+    </>
+  }
+  footer={
+    <>
+      Alle Brüche bleiben auf beiden Stufen gleich, weil keine Kugel fehlt.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 10 }, y: { min: 0, max: 6 } },
+    view: { kind: "fit", padding: 0.05 },
+    objects: [
+      { id: "root", kind: "point", at: { x: 0.4, y: 3 }, appearance: "reference" },
+      { id: "m1", kind: "point", at: { x: 3.4, y: 4.6 }, appearance: "primary" },
+      { id: "h1", kind: "point", at: { x: 3.4, y: 1.4 }, appearance: "secondary" },
+      { id: "mm", kind: "point", at: { x: 6.8, y: 5.4 }, appearance: "primary" },
+      { id: "mh", kind: "point", at: { x: 6.8, y: 3.8 }, appearance: "secondary" },
+      { id: "hm", kind: "point", at: { x: 6.8, y: 2.2 }, appearance: "primary" },
+      { id: "hh", kind: "point", at: { x: 6.8, y: 0.6 }, appearance: "secondary" },
+      { id: "to-m1", kind: "segment", from: { x: 0.4, y: 3 }, to: { x: 3.4, y: 4.6 }, appearance: "primary" },
+      { id: "to-h1", kind: "segment", from: { x: 0.4, y: 3 }, to: { x: 3.4, y: 1.4 }, appearance: "secondary" },
+      { id: "to-mm", kind: "segment", from: { x: 3.4, y: 4.6 }, to: { x: 6.8, y: 5.4 }, appearance: "primary" },
+      { id: "to-mh", kind: "segment", from: { x: 3.4, y: 4.6 }, to: { x: 6.8, y: 3.8 }, appearance: "secondary" },
+      { id: "to-hm", kind: "segment", from: { x: 3.4, y: 1.4 }, to: { x: 6.8, y: 2.2 }, appearance: "primary" },
+      { id: "to-hh", kind: "segment", from: { x: 3.4, y: 1.4 }, to: { x: 6.8, y: 0.6 }, appearance: "secondary" },
+    ],
+    labels: [
+      { key: "to-m1", objectId: "to-m1", at: { x: 1.9, y: 3.8 }, placement: "above-left" },
+      { key: "to-h1", objectId: "to-h1", at: { x: 1.9, y: 2.2 }, placement: "below-left" },
+      { key: "to-mm", objectId: "to-mm", at: { x: 5.1, y: 5 }, placement: "above" },
+      { key: "to-mh", objectId: "to-mh", at: { x: 5.1, y: 4.2 }, placement: "below" },
+      { key: "to-hm", objectId: "to-hm", at: { x: 5.1, y: 1.8 }, placement: "above" },
+      { key: "to-hh", objectId: "to-hh", at: { x: 5.1, y: 1 }, placement: "below" },
+      { key: "mm", objectId: "mm", at: { x: 6.8, y: 5.4 }, placement: "right" },
+      { key: "mh", objectId: "mh", at: { x: 6.8, y: 3.8 }, placement: "right" },
+      { key: "hm", objectId: "hm", at: { x: 6.8, y: 2.2 }, placement: "right" },
+      { key: "hh", objectId: "hh", at: { x: 6.8, y: 0.6 }, placement: "right" },
+    ],
+  }}
+  labels={{
+    "to-m1": <InlineMath math="\tfrac{3}{5}" />,
+    "to-h1": <InlineMath math="\tfrac{2}{5}" />,
+    "to-mm": <InlineMath math="\tfrac{3}{5}" />,
+    "to-mh": <InlineMath math="\tfrac{2}{5}" />,
+    "to-hm": <InlineMath math="\tfrac{3}{5}" />,
+    "to-hh": <InlineMath math="\tfrac{2}{5}" />,
+    mm: <InlineMath math="RR = \tfrac{9}{25}" />,
+    mh: <InlineMath math="RG = \tfrac{6}{25}" />,
+    hm: <InlineMath math="GR = \tfrac{6}{25}" />,
+    hh: <InlineMath math="GG = \tfrac{4}{25}" />,
+  }}
+/>
+
+Multipliziere den oberen Pfad für zweimal Rot und prüfe dann die Summe aller vier Pfade:
+
+<MathContainer>
+  <BlockMath math="P(RR) = \frac{3}{5} \times \frac{3}{5} = \frac{9}{25} = 0{,}36" />
+  <BlockMath math="\frac{9 + 6 + 6 + 4}{25} = \frac{25}{25} = 1" />
+</MathContainer>
+
+Die vier Ergebnisse ergeben genau <InlineMath math="1" />, es fehlt also kein möglicher Ausgang.
+
+### Baum ohne Zurücklegen
+
+Jetzt bleibt die erste Kugel **außerhalb der Urne**. Nur noch <InlineMath math="4" /> Kugeln sind übrig, also fällt jeder Nenner der zweiten Stufe auf <InlineMath math="4" /> und die Zähler passen sich der zuerst gezogenen Farbe an.
+
+<MathVisual
+  title={<>Baumdiagramm ohne Zurücklegen</>}
+  description={
+    <>
+      Nach einer roten Kugel bleiben <InlineMath math="2" /> rote und{" "}
+      <InlineMath math="2" /> grüne. Nach einer grünen Kugel bleiben{" "}
+      <InlineMath math="3" /> rote und <InlineMath math="1" /> grüne.
+    </>
+  }
+  footer={
+    <>
+      Jeder Nenner der zweiten Stufe sinkt auf <InlineMath math="4" />, weil
+      eine Kugel fehlt.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 10 }, y: { min: 0, max: 6 } },
+    view: { kind: "fit", padding: 0.05 },
+    objects: [
+      { id: "root", kind: "point", at: { x: 0.4, y: 3 }, appearance: "reference" },
+      { id: "m1", kind: "point", at: { x: 3.4, y: 4.6 }, appearance: "primary" },
+      { id: "h1", kind: "point", at: { x: 3.4, y: 1.4 }, appearance: "secondary" },
+      { id: "mm", kind: "point", at: { x: 6.8, y: 5.4 }, appearance: "primary" },
+      { id: "mh", kind: "point", at: { x: 6.8, y: 3.8 }, appearance: "secondary" },
+      { id: "hm", kind: "point", at: { x: 6.8, y: 2.2 }, appearance: "primary" },
+      { id: "hh", kind: "point", at: { x: 6.8, y: 0.6 }, appearance: "secondary" },
+      { id: "to-m1", kind: "segment", from: { x: 0.4, y: 3 }, to: { x: 3.4, y: 4.6 }, appearance: "primary" },
+      { id: "to-h1", kind: "segment", from: { x: 0.4, y: 3 }, to: { x: 3.4, y: 1.4 }, appearance: "secondary" },
+      { id: "to-mm", kind: "segment", from: { x: 3.4, y: 4.6 }, to: { x: 6.8, y: 5.4 }, appearance: "primary" },
+      { id: "to-mh", kind: "segment", from: { x: 3.4, y: 4.6 }, to: { x: 6.8, y: 3.8 }, appearance: "secondary" },
+      { id: "to-hm", kind: "segment", from: { x: 3.4, y: 1.4 }, to: { x: 6.8, y: 2.2 }, appearance: "primary" },
+      { id: "to-hh", kind: "segment", from: { x: 3.4, y: 1.4 }, to: { x: 6.8, y: 0.6 }, appearance: "secondary" },
+    ],
+    labels: [
+      { key: "to-m1", objectId: "to-m1", at: { x: 1.9, y: 3.8 }, placement: "above-left" },
+      { key: "to-h1", objectId: "to-h1", at: { x: 1.9, y: 2.2 }, placement: "below-left" },
+      { key: "to-mm", objectId: "to-mm", at: { x: 5.1, y: 5 }, placement: "above" },
+      { key: "to-mh", objectId: "to-mh", at: { x: 5.1, y: 4.2 }, placement: "below" },
+      { key: "to-hm", objectId: "to-hm", at: { x: 5.1, y: 1.8 }, placement: "above" },
+      { key: "to-hh", objectId: "to-hh", at: { x: 5.1, y: 1 }, placement: "below" },
+      { key: "mm", objectId: "mm", at: { x: 6.8, y: 5.4 }, placement: "right" },
+      { key: "mh", objectId: "mh", at: { x: 6.8, y: 3.8 }, placement: "right" },
+      { key: "hm", objectId: "hm", at: { x: 6.8, y: 2.2 }, placement: "right" },
+      { key: "hh", objectId: "hh", at: { x: 6.8, y: 0.6 }, placement: "right" },
+    ],
+  }}
+  labels={{
+    "to-m1": <InlineMath math="\tfrac{3}{5}" />,
+    "to-h1": <InlineMath math="\tfrac{2}{5}" />,
+    "to-mm": <InlineMath math="\tfrac{2}{4}" />,
+    "to-mh": <InlineMath math="\tfrac{2}{4}" />,
+    "to-hm": <InlineMath math="\tfrac{3}{4}" />,
+    "to-hh": <InlineMath math="\tfrac{1}{4}" />,
+    mm: <InlineMath math="RR = \tfrac{6}{20}" />,
+    mh: <InlineMath math="RG = \tfrac{6}{20}" />,
+    hm: <InlineMath math="GR = \tfrac{6}{20}" />,
+    hh: <InlineMath math="GG = \tfrac{2}{20}" />,
+  }}
+/>
+
+Die Chance auf zweimal Rot sinkt, weil nach dem ersten roten Zug eine rote Kugel fehlt, während alle vier Pfade weiter zusammen <InlineMath math="1" /> ergeben:
+
+<MathContainer>
+  <BlockMath math="P(RR) = \frac{3}{5} \times \frac{2}{4} = \frac{6}{20} = \frac{3}{10} = 0{,}3" />
+  <BlockMath math="\frac{6 + 6 + 6 + 2}{20} = \frac{20}{20} = 1" />
+</MathContainer>
+
+Das Balkendiagramm stellt die vier Wahrscheinlichkeiten ohne Zurücklegen direkt nebeneinander.
+
+<BarChart
+  title={<>Verteilung der Ergebnisse ohne Zurücklegen</>}
+  description={
+    <>
+      Wahrscheinlichkeiten der vier Farbpaare beim Ziehen ohne Zurücklegen aus{" "}
+      <InlineMath math="3" /> roten und <InlineMath math="2" /> grünen Kugeln.
+    </>
+  }
+  footer={
+    <>
+      Die ersten drei Paare liegen gleichauf bei <InlineMath math="0{,}3" />,{" "}
+      <InlineMath math="GG" /> am tiefsten bei <InlineMath math="0{,}1" />.
+    </>
+  }
+  data={[
+    { name: "RR", value: 0.3 },
+    { name: "RG", value: 0.3 },
+    { name: "GR", value: 0.3 },
+    { name: "GG", value: 0.1 },
+  ]}
+  yAxisLabel="Wahrscheinlichkeit"
+  chartConfig={{
+    value: {
+      label: "Wahrscheinlichkeit",
+      colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] },
+    },
+  }}
+/>
+
+Für **zwei verschiedene Farben** addierst du die Pfade <InlineMath math="RG" /> und <InlineMath math="GR" /> zu <InlineMath math="0{,}6" />. Verschiedene Pfade treten nie gleichzeitig auf, daher werden sie addiert und nicht multipliziert.
+
+## Große Urnen und Brett
+
+Angenommen, eine Urne mit <InlineMath math="n" /> Kugeln enthält den roten Anteil <InlineMath math="x" />. Mit Zurücklegen beträgt die Chance auf zweimal Rot <InlineMath math="x^2" />, ohne Zurücklegen folgt sie dieser Formel:
+
+<BlockMath math="P(\text{zweimal Rot ohne Zurücklegen}) = x \times \frac{nx - 1}{n - 1}" />
+
+Verschiebe <InlineMath math="n" /> im Graphen unten und beobachte, wie **die Kurve ohne Zurücklegen an <InlineMath math="x^2" /> heranrückt**, sobald die Urne größer wird.
+
+<MathVisual
+  title={<>Zweimal Rot mit und ohne Zurücklegen</>}
+  description={
+    <>
+      Waagerecht liegt der rote Anteil in der Urne, senkrecht die Chance auf
+      zweimal Rot. Der Punkt zeigt <InlineMath math="r" /> rote von{" "}
+      <InlineMath math="n" /> Kugeln.
+    </>
+  }
+  footer={
+    <>
+      Je größer <InlineMath math="n" /> wird, desto kleiner bleibt der Abstand
+      zwischen beiden Kurven.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 1 }, y: { min: 0, max: 1 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "n", min: 2, max: 40, value: 5, step: 1, label: "n" },
+      { name: "r", min: 1, max: 40, value: 3, step: 1, label: "r" },
+    ],
+    objects: [
+      { id: "with", kind: "function", appearance: "reference", formula: "x^2", domain: { min: 0, max: 1 } },
+      { id: "without", kind: "function", appearance: "primary", formula: "max(0, x (n x - 1)/(n - 1))", domain: { min: 0, max: 1 } },
+      { id: "bag", kind: "marker", x: "min(r, n)/n", y: "(min(r, n)/n) (min(r, n) - 1)/(n - 1)", appearance: "warning" },
+    ],
+    readouts: [
+      { key: "replace", formula: "(min(r, n)/n)^2" },
+      { key: "keep", formula: "(min(r, n)/n) (min(r, n) - 1)/(n - 1)" },
+    ],
+  }}
+  labels={{
+    n: <>Kugeln gesamt <InlineMath math="n" /></>,
+    r: <>Rote Kugeln <InlineMath math="r" /></>,
+    replace: <>Mit Zurücklegen</>,
+    keep: <>Ohne Zurücklegen</>,
+  }}
+/>
+
+Bei <InlineMath math="n = 5" /> und <InlineMath math="r = 3" /> liegen die Werte deutlich getrennt bei <InlineMath math="0{,}36" /> und <InlineMath math="0{,}3" />. Bei <InlineMath math="n = 40" /> und <InlineMath math="r = 24" /> bleibt der Anteil <InlineMath math="\frac{3}{5}" />, doch der Wert ohne Zurücklegen klettert fast bis <InlineMath math="0{,}36" />:
+
+<BlockMath math="\frac{24}{40} \times \frac{23}{39} \approx 0{,}354" />
+
+Ein einzelner Zug verändert eine große Urne kaum, darum decken sich beide Kurven beinahe.
+
+Sind alle Schritte **unabhängig hintereinander**, findest du die Wahrscheinlichkeit jeder langen Kette durch schrittweises Multiplizieren. Am Galtonbrett unten prallt jede Kugel an sechs Nagelreihen nach links oder rechts ab, ohne frühere Abpraller zu kennen.
+
+<GaltonBoardLab
+  title={<>Kugeln über sechs Nagelreihen fallen lassen</>}
+  description={
+    <>
+      Dreihundert Kugeln fallen durch sechs Nagelreihen mit gleicher Chance nach
+      rechts an jedem Nagel. Die Marken zeigen die erwartete Verteilung
+      unabhängiger Schritte.
+    </>
+  }
+  footer={
+    <>
+      Jeder Abpraller ist unabhängig, darum sammeln sich die meisten Kugeln in
+      der Mitte.
+    </>
+  }
+  rows={6}
+  probability={0.5}
+  showExpected
+  labels={{
+    balls: <>Gefallene Kugeln</>,
+    expected: <>Erwartete Anzahl</>,
+    mean: <>Mittleres Fach</>,
+    rows: "Nagelreihen",
+    spread: <>Standardabweichung</>,
+    tilt: "Chance nach rechts",
+    viewLabel: "Ein Galtonbrett aus Holz mit sechs Nagelreihen und Auffangfächern unten",
+  }}
+/>
+
+Dieselbe Regel gilt für zwei Fabrikmaschinen, die unabhängig ausfallen. Maschine <InlineMath math="A" /> läuft mit Wahrscheinlichkeit <InlineMath math="0{,}9" />, Maschine <InlineMath math="B" /> mit <InlineMath math="0{,}8" />. Für **mindestens eine laufende Maschine** ist das Gegenereignis am schnellsten:
+
+<MathContainer>
+  <BlockMath math="P(A \cap B) = 0{,}9 \times 0{,}8 = 0{,}72" />
+  <BlockMath math="P(\text{beide fallen aus}) = 0{,}1 \times 0{,}2 = 0{,}02" />
+  <BlockMath math="P(\text{mindestens eine läuft}) = 1 - 0{,}02 = 0{,}98" />
+</MathContainer>
+
+Prüfe <InlineMath math="0{,}98" /> über die Summe der drei einzelnen Fälle, in denen mindestens eine Maschine läuft:
+
+<BlockMath math="0{,}9 \times 0{,}8 + 0{,}9 \times 0{,}2 + 0{,}1 \times 0{,}8 = 0{,}72 + 0{,}18 + 0{,}08 = 0{,}98" />
+
+Beide Wege landen beim selben Wert, und das Gegenereignis verhindert vergessene Fälle.
+
+## Regeln direkt anwenden
+
+Prüfe vor diesen drei Aufgaben zuerst, **ob sich der Ergebnisraum beim zweiten Schritt ändert**. Ohne Zurücklegen sinkt der Nenner um eins, danach prüfst du jedes Ergebnis über Pfadsumme oder Gegenereignis.
+
+1. Eine Schachtel enthält <InlineMath math="4" /> blaue und <InlineMath math="6" /> gelbe Karten. Zwei Karten werden nacheinander ohne Zurücklegen gezogen. Bestimme die Wahrscheinlichkeit für zwei gelbe Karten und für zwei verschiedene Farben.
+
+2. Die Ereignisse <InlineMath math="A" /> und <InlineMath math="B" /> sind unabhängig mit <InlineMath math="P(A) = 0{,}3" /> und <InlineMath math="P(B) = 0{,}6" />. Bestimme <InlineMath math="P(A \cap B)" /> und <InlineMath math="P(A \cup B)" />.
+
+3. Eine Bogenschützin trifft jeden unabhängigen Schuss mit Wahrscheinlichkeit <InlineMath math="0{,}8" /> und schießt dreimal. Bestimme die Wahrscheinlichkeit für drei Treffer und für mindestens einen Fehlschuss.
+
+**Aufgabe 1**. Die Züge sind abhängig, weil die erste Karte draußen bleibt, sodass die Kartenzahl von <InlineMath math="10" /> auf <InlineMath math="9" /> fällt:
+
+<MathContainer>
+  <BlockMath math="P(\text{gelb, gelb}) = \frac{6}{10} \times \frac{5}{9} = \frac{30}{90} = \frac{1}{3}" />
+  <BlockMath math="P(\text{verschiedene Farben}) = \frac{4}{10} \times \frac{6}{9} + \frac{6}{10} \times \frac{4}{9} = \frac{48}{90} = \frac{8}{15}" />
+</MathContainer>
+
+Prüfe mit dem übrigen Pfad für zwei blaue Karten:
+
+<MathContainer>
+  <BlockMath math="P(\text{blau, blau}) = \frac{4}{10} \times \frac{3}{9} = \frac{12}{90}" />
+  <BlockMath math="\frac{30 + 48 + 12}{90} = \frac{90}{90} = 1" />
+</MathContainer>
+
+**Aufgabe 2**. Multipliziere für die Schnittmenge und nutze dann den [Additionssatz](/de/faecher/mathematik/wahrscheinlichkeit/additionssatz) für die Vereinigung:
+
+<MathContainer>
+  <BlockMath math="P(A \cap B) = 0{,}3 \times 0{,}6 = 0{,}18" />
+  <BlockMath math="P(A \cup B) = 0{,}3 + 0{,}6 - 0{,}18 = 0{,}72" />
+</MathContainer>
+
+Prüfe über das Gegenereignis, bei dem weder <InlineMath math="A" /> noch <InlineMath math="B" /> eintritt:
+
+<BlockMath math="1 - (0{,}7 \times 0{,}4) = 1 - 0{,}28 = 0{,}72" />
+
+**Aufgabe 3**. Alle drei Schüsse sind unabhängig, also multiplizierst du dreimal für drei Treffer und nutzt das Gegenereignis für mindestens einen Fehlschuss:
+
+<MathContainer>
+  <BlockMath math="P(\text{drei Treffer}) = 0{,}8 \times 0{,}8 \times 0{,}8 = 0{,}512" />
+  <BlockMath math="P(\text{mindestens ein Fehlschuss}) = 1 - 0{,}512 = 0{,}488" />
+</MathContainer>
+
+Kurze Probe: Beide Ereignisse ergänzen einander, und <InlineMath math="0{,}512 + 0{,}488" /> ergibt wieder genau <InlineMath math="1" />.
