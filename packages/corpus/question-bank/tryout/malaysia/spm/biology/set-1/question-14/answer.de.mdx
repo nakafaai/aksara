@@ -1,16 +1,74 @@
-# Wann die Antikörper der Mutter aufgebraucht sind, dann zurückrechnen
+# Gegeben
 
-Die Antikörper der Mutter halbieren sich alle <InlineMath math="30" /> Tage. **Die Impfung muss um die Verzögerung von <InlineMath math="14" /> Tagen früher erfolgen**, damit die eigenen Antikörper des Babys genau dann bereitstehen, wenn die der Mutter unter die Schwelle fallen.
+Ein Neugeborenes trägt <InlineMath math="160" /> Einheiten mütterlicher Antikörper aus der Plazenta, die sich **alle <InlineMath math="30" /> Tage halbieren**. Der Schutz bleibt bestehen, solange mindestens <InlineMath math="20" /> Einheiten vorhanden sind.
+
+Nach der ersten Gabe von Impfstoff X benötigen die eigenen Antikörper des Babys <InlineMath math="14" /> Tage, bis sie <InlineMath math="20" /> Einheiten erreichen.
+
+# Gesucht
+
+An welchem Tag muss die erste Impfung spätestens erfolgen, damit durchgehender Schutz besteht, und welche Immunität verleihen die mütterlichen Antikörper?
+
+# Lösung
+
+Stell dir die Antikörper der Mutter wie eine geliehene Flasche mit <InlineMath math="160" /> Tropfen vor, die sich alle <InlineMath math="30" /> Tage halbiert (<InlineMath math="160" /> auf <InlineMath math="80" /> auf <InlineMath math="40" /> auf <InlineMath math="20" /> an Tag <InlineMath math="90" />). Da der Körper des Babys <InlineMath math="14" /> Tage Vorlauf braucht, **muss die Impfung <InlineMath math="14" /> Tage vor dem Unterschreiten der Schwelle erfolgen**.
+
+> Der späteste Impftag ergibt sich, indem die Vorlaufzeit der Immunantwort vom Tag abgezogen wird, an dem die mütterlichen Antikörper die Schutzschwelle erreichen.
+
+Schieb den Impftag <InlineMath math="a" /> im Graphen und vergleiche, wann die eigenen Antikörper die Schwelle von <InlineMath math="20" /> Einheiten im Vergleich zu Tag <InlineMath math="90" /> erreichen.
+
+<MathVisual
+  title={<>Abbau mütterlicher Antikörper und Impfschutz des Babys</>}
+  description={
+    <>
+      Die blaue Kurve zeigt den Abbau alle <InlineMath math="30" /> Tage bis zur
+      Schwelle von <InlineMath math="20" /> Einheiten an Tag <InlineMath math="90" />.
+      Schieb den Impftag <InlineMath math="a" />, damit der grüne Punkt exakt auf Tag <InlineMath math="90" /> fällt.
+    </>
+  }
+  footer={<>Eine Impfung an Tag <InlineMath math="76" /> wirkt genau ab Tag <InlineMath math="90" /> ohne jede Schutzlücke.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 120 }, y: { min: 0, max: 170 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [{ name: "a", min: 60, max: 100, value: 76, step: 2, label: "a" }],
+    objects: [
+      { id: "decay", kind: "function", appearance: "primary", formula: "160 * 0.5^(x / 30)", domain: { min: 0, max: 115 } },
+      { id: "threshold", kind: "segment", appearance: "construction", from: { x: 0, y: 20 }, to: { x: 120, y: 20 } },
+      { id: "limit", kind: "marker", appearance: "warning", x: "90", y: "20" },
+      { id: "given", kind: "marker", appearance: "primary", x: "a", y: "160 * 0.5^(a / 30)" },
+      { id: "ready", kind: "marker", appearance: "answer", x: "a + 14", y: "20" },
+    ],
+    readouts: [
+      { key: "ready-day", formula: "a + 14" },
+      { key: "gap-days", formula: "a + 14 - 90" },
+    ],
+  }}
+  labels={{
+    a: <>Tag der Impfung</>,
+    "ready-day": <>Tag des eigenen Schutzes</>,
+    "gap-days": <>Tage nach Schwelle (<InlineMath math="90" />)</>,
+  }}
+/>
+
+Sobald <InlineMath math="a" /> hinter Tag <InlineMath math="76" /> liegt, rutscht der grüne Punkt rechts an Tag <InlineMath math="90" /> vorbei und es entsteht eine Schutzlücke.
+
+## Halbwertszeit und Immunitätsart
+
+Zähle die Halbierungen von <InlineMath math="160" /> bis <InlineMath math="20" /> Einheiten und ziehe die **<InlineMath math="14" /> Tage Verzögerung** ab.
 
 <BlockMath math="\begin{aligned}
-160\to80\to40\to20&:\ 3\times30=90\text{ Tage}\\
-\text{spätester Impftag}&=90-14=76
+160 \to 80 \to 40 \to 20 &: 3 \cdot 30 = 90\text{ Tage} \\
+\text{spätester Impftag} &= 90 - 14 = \text{Tag } 76
 \end{aligned}" />
 
-Die Antikörper der Mutter bildet nicht der Körper des Babys, sie gelangen auf natürlichem Weg über die Plazenta, die Immunität ist also natürlich passiv. Die Impfung muss also spätestens an Tag <InlineMath math="76" /> erfolgen.
+Da die fertigen Antikörper natürlich über die Plazenta von der Mutter stammen und nicht vom Baby gebildet werden, liegt eine **natürliche passive Immunität** vor.
 
-# Warum die anderen Antworten falsch sind
+## Warum andere Optionen falsch sind
 
-- Tag <InlineMath math="90" /> vergisst die Verzögerung von <InlineMath math="14" /> Tagen, **das Baby ist dann von Tag <InlineMath math="90" /> bis Tag <InlineMath math="104" /> ungeschützt**.
-- Aktive Immunität heißt, der Körper des Babys bildet seine Antikörper selbst, diese stammen aber von der Mutter.
-- Tag <InlineMath math="104" /> addiert die Verzögerung, doch die Impfung muss vor dem Abfall der mütterlichen Antikörper erfolgen, nicht danach.
+- Tag <InlineMath math="90" /> vergisst die <InlineMath math="14" /> Tage Vorlauf, sodass **das Baby von Tag <InlineMath math="90" /> bis Tag <InlineMath math="104" /> ungeschützt bleibt**.
+- Natürliche aktive Immunität entsteht, wenn der Körper selbst Antikörper bildet, nicht durch übertragene Antikörper.
+- Tag <InlineMath math="104" /> addiert die Vorlaufzeit nach dem Abfall statt sie vorher abzuziehen.
+
+# Antwort
+
+Die erste Impfung muss spätestens an Tag <InlineMath math="76" /> erfolgen, und die mütterlichen Antikörper verleihen natürliche passive Immunität.

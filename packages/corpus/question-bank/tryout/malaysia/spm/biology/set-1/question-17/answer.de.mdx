@@ -1,17 +1,72 @@
-# Festes Volumen, doppelte Länge
+# Gegeben
 
-Die Leibeshöhlenflüssigkeit lässt sich nicht zusammendrücken, also **bleibt das Volumen <InlineMath math="\pi r^2L" /> gleich**. Verdoppelt sich die Länge, muss sich <InlineMath math="r^2" /> halbieren, der Radius wird also mit <InlineMath math="\tfrac{1}{\sqrt2}" /> multipliziert.
+Ein Körpersegment eines Regenwurms verhält sich wie ein Zylinder voller inkompressibler Coelomflüssigkeit, sodass **sein Volumen <InlineMath math="\pi r^2 L" /> konstant bleibt**. Bei der Bewegung verdoppelt sich die Länge auf <InlineMath math="2L" />.
+
+# Gesucht
+
+Um wie viel Prozent nimmt der Radius des Segments ab, und welche Muskeln kontrahieren dabei?
+
+# Lösung
+
+Stell dir vor, du drückst einen Wasserballon in der Mitte ringförmig zusammen. Weil Wasser nicht nachgibt, wird der Ballon lang und dünn, und **die Ringmuskeln des Regenwurms wirken genau wie dieser drückende Ring**.
+
+> Da das Zylindervolumen vom Quadrat des Radius abhängt, halbiert eine doppelte Länge das Radiusquadrat, sodass der Radius nur auf eins durch Wurzel zwei sinkt statt auf die Hälfte.
+
+Schieb den Längenfaktor <InlineMath math="k" /> im Graphen und vergleiche die echte Radiuskurve (grün, <InlineMath math="100 / \sqrt{k}" />) mit der linearen Falle (orange, <InlineMath math="100 / k" />).
+
+<MathVisual
+  title={<>Prozentualer Radius eines Regenwurmsegments beim Strecken</>}
+  description={
+    <>
+      Die grüne Kurve hält das Zylindervolumen konstant (<InlineMath math="100 / \sqrt{k}" />).
+      Die orange Kurve zeigt die häufige lineare Falle (<InlineMath math="100 / k" />).
+      Stell <InlineMath math="k" /> auf <InlineMath math="2" /> für doppelte Länge.
+    </>
+  }
+  footer={<>Bei <InlineMath math="k = 2" /> bleiben <InlineMath math="71\%" /> des Radius erhalten, eine Abnahme von etwa <InlineMath math="29\%" />.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0.8, max: 4.2 }, y: { min: 0, max: 110 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [{ name: "k", min: 1, max: 4, value: 2, step: 0.25, label: "k" }],
+    objects: [
+      { id: "true-r", kind: "function", appearance: "answer", formula: "100 / sqrt(x)", domain: { min: 1, max: 4 } },
+      { id: "trap-r", kind: "function", appearance: "warning", formula: "100 / x", domain: { min: 1, max: 4 } },
+      { id: "m-true", kind: "marker", appearance: "answer", x: "k", y: "100 / sqrt(k)" },
+      { id: "m-trap", kind: "marker", appearance: "warning", x: "k", y: "100 / k" },
+    ],
+    readouts: [
+      { key: "new-radius", formula: "100 / sqrt(k)" },
+      { key: "radius-drop", formula: "100 - 100 / sqrt(k)" },
+    ],
+  }}
+  labels={{
+    k: <>Längenfaktor <InlineMath math="L' / L" /></>,
+    "new-radius": <>Neuer Radius (<InlineMath math="\%" />)</>,
+    "radius-drop": <>Radiusabnahme (<InlineMath math="\%" />)</>,
+  }}
+/>
+
+Bei <InlineMath math="k = 2" /> liegt die grüne Kurve klar über der orangen Falle: Der neue Radius beträgt etwa <InlineMath math="70{,}7\%" />, nimmt also um <InlineMath math="29{,}3\%" /> (rund <InlineMath math="29\%" />) ab.
+
+## Radiusabnahme und Muskelarbeit
+
+Setze die Zylindervolumina vor und nach der Streckung gleich und bestimme **das zuständige Muskelpaar**.
 
 <BlockMath math="\begin{aligned}
-\pi r^2L&=\pi r'^2(2L)\ \Rightarrow\ r'^2=\tfrac12r^2\\
-r'&=\frac{r}{\sqrt2}\approx0{,}71r\\
-\text{Abnahme}&\approx1-0{,}71=0{,}29=29\%
+\pi r^2 L &= \pi r'^2 (2L) \implies r'^2 = \frac{1}{2} r^2 \\
+r' &= \frac{r}{\sqrt{2}} \approx 0{,}707 r \\
+\text{Abnahme} &\approx (1 - 0{,}707) \cdot 100\% \approx 29\%
 \end{aligned}" />
 
-Ein längeres, dünneres Segment entsteht, wenn sich die Ringmuskeln zusammenziehen und die Längsmuskeln erschlaffen. Der Radius sinkt also um etwa <InlineMath math="29\%" />, weil sich die Ringmuskeln zusammenziehen.
+Ein langes, dünnes Segment entsteht, wenn **die Ringmuskeln kontrahieren** und die Längsmuskeln erschlaffen.
 
-# Warum die anderen Antworten falsch sind
+## Warum andere Optionen falsch sind
 
-- <InlineMath math="50\%" /> nimmt an, der Radius sei umgekehrt proportional zur Länge, doch **die Länge ist umgekehrt proportional zu <InlineMath math="r^2" />**.
-- Sich zusammenziehende Längsmuskeln machen das Segment kürzer und dicker, nicht länger.
-- <InlineMath math="75\%" /> nimmt an, die Querschnittsfläche falle auf ein Viertel, sie halbiert sich aber nur.
+- Die Angabe <InlineMath math="50\%" /> nimmt an, der Radius sei direkt umgekehrt proportional zur Länge, obwohl **die Länge umgekehrt proportional zu <InlineMath math="r^2" /> ist**.
+- Kontrahierende Längsmuskeln machen das Segment kurz und dick statt lang und dünn.
+- Die Angabe <InlineMath math="75\%" /> unterstellt eine Viertelung der Querschnittsfläche statt einer Halbierung.
+
+# Antwort
+
+Der Radius nimmt um etwa <InlineMath math="29\%" /> ab, weil die Ringmuskeln kontrahieren.

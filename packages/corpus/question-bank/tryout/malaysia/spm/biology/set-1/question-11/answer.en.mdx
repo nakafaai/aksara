@@ -1,16 +1,73 @@
-# Saturation difference, then the blood volume
+# Given
 
-The oxygen released to the muscle is the oxygen carried when blood leaves the lungs **minus the oxygen still left** when it leaves the muscle. Work it out per <InlineMath math="100\text{ cm}^3" /> of blood, then multiply by the blood volume per minute, <InlineMath math="2000\text{ cm}^3" />, which is <InlineMath math="20" /> lots of <InlineMath math="100\text{ cm}^3" />.
+At full saturation (<InlineMath math="100\%" />), every <InlineMath math="100\text{ cm}^3" /> of blood carries **<InlineMath math="20\text{ cm}^3" /> of oxygen**. Haemoglobin saturation is <InlineMath math="98\%" /> leaving the lungs and drops to <InlineMath math="25\%" /> leaving an active muscle.
+
+During exercise, blood flows through the muscle at <InlineMath math="2.0\text{ dm}^3\text{ min}^{-1}" /> (<InlineMath math="2000\text{ cm}^3\text{ min}^{-1}" />).
+
+# Asked
+
+What volume of oxygen is released to the muscle every minute?
+
+# Solution
+
+Picture each <InlineMath math="100\text{ cm}^3" /> of blood as a delivery van that holds <InlineMath math="20" /> boxes of oxygen when full. It leaves the lungs <InlineMath math="98\%" /> loaded and leaves the muscle <InlineMath math="25\%" /> loaded, so **each van drops off only the difference, <InlineMath math="73\%" /> of its capacity**.
+
+> Oxygen delivered to tissue equals the drop in saturation between blood entering and leaving the muscle, not the full oxygen load from the lungs.
+
+Slide the muscle venous saturation <InlineMath math="a" /> below to compare oxygen actually unloaded (green line) against the full arterial load from the lungs (orange line).
+
+<MathVisual
+  title={<>Oxygen released to muscle versus blood flow rate</>}
+  description={
+    <>
+      The orange line shows total oxygen arriving from the lungs (<InlineMath math="98\%" />).
+      The green line shows oxygen unloaded when blood exits muscle at saturation{" "}
+      <InlineMath math="a" /> (<InlineMath math="\%" />).
+    </>
+  }
+  footer={<>At <InlineMath math="2.0\text{ dm}^3\text{ min}^{-1}" /> and <InlineMath math="a = 25\%" />, the muscle receives <InlineMath math="292\text{ cm}^3" /> per minute.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 3.2 }, y: { min: 0, max: 460 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [{ name: "a", min: 10, max: 90, value: 25, step: 5, label: "a" }],
+    objects: [
+      { id: "carried", kind: "function", appearance: "warning", formula: "196 * x", domain: { min: 0, max: 2.3 } },
+      { id: "released", kind: "function", appearance: "answer", formula: "2 * (98 - a) * x", domain: { min: 0, max: 3 } },
+      { id: "m-carried", kind: "marker", appearance: "warning", x: "2", y: "392" },
+      { id: "m-released", kind: "marker", appearance: "answer", x: "2", y: "4 * (98 - a)" },
+    ],
+    readouts: [
+      { key: "per-hundred", formula: "0.2 * (98 - a)" },
+      { key: "per-minute", formula: "4 * (98 - a)" },
+    ],
+  }}
+  labels={{
+    a: <>Muscle venous saturation (<InlineMath math="\%" />)</>,
+    "per-hundred": <>Oxygen per <InlineMath math="100\text{ cm}^3" /> (<InlineMath math="\text{cm}^3" />)</>,
+    "per-minute": <>Oxygen per minute (<InlineMath math="\text{cm}^3" />)</>,
+  }}
+/>
+
+The lower the venous saturation drops, the steeper the delivery line rises. At <InlineMath math="a = 25\%" /> and <InlineMath math="2.0\text{ dm}^3" />, the green marker lands at <InlineMath math="292\text{ cm}^3" />.
+
+## Minute delivery calculation
+
+Compute oxygen released per <InlineMath math="100\text{ cm}^3" /> of blood, then multiply by the **<InlineMath math="20" /> lots of <InlineMath math="100\text{ cm}^3" />** passing each minute.
 
 <BlockMath math="\begin{aligned}
-\text{per }100\text{ cm}^3&=20\times(0.98-0.25)=14.6\text{ cm}^3\\
-\text{per minute}&=14.6\times\frac{2000}{100}=292\text{ cm}^3
+\text{per } 100\text{ cm}^3 &= 20 \times (0.98 - 0.25) = 20 \times 0.73 = 14.6\text{ cm}^3 \\
+\text{per minute} &= 14.6 \times \frac{2000}{100} = 14.6 \times 20 = 292\text{ cm}^3
 \end{aligned}" />
 
-So the muscle receives about <InlineMath math="292\text{ cm}^3" /> of oxygen every minute.
+Quick check: total oxygen arriving is <InlineMath math="392\text{ cm}^3" />, leftover venous oxygen is <InlineMath math="100\text{ cm}^3" />, and their difference is <InlineMath math="292\text{ cm}^3" />.
 
-# Why the other options are wrong
+## Why other options fail
 
-- <InlineMath math="392\text{ cm}^3" /> is all the oxygen carried from the lungs, but **some oxygen returns with the blood** at <InlineMath math="25\%" /> saturation.
-- <InlineMath math="100\text{ cm}^3" /> is the oxygen still left in the blood leaving the muscle.
-- <InlineMath math="14.6\text{ cm}^3" /> is for <InlineMath math="100\text{ cm}^3" /> of blood only, not yet multiplied by the flow per minute.
+- Choosing <InlineMath math="392\text{ cm}^3" /> counts all oxygen carried from the lungs, forgetting that **<InlineMath math="25\%" /> still leaves in venous blood**.
+- Choosing <InlineMath math="100\text{ cm}^3" /> gives the oxygen remaining in blood leaving the muscle rather than the oxygen released.
+- Choosing <InlineMath math="14.6\text{ cm}^3" /> is for <InlineMath math="100\text{ cm}^3" /> of blood only and skips scaling to <InlineMath math="2000\text{ cm}^3" /> per minute.
+
+# Answer
+
+A volume of <InlineMath math="292\text{ cm}^3" /> of oxygen is released to the muscle every minute.

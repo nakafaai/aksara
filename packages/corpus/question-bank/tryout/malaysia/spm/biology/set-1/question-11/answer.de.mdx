@@ -1,16 +1,73 @@
-# Erst der Unterschied der Sättigung, dann das Blutvolumen
+# Gegeben
 
-Der an den Muskel abgegebene Sauerstoff ist der Sauerstoff beim Verlassen der Lunge **minus den Sauerstoff, der noch übrig ist**, wenn das Blut den Muskel verlässt. Rechne pro <InlineMath math="100\text{ cm}^3" /> Blut und multipliziere dann mit dem Blutvolumen pro Minute, <InlineMath math="2000\text{ cm}^3" />, also <InlineMath math="20" />-mal <InlineMath math="100\text{ cm}^3" />.
+Bei voller Sättigung (<InlineMath math="100\%" />) tragen je <InlineMath math="100\text{ cm}^3" /> Blut **<InlineMath math="20\text{ cm}^3" /> Sauerstoff**. Die Hämoglobinsättigung beträgt <InlineMath math="98\%" /> beim Verlassen der Lunge und sinkt auf <InlineMath math="25\%" /> beim Verlassen eines aktiven Muskels.
+
+Bei Belastung strömen <InlineMath math="2{,}0\text{ dm}^3\text{ min}^{-1}" /> (<InlineMath math="2000\text{ cm}^3\text{ min}^{-1}" />) Blut durch den Muskel.
+
+# Gesucht
+
+Welches Sauerstoffvolumen wird pro Minute an den Muskel abgegeben?
+
+# Lösung
+
+Stell dir je <InlineMath math="100\text{ cm}^3" /> Blut wie einen Lieferwagen mit Platz für <InlineMath math="20" /> Sauerstoffkisten vor. Er verlässt die Lunge zu <InlineMath math="98\%" /> beladen und den Muskel zu <InlineMath math="25\%" /> beladen, sodass **jeder Wagen genau die Differenz von <InlineMath math="73\%" /> ablädt**.
+
+> Der an den Muskel abgegebene Sauerstoff entspricht der Differenz der Sättigung vor und nach dem Muskel, nicht der gesamten Lungenladung.
+
+Schieb die venöse Muskelsättigung <InlineMath math="a" /> im Graphen und vergleiche den abgegebenen Sauerstoff (grüne Gerade) mit der vollen Lungenladung (orange Gerade).
+
+<MathVisual
+  title={<>An den Muskel abgegebener Sauerstoff je Blutfluss</>}
+  description={
+    <>
+      Die orange Gerade zeigt allen Sauerstoff aus der Lunge (<InlineMath math="98\%" />).
+      Die grüne Gerade zeigt die Abgabe bei venöser Muskelsättigung{" "}
+      <InlineMath math="a" /> (<InlineMath math="\%" />).
+    </>
+  }
+  footer={<>Bei <InlineMath math="2{,}0\text{ dm}^3\text{ min}^{-1}" /> und <InlineMath math="a = 25\%" /> erhält der Muskel <InlineMath math="292\text{ cm}^3" /> pro Minute.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 3.2 }, y: { min: 0, max: 460 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [{ name: "a", min: 10, max: 90, value: 25, step: 5, label: "a" }],
+    objects: [
+      { id: "carried", kind: "function", appearance: "warning", formula: "196 * x", domain: { min: 0, max: 2.3 } },
+      { id: "released", kind: "function", appearance: "answer", formula: "2 * (98 - a) * x", domain: { min: 0, max: 3 } },
+      { id: "m-carried", kind: "marker", appearance: "warning", x: "2", y: "392" },
+      { id: "m-released", kind: "marker", appearance: "answer", x: "2", y: "4 * (98 - a)" },
+    ],
+    readouts: [
+      { key: "per-hundred", formula: "0.2 * (98 - a)" },
+      { key: "per-minute", formula: "4 * (98 - a)" },
+    ],
+  }}
+  labels={{
+    a: <>Venöse Muskelsättigung (<InlineMath math="\%" />)</>,
+    "per-hundred": <>Sauerstoff pro <InlineMath math="100\text{ cm}^3" /> (<InlineMath math="\text{cm}^3" />)</>,
+    "per-minute": <>Sauerstoff pro Minute (<InlineMath math="\text{cm}^3" />)</>,
+  }}
+/>
+
+Je weiter die venöse Sättigung fällt, desto steiler steigt die Abgabegerade. Bei <InlineMath math="a = 25\%" /> und <InlineMath math="2{,}0\text{ dm}^3" /> landet der grüne Punkt bei <InlineMath math="292\text{ cm}^3" />.
+
+## Berechnung der Minutenabgabe
+
+Berechne die Abgabe je <InlineMath math="100\text{ cm}^3" /> Blut und multipliziere mit den **<InlineMath math="20" /> Portionen zu <InlineMath math="100\text{ cm}^3" />** pro Minute.
 
 <BlockMath math="\begin{aligned}
-\text{pro }100\text{ cm}^3&=20\times(0{,}98-0{,}25)=14{,}6\text{ cm}^3\\
-\text{pro Minute}&=14{,}6\times\frac{2000}{100}=292\text{ cm}^3
+\text{pro } 100\text{ cm}^3 &= 20 \cdot (0{,}98 - 0{,}25) = 20 \cdot 0{,}73 = 14{,}6\text{ cm}^3 \\
+\text{pro Minute} &= 14{,}6 \cdot \frac{2000}{100} = 14{,}6 \cdot 20 = 292\text{ cm}^3
 \end{aligned}" />
 
-Der Muskel erhält also etwa <InlineMath math="292\text{ cm}^3" /> Sauerstoff pro Minute.
+Gegenprobe: Aus der Lunge kommen <InlineMath math="392\text{ cm}^3" />, im venösen Blut bleiben <InlineMath math="100\text{ cm}^3" />, die Differenz beträgt genau <InlineMath math="292\text{ cm}^3" />.
 
-# Warum die anderen Antworten falsch sind
+## Warum andere Optionen falsch sind
 
-- <InlineMath math="392\text{ cm}^3" /> ist der ganze Sauerstoff aus der Lunge, doch **ein Teil des Sauerstoffs fließt mit dem Blut zurück**, bei <InlineMath math="25\%" /> Sättigung.
-- <InlineMath math="100\text{ cm}^3" /> ist der Sauerstoff, der im Blut nach dem Muskel noch übrig ist.
-- <InlineMath math="14{,}6\text{ cm}^3" /> gilt nur für <InlineMath math="100\text{ cm}^3" /> Blut und ist noch nicht mit dem Fluss pro Minute multipliziert.
+- Der Wert <InlineMath math="392\text{ cm}^3" /> zählt allen Sauerstoff aus der Lunge, obwohl **<InlineMath math="25\%" /> im venösen Blut zurückfließen**.
+- Der Wert <InlineMath math="100\text{ cm}^3" /> ist der Restsauerstoff im venösen Blut statt der abgegebenen Menge.
+- Der Wert <InlineMath math="14{,}6\text{ cm}^3" /> gilt nur für <InlineMath math="100\text{ cm}^3" /> Blut ohne Hochrechnung auf <InlineMath math="2000\text{ cm}^3" /> pro Minute.
+
+# Antwort
+
+Pro Minute werden <InlineMath math="292\text{ cm}^3" /> Sauerstoff an den Muskel abgegeben.

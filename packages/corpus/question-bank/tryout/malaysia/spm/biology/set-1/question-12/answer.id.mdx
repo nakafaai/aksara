@@ -1,19 +1,75 @@
-# Dari target BMI ke jumlah hari
+# Diketahui
 
-Pertama cari massa yang harus turun dengan rumus <InlineMath math="\text{BMI}=\dfrac{m}{h^2}" />, dengan **tinggi yang dikuadratkan**. Lalu ubah massa itu menjadi energi dan bagi dengan defisit harian.
+Seorang remaja bermassa <InlineMath math="64\text{ kg}" /> dengan tinggi tetap <InlineMath math="1{,}60\text{ m}" /> ingin menurunkan **indeks massa tubuh (BMI) menjadi <InlineMath math="22{,}5" />**.
+
+Kebutuhan energi hariannya <InlineMath math="11{,}000\text{ kJ}" />, asupan makanannya <InlineMath math="9000\text{ kJ}" /> per hari, dan setiap <InlineMath math="1\text{ kg}" /> massa yang hilang memasok <InlineMath math="40{,}000\text{ kJ}" />.
+
+# Ditanyakan
+
+Berapa hari yang diperlukan untuk mencapai target BMI <InlineMath math="22{,}5" />?
+
+# Penyelesaian
+
+Bayangkan cadangan energi tubuh seperti celengan besar. Setiap hari kamu memakai <InlineMath math="2000\text{ kJ}" /> lebih banyak daripada yang masuk, jadi **celengan berkurang tepat <InlineMath math="0{,}05\text{ kg}" /> per hari**.
+
+> Karena BMI membagi massa dengan kuadrat tinggi badan, target massa selalu diperoleh dengan mengalikan target BMI dan kuadrat tinggi.
+
+Geser defisit energi harian <InlineMath math="d" /> pada grafik berikut untuk melihat seberapa cepat massa turun dari <InlineMath math="64\text{ kg}" /> menuju garis target <InlineMath math="57{,}6\text{ kg}" />.
+
+<MathVisual
+  title={<>Penurunan massa tubuh menuju target <InlineMath math="57{,}6\text{ kg}" /></>}
+  description={
+    <>
+      Garis biru menunjukkan penurunan massa harian dari <InlineMath math="64\text{ kg}" />.
+      Geser defisit harian <InlineMath math="d" /> ke <InlineMath math="2000\text{ kJ}" />{" "}
+      untuk membaca jumlah hari sampai menyentuh garis target <InlineMath math="57{,}6\text{ kg}" />.
+    </>
+  }
+  footer={<>Dengan defisit <InlineMath math="2000\text{ kJ}" /> per hari, target <InlineMath math="57{,}6\text{ kg}" /> tercapai pada hari ke-<InlineMath math="128" />.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 270 }, y: { min: 55, max: 66 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [{ name: "d", min: 1000, max: 4000, value: 2000, step: 500, label: "d" }],
+    objects: [
+      { id: "mass-line", kind: "function", appearance: "primary", formula: "64 - (d / 40000) * x", domain: { min: 0, max: 260 } },
+      { id: "target-line", kind: "segment", appearance: "construction", from: { x: 0, y: 57.6 }, to: { x: 260, y: 57.6 } },
+      { id: "hit", kind: "marker", appearance: "answer", x: "256000 / d", y: "57.6" },
+    ],
+    readouts: [
+      { key: "mass-loss", formula: "6.4" },
+      { key: "days-needed", formula: "256000 / d" },
+    ],
+  }}
+  labels={{
+    d: <>Defisit harian (<InlineMath math="\text{kJ hari}^{-1}" />)</>,
+    "mass-loss": <>Massa yang diturunkan (<InlineMath math="\text{kg}" />)</>,
+    "days-needed": <>Jumlah hari</>,
+  }}
+/>
+
+Defisit lebih besar membuat garis turun lebih curam sehingga hari berkurang. Pada <InlineMath math="d = 2000\text{ kJ hari}^{-1}" />, titik hijau menyentuh target di hari ke-<InlineMath math="128" />.
+
+## Perhitungan target massa dan hari
+
+Gunakan rumus BMI dengan **tinggi yang dikuadratkan**, ubah selisih massa ke kilojoule, lalu bagi dengan defisit harian.
 
 <BlockMath math="\begin{aligned}
-m_{\text{target}}&=22{,}5\times1{,}60^2=57{,}6\text{ kg}\\
-\Delta m&=64-57{,}6=6{,}4\text{ kg}\\
-\text{energi}&=6{,}4\times40{.}000=256{.}000\text{ kJ}\\
-\text{defisit}&=11{.}000-9000=2000\text{ kJ per hari}\\
-\text{hari}&=\frac{256{.}000}{2000}=128
+m_{\text{target}} &= 22{,}5 \times 1{,}60^2 = 22{,}5 \times 2{,}56 = 57{,}6\text{ kg} \\
+\Delta m &= 64 - 57{,}6 = 6{,}4\text{ kg} \\
+E_{\text{total}} &= 6{,}4 \times 40{,}000 = 256{,}000\text{ kJ} \\
+\text{defisit harian} &= 11{,}000 - 9000 = 2000\text{ kJ hari}^{-1} \\
+\text{hari} &= \frac{256{,}000}{2000} = 128\text{ hari}
 \end{aligned}" />
 
-Jadi, dibutuhkan <InlineMath math="128" /> hari.
+Cek balik: BMI awal adalah <InlineMath math="25{,}0" />, selisih BMI <InlineMath math="2{,}5" />, dan <InlineMath math="2{,}5 \times 2{,}56" /> tepat memberi <InlineMath math="6{,}4\text{ kg}" />.
 
-# Mengapa pilihan lain salah
+## Mengapa pilihan lain salah
 
-- <InlineMath math="560" /> hari memakai tinggi <InlineMath math="1{,}60" /> tanpa dikuadratkan, sehingga massa yang harus turun menjadi <InlineMath math="28\text{ kg}" />.
-- <InlineMath math="80" /> hari memakai penurunan <InlineMath math="4{,}0\text{ kg}" />, yaitu selisih BMI <InlineMath math="2{,}5" /> dikali <InlineMath math="1{,}60" />, padahal **tingginya harus dikuadratkan**.
-- <InlineMath math="50" /> hari menganggap selisih BMI <InlineMath math="2{,}5" /> sebagai selisih massa, padahal BMI dan massa berbeda satuan.
+- Pilihan <InlineMath math="560" /> hari memakai <InlineMath math="1{,}60" /> tanpa menguadratkan tinggi sehingga keliru mengira massa turun <InlineMath math="28\text{ kg}" />.
+- Pilihan <InlineMath math="80" /> hari mengalikan selisih BMI <InlineMath math="2{,}5" /> dengan <InlineMath math="1{,}60" />, padahal **tinggi wajib dikuadratkan**.
+- Pilihan <InlineMath math="50" /> hari menganggap selisih BMI <InlineMath math="2{,}5" /> langsung sama dengan <InlineMath math="2{,}5\text{ kg}" />, padahal satuannya berbeda.
+
+# Jawaban
+
+Dibutuhkan <InlineMath math="128" /> hari untuk mencapai target BMI <InlineMath math="22{,}5" />.

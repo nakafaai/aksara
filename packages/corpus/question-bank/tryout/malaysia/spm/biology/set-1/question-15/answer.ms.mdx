@@ -1,18 +1,76 @@
-# Kira masa setiap neuron dan setiap sinaps
+# Diberi
 
-Kedua-dua neuron mengalirkan impuls pada laju yang berbeza, jadi **masa setiap neuron dikira berasingan**. Neuron perantaraan membentuk dua sinaps dalam saraf tunjang, iaitu dari neuron deria ke neuron perantaraan dan dari neuron perantaraan ke neuron motor.
+Dalam arka refleks, **neuron deria sepanjang <InlineMath math="0.8\text{ m}" />** mengalirkan impuls pada <InlineMath math="80\text{ m s}^{-1}" />, manakala neuron motor sepanjang <InlineMath math="0.6\text{ m}" /> mengalirkan impuls pada <InlineMath math="40\text{ m s}^{-1}" />.
+
+Masa pengaliran neuron geganti di saraf tunjang diabaikan, dan setiap sinaps melengahkan impuls selama <InlineMath math="0.5\text{ ms}" />.
+
+# Ditanya
+
+Berapakah masa minimum dari rangsangan reseptor sehingga impuls sampai ke efektor?
+
+# Penyelesaian
+
+Bayangkan larian berganti-ganti dua pelari: pelari pertama berlari <InlineMath math="0.8\text{ m}" /> dengan laju (<InlineMath math="10\text{ ms}" />), pelari kedua berlari <InlineMath math="0.6\text{ m}" /> lebih perlahan (<InlineMath math="15\text{ ms}" />), dan **terdapat dua pertukaran baton sinaps dalam saraf tunjang** (deria ke geganti, lalu geganti ke motor).
+
+> Jumlah masa arka refleks tiga neuron ialah hasil tambah masa setiap akson ditambah lengahan tepat dua sinaps.
+
+Gerakkan bilangan sinaps <InlineMath math="n" /> pada graf masa terkumpul di bawah untuk melihat bagaimana lengahan sinaps menaikkan jumlah masa ke <InlineMath math="26.0\text{ ms}" />.
+
+<MathVisual
+  title={<>Masa terkumpul impuls sepanjang arka refleks</>}
+  description={
+    <>
+      Segmen biru ialah neuron deria (<InlineMath math="10\text{ ms}" />), langkah
+      jingga ialah lengahan dua sinaps (<InlineMath math="1.0\text{ ms}" />), dan
+      segmen hijau ialah neuron motor (<InlineMath math="15\text{ ms}" />). Gerakkan{" "}
+      <InlineMath math="n" /> untuk membandingkan jumlah masa.
+    </>
+  }
+  footer={<>Dengan <InlineMath math="n = 2" /> sinaps dalam saraf tunjang, impuls tiba pada <InlineMath math="26.0\text{ ms}" />.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 1.55 }, y: { min: 0, max: 29 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [{ name: "n", min: 0, max: 4, value: 2, step: 1, label: "n" }],
+    objects: [
+      { id: "sensory", kind: "segment", appearance: "primary", from: { x: 0, y: 0 }, to: { x: 0.8, y: 10 } },
+      { id: "synapse", kind: "segment", appearance: "warning", from: { x: 0.8, y: 10 }, to: { x: 0.8, y: 11 } },
+      { id: "motor", kind: "segment", appearance: "answer", from: { x: 0.8, y: 11 }, to: { x: 1.4, y: 26 } },
+      { id: "end-pt", kind: "marker", appearance: "answer", x: "1.4", y: "25 + 0.5 * n" },
+    ],
+    readouts: [
+      { key: "synapse-delay", formula: "0.5 * n" },
+      { key: "total-time", formula: "25 + 0.5 * n" },
+    ],
+  }}
+  labels={{
+    n: <>Bilangan sinaps <InlineMath math="n" /></>,
+    "synapse-delay": <>Jumlah lengahan sinaps (<InlineMath math="\text{ms}" />)</>,
+    "total-time": <>Jumlah masa (<InlineMath math="\text{ms}" />)</>,
+  }}
+/>
+
+Segmen motor dua kali lebih curam daripada segmen deria kerana kelajuannya hanya separuh. Menetapkan <InlineMath math="n = 2" /> mengangkat penanda akhir daripada <InlineMath math="25.0" /> tepat kepada <InlineMath math="26.0\text{ ms}" />.
+
+## Kiraan masa setiap bahagian
+
+Kira masa setiap neuron secara berasingan dalam milisaat, kemudian tambah **lengahan dua sinaps**.
 
 <BlockMath math="\begin{aligned}
-t_{\text{deria}}&=\frac{0.8}{80}=0.010\text{ s}=10\text{ ms}\\
-t_{\text{motor}}&=\frac{0.6}{40}=0.015\text{ s}=15\text{ ms}\\
-t_{\text{sinaps}}&=2\times0.5=1.0\text{ ms}\\
-t&=10+15+1.0=26.0\text{ ms}
+t_{\text{deria}} &= \frac{0.8}{80} = 0.010\text{ s} = 10.0\text{ ms} \\
+t_{\text{motor}} &= \frac{0.6}{40} = 0.015\text{ s} = 15.0\text{ ms} \\
+t_{\text{sinaps}} &= 2 \times 0.5 = 1.0\text{ ms} \\
+t_{\text{jumlah}} &= 10.0 + 15.0 + 1.0 = 26.0\text{ ms}
 \end{aligned}" />
 
-Jadi, masa minimumnya ialah <InlineMath math="26.0\text{ ms}" />.
+Semakan unit: kedua-dua masa akson telah ditukar daripada saat kepada milisaat sebelum dijumlahkan.
 
-# Kenapa pilihan lain salah
+## Mengapa pilihan lain salah
 
-- <InlineMath math="25.0\text{ ms}" /> mengabaikan kelewatan di sinaps, sedangkan **dua sinaps menambah <InlineMath math="1.0\text{ ms}" />**.
-- <InlineMath math="24.3\text{ ms}" /> mempuratakan kedua-dua laju menjadi <InlineMath math="60\text{ m s}^{-1}" />, sedangkan setiap neuron melalui panjangnya sendiri pada lajunya sendiri.
-- <InlineMath math="26.5\text{ ms}" /> mengira tiga sinaps, sedangkan hanya ada dua sinaps dalam saraf tunjang.
+- Pilihan <InlineMath math="25.0\text{ ms}" /> mengabaikan lengahan sinaps, padahal **dua sinaps menambah <InlineMath math="1.0\text{ ms}" />**.
+- Pilihan <InlineMath math="24.3\text{ ms}" /> mempuratakan kelajuan kepada <InlineMath math="60\text{ m s}^{-1}" />, sedangkan jarak setiap neuron berbeza.
+- Pilihan <InlineMath math="26.5\text{ ms}" /> mengira tiga sinaps, padahal hanya terdapat dua sinaps dalam saraf tunjang.
+
+# Jawapan
+
+Masa minimum daripada rangsangan reseptor hingga impuls sampai ke efektor ialah <InlineMath math="26.0\text{ ms}" />.

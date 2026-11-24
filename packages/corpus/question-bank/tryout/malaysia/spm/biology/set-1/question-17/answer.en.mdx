@@ -1,17 +1,72 @@
-# Fixed volume, double the length
+# Given
 
-The coelomic fluid cannot be compressed, so **the volume <InlineMath math="\pi r^2L" /> stays the same**. If the length doubles, <InlineMath math="r^2" /> must halve, so the radius is multiplied by <InlineMath math="\tfrac{1}{\sqrt2}" />.
+An earthworm body segment behaves like a cylinder filled with incompressible coelomic fluid, so **its volume <InlineMath math="\pi r^2 L" /> stays constant**. During movement, the segment length doubles to <InlineMath math="2L" />.
+
+# Asked
+
+By what percentage does the segment radius decrease, and which muscles contract to produce this shape change?
+
+# Solution
+
+Picture squeezing the waist of a water balloon with a ring of fingers. Because water cannot be compressed, the balloon shoots out longer and thinner, and **the earthworm's circular muscles act just like that squeezing ring**.
+
+> Because cylinder volume depends on the square of the radius, doubling the length halves the squared radius so the radius drops to one over root two, not one half.
+
+Slide the length multiplier <InlineMath math="k" /> below and compare the true constant-volume radius curve (green, <InlineMath math="100 / \sqrt{k}" />) against the linear trap (orange, <InlineMath math="100 / k" />).
+
+<MathVisual
+  title={<>Percentage radius of an earthworm segment as it lengthens</>}
+  description={
+    <>
+      The green curve preserves constant cylinder volume (<InlineMath math="100 / \sqrt{k}" />).
+      The orange curve shows the common linear trap (<InlineMath math="100 / k" />).
+      Set <InlineMath math="k" /> to <InlineMath math="2" /> for doubled length.
+    </>
+  }
+  footer={<>At <InlineMath math="k = 2" />, the radius remains at <InlineMath math="71\%" />, a drop of about <InlineMath math="29\%" />.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0.8, max: 4.2 }, y: { min: 0, max: 110 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [{ name: "k", min: 1, max: 4, value: 2, step: 0.25, label: "k" }],
+    objects: [
+      { id: "true-r", kind: "function", appearance: "answer", formula: "100 / sqrt(x)", domain: { min: 1, max: 4 } },
+      { id: "trap-r", kind: "function", appearance: "warning", formula: "100 / x", domain: { min: 1, max: 4 } },
+      { id: "m-true", kind: "marker", appearance: "answer", x: "k", y: "100 / sqrt(k)" },
+      { id: "m-trap", kind: "marker", appearance: "warning", x: "k", y: "100 / k" },
+    ],
+    readouts: [
+      { key: "new-radius", formula: "100 / sqrt(k)" },
+      { key: "radius-drop", formula: "100 - 100 / sqrt(k)" },
+    ],
+  }}
+  labels={{
+    k: <>Length multiplier <InlineMath math="L' / L" /></>,
+    "new-radius": <>New radius (<InlineMath math="\%" />)</>,
+    "radius-drop": <>Radius decrease (<InlineMath math="\%" />)</>,
+  }}
+/>
+
+At <InlineMath math="k = 2" />, the green curve sits well above the orange trap: the new radius is about <InlineMath math="70.7\%" />, giving a <InlineMath math="29.3\%" /> decrease (about <InlineMath math="29\%" />).
+
+## Radius change and muscle action
+
+Equate cylinder volumes before and after stretching, then identify **the antagonistic muscle pair** that makes the segment thin and long.
 
 <BlockMath math="\begin{aligned}
-\pi r^2L&=\pi r'^2(2L)\ \Rightarrow\ r'^2=\tfrac12r^2\\
-r'&=\frac{r}{\sqrt2}\approx0.71r\\
-\text{decrease}&\approx1-0.71=0.29=29\%
+\pi r^2 L &= \pi r'^2 (2L) \implies r'^2 = \frac{1}{2} r^2 \\
+r' &= \frac{r}{\sqrt{2}} \approx 0.707 r \\
+\text{decrease} &\approx (1 - 0.707) \times 100\% \approx 29\%
 \end{aligned}" />
 
-A longer, thinner segment forms when the circular muscles contract and the longitudinal muscles relax. So the radius falls by about <InlineMath math="29\%" /> because the circular muscles contract.
+A long, thin segment forms when **the circular muscles contract** while the longitudinal muscles relax.
 
-# Why the other options are wrong
+## Why other options fail
 
-- <InlineMath math="50\%" /> assumes the radius is inversely proportional to the length, but **the length is inversely proportional to <InlineMath math="r^2" />**.
-- Contracting longitudinal muscles make the segment shorter and thicker, not longer.
-- <InlineMath math="75\%" /> assumes the cross-sectional area falls to a quarter, but it only halves.
+- Choosing <InlineMath math="50\%" /> treats radius as inversely proportional to length, forgetting that **length varies inversely with <InlineMath math="r^2" />**.
+- Choosing longitudinal muscles produces the opposite shape, making the segment short and thick.
+- Choosing <InlineMath math="75\%" /> assumes cross-sectional area drops to a quarter when it only halves.
+
+# Answer
+
+The radius decreases by about <InlineMath math="29\%" />, caused by contraction of the circular muscles.

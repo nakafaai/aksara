@@ -1,18 +1,74 @@
-# Cardiac output is stroke volume times heart rate
+# Given
 
-Cardiac output is the stroke volume multiplied by the heart rate. **The resting cardiac output does not change**, so the stroke volume rises when the heart rate falls.
+Before training, an athlete's resting heart rate is <InlineMath math="72\text{ beats min}^{-1}" /> with a stroke volume of <InlineMath math="70\text{ cm}^3" />. After training, resting heart rate drops to <InlineMath math="56\text{ beats min}^{-1}" /> while **resting cardiac output stays unchanged**.
+
+During maximum exercise after training, heart rate reaches <InlineMath math="180\text{ beats min}^{-1}" /> with a stroke volume of <InlineMath math="120\text{ cm}^3" />.
+
+# Asked
+
+What is the resting stroke volume after training, and how many times larger is cardiac output during maximum exercise than at rest?
+
+# Solution
+
+Picture the heart as a water pump: total volume pumped per minute equals volume per squeeze times squeezes per minute. Because training strengthens the heart muscle, **each beat pushes more blood so the heart needs fewer beats** to keep pumping <InlineMath math="5040\text{ cm}^3" /> per minute.
+
+> When resting cardiac output stays constant, a lower resting heart rate always requires an inversely larger stroke volume.
+
+Slide resting heart rate <InlineMath math="r" /> along the constant <InlineMath math="5040\text{ cm}^3\text{ min}^{-1}" /> curve below from <InlineMath math="72" /> down to <InlineMath math="56" /> to watch stroke volume climb to <InlineMath math="90\text{ cm}^3" />.
+
+<MathVisual
+  title={<>Resting heart rate versus stroke volume at constant cardiac output</>}
+  description={
+    <>
+      The blue curve holds resting cardiac output fixed at <InlineMath math="5040\text{ cm}^3\text{ min}^{-1}" />.
+      Slide resting heart rate <InlineMath math="r" /> from pre-training (<InlineMath math="72" />)
+      to post-training (<InlineMath math="56" />).
+    </>
+  }
+  footer={<>Dropping resting heart rate from <InlineMath math="72" /> to <InlineMath math="56" /> lifts stroke volume from <InlineMath math="70" /> to <InlineMath math="90\text{ cm}^3" />.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 44, max: 84 }, y: { min: 55, max: 115 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [{ name: "r", min: 48, max: 80, value: 56, step: 4, label: "r" }],
+    objects: [
+      { id: "co-curve", kind: "function", appearance: "primary", formula: "5040 / x", domain: { min: 46, max: 82 } },
+      { id: "before", kind: "marker", appearance: "warning", x: "72", y: "70" },
+      { id: "after", kind: "marker", appearance: "answer", x: "r", y: "5040 / r" },
+    ],
+    readouts: [
+      { key: "stroke-vol", formula: "5040 / r" },
+      { key: "max-ratio", formula: "21600 / 5040" },
+    ],
+  }}
+  labels={{
+    r: <>Resting heart rate (<InlineMath math="\text{beats min}^{-1}" />)</>,
+    "stroke-vol": <>Stroke volume (<InlineMath math="\text{cm}^3" />)</>,
+    "max-ratio": <>Maximum to resting output ratio</>,
+  }}
+/>
+
+Moving left along the hyperbola as resting heart rate falls lifts the green marker directly to <InlineMath math="90\text{ cm}^3" />.
+
+## Stroke volume and output ratio
+
+Compute resting cardiac output first, solve for the **new resting stroke volume**, then divide maximum exercise output by resting output.
 
 <BlockMath math="\begin{aligned}
-\text{resting output}&=72\times70=5040\text{ cm}^3\text{ per minute}\\
-\text{new stroke volume}&=\frac{5040}{56}=90\text{ cm}^3\\
-\text{maximum output}&=180\times120=21{,}600\text{ cm}^3\text{ per minute}\\
-\frac{21{,}600}{5040}&\approx4.3
+\text{resting output} &= 72 \times 70 = 5040\text{ cm}^3\text{ min}^{-1} \\
+\text{new stroke volume} &= \frac{5040}{56} = 90\text{ cm}^3 \\
+\text{maximum output} &= 180 \times 120 = 21{,}600\text{ cm}^3\text{ min}^{-1} \\
+\text{ratio} &= \frac{21{,}600}{5040} = \frac{30}{7} \approx 4.3\text{ times}
 \end{aligned}" />
 
-So the stroke volume is <InlineMath math="90\text{ cm}^3" /> and the maximum cardiac output is about <InlineMath math="4.3" /> times the resting output.
+Quick check: multiplying <InlineMath math="56" /> beats by <InlineMath math="90\text{ cm}^3" /> restores <InlineMath math="5040\text{ cm}^3\text{ min}^{-1}" /> exactly.
 
-# Why the other options are wrong
+## Why other options fail
 
-- <InlineMath math="54\text{ cm}^3" /> multiplies <InlineMath math="70" /> by <InlineMath math="\tfrac{56}{72}" />, but **the stroke volume must rise** to keep the output the same.
-- <InlineMath math="3.2" /> times compares only the heart rates, <InlineMath math="\tfrac{180}{56}" />, without the rise in stroke volume.
-- <InlineMath math="2.5" /> times uses the old stroke volume of <InlineMath math="70\text{ cm}^3" /> during exercise, but it is <InlineMath math="120\text{ cm}^3" />.
+- Choosing <InlineMath math="54\text{ cm}^3" /> lowers stroke volume with heart rate, even though **stroke volume must rise** to hold output steady.
+- Choosing <InlineMath math="3.2" /> times divides only heart rates (<InlineMath math="180" /> by <InlineMath math="56" />) and ignores the larger exercise stroke volume.
+- Choosing <InlineMath math="2.5" /> times reuses the old <InlineMath math="70\text{ cm}^3" /> stroke volume instead of the exercise value of <InlineMath math="120\text{ cm}^3" />.
+
+# Answer
+
+The resting stroke volume after training is <InlineMath math="90\text{ cm}^3" /> and maximum cardiac output is about <InlineMath math="4.3" /> times the resting output.

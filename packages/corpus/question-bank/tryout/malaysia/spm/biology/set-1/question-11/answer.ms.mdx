@@ -1,16 +1,73 @@
-# Beza ketepuan, kemudian isi padu darah
+# Diberi
 
-Oksigen yang dibebaskan kepada otot ialah oksigen yang dibawa semasa darah meninggalkan peparu **ditolak oksigen yang masih berbaki** semasa darah meninggalkan otot. Kira bagi setiap <InlineMath math="100\text{ cm}^3" /> darah, kemudian darab dengan isi padu darah setiap minit, iaitu <InlineMath math="2000\text{ cm}^3" /> atau <InlineMath math="20" /> kali <InlineMath math="100\text{ cm}^3" />.
+Pada ketepuan penuh (<InlineMath math="100\%" />), setiap <InlineMath math="100\text{ cm}^3" /> darah membawa **<InlineMath math="20\text{ cm}^3" /> oksigen**. Peratus ketepuan hemoglobin ialah <InlineMath math="98\%" /> ketika meninggalkan peparu dan turun kepada <InlineMath math="25\%" /> ketika meninggalkan otot aktif.
+
+Semasa bersenam, aliran darah melalui otot ialah <InlineMath math="2.0\text{ dm}^3\text{ min}^{-1}" /> (<InlineMath math="2000\text{ cm}^3\text{ min}^{-1}" />).
+
+# Ditanya
+
+Berapakah isi padu oksigen yang dibebaskan kepada otot setiap minit?
+
+# Penyelesaian
+
+Bayangkan setiap <InlineMath math="100\text{ cm}^3" /> darah seperti sebuah van yang memuatkan <InlineMath math="20" /> kotak oksigen apabila penuh. Van keluar dari peparu dengan muatan <InlineMath math="98\%" /> dan keluar dari otot berbaki <InlineMath math="25\%" />, maka **setiap van hanya menurunkan bezanya iaitu <InlineMath math="73\%" /> muatan**.
+
+> Oksigen yang dibebaskan kepada otot ialah beza ketepuan darah masuk dan keluar otot, bukan semua oksigen yang dibawa dari peparu.
+
+Gerakkan ketepuan darah vena otot <InlineMath math="a" /> pada graf berikut dan bandingkan oksigen yang benar-benar dibebaskan (garis hijau) dengan jumlah oksigen dari peparu (garis jingga).
+
+<MathVisual
+  title={<>Oksigen dibebaskan kepada otot melawan kadar aliran darah</>}
+  description={
+    <>
+      Garis jingga menunjukkan semua oksigen dari peparu (<InlineMath math="98\%" />).
+      Garis hijau menunjukkan oksigen dibebaskan apabila darah keluar dari otot pada
+      ketepuan <InlineMath math="a" /> (<InlineMath math="\%" />).
+    </>
+  }
+  footer={<>Pada aliran <InlineMath math="2.0\text{ dm}^3" /> dan <InlineMath math="a = 25\%" />, otot menerima <InlineMath math="292\text{ cm}^3" /> oksigen seminit.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 3.2 }, y: { min: 0, max: 460 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [{ name: "a", min: 10, max: 90, value: 25, step: 5, label: "a" }],
+    objects: [
+      { id: "carried", kind: "function", appearance: "warning", formula: "196 * x", domain: { min: 0, max: 2.3 } },
+      { id: "released", kind: "function", appearance: "answer", formula: "2 * (98 - a) * x", domain: { min: 0, max: 3 } },
+      { id: "m-carried", kind: "marker", appearance: "warning", x: "2", y: "392" },
+      { id: "m-released", kind: "marker", appearance: "answer", x: "2", y: "4 * (98 - a)" },
+    ],
+    readouts: [
+      { key: "per-hundred", formula: "0.2 * (98 - a)" },
+      { key: "per-minute", formula: "4 * (98 - a)" },
+    ],
+  }}
+  labels={{
+    a: <>Ketepuan darah vena otot (<InlineMath math="\%" />)</>,
+    "per-hundred": <>Oksigen per <InlineMath math="100\text{ cm}^3" /> (<InlineMath math="\text{cm}^3" />)</>,
+    "per-minute": <>Oksigen seminit (<InlineMath math="\text{cm}^3" />)</>,
+  }}
+/>
+
+Semakin rendah ketepuan darah yang meninggalkan otot, semakin curam garis pembebasan oksigen. Pada <InlineMath math="a = 25\%" /> dan <InlineMath math="2.0\text{ dm}^3" />, penanda hijau berada di <InlineMath math="292\text{ cm}^3" />.
+
+## Pengiraan pembebasan seminit
+
+Kira oksigen yang dibebaskan setiap <InlineMath math="100\text{ cm}^3" /> darah, kemudian darabkan dengan **<InlineMath math="20" /> kumpulan <InlineMath math="100\text{ cm}^3" />** yang mengalir setiap minit.
 
 <BlockMath math="\begin{aligned}
-\text{setiap }100\text{ cm}^3&=20\times(0.98-0.25)=14.6\text{ cm}^3\\
-\text{setiap minit}&=14.6\times\frac{2000}{100}=292\text{ cm}^3
+\text{per } 100\text{ cm}^3 &= 20 \times (0.98 - 0.25) = 20 \times 0.73 = 14.6\text{ cm}^3 \\
+\text{seminit} &= 14.6 \times \frac{2000}{100} = 14.6 \times 20 = 292\text{ cm}^3
 \end{aligned}" />
 
-Jadi, otot itu menerima kira-kira <InlineMath math="292\text{ cm}^3" /> oksigen setiap minit.
+Semakan pantas: jumlah oksigen dari peparu ialah <InlineMath math="392\text{ cm}^3" />, baki dalam darah vena ialah <InlineMath math="100\text{ cm}^3" />, dan bezanya tepat <InlineMath math="292\text{ cm}^3" />.
 
-# Kenapa pilihan lain salah
+## Mengapa pilihan lain salah
 
-- <InlineMath math="392\text{ cm}^3" /> ialah semua oksigen yang dibawa dari peparu, sedangkan **sebahagian oksigen kembali bersama darah** pada ketepuan <InlineMath math="25\%" />.
-- <InlineMath math="100\text{ cm}^3" /> ialah oksigen yang masih berbaki dalam darah yang meninggalkan otot.
-- <InlineMath math="14.6\text{ cm}^3" /> hanya bagi <InlineMath math="100\text{ cm}^3" /> darah, belum didarab dengan aliran darah setiap minit.
+- Pilihan <InlineMath math="392\text{ cm}^3" /> mengira semua oksigen dari peparu, padahal **<InlineMath math="25\%" /> masih kekal dalam darah vena**.
+- Pilihan <InlineMath math="100\text{ cm}^3" /> ialah oksigen yang masih tinggal dalam darah keluar otot, bukannya yang dibebaskan.
+- Pilihan <InlineMath math="14.6\text{ cm}^3" /> hanyalah untuk <InlineMath math="100\text{ cm}^3" /> darah dan belum didarab dengan aliran seminit.
+
+# Jawapan
+
+Isi padu oksigen yang dibebaskan kepada otot setiap minit ialah <InlineMath math="292\text{ cm}^3" />.

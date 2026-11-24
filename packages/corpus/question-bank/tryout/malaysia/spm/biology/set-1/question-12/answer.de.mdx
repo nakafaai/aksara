@@ -1,19 +1,75 @@
-# Vom BMI-Ziel zur Zahl der Tage
+# Gegeben
 
-Bestimme zuerst die abzunehmende Masse mit <InlineMath math="\text{BMI}=\dfrac{m}{h^2}" />, mit **der quadrierten Körpergröße**. Rechne diese Masse dann in Energie um und teile durch das tägliche Defizit.
+Ein Jugendlicher wiegt <InlineMath math="64\text{ kg}" /> bei fester Körpergröße von <InlineMath math="1{,}60\text{ m}" /> und möchte seinen **Body-Mass-Index (BMI) auf <InlineMath math="22{,}5" /> senken**.
+
+Der tägliche Energiebedarf liegt bei <InlineMath math="11{,}000\text{ kJ}" />, die Aufnahme bei <InlineMath math="9000\text{ kJ}" />, und jedes verlorene Kilogramm liefert <InlineMath math="40{,}000\text{ kJ}" />.
+
+# Gesucht
+
+Wie viele Tage sind nötig, um den Ziel-BMI von <InlineMath math="22{,}5" /> zu erreichen?
+
+# Lösung
+
+Stell dir die Körperenergie wie ein Sparschwein vor. Wer jeden Tag <InlineMath math="2000\text{ kJ}" /> mehr verbraucht als aufnimmt, **baut genau <InlineMath math="0{,}05\text{ kg}" /> pro Tag ab**.
+
+> Da der BMI die Masse durch das Quadrat der Körpergröße teilt, ergibt sich die Zielmasse stets aus Ziel-BMI mal Größe zum Quadrat.
+
+Schieb das tägliche Energiedefizit <InlineMath math="d" /> im Graphen und lies ab, wann die Masse von <InlineMath math="64\text{ kg}" /> auf die Ziellinie von <InlineMath math="57{,}6\text{ kg}" /> fällt.
+
+<MathVisual
+  title={<>Abnahme der Körpermasse bis zum Ziel <InlineMath math="57{,}6\text{ kg}" /></>}
+  description={
+    <>
+      Die blaue Gerade zeigt die Körpermasse ab <InlineMath math="64\text{ kg}" />.
+      Stell das Tagesdefizit <InlineMath math="d" /> auf <InlineMath math="2000\text{ kJ}" />,
+      um den genauen Tag auf der Linie <InlineMath math="57{,}6\text{ kg}" /> abzulesen.
+    </>
+  }
+  footer={<>Bei <InlineMath math="2000\text{ kJ}" /> Defizit pro Tag erreicht die Masse am Tag <InlineMath math="128" /> genau <InlineMath math="57{,}6\text{ kg}" />.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 270 }, y: { min: 55, max: 66 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [{ name: "d", min: 1000, max: 4000, value: 2000, step: 500, label: "d" }],
+    objects: [
+      { id: "mass-line", kind: "function", appearance: "primary", formula: "64 - (d / 40000) * x", domain: { min: 0, max: 260 } },
+      { id: "target-line", kind: "segment", appearance: "construction", from: { x: 0, y: 57.6 }, to: { x: 260, y: 57.6 } },
+      { id: "hit", kind: "marker", appearance: "answer", x: "256000 / d", y: "57.6" },
+    ],
+    readouts: [
+      { key: "mass-loss", formula: "6.4" },
+      { key: "days-needed", formula: "256000 / d" },
+    ],
+  }}
+  labels={{
+    d: <>Tagesdefizit (<InlineMath math="\text{kJ Tag}^{-1}" />)</>,
+    "mass-loss": <>Abzubauende Masse (<InlineMath math="\text{kg}" />)</>,
+    "days-needed": <>Benötigte Tage</>,
+  }}
+/>
+
+Ein größeres Defizit macht die Gerade steiler und verkürzt die Dauer. Bei <InlineMath math="d = 2000\text{ kJ Tag}^{-1}" /> trifft der grüne Punkt die Ziellinie exakt an Tag <InlineMath math="128" />.
+
+## Zielmasse und Dauer berechnen
+
+Berechne die Zielmasse mit **quadrierter Körpergröße**, wandle die Massendifferenz in Energie um und teile durch das Tagesdefizit.
 
 <BlockMath math="\begin{aligned}
-m_{\text{Ziel}}&=22{,}5\times1{,}60^2=57{,}6\text{ kg}\\
-\Delta m&=64-57{,}6=6{,}4\text{ kg}\\
-\text{Energie}&=6{,}4\times40{.}000=256{.}000\text{ kJ}\\
-\text{Defizit}&=11{.}000-9000=2000\text{ kJ pro Tag}\\
-\text{Tage}&=\frac{256{.}000}{2000}=128
+m_{\text{Ziel}} &= 22{,}5 \cdot 1{,}60^2 = 22{,}5 \cdot 2{,}56 = 57{,}6\text{ kg} \\
+\Delta m &= 64 - 57{,}6 = 6{,}4\text{ kg} \\
+E_{\text{gesamt}} &= 6{,}4 \cdot 40{,}000 = 256{,}000\text{ kJ} \\
+\text{Tagesdefizit} &= 11{,}000 - 9000 = 2000\text{ kJ Tag}^{-1} \\
+\text{Tage} &= \frac{256{,}000}{2000} = 128\text{ Tage}
 \end{aligned}" />
 
-Es werden also <InlineMath math="128" /> Tage gebraucht.
+Gegenprobe: Der Ausgangs-BMI beträgt <InlineMath math="25{,}0" />, die BMI-Senkung <InlineMath math="2{,}5" />, und <InlineMath math="2{,}5 \cdot 2{,}56" /> ergibt genau <InlineMath math="6{,}4\text{ kg}" />.
 
-# Warum die anderen Antworten falsch sind
+## Warum andere Optionen falsch sind
 
-- <InlineMath math="560" /> Tage setzt die Größe <InlineMath math="1{,}60" /> ohne Quadrat ein, die abzunehmende Masse wird so <InlineMath math="28\text{ kg}" />.
-- <InlineMath math="80" /> Tage rechnet mit <InlineMath math="4{,}0\text{ kg}" />, also der BMI-Differenz <InlineMath math="2{,}5" /> mal <InlineMath math="1{,}60" />, doch **die Größe muss quadriert werden**.
-- <InlineMath math="50" /> Tage behandelt die BMI-Differenz <InlineMath math="2{,}5" /> als Massendifferenz, doch BMI und Masse haben verschiedene Einheiten.
+- Die Angabe <InlineMath math="560" /> Tage lässt das Quadrat bei <InlineMath math="1{,}60" /> weg und rechnet fälschlich mit <InlineMath math="28\text{ kg}" /> Verlust.
+- Die Angabe <InlineMath math="80" /> Tage multipliziert die BMI-Differenz <InlineMath math="2{,}5" /> nur mit <InlineMath math="1{,}60" />, obwohl **die Größe quadriert werden muss**.
+- Die Angabe <InlineMath math="50" /> Tage setzt die BMI-Differenz <InlineMath math="2{,}5" /> direkt als <InlineMath math="2{,}5\text{ kg}" /> an, obwohl die Einheiten verschieden sind.
+
+# Antwort
+
+Es werden <InlineMath math="128" /> Tage benötigt, um den Ziel-BMI von <InlineMath math="22{,}5" /> zu erreichen.
