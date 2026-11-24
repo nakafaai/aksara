@@ -33,7 +33,11 @@ A claim with all is true only when **every member it talks about passes**. A cla
 | Some square numbers here are even. | <InlineMath math="1, 4, 9, 16, 25, 36" /> | True | <InlineMath math="4" /> is even |
 | All multiples of <InlineMath math="4" /> here are even. | <InlineMath math="4, 12, 16, 20, 36" /> | True | All five are even |
 
-The first claim falls at the very first square: <InlineMath math="1 = 1^2" /> is odd, and <InlineMath math="9" /> and <InlineMath math="25" /> bring it down too. The second claim is true as soon as you reach <InlineMath math="4 = 2^2" />, because one example is enough. The third claim takes more work. You have to check all five multiples of <InlineMath math="4" />, and every one is even. So **a true all claim needs a full check**, while a false one needs just one failing case.
+The first claim falls at the very first square: <InlineMath math="1 = 1^2" /> is odd, and <InlineMath math="9" /> and <InlineMath math="25" /> bring it down too. The second claim is true as soon as you reach <InlineMath math="4 = 2^2" />, because one example is enough.
+
+The third claim takes more work. You have to check all five multiples of <InlineMath math="4" />, and every one is even. So **a true all claim needs a full check**, while a false one needs just one failing case.
+
+> One failing case is enough to break an all claim, while one matching case is enough to prove a some claim.
 
 ## Saying Not Flips the Truth
 
@@ -46,11 +50,15 @@ Put not into a statement and its truth value flips: true becomes false, and fals
 
 Take <InlineMath math="p" />: <InlineMath math="91" /> is a prime number. That's false, so its negation, <InlineMath math="91" /> is not a prime number, is true. Check: <InlineMath math="91 = 7 \times 13" />, so <InlineMath math="91" /> has a factor other than <InlineMath math="1" /> and itself.
 
-Be careful with all. In the list above, the claim all square numbers here are even is false. People often write its negation as no square number here is even. That sentence is false too, because <InlineMath math="4" /> is even. A negation always has the opposite truth value, so that sentence can't be the negation. The right negation is **not all square numbers here are even**, and the number <InlineMath math="1" /> shows it's true.
+Be careful with all. In the list above, the claim all square numbers here are even is false. People often write its negation as no square number here is even, yet that sentence is false too because <InlineMath math="4" /> is even.
+
+A negation always has the opposite truth value, so that sentence can't be the negation. The right negation is **not all square numbers here are even**, and the number <InlineMath math="1" /> shows it's true.
 
 ## Joining Two Statements
 
-The words and and or join two statements into one **compound statement**, and its truth value depends on the truth values of the two parts. In the circuit below, a closed switch means its statement is true, and a lit lamp means the compound statement is true. Switches wired in a row behave like and. Switches wired side by side behave like or.
+The words and and or join two statements into one **compound statement**, and its truth value depends on the truth values of the two parts.
+
+In the circuit below, a closed switch means its statement is true, and a lit lamp means the compound statement is true. Switches wired in a row behave like and, while switches wired side by side behave like or.
 
 <SwitchLogicLab
   title={<>Two Switches and a Lamp</>}

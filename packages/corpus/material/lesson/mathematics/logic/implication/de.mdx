@@ -20,7 +20,11 @@ Wann ist eine Implikation falsch? Nur dann, wenn das Antezedens wahr und das Kon
 | Falsch | Wahr | Wahr |
 | Falsch | Falsch | Wahr |
 
-Prüfe die Implikation wenn <InlineMath math="m > 5" />, dann <InlineMath math="m > 2" />. Um sie falsch zu machen, bräuchtest du eine Zahl, die größer als <InlineMath math="5" /> ist, aber nicht größer als <InlineMath math="2" />. So eine Zahl gibt es nicht, denn jede Zahl über <InlineMath math="5" /> liegt schon über <InlineMath math="2" />. Die Zeile wahr und dann falsch kommt nie vor, also ist die Implikation wahr. Für <InlineMath math="m = 3" /> ist das Antezedens falsch und das Konsequens wahr, und diese Zeile verletzt nichts.
+Prüfe die Implikation wenn <InlineMath math="m > 5" />, dann <InlineMath math="m > 2" />. Um sie falsch zu machen, bräuchtest du eine Zahl über <InlineMath math="5" />, die nicht über <InlineMath math="2" /> liegt, und so eine Zahl gibt es nicht.
+
+Die Zeile wahr und dann falsch kommt nie vor, also ist die Implikation wahr. Für <InlineMath math="m = 3" /> ist das Antezedens falsch und das Konsequens wahr, und diese Zeile verletzt nichts.
+
+> Eine Implikation ist nur falsch, wenn die Bedingung <InlineMath math="p" /> wahr und die Folge <InlineMath math="q" /> falsch ist. Tritt die Bedingung gar nicht ein, wird das Versprechen nie gebrochen.
 
 ## Zwei Richtungen in einem Satz
 
@@ -103,7 +107,9 @@ Das ist kein Zufall. Die Wahrheitstafel aller vier Formen zeigt, dass eine Impli
 | Falsch | Wahr | Wahr | Wahr | Falsch | Falsch |
 | Falsch | Falsch | Wahr | Wahr | Wahr | Wahr |
 
-Hast du eine Implikation bewiesen, ist ihre Kontraposition gleich mit bewiesen. Die Umkehrung kommt nicht mit. Sie kann falsch sein, wie bei <InlineMath math="x > 2" />, aber auch wahr. Für eine natürliche Zahl <InlineMath math="n" /> gilt: Wenn <InlineMath math="n" /> ein Vielfaches von <InlineMath math="10" /> ist, dann ist die letzte Ziffer von <InlineMath math="n" /> eine <InlineMath math="0" />. Die Umkehrung, wenn die letzte Ziffer von <InlineMath math="n" /> eine <InlineMath math="0" /> ist, dann ist <InlineMath math="n" /> ein Vielfaches von <InlineMath math="10" />, ist ebenfalls wahr, und die Inverse als ihr Partner auch. Eine **Umkehrung prüfst du also eigenständig**, statt sie vom Original abzuschreiben.
+Hast du eine Implikation bewiesen, ist ihre Kontraposition gleich mit bewiesen. Die Umkehrung kommt nicht mit. Sie kann falsch sein, wie bei <InlineMath math="x > 2" />, aber auch wahr.
+
+Für eine natürliche Zahl <InlineMath math="n" /> gilt: Wenn <InlineMath math="n" /> ein Vielfaches von <InlineMath math="10" /> ist, dann ist ihre letzte Ziffer <InlineMath math="0" />. Die Umkehrung ist ebenfalls wahr, und die Inverse als ihr Partner auch. Eine **Umkehrung prüfst du also eigenständig**, statt sie vom Original abzuschreiben.
 
 ## Ein Fall kippt die Aussage
 
@@ -172,10 +178,16 @@ Das Brett unten trägt neun Plättchen und zwei Behauptungen, die jeweils die Um
   showAnswer
 />
 
-Die erste Implikation hält bis zum letzten Plättchen. Das Feld mit <InlineMath math="p" /> wahr und <InlineMath math="q" /> falsch bleibt leer, denn jedes Vielfache von <InlineMath math="6" /> hat die Form <InlineMath math="6k = 3(2k)" /> und ist damit auch ein Vielfaches von <InlineMath math="3" />. Die Umkehrung scheitert beim Plättchen <InlineMath math="9" />, einem Vielfachen von <InlineMath math="3" />, das kein Vielfaches von <InlineMath math="6" /> ist, und auch das Plättchen <InlineMath math="15" /> kippt sie. Die Plättchen <InlineMath math="4" />, <InlineMath math="8" /> und <InlineMath math="20" /> sind keine Vielfachen von <InlineMath math="3" />, also ist bei beiden Behauptungen ihre Bedingung falsch, und sie **können nichts widerlegen**.
+Die erste Implikation hält bis zum letzten Plättchen. Das Feld mit <InlineMath math="p" /> wahr und <InlineMath math="q" /> falsch bleibt leer, denn jedes Vielfache von <InlineMath math="6" /> hat die Form <InlineMath math="6k = 3(2k)" /> und ist damit auch ein Vielfaches von <InlineMath math="3" />.
+
+Die Umkehrung scheitert an den Plättchen <InlineMath math="9" /> und <InlineMath math="15" />, die Vielfache von <InlineMath math="3" /> sind, aber keine von <InlineMath math="6" />. Die Plättchen <InlineMath math="4" />, <InlineMath math="8" /> und <InlineMath math="20" /> sind keine Vielfachen von <InlineMath math="3" />, also ist ihre Bedingung falsch, und sie **können nichts widerlegen**.
 
 Ein Gegenbeispiel kann sich weit draußen verstecken. Sieh dir diese Behauptung an: Für jede natürliche Zahl <InlineMath math="n" /> ist <InlineMath math="n^2 + n + 41" /> eine Primzahl. Für <InlineMath math="n = 0, 1, 2" /> erhältst du <InlineMath math="41, 43, 47" />, alles Primzahlen. Die Behauptung hält sogar für <InlineMath math="n = 0" /> bis <InlineMath math="n = 39" />, vierzig Fälle hintereinander. Probier jetzt <InlineMath math="n = 40" />.
 
 <BlockMath math="40^2 + 40 + 41 = 1{.}600 + 40 + 41 = 1{.}681 = 41 \times 41" />
 
-Die Zahl <InlineMath math="1{.}681" /> ist durch <InlineMath math="41" /> teilbar, also keine Primzahl, und **dieser eine Fall kippt die Behauptung**. Prüfe das Produkt: <InlineMath math="41 \times 41 = 1{.}640 + 41 = 1{.}681" />. Vierzig passende Fälle beweisen keine Aussage über alle Zahlen, aber ein einziges Gegenbeispiel reicht, um sie zu widerlegen.
+Die Zahl <InlineMath math="1{.}681" /> ist durch <InlineMath math="41" /> teilbar, also keine Primzahl, und **dieser eine Fall kippt die Behauptung**. Prüfe das Produkt direkt:
+
+<BlockMath math="41 \times 41 = 1{.}640 + 41 = 1{.}681" />
+
+Vierzig passende Fälle beweisen keine Aussage über alle Zahlen, aber ein einziges Gegenbeispiel reicht, um sie zu widerlegen.

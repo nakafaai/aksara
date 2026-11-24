@@ -17,7 +17,11 @@ Ein Argument ist eine Kette von Aussagen: Einige Aussagen, die du annimmst, die 
 | Deduktiv | In jedem Viereck ist die Summe der Innenwinkel <InlineMath math="360^\circ" />. <InlineMath math="PQRS" /> ist ein Viereck. | Die Innenwinkel von <InlineMath math="PQRS" /> ergeben zusammen <InlineMath math="360^\circ" />. |
 | Induktiv | <InlineMath math="1 + 3 = 2^2" />, <InlineMath math="1 + 3 + 5 = 3^2" />, <InlineMath math="1 + 3 + 5 + 7 = 4^2" /> | Die Summe der ersten <InlineMath math="n" /> ungeraden Zahlen ist <InlineMath math="n^2" />. |
 
-Der Unterschied liegt in der Gewissheit. Sind die Prämissen eines deduktiven Arguments wahr und ist seine Form gültig, dann ist die Konklusion **sicher wahr**. Eine induktive Konklusion ist nur **wahrscheinlich wahr**, deshalb testest du sie an neuen Fällen. Für <InlineMath math="n = 5" /> hält das Muster noch, denn <InlineMath math="1 + 3 + 5 + 7 + 9 = 25 = 5^2" />. Trotzdem ist ein weiterer Fall noch kein Beweis für jedes <InlineMath math="n" />.
+Der Unterschied liegt in der Gewissheit. Sind die Prämissen eines deduktiven Arguments wahr und ist seine Form gültig, dann ist die Konklusion **sicher wahr**. Eine induktive Konklusion ist nur **wahrscheinlich wahr**, deshalb testest du sie an neuen Fällen, etwa für <InlineMath math="n = 5" />:
+
+<BlockMath math="1 + 3 + 5 + 7 + 9 = 25 = 5^2" />
+
+Das Muster hält im fünften Fall noch, doch ein weiterer Fall ist trotzdem kein Beweis für jedes <InlineMath math="n" />.
 
 ## Drei gültige Schlussformen
 
@@ -103,7 +107,11 @@ Gültig sagt nur etwas über die Form. Ein Argument, das gültig ist und dessen 
 
 Mit <InlineMath math="2" /> ist eine Primzahl als Prämisse 2 hat das erste Argument **Form I** und ist gültig: Wären wirklich alle Primzahlen ungerade, müsste <InlineMath math="2" /> ungerade sein. Das Problem ist Prämisse 1, denn <InlineMath math="2" /> ist eine gerade Primzahl. Das Argument ist gültig, aber nicht schlüssig, und seine Konklusion, <InlineMath math="2" /> ist eine ungerade Zahl, ist falsch.
 
-Die andere Reihenfolge, von <InlineMath math="2" /> ist ungerade zu <InlineMath math="2" /> ist eine Primzahl, ist der Fehlschluss des **unverteilten Mittelbegriffs**. Dass alle Primzahlen ungerade sind, macht nicht jede ungerade Zahl zur Primzahl, wie <InlineMath math="9" /> zeigt: ungerade, aber keine Primzahl. Vergleiche ein schlüssiges Argument: Alle Vielfachen von <InlineMath math="4" /> sind gerade, <InlineMath math="36" /> ist ein Vielfaches von <InlineMath math="4" />, also ist <InlineMath math="36" /> gerade. Prüfe: <InlineMath math="36 = 4 \times 9" />.
+Die andere Reihenfolge, von <InlineMath math="2" /> ist ungerade zu <InlineMath math="2" /> ist eine Primzahl, ist der Fehlschluss des **unverteilten Mittelbegriffs**. Dass alle Primzahlen ungerade sind, macht nicht jede ungerade Zahl zur Primzahl, wie <InlineMath math="9" /> zeigt: ungerade, aber keine Primzahl.
+
+Vergleiche ein schlüssiges Argument: Alle Vielfachen von <InlineMath math="4" /> sind gerade, <InlineMath math="36" /> ist ein Vielfaches von <InlineMath math="4" />, also ist <InlineMath math="36" /> gerade. Prüfe: <InlineMath math="36 = 4 \times 9" />.
+
+> Ein gültiges Argument garantiert nur die richtige Schlussform, erst ein schlüssiges Argument mit wahren Prämissen garantiert eine wahre Konklusion.
 
 ### Gültige Schlüsse bauen
 
@@ -111,11 +119,15 @@ Für ein gültiges Argument zu einer Situation **wählst du zuerst die Form** un
 
 <BlockMath math="7{.}263 = 9 \times 807, \qquad 7 + 2 + 6 + 3 = 18 = 9 \times 2" />
 
-Das zweite Beispiel fragt nach einer fehlenden Prämisse. Prämisse 1: Wenn das Quadrat <InlineMath math="K" /> die Seitenlänge <InlineMath math="5\text{ cm}" /> hat, dann ist sein Flächeninhalt <InlineMath math="25\text{ cm}^2" />. Konklusion: Das Quadrat <InlineMath math="K" /> hat nicht die Seitenlänge <InlineMath math="5\text{ cm}" />. Die Konklusion hat die Gestalt <InlineMath math="\sim p" />, also ist das Argument Form III, und Prämisse 2 muss <InlineMath math="\sim q" /> sein: Der Flächeninhalt des Quadrats <InlineMath math="K" /> ist nicht <InlineMath math="25\text{ cm}^2" />. Prüfe: Eine Seite von <InlineMath math="5\text{ cm}" /> ergibt den Flächeninhalt <InlineMath math="5 \times 5 = 25\text{ cm}^2" />, und das widerspricht Prämisse 2. Die Seite ist also wirklich nicht <InlineMath math="5\text{ cm}" /> lang.
+Das zweite Beispiel fragt nach einer fehlenden Prämisse. Prämisse 1: Wenn das Quadrat <InlineMath math="K" /> die Seitenlänge <InlineMath math="5\text{ cm}" /> hat, dann ist sein Flächeninhalt <InlineMath math="25\text{ cm}^2" />. Konklusion: Das Quadrat <InlineMath math="K" /> hat nicht die Seitenlänge <InlineMath math="5\text{ cm}" />.
+
+Die Konklusion hat die Gestalt <InlineMath math="\sim p" />, also ist das Argument Form III, und Prämisse 2 muss <InlineMath math="\sim q" /> sein: Der Flächeninhalt des Quadrats <InlineMath math="K" /> ist nicht <InlineMath math="25\text{ cm}^2" />. Prüfe: Eine Seite von <InlineMath math="5\text{ cm}" /> ergibt <InlineMath math="5 \times 5 = 25\text{ cm}^2" />, und das widerspricht Prämisse 2.
 
 ## Starke und schwache Induktion
 
-Ein induktives Argument errät aus einigen Fällen eine allgemeine Regel. Geben die Prämissen einen guten Grund, an die Regel zu glauben, ist das Argument **stark**. Ist der Grund dünn, ist es **schwach**. Ein schwaches Beispiel: <InlineMath math="3" />, <InlineMath math="5" /> und <InlineMath math="7" /> sind Primzahlen, also ist jede ungerade Zahl größer als <InlineMath math="1" /> eine Primzahl. Drei Fälle sind zu wenig, und <InlineMath math="9 = 3 \times 3" /> widerlegt die Konklusion sofort.
+Ein induktives Argument errät aus einigen Fällen eine allgemeine Regel. Geben die Prämissen einen guten Grund, an die Regel zu glauben, ist das Argument **stark**. Ist der Grund dünn, ist es **schwach**.
+
+Ein schwaches Beispiel: <InlineMath math="3" />, <InlineMath math="5" /> und <InlineMath math="7" /> sind Primzahlen, also ist jede ungerade Zahl größer als <InlineMath math="1" /> eine Primzahl. Drei Fälle sind zu wenig, und <InlineMath math="9 = 3 \times 3" /> widerlegt die Konklusion sofort.
 
 ### Vom Muster zur Regel
 
@@ -147,7 +159,9 @@ Zähle die Diagonalen eines Vielecks mit <InlineMath math="n" /> Ecken für <Inl
   ]}
 />
 
-Das Muster hat einen Grund. Jede Ecke ist mit <InlineMath math="n - 3" /> anderen Ecken durch eine Diagonale verbunden, denn nicht mit sich selbst und nicht mit ihren zwei Nachbarn. Es gibt <InlineMath math="n" /> Ecken, aber **jede Diagonale wird doppelt gezählt**, einmal von jedem Ende aus. Das induktive Argument lautet so. Prämissen: Vielecke mit drei bis sieben Ecken haben <InlineMath math="0, 2, 5, 9, 14" /> Diagonalen, und jeder dieser Werte ist gleich <InlineMath math="\tfrac{n(n - 3)}{2}" />. Konklusion: Ein Vieleck mit <InlineMath math="n" /> Ecken hat <InlineMath math="\tfrac{n(n - 3)}{2}" /> Diagonalen.
+Das Muster hat einen Grund. Jede Ecke ist mit <InlineMath math="n - 3" /> anderen Ecken durch eine Diagonale verbunden, denn nicht mit sich selbst und nicht mit ihren zwei Nachbarn. Es gibt <InlineMath math="n" /> Ecken, aber **jede Diagonale wird doppelt gezählt**, einmal von jedem Ende aus.
+
+Das induktive Argument lautet so. Prämissen: Vielecke mit drei bis sieben Ecken haben <InlineMath math="0, 2, 5, 9, 14" /> Diagonalen, und jeder dieser Werte ist gleich <InlineMath math="\tfrac{n(n - 3)}{2}" />. Konklusion: Ein Vieleck mit <InlineMath math="n" /> Ecken hat <InlineMath math="\tfrac{n(n - 3)}{2}" /> Diagonalen.
 
 <MathVisual
   title={<>Die Diagonalenregel aus dem Muster</>}
@@ -184,7 +198,11 @@ Teste die Konklusion an einem Achteck. Die Regel sagt voraus:
 
 <BlockMath math="\frac{8(8 - 3)}{2} = \frac{40}{2} = 20" />
 
-Direktes Zählen liefert dasselbe: Jede der <InlineMath math="8" /> Ecken hat <InlineMath math="5" /> Diagonalen, und <InlineMath math="8 \times 5 \div 2 = 20" />. Schieb <InlineMath math="n" /> im Graphen auf <InlineMath math="8" />, und der Punkt liegt auf der Höhe <InlineMath math="20" />.
+Direktes Zählen liefert dasselbe, weil jede der <InlineMath math="8" /> Ecken <InlineMath math="5" /> Diagonalen hat und jede Diagonale doppelt gezählt wird:
+
+<BlockMath math="\frac{8 \times 5}{2} = 20" />
+
+Schieb <InlineMath math="n" /> im Graphen auf <InlineMath math="8" />, und der Punkt liegt genau auf der Höhe <InlineMath math="20" />.
 
 ### Stark und überzeugend
 
@@ -194,7 +212,11 @@ Die letzte Prämisse ist falsch.
 
 <BlockMath math="2^{11} - 1 = 2{.}047 = 23 \times 89" />
 
-Weil eine Prämisse falsch ist, **ist das Argument nicht überzeugend**, egal wie ordentlich das Muster aussieht. Der Fall <InlineMath math="p = 11" /> ist sogar ein Gegenbeispiel zur Konklusion. Prüfe das Produkt: <InlineMath math="23 \times 89 = 23 \times 90 - 23 = 2{.}070 - 23 = 2{.}047" />.
+Weil eine Prämisse falsch ist, **ist das Argument nicht überzeugend**, egal wie ordentlich das Muster aussieht. Der Fall <InlineMath math="p = 11" /> ist sogar ein Gegenbeispiel zur Konklusion. Prüfe das Produkt direkt:
+
+<BlockMath math="23 \times 89 = 23 \times 90 - 23 = 2{.}070 - 23 = 2{.}047" />
+
+Das bestätigt, dass <InlineMath math="2{.}047" /> keine Primzahl ist.
 
 ## Welche Karten umdrehen
 
@@ -209,4 +231,6 @@ Die Regel ist eine Implikation, also kann nur ein Gegenbeispiel sie widerlegen: 
 | Rot | gerade oder ungerade | Nein, das Konsequens ist schon wahr |
 | Blau | gerade oder ungerade | Ja, wenn hinten eine gerade Zahl ist |
 
-Du musst also **die Karte <InlineMath math="8" /> und die blaue Karte** umdrehen. Die Karte <InlineMath math="8" /> testest du mit Form II: Gilt die Regel, muss hinten Rot sein. Die blaue Karte testest du mit Form III: Gilt die Regel, darf hinten keine gerade Zahl stehen. Viele wählen die rote Karte, doch nichts auf ihrer Rückseite kann die Regel verletzen. Aus der roten Karte etwas zu schließen, ist eine Bejahung des Konsequens.
+Du musst also **die Karte <InlineMath math="8" /> und die blaue Karte** umdrehen. Die Karte <InlineMath math="8" /> testest du mit Form II: Gilt die Regel, muss hinten Rot sein. Die blaue Karte testest du mit Form III: Gilt die Regel, darf hinten keine gerade Zahl stehen.
+
+Viele wählen die rote Karte, doch nichts auf ihrer Rückseite kann die Regel verletzen. Aus der roten Karte etwas zu schließen, ist eine Bejahung des Konsequens.

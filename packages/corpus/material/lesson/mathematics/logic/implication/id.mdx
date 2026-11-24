@@ -20,7 +20,11 @@ Kapan implikasi salah? Hanya kalau antesedennya benar tetapi konsekuennya salah.
 | Salah | Benar | Benar |
 | Salah | Salah | Benar |
 
-Cek implikasi jika <InlineMath math="m > 5" />, maka <InlineMath math="m > 2" />. Untuk membuatnya salah, kamu butuh bilangan yang lebih dari <InlineMath math="5" /> tetapi tidak lebih dari <InlineMath math="2" />. Bilangan seperti itu tidak ada, karena setiap bilangan di atas <InlineMath math="5" /> sudah melewati <InlineMath math="2" />. Baris benar lalu salah tidak pernah terjadi, jadi implikasinya benar. Untuk <InlineMath math="m = 3" />, antesedennya salah dan konsekuennya benar, dan baris itu tidak melanggar apa pun.
+Cek implikasi jika <InlineMath math="m > 5" />, maka <InlineMath math="m > 2" />. Untuk membuatnya salah, kamu butuh bilangan yang lebih dari <InlineMath math="5" /> tetapi tidak lebih dari <InlineMath math="2" />, dan bilangan seperti itu tidak ada.
+
+Baris benar lalu salah tidak pernah terjadi, jadi implikasinya benar. Untuk <InlineMath math="m = 3" />, antesedennya salah dan konsekuennya benar, sehingga baris itu tidak melanggar apa pun.
+
+> Implikasi hanya salah ketika syarat <InlineMath math="p" /> benar tetapi akibat <InlineMath math="q" /> salah. Kalau syaratnya salah, janji itu tidak pernah dilanggar.
 
 ## Dua Arah dalam Satu Kalimat
 
@@ -102,7 +106,9 @@ Hasil tadi bukan kebetulan. Tabel kebenaran keempat bentuk menunjukkan bahwa imp
 | Salah | Benar | Benar | Benar | Salah | Salah |
 | Salah | Salah | Benar | Benar | Benar | Benar |
 
-Kalau kamu sudah membuktikan sebuah implikasi, kontraposisinya ikut terbukti. Konvers tidak ikut. Konvers bisa salah, seperti pada <InlineMath math="x > 2" /> tadi, tetapi bisa juga benar. Untuk bilangan cacah <InlineMath math="n" />, jika <InlineMath math="n" /> kelipatan <InlineMath math="10" />, maka angka terakhir <InlineMath math="n" /> adalah <InlineMath math="0" />. Konversnya, jika angka terakhir <InlineMath math="n" /> adalah <InlineMath math="0" />, maka <InlineMath math="n" /> kelipatan <InlineMath math="10" />, juga benar, dan inversnya ikut benar karena berpasangan dengan konvers. Jadi **konvers harus dicek sendiri**, tidak bisa disalin dari implikasi asalnya.
+Kalau kamu sudah membuktikan sebuah implikasi, kontraposisinya ikut terbukti. Konvers tidak ikut. Konvers bisa salah, seperti pada <InlineMath math="x > 2" /> tadi, tetapi bisa juga benar.
+
+Untuk bilangan cacah <InlineMath math="n" />, jika <InlineMath math="n" /> kelipatan <InlineMath math="10" />, maka angka terakhir <InlineMath math="n" /> adalah <InlineMath math="0" />. Konversnya juga benar, dan inversnya ikut benar karena berpasangan dengan konvers. Jadi **konvers harus dicek sendiri**, tidak bisa disalin dari implikasi asalnya.
 
 ## Satu Kasus Mematahkan Klaim
 
@@ -171,10 +177,16 @@ Papan di bawah memuat sembilan ubin dan dua klaim yang saling konvers. Setiap ub
   showAnswer
 />
 
-Implikasi pertama bertahan sampai ubin terakhir. Kotak <InlineMath math="p" /> benar dan <InlineMath math="q" /> salah tetap kosong, karena setiap kelipatan <InlineMath math="6" /> berbentuk <InlineMath math="6k = 3(2k)" />, jadi juga kelipatan <InlineMath math="3" />. Konversnya patah di ubin <InlineMath math="9" />, yang kelipatan <InlineMath math="3" /> tetapi bukan kelipatan <InlineMath math="6" />, dan ubin <InlineMath math="15" /> mematahkannya juga. Ubin <InlineMath math="4" />, <InlineMath math="8" />, dan <InlineMath math="20" /> bukan kelipatan <InlineMath math="3" />, jadi pada kedua klaim syaratnya salah dan ubin itu **tidak bisa mematahkan apa pun**.
+Implikasi pertama bertahan sampai ubin terakhir. Kotak <InlineMath math="p" /> benar dan <InlineMath math="q" /> salah tetap kosong, karena setiap kelipatan <InlineMath math="6" /> berbentuk <InlineMath math="6k = 3(2k)" />, jadi juga kelipatan <InlineMath math="3" />.
+
+Konversnya patah di ubin <InlineMath math="9" /> dan <InlineMath math="15" />, karena keduanya kelipatan <InlineMath math="3" /> yang bukan kelipatan <InlineMath math="6" />. Ubin <InlineMath math="4" />, <InlineMath math="8" />, dan <InlineMath math="20" /> bukan kelipatan <InlineMath math="3" />, jadi pada kedua klaim syaratnya salah dan ubin itu **tidak bisa mematahkan apa pun**.
 
 Contoh penyangkal kadang bersembunyi jauh. Lihat klaim ini: untuk setiap bilangan cacah <InlineMath math="n" />, nilai <InlineMath math="n^2 + n + 41" /> adalah bilangan prima. Untuk <InlineMath math="n = 0, 1, 2" /> hasilnya <InlineMath math="41, 43, 47" />, semuanya prima. Klaim ini bahkan lolos untuk <InlineMath math="n = 0" /> sampai <InlineMath math="n = 39" />, empat puluh kasus berturut-turut. Sekarang coba <InlineMath math="n = 40" />.
 
 <BlockMath math="40^2 + 40 + 41 = 1{.}600 + 40 + 41 = 1{.}681 = 41 \times 41" />
 
-Bilangan <InlineMath math="1{.}681" /> habis dibagi <InlineMath math="41" />, jadi bukan bilangan prima, dan **satu kasus ini menjatuhkan klaimnya**. Cek perkaliannya: <InlineMath math="41 \times 41 = 1{.}640 + 41 = 1{.}681" />. Empat puluh kasus yang cocok tidak membuktikan klaim tentang semua bilangan, sedangkan satu contoh penyangkal sudah cukup untuk menyalahkannya.
+Bilangan <InlineMath math="1{.}681" /> habis dibagi <InlineMath math="41" />, jadi bukan bilangan prima, dan **satu kasus ini menjatuhkan klaimnya**. Cek perkaliannya langsung:
+
+<BlockMath math="41 \times 41 = 1{.}640 + 41 = 1{.}681" />
+
+Empat puluh kasus yang cocok tidak membuktikan klaim tentang semua bilangan, sedangkan satu contoh penyangkal sudah cukup untuk menyalahkannya.
