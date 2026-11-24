@@ -1,25 +1,22 @@
 export const metadata = {
-  title: "Ernährung und menschliches Verdauungssystem",
+  title: "Ernährung Enzyme und Menschliche Verdauung",
   description:
-    "Berechne den Energiegehalt von Nahrung und erkläre die Verdauung durch Enzyme, die Aufnahme im Dünndarm und ernährungsbedingte Krankheiten mit Übungen.",
+    "Berechne den Energiegehalt von Nahrung, verfolge Enzymsekretion und aktives Zentrum, prüfe Denaturierung sowie Sättigung und erkläre die Aufnahme in Darmzotten.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-11-17",
   subject: "Ernährung und menschliches Verdauungssystem",
 };
 
-## Verdauung zerlegt Nahrung in kleine Moleküle
-
-Eine **ausgewogene Ernährung** enthält sieben Nährstoffgruppen im richtigen Verhältnis: **Kohlenhydrate, Proteine, Fette, Vitamine, Mineralstoffe, Ballaststoffe und Wasser**. Kohlenhydrate, Proteine und Fette sind große Moleküle, die die Darmwand nicht durchqueren können. Die **Verdauung** zerlegt diese großen Moleküle mithilfe von Enzymen in kleine lösliche Moleküle, nämlich Glucose, Aminosäuren, Fettsäuren und Glycerin. Diese kleinen Moleküle werden dann **im Dünndarm aufgenommen** und von den Zellen genutzt. In den Modellen hier vergleichst du den Energiegehalt von Nahrung, liest die Enzymaktivität bei verschiedenen pH-Werten ab und verfolgst, wie Amylase Stärke verdaut.
-
 ## Energiegehalt der Nahrung
 
-Jedes Gramm eines Nährstoffs setzt bei der Oxidation in den Zellen eine andere Energiemenge frei. **Fette liefern mehr als doppelt so viel Energie** wie Kohlenhydrate oder Proteine.
+Eine **ausgewogene Ernährung** vereint sieben Nährstoffgruppen: Kohlenhydrate, Proteine, Fette, Vitamine, Mineralstoffe, Ballaststoffe und Wasser. Weil Kohlenhydrate, Proteine und Fette als große Moleküle die Darmwand nicht passieren, zerlegt die **Verdauung** sie in Glucose, Aminosäuren, Fettsäuren und Glycerin. Pro Gramm liefern **Fette mehr als doppelt so viel Energie** wie Kohlenhydrate oder Proteine.
 
 <BarChart
   title={<>Energiegehalt je Gramm Nährstoff</>}
+  footer={<>Ein Gramm Fett liefert 37 kJ, mehr als doppelt so viel wie Kohlenhydrat oder Protein.</>}
   description={
     <>
-      Die Energie, die ein Gramm Kohlenhydrat, Protein und Fett freisetzt, in
+      Freigesetzte Energie von einem Gramm Kohlenhydrat, Protein und Fett in
       Kilojoule.
     </>
   }
@@ -32,34 +29,18 @@ Jedes Gramm eines Nährstoffs setzt bei der Oxidation in den Zellen eine andere 
   chartConfig={{ value: { label: "Energiegehalt", colors: { light: ["var(--chart-2)"], dark: ["var(--chart-2)"] } } }}
 />
 
-### Beispiel Energie in einer Mahlzeit
+Eine Mahlzeit mit <InlineMath math="60\ \text{g}" /> Kohlenhydrat, <InlineMath math="20\ \text{g}" /> Protein und <InlineMath math="15\ \text{g}" /> Fett liefert <InlineMath math="1915\ \text{kJ}" />, während ein einfaches Kalorimeter den Energiegehalt über die Erwärmung von Wasser bestimmt:
 
-Eine Mahlzeit enthält <InlineMath math="60\text{ g}" /> Kohlenhydrat, <InlineMath math="20\text{ g}" /> Protein und <InlineMath math="15\text{ g}" /> Fett. Berechne **die gesamte Energie** der Mahlzeit.
-
-<BlockMath math="60 \times 17 + 20 \times 17 + 15 \times 37 = 1020 + 340 + 555 = 1915\text{ kJ}" />
-
-Prüfe: Es sind nur <InlineMath math="15\text{ g}" /> Fett, aber sie liefern <InlineMath math="555\text{ kJ}" />, mehr als das Protein mit fast gleicher Masse. Das passt zum hohen Energiegehalt von Fett.
-
-### Beispiel Energiegehalt mit einem einfachen Kalorimeter messen
-
-Eine Erdnuss mit <InlineMath math="1{,}0\text{ g}" /> wird unter einem Reagenzglas mit <InlineMath math="20\text{ cm}^3" /> Wasser verbrannt. Das Wasser erwärmt sich von <InlineMath math="28^\circ\text{C}" /> auf <InlineMath math="58^\circ\text{C}" />. Die spezifische Wärmekapazität von Wasser beträgt <InlineMath math="4{,}2\text{ J g}^{-1}\,{}^\circ\text{C}^{-1}" />. Berechne **den Energiegehalt der Erdnuss**.
-
-<MathContainer>
-<BlockMath math="Q = mc\Delta\theta = 20 \times 4{,}2 \times 30 = 2520\text{ J}" />
-<BlockMath math="\text{Energiegehalt} = \frac{2520}{1{,}0} = 2520\text{ J g}^{-1} = 2{,}52\text{ kJ g}^{-1}" />
-</MathContainer>
-
-Prüfe: Der echte Wert für Erdnüsse ist etwa zehnmal größer. Viel Wärme entweicht an die Luft und das Glas, also liefert ein einfaches Kalorimeter immer einen zu niedrigen Wert.
-
-Dieses Diagramm zeigt die Ergebnisse, wenn die Masse der verbrannten Erdnuss verändert wird. Die Steigung der Geraden ist der Temperaturanstieg je Gramm Nahrung.
+<BlockMath math="Q = m c \Delta\theta, \qquad \text{Energiegehalt} = \frac{Q}{m_{\text{Nahrung}}}" />
 
 <ScatterDiagram
   title={<>Temperaturanstieg des Wassers gegen die Masse der Erdnuss</>}
+  footer={<>Die Steigung ergibt rund 30 Grad Celsius Erwärmung pro Gramm verbrannter Erdnuss.</>}
   description={
     <>
-      Jeder Punkt ist eine Verbrennung unter <InlineMath math="20\text{ cm}^3" />{" "}
-      Wasser. Die Steigung beträgt etwa <InlineMath math="30^\circ\text{C}" />{" "}
-      je Gramm.
+      Jeder Punkt ist eine Verbrennung unter <InlineMath math="20\ \text{cm}^3" />{" "}
+      Wasser. Wärmeverluste an Luft und Glas lassen einfache Kalorimeter zu
+      niedrige Werte liefern.
     </>
   }
   xAxisLabel="Masse der Erdnuss (g)"
@@ -80,31 +61,196 @@ Dieses Diagramm zeigt die Ergebnisse, wenn die Masse der verbrannten Erdnuss ver
   ]}
 />
 
-## Verdauung im menschlichen Verdauungssystem
+Verbrennt <InlineMath math="1{,}0\ \text{g}" /> Erdnuss und erwärmt <InlineMath math="20\ \text{cm}^3" /> Wasser um <InlineMath math="30^\circ\text{C}" />, ergeben sich <InlineMath math="2{,}52\ \text{kJ g}^{-1}" />, deutlich unter dem wahren Wert wegen Wärmeverlusten an Luft und Glas.
 
-Die Verdauung geschieht **mechanisch**, durch Kauen und Peristaltik, und **chemisch**, durch Enzyme. Jedes Enzym wirkt auf ein bestimmtes Substrat in einem bestimmten Abschnitt des Darms.
+## Enzyme bei der Verdauung
+
+Die Verdauung verbindet **mechanische Zerkleinerung** (Kauen und Peristaltik) mit **chemischer Spaltung** durch spezialisierte Enzyme entlang des Darms. **Galle enthält keine Enzyme**, emulgiert aber Fette zu feinen Tröpfchen für die Lipase und neutralisiert Magensäure.
 
 | Ort | Sekret | Enzyme | Wirkung |
 | :--- | :--- | :--- | :--- |
 | Mund | Speichel | Speichelamylase | Stärke zu Maltose |
-| Magen | Magensaft mit Salzsäure | Pepsin, Labferment | Protein zu Polypeptiden, Kaseinogen zu Kasein |
-| Zwölffingerdarm | Bauchspeichel und Galle | Amylase, Trypsin, Lipase | Stärke zu Maltose, Polypeptide zu Peptiden, Fette zu Fettsäuren und Glycerin |
-| Dünndarm | Darmsaft | Maltase, Saccharase, Lactase, Erepsin, Lipase | Zweifachzucker zu Einfachzuckern, Peptide zu Aminosäuren |
+| Magen | Magensaft und Salzsäure | Pepsin, Labferment | Protein zu Polypeptiden, Kaseinogen zu Kasein |
+| Zwölffingerdarm | Bauchspeichel und Galle | Amylase, Trypsin, Lipase | Spaltet Stärke, Polypeptide und Fette |
+| Dünndarm | Darmsaft | Maltase, Saccharase, Lactase, Erepsin, Lipase | Zweifach- zu Einfachzuckern, Peptide zu Aminosäuren |
 
-Die **Galle** enthält keine Enzyme. Sie emulgiert Fette zu kleinen Tröpfchen, sodass die Oberfläche für die Lipase größer wird, und sie neutralisiert den sauren Speisebrei aus dem Magen.
+### Sekretion aus Zellen
 
-### Enzyme und ihr optimaler Säuregrad
+Stell dir eine Versandzentrale in der Bauchspeicheldrüse vor: Intrazelluläre Enzyme entstehen an freien Ribosomen, während **extrazelluläre Verdauungsenzyme wie Pankreasamylase** am rauen endoplasmatischen Retikulum gebaut, im Golgi-Apparat verpackt und per **Exozytose** abgegeben werden.
 
-Jedes Enzym hat einen **optimalen pH-Wert**. Pepsin arbeitet im sauren Magen, Amylase und Trypsin dagegen in neutraler oder leicht basischer Umgebung. Verschiebe den pH-Regler und vergleiche die Aktivität der drei Enzyme.
+> Extrazelluläre Enzyme durchlaufen gebundene Ribosomen, raues endoplasmatisches Retikulum, Transportvesikel, Golgi-Apparat und Sekretvesikel bis zur Exozytose in den Darm.
+
+<EnzymeSecretionLab
+  title={<>Wege intrazellulärer und extrazellulärer Enzyme</>}
+  description={
+    <>
+      Vergleiche den Aufbau intrazellulärer Enzyme mit dem Sekretionsweg der
+      Pankreasamylase in einer Drüsenzelle.
+    </>
+  }
+  footer={<>Verdauungsenzyme der Bauchspeicheldrüse werden im Golgi verpackt und per Exozytose abgegeben.</>}
+  labels={{
+    example: <>Beispielenzym</>,
+    examples: {
+      extracellular: <>Pankreasamylase</>,
+      intracellular: <>Enzyme der Glykolyse</>,
+    },
+    parts: {
+      duct: "Ausführgang",
+      golgi: "Golgi-Apparat",
+      membrane: "Plasmamembran",
+      nucleus: "Zellkern",
+      reticulum: "Raues endoplasmatisches Retikulum",
+      ribosome: "Ribosom",
+      vesicle: "Sekretvesikel",
+    },
+    place: <>Wirkungsort</>,
+    places: {
+      extracellular: <>Dünndarm</>,
+      intracellular: <>Cytoplasma</>,
+    },
+    route: "Enzymart",
+    routes: {
+      extracellular: "Extrazelluläres Enzym",
+      intracellular: "Intrazelluläres Enzym",
+    },
+    step: <>Aktueller Schritt</>,
+    steps: {
+      boundRibosome: <>Gebundenes Ribosom baut die Kette</>,
+      cytoplasm: <>Enzym wirkt direkt im Cytoplasma</>,
+      exocytosis: <>Exozytose gibt das Enzym in den Gang ab</>,
+      freeRibosome: <>Freies Ribosom baut das Enzym im Cytoplasma</>,
+      golgi: <>Golgi-Apparat verändert und verpackt es</>,
+      nucleus: <>mRNA verlässt den Zellkern</>,
+      reticulum: <>Protein faltet sich im rauen Retikulum</>,
+      secretory: <>Sekretvesikel trägt es zur Membran</>,
+      transport: <>Transportvesikel bringt es zum Golgi</>,
+    },
+    view: "Aufgeschnittene Drüsenzelle der Bauchspeicheldrüse mit Organellen",
+  }}
+  routes={["intracellular", "extracellular"]}
+/>
+
+Der Vergleich beider Wege zeigt, warum Drüsenzellen der Bauchspeicheldrüse so viel raues endoplasmatisches Retikulum und Golgi-Stapel besitzen.
+
+### Aktives Zentrum
+
+Enzyme arbeiten **streng substratspezifisch**, weil die Raumstruktur ihres **aktiven Zentrums** nur passende Substrate nach dem Schlüssel-Schloss- oder Induced-Fit-Modell bindet, Produkte freisetzt und **unverändert wiederverwendet wird**.
+
+> Nur ein zum aktiven Zentrum passendes Substrat bildet einen Enzym-Substrat-Komplex, wird mit Wasser gespalten und hinterlässt das Enzym unversehrt.
+
+<ActiveSiteLab
+  title={<>Substratspezifität der Zweifachzucker-Enzyme</>}
+  description={
+    <>
+      Teste Lactase, Saccharase und Maltase mit Lactose, Saccharose und Maltose
+      im Schlüssel-Schloss- sowie Induced-Fit-Modell.
+    </>
+  }
+  footer={<>Ein Enzymmolekül bleibt nach der Spaltung unverändert und arbeitet immer wieder neu.</>}
+  enzymes={["lactase", "sucrase", "maltase"]}
+  labels={{
+    enzyme: "Enzym",
+    enzymes: {
+      lactase: "Lactase",
+      maltase: "Maltase",
+      sucrase: "Saccharase",
+    },
+    fits: <>Substrat passt ins aktive Zentrum</>,
+    model: "Bindungsmodell",
+    models: {
+      inducedFit: "Induced Fit",
+      lockKey: "Schlüssel-Schloss",
+    },
+    no: <>nein</>,
+    parts: {
+      complex: "Enzym-Substrat-Komplex",
+      site: "Aktives Zentrum",
+      water: "Wasser",
+    },
+    products: <>Produkte</>,
+    reused: <>Durch dieses Enzym gespaltene Substrate</>,
+    substrate: "Substrat",
+    substrates: {
+      lactose: "Lactose",
+      maltose: "Maltose",
+      sucrose: "Saccharose",
+    },
+    sugars: {
+      fructose: "Fructose",
+      galactose: "Galactose",
+      glucose: "Glucose",
+    },
+    view: "Ein Enzymmolekül mit aktivem Zentrum zwischen Zuckermolekülen",
+    yes: <>ja</>,
+  }}
+  models={["lockKey", "inducedFit"]}
+  substrates={["lactose", "sucrose", "maltose"]}
+/>
+
+Lactase spaltet nur Lactose in Glucose und Galactose, Saccharase spaltet Saccharose in Glucose und Fructose, und Maltase spaltet Maltose in zwei Glucosemoleküle.
+
+### Hitze und Säuregrad
+
+Jedes Enzym arbeitet am schnellsten bei **optimaler Temperatur** und **optimalem pH-Wert**. Kälte bremst nur die wirksamen Zusammenstöße (umkehrbar beim Erwärmen), während **große Hitze oder extremer pH das aktive Zentrum dauerhaft zerstören** (**Denaturierung**).
+
+> Kälte verlangsamt Enzyme ohne Strukturschaden, während Überhitzung und extremer pH-Wert das aktive Zentrum unumkehrbar verformen.
+
+<DenatureLab
+  title={<>Temperatureinfluss bei Amylase und pH-Einfluss bei Pepsin</>}
+  description={
+    <>
+      Stelle die Wasserbadtemperatur für den Iodtest der Amylase oder den
+      pH-Wert für Pepsin ein und prüfe mit Zurücksetzen auf Denaturierung.
+    </>
+  }
+  footer={<>Abkühlung ist umkehrbar, doch Überhitzung denaturiert das aktive Zentrum dauerhaft.</>}
+  enzymes={["amylase", "pepsin"]}
+  labels={{
+    active: <>Enzyme mit intaktem aktivem Zentrum</>,
+    collisions: <>Wirksame Stöße pro Sekunde</>,
+    endpoint: <>Zeit bis Substrat verbraucht ist</>,
+    enzyme: "Versuch",
+    enzymes: {
+      amylase: "Amylase und Stärke",
+      pepsin: "Pepsin und Eiweiß",
+    },
+    never: <>nie erreicht</>,
+    parts: {
+      bath: "Wasserbad",
+      lens: "Lupe auf aktives Zentrum",
+      thermometer: "Thermometer",
+      tile: "Tüpfelplatte",
+      tube: "Reagenzglas",
+    },
+    ph: "pH-Wert der Lösung",
+    rate: <>Relative Reaktionsrate</>,
+    restore: "Zurück zu optimalen Bedingungen",
+    temperature: "Temperatur des Wasserbads",
+    test: <>Aktuelles Testergebnis</>,
+    tests: {
+      clear: <>Trübung jetzt klar</>,
+      cloudy: <>Suspension noch trüb</>,
+      noStarch: <>Iod gelbbraun</>,
+      starch: <>Iod blauschwarz</>,
+    },
+    time: "Zeit",
+    view: "Wasserbad mit Reagenzglas, Tüpfelplatte und Lupe aufs aktive Zentrum",
+  }}
+  ph={{ max: 13, min: 1, value: 7 }}
+  temperature={{ max: 80, min: 0, value: 20 }}
+/>
+
+Deshalb verdaut Pepsin Proteine im sauren Magen (<InlineMath math="\text{pH}\ 2" />), während verschluckte Speichelamylase dort denaturiert.
 
 <MathVisual
   title={<>Aktivität von Verdauungsenzymen bei verschiedenen pH-Werten</>}
+  footer={<>Pepsin gipfelt im Sauren bei pH 2, Amylase neutral bei 7 und Trypsin bei 8.</>}
   description={
     <>
-      Relative Aktivität von Pepsin mit optimalem pH <InlineMath math="2" />,
-      Amylase mit optimalem pH <InlineMath math="7" /> und Trypsin mit
-      optimalem pH <InlineMath math="8" />, auf einer Skala von{" "}
-      <InlineMath math="0" /> bis <InlineMath math="10" />.
+      Relative Aktivität von Pepsin (Optimum <InlineMath math="2" />), Amylase
+      (Optimum <InlineMath math="7" />) und Trypsin (Optimum{" "}
+      <InlineMath math="8" />).
     </>
   }
   scene={{
@@ -134,17 +280,16 @@ Jedes Enzym hat einen **optimalen pH-Wert**. Pepsin arbeitet im sauren Magen, Am
   }}
 />
 
-### Beispiel Amylase verdaut Stärke
-
-Stärkelösung wird bei Körpertemperatur mit Amylase gemischt. Jede Minute wird ein Tropfen der Mischung mit **Iodlösung** getestet. Die verbleibende Stärke sinkt nach <InlineMath math="10e^{-km}" />, mit <InlineMath math="m" /> in Minuten. Ändere die Geschwindigkeit <InlineMath math="k" />, um verschiedene Temperaturen nachzuahmen, und verschiebe die Zeit, um die verbleibende Stärke zu sehen.
+Jeder Verdauungsabschnitt hält seinen eigenen pH-Wert konstant, damit jedes Enzym am passenden Ort wirkt.
 
 <MathVisual
   title={<>Verbleibende Stärke während der Verdauung durch Amylase</>}
+  footer={<>Wärme nahe dem Optimum vergrößert k, sodass der Iodtest rascher klar bleibt.</>}
   description={
     <>
-      Relative Stärke <InlineMath math="10e^{-km}" /> gegen die Zeit{" "}
-      <InlineMath math="m" /> in Minuten. Iod färbt sich nicht mehr
-      blauschwarz, sobald die Stärke unter <InlineMath math="1" /> fällt.
+      Relative Stärke <InlineMath math="10e^{-km}" /> über die Zeit{" "}
+      <InlineMath math="m" /> in Minuten, und unter <InlineMath math="1" /> bleibt
+      Iod hell.
     </>
   }
   scene={{
@@ -171,35 +316,107 @@ Stärkelösung wird bei Körpertemperatur mit Amylase gemischt. Jede Minute wird
   }}
 />
 
-Mit <InlineMath math="k = 0{,}5" /> sinkt die Stärke nach <InlineMath math="4" /> Minuten auf <InlineMath math="10e^{-0{,}5 \times 4} = 1{,}35" /> und nach etwa <InlineMath math="4{,}6" /> Minuten unter <InlineMath math="1" />. Prüfe: <InlineMath math="10e^{-0{,}5 \times 4{,}6} = 1{,}00" />. Bei niedrigerer Temperatur ist <InlineMath math="k" /> kleiner, und der Iodtest bleibt länger blauschwarz.
+Bei <InlineMath math="k = 0{,}5" /> sinkt die Stärke in rund <InlineMath math="4{,}6" /> Minuten unter die Nachweisgrenze des Iodtests.
+
+## Sättigung und Lactase
+
+Bei knappem Substrat beschleunigt mehr Substrat die Reaktion sofort. Sobald jedoch **alle aktiven Zentren besetzt sind**, flacht die Kurve ab und **die Enzymkonzentration wird zum begrenzenden Faktor**.
+
+> Sind alle aktiven Zentren ausgelastet, steigert zusätzliches Substrat das Tempo erst wieder, wenn mehr Enzymmoleküle hinzugefügt werden.
+
+<EnzymeSaturationLab
+  title={<>Sättigung aktiver Zentren und begrenzender Faktor</>}
+  description={
+    <>
+      Ändere die Zahl der Enzym- und Substratmoleküle und beobachte den Wechsel
+      des begrenzenden Faktors von Substrat zu Enzym.
+    </>
+  }
+  footer={<>Bei Sättigung bleibt die Rate flach und steigt erst mit zusätzlichen Enzymen weiter.</>}
+  enzymes={{ max: 20, min: 1, value: 10 }}
+  labels={{
+    busy: <>Besetzte aktive Zentren</>,
+    curve: <>Rate gegen Substratkonzentration</>,
+    enzymes: "Enzymmoleküle",
+    limiting: <>Begrenzender Faktor</>,
+    limits: {
+      enzyme: <>Enzymkonzentration</>,
+      substrate: <>Substratkonzentration</>,
+    },
+    parts: { enzyme: "Enzym", product: "Produkt", substrate: "Substrat" },
+    rate: <>Gespaltene Substrate pro Sekunde</>,
+    substrates: "Substratmoleküle",
+    time: "Zeit",
+    view: "Enzym- und Substratmoleküle in Lösung",
+  }}
+  substrates={{ max: 200, min: 0, value: 20 }}
+  turnover={2}
+/>
+
+Dieselbe Wiederverwendbarkeit nutzt die Lebensmitteltechnik mit **immobilisierter Lactase** in Alginatkugeln, um lactosearme Milch ohne Enzymreste herzustellen.
+
+> In Alginatkugeln gebundene Lactase liefert enzymfreie Milch und lässt sich für viele Chargen hintereinander weiterverwenden.
+
+<LactaseColumnLab
+  title={<>Säule mit immobilisierter Lactase für lactosearme Milch</>}
+  description={
+    <>
+      Vergleiche in Alginatkugeln gebundene Lactase mit frei eingerührter
+      Lactase bei verschiedenen Flussraten der Milch.
+    </>
+  }
+  footer={<>Alginatkugeln halten Lactase in der Säule, sodass Milch enzymfrei und sparsam bleibt.</>}
+  flow={{ max: 10, min: 1, value: 5 }}
+  labels={{
+    batches: <>Chargen mit derselben Lactase</>,
+    enzyme: <>Lactase in der auslaufenden Milch</>,
+    flow: "Milchflussrate",
+    glucose: <>Glucoseteststreifen</>,
+    lactose: <>Restlactose in der Milch</>,
+    method: "Verfahren",
+    methods: {
+      free: "Lactase frei eingerührt",
+      immobilised: "Lactase in Alginatkugeln",
+    },
+    negative: <>keine Glucose</>,
+    none: <>keine</>,
+    parts: {
+      beads: "Alginatkugeln",
+      column: "Glassäule",
+      milk: "Milch",
+      strip: "Glucoseteststreifen",
+    },
+    positive: <>Glucose vorhanden</>,
+    present: <>in der Milch enthalten</>,
+    view: "Glassäule mit Alginatkugeln und durchfließender Milch",
+  }}
+  methods={["immobilised", "free"]}
+/>
+
+Fließt die Milch zu schnell durch die Säule, bleibt den Enzymen zu wenig Kontaktzeit und es verbleibt mehr ungespaltene Lactose.
 
 ## Aufnahme und Assimilation
 
-Der Dünndarm ist an die Aufnahme angepasst. Seine Wand ist gefaltet und mit **Darmzotten** bedeckt, und jede Epithelzelle einer Zotte trägt **Mikrovilli**, sodass die Oberfläche riesig ist. Die Wand einer Zotte ist nur eine Zelle dick, und jede Zotte enthält **Blutkapillaren** und ein **Lymphgefäß**.
+Die Dünndarmwand trägt zahllose **Darmzotten** samt **Mikrovilli** für riesige Oberfläche, ist nur eine Zelle dick für kurze Diffusionswege und dicht durchzogen von **Blutkapillaren** und einem **Lymphgefäß**.
 
-- Glucose und Aminosäuren gelangen in die Blutkapillaren und dann über die **Pfortader** zur Leber.
-- Fettsäuren und Glycerin gelangen in das Lymphgefäß und erreichen über das Lymphsystem das Blut.
-- Das restliche Wasser und die Mineralstoffe werden im **Dickdarm** aufgenommen, und Unverdautes wie Ballaststoffe wird als Kot ausgeschieden.
+- Glucose und Aminosäuren gelangen in Blutkapillaren und über die **Pfortader** zur Leber.
+- Fettsäuren und Glycerin gelangen ins **Lymphgefäß** und über das Lymphsystem ins Blut.
+- Restliches Wasser und Mineralstoffe nimmt der **Dickdarm** auf, Ballaststoffe verlassen den Körper als Kot.
 
-**Assimilation** ist die Nutzung der aufgenommenen Nährstoffe durch die Zellen. Die Leber wandelt überschüssige Glucose in Glykogen um, Aminosäuren dienen zum Aufbau von Proteinen, und Fette bauen Plasmamembranen auf oder werden unter der Haut gespeichert.
+Bei der **Assimilation** nutzen Zellen die Nährstoffe: Die Leber speichert überschüssige Glucose als Glykogen, Aminosäuren bauen Proteine auf, und Fette bilden Membranen oder Energiespeicher.
 
-## Ernährungsbedingte Gesundheitsprobleme
+## Ernährung und Körpermasse
 
-Eine unausgewogene Ernährung führt zu **Fehlernährung**. Zu viel Energie führt zu Übergewicht, Proteinmangel verursacht Kwashiorkor, und Ballaststoffmangel verursacht Verstopfung. Eine Magenschleimhautentzündung entsteht, wenn Magensäure die Magenwand angreift, oft wegen unregelmäßiger Mahlzeiten.
-
-### Der Körpermasseindex
-
-Der **Körpermasseindex**, <InlineMath math="\text{BMI} = \dfrac{\text{Masse}}{\text{Größe}^2}" />, schätzt, ob die Körpermasse zur Körpergröße passt. Dieses Modell zeichnet die Masse für jede Größe beim gewählten BMI. Die Bezugskurven markieren die Grenzen bei <InlineMath math="18{,}5" /> und <InlineMath math="25" />.
+Unausgewogene Kost führt zu **Fehlernährung**: Energieüberschuss begünstigt Übergewicht, Proteinmangel verursacht Kwashiorkor, Ballaststoffmangel führt zu Verstopfung, und unregelmäßige Mahlzeiten fördern Magenschleimhautentzündung. Der **Körpermasseindex** (<InlineMath math="\text{BMI} = \text{Masse}/\text{Größe}^2" />) ordnet das Gewicht gegenüber den Grenzen <InlineMath math="18{,}5" /> und <InlineMath math="25" /> ein.
 
 <MathVisual
   title={<>Körpermasse für jede Größe bei einem bestimmten BMI</>}
+  footer={<>Normalgewicht liegt bei jeder Größe zwischen den Kurven 18,5 und 25.</>}
   description={
     <>
-      Die waagerechte Achse ist die Größe über <InlineMath math="140\text{ cm}" /> in
-      Dezimetern, die senkrechte Achse die Masse in Einheiten von{" "}
-      <InlineMath math="20\text{ kg}" />. Die mittlere Kurve zeigt die Masse beim BMI{" "}
-      <InlineMath math="b" />, zwischen BMI <InlineMath math="18{,}5" /> und{" "}
-      <InlineMath math="25" />.
+      Größe über <InlineMath math="140\ \text{cm}" /> gegen Körpermasse beim BMI{" "}
+      <InlineMath math="b" /> zwischen den Richtwerten{" "}
+      <InlineMath math="18{,}5" /> und <InlineMath math="25" />.
     </>
   }
   scene={{
@@ -233,54 +450,4 @@ Der **Körpermasseindex**, <InlineMath math="\text{BMI} = \dfrac{\text{Masse}}{\
   }}
 />
 
-### Beispiel Den Körpermasseindex berechnen
-
-Ein Schüler ist <InlineMath math="1{,}60\text{ m}" /> groß und hat eine Masse von <InlineMath math="72\text{ kg}" />. Berechne **seinen BMI** und nenne die Kategorie.
-
-<BlockMath math="\text{BMI} = \frac{72}{1{,}60^2} = \frac{72}{2{,}56} = 28{,}1" />
-
-Ein BMI von <InlineMath math="28{,}1" /> liegt über <InlineMath math="25" />, also ist der Schüler übergewichtig. Prüfe mit dem Modell: Bei <InlineMath math="h = 16" /> und <InlineMath math="b = 28" /> zeigt es eine Masse von <InlineMath math="71{,}7\text{ kg}" />.
-
-## Häufige Fehler zu Ernährung und Verdauung
-
-| Fehler | Warum er falsch ist | So prüfst du es |
-| :--- | :--- | :--- |
-| Galle verdaut Fette. | Galle hat keine Enzyme. Sie emulgiert Fette nur, die Lipase verdaut sie. | Frag, ob der Stoff ein Enzym ist. |
-| Die Verdauung beginnt im Magen. | Die Stärkeverdauung beginnt im Mund mit der Speichelamylase. | Folge der Nahrung ab dem Mund. |
-| Alle Verdauungsprodukte gelangen in die Blutkapillaren. | Fettsäuren und Glycerin gelangen in das Lymphgefäß. | Trenne wasserlösliche Produkte von Fettprodukten. |
-| Pepsin arbeitet am besten bei neutralem pH. | Pepsin hat im sauren Magen einen optimalen pH von etwa <InlineMath math="2" />. | Ordne das Enzym dem Ort zu, an dem es abgegeben wird. |
-
-Der erste Fehler kommt in Aufgaben zur Fettverdauung am häufigsten vor. **Galle emulgiert, Lipase verdaut**.
-
-## Übungen zu Ernährung und Verdauung
-
-Diese Aufgaben führen von Energierechnungen bis zu Verdauung und Aufnahme. **Nenne in jeder Antwort zur Verdauung das Enzym und sein Produkt**.
-
-1. Eine Scheibe Brot enthält <InlineMath math="25\text{ g}" /> Kohlenhydrat, <InlineMath math="4\text{ g}" /> Protein und <InlineMath math="2\text{ g}" /> Fett. Berechne ihre gesamte Energie.
-
-2. Erkläre, warum Protein im Magen verdaut wird, Stärke aber nicht.
-
-3. Eine Nuss mit <InlineMath math="0{,}50\text{ g}" /> erwärmt <InlineMath math="25\text{ cm}^3" /> Wasser um <InlineMath math="12^\circ\text{C}" />. Berechne den Energiegehalt der Nuss.
-
-4. Erkläre, wie Darmzotten an die Aufnahme der Verdauungsprodukte angepasst sind.
-
-### Lösungen
-
-**Lösung 1**: Multipliziere jede Masse mit ihrem Energiegehalt:
-
-<BlockMath math="25 \times 17 + 4 \times 17 + 2 \times 37 = 425 + 68 + 74 = 567\text{ kJ}" />
-
-Prüfe: Kohlenhydrat liefert den größten Anteil, was passt, weil Brot reich an Stärke ist.
-
-**Lösung 2**: Der Magen gibt **Pepsin** ab, das Protein im sauren Milieu zu Polypeptiden verdaut. Die mit der Nahrung verschluckte Speichelamylase wird bei einem pH von etwa <InlineMath math="2" /> **denaturiert**, und der Magen bildet keine Amylase, also wird Stärke dort nicht verdaut.
-
-**Lösung 3**: Berechne die vom Wasser aufgenommene Wärme und teile durch die Masse:
-
-<MathContainer>
-<BlockMath math="Q = 25 \times 4{,}2 \times 12 = 1260\text{ J}" />
-<BlockMath math="\frac{1260}{0{,}50} = 2520\text{ J g}^{-1} = 2{,}52\text{ kJ g}^{-1}" />
-</MathContainer>
-
-Prüfe: Das Ergebnis stimmt mit dem Kalorimeterbeispiel überein, also passen beide Messungen zusammen.
-
-**Lösung 4**: Darmzotten und Mikrovilli bieten **eine sehr große Oberfläche**. Ihre Wände sind nur eine Zelle dick, also ist der Diffusionsweg kurz, und die vielen Blutkapillaren und Lymphgefäße transportieren die aufgenommenen Stoffe ab, sodass das Konzentrationsgefälle steil bleibt.
+Ein <InlineMath math="1{,}60\ \text{m}" /> großer Schüler mit <InlineMath math="72\ \text{kg}" /> erreicht BMI <InlineMath math="28{,}1" /> (Übergewicht). Kurze Selbstkontrolle: Eine Scheibe Brot mit <InlineMath math="25\ \text{g}" /> Kohlenhydrat, <InlineMath math="4\ \text{g}" /> Protein und <InlineMath math="2\ \text{g}" /> Fett liefert <InlineMath math="567\ \text{kJ}" />, und Galle emulgiert Fette, während Lipase sie spaltet.
