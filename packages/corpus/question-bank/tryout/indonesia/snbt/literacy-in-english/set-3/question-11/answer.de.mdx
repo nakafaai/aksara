@@ -1,18 +1,37 @@
-Berechne die Gesamtquoten aus den Anzahlen, dann die Quote für jede Streckenart, und vergleiche.
+# Gegeben
 
-**Gesamt**. Jeder Betreiber fuhr <InlineMath math="800+200=1.000" /> Fahrten.
+Laut Tabelle fuhr **Northline** <InlineMath math="800" /> Stadtfahrten (<InlineMath math="560" /> pünktlich) und <InlineMath math="200" /> Landfahrten (<InlineMath math="180" /> pünktlich), während **Southway** <InlineMath math="200" /> Stadtfahrten (<InlineMath math="130" /> pünktlich) und <InlineMath math="800" /> Landfahrten (<InlineMath math="680" /> pünktlich) fuhr.
 
-<BlockMath math="\text{Northline: } \dfrac{560+180}{1{.}000}=74\% \qquad \text{Southway: } \dfrac{130+680}{1{.}000}=81\%" />
+# Gesucht
 
-**Nach Streckenart**.
+Wie hoch waren die Gesamt-Pünktlichkeitsquoten beider Anbieter, und was zeigen sie im Vergleich zu den Quoten je Streckentyp?
 
-<BlockMath math="\text{Stadt: } \dfrac{560}{800}=70\% \text{ gegenüber } \dfrac{130}{200}=65\% \qquad \text{Land: } \dfrac{180}{200}=90\% \text{ gegenüber } \dfrac{680}{800}=85\%" />
+# Lösung
 
-Northline liegt auf **beiden** Streckenarten vorn, und trotzdem liegt Southway insgesamt vorn.
+Berechne zuerst die **Gesamtquote** je <InlineMath math="1{.}000" /> Fahrten und stelle sie den **getrennten Stadt- und Landquoten** gegenüber (Simpson-Paradoxon).
 
-- <InlineMath math="80\%" /> und <InlineMath math="75\%" /> sind einfache Mittelwerte der beiden Streckenquoten. Das übergeht, wie viele Fahrten es auf jeder Streckenart gab.
-- Die Gesamtquoten stimmen, aber Southway lag auf jeder Streckenart hinten, nicht vorn.
-- <InlineMath math="70\%" /> und <InlineMath math="85\%" /> sind einzelne Streckenquoten, Northlines Stadt- und Southways Landstrecken. Beides sind keine Gesamtquoten, und Northline lag auf Stadt- wie auf Landstrecken vorn.
-- Die Reihenfolge in der Zeitung stimmt: Southways <InlineMath math="81\%" /> sind die höhere Gesamtquote.
+> Northline lag sowohl im Stadtverkehr als auch im Landverkehr um fünf Prozentpunkte vorn, dennoch erreichte Southway im Gesamtwert sieben Punkte mehr.
 
-Die Gesamtquoten waren Northline <InlineMath math="74\%" /> und Southway <InlineMath math="81\%" />, obwohl Northline auf jeder Streckenart vorn lag.
+## Gesamtquoten neben den Streckenquoten
+
+| Anbieter | Stadt pünktlich | Land pünktlich | Gesamt pünktlich |
+| --- | ---: | ---: | ---: |
+| Northline | <InlineMath math="\frac{560}{800} = 70\%" /> | <InlineMath math="\frac{180}{200} = 90\%" /> | <InlineMath math="\frac{560 + 180}{1{.}000} = 74\%" /> |
+| Southway | <InlineMath math="\frac{130}{200} = 65\%" /> | <InlineMath math="\frac{680}{800} = 85\%" /> | <InlineMath math="\frac{130 + 680}{1{.}000} = 81\%" /> |
+
+Die **Gesamtquoten** bestätigen die Umkehrung unmittelbar:
+
+<BlockMath math="\begin{aligned} \text{Northline gesamt} &= \frac{560 + 180}{800 + 200} = \frac{740}{1{.}000} = 74\% \\ \text{Southway gesamt} &= \frac{130 + 680}{200 + 800} = \frac{810}{1{.}000} = 81\% \end{aligned}" />
+
+Obwohl Southway insgesamt führt (<InlineMath math="81\%" /> gegenüber <InlineMath math="74\%" />), liegt **Northline auf beiden Streckenarten vorn** (<InlineMath math="70\% > 65\%" /> Stadt und <InlineMath math="90\% > 85\%" /> Land).
+
+## Warum die anderen Optionen ausscheiden
+
+- **<InlineMath math="80\%" /> und <InlineMath math="75\%" />** mitteln beide Streckenquoten ungewichtet und ignorieren das <InlineMath math="800" />-zu-<InlineMath math="200" />-Verhältnis.
+- **Southway auf jeder Streckenart vorn** kehrt die Einzelergebnisse um.
+- **<InlineMath math="70\%" /> und <InlineMath math="85\%" />** sind einzelne Streckenquoten statt Gesamtwerte.
+- **Northline <InlineMath math="81\%" /> und Southway <InlineMath math="74\%" />** vertauschen beide Anbieter.
+
+# Antwort
+
+**Northline <InlineMath math="74\%" /> and Southway <InlineMath math="81\%" />, even though Northline was ahead on each kind of route**.

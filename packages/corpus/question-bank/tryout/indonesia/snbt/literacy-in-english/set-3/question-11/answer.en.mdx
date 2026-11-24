@@ -1,18 +1,37 @@
-Work out the overall rates from the counts, then the rate for each kind of route, and compare.
+# Given
 
-**Overall**. Each operator ran <InlineMath math="800+200=1{,}000" /> trips.
+The bus table shows **Northline** ran <InlineMath math="800" /> urban trips (<InlineMath math="560" /> on time) and <InlineMath math="200" /> rural trips (<InlineMath math="180" /> on time), while **Southway** ran <InlineMath math="200" /> urban trips (<InlineMath math="130" /> on time) and <InlineMath math="800" /> rural trips (<InlineMath math="680" /> on time).
 
-<BlockMath math="\text{Northline: } \dfrac{560+180}{1{,}000}=74\% \qquad \text{Southway: } \dfrac{130+680}{1{,}000}=81\%" />
+# Asked
 
-**By route**.
+What were both operators' overall on-time rates last year, and how do they compare with each operator's urban and rural rates?
 
-<BlockMath math="\text{urban: } \dfrac{560}{800}=70\% \text{ against } \dfrac{130}{200}=65\% \qquad \text{rural: } \dfrac{180}{200}=90\% \text{ against } \dfrac{680}{800}=85\%" />
+# Solution
 
-Northline is ahead on **both** kinds of route, yet Southway is ahead overall.
+Compute each operator's **overall on-time percentage** out of <InlineMath math="1{,}000" /> trips, then place it beside the **separate urban and rural rates** (Simpson's paradox).
 
-- <InlineMath math="80\%" /> and <InlineMath math="75\%" /> are plain averages of each operator's two route rates. That ignores how many trips each kind of route had.
-- The overall rates are right, but Southway was behind on each kind of route, not ahead.
-- <InlineMath math="70\%" /> and <InlineMath math="85\%" /> are single route rates, Northline's urban and Southway's rural. Neither is an overall rate, and Northline was ahead on urban and rural routes alike.
-- The newspaper's order is correct: Southway's <InlineMath math="81\%" /> is the higher overall figure.
+> Northline led Southway by five percentage points on urban routes and five percentage points on rural routes, yet Southway scored seven points higher overall.
 
-The overall rates were Northline <InlineMath math="74\%" /> and Southway <InlineMath math="81\%" />, even though Northline was ahead on each kind of route.
+## Overall rates beside route rates
+
+| Operator | Urban on time | Rural on time | Overall on time |
+| --- | ---: | ---: | ---: |
+| Northline | <InlineMath math="\frac{560}{800} = 70\%" /> | <InlineMath math="\frac{180}{200} = 90\%" /> | <InlineMath math="\frac{560 + 180}{1{,}000} = 74\%" /> |
+| Southway | <InlineMath math="\frac{130}{200} = 65\%" /> | <InlineMath math="\frac{680}{800} = 85\%" /> | <InlineMath math="\frac{130 + 680}{1{,}000} = 81\%" /> |
+
+Checking **both totals** directly confirms the reversal:
+
+<BlockMath math="\begin{aligned} \text{Northline overall} &= \frac{560 + 180}{800 + 200} = \frac{740}{1{,}000} = 74\% \\ \text{Southway overall} &= \frac{130 + 680}{200 + 800} = \frac{810}{1{,}000} = 81\% \end{aligned}" />
+
+Even though Southway leads overall (<InlineMath math="81\%" /> vs. <InlineMath math="74\%" />), **Northline leads on both route types** (<InlineMath math="70\% > 65\%" /> urban and <InlineMath math="90\% > 85\%" /> rural).
+
+## Why the other options fail
+
+- **<InlineMath math="80\%" /> and <InlineMath math="75\%" />** take an unweighted average of each operator's two route rates, ignoring the <InlineMath math="800" />-to-<InlineMath math="200" /> trip split.
+- **Southway ahead on each kind of route** reverses the route-level rates: Northline beat Southway on both urban and rural routes.
+- **<InlineMath math="70\%" /> and <InlineMath math="85\%" />** quote single route rates instead of overall totals.
+- **Northline <InlineMath math="81\%" /> and Southway <InlineMath math="74\%" />** swaps the two operators' overall scores.
+
+# Answer
+
+**Northline <InlineMath math="74\%" /> and Southway <InlineMath math="81\%" />, even though Northline was ahead on each kind of route**.
