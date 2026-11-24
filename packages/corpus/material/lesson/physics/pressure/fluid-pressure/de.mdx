@@ -1,29 +1,28 @@
 export const metadata = {
-  title: "Druck in Flüssigkeiten und Gasen",
+  title: "Druck in Flüssigkeiten Pascal Archimedes",
   description:
-    "Berechne den Schweredruck mit p = ρ · g · h, wende die Prinzipien von Pascal, Archimedes und Bernoulli an und erklär den Luftdruck, mit Beispielen.",
+    "Berechne Schweredruck mit der Tiefe, wende das Pascalsche Prinzip in der Hydraulik an, prüfe Auftrieb nach Archimedes und erkläre Bernoulli am Venturi-Rohr.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-11-17",
   subject: "Druck",
 };
 
-## Der Druck wächst mit der Tiefe
+## Druck in Flüssigkeiten
 
-**Druck** ist die Kraft, die senkrecht auf eine Flächeneinheit wirkt, <InlineMath math="p = \dfrac{F}{A}" />, gemessen in Pascal. In einer Flüssigkeit hängt der Druck von der Tiefe <InlineMath math="h" />, der Dichte <InlineMath math="\rho" /> und der Fallbeschleunigung <InlineMath math="g" /> ab:
+Stell dir vor, du tauchst immer tiefer zum Boden eines Beckens: Auf deinen Ohren lastet mehr Druck, weil die gesamte Wassersäule über dir nach unten drückt. **Druck** ist senkrechte Kraft pro Fläche, und der **Schweredruck** in der Tiefe <InlineMath math="h" /> hängt von Tiefe, Dichte <InlineMath math="\rho" /> und Fallbeschleunigung <InlineMath math="g" /> ab:
 
-<BlockMath math="p = \rho \cdot g \cdot h" />
+<BlockMath math="p = \frac{F}{A}, \qquad p = \rho \cdot g \cdot h" />
 
-Der Schweredruck hängt nicht von Form oder Fläche des Gefäßes ab, nur von der Tiefe und der Art der Flüssigkeit. Hier änderst du Tiefe und Dichte, hebst ein Auto mit einem hydraulischen Wagenheber, lässt einen Körper im Wasser schwimmen und berechnest den Auftrieb an einem Flugzeugflügel.
-
-Verschieb unten die Regler für Tiefe und Dichte. Der Druck ist proportional zur Tiefe, also ist der Graph eine Ursprungsgerade.
+Der Schweredruck **hängt weder von Form noch Breite des Gefäßes ab**, sondern allein von der Tiefe unter der Oberfläche. Genau deshalb baut man Staumauern am Fuß am dicksten.
 
 <MathVisual
   title={<>Schweredruck gegen die Tiefe</>}
+  footer={<>Der Flüssigkeitsdruck wächst linear mit der Tiefe unabhängig von der Gefäßbreite.</>}
   description={
     <>
-      <InlineMath math="p = \rho \cdot g \cdot h" /> in kPa, mit{" "}
-      <InlineMath math="g = 9{,}81\ \text{m/s}^2" />. Wasser,{" "}
-      <InlineMath math="\rho = 1000\ \text{kg/m}^3" />, liefert in{" "}
+      <InlineMath math="p = \rho \cdot g \cdot h" /> in kPa mit{" "}
+      <InlineMath math="g = 9{,}81\ \text{m/s}^2" />. Wasser mit{" "}
+      <InlineMath math="1000\ \text{kg/m}^3" /> liefert in{" "}
       <InlineMath math="10\ \text{m}" /> Tiefe <InlineMath math="98{,}1\ \text{kPa}" />.
     </>
   }
@@ -50,47 +49,25 @@ Verschieb unten die Regler für Tiefe und Dichte. Der Druck ist proportional zur
   }}
 />
 
-Prüf den Startwert: <InlineMath math="p = 1000 \cdot 9{,}81 \cdot 10 = 98\,100\ \text{Pa} = 98{,}1\ \text{kPa}" />.
-
-Deshalb ist eine **Staumauer** unten dicker, denn dort ist der Wasserdruck am größten. Hoch aufgestautes Wasser strömt auch unten schneller aus dem Einlauf. Ändere unten die Fallhöhe und sieh, wie die Energie des Wassers zu elektrischer Energie wird.
-
-<HydroDamLab
-  title={<>Ein Wasserkraftwerk im Querschnitt</>}
-  description={
-    <>
-      Jede Sekunde fallen <InlineMath math="10\ \text{m}^3" /> Wasser durch die
-      Fallhöhe <InlineMath math="h" />. Je größer die Fallhöhe, desto größer der
-      Druck am unteren Einlauf und desto mehr Leistung entsteht.
-    </>
-  }
-  labels={{
-    electric: <>Elektrische Leistung</>,
-    head: <>Fallhöhe</>,
-    headControl: "Fallhöhe",
-    kinetic: <>Bewegungsleistung an der Turbine</>,
-    potential: <>Leistung aus der Lageenergie</>,
-    shaft: <>Wellenleistung</>,
-    speed: <>Wassergeschwindigkeit an der Turbine</>,
-    viewLabel: "Ein Wasserkraftwerk im Querschnitt",
-  }}
-/>
+Verschiebe die Regler für Tiefe und Dichte oben: Alle <InlineMath math="10\ \text{m}" /> Süßwasser fügen fast eine volle Atmosphäre an Druck hinzu.
 
 ## Luftdruck und Gasdruck
 
-Der **Luftdruck** entsteht durch das Gewicht der Luftschicht über der Erde. Auf Meereshöhe trägt er in einem Barometer eine Quecksilbersäule von <InlineMath math="76\ \text{cm}" />:
+Der **Luftdruck** entsteht durch das Gewicht der gesamten Luftschicht über der Erde. Auf Meereshöhe trägt er eine <InlineMath math="76\ \text{cm}" /> hohe Quecksilbersäule im Barometer:
 
 <BlockMath math="p_{\text{Luft}} = \rho \cdot g \cdot h = 13\,600 \cdot 9{,}81 \cdot 0{,}76 = 1{,}01 \cdot 10^5\ \text{Pa}" />
 
-Je höher du steigst, desto dünner ist die Luftschicht über dir, also sinkt der Luftdruck. Das Modell unten zeigt diese Abnahme. Auf der Zugspitze, knapp <InlineMath math="3\ \text{km}" /> über dem Meer, beträgt der Druck nur etwa <InlineMath math="71\ \text{kPa}" />.
+Beim Bergsteigen bleibt weniger Luft über dir, sodass der Luftdruck stetig sinkt. In einem geschlossenen Behälter entsteht **Gasdruck** durch Teilchenstöße gegen die Wand und wird mit Manometer oder Bourdon-Manometer gemessen.
 
 <MathVisual
   title={<>Luftdruck gegen die Höhe</>}
+  footer={<>Der Luftdruck sinkt exponentiell mit der Höhe, weil die Luftschicht dünner wird.</>}
   description={
     <>
-      Ein Modell der Atmosphäre bei konstanter Temperatur,{" "}
-      <InlineMath math="p = 101 \cdot e^{-h/8{,}4}" /> kPa, mit <InlineMath math="h" />{" "}
-      in km. In <InlineMath math="2\ \text{km}" /> Höhe beträgt der Druck etwa{" "}
-      <InlineMath math="80\ \text{kPa}" />.
+      Atmosphärenmodell bei fester Temperatur{" "}
+      <InlineMath math="p = 101 \cdot e^{-h/8{,}4}" /> kPa mit{" "}
+      <InlineMath math="h" /> in km. Auf <InlineMath math="2\ \text{km}" />{" "}
+      Höhe liegt der Druck bei etwa <InlineMath math="80\ \text{kPa}" />.
     </>
   }
   scene={{
@@ -114,23 +91,23 @@ Je höher du steigst, desto dünner ist die Luftschicht über dir, also sinkt de
   }}
 />
 
-Der **Gasdruck** in einem geschlossenen Behälter entsteht, weil Gasteilchen gegen die Wände stoßen. Man misst ihn mit einem **Manometer** oder einem **Bourdon-Manometer**. Den Reifendruck eines Autos liest man zum Beispiel an einem Bourdon-Manometer ab.
+Unter Wasser trägt eine Taucherin stets den Gesamtdruck aus dem äußeren Luftdruck an der Oberfläche plus dem Schweredruck des Wassers über ihr.
 
-## Hydraulik und das Prinzip von Pascal
+## Hydraulik nach Pascal
 
-Das **Prinzip von Pascal** besagt, dass sich Druck auf eine Flüssigkeit in einem geschlossenen Gefäß **gleichmäßig in alle Richtungen** ausbreitet. Beim **hydraulischen Wagenheber** erzeugt eine kleine Kraft auf den kleinen Kolben denselben Druck am großen Kolben, also liefert der große Kolben eine große Kraft:
+Das **Prinzip von Pascal** besagt, dass sich Druck in einer eingeschlossenen Flüssigkeit **gleichmäßig nach allen Seiten** ausbreitet. Im **hydraulischen Wagenheber** wirkt derselbe Öldruck auf kleinen und großen Kolben:
 
-<BlockMath math="\frac{F_1}{A_1} = \frac{F_2}{A_2}" />
-
-Ändere unten die Fläche des großen Kolbens. Die Eingangskraft beträgt <InlineMath math="50\ \text{N}" /> auf einen kleinen Kolben mit <InlineMath math="20\ \text{cm}^2" />.
+<BlockMath math="\frac{F_1}{A_1} = \frac{F_2}{A_2}, \qquad A_1 \cdot s_1 = A_2 \cdot s_2" />
 
 <MathVisual
   title={<>Ausgangskraft eines hydraulischen Wagenhebers gegen die Kolbenfläche</>}
+  footer={<>Die Ausgangskraft wächst proportional zur großen Kolbenfläche bei gleichem Druck.</>}
   description={
     <>
-      <InlineMath math="F_2 = 50 \cdot \dfrac{A_2}{20}" />, mit <InlineMath math="A_2" />{" "}
-      in <InlineMath math="\text{cm}^2" />. Ein großer Kolben mit{" "}
-      <InlineMath math="1000\ \text{cm}^2" /> liefert <InlineMath math="2500\ \text{N}" />.
+      Mit <InlineMath math="50\ \text{N}" /> auf dem{" "}
+      <InlineMath math="20\ \text{cm}^2" />-Kolben erzeugt ein{" "}
+      <InlineMath math="1000\ \text{cm}^2" />-Kolben{" "}
+      <InlineMath math="2500\ \text{N}" />.
     </>
   }
   scene={{
@@ -154,32 +131,54 @@ Das **Prinzip von Pascal** besagt, dass sich Druck auf eine Flüssigkeit in eine
   }}
 />
 
-Probier ein Beispiel. Eine Kraft von <InlineMath math="50\ \text{N}" /> wirkt auf einen kleinen Kolben mit <InlineMath math="0{,}002\ \text{m}^2" />. Berechne die Kraft auf einen großen Kolben mit <InlineMath math="0{,}1\ \text{m}^2" />.
+Ein Wagenheber **vervielfacht Kraft, aber niemals Energie**. Du musst den kleinen Kolben weit herunterdrücken, damit der große Kolben ein kleines Stück steigt.
 
-<MathContainer>
-<BlockMath math="p = \frac{50}{0{,}002} = 25\,000\ \text{Pa}" />
-<BlockMath math="F_2 = 25\,000 \cdot 0{,}1 = 2500\ \text{N}" />
-</MathContainer>
+> Derselbe Öldruck in beiden Zylindern vergrößert die Kraft im Flächenverhältnis und verkürzt den Hubweg genau um denselben Faktor.
 
-Prüf es mit dem Flächenverhältnis: Der große Kolben ist <InlineMath math="\dfrac{0{,}1}{0{,}002} = 50" />-mal so groß, also ist auch die Kraft <InlineMath math="50" />-mal so groß, <InlineMath math="50 \cdot 50 = 2500\ \text{N}" />. Der kleine Kolben bewegt sich dafür <InlineMath math="50" />-mal so weit, denn die Arbeit wächst nicht.
+<HydraulicJackLab
+  title={<>Schwere Last mit dem hydraulischen Wagenheber heben</>}
+  description={
+    <>
+      Kolben mit <InlineMath math="0{,}0020\ \text{m}^2" /> und{" "}
+      <InlineMath math="0{,}10\ \text{m}^2" /> sowie{" "}
+      <InlineMath math="150\ \text{N}" /> über <InlineMath math="20\ \text{cm}" />{" "}
+      Hub am kleinen Kolben.
+    </>
+  }
+  footer={<>Fünfzigfache Fläche liefert 7500 N nach oben, doch der Kolben steigt nur 0,40 cm.</>}
+  labels={{
+    force: <>Kraft am kleinen Kolben</>,
+    forceName: "Kraft am kleinen Kolben",
+    lifted: <>Kraft am großen Kolben</>,
+    mass: <>Gehobene Masse</>,
+    pressure: <>Öldruck im Zylinder</>,
+    rise: <>Hub am großen Kolben</>,
+    viewLabel: "Hydraulischer Wagenheber mit zwei Ölzylindern",
+  }}
+  force={150}
+  largeArea={0.1}
+  smallArea={0.002}
+  stroke={20}
+/>
 
-## Auftrieb und das Prinzip von Archimedes
+Weil die große Fläche <InlineMath math="50" />-mal so groß ist, werden <InlineMath math="150\ \text{N}" /> zu <InlineMath math="7500\ \text{N}" />, während <InlineMath math="20\ \text{cm}" /> Weg auf <InlineMath math="0{,}40\ \text{cm}" /> Hub schrumpfen und die Arbeit erhalten bleibt.
 
-Das **Prinzip von Archimedes** besagt, dass ein Körper, der ganz oder teilweise in ein Fluid eintaucht, eine **Auftriebskraft** erfährt, die gleich der **Gewichtskraft des verdrängten Fluids** ist:
+## Auftrieb nach Archimedes
+
+Nach dem **Prinzip von Archimedes** erfährt jeder eingetauchte Körper eine **Auftriebskraft**, die genau der **Gewichtskraft des verdrängten Fluids** entspricht:
 
 <BlockMath math="F_A = \rho \cdot V \cdot g" />
 
-Dabei ist <InlineMath math="V" /> das verdrängte Volumen. Ein Körper **schwimmt**, wenn die Auftriebskraft gleich seiner Gewichtskraft ist. Ändere unten das eingetauchte Volumen und die Dichte der Flüssigkeit für einen Körper mit <InlineMath math="50\ \text{N}" /> Gewichtskraft.
+Setze immer die **Dichte des Fluids** <InlineMath math="\rho" /> ein, nicht die des Körpers. Ein Körper schwimmt genau dort, wo Auftriebskraft und Gewichtskraft gleich groß sind.
 
 <MathVisual
   title={<>Auftriebskraft gegen das eingetauchte Volumen</>}
+  footer={<>Ein Körper schwimmt genau am Schnittpunkt von Auftriebsgerade und Gewichtskraft.</>}
   description={
     <>
-      <InlineMath math="F_A = 9{,}81 \cdot \rho \cdot V" /> in N, mit{" "}
-      <InlineMath math="V" /> in Litern und <InlineMath math="\rho" /> in{" "}
-      <InlineMath math="\text{g/cm}^3" />. Die waagrechte Linie ist die
-      Gewichtskraft des Körpers, <InlineMath math="50\ \text{N}" />. Am
-      Schnittpunkt schwimmt der Körper.
+      <InlineMath math="F_A = 9{,}81 \cdot \rho \cdot V" /> in N für einen{" "}
+      <InlineMath math="50\ \text{N}" />-Körper mit <InlineMath math="V" /> in
+      Litern und <InlineMath math="\rho" /> in <InlineMath math="\text{g/cm}^3" />.
     </>
   }
   scene={{
@@ -208,28 +207,82 @@ Dabei ist <InlineMath math="V" /> das verdrängte Volumen. Ein Körper **schwimm
   }}
 />
 
-Ein Klotz mit <InlineMath math="50\ \text{N}" /> Gewichtskraft und <InlineMath math="0{,}002\ \text{m}^3" /> Volumen wird ganz in Wasser getaucht. Berechne die Auftriebskraft und die scheinbare Gewichtskraft des Klotzes.
+Wechselt ein schwimmender Holzklotz von Wasser in leichteres Öl, bleibt sein Gewicht unverändert, sodass er **mehr Ölvolumen verdrängen** muss, um oben zu bleiben.
 
-<MathContainer>
-<BlockMath math="F_A = 1000 \cdot 0{,}002 \cdot 9{,}81 = 19{,}62\ \text{N}" />
-<BlockMath math="F_{\text{scheinbar}} = 50 - 19{,}62 = 30{,}38\ \text{N}" />
-</MathContainer>
+> In einer Flüssigkeit geringerer Dichte taucht ein schwimmender Körper tiefer ein, damit das verdrängte Fluid wieder genauso schwer ist wie der Körper.
 
-Prüf es am Graphen: Bei <InlineMath math="V = 2" /> Litern in Wasser beträgt die Auftriebskraft <InlineMath math="19{,}6\ \text{N}" />, also noch unter der Linie von <InlineMath math="50\ \text{N}" />, und der Klotz sinkt. Ein U-Boot steuert seinen Auftrieb, indem es Ballasttanks flutet oder leert.
+<FloatingBlockLab
+  title={<>Ein Holzblock schwimmt in Wasser und Öl</>}
+  description={
+    <>
+      Ein <InlineMath math="500\ \text{cm}^3" />-Block schwimmt mit{" "}
+      <InlineMath math="300\ \text{cm}^3" /> im Wasser und kommt dann in Öl mit{" "}
+      <InlineMath math="0{,}80\ \text{g/cm}^3" />.
+    </>
+  }
+  footer={<>Im leichteren Öl wächst das eingetauchte Volumen von 300 auf 375 Kubikzentimeter.</>}
+  labels={{
+    above: <>Über der Oberfläche</>,
+    liquid: "Flüssigkeit",
+    liquids: { other: <>Öl</>, water: <>Wasser</> },
+    under: <>Unter der Oberfläche</>,
+    viewLabel: "Ein schwimmender Holzblock in Wasser und Öl",
+  }}
+  density={0.8}
+  underWater={300}
+  volume={500}
+/>
 
-## Auftrieb am Flügel und das Prinzip von Bernoulli
+Im Wasser verdrängt der Block <InlineMath math="300\ \text{g}" />, also beträgt seine Masse <InlineMath math="300\ \text{g}" />. In Öl mit <InlineMath math="0{,}80\ \text{g/cm}^3" /> braucht dieselbe Masse <InlineMath math="300 / 0{,}80 = 375\ \text{cm}^3" /> unter der Oberfläche.
 
-Das **Prinzip von Bernoulli** besagt, dass der Druck eines Fluids sinkt, wenn seine Geschwindigkeit steigt. Ein Flugzeugflügel ist so geformt, dass die Luft über dem Flügel schneller strömt als darunter. Über dem Flügel wird der Druck kleiner, und dieser Druckunterschied erzeugt den **dynamischen Auftrieb**.
+## Prinzip von Bernoulli
 
-Der Druckunterschied zwischen Unter- und Oberseite ist <InlineMath math="\Delta p = \tfrac{1}{2}\rho \left(v_{\text{oben}}^2 - v_{\text{unten}}^2\right)" />. Ändere unten die Luftgeschwindigkeit über dem Flügel, während die Luft darunter mit <InlineMath math="60\ \text{m/s}" /> strömt.
+In gleichmäßig strömenden Fluiden tauschen Druckenergie und Bewegungsenergie nach der Energieerhaltung ständig den Platz. Das **Prinzip von Bernoulli** fasst diesen Ausgleich zusammen: Wo ein Fluid schneller strömt, sinkt sein statischer Druck spürbar ab.
+
+### Venturi Rohr
+
+Fließt Wasser gleichmäßig in eine Rohrverengung, zwingt derselbe Volumenstrom pro Sekunde das Wasser zu höherer Geschwindigkeit. Nach dem **Prinzip von Bernoulli** hat **schneller strömendes Fluid stets geringeren statischen Druck**.
+
+> Eine Engstelle beschleunigt die Strömung nach der Kontinuitätsgleichung, und höhere Geschwindigkeit senkt den statischen Druck im engen Abschnitt.
+
+<VenturiTubeLab
+  title={<>Wasser beschleunigt im engen Venturi Rohr</>}
+  description={
+    <>
+      Wasser strömt mit <InlineMath math="0{,}50\ \text{m/s}" /> durch ein{" "}
+      <InlineMath math="4{,}0\ \text{cm}" />-Rohr, das sich auf{" "}
+      <InlineMath math="2{,}0\ \text{cm}" /> verengt.
+    </>
+  }
+  footer={<>Halber Durchmesser ergibt ein Viertel Fläche, vierfache Tempo und tiefere Wassersäule.</>}
+  labels={{
+    drop: <>Säule tiefer um</>,
+    faster: <>Tempo im engen Teil</>,
+    speed: <>Tempo im weiten Teil</>,
+    speedName: "Tempo im weiten Teil",
+    viewLabel: "Wasser strömt durch ein Venturi-Rohr mit Steigrohren",
+  }}
+  narrow={2}
+  speed={0.5}
+  wide={4}
+/>
+
+Halber Durchmesser reduziert die Querschnittsfläche auf ein Viertel, vervierfacht die Strömungsgeschwindigkeit auf <InlineMath math="2{,}0\ \text{m/s}" /> und lässt die Wassersäule über der Engstelle deutlich tiefer stehen.
+
+### Auftrieb am Flügel
+
+Derselbe Bernoulli-Effekt trägt einen **Flugzeugflügel**: Über die gewölbte Oberseite strömt Luft schneller als unter dem Flügel, sodass **der höhere Druck von unten** den Flügel mit dieser Druckdifferenz anhebt:
+
+<BlockMath math="\Delta p = \frac{1}{2}\rho\left(v_{\text{oben}}^2 - v_{\text{unten}}^2\right)" />
 
 <MathVisual
   title={<>Druckunterschied am Flügel gegen die Luftgeschwindigkeit oben</>}
+  footer={<>Schnellere Luft über dem Flügel vergrößert Druckunterschied und Auftriebskraft.</>}
   description={
     <>
-      <InlineMath math="\Delta p = 0{,}6 \left(v^2 - 60^2\right)" /> Pa für Luft,{" "}
-      <InlineMath math="\rho = 1{,}2\ \text{kg/m}^3" />. Bei{" "}
-      <InlineMath math="v = 70\ \text{m/s}" /> beträgt der Druckunterschied{" "}
+      <InlineMath math="\Delta p = 0{,}6(v^2 - 60^2)" /> Pa für Luft mit{" "}
+      <InlineMath math="1{,}2\ \text{kg/m}^3" />. Bei{" "}
+      <InlineMath math="70\ \text{m/s}" /> beträgt der Druckunterschied{" "}
       <InlineMath math="780\ \text{Pa}" />.
     </>
   }
@@ -256,56 +309,4 @@ Der Druckunterschied zwischen Unter- und Oberseite ist <InlineMath math="\Delta 
   }}
 />
 
-Prüf es: Bei <InlineMath math="70\ \text{m/s}" /> ist <InlineMath math="\Delta p = 0{,}6 \cdot (4900 - 3600) = 780\ \text{Pa}" />, und an einem Flügel mit <InlineMath math="20\ \text{m}^2" /> beträgt die Auftriebskraft <InlineMath math="780 \cdot 20 = 15\,600\ \text{N}" />. Dasselbe Prinzip erklärt den Bunsenbrenner und die Farbspritzpistole.
-
-## Typische Fehler beim Druck
-
-| Fehler | Warum er falsch ist | So prüfst du es |
-| :--- | :--- | :--- |
-| Ein breiteres Gefäß erzeugt am Boden mehr Druck. | <InlineMath math="p = \rho \cdot g \cdot h" /> hängt nicht von Fläche oder Form des Gefäßes ab. | Vergleich zwei Gefäße mit gleicher Füllhöhe. |
-| Ein hydraulischer Wagenheber erzeugt zusätzliche Energie. | Die Kraft wächst, aber der große Kolben bewegt sich weniger weit, also bleibt die Arbeit gleich. | Multipliziere bei beiden Kolben Kraft und Weg. |
-| Die Auftriebskraft hängt von der Gewichtskraft des Körpers ab. | Sie entspricht der Gewichtskraft des **verdrängten Fluids**, nicht der des Körpers. | Rechne <InlineMath math="\rho \cdot V \cdot g" /> mit der Dichte des Fluids. |
-| Die Tiefe wird vom Gefäßboden aus gemessen. | <InlineMath math="h" /> wird von der Flüssigkeitsoberfläche bis zum Punkt gemessen. | An der Oberfläche muss der Schweredruck null sein, ohne Luftdruck. |
-| Schnellere Luft hat einen höheren Druck. | Prinzip von Bernoulli: Die Geschwindigkeit steigt, der Druck sinkt. | Blas über ein Blatt Papier und sieh, wie es sich hebt. |
-
-Der dritte Fehler kommt am häufigsten vor. Der Auftrieb kommt vom **Fluid**, also nimmst du die Dichte des Fluids, nicht die des Körpers.
-
-## Übungen zum Druck
-
-Die Aufgaben gehen vom Schweredruck über die Hydraulik zum Auftrieb. **Rechne alle Einheiten in SI-Einheiten um**, bevor du <InlineMath math="p = \rho \cdot g \cdot h" /> verwendest.
-
-1. Eine Taucherin befindet sich <InlineMath math="30\ \text{m}" /> unter der Meeresoberfläche. Meerwasser hat die Dichte <InlineMath math="1030\ \text{kg/m}^3" />, der Luftdruck beträgt <InlineMath math="1{,}01 \cdot 10^5\ \text{Pa}" />. Berechne den Schweredruck und den Gesamtdruck auf die Taucherin.
-
-2. Ein hydraulischer Wagenheber hat einen kleinen Kolben mit <InlineMath math="4\ \text{cm}^2" /> und einen großen mit <InlineMath math="200\ \text{cm}^2" />. Berechne die Mindestkraft am kleinen Kolben, um ein Auto mit <InlineMath math="12\,000\ \text{N}" /> Gewichtskraft zu heben.
-
-3. Ein Holzklotz mit der Masse <InlineMath math="0{,}50\ \text{kg}" /> schwimmt im Wasser. Berechne die Auftriebskraft und das eingetauchte Volumen.
-
-4. Erklär mit dem Prinzip von Bernoulli, warum ein Flugzeug vor dem Abheben schnell über die Startbahn rollen muss.
-
-### Lösungen
-
-**Lösung 1**: Berechne den Schweredruck und addiere den Luftdruck:
-
-<MathContainer>
-<BlockMath math="p_{\text{Wasser}} = 1030 \cdot 9{,}81 \cdot 30 = 3{,}03 \cdot 10^5\ \text{Pa}" />
-<BlockMath math="p_{\text{gesamt}} = 3{,}03 \cdot 10^5 + 1{,}01 \cdot 10^5 = 4{,}04 \cdot 10^5\ \text{Pa}" />
-</MathContainer>
-
-Prüf es: Je <InlineMath math="10\ \text{m}" /> Wasser kommt etwa eine Atmosphäre dazu, also sind es in <InlineMath math="30\ \text{m}" /> insgesamt etwa vier.
-
-**Lösung 2**: Verwende das Prinzip von Pascal:
-
-<BlockMath math="F_1 = F_2 \cdot \frac{A_1}{A_2} = 12\,000 \cdot \frac{4}{200} = 240\ \text{N}" />
-
-Prüf es: Der große Kolben ist <InlineMath math="50" />-mal so groß, also ist die Eingangskraft <InlineMath math="50" />-mal kleiner, <InlineMath math="12\,000 : 50 = 240\ \text{N}" />.
-
-**Lösung 3**: Ein schwimmender Klotz erfährt eine Auftriebskraft gleich seiner Gewichtskraft:
-
-<MathContainer>
-<BlockMath math="F_A = m \cdot g = 0{,}50 \cdot 9{,}81 = 4{,}905\ \text{N}" />
-<BlockMath math="V = \frac{F_A}{\rho \cdot g} = \frac{4{,}905}{1000 \cdot 9{,}81} = 5{,}0 \cdot 10^{-4}\ \text{m}^3" />
-</MathContainer>
-
-Das eingetauchte Volumen beträgt <InlineMath math="500\ \text{cm}^3" />. Prüf es: <InlineMath math="500\ \text{cm}^3" /> Wasser haben eine Masse von <InlineMath math="0{,}50\ \text{kg}" />, genau wie das Holz.
-
-**Lösung 4**: Der Auftrieb entsteht durch den **Druckunterschied** zwischen Unter- und Oberseite des Flügels, und dieser hängt von der **Luftgeschwindigkeit** am Flügel ab. Bei kleiner Geschwindigkeit ist der Druckunterschied zu klein, um das Gewicht des Flugzeugs zu tragen. Das Flugzeug rollt schnell über die Startbahn, damit die Luft über dem Flügel schnell genug strömt und der Auftrieb die Gewichtskraft übersteigt.
+Bei <InlineMath math="70\ \text{m/s}" /> liefert ein <InlineMath math="20\ \text{m}^2" />-Flügel <InlineMath math="15\,600\ \text{N}" /> Auftrieb. Kurze Selbstkontrolle: Eine Taucherin in <InlineMath math="30\ \text{m}" /> Meerwasser (<InlineMath math="1030\ \text{kg/m}^3" />) spürt <InlineMath math="4{,}04 \times 10^5\ \text{Pa}" /> Gesamtdruck, und ein <InlineMath math="4\ \text{cm}^2" />-Kolben braucht <InlineMath math="240\ \text{N}" /> für ein <InlineMath math="12\,000\ \text{N}" />-Auto am <InlineMath math="200\ \text{cm}^2" />-Kolben.

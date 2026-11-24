@@ -1,30 +1,30 @@
 export const metadata = {
-  title: "Tekanan Hidrostatis dan Fluida",
+  title: "Tekanan Fluida dan Hukum Pascal Archimedes",
   description:
-    "Hitung tekanan hidrostatis dengan P = ρgh, terapkan hukum Pascal, Archimedes, dan Bernoulli, serta jelaskan tekanan atmosfer lewat contoh dan latihan.",
+    "Hitung tekanan hidrostatis, terapkan hukum Pascal pada dongkrak hidrolik, uji gaya apung Archimedes, dan jelaskan hukum Bernoulli pada pipa Venturi.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-11-17",
   subject: "Tekanan",
 };
 
-## Tekanan Bertambah seiring Kedalaman
+## Tekanan di Dalam Cairan
 
-**Tekanan** adalah gaya yang bekerja tegak lurus pada satu satuan luas, <InlineMath math="P = \dfrac{F}{A}" />, diukur dalam pascal. Di dalam zat cair, tekanan bergantung pada kedalaman <InlineMath math="h" />, massa jenis <InlineMath math="\rho" />, dan percepatan gravitasi <InlineMath math="g" />:
+Bayangkan menyelam makin dalam ke dasar kolam: telingamu terasa makin tertekan karena seluruh tumpukan air di atasmu mendorong ke bawah. **Tekanan** ialah gaya tegak lurus per satuan luas, sedangkan **tekanan hidrostatis** di kedalaman <InlineMath math="h" /> bergantung pada kedalaman, massa jenis <InlineMath math="\rho" />, dan gravitasi <InlineMath math="g" />:
 
-<BlockMath math="P = \rho g h" />
+<BlockMath math="P = \frac{F}{A}, \qquad P = \rho g h" />
 
-Tekanan hidrostatis tidak bergantung pada bentuk atau luas wadah, hanya pada kedalaman dan jenis zat cair. Di sini kamu mengubah kedalaman dan massa jenis, mengangkat mobil dengan dongkrak hidrolik, mengapungkan benda di air, dan menghitung gaya angkat sayap pesawat.
-
-Geser penggeser kedalaman dan massa jenis di bawah. Tekanan sebanding dengan kedalaman, jadi grafiknya lurus melalui titik asal.
+Tekanan cairan **tidak bergantung pada bentuk atau lebar wadah**, hanya pada kedalaman di bawah permukaan. Itulah sebabnya dinding bendungan selalu dibuat paling tebal di bagian dasarnya.
 
 <MathVisual
   title={<>Tekanan Hidrostatis terhadap Kedalaman</>}
+  footer={<>Tekanan cairan naik lurus sebanding dengan kedalaman tanpa dipengaruhi lebar wadah.</>}
   description={
     <>
-      <InlineMath math="P = \rho g h" /> dalam kPa, dengan{" "}
-      <InlineMath math="g = 9{,}81\ \text{m/s}^2" />. Air,{" "}
-      <InlineMath math="\rho = 1000\ \text{kg/m}^3" />, pada kedalaman{" "}
-      <InlineMath math="10\ \text{m}" /> memberi <InlineMath math="98{,}1\ \text{kPa}" />.
+      <InlineMath math="P = \rho g h" /> dalam kPa dengan{" "}
+      <InlineMath math="g = 9{,}81\ \text{m/s}^2" />. Air bermassa jenis{" "}
+      <InlineMath math="1000\ \text{kg/m}^3" /> di kedalaman{" "}
+      <InlineMath math="10\ \text{m}" /> menghasilkan{" "}
+      <InlineMath math="98{,}1\ \text{kPa}" />.
     </>
   }
   scene={{
@@ -50,46 +50,25 @@ Geser penggeser kedalaman dan massa jenis di bawah. Tekanan sebanding dengan ked
   }}
 />
 
-Cek angka awalnya: <InlineMath math="P = 1000 \times 9{,}81 \times 10 = 98.100\ \text{Pa} = 98{,}1\ \text{kPa}" />.
+Geser pengatur kedalaman dan massa jenis di atas: setiap tambahan kedalaman <InlineMath math="10\ \text{m}" /> di air tawar menambah tekanan hampir satu atmosfer.
 
-Itulah sebabnya **bendungan** dibuat lebih tebal di bagian bawah, karena tekanan air paling tinggi di sana. Air yang tinggi di belakang bendungan juga keluar lebih deras di saluran bawah. Ubah tinggi jatuh air di bawah dan lihat energi air berubah menjadi energi listrik.
+## Tekanan Atmosfer dan Gas
 
-<HydroDamLab
-  title={<>Bendungan PLTA dalam Penampang Melintang</>}
-  description={
-    <>
-      Setiap detik <InlineMath math="10\ \text{m}^3" /> air jatuh melalui tinggi{" "}
-      <InlineMath math="h" />. Makin tinggi jatuh airnya, makin besar tekanan di
-      saluran bawah dan makin besar daya yang dihasilkan.
-    </>
-  }
-  labels={{
-    electric: <>Daya listrik</>,
-    head: <>Tinggi jatuh air</>,
-    headControl: "Tinggi jatuh air",
-    kinetic: <>Daya kinetik di turbin</>,
-    potential: <>Daya potensial gravitasi</>,
-    shaft: <>Daya poros</>,
-    speed: <>Kelajuan air di turbin</>,
-    viewLabel: "Bendungan PLTA dalam penampang melintang",
-  }}
-/>
-
-## Tekanan Atmosfer dan Tekanan Gas
-
-**Tekanan atmosfer** adalah tekanan akibat berat lapisan udara di atas Bumi. Di permukaan laut, tekanan ini menahan kolom raksa setinggi <InlineMath math="76\ \text{cm}" /> di dalam barometer:
+**Tekanan atmosfer** lahir dari berat seluruh lapisan udara di atas Bumi. Di permukaan laut, tekanan ini menahan kolom raksa setinggi <InlineMath math="76\ \text{cm}" /> di dalam barometer:
 
 <BlockMath math="P_{\text{atm}} = \rho g h = 13.600 \times 9{,}81 \times 0{,}76 = 1{,}01 \times 10^5\ \text{Pa}" />
 
-Makin tinggi kita naik, makin tipis lapisan udara di atas kita, jadi tekanan atmosfer turun. Model di bawah menunjukkan penurunan itu. Di puncak Gunung Bromo, sekitar <InlineMath math="2{,}3\ \text{km}" /> di atas permukaan laut, tekanannya hanya sekitar <InlineMath math="77\ \text{kPa}" />.
+Saat kamu mendaki gunung, lapisan udara di atas kepala makin tipis sehingga tekanan atmosfer menurun tajam. Sementara itu, **tekanan gas** dalam wadah tertutup timbul dari tumbukan molekul gas pada dinding dan diukur dengan manometer atau pengukur Bourdon.
 
 <MathVisual
   title={<>Tekanan Atmosfer terhadap Ketinggian</>}
+  footer={<>Tekanan udara turun eksponensial seiring ketinggian karena lapisan udara menipis.</>}
   description={
     <>
-      Model atmosfer bersuhu tetap <InlineMath math="P = 101e^{-h/8{,}4}" /> kPa,
-      dengan <InlineMath math="h" /> dalam km. Pada <InlineMath math="2\ \text{km}" />,
-      tekanannya sekitar <InlineMath math="80\ \text{kPa}" />.
+      Model atmosfer bersuhu tetap <InlineMath math="P = 101e^{-h/8{,}4}" /> kPa
+      dengan <InlineMath math="h" /> dalam km. Pada ketinggian{" "}
+      <InlineMath math="2\ \text{km}" />, tekanannya sekitar{" "}
+      <InlineMath math="80\ \text{kPa}" />.
     </>
   }
   scene={{
@@ -113,23 +92,22 @@ Makin tinggi kita naik, makin tipis lapisan udara di atas kita, jadi tekanan atm
   }}
 />
 
-**Tekanan gas** di dalam wadah tertutup berasal dari molekul gas yang menumbuk dinding wadah. Tekanan ini diukur dengan **manometer** atau **pengukur Bourdon**. Tekanan ban mobil, misalnya, dibaca dengan pengukur Bourdon.
+Untuk penyelam di bawah laut, tekanan total yang dialaminya selalu penjumlahan tekanan atmosfer di permukaan dengan tekanan hidrostatis air di atas tubuhnya.
 
-## Sistem Hidrolik dan Hukum Pascal
+## Hukum Pascal dan Hidrolik
 
-**Hukum Pascal** menyatakan bahwa tekanan yang diberikan pada fluida di dalam wadah tertutup diteruskan **sama besar ke segala arah**. Pada **dongkrak hidrolik**, gaya kecil pada pengisap kecil menghasilkan tekanan yang sama pada pengisap besar, jadi pengisap besar menghasilkan gaya yang besar:
+**Hukum Pascal** menyatakan bahwa tekanan yang diberikan pada fluida dalam ruang tertutup diteruskan **sama besar ke segala arah**. Pada **dongkrak hidrolik**, satu nilai tekanan yang sama bekerja pada pengisap kecil dan pengisap besar:
 
-<BlockMath math="\frac{F_1}{A_1} = \frac{F_2}{A_2}" />
-
-Ubah luas pengisap besar di bawah. Gaya masukannya <InlineMath math="50\ \text{N}" /> pada pengisap kecil seluas <InlineMath math="20\ \text{cm}^2" />.
+<BlockMath math="\frac{F_1}{A_1} = \frac{F_2}{A_2}, \qquad A_1 d_1 = A_2 d_2" />
 
 <MathVisual
   title={<>Gaya Keluaran Dongkrak Hidrolik terhadap Luas Pengisap Besar</>}
+  footer={<>Gaya keluaran tumbuh sebanding dengan luas pengisap besar pada tekanan minyak sama.</>}
   description={
     <>
-      <InlineMath math="F_2 = 50 \times \dfrac{A_2}{20}" />, dengan{" "}
-      <InlineMath math="A_2" /> dalam <InlineMath math="\text{cm}^2" />. Pengisap
-      besar <InlineMath math="1000\ \text{cm}^2" /> memberi{" "}
+      Dengan masukan <InlineMath math="50\ \text{N}" /> pada pengisap kecil{" "}
+      <InlineMath math="20\ \text{cm}^2" />, pengisap besar{" "}
+      <InlineMath math="1000\ \text{cm}^2" /> menghasilkan{" "}
       <InlineMath math="2500\ \text{N}" />.
     </>
   }
@@ -154,31 +132,54 @@ Ubah luas pengisap besar di bawah. Gaya masukannya <InlineMath math="50\ \text{N
   }}
 />
 
-Coba satu contoh. Gaya <InlineMath math="50\ \text{N}" /> diberikan pada pengisap kecil seluas <InlineMath math="0{,}002\ \text{m}^2" />. Hitung gaya pada pengisap besar seluas <InlineMath math="0{,}1\ \text{m}^2" />.
+Dongkrak hidrolik **melipatgandakan gaya, bukan energi**. Pengisap kecil harus ditekan jauh ke bawah agar pengisap besar terangkat sedikit.
 
-<MathContainer>
-<BlockMath math="P = \frac{50}{0{,}002} = 25.000\ \text{Pa}" />
-<BlockMath math="F_2 = 25.000 \times 0{,}1 = 2500\ \text{N}" />
-</MathContainer>
+> Tekanan minyak yang sama di kedua silinder melipatgandakan gaya sesuai rasio luas, tetapi mengurangi jarak angkat dengan rasio yang sama.
 
-Cek dengan perbandingan luas: pengisap besar <InlineMath math="\dfrac{0{,}1}{0{,}002} = 50" /> kali lebih luas, jadi gayanya juga <InlineMath math="50" /> kali, <InlineMath math="50 \times 50 = 2500\ \text{N}" />. Pengisap kecil harus bergerak <InlineMath math="50" /> kali lebih jauh, karena usahanya tidak bertambah.
+<HydraulicJackLab
+  title={<>Mengangkat Beban dengan Dongkrak Hidrolik</>}
+  description={
+    <>
+      Pengisap kecil <InlineMath math="0{,}0020\ \text{m}^2" /> dan pengisap
+      besar <InlineMath math="0{,}10\ \text{m}^2" /> dengan gaya{" "}
+      <InlineMath math="150\ \text{N}" /> menekan sejauh{" "}
+      <InlineMath math="20\ \text{cm}" />.
+    </>
+  }
+  footer={<>Luas lima puluh kali memberi gaya 7500 N, tetapi pengisap besar hanya naik 0,40 cm.</>}
+  labels={{
+    force: <>Gaya pada pengisap kecil</>,
+    forceName: "Gaya pada pengisap kecil",
+    lifted: <>Gaya pada pengisap besar</>,
+    mass: <>Massa yang diangkat</>,
+    pressure: <>Tekanan di dalam minyak</>,
+    rise: <>Pengisap besar naik</>,
+    viewLabel: "Dongkrak hidrolik dengan dua silinder minyak",
+  }}
+  force={150}
+  largeArea={0.1}
+  smallArea={0.002}
+  stroke={20}
+/>
 
-## Gaya Apung dan Hukum Archimedes
+Karena pengisap besar <InlineMath math="50" /> kali lebih luas, gaya <InlineMath math="150\ \text{N}" /> menjadi <InlineMath math="7500\ \text{N}" />, sementara langkah <InlineMath math="20\ \text{cm}" /> menyusut menjadi kenaikan <InlineMath math="0{,}40\ \text{cm}" /> sehingga usaha tetap sama.
 
-**Hukum Archimedes** menyatakan bahwa benda yang tercelup sebagian atau seluruhnya dalam fluida mengalami **gaya apung** yang sama dengan **berat fluida yang dipindahkan**:
+## Gaya Apung Archimedes
+
+**Hukum Archimedes** menyatakan bahwa benda yang tercelup dalam fluida mengalami **gaya apung** sebesar **berat fluida yang dipindahkan**:
 
 <BlockMath math="F_A = \rho V g" />
 
-Di sini <InlineMath math="V" /> adalah volume fluida yang dipindahkan. Benda **terapung** saat gaya apungnya sama dengan beratnya. Ubah volume yang tercelup dan massa jenis zat cair di bawah untuk benda seberat <InlineMath math="50\ \text{N}" />.
+Selalu pakai **massa jenis fluida** <InlineMath math="\rho" />, bukan massa jenis benda. Benda terapung tepat ketika gaya apung menyamai beratnya.
 
 <MathVisual
   title={<>Gaya Apung terhadap Volume yang Tercelup</>}
+  footer={<>Benda mulai terapung tepat di titik garis gaya apung memotong garis beratnya.</>}
   description={
     <>
-      <InlineMath math="F_A = 9{,}81\rho V" /> dalam N, dengan <InlineMath math="V" />{" "}
-      dalam liter dan <InlineMath math="\rho" /> dalam <InlineMath math="\text{g/cm}^3" />.
-      Garis mendatar adalah berat benda, <InlineMath math="50\ \text{N}" />. Benda
-      terapung di titik perpotongan.
+      <InlineMath math="F_A = 9{,}81\rho V" /> dalam N untuk benda seberat{" "}
+      <InlineMath math="50\ \text{N}" /> dengan <InlineMath math="V" /> dalam
+      liter dan <InlineMath math="\rho" /> dalam <InlineMath math="\text{g/cm}^3" />.
     </>
   }
   scene={{
@@ -207,28 +208,82 @@ Di sini <InlineMath math="V" /> adalah volume fluida yang dipindahkan. Benda **t
   }}
 />
 
-Balok seberat <InlineMath math="50\ \text{N}" /> dengan volume <InlineMath math="0{,}002\ \text{m}^3" /> dicelupkan seluruhnya ke dalam air. Hitung gaya apung dan berat semu balok itu.
+Saat balok kayu dipindahkan dari air ke minyak yang lebih ringan, berat balok tetap sama sehingga balok harus **mendesak volume minyak lebih besar** agar tetap terapung.
 
-<MathContainer>
-<BlockMath math="F_A = 1000 \times 0{,}002 \times 9{,}81 = 19{,}62\ \text{N}" />
-<BlockMath math="\text{Berat semu} = 50 - 19{,}62 = 30{,}38\ \text{N}" />
-</MathContainer>
+> Di cairan bermassa jenis lebih kecil, benda terapung harus tenggelam lebih dalam supaya berat cairan yang dipindahkan tetap menyamai beratnya.
 
-Cek dengan grafik: pada <InlineMath math="V = 2" /> liter di air, gaya apungnya <InlineMath math="19{,}6\ \text{N}" />, masih di bawah garis <InlineMath math="50\ \text{N}" />, jadi balok itu tenggelam. Kapal selam mengatur gaya apungnya dengan mengisi atau mengosongkan tangki pemberat.
+<FloatingBlockLab
+  title={<>Balok Kayu di Air lalu di Minyak</>}
+  description={
+    <>
+      Balok bervolume <InlineMath math="500\ \text{cm}^3" /> terapung dengan{" "}
+      <InlineMath math="300\ \text{cm}^3" /> di bawah air, lalu dipindah ke
+      minyak bermassa jenis <InlineMath math="0{,}80\ \text{g/cm}^3" />.
+    </>
+  }
+  footer={<>Di minyak yang lebih renggang, bagian tercelup naik dari 300 ke 375 cm kubik.</>}
+  labels={{
+    above: <>Di atas permukaan</>,
+    liquid: "Zat cair",
+    liquids: { other: <>Minyak</>, water: <>Air</> },
+    under: <>Di bawah permukaan</>,
+    viewLabel: "Balok kayu terapung di air dan minyak",
+  }}
+  density={0.8}
+  underWater={300}
+  volume={500}
+/>
 
-## Gaya Angkat dan Hukum Bernoulli
+Di air, balok mendesak <InlineMath math="300\ \text{g}" /> air sehingga massanya <InlineMath math="300\ \text{g}" />. Di minyak <InlineMath math="0{,}80\ \text{g/cm}^3" />, massa yang sama menuntut <InlineMath math="300 / 0{,}80 = 375\ \text{cm}^3" /> tercelup.
 
-**Hukum Bernoulli** menyatakan bahwa saat kelajuan fluida bertambah, tekanannya berkurang. Sayap pesawat dibentuk supaya udara di atas sayap bergerak lebih cepat daripada udara di bawahnya. Tekanan di atas sayap menjadi lebih rendah, dan beda tekanan itu menghasilkan **gaya angkat**.
+## Hukum Bernoulli
 
-Beda tekanan antara bawah dan atas sayap adalah <InlineMath math="\Delta P = \tfrac{1}{2}\rho(v_{\text{atas}}^2 - v_{\text{bawah}}^2)" />. Ubah kelajuan udara di atas sayap di bawah, dengan udara di bawah sayap <InlineMath math="60\ \text{m/s}" />.
+Pada fluida yang mengalir tunak, energi tekanan dan energi kinetik selalu saling bertukar tempat sesuai kekekalan energi. **Hukum Bernoulli** merangkum pertukaran itu: makin cepat fluida mengalir di suatu daerah, makin rendah tekanan statis yang bekerja di sana.
+
+### Pipa Venturi
+
+Ketika air mengalir melewati penyempitan pipa, debit aliran tetap sama sehingga air di bagian sempit harus melaju jauh lebih cepat. Menurut **hukum Bernoulli**, **aliran fluida yang lebih cepat selalu memiliki tekanan statis yang lebih rendah**.
+
+> Pipa yang menyempit mempercepat aliran fluida sesuai persamaan kontinuitas, dan kenaikan kelajuan menurunkan tekanan statis di bagian sempit.
+
+<VenturiTubeLab
+  title={<>Aliran Air pada Pipa Venturi Menyempit</>}
+  description={
+    <>
+      Air mengalir <InlineMath math="0{,}50\ \text{m/s}" /> di pipa berdiameter{" "}
+      <InlineMath math="4{,}0\ \text{cm}" /> yang menyempit menjadi{" "}
+      <InlineMath math="2{,}0\ \text{cm}" />.
+    </>
+  }
+  footer={<>Diameter separuh berarti luas seperempat, kelajuan empat kali, dan kolom air turun.</>}
+  labels={{
+    drop: <>Penurunan tinggi kolom</>,
+    faster: <>Kelajuan di bagian sempit</>,
+    speed: <>Kelajuan di bagian lebar</>,
+    speedName: "Kelajuan di bagian lebar",
+    viewLabel: "Air mengalir melewati tabung Venturi dengan dua pipa tegak",
+  }}
+  narrow={2}
+  speed={0.5}
+  wide={4}
+/>
+
+Diameter yang menyusut separuh memangkas luas menjadi seperempat sehingga kelajuan melonjak empat kali ke <InlineMath math="2{,}0\ \text{m/s}" /> dan kolom air di atas leher sempit berdiri lebih rendah.
+
+### Gaya Angkat Sayap
+
+Prinsip Bernoulli yang sama bekerja pada **sayap pesawat**: bentuk melengkung di sisi atas membuat udara mengalir lebih cepat daripada di sisi bawah sehingga **tekanan di bawah sayap lebih besar** dan mendorong sayap ke atas dengan beda tekanan:
+
+<BlockMath math="\Delta P = \frac{1}{2}\rho\left(v_{\text{atas}}^2 - v_{\text{bawah}}^2\right)" />
 
 <MathVisual
   title={<>Beda Tekanan pada Sayap terhadap Kelajuan Udara di Atas</>}
+  footer={<>Udara yang makin cepat di atas sayap memperbesar beda tekanan dan gaya angkat.</>}
   description={
     <>
-      <InlineMath math="\Delta P = 0{,}6(v^2 - 60^2)" /> Pa untuk udara,{" "}
-      <InlineMath math="\rho = 1{,}2\ \text{kg/m}^3" />. Pada{" "}
-      <InlineMath math="v = 70\ \text{m/s}" />, beda tekanannya{" "}
+      <InlineMath math="\Delta P = 0{,}6(v^2 - 60^2)" /> Pa untuk udara bermassa
+      jenis <InlineMath math="1{,}2\ \text{kg/m}^3" />. Pada{" "}
+      <InlineMath math="70\ \text{m/s}" />, beda tekanannya{" "}
       <InlineMath math="780\ \text{Pa}" />.
     </>
   }
@@ -255,56 +310,4 @@ Beda tekanan antara bawah dan atas sayap adalah <InlineMath math="\Delta P = \tf
   }}
 />
 
-Cek: pada <InlineMath math="70\ \text{m/s}" />, <InlineMath math="\Delta P = 0{,}6 \times (4900 - 3600) = 780\ \text{Pa}" />, dan pada sayap seluas <InlineMath math="20\ \text{m}^2" /> gaya angkatnya <InlineMath math="780 \times 20 = 15.600\ \text{N}" />. Prinsip yang sama menjelaskan pembakar Bunsen dan penyemprot cat.
-
-## Kesalahan Umum tentang Tekanan
-
-| Kesalahan | Alasan keliru | Cara cek |
-| :--- | :--- | :--- |
-| Wadah yang lebih lebar memberi tekanan lebih besar di dasar. | <InlineMath math="P = \rho g h" /> tidak bergantung pada luas atau bentuk wadah. | Bandingkan dua wadah dengan kedalaman zat cair yang sama. |
-| Dongkrak hidrolik menghasilkan energi tambahan. | Gayanya bertambah tetapi jarak gerak pengisap besar berkurang, jadi usahanya sama. | Kalikan gaya dengan jarak untuk kedua pengisap. |
-| Gaya apung bergantung pada berat benda. | Gaya apung sama dengan berat **fluida yang dipindahkan**, bukan berat benda. | Hitung <InlineMath math="\rho V g" /> dengan massa jenis fluida. |
-| Kedalaman diukur dari dasar wadah. | <InlineMath math="h" /> diukur dari permukaan zat cair ke titik itu. | Tekanan hidrostatis di permukaan harus nol, tanpa tekanan atmosfer. |
-| Udara yang lebih cepat memiliki tekanan lebih tinggi. | Hukum Bernoulli: kelajuan naik, tekanan turun. | Tiup bagian atas selembar kertas dan lihat kertasnya naik. |
-
-Kesalahan ketiga paling sering muncul. Gaya apung berasal dari **fluida**, jadi pakai massa jenis fluida, bukan massa jenis benda.
-
-## Latihan Tekanan
-
-Soal-soal ini bergerak dari tekanan hidrostatis ke sistem hidrolik dan gaya apung. **Ubah semua satuan ke SI** sebelum memakai <InlineMath math="P = \rho g h" />.
-
-1. Seorang penyelam berada <InlineMath math="30\ \text{m}" /> di bawah permukaan laut. Massa jenis air laut <InlineMath math="1030\ \text{kg/m}^3" /> dan tekanan atmosfer <InlineMath math="1{,}01 \times 10^5\ \text{Pa}" />. Hitung tekanan hidrostatis dan tekanan total pada penyelam itu.
-
-2. Dongkrak hidrolik memiliki pengisap kecil <InlineMath math="4\ \text{cm}^2" /> dan pengisap besar <InlineMath math="200\ \text{cm}^2" />. Hitung gaya minimum pada pengisap kecil untuk mengangkat mobil seberat <InlineMath math="12.000\ \text{N}" />.
-
-3. Sebuah balok kayu bermassa <InlineMath math="0{,}50\ \text{kg}" /> terapung di air. Hitung gaya apung dan volume kayu yang tercelup.
-
-4. Jelaskan dengan hukum Bernoulli mengapa pesawat harus melaju kencang di landasan sebelum lepas landas.
-
-### Pembahasan
-
-**Pembahasan 1**: Hitung tekanan hidrostatis, lalu tambahkan tekanan atmosfer:
-
-<MathContainer>
-<BlockMath math="P_{\text{hidrostatis}} = 1030 \times 9{,}81 \times 30 = 3{,}03 \times 10^5\ \text{Pa}" />
-<BlockMath math="P_{\text{total}} = 3{,}03 \times 10^5 + 1{,}01 \times 10^5 = 4{,}04 \times 10^5\ \text{Pa}" />
-</MathContainer>
-
-Cek: setiap <InlineMath math="10\ \text{m}" /> air menambah sekitar satu atmosfer, jadi pada <InlineMath math="30\ \text{m}" /> totalnya sekitar empat atmosfer.
-
-**Pembahasan 2**: Pakai hukum Pascal:
-
-<BlockMath math="F_1 = F_2 \times \frac{A_1}{A_2} = 12.000 \times \frac{4}{200} = 240\ \text{N}" />
-
-Cek: pengisap besar <InlineMath math="50" /> kali lebih luas, jadi gaya masukannya <InlineMath math="50" /> kali lebih kecil, <InlineMath math="12.000 \div 50 = 240\ \text{N}" />.
-
-**Pembahasan 3**: Balok yang terapung mengalami gaya apung yang sama dengan beratnya:
-
-<MathContainer>
-<BlockMath math="F_A = mg = 0{,}50 \times 9{,}81 = 4{,}905\ \text{N}" />
-<BlockMath math="V = \frac{F_A}{\rho g} = \frac{4{,}905}{1000 \times 9{,}81} = 5{,}0 \times 10^{-4}\ \text{m}^3" />
-</MathContainer>
-
-Volume yang tercelup <InlineMath math="500\ \text{cm}^3" />. Cek: <InlineMath math="500\ \text{cm}^3" /> air bermassa <InlineMath math="0{,}50\ \text{kg}" />, sama dengan massa kayu.
-
-**Pembahasan 4**: Gaya angkat berasal dari **beda tekanan** antara bawah dan atas sayap, dan beda itu bergantung pada **kelajuan udara** yang melewati sayap. Pada kelajuan rendah, beda tekanannya terlalu kecil untuk menahan berat pesawat. Pesawat melaju kencang di landasan supaya udara di atas sayap cukup cepat dan gaya angkatnya melebihi berat.
+Pada <InlineMath math="70\ \text{m/s}" />, sayap <InlineMath math="20\ \text{m}^2" /> menerima gaya angkat <InlineMath math="15.600\ \text{N}" />. Uji cepat mandiri: penyelam pada kedalaman <InlineMath math="30\ \text{m}" /> air laut (<InlineMath math="1030\ \text{kg/m}^3" />) menanggung tekanan total <InlineMath math="4{,}04 \times 10^5\ \text{Pa}" />, dan pengisap kecil <InlineMath math="4\ \text{cm}^2" /> butuh <InlineMath math="240\ \text{N}" /> untuk mengangkat mobil <InlineMath math="12.000\ \text{N}" /> di pengisap <InlineMath math="200\ \text{cm}^2" />.
