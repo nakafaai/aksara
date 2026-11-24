@@ -1,19 +1,80 @@
-# Bahagikan glukosa antara dua laluan
+# Diberi
 
-Oksigen yang ada menentukan **berapa banyak glukosa boleh dioksidakan secara aerob**. Bakinya ditapai.
+Satu kelalang bertutup mengandungi yis, <InlineMath math="18\text{ g}" /> glukosa (<InlineMath math="M_r = 180" />), dan **<InlineMath math="1.44\text{ dm}^3" /> oksigen** pada keadaan bilik (<InlineMath math="24\text{ dm}^3\text{ mol}^{-1}" />).
+
+Respirasi aerob (<InlineMath math="6\text{ O}_2 \to 6\text{ CO}_2" />, <InlineMath math="2898\text{ kJ mol}^{-1}" />) menggunakan semua oksigen dahulu, kemudian baki glukosa menjalani fermentasi (<InlineMath math="2\text{ CO}_2" />, <InlineMath math="210\text{ kJ mol}^{-1}" />).
+
+# Ditanya
+
+Berapakah jumlah isi padu karbon dioksida yang terhasil dan jumlah tenaga yang dibebaskan?
+
+# Penyelesaian
+
+Bayangkan kamu ada <InlineMath math="10" /> batang kayu api (<InlineMath math="0.10\text{ mol}" /> glukosa), tetapi oksigen hanya cukup untuk membakar habis <InlineMath math="1" /> batang (<InlineMath math="0.01\text{ mol}" />) secara aerob. Baki <InlineMath math="9" /> batang (<InlineMath math="0.09\text{ mol}" />) **mesti dipecahkan tanpa oksigen melalui fermentasi**.
+
+> Isi padu oksigen yang terhad mengehadkan bahagian glukosa aerob, manakala baki glukosa menjalani fermentasi supaya kedua-dua laluan menyumbang karbon dioksida dan tenaga.
+
+Gerakkan isi padu oksigen <InlineMath math="v" /> di bawah daripada <InlineMath math="0" /> (fermentasi penuh) kepada <InlineMath math="14.4\text{ dm}^3" /> (aerob penuh), lalu semak keadaan kelalang pada <InlineMath math="v = 1.44\text{ dm}^3" />.
+
+<MathVisual
+  title={<>Jumlah isi padu karbon dioksida melawan bekalan oksigen</>}
+  description={
+    <>
+      Bagi <InlineMath math="0.10\text{ mol}" /> glukosa, pengoksidaan penuh perlu{" "}
+      <InlineMath math="14.4\text{ dm}^3" /> oksigen. Tetapkan <InlineMath math="v" />{" "}
+      kepada <InlineMath math="1.44\text{ dm}^3" /> untuk membaca mol aerob,{" "}
+      <InlineMath math="\text{CO}_2" />, dan jumlah tenaga.
+    </>
+  }
+  footer={<>Pada <InlineMath math="v = 1.44\text{ dm}^3" />, jumlah <InlineMath math="\text{CO}_2" /> ialah <InlineMath math="5.76\text{ dm}^3" /> dan tenaga <InlineMath math="47.9\text{ kJ}" />.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 15.5 }, y: { min: 0, max: 16 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [{ name: "a", min: 0, max: 14.4, value: 1.44, step: 0.72, label: "a" }],
+    objects: [
+      { id: "co2-line", kind: "function", appearance: "primary", formula: "4.8 + (2 / 3) * x", domain: { min: 0, max: 14.4 } },
+      { id: "ferm-only", kind: "marker", appearance: "warning", x: "0", y: "4.8" },
+      { id: "aer-only", kind: "marker", appearance: "warning", x: "14.4", y: "14.4" },
+      { id: "now", kind: "marker", appearance: "answer", x: "a", y: "4.8 + (2 / 3) * a" },
+    ],
+    readouts: [
+      { key: "aerobic-mol", formula: "a / 144" },
+      { key: "co2-vol", formula: "4.8 + (2 / 3) * a" },
+      { key: "energy-kj", formula: "21 + (56 / 3) * a" },
+    ],
+  }}
+  labels={{
+    a: <>Isi padu oksigen (<InlineMath math="\text{dm}^3" />)</>,
+    "aerobic-mol": <>Glukosa aerob (<InlineMath math="\text{mol}" />)</>,
+    "co2-vol": <>Jumlah isi padu <InlineMath math="\text{CO}_2" /> (<InlineMath math="\text{dm}^3" />)</>,
+    "energy-kj": <>Jumlah tenaga (<InlineMath math="\text{kJ}" />)</>,
+  }}
+/>
+
+Kedua-dua titik jingga di hujung garis ialah perangkap ekstrem: <InlineMath math="4.80\text{ dm}^3" /> tanpa oksigen dan <InlineMath math="14.4\text{ dm}^3" /> dengan oksigen berlebihan. Dengan <InlineMath math="1.44\text{ dm}^3" />, kelalang berada di antara kedua-duanya.
+
+## Pembahagian mol dan jumlah hasil
+
+Tukar glukosa dan oksigen kepada mol, asingkan **glukosa aerob (<InlineMath math="0.01\text{ mol}" />)** daripada **fermentasi (<InlineMath math="0.09\text{ mol}" />)**, kemudian jumlahkan hasil kedua-duanya.
 
 <BlockMath math="\begin{aligned}
-n_{\text{glukosa}}&=\frac{18}{180}=0.10\text{ mol}\\
-n_{\text{O}_2}&=\frac{1.44}{24}=0.06\text{ mol}\ \Rightarrow\ 0.01\text{ mol glukosa aerob}\\
-\text{ditapai}&=0.10-0.01=0.09\text{ mol glukosa}\\
-n_{\text{CO}_2}&=6(0.01)+2(0.09)=0.24\text{ mol}=5.76\text{ dm}^3\\
-E&=0.01(2898)+0.09(210)=28.98+18.9\approx47.9\text{ kJ}
+n_{\text{glukosa}} &= \frac{18}{180} = 0.10\text{ mol} \\
+n_{\text{O}_2} &= \frac{1.44}{24} = 0.06\text{ mol} \implies n_{\text{aerob}} = \frac{0.06}{6} = 0.01\text{ mol} \\
+n_{\text{fermentasi}} &= 0.10 - 0.01 = 0.09\text{ mol} \\
+n_{\text{CO}_2} &= 6(0.01) + 2(0.09) = 0.06 + 0.18 = 0.24\text{ mol} \\
+V_{\text{CO}_2} &= 0.24 \times 24 = 5.76\text{ dm}^3 \\
+E &= 0.01(2898) + 0.09(210) = 28.98 + 18.90 = 47.88 \approx 47.9\text{ kJ}
 \end{aligned}" />
 
-Jadi, <InlineMath math="5.76\text{ dm}^3" /> karbon dioksida dan <InlineMath math="47.9\text{ kJ}" /> tenaga dihasilkan.
+Semakan pantas: hasil tambah kedua-dua bahagian glukosa kembali kepada <InlineMath math="0.10\text{ mol}" /> dan nilai sepadan dengan graf.
 
-# Kenapa pilihan lain salah
+## Mengapa pilihan lain salah
 
-- <InlineMath math="4.80\text{ dm}^3" /> dan <InlineMath math="21.0\text{ kJ}" /> menapai semua glukosa, sedangkan **oksigen yang ada digunakan dahulu secara aerob**.
-- <InlineMath math="3.60\text{ dm}^3" /> menganggap penapaian menghasilkan satu molekul karbon dioksida bagi setiap glukosa, sedangkan persamaan memberi dua.
-- <InlineMath math="14.4\text{ dm}^3" /> dan <InlineMath math="289.8\text{ kJ}" /> mengoksidakan semua glukosa secara aerob, sedangkan oksigen hanya cukup untuk <InlineMath math="0.01\text{ mol}" />.
+- Pilihan <InlineMath math="4.80\text{ dm}^3" /> dan <InlineMath math="21.0\text{ kJ}" /> menapaikan semua glukosa, padahal **oksigen yang ada digunakan secara aerob dahulu**.
+- Pilihan <InlineMath math="3.60\text{ dm}^3" /> dan <InlineMath math="47.9\text{ kJ}" /> hanya mengira satu molekul karbon dioksida per glukosa fermentasi, bukannya dua.
+- Pilihan <InlineMath math="14.4\text{ dm}^3" /> dan <InlineMath math="289.8\text{ kJ}" /> mengoksidakan semua glukosa secara aerob, sedangkan oksigen cukup untuk <InlineMath math="0.01\text{ mol}" /> sahaja.
+
+# Jawapan
+
+Jumlah isi padu karbon dioksida yang terhasil ialah <InlineMath math="5.76\text{ dm}^3" /> dan jumlah tenaga yang dibebaskan ialah <InlineMath math="47.9\text{ kJ}" />.

@@ -1,17 +1,79 @@
-# Dua bacaan, satu faktor pencairan
+# Diberi
 
-Bahagian A hanya mengesan gula penurun. Bahagian B mengesan gula penurun ditambah gula bukan penurun yang telah dihidrolisis. **Beza antara kedua-dua bacaan ialah gula bukan penurun**, kemudian darab dengan faktor pencairan <InlineMath math="4" />.
+Skala warna ujian Benedict ialah hijau (<InlineMath math="0.5\%" />), kuning (<InlineMath math="1.0\%" />), jingga (<InlineMath math="1.5\%" />), dan merah bata (<InlineMath math="2.0\%" />). Jus buah **dicairkan <InlineMath math="4" /> kali** sebelum diuji.
+
+Bahagian A (ujian terus) bertukar kuning (<InlineMath math="1.0\%" />), manakala Bahagian B (selepas hidrolisis asid dan peneutralan) bertukar merah bata (<InlineMath math="2.0\%" />).
+
+# Ditanya
+
+Berapakah peratus gula penurun dan gula bukan penurun dalam jus buah asal?
+
+# Penyelesaian
+
+Bayangkan kamu mencairkan sirap <InlineMath math="4" /> kali dengan air sebelum merasa kemanisannya. Untuk mengetahui kepekatan botol asal, **setiap bacaan sampel cair mesti didarab semula dengan <InlineMath math="4" />**.
+
+Bahagian A mengesan gula penurun sahaja, manakala Bahagian B mengesan semua gula selepas hidrolisis memecahkan gula bukan penurun menjadi gula penurun.
+
+> Beza antara bacaan selepas hidrolisis dengan bacaan terus ialah gula bukan penurun, dan semua bacaan cair mesti didarab dengan faktor pencairan.
+
+Gerakkan faktor pencairan <InlineMath math="d" /> di bawah untuk melihat bagaimana peratus gula penurun, jumlah gula, dan beza gula bukan penurun meningkat ke jus asal.
+
+<MathVisual
+  title={<>Skala peratus gula daripada sampel cair ke jus asal</>}
+  description={
+    <>
+      Garis biru menunjukkan gula penurun (Bahagian A) dan garis jingga menunjukkan
+      jumlah gula selepas hidrolisis (Bahagian B). Tetapkan <InlineMath math="d" />{" "}
+      kepada <InlineMath math="4" /> bagi jus asal.
+    </>
+  }
+  footer={<>Pada <InlineMath math="d = 4" />, gula penurun <InlineMath math="4\%" /> dan jurang menegaknya juga <InlineMath math="4\%" />.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 6.5 }, y: { min: 0, max: 13 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [{ name: "d", min: 1, max: 6, value: 4, step: 1, label: "d" }],
+    objects: [
+      { id: "red", kind: "function", appearance: "primary", formula: "x", domain: { min: 0, max: 6 } },
+      { id: "tot", kind: "function", appearance: "warning", formula: "2 * x", domain: { min: 0, max: 6 } },
+      { id: "gap", kind: "segment", appearance: "answer", from: { x: 4, y: 4 }, to: { x: 4, y: 8 } },
+      { id: "m-red", kind: "marker", appearance: "primary", x: "d", y: "d" },
+      { id: "m-tot", kind: "marker", appearance: "answer", x: "d", y: "2 * d" },
+    ],
+    readouts: [
+      { key: "reducing", formula: "d" },
+      { key: "total", formula: "2 * d" },
+      { key: "non-reducing", formula: "2 * d - d" },
+    ],
+  }}
+  labels={{
+    d: <>Faktor pencairan <InlineMath math="d" /></>,
+    reducing: <>Gula penurun (<InlineMath math="\%" />)</>,
+    total: <>Jumlah gula (<InlineMath math="\%" />)</>,
+    "non-reducing": <>Gula bukan penurun (<InlineMath math="\%" />)</>,
+  }}
+/>
+
+Ketinggian segmen menegak antara kedua-dua garis sentiasa menyamai garis biru. Pada <InlineMath math="d = 4" />, kedua-dua jenis gula ialah <InlineMath math="4\%" />.
+
+## Pengiraan peratus jus asal
+
+Darabkan setiap bacaan dengan faktor pencairan <InlineMath math="4" />, kemudian tolak **gula penurun daripada jumlah gula**.
 
 <BlockMath math="\begin{aligned}
-\text{gula penurun}&=1.0\%\times4=4\%\\
-\text{jumlah gula}&=2.0\%\times4=8\%\\
-\text{gula bukan penurun}&=8\%-4\%=4\%
+\text{gula penurun} &= 1.0\% \times 4 = 4\% \\
+\text{jumlah gula} &= 2.0\% \times 4 = 8\% \\
+\text{gula bukan penurun} &= 8\% - 4\% = 4\%
 \end{aligned}" />
 
-Jadi, jus asal mengandungi <InlineMath math="4\%" /> gula penurun dan <InlineMath math="4\%" /> gula bukan penurun.
+Semakan semula: apabila <InlineMath math="4\%" /> gula penurun dan <InlineMath math="4\%" /> gula bukan penurun dicairkan <InlineMath math="4" /> kali, Bahagian A memberi <InlineMath math="1.0\%" /> (kuning) dan Bahagian B memberi <InlineMath math="2.0\%" /> (merah bata).
 
-# Kenapa pilihan lain salah
+## Mengapa pilihan lain salah
 
-- <InlineMath math="1\%" /> dan <InlineMath math="1\%" /> terlupa mendarab dengan <InlineMath math="4" />, sedangkan **jus yang diuji telah dicairkan**.
-- <InlineMath math="8\%" /> bagi gula bukan penurun menggunakan bacaan bahagian B terus, sedangkan bacaan itu masih mengandungi gula penurun.
-- <InlineMath math="8\%" /> bagi gula penurun menukar kedua-dua bacaan, sedangkan gula penurun dikesan tanpa hidrolisis.
+- Pilihan <InlineMath math="1\%" /> dan <InlineMath math="1\%" /> terlupa mendarab dengan <InlineMath math="4" />, padahal **jus yang diuji sudah dicairkan**.
+- Pilihan <InlineMath math="4\%" /> dan <InlineMath math="8\%" /> mengambil bacaan Bahagian B terus sebagai gula bukan penurun tanpa menolak gula penurun.
+- Pilihan <InlineMath math="8\%" /> dan <InlineMath math="4\%" /> menukar jumlah gula dengan gula penurun, sedangkan Bahagian A hanya berwarna kuning.
+
+# Jawapan
+
+Jus buah asal mengandungi <InlineMath math="4\%" /> gula penurun dan <InlineMath math="4\%" /> gula bukan penurun.

@@ -1,17 +1,81 @@
-# Volume sama, bentuk berbeda
+# Diketahui
 
-Kedua sel bervolume <InlineMath math="1000\,\mu\text{m}^3" />, jadi perbedaannya hanya pada luas permukaan. **Bentuk yang pipih membentangkan volume yang sama ke permukaan yang lebih luas**.
+Sel P berbentuk kubus dengan rusuk <InlineMath math="10\,\mu\text{m}" />. Sel R bervolume sama, tetapi berbentuk balok pipih berukuran <InlineMath math="40\,\mu\text{m} \times 10\,\mu\text{m} \times 2{,}5\,\mu\text{m}" />.
+
+Kedua sel memiliki **volume tepat <InlineMath math="1000\,\mu\text{m}^3" />**.
+
+# Ditanyakan
+
+Berapa kali lebih besar nisbah luas permukaan terhadap volume sel R dibandingkan sel P?
+
+# Penyelesaian
+
+Bayangkan segumpal plastisin berbentuk dadu yang kamu tekan hingga menjadi lembaran pipih. Banyaknya plastisin di dalam tidak berubah, tetapi **kulit luarnya yang menyentuh udara menjadi jauh lebih luas**.
+
+> Ketika dua benda memiliki volume sama, perbandingan nisbah luas permukaan terhadap volumenya sama persis dengan perbandingan luas permukaannya.
+
+Geser ketebalan sel <InlineMath math="h" /> pada grafik berikut sambil menjaga lebar <InlineMath math="10\,\mu\text{m}" /> dan volume tetap <InlineMath math="1000\,\mu\text{m}^3" />, lalu bandingkan posisi kubus P dan balok pipih R.
+
+<MathVisual
+  title={<>Luas permukaan balok bervolume tetap <InlineMath math="1000\,\mu\text{m}^3" /></>}
+  description={
+    <>
+      Lebar dijaga <InlineMath math="10\,\mu\text{m}" /> sehingga panjang mengikuti{" "}
+      <InlineMath math="100 / h" />. Geser ketebalan <InlineMath math="h" /> dari{" "}
+      <InlineMath math="10\,\mu\text{m}" /> ke <InlineMath math="2{,}5\,\mu\text{m}" /> untuk
+      melihat kenaikan luas permukaan dan rasionya terhadap sel P.
+    </>
+  }
+  footer={<>Saat ketebalan menyusut ke <InlineMath math="2{,}5\,\mu\text{m}" />, luas melompat dari <InlineMath math="600" /> ke <InlineMath math="1050\,\mu\text{m}^2" />.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 11 }, y: { min: 0, max: 1300 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [{ name: "h", min: 2, max: 10, value: 2.5, step: 0.5, label: "h" }],
+    objects: [
+      { id: "curve", kind: "function", appearance: "primary", formula: "2000 / x + 20 * x + 200", domain: { min: 2, max: 10 } },
+      { id: "cube-ref", kind: "segment", appearance: "construction", from: { x: 0, y: 600 }, to: { x: 10, y: 600 } },
+      { id: "cell-p", kind: "marker", appearance: "primary", x: "10", y: "600" },
+      { id: "cell-r", kind: "marker", appearance: "answer", x: "h", y: "2000 / h + 20 * h + 200" },
+    ],
+    labels: [
+      { key: "p-label", objectId: "cell-p", at: { x: "10", y: "600" }, placement: "below" },
+      { key: "r-label", objectId: "cell-r", at: { x: 2.5, y: 1050 }, placement: "above-right" },
+    ],
+    readouts: [
+      { key: "area", formula: "2000 / h + 20 * h + 200" },
+      { key: "ratio", formula: "(2000 / h + 20 * h + 200) / 600" },
+    ],
+  }}
+  labels={{
+    h: <>Ketebalan sel <InlineMath math="h" /> (<InlineMath math="\mu\text{m}" />)</>,
+    "p-label": <>Sel P (<InlineMath math="600" />)</>,
+    "r-label": <>Sel R</>,
+    area: <>Luas permukaan (<InlineMath math="\mu\text{m}^2" />)</>,
+    ratio: <>Rasio terhadap sel P</>,
+  }}
+/>
+
+Semakin pipih sel, semakin tinggi kurva luas permukaannya. Pada <InlineMath math="h = 2{,}5\,\mu\text{m}" />, titik sel R berada jauh di atas garis acuan kubus P.
+
+## Perhitungan luas dan rasio
+
+Hitung luas permukaan kubus P dan balok R, lalu bagi **nisbah luas terhadap volume** keduanya.
 
 <BlockMath math="\begin{aligned}
-A_P&=6(10)^2=600\,\mu\text{m}^2\\
-A_R&=2(40\times10+40\times2{,}5+10\times2{,}5)=2(400+100+25)=1050\,\mu\text{m}^2\\
-\frac{A_R/V}{A_P/V}&=\frac{1050}{600}=1{,}75
+A_P &= 6(10)^2 = 600\,\mu\text{m}^2 \\
+A_R &= 2(40 \times 10 + 40 \times 2{,}5 + 10 \times 2{,}5) = 2(400 + 100 + 25) = 1050\,\mu\text{m}^2 \\
+\frac{A_R / V}{A_P / V} &= \frac{A_R}{A_P} = \frac{1050}{600} = 1{,}75
 \end{aligned}" />
 
-Jadi, nisbah sel R adalah <InlineMath math="1{,}75" /> kali nisbah sel P. Prinsip yang sama membuat sel darah merah berbentuk cakram pipih.
+Cek cepat: nisbah sel P adalah <InlineMath math="0{,}60\,\mu\text{m}^{-1}" /> dan nisbah sel R adalah <InlineMath math="1{,}05\,\mu\text{m}^{-1}" />. Prinsip bentuk pipih ini juga dipakai sel darah merah agar pertukaran oksigen lebih cepat.
 
-# Mengapa pilihan lain salah
+## Mengapa pilihan lain salah
 
-- <InlineMath math="1{,}00" /> mengira volume yang sama memberi nisbah yang sama, padahal **luas permukaannya berbeda**.
-- <InlineMath math="4{,}00" /> membandingkan sisi terpanjang, <InlineMath math="40" /> dengan <InlineMath math="10" />, bukan luas permukaan.
-- <InlineMath math="0{,}57" /> membalik perbandingan, padahal sel R yang punya nisbah lebih besar.
+- Pilihan <InlineMath math="1{,}00" /> mengira volume sama pasti memberi nisbah sama, padahal **luas permukaannya berbeda jauh**.
+- Pilihan <InlineMath math="4{,}00" /> hanya membagi sisi terpanjang <InlineMath math="40" /> dengan <InlineMath math="10" />, bukan membandingkan luas seluruh sisi.
+- Pilihan <InlineMath math="0{,}57" /> membalik perbandingan menjadi luas P dibagi luas R, padahal sel R yang jauh lebih besar.
+
+# Jawaban
+
+Nisbah luas permukaan terhadap volume sel R adalah <InlineMath math="1{,}75" /> kali lebih besar daripada sel P.

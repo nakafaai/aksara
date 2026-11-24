@@ -1,18 +1,79 @@
-# Count the cells at each stage
+# Given
 
-Two rounds of mitosis give <InlineMath math="2^2=4" /> diploid cells. Each of them undergoes meiosis, so at metaphase II there are <InlineMath math="4\times2=8" /> cells, and **each of those cells carries <InlineMath math="4" /> chromosomes, each still made of two chromatids**.
+One **diploid parent cell with <InlineMath math="2n = 8" />** divides by mitosis twice in a row. Every daughter cell then undergoes meiosis.
+
+# Asked
+
+How many gametes form in total, and how many chromatids exist across all cells at metaphase II?
+
+# Solution
+
+Picture one cell as a box holding <InlineMath math="8" /> pencils. Two rounds of mitosis **double the boxes to <InlineMath math="4" /> identical diploid cells**.
+
+When meiosis starts, each box first splits into <InlineMath math="2" /> cells by metaphase II (<InlineMath math="8" /> cells total). Each cell now holds half as many chromosomes (<InlineMath math="n = 4" />), yet every chromosome is still X-shaped with <InlineMath math="2" /> sister chromatids attached.
+
+> At metaphase II each cell already carries the haploid chromosome count (<InlineMath math="n" />), but every chromosome still holds two sister chromatids.
+
+Slide the number of mitosis rounds <InlineMath math="k" /> below to track how total gametes and metaphase II chromatids scale together.
+
+<MathVisual
+  title={<>Total gametes and metaphase II chromatids by mitosis rounds</>}
+  description={
+    <>
+      Starting from one <InlineMath math="2n = 8" /> cell followed by meiosis,
+      the blue curve gives total gametes (<InlineMath math="4 \cdot 2^k" />) and
+      the green curve gives metaphase II chromatids (<InlineMath math="16 \cdot 2^k" />).
+    </>
+  }
+  footer={<>After <InlineMath math="k = 2" /> mitosis rounds, meiosis yields <InlineMath math="16" /> gametes and <InlineMath math="64" /> metaphase II chromatids.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 3.5 }, y: { min: 0, max: 140 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [{ name: "k", min: 1, max: 3, value: 2, step: 1, label: "k" }],
+    objects: [
+      { id: "gam-curve", kind: "function", appearance: "primary", formula: "4 * 2^x", domain: { min: 0, max: 3 } },
+      { id: "chr-curve", kind: "function", appearance: "answer", formula: "16 * 2^x", domain: { min: 0, max: 3 } },
+      { id: "m-gam", kind: "marker", appearance: "primary", x: "k", y: "4 * 2^k" },
+      { id: "m-chr", kind: "marker", appearance: "answer", x: "k", y: "16 * 2^k" },
+    ],
+    readouts: [
+      { key: "mitosis-cells", formula: "2^k" },
+      { key: "meta-cells", formula: "2 * 2^k" },
+      { key: "gametes", formula: "4 * 2^k" },
+      { key: "chromatids", formula: "16 * 2^k" },
+    ],
+  }}
+  labels={{
+    k: <>Mitosis rounds <InlineMath math="k" /></>,
+    "mitosis-cells": <>Cells after mitosis</>,
+    "meta-cells": <>Cells at metaphase II</>,
+    gametes: <>Total gametes</>,
+    chromatids: <>Total chromatids at metaphase II</>,
+  }}
+/>
+
+Each extra round of mitosis doubles every count. At <InlineMath math="k = 2" />, the graph reads <InlineMath math="16" /> gametes and <InlineMath math="64" /> chromatids.
+
+## Cell and chromatid count
+
+Track **the cells and chromatids** sequentially from the two mitosis rounds through metaphase II to the final gametes.
 
 <BlockMath math="\begin{aligned}
-\text{after mitosis}&=2^2=4\text{ cells}\\
-\text{gametes}&=4\times4=16\\
-\text{cells at metaphase II}&=4\times2=8\\
-\text{chromatids}&=8\times4\times2=64
+\text{cells after }2\text{ mitoses} &= 2^2 = 4\text{ diploid cells} \\
+\text{total gametes} &= 4 \times 4 = 16\text{ gametes} \\
+\text{cells at metaphase II} &= 4 \times 2 = 8\text{ haploid cells} \\
+\text{total chromatids at metaphase II} &= 8 \times 4 \times 2 = 64\text{ chromatids}
 \end{aligned}" />
 
-So <InlineMath math="16" /> gametes form and there are <InlineMath math="64" /> chromatids at metaphase II.
+Quick check: after metaphase II those <InlineMath math="64" /> chromatids split evenly across <InlineMath math="16" /> gametes, giving <InlineMath math="4" /> chromosomes per gamete (<InlineMath math="16 \times 4 = 64" />).
 
-# Why the other options are wrong
+## Why other options fail
 
-- <InlineMath math="32" /> counts chromosomes at metaphase II, but **each chromosome is still made of two chromatids**.
-- <InlineMath math="8" /> gametes is the number of cells at metaphase II, but each of those cells divides once more.
-- <InlineMath math="128" /> gives each metaphase II cell <InlineMath math="8" /> chromosomes, but meiosis I has already halved the chromosome number.
+- Choosing <InlineMath math="16" /> and <InlineMath math="32" /> counts chromosomes at metaphase II, forgetting that **each chromosome still has two chromatids**.
+- Choosing <InlineMath math="8" /> and <InlineMath math="64" /> uses the metaphase II cell count as gametes, forgetting the second meiotic division.
+- Choosing <InlineMath math="16" /> and <InlineMath math="128" /> assigns <InlineMath math="8" /> chromosomes per metaphase II cell, even though meiosis I already halved the count.
+
+# Answer
+
+A total of <InlineMath math="16" /> gametes are produced and there are <InlineMath math="64" /> chromatids altogether at metaphase II.

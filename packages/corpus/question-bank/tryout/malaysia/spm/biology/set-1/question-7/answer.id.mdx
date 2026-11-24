@@ -1,17 +1,75 @@
-# Laju tetap, lalu koreksi suhu
+# Diketahui
 
-Karena enzim jenuh, **laju adalah massa per waktu yang tetap**. Hitung laju pada <InlineMath math="37^\circ\text{C}" />, bagi dua untuk <InlineMath math="27^\circ\text{C}" />, lalu cari waktu untuk <InlineMath math="3{,}0\text{ g}" />.
+Pada suhu <InlineMath math="37^\circ\text{C}" />, larutan amilase menghidrolisis <InlineMath math="1{,}0\text{ g}" /> pati dalam <InlineMath math="4" /> menit dengan laju tetap karena enzim jenuh. Reaksi ini memiliki **koefisien suhu <InlineMath math="Q_{10} = 2" />**, sehingga penurunan suhu <InlineMath math="10^\circ\text{C}" /> membagi dua laju reaksi.
+
+# Ditanyakan
+
+Berapa menit waktu yang diperlukan larutan amilase yang sama untuk menghidrolisis <InlineMath math="3{,}0\text{ g}" /> pati pada suhu <InlineMath math="27^\circ\text{C}" />?
+
+# Penyelesaian
+
+Bayangkan seorang koki memotong <InlineMath math="1\text{ kg}" /> wortel dalam <InlineMath math="4" /> menit di dapur hangat. Jika pindah ke ruangan dingin sehingga kecepatannya tinggal separuh, memotong wortel tiga kali lebih banyak **butuh waktu tiga kali dua, yaitu enam kali lebih lama**.
+
+> Ketika laju reaksi tetap, waktu reaksi berbanding lurus dengan massa substrat dan berbanding terbalik dengan laju enzim.
+
+Geser target massa pati <InlineMath math="m" /> pada grafik berikut dan bandingkan kapan garis <InlineMath math="37^\circ\text{C}" /> dan garis <InlineMath math="27^\circ\text{C}" /> mencapai target <InlineMath math="3{,}0\text{ g}" />.
+
+<MathVisual
+  title={<>Massa pati terhidrolisis terhadap waktu pada dua suhu</>}
+  description={
+    <>
+      Garis biru menunjukkan laju pada <InlineMath math="37^\circ\text{C}" /> (
+      <InlineMath math="0{,}25\text{ g menit}^{-1}" />) dan garis hijau menunjukkan
+      laju pada <InlineMath math="27^\circ\text{C}" /> (
+      <InlineMath math="0{,}125\text{ g menit}^{-1}" />). Geser target massa{" "}
+      <InlineMath math="m" /> untuk membaca waktunya.
+    </>
+  }
+  footer={<>Untuk <InlineMath math="3{,}0\text{ g}" />, suhu <InlineMath math="37^\circ\text{C}" /> butuh <InlineMath math="12" /> menit dan <InlineMath math="27^\circ\text{C}" /> butuh <InlineMath math="24" /> menit.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 30 }, y: { min: 0, max: 4 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [{ name: "m", min: 1, max: 3.5, value: 3, step: 0.5, label: "m" }],
+    objects: [
+      { id: "warm", kind: "function", appearance: "primary", formula: "0.25 * x", domain: { min: 0, max: 16 } },
+      { id: "cool", kind: "function", appearance: "answer", formula: "0.125 * x", domain: { min: 0, max: 28 } },
+      { id: "target", kind: "function", appearance: "construction", formula: "m", domain: { min: 0, max: 28 } },
+      { id: "m-warm", kind: "marker", appearance: "primary", x: "4 * m", y: "m" },
+      { id: "m-cool", kind: "marker", appearance: "answer", x: "8 * m", y: "m" },
+    ],
+    readouts: [
+      { key: "time-warm", formula: "4 * m" },
+      { key: "time-cool", formula: "8 * m" },
+    ],
+  }}
+  labels={{
+    m: <>Target massa pati (<InlineMath math="\text{g}" />)</>,
+    "time-warm": <>Waktu pada <InlineMath math="37^\circ\text{C}" /> (menit)</>,
+    "time-cool": <>Waktu pada <InlineMath math="27^\circ\text{C}" /> (menit)</>,
+  }}
+/>
+
+Kemiringan garis <InlineMath math="27^\circ\text{C}" /> tepat separuh garis <InlineMath math="37^\circ\text{C}" />, sehingga untuk massa pati berapa pun waktunya selalu dua kali lebih lama.
+
+## Perhitungan laju dan waktu
+
+Hitung laju pada <InlineMath math="37^\circ\text{C}" />, bagi dua untuk <InlineMath math="27^\circ\text{C}" />, lalu bagi **massa target <InlineMath math="3{,}0\text{ g}" />** dengan laju baru.
 
 <BlockMath math="\begin{aligned}
-\text{laju pada }37^\circ\text{C}&=\frac{1{,}0}{4}=0{,}25\text{ g per menit}\\
-\text{laju pada }27^\circ\text{C}&=\frac{0{,}25}{2}=0{,}125\text{ g per menit}\\
-t&=\frac{3{,}0}{0{,}125}=24\text{ menit}
+\text{laju}_{37} &= \frac{1{,}0}{4} = 0{,}25\text{ g menit}^{-1} \\
+\text{laju}_{27} &= \frac{0{,}25}{2} = 0{,}125\text{ g menit}^{-1} \\
+t &= \frac{3{,}0}{0{,}125} = 24\text{ menit}
 \end{aligned}" />
 
-Jadi, dibutuhkan <InlineMath math="24" /> menit.
+Cek balik: dalam <InlineMath math="24" /> menit pada laju <InlineMath math="0{,}125\text{ g menit}^{-1}" />, massa pati terhidrolisis tepat <InlineMath math="3{,}0\text{ g}" />.
 
-# Mengapa pilihan lain salah
+## Mengapa pilihan lain salah
 
-- <InlineMath math="6" /> menit menggandakan laju, padahal **suhu yang turun membuat laju menjadi separuh**.
-- <InlineMath math="12" /> menit mengabaikan perubahan suhu dan hanya menghitung tiga kali massa.
-- <InlineMath math="8" /> menit hanya mengoreksi suhu dan lupa bahwa massanya tiga kali lebih banyak.
+- Pilihan <InlineMath math="6" /> menit justru menggandakan laju saat suhu turun, padahal **penurunan <InlineMath math="10^\circ\text{C}" /> membagi dua laju**.
+- Pilihan <InlineMath math="12" /> menit menghitung <InlineMath math="3{,}0\text{ g}" /> pada <InlineMath math="37^\circ\text{C}" /> tanpa mengoreksi suhu.
+- Pilihan <InlineMath math="8" /> menit hanya mengoreksi suhu untuk <InlineMath math="1{,}0\text{ g}" /> dan melupakan massa pati yang tiga kali lebih besar.
+
+# Jawaban
+
+Larutan amilase membutuhkan waktu <InlineMath math="24" /> menit untuk menghidrolisis <InlineMath math="3{,}0\text{ g}" /> pati pada suhu <InlineMath math="27^\circ\text{C}" />.

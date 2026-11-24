@@ -1,19 +1,80 @@
-# Bagi glukosa antara dua jalur
+# Diketahui
 
-Oksigen yang tersedia menentukan **berapa glukosa yang bisa dioksidasi secara aerob**. Sisanya difermentasi.
+Labu tertutup berisi khamir, <InlineMath math="18\text{ g}" /> glukosa (<InlineMath math="M_r = 180" />), dan **<InlineMath math="1{,}44\text{ dm}^3" /> oksigen** pada kondisi ruang (<InlineMath math="24\text{ dm}^3\text{ mol}^{-1}" />).
+
+Respirasi aerob (<InlineMath math="6\text{ O}_2 \to 6\text{ CO}_2" />, <InlineMath math="2898\text{ kJ mol}^{-1}" />) menghabiskan oksigen lebih dulu, lalu sisa glukosa mengalami fermentasi (<InlineMath math="2\text{ CO}_2" />, <InlineMath math="210\text{ kJ mol}^{-1}" />).
+
+# Ditanyakan
+
+Berapakah volume total karbon dioksida yang dihasilkan dan total energi yang dilepaskan?
+
+# Penyelesaian
+
+Bayangkan kamu punya <InlineMath math="10" /> batang kayu bakar (<InlineMath math="0{,}10\text{ mol}" /> glukosa), tetapi oksigen yang tersedia hanya cukup membakar habis <InlineMath math="1" /> batang (<InlineMath math="0{,}01\text{ mol}" />) secara aerob. Sisa <InlineMath math="9" /> batang (<InlineMath math="0{,}09\text{ mol}" />) **tetap dipecah tanpa oksigen lewat fermentasi**.
+
+> Volume oksigen yang terbatas membatasi porsi glukosa aerob, sedangkan sisa glukosa langsung dialihkan ke fermentasi sehingga kedua jalur ikut menyumbang karbon dioksida dan energi.
+
+Geser volume oksigen <InlineMath math="v" /> di bawah dari <InlineMath math="0" /> (fermentasi penuh) ke <InlineMath math="14{,}4\text{ dm}^3" /> (aerob penuh), lalu amati titik soal pada <InlineMath math="v = 1{,}44\text{ dm}^3" />.
+
+<MathVisual
+  title={<>Volume karbon dioksida total menurut pasokan oksigen</>}
+  description={
+    <>
+      Untuk <InlineMath math="0{,}10\text{ mol}" /> glukosa, oksigen penuh adalah{" "}
+      <InlineMath math="14{,}4\text{ dm}^3" />. Geser <InlineMath math="v" /> ke{" "}
+      <InlineMath math="1{,}44\text{ dm}^3" /> untuk membaca glukosa aerob, total{" "}
+      <InlineMath math="\text{CO}_2" />, dan energi gabungannya.
+    </>
+  }
+  footer={<>Pada <InlineMath math="v = 1{,}44\text{ dm}^3" />, total <InlineMath math="\text{CO}_2" /> adalah <InlineMath math="5{,}76\text{ dm}^3" /> dan energi <InlineMath math="47{,}9\text{ kJ}" />.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 15.5 }, y: { min: 0, max: 16 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [{ name: "a", min: 0, max: 14.4, value: 1.44, step: 0.72, label: "a" }],
+    objects: [
+      { id: "co2-line", kind: "function", appearance: "primary", formula: "4.8 + (2 / 3) * x", domain: { min: 0, max: 14.4 } },
+      { id: "ferm-only", kind: "marker", appearance: "warning", x: "0", y: "4.8" },
+      { id: "aer-only", kind: "marker", appearance: "warning", x: "14.4", y: "14.4" },
+      { id: "now", kind: "marker", appearance: "answer", x: "a", y: "4.8 + (2 / 3) * a" },
+    ],
+    readouts: [
+      { key: "aerobic-mol", formula: "a / 144" },
+      { key: "co2-vol", formula: "4.8 + (2 / 3) * a" },
+      { key: "energy-kj", formula: "21 + (56 / 3) * a" },
+    ],
+  }}
+  labels={{
+    a: <>Volume oksigen (<InlineMath math="\text{dm}^3" />)</>,
+    "aerobic-mol": <>Glukosa aerob (<InlineMath math="\text{mol}" />)</>,
+    "co2-vol": <>Volume total <InlineMath math="\text{CO}_2" /> (<InlineMath math="\text{dm}^3" />)</>,
+    "energy-kj": <>Energi total (<InlineMath math="\text{kJ}" />)</>,
+  }}
+/>
+
+Kedua titik jingga di ujung garis adalah jebakan ekstrem: <InlineMath math="4{,}80\text{ dm}^3" /> bila tanpa oksigen dan <InlineMath math="14{,}4\text{ dm}^3" /> bila oksigen berlebih. Pasokan <InlineMath math="1{,}44\text{ dm}^3" /> menempatkan labu di antara keduanya.
+
+## Pembagian mol dan perhitungan total
+
+Ubah massa glukosa dan volume oksigen ke mol, pisahkan **glukosa aerob (<InlineMath math="0{,}01\text{ mol}" />)** dan **fermentasi (<InlineMath math="0{,}09\text{ mol}" />)**, lalu jumlahkan hasil keduanya.
 
 <BlockMath math="\begin{aligned}
-n_{\text{glukosa}}&=\frac{18}{180}=0{,}10\text{ mol}\\
-n_{\text{O}_2}&=\frac{1{,}44}{24}=0{,}06\text{ mol}\ \Rightarrow\ 0{,}01\text{ mol glukosa aerob}\\
-\text{fermentasi}&=0{,}10-0{,}01=0{,}09\text{ mol glukosa}\\
-n_{\text{CO}_2}&=6(0{,}01)+2(0{,}09)=0{,}24\text{ mol}=5{,}76\text{ dm}^3\\
-E&=0{,}01(2898)+0{,}09(210)=28{,}98+18{,}9\approx47{,}9\text{ kJ}
+n_{\text{glukosa}} &= \frac{18}{180} = 0{,}10\text{ mol} \\
+n_{\text{O}_2} &= \frac{1{,}44}{24} = 0{,}06\text{ mol} \implies n_{\text{aerob}} = \frac{0{,}06}{6} = 0{,}01\text{ mol} \\
+n_{\text{fermentasi}} &= 0{,}10 - 0{,}01 = 0{,}09\text{ mol} \\
+n_{\text{CO}_2} &= 6(0{,}01) + 2(0{,}09) = 0{,}06 + 0{,}18 = 0{,}24\text{ mol} \\
+V_{\text{CO}_2} &= 0{,}24 \times 24 = 5{,}76\text{ dm}^3 \\
+E &= 0{,}01(2898) + 0{,}09(210) = 28{,}98 + 18{,}90 = 47{,}88 \approx 47{,}9\text{ kJ}
 \end{aligned}" />
 
-Jadi, dihasilkan <InlineMath math="5{,}76\text{ dm}^3" /> karbon dioksida dan <InlineMath math="47{,}9\text{ kJ}" /> energi.
+Cek cepat: total glukosa <InlineMath math="0{,}01 + 0{,}09" /> tepat kembali ke <InlineMath math="0{,}10\text{ mol}" /> dan nilai akhir cocok dengan bacaan grafik.
 
-# Mengapa pilihan lain salah
+## Mengapa pilihan lain salah
 
-- <InlineMath math="4{,}80\text{ dm}^3" /> dan <InlineMath math="21{,}0\text{ kJ}" /> memfermentasi semua glukosa, padahal **oksigen yang ada dipakai lebih dulu secara aerob**.
-- <InlineMath math="3{,}60\text{ dm}^3" /> menganggap fermentasi menghasilkan satu molekul karbon dioksida per glukosa, padahal persamaannya memberi dua.
-- <InlineMath math="14{,}4\text{ dm}^3" /> dan <InlineMath math="289{,}8\text{ kJ}" /> mengoksidasi semua glukosa secara aerob, padahal oksigennya hanya cukup untuk <InlineMath math="0{,}01\text{ mol}" />.
+- Pilihan <InlineMath math="4{,}80\text{ dm}^3" /> dan <InlineMath math="21{,}0\text{ kJ}" /> memfermentasi seluruh glukosa, padahal **oksigen yang ada dipakai aerob lebih dulu**.
+- Pilihan <InlineMath math="3{,}60\text{ dm}^3" /> dan <InlineMath math="47{,}9\text{ kJ}" /> hanya menghitung satu molekul karbon dioksida per glukosa fermentasi, padahal reaksinya menghasilkan dua.
+- Pilihan <InlineMath math="14{,}4\text{ dm}^3" /> dan <InlineMath math="289{,}8\text{ kJ}" /> mengoksidasi semua glukosa secara aerob, padahal oksigennya hanya cukup untuk <InlineMath math="0{,}01\text{ mol}" />.
+
+# Jawaban
+
+Volume total karbon dioksida yang dihasilkan adalah <InlineMath math="5{,}76\text{ dm}^3" /> dan total energi yang dilepaskan adalah <InlineMath math="47{,}9\text{ kJ}" />.

@@ -1,17 +1,75 @@
-# Kadar malar, kemudian betulkan untuk suhu
+# Diberi
 
-Oleh sebab enzim tepu, **kadar ialah jisim bagi setiap unit masa yang malar**. Cari kadar pada <InlineMath math="37^\circ\text{C}" />, bahagi dua untuk <InlineMath math="27^\circ\text{C}" />, kemudian cari masa bagi <InlineMath math="3.0\text{ g}" />.
+Pada suhu <InlineMath math="37^\circ\text{C}" />, larutan amilase menghidrolisiskan <InlineMath math="1.0\text{ g}" /> kanji dalam <InlineMath math="4" /> minit pada kadar tetap kerana enzim tepu. Tindak balas ini mempunyai **pekali suhu <InlineMath math="Q_{10} = 2" />**, maka penurunan <InlineMath math="10^\circ\text{C}" /> menyeparuhkan kadar tindak balas.
+
+# Ditanya
+
+Berapa minitkah masa yang diambil oleh larutan amilase yang sama untuk menghidrolisiskan <InlineMath math="3.0\text{ g}" /> kanji pada suhu <InlineMath math="27^\circ\text{C}" />?
+
+# Penyelesaian
+
+Bayangkan seorang tukang masak memotong <InlineMath math="1\text{ kg}" /> lobak dalam <InlineMath math="4" /> minit di dapur suam. Jika berpindah ke bilik sejuk sehingga kelajuannya tinggal separuh, memotong lobak tiga kali lebih banyak **memerlukan tiga kali dua, iaitu enam kali lebih lama**.
+
+> Apabila kadar tindak balas malar, masa tindak balas berkadar langsung dengan jisim substrat dan berkadar songsang dengan kadar enzim.
+
+Gerakkan jisim sasaran kanji <InlineMath math="m" /> pada graf berikut dan bandingkan bila garis <InlineMath math="37^\circ\text{C}" /> dan garis <InlineMath math="27^\circ\text{C}" /> mencapai <InlineMath math="3.0\text{ g}" />.
+
+<MathVisual
+  title={<>Jisim kanji terhidrolisis melawan masa pada dua suhu</>}
+  description={
+    <>
+      Garis biru menunjukkan kadar pada <InlineMath math="37^\circ\text{C}" /> (
+      <InlineMath math="0.25\text{ g min}^{-1}" />) dan garis hijau menunjukkan kadar
+      pada <InlineMath math="27^\circ\text{C}" /> (
+      <InlineMath math="0.125\text{ g min}^{-1}" />). Gerakkan jisim{" "}
+      <InlineMath math="m" /> untuk membaca masa.
+    </>
+  }
+  footer={<>Bagi <InlineMath math="3.0\text{ g}" />, suhu <InlineMath math="37^\circ\text{C}" /> mengambil <InlineMath math="12" /> minit dan <InlineMath math="27^\circ\text{C}" /> mengambil <InlineMath math="24" /> minit.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 30 }, y: { min: 0, max: 4 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [{ name: "m", min: 1, max: 3.5, value: 3, step: 0.5, label: "m" }],
+    objects: [
+      { id: "warm", kind: "function", appearance: "primary", formula: "0.25 * x", domain: { min: 0, max: 16 } },
+      { id: "cool", kind: "function", appearance: "answer", formula: "0.125 * x", domain: { min: 0, max: 28 } },
+      { id: "target", kind: "function", appearance: "construction", formula: "m", domain: { min: 0, max: 28 } },
+      { id: "m-warm", kind: "marker", appearance: "primary", x: "4 * m", y: "m" },
+      { id: "m-cool", kind: "marker", appearance: "answer", x: "8 * m", y: "m" },
+    ],
+    readouts: [
+      { key: "time-warm", formula: "4 * m" },
+      { key: "time-cool", formula: "8 * m" },
+    ],
+  }}
+  labels={{
+    m: <>Jisim sasaran kanji (<InlineMath math="\text{g}" />)</>,
+    "time-warm": <>Masa pada <InlineMath math="37^\circ\text{C}" /> (minit)</>,
+    "time-cool": <>Masa pada <InlineMath math="27^\circ\text{C}" /> (minit)</>,
+  }}
+/>
+
+Kecerunan garis <InlineMath math="27^\circ\text{C}" /> tepat separuh garis <InlineMath math="37^\circ\text{C}" />, jadi setiap jisim mengambil masa dua kali ganda lebih lama.
+
+## Pengiraan kadar dan masa
+
+Kira kadar pada <InlineMath math="37^\circ\text{C}" />, bahagi dua untuk <InlineMath math="27^\circ\text{C}" />, kemudian bahagikan **jisim kanji <InlineMath math="3.0\text{ g}" />** dengan kadar baharu itu.
 
 <BlockMath math="\begin{aligned}
-\text{kadar pada }37^\circ\text{C}&=\frac{1.0}{4}=0.25\text{ g seminit}\\
-\text{kadar pada }27^\circ\text{C}&=\frac{0.25}{2}=0.125\text{ g seminit}\\
-t&=\frac{3.0}{0.125}=24\text{ minit}
+\text{kadar}_{37} &= \frac{1.0}{4} = 0.25\text{ g min}^{-1} \\
+\text{kadar}_{27} &= \frac{0.25}{2} = 0.125\text{ g min}^{-1} \\
+t &= \frac{3.0}{0.125} = 24\text{ minit}
 \end{aligned}" />
 
-Jadi, masa yang diambil ialah <InlineMath math="24" /> minit.
+Semakan pantas: pada kadar <InlineMath math="0.125\text{ g min}^{-1}" /> selama <InlineMath math="24" /> minit, kanji terhidrolisis tepat <InlineMath math="3.0\text{ g}" />.
 
-# Kenapa pilihan lain salah
+## Mengapa pilihan lain salah
 
-- <InlineMath math="6" /> minit menggandakan kadar, sedangkan **suhu yang turun menjadikan kadar separuh**.
-- <InlineMath math="12" /> minit mengabaikan perubahan suhu dan hanya mengambil kira jisim tiga kali ganda.
-- <InlineMath math="8" /> minit hanya membetulkan suhu dan terlupa bahawa kanji tiga kali lebih banyak.
+- Pilihan <InlineMath math="6" /> minit menggandakan kadar apabila suhu turun, padahal **penurunan <InlineMath math="10^\circ\text{C}" /> menyeparuhkan kadar**.
+- Pilihan <InlineMath math="12" /> minit hanya mengambil kira jisim tiga kali ganda pada <InlineMath math="37^\circ\text{C}" /> tanpa pelarasan suhu.
+- Pilihan <InlineMath math="8" /> minit hanya melaraskan suhu untuk <InlineMath math="1.0\text{ g}" /> dan terlupa jisim meningkat tiga kali ganda.
+
+# Jawapan
+
+Larutan amilase mengambil masa <InlineMath math="24" /> minit untuk menghidrolisiskan <InlineMath math="3.0\text{ g}" /> kanji pada suhu <InlineMath math="27^\circ\text{C}" />.

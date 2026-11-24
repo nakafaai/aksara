@@ -1,17 +1,75 @@
-# Constant rate, then correct for temperature
+# Given
 
-Because the enzyme is saturated, **the rate is a constant mass per unit time**. Find the rate at <InlineMath math="37^\circ\text{C}" />, halve it for <InlineMath math="27^\circ\text{C}" />, then find the time for <InlineMath math="3.0\text{ g}" />.
+At <InlineMath math="37^\circ\text{C}" />, an amylase solution hydrolyses <InlineMath math="1.0\text{ g}" /> of starch in <InlineMath math="4" /> minutes at a constant saturated rate. The reaction has **temperature coefficient <InlineMath math="Q_{10} = 2" />**, so a <InlineMath math="10^\circ\text{C}" /> drop halves the reaction rate.
+
+# Asked
+
+How many minutes does the same amylase solution take to hydrolyse <InlineMath math="3.0\text{ g}" /> of starch at <InlineMath math="27^\circ\text{C}" />?
+
+# Solution
+
+Picture a chef slicing <InlineMath math="1\text{ kg}" /> of carrots in <InlineMath math="4" /> minutes in a warm kitchen. Move the chef to a chilly room where chopping speed halves, and slicing three times as many carrots **takes three times two, or six times as long**.
+
+> At a constant saturated rate, reaction time grows directly with substrate mass and inversely with enzyme rate.
+
+Slide the target starch mass <InlineMath math="m" /> below to compare when the <InlineMath math="37^\circ\text{C}" /> line and the <InlineMath math="27^\circ\text{C}" /> line reach <InlineMath math="3.0\text{ g}" />.
+
+<MathVisual
+  title={<>Starch hydrolysed over time at two temperatures</>}
+  description={
+    <>
+      The blue line shows the rate at <InlineMath math="37^\circ\text{C}" /> (
+      <InlineMath math="0.25\text{ g min}^{-1}" />) and the green line shows the
+      halved rate at <InlineMath math="27^\circ\text{C}" /> (
+      <InlineMath math="0.125\text{ g min}^{-1}" />). Slide starch mass{" "}
+      <InlineMath math="m" /> to read both times.
+    </>
+  }
+  footer={<>For <InlineMath math="3.0\text{ g}" />, <InlineMath math="37^\circ\text{C}" /> takes <InlineMath math="12" /> min while <InlineMath math="27^\circ\text{C}" /> takes <InlineMath math="24" /> min.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 30 }, y: { min: 0, max: 4 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [{ name: "m", min: 1, max: 3.5, value: 3, step: 0.5, label: "m" }],
+    objects: [
+      { id: "warm", kind: "function", appearance: "primary", formula: "0.25 * x", domain: { min: 0, max: 16 } },
+      { id: "cool", kind: "function", appearance: "answer", formula: "0.125 * x", domain: { min: 0, max: 28 } },
+      { id: "target", kind: "function", appearance: "construction", formula: "m", domain: { min: 0, max: 28 } },
+      { id: "m-warm", kind: "marker", appearance: "primary", x: "4 * m", y: "m" },
+      { id: "m-cool", kind: "marker", appearance: "answer", x: "8 * m", y: "m" },
+    ],
+    readouts: [
+      { key: "time-warm", formula: "4 * m" },
+      { key: "time-cool", formula: "8 * m" },
+    ],
+  }}
+  labels={{
+    m: <>Target starch mass (<InlineMath math="\text{g}" />)</>,
+    "time-warm": <>Time at <InlineMath math="37^\circ\text{C}" /> (min)</>,
+    "time-cool": <>Time at <InlineMath math="27^\circ\text{C}" /> (min)</>,
+  }}
+/>
+
+The slope at <InlineMath math="27^\circ\text{C}" /> is half the slope at <InlineMath math="37^\circ\text{C}" />, so every mass takes twice as long to hydrolyse.
+
+## Rate and time calculation
+
+Find the rate at <InlineMath math="37^\circ\text{C}" />, halve it for <InlineMath math="27^\circ\text{C}" />, then divide **the <InlineMath math="3.0\text{ g}" /> starch mass** by the slower rate.
 
 <BlockMath math="\begin{aligned}
-\text{rate at }37^\circ\text{C}&=\frac{1.0}{4}=0.25\text{ g per minute}\\
-\text{rate at }27^\circ\text{C}&=\frac{0.25}{2}=0.125\text{ g per minute}\\
-t&=\frac{3.0}{0.125}=24\text{ minutes}
+\text{rate}_{37} &= \frac{1.0}{4} = 0.25\text{ g min}^{-1} \\
+\text{rate}_{27} &= \frac{0.25}{2} = 0.125\text{ g min}^{-1} \\
+t &= \frac{3.0}{0.125} = 24\text{ min}
 \end{aligned}" />
 
-So it takes <InlineMath math="24" /> minutes.
+Quick check: hydrolysing at <InlineMath math="0.125\text{ g min}^{-1}" /> for <InlineMath math="24" /> minutes breaks down exactly <InlineMath math="3.0\text{ g}" /> of starch.
 
-# Why the other options are wrong
+## Why other options fail
 
-- <InlineMath math="6" /> minutes doubles the rate, but **a fall in temperature halves the rate**.
-- <InlineMath math="12" /> minutes ignores the change in temperature and only allows for three times the mass.
-- <InlineMath math="8" /> minutes corrects only for temperature and forgets that there is three times as much starch.
+- Choosing <InlineMath math="6" /> minutes doubles the rate when cooled, even though **cooling by <InlineMath math="10^\circ\text{C}" /> halves the rate**.
+- Choosing <InlineMath math="12" /> minutes scales the mass to <InlineMath math="3.0\text{ g}" /> at <InlineMath math="37^\circ\text{C}" /> without adjusting for temperature.
+- Choosing <InlineMath math="8" /> minutes corrects temperature for <InlineMath math="1.0\text{ g}" /> only and forgets the threefold mass increase.
+
+# Answer
+
+The amylase solution takes <InlineMath math="24" /> minutes to hydrolyse <InlineMath math="3.0\text{ g}" /> of starch at <InlineMath math="27^\circ\text{C}" />.

@@ -1,19 +1,80 @@
-# Die Glucose auf zwei Wege aufteilen
+# Gegeben
 
-Der verfügbare Sauerstoff bestimmt, **wie viel Glucose aerob oxidiert werden kann**. Der Rest wird vergoren.
+Ein verschlossener Kolben enthält Hefe, <InlineMath math="18\text{ g}" /> Glucose (<InlineMath math="M_r = 180" />) und **<InlineMath math="1{,}44\text{ dm}^3" /> Sauerstoff** bei Raumbedingungen (<InlineMath math="24\text{ dm}^3\text{ mol}^{-1}" />).
+
+Aerobe Atmung (<InlineMath math="6\text{ O}_2 \to 6\text{ CO}_2" />, <InlineMath math="2898\text{ kJ mol}^{-1}" />) verbraucht zuerst den gesamten Sauerstoff, danach vergärt die restliche Glucose (<InlineMath math="2\text{ CO}_2" />, <InlineMath math="210\text{ kJ mol}^{-1}" />).
+
+# Gesucht
+
+Wie groß sind das gesamte entstandene Kohlenstoffdioxidvolumen und die insgesamt freigesetzte Energie?
+
+# Lösung
+
+Stell dir <InlineMath math="10" /> Holzscheite (<InlineMath math="0{,}10\text{ mol}" /> Glucose) vor, doch die Luft reicht nur für <InlineMath math="1" /> vollständig verbrannten Scheit (<InlineMath math="0{,}01\text{ mol}" /> aerob). Die übrigen <InlineMath math="9" /> Scheite (<InlineMath math="0{,}09\text{ mol}" />) **werden ohne Sauerstoff vergoren**.
+
+> Der knappe Sauerstoff begrenzt den aeroben Anteil der Glucose, während der Rest vergoren wird und beide Wege Kohlenstoffdioxid sowie Energie liefern.
+
+Schieb das Sauerstoffvolumen <InlineMath math="v" /> von <InlineMath math="0" /> (reine Gärung) bis <InlineMath math="14{,}4\text{ dm}^3" /> (rein aerob) und lies den Zustand bei <InlineMath math="v = 1{,}44\text{ dm}^3" /> ab.
+
+<MathVisual
+  title={<>Gesamtes Kohlenstoffdioxidvolumen nach Sauerstoffangebot</>}
+  description={
+    <>
+      Für <InlineMath math="0{,}10\text{ mol}" /> Glucose wären{" "}
+      <InlineMath math="14{,}4\text{ dm}^3" /> Sauerstoff nötig. Stell{" "}
+      <InlineMath math="v" /> auf <InlineMath math="1{,}44\text{ dm}^3" />, um
+      aerobe Molmenge, <InlineMath math="\text{CO}_2" />-Volumen und Energie abzulesen.
+    </>
+  }
+  footer={<>Bei <InlineMath math="v = 1{,}44\text{ dm}^3" /> entstehen <InlineMath math="5{,}76\text{ dm}^3" /> <InlineMath math="\text{CO}_2" /> und <InlineMath math="47{,}9\text{ kJ}" /> Energie.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 15.5 }, y: { min: 0, max: 16 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [{ name: "a", min: 0, max: 14.4, value: 1.44, step: 0.72, label: "a" }],
+    objects: [
+      { id: "co2-line", kind: "function", appearance: "primary", formula: "4.8 + (2 / 3) * x", domain: { min: 0, max: 14.4 } },
+      { id: "ferm-only", kind: "marker", appearance: "warning", x: "0", y: "4.8" },
+      { id: "aer-only", kind: "marker", appearance: "warning", x: "14.4", y: "14.4" },
+      { id: "now", kind: "marker", appearance: "answer", x: "a", y: "4.8 + (2 / 3) * a" },
+    ],
+    readouts: [
+      { key: "aerobic-mol", formula: "a / 144" },
+      { key: "co2-vol", formula: "4.8 + (2 / 3) * a" },
+      { key: "energy-kj", formula: "21 + (56 / 3) * a" },
+    ],
+  }}
+  labels={{
+    a: <>Sauerstoffvolumen (<InlineMath math="\text{dm}^3" />)</>,
+    "aerobic-mol": <>Aerobe Glucose (<InlineMath math="\text{mol}" />)</>,
+    "co2-vol": <>Gesamtvolumen <InlineMath math="\text{CO}_2" /> (<InlineMath math="\text{dm}^3" />)</>,
+    "energy-kj": <>Gesamtenergie (<InlineMath math="\text{kJ}" />)</>,
+  }}
+/>
+
+Die beiden orangen Endpunkte zeigen die extremen Fallen: <InlineMath math="4{,}80\text{ dm}^3" /> ganz ohne Sauerstoff und <InlineMath math="14{,}4\text{ dm}^3" /> bei Sauerstoffüberschuss. Mit <InlineMath math="1{,}44\text{ dm}^3" /> liegt der Kolben dazwischen.
+
+## Aufteilung und Gesamtrechnung
+
+Rechne Glucose und Sauerstoff in Mol um, trenne **aerobe Glucose (<InlineMath math="0{,}01\text{ mol}" />)** von **vergorener Glucose (<InlineMath math="0{,}09\text{ mol}" />)** und addiere beide Beiträge.
 
 <BlockMath math="\begin{aligned}
-n_{\text{Glucose}}&=\frac{18}{180}=0{,}10\text{ mol}\\
-n_{\text{O}_2}&=\frac{1{,}44}{24}=0{,}06\text{ mol}\ \Rightarrow\ 0{,}01\text{ mol Glucose aerob}\\
-\text{vergoren}&=0{,}10-0{,}01=0{,}09\text{ mol Glucose}\\
-n_{\text{CO}_2}&=6(0{,}01)+2(0{,}09)=0{,}24\text{ mol}=5{,}76\text{ dm}^3\\
-E&=0{,}01(2898)+0{,}09(210)=28{,}98+18{,}9\approx47{,}9\text{ kJ}
+n_{\text{Glucose}} &= \frac{18}{180} = 0{,}10\text{ mol} \\
+n_{\text{O}_2} &= \frac{1{,}44}{24} = 0{,}06\text{ mol} \implies n_{\text{aerob}} = \frac{0{,}06}{6} = 0{,}01\text{ mol} \\
+n_{\text{Gärung}} &= 0{,}10 - 0{,}01 = 0{,}09\text{ mol} \\
+n_{\text{CO}_2} &= 6(0{,}01) + 2(0{,}09) = 0{,}06 + 0{,}18 = 0{,}24\text{ mol} \\
+V_{\text{CO}_2} &= 0{,}24 \cdot 24 = 5{,}76\text{ dm}^3 \\
+E &= 0{,}01(2898) + 0{,}09(210) = 28{,}98 + 18{,}90 = 47{,}88 \approx 47{,}9\text{ kJ}
 \end{aligned}" />
 
-Es entstehen also <InlineMath math="5{,}76\text{ dm}^3" /> Kohlenstoffdioxid und <InlineMath math="47{,}9\text{ kJ}" /> Energie.
+Gegenprobe: Beide Glucoseanteile summieren sich wieder auf <InlineMath math="0{,}10\text{ mol}" /> und stimmen mit den Graphenwerten überein.
 
-# Warum die anderen Antworten falsch sind
+## Warum andere Optionen falsch sind
 
-- <InlineMath math="4{,}80\text{ dm}^3" /> und <InlineMath math="21{,}0\text{ kJ}" /> vergärt die ganze Glucose, doch **der vorhandene Sauerstoff wird zuerst aerob genutzt**.
-- <InlineMath math="3{,}60\text{ dm}^3" /> nimmt an, die Gärung liefere ein Kohlenstoffdioxidmolekül pro Glucose, die Gleichung gibt aber zwei.
-- <InlineMath math="14{,}4\text{ dm}^3" /> und <InlineMath math="289{,}8\text{ kJ}" /> oxidiert die ganze Glucose aerob, doch der Sauerstoff reicht nur für <InlineMath math="0{,}01\text{ mol}" />.
+- Die Angabe <InlineMath math="4{,}80\text{ dm}^3" /> und <InlineMath math="21{,}0\text{ kJ}" /> vergärt alle Glucose, obwohl **der vorhandene Sauerstoff zuerst aerob verbraucht wird**.
+- Die Angabe <InlineMath math="3{,}60\text{ dm}^3" /> und <InlineMath math="47{,}9\text{ kJ}" /> rechnet nur mit einem statt zwei Kohlenstoffdioxidmolekülen je vergorener Glucose.
+- Die Angabe <InlineMath math="14{,}4\text{ dm}^3" /> und <InlineMath math="289{,}8\text{ kJ}" /> oxidiert alle Glucose aerob, obwohl der Sauerstoff nur für <InlineMath math="0{,}01\text{ mol}" /> reicht.
+
+# Antwort
+
+Insgesamt entstehen <InlineMath math="5{,}76\text{ dm}^3" /> Kohlenstoffdioxid und es werden <InlineMath math="47{,}9\text{ kJ}" /> Energie freigesetzt.
