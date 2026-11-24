@@ -1,0 +1,193 @@
+export const metadata = {
+  title: "Implikation und Kontraposition",
+  description:
+    "Bilde Implikationen und Äquivalenzen, stelle Umkehrung, Inverse und Kontraposition auf, vergleiche sie und widerlege mit einem Gegenbeispiel.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2026-11-20",
+  subject: "Logisches Schließen",
+};
+
+## Bedingung und Folgerung
+
+Eine Implikation verbindet zwei Aussagen mit einer Regel: **Immer wenn der erste Teil wahr ist, ist auch der zweite wahr**. Sie hat die Form wenn <InlineMath math="p" />, dann <InlineMath math="q" />. Der Teil <InlineMath math="p" /> heißt Antezedens, der Teil <InlineMath math="q" /> heißt Konsequens. Ein Beispiel: Wenn <InlineMath math="m > 5" />, dann <InlineMath math="m > 2" />. Das Antezedens ist <InlineMath math="m > 5" />, das Konsequens ist <InlineMath math="m > 2" />.
+
+Wann ist eine Implikation falsch? Nur dann, wenn das Antezedens wahr und das Konsequens falsch ist. Ist das Antezedens falsch, verlangt die Implikation nichts vom Konsequens, und **die Implikation bleibt wahr**.
+
+| <InlineMath math="p" /> | <InlineMath math="q" /> | Wenn <InlineMath math="p" />, dann <InlineMath math="q" /> |
+| :--- | :--- | :--- |
+| Wahr | Wahr | Wahr |
+| Wahr | Falsch | Falsch |
+| Falsch | Wahr | Wahr |
+| Falsch | Falsch | Wahr |
+
+Prüfe die Implikation wenn <InlineMath math="m > 5" />, dann <InlineMath math="m > 2" />. Um sie falsch zu machen, bräuchtest du eine Zahl über <InlineMath math="5" />, die nicht über <InlineMath math="2" /> liegt, und so eine Zahl gibt es nicht.
+
+Die Zeile wahr und dann falsch kommt nie vor, also ist die Implikation wahr. Für <InlineMath math="m = 3" /> ist das Antezedens falsch und das Konsequens wahr, und diese Zeile verletzt nichts.
+
+> Eine Implikation ist nur falsch, wenn die Bedingung <InlineMath math="p" /> wahr und die Folge <InlineMath math="q" /> falsch ist. Tritt die Bedingung gar nicht ein, wird das Versprechen nie gebrochen.
+
+## Zwei Richtungen in einem Satz
+
+Manchmal gilt eine Implikation in beide Richtungen. Wenn <InlineMath math="x + 3 = 10" />, dann <InlineMath math="x = 7" />, und wenn <InlineMath math="x = 7" />, dann <InlineMath math="x + 3 = 10" />. Beide Implikationen sind wahr, also kannst du sie zu einer **Äquivalenz** zusammenfassen: <InlineMath math="x + 3 = 10" /> genau dann, wenn <InlineMath math="x = 7" />. Die allgemeine Form ist <InlineMath math="p" /> genau dann, wenn <InlineMath math="q" />, und eine Äquivalenz ist wahr, wenn **beide Implikationen wahr sind**.
+
+Zerlege jetzt eine Äquivalenz in ihre zwei Implikationen. Für natürliche Zahlen gilt: Eine Zahl ist genau dann gerade, wenn ihre letzte Ziffer <InlineMath math="0, 2, 4, 6" /> oder <InlineMath math="8" /> ist.
+
+| Richtung | Implikation | Wahrheitswert |
+| :--- | :--- | :--- |
+| Von <InlineMath math="p" /> zu <InlineMath math="q" /> | Wenn eine natürliche Zahl gerade ist, dann ist ihre letzte Ziffer <InlineMath math="0, 2, 4, 6" /> oder <InlineMath math="8" />. | Wahr |
+| Von <InlineMath math="q" /> zu <InlineMath math="p" /> | Wenn die letzte Ziffer einer natürlichen Zahl <InlineMath math="0, 2, 4, 6" /> oder <InlineMath math="8" /> ist, dann ist die Zahl gerade. | Wahr |
+
+Prüfe beide auf einmal. Jede natürliche Zahl lässt sich als <InlineMath math="10k + d" /> schreiben, wobei <InlineMath math="d" /> ihre letzte Ziffer ist. Der Teil <InlineMath math="10k" /> ist immer gerade, also entscheidet nur <InlineMath math="d" />, ob die Zahl gerade ist.
+
+Denk noch einmal an die Implikation über <InlineMath math="m" />. Wenn <InlineMath math="m > 5" />, dann <InlineMath math="m > 2" /> ist wahr, aber <InlineMath math="m > 5" /> genau dann, wenn <InlineMath math="m > 2" /> ist falsch. Die Gegenrichtung, wenn <InlineMath math="m > 2" />, dann <InlineMath math="m > 5" />, scheitert bei <InlineMath math="m = 3" />. Eine einzige gescheiterte Richtung genügt, und **die Äquivalenz ist falsch**.
+
+## Eine Implikation umdrehen
+
+Aus einer Implikation wenn <InlineMath math="p" />, dann <InlineMath math="q" /> kannst du drei neue bauen: die Teile vertauschen, beide Teile verneinen oder beides tun. Jede davon hat einen Namen, und ihr Wahrheitswert ist **nicht immer derselbe** wie der des Originals.
+
+### Drei neue Implikationen
+
+Nimm die Implikation wenn <InlineMath math="x > 2" />, dann <InlineMath math="x^2 > 4" /> für reelle Zahlen <InlineMath math="x" />. Die Verneinung von <InlineMath math="x > 2" /> ist <InlineMath math="x \le 2" />, und die Verneinung von <InlineMath math="x^2 > 4" /> ist <InlineMath math="x^2 \le 4" />.
+
+| Name | So entsteht sie | Beispiel | Wahrheitswert |
+| :--- | :--- | :--- | :--- |
+| Implikation | das Original | Wenn <InlineMath math="x > 2" />, dann <InlineMath math="x^2 > 4" /> | Wahr |
+| Umkehrung | Teile vertauschen | Wenn <InlineMath math="x^2 > 4" />, dann <InlineMath math="x > 2" /> | Falsch |
+| Inverse | beide Teile verneinen | Wenn <InlineMath math="x \le 2" />, dann <InlineMath math="x^2 \le 4" /> | Falsch |
+| Kontraposition | vertauschen und verneinen | Wenn <InlineMath math="x^2 \le 4" />, dann <InlineMath math="x \le 2" /> | Wahr |
+
+Dieser Graph testet die Umkehrung. Verschieb <InlineMath math="x" /> und such einen Punkt über der Geraden <InlineMath math="y = 4" />, der links von <InlineMath math="x = 2" /> liegt.
+
+<MathVisual
+  title={<>Eine Umkehrung mit einem Gegenbeispiel testen</>}
+  description={
+    <>
+      Die Kurve <InlineMath math="y = x^2" /> und die Gerade{" "}
+      <InlineMath math="y = 4" />. Ein Punkt über der Geraden erfüllt{" "}
+      <InlineMath math="x^2 > 4" />.
+    </>
+  }
+  footer={<>Schieb <InlineMath math="x" /> auf <InlineMath math="-3" />: der Punkt liegt über <InlineMath math="y = 4" />, links von <InlineMath math="x = 2" />.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -4, max: 4 }, y: { min: -1, max: 12 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "a", min: -3.5, max: 3.5, value: -3, step: 0.1, label: "a" },
+    ],
+    objects: [
+      { id: "square", kind: "function", appearance: "primary", formula: "x^2", domain: { min: -3.5, max: 3.5 } },
+      { id: "four", kind: "function", appearance: "construction", formula: "4 + 0x", domain: { min: -4, max: 4 } },
+      { id: "now", kind: "marker", x: "a", y: "a^2", appearance: "warning" },
+    ],
+    readouts: [
+      { key: "square", formula: "a^2" },
+    ],
+  }}
+  labels={{
+    a: <>Wert von <InlineMath math="x" /></>,
+    square: <>Wert von <InlineMath math="x^2" /></>,
+  }}
+/>
+
+Bei <InlineMath math="x = -3" /> liegt der Punkt über der Geraden, aber links von <InlineMath math="x = 2" />.
+
+<BlockMath math="(-3)^2 = 9 > 4 \quad\text{aber}\quad -3 < 2" />
+
+Also erfüllt <InlineMath math="x = -3" /> die Bedingung <InlineMath math="x^2 > 4" />, ohne <InlineMath math="x > 2" /> zu erfüllen, und **die Umkehrung ist falsch**. Dieselbe Zahl widerlegt die Inverse: <InlineMath math="-3 \le 2" />, aber <InlineMath math="(-3)^2 = 9" /> ist größer als <InlineMath math="4" />. Die Kontraposition ist wahr. Wenn <InlineMath math="x^2 \le 4" /> gilt, liegt <InlineMath math="x" /> zwischen <InlineMath math="-2" /> und <InlineMath math="2" />, also gilt sicher <InlineMath math="x \le 2" />.
+
+### Paare mit gleichem Wert
+
+Das ist kein Zufall. Die Wahrheitstafel aller vier Formen zeigt, dass eine Implikation und ihre Kontraposition **immer denselben Wahrheitswert haben**, ebenso Umkehrung und Inverse.
+
+| <InlineMath math="p" /> | <InlineMath math="q" /> | Implikation | Kontraposition | Umkehrung | Inverse |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| Wahr | Wahr | Wahr | Wahr | Wahr | Wahr |
+| Wahr | Falsch | Falsch | Falsch | Wahr | Wahr |
+| Falsch | Wahr | Wahr | Wahr | Falsch | Falsch |
+| Falsch | Falsch | Wahr | Wahr | Wahr | Wahr |
+
+Hast du eine Implikation bewiesen, ist ihre Kontraposition gleich mit bewiesen. Die Umkehrung kommt nicht mit. Sie kann falsch sein, wie bei <InlineMath math="x > 2" />, aber auch wahr.
+
+Für eine natürliche Zahl <InlineMath math="n" /> gilt: Wenn <InlineMath math="n" /> ein Vielfaches von <InlineMath math="10" /> ist, dann ist ihre letzte Ziffer <InlineMath math="0" />. Die Umkehrung ist ebenfalls wahr, und die Inverse als ihr Partner auch. Eine **Umkehrung prüfst du also eigenständig**, statt sie vom Original abzuschreiben.
+
+## Ein Fall kippt die Aussage
+
+Um eine Behauptung über jeden Fall zu kippen, brauchst du nur einen Fall, in dem sie scheitert. Dieser Fall heißt **Gegenbeispiel**. Bei einer Implikation wenn <InlineMath math="p" />, dann <InlineMath math="q" /> ist ein Gegenbeispiel ein Fall mit <InlineMath math="p" /> wahr und <InlineMath math="q" /> falsch, die einzige Zeile, die eine Implikation falsch macht. Das funktioniert genauso wie beim Kippen einer [Behauptung mit dem Wort alle](/de/faecher/mathematik/logisches-schliessen/aussagen-und-wahrheitswerte).
+
+Das Brett unten trägt neun Plättchen und zwei Behauptungen, die jeweils die Umkehrung der anderen sind. Jedes geprüfte Plättchen landet in einem der vier Fallfelder für <InlineMath math="p" /> und <InlineMath math="q" />.
+
+<CounterexampleGridLab
+  title={<>Ein Brett mit vier Fällen</>}
+  description={
+    <>
+      Wähle eine Behauptung und prüfe die Plättchen nacheinander. Jedes
+      Plättchen wandert in das Feld seines Falls.
+    </>
+  }
+  footer={<>Nur das Feld mit <InlineMath math="p" /> wahr und <InlineMath math="q" /> falsch kann eine Wenn-dann-Aussage kippen.</>}
+  tiles={[
+    { name: "4", tile: { kind: "number", value: 4 } },
+    { name: "6", tile: { kind: "number", value: 6 } },
+    { name: "8", tile: { kind: "number", value: 8 } },
+    { name: "9", tile: { kind: "number", value: 9 } },
+    { name: "12", tile: { kind: "number", value: 12 } },
+    { name: "15", tile: { kind: "number", value: 15 } },
+    { name: "18", tile: { kind: "number", value: 18 } },
+    { name: "20", tile: { kind: "number", value: 20 } },
+    { name: "24", tile: { kind: "number", value: 24 } },
+  ]}
+  claims={[
+    {
+      name: "Implikation",
+      text: "Wenn eine Zahl hier ein Vielfaches von 6 ist, dann ist sie ein Vielfaches von 3.",
+      claim: {
+        kind: "if",
+        p: { name: "Vielfaches von 6", test: { kind: "multiple", of: 6 } },
+        q: { name: "Vielfaches von 3", test: { kind: "multiple", of: 3 } },
+      },
+    },
+    {
+      name: "Umkehrung",
+      text: "Wenn eine Zahl hier ein Vielfaches von 3 ist, dann ist sie ein Vielfaches von 6.",
+      claim: {
+        kind: "if",
+        p: { name: "Vielfaches von 3", test: { kind: "multiple", of: 3 } },
+        q: { name: "Vielfaches von 6", test: { kind: "multiple", of: 6 } },
+      },
+    },
+  ]}
+  labels={{
+    claim: <>Die Behauptung</>,
+    claims: "Behauptung",
+    false: "Falsch",
+    none: <>Noch kein Plättchen gewählt</>,
+    picked: <>Gewähltes Plättchen</>,
+    tile: "Plättchen",
+    true: "Wahr",
+    verdicts: {
+      breaks: <>Gegenbeispiel</>,
+      fits: <>Passt</>,
+      misses: <>Kein Beispiel</>,
+      outside: <>Nicht betroffen</>,
+      proves: <>Beispiel</>,
+      safe: <>Bedingung falsch</>,
+    },
+    viewLabel: "Neun Zahlenplättchen und ein Brett mit vier Fällen",
+  }}
+  showAnswer
+/>
+
+Die erste Implikation hält bis zum letzten Plättchen. Das Feld mit <InlineMath math="p" /> wahr und <InlineMath math="q" /> falsch bleibt leer, denn jedes Vielfache von <InlineMath math="6" /> hat die Form <InlineMath math="6k = 3(2k)" /> und ist damit auch ein Vielfaches von <InlineMath math="3" />.
+
+Die Umkehrung scheitert an den Plättchen <InlineMath math="9" /> und <InlineMath math="15" />, die Vielfache von <InlineMath math="3" /> sind, aber keine von <InlineMath math="6" />. Die Plättchen <InlineMath math="4" />, <InlineMath math="8" /> und <InlineMath math="20" /> sind keine Vielfachen von <InlineMath math="3" />, also ist ihre Bedingung falsch, und sie **können nichts widerlegen**.
+
+Ein Gegenbeispiel kann sich weit draußen verstecken. Sieh dir diese Behauptung an: Für jede natürliche Zahl <InlineMath math="n" /> ist <InlineMath math="n^2 + n + 41" /> eine Primzahl. Für <InlineMath math="n = 0, 1, 2" /> erhältst du <InlineMath math="41, 43, 47" />, alles Primzahlen. Die Behauptung hält sogar für <InlineMath math="n = 0" /> bis <InlineMath math="n = 39" />, vierzig Fälle hintereinander. Probier jetzt <InlineMath math="n = 40" />.
+
+<BlockMath math="40^2 + 40 + 41 = 1{.}600 + 40 + 41 = 1{.}681 = 41 \times 41" />
+
+Die Zahl <InlineMath math="1{.}681" /> ist durch <InlineMath math="41" /> teilbar, also keine Primzahl, und **dieser eine Fall kippt die Behauptung**. Prüfe das Produkt direkt:
+
+<BlockMath math="41 \times 41 = 1{.}640 + 41 = 1{.}681" />
+
+Vierzig passende Fälle beweisen keine Aussage über alle Zahlen, aber ein einziges Gegenbeispiel reicht, um sie zu widerlegen.

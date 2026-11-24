@@ -1,0 +1,236 @@
+export const metadata = {
+  title: "Penalaran Deduktif dan Induktif",
+  description:
+    "Bedakan penalaran deduktif dan induktif, kenali tiga bentuk argumen yang sah, nilai kekuatan pola induktif, dan pecahkan teka-teki kartu.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2026-11-17",
+  dateModified: "2026-11-20",
+  subject: "Logika Matematika",
+};
+
+## Dari Premis ke Kesimpulan
+
+Argumen adalah rangkaian pernyataan: beberapa pernyataan yang kamu terima, disebut **premis**, mengantar ke satu pernyataan yang kamu klaim, disebut **kesimpulan**. Arah bernalarnya ada dua. Penalaran deduktif berangkat dari premis umum menuju kesimpulan khusus. Penalaran induktif berangkat dari kasus-kasus khusus menuju kesimpulan umum.
+
+| Arah | Premis | Kesimpulan |
+| :--- | :--- | :--- |
+| Deduktif | Jumlah sudut dalam setiap segi empat adalah <InlineMath math="360^\circ" />. <InlineMath math="PQRS" /> adalah segi empat. | Jumlah sudut dalam <InlineMath math="PQRS" /> adalah <InlineMath math="360^\circ" />. |
+| Induktif | <InlineMath math="1 + 3 = 2^2" />, <InlineMath math="1 + 3 + 5 = 3^2" />, <InlineMath math="1 + 3 + 5 + 7 = 4^2" /> | Jumlah <InlineMath math="n" /> bilangan ganjil pertama adalah <InlineMath math="n^2" />. |
+
+Bedanya ada pada kepastian. Kalau premis argumen deduktif benar dan bentuknya sah, kesimpulannya **pasti benar**. Kesimpulan induktif hanya **mungkin benar**, jadi kamu mengujinya pada kasus baru, misalnya saat <InlineMath math="n = 5" />:
+
+<BlockMath math="1 + 3 + 5 + 7 + 9 = 25 = 5^2" />
+
+Polanya memang masih bertahan pada kasus kelima, tetapi satu kasus tambahan tetap bukan bukti untuk semua <InlineMath math="n" />.
+
+## Tiga Bentuk Argumen Sah
+
+Beberapa bentuk argumen selalu berhasil: kalau premisnya benar, kesimpulannya tidak mungkin salah. Argumen dengan bentuk seperti itu disebut **sah**. Tiga bentuk di tabel ini yang paling sering kamu pakai.
+
+| Bentuk | Premis 1 | Premis 2 | Kesimpulan |
+| :--- | :--- | :--- | :--- |
+| I, silogisme | Semua <InlineMath math="A" /> adalah <InlineMath math="B" />. | <InlineMath math="C" /> adalah <InlineMath math="A" />. | <InlineMath math="C" /> adalah <InlineMath math="B" />. |
+| II, modus ponens | Jika <InlineMath math="p" />, maka <InlineMath math="q" />. | <InlineMath math="p" /> benar. | <InlineMath math="q" /> benar. |
+| III, modus tollens | Jika <InlineMath math="p" />, maka <InlineMath math="q" />. | <InlineMath math="\sim q" /> benar. | <InlineMath math="\sim p" /> benar. |
+
+Bentuk I berhasil karena kalau setiap anggota <InlineMath math="A" /> ada di dalam <InlineMath math="B" />, anggota <InlineMath math="A" /> mana pun, termasuk <InlineMath math="C" />, juga ada di dalam <InlineMath math="B" />. Bentuk III berhasil karena sebuah implikasi dan [kontraposisinya selalu bernilai sama](/id/materi/matematika/logika-matematika/implikasi-dan-kontraposisi). Rantai di bawah sudah memasang premis 1 untuk Bentuk III. Di sini <InlineMath math="PQRS" /> adalah layang-layang dengan sisi <InlineMath math="3\text{ cm}" />, <InlineMath math="3\text{ cm}" />, <InlineMath math="5\text{ cm}" />, dan <InlineMath math="5\text{ cm}" />.
+
+<ArgumentChainLab
+  title={<>Dua Kartu, Dua Urutan</>}
+  description={
+    <>
+      Masukkan kedua kartu ke premis 2 dan kesimpulan, lalu tukar posisinya.
+      Rantai menguji setiap urutan.
+    </>
+  }
+  footer={<>Kartunya sama, tetapi satu urutan mengunci rantai dan urutan lain memutusnya.</>}
+  premises={[
+    {
+      statement: { kind: "conditional", antecedent: "square", consequent: "equal-sides" },
+      text: "Jika PQRS persegi, maka keempat sisi PQRS sama panjang.",
+      truth: true,
+    },
+    "open",
+  ]}
+  conclusion="open"
+  hand={[
+    {
+      statement: { kind: "claim", negated: true, statement: "equal-sides" },
+      text: "Keempat sisi PQRS tidak sama panjang.",
+      truth: true,
+    },
+    {
+      statement: { kind: "claim", negated: true, statement: "square" },
+      text: "PQRS bukan persegi.",
+      truth: true,
+    },
+  ]}
+  labels={{
+    conclusion: "Kesimpulan",
+    fallacies: {
+      antecedent: <>Menyangkal anteseden</>,
+      consequent: <>Membenarkan konsekuen</>,
+      middle: <>Term tengah tak tercakup</>,
+    },
+    form: <>Bentuk</>,
+    forms: {
+      I: <>Bentuk I</>,
+      II: <>Bentuk II</>,
+      III: <>Bentuk III</>,
+    },
+    hand: "Kartu",
+    no: <>Tidak</>,
+    premises: ["Premis 1", "Premis 2"],
+    sound: <>Kokoh</>,
+    truth: <>Premis benar</>,
+    unfollowed: <>Kesimpulan tidak mengikuti premis</>,
+    unlinked: <>Premis tidak saling terhubung</>,
+    valid: <>Sah</>,
+    viewLabel: "Tiga kartu di atas rel, disambung dua mata rantai",
+    yes: <>Ya</>,
+  }}
+  showVerdict
+/>
+
+Urutan pertama memakai keempat sisi <InlineMath math="PQRS" /> tidak sama panjang sebagai premis 2 dan <InlineMath math="PQRS" /> bukan persegi sebagai kesimpulan. Itu **Bentuk III**, dan rantainya terkunci.
+
+Urutan kedua membalik langkahnya: dari <InlineMath math="PQRS" /> bukan persegi, rantai menyimpulkan bahwa sisinya tidak sama panjang. Langkah itu salah nalar yang disebut **menyangkal anteseden**. Untuk layang-layang ini kesimpulannya kebetulan benar, tetapi bentuknya tetap tidak sah. Belah ketupat juga bukan persegi, padahal keempat sisinya sama panjang.
+
+### Sah tetapi Tidak Kokoh
+
+Sah hanya berbicara tentang bentuk. Argumen yang sah dan **semua premisnya benar** disebut kokoh, dan hanya argumen kokoh yang menjamin kesimpulannya benar. Bandingkan dua urutan di bawah yang memakai satu premis salah: semua bilangan prima adalah bilangan ganjil.
+
+| Premis 1 | Premis 2 | Kesimpulan | Putusan |
+| :--- | :--- | :--- | :--- |
+| Semua bilangan prima ganjil. (Salah) | <InlineMath math="2" /> bilangan prima. (Benar) | <InlineMath math="2" /> bilangan ganjil. (Salah) | Bentuk I, sah, tidak kokoh |
+| Semua bilangan prima ganjil. (Salah) | <InlineMath math="2" /> bilangan ganjil. (Salah) | <InlineMath math="2" /> bilangan prima. (Benar) | Tidak sah, term tengah tak tercakup |
+
+Dengan <InlineMath math="2" /> adalah bilangan prima sebagai premis 2, argumen pertama memakai **Bentuk I** dan sah: kalau semua bilangan prima memang ganjil, <InlineMath math="2" /> pasti ganjil. Masalahnya, premis 1 salah, karena <InlineMath math="2" /> adalah bilangan prima yang genap. Argumennya sah tetapi tidak kokoh, dan kesimpulannya, <InlineMath math="2" /> adalah bilangan ganjil, salah.
+
+Urutan sebaliknya, dari <InlineMath math="2" /> ganjil ke <InlineMath math="2" /> prima, adalah salah nalar **term tengah tak tercakup**. Semua bilangan prima ganjil tidak berarti setiap bilangan ganjil prima, sama seperti <InlineMath math="9" /> yang ganjil tetapi bukan prima.
+
+Bandingkan dengan argumen yang kokoh: semua kelipatan <InlineMath math="4" /> genap, <InlineMath math="36" /> kelipatan <InlineMath math="4" />, jadi <InlineMath math="36" /> genap. Cek: <InlineMath math="36 = 4 \times 9" />.
+
+> Argumen yang sah hanya menjamin bentuk langkahnya benar, sedangkan hanya argumen kokoh dengan semua premis benar yang menjamin kesimpulannya benar.
+
+### Menyusun Argumen Sah
+
+Untuk menyusun argumen sah tentang sebuah situasi, **pilih bentuknya dulu**, lalu isi kalimatnya. Contoh pertama memakai Bentuk I. Premis 1: semua kelipatan <InlineMath math="9" /> punya jumlah angka yang habis dibagi <InlineMath math="9" />. Premis 2: <InlineMath math="7{.}263" /> kelipatan <InlineMath math="9" />. Kesimpulan: jumlah angka <InlineMath math="7{.}263" /> habis dibagi <InlineMath math="9" />. Cek kedua sisinya:
+
+<BlockMath math="7{.}263 = 9 \times 807, \qquad 7 + 2 + 6 + 3 = 18 = 9 \times 2" />
+
+Contoh kedua meminta premis yang hilang. Premis 1: jika sisi persegi <InlineMath math="K" /> adalah <InlineMath math="5\text{ cm}" />, maka luasnya <InlineMath math="25\text{ cm}^2" />. Kesimpulan: sisi persegi <InlineMath math="K" /> bukan <InlineMath math="5\text{ cm}" />.
+
+Kesimpulannya berbentuk <InlineMath math="\sim p" />, jadi argumennya Bentuk III dan premis 2 harus <InlineMath math="\sim q" />: luas persegi <InlineMath math="K" /> bukan <InlineMath math="25\text{ cm}^2" />. Cek: kalau sisinya <InlineMath math="5\text{ cm}" />, luasnya <InlineMath math="5 \times 5 = 25\text{ cm}^2" />, yang bertentangan dengan premis 2.
+
+## Induksi Kuat dan Lemah
+
+Argumen induktif menebak aturan umum dari beberapa kasus. Kalau premisnya memberi alasan yang baik untuk percaya pada aturan itu, argumennya **kuat**. Kalau alasannya tipis, argumennya **lemah**.
+
+Contoh yang lemah: <InlineMath math="3" />, <InlineMath math="5" />, dan <InlineMath math="7" /> prima, jadi setiap bilangan ganjil yang lebih dari <InlineMath math="1" /> prima. Tiga kasus terlalu sedikit, dan <InlineMath math="9 = 3 \times 3" /> langsung mematahkan kesimpulannya.
+
+### Dari Pola ke Aturan
+
+Hitung diagonal segi banyak dengan <InlineMath math="n" /> sisi untuk <InlineMath math="n = 3" /> sampai <InlineMath math="n = 7" />. Diagram ini mencatat hasil hitungan langsung pada setiap segi banyak.
+
+<ScatterDiagram
+  title={<>Banyak Diagonal Segi Banyak</>}
+  description={
+    <>
+      Banyak diagonal segi tiga sampai segi tujuh, dihitung langsung pada
+      setiap segi banyak.
+    </>
+  }
+  footer={<>Dari titik ke titik, banyak diagonal bertambah <InlineMath math="2, 3, 4, 5" />.</>}
+  xAxisLabel="Banyak sisi"
+  yAxisLabel="Banyak diagonal"
+  datasets={[
+    {
+      name: "Segi banyak",
+      color: "var(--chart-1)",
+      points: [
+        { x: 3, y: 0 },
+        { x: 4, y: 2 },
+        { x: 5, y: 5 },
+        { x: 6, y: 9 },
+        { x: 7, y: 14 },
+      ],
+    },
+  ]}
+/>
+
+Polanya punya alasan. Setiap titik sudut terhubung ke <InlineMath math="n - 3" /> titik sudut lain lewat diagonal, karena tidak ke dirinya sendiri dan tidak ke dua tetangganya. Ada <InlineMath math="n" /> titik sudut, tetapi **setiap diagonal terhitung dua kali**, sekali dari tiap ujungnya.
+
+Argumen induktifnya bisa ditulis begini. Premis: segi tiga sampai segi tujuh punya <InlineMath math="0, 2, 5, 9, 14" /> diagonal, dan setiap nilai itu sama dengan <InlineMath math="\tfrac{n(n - 3)}{2}" />. Kesimpulan: segi banyak dengan <InlineMath math="n" /> sisi punya <InlineMath math="\tfrac{n(n - 3)}{2}" /> diagonal.
+
+<MathVisual
+  title={<>Aturan Diagonal dari Pola</>}
+  description={
+    <>
+      Kurva <InlineMath math="y = \tfrac{n(n - 3)}{2}" /> terhadap banyak sisi{" "}
+      <InlineMath math="n" />. Geser <InlineMath math="n" /> untuk membaca
+      banyak diagonal yang diramalkan aturan itu. Titiknya bermakna hanya di nilai bulat <InlineMath math="n" />.
+    </>
+  }
+  footer={<>Geser <InlineMath math="n" /> ke <InlineMath math="8" />: rumusnya memberi <InlineMath math="20" /> diagonal.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 9 }, y: { min: -1, max: 21 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "n", min: 3, max: 8, value: 8, step: 1, label: "n" },
+    ],
+    objects: [
+      { id: "rule", kind: "function", appearance: "primary", formula: "x(x - 3)/2", domain: { min: 3, max: 8 } },
+      { id: "now", kind: "marker", x: "n", y: "n(n - 3)/2", appearance: "warning" },
+    ],
+    readouts: [
+      { key: "diagonals", formula: "n(n - 3)/2" },
+    ],
+  }}
+  labels={{
+    n: <>Banyak sisi <InlineMath math="n" /></>,
+    diagonals: <>Banyak diagonal</>,
+  }}
+/>
+
+Uji kesimpulannya pada segi delapan. Aturannya meramalkan
+
+<BlockMath math="\frac{8(8 - 3)}{2} = \frac{40}{2} = 20" />
+
+Hitungan langsung memberi hasil yang sama karena tiap titik dari <InlineMath math="8" /> titik sudut punya <InlineMath math="5" /> diagonal dan setiap diagonal terhitung dua kali:
+
+<BlockMath math="\frac{8 \times 5}{2} = 20" />
+
+Geser <InlineMath math="n" /> ke <InlineMath math="8" /> pada grafik, dan titiknya berada tepat di ketinggian <InlineMath math="20" />.
+
+### Kuat dan Premisnya Benar
+
+Argumen induktif yang kuat dan **semua premisnya benar** disebut meyakinkan. Argumen diagonal tadi meyakinkan, karena setiap hitungan di premisnya sudah dicek. Bandingkan dengan argumen ini. Premis: <InlineMath math="2^2 - 1 = 3" />, <InlineMath math="2^3 - 1 = 7" />, <InlineMath math="2^5 - 1 = 31" />, <InlineMath math="2^7 - 1 = 127" />, dan <InlineMath math="2^{11} - 1 = 2{.}047" /> semuanya prima. Kesimpulan: <InlineMath math="2^p - 1" /> prima untuk setiap bilangan prima <InlineMath math="p" />.
+
+Premis terakhirnya salah.
+
+<BlockMath math="2^{11} - 1 = 2{.}047 = 23 \times 89" />
+
+Karena satu premisnya salah, **argumen itu tidak meyakinkan**, seberapa pun rapi polanya. Kasus <InlineMath math="p = 11" /> bahkan menjadi contoh penyangkal untuk kesimpulannya. Cek perkaliannya langsung:
+
+<BlockMath math="23 \times 89 = 23 \times 90 - 23 = 2{.}070 - 23 = 2{.}047" />
+
+Hasil itu memastikan <InlineMath math="2{.}047" /> bukan bilangan prima.
+
+## Kartu Mana yang Dibalik
+
+Teka-teki ini memakai semua alat sekaligus. Empat kartu masing-masing punya bilangan di satu sisi dan warna di sisi lain. Yang terlihat adalah <InlineMath math="8" />, <InlineMath math="3" />, merah, dan biru. Aturannya: jika sebuah kartu punya bilangan genap di satu sisi, maka sisi lainnya merah. Kartu mana saja yang harus dibalik untuk menguji aturan itu?
+
+Aturan ini implikasi, jadi yang bisa mematahkannya hanya contoh penyangkal: kartu dengan **bilangan genap dan warna yang bukan merah**. Periksa setiap kartu dengan pertanyaan itu.
+
+| Kartu | Yang mungkin ada di baliknya | Bisa mematahkan aturan? |
+| :--- | :--- | :--- |
+| <InlineMath math="8" /> | merah atau biru | Ya, kalau baliknya biru |
+| <InlineMath math="3" /> | merah atau biru | Tidak, antesedennya salah |
+| merah | genap atau ganjil | Tidak, konsekuennya sudah benar |
+| biru | genap atau ganjil | Ya, kalau baliknya genap |
+
+Jadi kamu harus membalik **kartu <InlineMath math="8" /> dan kartu biru**. Kartu <InlineMath math="8" /> diuji dengan Bentuk II: kalau aturannya benar, baliknya harus merah. Kartu biru diuji dengan Bentuk III: kalau aturannya benar, baliknya tidak boleh genap.
+
+Banyak orang memilih kartu merah, padahal apa pun di baliknya tidak bisa melanggar aturan. Menyimpulkan sesuatu dari kartu merah sama dengan membenarkan konsekuen.
