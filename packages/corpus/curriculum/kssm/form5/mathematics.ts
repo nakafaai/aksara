@@ -358,7 +358,39 @@ export const kssmForm5MathematicsTopicNodes = [
     },
   }),
   unitNode({
+    children: [
+      materialNode({
+        key: "form-5-mathematics-mathematical-modelling-math-modelling",
+        level: "lesson",
+        materialKeys: ["lesson.mathematics.math-modelling"],
+        order: 10,
+        outcomes: [
+          {
+            code: "Tingkatan 5, Standard Kandungan 8.1",
+            ...mathematicsStandards,
+          },
+        ],
+      }),
+    ],
     key: "form-5-mathematics-mathematical-modelling",
+    materialCard: {
+      de: {
+        description: "Stelle Modelle aus Daten auf und prüfe sie.",
+        title: "Mathematische Modellierung",
+      },
+      en: {
+        description: "Build models from data and verify them.",
+        title: "Mathematical Modelling",
+      },
+      id: {
+        description: "Susun model dari data lalu uji modelnya.",
+        title: "Pemodelan Matematika",
+      },
+      ms: {
+        description: "Bina model daripada data dan sahkannya.",
+        title: "Pemodelan Matematik",
+      },
+    },
     order: 80,
     translations: {
       de: {
