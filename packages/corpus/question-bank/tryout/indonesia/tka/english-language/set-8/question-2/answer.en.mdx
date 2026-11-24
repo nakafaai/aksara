@@ -16,7 +16,9 @@ First find the **last valid start time before 12:00**: from 7:30 to 11:54 spans 
 
 The rule states <Highlight>A patient whose turn has not begun by 12:00 is given a ticket for the first turn the next morning</Highlight>. Computing **the cutoff slot**:
 
-<BlockMath math="7{:}30 + 22 \times 12\text{ min} = 11{:}54 \implies 23\text{ turns} \implies \text{weekday max } 46, \quad \text{Saturday max } 23" />
+<BlockMath math="22 \times 12\text{ min} = 264\text{ min} = 4\text{ h } 24\text{ min} \implies 23\text{ turns} \implies \text{weekday max } 46, \quad \text{Saturday max } 23" />
+
+Starting from 07:30, the final eligible turn before noon therefore begins at **11:54**.
 
 Slot <InlineMath math="24" /> would start at **12:06**, past 12:00. Checking **all five patients**:
 
