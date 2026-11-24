@@ -1,34 +1,44 @@
-# Cari persentasenya dari dua kenaikan
+# Diketahui
 
-Pertumbuhan dengan persentase <InlineMath math="p" /> (dalam desimal) mengalikan produksi dengan <InlineMath math="1+p" />. Dua kenaikan yang sama berturut-turut menghasilkan **faktor <InlineMath math="(1+p)^2" />**, dan faktor itu <InlineMath math="1{,}44" />:
+Sebuah **perusahaan** (*Betrieb*) meningkatkan produksinya (*Produktion*) dua tahun berturut-turut sebesar persentase yang sama sehingga totalnya naik <InlineMath math="44\,\%" /> dari awal. Pada tahun ketiga, produksi turun sebesar persentase yang sama itu.
 
-<BlockMath math="(1+p)^2=1{,}44\quad\Longrightarrow\quad 1+p=1{,}2\quad\Longrightarrow\quad p=0{,}2" />
+# Ditanyakan
 
-Akar negatif <InlineMath math="1+p=-1{,}2" /> tidak memberi faktor yang masuk akal.
+Berapa persen produksi pada akhir tahun ketiga masih berada di atas produksi awal?
 
-# Hitung penurunan dari nilai baru
+# Penyelesaian
 
-Pada tahun ketiga produksi turun <InlineMath math="20\,\%" />, dihitung **dari tingkat yang sudah dicapai**, yaitu dari <InlineMath math="1{,}44" /> kali semula:
+Bayangkan pabrik memulai dengan <InlineMath math="100" /> kotak. Dua lonjakan sama sebesar <InlineMath math="20\,\%" /> membawa tumpukan dari <InlineMath math="100" /> ke <InlineMath math="120" /> lalu ke <InlineMath math="144" /> kotak. Saat tahun ketiga memangkas <InlineMath math="20\,\%" />, **potongan itu mengambil seperlima dari tumpukan besar <InlineMath math="144" /> kotak**, bukan dari <InlineMath math="100" /> kotak awal, sehingga penurunannya lebih curam daripada satu kali kenaikan!
 
-<BlockMath math="1{,}44\cdot(1-0{,}2)=1{,}44\cdot0{,}8=1{,}152" />
+> Perubahan persen beruntun selalu bekerja secara perkalian pada nilai terakhir, jadi cari dulu faktor pertumbuhan per tahun lewat akar kuadrat lalu kalikan dengan faktor penurunannya.
+
+Cari laju pertumbuhan tahunan <InlineMath math="p > 0" /> dari dua kenaikan beruntun menuju <InlineMath math="1{,}44" />.
+
+<BlockMath math="(1 + p)^2 = 1{,}44 \implies 1 + p = 1{,}2 \implies p = 0{,}2 = 20\,\%" />
+
+## Menghitung tingkat akhir tahun ketiga
+
+Terapkan penurunan <InlineMath math="20\,\%" /> pada **nilai terbaru <InlineMath math="1{,}44" />** dengan mengalikan faktor <InlineMath math="0{,}8" />.
+
+<BlockMath math="1{,}44 \cdot (1 - 0{,}2) = 1{,}44 \cdot 0{,}8 = 1{,}152" />
+
+Lihat lintasan indeks produksi dari basis <InlineMath math="100" /> selama tiga tahun pada grafik berikut.
 
 <MathVisual
-  title={<>Produksi selama tiga tahun</>}
-  description={<>Produksi sebagai indeks dengan <InlineMath math="100" /> di awal. Produksi naik menjadi <InlineMath math="120" /> dan <InlineMath math="144" />, lalu turun menjadi <InlineMath math="115{,}2" /> pada tahun ketiga. Garis mendatar di <InlineMath math="100" /> menandai nilai awal, dan titik akhirnya <InlineMath math="15{,}2" /> di atasnya.</>}
-  labels={{
-    s: <>awal <InlineMath math="100" /></>,
-    y1: <><InlineMath math="120" /></>,
-    y2: <><InlineMath math="144" /></>,
-    e: <>akhir <InlineMath math="115{,}2" /></>,
-  }}
+  title={<>Lintasan indeks produksi selama tiga tahun</>}
+  description={
+    <>
+      Berawal dari indeks <InlineMath math="100" />, produksi naik ke{" "}
+      <InlineMath math="120" /> dan <InlineMath math="144" />, lalu turun pada
+      tahun ketiga ke <InlineMath math="115{,}2" />, masih{" "}
+      <InlineMath math="15{,}2" /> poin di atas garis awal.
+    </>
+  }
+  footer={<>Setelah naik dua kali <InlineMath math="20\,\%" /> dan turun sekali <InlineMath math="20\,\%" />, indeks berakhir di <InlineMath math="115{,}2" />.</>}
   scene={{
     space: "plane",
-    frame: {
-      kind: "cartesian",
-      x: { min: -0.5, max: 3.8 },
-      y: { min: 90, max: 155 },
-    },
-    view: { kind: "fit", padding: 0.1 },
+    frame: { kind: "cartesian", x: { min: -0.5, max: 3.8 }, y: { min: 90, max: 155 } },
+    view: { kind: "fit", padding: 0.08 },
     objects: [
       { id: "base", kind: "segment", appearance: "reference", from: { x: 0, y: 100 }, to: { x: 3, y: 100 } },
       { id: "path", kind: "polyline", appearance: "primary", vertices: [{ x: 0, y: 100 }, { x: 1, y: 120 }, { x: 2, y: 144 }, { x: 3, y: 115.2 }] },
@@ -44,14 +54,26 @@ Pada tahun ketiga produksi turun <InlineMath math="20\,\%" />, dihitung **dari t
       { key: "e", objectId: "p3", at: { x: 3, y: 115.2 }, placement: "right" },
     ],
   }}
+  labels={{
+    s: <>awal <InlineMath math="100" /></>,
+    y1: <><InlineMath math="120" /></>,
+    y2: <><InlineMath math="144" /></>,
+    e: <>akhir <InlineMath math="115{,}2" /></>,
+  }}
 />
 
-Di akhir, produksi **<InlineMath math="15{,}2\,\%" /> di atas nilai awal**.
+Terlihat jelas pada grafik bahwa titik akhir berada di bawah level tahun pertama (<InlineMath math="120" />), karena potongan <InlineMath math="20\,\%" /> dari <InlineMath math="144" /> lebih besar daripada kenaikan <InlineMath math="20\,\%" /> dari <InlineMath math="120" />.
 
-# Mengapa pilihan lain salah
+## Mengecek hasil dan pilihan salah
 
-- "<InlineMath math="24\,\%" />" **mengurangkan <InlineMath math="20" /> poin persentase dari <InlineMath math="44\,\%" />**, bukannya menerapkan penurunan pada nilai yang baru.
-- "<InlineMath math="22\,\%" />" membagi dua <InlineMath math="44\,\%" /> menjadi persentase per tahun, lalu menghitung <InlineMath math="44-22" />.
-- "<InlineMath math="20\,\%" />" menganggap satu kenaikan dan penurunan itu saling menghapus.
-- "<InlineMath math="12{,}32\,\%" />" memakai <InlineMath math="22\,\%" /> sebagai persentasenya: <InlineMath math="1{,}44\cdot0{,}78=1{,}1232" />.
-- "<InlineMath math="0\,\%" />" menganggap penurunan itu membatalkan semua kenaikan.
+Cek faktor gabungan <InlineMath math="1{,}2 \cdot 1{,}2 \cdot 0{,}8" />: hasilnya <InlineMath math="1{,}152" />, artinya **masih unggul <InlineMath math="15{,}2\,\%" /> di atas produksi awal**.
+
+- <InlineMath math="24\,\%" /> mengurangkan <InlineMath math="20" /> poin persen langsung dari <InlineMath math="44\,\%" /> alih-alih mengalikannya ke nilai baru.
+- <InlineMath math="22\,\%" /> membagi dua <InlineMath math="44\,\%" /> menjadi laju tahunan lalu mengurangkannya langsung.
+- <InlineMath math="20\,\%" /> menganggap satu kenaikan <InlineMath math="20\,\%" /> dan satu penurunan <InlineMath math="20\,\%" /> saling menghapus.
+- <InlineMath math="12{,}32\,\%" /> memakai laju keliru <InlineMath math="22\,\%" /> untuk menghitung penurunan tahun ketiga.
+- <InlineMath math="0\,\%" /> menganggap penurunan satu tahun menghapus seluruh kenaikan dua tahun.
+
+# Jawaban
+
+Pada akhir tahun ketiga, produksi berada <InlineMath math="15{,}2\,\%" /> di atas produksi awal.

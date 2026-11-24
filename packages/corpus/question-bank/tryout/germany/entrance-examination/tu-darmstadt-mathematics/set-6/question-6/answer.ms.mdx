@@ -1,34 +1,44 @@
-# Cari kadar daripada dua kenaikan
+# Diberi
 
-Pertumbuhan pada kadar <InlineMath math="p" /> (dalam perpuluhan) mendarab pengeluaran dengan <InlineMath math="1+p" />. Dua kenaikan yang sama berturut-turut memberi **faktor <InlineMath math="(1+p)^2" />**, dan faktor itu ialah <InlineMath math="1.44" />:
+Sebuah **syarikat** (*Betrieb*) meningkatkan pengeluarannya (*Produktion*) sebanyak peratusan yang sama selama dua tahun berturut-turut sehingga meningkat <InlineMath math="44\,\%" /> berbanding permulaan. Pada tahun ketiga, pengeluaran turun sebanyak peratusan yang sama itu.
 
-<BlockMath math="(1+p)^2=1.44\quad\Longrightarrow\quad 1+p=1.2\quad\Longrightarrow\quad p=0.2" />
+# Ditanya
 
-Punca negatif <InlineMath math="1+p=-1.2" /> tidak memberi faktor yang munasabah.
+Berapa peratuskah pengeluaran pada akhir tahun ketiga masih melebihi pengeluaran awal?
 
-# Kira penurunan daripada nilai baharu
+# Penyelesaian
 
-Pada tahun ketiga pengeluaran turun <InlineMath math="20\,\%" />, diukur **daripada paras yang sudah dicapai**, iaitu daripada <InlineMath math="1.44" /> kali nilai awal:
+Bayangkan kilang bermula dengan <InlineMath math="100" /> kotak. Dua kenaikan sama <InlineMath math="20\,\%" /> menaikkan jumlah daripada <InlineMath math="100" /> kepada <InlineMath math="120" /> dan seterusnya <InlineMath math="144" /> kotak. Apabila tahun ketiga mengurangkan <InlineMath math="20\,\%" />, **potongan itu mengambil satu perlima daripada longgokan besar <InlineMath math="144" /> kotak**, bukannya <InlineMath math="100" />, maka kejatuhannya lebih besar daripada satu kali kenaikan!
 
-<BlockMath math="1.44\cdot(1-0.2)=1.44\cdot0.8=1.152" />
+> Perubahan peratus berturutan sentiasa bertindak secara daraban ke atas nilai terkini, jadi cari dahulu kadar tahunan melalui punca kuasa dua sebelum mendarab dengan faktor penurunan.
+
+Cari kadar pertumbuhan tahunan <InlineMath math="p > 0" /> daripada dua kenaikan berturut-turut menuju <InlineMath math="1.44" />.
+
+<BlockMath math="(1 + p)^2 = 1.44 \implies 1 + p = 1.2 \implies p = 0.2 = 20\,\%" />
+
+## Mengira paras akhir tahun ketiga
+
+Kenakan penurunan <InlineMath math="20\,\%" /> ke atas **paras terbaharu <InlineMath math="1.44" />** dengan mendarab faktor <InlineMath math="0.8" />.
+
+<BlockMath math="1.44 \cdot (1 - 0.2) = 1.44 \cdot 0.8 = 1.152" />
+
+Perhatikan perjalanan indeks pengeluaran bermula dari <InlineMath math="100" /> sepanjang tiga tahun pada graf berikut.
 
 <MathVisual
-  title={<>Pengeluaran selama tiga tahun</>}
-  description={<>Pengeluaran sebagai indeks dengan <InlineMath math="100" /> pada permulaan. Pengeluaran naik kepada <InlineMath math="120" /> dan <InlineMath math="144" />, kemudian turun kepada <InlineMath math="115.2" /> pada tahun ketiga. Garis mengufuk pada <InlineMath math="100" /> menanda nilai permulaan, dan titik akhirnya <InlineMath math="15.2" /> di atasnya.</>}
-  labels={{
-    s: <>awal <InlineMath math="100" /></>,
-    y1: <><InlineMath math="120" /></>,
-    y2: <><InlineMath math="144" /></>,
-    e: <>akhir <InlineMath math="115.2" /></>,
-  }}
+  title={<>Perjalanan indeks pengeluaran sepanjang tiga tahun</>}
+  description={
+    <>
+      Bermula pada indeks <InlineMath math="100" />, pengeluaran meningkat ke{" "}
+      <InlineMath math="120" /> dan <InlineMath math="144" />, lalu turun pada
+      tahun ketiga ke <InlineMath math="115.2" />, masih{" "}
+      <InlineMath math="15.2" /> mata di atas paras awal.
+    </>
+  }
+  footer={<>Selepas dua kenaikan <InlineMath math="20\,\%" /> dan satu penurunan <InlineMath math="20\,\%" />, indeks berakhir pada <InlineMath math="115.2" />.</>}
   scene={{
     space: "plane",
-    frame: {
-      kind: "cartesian",
-      x: { min: -0.5, max: 3.8 },
-      y: { min: 90, max: 155 },
-    },
-    view: { kind: "fit", padding: 0.1 },
+    frame: { kind: "cartesian", x: { min: -0.5, max: 3.8 }, y: { min: 90, max: 155 } },
+    view: { kind: "fit", padding: 0.08 },
     objects: [
       { id: "base", kind: "segment", appearance: "reference", from: { x: 0, y: 100 }, to: { x: 3, y: 100 } },
       { id: "path", kind: "polyline", appearance: "primary", vertices: [{ x: 0, y: 100 }, { x: 1, y: 120 }, { x: 2, y: 144 }, { x: 3, y: 115.2 }] },
@@ -44,14 +54,26 @@ Pada tahun ketiga pengeluaran turun <InlineMath math="20\,\%" />, diukur **darip
       { key: "e", objectId: "p3", at: { x: 3, y: 115.2 }, placement: "right" },
     ],
   }}
+  labels={{
+    s: <>awal <InlineMath math="100" /></>,
+    y1: <><InlineMath math="120" /></>,
+    y2: <><InlineMath math="144" /></>,
+    e: <>akhir <InlineMath math="115.2" /></>,
+  }}
 />
 
-Pada akhirnya pengeluaran **<InlineMath math="15.2\,\%" /> di atas nilai awal**.
+Jelas kelihatan bahawa tahun ketiga berakhir di bawah paras tahun pertama (<InlineMath math="120" />), kerana potongan <InlineMath math="20\,\%" /> daripada <InlineMath math="144" /> lebih besar daripada kenaikan <InlineMath math="20\,\%" /> daripada <InlineMath math="120" />.
 
-# Kenapa jawapan lain salah
+## Menyemak keputusan dan pilihan salah
 
-- "<InlineMath math="24\,\%" />" **menolak <InlineMath math="20" /> mata peratus daripada <InlineMath math="44\,\%" />**, bukannya mengenakan penurunan pada nilai baharu.
-- "<InlineMath math="22\,\%" />" membahagi dua <InlineMath math="44\,\%" /> menjadi kadar setahun, kemudian mengira <InlineMath math="44-22" />.
-- "<InlineMath math="20\,\%" />" menganggap satu kenaikan dan penurunan itu saling membatalkan.
-- "<InlineMath math="12.32\,\%" />" memakai <InlineMath math="22\,\%" /> sebagai kadar: <InlineMath math="1.44\cdot0.78=1.1232" />.
-- "<InlineMath math="0\,\%" />" menganggap penurunan itu membatalkan semua kenaikan.
+Semakan faktor gabungan <InlineMath math="1.2 \cdot 1.2 \cdot 0.8" />: hasilnya <InlineMath math="1.152" />, bermakna pengeluaran **masih <InlineMath math="15.2\,\%" /> di atas paras awal**.
+
+- <InlineMath math="24\,\%" /> menolak <InlineMath math="20" /> mata peratus terus daripada <InlineMath math="44\,\%" /> tanpa mengenakan penurunan pada paras baharu.
+- <InlineMath math="22\,\%" /> membahagi dua <InlineMath math="44\,\%" /> untuk kadar tahunan lalu menolak secara linear.
+- <InlineMath math="20\,\%" /> menganggap satu kenaikan <InlineMath math="20\,\%" /> dan satu penurunan <InlineMath math="20\,\%" /> saling membatalkan.
+- <InlineMath math="12.32\,\%" /> menggunakan kadar tahunan silap <InlineMath math="22\,\%" /> bagi penurunan tahun ketiga.
+- <InlineMath math="0\,\%" /> menganggap satu penurunan menghapuskan kedua-dua kenaikan sebelumnya.
+
+# Jawapan
+
+Pada akhir tahun ketiga, pengeluaran berada <InlineMath math="15.2\,\%" /> di atas pengeluaran awal.

@@ -1,43 +1,54 @@
-# Mit einer neuen Variablen zur quadratischen Gleichung
+# Gegeben
 
-Alle Potenzen haben die Basis <InlineMath math="2" />. Schreibe <InlineMath math="2^{2x+1}=2\cdot\left(2^x\right)^2" /> und setze <InlineMath math="t=2^x" />. **Dabei ist <InlineMath math="t>0" />**, denn eine Potenz von <InlineMath math="2" /> ist immer positiv:
+Gegeben ist die folgende **Exponentialgleichung** in der Menge der reellen Zahlen.
 
-<BlockMath math="2t^2-9t+4=0" />
+<BlockMath math="2^{2x + 1} - 9 \cdot 2^x + 4 = 0" />
 
-# Die quadratische Gleichung lösen
+# Gesucht
 
-<BlockMath math="t=\frac{9\pm\sqrt{81-32}}{4}=\frac{9\pm7}{4}\quad\Longrightarrow\quad t=4\ \text{oder}\ t=\frac12" />
+Die reelle Lösungsmenge <InlineMath math="\mathbb{L}" /> dieser Gleichung.
 
-Beide Werte sind positiv, **keiner fällt weg**.
+# Lösung
 
-# Zurück zu <InlineMath math="x" />
+Spalte zuerst das <InlineMath math="+1" /> im Exponenten ab, damit jeder Term aus demselben Baustein <InlineMath math="2^x" /> besteht! Mit der Substitution <InlineMath math="t = 2^x" /> (<InlineMath math="t > 0" />) entsteht eine einfache quadratische Gleichung, und **im letzten Schritt wandelst du jedes positive <InlineMath math="t" /> unbedingt wieder in <InlineMath math="x" /> um**.
 
-Jeder Wert von <InlineMath math="t" /> liefert **genau ein <InlineMath math="x" />**, weil <InlineMath math="2^x" /> jeden positiven Wert genau einmal annimmt:
+> Eine Potenzsubstitution verwandelt die Exponentialgleichung in eine quadratische Gleichung mit strikt positiver Hilfsvariable, danach muss jede positive Lösung zurück in den ursprünglichen Exponenten übersetzt werden.
+
+Schreib <InlineMath math="2^{2x + 1}" /> als <InlineMath math="2 \cdot (2^x)^2" /> und löse die quadratische Gleichung in <InlineMath math="t" />.
 
 <BlockMath math="\begin{aligned}
-2^x=4&\quad\Longrightarrow\quad x=2 \\
-2^x=\tfrac12&\quad\Longrightarrow\quad x=-1
+2t^2 - 9t + 4 &= 0 \\
+(2t - 1)(t - 4) &= 0 \implies t = \frac{1}{2} \quad \text{oder} \quad t = 4
 \end{aligned}" />
 
+## Rücksubstitution zur Variablen x
+
+Beide Werte für <InlineMath math="t" /> sind positiv, also entfällt keiner, und **ein negativer Exponent <InlineMath math="x" /> ist völlig erlaubt**, weil <InlineMath math="2^x" /> positiv bleibt.
+
+<BlockMath math="\begin{aligned}
+2^x = 4 &\implies x = 2 \\
+2^x = \frac{1}{2} = 2^{-1} &\implies x = -1
+\end{aligned}" />
+
+Im Graphen erkennst du beide Nullstellen direkt auf der waagerechten Achse.
+
 <MathVisual
-  title={<>Die Nullstellen des Terms</>}
-  description={<>Der Graph von <InlineMath math="y=2^{2x+1}-9\cdot2^x+4" /> nähert sich für sehr kleine <InlineMath math="x" /> dem Wert <InlineMath math="4" />, sinkt unter die <InlineMath math="x" />-Achse und steigt dann steil an. Er schneidet die Achse genau zweimal, bei <InlineMath math="x=-1" /> und bei <InlineMath math="x=2" />.</>}
-  labels={{
-    a: <><InlineMath math="x=-1" /></>,
-    b: <><InlineMath math="x=2" /></>,
-    f: <><InlineMath math="2^{2x+1}-9\cdot2^x+4" /></>,
-  }}
+  title={<>Zwei Nullstellen von <InlineMath math="2^{2x + 1} - 9 \cdot 2^x + 4" /></>}
+  description={
+    <>
+      Die Kurve nähert sich links der Höhe <InlineMath math="4" />, taucht
+      unter null ab und steigt dann steil an, wobei sie die Achse bei{" "}
+      <InlineMath math="x = -1" /> und <InlineMath math="x = 2" /> schneidet.
+    </>
+  }
+  footer={<>Die Kurve schneidet die waagerechte Achse zweimal, bei <InlineMath math="x = -1" /> und <InlineMath math="x = 2" />.</>}
   scene={{
     space: "plane",
-    frame: {
-      kind: "cartesian",
-      x: { min: -4.5, max: 3.5 },
-      y: { min: -7, max: 24 },
-    },
-    view: { kind: "fit", padding: 0.1 },
+    frame: { kind: "cartesian", x: { min: -4.5, max: 3.5 }, y: { min: -7, max: 24 } },
+    view: { kind: "fit", padding: 0.08 },
     objects: [
       { id: "x-axis", kind: "segment", appearance: "reference", from: { x: -4, y: 0 }, to: { x: 3, y: 0 } },
-      { id: "curve", kind: "function", appearance: "primary", formula: "2^(2*x+1) - 9*2^x + 4", domain: { min: -4, max: 2.6 } },
+      { id: "curve", kind: "function", appearance: "primary", formula: "2^(2 * x + 1) - 9 * 2^x + 4", domain: { min: -4, max: 2.6 } },
       { id: "z1", kind: "point", appearance: "answer", at: { x: -1, y: 0 } },
       { id: "z2", kind: "point", appearance: "answer", at: { x: 2, y: 0 } },
     ],
@@ -47,14 +58,32 @@ Jeder Wert von <InlineMath math="t" /> liefert **genau ein <InlineMath math="x" 
       { key: "f", objectId: "curve", at: { x: 2.5, y: 18 }, placement: "left" },
     ],
   }}
+  labels={{
+    a: <><InlineMath math="x = -1" /></>,
+    b: <><InlineMath math="x = 2" /></>,
+    f: <><InlineMath math="2^{2x + 1} - 9 \cdot 2^x + 4" /></>,
+  }}
 />
 
-Probe für <InlineMath math="x=-1" />: <InlineMath math="2^{-1}-9\cdot\frac12+4=\frac12-\frac92+4=0" />. Die Lösungsmenge ist **<InlineMath math="\mathbb{L}=\{-1;\,2\}" />**.
+Der Graph bestätigt beide Nullstellen sauber, einschließlich des negativen Exponenten <InlineMath math="x = -1" />.
 
-# Warum die anderen Antworten falsch sind
+## Probe und falsche Antworten prüfen
 
-- <InlineMath math="\left\{\frac12;\,4\right\}" /> sind die Werte von <InlineMath math="t" />. Hier **fehlt der Rückweg zu <InlineMath math="x" />**.
-- <InlineMath math="\{2\}" /> verwirft <InlineMath math="x=-1" />, vermutlich weil eine negative Lösung unpassend wirkt. Negative Exponenten sind aber erlaubt.
-- <InlineMath math="\{1;\,2\}" /> macht beim Rückweg einen Vorzeichenfehler: <InlineMath math="2^x=\frac12" /> gilt für <InlineMath math="x=-1" />, nicht für <InlineMath math="x=1" />.
-- <InlineMath math="\{2-\log_2 7\}" /> entsteht, wenn du <InlineMath math="2^{2x+1}" /> als <InlineMath math="2t" /> statt als <InlineMath math="2t^2" /> schreibst: <InlineMath math="2t-9t+4=0" /> liefert <InlineMath math="t=\frac47" />.
-- Die Werte mit <InlineMath math="\frac{9\pm\sqrt{65}}{2}" /> entstehen, wenn der Faktor <InlineMath math="2" /> vor <InlineMath math="t^2" /> fehlt: <InlineMath math="t^2-9t+4=0" />.
+Direkte Probe mit <InlineMath math="x = -1" /> und <InlineMath math="x = 2" /> in **der Ausgangsgleichung**:
+
+<BlockMath math="\begin{aligned}
+x = -1 &\implies 2^{-1} - 9 \cdot \frac{1}{2} + 4 = \frac{1}{2} - \frac{9}{2} + 4 = 0 \\
+x = 2 &\implies 2^5 - 9 \cdot 4 + 4 = 32 - 36 + 4 = 0
+\end{aligned}" />
+
+| Antwort | Warum sie falsch ist |
+| :--- | :--- |
+| <InlineMath math="\mathbb{L} = \left\{\frac{1}{2},\, 4\right\}" /> | Bleibt bei den <InlineMath math="t" />-Werten stehen und vergisst die Rücksubstitution zu <InlineMath math="x" />. |
+| <InlineMath math="\mathbb{L} = \{2\}" /> | Streicht <InlineMath math="x = -1" />, obwohl negative Exponenten bei <InlineMath math="2^x" /> erlaubt sind. |
+| <InlineMath math="\mathbb{L} = \{1,\, 2\}" /> | Macht einen Vorzeichenfehler im Exponenten und verwechselt <InlineMath math="2^{-1}" /> mit <InlineMath math="2^1" />. |
+| <InlineMath math="\mathbb{L} = \{2 - \log_2 7\}" /> | Schreibt <InlineMath math="2^{2x + 1}" /> fälschlich als <InlineMath math="2t" /> statt als <InlineMath math="2t^2" />. |
+| <InlineMath math="\mathbb{L} = \left\{\log_2\frac{9 \pm \sqrt{65}}{2}\right\}" /> | Verliert den Faktor <InlineMath math="2" /> vor <InlineMath math="t^2" />. |
+
+# Antwort
+
+Die Lösungsmenge der Gleichung lautet <InlineMath math="\mathbb{L} = \{-1,\, 2\}" />.

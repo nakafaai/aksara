@@ -1,17 +1,80 @@
-Soal menanyakan volume balok. Sebut panjang rusuknya <InlineMath math="a" />, <InlineMath math="b" />, dan <InlineMath math="c" />. Setiap sisi balok adalah persegi panjang dari dua rusuk itu, dan **volume adalah hasil kali ketiga rusuk**. Jadi, yang kamu cari adalah <InlineMath math="abc" />.
+# Diketahui
 
-<BlockMath math="ab=12\qquad bc=15\qquad ac=20" />
+Enam sisi sebuah **balok** (*Quader*) memiliki tiga luas bidang (*Flächeninhalte*) yang berbeda, yaitu <InlineMath math="12\text{ cm}^2" />, <InlineMath math="15\text{ cm}^2" />, dan <InlineMath math="20\text{ cm}^2" />, dengan setiap pasang sisi yang berhadapan sama luas.
 
-Jika ketiga luas sisi dikalikan, setiap rusuk muncul tepat dua kali. Jadi, hasil kalinya adalah kuadrat volume.
+# Ditanyakan
 
-<BlockMath math="ab\cdot bc\cdot ac=(abc)^2=12\cdot15\cdot20=3600\quad\Rightarrow\quad abc=60" />
+Tentukan volume balok ini.
 
-Sebagai pemeriksaan, tentukan rusuknya. Dari <InlineMath math="abc=60" /> dan <InlineMath math="ab=12" /> diperoleh <InlineMath math="c=5" />, dari <InlineMath math="bc=15" /> diperoleh <InlineMath math="a=4" />, dan dari <InlineMath math="ac=20" /> diperoleh <InlineMath math="b=3" />. Memang <InlineMath math="4\cdot3=12" />, <InlineMath math="3\cdot5=15" />, dan <InlineMath math="4\cdot5=20" />.
+# Penyelesaian
 
-Jadi, volume balok itu <InlineMath math="60\text{ cm}^3" />.
+Kamu tidak perlu menebak satu per satu panjang, lebar, dan tinggi balok lebih dulu! Misalkan ketiga rusuknya adalah <InlineMath math="a" />, <InlineMath math="b" />, dan <InlineMath math="c" />. Saat kamu mengalikan ketiga luas sisi sekaligus, setiap rusuk muncul tepat dua kali, sehingga **hasil kali ketiga luas sisi adalah kuadrat dari volume balok**!
 
-- <InlineMath math="47\text{ cm}^3" /> adalah jumlah ketiga luas sisi. Jumlah luas tidak menghasilkan volume.
-- <InlineMath math="94\text{ cm}^3" /> adalah angka luas permukaan, <InlineMath math="2\cdot(12+15+20)" />, yang satuannya <InlineMath math="\text{cm}^2" />.
-- <InlineMath math="180\text{ cm}^3" /> adalah <InlineMath math="12\cdot15=ab\cdot bc=ab^2c" />. Di dalamnya rusuk <InlineMath math="b" /> muncul dua kali.
-- <InlineMath math="3{.}600\text{ cm}^3" /> adalah hasil kali ketiga luas sisi, yaitu <InlineMath math="(abc)^2" />. Akar kuadratnya terlupa.
-- <InlineMath math="12\text{ cm}^3" /> adalah jumlah rusuk, <InlineMath math="4+3+5" />. Untuk volume, rusuk-rusuknya dikalikan.
+> Pada balok dengan tiga luas sisi berbeda, hasil kali ketiga luas itu selalu sama dengan kuadrat volumenya, sehingga volume langsung diperoleh dengan satu kali penarikan akar kuadrat.
+
+Susun ketiga persamaan luas sisi lalu kalikan semuanya sekaligus.
+
+<BlockMath math="\begin{aligned}
+ab = 12, \qquad bc &= 15, \qquad ac = 20 \\
+(ab)(bc)(ac) = (abc)^2 &= 12 \cdot 15 \cdot 20 = 3600 \\
+V = abc &= \sqrt{3600} = 60\text{ cm}^3
+\end{aligned}" />
+
+## Memeriksa ketiga ukuran rusuk secara visual
+
+Dengan <InlineMath math="abc = 60" />, ketiga rusuk balok langsung terbaca: <InlineMath math="c = 5\text{ cm}" />, <InlineMath math="a = 4\text{ cm}" />, dan <InlineMath math="b = 3\text{ cm}" />. Perhatikan **ketiga persegi panjang sisi balok beserta ukurannya** pada gambar berikut.
+
+<MathVisual
+  title={<>Tiga pasang sisi balok berukuran <InlineMath math="4 \times 3 \times 5" /></>}
+  description={
+    <>
+      Tiga persegi panjang mewakili tiga ukuran sisi berbeda balok: alas{" "}
+      <InlineMath math="4 \times 3 = 12\text{ cm}^2" />, sisi samping{" "}
+      <InlineMath math="3 \times 5 = 15\text{ cm}^2" />, dan sisi depan{" "}
+      <InlineMath math="4 \times 5 = 20\text{ cm}^2" />.
+    </>
+  }
+  footer={<>Rusuk <InlineMath math="4\text{ cm}" />, <InlineMath math="3\text{ cm}" />, dan <InlineMath math="5\text{ cm}" /> tepat menghasilkan ketiga luas dan volume <InlineMath math="60\text{ cm}^3" />.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.8, max: 14 }, y: { min: -1.6, max: 6.6 } },
+    view: { kind: "fit", padding: 0.08 },
+    objects: [
+      { id: "face-ab", kind: "polygon", appearance: "primary", vertices: [{ x: 0, y: 0 }, { x: 4, y: 0 }, { x: 4, y: 3 }, { x: 0, y: 3 }] },
+      { id: "face-bc", kind: "polygon", appearance: "secondary", vertices: [{ x: 5, y: 0 }, { x: 8, y: 0 }, { x: 8, y: 5 }, { x: 5, y: 5 }] },
+      { id: "face-ac", kind: "polygon", appearance: "answer", vertices: [{ x: 9, y: 0 }, { x: 13, y: 0 }, { x: 13, y: 5 }, { x: 9, y: 5 }] },
+    ],
+    labels: [
+      { key: "ab", objectId: "face-ab", at: { x: 2, y: 3 }, placement: "above" },
+      { key: "bc", objectId: "face-bc", at: { x: 6.5, y: 5 }, placement: "above" },
+      { key: "ac", objectId: "face-ac", at: { x: 11, y: 5 }, placement: "above" },
+      { key: "dim1", objectId: "face-ab", at: { x: 2, y: 0 }, placement: "below" },
+      { key: "dim2", objectId: "face-bc", at: { x: 6.5, y: 0 }, placement: "below" },
+      { key: "dim3", objectId: "face-ac", at: { x: 11, y: 0 }, placement: "below" },
+    ],
+  }}
+  labels={{
+    ab: <><InlineMath math="12\text{ cm}^2" /></>,
+    bc: <><InlineMath math="15\text{ cm}^2" /></>,
+    ac: <><InlineMath math="20\text{ cm}^2" /></>,
+    dim1: <><InlineMath math="4 \times 3" /></>,
+    dim2: <><InlineMath math="3 \times 5" /></>,
+    dim3: <><InlineMath math="4 \times 5" /></>,
+  }}
+/>
+
+Setiap rusuk (<InlineMath math="4" />, <InlineMath math="3" />, dan <InlineMath math="5" />) muncul tepat dua kali di ketiga persegi panjang itu, mengonfirmasi volume <InlineMath math="60\text{ cm}^3" />.
+
+## Mengecek pilihan salah
+
+Perhatikan bagaimana setiap pengecoh mencampur **satuan panjang, luas, dan volume**.
+
+- <InlineMath math="47\text{ cm}^3" /> sekadar menjumlahkan ketiga luas sisi (<InlineMath math="12 + 15 + 20" />), bukan menghitung volume.
+- <InlineMath math="94\text{ cm}^3" /> sebenarnya adalah luas permukaan balok (<InlineMath math="94\text{ cm}^2" />), bukan volume.
+- <InlineMath math="180\text{ cm}^3" /> mengalikan dua luas sisi saja (<InlineMath math="12 \cdot 15" />) sehingga satu rusuk ikut dikuadratkan.
+- <InlineMath math="3{.}600\text{ cm}^3" /> adalah kuadrat volume sebelum ditarik akar kuadratnya.
+- <InlineMath math="12\text{ cm}^3" /> menjumlahkan ketiga rusuk (<InlineMath math="4 + 3 + 5" />) alih-alih mengalikannya.
+
+# Jawaban
+
+Volume balok ini adalah <InlineMath math="60\text{ cm}^3" />.

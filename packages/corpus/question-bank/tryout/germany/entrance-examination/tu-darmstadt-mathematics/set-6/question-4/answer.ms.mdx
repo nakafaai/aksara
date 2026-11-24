@@ -1,30 +1,36 @@
-# Di mana pembahagi dua sudut bertemu sisi
+# Diberi
 
-Pembahagi dua sudut membahagi sisi bertentangan **mengikut nisbah dua sisi yang bersebelahan**:
+Dalam **segi tiga** (*Dreieck*) <InlineMath math="ABC" />, panjang sisinya ialah <InlineMath math="\overline{AB} = 6" />, <InlineMath math="\overline{AC} = 4" />, dan <InlineMath math="\overline{BC} = 5" />. **Pembahagi dua sama sudut** (*Winkelhalbierende*) pada bucu <InlineMath math="A" /> memotong sisi <InlineMath math="\overline{BC}" /> di titik <InlineMath math="D" />.
 
-<BlockMath math="\frac{\overline{BD}}{\overline{DC}}=\frac{\overline{AB}}{\overline{AC}}=\frac64=\frac32,\qquad \overline{BD}+\overline{DC}=5\quad\Longrightarrow\quad \overline{BD}=3,\ \overline{DC}=2" />
+# Ditanya
+
+Tentukan panjang tembereng pembahagi sudut <InlineMath math="\overline{AD}" />.
+
+# Penyelesaian
+
+Pembahagi dua sama sudut membahagikan sisi bertentangan <InlineMath math="BC" /> mengikut **nisbah tepat dua sisi yang mengapit sudut <InlineMath math="A" />** (<InlineMath math="6 : 4" /> atau <InlineMath math="3 : 2" />)! Sebaik sahaja titik <InlineMath math="D" /> ditemui, gunakan petua kosinus dua kali bagi sudut <InlineMath math="B" /> yang sama: sekali dalam segi tiga besar <InlineMath math="ABC" /> dan sekali lagi dalam segi tiga kecil <InlineMath math="ABD" />.
+
+> Pembahagi dua sama sudut membahagikan sisi bertentangan mengikut nisbah sisi bersebelahan, maka gabungan teorem pembahagi sudut dan petua kosinus terus memberi panjangnya.
+
+Kira pembahagian sisi <InlineMath math="\overline{BC} = 5" /> oleh titik <InlineMath math="D" />.
+
+<BlockMath math="\frac{\overline{BD}}{\overline{DC}} = \frac{\overline{AB}}{\overline{AC}} = \frac{6}{4} = \frac{3}{2}, \qquad \overline{BD} + \overline{DC} = 5 \implies \overline{BD} = 3, \quad \overline{DC} = 2" />
 
 <MathVisual
-  title={<>Pembahagi dua sudut membahagi <InlineMath math="\overline{BC}" /></>}
-  description={<>Segi tiga dengan <InlineMath math="\overline{AB}=6" />, <InlineMath math="\overline{AC}=4" /> dan <InlineMath math="\overline{BC}=5" />. Pembahagi dua sudut <InlineMath math="A" /> bertemu <InlineMath math="\overline{BC}" /> di <InlineMath math="D" /> dan membahagi sisi itu kepada <InlineMath math="\overline{BD}=3" /> dan <InlineMath math="\overline{DC}=2" />. Tembereng garis <InlineMath math="\overline{AD}" /> diserlahkan.</>}
-  labels={{
-    a: <><InlineMath math="A" /></>,
-    b: <><InlineMath math="B" /></>,
-    c: <><InlineMath math="C" /></>,
-    d: <><InlineMath math="D" /></>,
-    bd: <><InlineMath math="3" /></>,
-    dc: <><InlineMath math="2" /></>,
-    ab: <><InlineMath math="6" /></>,
-    ac: <><InlineMath math="4" /></>,
-  }}
+  title={<>Pembahagi sudut <InlineMath math="A" /> membahagikan sisi <InlineMath math="BC" /></>}
+  description={
+    <>
+      Segi tiga bersisi <InlineMath math="6" />, <InlineMath math="4" />, dan{" "}
+      <InlineMath math="5" />. Pembahagi sudut hijau <InlineMath math="\overline{AD}" />{" "}
+      memotong <InlineMath math="BC" /> pada <InlineMath math="D" /> menjadi{" "}
+      <InlineMath math="\overline{BD} = 3" /> dan <InlineMath math="\overline{DC} = 2" />.
+    </>
+  }
+  footer={<>Nisbah <InlineMath math="6 : 4" /> terus membahagikan sisi <InlineMath math="BC = 5" /> kepada <InlineMath math="3" /> dan <InlineMath math="2" />.</>}
   scene={{
     space: "plane",
-    frame: {
-      kind: "cartesian",
-      x: { min: -1, max: 6 },
-      y: { min: -1, max: 5 },
-    },
-    view: { kind: "fit", padding: 0.1 },
+    frame: { kind: "cartesian", x: { min: -1, max: 6 }, y: { min: -1, max: 5 } },
+    view: { kind: "fit", padding: 0.08 },
     objects: [
       { id: "triangle", kind: "polygon", appearance: "primary", vertices: [{ x: 0, y: 0 }, { x: 5, y: 0 }, { x: 4.5, y: 3.9686 }] },
       { id: "bisector", kind: "segment", appearance: "answer", from: { x: 4.5, y: 3.9686 }, to: { x: 3, y: 0 } },
@@ -45,26 +51,45 @@ Pembahagi dua sudut membahagi sisi bertentangan **mengikut nisbah dua sisi yang 
       { key: "ac", objectId: "triangle", at: { x: 4.75, y: 1.9843 }, placement: "right" },
     ],
   }}
+  labels={{
+    a: <><InlineMath math="A" /></>,
+    b: <><InlineMath math="B" /></>,
+    c: <><InlineMath math="C" /></>,
+    d: <><InlineMath math="D" /></>,
+    bd: <><InlineMath math="3" /></>,
+    dc: <><InlineMath math="2" /></>,
+    ab: <><InlineMath math="6" /></>,
+    ac: <><InlineMath math="4" /></>,
+  }}
 />
 
-# Cari sudut di <InlineMath math="B" />
+Dengan <InlineMath math="\overline{BD} = 3" /> ditetapkan, segi tiga <InlineMath math="ABD" /> berkongsi sudut <InlineMath math="\beta" /> yang sama dengan segi tiga <InlineMath math="ABC" />.
 
-Dalam segi tiga <InlineMath math="ABC" /> ketiga-tiga sisi diketahui. Petua kosinus memberi **kosinus sudut di <InlineMath math="B" />**:
+## Menggunakan petua kosinus dua kali
 
-<BlockMath math="\cos\beta=\frac{6^2+5^2-4^2}{2\cdot6\cdot5}=\frac{45}{60}=\frac34" />
+Tentukan **nilai <InlineMath math="\cos\beta" /> dalam segi tiga besar <InlineMath math="ABC" />**, kemudian masukkan ke dalam segi tiga kecil <InlineMath math="ABD" />.
 
-# Petua kosinus dalam segi tiga <InlineMath math="ABD" />
+<BlockMath math="\begin{aligned}
+\cos\beta &= \frac{6^2 + 5^2 - 4^2}{2 \cdot 6 \cdot 5} = \frac{45}{60} = \frac{3}{4} \\
+\overline{AD}^2 &= 6^2 + 3^2 - 2 \cdot 6 \cdot 3 \cdot \frac{3}{4} = 45 - 27 = 18 \implies \overline{AD} = 3\sqrt{2}
+\end{aligned}" />
 
-Dalam segi tiga <InlineMath math="ABD" /> kini diketahui <InlineMath math="\overline{AB}=6" />, <InlineMath math="\overline{BD}=3" /> dan sudut di antaranya, <InlineMath math="\beta" />. Guna petua kosinus sekali lagi:
+Semakan pantas melalui identiti panjang pembahagi sudut mengesahkan kuasa dua panjangnya:
 
-<BlockMath math="\overline{AD}^2=6^2+3^2-2\cdot6\cdot3\cdot\frac34=45-27=18\quad\Longrightarrow\quad \overline{AD}=3\sqrt2" />
+<BlockMath math="\overline{AD}^2 = \overline{AB} \cdot \overline{AC} - \overline{BD} \cdot \overline{DC} = 6 \cdot 4 - 3 \cdot 2 = 18" />
 
-Tembereng garis itu **panjangnya <InlineMath math="3\sqrt2" />**, kira-kira <InlineMath math="4.24" />.
+## Menyemak pilihan salah
 
-# Kenapa jawapan lain salah
+Perhatikan bagaimana setiap pilihan salah melanggar **nisbah pembahagi sudut atau kosinus sudut <InlineMath math="\beta" />**.
 
-- <InlineMath math="\sqrt{22}" /> membahagi mengikut **nisbah terbalik**, <InlineMath math="\overline{BD}=2" />: <InlineMath math="36+4-2\cdot6\cdot2\cdot\frac34=22" />.
-- <InlineMath math="\frac{\sqrt{79}}{2}" /> ialah panjang median dari <InlineMath math="A" />, dengan <InlineMath math="D" /> di titik tengah <InlineMath math="\overline{BC}" />.
-- <InlineMath math="2\sqrt6" /> ialah <InlineMath math="\sqrt{\overline{AB}\cdot\overline{AC}}" />. Jalan pintas itu membuang sebutan pembetulan dalam rumus pembahagi dua sudut.
-- <InlineMath math="3" /> ialah <InlineMath math="\overline{BD}" />, bukan <InlineMath math="\overline{AD}" />.
-- <InlineMath math="3\sqrt3" /> memakai <InlineMath math="\cos\beta=\frac12" />, seolah-olah sudut di <InlineMath math="B" /> ialah <InlineMath math="60^\circ" />: <InlineMath math="45-36\cdot\frac12=27" />.
+| Pilihan | Mengapa salah |
+| :--- | :--- |
+| <InlineMath math="\sqrt{22}" /> | Menterbalikkan nisbah potongan sehingga memakai <InlineMath math="\overline{BD} = 2" /> bukannya <InlineMath math="3" />. |
+| <InlineMath math="\frac{\sqrt{79}}{2}" /> | Mengira panjang median ke titik tengah <InlineMath math="BC" />, bukannya pembahagi sudut. |
+| <InlineMath math="2\sqrt{6}" /> | Hanya mengira <InlineMath math="\sqrt{AB \cdot AC}" /> dan terlupa menolak <InlineMath math="BD \cdot DC" />. |
+| <InlineMath math="3" /> | Itu ialah panjang tembereng <InlineMath math="\overline{BD}" />, bukannya <InlineMath math="\overline{AD}" />. |
+| <InlineMath math="3\sqrt{3}" /> | Menganggap <InlineMath math="\cos\beta = \frac{1}{2}" /> seolah-olah sudut di <InlineMath math="B" /> ialah <InlineMath math="60^\circ" />. |
+
+# Jawapan
+
+Panjang tembereng <InlineMath math="\overline{AD}" /> ialah <InlineMath math="3\sqrt{2}" />.

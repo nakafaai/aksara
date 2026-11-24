@@ -1,43 +1,54 @@
-# A new variable gives a quadratic equation
+# Given
 
-All the powers have base <InlineMath math="2" />. Write <InlineMath math="2^{2x+1}=2\cdot\left(2^x\right)^2" /> and set <InlineMath math="t=2^x" />. **Here <InlineMath math="t>0" />**, because a power of <InlineMath math="2" /> is always positive:
+We are given an **exponential equation** (*Exponentialgleichung*) over the real numbers.
 
-<BlockMath math="2t^2-9t+4=0" />
+<BlockMath math="2^{2x + 1} - 9 \cdot 2^x + 4 = 0" />
 
-# Solve the quadratic equation
+# Asked
 
-<BlockMath math="t=\frac{9\pm\sqrt{81-32}}{4}=\frac{9\pm7}{4}\quad\Longrightarrow\quad t=4\ \text{or}\ t=\frac12" />
+Find the real solution set (*Lösungsmenge*) <InlineMath math="\mathbb{L}" /> of this equation.
 
-Both values are positive, so **neither drops out**.
+# Solution
 
-# Back to <InlineMath math="x" />
+First peel off the <InlineMath math="+1" /> in the exponent so every power is built out of the same block <InlineMath math="2^x" />! Setting <InlineMath math="t = 2^x" /> with <InlineMath math="t > 0" /> converts the exponential equation into a clean quadratic, and **the crucial final step is turning each positive <InlineMath math="t" /> back into <InlineMath math="x" />**.
 
-Each value of <InlineMath math="t" /> gives **exactly one <InlineMath math="x" />**, because <InlineMath math="2^x" /> takes every positive value exactly once:
+> Substituting an exponential power turns the equation into a quadratic in a strictly positive variable, and every positive root must then be converted back into the original exponent.
+
+Rewrite <InlineMath math="2^{2x + 1}" /> as <InlineMath math="2 \cdot (2^x)^2" /> and solve the quadratic in <InlineMath math="t" />.
 
 <BlockMath math="\begin{aligned}
-2^x=4&\quad\Longrightarrow\quad x=2 \\
-2^x=\tfrac12&\quad\Longrightarrow\quad x=-1
+2t^2 - 9t + 4 &= 0 \\
+(2t - 1)(t - 4) &= 0 \implies t = \frac{1}{2} \quad \text{or} \quad t = 4
 \end{aligned}" />
 
+## Converting back to variable x
+
+Both <InlineMath math="t" /> values are positive, so neither drops out, and **a negative exponent <InlineMath math="x" /> is completely valid** because <InlineMath math="2^x" /> remains positive.
+
+<BlockMath math="\begin{aligned}
+2^x = 4 &\implies x = 2 \\
+2^x = \frac{1}{2} = 2^{-1} &\implies x = -1
+\end{aligned}" />
+
+Watch the exponential graph below cross the horizontal axis twice.
+
 <MathVisual
-  title={<>The zeros of the expression</>}
-  description={<>The graph of <InlineMath math="y=2^{2x+1}-9\cdot2^x+4" /> approaches <InlineMath math="4" /> for very small <InlineMath math="x" />, dips below the <InlineMath math="x" />-axis and then rises steeply. It crosses the axis exactly twice, at <InlineMath math="x=-1" /> and at <InlineMath math="x=2" />.</>}
-  labels={{
-    a: <><InlineMath math="x=-1" /></>,
-    b: <><InlineMath math="x=2" /></>,
-    f: <><InlineMath math="2^{2x+1}-9\cdot2^x+4" /></>,
-  }}
+  title={<>Two zeros of <InlineMath math="2^{2x + 1} - 9 \cdot 2^x + 4" /></>}
+  description={
+    <>
+      The curve approaches height <InlineMath math="4" /> on the left, dips
+      below zero, then climbs sharply, crossing the horizontal axis at{" "}
+      <InlineMath math="x = -1" /> and <InlineMath math="x = 2" />.
+    </>
+  }
+  footer={<>The graph crosses the horizontal axis twice, at <InlineMath math="x = -1" /> and <InlineMath math="x = 2" />.</>}
   scene={{
     space: "plane",
-    frame: {
-      kind: "cartesian",
-      x: { min: -4.5, max: 3.5 },
-      y: { min: -7, max: 24 },
-    },
-    view: { kind: "fit", padding: 0.1 },
+    frame: { kind: "cartesian", x: { min: -4.5, max: 3.5 }, y: { min: -7, max: 24 } },
+    view: { kind: "fit", padding: 0.08 },
     objects: [
       { id: "x-axis", kind: "segment", appearance: "reference", from: { x: -4, y: 0 }, to: { x: 3, y: 0 } },
-      { id: "curve", kind: "function", appearance: "primary", formula: "2^(2*x+1) - 9*2^x + 4", domain: { min: -4, max: 2.6 } },
+      { id: "curve", kind: "function", appearance: "primary", formula: "2^(2 * x + 1) - 9 * 2^x + 4", domain: { min: -4, max: 2.6 } },
       { id: "z1", kind: "point", appearance: "answer", at: { x: -1, y: 0 } },
       { id: "z2", kind: "point", appearance: "answer", at: { x: 2, y: 0 } },
     ],
@@ -47,14 +58,32 @@ Each value of <InlineMath math="t" /> gives **exactly one <InlineMath math="x" /
       { key: "f", objectId: "curve", at: { x: 2.5, y: 18 }, placement: "left" },
     ],
   }}
+  labels={{
+    a: <><InlineMath math="x = -1" /></>,
+    b: <><InlineMath math="x = 2" /></>,
+    f: <><InlineMath math="2^{2x + 1} - 9 \cdot 2^x + 4" /></>,
+  }}
 />
 
-Check <InlineMath math="x=-1" />: <InlineMath math="2^{-1}-9\cdot\frac12+4=\frac12-\frac92+4=0" />. The solution set is **<InlineMath math="\mathbb{L}=\{-1;\,2\}" />**.
+The plot confirms that both solutions, including <InlineMath math="x = -1" />, hit zero cleanly.
 
-# Why the other answers are wrong
+## Checking the solutions and wrong choices
 
-- <InlineMath math="\left\{\frac12;\,4\right\}" /> are the values of <InlineMath math="t" />. **The way back to <InlineMath math="x" /> is missing**.
-- <InlineMath math="\{2\}" /> throws away <InlineMath math="x=-1" />, probably because a negative solution looks odd. Negative exponents are allowed, though.
-- <InlineMath math="\{1;\,2\}" /> makes a sign slip on the way back: <InlineMath math="2^x=\frac12" /> holds for <InlineMath math="x=-1" />, not for <InlineMath math="x=1" />.
-- <InlineMath math="\{2-\log_2 7\}" /> comes from writing <InlineMath math="2^{2x+1}" /> as <InlineMath math="2t" /> instead of <InlineMath math="2t^2" />: <InlineMath math="2t-9t+4=0" /> gives <InlineMath math="t=\frac47" />.
-- The values with <InlineMath math="\frac{9\pm\sqrt{65}}{2}" /> come from dropping the factor <InlineMath math="2" /> in front of <InlineMath math="t^2" />: <InlineMath math="t^2-9t+4=0" />.
+Test <InlineMath math="x = -1" /> and <InlineMath math="x = 2" /> directly in **the original exponential equation**:
+
+<BlockMath math="\begin{aligned}
+x = -1 &\implies 2^{-1} - 9 \cdot \frac{1}{2} + 4 = \frac{1}{2} - \frac{9}{2} + 4 = 0 \\
+x = 2 &\implies 2^5 - 9 \cdot 4 + 4 = 32 - 36 + 4 = 0
+\end{aligned}" />
+
+| Option | Why it is wrong |
+| :--- | :--- |
+| <InlineMath math="\mathbb{L} = \left\{\frac{1}{2},\, 4\right\}" /> | Stops at the <InlineMath math="t" /> values and forgets to solve back for <InlineMath math="x" />. |
+| <InlineMath math="\mathbb{L} = \{2\}" /> | Rejects <InlineMath math="x = -1" />, even though negative exponents are allowed for <InlineMath math="2^x" />. |
+| <InlineMath math="\mathbb{L} = \{1,\, 2\}" /> | Flips the sign of the exponent, confusing <InlineMath math="2^{-1}" /> with <InlineMath math="2^1" />. |
+| <InlineMath math="\mathbb{L} = \{2 - \log_2 7\}" /> | Misreads <InlineMath math="2^{2x + 1}" /> as <InlineMath math="2t" /> instead of <InlineMath math="2t^2" />. |
+| <InlineMath math="\mathbb{L} = \left\{\log_2\frac{9 \pm \sqrt{65}}{2}\right\}" /> | Drops the leading factor <InlineMath math="2" /> in front of <InlineMath math="t^2" />. |
+
+# Answer
+
+The solution set is <InlineMath math="\mathbb{L} = \{-1,\, 2\}" />.

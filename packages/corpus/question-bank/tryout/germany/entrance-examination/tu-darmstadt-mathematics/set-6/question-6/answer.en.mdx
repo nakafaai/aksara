@@ -1,34 +1,44 @@
-# Find the rate from two increases
+# Given
 
-Growth at the rate <InlineMath math="p" /> (as a decimal) multiplies production by <InlineMath math="1+p" />. Two equal increases in a row give **the factor <InlineMath math="(1+p)^2" />**, and that is <InlineMath math="1.44" />:
+A **company** (*Betrieb*) increases its output (*Produktion*) by the same percentage two years in a row until output stands <InlineMath math="44\,\%" /> above the starting level. In the third year, output drops by that exact same percentage.
 
-<BlockMath math="(1+p)^2=1.44\quad\Longrightarrow\quad 1+p=1.2\quad\Longrightarrow\quad p=0.2" />
+# Asked
 
-The negative root <InlineMath math="1+p=-1.2" /> gives no sensible factor.
+By what percentage does output at the end of the third year exceed the initial output?
 
-# Measure the cut against the new value
+# Solution
 
-In the third year production falls by <InlineMath math="20\,\%" />, measured **from the level it has reached**, that is from <InlineMath math="1.44" /> times the start:
+Picture starting with <InlineMath math="100" /> crates. Two identical <InlineMath math="20\,\%" /> jumps lift the stack from <InlineMath math="100" /> to <InlineMath math="120" /> and then to <InlineMath math="144" /> crates. When year three trims <InlineMath math="20\,\%" />, **that cut slices one fifth off the larger <InlineMath math="144" />-crate pile**, not off <InlineMath math="100" />, so the drop hurts more than a single hike!
 
-<BlockMath math="1.44\cdot(1-0.2)=1.44\cdot0.8=1.152" />
+> Consecutive percentage changes always multiply onto the latest value, so extract the annual growth rate via a square root first and then multiply by the decrease factor.
+
+Find the annual growth rate <InlineMath math="p > 0" /> from two consecutive hikes reaching <InlineMath math="1.44" />.
+
+<BlockMath math="(1 + p)^2 = 1.44 \implies 1 + p = 1.2 \implies p = 0.2 = 20\,\%" />
+
+## Computing the third year output level
+
+Apply the <InlineMath math="20\,\%" /> decline to **the updated level <InlineMath math="1.44" />** by multiplying by <InlineMath math="0.8" />.
+
+<BlockMath math="1.44 \cdot (1 - 0.2) = 1.44 \cdot 0.8 = 1.152" />
+
+Trace the production index starting at <InlineMath math="100" /> across all three years below.
 
 <MathVisual
-  title={<>Production over three years</>}
-  description={<>Production as an index with <InlineMath math="100" /> at the start. It rises to <InlineMath math="120" /> and <InlineMath math="144" /> and falls to <InlineMath math="115.2" /> in the third year. The horizontal line at <InlineMath math="100" /> marks the start, and the end point lies <InlineMath math="15.2" /> above it.</>}
-  labels={{
-    s: <>start <InlineMath math="100" /></>,
-    y1: <><InlineMath math="120" /></>,
-    y2: <><InlineMath math="144" /></>,
-    e: <>end <InlineMath math="115.2" /></>,
-  }}
+  title={<>Production index trajectory over three years</>}
+  description={
+    <>
+      Starting at index <InlineMath math="100" />, output climbs to{" "}
+      <InlineMath math="120" /> and <InlineMath math="144" />, then drops in
+      year three to <InlineMath math="115.2" />, finishing{" "}
+      <InlineMath math="15.2" /> points above the baseline.
+    </>
+  }
+  footer={<>After two <InlineMath math="20\,\%" /> rises and one <InlineMath math="20\,\%" /> drop, output settles at index <InlineMath math="115.2" />.</>}
   scene={{
     space: "plane",
-    frame: {
-      kind: "cartesian",
-      x: { min: -0.5, max: 3.8 },
-      y: { min: 90, max: 155 },
-    },
-    view: { kind: "fit", padding: 0.1 },
+    frame: { kind: "cartesian", x: { min: -0.5, max: 3.8 }, y: { min: 90, max: 155 } },
+    view: { kind: "fit", padding: 0.08 },
     objects: [
       { id: "base", kind: "segment", appearance: "reference", from: { x: 0, y: 100 }, to: { x: 3, y: 100 } },
       { id: "path", kind: "polyline", appearance: "primary", vertices: [{ x: 0, y: 100 }, { x: 1, y: 120 }, { x: 2, y: 144 }, { x: 3, y: 115.2 }] },
@@ -44,14 +54,26 @@ In the third year production falls by <InlineMath math="20\,\%" />, measured **f
       { key: "e", objectId: "p3", at: { x: 3, y: 115.2 }, placement: "right" },
     ],
   }}
+  labels={{
+    s: <>start <InlineMath math="100" /></>,
+    y1: <><InlineMath math="120" /></>,
+    y2: <><InlineMath math="144" /></>,
+    e: <>end <InlineMath math="115.2" /></>,
+  }}
 />
 
-At the end production is **<InlineMath math="15.2\,\%" /> above the start**.
+Notice that year three finishes below year one (<InlineMath math="120" />), because taking <InlineMath math="20\,\%" /> off <InlineMath math="144" /> cuts more than adding <InlineMath math="20\,\%" /> onto <InlineMath math="120" />.
 
-# Why the other answers are wrong
+## Checking the result and wrong choices
 
-- "by <InlineMath math="24\,\%" />" **subtracts <InlineMath math="20" /> percentage points from <InlineMath math="44\,\%" />** instead of applying the cut to the new value.
-- "by <InlineMath math="22\,\%" />" halves <InlineMath math="44\,\%" /> into a rate per year and then works out <InlineMath math="44-22" />.
-- "by <InlineMath math="20\,\%" />" assumes one increase and the cut cancel each other.
-- "by <InlineMath math="12.32\,\%" />" uses <InlineMath math="22\,\%" /> as the rate: <InlineMath math="1.44\cdot0.78=1.1232" />.
-- "by <InlineMath math="0\,\%" />" assumes the cut undoes all the increases.
+Quick factor check: multiplying <InlineMath math="1.2 \cdot 1.2 \cdot 0.8" /> gives <InlineMath math="1.152" />, leaving output **still <InlineMath math="15.2\,\%" /> above the starting level**.
+
+- <InlineMath math="24\,\%" /> subtracts <InlineMath math="20" /> percentage points straight from <InlineMath math="44\,\%" /> instead of scaling the new level.
+- <InlineMath math="22\,\%" /> halves <InlineMath math="44\,\%" /> for the annual rate and then subtracts linearly.
+- <InlineMath math="20\,\%" /> assumes one <InlineMath math="20\,\%" /> rise and one <InlineMath math="20\,\%" /> drop cancel each other out.
+- <InlineMath math="12.32\,\%" /> plugs the wrong annual rate <InlineMath math="22\,\%" /> into the third-year decrease.
+- <InlineMath math="0\,\%" /> assumes the single decrease wipes out both earlier increases.
+
+# Answer
+
+At the end of the third year, output is <InlineMath math="15.2\,\%" /> above the initial level.

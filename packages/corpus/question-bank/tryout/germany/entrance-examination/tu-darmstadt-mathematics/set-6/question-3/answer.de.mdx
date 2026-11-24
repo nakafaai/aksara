@@ -1,34 +1,44 @@
-# Zwei Höhen genügen
+# Gegeben
 
-Alle drei Höhen schneiden sich in einem Punkt. Für seine Koordinaten genügen also **zwei Höhen**, die dritte dient als Probe.
+Gegeben ist ein **Dreieck** mit den Eckpunkten <InlineMath math="A(0 \mid 0)" />, <InlineMath math="B(8 \mid 0)" /> und <InlineMath math="C(2 \mid 6)" />. Die drei Höhen des Dreiecks schneiden sich im Höhenschnittpunkt <InlineMath math="H" />.
 
-Die Seite <InlineMath math="\overline{AB}" /> liegt auf der <InlineMath math="x" />-Achse. Die Höhe von <InlineMath math="C" /> steht senkrecht darauf, ist also die senkrechte Gerade <InlineMath math="x=2" />.
+# Gesucht
 
-# Die Höhe von <InlineMath math="A" />
+Die Koordinaten des Höhenschnittpunkts <InlineMath math="H" />.
 
-Die Seite <InlineMath math="\overline{BC}" /> hat die Steigung <InlineMath math="m_{BC}=\frac{6-0}{2-8}=-1" />. Eine Senkrechte dazu hat die Steigung <InlineMath math="1" />, denn **die Steigungen senkrechter Geraden multiplizieren sich zu <InlineMath math="-1" />**. Die Höhe von <InlineMath math="A(0\mid0)" /> ist also <InlineMath math="y=x" />.
+# Lösung
 
-# Der Schnittpunkt
+Da sich alle drei Höhen jedes Dreiecks in genau einem Punkt schneiden, reichen **die beiden einfachsten Höhen für <InlineMath math="H" />**, und die dritte Höhe dient als kostenlose Probe! Weil die Seite <InlineMath math="AB" /> waagerecht auf der <InlineMath math="x" />-Achse liegt, fällt die Höhe aus <InlineMath math="C(2 \mid 6)" /> einfach senkrecht als <InlineMath math="x = 2" />!
 
-<BlockMath math="x=2,\quad y=x\quad\Longrightarrow\quad H(2\mid2)" />
+> Für den Höhenschnittpunkt in Koordinaten schneidest du die beiden leichtesten Höhen mithilfe des Steigungsprodukts minus eins und prüfst den Punkt mit der dritten Höhe.
+
+Bestimme als Nächstes die Höhe aus <InlineMath math="A(0 \mid 0)" /> senkrecht zur Seite <InlineMath math="BC" />.
+
+<BlockMath math="\begin{aligned}
+m_{BC} &= \frac{6 - 0}{2 - 8} = -1 \implies m_{h_A} = 1 \\
+h_A &: y = x, \qquad h_C : x = 2 \implies H(2 \mid 2)
+\end{aligned}" />
+
+## Alle drei Höhen im Koordinatensystem prüfen
+
+Im Bild erkennst du direkt, wie **alle drei Höhen genau im Punkt <InlineMath math="H(2 \mid 2)" /> zusammentreffen**.
 
 <MathVisual
-  title={<>Die drei Höhen</>}
-  description={<>Das Dreieck mit <InlineMath math="A(0\mid0)" />, <InlineMath math="B(8\mid0)" /> und <InlineMath math="C(2\mid6)" />. Die Höhe von <InlineMath math="C" /> ist die senkrechte Strecke bei <InlineMath math="x=2" />. Die Höhe von <InlineMath math="A" /> liegt auf <InlineMath math="y=x" /> und trifft <InlineMath math="\overline{BC}" /> in <InlineMath math="(4\mid4)" />. Die Höhe von <InlineMath math="B" /> trifft <InlineMath math="\overline{AC}" /> in <InlineMath math="(0{,}8\mid2{,}4)" />. Alle drei gehen durch <InlineMath math="H(2\mid2)" />.</>}
-  labels={{
-    a: <><InlineMath math="A" /></>,
-    b: <><InlineMath math="B" /></>,
-    c: <><InlineMath math="C" /></>,
-    h: <><InlineMath math="H(2\mid2)" /></>,
-  }}
+  title={<>Schnittpunkt aller drei Höhen bei <InlineMath math="H(2 \mid 2)" /></>}
+  description={
+    <>
+      Dreieck <InlineMath math="A(0 \mid 0)" />, <InlineMath math="B(8 \mid 0)" />{" "}
+      und <InlineMath math="C(2 \mid 6)" /> mit allen drei Höhen: Senkrechte{" "}
+      <InlineMath math="x = 2" />, Gerade <InlineMath math="y = x" /> bis{" "}
+      <InlineMath math="(4 \mid 4)" /> und dritte Höhe aus <InlineMath math="B" />{" "}
+      bis <InlineMath math="(0{,}8 \mid 2{,}4)" />.
+    </>
+  }
+  footer={<>Alle drei Höhen aus <InlineMath math="A" />, <InlineMath math="B" /> und <InlineMath math="C" /> treffen sich exakt in <InlineMath math="H(2 \mid 2)" />.</>}
   scene={{
     space: "plane",
-    frame: {
-      kind: "cartesian",
-      x: { min: -1, max: 9 },
-      y: { min: -1, max: 7 },
-    },
-    view: { kind: "fit", padding: 0.1 },
+    frame: { kind: "cartesian", x: { min: -1, max: 9 }, y: { min: -1, max: 7 } },
+    view: { kind: "fit", padding: 0.08 },
     objects: [
       { id: "triangle", kind: "polygon", appearance: "primary", vertices: [{ x: 0, y: 0 }, { x: 8, y: 0 }, { x: 2, y: 6 }] },
       { id: "alt-c", kind: "segment", appearance: "secondary", from: { x: 2, y: 6 }, to: { x: 2, y: 0 } },
@@ -46,14 +56,28 @@ Die Seite <InlineMath math="\overline{BC}" /> hat die Steigung <InlineMath math=
       { key: "h", objectId: "ph", at: { x: 2, y: 2 }, placement: "right" },
     ],
   }}
+  labels={{
+    a: <><InlineMath math="A" /></>,
+    b: <><InlineMath math="B" /></>,
+    c: <><InlineMath math="C" /></>,
+    h: <><InlineMath math="H(2 \mid 2)" /></>,
+  }}
 />
 
-Probe mit der dritten Höhe: <InlineMath math="\overline{AC}" /> hat die Steigung <InlineMath math="3" />, die Höhe von <InlineMath math="B" /> also die Steigung <InlineMath math="-\frac13" />. Die Gerade durch <InlineMath math="B(8\mid0)" /> mit dieser Steigung hat bei <InlineMath math="x=2" /> den Wert <InlineMath math="-\frac13\cdot(2-8)=2" />. Sie geht **auch durch <InlineMath math="H(2\mid2)" />**.
+Probe mit der dritten Höhe aus <InlineMath math="B(8 \mid 0)" />: Die Seite <InlineMath math="AC" /> hat Steigung <InlineMath math="3" />, also hat die Höhe aus <InlineMath math="B" /> die Steigung <InlineMath math="-\frac{1}{3}" /> und geht direkt durch <InlineMath math="H(2 \mid 2)" />.
 
-# Warum die anderen Antworten falsch sind
+<BlockMath math="y = -\frac{1}{3}(2 - 8) = 2" />
 
-- <InlineMath math="H(4\mid2)" /> ist der Schnittpunkt der **Mittelsenkrechten**, also der Umkreismittelpunkt.
-- <InlineMath math="H\left(\frac{10}{3}\mid2\right)" /> ist der Schwerpunkt, der Schnittpunkt der Seitenhalbierenden.
-- <InlineMath math="H(2\mid6)" /> ist die Ecke <InlineMath math="C" />. Die Höhe von <InlineMath math="C" /> geht zwar durch <InlineMath math="C" />, die anderen Höhen aber nicht.
-- <InlineMath math="H(2\mid4)" /> entsteht, wenn du für die Höhe von <InlineMath math="A" /> die Steigung <InlineMath math="2" /> nimmst, also nicht den negativen Kehrwert von <InlineMath math="-1" /> bildest.
-- <InlineMath math="H(6\mid2)" /> vertauscht die Koordinaten der Ecke <InlineMath math="C" /> zu <InlineMath math="(6\mid2)" /> und nimmt dann die Höhe <InlineMath math="x=6" />.
+## Falsche Antworten prüfen
+
+Die wichtigsten falschen Optionen sind tatsächlich **andere bekannte Dreieckspunkte**!
+
+- <InlineMath math="H(4 \mid 2)" /> ist der Umkreismittelpunkt, also der Schnittpunkt der Mittelsenkrechten.
+- <InlineMath math="H\left(\frac{10}{3} \mid 2\right)" /> ist der Schwerpunkt, also der Schnittpunkt der Seitenhalbierenden.
+- <InlineMath math="H(2 \mid 6)" /> ist schlicht die Ecke <InlineMath math="C" />, die nur auf einer einzigen Höhe liegt.
+- <InlineMath math="H(2 \mid 4)" /> setzt für die Höhe durch <InlineMath math="A" /> die falsche Steigung <InlineMath math="2" /> statt <InlineMath math="1" /> an.
+- <InlineMath math="H(6 \mid 2)" /> vertauscht die Koordinaten von <InlineMath math="C" /> zu <InlineMath math="(6 \mid 2)" /> und nutzt die Senkrechte <InlineMath math="x = 6" />.
+
+# Antwort
+
+Der Höhenschnittpunkt hat die Koordinaten <InlineMath math="H(2 \mid 2)" />.

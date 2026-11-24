@@ -1,49 +1,55 @@
-# Nyatakan pintasan paksi dengan kecerunan
+# Diberi
 
-Garis melalui <InlineMath math="P(2\mid3)" /> dengan kecerunan <InlineMath math="m<0" /> mempunyai persamaan <InlineMath math="y=m(x-2)+3" />. **Titik pintasannya dengan paksi** bergantung pada <InlineMath math="m" />:
+Sebuah **garis lurus** (*Gerade*) <InlineMath math="g" /> berkecerunan negatif (*negative Steigung*) melalui titik <InlineMath math="P(2 \mid 3)" /> dan memotong paksi <InlineMath math="x" /> positif serta paksi <InlineMath math="y" /> positif. Bersama kedua-dua paksi koordinat, <InlineMath math="g" /> mengepung segi tiga bersudut tegak seluas <InlineMath math="12" />.
+
+# Ditanya
+
+Tentukan persamaan garis lurus <InlineMath math="g" />.
+
+# Penyelesaian
+
+Bayangkan kamu memutar pembaris lurus yang dipaku tepat pada <InlineMath math="P(2 \mid 3)" />! Jika terlalu landai atau terlalu curam, satu pintasannya meluncur jauh lalu membesarkan luas segi tiga. Luas terkecil berlaku tepat apabila **titik <InlineMath math="P(2 \mid 3)" /> terletak di titik tengah antara kedua-dua pintasan paksi**, iaitu <InlineMath math="(4 \mid 0)" /> dan <InlineMath math="(0 \mid 6)" />, dengan luas tepat <InlineMath math="12" />!
+
+> Luas segi tiga yang dibentuk garis berkecerunan negatif melalui satu titik sukuan pertama mencapai minimum tepat apabila titik itu menjadi titik tengah antara kedua-dua pintasan paksi, menghasilkan satu garis tunggal.
+
+Tulis persamaan garis berkecerunan <InlineMath math="m < 0" /> melalui <InlineMath math="P(2 \mid 3)" /> dan ungkapkan kedua-dua pintasan paksinya.
 
 <BlockMath math="\begin{aligned}
-x=0:&\quad y_0=3-2m \\
-y=0:&\quad x_0=2-\frac3m
+y &= m(x - 2) + 3 \\
+x = 0 &\implies y_0 = 3 - 2m, \qquad y = 0 \implies x_0 = 2 - \frac{3}{m}
 \end{aligned}" />
 
-Bagi <InlineMath math="m<0" /> kedua-duanya positif, jadi segi tiga itu berada dalam sukuan pertama.
+## Menyelesaikan syarat luas dan punca kembar
 
-# Bentukkan syarat luas
-
-Segi tiga itu bersudut tegak dengan sisi tegak <InlineMath math="x_0" /> dan <InlineMath math="y_0" />. **Jangan lupa faktor <InlineMath math="\frac12" />**:
+Gantikan kedua-dua sisi siku <InlineMath math="x_0" /> dan <InlineMath math="y_0" /> ke dalam rumus luas segi tiga tanpa melupakan **faktor separuh**.
 
 <BlockMath math="\begin{aligned}
-\tfrac12\left(3-2m\right)\left(2-\tfrac3m\right)&=12 \\
-12-4m-\tfrac9m&=24 \\
-4m^2+12m+9&=0 \\
-(2m+3)^2&=0
+\frac{1}{2}(3 - 2m)\left(2 - \frac{3}{m}\right) &= 12 \\
+12 - 4m - \frac{9}{m} &= 24 \\
+4m^2 + 12m + 9 &= 0 \\
+(2m + 3)^2 &= 0 \implies m = -\frac{3}{2} = -1.5
 \end{aligned}" />
 
-# Penyelesaian berulang
-
-Persamaan kuadratik itu hanya ada **satu penyelesaian, <InlineMath math="m=-\frac32" />**. Maka <InlineMath math="y_0=3+3=6" /> dan <InlineMath math="x_0=2+2=4" />:
+Punca kembar ini memberi satu garis tunggal dengan pintasan <InlineMath math="(4 \mid 0)" /> dan <InlineMath math="(0 \mid 6)" />.
 
 <MathVisual
-  title={<>Garis dan segi tiganya</>}
-  description={<>Garis <InlineMath math="g: y=-1.5x+6" /> bertemu paksi pada <InlineMath math="(4\mid0)" /> dan <InlineMath math="(0\mid6)" />. Bersama paksi-paksi, garis itu membatasi segi tiga bersudut tegak dengan luas <InlineMath math="12" />. Titik <InlineMath math="P(2\mid3)" /> terletak tepat di tengah tembereng garis antara dua titik pintasan paksi.</>}
-  labels={{
-    p: <><InlineMath math="P(2\mid3)" /></>,
-    x0: <><InlineMath math="(4\mid0)" /></>,
-    y0: <><InlineMath math="(0\mid6)" /></>,
-    g: <><InlineMath math="g" /></>,
-  }}
+  title={<>Garis tunggal <InlineMath math="g" /> dan segi tiga seluas <InlineMath math="12" /></>}
+  description={
+    <>
+      Garis <InlineMath math="y = -1.5x + 6" /> memotong paksi pada{" "}
+      <InlineMath math="(4 \mid 0)" /> dan <InlineMath math="(0 \mid 6)" />,
+      membentuk segi tiga bersudut tegak berlorek seluas <InlineMath math="12" />{" "}
+      dengan <InlineMath math="P(2 \mid 3)" /> di titik tengah hipotenusnya.
+    </>
+  }
+  footer={<>Titik <InlineMath math="P(2 \mid 3)" /> membahagi dua sama tembereng antara <InlineMath math="(4 \mid 0)" /> dengan <InlineMath math="(0 \mid 6)" />.</>}
   scene={{
     space: "plane",
-    frame: {
-      kind: "cartesian",
-      x: { min: -1, max: 6 },
-      y: { min: -1.5, max: 7.5 },
-    },
-    view: { kind: "fit", padding: 0.1 },
+    frame: { kind: "cartesian", x: { min: -1, max: 6 }, y: { min: -1.5, max: 7.5 } },
+    view: { kind: "fit", padding: 0.08 },
     objects: [
       { id: "triangle", kind: "polygon", appearance: "highlight", vertices: [{ x: 0, y: 0 }, { x: 4, y: 0 }, { x: 0, y: 6 }] },
-      { id: "line", kind: "function", appearance: "primary", formula: "-1.5*x + 6", domain: { min: -0.5, max: 4.8 } },
+      { id: "line", kind: "function", appearance: "primary", formula: "-1.5 * x + 6", domain: { min: -0.5, max: 4.8 } },
       { id: "pp", kind: "point", appearance: "answer", at: { x: 2, y: 3 } },
       { id: "px", kind: "point", appearance: "reference", at: { x: 4, y: 0 } },
       { id: "py", kind: "point", appearance: "reference", at: { x: 0, y: 6 } },
@@ -55,14 +61,28 @@ Persamaan kuadratik itu hanya ada **satu penyelesaian, <InlineMath math="m=-\fra
       { key: "g", objectId: "line", at: { x: 4.6, y: -0.9 }, placement: "right" },
     ],
   }}
+  labels={{
+    p: <><InlineMath math="P(2 \mid 3)" /></>,
+    x0: <><InlineMath math="(4 \mid 0)" /></>,
+    y0: <><InlineMath math="(0 \mid 6)" /></>,
+    g: <><InlineMath math="g" /></>,
+  }}
 />
 
-Semakan: <InlineMath math="\frac12\cdot4\cdot6=12" />. Persamaan garis itu ialah <InlineMath math="y=-1.5x+6" />.
+Kedudukan <InlineMath math="P(2 \mid 3)" /> di titik tengah hipotenus mengesahkan secara geometri mengapa hanya satu garis yang wujud.
 
-# Kenapa jawapan lain salah
+## Menyemak luas dan pilihan salah
 
-- <InlineMath math="y=-\frac23x+\frac{13}{3}" /> memakai salingan kecerunan. Segi tiganya bersisi tegak <InlineMath math="6.5" /> dan <InlineMath math="\frac{13}{3}" /> dan **luasnya bukan <InlineMath math="12" />**.
-- <InlineMath math="y=-3x+9" /> atau <InlineMath math="y=-0.75x+4.5" /> menjangka dua garis. Kedua-duanya memang melalui <InlineMath math="P" />, tetapi setiap satu membatasi segi tiga dengan luas <InlineMath math="13.5" />.
-- <InlineMath math="y=-\frac23x+4" /> menukar pintasan <InlineMath math="4" /> dan <InlineMath math="6" />. Garis itu tidak melalui <InlineMath math="P" />, kerana <InlineMath math="-\frac23\cdot2+4=\frac83\ne3" />.
-- <InlineMath math="y=1.5x" /> mempunyai kecerunan positif dan melalui asalan.
-- "Tiada garis sedemikian" terhasil kalau faktor <InlineMath math="\frac12" /> tertinggal: syarat itu lalu menjadi <InlineMath math="4m^2=-9" />.
+Semakan terus: garis melalui <InlineMath math="(2 \mid 3)" /> dan membentuk segi tiga bertapak <InlineMath math="4" /> dan tinggi <InlineMath math="6" />, memberi **luas tepat <InlineMath math="12" />**.
+
+| Pilihan | Mengapa salah |
+| :--- | :--- |
+| <InlineMath math="y = -\frac{2}{3}x + \frac{13}{3}" /> | Menggunakan kecerunan salingan sehingga luas segi tiga bukan <InlineMath math="12" />. |
+| <InlineMath math="y = -3x + 9" /> atau <InlineMath math="y = -0.75x + 4.5" /> | Kedua-duanya melalui <InlineMath math="P" />, tetapi masing-masing memberi luas <InlineMath math="13.5" />. |
+| <InlineMath math="y = -\frac{2}{3}x + 4" /> | Menukar pintasan <InlineMath math="4" /> dan <InlineMath math="6" /> sehingga tidak melalui <InlineMath math="P(2 \mid 3)" />. |
+| <InlineMath math="y = 1.5x" /> | Berkecerunan positif dan melalui asalan sehingga tidak mengepung segi tiga. |
+| Tiada garis sedemikian | Terlupa faktor <InlineMath math="\frac{1}{2}" /> pada rumus luas lalu mendapat <InlineMath math="4m^2 = -9" />. |
+
+# Jawapan
+
+Persamaan garis <InlineMath math="g" /> ialah <InlineMath math="y = -1.5x + 6" />.

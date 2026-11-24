@@ -1,43 +1,54 @@
-# Variabel baru menghasilkan persamaan kuadrat
+# Diketahui
 
-Semua bilangan berpangkat itu berbasis <InlineMath math="2" />. Tulis <InlineMath math="2^{2x+1}=2\cdot\left(2^x\right)^2" /> dan misalkan <InlineMath math="t=2^x" />. **Di sini <InlineMath math="t>0" />**, karena bilangan <InlineMath math="2" /> berpangkat selalu positif:
+**Persamaan eksponensial** (*Exponentialgleichung*) dalam himpunan bilangan real diberikan sebagai berikut.
 
-<BlockMath math="2t^2-9t+4=0" />
+<BlockMath math="2^{2x + 1} - 9 \cdot 2^x + 4 = 0" />
 
-# Selesaikan persamaan kuadratnya
+# Ditanyakan
 
-<BlockMath math="t=\frac{9\pm\sqrt{81-32}}{4}=\frac{9\pm7}{4}\quad\Longrightarrow\quad t=4\ \text{atau}\ t=\frac12" />
+Tentukan himpunan penyelesaian (*Lösungsmenge*) <InlineMath math="\mathbb{L}" /> dalam bilangan real.
 
-Kedua nilai positif, jadi **tidak ada yang gugur**.
+# Penyelesaian
 
-# Kembali ke <InlineMath math="x" />
+Kupas dulu angka <InlineMath math="+1" /> pada pangkat pertama sehingga setiap suku hanya memakai blok bangunan yang sama, yaitu <InlineMath math="2^x" />! Begitu kamu mengganti <InlineMath math="t = 2^x" /> dengan syarat <InlineMath math="t > 0" />, persamaan eksponensial berubah menjadi persamaan kuadrat biasa, lalu **jangan lupa mengubah kembali setiap <InlineMath math="t" /> positif menjadi <InlineMath math="x" />**.
 
-Setiap nilai <InlineMath math="t" /> memberi **tepat satu <InlineMath math="x" />**, karena <InlineMath math="2^x" /> mencapai setiap nilai positif tepat sekali:
+> Substitusi pangkat mengubah persamaan eksponensial menjadi persamaan kuadrat dalam variabel baru yang selalu positif, tetapi langkah akhir wajib mengembalikan setiap akar positif ke variabel awal.
+
+Pecah <InlineMath math="2^{2x + 1}" /> menjadi <InlineMath math="2 \cdot (2^x)^2" /> dan selesaikan persamaan kuadrat dalam <InlineMath math="t" />.
 
 <BlockMath math="\begin{aligned}
-2^x=4&\quad\Longrightarrow\quad x=2 \\
-2^x=\tfrac12&\quad\Longrightarrow\quad x=-1
+2t^2 - 9t + 4 &= 0 \\
+(2t - 1)(t - 4) &= 0 \implies t = \frac{1}{2} \quad \text{atau} \quad t = 4
 \end{aligned}" />
 
+## Mengembalikan substitusi ke variabel x
+
+Kedua nilai <InlineMath math="t" /> bernilai positif sehingga keduanya sah, dan **pangkat negatif sepenuhnya diizinkan untuk <InlineMath math="x" />** karena hasilnya tetap positif.
+
+<BlockMath math="\begin{aligned}
+2^x = 4 &\implies x = 2 \\
+2^x = \frac{1}{2} = 2^{-1} &\implies x = -1
+\end{aligned}" />
+
+Lihat grafik fungsi eksponensial berikut untuk menyaksikan dua titik potongnya dengan sumbu mendatar.
+
 <MathVisual
-  title={<>Pembuat nol bentuk itu</>}
-  description={<>Grafik <InlineMath math="y=2^{2x+1}-9\cdot2^x+4" /> mendekati <InlineMath math="4" /> untuk <InlineMath math="x" /> yang sangat kecil, turun di bawah sumbu <InlineMath math="x" />, lalu naik tajam. Grafik itu memotong sumbu tepat dua kali, di <InlineMath math="x=-1" /> dan di <InlineMath math="x=2" />.</>}
-  labels={{
-    a: <><InlineMath math="x=-1" /></>,
-    b: <><InlineMath math="x=2" /></>,
-    f: <><InlineMath math="2^{2x+1}-9\cdot2^x+4" /></>,
-  }}
+  title={<>Dua pembuat nol dari <InlineMath math="2^{2x + 1} - 9 \cdot 2^x + 4" /></>}
+  description={
+    <>
+      Kurva mendekati tinggi <InlineMath math="4" /> di kiri, turun di bawah
+      nol, lalu menanjak tajam dan memotong sumbu mendatar tepat di{" "}
+      <InlineMath math="x = -1" /> dan <InlineMath math="x = 2" />.
+    </>
+  }
+  footer={<>Kurva memotong sumbu mendatar tepat dua kali, yaitu di <InlineMath math="x = -1" /> dan <InlineMath math="x = 2" />.</>}
   scene={{
     space: "plane",
-    frame: {
-      kind: "cartesian",
-      x: { min: -4.5, max: 3.5 },
-      y: { min: -7, max: 24 },
-    },
-    view: { kind: "fit", padding: 0.1 },
+    frame: { kind: "cartesian", x: { min: -4.5, max: 3.5 }, y: { min: -7, max: 24 } },
+    view: { kind: "fit", padding: 0.08 },
     objects: [
       { id: "x-axis", kind: "segment", appearance: "reference", from: { x: -4, y: 0 }, to: { x: 3, y: 0 } },
-      { id: "curve", kind: "function", appearance: "primary", formula: "2^(2*x+1) - 9*2^x + 4", domain: { min: -4, max: 2.6 } },
+      { id: "curve", kind: "function", appearance: "primary", formula: "2^(2 * x + 1) - 9 * 2^x + 4", domain: { min: -4, max: 2.6 } },
       { id: "z1", kind: "point", appearance: "answer", at: { x: -1, y: 0 } },
       { id: "z2", kind: "point", appearance: "answer", at: { x: 2, y: 0 } },
     ],
@@ -47,14 +58,32 @@ Setiap nilai <InlineMath math="t" /> memberi **tepat satu <InlineMath math="x" /
       { key: "f", objectId: "curve", at: { x: 2.5, y: 18 }, placement: "left" },
     ],
   }}
+  labels={{
+    a: <><InlineMath math="x = -1" /></>,
+    b: <><InlineMath math="x = 2" /></>,
+    f: <><InlineMath math="2^{2x + 1} - 9 \cdot 2^x + 4" /></>,
+  }}
 />
 
-Cek <InlineMath math="x=-1" />: <InlineMath math="2^{-1}-9\cdot\frac12+4=\frac12-\frac92+4=0" />. Himpunan penyelesaiannya **<InlineMath math="\mathbb{L}=\{-1;\,2\}" />**.
+Grafik memastikan kedua penyelesaian, termasuk <InlineMath math="x = -1" />, benar-benar menghasilkan nol.
 
-# Mengapa pilihan lain salah
+## Menguji solusi dan pilihan salah
 
-- <InlineMath math="\left\{\frac12;\,4\right\}" /> adalah nilai-nilai <InlineMath math="t" />. **Langkah kembali ke <InlineMath math="x" /> terlewat**.
-- <InlineMath math="\{2\}" /> membuang <InlineMath math="x=-1" />, mungkin karena penyelesaian negatif terlihat aneh. Padahal pangkat negatif boleh.
-- <InlineMath math="\{1;\,2\}" /> salah tanda saat kembali ke <InlineMath math="x" />: <InlineMath math="2^x=\frac12" /> berlaku untuk <InlineMath math="x=-1" />, bukan <InlineMath math="x=1" />.
-- <InlineMath math="\{2-\log_2 7\}" /> muncul kalau <InlineMath math="2^{2x+1}" /> ditulis <InlineMath math="2t" />, bukan <InlineMath math="2t^2" />: <InlineMath math="2t-9t+4=0" /> memberi <InlineMath math="t=\frac47" />.
-- Nilai dengan <InlineMath math="\frac{9\pm\sqrt{65}}{2}" /> muncul kalau faktor <InlineMath math="2" /> di depan <InlineMath math="t^2" /> hilang: <InlineMath math="t^2-9t+4=0" />.
+Cek langsung <InlineMath math="x = -1" /> dan <InlineMath math="x = 2" /> pada **persamaan eksponensial asli**:
+
+<BlockMath math="\begin{aligned}
+x = -1 &\implies 2^{-1} - 9 \cdot \frac{1}{2} + 4 = \frac{1}{2} - \frac{9}{2} + 4 = 0 \\
+x = 2 &\implies 2^5 - 9 \cdot 4 + 4 = 32 - 36 + 4 = 0
+\end{aligned}" />
+
+| Pilihan | Mengapa salah |
+| :--- | :--- |
+| <InlineMath math="\mathbb{L} = \left\{\frac{1}{2},\, 4\right\}" /> | Berhenti pada nilai <InlineMath math="t" /> dan lupa mengubah kembali menjadi <InlineMath math="x" />. |
+| <InlineMath math="\mathbb{L} = \{2\}" /> | Membuang <InlineMath math="x = -1" />, padahal pangkat negatif tetap memberi nilai <InlineMath math="2^x" /> positif. |
+| <InlineMath math="\mathbb{L} = \{1,\, 2\}" /> | Salah tanda pangkat karena mengira <InlineMath math="2^1" /> sama dengan <InlineMath math="\frac{1}{2}" />. |
+| <InlineMath math="\mathbb{L} = \{2 - \log_2 7\}" /> | Keliru menulis <InlineMath math="2^{2x + 1}" /> sebagai <InlineMath math="2t" />, bukan <InlineMath math="2t^2" />. |
+| <InlineMath math="\mathbb{L} = \left\{\log_2\frac{9 \pm \sqrt{65}}{2}\right\}" /> | Melupakan koefisien <InlineMath math="2" /> di depan <InlineMath math="t^2" />. |
+
+# Jawaban
+
+Himpunan penyelesaian persamaan ini adalah <InlineMath math="\mathbb{L} = \{-1,\, 2\}" />.

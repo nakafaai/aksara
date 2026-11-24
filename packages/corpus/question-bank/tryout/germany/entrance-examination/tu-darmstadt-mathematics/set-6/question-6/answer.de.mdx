@@ -1,34 +1,44 @@
-# Den Prozentsatz aus zwei Steigerungen finden
+# Gegeben
 
-Ein Wachstum um den Prozentsatz <InlineMath math="p" /> (als Dezimalzahl) multipliziert die Produktion mit <InlineMath math="1+p" />. Zwei gleiche Steigerungen hintereinander ergeben **den Faktor <InlineMath math="(1+p)^2" />**, und dieser ist <InlineMath math="1{,}44" />:
+Ein **Betrieb** steigert seine Produktion zwei Jahre hintereinander um denselben Prozentsatz, sodass sie insgesamt um <InlineMath math="44\,\%" /> über dem Ausgangswert liegt. Im dritten Jahr sinkt die Produktion um genau denselben Prozentsatz.
 
-<BlockMath math="(1+p)^2=1{,}44\quad\Longrightarrow\quad 1+p=1{,}2\quad\Longrightarrow\quad p=0{,}2" />
+# Gesucht
 
-Die negative Wurzel <InlineMath math="1+p=-1{,}2" /> ergibt keinen sinnvollen Faktor.
+Um wie viel Prozent die Produktion am Ende des dritten Jahres über dem Ausgangswert liegt.
 
-# Die Senkung auf den neuen Wert beziehen
+# Lösung
 
-Im dritten Jahr sinkt die Produktion um <InlineMath math="20\,\%" />, und zwar **vom erreichten Stand aus**, also vom <InlineMath math="1{,}44" />-Fachen:
+Stell dir als Startwert <InlineMath math="100" /> Kisten vor. Zwei gleiche Steigerungen um <InlineMath math="20\,\%" /> heben den Stapel von <InlineMath math="100" /> auf <InlineMath math="120" /> und weiter auf <InlineMath math="144" /> Kisten. Wenn im dritten Jahr <InlineMath math="20\,\%" /> abgezogen werden, **greift der Abzug vom größeren Stapel mit <InlineMath math="144" /> Kisten**, nicht von <InlineMath math="100" />, weshalb der Rückgang stärker ausfällt als eine einzelne Steigerung!
 
-<BlockMath math="1{,}44\cdot(1-0{,}2)=1{,}44\cdot0{,}8=1{,}152" />
+> Aufeinanderfolgende Prozentänderungen wirken immer multiplikativ auf den aktuellen Stand, bestimme also zuerst die jährliche Rate per Wurzel und multiplizier dann mit dem Abnahmefaktor.
+
+Bestimme die jährliche Wachstumsrate <InlineMath math="p > 0" /> aus zwei gleichen Anstiegen auf <InlineMath math="1{,}44" />.
+
+<BlockMath math="(1 + p)^2 = 1{,}44 \implies 1 + p = 1{,}2 \implies p = 0{,}2 = 20\,\%" />
+
+## Endstand im dritten Jahr berechnen
+
+Wende die Senkung um <InlineMath math="20\,\%" /> auf **den erreichten Stand <InlineMath math="1{,}44" />** mit dem Faktor <InlineMath math="0{,}8" /> an.
+
+<BlockMath math="1{,}44 \cdot (1 - 0{,}2) = 1{,}44 \cdot 0{,}8 = 1{,}152" />
+
+Verfolge den Verlauf des Produktionsindex ab Startwert <InlineMath math="100" /> über alle drei Jahre im Diagramm.
 
 <MathVisual
-  title={<>Produktion über drei Jahre</>}
-  description={<>Die Produktion als Index mit <InlineMath math="100" /> am Anfang. Sie steigt auf <InlineMath math="120" /> und <InlineMath math="144" /> und fällt im dritten Jahr auf <InlineMath math="115{,}2" />. Die waagerechte Linie bei <InlineMath math="100" /> zeigt den Anfangswert, der Endpunkt liegt um <InlineMath math="15{,}2" /> darüber.</>}
-  labels={{
-    s: <>Anfang <InlineMath math="100" /></>,
-    y1: <><InlineMath math="120" /></>,
-    y2: <><InlineMath math="144" /></>,
-    e: <>Ende <InlineMath math="115{,}2" /></>,
-  }}
+  title={<>Verlauf des Produktionsindex über drei Jahre</>}
+  description={
+    <>
+      Ausgehend von <InlineMath math="100" /> steigt der Index auf{" "}
+      <InlineMath math="120" /> und <InlineMath math="144" /> und fällt im
+      dritten Jahr auf <InlineMath math="115{,}2" />, also noch{" "}
+      <InlineMath math="15{,}2" /> Punkte über der Ausgangslinie.
+    </>
+  }
+  footer={<>Nach zweimal plus <InlineMath math="20\,\%" /> und einmal minus <InlineMath math="20\,\%" /> landet der Index bei <InlineMath math="115{,}2" />.</>}
   scene={{
     space: "plane",
-    frame: {
-      kind: "cartesian",
-      x: { min: -0.5, max: 3.8 },
-      y: { min: 90, max: 155 },
-    },
-    view: { kind: "fit", padding: 0.1 },
+    frame: { kind: "cartesian", x: { min: -0.5, max: 3.8 }, y: { min: 90, max: 155 } },
+    view: { kind: "fit", padding: 0.08 },
     objects: [
       { id: "base", kind: "segment", appearance: "reference", from: { x: 0, y: 100 }, to: { x: 3, y: 100 } },
       { id: "path", kind: "polyline", appearance: "primary", vertices: [{ x: 0, y: 100 }, { x: 1, y: 120 }, { x: 2, y: 144 }, { x: 3, y: 115.2 }] },
@@ -44,14 +54,26 @@ Im dritten Jahr sinkt die Produktion um <InlineMath math="20\,\%" />, und zwar *
       { key: "e", objectId: "p3", at: { x: 3, y: 115.2 }, placement: "right" },
     ],
   }}
+  labels={{
+    s: <>Start <InlineMath math="100" /></>,
+    y1: <><InlineMath math="120" /></>,
+    y2: <><InlineMath math="144" /></>,
+    e: <>Ende <InlineMath math="115{,}2" /></>,
+  }}
 />
 
-Die Produktion liegt am Ende **um <InlineMath math="15{,}2\,\%" /> über dem Anfang**.
+Im Bild erkennst du direkt, dass der Endstand unter Jahr eins (<InlineMath math="120" />) liegt, weil <InlineMath math="20\,\%" /> von <InlineMath math="144" /> mehr abzieht als <InlineMath math="20\,\%" /> von <InlineMath math="120" /> aufgebaut hat.
 
-# Warum die anderen Antworten falsch sind
+## Probe und falsche Antworten prüfen
 
-- „um <InlineMath math="24\,\%" />“ **zieht <InlineMath math="20" /> Prozentpunkte von <InlineMath math="44\,\%" /> ab**, statt die Senkung auf den neuen Wert zu beziehen.
-- „um <InlineMath math="22\,\%" />“ halbiert die <InlineMath math="44\,\%" /> zu einem Prozentsatz pro Jahr und rechnet dann <InlineMath math="44-22" />.
-- „um <InlineMath math="20\,\%" />“ nimmt an, dass sich eine Steigerung und die Senkung gegenseitig aufheben.
-- „um <InlineMath math="12{,}32\,\%" />“ verwendet <InlineMath math="22\,\%" /> als Prozentsatz: <InlineMath math="1{,}44\cdot0{,}78=1{,}1232" />.
-- „um <InlineMath math="0\,\%" />“ nimmt an, dass die Senkung alle Steigerungen rückgängig macht.
+Kurzprobe über den Gesamtfaktor <InlineMath math="1{,}2 \cdot 1{,}2 \cdot 0{,}8" />: Das Produkt beträgt <InlineMath math="1{,}152" />, die Produktion liegt also **noch um <InlineMath math="15{,}2\,\%" /> über dem Startwert**.
+
+- <InlineMath math="24\,\%" /> zieht einfach <InlineMath math="20" /> Prozentpunkte von <InlineMath math="44\,\%" /> ab statt den neuen Wert zu skalieren.
+- <InlineMath math="22\,\%" /> halbiert <InlineMath math="44\,\%" /> zur Jahresrate und subtrahiert linear.
+- <InlineMath math="20\,\%" /> glaubt, ein Anstieg und eine Senkung um <InlineMath math="20\,\%" /> würden sich exakt aufheben.
+- <InlineMath math="12{,}32\,\%" /> rechnet im dritten Jahr mit der falschen Rate <InlineMath math="22\,\%" />.
+- <InlineMath math="0\,\%" /> tut so, als würde die eine Senkung beide Steigerungen komplett rückgängig machen.
+
+# Antwort
+
+Am Ende des dritten Jahres liegt die Produktion um <InlineMath math="15{,}2\,\%" /> über der Produktion zu Beginn.
