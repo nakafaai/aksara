@@ -1,0 +1,220 @@
+export const metadata = {
+  title: "Graphs of Distance against Time",
+  description:
+    "Draw a bus trip's distance-time graph, read speed from the gradient of each line, work out average speed, and find when two vehicles meet.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2026-11-17",
+  subject: "Graphs of Motion",
+};
+
+## A Bus Trip Becomes a Graph
+
+Write down how far something is from its starting point at every moment, then plot it with time across and distance up. That picture is a **distance-time graph**.
+
+One idea unlocks it: **the gradient of the line is the speed**. First trace the graph point by point, then watch the bus drive alongside it later on this page.
+
+> The gradient of a distance-time line gives the speed, a flat stretch means the object is standing still, and a falling line shows it heading back to the start.
+
+Follow one town bus. It leaves the Terminal, stops at the Clinic, carries on to the Stadium, waits there, then drives straight back to the Terminal. Assume the bus keeps a **steady speed within each part** of the trip. A real bus speeds up and slows down gradually, but this assumption turns every part into one straight line.
+
+| Part | Time (minutes) | What the bus does | Distance from the Terminal (km) |
+| :--- | :--- | :--- | :--- |
+| <InlineMath math="OA" /> | <InlineMath math="0" /> to <InlineMath math="12" /> | drives to the Clinic | <InlineMath math="0" /> up to <InlineMath math="8" /> |
+| <InlineMath math="AB" /> | <InlineMath math="12" /> to <InlineMath math="18" /> | stops at the Clinic | stays at <InlineMath math="8" /> |
+| <InlineMath math="BC" /> | <InlineMath math="18" /> to <InlineMath math="28" /> | drives to the Stadium | <InlineMath math="8" /> up to <InlineMath math="12" /> |
+| <InlineMath math="CD" /> | <InlineMath math="28" /> to <InlineMath math="33" /> | waits at the Stadium | stays at <InlineMath math="12" /> |
+| <InlineMath math="DE" /> | <InlineMath math="33" /> to <InlineMath math="48" /> | drives back to the Terminal | <InlineMath math="12" /> down to <InlineMath math="0" /> |
+
+To draw the graph, **mark a point every time the bus changes what it's doing**, with time as the first coordinate and distance as the second. The points are <InlineMath math="O(0, 0)" />, <InlineMath math="A(12, 8)" />, <InlineMath math="B(18, 8)" />, <InlineMath math="C(28, 12)" />, <InlineMath math="D(33, 12)" />, and <InlineMath math="E(48, 0)" />. Join neighbouring points with straight lines, because the bus's speed doesn't change between them.
+
+<MathVisual
+  title={<>A Town Bus from the Terminal to the Stadium</>}
+  description={
+    <>
+      Distance from the Terminal in km against time in minutes. Slide the time
+      and read where the bus is along the route.
+    </>
+  }
+  footer={
+    <>
+      A flat stretch marks each stop, and a falling line shows the bus heading
+      back.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 50 }, y: { min: 0, max: 14 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "w", min: 0, max: 48, value: 15, step: 0.5, label: "w" },
+    ],
+    objects: [
+      { id: "trip", kind: "polyline", vertices: [{ x: 0, y: 0 }, { x: 12, y: 8 }, { x: 18, y: 8 }, { x: 28, y: 12 }, { x: 33, y: 12 }, { x: 48, y: 0 }], appearance: "primary" },
+      { id: "now", kind: "marker", x: "w", y: "min(min(2w / 3, max(8, 8 + 0.4(w - 18))), min(12, 12 - 0.8(w - 33)))", appearance: "warning" },
+    ],
+    readouts: [
+      { key: "distance", formula: "min(min(2w / 3, max(8, 8 + 0.4(w - 18))), min(12, 12 - 0.8(w - 33)))" },
+    ],
+  }}
+  labels={{
+    w: <>Time since the bus left, in minutes</>,
+    distance: <>Distance from the Terminal, in km</>,
+  }}
+/>
+
+Slide the time to minute <InlineMath math="15" />. The bus is waiting at the Clinic, so its point sits on the flat line <InlineMath math="AB" /> at <InlineMath math="8\text{ km}" />. Next, work out how fast the bus drives on each part from the gradient.
+
+## Steeper Means Faster
+
+On part <InlineMath math="OA" />, the bus's distance rises by <InlineMath math="8\text{ km}" /> in <InlineMath math="12" /> minutes. The rise divided by the time it takes is called the **gradient** of the line. On a distance-time graph, **the gradient is the speed**, because it tells you how many kilometres are added every minute.
+
+<MathContainer>
+<BlockMath math="\text{gradient of } OA = \frac{8 - 0}{12 - 0} = \frac{2}{3}\text{ km per minute}" />
+<BlockMath math="\frac{2}{3}\text{ km per minute} \times 60 = 40\text{ km/h}" />
+</MathContainer>
+
+You multiply by <InlineMath math="60" /> because an hour has <InlineMath math="60" /> minutes. On part <InlineMath math="BC" />, the bus only rises <InlineMath math="4\text{ km}" /> in <InlineMath math="10" /> minutes:
+
+<BlockMath math="\text{gradient of } BC = \frac{4}{10} \times 60 = 24\text{ km/h}" />
+
+Line <InlineMath math="BC" /> looks less steep than <InlineMath math="OA" />, and the bus really is slower there.
+
+Two other line shapes often get misread: the flat line and the line that goes down.
+
+### A Flat Stretch Is a Stop
+
+From minute <InlineMath math="12" /> to minute <InlineMath math="18" />, the bus stays <InlineMath math="8\text{ km}" /> from the Terminal. The rise is zero, so the gradient of <InlineMath math="AB" /> is zero too:
+
+<BlockMath math="\text{gradient of } AB = \frac{8 - 8}{18 - 12} = \frac{0}{6} = 0" />
+
+**A speed of zero means the bus is standing still**, which fits a bus letting passengers off at the Clinic. The same thing happens on <InlineMath math="CD" /> at the Stadium.
+
+Watch out for the other kind of graph. On a [graph of speed against time](/en/subjects/mathematics/graphs-of-motion/speed-time-graphs), a flat line means the object keeps moving at a steady speed. So before you interpret a flat line, **read the label on the vertical axis first**.
+
+### Falling on the Way Back
+
+On <InlineMath math="DE" />, the bus's distance from the Terminal drops from <InlineMath math="12\text{ km}" /> to <InlineMath math="0" /> in <InlineMath math="15" /> minutes. The gradient is negative:
+
+<BlockMath math="\text{gradient of } DE = \frac{0 - 12}{48 - 33} = -\frac{12}{15} = -0.8\text{ km per minute}" />
+
+The minus sign only shows direction: **the bus is moving towards the Terminal**. It doesn't mean the bus is slowing down. Speed has no direction, so the speed is the size of the gradient, <InlineMath math="0.8 \times 60 = 48\text{ km/h}" />. Line <InlineMath math="DE" /> is actually the steepest, so the bus is fastest on its way back.
+
+## Average Speed of the Trip
+
+The speed at one moment comes from the gradient of the part the bus is on. At minute <InlineMath math="20" />, the bus is on part <InlineMath math="BC" />, so its speed is <InlineMath math="24\text{ km/h}" />. For the whole trip, you want one number that sums it all up: total distance divided by total time. That number is the **average speed**:
+
+<BlockMath math="\text{average speed} = \frac{\text{total distance}}{\text{total time}}" />
+
+The total distance counts every kilometre the bus covers, the trip back included. The total time counts every minute, the stops included.
+
+<MathContainer>
+<BlockMath math="\text{total distance} = 8 + 4 + 12 = 24\text{ km}" />
+<BlockMath math="\text{average speed} = \frac{24\text{ km}}{48\text{ minutes}} = 0.5\text{ km per minute} = 30\text{ km/h}" />
+</MathContainer>
+
+Check it backwards: <InlineMath math="48" /> minutes is <InlineMath math="0.8" /> of an hour, and <InlineMath math="30 \times 0.8 = 24\text{ km}" />. You can verify that number by picking All in the bus lab below. Notice too that the bus ends up <InlineMath math="0\text{ km}" /> from the Terminal, yet the distance it travelled is still <InlineMath math="24\text{ km}" />.
+
+A common slip is to average the five speeds of the parts:
+
+<BlockMath math="\frac{40 + 0 + 24 + 0 + 48}{5} = 22.4\text{ km/h}" />
+
+That answer is wrong because the five parts **don't last equally long**. Part <InlineMath math="DE" /> lasts <InlineMath math="15" /> minutes and <InlineMath math="CD" /> only <InlineMath math="5" />, yet this method gives them the same weight. Always go back to total distance over total time.
+
+## When and Where They Meet
+
+At minute <InlineMath math="18" />, just as the bus leaves the Clinic, a motorcyclist sets off from the Stadium towards the Terminal at a steady <InlineMath math="36\text{ km/h}" />. When and where does the motorcycle pass the bus? On the graph, **the point where the two lines cross** answers both at once, because there the two are in the same place at the same time.
+
+Change the speeds to kilometres per minute first. On part <InlineMath math="BC" />, the bus covers <InlineMath math="24 \div 60 = 0.4" /> km per minute, and the motorcycle covers <InlineMath math="36 \div 60 = 0.6" /> km per minute. Say they meet <InlineMath math="t" /> minutes after minute <InlineMath math="18" />. The bus is then <InlineMath math="8 + 0.4t" /> km from the Terminal and the motorcycle is <InlineMath math="12 - 0.6t" /> km away. Set the two equal:
+
+<BlockMath math="\begin{aligned} 8 + 0.4t &= 12 - 0.6t \\ t &= 4 \end{aligned}" />
+
+So they meet at **minute <InlineMath math="22" />**. Their distances from the Terminal at that moment are:
+
+<MathContainer>
+<BlockMath math="\text{bus: } 8 + 0.4 \times 4 = 9.6\text{ km}" />
+<BlockMath math="\text{motorcycle: } 12 - 0.6 \times 4 = 9.6\text{ km}" />
+</MathContainer>
+
+Both distances match, so the answer checks out. Minute <InlineMath math="22" /> is still inside part <InlineMath math="BC" />, which ends at minute <InlineMath math="28" />, so the bus equation you used really applies. There's a quicker way too: the gap between them is <InlineMath math="4\text{ km}" /> and shrinks by <InlineMath math="0.4 + 0.6 = 1" /> km every minute, so it closes in <InlineMath math="4" /> minutes.
+
+<JourneyGraphLab
+  title={<>The Bus and the Motorcycle Pass Each Other</>}
+  description={
+    <>
+      The motorcycle leaves the Stadium at minute <InlineMath math="18" />,
+      heading for the Terminal. Drag the clock and watch the two points close
+      in on the road and on the graph paper.
+    </>
+  }
+  footer={
+    <>
+      Where the two lines cross, the bus and the motorcycle are in the same
+      place at once.
+    </>
+  }
+  showSpeeds
+  showMeeting
+  bus={{
+    name: "Bus",
+    legs: [
+      { change: 8, minutes: 12 },
+      { change: 0, minutes: 6 },
+      { change: 4, minutes: 10 },
+      { change: 0, minutes: 5 },
+      { change: -12, minutes: 15 },
+    ],
+  }}
+  second={{
+    name: "Motorcycle",
+    depart: 18,
+    from: 12,
+    legs: [{ change: -12, minutes: 20 }],
+  }}
+  stops={[
+    { at: 0, name: "Terminal" },
+    { at: 8, name: "Clinic" },
+    { at: 12, name: "Stadium" },
+  ]}
+  labels={{
+    average: <>Average speed of the bus</>,
+    axes: { distance: "Distance from the Terminal (km)", time: "Time (min)" },
+    distance: <>Bus's distance from the Terminal</>,
+    meeting: <>When and where the bus meets the motorcycle</>,
+    motion: {
+      away: <>the bus moves away from the Terminal</>,
+      back: <>the bus heads back to the Terminal</>,
+      still: <>the bus stands still</>,
+    },
+    parts: "Part of the bus trip",
+    speed: <>Speed</>,
+    time: "Time since the bus left",
+    units: { distance: "km", speed: "km/h", time: "min" },
+    viewLabel: "A straight road with a bus and a motorcycle, beside a sheet of graph paper",
+    whole: "All",
+  }}
+/>
+
+Try these two problems on the same bus and motorcycle graph, then compare your answers.
+
+1. At minute <InlineMath math="30" />, how far apart are the bus and the motorcycle?
+2. A van leaves the Terminal at minute <InlineMath math="3" /> at a steady <InlineMath math="48\text{ km/h}" />, heading for the Stadium. When and where does the van catch up with the bus?
+
+**Problem 1**. At minute <InlineMath math="30" />, the bus is waiting at the Stadium at <InlineMath math="12\text{ km}" />, while the motorcycle has been riding for <InlineMath math="12" /> minutes from the Stadium:
+
+<MathContainer>
+<BlockMath math="\text{motorcycle distance} = 12 - 0.6 \times 12 = 4.8\text{ km}" />
+<BlockMath math="\text{gap between them} = 12 - 4.8 = 7.2\text{ km}" />
+</MathContainer>
+
+**Problem 2**. The van covers <InlineMath math="48 \div 60 = 0.8" /> km per minute. Try part <InlineMath math="OA" /> first, where the bus is <InlineMath math="\tfrac{2}{3}t" /> km from the Terminal:
+
+<BlockMath math="\begin{aligned} \tfrac{2}{3}t &= 0.8(t - 3) \\ t &= 18 \end{aligned}" />
+
+Minute <InlineMath math="18" /> lies outside <InlineMath math="OA" />, which ends at minute <InlineMath math="12" />, so **the van doesn't catch the bus on its way to the Clinic**. The bus then stays at <InlineMath math="8\text{ km}" /> until minute <InlineMath math="18" />:
+
+<MathContainer>
+<BlockMath math="\text{van at minute 12} = 0.8 \times 9 = 7.2\text{ km}" />
+<BlockMath math="\text{time to reach } 8\text{ km} = 3 + \frac{8}{0.8} = 13\text{ minutes}" />
+</MathContainer>
+
+So the van catches the bus at minute <InlineMath math="13" />, at the Clinic, while the bus is still stopped. On the graph, the van's line cuts the flat line <InlineMath math="AB" />.

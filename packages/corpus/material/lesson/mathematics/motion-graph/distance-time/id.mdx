@@ -1,0 +1,219 @@
+export const metadata = {
+  title: "Grafik Jarak terhadap Waktu",
+  description:
+    "Gambar grafik jarak-waktu sebuah bus, baca kelajuan dari kemiringan garisnya, hitung kelajuan rata-rata, dan cari kapan dua kendaraan bertemu.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2026-11-17",
+  subject: "Grafik Gerak",
+};
+
+## Perjalanan Bus Menjadi Grafik
+
+Catat seberapa jauh sebuah benda dari titik awalnya pada setiap saat, lalu gambar catatan itu dengan waktu di sumbu mendatar dan jarak di sumbu tegak. Hasilnya disebut **grafik jarak-waktu**.
+
+Kuncinya satu: **kemiringan garis adalah kelajuan**. Pertama telusuri grafiknya titik demi titik, lalu amati bus berjalan di samping grafik pada bagian akhir halaman ini.
+
+> Kemiringan garis jarak-waktu menyatakan kelajuan, garis datar menandakan benda diam, dan garis turun menunjukkan benda kembali ke titik awal.
+
+Kita ikuti satu bus kota. Bus berangkat dari Terminal, berhenti di Klinik, lanjut ke Stadion, menunggu sebentar, lalu pulang ke Terminal tanpa berhenti. Anggap bus melaju dengan **kelajuan tetap di setiap bagian** perjalanan. Bus sungguhan tentu menambah dan mengurangi kelajuan pelan-pelan, tetapi anggapan ini membuat setiap bagian menjadi satu garis lurus.
+
+| Bagian | Waktu (menit) | Yang dilakukan bus | Jarak dari Terminal (km) |
+| :--- | :--- | :--- | :--- |
+| <InlineMath math="OA" /> | <InlineMath math="0" /> sampai <InlineMath math="12" /> | berjalan ke Klinik | <InlineMath math="0" /> menjadi <InlineMath math="8" /> |
+| <InlineMath math="AB" /> | <InlineMath math="12" /> sampai <InlineMath math="18" /> | berhenti di Klinik | tetap <InlineMath math="8" /> |
+| <InlineMath math="BC" /> | <InlineMath math="18" /> sampai <InlineMath math="28" /> | berjalan ke Stadion | <InlineMath math="8" /> menjadi <InlineMath math="12" /> |
+| <InlineMath math="CD" /> | <InlineMath math="28" /> sampai <InlineMath math="33" /> | menunggu di Stadion | tetap <InlineMath math="12" /> |
+| <InlineMath math="DE" /> | <InlineMath math="33" /> sampai <InlineMath math="48" /> | pulang ke Terminal | <InlineMath math="12" /> menjadi <InlineMath math="0" /> |
+
+Untuk menggambar grafiknya, **tandai satu titik setiap kali gerak bus berubah**, dengan waktu sebagai koordinat pertama dan jarak sebagai koordinat kedua. Titik-titiknya adalah <InlineMath math="O(0, 0)" />, <InlineMath math="A(12, 8)" />, <InlineMath math="B(18, 8)" />, <InlineMath math="C(28, 12)" />, <InlineMath math="D(33, 12)" />, dan <InlineMath math="E(48, 0)" />. Hubungkan titik yang berurutan dengan garis lurus, karena di antara dua titik itu kelajuan bus tidak berubah.
+
+<MathVisual
+  title={<>Bus Kota dari Terminal ke Stadion</>}
+  description={
+    <>
+      Jarak dari Terminal dalam km terhadap waktu dalam menit. Geser waktunya
+      dan baca posisi bus di sepanjang rute.
+    </>
+  }
+  footer={
+    <>
+      Garis datar menandai bus berhenti, dan garis turun menunjukkan bus pulang.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 50 }, y: { min: 0, max: 14 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "w", min: 0, max: 48, value: 15, step: 0.5, label: "w" },
+    ],
+    objects: [
+      { id: "trip", kind: "polyline", vertices: [{ x: 0, y: 0 }, { x: 12, y: 8 }, { x: 18, y: 8 }, { x: 28, y: 12 }, { x: 33, y: 12 }, { x: 48, y: 0 }], appearance: "primary" },
+      { id: "now", kind: "marker", x: "w", y: "min(min(2w / 3, max(8, 8 + 0.4(w - 18))), min(12, 12 - 0.8(w - 33)))", appearance: "warning" },
+    ],
+    readouts: [
+      { key: "distance", formula: "min(min(2w / 3, max(8, 8 + 0.4(w - 18))), min(12, 12 - 0.8(w - 33)))" },
+    ],
+  }}
+  labels={{
+    w: <>Waktu sejak bus berangkat, dalam menit</>,
+    distance: <>Jarak dari Terminal, dalam km</>,
+  }}
+/>
+
+Geser waktunya ke menit <InlineMath math="15" />. Bus sedang menunggu di Klinik, jadi titiknya ada di garis datar <InlineMath math="AB" /> dengan jarak <InlineMath math="8\text{ km}" />. Selanjutnya, kamu hitung sendiri kelajuan bus pada setiap bagian dari kemiringan garisnya.
+
+## Makin Curam Makin Cepat
+
+Pada bagian <InlineMath math="OA" />, jarak bus naik <InlineMath math="8\text{ km}" /> selama <InlineMath math="12" /> menit. Kenaikan dibagi lamanya waktu disebut **gradien** atau kemiringan garis. Pada grafik jarak-waktu, **gradien adalah kelajuan**, karena gradien mengatakan berapa kilometer yang bertambah setiap menit.
+
+<MathContainer>
+<BlockMath math="\text{gradien } OA = \frac{8 - 0}{12 - 0} = \frac{2}{3}\text{ km per menit}" />
+<BlockMath math="\frac{2}{3}\text{ km per menit} \times 60 = 40\text{ km/jam}" />
+</MathContainer>
+
+Kalikan dengan <InlineMath math="60" /> karena satu jam berisi <InlineMath math="60" /> menit. Pada bagian <InlineMath math="BC" />, bus hanya naik <InlineMath math="4\text{ km}" /> dalam <InlineMath math="10" /> menit:
+
+<BlockMath math="\text{gradien } BC = \frac{4}{10} \times 60 = 24\text{ km/jam}" />
+
+Garis <InlineMath math="BC" /> memang terlihat lebih landai daripada <InlineMath math="OA" />, dan bus di situ memang lebih lambat.
+
+Dua bentuk garis lain sering membuat orang salah baca: garis yang datar dan garis yang turun.
+
+### Garis Datar Berarti Diam
+
+Dari menit <InlineMath math="12" /> sampai <InlineMath math="18" />, jarak bus tetap <InlineMath math="8\text{ km}" />. Kenaikannya nol, jadi gradien <InlineMath math="AB" /> juga nol:
+
+<BlockMath math="\text{gradien } AB = \frac{8 - 8}{18 - 12} = \frac{0}{6} = 0" />
+
+**Kelajuan nol berarti bus diam**, dan itu cocok dengan bus yang sedang menurunkan penumpang di Klinik. Hal yang sama terjadi pada <InlineMath math="CD" /> di Stadion.
+
+Hati-hati dengan grafik lain. Pada [grafik kelajuan terhadap waktu](/id/materi/matematika/grafik-gerak/grafik-kelajuan-waktu), garis datar justru berarti benda terus bergerak dengan kelajuan tetap. Jadi sebelum menafsirkan garis datar, **baca dulu label sumbu tegaknya**.
+
+### Garis Turun Saat Pulang
+
+Pada <InlineMath math="DE" />, jarak bus dari Terminal turun dari <InlineMath math="12\text{ km}" /> ke <InlineMath math="0" /> dalam <InlineMath math="15" /> menit. Gradiennya negatif:
+
+<BlockMath math="\text{gradien } DE = \frac{0 - 12}{48 - 33} = -\frac{12}{15} = -0{,}8\text{ km per menit}" />
+
+Tanda minus hanya menunjukkan arah: **bus bergerak mendekati Terminal**. Tanda itu tidak berarti bus melambat. Kelajuan tidak punya arah, jadi kelajuannya adalah besar gradien itu, yaitu <InlineMath math="0{,}8 \times 60 = 48\text{ km/jam}" />. Garis <InlineMath math="DE" /> justru yang paling curam, jadi bus paling cepat saat pulang.
+
+## Kelajuan Rata-Rata Perjalanan
+
+Kelajuan pada satu saat dibaca dari gradien bagian yang sedang dilalui. Pada menit <InlineMath math="20" />, bus ada di bagian <InlineMath math="BC" />, jadi kelajuannya <InlineMath math="24\text{ km/jam}" />. Untuk seluruh perjalanan, kita butuh satu angka yang merangkum semuanya: jarak total dibagi waktu total. Angka ini disebut **kelajuan rata-rata**:
+
+<BlockMath math="\text{kelajuan rata-rata} = \frac{\text{jarak total}}{\text{waktu total}}" />
+
+Jarak total menghitung setiap kilometer yang dilalui bus, termasuk jalan pulang. Waktu total menghitung semua menit, termasuk waktu berhenti.
+
+<MathContainer>
+<BlockMath math="\text{jarak total} = 8 + 4 + 12 = 24\text{ km}" />
+<BlockMath math="\text{kelajuan rata-rata} = \frac{24\text{ km}}{48\text{ menit}} = 0{,}5\text{ km per menit} = 30\text{ km/jam}" />
+</MathContainer>
+
+Cek balik: <InlineMath math="48" /> menit sama dengan <InlineMath math="0{,}8" /> jam, dan <InlineMath math="30 \times 0{,}8 = 24\text{ km}" />. Kamu bisa mengecek angka itu dengan memilih Semua di lab bus di bawah. Perhatikan juga bahwa di akhir perjalanan bus kembali berjarak <InlineMath math="0" /> dari Terminal, tetapi jarak yang ditempuhnya tetap <InlineMath math="24\text{ km}" />.
+
+Kesalahan yang sering muncul adalah merata-ratakan kelima kelajuan bagian:
+
+<BlockMath math="\frac{40 + 0 + 24 + 0 + 48}{5} = 22{,}4\text{ km/jam}" />
+
+Hasil ini salah karena kelima bagian **tidak sama lamanya**. Bagian <InlineMath math="DE" /> berlangsung <InlineMath math="15" /> menit, sedangkan <InlineMath math="CD" /> hanya <InlineMath math="5" /> menit, padahal cara ini memberi keduanya bobot yang sama. Selalu kembali ke jarak total dibagi waktu total.
+
+## Kapan dan di Mana Bertemu
+
+Tepat pada menit <InlineMath math="18" />, saat bus meninggalkan Klinik, seorang pengendara motor berangkat dari Stadion menuju Terminal dengan kelajuan tetap <InlineMath math="36\text{ km/jam}" />. Kapan dan di mana motor itu berpapasan dengan bus? Di grafik, **titik potong dua garis** menjawab keduanya sekaligus, karena di titik itu keduanya berada di tempat yang sama pada waktu yang sama.
+
+Ubah kelajuan ke km per menit lebih dulu. Bus pada bagian <InlineMath math="BC" /> menempuh <InlineMath math="24 \div 60 = 0{,}4" /> km per menit, dan motor menempuh <InlineMath math="36 \div 60 = 0{,}6" /> km per menit. Misalkan keduanya bertemu <InlineMath math="t" /> menit setelah menit <InlineMath math="18" />. Jarak bus dari Terminal saat itu <InlineMath math="8 + 0{,}4t" />, dan jarak motor <InlineMath math="12 - 0{,}6t" />. Samakan keduanya:
+
+<BlockMath math="\begin{aligned} 8 + 0{,}4t &= 12 - 0{,}6t \\ t &= 4 \end{aligned}" />
+
+Jadi mereka bertemu pada **menit ke-<InlineMath math="22" />**. Jarak keduanya dari Terminal saat itu:
+
+<MathContainer>
+<BlockMath math="\text{bus: } 8 + 0{,}4 \times 4 = 9{,}6\text{ km}" />
+<BlockMath math="\text{motor: } 12 - 0{,}6 \times 4 = 9{,}6\text{ km}" />
+</MathContainer>
+
+Kedua jarak sama, jadi jawabannya cocok. Menit <InlineMath math="22" /> juga masih di dalam bagian <InlineMath math="BC" />, yang berakhir di menit <InlineMath math="28" />, jadi persamaan bus yang kita pakai memang berlaku. Cara lain yang lebih cepat: jarak antara keduanya <InlineMath math="4\text{ km}" /> dan berkurang <InlineMath math="0{,}4 + 0{,}6 = 1" /> km setiap menit, jadi habis dalam <InlineMath math="4" /> menit.
+
+<JourneyGraphLab
+  title={<>Bus dan Motor Berpapasan</>}
+  description={
+    <>
+      Motor berangkat dari Stadion pada menit <InlineMath math="18" /> menuju
+      Terminal. Geser jam dan amati dua titik yang saling mendekat di jalan
+      dan di kertas grafik.
+    </>
+  }
+  footer={
+    <>
+      Di titik silang dua garis, bus dan motor berada di tempat yang sama
+      pada saat yang sama.
+    </>
+  }
+  showSpeeds
+  showMeeting
+  bus={{
+    name: "Bus",
+    legs: [
+      { change: 8, minutes: 12 },
+      { change: 0, minutes: 6 },
+      { change: 4, minutes: 10 },
+      { change: 0, minutes: 5 },
+      { change: -12, minutes: 15 },
+    ],
+  }}
+  second={{
+    name: "Motor",
+    depart: 18,
+    from: 12,
+    legs: [{ change: -12, minutes: 20 }],
+  }}
+  stops={[
+    { at: 0, name: "Terminal" },
+    { at: 8, name: "Klinik" },
+    { at: 12, name: "Stadion" },
+  ]}
+  labels={{
+    average: <>Kelajuan rata-rata bus</>,
+    axes: { distance: "Jarak dari Terminal (km)", time: "Waktu (menit)" },
+    distance: <>Jarak bus dari Terminal</>,
+    meeting: <>Saat dan tempat bus bertemu motor</>,
+    motion: {
+      away: <>bus menjauhi Terminal</>,
+      back: <>bus kembali ke Terminal</>,
+      still: <>bus berhenti</>,
+    },
+    parts: "Bagian perjalanan bus",
+    speed: <>Kelajuan</>,
+    time: "Waktu sejak bus berangkat",
+    units: { distance: "km", speed: "km/jam", time: "menit" },
+    viewLabel: "Jalan lurus dengan bus, motor, dan kertas grafik di sampingnya",
+    whole: "Semua",
+  }}
+/>
+
+Kerjakan dua soal ini dengan grafik bus dan motor yang sama, lalu cocokkan hasilmu.
+
+1. Pada menit <InlineMath math="30" />, berapa jarak antara bus dan motor?
+2. Sebuah mobil van berangkat dari Terminal pada menit <InlineMath math="3" /> dengan kelajuan tetap <InlineMath math="48\text{ km/jam}" /> menuju Stadion. Kapan dan di mana van menyusul bus?
+
+**Soal 1**. Pada menit <InlineMath math="30" />, bus sedang menunggu di Stadion pada jarak <InlineMath math="12\text{ km}" />, sedangkan motor sudah melaju <InlineMath math="12" /> menit dari Stadion:
+
+<MathContainer>
+<BlockMath math="\text{jarak motor} = 12 - 0{,}6 \times 12 = 4{,}8\text{ km}" />
+<BlockMath math="\text{selisih jarak} = 12 - 4{,}8 = 7{,}2\text{ km}" />
+</MathContainer>
+
+**Soal 2**. Van menempuh <InlineMath math="48 \div 60 = 0{,}8" /> km per menit. Coba dulu bagian <InlineMath math="OA" />, tempat jarak bus <InlineMath math="\tfrac{2}{3}t" />:
+
+<BlockMath math="\begin{aligned} \tfrac{2}{3}t &= 0{,}8(t - 3) \\ t &= 18 \end{aligned}" />
+
+Menit <InlineMath math="18" /> sudah di luar <InlineMath math="OA" />, yang berakhir di menit <InlineMath math="12" />, jadi **van belum menyusul selama bus berjalan ke Klinik**. Bus lalu diam di <InlineMath math="8\text{ km}" /> sampai menit <InlineMath math="18" />:
+
+<MathContainer>
+<BlockMath math="\text{jarak van di menit 12} = 0{,}8 \times 9 = 7{,}2\text{ km}" />
+<BlockMath math="\text{waktu van di } 8\text{ km} = 3 + \frac{8}{0{,}8} = 13\text{ menit}" />
+</MathContainer>
+
+Jadi van menyusul bus pada menit <InlineMath math="13" />, di Klinik, saat bus masih berhenti. Di grafik, garis van memotong garis datar <InlineMath math="AB" />.
