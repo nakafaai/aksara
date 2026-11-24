@@ -1,6 +1,28 @@
-Check each statement **against the numbers in the table**. Each group has <InlineMath math="50" /> seeds, so half is <InlineMath math="25" />.
+# Given
 
-- _Soaked <InlineMath math="6" /> hours beats not soaked_: true. <InlineMath math="42" /> is more than <InlineMath math="30" />.
-- _The longer the soak, the more sprout_: false. The count rises up to <InlineMath math="12" /> hours (<InlineMath math="45" />) but falls at <InlineMath math="24" /> hours (<InlineMath math="35" />).
-- _The 24-hour group sprouted least_: false. The unsoaked group is lower, <InlineMath math="30" />.
-- _More than half in every group_: true. The smallest count, <InlineMath math="30" />, is still above <InlineMath math="25" />.
+The *seed-soak* table tracks four groups of **<InlineMath math="50" /> seeds** each (half equals **<InlineMath math="25" /> seeds**) with sprouted counts: unsoaked **<InlineMath math="30" />**, <InlineMath math="6" /> hours **<InlineMath math="42" />**, <InlineMath math="12" /> hours **<InlineMath math="45" />**, and <InlineMath math="24" /> hours **<InlineMath math="35" />**.
+
+# Asked
+
+Whether each of the four statements is **Sesuai** (Consistent) or **Tidak sesuai** (Inconsistent) with the table.
+
+# Solution
+
+Check **every statement directly against the table numbers**, keeping in mind that half of a <InlineMath math="50" />-seed group is <InlineMath math="25" /> seeds.
+
+> A table that rises to a peak and then drops back down immediately disproves any monotonic "the longer, the more" claim.
+
+## Verifying all four statements
+
+Sentence (2) fixes group size at <Highlight>masing-masing berisi lima puluh biji</Highlight> (fifty seeds each), anchoring every comparison below.
+
+| Statement | Table check | Verdict |
+| --- | --- | --- |
+| <InlineMath math="6" />-hour soak sprouts more than unsoaked | <InlineMath math="42 > 30" /> | **Sesuai** |
+| Longer soaking always yields more sprouts | Peaks at <InlineMath math="12" /> hours (<InlineMath math="45" />), then drops at <InlineMath math="24" /> hours (<InlineMath math="35" />) | **Tidak sesuai** |
+| <InlineMath math="24" />-hour group yields the fewest sprouts | Unsoaked is lowest (<InlineMath math="30" />), not <InlineMath math="24" /> hours (<InlineMath math="35" />) | **Tidak sesuai** |
+| Over half the seeds sprout in every group | Minimum count <InlineMath math="30" /> still exceeds half (<InlineMath math="25" />) | **Sesuai** |
+
+# Answer
+
+Statements **one and four** are **Sesuai** (Consistent), while statements **two and three** are **Tidak sesuai** (Inconsistent).
