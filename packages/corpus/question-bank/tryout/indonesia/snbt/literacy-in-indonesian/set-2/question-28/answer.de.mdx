@@ -1,18 +1,31 @@
-Gefragt ist die **kleinste** Zahl, du musst dir also den für die bisherigen Sparer günstigsten Fall vorstellen.
+# Gegeben
 
-**Schritt 1. Was bekannt ist**. Ein Jahr später gibt es <InlineMath math="900" /> Teilnehmende: <InlineMath math="150" /> sparen <InlineMath math="6\%" />, <InlineMath math="750" /> sparen <InlineMath math="3\%" />. Laut Annahme sind alle <InlineMath math="400" /> bisherigen Sparer noch dabei, jeder ist also entweder in der <InlineMath math="6\%" />-Gruppe oder in der <InlineMath math="3\%" />-Gruppe.
+Angenommen, **keiner der <InlineMath math="400" /> bisherigen <InlineMath math="6\%" />-Sparer** bei PT Sinar Mandiri ist ausgestiegen. Ein Jahr nach der automatischen Anmeldung sparen insgesamt <InlineMath math="150" /> Personen <InlineMath math="6\%" /> und <InlineMath math="750" /> Personen <InlineMath math="3\%" />.
 
-**Schritt 2. Der kleinste Fall**. Die Zahl der bisherigen Sparer bei <InlineMath math="3\%" /> ist am kleinsten, wenn möglichst viele von ihnen bei <InlineMath math="6\%" /> bleiben. Die <InlineMath math="6\%" />-Gruppe hat nur <InlineMath math="150" /> Personen, höchstens <InlineMath math="150" /> bisherige Sparer bleiben also bei <InlineMath math="6\%" />.
+# Gesucht
 
-<BlockMath math="400-150=250\text{ Personen}" />
+Die Mindestzahl dieser <InlineMath math="400" /> bisherigen Sparer, die nun <InlineMath math="3\%" /> sparen.
 
-**Probe**. Sind <InlineMath math="150" /> bisherige Sparer bei <InlineMath math="6\%" /> und <InlineMath math="250" /> bei <InlineMath math="3\%" />, gibt es <InlineMath math="900-400=500" /> neue Teilnehmende, alle bei <InlineMath math="3\%" />. Die <InlineMath math="3\%" />-Gruppe umfasst dann <InlineMath math="250+500=750" /> Personen, passend zu den Daten.
+# Lösung
 
-Die anderen Antworten sind falsch.
+Für das **Minimum an Altsparern in der <InlineMath math="3\%" />-Gruppe** ordne so viele wie möglich der <InlineMath math="6\%" />-Gruppe zu. Da diese nur <InlineMath math="150" /> Personen fasst, können höchstens <InlineMath math="150" /> dort geblieben sein.
 
-- <InlineMath math="150" /> ist die Größe der <InlineMath math="6\%" />-Gruppe, nicht die Zahl der bisherigen Sparer, die auf <InlineMath math="3\%" /> gesunken sind.
-- <InlineMath math="100" /> ist die Zahl der Beschäftigten ohne Programm, <InlineMath math="1{.}000-900" />. Laut Annahme ist kein bisheriger Sparer ausgetreten.
-- <InlineMath math="750" /> ist die ganze <InlineMath math="3\%" />-Gruppe, einschließlich der neu Hinzugekommenen.
-- <InlineMath math="400" /> ist die **größte** mögliche Zahl, wenn alle <InlineMath math="150" /> Personen der <InlineMath math="6\%" />-Gruppe neu sind. Gefragt ist die kleinste.
+<BlockMath math="400 - 150 = 250\text{ Personen}" />
 
-Mindestens <InlineMath math="250" /> Beschäftigte, die früher <InlineMath math="6\%" /> sparten, sparen jetzt also <InlineMath math="3\%" />.
+> Mindestens <InlineMath math="250" /> Altsparer liegen nun bei <InlineMath math="3\%" /> und ergeben zusammen mit <InlineMath math="500" /> Neuen genau <InlineMath math="750" /> Personen.
+
+## Bedeutung der übrigen Zahlenwerte
+
+Die **Zuordnung jeder Zahl zur passenden Teilmenge** trennt die richtige Untergrenze ab.
+
+| Option | Bedeutung der Zahl | Urteil |
+| --- | --- | --- |
+| <InlineMath math="250" /> Personen | Mindestzahl der Altsparer bei <InlineMath math="3\%" /> (<InlineMath math="400 - 150" />) | **Richtig** |
+| <InlineMath math="150" /> Personen | Gesamte <InlineMath math="6\%" />-Gruppe | **Falsch** |
+| <InlineMath math="100" /> Personen | Nichtteilnehmende (<InlineMath math="1{.}000 - 900" />) | **Falsch** |
+| <InlineMath math="750" /> Personen | Gesamte <InlineMath math="3\%" />-Gruppe inklusive Neuzugängen | **Falsch** |
+| <InlineMath math="400" /> Personen | Obergrenze, falls alle <InlineMath math="150" /> bei <InlineMath math="6\%" /> neu wären | **Falsch** |
+
+# Antwort
+
+Mindestens **<InlineMath math="250" /> Personen**, die früher <InlineMath math="6\%" /> sparten, sparen nun <InlineMath math="3\%" />.

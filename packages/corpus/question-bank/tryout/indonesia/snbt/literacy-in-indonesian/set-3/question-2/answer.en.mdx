@@ -1,18 +1,29 @@
-This question asks you to apply the logic of the design in the fourth paragraph to a new situation: residents of the comparison clusters start seeing a doctor more often, whatever causes their fever.
+# Given
 
-The fourth paragraph separates two ways of comparing. The first counts recorded cases. The second compares **the share of fever patients who test positive for dengue**. The text says a change in how often people seek care **"mengurangi pasien demam yang positif dan yang negatif sekaligus, sehingga proporsinya tidak banyak bergeser"** (reduces positive and negative fever patients together, so the share barely shifts). The same logic works when people seek care more often.
+Paragraph four of the AWED trial passage explains that comparing the **proportion of fever patients testing dengue-positive** resists differences in care-seeking habits, because care-seeking shifts positive and negative fever patients together. Suppose a new clinic opens only in **control clusters**, so residents there visit more often for any mild fever.
 
-Now apply it to the new clinic:
+# Asked
 
-1. In the comparison clusters, more fever patients come in. The dengue-positive patients rise with them, so recorded dengue cases there go up.
-2. If you compare case counts, the gap with the release clusters gets wider. The benefit of the releases looks bigger than it really is.
-3. Negative patients rise too, so the positive share stays about the same. The comparison of shares is hardly affected.
+The effect of the new control-cluster clinic on a raw case-count comparison versus a positive-proportion comparison.
 
-Why the other options are wrong:
+# Solution
 
-- The share doesn't rise, because positive and negative patients increase together.
-- Case counts in the comparison clusters go up, so the benefit of the releases is overstated, not understated.
-- The comparison of shares is designed precisely to withstand differences in care-seeking like this.
-- Randomisation happened before the clinic opened, so it can't balance a change that comes afterwards. The case-count comparison is still distorted.
+Apply **paragraph four's logic** in reverse to increased clinic visits inside control clusters for each of the two metrics.
 
-So the new clinic makes the case-count comparison overstate the benefit of the releases, while the comparison of positive shares stays fairly safe.
+> More clinic visits in control clusters raise recorded dengue counts there, making raw case counts exaggerate the release's benefit, while positive proportions stay largely stable because dengue-positive and dengue-negative visits rise together.
+
+## Comparing the impact on both metrics
+
+Testing **raw counts against test-positive proportions** isolates the exact outcome.
+
+| Claimed effect | Check under AWED design logic | Verdict |
+| --- | --- | --- |
+| Case counts overstate the benefit, while positive proportions stay relatively safe | Control counts rise to widen the gap, yet positive and negative visits rise together | **Correct** |
+| Positive proportion rises in control clusters | Wrong, negative fever visits rise alongside positive ones | **Incorrect** |
+| Case counts understate the benefit | Reversed, higher control counts make the benefit look bigger | **Incorrect** |
+| Positive proportions break down as well | Wrong, proportions were specifically designed to resist care-seeking shifts | **Incorrect** |
+| Initial randomization protects raw case counts | Wrong, a clinic opened afterward still distorts raw counts | **Incorrect** |
+
+# Answer
+
+The new clinic **causes a raw case-count comparison to overstate the benefit of Wolbachia release, while the comparison of positive-patient proportions remains relatively unaffected**.

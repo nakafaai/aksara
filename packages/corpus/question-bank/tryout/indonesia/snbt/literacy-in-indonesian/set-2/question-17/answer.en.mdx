@@ -1,24 +1,38 @@
-This takes two calculations with different divisors: the change in **total value**, then the change in **value per boat**.
+# Given
 
-**Step 1**. Total auction value. The text gives Rp<InlineMath math="1.2" /> billion rising to Rp<InlineMath math="1.4" /> billion, that is Rp<InlineMath math="1{,}200" /> million to Rp<InlineMath math="1{,}400" /> million.
+Total auction revenue at Karangsari rose from **Rp<InlineMath math="1.2" /> billion** (Rp<InlineMath math="1{,}200" /> million) in January to **Rp<InlineMath math="1.4" /> billion** (Rp<InlineMath math="1{,}400" /> million) in February, while participating boats grew from <InlineMath math="50" /> to <InlineMath math="80" />.
 
-<BlockMath math="\frac{1{,}400-1{,}200}{1{,}200}=\frac{200}{1{,}200}\approx16.7\%" />
+# Asked
 
-**Step 2**. Average value per boat. The number of boats rises from <InlineMath math="50" /> to <InlineMath math="80" />.
+The percentage changes in total auction value and average auction value per boat from January to February.
 
+# Solution
+
+Compute the **percentage rise in total revenue** first, then divide each month's revenue by its boat count to find the **per-boat change**.
+
+<MathContainer>
+<BlockMath math="\text{total value change} = \frac{1{,}400 - 1{,}200}{1{,}200} = \frac{200}{1{,}200} \approx +16.7\%" />
 <BlockMath math="\begin{aligned}
-\text{January}&=\frac{1{,}200}{50}=24\text{ million rupiah}\\
-\text{February}&=\frac{1{,}400}{80}=17.5\text{ million rupiah}\\
-\text{change}&=\frac{17.5-24}{24}\approx-27\%
+\text{January per boat} &= \frac{1{,}200}{50} = 24\text{ million rupiah} \\
+\text{February per boat} &= \frac{1{,}400}{80} = 17.5\text{ million rupiah} \\
+\text{per-boat change} &= \frac{17.5 - 24}{24} \approx -27\%
 \end{aligned}" />
+</MathContainer>
 
-Total value rises, but each boat takes home **less** on average, because <InlineMath math="30" /> extra boats share the auction value.
+> Total revenue rose about <InlineMath math="16.7\%" />, yet because boat numbers jumped <InlineMath math="60\%" />, average revenue per boat dropped about <InlineMath math="27\%" />.
 
-The other options are wrong.
+## Tracing the distractor figures
 
-- The first option is right about total value but forgets that the number of boats rose too.
-- <InlineMath math="25\%" /> is the rise in fish **weight**, from <InlineMath math="40" /> to <InlineMath math="50" /> tonnes, not the rise in value.
-- <InlineMath math="6.7\%" /> is the fall in the average price per kilogram, from <InlineMath math="30" /> to <InlineMath math="28" /> thousand rupiah. Total value actually rose.
-- Value per boat does change, since total value rises <InlineMath math="16.7\%" /> while the number of boats rises <InlineMath math="60\%" />.
+Comparing **total revenue, catch weight, and per-kg price** isolates the exact pair.
 
-So total auction value rose about <InlineMath math="16.7\%" />, but average value per boat fell about <InlineMath math="27\%" />.
+| Figure pair | Source of calculation | Verdict |
+| --- | --- | --- |
+| Total up about <InlineMath math="16.7\%" />, per boat down about <InlineMath math="27\%" /> | Exact total and boat-adjusted values | **Correct** |
+| Both total and per-boat values rose | Ignores boat count jumping from <InlineMath math="50" /> to <InlineMath math="80" /> | **Incorrect** |
+| Total up <InlineMath math="25\%" /> | Measures weight growth (<InlineMath math="40 \to 50" /> tons), not revenue | **Incorrect** |
+| Total down <InlineMath math="6.7\%" /> | Measures average per-kg price dip (<InlineMath math="30 \to 28" />) | **Incorrect** |
+| Per-boat value stayed flat | False, revenue rose <InlineMath math="16.7\%" /> while boats rose <InlineMath math="60\%" /> | **Incorrect** |
+
+# Answer
+
+Total auction value **rose by about <InlineMath math="16.7\%" />**, while average auction value per boat **fell by about <InlineMath math="27\%" />**.
