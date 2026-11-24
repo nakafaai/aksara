@@ -1,6 +1,29 @@
-The clinic measures waiting time **from when a number is taken to when the patient is called**. Taking a number isn't the same as arriving. Patients who take a number from home aren't at the clinic yet, while older patients have already queued a long time before getting one. The clinic itself plans to **record arrival time at the entrance**. So the old method falls short because it doesn't record when patients actually arrive.
+# Given
 
-- Data from an app can still mislead if it measures the wrong thing.
-- Older patients' counter time isn't recorded, so their wait looks **shorter**, not longer.
-- The special counter handles the queue but doesn't fix the measuring. That's why a new method is planned.
-- The text gives no data showing waits went up. It only shows the figure is incomplete.
+Sukamaju Clinic calculates wait time solely as **the gap between pulling a ticket number and being called**. Home bookers log waiting time before arriving, while elderly visitors queuing at the desk before receiving a number go uncounted, prompting plans to **log arrival time at the entrance**.
+
+# Asked
+
+Which evaluation best judges the clinic's original way of measuring wait time.
+
+# Solution
+
+Imagine timing a **bakery queue** from the moment a receipt prints rather than when customers walk in. Anyone standing in line before getting a ticket is missed, while online pre-orders look like long waits. The measure fails because it skips real arrival time.
+
+> Service wait times are accurate only when the clock starts at actual physical arrival rather than ticket issuance.
+
+## Reading the root flaw in paragraphs two and four
+
+Paragraph two identifies the method: <Highlight>selisih jam pengambilan nomor dan jam pasien dipanggil</Highlight> (time between taking a number and being called). Paragraph four confirms the exact fix needed: <Highlight>mencatat jam kedatangan setiap pasien di pintu masuk, bukan hanya jam pengambilan nomor</Highlight> (logging each patient's arrival time at the door, not just ticket pickup).
+
+Thus **the method is inaccurate because it fails to record when patients actually arrive at the clinic**.
+
+## Why the other four evaluations fail
+
+- **Already accurate because it comes from an app** ignores both distortions in paragraph two.
+- **Making elderly wait times look longer** gets it backward because omitting pre-ticket waits makes their recorded wait look *shorter*.
+- **Needing no change** contradicts paragraph four's redesign, and **proving waits actually rose** goes beyond the text's data.
+
+# Answer
+
+The best evaluation is that the method is inaccurate because it does not record when patients actually arrive at the clinic.
