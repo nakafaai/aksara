@@ -1,16 +1,78 @@
-# Oksigen yang dipakai, lalu faktor pengenceran
+# Diketahui
 
-BOD adalah oksigen yang dipakai mikroorganisme selama <InlineMath math="5" /> hari di tempat gelap, sehingga tidak ada fotosintesis yang menambah oksigen. **Sampel sudah diencerkan dua kali**, jadi penurunan oksigen harus dikalikan dua.
+Sampel air sungai **diencerkan dua kali** (faktor pengenceran <InlineMath math="2" />). Oksigen terlarut awalnya <InlineMath math="9{,}0\text{ mg dm}^{-3}" />, lalu setelah <InlineMath math="5" /> hari di tempat gelap bersuhu <InlineMath math="20^\circ\text{C}" /> turun menjadi <InlineMath math="2{,}5\text{ mg dm}^{-3}" />.
+
+Air tergolong bersih di bawah <InlineMath math="3" />, tercemar sedang antara <InlineMath math="3" /> sampai <InlineMath math="10" />, dan **sangat tercemar di atas <InlineMath math="10\text{ mg dm}^{-3}" />**.
+
+# Ditanyakan
+
+Tentukan nilai BOD sampel air sungai dan kategori kualitas airnya.
+
+# Penyelesaian
+
+Bayangkan mencicipi sirup manis sesudah dicampur air putih dengan perbandingan sama banyak. Berapa pun rasa manis yang terukur di gelas encer, sirup aslinya dua kali lebih pekat, sehingga selisih yang terukur harus dikalikan dua.
+
+> Nilai BOD sama dengan oksigen yang dihabiskan mikroorganisme di tempat gelap dikalikan faktor pengenceran sampel.
+
+Kurangkan kadar oksigen akhir dari kadar awal untuk memperoleh **oksigen terpakai di botol encer**, lalu kalikan dengan <InlineMath math="2" />.
 
 <BlockMath math="\begin{aligned}
-\text{oksigen terpakai}&=9{,}0-2{,}5=6{,}5\text{ mg dm}^{-3}\\
-\text{BOD}&=6{,}5\times2=13\text{ mg dm}^{-3}
+\Delta \mathrm{O}_2 &= 9{,}0 - 2{,}5 = 6{,}5\text{ mg dm}^{-3} \\
+\text{BOD} &= 6{,}5 \times 2 = 13{,}0\text{ mg dm}^{-3}
 \end{aligned}" />
 
-Nilai <InlineMath math="13" /> melebihi <InlineMath math="10" />, jadi air sungai itu sangat tercemar.
+Geser faktor pengenceran di bawah untuk melihat mengapa melupakan pengenceran membuat sungai keliru terbaca tercemar sedang, bukan sangat tercemar.
 
-# Mengapa pilihan lain salah
+<MathVisual
+  title={<>Nilai BOD terhadap Faktor Pengenceran</>}
+  description={
+    <>
+      Dengan penurunan oksigen <InlineMath math="6{,}5\text{ mg dm}^{-3}" />,{" "}
+      <InlineMath math="\text{BOD}(d) = 6{,}5d" /> melampaui batas sangat
+      tercemar (<InlineMath math="10" />) menuju{" "}
+      <InlineMath math="13\text{ mg dm}^{-3}" /> pada <InlineMath math="d = 2" />.
+    </>
+  }
+  footer={
+    <>
+      Mengalikan <InlineMath math="6{,}5" /> dengan <InlineMath math="2" /> memberi <InlineMath math="13\text{ mg dm}^{-3}" />, di atas batas <InlineMath math="10" />.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 4 }, y: { min: 0, max: 28 } },
+    view: { kind: "fit", padding: 0.08 },
+    parameters: [
+      { name: "d", min: 1, max: 4, value: 2, step: 0.5, label: "d" },
+    ],
+    objects: [
+      { id: "clean-line", kind: "segment", appearance: "construction", from: { x: 0, y: 3 }, to: { x: 4, y: 3 } },
+      { id: "heavy-line", kind: "segment", appearance: "warning", from: { x: 0, y: 10 }, to: { x: 4, y: 10 } },
+      { id: "bod-line", kind: "function", appearance: "primary", formula: "6.5 * x", domain: { min: 0, max: 4 } },
+      { id: "undiluted", kind: "marker", appearance: "construction", x: "1", y: "6.5" },
+      { id: "answer-pt", kind: "marker", appearance: "answer", x: "2", y: "13" },
+      { id: "probe", kind: "marker", appearance: "warning", x: "d", y: "6.5 * d" },
+    ],
+    readouts: [
+      { key: "dilution-factor", formula: "d" },
+      { key: "bod-value", formula: "6.5 * d" },
+    ],
+  }}
+  labels={{
+    d: <>Faktor pengenceran <InlineMath math="d" /></>,
+    "dilution-factor": <>Faktor pengenceran</>,
+    "bod-value": <>BOD (<InlineMath math="\text{mg dm}^{-3}" />)</>,
+  }}
+/>
 
-- <InlineMath math="6{,}5\text{ mg dm}^{-3}" /> lupa mengalikan dengan faktor pengenceran, padahal **sampel asli dua kali lebih pekat**.
-- <InlineMath math="5{,}0\text{ mg dm}^{-3}" /> menggandakan oksigen yang tersisa, padahal BOD adalah oksigen yang terpakai.
-- <InlineMath math="23\text{ mg dm}^{-3}" /> menjumlahkan kedua bacaan, padahal yang dibutuhkan adalah selisihnya.
+Karena **<InlineMath math="13\text{ mg dm}^{-3}" /> melebihi <InlineMath math="10\text{ mg dm}^{-3}" />**, air sungai masuk kategori sangat tercemar.
+
+## Mengapa pilihan lain salah
+
+- <InlineMath math="6{,}5\text{ mg dm}^{-3}" /> lupa mengalikan faktor pengenceran, **mengabaikan bahwa air sungai asli dua kali lebih pekat**.
+- <InlineMath math="5{,}0\text{ mg dm}^{-3}" /> menggandakan oksigen tersisa (<InlineMath math="2{,}5" />), padahal BOD mengukur oksigen yang habis dipakai.
+- <InlineMath math="23\text{ mg dm}^{-3}" /> menjumlahkan kedua bacaan (<InlineMath math="9{,}0 + 2{,}5 = 11{,}5" />) lalu menggandakannya, bukan mengambil selisih.
+
+# Jawaban
+
+Nilai BOD sampel sungai adalah <InlineMath math="13\text{ mg dm}^{-3}" />, dan kualitas airnya sangat tercemar.

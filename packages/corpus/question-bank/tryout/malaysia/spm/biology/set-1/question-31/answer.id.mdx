@@ -1,17 +1,78 @@
-# Koreksi jumlah yang masih bertanda
+# Diketahui
 
-Rumus tangkap ulang menganggap semua siput bertanda masih bisa dikenali. Karena <InlineMath math="20\%" /> tanda hilang, **hanya <InlineMath math="80\%" /> dari <InlineMath math="60" /> siput yang masih bertanda** di populasi.
+Luas rawa adalah <InlineMath math="2{,}5" /> hektar. Awalnya <InlineMath math="60" /> siput ditandai lalu dilepaskan, kemudian **<InlineMath math="20\%" /> tanda hilang** sebelum penangkapan kedua.
+
+Pada tangkapan kedua, tertangkap <InlineMath math="50" /> siput dan <InlineMath math="10" /> ekor di antaranya masih bertanda.
+
+# Ditanyakan
+
+Tentukan perkiraan kepadatan populasi siput per hektar.
+
+# Penyelesaian
+
+Bayangkan kita mengecat bintang cerah pada <InlineMath math="60" /> siput sebelum melepaskannya ke rawa. Jika hujan melunturkan <InlineMath math="20\%" /> bintang, hanya <InlineMath math="48" /> siput yang masih bisa dikenali saat penangkapan kedua.
+
+> Rumus tangkap ulang hanya berlaku untuk individu yang tandanya masih terbaca, sehingga tanda yang hilang wajib dikurangkan lebih dahulu.
+
+Hitung dulu **jumlah siput yang masih bertanda**, lalu cari total populasi <InlineMath math="N" /> dan bagi dengan luas rawa untuk memperoleh kepadatan.
 
 <BlockMath math="\begin{aligned}
-\text{bertanda}&=0{,}80\times60=48\\
-N&=\frac{48\times50}{10}=240\\
-\text{kepadatan}&=\frac{240}{2{,}5}=96\text{ per hektar}
+M_{\text{efektif}} &= 0{,}80 \times 60 = 48 \\
+N &= \frac{48 \times 50}{10} = 240\text{ siput} \\
+\text{kepadatan} &= \frac{240}{2{,}5} = 96\text{ siput ha}^{-1}
 \end{aligned}" />
 
-Jadi, kepadatannya sekitar <InlineMath math="96" /> siput per hektar.
+Geser persentase tanda yang hilang di bawah untuk melihat bagaimana kehilangan tanda yang diabaikan akan menggelembungkan kepadatan.
 
-# Mengapa pilihan lain salah
+<MathVisual
+  title={<>Kepadatan Siput terhadap Persentase Tanda Hilang</>}
+  description={
+    <>
+      Kepadatan terkoreksi mengikuti <InlineMath math="D(p) = 120(1 - p/100)" />{" "}
+      per hektar, turun dari <InlineMath math="120" /> saat hilang{" "}
+      <InlineMath math="0\%" /> menjadi <InlineMath math="96" /> saat hilang{" "}
+      <InlineMath math="20\%" />.
+    </>
+  }
+  footer={
+    <>
+      Saat <InlineMath math="20\%" /> tanda hilang, kepadatan turun dari <InlineMath math="120" /> ke <InlineMath math="96" /> per hektar.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 40 }, y: { min: 0, max: 140 } },
+    view: { kind: "fit", padding: 0.08 },
+    parameters: [
+      { name: "p", min: 0, max: 40, value: 20, step: 5, label: "p" },
+    ],
+    objects: [
+      { id: "density-line", kind: "function", appearance: "primary", formula: "120 * (1 - x / 100)", domain: { min: 0, max: 40 } },
+      { id: "guide-20", kind: "segment", appearance: "construction", from: { x: 20, y: 0 }, to: { x: 20, y: 96 } },
+      { id: "uncorrected", kind: "marker", appearance: "construction", x: "0", y: "120" },
+      { id: "corrected", kind: "marker", appearance: "answer", x: "20", y: "96" },
+      { id: "probe", kind: "marker", appearance: "warning", x: "p", y: "120 * (1 - p / 100)" },
+    ],
+    readouts: [
+      { key: "mark-loss", formula: "p" },
+      { key: "snail-density", formula: "120 * (1 - p / 100)" },
+    ],
+  }}
+  labels={{
+    p: <>Tanda hilang <InlineMath math="p" /> (<InlineMath math="\%" />)</>,
+    "mark-loss": <>Persentase tanda hilang (<InlineMath math="\%" />)</>,
+    "snail-density": <>Kepadatan terkoreksi (per ha)</>,
+  }}
+/>
 
-- <InlineMath math="120" /> memakai <InlineMath math="60" /> siput bertanda, padahal **<InlineMath math="12" /> di antaranya sudah tidak bisa dikenali**.
-- <InlineMath math="600" /> mengalikan populasi dengan luas, padahal kepadatan adalah populasi dibagi luas.
-- <InlineMath math="24" /> membagi jumlah siput yang ditandai dengan luas, padahal itu bukan perkiraan populasi.
+Cek cepatnya cocok: <InlineMath math="10" /> dari <InlineMath math="50" /> siput berarti seperlima populasi bertanda, sehingga total siput <InlineMath math="5 \times 48 = 240" /> ekor, atau <InlineMath math="96" /> ekor per hektar.
+
+## Mengapa pilihan lain salah
+
+- <InlineMath math="120" /> tetap memakai <InlineMath math="60" /> siput bertanda, **melupakan bahwa <InlineMath math="12" /> siput kehilangan tanda** dan terbaca seperti siput baru.
+- <InlineMath math="600" /> mengalikan <InlineMath math="240" /> dengan <InlineMath math="2{,}5" />, padahal kepadatan adalah populasi dibagi luas.
+- <InlineMath math="24" /> langsung membagi <InlineMath math="60" /> siput bertanda awal dengan <InlineMath math="2{,}5" /> tanpa menghitung populasi total.
+
+# Jawaban
+
+Perkiraan kepadatan populasi siput adalah <InlineMath math="96" /> ekor per hektar.

@@ -1,17 +1,78 @@
-# Die Zahl der noch markierten Tiere korrigieren
+# Gegeben
 
-Die Fang-Wiederfang-Formel setzt voraus, dass jede markierte Schnecke noch erkennbar ist. Da <InlineMath math="20\%" /> der Markierungen verloren gehen, **sind nur <InlineMath math="80\%" /> der <InlineMath math="60" /> Schnecken** in der Population noch markiert.
+Das Sumpfgebiet hat eine Fläche von <InlineMath math="2{,}5" /> Hektar. Zuerst werden <InlineMath math="60" /> Schnecken markiert und freigelassen, doch **<InlineMath math="20\%" /> der Markierungen gehen verloren**.
+
+Beim zweiten Fang werden <InlineMath math="50" /> Schnecken gefangen, von denen <InlineMath math="10" /> noch markiert sind.
+
+# Gesucht
+
+Bestimme die geschätzte Populationsdichte der Schnecken pro Hektar.
+
+# Lösung
+
+Stell dir vor, du malst leuchtende Sterne auf <InlineMath math="60" /> Schnecken, bevor sie zurück ins Moor kriechen. Wäscht Regen <InlineMath math="20\%" /> der Sterne ab, tragen beim Wiederfang nur noch <InlineMath math="48" /> Schnecken erkennbare Sterne.
+
+> Die Rückfangmethode zählt nur wirklich erkennbare Markierungen, sodass verlorene Markierungen vor der Bestandsschätzung abgezogen werden müssen.
+
+Bestimme zuerst die **wirksam markierten Schnecken**, berechne daraus die Gesamtpopulation <InlineMath math="N" /> und teile anschließend durch die Fläche.
 
 <BlockMath math="\begin{aligned}
-\text{markiert}&=0{,}80\times60=48\\
-N&=\frac{48\times50}{10}=240\\
-\text{Dichte}&=\frac{240}{2{,}5}=96\text{ pro Hektar}
+M_{\text{eff}} &= 0{,}80 \times 60 = 48 \\
+N &= \frac{48 \times 50}{10} = 240\text{ Schnecken} \\
+\text{Dichte} &= \frac{240}{2{,}5} = 96\text{ Schnecken ha}^{-1}
 \end{aligned}" />
 
-Die Dichte beträgt also etwa <InlineMath math="96" /> Schnecken pro Hektar.
+Verschiebe den Markierungsverlust unten, um zu sehen, wie unkorrigierter Verlust die geschätzte Dichte künstlich erhöht.
 
-# Warum die anderen Antworten falsch sind
+<MathVisual
+  title={<>Geschätzte Schneckendichte nach Markierungsverlust</>}
+  description={
+    <>
+      Die korrigierte Dichte folgt <InlineMath math="D(p) = 120(1 - p/100)" />{" "}
+      pro Hektar und sinkt von <InlineMath math="120" /> bei{" "}
+      <InlineMath math="0\%" /> auf <InlineMath math="96" /> bei{" "}
+      <InlineMath math="20\%" /> Verlust.
+    </>
+  }
+  footer={
+    <>
+      Bei <InlineMath math="20\%" /> Verlust sinkt die Dichte von <InlineMath math="120" /> auf <InlineMath math="96" /> pro Hektar.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 40 }, y: { min: 0, max: 140 } },
+    view: { kind: "fit", padding: 0.08 },
+    parameters: [
+      { name: "p", min: 0, max: 40, value: 20, step: 5, label: "p" },
+    ],
+    objects: [
+      { id: "density-line", kind: "function", appearance: "primary", formula: "120 * (1 - x / 100)", domain: { min: 0, max: 40 } },
+      { id: "guide-20", kind: "segment", appearance: "construction", from: { x: 20, y: 0 }, to: { x: 20, y: 96 } },
+      { id: "uncorrected", kind: "marker", appearance: "construction", x: "0", y: "120" },
+      { id: "corrected", kind: "marker", appearance: "answer", x: "20", y: "96" },
+      { id: "probe", kind: "marker", appearance: "warning", x: "p", y: "120 * (1 - p / 100)" },
+    ],
+    readouts: [
+      { key: "mark-loss", formula: "p" },
+      { key: "snail-density", formula: "120 * (1 - p / 100)" },
+    ],
+  }}
+  labels={{
+    p: <>Markierungsverlust <InlineMath math="p" /> (<InlineMath math="\%" />)</>,
+    "mark-loss": <>Verlorene Markierungen (<InlineMath math="\%" />)</>,
+    "snail-density": <>Korrigierte Dichte (pro ha)</>,
+  }}
+/>
 
-- <InlineMath math="120" /> rechnet mit <InlineMath math="60" /> markierten Schnecken, doch **<InlineMath math="12" /> davon sind nicht mehr erkennbar**.
-- <InlineMath math="600" /> multipliziert die Population mit der Fläche, doch die Dichte ist Population geteilt durch Fläche.
-- <InlineMath math="24" /> teilt die Zahl der markierten Schnecken durch die Fläche, das ist aber keine Populationsschätzung.
+Die Probe passt direkt: <InlineMath math="10" /> von <InlineMath math="50" /> gefangenen Tieren ist ein Fünftel, also leben <InlineMath math="5 \times 48 = 240" /> Schnecken auf <InlineMath math="2{,}5" /> Hektar, genau <InlineMath math="96" /> pro Hektar.
+
+## Warum die anderen Optionen falsch sind
+
+- <InlineMath math="120" /> rechnet mit allen <InlineMath math="60" /> Ausgangsmarkierungen und **vergisst die <InlineMath math="12" /> unkenntlich gewordenen Schnecken**.
+- <InlineMath math="600" /> multipliziert <InlineMath math="240" /> mit <InlineMath math="2{,}5" />, obwohl Dichte gleich Bestand geteilt durch Fläche ist.
+- <InlineMath math="24" /> teilt lediglich die <InlineMath math="60" /> markierten Tiere durch <InlineMath math="2{,}5" /> statt die Gesamtpopulation zu bestimmen.
+
+# Antwort
+
+Die geschätzte Populationsdichte beträgt <InlineMath math="96" /> Schnecken pro Hektar.

@@ -1,17 +1,77 @@
-# Darab kecekapan setiap aras, kemudian skalakan luasnya
+# Diberi
 
-Tenaga melalui tiga aras, jadi **ketiga-tiga kecekapan didarab berturut-turut**. Kemudian tukar tenaga bagi setiap meter persegi kepada tenaga bagi setiap hektar.
+Tumbuhan menyimpan <InlineMath math="20{,}000\text{ kJ m}^{-2}" /> setahun. **Kecekapan pemindahan tenaga** ialah <InlineMath math="10\%" /> ke pengguna primer, <InlineMath math="15\%" /> ke sekunder, dan <InlineMath math="20\%" /> ke tertier.
+
+Satu pengguna tertier memerlukan <InlineMath math="1200\text{ kJ}" /> setahun, dan <InlineMath math="1" /> hektar bersamaan <InlineMath math="10{,}000\text{ m}^2" />.
+
+# Ditanya
+
+Cari bilangan maksimum pengguna tertier yang dapat disokong oleh <InlineMath math="1" /> hektar ekosistem ini.
+
+# Penyelesaian
+
+Bayangkan tenaga menaiki rantai makanan seperti air yang dipindahkan melalui baldi bocor secara bergilir. Hanya pecahan kecil sampai ke setiap aras, jadi semua kecekapan didarabkan dahulu sebelum diskalakan daripada satu meter persegi kepada satu hektar.
+
+> Merentasi aras trof berturutan, setiap kecekapan pemindahan didarabkan bersama sebelum diskalakan kepada keluasan habitat.
+
+Hitung **tenaga tahunan pengguna tertier** bagi setiap meter persegi, darabkan dengan <InlineMath math="10{,}000\text{ m}^2" />, kemudian bahagikan dengan keperluan seekor pengguna.
 
 <BlockMath math="\begin{aligned}
-E_{\text{tertier}}&=20{,}000\times0.10\times0.15\times0.20=60\text{ kJ m}^{-2}\\
-\text{bagi setiap hektar}&=60\times10{,}000=600{,}000\text{ kJ}\\
-\text{bilangan}&=\frac{600{,}000}{1200}=500
+E_{\text{tertier}} &= 20{,}000 \times 0.10 \times 0.15 \times 0.20 = 60\text{ kJ m}^{-2} \\
+E_{\text{hektar}} &= 60 \times 10{,}000 = 600{,}000\text{ kJ} \\
+N &= \frac{600{,}000}{1200} = 500
 \end{aligned}" />
 
-Jadi, satu hektar boleh menampung paling banyak <InlineMath math="500" /> ekor pengguna tertier.
+Gerakkan kecekapan langkah akhir di bawah untuk melihat bilangan pengguna tertier yang disokong meningkat secara langsung dengan peratus langkah terakhir.
 
-# Kenapa pilihan lain salah
+<MathVisual
+  title={<>Pengguna Tertier Disokong per Hektar</>}
+  description={
+    <>
+      Dengan tenaga sekunder <InlineMath math="300\text{ kJ m}^{-2}" />,
+      bilangan pengguna tertier mengikut <InlineMath math="N(r) = 25r" /> dan
+      mencapai <InlineMath math="500" /> pada <InlineMath math="r = 20\%" />.
+    </>
+  }
+  footer={
+    <>
+      Pada kecekapan akhir <InlineMath math="20\%" />, satu hektar menyokong maksimum <InlineMath math="500" /> pengguna tertier.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 30 }, y: { min: 0, max: 800 } },
+    view: { kind: "fit", padding: 0.08 },
+    parameters: [
+      { name: "r", min: 5, max: 30, value: 20, step: 5, label: "r" },
+    ],
+    objects: [
+      { id: "consumer-line", kind: "function", appearance: "primary", formula: "25 * x", domain: { min: 0, max: 30 } },
+      { id: "guide-20", kind: "segment", appearance: "construction", from: { x: 20, y: 0 }, to: { x: 20, y: 500 } },
+      { id: "ten-pct", kind: "marker", appearance: "construction", x: "10", y: "250" },
+      { id: "twenty-pct", kind: "marker", appearance: "answer", x: "20", y: "500" },
+      { id: "probe", kind: "marker", appearance: "warning", x: "r", y: "25 * r" },
+    ],
+    readouts: [
+      { key: "final-efficiency", formula: "r" },
+      { key: "supported-count", formula: "25 * r" },
+    ],
+  }}
+  labels={{
+    r: <>Kecekapan akhir <InlineMath math="r" /> (<InlineMath math="\%" />)</>,
+    "final-efficiency": <>Kecekapan langkah akhir (<InlineMath math="\%" />)</>,
+    "supported-count": <>Pengguna tertier per hektar</>,
+  }}
+/>
 
-- <InlineMath math="5" /> menggunakan <InlineMath math="100\text{ m}^2" /> bagi satu hektar, sedangkan **satu hektar ialah <InlineMath math="10{,}000\text{ m}^2" />**.
-- <InlineMath math="2500" /> berhenti pada pengguna sekunder, <InlineMath math="300\text{ kJ m}^{-2}" />, tanpa kecekapan <InlineMath math="20\%" /> yang terakhir.
-- <InlineMath math="250" /> menggunakan <InlineMath math="10\%" /> bagi langkah terakhir, sedangkan kecekapannya ialah <InlineMath math="20\%" />.
+Semakan demi aras sepadan: tumbuhan memberi <InlineMath math="2000" /> kepada primer, <InlineMath math="300" /> kepada sekunder, dan <InlineMath math="60\text{ kJ m}^{-2}" /> kepada tertier, menghasilkan tepat <InlineMath math="500" /> ekor sehektar.
+
+## Mengapa pilihan lain salah
+
+- <InlineMath math="5" /> menggunakan <InlineMath math="100\text{ m}^2" /> bagi <InlineMath math="1" /> hektar, sedangkan **<InlineMath math="1" /> hektar ialah <InlineMath math="100 \times 100 = 10{,}000\text{ m}^2" />**.
+- <InlineMath math="2500" /> berhenti pada tenaga pengguna sekunder (<InlineMath math="300\text{ kJ m}^{-2}" />) tanpa kecekapan akhir <InlineMath math="20\%" />.
+- <InlineMath math="250" /> tersilap menggunakan <InlineMath math="10\%" /> dan bukannya <InlineMath math="20\%" /> pada langkah terakhir.
+
+# Jawapan
+
+Satu hektar ekosistem dapat menyokong maksimum <InlineMath math="500" /> pengguna tertier.

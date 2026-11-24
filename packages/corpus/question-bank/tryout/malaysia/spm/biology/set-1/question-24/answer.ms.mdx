@@ -1,17 +1,77 @@
-# Kadar bersih sudah ditolak respirasi
+# Diberi
 
-Oksigen yang dibebaskan dalam cahaya ialah nilai bersih, iaitu fotosintesis tolak respirasi. **Kadar kasar ialah kadar bersih ditambah respirasi**. Respirasi berlaku sepanjang <InlineMath math="24" /> jam.
+Dalam cahaya terang, tumbuhan pasu membebaskan oksigen pada **kadar bersih** <InlineMath math="8\text{ cm}^3" /> sejam. Dalam gelap, tumbuhan menyerap oksigen untuk **respirasi** pada kadar <InlineMath math="4\text{ cm}^3" /> sejam.
+
+Respirasi berlaku pada kadar yang sama sepanjang <InlineMath math="24" /> jam sehari.
+
+# Ditanya
+
+Cari bilangan jam minimum cahaya terang sehari supaya jisim kering tumbuhan tidak berkurang, dan cari kadar fotosintesis kasarnya.
+
+# Penyelesaian
+
+Bayangkan tabung syiling yang membelanjakan <InlineMath math="4" /> syiling setiap jam siang dan malam. Semasa terang masih berbaki <InlineMath math="8" /> syiling bersih selepas membayar kos sejam itu, maka hasil kasarnya ialah <InlineMath math="12" /> syiling setiap jam terang.
+
+> Kadar fotosintesis kasar ialah kadar oksigen bersih ditambah kadar respirasi, kerana daun tetap berespirasi semasa berfotosintesis dalam cahaya.
+
+Mula-mula, tambah semula kadar respirasi kepada kadar bersih untuk mendapatkan **kadar fotosintesis kasar**. Kemudian bandingkan jumlah oksigen sepanjang <InlineMath math="t" /> jam terang dengan respirasi sepanjang <InlineMath math="24" /> jam.
 
 <BlockMath math="\begin{aligned}
-\text{kadar kasar}&=8+4=12\text{ cm}^3\text{ sejam}\\
-12t&\ge4\times24=96\\
-t&\ge8\text{ jam}
+\text{kadar kasar} &= 8 + 4 = 12\text{ cm}^3\text{ j}^{-1} \\
+\text{respirasi harian} &= 4 \times 24 = 96\text{ cm}^3 \\
+12t &\ge 96 \\
+t &\ge 8\text{ jam}
 \end{aligned}" />
 
-Cara lain memberi hasil yang sama: keuntungan bersih <InlineMath math="8t" /> dalam cahaya mesti menampung kehilangan <InlineMath math="4(24-t)" /> dalam gelap, jadi <InlineMath math="t=8" />. Jadi, sekurang-kurangnya <InlineMath math="8" /> jam cahaya diperlukan dan kadar kasarnya ialah <InlineMath math="12\text{ cm}^3" /> sejam.
+Gerakkan tempoh cahaya pada garis imbangan di bawah untuk melihat titik baki oksigen harian mencecah sifar.
 
-# Kenapa pilihan lain salah
+<MathVisual
+  title={<>Imbangan Oksigen Harian melawan Tempoh Cahaya</>}
+  description={
+    <>
+      Baki oksigen harian mengikut <InlineMath math="B(h) = 12h - 96" /> dalam{" "}
+      <InlineMath math="\text{cm}^3" /> dan melintasi garis impas sifar pada{" "}
+      <InlineMath math="h = 8" /> jam.
+    </>
+  }
+  footer={
+    <>
+      Kurang daripada <InlineMath math="8" /> jam cahaya, respirasi harian melebihi fotosintesis.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 24 }, y: { min: -100, max: 200 } },
+    view: { kind: "fit", padding: 0.08 },
+    parameters: [
+      { name: "h", min: 0, max: 24, value: 8, step: 1, label: "h" },
+    ],
+    objects: [
+      { id: "zero-line", kind: "segment", appearance: "construction", from: { x: 0, y: 0 }, to: { x: 24, y: 0 } },
+      { id: "balance-curve", kind: "function", appearance: "primary", formula: "12 * x - 96", domain: { min: 0, max: 24 } },
+      { id: "break-even", kind: "marker", appearance: "answer", x: "8", y: "0" },
+      { id: "probe", kind: "marker", appearance: "warning", x: "h", y: "12 * h - 96" },
+    ],
+    readouts: [
+      { key: "light-hours", formula: "h" },
+      { key: "daily-balance", formula: "12 * h - 96" },
+    ],
+  }}
+  labels={{
+    h: <>Tempoh cahaya <InlineMath math="h" /> (jam)</>,
+    "light-hours": <>Jam cahaya terang sehari</>,
+    "daily-balance": <>Baki oksigen harian (<InlineMath math="\text{cm}^3" />)</>,
+  }}
+/>
 
-- <InlineMath math="12" /> jam menggunakan kadar bersih <InlineMath math="8" /> sebagai kadar kasar, sedangkan **respirasi semasa cahaya sudah ditolak daripada nilai itu**.
-- <InlineMath math="24" /> jam menolak respirasi dua kali, jadi kadar kasar tinggal <InlineMath math="4" /> sahaja.
-- <InlineMath math="16" /> jam ialah tempoh gelap, bukan tempoh cahaya yang diperlukan.
+Sebagai semakan, <InlineMath math="8" /> jam terang memberi untung bersih <InlineMath math="8 \times 8 = 64\text{ cm}^3" />, sama dengan kehilangan dalam <InlineMath math="16" /> jam gelap iaitu <InlineMath math="4 \times 16 = 64\text{ cm}^3" />.
+
+## Mengapa pilihan lain salah
+
+- <InlineMath math="12" /> jam dan <InlineMath math="8\text{ cm}^3" /> sejam menganggap **kadar bersih sebagai kadar kasar**, sedangkan respirasi <InlineMath math="4\text{ cm}^3" /> sejam telah ditolak daripadanya.
+- <InlineMath math="24" /> jam dan <InlineMath math="4\text{ cm}^3" /> sejam menolak respirasi dua kali, bukannya menambah semula.
+- <InlineMath math="16" /> jam dan <InlineMath math="12\text{ cm}^3" /> sejam ialah tempoh gelap, iaitu <InlineMath math="24 - 8 = 16" /> jam, bukan tempoh terang.
+
+# Jawapan
+
+Tumbuhan memerlukan sekurang-kurangnya <InlineMath math="8" /> jam cahaya terang sehari, dengan kadar fotosintesis kasar <InlineMath math="12\text{ cm}^3" /> sejam.

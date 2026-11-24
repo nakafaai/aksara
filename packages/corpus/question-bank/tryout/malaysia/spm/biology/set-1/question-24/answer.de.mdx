@@ -1,17 +1,77 @@
-# Die Nettorate enthält die Atmung schon
+# Gegeben
 
-Der im Licht abgegebene Sauerstoff ist ein Nettowert, Fotosynthese minus Atmung. **Die Bruttorate ist die Nettorate plus die Atmung**. Die Atmung läuft alle <InlineMath math="24" /> Stunden.
+Bei hellem Licht gibt die Topfpflanze Sauerstoff mit einer **Nettorate** von <InlineMath math="8\text{ cm}^3" /> pro Stunde ab. Im Dunkeln nimmt sie für die **Zellatmung** <InlineMath math="4\text{ cm}^3" /> Sauerstoff pro Stunde auf.
+
+Die Zellatmung läuft über alle <InlineMath math="24" /> Stunden des Tages mit derselben Rate weiter.
+
+# Gesucht
+
+Bestimme die tägliche Mindestzahl an hellen Lichtstunden ohne Trockenmasseverlust sowie die Brutto-Fotosyntheserate.
+
+# Lösung
+
+Stell dir ein Sparschwein vor, aus dem rund um die Uhr jede Stunde <InlineMath math="4" /> Münzen bezahlt werden. Wenn im Licht trotzdem <InlineMath math="8" /> Münzen übrig bleiben, nimmt die Pflanze jede Lichtstunde brutto <InlineMath math="12" /> Münzen ein.
+
+> Die Brutto-Fotosyntheserate ergibt sich aus Nettoabgabe plus Atmungsrate, weil das Blatt auch im Licht dauerhaft atmet.
+
+Addiere zuerst die Atmungsrate zur Nettoabgabe, um die **Brutto-Fotosyntheserate** zu erhalten. Vergleiche anschließend die gesamte Tagesproduktion aus <InlineMath math="t" /> Lichtstunden mit dem täglichen Atmungsverbrauch über <InlineMath math="24" /> Stunden.
 
 <BlockMath math="\begin{aligned}
-\text{Bruttorate}&=8+4=12\text{ cm}^3\text{ pro Stunde}\\
-12t&\ge4\times24=96\\
-t&\ge8\text{ Stunden}
+\text{Bruttorate} &= 8 + 4 = 12\text{ cm}^3\text{ h}^{-1} \\
+\text{Tagesatmung} &= 4 \times 24 = 96\text{ cm}^3 \\
+12t &\ge 96 \\
+t &\ge 8\text{ Stunden}
 \end{aligned}" />
 
-Ein anderer Weg liefert dasselbe: Der Nettogewinn <InlineMath math="8t" /> im Licht muss den Verlust <InlineMath math="4(24-t)" /> im Dunkeln decken, also <InlineMath math="t=8" />. Es braucht also mindestens <InlineMath math="8" /> Stunden Licht, und die Bruttorate beträgt <InlineMath math="12\text{ cm}^3" /> pro Stunde.
+Verschiebe die Lichtdauer auf der Bilanzgeraden unten, um den Nulldurchgang der täglichen Sauerstoffbilanz abzulesen.
 
-# Warum die anderen Antworten falsch sind
+<MathVisual
+  title={<>Tägliche Sauerstoffbilanz nach Lichtdauer</>}
+  description={
+    <>
+      Die tägliche Nettobilanz folgt <InlineMath math="B(h) = 12h - 96" /> in{" "}
+      <InlineMath math="\text{cm}^3" /> und schneidet die Nulllinie genau bei{" "}
+      <InlineMath math="h = 8" /> Stunden.
+    </>
+  }
+  footer={
+    <>
+      Unter <InlineMath math="8" /> Lichtstunden übersteigt die Tagesatmung die Fotosynthese.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 24 }, y: { min: -100, max: 200 } },
+    view: { kind: "fit", padding: 0.08 },
+    parameters: [
+      { name: "h", min: 0, max: 24, value: 8, step: 1, label: "h" },
+    ],
+    objects: [
+      { id: "zero-line", kind: "segment", appearance: "construction", from: { x: 0, y: 0 }, to: { x: 24, y: 0 } },
+      { id: "balance-curve", kind: "function", appearance: "primary", formula: "12 * x - 96", domain: { min: 0, max: 24 } },
+      { id: "break-even", kind: "marker", appearance: "answer", x: "8", y: "0" },
+      { id: "probe", kind: "marker", appearance: "warning", x: "h", y: "12 * h - 96" },
+    ],
+    readouts: [
+      { key: "light-hours", formula: "h" },
+      { key: "daily-balance", formula: "12 * h - 96" },
+    ],
+  }}
+  labels={{
+    h: <>Lichtstunden <InlineMath math="h" /></>,
+    "light-hours": <>Helle Lichtstunden pro Tag</>,
+    "daily-balance": <>Tägliche Nettobilanz (<InlineMath math="\text{cm}^3" />)</>,
+  }}
+/>
 
-- <InlineMath math="12" /> Stunden nimmt die Nettorate <InlineMath math="8" /> als Bruttorate, doch **die Atmung im Licht ist von diesem Wert schon abgezogen**.
-- <InlineMath math="24" /> Stunden zieht die Atmung zweimal ab, die Bruttorate wird so nur <InlineMath math="4" />.
-- <InlineMath math="16" /> Stunden ist die Dauer der Dunkelheit, nicht die nötige Lichtdauer.
+Die Gegenprobe stimmt genau: <InlineMath math="8" /> helle Stunden liefern <InlineMath math="8 \times 8 = 64\text{ cm}^3" /> Nettogewinn und decken exakt den Verlust von <InlineMath math="4 \times 16 = 64\text{ cm}^3" /> in <InlineMath math="16" /> dunklen Stunden.
+
+## Warum die anderen Optionen falsch sind
+
+- <InlineMath math="12" /> Stunden und <InlineMath math="8\text{ cm}^3" /> pro Stunde verwechselt die **Nettoabgabe mit der Bruttorate**, obwohl die Atmung bereits abgezogen war.
+- <InlineMath math="24" /> Stunden und <InlineMath math="4\text{ cm}^3" /> pro Stunde zieht die Atmung doppelt ab statt sie zu addieren.
+- <InlineMath math="16" /> Stunden und <InlineMath math="12\text{ cm}^3" /> pro Stunde nennt die Dunkelphase <InlineMath math="24 - 8 = 16" /> statt der benötigten Lichtphase.
+
+# Antwort
+
+Die Pflanze braucht mindestens <InlineMath math="8" /> Stunden helles Licht pro Tag, und ihre Brutto-Fotosyntheserate beträgt <InlineMath math="12\text{ cm}^3" /> pro Stunde.

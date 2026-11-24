@@ -1,17 +1,77 @@
-# The net rate already has respiration taken off
+# Given
 
-The oxygen released in light is a net amount, photosynthesis minus respiration. **The gross rate is the net rate plus respiration**. Respiration goes on for all <InlineMath math="24" /> hours.
+In bright light, the potted plant releases oxygen at a **net rate** of <InlineMath math="8\text{ cm}^3" /> per hour. In the dark, it absorbs oxygen for **respiration** at <InlineMath math="4\text{ cm}^3" /> per hour.
+
+Respiration continues at the same rate throughout all <InlineMath math="24" /> hours of the day.
+
+# Asked
+
+Find the minimum hours of bright light per day so the plant does not lose dry mass, and find its gross rate of photosynthesis.
+
+# Solution
+
+Picture a piggy bank that spends <InlineMath math="4" /> coins every hour, day and night. During sunny hours, <InlineMath math="8" /> spare coins remain after paying that hourly bill, so the shop actually earns <InlineMath math="12" /> coins per sunny hour.
+
+> Gross photosynthesis equals net oxygen release plus respiration, because a leaf still respires while making food in the light.
+
+First, add respiration back to the net release to get the **gross photosynthesis rate**. Then compare daily oxygen production during <InlineMath math="t" /> light hours against daily respiration over <InlineMath math="24" /> hours.
 
 <BlockMath math="\begin{aligned}
-\text{gross rate}&=8+4=12\text{ cm}^3\text{ per hour}\\
-12t&\ge4\times24=96\\
-t&\ge8\text{ hours}
+\text{gross rate} &= 8 + 4 = 12\text{ cm}^3\text{ h}^{-1} \\
+\text{daily respiration} &= 4 \times 24 = 96\text{ cm}^3 \\
+12t &\ge 96 \\
+t &\ge 8\text{ hours}
 \end{aligned}" />
 
-Another route gives the same result: the net gain <InlineMath math="8t" /> in light must cover the loss <InlineMath math="4(24-t)" /> in the dark, so <InlineMath math="t=8" />. So at least <InlineMath math="8" /> hours of light are needed and the gross rate is <InlineMath math="12\text{ cm}^3" /> per hour.
+Slide the light duration on the balance line below to see where daily net oxygen crosses zero.
 
-# Why the other options are wrong
+<MathVisual
+  title={<>Daily Oxygen Balance Against Light Duration</>}
+  description={
+    <>
+      Daily net oxygen follows <InlineMath math="B(h) = 12h - 96" /> in{" "}
+      <InlineMath math="\text{cm}^3" />, crossing the zero break-even line at{" "}
+      <InlineMath math="h = 8" /> hours.
+    </>
+  }
+  footer={
+    <>
+      Below <InlineMath math="8" /> hours of light, daily respiration exceeds photosynthesis.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 24 }, y: { min: -100, max: 200 } },
+    view: { kind: "fit", padding: 0.08 },
+    parameters: [
+      { name: "h", min: 0, max: 24, value: 8, step: 1, label: "h" },
+    ],
+    objects: [
+      { id: "zero-line", kind: "segment", appearance: "construction", from: { x: 0, y: 0 }, to: { x: 24, y: 0 } },
+      { id: "balance-curve", kind: "function", appearance: "primary", formula: "12 * x - 96", domain: { min: 0, max: 24 } },
+      { id: "break-even", kind: "marker", appearance: "answer", x: "8", y: "0" },
+      { id: "probe", kind: "marker", appearance: "warning", x: "h", y: "12 * h - 96" },
+    ],
+    readouts: [
+      { key: "light-hours", formula: "h" },
+      { key: "daily-balance", formula: "12 * h - 96" },
+    ],
+  }}
+  labels={{
+    h: <>Light hours <InlineMath math="h" /></>,
+    "light-hours": <>Bright light hours per day</>,
+    "daily-balance": <>Daily net oxygen (<InlineMath math="\text{cm}^3" />)</>,
+  }}
+/>
 
-- <InlineMath math="12" /> hours uses the net rate <InlineMath math="8" /> as the gross rate, but **respiration in the light has already been taken off that figure**.
-- <InlineMath math="24" /> hours subtracts respiration twice, which leaves a gross rate of only <InlineMath math="4" />.
-- <InlineMath math="16" /> hours is the length of the dark period, not the light period needed.
+As a quick check, <InlineMath math="8" /> bright hours give a net gain of <InlineMath math="8 \times 8 = 64\text{ cm}^3" />, which matches the dark loss over <InlineMath math="16" /> hours, <InlineMath math="4 \times 16 = 64\text{ cm}^3" />.
+
+## Why the other options are wrong
+
+- <InlineMath math="12" /> hours and <InlineMath math="8\text{ cm}^3" /> per hour treats **net release as gross photosynthesis**, forgetting that respiration already subtracted <InlineMath math="4\text{ cm}^3" /> per hour.
+- <InlineMath math="24" /> hours and <InlineMath math="4\text{ cm}^3" /> per hour subtracts respiration twice instead of adding it back.
+- <InlineMath math="16" /> hours and <InlineMath math="12\text{ cm}^3" /> per hour gives the dark duration, <InlineMath math="24 - 8 = 16" /> hours, rather than the light duration.
+
+# Answer
+
+The plant needs at least <InlineMath math="8" /> hours of bright light per day, and its gross rate of photosynthesis is <InlineMath math="12\text{ cm}^3" /> per hour.
