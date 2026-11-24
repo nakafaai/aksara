@@ -1,16 +1,40 @@
-You need three things: the due day, the number of late days, and what comes out of the deposit.
+# Given
 
-**Due day**. A red-band tool has a loan period of <InlineMath math="3" /> days, counted from the day it leaves: Friday, Saturday and Sunday. So it's due on Sunday.
+A member borrows a red-band pressure washer on **Friday** and returns it on the **following Wednesday**, working properly but covered in mud.
 
-**Late days**. It comes back on Wednesday, so Monday, Tuesday and Wednesday are late. The Monday rule doesn't help here: it only applies to a tool that "falls due on a Monday", and this one fell due on Sunday. "Every calendar day" counts, including the Monday the library is closed.
+From the library table and rules:
+- Red-band tools have a <InlineMath math="3" />-day loan period, a <InlineMath math="\text{Rp}150{,}000" /> deposit, and a late fee of <InlineMath math="\text{Rp}20{,}000" /> per day.
+- Day one is the day the tool leaves, every calendar day counts, the library closes on Mondays, and a dirty tool incurs a flat <InlineMath math="\text{Rp}10{,}000" /> cleaning fee.
 
-**Deposit**. For a red-band tool, the cleaning charge and any late fee "are taken from the deposit":
+# Asked
+
+How much of the deposit the member receives back.
+
+# Solution
+
+Picture renting a tool for three days starting Friday. Work through the problem in three clear steps: **find the due day**, **count the late days**, and **subtract every fee from the deposit**.
+
+> The Monday grace rule protects only tools that fall due on a Monday, never tools that already fell due on Sunday.
+
+## Finding the due day and late days
+
+The passage states that the loan period counts <Highlight>every calendar day, and the day a tool leaves the library is day one</Highlight>. Counting <InlineMath math="3" /> days from Friday gives **Friday (day <InlineMath math="1" />), Saturday (day <InlineMath math="2" />), and Sunday (day <InlineMath math="3" />)**, so the washer is due on Sunday.
+
+Returning it on Wednesday makes **Monday, Tuesday, and Wednesday** late (<InlineMath math="3" /> days). The Monday exception does not apply because it covers only <Highlight>a tool that falls due on a Monday</Highlight>, whereas this tool fell due on Sunday.
+
+## Calculating the returned deposit
+
+For red-band tools, both the cleaning charge and any late fee <Highlight>are taken from the deposit</Highlight>. Subtracting three late days and the mud-cleaning fee leaves:
 
 <BlockMath math="\text{Rp}150{,}000 - 3 \times \text{Rp}20{,}000 - \text{Rp}10{,}000 = \text{Rp}80{,}000" />
 
-- <InlineMath math="\text{Rp}100{,}000" /> skips Monday because the library is closed, so it counts only <InlineMath math="2" /> late days.
-- <InlineMath math="\text{Rp}60{,}000" /> also counts Sunday, the due day itself, as late, which makes <InlineMath math="4" /> late days.
-- <InlineMath math="\text{Rp}120{,}000" /> starts counting on Saturday. Then the tool would fall due on Monday, the Tuesday would be free, and only Wednesday would be late.
-- <InlineMath math="\text{Rp}90{,}000" /> forgets the <InlineMath math="\text{Rp}10{,}000" /> for cleaning the muddy washer.
+## Why the other options fail
 
-So the member gets <InlineMath math="\text{Rp}80{,}000" /> of the deposit back.
+- **Option <InlineMath math="\text{Rp}100{,}000" />** skips Monday because the library is closed, counting only <InlineMath math="2" /> late days.
+- **<InlineMath math="\text{Rp}60{,}000" />** mistakenly counts Sunday (the due day itself) as late, charging <InlineMath math="4" /> late days.
+- **<InlineMath math="\text{Rp}120{,}000" />** starts counting on Saturday, pushing the due day to Monday and charging only Wednesday.
+- **<InlineMath math="\text{Rp}90{,}000" />** forgets the <InlineMath math="\text{Rp}10{,}000" /> cleaning fee for the mud.
+
+# Answer
+
+The member gets **<InlineMath math="\text{Rp}80{,}000" />** of the deposit back.

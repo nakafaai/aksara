@@ -1,13 +1,34 @@
-Setiap tumpukan butuh aturan yang sesuai umurnya. Sebelum enam minggu, berlaku aturan membalik: balik setiap kali bagian tengah *falls below <InlineMath math="45^\circ\text{C}" />* (turun di bawah <InlineMath math="45^\circ\text{C}" />). Setelah enam minggu, kamu *stop turning it* (berhenti membaliknya). Tumpukan baru siap kalau ketiga syarat uji siap terpenuhi: berumur paling sedikit delapan minggu, selisihnya dengan suhu udara paling banyak <InlineMath math="5^\circ\text{C}" /> pada dua pengecekan berturut-turut, dan berbau tanah.
+# Diketahui
 
-**Tumpukan A**. Siap dipakai. Umurnya <InlineMath math="9" /> minggu, bagian tengahnya <InlineMath math="3^\circ\text{C}" /> lalu <InlineMath math="2^\circ\text{C}" /> di atas suhu udara, dan berbau tanah.
+Catatan kebun menampilkan **lima tumpukan kompos (A sampai E)** tanpa masalah bau busuk. Panduan memberi tiga aturan usia dan suhu:
+- Selama <InlineMath math="6" /> minggu pertama: balikkan jika pusat turun di bawah <InlineMath math="45^\circ\text{C}" />.
+- Setelah <InlineMath math="6" /> minggu: berhenti membalikkan dan biarkan dingin.
+- Siap pakai hanya jika **semua tiga syarat terpenuhi**: usia minimal <InlineMath math="8" /> minggu, suhu pusat berselisih maksimal <InlineMath math="5^\circ\text{C}" /> dari udara pada **dua pemeriksaan berturut-turut**, dan berbau tanah.
 
-**Tumpukan B**. Biarkan saja. Umurnya cukup, tetapi pada pengecekan sebelumnya bagian tengahnya <InlineMath math="33 - 27 = 6^\circ\text{C}" /> di atas suhu udara. **Bacaan hari ini saja tidak cukup, karena ujinya butuh dua pengecekan berturut-turut**. Pada umur <InlineMath math="10" /> minggu tumpukan ini tidak boleh dibalik lagi, jadi tinggal dibiarkan mendingin.
+# Ditanyakan
 
-**Tumpukan C**. Balik sekarang. Umurnya <InlineMath math="4" /> minggu, masih dalam enam minggu pertama, dan bagian tengahnya turun ke <InlineMath math="43^\circ\text{C}" />, di bawah <InlineMath math="45^\circ\text{C}" />.
+Tindakan mana (**Siap dipakai**, **Balik sekarang**, atau **Biarkan saja**) yang tepat untuk setiap tumpukan hari ini.
 
-**Tumpukan D**. Biarkan saja. Bagian tengahnya di bawah <InlineMath math="45^\circ\text{C}" />, tetapi pada umur <InlineMath math="7" /> minggu tumpukan ini sudah lewat batas enam minggu, saat pembalikan berhenti. Tumpukan ini juga belum siap karena umurnya belum delapan minggu.
+# Penyelesaian
 
-**Tumpukan E**. Siap dipakai. *At least eight weeks* (paling sedikit delapan minggu) termasuk tepat delapan minggu, bagian tengahnya <InlineMath math="3^\circ\text{C}" /> lalu <InlineMath math="2^\circ\text{C}" /> di atas suhu udara, dan berbau tanah.
+Bayangkan usia tumpukan sebagai **jalur tiga gerbang**: usia <InlineMath math="\le 6" /> minggu memakai aturan pembalikan, usia <InlineMath math="> 6" /> minggu berhenti dibalik, dan usia <InlineMath math="\ge 8" /> minggu diuji dengan ketiga syarat siap pakai sekaligus.
 
-Jadi, tumpukan A dan E siap dipakai, tumpukan C perlu dibalik sekarang, sedangkan tumpukan B dan D dibiarkan saja.
+> Untuk status siap pakai, satu kali pembacaan suhu hari ini saja belum cukup: syarat suhu harus lolos pada dua pemeriksaan berturut-turut.
+
+## Memeriksa setiap tumpukan berdasarkan aturan
+
+Teks menetapkan <Highlight>During the first six weeks, turn the heap whenever the centre falls below <InlineMath math="45^\circ\text{C}" />. After six weeks, stop turning it</Highlight> serta uji siap pakai <Highlight>within <InlineMath math="5^\circ\text{C}" /> of the air temperature on two checks in a row</Highlight>.
+
+| Tumpukan | Usia dan selisih suhu terhadap udara | Keputusan |
+| --- | --- | --- |
+| Heap A | <InlineMath math="9" /> minggu (<InlineMath math="\ge 8" />), pusat <InlineMath math="29^\circ\text{C}" /> (<InlineMath math="+3^\circ\text{C}" />) lalu <InlineMath math="28^\circ\text{C}" /> (<InlineMath math="+2^\circ\text{C}" />) vs udara <InlineMath math="26^\circ\text{C}" />, bau tanah. Semua tiga syarat terpenuhi. | **Siap dipakai** (*Ready to use*) |
+| Heap B | <InlineMath math="10" /> minggu (<InlineMath math="\ge 8" />), tetapi pemeriksaan sebelumnya <InlineMath math="33^\circ\text{C}" /> vs udara <InlineMath math="27^\circ\text{C}" /> berselisih <InlineMath math="6^\circ\text{C}" /> (melebihi batas <InlineMath math="5^\circ\text{C}" />), sehingga gagal dua cek berturut-turut. Karena sudah lewat <InlineMath math="6" /> minggu, tidak dibalik lagi. | **Biarkan saja** (*Leave it as it is*) |
+| Heap C | <InlineMath math="4" /> minggu (masih dalam <InlineMath math="6" /> minggu pertama) dan pusat jatuh ke <InlineMath math="43^\circ\text{C}" /> (di bawah <InlineMath math="45^\circ\text{C}" />). | **Balik sekarang** (*Turn it now*) |
+| Heap D | <InlineMath math="7" /> minggu: sudah melewati batas <InlineMath math="6" /> minggu sehingga tidak dibalik meski pusat <InlineMath math="39^\circ\text{C}" />, tetapi belum mencapai <InlineMath math="8" /> minggu sehingga belum siap dipakai. | **Biarkan saja** (*Leave it as it is*) |
+| Heap E | Tepat <InlineMath math="8" /> minggu (<Highlight>At least eight weeks</Highlight> mencakup tepat <InlineMath math="8" />), pusat <InlineMath math="30^\circ\text{C}" /> (<InlineMath math="+3^\circ\text{C}" />) lalu <InlineMath math="29^\circ\text{C}" /> (<InlineMath math="+2^\circ\text{C}" />) vs udara <InlineMath math="27^\circ\text{C}" />, bau tanah. | **Siap dipakai** (*Ready to use*) |
+
+# Jawaban
+
+- **Siap dipakai** (*Ready to use*): **Heap A** dan **Heap E**.
+- **Balik sekarang** (*Turn it now*): **Heap C**.
+- **Biarkan saja** (*Leave it as it is*): **Heap B** dan **Heap D**.

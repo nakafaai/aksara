@@ -1,16 +1,40 @@
-Kamu perlu tiga hal: hari jatuh tempo, jumlah hari terlambat, dan apa saja yang dipotong dari deposit.
+# Diketahui
 
-**Hari jatuh tempo**. Alat berpita merah punya masa pinjam <InlineMath math="3" /> hari, dihitung sejak hari alat itu keluar: Jumat, Sabtu, dan Minggu. Jadi, alat itu jatuh tempo hari Minggu.
+Seorang anggota meminjam mesin cuci bertekanan berpita merah pada **hari Jumat** dan mengembalikannya pada **hari Rabu berikutnya** dalam kondisi masih berfungsi tetapi berlumpur.
 
-**Hari terlambat**. Alat kembali hari Rabu, jadi Senin, Selasa, dan Rabu terhitung terlambat. Aturan hari Senin tidak berlaku di sini, karena aturan itu hanya untuk alat yang *falls due on a Monday* (jatuh tempo pada hari Senin), sedangkan alat ini jatuh tempo hari Minggu. Teks bilang *every calendar day* (setiap hari kalender) dihitung, termasuk Senin saat perpustakaan tutup.
+Dari tabel dan teks perpustakaan alat:
+- Pita merah memiliki masa pinjam <InlineMath math="3" /> hari, deposit <InlineMath math="\text{Rp}150{.}000" />, dan denda keterlambatan <InlineMath math="\text{Rp}20{.}000" /> per hari.
+- Hari alat keluar dihitung sebagai hari pertama, setiap hari kalender ikut dihitung, perpustakaan tutup pada hari Senin, dan alat berlumpur dikenai biaya pembersihan tetap <InlineMath math="\text{Rp}10{.}000" />.
 
-**Deposit**. Untuk alat berpita merah, biaya pembersihan dan denda keterlambatan *are taken from the deposit* (diambil dari deposit):
+# Ditanyakan
+
+Berapa bagian deposit yang diterima kembali oleh anggota itu.
+
+# Penyelesaian
+
+Bayangkan kamu menyewa alat selama tiga hari mulai hari Jumat. Agar tidak keliru, hitung berurutan dari **hari jatuh tempo**, lalu **jumlah hari terlambat**, lalu **total potongan deposit**.
+
+> Aturan bebas denda hari Selasa hanya berlaku untuk alat yang jatuh tempo tepat pada hari Senin, bukan untuk alat yang sudah jatuh tempo sejak hari Minggu.
+
+## Menentukan hari jatuh tempo dan hari terlambat
+
+Teks menegaskan bahwa masa pinjam menghitung <Highlight>every calendar day, and the day a tool leaves the library is day one</Highlight>. Untuk alat berpita merah (<InlineMath math="3" /> hari) yang keluar pada hari Jumat, urutannya menjadi **Jumat (hari <InlineMath math="1" />), Sabtu (hari <InlineMath math="2" />), dan Minggu (hari <InlineMath math="3" />)** sehingga jatuh tempo pada hari Minggu.
+
+Karena alat kembali pada hari Rabu, hari keterlambatannya **Senin, Selasa, dan Rabu** (<InlineMath math="3" /> hari). Aturan hari Senin tidak berlaku di sini sebab teks membatasi <Highlight>a tool that falls due on a Monday may come back on the Tuesday without a late fee</Highlight>, sementara alat ini jatuh tempo pada hari Minggu.
+
+## Menghitung sisa deposit
+
+Untuk alat berpita merah, teks menyatakan bahwa biaya pembersihan dan denda keterlambatan <Highlight>are taken from the deposit</Highlight>. Jadi kita kurangkan denda <InlineMath math="3" /> hari dan biaya pembersihan dari deposit awal:
 
 <BlockMath math="\text{Rp}150{.}000 - 3 \times \text{Rp}20{.}000 - \text{Rp}10{.}000 = \text{Rp}80{.}000" />
 
-- <InlineMath math="\text{Rp}100{.}000" /> melewatkan hari Senin karena perpustakaan tutup, jadi hanya menghitung <InlineMath math="2" /> hari terlambat.
-- <InlineMath math="\text{Rp}60{.}000" /> juga menghitung hari Minggu, yaitu hari jatuh temponya sendiri, sebagai terlambat, sehingga jadi <InlineMath math="4" /> hari.
-- <InlineMath math="\text{Rp}120{.}000" /> mulai menghitung dari hari Sabtu. Dengan cara itu alat jatuh tempo hari Senin, hari Selasa bebas denda, dan hanya Rabu yang terlambat.
-- <InlineMath math="\text{Rp}90{.}000" /> lupa memotong <InlineMath math="\text{Rp}10{.}000" /> untuk membersihkan mesin yang berlumpur.
+## Mengapa pilihan lain salah
 
-Jadi, anggota itu menerima kembali <InlineMath math="\text{Rp}80{.}000" /> dari depositnya.
+- **Pilihan <InlineMath math="\text{Rp}100{.}000" />** melewati hari Senin karena perpustakaan tutup sehingga hanya menghitung <InlineMath math="2" /> hari terlambat.
+- **<InlineMath math="\text{Rp}60{.}000" />** ikut menghitung hari Minggu (hari jatuh tempo) sebagai hari terlambat sehingga menjadi <InlineMath math="4" /> hari.
+- **<InlineMath math="\text{Rp}120{.}000" />** salah mulai menghitung dari hari Sabtu sehingga jatuh tempo bergeser ke Senin dan hanya Rabu yang dianggap terlambat.
+- **<InlineMath math="\text{Rp}90{.}000" />** lupa memotong biaya pembersihan lumpur sebesar <InlineMath math="\text{Rp}10{.}000" />.
+
+# Jawaban
+
+Jumlah deposit yang diterima kembali oleh anggota itu adalah **<InlineMath math="\text{Rp}80{.}000" />**.
