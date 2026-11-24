@@ -1,12 +1,34 @@
-Berechne jede Anfangszeit mit der richtigen Regel für den Tag.
+# Gegeben
 
-**Pak Ali, Dienstag**. An Werktagen gehen die Nummern zu zweit hinein, die Nummern <InlineMath math="31" /> und <InlineMath math="32" /> teilen sich also eine Runde. Vor ihnen kommen <InlineMath math="15" /> Paare: <InlineMath math="15 \times 12 = 180" /> Minuten nach 7:30, also 10:30.
+In der **Puskesmas Kenanga** beginnen die Ärzte um **7:30 Uhr** und brauchen **<InlineMath math="12" /> Minuten** je Patient. **Werktags** rufen zwei Ärzte **paarweise** auf (<InlineMath math="1" /> und <InlineMath math="2" /> um 7:30), während **samstags** ein Arzt **einzeln** aufruft.
 
-**Seine Frau, Samstag**. Samstags gibt es eine Ärztin oder einen Arzt, die Nummern gehen also einzeln hinein. Vor Nummer <InlineMath math="16" /> kommen <InlineMath math="15" /> Patienten: <InlineMath math="15 \times 12 = 180" /> Minuten nach 7:30, ebenfalls 10:30.
+Pak Ali hat dienstags Nummer **<InlineMath math="31" />**, seine Frau samstags Nummer **<InlineMath math="16" />**.
 
-- <InlineMath math="96" /> Minuten früher behandelt den Samstag wie einen Werktag, mit Nummern zu zweit.
-- <InlineMath math="12" /> Minuten später zählt ihre eigene Runde zu denen vor ihr.
-- <InlineMath math="180" /> Minuten früher behandelt den Dienstag wie einen Samstag, mit nur einer Person im Dienst.
-- <InlineMath math="6" /> Minuten früher halbiert <InlineMath math="31" />, ohne die Nummern zu Paaren zu fassen, und setzt Pak Ali auf 10:36.
+# Gesucht
 
-Ihre Runde beginnt also zur selben Uhrzeit wie seine.
+Wie der Beginn ihres Samstagstermins im Vergleich zu seinem Dienstagstermin liegt.
+
+# Lösung
+
+Werktags laufen **zwei Spuren parallel**, samstags nur **eine Spur**. Obwohl Nummer <InlineMath math="31" /> fast doppelt so hoch ist wie <InlineMath math="16" />, warten **beide genau <InlineMath math="15" /> Durchgänge** vor sich ab.
+
+> Zähle stets die vollständigen Durchgänge *vor* der eigenen Nummer, werktags in Zweierpaaren und samstags einzeln.
+
+## Beide Startzeiten berechnen
+
+Der Text nennt <Highlight>On weekdays two doctors work side by side; on Saturdays there is one. Each doctor sees one patient every <InlineMath math="12" /> minutes</Highlight>.
+
+Dienstags bilden <InlineMath math="31" /> und <InlineMath math="32" /> das **<InlineMath math="16" />. Paar**, also liegen **<InlineMath math="15" /> Paare** davor. Samstags liegen **<InlineMath math="15" /> Patienten** vor Nummer <InlineMath math="16" />. **Beide Wartezeiten** sind identisch:
+
+<BlockMath math="\text{Wartezeit} = 15 \times 12 = 180\text{ Min.} = 3\text{ Std.} \implies 7{:}30 + 3\text{ Std.} = 10{:}30" />
+
+## Warum die anderen vier Optionen scheitern
+
+- **<InlineMath math="96" /> Minuten früher** behandelt Samstag fälschlich wie einen Werktag mit zwei Ärzten.
+- **<InlineMath math="12" /> Minuten später** zählt ihre eigene Nummer <InlineMath math="16" /> als Wartezeit mit.
+- **<InlineMath math="180" /> Minuten früher** rechnet Dienstag mit nur einem Arzt.
+- **<InlineMath math="6" /> Minuten früher** halbiert <InlineMath math="31" /> ohne Paarbildung.
+
+# Antwort
+
+Ihr Termin **beginnt zur gleichen Zeit am Vormittag** (*It begins at the same time of the morning*, jeweils **10:30 Uhr**).

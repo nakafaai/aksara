@@ -1,9 +1,31 @@
-Prüf jede Aussage an den Rundenregeln.
+# Gegeben
 
-- **Die letzte Samstagsrunde beginnt um 11:54: gestützt**. Nummer <InlineMath math="23" /> kommt nach <InlineMath math="22" /> Patienten: <InlineMath math="22 \times 12 = 264" /> Minuten nach 7:30, also 11:54. Nummer <InlineMath math="24" /> würde um 12:06 beginnen, zu spät.
-- **An einem Werktag gehen die Nummern <InlineMath math="45" /> und <InlineMath math="46" /> um 11:54 hinein: gestützt**. Sie sind das <InlineMath math="23" />. Paar, <InlineMath math="22 \times 12 = 264" /> Minuten nach 7:30.
-- An einem Werktag geht Nummer <InlineMath math="30" /> um 13:18 hinein: nicht gestützt. Sie ist im <InlineMath math="15" />. Paar, <InlineMath math="14 \times 12 = 168" /> Minuten nach 7:30, also um 10:18. 13:18 zählt die Nummern einzeln.
-- Samstags sieht die Ärztin oder der Arzt <InlineMath math="6" /> Patienten pro Stunde: nicht gestützt. <InlineMath math="60 \div 12 = 5" />.
-- Jeder Patient über <InlineMath math="60" /> sieht einen Arzt: nicht gestützt. Die Pflegekraft ruft nur "if needed" einen Arzt.
+In der **Puskesmas Kenanga** starten Termine ab **7:30 Uhr** alle **<InlineMath math="12" /> Minuten**, die letzte gültige Runde beginnt um **11:54 Uhr** (Nummer <InlineMath math="23" /> am Samstag, Paar <InlineMath math="45" /> und <InlineMath math="46" /> werktags), und Vorrangpatienten über **<InlineMath math="60" />** sehen einen Arzt nur **bei Bedarf**.
 
-Gestützt sind also die Aussagen über die letzte Samstagsrunde um 11:54 und das Werktagspaar <InlineMath math="45" /> und <InlineMath math="46" /> um 11:54.
+# Gesucht
+
+Alle durch den Text gestützten Aussagen unter den fünf Optionen.
+
+# Lösung
+
+Prüfe jede Uhrzeit und Stundenrate exakt: **<InlineMath math="22" /> Schritte à <InlineMath math="12" /> Minuten** führen auf **11:54 Uhr** (Runde <InlineMath math="24" /> wäre 12:06 Uhr), und ein Arzt sieht **<InlineMath math="5" /> Patienten pro Stunde** (<InlineMath math="60 \div 12" />), nicht <InlineMath math="6" />.
+
+> Rechne jede genannte Uhrzeit und Stundenleistung genau nach, bevor du Aussagen auswählst.
+
+## Alle fünf Aussagen rechnerisch prüfen
+
+Der Text nennt <Highlight>Each doctor sees one patient every <InlineMath math="12" /> minutes</Highlight> sowie <Highlight>calls a doctor if needed</Highlight>. **Zentrale Werte**:
+
+<BlockMath math="7{:}30 + 22 \times 12\text{ Min.} = 11{:}54, \qquad \text{Paar 15: } 7{:}30 + 14 \times 12\text{ Min.} = 10{:}18, \qquad \frac{60}{12} = 5\text{ / Std.}" />
+
+- **Letzter nummerierter Samstagstermin beginnt um 11:54**: **Gestützt** (Nummer <InlineMath math="23" />).
+- **Werktags treten Nummern <InlineMath math="45" /> und <InlineMath math="46" /> um 11:54 ein**: **Gestützt** (<InlineMath math="23" />. Paar).
+- **Werktags tritt Nummer <InlineMath math="30" /> um 13:18 ein**: **Nicht gestützt**, denn Paar <InlineMath math="15" /> beginnt um **10:18 Uhr**.
+- **Samstags sieht der Arzt <InlineMath math="6" /> Patienten pro Stunde**: **Nicht gestützt**, richtig sind <InlineMath math="5" />.
+- **Jeder Patient über <InlineMath math="60" /> sieht einen Arzt**: **Nicht gestützt**, da der Arzt nur *bei Bedarf* gerufen wird.
+
+# Antwort
+
+Durch den Text gestützt werden:
+- **On a Saturday, the last numbered patient's turn begins at 11:54.**
+- **On a weekday, numbers <InlineMath math="45" /> and <InlineMath math="46" /> go in at 11:54.**

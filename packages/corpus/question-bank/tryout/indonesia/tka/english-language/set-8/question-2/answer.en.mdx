@@ -1,15 +1,33 @@
-Turns begin every <InlineMath math="12" /> minutes from 7:30, and a turn must begin by 12:00. The last turn that begins in time is at 11:54, which is <InlineMath math="22" /> turns after 7:30, so there are <InlineMath math="23" /> turns. On weekdays each turn takes two numbers, so numbers up to <InlineMath math="46" /> are seen. On Saturdays each turn takes one number, so numbers up to <InlineMath math="23" /> are seen.
+# Given
 
-**Statement 1**: seen that day. Number <InlineMath math="44" /> is in the <InlineMath math="22" />nd pair, at 11:42.
+At **Puskesmas Kenanga**, doctors start at **7:30** with **<InlineMath math="12" />-minute** slots, and any patient whose turn has **not begun by 12:00** receives a ticket for the next morning. Weekdays call **two numbers per slot** and Saturdays call **one number per slot**.
 
-**Statement 2**: given a ticket. On a Saturday, number <InlineMath math="24" /> would begin at 12:06.
+# Asked
 
-**Statement 3**: given a ticket. Number <InlineMath math="47" /> is in the <InlineMath math="24" />th pair, at 12:06.
+Whether each of the five patients is **Seen that day** or **Given a ticket for the next morning**.
 
-**Statement 4**: seen that day. On a Saturday, number <InlineMath math="23" /> begins at 11:54.
+# Solution
 
-**Statement 5**: seen that day. Number <InlineMath math="45" /> shares the last turn, at 11:54.
+First find the **last valid start time before 12:00**: from 7:30 to 11:54 spans <InlineMath math="264" /> minutes (<InlineMath math="22" /> steps after 7:30), giving **<InlineMath math="23" /> turns** total. That means up to **number <InlineMath math="46" />** on weekdays and **number <InlineMath math="23" />** on Saturdays are seen that day.
 
-Applying the weekday limit of <InlineMath math="46" /> to Saturday sends statement 2 the wrong way. Forgetting that a turn at 11:54 still counts sends statements 4 and 5 the wrong way.
+> Include the opening 7:30 turn when counting slots up to 11:54, since <InlineMath math="22" /> intervals create <InlineMath math="23" /> turns.
 
-So the patients in statements 1, 4 and 5 are seen that day, and those in statements 2 and 3 get a ticket for the next morning.
+## Finding the cutoff numbers for weekdays and Saturdays
+
+The rule states <Highlight>A patient whose turn has not begun by 12:00 is given a ticket for the first turn the next morning</Highlight>. Computing **the cutoff slot**:
+
+<BlockMath math="7{:}30 + 22 \times 12\text{ min} = 11{:}54 \implies 23\text{ turns} \implies \text{weekday max } 46, \quad \text{Saturday max } 23" />
+
+Slot <InlineMath math="24" /> would start at **12:06**, past 12:00. Checking **all five patients**:
+
+| Patient | Day limit | Start time | Outcome |
+| --- | --- | --- | --- |
+| Number <InlineMath math="44" /> on Wednesday | Up to <InlineMath math="46" /> | 11:42 | **Seen that day** |
+| Number <InlineMath math="24" /> on Saturday | Up to <InlineMath math="23" /> | 12:06 | **Given a ticket for the next morning** |
+| Number <InlineMath math="47" /> on Monday | Up to <InlineMath math="46" /> | 12:06 | **Given a ticket for the next morning** |
+| Number <InlineMath math="23" /> on Saturday | Up to <InlineMath math="23" /> | 11:54 | **Seen that day** |
+| Number <InlineMath math="45" /> on Friday | Up to <InlineMath math="46" /> | 11:54 | **Seen that day** |
+
+# Answer
+
+Numbers **<InlineMath math="44" /> (Wednesday)**, **<InlineMath math="23" /> (Saturday)**, and **<InlineMath math="45" /> (Friday)** are **Seen that day**, while **<InlineMath math="24" /> (Saturday)** and **<InlineMath math="47" /> (Monday)** are **Given a ticket for the next morning**.

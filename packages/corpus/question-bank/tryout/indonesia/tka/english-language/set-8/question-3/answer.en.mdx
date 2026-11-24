@@ -1,10 +1,33 @@
-Check each comparison with the turn rules and the fees.
+# Given
 
-- **I is supported**. Both days have the same <InlineMath math="23" /> turns from 7:30, but a weekday turn takes two numbers: <InlineMath math="46" /> against <InlineMath math="23" />.
-- **II is supported**. On a weekday, number <InlineMath math="20" /> is in the <InlineMath math="10" />th pair: <InlineMath math="9 \times 12 = 108" /> minutes after 7:30, which is 9:18. On a Saturday, <InlineMath math="19" /> patients come first: <InlineMath math="19 \times 12 = 228" /> minutes, which is 11:18.
-- III isn't supported. The text gives one registration fee and never says it changes on Saturdays.
-- **IV is supported**. "Patients with a national health card pay nothing", with no day named.
+At **Puskesmas Kenanga**, weekdays have **two doctors** (<InlineMath math="23" /> paired turns = <InlineMath math="46" /> numbered patients) and Saturdays have **one doctor** (<InlineMath math="23" /> single turns = <InlineMath math="23" /> numbered patients). Registration costs **<InlineMath math="\text{Rp}10{,}000" />**, and **national health card holders pay nothing** with no day restriction.
 
-The options with III add a fee rule the text doesn't have. The option without I misses that pairs double the numbers seen.
+# Asked
 
-So the supported statements are I, II and IV only.
+Which of statements I through IV comparing weekdays with Saturdays are supported by the text.
+
+# Solution
+
+Check each claim against the **two-doctor versus one-doctor ratio** and the **fee paragraph**. Both days share the exact same <InlineMath math="23" /> time slots, so weekdays handle twice the patients and move any queue number along twice as fast, while fees never vary by day.
+
+> Unless a passage specifies a weekend discount or surcharge, treat its stated fee rule as identical across every open day.
+
+## Checking all four comparisons between weekday and Saturday
+
+The clinic states <Highlight>Patients with a national health card pay nothing</Highlight>. Computing **number <InlineMath math="20" />'s start time on both days**:
+
+<BlockMath math="\text{Weekday (pair 10): } 7{:}30 + 9 \times 12\text{ min} = 9{:}18, \qquad \text{Saturday (slot 20): } 7{:}30 + 19 \times 12\text{ min} = 11{:}18" />
+
+- **I (supported)**: Weekdays see <InlineMath math="46" /> numbered patients versus <InlineMath math="23" /> on Saturday (exactly twice as many).
+- **II (supported)**: Number <InlineMath math="20" /> enters at 11:18 on Saturday, two hours later than 9:18 on a weekday.
+- **III (false)**: No Saturday registration discount is mentioned anywhere.
+- **IV (supported)**: National health card holders pay nothing on every open day.
+
+## Why the other four options fail
+
+- Options including **III** invent a Saturday fee discount absent from the text.
+- **I and II only** omits IV, while **II and IV only** drops the proven two-to-one capacity in I.
+
+# Answer
+
+The supported comparisons are **I, II, and IV only**.

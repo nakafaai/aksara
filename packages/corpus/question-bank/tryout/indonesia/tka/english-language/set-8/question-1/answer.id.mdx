@@ -1,12 +1,34 @@
-Hitung setiap jam mulai dengan aturan yang tepat untuk harinya.
+# Diketahui
 
-**Pak Ali, hari Selasa**. Pada hari kerja, nomor masuk berdua, jadi nomor <InlineMath math="31" /> dan <InlineMath math="32" /> masuk bersama. Sebelum mereka ada <InlineMath math="15" /> pasang: <InlineMath math="15 \times 12 = 180" /> menit setelah pukul 7.30, yaitu pukul 10.30.
+Di **Puskesmas Kenanga**, dokter mulai pukul **7.30** dengan durasi **<InlineMath math="12" /> menit** per pasien. Pada **hari kerja**, dua dokter memanggil **berpasangan** (<InlineMath math="1" /> dan <InlineMath math="2" /> pukul 7.30, <InlineMath math="3" /> dan <InlineMath math="4" /> pukul 7.42), sedangkan pada **Sabtu**, satu dokter memanggil **satu per satu**.
 
-**Istrinya, hari Sabtu**. Pada hari Sabtu hanya ada satu dokter, jadi nomor masuk satu per satu. Sebelum nomor <InlineMath math="16" /> ada <InlineMath math="15" /> pasien: <InlineMath math="15 \times 12 = 180" /> menit setelah pukul 7.30, juga pukul 10.30.
+Pak Ali mendapat nomor **<InlineMath math="31" />** pada Selasa, sedangkan istrinya mendapat nomor **<InlineMath math="16" />** pada Sabtu.
 
-- <InlineMath math="96" /> menit lebih awal menganggap Sabtu seperti hari kerja, dengan nomor masuk berpasangan.
-- <InlineMath math="12" /> menit lebih lambat menghitung gilirannya sendiri sebagai giliran sebelum dia.
-- <InlineMath math="180" /> menit lebih awal menganggap Selasa seperti Sabtu, dengan satu dokter.
-- <InlineMath math="6" /> menit lebih awal membagi <InlineMath math="31" /> dengan <InlineMath math="2" /> tanpa memasangkan nomornya, sehingga Pak Ali masuk pukul 10.36.
+# Ditanyakan
 
-Jadi, gilirannya dimulai pada jam yang sama dengan giliran Pak Ali.
+Perbandingan waktu mulai giliran istri Pak Ali pada Sabtu dengan waktu mulai giliran Pak Ali pada Selasa.
+
+# Penyelesaian
+
+Bayangkan Selasa sebagai **jalan dua lajur** dan Sabtu sebagai **jalan satu lajur**. Walau nomor Pak Ali (<InlineMath math="31" />) hampir dua kali lipat nomor istrinya (<InlineMath math="16" />), dua dokter bekerja serentak sehingga **keduanya sama-sama menunggu tepat <InlineMath math="15" /> giliran di depan**.
+
+> Hitung selalu jumlah giliran utuh yang datang *sebelum* nomor pasien, memakai pasangan pada hari kerja dan satuan pada hari Sabtu.
+
+## Menghitung waktu mulai kedua giliran
+
+Teks menetapkan <Highlight>On weekdays two doctors work side by side; on Saturdays there is one. Each doctor sees one patient every <InlineMath math="12" /> minutes</Highlight>.
+
+Pada Selasa, nomor <InlineMath math="31" /> dan <InlineMath math="32" /> menempati **pasangan ke-<InlineMath math="16" />**, sehingga ada **<InlineMath math="15" /> pasangan** sebelumnya. Pada Sabtu, ada **<InlineMath math="15" /> pasien** sebelum nomor <InlineMath math="16" />. **Waktu tunggu keduanya** persis sama:
+
+<BlockMath math="\text{Tunggu} = 15 \times 12 = 180\text{ menit} = 3\text{ jam} \implies 7.30 + 3\text{ jam} = 10.30" />
+
+## Mengapa empat pilihan lain keliru
+
+- **<InlineMath math="96" /> menit lebih awal** salah menganggap Sabtu memakai dua dokter berpasangan.
+- **<InlineMath math="12" /> menit lebih lambat** menghitung nomor <InlineMath math="16" /> sendiri ikut menjadi waktu tunggu.
+- **<InlineMath math="180" /> menit lebih awal** salah menganggap Selasa hanya dilayani satu dokter.
+- **<InlineMath math="6" /> menit lebih awal** membagi <InlineMath math="31" /> dengan <InlineMath math="2" /> tanpa memasangkan nomor ganjil dan genap.
+
+# Jawaban
+
+Gilirannya **mulai pada waktu pagi yang sama** (*It begins at the same time of the morning*, keduanya pukul **10.30**).
