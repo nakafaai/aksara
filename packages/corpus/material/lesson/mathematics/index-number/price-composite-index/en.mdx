@@ -1,0 +1,260 @@
+export const metadata = {
+  title: "Index Numbers Notes for Form Four",
+  description:
+    "KSSM Additional Mathematics Form 4 Chapter 10 notes: work out a price index, find the base-year price, calculate a weighted composite index, and chain indices to change the base year.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2026-11-17",
+  subject: "Index Numbers",
+};
+
+## An Index Compares Two Times
+
+An **index number** measures the change in a quantity, such as a price, against its value in the **base year**:
+
+<BlockMath math="I = \frac{Q_1}{Q_0} \times 100" />
+
+Here <InlineMath math="Q_0" /> is the value in the base year and <InlineMath math="Q_1" /> is the value in the year being studied. An index of <InlineMath math="100" /> means no change, an index of <InlineMath math="125" /> means a rise of <InlineMath math="25\%" />, and an index of <InlineMath math="90" /> means a fall of <InlineMath math="10\%" />. For several items, a **composite index** combines the index of each item by its weight.
+
+In these notes you change the current price and watch the index move, compare the indices of several items, adjust the weights in a composite index, and join two indices to change the base year. Every price in these notes is a sample price for practice.
+
+## The Price Index of One Item
+
+A <InlineMath math="10\text{ kg}" /> bag of rice costs **RM26.00** in <InlineMath math="2020" /> and **RM32.50** in <InlineMath math="2024" />. With <InlineMath math="2020" /> as the base year:
+
+<BlockMath math="I_{2024/2020} = \frac{32.50}{26.00} \times 100 = 125" />
+
+The price of rice rose by <InlineMath math="25\%" /> over that time. Change the current price below. The index changes linearly, because the base-year price is fixed.
+
+<MathVisual
+  title={<>The Price Index of Rice with Base Year 2020</>}
+  description={
+    <>
+      The index <InlineMath math="I = \dfrac{Q_1}{26.00} \times 100" />. A price
+      of <InlineMath math="\text{RM}32.50" /> gives an index of{" "}
+      <InlineMath math="125" />, and a price of{" "}
+      <InlineMath math="\text{RM}26.00" /> gives an index of{" "}
+      <InlineMath math="100" />.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 20, max: 40 }, y: { min: 70, max: 160 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "p", min: 20, max: 40, value: 32.5, step: 0.1, label: "p" },
+    ],
+    objects: [
+      { id: "index-line", kind: "function", appearance: "primary", formula: "x/26*100", domain: { min: 20, max: 40 } },
+      { id: "base", kind: "point", at: { x: 26, y: 100 }, appearance: "reference" },
+      { id: "now", kind: "marker", x: "p", y: "p/26*100", appearance: "warning" },
+    ],
+    readouts: [
+      { key: "index", formula: "p/26*100" },
+      { key: "change", formula: "p/26*100 - 100" },
+    ],
+  }}
+  labels={{
+    p: <>Current price <InlineMath math="Q_1" /> in RM</>,
+    index: <>Price index <InlineMath math="I" /></>,
+    change: <>Change in price as a percentage</>,
+  }}
+/>
+
+The same formula can be rearranged to find the base-year price. If the index of rice is <InlineMath math="125" /> and its price is now <InlineMath math="\text{RM}32.50" />, then <InlineMath math="Q_0 = \dfrac{32.50 \times 100}{125} = 26.00" />.
+
+## Compare the Indices of Several Items
+
+This table gives sample prices of four kitchen items, with their indices and weights. The weights show how much each item matters in household spending.
+
+| Item | 2020 price (RM) | 2024 price (RM) | Index <InlineMath math="I" /> | Weight <InlineMath math="w" /> |
+| :--- | :--- | :--- | :--- | :--- |
+| Rice <InlineMath math="10\text{ kg}" /> | <InlineMath math="26.00" /> | <InlineMath math="32.50" /> | <InlineMath math="125" /> | <InlineMath math="4" /> |
+| Mackerel <InlineMath math="1\text{ kg}" /> | <InlineMath math="12.00" /> | <InlineMath math="16.80" /> | <InlineMath math="140" /> | <InlineMath math="3" /> |
+| Vegetables <InlineMath math="1\text{ kg}" /> | <InlineMath math="5.00" /> | <InlineMath math="5.50" /> | <InlineMath math="110" /> | <InlineMath math="2" /> |
+| Cooking oil <InlineMath math="5\text{ kg}" /> | <InlineMath math="25.00" /> | <InlineMath math="30.00" /> | <InlineMath math="120" /> | <InlineMath math="1" /> |
+
+<Chart
+  title={<>Price Indices of Four Items with Base Year 2020</>}
+  bars="apart"
+  categories={["Rice", "Mackerel", "Vegetables", "Cooking oil"]}
+  series={[
+    { label: "2024 index", mark: "bar", values: [125, 140, 110, 120] },
+    { label: "Base year", mark: "line", values: [100, 100, 100, 100] },
+  ]}
+  valueLabel="Price index"
+  valueRange={{ min: 0, max: 150 }}
+  description={
+    <>
+      Every bar passes the line at <InlineMath math="100" />, so every price
+      rose. Mackerel rose the most, by <InlineMath math="40\%" />, and vegetables
+      the least, by <InlineMath math="10\%" />.
+    </>
+  }
+/>
+
+An index has no unit. You can compare a bag of rice with a kilogram of vegetables because **each index compares an item with itself**.
+
+## The Weighted Composite Index
+
+The **composite index** <InlineMath math="\bar{I}" /> is the weighted mean of the indices of all the items:
+
+<BlockMath math="\bar{I} = \frac{\sum I_i w_i}{\sum w_i}" />
+
+For the four items above:
+
+<MathContainer>
+<BlockMath math="\sum I_i w_i = 125(4) + 140(3) + 110(2) + 120(1) = 1260" />
+<BlockMath math="\bar{I} = \frac{1260}{4 + 3 + 2 + 1} = 126.0" />
+</MathContainer>
+
+The total cost of this basket rose by <InlineMath math="26\%" />. If a family spent <InlineMath math="\text{RM}800" /> on these items in <InlineMath math="2020" />, the same shopping in <InlineMath math="2024" /> costs <InlineMath math="800 \times \dfrac{126}{100} = \text{RM}1008" />.
+
+The weights change the composite index. Adjust the weight of mackerel, the item that rose the most, and watch the composite index move towards <InlineMath math="140" />.
+
+<MathVisual
+  title={<>The Composite Index against the Weight of Mackerel</>}
+  description={
+    <>
+      The composite index <InlineMath math="\bar{I} = \dfrac{840 + 140w}{7 + w}" />,
+      with the other weights fixed. A weight of <InlineMath math="w = 3" /> gives{" "}
+      <InlineMath math="126.0" />, and a large weight pulls the index towards{" "}
+      <InlineMath math="140" />.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 12 }, y: { min: 115, max: 145 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "w", min: 0, max: 12, value: 3, step: 1, label: "w" },
+    ],
+    objects: [
+      { id: "composite", kind: "function", appearance: "primary", formula: "(840 + 140*x)/(7 + x)", domain: { min: 0, max: 12 } },
+      { id: "ceiling", kind: "function", appearance: "reference", formula: "140", domain: { min: 0, max: 12 } },
+      { id: "now", kind: "marker", x: "w", y: "(840 + 140*w)/(7 + w)", appearance: "warning" },
+    ],
+    readouts: [
+      { key: "composite-index", formula: "(840 + 140*w)/(7 + w)" },
+    ],
+  }}
+  labels={{
+    w: <>Weight of mackerel <InlineMath math="w" /></>,
+    "composite-index": <>Composite index <InlineMath math="\bar{I}" /></>,
+  }}
+/>
+
+At <InlineMath math="w = 0" />, mackerel is left out and the composite index is <InlineMath math="\dfrac{840}{7} = 120" />.
+
+## Chained Indices and a New Base Year
+
+If you know the index from year <InlineMath math="0" /> to year <InlineMath math="1" />, and from year <InlineMath math="1" /> to year <InlineMath math="2" />, join them by **multiplying**:
+
+<BlockMath math="I_{2/0} = \frac{I_{2/1} \times I_{1/0}}{100}" />
+
+For example, the price index of a bus fare is <InlineMath math="115" /> for <InlineMath math="2022" /> based on <InlineMath math="2020" />, and <InlineMath math="110" /> for <InlineMath math="2024" /> based on <InlineMath math="2022" />. Then <InlineMath math="I_{2024/2020} = \dfrac{110 \times 115}{100} = 126.5" />, not <InlineMath math="115 + 10 = 125" />. Change the two indices below.
+
+<MathVisual
+  title={<>A Chained Index from Two Periods</>}
+  description={
+    <>
+      The overall index{" "}
+      <InlineMath math="I_{2024/2020} = \dfrac{I_{2024/2022} \times I_{2022/2020}}{100}" />.
+      For <InlineMath math="115" /> and <InlineMath math="110" />, the overall
+      index is <InlineMath math="126.5" />.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 100, max: 130 }, y: { min: 95, max: 160 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "a", min: 100, max: 130, value: 115, step: 1, label: "a" },
+      { name: "b", min: 100, max: 120, value: 110, step: 1, label: "b" },
+    ],
+    objects: [
+      { id: "chain", kind: "function", appearance: "primary", formula: "x*b/100", domain: { min: 100, max: 130 } },
+      { id: "now", kind: "marker", x: "a", y: "a*b/100", appearance: "warning" },
+    ],
+    readouts: [
+      { key: "overall", formula: "a*b/100" },
+    ],
+  }}
+  labels={{
+    a: <>Index <InlineMath math="I_{2022/2020}" /></>,
+    b: <>Index <InlineMath math="I_{2024/2022}" /></>,
+    overall: <>Overall index <InlineMath math="I_{2024/2020}" /></>,
+  }}
+/>
+
+You multiply because the second rise is worked out on a price that has already risen. A rise of <InlineMath math="10\%" /> on a price that already rose by <InlineMath math="15\%" /> gives an overall rise of <InlineMath math="26.5\%" />.
+
+## Indices over Time
+
+An index also shows a trend year by year. Sample prices of rice are RM26.00, RM27.30, RM29.90, RM31.20 and RM32.50 for the years <InlineMath math="2020" /> to <InlineMath math="2024" />. With <InlineMath math="2020" /> as the base year, each price is divided by <InlineMath math="26.00" />.
+
+<Chart
+  title={<>The Price Index of Rice from 2020 to 2024</>}
+  categories={["2020", "2021", "2022", "2023", "2024"]}
+  series={[
+    { label: "Price index of rice", mark: "line", values: [100, 105, 115, 120, 125] },
+  ]}
+  valueLabel="Price index"
+  valueRange={{ min: 90, max: 130 }}
+  description={
+    <>
+      The index rises from <InlineMath math="100" /> to <InlineMath math="125" />.
+      The largest rise happens from <InlineMath math="2021" /> to{" "}
+      <InlineMath math="2022" />, by <InlineMath math="10" /> index points.
+    </>
+  }
+/>
+
+The rise from <InlineMath math="2021" /> to <InlineMath math="2022" /> is <InlineMath math="10" /> index points, but the percentage rise in price is <InlineMath math="\dfrac{29.90 - 27.30}{27.30} \times 100 = 9.5\%" />. **Index points equal a percentage** only when you compare with the base year.
+
+## Common Mistakes with Index Numbers
+
+| Mistake | Why it is wrong | How to check |
+| :--- | :--- | :--- |
+| Working out <InlineMath math="\dfrac{Q_0}{Q_1} \times 100" />. | The base-year value must be in the denominator. | A price that rose must give an index above <InlineMath math="100" />. |
+| Averaging the indices without weights. | A more important item must have a larger effect. | Multiply each index by its weight first. |
+| Adding chained indices, such as <InlineMath math="115 + 110" />. | Chained indices are multiplied, then divided by <InlineMath math="100" />. | The overall index must be near <InlineMath math="126.5" />, not <InlineMath math="225" />. |
+| Reading an index of <InlineMath math="126" /> as a price of RM126. | An index is a ratio without a unit. | An index only means something next to <InlineMath math="100" />. |
+| Forgetting to multiply by <InlineMath math="100" />. | Indices are written on a base of <InlineMath math="100" />, not <InlineMath math="1" />. | The base year must give an index of <InlineMath math="100" />. |
+
+The third mistake is the most common. **Chained indices are always multiplied**, because each rise is worked out on a value that has already changed.
+
+## Index Numbers Practice
+
+Write the base year of each index before you calculate so that **the numerator and denominator do not swap**.
+
+1. A book costs RM40.00 in <InlineMath math="2021" /> and RM46.00 in <InlineMath math="2024" />. Work out the price index of the book in <InlineMath math="2024" /> based on <InlineMath math="2021" />.
+
+2. The price index of an item in <InlineMath math="2024" /> based on <InlineMath math="2020" /> is <InlineMath math="130" />. Its price in <InlineMath math="2024" /> is RM19.50. Find its price in <InlineMath math="2020" />.
+
+3. Three items have indices <InlineMath math="120" />, <InlineMath math="105" /> and <InlineMath math="140" />, with weights <InlineMath math="5" />, <InlineMath math="3" /> and <InlineMath math="2" />. Work out the composite index.
+
+4. Given <InlineMath math="I_{2021/2019} = 125" /> and <InlineMath math="I_{2023/2021} = 108" />, work out <InlineMath math="I_{2023/2019}" />.
+
+### Solutions
+
+**Solution 1**: The base year is <InlineMath math="2021" />, so the price of RM40.00 goes in the denominator:
+
+<BlockMath math="I = \frac{46.00}{40.00} \times 100 = 115" />
+
+The price of the book rose by <InlineMath math="15\%" />.
+
+**Solution 2**: Rearrange the index formula for <InlineMath math="Q_0" />:
+
+<BlockMath math="Q_0 = \frac{Q_1 \times 100}{I} = \frac{19.50 \times 100}{130} = 15.00" />
+
+Its price in <InlineMath math="2020" /> was RM15.00. **Check**: <InlineMath math="\dfrac{19.50}{15.00} \times 100 = 130" />.
+
+**Solution 3**: Use the weighted mean:
+
+<BlockMath math="\bar{I} = \frac{120(5) + 105(3) + 140(2)}{5 + 3 + 2} = \frac{600 + 315 + 280}{10} = 119.5" />
+
+**Solution 4**: Multiply the two indices, then divide by <InlineMath math="100" />:
+
+<BlockMath math="I_{2023/2019} = \frac{108 \times 125}{100} = 135" />
+
+The price rose by <InlineMath math="35\%" /> from <InlineMath math="2019" /> to <InlineMath math="2023" />.
