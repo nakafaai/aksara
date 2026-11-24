@@ -1,15 +1,31 @@
-For each action, find the step that speaks to it, if any.
+# Given
 
-**Statement 1**: breaks the instructions. Step 3 says to pour "within <InlineMath math="90" /> minutes" and that a mix that has started to set "must be thrown away, not softened with more water". Two hours is past <InlineMath math="90" /> minutes, and the water softens it.
+**Five concrete-mixing actions** must be sorted into **Follows the instructions**, **Breaks the instructions**, or **Not covered**.
 
-**Statement 2**: follows the instructions. "Nobody walks on the path for <InlineMath math="3" /> days", so walking on the fourth day is allowed, and the sacks are still kept damp.
+Key procedure limits: pour within **<InlineMath math="90" /> minutes**, never soften setting concrete with extra water, keep damp sacks on for **<InlineMath math="7" /> days**, no walking for **<InlineMath math="3" /> days** (walking permitted on day four), and no carts or motorbikes for **<InlineMath math="7" /> days**.
 
-**Statement 3**: breaks the instructions. The sacks stay damp "for <InlineMath math="7" /> days". Looking hard on the fifth day doesn't change that.
+# Asked
 
-**Statement 4**: not covered. The instructions say nothing about colouring concrete.
+Whether each action follows the instructions, breaks them, or is not covered by them.
 
-**Statement 5**: follows the instructions. <InlineMath math="60" /> minutes is within <InlineMath math="90" />, and the mix hasn't started to set.
+# Solution
 
-Treating statement 4 as breaking the instructions reads a ban into silence. Treating statement 2 as breaking them mixes up the <InlineMath math="3" /> days for walking with the <InlineMath math="7" /> days for the sacks.
+Match each action to its exact rule. Avoid two pitfalls: **silence on red colouring is Not covered, never a ban**, and **do not mix up the <InlineMath math="3" />-day walking limit with the <InlineMath math="7" />-day damp-sack rule**.
 
-So statements 2 and 5 follow the instructions, statements 1 and 3 break them, and statement 4 isn't covered.
+> When instructions say nothing at all about an optional step such as colouring, classify it as Not covered rather than reading a ban into silence.
+
+## Sorting all five actions against the steps
+
+| Action | Classification | Direct evidence in the guide |
+| --- | --- | --- |
+| <InlineMath math="1" /> (Adding water to stiffening mix after <InlineMath math="2" /> hours) | **Breaks the instructions** | Step <InlineMath math="3" /> demands pouring <Highlight>within <InlineMath math="90" /> minutes</Highlight> and says a setting mix <Highlight>must be thrown away, not softened with more water</Highlight>. |
+| <InlineMath math="2" /> (Walking on day <InlineMath math="4" /> while sacks stay damp) | **Follows the instructions** | Step <InlineMath math="5" /> bars walking for <InlineMath math="3" /> days, so day four is allowed while keeping the sacks damp. |
+| <InlineMath math="3" /> (Removing damp sacks on day <InlineMath math="5" /> because it looks hard) | **Breaks the instructions** | Step <InlineMath math="4" /> requires damp sacks <Highlight>for <InlineMath math="7" /> days</Highlight>. |
+| <InlineMath math="4" /> (Adding red colouring powder to dry mix) | **Not covered** | The instructions never mention colouring concrete. |
+| <InlineMath math="5" /> (Pouring <InlineMath math="60" /> minutes after adding water, before setting) | **Follows the instructions** | <InlineMath math="60" /> minutes is inside the <InlineMath math="90" />-minute window before setting begins. |
+
+# Answer
+
+- **Follows the instructions**: statements **<InlineMath math="2" />** and **<InlineMath math="5" />**.
+- **Breaks the instructions**: statements **<InlineMath math="1" />** and **<InlineMath math="3" />**.
+- **Not covered**: statement **<InlineMath math="4" />**.

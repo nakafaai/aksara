@@ -1,10 +1,35 @@
-Check each comparison against the table and the last paragraph.
+# Given
 
-- **I is supported**. Block A gets <InlineMath math="4" /> hours in the morning and <InlineMath math="2" /> in the afternoon, <InlineMath math="6" /> in all. Every other block gets <InlineMath math="4" />.
-- **II is supported**. Block A's longest gap runs from 9:00 on the first day to 15:00 on the fourth: <InlineMath math="3 \times 24 + 6 = 78" /> hours. Every other block waits from 9:00 to 5:00 four days later: <InlineMath math="3 \times 24 + 20 = 92" /> hours.
-- III isn't supported. The pipes deliver "about <InlineMath math="1{,}200" /> litres an hour to each house" in every block. If anything, Block A's water "ran thin".
-- **IV is supported**. It has two turns "because it sits highest on the hill, where the pressure is weakest".
+In every four-day cycle, **Block A** receives two turns (day <InlineMath math="1" /> 5:00 to 9:00 and day <InlineMath math="4" /> 15:00 to 17:00) because it sits highest on the hill with the weakest pressure, whereas **Blocks B, C, and D** each get one morning turn from 5:00 to 9:00.
 
-The options with III turn more hours into more litres per hour. The option without II misses that measuring in hours, not days, is what makes Block A's longest gap shorter.
+# Asked
 
-So the supported statements are I, II and IV only.
+Which numbered statements comparing Block A with the other blocks are supported by the text.
+
+# Solution
+
+Check four exact dimensions: **total supply hours**, **longest gap measured in hours** (not rounded days), **flow rate per hour**, and **the reason for two turns**. Never confuse more total hours with more litres per hour.
+
+> Measuring gaps in exact hours (<InlineMath math="78" /> hours vs. <InlineMath math="92" /> hours) reveals Block A's shorter longest gap even though both round up to <InlineMath math="4" /> days.
+
+## Comparing hour gaps and checking each statement
+
+**Block A's longest gap** (day <InlineMath math="1" /> 9:00 to day <InlineMath math="4" /> 15:00) versus **other blocks** (9:00 to 5:00 four days later):
+
+<BlockMath math="\text{Block A: } 3 \times 24 + 6 = 78\text{ hours}, \qquad \text{Blocks B, C, D: } 3 \times 24 + 20 = 92\text{ hours}" />
+
+| Statement | Supported? | Evidence from table and text |
+| --- | --- | --- |
+| I | **Yes** | Block A gets <InlineMath math="4" /> morning plus <InlineMath math="2" /> afternoon hours (<InlineMath math="6" /> total), more than the <InlineMath math="4" /> hours of every other block. |
+| II | **Yes** | Measured in hours, Block A's longest gap (<InlineMath math="78" /> hours) is shorter than the <InlineMath math="92" />-hour gap of other blocks. |
+| III | No | Pipes deliver <Highlight>about <InlineMath math="1{,}200" /> litres an hour to each house</Highlight> across blocks, and Block A's morning water actually <Highlight>ran thin</Highlight>. |
+| IV | **Yes** | Stated directly: <Highlight>Block A has two turns in each four-day cycle because it sits highest on the hill, where the pressure is weakest</Highlight>. |
+
+## Why the other options fail
+
+- **Options including III** confuse more supply hours with a higher flow rate per hour.
+- **I and IV only** misses the exact-hours comparison (<InlineMath math="78" /> vs. <InlineMath math="92" />) in II.
+
+# Answer
+
+The supported comparison statements are **I, II, and IV only**.

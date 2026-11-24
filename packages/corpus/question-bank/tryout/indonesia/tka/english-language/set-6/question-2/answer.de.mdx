@@ -1,13 +1,30 @@
-Find für jeden Haushalt die Zeit vom Ende der Runde bis zum Beginn der nächsten, zähl einen Teil eines Tages als ganzen Tag, multipliziere mit <InlineMath math="60" /> Litern pro Person und vergleich mit dem gespeicherten Wasser.
+# Gegeben
 
-**Aussage 1**. Reicht. Block B wartet <InlineMath math="3" /> Tage und <InlineMath math="20" /> Stunden, also <InlineMath math="4" /> Tage: <InlineMath math="3 \times 60 \times 4 = 720" /> Liter, unter <InlineMath math="1{.}000" />.
+**Fünf Haushalte** starten nach Versorgungsende mit vollen Tanks (<InlineMath math="1{.}000" /> Liter je Tank, <InlineMath math="60" /> Liter pro Person und Tag, jeder angefangene Tag zählt voll). Block B, C und D warten <InlineMath math="3" /> Tage <InlineMath math="20" /> Stunden (<InlineMath math="4" /> Tage), Block A wartet nachmittags **<InlineMath math="12" /> Stunden (<InlineMath math="1" /> Tag)** und morgens **<InlineMath math="3" /> Tage <InlineMath math="6" /> Stunden (<InlineMath math="4" /> Tage)**.
 
-**Aussage 2**. Reicht nicht. Block D wartet ebenfalls <InlineMath math="4" /> Tage: <InlineMath math="5 \times 60 \times 4 = 1{.}200" /> Liter, über <InlineMath math="1{.}000" />.
+# Gesucht
 
-**Aussage 3**. Reicht. Nach dem Ende der Nachmittagsrunde um 17:00 am vierten Tag beginnt die nächste Runde von Block A um 5:00 am ersten Tag, <InlineMath math="12" /> Stunden später, also <InlineMath math="1" /> Tag: <InlineMath math="6 \times 60 \times 1 = 360" /> Liter.
+Ob der Wasservorrat jedes Haushalts bis zum nächsten Termin **reicht** (*Lasts*) oder **nicht reicht** (*Runs short*).
 
-**Aussage 4**. Reicht nicht. Nach dem Ende der Morgenrunde um 9:00 am ersten Tag beginnt die nächste Runde um 15:00 am vierten Tag, <InlineMath math="3" /> Tage und <InlineMath math="6" /> Stunden später, also <InlineMath math="4" /> Tage: <InlineMath math="6 \times 60 \times 4 = 1{.}440" /> Liter, über <InlineMath math="1{.}000" />. Die zwei Runden von Block A schützen einen Haushalt nach der Morgenrunde nicht.
+# Lösung
 
-**Aussage 5**. Reicht. Block C wartet <InlineMath math="4" /> Tage: <InlineMath math="7 \times 60 \times 4 = 1{.}680" /> Liter, unter den <InlineMath math="2{.}000" /> Litern in zwei Tanks.
+Achte auf **die beiden ungleichen Pausen in Block A**: Nach dem Nachmittagstermin (17:00 bis 5:00 Uhr) sind es nur <InlineMath math="12" /> Stunden (**<InlineMath math="1" /> Tag**), nach dem Morgentermin (9:00 bis 15:00 Uhr am vierten Tag) dagegen <InlineMath math="3" /> Tage <InlineMath math="6" /> Stunden, also aufgerundet **<InlineMath math="4" /> volle Tage**.
 
-Die Haushalte in den Aussagen 1, 3 und 5 kommen also aus, die in den Aussagen 2 und 4 nicht.
+> Zwei Termine schützen Block A nach dem Morgentermin nicht, weil <InlineMath math="3" /> Tage und <InlineMath math="6" /> Stunden nach Bu Nartis Regel voll als <InlineMath math="4" /> Tage zählen.
+
+## Prüfung aller fünf Haushalte
+
+Mit <Highlight>counting any part of a day as a whole day</Highlight> vergleichen wir Bedarf und Tankvolumen:
+
+| Haushalt | Gezählte Tage | Bedarf gegenüber Vorrat | Ergebnis |
+| --- | --- | --- | --- |
+| <InlineMath math="1" /> (Block B, <InlineMath math="3" /> Pers., <InlineMath math="1" /> Tank) | <InlineMath math="4" /> Tage | <InlineMath math="720" /> Liter (<InlineMath math="3 \times 60 \times 4" />) gegen <InlineMath math="1{.}000" /> Liter. | **Lasts** |
+| <InlineMath math="2" /> (Block D, <InlineMath math="5" /> Pers., <InlineMath math="1" /> Tank) | <InlineMath math="4" /> Tage | <InlineMath math="1{.}200" /> Liter (<InlineMath math="5 \times 60 \times 4" />) über <InlineMath math="1{.}000" /> Litern. | **Runs short** |
+| <InlineMath math="3" /> (Block A, <InlineMath math="6" /> Pers., <InlineMath math="1" /> Tank, nach Nachmittag) | <InlineMath math="1" /> Tag (<InlineMath math="12" /> Std.) | <InlineMath math="360" /> Liter (<InlineMath math="6 \times 60 \times 1" />) gegen <InlineMath math="1{.}000" /> Liter. | **Lasts** |
+| <InlineMath math="4" /> (Block A, <InlineMath math="6" /> Pers., <InlineMath math="1" /> Tank, nach Morgen) | <InlineMath math="4" /> Tage (<InlineMath math="3" /> T. <InlineMath math="6" /> Std.) | <InlineMath math="1{.}440" /> Liter (<InlineMath math="6 \times 60 \times 4" />) über <InlineMath math="1{.}000" /> Litern. | **Runs short** |
+| <InlineMath math="5" /> (Block C, <InlineMath math="7" /> Pers., <InlineMath math="2" /> Tanks) | <InlineMath math="4" /> Tage | <InlineMath math="1{.}680" /> Liter (<InlineMath math="7 \times 60 \times 4" />) gegen <InlineMath math="2{.}000" /> Liter. | **Lasts** |
+
+# Antwort
+
+- **Lasts**: Aussagen **<InlineMath math="1" />**, **<InlineMath math="3" />** und **<InlineMath math="5" />**.
+- **Runs short**: Aussagen **<InlineMath math="2" />** und **<InlineMath math="4" />**.

@@ -1,14 +1,39 @@
-Three steps: count the days, find the water needed, then price what the tank can't cover.
+# Given
 
-**Days**. The supply stops at 9:00 on the third day, and Block C's next turn begins at 5:00 on the third day of the next cycle, <InlineMath math="3" /> days and <InlineMath math="20" /> hours later. "Counting any part of a day as a whole day", that's <InlineMath math="4" /> days.
+A **five-person household** in **Block C** has one **<InlineMath math="1" />-cubic-metre (<InlineMath math="1{,}000" />-litre) tank** that is full when supply stops at 9:00 on day three.
 
-**Water needed**. <InlineMath math="5 \times 60 = 300" /> litres a day, so <InlineMath math="300 \times 4 = 1{,}200" /> litres. The tank holds <InlineMath math="1{,}000" /> litres, so the household must buy <InlineMath math="1{,}200 - 1{,}000 = 200" /> litres.
+Bu Narti's figures and rules:
+- Block C's next turn starts at 5:00 on day three of the next cycle (<InlineMath math="3" /> days <InlineMath math="20" /> hours later), **counting any part of a day as a whole day**.
+- Usage is **<InlineMath math="60" /> litres per person per day**.
+- Cart water costs **<InlineMath math="\text{Rp}5{,}000" /> per <InlineMath math="20" />-litre container**.
 
-**Cost**. Cart water comes in <InlineMath math="20" />-litre containers at <InlineMath math="\text{Rp}5{,}000" /> each: <InlineMath math="200 \div 20 = 10" /> containers, and <InlineMath math="10 \times \text{Rp}5{,}000 = \text{Rp}50{,}000" />.
+# Asked
 
-- "None" assumes one tank covers four days, but four days need <InlineMath math="1{,}200" /> litres.
-- <InlineMath math="150" /> litres for <InlineMath math="\text{Rp}37{,}500" /> counts the exact hours from 9:00 to 5:00 (about <InlineMath math="3.8" /> days) instead of whole days.
-- <InlineMath math="\text{Rp}10{,}000" /> prices the water as if one container held <InlineMath math="100" /> litres.
-- <InlineMath math="\text{Rp}1{,}000{,}000" /> charges <InlineMath math="\text{Rp}5{,}000" /> for every litre instead of every <InlineMath math="20" /> litres.
+How much cart water the household must buy before its next turn and what it will cost.
 
-So the household must buy <InlineMath math="200" /> litres, costing <InlineMath math="\text{Rp}50{,}000" />.
+# Solution
+
+Work through three tidy steps: **round the wait to whole days**, **find the shortfall above the <InlineMath math="1{,}000" />-litre tank**, and **convert litres into <InlineMath math="20" />-litre containers** to price them.
+
+> Counting any part of a day as a whole day turns a <InlineMath math="3" />-day <InlineMath math="20" />-hour wait into <InlineMath math="4" /> full days.
+
+## Calculating water shortfall and cart cost
+
+Bu Narti's rules specify <Highlight>counting any part of a day as a whole day</Highlight>, <Highlight><InlineMath math="60" /> litres per person per day</Highlight>, and <Highlight><InlineMath math="\text{Rp}5{,}000" /> for every <InlineMath math="20" />-litre container</Highlight>.
+
+Rounding <InlineMath math="3" /> days <InlineMath math="20" /> hours up to **<InlineMath math="4" /> days**, **the demand, shortfall, and cart cost** are:
+
+<BlockMath math="\text{Needed: } 5 \times 60 \times 4 = 1{,}200\text{ L}, \qquad \text{Shortfall: } 1{,}200 - 1{,}000 = 200\text{ L}" />
+
+<BlockMath math="\text{Cost: } \frac{200}{20} \times \text{Rp}5{,}000 = 10 \times \text{Rp}5{,}000 = \text{Rp}50{,}000" />
+
+## Why the other options fail
+
+- **None** assumes one tank covers four days, yet five people need <InlineMath math="1{,}200" /> litres.
+- **<InlineMath math="150" /> litres costing <InlineMath math="\text{Rp}37{,}500" />** uses exact fractional hours (about <InlineMath math="3.8" /> days) instead of whole days.
+- **<InlineMath math="200" /> litres costing <InlineMath math="\text{Rp}10{,}000" />** treats a container as holding <InlineMath math="100" /> litres.
+- **<InlineMath math="200" /> litres costing <InlineMath math="\text{Rp}1{,}000{,}000" />** charges <InlineMath math="\text{Rp}5{,}000" /> per litre rather than per <InlineMath math="20" /> litres.
+
+# Answer
+
+The household must buy **<InlineMath math="200" /> litres, costing <InlineMath math="\text{Rp}50{,}000" />**.

@@ -1,10 +1,35 @@
-Prüf jeden Vergleich an der Tabelle und am letzten Absatz.
+# Gegeben
 
-- **I ist gestützt**. Block A bekommt morgens <InlineMath math="4" /> und nachmittags <InlineMath math="2" /> Stunden, zusammen <InlineMath math="6" />. Jeder andere Block bekommt <InlineMath math="4" />.
-- **II ist gestützt**. Die längste Pause von Block A reicht von 9:00 am ersten Tag bis 15:00 am vierten: <InlineMath math="3 \times 24 + 6 = 78" /> Stunden. Jeder andere Block wartet von 9:00 bis 5:00 vier Tage später: <InlineMath math="3 \times 24 + 20 = 92" /> Stunden.
-- III ist nicht gestützt. Die Leitungen liefern in jedem Block "about <InlineMath math="1{.}200" /> litres an hour to each house". Bei Block A "ran thin" das Wasser sogar.
-- **IV ist gestützt**. Er hat zwei Runden, "because it sits highest on the hill, where the pressure is weakest".
+In jedem Viertageszyklus erhält **Block A** zwei Zeiten (Tag <InlineMath math="1" /> 5:00 to 9:00 Uhr und Tag <InlineMath math="4" /> 15:00 to 17:00 Uhr), weil er am höchsten liegt und den schwächsten Druck hat, während **Block B, C und D** jeweils nur 5:00 to 9:00 Uhr erhalten.
 
-Die Optionen mit III machen aus mehr Stunden mehr Liter pro Stunde. Die Option ohne II übersieht, dass gerade die Rechnung in Stunden statt Tagen die längste Pause von Block A kürzer macht.
+# Gesucht
 
-Gestützt sind also nur I, II und IV.
+Welche nummerierten Aussagen zum Vergleich von Block A mit den übrigen Blöcken durch den Text gestützt werden.
+
+# Lösung
+
+Prüfe vier Punkte genau: **Gesamtstunden**, **längste Pause in Stunden** (nicht gerundete Tage), **Durchfluss pro Stunde** und **Grund für zwei Termine**. Mehr Stunden bedeuten nicht mehr Liter pro Stunde.
+
+> Misst man die Wartezeit exakt in Stunden (<InlineMath math="78" /> gegen <InlineMath math="92" /> Stunden), ist die längste Lücke in Block A tatsächlich kürzer.
+
+## Stundenabstände und Prüfung jeder Aussage
+
+**Längste Pause in Block A** (Tag <InlineMath math="1" /> 9:00 bis Tag <InlineMath math="4" /> 15:00 Uhr) gegen **die übrigen Blöcke** (9:00 bis 5:00 Uhr vier Tage später):
+
+<BlockMath math="\text{Block A: } 3 \times 24 + 6 = 78\text{ Std.}, \qquad \text{Blöcke B, C, D: } 3 \times 24 + 20 = 92\text{ Std.}" />
+
+| Aussage | Gestützt? | Beleg aus Tabelle und Text |
+| --- | --- | --- |
+| I | **Ja** | Block A erhält <InlineMath math="4" /> plus <InlineMath math="2" /> gleich <InlineMath math="6" /> Stunden je Zyklus, alle anderen nur <InlineMath math="4" /> Stunden. |
+| II | **Ja** | In Stunden gemessen sind <InlineMath math="78" /> Stunden kürzer als <InlineMath math="92" /> Stunden. |
+| III | Nein | Die Leitungen liefern <Highlight>about <InlineMath math="1{,}200" /> litres an hour to each house</Highlight>, und in Block A lief das Wasser sogar dünn (<Highlight>ran thin</Highlight>). |
+| IV | **Ja** | Wörtlich belegt durch <Highlight>Block A has two turns in each four-day cycle because it sits highest on the hill, where the pressure is weakest</Highlight>. |
+
+## Warum die anderen Optionen falsch sind
+
+- **Optionen mit III** verwechseln mehr Versorgungsstunden mit mehr Litern pro Stunde.
+- **Nur I und IV** übersehen den Stundenvergleich (<InlineMath math="78" /> gegen <InlineMath math="92" />) in Aussage II.
+
+# Antwort
+
+Durch den Text gestützt werden **nur die Aussagen I, II und IV**.

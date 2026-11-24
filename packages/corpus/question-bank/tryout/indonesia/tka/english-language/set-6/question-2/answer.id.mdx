@@ -1,13 +1,30 @@
-Untuk setiap keluarga, cari waktu dari akhir giliran sampai awal giliran berikutnya, hitung bagian hari sebagai satu hari penuh, kalikan dengan <InlineMath math="60" /> liter per orang, lalu bandingkan dengan air yang tersimpan.
+# Diketahui
 
-**Pernyataan 1**. Cukup. Blok B menunggu <InlineMath math="3" /> hari <InlineMath math="20" /> jam, jadi <InlineMath math="4" /> hari: <InlineMath math="3 \times 60 \times 4 = 720" /> liter, di bawah <InlineMath math="1{.}000" />.
+Tersedia **lima kondisi rumah tangga** dengan tandon penuh saat aliran bloknya berhenti. Tiap orang memakai **<InlineMath math="60" /> liter/hari**, satu tandon memuat **<InlineMath math="1{.}000" /> liter**, dan sebagian hari dihitung **satu hari penuh**. Blok B, C, D menunggu <InlineMath math="3" /> hari <InlineMath math="20" /> jam (<InlineMath math="4" /> hari), sedangkan Blok A menunggu **<InlineMath math="12" /> jam (<InlineMath math="1" /> hari)** sesudah giliran sore dan **<InlineMath math="3" /> hari <InlineMath math="6" /> jam (<InlineMath math="4" /> hari)** sesudah giliran pagi.
 
-**Pernyataan 2**. Kurang. Blok D juga menunggu <InlineMath math="4" /> hari: <InlineMath math="5 \times 60 \times 4 = 1{.}200" /> liter, di atas <InlineMath math="1{.}000" />.
+# Ditanyakan
 
-**Pernyataan 3**. Cukup. Setelah giliran sore berakhir pukul 17.00 pada hari keempat, giliran Blok A berikutnya dimulai pukul 5.00 pada hari pertama, <InlineMath math="12" /> jam kemudian, jadi <InlineMath math="1" /> hari: <InlineMath math="6 \times 60 \times 1 = 360" /> liter.
+Apakah cadangan air masing-masing rumah tangga **Cukup** (*Lasts*) atau **Kehabisan** (*Runs short*) hingga giliran blok berikutnya.
 
-**Pernyataan 4**. Kurang. Setelah giliran pagi berakhir pukul 9.00 pada hari pertama, giliran berikutnya dimulai pukul 15.00 pada hari keempat, <InlineMath math="3" /> hari <InlineMath math="6" /> jam kemudian, jadi <InlineMath math="4" /> hari: <InlineMath math="6 \times 60 \times 4 = 1{.}440" /> liter, di atas <InlineMath math="1{.}000" />. Dua giliran Blok A tidak melindungi keluarga setelah giliran paginya.
+# Penyelesaian
 
-**Pernyataan 5**. Cukup. Blok C menunggu <InlineMath math="4" /> hari: <InlineMath math="7 \times 60 \times 4 = 1{.}680" /> liter, di bawah <InlineMath math="2{.}000" /> liter dalam dua tangki.
+Perhatikan perbedaan tajam dua giliran **Blok A**: setelah giliran sore hari keempat (17:00 ke 5:00 hari pertama) jedanya cuma <InlineMath math="12" /> jam (**<InlineMath math="1" /> hari**), tetapi setelah giliran pagi hari pertama (9:00 ke 15:00 hari keempat) jedanya <InlineMath math="3" /> hari <InlineMath math="6" /> jam yang tetap dibulatkan menjadi **<InlineMath math="4" /> hari penuh**!
 
-Jadi, keluarga di pernyataan 1, 3, dan 5 airnya cukup, sedangkan keluarga di pernyataan 2 dan 4 kekurangan.
+> Dua giliran Blok A tidak otomatis melindungi setelah giliran pagi, karena jeda <InlineMath math="3" /> hari <InlineMath math="6" /> jam tetap dihitung <InlineMath math="4" /> hari menurut aturan Bu Narti.
+
+## Menghitung kebutuhan air kelima rumah tangga
+
+Mengikuti aturan <Highlight>counting any part of a day as a whole day</Highlight>, kita bandingkan kebutuhan tiap rumah tangga dengan isi tandonnya:
+
+| Rumah tangga | Hari tunggu | Kebutuhan air vs. isi tandon | Hasil |
+| --- | --- | --- | --- |
+| <InlineMath math="1" /> (Blok B, <InlineMath math="3" /> orang, <InlineMath math="1" /> tandon) | <InlineMath math="4" /> hari | <InlineMath math="720" /> liter (<InlineMath math="3 \times 60 \times 4" />) dibanding <InlineMath math="1{.}000" /> liter. | **Cukup** (*Lasts*) |
+| <InlineMath math="2" /> (Blok D, <InlineMath math="5" /> orang, <InlineMath math="1" /> tandon) | <InlineMath math="4" /> hari | <InlineMath math="1{.}200" /> liter (<InlineMath math="5 \times 60 \times 4" />) melebihi <InlineMath math="1{.}000" /> liter. | **Kehabisan** (*Runs short*) |
+| <InlineMath math="3" /> (Blok A, <InlineMath math="6" /> orang, <InlineMath math="1" /> tandon, setelah giliran sore) | <InlineMath math="1" /> hari (<InlineMath math="12" /> jam) | <InlineMath math="360" /> liter (<InlineMath math="6 \times 60 \times 1" />) dibanding <InlineMath math="1{.}000" /> liter. | **Cukup** (*Lasts*) |
+| <InlineMath math="4" /> (Blok A, <InlineMath math="6" /> orang, <InlineMath math="1" /> tandon, setelah giliran pagi) | <InlineMath math="4" /> hari (<InlineMath math="3" /> hari <InlineMath math="6" /> jam) | <InlineMath math="1{.}440" /> liter (<InlineMath math="6 \times 60 \times 4" />) melebihi <InlineMath math="1{.}000" /> liter. | **Kehabisan** (*Runs short*) |
+| <InlineMath math="5" /> (Blok C, <InlineMath math="7" /> orang, <InlineMath math="2" /> tandon) | <InlineMath math="4" /> hari | <InlineMath math="1{.}680" /> liter (<InlineMath math="7 \times 60 \times 4" />) dibanding <InlineMath math="2{.}000" /> liter. | **Cukup** (*Lasts*) |
+
+# Jawaban
+
+- **Cukup** (*Lasts*): pernyataan **<InlineMath math="1" />**, **<InlineMath math="3" />**, dan **<InlineMath math="5" />**.
+- **Kehabisan** (*Runs short*): pernyataan **<InlineMath math="2" />** dan **<InlineMath math="4" />**.

@@ -1,11 +1,34 @@
-Prüf jede Aussage mit den Zahlen im Text.
+# Gegeben
 
-- **Ein leerer Tank lässt sich in unter einer Stunde füllen: gestützt**. Die Leitungen liefern etwa <InlineMath math="1{.}200" /> Liter pro Stunde, der Tank fasst <InlineMath math="1{.}000" />.
-- Jeder Block wartet genau vier Tage: nicht gestützt. Der Zyklus wiederholt sich alle vier Tage, aber eine Runde dauert einige Stunden, also wartet Block B, C oder D von 9:00 bis 5:00 vier Tage später, <InlineMath math="92" /> Stunden. Die Pausen von Block A sind <InlineMath math="78" /> und <InlineMath math="12" /> Stunden.
-- Die meisten Häuser haben zwei Tanks: nicht gestützt. Nur "a few houses have a second tank".
-- **Ein Tank reicht einem Haushalt mit fünf Personen mehr als drei Tage: gestützt**. <InlineMath math="5 \times 60 = 300" /> Liter pro Tag, und <InlineMath math="1{.}000 \div 300 \approx 3{,}3" /> Tage.
-- **Karrenwasser kostet <InlineMath math="\text{Rp}250" /> pro Liter: gestützt**. <InlineMath math="\text{Rp}5{.}000 \div 20 = \text{Rp}250" />.
+Eckdaten aus Kampung Sumber: Durchfluss **<InlineMath math="1{.}200" /> Liter/Std.**, Standardtank **<InlineMath math="1{.}000" /> Liter** (nur wenige Häuser haben zwei Tanks), Viertageszyklus mit Pausen von <InlineMath math="92" /> Std. (Blöcke B/C/D) bzw. <InlineMath math="78" /> und <InlineMath math="12" /> Std. (Block A), Bedarf **<InlineMath math="60" /> Liter/Person/Tag** und Karrenwasser **<InlineMath math="\text{Rp}5{.}000" /> je <InlineMath math="20" /> Liter**.
 
-Die Aussage über vier Tage verwechselt die Länge des Zyklus mit der Wartezeit zwischen den Runden.
+# Gesucht
 
-Gestützt sind also die Aussagen über das Füllen eines Tanks in unter einer Stunde, einen Tank, der mehr als drei Tage reicht, und Karrenwasser zu <InlineMath math="\text{Rp}250" /> pro Liter.
+Welche Aussagen durch den Text gestützt werden (alle zutreffenden auswählen).
+
+# Lösung
+
+Prüfe **drei kurze Rechnungen** (Füllzeit, Reichweite für fünf Personen, Literpreis) und entlarve zwei Fallen: **"genau vier Tage"** verwechselt die Zykluslänge (<InlineMath math="96" /> Std.) mit der Pause (<InlineMath math="92" /> Std.), und **"die meisten Häuser"** widerspricht "a few houses".
+
+> Unterscheide sauber zwischen Zyklusdauer (Start bis Start) und trockener Wartezeit (Ende bis nächster Start).
+
+## Berechnung und Prüfung aller fünf Aussagen
+
+**Die drei Rechnungen** entscheiden Aussagen <InlineMath math="1, 4" /> und <InlineMath math="5" /> direkt:
+
+<BlockMath math="\frac{1{.}000}{1{.}200} < 1\text{ Std.}, \qquad \frac{1{.}000}{5 \times 60} = \frac{1{.}000}{300} \approx 3{,}33\text{ Tage} > 3, \qquad \frac{\text{Rp}5{.}000}{20} = \text{Rp}250\text{ je Liter}" />
+
+| Aussage | Gestützt? | Beleg aus Text und Rechnung |
+| --- | --- | --- |
+| Leerer <InlineMath math="1\text{ m}^3" />-Tank füllt sich in unter einer Stunde | **Ja** | <InlineMath math="1{.}200" /> Liter/Std. sind schneller als das Tankvolumen von <InlineMath math="1{.}000" /> Litern. |
+| Jeder Block wartet genau vier Tage zwischen zwei Terminen | Nein | Blöcke B, C und D warten <InlineMath math="92" /> Stunden, Block A <InlineMath math="78" /> und <InlineMath math="12" /> Stunden. |
+| Die meisten Häuser haben zwei Tanks | Nein | Der Text sagt klar <Highlight>a few houses have a second tank</Highlight>. |
+| Ein voller Tank reicht fünf Personen über drei Tage | **Ja** | Bei <InlineMath math="300" /> Litern täglich reicht ein Tank rund <InlineMath math="3{,}3" /> Tage. |
+| Karrenwasser kostet <InlineMath math="\text{Rp}250" /> pro Liter | **Ja** | <InlineMath math="\text{Rp}5{.}000" /> geteilt durch <InlineMath math="20" /> Liter sind genau <InlineMath math="\text{Rp}250" />. |
+
+# Antwort
+
+Durch den Text gestützt werden folgende Aussagen:
+- **A <InlineMath math="1" />-cubic-metre tank that is empty can be filled in under an hour of supply**.
+- **At Bu Narti's figure, one full <InlineMath math="1" />-cubic-metre tank lasts a household of five for more than three days**.
+- **Cart water costs <InlineMath math="\text{Rp}250" /> a litre**.

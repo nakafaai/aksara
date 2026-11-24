@@ -1,13 +1,30 @@
-For each household, find the time from the end of the turn to the start of the next one, count any part of a day as a whole day, multiply by <InlineMath math="60" /> litres per person, and compare with the stored water.
+# Given
 
-**Statement 1**. Lasts. Block B waits <InlineMath math="3" /> days and <InlineMath math="20" /> hours, so <InlineMath math="4" /> days: <InlineMath math="3 \times 60 \times 4 = 720" /> litres, under <InlineMath math="1{,}000" />.
+**Five households** start with full tanks when supply stops. Usage is **<InlineMath math="60" /> litres/person/day**, one tank holds **<InlineMath math="1{,}000" /> litres**, and any part of a day counts as a whole day. Blocks B, C, and D wait <InlineMath math="3" /> days <InlineMath math="20" /> hours (<InlineMath math="4" /> days), while Block A waits **<InlineMath math="12" /> hours (<InlineMath math="1" /> day)** after its afternoon turn and **<InlineMath math="3" /> days <InlineMath math="6" /> hours (<InlineMath math="4" /> days)** after its morning turn.
 
-**Statement 2**. Runs short. Block D also waits <InlineMath math="4" /> days: <InlineMath math="5 \times 60 \times 4 = 1{,}200" /> litres, over <InlineMath math="1{,}000" />.
+# Asked
 
-**Statement 3**. Lasts. After the afternoon turn ends at 17:00 on the fourth day, Block A's next turn begins at 5:00 on the first day, <InlineMath math="12" /> hours later, so <InlineMath math="1" /> day: <InlineMath math="6 \times 60 \times 1 = 360" /> litres.
+Whether each household's stored water **Lasts** or **Runs short** before its block's next turn.
 
-**Statement 4**. Runs short. After the morning turn ends at 9:00 on the first day, the next turn begins at 15:00 on the fourth day, <InlineMath math="3" /> days and <InlineMath math="6" /> hours later, so <InlineMath math="4" /> days: <InlineMath math="6 \times 60 \times 4 = 1{,}440" /> litres, over <InlineMath math="1{,}000" />. Block A's two turns don't protect a household after its morning turn.
+# Solution
 
-**Statement 5**. Lasts. Block C waits <InlineMath math="4" /> days: <InlineMath math="7 \times 60 \times 4 = 1{,}680" /> litres, under the <InlineMath math="2{,}000" /> litres in two tanks.
+Watch **Block A's two unequal gaps**: after day four's afternoon turn (17:00 to 5:00) the wait is only <InlineMath math="12" /> hours (**<InlineMath math="1" /> day**), yet after day one's morning turn (9:00 to 15:00 on day four) the wait is <InlineMath math="3" /> days <InlineMath math="6" /> hours, which still rounds up to **<InlineMath math="4" /> whole days**.
 
-So the households in statements 1, 3 and 5 have enough, and those in statements 2 and 4 run short.
+> Having two turns does not protect a large Block A household after its morning turn, because a <InlineMath math="3" />-day <InlineMath math="6" />-hour wait still counts as <InlineMath math="4" /> days.
+
+## Checking stored water for all five households
+
+Applying <Highlight>counting any part of a day as a whole day</Highlight>, compare total demand against tank capacity:
+
+| Household | Wait counted | Water needed vs. stored | Verdict |
+| --- | --- | --- | --- |
+| <InlineMath math="1" /> (Block B, <InlineMath math="3" /> people, <InlineMath math="1" /> tank) | <InlineMath math="4" /> days | <InlineMath math="720" /> litres (<InlineMath math="3 \times 60 \times 4" />) vs. <InlineMath math="1{,}000" /> litres. | **Lasts** |
+| <InlineMath math="2" /> (Block D, <InlineMath math="5" /> people, <InlineMath math="1" /> tank) | <InlineMath math="4" /> days | <InlineMath math="1{,}200" /> litres (<InlineMath math="5 \times 60 \times 4" />) exceeds <InlineMath math="1{,}000" /> litres. | **Runs short** |
+| <InlineMath math="3" /> (Block A, <InlineMath math="6" /> people, <InlineMath math="1" /> tank, after afternoon turn) | <InlineMath math="1" /> day (<InlineMath math="12" /> hours) | <InlineMath math="360" /> litres (<InlineMath math="6 \times 60 \times 1" />) vs. <InlineMath math="1{,}000" /> litres. | **Lasts** |
+| <InlineMath math="4" /> (Block A, <InlineMath math="6" /> people, <InlineMath math="1" /> tank, after morning turn) | <InlineMath math="4" /> days (<InlineMath math="3" /> d <InlineMath math="6" /> h) | <InlineMath math="1{,}440" /> litres (<InlineMath math="6 \times 60 \times 4" />) exceeds <InlineMath math="1{,}000" /> litres. | **Runs short** |
+| <InlineMath math="5" /> (Block C, <InlineMath math="7" /> people, <InlineMath math="2" /> tanks) | <InlineMath math="4" /> days | <InlineMath math="1{,}680" /> litres (<InlineMath math="7 \times 60 \times 4" />) vs. <InlineMath math="2{,}000" /> litres. | **Lasts** |
+
+# Answer
+
+- **Lasts**: statements **<InlineMath math="1" />**, **<InlineMath math="3" />**, and **<InlineMath math="5" />**.
+- **Runs short**: statements **<InlineMath math="2" />** and **<InlineMath math="4" />**.
