@@ -1,18 +1,69 @@
-# Ein Kreis hat keine Enden
+# Gegeben
 
-Lineare DNA mit drei Schnitten ergibt vier Stücke, doch **ein ringförmiges Plasmid hat keine Enden**, drei Schnitte ergeben also nur drei Stücke. Das letzte Stück läuft über den Bezugspunkt hinweg und schließt an den Anfang an.
+Ein **ringförmiges Plasmid** umfasst <InlineMath math="6000" /> Basenpaare (bp). Ein Restriktionsenzym setzt **drei vollständige Schnitte** an den Positionen <InlineMath math="1000" />, <InlineMath math="2500" /> und <InlineMath math="4500" /> bp, gemessen von einem gemeinsamen Bezugspunkt auf dem Ring.
+
+# Gesucht
+
+Bestimme die Anzahl der entstehenden Fragmente und die Länge des größten Fragments.
+
+# Lösung
+
+Stell dir vor, du zerschneidest ein geschlossenes Gummiband. Der allererste Schnitt öffnet den Ring lediglich zu einer Linie, daher erzeugen drei Schnitte an einem geschlossenen Ring genau <InlineMath math="3" /> Stücke statt <InlineMath math="4" />.
+
+> Ein ringförmiges Plasmid besitzt keine freien Enden, sodass <InlineMath math="n" /> Schnitte genau <InlineMath math="n" /> Fragmente liefern und das letzte Fragment über den Bezugspunkt zurück zum ersten Schnitt reicht.
+
+Berechne die **Abstände zwischen benachbarten Schnittstellen** entlang des <InlineMath math="6000" />-bp-Rings, wobei Position <InlineMath math="6000" /> nahtlos in Position <InlineMath math="0" /> übergeht.
 
 <BlockMath math="\begin{aligned}
-1000\to2500&:\ 1500\\
-2500\to4500&:\ 2000\\
-4500\to6000\to1000&:\ 1500+1000=2500\\
-\text{Summe}&=1500+2000+2500=6000
+1000 \to 2500 &: 2500 - 1000 = 1500\text{ bp} \\
+2500 \to 4500 &: 4500 - 2500 = 2000\text{ bp} \\
+4500 \to 6000 \to 1000 &: (6000 - 4500) + 1000 = 2500\text{ bp}
 \end{aligned}" />
 
-Es entstehen also <InlineMath math="3" /> Fragmente, das größte hat <InlineMath math="2500" /> Basenpaare.
+Vergleiche die drei abgewickelten Fragmente unten: Fragment <InlineMath math="1" /> (<InlineMath math="y = 1" />, <InlineMath math="1500" /> bp), Fragment <InlineMath math="2" /> (<InlineMath math="y = 2" />, <InlineMath math="2000" /> bp) und das grüne umlaufende Fragment <InlineMath math="3" /> (<InlineMath math="y = 3" />, <InlineMath math="1500 + 1000 = 2500" /> bp).
 
-# Warum die anderen Antworten falsch sind
+<MathVisual
+  title={<>Drei Plasmid-Fragmente entlang des 6000-bp-Rings</>}
+  description={
+    <>
+      Drei Schnitte teilen den <InlineMath math="6000" />-bp-Ring in{" "}
+      <InlineMath math="1500" /> bp (<InlineMath math="y = 1" />),{" "}
+      <InlineMath math="2000" /> bp (<InlineMath math="y = 2" />) und das
+      umlaufende Stück von <InlineMath math="2500" /> bp (<InlineMath math="y = 3" />).
+    </>
+  }
+  footer={
+    <>
+      Das grüne Stück läuft über <InlineMath math="6000" /> nach <InlineMath math="0" /> weiter und misst <InlineMath math="2500" /> bp.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 6000 }, y: { min: 0, max: 4 } },
+    view: { kind: "fit", padding: 0.08 },
+    objects: [
+      { id: "frag-1", kind: "segment", appearance: "construction", from: { x: 1000, y: 1 }, to: { x: 2500, y: 1 } },
+      { id: "frag-2", kind: "segment", appearance: "primary", from: { x: 2500, y: 2 }, to: { x: 4500, y: 2 } },
+      { id: "frag-3a", kind: "segment", appearance: "answer", from: { x: 4500, y: 3 }, to: { x: 6000, y: 3 } },
+      { id: "frag-3b", kind: "segment", appearance: "answer", from: { x: 0, y: 3 }, to: { x: 1000, y: 3 } },
+      { id: "cut-1000", kind: "marker", appearance: "warning", x: "1000", y: "1" },
+      { id: "cut-2500", kind: "marker", appearance: "warning", x: "2500", y: "2" },
+      { id: "cut-4500", kind: "marker", appearance: "warning", x: "4500", y: "3" },
+    ],
+  }}
+  labels={{}}
+/>
 
-- <InlineMath math="4" /> Fragmente behandelt das Plasmid als lineare DNA, doch **der erste Schnitt öffnet nur den Ring**.
-- <InlineMath math="3500" /> rechnet <InlineMath math="4500-1000" />, doch dieses Fragment reicht von <InlineMath math="4500" /> über den Bezugspunkt bis <InlineMath math="1000" />.
-- <InlineMath math="3" /> Fragmente mit einem größten von <InlineMath math="2000" /> zählt nur den Teil von <InlineMath math="0" /> bis <InlineMath math="1000" /> und vergisst den Teil von <InlineMath math="4500" /> bis <InlineMath math="6000" />.
+Die Längenprobe über alle <InlineMath math="3" /> Stücke bestätigt die volle Plasmidlänge.
+
+<BlockMath math="1500 + 2000 + 2500 = 6000\text{ bp}" />
+
+## Warum die anderen Optionen falsch sind
+
+- <InlineMath math="4" /> Fragmente behandelt das Plasmid wie lineare DNA und übersieht, dass **der erste Schnitt nur den Ring öffnet**.
+- <InlineMath math="3500" /> bp bildet <InlineMath math="4500 - 1000" /> quer über die Schnittstelle bei <InlineMath math="2500" /> statt über den Bezugspunkt <InlineMath math="6000" />.
+- <InlineMath math="3" /> Fragmente mit maximal <InlineMath math="2000" /> bp vergisst, den Abschnitt <InlineMath math="4500" /> bis <InlineMath math="6000" /> (<InlineMath math="1500" /> bp) mit <InlineMath math="0" /> bis <InlineMath math="1000" /> (<InlineMath math="1000" /> bp) zu verbinden.
+
+# Antwort
+
+Es entstehen <InlineMath math="3" /> Fragmente, und das größte Fragment ist <InlineMath math="2500" /> Basenpaare lang.

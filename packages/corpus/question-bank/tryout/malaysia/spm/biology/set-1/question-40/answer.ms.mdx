@@ -1,16 +1,80 @@
-# Masa pertumbuhan selepas fasa lag
+# Diberi
 
-Sel tidak membahagi semasa fasa lag, jadi **hanya masa selepas fasa lag** menghasilkan pembahagian. Daripada <InlineMath math="120" /> minit, <InlineMath math="40" /> minit pertama ialah fasa lag, jadi tinggal <InlineMath math="80" /> minit untuk membiak.
+Kultur dimulakan dengan <InlineMath math="100" /> sel bakteria. Bakteria melalui **fasa lag selama <InlineMath math="40" /> minit** tanpa membahagi, kemudian **berganda dua setiap <InlineMath math="20" /> minit** tanpa sel mati.
+
+Jumlah masa yang diukur ialah <InlineMath math="2" /> jam (<InlineMath math="120" /> minit).
+
+# Ditanya
+
+Cari bilangan sel bakteria selepas <InlineMath math="2" /> jam berada dalam medium.
+
+# Penyelesaian
+
+Bayangkan bakteria memanaskan badan selama <InlineMath math="40" /> minit pertama sebelum mula membahagi. Hanya baki <InlineMath math="80" /> minit menghasilkan pembahagian, memberikan tepat empat penggandaan.
+
+> Penggandaan eksponen hanya bermula selepas fasa lag tamat, jadi tempoh fasa lag mesti ditolak dahulu sebelum dibahagikan dengan masa generasi.
+
+Tukarkan <InlineMath math="2" /> jam kepada minit, hitung **bilangan penggandaan** selepas fasa lag, kemudian gunakan <InlineMath math="N = N_0 \times 2^k" />.
 
 <BlockMath math="\begin{aligned}
-\text{bilangan gandaan}&=\frac{120-40}{20}=4\\
-N&=100\times2^4=1600
+t_{\text{tumbuh}} &= 120 - 40 = 80\text{ minit} \\
+k &= \frac{80}{20} = 4\text{ penggandaan} \\
+N &= 100 \times 2^4 = 100 \times 16 = 1600\text{ sel}
 \end{aligned}" />
 
-Jadi, selepas <InlineMath math="2" /> jam terdapat <InlineMath math="1600" /> sel bakteria.
+Gerakkan masa <InlineMath math="m" /> di bawah untuk melihat fasa lag mendatar hingga minit ke-<InlineMath math="40" /> diikuti penggandaan pantas kepada <InlineMath math="1600" /> sel pada minit ke-<InlineMath math="120" />.
 
-# Kenapa pilihan lain salah
+<MathVisual
+  title={<>Bilangan Sel Bakteria Selepas Fasa Lag <InlineMath math="40" /> Minit</>}
+  description={
+    <>
+      Sel kekal pada <InlineMath math="100" /> hingga minit ke-
+      <InlineMath math="40" />, lalu mengikut{" "}
+      <InlineMath math="N(m) = 100 \cdot 2^{(m - 40)/20}" /> hingga{" "}
+      <InlineMath math="1600" /> pada <InlineMath math="m = 120" /> minit.
+    </>
+  }
+  footer={
+    <>
+      Empat penggandaan selepas minit <InlineMath math="40" /> menaikkan <InlineMath math="100" /> sel kepada <InlineMath math="1600" /> pada minit <InlineMath math="120" />.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 140 }, y: { min: 0, max: 3500 } },
+    view: { kind: "fit", padding: 0.08 },
+    parameters: [
+      { name: "m", min: 40, max: 140, value: 120, step: 20, label: "m" },
+    ],
+    objects: [
+      { id: "lag-phase", kind: "segment", appearance: "construction", from: { x: 0, y: 100 }, to: { x: 40, y: 100 } },
+      { id: "exp-phase", kind: "function", appearance: "primary", formula: "100 * 2 ^ ((x - 40) / 20)", domain: { min: 40, max: 140 } },
+      { id: "guide-120", kind: "segment", appearance: "construction", from: { x: 120, y: 0 }, to: { x: 120, y: 1600 } },
+      { id: "pt-120", kind: "marker", appearance: "answer", x: "120", y: "1600" },
+      { id: "probe", kind: "marker", appearance: "warning", x: "m", y: "100 * 2 ^ ((m - 40) / 20)" },
+    ],
+    readouts: [
+      { key: "elapsed-time", formula: "m" },
+      { key: "bacteria-count", formula: "100 * 2 ^ ((m - 40) / 20)" },
+    ],
+  }}
+  labels={{
+    m: <>Jumlah masa <InlineMath math="m" /> (minit)</>,
+    "elapsed-time": <>Masa berlalu (minit)</>,
+    "bacteria-count": <>Bilangan sel bakteria</>,
+  }}
+/>
 
-- <InlineMath math="6400" /> menggunakan seluruh <InlineMath math="120" /> minit untuk gandaan, sedangkan **<InlineMath math="40" /> minit pertama ialah fasa lag**.
-- <InlineMath math="500" /> menambah <InlineMath math="100" /> sel bagi setiap gandaan, sedangkan bilangan sel berganda dua, bukan bertambah secara tetap.
-- <InlineMath math="3200" /> mengira lima kali gandaan, satu kali terlalu banyak.
+Semak setiap langkah penggandaan pada minit <InlineMath math="40, 60, 80, 100, 120" />.
+
+<BlockMath math="100 \to 200 \to 400 \to 800 \to 1600" />
+
+## Mengapa pilihan lain salah
+
+- <InlineMath math="6400" /> mengira <InlineMath math="6" /> penggandaan bagi semua <InlineMath math="120" /> minit, **terlupa bahawa tiada pembahagian semasa fasa lag <InlineMath math="40" /> minit**.
+- <InlineMath math="500" /> menambah <InlineMath math="100" /> sel setiap selang, bukannya mendarab <InlineMath math="2" /> setiap kali.
+- <InlineMath math="3200" /> mengira <InlineMath math="5" /> penggandaan (minit ke-<InlineMath math="140" />), terlebih satu generasi.
+
+# Jawapan
+
+Terdapat <InlineMath math="1600" /> sel bakteria selepas <InlineMath math="2" /> jam.

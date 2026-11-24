@@ -1,15 +1,58 @@
-# Erst die Genotypen der Eltern, dann die Bedingung bei der Tochter
+# Gegeben
 
-Der Sohn mit Albinismus ist <InlineMath math="aa" />, jeder Elternteil hat also ein Allel <InlineMath math="a" /> beigesteuert. Da keiner der Eltern Albinismus hat, **müssen beide <InlineMath math="Aa" /> sein**. Die Kreuzung <InlineMath math="Aa\times Aa" /> ergibt <InlineMath math="AA" />, <InlineMath math="Aa" />, <InlineMath math="Aa" />, <InlineMath math="aa" /> mit gleicher Wahrscheinlichkeit.
+Albinismus wird durch ein **autosomal-rezessives Allel** (<InlineMath math="a" />) verursacht. Beide Eltern sind keine Albinos, haben aber einen Albino-Sohn (<InlineMath math="aa" />).
 
-Die Tochter hat bekanntlich keinen Albinismus, <InlineMath math="aa" /> scheidet also aus. Es bleiben drei gleich wahrscheinliche Möglichkeiten: <InlineMath math="AA" />, <InlineMath math="Aa" />, <InlineMath math="Aa" />.
+Sie haben außerdem eine Tochter, die **kein Albino** ist.
 
-<BlockMath math="P(Aa\mid\text{kein Albinismus})=\frac{2}{3}" />
+# Gesucht
 
-Die Wahrscheinlichkeit, dass die Tochter das Allel trägt, beträgt also <InlineMath math="\tfrac23" />.
+Bestimme die Wahrscheinlichkeit, dass die Tochter das Albinismus-Allel trägt (<InlineMath math="Aa" />).
 
-# Warum die anderen Antworten falsch sind
+# Lösung
 
-- <InlineMath math="\tfrac12" /> ist die Wahrscheinlichkeit für <InlineMath math="Aa" /> unter allen möglichen Kindern, doch **<InlineMath math="aa" /> scheidet bereits aus**, weil die Tochter keinen Albinismus hat.
-- <InlineMath math="\tfrac14" /> ist die Wahrscheinlichkeit für ein Kind mit Albinismus, nicht für eine Überträgerin.
-- <InlineMath math="\tfrac34" /> ist die Wahrscheinlichkeit für ein Kind ohne Albinismus, nicht für eine Überträgerin.
+Stell dir vier gleich wahrscheinliche verdeckte Karten vor: <InlineMath math="AA" />, <InlineMath math="Aa" />, <InlineMath math="Aa" /> und <InlineMath math="aa" />. Da wir wissen, dass die Tochter kein Albino ist, fällt die Karte <InlineMath math="aa" /> weg, und von den übrigen <InlineMath math="3" /> Karten sind <InlineMath math="2" /> Überträger.
+
+> Bedingte Wahrscheinlichkeit streicht zuerst unmögliche Genotypen und verkleinert den Ergebnisraum von vier auf nur die zum Phänotyp passenden Fälle.
+
+Weil der Sohn <InlineMath math="aa" /> trägt und beide Eltern gesund sind, **sind beide Eltern heterozygot (<InlineMath math="Aa" />)**. Liste die vier Ergebnisse von <InlineMath math="Aa \times Aa" /> auf und streiche <InlineMath math="aa" />.
+
+<BlockMath math="\begin{aligned}
+Aa \times Aa &\to AA,\ Aa,\ Aa,\ aa \\
+\text{übrig ohne Albinismus} &: AA,\ Aa,\ Aa \\
+P(Aa \mid \text{kein Albino}) &= \frac{2}{3}
+\end{aligned}" />
+
+Folge dem verkleinerten Ergebnisraum im Diagramm unten, um direkt zu sehen, warum <InlineMath math="\frac{2}{3}" /> statt <InlineMath math="\frac{1}{2}" /> gilt.
+
+<Mermaid
+  title={<>Verkleinerter Ergebnisraum für ein Kind ohne Albinismus</>}
+  description={
+    <>
+      Die Kreuzung <InlineMath math="Aa \times Aa" /> liefert vier gleich
+      wahrscheinliche Fälle. Ohne <InlineMath math="aa" /> bleiben drei Fälle,
+      davon zwei mit <InlineMath math="Aa" />.
+    </>
+  }
+  footer={
+    <>
+      Ohne <InlineMath math="aa" /> bleiben <InlineMath math="AA, Aa, Aa" />, also sind <InlineMath math="2" /> von <InlineMath math="3" /> Überträger.
+    </>
+  }
+  chart={`flowchart TD
+    C["Aa x Aa: 4 gleiche Faelle"] --> K1["AA: kein Albino, kein Traeger"]
+    C --> K2["Aa: kein Albino, Traeger"]
+    C --> K3["Aa: kein Albino, Traeger"]
+    C --> OUT["aa: Albino (ausgeschlossen)"]`}
+/>
+
+Zur Probe summieren sich die übrigen Wahrscheinlichkeiten zu <InlineMath math="1" />: <InlineMath math="\frac{1}{3}" /> für <InlineMath math="AA" /> plus <InlineMath math="\frac{2}{3}" /> für <InlineMath math="Aa" /> ergibt <InlineMath math="1" />.
+
+## Warum die anderen Optionen falsch sind
+
+- <InlineMath math="\frac{1}{2}" /> zählt <InlineMath math="2" /> von allen <InlineMath math="4" /> Fällen und vergisst, dass **<InlineMath math="aa" /> bereits ausgeschlossen ist**.
+- <InlineMath math="\frac{1}{4}" /> ist die Wahrscheinlichkeit für ein Albino-Kind (<InlineMath math="aa" />), nicht für einen Überträger.
+- <InlineMath math="\frac{3}{4}" /> ist die Wahrscheinlichkeit für irgendein Kind ohne Albinismus (<InlineMath math="AA" /> oder <InlineMath math="Aa" />), einschließlich <InlineMath math="AA" />.
+
+# Antwort
+
+Die Wahrscheinlichkeit, dass die Tochter das Albinismus-Allel trägt, beträgt <InlineMath math="\frac{2}{3}" />.

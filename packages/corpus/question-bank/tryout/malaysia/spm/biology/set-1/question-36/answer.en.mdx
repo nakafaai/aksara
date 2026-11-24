@@ -1,15 +1,58 @@
-# The parents' genotypes, then the condition on the daughter
+# Given
 
-The albino son is <InlineMath math="aa" />, so each parent gave one <InlineMath math="a" /> allele. Since neither parent is albino, **both must be <InlineMath math="Aa" />**. The cross <InlineMath math="Aa\times Aa" /> gives <InlineMath math="AA" />, <InlineMath math="Aa" />, <InlineMath math="Aa" />, <InlineMath math="aa" /> with equal chances.
+Albinism is caused by an **autosomal recessive allele** (<InlineMath math="a" />). Both parents are not albino, yet they have an albino son (<InlineMath math="aa" />).
 
-The daughter is known not to be albino, so <InlineMath math="aa" /> is ruled out. Three equally likely possibilities remain: <InlineMath math="AA" />, <InlineMath math="Aa" />, <InlineMath math="Aa" />.
+They also have a daughter who is **not albino**.
 
-<BlockMath math="P(Aa\mid\text{not albino})=\frac{2}{3}" />
+# Asked
 
-So the probability that the daughter carries the albinism allele is <InlineMath math="\tfrac23" />.
+Find the probability that the non-albino daughter carries the albinism allele (<InlineMath math="Aa" />).
 
-# Why the other options are wrong
+# Solution
 
-- <InlineMath math="\tfrac12" /> is the chance of <InlineMath math="Aa" /> among all possible children, but **<InlineMath math="aa" /> is already ruled out** because the daughter is not albino.
-- <InlineMath math="\tfrac14" /> is the chance of a child being albino, not of being a carrier.
-- <InlineMath math="\tfrac34" /> is the chance of a child not being albino, not of being a carrier.
+Imagine four equally likely cards placed face down: <InlineMath math="AA" />, <InlineMath math="Aa" />, <InlineMath math="Aa" />, and <InlineMath math="aa" />. The instant we see the daughter is not albino, we remove the <InlineMath math="aa" /> card, leaving only <InlineMath math="3" /> cards, and <InlineMath math="2" /> of them are carriers.
+
+> Conditional probability removes impossible genotypes first, shrinking the sample space from four equally likely outcomes to only those matching the observed phenotype.
+
+Because the son is <InlineMath math="aa" /> while both parents are unaffected, **both parents must be heterozygotes (<InlineMath math="Aa" />)**. List the four outcomes of <InlineMath math="Aa \times Aa" />, then remove <InlineMath math="aa" />.
+
+<BlockMath math="\begin{aligned}
+Aa \times Aa &\to AA,\ Aa,\ Aa,\ aa \\
+\text{remaining non-albino} &: AA,\ Aa,\ Aa \\
+P(Aa \mid \text{not albino}) &= \frac{2}{3}
+\end{aligned}" />
+
+Follow the reduced sample space in the diagram below to see why <InlineMath math="\frac{2}{3}" />, not <InlineMath math="\frac{1}{2}" />, is the exact carrier probability.
+
+<Mermaid
+  title={<>Reduced Sample Space for a Non-Albino Offspring</>}
+  description={
+    <>
+      Crossing <InlineMath math="Aa \times Aa" /> creates four equally likely
+      outcomes. Ruling out <InlineMath math="aa" /> leaves three possibilities,
+      two of which are <InlineMath math="Aa" />.
+    </>
+  }
+  footer={
+    <>
+      Removing <InlineMath math="aa" /> leaves <InlineMath math="AA, Aa, Aa" />, so <InlineMath math="2" /> of <InlineMath math="3" /> are carriers.
+    </>
+  }
+  chart={`flowchart TD
+    C["Aa x Aa: 4 equal outcomes"] --> K1["AA: non-albino, non-carrier"]
+    C --> K2["Aa: non-albino, carrier"]
+    C --> K3["Aa: non-albino, carrier"]
+    C --> OUT["aa: albino (ruled out)"]`}
+/>
+
+Check that the remaining probabilities sum to <InlineMath math="1" />: <InlineMath math="\frac{1}{3}" /> for <InlineMath math="AA" /> plus <InlineMath math="\frac{2}{3}" /> for <InlineMath math="Aa" /> gives <InlineMath math="1" />.
+
+## Why the other options are wrong
+
+- <InlineMath math="\frac{1}{2}" /> counts <InlineMath math="2" /> out of all <InlineMath math="4" /> outcomes, forgetting that **<InlineMath math="aa" /> is already ruled out** because the daughter is not albino.
+- <InlineMath math="\frac{1}{4}" /> is the unconditional chance of an albino child (<InlineMath math="aa" />), not a carrier.
+- <InlineMath math="\frac{3}{4}" /> is the unconditional chance of any non-albino child (<InlineMath math="AA" /> or <InlineMath math="Aa" />), which includes non-carriers.
+
+# Answer
+
+The probability that the daughter carries the albinism allele is <InlineMath math="\frac{2}{3}" />.

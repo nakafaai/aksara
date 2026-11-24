@@ -1,16 +1,59 @@
-# Alle vier Spermien verfolgen
+# Gegeben
 
-Die Meiose I verläuft normal, beide sekundären Spermatozyten tragen also <InlineMath math="23" /> Chromosomen. Die normale Zelle bildet zwei Spermien mit <InlineMath math="23" /> Chromosomen. In der fehlerhaften Zelle **gelangen beide Chromatiden von Chromosom <InlineMath math="21" /> in ein Spermium**, eines trägt also <InlineMath math="24" /> und das andere <InlineMath math="22" />.
+Bei der Spermatogenese durchläuft eine primäre Spermatozyte (<InlineMath math="46" /> Chromosomen) **Meiose I normal**, sodass zwei sekundäre Spermatozyten mit je <InlineMath math="23" /> Chromosomen entstehen.
+
+In **nur einer** sekundären Spermatozyte trennen sich die Schwesterchromatiden von Chromosom <InlineMath math="21" /> während Meiose II nicht, während sich die andere Zelle normal teilt. Jedes Spermium befruchtet eine normale Eizelle (<InlineMath math="23" /> Chromosomen).
+
+# Gesucht
+
+Bestimme den Anteil der vier Spermien, der zu einem Kind mit Down-Syndrom führt, sowie die Chromosomenzahl dieses Kindes.
+
+# Lösung
+
+Stell dir vor, zwei Kartenstapel mit je <InlineMath math="23" /> Karten werden auf vier Umschläge verteilt. Der erste Stapel teilt sich sauber (<InlineMath math="23" /> und <InlineMath math="23" />), während beim zweiten beide Kopien von Karte <InlineMath math="21" /> in einem Umschlag landen (<InlineMath math="24" /> und <InlineMath math="22" />).
+
+> Nondisjunction in einer Zelle während Meiose II betrifft nur zwei der vier Gameten und erzeugt genau eine Zelle mit einem zusätzlichen und eine mit einem fehlenden Chromosom.
+
+Verfolge **alle vier Spermien** und addiere jeweils die <InlineMath math="23" /> Chromosomen der normalen Eizelle.
 
 <BlockMath math="\begin{aligned}
-\text{Spermien}&:\ 23,\ 23,\ 24,\ 22\\
-24+23&=47\ \text{Chromosomen (drei Kopien von Chromosom 21)}
+\text{Spermien} &: 23,\ 23,\ 24\ (+21),\ 22\ (-21) \\
+\text{Zygoten} &: 46,\ 46,\ 47\ (\text{Trisomie } 21),\ 45\ (\text{Monosomie } 21)
 \end{aligned}" />
 
-Nur das Spermium mit <InlineMath math="24" /> Chromosomen führt zum Down-Syndrom. Der Anteil ist also <InlineMath math="\tfrac14" />, und das Kind hat <InlineMath math="47" /> Chromosomen.
+Folge dem Teilungsbaum unten, um zu sehen, dass genau eines der vier Spermien zur Trisomie <InlineMath math="21" /> (Down-Syndrom) führt.
 
-# Warum die anderen Antworten falsch sind
+<Mermaid
+  title={<>Nondisjunction in Meiose II bei einer sekundären Spermatozyte</>}
+  description={
+    <>
+      Nach normaler Meiose I entstehen zwei haploide Zellen (<InlineMath math="23" />).
+      Nur eine Zelle versagt in Meiose II und liefert Spermien mit{" "}
+      <InlineMath math="23, 23, 24, 22" /> Chromosomen.
+    </>
+  }
+  footer={
+    <>
+      Nur das eine <InlineMath math="24" />-Spermium (<InlineMath math="\frac{1}{4}" />) ergibt mit einer <InlineMath math="23" />-Eizelle <InlineMath math="47" /> Chromosomen.
+    </>
+  }
+  chart={`flowchart TD
+    P["Primaere Spermatozyte: 46"] --> A["Normale sekundaere Zelle: 23"]
+    P --> B["Fehlerhafte sekundaere Zelle: 23"]
+    A --> S1["Spermium 23 + Ei 23 -> 46 normal"]
+    A --> S2["Spermium 23 + Ei 23 -> 46 normal"]
+    B --> S3["Spermium 24 (+21) + Ei 23 -> 47 Down-Syndrom"]
+    B --> S4["Spermium 22 (-21) + Ei 23 -> 45 Monosomie"]`}
+/>
 
-- <InlineMath math="\tfrac12" /> verwendet das Muster einer Nichttrennung in der Meiose I, doch **hier verläuft die Meiose I normal**, und nur eine Zelle versagt.
-- <InlineMath math="45" /> stammt vom Spermium mit <InlineMath math="22" /> Chromosomen, das zu einer Monosomie führt, nicht zum Down-Syndrom.
-- <InlineMath math="\tfrac12" /> und <InlineMath math="45" /> verbindet beide Fehler.
+Nur das Spermium mit <InlineMath math="24" /> Chromosomen liefert **drei Kopien von Chromosom <InlineMath math="21" />** (<InlineMath math="24 + 23 = 47" />), also genau den Anteil <InlineMath math="\frac{1}{4}" />.
+
+## Warum die anderen Optionen falsch sind
+
+- <InlineMath math="\frac{1}{2}" /> und <InlineMath math="47" /> entspricht einer Fehlverteilung in Meiose I, doch **hier verläuft Meiose I normal** und nur eine Zelle versagt.
+- <InlineMath math="\frac{1}{4}" /> und <InlineMath math="45" /> stammt vom Spermium mit <InlineMath math="22" /> Chromosomen und ergibt Monosomie (<InlineMath math="45" />), kein Down-Syndrom (<InlineMath math="47" />).
+- <InlineMath math="\frac{1}{2}" /> und <InlineMath math="45" /> vereint beide Fehler gleichzeitig.
+
+# Antwort
+
+Ein Anteil von <InlineMath math="\frac{1}{4}" /> der vier Spermien führt zu einem Kind mit Down-Syndrom, und dieses Kind besitzt <InlineMath math="47" /> Chromosomen.

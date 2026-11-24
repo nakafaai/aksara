@@ -1,18 +1,79 @@
-# Von der Zahl pro Quadrat zur Dichte
+# Gegeben
 
-**Die Fläche eines Quadrats ist die Seitenlänge zum Quadrat**, also <InlineMath math="0{,}5\times0{,}5=0{,}25\text{ m}^2" />, nicht <InlineMath math="0{,}5\text{ m}^2" />. Teile die Zahl der Pflanzen durch die Gesamtfläche aller Quadrate, um die Dichte zu erhalten, und multipliziere dann mit der Fläche der Wiese.
+Die Feldfläche beträgt <InlineMath math="200\text{ m}^2" />. Zehn quadratische Zählrahmen mit **Seitenlänge <InlineMath math="0{,}5\text{ m}" />** werden zufällig ausgelegt.
+
+Insgesamt werden in allen <InlineMath math="10" /> Rahmen <InlineMath math="45" /> Pflanzen gezählt, und die Art kommt in <InlineMath math="7" /> der <InlineMath math="10" /> Rahmen vor.
+
+# Gesucht
+
+Bestimme die geschätzte Gesamtpopulation der Pflanze auf dem Feld sowie ihre prozentuale Häufigkeit (Frequenz).
+
+# Lösung
+
+Stell dir vor, du legst einen Rahmen mit <InlineMath math="0{,}5\text{ m}" /> Seitenlänge auf eine <InlineMath math="1\text{ m} \times 1\text{ m}" /> große Fliese. Vier kleine Rahmen passen auf eine Fliese, also misst ein Rahmen nur <InlineMath math="0{,}25\text{ m}^2" />, nicht <InlineMath math="0{,}5\text{ m}^2" />.
+
+> Die Fläche eines Quadrats ist die quadrierte Seitenlänge, und die Frequenz zählt den Anteil belegter Zählrahmen statt der Individuenzahl.
+
+Berechne die **gesamte beprobte Fläche**, ermittle die Dichte pro Quadratmeter, multipliziere mit der Feldfläche und bestimme getrennt die Frequenz.
 
 <BlockMath math="\begin{aligned}
-\text{untersuchte Fläche}&=10\times0{,}25=2{,}5\text{ m}^2\\
-\text{Dichte}&=\frac{45}{2{,}5}=18\text{ Pflanzen pro m}^2\\
-\text{Population}&=18\times200=3600\\
-\text{Frequenz}&=\frac{7}{10}\times100\%=70\%
+\text{Stichprobenfläche} &= 10 \times (0{,}5 \times 0{,}5) = 2{,}5\text{ m}^2 \\
+\text{Dichte} &= \frac{45}{2{,}5} = 18\text{ Pflanzen m}^{-2} \\
+\text{Population} &= 18 \times 200 = 3600\text{ Pflanzen} \\
+\text{Frequenz} &= \frac{7}{10} \times 100\% = 70\%
 \end{aligned}" />
 
-Die Frequenz zählt die Quadrate, in denen die Pflanze vorkommt, nicht die Zahl der Pflanzen. Die geschätzte Population beträgt also <InlineMath math="3600" /> Pflanzen, die Frequenz <InlineMath math="70\%" />.
+Verschiebe die Seitenlänge <InlineMath math="s" /> unten, um zu sehen, wie das Quadrieren von <InlineMath math="s" /> die geschätzte Population bei <InlineMath math="s = 0{,}5\text{ m}" /> (<InlineMath math="3600" />) gegenüber <InlineMath math="s = 1\text{ m}" /> (<InlineMath math="900" />) vervierfacht.
 
-# Warum die anderen Antworten falsch sind
+<MathVisual
+  title={<>Geschätzte Feldpopulation nach Seitenlänge des Rahmens</>}
+  description={
+    <>
+      Bei <InlineMath math="45" /> Pflanzen in <InlineMath math="10" /> Rahmen
+      auf <InlineMath math="200\text{ m}^2" /> ergibt{" "}
+      <InlineMath math="P(s) = 900 / s^2" /> genau <InlineMath math="3600" />{" "}
+      bei <InlineMath math="s = 0{,}5\text{ m}" />.
+    </>
+  }
+  footer={
+    <>
+      Halbe Seitenlänge (<InlineMath math="0{,}5\text{ m}" />) viertelt die Rahmenfläche und hebt die Schätzung auf <InlineMath math="3600" />.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0.35, max: 1.05 }, y: { min: 0, max: 6000 } },
+    view: { kind: "fit", padding: 0.08 },
+    parameters: [
+      { name: "s", min: 0.4, max: 1, value: 0.5, step: 0.1, label: "s" },
+    ],
+    objects: [
+      { id: "pop-curve", kind: "function", appearance: "primary", formula: "900 / (x ^ 2)", domain: { min: 0.4, max: 1 } },
+      { id: "guide-half", kind: "segment", appearance: "construction", from: { x: 0.5, y: 0 }, to: { x: 0.5, y: 3600 } },
+      { id: "pt-half", kind: "marker", appearance: "answer", x: "0.5", y: "3600" },
+      { id: "pt-one", kind: "marker", appearance: "construction", x: "1", y: "900" },
+      { id: "probe", kind: "marker", appearance: "warning", x: "s", y: "900 / (s ^ 2)" },
+    ],
+    readouts: [
+      { key: "quadrat-area", formula: "s * s" },
+      { key: "field-population", formula: "900 / (s ^ 2)" },
+    ],
+  }}
+  labels={{
+    s: <>Seitenlänge <InlineMath math="s" /> (m)</>,
+    "quadrat-area": <>Fläche eines Rahmens (<InlineMath math="\text{m}^2" />)</>,
+    "field-population": <>Geschätzte Feldpopulation</>,
+  }}
+/>
 
-- <InlineMath math="900" /> multipliziert den Mittelwert pro Quadrat, <InlineMath math="4{,}5" />, mit <InlineMath math="200" />, doch **ein Quadrat umfasst nur <InlineMath math="0{,}25\text{ m}^2" />**.
-- <InlineMath math="45\%" /> verwendet die Zahl der Pflanzen als Frequenz, doch die Frequenz zählt die Quadrate mit der Pflanze.
-- <InlineMath math="1800" /> verwendet <InlineMath math="0{,}5\text{ m}^2" /> als Fläche des Quadrats, doch <InlineMath math="0{,}5\text{ m}" /> ist seine Seitenlänge.
+Die direkte Probe bestätigt alles: <InlineMath math="2{,}5\text{ m}^2" /> passt genau <InlineMath math="80" /> Mal in <InlineMath math="200\text{ m}^2" />, und <InlineMath math="80 \times 45 = 3600" /> Pflanzen.
+
+## Warum die anderen Optionen falsch sind
+
+- <InlineMath math="900" /> multipliziert den Mittelwert pro Rahmen (<InlineMath math="4{,}5" />) direkt mit <InlineMath math="200" />, als wäre **jeder Rahmen <InlineMath math="1\text{ m}^2" /> statt <InlineMath math="0{,}25\text{ m}^2" /> groß**.
+- <InlineMath math="45\%" /> nimmt die Pflanzenzahl als Frequenz, doch die Frequenz zählt die <InlineMath math="7" /> belegten von <InlineMath math="10" /> Rahmen.
+- <InlineMath math="1800" /> setzt die Seitenlänge <InlineMath math="0{,}5" /> als Fläche ein, statt sie zu <InlineMath math="0{,}25\text{ m}^2" /> zu quadrieren.
+
+# Antwort
+
+Die geschätzte Population auf dem Feld beträgt <InlineMath math="3600" /> Pflanzen, und die prozentuale Frequenz liegt bei <InlineMath math="70\%" />.

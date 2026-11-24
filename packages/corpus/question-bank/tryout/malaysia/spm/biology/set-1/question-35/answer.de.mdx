@@ -1,17 +1,58 @@
-# Genotypen aus der Familie, dann die Frage genau lesen
+# Gegeben
 
-Der Vater der Frau ist farbenblind, er hat ihr also <InlineMath math="\text{X}^b" /> vererbt. Sie sieht normal, also **ist sie Konduktorin**, <InlineMath math="\text{X}^B\text{X}^b" />. Ihr Mann ist <InlineMath math="\text{X}^b\text{Y}" />.
+Rot-Grün-Farbenblindheit wird durch ein **X-chromosomal-rezessives Allel** (<InlineMath math="\mathrm{X}^b" />) vererbt. Die Frau sieht normal, doch ihr Vater ist farbenblind (<InlineMath math="\mathrm{X}^b\mathrm{Y}" />).
+
+Sie heiratet einen farbenblinden Mann (<InlineMath math="\mathrm{X}^b\mathrm{Y}" />).
+
+# Gesucht
+
+Bestimme die Wahrscheinlichkeit, dass ihr erster Sohn farbenblind ist, und die Wahrscheinlichkeit, dass ihr erstes Kind eine farbenblinde Tochter ist.
+
+# Lösung
+
+Stell dir vier gleich wahrscheinliche Lose in einem Hut vor: zwei Jungenlose und zwei Mädchenlose. Wenn schon feststeht, dass das Kind ein Sohn ist, zählen nur die <InlineMath math="2" /> Jungenlose, während beim ersten Kind alle <InlineMath math="4" /> Lose im Hut bleiben.
+
+> Eine Tochter erhält stets das einzige X-Chromosom ihres Vaters, daher ist eine normalsichtige Frau mit farbenblindem Vater zwingend Konduktorin.
+
+Da ihr Vater nur <InlineMath math="\mathrm{X}^b" /> weitergeben konnte und sie normal sieht, lautet **ihr Genotyp <InlineMath math="\mathrm{X}^B\mathrm{X}^b" />**. Kreuze ihre Keimzellen (<InlineMath math="\mathrm{X}^B, \mathrm{X}^b" />) mit denen ihres Mannes (<InlineMath math="\mathrm{X}^b, \mathrm{Y}" />).
 
 <BlockMath math="\begin{aligned}
-\text{X}^B\text{X}^b\times\text{X}^b\text{Y}\ \rightarrow\ &\text{X}^B\text{X}^b,\ \text{X}^b\text{X}^b,\ \text{X}^B\text{Y},\ \text{X}^b\text{Y}\\
-P(\text{farbenblind}\mid\text{Sohn})&=\tfrac12\\
-P(\text{farbenblinde Tochter})&=\tfrac14
+\mathrm{X}^B\mathrm{X}^b \times \mathrm{X}^b\mathrm{Y} &\to \mathrm{X}^B\mathrm{X}^b,\ \mathrm{X}^b\mathrm{X}^b,\ \mathrm{X}^B\mathrm{Y},\ \mathrm{X}^b\mathrm{Y} \\
+P(\text{farbenblind} \mid \text{Sohn}) &= \frac{1}{2} \\
+P(\text{farbenblinde Tochter}) &= \frac{1}{4}
 \end{aligned}" />
 
-Die erste Frage setzt bereits einen Sohn voraus, die Wahrscheinlichkeit zählt also nur unter Söhnen. Die zweite Frage betrifft alle Kinder. Die Antwort ist also <InlineMath math="\tfrac12" /> und <InlineMath math="\tfrac14" />.
+Verfolge alle vier gleich wahrscheinlichen Ergebnisse im Diagramm unten, um zu sehen, warum die Bedingung auf das Geschlecht den Nenner von <InlineMath math="4" /> auf <InlineMath math="2" /> ändert.
 
-# Warum die anderen Antworten falsch sind
+<Mermaid
+  title={<>Nachkommen der Kreuzung <InlineMath math="\mathrm{X}^B\mathrm{X}^b \times \mathrm{X}^b\mathrm{Y}" /></>}
+  description={
+    <>
+      Vier gleich wahrscheinliche Genotypen teilen sich in zwei Töchter (eine
+      Konduktorin, eine farbenblind) und zwei Söhne (einer normal, einer
+      farbenblind).
+    </>
+  }
+  footer={
+    <>
+      Unter <InlineMath math="2" /> Söhnen ist <InlineMath math="1" /> farbenblind (<InlineMath math="\frac{1}{2}" />). Unter <InlineMath math="4" /> Kindern ist <InlineMath math="1" /> Tochter farbenblind (<InlineMath math="\frac{1}{4}" />).
+    </>
+  }
+  chart={`flowchart TD
+    P["Eltern: XBXb x XbY"] --> D1["XBXb: normale Konduktorin"]
+    P --> D2["XbXb: farbenblinde Tochter (1 von 4)"]
+    P --> S1["XBY: normaler Sohn (1 von 2)"]
+    P --> S2["XbY: farbenblinder Sohn (1 von 2)"]`}
+/>
 
-- <InlineMath math="\tfrac14" /> für den Sohn zählt unter allen Kindern, doch **das Kind ist bereits als Sohn bekannt**.
-- <InlineMath math="0" /> nimmt an, Töchter könnten nicht farbenblind sein, doch der Vater gibt <InlineMath math="\text{X}^b" />, und die Mutter kann ebenfalls <InlineMath math="\text{X}^b" /> geben.
-- <InlineMath math="\tfrac12" /> für die Tochter zählt nur unter Töchtern, gefragt ist aber das erste Kind unter allen Möglichkeiten.
+Der Unterschied liegt im **Ergebnisraum**: Teil eins betrachtet nur Söhne (Nenner <InlineMath math="2" />), Teil zwei betrachtet alle möglichen ersten Kinder (Nenner <InlineMath math="4" />).
+
+## Warum die anderen Optionen falsch sind
+
+- <InlineMath math="\frac{1}{4}" /> für den Sohn teilt durch alle <InlineMath math="4" /> Kinder und übersieht, dass **das Kind bereits als Sohn feststeht**.
+- <InlineMath math="0" /> nimmt an, Töchter könnten nicht farbenblind sein, obwohl beide Eltern <InlineMath math="\mathrm{X}^b" /> zu <InlineMath math="\mathrm{X}^b\mathrm{X}^b" /> vererben können.
+- <InlineMath math="\frac{1}{2}" /> für die Tochter zählt nur unter Töchtern statt unter allen möglichen ersten Kindern.
+
+# Antwort
+
+Die Wahrscheinlichkeit beträgt <InlineMath math="\frac{1}{2}" /> für einen farbenblinden ersten Sohn und <InlineMath math="\frac{1}{4}" /> für eine farbenblinde Tochter als erstes Kind.

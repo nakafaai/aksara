@@ -1,17 +1,58 @@
-# Genotip daripada keluarga, kemudian baca soalan dengan teliti
+# Diberi
 
-Bapa wanita itu buta warna, jadi dia mewariskan <InlineMath math="\text{X}^b" /> kepadanya. Penglihatannya normal, jadi **wanita itu pembawa**, <InlineMath math="\text{X}^B\text{X}^b" />. Suaminya <InlineMath math="\text{X}^b\text{Y}" />.
+Buta warna merah-hijau disebabkan oleh **alel resesif terangkai kromosom X** (<InlineMath math="\mathrm{X}^b" />). Wanita itu mempunyai penglihatan normal, tetapi bapanya buta warna (<InlineMath math="\mathrm{X}^b\mathrm{Y}" />).
+
+Dia berkahwin dengan lelaki buta warna (<InlineMath math="\mathrm{X}^b\mathrm{Y}" />).
+
+# Ditanya
+
+Cari kebarangkalian anak lelaki pertama mereka buta warna, dan kebarangkalian anak pertama mereka ialah anak perempuan buta warna.
+
+# Penyelesaian
+
+Bayangkan empat tiket genetik sama peluang di dalam topi: dua tiket anak lelaki dan dua tiket anak perempuan. Apabila sudah diketahui anak itu lelaki, kita cuma melihat <InlineMath math="2" /> tiket lelaki, manakala soalan anak pertama melibatkan semua <InlineMath math="4" /> tiket.
+
+> Anak perempuan sentiasa mewarisi satu-satunya kromosom X daripada bapanya, jadi wanita berpenglihatan normal yang bapanya buta warna pasti pembawa.
+
+Kerana bapanya hanya mewariskan <InlineMath math="\mathrm{X}^b" /> dan penglihatannya normal, **genotipnya ialah <InlineMath math="\mathrm{X}^B\mathrm{X}^b" />**. Kacukkan gamet ibu (<InlineMath math="\mathrm{X}^B, \mathrm{X}^b" />) dengan gamet bapa (<InlineMath math="\mathrm{X}^b, \mathrm{Y}" />).
 
 <BlockMath math="\begin{aligned}
-\text{X}^B\text{X}^b\times\text{X}^b\text{Y}\ \rightarrow\ &\text{X}^B\text{X}^b,\ \text{X}^b\text{X}^b,\ \text{X}^B\text{Y},\ \text{X}^b\text{Y}\\
-P(\text{buta warna}\mid\text{anak lelaki})&=\tfrac12\\
-P(\text{anak perempuan buta warna})&=\tfrac14
+\mathrm{X}^B\mathrm{X}^b \times \mathrm{X}^b\mathrm{Y} &\to \mathrm{X}^B\mathrm{X}^b,\ \mathrm{X}^b\mathrm{X}^b,\ \mathrm{X}^B\mathrm{Y},\ \mathrm{X}^b\mathrm{Y} \\
+P(\text{buta warna} \mid \text{anak lelaki}) &= \frac{1}{2} \\
+P(\text{anak perempuan buta warna}) &= \frac{1}{4}
 \end{aligned}" />
 
-Soalan pertama sudah mengetahui anak itu lelaki, jadi kebarangkalian dikira dalam kalangan anak lelaki sahaja. Soalan kedua merangkumi semua anak. Jadi, jawapannya <InlineMath math="\tfrac12" /> dan <InlineMath math="\tfrac14" />.
+Jejaki empat hasil anak sama peluang pada carta di bawah untuk melihat bagaimana syarat jantina menukar penyebut daripada <InlineMath math="4" /> kepada <InlineMath math="2" />.
 
-# Kenapa pilihan lain salah
+<Mermaid
+  title={<>Hasil Kacukan <InlineMath math="\mathrm{X}^B\mathrm{X}^b \times \mathrm{X}^b\mathrm{Y}" /></>}
+  description={
+    <>
+      Empat genotip sama peluang terbahagi kepada dua anak perempuan (satu
+      pembawa, satu buta warna) dan dua anak lelaki (satu normal, satu buta
+      warna).
+    </>
+  }
+  footer={
+    <>
+      Antara <InlineMath math="2" /> anak lelaki, <InlineMath math="1" /> buta warna (<InlineMath math="\frac{1}{2}" />). Antara <InlineMath math="4" /> anak, <InlineMath math="1" /> anak perempuan buta warna (<InlineMath math="\frac{1}{4}" />).
+    </>
+  }
+  chart={`flowchart TD
+    P["Induk: XBXb x XbY"] --> D1["XBXb: anak perempuan pembawa"]
+    P --> D2["XbXb: anak perempuan buta warna (1 drpd 4)"]
+    P --> S1["XBY: anak lelaki normal (1 drpd 2)"]
+    P --> S2["XbY: anak lelaki buta warna (1 drpd 2)"]`}
+/>
 
-- <InlineMath math="\tfrac14" /> bagi anak lelaki mengira dalam kalangan semua anak, sedangkan **anak itu sudah diketahui lelaki**.
-- <InlineMath math="0" /> menganggap anak perempuan tidak boleh buta warna, sedangkan bapa memberi <InlineMath math="\text{X}^b" /> dan ibu juga boleh memberi <InlineMath math="\text{X}^b" />.
-- <InlineMath math="\tfrac12" /> bagi anak perempuan mengira dalam kalangan anak perempuan sahaja, sedangkan soalan bertanya tentang anak pertama daripada semua kemungkinan.
+Perhatikan perbezaan **ruang sampel**: bahagian pertama mengehadkan kepada anak lelaki (penyebut <InlineMath math="2" />), manakala bahagian kedua merangkumi semua kemungkinan anak pertama (penyebut <InlineMath math="4" />).
+
+## Mengapa pilihan lain salah
+
+- <InlineMath math="\frac{1}{4}" /> bagi anak lelaki membahagi dengan semua <InlineMath math="4" /> anak, mengabaikan bahawa **anak itu sudah diketahui lelaki**.
+- <InlineMath math="0" /> menyangka anak perempuan tidak mungkin buta warna, sedangkan kedua-dua ibu bapa boleh menyumbang <InlineMath math="\mathrm{X}^b" /> untuk membentuk <InlineMath math="\mathrm{X}^b\mathrm{X}^b" />.
+- <InlineMath math="\frac{1}{2}" /> bagi anak perempuan hanya mengira dalam kalangan anak perempuan, bukan daripada semua anak pertama.
+
+# Jawapan
+
+Kebarangkalian anak lelaki pertama buta warna ialah <InlineMath math="\frac{1}{2}" />, dan kebarangkalian anak pertama ialah anak perempuan buta warna ialah <InlineMath math="\frac{1}{4}" />.

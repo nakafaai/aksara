@@ -1,18 +1,79 @@
-# From the count per quadrat to the density
+# Given
 
-**The area of one quadrat is the side squared**, so <InlineMath math="0.5\times0.5=0.25\text{ m}^2" />, not <InlineMath math="0.5\text{ m}^2" />. Divide the number of plants by the total area of all the quadrats to get the density, then multiply by the area of the field.
+The field area is <InlineMath math="200\text{ m}^2" />. Ten square quadrats of **side <InlineMath math="0.5\text{ m}" />** are placed at random.
+
+In all <InlineMath math="10" /> quadrats combined, <InlineMath math="45" /> plants are counted, and the species appears in <InlineMath math="7" /> of the <InlineMath math="10" /> quadrats.
+
+# Asked
+
+Find the estimated total population of the plant across the whole field and its percentage frequency.
+
+# Solution
+
+Picture placing a square frame of side <InlineMath math="0.5\text{ m}" /> inside a <InlineMath math="1\text{ m} \times 1\text{ m}" /> floor tile. Four of those small frames fit inside one tile, so each quadrat covers only <InlineMath math="0.25\text{ m}^2" />, not <InlineMath math="0.5\text{ m}^2" />.
+
+> Quadrat area equals side squared, and percentage frequency counts the fraction of quadrats containing the species rather than the count of individuals.
+
+Find the **total sampled area**, compute plant density per square metre, multiply by field area, and separately compute percentage frequency.
 
 <BlockMath math="\begin{aligned}
-\text{area sampled}&=10\times0.25=2.5\text{ m}^2\\
-\text{density}&=\frac{45}{2.5}=18\text{ plants per m}^2\\
-\text{population}&=18\times200=3600\\
-\text{frequency}&=\frac{7}{10}\times100\%=70\%
+\text{area sampled} &= 10 \times (0.5 \times 0.5) = 2.5\text{ m}^2 \\
+\text{density} &= \frac{45}{2.5} = 18\text{ plants m}^{-2} \\
+\text{population} &= 18 \times 200 = 3600\text{ plants} \\
+\text{frequency} &= \frac{7}{10} \times 100\% = 70\%
 \end{aligned}" />
 
-Frequency counts the quadrats that contain the plant, not the number of plants. So the estimated population is <InlineMath math="3600" /> plants and the frequency is <InlineMath math="70\%" />.
+Slide the quadrat side length <InlineMath math="s" /> below to see how squaring <InlineMath math="s" /> makes the population estimate four times larger at <InlineMath math="s = 0.5\text{ m}" /> (<InlineMath math="3600" />) than at <InlineMath math="s = 1\text{ m}" /> (<InlineMath math="900" />).
 
-# Why the other options are wrong
+<MathVisual
+  title={<>Estimated Field Population Against Quadrat Side Length</>}
+  description={
+    <>
+      With <InlineMath math="45" /> plants across <InlineMath math="10" />{" "}
+      quadrats in a <InlineMath math="200\text{ m}^2" /> field,{" "}
+      <InlineMath math="P(s) = 900 / s^2" /> equals <InlineMath math="3600" />{" "}
+      at <InlineMath math="s = 0.5\text{ m}" />.
+    </>
+  }
+  footer={
+    <>
+      Halving quadrat side from <InlineMath math="1\text{ m}" /> to <InlineMath math="0.5\text{ m}" /> quadruples density to <InlineMath math="3600" /> plants.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0.35, max: 1.05 }, y: { min: 0, max: 6000 } },
+    view: { kind: "fit", padding: 0.08 },
+    parameters: [
+      { name: "s", min: 0.4, max: 1, value: 0.5, step: 0.1, label: "s" },
+    ],
+    objects: [
+      { id: "pop-curve", kind: "function", appearance: "primary", formula: "900 / (x ^ 2)", domain: { min: 0.4, max: 1 } },
+      { id: "guide-half", kind: "segment", appearance: "construction", from: { x: 0.5, y: 0 }, to: { x: 0.5, y: 3600 } },
+      { id: "pt-half", kind: "marker", appearance: "answer", x: "0.5", y: "3600" },
+      { id: "pt-one", kind: "marker", appearance: "construction", x: "1", y: "900" },
+      { id: "probe", kind: "marker", appearance: "warning", x: "s", y: "900 / (s ^ 2)" },
+    ],
+    readouts: [
+      { key: "quadrat-area", formula: "s * s" },
+      { key: "field-population", formula: "900 / (s ^ 2)" },
+    ],
+  }}
+  labels={{
+    s: <>Quadrat side <InlineMath math="s" /> (m)</>,
+    "quadrat-area": <>One quadrat area (<InlineMath math="\text{m}^2" />)</>,
+    "field-population": <>Estimated field population</>,
+  }}
+/>
 
-- <InlineMath math="900" /> multiplies the mean per quadrat, <InlineMath math="4.5" />, by <InlineMath math="200" />, but **one quadrat covers only <InlineMath math="0.25\text{ m}^2" />**.
-- <InlineMath math="45\%" /> uses the number of plants as the frequency, but frequency counts the quadrats that contain the plant.
-- <InlineMath math="1800" /> uses <InlineMath math="0.5\text{ m}^2" /> as the quadrat area, but <InlineMath math="0.5\text{ m}" /> is the length of its side.
+Verify directly: <InlineMath math="2.5\text{ m}^2" /> fits into <InlineMath math="200\text{ m}^2" /> exactly <InlineMath math="80" /> times, and <InlineMath math="80 \times 45 = 3600" /> plants.
+
+## Why the other options are wrong
+
+- <InlineMath math="900" /> multiplies the mean per quadrat (<InlineMath math="4.5" />) directly by <InlineMath math="200" />, assuming **each quadrat covers <InlineMath math="1\text{ m}^2" /> instead of <InlineMath math="0.25\text{ m}^2" />**.
+- <InlineMath math="45\%" /> uses the total plant count as frequency, whereas frequency counts the <InlineMath math="7" /> occupied quadrats out of <InlineMath math="10" />.
+- <InlineMath math="1800" /> uses the side length <InlineMath math="0.5" /> as the quadrat area instead of squaring it to <InlineMath math="0.25\text{ m}^2" />.
+
+# Answer
+
+The estimated plant population in the field is <InlineMath math="3600" />, and its percentage frequency is <InlineMath math="70\%" />.

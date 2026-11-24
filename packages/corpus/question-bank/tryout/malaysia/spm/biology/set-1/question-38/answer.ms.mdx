@@ -1,18 +1,69 @@
-# Bulatan tidak mempunyai hujung
+# Diberi
 
-DNA linear yang dipotong tiga kali menghasilkan empat serpihan, tetapi **plasmid bulat tidak mempunyai hujung**, jadi tiga potongan hanya menghasilkan tiga serpihan. Serpihan terakhir melintasi titik rujukan dan bersambung dengan permulaan.
+Satu **plasmid bulat** mengandungi <InlineMath math="6000" /> pasangan bes (bp). Enzim pembatasan membuat **tiga potongan lengkap** pada kedudukan <InlineMath math="1000" />, <InlineMath math="2500" />, dan <InlineMath math="4500" /> bp diukur mengelilingi bulatan daripada satu titik rujukan.
+
+# Ditanya
+
+Cari bilangan serpihan DNA yang terhasil dan saiz serpihan terbesar.
+
+# Penyelesaian
+
+Bayangkan menggunting gelang getah tertutup. Guntingan pertama hanya membuka gelung menjadi satu jalur lurus, jadi tiga guntingan pada gelung tertutup menghasilkan tepat <InlineMath math="3" /> serpihan, bukannya <InlineMath math="4" />.
+
+> Plasmid bulat tiada hujung bebas, maka <InlineMath math="n" /> potongan sentiasa menghasilkan <InlineMath math="n" /> serpihan, dengan serpihan terakhir bersambung merentasi titik rujukan ke potongan pertama.
+
+Ukur **jarak antara tapak potongan bersebelahan** mengelilingi bulatan <InlineMath math="6000" /> bp, dengan kedudukan <InlineMath math="6000" /> bersambung terus ke kedudukan <InlineMath math="0" />.
 
 <BlockMath math="\begin{aligned}
-1000\to2500&:\ 1500\\
-2500\to4500&:\ 2000\\
-4500\to6000\to1000&:\ 1500+1000=2500\\
-\text{jumlah}&=1500+2000+2500=6000
+1000 \to 2500 &: 2500 - 1000 = 1500\text{ bp} \\
+2500 \to 4500 &: 4500 - 2500 = 2000\text{ bp} \\
+4500 \to 6000 \to 1000 &: (6000 - 4500) + 1000 = 2500\text{ bp}
 \end{aligned}" />
 
-Jadi, terdapat <InlineMath math="3" /> serpihan dan yang terbesar ialah <InlineMath math="2500" /> pasangan bes.
+Lihat tiga jalur serpihan yang dibentangkan di bawah: serpihan <InlineMath math="1" /> (<InlineMath math="y = 1" />, <InlineMath math="1500" /> bp), serpihan <InlineMath math="2" /> (<InlineMath math="y = 2" />, <InlineMath math="2000" /> bp), dan serpihan hijau <InlineMath math="3" /> (<InlineMath math="y = 3" />, <InlineMath math="1500 + 1000 = 2500" /> bp) yang bersambung merentasi titik mula.
 
-# Kenapa pilihan lain salah
+<MathVisual
+  title={<>Tiga Serpihan Plasmid pada Gelung <InlineMath math="6000" /> bp</>}
+  description={
+    <>
+      Tiga potongan membahagikan gelung <InlineMath math="6000" /> bp kepada
+      serpihan <InlineMath math="1500" /> bp (<InlineMath math="y = 1" />),{" "}
+      <InlineMath math="2000" /> bp (<InlineMath math="y = 2" />), dan serpihan
+      bersambung <InlineMath math="2500" /> bp (<InlineMath math="y = 3" />).
+    </>
+  }
+  footer={
+    <>
+      Jalur hijau bersambung daripada <InlineMath math="4500" /> merentasi <InlineMath math="6000" /> ke <InlineMath math="1000" />, jumlah <InlineMath math="2500" /> bp.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 6000 }, y: { min: 0, max: 4 } },
+    view: { kind: "fit", padding: 0.08 },
+    objects: [
+      { id: "frag-1", kind: "segment", appearance: "construction", from: { x: 1000, y: 1 }, to: { x: 2500, y: 1 } },
+      { id: "frag-2", kind: "segment", appearance: "primary", from: { x: 2500, y: 2 }, to: { x: 4500, y: 2 } },
+      { id: "frag-3a", kind: "segment", appearance: "answer", from: { x: 4500, y: 3 }, to: { x: 6000, y: 3 } },
+      { id: "frag-3b", kind: "segment", appearance: "answer", from: { x: 0, y: 3 }, to: { x: 1000, y: 3 } },
+      { id: "cut-1000", kind: "marker", appearance: "warning", x: "1000", y: "1" },
+      { id: "cut-2500", kind: "marker", appearance: "warning", x: "2500", y: "2" },
+      { id: "cut-4500", kind: "marker", appearance: "warning", x: "4500", y: "3" },
+    ],
+  }}
+  labels={{}}
+/>
 
-- <InlineMath math="4" /> serpihan menganggap plasmid sebagai DNA linear, sedangkan **potongan pertama hanya membuka bulatan**.
-- <InlineMath math="3500" /> menolak <InlineMath math="4500-1000" />, sedangkan serpihan itu bermula di <InlineMath math="4500" />, melintasi titik rujukan hingga <InlineMath math="1000" />.
-- <InlineMath math="3" /> serpihan dengan yang terbesar <InlineMath math="2000" /> hanya mengira bahagian dari <InlineMath math="0" /> hingga <InlineMath math="1000" /> dan terlupa bahagian dari <InlineMath math="4500" /> hingga <InlineMath math="6000" />.
+Semak jumlah panjang ketiga-tiga serpihan untuk mengesahkan seluruh plasmid lengkap.
+
+<BlockMath math="1500 + 2000 + 2500 = 6000\text{ bp}" />
+
+## Mengapa pilihan lain salah
+
+- <InlineMath math="4" /> serpihan menganggap plasmid sebagai DNA lurus, mengabaikan bahawa **potongan pertama sekadar membuka gelung tertutup**.
+- <InlineMath math="3500" /> bp menolak <InlineMath math="4500 - 1000" />, merentasi potongan di <InlineMath math="2500" /> bukannya mengelilingi <InlineMath math="6000" />.
+- <InlineMath math="3" /> serpihan dengan terbesar <InlineMath math="2000" /> bp terlupa mencantumkan bahagian <InlineMath math="4500" /> hingga <InlineMath math="6000" /> (<InlineMath math="1500" /> bp) dengan <InlineMath math="0" /> hingga <InlineMath math="1000" /> (<InlineMath math="1000" /> bp).
+
+# Jawapan
+
+Sebanyak <InlineMath math="3" /> serpihan terhasil, dan saiz serpihan terbesar ialah <InlineMath math="2500" /> pasangan bes.

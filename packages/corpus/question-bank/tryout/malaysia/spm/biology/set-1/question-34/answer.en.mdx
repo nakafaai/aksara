@@ -1,17 +1,78 @@
-# Separate the two genes, then multiply
+# Given
 
-The genes are on different chromosomes, so **their probabilities are found separately and multiplied**. <InlineMath math="Tt\times Tt" /> gives <InlineMath math="\tfrac34" /> tall, and <InlineMath math="Rr\times rr" /> gives <InlineMath math="\tfrac12" /> wrinkled.
+Tall stem (<InlineMath math="T" />) dominates short stem (<InlineMath math="t" />), and round seed (<InlineMath math="R" />) dominates wrinkled seed (<InlineMath math="r" />). The two genes lie on **different chromosomes**, so they assort independently.
+
+A cross of <InlineMath math="TtRr \times Ttrr" /> produces <InlineMath math="160" /> pea offspring.
+
+# Asked
+
+Find how many offspring are expected to be tall with wrinkled seeds, and how many of those are true-breeding for both traits.
+
+# Solution
+
+Think of two genes on separate chromosomes like flipping two separate coins at once. You find the chance for height first, the chance for seed shape second, and then multiply them together.
+
+> Independent genes multiply their separate single-trait probabilities, and only homozygous genotypes breed true for both traits.
+
+Split the cross into **two single-gene crosses**: <InlineMath math="Tt \times Tt" /> gives <InlineMath math="\frac{3}{4}" /> tall (<InlineMath math="\frac{1}{4} TT" /> and <InlineMath math="\frac{2}{4} Tt" />), while <InlineMath math="Rr \times rr" /> gives <InlineMath math="\frac{1}{2}" /> wrinkled (<InlineMath math="rr" />).
 
 <BlockMath math="\begin{aligned}
-\text{tall wrinkled}&=\tfrac34\times\tfrac12\times160=60\\
-TT\ \text{among the tall}&=\frac{1/4}{3/4}=\tfrac13\\
-\text{true-breeding}\ (TTrr)&=\tfrac13\times60=20
+\text{tall wrinkled} &= \frac{3}{4} \times \frac{1}{2} \times 160 = \frac{3}{8} \times 160 = 60 \\
+\text{true-breeding } (TTrr) &= \frac{1}{4} \times \frac{1}{2} \times 160 = \frac{1}{8} \times 160 = 20
 \end{aligned}" />
 
-Every wrinkled seed is already <InlineMath math="rr" />, so only the height gene decides true breeding. So the answer is <InlineMath math="60" /> and <InlineMath math="20" />.
+Slide the total offspring count <InlineMath math="n" /> below to compare tall wrinkled offspring (<InlineMath math="\frac{3}{8}n" />) against true-breeding <InlineMath math="TTrr" /> offspring (<InlineMath math="\frac{1}{8}n" />).
 
-# Why the other options are wrong
+<MathVisual
+  title={<>Expected Tall Wrinkled and True-Breeding Offspring</>}
+  description={
+    <>
+      Blue line <InlineMath math="y = 0.375n" /> tracks tall wrinkled plants and
+      green line <InlineMath math="y = 0.125n" /> tracks true-breeding{" "}
+      <InlineMath math="TTrr" /> plants, reaching <InlineMath math="60" /> and{" "}
+      <InlineMath math="20" /> at <InlineMath math="n = 160" />.
+    </>
+  }
+  footer={
+    <>
+      At <InlineMath math="n = 160" />, exactly one third of the <InlineMath math="60" /> tall wrinkled plants (<InlineMath math="20" />) breed true.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 320 }, y: { min: 0, max: 130 } },
+    view: { kind: "fit", padding: 0.08 },
+    parameters: [
+      { name: "n", min: 40, max: 320, value: 160, step: 40, label: "n" },
+    ],
+    objects: [
+      { id: "tall-wrinkled-line", kind: "function", appearance: "primary", formula: "0.375 * x", domain: { min: 0, max: 320 } },
+      { id: "true-breeding-line", kind: "function", appearance: "answer", formula: "0.125 * x", domain: { min: 0, max: 320 } },
+      { id: "guide-160", kind: "segment", appearance: "construction", from: { x: 160, y: 0 }, to: { x: 160, y: 60 } },
+      { id: "pt-tw", kind: "marker", appearance: "primary", x: "160", y: "60" },
+      { id: "pt-tb", kind: "marker", appearance: "answer", x: "160", y: "20" },
+      { id: "probe-tw", kind: "marker", appearance: "warning", x: "n", y: "0.375 * n" },
+    ],
+    readouts: [
+      { key: "tall-wrinkled", formula: "0.375 * n" },
+      { key: "true-breeding", formula: "0.125 * n" },
+    ],
+  }}
+  labels={{
+    n: <>Total offspring <InlineMath math="n" /></>,
+    "tall-wrinkled": <>Tall wrinkled plants</>,
+    "true-breeding": <>True-breeding <InlineMath math="TTrr" /> plants</>,
+  }}
+/>
 
-- <InlineMath math="40" /> is the number of <InlineMath math="Ttrr" /> plants, but **heterozygotes do not breed true**.
-- <InlineMath math="15" /> takes <InlineMath math="\tfrac14" /> of <InlineMath math="60" />, but among the tall plants only <InlineMath math="\tfrac13" /> are <InlineMath math="TT" />.
-- <InlineMath math="30" /> and <InlineMath math="10" /> use <InlineMath math="\tfrac12" /> for tall, but <InlineMath math="Tt\times Tt" /> gives <InlineMath math="\tfrac34" /> tall.
+Check the breakdown among all <InlineMath math="60" /> tall wrinkled plants: <InlineMath math="20" /> are <InlineMath math="TTrr" /> and <InlineMath math="40" /> are <InlineMath math="Ttrr" />, matching the <InlineMath math="1 : 2" /> ratio of <InlineMath math="TT : Tt" />.
+
+## Why the other options are wrong
+
+- <InlineMath math="40" /> counts the <InlineMath math="Ttrr" /> plants, but **heterozygotes do not breed true** because they can pass on <InlineMath math="t" />.
+- <InlineMath math="15" /> takes <InlineMath math="\frac{1}{4}" /> of <InlineMath math="60" />, forgetting that among tall plants (<InlineMath math="TT, Tt, Tt" />) the fraction of <InlineMath math="TT" /> is <InlineMath math="\frac{1}{3}" />, not <InlineMath math="\frac{1}{4}" />.
+- <InlineMath math="30" /> and <InlineMath math="10" /> use <InlineMath math="\frac{1}{2}" /> for tall instead of <InlineMath math="\frac{3}{4}" /> from <InlineMath math="Tt \times Tt" />.
+
+# Answer
+
+There are <InlineMath math="60" /> expected tall wrinkled offspring, and <InlineMath math="20" /> of them are true-breeding for both traits.

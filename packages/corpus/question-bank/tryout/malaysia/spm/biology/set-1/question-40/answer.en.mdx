@@ -1,16 +1,80 @@
-# Growth time after the lag phase
+# Given
 
-Cells do not divide during the lag phase, so **only the time after the lag phase** produces divisions. Of the <InlineMath math="120" /> minutes, the first <InlineMath math="40" /> are the lag phase, which leaves <InlineMath math="80" /> minutes of growth.
+A culture starts with <InlineMath math="100" /> bacterial cells. They spend **<InlineMath math="40" /> minutes in the lag phase** without dividing, then **double every <InlineMath math="20" /> minutes** with no cell death.
+
+The total elapsed time is <InlineMath math="2" /> hours (<InlineMath math="120" /> minutes).
+
+# Asked
+
+Find how many bacterial cells are present <InlineMath math="2" /> hours after inoculation.
+
+# Solution
+
+Think of bacteria warming up in the locker room for the first <InlineMath math="40" /> minutes before the doubling race starts. Only the remaining <InlineMath math="80" /> minutes produce divisions, giving four crisp doublings.
+
+> Exponential doubling starts only after the lag phase ends, so subtract the lag duration before dividing by the generation time.
+
+Convert <InlineMath math="2" /> hours into minutes, find the **number of doubling intervals** after the lag phase, and apply <InlineMath math="N = N_0 \times 2^k" />.
 
 <BlockMath math="\begin{aligned}
-\text{number of doublings}&=\frac{120-40}{20}=4\\
-N&=100\times2^4=1600
+t_{\text{growth}} &= 120 - 40 = 80\text{ minutes} \\
+k &= \frac{80}{20} = 4\text{ doublings} \\
+N &= 100 \times 2^4 = 100 \times 16 = 1600\text{ cells}
 \end{aligned}" />
 
-So after <InlineMath math="2" /> hours there are <InlineMath math="1600" /> bacterial cells.
+Slide the elapsed time <InlineMath math="m" /> below to trace the flat lag phase up to <InlineMath math="40" /> minutes followed by rapid doubling to <InlineMath math="1600" /> cells at <InlineMath math="120" /> minutes.
 
-# Why the other options are wrong
+<MathVisual
+  title={<>Bacterial Cell Count After a 40-Minute Lag Phase</>}
+  description={
+    <>
+      Cells stay constant at <InlineMath math="100" /> through minute{" "}
+      <InlineMath math="40" />, then follow{" "}
+      <InlineMath math="N(m) = 100 \cdot 2^{(m - 40)/20}" /> to reach{" "}
+      <InlineMath math="1600" /> at <InlineMath math="m = 120" /> minutes.
+    </>
+  }
+  footer={
+    <>
+      Four doublings after minute <InlineMath math="40" /> lift <InlineMath math="100" /> cells to <InlineMath math="1600" /> at minute <InlineMath math="120" />.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 140 }, y: { min: 0, max: 3500 } },
+    view: { kind: "fit", padding: 0.08 },
+    parameters: [
+      { name: "m", min: 40, max: 140, value: 120, step: 20, label: "m" },
+    ],
+    objects: [
+      { id: "lag-phase", kind: "segment", appearance: "construction", from: { x: 0, y: 100 }, to: { x: 40, y: 100 } },
+      { id: "exp-phase", kind: "function", appearance: "primary", formula: "100 * 2 ^ ((x - 40) / 20)", domain: { min: 40, max: 140 } },
+      { id: "guide-120", kind: "segment", appearance: "construction", from: { x: 120, y: 0 }, to: { x: 120, y: 1600 } },
+      { id: "pt-120", kind: "marker", appearance: "answer", x: "120", y: "1600" },
+      { id: "probe", kind: "marker", appearance: "warning", x: "m", y: "100 * 2 ^ ((m - 40) / 20)" },
+    ],
+    readouts: [
+      { key: "elapsed-time", formula: "m" },
+      { key: "bacteria-count", formula: "100 * 2 ^ ((m - 40) / 20)" },
+    ],
+  }}
+  labels={{
+    m: <>Elapsed time <InlineMath math="m" /> (min)</>,
+    "elapsed-time": <>Total elapsed time (min)</>,
+    "bacteria-count": <>Bacterial cell count</>,
+  }}
+/>
 
-- <InlineMath math="6400" /> uses all <InlineMath math="120" /> minutes for doubling, but **the first <InlineMath math="40" /> minutes are the lag phase**.
-- <InlineMath math="500" /> adds <InlineMath math="100" /> cells per doubling, but the number doubles instead of growing by a fixed amount.
-- <InlineMath math="3200" /> counts five doublings, one too many.
+Check every doubling step by hand across minutes <InlineMath math="40, 60, 80, 100, 120" />.
+
+<BlockMath math="100 \to 200 \to 400 \to 800 \to 1600" />
+
+## Why the other options are wrong
+
+- <InlineMath math="6400" /> counts <InlineMath math="6" /> doublings across all <InlineMath math="120" /> minutes, **forgetting that no division happens during the <InlineMath math="40" />-minute lag phase**.
+- <InlineMath math="500" /> adds <InlineMath math="100" /> cells per interval instead of multiplying by <InlineMath math="2" /> each time.
+- <InlineMath math="3200" /> uses <InlineMath math="5" /> doublings (minute <InlineMath math="140" />), one generation too many.
+
+# Answer
+
+There are <InlineMath math="1600" /> bacterial cells <InlineMath math="2" /> hours after inoculation.

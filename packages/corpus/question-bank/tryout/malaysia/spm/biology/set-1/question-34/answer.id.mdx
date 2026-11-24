@@ -1,17 +1,78 @@
-# Pisahkan kedua gen, lalu kalikan
+# Diketahui
 
-Kedua gen ada di kromosom berbeda, jadi **peluangnya dihitung terpisah lalu dikalikan**. <InlineMath math="Tt\times Tt" /> memberi <InlineMath math="\tfrac34" /> tinggi, dan <InlineMath math="Rr\times rr" /> memberi <InlineMath math="\tfrac12" /> berkerut.
+Alel batang tinggi (<InlineMath math="T" />) dominan terhadap pendek (<InlineMath math="t" />), dan biji bulat (<InlineMath math="R" />) dominan terhadap kisut (<InlineMath math="r" />). Kedua gen berada pada **kromosom berbeda**, sehingga bersegregasi bebas.
+
+Persilangan <InlineMath math="TtRr \times Ttrr" /> menghasilkan <InlineMath math="160" /> keturunan kacang kapri.
+
+# Ditanyakan
+
+Tentukan perkiraan jumlah keturunan tinggi berbiji kisut, serta berapa ekor di antaranya yang galur murni untuk kedua sifat.
+
+# Penyelesaian
+
+Bayangkan dua gen pada kromosom terpisah seperti melempar dua koin secara bersamaan. Kita hitung peluang tinggi batang lebih dulu, lalu peluang bentuk biji, kemudian kalikan keduanya.
+
+> Gen yang bebas memisah mengalikan peluang tiap sifat secara terpisah, dan hanya genotipe homozigot yang menjadi galur murni bagi kedua sifat.
+
+Pecah persilangan menjadi **dua persilangan monohibrid**: <InlineMath math="Tt \times Tt" /> menghasilkan <InlineMath math="\frac{3}{4}" /> tinggi (<InlineMath math="\frac{1}{4} TT" /> dan <InlineMath math="\frac{2}{4} Tt" />), sedangkan <InlineMath math="Rr \times rr" /> memberi <InlineMath math="\frac{1}{2}" /> kisut (<InlineMath math="rr" />).
 
 <BlockMath math="\begin{aligned}
-\text{tinggi berkerut}&=\tfrac34\times\tfrac12\times160=60\\
-TT\ \text{di antara yang tinggi}&=\frac{1/4}{3/4}=\tfrac13\\
-\text{galur murni}\ (TTrr)&=\tfrac13\times60=20
+\text{tinggi kisut} &= \frac{3}{4} \times \frac{1}{2} \times 160 = \frac{3}{8} \times 160 = 60 \\
+\text{galur murni } (TTrr) &= \frac{1}{4} \times \frac{1}{2} \times 160 = \frac{1}{8} \times 160 = 20
 \end{aligned}" />
 
-Semua biji berkerut sudah <InlineMath math="rr" />, jadi hanya gen tinggi yang menentukan galur murni. Jadi, jawabannya <InlineMath math="60" /> dan <InlineMath math="20" />.
+Geser jumlah total keturunan <InlineMath math="n" /> di bawah untuk membandingkan keturunan tinggi kisut (<InlineMath math="\frac{3}{8}n" />) dengan galur murni <InlineMath math="TTrr" /> (<InlineMath math="\frac{1}{8}n" />).
 
-# Mengapa pilihan lain salah
+<MathVisual
+  title={<>Jumlah Keturunan Tinggi Kisut dan Galur Murni</>}
+  description={
+    <>
+      Garis biru <InlineMath math="y = 0{,}375n" /> melacak tanaman tinggi kisut
+      dan garis hijau <InlineMath math="y = 0{,}125n" /> melacak galur murni{" "}
+      <InlineMath math="TTrr" />, mencapai <InlineMath math="60" /> dan{" "}
+      <InlineMath math="20" /> pada <InlineMath math="n = 160" />.
+    </>
+  }
+  footer={
+    <>
+      Pada <InlineMath math="n = 160" />, tepat sepertiga dari <InlineMath math="60" /> tanaman tinggi kisut (<InlineMath math="20" />) adalah galur murni.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 320 }, y: { min: 0, max: 130 } },
+    view: { kind: "fit", padding: 0.08 },
+    parameters: [
+      { name: "n", min: 40, max: 320, value: 160, step: 40, label: "n" },
+    ],
+    objects: [
+      { id: "tall-wrinkled-line", kind: "function", appearance: "primary", formula: "0.375 * x", domain: { min: 0, max: 320 } },
+      { id: "true-breeding-line", kind: "function", appearance: "answer", formula: "0.125 * x", domain: { min: 0, max: 320 } },
+      { id: "guide-160", kind: "segment", appearance: "construction", from: { x: 160, y: 0 }, to: { x: 160, y: 60 } },
+      { id: "pt-tw", kind: "marker", appearance: "primary", x: "160", y: "60" },
+      { id: "pt-tb", kind: "marker", appearance: "answer", x: "160", y: "20" },
+      { id: "probe-tw", kind: "marker", appearance: "warning", x: "n", y: "0.375 * n" },
+    ],
+    readouts: [
+      { key: "tall-wrinkled", formula: "0.375 * n" },
+      { key: "true-breeding", formula: "0.125 * n" },
+    ],
+  }}
+  labels={{
+    n: <>Total keturunan <InlineMath math="n" /></>,
+    "tall-wrinkled": <>Tanaman tinggi berbiji kisut</>,
+    "true-breeding": <>Galur murni <InlineMath math="TTrr" /></>,
+  }}
+/>
 
-- <InlineMath math="40" /> adalah jumlah tanaman <InlineMath math="Ttrr" />, padahal **heterozigot tidak menghasilkan keturunan yang seragam**.
-- <InlineMath math="15" /> memakai <InlineMath math="\tfrac14" /> dari <InlineMath math="60" />, padahal di antara tanaman tinggi, hanya <InlineMath math="\tfrac13" /> yang <InlineMath math="TT" />.
-- <InlineMath math="30" /> dan <InlineMath math="10" /> memakai <InlineMath math="\tfrac12" /> untuk tinggi, padahal <InlineMath math="Tt\times Tt" /> memberi <InlineMath math="\tfrac34" /> tinggi.
+Cek rincian dari <InlineMath math="60" /> tanaman tinggi kisut: <InlineMath math="20" /> bergenotipe <InlineMath math="TTrr" /> dan <InlineMath math="40" /> bergenotipe <InlineMath math="Ttrr" />, tepat sesuai nisbah <InlineMath math="1 : 2" /> antara <InlineMath math="TT : Tt" />.
+
+## Mengapa pilihan lain salah
+
+- <InlineMath math="40" /> adalah jumlah tanaman <InlineMath math="Ttrr" />, padahal **heterozigot bukan galur murni** karena masih membawa alel <InlineMath math="t" />.
+- <InlineMath math="15" /> mengambil <InlineMath math="\frac{1}{4}" /> dari <InlineMath math="60" />, padahal di antara tanaman tinggi (<InlineMath math="TT, Tt, Tt" />) bagian <InlineMath math="TT" /> adalah <InlineMath math="\frac{1}{3}" />, bukan <InlineMath math="\frac{1}{4}" />.
+- <InlineMath math="30" /> dan <InlineMath math="10" /> memakai peluang tinggi <InlineMath math="\frac{1}{2}" />, padahal <InlineMath math="Tt \times Tt" /> memberi <InlineMath math="\frac{3}{4}" /> tinggi.
+
+# Jawaban
+
+Diperkirakan ada <InlineMath math="60" /> keturunan tinggi berbiji kisut, dan <InlineMath math="20" /> di antaranya galur murni untuk kedua sifat.
