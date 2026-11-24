@@ -1,15 +1,37 @@
-Paket menghitung hari pembelian sebagai hari pertama dan berakhir pukul 23.59 pada hari terakhirnya, jam berapa pun dibeli.
+# Diketahui
 
-**Pernyataan 1**: sudah berakhir. Harian hanya satu hari, jadi berakhir pukul 23.59 hari Senin. Pukul 0.30 hari Selasa sudah habis.
+Tersedia lima skenario pembelian paket **Harian** (<InlineMath math="1" /> hari), **Mingguan** (<InlineMath math="7" /> hari), dan **Bulanan** (<InlineMath math="30" /> hari) dengan waktu pembelian serta waktu pemeriksaan masing-masing.
 
-**Pernyataan 2**: masih berlaku. Rabu hari pertama, jadi hari ketujuh adalah Selasa, yang berlaku sampai pukul 23.59.
+Aturan masa berlaku Kilat:
+- Paket mulai aktif saat dibeli, **menghitung hari pembelian sebagai hari pertama**, dan **berakhir pukul 23:59 di hari terakhir** tanpa bergantung pada jam pembelian.
 
-**Pernyataan 3**: sudah berakhir. Paket itu berakhir pukul 23.59 hari Selasa, jadi pukul 7.00 hari Rabu sudah habis, walaupun belum <InlineMath math="7 \times 24" /> jam sejak pukul 8.00.
+# Ditanyakan
 
-**Pernyataan 4**: masih berlaku. Tanggal 1 Maret hari pertama, jadi 30 Maret hari ketiga puluh, yang berlaku sampai pukul 23.59.
+Status setiap paket pada waktu pemeriksaan: **masih berlaku** (*Still valid*) atau **sudah berakhir** (*Already ended*).
 
-**Pernyataan 5**: sudah berakhir. Paket itu berakhir pukul 23.59 tanggal 30 Maret.
+# Penyelesaian
 
-Menghitung <InlineMath math="7 \times 24" /> atau <InlineMath math="30 \times 24" /> jam dari jam pembelian membuat pernyataan 3 dan 5 salah.
+Hitung tanggal kalender hari terakhir dengan menjadikan hari pembelian sebagai hari ke-<InlineMath math="1" />, lalu bandingkan waktu pemeriksaan terhadap pukul **23:59** pada hari terakhir.
 
-Jadi, paket di pernyataan 2 dan 4 masih berlaku, sedangkan paket di pernyataan 1, 3, dan 5 sudah berakhir.
+> Masa aktif paket dihitung per hari kalender sampai pukul 23:59, bukan kelipatan dua puluh empat jam dari jam pembelian.
+
+## Menentukan status setiap paket
+
+Teks menegaskan aturan akhir masa berlaku: <Highlight>ends at 23:59 on its last day, counting the day of purchase as the first day</Highlight>.
+
+| Pernyataan | Hari terakhir aktif | Waktu cek | Status |
+| --- | --- | --- | --- |
+| Harian, Senin 23:00 | Senin 23:59 (hari ke-<InlineMath math="1" />) | Selasa 0:30 | **Sudah berakhir** |
+| Mingguan, Rabu 8:00 | Selasa 23:59 (hari ke-<InlineMath math="7" />) | Selasa 22:00 | **Masih berlaku** |
+| Mingguan, Rabu 8:00 | Selasa 23:59 (hari ke-<InlineMath math="7" />) | Rabu 7:00 | **Sudah berakhir** |
+| Bulanan, 1 Maret 10:00 | 30 Maret 23:59 (hari ke-<InlineMath math="30" />) | 30 Maret 23:00 | **Masih berlaku** |
+| Bulanan, 1 Maret 10:00 | 30 Maret 23:59 (hari ke-<InlineMath math="30" />) | 31 Maret 0:10 | **Sudah berakhir** |
+
+## Jebakan yang harus dihindari
+
+- Menghitung <InlineMath math="7 \times 24" /> jam dari Rabu pukul 8:00 akan keliru mengira paket pada pernyataan ketiga masih aktif Rabu pukul 7:00.
+- Menghitung <InlineMath math="30 \times 24" /> jam dari 1 Maret pukul 10:00 juga keliru mengira paket pada pernyataan kelima masih aktif pada 31 Maret pukul 0:10.
+
+# Jawaban
+
+Paket yang **masih berlaku** (*Still valid*) adalah **pernyataan 2 dan 4**, sedangkan yang **sudah berakhir** (*Already ended*) adalah **pernyataan 1, 3, dan 5**.

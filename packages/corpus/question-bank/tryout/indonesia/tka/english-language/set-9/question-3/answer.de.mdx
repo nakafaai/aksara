@@ -1,11 +1,42 @@
-Berechne jeden Vergleich aus der Tabelle.
+# Gegeben
 
-- **I ist gestützt**. Bulanan: <InlineMath math="80{.}000 \div 20 = \text{Rp}4{.}000" /> pro GB Tagesvolumen. Mingguan: <InlineMath math="25{.}000 \div 5 = \text{Rp}5{.}000" />.
-- II ist nicht gestützt. Harian kostet <InlineMath math="\text{Rp}6{.}000" /> pro GB, am meisten von allen dreien.
-- III ist nicht gestützt. Bulanan gibt <InlineMath math="20 \div 30 \approx 0{,}67" /> GB Nachtvolumen pro Tag, Mingguan <InlineMath math="5 \div 7 \approx 0{,}71" /> GB.
-- IV ist nicht gestützt. Sieben Harian kosten <InlineMath math="7 \times 6{.}000 = \text{Rp}42{.}000" />, mehr als ein Mingguan, geben aber <InlineMath math="7" /> GB Tagesvolumen, mehr als <InlineMath math="5" />.
-- **V ist gestützt**. <InlineMath math="4 \times 25{.}000 = \text{Rp}100{.}000" />, mehr als <InlineMath math="\text{Rp}80{.}000" />.
+Die Tabelle von Kilat nennt drei Pakete:
+- **Harian**: <InlineMath math="\text{Rp}6{.}000" />, <InlineMath math="1" /> GB Tag, kein Nachtvolumen, <InlineMath math="1" /> Tag.
+- **Mingguan**: <InlineMath math="\text{Rp}25{.}000" />, <InlineMath math="5" /> GB Tag, <InlineMath math="5" /> GB Nacht, <InlineMath math="7" /> Tage.
+- **Bulanan**: <InlineMath math="\text{Rp}80{.}000" />, <InlineMath math="20" /> GB Tag, <InlineMath math="20" /> GB Nacht, <InlineMath math="30" /> Tage.
 
-Die Optionen mit III vergleichen die Summen statt der Menge pro Tag. Die Optionen mit IV haben die erste Hälfte richtig und die zweite falsch.
+# Gesucht
 
-Gestützt sind also nur I und V.
+Welche der römisch nummerierten Vergleichsaussagen durch den Text gestützt werden.
+
+# Lösung
+
+Berechne zuerst den Preis pro Gigabyte Tagdatenvolumen, das Nachtvolumen pro Tag sowie die Gesamtpreise mehrerer Pakete und prüfe dann jede Aussage.
+
+> Vergleiche pro Gigabyte oder pro Tag verlangen immer eine Division statt eines Blicks auf rohe Gesamtsummen.
+
+## Vergleiche mit den Tabellenwerten prüfen
+
+Preis pro GB Tagdatenvolumen und Nachtdatenvolumen pro Tag ergeben:
+
+<BlockMath math="\text{Harian: }\frac{6{.}000}{1}=\text{Rp}6{.}000\text{/GB}, \quad \text{Mingguan: }\frac{25{.}000}{5}=\text{Rp}5{.}000\text{/GB}, \quad \text{Bulanan: }\frac{80{.}000}{20}=\text{Rp}4{.}000\text{/GB}" />
+
+<BlockMath math="\text{Nacht/Tag Bulanan: }\frac{20}{30}\approx 0{,}67\text{ GB}, \qquad \text{Mingguan: }\frac{5}{7}\approx 0{,}71\text{ GB}" />
+
+| Aussage | Gestützt? | Beleg aus der Tabelle |
+| --- | --- | --- |
+| I | **Ja** | Bulanan (<InlineMath math="\text{Rp}4{.}000" />/GB) ist je GB Tagvolumen günstiger als Mingguan (<InlineMath math="\text{Rp}5{.}000" />/GB). |
+| II | Nein | Harian ist mit <InlineMath math="\text{Rp}6{.}000" />/GB am teuersten. |
+| III | Nein | Bulanan liefert <InlineMath math="0{,}67" /> GB Nachtvolumen pro Tag, weniger als Mingguan mit <InlineMath math="0{,}71" /> GB. |
+| IV | Nein | Sieben Harian kosten <InlineMath math="\text{Rp}42{.}000" /> (mehr), geben aber <InlineMath math="7" /> GB Tagvolumen (mehr statt weniger als <InlineMath math="5" /> GB). |
+| V | **Ja** | Vier Mingguan kosten <InlineMath math="\text{Rp}100{.}000" /> und damit mehr als ein Bulanan (<InlineMath math="\text{Rp}80{.}000" />). |
+
+## Warum die anderen Optionen falsch sind
+
+- **Optionen mit II** verwechseln den niedrigsten Paketpreis mit dem niedrigsten Gigabytepreis.
+- **Optionen mit III** vergleichen Gesamtvolumina statt der Tagesrate.
+- **Optionen mit IV** übersehen, dass sieben Harian mehr Tagdatenvolumen liefern als ein Mingguan.
+
+# Antwort
+
+Gestützt werden **nur I und V** (*I and V only*).

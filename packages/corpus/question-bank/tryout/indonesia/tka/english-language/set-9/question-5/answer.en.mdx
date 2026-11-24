@@ -1,9 +1,37 @@
-Check each statement with the rules.
+# Given
 
-- **A Harian bought at 23:30 lasts at most <InlineMath math="29" /> minutes: supported**. It ends at 23:59 that day.
-- Night data at 6:30: not supported. Night data works only until 6:00.
-- **A Mingguan bought on a Friday is valid on the following Thursday: supported**. Friday is the first day, so Thursday is the seventh.
-- Leftover night data is added to a renewed package: not supported. It "is never carried over".
-- A Bulanan gives <InlineMath math="40" /> GB for any time of day: not supported. Half of it is night data, usable only from 0:00 to 6:00.
+Five statements make claims about Kilat's expiry cutoff, night-data hours, renewal carry-over, and the **Bulanan** package allowance.
 
-So the supported statements are the ones about the Harian bought at 23:30 and the Mingguan bought on a Friday.
+Key rules from the passage:
+- Every package ends at **23:59** on its final day, counting purchase day as day one.
+- Night data works strictly from **0:00 to 6:00** and never carries over.
+- **Bulanan** splits into **<InlineMath math="20" /> GB daytime** and **<InlineMath math="20" /> GB night** data.
+
+# Asked
+
+All statements supported by the passage (select every correct option).
+
+# Solution
+
+Evaluate each option individually against the 23:59 expiry rule, the 0:00 to 6:00 night window, and the split between daytime and night allowances.
+
+> Checking each statement independently prevents missing a second valid option in a multi-select question.
+
+## Verifying every statement against the rules
+
+| Statement | Supported? | Evidence from passage |
+| --- | --- | --- |
+| Harian bought at 23:30 lasts at most <InlineMath math="29" /> minutes | **Yes** | A package <Highlight>ends at 23:59 on its last day</Highlight>, leaving <InlineMath math="29" /> minutes from 23:30 to 23:59. |
+| Night data can be used at 6:30 | No | The text states <Highlight>Night data can be used only from 0:00 to 6:00</Highlight>. |
+| Mingguan bought Friday is valid next Thursday | **Yes** | Counting Friday as day <InlineMath math="1" /> makes the following Thursday day <InlineMath math="7" />, valid until 23:59. |
+| Leftover night data is added on renewal | No | The rule explicitly says <Highlight>Leftover night data is never carried over</Highlight>. |
+| Bulanan gives <InlineMath math="40" /> GB usable any time | No | Half of its total is <InlineMath math="20" /> GB of night data restricted to 0:00 to 6:00. |
+
+## Why the other statements fail
+
+- **6:30** falls outside the 0:00 to 6:00 night-data window.
+- **Night carry-over** and **<InlineMath math="40" /> GB at any time** both ignore the strict rules separating night data from daytime data.
+
+# Answer
+
+The supported statements are **A Harian bought at 23:30 can be used for at most <InlineMath math="29" /> minutes** and **A Mingguan bought on a Friday is still valid on the following Thursday**.

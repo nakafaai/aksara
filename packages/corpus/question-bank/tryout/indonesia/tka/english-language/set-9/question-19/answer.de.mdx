@@ -1,10 +1,40 @@
-Multipliziere das Rezept mit <InlineMath math="2" />, außer der Hefe, die mit <InlineMath math="1{,}5" /> multipliziert wird.
+# Gegeben
 
-- **I ist gestützt**. <InlineMath math="500 \times 2 = 1{.}000" /> g Mehl und <InlineMath math="7 \times 1{,}5 = 10{,}5" /> g Hefe.
-- **II ist gestützt**. <InlineMath math="300 \times 2 = 600" /> ml Wasser.
-- III ist nicht gestützt. Das Gehen hängt vom Raum ab, nicht von der Menge. Bei <InlineMath math="28" /> Grad dauert es <InlineMath math="60" /> Minuten.
-- **IV ist gestützt**. Auch die Zahl der Stücke verdoppelt sich: <InlineMath math="12 \times 2 = 24" />.
+Pak Rudi backt die **doppelte Menge** in einer Küche bei **<InlineMath math="28" /> Grad** und hält sich an jeden Schritt.
 
-Die Optionen mit III verdoppeln die Gehzeit mit der Menge. Die Optionen ohne I oder II lassen eine angepasste Menge weg.
+Einfaches Rezept (<InlineMath math="12" /> Brötchen):
+- <InlineMath math="500" /> g Mehl, <InlineMath math="7" /> g Trockenhefe, <InlineMath math="300" /> ml warmes Wasser.
+- Erstes Gehen bei etwa <InlineMath math="28" /> Grad dauert **<InlineMath math="60" /> Minuten**.
+- Verdopplungsregel: Alle Mengen und die Stückzahl mal <InlineMath math="2" />, außer der Hefe mit Faktor **<InlineMath math="1{,}5" />**.
 
-Gestützt sind also nur I, II und IV.
+# Gesucht
+
+Welche römisch nummerierten Aussagen über Pak Rudis Backen durch die Anleitung gestützt werden.
+
+# Lösung
+
+Skaliere Mehl, Wasser und Stückzahl mit <InlineMath math="2" /> und die Hefe mit <InlineMath math="1{,}5" />. Beachte dabei, dass die Gehzeit von der **Raumtemperatur** abhängt, nicht von der Teigmenge.
+
+> Die doppelte Teigmenge verdoppelt Zutaten und Brötchenzahl, doch bei achtundzwanzig Grad bleibt das erste Gehen bei sechzig Minuten.
+
+## Mengen skalieren und Gehzeit prüfen
+
+Der Schlusssatz regelt <Highlight>multiply every amount and the number of pieces by the same number, except the yeast: a double batch needs only 1.5 times the yeast</Highlight>.
+
+<BlockMath math="\text{Mehl: } 500 \times 2 = 1{.}000\text{ g}, \quad \text{Hefe: } 7 \times 1{,}5 = 10{,}5\text{ g}, \quad \text{Wasser: } 300 \times 2 = 600\text{ ml}, \quad \text{Stück: } 12 \times 2 = 24" />
+
+| Aussage | Gestützt? | Beleg im Rezept |
+| --- | --- | --- |
+| I | **Ja** | <InlineMath math="1{.}000" /> g Mehl und <InlineMath math="10{,}5" /> g Hefe entsprechen genau der <InlineMath math="1{,}5" />-Regel für Hefe. |
+| II | **Ja** | Die Wassermenge verdoppelt sich auf <InlineMath math="600" /> ml. |
+| III | Nein | Bei <InlineMath math="28" /> Grad dauert das erste Gehen <InlineMath math="60" /> Minuten, nicht <InlineMath math="120" /> (doppelt gilt nur unter <InlineMath math="24" /> Grad). |
+| IV | **Ja** | Auch die Stückzahl verdoppelt sich auf <InlineMath math="24" /> Brötchen. |
+
+## Warum die anderen Optionen falsch sind
+
+- **Optionen mit III** verdoppeln fälschlich die Gehzeit mit der Teigmenge.
+- **Optionen ohne I, II oder IV** lassen eine direkt belegte Skalierung weg.
+
+# Antwort
+
+Gestützt werden **nur I, II und IV** (*I, II, and IV only*).

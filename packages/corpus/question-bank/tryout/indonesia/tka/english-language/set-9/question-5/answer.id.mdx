@@ -1,9 +1,37 @@
-Cek setiap pernyataan dengan aturannya.
+# Diketahui
 
-- **Harian yang dibeli pukul 23.30 paling lama <InlineMath math="29" /> menit: didukung**. Paket itu berakhir pukul 23.59 hari itu.
-- Kuota malam pukul 6.30: tidak didukung. Kuota malam hanya berlaku sampai pukul 6.00.
-- **Mingguan yang dibeli hari Jumat masih berlaku hari Kamis berikutnya: didukung**. Jumat hari pertama, jadi Kamis hari ketujuh.
-- Sisa kuota malam ditambahkan ke paket yang diperpanjang: tidak didukung. Sisa itu *is never carried over* (tidak pernah dipindahkan).
-- Bulanan memberi <InlineMath math="40" /> GB untuk jam berapa pun: tidak didukung. Separuhnya kuota malam, yang hanya berlaku pukul 0.00 sampai 6.00.
+Tersedia lima pernyataan tentang masa berlaku, jam pakai kuota malam, akumulasi sisa kuota, dan kapasitas paket **Bulanan** Kilat.
 
-Jadi, pernyataan yang didukung adalah Harian yang dibeli pukul 23.30 dan Mingguan yang dibeli hari Jumat.
+Aturan rujukan:
+- Paket berakhir pukul **23:59** di hari terakhir dengan hari beli dihitung sebagai hari ke-<InlineMath math="1" />.
+- Kuota malam hanya berlaku **0:00 sampai 6:00** dan tidak pernah terbawa saat perpanjangan.
+- **Bulanan** terdiri atas **<InlineMath math="20" /> GB kuota siang** dan **<InlineMath math="20" /> GB kuota malam**.
+
+# Ditanyakan
+
+Semua pernyataan yang benar dan didukung oleh teks (pilihan ganda kompleks).
+
+# Penyelesaian
+
+Uji setiap pernyataan satu per satu terhadap aturan jam malam, batas 23:59, dan pemisahan kuota siang serta malam.
+
+> Soal pilihan majemuk mengharuskan setiap opsi diperiksa tuntas karena lebih dari satu pernyataan bisa benar sekaligus.
+
+## Menguji setiap pernyataan terhadap aturan
+
+| Pernyataan | Didukung? | Bukti aturan di teks |
+| --- | --- | --- |
+| Harian dibeli 23:30 aktif paling lama <InlineMath math="29" /> menit | **Ya** | Paket <Highlight>ends at 23:59 on its last day</Highlight>, sehingga dari 23:30 hingga 23:59 tersisa <InlineMath math="29" /> menit. |
+| Kuota malam bisa dipakai pukul 6:30 | Tidak | Teks membatasi <Highlight>Night data can be used only from 0:00 to 6:00</Highlight>. |
+| Mingguan dibeli Jumat masih aktif Kamis berikutnya | **Ya** | Jumat hari ke-<InlineMath math="1" />, maka Kamis berikutnya adalah hari ke-<InlineMath math="7" /> dan berlaku sampai 23:59. |
+| Sisa kuota malam ditambahkan saat perpanjangan | Tidak | Teks menegaskan <Highlight>Leftover night data is never carried over</Highlight>. |
+| Bulanan memberi <InlineMath math="40" /> GB untuk kapan saja | Tidak | Separuhnya (<InlineMath math="20" /> GB) adalah kuota malam yang hanya berlaku 0:00 sampai 6:00. |
+
+## Mengapa pernyataan lain tidak dipilih
+
+- Opsi jam **6:30** melewati batas akhir kuota malam pukul 6:00.
+- Opsi **akumulasi kuota malam** dan **<InlineMath math="40" /> GB kapan saja** melanggar pemisahan ketat antara kuota siang dan kuota malam.
+
+# Jawaban
+
+Pernyataan yang didukung teks adalah **Harian yang dibeli pukul 23:30 hanya dapat dipakai paling lama <InlineMath math="29" /> menit** (*A Harian bought at 23:30 can be used for at most <InlineMath math="29" /> minutes*) dan **Mingguan yang dibeli hari Jumat masih berlaku pada hari Kamis berikutnya** (*A Mingguan bought on a Friday is still valid on the following Thursday*).

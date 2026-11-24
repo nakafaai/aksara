@@ -1,11 +1,37 @@
-A cause-and-effect statement is supported only if the text gives both the effect and the link.
+# Given
 
-- **I is supported**. Night data works "only from 0:00 to 6:00", and "at any other time the phone uses daytime data".
-- **II is supported**. A Harian bought on the Mingguan's first day ends that night, long before the Mingguan, and the phone "uses the one that ends sooner first".
-- **III is supported**. Renewing early closes the old package at once, and "Leftover night data is never carried over".
-- IV isn't supported. The Harian ends at 23:59 that same day, <InlineMath math="59" /> minutes later.
-- V isn't supported. Only daytime data carries over, so the night data stays at <InlineMath math="20" /> GB.
+Kilat's passage sets four operating rules:
+- Night data works only from **0:00 to 6:00**, and daytime data covers every other hour.
+- Every package ends at **23:59** on its last calendar day.
+- Early renewal carries over leftover daytime data only, never night data.
+- With two different active packages, the phone uses the one **ending sooner** first.
 
-The option with IV reads "<InlineMath math="1" /> day" as <InlineMath math="24" /> hours. The option with V lets the carry-over rule touch night data.
+# Asked
 
-So the supported statements are I, II and III only.
+Which Roman-numeral cause-and-effect statements are supported by the passage.
+
+# Solution
+
+Test both parts of every statement: verify that the stated rule appears in the passage and that the claimed effect truly follows from it.
+
+> A cause-and-effect statement fails whenever its conclusion contradicts a rule, even if its opening clause sounds familiar.
+
+## Checking each cause and effect link
+
+| Statement | Supported? | Evidence from passage |
+| --- | --- | --- |
+| I | **Yes** | Night data ends at 6:00 and <Highlight>at any other time the phone uses daytime data</Highlight>, so 23:30 draws from daytime data. |
+| II | **Yes** | A Harian ends that same night, far earlier than a Mingguan, and the phone <Highlight>uses the one that ends sooner first</Highlight>. |
+| III | **Yes** | Early renewal closes the old package immediately and <Highlight>Leftover night data is never carried over</Highlight>. |
+| IV | No | A Harian bought at 23:00 ends at 23:59 the same day, lasting <InlineMath math="59" /> minutes instead of <InlineMath math="24" /> hours. |
+| V | No | Carry-over applies only to daytime data, so Bulanan night data stays at <InlineMath math="20" /> GB. |
+
+## Why the other options fail
+
+- **Options with IV** mistake a single calendar day for a full <InlineMath math="24" />-hour window.
+- **Options with V** extend the daytime carry-over rule to night data.
+- **Options missing I or III** omit a direct consequence clearly established by the passage.
+
+# Answer
+
+The supported cause-and-effect statements are **I, II, and III only**.

@@ -1,15 +1,36 @@
-A package counts the day of purchase as the first day and ends at 23:59 on its last day, whatever time it was bought.
+# Given
 
-**Statement 1**: already ended. A Harian has one day, so it ends at 23:59 on the Monday. At 0:30 on Tuesday it is over.
+Five scenarios pair a **Harian** (<InlineMath math="1" /> day), **Mingguan** (<InlineMath math="7" /> days), or **Bulanan** (<InlineMath math="30" /> days) purchase time with a later check time.
 
-**Statement 2**: still valid. Wednesday is the first day, so the seventh is the Tuesday, which runs to 23:59.
+Kilat's validity rule:
+- Every package counts **the purchase date as day one** and **ends at 23:59 on its last calendar day**, regardless of purchase hour.
 
-**Statement 3**: already ended. It ended at 23:59 on the Tuesday, so at 7:00 on Wednesday it is over, even though that is less than <InlineMath math="7 \times 24" /> hours after 8:00.
+# Asked
 
-**Statement 4**: still valid. 1 March is the first day, so 30 March is the thirtieth, which runs to 23:59.
+Whether each package is **Still valid** or **Already ended** at the time of the check.
 
-**Statement 5**: already ended. It ended at 23:59 on 30 March.
+# Solution
 
-Counting <InlineMath math="7 \times 24" /> or <InlineMath math="30 \times 24" /> hours from the purchase time gets statements 3 and 5 wrong.
+Find the final calendar day by counting the purchase day as day one, then compare the check time against **23:59** on that final day.
 
-So the packages in statements 2 and 4 are still valid, and those in statements 1, 3 and 5 have ended.
+> Validity follows calendar days ending at 23:59, never exact twenty-four-hour multiples from the purchase clock time.
+
+## Checking each package against its cutoff
+
+The passage sets the exact boundary: <Highlight>ends at 23:59 on its last day, counting the day of purchase as the first day</Highlight>.
+
+| Statement | Expiry cutoff | Check time | Status |
+| --- | --- | --- | --- |
+| Harian, Monday 23:00 | Monday 23:59 (day <InlineMath math="1" />) | Tuesday 0:30 | **Already ended** |
+| Mingguan, Wednesday 8:00 | Tuesday 23:59 (day <InlineMath math="7" />) | Tuesday 22:00 | **Still valid** |
+| Mingguan, Wednesday 8:00 | Tuesday 23:59 (day <InlineMath math="7" />) | Wednesday 7:00 | **Already ended** |
+| Bulanan, 1 March 10:00 | 30 March 23:59 (day <InlineMath math="30" />) | 30 March 23:00 | **Still valid** |
+| Bulanan, 1 March 10:00 | 30 March 23:59 (day <InlineMath math="30" />) | 31 March 0:10 | **Already ended** |
+
+## Common trap to avoid
+
+- Counting exact <InlineMath math="24" />-hour blocks from 8:00 on Wednesday or 10:00 on 1 March falsely marks statements 3 and 5 as still valid.
+
+# Answer
+
+Statements **2 and 4** are **Still valid**, while statements **1, 3, and 5** are **Already ended**.
