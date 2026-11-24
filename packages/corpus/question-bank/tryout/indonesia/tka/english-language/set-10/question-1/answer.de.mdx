@@ -1,14 +1,41 @@
-Bestimm jedes Fälligkeitsdatum mit dem Ausleihtag als Tag <InlineMath math="0" /> und zähl dann die Verspätungstage ohne Sonntage.
+# Gegeben
 
-**Buch**. Fällig <InlineMath math="14" /> Tage nach Mittwoch, dem <InlineMath math="3" />. Juli: Mittwoch, <InlineMath math="17" />. Juli. Verspätet am Donnerstag <InlineMath math="18" />., Freitag <InlineMath math="19" />. und Samstag <InlineMath math="20" />.: <InlineMath math="3" /> Tage <InlineMath math="\times \text{Rp}500 = \text{Rp}1{.}500" />.
+Raka ist **<InlineMath math="14" /> Jahre alt** (volle Gebühr), leiht am **Mittwoch, den <InlineMath math="3" />. Juli** ein **Buch** und eine **DVD** aus, verlängert die DVD rechtzeitig einmal, vergisst das Buch und gibt beides am **Samstag, den <InlineMath math="20" />. Juli** zurück.
 
-**DVD**. Zuerst fällig <InlineMath math="3" /> Tage nach dem <InlineMath math="3" />.: Samstag, <InlineMath math="6" />. Juli. Die Verlängerung "runs from the old due date": <InlineMath math="6 + 3 = 9" />, also Dienstag, <InlineMath math="9" />. Juli. Von Mittwoch <InlineMath math="10" />. bis Samstag <InlineMath math="20" />. sind es <InlineMath math="11" /> Tage, aber Sonntag <InlineMath math="14" />. ist gebührenfrei, also <InlineMath math="10" /> Tage <InlineMath math="\times \text{Rp}2{.}000 = \text{Rp}20{.}000" />.
+Bibliotheksregeln:
+- Der Ausleihtag ist Tag <InlineMath math="0" />, für Sonntage fällt **keine Gebühr** an.
+- **Buch**: <InlineMath math="14" /> Tage Leihfrist, <InlineMath math="\text{Rp}500" /> pro Verspätungstag.
+- **DVD**: <InlineMath math="3" /> Tage Leihfrist, <InlineMath math="1" /> Verlängerung um <InlineMath math="3" /> Tage ab altem Rückgabedatum, <InlineMath math="\text{Rp}2{.}000" /> pro Tag.
 
-**Summe**. <InlineMath math="1{.}500 + 20{.}000 = \text{Rp}21{.}500" />. Raka ist <InlineMath math="14" />, er zahlt also die volle Gebühr.
+# Gesucht
 
-- <InlineMath math="\text{Rp}25{.}500" /> vergisst die Verlängerung.
-- <InlineMath math="\text{Rp}23{.}500" /> berechnet den Sonntag mit.
-- <InlineMath math="\text{Rp}22{.}000" /> zählt den Ausleihtag als Tag <InlineMath math="1" />, das Buch wird so einen Tag zu früh fällig.
-- <InlineMath math="\text{Rp}10{.}750" /> gibt Raka die halbe Gebühr für Mitglieder unter <InlineMath math="12" />.
+Wie hoch die gesamte Verspätungsgebühr ist, die Raka bezahlen muss.
 
-Raka zahlt also <InlineMath math="\text{Rp}21{.}500" />.
+# Lösung
+
+Bestimme beide Rückgabedaten mit dem **Ausleihtag** als Tag <InlineMath math="0" />, zähle die verspäteten Tage ohne Sonntag, den <InlineMath math="14" />. Juli, und addiere die Gebühren zum vollen Satz.
+
+> Jede Verlängerung schließt nahtlos an das alte Rückgabedatum an und Sonntage bleiben gebührenfrei, weshalb bei der DVD nur zehn Tage zählen.
+
+## Verspätungstage und Gebühr berechnen
+
+Laut Text gilt <Highlight>each renewal runs from the old due date</Highlight> sowie <Highlight>no fine is charged for a Sunday</Highlight>.
+
+- **Buch**: fällig am <InlineMath math="3 + 14 = 17" />. Juli (Mittwoch). Verspätet am <InlineMath math="18" />., <InlineMath math="19" />. und <InlineMath math="20" />. Juli (<InlineMath math="3" /> Tage).
+- **DVD**: zunächst fällig am <InlineMath math="3 + 3 = 6" />. Juli (Samstag), verlängert auf <InlineMath math="6 + 3 = 9" />. Juli (Dienstag). Vom <InlineMath math="10" />. bis <InlineMath math="20" />. Juli sind es <InlineMath math="11" /> Tage minus Sonntag, den <InlineMath math="14" />. Juli, also <InlineMath math="10" /> Tage.
+
+<BlockMath math="\begin{aligned}
+\text{Buch: } 3 \times \text{Rp}500 = \text{Rp}1{.}500, \qquad \text{DVD: } 10 \times \text{Rp}2{.}000 = \text{Rp}20{.}000 \\
+\text{Gesamt: Rp}1{.}500 + \text{Rp}20{.}000 = \text{Rp}21{.}500
+\end{aligned}" />
+
+## Warum die anderen Optionen falsch sind
+
+- **<InlineMath math="\text{Rp}25{.}500" />** **vergisst die Verlängerung** der DVD.
+- **<InlineMath math="\text{Rp}23{.}500" />** berechnet fälschlich auch Sonntag, den <InlineMath math="14" />. Juli.
+- **<InlineMath math="\text{Rp}22{.}000" />** zählt den Ausleihtag als Tag <InlineMath math="1" /> und zieht das Buchdatum einen Tag vor.
+- **<InlineMath math="\text{Rp}10{.}750" />** halbiert die Gebühr, obwohl Raka schon <InlineMath math="14" /> Jahre alt ist.
+
+# Antwort
+
+Raka bezahlt insgesamt **<InlineMath math="\text{Rp}21{.}500" />** (*<InlineMath math="\text{Rp}21{,}500" />*).

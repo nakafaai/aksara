@@ -1,14 +1,37 @@
-Zähl die Reihen über die Breite und die Setzlinge über die Länge, und denk daran, dass beides an einem Rand beginnt und den anderen Rand einschließt.
+# Gegeben
 
-**Reihen**. Über <InlineMath math="2{,}1" /> m liegen Reihen bei <InlineMath math="0" />, <InlineMath math="70" />, <InlineMath math="140" /> und <InlineMath math="210" /> cm: <InlineMath math="4" /> Reihen.
+Bu Anis Beet ist **<InlineMath math="4" /> m (<InlineMath math="400" /> cm) lang** und **<InlineMath math="2{,}1" /> m (<InlineMath math="210" /> cm) breit**.
 
-**Setzlinge pro Reihe**. Über <InlineMath math="4" /> m stehen Setzlinge bei <InlineMath math="0" />, <InlineMath math="50" />, <InlineMath math="100" /> und so weiter bis <InlineMath math="400" /> cm: <InlineMath math="400 \div 50 + 1 = 9" />.
+Abstandsregeln:
+- Erste Reihe an einer langen Kante, dann alle **<InlineMath math="70" /> cm** eine Reihe einschließlich der gegenüberliegenden Kante.
+- Entlang jeder Reihe erster Setzling an einem Ende, dann alle **<InlineMath math="50" /> cm** einer einschließlich des anderen Endes.
 
-**Summe**. <InlineMath math="4 \times 9 = 36" />.
+# Gesucht
 
-- <InlineMath math="24" /> vergisst beide Male den anderen Rand: <InlineMath math="3 \times 8" />.
-- <InlineMath math="32" /> vergisst das andere Ende jeder Reihe: <InlineMath math="4 \times 8" />.
-- <InlineMath math="27" /> vergisst die Reihe am anderen Rand: <InlineMath math="3 \times 9" />.
-- <InlineMath math="30" /> vertauscht die Abstände: Reihen alle <InlineMath math="50" /> cm und Setzlinge alle <InlineMath math="70" /> cm.
+Wie viele Chilipflänzchen Bu Ani nach der Anleitung setzt.
 
-Bu Ani pflanzt also <InlineMath math="36" /> Setzlinge.
+# Lösung
+
+Bestimme zuerst die Reihenzahl über die Breite und die Pflanzenzahl entlang der Länge mit der **Zaunpfahlregel** (Abstände teilen plus eins für den Rand) und multipliziere beide Werte.
+
+> Weil die erste Pflanze genau am Rand steht und das andere Ende mitzählt, ergibt sich die Anzahl immer aus der Zahl der Abschnitte plus eins.
+
+## Reihen und Setzlinge pro Reihe berechnen
+
+Die Schritte <InlineMath math="3" /> und <InlineMath math="4" /> setzen Reihen alle <InlineMath math="70" /> cm (<Highlight>the far edge included</Highlight>) und Pflanzen alle <InlineMath math="50" /> cm (<Highlight>the far end included</Highlight>).
+
+<BlockMath math="\begin{aligned}
+\text{Reihen: } \frac{210}{70} + 1 = 3 + 1 = 4\text{ Reihen} \quad (0, 70, 140, 210\text{ cm}) \\
+\text{Je Reihe: } \frac{400}{50} + 1 = 8 + 1 = 9, \qquad \text{Gesamt: } 4 \times 9 = 36\text{ Setzlinge}
+\end{aligned}" />
+
+## Warum die anderen Optionen falsch sind
+
+- **<InlineMath math="24" />** **vergisst den äußeren Rand** in beiden Richtungen (<InlineMath math="3 \times 8" />).
+- **<InlineMath math="32" />** vergisst den letzten Setzling am Ende jeder Reihe (<InlineMath math="4 \times 8" />).
+- **<InlineMath math="27" />** vergisst die Reihe an der gegenüberliegenden Kante (<InlineMath math="3 \times 9" />).
+- **<InlineMath math="30" />** vertauscht die Abstände von <InlineMath math="70" /> cm und <InlineMath math="50" /> cm.
+
+# Antwort
+
+Bu Ani pflanzt **<InlineMath math="36" />** Setzlinge.

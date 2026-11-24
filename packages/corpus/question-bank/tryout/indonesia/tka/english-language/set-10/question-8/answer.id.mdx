@@ -1,11 +1,41 @@
-Tanda pertama adalah start, jadi tanda ke-<InlineMath math="n" /> dibuat di akhir putaran ke-<InlineMath math="(n - 1)" />.
+# Diketahui
 
-- **R paling awal**. Tanda pertama dibuat *as each runner set off* (saat setiap pelari berangkat).
-- **Q berikutnya**. Tanda kelima dibuat di akhir putaran ke-<InlineMath math="4" />.
-- **P sesudah Q**. Citra menyelesaikan putaran kelimanya setelah itu, yaitu saat tanda keenam dibuat.
-- **S saat Citra selesai berlari**, ketika Bu Sinta mencatat waktunya.
-- **T terjadi *a week later* (seminggu kemudian)**, setelah Bu Sinta membandingkan lembar itu dengan catatan waktunya.
+Tersedia lima peristiwa acak (P, Q, R, S, T) tentang Citra dalam lari amal:
+- **P**: Citra menyelesaikan putaran kelimanya.
+- **Q**: Narator membuat tanda kelima di sebelah nama Citra.
+- **R**: Narator membuat tanda pertama di sebelah nama Citra.
+- **S**: Bu Sinta mencatat waktu finis Citra.
+- **T**: Pak Guntur mengembalikan sebagian uang kepada sponsor.
 
-Urutan dengan P sebelum Q menganggap tanda kelima sama dengan putaran kelima. Urutan yang diawali Q menaruh tanda kelima sebelum tanda pertama, padahal tanda pertama dibuat saat start. Urutan dengan S sebelum P membuat Bu Sinta mencatat waktu selesai sebelum Citra menyelesaikan putaran kelimanya. Urutan yang diakhiri S menaruh pengembalian uang sebelum catatan waktu yang menjadi dasarnya.
+# Ditanyakan
 
-Jadi, urutannya R, Q, P, S, T.
+Urutan kronologis kelima peristiwa dari awal sampai akhir.
+
+# Penyelesaian
+
+Ingat pergeseran satu angka akibat tanda start: tanda ke-<InlineMath math="n" /> selalu dicatat saat pelari menuntaskan putaran ke-<InlineMath math="(n - 1)" />, jadi tanda kelima (**Q**) muncul satu putaran sebelum putaran kelima selesai (**P**).
+
+> Karena tanda pertama dicatat saat start (nol putaran), tanda kelima muncul di akhir putaran keempat, tepat sebelum Citra menyelesaikan putaran kelimanya.
+
+## Menyusun urutan kejadian Citra
+
+Teks menyatakan <Highlight>I made the first mark as each runner set off</Highlight>, lalu seminggu kemudian Bu Sinta mengecek waktu finis dan Pak Guntur mengembalikan uang.
+
+| Urutan | Peristiwa | Waktu kejadian |
+| --- | --- | --- |
+| Pertama | **R** | Tanda ke-<InlineMath math="1" /> dibuat saat Citra baru mulai berlari (putaran ke-<InlineMath math="0" />). |
+| Kedua | **Q** | Tanda ke-<InlineMath math="5" /> dibuat saat Citra menuntaskan putaran ke-<InlineMath math="4" />. |
+| Ketiga | **P** | Citra menuntaskan putaran ke-<InlineMath math="5" /> (bersamaan dengan tanda ke-<InlineMath math="6" />). |
+| Keempat | **S** | Citra finis pada putaran ke-<InlineMath math="11" /> dan Bu Sinta mencatat waktunya (<InlineMath math="22" /> menit). |
+| Kelima | **T** | Seminggu kemudian setelah pengecekan, Pak Guntur mengembalikan uang sponsor. |
+
+## Mengapa urutan lain salah
+
+- **R, P, Q, S, T** mengira tanda kelima dicatat setelah putaran kelima, padahal tanda kelima menandai akhir putaran keempat.
+- **Q, R, P, S, T** menempatkan tanda kelima sebelum tanda pertama saat start.
+- **R, Q, S, P, T** menempatkan catatan waktu finis sebelum putaran kelima selesai.
+- **R, Q, P, T, S** menempatkan pengembalian dana sebelum catatan waktu finis yang justru membongkar kesalahannya.
+
+# Jawaban
+
+Urutan kejadian yang benar adalah **R, Q, P, S, T**.

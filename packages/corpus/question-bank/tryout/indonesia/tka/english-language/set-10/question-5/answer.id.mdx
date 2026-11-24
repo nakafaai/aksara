@@ -1,9 +1,32 @@
-Cek setiap pernyataan dengan tabel dan aturannya, dengan hari peminjaman sebagai hari ke-<InlineMath math="0" />.
+# Diketahui
 
-- **Buku yang dipinjam hari Sabtu dan diperpanjang sekali jatuh tempo tiga hari Sabtu kemudian: didukung**. <InlineMath math="14 + 7 = 21" /> hari, tepat tiga minggu.
-- **DVD yang dipinjam hari Kamis jatuh tempo hari Minggu dan boleh dikembalikan hari Senin: didukung**. Kamis ditambah <InlineMath math="3" /> hari adalah Minggu, dan pengembalian hari Minggu bergeser ke Senin tanpa denda.
-- **Anggota di bawah <InlineMath math="12" /> tahun membayar <InlineMath math="\text{Rp}3{.}000" /> untuk DVD yang terlambat <InlineMath math="3" /> hari: didukung**. Setengah dari <InlineMath math="\text{Rp}2{.}000" /> adalah <InlineMath math="\text{Rp}1{.}000" /> per hari, dan <InlineMath math="3 \times 1{.}000 = 3{.}000" />.
-- Majalah diperpanjang pada hari Senin berikutnya: tidak didukung. Majalah tidak bisa diperpanjang.
-- Anggota dengan <InlineMath math="4" /> buku dan <InlineMath math="2" /> DVD meminjam majalah: tidak didukung. Totalnya jadi <InlineMath math="7" /> barang, padahal batasnya <InlineMath math="6" />.
+Tersedia lima pernyataan tentang jatuh tempo buku yang diperpanjang, DVD yang jatuh tempo hari Minggu, denda anggota di bawah <InlineMath math="12" /> tahun, perpanjangan majalah, dan **batas koleksi pinjaman**.
 
-Jadi, pernyataan yang didukung adalah buku yang diperpanjang, DVD yang jatuh tempo hari Minggu, dan denda <InlineMath math="\text{Rp}3{.}000" />.
+# Ditanyakan
+
+Semua pernyataan yang didukung oleh tabel dan aturan perpustakaan (pilihan ganda kompleks).
+
+# Penyelesaian
+
+Periksa setiap pernyataan secara mandiri memakai hari peminjaman sebagai hari ke-<InlineMath math="0" />, **aturan perpanjangan**, diskon denda usia di bawah <InlineMath math="12" /> tahun, dan batas maksimal <InlineMath math="6" /> koleksi.
+
+> Di soal pilihan majemuk ini terdapat tiga pernyataan benar sekaligus, sedangkan dua pernyataan sisanya melanggar larangan perpanjangan majalah dan batas enam koleksi.
+
+## Memeriksa kelima pernyataan terhadap aturan
+
+| Pernyataan | Didukung? | Bukti perhitungan dan teks |
+| --- | --- | --- |
+| Buku dipinjam Sabtu dan diperpanjang sekali jatuh tempo Sabtu tiga minggu kemudian | **Ya** | Lama pinjam <InlineMath math="14 + 7 = 21" /> hari (<InlineMath math="3" /> minggu penuh dari hari ke-<InlineMath math="0" />). |
+| DVD dipinjam Kamis jatuh tempo Minggu sehingga boleh kembali Senin tanpa denda | **Ya** | Kamis tambah <InlineMath math="3" /> hari adalah Minggu, dan <Highlight>An item that falls due on a Sunday may be returned on the Monday without a fine</Highlight>. |
+| Anggota di bawah <InlineMath math="12" /> tahun terlambat <InlineMath math="3" /> hari (tanpa Minggu) untuk DVD membayar <InlineMath math="\text{Rp}3{.}000" /> | **Ya** | Setengah denda DVD adalah <InlineMath math="\text{Rp}1{.}000" />/hari, sehingga <InlineMath math="3 \times \text{Rp}1{.}000 = \text{Rp}3{.}000" />. |
+| Majalah dipinjam Senin boleh diperpanjang Senin berikutnya | Tidak | Tabel mencatat perpanjangan majalah **tidak ada** (*none*), selain itu perpanjangan hanya boleh sebelum jatuh tempo. |
+| Pemegang <InlineMath math="4" /> buku dan <InlineMath math="2" /> DVD masih boleh meminjam majalah | Tidak | Sudah memegang <InlineMath math="4 + 2 = 6" /> item, sehingga menambah majalah menjadi <InlineMath math="7" /> melanggar batas <Highlight>hold up to <InlineMath math="6" /> items at a time</Highlight>. |
+
+## Mengapa dua pernyataan lain salah
+
+- Pernyataan **majalah** bertentangan dengan aturan nol perpanjangan untuk majalah.
+- Pernyataan **<InlineMath math="4" /> buku dan <InlineMath math="2" /> DVD** sudah menyentuh kuota maksimal <InlineMath math="6" /> koleksi.
+
+# Jawaban
+
+Pernyataan yang didukung teks adalah **buku yang dipinjam hari Sabtu dan diperpanjang sekali jatuh tempo pada Sabtu tiga minggu kemudian**, **DVD yang dipinjam hari Kamis jatuh tempo hari Minggu sehingga boleh dikembalikan hari Senin tanpa denda**, dan **anggota di bawah <InlineMath math="12" /> tahun yang mengembalikan DVD terlambat <InlineMath math="3" /> hari tanpa hari Minggu membayar <InlineMath math="\text{Rp}3{.}000" />**.

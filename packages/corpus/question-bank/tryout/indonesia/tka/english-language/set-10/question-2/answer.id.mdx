@@ -1,15 +1,38 @@
-Bulan itu dimulai hari Senin, jadi hari Minggu jatuh pada tanggal <InlineMath math="7" />, <InlineMath math="14" />, <InlineMath math="21" />, dan <InlineMath math="28" />. Tambahkan masa pinjam ke hari peminjaman, yang dihitung sebagai hari ke-<InlineMath math="0" />.
+# Diketahui
 
-**Pernyataan 1**: tidak didenda. <InlineMath math="1 + 7 = 8" />, jadi majalah jatuh tempo Senin <InlineMath math="8" />, hari majalah itu dikembalikan.
+Dalam bulan yang dimulai pada **Senin tanggal <InlineMath math="1" />**, hari Minggu jatuh pada tanggal **<InlineMath math="7" />, <InlineMath math="14" />, <InlineMath math="21" />, dan <InlineMath math="28" />**.
 
-**Pernyataan 2**: didenda. <InlineMath math="6 + 14 = 20" />, jadi buku jatuh tempo Sabtu <InlineMath math="20" />. Minggu <InlineMath math="21" /> tidak didenda, tetapi Senin <InlineMath math="22" /> terhitung terlambat.
+Aturan jatuh tempo perpustakaan:
+- Hari peminjaman dihitung hari ke-<InlineMath math="0" /> (Buku <InlineMath math="14" /> hari + hingga <InlineMath math="2" /> perpanjangan @ <InlineMath math="7" /> hari, Majalah <InlineMath math="7" /> hari tanpa perpanjangan, DVD <InlineMath math="3" /> hari).
+- Koleksi yang jatuh tempo pada hari **Minggu** boleh dikembalikan pada hari **Senin tanpa denda**.
 
-**Pernyataan 3**: tidak didenda. <InlineMath math="4 + 3 = 7" />, yaitu Minggu <InlineMath math="7" />, dan barang yang jatuh tempo hari Minggu *may be returned on the Monday without a fine* (boleh dikembalikan hari Senin tanpa denda).
+# Ditanyakan
 
-**Pernyataan 4**: didenda. <InlineMath math="1 + 14 + 7 + 7 = 29" />, yaitu Senin <InlineMath math="29" />. Selasa <InlineMath math="30" /> sudah terlambat.
+Status setiap transaksi pengembalian: **tanpa denda** (*No fine*) atau **kena denda** (*Fined*).
 
-**Pernyataan 5**: didenda. <InlineMath math="2 + 7 = 9" />, yaitu Selasa <InlineMath math="9" />, dan majalah tidak bisa diperpanjang.
+# Penyelesaian
 
-Menghitung hari peminjaman sebagai hari ke-<InlineMath math="1" /> membuat pernyataan 1 salah. Lupa aturan hari Minggu membuat pernyataan 3 salah.
+Tambahkan **masa pinjam** (dan perpanjangan jika ada) langsung ke tanggal pinjam karena hari pinjam adalah hari ke-<InlineMath math="0" />, lalu periksa apakah tanggal jatuh tempo jatuh pada hari Minggu.
 
-Jadi, anggota di pernyataan 1 dan 3 tidak didenda, sedangkan anggota di pernyataan 2, 4, dan 5 didenda.
+> Aturan bebas denda hari Senin hanya berlaku bagi koleksi yang tepat jatuh tempo pada hari Minggu, bukan bagi koleksi yang sudah jatuh tempo sejak hari Sabtu.
+
+## Menentukan status denda lima peminjaman
+
+Teks menetapkan <Highlight>counts the day of borrowing as day <InlineMath math="0" /></Highlight> dan <Highlight>An item that falls due on a Sunday may be returned on the Monday without a fine</Highlight>.
+
+| Pernyataan | Jatuh tempo | Kembali | Status |
+| --- | --- | --- | --- |
+| Majalah, Senin <InlineMath math="1" /> | Senin <InlineMath math="8" /> (<InlineMath math="1 + 7" />) | Senin <InlineMath math="8" /> | **Tanpa denda** |
+| Buku, Sabtu <InlineMath math="6" /> | Sabtu <InlineMath math="20" /> (<InlineMath math="6 + 14" />) | Senin <InlineMath math="22" /> (lewat Sabtu, Senin telat <InlineMath math="1" /> hari) | **Kena denda** |
+| DVD, Kamis <InlineMath math="4" /> | Minggu <InlineMath math="7" /> (<InlineMath math="4 + 3" />) | Senin <InlineMath math="8" /> (bebas karena jatuh tempo Minggu) | **Tanpa denda** |
+| Buku, Senin <InlineMath math="1" />, perpanjang <InlineMath math="2" /> kali | Senin <InlineMath math="29" /> (<InlineMath math="1 + 14 + 7 + 7" />) | Selasa <InlineMath math="30" /> (telat <InlineMath math="1" /> hari) | **Kena denda** |
+| Majalah, Selasa <InlineMath math="2" /> | Selasa <InlineMath math="9" /> (<InlineMath math="2 + 7" />) | Rabu <InlineMath math="10" /> (telat <InlineMath math="1" /> hari) | **Kena denda** |
+
+## Jebakan umum yang perlu dihindari
+
+- Menghitung hari pinjam sebagai hari ke-<InlineMath math="1" /> membuat pernyataan pertama **keliru dinilai kena denda**.
+- Melupakan keringanan jatuh tempo hari Minggu membuat pernyataan ketiga keliru dinilai kena denda.
+
+# Jawaban
+
+Anggota yang **tanpa denda** (*No fine*) adalah **pernyataan 1 dan 3**, sedangkan yang **kena denda** (*Fined*) adalah **pernyataan 2, 4, dan 5**.

@@ -1,9 +1,32 @@
-Check each statement with the table and the rules, counting the day of borrowing as day <InlineMath math="0" />.
+# Given
 
-- **A book borrowed on a Saturday and renewed once is due three Saturdays later: supported**. <InlineMath math="14 + 7 = 21" /> days, exactly three weeks.
-- **A DVD borrowed on a Thursday falls due on the Sunday and may come back on the Monday: supported**. Thursday plus <InlineMath math="3" /> days is Sunday, and Sunday returns move to Monday without a fine.
-- **A member under <InlineMath math="12" /> pays <InlineMath math="\text{Rp}3{,}000" /> for a DVD <InlineMath math="3" /> days late: supported**. Half of <InlineMath math="\text{Rp}2{,}000" /> is <InlineMath math="\text{Rp}1{,}000" /> a day, and <InlineMath math="3 \times 1{,}000 = 3{,}000" />.
-- A magazine renewed on the following Monday: not supported. Magazines have no renewals.
-- A member with <InlineMath math="4" /> books and <InlineMath math="2" /> DVDs borrowing a magazine: not supported. That would be <InlineMath math="7" /> items, and the limit is <InlineMath math="6" />.
+Five statements test due dates on a renewed book, a Sunday-due DVD, a child's DVD fine, a magazine renewal, and the **maximum item limit**.
 
-So the supported statements are the ones about the renewed book, the DVD due on a Sunday, and the fine of <InlineMath math="\text{Rp}3{,}000" />.
+# Asked
+
+All statements supported by the library table and rules (select every correct option).
+
+# Solution
+
+Test each statement independently using day <InlineMath math="0" /> for borrowing day, the **renewal column**, the under-<InlineMath math="12" /> half-fine rule, and the <InlineMath math="6" />-item borrowing cap.
+
+> Three options satisfy every rule exactly, while the remaining two violate the no-renewal rule for magazines and the six-item borrowing limit.
+
+## Testing all five statements against the rules
+
+| Statement | Supported? | Calculation and textual evidence |
+| --- | --- | --- |
+| Book borrowed Saturday and renewed once is due Saturday three weeks later | **Yes** | Total loan is <InlineMath math="14 + 7 = 21" /> days, exactly <InlineMath math="3" /> weeks from day <InlineMath math="0" />. |
+| DVD borrowed Thursday falls due Sunday and may return Monday fine-free | **Yes** | Thursday plus <InlineMath math="3" /> days is Sunday, and <Highlight>An item that falls due on a Sunday may be returned on the Monday without a fine</Highlight>. |
+| Member under <InlineMath math="12" /> returning a DVD <InlineMath math="3" /> days late (no Sunday) pays <InlineMath math="\text{Rp}3{,}000" /> | **Yes** | Half the DVD fine is <InlineMath math="\text{Rp}1{,}000" />/day, giving <InlineMath math="3 \times \text{Rp}1{,}000 = \text{Rp}3{,}000" />. |
+| Magazine borrowed Monday may be renewed next Monday | No | The table lists **none** for magazine renewals, and renewals must occur before the due date anyway. |
+| Member holding <InlineMath math="4" /> books and <InlineMath math="2" /> DVDs may also borrow a magazine | No | Adding a magazine makes <InlineMath math="7" /> items, exceeding <Highlight>hold up to <InlineMath math="6" /> items at a time</Highlight>. |
+
+## Why the other two options fail
+
+- **Renewing a magazine** directly breaks the zero-renewal rule for magazines.
+- **Borrowing a seventh item** breaks the hard limit of <InlineMath math="6" /> items held at once.
+
+# Answer
+
+The supported statements are **A book borrowed on a Saturday and renewed once is due on the Saturday three weeks later**, **A DVD borrowed on a Thursday falls due on the Sunday, so it may come back on the Monday without a fine**, and **A member under <InlineMath math="12" /> who returns a DVD <InlineMath math="3" /> days late, with no Sunday among them, pays <InlineMath math="\text{Rp}3{,}000" />**.

@@ -1,11 +1,43 @@
-Hitung setiap perbandingan dari tabel dan aturannya.
+# Diketahui
 
-- **I didukung**. Buku bisa dipinjam <InlineMath math="14 + 7 + 7 = 28" /> hari, majalah <InlineMath math="7" /> hari, dan DVD yang diperpanjang <InlineMath math="3 + 3 = 6" /> hari.
-- **II didukung**. DVD yang terlambat <InlineMath math="2" /> hari didenda <InlineMath math="2 \times 2{.}000 = \text{Rp}4{.}000" />. Buku yang terlambat <InlineMath math="7" /> hari didenda <InlineMath math="7 \times 500 = \text{Rp}3{.}500" />.
-- III tidak didukung. Setengah denda DVD adalah <InlineMath math="\text{Rp}1{.}000" /> per hari, dua kali lipat <InlineMath math="\text{Rp}500" /> untuk buku.
-- IV tidak didukung. Anggota boleh meminjam *no more than <InlineMath math="2" />* (paling banyak <InlineMath math="2" />) DVD.
-- V tidak didukung. DVD yang diperpanjang hanya <InlineMath math="6" /> hari, sehari lebih pendek dari <InlineMath math="7" /> hari untuk majalah.
+Ringkasan tabel koleksi perpustakaan:
+- **Buku**: <InlineMath math="14" /> hari + maks <InlineMath math="2 \times 7" /> hari = **<InlineMath math="28" /> hari**, denda <InlineMath math="\text{Rp}500" />/hari.
+- **Majalah**: **<InlineMath math="7" /> hari** tanpa perpanjangan, denda <InlineMath math="\text{Rp}300" />/hari.
+- **DVD**: <InlineMath math="3" /> hari + <InlineMath math="1 \times 3" /> hari = **<InlineMath math="6" /> hari**, denda <InlineMath math="\text{Rp}2{.}000" />/hari.
+- Batas pinjam maksimal <InlineMath math="6" /> item dengan **paling banyak <InlineMath math="2" /> DVD**, dan anggota di bawah <InlineMath math="12" /> tahun membayar setengah denda.
 
-Pilihan yang memuat V melewatkan bahwa satu perpanjangan DVD hanya menambah <InlineMath math="3" /> hari. Pilihan yang memuat III membagi dua denda yang salah.
+# Ditanyakan
 
-Jadi, pernyataan yang didukung hanya I dan II.
+Pernyataan perbandingan bernomor Romawi mana saja yang didukung teks.
+
+# Penyelesaian
+
+Hitung **lama pinjam maksimum** setiap koleksi, bandingkan besar denda harian penuh dan setengah denda, lalu cek batas jumlah DVD secara langsung terhadap tabel.
+
+> Membandingkan denda dan durasi pinjam wajib menggunakan total hari beserta perpanjangan serta membedakan tarif penuh dan setengah tarif secara presisi.
+
+## Menghitung setiap perbandingan dari tabel
+
+Durasi maksimum serta perbandingan denda untuk pernyataan II adalah:
+
+<BlockMath math="\begin{aligned}
+\text{Buku maks: } 14 + 7 + 7 = 28\text{ hari}, \qquad \text{DVD maks: } 3 + 3 = 6\text{ hari} \\
+\text{DVD 2 hari: } 2 \times \text{Rp}2{.}000 = \text{Rp}4{.}000 > \text{Buku 7 hari: } 7 \times \text{Rp}500 = \text{Rp}3{.}500
+\end{aligned}" />
+
+| Pernyataan | Didukung? | Bukti dari tabel dan aturan |
+| --- | --- | --- |
+| I | **Ya** | Buku (<InlineMath math="28" /> hari) lebih lama daripada majalah (<InlineMath math="7" /> hari) dan DVD (<InlineMath math="6" /> hari). |
+| II | **Ya** | Denda DVD <InlineMath math="2" /> hari (<InlineMath math="\text{Rp}4{.}000" />) lebih mahal daripada denda buku <InlineMath math="7" /> hari (<InlineMath math="\text{Rp}3{.}500" />). |
+| III | Tidak | Setengah denda DVD adalah <InlineMath math="\text{Rp}1{.}000" />/hari, dua kali lipat denda penuh buku (<InlineMath math="\text{Rp}500" />/hari). |
+| IV | Tidak | Aturan membatasi <Highlight>no more than <InlineMath math="2" /> of them DVDs</Highlight>, jadi <InlineMath math="3" /> DVD melanggar batas. |
+| V | Tidak | DVD yang diperpanjang berdurasi <InlineMath math="6" /> hari, lebih singkat dari majalah (<InlineMath math="7" /> hari). |
+
+## Mengapa pilihan lain salah
+
+- **Pilihan yang memuat III** mengira setengah dari <InlineMath math="\text{Rp}2{.}000" /> sama dengan <InlineMath math="\text{Rp}500" />.
+- **Pilihan yang memuat V** keliru menyamakan <InlineMath math="6" /> hari (DVD diperpanjang) dengan <InlineMath math="7" /> hari (majalah).
+
+# Jawaban
+
+Pernyataan perbandingan yang didukung teks adalah **I dan II saja** (*I and II only*).

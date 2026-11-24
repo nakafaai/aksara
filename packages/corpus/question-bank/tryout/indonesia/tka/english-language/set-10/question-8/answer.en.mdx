@@ -1,11 +1,41 @@
-The first mark is the start, so mark number <InlineMath math="n" /> comes at the end of lap <InlineMath math="n - 1" />.
+# Given
 
-- **R is first**. The first mark was made "as each runner set off".
-- **Q comes next**. The fifth mark comes at the end of lap <InlineMath math="4" />.
-- **P comes after Q**. Citra finished her fifth lap after that, which is when the sixth mark was made.
-- **S comes when Citra finished**, and Bu Sinta wrote the time down.
-- **T comes "a week later"**, after Bu Sinta compared the sheet with her times.
+Five events (P, Q, R, S, T) involving Citra in the fun run are listed out of order:
+- **P**: Citra finishes her fifth lap.
+- **Q**: The narrator makes the fifth mark next to Citra's name.
+- **R**: The narrator makes the first mark next to Citra's name.
+- **S**: Bu Sinta writes down Citra's finishing time.
+- **T**: Pak Guntur gives the sponsors some money back.
 
-The order with P before Q treats the fifth mark as the fifth lap. The order starting with Q puts the fifth mark before the first, which was made at the start. The order with S before P has Bu Sinta write the finishing time before Citra finished her fifth lap. The order ending with S puts the refund before the time it was based on.
+# Asked
 
-So the order is R, Q, P, S, T.
+The chronological order in which these five events happened.
+
+# Solution
+
+Track the one-mark offset caused by marking the start: mark <InlineMath math="n" /> is written at the end of lap <InlineMath math="n - 1" />, so the fifth mark (**Q**) happens a full lap before Citra finishes her fifth lap (**P**).
+
+> Because the first mark records the start rather than lap one, the fifth mark arrives at the end of lap four, before Citra finishes lap five.
+
+## Placing each event in order
+
+The narrator explains <Highlight>I made the first mark as each runner set off</Highlight>, and Pak Guntur's refund came <Highlight>A week later</Highlight> after Bu Sinta checked her finishing times.
+
+| Step | Event | Exact moment |
+| --- | --- | --- |
+| First | **R** | Mark <InlineMath math="1" /> is made as Citra sets off from the starting line (lap <InlineMath math="0" />). |
+| Second | **Q** | Mark <InlineMath math="5" /> is made when Citra finishes lap <InlineMath math="4" />. |
+| Third | **P** | Citra finishes lap <InlineMath math="5" /> (which triggers mark <InlineMath math="6" />). |
+| Fourth | **S** | Citra finishes her run at lap <InlineMath math="11" /> and Bu Sinta records <InlineMath math="22" /> minutes. |
+| Fifth | **T** | A week later, after Bu Sinta compares records, Pak Guntur refunds the sponsors. |
+
+## Why the other options fail
+
+- **R, P, Q, S, T** puts finishing lap five before the fifth mark, forgetting the start-line offset.
+- **Q, R, P, S, T** places the fifth mark before the first mark.
+- **R, Q, S, P, T** puts Citra's final finishing time before she even completes lap five.
+- **R, Q, P, T, S** places the refund before the finishing time that uncovered the error.
+
+# Answer
+
+The events happened in the order **R, Q, P, S, T**.

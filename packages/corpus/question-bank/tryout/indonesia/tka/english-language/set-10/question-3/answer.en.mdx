@@ -1,11 +1,43 @@
-Work out each comparison from the table and the rules.
+# Given
 
-- **I is supported**. A book can be kept <InlineMath math="14 + 7 + 7 = 28" /> days, a magazine <InlineMath math="7" /> and a renewed DVD <InlineMath math="3 + 3 = 6" />.
-- **II is supported**. A DVD <InlineMath math="2" /> days late costs <InlineMath math="2 \times 2{,}000 = \text{Rp}4{,}000" />. A book <InlineMath math="7" /> days late costs <InlineMath math="7 \times 500 = \text{Rp}3{,}500" />.
-- III isn't supported. Half the DVD fine is <InlineMath math="\text{Rp}1{,}000" /> a day, twice the <InlineMath math="\text{Rp}500" /> for a book.
-- IV isn't supported. A member may hold "no more than <InlineMath math="2" />" DVDs.
-- V isn't supported. A renewed DVD lasts <InlineMath math="6" /> days, one less than a magazine's <InlineMath math="7" />.
+Summary of the library loan table and rules:
+- **Book**: <InlineMath math="14" /> days plus up to <InlineMath math="2 \times 7" /> days = **<InlineMath math="28" /> days**, fine <InlineMath math="\text{Rp}500" />/day.
+- **Magazine**: **<InlineMath math="7" /> days**, no renewals, fine <InlineMath math="\text{Rp}300" />/day.
+- **DVD**: <InlineMath math="3" /> days plus <InlineMath math="1 \times 3" /> days = **<InlineMath math="6" /> days**, fine <InlineMath math="\text{Rp}2{,}000" />/day.
+- Members may hold up to <InlineMath math="6" /> items (**at most <InlineMath math="2" /> DVDs**), and members under <InlineMath math="12" /> pay half the fine.
 
-The options with V miss that one DVD renewal adds only <InlineMath math="3" /> days. The option with III halves the wrong fine.
+# Asked
 
-So the supported statements are I and II only.
+Which Roman-numeral comparison statements are supported by the text.
+
+# Solution
+
+Compute each item's **maximum loan span** including renewals, compare the exact fine totals, and check the DVD cap directly against the rules.
+
+> Careful arithmetic on maximum durations and halved fines immediately separates the two supported comparisons from the three numerical traps.
+
+## Testing each comparison against the table
+
+Maximum durations and the fine comparison in statement II give:
+
+<BlockMath math="\begin{aligned}
+\text{Max book: } 14 + 7 + 7 = 28\text{ days}, \qquad \text{Max DVD: } 3 + 3 = 6\text{ days} \\
+\text{DVD 2 days: } 2 \times \text{Rp}2{,}000 = \text{Rp}4{,}000 > \text{Book 7 days: } 7 \times \text{Rp}500 = \text{Rp}3{,}500
+\end{aligned}" />
+
+| Statement | Supported? | Evidence from table and rules |
+| --- | --- | --- |
+| I | **Yes** | A book (<InlineMath math="28" /> days) beats both a magazine (<InlineMath math="7" /> days) and a renewed DVD (<InlineMath math="6" /> days). |
+| II | **Yes** | Two late DVD days (<InlineMath math="\text{Rp}4{,}000" />) cost more than seven late book days (<InlineMath math="\text{Rp}3{,}500" />). |
+| III | No | Half the DVD fine is <InlineMath math="\text{Rp}1{,}000" />/day, double the <InlineMath math="\text{Rp}500" />/day adult book fine. |
+| IV | No | Members may hold <Highlight>no more than <InlineMath math="2" /> of them DVDs</Highlight>, not <InlineMath math="3" />. |
+| V | No | A renewed DVD lasts <InlineMath math="6" /> days, one day shorter than a magazine's <InlineMath math="7" /> days. |
+
+## Why the other options fail
+
+- **Options with III** miscalculate half of <InlineMath math="\text{Rp}2{,}000" /> as <InlineMath math="\text{Rp}500" />.
+- **Options with V** equate a <InlineMath math="6" />-day renewed DVD with a <InlineMath math="7" />-day magazine.
+
+# Answer
+
+The supported comparison statements are **I and II only**.
