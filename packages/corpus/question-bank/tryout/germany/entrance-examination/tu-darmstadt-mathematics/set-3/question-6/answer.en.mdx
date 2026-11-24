@@ -1,35 +1,45 @@
-# Work with a sample number
+# Given
 
-All the data are percentages, and so is the change you want. That means you can start with a convenient number, for example <InlineMath math="100" /> members. The key point: the two shares refer to **different bases**, <InlineMath math="20\,\%" /> to the old and <InlineMath math="25\,\%" /> to the new number of members.
+In a **sports club** (*Sportverein*), initially <InlineMath math="20\,\%" /> of the members are youth and the remaining <InlineMath math="80\,\%" /> are adults. One year later, total membership has grown by <InlineMath math="20\,\%" />, while the youth share (*Anteil der Jugendlichen*) has risen to <InlineMath math="25\,\%" />.
 
-# The numbers before and after
+# Asked
+
+How did the number of adult members change over that year?
+
+# Solution
+
+A slightly smaller slice of a much bigger pizza can still hold more pizza! Even though adults dropped from <InlineMath math="80\,\%" /> to <InlineMath math="75\,\%" /> of the club, **the whole club grew by one fifth**, so you cannot just subtract percentages directly.
+
+> Percentages taken at two different times refer to two different totals, so convert them into concrete counts using a clean base of one hundred before computing the percentage change.
+
+Because every piece of data is a percentage, start with <InlineMath math="100" /> members so every count stays crystal clear.
+
+## Comparing counts before and after
+
+Compute **the adult headcount at the start and end of the year** from a base of <InlineMath math="100" /> members.
 
 <BlockMath math="\begin{aligned}
-\text{before:}&\quad 100\ \text{members},\quad 20\ \text{young},\quad 80\ \text{adults} \\
-\text{after:}&\quad 100\cdot1.2=120\ \text{members},\quad 0.25\cdot120=30\ \text{young},\quad 120-30=90\ \text{adults}
+\text{Before: } &100 \text{ members} \implies 20 \text{ youth and } 80 \text{ adults} \\
+\text{After: } &100 \cdot 1.2 = 120 \text{ members} \implies 0.25 \cdot 120 = 30 \text{ youth and } 90 \text{ adults}
 \end{aligned}" />
 
+Compare both equal-scale bars below to see directly that the adult block actually grows longer.
+
 <MathVisual
-  title={<>Members before and after</>}
-  description={<>Two bars on the same scale. Top: the club before, with <InlineMath math="100" /> members, <InlineMath math="20" /> young people and <InlineMath math="80" /> adults. Bottom: the club after, with <InlineMath math="120" /> members, <InlineMath math="30" /> young people and <InlineMath math="90" /> adults. The adult part of the bottom bar is longer than in the top bar.</>}
-  labels={{
-    before: <>before: <InlineMath math="100" /></>,
-    after: <>after: <InlineMath math="120" /></>,
-    y1: <><InlineMath math="20" /></>,
-    a1: <><InlineMath math="80" /></>,
-    y2: <><InlineMath math="30" /></>,
-    a2: <><InlineMath math="90" /></>,
-    young: <>young people</>,
-    adult: <>adults</>,
-  }}
+  title={<>Club members before and after one year</>}
+  description={
+    <>
+      The top bar shows <InlineMath math="100" /> initial members (
+      <InlineMath math="20" /> youth and <InlineMath math="80" /> adults). The
+      bottom bar shows <InlineMath math="120" /> members one year later (
+      <InlineMath math="30" /> youth and <InlineMath math="90" /> adults).
+    </>
+  }
+  footer={<>Even as the adult share dips to <InlineMath math="75\,\%" />, adult headcount grows from <InlineMath math="80" /> to <InlineMath math="90" />.</>}
   scene={{
     space: "plane",
-    frame: {
-      kind: "cartesian",
-      x: { min: -1, max: 13 },
-      y: { min: -1.5, max: 5.5 },
-    },
-    view: { kind: "fit", padding: 0.1 },
+    frame: { kind: "cartesian", x: { min: -1, max: 13 }, y: { min: -1.5, max: 5.5 } },
+    view: { kind: "fit", padding: 0.08 },
     objects: [
       { id: "young-before", kind: "polygon", appearance: "highlight", vertices: [{ x: 0, y: 3 }, { x: 2, y: 3 }, { x: 2, y: 4 }, { x: 0, y: 4 }] },
       { id: "adult-before", kind: "polygon", appearance: "secondary", vertices: [{ x: 2, y: 3 }, { x: 10, y: 3 }, { x: 10, y: 4 }, { x: 2, y: 4 }] },
@@ -49,20 +59,34 @@ All the data are percentages, and so is the change you want. That means you can 
       { key: "adult", objectId: "adult-after", at: { x: 7.5, y: 0 }, placement: "below" },
     ],
   }}
+  labels={{
+    before: <>before <InlineMath math="100" /></>,
+    after: <>after <InlineMath math="120" /></>,
+    y1: <><InlineMath math="20" /></>,
+    a1: <><InlineMath math="80" /></>,
+    y2: <><InlineMath math="30" /></>,
+    a2: <><InlineMath math="90" /></>,
+    young: <>youth</>,
+    adult: <>adults</>,
+  }}
 />
 
-# Measure the change against the old value
+The adult bar clearly extends from <InlineMath math="80" /> to <InlineMath math="90" />, showing an increase in adult membership.
 
-The number of adults goes from <InlineMath math="80" /> to <InlineMath math="90" />. A percentage change is measured **against the starting value**:
+## Measuring percentage change and checking wrong choices
 
-<BlockMath math="\frac{90-80}{80}=\frac{10}{80}=0.125=12.5\,\%" />
+Always measure percentage change **relative to the initial adult count**, which is <InlineMath math="80" />.
 
-Even though the adults' share falls from <InlineMath math="80\,\%" /> to <InlineMath math="75\,\%" />, their number rose by <InlineMath math="12.5\,\%" />.
+<BlockMath math="\frac{90 - 80}{80} = \frac{10}{80} = 0.125 = 12.5\,\%" />
 
-# Why the other answers are wrong
+Symbolic check without a sample size: dividing <InlineMath math="0.75 \cdot 1.2" /> by <InlineMath math="0.8" /> gives <InlineMath math="1.125" />, confirming the result for any club size.
 
-- "fell by <InlineMath math="5\,\%" />" reads the change of the share from <InlineMath math="80\,\%" /> to <InlineMath math="75\,\%" /> as a change of the number. Those are **<InlineMath math="5" /> percentage points of a different base**.
-- "fell by <InlineMath math="6.25\,\%" />" compares the shares, <InlineMath math="\frac{75}{80}=0.9375" />, so again shares instead of numbers.
-- "rose by <InlineMath math="20\,\%" />" carries the growth of the whole club over to the adults.
-- "fell by <InlineMath math="12.5\,\%" />" has the right number but the wrong direction: <InlineMath math="90" /> is more than <InlineMath math="80" />.
-- "rose by <InlineMath math="50\,\%" />" is the change for the young members, from <InlineMath math="20" /> to <InlineMath math="30" />.
+- Decreased by <InlineMath math="5\,\%" /> subtracts <InlineMath math="75\,\%" /> from <InlineMath math="80\,\%" /> directly, ignoring that the two percentages come from different totals.
+- Decreased by <InlineMath math="6.25\,\%" /> compares the share <InlineMath math="75" /> to <InlineMath math="80" /> rather than comparing actual headcounts.
+- Increased by <InlineMath math="20\,\%" /> applies the whole club's growth rate blindly to adults.
+- Decreased by <InlineMath math="12.5\,\%" /> has the right magnitude but the wrong direction, since <InlineMath math="90" /> exceeds <InlineMath math="80" />.
+- Increased by <InlineMath math="50\,\%" /> measures the growth of youth members from <InlineMath math="20" /> to <InlineMath math="30" />.
+
+# Answer
+
+The number of adult members increased by <InlineMath math="12.5\,\%" />.

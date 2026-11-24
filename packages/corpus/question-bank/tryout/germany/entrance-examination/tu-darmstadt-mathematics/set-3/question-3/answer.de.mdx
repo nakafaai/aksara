@@ -1,49 +1,54 @@
-# Erst den Definitionsbereich festlegen
+# Gegeben
 
-Ein Logarithmus ist nur für positive Zahlen definiert. In der Gleichung stehen <InlineMath math="\log_2 x" /> und <InlineMath math="\log_2(x+3)" />, also muss gelten:
+Gegeben ist die folgende **Logarithmusgleichung** zur Basis zwei in den reellen Zahlen.
 
-<BlockMath math="x>0\quad\text{und}\quad x+3>0\qquad\Rightarrow\qquad x>0" />
+<BlockMath math="2\log_2 x - \log_2(x + 3) = 2" />
 
-Diese Bedingung gilt für die **ursprüngliche** Gleichung. Später darfst du nur Zahlen mit <InlineMath math="x>0" /> als Lösung behalten.
+# Gesucht
 
-# Die Logarithmen zusammenfassen
+Die reelle Lösungsmenge <InlineMath math="\mathbb{L}" /> dieser Gleichung.
 
-Mit <InlineMath math="2\log_2 x=\log_2 x^2" /> und <InlineMath math="\log_2 u-\log_2 v=\log_2\frac uv" /> wird die linke Seite zu **einem einzigen Logarithmus**. Danach wendest du die Definition <InlineMath math="\log_2 w=2\iff w=2^2=4" /> an:
+# Lösung
+
+Beim Quadrieren verschwindet ein Minuszeichen völlig lautlos. Sobald du den Faktor <InlineMath math="2" /> als Exponenten in <InlineMath math="\log_2(x^2)" /> ziehst, schlüpfen plötzlich negative <InlineMath math="x" />-Werte durch, obwohl **die Ausgangsgleichung nur positive Argumente erlaubt**.
+
+> Der Definitionsbereich einer Logarithmusgleichung stammt immer aus der unveränderten Ausgangsgleichung, denn das Zusammenfassen mit Potenzregeln kann Scheinlösungen einschleusen.
+
+Aus <InlineMath math="\log_2 x" /> und <InlineMath math="\log_2(x + 3)" /> folgt <InlineMath math="x > 0" /> und <InlineMath math="x + 3 > 0" />, zusammen also schlicht <InlineMath math="x > 0" />.
+
+## Logarithmen zusammenfassen und Kandidaten finden
+
+Fass die linke Seite mit Potenz- und Quotientenregel zu **einem einzigen Logarithmus** zusammen und löse dann auf.
 
 <BlockMath math="\begin{aligned}
-\log_2\frac{x^2}{x+3}&=2 \\
-\frac{x^2}{x+3}&=4 \\
-x^2-4x-12&=0 \\
-(x-6)(x+2)&=0
+\log_2\left(\frac{x^2}{x + 3}\right) &= 2 \\
+\frac{x^2}{x + 3} &= 2^2 = 4 \\
+x^2 - 4x - 12 &= 0 \\
+(x - 6)(x + 2) &= 0
 \end{aligned}" />
 
-Die quadratische Gleichung hat die Lösungen <InlineMath math="x=6" /> und <InlineMath math="x=-2" />.
-
-# Die Kandidaten prüfen
-
-Der umgeformte Term <InlineMath math="\log_2\frac{x^2}{x+3}" /> ist auch für <InlineMath math="x=-2" /> definiert, die ursprüngliche linke Seite aber nicht, denn <InlineMath math="\log_2(-2)" /> gibt es nicht. Die Umformung <InlineMath math="2\log_2 x=\log_2 x^2" /> hat **den Definitionsbereich also vergrößert**:
+Es entstehen die beiden Kandidaten <InlineMath math="x = 6" /> und <InlineMath math="x = -2" />. Im Graphen erkennst du sofort den Phantom-Schnittpunkt der umgeformten Gleichung im negativen Bereich.
 
 <MathVisual
-  title={<>Linke Seite und Wert <InlineMath math="2" /></>}
-  description={<>Der Graph der linken Seite <InlineMath math="2\log_2 x-\log_2(x+3)" /> existiert nur für <InlineMath math="x>0" /> und schneidet die waagerechte Gerade <InlineMath math="y=2" /> genau bei <InlineMath math="x=6" />. Gestrichelt ist der Graph des umgeformten Terms <InlineMath math="\log_2\frac{x^2}{x+3}" /> für negative <InlineMath math="x" /> gezeichnet. Er trifft die Gerade bei <InlineMath math="x=-2" />, wo die ursprüngliche Gleichung gar nicht definiert ist.</>}
-  labels={{
-    key: <><InlineMath math="x=6" /></>,
-    fake: <><InlineMath math="x=-2" /></>,
-    h: <>linke Seite</>,
-    g: <>nur umgeformt</>,
-  }}
+  title={<>Ausgangsterm und umgeformter Term auf Höhe <InlineMath math="y = 2" /></>}
+  description={
+    <>
+      Die durchgezogene Kurve <InlineMath math="2\log_2 x - \log_2(x + 3)" />{" "}
+      existiert nur für <InlineMath math="x > 0" /> und trifft{" "}
+      <InlineMath math="y = 2" /> bei <InlineMath math="x = 6" />. Der
+      gestrichelte Ast des umgeformten Terms schneidet bei der Scheinlösung{" "}
+      <InlineMath math="x = -2" />.
+    </>
+  }
+  footer={<>Nur <InlineMath math="x = 6" /> liegt auf der Originalkurve, während <InlineMath math="x = -2" /> entfällt.</>}
   scene={{
     space: "plane",
-    frame: {
-      kind: "cartesian",
-      x: { min: -3.5, max: 10 },
-      y: { min: -4, max: 4.5 },
-    },
-    view: { kind: "fit", padding: 0.1 },
+    frame: { kind: "cartesian", x: { min: -3.5, max: 10 }, y: { min: -4, max: 4.5 } },
+    view: { kind: "fit", padding: 0.08 },
     objects: [
       { id: "level", kind: "segment", appearance: "reference", from: { x: -3.5, y: 2 }, to: { x: 10, y: 2 } },
-      { id: "left-side", kind: "function", appearance: "primary", formula: "2*log_2(x) - log_2(x+3)", domain: { min: 0.5, max: 10 } },
-      { id: "rewritten", kind: "function", appearance: "construction", formula: "log_2(x^2/(x+3))", domain: { min: -2.6, max: -0.5 } },
+      { id: "left-side", kind: "function", appearance: "primary", formula: "2 * log_2(x) - log_2(x + 3)", domain: { min: 0.5, max: 10 } },
+      { id: "rewritten", kind: "function", appearance: "construction", formula: "log_2(x^2 / (x + 3))", domain: { min: -2.6, max: -0.5 } },
       { id: "solution", kind: "point", appearance: "answer", at: { x: 6, y: 2 } },
       { id: "extra", kind: "point", appearance: "highlight", at: { x: -2, y: 2 } },
     ],
@@ -54,16 +59,30 @@ Der umgeformte Term <InlineMath math="\log_2\frac{x^2}{x+3}" /> ist auch für <I
       { key: "g", objectId: "rewritten", at: { x: -1.2, y: -1.5 }, placement: "right" },
     ],
   }}
+  labels={{
+    key: <><InlineMath math="x = 6" /></>,
+    fake: <><InlineMath math="x = -2" /></>,
+    h: <>Ausgangsterm</>,
+    g: <>umgeformter Ast</>,
+  }}
 />
 
-Probe für <InlineMath math="x=6" />: <InlineMath math="2\log_2 6-\log_2 9=\log_2 36-\log_2 9=\log_2 4=2" />. Die Gleichung stimmt.
+Der Punkt <InlineMath math="x = -2" /> gehört nicht zur Originalkurve, weil <InlineMath math="\log_2(-2)" /> nicht existiert.
 
-Die Lösungsmenge ist <InlineMath math="\mathbb{L}=\{6\}" />.
+## Probe und falsche Antworten prüfen
 
-# Warum die anderen Antworten falsch sind
+Setz <InlineMath math="x = 6" /> in **die ursprüngliche Logarithmusgleichung** ein und bestätige den Wert zwei.
 
-- <InlineMath math="\mathbb{L}=\{-2;\,6\}" /> behält <InlineMath math="x=-2" />. Dort ist **<InlineMath math="\log_2 x" /> nicht definiert**, auch wenn die umgeformte Gleichung stimmt.
-- <InlineMath math="\mathbb{L}=\{-2\}" /> verwirft die richtige Lösung und behält die falsche.
-- <InlineMath math="\mathbb{L}=\{\}" /> entsteht, wenn du <InlineMath math="2\log_2 x" /> als <InlineMath math="\log_2(2x)" /> liest. Dann folgt <InlineMath math="\frac{2x}{x+3}=4" />, also <InlineMath math="x=-6" />, und diese Zahl fällt weg.
-- <InlineMath math="\mathbb{L}=\left\{\frac{1+\sqrt{29}}{2}\right\}" /> entsteht, wenn du die Differenz der Logarithmen als Logarithmus der Differenz rechnest: <InlineMath math="\log_2\left(x^2-(x+3)\right)=2" />.
-- <InlineMath math="\mathbb{L}=\{1+\sqrt7\}" /> entsteht, wenn du aus <InlineMath math="\log_2 w=2" /> den Schluss <InlineMath math="w=2" /> statt <InlineMath math="w=4" /> ziehst.
+<BlockMath math="2\log_2 6 - \log_2 9 = \log_2 36 - \log_2 9 = \log_2 4 = 2" />
+
+| Antwort | Warum sie falsch ist |
+| :--- | :--- |
+| <InlineMath math="\mathbb{L} = \{-2;\, 6\}" /> | Behält <InlineMath math="x = -2" />, obwohl <InlineMath math="\log_2(-2)" /> nicht definiert ist. |
+| <InlineMath math="\mathbb{L} = \{-2\}" /> | Streicht die echte Lösung und behält nur die Scheinlösung. |
+| <InlineMath math="\mathbb{L} = \{\}" /> | Liest <InlineMath math="2\log_2 x" /> als <InlineMath math="\log_2(2x)" />, was <InlineMath math="x = -6" /> liefert und entfällt. |
+| <InlineMath math="\mathbb{L} = \left\{\frac{1 + \sqrt{29}}{2}\right\}" /> | Macht aus einer Differenz von Logarithmen den Logarithmus von <InlineMath math="x^2 - (x + 3)" />. |
+| <InlineMath math="\mathbb{L} = \{1 + \sqrt{7}\}" /> | Setzt den Bruch gleich <InlineMath math="2" /> statt gleich <InlineMath math="2^2 = 4" />. |
+
+# Antwort
+
+Die Lösungsmenge der Gleichung ist <InlineMath math="\mathbb{L} = \{6\}" />.

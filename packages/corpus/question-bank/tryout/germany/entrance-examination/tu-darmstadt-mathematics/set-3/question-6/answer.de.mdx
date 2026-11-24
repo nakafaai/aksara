@@ -1,35 +1,46 @@
-# Mit einer Beispielzahl rechnen
+# Gegeben
 
-Alle Angaben sind Prozentsätze, die gesuchte Veränderung ist auch einer. Du darfst deshalb mit einer bequemen Anfangszahl rechnen, zum Beispiel <InlineMath math="100" /> Mitgliedern. Wichtig ist, dass sich die beiden Anteile auf **verschiedene Grundwerte** beziehen: <InlineMath math="20\,\%" /> auf die alte, <InlineMath math="25\,\%" /> auf die neue Mitgliederzahl.
+In einem **Sportverein** sind anfangs <InlineMath math="20\,\%" /> der Mitglieder Jugendliche und die übrigen <InlineMath math="80\,\%" /> Erwachsene. Ein Jahr später hat der Verein <InlineMath math="20\,\%" /> mehr Mitglieder, und der Anteil der Jugendlichen liegt bei <InlineMath math="25\,\%" />.
 
-# Die Zahlen vorher und nachher
+# Gesucht
+
+Wie sich die Zahl der erwachsenen Mitglieder in diesem Jahr prozentual verändert hat.
+
+# Lösung
+
+Ein etwas kleinerer Anteil an einer deutlich größeren Pizza kann trotzdem mehr Pizza sein! Zwar sinkt der Erwachsenenanteil von <InlineMath math="80\,\%" /> auf <InlineMath math="75\,\%" />, aber **der gesamte Verein wächst um ein Fünftel**, weshalb man Prozente hier nicht direkt subtrahieren darf.
+
+> Prozentanteile zu zwei verschiedenen Zeitpunkten beziehen sich auf verschiedene Grundwerte, rechne deshalb zuerst mit einer bequemen Startzahl wie hundert in echte Anzahlen um.
+
+Da nur Prozentwerte gegeben sind, darfst du mit <InlineMath math="100" /> Mitgliedern starten und alles sauber abzählen.
+
+## Anzahlen vorher und nachher vergleichen
+
+Berechne **die Zahl der Erwachsenen vor und nach dem Jahr** ausgehend von <InlineMath math="100" /> Mitgliedern.
 
 <BlockMath math="\begin{aligned}
-\text{vorher:}&\quad 100\ \text{Mitglieder},\quad 20\ \text{Jugendliche},\quad 80\ \text{Erwachsene} \\
-\text{nachher:}&\quad 100\cdot1{,}2=120\ \text{Mitglieder},\quad 0{,}25\cdot120=30\ \text{Jugendliche},\quad 120-30=90\ \text{Erwachsene}
+\text{Vorher: } &100 \text{ Mitglieder} \implies 20 \text{ Jugendliche und } 80 \text{ Erwachsene} \\
+\text{Nachher: } &100 \cdot 1{,}2 = 120 \text{ Mitglieder} \implies 0{,}25 \cdot 120 = 30 \text{ Jugendliche und } 90 \text{ Erwachsene}
 \end{aligned}" />
 
+Die beiden Balken im gleichen Maßstab zeigen dir auf einen Blick, dass der Erwachsenenteil länger geworden ist.
+
 <MathVisual
-  title={<>Die Mitglieder vorher und nachher</>}
-  description={<>Zwei Balken in derselben Einheit. Oben der Verein vorher mit <InlineMath math="100" /> Mitgliedern: <InlineMath math="20" /> Jugendliche und <InlineMath math="80" /> Erwachsene. Unten der Verein nachher mit <InlineMath math="120" /> Mitgliedern: <InlineMath math="30" /> Jugendliche und <InlineMath math="90" /> Erwachsene. Der Teil der Erwachsenen ist unten länger als oben.</>}
-  labels={{
-    before: <>vorher: <InlineMath math="100" /></>,
-    after: <>nachher: <InlineMath math="120" /></>,
-    y1: <><InlineMath math="20" /></>,
-    a1: <><InlineMath math="80" /></>,
-    y2: <><InlineMath math="30" /></>,
-    a2: <><InlineMath math="90" /></>,
-    young: <>Jugendliche</>,
-    adult: <>Erwachsene</>,
-  }}
+  title={<>Mitglieder vorher und nachher</>}
+  description={
+    <>
+      Der obere Balken zeigt <InlineMath math="100" /> Mitglieder vorher (
+      <InlineMath math="20" /> Jugendliche und <InlineMath math="80" />{" "}
+      Erwachsene). Der untere Balken zeigt <InlineMath math="120" /> Mitglieder
+      nachher (<InlineMath math="30" /> Jugendliche und <InlineMath math="90" />{" "}
+      Erwachsene).
+    </>
+  }
+  footer={<>Obwohl der Anteil auf <InlineMath math="75\,\%" /> fällt, wächst die Zahl von <InlineMath math="80" /> auf <InlineMath math="90" />.</>}
   scene={{
     space: "plane",
-    frame: {
-      kind: "cartesian",
-      x: { min: -1, max: 13 },
-      y: { min: -1.5, max: 5.5 },
-    },
-    view: { kind: "fit", padding: 0.1 },
+    frame: { kind: "cartesian", x: { min: -1, max: 13 }, y: { min: -1.5, max: 5.5 } },
+    view: { kind: "fit", padding: 0.08 },
     objects: [
       { id: "young-before", kind: "polygon", appearance: "highlight", vertices: [{ x: 0, y: 3 }, { x: 2, y: 3 }, { x: 2, y: 4 }, { x: 0, y: 4 }] },
       { id: "adult-before", kind: "polygon", appearance: "secondary", vertices: [{ x: 2, y: 3 }, { x: 10, y: 3 }, { x: 10, y: 4 }, { x: 2, y: 4 }] },
@@ -49,20 +60,34 @@ Alle Angaben sind Prozentsätze, die gesuchte Veränderung ist auch einer. Du da
       { key: "adult", objectId: "adult-after", at: { x: 7.5, y: 0 }, placement: "below" },
     ],
   }}
+  labels={{
+    before: <>vorher <InlineMath math="100" /></>,
+    after: <>nachher <InlineMath math="120" /></>,
+    y1: <><InlineMath math="20" /></>,
+    a1: <><InlineMath math="80" /></>,
+    y2: <><InlineMath math="30" /></>,
+    a2: <><InlineMath math="90" /></>,
+    young: <>Jugendliche</>,
+    adult: <>Erwachsene</>,
+  }}
 />
 
-# Die Veränderung auf den alten Wert beziehen
+Der Erwachsenenbalken wächst klar von <InlineMath math="80" /> auf <InlineMath math="90" />, die Zahl der Erwachsenen nimmt also zu.
 
-Die Zahl der Erwachsenen steigt von <InlineMath math="80" /> auf <InlineMath math="90" />. Eine prozentuale Veränderung bezieht sich **auf den Anfangswert**:
+## Prozentuale Änderung und falsche Antworten prüfen
 
-<BlockMath math="\frac{90-80}{80}=\frac{10}{80}=0{,}125=12{,}5\,\%" />
+Die prozentuale Änderung wird immer **am alten Erwachsenenwert <InlineMath math="80" /> gemessen**.
 
-Obwohl der Anteil der Erwachsenen von <InlineMath math="80\,\%" /> auf <InlineMath math="75\,\%" /> sinkt, ist ihre Zahl um <InlineMath math="12{,}5\,\%" /> gestiegen.
+<BlockMath math="\frac{90 - 80}{80} = \frac{10}{80} = 0{,}125 = 12{,}5\,\%" />
 
-# Warum die anderen Antworten falsch sind
+Probe ohne Beispielzahl: Teilt man <InlineMath math="0{,}75 \cdot 1{,}2" /> durch <InlineMath math="0{,}8" />, erhält man <InlineMath math="1{,}125" />, unabhängig von der Vereinsgröße.
 
-- „um <InlineMath math="5\,\%" /> gesunken“ liest die Änderung des Anteils von <InlineMath math="80\,\%" /> auf <InlineMath math="75\,\%" /> als Änderung der Anzahl. Das sind **<InlineMath math="5" /> Prozentpunkte eines anderen Grundwerts**.
-- „um <InlineMath math="6{,}25\,\%" /> gesunken“ vergleicht die Anteile <InlineMath math="\frac{75}{80}=0{,}9375" />, also wieder Anteile statt Anzahlen.
-- „um <InlineMath math="20\,\%" /> gestiegen“ überträgt das Wachstum des ganzen Vereins auf die Erwachsenen.
-- „um <InlineMath math="12{,}5\,\%" /> gesunken“ hat die richtige Zahl, aber die falsche Richtung: <InlineMath math="90" /> ist mehr als <InlineMath math="80" />.
-- „um <InlineMath math="50\,\%" /> gestiegen“ ist die Veränderung bei den Jugendlichen, von <InlineMath math="20" /> auf <InlineMath math="30" />.
+- Um <InlineMath math="5\,\%" /> gesunken zieht <InlineMath math="75\,\%" /> direkt von <InlineMath math="80\,\%" /> ab, obwohl beide Anteile verschiedene Grundwerte haben.
+- Um <InlineMath math="6{,}25\,\%" /> gesunken vergleicht die Anteile <InlineMath math="75" /> und <InlineMath math="80" /> statt der echten Anzahlen.
+- Um <InlineMath math="20\,\%" /> gestiegen überträgt das Gesamtwachstum einfach auf die Erwachsenen.
+- Um <InlineMath math="12{,}5\,\%" /> gesunken trifft die Zahl, vertauscht aber die Richtung, denn <InlineMath math="90" /> ist größer als <InlineMath math="80" />.
+- Um <InlineMath math="50\,\%" /> gestiegen ist der Zuwachs bei den Jugendlichen von <InlineMath math="20" /> auf <InlineMath math="30" />.
+
+# Antwort
+
+Die Zahl der erwachsenen Mitglieder ist um <InlineMath math="12{,}5\,\%" /> gestiegen.

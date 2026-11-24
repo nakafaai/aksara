@@ -1,53 +1,63 @@
-# Exactly one common point means discriminant zero
+# Given
 
-Common points of <InlineMath math="g" /> and <InlineMath math="p" /> satisfy both equations. Set the right-hand sides equal and move everything to one side:
+Line <InlineMath math="g" /> and **parabola** (*Parabel*) <InlineMath math="p" /> share exactly one common point <InlineMath math="B" /> in the first quadrant (*erster Quadrant*), so both coordinates are positive.
 
-<BlockMath math="x^2+bx+7=2x+3\quad\Longleftrightarrow\quad x^2+(b-2)\,x+4=0" />
+<BlockMath math="g: y = 2x + 3, \qquad p: y = x^2 + bx + 7" />
 
-Exactly one common point means this quadratic equation has exactly one solution, so **its discriminant is zero**:
+# Asked
+
+Find the real value of parameter <InlineMath math="b" />.
+
+# Solution
+
+Picture sliding a rigid parabola while the straight ramp <InlineMath math="y = 2x + 3" /> stays bolted down. There are two exact positions where the curve just kisses the ramp at one tangent point, one high up and one low down. The first-quadrant rule **picks the single valid tangent parabola out of those two**.
+
+> A line and a parabola share exactly one point when their difference equation has zero discriminant, and the quadrant condition then selects which tangent point belongs to the answer.
+
+Set the two expressions equal to locate common points.
+
+<BlockMath math="x^2 + bx + 7 = 2x + 3 \iff x^2 + (b - 2)x + 4 = 0" />
+
+## Setting the discriminant to zero and locating tangent points
+
+For this quadratic to have exactly one solution, **its discriminant must equal zero**.
 
 <BlockMath math="\begin{aligned}
-(b-2)^2-4\cdot1\cdot4&=0 \\
-(b-2)^2&=16 \\
-b-2=4\quad&\text{or}\quad b-2=-4 \\
-b=6\quad&\text{or}\quad b=-2
+(b - 2)^2 - 4 \cdot 1 \cdot 4 &= 0 \\
+(b - 2)^2 &= 16 \\
+b - 2 = 4 \quad &\text{or} \quad b - 2 = -4 \\
+b = 6 \quad &\text{or} \quad b = -2
 \end{aligned}" />
 
-# Find the point of contact for both values
-
-With discriminant zero **the only solution** is <InlineMath math="x=-\frac{b-2}{2}=\frac{2-b}{2}" />. The line gives the <InlineMath math="y" />-coordinate:
+When the discriminant vanishes, the single root equals minus half the linear coefficient, and its <InlineMath math="y" />-coordinate comes straight from <InlineMath math="y = 2x + 3" />.
 
 <BlockMath math="\begin{aligned}
-b=6:&\quad x=-2,\quad y=2\cdot(-2)+3=-1 \\
-b=-2:&\quad x=2,\quad y=2\cdot2+3=7
+x &= \frac{2 - b}{2} \\
+b = 6 &\implies x = -2, \quad y = -1 \\
+b = -2 &\implies x = 2, \quad y = 7
 \end{aligned}" />
 
-# Apply the quadrant condition
-
-Both values of <InlineMath math="b" /> give exactly one common point. Only **the position of the point** tells them apart:
+Compare both tangent parabolas below to see where each contact point lands.
 
 <MathVisual
-  title={<>Two parabolas touch the line</>}
-  description={<>The line <InlineMath math="g: y=2x+3" /> and two parabolas. The parabola <InlineMath math="y=x^2-2x+7" /> touches <InlineMath math="g" /> at <InlineMath math="B(2\mid7)" /> in the first quadrant. The dashed parabola <InlineMath math="y=x^2+6x+7" /> touches <InlineMath math="g" /> at <InlineMath math="(-2\mid-1)" /> in the third quadrant.</>}
-  labels={{
-    b: <><InlineMath math="B(2\mid7)" /></>,
-    q: <><InlineMath math="(-2\mid-1)" /></>,
-    g: <><InlineMath math="g" /></>,
-    ok: <><InlineMath math="b=-2" /></>,
-    bad: <><InlineMath math="b=6" /></>,
-  }}
+  title={<>Two parabolas tangent to the same line</>}
+  description={
+    <>
+      Line <InlineMath math="g: y = 2x + 3" /> is touched by the solid parabola{" "}
+      <InlineMath math="b = -2" /> at <InlineMath math="B(2 \mid 7)" /> in the
+      first quadrant and by the dashed parabola <InlineMath math="b = 6" /> at{" "}
+      <InlineMath math="(-2 \mid -1)" /> in the third quadrant.
+    </>
+  }
+  footer={<>Only <InlineMath math="b = -2" /> places the tangent point in the first quadrant.</>}
   scene={{
     space: "plane",
-    frame: {
-      kind: "cartesian",
-      x: { min: -5.5, max: 6 },
-      y: { min: -6.5, max: 17.5 },
-    },
-    view: { kind: "fit", padding: 0.1 },
+    frame: { kind: "cartesian", x: { min: -5.5, max: 6 }, y: { min: -6.5, max: 17.5 } },
+    view: { kind: "fit", padding: 0.08 },
     objects: [
-      { id: "line", kind: "function", appearance: "reference", formula: "2*x + 3", domain: { min: -4.5, max: 4.5 } },
-      { id: "parabola", kind: "function", appearance: "primary", formula: "x^2 - 2*x + 7", domain: { min: -1, max: 4.2 } },
-      { id: "other", kind: "function", appearance: "construction", formula: "x^2 + 6*x + 7", domain: { min: -5, max: -0.5 } },
+      { id: "line", kind: "function", appearance: "reference", formula: "2 * x + 3", domain: { min: -4.5, max: 4.5 } },
+      { id: "parabola", kind: "function", appearance: "primary", formula: "x^2 - 2 * x + 7", domain: { min: -1, max: 4.2 } },
+      { id: "other", kind: "function", appearance: "construction", formula: "x^2 + 6 * x + 7", domain: { min: -5, max: -0.5 } },
       { id: "touch", kind: "point", appearance: "answer", at: { x: 2, y: 7 } },
       { id: "wrong", kind: "point", appearance: "highlight", at: { x: -2, y: -1 } },
     ],
@@ -59,16 +69,27 @@ Both values of <InlineMath math="b" /> give exactly one common point. Only **the
       { key: "bad", objectId: "other", at: { x: -4.5, y: 0.25 }, placement: "left" },
     ],
   }}
+  labels={{
+    b: <><InlineMath math="B(2 \mid 7)" /></>,
+    q: <><InlineMath math="(-2 \mid -1)" /></>,
+    g: <><InlineMath math="g" /></>,
+    ok: <><InlineMath math="b = -2" /></>,
+    bad: <><InlineMath math="b = 6" /></>,
+  }}
 />
 
-For <InlineMath math="b=6" /> the point <InlineMath math="(-2\mid-1)" /> lies in the third quadrant. For <InlineMath math="b=-2" /> the point <InlineMath math="B(2\mid7)" /> lies in the first quadrant.
+At <InlineMath math="b = 6" />, contact occurs at <InlineMath math="(-2 \mid -1)" /> in the third quadrant, whereas <InlineMath math="b = -2" /> touches at <InlineMath math="B(2 \mid 7)" /> in the first quadrant.
 
-So <InlineMath math="b=-2" />.
+## Verifying tangency and wrong choices
 
-# Why the other answers are wrong
+Quick check for <InlineMath math="b = -2" />: the difference simplifies to **the perfect square <InlineMath math="(x - 2)^2 = 0" />**, confirming a single contact at <InlineMath math="x = 2" /> and <InlineMath math="y = 7" />.
 
-- <InlineMath math="b=6" /> belongs to the point of contact <InlineMath math="(-2\mid-1)" />, with two negative coordinates.
-- <InlineMath math="b=-2" /> or <InlineMath math="b=6" /> uses only the condition "exactly one point" and **overlooks the quadrant condition**.
-- <InlineMath math="b=-6" /> comes from a sign slip when rearranging: <InlineMath math="x^2+(b+2)x+4=0" /> gives <InlineMath math="b=2" /> or <InlineMath math="b=-6" />, and with <InlineMath math="x=-\frac{b+2}{2}" /> the value <InlineMath math="b=-6" /> seems to lead into the first quadrant.
-- <InlineMath math="b=0" /> comes from dropping the factor <InlineMath math="4" /> in the discriminant: <InlineMath math="(b-2)^2-4=0" /> gives <InlineMath math="b=0" /> or <InlineMath math="b=4" />. For <InlineMath math="b=0" />, though, <InlineMath math="x^2-2x+4=0" /> has no solution at all.
-- <InlineMath math="b=4" /> is the second value from the same wrong discriminant. For <InlineMath math="b=4" />, <InlineMath math="x^2+2x+4=0" /> has no solution either.
+- <InlineMath math="b = 6" /> produces the tangent point <InlineMath math="(-2 \mid -1)" /> with two negative coordinates.
+- <InlineMath math="b = -2" /> or <InlineMath math="b = 6" /> uses only the zero-discriminant condition and ignores the first-quadrant requirement.
+- <InlineMath math="b = -6" /> comes from a sign mistake when moving <InlineMath math="2x" /> across, writing <InlineMath math="b + 2" /> instead of <InlineMath math="b - 2" />.
+- <InlineMath math="b = 0" /> drops the factor of <InlineMath math="4" /> in the discriminant, yet the polynomial <InlineMath math="x^2 - 2x + 4" /> has no real roots at all.
+- <InlineMath math="b = 4" /> is the second root of that same flawed discriminant, and the polynomial <InlineMath math="x^2 + 2x + 4" /> also has no real roots.
+
+# Answer
+
+The required value is <InlineMath math="b = -2" />.

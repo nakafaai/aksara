@@ -1,22 +1,82 @@
-Untuk persamaan yang ada pecahan, **tentukan domain dahulu**, sebab nombor yang menjadikan penyebut sifar tidak boleh menjadi penyelesaian. Oleh sebab <InlineMath math="x^2+4x=x(x+4)" />, nombor <InlineMath math="x=0" /> dan <InlineMath math="x=-4" /> tidak dibenarkan.
+# Diberi
 
-Kemudian darab kedua-dua belah dengan penyebut sepunya <InlineMath math="x(x+4)" />.
+**Persamaan pecahan** (*Bruchgleichung*) dalam set nombor nyata diberi seperti berikut.
+
+<BlockMath math="\frac{2x + 3}{x + 4} = \frac{20}{x^2 + 4x}" />
+
+# Ditanya
+
+Tentukan set penyelesaian (*Lösungsmenge*) <InlineMath math="L" /> bagi persamaan ini dalam nombor nyata.
+
+# Penyelesaian
+
+Mendarab kedua-dua belah persamaan pecahan dengan penyebut sepunya ibarat membuka pintu dengan kunci induk, tetapi berisiko membawa masuk tetamu palsu. Sebelum mula mengira, kita mesti **menandakan setiap nilai terlarang yang menjadikan penyebut sifar**.
+
+> Bagi persamaan pecahan, domain sentiasa ditentukan oleh persamaan asal, maka sebarang calon punca yang menjadikan penyebut asal sifar mesti ditolak walaupun sah selepas pecahan dihapuskan.
+
+Faktorkan penyebut kanan menjadi <InlineMath math="x(x + 4)" />. Penyebut tidak boleh sifar, jadi <InlineMath math="x \neq 0" /> dan <InlineMath math="x \neq -4" />.
+
+## Menghapuskan penyebut dan memfaktorkan
+
+Darabkan kedua-dua belah dengan penyebut sepunya <InlineMath math="x(x + 4)" /> untuk mendapat **persamaan kuadratik yang ringkas**.
 
 <BlockMath math="\begin{aligned}
-x(2x+3)&=20 \\
-2x^2+3x-20&=0 \\
-(2x-5)(x+4)&=0 \\
-x=\tfrac52\ \text{atau}\ x&=-4
+x(2x + 3) &= 20 \\
+2x^2 + 3x - 20 &= 0 \\
+(2x - 5)(x + 4) &= 0
 \end{aligned}" />
 
-Nombor <InlineMath math="-4" /> tidak dibenarkan, kerana ia menjadikan kedua-dua penyebut sifar. Yang tinggal hanyalah <InlineMath math="x=\frac52" />.
+Pemfaktoran menghasilkan dua calon, iaitu <InlineMath math="\frac{5}{2}" /> dan <InlineMath math="-4" />. Perhatikan pada graf polinomial berikut bagaimana satu punca jatuh tepat di atas garis terlarang.
 
-Sebagai semakan, sebelah kiri bernilai <InlineMath math="\frac{5+3}{\frac52+4}=\frac{8}{\frac{13}{2}}=\frac{16}{13}" /> dan sebelah kanan bernilai <InlineMath math="\frac{20}{\frac{25}{4}+10}=\frac{20}{\frac{65}{4}}=\frac{16}{13}" />.
+<MathVisual
+  title={<>Punca polinomial dan garis terlarang domain</>}
+  description={
+    <>
+      Lengkung <InlineMath math="y = 2x^2 + 3x - 20" /> memotong paksi mendatar
+      pada <InlineMath math="x = -4" /> dan <InlineMath math="x = 2.5" />. Dua
+      garis tegak putus-putus menandakan nilai terlarang{" "}
+      <InlineMath math="x = -4" /> dan <InlineMath math="x = 0" />.
+    </>
+  }
+  footer={<>Calon <InlineMath math="x = -4" /> jatuh pada garis terlarang, maka hanya <InlineMath math="x = 2.5" /> sah.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -5.5, max: 4.5 }, y: { min: -24, max: 24 } },
+    view: { kind: "fit", padding: 0.08 },
+    objects: [
+      { id: "forbid-neg4", kind: "segment", appearance: "construction", from: { x: -4, y: -24 }, to: { x: -4, y: 24 } },
+      { id: "forbid-zero", kind: "segment", appearance: "construction", from: { x: 0, y: -24 }, to: { x: 0, y: 24 } },
+      { id: "poly", kind: "function", appearance: "primary", formula: "2 * x^2 + 3 * x - 20", domain: { min: -5.2, max: 4 } },
+      { id: "fake-root", kind: "point", appearance: "highlight", at: { x: -4, y: 0 } },
+      { id: "valid-root", kind: "point", appearance: "answer", at: { x: 2.5, y: 0 } },
+    ],
+    labels: [
+      { key: "fake", objectId: "fake-root", at: { x: -4, y: 0 }, placement: "above-left" },
+      { key: "valid", objectId: "valid-root", at: { x: 2.5, y: 0 }, placement: "above-right" },
+      { key: "wall", objectId: "forbid-neg4", at: { x: -4, y: 18 }, placement: "right" },
+    ],
+  }}
+  labels={{
+    fake: <>ditolak <InlineMath math="-4" /></>,
+    valid: <>sah <InlineMath math="\tfrac{5}{2}" /></>,
+    wall: <>penyebut sifar</>,
+  }}
+/>
 
-Jadi set penyelesaiannya ialah <InlineMath math="L=\{\tfrac52\}" />.
+Calon <InlineMath math="-4" /> terus ditolak kerana menjadikan penyebut asal sifar, manakala <InlineMath math="\frac{5}{2}" /> selamat daripada kedua-dua garis terlarang.
 
-- <InlineMath math="L=\{-4\}" /> menyimpan tepat nombor yang tidak dibenarkan dan membuang penyelesaian yang sah.
-- <InlineMath math="L=\{4\}" /> muncul kalau tanda dalam pemfaktoran tertukar, <InlineMath math="(2x+5)(x-4)" />, lalu hanya nombor positif disimpan.
-- <InlineMath math="L=\{-\tfrac52,\,4\}" /> ialah penyelesaian <InlineMath math="(2x+5)(x-4)=2x^2-3x-20" />, iaitu persamaan dengan tanda sebutan linear yang tertukar.
-- <InlineMath math="L=\{\tfrac52,\,-4\}" /> terlupa akan domain. Pada <InlineMath math="x=-4" />, kedua-dua belah tidak tertakrif.
-- <InlineMath math="L=\emptyset" /> turut membuang <InlineMath math="\frac52" />, walaupun nombor itu tidak menjadikan mana-mana penyebut sifar.
+## Menyemak penyelesaian dan pilihan salah
+
+Gantikan <InlineMath math="\frac{5}{2}" /> ke dalam **kedua-dua belah persamaan asal** untuk mengesahkan kesamaannya.
+
+<BlockMath math="\text{Kiri: } \frac{2\left(\frac{5}{2}\right) + 3}{\frac{5}{2} + 4} = \frac{8}{\frac{13}{2}} = \frac{16}{13}, \qquad \text{Kanan: } \frac{20}{\frac{25}{4} + 10} = \frac{20}{\frac{65}{4}} = \frac{16}{13}" />
+
+- <InlineMath math="L = \{-4\}" /> mengekalkan punca palsu yang menjadikan penyebut sifar dan membuang punca sah.
+- <InlineMath math="L = \{4\}" /> terhasil apabila tanda faktor tertukar lalu hanya nilai positif diambil.
+- <InlineMath math="L = \{-\tfrac{5}{2},\, 4\}" /> berpunca daripada polinomial <InlineMath math="2x^2 - 3x - 20" /> akibat tanda sebutan linear tertukar.
+- <InlineMath math="L = \{\tfrac{5}{2},\, -4\}" /> terlupa menyemak domain sehingga nilai terlarang <InlineMath math="-4" /> dikekalkan.
+- <InlineMath math="L = \emptyset" /> turut membuang <InlineMath math="\frac{5}{2}" />, padahal tiada penyebut yang menjadi sifar di situ.
+
+# Jawapan
+
+Set penyelesaian bagi persamaan ini ialah <InlineMath math="L = \{\tfrac{5}{2}\}" />.

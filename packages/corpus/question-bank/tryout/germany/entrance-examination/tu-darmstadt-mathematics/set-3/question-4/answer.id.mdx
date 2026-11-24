@@ -1,41 +1,43 @@
-# Letakkan segitiga di bidang koordinat
+# Diketahui
 
-Letakkan sudut siku-siku di titik asal <InlineMath math="C(0\mid0)" /> dan kedua kaki segitiga di sumbu: <InlineMath math="A(8\mid0)" /> dan <InlineMath math="B(0\mid6)" />. Dengan begitu **kedua titik pusat bisa ditulis sebagai titik berkoordinat**. Sisi miringnya <InlineMath math="\overline{AB}=\sqrt{8^2+6^2}=10" />.
+Sebuah **segitiga siku-siku** (*rechtwinkliges Dreieck*) memiliki dua kaki (*Katheten*) sepanjang <InlineMath math="6" /> dan <InlineMath math="8" />. Titik <InlineMath math="I" /> adalah pusat lingkaran dalam (*Inkreismittelpunkt*), sedangkan <InlineMath math="U" /> adalah pusat lingkaran luar (*Umkreismittelpunkt*).
 
-# Tentukan pusat lingkaran dalam
+# Ditanyakan
 
-Lingkaran dalam menyinggung kedua sisi siku-siku, jadi **jarak <InlineMath math="I" /> ke kedua sumbu sama dengan <InlineMath math="r" />**: <InlineMath math="I(r\mid r)" />. Jari-jarinya didapat dari luas. Bagi segitiga di <InlineMath math="I" /> menjadi tiga segitiga kecil yang tingginya semua <InlineMath math="r" />:
+Tentukan jarak <InlineMath math="\overline{IU}" /> antara pusat lingkaran dalam dan pusat lingkaran luar.
 
-<BlockMath math="\begin{aligned}
-\frac12\cdot8\cdot6&=\frac12\,r\,(8+6+10) \\
-24&=12r \\
-r&=2
-\end{aligned}" />
+# Penyelesaian
 
-Jadi <InlineMath math="I(2\mid2)" />.
+Dorong sudut siku-siku segitiga langsung ke sudut pojok ruangan di titik asal <InlineMath math="C(0 \mid 0)" />, sehingga kedua kakinya menempel di sumbu koordinat pada <InlineMath math="A(8 \mid 0)" /> dan <InlineMath math="B(0 \mid 6)" />. Dengan satu langkah ini, **kedua pusat lingkaran langsung terbaca lewat koordinat sederhana**.
 
-# Tentukan pusat lingkaran luar
+> Meletakkan sudut siku-siku di titik asal membuat pusat lingkaran dalam berada di titik berkoordinat sama sebesar jari-jarinya, sementara pusat lingkaran luar langsung jatuh di titik tengah sisi miring.
 
-Pada segitiga siku-siku, **pusat lingkaran luar terletak di titik tengah sisi miring** (teorema Thales). Titik tengah <InlineMath math="A(8\mid0)" /> dan <InlineMath math="B(0\mid6)" /> adalah <InlineMath math="U(4\mid3)" />, dengan jari-jari <InlineMath math="5" />.
+Sisi miringnya mengikuti Pythagoras: <InlineMath math="c = 10" />, karena <InlineMath math="6^2 + 8^2 = 100" />.
+
+## Menentukan koordinat kedua pusat
+
+Lingkaran dalam menyinggung kedua sumbu koordinat, jadi pusatnya berada di <InlineMath math="I(r \mid r)" />. Hubungkan <InlineMath math="I" /> ke ketiga sudut untuk membelah segitiga menjadi tiga segitiga kecil bertinggi <InlineMath math="r" />, sehingga **luas segitiga sama dengan setengah keliling kali jari-jari**.
+
+<BlockMath math="\frac{1}{2} \cdot 8 \cdot 6 = \frac{1}{2}\, r\, (8 + 6 + 10) \implies 24 = 12r \implies r = 2" />
+
+Maka <InlineMath math="I(2 \mid 2)" />. Menurut teorema Thales, pusat lingkaran luar segitiga siku-siku terletak di titik tengah sisi miring <InlineMath math="AB" />, yaitu <InlineMath math="U(4 \mid 3)" /> dengan jari-jari <InlineMath math="5" />.
 
 <MathVisual
   title={<>Lingkaran dalam dan lingkaran luar dalam koordinat</>}
-  description={<>Segitiga siku-siku dengan <InlineMath math="C(0\mid0)" />, <InlineMath math="A(8\mid0)" />, dan <InlineMath math="B(0\mid6)" />. Lingkaran dalamnya berpusat di <InlineMath math="I(2\mid2)" /> dengan jari-jari <InlineMath math="2" />. Lingkaran luarnya berpusat di <InlineMath math="U(4\mid3)" />, titik tengah sisi miring, dengan jari-jari <InlineMath math="5" />. Ruas dari <InlineMath math="I" /> ke <InlineMath math="U" /> disorot.</>}
-  labels={{
-    c: <><InlineMath math="C" /></>,
-    a: <><InlineMath math="A" /></>,
-    b: <><InlineMath math="B" /></>,
-    i: <><InlineMath math="I(2\mid2)" /></>,
-    u: <><InlineMath math="U(4\mid3)" /></>,
-  }}
+  description={
+    <>
+      Segitiga siku-siku dengan <InlineMath math="C(0 \mid 0)" />,{" "}
+      <InlineMath math="A(8 \mid 0)" />, dan <InlineMath math="B(0 \mid 6)" />.
+      Lingkaran dalam berpusat di <InlineMath math="I(2 \mid 2)" /> dan
+      lingkaran luar berpusat di <InlineMath math="U(4 \mid 3)" />. Ruas hijau
+      menghubungkan <InlineMath math="I" /> dan <InlineMath math="U" />.
+    </>
+  }
+  footer={<>Pusat <InlineMath math="I(2 \mid 2)" /> dan <InlineMath math="U(4 \mid 3)" /> bergeser <InlineMath math="2" /> ke kanan dan <InlineMath math="1" /> ke atas.</>}
   scene={{
     space: "plane",
-    frame: {
-      kind: "cartesian",
-      x: { min: -1.5, max: 9.5 },
-      y: { min: -2.5, max: 8.5 },
-    },
-    view: { kind: "fit", padding: 0.1 },
+    frame: { kind: "cartesian", x: { min: -1.5, max: 9.5 }, y: { min: -2.5, max: 8.5 } },
+    view: { kind: "fit", padding: 0.08 },
     objects: [
       { id: "triangle", kind: "polygon", appearance: "primary", vertices: [{ x: 0, y: 0 }, { x: 8, y: 0 }, { x: 0, y: 6 }] },
       { id: "incircle", kind: "circle", appearance: "secondary", center: { x: 2, y: 2 }, radius: 2 },
@@ -55,18 +57,31 @@ Pada segitiga siku-siku, **pusat lingkaran luar terletak di titik tengah sisi mi
       { key: "u", objectId: "pu", at: { x: 4, y: 3 }, placement: "above-right" },
     ],
   }}
+  labels={{
+    c: <><InlineMath math="C" /></>,
+    a: <><InlineMath math="A" /></>,
+    b: <><InlineMath math="B" /></>,
+    i: <><InlineMath math="I(2 \mid 2)" /></>,
+    u: <><InlineMath math="U(4 \mid 3)" /></>,
+  }}
 />
 
-# Hitung jaraknya
+Terlihat jelas pada gambar bahwa <InlineMath math="I" /> dan <InlineMath math="U" /> terpisah oleh langkah mendatar <InlineMath math="2" /> dan langkah tegak <InlineMath math="1" />.
 
-<BlockMath math="\overline{IU}=\sqrt{(4-2)^2+(3-2)^2}=\sqrt{4+1}=\sqrt5" />
+## Menghitung jarak dan mengecek pilihan salah
 
-**Jarak kedua titik pusat itu <InlineMath math="\sqrt5" />**.
+Hitung jarak kedua pusat dengan rumus Pythagoras, lalu cocokkan dengan **rumus Euler untuk jarak pusat lingkaran**.
 
-# Mengapa pilihan lain salah
+<BlockMath math="\overline{IU} = \sqrt{(4 - 2)^2 + (3 - 2)^2} = \sqrt{4 + 1} = \sqrt{5}" />
 
-- <InlineMath math="\sqrt{13}" /> muncul dari <InlineMath math="r=1" />: luas dibagi **keliling penuh <InlineMath math="24" />, bukan setengah keliling <InlineMath math="12" />**, lalu <InlineMath math="I(1\mid1)" /> berjarak <InlineMath math="\sqrt{9+4}" /> dari <InlineMath math="U" />.
-- <InlineMath math="3" /> adalah selisih jari-jari <InlineMath math="5-2" />. Padahal kedua pusat tidak segaris dengan titik singgung kedua lingkaran.
-- <InlineMath math="7" /> adalah jumlah jari-jari <InlineMath math="5+2" />.
-- <InlineMath math="\frac23" /> muncul kalau <InlineMath math="U" /> tertukar dengan titik berat <InlineMath math="\left(\frac83\mid2\right)" />. Titik berat bukan pusat lingkaran luar.
-- <InlineMath math="2\sqrt2" /> adalah jarak <InlineMath math="I" /> ke titik sudut <InlineMath math="C" />, bukan ke <InlineMath math="U" />.
+Cek cepat dengan teorema Euler: <InlineMath math="R(R - 2r)" /> bernilai <InlineMath math="5(5 - 4) = 5" />, sehingga jaraknya tepat <InlineMath math="\sqrt{5}" />.
+
+- <InlineMath math="\sqrt{13}" /> muncul dari <InlineMath math="r = 1" /> akibat membagi luas dengan keliling penuh <InlineMath math="24" />, bukan setengah keliling <InlineMath math="12" />.
+- <InlineMath math="3" /> mengambil selisih jari-jari <InlineMath math="5 - 2" />, seolah kedua lingkaran saling bersinggungan di dalam.
+- <InlineMath math="7" /> menjumlahkan kedua jari-jari <InlineMath math="5 + 2" /> tanpa melihat posisi pusatnya.
+- <InlineMath math="\frac{2}{3}" /> menukar pusat lingkaran luar <InlineMath math="U" /> dengan titik berat segitiga.
+- <InlineMath math="2\sqrt{2}" /> adalah jarak <InlineMath math="I" /> ke titik sudut siku-siku <InlineMath math="C" />, bukan ke <InlineMath math="U" />.
+
+# Jawaban
+
+Jarak antara <InlineMath math="I" /> dan <InlineMath math="U" /> adalah <InlineMath math="\sqrt{5}" />.

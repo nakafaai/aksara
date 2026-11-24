@@ -1,22 +1,82 @@
-For an equation with fractions, **find the domain first**, because a number that makes a denominator zero cannot be a solution. Since <InlineMath math="x^2+4x=x(x+4)" />, the numbers <InlineMath math="x=0" /> and <InlineMath math="x=-4" /> are excluded.
+# Given
 
-Then multiply both sides by the common denominator <InlineMath math="x(x+4)" />.
+We are given a **fractional equation** (*Bruchgleichung*) over the real numbers.
+
+<BlockMath math="\frac{2x + 3}{x + 4} = \frac{20}{x^2 + 4x}" />
+
+# Asked
+
+Find the real solution set (*Lösungsmenge*) <InlineMath math="L" /> of this equation.
+
+# Solution
+
+Clearing denominators by multiplying both sides feels like opening a locked door with a master key, yet it can sneak in an uninvited guest. Before doing any algebra, **post a do-not-enter sign at every value that makes a denominator zero**.
+
+> In a fractional equation, the domain always comes from the original equation, so any candidate root that zeroes an original denominator must be rejected even if it works after clearing fractions.
+
+Factor the right denominator as <InlineMath math="x(x + 4)" />. Neither denominator may vanish, so <InlineMath math="x \neq 0" /> and <InlineMath math="x \neq -4" />.
+
+## Clearing denominators and factoring
+
+Multiply both sides by the common denominator <InlineMath math="x(x + 4)" /> to obtain **a clean quadratic equation**.
 
 <BlockMath math="\begin{aligned}
-x(2x+3)&=20 \\
-2x^2+3x-20&=0 \\
-(2x-5)(x+4)&=0 \\
-x=\tfrac52\ \text{or}\ x&=-4
+x(2x + 3) &= 20 \\
+2x^2 + 3x - 20 &= 0 \\
+(2x - 5)(x + 4) &= 0
 \end{aligned}" />
 
-The number <InlineMath math="-4" /> is excluded, because it makes both denominators zero. That leaves <InlineMath math="x=\frac52" />.
+Factoring yields two candidates, <InlineMath math="\frac{5}{2}" /> and <InlineMath math="-4" />. Watch on the cleared quadratic graph how one root lands directly on a forbidden vertical line.
 
-As a check, the left side is <InlineMath math="\frac{5+3}{\frac52+4}=\frac{8}{\frac{13}{2}}=\frac{16}{13}" /> and the right side is <InlineMath math="\frac{20}{\frac{25}{4}+10}=\frac{20}{\frac{65}{4}}=\frac{16}{13}" />.
+<MathVisual
+  title={<>Cleared polynomial roots and forbidden domain lines</>}
+  description={
+    <>
+      The parabola <InlineMath math="y = 2x^2 + 3x - 20" /> crosses the axis at{" "}
+      <InlineMath math="x = -4" /> and <InlineMath math="x = 2.5" />. Dashed
+      vertical walls mark the excluded values <InlineMath math="x = -4" /> and{" "}
+      <InlineMath math="x = 0" />.
+    </>
+  }
+  footer={<>Candidate <InlineMath math="x = -4" /> sits on a forbidden wall, leaving only <InlineMath math="x = 2.5" />.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -5.5, max: 4.5 }, y: { min: -24, max: 24 } },
+    view: { kind: "fit", padding: 0.08 },
+    objects: [
+      { id: "forbid-neg4", kind: "segment", appearance: "construction", from: { x: -4, y: -24 }, to: { x: -4, y: 24 } },
+      { id: "forbid-zero", kind: "segment", appearance: "construction", from: { x: 0, y: -24 }, to: { x: 0, y: 24 } },
+      { id: "poly", kind: "function", appearance: "primary", formula: "2 * x^2 + 3 * x - 20", domain: { min: -5.2, max: 4 } },
+      { id: "fake-root", kind: "point", appearance: "highlight", at: { x: -4, y: 0 } },
+      { id: "valid-root", kind: "point", appearance: "answer", at: { x: 2.5, y: 0 } },
+    ],
+    labels: [
+      { key: "fake", objectId: "fake-root", at: { x: -4, y: 0 }, placement: "above-left" },
+      { key: "valid", objectId: "valid-root", at: { x: 2.5, y: 0 }, placement: "above-right" },
+      { key: "wall", objectId: "forbid-neg4", at: { x: -4, y: 18 }, placement: "right" },
+    ],
+  }}
+  labels={{
+    fake: <>excluded <InlineMath math="-4" /></>,
+    valid: <>valid <InlineMath math="\tfrac{5}{2}" /></>,
+    wall: <>zero denominator</>,
+  }}
+/>
 
-So the solution set is <InlineMath math="L=\{\tfrac52\}" />.
+Candidate <InlineMath math="-4" /> drops out immediately because it zeroes the original denominators, whereas <InlineMath math="\frac{5}{2}" /> stays clear of both walls.
 
-- <InlineMath math="L=\{-4\}" /> keeps exactly the excluded number and throws away the valid solution.
-- <InlineMath math="L=\{4\}" /> appears if the signs in the factorization are swapped, <InlineMath math="(2x+5)(x-4)" />, and only the positive number is kept.
-- <InlineMath math="L=\{-\tfrac52,\,4\}" /> belongs to <InlineMath math="(2x+5)(x-4)=2x^2-3x-20" />, that is, to a swapped sign in the linear term.
-- <InlineMath math="L=\{\tfrac52,\,-4\}" /> forgets the domain. At <InlineMath math="x=-4" /> neither side is defined.
-- <InlineMath math="L=\emptyset" /> also discards <InlineMath math="\frac52" />, although that number makes no denominator zero.
+## Checking the solution and wrong choices
+
+Substitute <InlineMath math="\frac{5}{2}" /> back into **both sides of the original equation** to confirm equality.
+
+<BlockMath math="\text{Left: } \frac{2\left(\frac{5}{2}\right) + 3}{\frac{5}{2} + 4} = \frac{8}{\frac{13}{2}} = \frac{16}{13}, \qquad \text{Right: } \frac{20}{\frac{25}{4} + 10} = \frac{20}{\frac{65}{4}} = \frac{16}{13}" />
+
+- <InlineMath math="L = \{-4\}" /> keeps the extraneous root that breaks the denominator and throws away the valid one.
+- <InlineMath math="L = \{4\}" /> comes from swapping signs in the factorization and keeping only the positive number.
+- <InlineMath math="L = \{-\tfrac{5}{2},\, 4\}" /> solves the flipped quadratic <InlineMath math="2x^2 - 3x - 20" /> after reversing the sign of the linear term.
+- <InlineMath math="L = \{\tfrac{5}{2},\, -4\}" /> forgets the domain restriction and keeps the undefined value <InlineMath math="-4" />.
+- <InlineMath math="L = \emptyset" /> wrongly discards <InlineMath math="\frac{5}{2}" /> even though no denominator vanishes there.
+
+# Answer
+
+The solution set is <InlineMath math="L = \{\tfrac{5}{2}\}" />.

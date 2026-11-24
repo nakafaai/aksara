@@ -1,38 +1,50 @@
-# First check whether the cube goes under
+# Given
 
-The amount of water stays the same. It only spreads out differently. The key question is whether the cube ends up fully under water. Assume first that the water stays **below the top of the cube**, so <InlineMath math="h\le20\text{ cm}" />. Then the water only stands on the free floor area next to the cube:
+An open-top **cuboid tank** (*quaderförmiges Becken*) has an inner base of <InlineMath math="40\text{ cm}" /> by <InlineMath math="30\text{ cm}" /> and holds water to a depth of <InlineMath math="10\text{ cm}" />. A solid cube (*massiver Würfel*) of edge <InlineMath math="20\text{ cm}" /> is placed on the bottom without any water overflowing.
 
-<BlockMath math="40\cdot30-20\cdot20=1200-400=800\text{ cm}^2" />
+# Asked
 
-# Set the amounts of water equal
+Find the new water height <InlineMath math="h" /> inside the tank.
 
-The water volume is <InlineMath math="1200\cdot10=12{,}000\text{ cm}^3" />. It now fills the free area up to the height <InlineMath math="h" />:
+# Solution
 
-<BlockMath math="800\,h=12{,}000\quad\Longrightarrow\quad h=15\text{ cm}" />
+Drop a thick block onto the floor of a shallow tub: as long as the water stays below the top of the block, the block acts like a solid pillar that **steals floor space from the water**. The water volume stays unchanged, so it must crowd into the remaining open floor around the cube and rise higher.
 
-**The assumption holds**, because <InlineMath math="15\text{ cm}<20\text{ cm}" />. So the cube still sticks <InlineMath math="5\text{ cm}" /> out of the water.
+> When a solid rests on the bottom of a tank, first test whether the water stays below the top of the solid, in which case the water simply fills the tank floor minus the solid's footprint.
+
+Compute the fixed water volume and the open floor area left beside the cube.
+
+<BlockMath math="\begin{aligned}
+V_{\text{water}} &= 40 \cdot 30 \cdot 10 = 12\,000\text{ cm}^3 \\
+A_{\text{free}} &= 40 \cdot 30 - 20 \cdot 20 = 1200 - 400 = 800\text{ cm}^2
+\end{aligned}" />
+
+## Computing the new height and testing the assumption
+
+Assume the water stays below the top face of the cube (<InlineMath math="h \le 20\text{ cm}" />), then divide the water volume by **the free base area around the cube**.
+
+<BlockMath math="800\, h = 12\,000 \implies h = 15\text{ cm}" />
+
+Because <InlineMath math="15\text{ cm} < 20\text{ cm}" />, our assumption holds and the cube still pokes <InlineMath math="5\text{ cm}" /> above the surface.
 
 <MathVisual
-  title={<>The tank seen from the front</>}
-  description={<>Front view of the tank, <InlineMath math="40\text{ cm}" /> wide. On the left stands the cube with edge <InlineMath math="20\text{ cm}" />. Next to it the water now stands <InlineMath math="15\text{ cm}" /> high, lower than the cube's edge. The old water level of <InlineMath math="10\text{ cm}" /> is drawn as a line.</>}
-  labels={{
-    cube: <>cube</>,
-    h: <><InlineMath math="15\text{ cm}" /></>,
-    old: <>before <InlineMath math="10\text{ cm}" /></>,
-    edge: <><InlineMath math="20\text{ cm}" /></>,
-    water: <>water</>,
-  }}
+  title={<>Front view of the tank before and after placing the cube</>}
+  description={
+    <>
+      A tank of width <InlineMath math="40\text{ cm}" /> holds a cube of edge{" "}
+      <InlineMath math="20\text{ cm}" /> on the left. Beside it, the water rises
+      from the old level <InlineMath math="10\text{ cm}" /> to{" "}
+      <InlineMath math="15\text{ cm}" />, still below the top of the cube.
+    </>
+  }
+  footer={<>Water rises to <InlineMath math="15\text{ cm}" />, leaving <InlineMath math="5\text{ cm}" /> of the cube sticking out.</>}
   scene={{
     space: "plane",
-    frame: {
-      kind: "cartesian",
-      x: { min: -8, max: 52 },
-      y: { min: -3, max: 28 },
-    },
-    view: { kind: "fit", padding: 0.1 },
+    frame: { kind: "cartesian", x: { min: -8, max: 52 }, y: { min: -3, max: 28 } },
+    view: { kind: "fit", padding: 0.08 },
     objects: [
       { id: "tank", kind: "polygon", appearance: "construction", vertices: [{ x: 0, y: 0 }, { x: 40, y: 0 }, { x: 40, y: 25 }, { x: 0, y: 25 }] },
-      { id: "water-left", kind: "polygon", appearance: "highlight", vertices: [{ x: 20, y: 0 }, { x: 40, y: 0 }, { x: 40, y: 15 }, { x: 20, y: 15 }] },
+      { id: "water-right", kind: "polygon", appearance: "highlight", vertices: [{ x: 20, y: 0 }, { x: 40, y: 0 }, { x: 40, y: 15 }, { x: 20, y: 15 }] },
       { id: "block", kind: "polygon", appearance: "primary", vertices: [{ x: 0, y: 0 }, { x: 20, y: 0 }, { x: 20, y: 20 }, { x: 0, y: 20 }] },
       { id: "old-level", kind: "segment", appearance: "reference", from: { x: 20, y: 10 }, to: { x: 40, y: 10 } },
       { id: "new-level", kind: "segment", appearance: "answer", from: { x: 20, y: 15 }, to: { x: 40, y: 15 } },
@@ -42,17 +54,30 @@ The water volume is <InlineMath math="1200\cdot10=12{,}000\text{ cm}^3" />. It n
       { key: "edge", objectId: "block", at: { x: 0, y: 10 }, placement: "left" },
       { key: "h", objectId: "new-level", at: { x: 40, y: 15 }, placement: "right" },
       { key: "old", objectId: "old-level", at: { x: 40, y: 10 }, placement: "right" },
-      { key: "water", objectId: "water-left", at: { x: 30, y: 5 }, placement: "above" },
+      { key: "water", objectId: "water-right", at: { x: 30, y: 5 }, placement: "above" },
     ],
+  }}
+  labels={{
+    cube: <>cube</>,
+    edge: <><InlineMath math="20\text{ cm}" /></>,
+    h: <><InlineMath math="15\text{ cm}" /></>,
+    old: <>initial <InlineMath math="10\text{ cm}" /></>,
+    water: <>water</>,
   }}
 />
 
-The water then stands <InlineMath math="15\text{ cm}" /> high.
+The cross-section confirms visually that the cube never becomes fully submerged.
 
-# Why the other answers are wrong
+## Checking displaced volume and wrong choices
 
-- <InlineMath math="\frac{50}{3}\text{ cm}" /> assumes the whole cube, <InlineMath math="8{,}000\text{ cm}^3" />, is under water: <InlineMath math="\frac{12{,}000+8{,}000}{1200}" />. Then the water would have to be at least <InlineMath math="20\text{ cm}" /> high, and <InlineMath math="\frac{50}{3}<20" /> contradicts that.
-- <InlineMath math="\frac{40}{3}\text{ cm}" /> counts only the part of the cube that was in the water at the start: <InlineMath math="\frac{12{,}000+400\cdot10}{1200}" />. As the water rises, **more of the cube goes under**.
-- <InlineMath math="20\text{ cm}" /> assumes the water rises exactly to the top of the cube.
-- <InlineMath math="7.5\text{ cm}" /> adds the cube's base to the floor area instead of subtracting it: <InlineMath math="\frac{12{,}000}{1600}" />.
-- <InlineMath math="\frac{31}{3}\text{ cm}" /> uses <InlineMath math="20^2=400" /> as the cube's volume instead of <InlineMath math="20^3" />.
+Double-check via displacement: the submerged <InlineMath math="15\text{ cm}" /> of the cube displaces <InlineMath math="6\,000\text{ cm}^3" />, which together with the water fills **a combined volume of <InlineMath math="18\,000\text{ cm}^3" />**, matching <InlineMath math="1200 \cdot 15" />.
+
+- <InlineMath math="\frac{50}{3}\text{ cm}" /> assumes the entire cube (<InlineMath math="8\,000\text{ cm}^3" />) is submerged, which contradicts itself because the resulting height is below <InlineMath math="20\text{ cm}" />.
+- <InlineMath math="\frac{40}{3}\text{ cm}" /> counts only the cube volume submerged up to the initial <InlineMath math="10\text{ cm}" />, forgetting that rising water submerges more of the cube.
+- <InlineMath math="20\text{ cm}" /> guesses that the water rises flush with the top of the cube.
+- <InlineMath math="7.5\text{ cm}" /> adds the cube's base to the tank's base to get <InlineMath math="1600\text{ cm}^2" /> instead of subtracting it.
+- <InlineMath math="\frac{31}{3}\text{ cm}" /> uses the base area <InlineMath math="400" /> as the cube's volume instead of cubing the edge.
+
+# Answer
+
+The water stands <InlineMath math="15\text{ cm}" /> high after the cube is placed inside.

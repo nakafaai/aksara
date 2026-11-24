@@ -1,22 +1,82 @@
-Bei einer Bruchgleichung bestimmst du **zuerst die Definitionsmenge**, denn eine Zahl, die einen Nenner null macht, kann keine Lösung sein. Wegen <InlineMath math="x^2+4x=x(x+4)" /> sind <InlineMath math="x=0" /> und <InlineMath math="x=-4" /> ausgeschlossen.
+# Gegeben
 
-Multipliziere dann beide Seiten mit dem Hauptnenner <InlineMath math="x(x+4)" />.
+Gegeben ist die folgende **Bruchgleichung** in der Menge der reellen Zahlen.
+
+<BlockMath math="\frac{2x + 3}{x + 4} = \frac{20}{x^2 + 4x}" />
+
+# Gesucht
+
+Die reelle Lösungsmenge <InlineMath math="L" /> dieser Gleichung.
+
+# Lösung
+
+Beim Multiplizieren mit dem Hauptnenner verschwinden die Brüche zwar sofort, doch dabei kann sich eine Scheinlösung einschleichen. Bevor du umformst, solltest du **zuerst jede Zahl ausschließen, die einen Nenner null macht**.
+
+> Bei einer Bruchgleichung legt immer die Ausgangsgleichung den Definitionsbereich fest, sodass jede Lösungskandidatin mit verschwindendem Nenner sofort entfällt.
+
+Faktorisier den rechten Nenner zu <InlineMath math="x(x + 4)" />. Da kein Nenner null sein darf, gelten <InlineMath math="x \neq 0" /> und <InlineMath math="x \neq -4" />.
+
+## Hauptnenner beseitigen und faktorisieren
+
+Multiplizier beide Seiten mit dem Hauptnenner <InlineMath math="x(x + 4)" /> und erhalte **eine übersichtliche quadratische Gleichung**.
 
 <BlockMath math="\begin{aligned}
-x(2x+3)&=20 \\
-2x^2+3x-20&=0 \\
-(2x-5)(x+4)&=0 \\
-x=\tfrac52\ \text{oder}\ x&=-4
+x(2x + 3) &= 20 \\
+2x^2 + 3x - 20 &= 0 \\
+(2x - 5)(x + 4) &= 0
 \end{aligned}" />
 
-Die Zahl <InlineMath math="-4" /> ist ausgeschlossen, weil sie beide Nenner null macht. Es bleibt <InlineMath math="x=\frac52" />.
+Damit entstehen die beiden Kandidaten <InlineMath math="\frac{5}{2}" /> und <InlineMath math="-4" />. Im Graphen des entstandenen Polynoms siehst du sofort, dass eine Nullstelle genau auf einer verbotenen Linie liegt.
 
-Zur Kontrolle: links <InlineMath math="\frac{5+3}{\frac52+4}=\frac{8}{\frac{13}{2}}=\frac{16}{13}" />, rechts <InlineMath math="\frac{20}{\frac{25}{4}+10}=\frac{20}{\frac{65}{4}}=\frac{16}{13}" />.
+<MathVisual
+  title={<>Nullstellen des Polynoms und Definitionslücken</>}
+  description={
+    <>
+      Die Parabel <InlineMath math="y = 2x^2 + 3x - 20" /> schneidet die Achse
+      bei <InlineMath math="x = -4" /> und <InlineMath math="x = 2{,}5" />. Die
+      gestrichelten Senkrechten markieren die Definitionslücken{" "}
+      <InlineMath math="x = -4" /> und <InlineMath math="x = 0" />.
+    </>
+  }
+  footer={<>Die Nullstelle <InlineMath math="x = -4" /> liegt auf einer Definitionslücke, nur <InlineMath math="x = 2{,}5" /> bleibt.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -5.5, max: 4.5 }, y: { min: -24, max: 24 } },
+    view: { kind: "fit", padding: 0.08 },
+    objects: [
+      { id: "forbid-neg4", kind: "segment", appearance: "construction", from: { x: -4, y: -24 }, to: { x: -4, y: 24 } },
+      { id: "forbid-zero", kind: "segment", appearance: "construction", from: { x: 0, y: -24 }, to: { x: 0, y: 24 } },
+      { id: "poly", kind: "function", appearance: "primary", formula: "2 * x^2 + 3 * x - 20", domain: { min: -5.2, max: 4 } },
+      { id: "fake-root", kind: "point", appearance: "highlight", at: { x: -4, y: 0 } },
+      { id: "valid-root", kind: "point", appearance: "answer", at: { x: 2.5, y: 0 } },
+    ],
+    labels: [
+      { key: "fake", objectId: "fake-root", at: { x: -4, y: 0 }, placement: "above-left" },
+      { key: "valid", objectId: "valid-root", at: { x: 2.5, y: 0 }, placement: "above-right" },
+      { key: "wall", objectId: "forbid-neg4", at: { x: -4, y: 18 }, placement: "right" },
+    ],
+  }}
+  labels={{
+    fake: <>entfällt <InlineMath math="-4" /></>,
+    valid: <>gültig <InlineMath math="\tfrac{5}{2}" /></>,
+    wall: <>Nenner null</>,
+  }}
+/>
 
-Die Lösungsmenge ist also <InlineMath math="L=\{\tfrac52\}" />.
+Der Wert <InlineMath math="-4" /> fällt wegen der Definitionslücke weg, während <InlineMath math="\frac{5}{2}" /> außerhalb beider verbotenen Linien liegt.
 
-- <InlineMath math="L=\{-4\}" /> behält ausgerechnet die ausgeschlossene Zahl und verwirft die gültige Lösung.
-- <InlineMath math="L=\{4\}" /> entsteht, wenn die Vorzeichen in der Zerlegung vertauscht werden, <InlineMath math="(2x+5)(x-4)" />, und dann nur die positive Zahl behalten wird.
-- <InlineMath math="L=\{-\tfrac52;\,4\}" /> gehört zu <InlineMath math="(2x+5)(x-4)=2x^2-3x-20" />, also zu einem vertauschten Vorzeichen beim linearen Glied.
-- <InlineMath math="L=\{\tfrac52;\,-4\}" /> vergisst die Definitionsmenge. Für <InlineMath math="x=-4" /> sind beide Seiten nicht definiert.
-- <InlineMath math="L=\emptyset" /> verwirft auch <InlineMath math="\frac52" />, obwohl diese Zahl keinen Nenner null macht.
+## Probe und falsche Antworten prüfen
+
+Setz <InlineMath math="\frac{5}{2}" /> in **beide Seiten der Ausgangsgleichung** ein, um die Lösung sicher zu prüfen.
+
+<BlockMath math="\text{Links: } \frac{2\left(\frac{5}{2}\right) + 3}{\frac{5}{2} + 4} = \frac{8}{\frac{13}{2}} = \frac{16}{13}, \qquad \text{Rechts: } \frac{20}{\frac{25}{4} + 10} = \frac{20}{\frac{65}{4}} = \frac{16}{13}" />
+
+- <InlineMath math="L = \{-4\}" /> behält genau die ausgeschlossene Scheinlösung und streicht die echte Lösung.
+- <InlineMath math="L = \{4\}" /> entsteht durch vertauschte Vorzeichen beim Faktorisieren und anschließendes Behalten nur der positiven Zahl.
+- <InlineMath math="L = \{-\tfrac{5}{2},\, 4\}" /> gehört zu dem Polynom <InlineMath math="2x^2 - 3x - 20" />, also zu einem Vorzeichenfehler beim linearen Glied.
+- <InlineMath math="L = \{\tfrac{5}{2},\, -4\}" /> vergisst den Definitionsbereich, obwohl beide Seiten bei <InlineMath math="-4" /> nicht definiert sind.
+- <InlineMath math="L = \emptyset" /> verwirft auch <InlineMath math="\frac{5}{2}" />, obwohl dort kein Nenner null wird.
+
+# Antwort
+
+Die Lösungsmenge der Gleichung lautet <InlineMath math="L = \{\tfrac{5}{2}\}" />.

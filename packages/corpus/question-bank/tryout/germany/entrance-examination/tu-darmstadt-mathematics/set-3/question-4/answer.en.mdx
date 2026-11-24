@@ -1,41 +1,43 @@
-# Put the triangle into coordinates
+# Given
 
-Place the right angle at the origin <InlineMath math="C(0\mid0)" /> and the legs on the axes: <InlineMath math="A(8\mid0)" /> and <InlineMath math="B(0\mid6)" />. Then **both centres become points with coordinates**. The hypotenuse is <InlineMath math="\overline{AB}=\sqrt{8^2+6^2}=10" />.
+A **right triangle** (*rechtwinkliges Dreieck*) has legs (*Katheten*) of lengths <InlineMath math="6" /> and <InlineMath math="8" />. Point <InlineMath math="I" /> is the center of its incircle (*Inkreismittelpunkt*), and point <InlineMath math="U" /> is the center of its circumcircle (*Umkreismittelpunkt*).
 
-# Find the incentre
+# Asked
 
-The incircle touches both legs, so **<InlineMath math="I" /> is at distance <InlineMath math="r" /> from both axes**: <InlineMath math="I(r\mid r)" />. The area gives the radius. Split the triangle at <InlineMath math="I" /> into three smaller triangles whose heights are all <InlineMath math="r" />:
+Find the distance <InlineMath math="\overline{IU}" /> between the incenter and the circumcenter.
 
-<BlockMath math="\begin{aligned}
-\frac12\cdot8\cdot6&=\frac12\,r\,(8+6+10) \\
-24&=12r \\
-r&=2
-\end{aligned}" />
+# Solution
 
-So <InlineMath math="I(2\mid2)" />.
+Push the right angle flush into the corner of a room at the origin <InlineMath math="C(0 \mid 0)" />, placing the two legs along the axes to <InlineMath math="A(8 \mid 0)" /> and <InlineMath math="B(0 \mid 6)" />. With that single move, **both circle centers read straight off as simple coordinates**.
 
-# Find the circumcentre
+> Placing the right angle at the origin puts the incenter at equal coordinates matching the inradius, while the circumcenter lands directly at the midpoint of the hypotenuse.
 
-In a right triangle **the circumcentre is the midpoint of the hypotenuse** (Thales' theorem). The midpoint of <InlineMath math="A(8\mid0)" /> and <InlineMath math="B(0\mid6)" /> is <InlineMath math="U(4\mid3)" />, and the radius is <InlineMath math="5" />.
+By the Pythagorean theorem, the hypotenuse has length <InlineMath math="10" />, since <InlineMath math="6^2 + 8^2 = 100" />.
+
+## Finding both center coordinates
+
+Because the incircle touches both axes, its center is <InlineMath math="I(r \mid r)" />. Connect <InlineMath math="I" /> to all three vertices to split the triangle into three smaller triangles of height <InlineMath math="r" />, showing that **area equals semiperimeter times inradius**.
+
+<BlockMath math="\frac{1}{2} \cdot 8 \cdot 6 = \frac{1}{2}\, r\, (8 + 6 + 10) \implies 24 = 12r \implies r = 2" />
+
+Hence <InlineMath math="I(2 \mid 2)" />. By Thales' theorem, the circumcenter of a right triangle is the midpoint of hypotenuse <InlineMath math="AB" />, giving <InlineMath math="U(4 \mid 3)" /> with circumradius <InlineMath math="5" />.
 
 <MathVisual
   title={<>Incircle and circumcircle in coordinates</>}
-  description={<>The right triangle with <InlineMath math="C(0\mid0)" />, <InlineMath math="A(8\mid0)" /> and <InlineMath math="B(0\mid6)" />. The incircle has centre <InlineMath math="I(2\mid2)" /> and radius <InlineMath math="2" />. The circumcircle has centre <InlineMath math="U(4\mid3)" />, the midpoint of the hypotenuse, and radius <InlineMath math="5" />. The segment from <InlineMath math="I" /> to <InlineMath math="U" /> is highlighted.</>}
-  labels={{
-    c: <><InlineMath math="C" /></>,
-    a: <><InlineMath math="A" /></>,
-    b: <><InlineMath math="B" /></>,
-    i: <><InlineMath math="I(2\mid2)" /></>,
-    u: <><InlineMath math="U(4\mid3)" /></>,
-  }}
+  description={
+    <>
+      Right triangle with vertices <InlineMath math="C(0 \mid 0)" />,{" "}
+      <InlineMath math="A(8 \mid 0)" />, and <InlineMath math="B(0 \mid 6)" />.
+      The incircle centers at <InlineMath math="I(2 \mid 2)" /> and the
+      circumcircle centers at <InlineMath math="U(4 \mid 3)" />. The green
+      segment connects <InlineMath math="I" /> to <InlineMath math="U" />.
+    </>
+  }
+  footer={<>Moving from <InlineMath math="I(2 \mid 2)" /> to <InlineMath math="U(4 \mid 3)" /> steps <InlineMath math="2" /> right and <InlineMath math="1" /> up.</>}
   scene={{
     space: "plane",
-    frame: {
-      kind: "cartesian",
-      x: { min: -1.5, max: 9.5 },
-      y: { min: -2.5, max: 8.5 },
-    },
-    view: { kind: "fit", padding: 0.1 },
+    frame: { kind: "cartesian", x: { min: -1.5, max: 9.5 }, y: { min: -2.5, max: 8.5 } },
+    view: { kind: "fit", padding: 0.08 },
     objects: [
       { id: "triangle", kind: "polygon", appearance: "primary", vertices: [{ x: 0, y: 0 }, { x: 8, y: 0 }, { x: 0, y: 6 }] },
       { id: "incircle", kind: "circle", appearance: "secondary", center: { x: 2, y: 2 }, radius: 2 },
@@ -55,18 +57,31 @@ In a right triangle **the circumcentre is the midpoint of the hypotenuse** (Thal
       { key: "u", objectId: "pu", at: { x: 4, y: 3 }, placement: "above-right" },
     ],
   }}
+  labels={{
+    c: <><InlineMath math="C" /></>,
+    a: <><InlineMath math="A" /></>,
+    b: <><InlineMath math="B" /></>,
+    i: <><InlineMath math="I(2 \mid 2)" /></>,
+    u: <><InlineMath math="U(4 \mid 3)" /></>,
+  }}
 />
 
-# Work out the distance
+The figure shows immediately that <InlineMath math="I" /> and <InlineMath math="U" /> are separated by a horizontal step of <InlineMath math="2" /> and a vertical step of <InlineMath math="1" />.
 
-<BlockMath math="\overline{IU}=\sqrt{(4-2)^2+(3-2)^2}=\sqrt{4+1}=\sqrt5" />
+## Computing the distance and checking wrong choices
 
-The two centres are **<InlineMath math="\sqrt5" /> apart**.
+Compute the distance with the Pythagorean theorem and verify it with **Euler's formula for center distance**.
 
-# Why the other answers are wrong
+<BlockMath math="\overline{IU} = \sqrt{(4 - 2)^2 + (3 - 2)^2} = \sqrt{4 + 1} = \sqrt{5}" />
 
-- <InlineMath math="\sqrt{13}" /> comes from <InlineMath math="r=1" />: the area was divided by **the full perimeter <InlineMath math="24" /> instead of half of it**, <InlineMath math="12" />, and <InlineMath math="I(1\mid1)" /> is <InlineMath math="\sqrt{9+4}" /> away from <InlineMath math="U" />.
-- <InlineMath math="3" /> is the difference of the radii, <InlineMath math="5-2" />. But the two centres don't lie on one line with a point where the circles touch.
-- <InlineMath math="7" /> is the sum of the radii, <InlineMath math="5+2" />.
-- <InlineMath math="\frac23" /> comes from mixing up <InlineMath math="U" /> with the centroid <InlineMath math="\left(\frac83\mid2\right)" />. The centroid isn't the circumcentre.
-- <InlineMath math="2\sqrt2" /> is the distance from <InlineMath math="I" /> to the corner <InlineMath math="C" />, not to <InlineMath math="U" />.
+Quick check by Euler's theorem: <InlineMath math="R(R - 2r)" /> equals <InlineMath math="5(5 - 4) = 5" />, confirming the distance is <InlineMath math="\sqrt{5}" />.
+
+- <InlineMath math="\sqrt{13}" /> comes from <InlineMath math="r = 1" /> after dividing area by the full perimeter <InlineMath math="24" /> instead of the semiperimeter <InlineMath math="12" />.
+- <InlineMath math="3" /> takes the radius difference <InlineMath math="5 - 2" />, as if the two circles were internally tangent.
+- <InlineMath math="7" /> adds the radii <InlineMath math="5 + 2" /> without checking where the centers sit.
+- <InlineMath math="\frac{2}{3}" /> confuses the circumcenter <InlineMath math="U" /> with the centroid of the triangle.
+- <InlineMath math="2\sqrt{2}" /> is the distance from <InlineMath math="I" /> to the right-angle vertex <InlineMath math="C" />, not to <InlineMath math="U" />.
+
+# Answer
+
+The distance between <InlineMath math="I" /> and <InlineMath math="U" /> is <InlineMath math="\sqrt{5}" />.

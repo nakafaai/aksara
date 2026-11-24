@@ -1,24 +1,34 @@
-# Jus membentuk kon yang serupa
+# Diberi
 
-Oleh sebab bucu gelas berada di bawah, jus itu sendiri membentuk kon kecil dengan bucu yang sama. Kon itu **serupa** dengan seluruh gelas: tingginya <InlineMath math="\frac34" /> tinggi gelas, dan mengikut teorem pintasan, jejarinya juga <InlineMath math="\frac34" /> jejari atas gelas.
+Sebiji gelas berbentuk **kon membulat tegak** (*gerader Kreiskegel*) berdiri dengan bucu tajam menghala ke bawah. Apabila diisi jus sehingga <InlineMath math="\frac{3}{4}" /> tingginya, isi padu jus di dalamnya ialah <InlineMath math="54\text{ ml}" />.
+
+# Ditanya
+
+Berapa mililiter jus lagi yang masih muat sehingga gelas penuh ke bibir (*randvoll*)?
+
+# Penyelesaian
+
+Bayangkan gelas koktel berbentuk kon: bahagian hujung bawah sangat sempit dan hanya memuatkan sedikit jus, manakala suku bahagian teratas ialah mulut gelas yang paling lebar! Oleh sebab ketiga-tiga dimensi (lebar, dalam, dan tinggi) mengecil serentak, **isi padu berkadar dengan kuasa tiga tinggi, bukan secara linear**.
+
+> Bagi pepejal yang serupa, apabila setiap panjang didarab dengan faktor skala k, isi padunya berubah mengikut faktor k kuasa tiga.
+
+Jus di bawah membentuk kon kecil yang serupa dengan seluruh gelas, dengan tinggi <InlineMath math="\frac{3}{4}h" /> dan jejari permukaan <InlineMath math="\frac{3}{4}r" />.
 
 <MathVisual
-  title={<>Kon jus dan kon gelas dalam keratan rentas</>}
-  description={<>Keratan rentas gelas: segi tiga dengan bucu di bawah, tinggi <InlineMath math="h" /> dan jejari atas <InlineMath math="r" />. Jus memenuhi segi tiga yang lebih kecil dan serupa, dengan tinggi <InlineMath math="\tfrac34h" /> dan jejari <InlineMath math="\tfrac34r" />.</>}
-  labels={{
-    full: <><InlineMath math="h" /></>,
-    part: <><InlineMath math="\tfrac34h" /></>,
-    r: <><InlineMath math="r" /></>,
-    r2: <><InlineMath math="\tfrac34r" /></>,
-  }}
+  title={<>Keratan rentas kon jus dan kon gelas</>}
+  description={
+    <>
+      Keratan menegak gelas berbentuk segi tiga terbalik setinggi{" "}
+      <InlineMath math="h" /> dengan jejari atas <InlineMath math="r" />. Jus
+      mengisi segi tiga serupa setinggi <InlineMath math="\tfrac{3}{4}h" /> dan
+      jejari <InlineMath math="\tfrac{3}{4}r" />.
+    </>
+  }
+  footer={<>Suku tinggi teratas ialah bahagian terlebar yang menampung lebih separuh isi padu gelas.</>}
   scene={{
     space: "plane",
-    frame: {
-      kind: "cartesian",
-      x: { min: -5, max: 5 },
-      y: { min: -1, max: 9.5 },
-    },
-    view: { kind: "fit", padding: 0.1 },
+    frame: { kind: "cartesian", x: { min: -5, max: 5 }, y: { min: -1, max: 9.5 } },
+    view: { kind: "fit", padding: 0.08 },
     objects: [
       { id: "glass", kind: "polygon", appearance: "primary", vertices: [{ x: 0, y: 0 }, { x: 4, y: 8 }, { x: -4, y: 8 }] },
       { id: "juice", kind: "polygon", appearance: "highlight", vertices: [{ x: 0, y: 0 }, { x: 3, y: 6 }, { x: -3, y: 6 }] },
@@ -33,29 +43,40 @@ Oleh sebab bucu gelas berada di bawah, jus itu sendiri membentuk kon kecil denga
       { key: "r2", objectId: "juice-radius", at: { x: 1.5, y: 6 }, placement: "below" },
     ],
   }}
+  labels={{
+    full: <><InlineMath math="h" /></>,
+    part: <><InlineMath math="\tfrac{3}{4}h" /></>,
+    r: <><InlineMath math="r" /></>,
+    r2: <><InlineMath math="\tfrac{3}{4}r" /></>,
+  }}
 />
 
-# Isi padu bertambah mengikut kuasa tiga
+Daripada keratan ini jelas kelihatan mengapa ruang kosong di bahagian atas jauh lebih luas daripada sekadar suku tinggi.
 
-Isi padu kon <InlineMath math="V=\frac13\pi r^2h" /> mengandungi satu panjang yang dikuasaduakan dan satu panjang lagi. Kalau semua panjang didarab dengan <InlineMath math="\frac34" />, **isi padu didarab dengan <InlineMath math="\left(\frac34\right)^3" />**:
+## Mengira muatan penuh dan baki ruang
+
+Dalam rumus isi padu kon, jejari muncul dua kali dan tinggi sekali, maka **isi padu jus hanyalah <InlineMath math="\frac{27}{64}" /> daripada muatan penuh**.
 
 <BlockMath math="\begin{aligned}
-V_{\text{jus}}&=\left(\tfrac34\right)^3V_{\text{gelas}}=\tfrac{27}{64}\,V_{\text{gelas}} \\
-V_{\text{gelas}}&=54\cdot\tfrac{64}{27}=128\text{ ml}
+V &= \frac{1}{3}\pi r^2 h \\
+V_{\text{jus}} &= \left(\frac{3}{4}\right)^3 V_{\text{gelas}} = \frac{27}{64}\, V_{\text{gelas}} \\
+V_{\text{gelas}} &= 54 \cdot \frac{64}{27} = 2 \cdot 64 = 128\text{ ml}
 \end{aligned}" />
 
-# Yang masih kurang
+Soalan meminta jus tambahan sehingga penuh ke bibir, maka tolak isi padu yang sudah ada.
 
-Soalan ini bukan bertanya isi seluruh gelas, tetapi **jumlah jus sehingga penuh**:
+<BlockMath math="V_{\text{baki}} = 128\text{ ml} - 54\text{ ml} = 74\text{ ml}" />
 
-<BlockMath math="128\text{ ml}-54\text{ ml}=74\text{ ml}" />
+## Menyemak nisbah dan pilihan salah
 
-Gelas itu masih boleh diisi <InlineMath math="74\text{ ml}" /> jus lagi.
+Semakan pantas: pecahan ruang kosong ialah <InlineMath math="\frac{37}{64}" />, dan <InlineMath math="\frac{37}{64}" /> daripada <InlineMath math="128\text{ ml}" /> memberi **tepat <InlineMath math="74\text{ ml}" />**.
 
-# Kenapa jawapan lain salah
+- <InlineMath math="18\text{ ml}" /> mengira secara linear mengikut tinggi, sedangkan suku teratas ialah bahagian kon yang paling lebar.
+- <InlineMath math="42\text{ ml}" /> menggunakan faktor kuasa dua seperti luas lalu mendapat isi padu penuh <InlineMath math="96\text{ ml}" />.
+- <InlineMath math="128\text{ ml}" /> ialah isi padu seluruh gelas, bukannya ruang kosong yang masih tinggal.
+- <InlineMath math="72\text{ ml}" /> mengira isi padu penuh secara linear sebagai empat pertiga daripada <InlineMath math="54\text{ ml}" />.
+- <InlineMath math="24\text{ ml}" /> mendarab baki linear <InlineMath math="18\text{ ml}" /> sekali lagi dengan <InlineMath math="\frac{4}{3}" />.
 
-- <InlineMath math="18\text{ ml}" /> mengira secara linear: tiga suku berisi <InlineMath math="54\text{ ml}" />, jadi satu suku dianggap berisi <InlineMath math="18\text{ ml}" />. Sedangkan suku tinggi yang paling atas ialah **bahagian gelas yang paling lebar**.
-- <InlineMath math="42\text{ ml}" /> memakai faktor <InlineMath math="\left(\frac34\right)^2" /> seperti untuk luas, lalu isi gelas menjadi <InlineMath math="96\text{ ml}" />.
-- <InlineMath math="128\text{ ml}" /> ialah isi seluruh gelas, bukan baki yang kurang.
-- <InlineMath math="72\text{ ml}" /> ialah isi seluruh gelas mengikut kiraan linear, <InlineMath math="54\cdot\frac43" />.
-- <InlineMath math="24\text{ ml}" /> mendarab baki linear <InlineMath math="18\text{ ml}" /> sekali lagi dengan <InlineMath math="\frac43" />, jadi baki dan jumlah keseluruhan tercampur.
+# Jawapan
+
+Sebanyak <InlineMath math="74\text{ ml}" /> jus lagi masih muat ke dalam gelas itu.

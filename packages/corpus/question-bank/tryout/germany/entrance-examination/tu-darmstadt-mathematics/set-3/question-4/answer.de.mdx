@@ -1,41 +1,43 @@
-# Das Dreieck in ein Koordinatensystem legen
+# Gegeben
 
-Lege den rechten Winkel in den Ursprung <InlineMath math="C(0\mid0)" /> und die Katheten auf die Achsen: <InlineMath math="A(8\mid0)" /> und <InlineMath math="B(0\mid6)" />. Dann lassen sich **beide Mittelpunkte als Punkte mit Koordinaten** bestimmen. Die Hypotenuse ist <InlineMath math="\overline{AB}=\sqrt{8^2+6^2}=10" />.
+Ein **rechtwinkliges Dreieck** hat Katheten der Längen <InlineMath math="6" /> und <InlineMath math="8" />. Der Punkt <InlineMath math="I" /> ist der Inkreismittelpunkt und der Punkt <InlineMath math="U" /> ist der Umkreismittelpunkt.
 
-# Den Inkreismittelpunkt bestimmen
+# Gesucht
 
-Der Inkreis berührt beide Katheten, also hat **<InlineMath math="I" /> von beiden Achsen den Abstand <InlineMath math="r" />**: <InlineMath math="I(r\mid r)" />. Den Radius liefert der Flächeninhalt. Zerlege das Dreieck an <InlineMath math="I" /> in drei Teildreiecke, deren Höhen alle <InlineMath math="r" /> sind:
+Der Abstand <InlineMath math="\overline{IU}" /> zwischen Inkreismittelpunkt und Umkreismittelpunkt.
 
-<BlockMath math="\begin{aligned}
-\frac12\cdot8\cdot6&=\frac12\,r\,(8+6+10) \\
-24&=12r \\
-r&=2
-\end{aligned}" />
+# Lösung
 
-Also ist <InlineMath math="I(2\mid2)" />.
+Schieb den rechten Winkel einfach in den Ursprung <InlineMath math="C(0 \mid 0)" />, sodass die beiden Katheten auf den Achsen zu <InlineMath math="A(8 \mid 0)" /> und <InlineMath math="B(0 \mid 6)" /> liegen. Mit diesem einen Trick lassen sich **beide Mittelpunkte sofort als einfache Koordinaten ablesen**.
 
-# Den Umkreismittelpunkt bestimmen
+> Legt man den rechten Winkel in den Ursprung, sitzt der Inkreismittelpunkt bei gleichen Koordinaten in Höhe des Inkreisradius und der Umkreismittelpunkt genau auf der Mitte der Hypotenuse.
 
-Im rechtwinkligen Dreieck liegt **der Umkreismittelpunkt in der Mitte der Hypotenuse** (Satz des Thales). Die Mitte von <InlineMath math="A(8\mid0)" /> und <InlineMath math="B(0\mid6)" /> ist <InlineMath math="U(4\mid3)" />, der Radius ist <InlineMath math="5" />.
+Nach dem Satz des Pythagoras hat die Hypotenuse die Länge <InlineMath math="10" />, weil <InlineMath math="6^2 + 8^2 = 100" /> gilt.
+
+## Koordinaten beider Mittelpunkte bestimmen
+
+Da der Inkreis beide Koordinatenachsen berührt, gilt <InlineMath math="I(r \mid r)" />. Verbinde <InlineMath math="I" /> mit allen drei Ecken zu drei Teildreiecken der Höhe <InlineMath math="r" />, sodass **Fläche gleich halbem Umfang mal Inkreisradius** ist.
+
+<BlockMath math="\frac{1}{2} \cdot 8 \cdot 6 = \frac{1}{2}\, r\, (8 + 6 + 10) \implies 24 = 12r \implies r = 2" />
+
+Also liegt <InlineMath math="I(2 \mid 2)" /> fest. Nach dem Satz des Thales ist der Umkreismittelpunkt eines rechtwinkligen Dreiecks die Mitte der Hypotenuse <InlineMath math="AB" />, also <InlineMath math="U(4 \mid 3)" /> mit Umkreisradius <InlineMath math="5" />.
 
 <MathVisual
   title={<>Inkreis und Umkreis im Koordinatensystem</>}
-  description={<>Das rechtwinklige Dreieck mit <InlineMath math="C(0\mid0)" />, <InlineMath math="A(8\mid0)" /> und <InlineMath math="B(0\mid6)" />. Der Inkreis hat den Mittelpunkt <InlineMath math="I(2\mid2)" /> und den Radius <InlineMath math="2" />. Der Umkreis hat den Mittelpunkt <InlineMath math="U(4\mid3)" />, die Mitte der Hypotenuse, und den Radius <InlineMath math="5" />. Die Strecke von <InlineMath math="I" /> nach <InlineMath math="U" /> ist hervorgehoben.</>}
-  labels={{
-    c: <><InlineMath math="C" /></>,
-    a: <><InlineMath math="A" /></>,
-    b: <><InlineMath math="B" /></>,
-    i: <><InlineMath math="I(2\mid2)" /></>,
-    u: <><InlineMath math="U(4\mid3)" /></>,
-  }}
+  description={
+    <>
+      Rechtwinkliges Dreieck mit <InlineMath math="C(0 \mid 0)" />,{" "}
+      <InlineMath math="A(8 \mid 0)" /> und <InlineMath math="B(0 \mid 6)" />.
+      Der Inkreis liegt um <InlineMath math="I(2 \mid 2)" />, der Umkreis um{" "}
+      <InlineMath math="U(4 \mid 3)" />. Die grüne Strecke verbindet{" "}
+      <InlineMath math="I" /> und <InlineMath math="U" />.
+    </>
+  }
+  footer={<>Von <InlineMath math="I(2 \mid 2)" /> zu <InlineMath math="U(4 \mid 3)" /> geht es <InlineMath math="2" /> nach rechts und <InlineMath math="1" /> nach oben.</>}
   scene={{
     space: "plane",
-    frame: {
-      kind: "cartesian",
-      x: { min: -1.5, max: 9.5 },
-      y: { min: -2.5, max: 8.5 },
-    },
-    view: { kind: "fit", padding: 0.1 },
+    frame: { kind: "cartesian", x: { min: -1.5, max: 9.5 }, y: { min: -2.5, max: 8.5 } },
+    view: { kind: "fit", padding: 0.08 },
     objects: [
       { id: "triangle", kind: "polygon", appearance: "primary", vertices: [{ x: 0, y: 0 }, { x: 8, y: 0 }, { x: 0, y: 6 }] },
       { id: "incircle", kind: "circle", appearance: "secondary", center: { x: 2, y: 2 }, radius: 2 },
@@ -55,18 +57,31 @@ Im rechtwinkligen Dreieck liegt **der Umkreismittelpunkt in der Mitte der Hypote
       { key: "u", objectId: "pu", at: { x: 4, y: 3 }, placement: "above-right" },
     ],
   }}
+  labels={{
+    c: <><InlineMath math="C" /></>,
+    a: <><InlineMath math="A" /></>,
+    b: <><InlineMath math="B" /></>,
+    i: <><InlineMath math="I(2 \mid 2)" /></>,
+    u: <><InlineMath math="U(4 \mid 3)" /></>,
+  }}
 />
 
-# Den Abstand berechnen
+Im Bild siehst du direkt, dass zwischen <InlineMath math="I" /> und <InlineMath math="U" /> genau <InlineMath math="2" /> Schritte nach rechts und <InlineMath math="1" /> Schritt nach oben liegen.
 
-<BlockMath math="\overline{IU}=\sqrt{(4-2)^2+(3-2)^2}=\sqrt{4+1}=\sqrt5" />
+## Abstand berechnen und falsche Antworten prüfen
 
-Die beiden Mittelpunkte sind **<InlineMath math="\sqrt5" /> voneinander entfernt**.
+Berechne den Abstand mit dem Satz des Pythagoras und mach die Probe mit **der Eulerschen Abstandsformel**.
 
-# Warum die anderen Antworten falsch sind
+<BlockMath math="\overline{IU} = \sqrt{(4 - 2)^2 + (3 - 2)^2} = \sqrt{4 + 1} = \sqrt{5}" />
 
-- <InlineMath math="\sqrt{13}" /> entsteht mit <InlineMath math="r=1" />: Dann wurde der Flächeninhalt durch **den ganzen Umfang <InlineMath math="24" /> statt durch den halben Umfang <InlineMath math="12" />** geteilt, und <InlineMath math="I(1\mid1)" /> liegt <InlineMath math="\sqrt{9+4}" /> von <InlineMath math="U" /> entfernt.
-- <InlineMath math="3" /> ist die Differenz der Radien <InlineMath math="5-2" />. Die beiden Mittelpunkte liegen aber nicht auf einer gemeinsamen Geraden mit einem Berührpunkt.
-- <InlineMath math="7" /> ist die Summe der Radien <InlineMath math="5+2" />.
-- <InlineMath math="\frac23" /> entsteht, wenn du <InlineMath math="U" /> mit dem Schwerpunkt <InlineMath math="\left(\frac83\mid2\right)" /> verwechselst. Der Schwerpunkt ist nicht der Umkreismittelpunkt.
-- <InlineMath math="2\sqrt2" /> ist der Abstand von <InlineMath math="I" /> zur Ecke <InlineMath math="C" />, nicht zu <InlineMath math="U" />.
+Kurzprobe nach Euler: <InlineMath math="R(R - 2r)" /> ergibt <InlineMath math="5(5 - 4) = 5" />, sodass der Abstand exakt <InlineMath math="\sqrt{5}" /> beträgt.
+
+- <InlineMath math="\sqrt{13}" /> entsteht aus <InlineMath math="r = 1" />, wenn man die Fläche durch den ganzen Umfang <InlineMath math="24" /> statt den halben Umfang <InlineMath math="12" /> teilt.
+- <InlineMath math="3" /> ist nur die Differenz der Radien <InlineMath math="5 - 2" />, als würden sich beide Kreise innen berühren.
+- <InlineMath math="7" /> addiert die Radien <InlineMath math="5 + 2" /> ohne Rücksicht auf die Lage der Mittelpunkte.
+- <InlineMath math="\frac{2}{3}" /> verwechselt den Umkreismittelpunkt <InlineMath math="U" /> mit dem Schwerpunkt des Dreiecks.
+- <InlineMath math="2\sqrt{2}" /> ist der Abstand von <InlineMath math="I" /> zur Ecke <InlineMath math="C" />, nicht zu <InlineMath math="U" />.
+
+# Antwort
+
+Die Punkte <InlineMath math="I" /> und <InlineMath math="U" /> sind <InlineMath math="\sqrt{5}" /> voneinander entfernt.

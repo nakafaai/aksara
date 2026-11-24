@@ -1,24 +1,34 @@
-# Der Saft bildet einen ähnlichen Kegel
+# Gegeben
 
-Weil die Spitze unten ist, bildet der Saft selbst einen kleinen Kegel mit derselben Spitze. Er ist dem ganzen Glas **ähnlich**: Seine Höhe ist <InlineMath math="\frac34" /> der Glashöhe, und nach dem Strahlensatz ist auch sein Radius <InlineMath math="\frac34" /> des oberen Glasradius.
+Ein Glas hat die Form eines **geraden Kreiskegels** und steht mit der Spitze nach unten. Bis zu <InlineMath math="\frac{3}{4}" /> seiner Höhe gefüllt enthält es <InlineMath math="54\text{ ml}" /> Saft.
+
+# Gesucht
+
+Wie viele Milliliter Saft noch in das Glas passen, bis es randvoll ist.
+
+# Lösung
+
+Denk an ein spitzes Cocktailglas: Unten an der Spitze passt fast nichts hinein, während das oberste Viertel weit aufgeht wie eine Schale! Weil alle drei Raumrichtungen gleichzeitig schrumpfen, **wächst das Volumen mit der dritten Potenz der Höhe und nicht linear**.
+
+> Bei ähnlichen Körpern verändert der Streckungsfaktor k jede Länge um k und das Volumen immer um k hoch drei.
+
+Der Saft bildet selbst einen kleinen Kegel, der zum ganzen Glas ähnlich ist, mit Höhe <InlineMath math="\frac{3}{4}h" /> und Radius <InlineMath math="\frac{3}{4}r" />.
 
 <MathVisual
-  title={<>Saftkegel und Glaskegel im Längsschnitt</>}
-  description={<>Längsschnitt durch das Glas: ein Dreieck mit der Spitze unten, Höhe <InlineMath math="h" /> und oberem Radius <InlineMath math="r" />. Der Saft füllt ein kleineres, ähnliches Dreieck mit der Höhe <InlineMath math="\tfrac34h" /> und dem Radius <InlineMath math="\tfrac34r" />.</>}
-  labels={{
-    full: <><InlineMath math="h" /></>,
-    part: <><InlineMath math="\tfrac34h" /></>,
-    r: <><InlineMath math="r" /></>,
-    r2: <><InlineMath math="\tfrac34r" /></>,
-  }}
+  title={<>Längsschnitt von Saftkegel und Glaskegel</>}
+  description={
+    <>
+      Längsschnitt des Glases als umgedrehtes Dreieck mit Höhe{" "}
+      <InlineMath math="h" /> und oberem Radius <InlineMath math="r" />. Der
+      Saft füllt ein ähnliches Dreieck mit Höhe <InlineMath math="\tfrac{3}{4}h" />{" "}
+      und Radius <InlineMath math="\tfrac{3}{4}r" />.
+    </>
+  }
+  footer={<>Das oberste Viertel der Höhe ist am breitesten und fasst mehr als das halbe Glas.</>}
   scene={{
     space: "plane",
-    frame: {
-      kind: "cartesian",
-      x: { min: -5, max: 5 },
-      y: { min: -1, max: 9.5 },
-    },
-    view: { kind: "fit", padding: 0.1 },
+    frame: { kind: "cartesian", x: { min: -5, max: 5 }, y: { min: -1, max: 9.5 } },
+    view: { kind: "fit", padding: 0.08 },
     objects: [
       { id: "glass", kind: "polygon", appearance: "primary", vertices: [{ x: 0, y: 0 }, { x: 4, y: 8 }, { x: -4, y: 8 }] },
       { id: "juice", kind: "polygon", appearance: "highlight", vertices: [{ x: 0, y: 0 }, { x: 3, y: 6 }, { x: -3, y: 6 }] },
@@ -33,29 +43,40 @@ Weil die Spitze unten ist, bildet der Saft selbst einen kleinen Kegel mit dersel
       { key: "r2", objectId: "juice-radius", at: { x: 1.5, y: 6 }, placement: "below" },
     ],
   }}
+  labels={{
+    full: <><InlineMath math="h" /></>,
+    part: <><InlineMath math="\tfrac{3}{4}h" /></>,
+    r: <><InlineMath math="r" /></>,
+    r2: <><InlineMath math="\tfrac{3}{4}r" /></>,
+  }}
 />
 
-# Volumen wachsen mit der dritten Potenz
+Im Schnittbild siehst du sofort, warum der leere obere Bereich viel größer ist, als es ein Viertel der Höhe vermuten lässt.
 
-Das Kegelvolumen <InlineMath math="V=\frac13\pi r^2h" /> enthält eine Länge im Quadrat und eine weitere Länge einfach. Werden alle Längen mit <InlineMath math="\frac34" /> multipliziert, wird **das Volumen mit <InlineMath math="\left(\frac34\right)^3" /> multipliziert**:
+## Gesamtvolumen und Restplatz berechnen
+
+In der Kegelformel tritt der Radius zweimal und die Höhe einmal auf, sodass **der Saft nur <InlineMath math="\frac{27}{64}" /> des gesamten Glases ausfüllt**.
 
 <BlockMath math="\begin{aligned}
-V_{\text{Saft}}&=\left(\tfrac34\right)^3V_{\text{Glas}}=\tfrac{27}{64}\,V_{\text{Glas}} \\
-V_{\text{Glas}}&=54\cdot\tfrac{64}{27}=128\text{ ml}
+V &= \frac{1}{3}\pi r^2 h \\
+V_{\text{Saft}} &= \left(\frac{3}{4}\right)^3 V_{\text{Glas}} = \frac{27}{64}\, V_{\text{Glas}} \\
+V_{\text{Glas}} &= 54 \cdot \frac{64}{27} = 2 \cdot 64 = 128\text{ ml}
 \end{aligned}" />
 
-# Was noch fehlt
+Gesucht ist der noch freie Platz bis zum Rand, also ziehst du die eingefüllte Menge ab.
 
-Gefragt ist nicht das ganze Glas, sondern **die Menge bis zum Rand**:
+<BlockMath math="V_{\text{Rest}} = 128\text{ ml} - 54\text{ ml} = 74\text{ ml}" />
 
-<BlockMath math="128\text{ ml}-54\text{ ml}=74\text{ ml}" />
+## Anteil prüfen und falsche Antworten ausschließen
 
-Es passen noch <InlineMath math="74\text{ ml}" /> Saft in das Glas.
+Kurzprobe: Der freie Anteil beträgt <InlineMath math="\frac{37}{64}" />, und <InlineMath math="\frac{37}{64}" /> von <InlineMath math="128\text{ ml}" /> ergibt **genau <InlineMath math="74\text{ ml}" />**.
 
-# Warum die anderen Antworten falsch sind
+- <InlineMath math="18\text{ ml}" /> rechnet linear mit der Höhe und vergisst, dass das oberste Viertel am weitesten ist.
+- <InlineMath math="42\text{ ml}" /> verwendet den Quadratfaktor wie bei Flächen und kommt auf <InlineMath math="96\text{ ml}" /> Gesamtvolumen.
+- <InlineMath math="128\text{ ml}" /> ist das gesamte Volumen des Glases, nicht der noch freie Rest.
+- <InlineMath math="72\text{ ml}" /> bestimmt das Gesamtvolumen linear als vier Drittel von <InlineMath math="54\text{ ml}" />.
+- <InlineMath math="24\text{ ml}" /> multipliziert den linearen Rest <InlineMath math="18\text{ ml}" /> noch einmal mit <InlineMath math="\frac{4}{3}" />.
 
-- <InlineMath math="18\text{ ml}" /> rechnet linear: Drei Viertel enthalten <InlineMath math="54\text{ ml}" />, also soll ein Viertel <InlineMath math="18\text{ ml}" /> enthalten. Das obere Viertel der Höhe ist aber **der breiteste Teil des Glases**.
-- <InlineMath math="42\text{ ml}" /> rechnet mit dem Faktor <InlineMath math="\left(\frac34\right)^2" /> wie bei einer Fläche: Dann wäre das Glas <InlineMath math="96\text{ ml}" /> groß.
-- <InlineMath math="128\text{ ml}" /> ist das ganze Glas, nicht der fehlende Rest.
-- <InlineMath math="72\text{ ml}" /> ist das ganze Glas bei linearer Rechnung, <InlineMath math="54\cdot\frac43" />.
-- <InlineMath math="24\text{ ml}" /> ist der fehlende Rest bei der linearen Rechnung <InlineMath math="72-54=18" />, noch einmal mit <InlineMath math="\frac43" /> multipliziert, also eine Vermischung von Rest und Gesamtmenge.
+# Antwort
+
+In das Glas passen noch <InlineMath math="74\text{ ml}" /> Saft.

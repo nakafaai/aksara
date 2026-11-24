@@ -1,24 +1,34 @@
-# Jus membentuk kerucut yang sebangun
+# Diketahui
 
-Karena puncak gelas ada di bawah, jus itu sendiri membentuk kerucut kecil dengan puncak yang sama. Kerucut itu **sebangun** dengan seluruh gelas: tingginya <InlineMath math="\frac34" /> tinggi gelas, dan menurut teorema intercept jari-jarinya juga <InlineMath math="\frac34" /> jari-jari atas gelas.
+Sebuah gelas berbentuk **kerucut tegak** (*gerader Kreiskegel*) berdiri dengan ujung lancip di bawah. Saat diisi jus hingga <InlineMath math="\frac{3}{4}" /> tingginya, volume jus di dalamnya adalah <InlineMath math="54\text{ ml}" />.
+
+# Ditanyakan
+
+Berapa mililiter jus lagi yang masih muat hingga gelas penuh sampai bibir (*randvoll*)?
+
+# Penyelesaian
+
+Perhatikan bentuk gelas koktail yang meruncing ke bawah: bagian ujung bawah sangat sempit dan hanya menampung sedikit jus, sedangkan seperempat bagian paling atas adalah mulut gelas yang paling lebar! Karena ketiga arah ruang (lebar, kedalaman, dan tinggi) ikut mengecil bersama, **volume tidak sebanding dengan tinggi, melainkan pangkat tiga dari tinggi**.
+
+> Pada bangun ruang yang sebangun, jika setiap ukuran panjang dikali faktor skala k, volumenya otomatis berubah dengan faktor k pangkat tiga.
+
+Jus di bagian bawah membentuk kerucut kecil yang sebangun dengan seluruh gelas, dengan tinggi <InlineMath math="\frac{3}{4}h" /> dan jari-jari permukaan <InlineMath math="\frac{3}{4}r" />.
 
 <MathVisual
-  title={<>Kerucut jus dan kerucut gelas pada penampang</>}
-  description={<>Penampang memanjang gelas: segitiga dengan puncak di bawah, tinggi <InlineMath math="h" />, dan jari-jari atas <InlineMath math="r" />. Jus mengisi segitiga yang lebih kecil dan sebangun, dengan tinggi <InlineMath math="\tfrac34h" /> dan jari-jari <InlineMath math="\tfrac34r" />.</>}
-  labels={{
-    full: <><InlineMath math="h" /></>,
-    part: <><InlineMath math="\tfrac34h" /></>,
-    r: <><InlineMath math="r" /></>,
-    r2: <><InlineMath math="\tfrac34r" /></>,
-  }}
+  title={<>Penampang kerucut jus dan kerucut gelas</>}
+  description={
+    <>
+      Penampang gelas berbentuk segitiga terbalik bertinggi <InlineMath math="h" />{" "}
+      dan jari-jari atas <InlineMath math="r" />. Jus mengisi segitiga sebangun
+      setinggi <InlineMath math="\tfrac{3}{4}h" /> dan jari-jari{" "}
+      <InlineMath math="\tfrac{3}{4}r" />.
+    </>
+  }
+  footer={<>Seperempat tinggi teratas adalah bagian terlebar sehingga menampung lebih dari separuh isi gelas.</>}
   scene={{
     space: "plane",
-    frame: {
-      kind: "cartesian",
-      x: { min: -5, max: 5 },
-      y: { min: -1, max: 9.5 },
-    },
-    view: { kind: "fit", padding: 0.1 },
+    frame: { kind: "cartesian", x: { min: -5, max: 5 }, y: { min: -1, max: 9.5 } },
+    view: { kind: "fit", padding: 0.08 },
     objects: [
       { id: "glass", kind: "polygon", appearance: "primary", vertices: [{ x: 0, y: 0 }, { x: 4, y: 8 }, { x: -4, y: 8 }] },
       { id: "juice", kind: "polygon", appearance: "highlight", vertices: [{ x: 0, y: 0 }, { x: 3, y: 6 }, { x: -3, y: 6 }] },
@@ -33,29 +43,40 @@ Karena puncak gelas ada di bawah, jus itu sendiri membentuk kerucut kecil dengan
       { key: "r2", objectId: "juice-radius", at: { x: 1.5, y: 6 }, placement: "below" },
     ],
   }}
+  labels={{
+    full: <><InlineMath math="h" /></>,
+    part: <><InlineMath math="\tfrac{3}{4}h" /></>,
+    r: <><InlineMath math="r" /></>,
+    r2: <><InlineMath math="\tfrac{3}{4}r" /></>,
+  }}
 />
 
-# Volume tumbuh dengan pangkat tiga
+Dari penampang itu langsung terlihat mengapa bagian kosong di atas jauh lebih lapang daripada kesan tingginya yang hanya seperempat.
 
-Volume kerucut <InlineMath math="V=\frac13\pi r^2h" /> memuat satu panjang yang dikuadratkan dan satu panjang lagi. Kalau semua panjang dikalikan <InlineMath math="\frac34" />, **volumenya dikalikan <InlineMath math="\left(\frac34\right)^3" />**:
+## Menghitung kapasitas total dan sisa ruang
+
+Dalam rumus volume kerucut, faktor jari-jari muncul dua kali dan tinggi satu kali, sehingga **volume jus hanya <InlineMath math="\frac{27}{64}" /> dari kapasitas penuh**.
 
 <BlockMath math="\begin{aligned}
-V_{\text{jus}}&=\left(\tfrac34\right)^3V_{\text{gelas}}=\tfrac{27}{64}\,V_{\text{gelas}} \\
-V_{\text{gelas}}&=54\cdot\tfrac{64}{27}=128\text{ ml}
+V &= \frac{1}{3}\pi r^2 h \\
+V_{\text{jus}} &= \left(\frac{3}{4}\right)^3 V_{\text{gelas}} = \frac{27}{64}\, V_{\text{gelas}} \\
+V_{\text{gelas}} &= 54 \cdot \frac{64}{27} = 2 \cdot 64 = 128\text{ ml}
 \end{aligned}" />
 
-# Yang masih kurang
+Yang diminta soal adalah ruang kosong sampai bibir gelas, jadi kurangkan jus yang sudah ada.
 
-Yang ditanyakan bukan isi seluruh gelas, melainkan **banyaknya jus sampai penuh**:
+<BlockMath math="V_{\text{sisa}} = 128\text{ ml} - 54\text{ ml} = 74\text{ ml}" />
 
-<BlockMath math="128\text{ ml}-54\text{ ml}=74\text{ ml}" />
+## Mengecek proporsi dan pilihan salah
 
-Gelas itu masih muat <InlineMath math="74\text{ ml}" /> jus.
+Cek balik: proporsi ruang kosong adalah <InlineMath math="\frac{37}{64}" />, dan <InlineMath math="\frac{37}{64}" /> dikali <InlineMath math="128\text{ ml}" /> menghasilkan **tepat <InlineMath math="74\text{ ml}" />**.
 
-# Mengapa pilihan lain salah
+- <InlineMath math="18\text{ ml}" /> mengira volume berbanding lurus dengan tinggi, padahal seperempat teratas justru bagian gelas terlebar.
+- <InlineMath math="42\text{ ml}" /> memakai pangkat dua seperti rumus luas sehingga memperoleh volume penuh <InlineMath math="96\text{ ml}" />.
+- <InlineMath math="128\text{ ml}" /> adalah isi total seluruh gelas, belum dikurangi <InlineMath math="54\text{ ml}" /> yang sudah terisi.
+- <InlineMath math="72\text{ ml}" /> menghitung volume total secara linear dari empat pertiga kali <InlineMath math="54\text{ ml}" />.
+- <InlineMath math="24\text{ ml}" /> mengalikan sisa linear <InlineMath math="18\text{ ml}" /> sekali lagi dengan <InlineMath math="\frac{4}{3}" />.
 
-- <InlineMath math="18\text{ ml}" /> menghitung secara linear: tiga perempat berisi <InlineMath math="54\text{ ml}" />, jadi seperempat dianggap berisi <InlineMath math="18\text{ ml}" />. Padahal seperempat tinggi yang paling atas adalah **bagian gelas yang paling lebar**.
-- <InlineMath math="42\text{ ml}" /> memakai faktor <InlineMath math="\left(\frac34\right)^2" /> seperti untuk luas, sehingga isi gelas menjadi <InlineMath math="96\text{ ml}" />.
-- <InlineMath math="128\text{ ml}" /> adalah isi seluruh gelas, bukan sisa yang kurang.
-- <InlineMath math="72\text{ ml}" /> adalah isi seluruh gelas menurut hitungan linear, <InlineMath math="54\cdot\frac43" />.
-- <InlineMath math="24\text{ ml}" /> mengalikan sisa linear <InlineMath math="18\text{ ml}" /> sekali lagi dengan <InlineMath math="\frac43" />, sehingga sisa dan isi total tercampur.
+# Jawaban
+
+Masih ada <InlineMath math="74\text{ ml}" /> jus yang muat hingga gelas penuh.

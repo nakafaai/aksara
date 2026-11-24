@@ -1,35 +1,46 @@
-# Hitung dengan bilangan contoh
+# Diketahui
 
-Semua data berupa persentase, dan perubahan yang ditanyakan juga persentase. Karena itu kamu boleh memulai dengan bilangan yang mudah, misalnya <InlineMath math="100" /> anggota. Yang penting: kedua bagian itu mengacu ke **nilai awal yang berbeda**, <InlineMath math="20\,\%" /> ke jumlah anggota lama dan <InlineMath math="25\,\%" /> ke jumlah anggota baru.
+Pada sebuah **klub olahraga** (*Sportverein*), mula-mula <InlineMath math="20\,\%" /> anggota adalah remaja dan sisanya (<InlineMath math="80\,\%" />) adalah orang dewasa. Satu tahun kemudian, total anggota naik <InlineMath math="20\,\%" />, sedangkan proporsi remaja (*Anteil der Jugendlichen*) menjadi <InlineMath math="25\,\%" />.
 
-# Bilangan sebelum dan sesudah
+# Ditanyakan
+
+Tentukan perubahan persentase jumlah anggota dewasa selama satu tahun itu.
+
+# Penyelesaian
+
+Potongan kue yang proporsinya sedikit lebih kecil dari kue yang jauh lebih besar ternyata bisa lebih banyak! Proporsi dewasa memang turun dari <InlineMath math="80\,\%" /> menjadi <InlineMath math="75\,\%" />, tetapi **seluruh klub membesar seperlima**, sehingga kita tidak boleh langsung mengurangkan persennya.
+
+> Persentase bagian pada dua waktu berbeda mengacu pada total keseluruhan yang berbeda, jadi hitung jumlah mutlaknya lebih dulu dengan bilangan contoh seratus sebelum mencari persentase perubahan.
+
+Karena semua data berupa persentase, mulai saja dengan bilangan contoh <InlineMath math="100" /> anggota agar hitungan langsung transparan.
+
+## Membandingkan jumlah sebelum dan sesudah
+
+Hitung **jumlah anggota dewasa pada awal dan akhir tahun** dari basis <InlineMath math="100" /> anggota.
 
 <BlockMath math="\begin{aligned}
-\text{sebelum:}&\quad 100\ \text{anggota},\quad 20\ \text{remaja},\quad 80\ \text{dewasa} \\
-\text{sesudah:}&\quad 100\cdot1{,}2=120\ \text{anggota},\quad 0{,}25\cdot120=30\ \text{remaja},\quad 120-30=90\ \text{dewasa}
+\text{Sebelum: } &100 \text{ anggota} \implies 20 \text{ remaja dan } 80 \text{ dewasa} \\
+\text{Sesudah: } &100 \cdot 1{,}2 = 120 \text{ anggota} \implies 0{,}25 \cdot 120 = 30 \text{ remaja dan } 90 \text{ dewasa}
 \end{aligned}" />
 
+Lihat dua batang berskala sama di bawah ini untuk menyaksikan langsung bahwa blok dewasa justru memanjang.
+
 <MathVisual
-  title={<>Anggota sebelum dan sesudah</>}
-  description={<>Dua batang dengan skala yang sama. Atas: klub sebelumnya dengan <InlineMath math="100" /> anggota, yaitu <InlineMath math="20" /> remaja dan <InlineMath math="80" /> orang dewasa. Bawah: klub sesudahnya dengan <InlineMath math="120" /> anggota, yaitu <InlineMath math="30" /> remaja dan <InlineMath math="90" /> orang dewasa. Bagian orang dewasa di batang bawah lebih panjang daripada di batang atas.</>}
-  labels={{
-    before: <>sebelum: <InlineMath math="100" /></>,
-    after: <>sesudah: <InlineMath math="120" /></>,
-    y1: <><InlineMath math="20" /></>,
-    a1: <><InlineMath math="80" /></>,
-    y2: <><InlineMath math="30" /></>,
-    a2: <><InlineMath math="90" /></>,
-    young: <>remaja</>,
-    adult: <>dewasa</>,
-  }}
+  title={<>Perbandingan anggota sebelum dan sesudah</>}
+  description={
+    <>
+      Batang atas menunjukkan <InlineMath math="100" /> anggota mula-mula
+      (<InlineMath math="20" /> remaja dan <InlineMath math="80" /> dewasa).
+      Batang bawah menunjukkan <InlineMath math="120" /> anggota setahun
+      kemudian (<InlineMath math="30" /> remaja dan <InlineMath math="90" />{" "}
+      dewasa).
+    </>
+  }
+  footer={<>Meskipun porsi dewasa turun menjadi <InlineMath math="75\,\%" />, jumlahnya naik dari <InlineMath math="80" /> ke <InlineMath math="90" />.</>}
   scene={{
     space: "plane",
-    frame: {
-      kind: "cartesian",
-      x: { min: -1, max: 13 },
-      y: { min: -1.5, max: 5.5 },
-    },
-    view: { kind: "fit", padding: 0.1 },
+    frame: { kind: "cartesian", x: { min: -1, max: 13 }, y: { min: -1.5, max: 5.5 } },
+    view: { kind: "fit", padding: 0.08 },
     objects: [
       { id: "young-before", kind: "polygon", appearance: "highlight", vertices: [{ x: 0, y: 3 }, { x: 2, y: 3 }, { x: 2, y: 4 }, { x: 0, y: 4 }] },
       { id: "adult-before", kind: "polygon", appearance: "secondary", vertices: [{ x: 2, y: 3 }, { x: 10, y: 3 }, { x: 10, y: 4 }, { x: 2, y: 4 }] },
@@ -49,20 +60,34 @@ Semua data berupa persentase, dan perubahan yang ditanyakan juga persentase. Kar
       { key: "adult", objectId: "adult-after", at: { x: 7.5, y: 0 }, placement: "below" },
     ],
   }}
+  labels={{
+    before: <>sebelum <InlineMath math="100" /></>,
+    after: <>sesudah <InlineMath math="120" /></>,
+    y1: <><InlineMath math="20" /></>,
+    a1: <><InlineMath math="80" /></>,
+    y2: <><InlineMath math="30" /></>,
+    a2: <><InlineMath math="90" /></>,
+    young: <>remaja</>,
+    adult: <>dewasa</>,
+  }}
 />
 
-# Ukur perubahan terhadap nilai lama
+Blok dewasa jelas memanjang dari <InlineMath math="80" /> menjadi <InlineMath math="90" /> orang, jadi jumlah anggota dewasa meningkat.
 
-Jumlah orang dewasa naik dari <InlineMath math="80" /> menjadi <InlineMath math="90" />. Perubahan persentase selalu diukur **terhadap nilai awal**:
+## Mengukur persentase perubahan dan mengecek pilihan salah
 
-<BlockMath math="\frac{90-80}{80}=\frac{10}{80}=0{,}125=12{,}5\,\%" />
+Persentase perubahan selalu dibagi **nilai awal anggota dewasa**, yaitu <InlineMath math="80" />.
 
-Meskipun bagian orang dewasa turun dari <InlineMath math="80\,\%" /> menjadi <InlineMath math="75\,\%" />, jumlah mereka naik <InlineMath math="12{,}5\,\%" />.
+<BlockMath math="\frac{90 - 80}{80} = \frac{10}{80} = 0{,}125 = 12{,}5\,\%" />
 
-# Mengapa pilihan lain salah
+Cek aljabar tanpa bilangan contoh: faktor pertumbuhan dewasa adalah hasil bagi <InlineMath math="0{,}75 \cdot 1{,}2" /> dengan <InlineMath math="0{,}8" />, yaitu <InlineMath math="1{,}125" />, cocok untuk ukuran klub berapa pun.
 
-- "turun <InlineMath math="5\,\%" />" membaca perubahan bagian dari <InlineMath math="80\,\%" /> ke <InlineMath math="75\,\%" /> sebagai perubahan jumlah. Itu **<InlineMath math="5" /> poin persentase dari nilai awal yang lain**.
-- "turun <InlineMath math="6{,}25\,\%" />" membandingkan bagiannya, <InlineMath math="\frac{75}{80}=0{,}9375" />, jadi lagi-lagi bagian, bukan jumlah.
-- "naik <InlineMath math="20\,\%" />" menerapkan pertumbuhan seluruh klub pada orang dewasa.
-- "turun <InlineMath math="12{,}5\,\%" />" angkanya benar, tetapi arahnya salah: <InlineMath math="90" /> lebih besar daripada <InlineMath math="80" />.
-- "naik <InlineMath math="50\,\%" />" adalah perubahan jumlah remaja, dari <InlineMath math="20" /> menjadi <InlineMath math="30" />.
+- Turun <InlineMath math="5\,\%" /> langsung mengurangkan <InlineMath math="80\,\%" /> dengan <InlineMath math="75\,\%" />, padahal keduanya memakai basis total berbeda.
+- Turun <InlineMath math="6{,}25\,\%" /> membandingkan proporsi <InlineMath math="75" /> terhadap <InlineMath math="80" />, bukan membandingkan jumlah orang.
+- Naik <InlineMath math="20\,\%" /> menganggap kelompok dewasa tumbuh secepat seluruh klub.
+- Turun <InlineMath math="12{,}5\,\%" /> besarnya benar, tetapi arahnya terbalik karena <InlineMath math="90" /> lebih besar daripada <InlineMath math="80" />.
+- Naik <InlineMath math="50\,\%" /> adalah laju kenaikan jumlah remaja dari <InlineMath math="20" /> menjadi <InlineMath math="30" />.
+
+# Jawaban
+
+Jumlah anggota dewasa naik sebesar <InlineMath math="12{,}5\,\%" />.

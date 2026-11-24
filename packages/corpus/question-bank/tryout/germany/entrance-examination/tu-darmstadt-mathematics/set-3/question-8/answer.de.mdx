@@ -1,38 +1,50 @@
-# Erst prüfen, ob der Würfel untergeht
+# Gegeben
 
-Die Wassermenge bleibt gleich, sie verteilt sich nur neu. Entscheidend ist, ob der Würfel am Ende ganz unter Wasser steht. Nimm zunächst an, dass das Wasser **unter der Oberkante des Würfels** bleibt, also <InlineMath math="h\le20\text{ cm}" />. Dann steht das Wasser nur auf der freien Grundfläche neben dem Würfel:
+Ein oben offenes, **quaderförmiges Becken** hat eine innere Grundfläche von <InlineMath math="40\text{ cm}" /> mal <InlineMath math="30\text{ cm}" /> und ist <InlineMath math="10\text{ cm}" /> hoch mit Wasser gefüllt. Ein massiver Würfel mit der Kantenlänge <InlineMath math="20\text{ cm}" /> wird auf den Boden gestellt, ohne dass Wasser überläuft.
 
-<BlockMath math="40\cdot30-20\cdot20=1200-400=800\text{ cm}^2" />
+# Gesucht
 
-# Die Wassermenge gleichsetzen
+Die neue Wasserhöhe <InlineMath math="h" /> im Becken.
 
-Das Wasservolumen ist <InlineMath math="1200\cdot10=12{.}000\text{ cm}^3" />. Es füllt jetzt die freie Fläche bis zur Höhe <InlineMath math="h" />:
+# Lösung
 
-<BlockMath math="800\,h=12{.}000\quad\Longrightarrow\quad h=15\text{ cm}" />
+Stell dir einen dicken Klotz in einer flachen Wanne vor: Solange das Wasser nicht über die Oberkante des Klotzes reicht, wirkt er wie eine massive Säule, die **einen Teil der Bodenfläche beansprucht**. Die Wassermenge bleibt gleich, muss sich aber auf dem verbleibenden freien Boden verteilen und steigt dadurch an.
 
-**Die Annahme stimmt**, denn <InlineMath math="15\text{ cm}<20\text{ cm}" />. Der Würfel ragt also noch <InlineMath math="5\text{ cm}" /> aus dem Wasser.
+> Prüfe bei einem Körper am Beckenboden zuerst, ob das Wasser unter seiner Oberkante bleibt, sodass als wirksame Grundfläche einfach die freie Fläche neben dem Körper zählt.
+
+Berechne das unveränderte Wasservolumen und die freie Bodenfläche neben dem Würfel.
+
+<BlockMath math="\begin{aligned}
+V_{\text{Wasser}} &= 40 \cdot 30 \cdot 10 = 12{.}000\text{ cm}^3 \\
+A_{\text{frei}} &= 40 \cdot 30 - 20 \cdot 20 = 1200 - 400 = 800\text{ cm}^2
+\end{aligned}" />
+
+## Neue Wasserhöhe berechnen und Annahme prüfen
+
+Nimm an, das Wasser bleibt unter der Würfeloberkante (<InlineMath math="h \le 20\text{ cm}" />), und teile das Wasservolumen durch **die freie Grundfläche neben dem Würfel**.
+
+<BlockMath math="800\, h = 12{.}000 \implies h = 15\text{ cm}" />
+
+Da <InlineMath math="15\text{ cm} < 20\text{ cm}" /> gilt, stimmt unsere Annahme und der Würfel ragt noch <InlineMath math="5\text{ cm}" /> aus dem Wasser.
 
 <MathVisual
-  title={<>Becken von vorn gesehen</>}
-  description={<>Vorderansicht des Beckens, <InlineMath math="40\text{ cm}" /> breit. Links steht der Würfel mit der Kantenlänge <InlineMath math="20\text{ cm}" />. Rechts daneben steht das Wasser jetzt <InlineMath math="15\text{ cm}" /> hoch, also niedriger als die Würfelkante. Die alte Wasserhöhe von <InlineMath math="10\text{ cm}" /> ist als Linie eingezeichnet.</>}
-  labels={{
-    cube: <>Würfel</>,
-    h: <><InlineMath math="15\text{ cm}" /></>,
-    old: <>vorher <InlineMath math="10\text{ cm}" /></>,
-    edge: <><InlineMath math="20\text{ cm}" /></>,
-    water: <>Wasser</>,
-  }}
+  title={<>Vorderansicht des Beckens vor und nach dem Einsetzen</>}
+  description={
+    <>
+      In dem <InlineMath math="40\text{ cm}" /> breiten Becken steht links der
+      Würfel mit <InlineMath math="20\text{ cm}" /> Kantenlänge. Daneben steigt
+      das Wasser von der alten Linie <InlineMath math="10\text{ cm}" /> auf{" "}
+      <InlineMath math="15\text{ cm}" />, also unterhalb der Würfeloberkante.
+    </>
+  }
+  footer={<>Das Wasser steigt auf <InlineMath math="15\text{ cm}" />, sodass <InlineMath math="5\text{ cm}" /> des Würfels herausschauen.</>}
   scene={{
     space: "plane",
-    frame: {
-      kind: "cartesian",
-      x: { min: -8, max: 52 },
-      y: { min: -3, max: 28 },
-    },
-    view: { kind: "fit", padding: 0.1 },
+    frame: { kind: "cartesian", x: { min: -8, max: 52 }, y: { min: -3, max: 28 } },
+    view: { kind: "fit", padding: 0.08 },
     objects: [
       { id: "tank", kind: "polygon", appearance: "construction", vertices: [{ x: 0, y: 0 }, { x: 40, y: 0 }, { x: 40, y: 25 }, { x: 0, y: 25 }] },
-      { id: "water-left", kind: "polygon", appearance: "highlight", vertices: [{ x: 20, y: 0 }, { x: 40, y: 0 }, { x: 40, y: 15 }, { x: 20, y: 15 }] },
+      { id: "water-right", kind: "polygon", appearance: "highlight", vertices: [{ x: 20, y: 0 }, { x: 40, y: 0 }, { x: 40, y: 15 }, { x: 20, y: 15 }] },
       { id: "block", kind: "polygon", appearance: "primary", vertices: [{ x: 0, y: 0 }, { x: 20, y: 0 }, { x: 20, y: 20 }, { x: 0, y: 20 }] },
       { id: "old-level", kind: "segment", appearance: "reference", from: { x: 20, y: 10 }, to: { x: 40, y: 10 } },
       { id: "new-level", kind: "segment", appearance: "answer", from: { x: 20, y: 15 }, to: { x: 40, y: 15 } },
@@ -42,17 +54,30 @@ Das Wasservolumen ist <InlineMath math="1200\cdot10=12{.}000\text{ cm}^3" />. Es
       { key: "edge", objectId: "block", at: { x: 0, y: 10 }, placement: "left" },
       { key: "h", objectId: "new-level", at: { x: 40, y: 15 }, placement: "right" },
       { key: "old", objectId: "old-level", at: { x: 40, y: 10 }, placement: "right" },
-      { key: "water", objectId: "water-left", at: { x: 30, y: 5 }, placement: "above" },
+      { key: "water", objectId: "water-right", at: { x: 30, y: 5 }, placement: "above" },
     ],
+  }}
+  labels={{
+    cube: <>Würfel</>,
+    edge: <><InlineMath math="20\text{ cm}" /></>,
+    h: <><InlineMath math="15\text{ cm}" /></>,
+    old: <>vorher <InlineMath math="10\text{ cm}" /></>,
+    water: <>Wasser</>,
   }}
 />
 
-Das Wasser steht danach <InlineMath math="15\text{ cm}" /> hoch.
+Die Skizze bestätigt direkt, dass der Würfel nicht vollständig untertaucht.
 
-# Warum die anderen Antworten falsch sind
+## Verdrängungsprobe und falsche Antworten prüfen
 
-- <InlineMath math="\frac{50}{3}\text{ cm}" /> rechnet so, als wäre der ganze Würfel mit <InlineMath math="8{.}000\text{ cm}^3" /> unter Wasser: <InlineMath math="\frac{12{.}000+8{.}000}{1200}" />. Dann müsste das Wasser aber mindestens <InlineMath math="20\text{ cm}" /> hoch stehen, und <InlineMath math="\frac{50}{3}<20" /> widerspricht dem.
-- <InlineMath math="\frac{40}{3}\text{ cm}" /> zählt nur den Teil des Würfels, der anfangs im Wasser war: <InlineMath math="\frac{12{.}000+400\cdot10}{1200}" />. Beim Steigen **taucht der Würfel aber weiter ein**.
-- <InlineMath math="20\text{ cm}" /> nimmt an, dass das Wasser genau bis zur Oberkante des Würfels steigt.
-- <InlineMath math="7{,}5\text{ cm}" /> addiert die Würfelfläche zur Grundfläche, statt sie abzuziehen: <InlineMath math="\frac{12{.}000}{1600}" />.
-- <InlineMath math="\frac{31}{3}\text{ cm}" /> verwendet <InlineMath math="20^2=400" /> als Volumen des Würfels statt <InlineMath math="20^3" />.
+Gegenprobe über die Verdrängung: Der <InlineMath math="15\text{ cm}" /> tief eintauchende Teil verdrängt <InlineMath math="6{.}000\text{ cm}^3" />, was zusammen mit dem Wasser **ein gefülltes Volumen von <InlineMath math="18{.}000\text{ cm}^3" />** ergibt, genau wie <InlineMath math="1200 \cdot 15" />.
+
+- <InlineMath math="\frac{50}{3}\text{ cm}" /> nimmt an, der ganze Würfel (<InlineMath math="8{.}000\text{ cm}^3" />) sei untergetaucht, doch das Ergebnis liegt unter <InlineMath math="20\text{ cm}" /> und widerspricht dieser Annahme.
+- <InlineMath math="\frac{40}{3}\text{ cm}" /> berücksichtigt nur den anfangs bis <InlineMath math="10\text{ cm}" /> eingetauchten Würfelteil und vergisst, dass steigendes Wasser mehr vom Würfel umschließt.
+- <InlineMath math="20\text{ cm}" /> rät, dass das Wasser genau bis zur Oberkante des Würfels steigt.
+- <InlineMath math="7{,}5\text{ cm}" /> addiert die Würfelgrundfläche zur Beckenfläche (<InlineMath math="1600\text{ cm}^2" />), statt sie abzuziehen.
+- <InlineMath math="\frac{31}{3}\text{ cm}" /> nutzt die Grundfläche <InlineMath math="400" /> statt des Würfelvolumens mit der dritten Potenz.
+
+# Antwort
+
+Das Wasser steht danach <InlineMath math="15\text{ cm}" /> hoch im Becken.

@@ -1,49 +1,54 @@
-# Fix the domain first
+# Given
 
-A logarithm is only defined for positive numbers. The equation contains <InlineMath math="\log_2 x" /> and <InlineMath math="\log_2(x+3)" />, so you need:
+We are given a base-two **logarithmic equation** (*Logarithmusgleichung*) over the real numbers.
 
-<BlockMath math="x>0\quad\text{and}\quad x+3>0\qquad\Rightarrow\qquad x>0" />
+<BlockMath math="2\log_2 x - \log_2(x + 3) = 2" />
 
-This condition belongs to the **original** equation. Later you may keep only numbers with <InlineMath math="x>0" /> as solutions.
+# Asked
 
-# Combine the logarithms
+Find the real solution set (*Lösungsmenge*) <InlineMath math="\mathbb{L}" /> of this equation.
 
-With <InlineMath math="2\log_2 x=\log_2 x^2" /> and <InlineMath math="\log_2 u-\log_2 v=\log_2\frac uv" /> the left side becomes **a single logarithm**. Then use the definition <InlineMath math="\log_2 w=2\iff w=2^2=4" />:
+# Solution
+
+Squaring a number quietly erases its minus sign. The moment you lift the factor <InlineMath math="2" /> into the exponent to write <InlineMath math="\log_2(x^2)" />, negative values of <InlineMath math="x" /> sneak past the gate even though **the original equation requires every logarithm input to be positive**.
+
+> Always lock in the domain from the original logarithmic equation before applying log laws, because squaring inside a logarithm widens the domain and can introduce fake roots.
+
+From <InlineMath math="\log_2 x" /> and <InlineMath math="\log_2(x + 3)" />, requiring both <InlineMath math="x > 0" /> and <InlineMath math="x + 3 > 0" /> reduces to <InlineMath math="x > 0" />.
+
+## Combining the logarithms and solving for candidates
+
+Use the power and quotient laws to collapse the left side into **one single logarithm**, then convert to exponential form.
 
 <BlockMath math="\begin{aligned}
-\log_2\frac{x^2}{x+3}&=2 \\
-\frac{x^2}{x+3}&=4 \\
-x^2-4x-12&=0 \\
-(x-6)(x+2)&=0
+\log_2\left(\frac{x^2}{x + 3}\right) &= 2 \\
+\frac{x^2}{x + 3} &= 2^2 = 4 \\
+x^2 - 4x - 12 &= 0 \\
+(x - 6)(x + 2) &= 0
 \end{aligned}" />
 
-The quadratic equation has the solutions <InlineMath math="x=6" /> and <InlineMath math="x=-2" />.
-
-# Check the candidates
-
-The rewritten expression <InlineMath math="\log_2\frac{x^2}{x+3}" /> is also defined at <InlineMath math="x=-2" />, but the original left side isn't, because <InlineMath math="\log_2(-2)" /> doesn't exist. So the step <InlineMath math="2\log_2 x=\log_2 x^2" /> **made the domain larger**:
+This produces two candidates, <InlineMath math="x = 6" /> and <InlineMath math="x = -2" />. Watch on the graph how the rewritten expression invents a phantom crossing on the negative side.
 
 <MathVisual
-  title={<>Left side and the value <InlineMath math="2" /></>}
-  description={<>The graph of the left side <InlineMath math="2\log_2 x-\log_2(x+3)" /> exists only for <InlineMath math="x>0" /> and meets the horizontal line <InlineMath math="y=2" /> exactly at <InlineMath math="x=6" />. Dashed is the graph of the rewritten expression <InlineMath math="\log_2\frac{x^2}{x+3}" /> for negative <InlineMath math="x" />. It meets the line at <InlineMath math="x=-2" />, where the original equation isn't defined.</>}
-  labels={{
-    key: <><InlineMath math="x=6" /></>,
-    fake: <><InlineMath math="x=-2" /></>,
-    h: <>left side</>,
-    g: <>rewritten only</>,
-  }}
+  title={<>Original left side versus rewritten form at <InlineMath math="y = 2" /></>}
+  description={
+    <>
+      The solid curve <InlineMath math="2\log_2 x - \log_2(x + 3)" /> exists
+      only for <InlineMath math="x > 0" /> and hits <InlineMath math="y = 2" />{" "}
+      at <InlineMath math="x = 6" />. The dashed branch of the rewritten form
+      appears for negative <InlineMath math="x" /> and crosses at the extraneous
+      root <InlineMath math="x = -2" />.
+    </>
+  }
+  footer={<>Only <InlineMath math="x = 6" /> lies on the original curve, while <InlineMath math="x = -2" /> is rejected.</>}
   scene={{
     space: "plane",
-    frame: {
-      kind: "cartesian",
-      x: { min: -3.5, max: 10 },
-      y: { min: -4, max: 4.5 },
-    },
-    view: { kind: "fit", padding: 0.1 },
+    frame: { kind: "cartesian", x: { min: -3.5, max: 10 }, y: { min: -4, max: 4.5 } },
+    view: { kind: "fit", padding: 0.08 },
     objects: [
       { id: "level", kind: "segment", appearance: "reference", from: { x: -3.5, y: 2 }, to: { x: 10, y: 2 } },
-      { id: "left-side", kind: "function", appearance: "primary", formula: "2*log_2(x) - log_2(x+3)", domain: { min: 0.5, max: 10 } },
-      { id: "rewritten", kind: "function", appearance: "construction", formula: "log_2(x^2/(x+3))", domain: { min: -2.6, max: -0.5 } },
+      { id: "left-side", kind: "function", appearance: "primary", formula: "2 * log_2(x) - log_2(x + 3)", domain: { min: 0.5, max: 10 } },
+      { id: "rewritten", kind: "function", appearance: "construction", formula: "log_2(x^2 / (x + 3))", domain: { min: -2.6, max: -0.5 } },
       { id: "solution", kind: "point", appearance: "answer", at: { x: 6, y: 2 } },
       { id: "extra", kind: "point", appearance: "highlight", at: { x: -2, y: 2 } },
     ],
@@ -54,16 +59,30 @@ The rewritten expression <InlineMath math="\log_2\frac{x^2}{x+3}" /> is also def
       { key: "g", objectId: "rewritten", at: { x: -1.2, y: -1.5 }, placement: "right" },
     ],
   }}
+  labels={{
+    key: <><InlineMath math="x = 6" /></>,
+    fake: <><InlineMath math="x = -2" /></>,
+    h: <>original side</>,
+    g: <>rewritten branch</>,
+  }}
 />
 
-Check <InlineMath math="x=6" />: <InlineMath math="2\log_2 6-\log_2 9=\log_2 36-\log_2 9=\log_2 4=2" />. The equation holds.
+Point <InlineMath math="x = -2" /> never appears on the original curve because <InlineMath math="\log_2(-2)" /> is undefined.
 
-The solution set is <InlineMath math="\mathbb{L}=\{6\}" />.
+## Checking the solution and wrong choices
 
-# Why the other answers are wrong
+Substitute <InlineMath math="x = 6" /> into **the original logarithmic equation** to confirm that it equals two.
 
-- <InlineMath math="\mathbb{L}=\{-2;\,6\}" /> keeps <InlineMath math="x=-2" />. There **<InlineMath math="\log_2 x" /> isn't defined**, even though the rewritten equation holds.
-- <InlineMath math="\mathbb{L}=\{-2\}" /> throws away the real solution and keeps the false one.
-- <InlineMath math="\mathbb{L}=\{\}" /> comes from reading <InlineMath math="2\log_2 x" /> as <InlineMath math="\log_2(2x)" />. Then <InlineMath math="\frac{2x}{x+3}=4" /> gives <InlineMath math="x=-6" />, which drops out.
-- <InlineMath math="\mathbb{L}=\left\{\frac{1+\sqrt{29}}{2}\right\}" /> comes from turning the difference of logarithms into the logarithm of a difference: <InlineMath math="\log_2\left(x^2-(x+3)\right)=2" />.
-- <InlineMath math="\mathbb{L}=\{1+\sqrt7\}" /> comes from concluding <InlineMath math="w=2" /> instead of <InlineMath math="w=4" /> from <InlineMath math="\log_2 w=2" />.
+<BlockMath math="2\log_2 6 - \log_2 9 = \log_2 36 - \log_2 9 = \log_2 4 = 2" />
+
+| Option | Why it is wrong |
+| :--- | :--- |
+| <InlineMath math="\mathbb{L} = \{-2;\, 6\}" /> | Keeps <InlineMath math="x = -2" />, where <InlineMath math="\log_2(-2)" /> does not exist. |
+| <InlineMath math="\mathbb{L} = \{-2\}" /> | Throws away the valid root and keeps only the extraneous one. |
+| <InlineMath math="\mathbb{L} = \{\}" /> | Misreads <InlineMath math="2\log_2 x" /> as <InlineMath math="\log_2(2x)" />, giving <InlineMath math="x = -6" /> which drops out. |
+| <InlineMath math="\mathbb{L} = \left\{\frac{1 + \sqrt{29}}{2}\right\}" /> | Turns a difference of logs into the log of a difference <InlineMath math="x^2 - (x + 3)" />. |
+| <InlineMath math="\mathbb{L} = \{1 + \sqrt{7}\}" /> | Sets the ratio equal to <InlineMath math="2" /> instead of <InlineMath math="2^2 = 4" />. |
+
+# Answer
+
+The solution set is <InlineMath math="\mathbb{L} = \{6\}" />.
