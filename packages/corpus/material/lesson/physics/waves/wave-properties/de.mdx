@@ -1,34 +1,29 @@
 export const metadata = {
   title: "Wellen Resonanz und Interferenz",
   description:
-    "Nutze v = fλ, erkläre Dämpfung und Resonanz, Reflexion, Brechung, Beugung, Interferenz und das elektromagnetische Spektrum, mit Übungen und Lösungen.",
+    "Nutze die Wellengleichung, prüfe Dämpfung, Resonanz, fahrendes Echo, Brechung in der Wellenwanne und Interferenz von Licht sowie Schall.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-11-16",
   subject: "Wellen",
 };
 
-## Wellen übertragen Energie
+## Wellengeschwindigkeit
 
-Eine **Welle** ist eine Störung, die Energie von einem Ort zum anderen trägt, ohne Materie mitzunehmen. Die Ausbreitungsgeschwindigkeit hängt von Frequenz und Wellenlänge ab:
+Eine **Welle** trägt Energie weiter, ohne Materie mitzunehmen: Denk an eine Boje, die nur auf und ab schaukelt. Ausbreitungsgeschwindigkeit, Frequenz und Wellenlänge hängen fest zusammen:
 
-<BlockMath math="v = f\lambda" />
+<BlockMath math="v = f\lambda, \qquad f = \frac{1}{T}" />
 
-Dabei ist <InlineMath math="v" /> die Geschwindigkeit in <InlineMath math="\text{m/s}" />, <InlineMath math="f" /> die Frequenz in Hertz und <InlineMath math="\lambda" /> die Wellenlänge in Metern. Frequenz und Periodendauer hängen über <InlineMath math="f = 1/T" /> zusammen. In den Modellen hier setzt du eine Welle in Bewegung, dämpfst eine Schwingung, findest die Resonanz und erzeugst ein Interferenzmuster.
-
-Es gibt zwei Arten von Wellen. Bei einer **Transversalwelle** schwingen die Teilchen des Mediums senkrecht zur Ausbreitungsrichtung, wie bei Wasserwellen und Licht. Bei einer **Longitudinalwelle** schwingen sie parallel zur Ausbreitungsrichtung, wie bei Schallwellen, die Verdichtungen und Verdünnungen bilden.
-
-## Kenngrößen einer laufenden Welle
-
-Die Welle unten ist <InlineMath math="y = a\sin\!\big(2\pi(x/\lambda - fs)\big)" />, mit <InlineMath math="s" /> als Zeit in Sekunden. Die **Amplitude** <InlineMath math="a" /> ist die größte Auslenkung aus der Ruhelage. Die **Wellenlänge** <InlineMath math="\lambda" /> ist der Abstand zweier benachbarter Wellenberge. Beweg den Zeitregler und sieh zu, wie ein Wellenberg pro Sekunde um <InlineMath math="f\lambda" /> weiterwandert.
+Bei **Transversalwellen** wie Licht schwingen Teilchen quer zur Laufrichtung, bei **Longitudinalwellen** wie Schall längs dazu. Miss die **Wellenlänge** <InlineMath math="\lambda" /> stets von Berg zu Berg, nie von Berg zu Tal.
 
 <MathVisual
   title={<>Eine laufende Transversalwelle</>}
+  footer={<>Pro Sekunde wandert ein Wellenberg um Frequenz mal Wellenlänge weiter.</>}
   description={
     <>
       Ändere Amplitude <InlineMath math="a" />, Wellenlänge{" "}
-      <InlineMath math="\lambda" /> und Frequenz <InlineMath math="f" /> und
-      verschieb dann die Zeit <InlineMath math="s" />. Die Geschwindigkeit
-      steht unten als <InlineMath math="f\lambda" />.
+      <InlineMath math="\lambda" /> und Frequenz <InlineMath math="f" />, dann
+      verschieb die Zeit <InlineMath math="s" />. Die Geschwindigkeit erscheint
+      als <InlineMath math="f\lambda" />.
     </>
   }
   scene={{
@@ -60,36 +55,20 @@ Die Welle unten ist <InlineMath math="y = a\sin\!\big(2\pi(x/\lambda - fs)\big)"
   }}
 />
 
-### Beispiel Geschwindigkeit einer Wasserwelle
-
-Eine Wasserwelle in einer Wellenwanne hat die Frequenz <InlineMath math="5\ \text{Hz}" />, und der Abstand **zweier benachbarter Wellenberge** beträgt <InlineMath math="3\ \text{cm}" />. Berechne die Ausbreitungsgeschwindigkeit.
-
-<BlockMath math="v = f\lambda = (5)(0{,}03) = 0{,}15\ \text{m/s}" />
-
-Probe: In <InlineMath math="1" /> Sekunde ziehen fünf Wellenberge an einem Punkt vorbei, jeder <InlineMath math="3\ \text{cm}" /> hinter dem vorigen, also wandert die Welle <InlineMath math="15\ \text{cm}" />.
-
-### Beispiel Periodendauer aus der Frequenz
-
-Eine Schallwelle mit <InlineMath math="440\ \text{Hz}" /> breitet sich in Luft mit <InlineMath math="330\ \text{m/s}" /> aus. Bestimme ihre **Periodendauer** und Wellenlänge.
-
-<MathContainer>
-<BlockMath math="T = \frac{1}{f} = \frac{1}{440} = 2{,}27 \cdot 10^{-3}\ \text{s}" />
-<BlockMath math="\lambda = \frac{v}{f} = \frac{330}{440} = 0{,}75\ \text{m}" />
-</MathContainer>
-
-Probe: <InlineMath math="f\lambda = 440 \cdot 0{,}75 = 330\ \text{m/s}" />.
+Eine <InlineMath math="5\ \text{Hz}" />-Wasserwelle mit <InlineMath math="3\ \text{cm}" /> Bergabstand läuft mit <InlineMath math="0{,}15\ \text{m/s}" />, und ein <InlineMath math="440\ \text{Hz}" />-Ton bei <InlineMath math="330\ \text{m/s}" /> hat <InlineMath math="0{,}75\ \text{m}" /> Wellenlänge.
 
 ## Dämpfung und Resonanz
 
-**Dämpfung** ist die Abnahme der Amplitude einer Schwingung, weil Energie an die Umgebung verloren geht, etwa durch Reibung und Luftwiderstand. Die Frequenz bleibt gleich, aber die Amplitude schrumpft. Beweg den Dämpfungsregler und sieh, wie die Hüllkurve schneller abfällt.
+**Dämpfung** verkleinert die Amplitude durch Energieverlust über Reibung, doch **die Frequenz bleibt gleich**. Beweg den Regler unten, damit die Hüllkurve steiler abfällt.
 
 <MathVisual
   title={<>Eine gedämpfte Schwingung</>}
+  footer={<>Dämpfung verkleinert die Hüllkurve, ohne die Schwingungsfrequenz zu ändern.</>}
   description={
     <>
-      Auslenkung <InlineMath math="y = 2e^{-bx}\cos(2\pi x)" /> gegen die Zeit{" "}
+      Auslenkung <InlineMath math="y = 2e^{-bx}\cos(2\pi x)" /> gegen Zeit{" "}
       <InlineMath math="x" /> in Sekunden. Die Dämpfungskonstante{" "}
-      <InlineMath math="b" /> bestimmt, wie schnell die Amplitude abnimmt.
+      <InlineMath math="b" /> steuert den Abfall der Amplitude.
     </>
   }
   scene={{
@@ -114,15 +93,16 @@ Probe: <InlineMath math="f\lambda = 440 \cdot 0{,}75 = 330\ \text{m/s}" />.
   }}
 />
 
-Jedes schwingungsfähige System hat eine **Eigenfrequenz**. **Resonanz** tritt auf, wenn eine äußere Kraft das System mit seiner Eigenfrequenz anregt. Dann nimmt es Energie am wirksamsten auf, und die Amplitude wird maximal. Die Kurve unten zeigt die Amplitude gegen das Verhältnis von Erregerfrequenz zu Eigenfrequenz.
+**Resonanz** tritt ein, wenn eine äußere Kraft exakt mit der **Eigenfrequenz** anregt und bei <InlineMath math="r = 1" /> einen spitzen Gipfel erzeugt.
 
 <MathVisual
   title={<>Die Resonanzkurve</>}
+  footer={<>Stimmt die Erregerfrequenz mit der Eigenfrequenz überein, entsteht der Gipfel.</>}
   description={
     <>
-      Relative Amplitude gegen das Frequenzverhältnis{" "}
-      <InlineMath math="r = f / f_0" />. Ein kleiner Dämpfungsgrad{" "}
-      <InlineMath math="\zeta" /> ergibt einen hohen, spitzen Gipfel bei{" "}
+      Relative Amplitude gegen Frequenzverhältnis{" "}
+      <InlineMath math="r = f / f_0" />. Kleine Dämpfung{" "}
+      <InlineMath math="\zeta" /> erzeugt einen hohen Gipfel bei{" "}
       <InlineMath math="r = 1" />.
     </>
   }
@@ -147,53 +127,86 @@ Jedes schwingungsfähige System hat eine **Eigenfrequenz**. **Resonanz** tritt a
   }}
 />
 
-Die Barton-Pendel zeigen dieselbe Idee: Das Pendel, das genauso lang ist wie das Erregerpendel, schwingt mit der größten Amplitude. Die Periodendauer eines Fadenpendels hängt nur von seiner Länge ab, nicht von der Masse des Pendelkörpers. Vergleich die drei Körper im Modell.
+Bei den Barton-Pendeln schwingt das gleich lange Pendel am stärksten mit, weil **die Periodendauer nur von der Fadenlänge abhängt**, nicht von der Masse.
 
-<PendulumPeriodLab
-  title={<>Periodendauer dreier gleich langer Pendel</>}
+## Reflexion und Brechung
+
+Trifft eine Welle auf ein Hindernis oder neues Medium, **bleibt ihre Frequenz unverändert**, weil die Quelle sie vorgibt. Reflexion kehrt die Richtung um, Brechung ändert Tempo und Wellenlänge gemeinsam, und Beugung krümmt Wellenfronten hinter engen Spalten.
+
+Stell dir ein Boot vor, das hupt und weiter auf eine Felswand zufährt. Während der Schall hin und zurück läuft, gleitet das Boot vorwärts, sodass **das Echo das Boot näher an der Wand erreicht**.
+
+> Bewegt sich eine Schallquelle auf eine reflektierende Wand zu, ergeben Schallweg und Bootsweg zusammen genau den doppelten Anfangsabstand.
+
+Bei <InlineMath math="10\ \text{m/s}" /> Bootsfahrt, <InlineMath math="340\ \text{m/s}" /> Schallgeschwindigkeit und <InlineMath math="4{,}0\ \text{s}" /> Echozeit gilt:
+
+<BlockMath math="2d = (340 + 10)(4{,}0) = 1400\ \text{m} \quad \Longrightarrow \quad d = 700\ \text{m}" />
+
+<EchoLab
+  title={<>Echo von einem fahrenden Boot</>}
   description={
     <>
-      Ein Holz-, ein Messing- und ein Bleikörper hängen an gleich langen
-      Fäden. Alle drei haben dieselbe Eigenfrequenz.
+      Das Boot fährt mit <InlineMath math="10\ \text{m/s}" /> auf die Felswand
+      zu und hört das Echo <InlineMath math="4{,}0\ \text{s}" /> nach dem
+      Hornsignal.
     </>
   }
+  footer={<>Schallweg hin und zurück plus Bootsweg decken den doppelten Startabstand ab.</>}
   labels={{
-    check: <>Probe mit der Formel</>,
-    gravity: <>Fallbeschleunigung</>,
-    length: "Fadenlänge",
-    masses: <>Massen der Pendelkörper</>,
-    period: <>Periodendauer</>,
-    viewLabel: "Drei Pendel schwingen gemeinsam",
+    back: <>Echo läuft zurück</>,
+    boat: <>Boot fährt weiter</>,
+    out: <>Schall zur Wand</>,
+    start: <>Anfangsabstand</>,
+    viewLabel: "Ein Boot gibt vor einer Felswand ein Hornsignal",
   }}
+  boatSpeed={10}
+  echoTime={4}
+  soundSpeed={340}
 />
 
-## Wellen an Hindernissen und neuen Medien
+Teilst du nur den Schallweg durch zwei, landest du bei der typischen Falle <InlineMath math="680\ \text{m}" />, weil die <InlineMath math="40\ \text{m}" /> Bootsfahrt fehlen.
 
-Wellen verändern sich, wenn sie auf ein Hindernis oder ein neues Medium treffen. Die Tabelle vergleicht die drei Erscheinungen danach, was sich ändert und was gleich bleibt:
+Wie Marschierende, die schräg von Asphalt in Matsch treten, bremst die zuerst im Flachen ankommende Wellenseite ab und schwenkt die Front **zum Lot hin**, ohne die Frequenz zu ändern.
 
-| Erscheinung | Tritt auf, wenn | Bleibt gleich | Ändert sich |
-| :--- | :--- | :--- | :--- |
-| Reflexion | Eine Welle trifft auf ein Hindernis und wird zurückgeworfen | Frequenz, Wellenlänge, Geschwindigkeit | Richtung |
-| Brechung | Eine Welle tritt in ein Medium mit anderer Geschwindigkeit ein | Frequenz | Geschwindigkeit, Wellenlänge, Richtung |
-| Beugung | Eine Welle läuft durch einen Spalt oder um eine Kante | Frequenz, Wellenlänge, Geschwindigkeit | Form der Wellenfront |
+> Tritt eine Wasserwelle von tiefem in flaches Wasser ein, hält die Quelle die Frequenz fest, weshalb Geschwindigkeit und Wellenlänge gemeinsam sinken.
 
-Bei der Reflexion gilt: **Einfallswinkel gleich Reflexionswinkel**. Wasserwellen werden im flachen Wasser langsamer, also schrumpft ihre Wellenlänge und sie knicken zum Lot hin ab. Beugung ist am stärksten, wenn der Spalt etwa so breit ist wie die Wellenlänge. Deshalb hörst du jemanden hinter einer offenen Tür sprechen: Die Wellenlänge des Schalls liegt nahe an der Türbreite.
+<RippleTankLab
+  title={<>Wasserwellen beim Übergang in flaches Wasser</>}
+  description={
+    <>
+      Wellen mit <InlineMath math="2{,}0\ \text{cm}" /> Wellenlänge laufen im
+      tiefen Wasser mit <InlineMath math="20\ \text{cm/s}" /> und im flachen mit{" "}
+      <InlineMath math="12\ \text{cm/s}" />.
+    </>
+  }
+  footer={<>Die Frequenz bleibt 10 Hz, während die Wellenlänge auf 1,2 cm schrumpft.</>}
+  labels={{
+    frequency: <>Frequenz</>,
+    incidence: <>Einfallswinkel <InlineMath math="i" /></>,
+    incidenceName: "Einfallswinkel",
+    refraction: <>Brechungswinkel</>,
+    viewLabel: "Eine Wellenwanne von oben gesehen",
+    wavelength: <>Wellenlänge im flachen Wasser</>,
+  }}
+  deepSpeed={20}
+  incidence={30}
+  shallowSpeed={12}
+  wavelength={2}
+/>
+
+Im tiefen Wasser gilt <InlineMath math="f = 10\ \text{Hz}" />. Weil die Frequenz fest bleibt, **verkürzt sich die Wellenlänge im flachen Wasser auf <InlineMath math="1{,}2\ \text{cm}" />** und die Berge rücken enger zusammen.
 
 ## Interferenz von Wellen
 
-**Interferenz** ist die Überlagerung zweier kohärenter Wellen. Trifft Berg auf Berg, entsteht **konstruktive Interferenz** und die Amplitude wächst. Trifft Berg auf Tal, entsteht **destruktive Interferenz** und die Wellen löschen sich aus. Für zwei Quellen im Abstand <InlineMath math="a" /> beträgt der Abstand zweier benachbarter heller Streifen im Abstand <InlineMath math="D" />:
+**Interferenz** ist die Überlagerung zweier kohärenter Wellen: Berg auf Berg ergibt **konstruktive Interferenz** (hell oder laut), Berg auf Tal **destruktive Interferenz** (dunkel oder leise). Benachbarte Maxima liegen auseinander um:
 
 <BlockMath math="x = \frac{\lambda D}{a}" />
 
-Das Modell zeigt die Lichtintensität auf einem Schirm <InlineMath math="2\ \text{m}" /> hinter einem Doppelspalt mit <InlineMath math="0{,}5\ \text{mm}" /> Spaltabstand. Ändere die Wellenlänge und beobachte, wie sich der Streifenabstand ändert.
-
 <MathVisual
   title={<>Interferenzmuster am Doppelspalt nach Young</>}
+  footer={<>Größere Wellenlängen ziehen die hellen Interferenzstreifen weiter auseinander.</>}
   description={
     <>
-      Relative Intensität gegen die Position <InlineMath math="y" /> auf dem
-      Schirm in Millimetern. Die Intensität ist{" "}
-      <InlineMath math="\cos^2(\pi a y / \lambda D)" />, mit{" "}
+      Relative Intensität gegen Schirmposition <InlineMath math="y" /> bei{" "}
       <InlineMath math="a = 0{,}5\ \text{mm}" /> und{" "}
       <InlineMath math="D = 2\ \text{m}" />.
     </>
@@ -218,14 +231,79 @@ Das Modell zeigt die Lichtintensität auf einem Schirm <InlineMath math="2\ \tex
   }}
 />
 
-Bei <InlineMath math="600\ \text{nm}" /> beträgt der Streifenabstand <InlineMath math="(600 \cdot 10^{-9})(2) / (0{,}5 \cdot 10^{-3}) = 2{,}4\ \text{mm}" />. Rotes Licht mit seiner größeren Wellenlänge liefert weitere Streifen als blaues.
+Bei <InlineMath math="600\ \text{nm}" /> beträgt der Abstand <InlineMath math="2{,}4\ \text{mm}" />, und rotes Licht erzeugt stets breitere Streifen als blaues.
 
-## Elektromagnetische Wellen
+### Doppelspalt im Labor
 
-**Elektromagnetische Wellen** sind Transversalwellen aus einem elektrischen und einem magnetischen Feld, die senkrecht zueinander schwingen. Sie brauchen kein Medium und breiten sich im Vakuum mit <InlineMath math="3{,}0 \cdot 10^{8}\ \text{m/s}" /> aus. Das elektromagnetische Spektrum ist nach der Wellenlänge geordnet:
+Auf der optischen Bank spreizen engere Spalte das Streifenmuster weiter auf, während ein näherer Schirm die Streifen wieder zusammenzieht.
+
+> Der Streifenabstand wächst proportional zu Wellenlänge und Schirmabstand und verhält sich umgekehrt proportional zum Spaltabstand.
+
+<DoubleSlitLab
+  title={<>Doppelspalt auf der optischen Bank</>}
+  description={
+    <>
+      Laserlicht mit <InlineMath math="600\ \text{nm}" /> trifft durch zwei{" "}
+      <InlineMath math="0{,}20\ \text{mm}" /> entfernte Spalte auf einen{" "}
+      <InlineMath math="1{,}5\ \text{m}" /> entfernten Schirm.
+    </>
+  }
+  footer={<>Engere Spalte spreizen die Streifen, ein näherer Schirm zieht sie zusammen.</>}
+  labels={{
+    count: <>Helle Streifen von P bis Q</>,
+    distance: <>Abstand zum Schirm <InlineMath math="D" /></>,
+    distanceName: "Abstand zum Schirm",
+    separation: <>Spaltabstand <InlineMath math="a" /></>,
+    separationName: "Spaltabstand",
+    spacing: <>Streifenabstand</>,
+    viewLabel: "Ein Doppelspalt und seine Interferenzstreifen",
+  }}
+  distance={1.5}
+  separation={0.2}
+  span={27}
+  wavelength={600}
+/>
+
+Auf <InlineMath math="27\ \text{mm}" /> Strecke bei <InlineMath math="4{,}5\ \text{mm}" /> Abstand ergeben sechs Lücken genau **sieben helle Streifen**. Zähle immer die Streifen selbst und nicht nur die Lücken.
+
+### Zwei Lautsprecher
+
+Gehst du langsam vor **zwei kohärenten Lautsprechern** an einem Tongenerator entlang, wechselst du nach derselben Formel zwischen lauten und leisen Stellen.
+
+> Zwei Lautsprecher an einem gemeinsamen Tongenerator schwingen kohärent, sodass der Abstand der Lautstärkemaxima derselben Formel folgt wie beim Doppelspalt.
+
+<SpeakerInterferenceLab
+  title={<>Laute und leise Stellen vor zwei Lautsprechern</>}
+  description={
+    <>
+      Zwei Lautsprecher im Abstand <InlineMath math="1{,}5\ \text{m}" /> werden
+      entlang einer <InlineMath math="6{,}0\ \text{m}" /> entfernten Linie
+      abgehört.
+    </>
+  }
+  footer={<>Höhere Frequenz verkürzt die Wellenlänge und rückt laute Stellen enger zusammen.</>}
+  labels={{
+    frequency: <>Frequenz</>,
+    frequencyName: "Frequenz",
+    spacing: <>Abstand lauter Stellen</>,
+    viewLabel: "Zwei Lautsprecher von oben gesehen",
+    wavelength: <>Wellenlänge</>,
+  }}
+  distance={6}
+  frequency={1100}
+  separation={1.5}
+  speed={330}
+/>
+
+Bei <InlineMath math="1100\ \text{Hz}" /> und <InlineMath math="330\ \text{m/s}" /> Schallgeschwindigkeit trennt die <InlineMath math="0{,}30\ \text{m}" />-Wellenlänge **benachbarte laute Stellen genau um <InlineMath math="1{,}2\ \text{m}" />**.
+
+## Elektromagnetisches Spektrum
+
+**Elektromagnetische Wellen** sind Transversalwellen aus elektrischem und magnetischem Feld, die im Vakuum ohne Medium mit <InlineMath math="3{,}0 \cdot 10^{8}\ \text{m/s}" /> laufen.
 
 <Chart
   title={<>Typische Wellenlängen im elektromagnetischen Spektrum</>}
+  footer={<>Von Radio bis Gammastrahlen schrumpft die Wellenlänge und die Energie wächst.</>}
   bars="apart"
   categories={["Radio", "Mikrowellen", "Infrarot", "Sichtbares Licht", "Ultraviolett", "Röntgenstrahlen", "Gammastrahlen"]}
   series={[
@@ -245,50 +323,15 @@ Bei <InlineMath math="600\ \text{nm}" /> beträgt der Streifenabstand <InlineMat
   }
 />
 
-Je kürzer die Wellenlänge, desto höher sind Frequenz und Energie. Deshalb können Röntgen- und Gammastrahlen lebende Zellen schädigen, während Radiowellen für den Rundfunk unbedenklich sind.
+Kürzere Wellenlängen tragen höhere Frequenz und Energie, weshalb Röntgen- und Gammastrahlen Zellen schädigen können, Radiowellen jedoch harmlos bleiben.
 
-## Typische Fehler bei Wellen
+## Kurze Wellenaufgaben
 
-| Fehler | Warum er falsch ist | So prüfst du es |
-| :--- | :--- | :--- |
-| Wellen transportieren Materie. | Die Teilchen schwingen nur um ihre Ruhelage. Transportiert wird Energie. | Denk an eine Boje: Sie schaukelt auf und ab, treibt aber nicht mit den Wellen davon. |
-| Die Wellenlänge ist der Abstand von Berg zu Tal. | Das ist die halbe Wellenlänge. | Miss von einem Berg zum nächsten. |
-| Bei der Brechung ändert sich die Frequenz. | Die Quelle legt die Frequenz fest, sie bleibt also gleich. | Geschwindigkeit und Wellenlänge ändern sich gemeinsam. |
-| Dämpfung ändert die Frequenz einer Schwingung. | Dämpfung verringert nur die Amplitude. | Zähl die Schwingungen in derselben Zeit. |
+Rechne Zentimeter und Millimeter zuerst in Meter um und **prüfe jedes Ergebnis** am Überblick darunter.
 
-Der dritte Fehler kommt bei Aufgaben zur Brechung am häufigsten vor. **Die Frequenz bleibt fest**, also sinkt mit der Geschwindigkeit auch die Wellenlänge.
+1. Eine Welle hat <InlineMath math="T = 0{,}2\ \text{s}" /> und <InlineMath math="\lambda = 1{,}5\ \text{m}" />. Berechne ihre Geschwindigkeit.
+2. Eine Wasserwelle bremst von <InlineMath math="0{,}30\ \text{m/s}" /> (<InlineMath math="\lambda = 6\ \text{cm}" />) auf <InlineMath math="0{,}20\ \text{m/s}" /> im Flachen ab. Bestimme die neue Wellenlänge.
+3. Beim Doppelspalt mit <InlineMath math="a = 0{,}4\ \text{mm}" />, <InlineMath math="D = 1{,}6\ \text{m}" /> und <InlineMath math="x = 2{,}2\ \text{mm}" /> suche die Wellenlänge.
+4. Warum kann Gleichschritt von Soldaten eine Brücke gefährlich aufschaukeln?
 
-## Übungen zu Wellen
-
-Die Aufgaben führen von <InlineMath math="v = f\lambda" /> bis zur Interferenz. **Rechne Zentimeter und Millimeter in Meter um**, bevor du rechnest.
-
-1. Eine Welle hat die Periodendauer <InlineMath math="0{,}2\ \text{s}" /> und die Wellenlänge <InlineMath math="1{,}5\ \text{m}" />. Berechne ihre Geschwindigkeit.
-
-2. Eine Wasserwelle läuft von tiefem in flaches Wasser. Ihre Geschwindigkeit sinkt von <InlineMath math="0{,}30\ \text{m/s}" /> auf <InlineMath math="0{,}20\ \text{m/s}" />. Im tiefen Wasser beträgt die Wellenlänge <InlineMath math="6\ \text{cm}" />. Berechne die Wellenlänge im flachen Wasser.
-
-3. Bei einem Doppelspaltversuch ist <InlineMath math="a = 0{,}4\ \text{mm}" />, <InlineMath math="D = 1{,}6\ \text{m}" />, und zwei benachbarte helle Streifen liegen <InlineMath math="2{,}2\ \text{mm}" /> auseinander. Berechne die Wellenlänge des Lichts.
-
-4. Erkläre, warum eine Brücke mit sehr großer Amplitude schwingen kann, wenn eine Gruppe Soldaten im Gleichschritt in einem bestimmten Takt darüber marschiert.
-
-### Lösungen
-
-**Lösung 1**: Bestimme zuerst die Frequenz, dann die Geschwindigkeit:
-
-<MathContainer>
-<BlockMath math="f = \frac{1}{T} = \frac{1}{0{,}2} = 5\ \text{Hz}" />
-<BlockMath math="v = f\lambda = (5)(1{,}5) = 7{,}5\ \text{m/s}" />
-</MathContainer>
-
-**Lösung 2**: Die Frequenz ändert sich bei der Brechung nicht. Im tiefen Wasser gilt:
-
-<BlockMath math="f = \frac{v}{\lambda} = \frac{0{,}30}{0{,}06} = 5\ \text{Hz}" />
-
-Im flachen Wasser ist <InlineMath math="\lambda = 0{,}20 / 5 = 0{,}04\ \text{m} = 4\ \text{cm}" />. Probe: Das Geschwindigkeitsverhältnis <InlineMath math="0{,}20 / 0{,}30" /> ist gleich dem Wellenlängenverhältnis <InlineMath math="4 / 6" />.
-
-**Lösung 3**: Stell <InlineMath math="x = \lambda D / a" /> um:
-
-<BlockMath math="\lambda = \frac{ax}{D} = \frac{(0{,}4 \cdot 10^{-3})(2{,}2 \cdot 10^{-3})}{1{,}6} = 5{,}5 \cdot 10^{-7}\ \text{m}" />
-
-Das sind <InlineMath math="550\ \text{nm}" />, grünes Licht, ein plausibler Wert für sichtbares Licht.
-
-**Lösung 4**: Die Brücke hat eine Eigenfrequenz. Stimmt die Schrittfrequenz der Soldaten **mit der Eigenfrequenz der Brücke überein**, tritt Resonanz auf. Die Brücke nimmt fortlaufend Energie bei der wirksamsten Frequenz auf, also wächst die Amplitude, bis die Konstruktion Schaden nehmen kann. Deshalb sollen Soldaten beim Überqueren einer Brücke aus dem Gleichschritt gehen.
+Lösungsüberblick: Aufgabe eins liefert <InlineMath math="f = 5\ \text{Hz}" /> und <InlineMath math="v = 7{,}5\ \text{m/s}" />, Aufgabe zwei ergibt <InlineMath math="\lambda = 4\ \text{cm}" /> bei fester Frequenz, Aufgabe drei ergibt <InlineMath math="550\ \text{nm}" /> (grünes Licht), und Aufgabe vier entsteht durch **Resonanz**, wenn der Schritttakt die Eigenfrequenz der Brücke trifft.
