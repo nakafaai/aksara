@@ -1,24 +1,23 @@
 export const metadata = {
   title: "Pembiasan Cahaya Pemantulan Total dan Lensa",
   description:
-    "Pakai hukum Snell, cari sudut kritis untuk pemantulan total, gambar diagram sinar lensa, dan selesaikan rumus lensa lewat contoh lengkap dan latihan.",
+    "Pakai hukum Snell, pahami kedalaman semu, uji sudut kritis pemantulan total, dan analisis bayangan lensa cembung serta teleskop astronomi.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-11-16",
   subject: "Cahaya dan Optika",
 };
 
-## Pembiasan Cahaya dan Hukum Snell
+## Hukum Snell dan Pembiasan
 
-**Pembiasan cahaya** adalah perubahan arah cahaya saat merambat dari satu medium ke medium lain yang kerapatan optiknya berbeda. **Hukum Snell** menyatakan bahwa perbandingan sinus sudut datang dengan sinus sudut bias adalah konstan, yaitu **indeks bias** medium:
+**Pembiasan cahaya** adalah perubahan arah cahaya saat berpindah ke medium dengan kerapatan optik berbeda. **Hukum Snell** menyatakan perbandingan sinus sudut datang dengan sinus sudut bias selalu konstan, yaitu **indeks bias** medium:
 
 <BlockMath math="n = \frac{\sin i}{\sin r} = \frac{c}{v}" />
 
-Di sini <InlineMath math="i" /> adalah sudut datang dan <InlineMath math="r" /> adalah sudut bias, keduanya diukur dari garis normal. <InlineMath math="c = 3{,}0 \times 10^{8}\text{ m/s}" /> adalah cepat rambat cahaya di ruang hampa dan <InlineMath math="v" /> adalah cepat rambatnya di dalam medium. Di model-model berikut, kamu mengubah sudut sinar, menjebak cahaya dengan pemantulan total, dan menggeser benda di depan lensa.
-
-Cahaya membelok **mendekati garis normal** saat masuk ke medium yang lebih rapat secara optik, karena di sana cahaya bergerak lebih lambat. Geser penggeser sudut datang dan indeks bias, lalu bandingkan sudut biasnya.
+Di sini <InlineMath math="i" /> adalah sudut datang dan <InlineMath math="r" /> sudut bias, keduanya selalu **diukur dari garis normal**, bukan dari permukaan. Cahaya dengan cepat rambat ruang hampa <InlineMath math="c = 3{,}0 \times 10^{8}\text{ m/s}" /> melambat menjadi <InlineMath math="v" /> dan membelok mendekati normal saat memasuki medium lebih rapat.
 
 <MathVisual
   title={<>Sinar Cahaya dari Udara ke Kaca</>}
+  footer={<>Sinar selalu membelok mendekati garis normal saat memasuki medium lebih rapat.</>}
   description={
     <>
       Sinar datang dari atas dengan sudut <InlineMath math="i" /> dan dibiaskan
@@ -59,35 +58,70 @@ Cahaya membelok **mendekati garis normal** saat masuk ke medium yang lebih rapat
   }}
 />
 
-### Contoh Memakai Hukum Snell
+Naikkan indeks bias <InlineMath math="n" /> pada model dan lihat sudut bias menyempit sambil cepat rambat cahaya ikut turun. Gambar garis normal lebih dulu sebelum mengukur sudut apa pun agar tidak tertukar dengan sudut terhadap permukaan.
 
-Sinar cahaya masuk ke kaca berindeks bias <InlineMath math="1{,}5" /> dengan sudut datang <InlineMath math="40^\circ" />. Hitung **sudut biasnya**.
+### Menghitung Sudut Bias
+
+Sinar cahaya masuk ke kaca berindeks bias <InlineMath math="1{,}5" /> pada sudut datang <InlineMath math="40^\circ" />. Hitung **sudut biasnya** dengan hukum Snell:
 
 <MathContainer>
 <BlockMath math="\sin r = \frac{\sin 40^\circ}{1{,}5} = \frac{0{,}643}{1{,}5} = 0{,}429" />
 <BlockMath math="r = 25{,}4^\circ" />
 </MathContainer>
 
-Cek dengan model: pada <InlineMath math="i = 40" /> dan <InlineMath math="n = 1{,}5" />, sudut bias terbaca <InlineMath math="25{,}4^\circ" />. Sudut ini lebih kecil daripada sudut datang, jadi sinar membelok mendekati garis normal.
+Pada model di atas, <InlineMath math="i = 40^\circ" /> dan <InlineMath math="n = 1{,}5" /> tepat membaca <InlineMath math="25{,}4^\circ" />, lebih kecil daripada sudut datang karena sinar membelok mendekati normal.
 
-### Contoh Kedalaman Sebenarnya dan Kedalaman Semu
+### Kedalaman Semu Lapisan
 
-Kolam terlihat lebih dangkal daripada kedalaman sebenarnya karena cahaya dari dasar membelok menjauhi garis normal saat keluar dari air. Hubungannya <InlineMath math="n = \dfrac{\text{kedalaman sebenarnya}}{\text{kedalaman semu}}" />. Untuk kolam sedalam <InlineMath math="2{,}0\text{ m}" /> dengan <InlineMath math="n = 1{,}33" />:
+Bayangkan kamu menjatuhkan koin ke dasar gelas berisi air lalu menuang lapisan minyak di atasnya. Saat sinar keluar menuju udara, arahnya **membelok menjauhi garis normal** sehingga koin tampak lebih dekat ke permukaan:
 
-<BlockMath math="\text{kedalaman semu} = \frac{2{,}0}{1{,}33} = 1{,}5\text{ m}" />
+<BlockMath math="n = \frac{\text{kedalaman sebenarnya}}{\text{kedalaman semu}}" />
 
-Kolam itu terlihat **setengah meter lebih dangkal**. Cek: <InlineMath math="1{,}5 \times 1{,}33 = 2{,}0" />.
+> Setiap lapisan zat cair menyumbang kedalaman semu sebesar ketebalan dibagi indeks biasnya, sehingga dasar wadah tampak naik mendekati permukaan.
+
+Untuk kolam sedalam <InlineMath math="2{,}0\text{ m}" /> dengan <InlineMath math="n = 1{,}33" />, kedalaman semunya <InlineMath math="2{,}0 / 1{,}33 = 1{,}5\text{ m}" />. Sekarang uji dua lapisan cairan sekaligus di lab tiga dimensi berikut.
+
+<ApparentDepthLab
+  title={<>Koin di Bawah Lapisan Minyak dan Air</>}
+  description={
+    <>
+      Lapisan minyak setebal <InlineMath math="6{,}0\text{ cm}" /> berada di atas{" "}
+      <InlineMath math="12\text{ cm}" /> air dengan koin di dasar wadah.
+    </>
+  }
+  footer={<>Ganti cairan atas untuk melihat seberapa tinggi bayangan koin terangkat.</>}
+  labels={{
+    apparent: <>Kedalaman semu</>,
+    image: <>Tinggi bayangan dari dasar</>,
+    liquids: {
+      alcohol: <>Alkohol</>,
+      glycerine: <>Gliserin</>,
+      oil: <>Minyak</>,
+      water: <>Air</>,
+    },
+    real: <>Kedalaman sebenarnya</>,
+    top: "Lapisan atas",
+    viewLabel: "Koin dilihat melalui beberapa lapisan cairan",
+  }}
+  layers={[
+    { index: 1.5, liquid: "oil", thickness: 6 },
+    { index: 4 / 3, liquid: "water", thickness: 12 },
+  ]}
+/>
+
+Minyak <InlineMath math="6{,}0\text{ cm}" /> di atas air <InlineMath math="12\text{ cm}" /> memberi kedalaman semu <InlineMath math="13\text{ cm}" /> dari permukaan setinggi <InlineMath math="18\text{ cm}" />, sehingga koin tampak **terangkat <InlineMath math="5{,}0\text{ cm}" /> di atas dasar**. Makin tinggi indeks bias cairan atas, makin tinggi pula bayangan koin.
 
 ## Pemantulan Total
 
-Saat cahaya merambat dari medium rapat ke medium yang kurang rapat, sudut biasnya lebih besar daripada sudut datangnya. Pada **sudut kritis** <InlineMath math="c" />, sudut bias mencapai <InlineMath math="90^\circ" />. Kalau sudut datang melebihi sudut kritis, semua cahaya dipantulkan kembali ke medium rapat. Peristiwa ini disebut **pemantulan total**:
+Saat cahaya merambat dari medium rapat ke medium kurang rapat, sudut biasnya lebih besar daripada sudut datang. Pada **sudut kritis** <InlineMath math="c" />, sudut bias mencapai <InlineMath math="90^\circ" />, dan lewat sudut itu terjadi **pemantulan total**:
 
 <BlockMath math="\sin c = \frac{1}{n}" />
 
-Untuk kaca dengan <InlineMath math="n = 1{,}5" />, sudut kritisnya <InlineMath math="41{,}8^\circ" />. Geser sudut datang melewati nilai itu dan perhatikan sinar bias menyusuri permukaan, sampai hanya sinar pantul yang tersisa.
+Pemantulan total **hanya terjadi dari indeks tinggi ke indeks rendah**, tidak pernah dari udara masuk ke kaca. Untuk kaca <InlineMath math="n = 1{,}5" />, sudut kritisnya <InlineMath math="41{,}8^\circ" />.
 
 <MathVisual
   title={<>Dari Kaca ke Udara melewati Sudut Kritis</>}
+  footer={<>Lewat sudut kritis, sinar bias lenyap dan seluruh cahaya terpantul ke kaca.</>}
   description={
     <>
       Sinar datang dari bawah di dalam kaca berindeks bias{" "}
@@ -127,10 +161,11 @@ Untuk kaca dengan <InlineMath math="n = 1{,}5" />, sudut kritisnya <InlineMath m
   }}
 />
 
-Bahan berindeks bias tinggi punya sudut kritis yang kecil, jadi cahaya lebih mudah terjebak. Itulah alasan berlian berkilau: cahaya dipantulkan berkali-kali di dalamnya sebelum keluar.
+Bahan berindeks bias tinggi memiliki sudut kritis kecil sehingga lebih mudah menjebak cahaya, itulah sebabnya berlian berkilau kuat.
 
 <Chart
   title={<>Sudut Kritis Tiga Bahan</>}
+  footer={<>Makin besar indeks bias bahan, makin kecil sudut kritis untuk menjebak cahaya.</>}
   bars="apart"
   categories={["Air", "Kaca", "Berlian"]}
   series={[
@@ -144,32 +179,58 @@ Bahan berindeks bias tinggi punya sudut kritis yang kecil, jadi cahaya lebih mud
   description={
     <>
       Dihitung dari <InlineMath math="\sin c = 1/n" />: air{" "}
-      <InlineMath math="n = 1{,}33" /> memberi <InlineMath math="48{,}8^\circ" />,
-      kaca <InlineMath math="n = 1{,}5" /> memberi{" "}
-      <InlineMath math="41{,}8^\circ" />, dan berlian{" "}
-      <InlineMath math="n = 2{,}42" /> memberi <InlineMath math="24{,}4^\circ" />.
+      <InlineMath math="48{,}8^\circ" />, kaca <InlineMath math="41{,}8^\circ" />,
+      dan berlian <InlineMath math="24{,}4^\circ" />.
     </>
   }
 />
 
-**Serat optik** memakai pemantulan total untuk mengantar cahaya sejauh ribuan kilometer. Inti kaca diselubungi lapisan berindeks bias lebih rendah, jadi cahaya yang mengenai dinding dengan sudut melebihi sudut kritis tetap berada di dalam inti.
+Sekarang sorotkan laser ke permukaan atas balok kaca persegi panjang. Karena sisi atas dan dinding samping saling tegak lurus, sinar yang masuk langsung menuju dinding samping.
 
-## Lensa dan Pembentukan Bayangan
+> Karena sisi atas dan sisi samping balok kaca saling tegak lurus, sudut datang di dinding samping selalu sembilan puluh derajat dikurangi sudut bias pertama.
 
-**Lensa cembung** mengumpulkan sinar sejajar di satu titik di belakang lensa, yaitu **titik fokus** <InlineMath math="F" />. Jarak dari pusat optik ke titik fokus adalah **jarak fokus** <InlineMath math="f" />. Letak bayangan diberikan oleh **rumus lensa**:
+<GlassBlockLab
+  title={<>Jejak Sinar di Dalam Balok Kaca</>}
+  description={
+    <>
+      Seberkas sinar mengenai permukaan atas balok kaca berindeks bias{" "}
+      <InlineMath math="1{,}50" />, lalu bergerak menuju dinding sampingnya.
+    </>
+  }
+  footer={<>Pada kaca berindeks 1,50, sinar di dinding samping selalu terpantul total.</>}
+  labels={{
+    critical: <>Sudut kritis <InlineMath math="c" /></>,
+    incidence: <>Sudut datang <InlineMath math="i" /></>,
+    incidenceName: "Sudut datang",
+    next: <>Sudut di dinding samping</>,
+    outcome: <>Peristiwa di dinding samping</>,
+    reflected: <>Pemantulan total</>,
+    refracted: <>Keluar dari kaca</>,
+    refraction: <>Sudut bias <InlineMath math="r" /></>,
+    viewLabel: "Sinar cahaya menembus balok kaca",
+  }}
+  incidence={60}
+  index={1.5}
+/>
+
+Pada <InlineMath math="n = 1{,}50" />, sudut di dinding samping selalu melampaui <InlineMath math="41{,}8^\circ" />, jadi **cahaya terus terpantul di dalam kaca**. Prinsip inilah yang dipakai **serat optik** untuk mengantar sinyal cahaya ribuan kilometer di dalam intinya.
+
+## Bayangan Lensa Cembung
+
+**Lensa cembung** mengumpulkan sinar sejajar di **titik fokus** <InlineMath math="F" /> sejauh **jarak fokus** <InlineMath math="f" />. Posisi bayangan dan perbesaran mengikuti **rumus lensa**:
 
 <BlockMath math="\frac{1}{f} = \frac{1}{s} + \frac{1}{s'}, \qquad M = \frac{s'}{s}" />
 
-<InlineMath math="s" /> adalah jarak benda, <InlineMath math="s'" /> adalah jarak bayangan, dan <InlineMath math="M" /> adalah perbesaran linear. Untuk bayangan nyata, <InlineMath math="s'" /> bernilai positif. Diagram sinar berikut memakai lensa cembung dengan <InlineMath math="f = 2" /> satuan. Geser bendanya dan lihat bayangan nyata dan terbalik itu berubah ukuran.
+Di sini <InlineMath math="s" /> jarak benda dan <InlineMath math="s'" /> jarak bayangan. Geser benda pada diagram sinar dengan <InlineMath math="f = 2" /> satuan berikut untuk melihat bayangan nyata berubah ukuran.
 
 <MathVisual
   title={<>Diagram Sinar Lensa Cembung</>}
+  footer={<>Mendekatkan benda ke titik fokus membuat bayangan nyata menjauh dan membesar.</>}
   description={
     <>
       Benda setinggi <InlineMath math="1" /> satuan berada sejauh{" "}
-      <InlineMath math="s" /> di kiri lensa. Satu sinar sejajar sumbu dibiaskan
-      melalui <InlineMath math="F" />, dan satu sinar melewati pusat optik tanpa
-      membelok. Bayangan terbentuk di perpotongan kedua sinar.
+      <InlineMath math="s" /> di kiri lensa. Bayangan nyata terbentuk di
+      perpotongan sinar sejajar dan sinar pusat optik.
     </>
   }
   scene={{
@@ -204,30 +265,58 @@ Bahan berindeks bias tinggi punya sudut kritis yang kecil, jadi cahaya lebih mud
   }}
 />
 
-Saat benda lebih jauh dari <InlineMath math="2f" />, bayangannya nyata, terbalik, dan **diperkecil**, seperti pada kamera. Saat benda berada di antara <InlineMath math="f" /> dan <InlineMath math="2f" />, bayangannya nyata, terbalik, dan **diperbesar**, seperti pada proyektor. Kalau benda lebih dekat dari <InlineMath math="f" />, sinar tidak berpotongan di belakang lensa dan bayangannya menjadi maya, tegak, serta diperbesar. Begitulah cara kerja lup.
-
-### Contoh Rumus Lensa
-
-Benda diletakkan <InlineMath math="15\text{ cm}" /> di depan lensa cembung berjarak fokus <InlineMath math="10\text{ cm}" />. Cari **jarak bayangan dan perbesarannya**.
+Bayangan lensa cembung **tidak selalu terbalik**: jika <InlineMath math="s < f" />, bayangannya maya dan tegak seperti lup. Untuk <InlineMath math="s = 15\text{ cm}" /> dan <InlineMath math="f = 10\text{ cm}" />:
 
 <MathContainer>
 <BlockMath math="\frac{1}{s'} = \frac{1}{10} - \frac{1}{15} = \frac{1}{30}" />
 <BlockMath math="s' = 30\text{ cm}, \qquad M = \frac{30}{15} = 2" />
 </MathContainer>
 
-Bayangannya nyata, terbalik, dan dua kali lebih besar. Cek dengan model: <InlineMath math="s = 1{,}5f" /> di model adalah <InlineMath math="o = 3" />, dan model memberi <InlineMath math="s' = 6 = 3f" />, sesuai dengan <InlineMath math="30\text{ cm} = 3 \times 10\text{ cm}" />.
+> Begitu benda melewati titik fokus lensa cembung, bayangan meloncat dari sisi belakang yang nyata dan terbalik ke sisi depan yang maya dan tegak.
 
-### Contoh Menentukan Jarak Fokus dari Grafik
+Uji ketiga zona jarak benda secara langsung pada bangku optik tiga dimensi berikut.
 
-Pada percobaan lensa, grafik <InlineMath math="1/s'" /> terhadap <InlineMath math="1/s" /> berupa garis lurus bergradien <InlineMath math="-1" />. Titik potongnya di kedua sumbu sama dengan <InlineMath math="1/f" />, yaitu **kekuatan lensa** <InlineMath math="P" /> dalam dioptri kalau jaraknya dalam meter.
+<ConvexLensLab
+  title={<>Bangku Optik Lensa Cembung</>}
+  description={
+    <>
+      Benda panah berada di depan lensa cembung berjarak fokus{" "}
+      <InlineMath math="10\text{ cm}" />. Geser jarak benda atau klik posisi
+      patokan.
+    </>
+  }
+  footer={<>Bandingkan posisi 6 cm, 15 cm, dan 25 cm untuk lup, proyektor, dan kamera.</>}
+  labels={{
+    distance: <>Jarak benda <InlineMath math="s" /></>,
+    distanceName: "Jarak benda",
+    image: <>Jarak bayangan</>,
+    magnification: <>Perbesaran</>,
+    nature: <>Sifat bayangan</>,
+    noImage: <>Tidak ada bayangan</>,
+    presets: "Posisi benda",
+    real: <>Nyata, terbalik</>,
+    viewLabel: "Lensa cembung di atas bangku optik",
+    virtual: <>Maya, tegak</>,
+  }}
+  focal={10}
+  object={15}
+  presets={[6, 15, 25]}
+/>
+
+Tiga tombol posisi itu merangkum **tiga peran lensa cembung**: pada <InlineMath math="6\text{ cm}" /> menjadi lup, pada <InlineMath math="15\text{ cm}" /> cocok dengan proyektor <InlineMath math="s' = 30\text{ cm}" />, dan pada <InlineMath math="25\text{ cm}" /> mengecilkan bayangan seperti kamera.
+
+### Fokus dari Grafik Kuasa
+
+Grafik <InlineMath math="1/s'" /> terhadap <InlineMath math="1/s" /> berupa garis lurus bergradien <InlineMath math="-1" />. Titik potong kedua sumbunya adalah **kekuatan lensa** <InlineMath math="P = 1/f" /> dalam dioptri, dengan <InlineMath math="f" /> wajib dalam meter, bukan sentimeter.
 
 <MathVisual
   title={<>Grafik Rumus Lensa</>}
+  footer={<>Kedua titik potong sumbu sama dengan kekuatan lensa P dalam dioptri.</>}
   description={
     <>
-      Garis <InlineMath math="1/s' = P - 1/s" />, dengan jarak dalam meter.
-      Geser kekuatan lensa <InlineMath math="P" /> dan lihat kedua titik potong
-      bergerak bersama.
+      Garis <InlineMath math="1/s' = P - 1/s" /> dengan jarak dalam meter.
+      Geser <InlineMath math="P" /> dan lihat kedua titik potong bergerak
+      bersama.
     </>
   }
   scene={{
@@ -252,54 +341,52 @@ Pada percobaan lensa, grafik <InlineMath math="1/s'" /> terhadap <InlineMath mat
   }}
 />
 
-Kalau titik potongnya <InlineMath math="5\text{ m}^{-1}" />, jarak fokusnya <InlineMath math="1/5 = 0{,}20\text{ m}" />, yaitu <InlineMath math="20\text{ cm}" />. Lensa cekung punya jarak fokus dan kekuatan yang negatif.
+Titik potong <InlineMath math="5\text{ m}^{-1}" /> memberi jarak fokus <InlineMath math="0{,}20\text{ m}" /> atau <InlineMath math="20\text{ cm}" />, sedangkan lensa cekung berkekuatan negatif.
 
-## Kesalahan Umum tentang Cahaya dan Optika
+### Teleskop Astronomi
 
-| Kesalahan | Alasan keliru | Cara mengecek |
-| :--- | :--- | :--- |
-| Sudut datang diukur dari permukaan. | Sudut datang dan sudut bias diukur dari garis normal. | Gambar garis normal dulu, lalu ukur sudutnya. |
-| Pemantulan total terjadi saat cahaya masuk ke kaca. | Pemantulan total hanya terjadi dari medium rapat ke medium kurang rapat. | Cek arah cahaya: dari indeks tinggi ke indeks rendah. |
-| Bayangan lensa cembung selalu terbalik. | Kalau <InlineMath math="s < f" />, bayangannya maya dan tegak. | Bandingkan <InlineMath math="s" /> dengan <InlineMath math="f" /> dulu. |
-| Memakai sentimeter untuk kekuatan lensa. | Kekuatan lensa <InlineMath math="P = 1/f" /> butuh <InlineMath math="f" /> dalam meter. | Ubah <InlineMath math="f" /> ke meter sebelum membagi. |
+Bagaimana dua lensa cembung membuat kawah Bulan tampak dekat? Pasang **lensa objektif lemah** di depan dan **lensa okuler kuat** di belakang sehingga kedua titik fokusnya bertemu di satu titik dalam tabung.
 
-Kesalahan pertama paling sering muncul di soal hukum Snell. **Garis normal adalah acuan** setiap sudut pada pembiasan dan pemantulan.
+> Pada teleskop astronomi dalam penyetelan normal, kedua titik fokus berimpit sehingga panjang tabung sama dengan jumlah jarak fokus dan perbesarannya adalah perbandingan kedua jarak fokus itu.
 
-## Latihan Cahaya dan Optika
-
-Soal-soal ini bergerak dari hukum Snell ke lensa. **Buat sketsa singkat** sebelum menghitung.
-
-1. Cepat rambat cahaya di sejenis plastik adalah <InlineMath math="2{,}0 \times 10^{8}\text{ m/s}" />. Hitung indeks bias plastik itu.
-
-2. Hitung sudut kritis air berindeks bias <InlineMath math="1{,}33" />, dan jelaskan apa yang terjadi pada sinar dari dalam air yang mengenai permukaan dengan sudut <InlineMath math="60^\circ" />.
-
-3. Benda diletakkan <InlineMath math="30\text{ cm}" /> dari lensa cembung berjarak fokus <InlineMath math="20\text{ cm}" />. Hitung jarak bayangan dan perbesarannya, lalu sebutkan sifat bayangannya.
-
-4. Hitung kekuatan lensa cembung berjarak fokus <InlineMath math="25\text{ cm}" />.
-
-### Pembahasan
-
-**Pembahasan 1**: Pakai <InlineMath math="n = c/v" />:
-
-<BlockMath math="n = \frac{3{,}0 \times 10^{8}}{2{,}0 \times 10^{8}} = 1{,}5" />
-
-**Pembahasan 2**: Sudut kritis diberikan oleh <InlineMath math="\sin c = 1/n" />:
-
-<BlockMath math="c = \sin^{-1}\!\left(\frac{1}{1{,}33}\right) = 48{,}8^\circ" />
-
-Sudut <InlineMath math="60^\circ" /> lebih besar daripada <InlineMath math="48{,}8^\circ" />, jadi sinar itu mengalami **pemantulan total** dan tidak ada cahaya yang keluar ke udara.
-
-**Pembahasan 3**: Pakai rumus lensa:
+Untuk objektif <InlineMath math="+1{,}0\text{ D}" /> dan okuler <InlineMath math="+20\text{ D}" />, ubah kekuatan ke jarak fokus lalu hitung panjang dan perbesarannya:
 
 <MathContainer>
-<BlockMath math="\frac{1}{s'} = \frac{1}{20} - \frac{1}{30} = \frac{1}{60}" />
-<BlockMath math="s' = 60\text{ cm}, \qquad M = \frac{60}{30} = 2" />
+<BlockMath math="f_{\text{o}} = 100\text{ cm}, \qquad f_{\text{e}} = 5\text{ cm}" />
+<BlockMath math="L = f_{\text{o}} + f_{\text{e}} = 105\text{ cm}, \qquad M = \frac{f_{\text{o}}}{f_{\text{e}}} = 20" />
 </MathContainer>
 
-Benda berada di antara <InlineMath math="f" /> dan <InlineMath math="2f" />, jadi bayangannya nyata, terbalik, dan diperbesar dua kali.
+<TelescopeLab
+  title={<>Teleskop Astronomi pada Penyetelan Normal</>}
+  description={
+    <>
+      Lensa objektif <InlineMath math="+1{,}0\text{ D}" /> dipasangkan dengan
+      okuler <InlineMath math="+20\text{ D}" /> sehingga kedua titik fokus
+      bertemu di tengah tabung.
+    </>
+  }
+  footer={<>Okuler lebih kuat memperpendek fokusnya dan melipatgandakan perbesaran.</>}
+  labels={{
+    eyepiece: <>Okuler</>,
+    eyepieceName: "Kekuatan okuler",
+    length: <>Jarak antar lensa</>,
+    magnification: <>Perbesaran</>,
+    objective: <>Objektif</>,
+    viewLabel: "Teleskop astronomi dengan dua lensa cembung",
+  }}
+  eyepiecePower={20}
+  objectivePower={1}
+/>
 
-**Pembahasan 4**: Ubah jarak fokus ke meter, <InlineMath math="f = 0{,}25\text{ m}" />:
+Menaikkan kekuatan okuler memperpendek jarak fokusnya, jadi **tabung sedikit memendek tetapi perbesaran meningkat tajam**.
 
-<BlockMath math="P = \frac{1}{0{,}25} = 4\text{ D}" />
+## Kasus Optika Nyata
 
-Kekuatan positif menandakan lensa cembung.
+Uji empat rumus inti di atas secara berurutan, lalu **cocokkan setiap jawaban** dengan kunci singkat di bawahnya.
+
+1. Cepat rambat cahaya di plastik <InlineMath math="2{,}0 \times 10^{8}\text{ m/s}" />. Hitung indeks biasnya.
+2. Hitung sudut kritis air (<InlineMath math="n = 1{,}33" />) dan peristiwa saat sinar datang <InlineMath math="60^\circ" /> dari dalam air.
+3. Benda <InlineMath math="30\text{ cm}" /> di depan lensa cembung (<InlineMath math="f = 20\text{ cm}" />). Cari <InlineMath math="s'" />, <InlineMath math="M" />, dan sifat bayangannya.
+4. Hitung kekuatan lensa cembung berjarak fokus <InlineMath math="25\text{ cm}" />.
+
+Kunci ringkas: soal satu memberi <InlineMath math="n = 1{,}5" />, soal dua memberi <InlineMath math="c = 48{,}8^\circ" /> sehingga pada <InlineMath math="60^\circ" /> terjadi **pemantulan total**, soal tiga menghasilkan <InlineMath math="s' = 60\text{ cm}" /> dan <InlineMath math="M = 2" /> (nyata, terbalik, diperbesar), dan soal empat memberi <InlineMath math="P = 4\text{ D}" /> sesudah <InlineMath math="25\text{ cm}" /> diubah ke <InlineMath math="0{,}25\text{ m}" />.
