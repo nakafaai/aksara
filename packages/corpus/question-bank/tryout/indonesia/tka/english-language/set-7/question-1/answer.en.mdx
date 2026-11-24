@@ -1,14 +1,34 @@
-Price each person on a normal day first, then add the holiday rise.
+# Given
 
-**Bu Wati**. She rides her motorbike on, and the motorbike fare is "with its rider", so she pays nothing extra: <InlineMath math="\text{Rp}75{,}000" />.
+On a **public holiday**, Bu Wati (no resident card) boards the ferry *Kapal Bunga* with her **motorbike** plus three children on foot aged **<InlineMath math="2" />**, **<InlineMath math="5" />**, and **<InlineMath math="12" />**. Standard one-way fares are **<InlineMath math="\text{Rp}75{,}000" />** for a motorbike with its rider, **<InlineMath math="\text{Rp}40{,}000" />** for adults aged <InlineMath math="12" /> or over, **<InlineMath math="\text{Rp}20{,}000" />** for children aged <InlineMath math="3" /> to <InlineMath math="11" /> (free under <InlineMath math="3" />), and **all fares rise <InlineMath math="25\%" /> on public holidays**.
 
-**The children**. The child of <InlineMath math="12" /> pays the adult fare, because adults are "aged <InlineMath math="12" /> or over": <InlineMath math="\text{Rp}40{,}000" />. The child of <InlineMath math="5" /> pays <InlineMath math="\text{Rp}20{,}000" />. The child of <InlineMath math="2" /> is under <InlineMath math="3" /> and travels free.
+# Asked
 
-**Total**. <InlineMath math="75{,}000 + 40{,}000 + 20{,}000 = 135{,}000" />, and on a public holiday "every fare rises by <InlineMath math="25\%" />": <InlineMath math="135{,}000 \times 1.25 = 168{,}750" />.
+The total amount Bu Wati's family pays for the one-way crossing on a public holiday.
 
-- <InlineMath math="\text{Rp}135{,}000" /> forgets the holiday rise.
-- <InlineMath math="\text{Rp}143{,}750" /> charges the child of <InlineMath math="12" /> the child fare.
-- <InlineMath math="\text{Rp}193{,}750" /> charges the child of <InlineMath math="2" /> the child fare.
-- <InlineMath math="\text{Rp}218{,}750" /> adds an adult ticket for Bu Wati, although the motorbike fare already covers its rider.
+# Solution
 
-So the family pays <InlineMath math="\text{Rp}168{,}750" />.
+Think of buying tickets like filling one basket at normal prices first, then adding the **<InlineMath math="25\%" /> holiday surcharge** at the register. Checking the exact age cutoffs and rider rule keeps you from paying twice.
+
+> Read boundary phrases like *with its rider* and *aged <InlineMath math="12" /> or over* closely before multiplying by the holiday increase.
+
+## Adding normal fares and applying the holiday surcharge
+
+The table states <Highlight>Motorbike, with its rider</Highlight> costs <InlineMath math="\text{Rp}75{,}000" />, so Bu Wati pays no separate adult ticket. The <InlineMath math="12" />-year-old pays the **adult fare** (<Highlight>Adult, aged <InlineMath math="12" /> or over</Highlight>: <InlineMath math="\text{Rp}40{,}000" />), the <InlineMath math="5" />-year-old pays **<InlineMath math="\text{Rp}20{,}000" />**, and the <InlineMath math="2" />-year-old rides **free**.
+
+Summing normal fares and applying <Highlight>every fare rises by <InlineMath math="25\%" /></Highlight> gives **the total holiday cost**:
+
+<BlockMath math="\text{Normal total} = 75{,}000 + 40{,}000 + 20{,}000 = \text{Rp}135{,}000" />
+
+<BlockMath math="\text{Holiday total} = 135{,}000 \times 1.25 = \text{Rp}168{,}750" />
+
+## Why the other four totals fail
+
+- **<InlineMath math="\text{Rp}135{,}000" />** omits the <InlineMath math="25\%" /> public holiday increase.
+- **<InlineMath math="\text{Rp}143{,}750" />** mistakenly charges the <InlineMath math="12" />-year-old the child fare (<InlineMath math="115{,}000 \times 1.25" />).
+- **<InlineMath math="\text{Rp}193{,}750" />** mistakenly charges the <InlineMath math="2" />-year-old a child ticket (<InlineMath math="155{,}000 \times 1.25" />).
+- **<InlineMath math="\text{Rp}218{,}750" />** double-charges Bu Wati an adult ticket even though the motorbike fare includes its rider.
+
+# Answer
+
+The family pays **<InlineMath math="\text{Rp}168{,}750" />** in all.

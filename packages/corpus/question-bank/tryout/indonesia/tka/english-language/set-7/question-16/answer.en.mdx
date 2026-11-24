@@ -1,12 +1,32 @@
-Find the rounds, then the paste.
+# Given
 
-**Time**. Mid blue needs <InlineMath math="4" /> rounds and dark blue <InlineMath math="6" />, so the four cloths need <InlineMath math="4 + 4 + 6 + 6 = 20" /> rounds. One round is a <InlineMath math="5" />-minute dip and a <InlineMath math="15" />-minute airing: <InlineMath math="20 \times 20 = 400" /> minutes, which is <InlineMath math="6" /> hours <InlineMath math="40" /> minutes.
+In **Dyeing a cotton cloth with indigo**, an **<InlineMath math="8" />-litre** fresh bath uses **<InlineMath math="50" /> grams per <InlineMath math="2" /> litres**, plus **<InlineMath math="25" /> grams** stirred in **after every <InlineMath math="3" /> cloths before the next cloth goes in**. One round is a **<InlineMath math="5" />-minute dip plus a <InlineMath math="15" />-minute airing** (<InlineMath math="20" /> minutes). Mid blue takes **<InlineMath math="4" /> rounds** and dark blue **<InlineMath math="6" /> rounds**. Bu Sari dyes **two mid blue** then **two dark blue** cloths sequentially.
 
-**Paste**. The fresh <InlineMath math="8" />-litre bath needs <InlineMath math="8 \div 2 \times 50 = 200" /> grams. "After every <InlineMath math="3" /> cloths", another <InlineMath math="25" /> grams go in before the next cloth, so once, before the fourth: <InlineMath math="200 + 25 = 225" /> grams.
+# Asked
 
-- <InlineMath math="200" /> grams forgets the top-up before the fourth cloth.
-- <InlineMath math="5" /> hours <InlineMath math="40" /> minutes leaves out the last airing of each cloth.
-- <InlineMath math="250" /> grams adds the top-up twice.
-- <InlineMath math="1" /> hour <InlineMath math="40" /> minutes counts only the dips.
+The total dipping-and-airing time and total indigo paste used for the four cloths.
 
-So she takes <InlineMath math="6" /> hours <InlineMath math="40" /> minutes and uses <InlineMath math="225" /> grams of paste.
+# Solution
+
+Split the work into two clean totals: **count every round** (multiplying by <InlineMath math="20" /> minutes) and **count paste from the fresh bath plus top-ups**. With four cloths, only **one** top-up happens right before the fourth cloth.
+
+> Keep dip-plus-airing together as one <InlineMath math="20" />-minute round, and add the <InlineMath math="25" />-gram boost only when another cloth actually follows cloth <InlineMath math="3" />.
+
+## Calculating total time and total indigo paste
+
+The instructions set <Highlight><InlineMath math="50" /> grams of indigo paste for every <InlineMath math="2" /> litres</Highlight>, <Highlight>A bath needs <InlineMath math="8" /> litres</Highlight>, and <Highlight>After every <InlineMath math="3" /> cloths, stir in another <InlineMath math="25" /> grams</Highlight>. Computing **both totals**:
+
+<BlockMath math="\text{Rounds} = 4 + 4 + 6 + 6 = 20 \implies \text{Time} = 20 \times (5 + 15) = 400\text{ min} = 6\text{ h } 40\text{ min}" />
+
+<BlockMath math="\text{Paste} = \frac{8}{2} \times 50 + 25 = 200 + 25 = 225\text{ g}" />
+
+## Why the other four options fail
+
+- **<InlineMath math="6" /> hours <InlineMath math="40" /> minutes, <InlineMath math="200" /> grams** forgets the <InlineMath math="25" />-gram top-up before cloth four.
+- **<InlineMath math="5" /> hours <InlineMath math="40" /> minutes, <InlineMath math="225" /> grams** drops the final <InlineMath math="15" />-minute airing of all four cloths (<InlineMath math="60" /> minutes).
+- **<InlineMath math="6" /> hours <InlineMath math="40" /> minutes, <InlineMath math="250" /> grams** adds the top-up twice.
+- **<InlineMath math="1" /> hour <InlineMath math="40" /> minutes, <InlineMath math="225" /> grams** counts only the <InlineMath math="5" />-minute dips (<InlineMath math="100" /> minutes).
+
+# Answer
+
+Bu Sari takes **<InlineMath math="6" /> hours <InlineMath math="40" /> minutes, with <InlineMath math="225" /> grams of paste**.

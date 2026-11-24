@@ -1,11 +1,34 @@
-Gib jedem Ereignis eine Uhrzeit.
+# Gegeben
 
-- **R kommt um 7:00**, als Farid von Nadia übernahm.
-- **Q kommt um 7:30**. Die Summe von <InlineMath math="640" /> um 7:00 stimmte noch. Die erste zu hohe Summe ist <InlineMath math="1{.}700" />, geschrieben, als Yosef Farids ganzen Bogen zu Nadias zählte.
-- **P kommt um 8:00**, am Ende von Farids Stunde, als seine Striche <InlineMath math="950" /> erreichten.
-- **T kommt um 9:00**, am Ende der Stunde der erzählenden Person.
-- **S kommt nach 9:00**, als die Gruppe <InlineMath math="2{.}900" /> meldete.
+Bei der **Brückenzählung** zählte Nadia von 6:00 bis 7:00, Farid von 7:00 bis 8:00 und der Erzähler von 8:00 bis 9:00 Uhr. Yosef trug jede halbe Stunde ein (sodass der erste überhöhte Wert <InlineMath math="1{.}700" /> schon um **7:30 Uhr** erschien), und nach 9:00 Uhr schrieb die Gruppe ihren Bericht.
 
-Die Reihenfolge mit P vor Q legt den Fehler ans Ende von Farids Stunde statt auf 7:30. Die Reihenfolge, die mit Q beginnt, legt ihn vor die Übergabe. Die Reihenfolge mit T vor P vertauscht die zweite und dritte Stunde.
+# Gesucht
 
-Die Reihenfolge ist also R, Q, P, T, S.
+Die genaue zeitliche Reihenfolge der Ereignisse P, Q, R, S und T.
+
+# Lösung
+
+Ordne jedem Buchstaben zuerst eine **Uhrzeit** zu. Entscheidend ist, dass der erste falsche Tabellenwert (**Q**) bereits mitten in Farids Stunde um **7:30 Uhr** auftrat, also vor dem Ende seiner Stunde (**P**) um 8:00 Uhr.
+
+> Feste Uhrzeiten für jedes Ereignis klären sofort, ob ein Fehler mitten in einer Schicht oder erst danach auftrat.
+
+## Alle fünf Ereignisse auf der Zeitachse ordnen
+
+Der Text berichtet <Highlight>At 7:30, Yosef added Farid's whole sheet to Nadia's old one, so the <InlineMath math="640" /> went in twice</Highlight> (um 7:30 addierte Yosef beide Blätter, sodass <InlineMath math="640" /> doppelt einfloss). Die **chronologische Folge**:
+
+- **R (7:00)**: Nadia übergibt an Farid (die <InlineMath math="640" /> stimmen noch).
+- **Q (7:30)**: Die Tabelle zeigt erstmals einen zu hohen Wert (<InlineMath math="1{.}700" />).
+- **P (8:00)**: Farids Strichliste erreicht ihren Endwert <InlineMath math="950" />.
+- **T (9:00)**: Die Strichliste des Erzählers für die dritte Stunde endet.
+- **S (nach 9:00)**: Die Gruppe verfasst ihren Bericht über <InlineMath math="2{.}900" />.
+
+## Warum die anderen vier Reihenfolgen falsch sind
+
+- **R, P, Q, T, S** verschiebt den ersten Tabellenfehler hinter 8:00 Uhr statt 7:30 Uhr.
+- **Q, R, P, T, S** setzt den Fehler vor die Übergabe um 7:00 Uhr.
+- **R, Q, T, P, S** vertauscht zweite und dritte Stunde.
+- **R, Q, P, S, T** lässt den Bericht vor Ende der dritten Stunde entstehen.
+
+# Antwort
+
+Die richtige Reihenfolge lautet **R, Q, P, T, S**.

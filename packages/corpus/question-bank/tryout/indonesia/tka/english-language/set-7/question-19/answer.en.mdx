@@ -1,10 +1,35 @@
-Work through the bath, the top-ups and the rounds.
+# Given
 
-- **I is supported**. <InlineMath math="8 \div 2 \times 50 = 200" /> grams for the fresh <InlineMath math="8" />-litre bath.
-- **II is supported**. Extra paste goes in after the third cloth and after the sixth, before the seventh. That's twice.
-- III isn't supported. <InlineMath math="200 + 25 + 25 = 250" /> grams, not <InlineMath math="275" />. Adding paste a third time, after the seventh cloth, would be for an eighth cloth that never goes in.
-- **IV is supported**. <InlineMath math="7" /> cloths <InlineMath math="\times 4" /> rounds <InlineMath math="\times 20" /> minutes <InlineMath math="= 560" /> minutes, which is <InlineMath math="9" /> hours <InlineMath math="20" /> minutes.
+Pak Rahmat prepares a fresh **<InlineMath math="8" />-litre** bath (<InlineMath math="50" /> g per <InlineMath math="2" /> L) and dyes **<InlineMath math="7" /> cloths** sequentially to **mid blue** (<InlineMath math="4" /> rounds each, <InlineMath math="20" /> minutes per round), stirring in **<InlineMath math="25" /> g** extra paste **after every <InlineMath math="3" /> cloths before the next cloth goes in**.
 
-The option with III adds a top-up after the last cloth. The options without II or I leave out a step that the calculation needs.
+# Asked
 
-So the supported statements are I, II and IV only.
+Which of statements I through IV about Pak Rahmat's work are supported by the instructions.
+
+# Solution
+
+Track the top-ups on a quick cloth line: cloths <InlineMath math="1, 2, 3" /> -> **top-up one** -> cloths <InlineMath math="4, 5, 6" /> -> **top-up two** -> cloth <InlineMath math="7" /> -> **stop!** Because no eighth cloth enters, there is no third top-up.
+
+> Only add a top-up when another cloth actually follows the batch of <InlineMath math="3" />.
+
+## Computing bath paste and total time
+
+Following <Highlight>before the next cloth goes in</Highlight>, **paste and total duration** work out cleanly:
+
+<BlockMath math="\text{Fresh bath} = \frac{8}{2} \times 50 = 200\text{ g}, \qquad \text{Total paste} = 200 + 25 + 25 = 250\text{ g}" />
+
+<BlockMath math="\text{Total time} = 7 \times 4 \times 20 = 560\text{ min} = 9\text{ h } 20\text{ min}" />
+
+- **I (supported)**: Fresh <InlineMath math="8" />-litre bath uses <InlineMath math="200" /> grams.
+- **II (supported)**: Extra paste goes in after cloth <InlineMath math="3" /> and after cloth <InlineMath math="6" />, so **twice**.
+- **III (false)**: Total paste is <InlineMath math="250" /> grams, not <InlineMath math="275" /> grams.
+- **IV (supported)**: Total time is <InlineMath math="560" /> minutes, or **<InlineMath math="9" /> hours <InlineMath math="20" /> minutes**.
+
+## Why the other four options fail
+
+- **I, II, III, and IV** wrongly adds a pointless third top-up after the seventh cloth (<InlineMath math="275" /> g).
+- **I and II only**, **II and IV only**, and **I and IV only** each drop one verified statement.
+
+# Answer
+
+The supported statements are **I, II, and IV only**.

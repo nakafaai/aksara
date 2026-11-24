@@ -1,10 +1,30 @@
-Both table entries you need, at 7:30 and 8:30, already carry the extra <InlineMath math="640" />, so **the mistake cancels** when you subtract one from the other.
+# Given
 
-<BlockMath math="2{,}560 - 1{,}700 = 860" />
+In the **Kenari bridge** running-total table, Yosef recorded **<InlineMath math="1{,}700" />** at 7:30, **<InlineMath math="2{,}230" />** at 8:00, and **<InlineMath math="2{,}560" />** at 8:30. Every entry from 7:30 onward carries the same **extra <InlineMath math="640" />** from double-counting Nadia's sheet at 7:00.
 
-- <InlineMath math="220" /> takes the <InlineMath math="640" /> off a difference that no longer contains it.
-- <InlineMath math="330" /> counts only 8:00 to 8:30: <InlineMath math="2{,}560 - 2{,}230" />.
-- <InlineMath math="1{,}500" /> adds the <InlineMath math="640" /> back on.
-- <InlineMath math="530" /> counts only 7:30 to 8:00: <InlineMath math="2{,}230 - 1{,}700" />.
+# Asked
 
-So <InlineMath math="860" /> motorbikes crossed between 7:30 and 8:30.
+The corrected number of motorbikes that crossed the bridge between **7:30** and **8:30**.
+
+# Solution
+
+Imagine weighing a dog while standing on a scale holding a heavy backpack, and weighing yourself again later still wearing **the exact same backpack**. When you subtract the two readings, **the backpack's weight cancels completely**. Here the extra <InlineMath math="640" /> sits inside both 7:30 and 8:30, so subtracting cancels it cleanly.
+
+> A constant offset added to two cumulative totals disappears automatically when you take their difference.
+
+## Subtracting the cumulative totals
+
+Because the account states <Highlight>every total after that carried the same mistake</Highlight>, correcting both numbers first gives <InlineMath math="1{,}700 - 640 = 1{,}060" /> at 7:30 and <InlineMath math="2{,}560 - 640 = 1{,}920" /> at 8:30. Either way, **the difference between 7:30 and 8:30** is:
+
+<BlockMath math="2{,}560 - 1{,}700 = 1{,}920 - 1{,}060 = 860" />
+
+## Why the other four numbers fail
+
+- **<InlineMath math="220" />** subtracts <InlineMath math="640" /> a second time from an already error-free difference (<InlineMath math="860 - 640" />).
+- **<InlineMath math="330" />** covers only 8:00 to 8:30 (<InlineMath math="2{,}560 - 2{,}230" />).
+- **<InlineMath math="1{,}500" />** mistakenly adds <InlineMath math="640" /> to <InlineMath math="860" />.
+- **<InlineMath math="530" />** covers only 7:30 to 8:00 (<InlineMath math="2{,}230 - 1{,}700" />).
+
+# Answer
+
+Exactly **<InlineMath math="860" />** motorbikes crossed the bridge between 7:30 and 8:30.
