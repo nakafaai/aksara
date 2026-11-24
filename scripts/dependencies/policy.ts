@@ -89,9 +89,9 @@ export const DEPENDENCY_HOLDS: readonly DependencyHold[] = [
     cohort: "Effect tooling",
     dependency: "@effect/tsgo",
     reason:
-      "Compiler patching is reviewed with tsrs and Effect. Every rule is decided in packages/typescript-config/base.json, and that rule block matches nakafa.com's (docs/adr/compiler.md), whose rule record, docs/adr/0021-rules.md, gives each reason. 0.73.2 patches tsrs 7.1.0-beta.tsrs2 and 7.1.0-beta.tsrs3 (the version table of its README), which replaces the TypeScript package: prepare runs effect-tsgo patch --tsrs --no-typescript. base.json decides the five rules 0.70 to 0.73 add as nakafa.com does: flatMapMapToZipWith, flatMapProvideServiceToProvideServiceEffect, promiseAllInEffect and promiseRaceInEffect are errors, which no Aksara module reaches, and forLoopPushToForEach stays off, because the source check that forbids a native push owns it. Every later version must decide its new rules in base.json in the same change.",
+      "Compiler patching is reviewed with tsrs and Effect. Every rule is decided in packages/typescript-config/base.json, and that rule block matches nakafa.com's (docs/adr/compiler.md), whose rule record, docs/adr/0021-rules.md, gives each reason. 0.73.2 patches tsrs 7.1.0-beta.tsrs2 and 7.1.0-beta.tsrs3 (the version table of its README), which replaces the TypeScript package: prepare runs effect-tsgo patch --tsrs --no-typescript. 0.73.4 widens missedPipeableOpportunity across 171 sites here (and 683 in nakafa.com) on two-call expressions such as Schema.optionalKey(Schema.Array(...)); hold on 0.73.2 until that rule sweep lands in its own change.",
     registry: "@effect/tsgo@latest",
-    reviewedLatest: "0.73.2",
+    reviewedLatest: "0.73.4",
     source: "root-dev-dependency",
   },
   {
@@ -99,9 +99,9 @@ export const DEPENDENCY_HOLDS: readonly DependencyHold[] = [
     cohort: "TypeScript",
     dependency: "tsrs",
     reason:
-      "tsrs is the Rust port of the TypeScript 7.1 compiler: every typecheck, package build, language server, and AST reader runs it, pinned to 7.1.0-beta.tsrs3, one of the two that @effect/tsgo 0.73.2, the latest, patches. 7.1.0-beta.tsrs4 is the latest release, and it waits for an @effect/tsgo release that patches it, because every typecheck runs the patched compiler. Its version now names the TypeScript release it targets and a tsrs revision, so a newer revision of the same beta is one release channel (scripts/dependencies/release.ts), and its JavaScript API and tsdk are unchanged from 0.25.0-ts7.1.0-beta.",
+      "tsrs is the Rust port of the TypeScript 7.1 compiler: every typecheck, package build, language server, and AST reader runs it, pinned to 7.1.0-beta.tsrs3, one of the two that @effect/tsgo 0.73.2 patches. 7.1.0-beta.tsrs5 is the latest release, and it waits for the @effect/tsgo upgrade, because every typecheck runs the patched compiler. Its version now names the TypeScript release it targets and a tsrs revision, so a newer revision of the same beta is one release channel (scripts/dependencies/release.ts), and its JavaScript API and tsdk are unchanged from 0.25.0-ts7.1.0-beta.",
     registry: "tsrs@latest",
-    reviewedLatest: "7.1.0-beta.tsrs4",
+    reviewedLatest: "7.1.0-beta.tsrs5",
     source: "catalog",
   },
   {
