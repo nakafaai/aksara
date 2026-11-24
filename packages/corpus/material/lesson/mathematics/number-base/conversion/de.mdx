@@ -1,7 +1,7 @@
 export const metadata = {
   title: "Zahlen zwischen Zahlensystemen umrechnen",
   description:
-    "Rechne Zahlen durch wiederholtes Teilen in andere Basen um, rechne sie zurück ins Zehnersystem und lies Binärzahlen als Vierer- oder Achterzahlen.",
+    "Rechne Zahlen durch wiederholtes Teilen in andere Basen um, rechne sie zurück ins Zehnersystem und lies Binärzahlen als Zahlen zur Basis vier oder acht.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-11-20",
   subject: "Zahlensysteme",
@@ -9,7 +9,9 @@ export const metadata = {
 
 ## Stäbchen zu Bündeln schnüren
 
-Um eine Zahl aus dem Zehnersystem zur Basis <InlineMath math="b" /> umzurechnen, **bündelst du die Dinge zu je <InlineMath math="b" /> Stück**. Nimm <InlineMath math="200" /> Eisstiele und die Basis sechs. Schnür je sechs Stiele zu einem Bündel, leg je sechs Bündel in eine Schachtel und stell je sechs Schachteln auf ein Tablett. Die Zahl der Tabletts, die übrigen Schachteln, die übrigen Bündel und die losen Stiele sind die Ziffern der Zahl zur Basis sechs. Jede Bündelrunde ist eine Division durch <InlineMath math="b" />, und auf diesem Tisch siehst du das wiederholte Teilen an echten Dingen.
+Um eine Zahl aus dem Zehnersystem zur Basis <InlineMath math="b" /> umzurechnen, **bündelst du die Dinge zu je <InlineMath math="b" /> Stück**. Nimm <InlineMath math="200" /> Eisstiele und die Basis sechs. Schnür je sechs Stiele zu einem Bündel, leg je sechs Bündel in eine Schachtel und stell je sechs Schachteln auf ein Tablett.
+
+Die Zahl der Tabletts, übrigen Schachteln, übrigen Bündel und losen Stiele ergibt die Ziffern zur Basis sechs. Jede Bündelrunde ist eine Division durch <InlineMath math="b" />, und auf diesem Tisch siehst du das wiederholte Teilen an echten Dingen.
 
 <BundleCountLab
   title={<><InlineMath math="200" /> Stiele zur Basis sechs bündeln</>}
@@ -40,43 +42,57 @@ Auf dem Papier schreibst du jede Runde als Division mit Rest. Der **Quotient** s
 
 <BlockMath math="\begin{aligned} 200 &= 33 \cdot 6 + 2 \\ 33 &= 5 \cdot 6 + 3 \\ 5 &= 0 \cdot 6 + 5 \end{aligned}" />
 
-Hör auf, sobald der Quotient <InlineMath math="0" /> ist. Von unten nach oben gelesen ergeben die Reste <InlineMath math="200 = 532_6" />. Prüf mit der ausführlichen Schreibweise: <InlineMath math="5 \cdot 36 + 3 \cdot 6 + 2 = 180 + 18 + 2 = 200" />.
+Hör auf, sobald der Quotient <InlineMath math="0" /> ist. Von unten nach oben gelesen ergeben die Reste <InlineMath math="200 = 532_6" />. Prüf mit der ausführlichen Schreibweise, ob wieder <InlineMath math="200" /> herauskommt.
+
+<BlockMath math="5 \cdot 36 + 3 \cdot 6 + 2 = 180 + 18 + 2 = 200" />
 
 ### Reste von unten lesen
 
-Warum liest du von unten? Der erste Rest sind die losen Stiele, also die Einer, und diese Ziffer steht ganz rechts. Jede spätere Division zählt größere Gruppen, deshalb **zählt der letzte Rest die größten Gruppen** und steht ganz links. Die Leiter zur Basis fünf hat eine Sprosse mehr, weil auch das Tablett gefüllt wird.
+Warum liest du von unten? Der erste Rest sind die losen Stiele, also die Einer, und diese Ziffer steht ganz rechts. Jede spätere Division zählt größere Gruppen, deshalb **zählt der letzte Rest die größten Gruppen** und steht ganz links.
+
+> Der erste Rest zählt die losen Einer ganz rechts, während der letzte Rest die größten Gruppen ganz links zählt.
+
+Die Leiter zur Basis fünf hat eine Sprosse mehr, weil auch das Tablett gefüllt wird.
 
 <BlockMath math="\begin{aligned} 200 &= 40 \cdot 5 + 0 \\ 40 &= 8 \cdot 5 + 0 \\ 8 &= 1 \cdot 5 + 3 \\ 1 &= 0 \cdot 5 + 1 \end{aligned}" />
 
-Der letzte Rest, <InlineMath math="1" />, ist ein Tablett mit <InlineMath math="125" /> Stielen, also ist <InlineMath math="200 = 1300_5" />. Beide Nullreste bleiben in der Zahl stehen, denn sie halten fest, dass kein Bündel und kein loser Stiel übrig ist. Prüf: <InlineMath math="1 \cdot 125 + 3 \cdot 25 + 0 \cdot 5 + 0 = 200" />.
+Der letzte Rest, <InlineMath math="1" />, ist ein Tablett mit <InlineMath math="125" /> Stielen, also ist <InlineMath math="200 = 1300_5" />. Beide Nullreste bleiben in der Zahl stehen, denn sie halten fest, dass kein Bündel und kein loser Stiel übrig ist.
 
-Zwei Fehler auf dieser Leiter liefern trotzdem eine plausible Zahl. Liest du die Reste der Leiter zur Basis sechs von oben, wird aus <InlineMath math="200" /> die Zahl <InlineMath math="235_6" />, und die ist nur <InlineMath math="95" /> wert. Lässt du die beiden Nullreste der Leiter zur Basis fünf weg, bleibt <InlineMath math="13_5" />, und das ist nur <InlineMath math="8" /> wert. Die Zahl hat so viele Ziffern, wie du Divisionen hattest, und die schnellste Probe lautet: **Rechne dein Ergebnis in die Ausgangsbasis zurück**. Kommt die Ausgangszahl nicht heraus, ist ein Schritt falsch.
+<BlockMath math="1 \cdot 125 + 3 \cdot 25 + 0 \cdot 5 + 0 = 200" />
+
+Zwei Fehler auf dieser Leiter liefern trotzdem eine plausible Zahl. Liest du die Reste zur Basis sechs von oben, wird aus <InlineMath math="200" /> die Zahl <InlineMath math="235_6" /> (nur <InlineMath math="95" />), und ohne die beiden Nullreste zur Basis fünf bleibt <InlineMath math="13_5" /> (nur <InlineMath math="8" />).
+
+Die Zahl hat so viele Ziffern wie Divisionen. Die schnellste Probe lautet: **Rechne dein Ergebnis in die Ausgangsbasis zurück**. Kommt die Ausgangszahl nicht heraus, ist ein Schritt falsch.
 
 Probier jetzt eine Leiter mit vier Sprossen: Rechne <InlineMath math="150" /> zur Basis vier um. Teil immer wieder durch <InlineMath math="4" />, bis der Quotient <InlineMath math="0" /> ist.
 
 <BlockMath math="\begin{aligned} 150 &= 37 \cdot 4 + 2 \\ 37 &= 9 \cdot 4 + 1 \\ 9 &= 2 \cdot 4 + 1 \\ 2 &= 0 \cdot 4 + 2 \end{aligned}" />
 
-Die Reste von unten ergeben **<InlineMath math="150 = 2112_4" />**. Probe: <InlineMath math="2 \cdot 64 + 1 \cdot 16 + 1 \cdot 4 + 2 = 150" />.
+Die Reste von unten ergeben **<InlineMath math="150 = 2112_4" />**. Prüf das Ergebnis mit der ausführlichen Schreibweise.
+
+<BlockMath math="2 \cdot 64 + 1 \cdot 16 + 1 \cdot 4 + 2 = 150" />
 
 ## Zurück ins Zehnersystem
 
-Die andere Richtung nutzt die Stellenwerte. Du kannst wie gewohnt die [ausführliche Schreibweise mit Stellenwerten](/de/faecher/mathematik/zahlensysteme/stellenwert-und-ziffernwert) aufstellen, aber es geht kürzer: **Multiplizier mit der Basis und addier die nächste Ziffer**. Fang bei der Ziffer ganz links an und wiederhol das bis zur letzten Ziffer. Nimm <InlineMath math="1452_7" />.
+Die andere Richtung nutzt die Stellenwerte. Du kannst die [ausführliche Schreibweise mit Stellenwerten](/de/faecher/mathematik/zahlensysteme/stellenwert-und-ziffernwert) aufstellen, oder kürzer rechnen: **Multiplizier mit der Basis und addier die nächste Ziffer**. Fang ganz links an und wiederhol das bis zum Ende. Nimm <InlineMath math="1452_7" />.
 
 <BlockMath math="\begin{aligned} 1 \cdot 7 + 4 &= 11 \\ 11 \cdot 7 + 5 &= 82 \\ 82 \cdot 7 + 2 &= 576 \end{aligned}" />
 
-Warum klappt das? Jedes Mal, wenn du mit <InlineMath math="7" /> multiplizierst, rücken alle bisher genommenen Ziffern eine Stelle nach links. Die <InlineMath math="1" /> ganz links wird dreimal mit <InlineMath math="7" /> multipliziert, ist am Ende also <InlineMath math="7^3" /> wert, genau wie in der ausführlichen Schreibweise. Mit ihr prüfst du auch dein Ergebnis.
+Warum klappt das? Bei jeder Multiplikation mit <InlineMath math="7" /> rücken alle bisherigen Ziffern eine Stelle nach links. Die <InlineMath math="1" /> ganz links wird dreimal mit <InlineMath math="7" /> multipliziert und ist am Ende <InlineMath math="7^3" /> wert, genau wie bei der ausführlichen Probe.
 
 <BlockMath math="1452_7 = 1 \cdot 343 + 4 \cdot 49 + 5 \cdot 7 + 2 = 343 + 196 + 35 + 2 = 576" />
 
-Bei langen Zahlen spart Multiplizieren und Addieren Arbeit, weil du keine großen Potenzen wie <InlineMath math="7^3" /> vorab ausrechnen musst. Wende es auf <InlineMath math="3021_4" /> an: Fang bei der Ziffer ganz links an, multiplizier mit <InlineMath math="4" /> und addier die nächste Ziffer.
+Bei langen Zahlen spart Multiplizieren und Addieren Arbeit, weil du keine großen Potenzen wie <InlineMath math="7^3" /> vorab ausrechnen musst. Wende es auf <InlineMath math="3021_4" /> an: Fang links an, multiplizier mit <InlineMath math="4" /> und addier die nächste Ziffer.
 
 <BlockMath math="\begin{aligned} 3 \cdot 4 + 0 &= 12 \\ 12 \cdot 4 + 2 &= 50 \\ 50 \cdot 4 + 1 &= 201 \end{aligned}" />
 
-Also ist **<InlineMath math="3021_4 = 201" />**. Probe mit der ausführlichen Schreibweise: <InlineMath math="3 \cdot 64 + 0 \cdot 16 + 2 \cdot 4 + 1 = 192 + 8 + 1 = 201" />.
+Also ist **<InlineMath math="3021_4 = 201" />**. Prüf das Ergebnis mit der ausführlichen Schreibweise.
+
+<BlockMath math="3 \cdot 64 + 0 \cdot 16 + 2 \cdot 4 + 1 = 192 + 8 + 1 = 201" />
 
 ## Zwei Basen außer der Zehn
 
-Fünf und acht sind keine Potenzen voneinander, also gibt es zwischen diesen Basen keine Abkürzung. Der Weg, der immer funktioniert, führt **über das Zehnersystem**: zuerst mit den Stellenwerten ins Zehnersystem, dann mit wiederholtem Teilen in die Zielbasis. Nimm <InlineMath math="2134_5" /> und rechne die Zahl zur Basis acht um.
+Fünf und acht sind keine Potenzen voneinander, also gibt es zwischen diesen Basen keine Abkürzung. Der Weg, der immer funktioniert, führt **über das Zehnersystem**: zuerst mit den Stellenwerten ins Zehnersystem, dann mit wiederholtem Teilen in die Zielbasis. Rechne <InlineMath math="2134_5" /> zur Basis acht um.
 
 <BlockMath math="2134_5 = 2 \cdot 125 + 1 \cdot 25 + 3 \cdot 5 + 4 = 250 + 25 + 15 + 4 = 294" />
 
@@ -84,9 +100,11 @@ Jetzt teilst du <InlineMath math="294" /> immer wieder durch <InlineMath math="8
 
 <BlockMath math="\begin{aligned} 294 &= 36 \cdot 8 + 6 \\ 36 &= 4 \cdot 8 + 4 \\ 4 &= 0 \cdot 8 + 4 \end{aligned}" />
 
-Die Reste von unten ergeben <InlineMath math="2134_5 = 446_8" />. Prüf mit der ausführlichen Schreibweise zur Basis acht: <InlineMath math="4 \cdot 64 + 4 \cdot 8 + 6 = 256 + 32 + 6 = 294" />. Das ist der Wert aus dem ersten Schritt, beide Zahlen zählen also gleich viele Dinge.
+Die Reste von unten ergeben <InlineMath math="2134_5 = 446_8" />. Prüf mit der ausführlichen Schreibweise zur Basis acht, dass beide Zahlen gleich viele Dinge zählen.
 
-Der typische Fehler hier ist, das Zehnersystem auszulassen. Teilst du <InlineMath math="2134" /> direkt durch <InlineMath math="8" />, kommt <InlineMath math="4126_8" /> statt <InlineMath math="446_8" /> heraus, weil diese Division <InlineMath math="2134" /> als Zehnerzahl behandelt. **Wiederholtes Teilen funktioniert nur mit einem Wert im Zehnersystem**, also rechnest du zuerst ins Zehnersystem um.
+<BlockMath math="4 \cdot 64 + 4 \cdot 8 + 6 = 256 + 32 + 6 = 294" />
+
+Der typische Fehler hier ist, das Zehnersystem auszulassen. Teilst du <InlineMath math="2134" /> direkt durch <InlineMath math="8" />, kommt <InlineMath math="4126_8" /> heraus, weil diese Division <InlineMath math="2134" /> als Zehnerzahl behandelt. **Wiederholtes Teilen funktioniert nur mit einem Wert im Zehnersystem**, also rechne zuerst dorthin um.
 
 Auch sieben und drei sind keine Potenzen voneinander, also führt auch der Weg von <InlineMath math="263_7" /> zur Basis drei über das Zehnersystem.
 
@@ -96,11 +114,15 @@ Dann teilst du <InlineMath math="143" /> immer wieder durch <InlineMath math="3"
 
 <BlockMath math="\begin{aligned} 143 &= 47 \cdot 3 + 2 \\ 47 &= 15 \cdot 3 + 2 \\ 15 &= 5 \cdot 3 + 0 \\ 5 &= 1 \cdot 3 + 2 \\ 1 &= 0 \cdot 3 + 1 \end{aligned}" />
 
-Die Reste von unten ergeben **<InlineMath math="263_7 = 12022_3" />**. Probe: <InlineMath math="1 \cdot 81 + 2 \cdot 27 + 0 \cdot 9 + 2 \cdot 3 + 2 = 81 + 54 + 6 + 2 = 143" />.
+Die Reste von unten ergeben **<InlineMath math="263_7 = 12022_3" />**. Prüf den Wert zurück im Zehnersystem.
+
+<BlockMath math="1 \cdot 81 + 2 \cdot 27 + 0 \cdot 9 + 2 \cdot 3 + 2 = 81 + 54 + 6 + 2 = 143" />
 
 ## Basis zwei zu vier und acht
 
-Das Zweiersystem hängt eng mit dem Vierer- und dem Achtersystem zusammen, denn <InlineMath math="4 = 2^2" /> und <InlineMath math="8 = 2^3" />. Zwei Binärziffern füllen genau eine Stelle zur Basis vier, drei Binärziffern genau eine Stelle zur Basis acht. Du kannst also **Binärziffern gruppieren**, ohne den Umweg über das Zehnersystem. Auf diesem Lampenfeld ist jede Lampe eine Binärziffer: an heißt <InlineMath math="1" />, aus heißt <InlineMath math="0" />.
+Das Zweiersystem hängt eng mit dem Vierer- und dem Achtersystem zusammen, denn <InlineMath math="4 = 2^2" /> und <InlineMath math="8 = 2^3" />. Zwei Binärziffern füllen genau eine Stelle zur Basis vier, drei Binärziffern genau eine Stelle zur Basis acht.
+
+Du kannst also **Binärziffern gruppieren**, ohne den Umweg über das Zehnersystem. Auf diesem Lampenfeld ist jede Lampe eine Binärziffer: an heißt <InlineMath math="1" />, aus heißt <InlineMath math="0" />.
 
 <BinaryLampLab
   title={<>Die Zahl <InlineMath math="90" /> auf sieben Lampen</>}
@@ -129,7 +151,11 @@ Das Zweiersystem hängt eng mit dem Vierer- und dem Achtersystem zusammen, denn 
   showReadout
 />
 
-Einzeln gelesen zeigt das Feld <InlineMath math="1011010_2 = 64 + 16 + 8 + 2 = 90" />. Die Gegenrichtung ist genauso direkt: Schreib jede Ziffer zur Basis acht als drei Binärziffern. So wird <InlineMath math="75_8" /> zu <InlineMath math="111\,101_2" />, denn <InlineMath math="7 = 111_2" /> und <InlineMath math="5 = 101_2" />, und beide Zahlen sind <InlineMath math="61" /> wert.
+Einzeln gelesen zeigt das Feld eine Binärzahl mit dem Wert <InlineMath math="90" />.
+
+<BlockMath math="1011010_2 = 64 + 16 + 8 + 2 = 90" />
+
+Die Gegenrichtung ist genauso direkt: Schreib jede Ziffer zur Basis acht als drei Binärziffern. So wird <InlineMath math="75_8" /> zu <InlineMath math="111\,101_2" />, denn <InlineMath math="7 = 111_2" /> und <InlineMath math="5 = 101_2" />, und beide Zahlen sind <InlineMath math="61" /> wert.
 
 ### Von rechts gruppieren
 
@@ -137,7 +163,11 @@ Gruppier immer von rechts, denn **die Ziffer ganz rechts sind die Einer**, in je
 
 <BlockMath math="1011010_2 = 01\,01\,10\,10_2 = 1122_4" />
 
-Jedes Paar liest du als kleine Binärzahl: <InlineMath math="01_2 = 1" /> und <InlineMath math="10_2 = 2" />. Prüf: <InlineMath math="1122_4 = 64 + 16 + 8 + 2 = 90" />. Gruppierst du von links, verrutscht jede Stelle. Die Ziffern <InlineMath math="101\,101\,0" /> ergeben dann <InlineMath math="550_8 = 360" />, das Vierfache des richtigen Werts.
+Jedes Paar liest du als kleine Binärzahl: <InlineMath math="01_2 = 1" /> und <InlineMath math="10_2 = 2" />.
+
+<BlockMath math="1122_4 = 64 + 16 + 8 + 2 = 90" />
+
+Gruppierst du von links, verrutscht jede Stelle. Die Ziffern <InlineMath math="101\,101\,0" /> ergeben dann <InlineMath math="550_8 = 360" />, das Vierfache des richtigen Werts.
 
 ### Mit Nullen auffüllen
 
@@ -145,7 +175,11 @@ Sieben Lampen lassen sich nicht glatt in Paare oder Dreier teilen. Die Gruppe ga
 
 <BlockMath math="1011010_2 = 001\,011\,010_2 = 132_8" />
 
-Prüf: <InlineMath math="132_8 = 64 + 24 + 2 = 90" />. Wähl auf dem Feld die Lesart in Dreiern und sieh zu, wie zwei leere Stellen links mit Nullen gefüllt werden. In Paaren reicht eine Null, weil sieben Ziffern nur eine Ziffer von acht entfernt sind.
+Prüf den Wert über das Zehnersystem, um wieder bei <InlineMath math="90" /> anzukommen.
+
+<BlockMath math="132_8 = 64 + 24 + 2 = 90" />
+
+Wähl auf dem Feld die Lesart in Dreiern und sieh zu, wie zwei leere Stellen links mit Nullen gefüllt werden. In Paaren reicht eine Null, weil sieben Ziffern nur eine Ziffer von acht entfernt sind.
 
 Probier beide Gruppierungen an einer längeren Zahl: Rechne <InlineMath math="11010111_2" /> zur Basis acht und zur Basis vier um. Für die Basis acht gruppierst du drei Ziffern von rechts und setzt vorne eine Null.
 
@@ -155,4 +189,6 @@ Für die Basis vier teilen sich acht Ziffern glatt in vier Paare, eine zusätzli
 
 <BlockMath math="11010111_2 = 11\,01\,01\,11_2 = 3113_4" />
 
-Prüf beide über das Zehnersystem: <InlineMath math="11010111_2 = 128 + 64 + 16 + 4 + 2 + 1 = 215" />, <InlineMath math="327_8 = 192 + 16 + 7 = 215" /> und <InlineMath math="3113_4 = 192 + 16 + 4 + 3 = 215" />. **Alle drei Zahlen sind** <InlineMath math="215" /> wert.
+Prüf alle drei über das Zehnersystem und sieh, dass **alle drei Zahlen** <InlineMath math="215" /> wert sind.
+
+<BlockMath math="\begin{aligned} 11010111_2 &= 128 + 64 + 16 + 4 + 2 + 1 = 215 \\ 327_8 &= 192 + 16 + 7 = 215 \\ 3113_4 &= 192 + 16 + 4 + 3 = 215 \end{aligned}" />

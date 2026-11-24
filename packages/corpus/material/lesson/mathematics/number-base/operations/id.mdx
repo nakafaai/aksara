@@ -9,7 +9,9 @@ export const metadata = {
 
 ## Menyimpan Saat Paku Penuh
 
-Kamu bisa menjumlahkan dan mengurangkan langsung dalam basis <InlineMath math="b" />, tanpa mengubahnya ke basis sepuluh dulu. Caranya sama dengan penjumlahan bersusun yang sudah kamu kenal, hanya batasnya berbeda: **simpan satu ke kolom kiri setiap kali sebuah kolom mencapai <InlineMath math="b" />**, bukan sepuluh. Dalam pengurangan, satu pinjaman dari kolom kiri bernilai <InlineMath math="b" />. Geser basis <InlineMath math="b" /> dan jumlah kolom <InlineMath math="s" /> di bawah ini untuk melihat kapan sebuah kolom menyimpan <InlineMath math="1" /> dan angka apa yang ditulis.
+Kamu bisa menjumlahkan dan mengurangkan langsung dalam basis <InlineMath math="b" />, tanpa mengubahnya ke basis sepuluh dulu. Caranya sama dengan hitungan bersusun yang sudah kamu kenal, hanya batasnya berbeda: **simpan satu ke kolom kiri setiap kali sebuah kolom mencapai <InlineMath math="b" />**, bukan sepuluh.
+
+Dalam pengurangan, satu pinjaman dari kolom kiri bernilai <InlineMath math="b" />. Geser basis <InlineMath math="b" /> dan jumlah kolom <InlineMath math="s" /> di bawah ini untuk melihat kapan sebuah kolom menyimpan <InlineMath math="1" /> dan angka apa yang ditulis.
 
 <MathVisual
   title={<>Kapan Sebuah Kolom Menyimpan dalam Basis <InlineMath math="b" /></>}
@@ -57,11 +59,19 @@ Kamu bisa menjumlahkan dan mengurangkan langsung dalam basis <InlineMath math="b
   }}
 />
 
-Mulai dari basis <InlineMath math="5" /> dengan jumlah kolom <InlineMath math="7" />. Titiknya berada di dalam pita simpanan di atas garis <InlineMath math="s = b" />, jadi kolom mengirim <InlineMath math="1" /> ke kiri dan menulis <InlineMath math="7 - 5 = 2" />. Sekarang geser basisnya ke <InlineMath math="8" /> tanpa mengubah jumlahnya. Jumlah <InlineMath math="7" /> yang sama langsung turun ke bawah garis <InlineMath math="s = b" />, sehingga tidak ada simpanan dan kamu langsung menulis <InlineMath math="7" />. **Basis menetapkan batas pasti tempat penyimpanan dimulai**, dan batas itu bergeser setiap kali basisnya berganti.
+Mulai dari basis <InlineMath math="5" /> dengan jumlah kolom <InlineMath math="7" />. Titiknya berada di dalam pita simpanan di atas garis <InlineMath math="s = b" />, jadi kolom mengirim <InlineMath math="1" /> ke kiri dan menulis <InlineMath math="7 - 5 = 2" />.
+
+Geser basisnya ke <InlineMath math="8" /> tanpa mengubah jumlahnya. Jumlah <InlineMath math="7" /> yang sama langsung turun ke bawah garis <InlineMath math="s = b" />, sehingga tidak ada simpanan dan kamu langsung menulis <InlineMath math="7" />. **Basis menetapkan batas pasti tempat penyimpanan dimulai**.
+
+> Dalam basis berapa pun, setiap simpanan mengirim satu kelompok penuh ke kiri, dan setiap pinjaman memecah satu kelompok kiri menjadi <InlineMath math="b" /> satuan.
 
 ## Menjumlahkan Secara Bersusun
 
-Penjumlahan bersusun memakai aturan simpanan ini di setiap kolom. Jumlahkan kolom dari kanan, termasuk simpanan dari kolom sebelumnya. Kalau jumlahnya kurang dari <InlineMath math="b" />, tulis jumlah itu. Kalau jumlahnya <InlineMath math="b" /> atau lebih, **tulis jumlah dikurangi <InlineMath math="b" /> dan simpan <InlineMath math="1" />**. Simpanannya tidak pernah lebih dari <InlineMath math="1" />, karena satu kolom dua bilangan paling banyak berisi <InlineMath math="(b - 1) + (b - 1) + 1 = 2b - 1" />.
+Penjumlahan bersusun memakai aturan simpanan ini di setiap kolom. Jumlahkan dari kanan termasuk simpanan sebelumnya: kalau kurang dari <InlineMath math="b" />, langsung tulis. Kalau mencapai <InlineMath math="b" /> atau lebih, **tulis jumlah dikurangi <InlineMath math="b" /> dan simpan <InlineMath math="1" />**.
+
+Simpanan dari dua bilangan tidak pernah lebih dari <InlineMath math="1" />, karena batas terbesar satu kolom tetap di bawah <InlineMath math="2b" />.
+
+<BlockMath math="(b - 1) + (b - 1) + 1 = 2b - 1" />
 
 ### Simpanan yang Berantai
 
@@ -76,9 +86,13 @@ Hitung <InlineMath math="4675_8 + 2307_8" />. Semua angka di sini berada dalam b
 | Kolom <InlineMath math="8^2" /> | <InlineMath math="6 + 3 + 1 = 10" /> | <InlineMath math="10 = 1 \times 8 + 2" /> | <InlineMath math="2" /> | <InlineMath math="1" /> |
 | Kolom <InlineMath math="8^3" /> | <InlineMath math="4 + 2 + 1 = 7" /> | <InlineMath math="7 < 8" /> | <InlineMath math="7" /> | <InlineMath math="0" /> |
 
-Lihat kolom kedua, yaitu kolom delapanan. Tanpa simpanan, <InlineMath math="7 + 0" /> tidak perlu menyimpan apa pun. Simpanan dari kolom satuan membuat kolom itu tepat <InlineMath math="8" />, jadi kolom itu ikut menyimpan. Satu simpanan **merambat melewati dua tempat**, persis seperti paku abakus yang penuh mengirim manik ke paku yang juga hampir penuh. Hasilnya <InlineMath math="4675_8 + 2307_8 = 7204_8" />.
+Lihat kolom kedua, yaitu kolom delapanan. Tanpa simpanan, <InlineMath math="7 + 0" /> tidak perlu menyimpan apa pun. Simpanan dari satuan membuat kolom itu tepat <InlineMath math="8" />, sehingga satu simpanan **merambat melewati dua tempat** dan memberi <InlineMath math="7204_8" />.
 
-Kebiasaan dari basis sepuluh paling sering menyusup di kolom satuan. Jumlah <InlineMath math="12" /> menggodamu menulis <InlineMath math="2" /> dan menyimpan <InlineMath math="1" />, padahal batasnya di sini <InlineMath math="8" />, dan <InlineMath math="12 = 1 \times 8 + 4" />, jadi yang ditulis <InlineMath math="4" />. Ada tes cepat untuk kekeliruan ini: **setiap angka hasil harus lebih kecil dari basisnya**.
+Kebiasaan basis sepuluh paling sering menyusup di kolom satuan. Jumlah <InlineMath math="12" /> menggodamu menulis <InlineMath math="2" />, padahal batasnya <InlineMath math="8" />, jadi yang ditulis adalah <InlineMath math="4" />.
+
+<BlockMath math="12 = 1 \times 8 + 4" />
+
+Ada tes cepat untuk kekeliruan ini: **setiap angka hasil harus lebih kecil dari basisnya**.
 
 ### Periksa di Basis Sepuluh
 
@@ -86,13 +100,19 @@ Ubah ketiga bilangan ke basis sepuluh dan periksa apakah penjumlahannya cocok.
 
 <BlockMath math="\begin{aligned} 4675_8 &= 4 \times 512 + 6 \times 64 + 7 \times 8 + 5 = 2{.}493 \\ 2307_8 &= 2 \times 512 + 3 \times 64 + 0 \times 8 + 7 = 1{.}223 \\ 7204_8 &= 7 \times 512 + 2 \times 64 + 0 \times 8 + 4 = 3{.}716 \end{aligned}" />
 
-Karena <InlineMath math="2{.}493 + 1{.}223 = 3{.}716" />, **penjumlahan dalam basis delapan itu benar**. Cek ini lebih panjang daripada penjumlahannya sendiri, tetapi cek ini menangkap simpanan yang terlupa, karena simpanan yang hilang langsung mengurangi hasilnya sebanyak satu nilai tempat.
+Karena <InlineMath math="2{.}493 + 1{.}223 = 3{.}716" />, **penjumlahan dalam basis delapan itu benar**. Cek ini menangkap simpanan yang terlupa, karena simpanan yang hilang langsung mengurangi hasilnya sebanyak satu nilai tempat.
 
 Coba satu soal dalam basis lima, tempat simpanan cepat muncul: hitung <InlineMath math="2434_5 + 1213_5" />. Jumlahkan kolom dari kanan dengan batas <InlineMath math="5" />.
 
 <BlockMath math="\begin{array}{rcccc} & {\scriptstyle 1} & {\scriptstyle 1} & {\scriptstyle 1} & \\ & 2 & 4 & 3 & 4 \\ + & 1 & 2 & 1 & 3 \\ \hline & 4 & 2 & 0 & 2 \end{array}" />
 
-Satuan: <InlineMath math="4 + 3 = 7 = 12_5" />, tulis <InlineMath math="2" /> simpan <InlineMath math="1" />. Limaan: <InlineMath math="3 + 1 + 1 = 5 = 10_5" />, tulis <InlineMath math="0" /> simpan <InlineMath math="1" />. Kolom ketiga: <InlineMath math="4 + 2 + 1 = 7 = 12_5" />, tulis <InlineMath math="2" /> simpan <InlineMath math="1" />. Kolom keempat: <InlineMath math="2 + 1 + 1 = 4" />. Jadi **<InlineMath math="2434_5 + 1213_5 = 4202_5" />**. Cek lewat basis sepuluh: <InlineMath math="369 + 183 = 552" />, dan <InlineMath math="4202_5 = 500 + 50 + 0 + 2 = 552" />.
+Catat setiap kolom dari kanan ke kiri, lalu cek lewat basis sepuluh.
+
+<BlockMath math="\begin{aligned} 4 + 3 &= 7 = 12_5 & &\text{(tulis } 2\text{, simpan } 1\text{)} \\ 3 + 1 + 1 &= 5 = 10_5 & &\text{(tulis } 0\text{, simpan } 1\text{)} \\ 4 + 2 + 1 &= 7 = 12_5 & &\text{(tulis } 2\text{, simpan } 1\text{)} \\ 2 + 1 + 1 &= 4 \end{aligned}" />
+
+Jadi **<InlineMath math="2434_5 + 1213_5 = 4202_5" />**. Nilai basis sepuluhnya cocok: <InlineMath math="369 + 183 = 552" />.
+
+<BlockMath math="4202_5 = 500 + 50 + 0 + 2 = 552" />
 
 ## Meminjam dalam Pengurangan
 
@@ -100,7 +120,7 @@ Pengurangan memakai abakus dari arah sebaliknya. Kalau angka atas sebuah kolom l
 
 <BlockMath math="\begin{array}{rcccc} & 1 & 3 & 0 & 2 \\ - & & 2 & 4 & 4 \\ \hline & 1 & 0 & 0 & 3 \end{array}" />
 
-Kolom satuan meminta <InlineMath math="2 - 4" />, jadi kolom itu harus meminjam. Paku kedua, tempat kelompok lima atau limaan, kosong, jadi pinjamannya diambil dari paku ketiga: angka <InlineMath math="3" /> turun menjadi <InlineMath math="2" />, dan paku limaan mendapat lima manik. Paku limaan lalu meminjamkan satu manik ke satuan. Sekarang limaan berisi <InlineMath math="4" /> dan satuan berisi <InlineMath math="2 + 5 = 7" />.
+Kolom satuan meminta <InlineMath math="2 - 4" />, jadi harus meminjam. Paku kedua kosong, sehingga pinjaman diambil dari paku ketiga: angka <InlineMath math="3" /> turun menjadi <InlineMath math="2" />, dan paku limaan mendapat lima manik. Paku limaan lalu meminjamkan satu ke satuan, menyisakan <InlineMath math="4" /> dan memberi satuan <InlineMath math="2 + 5 = 7" />.
 
 | Kolom | Isi setelah meminjam | Pengurangan | Hasil |
 | :--- | :--- | :--- | :--- |
@@ -109,15 +129,25 @@ Kolom satuan meminta <InlineMath math="2 - 4" />, jadi kolom itu harus meminjam.
 | Kolom <InlineMath math="5^2" /> | <InlineMath math="3 - 1 = 2" /> | <InlineMath math="2 - 2" /> | <InlineMath math="0" /> |
 | Kolom <InlineMath math="5^3" /> | <InlineMath math="1" /> | <InlineMath math="1 - 0" /> | <InlineMath math="1" /> |
 
-Jadi <InlineMath math="1302_5 - 244_5 = 1003_5" />. Cek dengan menjumlahkan kembali dalam basis lima: <InlineMath math="1003_5 + 244_5" /> memberi satuan <InlineMath math="3 + 4 = 7 = 12_5" />, limaan <InlineMath math="0 + 4 + 1 = 5 = 10_5" />, kolom ketiga <InlineMath math="0 + 2 + 1 = 3" />, dan kolom keempat <InlineMath math="1" />, yaitu <InlineMath math="1302_5" /> lagi. Lewat basis sepuluh juga cocok: <InlineMath math="202 - 74 = 128 = 1003_5" />.
+Jadi <InlineMath math="1302_5 - 244_5 = 1003_5" />. Cek dengan menjumlahkan kembali <InlineMath math="1003_5 + 244_5" /> dalam basis lima, serta lewat basis sepuluh.
 
-Ada dua kekeliruan yang sering muncul di sini. Kalau pinjaman dihitung sepuluh, satuannya menjadi <InlineMath math="12 - 4 = 8" />, angka yang tidak ada dalam basis lima: **pinjaman selalu bernilai <InlineMath math="b" />**. Kalau angka yang meminjamkan tidak dikurangi, hasilnya <InlineMath math="1103_5" />, yang bernilai <InlineMath math="153" />, bukan <InlineMath math="128" />. Menjumlahkan kembali hasil dengan pengurangnya menangkap keduanya, karena kamu tetap bekerja dalam basis yang sama.
+<BlockMath math="\begin{aligned} 1003_5 + 244_5 &= 1302_5 \\ 202 - 74 &= 128 = 1003_5 \end{aligned}" />
+
+Dua kekeliruan sering muncul di sini. Kalau pinjaman dihitung sepuluh, satuannya menjadi <InlineMath math="12 - 4 = 8" />, angka yang tidak ada dalam basis lima: **pinjaman selalu bernilai <InlineMath math="b" />**.
+
+Kalau angka yang meminjamkan tidak dikurangi, hasilnya meleset menjadi <InlineMath math="1103_5" /> (bernilai <InlineMath math="153" />, bukan <InlineMath math="128" />). Menjumlahkan kembali hasil dengan pengurangnya menangkap kedua kesalahan ini sekaligus.
 
 Sekarang pengurangan dengan dua pinjaman dalam basis delapan: hitung <InlineMath math="5032_8 - 1647_8" />. Kurangkan kolom dari kanan, dan setiap pinjaman bernilai <InlineMath math="8" />.
 
 <BlockMath math="\begin{array}{rcccc} & 5 & 0 & 3 & 2 \\ - & 1 & 6 & 4 & 7 \\ \hline & 3 & 1 & 6 & 3 \end{array}" />
 
-Satuan: <InlineMath math="2 < 7" />, pinjam dari kolom delapanan, jadi <InlineMath math="2 + 8 - 7 = 3" /> dan kolom delapanan tinggal <InlineMath math="2" />. Delapanan: <InlineMath math="2 < 4" />, padahal kolom <InlineMath math="8^2" /> kosong, jadi pinjam dari kolom <InlineMath math="8^3" />. Angka <InlineMath math="5" /> menjadi <InlineMath math="4" />, kolom <InlineMath math="8^2" /> menjadi <InlineMath math="8 - 1 = 7" />, dan delapanan menjadi <InlineMath math="2 + 8 - 4 = 6" />. Kolom <InlineMath math="8^2" />: <InlineMath math="7 - 6 = 1" />. Kolom <InlineMath math="8^3" />: <InlineMath math="4 - 1 = 3" />. Jadi **<InlineMath math="5032_8 - 1647_8 = 3163_8" />**. Cek lewat basis sepuluh: <InlineMath math="2{.}586 - 935 = 1{.}651" />, dan <InlineMath math="3163_8 = 1{.}536 + 64 + 48 + 3 = 1{.}651" />.
+Pada satuan, <InlineMath math="2 < 7" />, jadi pinjam dari kolom delapanan sehingga kolom delapanan tinggal <InlineMath math="2" />. Karena <InlineMath math="2 < 4" /> dan kolom <InlineMath math="8^2" /> kosong, pinjam dari kolom <InlineMath math="8^3" /> sehingga <InlineMath math="5" /> turun menjadi <InlineMath math="4" /> dan kolom <InlineMath math="8^2" /> menyisakan <InlineMath math="7" />.
+
+<BlockMath math="\begin{aligned} 2 + 8 - 7 &= 3 & &\text{(satuan)} \\ 2 + 8 - 4 &= 6 & &\text{(delapanan)} \\ 7 - 6 &= 1 & &\text{(kolom } 8^2\text{)} \\ 4 - 1 &= 3 & &\text{(kolom } 8^3\text{)} \end{aligned}" />
+
+Jadi **<InlineMath math="5032_8 - 1647_8 = 3163_8" />**. Cek lewat basis sepuluh untuk memastikan hasilnya cocok: <InlineMath math="2{.}586 - 935 = 1{.}651" />.
+
+<BlockMath math="3163_8 = 1{.}536 + 64 + 48 + 3 = 1{.}651" />
 
 ## Mencari Basis Tersembunyi
 
@@ -125,7 +155,7 @@ Kadang soal tidak menyebut basisnya dan memintamu mencarinya. Tulis bilangannya 
 
 <BlockMath math="\begin{aligned} 1 \times b^2 + 2 \times b + 3 &= 38 \\ b^2 + 2b - 35 &= 0 \\ (b + 7)(b - 5) &= 0 \end{aligned}" />
 
-Persamaan kuadrat ini kamu selesaikan dengan [memfaktorkan persamaan kuadrat](/id/materi/matematika/persamaan-dan-fungsi-kuadrat/faktorisasi-persamaan-kuadrat), dan hasilnya dua akar: <InlineMath math="b = -7" /> dan <InlineMath math="b = 5" />. Hanya satu yang bisa menjadi basis. **Basis harus bilangan bulat yang lebih besar dari angka terbesarnya**, di sini <InlineMath math="3" />, jadi <InlineMath math="b = 5" />. Grafik ini menggambar kedua akar dan daerah basis yang sah.
+Persamaan kuadrat ini kamu selesaikan dengan [memfaktorkan persamaan kuadrat](/id/materi/matematika/persamaan-dan-fungsi-kuadrat/faktorisasi-persamaan-kuadrat), dan hasilnya dua akar: <InlineMath math="b = -7" /> dan <InlineMath math="b = 5" />. **Basis harus bilangan bulat yang lebih besar dari angka terbesarnya** (di sini <InlineMath math="3" />), jadi <InlineMath math="b = 5" />.
 
 <MathVisual
   title={<>Dua Akar, Satu Basis</>}
@@ -169,10 +199,14 @@ Persamaan kuadrat ini kamu selesaikan dengan [memfaktorkan persamaan kuadrat](/i
   }}
 />
 
-Geser <InlineMath math="b" /> dari <InlineMath math="4" /> ke <InlineMath math="6" />. Nilai <InlineMath math="123_b" /> melompat dari <InlineMath math="27" /> ke <InlineMath math="38" /> lalu ke <InlineMath math="51" />, dan titiknya menyentuh sumbu tepat saat nilainya <InlineMath math="38" />. Akar <InlineMath math="-7" /> memenuhi persamaannya, tetapi berada di luar daerah berarsir, jadi akar itu ditolak.
+Geser <InlineMath math="b" /> dari <InlineMath math="4" /> ke <InlineMath math="6" />. Nilai <InlineMath math="123_b" /> melompat dari <InlineMath math="27" /> ke <InlineMath math="38" /> lalu <InlineMath math="51" />, dan titiknya menyentuh sumbu tepat saat nilainya <InlineMath math="38" />. Akar <InlineMath math="-7" /> berada di luar daerah berarsir, jadi ditolak.
 
-Jadi sebelum menerima sebuah akar sebagai basis, **bandingkan akar itu dengan angka terbesar**. Basis yang tersembunyi juga bisa muncul dalam penjumlahan. Diketahui <InlineMath math="45_b + 36_b = 103_b" />. Tulis setiap bilangan dalam bentuk panjang dengan basis <InlineMath math="b" />.
+Sebelum menerima sebuah akar sebagai basis, **bandingkan akar itu dengan angka terbesar**. Basis yang tersembunyi juga bisa muncul dalam penjumlahan, seperti <InlineMath math="45_b + 36_b = 103_b" />. Tulis setiap bilangan dalam bentuk panjang dengan basis <InlineMath math="b" />.
 
 <BlockMath math="\begin{aligned} (4b + 5) + (3b + 6) &= b^2 + 0 \times b + 3 \\ 7b + 11 &= b^2 + 3 \\ b^2 - 7b - 8 &= 0 \\ (b - 8)(b + 1) &= 0 \end{aligned}" />
 
-Akarnya <InlineMath math="b = 8" /> dan <InlineMath math="b = -1" />. Basis harus lebih besar dari angka terbesar, yaitu <InlineMath math="6" />, jadi <InlineMath math="b = 8" />. Cek dengan menjumlahkan dalam basis delapan: satuan <InlineMath math="5 + 6 = 11 = 13_8" />, tulis <InlineMath math="3" /> simpan <InlineMath math="1" />, lalu <InlineMath math="4 + 3 + 1 = 8 = 10_8" />. Hasilnya <InlineMath math="103_8" />, sama dengan ruas kanan.
+Akarnya <InlineMath math="b = 8" /> dan <InlineMath math="b = -1" />. Basis harus lebih besar dari angka terbesar <InlineMath math="6" />, jadi <InlineMath math="b = 8" />. Cek dengan menjumlahkan langsung dalam basis delapan.
+
+<BlockMath math="\begin{aligned} 5 + 6 &= 11 = 13_8 & &\text{(tulis } 3\text{, simpan } 1\text{)} \\ 4 + 3 + 1 &= 8 = 10_8 \end{aligned}" />
+
+Hasilnya <InlineMath math="103_8" />, tepat sama dengan ruas kanan.
