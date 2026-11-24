@@ -1,0 +1,423 @@
+export const metadata = {
+  title: "Nutrition in Plants Notes",
+  description:
+    "Plant macronutrients and micronutrients, their deficiency signs, how root hairs absorb water and ions, and special feeding strategies.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2026-11-17",
+  subject: "Nutrition in Plants",
+};
+
+## Plants Need Seventeen Nutrient Elements
+
+A green plant makes its own food by photosynthesis, but it still needs **inorganic nutrient elements** from the air, water and soil. The elements it needs in large amounts are the **macronutrients**: carbon, hydrogen, oxygen, nitrogen, phosphorus, potassium, calcium, magnesium and sulphur. The elements it needs in tiny amounts are the **micronutrients**: iron, manganese, boron, zinc, copper, molybdenum, chlorine and nickel. Root hairs take in water by osmosis and mineral ions by active transport. A shortage of just one element is enough to stunt growth.
+
+> Excess fertiliser turns soil water hypertonic and reverses osmosis, so a plant can wilt even when the soil feels wet.
+
+## Where the Dry Mass of a Plant Comes From
+
+About <InlineMath math="80\%" /> to <InlineMath math="90\%" /> of a living plant's mass is water. Once the water is dried off, almost all the mass that's left is carbon, oxygen and hydrogen. Those three elements come from **carbon dioxide in the air and from water**, not from the soil. The chart shows each element's share of the dry mass.
+
+<BarChart
+  title={<>What the Dry Mass of a Plant Is Made Of</>}
+  description={
+    <>
+      Carbon and oxygen are each about <InlineMath math="45\%" />, hydrogen{" "}
+      <InlineMath math="6\%" />, and all the mineral elements together only
+      about <InlineMath math="4\%" />.
+    </>
+  }
+  footer={<>Minerals form only four percent of dry mass yet stay essential for survival.</>}
+  yAxisLabel="Share of dry mass (percent)"
+  data={[
+    { name: "Carbon", value: 45 },
+    { name: "Oxygen", value: 45 },
+    { name: "Hydrogen", value: 6 },
+    { name: "All mineral elements", value: 4 },
+  ]}
+  chartConfig={{ value: { label: <>Share of dry mass</>, colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+/>
+
+The mineral bar is small, but without it a plant can't build proteins, chlorophyll or nucleic acids. That's why farmers add fertiliser even though **mineral elements make up less than a twentieth of the dry mass**.
+
+## What Each Element Does and How a Shortage Shows
+
+Each macronutrient has a particular job in the cell. When one element runs short, the plant shows signs you can recognise on its leaves, stem or roots.
+
+| Macronutrient | Main function | Deficiency sign |
+| :--- | :--- | :--- |
+| Nitrogen | Builds proteins, nucleic acids and chlorophyll | Older leaves turn yellow (chlorosis), stunted growth |
+| Phosphorus | Builds nucleic acids, ATP and phospholipids | Older leaves turn purplish, poor root growth |
+| Potassium | Activates enzymes, controls stomatal opening | Edges of older leaves turn yellow then brown, weak stems |
+| Calcium | Builds the middle lamella of the cell wall | Young leaves curled, shoot tips die |
+| Magnesium | Part of the chlorophyll molecule | Yellowing between the veins of older leaves |
+| Sulphur | Builds some amino acids and proteins | Young leaves turn yellow |
+
+Micronutrients are needed in very small amounts, but each one is still essential.
+
+| Micronutrient | Main function | Deficiency sign |
+| :--- | :--- | :--- |
+| Iron | Needed to make chlorophyll | Young leaves turn yellow |
+| Manganese and chlorine | Help split water in photosynthesis | Yellow and brown spots on leaves |
+| Boron | Helps pollen tubes grow and calcium uptake | Shoot tips die, flowers drop |
+| Zinc | Needed to make auxin | Small leaves, short internodes |
+| Copper | Part of enzymes in photosynthesis | Tips of young leaves die |
+| Molybdenum | Needed to use nitrate | Signs like nitrogen deficiency |
+| Nickel | Part of the enzyme urease | Leaf tips die |
+
+Check **which leaves show the sign first**. Nitrogen, phosphorus, potassium and magnesium can be moved from old leaves to young ones, so the old leaves suffer first. Calcium, sulphur and iron stay where they are, so the young leaves suffer first.
+
+## The Scarcest Element Limits Growth
+
+Plenty of nitrogen fertiliser won't help if the soil is short of phosphorus. Growth is limited by **the element in shortest supply compared with what the plant needs**, an idea called the law of the minimum. The model measures each supply as a percentage of the need and takes relative growth to equal the lowest supply, up to <InlineMath math="100\%" />.
+
+<MathVisual
+  title={<>Growth Set by the Scarcest Element</>}
+  description={
+    <>
+      Relative growth <InlineMath math="\min(x, p, k, 100)" /> against the
+      nitrogen supply <InlineMath math="x" />, with the phosphorus supply{" "}
+      <InlineMath math="p" /> and the potassium supply <InlineMath math="k" />,
+      all as percentages of the need.
+    </>
+  }
+  footer={<>Growth stops climbing once it hits the scarcest mineral supply ceiling.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 150 }, y: { min: 0, max: 110 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "n", min: 0, max: 150, value: 120, step: 5, label: "n" },
+      { name: "p", min: 0, max: 150, value: 60, step: 5, label: "p" },
+      { name: "k", min: 0, max: 150, value: 90, step: 5, label: "k" },
+    ],
+    objects: [
+      { id: "growth", kind: "function", appearance: "primary", formula: "min(x, p, k, 100)", domain: { min: 0, max: 150 } },
+      { id: "ceiling", kind: "function", appearance: "reference", formula: "min(p, k, 100)", domain: { min: 0, max: 150 } },
+      { id: "now", kind: "marker", x: "n", y: "min(n, p, k, 100)", appearance: "warning" },
+    ],
+    readouts: [
+      { key: "growth", formula: "min(n, p, k, 100)" },
+    ],
+  }}
+  labels={{
+    n: <>Nitrogen supply <InlineMath math="n" /> in percent</>,
+    p: <>Phosphorus supply <InlineMath math="p" /> in percent</>,
+    k: <>Potassium supply <InlineMath math="k" /> in percent</>,
+    growth: <>Relative growth in percent</>,
+  }}
+/>
+
+Slide the nitrogen supply to the right. The growth line climbs, then goes flat at the reference line, which is the lower of the phosphorus and potassium supplies.
+
+A plot of soil supplies <InlineMath math="120\%" /> of the crop's nitrogen need, <InlineMath math="60\%" /> of its phosphorus need and <InlineMath math="90\%" /> of its potassium need. Predict the relative growth, then **pick the fertiliser to add**.
+
+<MathContainer>
+<BlockMath math="\min(120, 60, 90, 100) = 60" />
+<BlockMath math="\min(150, 60, 90, 100) = 60, \qquad \min(120, 90, 90, 100) = 90" />
+</MathContainer>
+
+Growth is only <InlineMath math="60\%" />, and phosphorus is the limiting element. Raising nitrogen to <InlineMath math="150\%" /> changes nothing, but raising phosphorus to <InlineMath math="90\%" /> lifts growth to <InlineMath math="90\%" />. Setting <InlineMath math="n = 120" />, <InlineMath math="p = 60" />, and <InlineMath math="k = 90" /> confirms the crop stalls at <InlineMath math="60\%" /> relative growth.
+
+## A Culture Solution Experiment on Nutrient Deficiency
+
+To test what a shortage of nitrogen, phosphorus or potassium does, you grow seedlings of the same size in a **culture solution**, which is distilled water with mineral salts dissolved in it and no soil. A complete Knop's solution is the control. Every other set lacks just one element, so any difference in growth can be traced to that element.
+
+| Variable | In this experiment |
+| :--- | :--- |
+| Manipulated | Type of culture solution: complete, no nitrogen, no phosphorus, no potassium |
+| Responding | Leaf colour, height and dry mass of the seedlings |
+| Fixed | Type and size of seedlings, volume of solution, light, temperature and duration |
+
+Wrap each container in black paper so algae don't grow in the solution. Bubble air through the solution so the roots get oxygen for respiration. After a few weeks, the seedlings in the complete solution are the healthiest. The set without nitrogen has yellow older leaves and dwarfed plants, the set without phosphorus has purplish leaves and short roots, and the set without potassium has brown leaf edges.
+
+<MineralDeficiencyLab
+  title={<>Knop Culture Solution Deficiency Trial</>}
+  description={
+    <>
+      Compare seedlings grown in complete Knop solution against jars missing one
+      macronutrient to inspect leaf colour, stem vigour, and root development.
+    </>
+  }
+  footer={<>Omitting one macronutrient produces a distinct pattern of deficiency signs.</>}
+  solutions={["complete", "noNitrogen", "noPhosphorus", "noPotassium", "noMagnesium"]}
+  labels={{
+    parts: {
+      airTube: "Air tube",
+      leaf: "Leaf",
+      root: "Root system",
+      solution: "Culture solution",
+      stem: "Stem",
+    },
+    role: <>Main role</>,
+    solution: "Culture jar",
+    solutions: {
+      complete: {
+        name: "Complete Knop",
+        role: <>Supplies every macronutrient and micronutrient in balance</>,
+        symptom: <>Healthy dark green leaves and strong branching roots</>,
+      },
+      noNitrogen: {
+        name: "No nitrogen",
+        role: <>Builds proteins, nucleic acids, and chlorophyll</>,
+        symptom: <>Stunted shoot and older leaves turning yellow</>,
+      },
+      noPhosphorus: {
+        name: "No phosphorus",
+        role: <>Builds ATP, phospholipids, and nucleic acids</>,
+        symptom: <>Purplish older leaves and poor root growth</>,
+      },
+      noPotassium: {
+        name: "No potassium",
+        role: <>Activates enzymes and controls stomatal opening</>,
+        symptom: <>Yellow then brown dead edges on older leaves</>,
+      },
+      noMagnesium: {
+        name: "No magnesium",
+        role: <>Forms the central atom of the chlorophyll molecule</>,
+        symptom: <>Yellowing between the green veins of older leaves</>,
+      },
+    },
+    symptom: <>Deficiency sign</>,
+    view: "Three-dimensional seedling jars comparing Knop nutrient deficiencies",
+  }}
+/>
+
+Check **which leaves turn yellow first** in the jars above: mobile elements like nitrogen and magnesium show chlorosis on older leaves first.
+
+## Root Hairs Take In Water and Mineral Salts
+
+Water and mineral ions enter the plant through **root hair cells**, which are epidermal cells of the root that grow out into fine projections. Three features suit them to the job: the projection that adds surface area, a thin cell wall, and cell sap that's more concentrated than the soil solution. Each feature gets its own model below.
+
+### The Surface Area of Root Hairs
+
+Picture a <InlineMath math="1\text{ mm}" /> length of root with radius <InlineMath math="0.25\text{ mm}" />. Each root hair has radius <InlineMath math="0.005\text{ mm}" /> and length <InlineMath math="l" />. The surface area of that piece of root is the area of the root cylinder plus the area of all the root hairs:
+
+<BlockMath math="A = 2\pi(0.25)(1) + n \cdot 2\pi(0.005)\,l = \pi(0.5 + 0.01\,l\,n)\text{ mm}^2" />
+
+<MathVisual
+  title={<>Root Hairs Add Surface Area</>}
+  description={
+    <>
+      Surface area <InlineMath math="A" /> in <InlineMath math="\text{mm}^2" />{" "}
+      of <InlineMath math="1\text{ mm}" /> of root against the number of root
+      hairs <InlineMath math="x" /> per millimetre, with a reference line for a
+      root without root hairs.
+    </>
+  }
+  footer={<>Root hairs multiply the absorbing surface area several times over.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 200 }, y: { min: 0, max: 9 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "n", min: 0, max: 200, value: 100, step: 10, label: "n" },
+      { name: "l", min: 0.1, max: 1, value: 0.8, step: 0.1, label: "l" },
+    ],
+    objects: [
+      { id: "area", kind: "function", appearance: "primary", formula: "pi(0.5 + 0.01 l x)", domain: { min: 0, max: 200 } },
+      { id: "bare", kind: "function", appearance: "reference", formula: "0.5pi", domain: { min: 0, max: 200 } },
+      { id: "now", kind: "marker", x: "n", y: "pi(0.5 + 0.01 l n)", appearance: "warning" },
+    ],
+    readouts: [
+      { key: "area", formula: "pi(0.5 + 0.01 l n)" },
+      { key: "ratio", formula: "1 + 0.02 l n" },
+    ],
+  }}
+  labels={{
+    n: <>Number of root hairs <InlineMath math="n" /> per millimetre</>,
+    l: <>Root hair length <InlineMath math="l" /> in millimetres</>,
+    area: <>Surface area in square millimetres</>,
+    ratio: <>Times the area of a root without root hairs</>,
+  }}
+/>
+
+With <InlineMath math="100" /> root hairs, each <InlineMath math="0.8\text{ mm}" /> long, the surface area becomes:
+
+<BlockMath math="A = \pi(0.5 + 0.01 \times 0.8 \times 100) = 1.3\pi = 4.08\text{ mm}^2" />
+
+Check: a root without root hairs has an area of <InlineMath math="0.5\pi = 1.57\text{ mm}^2" />, so the root hairs make the area <InlineMath math="4.08 \div 1.57 = 2.6" /> times as large. The ratio reading in the model is <InlineMath math="2.6" />. **A large surface area** means more water and ions can get in at the same time.
+
+### Water Enters by Osmosis
+
+The cell sap of a root hair holds dissolved sugars and ions, so it's more concentrated than the soil solution. The soil solution is **hypotonic** to the cell sap, so water moves in by osmosis. For dilute solutions at <InlineMath math="25^\circ\text{C}" />, the osmotic pressure difference pushing water in is about <InlineMath math="2.48\text{ MPa}" /> for every <InlineMath math="1\text{ mol dm}^{-3}" /> of concentration difference.
+
+<RootHairUptakeLab
+  title={<>Water and Mineral Ion Entry Through Root Hairs</>}
+  description={
+    <>
+      Slide soil concentration from dilute soil water to excess fertiliser to
+      watch osmotic water flow reverse while carrier proteins keep pumping
+      mineral ions across the root cortex to the xylem.
+    </>
+  }
+  footer={<>Water moves by osmosis while mineral ions cross against the gradient using ATP.</>}
+  soilConcentration={{ min: 0, max: 0.6, value: 0.02 }}
+  labels={{
+    directions: {
+      balanced: "Balanced (isotonic)",
+      intoRoot: "Into root hair",
+      outOfRoot: "Out of root hair",
+    },
+    ionUptake: <>Mineral ion transport</>,
+    parts: {
+      cortex: "Cortex",
+      endodermis: "Endodermis",
+      epidermis: "Epidermis",
+      rootHair: "Root hair",
+      soilWater: "Soil water",
+      xylem: "Xylem",
+    },
+    soilConcentration: "Soil concentration (mol/dm3)",
+    view: "Three-dimensional root cross-section showing water osmosis and ion uptake",
+    waterDirection: <>Osmotic water flow</>,
+  }}
+/>
+
+Notice how water arrows reverse direction once soil concentration crosses cell sap. The graph below quantifies that osmotic push in megapascals.
+
+<MathVisual
+  title={<>Too Much Fertiliser Reverses Osmosis</>}
+  description={
+    <>
+      Osmotic pressure difference <InlineMath math="2.48(s - x)" /> in MPa
+      against the concentration of the soil solution <InlineMath math="x" /> in{" "}
+      <InlineMath math="\text{mol dm}^{-3}" />, with the cell sap concentration{" "}
+      <InlineMath math="s" />. A positive value means water moves into the
+      root.
+    </>
+  }
+  footer={<>Excess fertiliser drives soil concentration past cell sap and reverses osmosis.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 0.6 }, y: { min: -1.1, max: 1.3 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "c", min: 0, max: 0.6, value: 0.02, step: 0.01, label: "c" },
+      { name: "s", min: 0.2, max: 0.5, value: 0.3, step: 0.01, label: "s" },
+    ],
+    objects: [
+      { id: "push", kind: "function", appearance: "primary", formula: "2.48(s - x)", domain: { min: 0, max: 0.6 } },
+      { id: "now", kind: "marker", x: "c", y: "2.48(s - c)", appearance: "warning" },
+    ],
+    readouts: [
+      { key: "push", formula: "2.48(s - c)" },
+    ],
+  }}
+  labels={{
+    c: <>Soil solution concentration <InlineMath math="c" /></>,
+    s: <>Cell sap concentration <InlineMath math="s" /></>,
+    push: <>Pressure pushing water in, in MPa</>,
+  }}
+/>
+
+Whenever the line drops below zero, the **soil solution has become hypertonic** and draws water out of the root hair.
+
+### Worked Example on Too Much Fertiliser
+
+Take the cell sap of a root hair to be equivalent to a <InlineMath math="0.30\text{ mol dm}^{-3}" /> solution. Ordinary soil water has a concentration of <InlineMath math="0.02\text{ mol dm}^{-3}" />. After too much fertiliser is scattered around the roots, it becomes <InlineMath math="0.45\text{ mol dm}^{-3}" />. Work out **which way water moves** in each case.
+
+<MathContainer>
+<BlockMath math="2.48(0.30 - 0.02) = 0.69\text{ MPa}" />
+<BlockMath math="2.48(0.30 - 0.45) = -0.37\text{ MPa}" />
+</MathContainer>
+
+The positive value in ordinary soil water means water moves into the root. The negative value after too much fertiliser means the soil solution is now hypertonic, so water leaves the root and the plant wilts. At soil concentration <InlineMath math="c = 0.45" /> and sap <InlineMath math="s = 0.30" />, the negative pressure confirms outward water loss.
+
+### Ions Enter by Active Transport
+
+The concentration of ions such as potassium and nitrate in the cell sap is usually higher than in the soil. So the ions must be taken in **against the concentration gradient** by carrier proteins, using ATP from respiration. Root hair cells have many mitochondria for this. This simple model takes the maximum uptake rate to be proportional to the oxygen in the soil, because aerobic respiration needs oxygen.
+
+<MathVisual
+  title={<>Potassium Ion Uptake by Roots</>}
+  description={
+    <>
+      Relative uptake rate against the potassium ion concentration{" "}
+      <InlineMath math="x" /> in <InlineMath math="\text{mmol dm}^{-3}" />,
+      for soil oxygen <InlineMath math="o" /> in percent. The reference curve is
+      well aerated soil.
+    </>
+  }
+  footer={<>Lower soil oxygen cuts ATP production and sharply slows active ion uptake.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 0.2 }, y: { min: 0, max: 110 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "c", min: 0, max: 0.2, value: 0.02, step: 0.005, label: "c" },
+      { name: "o", min: 0, max: 21, value: 21, step: 1, label: "o" },
+    ],
+    objects: [
+      { id: "aerated", kind: "function", appearance: "reference", formula: "100x/(0.02 + x)", domain: { min: 0, max: 0.2 } },
+      { id: "uptake", kind: "function", appearance: "primary", formula: "(100o/21) x/(0.02 + x)", domain: { min: 0, max: 0.2 } },
+      { id: "now", kind: "marker", x: "c", y: "(100o/21) c/(0.02 + c)", appearance: "warning" },
+    ],
+    readouts: [
+      { key: "uptake", formula: "(100o/21) c/(0.02 + c)" },
+    ],
+  }}
+  labels={{
+    c: <>Potassium ion concentration <InlineMath math="c" /></>,
+    o: <>Soil oxygen <InlineMath math="o" /> in percent</>,
+    uptake: <>Uptake rate as a percentage of the maximum</>,
+  }}
+/>
+
+The curve levels off at high concentrations because every carrier protein is already busy. Lower the oxygen to <InlineMath math="5\%" />, as in waterlogged soil. At <InlineMath math="c = 0.18" />, the rate drops from <InlineMath math="90\%" /> to <InlineMath math="\tfrac{5}{21} \times 90 = 21\%" />. That's why **waterlogged soil** leaves plants short of minerals even when fertiliser is there.
+
+## Plants with Special Ways of Feeding
+
+Most plants get all their minerals through their roots. Some live where nutrients are scarce or grow on other plants, so they feed differently.
+
+| Type | Examples | How it gets nutrients |
+| :--- | :--- | :--- |
+| Carnivorous | Pitcher plant, Venus flytrap, *Drosera* | Photosynthesises, but traps insects and digests them with enzymes to get nitrogen and other minerals |
+| Parasitic | *Rafflesia*, dodder (*Cuscuta*) | Has no chlorophyll, takes water, minerals and food straight from the host's vascular tissue |
+| Semi-parasitic | Mistletoe (*Loranthus*) | Photosynthesises, but takes water and minerals from the host's xylem |
+| Epiphytic | Staghorn fern, bird's nest fern, orchids | Grows on tree branches to reach light, takes in water from the air and humus without taking anything from the tree |
+
+Carnivorous plants usually live on acidic, boggy soil that's **poor in nitrogen**. The digested insects supply the nitrogen they can't get from that soil.
+
+<CarnivorousPlantLab
+  title={<>Carnivorous, Parasitic, and Epiphytic Plant Nutrition</>}
+  description={
+    <>
+      Switch between a pitcher plant, parasitic dodder, and an epiphytic orchid
+      to compare how each obtains nitrogen, water, and sugars without ordinary
+      soil roots.
+    </>
+  }
+  footer={<>Special feeding structures adapt plants to nitrogen-poor bogs or tree canopies.</>}
+  modes={["carnivorous", "parasitic", "epiphytic"]}
+  labels={{
+    adaptation: <>Key structure</>,
+    mode: "Nutrition strategy",
+    modes: {
+      carnivorous: {
+        adaptation: <>Pitcher leaf traps and digests insects with enzymes</>,
+        name: "Carnivorous",
+        source: <>Photosynthesis for sugar plus digested insects for nitrogen</>,
+      },
+      epiphytic: {
+        adaptation: <>Spongy aerial roots absorb rain and trapped humus</>,
+        name: "Epiphytic",
+        source: <>Photosynthesis on high branches without harming the host tree</>,
+      },
+      parasitic: {
+        adaptation: <>Haustoria penetrate straight into the host xylem and phloem</>,
+        name: "Parasitic",
+        source: <>Water, mineral ions, and organic food drawn from the host</>,
+      },
+    },
+    parts: {
+      aerialRoot: "Aerial root",
+      haustorium: "Haustorium",
+      hostStem: "Host stem",
+      insect: "Insect prey",
+      trapLeaf: "Pitcher trap",
+    },
+    source: <>Nutrient source</>,
+    view: "Three-dimensional models of carnivorous, parasitic, and epiphytic plants",
+  }}
+/>
+
+Compare the green leaves of pitcher plants and orchids with chlorophyll-free dodder to separate **insect-supplemented photosynthesis** from true parasitism.

@@ -1,0 +1,380 @@
+export const metadata = {
+  title: "Transportasi pada Tumbuhan",
+  description:
+    "Bandingkan xilem dan floem, hitung gaya pengangkat air, pahami aliran tekanan floem, serta pelajari peran fitoremediasi bagi tanah dan air.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2026-11-17",
+  subject: "Transportasi pada Tumbuhan",
+};
+
+## Xilem Mengangkut Air dan Floem Mengangkut Makanan
+
+Tumbuhan mengangkut zat lewat **jaringan pengangkut**. **Xilem** mengangkut air dan garam mineral ke atas, dari akar ke daun. **Floem** mengangkut zat organik seperti sukrosa dari daun ke bagian lain, proses yang disebut **translokasi**. Air naik karena tiga gaya: tekanan akar, kapilaritas, dan daya tarik transpirasi. Dari ketiganya, **daya tarik transpirasi** paling kuat karena air yang menguap dari daun menarik kolom air di dalam xilem. Fitoremediasi memanfaatkan penyerapan oleh akar ini untuk membersihkan tanah dan air yang tercemar.
+
+> Xilem menaikkan air secara pasif berkat daya tarik transpirasi tenaga matahari, sedangkan floem hidup mengalirkan sukrosa ke atas maupun ke bawah dari sumber ke tujuan.
+
+## Struktur Xilem dan Floem
+
+Xilem dan floem tersusun bersama dalam berkas pengangkut, tetapi selnya sangat berbeda karena tugasnya berbeda.
+
+| Ciri | Xilem | Floem |
+| :--- | :--- | :--- |
+| Zat yang diangkut | Air dan garam mineral | Zat organik seperti sukrosa dan asam amino |
+| Arah | Ke atas, dari akar ke daun | Ke atas dan ke bawah, dari sumber ke sink |
+| Sel utama | Trakea dan trakeid | Pembuluh tapis dan sel pengiring |
+| Keadaan sel | Mati, tanpa sitoplasma | Hidup |
+| Dinding | Ditebalkan lignin | Selulosa yang tipis |
+| Ujung sel | Dinding ujung hilang, jadi pembuluhnya bersambung | Pelat tapis yang berpori |
+
+**Trakea** adalah tabung berongga yang panjang karena dinding ujung selnya sudah hilang, dan lignin menguatkannya supaya tidak kempis saat air ditarik. **Pembuluh tapis** floem hampir tidak punya organel, jadi getah mengalir dengan mudah. Sel pengiring di sebelahnya punya nukleus dan banyak mitokondria untuk memasok ATP.
+
+Pada batang dikotil, berkas pengangkut tersusun melingkar, dengan xilem di sebelah dalam dan floem di sebelah luar. Pada akar dikotil, xilem berbentuk bintang di tengah dan floem terletak di antara lengan bintang itu.
+
+## Jalur Air dari Tanah ke Daun
+
+Air masuk ke rambut akar secara osmosis karena cairan selnya lebih pekat daripada larutan tanah. Air lalu bergerak dari sel ke sel melewati korteks dan endodermis sampai ke xilem di tengah akar. Dari situ air naik lewat xilem batang, masuk ke tulang daun dan sel mesofil, lalu menguap dan berdifusi keluar lewat stomata sebagai **transpirasi**. Tiga gaya mendorong dan menarik air di sepanjang jalur ini, dan **setiap gaya bisa diperkirakan dengan angka**.
+
+## Tiga Gaya yang Menaikkan Air
+
+Untuk menaikkan air setinggi <InlineMath math="h" />, xilem harus melawan **berat kolom air** itu. Tanpa memperhitungkan gesekan, selisih tekanan yang dibutuhkan adalah <InlineMath math="\rho g h" />:
+
+<BlockMath math="\Delta P = \rho g h = 1000 \times 9{,}81 \times h\text{ Pa} = 0{,}00981\,h\text{ MPa}" />
+
+Setiap gaya dibandingkan dengan nilai ini.
+
+### Tekanan Akar
+
+Sel akar memompa ion mineral ke dalam xilem secara transpor aktif. Air lalu ikut masuk secara osmosis dan mendorong kolom air ke atas dengan **tekanan akar**. Buktinya adalah **gutasi**, yaitu tetesan air di tepi daun pada pagi hari, dan getah yang terus keluar dari batang yang dipotong dekat tanah. Tekanan akar yang terukur kecil, dan sebagian tumbuhan sama sekali tidak punya tekanan akar.
+
+<MathVisual
+  title={<>Tekanan Akar Dibandingkan Tekanan yang Dibutuhkan</>}
+  description={
+    <>
+      Tekanan <InlineMath math="0{,}00981x" /> dalam MPa yang dibutuhkan untuk
+      menopang kolom air setinggi <InlineMath math="x" /> meter, dan garis
+      tekanan akar <InlineMath math="p" />.
+    </>
+  }
+  footer={<>Tekanan akar hanya mencapai sekitar sepuluh meter, jauh di bawah puncak pohon.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 120 }, y: { min: 0, max: 1.3 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "h", min: 0, max: 120, value: 40, step: 1, label: "h" },
+      { name: "p", min: 0.05, max: 0.6, value: 0.1, step: 0.05, label: "p" },
+    ],
+    objects: [
+      { id: "needed", kind: "function", appearance: "primary", formula: "0.00981x", domain: { min: 0, max: 120 } },
+      { id: "root", kind: "function", appearance: "reference", formula: "p", domain: { min: 0, max: 120 } },
+      { id: "now", kind: "marker", x: "h", y: "0.00981h", appearance: "warning" },
+    ],
+    readouts: [
+      { key: "needed", formula: "0.00981h" },
+      { key: "reach", formula: "p/0.00981" },
+    ],
+  }}
+  labels={{
+    h: <>Tinggi pohon <InlineMath math="h" /> dalam meter</>,
+    p: <>Tekanan akar <InlineMath math="p" /> dalam MPa</>,
+    needed: <>Tekanan yang dibutuhkan dalam MPa</>,
+    reach: <>Tinggi yang dicapai tekanan akar saja, dalam meter</>,
+  }}
+/>
+
+Pohon tertinggi di dunia mencapai sekitar <InlineMath math="116\text{ m}" />. Tekanan yang dibutuhkan adalah:
+
+<BlockMath math="\Delta P = 0{,}00981 \times 116 = 1{,}14\text{ MPa}" />
+
+Tekanan akar <InlineMath math="0{,}1\text{ MPa}" /> hanya sanggup menopang <InlineMath math="0{,}1 : 0{,}00981 = 10{,}2\text{ m}" />. Cek dengan model: dengan <InlineMath math="p = 0{,}1" />, bacaan tingginya sekitar <InlineMath math="10" />, dan di situlah garis acuan memotong garis tekanan yang dibutuhkan. **Tekanan akar saja tidak cukup** untuk pohon yang tinggi.
+
+### Kapilaritas
+
+Molekul air menempel pada dinding xilem karena **adhesi** dan saling menarik karena **kohesi**. Di dalam tabung yang sempit, kedua gaya ini menaikkan air. Tinggi kenaikannya bergantung pada jari-jari tabung <InlineMath math="r" />:
+
+<BlockMath math="h = \frac{2\gamma}{\rho g r} = \frac{2(0{,}0728)}{1000 \times 9{,}81 \times r} = \frac{14{,}84}{r}\text{ m, dengan } r \text{ dalam }\mu\text{m}" />
+
+<MathVisual
+  title={<>Kenaikan Kapiler di Pembuluh Xilem</>}
+  description={
+    <>
+      Tinggi kenaikan <InlineMath math="\dfrac{14{,}84}{x}" /> dalam meter
+      terhadap jari-jari pembuluh <InlineMath math="x" /> dalam mikrometer,
+      untuk air pada <InlineMath math="20^\circ\text{C}" />.
+    </>
+  }
+  footer={<>Pembuluh lebih sempit menaikkan air lebih tinggi, namun tetap di bawah satu meter.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 200 }, y: { min: 0, max: 1.6 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "r", min: 10, max: 200, value: 25, step: 1, label: "r" },
+    ],
+    objects: [
+      { id: "rise", kind: "function", appearance: "primary", formula: "14.84/x", domain: { min: 10, max: 200 } },
+      { id: "now", kind: "marker", x: "r", y: "14.84/r", appearance: "warning" },
+    ],
+    readouts: [
+      { key: "rise", formula: "14.84/r" },
+    ],
+  }}
+  labels={{
+    r: <>Jari-jari pembuluh <InlineMath math="r" /> dalam mikrometer</>,
+    rise: <>Tinggi kenaikan dalam meter</>,
+  }}
+/>
+
+Jari-jari pembuluh xilem bisa sekecil <InlineMath math="25\,\mu\text{m}" />. Pada jari-jari itu:
+
+<BlockMath math="h = \frac{14{,}84}{25} = 0{,}59\text{ m}" />
+
+Cek dengan model: pada <InlineMath math="r = 25" />, bacaan tingginya <InlineMath math="0{,}59" />. Pembuluh yang lebih lebar menaikkan air lebih rendah lagi. Jadi **kapilaritas berperan pada tumbuhan kecil**, tetapi tidak bisa menjelaskan air yang sampai ke puncak pohon.
+
+### Daya Tarik Transpirasi
+
+Air menguap dari dinding sel mesofil dan berdifusi keluar lewat stomata. Sel mesofil yang kehilangan air menarik air dari xilem daun. Karena kohesi, molekul air di dalam xilem tersambung sebagai satu kolom yang tidak putus, jadi tarikan di daun menggerakkan seluruh kolom air dari akar ke atas. Inilah **daya tarik transpirasi**, dan energinya berasal dari panas matahari yang menguapkan air, bukan dari ATP tumbuhan.
+
+Potometer gelembung menunjukkan efek ini. Sebuah pucuk berdaun dipasang pada tabung berisi air, dan gelembung udara di dalam pipa kapiler bergerak saat pucuk menyerap air. Vaselin pada permukaan daun menutup stomata di situ. Pilih setiap pucuk dan bandingkan jarak tempuh gelembungnya.
+
+<XylemCohesionLab
+  title={<>Tiga Gaya Pengangkat Kolom Air di Xilem</>}
+  description={
+    <>
+      Bandingkan tekanan akar, kapilaritas, dan daya tarik transpirasi sambil
+      menaikkan tinggi pohon untuk melihat mengapa penguapan di daun adalah gaya
+      terkuat.
+    </>
+  }
+  footer={<>Kohesi menyatukan air xilem menjadi kolom utuh yang ditarik dari daun.</>}
+  forces={["rootPressure", "capillary", "transpirationPull"]}
+  height={{ min: 1, max: 120, value: 40 }}
+  labels={{
+    force: "Gaya pengangkat",
+    forces: {
+      capillary: {
+        mechanism: <>Adhesi pada dinding berlignin dan kohesi menaikkan air kurang dari satu meter</>,
+        name: "Kapilaritas",
+      },
+      rootPressure: {
+        mechanism: <>Pemompaan ion aktif mendorong osmosis akar hingga sekitar sepuluh meter</>,
+        name: "Tekanan akar",
+      },
+      transpirationPull: {
+        mechanism: <>Penguapan lewat stomata daun menarik seluruh kolom air hingga puncak pohon</>,
+        name: "Daya tarik transpirasi",
+      },
+    },
+    height: "Tinggi pohon (m)",
+    mechanism: <>Cara mengangkat air</>,
+    parts: {
+      cohesionBond: "Ikatan kohesi",
+      ligninWall: "Dinding lignin",
+      rootCell: "Sel akar",
+      stoma: "Stomata daun",
+      waterColumn: "Kolom air",
+    },
+    pressureNeeded: <>Tekanan yang dibutuhkan</>,
+    view: "Tabung xilem berlignin tiga dimensi yang mengangkat kolom air ke tajuk",
+  }}
+/>
+
+Pucuk tanpa vaselin menyerap <InlineMath math="1{,}8\text{ cm}^3" /> air per jam. Dalam <InlineMath math="10" /> menit, volume air dan jarak gelembungnya adalah:
+
+<MathContainer>
+<BlockMath math="V = 1{,}8 \times \frac{10}{60} = 0{,}30\text{ cm}^3" />
+<BlockMath math="l = \frac{V}{\pi r^2} = \frac{0{,}30}{\pi(0{,}1)^2} = 9{,}55\text{ cm}" />
+</MathContainer>
+
+Cek dengan model: pada <InlineMath math="t = 10" /> menit, bacaan jarak gelembungnya <InlineMath math="9{,}55\text{ cm}" />. Saat permukaan bawah diolesi vaselin, penyerapan turun menjadi sepertiganya karena sebagian besar stomata ada di permukaan bawah. Saat kedua permukaan diolesi, **penyerapan hampir berhenti**. Transpirasi yang berkurang berarti tarikan yang berkurang.
+
+## Translokasi Makanan di Floem
+
+Daun yang berfotosintesis adalah **sumber**: daun menghasilkan sukrosa. Bagian yang memakai atau menyimpan makanan, seperti akar, buah, biji, dan pucuk muda, disebut **sink**. Di sumber, sel pengiring memompa sukrosa ke dalam pembuluh tapis secara transpor aktif. Air dari xilem lalu masuk secara osmosis dan menaikkan tekanan. Di sink, sukrosa dikeluarkan, air ikut keluar, dan tekanannya rendah. Getah floem mengalir dari tekanan tinggi ke tekanan rendah.
+
+Tekanan osmotik getah bisa diperkirakan dari konsentrasi sukrosanya. Getah floem bisa mengandung gula sampai <InlineMath math="30\%" />. Larutan sukrosa <InlineMath math="x\%" /> berisi <InlineMath math="10x" /> gram per liter, dan massa molar sukrosa <InlineMath math="342{,}3\text{ g/mol}" />.
+
+<MathVisual
+  title={<>Tekanan Osmotik di Sumber dan di Sink</>}
+  description={
+    <>
+      Perkiraan tekanan osmotik <InlineMath math="2{,}48 \times \dfrac{10x}{342{,}3}" />{" "}
+      dalam MPa terhadap konsentrasi sukrosa <InlineMath math="x" /> dalam
+      persen, dengan penanda untuk sumber <InlineMath math="a" /> dan sink{" "}
+      <InlineMath math="b" />.
+    </>
+  }
+  footer={<>Selisih sukrosa lebih besar antara sumber dan tujuan memperkuat aliran floem.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 30 }, y: { min: 0, max: 2.4 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "a", min: 0, max: 30, value: 20, step: 1, label: "a" },
+      { name: "b", min: 0, max: 30, value: 2, step: 1, label: "b" },
+    ],
+    objects: [
+      { id: "pressure", kind: "function", appearance: "primary", formula: "2.48(10x/342.3)", domain: { min: 0, max: 30 } },
+      { id: "source", kind: "marker", x: "a", y: "2.48(10a/342.3)", appearance: "warning" },
+      { id: "sink", kind: "marker", x: "b", y: "2.48(10b/342.3)", appearance: "highlight" },
+    ],
+    readouts: [
+      { key: "source", formula: "2.48(10a/342.3)" },
+      { key: "sink", formula: "2.48(10b/342.3)" },
+      { key: "difference", formula: "2.48(10(a - b)/342.3)" },
+    ],
+  }}
+  labels={{
+    a: <>Sukrosa di sumber <InlineMath math="a" /> dalam persen</>,
+    b: <>Sukrosa di sink <InlineMath math="b" /> dalam persen</>,
+    source: <>Tekanan osmotik di sumber dalam MPa</>,
+    sink: <>Tekanan osmotik di sink dalam MPa</>,
+    difference: <>Selisih yang mendorong getah dalam MPa</>,
+  }}
+/>
+
+Perhatikan bagaimana kenaikan **kadar sukrosa di sumber** memperlebar selisih tekanan yang mendorong aliran massa floem.
+
+### Contoh Selisih Tekanan di Floem
+
+Getah di pembuluh tapis dekat daun mengandung <InlineMath math="20\%" /> sukrosa, dan getah dekat akar <InlineMath math="2\%" />. Perkirakan **selisih tekanan yang mendorong getah**.
+
+<MathContainer>
+<BlockMath math="\pi_{\text{sumber}} = 2{,}48 \times \frac{10 \times 20}{342{,}3} = 1{,}45\text{ MPa}" />
+<BlockMath math="\pi_{\text{sink}} = 2{,}48 \times \frac{10 \times 2}{342{,}3} = 0{,}14\text{ MPa}" />
+<BlockMath math="\Delta \pi = 1{,}45 - 0{,}14 = 1{,}30\text{ MPa}" />
+</MathContainer>
+
+Selisih <InlineMath math="1{,}30\text{ MPa}" /> lebih besar daripada tekanan untuk menopang kolom air setinggi <InlineMath math="100\text{ m}" />, yaitu <InlineMath math="0{,}98\text{ MPa}" />. Cek dengan model: pada <InlineMath math="a = 20" /> dan <InlineMath math="b = 2" />, bacaan selisihnya <InlineMath math="1{,}30" />. Perkiraan ini menganggap larutannya ideal, jadi nilai sebenarnya sedikit berbeda.
+
+### Bukti Translokasi Terjadi di Floem
+
+Tiga percobaan menunjukkan bahwa makanan bergerak lewat floem. Pada **percobaan pengeratan kulit batang**, sebuah cincin kulit kayu yang berisi floem dikupas dari batang berkayu. Xilem masih utuh, jadi daun tidak layu. Setelah beberapa minggu, kulit di atas keratan membengkak karena sukrosa menumpuk di situ dan tidak bisa turun. Bagian di bawah keratan kekurangan makanan.
+
+Pada percobaan kedua, **stilet kutu daun** yang menusuk batang dipotong, dan cairan yang menetes dari stilet itu ternyata kaya sukrosa. Stilet itu berujung di dalam pembuluh tapis. Pada percobaan ketiga, daun diberi karbon dioksida berlabel radioaktif <InlineMath math="^{14}\mathrm{CO_2}" />. Gula radioaktif yang terbentuk kemudian terdeteksi di floem, di atas dan di bawah daun itu.
+
+<PhloemTranslocationLab
+  title={<>Aliran Tekanan Floem dan Percobaan Pengelupasan Kulit</>}
+  description={
+    <>
+      Atur kadar sukrosa di daun lalu bandingkan batang utuh dan batang yang
+      kulitnya dikupas melingkar untuk melihat pembengkakan di atas cincin
+      sementara xilem tetap utuh.
+    </>
+  }
+  footer={<>Mengupas cincin kulit memutus floem sehingga sukrosa menumpuk di atas sayatan.</>}
+  modes={["intact", "ringed"]}
+  sourceSucrose={{ min: 2, max: 30, value: 20 }}
+  labels={{
+    barkState: <>Keadaan batang</>,
+    mode: "Perlakuan batang",
+    modes: {
+      intact: {
+        name: "Kulit utuh",
+        outcome: <>Sukrosa mengalir lancar lewat pembuluh tapis dari daun ke akar</>,
+      },
+      ringed: {
+        name: "Kulit dikupas cincin",
+        outcome: <>Kulit di atas cincin membengkak karena sukrosa tertahan sementara xilem utuh</>,
+      },
+    },
+    parts: {
+      companionCell: "Sel pengiring",
+      sievePlate: "Lempeng tapis",
+      sieveTube: "Pembuluh tapis",
+      sucrose: "Sukrosa",
+      xylem: "Xilem",
+    },
+    pressureDiff: <>Selisih tekanan osmotik</>,
+    sourceSucrose: "Sukrosa sumber (%)",
+    view: "Model tiga dimensi pembuluh tapis dan percobaan pengelupasan kulit batang",
+  }}
+/>
+
+Saat cincin kulit memutus pembuluh tapis, **sukrosa menumpuk di atas sayatan** sementara xilem di bagian dalam tetap memasok air ke daun.
+
+## Fitoremediasi Membersihkan Tanah dan Air Tercemar
+
+**Fitoremediasi** adalah pemanfaatan tumbuhan untuk menyingkirkan bahan pencemar seperti logam berat dari tanah atau air. Akar menyerap logam bersama air dan ion mineral, lalu xilem mengangkutnya ke pucuk. Pucuk itu kemudian dipanen dan dibuang dengan aman. Sawi india dan akar wangi dipakai untuk logam berat di tanah, sedangkan eceng gondok menyerap logam berat dari air yang tercemar.
+
+<PhytoremediationLab
+  title={<>Fitoremediasi Logam Berat Lintas Siklus Panen</>}
+  description={
+    <>
+      Pilih sesawi India, eceng gondok, atau akar wangi lalu geser jumlah panen
+      untuk melihat akar menyerap ion logam berat ke tajuk agar mudah diangkut.
+    </>
+  }
+  footer={<>Setiap siklus panen mengurangi logam berat tanpa merusak struktur tanah.</>}
+  harvests={{ min: 0, max: 20, value: 5 }}
+  plants={["mustard", "hyacinth", "vetiver"]}
+  labels={{
+    harvests: "Siklus panen",
+    medium: <>Media yang dibersihkan</>,
+    parts: {
+      metalIon: "Ion logam berat",
+      rootZone: "Zona akar",
+      shoot: "Tajuk panenan",
+      soilBed: "Tanah tercemar",
+      waterChannel: "Air tercemar",
+    },
+    plant: "Tumbuhan fitoremediasi",
+    plants: {
+      hyacinth: {
+        medium: <>Menyerap logam berat dari danau dan sungai tercemar</>,
+        name: "Eceng gondok",
+      },
+      mustard: {
+        medium: <>Menarik timbal dan logam berat dari tanah tercemar</>,
+        name: "Sesawi India",
+      },
+      vetiver: {
+        medium: <>Akar serabut dalam menjebak logam berat di lapisan tanah</>,
+        name: "Akar wangi",
+      },
+    },
+    remaining: <>Sisa logam berat</>,
+    view: "Model tiga dimensi fitoremediasi logam berat oleh akar tumbuhan",
+  }}
+/>
+
+Model sederhana ini menganggap setiap panen menyingkirkan pecahan <InlineMath math="f" /> dari logam yang masih tersisa. Konsentrasi yang tersisa setelah <InlineMath math="n" /> kali panen adalah <InlineMath math="100(1 - f)^n" /> persen dari konsentrasi awal.
+
+<MathVisual
+  title={<>Logam Berat yang Tersisa Setelah Setiap Panen</>}
+  description={
+    <>
+      Persen logam yang tersisa <InlineMath math="100(1 - f)^x" /> terhadap
+      banyaknya panen <InlineMath math="x" />, dengan pecahan{" "}
+      <InlineMath math="f" /> tersingkir setiap panen.
+    </>
+  }
+  footer={<>Setiap panen menurunkan sisa logam berat secara eksponensial.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 20 }, y: { min: 0, max: 110 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "f", min: 0.05, max: 0.5, value: 0.2, step: 0.05, label: "f" },
+      { name: "n", min: 0, max: 20, value: 5, step: 1, label: "n" },
+    ],
+    objects: [
+      { id: "left", kind: "function", appearance: "primary", formula: "100(1 - f)^x", domain: { min: 0, max: 20 } },
+      { id: "now", kind: "marker", x: "n", y: "100(1 - f)^n", appearance: "warning" },
+    ],
+    readouts: [
+      { key: "left", formula: "100(1 - f)^n" },
+    ],
+  }}
+  labels={{
+    f: <>Pecahan yang tersingkir per panen <InlineMath math="f" /></>,
+    n: <>Banyak panen <InlineMath math="n" /></>,
+    left: <>Logam yang tersisa dalam persen</>,
+  }}
+/>
+
+Kalau setiap panen menyingkirkan <InlineMath math="20\%" /> logam yang tersisa, setelah <InlineMath math="5" /> kali panen:
+
+<BlockMath math="100(1 - 0{,}2)^5 = 100 \times 0{,}8^5 = 32{,}8\%" />
+
+Supaya turun di bawah <InlineMath math="10\%" />, kita butuh <InlineMath math="0{,}8^n < 0{,}1" />. Karena <InlineMath math="0{,}8^{10} = 0{,}107" /> dan <InlineMath math="0{,}8^{11} = 0{,}086" />, dibutuhkan **sebelas kali panen**. Pada pecahan serapan <InlineMath math="f = 0{,}2" /> selama <InlineMath math="11" /> kali panen, logam tersisa turun hingga <InlineMath math="8{,}6\%" />. Fitoremediasi murah dan tidak merusak tanah, tetapi lambat dan hanya bekerja sedalam jangkauan akar.
