@@ -1,9 +1,32 @@
-Cek setiap peminjaman dengan semua aturan: jumlah alat yang boleh dipinjam, hari jatuh tempo (dihitung sejak alat keluar, seperti *taken out on the 1st is due back on the 14th*), aturan hari Senin, dan biaya pembersihan.
+# Diketahui
 
-- **I gratis**. Alat berpita hijau yang keluar hari Selasa jatuh tempo pada hari ke-<InlineMath math="14" />, yaitu hari Senin. Selasa dua minggu kemudian adalah hari berikutnya, dan *a tool that falls due on a Monday may come back on the Tuesday without a late fee* (alat yang jatuh tempo hari Senin boleh kembali hari Selasa tanpa denda).
-- II tidak. Alat berpita kuning yang keluar hari Minggu jatuh tempo hari Sabtu, hari ketujuhnya. Minggu berikutnya sudah telat sehari: <InlineMath math="\text{Rp}5{.}000" />.
-- **III gratis**. Alat berpita merah punya <InlineMath math="3" /> hari: Sabtu, Minggu, dan Senin. Alat itu **jatuh tempo hari Senin**, jadi hari Selasa boleh, dan karena kembali bersih dan berfungsi, depositnya juga kembali utuh.
-- IV tidak. Cat kering membuat amplas itu kotor, jadi biaya pembersihan <InlineMath math="\text{Rp}10{.}000" /> ditambahkan ke akun.
-- V tidak. Keluar hari Kamis, amplas itu jatuh tempo hari Rabu, hari ketujuhnya, jadi Kamis berikutnya sudah telat sehari.
+Tersedia **lima skenario peminjaman alat** (I sampai V) di Perpustakaan Alat Selaras dengan aturan pita warna: hijau <InlineMath math="14" /> hari, kuning <InlineMath math="7" /> hari, merah <InlineMath math="3" /> hari, hari keluar dihitung sebagai hari ke-<InlineMath math="1" />, jatuh tempo Senin boleh kembali Selasa tanpa denda, dan alat kotor kena biaya bersih <InlineMath math="\text{Rp}10{.}000" />.
 
-Jadi, peminjaman tanpa biaya hanya I dan III.
+# Ditanyakan
+
+Peminjaman mana saja yang menaati semua aturan perpustakaan dan berakhir tanpa biaya apa pun bagi anggota.
+
+# Penyelesaian
+
+Bayangkan kalender dinding di depanmu dan tandai hari alat keluar sebagai hari pertama. Karena hari keluar ikut dihitung, **peminjaman <InlineMath math="7" /> hari jatuh tempo sehari sebelum hari yang sama minggu depan**, kecuali bila jatuh tepat pada hari Senin yang mendapat kelonggaran ke Selasa.
+
+> Kunci soal aturan peminjaman ini adalah aturan penghitungan inklusif: keluar Rabu untuk <InlineMath math="7" /> hari jatuh tempo Selasa, bukan Rabu minggu berikutnya.
+
+## Memeriksa setiap peminjaman terhadap aturan
+
+| Kasus | Status | Perhitungan jatuh tempo dan kondisi alat |
+| --- | --- | --- |
+| I | Bebas biaya | Pita hijau (<InlineMath math="14" /> hari) keluar Selasa jatuh tempo hari ke-<InlineMath math="14" />, yakni Senin. Teks menulis <Highlight>a tool that falls due on a Monday may come back on the Tuesday without a late fee</Highlight>, dan alat bersih. |
+| II | Kena denda | Pita kuning (<InlineMath math="7" /> hari) keluar Minggu jatuh tempo Sabtu (hari ke-<InlineMath math="7" />). Kembali Minggu berikutnya berarti telat <InlineMath math="1" /> hari (<InlineMath math="\text{Rp}5{.}000" />). |
+| III | Bebas biaya | Pita merah (<InlineMath math="3" /> hari) keluar Sabtu dihitung Sabtu, Minggu, Senin sehingga jatuh tempo Senin. Kembali Selasa dalam keadaan bersih dan berfungsi berarti bebas denda dan deposit kembali penuh. |
+| IV | Kena biaya | Cat kering berarti alat kotor, sehingga terkena <Highlight>a flat <InlineMath math="\text{Rp}10{,}000" /></Highlight> untuk pembersihan meski kembali tepat waktu. |
+| V | Kena denda | Pita kuning (<InlineMath math="7" /> hari) keluar Kamis jatuh tempo Rabu. Kembali Kamis minggu berikutnya berarti terlambat <InlineMath math="1" /> hari (<InlineMath math="\text{Rp}5{.}000" />). |
+
+## Mengapa kombinasi pilihan lain salah
+
+- **Pilihan yang memuat II atau V** lupa bahwa hari alat keluar sudah dihitung sebagai hari ke-<InlineMath math="1" />.
+- **Pilihan III saja** melewatkan bahwa kasus I juga jatuh tempo pada hari Senin (<InlineMath math="14" /> hari sejak Selasa) sehingga hari Selasa dua minggu kemudian tetap bebas denda.
+
+# Jawaban
+
+Peminjaman yang mengikuti semua aturan dan berakhir tanpa biaya apa pun adalah **I dan III saja**.

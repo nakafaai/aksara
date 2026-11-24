@@ -1,9 +1,32 @@
-Prüf jede Ausleihe gegen jede Regel: die erlaubte Zahl der Werkzeuge, den Fälligkeitstag (gezählt ab dem Tag der Ausleihe, wie in "taken out on the 1st is due back on the 14th"), die Montagsregel und die Reinigungsgebühr.
+# Gegeben
 
-- **I ist gratis**. Ein grünes Werkzeug, das an einem Dienstag ausgeliehen wird, ist am Tag <InlineMath math="14" /> fällig, einem Montag. Der Dienstag zwei Wochen später ist der Tag danach, und "a tool that falls due on a Monday may come back on the Tuesday without a late fee" (ein am Montag fälliges Werkzeug darf ohne Gebühr am Dienstag zurückkommen).
-- II nicht. Ein gelbes Werkzeug, das an einem Sonntag ausgeliehen wird, ist am Samstag fällig, seinem siebten Tag. Der nächste Sonntag ist einen Tag zu spät: <InlineMath math="\text{Rp}5{.}000" />.
-- **III ist gratis**. Ein rotes Werkzeug hat <InlineMath math="3" /> Tage: Samstag, Sonntag und Montag. Es **wird an einem Montag fällig**, also ist der Dienstag erlaubt, und weil es sauber und funktionsfähig zurückkommt, gibt es die ganze Kaution zurück.
-- IV nicht. Getrocknete Farbe macht den Schleifer schmutzig, also wird die Reinigungsgebühr von <InlineMath math="\text{Rp}10{.}000" /> dem Konto belastet.
-- V nicht. An einem Donnerstag ausgeliehen, ist der Schleifer am Mittwoch fällig, seinem siebten Tag, der nächste Donnerstag ist also einen Tag zu spät.
+Fünf Ausleihfälle (I bis V) werden nach den Regeln der Selaras-Werkzeugbibliothek geprüft: **grün <InlineMath math="14" /> Tage**, **gelb <InlineMath math="7" /> Tage**, **rot <InlineMath math="3" /> Tage**, inklusives Zählen ab Tag eins, Montagsregel bis Dienstag und <InlineMath math="\text{Rp}10{.}000" /> Reinigungsgebühr bei Schmutz.
 
-Ohne jede Gebühr sind also nur I und III.
+# Gesucht
+
+Welche Ausleihen alle Regeln einhalten und ohne jede Gebühr für das Mitglied enden.
+
+# Lösung
+
+Stell dir einen Kalender vor, auf dem der Ausleihtag bereits als Tag eins markiert ist. Durch diese Zählweise **endet eine <InlineMath math="7" />- oder <InlineMath math="14" />-tägige Frist immer am Vortag desselben Wochentags**, und nur eine Fälligkeit am Montag verlängert sich gebührenfrei auf Dienstag.
+
+> Weil der Ausleihtag als Tag eins zählt, liegt der Rückgabetag einer Wochen- oder Zweiwochenfrist immer einen Wochentag vor dem Ausleihtag.
+
+## Prüfung aller fünf Ausleihen
+
+| Fall | Ergebnis | Fristberechnung und Zustand |
+| --- | --- | --- |
+| I | Kostenlos | Grünes Band (<InlineMath math="14" /> Tage) ab Dienstag ist an Tag <InlineMath math="14" /> (Montag) fällig. Nach <Highlight>a tool that falls due on a Monday may come back on the Tuesday without a late fee</Highlight> ist der Dienstag sauber und gratis. |
+| II | Gebührenpflichtig | Gelbes Band (<InlineMath math="7" /> Tage) ab Sonntag ist am Samstag (Tag <InlineMath math="7" />) fällig. Der nächste Sonntag ist <InlineMath math="1" /> Tag zu spät (<InlineMath math="\text{Rp}5{.}000" />). |
+| III | Kostenlos | Rotes Band (<InlineMath math="3" /> Tage) ab Samstag zählt Samstag, Sonntag, Montag. Fälligkeit am Montag erlaubt die saubere, funktionstüchtige Rückgabe am Dienstag ohne Abzug. |
+| IV | Gebührenpflichtig | Getrocknete Farbe gilt als schmutzig und löst <Highlight>a flat <InlineMath math="\text{Rp}10{,}000" /></Highlight> für die Reinigung aus. |
+| V | Gebührenpflichtig | Gelbes Band (<InlineMath math="7" /> Tage) ab Donnerstag ist am Mittwoch fällig, also ist der nächste Donnerstag <InlineMath math="1" /> Tag zu spät. |
+
+## Warum die anderen Optionen falsch sind
+
+- **Optionen mit II oder V** vergessen, dass der Ausleihtag bereits als Tag <InlineMath math="1" /> zählt.
+- **Nur III** übersieht, dass auch Fall I genau auf einen Montag fällt und daher dienstags gebührenfrei ist.
+
+# Antwort
+
+Ohne jede Gebühr bleiben **nur die Ausleihen I und III**.

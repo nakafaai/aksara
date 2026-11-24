@@ -1,11 +1,38 @@
-Teks tidak memberi jam untuk sebagian besar kejadian ini, jadi kamu harus menomori putarannya. Para pengayuh memakai *a fixed order, one lap each* (urutan tetap, satu putaran tiap orang): Rina, Yusuf, Dimas, Ayu, Bagas, Fitri, Hendra, dan narator. Putaran tiap pengayuh berselang <InlineMath math="8" />.
+# Diketahui
 
-**Kapan hujan datang**? Pukul 8.40, *with Dimas halfway round his fifth lap* (saat Dimas di tengah putaran kelimanya). Dimas menempuh putaran <InlineMath math="3, 11, 19, 27, 35" />, jadi hujan turun saat putaran <InlineMath math="35" />.
+Delapan pesepeda mengayuh bergantian **satu putaran per giliran dengan urutan tetap**: (<InlineMath math="1" />) Rina, (<InlineMath math="2" />) Yusuf, (<InlineMath math="3" />) Dimas, (<InlineMath math="4" />) Ayu, (<InlineMath math="5" />) Bagas, (<InlineMath math="6" />) Fitri, (<InlineMath math="7" />) Hendra, dan (<InlineMath math="8" />) narator. Hujan turun pukul <InlineMath math="8:40" /> saat Dimas berada di **tengah putaran kelimanya**.
 
-- Rantai Rina lepas pada putaran ketiganya. Rina menempuh putaran <InlineMath math="1, 9, 17" />, jadi itu putaran <InlineMath math="17" />, **sebelum** hujan.
-- Bagas berhenti pada putaran terakhirnya. Tabel menunjukkan ia menempuh <InlineMath math="6" /> putaran: <InlineMath math="5, 13, 21, 29, 37, 45" />. Putaran terakhirnya adalah putaran <InlineMath math="45" />, sesudah hujan.
-- Narator menapakkan kaki pada *my very first lap* (putaran pertamaku), yaitu putaran <InlineMath math="8" />, sebelum hujan.
-- Putaran ketujuh Yusuf adalah putaran <InlineMath math="2 + 6 \times 8 = 50" />, putaran paling akhir hari itu, sesudah hujan.
-- Putaran Dimas yang tidak dihitung adalah putaran yang terpotong hujan. Pukul 8.40 ia sedang *halfway round* (di tengah) putaran itu, jadi putaran itu mulai sebelum hujan.
+# Ditanyakan
 
-Jadi, yang terjadi sebelum hujan adalah rantai Rina lepas, kaki narator menapak di dekat air mancur, dan dimulainya putaran Dimas yang tidak dihitung.
+Peristiwa mana saja yang terjadi **sebelum hujan** menghentikan estafet (pilih semua yang benar).
+
+# Penyelesaian
+
+Karena teks tidak menuliskan jam untuk tiap kejadian, bayangkan kita menempelkan **nomor urut putaran dari <InlineMath math="1" /> sampai <InlineMath math="50" />**. Setiap pesepeda mendapat giliran setiap kelipatan <InlineMath math="8" /> putaran, sehingga membandingkan nomor putaran langsung memberi urutan waktu yang pasti.
+
+> Dalam estafet berurutan tetap dengan <InlineMath math="8" /> orang, putaran ke-<InlineMath math="k" /> milik pesepeda urutan <InlineMath math="r" /> selalu jatuh pada nomor putaran <InlineMath math="r + 8(k - 1)" />.
+
+## Menentukan nomor putaran saat hujan turun
+
+Dimas berada di urutan ke-<InlineMath math="3" /> dan sedang berada di <Highlight>halfway round his fifth lap</Highlight> saat hujan turun. Nomor putaran kelima Dimas adalah:
+
+<BlockMath math="3 + 8 \times (5 - 1) = 35" />
+
+Jadi hujan menghentikan estafet **di tengah putaran ke-<InlineMath math="35" />**. Semua peristiwa sebelum putaran <InlineMath math="35" /> terjadi sebelum hujan.
+
+## Memeriksa setiap peristiwa
+
+| Peristiwa | Nomor putaran | Sebelum hujan? |
+| --- | --- | --- |
+| Rantai Rina lepas (putaran ke-<InlineMath math="3" />, urutan <InlineMath math="1" />) | <InlineMath math="17" /> (<InlineMath math="1, 9, 17" />) | **Ya**, jauh sebelum putaran <InlineMath math="35" />. |
+| Bagas berhenti menghalau kucing (putaran terakhirnya, ke-<InlineMath math="6" />, urutan <InlineMath math="5" />) | <InlineMath math="45" /> (<InlineMath math="5, 13, 21, 29, 37, 45" />) | **Tidak**, terjadi sesudah putaran <InlineMath math="35" />. |
+| Kaki narator menyentuh tanah di air mancur (<Highlight>my very first lap</Highlight>, urutan <InlineMath math="8" />) | <InlineMath math="8" /> | **Ya**, sangat awal sebelum putaran <InlineMath math="35" />. |
+| Yusuf mengayuh putaran ketujuhnya (urutan <InlineMath math="2" />) | <InlineMath math="50" /> (putaran terakhir hari itu) | **Tidak**, terjadi sesudah putaran <InlineMath math="35" />. |
+| Dimas memulai putaran yang tidak dihitung | Awal putaran <InlineMath math="35" /> | **Ya**, karena ia sudah <Highlight>halfway round</Highlight> saat hujan turun. |
+
+# Jawaban
+
+Peristiwa yang terjadi sebelum hujan menghentikan estafet adalah:
+- **Rina's chain came off**.
+- **The narrator put a foot down at the corner by the fountain**.
+- **Dimas began the lap that did not count**.

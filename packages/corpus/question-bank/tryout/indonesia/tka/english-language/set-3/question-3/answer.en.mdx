@@ -1,10 +1,41 @@
-Work out both fees first, using each band's daily fee and the limit "No loan is ever charged more than ten days of late fees."
+# Given
 
-<BlockMath math="\text{Dimas: } 10 \times \text{Rp}2{,}000 = \text{Rp}20{,}000, \quad \text{Sari: } 4 \times \text{Rp}5{,}000 = \text{Rp}20{,}000" />
+Dimas returns a green-band hedge cutter **<InlineMath math="12" /> days late** (<InlineMath math="\text{Rp}2{,}000" />/day), and Sari returns a yellow-band sander **<InlineMath math="4" /> days late** (<InlineMath math="\text{Rp}5{,}000" />/day). Both tools are clean, working, and have no deposit, under a ten-day late-fee cap.
 
-- **I is true**. Both owe <InlineMath math="\text{Rp}20{,}000" />.
-- **II is true**. Green-band and yellow-band tools have no deposit, and for tools other than red-band ones, charges "are added to the member's account".
-- **III is true**. Without the limit, Dimas would owe <InlineMath math="12 \times \text{Rp}2{,}000 = \text{Rp}24{,}000" />, more than Sari's <InlineMath math="\text{Rp}20{,}000" />.
-- IV is false. If Sari were <InlineMath math="12" /> days late, the limit would cap her too, at <InlineMath math="10 \times \text{Rp}5{,}000 = \text{Rp}50{,}000" />. That's more than Dimas's <InlineMath math="\text{Rp}20{,}000" />, not less. **The limit caps the days, not the amount**, so a dearer band still costs more.
+# Asked
 
-So the true statements are I, II and III only.
+Which numbered statements about Dimas's and Sari's late fees are true.
+
+# Solution
+
+Think of the ten-day limit as a ceiling on **billable days**, not on the total rupiah owed. Calculate **each person's capped fee first**, then check the four statements directly against the rules.
+
+> The library's ten-day cap limits the number of charged days, so a higher daily rate still yields a higher maximum fine.
+
+## Computing both late fees
+
+The passage sets a firm cap: <Highlight>No loan is ever charged more than ten days of late fees</Highlight>. Dimas's <InlineMath math="12" /> late days are capped at <InlineMath math="10" />, while Sari pays for all <InlineMath math="4" /> days:
+
+<BlockMath math="\text{Dimas: } 10 \times \text{Rp}2{,}000 = \text{Rp}20{,}000, \qquad \text{Sari: } 4 \times \text{Rp}5{,}000 = \text{Rp}20{,}000" />
+
+Checking the two hypothetical scenarios in statements III and IV gives:
+
+<BlockMath math="\text{Dimas uncapped: } 12 \times \text{Rp}2{,}000 = \text{Rp}24{,}000, \qquad \text{Sari at 12 days (capped at 10): } 10 \times \text{Rp}5{,}000 = \text{Rp}50{,}000" />
+
+## Checking each statement
+
+| Statement | Verdict | Evidence and calculation |
+| --- | --- | --- |
+| I | True | Both owe exactly <InlineMath math="\text{Rp}20{,}000" />. |
+| II | True | Neither green nor yellow bands require a deposit, and for non-red tools fees <Highlight>are added to the member's account</Highlight>. |
+| III | True | Without the cap, Dimas would owe <InlineMath math="\text{Rp}24{,}000" />, which exceeds Sari's <InlineMath math="\text{Rp}20{,}000" />. |
+| IV | False | At <InlineMath math="12" /> days late, Sari's capped fine is <InlineMath math="\text{Rp}50{,}000" />, which is more than Dimas's <InlineMath math="\text{Rp}20{,}000" />, not less. |
+
+## Why the other options fail
+
+- **Options including IV** invert the comparison between <InlineMath math="\text{Rp}50{,}000" /> and <InlineMath math="\text{Rp}20{,}000" />.
+- **I and II only** or **I and III only** drop a verified truth (the non-red account rule in II or the uncapped <InlineMath math="\text{Rp}24{,}000" /> comparison in III).
+
+# Answer
+
+The true statements about their late fees are **I, II, and III only**.

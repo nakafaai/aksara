@@ -1,9 +1,32 @@
-Check each loan against every rule: the number of tools allowed, the due day (counted from the day the tool leaves, as in "taken out on the 1st is due back on the 14th"), the Monday rule, and the cleaning charge.
+# Given
 
-- **I is free**. A green-band tool out on a Tuesday is due on day <InlineMath math="14" />, a Monday. The Tuesday two weeks later is the next day, and "a tool that falls due on a Monday may come back on the Tuesday without a late fee".
-- II isn't. A yellow-band tool out on a Sunday is due on the Saturday, its seventh day. The next Sunday is one day late: <InlineMath math="\text{Rp}5{,}000" />.
-- **III is free**. A red-band tool has <InlineMath math="3" /> days: Saturday, Sunday and Monday. It **falls due on a Monday**, so the Tuesday is allowed, and because it comes back clean and working, the whole deposit comes back too.
-- IV isn't. Dried paint makes the sander dirty, so the <InlineMath math="\text{Rp}10{,}000" /> cleaning charge is added to the account.
-- V isn't. Out on a Thursday, the sander is due on the Wednesday, its seventh day, so the next Thursday is one day late.
+Five borrowing scenarios (I through V) are tested against the Selaras Tool Library rules: **green <InlineMath math="14" /> days**, **yellow <InlineMath math="7" /> days**, **red <InlineMath math="3" /> days**, inclusive day-one counting, Monday-to-Tuesday grace rule, and a <InlineMath math="\text{Rp}10{,}000" /> fee for dirty returns.
 
-So the loans with no charge are I and III only.
+# Asked
+
+Which loans follow every library rule and finish with zero charge for the member.
+
+# Solution
+
+Picture marking day one on a wall calendar the day a tool leaves. Because that first day counts, **a <InlineMath math="7" />-day loan is due the day before the same weekday next week**, and only a Monday due date earns a free Tuesday return.
+
+> Watch the inclusive count: a <InlineMath math="7" />-day or <InlineMath math="14" />-day loan taken out on a given weekday falls due on the weekday right before it, not on the same weekday.
+
+## Checking every loan against the rules
+
+| Loan | Verdict | Due-day count and condition check |
+| --- | --- | --- |
+| I | Free | Green (<InlineMath math="14" /> days) out Tuesday is due on day <InlineMath math="14" />, a Monday. By the rule <Highlight>a tool that falls due on a Monday may come back on the Tuesday without a late fee</Highlight>, returning it clean on Tuesday costs nothing. |
+| II | Charged | Yellow (<InlineMath math="7" /> days) out Sunday is due Saturday (day <InlineMath math="7" />). Returning Sunday is <InlineMath math="1" /> day late (<InlineMath math="\text{Rp}5{,}000" />). |
+| III | Free | Red (<InlineMath math="3" /> days) out Saturday counts Saturday, Sunday, Monday. It falls due on Monday, so clean and working on Tuesday earns no fee and returns the full deposit. |
+| IV | Charged | Dried paint means the sander is dirty, triggering the cleaning charge of <Highlight>a flat <InlineMath math="\text{Rp}10{,}000" /></Highlight>. |
+| V | Charged | Yellow (<InlineMath math="7" /> days) out Thursday is due Wednesday (day <InlineMath math="7" />), making the next Thursday <InlineMath math="1" /> day late. |
+
+## Why the other options fail
+
+- **Options including II or V** forget that the day a tool leaves is already day <InlineMath math="1" />.
+- **III only** overlooks that loan I also falls due on a Monday (<InlineMath math="14" /> days from Tuesday), making the Tuesday return free.
+
+# Answer
+
+The loans that follow every rule with no charge at all are **I and III only**.

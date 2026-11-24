@@ -1,11 +1,38 @@
-Für die meisten dieser Ereignisse nennt der Bericht keine Uhrzeit, also musst du die Runden nummerieren. Gefahren wurde in "a fixed order, one lap each" (fester Reihenfolge, eine Runde pro Person): Rina, Yusuf, Dimas, Ayu, Bagas, Fitri, Hendra und die erzählende Person. Die Runden einer Person liegen also <InlineMath math="8" /> auseinander.
+# Gegeben
 
-**Wann kam der Regen**? Um 8:40, "with Dimas halfway round his fifth lap" (als Dimas mitten in seiner fünften Runde war). Dimas fährt die Runden <InlineMath math="3, 11, 19, 27, 35" />, der Regen kam also in Runde <InlineMath math="35" />.
+Acht Personen fuhren **je eine Runde in fester Reihenfolge**: (<InlineMath math="1" />) Rina, (<InlineMath math="2" />) Yusuf, (<InlineMath math="3" />) Dimas, (<InlineMath math="4" />) Ayu, (<InlineMath math="5" />) Bagas, (<InlineMath math="6" />) Fitri, (<InlineMath math="7" />) Hendra und (<InlineMath math="8" />) die Erzählfigur. Um <InlineMath math="8:40" /> Uhr begann der Regen, als Dimas **auf halbem Weg seiner fünften Runde** war.
 
-- Rinas Kette sprang in ihrer dritten Runde ab. Rina fährt die Runden <InlineMath math="1, 9, 17" />, das war also Runde <InlineMath math="17" />, **vor** dem Regen.
-- Bagas hielt in seiner letzten Runde. Laut Tabelle fuhr er <InlineMath math="6" /> Runden: <InlineMath math="5, 13, 21, 29, 37, 45" />. Seine letzte war Runde <InlineMath math="45" />, nach dem Regen.
-- Die erzählende Person setzte in "my very first lap" (meiner allerersten Runde) den Fuß ab, also in Runde <InlineMath math="8" />, vor dem Regen.
-- Yusufs siebte Runde ist Runde <InlineMath math="2 + 6 \times 8 = 50" />, die allerletzte Runde des Tages, nach dem Regen.
-- Dimas' nicht gezählte Runde ist die vom Regen unterbrochene. Um 8:40 war er "halfway round" (mittendrin), sie begann also vor dem Regen.
+# Gesucht
 
-Vor dem Regen lagen also Rinas abgesprungene Kette, der abgesetzte Fuß am Brunnen und der Beginn von Dimas' nicht gezählter Runde.
+Welche der genannten Ereignisse **vor dem Regen** stattfanden (alle zutreffenden auswählen).
+
+# Lösung
+
+Da der Text für die meisten Ereignisse keine Uhrzeit nennt, nummeriere einfach alle Runden von **<InlineMath math="1" /> bis <InlineMath math="50" />** durch. Jede Person ist alle <InlineMath math="8" /> Runden dran, sodass die Rundennummer sofort die genaue zeitliche Reihenfolge liefert.
+
+> Bei fester Reihenfolge von <InlineMath math="8" /> Personen liegt die <InlineMath math="k" />-te Runde von Startplatz <InlineMath math="r" /> immer auf Rundennummer <InlineMath math="r + 8(k - 1)" />.
+
+## Rundennummer beim Einsetzen des Regens
+
+Dimas hat Startplatz <InlineMath math="3" /> und war beim Regen <Highlight>halfway round his fifth lap</Highlight>. Seine fünfte Runde trägt die Nummer:
+
+<BlockMath math="3 + 8 \times (5 - 1) = 35" />
+
+Der Regen setzte also **mitten in Runde <InlineMath math="35" />** ein. Alles davor geschah vor dem Regen.
+
+## Prüfung aller fünf Ereignisse
+
+| Ereignis | Rundennummer | Vor dem Regen? |
+| --- | --- | --- |
+| Rinas Kette sprang ab (ihre <InlineMath math="3" />. Runde, Platz <InlineMath math="1" />) | <InlineMath math="17" /> (<InlineMath math="1, 9, 17" />) | **Ja**, deutlich vor Runde <InlineMath math="35" />. |
+| Bagas hielt für eine Katze an (seine letzte, <InlineMath math="6" />. Runde, Platz <InlineMath math="5" />) | <InlineMath math="45" /> (<InlineMath math="5, 13, 21, 29, 37, 45" />) | **Nein**, erst nach Runde <InlineMath math="35" />. |
+| Erzählfigur setzte am Brunnen den Fuß ab (<Highlight>my very first lap</Highlight>, Platz <InlineMath math="8" />) | <InlineMath math="8" /> | **Ja**, ganz am Anfang vor Runde <InlineMath math="35" />. |
+| Yusuf fuhr seine <InlineMath math="7" />. Runde (Platz <InlineMath math="2" />) | <InlineMath math="50" /> (letzte Runde des Tages) | **Nein**, nach Runde <InlineMath math="35" />. |
+| Dimas begann die ungezählte Runde | Beginn von Runde <InlineMath math="35" /> | **Ja**, denn er war beim Regen bereits <Highlight>halfway round</Highlight>. |
+
+# Antwort
+
+Vor dem Regen geschahen folgende Ereignisse:
+- **Rina's chain came off**.
+- **The narrator put a foot down at the corner by the fountain**.
+- **Dimas began the lap that did not count**.

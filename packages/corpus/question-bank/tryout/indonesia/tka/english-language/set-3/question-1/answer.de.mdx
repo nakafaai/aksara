@@ -1,16 +1,40 @@
-Du brauchst drei Dinge: den Rückgabetag, die Zahl der Verspätungstage und das, was von der Kaution abgezogen wird.
+# Gegeben
 
-**Rückgabetag**. Ein Werkzeug mit rotem Band darf <InlineMath math="3" /> Tage ausgeliehen werden, gezählt ab dem Tag, an dem es die Bibliothek verlässt: Freitag, Samstag und Sonntag. Fällig ist es also am Sonntag.
+Ein Mitglied leiht am **Freitag** einen Hochdruckreiniger mit rotem Band aus und bringt ihn am **folgenden Mittwoch** funktionstüchtig, aber voller Schlamm zurück.
 
-**Verspätungstage**. Es kommt am Mittwoch zurück, also sind Montag, Dienstag und Mittwoch verspätet. Die Montagsregel hilft hier nicht: Sie gilt nur für ein Werkzeug, das "falls due on a Monday" (an einem Montag fällig wird), und dieses wurde am Sonntag fällig. Es zählt "every calendar day" (jeder Kalendertag), also auch der Montag, an dem die Bibliothek geschlossen ist.
+Laut Tabelle und Bibliotheksregeln gilt:
+- Rotes Band bedeutet <InlineMath math="3" /> Tage Leihfrist, <InlineMath math="\text{Rp}150{.}000" /> Kaution und <InlineMath math="\text{Rp}20{.}000" /> Verspätungsgebühr pro Tag.
+- Der Ausleihtag ist Tag eins, jeder Kalendertag zählt, montags ist geschlossen, und schmutzige Geräte kosten eine pauschale Reinigungsgebühr von <InlineMath math="\text{Rp}10{.}000" />.
 
-**Kaution**. Bei rotem Band werden die Reinigungsgebühr und jede Verspätungsgebühr "taken from the deposit" (von der Kaution abgezogen):
+# Gesucht
+
+Welchen Teil der Kaution das Mitglied zurückerhält.
+
+# Lösung
+
+Stell dir vor, du leihst ab Freitag für drei Tage ein Gerät aus. Gehe Schritt für Schritt vor: **Fälligkeitstag bestimmen**, **Verspätungstage zählen** und **alle Abzüge von der Kaution abziehen**.
+
+> Die Dienstagsfrist gilt nur für Werkzeuge, die genau an einem Montag fällig werden, nicht für Geräte mit Fälligkeit am Sonntag.
+
+## Fälligkeitstag und Verspätungstage bestimmen
+
+Der Text legt fest, dass <Highlight>every calendar day, and the day a tool leaves the library is day one</Highlight> zählt. Ab Freitag ergeben <InlineMath math="3" /> Tage **Freitag (Tag <InlineMath math="1" />), Samstag (Tag <InlineMath math="2" />) und Sonntag (Tag <InlineMath math="3" />)**, also ist Sonntag der Fälligkeitstag.
+
+Bei Rückgabe am Mittwoch sind **Montag, Dienstag und Mittwoch** verspätet (<InlineMath math="3" /> Tage). Die Montagsregel greift nicht, da sie ausdrücklich nur für <Highlight>a tool that falls due on a Monday</Highlight> gilt.
+
+## Restkaution berechnen
+
+Bei rotem Band werden Reinigungsgebühr und Verspätungsgeld <Highlight>taken from the deposit</Highlight>. Nach Abzug von drei Verspätungstagen und Reinigung bleibt:
 
 <BlockMath math="\text{Rp}150{.}000 - 3 \times \text{Rp}20{.}000 - \text{Rp}10{.}000 = \text{Rp}80{.}000" />
 
-- <InlineMath math="\text{Rp}100{.}000" /> lässt den Montag weg, weil die Bibliothek zu ist, und zählt so nur <InlineMath math="2" /> Verspätungstage.
-- <InlineMath math="\text{Rp}60{.}000" /> zählt auch den Sonntag, den Fälligkeitstag selbst, als verspätet, also <InlineMath math="4" /> Tage.
-- <InlineMath math="\text{Rp}120{.}000" /> beginnt am Samstag zu zählen. Dann wäre das Werkzeug am Montag fällig, der Dienstag wäre frei, und nur der Mittwoch wäre verspätet.
-- <InlineMath math="\text{Rp}90{.}000" /> vergisst die <InlineMath math="\text{Rp}10{.}000" /> für die Reinigung des schlammigen Geräts.
+## Warum die anderen Optionen falsch sind
 
-Das Mitglied bekommt also <InlineMath math="\text{Rp}80{.}000" /> von der Kaution zurück.
+- **Option <InlineMath math="\text{Rp}100{.}000" />** lässt den geschlossenen Montag weg und rechnet nur <InlineMath math="2" /> Tage.
+- **<InlineMath math="\text{Rp}60{.}000" />** zählt den Fälligkeitstag Sonntag mit und kommt auf <InlineMath math="4" /> Tage.
+- **<InlineMath math="\text{Rp}120{.}000" />** beginnt erst am Samstag zu zählen, schiebt die Fälligkeit auf Montag und berechnet nur Mittwoch.
+- **<InlineMath math="\text{Rp}90{.}000" />** vergisst die <InlineMath math="\text{Rp}10{.}000" /> Reinigungsgebühr für den Schlamm.
+
+# Antwort
+
+Das Mitglied erhält **<InlineMath math="\text{Rp}80{.}000" />** von der Kaution zurück.
