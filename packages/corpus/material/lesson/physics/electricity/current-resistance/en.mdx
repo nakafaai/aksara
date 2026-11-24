@@ -1,28 +1,28 @@
 export const metadata = {
-  title: "Electricity Notes for Form Five",
+  title: "Direct Current Circuits and Ohm Law",
   description:
-    "Form 5 Physics Chapter 3: use Ohm's law, combine resistors in series and parallel, find e.m.f. and internal resistance, and calculate electrical power.",
+    "Apply Ohm's law, explore wire resistance and bulb networks, determine cell e.m.f. and internal resistance, and analyse electrical power.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-11-17",
   subject: "Electricity",
 };
 
-## Current Is a Flow of Charge
+## Current and Ohm Law
 
-**Electric current** is the rate of flow of charge, <InlineMath math="I = \dfrac{Q}{t}" />, measured in amperes. The **potential difference** between two points is the work done to move one coulomb of charge between them, <InlineMath math="V = \dfrac{W}{Q}" />, measured in volts. For an ohmic conductor the two are linked by **Ohm's law**, <InlineMath math="V = IR" />, as long as the conductor's temperature stays constant. In these notes you change a resistance and compare current graphs, combine resistors, find the e.m.f. of a cell, and compare the efficiency of two bulbs.
+Picture electric charge like water flowing round a closed pipe: **electric current** measures how much charge passes each second, while **potential difference** is the energy push per coulomb. At constant temperature, ohmic conductors follow **Ohm's law**:
 
-In a metal wire, the moving charges are electrons. Electrons flow from the negative terminal to the positive one, but **conventional current** is defined to flow from positive to negative. One ampere means one coulomb of charge passes a point every second.
+<BlockMath math="I = \frac{Q}{t}, \qquad V = \frac{W}{Q}, \qquad V = IR" />
 
-Move the resistance slider below. The graph of <InlineMath math="I" /> against <InlineMath math="V" /> for an ohmic conductor is a straight line through the origin, and its gradient is <InlineMath math="\dfrac{1}{R}" />.
+In metal wires electrons drift from negative to positive, whereas **conventional current** points from positive to negative. A resistor turns electrical energy into heat, yet **never uses up charge**, so series current stays identical everywhere.
 
 <MathVisual
   title={<>Current against Potential Difference for an Ohmic Conductor</>}
+  footer={<>Higher resistance flattens the line because the same current needs more voltage.</>}
   description={
     <>
-      The current is <InlineMath math="I = \dfrac{V}{R}" />. For a{" "}
-      <InlineMath math="4\ \Omega" /> resistor, a potential difference of{" "}
-      <InlineMath math="6\text{ V}" /> gives a current of{" "}
-      <InlineMath math="1.5\text{ A}" />.
+      Current <InlineMath math="I" /> scales linearly with voltage{" "}
+      <InlineMath math="V" />. Across <InlineMath math="4\ \Omega" />,{" "}
+      <InlineMath math="6\text{ V}" /> drives <InlineMath math="1.5\text{ A}" />.
     </>
   }
   scene={{
@@ -48,29 +48,26 @@ Move the resistance slider below. The graph of <InlineMath math="I" /> against <
   }}
 />
 
-Check the starting reading: <InlineMath math="I = \dfrac{6}{4} = 1.5\text{ A}" />. A bigger resistance gives a flatter line, because the same current needs a bigger potential difference.
+Increase resistance above and watch the line flatten because its slope equals the reciprocal of resistance.
 
-## Resistance Depends on the Wire and the Arrangement
+## Wire and Circuit Resistance
 
-The resistance of a wire depends on its **length**, its **cross-sectional area**, its **material** and its **temperature**. At constant temperature the relation is <InlineMath math="R = \dfrac{\rho l}{A}" />, where <InlineMath math="\rho" /> is the resistivity of the material. A wire twice as long has twice the resistance, and a wire with twice the area has half the resistance.
-
-Resistors can be arranged in **series** or in **parallel**:
+A wire's resistance depends on its **length**, **cross-sectional area**, **material**, and **temperature**, while resistors combine in **series** or **parallel**:
 
 <MathContainer>
-<BlockMath math="\text{Series: } R = R_1 + R_2" />
-<BlockMath math="\text{Parallel: } \frac{1}{R} = \frac{1}{R_1} + \frac{1}{R_2}" />
+<BlockMath math="R = \frac{\rho l}{A}" />
+<BlockMath math="R_{\text{series}} = R_1 + R_2, \qquad \frac{1}{R_{\text{parallel}}} = \frac{1}{R_1} + \frac{1}{R_2}" />
 </MathContainer>
 
-In series, the same current flows through every resistor. In parallel, every branch has the same potential difference across it, and the effective resistance is always **smaller** than the smallest resistor. Change <InlineMath math="R_2" /> below and compare the two lines for <InlineMath math="R_1 = 6\ \Omega" />.
+Adding a parallel branch **lowers effective resistance** because it opens an extra path for charge. Compare both curves below as <InlineMath math="R_2" /> changes for <InlineMath math="R_1 = 6\ \Omega" />.
 
 <MathVisual
   title={<>Effective Resistance in Series and Parallel</>}
+  footer={<>A parallel combination is always smaller than its smallest single resistor.</>}
   description={
     <>
-      With <InlineMath math="R_1 = 6\ \Omega" />, series gives{" "}
-      <InlineMath math="6 + R_2" /> and parallel gives{" "}
-      <InlineMath math="\dfrac{6R_2}{6 + R_2}" />. The parallel line never goes
-      above <InlineMath math="6\ \Omega" />.
+      With <InlineMath math="R_1 = 6\ \Omega" />, series climbs steadily while
+      the parallel curve never exceeds <InlineMath math="6\ \Omega" />.
     </>
   }
   scene={{
@@ -98,34 +95,85 @@ In series, the same current flows through every resistor. In parallel, every bra
   }}
 />
 
-Try an example. A <InlineMath math="6\ \Omega" /> and a <InlineMath math="3\ \Omega" /> resistor are connected in parallel, then in series with a <InlineMath math="4\ \Omega" /> resistor across a <InlineMath math="12\text{ V}" /> battery. Calculate the current from the battery and the current in each parallel branch.
+Connecting <InlineMath math="6\ \Omega" /> and <InlineMath math="3\ \Omega" /> in parallel (<InlineMath math="2\ \Omega" />) in series with <InlineMath math="4\ \Omega" /> across <InlineMath math="12\text{ V}" /> gives <InlineMath math="6\ \Omega" /> total and <InlineMath math="2.0\text{ A}" />, splitting into <InlineMath math="0.67\text{ A}" /> and <InlineMath math="1.33\text{ A}" />.
 
-**Combine the parallel branches first**, then add the series resistor:
+### Wire Length and Width
 
-<MathContainer>
-<BlockMath math="R_{\text{parallel}} = \frac{6 \times 3}{6 + 3} = 2\ \Omega" />
-<BlockMath math="R = 2 + 4 = 6\ \Omega, \quad I = \frac{12}{6} = 2.0\text{ A}" />
-<BlockMath math="V_{\text{parallel}} = 2.0 \times 2 = 4.0\text{ V}, \quad I_6 = \frac{4.0}{6} = 0.67\text{ A}, \quad I_3 = \frac{4.0}{3} = 1.33\text{ A}" />
-</MathContainer>
+Think of a narrow hallway versus a wide highway: doubling length doubles resistance, while doubling **diameter** quadruples cross-sectional area and cuts resistance to one quarter.
 
-Check: the two branch currents add up to <InlineMath math="0.67 + 1.33 = 2.0\text{ A}" />, the same as the current from the battery. At <InlineMath math="R_2 = 3" />, the parallel graph above also gives <InlineMath math="2\ \Omega" />.
+> Wire resistance grows directly with length and drops inversely with the square of diameter.
 
-## Electromotive Force and Internal Resistance
+<WireResistanceLab
+  title={<>Comparing Two Nichrome Wires on One Supply</>}
+  description={
+    <>
+      The second wire is twice as long and twice as wide as the first across the
+      same potential difference.
+    </>
+  }
+  footer={<>Twice the diameter gives four times the area, halving total resistance.</>}
+  labels={{
+    diameter: <>Diameter of wire 2</>,
+    diameterName: "Diameter of wire 2",
+    length: <>Length of wire 2</>,
+    lengthName: "Length of wire 2",
+    power: <>Power ratio</>,
+    resistance: <>Resistance ratio</>,
+    viewLabel: "Two nichrome wires on one supply",
+  }}
+  diameterRatio={2}
+  lengthRatio={2}
+/>
 
-The **electromotive force**, or e.m.f., <InlineMath math="E" />, is the energy a cell supplies to move one coulomb of charge round a complete circuit. A real cell has an **internal resistance**, <InlineMath math="r" />, so part of the energy is lost inside the cell itself. The potential difference across the cell's terminals is:
+Twice the length divided by four times the area leaves **half the resistance** and **twice the power** on the same voltage.
 
-<BlockMath math="V = E - Ir" />
+### Broken Bulb Network
 
-With no current flowing, a voltmeter reads the e.m.f. As the current grows, the terminal reading drops. Change the e.m.f. and the internal resistance below: the line crosses the vertical axis at <InlineMath math="E" />, and its gradient is <InlineMath math="-r" />.
+When one bulb in a parallel branch burns out, removing that branch raises parallel resistance, lowers battery current, and **shifts a larger voltage share onto the surviving parallel bulb**.
+
+> When one parallel branch breaks, total circuit resistance rises so battery current drops and more supply voltage shifts across the remaining parallel bulb.
+
+<BulbNetworkLab
+  title={<>When the Filament of Bulb Three Breaks</>}
+  description={
+    <>
+      Bulb <InlineMath math="L_1" /> (<InlineMath math="4.0\ \Omega" />) sits in
+      series with parallel bulbs <InlineMath math="L_2" /> (
+      <InlineMath math="6.0\ \Omega" />) and <InlineMath math="L_3" /> (
+      <InlineMath math="12\ \Omega" />) on <InlineMath math="6.0\text{ V}" />.
+    </>
+  }
+  footer={<>Breaking L3 dims L1 while making the surviving parallel bulb L2 glow brighter.</>}
+  labels={{
+    broken: <><InlineMath math="L_3" /> broken</>,
+    intact: <>All bulbs working</>,
+    state: "Bulb L3",
+    viewLabel: "Three bulbs on a battery",
+  }}
+  emf={6}
+  group={[6, 12]}
+  series={4}
+/>
+
+Break <InlineMath math="L_3" /> in the lab: the voltage on <InlineMath math="L_1" /> falls from <InlineMath math="3.0\text{ V}" /> to <InlineMath math="2.4\text{ V}" />, while <InlineMath math="L_2" /> jumps to <InlineMath math="3.6\text{ V}" /> and shines brighter.
+
+## Cell Voltage and Internal
+
+**Electromotive force** (<InlineMath math="E" />) is the energy a cell supplies per coulomb, yet its **internal resistance** <InlineMath math="r" /> consumes part of that voltage whenever current flows:
+
+<BlockMath math="V = E - Ir, \qquad I = \frac{E}{R + r}" />
+
+A voltmeter shows full e.m.f. only on open circuit, and once current flows the terminal voltage drops below <InlineMath math="E" />.
 
 <MathVisual
   title={<>Terminal Potential Difference against Current</>}
+  footer={<>The vertical intercept gives e.m.f. E while the slope equals minus r.</>}
   description={
     <>
-      <InlineMath math="V = E - Ir" />. For a cell with{" "}
-      <InlineMath math="E = 3.0\text{ V}" /> and <InlineMath math="r = 0.5\ \Omega" />,
-      a current of <InlineMath math="0.5\text{ A}" /> gives a terminal potential
-      difference of <InlineMath math="2.75\text{ V}" />.
+      For a cell with <InlineMath math="E = 3.0\text{ V}" /> and{" "}
+      <InlineMath math="r = 0.5\ \Omega" />, a current of{" "}
+      <InlineMath math="0.5\text{ A}" /> leaves{" "}
+      <InlineMath math="2.75\text{ V}" /> at the terminals.
     </>
   }
   scene={{
@@ -155,59 +203,53 @@ With no current flowing, a voltmeter reads the e.m.f. As the current grows, the 
   }}
 />
 
-A cell with an e.m.f. of <InlineMath math="3.0\text{ V}" /> and an internal resistance of <InlineMath math="0.5\ \Omega" /> is connected to a <InlineMath math="5.5\ \Omega" /> resistor. The internal resistance is in series with the external resistor, so:
+Two different external resistors fix both <InlineMath math="E" /> and <InlineMath math="r" /> uniquely. Switch between both loads in the 3D cell lab below.
 
-<MathContainer>
-<BlockMath math="I = \frac{E}{R + r} = \frac{3.0}{5.5 + 0.5} = 0.50\text{ A}" />
-<BlockMath math="V = IR = 0.50 \times 5.5 = 2.75\text{ V}" />
-</MathContainer>
+> Dividing the drop in terminal voltage by the rise in current yields internal resistance directly, and adding lost volts back recovers e.m.f.
 
-Check with <InlineMath math="V = E - Ir = 3.0 - 0.50 \times 0.5 = 2.75\text{ V}" />. Both ways agree, and <InlineMath math="0.25\text{ V}" /> is lost inside the cell.
+<InternalResistanceLab
+  title={<>Finding EMF and Internal Resistance from Two Loads</>}
+  description={
+    <>
+      The voltmeter displays <InlineMath math="2.5\text{ V}" /> across{" "}
+      <InlineMath math="5.0\ \Omega" /> and <InlineMath math="2.0\text{ V}" />{" "}
+      across <InlineMath math="2.0\ \Omega" />.
+    </>
+  }
+  footer={<>A smaller external resistor draws more current and lowers terminal voltage.</>}
+  labels={{
+    current: <>Current</>,
+    emf: <>e.m.f. <InlineMath math="E" /></>,
+    internal: <>Internal resistance <InlineMath math="r" /></>,
+    resistor: "External resistor",
+    terminal: <>Terminal voltage</>,
+    viewLabel: "A cell with a resistor and a voltmeter",
+  }}
+  readings={[
+    { resistance: 5, voltage: 2.5 },
+    { resistance: 2, voltage: 2 },
+  ]}
+  trial={1}
+/>
 
-## Electrical Energy and Power
+Those two loads draw <InlineMath math="0.50\text{ A}" /> and <InlineMath math="1.0\text{ A}" />, locking **internal resistance at <InlineMath math="1.0\ \Omega" />** and **e.m.f. at <InlineMath math="3.0\text{ V}" />**.
 
-**Electrical power** is the rate at which electrical energy is transferred. For an appliance with current <InlineMath math="I" /> and potential difference <InlineMath math="V" />:
+## Electrical Power Efficiency
+
+**Electrical power** is the rate of energy transfer, and home bills count energy in **kilowatt-hours** (<InlineMath math="3.6 \times 10^6\text{ J}" /> per <InlineMath math="\text{kWh}" />):
 
 <BlockMath math="P = VI = I^2R = \frac{V^2}{R}, \qquad E = Pt" />
 
-Electricity bills count energy in **kilowatt-hours**, <InlineMath math="\text{kWh}" />: the energy a <InlineMath math="1\text{ kW}" /> appliance uses in one hour. A <InlineMath math="2.0\text{ kW}" /> heater switched on for <InlineMath math="3" /> hours uses <InlineMath math="2.0 \times 3 = 6.0\text{ kWh}" />, which is <InlineMath math="6.0 \times 3.6 \times 10^6 = 2.16 \times 10^7\text{ J}" />.
-
-Not all electrical energy becomes useful energy. **Efficiency** is the percentage of the input energy that comes out as useful output. Pick a bulb in the flashlight below: both bulbs draw the same power, but the share that becomes light is very different.
-
-<FlashlightEfficiencyLab
-  title={<>Efficiency of a Filament Bulb and an LED</>}
-  description={
-    <>
-      Two AA cells, <InlineMath math="3\text{ V}" /> and{" "}
-      <InlineMath math="2.5\text{ A h}" />, power a <InlineMath math="1\text{ W}" />{" "}
-      bulb. A filament bulb turns about <InlineMath math="5\%" /> into light, an
-      LED about <InlineMath math="40\%" />.
-    </>
-  }
-  labels={{
-    battery: <>Energy in the cells</>,
-    bulbs: { filament: <>Filament bulb</>, led: <>LED</> },
-    chooseBulb: "Bulb type",
-    efficiency: <>Efficiency</>,
-    heat: <>Heat power</>,
-    input: <>Input power</>,
-    light: <>Light power</>,
-    runTime: <>Running time</>,
-    viewLabel: "A flashlight with its cells shown in cutaway",
-  }}
-/>
-
-Work out the energy in the cells: <InlineMath math="E = VQ = 3 \times 2.5 \times 3600 = 27\,000\text{ J}" />. At <InlineMath math="1\text{ W}" /> the flashlight shines for <InlineMath math="27\,000\text{ s}" />, which is <InlineMath math="7.5" /> hours, whichever bulb it holds. The difference is the light power: <InlineMath math="0.05\text{ W}" /> for the filament bulb against <InlineMath math="0.40\text{ W}" /> for the LED.
-
-The graph below shows the power dissipated in a resistor as the current changes. Power is proportional to the **square of the current**, so doubling the current makes the power four times bigger.
+**Efficiency** measures the useful share of input energy: at the same <InlineMath math="1\text{ W}" /> input, a <InlineMath math="40\%" /> efficient LED emits <InlineMath math="0.40\text{ W}" /> of light compared with only <InlineMath math="0.05\text{ W}" /> from a filament bulb.
 
 <MathVisual
   title={<>Power in a Resistor against Current</>}
+  footer={<>Doubling the current quadruples the thermal power dissipated in a resistor.</>}
   description={
     <>
-      <InlineMath math="P = I^2R" />. For a <InlineMath math="10\ \Omega" />{" "}
-      resistor, <InlineMath math="1\text{ A}" /> gives <InlineMath math="10\text{ W}" />{" "}
-      and <InlineMath math="2\text{ A}" /> gives <InlineMath math="40\text{ W}" />.
+      Quadratic curve <InlineMath math="P = I^2R" />. In a{" "}
+      <InlineMath math="10\ \Omega" /> resistor,{" "}
+      <InlineMath math="2\text{ A}" /> dissipates <InlineMath math="40\text{ W}" />.
     </>
   }
   scene={{
@@ -233,58 +275,42 @@ The graph below shows the power dissipated in a resistor as the current changes.
   }}
 />
 
-## Common Mistakes about Electricity
+Because power grows with the **square of current**, doubling current multiplies heat output fourfold rather than merely doubling it.
 
-| Mistake | Why it's wrong | How to check |
-| :--- | :--- | :--- |
-| Current gets smaller after passing through a resistor. | Charge doesn't disappear, so the current in a series circuit is the same at every point. | Ammeters before and after the resistor read the same value. |
-| Adding a resistor in parallel raises the effective resistance. | A new branch gives an extra path, so the effective resistance falls. | A parallel combination is smaller than its smallest resistor. |
-| A voltmeter across a cell always reads the e.m.f. | When current flows it reads <InlineMath math="E - Ir" />, which is less than the e.m.f. | Compare the readings with the switch open and closed. |
-| <InlineMath math="1\text{ kWh}" /> equals <InlineMath math="1000\text{ J}" />. | <InlineMath math="1\text{ kWh} = 1000 \times 3600 = 3.6 \times 10^6\text{ J}" />. | Convert the hours to seconds. |
-| Doubling the current doubles the power in a resistor. | <InlineMath math="P = I^2R" />, so the power becomes four times bigger. | Work out <InlineMath math="2^2 = 4" />. |
+### Heater on Half Voltage
 
-The first mistake comes up most often. A resistor **converts the energy** of the charge into heat, but it **doesn't use up the charge**.
+A heater label of <InlineMath math="240\text{ V}" /> and <InlineMath math="1000\text{ W}" /> applies only at <InlineMath math="240\text{ V}" />. Plugged into another voltage, **its resistance stays fixed**, not its power.
 
-## Practice on Electricity
+> For a fixed-resistance heater, power scales with the square of supply voltage so half the voltage delivers only one quarter of the rated power.
 
-These questions move from charge and resistance to e.m.f. and power. **Draw the circuit diagram** first so the series and parallel parts are clear.
+<HeaterSupplyLab
+  title={<>A Heater Running on Half Its Rated Voltage</>}
+  description={
+    <>
+      A <InlineMath math="240\text{ V}" />, <InlineMath math="1000\text{ W}" />{" "}
+      heater operates on <InlineMath math="120\text{ V}" /> for{" "}
+      <InlineMath math="2.0" /> hours.
+    </>
+  }
+  footer={<>Resistance stays 57.6 ohms, so half the voltage gives one quarter of the power.</>}
+  labels={{
+    energy: <>Energy in <InlineMath math="2.0\text{ hours}" /></>,
+    power: <>Power</>,
+    resistance: <>Resistance</>,
+    supply: <>Supply voltage</>,
+    supplyName: "Supply voltage",
+    viewLabel: "A water heater on a supply",
+  }}
+  hours={2}
+  ratedPower={1000}
+  ratedVoltage={240}
+  supplyVoltage={120}
+/>
 
-1. A current of <InlineMath math="0.50\text{ A}" /> flows for <InlineMath math="2" /> minutes. Calculate the charge that flows and the number of electrons involved. The charge on one electron is <InlineMath math="1.6 \times 10^{-19}\text{ C}" />.
+From its fixed <InlineMath math="57.6\ \Omega" /> element, <InlineMath math="120\text{ V}" /> produces <InlineMath math="250\text{ W}" /> and uses <InlineMath math="0.50\text{ kWh}" /> in two hours.
 
-2. A copper wire <InlineMath math="10\text{ m}" /> long has a cross-sectional area of <InlineMath math="1.0 \times 10^{-6}\text{ m}^2" />. The resistivity of copper is <InlineMath math="1.7 \times 10^{-8}\ \Omega\text{ m}" />. Calculate the resistance of the wire.
+### Choosing a Safe Fuse
 
-3. For one cell, a voltmeter reads <InlineMath math="1.4\text{ V}" /> when the current is <InlineMath math="0.2\text{ A}" />, and <InlineMath math="1.2\text{ V}" /> when the current is <InlineMath math="0.6\text{ A}" />. Calculate the internal resistance and the e.m.f. of the cell.
+A <InlineMath math="2000\text{ W}" /> kettle on <InlineMath math="240\text{ V}" /> draws <InlineMath math="8.3\text{ A}" />. Pick a **fuse rated just above normal current**, namely <InlineMath math="10\text{ A}" />, rather than <InlineMath math="3\text{ A}" /> (blows immediately) or <InlineMath math="30\text{ A}" /> (fails to protect during a fault).
 
-4. A <InlineMath math="2000\text{ W}" /> kettle is connected to a <InlineMath math="240\text{ V}" /> supply. Calculate its normal current and choose a suitable fuse from <InlineMath math="3\text{ A}" />, <InlineMath math="10\text{ A}" /> and <InlineMath math="30\text{ A}" />.
-
-### Solutions
-
-**Solution 1**: Convert minutes to seconds, then use <InlineMath math="Q = It" />:
-
-<MathContainer>
-<BlockMath math="Q = 0.50 \times 120 = 60\text{ C}" />
-<BlockMath math="N = \frac{60}{1.6 \times 10^{-19}} = 3.75 \times 10^{20}\text{ electrons}" />
-</MathContainer>
-
-Check: <InlineMath math="3.75 \times 10^{20} \times 1.6 \times 10^{-19} = 60\text{ C}" />.
-
-**Solution 2**: Use <InlineMath math="R = \dfrac{\rho l}{A}" />:
-
-<BlockMath math="R = \frac{1.7 \times 10^{-8} \times 10}{1.0 \times 10^{-6}} = 0.17\ \Omega" />
-
-Check the logic: copper is a good conductor, so its resistance should be small, well under <InlineMath math="1\ \Omega" />.
-
-**Solution 3**: From <InlineMath math="V = E - Ir" />, the change in the voltmeter reading comes from the change in <InlineMath math="Ir" />:
-
-<MathContainer>
-<BlockMath math="r = \frac{1.4 - 1.2}{0.6 - 0.2} = \frac{0.2}{0.4} = 0.5\ \Omega" />
-<BlockMath math="E = V + Ir = 1.4 + 0.2 \times 0.5 = 1.5\text{ V}" />
-</MathContainer>
-
-Check with the second reading: <InlineMath math="1.5 - 0.6 \times 0.5 = 1.2\text{ V}" />. That matches the voltmeter.
-
-**Solution 4**: Use <InlineMath math="P = VI" />:
-
-<BlockMath math="I = \frac{P}{V} = \frac{2000}{240} = 8.3\text{ A}" />
-
-A fuse should be rated a little above the normal current, so choose the **<InlineMath math="10\text{ A}" /> fuse**. A <InlineMath math="3\text{ A}" /> fuse would blow even when the kettle works normally, and a <InlineMath math="30\text{ A}" /> fuse wouldn't protect the kettle if a fault happened.
+Quick self-checks: <InlineMath math="0.50\text{ A}" /> for <InlineMath math="2" /> minutes transfers <InlineMath math="60\text{ C}" /> (<InlineMath math="3.75 \times 10^{20}" /> electrons), a <InlineMath math="10\text{ m}" /> copper wire of area <InlineMath math="1.0 \times 10^{-6}\text{ m}^2" /> has resistance <InlineMath math="0.17\ \Omega" />, and a cell giving <InlineMath math="1.4\text{ V}" /> at <InlineMath math="0.2\text{ A}" /> and <InlineMath math="1.2\text{ V}" /> at <InlineMath math="0.6\text{ A}" /> has <InlineMath math="r = 0.5\ \Omega" /> and <InlineMath math="E = 1.5\text{ V}" />.
