@@ -1,19 +1,15 @@
 export const metadata = {
-  title: "Nota Koordinasi dan Gerak Balas dalam Manusia Tingkatan Empat",
+  title: "Koordinasi Saraf Sinaps Refleks dan Hormon",
   description:
-    "Nota Biologi Tingkatan 4 Bab 12: terangkan neuron, kelajuan impuls, sinaps, lengkok refleks, masa tindak balas dan sistem endokrin dengan latihan.",
+    "Terangkan neuron dan kelajuan impuls akson bermielin, penghantaran sinaps, lengkok refleks, masa tindak balas, serta peranan hormon endokrin.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-11-17",
   subject: "Koordinasi dan Gerak Balas dalam Manusia",
 };
 
-## Koordinasi Menghubungkan Rangsangan dengan Gerak Balas
+## Sistem Saraf dan Neuron
 
-**Koordinasi** ialah proses yang menghubungkan rangsangan dengan gerak balas yang sesuai. Setiap gerak balas mengikut urutan yang sama: **rangsangan, reseptor, pusat integrasi, efektor, gerak balas**. Manusia mempunyai dua sistem koordinasi. **Sistem saraf** menghantar impuls elektrik yang pantas melalui neuron, manakala **sistem endokrin** merembeskan hormon ke dalam darah yang bertindak lebih perlahan tetapi lebih lama. Dalam model di sini, kamu menguji masa tindak balas, membandingkan kelajuan impuls dalam akson dan membandingkan gerak balas saraf dengan gerak balas hormon.
-
-## Sistem Saraf Manusia
-
-Sistem saraf terdiri daripada **sistem saraf pusat**, iaitu otak dan saraf tunjang, dan **sistem saraf periferi**, iaitu saraf yang menghubungkan sistem saraf pusat dengan seluruh badan. Unit asasnya ialah **neuron**.
+Bayangkan badan seperti orkestra yang bertindak balas terhadap perubahan persekitaran dalam satu urutan tetap: **rangsangan, reseptor, pusat integrasi, efektor, gerak balas**. **Sistem saraf** menghantar impuls elektrik amat pantas melalui otak, saraf tunjang, dan saraf periferi menggunakan **neuron**, manakala **sistem endokrin** merembeskan hormon ke dalam darah yang bertindak lebih perlahan tetapi bertahan lama.
 
 | Neuron | Arah impuls | Lokasi |
 | :--- | :--- | :--- |
@@ -21,19 +17,57 @@ Sistem saraf terdiri daripada **sistem saraf pusat**, iaitu otak dan saraf tunja
 | Neuron perantaraan | Di dalam sistem saraf pusat | Otak dan saraf tunjang |
 | Neuron eferen | Dari sistem saraf pusat ke efektor | Badan sel di dalam saraf tunjang |
 
-Setiap neuron mempunyai **dendrit** yang menerima impuls, **badan sel** yang mengandungi nukleus dan **akson** yang membawa impuls keluar. Kebanyakan akson diselaputi **salut mielin** yang menebat akson, jadi impuls melompat dari satu nodus Ranvier ke nodus seterusnya.
+Setiap neuron mempunyai **dendrit** penerima isyarat, **badan sel** bernukleus, dan **akson** pembawa impuls. Banyak akson diselaputi **salut mielin** berpenebat supaya impuls melompat pantas dari satu nodus Ranvier ke nodus berikutnya.
 
-### Kelajuan Impuls Saraf
+### Kelajuan Impuls Akson
 
-**Akson bermielin menghantar impuls jauh lebih laju** daripada akson tanpa mielin. Bagi akson bermielin, kelajuan lebih kurang berkadar terus dengan diameter. Bagi akson tanpa mielin, kelajuan hanya berkadar dengan punca kuasa dua diameter. Gerakkan gelangsar diameter dan bandingkan dua kelajuan itu.
+**Akson bermielin menghantar impuls jauh lebih laju** kerana isyarat melompat antara nodus Ranvier, bukannya merambat perlahan sepanjang membran.
+
+> Salut mielin menebat akson supaya impuls melompat antara nodus Ranvier dan menempuh satu meter dalam belasan milisaat, jauh lebih laju daripada akson tanpa mielin.
+
+<NeuronImpulseLab
+  title={<>Perbandingan Impuls dalam Akson Bermielin dan Tanpa Mielin</>}
+  description={
+    <>
+      Impuls bergerak <InlineMath math="1.0\text{ m}" /> melalui dua gentian
+      berdiameter <InlineMath math="10\ \mu\text{m}" />, satu bermielin dan satu
+      tanpa mielin.
+    </>
+  }
+  footer={<>Pada diameter sama 10 mikrometer, akson bermielin belasan kali lebih pantas.</>}
+  fibres={[
+    { diameter: 10, myelinated: true, name: "Bermielin" },
+    { diameter: 10, myelinated: false, name: "Tanpa mielin" },
+  ]}
+  labels={{
+    fibre: "Gentian saraf",
+    parts: {
+      axon: "Akson",
+      dendrite: "Dendrit",
+      myelin: "Salut mielin",
+      node: "Nodus Ranvier",
+      soma: "Badan sel",
+      terminal: "Hujung akson",
+    },
+    potential: <>Keupayaan membran</>,
+    speed: <>Kelajuan impuls</>,
+    time: <>Masa merentas satu meter</>,
+    view: "Neuron motor dengan dendrit, badan sel, salut mielin, dan hujung akson",
+  }}
+  length={1}
+/>
+
+Bandingkan masa perjalanan dua gentian di atas: pada diameter <InlineMath math="10\ \mu\text{m}" />, impuls merentas <InlineMath math="1.0\text{ m}" /> dalam <InlineMath math="0.017\text{ s}" /> bagi akson bermielin berbanding <InlineMath math="0.29\text{ s}" /> tanpa mielin.
 
 <MathVisual
   title={<>Kelajuan Impuls dalam Akson Bermielin dan Tanpa Mielin</>}
+  footer={<>Kelajuan akson bermielin naik lurus dengan diameter, tanpa mielin mengikut punca.</>}
   description={
     <>
       Kelajuan dalam unit <InlineMath math="10\text{ m s}^{-1}" /> terhadap
-      diameter akson dalam mikrometer: <InlineMath math="0.6d" /> bagi akson
-      bermielin dan <InlineMath math="0.11\sqrt{d}" /> bagi akson tanpa mielin.
+      diameter <InlineMath math="d" /> dalam mikrometer:{" "}
+      <InlineMath math="0.6d" /> bermielin dan{" "}
+      <InlineMath math="0.11\sqrt{d}" /> tanpa mielin.
     </>
   }
   scene={{
@@ -60,58 +94,121 @@ Setiap neuron mempunyai **dendrit** yang menerima impuls, **badan sel** yang men
   }}
 />
 
-### Contoh Masa Impuls dari Kaki ke Saraf Tunjang
+Akson bermielin lebih lebar menghantar impuls lebih cepat, sehingga jarak <InlineMath math="0.80\text{ m}" /> pada <InlineMath math="80\text{ m s}^{-1}" /> hanya mengambil <InlineMath math="10\text{ ms}" />.
 
-Impuls bergerak <InlineMath math="1.0\text{ m}" /> dari jari kaki ke saraf tunjang melalui akson bermielin berdiameter <InlineMath math="10\ \mu\text{m}" />. Kira **masa yang diambil**, dan bandingkan dengan akson tanpa mielin yang sama besar.
+### Penghantaran Sinaps
 
-<MathContainer>
-<BlockMath math="v = 6 \times 10 = 60\text{ m s}^{-1}, \quad t = \frac{1.0}{60} = 0.017\text{ s}" />
-<BlockMath math="v = 1.1\sqrt{10} = 3.5\text{ m s}^{-1}, \quad t = \frac{1.0}{3.5} = 0.29\text{ s}" />
-</MathContainer>
+**Sinaps** memisahkan satu neuron daripada neuron berikutnya oleh celah sempit. Apabila impuls tiba, vesikel prasinaps membebaskan **neurotransmiter** (seperti asetilkolina) yang meresap merentas celah, terikat pada reseptor neuron pascasinaps, lalu diuraikan enzim supaya isyarat tamat tepat masanya.
 
-Semak dengan model: pada <InlineMath math="d = 10" />, bacaan ialah <InlineMath math="60" /> dan <InlineMath math="3.48" />. Tanpa mielin, impuls lebih kurang tujuh belas kali lebih perlahan, cukup untuk membuatkan kita lambat menarik kaki daripada paku.
+> Kerana neurotransmiter hanya dibebaskan dari bintil prasinaps manakala reseptor hanya terdapat pada membran pascasinaps, impuls merentas sinaps secara sehala sahaja.
 
-## Sinaps
-
-**Sinaps** ialah simpang antara dua neuron. Apabila impuls sampai di hujung akson, bintil sinaps membebaskan **neurotransmiter** seperti asetilkolina ke dalam celah sinaps. Neurotransmiter meresap merentas celah dan terikat pada reseptor neuron seterusnya, lalu mencetuskan impuls baharu. Neurotransmiter hanya dibebaskan dari satu sisi, jadi **impuls bergerak sehala** sahaja.
-
-## Tindakan Terkawal dan Tindakan Luar Kawal
-
-**Tindakan terkawal** dilakukan secara sedar dan dikawal oleh otak, contohnya menekan brek apabila lampu brek kereta di hadapan menyala. Uji masa tindak balas kamu dalam model ini.
-
-<ReactionTimeLab
-  title={<>Uji Masa Tindak Balas Kamu</>}
+<SynapseLab
+  title={<>Penghantaran Sinaps Kolinergik dan Kesan Bahan Kimia</>}
   description={
     <>
-      Tekan Brek sebaik sahaja lampu brek kereta di hadapan menyala. Kad ini
-      merekod masa tindak balas dan jarak yang masih dilalui pada{" "}
-      <InlineMath math="20\text{ m/s}" />.
+      Ubah kadar impuls dan tambah nikotina, kurare, organofosfat, atau toksin
+      botulinum untuk melihat kesannya terhadap isyarat asetilkolina dan gerak
+      balas neuron seterusnya.
     </>
   }
+  footer={<>Bahan kimia boleh meniru asetilkolina, menyekat reseptor, atau menghentikan enzimnya.</>}
+  drugs={["nicotine", "curare", "organophosphate", "botulinum"]}
   labels={{
-    start: "Mula",
-    brake: "Brek",
-    early: <>Terlalu awal, tunggu lampu menyala</>,
-    lastTime: <>Masa tindak balas kamu</>,
-    reactionDistance: (
-      <>
-        Jarak tindak balas pada <InlineMath math="20\text{ m/s}" />
-      </>
-    ),
-    best: <>Paling pantas</>,
-    average: <>Purata lima cubaan terakhir</>,
-    viewLabel: "Pandangan dari tempat duduk pemandu",
+    drug: "Bahan kimia",
+    drugs: {
+      botulinum: "Toksin botulinum",
+      curare: "Kurare",
+      nicotine: "Nikotina",
+      organophosphate: "Organofosfat",
+    },
+    fires: <>Mencetus impuls baharu</>,
+    none: "Tiada bahan",
+    parts: {
+      channel: <>Saluran kalsium</>,
+      cleft: <>Celah sinaps</>,
+      enzyme: <>Asetilkolinesterase</>,
+      mitochondrion: <>Mitokondrion</>,
+      receptor: <>Reseptor asetilkolina</>,
+      transporter: <>Pengangkut kolina</>,
+      vesicle: <>Vesikel sinaps</>,
+    },
+    potential: <>Keupayaan pascasinaps</>,
+    rate: "Impuls sesaat",
+    response: <>Gerak balas pascasinaps</>,
+    rests: <>Kekal rehat</>,
+    transmitter: <>Asetilkolina di celah</>,
+    view: "Sinaps kolinergik antara bintil prasinaps dengan membran pascasinaps",
   }}
 />
 
-Isyarat dari mata perlu sampai ke otak, diproses dan dihantar ke otot kaki, jadi tindakan terkawal mengambil masa. **Tindakan luar kawal** pula berlaku tanpa kesedaran. **Tindakan refleks**, seperti refleks sentakan lutut, melalui saraf tunjang tanpa menunggu otak, jadi ia jauh lebih pantas.
+Uji kurare dan organofosfat secara bergilir di atas: kurare menyekat reseptor lalu menghentikan isyarat, manakala organofosfat melumpuhkan enzim pengurai supaya asetilkolina terus terkumpul.
+
+## Lengkok Refleks dan Reaksi
+
+**Tindakan terkawal** seperti menekan brek memerlukan pemprosesan otak sehingga lebih lambat, manakala **tindakan refleks** seperti sentakan lutut atau menarik tangan daripada objek panas memintas melalui **lengkok refleks** di saraf tunjang menerusi neuron aferen, neuron perantaraan, dan neuron eferen.
+
+### Laluan Lengkok Refleks
+
+Dalam **refleks menarik tangan**, impuls masuk melalui akar dorsal, merentas **neuron perantaraan** dalam jirim kelabu, lalu keluar melalui akar ventral ke otot (tiga neuron dan dua sinaps), manakala **sentakan lutut** menyambungkan neuron aferen terus kepada neuron eferen (dua neuron dan satu sinaps).
+
+> Lengkok refleks saraf tunjang memintas terus melalui jirim kelabu supaya otot bertindak melindungi badan sebelum otak sempat memproses rasa sakit secara sedar.
+
+<ReflexArcLab
+  title={<>Lengkok Refleks Menarik Tangan dan Sentakan Lutut</>}
+  description={
+    <>
+      Perhatikan keratan rentas saraf tunjang dan bandingkan laluan refleks tiga
+      neuron apabila menyentuh objek panas dengan refleks dua neuron pada
+      ketukan tendon lutut.
+    </>
+  }
+  footer={<>Refleks tarik melalui tiga neuron dan dua sinaps, sentakan lutut satu sinaps sahaja.</>}
+  reflexes={["withdrawal", "kneeJerk"]}
+  labels={{
+    parts: {
+      dorsalRoot: "Akar dorsal",
+      effector: "Otot efektor",
+      greyMatter: "Jirim kelabu",
+      motorNeuron: "Neuron eferen",
+      receptor: "Reseptor rangsangan",
+      relayNeuron: "Neuron perantaraan",
+      sensoryNeuron: "Neuron aferen",
+      ventralRoot: "Akar ventral",
+      whiteMatter: "Jirim putih",
+    },
+    pathway: <>Urutan laluan impuls</>,
+    reflex: "Jenis refleks",
+    reflexes: {
+      kneeJerk: {
+        name: "Sentakan lutut",
+        response: <>Kaki bawah menendang ke hadapan</>,
+        stimulus: <>Ketukan pada tendon patela</>,
+      },
+      withdrawal: {
+        name: "Refleks menarik tangan",
+        response: <>Tangan ditarik pantas daripada panas</>,
+        stimulus: <>Jari menyentuh kuali panas</>,
+      },
+    },
+    step: "Langkah impuls",
+    synapses: <>Bilangan sinaps</>,
+    view: "Keratan rentas saraf tunjang dan lengkok refleks tiga dimensi",
+  }}
+/>
+
+Bandingkan kedua-dua mod di atas: refleks menarik tangan melalui **neuron perantaraan** dengan dua sinaps dalam jirim kelabu, manakala sentakan lutut menghubungkan neuron aferen terus ke neuron eferen menerusi satu sinaps sahaja.
+
+### Masa Tindak Balas
+
+Apabila otak perlu mentafsir rangsangan sebelum bertindak, laluan yang lebih panjang menghasilkan **masa tindak balas** yang jauh lebih lambat berbanding refleks saraf tunjang.
 
 <BarChart
   title={<>Masa Tindak Balas bagi Beberapa Gerak Balas</>}
+  footer={<>Refleks saraf tunjang jauh lebih pantas daripada tindakan sedar melalui otak.</>}
   description={
     <>
-      Masa tipikal dalam milisaat dari rangsangan hingga gerak balas bagi satu
-      refleks dan dua tindakan terkawal.
+      Masa tipikal dalam milisaat daripada rangsangan ke gerak balas bagi
+      sentakan lutut, menangkap pembaris, dan menekan brek.
     </>
   }
   yAxisLabel="Masa tindak balas (ms)"
@@ -123,21 +220,17 @@ Isyarat dari mata perlu sampai ke otak, diproses dan dihantar ke otot kaki, jadi
   chartConfig={{ value: { label: "Masa tindak balas", colors: { light: ["var(--chart-2)"], dark: ["var(--chart-2)"] } } }}
 />
 
-### Lengkok Refleks
+Refleks lutut selesai dalam sekitar <InlineMath math="50\text{ ms}" />, jauh lebih singkat daripada <InlineMath math="700\text{ ms}" /> bagi tindakan menekan brek. Oleh sebab impuls penglihatan mesti diproses di otak sebelum turun melalui neuron eferen ke kaki, tindakan terkawal sentiasa mengambil masa lebih lama berbanding lengkok refleks. Kamu juga boleh menganggarkan masa tindak balas daripada jarak jatuh bebas pembaris:
 
-Dalam **lengkok refleks** sentakan lutut, ketukan pada tendon meregangkan otot paha. Reseptor regangan menghantar impuls melalui **neuron aferen** ke saraf tunjang. Impuls terus dihantar ke **neuron eferen**, dan otot paha mengecut sehingga kaki tersentak ke hadapan. Refleks menarik tangan dari objek panas pula melibatkan **neuron perantaraan** di dalam saraf tunjang.
-
-### Contoh Masa Tindak Balas dengan Pembaris
-
-Seorang rakan melepaskan pembaris tanpa amaran, dan kamu menangkapnya selepas pembaris jatuh <InlineMath math="d" /> sentimeter. Pembaris **jatuh bebas**, jadi <InlineMath math="d = \tfrac{1}{2}gt^2" />. Gerakkan jarak jatuh dan baca masa tindak balas.
+<BlockMath math="t = \sqrt{\frac{2d}{g}}" />
 
 <MathVisual
   title={<>Masa Tindak Balas daripada Jarak Pembaris Jatuh</>}
+  footer={<>Pembaris jatuh 20 cm sepadan dengan masa tindak balas sekitar 0.20 s atau 200 ms.</>}
   description={
     <>
-      Masa tindak balas dalam persepuluh saat terhadap jarak jatuh dalam unit{" "}
-      <InlineMath math="5\text{ cm}" />, mengikut{" "}
-      <InlineMath math="t = \sqrt{2d/g}" /> dengan{" "}
+      Masa tindak balas (persepuluh saat) terhadap jarak jatuh dalam unit{" "}
+      <InlineMath math="5\text{ cm}" /> dengan{" "}
       <InlineMath math="g = 9.8\text{ m s}^{-2}" />.
     </>
   }
@@ -164,15 +257,11 @@ Seorang rakan melepaskan pembaris tanpa amaran, dan kamu menangkapnya selepas pe
   }}
 />
 
-Jika pembaris jatuh <InlineMath math="20\text{ cm}" />, iaitu <InlineMath math="0.20\text{ m}" />:
+Menangkap pembaris selepas jatuh <InlineMath math="12\text{ cm}" /> memberi masa tindak balas sekitar <InlineMath math="0.16\text{ s}" /> (<InlineMath math="156\text{ ms}" />).
 
-<BlockMath math="t = \sqrt{\frac{2 \times 0.20}{9.8}} = \sqrt{0.0408} = 0.20\text{ s}" />
+## Sistem Endokrin dan Hormon
 
-Semak dengan model: pada <InlineMath math="c = 4" />, bacaan masa ialah <InlineMath math="202" /> milisaat, sama dengan nilai menangkap pembaris dalam carta.
-
-## Sistem Endokrin
-
-**Kelenjar endokrin** tidak mempunyai duktus dan merembeskan **hormon** terus ke dalam darah. Darah membawa hormon ke organ sasaran.
+**Kelenjar endokrin** tidak berduktus dan merembeskan **hormon** terus ke dalam aliran darah menuju organ sasaran.
 
 | Kelenjar | Hormon | Kesan utama |
 | :--- | :--- | :--- |
@@ -182,14 +271,13 @@ Semak dengan model: pada <InlineMath math="c = 4" />, bacaan masa ialah <InlineM
 | Pankreas | Insulin, glukagon | Mengawal aras glukosa darah |
 | Ovari dan testis | Estrogen, progesteron, testosteron | Mengawal ciri seks sekunder |
 
-Gerak balas saraf dan gerak balas hormon berbeza dari segi masa. Model ini membandingkan **gerak balas saraf** yang singkat dan tajam dengan **gerak balas hormon** yang perlahan tetapi berpanjangan selepas satu rangsangan.
-
 <MathVisual
   title={<>Gerak Balas Saraf dan Gerak Balas Hormon</>}
+  footer={<>Isyarat saraf memuncak dan pudar cepat, manakala tindakan hormon bertahan jauh lebih lama.</>}
   description={
     <>
-      Kekuatan gerak balas relatif terhadap masa selepas rangsangan, dalam unit
-      masa sebarang. Gerak balas saraf memuncak dan hilang dengan cepat.
+      Kekuatan gerak balas relatif terhadap masa selepas rangsangan: impuls
+      saraf singkat dan tajam, hormon pula lambat dan lama.
     </>
   }
   scene={{
@@ -216,49 +304,10 @@ Gerak balas saraf dan gerak balas hormon berbeza dari segi masa. Model ini memba
   }}
 />
 
-Pada <InlineMath math="s = 3" />, gerak balas saraf sudah hilang, tetapi gerak balas hormon berada di puncak. Itulah sebabnya jantung masih berdebar beberapa minit selepas kamu terkejut: adrenalina masih beredar dalam darah.
+Adrenalina sangat sesuai semasa kecemasan kerana darah membawanya ke banyak organ serentak dan mengekalkan kesiagaan beberapa minit selepas impuls saraf reda.
 
-## Isu Kesihatan Sistem Koordinasi
+## Gangguan Sistem Koordinasi
 
-Penyalahgunaan dadah dan alkohol mengganggu penghantaran impuls di sinaps. Alkohol memanjangkan masa tindak balas, jadi pemandu yang mabuk memerlukan jarak yang lebih panjang untuk berhenti. **Penyakit Alzheimer** merosakkan neuron otak dan menjejaskan ingatan, manakala **penyakit Parkinson** berlaku apabila neuron yang menghasilkan dopamina mati dan pergerakan menjadi menggeletar.
+Alkohol dan dadah mengganggu penghantaran isyarat di sinaps serta memanjangkan masa tindak balas pemandu. **Penyakit Alzheimer** merosakkan neuron otak dan ingatan, manakala **penyakit Parkinson** berlaku apabila neuron penghasil dopamina mati hingga pergerakan menggeletar.
 
-## Kesilapan Lazim tentang Koordinasi
-
-| Kesilapan | Sebab salah | Cara semak |
-| :--- | :--- | :--- |
-| Semua tindakan dikawal oleh otak. | Tindakan refleks diproses oleh saraf tunjang tanpa menunggu otak. | Tanya sama ada tindakan itu disedari dahulu. |
-| Impuls boleh bergerak dua hala merentas sinaps. | Neurotransmiter hanya dibebaskan oleh neuron prasinaps. | Cari di mana bintil sinaps berada. |
-| Hormon dirembeskan melalui duktus. | Kelenjar endokrin tiada duktus dan merembes terus ke darah. | Bezakan kelenjar endokrin dengan kelenjar eksokrin. |
-| Gerak balas hormon lebih pantas daripada saraf. | Hormon perlu diangkut oleh darah, jadi gerak balasnya lebih perlahan tetapi lebih lama. | Bandingkan puncak dua lengkung dalam model. |
-
-Kesilapan pertama paling kerap muncul dalam soalan lengkok refleks. **Refleks melalui saraf tunjang**, dan otak hanya menyedarinya selepas itu.
-
-## Latihan Koordinasi dan Gerak Balas
-
-Soalan ini bergerak dari neuron ke refleks dan hormon. **Namakan setiap neuron** dalam jawapan tentang laluan impuls.
-
-1. Tuliskan urutan laluan impuls dalam refleks menarik tangan dari objek panas.
-
-2. Pembaris jatuh <InlineMath math="12\text{ cm}" /> sebelum ditangkap. Hitung masa tindak balas.
-
-3. Impuls bergerak <InlineMath math="0.80\text{ m}" /> dalam akson bermielin dengan kelajuan <InlineMath math="80\text{ m s}^{-1}" />. Hitung masa yang diambil dalam milisaat.
-
-4. Terangkan mengapa adrenalina sesuai untuk keadaan kecemasan walaupun bertindak lebih perlahan daripada impuls saraf.
-
-### Penyelesaian
-
-**Penyelesaian 1**: Objek panas merangsang **reseptor** di kulit. Impuls bergerak melalui **neuron aferen** ke saraf tunjang, kemudian **neuron perantaraan**, kemudian **neuron eferen** ke otot biseps, iaitu efektor yang mengecut dan menarik tangan.
-
-**Penyelesaian 2**: Tukarkan jarak kepada meter, kemudian gunakan <InlineMath math="t = \sqrt{2d/g}" />:
-
-<BlockMath math="t = \sqrt{\frac{2 \times 0.12}{9.8}} = \sqrt{0.0245} = 0.16\text{ s}" />
-
-Semak dengan model: pada <InlineMath math="c = 2.4" />, bacaan ialah <InlineMath math="156" /> milisaat.
-
-**Penyelesaian 3**: Bahagikan jarak dengan kelajuan:
-
-<BlockMath math="t = \frac{0.80}{80} = 0.010\text{ s} = 10\text{ ms}" />
-
-Semak: <InlineMath math="80 \times 0.010 = 0.80\text{ m}" />.
-
-**Penyelesaian 4**: Adrenalina dibawa oleh darah ke **banyak organ serentak**: jantung berdenyut lebih laju, glukosa dibebaskan dari hati dan saluran udara mengembang. Kesannya juga **berpanjangan**, jadi badan kekal bersedia selama keadaan kecemasan berlarutan.
+Semakan pantas kendiri: refleks menarik tangan dari objek panas sentiasa melalui reseptor kulit, neuron aferen, neuron perantaraan di saraf tunjang, dan neuron eferen ke otot biseps sebelum disedari otak.

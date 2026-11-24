@@ -1,19 +1,15 @@
 export const metadata = {
-  title: "Koordination und Reaktion beim Menschen",
+  title: "Nervenkoordination Synapsen Reflexe Hormone",
   description:
-    "Erkläre Nervenzellen, Leitungsgeschwindigkeit, Synapsen, den Reflexbogen, die Reaktionszeit und das Hormonsystem mit interaktiven Modellen und Übungen.",
+    "Erkläre Nervenzellen und Leitungsgeschwindigkeit, synaptische Übertragung, Reflexbögen, Reaktionszeit sowie die Wirkung von Hormonen.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-11-17",
   subject: "Koordination und Reaktion beim Menschen",
 };
 
-## Koordination verbindet Reiz und Reaktion
+## Nervensystem und Neuronen
 
-**Koordination** ist der Vorgang, der einen Reiz mit einer passenden Reaktion verbindet. Jede Reaktion folgt derselben Abfolge: **Reiz, Rezeptor, Verarbeitungszentrum, Effektor, Reaktion**. Der Mensch hat zwei Koordinationssysteme. Das **Nervensystem** sendet schnelle elektrische Impulse über Nervenzellen, das **Hormonsystem** gibt Hormone ins Blut ab, die langsamer, aber länger wirken. In den Modellen hier testest du deine Reaktionszeit, vergleichst Leitungsgeschwindigkeiten in Axonen und vergleichst eine nervöse mit einer hormonellen Reaktion.
-
-## Das Nervensystem des Menschen
-
-Das Nervensystem besteht aus dem **Zentralnervensystem**, also Gehirn und Rückenmark, und dem **peripheren Nervensystem**, den Nerven, die das Zentralnervensystem mit dem übrigen Körper verbinden. Seine Grundeinheit ist die **Nervenzelle**.
+Stell dir den Körper wie ein Orchester vor, das auf jede Veränderung nach derselben Kette antwortet: **Reiz, Rezeptor, Verarbeitungszentrum, Effektor, Reaktion**. Das **Nervensystem** sendet rasche elektrische Impulse über Gehirn, Rückenmark und periphere Nerven mithilfe von **Nervenzellen**, während das **Hormonsystem** Botenstoffe langsamer, aber länger wirkend übers Blut verteilt.
 
 | Nervenzelle | Richtung des Impulses | Lage |
 | :--- | :--- | :--- |
@@ -21,20 +17,57 @@ Das Nervensystem besteht aus dem **Zentralnervensystem**, also Gehirn und Rücke
 | Zwischennervenzelle | Innerhalb des Zentralnervensystems | Gehirn und Rückenmark |
 | Motorische Nervenzelle | Vom Zentralnervensystem zum Effektor | Zellkörper im Rückenmark |
 
-Jede Nervenzelle hat **Dendriten**, die Impulse aufnehmen, einen **Zellkörper** mit dem Zellkern und ein **Axon**, das Impulse weiterleitet. Die meisten Axone sind von einer **Myelinscheide** umhüllt, die das Axon isoliert, sodass der Impuls von einem Ranvierschen Schnürring zum nächsten springt.
+Jede Nervenzelle besitzt **Dendriten** zur Aufnahme von Signalen, einen **Zellkörper** mit Kern und ein **Axon** zur Weiterleitung. Viele Axone tragen eine isolierende **Myelinscheide**, sodass Impulse rasch von Schnürring zu Schnürring springen.
 
-### Die Geschwindigkeit von Nervenimpulsen
+### Tempo der Impulse
 
-**Myelinisierte Axone leiten Impulse viel schneller** als nicht myelinisierte. Bei einem myelinisierten Axon ist die Geschwindigkeit ungefähr proportional zum Durchmesser. Bei einem nicht myelinisierten Axon ist sie nur proportional zur Wurzel des Durchmessers. Verschiebe den Regler für den Durchmesser und vergleiche die beiden Geschwindigkeiten.
+**Myelinisierte Axone leiten Impulse viel schneller**, weil das Signal zwischen Ranvierschen Schnürringen springt, statt langsam durchgehend über die Membran zu kriechen.
+
+> Eine Myelinscheide isoliert das Axon, sodass Impulse von Schnürring zu Schnürring springen und einen Meter in wenigen Millisekunden schaffen, über zehnmal schneller als marklose Fasern.
+
+<NeuronImpulseLab
+  title={<>Impulsvergleich im myelinisierten und marklosen Axon</>}
+  description={
+    <>
+      Ein Impuls durchläuft <InlineMath math="1{,}0\ \text{m}" /> auf zwei
+      Fasern mit <InlineMath math="10\ \mu\text{m}" /> Durchmesser, einmal mit
+      und einmal ohne Myelinscheide.
+    </>
+  }
+  footer={<>Bei gleichem 10-Mikrometer-Durchmesser leitet Myelin über zehnmal schneller.</>}
+  fibres={[
+    { diameter: 10, myelinated: true, name: "Myelinisiert" },
+    { diameter: 10, myelinated: false, name: "Marklos" },
+  ]}
+  labels={{
+    fibre: "Nervenfaser",
+    parts: {
+      axon: "Axon",
+      dendrite: "Dendrit",
+      myelin: "Myelinscheide",
+      node: "Ranvierscher Schnürring",
+      soma: "Zellkörper",
+      terminal: "Endknöpfchen",
+    },
+    potential: <>Membranpotenzial</>,
+    speed: <>Leitungsgeschwindigkeit</>,
+    time: <>Zeit für einen Meter</>,
+    view: "Motorische Nervenzelle mit Dendriten, Zellkörper, Myelinscheide und Endknöpfchen",
+  }}
+  length={1}
+/>
+
+Vergleiche die Laufzeiten oben: Bei <InlineMath math="10\ \mu\text{m}" /> schafft der Impuls <InlineMath math="1{,}0\ \text{m}" /> mit Myelin in <InlineMath math="0{,}017\ \text{s}" /> statt <InlineMath math="0{,}29\ \text{s}" /> ohne Myelin.
 
 <MathVisual
   title={<>Leitungsgeschwindigkeit in myelinisierten und marklosen Axonen</>}
+  footer={<>Myelinisiert steigt das Tempo linear mit dem Durchmesser, marklos nur mit seiner Wurzel.</>}
   description={
     <>
-      Geschwindigkeit in Einheiten von <InlineMath math="10\text{ m s}^{-1}" />{" "}
-      gegen den Axondurchmesser in Mikrometern: <InlineMath math="0{,}6d" /> für
-      ein myelinisiertes und <InlineMath math="0{,}11\sqrt{d}" /> für ein
-      markloses Axon.
+      Geschwindigkeit in Einheiten von <InlineMath math="10\ \text{m/s}" />{" "}
+      gegen Durchmesser <InlineMath math="d" /> in Mikrometern:{" "}
+      <InlineMath math="0{,}6d" /> myelinisiert und{" "}
+      <InlineMath math="0{,}11\sqrt{d}" /> marklos.
     </>
   }
   scene={{
@@ -61,58 +94,121 @@ Jede Nervenzelle hat **Dendriten**, die Impulse aufnehmen, einen **Zellkörper**
   }}
 />
 
-### Beispiel Die Impulszeit vom Fuß zum Rückenmark
+Dickere myelinisierte Axone leiten noch schneller, sodass <InlineMath math="0{,}80\ \text{m}" /> bei <InlineMath math="80\ \text{m/s}" /> nur <InlineMath math="10\ \text{ms}" /> dauern.
 
-Ein Impuls legt <InlineMath math="1{,}0\text{ m}" /> vom Zeh zum Rückenmark über ein myelinisiertes Axon mit <InlineMath math="10\ \mu\text{m}" /> Durchmesser zurück. Berechne **die benötigte Zeit** und vergleiche mit einem gleich dicken marklosen Axon.
+### Synapsen und Stoffe
 
-<MathContainer>
-<BlockMath math="v = 6 \times 10 = 60\text{ m s}^{-1}, \quad t = \frac{1{,}0}{60} = 0{,}017\text{ s}" />
-<BlockMath math="v = 1{,}1\sqrt{10} = 3{,}5\text{ m s}^{-1}, \quad t = \frac{1{,}0}{3{,}5} = 0{,}29\text{ s}" />
-</MathContainer>
+Eine **Synapse** trennt zwei Nervenzellen durch einen schmalen Spalt. Trifft ein Impuls ein, entleeren Vesikel **Neurotransmitter** wie Acetylcholin in den Spalt, dieser bindet an Rezeptoren der nächsten Zelle und wird danach enzymatisch abgebaut.
 
-Prüfe mit dem Modell: Bei <InlineMath math="d = 10" /> zeigt es <InlineMath math="60" /> und <InlineMath math="3{,}48" />. Ohne Myelin ist der Impuls etwa siebzehnmal langsamer, genug, um den Fuß zu spät von einem Nagel zu ziehen.
+> Da nur das präsynaptische Endknöpfchen Neurotransmitter ausschüttet und Rezeptoren nur auf der Gegenseite sitzen, laufen Signale streng einseitig über die Synapse.
 
-## Synapsen
-
-Eine **Synapse** ist die Verbindungsstelle zwischen zwei Nervenzellen. Erreicht ein Impuls das Ende des Axons, setzt das Endknöpfchen einen **Neurotransmitter** wie Acetylcholin in den synaptischen Spalt frei. Der Neurotransmitter diffundiert über den Spalt, bindet an Rezeptoren der nächsten Nervenzelle und löst dort einen neuen Impuls aus. Neurotransmitter wird nur auf einer Seite freigesetzt, also **laufen Impulse nur in eine Richtung**.
-
-## Willkürliche und unwillkürliche Handlungen
-
-Eine **willkürliche Handlung** geschieht bewusst und wird vom Gehirn gesteuert, zum Beispiel das Bremsen, wenn die Bremslichter des vorderen Autos aufleuchten. Teste deine Reaktionszeit in diesem Modell.
-
-<ReactionTimeLab
-  title={<>Teste deine Reaktionszeit</>}
+<SynapseLab
+  title={<>Cholinerge Synapse und Wirkung von Stoffen</>}
   description={
     <>
-      Drück auf Bremsen, sobald die Bremslichter des vorderen Autos aufleuchten.
-      Die Karte zeichnet deine Reaktionszeit und die Strecke auf, die du bei{" "}
-      <InlineMath math="20\text{ m/s}" /> noch zurücklegst.
+      Ändere die Impulsrate und füge Nikotin, Curare, Organophosphat oder
+      Botulinumtoxin hinzu, um die Wirkung auf Acetylcholin und die nächste
+      Nervenzelle zu beobachten.
     </>
   }
+  footer={<>Wirkstoffe können Acetylcholin nachahmen, Rezeptoren blockieren oder Enzyme hemmen.</>}
+  drugs={["nicotine", "curare", "organophosphate", "botulinum"]}
   labels={{
-    start: "Start",
-    brake: "Bremsen",
-    early: <>Zu früh, warte auf die Lichter</>,
-    lastTime: <>Deine Reaktionszeit</>,
-    reactionDistance: (
-      <>
-        Reaktionsweg bei <InlineMath math="20\text{ m/s}" />
-      </>
-    ),
-    best: <>Schnellste</>,
-    average: <>Mittel deiner letzten fünf Versuche</>,
-    viewLabel: "Blick vom Fahrersitz",
+    drug: "Wirkstoff",
+    drugs: {
+      botulinum: "Botulinumtoxin",
+      curare: "Curare",
+      nicotine: "Nikotin",
+      organophosphate: "Organophosphat",
+    },
+    fires: <>Löst neuen Impuls aus</>,
+    none: "Kein Wirkstoff",
+    parts: {
+      channel: <>Calciumkanal</>,
+      cleft: <>Synaptischer Spalt</>,
+      enzyme: <>Acetylcholinesterase</>,
+      mitochondrion: <>Mitochondrium</>,
+      receptor: <>Acetylcholinrezeptor</>,
+      transporter: <>Cholintransporter</>,
+      vesicle: <>Synaptisches Vesikel</>,
+    },
+    potential: <>Postsynaptisches Potenzial</>,
+    rate: "Impulse pro Sekunde",
+    response: <>Antwort der nächsten Zelle</>,
+    rests: <>Bleibt in Ruhe</>,
+    transmitter: <>Acetylcholin im Spalt</>,
+    view: "Cholinerge Synapse zwischen Endknöpfchen und postsynaptischer Membran",
   }}
 />
 
-Das Signal vom Auge muss das Gehirn erreichen, verarbeitet und an die Beinmuskeln gesendet werden, also braucht eine willkürliche Handlung Zeit. Eine **unwillkürliche Handlung** geschieht ohne Bewusstsein. Ein **Reflex** wie der Kniesehnenreflex läuft über das Rückenmark, ohne auf das Gehirn zu warten, und ist deshalb viel schneller.
+Teste Curare und Organophosphat nacheinander oben: Curare blockiert Rezeptoren und stoppt das Signal, während Organophosphat das Abbauenzym hemmt, sodass Acetylcholin dauerhaft im Spalt bleibt.
+
+## Reflexbogen und Reaktion
+
+**Willkürliche Handlungen** wie Bremsen laufen über das Gehirn und brauchen Zeit, während **Reflexe** wie der Kniesehnenreflex oder das Wegziehen von einer heißen Platte über einen **Reflexbogen** im Rückenmark aus sensorischer Zelle, Zwischennervenzelle und motorischer Zelle abkürzen.
+
+### Spinaler Reflexbogen
+
+Beim **Wegziehreflex** gelangt der Impuls über die Hinterwurzel zu einer **Zwischennervenzelle** in der grauen Substanz und über die Vorderwurzel zum Muskel (drei Nervenzellen und zwei Synapsen), während der **Kniesehnenreflex** sensorische und motorische Nervenzelle direkt verbindet (zwei Nervenzellen und eine Synapse).
+
+> Der spinale Reflexbogen kürzt direkt über die graue Substanz des Rückenmarks ab, sodass Muskeln den Körper schützen, noch bevor der Schmerz bewusst im Gehirn ankommt.
+
+<ReflexArcLab
+  title={<>Wegziehreflex und Kniesehnenreflex im Rückenmark</>}
+  description={
+    <>
+      Erkunde den Querschnitt des Rückenmarks und vergleiche den Reflexbogen aus
+      drei Nervenzellen bei Hitze mit dem direkten Reflex aus zwei Nervenzellen
+      am Knie.
+    </>
+  }
+  footer={<>Der Wegziehreflex nutzt zwei Synapsen, der Kniesehnenreflex nur eine einzige Synapse.</>}
+  reflexes={["withdrawal", "kneeJerk"]}
+  labels={{
+    parts: {
+      dorsalRoot: "Hinterwurzel",
+      effector: "Effektormuskel",
+      greyMatter: "Graue Substanz",
+      motorNeuron: "Motorische Nervenzelle",
+      receptor: "Rezeptor",
+      relayNeuron: "Zwischennervenzelle",
+      sensoryNeuron: "Sensorische Nervenzelle",
+      ventralRoot: "Vorderwurzel",
+      whiteMatter: "Weiße Substanz",
+    },
+    pathway: <>Impulsweg</>,
+    reflex: "Reflexart",
+    reflexes: {
+      kneeJerk: {
+        name: "Kniesehnenreflex",
+        response: <>Unterschenkel schnellt nach vorn</>,
+        stimulus: <>Schlag auf die Kniesehne</>,
+      },
+      withdrawal: {
+        name: "Wegziehreflex",
+        response: <>Hand zieht rasch von Hitze weg</>,
+        stimulus: <>Finger berührt heiße Pfanne</>,
+      },
+    },
+    step: "Impulsschritt",
+    synapses: <>Anzahl der Synapsen</>,
+    view: "Dreidimensionaler Rückenmarksquerschnitt mit Reflexbogen",
+  }}
+/>
+
+Wechsle oben zwischen beiden Reflexen: Der Wegziehreflex schaltet eine **Zwischennervenzelle** mit zwei Synapsen in der grauen Substanz dazwischen, während der Kniesehnenreflex über eine einzige Synapse direkt vom Sensorik- zum Motorikneuron verläuft.
+
+### Bewusste Reaktionszeit
+
+Muss das Gehirn einen Reiz zuerst bewerten, verlängert der zusätzliche Weg die **bewusste Reaktionszeit** deutlich gegenüber einem Rückenmarksreflex.
 
 <BarChart
   title={<>Reaktionszeiten verschiedener Reaktionen</>}
+  footer={<>Rückenmarksreflexe laufen viel schneller ab als bewusste Handlungen übers Gehirn.</>}
   description={
     <>
-      Typische Zeit in Millisekunden vom Reiz bis zur Reaktion für einen Reflex
-      und zwei willkürliche Handlungen.
+      Typische Zeiten in Millisekunden vom Reiz bis zur Reaktion bei
+      Kniesehnenreflex, Linealfangen und Bremsen.
     </>
   }
   yAxisLabel="Reaktionszeit (ms)"
@@ -124,22 +220,18 @@ Das Signal vom Auge muss das Gehirn erreichen, verarbeitet und an die Beinmuskel
   chartConfig={{ value: { label: "Reaktionszeit", colors: { light: ["var(--chart-2)"], dark: ["var(--chart-2)"] } } }}
 />
 
-### Der Reflexbogen
+Der Kniesehnenreflex gelingt in rund <InlineMath math="50\ \text{ms}" />, viel rascher als <InlineMath math="700\ \text{ms}" /> beim bewussten Bremsen. Weil ein Sehsignal zuerst das Gehirn erreicht, ausgewertet wird und über motorische Neuronen zum Fuß läuft, dauern willkürliche Handlungen stets länger als ein Rückenmarksreflex. Deine Reaktionszeit schätzt du zusätzlich über den freien Fall eines Lineals ab:
 
-Beim **Reflexbogen** des Kniesehnenreflexes dehnt ein Schlag auf die Sehne den Oberschenkelmuskel. Dehnungsrezeptoren senden Impulse über eine **sensorische Nervenzelle** zum Rückenmark. Der Impuls geht direkt auf eine **motorische Nervenzelle** über, und der Oberschenkelmuskel zieht sich zusammen, sodass das Bein nach vorn schnellt. Der Reflex, der die Hand von einem heißen Gegenstand wegzieht, schließt zusätzlich eine **Zwischennervenzelle** im Rückenmark ein.
-
-### Beispiel Reaktionszeit mit einem Lineal
-
-Eine Freundin lässt ohne Vorwarnung ein Lineal fallen, und du fängst es, nachdem es <InlineMath math="d" /> Zentimeter gefallen ist. Das Lineal **fällt frei**, also gilt <InlineMath math="d = \tfrac{1}{2}gt^2" />. Verschiebe die Fallstrecke und lies die Reaktionszeit ab.
+<BlockMath math="t = \sqrt{\frac{2d}{g}}" />
 
 <MathVisual
   title={<>Reaktionszeit aus der Fallstrecke eines Lineals</>}
+  footer={<>20 cm Fallstrecke eines Lineals entsprechen rund 0,20 s oder 200 ms Reaktionszeit.</>}
   description={
     <>
-      Reaktionszeit in Zehntelsekunden gegen die Fallstrecke in Einheiten von{" "}
-      <InlineMath math="5\text{ cm}" />, nach{" "}
-      <InlineMath math="t = \sqrt{2d/g}" /> mit{" "}
-      <InlineMath math="g = 9{,}8\text{ m s}^{-2}" />.
+      Reaktionszeit (Zehntelsekunden) gegen Fallstrecke in{" "}
+      <InlineMath math="5\ \text{cm}" />-Schritten mit{" "}
+      <InlineMath math="g = 9{,}8\ \text{m/s}^2" />.
     </>
   }
   scene={{
@@ -165,15 +257,11 @@ Eine Freundin lässt ohne Vorwarnung ein Lineal fallen, und du fängst es, nachd
   }}
 />
 
-Fällt das Lineal <InlineMath math="20\text{ cm}" />, also <InlineMath math="0{,}20\text{ m}" />:
+Fängst du ein Lineal nach <InlineMath math="12\ \text{cm}" /> Fallstrecke, liegt deine Reaktionszeit bei etwa <InlineMath math="0{,}16\ \text{s}" /> (<InlineMath math="156\ \text{ms}" />).
 
-<BlockMath math="t = \sqrt{\frac{2 \times 0{,}20}{9{,}8}} = \sqrt{0{,}0408} = 0{,}20\text{ s}" />
+## Hormonsystem und Drüsen
 
-Prüfe mit dem Modell: Bei <InlineMath math="c = 4" /> zeigt es <InlineMath math="202" /> Millisekunden, so viel wie das Linealfangen im Diagramm.
-
-## Das Hormonsystem
-
-**Hormondrüsen** haben keinen Ausführgang und geben **Hormone** direkt ins Blut ab. Das Blut trägt die Hormone zu ihren Zielorganen.
+**Hormondrüsen** besitzen keine Ausführgänge und geben **Hormone** direkt ins Blut ab, das sie zu ihren Zielorganen trägt.
 
 | Drüse | Hormon | Hauptwirkung |
 | :--- | :--- | :--- |
@@ -181,17 +269,15 @@ Prüfe mit dem Modell: Bei <InlineMath math="c = 4" /> zeigt es <InlineMath math
 | Schilddrüse | Thyroxin | Steigert den Stoffwechsel |
 | Nebenniere | Adrenalin | Bereitet den Körper auf Kampf oder Flucht vor |
 | Bauchspeicheldrüse | Insulin, Glukagon | Regelt den Blutzuckerspiegel |
-| Eierstöcke und Hoden | Östrogen, Progesteron, Testosteron | Steuern die sekundären Geschlechtsmerkmale |
-
-Nervöse und hormonelle Reaktionen unterscheiden sich im zeitlichen Verlauf. Dieses Modell vergleicht eine **nervöse Reaktion**, kurz und scharf, mit einer **hormonellen Reaktion**, langsam, aber anhaltend, nach einem einzigen Reiz.
+| Eierstöcke und Hoden | Östrogen, Progesteron, Testosteron | Steuern sekundäre Geschlechtsmerkmale |
 
 <MathVisual
   title={<>Eine nervöse und eine hormonelle Reaktion</>}
+  footer={<>Nervensignale klingen rasch ab, während Hormone deutlich länger nachwirken.</>}
   description={
     <>
-      Relative Stärke der Reaktion gegen die Zeit nach einem Reiz, in
-      beliebigen Zeiteinheiten. Die nervöse Reaktion erreicht schnell ihren
-      Gipfel und klingt rasch ab.
+      Relative Stärke der Antwort gegen die Zeit nach einem Reiz: kurzer
+      Nervenimpuls gegen lang anhaltende Hormonwelle.
     </>
   }
   scene={{
@@ -218,49 +304,10 @@ Nervöse und hormonelle Reaktionen unterscheiden sich im zeitlichen Verlauf. Die
   }}
 />
 
-Bei <InlineMath math="s = 3" /> ist die nervöse Reaktion schon abgeklungen, die hormonelle dagegen auf ihrem Gipfel. Deshalb klopft das Herz nach einem Schreck noch minutenlang: Adrenalin kreist noch im Blut.
+Adrenalin passt ideal zu Notfällen, weil das Blut gleichzeitig viele Organe erreicht und den Körper minutenlang wachhält, lange nachdem der Nervenimpuls vorbei ist.
 
-## Gesundheitsprobleme des Koordinationssystems
+## Störungen der Koordination
 
-Drogen und Alkohol stören die Übertragung von Impulsen an den Synapsen. Alkohol verlängert die Reaktionszeit, also braucht ein betrunkener Fahrer einen längeren Weg zum Anhalten. Die **Alzheimer-Krankheit** schädigt Nervenzellen im Gehirn und beeinträchtigt das Gedächtnis, die **Parkinson-Krankheit** entsteht, wenn Dopamin bildende Nervenzellen absterben und Bewegungen zittrig werden.
+Alkohol und Drogen stören die Signalübertragung an Synapsen und verlängern die Reaktionszeit am Steuer. Die **Alzheimer-Krankheit** schädigt Nervenzellen und Gedächtnis, während bei **Parkinson** Dopamin bildende Nervenzellen absterben und Zittern auslösen.
 
-## Häufige Fehler zur Koordination
-
-| Fehler | Warum er falsch ist | So prüfst du es |
-| :--- | :--- | :--- |
-| Jede Handlung wird vom Gehirn gesteuert. | Reflexe werden im Rückenmark verarbeitet, ohne auf das Gehirn zu warten. | Frag, ob dir die Handlung vorher bewusst war. |
-| Impulse können eine Synapse in beide Richtungen überqueren. | Neurotransmitter wird nur von der präsynaptischen Nervenzelle freigesetzt. | Finde heraus, wo das Endknöpfchen liegt. |
-| Hormone werden über Ausführgänge abgegeben. | Hormondrüsen haben keine Ausführgänge und geben direkt ins Blut ab. | Unterscheide Hormondrüsen von exokrinen Drüsen. |
-| Hormonelle Reaktionen sind schneller als nervöse. | Hormone müssen vom Blut transportiert werden, also ist die Reaktion langsamer, aber länger. | Vergleiche die Gipfel der beiden Kurven im Modell. |
-
-Der erste Fehler kommt in Aufgaben zum Reflexbogen am häufigsten vor. **Reflexe laufen über das Rückenmark**, und das Gehirn bemerkt sie erst danach.
-
-## Übungen zu Koordination und Reaktion
-
-Diese Aufgaben führen von Nervenzellen zu Reflexen und Hormonen. **Nenne bei Antworten zum Weg eines Impulses jede Nervenzelle**.
-
-1. Gib die Abfolge des Impulses beim Reflex an, der die Hand von einem heißen Gegenstand wegzieht.
-
-2. Ein Lineal fällt <InlineMath math="12\text{ cm}" />, bevor es gefangen wird. Berechne die Reaktionszeit.
-
-3. Ein Impuls legt <InlineMath math="0{,}80\text{ m}" /> in einem myelinisierten Axon mit <InlineMath math="80\text{ m s}^{-1}" /> zurück. Berechne die Zeit in Millisekunden.
-
-4. Erkläre, warum Adrenalin für einen Notfall geeignet ist, obwohl es langsamer wirkt als ein Nervenimpuls.
-
-### Lösungen
-
-**Lösung 1**: Der heiße Gegenstand reizt **Rezeptoren** in der Haut. Der Impuls läuft über eine **sensorische Nervenzelle** zum Rückenmark, dann über eine **Zwischennervenzelle** und eine **motorische Nervenzelle** zum Bizeps, dem Effektor, der sich zusammenzieht und die Hand wegzieht.
-
-**Lösung 2**: Rechne die Strecke in Meter um und nutze <InlineMath math="t = \sqrt{2d/g}" />:
-
-<BlockMath math="t = \sqrt{\frac{2 \times 0{,}12}{9{,}8}} = \sqrt{0{,}0245} = 0{,}16\text{ s}" />
-
-Prüfe mit dem Modell: Bei <InlineMath math="c = 2{,}4" /> zeigt es <InlineMath math="156" /> Millisekunden.
-
-**Lösung 3**: Teile die Strecke durch die Geschwindigkeit:
-
-<BlockMath math="t = \frac{0{,}80}{80} = 0{,}010\text{ s} = 10\text{ ms}" />
-
-Prüfe: <InlineMath math="80 \times 0{,}010 = 0{,}80\text{ m}" />.
-
-**Lösung 4**: Das Blut bringt Adrenalin **gleichzeitig zu vielen Organen**: Das Herz schlägt schneller, die Leber gibt Glucose ab, und die Atemwege weiten sich. Die Wirkung hält außerdem **lange an**, sodass der Körper bereit bleibt, solange der Notfall dauert.
+Kurze Selbstkontrolle: Der Wegziehreflex von einer heißen Fläche läuft vom Hautrezeptor über sensorische Zelle, Zwischennervenzelle im Rückenmark und motorische Zelle zum Bizeps, noch bevor das Gehirn es bemerkt.
