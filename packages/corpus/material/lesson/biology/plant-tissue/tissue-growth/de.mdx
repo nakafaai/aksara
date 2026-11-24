@@ -1,0 +1,416 @@
+export const metadata = {
+  title: "Pflanzengewebe und Wachstum",
+  description:
+    "Unterscheide Bildungsgewebe und Dauergewebe, erkläre die Wachstumszonen und das sekundäre Dickenwachstum und lies Wachstumskurven von Pflanzen.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2026-11-17",
+  subject: "Gewebeaufbau und Wachstum der Pflanzen",
+};
+
+## Meristem und Dauergewebe
+
+Stell dir einen Baum wie einen lebendigen Turm aus Bausteinen vor, der sich selbst weiterbaut. An Spross- und Wurzelspitzen liegen Werkstätten namens **Bildungsgewebe** oder Meristem, die sich laufend durch Mitose teilen. Ausgereifte Zellen werden zu **Dauergewebe** für Schutz, Stütze, Speicherung oder Stofftransport.
+
+> Jedes Wachstum beginnt mit teilenden Meristemzellen, und erst das Dauergewebe formt aus diesen frischen Zellen feste Stämme, Wasserrohre und grüne Blätter.
+
+Meristemzellen bleiben klein und dünnwandig, mit großem Zellkern und dichtem Cytoplasma für rasche Teilung. Außen umhüllt das **Abschlussgewebe** (Epidermis) Blätter und junge Sprosse samt **wachsartiger Kutikula** gegen Wasserverlust, während Schließzellen Spaltöffnungen steuern und Wurzelhaare Wasser aufnehmen.
+
+### Zellen im Grundgewebe
+
+Grundgewebe füllt den größten Teil der Pflanze mit drei Zelltypen, getrennt nach **Zellwanddicke**.
+
+| Grundgewebe | Zellwand | Hauptaufgabe |
+| :--- | :--- | :--- |
+| Parenchym | Dünne Cellulosewand, lebend mit großer Vakuole | Speichert Nährstoffe, betreibt Fotosynthese, stützt prall |
+| Kollenchym | Cellulose ungleichmäßig an Zellecken verdickt | Stützt junge Sprosse und Blattstiele biegsam |
+| Sklerenchym | Dick und verholzt, reif abgestorben | Verleiht ausgereiften Teilen starre Festigkeit |
+
+Vergleich alle sieben Pflanzengewebe nebeneinander im dreidimensionalen Schnittblock. Achte auf die wachsende Wanddicke vom Meristem bis zum Sklerenchym sowie lebende und tote Zellen.
+
+<PlantTissueAnatomyLab
+  title={<>Anatomie von Bildungs- und Dauergewebe</>}
+  description={
+    <>
+      Wähle eines der sieben Pflanzengewebe, um Zellwanddicke, Ligninschicht,
+      Vakuole und den Zustand reifer Zellen direkt zu vergleichen.
+    </>
+  }
+  footer={<>Wechsle das Gewebe und vergleich Wanddicke, Lignin und Zellzustand.</>}
+  tissues={[
+    "meristem",
+    "epidermis",
+    "parenchyma",
+    "collenchyma",
+    "sclerenchyma",
+    "xylem",
+    "phloem",
+  ]}
+  labels={{
+    function: <>Hauptaufgabe</>,
+    parts: {
+      wall: "Zellwand",
+      lignin: "Lignin",
+      vacuole: "Vakuole",
+      nucleus: "Zellkern",
+      lumen: "Lumen",
+      sievePlate: "Siebplatte",
+      companion: "Geleitzelle",
+    },
+    status: <>Zustand reifer Zellen</>,
+    statuses: {
+      living: "Lebende Zelle",
+      dead: "Tote Zelle",
+    },
+    tissue: "Gewebe wählen",
+    tissues: {
+      meristem: {
+        name: "Meristem",
+        role: <>Teilt sich aktiv durch Mitose und liefert neue Zellen</>,
+        wall: <>Sehr dünne Cellulosewand ohne Lignin</>,
+      },
+      epidermis: {
+        name: "Epidermis",
+        role: <>Schützt die Außenfläche und verringert den Wasserverlust</>,
+        wall: <>Dünne Cellulose mit wachsartiger Kutikula außen</>,
+      },
+      parenchyma: {
+        name: "Parenchym",
+        role: <>Speichert Stärke, betreibt Fotosynthese und stützt prall</>,
+        wall: <>Dünne Cellulosewand rund um eine große zentrale Vakuole</>,
+      },
+      collenchyma: {
+        name: "Kollenchym",
+        role: <>Stützt junge Sprosse und Blattstiele biegsam ohne zu brechen</>,
+        wall: <>Cellulose ungleichmäßig an den Zellecken verdickt</>,
+      },
+      sclerenchyma: {
+        name: "Sklerenchym",
+        role: <>Verleiht reifen Pflanzenteilen hohe mechanische Festigkeit</>,
+        wall: <>Sehr dicke verholzte Wand mit engem Lumen</>,
+      },
+      xylem: {
+        name: "Xylem",
+        role: <>Leitet Wasser samt Mineralsalzen nach oben und stützt den Stamm</>,
+        wall: <>Hohle verholzte Röhre ohne Cytoplasma</>,
+      },
+      phloem: {
+        name: "Phloem",
+        role: <>Leitet Saccharose aus den Blättern zu Speicher- und Wachstumszonen</>,
+        wall: <>Dünne Siebröhre mit Siebplatten neben lebenden Geleitzellen</>,
+      },
+    },
+    view: "Dreidimensionaler Schnittblock sieben verschiedener Pflanzengewebe",
+    wall: <>Aufbau der Zellwand</>,
+  }}
+/>
+
+Sklerenchym und Xylem sterben bei Reife wegen ihrer dicken verholzten Wände ab, während Parenchym, Kollenchym und Phloem lebendig bleiben. Nimmt Parenchym Wasser per Osmose auf, drückt die Vakuole wie ein Wasserballon im Karton gegen die Wand und hält krautige Sprosse **prall** aufrecht.
+
+Ein Kartoffelstreifen von <InlineMath math="5{,}00\text{ g}" /> mit <InlineMath math="16\%" /> Zuwachs in hypotonischem Wasser erreicht:
+
+<BlockMath math="\text{Endmasse} = 5{,}00 \times \left(1 + \frac{16}{100}\right) = 5{,}80\text{ g}" />
+
+In hypertonischer Saccharoselösung (<InlineMath math="0{,}6\text{ mol dm}^{-3}" />) sinkt die Masse um <InlineMath math="16\%" /> auf <InlineMath math="4{,}20\text{ g}" />, und der Streifen erschlafft.
+
+### Xylem und Phloem
+
+Leitgewebe bündelt **Xylem** und **Phloem** von der Wurzel bis ins Blatt. Achte auf den häufigen Denkfehler: Xylemgefäße sind tot und verholzt, aber Siebröhren des Phloems bleiben mit ihren Geleitzellen **lebend**.
+
+| Merkmal | Xylem | Phloem |
+| :--- | :--- | :--- |
+| Was es leitet | Wasser und Mineralsalze aufwärts | Saccharose vom Blatt in alle Organe |
+| Hauptzellen | Tracheen und Tracheiden | Siebröhren und Geleitzellen |
+| Reife Zellen | Tot, dicke verholzte Wände | Lebend, abhängig von Geleitzellen |
+
+Verstopft das Xylem, welken Blätter selbst in nassem Boden. Schält man rundum Rinde samt Phloem ab, verhungern die Wurzeln, weil **keine Saccharose mehr zur Wurzel gelangt**.
+
+## Zonen im Primärwachstum
+
+Nur Meristemzellen teilen sich aktiv, nicht jede Pflanzenzelle. **Apikalmeristeme** an Wurzel- und Sprossspitzen verlängern die Pflanze im **primären Wachstum**, während **Seitenmeristeme** den Stamm im **sekundären Dickenwachstum** verbreitern.
+
+Hinter der Wurzelhaube durchläuft jede neue Zelle drei Zonen:
+
+1. **Zellteilungszone**: Meristemzellen teilen sich schnell per Mitose.
+2. **Streckungszone**: Vakuolen nehmen Wasser auf, strecken die Zelle mehrfach und schieben die Spitze tiefer.
+3. **Differenzierungszone**: Zellen spezialisieren sich zu Wurzelhaaren, Xylemgefäßen und Siebröhren.
+
+Erkunde primäres Wachstum an Wurzel- und Sprossspitze und wechsle danach zum sekundären Dickenwachstum im dreidimensionalen Modell.
+
+<RootShootGrowthZoneLab
+  title={<>Primäre und sekundäre Wachstumszonen</>}
+  description={
+    <>
+      Wechsle zwischen primärem Längenwachstum an Wurzel- oder Sprossspitze
+      und sekundärem Dickenwachstum eines Holzstamms. Verschieb Zone oder
+      Stammalter, um jede Gewebeschicht zu verfolgen.
+    </>
+  }
+  footer={<>Apikalmeristeme verlängern Spitzen, Seitenmeristeme verdicken Stämme.</>}
+  modes={["primary", "secondary"]}
+  organs={["root", "shoot"]}
+  years={{ min: 1, max: 6, value: 3 }}
+  labels={{
+    activity: <>Hauptvorgang</>,
+    mode: "Wachstumsmodus",
+    modes: {
+      primary: "Primäres Wachstum",
+      secondary: "Sekundäres Dickenwachstum",
+    },
+    organ: "Pflanzenorgan",
+    organs: {
+      root: "Wurzelspitze",
+      shoot: "Sprossspitze",
+    },
+    parts: {
+      rootCap: "Wurzelhaube",
+      apicalMeristem: "Apikalmeristem",
+      vacuole: "Wachsende Vakuole",
+      rootHair: "Wurzelhaar",
+      vascularCambium: "Kambium",
+      corkCambium: "Korkkambium",
+      secondaryXylem: "Sekundäres Xylem",
+      secondaryPhloem: "Sekundäres Phloem",
+      annualRing: "Jahresring",
+    },
+    position: "Zonenposition",
+    rings: <>Anzahl Jahresringe</>,
+    view: "Dreidimensionale Wurzelspitze, Sprossspitze und Stammquerschnitt",
+    year: "Stammalter (Jahre)",
+    zone: <>Aktive Zone</>,
+    zones: {
+      division: {
+        name: "Teilungszone",
+        activity: <>Mitose erzeugt viele kleine dünnwandige Meristemzellen</>,
+      },
+      elongation: {
+        name: "Streckungszone",
+        activity: <>Wasser füllt Vakuolen und streckt die Zellen auf ein Mehrfaches</>,
+      },
+      differentiation: {
+        name: "Differenzierungszone",
+        activity: <>Zellen reifen zu Wurzelhaaren, Xylemgefäßen und Siebröhren</>,
+      },
+    },
+  }}
+/>
+
+> Apikalmeristeme verlängern ausschließlich die Spitzen, während Kambiumringe der Seitenmeristeme den Stamm Jahr für Jahr dicker machen.
+
+In einem Sehfeld von <InlineMath math="0{,}45\text{ mm}" /> mit <InlineMath math="18\ \mu\text{m}" /> langen Zwiebelwurzelzellen rechnest du zuerst in Mikrometer um und bestimmst den Mitoseindex bei <InlineMath math="30" /> von <InlineMath math="200" /> teilenden Zellen:
+
+<MathContainer>
+<BlockMath math="\text{Zellzahl} = \frac{0{,}45 \times 1{.}000\ \mu\text{m}}{18\ \mu\text{m}} = 25\text{ Zellen}" />
+<BlockMath math="\text{Mitoseindex} = \frac{30}{200} \times 100\% = 15\%" />
+</MathContainer>
+
+In der Streckungszone fällt der Mitoseindex nahe null, weil die Zellen dort wachsen statt sich zu teilen.
+
+## Sekundäres Dickenwachstum
+
+Bei verholzenden Zweikeimblättrigen bildet das ringförmige **Kambium** **sekundäres Xylem nach innen** und sekundäres Phloem nach außen. Holz besteht fast ganz aus sekundärem Xylem, während das **Korkkambium** Borke samt Lentizellen für den Gasaustausch erzeugt.
+
+Feuchte Zeiten erzeugen weite dünnwandige Gefäße, trockene oder kalte Zeiten enge dickwandige Gefäße, gemeinsam einen **Jahresring** pro Jahr. Verschieb das Alter im Diagramm und verfolge Radius und Umfang.
+
+<MathVisual
+  title={<>Jahresringe im Querschnitt eines Stamms</>}
+  description={
+    <>
+      Der innere Kreis zeigt den primären Spross mit Radius{" "}
+      <InlineMath math="1\text{ cm}" />. Jedes Jahr legt das Kambium{" "}
+      <InlineMath math="0{,}8\text{ cm}" /> Xylem an, während die Borke{" "}
+      <InlineMath math="0{,}3\text{ cm}" /> misst.
+    </>
+  }
+  footer={<>Jedes zusätzliche Jahr vergrößert den Stammradius um 0,8 cm.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -6, max: 6 }, y: { min: -6, max: 6 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "a", min: 0, max: 5, value: 3, step: 1, label: "a" },
+    ],
+    objects: [
+      { id: "pith", kind: "circle", appearance: "reference", center: { x: 0, y: 0 }, radius: 1 },
+      { id: "ring1", kind: "parametric", appearance: "secondary", x: "min(1.8, 1 + 0.8a) * cos(t)", y: "min(1.8, 1 + 0.8a) * sin(t)", parameter: { min: 0, max: 2 * Math.PI } },
+      { id: "ring2", kind: "parametric", appearance: "secondary", x: "min(2.6, 1 + 0.8a) * cos(t)", y: "min(2.6, 1 + 0.8a) * sin(t)", parameter: { min: 0, max: 2 * Math.PI } },
+      { id: "ring3", kind: "parametric", appearance: "secondary", x: "min(3.4, 1 + 0.8a) * cos(t)", y: "min(3.4, 1 + 0.8a) * sin(t)", parameter: { min: 0, max: 2 * Math.PI } },
+      { id: "ring4", kind: "parametric", appearance: "secondary", x: "min(4.2, 1 + 0.8a) * cos(t)", y: "min(4.2, 1 + 0.8a) * sin(t)", parameter: { min: 0, max: 2 * Math.PI } },
+      { id: "ring5", kind: "parametric", appearance: "secondary", x: "min(5, 1 + 0.8a) * cos(t)", y: "min(5, 1 + 0.8a) * sin(t)", parameter: { min: 0, max: 2 * Math.PI } },
+      { id: "bark", kind: "parametric", appearance: "primary", x: "(1.3 + 0.8a) * cos(t)", y: "(1.3 + 0.8a) * sin(t)", parameter: { min: 0, max: 2 * Math.PI } },
+    ],
+    readouts: [
+      { key: "rings", formula: "a" },
+      { key: "radius", formula: "1.3 + 0.8a" },
+      { key: "girth", formula: "2pi(1.3 + 0.8a)" },
+    ],
+  }}
+  labels={{
+    a: <>Jahre sekundären Dickenwachstums</>,
+    rings: <>Anzahl der Jahresringe</>,
+    radius: <>Stammradius in <InlineMath math="\text{cm}" /></>,
+    girth: <>Stammumfang in <InlineMath math="\text{cm}" /></>,
+  }}
+/>
+
+Für einen Baum mit <InlineMath math="4" /> Jahresringen addierst du primären Spross, vier Ringe und Borke:
+
+<MathContainer>
+<BlockMath math="r = 1 + 4(0{,}8) + 0{,}3 = 4{,}5\text{ cm}" />
+<BlockMath math="\text{Umfang} = 2\pi(4{,}5) = 28{,}3\text{ cm}" />
+</MathContainer>
+
+Die meisten Einkeimblättrigen wie Reis und Mais besitzen kein Kambium und verdicken nicht sekundär.
+
+## Sigmoide Wachstumskurven
+
+**Trockenmasse** misst Wachstum am genauesten, weil der Wassergehalt mit dem Wetter schwankt, auch wenn die Pflanze dafür getrocknet werden muss.
+
+> Die Form der Trockenmassekurve verrät den Lebenszyklus sofort: ein S für einjährige Pflanzen, zwei S für zweijährige und eine Treppe aus Jahresstufen für mehrjährige.
+
+Beobachte im folgenden Modell die dreidimensionale Pflanze gleichzeitig mit ihrer Trockenmassekurve.
+
+<PlantGrowthCurveLab
+  title={<>Wachstumskurven und Lebenszyklen von Pflanzen</>}
+  description={
+    <>
+      Wähle eine einjährige, zweijährige oder mehrjährige Pflanze und schieb
+      die Zeit weiter, um Höhe, Laub, Trockenmasse und Wachstumsphase zusammen
+      zu verfolgen.
+    </>
+  }
+  footer={<>Vergleich Einfach-S-, Doppel-S- und Treppenkurve je nach Lebenszyklus.</>}
+  types={["annual", "biennial", "perennial"]}
+  labels={{
+    dryMass: <>Trockenmasse</>,
+    phase: <>Aktive Phase</>,
+    phases: {
+      lag: {
+        name: "Anlaufphase",
+        detail: <>Keimling zehrt von Samenreserven, während neue Zellen entstehen</>,
+      },
+      exponential: {
+        name: "Schnelle Phase",
+        detail: <>Viele Blätter betreiben Fotosynthese und die Masse schnellt hoch</>,
+      },
+      slowing: {
+        name: "Abflachende Phase",
+        detail: <>Wachstum bremst ab, weil Energie in Blüten und Früchte fließt</>,
+      },
+      stationary: {
+        name: "Reifephase",
+        detail: <>Trockenmasse bleibt konstant, da Zuwachs und Verlust sich gleichen</>,
+      },
+      senescence: {
+        name: "Alterungsphase",
+        detail: <>Blätter fallen ab und Samen verbreiten sich, die Masse sinkt</>,
+      },
+    },
+    rate: <>Wachstumsrate</>,
+    time: "Zeit",
+    type: "Lebenszyklus",
+    types: {
+      annual: "Einjährig",
+      biennial: "Zweijährig",
+      perennial: "Mehrjährig",
+    },
+    view: "Dreidimensionale Pflanze gekoppelt mit ihrer Trockenmassekurve",
+  }}
+/>
+
+Jeder Lebenszyklus zeigt beim Durchlaufen der Zeit eine unverwechselbare Kurvenform.
+
+### Einjährige Pflanzen
+
+Eine **einjährige Pflanze** wie Reis oder Mais vollendet ihren Lebenszyklus in einer Saison. Die Trockenmasse steigt nicht ab Tag eins, sondern sinkt anfangs leicht, weil der Keimling Reserven veratmet, bevor Blätter Fotosynthese leisten, und sinkt am Ende erneut durch Blattfall. Verschieb den Tag im Diagramm zum steilsten Punkt.
+
+<MathVisual
+  title={<>Wachstumskurve einer einjährigen Pflanze</>}
+  description={
+    <>
+      Trockenmasse einer einjährigen Pflanze von der Keimung bis Tag{" "}
+      <InlineMath math="130" />. Verschieb den Tag und lies die Wachstumsrate ab.
+    </>
+  }
+  footer={<>Die höchste Wachstumsrate liegt am steilsten Punkt nahe Tag 60.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 135 }, y: { min: 0, max: 45 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "d", min: 0, max: 130, value: 60, step: 1, label: "d" },
+    ],
+    objects: [
+      { id: "mass", kind: "function", appearance: "primary", formula: "2 + 40/(1 + exp(-0.1(x - 60))) - 0.8(1 - exp(-x/5)) - 5/(1 + exp(-0.4(x - 115)))", domain: { min: 0, max: 130 } },
+      { id: "now", kind: "marker", appearance: "warning", x: "d", y: "2 + 40/(1 + exp(-0.1(d - 60))) - 0.8(1 - exp(-d/5)) - 5/(1 + exp(-0.4(d - 115)))" },
+    ],
+    readouts: [
+      { key: "dry", formula: "2 + 40/(1 + exp(-0.1(d - 60))) - 0.8(1 - exp(-d/5)) - 5/(1 + exp(-0.4(d - 115)))" },
+      { key: "rate", formula: "4exp(-0.1(d - 60))/(1 + exp(-0.1(d - 60)))^2 - 0.16exp(-d/5) - 2exp(-0.4(d - 115))/(1 + exp(-0.4(d - 115)))^2" },
+    ],
+  }}
+  labels={{
+    d: <>Tage nach der Keimung</>,
+    dry: <>Trockenmasse in <InlineMath math="\text{g}" /></>,
+    rate: <>Wachstumsrate in <InlineMath math="\text{g}" /> pro Tag</>,
+  }}
+/>
+
+Zwischen Tag <InlineMath math="40" /> (<InlineMath math="5{,}97\text{ g}" />) und Tag <InlineMath math="80" /> (<InlineMath math="36{,}43\text{ g}" />) beträgt die **mittlere Wachstumsrate**:
+
+<BlockMath math="\text{Mittlere Rate} = \frac{36{,}43 - 5{,}97}{80 - 40} = 0{,}76\text{ g pro Tag}" />
+
+An Tag <InlineMath math="60" /> erreicht die Rate ihr Maximum von <InlineMath math="1{,}0\text{ g}" /> pro Tag genau am steilsten Punkt.
+
+### Zweijährig und mehr
+
+Eine **zweijährige Pflanze** wie die Möhre speichert im ersten Jahr Stärke in der Wurzel und blüht im zweiten Jahr, was zwei S-Kurven ergibt. Eine **mehrjährige Pflanze** wie Kautschukbaum oder Durian legt jede Saison eine Wachstumsstufe zu. Verschieb die Zeit im Diagramm für jede Jahresstufe.
+
+<MathVisual
+  title={<>Wachstumskurve einer mehrjährigen Pflanze</>}
+  description={
+    <>
+      Ein mehrjähriger Baum wächst in jeder jährlichen Wachstumsperiode um{" "}
+      <InlineMath math="0{,}5\text{ m}" />. Verschieb die Zeit für jede Stufe.
+    </>
+  }
+  footer={<>Jede Wachstumsperiode fügt der Treppe eine kleine S-Stufe hinzu.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 6.3 }, y: { min: 0, max: 3.3 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "n", min: 0, max: 6, value: 2.5, step: 0.1, label: "n" },
+    ],
+    objects: [
+      { id: "height", kind: "function", appearance: "primary", formula: "0.5/(1 + exp(-10(x - 0.4))) + 0.5/(1 + exp(-10(x - 1.4))) + 0.5/(1 + exp(-10(x - 2.4))) + 0.5/(1 + exp(-10(x - 3.4))) + 0.5/(1 + exp(-10(x - 4.4))) + 0.5/(1 + exp(-10(x - 5.4)))", domain: { min: 0, max: 6 } },
+      { id: "now", kind: "marker", appearance: "warning", x: "n", y: "0.5/(1 + exp(-10(n - 0.4))) + 0.5/(1 + exp(-10(n - 1.4))) + 0.5/(1 + exp(-10(n - 2.4))) + 0.5/(1 + exp(-10(n - 3.4))) + 0.5/(1 + exp(-10(n - 4.4))) + 0.5/(1 + exp(-10(n - 5.4)))" },
+    ],
+    readouts: [
+      { key: "tall", formula: "0.5/(1 + exp(-10(n - 0.4))) + 0.5/(1 + exp(-10(n - 1.4))) + 0.5/(1 + exp(-10(n - 2.4))) + 0.5/(1 + exp(-10(n - 3.4))) + 0.5/(1 + exp(-10(n - 4.4))) + 0.5/(1 + exp(-10(n - 5.4)))" },
+    ],
+  }}
+  labels={{
+    n: <>Zeit in Jahren</>,
+    tall: <>Höhe in <InlineMath math="\text{m}" /></>,
+  }}
+/>
+
+| Lebenszyklus | Beispiel | Form der Kurve |
+| :--- | :--- | :--- |
+| Einjährig | Reis, Mais | Eine sigmoide Kurve in einer Saison |
+| Zweijährig | Möhre | Zwei sigmoide Kurven in zwei Saisons |
+| Mehrjährig | Kautschukbaum, Durian | Treppenkurve, eine Stufe pro Jahr |
+
+## Gewebe und Osmose rechnen
+
+Prüfe dein Verständnis an Kambium, Parenchym-Osmose und isotonischer Konzentration.
+
+1. Nenne das stammverdickende Meristem sowie die Gewebe nach innen und nach außen. **Lösung**: Das **Kambium** bildet sekundäres Xylem nach innen und sekundäres Phloem nach außen, während das Korkkambium Borke liefert.
+
+2. Ein <InlineMath math="4{,}00\text{ g}" /> schwerer Kartoffelstreifen verliert in <InlineMath math="0{,}5\text{ mol dm}^{-3}" /> Saccharose <InlineMath math="12\%" /> Masse. Berechne Endmasse und Zellzustand. **Lösung**: Es bleiben <InlineMath math="88\%" />, die Parenchymzellen werden durch Osmose **schlaff**:
+
+<BlockMath math="4{,}00 \times \frac{88}{100} = 3{,}52\text{ g}" />
+
+3. Ein Streifen gewinnt <InlineMath math="4\%" /> bei <InlineMath math="0{,}2\text{ mol dm}^{-3}" /> und verliert <InlineMath math="2\%" /> bei <InlineMath math="0{,}3\text{ mol dm}^{-3}" />. Schätze die isotonische Konzentration. **Lösung**: Lineare Interpolation liefert den Nullpunkt bei:
+
+<BlockMath math="c = 0{,}2 + 0{,}1 \times \frac{4}{4 + 2} = 0{,}267\text{ mol dm}^{-3}" />

@@ -1,0 +1,504 @@
+export const metadata = {
+  title: "Struktur dan Fungsi Daun",
+  description:
+    "Kaitkan struktur daun dengan pertukaran gas, transpirasi, fotosintesis, faktor pengehad, dan titik pampasan.",
+  authors: [{ name: "Nabil Akbarazzima Fatih" }],
+  datePublished: "2026-11-17",
+  subject: "Struktur dan Fungsi Daun",
+};
+
+## Anatomi Lamina Daun
+
+Bayangkan sehelai daun seperti dapur tenaga suria senipis kertas dengan ribuan liang nafas mikroskopik. Daun menjalankan **pertukaran gas**, **transpirasi**, dan **fotosintesis** serentak melalui lamina tipis, mesofil kaya kloroplas, ruang udara, dan stoma.
+
+> Fotosintesis ialah cara tumbuhan menukar cahaya matahari, karbon dioksida, dan air kepada gula glukosa sambil membebaskan oksigen ke udara.
+
+<BlockMath math="6\mathrm{CO_2} + 12\mathrm{H_2O} \xrightarrow[\text{klorofil}]{\text{cahaya}} \mathrm{C_6H_{12}O_6} + 6\mathrm{O_2} + 6\mathrm{H_2O}" />
+
+Dari permukaan atas ke bawah, keratan rentas daun menyusun enam lapisan tisu khusus untuk menangkap cahaya dan melajukan resapan gas.
+
+| Struktur | Ciri | Kaitan dengan fungsi |
+| :--- | :--- | :--- |
+| Kutikel | Lapisan lilin lutsinar | Mengurangkan kehilangan air sambil meneruskan cahaya |
+| Epidermis atas | Satu lapisan sel tanpa kloroplas | Lutsinar supaya cahaya terus ke mesofil |
+| Mesofil palisad | Sel memanjang rapat penuh kloroplas | Tapak utama fotosintesis di bahagian terang |
+| Mesofil berspan | Sel longgar dengan banyak ruang udara | Laluan resapan karbon dioksida dan oksigen |
+| Berkas vaskular | Xilem dan floem dalam urat daun | Xilem membekalkan air, floem membawa sukrosa |
+| Epidermis bawah | Banyak stoma diapit sel pengawal | Laluan utama pertukaran gas dan transpirasi |
+
+Telusuri setiap lapisan keratan rentas daun secara tiga dimensi dalam model berikut. Bandingkan kepadatan kloroplas dari kutikel berlilin hingga stoma di epidermis bawah.
+
+<LeafLaminaCrossSectionLab
+  title={<>Keratan Rentas Lamina Daun</>}
+  description={
+    <>
+      Pilih setiap lapisan daun dari atas ke bawah untuk melihat bentuk sel,
+      kepadatan kloroplas, ruang udara, berkas vaskular, dan penyesuaiannya.
+    </>
+  }
+  footer={<>Pilih lapisan daun untuk membandingkan kloroplas dan penyesuaian.</>}
+  layers={[
+    "cuticle",
+    "upperEpidermis",
+    "palisade",
+    "spongy",
+    "vascular",
+    "lowerEpidermis",
+    "stoma",
+  ]}
+  labels={{
+    adaptation: <>Penyesuaian utama</>,
+    chloroplasts: <>Kepadatan kloroplas</>,
+    densities: {
+      high: "Sangat tinggi",
+      moderate: "Sederhana",
+      guardOnly: "Sel pengawal sahaja",
+      none: "Tiada",
+    },
+    layer: "Pilih lapisan daun",
+    layers: {
+      cuticle: {
+        name: "Kutikel berlilin",
+        adaptation: <>Kalis air tetapi lutsinar supaya cahaya terus menembusi ke mesofil</>,
+      },
+      upperEpidermis: {
+        name: "Epidermis atas",
+        adaptation: <>Satu lapisan sel rapat tanpa kloroplas yang meneruskan cahaya matahari</>,
+      },
+      palisade: {
+        name: "Mesofil palisad",
+        adaptation: <>Sel silinder tegak dan padat kloroplas tepat di bawah epidermis atas</>,
+      },
+      spongy: {
+        name: "Mesofil berspan",
+        adaptation: <>Sel longgar dengan ruang udara luas bagi melajukan resapan gas</>,
+      },
+      vascular: {
+        name: "Berkas vaskular",
+        adaptation: <>Xilem membawa air dari akar manakala floem mengangkut sukrosa keluar</>,
+      },
+      lowerEpidermis: {
+        name: "Epidermis bawah",
+        adaptation: <>Mempunyai banyak stoma yang terlindung daripada terik matahari terus</>,
+      },
+      stoma: {
+        name: "Stoma",
+        adaptation: <>Liang mikroskopik berpasangan sel pengawal bagi pertukaran gas</>,
+      },
+    },
+    parts: {
+      xylem: "Xilem",
+      phloem: "Floem",
+      airSpace: "Ruang udara",
+      chloroplast: "Kloroplas",
+      guardCell: "Sel pengawal",
+    },
+    view: "Keratan tiga dimensi lapisan histologi lamina daun",
+  }}
+/>
+
+Lamina nipis memberi daun **nisbah luas permukaan kepada isi padu** sebesar <InlineMath math="2/d" />, sehingga daun <InlineMath math="0.2\text{ mm}" /> mencapai <InlineMath math="10\text{ mm}^{-1}" />, lima kali ganda daun <InlineMath math="1\text{ mm}" />. Gerakkan ketebalan daun di grafik berikut.
+
+<MathVisual
+  title={<>Nisbah Luas Permukaan kepada Isi Padu Daun</>}
+  description={
+    <>
+      Lengkung <InlineMath math="2/d" /> bagi helaian daun setebal{" "}
+      <InlineMath math="d" /> milimeter, dengan tepi daun diabaikan.
+    </>
+  }
+  footer={<>Daun lebih nipis menghasilkan nisbah luas kepada isi padu jauh lebih besar.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 1.1 }, y: { min: 0, max: 21 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "d", min: 0.1, max: 1, value: 0.3, step: 0.05, label: "d" },
+    ],
+    objects: [
+      { id: "ratio", kind: "function", appearance: "primary", formula: "2/x", domain: { min: 0.1, max: 1 } },
+      { id: "now", kind: "marker", appearance: "warning", x: "d", y: "2/d" },
+    ],
+    readouts: [
+      { key: "value", formula: "2/d" },
+    ],
+  }}
+  labels={{
+    d: <>Ketebalan daun <InlineMath math="d" /> dalam <InlineMath math="\text{mm}" /></>,
+    value: <>Nisbah luas permukaan kepada isi padu dalam <InlineMath math="\text{mm}^{-1}" /></>,
+  }}
+/>
+
+Lamina yang nipis memendekkan jarak resapan gas ke setiap sel mesofil.
+
+## Stoma dan Transpirasi
+
+Pada waktu siang fotosintesis mengatasi respirasi lalu daun mengambil karbon dioksida dan membebaskan oksigen, manakala pada waktu malam hanya respirasi berjalan. Ingat: tumbuhan berespirasi sepanjang masa, bukan malam sahaja.
+
+Sel pengawal membuka stoma apabila **segah**, bukan apabila flasid. Dalam cahaya, sel pengawal mengepam **ion kalium** masuk secara aktif dan membina glukosa, menarik air secara osmosis, lalu dinding luarnya yang nipis melengkung membuka liang. Dalam gelap atau kemarau akibat **asid absisik**, ion kalium keluar, sel flasid, dan liang tertutup.
+
+<StomatalGuardCellLab
+  title={<>Mekanisme Buka Tutup Sel Pengawal Stoma</>}
+  description={
+    <>
+      Pilih keadaan siang cerah, malam gelap, atau kemarau dan gerakkan
+      keamatan cahaya untuk melihat aliran ion kalium, osmosis air, lengkungan
+      sel pengawal, serta kadar transpirasi.
+    </>
+  }
+  footer={<>Air masuk menjadikan sel pengawal segah dan melengkung membuka liang.</>}
+  conditions={["light", "dark", "drought"]}
+  light={{ min: 0, max: 100, value: 75 }}
+  labels={{
+    aperture: <>Bukaan liang stoma</>,
+    apertures: {
+      open: "Terbuka luas",
+      narrow: "Menyempit",
+      closed: "Tertutup rapat",
+    },
+    co2Intake: <>Pengambilan karbon dioksida</>,
+    condition: "Keadaan persekitaran",
+    conditions: {
+      light: "Siang cerah",
+      dark: "Malam gelap",
+      drought: "Kemarau (ABA)",
+    },
+    light: "Keamatan cahaya (%)",
+    mechanism: <>Mekanisme</>,
+    mechanisms: {
+      light: <>Ion kalium dipam masuk, air masuk secara osmosis, sel segah melengkung terbuka</>,
+      dark: <>Ion kalium meresap keluar, air keluar secara osmosis, sel flasid menutup liang</>,
+      drought: <>Asid absisik mencetuskan keluarnya ion kalium agar stoma tutup walau siang</>,
+    },
+    parts: {
+      guardCell: "Sel pengawal",
+      thickInnerWall: "Dinding dalam tebal",
+      thinOuterWall: "Dinding luar nipis",
+      chloroplast: "Kloroplas",
+      vacuole: "Vakuol",
+      pore: "Liang stoma",
+      potassiumIon: "Ion kalium",
+      water: "Molekul air",
+    },
+    transpiration: <>Kadar transpirasi</>,
+    turgor: <>Keadaan kesegahan</>,
+    turgors: {
+      turgid: "Segah",
+      flaccid: "Flasid",
+    },
+    view: "Sepasang sel pengawal tiga dimensi yang membuka dan menutup liang stoma",
+  }}
+/>
+
+> Stoma bukanlah pintu berengsel kaku, sebaliknya injap air hidup: sel pengawal yang segah melengkung membuka liang, manakala sel flasid mengempis menutupnya.
+
+Kehilangan wap air melalui stoma disebut **transpirasi**, yang mencipta **tarikan transpirasi** untuk menarik air naik melalui xilem sambil menyejukkan daun.
+
+### Potometer Gelembung
+
+Potometer menyukat pengambilan air pucuk berdaun melalui jarak gelembung <InlineMath math="l" /> dalam tiub rerambut berisipadu <InlineMath math="\pi r^2 l" />. Bandingkan keempat-empat pucuk bersapu jeli petroleum berikut.
+
+<PotometerLab
+  title={<>Potometer Gelembung dengan Empat Pucuk</>}
+  description={
+    <>
+      Tiub rerambut berjejari <InlineMath math="0.5\text{ mm}" />. Pucuk A
+      tanpa salutan, B disapu jeli pada permukaan atas, C pada permukaan bawah,
+      dan D pada kedua-dua permukaan.
+    </>
+  }
+  footer={<>Menyapu permukaan bawah menurunkan kadar transpirasi paling ketara.</>}
+  minutes={10}
+  radius={0.5}
+  shoots={[
+    { name: "A", coat: "none", rate: 0.6 },
+    { name: "B", coat: "upper", rate: 0.48 },
+    { name: "C", coat: "lower", rate: 0.12 },
+    { name: "D", coat: "both", rate: 0.04 },
+  ]}
+  labels={{
+    distance: <>Jarak gelembung bergerak</>,
+    rate: <>Kadar pengambilan air</>,
+    shoot: "Pilih pucuk",
+    time: "Masa",
+    view: "Potometer gelembung dengan pucuk berdaun",
+    volume: <>Isi padu air yang diambil</>,
+  }}
+/>
+
+Bagi pucuk A (<InlineMath math="0.60\text{ cm}^3" /> sejam) selama <InlineMath math="10" /> minit dengan jejari <InlineMath math="0.05\text{ cm}" />:
+
+<MathContainer>
+<BlockMath math="V = 0.60 \times \frac{10}{60} = 0.10\text{ cm}^3" />
+<BlockMath math="l = \frac{0.10}{\pi(0.05)^2} = 12.7\text{ cm}" />
+</MathContainer>
+
+Menyapu permukaan bawah mengurangkan kadar sebanyak <InlineMath math="80\%" /> berbanding <InlineMath math="20\%" /> di permukaan atas, membuktikan kebanyakan stoma terletak pada **epidermis bawah**.
+
+### Defisit Tekanan Wap
+
+Laju resapan wap air bergantung pada **defisit tekanan wap**, iaitu tekanan wap tepu <InlineMath math="e_s(T)" /> didarab bahagian udara belum tepu <InlineMath math="1 - h" />. Ubah suhu dan kelembapan di grafik berikut.
+
+<MathVisual
+  title={<>Defisit Tekanan Wap Udara</>}
+  description={
+    <>
+      Lengkung atas ialah tekanan wap tepu <InlineMath math="e_s" /> dan
+      lengkung bawah ialah defisit tekanan wap pada kelembapan relatif{" "}
+      <InlineMath math="h" />.
+    </>
+  }
+  footer={<>Udara panas dan kering membesarkan defisit lalu melajukan transpirasi.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 47 }, y: { min: 0, max: 10.5 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "a", min: 0, max: 45, value: 30, step: 1, label: "a" },
+      { name: "h", min: 0.2, max: 0.95, value: 0.6, step: 0.05, label: "h" },
+    ],
+    objects: [
+      { id: "saturated", kind: "function", appearance: "reference", formula: "0.6108exp(17.27x/(x + 237.3))", domain: { min: 0, max: 45 } },
+      { id: "deficit", kind: "function", appearance: "primary", formula: "0.6108exp(17.27x/(x + 237.3))(1 - h)", domain: { min: 0, max: 45 } },
+      { id: "now", kind: "marker", appearance: "warning", x: "a", y: "0.6108exp(17.27a/(a + 237.3))(1 - h)" },
+    ],
+    readouts: [
+      { key: "pressure", formula: "0.6108exp(17.27a/(a + 237.3))" },
+      { key: "gap", formula: "0.6108exp(17.27a/(a + 237.3))(1 - h)" },
+    ],
+  }}
+  labels={{
+    a: <>Suhu udara dalam <InlineMath math="^\circ\text{C}" /></>,
+    h: <>Kelembapan relatif sebagai pecahan</>,
+    pressure: <>Tekanan wap tepu dalam <InlineMath math="\text{kPa}" /></>,
+    gap: <>Defisit tekanan wap dalam <InlineMath math="\text{kPa}" /></>,
+  }}
+/>
+
+Pada <InlineMath math="30^\circ\text{C}" /> (<InlineMath math="e_s" /> ialah <InlineMath math="4.24\text{ kPa}" />), defisit pada kelembapan <InlineMath math="0.6" /> ialah <InlineMath math="1.70\text{ kPa}" />, empat kali ganda daripada <InlineMath math="0.42\text{ kPa}" /> pada kelembapan <InlineMath math="0.9" />.
+
+| Faktor | Apabila faktor meningkat | Sebab |
+| :--- | :--- | :--- |
+| Cahaya | Transpirasi meningkat | Lebih banyak stoma terbuka |
+| Suhu | Transpirasi meningkat | Penyejatan dan tekanan wap tepu meningkat |
+| Kelembapan relatif | Transpirasi menurun | Kecerunan wap air mengecil |
+| Angin | Transpirasi meningkat | Udara lembap di sekitar daun dibawa pergi |
+
+## Fotosintesis Kloroplas
+
+Dalam kloroplas, **tindak balas bersandarkan cahaya** berlangsung pada tilakoid grana melalui **fotolisis air** yang membebaskan oksigen, ATP, dan NADPH:
+
+<BlockMath math="2\mathrm{H_2O} \rightarrow 4\mathrm{H^+} + 4e^- + \mathrm{O_2}" />
+
+**Tindak balas tidak bersandarkan cahaya** (kitar Calvin) berlaku dalam stroma untuk menukar karbon dioksida menjadi glukosa menggunakan ATP dan NADPH. Terokai kloroplas tiga dimensi di model berikut dan laras cahaya, karbon dioksida, serta suhu.
+
+<ChloroplastStageLab
+  title={<>Kloroplas: Tindak Balas Cahaya, Kitar Calvin, dan Faktor Pengehad</>}
+  description={
+    <>
+      Pilih peringkat fotosintesis di tilakoid atau stroma, kemudian laras
+      cahaya, karbon dioksida, dan suhu untuk mengenal pasti faktor pengehad
+      serta pertukaran gas bersih.
+    </>
+  }
+  footer={<>Tilakoid membekalkan ATP dan NADPH bagi kitar Calvin dalam stroma.</>}
+  stages={["lightDependent", "calvinCycle", "compensation"]}
+  light={{ min: 0, max: 100, value: 65 }}
+  co2={{ min: 0, max: 1000, value: 400 }}
+  temperature={{ min: 5, max: 50, value: 28 }}
+  labels={{
+    co2: "Karbon dioksida (ppm)",
+    factors: {
+      light: "Cahaya",
+      co2: "Karbon dioksida",
+      temperature: "Suhu",
+      balanced: "Seimbang",
+    },
+    gasStates: {
+      netRelease: "Pembebasan CO2 bersih",
+      compensation: "Titik pampasan",
+      netUptake: "Pengambilan CO2 bersih",
+    },
+    light: "Keamatan cahaya (%)",
+    limitingFactor: <>Faktor pengehad</>,
+    netGas: <>Pertukaran gas bersih</>,
+    parts: {
+      thylakoid: "Tilakoid",
+      granum: "Grana",
+      stroma: "Stroma",
+      water: "Air",
+      oxygen: "Oksigen",
+      atp: "ATP",
+      nadph: "NADPH",
+      co2: "Karbon dioksida",
+      glucose: "Glukosa",
+    },
+    site: <>Tapak dan proses</>,
+    sites: {
+      lightDependent: <>Tilakoid memecahkan air kepada oksigen sambil membentuk ATP dan NADPH</>,
+      calvinCycle: <>Stroma mengikat karbon dioksida menjadi glukosa menggunakan ATP dan NADPH</>,
+      compensation: <>Kadar fotosintesis dalam kloroplas tepat mengimbangi respirasi sel</>,
+    },
+    stage: "Peringkat kloroplas",
+    stages: {
+      lightDependent: "Bersandarkan cahaya",
+      calvinCycle: "Kitar Calvin",
+      compensation: "Titik pampasan",
+    },
+    temperature: "Suhu (°C)",
+    view: "Model tiga dimensi kloroplas dengan susunan tilakoid dan stroma",
+  }}
+/>
+
+> Oksigen fotosintesis tidak datang daripada karbon dioksida, sebaliknya terus daripada pemecahan molekul air semasa tindak balas bersandarkan cahaya pada tilakoid.
+
+Dalam eksperimen Hydrilla di bawah lampu meja, keamatan cahaya mematuhi hukum kuasa dua songsang jarak. Bandingkan ketujuh-tujuh bacaan berikut.
+
+<PhotosynthesisLab
+  title={<>Hydrilla di bawah Lampu Meja</>}
+  description={
+    <>
+      Lampu dialihkan dari <InlineMath math="50\text{ cm}" /> ke{" "}
+      <InlineMath math="10\text{ cm}" />. Dua bacaan terakhir menambah natrium
+      hidrogen karbonat sebagai sumber karbon dioksida tambahan.
+    </>
+  }
+  footer={<>Pada jarak lampu dekat, tambahan CO2 melonjakkan gelembung oksigen.</>}
+  readings={[
+    { distance: 50, bubbles: 10 },
+    { distance: 40, bubbles: 14 },
+    { distance: 30, bubbles: 19 },
+    { distance: 20, bubbles: 27 },
+    { distance: 10, bubbles: 36 },
+    { distance: 20, bubbles: 47, bicarbonate: true },
+    { distance: 10, bubbles: 62, bicarbonate: true },
+  ]}
+  labels={{
+    bubbles: <>Gelembung seminit</>,
+    carbon: <>Karbon dioksida tambahan</>,
+    carbonSources: {
+      added: <>Natrium hidrogen karbonat ditambah</>,
+      none: <>Air sahaja</>,
+    },
+    distance: <>Jarak lampu</>,
+    intensity: <>Keamatan cahaya relatif</>,
+    reading: "Pilih bacaan",
+    view: "Hydrilla dalam tabung didih di bawah lampu",
+  }}
+/>
+
+Mengalih lampu dari <InlineMath math="20\text{ cm}" /> ke <InlineMath math="10\text{ cm}" /> menguatkan cahaya empat kali ganda tetapi gelembung hanya naik daripada <InlineMath math="27" /> kepada <InlineMath math="36" />. Menambah bikarbonat melonjakkan gelembung kepada <InlineMath math="62" />, membuktikan karbon dioksida mengehadkan kadar.
+
+### Faktor Pengehad Kadar
+
+**Faktor pengehad** ialah keperluan paling terhad yang menentukan kelajuan tindak balas. Cahaya mengehadkan pada keadaan malap, manakala pada cahaya terang lengkung mendatar akibat karbon dioksida atau suhu. Gerakkan kedua-dua gelangsar grafik berikut bagi membandingkan had <InlineMath math="c" />.
+
+<MathVisual
+  title={<>Kadar Fotosintesis melawan Keamatan Cahaya</>}
+  description={
+    <>
+      Lengkung rujukan mewakili karbon dioksida rendah (<InlineMath math="4" />)
+      dan tinggi (<InlineMath math="12" />). Lengkung utama mengikut gelangsar{" "}
+      <InlineMath math="c" />.
+    </>
+  }
+  footer={<>Lengkung naik curam apabila cahaya mengehadkan lalu mendatar apabila CO2 mengehadkan.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 21 }, y: { min: 0, max: 13 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "c", min: 4, max: 12, value: 6, step: 1, label: "c" },
+      { name: "i", min: 0, max: 20, value: 5, step: 0.5, label: "i" },
+    ],
+    objects: [
+      { id: "low", kind: "function", appearance: "reference", formula: "4(1 - exp(-2x/4))", domain: { min: 0, max: 20 } },
+      { id: "high", kind: "function", appearance: "reference", formula: "12(1 - exp(-2x/12))", domain: { min: 0, max: 20 } },
+      { id: "rate", kind: "function", appearance: "primary", formula: "c(1 - exp(-2x/c))", domain: { min: 0, max: 20 } },
+      { id: "now", kind: "marker", appearance: "warning", x: "i", y: "c(1 - exp(-2i/c))" },
+    ],
+    readouts: [
+      { key: "speed", formula: "c(1 - exp(-2i/c))" },
+      { key: "share", formula: "100(1 - exp(-2i/c))" },
+    ],
+  }}
+  labels={{
+    c: <>Kadar maksimum <InlineMath math="c" /> daripada karbon dioksida</>,
+    i: <>Keamatan cahaya relatif <InlineMath math="I" /></>,
+    speed: <>Kadar fotosintesis relatif <InlineMath math="P" /></>,
+    share: <>Peratus kadar maksimum</>,
+  }}
+/>
+
+Pada cahaya malap (<InlineMath math="1" />), menggandakan karbon dioksida tiga kali hanya menaikkan kadar daripada <InlineMath math="1.57" /> kepada <InlineMath math="1.84" />, manakala pada cahaya terang (<InlineMath math="15" />), kadar melonjak daripada <InlineMath math="4.00" /> kepada <InlineMath math="11.02" />.
+
+### Titik Pampasan Daun
+
+**Titik pampasan** dicapai apabila kadar fotosintesis tepat menyamai respirasi supaya pertukaran gas bersih tepat sifar. Gerakkan gelangsar cahaya berikut bagi melihat pintasan sifarnya.
+
+<MathVisual
+  title={<>Titik Pampasan Sehelai Daun</>}
+  description={
+    <>
+      Fotosintesis kasar berbanding respirasi malar <InlineMath math="2" />.
+      Lengkung bawah menunjukkan pertukaran gas bersih{" "}
+      <InlineMath math="P - R" />.
+    </>
+  }
+  footer={<>Pada titik pampasan, pertukaran gas bersih P - R tepat bernilai sifar.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 10.5 }, y: { min: -2.5, max: 8 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "i", min: 0, max: 10, value: 3, step: 0.5, label: "i" },
+    ],
+    objects: [
+      { id: "gross", kind: "function", appearance: "primary", formula: "10x/(x + 4)", domain: { min: 0, max: 10 } },
+      { id: "breath", kind: "function", appearance: "secondary", formula: "2", domain: { min: 0, max: 10 } },
+      { id: "net", kind: "function", appearance: "highlight", formula: "10x/(x + 4) - 2", domain: { min: 0, max: 10 } },
+      { id: "balance", kind: "point", appearance: "warning", at: { x: 1, y: 0 } },
+      { id: "now", kind: "marker", appearance: "construction", x: "i", y: "10i/(i + 4) - 2" },
+    ],
+    labels: [
+      { key: "point", objectId: "balance", at: { x: 1, y: 0 }, placement: "below-right" },
+    ],
+    readouts: [
+      { key: "made", formula: "10i/(i + 4)" },
+      { key: "used", formula: "2" },
+      { key: "gain", formula: "10i/(i + 4) - 2" },
+    ],
+  }}
+  labels={{
+    point: <>Titik pampasan</>,
+    i: <>Keamatan cahaya relatif <InlineMath math="I" /></>,
+    made: <>Kadar fotosintesis <InlineMath math="P" /></>,
+    used: <>Kadar respirasi <InlineMath math="R" /></>,
+    gain: <>Pertukaran gas bersih <InlineMath math="P - R" /></>,
+  }}
+/>
+
+Samakan kadar fotosintesis dengan respirasi untuk memperoleh titik pampasan:
+
+<BlockMath math="\frac{10I}{I + 4} = 2 \quad\Rightarrow\quad 10I = 2I + 8 \quad\Rightarrow\quad I = 1" />
+
+Melebihi keamatan <InlineMath math="1" />, daun mengambil karbon dioksida bersih dan menyimpan glukosa untuk pertumbuhan.
+
+## Pengiraan Stoma dan Daun
+
+Gunakan geometri potometer, hukum kuasa dua songsang, dan imbangan pampasan bagi tiga soalan berikut.
+
+1. Dalam potometer berjejari <InlineMath math="0.5\text{ mm}" />, gelembung bergerak <InlineMath math="9.0\text{ cm}" /> dalam <InlineMath math="5" /> minit. Kira pengambilan air sejam. **Jawapan**: gunakan jejari <InlineMath math="0.05\text{ cm}" />:
+
+<MathContainer>
+<BlockMath math="V = \pi(0.05)^2 \times 9.0 = 0.0707\text{ cm}^3" />
+<BlockMath math="\text{Kadar} = 0.0707 \times \frac{60}{5} = 0.848\text{ cm}^3\text{ sejam}" />
+</MathContainer>
+
+2. Lampu dialih dari <InlineMath math="30\text{ cm}" /> ke <InlineMath math="15\text{ cm}" /> dari Hydrilla. Berapa kali ganda keamatan naik? **Jawapan**: separuh jarak menggandakan cahaya <InlineMath math="4" /> kali ganda:
+
+<BlockMath math="\frac{I_{15}}{I_{30}} = \left(\frac{30}{15}\right)^2 = 4" />
+
+3. Jika suhu lebih tinggi menaikkan respirasi kepada <InlineMath math="3" />, cari titik pampasan baharu. **Jawapan**: respirasi lebih laju memerlukan cahaya lebih terang:
+
+<BlockMath math="\frac{10I}{I + 4} = 3 \quad\Rightarrow\quad I = \frac{12}{7} = 1.71" />
