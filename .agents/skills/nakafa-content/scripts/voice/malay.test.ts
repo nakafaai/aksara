@@ -40,6 +40,36 @@ it("rejects the Indonesian -itas suffix and Indonesian science terms", () => {
   ]);
 });
 
+it("refuses the Indonesian squared sense of kuadrat in Malay", () => {
+  const source = [
+    "Selesaikan persamaan kuadrat ini.",
+    "Lukis graf fungsi kuadrat itu.",
+    "Cari akar kuadrat bagi 49.",
+    "Nilai x kuadrat ialah 16.",
+    "Naikkan sisi itu ke pangkat kuadrat.",
+    "Ambil kuadrat dari panjang sisi.",
+  ].join("\n");
+
+  assert.deepEqual(malayRules(source), [
+    { line: 1, rule: "malay-indonesian-science-term" },
+    { line: 2, rule: "malay-indonesian-science-term" },
+    { line: 3, rule: "malay-indonesian-science-term" },
+    { line: 4, rule: "malay-indonesian-science-term" },
+    { line: 5, rule: "malay-indonesian-science-term" },
+    { line: 6, rule: "malay-indonesian-science-term" },
+  ]);
+});
+
+it("accepts kuadrat as the ecology quadrat in Malay", () => {
+  const source = [
+    "Letakkan setiap kuadrat secara rawak di padang.",
+    "Teknik persampelan kuadrat menganggar kepadatan tumbuhan.",
+    "Kira semalu dalam kuadrat persampelan itu.",
+  ].join("\n");
+
+  assert.deepEqual(malayRules(source), []);
+});
+
 it("talks to the Malay learner as kamu, never as anda or awak", () => {
   assert.deepEqual(
     malayRules(

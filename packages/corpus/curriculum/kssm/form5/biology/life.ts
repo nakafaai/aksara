@@ -1,4 +1,5 @@
-import { unitNode } from "#corpus/curriculum/schema";
+import { biologyStandards } from "#corpus/curriculum/kssm/documents";
+import { materialNode, unitNode } from "#corpus/curriculum/schema";
 
 /** The KSSM Form 5 Biology chapters on how a plant responds, reproduces and adapts, Bab 5 to Bab 7. */
 export const kssmForm5BiologyLifeNodes = [
@@ -44,7 +45,39 @@ export const kssmForm5BiologyLifeNodes = [
     },
   }),
   unitNode({
+    children: [
+      materialNode({
+        key: "form-5-biology-adaptations-of-plants-in-different-habitats-plant-adaptation",
+        level: "lesson",
+        materialKeys: ["lesson.biology.plant-adaptation"],
+        order: 10,
+        outcomes: [
+          {
+            code: "Form 5, Content Standard 22.1",
+            ...biologyStandards,
+          },
+        ],
+      }),
+    ],
     key: "form-5-biology-adaptations-of-plants-in-different-habitats",
+    materialCard: {
+      de: {
+        description: "Vergleiche Pflanzen in Wasser, Salzsumpf und Wüste.",
+        title: "Angepasstheit der Pflanzen",
+      },
+      en: {
+        description: "Compare plants of water, salty swamps and deserts.",
+        title: "Plant Adaptations",
+      },
+      id: {
+        description: "Bandingkan tumbuhan air, hutan bakau, dan gurun.",
+        title: "Adaptasi Tumbuhan",
+      },
+      ms: {
+        description: "Bandingkan tumbuhan air, paya bakau dan gurun.",
+        title: "Penyesuaian Tumbuhan",
+      },
+    },
     order: 70,
     translations: {
       de: {

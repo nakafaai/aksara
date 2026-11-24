@@ -28,9 +28,12 @@ export const MALAY_COPY_RULES = [
     protectInlineQuotations: true,
   },
   {
+    // Bare "kuadrat" is the Malay ecology quadrat (DBP, KSSM Biologi), so only
+    // the Indonesian squared sense is refused; Malay writes it "kuadratik" or
+    // "kuasa dua".
     id: "malay-indonesian-science-term",
     patterns: {
-      ms: /\b(?:matematika|fisika|genetika|kuadrat|gradien|garis singgung|pertidaksamaan|energi|listrik|pernapasan|senyawa|asam|kalor)\b/iu,
+      ms: /\b(?:matematika|fisika|genetika|(?:persamaan|fungsi|akar|pangkat) kuadrat|\p{L} kuadrat|kuadrat dari|gradien|garis singgung|pertidaksamaan|energi|listrik|pernapasan|senyawa|asam|kalor)\b/iu,
     },
     protectInlineQuotations: true,
   },
