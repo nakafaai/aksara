@@ -1,17 +1,78 @@
-# Asingkan kedua-dua gen, kemudian darab
+# Diberi
 
-Kedua-dua gen terletak pada kromosom berlainan, jadi **kebarangkaliannya dikira berasingan kemudian didarab**. <InlineMath math="Tt\times Tt" /> memberi <InlineMath math="\tfrac34" /> tinggi, dan <InlineMath math="Rr\times rr" /> memberi <InlineMath math="\tfrac12" /> berkedut.
+Alel batang tinggi (<InlineMath math="T" />) dominan terhadap pendek (<InlineMath math="t" />), manakala biji bulat (<InlineMath math="R" />) dominan terhadap berkedut (<InlineMath math="r" />). Kedua-dua gen terletak pada **kromosom berbeza**, jadi ia disusun secara bebas.
+
+Kacukan <InlineMath math="TtRr \times Ttrr" /> menghasilkan <InlineMath math="160" /> anak pokok kacang pea.
+
+# Ditanya
+
+Cari bilangan anak pokok tinggi berbiji berkedut yang dijangka, dan bilangan antaranya yang baka tulen bagi kedua-dua trait.
+
+# Penyelesaian
+
+Bayangkan dua gen pada kromosom berlainan seperti melambung dua syiling berasingan pada masa sama. Kira kebarangkalian ketinggian dahulu, kemudian bentuk biji, lalu darabkan kedua-duanya.
+
+> Gen pada kromosom berlainan mendarabkan kebarangkalian setiap trait secara berasingan, dan hanya genotip homozigot menjadi baka tulen bagi kedua-dua trait.
+
+Asingkan kacukan kepada **dua kacukan monohibrid**: <InlineMath math="Tt \times Tt" /> memberi <InlineMath math="\frac{3}{4}" /> tinggi (<InlineMath math="\frac{1}{4} TT" /> dan <InlineMath math="\frac{2}{4} Tt" />), manakala <InlineMath math="Rr \times rr" /> memberi <InlineMath math="\frac{1}{2}" /> berkedut (<InlineMath math="rr" />).
 
 <BlockMath math="\begin{aligned}
-\text{tinggi berkedut}&=\tfrac34\times\tfrac12\times160=60\\
-TT\ \text{dalam kalangan yang tinggi}&=\frac{1/4}{3/4}=\tfrac13\\
-\text{baka tulen}\ (TTrr)&=\tfrac13\times60=20
+\text{tinggi berkedut} &= \frac{3}{4} \times \frac{1}{2} \times 160 = \frac{3}{8} \times 160 = 60 \\
+\text{baka tulen } (TTrr) &= \frac{1}{4} \times \frac{1}{2} \times 160 = \frac{1}{8} \times 160 = 20
 \end{aligned}" />
 
-Setiap biji berkedut sudah <InlineMath math="rr" />, jadi hanya gen ketinggian yang menentukan baka tulen. Jadi, jawapannya <InlineMath math="60" /> dan <InlineMath math="20" />.
+Gerakkan jumlah anak pokok <InlineMath math="n" /> di bawah untuk membandingkan pokok tinggi berkedut (<InlineMath math="\frac{3}{8}n" />) dengan baka tulen <InlineMath math="TTrr" /> (<InlineMath math="\frac{1}{8}n" />).
 
-# Kenapa pilihan lain salah
+<MathVisual
+  title={<>Jangkaan Pokok Tinggi Berkedut dan Baka Tulen</>}
+  description={
+    <>
+      Garis biru <InlineMath math="y = 0.375n" /> menunjukkan pokok tinggi berkedut
+      dan garis hijau <InlineMath math="y = 0.125n" /> menunjukkan baka tulen{" "}
+      <InlineMath math="TTrr" />, mencecah <InlineMath math="60" /> dan{" "}
+      <InlineMath math="20" /> pada <InlineMath math="n = 160" />.
+    </>
+  }
+  footer={
+    <>
+      Pada <InlineMath math="n = 160" />, tepat satu pertiga daripada <InlineMath math="60" /> pokok tinggi berkedut (<InlineMath math="20" />) ialah baka tulen.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 320 }, y: { min: 0, max: 130 } },
+    view: { kind: "fit", padding: 0.08 },
+    parameters: [
+      { name: "n", min: 40, max: 320, value: 160, step: 40, label: "n" },
+    ],
+    objects: [
+      { id: "tall-wrinkled-line", kind: "function", appearance: "primary", formula: "0.375 * x", domain: { min: 0, max: 320 } },
+      { id: "true-breeding-line", kind: "function", appearance: "answer", formula: "0.125 * x", domain: { min: 0, max: 320 } },
+      { id: "guide-160", kind: "segment", appearance: "construction", from: { x: 160, y: 0 }, to: { x: 160, y: 60 } },
+      { id: "pt-tw", kind: "marker", appearance: "primary", x: "160", y: "60" },
+      { id: "pt-tb", kind: "marker", appearance: "answer", x: "160", y: "20" },
+      { id: "probe-tw", kind: "marker", appearance: "warning", x: "n", y: "0.375 * n" },
+    ],
+    readouts: [
+      { key: "tall-wrinkled", formula: "0.375 * n" },
+      { key: "true-breeding", formula: "0.125 * n" },
+    ],
+  }}
+  labels={{
+    n: <>Jumlah anak pokok <InlineMath math="n" /></>,
+    "tall-wrinkled": <>Pokok tinggi berbiji berkedut</>,
+    "true-breeding": <>Baka tulen <InlineMath math="TTrr" /></>,
+  }}
+/>
 
-- <InlineMath math="40" /> ialah bilangan pokok <InlineMath math="Ttrr" />, sedangkan **heterozigot tidak membiak baka tulen**.
-- <InlineMath math="15" /> mengambil <InlineMath math="\tfrac14" /> daripada <InlineMath math="60" />, sedangkan dalam kalangan pokok tinggi hanya <InlineMath math="\tfrac13" /> ialah <InlineMath math="TT" />.
-- <InlineMath math="30" /> dan <InlineMath math="10" /> menggunakan <InlineMath math="\tfrac12" /> bagi tinggi, sedangkan <InlineMath math="Tt\times Tt" /> memberi <InlineMath math="\tfrac34" /> tinggi.
+Semakan pecahannya tepat: daripada <InlineMath math="60" /> pokok tinggi berkedut, <InlineMath math="20" /> ialah <InlineMath math="TTrr" /> dan <InlineMath math="40" /> ialah <InlineMath math="Ttrr" />, selaras dengan nisbah <InlineMath math="1 : 2" /> bagi <InlineMath math="TT : Tt" />.
+
+## Mengapa pilihan lain salah
+
+- <InlineMath math="40" /> ialah bilangan pokok <InlineMath math="Ttrr" />, sedangkan **heterozigot bukan baka tulen** kerana masih membawa alel <InlineMath math="t" />.
+- <InlineMath math="15" /> mengambil <InlineMath math="\frac{1}{4}" /> daripada <InlineMath math="60" />, padahal dalam kalangan pokok tinggi (<InlineMath math="TT, Tt, Tt" />) pecahan <InlineMath math="TT" /> ialah <InlineMath math="\frac{1}{3}" />.
+- <InlineMath math="30" /> dan <InlineMath math="10" /> memakai <InlineMath math="\frac{1}{2}" /> untuk tinggi, sedangkan <InlineMath math="Tt \times Tt" /> menghasilkan <InlineMath math="\frac{3}{4}" /> tinggi.
+
+# Jawapan
+
+Bilangan anak pokok tinggi berbiji berkedut yang dijangka ialah <InlineMath math="60" />, dan <InlineMath math="20" /> daripadanya ialah baka tulen bagi kedua-dua trait.

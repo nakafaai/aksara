@@ -1,15 +1,58 @@
-# Genotipe orang tua lalu syarat pada anak perempuan
+# Diketahui
 
-Anak laki-laki yang albino bergenotipe <InlineMath math="aa" />, jadi masing-masing orang tua memberikan satu alel <InlineMath math="a" />. Karena keduanya tidak albino, **keduanya pasti <InlineMath math="Aa" />**. Persilangan <InlineMath math="Aa\times Aa" /> memberi <InlineMath math="AA" />, <InlineMath math="Aa" />, <InlineMath math="Aa" />, <InlineMath math="aa" /> dengan peluang sama.
+Albinisme disebabkan oleh **alel resesif autosom** (<InlineMath math="a" />). Kedua orang tua tidak albino, namun memiliki seorang anak laki-laki albino (<InlineMath math="aa" />).
 
-Anak perempuan itu diketahui tidak albino, jadi kemungkinan <InlineMath math="aa" /> sudah tersingkir. Yang tersisa adalah tiga kemungkinan yang sama besar: <InlineMath math="AA" />, <InlineMath math="Aa" />, <InlineMath math="Aa" />.
+Mereka juga memiliki seorang anak perempuan yang **tidak albino**.
 
-<BlockMath math="P(Aa\mid\text{tidak albino})=\frac{2}{3}" />
+# Ditanyakan
 
-Jadi, peluang anak perempuan itu membawa alel albinisme adalah <InlineMath math="\tfrac23" />.
+Tentukan peluang anak perempuan yang tidak albino itu membawa alel albinisme (<InlineMath math="Aa" />).
 
-# Mengapa pilihan lain salah
+# Penyelesaian
 
-- <InlineMath math="\tfrac12" /> adalah peluang <InlineMath math="Aa" /> dari semua kemungkinan anak, padahal **kemungkinan <InlineMath math="aa" /> sudah tersingkir** karena anak itu tidak albino.
-- <InlineMath math="\tfrac14" /> adalah peluang seorang anak albino, bukan peluang menjadi pembawa.
-- <InlineMath math="\tfrac34" /> adalah peluang seorang anak tidak albino, bukan peluang menjadi pembawa.
+Bayangkan empat kartu berpeluang sama diletakkan tertutup: <InlineMath math="AA" />, <InlineMath math="Aa" />, <InlineMath math="Aa" />, dan <InlineMath math="aa" />. Begitu kita melihat anak perempuan itu tidak albino, kartu <InlineMath math="aa" /> disingkirkan sehingga tersisa <InlineMath math="3" /> kartu, dan <InlineMath math="2" /> di antaranya pembawa sifat.
+
+> Peluang bersyarat membuang genotipe yang mustahil lebih dahulu, memperkecil ruang sampel dari empat hasil menjadi hanya hasil yang cocok dengan fenotipe.
+
+Karena anak laki-lakinya <InlineMath math="aa" /> sedangkan kedua orang tuanya normal, **kedua orang tua pasti heterozigot (<InlineMath math="Aa" />)**. Daftar keempat hasil <InlineMath math="Aa \times Aa" />, lalu singkirkan <InlineMath math="aa" />.
+
+<BlockMath math="\begin{aligned}
+Aa \times Aa &\to AA,\ Aa,\ Aa,\ aa \\
+\text{tersisa tidak albino} &: AA,\ Aa,\ Aa \\
+P(Aa \mid \text{tidak albino}) &= \frac{2}{3}
+\end{aligned}" />
+
+Ikuti ruang sampel yang menyusut pada bagan di bawah untuk melihat mengapa peluang pembawa tepat <InlineMath math="\frac{2}{3}" />, bukan <InlineMath math="\frac{1}{2}" />.
+
+<Mermaid
+  title={<>Ruang Sampel Tersisa bagi Anak Tidak Albino</>}
+  description={
+    <>
+      Persilangan <InlineMath math="Aa \times Aa" /> memberi empat hasil sama
+      peluang. Membuang <InlineMath math="aa" /> menyisakan tiga kemungkinan,
+      dua di antaranya <InlineMath math="Aa" />.
+    </>
+  }
+  footer={
+    <>
+      Setelah <InlineMath math="aa" /> dibuang, tersisa <InlineMath math="AA, Aa, Aa" />, jadi <InlineMath math="2" /> dari <InlineMath math="3" /> pembawa.
+    </>
+  }
+  chart={`flowchart TD
+    C["Aa x Aa: 4 hasil sama"] --> K1["AA: tidak albino, bukan pembawa"]
+    C --> K2["Aa: tidak albino, pembawa"]
+    C --> K3["Aa: tidak albino, pembawa"]
+    C --> OUT["aa: albino (disingkirkan)"]`}
+/>
+
+Cek jumlah peluang tersisa tepat <InlineMath math="1" />: <InlineMath math="\frac{1}{3}" /> untuk <InlineMath math="AA" /> ditambah <InlineMath math="\frac{2}{3}" /> untuk <InlineMath math="Aa" /> sama dengan <InlineMath math="1" />.
+
+## Mengapa pilihan lain salah
+
+- <InlineMath math="\frac{1}{2}" /> menghitung <InlineMath math="2" /> dari semua <InlineMath math="4" /> hasil, lupa bahwa **<InlineMath math="aa" /> sudah tersingkir** karena anak perempuan tidak albino.
+- <InlineMath math="\frac{1}{4}" /> adalah peluang anak albino (<InlineMath math="aa" />), bukan peluang pembawa sifat.
+- <InlineMath math="\frac{3}{4}" /> adalah peluang anak tidak albino (<InlineMath math="AA" /> atau <InlineMath math="Aa" />), masih mencakup <InlineMath math="AA" /> yang bukan pembawa.
+
+# Jawaban
+
+Peluang anak perempuan itu membawa alel albinisme adalah <InlineMath math="\frac{2}{3}" />.

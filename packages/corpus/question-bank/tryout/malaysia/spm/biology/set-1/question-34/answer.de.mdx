@@ -1,17 +1,78 @@
-# Beide Gene trennen, dann multiplizieren
+# Gegeben
 
-Die Gene liegen auf verschiedenen Chromosomen, also **werden ihre Wahrscheinlichkeiten getrennt bestimmt und multipliziert**. <InlineMath math="Tt\times Tt" /> ergibt <InlineMath math="\tfrac34" /> hoch, <InlineMath math="Rr\times rr" /> ergibt <InlineMath math="\tfrac12" /> runzlig.
+Das Allel für hohe Stängel (<InlineMath math="T" />) ist dominant über niedrig (<InlineMath math="t" />), und runde Samen (<InlineMath math="R" />) sind dominant über runzlige (<InlineMath math="r" />). Beide Gene liegen auf **verschiedenen Chromosomen** und spalten unabhängig.
+
+Die Kreuzung <InlineMath math="TtRr \times Ttrr" /> ergibt <InlineMath math="160" /> Nachkommen.
+
+# Gesucht
+
+Bestimme die erwartete Anzahl hoher Pflanzen mit runzligen Samen sowie die Anzahl der darunter für beide Merkmale reinerbigen Pflanzen.
+
+# Lösung
+
+Stell dir zwei Gene auf verschiedenen Chromosomen wie zwei getrennte Münzwürfe vor. Du berechnest erst die Wahrscheinlichkeit für die Höhe, dann für die Samenform und multiplizierst beide.
+
+> Unabhängige Gene multiplizieren ihre Einzelwahrscheinlichkeiten, und nur doppelt homozygote Genotypen sind für beide Merkmale reinerbig.
+
+Zerlege die Kreuzung in **zwei monohybride Kreuzungen**: <InlineMath math="Tt \times Tt" /> liefert <InlineMath math="\frac{3}{4}" /> hoch (<InlineMath math="\frac{1}{4} TT" /> und <InlineMath math="\frac{2}{4} Tt" />), und <InlineMath math="Rr \times rr" /> liefert <InlineMath math="\frac{1}{2}" /> runzlig (<InlineMath math="rr" />).
 
 <BlockMath math="\begin{aligned}
-\text{hoch und runzlig}&=\tfrac34\times\tfrac12\times160=60\\
-TT\ \text{unter den hohen}&=\frac{1/4}{3/4}=\tfrac13\\
-\text{reinerbig}\ (TTrr)&=\tfrac13\times60=20
+\text{hoch und runzlig} &= \frac{3}{4} \times \frac{1}{2} \times 160 = \frac{3}{8} \times 160 = 60 \\
+\text{reinerbig } (TTrr) &= \frac{1}{4} \times \frac{1}{2} \times 160 = \frac{1}{8} \times 160 = 20
 \end{aligned}" />
 
-Jeder runzlige Samen ist bereits <InlineMath math="rr" />, über die Reinerbigkeit entscheidet also nur das Gen für die Wuchshöhe. Die Antwort ist also <InlineMath math="60" /> und <InlineMath math="20" />.
+Verschiebe die Nachkommenzahl <InlineMath math="n" /> unten, um hohe runzlige Pflanzen (<InlineMath math="\frac{3}{8}n" />) mit reinerbigen <InlineMath math="TTrr" />-Pflanzen (<InlineMath math="\frac{1}{8}n" />) zu vergleichen.
 
-# Warum die anderen Antworten falsch sind
+<MathVisual
+  title={<>Erwartete hohe runzlige und reinerbige Nachkommen</>}
+  description={
+    <>
+      Die blaue Gerade <InlineMath math="y = 0{,}375n" /> zeigt hohe runzlige Pflanzen
+      und die grüne Gerade <InlineMath math="y = 0{,}125n" /> zeigt reinerbige{" "}
+      <InlineMath math="TTrr" />-Pflanzen mit <InlineMath math="60" /> und{" "}
+      <InlineMath math="20" /> bei <InlineMath math="n = 160" />.
+    </>
+  }
+  footer={
+    <>
+      Bei <InlineMath math="n = 160" /> ist genau ein Drittel der <InlineMath math="60" /> hohen runzligen Pflanzen (<InlineMath math="20" />) reinerbig.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 320 }, y: { min: 0, max: 130 } },
+    view: { kind: "fit", padding: 0.08 },
+    parameters: [
+      { name: "n", min: 40, max: 320, value: 160, step: 40, label: "n" },
+    ],
+    objects: [
+      { id: "tall-wrinkled-line", kind: "function", appearance: "primary", formula: "0.375 * x", domain: { min: 0, max: 320 } },
+      { id: "true-breeding-line", kind: "function", appearance: "answer", formula: "0.125 * x", domain: { min: 0, max: 320 } },
+      { id: "guide-160", kind: "segment", appearance: "construction", from: { x: 160, y: 0 }, to: { x: 160, y: 60 } },
+      { id: "pt-tw", kind: "marker", appearance: "primary", x: "160", y: "60" },
+      { id: "pt-tb", kind: "marker", appearance: "answer", x: "160", y: "20" },
+      { id: "probe-tw", kind: "marker", appearance: "warning", x: "n", y: "0.375 * n" },
+    ],
+    readouts: [
+      { key: "tall-wrinkled", formula: "0.375 * n" },
+      { key: "true-breeding", formula: "0.125 * n" },
+    ],
+  }}
+  labels={{
+    n: <>Gesamtzahl Nachkommen <InlineMath math="n" /></>,
+    "tall-wrinkled": <>Hohe Pflanzen mit runzligen Samen</>,
+    "true-breeding": <>Reinerbige <InlineMath math="TTrr" />-Pflanzen</>,
+  }}
+/>
 
-- <InlineMath math="40" /> ist die Zahl der Pflanzen <InlineMath math="Ttrr" />, doch **Mischerbige vererben nicht rein**.
-- <InlineMath math="15" /> nimmt <InlineMath math="\tfrac14" /> von <InlineMath math="60" />, doch unter den hohen Pflanzen sind nur <InlineMath math="\tfrac13" /> <InlineMath math="TT" />.
-- <InlineMath math="30" /> und <InlineMath math="10" /> setzt <InlineMath math="\tfrac12" /> für hoch an, doch <InlineMath math="Tt\times Tt" /> ergibt <InlineMath math="\tfrac34" /> hoch.
+Die Probe unter den <InlineMath math="60" /> hohen runzligen Pflanzen passt: <InlineMath math="20" /> sind <InlineMath math="TTrr" /> und <InlineMath math="40" /> sind <InlineMath math="Ttrr" />, exakt im Verhältnis <InlineMath math="1 : 2" />.
+
+## Warum die anderen Optionen falsch sind
+
+- <InlineMath math="40" /> zählt die <InlineMath math="Ttrr" />-Pflanzen, doch **Heterozygote sind nicht reinerbig**, weil sie das Allel <InlineMath math="t" /> weitergeben können.
+- <InlineMath math="15" /> nimmt <InlineMath math="\frac{1}{4}" /> von <InlineMath math="60" />, obwohl unter hohen Pflanzen (<InlineMath math="TT, Tt, Tt" />) genau <InlineMath math="\frac{1}{3}" /> den Genotyp <InlineMath math="TT" /> trägt.
+- <InlineMath math="30" /> und <InlineMath math="10" /> verwenden <InlineMath math="\frac{1}{2}" /> für hoch statt <InlineMath math="\frac{3}{4}" /> aus <InlineMath math="Tt \times Tt" />.
+
+# Antwort
+
+Es werden <InlineMath math="60" /> hohe Pflanzen mit runzligen Samen erwartet, davon sind <InlineMath math="20" /> für beide Merkmale reinerbig.

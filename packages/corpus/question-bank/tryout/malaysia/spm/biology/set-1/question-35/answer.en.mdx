@@ -1,17 +1,57 @@
-# Genotypes from the family, then read the question
+# Given
 
-The woman's father is colour-blind, so he passed <InlineMath math="\text{X}^b" /> to her. Her vision is normal, so **she is a carrier**, <InlineMath math="\text{X}^B\text{X}^b" />. Her husband is <InlineMath math="\text{X}^b\text{Y}" />.
+Red-green colour blindness is controlled by an **X-linked recessive allele** (<InlineMath math="\mathrm{X}^b" />). The woman has normal vision, yet her father is colour-blind (<InlineMath math="\mathrm{X}^b\mathrm{Y}" />).
+
+She marries a colour-blind man (<InlineMath math="\mathrm{X}^b\mathrm{Y}" />).
+
+# Asked
+
+Find the probability that their first son is colour-blind, and the probability that their first child is a colour-blind daughter.
+
+# Solution
+
+Think of four equally likely genetic tickets drawn from a hat: two boy tickets and two girl tickets. Knowing the child is already a son lets you look inside only the <InlineMath math="2" /> boy tickets, whereas asking about the first child keeps all <InlineMath math="4" /> tickets in play.
+
+> A daughter always inherits her father's single X chromosome, so a woman with normal vision whose father is colour-blind must be a carrier.
+
+Because her father could only pass on <InlineMath math="\mathrm{X}^b" /> and she sees normally, **her genotype is <InlineMath math="\mathrm{X}^B\mathrm{X}^b" />**. Cross her gametes (<InlineMath math="\mathrm{X}^B, \mathrm{X}^b" />) with her husband's gametes (<InlineMath math="\mathrm{X}^b, \mathrm{Y}" />).
 
 <BlockMath math="\begin{aligned}
-\text{X}^B\text{X}^b\times\text{X}^b\text{Y}\ \rightarrow\ &\text{X}^B\text{X}^b,\ \text{X}^b\text{X}^b,\ \text{X}^B\text{Y},\ \text{X}^b\text{Y}\\
-P(\text{colour-blind}\mid\text{son})&=\tfrac12\\
-P(\text{colour-blind daughter})&=\tfrac14
+\mathrm{X}^B\mathrm{X}^b \times \mathrm{X}^b\mathrm{Y} &\to \mathrm{X}^B\mathrm{X}^b,\ \mathrm{X}^b\mathrm{X}^b,\ \mathrm{X}^B\mathrm{Y},\ \mathrm{X}^b\mathrm{Y} \\
+P(\text{colour-blind} \mid \text{son}) &= \frac{1}{2} \\
+P(\text{colour-blind daughter}) &= \frac{1}{4}
 \end{aligned}" />
 
-The first question already knows the child is a son, so the probability is counted among sons only. The second question covers all children. So the answer is <InlineMath math="\tfrac12" /> and <InlineMath math="\tfrac14" />.
+Trace the four equally likely offspring outcomes in the diagram below to see how conditioning on sex changes the denominator from <InlineMath math="4" /> to <InlineMath math="2" />.
 
-# Why the other options are wrong
+<Mermaid
+  title={<>Offspring Outcomes for <InlineMath math="\mathrm{X}^B\mathrm{X}^b \times \mathrm{X}^b\mathrm{Y}" /></>}
+  description={
+    <>
+      Four equally likely genotypes split into two daughters (one carrier, one
+      colour-blind) and two sons (one normal, one colour-blind).
+    </>
+  }
+  footer={
+    <>
+      Among <InlineMath math="2" /> sons, <InlineMath math="1" /> is colour-blind (<InlineMath math="\frac{1}{2}" />). Among all <InlineMath math="4" /> children, <InlineMath math="1" /> is a colour-blind daughter (<InlineMath math="\frac{1}{4}" />).
+    </>
+  }
+  chart={`flowchart TD
+    P["Parents: XBXb x XbY"] --> D1["XBXb: normal carrier daughter"]
+    P --> D2["XbXb: colour-blind daughter (1 of 4)"]
+    P --> S1["XBY: normal son (1 of 2 sons)"]
+    P --> S2["XbY: colour-blind son (1 of 2 sons)"]`}
+/>
 
-- <InlineMath math="\tfrac14" /> for the son counts among all children, but **the child is already known to be a son**.
-- <InlineMath math="0" /> assumes daughters cannot be colour-blind, but the father gives <InlineMath math="\text{X}^b" /> and the mother can give <InlineMath math="\text{X}^b" /> too.
-- <InlineMath math="\tfrac12" /> for the daughter counts among daughters only, but the question asks about the first child out of all outcomes.
+Notice the distinction in **sample space**: the first part fixes the child as a son (denominator <InlineMath math="2" />), while the second part covers every possible first child (denominator <InlineMath math="4" />).
+
+## Why the other options are wrong
+
+- <InlineMath math="\frac{1}{4}" /> for the son divides by all <InlineMath math="4" /> children, ignoring that **the child is already known to be a son**.
+- <InlineMath math="0" /> assumes daughters cannot be colour-blind, forgetting that both parents can contribute <InlineMath math="\mathrm{X}^b" /> to form <InlineMath math="\mathrm{X}^b\mathrm{X}^b" />.
+- <InlineMath math="\frac{1}{2}" /> for the daughter counts only among daughters rather than among all possible first children.
+
+# Answer
+
+The probability that their first son is colour-blind is <InlineMath math="\frac{1}{2}" />, and the probability that their first child is a colour-blind daughter is <InlineMath math="\frac{1}{4}" />.

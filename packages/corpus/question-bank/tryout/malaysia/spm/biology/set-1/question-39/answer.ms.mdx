@@ -1,18 +1,79 @@
-# Daripada bilangan per petak kepada kepadatan
+# Diberi
 
-**Luas satu petak ialah sisi dikuasaduakan**, jadi <InlineMath math="0.5\times0.5=0.25\text{ m}^2" />, bukan <InlineMath math="0.5\text{ m}^2" />. Bahagikan bilangan tumbuhan dengan jumlah luas semua petak untuk mendapat kepadatan, kemudian darab dengan luas padang.
+Keluasan padang ialah <InlineMath math="200\text{ m}^2" />. Sepuluh petak persampelan segi empat sama **bersisi <InlineMath math="0.5\text{ m}" />** diletakkan secara rawak.
+
+Jumlah tumbuhan dalam kesemua <InlineMath math="10" /> petak ialah <InlineMath math="45" />, dan spesies ditemui dalam <InlineMath math="7" /> daripada <InlineMath math="10" /> petak.
+
+# Ditanya
+
+Cari anggaran populasi tumbuhan di seluruh padang dan peratus kekerapannya.
+
+# Penyelesaian
+
+Bayangkan meletakkan bingkai bersisi <InlineMath math="0.5\text{ m}" /> di atas jubin <InlineMath math="1\text{ m} \times 1\text{ m}" />. Empat bingkai kecil muat dalam satu jubin, maka luas satu petak cuma <InlineMath math="0.25\text{ m}^2" />, bukan <InlineMath math="0.5\text{ m}^2" />.
+
+> Luas petak ialah sisi kuasa dua, manakala peratus kekerapan mengira pecahan petak yang mengandungi spesies dan bukan bilangan individu.
+
+Hitung **jumlah luas sampel**, cari kepadatan per meter persegi, darabkan dengan luas padang, dan kira peratus kekerapan secara berasingan.
 
 <BlockMath math="\begin{aligned}
-\text{luas sampel}&=10\times0.25=2.5\text{ m}^2\\
-\text{kepadatan}&=\frac{45}{2.5}=18\text{ tumbuhan per m}^2\\
-\text{populasi}&=18\times200=3600\\
-\text{kekerapan}&=\frac{7}{10}\times100\%=70\%
+\text{luas sampel} &= 10 \times (0.5 \times 0.5) = 2.5\text{ m}^2 \\
+\text{kepadatan} &= \frac{45}{2.5} = 18\text{ tumbuhan m}^{-2} \\
+\text{populasi} &= 18 \times 200 = 3600\text{ tumbuhan} \\
+\text{kekerapan} &= \frac{7}{10} \times 100\% = 70\%
 \end{aligned}" />
 
-Kekerapan dikira daripada bilangan petak yang mengandungi tumbuhan itu, bukan daripada bilangan tumbuhan. Jadi, anggaran populasinya ialah <InlineMath math="3600" /> tumbuhan dan kekerapannya <InlineMath math="70\%" />.
+Gerakkan panjang sisi petak <InlineMath math="s" /> di bawah untuk melihat mengapa pengkuasaduaan <InlineMath math="s" /> menjadikan anggaran populasi empat kali lebih besar pada <InlineMath math="s = 0.5\text{ m}" /> (<InlineMath math="3600" />) berbanding <InlineMath math="s = 1\text{ m}" /> (<InlineMath math="900" />).
 
-# Kenapa pilihan lain salah
+<MathVisual
+  title={<>Anggaran Populasi Padang melawan Panjang Sisi Petak</>}
+  description={
+    <>
+      Dengan <InlineMath math="45" /> tumbuhan dalam <InlineMath math="10" />{" "}
+      petak di padang <InlineMath math="200\text{ m}^2" />,{" "}
+      <InlineMath math="P(s) = 900 / s^2" /> bersamaan <InlineMath math="3600" />{" "}
+      pada <InlineMath math="s = 0.5\text{ m}" />.
+    </>
+  }
+  footer={
+    <>
+      Menyusutkan sisi daripada <InlineMath math="1\text{ m}" /> kepada <InlineMath math="0.5\text{ m}" /> menggandaempatkan populasi kepada <InlineMath math="3600" />.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0.35, max: 1.05 }, y: { min: 0, max: 6000 } },
+    view: { kind: "fit", padding: 0.08 },
+    parameters: [
+      { name: "s", min: 0.4, max: 1, value: 0.5, step: 0.1, label: "s" },
+    ],
+    objects: [
+      { id: "pop-curve", kind: "function", appearance: "primary", formula: "900 / (x ^ 2)", domain: { min: 0.4, max: 1 } },
+      { id: "guide-half", kind: "segment", appearance: "construction", from: { x: 0.5, y: 0 }, to: { x: 0.5, y: 3600 } },
+      { id: "pt-half", kind: "marker", appearance: "answer", x: "0.5", y: "3600" },
+      { id: "pt-one", kind: "marker", appearance: "construction", x: "1", y: "900" },
+      { id: "probe", kind: "marker", appearance: "warning", x: "s", y: "900 / (s ^ 2)" },
+    ],
+    readouts: [
+      { key: "quadrat-area", formula: "s * s" },
+      { key: "field-population", formula: "900 / (s ^ 2)" },
+    ],
+  }}
+  labels={{
+    s: <>Sisi petak <InlineMath math="s" /> (m)</>,
+    "quadrat-area": <>Luas satu petak (<InlineMath math="\text{m}^2" />)</>,
+    "field-population": <>Anggaran populasi padang</>,
+  }}
+/>
 
-- <InlineMath math="900" /> mendarab purata per petak, <InlineMath math="4.5" />, dengan <InlineMath math="200" />, sedangkan **satu petak hanya seluas <InlineMath math="0.25\text{ m}^2" />**.
-- <InlineMath math="45\%" /> menggunakan bilangan tumbuhan sebagai kekerapan, sedangkan kekerapan mengira petak yang mengandungi tumbuhan itu.
-- <InlineMath math="1800" /> menggunakan <InlineMath math="0.5\text{ m}^2" /> sebagai luas petak, sedangkan <InlineMath math="0.5\text{ m}" /> ialah panjang sisinya.
+Semakan langsung sepadan: <InlineMath math="2.5\text{ m}^2" /> muat tepat <InlineMath math="80" /> kali dalam <InlineMath math="200\text{ m}^2" />, dan <InlineMath math="80 \times 45 = 3600" /> tumbuhan.
+
+## Mengapa pilihan lain salah
+
+- <InlineMath math="900" /> mendarab purata per petak (<InlineMath math="4.5" />) terus dengan <InlineMath math="200" />, menganggap **setiap petak seluas <InlineMath math="1\text{ m}^2" />, bukan <InlineMath math="0.25\text{ m}^2" />**.
+- <InlineMath math="45\%" /> menggunakan bilangan tumbuhan sebagai kekerapan, sedangkan kekerapan mengira <InlineMath math="7" /> petak berisi tumbuhan daripada <InlineMath math="10" />.
+- <InlineMath math="1800" /> menggunakan panjang sisi <InlineMath math="0.5" /> sebagai luas petak tanpa menguasaduakannya menjadi <InlineMath math="0.25\text{ m}^2" />.
+
+# Jawapan
+
+Anggaran populasi tumbuhan di seluruh padang ialah <InlineMath math="3600" />, dan peratus kekerapannya ialah <InlineMath math="70\%" />.

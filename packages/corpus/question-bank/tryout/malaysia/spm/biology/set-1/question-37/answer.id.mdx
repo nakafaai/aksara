@@ -1,16 +1,59 @@
-# Ikuti keempat sperma
+# Diketahui
 
-Meiosis I berjalan normal, jadi kedua spermatosit sekunder membawa <InlineMath math="23" /> kromosom. Sel yang normal menghasilkan dua sperma dengan <InlineMath math="23" /> kromosom. Pada sel yang gagal, **kedua kromatid kromosom <InlineMath math="21" /> masuk ke satu sperma**, sehingga satu sperma membawa <InlineMath math="24" /> dan yang lain <InlineMath math="22" />.
+Saat spermatogenesis, spermatosit primer (<InlineMath math="46" /> kromosom) menyelesaikan **meiosis I secara normal**, membentuk dua spermatosit sekunder yang masing-masing membawa <InlineMath math="23" /> kromosom.
+
+Pada **hanya satu** spermatosit sekunder, kedua kromatid saudara kromosom <InlineMath math="21" /> gagal berpisah saat meiosis II, sedangkan sel satunya membelah normal. Tiap sperma membuahi sel telur normal (<InlineMath math="23" /> kromosom).
+
+# Ditanyakan
+
+Tentukan pecahan dari keempat sperma yang menghasilkan anak dengan sindrom Down, serta jumlah kromosom anak itu.
+
+# Penyelesaian
+
+Bayangkan membagi dua set berisi <InlineMath math="23" /> kartu ke empat amplop. Set pertama terbagi rapi (<InlineMath math="23" /> dan <InlineMath math="23" />), sedangkan set kedua memasukkan kedua kartu nomor <InlineMath math="21" /> ke satu amplop (<InlineMath math="24" /> dan <InlineMath math="22" />), sehingga hanya <InlineMath math="1" /> dari <InlineMath math="4" /> amplop yang kelebihan kromosom <InlineMath math="21" />.
+
+> Gagal berpisah pada satu sel saat meiosis II hanya memengaruhi dua dari empat gamet, menghasilkan satu gamet berlebih dan satu gamet kekurangan satu kromosom.
+
+Lacak **keempat sperma** lalu tambahkan <InlineMath math="23" /> kromosom dari sel telur normal.
 
 <BlockMath math="\begin{aligned}
-\text{sperma}&:\ 23,\ 23,\ 24,\ 22\\
-24+23&=47\ \text{kromosom (tiga salinan kromosom 21)}
+\text{kromosom sperma} &: 23,\ 23,\ 24\ (+21),\ 22\ (-21) \\
+\text{kromosom zigot} &: 46,\ 46,\ 47\ (\text{trisomi } 21),\ 45\ (\text{monosomi } 21)
 \end{aligned}" />
 
-Hanya sperma dengan <InlineMath math="24" /> kromosom yang menghasilkan sindrom Down. Jadi, pecahannya <InlineMath math="\tfrac14" /> dan anak itu punya <InlineMath math="47" /> kromosom.
+Ikuti pohon pembelahan di bawah untuk memastikan tepat satu dari empat sperma menghasilkan trisomi <InlineMath math="21" /> (sindrom Down).
 
-# Mengapa pilihan lain salah
+<Mermaid
+  title={<>Gagal Berpisah Meiosis II pada Satu Spermatosit Sekunder</>}
+  description={
+    <>
+      Meiosis I normal menghasilkan dua sel haploid (<InlineMath math="23" />).
+      Hanya satu sel gagal saat meiosis II, membentuk sperma dengan{" "}
+      <InlineMath math="23, 23, 24, 22" /> kromosom.
+    </>
+  }
+  footer={
+    <>
+      Hanya satu sperma <InlineMath math="24" /> (<InlineMath math="\frac{1}{4}" />) bertemu telur <InlineMath math="23" /> menjadi zigot <InlineMath math="47" />.
+    </>
+  }
+  chart={`flowchart TD
+    P["Spermatosit primer: 46"] --> A["Sel sekunder normal: 23"]
+    P --> B["Sel sekunder gagal pisah: 23"]
+    A --> S1["Sperma 23 + telur 23 -> 46 normal"]
+    A --> S2["Sperma 23 + telur 23 -> 46 normal"]
+    B --> S3["Sperma 24 (+21) + telur 23 -> 47 sindrom Down"]
+    B --> S4["Sperma 22 (-21) + telur 23 -> 45 monosomi"]`}
+/>
 
-- <InlineMath math="\tfrac12" /> memakai pola gagal berpisah pada meiosis I, padahal **di sini meiosis I berjalan normal** dan hanya satu sel yang gagal.
-- <InlineMath math="45" /> berasal dari sperma dengan <InlineMath math="22" /> kromosom, yang menghasilkan monosomi, bukan sindrom Down.
-- <InlineMath math="\tfrac12" /> dan <InlineMath math="45" /> menggabungkan kedua kesalahan itu.
+Hanya sperma berkromosom <InlineMath math="24" /> yang membentuk **tiga salinan kromosom <InlineMath math="21" />** (<InlineMath math="24 + 23 = 47" />), sehingga pecahannya tepat <InlineMath math="\frac{1}{4}" />.
+
+## Mengapa pilihan lain salah
+
+- <InlineMath math="\frac{1}{2}" /> dan <InlineMath math="47" /> adalah pola gagal berpisah saat meiosis I, padahal **di sini meiosis I normal** dan hanya satu sel sekunder yang gagal.
+- <InlineMath math="\frac{1}{4}" /> dan <InlineMath math="45" /> berasal dari sperma <InlineMath math="22" /> kromosom yang memicu monosomi (<InlineMath math="45" />), bukan sindrom Down (<InlineMath math="47" />).
+- <InlineMath math="\frac{1}{2}" /> dan <InlineMath math="45" /> menggabungkan kedua kekeliruan sekaligus.
+
+# Jawaban
+
+Pecahan sperma yang menghasilkan anak sindrom Down adalah <InlineMath math="\frac{1}{4}" />, dan anak itu memiliki <InlineMath math="47" /> kromosom.

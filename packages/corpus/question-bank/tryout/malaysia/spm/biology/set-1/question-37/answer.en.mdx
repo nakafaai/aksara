@@ -1,16 +1,59 @@
-# Follow all four sperm
+# Given
 
-Meiosis I is normal, so both secondary spermatocytes carry <InlineMath math="23" /> chromosomes. The normal cell gives two sperm with <InlineMath math="23" /> chromosomes. In the faulty cell, **both chromatids of chromosome <InlineMath math="21" /> go into one sperm**, so one sperm carries <InlineMath math="24" /> and the other <InlineMath math="22" />.
+During spermatogenesis, a primary spermatocyte (<InlineMath math="46" /> chromosomes) completes **meiosis I normally**, forming two secondary spermatocytes with <InlineMath math="23" /> chromosomes each.
+
+In **only one** secondary spermatocyte, the two sister chromatids of chromosome <InlineMath math="21" /> fail to separate during meiosis II, while the other cell divides normally. Each sperm fertilises a normal egg (<InlineMath math="23" /> chromosomes).
+
+# Asked
+
+Find what fraction of the four sperm would produce a child with Down syndrome, and how many chromosomes that child would have.
+
+# Solution
+
+Imagine sorting two full packs of <InlineMath math="23" /> cards into four envelopes. The first pack deals cleanly (<InlineMath math="23" /> and <InlineMath math="23" />), while the second slips both copies of card <InlineMath math="21" /> into one envelope (<InlineMath math="24" /> and <InlineMath math="22" />), so only <InlineMath math="1" /> of <InlineMath math="4" /> envelopes carries an extra chromosome <InlineMath math="21" />.
+
+> Non-disjunction in one cell during meiosis II affects only two of the four gametes, producing one gamete with an extra chromosome and one missing a chromosome.
+
+Track **all four sperm** and add the <InlineMath math="23" /> chromosomes contributed by the normal egg.
 
 <BlockMath math="\begin{aligned}
-\text{sperm}&:\ 23,\ 23,\ 24,\ 22\\
-24+23&=47\ \text{chromosomes (three copies of chromosome 21)}
+\text{sperm chromosomes} &: 23,\ 23,\ 24\ (+21),\ 22\ (-21) \\
+\text{zygote chromosomes} &: 46,\ 46,\ 47\ (\text{trisomy } 21),\ 45\ (\text{monosomy } 21)
 \end{aligned}" />
 
-Only the sperm with <InlineMath math="24" /> chromosomes gives Down syndrome. So the fraction is <InlineMath math="\tfrac14" /> and the child has <InlineMath math="47" /> chromosomes.
+Follow the cell-division tree below to confirm that exactly one of the four sperm leads to trisomy <InlineMath math="21" /> (Down syndrome).
 
-# Why the other options are wrong
+<Mermaid
+  title={<>Meiosis II Non-Disjunction in One Secondary Spermatocyte</>}
+  description={
+    <>
+      Normal meiosis I produces two haploid cells (<InlineMath math="23" /> each).
+      Only one cell fails in meiosis II, yielding sperm with{" "}
+      <InlineMath math="23, 23, 24, 22" /> chromosomes.
+    </>
+  }
+  footer={
+    <>
+      Only the single <InlineMath math="24" />-chromosome sperm (<InlineMath math="\frac{1}{4}" />) joins a <InlineMath math="23" /> egg to give <InlineMath math="47" />.
+    </>
+  }
+  chart={`flowchart TD
+    P["Primary spermatocyte: 46"] --> A["Normal secondary cell: 23"]
+    P --> B["Faulty secondary cell: 23"]
+    A --> S1["Sperm 23 + egg 23 -> 46 normal"]
+    A --> S2["Sperm 23 + egg 23 -> 46 normal"]
+    B --> S3["Sperm 24 (+21) + egg 23 -> 47 Down syndrome"]
+    B --> S4["Sperm 22 (-21) + egg 23 -> 45 monosomy"]`}
+/>
 
-- <InlineMath math="\tfrac12" /> uses the pattern of non-disjunction in meiosis I, but **here meiosis I is normal** and only one cell fails.
-- <InlineMath math="45" /> comes from the sperm with <InlineMath math="22" /> chromosomes, which gives monosomy, not Down syndrome.
-- <InlineMath math="\tfrac12" /> and <InlineMath math="45" /> combines both of those mistakes.
+Only the sperm with <InlineMath math="24" /> chromosomes produces **three copies of chromosome <InlineMath math="21" />** (<InlineMath math="24 + 23 = 47" />), giving a fraction of <InlineMath math="\frac{1}{4}" />.
+
+## Why the other options are wrong
+
+- <InlineMath math="\frac{1}{2}" /> and <InlineMath math="47" /> matches non-disjunction in meiosis I, where two sperm get <InlineMath math="24" />, yet **here meiosis I is normal** and only one cell fails.
+- <InlineMath math="\frac{1}{4}" /> and <InlineMath math="45" /> follows the <InlineMath math="22" />-chromosome sperm, which gives monosomy (<InlineMath math="45" />), not Down syndrome (<InlineMath math="47" />).
+- <InlineMath math="\frac{1}{2}" /> and <InlineMath math="45" /> combines both mistakes at once.
+
+# Answer
+
+A fraction of <InlineMath math="\frac{1}{4}" /> of the four sperm would produce a child with Down syndrome, and that child would have <InlineMath math="47" /> chromosomes.

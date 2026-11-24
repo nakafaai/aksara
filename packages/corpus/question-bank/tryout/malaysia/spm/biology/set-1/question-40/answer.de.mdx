@@ -1,16 +1,80 @@
-# Wachstumszeit nach der Anlaufphase
+# Gegeben
 
-In der Anlaufphase teilen sich die Zellen nicht, also **zählt nur die Zeit nach der Anlaufphase** für Teilungen. Von den <InlineMath math="120" /> Minuten sind die ersten <InlineMath math="40" /> Anlaufphase, es bleiben also <InlineMath math="80" /> Minuten Wachstum.
+Eine Kultur startet mit <InlineMath math="100" /> Bakterienzellen. Zuerst durchlaufen sie eine **Lag-Phase von <InlineMath math="40" /> Minuten** ohne Teilung, danach **verdoppeln sie sich alle <InlineMath math="20" /> Minuten** ohne Absterben.
+
+Die gesamte beobachtete Zeit beträgt <InlineMath math="2" /> Stunden (<InlineMath math="120" /> Minuten).
+
+# Gesucht
+
+Bestimme die Anzahl der Bakterienzellen genau <InlineMath math="2" /> Stunden nach dem Ansetzen der Kultur.
+
+# Lösung
+
+Stell dir vor, die Bakterien wärmen sich die ersten <InlineMath math="40" /> Minuten auf, bevor das Verdopplungsrennen beginnt. Nur die übrigen <InlineMath math="80" /> Minuten führen zu Zellteilungen, genau vier Verdopplungen.
+
+> Exponentielles Wachstum beginnt erst nach dem Ende der Lag-Phase, deshalb zieht man die Lag-Zeit zuerst von der Gesamtzeit ab.
+
+Rechne <InlineMath math="2" /> Stunden in Minuten um, bestimme die **Anzahl der Verdopplungen** nach der Lag-Phase und wende <InlineMath math="N = N_0 \times 2^k" /> an.
 
 <BlockMath math="\begin{aligned}
-\text{Zahl der Verdopplungen}&=\frac{120-40}{20}=4\\
-N&=100\times2^4=1600
+t_{\text{Wachstum}} &= 120 - 40 = 80\text{ Minuten} \\
+k &= \frac{80}{20} = 4\text{ Verdopplungen} \\
+N &= 100 \times 2^4 = 100 \times 16 = 1600\text{ Zellen}
 \end{aligned}" />
 
-Nach <InlineMath math="2" /> Stunden gibt es also <InlineMath math="1600" /> Bakterienzellen.
+Verschiebe die Zeit <InlineMath math="m" /> unten, um die flache Lag-Phase bis Minute <InlineMath math="40" /> und das anschließende Wachstum auf <InlineMath math="1600" /> Zellen bei Minute <InlineMath math="120" /> zu verfolgen.
 
-# Warum die anderen Antworten falsch sind
+<MathVisual
+  title={<>Bakterienzahl nach einer 40-minütigen Lag-Phase</>}
+  description={
+    <>
+      Bis Minute <InlineMath math="40" /> bleibt die Zahl konstant bei{" "}
+      <InlineMath math="100" />, dann steigt{" "}
+      <InlineMath math="N(m) = 100 \cdot 2^{(m - 40)/20}" /> auf{" "}
+      <InlineMath math="1600" /> bei <InlineMath math="m = 120" /> Minuten.
+    </>
+  }
+  footer={
+    <>
+      Vier Verdopplungen nach Minute <InlineMath math="40" /> steigern <InlineMath math="100" /> Zellen auf <InlineMath math="1600" /> bei Minute <InlineMath math="120" />.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 140 }, y: { min: 0, max: 3500 } },
+    view: { kind: "fit", padding: 0.08 },
+    parameters: [
+      { name: "m", min: 40, max: 140, value: 120, step: 20, label: "m" },
+    ],
+    objects: [
+      { id: "lag-phase", kind: "segment", appearance: "construction", from: { x: 0, y: 100 }, to: { x: 40, y: 100 } },
+      { id: "exp-phase", kind: "function", appearance: "primary", formula: "100 * 2 ^ ((x - 40) / 20)", domain: { min: 40, max: 140 } },
+      { id: "guide-120", kind: "segment", appearance: "construction", from: { x: 120, y: 0 }, to: { x: 120, y: 1600 } },
+      { id: "pt-120", kind: "marker", appearance: "answer", x: "120", y: "1600" },
+      { id: "probe", kind: "marker", appearance: "warning", x: "m", y: "100 * 2 ^ ((m - 40) / 20)" },
+    ],
+    readouts: [
+      { key: "elapsed-time", formula: "m" },
+      { key: "bacteria-count", formula: "100 * 2 ^ ((m - 40) / 20)" },
+    ],
+  }}
+  labels={{
+    m: <>Verstrichene Zeit <InlineMath math="m" /> (min)</>,
+    "elapsed-time": <>Gesamtzeit (min)</>,
+    "bacteria-count": <>Bakterienzahl</>,
+  }}
+/>
 
-- <InlineMath math="6400" /> rechnet alle <InlineMath math="120" /> Minuten als Verdopplungszeit, doch **die ersten <InlineMath math="40" /> Minuten sind Anlaufphase**.
-- <InlineMath math="500" /> addiert pro Verdopplung <InlineMath math="100" /> Zellen, doch die Zahl verdoppelt sich, statt um einen festen Betrag zu wachsen.
-- <InlineMath math="3200" /> zählt fünf Verdopplungen, eine zu viel.
+Die Schrittprobe zu den Minuten <InlineMath math="40, 60, 80, 100, 120" /> bestätigt das Ergebnis.
+
+<BlockMath math="100 \to 200 \to 400 \to 800 \to 1600" />
+
+## Warum die anderen Optionen falsch sind
+
+- <InlineMath math="6400" /> rechnet mit <InlineMath math="6" /> Verdopplungen über volle <InlineMath math="120" /> Minuten und **vergisst die teilungsfreie Lag-Phase von <InlineMath math="40" /> Minuten**.
+- <InlineMath math="500" /> addiert <InlineMath math="100" /> Zellen pro Schritt statt jedes Mal zu verdoppeln.
+- <InlineMath math="3200" /> zählt <InlineMath math="5" /> Verdopplungen (Minute <InlineMath math="140" />), also eine Generation zu viel.
+
+# Antwort
+
+Nach <InlineMath math="2" /> Stunden befinden sich <InlineMath math="1600" /> Bakterienzellen im Medium.

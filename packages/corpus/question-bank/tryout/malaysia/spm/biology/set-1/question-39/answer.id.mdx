@@ -1,18 +1,79 @@
-# Dari jumlah per kuadrat ke kepadatan
+# Diketahui
 
-**Luas satu kuadrat adalah sisi dikuadratkan**, jadi <InlineMath math="0{,}5\times0{,}5=0{,}25\text{ m}^2" />, bukan <InlineMath math="0{,}5\text{ m}^2" />. Bagi jumlah tumbuhan dengan luas total semua kuadrat untuk mendapat kepadatan, lalu kalikan dengan luas padang.
+Luas padang adalah <InlineMath math="200\text{ m}^2" />. Sepuluh kuadrat persegi **bersisi <InlineMath math="0{,}5\text{ m}" />** diletakkan secara acak.
+
+Total tumbuhan di seluruh <InlineMath math="10" /> kuadrat adalah <InlineMath math="45" /> individu, dan spesies ditemukan di <InlineMath math="7" /> dari <InlineMath math="10" /> kuadrat.
+
+# Ditanyakan
+
+Tentukan perkiraan populasi total tumbuhan di seluruh padang serta persentase frekuensinya.
+
+# Penyelesaian
+
+Bayangkan menaruh bingkai persegi bersisi <InlineMath math="0{,}5\text{ m}" /> di atas ubin berukuran <InlineMath math="1\text{ m} \times 1\text{ m}" />. Empat bingkai kecil muat dalam satu ubin, sehingga luas satu kuadrat hanya <InlineMath math="0{,}25\text{ m}^2" />, bukan <InlineMath math="0{,}5\text{ m}^2" />.
+
+> Luas kuadrat sama dengan sisi kuadrat, sedangkan persentase frekuensi menghitung proporsi kuadrat yang berisi spesies, bukan jumlah individunya.
+
+Hitung **luas sampel total**, cari kepadatan per meter persegi, kalikan luas padang, lalu hitung persentase frekuensi secara terpisah.
 
 <BlockMath math="\begin{aligned}
-\text{luas sampel}&=10\times0{,}25=2{,}5\text{ m}^2\\
-\text{kepadatan}&=\frac{45}{2{,}5}=18\text{ tumbuhan per m}^2\\
-\text{populasi}&=18\times200=3600\\
-\text{frekuensi}&=\frac{7}{10}\times100\%=70\%
+\text{luas sampel} &= 10 \times (0{,}5 \times 0{,}5) = 2{,}5\text{ m}^2 \\
+\text{kepadatan} &= \frac{45}{2{,}5} = 18\text{ tumbuhan m}^{-2} \\
+\text{populasi} &= 18 \times 200 = 3600\text{ tumbuhan} \\
+\text{frekuensi} &= \frac{7}{10} \times 100\% = 70\%
 \end{aligned}" />
 
-Frekuensi dihitung dari jumlah kuadrat yang berisi tumbuhan itu, bukan dari jumlah tumbuhannya. Jadi, perkiraan populasinya <InlineMath math="3600" /> tumbuhan dan frekuensinya <InlineMath math="70\%" />.
+Geser panjang sisi kuadrat <InlineMath math="s" /> di bawah untuk melihat bagaimana pengkuadratan <InlineMath math="s" /> membuat perkiraan populasi empat kali lebih besar pada <InlineMath math="s = 0{,}5\text{ m}" /> (<InlineMath math="3600" />) dibanding <InlineMath math="s = 1\text{ m}" /> (<InlineMath math="900" />).
 
-# Mengapa pilihan lain salah
+<MathVisual
+  title={<>Perkiraan Populasi Padang terhadap Sisi Kuadrat</>}
+  description={
+    <>
+      Dengan <InlineMath math="45" /> tumbuhan pada <InlineMath math="10" />{" "}
+      kuadrat di padang <InlineMath math="200\text{ m}^2" />,{" "}
+      <InlineMath math="P(s) = 900 / s^2" /> bernilai <InlineMath math="3600" />{" "}
+      saat <InlineMath math="s = 0{,}5\text{ m}" />.
+    </>
+  }
+  footer={
+    <>
+      Sisi setengah meter (<InlineMath math="0{,}5\text{ m}" />) memperkecil luas jadi seperempat, sehingga populasi mencapai <InlineMath math="3600" />.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0.35, max: 1.05 }, y: { min: 0, max: 6000 } },
+    view: { kind: "fit", padding: 0.08 },
+    parameters: [
+      { name: "s", min: 0.4, max: 1, value: 0.5, step: 0.1, label: "s" },
+    ],
+    objects: [
+      { id: "pop-curve", kind: "function", appearance: "primary", formula: "900 / (x ^ 2)", domain: { min: 0.4, max: 1 } },
+      { id: "guide-half", kind: "segment", appearance: "construction", from: { x: 0.5, y: 0 }, to: { x: 0.5, y: 3600 } },
+      { id: "pt-half", kind: "marker", appearance: "answer", x: "0.5", y: "3600" },
+      { id: "pt-one", kind: "marker", appearance: "construction", x: "1", y: "900" },
+      { id: "probe", kind: "marker", appearance: "warning", x: "s", y: "900 / (s ^ 2)" },
+    ],
+    readouts: [
+      { key: "quadrat-area", formula: "s * s" },
+      { key: "field-population", formula: "900 / (s ^ 2)" },
+    ],
+  }}
+  labels={{
+    s: <>Sisi kuadrat <InlineMath math="s" /> (m)</>,
+    "quadrat-area": <>Luas satu kuadrat (<InlineMath math="\text{m}^2" />)</>,
+    "field-population": <>Perkiraan populasi padang</>,
+  }}
+/>
 
-- <InlineMath math="900" /> mengalikan rata-rata per kuadrat, <InlineMath math="4{,}5" />, dengan <InlineMath math="200" />, padahal **satu kuadrat hanya seluas <InlineMath math="0{,}25\text{ m}^2" />**.
-- <InlineMath math="45\%" /> memakai jumlah tumbuhan sebagai frekuensi, padahal frekuensi menghitung kuadrat yang berisi tumbuhan.
-- <InlineMath math="1800" /> memakai <InlineMath math="0{,}5\text{ m}^2" /> sebagai luas kuadrat, padahal <InlineMath math="0{,}5\text{ m}" /> adalah panjang sisinya.
+Uji balik cepat: luas <InlineMath math="2{,}5\text{ m}^2" /> termuat tepat <InlineMath math="80" /> kali di dalam <InlineMath math="200\text{ m}^2" />, dan <InlineMath math="80 \times 45 = 3600" /> tumbuhan.
+
+## Mengapa pilihan lain salah
+
+- <InlineMath math="900" /> mengalikan rata-rata per kuadrat (<InlineMath math="4{,}5" />) langsung dengan <InlineMath math="200" />, menganggap **luas satu kuadrat <InlineMath math="1\text{ m}^2" />, bukan <InlineMath math="0{,}25\text{ m}^2" />**.
+- <InlineMath math="45\%" /> memakai jumlah tumbuhan sebagai frekuensi, padahal frekuensi menghitung <InlineMath math="7" /> kuadrat berisi tumbuhan dari <InlineMath math="10" /> kuadrat.
+- <InlineMath math="1800" /> memakai panjang sisi <InlineMath math="0{,}5" /> sebagai luas kuadrat tanpa mengkuadratkannya menjadi <InlineMath math="0{,}25\text{ m}^2" />.
+
+# Jawaban
+
+Perkiraan populasi tumbuhan di seluruh padang adalah <InlineMath math="3600" />, dan persentase frekuensinya <InlineMath math="70\%" />.
