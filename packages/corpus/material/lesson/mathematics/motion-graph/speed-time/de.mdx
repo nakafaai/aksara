@@ -9,7 +9,9 @@ export const metadata = {
 
 ## Vom Fahrtbericht zum Diagramm
 
-Wenn du einträgst, wie schnell sich etwas in jedem Moment bewegt, bekommst du ein **Geschwindigkeit-Zeit-Diagramm**. Daraus liest du zwei Dinge ab. **Die Fläche unter der Linie ist der zurückgelegte Weg**, und **die Steigung der Linie ist die Beschleunigung**, also wie schnell das Tempo zu- oder abnimmt. Das Diagramm gilt hier für Körper, die sich nur in eine Richtung bewegen, darum rutscht die Linie nie unter die Zeitachse.
+Wenn du einträgst, wie schnell sich etwas in jedem Moment bewegt, bekommst du ein **Geschwindigkeit-Zeit-Diagramm**. Das Diagramm gilt hier für Körper, die sich nur in eine Richtung bewegen, darum rutscht die Linie nie unter die Zeitachse.
+
+> Im Geschwindigkeit-Zeit-Diagramm ist die Fläche unter der Linie der zurückgelegte Weg und die Steigung der Linie die Beschleunigung.
 
 Nimm ein Auto, das an einer roten Ampel steht. Bei Grün wird es gleichmäßig schneller, von <InlineMath math="0" /> auf <InlineMath math="12\text{ m/s}" /> in <InlineMath math="8" /> Sekunden. Dann fährt es <InlineMath math="20" /> Sekunden lang konstant <InlineMath math="12\text{ m/s}" />, biegt auf eine Hauptstraße ab und beschleunigt in <InlineMath math="10" /> Sekunden weiter auf <InlineMath math="20\text{ m/s}" />. An der nächsten roten Ampel bremst es gleichmäßig und steht nach <InlineMath math="10" /> Sekunden.
 
@@ -50,11 +52,17 @@ Nimm ein Auto, das an einer roten Ampel steht. Bei Grün wird es gleichmäßig s
   }}
 />
 
-Zur Einordnung: <InlineMath math="12\text{ m/s}" /> sind <InlineMath math="12 \times 3{,}6 = 43{,}2\text{ km/h}" />, und <InlineMath math="20\text{ m/s}" /> sind <InlineMath math="72\text{ km/h}" />. Schieb die Zeit auf Sekunde <InlineMath math="30" />. Das Auto ist seit <InlineMath math="2" /> Sekunden im dritten Teil, und dort steigt sein Tempo in <InlineMath math="10" /> Sekunden um <InlineMath math="8\text{ m/s}" />, also um <InlineMath math="0{,}8\text{ m/s}" /> pro Sekunde. Sein Tempo ist also <InlineMath math="12 + 0{,}8 \times 2 = 13{,}6\text{ m/s}" />, genau die Zahl im Diagramm.
+Zur Einordnung: <InlineMath math="12\text{ m/s}" /> entsprechen <InlineMath math="43{,}2\text{ km/h}" />, und <InlineMath math="20\text{ m/s}" /> entsprechen <InlineMath math="72\text{ km/h}" />. Schieb die Zeit auf Sekunde <InlineMath math="30" />. Das Auto ist seit <InlineMath math="2" /> Sekunden im dritten Teil und legt pro Sekunde <InlineMath math="0{,}8\text{ m/s}" /> zu:
+
+<BlockMath math="v = 12 + 0{,}8 \times 2 = 13{,}6\text{ m/s}" />
+
+Das ist genau der Wert, den das Diagramm anzeigt.
 
 ## Die Fläche unter der Linie
 
-Jetzt fährt dasselbe Auto im Labor. Während es fährt, füllt sich die Fläche unter seiner Tempolinie mit Farbe, und jeder Teil bekommt eine Zahl in Metern. Bevor du auf Abspielen drückst, schätz kurz: Welche Zahl erscheint unter dem waagerechten Teil? Dann lass das Labor laufen und vergleiche jede Zahl mit der Strecke, die das Auto auf der Straße schafft. Sie stimmen immer überein: **Die Fläche unter der Tempolinie ist der zurückgelegte Weg**.
+Jetzt fährt dasselbe Auto im Labor. Während es fährt, füllt sich die Fläche unter seiner Tempolinie mit Farbe, und jeder Teil bekommt eine Zahl in Metern.
+
+Bevor du auf Abspielen drückst, schätz kurz die Zahl unter dem waagerechten Teil. Dann lass das Labor laufen und vergleiche jede Zahl mit der Strecke: **Die Fläche unter der Tempolinie ist der zurückgelegte Weg**.
 
 <MotionAreaLab
   title={<>Ein Auto von Ampel zu Ampel</>}
@@ -92,7 +100,9 @@ Von Sekunde <InlineMath math="8" /> bis Sekunde <InlineMath math="28" /> fährt 
 
 <BlockMath math="\text{Weg} = \text{Tempo} \times \text{Zeit} = 12\text{ m/s} \times 20\text{ s} = 240\text{ m}" />
 
-Im Diagramm ist die Fläche unter dieser waagerechten Linie ein **Rechteck**, <InlineMath math="20" /> breit und <InlineMath math="12" /> hoch, mit dem Flächeninhalt <InlineMath math="240" />. Achte auf die Einheiten: Meter pro Sekunde mal Sekunden ergibt Meter. **Die Einheit dieser Fläche ist eine Längeneinheit**, und daran erkennst du, dass die Fläche wirklich ein Weg ist. Die Fläche unter einem Weg-Zeit-Diagramm liefert dagegen keinen Weg, denn ihre Einheit wäre Meter mal Sekunden.
+Im Diagramm ist die Fläche unter dieser waagerechten Linie ein **Rechteck**, <InlineMath math="20" /> breit und <InlineMath math="12" /> hoch, mit dem Flächeninhalt <InlineMath math="240" />.
+
+Achte auf die Einheiten: Meter pro Sekunde mal Sekunden ergibt Meter. **Die Einheit dieser Fläche ist eine Längeneinheit**, während die Fläche unter einem Weg-Zeit-Diagramm Meter mal Sekunden ergibt und keinen Weg liefert.
 
 ### Bei wechselndem Tempo
 
@@ -117,16 +127,18 @@ Wie schnell ändert sich das Tempo? Teil die Änderung des Tempos durch die Zeit
 
 <BlockMath math="a = \frac{v - u}{t}" />
 
-Dabei ist <InlineMath math="u" /> das Anfangstempo, <InlineMath math="v" /> das Endtempo und <InlineMath math="t" /> die Dauer. Im ersten Teil der Autofahrt gilt <InlineMath math="a = \tfrac{12 - 0}{8} = 1{,}5\text{ m/s}^2" />.
+Dabei ist <InlineMath math="u" /> das Anfangstempo, <InlineMath math="v" /> das Endtempo und <InlineMath math="t" /> die Dauer. Im ersten Teil der Autofahrt gilt:
 
-Der Zug in diesem Labor hat drei Bewegungen. Wähl jede aus, lies Anfangstempo, Endtempo und Dauer am Diagramm ab und berechne die Steigung, bevor du in die Tabelle schaust.
+<BlockMath math="a = \frac{12 - 0}{8} = 1{,}5\text{ m/s}^2" />
 
-<NonUniformLinearMotionGraphCard
+Dieses Diagramm zeigt drei Bewegungen eines Zuges auf denselben Achsen. Schieb die Zeit, lies Anfangstempo, Endtempo und Dauer jeder Linie ab und berechne die Steigung, bevor du in die Tabelle schaust.
+
+<MathVisual
   title={<>Drei Bewegungen eines Zuges</>}
   description={
     <>
-      Wähl eine Bewegung des Zuges. Anfangs- und Endtempo stehen auf der
-      senkrechten Achse, die Dauer auf der waagerechten.
+      Tempo in m/s gegen Zeit in Sekunden für drei Bewegungen eines Zuges:
+      aus dem Stand, schneller werden und bremsen.
     </>
   }
   footer={
@@ -135,15 +147,32 @@ Der Zug in diesem Labor hat drei Bewegungen. Wähl jede aus, lies Anfangstempo, 
       anderem Tempo.
     </>
   }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 6 }, y: { min: 0, max: 26 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [
+      { name: "w", min: 0, max: 4, value: 2, step: 0.5, label: "w" },
+    ],
+    objects: [
+      { id: "from-rest", kind: "polyline", vertices: [{ x: 0, y: 0 }, { x: 5, y: 20 }], appearance: "primary" },
+      { id: "speed-up", kind: "polyline", vertices: [{ x: 0, y: 8 }, { x: 4, y: 24 }], appearance: "secondary" },
+      { id: "brake", kind: "polyline", vertices: [{ x: 0, y: 24 }, { x: 5, y: 4 }], appearance: "warning" },
+      { id: "from-rest-now", kind: "marker", x: "w", y: "4w", appearance: "primary" },
+      { id: "speed-up-now", kind: "marker", x: "w", y: "8 + 4w", appearance: "secondary" },
+      { id: "brake-now", kind: "marker", x: "w", y: "24 - 4w", appearance: "warning" },
+    ],
+    readouts: [
+      { key: "from-rest", formula: "4w" },
+      { key: "speed-up", formula: "8 + 4w" },
+      { key: "brake", formula: "24 - 4w" },
+    ],
+  }}
   labels={{
-    chooseScenario: "Bewegung des Zuges wählen",
-    scenarioNames: {
-      "from-rest": "Aus dem Stand",
-      "speed-up": "Schneller werden",
-      brake: "Bremsen",
-    },
-    timeAxis: "Zeit (s)",
-    velocityAxis: "Tempo (m/s)",
+    w: <>Zeit in Sekunden</>,
+    "from-rest": <>Aus dem Stand (m/s)</>,
+    "speed-up": <>Schneller werden (m/s)</>,
+    brake: <>Bremsen (m/s)</>,
   }}
 />
 
@@ -159,7 +188,38 @@ Die ersten beiden Bewegungen haben dieselbe Beschleunigung, obwohl ihr Tempo ver
 
 Eine steigende Linie heißt, dass das Tempo zunimmt, und die Beschleunigung ist positiv. Eine waagerechte Linie heißt: **gleichbleibendes Tempo, Beschleunigung null**. Von Sekunde <InlineMath math="8" /> bis Sekunde <InlineMath math="28" /> fährt das Auto weiter <InlineMath math="12" /> Meter pro Sekunde. Im [Diagramm von Weg und Zeit](/de/faecher/mathematik/bewegungsdiagramme/weg-zeit-diagramme) bedeutet eine waagerechte Linie dagegen, dass der Körper steht.
 
-Eine fallende Linie heißt, dass das Tempo abnimmt, und die Beschleunigung ist negativ. Ein Tempo, das so immer weiter sinkt, nennt man **Verzögerung** oder Abbremsen. Beim Bremsen des Autos gilt <InlineMath math="a = \tfrac{0 - 20}{10} = -2\text{ m/s}^2" />, die Verzögerung beträgt also <InlineMath math="2\text{ m/s}^2" />. Eine fallende Linie heißt nicht, dass das Auto rückwärts fährt. Es fährt weiter vorwärts, bis die Linie die Zeitachse berührt, und genau dort steht es.
+Eine fallende Linie heißt, dass das Tempo abnimmt, und die Beschleunigung ist negativ. Ein Tempo, das so immer weiter sinkt, nennt man **Verzögerung** oder Abbremsen. Beim Bremsen des Autos gilt:
+
+<BlockMath math="a = \frac{0 - 20}{10} = -2\text{ m/s}^2" />
+
+Die Verzögerung beträgt also <InlineMath math="2\text{ m/s}^2" />. Eine fallende Linie heißt nicht, dass das Auto rückwärts fährt. Es fährt weiter vorwärts, bis die Linie die Zeitachse berührt, und genau dort steht es.
+
+Beobachte diese gleichmäßige Verzögerung an einem Klotz, der eine schiefe Ebene hinaufgleitet. Der Klotz bewegt sich weiter bergauf, während sein Tempo gleichmäßig abnimmt, bis er am höchsten Punkt anhält:
+
+<InclineSlideLab
+  title={<>Gleichmäßiges Abbremsen auf einer Rampe</>}
+  footer={<>Der Klotz gleitet weiter bergauf und bremst gleichmäßig bis zum Stillstand.</>}
+  description={
+    <>
+      Ein <InlineMath math="5\text{ kg}" /> schwerer Klotz startet mit{" "}
+      <InlineMath math="12\text{ m/s}" /> eine <InlineMath math="30^\circ" />{" "}
+      steile Rampe hinauf gegen <InlineMath math="5\text{ N}" /> Reibung.
+    </>
+  }
+  angle={30}
+  friction={5}
+  gravity={10}
+  mass={5}
+  speed={12}
+  labels={{
+    along: <>Hangabtriebskraft</>,
+    deceleration: <>Verzögerung</>,
+    distance: <>Bremsweg</>,
+    viewLabel: "Ein Klotz gleitet eine schiefe Ebene hinauf und bremst gleichmäßig bis zum Stillstand ab",
+  }}
+/>
+
+Bei einer konstanten Verzögerung von <InlineMath math="6\text{ m/s}^2" /> sinkt das Tempo in <InlineMath math="2" /> Sekunden von <InlineMath math="12\text{ m/s}" /> auf null. Das Dreieck unter dieser fallenden Linie hat genau die Fläche <InlineMath math="12\text{ m}" />, passend zum Bremsweg im Labor.
 
 Die Tabelle stellt gegenüber, was dieselbe Linienform in beiden Diagrammen bedeutet. Die meisten Fehler entstehen, wenn du die Bedeutung aus dem einen Diagramm ins andere mitnimmst.
 
@@ -192,9 +252,12 @@ Diese drei Aufgaben werden nach und nach schwerer. **Skizzier bei jeder zuerst d
 
 **Aufgabe 1**. Die Linie steigt, bleibt waagerecht und fällt dann, und die Fläche darunter ist ein Trapez. Seine parallelen Seiten sind unten <InlineMath math="10" /> Sekunden und oben <InlineMath math="6" /> Sekunden lang, seine Höhe ist <InlineMath math="3" />:
 
+<MathContainer>
 <BlockMath math="\text{Weg} = \tfrac{1}{2}(10 + 6) \times 3 = 24\text{ m}" />
+<BlockMath math="\text{Probe Teil für Teil: } 3 + 18 + 3 = 24\text{ m}" />
+</MathContainer>
 
-Probe Teil für Teil: <InlineMath math="3 + 18 + 3 = 24\text{ m}" />. Der Aufzug steigt <InlineMath math="24\text{ m}" />, das sind <InlineMath math="24 \div 3 = 8" /> Stockwerke.
+Der Aufzug steigt <InlineMath math="24\text{ m}" />, das sind <InlineMath math="8" /> Stockwerke.
 
 **Aufgabe 2**. Das Endtempo ist unbekannt, also **schreibst du die Fläche mit <InlineMath math="v" /> auf**. Sie besteht aus einem Dreieck über <InlineMath math="4" /> Sekunden und einem Rechteck über <InlineMath math="12 - 4 = 8" /> Sekunden, und zusammen muss sie <InlineMath math="100" /> ergeben:
 
@@ -204,7 +267,9 @@ Probe Teil für Teil: <InlineMath math="3 + 18 + 3 = 24\text{ m}" />. Der Aufzug
 <BlockMath math="a = \frac{10 - 0}{4} = 2{,}5\text{ m/s}^2" />
 </MathContainer>
 
-Probe: Das Dreieck hat <InlineMath math="\tfrac{1}{2} \times 4 \times 10 = 20\text{ m}" />, das Rechteck <InlineMath math="8 \times 10 = 80\text{ m}" />, zusammen <InlineMath math="100\text{ m}" />.
+Probe durch Einsetzen von <InlineMath math="v = 10\text{ m/s}" /> in Dreieck und Rechteck:
+
+<BlockMath math="\tfrac{1}{2} \times 4 \times 10 + 8 \times 10 = 20 + 80 = 100\text{ m}" />
 
 **Aufgabe 3**. Die Tempolinie fällt, bleibt waagerecht und steigt wieder. Die Fläche darunter besteht aus zwei Trapezen und einem Rechteck:
 
