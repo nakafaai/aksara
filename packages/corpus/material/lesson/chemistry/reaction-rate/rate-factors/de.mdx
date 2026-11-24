@@ -1,39 +1,37 @@
 export const metadata = {
-  title: "Reaktionsgeschwindigkeit und Stoßtheorie",
+  title: "Reaktionsgeschwindigkeit Stoßtheorie und Katalysatoren",
   description:
-    "Berechne mittlere und momentane Reaktionsgeschwindigkeit, erkläre die Einflussfaktoren mit der Stoßtheorie und lies Energiediagramme richtig ab.",
+    "Mittlere und momentane Reaktionsgeschwindigkeit, Gasvolumenmessung, Stoßtheorie, Aktivierungsenergie und katalysierte Reaktionswege.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-11-16",
   subject: "Reaktionsgeschwindigkeit",
 };
 
-## Was Reaktionsgeschwindigkeit bedeutet
+## Reaktionsrate messen
 
-Die **Reaktionsgeschwindigkeit** ist die Änderung der Menge eines Edukts oder Produkts pro Zeiteinheit:
+Ein Feuerwerkskörper verglüht in Bruchteilen einer Sekunde, während ein Eisentor über Jahre rostet. Die **Reaktionsgeschwindigkeit** erfasst, wie schnell Edukte verbraucht oder Produkte pro Zeitspanne gebildet werden, und lässt sich mikroskopisch mit der **Stoßtheorie** begründen.
 
-<BlockMath math="\text{Reaktionsgeschwindigkeit} = \frac{\text{Mengenänderung von Edukt oder Produkt}}{\text{benötigte Zeit}}" />
+<BlockMath math="v = \frac{\Delta\text{Menge}}{\Delta t}" />
 
-Diese Menge kann das Volumen eines entstehenden Gases sein, die Masse eines Edukts, die abnimmt, oder die Zeit, bis sich ein Niederschlag bildet. Die Geschwindigkeit steigt, wenn **die Teilchen kleiner sind**, **die Konzentration höher ist**, **die Temperatur höher ist**, **ein Katalysator eingesetzt wird** oder **der Gasdruck höher ist**. Eine einzige Idee erklärt all diese Faktoren: die **Stoßtheorie**. In den Modellen hier fängst du ein Gas auf, zeichnest eine Tangente an einen Graphen und veränderst die Aktivierungsenergie.
+Chemiker verfolgen Gasvolumen, Massenverlust oder Trübungszeit, um Industrieprozesse zu steuern und Verderb zu bremsen. Zwei Informationen trennt jede Messkurve klar: Die Endhöhe zeigt die Ausbeute, die Steigung hingegen das Tempo.
 
-Schnelle Reaktionen wie eine Verbrennung laufen in einer Sekunde ab. Langsame Reaktionen wie das Rosten von Eisen dauern Wochen. Chemiker messen Geschwindigkeiten, um sie zu steuern, etwa um Ammoniak in einer Fabrik schneller herzustellen oder das Verderben von Lebensmitteln zu bremsen.
+### Gasvolumenkurven
 
-## Geschwindigkeit über das entstehende Gas messen
-
-Wenn Calciumcarbonat mit Salzsäure reagiert, entsteht Kohlenstoffdioxid:
+Reagiert festes Calciumcarbonat mit überschüssiger Salzsäure, strömt Kohlenstoffdioxid in einen skalierten Kolbenprober:
 
 <BlockMath math="\mathrm{CaCO_3(s)} + 2\mathrm{HCl(aq)} \rightarrow \mathrm{CaCl_2(aq)} + \mathrm{H_2O(l)} + \mathrm{CO_2(g)}" />
 
-Das Gas wird in einem Kolbenprober aufgefangen, und sein Volumen wird in festen Zeitabständen notiert. Starte die beiden Versuche unten. Die Masse an Calciumcarbonat ist gleich, aber Versuch I nutzt Stücke und Versuch II Pulver.
+Vergleiche unten gleiche Massen aus Marmorstücken und feinem Marmorpulver mit überschüssiger Säure.
 
 <GasRateLab
-  title={<>Kohlenstoffdioxid aus Stücken und Pulver</>}
+  title={<>Kohlenstoffdioxid aus Marmorstücken und Pulver</>}
   description={
     <>
-      Zwei Erlenmeyerkolben sind mit Kolbenprobern verbunden. Dieselbe Masse
-      Calciumcarbonat reagiert mit Salzsäure im Überschuss, einmal als Stücke,
-      einmal als Pulver.
+      Gleiche Stoffmengen Calciumcarbonat reagieren mit überschüssiger
+      Salzsäure in zwei Kolben, einmal als Stücke und einmal als feines Pulver.
     </>
   }
+  footer={<>Feinere Zerteilung macht den Kurvenstart steiler, ändert aber die Endmenge nicht.</>}
   runs={[
     { amount: 0.02, solid: "chips" },
     { amount: 0.02, solid: "powder" },
@@ -41,28 +39,29 @@ Das Gas wird in einem Kolbenprober aufgefangen, und sein Volumen wird in festen 
   showCurves
   labels={{
     final: <>Endmenge an Kohlenstoffdioxid</>,
-    runs: [<>Versuch I</>, <>Versuch II</>],
-    solids: { chips: <>Stücke</>, granules: <>Körner</>, powder: <>Pulver</> },
+    runs: [<>Marmorstücke</>, <>Marmorpulver</>],
+    solids: { chips: <>Stücke</>, granules: <>Granulat</>, powder: <>Pulver</> },
     time: "Zeit",
-    view: "Aufgefangenes Gas in zwei Versuchen",
+    view: "Zwei Erlenmeyerkolben an Kolbenprobern im Vergleich von Marmorstücken und Pulver",
   }}
 />
 
-Die Pulverkurve ist am Anfang steiler, die Reaktion läuft also schneller. Beide Kurven flachen aber bei **derselben** Gasmenge ab, weil die Masse an Calciumcarbonat gleich ist und die Säure im Überschuss vorliegt. Die Teilchengröße ändert, **wie schnell** das Gas entsteht, nicht **wie viel**.
+Pulver steigt zu Beginn steiler an, weil seine freiliegende Oberfläche viel größer ist. Beide Kurven laufen jedoch auf **exakt dasselbe Endvolumen** hinaus, weil die Masse des limitierenden Feststoffs gleich bleibt.
 
-## Mittlere und momentane Geschwindigkeit
+### Mittelwert und Tangente
 
-Die **mittlere Geschwindigkeit** ist die gesamte Änderung geteilt durch die gesamte Zeit. Die **momentane Geschwindigkeit** ist die Steigung der **Tangente** an die Kurve in diesem Moment. Die Kurve unten beschreibt das Gasvolumen mit dem Modell <InlineMath math="V = 50(1 - e^{-t/25})" />, mit <InlineMath math="V" /> in <InlineMath math="\text{mL}" /> und <InlineMath math="t" /> in Sekunden. Beweg den Regler und sieh zu, wie die Tangente flacher wird.
+Die **mittlere Geschwindigkeit** teilt die Gesamtänderung durch die Gesamtzeit, während die **Momentangeschwindigkeit** der Steigung der **Tangente** an einem Zeitpunkt entspricht. Schiebe den Zeitregler unten und sieh, wie die Tangente abflacht.
 
 <MathVisual
-  title={<>Tangente an die Kurve des Gasvolumens</>}
+  title={<>Tangentensteigung entlang einer Gasvolumenkurve</>}
   description={
     <>
-      Die Kurve <InlineMath math="V = 50(1 - e^{-t/25})" />. Die rote Tangente
-      berührt die Kurve zur Zeit <InlineMath math="a" />, und ihre Steigung ist
-      die Reaktionsgeschwindigkeit in diesem Moment.
+      Gasvolumen in <InlineMath math="\text{cm}^3" /> über der Zeit in Sekunden,
+      wobei die Tangentensteigung die Momentangeschwindigkeit bei{" "}
+      <InlineMath math="a" /> liefert.
     </>
   }
+  footer={<>Die Tangente startet bei Zeit null am steilsten und flacht mit schwindenden Edukten ab.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: 0, max: 100 }, y: { min: 0, max: 55 } },
@@ -84,22 +83,22 @@ Die **mittlere Geschwindigkeit** ist die gesamte Änderung geteilt durch die ges
     ],
   }}
   labels={{
-    a: <>Zeit <InlineMath math="a" /> in Sekunden</>,
+    a: <>Zeit <InlineMath math="a" /> (s)</>,
     touch: <>Berührpunkt</>,
-    "volume-now": <>Gasvolumen in <InlineMath math="\text{mL}" /></>,
-    rate: <>Geschwindigkeit in <InlineMath math="\text{mL/s}" /></>,
+    "volume-now": <>Gasvolumen (<InlineMath math="\text{cm}^3" />)</>,
+    rate: <>Rate (<InlineMath math="\text{cm}^3\text{ s}^{-1}" />)</>,
   }}
 />
 
-Die Steigung nimmt ab, weil die Säurekonzentration und die Masse an Calciumcarbonat während der Reaktion beide sinken. Das Diagramm zeigt dasselbe als mittlere Geschwindigkeit in jedem <InlineMath math="20" />-Sekunden-Abschnitt, berechnet aus demselben Modell.
+Teile für die Momentangeschwindigkeit nie das Gesamtvolumen durch die Zeit, denn das ergibt nur den Durchschnitt seit Beginn. Zerlegt man das Modell in Zwanzig-Sekunden-Abschnitte, tritt der Abfall klar hervor.
 
 <Chart
-  title={<>Mittlere Geschwindigkeit in jedem Zeitabschnitt</>}
+  title={<>Mittlere Geschwindigkeit je Zwanzig-Sekunden-Abschnitt</>}
   bars="apart"
   categories={["0 bis 20 s", "20 bis 40 s", "40 bis 60 s", "60 bis 80 s", "80 bis 100 s"]}
   series={[
     {
-      label: "Mittlere Geschwindigkeit (mL/s)",
+      label: "Mittlere Rate (cm³/s)",
       mark: "bar",
       values: [
         (50 * (1 - Math.exp(-20 / 25)) - 50 * (1 - Math.exp(0))) / 20,
@@ -110,172 +109,129 @@ Die Steigung nimmt ab, weil die Säurekonzentration und die Masse an Calciumcarb
       ],
     },
   ]}
-  valueLabel="Mittlere Geschwindigkeit (mL/s)"
+  valueLabel="Mittlere Rate (cm³/s)"
   description={
     <>
-      Die mittlere Geschwindigkeit sinkt von etwa{" "}
-      <InlineMath math="1{,}38\ \text{mL/s}" /> in den ersten{" "}
-      <InlineMath math="20" /> Sekunden auf etwa{" "}
-      <InlineMath math="0{,}06\ \text{mL/s}" /> im letzten Abschnitt.
+      Die mittlere Gasbildungsrate sinkt von{" "}
+      <InlineMath math="1{,}38\text{ cm}^3\text{ s}^{-1}" /> bis auf{" "}
+      <InlineMath math="0{,}06\text{ cm}^3\text{ s}^{-1}" />, weil die
+      Eduktkonzentration abnimmt.
     </>
   }
+  footer={<>Sinkende Konzentration verringert die Stoßzahl in jedem späteren Zeitabschnitt.</>}
 />
 
-### Beispiel mittlere Geschwindigkeit
+Jeder Balken schrumpft weiter, weil die Säurekonzentration je Kubikzentimeter bis zum Ende der Reaktion stetig abnimmt.
 
-Magnesiumband reagiert mit Salzsäure. In den ersten <InlineMath math="60" /> Sekunden fängst du <InlineMath math="48\ \text{mL}" /> Wasserstoff auf, und nach <InlineMath math="150" /> Sekunden endet die Reaktion mit insgesamt <InlineMath math="60\ \text{mL}" /> Gas. Berechne **die mittlere Geschwindigkeit in der ersten Minute** und die mittlere Geschwindigkeit insgesamt.
+## Faktoren der Stoßtheorie
 
-<MathContainer>
-<BlockMath math="\text{Mittlere Geschwindigkeit in der ersten Minute} = \frac{48}{60} = 0{,}80\ \text{mL/s}" />
-<BlockMath math="\text{Mittlere Geschwindigkeit insgesamt} = \frac{60}{150} = 0{,}40\ \text{mL/s}" />
-</MathContainer>
+Teilchen reagieren nur bei einem **wirksamen Zusammenstoß**: Sie müssen in **günstiger räumlicher Orientierung** aufeinandertreffen und mindestens die **Aktivierungsenergie** <InlineMath math="E_a" /> aufbringen.
 
-Die mittlere Geschwindigkeit insgesamt ist kleiner, weil die Reaktion gegen Ende langsamer wird. Probe: <InlineMath math="0{,}80 \cdot 60 = 48" /> und <InlineMath math="0{,}40 \cdot 150 = 60" />, passend zu den Ausgangsdaten.
-
-### Beispiel momentane Geschwindigkeit
-
-Bestimme die Reaktionsgeschwindigkeit bei <InlineMath math="t = 25" /> Sekunden für das Modell <InlineMath math="V = 50(1 - e^{-t/25})" />. Zeichne die Tangente im Punkt <InlineMath math="(25 \mid 31{,}6)" /> und wähle dann **zwei weit auseinanderliegende Punkte** auf ihr, <InlineMath math="(15 \mid 24{,}2)" /> und <InlineMath math="(35 \mid 39{,}0)" />:
-
-<BlockMath math="\text{Steigung} = \frac{39{,}0 - 24{,}2}{35 - 15} = \frac{14{,}8}{20} = 0{,}74\ \text{mL/s}" />
-
-Prüf das mit dem Modell: Die genaue Steigung ist <InlineMath math="2e^{-1} \approx 0{,}736" />. Stell den Regler im Tangentenmodell auf <InlineMath math="a = 25" />, und du liest dieselbe Geschwindigkeit ab.
-
-## Stoßtheorie und Aktivierungsenergie
-
-Nach der **Stoßtheorie** reagieren Teilchen nur, wenn sie zusammenstoßen. Nicht jeder Zusammenstoß führt zur Reaktion. Ein **wirksamer Zusammenstoß** braucht zwei Bedingungen: Die Teilchen stoßen in der **richtigen Ausrichtung** zusammen, und die Stoßenergie ist mindestens so groß wie die **Aktivierungsenergie**, <InlineMath math="E_A" />. Die Aktivierungsenergie ist die Mindestenergie, die eine Reaktion zum Starten braucht.
-
-Die Reaktionsgeschwindigkeit hängt also von der **Häufigkeit wirksamer Zusammenstöße** ab. Jeder Faktor erhöht diese Häufigkeit auf seine Weise. Die Energieverteilung der Teilchen zeigt, wie die Temperatur wirkt. Beweg den Temperaturregler und vergleich die Fläche unter jeder Kurve rechts von der <InlineMath math="E_A" />-Linie.
-
-<MathVisual
-  title={<>Energieverteilung der Teilchen bei zwei Temperaturen</>}
-  description={
-    <>
-      Die graue Kurve gehört zur Ausgangstemperatur. Die blaue Kurve folgt dem
-      Temperaturregler <InlineMath math="k" />. Nur Teilchen rechts der{" "}
-      <InlineMath math="E_A" />-Linie haben genug Energie für einen wirksamen
-      Zusammenstoß.
-    </>
-  }
-  scene={{
-    space: "plane",
-    frame: { kind: "cartesian", x: { min: 0, max: 10 }, y: { min: 0, max: 5 } },
-    view: { kind: "fit", padding: 0.06 },
-    parameters: [
-      { name: "k", min: 1, max: 3, value: 2, step: 0.1, label: "k" },
-    ],
-    objects: [
-      { id: "cool", kind: "function", appearance: "reference", formula: "10(2/sqrt(pi))sqrt(x)exp(-x)", domain: { min: 0, max: 10 } },
-      { id: "warm", kind: "function", appearance: "primary", formula: "10(2/sqrt(pi))k^(-1.5)sqrt(x)exp(-x/k)", domain: { min: 0, max: 10 } },
-      { id: "activation", kind: "segment", appearance: "warning", from: { x: 6, y: 0 }, to: { x: 6, y: 4 } },
-    ],
-    labels: [
-      { key: "activation", objectId: "activation", at: { x: 6, y: 4 }, placement: "above" },
-    ],
-  }}
-  labels={{
-    k: <>Relative Temperatur <InlineMath math="k" /></>,
-    activation: <InlineMath math="E_A" />,
-  }}
-/>
-
-Bei höherer Temperatur wird die Kurve niedriger und breiter, und mehr Teilchen liegen rechts von <InlineMath math="E_A" />. Die Teilchen bewegen sich außerdem schneller und stoßen häufiger zusammen. Beide Effekte erhöhen die Häufigkeit wirksamer Zusammenstöße.
-
-## Einflussfaktoren auf die Reaktionsgeschwindigkeit
-
-Die Tabelle verbindet jeden Faktor mit der Stoßtheorie. Lies die dritte Spalte als die Begründungskette, die du in einer Prüfungsantwort aufschreiben würdest.
-
-| Faktor | Änderung | Erklärung mit der Stoßtheorie |
+| Erhöhter Faktor | Mikroskopische Folge | Grund für höheres Tempo |
 | :--- | :--- | :--- |
-| Teilchengröße | Kleiner | Die gesamte Oberfläche wächst, also stoßen die Teilchen häufiger zusammen. |
-| Konzentration | Höher | Mehr Teilchen pro Volumen, also stoßen sie häufiger zusammen. |
-| Temperatur | Höher | Die Teilchen bewegen sich schneller, und mehr von ihnen erreichen die Aktivierungsenergie. |
-| Katalysator | Eingesetzt | Ein neuer Reaktionsweg mit kleinerer Aktivierungsenergie ergibt mehr wirksame Zusammenstöße. |
-| Gasdruck | Höher | Die Gasteilchen liegen dichter, also gibt es mehr Teilchen pro Volumen. |
+| Zerteilungsgrad | Größere freie Feststoffoberfläche | Mehr Stöße pro Zeit an der Grenzfläche |
+| Konzentration | Mehr Teilchen pro Volumeneinheit | Höhere Stoßhäufigkeit in der Lösung |
+| Gasdruck | Geringerer Abstand der Gasmoleküle | Höhere Stoßhäufigkeit im Gefäß |
+| Temperatur | Schnellere Teilchen und breitere Verteilung | Mehr Stöße plus größerer Anteil über der Schwelle |
 
-Ein **Katalysator** ist ein Stoff, der die Reaktionsgeschwindigkeit ändert, ohne am Ende chemisch verändert zu sein. Das Energiediagramm unten zeigt, warum. Beweg den Regler, um den Energieberg abzusenken, und achte darauf, dass sich die Energieniveaus von Edukten und Produkten nicht verschieben.
+> Eine höhere Temperatur senkt niemals die Aktivierungsenergie, sondern befördert deutlich mehr Teilchen über die bestehende Energieschwelle.
 
-<MathVisual
-  title={<>Energiediagramm mit und ohne Katalysator</>}
+Verändere unten Feststoffform, Temperatur und Konzentration im 3D-Reaktionsgefäß samt Energieverteilung, um Stoßrate und wirksamen Flächenanteil rechts von <InlineMath math="E_a" /> zu verfolgen.
+
+<CollisionTheoryEnergyLab
+  title={<>Stoßhäufigkeit und kinetische Energieverteilung</>}
   description={
     <>
-      Die graue Kurve ist die Reaktion ohne Katalysator. Die blaue Kurve ist der
-      katalysierte Weg, mit einem Berg der Höhe <InlineMath math="c" /> über dem
-      Niveau der Edukte. Das Niveau der Produkte bleibt drei Einheiten unter dem
-      der Edukte.
+      Wechsle von Brocken zu Pulver und variiere Temperatur sowie Konzentration,
+      um Teilchenstöße und den wirksamen Energieanteil wachsen zu sehen.
     </>
   }
-  scene={{
-    space: "plane",
-    frame: { kind: "cartesian", x: { min: 0, max: 10 }, y: { min: 0, max: 10 } },
-    view: { kind: "fit", padding: 0.06 },
-    parameters: [
-      { name: "c", min: 1, max: 5, value: 3, step: 0.1, label: "c" },
-    ],
-    objects: [
-      { id: "uncatalysed", kind: "function", appearance: "reference", formula: "4 - 3/(1 + exp(-4(x - 6.5))) + 5exp(-(x - 4)^2/0.6)", domain: { min: 0, max: 10 } },
-      { id: "catalysed", kind: "function", appearance: "primary", formula: "4 - 3/(1 + exp(-4(x - 6.5))) + c exp(-(x - 4)^2/0.6)", domain: { min: 0, max: 10 } },
-      { id: "enthalpy", kind: "vector", appearance: "warning", from: { x: 9, y: 4 }, to: { x: 9, y: 1 } },
-    ],
-    labels: [
-      { key: "enthalpy", objectId: "enthalpy", at: { x: 9, y: 2.5 }, placement: "left" },
-    ],
-    readouts: [
-      { key: "barrier", formula: "c" },
-    ],
-  }}
+  footer={<>Höhere Temperatur dehnt den Energieanteil über die Schwelle, Konzentration verdichtet Stöße.</>}
+  surfaces={["lump", "granules", "powder"]}
+  temperature={{ min: 280, max: 380, value: 300 }}
+  concentration={{ min: 0.2, max: 2, value: 1 }}
   labels={{
-    c: <>Aktivierungsenergie mit Katalysator <InlineMath math="c" /></>,
-    enthalpy: <InlineMath math="\Delta H" />,
-    barrier: <><InlineMath math="E_A'" /> mit Katalysator</>,
+    surface: "Zerteilungsgrad",
+    surfaces: {
+      lump: "Großer Brocken",
+      granules: "Granulat",
+      powder: "Feines Pulver",
+    },
+    temperature: "Temperatur",
+    concentration: "Konzentration",
+    activationEnergy: <>Aktivierungsbarriere</>,
+    collisionFreq: <>Gesamte Stoßhäufigkeit</>,
+    effectiveRate: <>Wirksame Stoßrate</>,
+    parts: {
+      reactants: "Eduktteilchen",
+      products: "Produktteilchen",
+      activationLine: "Aktivierungsschwelle",
+      shadedArea: "Teilchen über Barriere",
+      vessel: "Reaktionsgefäß",
+    },
+    view: "3D-Reaktionsgefäß kombiniert mit Energieverteilungskurve für wirksame Stöße oberhalb der Aktivierungsenergie",
   }}
 />
 
-Ein Katalysator senkt nur die Aktivierungsenergie. Die Reaktionsenthalpie <InlineMath math="\Delta H" /> bleibt gleich, und es entsteht auch nicht mehr Produkt.
+Mehr Säure gleicher Stoffmengenkonzentration verändert die Teilchenzahl pro Volumen nicht, weshalb die Anfangsgeschwindigkeit unverändert bleibt, selbst wenn bei zuvor limitierter Säure mehr Endprodukt entsteht.
 
-## Typische Fehler bei der Reaktionsgeschwindigkeit
+## Katalyse und Energieprofil
 
-| Fehler | Warum er falsch ist | So prüfst du es |
-| :--- | :--- | :--- |
-| Pulver liefert mehr Gas als Stücke. | Die Gasmenge hängt von der Stoffmenge des begrenzenden Edukts ab. Die Größe ändert nur die Geschwindigkeit. | Vergleich die Endhöhe der Kurven, nicht ihre Steigung. |
-| Hohe Temperatur beschleunigt, weil die Aktivierungsenergie sinkt. | Die Temperatur ändert <InlineMath math="E_A" /> nicht. Sie erhöht die Bewegungsenergie der Teilchen. | Nur ein Katalysator senkt <InlineMath math="E_A" />. |
-| Die momentane Geschwindigkeit ist Volumen geteilt durch Zeit. | Das ist die mittlere Geschwindigkeit seit dem Start. Die momentane ist die Steigung der Tangente. | Zeichne eine Tangente und wähle zwei weit entfernte Punkte. |
-| Mehr Säure derselben Konzentration beschleunigt die Reaktion. | Die Konzentration ändert sich nicht, also bleibt die Teilchenzahl pro Volumen gleich. | Frag, ob sich die Konzentration geändert hat. |
+Ein **Katalysator** beschleunigt eine Reaktion, ohne am Ende dauerhaft verbraucht zu werden. Statt Teilchen aufzuheizen, öffnet er einen **alternativen Reaktionsweg** mit niedrigerer Aktivierungsenergie <InlineMath math="E_a'" />.
 
-Der erste Fehler taucht bei Diagrammaufgaben am häufigsten auf. Merk dir diese Trennung: **Die Steigung zeigt die Geschwindigkeit**, **die Endhöhe zeigt die Produktmenge**.
+> Ein Katalysator senkt nur den Energieberg, ohne Eduktniveau, Produktniveau, Reaktionsenthalpie oder Endausbeute zu verschieben.
 
-## Übungen zur Reaktionsgeschwindigkeit
+Schalte den Katalysator unten für exotherme und endotherme Reaktionen ein und aus, um unkatalysierten Gipfel, katalysierten Gipfel und konstantes <InlineMath math="\Delta H" /> zu vergleichen.
 
-Die Aufgaben beginnen mit einer kurzen Rechnung und enden mit einer Erklärung über die Theorie. **Schreib die Einheit der Geschwindigkeit** in jede Antwort.
+<CatalystPathwayLab
+  title={<>Unkatalysierter und katalysierter Reaktionsweg</>}
+  description={
+    <>
+      Vergleiche exotherme und endotherme Energieprofile mit und ohne
+      Oberflächenkatalysator und prüfe die konstante Reaktionsenthalpie.
+    </>
+  }
+  footer={<>Katalysatoren senken die Aktivierungsenergie, lassen die Reaktionsenthalpie aber exakt gleich.</>}
+  reactions={["exothermic", "endothermic"]}
+  labels={{
+    reaction: "Reaktionstyp",
+    reactions: {
+      exothermic: "Exotherm",
+      endothermic: "Endotherm",
+    },
+    catalyst: "Katalysatorstatus",
+    catalystStates: {
+      absent: "Ohne Katalysator",
+      present: "Mit Katalysator",
+    },
+    pathway: <>Aktiver Weg</>,
+    activationEnergy: <>Aktivierungsenergie</>,
+    enthalpyChange: <>Reaktionsenthalpie</>,
+    parts: {
+      reactantLevel: "Eduktniveau",
+      productLevel: "Produktniveau",
+      uncatalysedPeak: "Unkatalysierter Gipfel",
+      catalysedPeak: "Katalysierter Gipfel",
+      catalystSurface: "Katalysatorfläche",
+    },
+    view: "3D-Energiediagramm über der Reaktionskoordinate mit unkatalysiertem und katalysiertem Gipfel über einer Katalysatorfläche",
+  }}
+/>
 
-1. Zink reagiert mit Schwefelsäure und bildet in <InlineMath math="90" /> Sekunden <InlineMath math="36\ \text{mL}" /> Wasserstoff. Berechne die mittlere Reaktionsgeschwindigkeit.
+Weil die flachere Barriere bei gleicher Temperatur viel mehr Stöße erfolgreich macht, sparen Großanlagen wie das Haber-Bosch-Verfahren durch Feststoffkatalysatoren enorme Energiemengen.
 
-2. <InlineMath math="2{,}0\ \text{g}" /> Calciumcarbonat-Stücke reagieren mit Salzsäure im Überschuss. Berechne das größtmögliche Volumen an Kohlenstoffdioxid bei Raumbedingungen. Die molare Masse von <InlineMath math="\mathrm{CaCO_3}" /> ist <InlineMath math="100\ \text{g/mol}" />, das molare Volumen eines Gases <InlineMath math="24\ \text{L/mol}" />.
+## Geschwindigkeitsrechnungen
 
-3. Der Versuch aus Aufgabe 2 wird mit <InlineMath math="2{,}0\ \text{g}" /> Calciumcarbonat-Pulver wiederholt. Erkläre mit der Stoßtheorie den Unterschied in der Geschwindigkeit und im Endvolumen des Gases.
+Prüfe zwei grundlegende Rechenschritte zu Reaktionsrate und Energieprofil.
 
-4. Eine Reaktion hat ohne Katalysator eine Aktivierungsenergie von <InlineMath math="80\ \text{kJ/mol}" /> und mit Katalysator <InlineMath math="50\ \text{kJ/mol}" />. Die Reaktionsenthalpie beträgt <InlineMath math="\Delta H = -30\ \text{kJ/mol}" />. Wie hoch liegt der Gipfel des katalysierten Diagramms über dem Niveau der Produkte?
+**Wasserstoffrate prüfen.** Zink reagiert mit Schwefelsäure und liefert <InlineMath math="36\text{ cm}^3" /> Wasserstoff in <InlineMath math="90\text{ s}" />. Bestimme die mittlere Reaktionsgeschwindigkeit.
 
-### Lösungen
+<BlockMath math="v_{\text{mittel}} = \frac{36}{90} = 0{,}40\text{ cm}^3\text{ s}^{-1}" />
 
-**Lösung 1**: Die mittlere Geschwindigkeit ist die Gasmenge geteilt durch die Zeit:
+Multipliziert man <InlineMath math="0{,}40\text{ cm}^3\text{ s}^{-1}" /> mit <InlineMath math="90\text{ s}" />, erhält man genau das aufgefangene Volumen von <InlineMath math="36\text{ cm}^3" />.
 
-<BlockMath math="\text{Mittlere Geschwindigkeit} = \frac{36}{90} = 0{,}40\ \text{mL/s}" />
+**Katalysierten Gipfel prüfen.** Eine exotherme Reaktion besitzt ohne Katalysator <InlineMath math="80\text{ kJ mol}^{-1}" />, mit Katalysator <InlineMath math="50\text{ kJ mol}^{-1}" /> Aktivierungsenergie und <InlineMath math="\Delta H" /> gleich <InlineMath math="-30\text{ kJ mol}^{-1}" />. Bestimme die Gipfelhöhe über dem Produktniveau.
 
-Probe: <InlineMath math="0{,}40 \cdot 90 = 36" />.
+<BlockMath math="E_{\text{rück}}' = 50 + 30 = 80\text{ kJ mol}^{-1}" />
 
-**Lösung 2**: Nach der Gleichung liefert ein Mol Calciumcarbonat ein Mol Kohlenstoffdioxid.
-
-<MathContainer>
-<BlockMath math="n(\mathrm{CaCO_3}) = \frac{2{,}0}{100} = 0{,}020\ \text{mol}" />
-<BlockMath math="V(\mathrm{CO_2}) = 0{,}020 \cdot 24 = 0{,}48\ \text{L} = 480\ \text{mL}" />
-</MathContainer>
-
-Die Säure liegt im Überschuss vor, also ist Calciumcarbonat das begrenzende Edukt und bestimmt die Gasmenge.
-
-**Lösung 3**: Das Pulver hat eine **größere Gesamtoberfläche**, also stoßen Calciumcarbonat-Teilchen häufiger mit Wasserstoff-Ionen zusammen. Auch die wirksamen Zusammenstöße werden häufiger, die Reaktion läuft schneller und die Kurve ist steiler. Das Endvolumen bleibt bei <InlineMath math="480\ \text{mL}" />, weil die Masse an Calciumcarbonat gleich ist, nämlich <InlineMath math="0{,}020" /> mol.
-
-**Lösung 4**: Der Gipfel liegt <InlineMath math="50\ \text{kJ/mol}" /> über dem Niveau der Edukte. Das Niveau der Produkte liegt <InlineMath math="30\ \text{kJ/mol}" /> unter dem der Edukte, also liegt der Gipfel so weit über den Produkten:
-
-<BlockMath math="50 + 30 = 80\ \text{kJ/mol}" />
-
-Prüf das am Diagramm: Der Katalysator senkt den Gipfel um <InlineMath math="80 - 50 = 30\ \text{kJ/mol}" />, aber die Niveaus von Edukten und Produkten bleiben, also bleibt <InlineMath math="\Delta H" /> bei <InlineMath math="-30\ \text{kJ/mol}" />.
+Der Katalysator kappt <InlineMath math="30\text{ kJ mol}^{-1}" /> vom Gipfel, lässt den Abstand von <InlineMath math="30\text{ kJ mol}^{-1}" /> zwischen Edukten und Produkten aber unverändert.
