@@ -1,73 +1,37 @@
 export const metadata = {
-  title: "Newtonsche Gesetze Impuls und Kraftstoß",
+  title: "Newtonsche Gesetze Impuls Kraftstoß und Kraft",
   description:
-    "Erkläre die Trägheit, nutze die Impulserhaltung, F = ma, den Kraftstoß und die Gewichtskraft, mit durchgerechneten Beispielen, typischen Fehlern und Übungen.",
+    "Erkläre Trägheit, wende Impulserhaltung auf Kugelstoß und Rückstoß an, berechne Seilkraft sowie Gewicht im Fahrstuhl und untersuche den Kraftstoß.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-11-17",
   subject: "Kraft und Bewegung I",
 };
 
-## Kräfte verändern Bewegungen
+## Trägheit und Newton Gesetze
 
-Der **Impuls** ist das Produkt aus Masse und Geschwindigkeit, <InlineMath math="p = mv" />, in <InlineMath math="\text{kg m/s}" />. Eine **Kraft** ist die zeitliche Änderung des Impulses, bei gleichbleibender Masse also <InlineMath math="F = ma" />. Der **Kraftstoß** ist die Impulsänderung, die eine Kraft während einer Zeitspanne bewirkt:
+Stell dir einen voll beladenen Lastwagen neben einem leeren Fahrrad auf ebener Straße vor: Den Lastwagen anzuschieben fällt wegen seiner großen Masse viel schwerer. **Trägheit** ist der Widerstand gegen jede Bewegungsänderung, geordnet durch die **drei newtonschen Gesetze**, die **Impuls**, **Kraft** und **Kraftstoß** verbinden:
 
-<MathContainer>
-<BlockMath math="p = mv" />
-<BlockMath math="F = ma" />
-<BlockMath math="F\Delta t = mv - mu" />
-</MathContainer>
+<BlockMath math="p = m \cdot v, \qquad F = m \cdot a, \qquad F \cdot \Delta t = m \cdot v - m \cdot u" />
 
-Dabei ist <InlineMath math="u" /> die Anfangsgeschwindigkeit und <InlineMath math="v" /> die Endgeschwindigkeit. In den Modellen hier gleichst du Kräfte beim Tauziehen aus, lässt zwei Wagen zusammenstoßen, schiebst verschiedene Massen mit derselben Kraft an und dehnst die Dauer eines Aufpralls.
+Nach dem **ersten newtonschen Gesetz** braucht gleichförmige Bewegung keine resultierende Kraft, denn eine Nettokraft wirkt erst bei Geschwindigkeitsänderung. Sicherheitsgurte bremsen Mitfahrende bei Vollbremsungen ab, während das **dritte newtonsche Gesetz** jeder Kraft eine gleich große Gegenkraft zuordnet.
 
-Die drei newtonschen Gesetze ordnen diese Ideen. Das erste beschreibt einen Körper ohne resultierende Kraft. Das zweite verbindet Kraft und Beschleunigung. Das dritte besagt, dass jede Kraft eine gleich große Gegenkraft in entgegengesetzter Richtung hat.
+## Impulserhaltung im Stoß
 
-## Trägheit und das erste newtonsche Gesetz
+Der **Impulserhaltungssatz** besagt, dass der Gesamtimpuls vor einem Stoß oder einer Explosion gleich dem Gesamtimpuls danach bleibt, solange keine resultierende äußere Kraft eingreift:
 
-**Trägheit** ist das Bestreben eines Körpers, seinen Bewegungszustand beizubehalten. Das **erste newtonsche Gesetz** besagt, dass ein Körper in Ruhe bleibt oder sich gleichförmig geradlinig weiterbewegt, solange keine resultierende Kraft auf ihn wirkt. Ein Körper mit **größerer Masse ist träger**, er lässt sich also schwerer anschieben oder abbremsen.
+<BlockMath math="m_1 u_1 + m_2 u_2 = m_1 v_1 + m_2 v_2" />
 
-Beim Tauziehen zieht jede Mannschaft mit einer Kraft. Sind beide Kräfte gleich, ist die resultierende Kraft null und das Seil bleibt stehen. Füge auf einer Seite Zieher hinzu oder nimm welche weg und beobachte, wie das Band in Richtung der resultierenden Kraft wandert.
-
-<TugOfWarForceLab
-  title={<>Ausgeglichene und unausgeglichene Kräfte beim Tauziehen</>}
-  description={
-    <>
-      Jeder Zieher zieht mit <InlineMath math="300\ \text{N}" />. Ändere die
-      Zahl der Zieher in jeder Mannschaft und vergleich die resultierende
-      Kraft.
-    </>
-  }
-  left={4}
-  right={4}
-  pull={300}
-  labels={{
-    left: <>Kraft der linken Mannschaft</>,
-    leftCount: <>Zieher links</>,
-    leftName: "Linke Mannschaft",
-    net: <>Resultierende Kraft</>,
-    right: <>Kraft der rechten Mannschaft</>,
-    rightCount: <>Zieher rechts</>,
-    rightName: "Rechte Mannschaft",
-    viewLabel: "Tauziehen bei Sonnenuntergang",
-  }}
-/>
-
-Die Trägheit erklärt, warum Sicherheitsgurte wichtig sind. Bremst ein Auto abrupt, bewegt sich der Körper der Mitfahrenden weiter nach vorn. Der Gurt liefert die Kraft, die den Körper zusammen mit dem Auto abbremst.
-
-## Impuls und Impulserhaltung
-
-Der **Impulserhaltungssatz** besagt, dass der Gesamtimpuls vor einem Stoß oder einer Explosion gleich dem Gesamtimpuls danach ist, solange keine äußere Kraft wirkt:
-
-<BlockMath math="m_1u_1 + m_2u_2 = m_1v_1 + m_2v_2" />
-
-Bei einem **vollkommen unelastischen Stoß** bleiben beide Körper aneinander haften und bewegen sich danach gemeinsam. Der Graph unten zeigt Wagen A mit <InlineMath math="1\ \text{kg}" />, der mit <InlineMath math="2\ \text{m/s}" /> auf den ruhenden Wagen B trifft. Ändere die Masse von Wagen B und sieh, wie sich die gemeinsame Geschwindigkeit ändert, während der Gesamtimpuls gleich bleibt.
+Der Impuls ist eine **vektorielle Größe**, lege also vor jeder Rechnung eine positive Richtung fest. Beim **vollkommen unelastischen Stoß** haften beide Körper aneinander und bewegen sich gemeinsam weiter.
 
 <MathVisual
   title={<>Geschwindigkeiten zweier Wagen beim unelastischen Stoß</>}
+  footer={<>Ein schwererer zweiter Wagen senkt das gemeinsame Tempo, doch der Impuls bleibt gleich.</>}
   description={
     <>
-      Geschwindigkeit gegen die Zeit in Sekunden. Der Stoß geschieht bei{" "}
-      <InlineMath math="t = 2\ \text{s}" />. Wagen B hat die{" "}
-      <InlineMath math="m" />-fache Masse von Wagen A.
+      Wagen A (<InlineMath math="1\ \text{kg}" />,{" "}
+      <InlineMath math="2\ \text{m/s}" />) trifft bei{" "}
+      <InlineMath math="t = 2\ \text{s}" /> auf ruhenden Wagen B mit Masse{" "}
+      <InlineMath math="m" />.
     </>
   }
   scene={{
@@ -101,40 +65,83 @@ Bei einem **vollkommen unelastischen Stoß** bleiben beide Körper aneinander ha
   }}
 />
 
-### Beispiel Zusammenstoß zweier Autos
+Stößt ein <InlineMath math="1200\ \text{kg}" />-Auto mit <InlineMath math="15\ \text{m/s}" /> auf ein stehendes <InlineMath math="800\ \text{kg}" />-Auto und verhakt sich, rollen beide gemeinsam mit <InlineMath math="9{,}0\ \text{m/s}" /> weiter.
 
-Ein Auto mit <InlineMath math="1200\ \text{kg}" /> fährt mit <InlineMath math="15\ \text{m/s}" /> auf ein stehendes Auto mit <InlineMath math="800\ \text{kg}" />, und beide bewegen sich gemeinsam weiter. Bestimme **die gemeinsame Geschwindigkeit**.
+### Kugel und Holzblock
 
-<MathContainer>
-<BlockMath math="(1200)(15) + (800)(0) = (1200 + 800)v" />
-<BlockMath math="v = \frac{18{.}000}{2000} = 9{,}0\ \text{m/s}" />
-</MathContainer>
+Bleibt eine Kugel im Holzblock stecken, ist **der Impuls beim Einschlag erhalten**, obwohl ein Großteil der Bewegungsenergie zu Wärme und Schall wird, und danach bremst Bodenreibung den Block ab.
 
-Probe: Der Impuls danach beträgt <InlineMath math="2000 \cdot 9{,}0 = 18{.}000\ \text{kg m/s}" />, genauso viel wie vorher.
+> Nutze die Impulserhaltung für das gemeinsame Tempo unmittelbar nach dem Einschlag und berechne danach aus der Reibung Verzögerung sowie Rutschweg.
 
-### Beispiel Rückstoß eines Gewehrs
+<BulletBlockLab
+  title={<>Kugel bleibt im Holzblock stecken und rutscht aus</>}
+  description={
+    <>
+      Eine <InlineMath math="20\ \text{g}" />-Kugel mit{" "}
+      <InlineMath math="300\ \text{m/s}" /> dringt in einen ruhenden{" "}
+      <InlineMath math="1{,}98\ \text{kg}" />-Block ein, der gegen{" "}
+      <InlineMath math="4{,}0\ \text{N}" /> Reibung rutscht.
+    </>
+  }
+  footer={<>Anfangsimpuls 6,0 kg m/s liefert 3,0 m/s Starttempo und 2,25 m Rutschweg.</>}
+  blockMass={1.98}
+  bulletMass={20}
+  friction={4}
+  labels={{
+    deceleration: <>Verzögerung</>,
+    distance: <>Rutschweg</>,
+    lost: <>Energieverlust beim Stoß</>,
+    velocity: <>Tempo nach dem Stoß</>,
+    viewLabel: "Eine Kugel trifft einen Holzblock auf dem Boden",
+  }}
+  speed={300}
+/>
 
-Bei einer **Explosion** ist der Gesamtimpuls vorher null. Ein Gewehr mit <InlineMath math="4{,}0\ \text{kg}" /> feuert eine Kugel mit <InlineMath math="0{,}010\ \text{kg}" /> und <InlineMath math="400\ \text{m/s}" /> ab. Bestimme die Rückstoßgeschwindigkeit des Gewehrs.
+Rechne die Kugelmasse zuerst in Kilogramm (<InlineMath math="0{,}020\ \text{kg}" />) um: Gesamtmasse <InlineMath math="2{,}0\ \text{kg}" />, Verzögerung <InlineMath math="2{,}0\ \text{m/s}^2" /> und Rutschweg <InlineMath math="2{,}25\ \text{m}" />.
 
-<MathContainer>
-<BlockMath math="0 = (0{,}010)(400) + (4{,}0)v" />
-<BlockMath math="v = -\frac{4{,}0}{4{,}0} = -1{,}0\ \text{m/s}" />
-</MathContainer>
+### Rückstoß eines Gewehrs
 
-Das Minuszeichen bedeutet, dass sich das Gewehr nach hinten bewegt. Probe: <InlineMath math="4{,}0 + (-4{,}0) = 0" />, der Gesamtimpuls bleibt also null.
+Bei einer **Explosion** aus der Ruhe ist der Gesamtimpuls vorher null, sodass **Kugelimpuls nach vorn und Gewehrimpuls nach hinten gleich groß und entgegengesetzt sind**.
 
-## Kraft und das zweite newtonsche Gesetz
+> Da der Anfangsimpuls null ist, gleicht der rückwärts gerichtete Gewehrimpuls dem vorwärts gerichteten Kugelimpuls genau aus, bevor die Schulter abbremst.
 
-Das **zweite newtonsche Gesetz** besagt, dass die Impulsänderung pro Zeit proportional zur resultierenden Kraft ist. Bei gleichbleibender Masse wird daraus <InlineMath math="F = ma" />. Ein Newton ist die Kraft, die einer Masse von <InlineMath math="1\ \text{kg}" /> die Beschleunigung <InlineMath math="1\ \text{m/s}^2" /> erteilt. Beweg den Massenregler und sieh, wie die Gerade flacher wird.
+<RecoilLab
+  title={<>Rückstoß eines Gewehrs und Schulterkraft</>}
+  description={
+    <>
+      Ein <InlineMath math="4{,}0\ \text{kg}" />-Gewehr feuert eine{" "}
+      <InlineMath math="20\ \text{g}" />-Kugel mit{" "}
+      <InlineMath math="400\ \text{m/s}" /> ab, und die Schulter bremst es auf{" "}
+      <InlineMath math="4{,}0\ \text{cm}" /> ab.
+    </>
+  }
+  footer={<>Gleiche Impulse von 8,0 kg m/s ergeben 2,0 m/s Rückstoß und 200 N Schulterkraft.</>}
+  bulletMass={20}
+  labels={{
+    energy: <>Bewegungsenergie des Gewehrs</>,
+    force: <>Bremskraft der Schulter</>,
+    momentum: <>Impuls beider Körper</>,
+    velocity: <>Rückstoßgeschwindigkeit</>,
+    viewLabel: "Ein Gewehr feuert eine Kugel ab und stößt zurück",
+  }}
+  rifleMass={4}
+  speed={400}
+  stop={4}
+/>
+
+Obwohl beide denselben Impulsbetrag (<InlineMath math="8{,}0\ \text{kg m/s}" />) tragen, bewegt sich das viel schwerere Gewehr nur mit <InlineMath math="2{,}0\ \text{m/s}" /> zurück und trägt weit weniger Bewegungsenergie.
+
+## Kraft und Beschleunigung
+
+Nach dem **zweiten newtonschen Gesetz** wächst die Beschleunigung proportional zur **resultierenden Kraft** und umgekehrt zur Masse (<InlineMath math="a = F/m" />). Masse bleibt überall gleich, während **Gewichtskraft** (<InlineMath math="F_G = mg" />) vom örtlichen <InlineMath math="g" /> abhängt.
 
 <MathVisual
   title={<>Beschleunigung gegen resultierende Kraft</>}
+  footer={<>Größere Masse macht die Gerade flacher, da gleiche Kraft weniger beschleunigt.</>}
   description={
     <>
-      Die Gerade <InlineMath math="a = F/m" />. Waagerecht ist die Kraft in N
-      aufgetragen, senkrecht die Beschleunigung in{" "}
-      <InlineMath math="\text{m/s}^2" />. Eine größere Masse ergibt eine
-      flachere Gerade.
+      Gerade <InlineMath math="a = F/m" /> mit Kraft <InlineMath math="F" /> in
+      N und Beschleunigung in <InlineMath math="\text{m/s}^2" />.
     </>
   }
   scene={{
@@ -158,62 +165,87 @@ Das **zweite newtonsche Gesetz** besagt, dass die Impulsänderung pro Zeit propo
   }}
 />
 
-Reibung ist eine Kraft, die der Bewegung entgegenwirkt. Bremst ein Auto, liefert die Reibung zwischen Reifen und Straße eine resultierende Kraft nach hinten, und das Auto wird verzögert. Wähle im Modell einen Straßenbelag und vergleich Verzögerung und Bremsweg.
+Veränderst du die Masse oben, erkennst du direkt: Ein <InlineMath math="1500\ \text{kg}" />-Auto in <InlineMath math="8{,}0\ \text{s}" /> auf <InlineMath math="20\ \text{m/s}" /> zu bringen braucht <InlineMath math="2{,}5\ \text{m/s}^2" /> und <InlineMath math="3750\ \text{N}" /> Nettokraft.
 
-<BrakingSurfaceLab
-  title={<>Bremsen auf verschiedenen Belägen</>}
+### Zwei verbundene Blöcke
+
+Zieht eine Kraft zwei durch ein leichtes Seil verbundene Blöcke über den Boden, **teilen beide dieselbe Beschleunigung**. Löse zuerst das Gesamtsystem für <InlineMath math="a" /> und isoliere danach einen Block für die **Seilkraft**.
+
+> Teile die Zugkraft minus Reibung durch die Gesamtmasse für die Beschleunigung und wende dann das zweite newtonsche Gesetz auf einen einzelnen Block für die Seilkraft an.
+
+<ConnectedBlocksLab
+  title={<>Zwei über ein Seil verbundene Blöcke</>}
   description={
     <>
-      Ein Auto mit <InlineMath math="20\ \text{m/s}" /> blockiert an der weißen
-      Linie die Räder. Weniger Reibung ergibt eine kleinere Verzögerung.
+      Der vordere <InlineMath math="2{,}0\ \text{kg}" />-Block wird mit{" "}
+      <InlineMath math="24\ \text{N}" /> gezogen und zieht den hinteren{" "}
+      <InlineMath math="6{,}0\ \text{kg}" />-Block gegen{" "}
+      <InlineMath math="4{,}0\ \text{N}" /> Reibung mit.
     </>
   }
+  footer={<>20 N Nettokraft auf 8,0 kg ergeben 2,5 m/s Quadrat und eine Seilkraft von 19 N.</>}
+  back={6}
+  friction={4}
+  front={2}
   labels={{
-    brakingDistance: <>Bremsweg</>,
-    brakingTime: <>Bremszeit</>,
-    chooseSurface: "Wähle den Straßenbelag",
-    deceleration: <>Verzögerung</>,
-    friction: <>Reibungszahl</>,
-    surfaces: { dry: "Trocken", wet: "Nass", gravel: "Schotter", snow: "Schnee", ice: "Eis" },
-    viewLabel: "Ein Auto bremst auf der Straße",
+    acceleration: <>Systembeschleunigung</>,
+    pull: <>Zugkraft vorn</>,
+    pullName: "Zugkraft vorn",
+    tension: <>Seilkraft</>,
+    viewLabel: "Zwei durch ein Seil verbundene Blöcke auf dem Boden",
   }}
+  pull={24}
 />
 
-### Beispiel Kraft zum Beschleunigen eines Autos
+Am hinteren Block wirkt die Seilkraft nach vorn gegen die Reibung nach hinten, sodass eine Seilkraft von <InlineMath math="19\ \text{N}" /> folgt.
 
-Ein Auto mit <InlineMath math="1500\ \text{kg}" /> beschleunigt in <InlineMath math="8{,}0\ \text{s}" /> aus dem Stand auf <InlineMath math="20\ \text{m/s}" />. Berechne **die resultierende Kraft** auf das Auto.
+### Waage im Fahrstuhl
 
-<MathContainer>
-<BlockMath math="a = \frac{v - u}{t} = \frac{20 - 0}{8{,}0} = 2{,}5\ \text{m/s}^2" />
-<BlockMath math="F = ma = (1500)(2{,}5) = 3750\ \text{N}" />
-</MathContainer>
+Eine Personenwaage im Fahrstuhl misst die **Normalkraft des Bodens**, nicht die echte Gewichtskraft. Sobald der Fahrstuhl **nach oben beschleunigt** (beim Anfahren nach oben oder Abbremsen nach unten), **übersteigt die Anzeige das wahre Gewicht**.
 
-Probe mit dem Kraftstoß: <InlineMath math="F\Delta t = 3750 \cdot 8{,}0 = 30{.}000\ \text{N s}" />, gleich der Impulsänderung <InlineMath math="1500 \cdot 20" />.
+> Die Normalkraft der Waage übersteigt das wahre Gewicht bei jeder Beschleunigung nach oben und fällt darunter bei jeder Beschleunigung nach unten.
 
-### Beispiel Gewichtskraft auf Erde und Mond
+<LiftScaleLab
+  title={<>Scheinbares Gewicht auf der Waage im Fahrstuhl</>}
+  description={
+    <>
+      Eine Schülerin mit <InlineMath math="60\ \text{kg}" /> steht auf einer
+      Fahrstuhlwaage mit Anzeige <InlineMath math="720\ \text{N}" /> bei{" "}
+      <InlineMath math="g = 10\ \text{m/s}^2" />.
+    </>
+  }
+  footer={<>120 N über 600 N Gewicht bedeuten 2,0 m/s Quadrat Beschleunigung nach oben.</>}
+  gravity={10}
+  labels={{
+    acceleration: <>Fahrstuhlbeschleunigung</>,
+    cases: {
+      downFaster: <>Abwärts, schneller</>,
+      downSlower: <>Abwärts, langsamer</>,
+      upFaster: <>Aufwärts, schneller</>,
+      upSlower: <>Aufwärts, langsamer</>,
+    },
+    motion: "Bewegung des Fahrstuhls",
+    reading: <>Waagenanzeige</>,
+    viewLabel: "Schülerin auf einer Waage in einem Fahrstuhl",
+  }}
+  mass={60}
+  reading={720}
+/>
 
-Die **Gewichtskraft** ist die Gravitationskraft auf einen Körper, <InlineMath math="F_G = mg" />. Die Masse ändert sich nirgendwo, die Gewichtskraft hängt aber von <InlineMath math="g" /> ab. Für eine Schülerin mit <InlineMath math="60\ \text{kg}" />:
+Sowohl beim schnelleren Aufwärtsfahren als auch beim Abbremsen abwärts ergibt die <InlineMath math="120\ \text{N}" />-Nettokraft genau <InlineMath math="2{,}0\ \text{m/s}^2" /> nach oben.
 
-<MathContainer>
-<BlockMath math="F_{G,\text{Erde}} = (60)(9{,}81) = 589\ \text{N}" />
-<BlockMath math="F_{G,\text{Mond}} = (60)(1{,}62) = 97\ \text{N}" />
-</MathContainer>
+## Kraftstoß und Sicherheit
 
-Die Masse bleibt an beiden Orten <InlineMath math="60\ \text{kg}" />, also ist auch die Trägheit gleich.
-
-## Kraftstoß und Stoßkraft
-
-Eine **Stoßkraft** ist eine große Kraft, die nur kurz wirkt, etwa bei einem Zusammenstoß. Aus <InlineMath math="F\Delta t = mv - mu" /> folgt: Dieselbe Impulsänderung kann aus einer kleinen Kraft über lange Zeit oder einer großen Kraft über kurze Zeit entstehen. Die Fläche unter dem Kraft-Zeit-Graphen ist der Kraftstoß.
-
-Das Modell zeigt mehrere Aufpralle mit demselben Kraftstoß, <InlineMath math="2\ \text{N s}" />. Verlängere die Aufprallzeit und sieh, wie die Spitzenkraft sinkt, während die Fläche unter der Kurve gleich bleibt.
+Eine **Stoßkraft** wirkt kurz und heftig. Weil derselbe Kraftstoß <InlineMath math="F \cdot \Delta t" /> dieselbe Impulsänderung bringt, **senkt eine längere Aufprallzeit die Spitzenkraft**, genau wie bei Airbags und Knautschzonen.
 
 <MathVisual
   title={<>Gleicher Kraftstoß bei verschiedenen Aufprallzeiten</>}
+  footer={<>Längere Kontaktzeit senkt die Spitzenkraft bei unverändertem Kraftstoß von 2 N s.</>}
   description={
     <>
-      Die Kraft <InlineMath math="F = \dfrac{\pi}{c}\sin\!\left(\dfrac{\pi t}{c}\right)" />{" "}
-      für eine Aufprallzeit <InlineMath math="c" /> in Sekunden. Die Fläche
-      unter der Kurve beträgt immer <InlineMath math="2\ \text{N s}" />.
+      Kraftverlauf <InlineMath math="F = \dfrac{\pi}{c}\sin\!\left(\dfrac{\pi t}{c}\right)" />{" "}
+      über Kontaktzeit <InlineMath math="c" /> Sekunden bei fester Fläche{" "}
+      <InlineMath math="2\ \text{N s}" />.
     </>
   }
   scene={{
@@ -238,65 +270,4 @@ Das Modell zeigt mehrere Aufpralle mit demselben Kraftstoß, <InlineMath math="2
   }}
 />
 
-Darauf beruhen die Sicherheitseinrichtungen eines Autos. **Airbags** und **Knautschzonen** verlängern die Aufprallzeit, also sinkt die Stoßkraft auf die Insassen. Ein Kricketspieler zieht beim Fangen die Hände aus demselben Grund zurück.
-
-Berechne jetzt eine Stoßkraft. Ein Fußballer schießt einen Ball mit <InlineMath math="0{,}45\ \text{kg}" /> aus der Ruhe auf <InlineMath math="30\ \text{m/s}" />, die Kontaktzeit beträgt <InlineMath math="0{,}015\ \text{s}" />:
-
-<MathContainer>
-<BlockMath math="F\Delta t = (0{,}45)(30) - 0 = 13{,}5\ \text{N s}" />
-<BlockMath math="F = \frac{13{,}5}{0{,}015} = 900\ \text{N}" />
-</MathContainer>
-
-Eine Kraft von <InlineMath math="900\ \text{N}" /> wirkt also nur eineinhalb Hundertstelsekunden. Prüf die Einheiten: <InlineMath math="\text{N s} : \text{s} = \text{N}" />.
-
-## Typische Fehler bei Kraft und Bewegung
-
-| Fehler | Warum er falsch ist | So prüfst du es |
-| :--- | :--- | :--- |
-| Ein bewegter Körper braucht eine resultierende Kraft. | Bei gleichförmiger Bewegung ist die resultierende Kraft null, nach dem ersten Gesetz. | Frag, ob sich die Geschwindigkeit ändert. |
-| Der Impuls hat keine Richtung. | Der Impuls ist ein Vektor, die Gegenrichtung bekommt ein Minuszeichen. | Leg vor dem Rechnen eine positive Richtung fest. |
-| Masse und Gewichtskraft sind dieselbe Größe. | Die Masse in kg bleibt gleich. Die Gewichtskraft in N hängt von <InlineMath math="g" /> ab. | Prüf die Einheit deines Ergebnisses. |
-| Airbags verringern die Impulsänderung. | Die Impulsänderung bleibt gleich. Airbags verlängern die Zeit, also sinkt die Kraft. | Nutze <InlineMath math="F = \Delta p / \Delta t" />. |
-
-Der vierte Fehler kommt bei Aufgaben zu Sicherheitseinrichtungen am häufigsten vor. **Gleicher Kraftstoß, längere Zeit, kleinere Kraft**.
-
-## Übungen zu Kraft und Bewegung
-
-Die Aufgaben führen vom Impuls bis zur Stoßkraft. **Leg in jeder Aufgabe zuerst eine positive Richtung fest**.
-
-1. Berechne den Impuls eines Tennisballs mit <InlineMath math="0{,}060\ \text{kg}" />, der sich mit <InlineMath math="50\ \text{m/s}" /> bewegt.
-
-2. Ein Wagen mit <InlineMath math="2{,}0\ \text{kg}" /> und <InlineMath math="3{,}0\ \text{m/s}" /> stößt auf einen ruhenden Wagen mit <InlineMath math="1{,}0\ \text{kg}" />, und beide haften aneinander. Berechne die gemeinsame Geschwindigkeit.
-
-3. Eine Schubkraft von <InlineMath math="12\ \text{N}" /> wirkt auf eine Kiste mit <InlineMath math="4{,}0\ \text{kg}" />. Die Reibungskraft beträgt <InlineMath math="4{,}0\ \text{N}" />. Berechne die Beschleunigung der Kiste.
-
-4. Ein Ei mit <InlineMath math="0{,}060\ \text{kg}" /> fällt und trifft mit <InlineMath math="5{,}0\ \text{m/s}" /> auf. Auf hartem Boden kommt es in <InlineMath math="0{,}002\ \text{s}" /> zur Ruhe, auf einem Kissen in <InlineMath math="0{,}10\ \text{s}" />. Vergleich die Stoßkräfte in beiden Fällen.
-
-### Lösungen
-
-**Lösung 1**: Nutze <InlineMath math="p = mv" />:
-
-<BlockMath math="p = (0{,}060)(50) = 3{,}0\ \text{kg m/s}" />
-
-**Lösung 2**: Der Gesamtimpuls vorher ist gleich dem nachher:
-
-<MathContainer>
-<BlockMath math="(2{,}0)(3{,}0) + 0 = (2{,}0 + 1{,}0)v" />
-<BlockMath math="v = \frac{6{,}0}{3{,}0} = 2{,}0\ \text{m/s}" />
-</MathContainer>
-
-**Lösung 3**: Bestimme zuerst **die resultierende Kraft**, dann die Beschleunigung:
-
-<MathContainer>
-<BlockMath math="F = 12 - 4{,}0 = 8{,}0\ \text{N}" />
-<BlockMath math="a = \frac{F}{m} = \frac{8{,}0}{4{,}0} = 2{,}0\ \text{m/s}^2" />
-</MathContainer>
-
-**Lösung 4**: Die Impulsänderung ist in beiden Fällen gleich, <InlineMath math="(0{,}060)(5{,}0) = 0{,}30\ \text{kg m/s}" />.
-
-<MathContainer>
-<BlockMath math="F_{\text{Boden}} = \frac{0{,}30}{0{,}002} = 150\ \text{N}" />
-<BlockMath math="F_{\text{Kissen}} = \frac{0{,}30}{0{,}10} = 3{,}0\ \text{N}" />
-</MathContainer>
-
-Das Kissen macht die Aufprallzeit <InlineMath math="50" />-mal länger, also ist die Stoßkraft <InlineMath math="50" />-mal kleiner. Deshalb zerbricht das Ei auf dem Boden, bleibt auf dem Kissen aber heil.
+Einen <InlineMath math="0{,}45\ \text{kg}" />-Ball in <InlineMath math="0{,}015\ \text{s}" /> auf <InlineMath math="30\ \text{m/s}" /> zu schießen erfordert <InlineMath math="900\ \text{N}" />. Deshalb beugst du beim Landen nach einem Sprung die Knie und ziehst beim Fangen eines schnellen Balls die Hände leicht zurück, um die Bremszeit zu dehnen und deine Gelenke zu schonen. Kurze Selbstkontrolle: Ein <InlineMath math="0{,}060\ \text{kg}" />-Ei bei <InlineMath math="5{,}0\ \text{m/s}" /> erfährt <InlineMath math="150\ \text{N}" /> auf hartem Boden (<InlineMath math="0{,}002\ \text{s}" />), aber nur <InlineMath math="3{,}0\ \text{N}" /> auf einem Kissen (<InlineMath math="0{,}10\ \text{s}" />).
