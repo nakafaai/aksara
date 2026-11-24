@@ -9,7 +9,9 @@ export const metadata = {
 
 ## Tying Sticks into Bundles
 
-To convert a base ten number to base <InlineMath math="b" />, **group the things <InlineMath math="b" /> at a time**. Take <InlineMath math="200" /> ice-cream sticks and use base six. Tie every six sticks into a bundle, put every six bundles into a box, then set every six boxes on a tray. The number of trays, the boxes left over, the bundles left over and the loose sticks are the digits of the number in base six. Each round of tying is one division by <InlineMath math="b" />, and on this desk you watch that repeated division happen to real things.
+To convert a base ten number to base <InlineMath math="b" />, **group the things <InlineMath math="b" /> at a time**. Take <InlineMath math="200" /> ice-cream sticks and use base six. Tie every six sticks into a bundle, put every six bundles into a box, then set every six boxes on a tray.
+
+The counts of trays, leftover boxes, leftover bundles and loose sticks become the base six digits. Each round of tying is one division by <InlineMath math="b" />, and on this desk you watch that repeated division happen to real things.
 
 <BundleCountLab
   title={<>Bundling <InlineMath math="200" /> Sticks in Base Six</>}
@@ -40,43 +42,57 @@ On paper, each round is written as one division with a remainder. The **quotient
 
 <BlockMath math="\begin{aligned} 200 &= 33 \times 6 + 2 \\ 33 &= 5 \times 6 + 3 \\ 5 &= 0 \times 6 + 5 \end{aligned}" />
 
-Stop when the quotient is <InlineMath math="0" />. Read from the bottom up, the remainders give <InlineMath math="200 = 532_6" />. Check with the expanded form: <InlineMath math="5 \times 36 + 3 \times 6 + 2 = 180 + 18 + 2 = 200" />.
+Stop when the quotient is <InlineMath math="0" />. Read from the bottom up, the remainders give <InlineMath math="200 = 532_6" />. Check with the expanded form to make sure you land back at <InlineMath math="200" />.
+
+<BlockMath math="5 \times 36 + 3 \times 6 + 2 = 180 + 18 + 2 = 200" />
 
 ### Remainders Read Upward
 
-Why read from the bottom? The first remainder is the loose sticks, the ones, so that digit stands on the far right. Each later division counts bigger groups, so **the last remainder counts the biggest groups** and stands on the far left. The ladder for base five has one more rung, because the tray gets filled too.
+Why read from the bottom? The first remainder is the loose sticks, the ones, so that digit stands on the far right. Each later division counts bigger groups, so **the last remainder counts the biggest groups** and stands on the far left.
+
+> The first remainder records loose ones on the far right, while the last remainder records the largest groups on the far left.
+
+The ladder for base five has one more rung, because the tray gets filled too.
 
 <BlockMath math="\begin{aligned} 200 &= 40 \times 5 + 0 \\ 40 &= 8 \times 5 + 0 \\ 8 &= 1 \times 5 + 3 \\ 1 &= 0 \times 5 + 1 \end{aligned}" />
 
-The last remainder, <InlineMath math="1" />, is one tray of <InlineMath math="125" /> sticks, so <InlineMath math="200 = 1300_5" />. Both zero remainders stay in the numeral, because they record that no bundles and no loose sticks are left over. Check: <InlineMath math="1 \times 125 + 3 \times 25 + 0 \times 5 + 0 = 200" />.
+The last remainder, <InlineMath math="1" />, is one tray of <InlineMath math="125" /> sticks, so <InlineMath math="200 = 1300_5" />. Both zero remainders stay in the numeral, because they record that no bundles and no loose sticks are left over.
 
-Two slips on this ladder still give a numeral that looks fine. Read the remainders of the base six ladder from the top and <InlineMath math="200" /> turns into <InlineMath math="235_6" />, which is only worth <InlineMath math="95" />. Drop the two zero remainders of the base five ladder and you get <InlineMath math="13_5" />, which is only worth <InlineMath math="8" />. The number of digits must equal the number of divisions, and the quickest check is to **convert your answer back to the starting base**. If you don't get the number you started with, a step went wrong.
+<BlockMath math="1 \times 125 + 3 \times 25 + 0 \times 5 + 0 = 200" />
+
+Two slips on this ladder still give a numeral that looks fine. Reading the base six remainders from the top turns <InlineMath math="200" /> into <InlineMath math="235_6" /> (only <InlineMath math="95" />), and dropping both zeros in base five gives <InlineMath math="13_5" /> (only <InlineMath math="8" />).
+
+The number of digits must equal the number of divisions. The quickest check is to **convert your answer back to the starting base**: if you don't get the number you started with, a step went wrong.
 
 Now try a ladder with four rungs: convert <InlineMath math="150" /> to base four. Divide by <InlineMath math="4" /> again and again until the quotient is <InlineMath math="0" />.
 
 <BlockMath math="\begin{aligned} 150 &= 37 \times 4 + 2 \\ 37 &= 9 \times 4 + 1 \\ 9 &= 2 \times 4 + 1 \\ 2 &= 0 \times 4 + 2 \end{aligned}" />
 
-The remainders from the bottom give **<InlineMath math="150 = 2112_4" />**. Check: <InlineMath math="2 \times 64 + 1 \times 16 + 1 \times 4 + 2 = 150" />.
+The remainders from the bottom give **<InlineMath math="150 = 2112_4" />**. Check it back with the expanded form.
+
+<BlockMath math="2 \times 64 + 1 \times 16 + 1 \times 4 + 2 = 150" />
 
 ## Back to Base Ten
 
-The other direction uses place values. You can write the [expanded form from place values](/en/subjects/mathematics/number-bases/place-value-and-digit-value) as usual, but there's a shorter path: **multiply by the base, then add the next digit**. Start from the leftmost digit and repeat until you reach the last one. Take <InlineMath math="1452_7" />.
+The other direction uses place values. You can write the [expanded form from place values](/en/subjects/mathematics/number-bases/place-value-and-digit-value) as usual, or take a shorter path: **multiply by the base, then add the next digit**. Start from the leftmost digit and repeat to the end. Take <InlineMath math="1452_7" />.
 
 <BlockMath math="\begin{aligned} 1 \times 7 + 4 &= 11 \\ 11 \times 7 + 5 &= 82 \\ 82 \times 7 + 2 &= 576 \end{aligned}" />
 
-Why does this work? Every time you multiply by <InlineMath math="7" />, every digit you've already taken moves up one place. The leftmost <InlineMath math="1" /> gets multiplied by <InlineMath math="7" /> three times, so it ends up worth <InlineMath math="7^3" />, just as in the expanded form. The expanded form also checks your answer.
+Why does this work? Every time you multiply by <InlineMath math="7" />, every digit already taken moves up one place. The leftmost <InlineMath math="1" /> gets multiplied by <InlineMath math="7" /> three times, ending up worth <InlineMath math="7^3" />, just as in the expanded form that also checks your answer.
 
 <BlockMath math="1452_7 = 1 \times 343 + 4 \times 49 + 5 \times 7 + 2 = 343 + 196 + 35 + 2 = 576" />
 
-Multiply-and-add saves work on long numerals, because you never have to work out a big power like <InlineMath math="7^3" /> first. Use it on <InlineMath math="3021_4" />: start from the leftmost digit, multiply by <InlineMath math="4" />, then add the next digit.
+Multiply-and-add saves work on long numerals, because you never have to compute a big power like <InlineMath math="7^3" /> first. Use it on <InlineMath math="3021_4" />: start from the left, multiply by <InlineMath math="4" />, then add the next digit.
 
 <BlockMath math="\begin{aligned} 3 \times 4 + 0 &= 12 \\ 12 \times 4 + 2 &= 50 \\ 50 \times 4 + 1 &= 201 \end{aligned}" />
 
-So **<InlineMath math="3021_4 = 201" />**. Check with the expanded form: <InlineMath math="3 \times 64 + 0 \times 16 + 2 \times 4 + 1 = 192 + 8 + 1 = 201" />.
+So **<InlineMath math="3021_4 = 201" />**. Check the result with the expanded form.
+
+<BlockMath math="3 \times 64 + 0 \times 16 + 2 \times 4 + 1 = 192 + 8 + 1 = 201" />
 
 ## Two Bases Other Than Ten
 
-Base five and base eight aren't powers of each other, so there's no shortcut between them. The path that always works goes **through base ten**: convert to base ten with place values first, then to the target base with repeated division. Take <InlineMath math="2134_5" /> and convert it to base eight.
+Base five and base eight aren't powers of each other, so there's no shortcut between them. The path that always works goes **through base ten**: convert to base ten with place values first, then to the target base by repeated division. Convert <InlineMath math="2134_5" /> to base eight.
 
 <BlockMath math="2134_5 = 2 \times 125 + 1 \times 25 + 3 \times 5 + 4 = 250 + 25 + 15 + 4 = 294" />
 
@@ -84,9 +100,11 @@ Now divide <InlineMath math="294" /> by <InlineMath math="8" /> again and again.
 
 <BlockMath math="\begin{aligned} 294 &= 36 \times 8 + 6 \\ 36 &= 4 \times 8 + 4 \\ 4 &= 0 \times 8 + 4 \end{aligned}" />
 
-The remainders from the bottom give <InlineMath math="2134_5 = 446_8" />. Check with the base eight expanded form: <InlineMath math="4 \times 64 + 4 \times 8 + 6 = 256 + 32 + 6 = 294" />. That's the value from the first step, so both numerals count the same number of things.
+The remainders from the bottom give <InlineMath math="2134_5 = 446_8" />. Check with the base eight expanded form to confirm both numerals count the same number of things.
 
-The classic slip here is to skip base ten. Divide <InlineMath math="2134" /> straight by <InlineMath math="8" /> and you get <InlineMath math="4126_8" /> instead of <InlineMath math="446_8" />, because that division treats <InlineMath math="2134" /> as a base ten number. **Repeated division only works on a value in base ten**, so convert to base ten first.
+<BlockMath math="4 \times 64 + 4 \times 8 + 6 = 256 + 32 + 6 = 294" />
+
+The classic slip here is skipping base ten. Dividing <InlineMath math="2134" /> straight by <InlineMath math="8" /> gives <InlineMath math="4126_8" />, because that division treats <InlineMath math="2134" /> as a base ten number. **Repeated division only works on a value in base ten**, so convert to base ten first.
 
 Base seven and base three aren't powers of each other either, so <InlineMath math="263_7" /> also goes through base ten on its way to base three.
 
@@ -96,11 +114,15 @@ Then divide <InlineMath math="143" /> by <InlineMath math="3" /> again and again
 
 <BlockMath math="\begin{aligned} 143 &= 47 \times 3 + 2 \\ 47 &= 15 \times 3 + 2 \\ 15 &= 5 \times 3 + 0 \\ 5 &= 1 \times 3 + 2 \\ 1 &= 0 \times 3 + 1 \end{aligned}" />
 
-The remainders from the bottom give **<InlineMath math="263_7 = 12022_3" />**. Check: <InlineMath math="1 \times 81 + 2 \times 27 + 0 \times 9 + 2 \times 3 + 2 = 81 + 54 + 6 + 2 = 143" />.
+The remainders from the bottom give **<InlineMath math="263_7 = 12022_3" />**. Check the value back in base ten.
+
+<BlockMath math="1 \times 81 + 2 \times 27 + 0 \times 9 + 2 \times 3 + 2 = 81 + 54 + 6 + 2 = 143" />
 
 ## Base Two to Four and Eight
 
-Base two has a special link with bases four and eight, because <InlineMath math="4 = 2^2" /> and <InlineMath math="8 = 2^3" />. Two base two digits fill exactly one base four place, and three base two digits fill exactly one base eight place. So you can **group base two digits** without going through base ten. On this panel each lamp is one base two digit: on means <InlineMath math="1" />, off means <InlineMath math="0" />.
+Base two has a special link with bases four and eight, because <InlineMath math="4 = 2^2" /> and <InlineMath math="8 = 2^3" />. Two base two digits fill one base four place, and three base two digits fill one base eight place.
+
+So you can **group base two digits** without going through base ten. On this panel each lamp is one base two digit: on means <InlineMath math="1" />, off means <InlineMath math="0" />.
 
 <BinaryLampLab
   title={<>The Number <InlineMath math="90" /> on Seven Lamps</>}
@@ -129,15 +151,23 @@ Base two has a special link with bases four and eight, because <InlineMath math=
   showReadout
 />
 
-Read one by one, the panel shows <InlineMath math="1011010_2 = 64 + 16 + 8 + 2 = 90" />. The other direction is just as direct: write each base eight digit as three base two digits. For example <InlineMath math="75_8" /> becomes <InlineMath math="111\,101_2" />, because <InlineMath math="7 = 111_2" /> and <InlineMath math="5 = 101_2" />, and both numerals are worth <InlineMath math="61" />.
+Read one by one, the panel shows a base two numeral worth <InlineMath math="90" />.
+
+<BlockMath math="1011010_2 = 64 + 16 + 8 + 2 = 90" />
+
+The other direction is just as direct: write each base eight digit as three base two digits. For example <InlineMath math="75_8" /> becomes <InlineMath math="111\,101_2" />, because <InlineMath math="7 = 111_2" /> and <InlineMath math="5 = 101_2" />, and both numerals are worth <InlineMath math="61" />.
 
 ### Grouping from the Right
 
-Always group from the right, because **the rightmost digit is the ones** in every base. The first pair from the right holds the <InlineMath math="2^0" /> and <InlineMath math="2^1" /> places, which make the ones of base four. The next pair holds <InlineMath math="2^2" /> and <InlineMath math="2^3" />, and together they make the <InlineMath math="4^1" /> place.
+Always group from the right, because **the rightmost digit is the ones** in every base. The first pair from the right holds the <InlineMath math="2^0" /> and <InlineMath math="2^1" /> places, making the ones of base four. The next pair holds <InlineMath math="2^2" /> and <InlineMath math="2^3" />, making the <InlineMath math="4^1" /> place.
 
 <BlockMath math="1011010_2 = 01\,01\,10\,10_2 = 1122_4" />
 
-Each pair reads as a tiny base two number: <InlineMath math="01_2 = 1" /> and <InlineMath math="10_2 = 2" />. Check: <InlineMath math="1122_4 = 64 + 16 + 8 + 2 = 90" />. If you group from the left, every place shifts. The digits <InlineMath math="101\,101\,0" /> then read as <InlineMath math="550_8 = 360" />, four times the right value.
+Each pair reads as a tiny base two number: <InlineMath math="01_2 = 1" /> and <InlineMath math="10_2 = 2" />.
+
+<BlockMath math="1122_4 = 64 + 16 + 8 + 2 = 90" />
+
+If you group from the left, every place shifts. The digits <InlineMath math="101\,101\,0" /> then read as <InlineMath math="550_8 = 360" />, four times the right value.
 
 ### Leading Zeros as Padding
 
@@ -145,7 +175,11 @@ Seven lamps don't split evenly into pairs or threes. The leftmost group that's s
 
 <BlockMath math="1011010_2 = 001\,011\,010_2 = 132_8" />
 
-Check: <InlineMath math="132_8 = 64 + 24 + 2 = 90" />. Pick the reading in threes on the panel and watch two empty places on the left fill with zeros. Reading in pairs needs only one zero, because seven digits are just one short of eight.
+Check the value through base ten to confirm it stays <InlineMath math="90" />.
+
+<BlockMath math="132_8 = 64 + 24 + 2 = 90" />
+
+Pick the reading in threes on the panel and watch two empty places on the left fill with zeros. Reading in pairs needs only one zero, because seven digits are just one short of eight.
 
 Try both groupings on a longer numeral: convert <InlineMath math="11010111_2" /> to base eight and to base four. For base eight, group three digits from the right and add one zero in front.
 
@@ -155,4 +189,6 @@ For base four, eight digits split evenly into four pairs, so no extra zero is ne
 
 <BlockMath math="11010111_2 = 11\,01\,01\,11_2 = 3113_4" />
 
-Check both through base ten: <InlineMath math="11010111_2 = 128 + 64 + 16 + 4 + 2 + 1 = 215" />, <InlineMath math="327_8 = 192 + 16 + 7 = 215" /> and <InlineMath math="3113_4 = 192 + 16 + 4 + 3 = 215" />. **All three numerals are worth** <InlineMath math="215" />.
+Check all three through base ten to see that **all three numerals are worth** <InlineMath math="215" />.
+
+<BlockMath math="\begin{aligned} 11010111_2 &= 128 + 64 + 16 + 4 + 2 + 1 = 215 \\ 327_8 &= 192 + 16 + 7 = 215 \\ 3113_4 &= 192 + 16 + 4 + 3 = 215 \end{aligned}" />

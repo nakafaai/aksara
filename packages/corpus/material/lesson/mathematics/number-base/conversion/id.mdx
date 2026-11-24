@@ -9,7 +9,9 @@ export const metadata = {
 
 ## Mengikat Stik Menjadi Ikatan
 
-Untuk mengubah bilangan basis sepuluh ke basis <InlineMath math="b" />, **kelompokkan bendanya <InlineMath math="b" /> demi <InlineMath math="b" />**. Ambil <InlineMath math="200" /> stik es krim dan pakai basis enam. Ikat setiap enam stik menjadi satu ikatan, masukkan setiap enam ikatan ke satu kotak, lalu taruh setiap enam kotak di satu nampan. Banyak nampan, kotak yang tersisa, ikatan yang tersisa, dan stik lepas adalah angka-angka bilangan itu dalam basis enam. Setiap putaran mengikat sama dengan satu pembagian oleh <InlineMath math="b" />, dan di meja ini kamu melihat pembagian berulang itu terjadi pada benda.
+Untuk mengubah bilangan basis sepuluh ke basis <InlineMath math="b" />, **kelompokkan bendanya <InlineMath math="b" /> demi <InlineMath math="b" />**. Ambil <InlineMath math="200" /> stik es krim dan pakai basis enam. Ikat setiap enam stik menjadi satu ikatan, masukkan setiap enam ikatan ke satu kotak, lalu taruh setiap enam kotak di satu nampan.
+
+Banyak nampan, kotak tersisa, ikatan tersisa, dan stik lepas menjadi angka-angka bilangan itu dalam basis enam. Setiap putaran mengikat sama dengan satu pembagian oleh <InlineMath math="b" />, dan di meja ini kamu melihat pembagian berulang itu terjadi pada benda nyata.
 
 <BundleCountLab
   title={<>Mengikat <InlineMath math="200" /> Stik dalam Basis Enam</>}
@@ -41,23 +43,35 @@ Di kertas, setiap putaran ditulis sebagai satu pembagian bersisa. **Hasil bagi**
 
 <BlockMath math="\begin{aligned} 200 &= 33 \times 6 + 2 \\ 33 &= 5 \times 6 + 3 \\ 5 &= 0 \times 6 + 5 \end{aligned}" />
 
-Berhenti saat hasil baginya <InlineMath math="0" />. Sisanya, dibaca dari bawah ke atas, memberi <InlineMath math="200 = 532_6" />. Cek dengan bentuk panjang: <InlineMath math="5 \times 36 + 3 \times 6 + 2 = 180 + 18 + 2 = 200" />.
+Berhenti saat hasil baginya <InlineMath math="0" />. Sisanya, dibaca dari bawah ke atas, memberi <InlineMath math="200 = 532_6" />. Cek dengan bentuk panjang untuk memastikan nilainya kembali ke <InlineMath math="200" />.
+
+<BlockMath math="5 \times 36 + 3 \times 6 + 2 = 180 + 18 + 2 = 200" />
 
 ### Sisa Dibaca dari Bawah
 
-Kenapa dibaca dari bawah? Sisa pertama adalah stik lepas, yaitu satuan, jadi angka itu berdiri paling kanan. Setiap pembagian berikutnya menghitung kelompok yang lebih besar, sehingga **sisa terakhir menghitung kelompok terbesar** dan berdiri paling kiri. Tangga untuk basis lima lebih panjang satu anak tangga, karena nampannya ikut terisi.
+Kenapa dibaca dari bawah? Sisa pertama adalah stik lepas, yaitu satuan, jadi angka itu berdiri paling kanan. Setiap pembagian berikutnya menghitung kelompok yang lebih besar, sehingga **sisa terakhir menghitung kelompok terbesar** dan berdiri paling kiri.
+
+> Sisa pertama mencatat benda lepas di tempat satuan, sedangkan sisa terakhir mencatat kelompok paling besar di ujung kiri.
+
+Tangga untuk basis lima lebih panjang satu anak tangga, karena nampannya ikut terisi.
 
 <BlockMath math="\begin{aligned} 200 &= 40 \times 5 + 0 \\ 40 &= 8 \times 5 + 0 \\ 8 &= 1 \times 5 + 3 \\ 1 &= 0 \times 5 + 1 \end{aligned}" />
 
-Sisa terakhir, <InlineMath math="1" />, adalah satu nampan berisi <InlineMath math="125" /> stik, jadi <InlineMath math="200 = 1300_5" />. Kedua sisa nol tetap ditulis, karena keduanya mencatat bahwa tidak ada ikatan yang tersisa dan tidak ada stik lepas. Cek: <InlineMath math="1 \times 125 + 3 \times 25 + 0 \times 5 + 0 = 200" />.
+Sisa terakhir, <InlineMath math="1" />, adalah satu nampan berisi <InlineMath math="125" /> stik, jadi <InlineMath math="200 = 1300_5" />. Kedua sisa nol tetap ditulis, karena keduanya mencatat bahwa tidak ada ikatan tersisa dan tidak ada stik lepas.
 
-Dua kekeliruan di tangga ini tetap menghasilkan bilangan yang tampak wajar. Kalau sisa tangga basis enam dibaca dari atas, <InlineMath math="200" /> berubah menjadi <InlineMath math="235_6" />, yang hanya bernilai <InlineMath math="95" />. Kalau kedua sisa nol di tangga basis lima dibuang, hasilnya <InlineMath math="13_5" />, yang hanya bernilai <InlineMath math="8" />. Banyak angka harus sama dengan banyak pembagian, dan cek yang paling cepat adalah **mengubah jawabanmu kembali ke basis awal**. Kalau bilangannya tidak kembali, berarti ada langkah yang salah.
+<BlockMath math="1 \times 125 + 3 \times 25 + 0 \times 5 + 0 = 200" />
+
+Dua kekeliruan di tangga ini tetap menghasilkan bilangan yang tampak wajar. Membaca sisa tangga basis enam dari atas mengubah <InlineMath math="200" /> menjadi <InlineMath math="235_6" /> (hanya <InlineMath math="95" />), sedangkan membuang dua nol di basis lima memberi <InlineMath math="13_5" /> (hanya <InlineMath math="8" />).
+
+Banyak angka harus sama dengan banyak pembagian. Cek paling cepat adalah **mengubah jawabanmu kembali ke basis awal**: kalau bilangannya tidak kembali, berarti ada langkah yang salah.
 
 Sekarang coba tangga dengan empat anak tangga: ubah <InlineMath math="150" /> ke basis empat. Bagi berulang kali dengan <InlineMath math="4" /> sampai hasil baginya <InlineMath math="0" />.
 
 <BlockMath math="\begin{aligned} 150 &= 37 \times 4 + 2 \\ 37 &= 9 \times 4 + 1 \\ 9 &= 2 \times 4 + 1 \\ 2 &= 0 \times 4 + 2 \end{aligned}" />
 
-Sisa dari bawah memberi **<InlineMath math="150 = 2112_4" />**. Cek: <InlineMath math="2 \times 64 + 1 \times 16 + 1 \times 4 + 2 = 150" />.
+Sisa dari bawah memberi **<InlineMath math="150 = 2112_4" />**. Cek kembali dengan bentuk panjangnya.
+
+<BlockMath math="2 \times 64 + 1 \times 16 + 1 \times 4 + 2 = 150" />
 
 ## Kembali ke Basis Sepuluh
 
@@ -65,19 +79,21 @@ Arah sebaliknya memakai nilai tempat. Kamu bisa menulis [bentuk panjang dari nil
 
 <BlockMath math="\begin{aligned} 1 \times 7 + 4 &= 11 \\ 11 \times 7 + 5 &= 82 \\ 82 \times 7 + 2 &= 576 \end{aligned}" />
 
-Kenapa cara ini benar? Setiap kali kamu mengalikan dengan <InlineMath math="7" />, semua angka yang sudah diambil naik satu tempat. Angka <InlineMath math="1" /> paling kiri ikut dikalikan <InlineMath math="7" /> tiga kali, jadi akhirnya bernilai <InlineMath math="7^3" />, persis seperti dalam bentuk panjang. Bentuk panjang juga menjadi cek jawabanmu.
+Kenapa cara ini benar? Setiap kali kamu mengalikan dengan <InlineMath math="7" />, semua angka yang sudah diambil naik satu tempat. Angka <InlineMath math="1" /> paling kiri dikalikan <InlineMath math="7" /> tiga kali, jadi akhirnya bernilai <InlineMath math="7^3" />, persis seperti bentuk panjang yang juga menjadi cek jawabanmu.
 
 <BlockMath math="1452_7 = 1 \times 343 + 4 \times 49 + 5 \times 7 + 2 = 343 + 196 + 35 + 2 = 576" />
 
-Cara kali lalu tambah lebih hemat untuk bilangan yang panjang, karena kamu tidak perlu menghitung pangkat besar seperti <InlineMath math="7^3" /> lebih dulu. Pakai cara ini untuk <InlineMath math="3021_4" />: mulai dari angka paling kiri, kalikan dengan <InlineMath math="4" />, lalu tambahkan angka berikutnya.
+Cara kali lalu tambah lebih hemat untuk bilangan yang panjang, karena kamu tidak perlu menghitung pangkat besar seperti <InlineMath math="7^3" /> lebih dulu. Pakai cara ini untuk <InlineMath math="3021_4" />: mulai dari kiri, kalikan dengan <InlineMath math="4" />, lalu tambahkan angka berikutnya.
 
 <BlockMath math="\begin{aligned} 3 \times 4 + 0 &= 12 \\ 12 \times 4 + 2 &= 50 \\ 50 \times 4 + 1 &= 201 \end{aligned}" />
 
-Jadi **<InlineMath math="3021_4 = 201" />**. Cek dengan bentuk panjang: <InlineMath math="3 \times 64 + 0 \times 16 + 2 \times 4 + 1 = 192 + 8 + 1 = 201" />.
+Jadi **<InlineMath math="3021_4 = 201" />**. Cek dengan bentuk panjang untuk memastikan hasilnya cocok.
+
+<BlockMath math="3 \times 64 + 0 \times 16 + 2 \times 4 + 1 = 192 + 8 + 1 = 201" />
 
 ## Dua Basis Selain Sepuluh
 
-Basis lima dan basis delapan tidak saling berhubungan sebagai pangkat, jadi tidak ada jalan pintas di antara keduanya. Jalan yang selalu berhasil adalah **lewat basis sepuluh**: ubah dulu ke basis sepuluh dengan nilai tempat, lalu ubah ke basis tujuan dengan pembagian berulang. Ambil <InlineMath math="2134_5" /> dan ubah ke basis delapan.
+Basis lima dan basis delapan tidak saling berhubungan sebagai pangkat, jadi tidak ada jalan pintas di antara keduanya. Jalan yang selalu berhasil adalah **lewat basis sepuluh**: ubah dulu ke basis sepuluh dengan nilai tempat, lalu ke basis tujuan dengan pembagian berulang. Ambil <InlineMath math="2134_5" /> menuju basis delapan.
 
 <BlockMath math="2134_5 = 2 \times 125 + 1 \times 25 + 3 \times 5 + 4 = 250 + 25 + 15 + 4 = 294" />
 
@@ -85,9 +101,11 @@ Sekarang bagi <InlineMath math="294" /> berulang kali dengan <InlineMath math="8
 
 <BlockMath math="\begin{aligned} 294 &= 36 \times 8 + 6 \\ 36 &= 4 \times 8 + 4 \\ 4 &= 0 \times 8 + 4 \end{aligned}" />
 
-Sisa dari bawah memberi <InlineMath math="2134_5 = 446_8" />. Cek dengan bentuk panjang basis delapan: <InlineMath math="4 \times 64 + 4 \times 8 + 6 = 256 + 32 + 6 = 294" />. Nilainya sama dengan hasil langkah pertama, jadi kedua tulisan menyatakan banyak benda yang sama.
+Sisa dari bawah memberi <InlineMath math="2134_5 = 446_8" />. Cek dengan bentuk panjang basis delapan agar yakin kedua tulisan menyatakan banyak benda yang sama.
 
-Kekeliruan yang paling sering di sini adalah melewatkan basis sepuluh. Kalau <InlineMath math="2134" /> langsung dibagi <InlineMath math="8" />, hasilnya <InlineMath math="4126_8" />, bukan <InlineMath math="446_8" />, karena pembagian itu memperlakukan <InlineMath math="2134" /> sebagai bilangan basis sepuluh. **Pembagian berulang hanya berlaku untuk nilai dalam basis sepuluh**, jadi ubah ke basis sepuluh dulu.
+<BlockMath math="4 \times 64 + 4 \times 8 + 6 = 256 + 32 + 6 = 294" />
+
+Kekeliruan paling sering di sini adalah melewatkan basis sepuluh. Kalau <InlineMath math="2134" /> langsung dibagi <InlineMath math="8" />, hasilnya <InlineMath math="4126_8" /> karena pembagian itu menganggap <InlineMath math="2134" /> sebagai basis sepuluh. **Pembagian berulang hanya berlaku untuk nilai dalam basis sepuluh**, jadi ubah ke basis sepuluh dulu.
 
 Basis tujuh dan basis tiga juga tidak berhubungan sebagai pangkat, jadi <InlineMath math="263_7" /> juga lewat basis sepuluh menuju basis tiga.
 
@@ -97,11 +115,15 @@ Lalu bagi <InlineMath math="143" /> berulang kali dengan <InlineMath math="3" />
 
 <BlockMath math="\begin{aligned} 143 &= 47 \times 3 + 2 \\ 47 &= 15 \times 3 + 2 \\ 15 &= 5 \times 3 + 0 \\ 5 &= 1 \times 3 + 2 \\ 1 &= 0 \times 3 + 1 \end{aligned}" />
 
-Sisa dari bawah memberi **<InlineMath math="263_7 = 12022_3" />**. Cek: <InlineMath math="1 \times 81 + 2 \times 27 + 0 \times 9 + 2 \times 3 + 2 = 81 + 54 + 6 + 2 = 143" />.
+Sisa dari bawah memberi **<InlineMath math="263_7 = 12022_3" />**. Cek kembali nilainya dalam basis sepuluh.
+
+<BlockMath math="1 \times 81 + 2 \times 27 + 0 \times 9 + 2 \times 3 + 2 = 81 + 54 + 6 + 2 = 143" />
 
 ## Basis Dua ke Empat dan Delapan
 
-Basis dua punya hubungan khusus dengan basis empat dan delapan, karena <InlineMath math="4 = 2^2" /> dan <InlineMath math="8 = 2^3" />. Dua angka basis dua tepat mengisi satu tempat basis empat, dan tiga angka basis dua tepat mengisi satu tempat basis delapan. Jadi kamu bisa **mengelompokkan angka basis dua** tanpa melewati basis sepuluh. Di panel ini, setiap lampu adalah satu angka basis dua: menyala berarti <InlineMath math="1" />, padam berarti <InlineMath math="0" />.
+Basis dua punya hubungan khusus dengan basis empat dan delapan, karena <InlineMath math="4 = 2^2" /> dan <InlineMath math="8 = 2^3" />. Dua angka basis dua tepat mengisi satu tempat basis empat, dan tiga angka basis dua tepat mengisi satu tempat basis delapan.
+
+Kamu bisa **mengelompokkan angka basis dua** tanpa melewati basis sepuluh. Di panel ini, setiap lampu adalah satu angka basis dua: menyala berarti <InlineMath math="1" />, padam berarti <InlineMath math="0" />.
 
 <BinaryLampLab
   title={<>Bilangan <InlineMath math="90" /> pada Tujuh Lampu</>}
@@ -131,7 +153,11 @@ Basis dua punya hubungan khusus dengan basis empat dan delapan, karena <InlineMa
   showReadout
 />
 
-Dibaca satu per satu, panel menunjukkan <InlineMath math="1011010_2 = 64 + 16 + 8 + 2 = 90" />. Arah sebaliknya sama langsungnya: tulis setiap angka basis delapan sebagai tiga angka basis dua. Misalnya <InlineMath math="75_8" /> menjadi <InlineMath math="111\,101_2" />, karena <InlineMath math="7 = 111_2" /> dan <InlineMath math="5 = 101_2" />, dan keduanya bernilai <InlineMath math="61" />.
+Dibaca satu per satu, panel menunjukkan bilangan basis dua yang bernilai <InlineMath math="90" />.
+
+<BlockMath math="1011010_2 = 64 + 16 + 8 + 2 = 90" />
+
+Arah sebaliknya sama langsungnya: tulis setiap angka basis delapan sebagai tiga angka basis dua. Misalnya <InlineMath math="75_8" /> menjadi <InlineMath math="111\,101_2" />, karena <InlineMath math="7 = 111_2" /> dan <InlineMath math="5 = 101_2" />, dan keduanya bernilai <InlineMath math="61" />.
 
 ### Kelompok dari Kanan
 
@@ -139,7 +165,11 @@ Kelompokkan selalu dari kanan, karena **angka paling kanan adalah satuan** dalam
 
 <BlockMath math="1011010_2 = 01\,01\,10\,10_2 = 1122_4" />
 
-Setiap pasangan dibaca sebagai bilangan basis dua yang kecil: <InlineMath math="01_2 = 1" /> dan <InlineMath math="10_2 = 2" />. Cek: <InlineMath math="1122_4 = 64 + 16 + 8 + 2 = 90" />. Kalau kamu mengelompokkan dari kiri, setiap tempat bergeser. Tulisan <InlineMath math="101\,101\,0" /> terbaca sebagai <InlineMath math="550_8 = 360" />, empat kali nilai yang benar.
+Setiap pasangan dibaca sebagai bilangan basis dua kecil: <InlineMath math="01_2 = 1" /> dan <InlineMath math="10_2 = 2" />.
+
+<BlockMath math="1122_4 = 64 + 16 + 8 + 2 = 90" />
+
+Kalau kamu mengelompokkan dari kiri, setiap tempat bergeser. Tulisan <InlineMath math="101\,101\,0" /> terbaca sebagai <InlineMath math="550_8 = 360" />, empat kali nilai yang benar.
 
 ### Menambah Nol di Depan
 
@@ -147,7 +177,11 @@ Tujuh lampu tidak terbagi rata menjadi pasangan atau kelompok tiga. Kelompok pal
 
 <BlockMath math="1011010_2 = 001\,011\,010_2 = 132_8" />
 
-Cek: <InlineMath math="132_8 = 64 + 24 + 2 = 90" />. Pilih bacaan bertiga pada panel dan lihat dua tempat kosong di kiri terisi nol. Pada bacaan berpasangan, cukup satu nol, karena tujuh angka hanya kurang satu untuk menjadi delapan.
+Cek nilainya lewat basis sepuluh untuk memastikan tetap <InlineMath math="90" />.
+
+<BlockMath math="132_8 = 64 + 24 + 2 = 90" />
+
+Pilih bacaan bertiga pada panel dan lihat dua tempat kosong di kiri terisi nol. Pada bacaan berpasangan, cukup satu nol, karena tujuh angka hanya kurang satu untuk menjadi delapan.
 
 Coba kedua cara mengelompokkan pada bilangan yang lebih panjang: ubah <InlineMath math="11010111_2" /> ke basis delapan dan ke basis empat. Untuk basis delapan, kelompokkan tiga angka dari kanan dan tambahkan satu nol di depan.
 
@@ -157,4 +191,6 @@ Untuk basis empat, delapan angka terbagi rata menjadi empat pasangan, jadi tidak
 
 <BlockMath math="11010111_2 = 11\,01\,01\,11_2 = 3113_4" />
 
-Cek keduanya lewat basis sepuluh: <InlineMath math="11010111_2 = 128 + 64 + 16 + 4 + 2 + 1 = 215" />, <InlineMath math="327_8 = 192 + 16 + 7 = 215" />, dan <InlineMath math="3113_4 = 192 + 16 + 4 + 3 = 215" />. **Ketiga tulisan bernilai** <InlineMath math="215" />.
+Cek ketiganya lewat basis sepuluh untuk memastikan **ketiga tulisan bernilai** <InlineMath math="215" />.
+
+<BlockMath math="\begin{aligned} 11010111_2 &= 128 + 64 + 16 + 4 + 2 + 1 = 215 \\ 327_8 &= 192 + 16 + 7 = 215 \\ 3113_4 &= 192 + 16 + 4 + 3 = 215 \end{aligned}" />
