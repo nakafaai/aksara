@@ -1,34 +1,88 @@
-# Satu basis untuk semuanya
+# Diketahui
 
-Kamu punya logaritma dengan basis <InlineMath math="2" /> dan basis <InlineMath math="3" />, padahal yang ditanya berbasis <InlineMath math="15" />. **Pindahkan semuanya ke basis <InlineMath math="2" />**:
+Dua **nilai logaritma** dengan basis berbeda diketahui sebagai berikut.
 
-<BlockMath math="\log_{15}20=\frac{\log_2 20}{\log_2 15}" />
+<BlockMath math="\log_2 3 = a, \qquad \log_3 5 = b" />
 
-# Menyambung dua logaritma
+# Ditanyakan
 
-Bilangan <InlineMath math="5" /> hanya muncul di <InlineMath math="b=\log_3 5" />, yang berbasis <InlineMath math="3" />. **Rantai basisnya menghubungkan <InlineMath math="2" /> ke <InlineMath math="5" /> lewat <InlineMath math="3" />**:
+Nyatakan bentuk (*Term*) <InlineMath math="\log_{15} 20" /> dalam huruf <InlineMath math="a" /> dan <InlineMath math="b" />.
 
-<BlockMath math="\log_2 5=\log_2 3\cdot\log_3 5=ab" />
+# Penyelesaian
 
-Sekarang uraikan <InlineMath math="20=4\cdot5" /> dan <InlineMath math="15=3\cdot5" />:
+Bayangkan dua penggaris dengan satuan berbeda: satu berskala pangkat <InlineMath math="2" /> dan satu lagi berskala pangkat <InlineMath math="3" />. Supaya semua bilangan bisa dibandingkan langsung, **pindahkan seluruh logaritma ke satu penggaris yang sama**, yaitu basis <InlineMath math="2" />.
+
+> Mengubah basis logaritma berarti mengukur kedua bilangan pada satu skala logaritma yang sama, lalu membagi kedua hasilnya.
+
+Lihat bagaimana titik <InlineMath math="3" />, <InlineMath math="5" />, <InlineMath math="15" />, dan <InlineMath math="20" /> duduk rapi di atas satu kurva <InlineMath math="y = \log_2 x" /> berikut ini.
+
+<MathVisual
+  title={<>Menempatkan semua nilai pada skala <InlineMath math="\log_2 x" /></>}
+  description={
+    <>
+      Kurva biru menggambar <InlineMath math="\log_2 x" />. Titik kuning
+      menandai bahan dasar <InlineMath math="3" /> dan <InlineMath math="5" />,
+      sedangkan titik hijau menandai <InlineMath math="15" /> dan{" "}
+      <InlineMath math="20" />.
+    </>
+  }
+  footer={<>Nilai <InlineMath math="\log_{15} 20" /> adalah rasio tinggi titik <InlineMath math="20" /> terhadap titik <InlineMath math="15" />.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 23 }, y: { min: -1, max: 5 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "log2", kind: "function", appearance: "primary", formula: "log(x) / log(2)", domain: { min: 0.5, max: 22 } },
+      { id: "p3", kind: "point", appearance: "highlight", at: { x: 3, y: Math.log(3) / Math.log(2) } },
+      { id: "p5", kind: "point", appearance: "highlight", at: { x: 5, y: Math.log(5) / Math.log(2) } },
+      { id: "p15", kind: "point", appearance: "answer", at: { x: 15, y: Math.log(15) / Math.log(2) } },
+      { id: "p20", kind: "point", appearance: "answer", at: { x: 20, y: Math.log(20) / Math.log(2) } },
+    ],
+    labels: [
+      { key: "p3", objectId: "p3", at: { x: 3, y: Math.log(3) / Math.log(2) }, placement: "above-left" },
+      { key: "p5", objectId: "p5", at: { x: 5, y: Math.log(5) / Math.log(2) }, placement: "below-right" },
+      { key: "p15", objectId: "p15", at: { x: 15, y: Math.log(15) / Math.log(2) }, placement: "below" },
+      { key: "p20", objectId: "p20", at: { x: 20, y: Math.log(20) / Math.log(2) }, placement: "above" },
+    ],
+  }}
+  labels={{
+    p3: <InlineMath math="a" />,
+    p5: <InlineMath math="ab" />,
+    p15: <InlineMath math="a + ab" />,
+    p20: <InlineMath math="2 + ab" />,
+  }}
+/>
+
+Di atas skala basis <InlineMath math="2" />, tinggi <InlineMath math="20" /> sedikit lebih tinggi daripada tinggi <InlineMath math="15" />, jadi rasionya pasti sedikit di atas <InlineMath math="1" />.
+
+## Menyambung rantai basis ke basis dua
+
+Bilangan <InlineMath math="5" /> hanya muncul di <InlineMath math="b = \log_3 5" />. Gunakan **aturan rantai logaritma** untuk melompat dari basis <InlineMath math="2" /> ke <InlineMath math="5" /> lewat <InlineMath math="3" />, lalu pecah <InlineMath math="20 = 4 \cdot 5" /> dan <InlineMath math="15 = 3 \cdot 5" />.
 
 <BlockMath math="\begin{aligned}
-\log_2 20&=\log_2 4+\log_2 5=2+ab \\
-\log_2 15&=\log_2 3+\log_2 5=a+ab
+\log_2 5 &= \log_2 3 \cdot \log_3 5 = ab \\
+\log_2 20 &= \log_2 4 + \log_2 5 = 2 + ab \\
+\log_2 15 &= \log_2 3 + \log_2 5 = a + ab
 \end{aligned}" />
 
-# Hasilnya
+Substitusikan kedua nilai ini ke rumus perubahan basis.
 
-<BlockMath math="\log_{15}20=\frac{2+ab}{a+ab}" />
+<BlockMath math="\log_{15} 20 = \frac{\log_2 20}{\log_2 15} = \frac{2 + ab}{a + ab}" />
 
-Cek dengan angka: <InlineMath math="a\approx1{,}585" /> dan <InlineMath math="b\approx1{,}465" /> memberi <InlineMath math="\frac{4{,}322}{3{,}907}\approx1{,}106" />. **Nilai itu masuk akal**, karena <InlineMath math="20" /> sedikit lebih besar dari <InlineMath math="15" />.
+## Cek numerik dan pilihan salah
 
-Jadi, <InlineMath math="\log_{15}20=\frac{2+ab}{a+ab}" />.
+Uji dengan pendekatan <InlineMath math="a \approx 1{,}585" /> dan <InlineMath math="b \approx 1{,}465" /> untuk memastikan **hasilnya masuk akal**.
 
-# Kenapa pilihan lain salah
+<BlockMath math="\frac{2 + 1{,}585 \times 1{,}465}{1{,}585 + 1{,}585 \times 1{,}465} \approx \frac{4{,}322}{3{,}907} \approx 1{,}106" />
 
-- <InlineMath math="\frac{2+b}{a+b}" /> memakai <InlineMath math="b" /> sebagai <InlineMath math="\log_2 5" />. **Padahal <InlineMath math="b" /> berbasis <InlineMath math="3" />**, jadi harus dikalikan dengan <InlineMath math="a" /> dulu.
-- <InlineMath math="\frac{2+ab}{a+b}" /> menyambung basis di pembilang saja dan lupa di penyebut.
-- <InlineMath math="\frac{2ab}{a+ab}" /> menulis <InlineMath math="\log_2(4\cdot5)" /> sebagai <InlineMath math="\log_2 4\cdot\log_2 5" />. Logaritma hasil kali adalah jumlah, bukan hasil kali.
-- <InlineMath math="\frac{2+ab}{a^2b}" /> membuat kesalahan yang sama di penyebut, <InlineMath math="\log_2 3\cdot\log_2 5=a\cdot ab" />.
-- <InlineMath math="\frac{a+ab}{2+ab}" /> menukar pembilang dan penyebut. Itu adalah <InlineMath math="\log_{20}15" />.
+- Pilihan tanpa perkalian <InlineMath math="ab" /> di pembilang dan penyebut keliru menganggap <InlineMath math="b" /> sudah berbasis <InlineMath math="2" />.
+- Pilihan dengan <InlineMath math="a + b" /> di penyebut menyambung basis di pembilang saja dan lupa di penyebut.
+- Pilihan dengan <InlineMath math="2ab" /> di pembilang mengira logaritma perkalian menjadi perkalian, padahal menjadi penjumlahan.
+- Pilihan dengan <InlineMath math="a^2 b" /> di penyebut membuat kekeliruan yang sama pada penyebut.
+- Pilihan terbalik dengan <InlineMath math="2 + ab" /> di penyebut menghitung <InlineMath math="\log_{20} 15" />, bukan <InlineMath math="\log_{15} 20" />.
+
+# Jawaban
+
+Bentuk yang setara dengan <InlineMath math="\log_{15} 20" /> adalah sebagai berikut.
+
+<BlockMath math="\frac{2 + ab}{a + ab}" />

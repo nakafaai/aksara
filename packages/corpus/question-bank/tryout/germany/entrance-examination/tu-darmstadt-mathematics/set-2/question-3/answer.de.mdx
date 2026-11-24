@@ -1,39 +1,85 @@
-# Nur ein Teil der Parabel zählt
+# Gegeben
 
-Die linke Seite ist eine nach oben geöffnete Parabel mit dem Scheitel bei <InlineMath math="x=-\frac a2" />. Die Ungleichung muss nur für <InlineMath math="x\ge1" /> gelten, also **zählt der kleinste Wert der Parabel auf diesem Bereich**, nicht auf der ganzen <InlineMath math="x" />-Achse. Wo der Scheitel liegt, entscheidet, wo dieser kleinste Wert ist.
+Die folgende **quadratische Ungleichung** mit reellem Parameter <InlineMath math="a" /> soll für alle reellen Zahlen <InlineMath math="x \ge 1" /> gelten.
 
-# Scheitel links vom Bereich
+<BlockMath math="x^2 + ax + 4 > 0" />
 
-Ist <InlineMath math="-\frac a2\le1" />, also <InlineMath math="a\ge-2" />, dann steigt die Parabel auf <InlineMath math="x\ge1" /> schon. **Ihr kleinster Wert liegt am Rand <InlineMath math="x=1" />**:
+# Gesucht
 
-<BlockMath math="1+a+4>0\quad\Rightarrow\quad a>-5" />
+Alle reellen Werte von <InlineMath math="a" />, für die diese Ungleichung im gesamten Bereich <InlineMath math="x \ge 1" /> erfüllt ist.
 
-Jedes <InlineMath math="a\ge-2" /> erfüllt das, dieser Fall gilt also ganz.
+# Lösung
 
-# Scheitel im Bereich
+Stell dir vor, du beobachtest nur das halbe Feld rechts von <InlineMath math="x = 1" />. Links davon (<InlineMath math="x < 1" />) darf die Parabel ruhig unter null sinken. Entscheidend ist allein, dass **ihr tiefster Punkt im Bereich <InlineMath math="x \ge 1" /> strikt über null bleibt**.
 
-Ist <InlineMath math="a<-2" />, dann liegt der Scheitel bei <InlineMath math="x=-\frac a2>1" />. **Der kleinste Wert ist der Wert im Scheitel**:
+> Damit eine quadratische Funktion auf einer Halbgeraden positiv bleibt, muss ihr Minimum auf dieser Halbgeraden positiv sein, egal ob es am Rand oder im Scheitelpunkt liegt.
 
-<BlockMath math="\begin{aligned}
-\left(-\frac a2\right)^2+a\left(-\frac a2\right)+4&>0 \\
-4-\frac{a^2}4&>0 \\
--4<a&<4
-\end{aligned}" />
+Verschieb den Parameter <InlineMath math="a" /> im Graphen und beobachte, wann die Kurve im gesamten schraffierten Bereich <InlineMath math="x \ge 1" /> über der <InlineMath math="x" />-Achse liegt.
 
-Zusammen mit <InlineMath math="a<-2" /> ergibt dieser Fall <InlineMath math="-4<a<-2" />.
+<MathVisual
+  title={<>Lage der Parabel auf <InlineMath math="x \ge 1" /> je nach <InlineMath math="a" /></>}
+  description={
+    <>
+      Der schraffierte Bereich zeigt <InlineMath math="x \ge 1" />. Verschieb{" "}
+      <InlineMath math="a" /> und sieh, ob das Minimum dort am Rand{" "}
+      <InlineMath math="x = 1" /> oder im Scheitelpunkt liegt.
+    </>
+  }
+  footer={<>Die Kurve bleibt auf <InlineMath math="x \ge 1" /> genau für <InlineMath math="a > -4" /> positiv.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -4, max: 6 }, y: { min: -6, max: 12 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [{ name: "a", min: -5, max: 6, value: -3.5, step: 0.5, label: "a" }],
+    objects: [
+      { id: "domain-half", kind: "region", appearance: "construction", inequalities: ["x >= 1"] },
+      { id: "parabola", kind: "function", appearance: "primary", formula: "x^2 + a * x + 4", domain: { min: -4, max: 6 } },
+      { id: "vertex", kind: "marker", appearance: "answer", x: "-a / 2", y: "4 - a^2 / 4" },
+    ],
+    readouts: [
+      { key: "at-one", formula: "5 + a" },
+      { key: "vertex-y", formula: "4 - a^2 / 4" },
+    ],
+  }}
+  labels={{
+    a: <>Parameter <InlineMath math="a" /></>,
+    "at-one": <>Wert bei <InlineMath math="x = 1" /></>,
+    "vertex-y": <>Scheitelhöhe</>,
+  }}
+/>
 
-# Beide Fälle zusammensetzen
+Bei <InlineMath math="a = 5" /> taucht der Scheitel bei <InlineMath math="x = -2{,}5" /> unter null, doch im gesamten Bereich <InlineMath math="x \ge 1" /> verläuft die Kurve deutlich über null.
 
-<InlineMath math="-4<a<-2" /> und <InlineMath math="a\ge-2" /> **schließen lückenlos an zu <InlineMath math="a>-4" />**.
+## Zwei Lagen für den Scheitelpunkt
 
-Probe am Rand: Für <InlineMath math="a=-4" /> ist <InlineMath math="x^2-4x+4=(x-2)^2" /> bei <InlineMath math="x=2\ge1" /> gleich <InlineMath math="0" />, also gehört <InlineMath math="a=-4" /> nicht dazu.
+Der Scheitel liegt bei <InlineMath math="-\frac{a}{2}" />. Unterscheide **zwei Fälle nach der Lage des Scheitels** zur Grenze <InlineMath math="x = 1" />.
 
-Die Ungleichung gilt also genau dann für alle <InlineMath math="x\ge1" />, wenn <InlineMath math="a>-4" /> ist.
+Erster Fall: Liegt der Scheitel links von oder auf der Grenze (<InlineMath math="a \ge -2" />), steigt die Parabel auf <InlineMath math="x \ge 1" /> streng, ihr Minimum liegt also bei <InlineMath math="x = 1" />.
 
-# Warum die anderen Antworten falsch sind
+<BlockMath math="1 + a + 4 > 0 \implies a > -5" />
 
-- <InlineMath math="-4<a<4" /> **prüft mit der Diskriminante die ganze <InlineMath math="x" />-Achse**. Für <InlineMath math="a=10" /> schneidet die Parabel die <InlineMath math="x" />-Achse zwar, aber nur bei <InlineMath math="x<0" />.
-- <InlineMath math="a>-5" /> prüft nur <InlineMath math="x=1" />. Für <InlineMath math="a=-4{,}5" /> ist der Wert im Scheitel <InlineMath math="x=2{,}25" /> negativ.
-- <InlineMath math="a\ge-4" /> nimmt <InlineMath math="a=-4" /> mit, wo die linke Seite bei <InlineMath math="x=2" /> null ist.
-- <InlineMath math="a\ge-2" /> benutzt nur den Fall mit dem Scheitel links vom Bereich und lässt <InlineMath math="-4<a<-2" /> weg.
-- <InlineMath math="a<4" /> setzt den Scheitel bei <InlineMath math="x=\frac a2" /> an, mit falschem Vorzeichen, und spiegelt so alle Fälle.
+Jedes <InlineMath math="a \ge -2" /> erfüllt <InlineMath math="a > -5" /> automatisch, dieser ganze Bereich gilt also.
+
+Zweiter Fall: Liegt der Scheitel im Bereich (<InlineMath math="a < -2" />), ist der Scheitelwert selbst das Minimum.
+
+<BlockMath math="4 - \frac{a^2}{4} > 0 \iff a^2 < 16 \iff -4 < a < 4" />
+
+Zusammen mit <InlineMath math="a < -2" /> liefert dieser Fall den Bereich zwischen <InlineMath math="-4" /> und <InlineMath math="-2" />.
+
+## Fälle vereinen und falsche Antworten prüfen
+
+Beide Fälle schließen nahtlos zu **dem einzigen Bereich <InlineMath math="a > -4" />** zusammen. Grenzprobe für <InlineMath math="a = -4" />:
+
+<BlockMath math="x^2 - 4x + 4 = (x - 2)^2 = 0 \quad \text{bei } x = 2 \ge 1" />
+
+Da der Wert bei <InlineMath math="x = 2" /> null wird, gehört <InlineMath math="a = -4" /> nicht dazu.
+
+- Der Bereich zwischen <InlineMath math="-4" /> und <InlineMath math="4" /> prüft die ganze <InlineMath math="x" />-Achse, obwohl negative Nullstellen für <InlineMath math="a = 10" /> im Bereich <InlineMath math="x \ge 1" /> nicht stören.
+- <InlineMath math="a > -5" /> prüft nur <InlineMath math="x = 1" />, doch für <InlineMath math="a = -4{,}5" /> sinkt der Scheitel bei <InlineMath math="x = 2{,}25" /> unter null.
+- <InlineMath math="a \ge -4" /> schließt <InlineMath math="a = -4" /> mit ein, wo bei <InlineMath math="x = 2" /> null erreicht wird.
+- <InlineMath math="a \ge -2" /> vergisst den Fall mit Scheitel im Bereich <InlineMath math="x \ge 1" />.
+- <InlineMath math="a < 4" /> setzt den Scheitel mit falschem Vorzeichen bei <InlineMath math="\frac{a}{2}" /> an.
+
+# Antwort
+
+Die Ungleichung gilt für alle <InlineMath math="x \ge 1" /> genau dann, wenn <InlineMath math="a > -4" /> ist.

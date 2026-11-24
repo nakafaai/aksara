@@ -1,29 +1,81 @@
-# Setengah lebar dan tinggi
+# Diketahui
 
-Dua titik sudut atas ada di busur pada ketinggian yang sama, jadi **persegi panjang itu simetris terhadap pusat lingkaran**. Sebut setengah lebarnya <InlineMath math="u" /> dan tingginya <InlineMath math="h" />. Titik sudut kanan atas <InlineMath math="(u\mid h)" /> ada di busur, dan luasnya <InlineMath math="2u\cdot h" />:
+Sebuah **persegi panjang** (*Rechteck*) terletak di dalam setengah lingkaran berjari-jari <InlineMath math="5" />. Satu sisinya menempel pada diameter dan dua sudut atasnya berada di busur, dengan luas tepat <InlineMath math="24" />.
 
-<BlockMath math="u^2+h^2=25,\qquad 2uh=24" />
+# Ditanyakan
 
-# Jumlah dari kuadrat
+Tentukan semua kemungkinan **keliling** (*Umfang*) persegi panjang ini.
 
-Kamu tidak perlu rumus kuadrat. **Kuadrat jumlah memuat kedua persamaan sekaligus**:
+# Penyelesaian
 
-<BlockMath math="(u+h)^2=u^2+h^2+2uh=25+24=49\quad\Rightarrow\quad u+h=7" />
+Bayangkan selembar kartu persegi panjang yang dimasukkan pas ke dalam kubah setengah lingkaran. Karena kedua sudut atas menyentuh busur pada tinggi yang sama, **persegi panjang pasti simetris terhadap pusat lingkaran**. Misalkan setengah lebarnya <InlineMath math="u" /> dan tingginya <InlineMath math="h" />.
 
-Dua bilangan positif dengan jumlah <InlineMath math="7" /> dan hasil kali <InlineMath math="12" /> adalah <InlineMath math="3" /> dan <InlineMath math="4" />. Tetapi tidak ada yang menentukan mana yang <InlineMath math="u" />.
+> Luas yang sama di dalam setengah lingkaran dapat dicapai oleh bentuk yang tinggi-ramping maupun lebar-pendek, tetapi kelilingnya berbeda karena lebar penuh dihitung dua kali dari setengah lebarnya.
 
-# Dua persegi panjang
+Lihat pada gambar berikut bagaimana dua persegi panjang berbeda berukuran <InlineMath math="6 \times 4" /> dan <InlineMath math="8 \times 3" /> sama-sama pas di dalam setengah lingkaran dan sama-sama berluas <InlineMath math="24" />.
 
-- <InlineMath math="u=3" />, <InlineMath math="h=4" />: lebar <InlineMath math="6" />, tinggi <InlineMath math="4" />, keliling <InlineMath math="2(6+4)=20" />.
-- <InlineMath math="u=4" />, <InlineMath math="h=3" />: lebar <InlineMath math="8" />, tinggi <InlineMath math="3" />, keliling <InlineMath math="2(8+3)=22" />.
+<MathVisual
+  title={<>Dua persegi panjang berluas <InlineMath math="24" /> dalam setengah lingkaran</>}
+  description={
+    <>
+      Busur biru berjari-jari <InlineMath math="5" />. Persegi panjang hijau
+      berukuran <InlineMath math="6" /> kali <InlineMath math="4" /> dan
+      persegi panjang kuning berukuran <InlineMath math="8" /> kali{" "}
+      <InlineMath math="3" />.
+    </>
+  }
+  footer={<>Keduanya menyentuh busur berjari-jari <InlineMath math="5" /> tetapi kelilingnya berbeda.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -5.5, max: 5.5 }, y: { min: -0.6, max: 5.6 } },
+    view: { kind: "fit", padding: 0.08 },
+    objects: [
+      { id: "semicircle", kind: "arc", appearance: "primary", center: { x: 0, y: 0 }, radius: 5, startDegrees: 0, sweepDegrees: 180 },
+      { id: "diameter", kind: "segment", appearance: "reference", from: { x: -5, y: 0 }, to: { x: 5, y: 0 } },
+      { id: "rect-tall", kind: "polygon", appearance: "answer", vertices: [{ x: -3, y: 0 }, { x: 3, y: 0 }, { x: 3, y: 4 }, { x: -3, y: 4 }] },
+      { id: "rect-wide", kind: "polygon", appearance: "highlight", vertices: [{ x: -4, y: 0 }, { x: 4, y: 0 }, { x: 4, y: 3 }, { x: -4, y: 3 }] },
+      { id: "radius-tall", kind: "segment", appearance: "construction", stroke: "dashed", from: { x: 0, y: 0 }, to: { x: 3, y: 4 } },
+      { id: "corner-tall", kind: "point", appearance: "answer", at: { x: 3, y: 4 } },
+      { id: "corner-wide", kind: "point", appearance: "highlight", at: { x: 4, y: 3 } },
+    ],
+    labels: [
+      { key: "tall", objectId: "corner-tall", at: { x: 3, y: 4 }, placement: "above-right" },
+      { key: "wide", objectId: "corner-wide", at: { x: 4, y: 3 }, placement: "above-right" },
+    ],
+  }}
+  labels={{
+    tall: <InlineMath math="(3, 4)" />,
+    wide: <InlineMath math="(4, 3)" />,
+  }}
+/>
 
-Keduanya cocok: <InlineMath math="3^2+4^2=25" /> dan luasnya <InlineMath math="24" />. **Keliling keduanya berbeda**, karena dalam keliling lebarnya dihitung dua kali dari setengah lebar.
+Sudut kanan atas <InlineMath math="(u \mid h)" /> berjarak <InlineMath math="5" /> dari pusat dan luas totalnya <InlineMath math="2uh" />.
 
-Jadi, kelilingnya bisa <InlineMath math="20" /> atau <InlineMath math="22" />.
+## Menyelesaikan dengan kuadrat jumlah
 
-# Kenapa pilihan lain salah
+Gabungkan syarat Pythagoras dan syarat luas secara langsung ke dalam **kuadrat jumlah** <InlineMath math="(u + h)^2" />.
 
-- <InlineMath math="20" /> saja atau <InlineMath math="22" /> saja **hanya memakai satu dari dua susunan**.
-- <InlineMath math="14" /> adalah <InlineMath math="2(u+h)" />, yang memakai setengah lebar sebagai lebar.
-- <InlineMath math="4\sqrt{37}" /> menganggap diagonal persegi panjang sama dengan diameter, seperti persegi panjang di dalam lingkaran penuh.
-- <InlineMath math="24" /> mencampur dua susunan, lebar <InlineMath math="8" /> dengan tinggi <InlineMath math="4" />. Persegi panjang itu luasnya <InlineMath math="32" />.
+<BlockMath math="\begin{aligned}
+u^2 + h^2 &= 25, \qquad 2uh = 24 \\
+(u + h)^2 &= u^2 + h^2 + 2uh = 49 \implies u + h = 7
+\end{aligned}" />
+
+Dua bilangan positif dengan jumlah <InlineMath math="7" /> dan hasil kali <InlineMath math="12" /> adalah <InlineMath math="3" /> dan <InlineMath math="4" />, dan urutan keduanya bebas ditukar.
+
+## Menghitung dua keliling dan mengecek pilihan salah
+
+Hitung keliling <InlineMath math="2(2u + h)" /> untuk **kedua susunan ukuran** berikut.
+
+<BlockMath math="\begin{aligned}
+u = 3, \; h = 4 &\implies \text{lebar } 6, \; \text{tinggi } 4, \; K = 2(6 + 4) = 20 \\
+u = 4, \; h = 3 &\implies \text{lebar } 8, \; \text{tinggi } 3, \; K = 2(8 + 3) = 22
+\end{aligned}" />
+
+- <InlineMath math="20" /> saja atau <InlineMath math="22" /> saja hanya mengambil satu dari dua susunan yang mungkin.
+- <InlineMath math="14" /> memakai setengah lebar <InlineMath math="u" /> sebagai lebar penuh.
+- <InlineMath math="4\sqrt{37}" /> menganggap diagonal persegi panjang sama dengan diameter <InlineMath math="10" />, padahal ini setengah lingkaran.
+- <InlineMath math="24" /> mencampur lebar <InlineMath math="8" /> dengan tinggi <InlineMath math="4" /> yang luasnya <InlineMath math="32" />.
+
+# Jawaban
+
+Keliling persegi panjang yang mungkin adalah <InlineMath math="20" /> atau <InlineMath math="22" />.

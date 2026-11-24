@@ -1,34 +1,87 @@
-# Eine Basis für alles
+# Gegeben
 
-Du hast Logarithmen zur Basis <InlineMath math="2" /> und zur Basis <InlineMath math="3" />, gefragt ist aber die Basis <InlineMath math="15" />. **Bring alles auf die Basis <InlineMath math="2" />**:
+Zwei **Logarithmuswerte** zu verschiedenen Basen sind bekannt.
 
-<BlockMath math="\log_{15}20=\frac{\log_2 20}{\log_2 15}" />
+<BlockMath math="\log_2 3 = a, \qquad \log_3 5 = b" />
 
-# Zwei Logarithmen verketten
+# Gesucht
 
-Die Zahl <InlineMath math="5" /> kommt nur in <InlineMath math="b=\log_3 5" /> vor, und das hat die Basis <InlineMath math="3" />. **Die Kette der Basen verbindet <InlineMath math="2" /> über <InlineMath math="3" /> mit <InlineMath math="5" />**:
+Ein Term für <InlineMath math="\log_{15} 20" />, ausgedrückt durch <InlineMath math="a" /> und <InlineMath math="b" />.
 
-<BlockMath math="\log_2 5=\log_2 3\cdot\log_3 5=ab" />
+# Lösung
 
-Jetzt zerlege <InlineMath math="20=4\cdot5" /> und <InlineMath math="15=3\cdot5" />:
+Stell dir zwei Lineale mit verschiedenen Einheiten vor: eines in Zweierpotenzen und eines in Dreierpotenzen. Um alles direkt vergleichen zu können, **rechnest du alle Logarithmen auf eine gemeinsame Basis um**, nämlich Basis <InlineMath math="2" />.
+
+> Ein Basiswechsel misst beide Zahlen auf derselben Logarithmus-Skala und bildet anschließend das Verhältnis ihrer Höhen.
+
+Sieh im Graphen, wie <InlineMath math="3" />, <InlineMath math="5" />, <InlineMath math="15" /> und <InlineMath math="20" /> alle auf der einen Kurve <InlineMath math="y = \log_2 x" /> liegen.
+
+<MathVisual
+  title={<>Alle Werte auf der gemeinsamen Skala <InlineMath math="\log_2 x" /></>}
+  description={
+    <>
+      Die blaue Kurve zeigt <InlineMath math="\log_2 x" />. Die markierten
+      Punkte zeigen <InlineMath math="3" /> und <InlineMath math="5" />, die
+      grünen Punkte <InlineMath math="15" /> und <InlineMath math="20" />.
+    </>
+  }
+  footer={<>Der Wert <InlineMath math="\log_{15} 20" /> ist das Höhenverhältnis von <InlineMath math="20" /> zu <InlineMath math="15" />.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 23 }, y: { min: -1, max: 5 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "log2", kind: "function", appearance: "primary", formula: "log(x) / log(2)", domain: { min: 0.5, max: 22 } },
+      { id: "p3", kind: "point", appearance: "highlight", at: { x: 3, y: Math.log(3) / Math.log(2) } },
+      { id: "p5", kind: "point", appearance: "highlight", at: { x: 5, y: Math.log(5) / Math.log(2) } },
+      { id: "p15", kind: "point", appearance: "answer", at: { x: 15, y: Math.log(15) / Math.log(2) } },
+      { id: "p20", kind: "point", appearance: "answer", at: { x: 20, y: Math.log(20) / Math.log(2) } },
+    ],
+    labels: [
+      { key: "p3", objectId: "p3", at: { x: 3, y: Math.log(3) / Math.log(2) }, placement: "above-left" },
+      { key: "p5", objectId: "p5", at: { x: 5, y: Math.log(5) / Math.log(2) }, placement: "below-right" },
+      { key: "p15", objectId: "p15", at: { x: 15, y: Math.log(15) / Math.log(2) }, placement: "below" },
+      { key: "p20", objectId: "p20", at: { x: 20, y: Math.log(20) / Math.log(2) }, placement: "above" },
+    ],
+  }}
+  labels={{
+    p3: <InlineMath math="a" />,
+    p5: <InlineMath math="ab" />,
+    p15: <InlineMath math="a + ab" />,
+    p20: <InlineMath math="2 + ab" />,
+  }}
+/>
+
+Auf der Skala zur Basis <InlineMath math="2" /> liegt <InlineMath math="20" /> knapp über <InlineMath math="15" />, das Verhältnis ist also etwas größer als <InlineMath math="1" />.
+
+## Über die Basis zwei verketten
+
+Die Zahl <InlineMath math="5" /> taucht nur in <InlineMath math="b = \log_3 5" /> auf. Nutz die **Kettenregel für Logarithmen**, um über <InlineMath math="3" /> von Basis <InlineMath math="2" /> zu <InlineMath math="5" /> zu gelangen, und zerleg <InlineMath math="20 = 4 \cdot 5" /> sowie <InlineMath math="15 = 3 \cdot 5" />.
 
 <BlockMath math="\begin{aligned}
-\log_2 20&=\log_2 4+\log_2 5=2+ab \\
-\log_2 15&=\log_2 3+\log_2 5=a+ab
+\log_2 5 &= \log_2 3 \cdot \log_3 5 = ab \\
+\log_2 20 &= \log_2 4 + \log_2 5 = 2 + ab \\
+\log_2 15 &= \log_2 3 + \log_2 5 = a + ab
 \end{aligned}" />
 
-# Das Ergebnis
+Setz beide Werte in die Basiswechselformel ein.
 
-<BlockMath math="\log_{15}20=\frac{2+ab}{a+ab}" />
+<BlockMath math="\log_{15} 20 = \frac{\log_2 20}{\log_2 15} = \frac{2 + ab}{a + ab}" />
 
-Probe mit Zahlen: <InlineMath math="a\approx1{,}585" /> und <InlineMath math="b\approx1{,}465" /> ergeben <InlineMath math="\frac{4{,}322}{3{,}907}\approx1{,}106" />. **Der Wert ist plausibel**, denn <InlineMath math="20" /> ist etwas größer als <InlineMath math="15" />.
+## Zahlenprobe und falsche Antworten
 
-Also ist <InlineMath math="\log_{15}20=\frac{2+ab}{a+ab}" />.
+Prüf mit <InlineMath math="a \approx 1{,}585" /> und <InlineMath math="b \approx 1{,}465" />, dass **der Quotient stimmig ist**.
 
-# Warum die anderen Antworten falsch sind
+<BlockMath math="\frac{2 + 1{,}585 \cdot 1{,}465}{1{,}585 + 1{,}585 \cdot 1{,}465} \approx \frac{4{,}322}{3{,}907} \approx 1{,}106" />
 
-- <InlineMath math="\frac{2+b}{a+b}" /> benutzt <InlineMath math="b" /> als <InlineMath math="\log_2 5" />. **Aber <InlineMath math="b" /> hat die Basis <InlineMath math="3" />** und muss erst mit <InlineMath math="a" /> multipliziert werden.
-- <InlineMath math="\frac{2+ab}{a+b}" /> verkettet die Basen nur im Zähler und vergisst den Nenner.
-- <InlineMath math="\frac{2ab}{a+ab}" /> schreibt <InlineMath math="\log_2(4\cdot5)" /> als <InlineMath math="\log_2 4\cdot\log_2 5" />. Der Logarithmus eines Produkts ist eine Summe, kein Produkt.
-- <InlineMath math="\frac{2+ab}{a^2b}" /> macht denselben Fehler im Nenner, <InlineMath math="\log_2 3\cdot\log_2 5=a\cdot ab" />.
-- <InlineMath math="\frac{a+ab}{2+ab}" /> vertauscht Zähler und Nenner. Das ist <InlineMath math="\log_{20}15" />.
+- Ein Term ohne <InlineMath math="ab" /> behandelt <InlineMath math="b" /> fälschlich als Logarithmus zur Basis <InlineMath math="2" />.
+- Der Nenner <InlineMath math="a + b" /> verkettet die Basis nur im Zähler und vergisst sie im Nenner.
+- Der Zähler <InlineMath math="2ab" /> multipliziert Logarithmen statt sie zu addieren.
+- Der Nenner <InlineMath math="a^2 b" /> macht denselben Multiplikationsfehler im Nenner.
+- Der Kehrwert mit <InlineMath math="2 + ab" /> im Nenner berechnet <InlineMath math="\log_{20} 15" /> statt <InlineMath math="\log_{15} 20" />.
+
+# Antwort
+
+Der gesuchte Term für <InlineMath math="\log_{15} 20" /> lautet wie folgt.
+
+<BlockMath math="\frac{2 + ab}{a + ab}" />

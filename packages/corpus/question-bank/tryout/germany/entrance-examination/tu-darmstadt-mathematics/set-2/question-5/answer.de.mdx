@@ -1,30 +1,86 @@
-# Flächen ähnlicher Dreiecke
+# Gegeben
 
-Jede Parallele zu <InlineMath math="BC" /> schneidet an der Ecke <InlineMath math="A" /> ein kleines Dreieck ab, und dieses ist ähnlich zu <InlineMath math="ABC" />. **Sind seine Seiten <InlineMath math="k" />-mal so lang wie die von <InlineMath math="ABC" />, dann ist seine Fläche <InlineMath math="k^2" />-mal so groß**.
+Im **Dreieck** <InlineMath math="ABC" /> hat die Seite <InlineMath math="\overline{AB}" /> die Länge <InlineMath math="6" />. Zwei zu <InlineMath math="\overline{BC}" /> parallele Strecken teilen das Dreieck in drei flächengleiche Teile und schneiden <InlineMath math="\overline{AB}" /> in <InlineMath math="P" /> und <InlineMath math="Q" />, wobei <InlineMath math="P" /> näher an <InlineMath math="A" /> liegt.
 
-Von der Fläche kommst du also mit einer Wurzel zurück zur Länge: <InlineMath math="k=\sqrt{\text{Flächenverhältnis}}" />.
+# Gesucht
 
-# Wo P und Q liegen
+Die Länge der Strecke <InlineMath math="\overline{PQ}" />.
 
-Das kleine Dreieck bis zur Parallelen durch <InlineMath math="P" /> enthält eine der drei gleich großen Teilflächen, seine Fläche ist also <InlineMath math="\frac13" /> von <InlineMath math="ABC" />. Das Dreieck bis zur Parallelen durch <InlineMath math="Q" /> enthält zwei Teilflächen, also <InlineMath math="\frac23" /> von <InlineMath math="ABC" />. **Zieh aus beiden Flächenverhältnissen die Wurzel**:
+# Lösung
+
+Stell dir ein dreieckiges Kuchenstück vor, das zur Kante <InlineMath math="BC" /> hin immer breiter wird. An der schmalen Spitze bei <InlineMath math="A" /> brauchst du **ein langes Stück für ein Drittel der Fläche**. Näher an <InlineMath math="BC" /> reicht ein schmaler Streifen.
+
+> Bei ähnlichen Figuren wächst der Flächeninhalt mit dem Quadrat der Seitenlänge, also ist der Längenfaktor stets die Wurzel aus dem Flächenverhältnis.
+
+Sieh in der Skizze, wie die beiden Parallelen durch <InlineMath math="P" /> und <InlineMath math="Q" /> die Seite <InlineMath math="AB" /> in drei immer kürzere Abschnitte zerlegen.
+
+<MathVisual
+  title={<>Drei flächengleiche Teile im Dreieck <InlineMath math="ABC" /></>}
+  description={
+    <>
+      Zwei gestrichelte Parallelen zu <InlineMath math="BC" /> teilen die
+      Fläche in drei Drittel. Die grüne Strecke hebt <InlineMath math="PQ" />{" "}
+      auf der Seite <InlineMath math="AB" /> hervor.
+    </>
+  }
+  footer={<>Je näher an der Grundseite <InlineMath math="BC" />, desto schmaler wird jeder flächengleiche Streifen.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 6.5 }, y: { min: -0.8, max: 4.6 } },
+    view: { kind: "fit", padding: 0.08 },
+    objects: [
+      { id: "triangle", kind: "polygon", appearance: "primary", vertices: [{ x: 0, y: 0 }, { x: 6, y: 0 }, { x: 4, y: 4 }] },
+      { id: "cut-p", kind: "segment", appearance: "highlight", stroke: "dashed", from: { x: 6 / Math.sqrt(3), y: 0 }, to: { x: 4 / Math.sqrt(3), y: 4 / Math.sqrt(3) } },
+      { id: "cut-q", kind: "segment", appearance: "highlight", stroke: "dashed", from: { x: 6 * Math.sqrt(2 / 3), y: 0 }, to: { x: 4 * Math.sqrt(2 / 3), y: 4 * Math.sqrt(2 / 3) } },
+      { id: "seg-pq", kind: "segment", appearance: "answer", from: { x: 6 / Math.sqrt(3), y: 0 }, to: { x: 6 * Math.sqrt(2 / 3), y: 0 } },
+      { id: "pt-a", kind: "point", appearance: "reference", at: { x: 0, y: 0 } },
+      { id: "pt-b", kind: "point", appearance: "reference", at: { x: 6, y: 0 } },
+      { id: "pt-c", kind: "point", appearance: "reference", at: { x: 4, y: 4 } },
+      { id: "pt-p", kind: "point", appearance: "answer", at: { x: 6 / Math.sqrt(3), y: 0 } },
+      { id: "pt-q", kind: "point", appearance: "answer", at: { x: 6 * Math.sqrt(2 / 3), y: 0 } },
+    ],
+    labels: [
+      { key: "a", objectId: "pt-a", at: { x: 0, y: 0 }, placement: "below-left" },
+      { key: "b", objectId: "pt-b", at: { x: 6, y: 0 }, placement: "below-right" },
+      { key: "c", objectId: "pt-c", at: { x: 4, y: 4 }, placement: "above" },
+      { key: "p", objectId: "pt-p", at: { x: 6 / Math.sqrt(3), y: 0 }, placement: "below" },
+      { key: "q", objectId: "pt-q", at: { x: 6 * Math.sqrt(2 / 3), y: 0 }, placement: "below" },
+    ],
+  }}
+  labels={{
+    a: <InlineMath math="A" />,
+    b: <InlineMath math="B" />,
+    c: <InlineMath math="C" />,
+    p: <InlineMath math="P" />,
+    q: <InlineMath math="Q" />,
+  }}
+/>
+
+Der Abschnitt <InlineMath math="AP" /> ist deutlich länger als <InlineMath math="PQ" />, und <InlineMath math="QB" /> ist das kürzeste Stück.
+
+## Lage von P und Q berechnen
+
+Das kleine Dreieck bis zur Parallelen durch <InlineMath math="P" /> hat <InlineMath math="\frac{1}{3}" /> der Gesamtfläche, das Dreieck bis <InlineMath math="Q" /> hat <InlineMath math="\frac{2}{3}" />. **Zieh die Wurzel aus beiden Flächenverhältnissen** und multiplizier mit <InlineMath math="6" />.
 
 <BlockMath math="\begin{aligned}
-AP&=6\sqrt{\frac13}=\frac{6}{\sqrt3}=2\sqrt3 \\
-AQ&=6\sqrt{\frac23}=\frac{6\sqrt2}{\sqrt3}=2\sqrt6
+AP &= 6\sqrt{\frac{1}{3}} = \frac{6}{\sqrt{3}} = 2\sqrt{3} \\
+AQ &= 6\sqrt{\frac{2}{3}} = \frac{6\sqrt{2}}{\sqrt{3}} = 2\sqrt{6}
 \end{aligned}" />
 
-# Die Länge von PQ
+Die Differenz liefert direkt die Länge von <InlineMath math="PQ" />.
 
-<BlockMath math="PQ=AQ-AP=2\sqrt6-2\sqrt3\approx4{,}899-3{,}464=1{,}435" />
+<BlockMath math="PQ = AQ - AP = 2\sqrt{6} - 2\sqrt{3} \approx 4{,}899 - 3{,}464 = 1{,}435" />
 
-Die drei Stücke auf <InlineMath math="AB" /> sind etwa <InlineMath math="3{,}464" />, <InlineMath math="1{,}435" /> und <InlineMath math="1{,}101" /> lang. **Je näher an <InlineMath math="BC" />, desto kürzer das Stück**, denn das Dreieck wird breiter, und ein schmalerer Streifen hat schon dieselbe Fläche.
+## Größenprobe und falsche Antworten
 
-Also ist <InlineMath math="PQ=2\sqrt6-2\sqrt3" />.
+Die drei Abschnitte auf <InlineMath math="AB" /> messen etwa <InlineMath math="3{,}464" />, <InlineMath math="1{,}435" /> und <InlineMath math="1{,}101" />, addieren sich exakt zu <InlineMath math="6" /> und **werden Richtung <InlineMath math="B" /> immer kürzer**.
 
-# Warum die anderen Antworten falsch sind
+- <InlineMath math="2" /> teilt <InlineMath math="AB" /> fälschlich linear in drei gleich lange Stücke.
+- <InlineMath math="2\sqrt{3}" /> ist der erste Abschnitt <InlineMath math="AP" />.
+- <InlineMath math="6 - 2\sqrt{6}" /> ist der letzte Abschnitt <InlineMath math="QB" />.
+- <InlineMath math="2\sqrt{6}" /> ist die gesamte Strecke <InlineMath math="AQ" /> ab <InlineMath math="A" />.
+- <InlineMath math="6 - 2\sqrt{3}" /> ist die zusammengesetzte Strecke <InlineMath math="PB" />.
 
-- <InlineMath math="2" /> teilt <InlineMath math="AB" /> in drei gleich lange Stücke, dabei **wächst die Fläche mit dem Quadrat der Länge**.
-- <InlineMath math="2\sqrt3" /> ist <InlineMath math="AP" />, das erste Stück ab <InlineMath math="A" />.
-- <InlineMath math="6-2\sqrt6" /> ist <InlineMath math="QB" />, das letzte Stück bei <InlineMath math="B" />.
-- <InlineMath math="2\sqrt6" /> ist <InlineMath math="AQ" />, der Abstand von <InlineMath math="A" /> bis zum zweiten Punkt.
-- <InlineMath math="6-2\sqrt3" /> ist <InlineMath math="PB" />, die Strecke von <InlineMath math="P" /> bis ganz zu <InlineMath math="B" />.
+# Antwort
+
+Die Strecke <InlineMath math="\overline{PQ}" /> hat die Länge <InlineMath math="2\sqrt{6} - 2\sqrt{3}" />.

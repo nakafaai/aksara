@@ -1,29 +1,86 @@
-# Substitusi yang menyembunyikan syarat
+# Diketahui
 
-Tulis <InlineMath math="t=3^x" />. Maka <InlineMath math="9^x=\left(3^x\right)^2=t^2" />, dan persamaannya menjadi:
+**Persamaan eksponensial** dengan parameter real <InlineMath math="a" /> diberikan sebagai berikut.
 
-<BlockMath math="t^2-6t+a=0" />
+<BlockMath math="9^x - 6 \cdot 3^x + a = 0" />
 
-Yang penting: <InlineMath math="3^x" /> selalu positif. **Setiap akar <InlineMath math="t>0" /> memberi tepat satu <InlineMath math="x" />, sedangkan akar <InlineMath math="t\le0" /> tidak memberi apa-apa**. Jadi kamu menghitung akar <InlineMath math="t" /> yang positif.
+Syarat soal meminta tepat **satu penyelesaian real** (*genau eine reelle Lösung*) untuk <InlineMath math="x" />.
 
-# Menghitung akar positif
+# Ditanyakan
 
-Jumlah kedua akar adalah <InlineMath math="6" />, hasil kalinya <InlineMath math="a" />, dan diskriminannya <InlineMath math="36-4a" />. **Periksa semua kasus <InlineMath math="a" />**:
+Tentukan semua nilai real <InlineMath math="a" /> yang membuat persamaan ini memiliki tepat satu penyelesaian real <InlineMath math="x" />.
 
-- <InlineMath math="a>9" />: diskriminan negatif, tidak ada <InlineMath math="t" />, jadi tidak ada <InlineMath math="x" />.
-- <InlineMath math="a=9" />: akar kembar <InlineMath math="t=3>0" />, jadi tepat satu <InlineMath math="x" />.
-- <InlineMath math="0<a<9" />: dua akar berbeda dengan jumlah dan hasil kali positif, jadi keduanya positif. Ada dua <InlineMath math="x" />.
-- <InlineMath math="a=0" />: <InlineMath math="t(t-6)=0" />. Akar <InlineMath math="t=0" /> gugur, <InlineMath math="t=6" /> tetap, jadi tepat satu <InlineMath math="x" />.
-- <InlineMath math="a<0" />: hasil kali negatif, jadi satu akar positif dan satu negatif. Tepat satu <InlineMath math="x" />.
+# Penyelesaian
 
-Cek dengan <InlineMath math="a=-7" />: <InlineMath math="(t-7)(t+1)=0" />, hanya <InlineMath math="t=7" /> yang positif, jadi hanya <InlineMath math="x=\log_37" />.
+Ganti <InlineMath math="t = 3^x" /> sehingga <InlineMath math="9^x = t^2" /> dan persamaan berubah menjadi persamaan kuadrat dalam <InlineMath math="t" />. Kuncinya ada pada sifat pangkat: **<InlineMath math="3^x" /> selalu bernilai positif**, jadi hanya akar <InlineMath math="t > 0" /> yang bisa menghasilkan nilai <InlineMath math="x" />.
 
-Jadi, tepat satu penyelesaian terjadi untuk <InlineMath math="a\le0" /> atau <InlineMath math="a=9" />.
+<BlockMath math="t^2 - 6t + a = 0" />
 
-# Kenapa pilihan lain salah
+> Setiap akar positif dari persamaan kuadrat dalam t menghasilkan tepat satu nilai x, sedangkan akar nol atau negatif otomatis gugur karena pangkat tiga tidak pernah nol maupun negatif.
 
-- <InlineMath math="a=9" /> saja **hanya memikirkan akar kembar** dan lupa kasus satu akar positif dengan satu akar yang tidak positif.
-- <InlineMath math="a<0" /> atau <InlineMath math="a=9" /> lupa <InlineMath math="a=0" />. Akar <InlineMath math="t=0" /> memang gugur, tetapi <InlineMath math="t=6" /> masih memberi satu penyelesaian.
-- <InlineMath math="a\le0" /> lupa akar kembar di <InlineMath math="a=9" />.
-- <InlineMath math="0<a<9" /> justru memberi dua penyelesaian.
-- <InlineMath math="a<0" /> lupa kedua kasus batas, <InlineMath math="a=0" /> dan <InlineMath math="a=9" />.
+Geser parameter <InlineMath math="a" /> pada grafik fungsi kuadrat berikut dan hitung berapa titik potong parabola yang jatuh di dalam daerah berarsir <InlineMath math="t > 0" />.
+
+<MathVisual
+  title={<>Titik potong parabola <InlineMath math="t^2 - 6t + a" /> di daerah <InlineMath math="t > 0" /></>}
+  description={
+    <>
+      Daerah berarsir menandai <InlineMath math="t > 0" />. Geser{" "}
+      <InlineMath math="a" /> untuk melihat kapan kurva hanya memotong sumbu
+      mendatar tepat satu kali di sebelah kanan nol.
+    </>
+  }
+  footer={<>Tepat satu akar positif muncul di puncak <InlineMath math="a = 9" /> dan untuk semua <InlineMath math="a \le 0" />.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -2, max: 8 }, y: { min: -10, max: 12 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [{ name: "a", min: -4, max: 11, value: 9, step: 1, label: "a" }],
+    objects: [
+      { id: "positive-t", kind: "region", appearance: "construction", inequalities: ["x > 0"] },
+      { id: "parabola", kind: "function", appearance: "primary", formula: "x^2 - 6 * x + a", domain: { min: -2, max: 8 } },
+      { id: "vertex", kind: "marker", appearance: "answer", x: "3", y: "a - 9" },
+    ],
+    readouts: [
+      { key: "at-zero", formula: "a" },
+      { key: "discriminant", formula: "36 - 4 * a" },
+    ],
+  }}
+  labels={{
+    a: <>Parameter <InlineMath math="a" /></>,
+    "at-zero": <>Tinggi di <InlineMath math="t = 0" /></>,
+    discriminant: <>Diskriminan <InlineMath math="D" /></>,
+  }}
+/>
+
+Saat <InlineMath math="a = 9" />, puncak menyentuh sumbu tepat di <InlineMath math="t = 3" />. Begitu <InlineMath math="a \le 0" />, akar kiri jatuh ke nol atau negatif sehingga hanya tersisa satu akar positif di kanan.
+
+## Menganalisis seluruh kasus nilai a
+
+Jumlah kedua akar adalah <InlineMath math="6" />, hasil kalinya <InlineMath math="a" />, dan diskriminannya <InlineMath math="36 - 4a" />. **Periksa kelima daerah <InlineMath math="a" /> berikut**.
+
+| Nilai <InlineMath math="a" /> | Akar <InlineMath math="t" /> | Banyak <InlineMath math="x" /> |
+| :--- | :--- | :--- |
+| <InlineMath math="a > 9" /> | tidak ada akar real | <InlineMath math="0" /> |
+| <InlineMath math="a = 9" /> | akar kembar <InlineMath math="t = 3 > 0" /> | <InlineMath math="1" /> |
+| <InlineMath math="0 < a < 9" /> | dua akar berbeda, keduanya positif | <InlineMath math="2" /> |
+| <InlineMath math="a = 0" /> | <InlineMath math="t = 0" /> gugur, tersisa <InlineMath math="t = 6" /> | <InlineMath math="1" /> |
+| <InlineMath math="a < 0" /> | satu akar positif, satu akar negatif | <InlineMath math="1" /> |
+
+## Cek contoh dan pilihan salah
+
+Uji <InlineMath math="a = -7" /> dan <InlineMath math="a = 0" /> untuk **mengonfirmasi bahwa keduanya memberi tepat satu solusi <InlineMath math="x" />**.
+
+<BlockMath math="\begin{aligned}
+a = -7 &\implies (t - 7)(t + 1) = 0 \implies t = 7 \implies x = \log_3 7 \\
+a = 0 &\implies t(t - 6) = 0 \implies t = 6 \implies x = \log_3 6
+\end{aligned}" />
+
+- <InlineMath math="a = 9" /> saja hanya memikirkan akar kembar dan melupakan kasus satu akar positif plus satu akar tak positif.
+- <InlineMath math="a < 0" /> atau <InlineMath math="a = 9" /> melupakan batas <InlineMath math="a = 0" />, padahal <InlineMath math="t = 6" /> tetap memberi satu nilai <InlineMath math="x" />.
+- <InlineMath math="a \le 0" /> melupakan akar kembar di <InlineMath math="a = 9" />.
+- <InlineMath math="0 < a < 9" /> justru menghasilkan dua penyelesaian real berbeda.
+- <InlineMath math="a < 0" /> kehilangan kedua nilai batas <InlineMath math="a = 0" /> dan <InlineMath math="a = 9" />.
+
+# Jawaban
+
+Persamaan ini memiliki tepat satu penyelesaian real untuk <InlineMath math="a \le 0" /> atau <InlineMath math="a = 9" />.

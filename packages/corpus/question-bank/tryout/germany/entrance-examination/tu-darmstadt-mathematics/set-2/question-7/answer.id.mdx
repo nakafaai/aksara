@@ -1,37 +1,81 @@
-# Parabola dengan puncak di garis
+# Diketahui
 
-Parabola yang hanya digeser berbentuk <InlineMath math="y=(x-h)^2+k" /> dengan puncak <InlineMath math="S(h\mid k)" />. Puncaknya ada di <InlineMath math="y=2x" />, jadi <InlineMath math="k=2h" />:
+**Parabola baku** (*Normalparabel*) <InlineMath math="y = x^2" /> digeser tanpa mengubah bentuk sehingga puncaknya (*Scheitelpunkt*) <InlineMath math="S" /> berada di garis <InlineMath math="g" /> dengan persamaan <InlineMath math="y = 2x" />. Parabola ini memotong garis <InlineMath math="g" /> lagi di titik kedua <InlineMath math="T" />.
 
-<BlockMath math="y=(x-h)^2+2h" />
+# Ditanyakan
 
-Kamu tidak tahu <InlineMath math="h" />. **Biarkan <InlineMath math="h" /> tetap sebagai huruf dan lihat apakah hasilnya bergantung padanya**.
+Tentukan panjang ruas garis <InlineMath math="\overline{ST}" />.
 
-# Titik potong dengan garis
+# Penyelesaian
 
-Samakan parabola dengan garis <InlineMath math="y=2x" />. **Ruas kanan bisa ditulis sebagai <InlineMath math="2(x-h)" />**, sehingga yang muncul hanya <InlineMath math="x-h" />:
+Bayangkan sebuah cetakan kawat berbentuk <InlineMath math="y = x^2" /> yang kamu geser menyusuri rel miring <InlineMath math="y = 2x" />. Karena bentuk kawat dan kemiringan rel tidak pernah berubah, **loncatan mendatar dan tegak dari <InlineMath math="S" /> ke <InlineMath math="T" /> akan selalu identik di mana pun kamu meletakkan puncaknya**.
+
+> Menggeser kurva dan garis secara sejajar mempertahankan setiap jarak titik potong, sehingga parameter pergeseran otomatis saling meniadakan dalam perhitungan.
+
+Geser posisi puncak <InlineMath math="h" /> sepanjang garis <InlineMath math="y = 2x" /> di bawah ini dan perhatikan bahwa jarak mendatar antara <InlineMath math="S" /> dan <InlineMath math="T" /> selalu tepat <InlineMath math="2" />.
+
+<MathVisual
+  title={<>Pergeseran parabola sepanjang garis <InlineMath math="y = 2x" /></>}
+  description={
+    <>
+      Garis putus-putus adalah rel <InlineMath math="y = 2x" />. Geser absis
+      puncak <InlineMath math="h" /> untuk melihat kedua titik potong{" "}
+      <InlineMath math="S" /> dan <InlineMath math="T" /> ikut meluncur dengan
+      jarak tetap.
+    </>
+  }
+  footer={<>Di posisi mana pun, titik <InlineMath math="T" /> selalu <InlineMath math="2" /> satuan ke kanan dan <InlineMath math="4" /> satuan ke atas dari <InlineMath math="S" />.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -2, max: 5 }, y: { min: -3, max: 10 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [{ name: "h", min: -1, max: 2, value: 0, step: 0.5, label: "h" }],
+    objects: [
+      { id: "line-g", kind: "line", appearance: "reference", stroke: "dashed", through: [{ x: -1, y: -2 }, { x: 4, y: 8 }] },
+      { id: "parabola", kind: "function", appearance: "primary", formula: "(x - h)^2 + 2 * h", domain: { min: -2, max: 5 } },
+      { id: "vertex-s", kind: "marker", appearance: "answer", x: "h", y: "2 * h" },
+      { id: "hit-t", kind: "marker", appearance: "answer", x: "h + 2", y: "2 * h + 4" },
+    ],
+    readouts: [
+      { key: "sx", formula: "h" },
+      { key: "tx", formula: "h + 2" },
+    ],
+  }}
+  labels={{
+    h: <>Absis puncak <InlineMath math="h" /></>,
+    sx: <>Absis <InlineMath math="S" /></>,
+    tx: <>Absis <InlineMath math="T" /></>,
+  }}
+/>
+
+Apa pun nilai <InlineMath math="h" />, titik <InlineMath math="T" /> selalu berada tepat <InlineMath math="2" /> langkah di sebelah kanan titik <InlineMath math="S" />.
+
+## Mencari titik potong secara aljabar
+
+Karena puncak <InlineMath math="S(h \mid 2h)" /> terletak di garis <InlineMath math="y = 2x" />, kita tulis persamaan parabola hasil pergeseran lalu **samakan dengan <InlineMath math="2x" />** dan faktorkan.
 
 <BlockMath math="\begin{aligned}
-(x-h)^2+2h&=2x \\
-(x-h)^2&=2(x-h) \\
-(x-h)(x-h-2)&=0
+(x - h)^2 + 2h &= 2x \\
+(x - h)^2 &= 2(x - h) \\
+(x - h)(x - h - 2) &= 0
 \end{aligned}" />
 
-Jadi <InlineMath math="x=h" />, yaitu puncak <InlineMath math="S" />, atau <InlineMath math="x=h+2" />, yaitu <InlineMath math="T(h+2\mid2h+4)" />.
+Kita memperoleh <InlineMath math="x = h" /> (titik <InlineMath math="S" />) dan <InlineMath math="x = h + 2" /> (titik <InlineMath math="T" />).
 
-# Panjang ST
+## Menghitung jarak ST dan mengecek pilihan salah
 
-Dari <InlineMath math="S(h\mid2h)" /> ke <InlineMath math="T(h+2\mid2h+4)" />, selisihnya <InlineMath math="2" /> ke kanan dan <InlineMath math="4" /> ke atas:
+Dari <InlineMath math="S(h \mid 2h)" /> ke <InlineMath math="T(h + 2 \mid 2h + 4)" />, selisih mendatarnya <InlineMath math="2" /> dan selisih tegaknya <InlineMath math="4" />. **Huruf <InlineMath math="h" /> lenyap sepenuhnya** saat kita memakai teorema Pythagoras.
 
-<BlockMath math="ST=\sqrt{2^2+4^2}=\sqrt{20}=2\sqrt5" />
+<BlockMath math="ST = \sqrt{2^2 + 4^2} = \sqrt{20} = 2\sqrt{5}" />
 
-**Huruf <InlineMath math="h" /> hilang sama sekali**, jadi panjangnya sama untuk setiap pergeseran. Cek dengan <InlineMath math="h=0" />: <InlineMath math="y=x^2" /> memotong <InlineMath math="y=2x" /> di <InlineMath math="(0\mid0)" /> dan <InlineMath math="(2\mid4)" />, jaraknya <InlineMath math="\sqrt{20}" />.
+Cek cepat di <InlineMath math="h = 0" />: parabola <InlineMath math="y = x^2" /> memotong <InlineMath math="y = 2x" /> di <InlineMath math="(0 \mid 0)" /> dan <InlineMath math="(2 \mid 4)" />, berjarak tepat <InlineMath math="2\sqrt{5}" />.
 
-Jadi, <InlineMath math="ST=2\sqrt5" />.
+- Jawaban bahwa panjang bergantung pergeseran menyerah sebelum menyusun persamaan dalam <InlineMath math="h" />.
+- <InlineMath math="\sqrt{5}" /> salah memakai selisih mendatar <InlineMath math="1" /> alih-alih <InlineMath math="2" />.
+- <InlineMath math="2" /> hanya mengukur jarak mendatar dan melupakan kenaikan tegak.
+- <InlineMath math="4" /> hanya mengukur selisih tegak.
+- <InlineMath math="2\sqrt{2}" /> menganggap kemiringan garis <InlineMath math="1" />, padahal kemiringannya <InlineMath math="2" />.
 
-# Kenapa pilihan lain salah
+# Jawaban
 
-- "Bergantung pada pergeseran" **menyerah sebelum mencoba dengan huruf**. Begitu ditulis dengan <InlineMath math="h" />, hasilnya ternyata tetap.
-- <InlineMath math="\sqrt5" /> mengambil selisih mendatar <InlineMath math="1" /> alih-alih <InlineMath math="2" />.
-- <InlineMath math="2" /> hanya mengambil selisih mendatar dan lupa naik sepanjang garis.
-- <InlineMath math="4" /> hanya mengambil selisih tegak.
-- <InlineMath math="2\sqrt2" /> menganggap kenaikannya sama dengan selisih mendatar, padahal garisnya punya kemiringan <InlineMath math="2" />.
+Panjang ruas garis <InlineMath math="\overline{ST}" /> selalu tetap, yaitu <InlineMath math="2\sqrt{5}" />.

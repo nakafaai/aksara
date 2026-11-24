@@ -1,37 +1,81 @@
-# Eine Parabel mit dem Scheitel auf der Geraden
+# Gegeben
 
-Eine nur verschobene Normalparabel hat die Form <InlineMath math="y=(x-h)^2+k" /> mit dem Scheitelpunkt <InlineMath math="S(h\mid k)" />. Der Scheitel liegt auf <InlineMath math="y=2x" />, also ist <InlineMath math="k=2h" />:
+Die **Normalparabel** <InlineMath math="y = x^2" /> wird ohne Formänderung so verschoben, dass ihr Scheitelpunkt <InlineMath math="S" /> auf der Geraden <InlineMath math="g" /> mit <InlineMath math="y = 2x" /> liegt. Die verschobene Parabel schneidet <InlineMath math="g" /> noch in einem zweiten Punkt <InlineMath math="T" />.
 
-<BlockMath math="y=(x-h)^2+2h" />
+# Gesucht
 
-Du kennst <InlineMath math="h" /> nicht. **Lass <InlineMath math="h" /> als Buchstaben stehen und schau, ob das Ergebnis davon abhängt**.
+Die Länge der Strecke <InlineMath math="\overline{ST}" />.
 
-# Schnitt mit der Geraden
+# Lösung
 
-Setze Parabel und Gerade <InlineMath math="y=2x" /> gleich. **Die rechte Seite lässt sich als <InlineMath math="2(x-h)" /> schreiben**, dann kommt nur noch <InlineMath math="x-h" /> vor:
+Stell dir einen starren Draht in Form von <InlineMath math="y = x^2" /> vor, den du an einer geraden Schiene <InlineMath math="y = 2x" /> entlangführst. Weil sich weder die Form des Drahts noch die Steigung der Schiene ändert, **bleibt der Sprung von <InlineMath math="S" /> nach <InlineMath math="T" /> an jeder Stelle gleich groß**.
+
+> Verschiebst du eine Kurve entlang einer Geraden, bleiben alle Abstände zwischen ihren Schnittpunkten erhalten, sodass sich der Verschiebungsparameter vollständig herauskürzt.
+
+Verschieb die Scheitelstelle <InlineMath math="h" /> entlang <InlineMath math="y = 2x" /> und beobachte, dass der waagerechte Abstand zwischen <InlineMath math="S" /> und <InlineMath math="T" /> immer exakt <InlineMath math="2" /> bleibt.
+
+<MathVisual
+  title={<>Verschieben der Parabel entlang <InlineMath math="y = 2x" /></>}
+  description={
+    <>
+      Die gestrichelte Linie zeigt die Schiene <InlineMath math="y = 2x" />.
+      Verschieb die Scheitelstelle <InlineMath math="h" />, um zu sehen, wie{" "}
+      <InlineMath math="S" /> und <InlineMath math="T" /> im festen Abstand
+      mitwandern.
+    </>
+  }
+  footer={<>An jeder Position liegt <InlineMath math="T" /> genau <InlineMath math="2" /> nach rechts und <InlineMath math="4" /> nach oben von <InlineMath math="S" />.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -2, max: 5 }, y: { min: -3, max: 10 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [{ name: "h", min: -1, max: 2, value: 0, step: 0.5, label: "h" }],
+    objects: [
+      { id: "line-g", kind: "line", appearance: "reference", stroke: "dashed", through: [{ x: -1, y: -2 }, { x: 4, y: 8 }] },
+      { id: "parabola", kind: "function", appearance: "primary", formula: "(x - h)^2 + 2 * h", domain: { min: -2, max: 5 } },
+      { id: "vertex-s", kind: "marker", appearance: "answer", x: "h", y: "2 * h" },
+      { id: "hit-t", kind: "marker", appearance: "answer", x: "h + 2", y: "2 * h + 4" },
+    ],
+    readouts: [
+      { key: "sx", formula: "h" },
+      { key: "tx", formula: "h + 2" },
+    ],
+  }}
+  labels={{
+    h: <>Scheitelstelle <InlineMath math="h" /></>,
+    sx: <>Stelle von <InlineMath math="S" /></>,
+    tx: <>Stelle von <InlineMath math="T" /></>,
+  }}
+/>
+
+Unabhängig von <InlineMath math="h" /> liegt <InlineMath math="T" /> immer genau <InlineMath math="2" /> Einheiten rechts von <InlineMath math="S" />.
+
+## Schnittpunkte rechnerisch bestimmen
+
+Mit Scheitelpunkt <InlineMath math="S(h \mid 2h)" /> auf <InlineMath math="y = 2x" /> stellst du die verschobene Parabel auf, **setzt sie mit <InlineMath math="2x" /> gleich** und klammerst aus.
 
 <BlockMath math="\begin{aligned}
-(x-h)^2+2h&=2x \\
-(x-h)^2&=2(x-h) \\
-(x-h)(x-h-2)&=0
+(x - h)^2 + 2h &= 2x \\
+(x - h)^2 &= 2(x - h) \\
+(x - h)(x - h - 2) &= 0
 \end{aligned}" />
 
-Also ist <InlineMath math="x=h" />, das ist der Scheitel <InlineMath math="S" />, oder <InlineMath math="x=h+2" />, das ist <InlineMath math="T(h+2\mid2h+4)" />.
+Du erhältst <InlineMath math="x = h" /> (Scheitel <InlineMath math="S" />) und <InlineMath math="x = h + 2" /> (zweiter Schnittpunkt <InlineMath math="T" />).
 
-# Die Länge von ST
+## Länge ST berechnen und falsche Antworten prüfen
 
-Von <InlineMath math="S(h\mid2h)" /> nach <InlineMath math="T(h+2\mid2h+4)" /> geht es <InlineMath math="2" /> nach rechts und <InlineMath math="4" /> nach oben:
+Von <InlineMath math="S(h \mid 2h)" /> nach <InlineMath math="T(h + 2 \mid 2h + 4)" /> geht es <InlineMath math="2" /> nach rechts und <InlineMath math="4" /> nach oben. **Der Buchstabe <InlineMath math="h" /> verschwindet komplett** beim Abstand.
 
-<BlockMath math="ST=\sqrt{2^2+4^2}=\sqrt{20}=2\sqrt5" />
+<BlockMath math="ST = \sqrt{2^2 + 4^2} = \sqrt{20} = 2\sqrt{5}" />
 
-**Der Buchstabe <InlineMath math="h" /> ist ganz verschwunden**, die Länge ist also bei jeder Verschiebung gleich. Probe mit <InlineMath math="h=0" />: <InlineMath math="y=x^2" /> schneidet <InlineMath math="y=2x" /> in <InlineMath math="(0\mid0)" /> und <InlineMath math="(2\mid4)" />, und die liegen <InlineMath math="\sqrt{20}" /> auseinander.
+Kurzprobe für <InlineMath math="h = 0" />: <InlineMath math="y = x^2" /> schneidet <InlineMath math="y = 2x" /> in <InlineMath math="(0 \mid 0)" /> und <InlineMath math="(2 \mid 4)" />, der Abstand ist genau <InlineMath math="2\sqrt{5}" />.
 
-Also ist <InlineMath math="ST=2\sqrt5" />.
+- Die Aussage, dass die Länge von der Verschiebung abhängt, bricht vor dem Einsetzen von <InlineMath math="h" /> ab.
+- <InlineMath math="\sqrt{5}" /> setzt fälschlich den waagerechten Abstand <InlineMath math="1" /> statt <InlineMath math="2" /> an.
+- <InlineMath math="2" /> misst nur den waagerechten Unterschied und vergisst den Höhenunterschied.
+- <InlineMath math="4" /> misst nur den Höhenunterschied.
+- <InlineMath math="2\sqrt{2}" /> rechnet mit Steigung <InlineMath math="1" /> statt Steigung <InlineMath math="2" />.
 
-# Warum die anderen Antworten falsch sind
+# Antwort
 
-- „Hängt von der Verschiebung ab“ **gibt auf, bevor man es mit einem Buchstaben versucht**. Mit <InlineMath math="h" /> gerechnet steht das Ergebnis fest.
-- <InlineMath math="\sqrt5" /> nimmt einen waagerechten Abstand von <InlineMath math="1" /> statt <InlineMath math="2" />.
-- <InlineMath math="2" /> nimmt nur den waagerechten Abstand und vergisst den Anstieg entlang der Geraden.
-- <InlineMath math="4" /> nimmt nur den senkrechten Abstand.
-- <InlineMath math="2\sqrt2" /> nimmt an, der Anstieg sei so groß wie der waagerechte Abstand, aber die Gerade hat die Steigung <InlineMath math="2" />.
+Die Länge der Strecke <InlineMath math="\overline{ST}" /> ist stets <InlineMath math="2\sqrt{5}" />.

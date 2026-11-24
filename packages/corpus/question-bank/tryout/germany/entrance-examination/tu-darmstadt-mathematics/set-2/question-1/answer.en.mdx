@@ -1,29 +1,81 @@
-# Half the width and the height
+# Given
 
-The two top corners are on the arc at the same height, so **the rectangle is symmetric about the circle's centre**. Call half its width <InlineMath math="u" /> and its height <InlineMath math="h" />. The top right corner <InlineMath math="(u\mid h)" /> is on the arc, and the area is <InlineMath math="2u\cdot h" />:
+A **rectangle** (*Rechteck*) sits inside a semicircle of radius <InlineMath math="5" />. One side lies along the diameter and the other two corners lie on the arc, with area <InlineMath math="24" />.
 
-<BlockMath math="u^2+h^2=25,\qquad 2uh=24" />
+# Asked
 
-# The sum from a square
+Find every possible **perimeter** (*Umfang*) of this rectangle.
 
-You don't need the quadratic formula. **The square of the sum holds both equations at once**:
+# Solution
 
-<BlockMath math="(u+h)^2=u^2+h^2+2uh=25+24=49\quad\Rightarrow\quad u+h=7" />
+Picture fitting a rectangular card neatly inside a semicircular dome. Because both top corners touch the arc at the same height, **the rectangle must be symmetric about the circle's center**. Let its half-width be <InlineMath math="u" /> and its height be <InlineMath math="h" />.
 
-Two positive numbers with sum <InlineMath math="7" /> and product <InlineMath math="12" /> are <InlineMath math="3" /> and <InlineMath math="4" />. But nothing says which one is <InlineMath math="u" />.
+> The same area inside a semicircle can be reached by both a tall-narrow rectangle and a wide-short one, yet their perimeters differ because the full width doubles the half-width.
 
-# Two rectangles
+Look at how both rectangles (<InlineMath math="6 \times 4" /> and <InlineMath math="8 \times 3" />) fit inside the exact same semicircle and share area <InlineMath math="24" />.
 
-- <InlineMath math="u=3" />, <InlineMath math="h=4" />: width <InlineMath math="6" />, height <InlineMath math="4" />, perimeter <InlineMath math="2(6+4)=20" />.
-- <InlineMath math="u=4" />, <InlineMath math="h=3" />: width <InlineMath math="8" />, height <InlineMath math="3" />, perimeter <InlineMath math="2(8+3)=22" />.
+<MathVisual
+  title={<>Two rectangles of area <InlineMath math="24" /> inside a semicircle</>}
+  description={
+    <>
+      The blue arc has radius <InlineMath math="5" />. The green rectangle
+      measures <InlineMath math="6" /> by <InlineMath math="4" /> and the
+      highlighted rectangle measures <InlineMath math="8" /> by{" "}
+      <InlineMath math="3" />.
+    </>
+  }
+  footer={<>Both touch the arc of radius <InlineMath math="5" /> yet have different perimeters.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -5.5, max: 5.5 }, y: { min: -0.6, max: 5.6 } },
+    view: { kind: "fit", padding: 0.08 },
+    objects: [
+      { id: "semicircle", kind: "arc", appearance: "primary", center: { x: 0, y: 0 }, radius: 5, startDegrees: 0, sweepDegrees: 180 },
+      { id: "diameter", kind: "segment", appearance: "reference", from: { x: -5, y: 0 }, to: { x: 5, y: 0 } },
+      { id: "rect-tall", kind: "polygon", appearance: "answer", vertices: [{ x: -3, y: 0 }, { x: 3, y: 0 }, { x: 3, y: 4 }, { x: -3, y: 4 }] },
+      { id: "rect-wide", kind: "polygon", appearance: "highlight", vertices: [{ x: -4, y: 0 }, { x: 4, y: 0 }, { x: 4, y: 3 }, { x: -4, y: 3 }] },
+      { id: "radius-tall", kind: "segment", appearance: "construction", stroke: "dashed", from: { x: 0, y: 0 }, to: { x: 3, y: 4 } },
+      { id: "corner-tall", kind: "point", appearance: "answer", at: { x: 3, y: 4 } },
+      { id: "corner-wide", kind: "point", appearance: "highlight", at: { x: 4, y: 3 } },
+    ],
+    labels: [
+      { key: "tall", objectId: "corner-tall", at: { x: 3, y: 4 }, placement: "above-right" },
+      { key: "wide", objectId: "corner-wide", at: { x: 4, y: 3 }, placement: "above-right" },
+    ],
+  }}
+  labels={{
+    tall: <InlineMath math="(3, 4)" />,
+    wide: <InlineMath math="(4, 3)" />,
+  }}
+/>
 
-Both fit: <InlineMath math="3^2+4^2=25" /> and the area is <InlineMath math="24" />. **Their perimeters differ**, because the perimeter counts the width as twice the half width.
+The top-right corner <InlineMath math="(u \mid h)" /> lies at distance <InlineMath math="5" /> from the center, and the total area is <InlineMath math="2uh" />.
 
-So the perimeter can be <InlineMath math="20" /> or <InlineMath math="22" />.
+## Solving with the square of a sum
 
-# Why the other options are wrong
+Combine the Pythagorean relation and the area condition directly into the **square of the sum** <InlineMath math="(u + h)^2" />.
 
-- Only <InlineMath math="20" /> or only <InlineMath math="22" /> **uses just one of the two layouts**.
-- <InlineMath math="14" /> is <InlineMath math="2(u+h)" />, which uses half the width as the width.
-- <InlineMath math="4\sqrt{37}" /> takes the rectangle's diagonal as the diameter, as for a rectangle in a full circle.
-- <InlineMath math="24" /> mixes the two layouts, width <InlineMath math="8" /> with height <InlineMath math="4" />. That rectangle has area <InlineMath math="32" />.
+<BlockMath math="\begin{aligned}
+u^2 + h^2 &= 25, \qquad 2uh = 24 \\
+(u + h)^2 &= u^2 + h^2 + 2uh = 49 \implies u + h = 7
+\end{aligned}" />
+
+Two positive numbers with sum <InlineMath math="7" /> and product <InlineMath math="12" /> are <InlineMath math="3" /> and <InlineMath math="4" />, and either value can play the role of <InlineMath math="u" />.
+
+## Computing both perimeters and checking wrong choices
+
+Compute the perimeter <InlineMath math="2(2u + h)" /> for **both valid orientations**.
+
+<BlockMath math="\begin{aligned}
+u = 3, \; h = 4 &\implies \text{width } 6, \; \text{height } 4, \; P = 2(6 + 4) = 20 \\
+u = 4, \; h = 3 &\implies \text{width } 8, \; \text{height } 3, \; P = 2(8 + 3) = 22
+\end{aligned}" />
+
+- <InlineMath math="20" /> alone or <InlineMath math="22" /> alone keeps only one of the two valid rectangles.
+- <InlineMath math="14" /> uses the half-width <InlineMath math="u" /> as if it were the full width.
+- <InlineMath math="4\sqrt{37}" /> treats the rectangle diagonal as diameter <InlineMath math="10" />, which only holds in a full circle.
+- <InlineMath math="24" /> mixes width <InlineMath math="8" /> with height <InlineMath math="4" />, whose area is <InlineMath math="32" />.
+
+# Answer
+
+The perimeter of the rectangle can be <InlineMath math="20" /> or <InlineMath math="22" />.

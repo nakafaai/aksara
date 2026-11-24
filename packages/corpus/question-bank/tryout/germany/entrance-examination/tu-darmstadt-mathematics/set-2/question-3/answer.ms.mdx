@@ -1,39 +1,85 @@
-# Hanya sebahagian parabola yang dikira
+# Diberi
 
-Sebelah kiri ialah parabola yang terbuka ke atas dengan bucu di <InlineMath math="x=-\frac a2" />. Ketaksamaan itu hanya perlu benar bagi <InlineMath math="x\ge1" />, jadi **yang penting ialah nilai terkecil parabola dalam kawasan itu**, bukan pada seluruh paksi-<InlineMath math="x" />. Kedudukan bucu menentukan di mana nilai terkecil itu.
+**Ketaksamaan kuadratik** (*Ungleichung*) dengan parameter nyata <InlineMath math="a" /> berikut mesti dipenuhi bagi semua nombor nyata <InlineMath math="x \ge 1" />.
 
-# Bucu di kiri kawasan
+<BlockMath math="x^2 + ax + 4 > 0" />
 
-Jika <InlineMath math="-\frac a2\le1" />, iaitu <InlineMath math="a\ge-2" />, parabola sudah menaik bagi <InlineMath math="x\ge1" />. **Nilai terkecilnya berada di hujung <InlineMath math="x=1" />**:
+# Ditanya
 
-<BlockMath math="1+a+4>0\quad\Rightarrow\quad a>-5" />
+Tentukan semua nilai nyata <InlineMath math="a" /> yang menjadikan ketaksamaan ini sentiasa benar bagi semua <InlineMath math="x \ge 1" />.
 
-Semua <InlineMath math="a\ge-2" /> memenuhi syarat ini, jadi seluruh kes ini benar.
+# Penyelesaian
 
-# Bucu di dalam kawasan
+Bayangkan kamu hanya mengawal separuh padang di sebelah kanan garis <InlineMath math="x = 1" />. Parabola bebas turun di bawah sifar di luar padang (<InlineMath math="x < 1" />). Yang penting ialah **titik terendah parabola dalam kawasan <InlineMath math="x \ge 1" /> mesti kekal di atas sifar**.
 
-Jika <InlineMath math="a<-2" />, bucunya berada di <InlineMath math="x=-\frac a2>1" />. **Nilai terkecilnya ialah nilai di bucu**:
+> Untuk memastikan fungsi kuadratik sentiasa positif pada suatu separuh garis, cukup pastikan nilai minimumnya dalam kawasan itu positif sama ada di sempadan atau di puncak.
 
-<BlockMath math="\begin{aligned}
-\left(-\frac a2\right)^2+a\left(-\frac a2\right)+4&>0 \\
-4-\frac{a^2}4&>0 \\
--4<a&<4
-\end{aligned}" />
+Gerakkan parameter <InlineMath math="a" /> pada graf berikut untuk melihat bila keseluruhan lengkung dalam kawasan berlorek <InlineMath math="x \ge 1" /> berada di atas paksi <InlineMath math="x" />.
 
-Bersama <InlineMath math="a<-2" />, kes ini memberi <InlineMath math="-4<a<-2" />.
+<MathVisual
+  title={<>Kedudukan parabola pada kawasan <InlineMath math="x \ge 1" /> mengikut <InlineMath math="a" /></>}
+  description={
+    <>
+      Kawasan berlorek menandakan <InlineMath math="x \ge 1" />. Gerakkan{" "}
+      <InlineMath math="a" /> untuk melihat sama ada titik terendah terletak di
+      sempadan <InlineMath math="x = 1" /> atau di puncak.
+    </>
+  }
+  footer={<>Keseluruhan lengkung pada <InlineMath math="x \ge 1" /> kekal positif tepat apabila <InlineMath math="a > -4" />.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -4, max: 6 }, y: { min: -6, max: 12 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [{ name: "a", min: -5, max: 6, value: -3.5, step: 0.5, label: "a" }],
+    objects: [
+      { id: "domain-half", kind: "region", appearance: "construction", inequalities: ["x >= 1"] },
+      { id: "parabola", kind: "function", appearance: "primary", formula: "x^2 + a * x + 4", domain: { min: -4, max: 6 } },
+      { id: "vertex", kind: "marker", appearance: "answer", x: "-a / 2", y: "4 - a^2 / 4" },
+    ],
+    readouts: [
+      { key: "at-one", formula: "5 + a" },
+      { key: "vertex-y", formula: "4 - a^2 / 4" },
+    ],
+  }}
+  labels={{
+    a: <>Parameter <InlineMath math="a" /></>,
+    "at-one": <>Nilai di <InlineMath math="x = 1" /></>,
+    "vertex-y": <>Tinggi puncak</>,
+  }}
+/>
 
-# Menggabungkan kedua-dua kes
+Pada <InlineMath math="a = 5" />, puncak berada di <InlineMath math="x = -2.5" /> di bawah sifar, tetapi seluruh bahagian dalam kawasan <InlineMath math="x \ge 1" /> naik tinggi di atas sifar.
 
-<InlineMath math="-4<a<-2" /> dan <InlineMath math="a\ge-2" /> **bersambung menjadi <InlineMath math="a>-4" />**.
+## Dua kedudukan puncak parabola
 
-Semak di sempadan: untuk <InlineMath math="a=-4" />, <InlineMath math="x^2-4x+4=(x-2)^2" /> bernilai <InlineMath math="0" /> di <InlineMath math="x=2\ge1" />, jadi <InlineMath math="a=-4" /> tidak termasuk.
+Koordinat <InlineMath math="x" /> puncak berada di <InlineMath math="-\frac{a}{2}" />. Bahagikan kepada **dua kes mengikut kedudukan puncak** berbanding <InlineMath math="x = 1" />.
 
-Jadi, ketaksamaan itu benar bagi semua <InlineMath math="x\ge1" /> tepat apabila <InlineMath math="a>-4" />.
+Kes pertama: jika puncak di kiri atau tepat pada sempadan (<InlineMath math="a \ge -2" />), parabola menaik sepanjang <InlineMath math="x \ge 1" /> maka nilai minimumnya di <InlineMath math="x = 1" />.
 
-# Kenapa pilihan lain salah
+<BlockMath math="1 + a + 4 > 0 \implies a > -5" />
 
-- <InlineMath math="-4<a<4" /> **memeriksa seluruh paksi-<InlineMath math="x" />** dengan pembezalayan. Untuk <InlineMath math="a=10" />, parabola itu memang memotong paksi-<InlineMath math="x" />, tetapi hanya pada <InlineMath math="x<0" />.
-- <InlineMath math="a>-5" /> hanya memeriksa <InlineMath math="x=1" />. Untuk <InlineMath math="a=-4.5" />, nilai di bucu <InlineMath math="x=2.25" /> negatif.
-- <InlineMath math="a\ge-4" /> memasukkan <InlineMath math="a=-4" />, sedangkan di situ sebelah kiri bernilai sifar di <InlineMath math="x=2" />.
-- <InlineMath math="a\ge-2" /> hanya menggunakan kes bucu di kiri kawasan dan membuang <InlineMath math="-4<a<-2" />.
-- <InlineMath math="a<4" /> meletakkan bucu di <InlineMath math="x=\frac a2" />, dengan tanda yang salah, jadi semua kesnya terbalik.
+Semua <InlineMath math="a \ge -2" /> sedia memenuhi <InlineMath math="a > -5" />, jadi semua <InlineMath math="a \ge -2" /> sah.
+
+Kes kedua: jika puncak berada di dalam kawasan (<InlineMath math="a < -2" />), nilai minimumnya ialah nilai pada puncak parabola.
+
+<BlockMath math="4 - \frac{a^2}{4} > 0 \iff a^2 < 16 \iff -4 < a < 4" />
+
+Disilangkan dengan <InlineMath math="a < -2" />, kes kedua memberi selang di antara <InlineMath math="-4" /> dan <InlineMath math="-2" />.
+
+## Menggabungkan kes dan pilihan salah
+
+Gabungan kedua-dua kes bersambung menjadi **selang tunggal <InlineMath math="a > -4" />**. Semak sempadan <InlineMath math="a = -4" />:
+
+<BlockMath math="x^2 - 4x + 4 = (x - 2)^2 = 0 \quad \text{pada } x = 2 \ge 1" />
+
+Kerana menyentuh sifar pada <InlineMath math="x = 2" />, nilai <InlineMath math="a = -4" /> dikecualikan.
+
+- Selang di antara <InlineMath math="-4" /> dan <InlineMath math="4" /> menyemak seluruh paksi <InlineMath math="x" />, sedangkan punca negatif bagi <InlineMath math="a = 10" /> tidak melanggar <InlineMath math="x \ge 1" />.
+- <InlineMath math="a > -5" /> hanya menyemak <InlineMath math="x = 1" />, sedangkan pada <InlineMath math="a = -4.5" /> puncak di <InlineMath math="x = 2.25" /> bernilai negatif.
+- <InlineMath math="a \ge -4" /> memasukkan <InlineMath math="a = -4" /> yang menyentuh sifar pada <InlineMath math="x = 2" />.
+- <InlineMath math="a \ge -2" /> tertinggal kes puncak di dalam kawasan.
+- <InlineMath math="a < 4" /> tersilap meletakkan puncak di <InlineMath math="\frac{a}{2}" /> dengan tanda terbalik.
+
+# Jawapan
+
+Ketaksamaan ini berlaku bagi semua <InlineMath math="x \ge 1" /> tepat untuk <InlineMath math="a > -4" />.
