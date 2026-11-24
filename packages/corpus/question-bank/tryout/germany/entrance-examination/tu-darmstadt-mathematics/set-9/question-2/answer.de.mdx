@@ -1,31 +1,53 @@
-# Definitionsbereich und Quadrieren
+# Gegeben
 
-Die Wurzel verlangt <InlineMath math="x\ge-3" />. Beide Seiten sind nie negativ, deshalb darfst du **ohne Fallunterscheidung quadrieren**, und es gilt <InlineMath math="|x-3|^2=(x-3)^2" />:
+Gegeben ist eine Gleichung, die **einen Betrag einer Wurzel gleichsetzt**:
+
+<BlockMath math="\lvert x - 3 \rvert = \sqrt{x + 3}" />
+
+# Gesucht
+
+Bestimme die Lösungsmenge <InlineMath math="\mathbb{L}" /> aller reellen Zahlen <InlineMath math="x" />, die diese Gleichung erfüllen.
+
+# Lösung
+
+Beim Quadrieren einer Wurzelgleichung schleichen sich sonst leicht Scheinlösungen ein, weil Minuszeichen verschwinden. Hier hast du Glück: **Links steht ein Betrag und rechts eine Wurzel**, beide Seiten sind also automatisch nicht negativ. Innerhalb des Definitionsbereichs ist das Quadrieren deshalb eine exakte Äquivalenzumformung.
+
+> Wenn beide Seiten einer Gleichung sicher nicht negativ sind, entfernt das Quadrieren Betrag und Wurzel gleichzeitig, ohne Scheinlösungen zu erzeugen.
+
+## Definitionsbereich sichern und direkt quadrieren
+
+Für die Wurzel muss <InlineMath math="x + 3 \ge 0" />, also <InlineMath math="x \ge -3" /> gelten. Da beide Seiten nicht negativ sind und der Betrag beim Quadrieren entfällt, **quadrierst du direkt ohne Fallunterscheidung**:
 
 <BlockMath math="\begin{aligned}
-(x-3)^2&=x+3 \\
-x^2-7x+6&=0 \\
-(x-1)(x-6)&=0
+\lvert x - 3 \rvert^2 &= x + 3 \\
+(x - 3)^2 &= x + 3 \\
+x^2 - 7x + 6 &= 0 \\
+(x - 1)(x - 6) &= 0
 \end{aligned}" />
 
-# Beide Kandidaten prüfen
+Es entstehen genau zwei Kandidaten: <InlineMath math="x = 1" /> und <InlineMath math="x = 6" />.
 
-Weil beide Seiten nicht negativ waren, ist das Quadrieren hier umkehrbar. Trotzdem lohnt **die Probe in der ursprünglichen Gleichung**:
+## Beide Kandidaten in Gleichung und Graph prüfen
+
+Beide liegen im Bereich <InlineMath math="x \ge -3" />. Die direkte Probe in der Ausgangsgleichung **bestätigt beide Lösungen**:
 
 <BlockMath math="\begin{aligned}
-x=1:&\quad |1-3|=2,\quad \sqrt{4}=2 \\
-x=6:&\quad |6-3|=3,\quad \sqrt{9}=3
+x = 1: &\quad \lvert 1 - 3 \rvert = 2, \qquad \sqrt{1 + 3} = 2 \\
+x = 6: &\quad \lvert 6 - 3 \rvert = 3, \qquad \sqrt{6 + 3} = 3
 \end{aligned}" />
+
+Im Schaubild treffen sich der geknickte Betragsgraph und die Wurzelkurve zweimal.
 
 <MathVisual
-  title={<>Betrag und Wurzel im selben Bild</>}
-  description={<>Der Graph von <InlineMath math="y=|x-3|" /> hat einen Knick bei <InlineMath math="x=3" />. Der Graph von <InlineMath math="y=\sqrt{x+3}" /> beginnt bei <InlineMath math="x=-3" />. Sie schneiden sich zweimal, in <InlineMath math="(1\mid2)" /> und <InlineMath math="(6\mid3)" />. Gestrichelt ist <InlineMath math="y=x-3" /> gezeichnet: Ohne Betrag liegt dieser Teil unter der Achse und trifft die Wurzel links von <InlineMath math="3" /> nicht.</>}
+  title={<>Betrag und Wurzel in einem Bild</>}
+  description={<>Der Graph von <InlineMath math="y = \lvert x - 3 \rvert" /> knickt bei <InlineMath math="x = 3" />, während <InlineMath math="y = \sqrt{x + 3}" /> bei <InlineMath math="x = -3" /> startet. Beide schneiden sich zweimal bei <InlineMath math="(1 \mid 2)" /> und <InlineMath math="(6 \mid 3)" />. Ohne Betrag liefe die gestrichelte Gerade <InlineMath math="y = x - 3" /> unter der Achse.</>}
+  footer={<>Der Betrag klappt den linken Ast nach oben, sodass beide Punkte <InlineMath math="(1 \mid 2)" /> und <InlineMath math="(6 \mid 3)" /> treffen.</>}
   labels={{
-    p1: <><InlineMath math="(1\mid2)" /></>,
-    p6: <><InlineMath math="(6\mid3)" /></>,
-    a: <><InlineMath math="|x-3|" /></>,
-    r: <><InlineMath math="\sqrt{x+3}" /></>,
-    q: <><InlineMath math="x-3" /></>,
+    p1: <><InlineMath math="(1 \mid 2)" /></>,
+    p6: <><InlineMath math="(6 \mid 3)" /></>,
+    a: <><InlineMath math="\lvert x - 3 \rvert" /></>,
+    r: <><InlineMath math="\sqrt{x + 3}" /></>,
+    q: <><InlineMath math="x - 3" /></>,
   }}
   scene={{
     space: "plane",
@@ -52,14 +74,20 @@ x=6:&\quad |6-3|=3,\quad \sqrt{9}=3
   }}
 />
 
-# Warum der Betrag zählt
+Ohne Betragsstriche wäre <InlineMath math="x = 1" /> wegen <InlineMath math="1 - 3 = -2" /> herausgefallen. Erst der Betrag rettet beide Schnittpunkte.
 
-Ohne Betrag hieße die Gleichung <InlineMath math="x-3=\sqrt{x+3}" />. Für <InlineMath math="x=1" /> wäre die linke Seite <InlineMath math="-2" />, und **diese Lösung fiele weg**. Mit Betrag bleiben beide Lösungen: <InlineMath math="\mathbb{L}=\{1;\,6\}" />.
+## Falsche Antworten prüfen
 
-# Warum die anderen Antworten falsch sind
+Die falschen Antworten **streichen <InlineMath math="x = 1" /> oder faktorisieren falsch**:
 
-- <InlineMath math="\{6\}" /> **behandelt <InlineMath math="|x-3|" /> wie <InlineMath math="x-3" />** und verwirft dadurch <InlineMath math="x=1" />.
-- <InlineMath math="\{1\}" /> verwirft die größere Lösung ohne Grund.
-- <InlineMath math="\{-1;\,6\}" /> entsteht mit einem Vorzeichenfehler beim Zerlegen: <InlineMath math="(x+1)(x-6)=x^2-5x-6" />.
-- <InlineMath math="\{-6;\,-1\}" /> zerlegt <InlineMath math="x^2+7x+6" /> statt <InlineMath math="x^2-7x+6" />. Außerdem ist <InlineMath math="-6<-3" /> gar nicht im Definitionsbereich.
-- <InlineMath math="\{\}" /> übersieht, dass beide Proben aufgehen.
+| Auswahl | Warum falsch |
+| --- | --- |
+| <InlineMath math="\mathbb{L} = \{6\}" /> | Behandelt <InlineMath math="\lvert x - 3 \rvert" /> wie <InlineMath math="x - 3" /> und verwirft <InlineMath math="x = 1" /> zu Unrecht. |
+| <InlineMath math="\mathbb{L} = \{1\}" /> | Lässt die gültige Lösung <InlineMath math="x = 6" /> grundlos weg. |
+| <InlineMath math="\mathbb{L} = \{-1,\, 6\}" /> | Entsteht aus dem falschen Produkt <InlineMath math="(x + 1)(x - 6) = x^2 - 5x - 6" />. |
+| <InlineMath math="\mathbb{L} = \{-6,\, -1\}" /> | Faktorisiert <InlineMath math="x^2 + 7x + 6" /> statt <InlineMath math="x^2 - 7x + 6" />, und <InlineMath math="-6" /> liegt außerhalb des Definitionsbereichs. |
+| <InlineMath math="\mathbb{L} = \{\}" /> | Übersieht, dass beide Proben aufgehen. |
+
+# Antwort
+
+Die Lösungsmenge lautet **<InlineMath math="\mathbb{L} = \{1,\, 6\}" />**.

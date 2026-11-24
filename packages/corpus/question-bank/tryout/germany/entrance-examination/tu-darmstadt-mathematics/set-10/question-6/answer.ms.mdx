@@ -1,25 +1,44 @@
-# Cari asas dan nilai awal
+# Diberi
 
-Bahagikan dua nilai fungsi itu. Faktor <InlineMath math="a" /> terbatal dan **yang tinggal ialah <InlineMath math="b^2" />**:
+Fungsi eksponen (*Exponentialfunktion*) <InlineMath math="f(x) = a \cdot b^x" /> dengan <InlineMath math="b > 0" /> mempunyai **dua nilai diketahui**:
 
-<BlockMath math="\frac{f(3)}{f(1)}=\frac{a\,b^3}{a\,b}=b^2=\frac{54}{6}=9" />
+<BlockMath math="f(1) = 6 \qquad \text{dan} \qquad f(3) = 54" />
 
-Oleh sebab <InlineMath math="b>0" />, <InlineMath math="b=3" />, dan daripada <InlineMath math="f(1)=3a=6" /> kita dapat <InlineMath math="a=2" />. Jadi <InlineMath math="f(x)=2\cdot3^x" />.
+# Ditanya
 
-# Semak ketaksamaan dengan nombor bulat
+Apakah integer terkecil <InlineMath math="x" /> supaya <InlineMath math="f(x) > 1000" />?
 
-Yang dicari ialah nombor bulat terkecil <InlineMath math="x" /> dengan <InlineMath math="2\cdot3^x>1000" />, iaitu <InlineMath math="3^x>500" />. Kuasa bagi <InlineMath math="3" /> bertambah dengan cepat, jadi **cukup dikira satu demi satu**:
+# Penyelesaian
 
-<BlockMath math="3^5=243<500,\qquad 3^6=729>500" />
+Dalam pertumbuhan eksponen, setiap satu langkah ke hadapan sentiasa **mendarab nilai fungsi dengan faktor tetap <InlineMath math="b" />**. Dari <InlineMath math="x = 1" /> ke <InlineMath math="x = 3" /> terdapat dua langkah, dan nilainya melonjak sembilan kali ganda dari <InlineMath math="6" /> ke <InlineMath math="54" />. Mendarab dengan <InlineMath math="b" /> dua kali memberi <InlineMath math="9" />, bermakna setiap langkah **mendarab dengan tiga**.
+
+> Membahagi dua nilai fungsi eksponen terus memansuhkan nilai awal dan meninggalkan faktor pertumbuhan berkuasa selisih langkah.
+
+## Mencari faktor pertumbuhan dan nilai awal
+
+Bahagikan <InlineMath math="f(3)" /> dengan <InlineMath math="f(1)" /> supaya **faktor awal <InlineMath math="a" /> terus terhapus**:
+
+<BlockMath math="\frac{f(3)}{f(1)} = \frac{a \cdot b^3}{a \cdot b} = b^2 = \frac{54}{6} = 9" />
+
+Oleh sebab <InlineMath math="b > 0" />, diperoleh <InlineMath math="b = 3" />. Masukkan ke dalam <InlineMath math="f(1) = 6" /> bagi nilai awal:
+
+<BlockMath math="a \cdot 3 = 6 \quad \Longrightarrow \quad a = 2 \quad \Longrightarrow \quad f(x) = 2 \cdot 3^x" />
+
+## Mencari integer pertama melebihi seribu
+
+Ketaksamaan <InlineMath math="2 \cdot 3^x > 1000" /> diringkaskan menjadi <InlineMath math="3^x > 500" />. Kerana kuasa tiga meningkat sangat cepat, **uji terus dua integer bersebelahan**:
+
+<BlockMath math="3^5 = 243 < 500, \qquad 3^6 = 729 > 500" />
 
 <MathVisual
   title={<>Bila <InlineMath math="f" /> melepasi <InlineMath math="1000" /></>}
-  description={<>Graf <InlineMath math="f(x)=2\cdot3^x" /> naik semakin curam. Pada <InlineMath math="x=5" /> nilainya <InlineMath math="486" />, masih di bawah garis <InlineMath math="1000" />, dan pada <InlineMath math="x=6" /> nilainya <InlineMath math="1458" />, sudah di atasnya.</>}
+  description={<>Graf <InlineMath math="f(x) = 2 \cdot 3^x" /> mendaki semakin curam. Pada <InlineMath math="x = 5" /> nilainya baru <InlineMath math="486" />, masih di bawah garis <InlineMath math="1000" />, lalu pada <InlineMath math="x = 6" /> ia melonjak ke <InlineMath math="1458" />, jauh di atasnya.</>}
+  footer={<>Nilai <InlineMath math="f(5) = 486" /> masih di bawah <InlineMath math="1000" />, dan <InlineMath math="f(6) = 1458" /> pertama kali melepasi had.</>}
   labels={{
-    five: <><InlineMath math="f(5)=486" /></>,
-    six: <><InlineMath math="f(6)=1458" /></>,
+    five: <><InlineMath math="f(5) = 486" /></>,
+    six: <><InlineMath math="f(6) = 1458" /></>,
     l: <><InlineMath math="1000" /></>,
-    g: <><InlineMath math="2\cdot3^x" /></>,
+    g: <><InlineMath math="2 \cdot 3^x" /></>,
   }}
   scene={{
     space: "plane",
@@ -44,12 +63,20 @@ Yang dicari ialah nombor bulat terkecil <InlineMath math="x" /> dengan <InlineMa
   }}
 />
 
-Semakan: <InlineMath math="f(5)=486\le1000" /> dan <InlineMath math="f(6)=1458>1000" />. Nombor bulat terkecilnya ialah **<InlineMath math="x=6" />**.
+Semakan terus: <InlineMath math="f(5) = 486" /> belum melebihi <InlineMath math="1000" />, manakala <InlineMath math="f(6) = 1458" /> sudah melebihi <InlineMath math="1000" />.
 
-# Kenapa jawapan lain salah
+## Menyemak pilihan salah
 
-- <InlineMath math="x=5" /> memakai **<InlineMath math="a=6" />, bukan <InlineMath math="a=2" />**: <InlineMath math="6\cdot3^5=1458>1000" />. Sedangkan nilai awal ialah <InlineMath math="f(0)=a" />, bukan <InlineMath math="f(1)" />.
-- <InlineMath math="x=7" /> mengalihkan eksponen sebanyak satu, contohnya dengan <InlineMath math="f(x)=2\cdot3^{x-1}" />.
-- <InlineMath math="x=4" /> menganggap <InlineMath math="\frac{f(3)}{f(1)}=9" /> sebagai asas: dengan <InlineMath math="b=9" /> dan <InlineMath math="a=\frac23" />, <InlineMath math="f(4)=\frac23\cdot6561=4374" />.
-- <InlineMath math="x=43" /> mengira secara linear: dari <InlineMath math="6" /> ke <InlineMath math="54" /> dalam dua langkah bermakna <InlineMath math="24" /> setiap langkah, dan <InlineMath math="6+24(x-1)>1000" /> memberi <InlineMath math="x=43" />.
-- <InlineMath math="x=3" /> ialah kedudukan nilai kedua yang diberi, <InlineMath math="f(3)=54" />.
+Perhatikan ralat model yang melahirkan **setiap pilihan pengganggu**:
+
+| Pilihan | Mengapa salah |
+| --- | --- |
+| <InlineMath math="x = 5" /> | Menyangka <InlineMath math="f(1) = 6" /> ialah nilai awal <InlineMath math="a" />, sedangkan <InlineMath math="a = f(0) = 2" />. |
+| <InlineMath math="x = 7" /> | Menganjakkan indeks satu langkah menjadi <InlineMath math="2 \cdot 3^{x - 1}" />. |
+| <InlineMath math="x = 4" /> | Menggunakan nisbah dua langkah <InlineMath math="9" /> terus sebagai asas <InlineMath math="b" /> tanpa punca kuasa dua. |
+| <InlineMath math="x = 43" /> | Menganggap pertumbuhan linear (<InlineMath math="+24" /> setiap langkah) bukannya eksponen. |
+| <InlineMath math="x = 3" /> | Sekadar menyalin input diberi di mana <InlineMath math="f(3) = 54" />. |
+
+# Jawapan
+
+Integer terkecil yang memenuhi ketaksamaan ialah **<InlineMath math="x = 6" />**.

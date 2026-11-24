@@ -1,20 +1,42 @@
-# The changes as factors
+# Given
 
-The <InlineMath math="25\,\%" /> increase multiplies the price by <InlineMath math="1.25" />. In the end it should be <InlineMath math="10\,\%" /> below the old price, so <InlineMath math="0.9" /> times it. You want the cut by the share <InlineMath math="s" />, **measured against the raised price**:
+The price of an item (*Preis einer Ware*) undergoes two consecutive percentage changes:
 
-<BlockMath math="1.25\,(1-s)=0.9" />
+- First, the price is **increased by <InlineMath math="25\,\%" />**.
+- Next, the new price is **reduced by <InlineMath math="s" />** so the final price ends up <InlineMath math="10\,\%" /> below the original price.
 
-# Work out the rate
+# Asked
 
-<BlockMath math="1-s=\frac{0.9}{1.25}=0.72\quad\Longrightarrow\quad s=0.28=28\,\%" />
+By what percent was the **increased price** reduced?
+
+# Solution
+
+Back-to-back percentage changes never simply add, because **the reference base changes after the first step**. Picture a <InlineMath math="100\text{ €}" /> item: a <InlineMath math="25\,\%" /> markup lifts it to <InlineMath math="125\text{ €}" />. To drop it down to <InlineMath math="90\text{ €}" />, you cut <InlineMath math="35\text{ €}" />, and that <InlineMath math="35\text{ €}" /> cut is measured out of <InlineMath math="125\text{ €}" />, not out of <InlineMath math="100\text{ €}" />.
+
+> Every percentage change acts on the current value right before that step, so chained percentages combine by multiplying factors.
+
+## Setting up the multiplier equation
+
+A <InlineMath math="25\,\%" /> increase multiplies the starting price by <InlineMath math="1.25" />, and finishing <InlineMath math="10\,\%" /> below the start means multiplying by <InlineMath math="0.9" />. For **a markdown fraction <InlineMath math="s" /> off the raised price**:
+
+<BlockMath math="1.25(1 - s) = 0.9" />
+
+## Solving for the percentage cut
+
+Divide both sides by <InlineMath math="1.25" /> to get **the remaining fraction and then the markdown rate**:
+
+<BlockMath math="1 - s = \frac{0.9}{1.25} = \frac{90}{125} = 0.72 \quad \Longrightarrow \quad s = 1 - 0.72 = 0.28 = 28\,\%" />
+
+Follow the two-step index path starting at <InlineMath math="100" /> below.
 
 <MathVisual
-  title={<>The price in two steps</>}
-  description={<>The price as an index with <InlineMath math="100" /> at the start. It rises to <InlineMath math="125" /> and then falls to <InlineMath math="90" />, which is <InlineMath math="10" /> below the start. The second step is a cut of <InlineMath math="35" /> from <InlineMath math="125" />, which is <InlineMath math="28\,\%" />.</>}
+  title={<>Price across two steps</>}
+  description={<>The price index starts at <InlineMath math="100" />, rises <InlineMath math="25\,\%" /> to a peak of <InlineMath math="125" />, then drops to <InlineMath math="90" />, which is <InlineMath math="10\,\%" /> below the start. Cutting <InlineMath math="35" /> from the new base of <InlineMath math="125" /> is exactly <InlineMath math="28\,\%" />.</>}
+  footer={<>Cutting <InlineMath math="35" /> off the raised price of <InlineMath math="125" /> equals an exact <InlineMath math="28\,\%" /> reduction.</>}
   labels={{
     s: <>start <InlineMath math="100" /></>,
     t: <>raised <InlineMath math="125" /></>,
-    e: <>end <InlineMath math="90" /></>,
+    e: <>final <InlineMath math="90" /></>,
     cut: <><InlineMath math="-28\,\%" /></>,
   }}
   scene={{
@@ -41,12 +63,20 @@ The <InlineMath math="25\,\%" /> increase multiplies the price by <InlineMath ma
   }}
 />
 
-Check with <InlineMath math="100\text{ €}" />: raised to <InlineMath math="125\text{ €}" />, <InlineMath math="28\,\%" /> of that is <InlineMath math="35\text{ €}" />, leaving <InlineMath math="90\text{ €}" />. The raised price was **cut by <InlineMath math="28\,\%" />**.
+Concrete check: <InlineMath math="28\,\%" /> of <InlineMath math="125\text{ €}" /> is <InlineMath math="35\text{ €}" />, leaving <InlineMath math="125 - 35 = 90\text{ €}" />, exactly <InlineMath math="10\,\%" /> under <InlineMath math="100\text{ €}" />.
 
-# Why the other answers are wrong
+## Checking the distractors
 
-- <InlineMath math="35\,\%" /> adds the percentage points <InlineMath math="25+10" />. But the cut is measured **against the larger base <InlineMath math="125" />**.
-- <InlineMath math="30\,\%" /> takes <InlineMath math="20\,\%" /> to undo the increase plus another <InlineMath math="10\,\%" />.
-- <InlineMath math="72\,\%" /> is the remaining share <InlineMath math="\frac{0.9}{1.25}" />, not the cut.
-- <InlineMath math="20\,\%" /> only brings the price back to the start: <InlineMath math="1.25\cdot0.8=1" />.
-- <InlineMath math="25\,\%" /> just reverses the increase: <InlineMath math="1.25\cdot0.75=0.9375" />.
+See how each wrong option **adds percentages naively or confuses the reference base**:
+
+| Option | Why it is wrong |
+| --- | --- |
+| by <InlineMath math="35\,\%" /> | Adds <InlineMath math="25 + 10" /> as if the cut were measured against <InlineMath math="100" /> instead of <InlineMath math="125" />. |
+| by <InlineMath math="30\,\%" /> | Adds the <InlineMath math="20\,\%" /> undo cut and <InlineMath math="10\,\%" /> instead of multiplying factors. |
+| by <InlineMath math="72\,\%" /> | Reports the remaining share <InlineMath math="0.72" /> instead of the reduction <InlineMath math="1 - 0.72" />. |
+| by <InlineMath math="20\,\%" /> | Only returns the price to the start (<InlineMath math="1.25 \cdot 0.8 = 1" />), without the extra <InlineMath math="10\,\%" /> drop. |
+| by <InlineMath math="25\,\%" /> | Simply mirrors the markup percent, leaving the price at <InlineMath math="93.75\text{ €}" />. |
+
+# Answer
+
+The increased price was reduced by **<InlineMath math="28\,\%" />**.

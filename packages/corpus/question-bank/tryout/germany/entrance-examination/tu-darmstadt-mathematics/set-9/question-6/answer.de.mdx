@@ -1,15 +1,88 @@
-Den kürzesten Weg auf einer Oberfläche findest du, indem du **die Oberfläche in die Ebene aufklappst**. Dort ist der kürzeste Weg eine gerade Strecke.
+# Gegeben
 
-Der Weg führt über zwei benachbarte Seitenflächen. Klappst du sie zu einem Rechteck auf, ist es <InlineMath math="2\text{ cm}" /> breit und <InlineMath math="2+2=4\text{ cm}" /> lang. Start und Ziel liegen in gegenüberliegenden Ecken dieses Rechtecks.
+Eine Ameise sitzt auf einer Ecke eines Würfels mit der **Kantenlänge <InlineMath math="2\text{ cm}" />**.
 
-<BlockMath math="d=\sqrt{2^2+4^2}=\sqrt{4+16}=\sqrt{20}=2\sqrt5" />
+Sie darf sich nur auf der **Würfeloberfläche** bewegen und will zur am weitesten entfernten gegenüberliegenden Ecke gelangen.
 
-Zur Kontrolle vergleichst du mit anderen Wegen. Über drei Kanten sind es <InlineMath math="6\text{ cm}" />, über eine Kante und eine Flächendiagonale <InlineMath math="2+2\sqrt2\approx4{,}83\text{ cm}" />. Der gerade Weg im aufgeklappten Netz ist mit <InlineMath math="2\sqrt5\approx4{,}47\text{ cm}" /> kürzer als beide.
+# Gesucht
 
-Der kürzeste Weg ist also <InlineMath math="2\sqrt5\text{ cm}" /> lang.
+Wie lang ist der kürzeste Weg der Ameise auf der Oberfläche?
 
-- <InlineMath math="2\sqrt3\text{ cm}" /> ist die Raumdiagonale durch das Innere. Die Ameise krabbelt aber auf der Oberfläche.
-- <InlineMath math="6\text{ cm}" /> folgt drei Kanten. Das ist ein möglicher, aber deutlich längerer Weg.
-- <InlineMath math="4\text{ cm}" /> zählt nur zwei Kanten. Damit erreicht man nur die gegenüberliegende Ecke einer Seitenfläche, nicht die des Würfels.
-- <InlineMath math="(2+2\sqrt2)\text{ cm}" /> geht erst eine Kante entlang und dann eine Flächendiagonale. Das ist länger als der gerade Weg im Netz.
-- <InlineMath math="2\sqrt2\text{ cm}" /> ist eine Flächendiagonale. Sie endet in einer Ecke derselben Seitenfläche, nicht in der gegenüberliegenden Würfelecke.
+# Lösung
+
+Auf einem dreidimensionalen Körper täuscht der erste Eindruck oft vor, man müsse Kanten entlanglaufen oder eine Flächendiagonale mit einer Kante kombinieren. Der beste Trick lautet: **Klappe die Würfeloberfläche flach in ein Netz auf**. Sobald die beiden überquerten Seitenflächen eben nebeneinanderliegen, ist der kürzeste Weg immer **eine gerade Strecke** über die Faltkante hinweg.
+
+> Der kürzeste Weg auf einer Körperoberfläche wird stets zur geraden Strecke, wenn man die durchlaufenen Seitenflächen flach in ein Netz aufklappt.
+
+## Zwei benachbarte Würfelflächen flach ausbreiten
+
+Bis zur gegenüberliegenden Ecke überquert die Ameise **zwei aneinandergrenzende Quadratflächen**. Aufgeklappt bilden diese beiden <InlineMath math="2\text{ cm}" />-Quadrate ein einziges Rechteck mit:
+
+- Breite <InlineMath math="2\text{ cm}" />.
+- Gesamtlänge <InlineMath math="2 + 2 = 4\text{ cm}" />.
+
+Startecke <InlineMath math="A" /> und Zielecke <InlineMath math="B" /> sitzen genau in gegenüberliegenden Ecken dieses Rechtecks.
+
+<MathVisual
+  title={<>Netz zweier Würfelflächen</>}
+  description={<>Zwei Würfelflächen mit Seitenlänge <InlineMath math="2\text{ cm}" /> werden flach zu einem <InlineMath math="4\text{ cm}" /> mal <InlineMath math="2\text{ cm}" /> großen Rechteck mit mittlerer Faltkante aufgeklappt. Der kürzeste Weg ist die Gerade von <InlineMath math="A(0 \mid 0)" /> nach <InlineMath math="B(4 \mid 2)" />, die die Kante genau bei <InlineMath math="(2 \mid 1)" /> kreuzt.</>}
+  footer={<>Aufgeklappt wird der kürzeste Weg zur <InlineMath math="4 \times 2" />-Diagonale der Länge <InlineMath math="2\sqrt{5}\text{ cm}" />.</>}
+  labels={{
+    a: <><InlineMath math="A" /></>,
+    b: <><InlineMath math="B" /></>,
+    len: <><InlineMath math="4\text{ cm}" /></>,
+    wid: <><InlineMath math="2\text{ cm}" /></>,
+    diag: <><InlineMath math="2\sqrt{5}" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -0.8, max: 4.8 },
+      y: { min: -0.8, max: 3.2 },
+    },
+    view: { kind: "fit", padding: 0.08 },
+    objects: [
+      { id: "face-one", kind: "polygon", appearance: "construction", vertices: [{ x: 0, y: 0 }, { x: 2, y: 0 }, { x: 2, y: 2 }, { x: 0, y: 2 }] },
+      { id: "face-two", kind: "polygon", appearance: "construction", vertices: [{ x: 2, y: 0 }, { x: 4, y: 0 }, { x: 4, y: 2 }, { x: 2, y: 2 }] },
+      { id: "fold", kind: "segment", appearance: "reference", from: { x: 2, y: 0 }, to: { x: 2, y: 2 } },
+      { id: "path", kind: "segment", appearance: "answer", from: { x: 0, y: 0 }, to: { x: 4, y: 2 } },
+      { id: "start", kind: "point", appearance: "primary", at: { x: 0, y: 0 } },
+      { id: "mid", kind: "point", appearance: "highlight", at: { x: 2, y: 1 } },
+      { id: "end", kind: "point", appearance: "answer", at: { x: 4, y: 2 } },
+    ],
+    labels: [
+      { key: "a", objectId: "start", at: { x: 0, y: 0 }, placement: "below-left" },
+      { key: "b", objectId: "end", at: { x: 4, y: 2 }, placement: "above-right" },
+      { key: "len", objectId: "face-one", at: { x: 2, y: 0 }, placement: "below" },
+      { key: "wid", objectId: "face-one", at: { x: 0, y: 1 }, placement: "left" },
+      { key: "diag", objectId: "path", at: { x: 2, y: 1 }, placement: "above-left" },
+    ],
+  }}
+/>
+
+Die Gerade schneidet die gemeinsame Kante genau in ihrer Mitte, nicht in einer Ecke.
+
+## Diagonale berechnen und Wege vergleichen
+
+Wende den **Satz des Pythagoras** auf das <InlineMath math="4\text{ cm}" /> mal <InlineMath math="2\text{ cm}" /> große Rechteck an:
+
+<BlockMath math="d = \sqrt{4^2 + 2^2} = \sqrt{16 + 4} = \sqrt{20} = 2\sqrt{5}\text{ cm}" />
+
+Wegevergleich: über drei Kanten sind es <InlineMath math="6\text{ cm}" />, über eine Kante plus Flächendiagonale rund <InlineMath math="4{,}83\text{ cm}" />. Die Netzdiagonale misst nur rund <InlineMath math="4{,}47\text{ cm}" /> und ist klar am kürzesten.
+
+## Falsche Antworten prüfen
+
+Sieh nach, welchen Weg **jede falsche Auswahl misst**:
+
+| Auswahl | Warum falsch |
+| --- | --- |
+| <InlineMath math="2\sqrt{3}\text{ cm}" /> | Ist die Raumdiagonale quer durch das Innere, doch die Ameise bleibt auf der Oberfläche. |
+| <InlineMath math="6\text{ cm}" /> | Läuft drei volle Kanten entlang, deutlich länger als der gerade Weg im Netz. |
+| <InlineMath math="4\text{ cm}" /> | Nur zwei Kanten, erreicht bloß die Gegenecke derselben Seitenfläche. |
+| <InlineMath math="(2 + 2\sqrt{2})\text{ cm}" /> | Eine Kante plus eine Flächendiagonale (rund <InlineMath math="4{,}83\text{ cm}" />), länger als <InlineMath math="2\sqrt{5}\text{ cm}" />. |
+| <InlineMath math="2\sqrt{2}\text{ cm}" /> | Nur eine Flächendiagonale, endet noch auf der Startfläche statt an der Gegenecke. |
+
+# Antwort
+
+Der kürzeste Weg auf der Würfeloberfläche ist **<InlineMath math="2\sqrt{5}\text{ cm}" />** lang.

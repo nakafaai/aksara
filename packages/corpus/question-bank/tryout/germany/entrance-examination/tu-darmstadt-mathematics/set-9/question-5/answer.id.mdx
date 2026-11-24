@@ -1,31 +1,48 @@
-# Garis tegak lurus dari <InlineMath math="P" /> ke <InlineMath math="g" />
+# Diketahui
 
-Pada pencerminan terhadap garis, sebuah titik dan bayangannya terletak **pada garis yang tegak lurus sumbu cermin**, sama jauh darinya. Garis <InlineMath math="g" /> bergradien <InlineMath math="2" />, jadi garis tegak lurusnya bergradien <InlineMath math="-\frac12" />. Melalui <InlineMath math="P(5\mid0)" />:
+Titik <InlineMath math="P(5 \mid 0)" /> **dicerminkan (*gespiegelt*) terhadap garis lurus** <InlineMath math="g" /> yang melalui titik asal dengan persamaan:
 
-<BlockMath math="y=-\frac12(x-5)" />
+<BlockMath math="y = 2x" />
 
-# Titik kaki garis tegak lurus
+Hasil pencerminannya adalah titik bayangan (*Bildpunkt*) <InlineMath math="P'" />.
 
-Titik potongnya dengan <InlineMath math="g" /> adalah **titik tengah antara <InlineMath math="P" /> dan <InlineMath math="P'" />**:
+# Ditanyakan
 
-<BlockMath math="2x=-\frac12(x-5)\quad\Longrightarrow\quad 4x=-x+5\quad\Longrightarrow\quad x=1,\ y=2" />
+Berapakah koordinat titik bayangan <InlineMath math="P'" />?
 
-Jadi <InlineMath math="F(1\mid2)" />.
+# Penyelesaian
 
-# Bayangan lewat titik tengah
+Saat kamu berdiri di depan cermin datar, garis yang menghubungkan matamu ke bayangan di dalam cermin selalu **menembus kaca tegak lurus**, dan kaca cermin duduk persis di **titik tengah** antara dirimu dan bayanganmu. Jadi kamu cukup menjatuhkan garis tegak lurus dari <InlineMath math="P" /> ke garis cermin <InlineMath math="g" />, menandai titik kakinya <InlineMath math="F" />, lalu melangkah sekali lagi dengan jarak yang sama melewati <InlineMath math="F" />.
 
-<InlineMath math="F" /> adalah titik tengah <InlineMath math="P" /> dan <InlineMath math="P'" />, jadi <InlineMath math="P'=2F-P" />:
+> Titik kaki garis tegak lurus dari titik asal ke garis cermin selalu menjadi titik tengah tepat antara titik asal dan bayangannya.
 
-<BlockMath math="P'=\left(2\cdot1-5\ \middle|\ 2\cdot2-0\right)=(-3\mid4)" />
+## Menemukan garis tegak lurus dan titik kaki cermin
+
+Garis cermin <InlineMath math="g" /> memiliki gradien <InlineMath math="2" />, sehingga garis yang tegak lurus dengannya memiliki **gradien kebalikan negatif <InlineMath math="-\frac{1}{2}" />**. Melalui <InlineMath math="P(5 \mid 0)" />, persamaannya adalah:
+
+<BlockMath math="y = -\frac{1}{2}(x - 5)" />
+
+Potongkan dengan garis cermin <InlineMath math="y = 2x" /> untuk menemukan titik kaki <InlineMath math="F" />:
+
+<BlockMath math="2x = -\frac{1}{2}(x - 5) \quad \Longleftrightarrow \quad 4x = -x + 5 \quad \Longrightarrow \quad x = 1, \quad y = 2" />
+
+Jadi titik kaki cermin adalah <InlineMath math="F(1 \mid 2)" />.
+
+## Melompat sama jauh melewati titik tengah
+
+Karena <InlineMath math="F(1 \mid 2)" /> adalah titik tengah ruas <InlineMath math="\overline{PP'}" />, koordinat bayangan diperoleh dari **aturan titik tengah <InlineMath math="P' = 2F - P" />**:
+
+<BlockMath math="P' = \bigl(2 \cdot 1 - 5 \ \big|\  2 \cdot 2 - 0\bigr) = (-3 \mid 4)" />
 
 <MathVisual
-  title={<>Pencerminan terhadap <InlineMath math="y=2x" /></>}
-  description={<>Garis <InlineMath math="g: y=2x" />, titik <InlineMath math="P(5\mid0)" />, dan bayangannya <InlineMath math="P'(-3\mid4)" />. Ruas <InlineMath math="\overline{PP'}" /> tegak lurus <InlineMath math="g" /> dan dibagi dua oleh <InlineMath math="g" /> di titik kaki <InlineMath math="F(1\mid2)" />.</>}
+  title={<>Pencerminan terhadap <InlineMath math="y = 2x" /></>}
+  description={<>Garis cermin <InlineMath math="g" /> dengan persamaan <InlineMath math="y = 2x" />, titik awal <InlineMath math="P(5 \mid 0)" />, dan bayangannya <InlineMath math="P'(-3 \mid 4)" />. Ruas <InlineMath math="\overline{PP'}" /> memotong <InlineMath math="g" /> secara tegak lurus dan tepat dibagi dua di titik kaki <InlineMath math="F(1 \mid 2)" />.</>}
+  footer={<>Titik kaki <InlineMath math="F(1 \mid 2)" /> tepat di tengah <InlineMath math="P(5 \mid 0)" /> dan bayangan <InlineMath math="P'(-3 \mid 4)" />.</>}
   labels={{
-    p: <><InlineMath math="P(5\mid0)" /></>,
-    q: <><InlineMath math="P'(-3\mid4)" /></>,
-    f: <><InlineMath math="F(1\mid2)" /></>,
-    g: <><InlineMath math="g: y=2x" /></>,
+    p: <><InlineMath math="P(5 \mid 0)" /></>,
+    q: <><InlineMath math="P'(-3 \mid 4)" /></>,
+    f: <><InlineMath math="F(1 \mid 2)" /></>,
+    g: <><InlineMath math="g" /></>,
   }}
   scene={{
     space: "plane",
@@ -51,12 +68,20 @@ Jadi <InlineMath math="F(1\mid2)" />.
   }}
 />
 
-Cek: <InlineMath math="\overline{OP}=5" /> dan <InlineMath math="\overline{OP'}=\sqrt{9+16}=5" />. Titik asal terletak pada <InlineMath math="g" />, jadi **jaraknya ke titik asal tetap**. Bayangannya <InlineMath math="P'(-3\mid4)" />.
+Cek gratis lewat jarak ke titik asal: karena <InlineMath math="(0 \mid 0)" /> terletak pada garis cermin, jarak ke titik asal harus awet. Memang <InlineMath math="\overline{OP} = 5" /> dan <InlineMath math="\overline{OP'} = 5" /> karena <InlineMath math="(-3)^2 + 4^2 = 25" />.
 
-# Mengapa pilihan lain salah
+## Mengecek pilihan salah
 
-- <InlineMath math="P'(1\mid2)" /> hanya **titik kaki garis tegak lurus**, yaitu titik tengahnya, bukan bayangannya.
-- <InlineMath math="P'(0\mid5)" /> mencerminkan terhadap garis <InlineMath math="y=x" />, bukan <InlineMath math="y=2x" />.
-- <InlineMath math="P'(-5\mid0)" /> mencerminkan terhadap titik asal atau sumbu <InlineMath math="y" />.
-- <InlineMath math="P'(3\mid-4)" /> membalik kedua tanda: <InlineMath math="P-2F=(3\mid-4)" />, bukan <InlineMath math="2F-P" />.
-- <InlineMath math="P'(-4\mid3)" /> menukar koordinat bayangan yang benar.
+Perhatikan bagaimana setiap pengecoh **berhenti di tengah jalan atau mencerminkan terhadap sumbu yang salah**:
+
+| Pilihan | Mengapa salah |
+| --- | --- |
+| <InlineMath math="P'(1 \mid 2)" /> | Baru titik kaki cermin <InlineMath math="F" /> (titik tengah), belum melompat ke sisi seberang. |
+| <InlineMath math="P'(0 \mid 5)" /> | Hasil pencerminan terhadap garis <InlineMath math="y = x" />, bukan <InlineMath math="y = 2x" />. |
+| <InlineMath math="P'(-5 \mid 0)" /> | Hasil pencerminan terhadap sumbu <InlineMath math="y" /> atau titik asal. |
+| <InlineMath math="P'(3 \mid -4)" /> | Membalik rumus menjadi <InlineMath math="P - 2F" /> alih-alih <InlineMath math="2F - P" />. |
+| <InlineMath math="P'(-4 \mid 3)" /> | Menukar koordinat <InlineMath math="x" /> dan <InlineMath math="y" /> milik bayangan yang benar. |
+
+# Jawaban
+
+Koordinat titik bayangan adalah **<InlineMath math="P'(-3 \mid 4)" />**.

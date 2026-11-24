@@ -1,15 +1,88 @@
-Soalan ini bertanya laluan terpendek pada permukaan kubus. Laluan terpendek pada suatu permukaan dicari dengan **membentangkan permukaan itu menjadi satah**. Di situ laluan terpendek ialah satu garis lurus.
+# Diberi
 
-Laluan itu melintasi dua muka yang bersebelahan. Apabila dibentangkan, kedua-dua muka itu membentuk segi empat tepat yang lebarnya <InlineMath math="2\text{ cm}" /> dan panjangnya <InlineMath math="2+2=4\text{ cm}" />. Titik mula dan titik akhir terletak pada dua bucu bertentangan segi empat tepat itu.
+Seekor semut duduk di satu bucu sebuah kubus (*Würfel*) dengan **panjang tepi <InlineMath math="2\text{ cm}" />**.
 
-<BlockMath math="d=\sqrt{2^2+4^2}=\sqrt{4+16}=\sqrt{20}=2\sqrt5" />
+Semut itu hanya boleh merayap di atas **permukaan kubus** ke bucu paling jauh yang bertentangan.
 
-Sebagai semakan, bandingkan dengan laluan lain. Di sepanjang tiga sisi jaraknya <InlineMath math="6\text{ cm}" />, dan di sepanjang satu sisi serta satu pepenjuru muka jaraknya <InlineMath math="2+2\sqrt2\approx4.83\text{ cm}" />. Laluan lurus pada bentangan, <InlineMath math="2\sqrt5\approx4.47\text{ cm}" />, lebih pendek daripada kedua-duanya.
+# Ditanya
 
-Jadi laluan terpendek itu sepanjang <InlineMath math="2\sqrt5\text{ cm}" />.
+Berapakah panjang laluan terpendek (*kürzester Weg*) yang boleh ditempuh semut di permukaan kubus?
 
-- <InlineMath math="2\sqrt3\text{ cm}" /> ialah pepenjuru ruang yang melalui bahagian dalam kubus. Semut itu merayap di atas permukaan.
-- <InlineMath math="6\text{ cm}" /> mengikut tiga sisi. Laluan itu mungkin, tetapi jelas lebih panjang.
-- <InlineMath math="4\text{ cm}" /> hanya mengira dua sisi. Laluan itu hanya sampai ke bucu bertentangan pada satu muka, bukan bucu bertentangan kubus.
-- <InlineMath math="(2+2\sqrt2)\text{ cm}" /> melalui satu sisi, kemudian satu pepenjuru muka. Laluan itu lebih panjang daripada garis lurus pada bentangan.
-- <InlineMath math="2\sqrt2\text{ cm}" /> ialah pepenjuru muka. Ia berakhir pada bucu muka yang sama, bukan pada bucu bertentangan kubus.
+# Penyelesaian
+
+Pada pepejal tiga dimensi, mata kita mudah tertipu menyangka semut perlu menyusuri tepi atau satu pepenjuru muka diikuti satu tepi. Cara paling pintar ialah **membuka bentangan kubus menjadi rata di atas meja**. Sebaik dua muka yang dilalui semut dibentangkan rata, laluan terpendek sentiasa **satu garis lurus** yang merentasi garisan lipatan di tengah.
+
+> Laluan terpendek pada permukaan pepejal sentiasa menjadi garis lurus apabila muka-muka yang dilalui dibuka rata menjadi bentangan.
+
+## Membuka dua muka bersebelahan menjadi segi empat tepat
+
+Untuk tiba di bucu bertentangan, semut hanya merentasi **dua muka segi empat sama bersebelahan**. Apabila dibentangkan rata, kedua-dua muka bersisi <InlineMath math="2\text{ cm}" /> itu membentuk satu segi empat tepat dengan:
+
+- Lebar <InlineMath math="2\text{ cm}" />.
+- Panjang gabungan <InlineMath math="2 + 2 = 4\text{ cm}" />.
+
+Bucu mula <InlineMath math="A" /> dan bucu sasaran <InlineMath math="B" /> berada pada bucu bertentangan segi empat tepat ini.
+
+<MathVisual
+  title={<>Bentangan dua muka kubus</>}
+  description={<>Dua muka kubus bersisi <InlineMath math="2\text{ cm}" /> dibuka rata menjadi segi empat tepat <InlineMath math="4\text{ cm}" /> kali <InlineMath math="2\text{ cm}" /> dengan garisan lipatan di tengah. Laluan terpendek semut ialah garis lurus dari <InlineMath math="A(0 \mid 0)" /> ke <InlineMath math="B(4 \mid 2)" /> yang memotong tepi sepunya tepat pada titik tengah <InlineMath math="(2 \mid 1)" />.</>}
+  footer={<>Membuka dua muka menukar laluan kepada pepenjuru <InlineMath math="4 \times 2" /> sepanjang <InlineMath math="2\sqrt{5}\text{ cm}" />.</>}
+  labels={{
+    a: <><InlineMath math="A" /></>,
+    b: <><InlineMath math="B" /></>,
+    len: <><InlineMath math="4\text{ cm}" /></>,
+    wid: <><InlineMath math="2\text{ cm}" /></>,
+    diag: <><InlineMath math="2\sqrt{5}" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -0.8, max: 4.8 },
+      y: { min: -0.8, max: 3.2 },
+    },
+    view: { kind: "fit", padding: 0.08 },
+    objects: [
+      { id: "face-one", kind: "polygon", appearance: "construction", vertices: [{ x: 0, y: 0 }, { x: 2, y: 0 }, { x: 2, y: 2 }, { x: 0, y: 2 }] },
+      { id: "face-two", kind: "polygon", appearance: "construction", vertices: [{ x: 2, y: 0 }, { x: 4, y: 0 }, { x: 4, y: 2 }, { x: 2, y: 2 }] },
+      { id: "fold", kind: "segment", appearance: "reference", from: { x: 2, y: 0 }, to: { x: 2, y: 2 } },
+      { id: "path", kind: "segment", appearance: "answer", from: { x: 0, y: 0 }, to: { x: 4, y: 2 } },
+      { id: "start", kind: "point", appearance: "primary", at: { x: 0, y: 0 } },
+      { id: "mid", kind: "point", appearance: "highlight", at: { x: 2, y: 1 } },
+      { id: "end", kind: "point", appearance: "answer", at: { x: 4, y: 2 } },
+    ],
+    labels: [
+      { key: "a", objectId: "start", at: { x: 0, y: 0 }, placement: "below-left" },
+      { key: "b", objectId: "end", at: { x: 4, y: 2 }, placement: "above-right" },
+      { key: "len", objectId: "face-one", at: { x: 2, y: 0 }, placement: "below" },
+      { key: "wid", objectId: "face-one", at: { x: 0, y: 1 }, placement: "left" },
+      { key: "diag", objectId: "path", at: { x: 2, y: 1 }, placement: "above-left" },
+    ],
+  }}
+/>
+
+Garis lurus itu memotong tepi sepunya tepat pada titik tengahnya, bukan pada bucu.
+
+## Mengira pepenjuru dan membandingkan laluan
+
+Gunakan **teorem Pythagoras** pada segi empat tepat <InlineMath math="4\text{ cm}" /> kali <InlineMath math="2\text{ cm}" />:
+
+<BlockMath math="d = \sqrt{4^2 + 2^2} = \sqrt{16 + 4} = \sqrt{20} = 2\sqrt{5}\text{ cm}" />
+
+Perbandingan laluan: menyusuri tiga tepi mengambil <InlineMath math="6\text{ cm}" />, dan satu tepi ditambah satu pepenjuru muka mengambil sekitar <InlineMath math="4.83\text{ cm}" />. Laluan lurus pada bentangan hanya sekitar <InlineMath math="4.47\text{ cm}" />, paling pendek.
+
+## Menyemak pilihan salah
+
+Lihat laluan mana yang diukur **setiap pilihan pengganggu**:
+
+| Pilihan | Mengapa salah |
+| --- | --- |
+| <InlineMath math="2\sqrt{3}\text{ cm}" /> | Pepenjuru ruang yang menembusi bahagian dalam kubus, dilarang kerana semut merayap di permukaan. |
+| <InlineMath math="6\text{ cm}" /> | Menyusuri tiga tepi penuh, jauh lebih panjang daripada memotong lurus pada bentangan. |
+| <InlineMath math="4\text{ cm}" /> | Hanya dua tepi, sekadar sampai di bucu bertentangan pada muka yang sama. |
+| <InlineMath math="(2 + 2\sqrt{2})\text{ cm}" /> | Menyusuri satu tepi lalu satu pepenjuru muka (sekitar <InlineMath math="4.83\text{ cm}" />), lebih panjang daripada <InlineMath math="2\sqrt{5}\text{ cm}" />. |
+| <InlineMath math="2\sqrt{2}\text{ cm}" /> | Hanya pepenjuru satu muka, tidak sampai ke bucu seberang kubus. |
+
+# Jawapan
+
+Panjang laluan terpendek semut di permukaan kubus ialah **<InlineMath math="2\sqrt{5}\text{ cm}" />**.

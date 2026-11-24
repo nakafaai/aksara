@@ -1,30 +1,84 @@
-# Von innen nach außen arbeiten
+# Gegeben
 
-Jede Wurzel ist eine Potenz mit gebrochenem Exponenten: <InlineMath math="\sqrt{u}=u^{\frac12}" /> und <InlineMath math="\sqrt[3]{u}=u^{\frac13}" />. Beim Multiplizieren **addieren sich die Exponenten**, beim Wurzelziehen werden sie geteilt. Arbeite deshalb von der innersten Wurzel nach außen:
+Für eine positive reelle Zahl <InlineMath math="x > 0" /> ist ein **dreifach geschachtelter Wurzelterm** gegeben:
 
-| Schritt | Term | als Potenz |
-| --- | --- | --- |
-| innerste Wurzel | <InlineMath math="\sqrt{x}" /> | <InlineMath math="x^{\frac12}" /> |
-| mal <InlineMath math="x^2" /> | <InlineMath math="x^2\cdot\sqrt{x}" /> | <InlineMath math="x^{\frac52}" /> |
-| dritte Wurzel | <InlineMath math="\sqrt[3]{x^2\sqrt x}" /> | <InlineMath math="x^{\frac56}" /> |
-| mal <InlineMath math="x" /> | <InlineMath math="x\cdot\sqrt[3]{x^2\sqrt x}" /> | <InlineMath math="x^{\frac{11}{6}}" /> |
-| äußere Wurzel | <InlineMath math="\sqrt{x\cdot\sqrt[3]{x^2\sqrt x}}" /> | <InlineMath math="x^{\frac{11}{12}}" /> |
+<BlockMath math="\sqrt{x \cdot \sqrt[3]{x^2 \cdot \sqrt{x}}}" />
 
-# Die Rechnung im Einzelnen
+# Gesucht
+
+Schreibe diesen Term als **eine einzige Potenz** von <InlineMath math="x" />.
+
+# Lösung
+
+Geschachtelte Wurzeln funktionieren wie russische Puppen: Am saubersten packst du sie **von innen nach außen Schicht für Schicht aus**. Beim Multiplizieren gleicher Basen addierst du Exponenten, beim Ziehen einer <InlineMath math="n" />-ten Wurzel teilst du den Exponenten durch <InlineMath math="n" />. Verfolge einfach diesen Wert bis zur äußersten Wurzel.
+
+> Bei verschachtelten Wurzeln mit derselben Basis arbeitest du von innen nach außen: Multiplizieren addiert Exponenten und Wurzelziehen teilt sie.
+
+## Den Exponenten von innen nach außen verfolgen
+
+Wende die Potenzgesetze Schritt für Schritt ab **der innersten Wurzel <InlineMath math="\sqrt{x}" />** an:
 
 <BlockMath math="\begin{aligned}
-x^2\cdot x^{\frac12}&=x^{2+\frac12}=x^{\frac52} \\
-\left(x^{\frac52}\right)^{\frac13}&=x^{\frac56} \\
-x\cdot x^{\frac56}&=x^{\frac{11}{6}} \\
-\left(x^{\frac{11}{6}}\right)^{\frac12}&=x^{\frac{11}{12}}
+x^2 \cdot \sqrt{x} &= x^2 \cdot x^{\frac{1}{2}} = x^{\frac{5}{2}} \\
+\sqrt[3]{x^{\frac{5}{2}}} &= \left(x^{\frac{5}{2}}\right)^{\frac{1}{3}} = x^{\frac{5}{6}} \\
+x \cdot x^{\frac{5}{6}} &= x^{1 + \frac{5}{6}} = x^{\frac{11}{6}} \\
+\sqrt{x^{\frac{11}{6}}} &= \left(x^{\frac{11}{6}}\right)^{\frac{1}{2}} = x^{\frac{11}{12}}
 \end{aligned}" />
 
-Probe mit <InlineMath math="x=2^{12}=4096" />: Die innerste Wurzel ist <InlineMath math="2^6" />, dann <InlineMath math="2^{24}\cdot2^6=2^{30}" />, die dritte Wurzel ist <InlineMath math="2^{10}" />, mal <InlineMath math="2^{12}" /> ergibt <InlineMath math="2^{22}" />, die Wurzel daraus <InlineMath math="2^{11}=\left(2^{12}\right)^{\frac{11}{12}}" />. Der Term ist **gleich <InlineMath math="x^{\frac{11}{12}}" />**.
+Der Verlauf im Diagramm zeigt jeden Schritt des Exponenten.
 
-# Warum die anderen Antworten falsch sind
+<MathVisual
+  title={<>Verlauf des Exponenten von innen nach außen</>}
+  description={<>Der Exponent durchläuft fünf Stationen: Start bei <InlineMath math="\frac{1}{2}" />, Anstieg auf <InlineMath math="\frac{5}{2}" /> durch Malnehmen mit <InlineMath math="x^2" />, Abstieg auf <InlineMath math="\frac{5}{6}" /> durch die dritte Wurzel, Anstieg auf <InlineMath math="\frac{11}{6}" /> durch Malnehmen mit <InlineMath math="x" /> und Ziel bei <InlineMath math="\frac{11}{12}" /> durch die äußere Quadratwurzel.</>}
+  footer={<>Multiplikationen heben den Exponenten an und Wurzeln teilen ihn bis exakt <InlineMath math="\frac{11}{12}" />.</>}
+  labels={{
+    s1: <><InlineMath math="\frac{1}{2}" /></>,
+    s2: <><InlineMath math="\frac{5}{2}" /></>,
+    s3: <><InlineMath math="\frac{5}{6}" /></>,
+    s4: <><InlineMath math="\frac{11}{6}" /></>,
+    s5: <><InlineMath math="\frac{11}{12}" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: 0.4, max: 5.6 },
+      y: { min: 0, max: 3 },
+    },
+    view: { kind: "fit", padding: 0.1 },
+    objects: [
+      { id: "target", kind: "segment", appearance: "reference", from: { x: 0.6, y: 0.9167 }, to: { x: 5.4, y: 0.9167 } },
+      { id: "steps", kind: "polyline", appearance: "primary", vertices: [{ x: 1, y: 0.5 }, { x: 2, y: 2.5 }, { x: 3, y: 0.8333 }, { x: 4, y: 1.8333 }, { x: 5, y: 0.9167 }] },
+      { id: "p1", kind: "point", appearance: "secondary", at: { x: 1, y: 0.5 } },
+      { id: "p2", kind: "point", appearance: "highlight", at: { x: 2, y: 2.5 } },
+      { id: "p3", kind: "point", appearance: "secondary", at: { x: 3, y: 0.8333 } },
+      { id: "p4", kind: "point", appearance: "highlight", at: { x: 4, y: 1.8333 } },
+      { id: "p5", kind: "point", appearance: "answer", at: { x: 5, y: 0.9167 } },
+    ],
+    labels: [
+      { key: "s1", objectId: "p1", at: { x: 1, y: 0.5 }, placement: "below" },
+      { key: "s2", objectId: "p2", at: { x: 2, y: 2.5 }, placement: "above" },
+      { key: "s3", objectId: "p3", at: { x: 3, y: 0.8333 }, placement: "below" },
+      { key: "s4", objectId: "p4", at: { x: 4, y: 1.8333 }, placement: "above" },
+      { key: "s5", objectId: "p5", at: { x: 5, y: 0.9167 }, placement: "above-right" },
+    ],
+  }}
+/>
 
-- <InlineMath math="x^{\frac{11}{6}}" /> **vergisst die äußere Wurzel**.
-- <InlineMath math="x^{\frac56}" /> bleibt bei der dritten Wurzel stehen und lässt das <InlineMath math="x" /> davor und die äußere Wurzel weg.
-- <InlineMath math="x^{\frac34}" /> lässt den Faktor <InlineMath math="x^2" /> und die dritte Wurzel weg und rechnet nur <InlineMath math="\sqrt{x\cdot\sqrt x}=x^{\frac34}" />.
-- <InlineMath math="x^{\frac7{12}}" /> wendet die dritte Wurzel auch auf das äußere <InlineMath math="x" /> an: <InlineMath math="\left(x\cdot x^{\frac52}\right)^{\frac13}=x^{\frac76}" />, nach der äußeren Wurzel <InlineMath math="x^{\frac7{12}}" />.
-- <InlineMath math="x^{\frac{13}{12}}" /> liest <InlineMath math="\sqrt x" /> als <InlineMath math="x^{\frac32}" />: Dann wird innen <InlineMath math="x^{\frac72}" />, nach der dritten Wurzel <InlineMath math="x^{\frac76}" />, mal <InlineMath math="x" /> ergibt <InlineMath math="x^{\frac{13}{6}}" /> und nach der äußeren Wurzel <InlineMath math="x^{\frac{13}{12}}" />.
+Schnelle Probe mit <InlineMath math="x = 2^{12}" />: innen <InlineMath math="2^6" />, mal <InlineMath math="2^{24}" /> gibt <InlineMath math="2^{30}" />, dritte Wurzel <InlineMath math="2^{10}" />, mal <InlineMath math="2^{12}" /> gibt <InlineMath math="2^{22}" />, und die äußere Quadratwurzel ergibt exakt <InlineMath math="2^{11}" />, passend zu <InlineMath math="\frac{11}{12}" />.
+
+## Falsche Antworten prüfen
+
+Sieh nach, welche Schicht bei **jeder falschen Auswahl** vergessen oder vertauscht wurde:
+
+| Auswahl | Warum falsch |
+| --- | --- |
+| <InlineMath math="x^{\frac{11}{6}}" /> | Vergisst die äußerste Quadratwurzel im letzten Schritt. |
+| <InlineMath math="x^{\frac{5}{6}}" /> | Hört nach der dritten Wurzel auf und lässt das äußere <InlineMath math="x" /> samt Quadratwurzel weg. |
+| <InlineMath math="x^{\frac{3}{4}}" /> | Streicht <InlineMath math="x^2" /> samt dritter Wurzel und berechnet nur <InlineMath math="\sqrt{x\sqrt{x}}" />. |
+| <InlineMath math="x^{\frac{7}{12}}" /> | Zieht die dritte Wurzel fälschlich auch über das äußere <InlineMath math="x" />. |
+| <InlineMath math="x^{\frac{13}{12}}" /> | Liest das innerste <InlineMath math="\sqrt{x}" /> fälschlich als <InlineMath math="x^{\frac{3}{2}}" /> statt <InlineMath math="x^{\frac{1}{2}}" />. |
+
+# Antwort
+
+Als einzelne Potenz geschrieben lautet der Term **<InlineMath math="x^{\frac{11}{12}}" />**.

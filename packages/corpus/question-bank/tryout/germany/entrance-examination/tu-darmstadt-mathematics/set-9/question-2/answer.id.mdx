@@ -1,31 +1,53 @@
-# Daerah asal dan mengkuadratkan
+# Diketahui
 
-Akar menuntut <InlineMath math="x\ge-3" />. Kedua ruas tidak pernah negatif, jadi kamu boleh **mengkuadratkan tanpa membagi kasus**, dan <InlineMath math="|x-3|^2=(x-3)^2" />:
+Diberikan persamaan yang **mempertemukan nilai mutlak dengan akar kuadrat**:
+
+<BlockMath math="\lvert x - 3 \rvert = \sqrt{x + 3}" />
+
+# Ditanyakan
+
+Tentukan himpunan penyelesaian (*Lösungsmenge*) <InlineMath math="\mathbb{L}" /> berisi semua bilangan real <InlineMath math="x" /> yang memenuhi persamaan ini.
+
+# Penyelesaian
+
+Biasanya, mengkuadratkan persamaan akar bisa memunculkan jawaban palsu karena tanda minus ikut hilang. Di sini ada kabar baik: **ruas kiri berupa nilai mutlak dan ruas kanan berupa akar**, sehingga kedua ruas sudah pasti nol atau positif. Artinya di dalam daerah asal akar, mengkuadratkan langsung tidak mengubah himpunan penyelesaian sama sekali.
+
+> Bila kedua ruas persamaan sudah pasti tak negatif, mengkuadratkan langsung membuang tanda mutlak sekaligus tanda akar tanpa menciptakan solusi palsu.
+
+## Menentukan daerah asal lalu mengkuadratkan
+
+Agar akar terdefinisi, wajib berlaku <InlineMath math="x + 3 \ge 0" />, yaitu <InlineMath math="x \ge -3" />. Karena kedua ruas tak negatif dan kuadrat nilai mutlak sama dengan kuadrat biasa, **kuadratkan langsung kedua ruas**:
 
 <BlockMath math="\begin{aligned}
-(x-3)^2&=x+3 \\
-x^2-7x+6&=0 \\
-(x-1)(x-6)&=0
+\lvert x - 3 \rvert^2 &= x + 3 \\
+(x - 3)^2 &= x + 3 \\
+x^2 - 7x + 6 &= 0 \\
+(x - 1)(x - 6) &= 0
 \end{aligned}" />
 
-# Periksa kedua calon
+Kita memperoleh dua kandidat, yaitu <InlineMath math="x = 1" /> dan <InlineMath math="x = 6" />.
 
-Karena kedua ruas tidak negatif, langkah mengkuadratkan di sini bisa dibalik. Meski begitu, **pemeriksaan di persamaan asli** tetap berguna:
+## Menguji kedua kandidat pada persamaan asli dan grafik
+
+Keduanya berada di atas batas <InlineMath math="x \ge -3" />. Uji langsung ke persamaan asli untuk **memastikan tidak ada solusi yang gugur**:
 
 <BlockMath math="\begin{aligned}
-x=1:&\quad |1-3|=2,\quad \sqrt{4}=2 \\
-x=6:&\quad |6-3|=3,\quad \sqrt{9}=3
+x = 1: &\quad \lvert 1 - 3 \rvert = 2, \qquad \sqrt{1 + 3} = 2 \\
+x = 6: &\quad \lvert 6 - 3 \rvert = 3, \qquad \sqrt{6 + 3} = 3
 \end{aligned}" />
+
+Lihat grafik huruf V milik nilai mutlak dan kurva akar berikut: keduanya bertemu dua kali.
 
 <MathVisual
   title={<>Nilai mutlak dan akar dalam satu gambar</>}
-  description={<>Grafik <InlineMath math="y=|x-3|" /> punya tekukan di <InlineMath math="x=3" />. Grafik <InlineMath math="y=\sqrt{x+3}" /> dimulai di <InlineMath math="x=-3" />. Keduanya berpotongan dua kali, di <InlineMath math="(1\mid2)" /> dan <InlineMath math="(6\mid3)" />. Garis putus-putus adalah <InlineMath math="y=x-3" />: tanpa nilai mutlak bagian ini ada di bawah sumbu dan tidak bertemu grafik akar di kiri <InlineMath math="3" />.</>}
+  description={<>Grafik <InlineMath math="y = \lvert x - 3 \rvert" /> menekuk di <InlineMath math="x = 3" />, sedangkan <InlineMath math="y = \sqrt{x + 3}" /> mulai di <InlineMath math="x = -3" />. Keduanya berpotongan dua kali di <InlineMath math="(1 \mid 2)" /> dan <InlineMath math="(6 \mid 3)" />. Garis putus-putus <InlineMath math="y = x - 3" /> jatuh di bawah sumbu tanpa nilai mutlak.</>}
+  footer={<>Nilai mutlak memantulkan cabang kiri ke atas sehingga bertemu akar di <InlineMath math="(1 \mid 2)" /> dan <InlineMath math="(6 \mid 3)" />.</>}
   labels={{
-    p1: <><InlineMath math="(1\mid2)" /></>,
-    p6: <><InlineMath math="(6\mid3)" /></>,
-    a: <><InlineMath math="|x-3|" /></>,
-    r: <><InlineMath math="\sqrt{x+3}" /></>,
-    q: <><InlineMath math="x-3" /></>,
+    p1: <><InlineMath math="(1 \mid 2)" /></>,
+    p6: <><InlineMath math="(6 \mid 3)" /></>,
+    a: <><InlineMath math="\lvert x - 3 \rvert" /></>,
+    r: <><InlineMath math="\sqrt{x + 3}" /></>,
+    q: <><InlineMath math="x - 3" /></>,
   }}
   scene={{
     space: "plane",
@@ -52,14 +74,20 @@ x=6:&\quad |6-3|=3,\quad \sqrt{9}=3
   }}
 />
 
-# Mengapa nilai mutlak penting
+Andai tanda mutlak tidak ada, <InlineMath math="x = 1" /> akan gugur karena <InlineMath math="1 - 3 = -2" />. Justru berkat nilai mutlak, kedua titik temu sama-sama sah.
 
-Tanpa nilai mutlak, persamaannya menjadi <InlineMath math="x-3=\sqrt{x+3}" />. Untuk <InlineMath math="x=1" /> ruas kirinya <InlineMath math="-2" />, dan **penyelesaian itu akan gugur**. Dengan nilai mutlak kedua penyelesaian tetap ada: <InlineMath math="\mathbb{L}=\{1;\,6\}" />.
+## Mengecek pilihan salah
 
-# Mengapa pilihan lain salah
+Perhatikan bagaimana pengecoh lain **membuang <InlineMath math="x = 1" /> atau salah memfaktorkan**:
 
-- <InlineMath math="\{6\}" /> **memperlakukan <InlineMath math="|x-3|" /> seperti <InlineMath math="x-3" />**, sehingga <InlineMath math="x=1" /> terbuang.
-- <InlineMath math="\{1\}" /> membuang penyelesaian yang lebih besar tanpa alasan.
-- <InlineMath math="\{-1;\,6\}" /> muncul dari salah tanda saat memfaktorkan: <InlineMath math="(x+1)(x-6)=x^2-5x-6" />.
-- <InlineMath math="\{-6;\,-1\}" /> memfaktorkan <InlineMath math="x^2+7x+6" />, bukan <InlineMath math="x^2-7x+6" />. Lagi pula <InlineMath math="-6<-3" /> tidak ada di daerah asal.
-- <InlineMath math="\{\}" /> melewatkan bahwa kedua pemeriksaan berhasil.
+| Pilihan | Mengapa salah |
+| --- | --- |
+| <InlineMath math="\mathbb{L} = \{6\}" /> | Memperlakukan <InlineMath math="\lvert x - 3 \rvert" /> seperti <InlineMath math="x - 3" />, sehingga keliru membuang <InlineMath math="x = 1" />. |
+| <InlineMath math="\mathbb{L} = \{1\}" /> | Membuang penyelesaian sah <InlineMath math="x = 6" /> tanpa alasan. |
+| <InlineMath math="\mathbb{L} = \{-1,\, 6\}" /> | Salah tanda pemfaktoran dari <InlineMath math="(x + 1)(x - 6) = x^2 - 5x - 6" />. |
+| <InlineMath math="\mathbb{L} = \{-6,\, -1\}" /> | Memfaktorkan <InlineMath math="x^2 + 7x + 6" /> alih-alih <InlineMath math="x^2 - 7x + 6" />, dan <InlineMath math="-6" /> di luar daerah asal. |
+| <InlineMath math="\mathbb{L} = \{\}" /> | Mengabaikan bahwa kedua kandidat lolos uji di persamaan asli. |
+
+# Jawaban
+
+Himpunan penyelesaiannya adalah **<InlineMath math="\mathbb{L} = \{1,\, 6\}" />**.

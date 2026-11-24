@@ -1,31 +1,48 @@
-# Das Lot von <InlineMath math="P" /> auf <InlineMath math="g" />
+# Gegeben
 
-Beim Spiegeln an einer Geraden liegen Punkt und Bild **auf einer Senkrechten zur Spiegelachse**, gleich weit von ihr entfernt. Die Gerade <InlineMath math="g" /> hat die Steigung <InlineMath math="2" />, das Lot also die Steigung <InlineMath math="-\frac12" />. Durch <InlineMath math="P(5\mid0)" />:
+Der Punkt <InlineMath math="P(5 \mid 0)" /> wird **an der Ursprungsgeraden** <InlineMath math="g" /> mit der folgenden Gleichung gespiegelt:
 
-<BlockMath math="y=-\frac12(x-5)" />
+<BlockMath math="y = 2x" />
 
-# Der Lotfußpunkt
+Dabei entsteht der Bildpunkt <InlineMath math="P'" />.
 
-Der Schnittpunkt mit <InlineMath math="g" /> ist **die Mitte zwischen <InlineMath math="P" /> und <InlineMath math="P'" />**:
+# Gesucht
 
-<BlockMath math="2x=-\frac12(x-5)\quad\Longrightarrow\quad 4x=-x+5\quad\Longrightarrow\quad x=1,\ y=2" />
+Welche Koordinaten besitzt der Bildpunkt <InlineMath math="P'" />?
 
-Also ist <InlineMath math="F(1\mid2)" />.
+# Lösung
 
-# Das Bild über die Mitte
+Wenn du vor einem ebenen Spiegel stehst, verläuft die Verbindung zu deinem Spiegelbild stets **senkrecht zur Spiegelachse**, und der Spiegel liegt genau im **Mittelpunkt** zwischen dir und deinem Bild. Fälle also das Lot von <InlineMath math="P" /> auf <InlineMath math="g" />, bestimme den Lotfußpunkt <InlineMath math="F" /> und gehe denselben Weg noch einmal weiter über <InlineMath math="F" /> hinaus.
 
-<InlineMath math="F" /> ist die Mitte von <InlineMath math="P" /> und <InlineMath math="P'" />, also ist <InlineMath math="P'=2F-P" />:
+> Der Lotfußpunkt eines Punktes auf der Spiegelachse ist immer genau der Mittelpunkt zwischen Urbild und Spiegelbild.
 
-<BlockMath math="P'=\left(2\cdot1-5\ \middle|\ 2\cdot2-0\right)=(-3\mid4)" />
+## Lotgerade und Lotfußpunkt bestimmen
+
+Die Spiegelgerade <InlineMath math="g" /> hat die Steigung <InlineMath math="2" />, also hat das Lot **die negative Kehrwertsteigung <InlineMath math="-\frac{1}{2}" />**. Durch <InlineMath math="P(5 \mid 0)" /> lautet die Lotgerade:
+
+<BlockMath math="y = -\frac{1}{2}(x - 5)" />
+
+Schneide sie mit <InlineMath math="y = 2x" />, um den Lotfußpunkt <InlineMath math="F" /> zu erhalten:
+
+<BlockMath math="2x = -\frac{1}{2}(x - 5) \quad \Longleftrightarrow \quad 4x = -x + 5 \quad \Longrightarrow \quad x = 1, \quad y = 2" />
+
+Der Lotfußpunkt lautet also <InlineMath math="F(1 \mid 2)" />.
+
+## Über den Mittelpunkt zum Bildpunkt springen
+
+Da <InlineMath math="F(1 \mid 2)" /> genau die Mitte von <InlineMath math="\overline{PP'}" /> ist, liefert **die Mittelpunktsformel <InlineMath math="P' = 2F - P" />** sofort den Bildpunkt:
+
+<BlockMath math="P' = \bigl(2 \cdot 1 - 5 \ \big|\  2 \cdot 2 - 0\bigr) = (-3 \mid 4)" />
 
 <MathVisual
-  title={<>Spiegelung an <InlineMath math="y=2x" /></>}
-  description={<>Die Gerade <InlineMath math="g: y=2x" />, der Punkt <InlineMath math="P(5\mid0)" /> und sein Bild <InlineMath math="P'(-3\mid4)" />. Die Verbindungsstrecke <InlineMath math="\overline{PP'}" /> steht senkrecht auf <InlineMath math="g" /> und wird von <InlineMath math="g" /> im Lotfußpunkt <InlineMath math="F(1\mid2)" /> halbiert.</>}
+  title={<>Spiegelung an <InlineMath math="y = 2x" /></>}
+  description={<>Die Spiegelgerade <InlineMath math="g" /> mit <InlineMath math="y = 2x" />, der Ausgangspunkt <InlineMath math="P(5 \mid 0)" /> und sein Bildpunkt <InlineMath math="P'(-3 \mid 4)" />. Die Strecke <InlineMath math="\overline{PP'}" /> steht senkrecht auf <InlineMath math="g" /> und wird im Lotfußpunkt <InlineMath math="F(1 \mid 2)" /> halbiert.</>}
+  footer={<>Der Lotfußpunkt <InlineMath math="F(1 \mid 2)" /> liegt exakt mittig zwischen <InlineMath math="P(5 \mid 0)" /> und <InlineMath math="P'(-3 \mid 4)" />.</>}
   labels={{
-    p: <><InlineMath math="P(5\mid0)" /></>,
-    q: <><InlineMath math="P'(-3\mid4)" /></>,
-    f: <><InlineMath math="F(1\mid2)" /></>,
-    g: <><InlineMath math="g: y=2x" /></>,
+    p: <><InlineMath math="P(5 \mid 0)" /></>,
+    q: <><InlineMath math="P'(-3 \mid 4)" /></>,
+    f: <><InlineMath math="F(1 \mid 2)" /></>,
+    g: <><InlineMath math="g" /></>,
   }}
   scene={{
     space: "plane",
@@ -51,12 +68,20 @@ Also ist <InlineMath math="F(1\mid2)" />.
   }}
 />
 
-Probe: <InlineMath math="\overline{OP}=5" /> und <InlineMath math="\overline{OP'}=\sqrt{9+16}=5" />. Der Ursprung liegt auf <InlineMath math="g" />, also **bleibt der Abstand zu ihm erhalten**. Der Bildpunkt ist <InlineMath math="P'(-3\mid4)" />.
+Kostenlose Ursprungsprobe: Da <InlineMath math="(0 \mid 0)" /> auf der Achse liegt, bleibt der Abstand zum Ursprung erhalten. Tatsächlich gilt <InlineMath math="\overline{OP} = 5" /> und <InlineMath math="\overline{OP'} = 5" /> wegen <InlineMath math="(-3)^2 + 4^2 = 25" />.
 
-# Warum die anderen Antworten falsch sind
+## Falsche Antworten prüfen
 
-- <InlineMath math="P'(1\mid2)" /> ist nur **der Lotfußpunkt**, also die Mitte, nicht das Bild.
-- <InlineMath math="P'(0\mid5)" /> spiegelt an der Geraden <InlineMath math="y=x" /> statt an <InlineMath math="y=2x" />.
-- <InlineMath math="P'(-5\mid0)" /> spiegelt am Ursprung beziehungsweise an der <InlineMath math="y" />-Achse.
-- <InlineMath math="P'(3\mid-4)" /> hat beide Vorzeichen vertauscht: <InlineMath math="P-2F=(3\mid-4)" /> statt <InlineMath math="2F-P" />.
-- <InlineMath math="P'(-4\mid3)" /> vertauscht die Koordinaten des richtigen Bildes.
+Jede falsche Auswahl **bleibt auf halbem Weg stehen oder spiegelt an der falschen Achse**:
+
+| Auswahl | Warum falsch |
+| --- | --- |
+| <InlineMath math="P'(1 \mid 2)" /> | Ist erst der Lotfußpunkt <InlineMath math="F" /> (Mittelpunkt), noch nicht der Bildpunkt. |
+| <InlineMath math="P'(0 \mid 5)" /> | Spiegelt an <InlineMath math="y = x" /> statt an <InlineMath math="y = 2x" />. |
+| <InlineMath math="P'(-5 \mid 0)" /> | Spiegelt an der <InlineMath math="y" />-Achse oder am Ursprung. |
+| <InlineMath math="P'(3 \mid -4)" /> | Dreht die Formel zu <InlineMath math="P - 2F" /> statt <InlineMath math="2F - P" /> um. |
+| <InlineMath math="P'(-4 \mid 3)" /> | Vertauscht <InlineMath math="x" />- und <InlineMath math="y" />-Koordinate des richtigen Bildpunkts. |
+
+# Antwort
+
+Der Bildpunkt hat die Koordinaten **<InlineMath math="P'(-3 \mid 4)" />**.

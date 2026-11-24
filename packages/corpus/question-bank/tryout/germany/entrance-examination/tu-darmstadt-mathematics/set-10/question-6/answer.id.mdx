@@ -1,25 +1,44 @@
-# Tentukan basis dan nilai awalnya
+# Diketahui
 
-Bagi kedua nilai fungsi itu. Faktor <InlineMath math="a" /> saling menghapus dan **tersisa <InlineMath math="b^2" />**:
+Fungsi eksponen (*Exponentialfunktion*) berbentuk <InlineMath math="f(x) = a \cdot b^x" /> dengan <InlineMath math="b > 0" /> memiliki **dua nilai titik diketahui**:
 
-<BlockMath math="\frac{f(3)}{f(1)}=\frac{a\,b^3}{a\,b}=b^2=\frac{54}{6}=9" />
+<BlockMath math="f(1) = 6 \qquad \text{dan} \qquad f(3) = 54" />
 
-Karena <InlineMath math="b>0" />, <InlineMath math="b=3" />, dan dari <InlineMath math="f(1)=3a=6" /> diperoleh <InlineMath math="a=2" />. Jadi <InlineMath math="f(x)=2\cdot3^x" />.
+# Ditanyakan
 
-# Periksa pertidaksamaan dengan bilangan bulat
+Berapakah bilangan bulat terkecil <InlineMath math="x" /> sehingga <InlineMath math="f(x) > 1000" />?
 
-Yang dicari adalah bilangan bulat terkecil <InlineMath math="x" /> dengan <InlineMath math="2\cdot3^x>1000" />, yaitu <InlineMath math="3^x>500" />. Pangkat dari <InlineMath math="3" /> tumbuh cepat, jadi **cukup dihitung satu per satu**:
+# Penyelesaian
 
-<BlockMath math="3^5=243<500,\qquad 3^6=729>500" />
+Pada pertumbuhan eksponensial, setiap langkah bertambah satu satuan selalu **mengalikan nilai fungsi dengan faktor pengali tetap <InlineMath math="b" />**. Dari <InlineMath math="x = 1" /> ke <InlineMath math="x = 3" /> ada dua langkah, dan nilainya melonjak sembilan kali lipat dari <InlineMath math="6" /> ke <InlineMath math="54" />. Dua kali mengalikan dengan <InlineMath math="b" /> menghasilkan <InlineMath math="9" />, artinya setiap langkah persis **mengalikan tiga**.
+
+> Membagi dua nilai fungsi eksponen langsung meniadakan nilai awal dan memunculkan faktor pertumbuhan berpangkat selisih langkahnya.
+
+## Menemukan basis pertumbuhan dan nilai awal
+
+Bagi <InlineMath math="f(3)" /> dengan <InlineMath math="f(1)" /> supaya **faktor awal <InlineMath math="a" /> langsung tercoret**:
+
+<BlockMath math="\frac{f(3)}{f(1)} = \frac{a \cdot b^3}{a \cdot b} = b^2 = \frac{54}{6} = 9" />
+
+Karena <InlineMath math="b > 0" />, kita peroleh <InlineMath math="b = 3" />. Masukkan ke <InlineMath math="f(1) = 6" /> untuk mendapat nilai awal:
+
+<BlockMath math="a \cdot 3 = 6 \quad \Longrightarrow \quad a = 2 \quad \Longrightarrow \quad f(x) = 2 \cdot 3^x" />
+
+## Menemukan bilangan bulat pertama yang melampaui seribu
+
+Syarat <InlineMath math="2 \cdot 3^x > 1000" /> setara dengan <InlineMath math="3^x > 500" />. Karena pangkat tiga tumbuh sangat cepat, **uji langsung dua bilangan bulat terdekat**:
+
+<BlockMath math="3^5 = 243 < 500, \qquad 3^6 = 729 > 500" />
 
 <MathVisual
   title={<>Kapan <InlineMath math="f" /> melewati <InlineMath math="1000" /></>}
-  description={<>Grafik <InlineMath math="f(x)=2\cdot3^x" /> naik makin curam. Di <InlineMath math="x=5" /> nilainya <InlineMath math="486" />, masih di bawah garis <InlineMath math="1000" />, dan di <InlineMath math="x=6" /> nilainya <InlineMath math="1458" />, sudah di atasnya.</>}
+  description={<>Grafik <InlineMath math="f(x) = 2 \cdot 3^x" /> melesat makin curam. Di <InlineMath math="x = 5" /> nilainya baru <InlineMath math="486" />, masih di bawah garis <InlineMath math="1000" />, lalu di <InlineMath math="x = 6" /> nilainya melompat menjadi <InlineMath math="1458" />, sudah jauh di atasnya.</>}
+  footer={<>Nilai <InlineMath math="f(5) = 486" /> masih di bawah <InlineMath math="1000" />, dan <InlineMath math="f(6) = 1458" /> pertama kali melampauinya.</>}
   labels={{
-    five: <><InlineMath math="f(5)=486" /></>,
-    six: <><InlineMath math="f(6)=1458" /></>,
+    five: <><InlineMath math="f(5) = 486" /></>,
+    six: <><InlineMath math="f(6) = 1458" /></>,
     l: <><InlineMath math="1000" /></>,
-    g: <><InlineMath math="2\cdot3^x" /></>,
+    g: <><InlineMath math="2 \cdot 3^x" /></>,
   }}
   scene={{
     space: "plane",
@@ -44,12 +63,20 @@ Yang dicari adalah bilangan bulat terkecil <InlineMath math="x" /> dengan <Inlin
   }}
 />
 
-Cek: <InlineMath math="f(5)=486\le1000" /> dan <InlineMath math="f(6)=1458>1000" />. Bilangan bulat terkecilnya **<InlineMath math="x=6" />**.
+Cek ulang langsung: <InlineMath math="f(5) = 486" /> belum melampaui <InlineMath math="1000" />, sedangkan <InlineMath math="f(6) = 1458" /> sudah melampaui <InlineMath math="1000" />.
 
-# Mengapa pilihan lain salah
+## Mengecek pilihan salah
 
-- <InlineMath math="x=5" /> memakai **<InlineMath math="a=6" />, bukan <InlineMath math="a=2" />**: <InlineMath math="6\cdot3^5=1458>1000" />. Padahal nilai awalnya <InlineMath math="f(0)=a" />, bukan <InlineMath math="f(1)" />.
-- <InlineMath math="x=7" /> menggeser pangkatnya satu, misalnya dengan <InlineMath math="f(x)=2\cdot3^{x-1}" />.
-- <InlineMath math="x=4" /> menganggap <InlineMath math="\frac{f(3)}{f(1)}=9" /> sebagai basis: dengan <InlineMath math="b=9" /> dan <InlineMath math="a=\frac23" />, <InlineMath math="f(4)=\frac23\cdot6561=4374" />.
-- <InlineMath math="x=43" /> menghitung secara linear: dari <InlineMath math="6" /> ke <InlineMath math="54" /> dalam dua langkah berarti <InlineMath math="24" /> per langkah, dan <InlineMath math="6+24(x-1)>1000" /> memberi <InlineMath math="x=43" />.
-- <InlineMath math="x=3" /> adalah tempat nilai kedua yang diketahui, <InlineMath math="f(3)=54" />.
+Perhatikan kesalahan model yang melahirkan **setiap pilihan pengecoh**:
+
+| Pilihan | Mengapa salah |
+| --- | --- |
+| <InlineMath math="x = 5" /> | Mengira nilai awal <InlineMath math="a = 6" /> dari <InlineMath math="f(1)" />, padahal nilai awal adalah <InlineMath math="f(0) = 2" />. |
+| <InlineMath math="x = 7" /> | Menggeser pangkat satu langkah menjadi <InlineMath math="2 \cdot 3^{x - 1}" />. |
+| <InlineMath math="x = 4" /> | Memakai rasio dua langkah <InlineMath math="9" /> langsung sebagai basis <InlineMath math="b" /> tanpa menarik akar kuadrat. |
+| <InlineMath math="x = 43" /> | Menghitung pertumbuhan linear (<InlineMath math="+24" /> per langkah) alih-alih eksponensial. |
+| <InlineMath math="x = 3" /> | Sekadar menyalin titik diketahui <InlineMath math="f(3) = 54" />. |
+
+# Jawaban
+
+Bilangan bulat terkecil yang memenuhi adalah **<InlineMath math="x = 6" />**.

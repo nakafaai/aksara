@@ -1,18 +1,34 @@
-# Two similar triangles at the intersection
+# Given
 
-The sides <InlineMath math="\overline{AB}" /> and <InlineMath math="\overline{DM}" /> are parallel. So triangles <InlineMath math="ABS" /> and <InlineMath math="MDS" /> are **similar**, with <InlineMath math="S" /> as their common tip. The ratio of the parallel sides is
+Square <InlineMath math="ABCD" /> has **side length <InlineMath math="4\text{ cm}" />**.
 
-<BlockMath math="\frac{\overline{AB}}{\overline{DM}}=\frac{4}{2}=2" />
+- Point <InlineMath math="M" /> is the midpoint of top edge <InlineMath math="\overline{CD}" /> (so <InlineMath math="\overline{DM} = 2\text{ cm}" />).
+- Segments <InlineMath math="\overline{AM}" /> and <InlineMath math="\overline{BD}" /> intersect at point <InlineMath math="S" />.
 
-# The height of triangle <InlineMath math="ABS" />
+# Asked
 
-The two triangles' heights lie on one vertical line and add up to the side length <InlineMath math="4" />. They are **in the same ratio <InlineMath math="2:1" />**:
+What is the area (*Flächeninhalt*) of triangle <InlineMath math="ABS" />?
 
-<BlockMath math="h_{ABS}=\frac23\cdot4=\frac83" />
+# Solution
+
+Look at the two triangles meeting tip-to-tip at <InlineMath math="S" /> like an hourglass: the larger triangle <InlineMath math="ABS" /> at the bottom and the smaller triangle <InlineMath math="MDS" /> at the top. Because the bottom edge <InlineMath math="\overline{AB}" /> is parallel to the top segment <InlineMath math="\overline{DM}" />, **the two triangles are similar in a two-to-one scale**. That splits the <InlineMath math="4\text{ cm}" /> height of the square in the exact same <InlineMath math="2 : 1" /> ratio.
+
+> Two hourglass triangles between parallel sides are always similar, so their altitudes split the distance between those sides in the ratio of their bases.
+
+## Using similarity to find the triangle height
+
+Since <InlineMath math="\overline{AB} \parallel \overline{DM}" />, triangle <InlineMath math="ABS" /> is similar to triangle <InlineMath math="MDS" />. **The ratio of their parallel bases is exactly two**:
+
+<BlockMath math="\frac{\overline{AB}}{\overline{DM}} = \frac{4}{2} = 2" />
+
+Their two vertical altitudes add up to the full square side of <InlineMath math="4\text{ cm}" />. Splitting <InlineMath math="4\text{ cm}" /> in the ratio <InlineMath math="2 : 1" /> gives the larger triangle **two thirds of the total height**:
+
+<BlockMath math="h_{ABS} = \frac{2}{3} \cdot 4 = \frac{8}{3}\text{ cm}" />
 
 <MathVisual
-  title={<>Triangle <InlineMath math="ABS" /> in the square</>}
-  description={<>The square <InlineMath math="ABCD" /> with side <InlineMath math="4" />, <InlineMath math="M" /> at the midpoint of <InlineMath math="\overline{CD}" />. The segments <InlineMath math="\overline{AM}" /> and <InlineMath math="\overline{BD}" /> meet at <InlineMath math="S" />. Triangle <InlineMath math="ABS" /> has base <InlineMath math="4" /> and height <InlineMath math="\tfrac83" />.</>}
+  title={<>Triangle <InlineMath math="ABS" /> inside the square</>}
+  description={<>Square <InlineMath math="ABCD" /> of side <InlineMath math="4" /> with <InlineMath math="M" /> at the midpoint of <InlineMath math="\overline{CD}" />. Segments <InlineMath math="\overline{AM}" /> and <InlineMath math="\overline{BD}" /> meet at <InlineMath math="S" />, forming triangle <InlineMath math="ABS" /> with base <InlineMath math="4" /> and height <InlineMath math="\frac{8}{3}" />.</>}
+  footer={<>Base ratio <InlineMath math="2 : 1" /> gives altitude <InlineMath math="\frac{8}{3}\text{ cm}" /> and area <InlineMath math="\frac{16}{3}\text{ cm}^2" />.</>}
   labels={{
     a: <><InlineMath math="A" /></>,
     b: <><InlineMath math="B" /></>,
@@ -20,7 +36,7 @@ The two triangles' heights lie on one vertical line and add up to the side lengt
     d: <><InlineMath math="D" /></>,
     m: <><InlineMath math="M" /></>,
     s: <><InlineMath math="S" /></>,
-    h: <><InlineMath math="\tfrac83" /></>,
+    h: <><InlineMath math="\tfrac{8}{3}" /></>,
   }}
   scene={{
     space: "plane",
@@ -55,16 +71,32 @@ The two triangles' heights lie on one vertical line and add up to the side lengt
   }}
 />
 
-# The area
+The diagram confirms that <InlineMath math="S" /> sits above the horizontal midline, two thirds of the way up the square.
 
-<BlockMath math="A=\frac12\cdot4\cdot\frac83=\frac{16}{3}\text{ cm}^2" />
+## Computing the area and checking with coordinates
 
-Check with coordinates: <InlineMath math="\overline{AM}" /> lies on <InlineMath math="y=2x" /> and <InlineMath math="\overline{BD}" /> on <InlineMath math="y=4-x" />. That gives <InlineMath math="x=\frac43" />, <InlineMath math="y=\frac83" />. The triangle has **an area of <InlineMath math="\frac{16}{3}\text{ cm}^2" />**.
+Plug base <InlineMath math="4\text{ cm}" /> and height <InlineMath math="\frac{8}{3}\text{ cm}" /> into **the triangle area formula**:
 
-# Why the other answers are wrong
+<BlockMath math="A = \frac{1}{2} \cdot 4 \cdot \frac{8}{3} = \frac{16}{3}\text{ cm}^2" />
 
-- <InlineMath math="4\text{ cm}^2" /> puts <InlineMath math="S" /> at **the centre of the square**, with height <InlineMath math="2" />. That would be where the diagonals meet.
-- <InlineMath math="8\text{ cm}^2" /> uses the whole side <InlineMath math="4" /> as the height.
-- <InlineMath math="\frac83\text{ cm}^2" /> is the triangle with height <InlineMath math="\frac43" />, that is with the ratio reversed to <InlineMath math="1:2" />.
-- <InlineMath math="6\text{ cm}^2" /> uses height <InlineMath math="3" />, as if <InlineMath math="S" /> split the segment in the ratio <InlineMath math="3:1" />.
-- <InlineMath math="\frac{32}{3}\text{ cm}^2" /> forgets the factor <InlineMath math="\frac12" /> in the triangle area.
+As a coordinate check, intersecting both segments gives:
+
+<BlockMath math="2x = 4 - x \quad \Longrightarrow \quad x = \frac{4}{3}, \quad y = \frac{8}{3}" />
+
+This matches the altitude and triangle area exactly.
+
+## Checking the distractors
+
+See how the wrong choices come from **guessing the height of <InlineMath math="S" /> or dropping the factor of one half**:
+
+| Option | Why it is wrong |
+| --- | --- |
+| <InlineMath math="4\text{ cm}^2" /> | Places <InlineMath math="S" /> at the square's center (height <InlineMath math="2" />), which is where the two diagonals cross. |
+| <InlineMath math="8\text{ cm}^2" /> | Uses the full square side <InlineMath math="4" /> as the triangle's altitude. |
+| <InlineMath math="\frac{8}{3}\text{ cm}^2" /> | Reverses the ratio to <InlineMath math="1 : 2" /> and uses altitude <InlineMath math="\frac{4}{3}" />. |
+| <InlineMath math="6\text{ cm}^2" /> | Assumes <InlineMath math="S" /> divides the height in a <InlineMath math="3 : 1" /> ratio (altitude <InlineMath math="3" />). |
+| <InlineMath math="\frac{32}{3}\text{ cm}^2" /> | Forgets the factor <InlineMath math="\frac{1}{2}" /> in the triangle area formula. |
+
+# Answer
+
+The area of triangle <InlineMath math="ABS" /> is **<InlineMath math="\frac{16}{3}\text{ cm}^2" />**.

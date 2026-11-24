@@ -1,31 +1,48 @@
-# The perpendicular from <InlineMath math="P" /> to <InlineMath math="g" />
+# Given
 
-In a reflection in a line, a point and its image lie **on a perpendicular to the mirror line**, equally far from it. The line <InlineMath math="g" /> has slope <InlineMath math="2" />, so the perpendicular has slope <InlineMath math="-\frac12" />. Through <InlineMath math="P(5\mid0)" />:
+Point <InlineMath math="P(5 \mid 0)" /> is **reflected (*gespiegelt*) across the straight line** <InlineMath math="g" /> through the origin given by:
 
-<BlockMath math="y=-\frac12(x-5)" />
+<BlockMath math="y = 2x" />
 
-# The foot of the perpendicular
+The reflection produces the image point (*Bildpunkt*) <InlineMath math="P'" />.
 
-The intersection with <InlineMath math="g" /> is **the midpoint between <InlineMath math="P" /> and <InlineMath math="P'" />**:
+# Asked
 
-<BlockMath math="2x=-\frac12(x-5)\quad\Longrightarrow\quad 4x=-x+5\quad\Longrightarrow\quad x=1,\ y=2" />
+What are the coordinates of the image point <InlineMath math="P'" />?
 
-So <InlineMath math="F(1\mid2)" />.
+# Solution
 
-# The image through the midpoint
+When you stand in front of a flat mirror, the line from your eyes to your reflection always **meets the glass at a right angle**, and the mirror sits dead in the **midpoint** between you and your reflection. So drop a perpendicular from <InlineMath math="P" /> to the mirror line <InlineMath math="g" />, find the foot <InlineMath math="F" />, and step the same distance straight past <InlineMath math="F" />.
 
-<InlineMath math="F" /> is the midpoint of <InlineMath math="P" /> and <InlineMath math="P'" />, so <InlineMath math="P'=2F-P" />:
+> The foot of the perpendicular from a point to a mirror line is always the exact midpoint between the original point and its reflection.
 
-<BlockMath math="P'=\left(2\cdot1-5\ \middle|\ 2\cdot2-0\right)=(-3\mid4)" />
+## Finding the perpendicular line and mirror foot
+
+The mirror line <InlineMath math="g" /> has slope <InlineMath math="2" />, so any perpendicular line has **negative reciprocal slope <InlineMath math="-\frac{1}{2}" />**. Passing through <InlineMath math="P(5 \mid 0)" />, its equation is:
+
+<BlockMath math="y = -\frac{1}{2}(x - 5)" />
+
+Intersect it with the mirror <InlineMath math="y = 2x" /> to locate the foot <InlineMath math="F" />:
+
+<BlockMath math="2x = -\frac{1}{2}(x - 5) \quad \Longleftrightarrow \quad 4x = -x + 5 \quad \Longrightarrow \quad x = 1, \quad y = 2" />
+
+So the foot on the mirror is <InlineMath math="F(1 \mid 2)" />.
+
+## Stepping equally far past the midpoint
+
+Because <InlineMath math="F(1 \mid 2)" /> is the midpoint of <InlineMath math="\overline{PP'}" />, the image follows from **the midpoint rule <InlineMath math="P' = 2F - P" />**:
+
+<BlockMath math="P' = \bigl(2 \cdot 1 - 5 \ \big|\  2 \cdot 2 - 0\bigr) = (-3 \mid 4)" />
 
 <MathVisual
-  title={<>Reflection in <InlineMath math="y=2x" /></>}
-  description={<>The line <InlineMath math="g: y=2x" />, the point <InlineMath math="P(5\mid0)" /> and its image <InlineMath math="P'(-3\mid4)" />. The segment <InlineMath math="\overline{PP'}" /> is perpendicular to <InlineMath math="g" /> and is cut in half by <InlineMath math="g" /> at the foot <InlineMath math="F(1\mid2)" />.</>}
+  title={<>Reflection across <InlineMath math="y = 2x" /></>}
+  description={<>The mirror line <InlineMath math="g" /> with equation <InlineMath math="y = 2x" />, original point <InlineMath math="P(5 \mid 0)" />, and image <InlineMath math="P'(-3 \mid 4)" />. Segment <InlineMath math="\overline{PP'}" /> crosses <InlineMath math="g" /> perpendicularly and is bisected at the foot <InlineMath math="F(1 \mid 2)" />.</>}
+  footer={<>Mirror foot <InlineMath math="F(1 \mid 2)" /> sits halfway between <InlineMath math="P(5 \mid 0)" /> and image <InlineMath math="P'(-3 \mid 4)" />.</>}
   labels={{
-    p: <><InlineMath math="P(5\mid0)" /></>,
-    q: <><InlineMath math="P'(-3\mid4)" /></>,
-    f: <><InlineMath math="F(1\mid2)" /></>,
-    g: <><InlineMath math="g: y=2x" /></>,
+    p: <><InlineMath math="P(5 \mid 0)" /></>,
+    q: <><InlineMath math="P'(-3 \mid 4)" /></>,
+    f: <><InlineMath math="F(1 \mid 2)" /></>,
+    g: <><InlineMath math="g" /></>,
   }}
   scene={{
     space: "plane",
@@ -51,12 +68,20 @@ So <InlineMath math="F(1\mid2)" />.
   }}
 />
 
-Check: <InlineMath math="\overline{OP}=5" /> and <InlineMath math="\overline{OP'}=\sqrt{9+16}=5" />. The origin lies on <InlineMath math="g" />, so **the distance to it is preserved**. The image is <InlineMath math="P'(-3\mid4)" />.
+Free origin check: since <InlineMath math="(0 \mid 0)" /> lies on the mirror, distance to the origin must stay unchanged. Indeed <InlineMath math="\overline{OP} = 5" /> and <InlineMath math="\overline{OP'} = 5" /> since <InlineMath math="(-3)^2 + 4^2 = 25" />.
 
-# Why the other answers are wrong
+## Checking the distractors
 
-- <InlineMath math="P'(1\mid2)" /> is only **the foot of the perpendicular**, the midpoint, not the image.
-- <InlineMath math="P'(0\mid5)" /> reflects in the line <InlineMath math="y=x" /> instead of <InlineMath math="y=2x" />.
-- <InlineMath math="P'(-5\mid0)" /> reflects in the origin, or in the <InlineMath math="y" />-axis.
-- <InlineMath math="P'(3\mid-4)" /> has both signs flipped: <InlineMath math="P-2F=(3\mid-4)" /> instead of <InlineMath math="2F-P" />.
-- <InlineMath math="P'(-4\mid3)" /> swaps the coordinates of the correct image.
+See how each wrong option **stops halfway or reflects across the wrong axis**:
+
+| Option | Why it is wrong |
+| --- | --- |
+| <InlineMath math="P'(1 \mid 2)" /> | Stops at the perpendicular foot <InlineMath math="F" /> (the midpoint) without stepping across. |
+| <InlineMath math="P'(0 \mid 5)" /> | Reflects across <InlineMath math="y = x" /> instead of <InlineMath math="y = 2x" />. |
+| <InlineMath math="P'(-5 \mid 0)" /> | Reflects across the <InlineMath math="y" />-axis or the origin. |
+| <InlineMath math="P'(3 \mid -4)" /> | Flips the formula to <InlineMath math="P - 2F" /> instead of <InlineMath math="2F - P" />. |
+| <InlineMath math="P'(-4 \mid 3)" /> | Swaps the <InlineMath math="x" /> and <InlineMath math="y" /> coordinates of the true reflection. |
+
+# Answer
+
+The coordinates of the image point are **<InlineMath math="P'(-3 \mid 4)" />**.

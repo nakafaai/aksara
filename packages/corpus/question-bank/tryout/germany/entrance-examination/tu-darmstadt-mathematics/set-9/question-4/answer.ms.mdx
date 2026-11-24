@@ -1,28 +1,44 @@
-# Nyatakan luas dengan satu panjang
+# Diberi
 
-Biar dua sisi yang berserenjang dengan tembok ialah <InlineMath math="x" /> dan sisi yang selari dengan tembok ialah <InlineMath math="y" />. Pagar memberi <InlineMath math="2x+y=60" />, jadi <InlineMath math="y=60-2x" />. Luasnya kemudian ialah **fungsi kuadratik dalam <InlineMath math="x" />**:
+Sebuah kandang berbentuk segi empat tepat (*rechteckiges Gehege*) dibina di sepanjang dinding lurus yang panjang:
 
-<BlockMath math="A(x)=x\,(60-2x)=-2x^2+60x=-2(x-15)^2+450" />
+- Dinding membentuk satu sisi, manakala tiga sisi lain dipagari dengan **jumlah pagar <InlineMath math="60\text{ m}" />**.
+- Sisi yang selari dengan dinding (<InlineMath math="y" />) **paling panjang boleh <InlineMath math="24\text{ m}" />** (<InlineMath math="y \le 24" />).
 
-# Syarat bagi sisi tembok
+# Ditanya
 
-Tanpa syarat, bucunya pada <InlineMath math="x=15" /> dengan <InlineMath math="A=450" />. Tetapi ketika itu <InlineMath math="y=60-30=30" />, iaitu **lebih panjang daripada <InlineMath math="24\text{ m}" /> yang dibenarkan**. Syarat <InlineMath math="y\le24" /> bermaksud:
+Berapakah luas (*Flächeninhalt*) maksimum yang boleh dicapai oleh kandang ini?
 
-<BlockMath math="60-2x\le24\quad\Longleftrightarrow\quad x\ge18" />
+# Penyelesaian
 
-# Nilai maksimum di sempadan
+Tanpa had pada panjang sisi dinding, kandang tiga sisi paling luas sentiasa meletakkan sisi dinding dua kali ganda sisi tepinya: <InlineMath math="30\text{ m}" /> kali <InlineMath math="15\text{ m}" />. Namun syarat soalan **melarang sisi dinding melebihi <InlineMath math="24\text{ m}" />**. Oleh sebab puncak parabola jatuh di zon terlarang, pilihan sah terbaik mesti terletak **tepat pada sempadan <InlineMath math="y = 24\text{ m}" />**.
 
-Bagi <InlineMath math="x\ge18" /> bucunya berada di luar sebelah kiri, dan parabola itu menurun. Nilai terbesar yang dibenarkan berada **di sempadan <InlineMath math="x=18" />**:
+> Apabila titik puncak parabola terbuka ke bawah jatuh di luar domain yang dibenarkan, nilai maksimum sah sentiasa tercapai pada titik sempadan terdekat dengan puncak.
+
+## Membina fungsi luas dan had pagar
+
+Andaikan panjang setiap sisi serenjang dinding ialah <InlineMath math="x" /> dan sisi selari dinding ialah <InlineMath math="y" />. Jumlah pagar memberi <InlineMath math="2x + y = 60" />, jadi <InlineMath math="y = 60 - 2x" />. **Fungsi luas membentuk parabola terbuka ke bawah**:
+
+<BlockMath math="A(x) = x(60 - 2x) = -2x^2 + 60x = -2(x - 15)^2 + 450" />
+
+Puncak tanpa syarat di <InlineMath math="x = 15\text{ m}" /> memerlukan <InlineMath math="y = 30\text{ m}" />, melanggar <InlineMath math="y \le 24\text{ m}" />. Tukarkan had dinding kepada syarat bagi <InlineMath math="x" />:
+
+<BlockMath math="60 - 2x \le 24 \quad \Longleftrightarrow \quad 2x \ge 36 \quad \Longleftrightarrow \quad x \ge 18" />
+
+## Mencari nilai maksimum pada titik sempadan
+
+Dalam kawasan sah <InlineMath math="x \ge 18" />, seluruh lengkung berada di kanan puncak <InlineMath math="x = 15" />, jadi **luas terus menurun apabila <InlineMath math="x" /> bertambah**. Maka luas terbesar tercapai tepat pada <InlineMath math="x = 18" />.
 
 <MathVisual
   title={<>Luas mengikut <InlineMath math="x" /></>}
-  description={<>Parabola <InlineMath math="A(x)=x\,(60-2x)" /> bagi panjang <InlineMath math="x" /> sisi yang berserenjang dengan tembok. Bucunya <InlineMath math="(15\mid450)" /> berada di bahagian putus-putus yang dilarang di kiri <InlineMath math="x=18" />, kerana di situ sisi sepanjang tembok melebihi <InlineMath math="24" />. Pada bahagian yang dibenarkan, <InlineMath math="x\ge18" />, parabola itu menurun, dan titik tertingginya ialah <InlineMath math="(18\mid432)" />.</>}
+  description={<>Parabola <InlineMath math="A(x) = x(60 - 2x)" /> memetakan sisi tepi <InlineMath math="x" /> kepada luas kandang. Puncak <InlineMath math="(15 \mid 450)" /> jatuh pada bahagian terputus terlarang di kiri <InlineMath math="x = 18" />, manakala titik tertinggi kawasan sah <InlineMath math="x \ge 18" /> berada tepat di sempadan <InlineMath math="(18 \mid 432)" />.</>}
+  footer={<>Puncak <InlineMath math="(15 \mid 450)" /> terlarang, maka maksimum sah berada di sempadan <InlineMath math="(18 \mid 432)" />.</>}
   labels={{
-    v: <><InlineMath math="(15\mid450)" /></>,
-    m: <><InlineMath math="(18\mid432)" /></>,
+    v: <><InlineMath math="(15 \mid 450)" /></>,
+    m: <><InlineMath math="(18 \mid 432)" /></>,
     ok: <>dibenarkan</>,
-    no: <>dilarang</>,
-    b: <><InlineMath math="x=18" /></>,
+    no: <>terlarang</>,
+    b: <><InlineMath math="x = 18" /></>,
   }}
   scene={{
     space: "plane",
@@ -49,14 +65,24 @@ Bagi <InlineMath math="x\ge18" /> bucunya berada di luar sebelah kiri, dan parab
   }}
 />
 
-<BlockMath math="A(18)=18\cdot(60-36)=18\cdot24=432" />
+Kira luas pada titik sempadan <InlineMath math="x = 18\text{ m}" /> dan <InlineMath math="y = 24\text{ m}" />:
 
-Kandang itu paling besar <InlineMath math="432\text{ m}^2" />, dengan <InlineMath math="18\text{ m}" /> berserenjang dan <InlineMath math="24\text{ m}" /> selari dengan tembok.
+<BlockMath math="A(18) = 18 \cdot (60 - 36) = 18 \cdot 24 = 432\text{ m}^2" />
 
-# Kenapa jawapan lain salah
+Dua sisi <InlineMath math="18\text{ m}" /> bersama sisi <InlineMath math="24\text{ m}" /> tepat menggunakan kesemua <InlineMath math="60\text{ m}" /> pagar sambil mematuhi had dinding.
 
-- <InlineMath math="450\text{ m}^2" /> ialah nilai bucu, apabila sisi tembok sepanjang <InlineMath math="30\text{ m}" />. **Nilai itu melanggar syarat**.
-- <InlineMath math="576\text{ m}^2" /> ialah segi empat sama bersisi <InlineMath math="24" />. Untuk itu perlukan pagar <InlineMath math="72\text{ m}" />.
-- <InlineMath math="360\text{ m}^2" /> menggabungkan <InlineMath math="x=15" /> daripada bucu dengan <InlineMath math="y=24" />. Pagar yang digunakan hanya <InlineMath math="54\text{ m}" />.
-- <InlineMath math="288\text{ m}^2" /> memakai <InlineMath math="24\cdot12" />, sisi kedua yang salah.
-- <InlineMath math="225\text{ m}^2" /> ialah segi empat sama bersisi <InlineMath math="15" />, tanpa kaitan dengan pagar.
+## Menyemak pilihan salah
+
+Perhatikan bagaimana setiap pengganggu **melanggar panjang pagar atau had dinding**:
+
+| Pilihan | Mengapa salah |
+| --- | --- |
+| <InlineMath math="450\text{ m}^2" /> | Nilai puncak tanpa had (<InlineMath math="15 \cdot 30" />), melanggar syarat <InlineMath math="y \le 24\text{ m}" />. |
+| <InlineMath math="576\text{ m}^2" /> | Segi empat sama <InlineMath math="24 \times 24" />, memerlukan <InlineMath math="72\text{ m}" /> pagar bukannya <InlineMath math="60\text{ m}" />. |
+| <InlineMath math="360\text{ m}^2" /> | Menggabungkan <InlineMath math="x = 15" /> dari puncak dengan <InlineMath math="y = 24" />, membazirkan <InlineMath math="6\text{ m}" /> pagar. |
+| <InlineMath math="288\text{ m}^2" /> | Mengira <InlineMath math="24 \cdot 12" />, menggunakan sisi tepi yang salah. |
+| <InlineMath math="225\text{ m}^2" /> | Segi empat sama <InlineMath math="15 \times 15" />, tidak menggunakan pagar <InlineMath math="60\text{ m}" /> sepenuhnya. |
+
+# Jawapan
+
+Luas maksimum kandang ini ialah **<InlineMath math="432\text{ m}^2" />**.
