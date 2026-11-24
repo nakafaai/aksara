@@ -1,27 +1,26 @@
 export const metadata = {
-  title: "Light and Optics Notes for Form Four Physics",
+  title: "Light Refraction Total Reflection and Lenses",
   description:
-    "Form 4 Physics Chapter 6: apply Snell's law, find the critical angle for total internal reflection, draw lens ray diagrams and solve the lens formula.",
+    "Apply Snell's law, explore apparent depth, test total internal reflection, and analyse convex lens images and astronomical telescopes.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-11-16",
   subject: "Light and Optics",
 };
 
-## Refraction of Light and the Law of Snell
+## Snell Law and Refraction
 
-**Refraction of light** is the change in direction of light as it passes from one medium into another of different optical density. **Snell's law** says that the ratio of the sine of the angle of incidence to the sine of the angle of refraction is a constant, the **refractive index** of the medium:
+**Refraction of light** is the change in direction of light as it enters a medium of different optical density. **Snell's law** states that the ratio of the sine of the angle of incidence to the sine of the angle of refraction is constant, the **refractive index**:
 
 <BlockMath math="n = \frac{\sin i}{\sin r} = \frac{c}{v}" />
 
-Here <InlineMath math="i" /> is the angle of incidence and <InlineMath math="r" /> is the angle of refraction, both measured from the normal. <InlineMath math="c = 3.0 \times 10^{8}\text{ m s}^{-1}" /> is the speed of light in a vacuum and <InlineMath math="v" /> is its speed in the medium. In the models here, you change the angle of a ray, trap light with total internal reflection, and move an object in front of a lens.
-
-Light bends **towards the normal** when it enters an optically denser medium, because it travels more slowly there. Move the sliders for the angle of incidence and the refractive index, then compare the angle of refraction.
+Here <InlineMath math="i" /> is the angle of incidence and <InlineMath math="r" /> is the angle of refraction, both always **measured from the normal**, never from the surface. Light travelling at <InlineMath math="c = 3.0 \times 10^{8}\text{ m s}^{-1}" /> in vacuum slows to <InlineMath math="v" /> and bends towards the normal inside a denser medium.
 
 <MathVisual
   title={<>A Ray of Light from Air into Glass</>}
+  footer={<>Light always bends towards the normal when entering an optically denser medium.</>}
   description={
     <>
-      The incident ray comes from above at angle <InlineMath math="i" /> and
+      The incident ray arrives from above at angle <InlineMath math="i" /> and
       refracts into a medium of index <InlineMath math="n" />. The vertical line
       is the normal.
     </>
@@ -59,40 +58,74 @@ Light bends **towards the normal** when it enters an optically denser medium, be
   }}
 />
 
-### Example Finding an Angle of Refraction
+Raise the refractive index <InlineMath math="n" /> in the model and watch both the refracted angle and the wave speed drop together. Always draw the normal first so you never measure an angle against the surface by mistake.
 
-A ray of light enters glass of refractive index <InlineMath math="1.5" /> at an angle of incidence of <InlineMath math="40^\circ" />. Find **the angle of refraction**.
+### Angle of Refraction
+
+A ray of light enters glass of refractive index <InlineMath math="1.5" /> at an angle of incidence of <InlineMath math="40^\circ" />. Find **the angle of refraction** with Snell's law:
 
 <MathContainer>
 <BlockMath math="\sin r = \frac{\sin 40^\circ}{1.5} = \frac{0.643}{1.5} = 0.429" />
 <BlockMath math="r = 25.4^\circ" />
 </MathContainer>
 
-Check with the model: at <InlineMath math="i = 40" /> and <InlineMath math="n = 1.5" />, you read an angle of refraction of <InlineMath math="25.4^\circ" />. It's smaller than the angle of incidence, so the ray bends towards the normal.
+At <InlineMath math="i = 40^\circ" /> and <InlineMath math="n = 1.5" />, the model gives <InlineMath math="25.4^\circ" />, smaller than the incidence angle because the ray bends towards the normal.
 
-### Example Real and Apparent Depth
+### Apparent Depth Layers
 
-A pool looks shallower than it really is because light from the bottom bends away from the normal as it leaves the water. The relationship is <InlineMath math="n = \dfrac{\text{real depth}}{\text{apparent depth}}" />. For a pool <InlineMath math="2.0\text{ m}" /> deep with <InlineMath math="n = 1.33" />:
+Imagine dropping a coin into a glass of water and pouring a layer of oil on top. As rays escape into air, they **bend away from the normal**, making the coin look lifted closer to the surface:
 
-<BlockMath math="\text{apparent depth} = \frac{2.0}{1.33} = 1.5\text{ m}" />
+<BlockMath math="n = \frac{\text{real depth}}{\text{apparent depth}}" />
 
-The pool looks **half a metre shallower**. Check: <InlineMath math="1.5 \times 1.33 = 2.0" />.
+> Each liquid layer adds an apparent depth equal to its thickness divided by its refractive index, raising the image above the true floor.
+
+For a <InlineMath math="2.0\text{ m}" /> pool with <InlineMath math="n = 1.33" />, the apparent depth is <InlineMath math="2.0 / 1.33 = 1.5\text{ m}" />. Now stack two liquid layers in the 3D lab below.
+
+<ApparentDepthLab
+  title={<>A Coin Seen Through Oil and Water</>}
+  description={
+    <>
+      A layer of <InlineMath math="6.0\text{ cm}" /> of oil floats above{" "}
+      <InlineMath math="12\text{ cm}" /> of water over a coin on the floor.
+    </>
+  }
+  footer={<>Switch the top liquid to see how high the coin image rises above the floor.</>}
+  labels={{
+    apparent: <>Apparent depth</>,
+    image: <>Image above the floor</>,
+    liquids: {
+      alcohol: <>Alcohol</>,
+      glycerine: <>Glycerine</>,
+      oil: <>Oil</>,
+      water: <>Water</>,
+    },
+    real: <>Real depth</>,
+    top: "Top layer",
+    viewLabel: "A coin seen through layers of liquid",
+  }}
+  layers={[
+    { index: 1.5, liquid: "oil", thickness: 6 },
+    { index: 4 / 3, liquid: "water", thickness: 12 },
+  ]}
+/>
+
+Oil of <InlineMath math="6.0\text{ cm}" /> over <InlineMath math="12\text{ cm}" /> of water gives an apparent depth of <InlineMath math="13\text{ cm}" /> below an <InlineMath math="18\text{ cm}" /> surface, so the coin looks **lifted <InlineMath math="5.0\text{ cm}" /> above the floor**. A higher-index top liquid lifts the image even further.
 
 ## Total Internal Reflection
 
-When light travels from a denser medium into a less dense one, the angle of refraction is larger than the angle of incidence. At the **critical angle** <InlineMath math="c" />, the angle of refraction reaches <InlineMath math="90^\circ" />. If the angle of incidence goes beyond the critical angle, all the light reflects back into the denser medium. This is called **total internal reflection**:
+When light goes from a denser medium into a less dense one, the angle of refraction exceeds the angle of incidence. At the **critical angle** <InlineMath math="c" />, refraction reaches <InlineMath math="90^\circ" />, and beyond it comes **total internal reflection**:
 
 <BlockMath math="\sin c = \frac{1}{n}" />
 
-For glass with <InlineMath math="n = 1.5" />, the critical angle is <InlineMath math="41.8^\circ" />. Move the angle of incidence past that value and watch the refracted ray skim along the surface, until only the reflected ray is left.
+Total internal reflection **only happens from high index to low index**, never when light enters glass from air. For glass with <InlineMath math="n = 1.5" />, the critical angle is <InlineMath math="41.8^\circ" />.
 
 <MathVisual
   title={<>From Glass into Air past the Critical Angle</>}
+  footer={<>Past the critical angle, the refracted ray vanishes and all light reflects.</>}
   description={
     <>
-      The ray comes from below inside glass of index <InlineMath math="1.5" />.
-      The blue ray refracts into the air, and the teal ray reflects back into
-      the glass.
+      The ray starts inside glass of index <InlineMath math="1.5" />. The blue
+      ray refracts into air, while the teal ray reflects back into the glass.
     </>
   }
   scene={{
@@ -127,10 +160,11 @@ For glass with <InlineMath math="n = 1.5" />, the critical angle is <InlineMath 
   }}
 />
 
-A material with a high refractive index has a small critical angle, so light gets trapped more easily. That's why diamonds sparkle: light reflects many times inside before it escapes.
+A high refractive index yields a small critical angle, trapping light easily and giving diamonds their bright sparkle.
 
 <Chart
   title={<>Critical Angles of Three Materials</>}
+  footer={<>Higher refractive index means a smaller critical angle that traps light easily.</>}
   bars="apart"
   categories={["Water", "Glass", "Diamond"]}
   series={[
@@ -143,34 +177,59 @@ A material with a high refractive index has a small critical angle, so light get
   valueLabel="Critical angle (°)"
   description={
     <>
-      Calculated from <InlineMath math="\sin c = 1/n" />: water{" "}
-      <InlineMath math="n = 1.33" /> gives <InlineMath math="48.8^\circ" />,
-      glass <InlineMath math="n = 1.5" /> gives <InlineMath math="41.8^\circ" />{" "}
-      and diamond <InlineMath math="n = 2.42" /> gives{" "}
-      <InlineMath math="24.4^\circ" />.
+      From <InlineMath math="\sin c = 1/n" />: water{" "}
+      <InlineMath math="48.8^\circ" />, glass <InlineMath math="41.8^\circ" />,
+      and diamond <InlineMath math="24.4^\circ" />.
     </>
   }
 />
 
-An **optical fibre** uses total internal reflection to carry light thousands of kilometres. A glass core is surrounded by a cladding with a lower refractive index, so light that hits the wall at more than the critical angle stays inside the core.
+Now aim a laser into the top face of a rectangular glass brick. Because the top and side faces are perpendicular, the refracted beam heads straight into the side wall.
 
-## Lenses and Image Formation
+> Because the top and side faces of a glass block meet at right angles, the angle of incidence at the side wall is always ninety degrees minus the first angle of refraction.
 
-A **convex lens** brings parallel rays together at one point behind the lens, the **focal point** <InlineMath math="F" />. The distance from the optical centre to the focal point is the **focal length** <InlineMath math="f" />. The **lens formula** gives the image position:
+<GlassBlockLab
+  title={<>A Ray Trapped Inside a Glass Block</>}
+  description={
+    <>
+      A beam strikes the top face of a glass block with refractive index{" "}
+      <InlineMath math="1.50" /> and heads towards its side face.
+    </>
+  }
+  footer={<>At index 1.50, every ray entering the top hits the side past the critical angle.</>}
+  labels={{
+    critical: <>Critical angle <InlineMath math="c" /></>,
+    incidence: <>Angle of incidence <InlineMath math="i" /></>,
+    incidenceName: "Angle of incidence",
+    next: <>Angle at the side face</>,
+    outcome: <>At the side face</>,
+    reflected: <>Total internal reflection</>,
+    refracted: <>Leaves the glass</>,
+    refraction: <>Angle of refraction <InlineMath math="r" /></>,
+    viewLabel: "A ray passing through a glass block",
+  }}
+  incidence={60}
+  index={1.5}
+/>
+
+At <InlineMath math="n = 1.50" />, the side-face angle always beats <InlineMath math="41.8^\circ" />, so **the beam reflects completely back inside the glass**. An **optical fibre** relies on this exact trap to guide light across thousands of kilometres.
+
+## Convex Lens Images
+
+A **convex lens** focuses parallel rays at its **focal point** <InlineMath math="F" />, a **focal length** <InlineMath math="f" /> from the optical centre. Image position and magnification obey the **lens formula**:
 
 <BlockMath math="\frac{1}{f} = \frac{1}{u} + \frac{1}{v}, \qquad m = \frac{v}{u}" />
 
-<InlineMath math="u" /> is the object distance, <InlineMath math="v" /> is the image distance and <InlineMath math="m" /> is the linear magnification. For a real image, <InlineMath math="v" /> is positive. The ray diagram below uses a convex lens with <InlineMath math="f = 2" /> units. Move the object and watch the real, inverted image change size.
+Here <InlineMath math="u" /> is object distance and <InlineMath math="v" /> is image distance. Move the object in the ray diagram with <InlineMath math="f = 2" /> units below to watch the real image change size.
 
 <MathVisual
   title={<>Ray Diagram for a Convex Lens</>}
+  footer={<>Moving the object closer to F pushes the real image farther and makes it larger.</>}
   description={
     <>
-      An object <InlineMath math="1" /> unit tall stands a distance{" "}
-      <InlineMath math="u" /> to the left of the lens. One ray parallel to the
-      axis refracts through <InlineMath math="F" />, and one ray passes through
-      the optical centre without bending. The image forms where the two rays
-      cross.
+      An object <InlineMath math="1" /> unit tall stands at distance{" "}
+      <InlineMath math="u" /> left of the lens. The real image forms where the
+      parallel and centre rays meet.
     </>
   }
   scene={{
@@ -205,30 +264,57 @@ A **convex lens** brings parallel rays together at one point behind the lens, th
   }}
 />
 
-When the object is further away than <InlineMath math="2f" />, the image is real, inverted and **smaller**, as in a camera. When the object sits between <InlineMath math="f" /> and <InlineMath math="2f" />, the image is real, inverted and **larger**, as in a projector. If the object is closer than <InlineMath math="f" />, the rays don't cross behind the lens and the image becomes virtual, upright and magnified. That's how a magnifying glass works.
-
-### Example Lens Formula
-
-An object is placed <InlineMath math="15\text{ cm}" /> in front of a convex lens of focal length <InlineMath math="10\text{ cm}" />. Find **the image distance and the magnification**.
+A convex lens does **not always form an inverted image**: whenever <InlineMath math="u < f" />, the image becomes virtual and upright like a magnifying glass. For <InlineMath math="u = 15\text{ cm}" /> and <InlineMath math="f = 10\text{ cm}" />:
 
 <MathContainer>
 <BlockMath math="\frac{1}{v} = \frac{1}{10} - \frac{1}{15} = \frac{1}{30}" />
 <BlockMath math="v = 30\text{ cm}, \qquad m = \frac{30}{15} = 2" />
 </MathContainer>
 
-The image is real, inverted and twice as large. Check with the model: <InlineMath math="u = 1.5f" /> in the model is <InlineMath math="o = 3" />, and the model gives <InlineMath math="v = 6 = 3f" />, matching <InlineMath math="30\text{ cm} = 3 \times 10\text{ cm}" />.
+> The moment an object crosses the focal point of a convex lens, its image flips from real and inverted behind the lens to virtual and upright in front.
 
-### Example Finding the Focal Length from a Graph
+Test all three object zones directly on the 3D optical bench below.
 
-In a lens experiment, the graph of <InlineMath math="1/v" /> against <InlineMath math="1/u" /> is a straight line with gradient <InlineMath math="-1" />. Its intercept on both axes equals <InlineMath math="1/f" />, which is **the power of the lens** <InlineMath math="P" /> in dioptres when distances are in metres.
+<ConvexLensLab
+  title={<>Convex Lens on an Optical Bench</>}
+  description={
+    <>
+      An object arrow stands before a convex lens of focal length{" "}
+      <InlineMath math="10\text{ cm}" />. Drag the object distance or select a
+      preset position.
+    </>
+  }
+  footer={<>Compare 6 cm, 15 cm and 25 cm to see magnifier, projector and camera regimes.</>}
+  labels={{
+    distance: <>Object distance <InlineMath math="u" /></>,
+    distanceName: "Object distance",
+    image: <>Image distance</>,
+    magnification: <>Magnification</>,
+    nature: <>Image</>,
+    noImage: <>No image</>,
+    presets: "Object positions",
+    real: <>Real, inverted</>,
+    viewLabel: "A convex lens on an optical bench",
+    virtual: <>Virtual, upright</>,
+  }}
+  focal={10}
+  object={15}
+  presets={[6, 15, 25]}
+/>
+
+Those three presets highlight **three roles of one convex lens**: at <InlineMath math="6\text{ cm}" /> it works as a magnifying glass, at <InlineMath math="15\text{ cm}" /> it matches our projector result <InlineMath math="v = 30\text{ cm}" />, and at <InlineMath math="25\text{ cm}" /> it shrinks the real image like a camera.
+
+### Focal Length from Graph
+
+Plotting <InlineMath math="1/v" /> against <InlineMath math="1/u" /> gives a straight line of gradient <InlineMath math="-1" />. Both intercepts equal **lens power** <InlineMath math="P = 1/f" /> in dioptres, where <InlineMath math="f" /> must be in metres rather than centimetres.
 
 <MathVisual
   title={<>Graph of the Lens Formula</>}
+  footer={<>Both axis intercepts equal the lens power P in dioptres.</>}
   description={
     <>
-      The line <InlineMath math="1/v = P - 1/u" />, with distances in metres.
-      Move the lens power <InlineMath math="P" /> and watch both intercepts
-      move together.
+      The line <InlineMath math="1/v = P - 1/u" /> with distances in metres.
+      Change <InlineMath math="P" /> and watch both intercepts move together.
     </>
   }
   scene={{
@@ -253,54 +339,52 @@ In a lens experiment, the graph of <InlineMath math="1/v" /> against <InlineMath
   }}
 />
 
-If the intercept is <InlineMath math="5\text{ m}^{-1}" />, the focal length is <InlineMath math="1/5 = 0.20\text{ m}" />, which is <InlineMath math="20\text{ cm}" />. A concave lens has a negative focal length and a negative power.
+An intercept of <InlineMath math="5\text{ m}^{-1}" /> yields a focal length of <InlineMath math="0.20\text{ m}" /> or <InlineMath math="20\text{ cm}" />, while a concave lens carries negative power.
 
-## Common Mistakes about Light and Optics
+### Astronomical Telescope
 
-| Mistake | Why it's wrong | How to check |
-| :--- | :--- | :--- |
-| The angle of incidence is measured from the surface. | The angles of incidence and refraction are measured from the normal. | Draw the normal first, then measure the angle. |
-| Total internal reflection happens when light enters glass. | It only happens going from a denser medium to a less dense one. | Check the direction: from high index to low index. |
-| A convex lens always gives an inverted image. | If <InlineMath math="u < f" />, the image is virtual and upright. | Compare <InlineMath math="u" /> with <InlineMath math="f" /> first. |
-| Using centimetres for lens power. | Lens power <InlineMath math="P = 1/f" /> needs <InlineMath math="f" /> in metres. | Convert <InlineMath math="f" /> to metres before dividing. |
+How do two ordinary convex lenses bring lunar craters close? Pair a **low-power objective** at the front with a **high-power eyepiece** at the back so their focal points overlap inside the tube.
 
-The first mistake is the most common one in Snell's law questions. **The normal is the reference line** for every angle in refraction and reflection.
+> In an astronomical telescope at normal adjustment, both focal points coincide so the lens separation equals the sum of focal lengths and magnification equals their ratio.
 
-## Practice on Light and Optics
-
-These questions move from Snell's law to lenses. **Draw a quick sketch** before you calculate.
-
-1. The speed of light in a type of plastic is <InlineMath math="2.0 \times 10^{8}\text{ m s}^{-1}" />. Calculate the refractive index of the plastic.
-
-2. Calculate the critical angle for water with a refractive index of <InlineMath math="1.33" />, and explain what happens to a ray inside the water that hits the surface at <InlineMath math="60^\circ" />.
-
-3. An object is placed <InlineMath math="30\text{ cm}" /> from a convex lens of focal length <InlineMath math="20\text{ cm}" />. Calculate the image distance and the magnification, and state the nature of the image.
-
-4. Calculate the power of a convex lens with a focal length of <InlineMath math="25\text{ cm}" />.
-
-### Solutions
-
-**Solution 1**: Use <InlineMath math="n = c/v" />:
-
-<BlockMath math="n = \frac{3.0 \times 10^{8}}{2.0 \times 10^{8}} = 1.5" />
-
-**Solution 2**: The critical angle comes from <InlineMath math="\sin c = 1/n" />:
-
-<BlockMath math="c = \sin^{-1}\!\left(\frac{1}{1.33}\right) = 48.8^\circ" />
-
-The angle <InlineMath math="60^\circ" /> is larger than <InlineMath math="48.8^\circ" />, so the ray undergoes **total internal reflection** and no light escapes into the air.
-
-**Solution 3**: Use the lens formula:
+With a <InlineMath math="+1.0\text{ D}" /> objective and a <InlineMath math="+20\text{ D}" /> eyepiece, convert each power to focal length first:
 
 <MathContainer>
-<BlockMath math="\frac{1}{v} = \frac{1}{20} - \frac{1}{30} = \frac{1}{60}" />
-<BlockMath math="v = 60\text{ cm}, \qquad m = \frac{60}{30} = 2" />
+<BlockMath math="f_o = 100\text{ cm}, \qquad f_e = 5\text{ cm}" />
+<BlockMath math="L = f_o + f_e = 105\text{ cm}, \qquad M = \frac{f_o}{f_e} = 20" />
 </MathContainer>
 
-The object sits between <InlineMath math="f" /> and <InlineMath math="2f" />, so the image is real, inverted and magnified twice.
+<TelescopeLab
+  title={<>Astronomical Telescope in Normal Adjustment</>}
+  description={
+    <>
+      A <InlineMath math="+1.0\text{ D}" /> objective pairs with a{" "}
+      <InlineMath math="+20\text{ D}" /> eyepiece so both focal points meet at
+      one shared focus inside the tube.
+    </>
+  }
+  footer={<>A stronger eyepiece shortens its focal length and multiplies magnification.</>}
+  labels={{
+    eyepiece: <>Eyepiece</>,
+    eyepieceName: "Eyepiece power",
+    length: <>Distance between the lenses</>,
+    magnification: <>Magnification</>,
+    objective: <>Objective</>,
+    viewLabel: "An astronomical telescope",
+  }}
+  eyepiecePower={20}
+  objectivePower={1}
+/>
 
-**Solution 4**: Convert the focal length to metres, <InlineMath math="f = 0.25\text{ m}" />:
+Raising the eyepiece power shrinks its focal length, so **the tube shortens slightly while magnification climbs steeply**.
 
-<BlockMath math="P = \frac{1}{0.25} = 4\text{ D}" />
+## Quick Optics Checks
 
-A positive power means a convex lens.
+Work through these four short problems in order, then **check every result** against the summary below.
+
+1. Light travels at <InlineMath math="2.0 \times 10^{8}\text{ m s}^{-1}" /> in plastic. Find its refractive index.
+2. Find the critical angle of water (<InlineMath math="n = 1.33" />) and what happens to a ray hitting the surface from inside water at <InlineMath math="60^\circ" />.
+3. An object stands <InlineMath math="30\text{ cm}" /> from a convex lens (<InlineMath math="f = 20\text{ cm}" />). Find <InlineMath math="v" />, <InlineMath math="m" />, and the nature of the image.
+4. Calculate the power of a convex lens of focal length <InlineMath math="25\text{ cm}" />.
+
+Quick answers: problem one gives <InlineMath math="n = 1.5" />, problem two gives <InlineMath math="c = 48.8^\circ" /> so <InlineMath math="60^\circ" /> undergoes **total internal reflection**, problem three yields <InlineMath math="v = 60\text{ cm}" /> and <InlineMath math="m = 2" /> (real, inverted, magnified), and problem four gives <InlineMath math="P = 4\text{ D}" /> after converting <InlineMath math="25\text{ cm}" /> to <InlineMath math="0.25\text{ m}" />.
