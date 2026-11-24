@@ -1,11 +1,65 @@
-# Der Faktor, dessen Erhöhung die Rate steigert
+# Gegeben
 
-Ein begrenzender Faktor ist der, **dessen Erhöhung die Fotosyntheserate steigen lässt**. Vergleiche Zeilen der Tabelle, die sich nur in einem Faktor unterscheiden.
+Die Tabelle nennt relative Fotosyntheseraten bei Lichtintensitäten von <InlineMath math="1" /> bis <InlineMath math="5" /> unter drei Bedingungen: **<InlineMath math="0{,}04\%\ \text{CO}_2" /> bei <InlineMath math="25^\circ\text{C}" />** (<InlineMath math="10" />, <InlineMath math="20" />, <InlineMath math="28" />, <InlineMath math="30" />, <InlineMath math="30" />), **<InlineMath math="0{,}10\%\ \text{CO}_2" /> bei <InlineMath math="25^\circ\text{C}" />** (<InlineMath math="10" />, <InlineMath math="20" />, <InlineMath math="30" />, <InlineMath math="40" />, <InlineMath math="40" />) und **<InlineMath math="0{,}10\%\ \text{CO}_2" /> bei <InlineMath math="35^\circ\text{C}" />** (<InlineMath math="10" />, <InlineMath math="20" />, <InlineMath math="30" />, <InlineMath math="40" />, <InlineMath math="52" />).
 
-Bei <InlineMath math="1" /> Lichteinheit liefern alle drei Zeilen <InlineMath math="10" />, obwohl Kohlenstoffdioxid und Temperatur verschieden sind. Mehr Kohlenstoffdioxid oder Wärme bringt also nichts, das Licht begrenzt. Bei <InlineMath math="5" /> Einheiten mit <InlineMath math="0{,}10\%" /> Kohlenstoffdioxid und <InlineMath math="25^\circ\text{C}" /> bleibt die Rate bei <InlineMath math="40" />, obwohl das Licht von <InlineMath math="4" /> auf <InlineMath math="5" /> steigt, das Licht begrenzt also nicht mehr. Eine Erhöhung auf <InlineMath math="35^\circ\text{C}" /> hebt die Rate auf <InlineMath math="52" />, die Temperatur begrenzt also. Bei <InlineMath math="1" /> Einheit begrenzt also die Lichtintensität, bei <InlineMath math="5" /> Einheiten die Temperatur.
+# Gesucht
 
-# Warum die anderen Antworten falsch sind
+Welcher Faktor begrenzt die Fotosyntheserate bei <InlineMath math="1" /> Einheit Licht, und welcher bei <InlineMath math="5" /> Einheiten Licht mit <InlineMath math="0{,}10\%\ \text{CO}_2" /> bei <InlineMath math="25^\circ\text{C}" />?
 
-- Licht bei <InlineMath math="5" /> Einheiten ist falsch, denn die Rate ist von <InlineMath math="4" /> bis <InlineMath math="5" /> Einheiten schon flach, **mehr Licht steigert die Rate nicht**.
-- Kohlenstoffdioxid bei <InlineMath math="1" /> Einheit ist falsch, denn die Erhöhung von <InlineMath math="0{,}04\%" /> auf <InlineMath math="0{,}10\%" /> lässt die Rate bei <InlineMath math="10" />.
-- Temperatur bei <InlineMath math="1" /> Einheit ist falsch, denn auch die Erhöhung auf <InlineMath math="35^\circ\text{C}" /> ändert die Rate dort nicht.
+# Lösung
+
+Stell dir eine Spielzeugfabrik mit drei Arbeitern vor: Licht, Kohlenstoffdioxid und Wärme. Das Tempo der Fabrik hängt immer vom langsamsten Arbeiter ab, also ist **der begrenzende Faktor genau jener, dessen Erhöhung die Rate sofort steigen lässt**.
+
+> Um den begrenzenden Faktor an einem Messpunkt zu finden, vergleicht man zwei Zeilen, die sich nur in einem Faktor unterscheiden: Der Faktor, der die Rate anhebt, begrenzt sie.
+
+Betrachte die drei Kurven im Diagramm, besonders die Überdeckung bei <InlineMath math="1" /> Einheit Licht und den Sprung von <InlineMath math="40" /> auf <InlineMath math="52" /> bei <InlineMath math="5" /> Einheiten Licht.
+
+<MathVisual
+  title={<>Fotosyntheserate unter drei <InlineMath math="\text{CO}_2" />- und Temperaturbedingungen</>}
+  description={
+    <>
+      Graue Kurve (<InlineMath math="0{,}04\%\ \text{CO}_2, 25^\circ\text{C}" />),
+      blaue Kurve (<InlineMath math="0{,}10\%\ \text{CO}_2, 25^\circ\text{C}" />) und
+      grüner Anstieg (<InlineMath math="0{,}10\%\ \text{CO}_2, 35^\circ\text{C}" />)
+      liegen bei schwachem Licht übereinander und trennen sich bei starkem Licht.
+    </>
+  }
+  footer={<>Bei Licht <InlineMath math="1" /> liegen alle bei <InlineMath math="10" />. Bei Licht <InlineMath math="5" /> hebt Wärme die Rate von <InlineMath math="40" /> auf <InlineMath math="52" />.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0.5, max: 5.5 }, y: { min: 0, max: 58 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "c1-a", kind: "segment", appearance: "construction", from: { x: 1, y: 10 }, to: { x: 2, y: 20 } },
+      { id: "c1-b", kind: "segment", appearance: "construction", from: { x: 2, y: 20 }, to: { x: 3, y: 28 } },
+      { id: "c1-c", kind: "segment", appearance: "construction", from: { x: 3, y: 28 }, to: { x: 4, y: 30 } },
+      { id: "c1-d", kind: "segment", appearance: "construction", from: { x: 4, y: 30 }, to: { x: 5, y: 30 } },
+      { id: "c2-a", kind: "segment", appearance: "primary", from: { x: 1, y: 10 }, to: { x: 4, y: 40 } },
+      { id: "c2-b", kind: "segment", appearance: "primary", from: { x: 4, y: 40 }, to: { x: 5, y: 40 } },
+      { id: "c3-a", kind: "segment", appearance: "answer", from: { x: 4, y: 40 }, to: { x: 5, y: 52 } },
+      { id: "m-one", kind: "marker", appearance: "primary", x: "1", y: "10" },
+      { id: "m-five-low", kind: "marker", appearance: "warning", x: "5", y: "40" },
+      { id: "m-five-high", kind: "marker", appearance: "answer", x: "5", y: "52" },
+    ],
+  }}
+  labels={{}}
+/>
+
+Bei <InlineMath math="1" /> Einheit Licht liegen alle Kurven gleichauf bei <InlineMath math="10" />, sodass nur mehr Licht die Rate hebt. Bei <InlineMath math="5" /> Einheiten ist die blaue Linie bei <InlineMath math="40" /> flach, während <InlineMath math="35^\circ\text{C}" /> die Rate auf <InlineMath math="52" /> hebt.
+
+## Vergleich einzelner Faktoren
+
+Vergleiche Tabellenzeilen, die sich jeweils **nur in einem Faktor unterscheiden**.
+
+- Bei <InlineMath math="1" /> Einheit Licht ändert weder <InlineMath math="0{,}10\%\ \text{CO}_2" /> noch <InlineMath math="35^\circ\text{C}" /> den Wert <InlineMath math="10" />, während <InlineMath math="2" /> Einheiten Licht die Rate auf <InlineMath math="20" /> verdoppeln, also begrenzt **die Lichtintensität**.
+- Bei <InlineMath math="5" /> Einheiten (<InlineMath math="0{,}10\%\ \text{CO}_2" />, <InlineMath math="25^\circ\text{C}" />) bleibt die Rate von <InlineMath math="4" /> auf <InlineMath math="5" /> konstant bei <InlineMath math="40" /> und steigt bei <InlineMath math="35^\circ\text{C}" /> auf <InlineMath math="52" />, also begrenzt **die Temperatur**.
+
+## Warum andere Optionen falsch sind
+
+- Licht bei <InlineMath math="5" /> Einheiten ist falsch, weil die blaue Kurve von <InlineMath math="4" /> bis <InlineMath math="5" /> schon flach ist und **mehr Licht die Rate nicht steigert**.
+- Kohlenstoffdioxid bei <InlineMath math="1" /> Einheit ist falsch, weil der Sprung von <InlineMath math="0{,}04\%" /> auf <InlineMath math="0{,}10\%" /> die Rate bei <InlineMath math="10" /> belässt.
+- Temperatur bei <InlineMath math="1" /> Einheit ist falsch, weil <InlineMath math="35^\circ\text{C}" /> die Rate dort ebenfalls nicht erhöht.
+
+# Antwort
+
+Bei <InlineMath math="1" /> Einheit begrenzt die Lichtintensität die Fotosynthese, und bei <InlineMath math="5" /> Einheiten (<InlineMath math="0{,}10\%\ \text{CO}_2" />, <InlineMath math="25^\circ\text{C}" />) begrenzt die Temperatur.

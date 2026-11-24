@@ -1,18 +1,71 @@
-# The base-pairing rule
+# Given
 
-Adenine always pairs with thymine and guanine with cytosine, so **A equals T, and G equals C**. What is left after A and T is shared equally between G and C.
+A double-stranded DNA molecule has <InlineMath math="1000" /> base pairs (<InlineMath math="2000" /> total bases), of which **<InlineMath math="30\%" /> are adenine (A)**. Each A and thymine (T) pair forms <InlineMath math="2" /> hydrogen bonds, while each guanine (G) and cytosine (C) pair forms <InlineMath math="3" /> hydrogen bonds.
+
+# Asked
+
+How many cytosine bases and how many total hydrogen bonds exist between the two DNA strands?
+
+# Solution
+
+Picture a DNA ladder with <InlineMath math="1000" /> rungs (<InlineMath math="2000" /> half-rungs). Since every A pairs with T using <InlineMath math="2" /> glue dots, A and T claim <InlineMath math="60\%" /> of all bases, leaving **the remaining <InlineMath math="40\%" /> split evenly between G (<InlineMath math="20\%" />) and C (<InlineMath math="20\%" />)** with <InlineMath math="3" /> glue dots per rung.
+
+> In double-stranded DNA, adenine always equals thymine in share, and the remaining percentage divides equally between guanine and cytosine.
+
+Slide the adenine share <InlineMath math="a" /> below to see both the cytosine count and total hydrogen bonds drop linearly as A and T pairs replace G and C pairs.
+
+<MathVisual
+  title={<>Total hydrogen bonds in a <InlineMath math="1000" />-base-pair DNA molecule</>}
+  description={
+    <>
+      Raising adenine percentage <InlineMath math="a" /> swaps <InlineMath math="3" />-bond
+      G and C pairs for <InlineMath math="2" />-bond A and T pairs along{" "}
+      <InlineMath math="3000 - 20a" />. Set <InlineMath math="a = 30\%" />.
+    </>
+  }
+  footer={<>At <InlineMath math="a = 30\%" />, the molecule holds <InlineMath math="400" /> cytosine bases and <InlineMath math="2400" /> hydrogen bonds.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 50 }, y: { min: 1900, max: 3100 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [{ name: "a", min: 10, max: 40, value: 30, step: 5, label: "a" }],
+    objects: [
+      { id: "hbonds", kind: "function", appearance: "primary", formula: "3000 - 20 * x", domain: { min: 5, max: 45 } },
+      { id: "now", kind: "marker", appearance: "answer", x: "a", y: "3000 - 20 * a" },
+    ],
+    readouts: [
+      { key: "cytosine-count", formula: "1000 - 20 * a" },
+      { key: "hydrogen-bonds", formula: "3000 - 20 * a" },
+    ],
+  }}
+  labels={{
+    a: <>Adenine share (<InlineMath math="\%" />)</>,
+    "cytosine-count": <>Cytosine bases</>,
+    "hydrogen-bonds": <>Total hydrogen bonds</>,
+  }}
+/>
+
+Every extra <InlineMath math="5\%" /> of adenine replaces <InlineMath math="100" /> triple-bonded G and C pairs with double-bonded pairs, dropping total bonds by <InlineMath math="100" />. At <InlineMath math="a = 30\%" />, the readouts give <InlineMath math="400" /> and <InlineMath math="2400" />.
+
+## Base pairing and bond count
+
+Apply Chargaff's rule to find **the cytosine count**, then weight A and T pairs by <InlineMath math="2" /> and G and C pairs by <InlineMath math="3" />.
 
 <BlockMath math="\begin{aligned}
-A=T&=30\%\ \Rightarrow\ G+C=40\%\ \Rightarrow\ C=20\%\\
-C&=0.20\times2000=400\\
-\text{A and T pairs}&=0.30\times2000=600,\quad\text{G and C pairs}=400\\
-\text{hydrogen bonds}&=600(2)+400(3)=2400
+A = T = 30\% &\implies G + C = 40\% \implies C = 20\% \\
+\text{number of } C &= 0.20 \times 2000 = 400\text{ bases} \\
+A\text{ and }T\text{ pairs} &= 0.30 \times 2000 = 600, \quad G\text{ and }C\text{ pairs} = 400 \\
+\text{hydrogen bonds} &= 600(2) + 400(3) = 1200 + 1200 = 2400
 \end{aligned}" />
 
-So there are <InlineMath math="400" /> cytosine bases and <InlineMath math="2400" /> hydrogen bonds.
+Quick check: <InlineMath math="600" /> plus <InlineMath math="400" /> recovers all <InlineMath math="1000" /> base pairs cleanly.
 
-# Why the other options are wrong
+## Why other options fail
 
-- <InlineMath math="400" /> and <InlineMath math="2600" /> swaps the bond numbers, but **the G and C pairs have three bonds**.
-- <InlineMath math="600" /> and <InlineMath math="2600" /> assumes there is as much cytosine as adenine, but cytosine pairs with guanine.
-- <InlineMath math="800" /> and <InlineMath math="2800" /> takes the whole <InlineMath math="40\%" /> as cytosine, but that <InlineMath math="40\%" /> is shared equally with guanine.
+- Choosing <InlineMath math="400" /> and <InlineMath math="2600" /> swaps the bond counts, forgetting that **G and C pairs carry three hydrogen bonds**.
+- Choosing <InlineMath math="600" /> and <InlineMath math="2600" /> equates cytosine with adenine, even though cytosine pairs only with guanine.
+- Choosing <InlineMath math="800" /> and <InlineMath math="2800" /> assigns the entire leftover <InlineMath math="40\%" /> to cytosine without sharing equally with guanine.
+
+# Answer
+
+There are <InlineMath math="400" /> cytosine bases and <InlineMath math="2400" /> hydrogen bonds in total.

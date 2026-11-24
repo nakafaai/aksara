@@ -1,16 +1,77 @@
-# Jisim kering naik apabila fotosintesis mengatasi respirasi
+# Diberi
 
-Jisim kering turun selagi respirasi menggunakan simpanan makanan biji, dan **mula naik apabila fotosintesis melebihi respirasi**. Jisim terendah berlaku pada hari ke-<InlineMath math="6" /> dan kenaikan pertama berlaku antara hari ke-<InlineMath math="6" /> dan hari ke-<InlineMath math="9" />.
+Biji kacang dicambahkan dan **jisim kering <InlineMath math="10" /> anak benih** ditimbang setiap <InlineMath math="3" /> hari: <InlineMath math="2.0\text{ g}" /> (hari <InlineMath math="0" />), <InlineMath math="1.7\text{ g}" /> (hari <InlineMath math="3" />), <InlineMath math="1.5\text{ g}" /> (hari <InlineMath math="6" />), <InlineMath math="1.6\text{ g}" /> (hari <InlineMath math="9" />), dan <InlineMath math="2.2\text{ g}" /> (hari <InlineMath math="12" />). Daun pertama muncul pada hari ke-<InlineMath math="4" />.
+
+# Ditanya
+
+Dalam selang hari manakah kadar fotosintesis anak benih mula melebihi kadar respirasinya, dan berapakah purata pertambahan jisim kering per anak benih per hari dari hari ke-<InlineMath math="9" /> hingga ke-<InlineMath math="12" />?
+
+# Penyelesaian
+
+Bayangkan jisim kering biji seperti kotak bekal makanan. Pada awalnya, anak benih menggunakan simpanan makanan untuk respirasi sehingga jisim kering jatuh ke paras terendah pada hari ke-<InlineMath math="6" />. **Sebaik lengkung mula naik antara hari ke-<InlineMath math="6" /> dengan hari ke-<InlineMath math="9" />, fotosintesis sudah melebihi respirasi**.
+
+> Jisim kering anak benih menurun selagi respirasi melebihi fotosintesis, lalu meningkat semula sebaik sahaja kadar fotosintesis mengatasi kadar respirasi.
+
+Gerakkan bilangan anak benih <InlineMath math="n" /> pada graf berikut untuk melihat bagaimana pertambahan <InlineMath math="0.6\text{ g}" /> dari hari ke-<InlineMath math="9" /> hingga ke-<InlineMath math="12" /> dibahagikan kepada setiap anak benih dan setiap hari.
+
+<MathVisual
+  title={<>Jisim kering <InlineMath math="10" /> anak benih selama <InlineMath math="12" /> hari</>}
+  description={
+    <>
+      Jisim kering mencecah minimum pada hari ke-<InlineMath math="6" /> (
+      <InlineMath math="1.5\text{ g}" />), mula naik dari hari <InlineMath math="6" />{" "}
+      ke <InlineMath math="9" />, dan meningkat pantas dari hari <InlineMath math="9" />{" "}
+      ke <InlineMath math="12" />. Tetapkan <InlineMath math="n = 10" />.
+    </>
+  }
+  footer={<>Titik minimum ialah hari ke-<InlineMath math="6" />, maka kenaikan pertama berlaku pada hari <InlineMath math="6" /> hingga <InlineMath math="9" />.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 13 }, y: { min: 1.2, max: 2.4 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [{ name: "n", min: 1, max: 20, value: 10, step: 1, label: "n" }],
+    objects: [
+      { id: "s1", kind: "segment", appearance: "warning", from: { x: 0, y: 2.0 }, to: { x: 3, y: 1.7 } },
+      { id: "s2", kind: "segment", appearance: "warning", from: { x: 3, y: 1.7 }, to: { x: 6, y: 1.5 } },
+      { id: "s3", kind: "segment", appearance: "answer", from: { x: 6, y: 1.5 }, to: { x: 9, y: 1.6 } },
+      { id: "s4", kind: "segment", appearance: "primary", from: { x: 9, y: 1.6 }, to: { x: 12, y: 2.2 } },
+      { id: "p0", kind: "marker", appearance: "warning", x: "0", y: "2" },
+      { id: "p3", kind: "marker", appearance: "warning", x: "3", y: "1.7" },
+      { id: "p6", kind: "marker", appearance: "answer", x: "6", y: "1.5" },
+      { id: "p9", kind: "marker", appearance: "answer", x: "9", y: "1.6" },
+      { id: "p12", kind: "marker", appearance: "primary", x: "12", y: "2.2" },
+    ],
+    readouts: [
+      { key: "gain-total", formula: "0.6" },
+      { key: "gain-per-day", formula: "0.6 / (3 * n)" },
+    ],
+  }}
+  labels={{
+    n: <>Bilangan anak benih <InlineMath math="n" /></>,
+    "gain-total": <>Jumlah pertambahan hari <InlineMath math="9" /> ke <InlineMath math="12" /> (<InlineMath math="\text{g}" />)</>,
+    "gain-per-day": <>Purata per anak benih per hari (<InlineMath math="\text{g}" />)</>,
+  }}
+/>
+
+Walaupun daun muncul pada hari ke-<InlineMath math="4" />, fotosintesis hanya mengatasi respirasi selepas hari ke-<InlineMath math="6" />. Segmen hijau menandakan kenaikan pertama itu.
+
+## Pengiraan purata pertambahan harian
+
+Bahagikan pertambahan jisim <InlineMath math="10" /> anak benih sepanjang <InlineMath math="3" /> hari dengan **bilangan anak benih dan bilangan hari**.
 
 <BlockMath math="\begin{aligned}
-\text{pertambahan hari }9\text{ hingga }12&=2.2-1.6=0.6\text{ g bagi }10\text{ anak benih}\\
-\text{bagi setiap anak benih sehari}&=\frac{0.6}{10\times3}=0.020\text{ g}
+\Delta m_{9 \to 12} &= 2.2 - 1.6 = 0.6\text{ g bagi } 10\text{ anak benih} \\
+\text{purata per anak benih per hari} &= \frac{0.6}{10 \times 3} = \frac{0.6}{30} = 0.020\text{ g}
 \end{aligned}" />
 
-Daun muncul pada hari ke-<InlineMath math="4" />, tetapi memerlukan masa sebelum fotosintesisnya melebihi respirasi. Jadi, jawapannya hari ke-<InlineMath math="6" /> hingga hari ke-<InlineMath math="9" /> dan <InlineMath math="0.020\text{ g}" />.
+Semakan pantas: <InlineMath math="0.020\text{ g}" /> didarab <InlineMath math="10" /> anak benih dan <InlineMath math="3" /> hari memulangkan tepat <InlineMath math="0.6\text{ g}" />.
 
-# Kenapa pilihan lain salah
+## Mengapa pilihan lain salah
 
-- Hari ke-<InlineMath math="9" /> hingga hari ke-<InlineMath math="12" /> ialah kenaikan terbesar, sedangkan **kenaikan pertama sudah berlaku dari hari ke-<InlineMath math="6" />**.
-- <InlineMath math="0.20\text{ g}" /> belum dibahagi dengan bilangan anak benih, sedangkan data adalah bagi <InlineMath math="10" /> anak benih.
-- <InlineMath math="0.060\text{ g}" /> ialah pertambahan bagi setiap anak benih sepanjang tiga hari, bukan sehari.
+- Selang hari ke-<InlineMath math="9" /> hingga ke-<InlineMath math="12" /> ialah kenaikan terbesar, tetapi **kenaikan pertama sudah bermula sejak hari ke-<InlineMath math="6" />**.
+- Pilihan <InlineMath math="0.20\text{ g}" /> belum dibahagikan dengan <InlineMath math="10" /> anak benih seperti data jadual.
+- Pilihan <InlineMath math="0.060\text{ g}" /> ialah pertambahan per anak benih untuk semua <InlineMath math="3" /> hari, bukannya sehari.
+
+# Jawapan
+
+Kadar fotosintesis mula melebihi respirasi dari hari ke-<InlineMath math="6" /> hingga hari ke-<InlineMath math="9" />, dan purata pertambahan jisim kering ialah <InlineMath math="0.020\text{ g}" /> per anak benih per hari.

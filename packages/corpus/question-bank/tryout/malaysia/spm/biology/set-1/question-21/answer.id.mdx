@@ -1,16 +1,78 @@
-# Massa kering naik saat fotosintesis menang
+# Diketahui
 
-Massa kering turun selama respirasi memakai cadangan makanan biji, dan **mulai naik saat fotosintesis melebihi respirasi**. Massa terendah ada pada hari ke-<InlineMath math="6" /> dan naik pertama kali antara hari ke-<InlineMath math="6" /> dan ke-<InlineMath math="9" />.
+Biji kacang dikecambahkan dan **massa kering <InlineMath math="10" /> kecambah** ditimbang tiap <InlineMath math="3" /> hari: <InlineMath math="2{,}0\text{ g}" /> (hari <InlineMath math="0" />), <InlineMath math="1{,}7\text{ g}" /> (hari <InlineMath math="3" />), <InlineMath math="1{,}5\text{ g}" /> (hari <InlineMath math="6" />), <InlineMath math="1{,}6\text{ g}" /> (hari <InlineMath math="9" />), dan <InlineMath math="2{,}2\text{ g}" /> (hari <InlineMath math="12" />). Daun pertama muncul di atas tanah pada hari ke-<InlineMath math="4" />.
+
+# Ditanyakan
+
+Pada selang hari manakah laju fotosintesis kecambah pertama kali melampaui laju respirasinya, dan berapakah kenaikan rata-rata massa kering per kecambah per hari dari hari ke-<InlineMath math="9" /> hingga ke-<InlineMath math="12" />?
+
+# Penyelesaian
+
+Bayangkan massa kering biji seperti kotak bekal makanan. Selama berkecambah di awal, kecambah memakan cadangan makanannya untuk respirasi sehingga massa kering turun terus sampai titik terendah di hari ke-<InlineMath math="6" />. **Begitu kurva mulai naik antara hari ke-<InlineMath math="6" /> dan ke-<InlineMath math="9" />, fotosintesis resmi menang atas respirasi**.
+
+> Massa kering kecambah menurun selama respirasi lebih cepat daripada fotosintesis, lalu berbalik naik tepat ketika laju fotosintesis melampaui laju respirasi.
+
+Geser jumlah kecambah <InlineMath math="n" /> pada grafik massa kering berikut untuk melihat bagaimana kenaikan total <InlineMath math="0{,}6\text{ g}" /> dari hari ke-<InlineMath math="9" /> ke hari ke-<InlineMath math="12" /> dibagi ke setiap kecambah dan setiap hari.
+
+<MathVisual
+  title={<>Massa kering <InlineMath math="10" /> kecambah selama <InlineMath math="12" /> hari</>}
+  description={
+    <>
+      Massa turun hingga titik terendah pada hari ke-<InlineMath math="6" /> (
+      <InlineMath math="1{,}5\text{ g}" />), mulai naik di selang hari{" "}
+      <InlineMath math="6" /> ke <InlineMath math="9" />, lalu melesat naik di selang
+      hari <InlineMath math="9" /> ke <InlineMath math="12" />. Geser{" "}
+      <InlineMath math="n = 10" /> untuk melihat laju per kecambah per hari.
+    </>
+  }
+  footer={<>Titik balik terjadi pada hari ke-<InlineMath math="6" />, sehingga kenaikan pertama terjadi di hari <InlineMath math="6" /> sampai <InlineMath math="9" />.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 13 }, y: { min: 1.2, max: 2.4 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [{ name: "n", min: 1, max: 20, value: 10, step: 1, label: "n" }],
+    objects: [
+      { id: "s1", kind: "segment", appearance: "warning", from: { x: 0, y: 2.0 }, to: { x: 3, y: 1.7 } },
+      { id: "s2", kind: "segment", appearance: "warning", from: { x: 3, y: 1.7 }, to: { x: 6, y: 1.5 } },
+      { id: "s3", kind: "segment", appearance: "answer", from: { x: 6, y: 1.5 }, to: { x: 9, y: 1.6 } },
+      { id: "s4", kind: "segment", appearance: "primary", from: { x: 9, y: 1.6 }, to: { x: 12, y: 2.2 } },
+      { id: "p0", kind: "marker", appearance: "warning", x: "0", y: "2" },
+      { id: "p3", kind: "marker", appearance: "warning", x: "3", y: "1.7" },
+      { id: "p6", kind: "marker", appearance: "answer", x: "6", y: "1.5" },
+      { id: "p9", kind: "marker", appearance: "answer", x: "9", y: "1.6" },
+      { id: "p12", kind: "marker", appearance: "primary", x: "12", y: "2.2" },
+    ],
+    readouts: [
+      { key: "gain-total", formula: "0.6" },
+      { key: "gain-per-day", formula: "0.6 / (3 * n)" },
+    ],
+  }}
+  labels={{
+    n: <>Jumlah kecambah <InlineMath math="n" /></>,
+    "gain-total": <>Kenaikan total hari <InlineMath math="9" /> ke <InlineMath math="12" /> (<InlineMath math="\text{g}" />)</>,
+    "gain-per-day": <>Kenaikan per kecambah per hari (<InlineMath math="\text{g}" />)</>,
+  }}
+/>
+
+Walau daun pertama muncul hari ke-<InlineMath math="4" />, daun masih kecil sehingga respirasi tetap menang sampai hari ke-<InlineMath math="6" />. Ruas hijau pertama kali mendaki antara hari ke-<InlineMath math="6" /> dan ke-<InlineMath math="9" />.
+
+## Perhitungan laju kenaikan harian
+
+Bagi kenaikan massa <InlineMath math="10" /> kecambah selama <InlineMath math="3" /> hari dengan **jumlah kecambah dan jumlah hari sekaligus**.
 
 <BlockMath math="\begin{aligned}
-\text{kenaikan hari }9\text{ ke }12&=2{,}2-1{,}6=0{,}6\text{ g untuk }10\text{ kecambah}\\
-\text{per kecambah per hari}&=\frac{0{,}6}{10\times3}=0{,}020\text{ g}
+\Delta m_{9 \to 12} &= 2{,}2 - 1{,}6 = 0{,}6\text{ g untuk } 10\text{ kecambah} \\
+\text{laju per kecambah per hari} &= \frac{0{,}6}{10 \times 3} = \frac{0{,}6}{30} = 0{,}020\text{ g}
 \end{aligned}" />
 
-Daun muncul pada hari ke-<InlineMath math="4" />, tetapi butuh waktu sebelum fotosintesisnya melebihi respirasi. Jadi, jawabannya hari ke-<InlineMath math="6" /> sampai ke-<InlineMath math="9" /> dan <InlineMath math="0{,}020\text{ g}" />.
+Cek balik: <InlineMath math="0{,}020\text{ g}" /> dikali <InlineMath math="10" /> kecambah dikali <InlineMath math="3" /> hari kembali tepat ke <InlineMath math="0{,}6\text{ g}" />.
 
-# Mengapa pilihan lain salah
+## Mengapa pilihan lain salah
 
-- Hari ke-<InlineMath math="9" /> sampai ke-<InlineMath math="12" /> adalah kenaikan terbesar, padahal **kenaikan pertama sudah terjadi dari hari ke-<InlineMath math="6" />**.
-- <InlineMath math="0{,}20\text{ g}" /> belum dibagi dengan jumlah kecambah, padahal datanya untuk <InlineMath math="10" /> kecambah.
-- <InlineMath math="0{,}060\text{ g}" /> adalah kenaikan per kecambah untuk seluruh tiga hari, belum per hari.
+- Selang hari ke-<InlineMath math="9" /> sampai ke-<InlineMath math="12" /> memang naik paling tajam, tetapi **kenaikan pertama sudah terjadi sejak hari ke-<InlineMath math="6" />**.
+- Pilihan <InlineMath math="0{,}20\text{ g}" /> belum dibagi <InlineMath math="10" /> kecambah, padahal data tabel untuk <InlineMath math="10" /> kecambah.
+- Pilihan <InlineMath math="0{,}060\text{ g}" /> adalah kenaikan per kecambah selama tiga hari sekaligus, belum dibagi <InlineMath math="3" /> hari.
+
+# Jawaban
+
+Fotosintesis pertama kali melampaui respirasi pada selang hari ke-<InlineMath math="6" /> sampai hari ke-<InlineMath math="9" />, dan kenaikan rata-rata massa keringnya adalah <InlineMath math="0{,}020\text{ g}" /> per kecambah per hari.

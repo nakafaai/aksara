@@ -1,17 +1,80 @@
-# Count the ovulation day from the end of the cycle
+# Given
 
-The luteal phase is the <InlineMath math="14" /> days **after the day of ovulation up to the last day of the cycle**, so ovulation does not always fall on day <InlineMath math="14" />. The last day of this cycle is day <InlineMath math="32" />, so ovulation falls on day <InlineMath math="18" /> and the luteal phase runs from day <InlineMath math="19" /> to day <InlineMath math="32" />.
+A woman has a regular **<InlineMath math="32" />-day menstrual cycle**, counting the first day of menstruation as day <InlineMath math="1" />. The luteal phase after ovulation through the final day always lasts exactly <InlineMath math="14" /> days.
+
+Intercourse can lead to fertilisation from <InlineMath math="3" /> days before ovulation up to <InlineMath math="1" /> day after ovulation.
+
+# Asked
+
+During which range of cycle days can intercourse lead to fertilisation?
+
+# Solution
+
+Picture counting backwards from the finish line of a <InlineMath math="32" />-day calendar. Because the luteal phase after ovulation **always lasts <InlineMath math="14" /> days**, ovulation does not sit on day <InlineMath math="14" /> but <InlineMath math="14" /> days before day <InlineMath math="32" />.
+
+> In any regular menstrual cycle, ovulation is always found by counting fourteen days back from the final day of the cycle.
+
+Slide cycle length <InlineMath math="a" /> below from <InlineMath math="28" /> days to <InlineMath math="32" /> days to watch ovulation and the fertile window shift forward together.
+
+<MathVisual
+  title={<>Ovulation day and fertile window by cycle length</>}
+  description={
+    <>
+      The blue line tracks ovulation day (<InlineMath math="a - 14" />), while
+      the two green lines bound the fertile window (<InlineMath math="a - 17" />{" "}
+      to <InlineMath math="a - 13" />). Set <InlineMath math="a" /> to{" "}
+      <InlineMath math="32" /> days.
+    </>
+  }
+  footer={<>In a <InlineMath math="32" />-day cycle, ovulation hits day <InlineMath math="18" /> and the fertile window spans days <InlineMath math="15" /> to <InlineMath math="19" />.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 22, max: 38 }, y: { min: 5, max: 26 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [{ name: "a", min: 24, max: 36, value: 32, step: 2, label: "a" }],
+    objects: [
+      { id: "ovul", kind: "function", appearance: "primary", formula: "x - 14", domain: { min: 24, max: 36 } },
+      { id: "early", kind: "function", appearance: "answer", formula: "x - 17", domain: { min: 24, max: 36 } },
+      { id: "late", kind: "function", appearance: "answer", formula: "x - 13", domain: { min: 24, max: 36 } },
+      { id: "trap28", kind: "marker", appearance: "warning", x: "28", y: "14" },
+      { id: "m-early", kind: "marker", appearance: "answer", x: "a", y: "a - 17" },
+      { id: "m-ovul", kind: "marker", appearance: "primary", x: "a", y: "a - 14" },
+      { id: "m-late", kind: "marker", appearance: "answer", x: "a", y: "a - 13" },
+    ],
+    readouts: [
+      { key: "ovulation-day", formula: "a - 14" },
+      { key: "fertile-start", formula: "a - 17" },
+      { key: "fertile-end", formula: "a - 13" },
+    ],
+  }}
+  labels={{
+    a: <>Cycle length (days)</>,
+    "ovulation-day": <>Ovulation day</>,
+    "fertile-start": <>Earliest fertile day</>,
+    "fertile-end": <>Latest fertile day</>,
+  }}
+/>
+
+The orange marker marks the textbook <InlineMath math="28" />-day cycle with ovulation on day <InlineMath math="14" />. A <InlineMath math="32" />-day cycle shifts the entire fertile band <InlineMath math="4" /> days later.
+
+## Ovulation and fertile window calculation
+
+Subtract <InlineMath math="14" /> from <InlineMath math="32" /> to locate **ovulation day**, then apply the <InlineMath math="3" />-day before and <InlineMath math="1" />-day after bounds.
 
 <BlockMath math="\begin{aligned}
-\text{ovulation}&=32-14=\text{day }18\\
-\text{earliest}&=18-3=\text{day }15\ \text{(3 days before ovulation)}\\
-\text{latest}&=18+1=\text{day }19\ \text{(1 day after ovulation)}
+\text{ovulation day} &= 32 - 14 = \text{day } 18 \\
+\text{earliest day} &= 18 - 3 = \text{day } 15 \\
+\text{latest day} &= 18 + 1 = \text{day } 19
 \end{aligned}" />
 
-So intercourse from day <InlineMath math="15" /> to day <InlineMath math="19" /> can lead to fertilisation.
+Quick check: counting day <InlineMath math="19" /> through day <InlineMath math="32" /> inclusive spans exactly <InlineMath math="14" /> luteal days.
 
-# Why the other options are wrong
+## Why other options fail
 
-- Day <InlineMath math="11" /> to day <InlineMath math="15" /> assumes ovulation is always on day <InlineMath math="14" />, but **this cycle is <InlineMath math="32" /> days long**.
-- Day <InlineMath math="18" /> to day <InlineMath math="21" /> counts three days forwards from ovulation, but the three-day limit applies **before** the day of ovulation.
-- Day <InlineMath math="14" /> to day <InlineMath math="18" /> shifts the window one day too early and misses day <InlineMath math="19" />, when the ovum can still be fertilised.
+- Day <InlineMath math="11" /> to day <InlineMath math="15" /> assumes ovulation always falls on day <InlineMath math="14" />, even though **this cycle lasts <InlineMath math="32" /> days**.
+- Day <InlineMath math="18" /> to day <InlineMath math="21" /> counts <InlineMath math="3" /> days after ovulation instead of before ovulation.
+- Day <InlineMath math="14" /> to day <InlineMath math="18" /> shifts the window one day early and omits day <InlineMath math="19" />.
+
+# Answer
+
+Intercourse can lead to fertilisation from day <InlineMath math="15" /> to day <InlineMath math="19" />.

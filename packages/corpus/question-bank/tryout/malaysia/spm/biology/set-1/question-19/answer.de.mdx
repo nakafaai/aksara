@@ -1,17 +1,73 @@
-# Den atmungsunabhängigen Teil abtrennen
+# Gegeben
 
-Mit Cyanid bleiben <InlineMath math="2" /> Einheiten Aufnahme, die nicht von der Atmung abhängen. **Dieser Teil muss von beiden Bedingungen abgezogen werden**, bevor du den aktiven Transport vergleichst.
+Pflanzenwurzeln nehmen Kaliumionen gegen ein Konzentrationsgefälle auf: <InlineMath math="20" /> Einheiten bei Luftzufuhr, <InlineMath math="12" /> Einheiten bei Stickstoff und **<InlineMath math="2" /> Einheiten mit Cyanid**, das jede Zellatmung blockiert.
+
+# Gesucht
+
+Wie viel Prozent der aktiven Aufnahme an Luft bleiben durch anaerobe Atmung unter Stickstoff erhalten?
+
+# Lösung
+
+Stell dir zwei Wasserpumpen vor, bei denen auch ohne Strom (Cyanid) noch <InlineMath math="2" /> Eimer Wasser von allein einsickern. Bevor man die aktive Pumpleistung vergleicht, **muss man diese <InlineMath math="2" /> passiven Einheiten von beiden Messwerten abziehen**.
+
+> Die reine aktive Aufnahme ergibt sich erst nach Abzug des atmungsunabhängigen passiven Anteils aus dem Cyanidversuch.
+
+Schieb den passiven Anteil <InlineMath math="p" /> im Graphen von <InlineMath math="0" /> auf <InlineMath math="2" /> Einheiten und verfolge, wie der Prozentsatz von der <InlineMath math="60\%" />-Falle auf <InlineMath math="56\%" /> sinkt.
+
+<MathVisual
+  title={<>Erhaltener Anteil aktiver Aufnahme je passivem Grundwert</>}
+  description={
+    <>
+      Die grüne Kurve zeigt <InlineMath math="100(12 - p) / (20 - p)" /> nach
+      Abzug des passiven Anteils <InlineMath math="p" /> bei beiden Versuchen.
+      Schieb <InlineMath math="p" /> von <InlineMath math="0" /> auf <InlineMath math="2" />.
+    </>
+  }
+  footer={<>Nach Abzug von <InlineMath math="p = 2" /> passiven Einheiten fällt der Anteil von <InlineMath math="60\%" /> auf <InlineMath math="55{,}6\%" />.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.4, max: 6.4 }, y: { min: 40, max: 64 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [{ name: "p", min: 0, max: 6, value: 2, step: 1, label: "p" }],
+    objects: [
+      { id: "pct", kind: "function", appearance: "answer", formula: "100 * (12 - x) / (20 - x)", domain: { min: 0, max: 6 } },
+      { id: "raw", kind: "marker", appearance: "warning", x: "0", y: "60" },
+      { id: "corr", kind: "marker", appearance: "answer", x: "p", y: "100 * (12 - p) / (20 - p)" },
+    ],
+    readouts: [
+      { key: "active-air", formula: "20 - p" },
+      { key: "active-nitrogen", formula: "12 - p" },
+      { key: "percent-kept", formula: "100 * (12 - p) / (20 - p)" },
+    ],
+  }}
+  labels={{
+    p: <>Passive Aufnahme (Cyanid)</>,
+    "active-air": <>Aktiv bei Luft (Einheiten)</>,
+    "active-nitrogen": <>Aktiv bei Stickstoff (Einheiten)</>,
+    "percent-kept": <>Erhaltener Aktivanteil (<InlineMath math="\%" />)</>,
+  }}
+/>
+
+Der orange Punkt bei <InlineMath math="p = 0" /> zeigt die <InlineMath math="60\%" />-Falle ohne Cyanidabzug. Bei <InlineMath math="p = 2" /> liegt der grüne Punkt bei <InlineMath math="55{,}6\%" /> (rund <InlineMath math="56\%" />).
+
+## Passiven Anteil abziehen
+
+Ziehe **die <InlineMath math="2" /> atmungsfreien Einheiten** von Luft und Stickstoff ab und bilde das Verhältnis.
 
 <BlockMath math="\begin{aligned}
-\text{aktiv an Luft}&=20-2=18\\
-\text{aktiv unter Stickstoff}&=12-2=10\\
-\frac{10}{18}\times100\%&\approx56\%
+\text{aktiv bei Luft} &= 20 - 2 = 18\text{ Einheiten} \\
+\text{aktiv bei Stickstoff} &= 12 - 2 = 10\text{ Einheiten} \\
+\text{Anteil} &= \frac{10}{18} \cdot 100\% \approx 55{,}6\% \approx 56\%
 \end{aligned}" />
 
-Ohne Sauerstoff liefert die anaerobe Atmung noch etwas ATP. Es bleiben also etwa <InlineMath math="56\%" /> des aktiven Transports erhalten.
+Ohne Sauerstoff liefert die anaerobe Atmung noch genug ATP für etwas mehr als die Hälfte des aktiven Transports.
 
-# Warum die anderen Antworten falsch sind
+## Warum andere Optionen falsch sind
 
-- <InlineMath math="60\%" /> teilt <InlineMath math="12" /> durch <InlineMath math="20" />, doch **beide Werte enthalten noch <InlineMath math="2" /> Einheiten, die kein aktiver Transport sind**.
-- <InlineMath math="50\%" /> teilt die aktive Aufnahme unter Stickstoff durch die gesamte Aufnahme an Luft.
-- <InlineMath math="67\%" /> teilt die gesamte Aufnahme unter Stickstoff durch die aktive Aufnahme an Luft.
+- Der Wert <InlineMath math="60\%" /> teilt <InlineMath math="12" /> durch <InlineMath math="20" />, obwohl **beide Zahlen noch <InlineMath math="2" /> passive Einheiten enthalten**.
+- Der Wert <InlineMath math="50\%" /> teilt aktive Stickstoffaufnahme (<InlineMath math="10" />) durch gesamte Luftaufnahme (<InlineMath math="20" />).
+- Der Wert <InlineMath math="67\%" /> teilt gesamte Stickstoffaufnahme (<InlineMath math="12" />) durch aktive Luftaufnahme (<InlineMath math="18" />).
+
+# Antwort
+
+Etwa <InlineMath math="56\%" /> der aktiven Aufnahme an Luft bleiben durch anaerobe Atmung erhalten.

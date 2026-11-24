@@ -1,17 +1,73 @@
-# Asingkan bahagian yang tidak memerlukan respirasi
+# Diberi
 
-Dengan sianida masih ada <InlineMath math="2" /> unit penyerapan yang tidak bergantung kepada respirasi. **Bahagian itu mesti ditolak daripada kedua-dua keadaan** sebelum pengangkutan aktif dibandingkan.
+Akar tumbuhan menyerap ion kalium melawan kecerunan kepekatan pada kadar <InlineMath math="20" /> unit dalam larutan berudara, <InlineMath math="12" /> unit dalam larutan bergas nitrogen, dan **<InlineMath math="2" /> unit dengan sianida** yang menghentikan semua respirasi.
+
+# Ditanya
+
+Berapa peratuskah pengambilan aktif dalam udara yang masih dikekalkan oleh respirasi anaerob apabila larutan dibuihkan dengan gas nitrogen?
+
+# Penyelesaian
+
+Bayangkan membandingkan dua pam air apabila masih ada <InlineMath math="2" /> baldi air yang masuk sendiri walaupun bekalan elektrik diputuskan (sianida). Sebelum membandingkan kerja kedua-dua pam aktif, **bahagian pasif <InlineMath math="2" /> unit itu mesti ditolak daripada kedua-dua bacaan**.
+
+> Kadar pengangkutan aktif sebenar diperoleh dengan menolak bahagian pasif yang tidak bergantung pada respirasi (bacaan sianida) daripada setiap bacaan jumlah.
+
+Gerakkan nilai pengambilan pasif <InlineMath math="p" /> di bawah daripada <InlineMath math="0" /> kepada <InlineMath math="2" /> unit untuk melihat peratus aktif turun daripada perangkap <InlineMath math="60\%" /> kepada <InlineMath math="56\%" />.
+
+<MathVisual
+  title={<>Peratus pengambilan aktif dikekalkan mengikut kadar pasif</>}
+  description={
+    <>
+      Lengkung hijau mengira <InlineMath math="100(12 - p) / (20 - p)" /> selepas
+      bahagian pasif <InlineMath math="p" /> ditolak daripada kedua-dua keadaan.
+      Gerakkan <InlineMath math="p" /> dari <InlineMath math="0" /> ke <InlineMath math="2" />.
+    </>
+  }
+  footer={<>Menolak <InlineMath math="p = 2" /> unit pasif mengubah nisbah daripada perangkap <InlineMath math="60\%" /> kepada <InlineMath math="55.6\%" />.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.4, max: 6.4 }, y: { min: 40, max: 64 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [{ name: "p", min: 0, max: 6, value: 2, step: 1, label: "p" }],
+    objects: [
+      { id: "pct", kind: "function", appearance: "answer", formula: "100 * (12 - x) / (20 - x)", domain: { min: 0, max: 6 } },
+      { id: "raw", kind: "marker", appearance: "warning", x: "0", y: "60" },
+      { id: "corr", kind: "marker", appearance: "answer", x: "p", y: "100 * (12 - p) / (20 - p)" },
+    ],
+    readouts: [
+      { key: "active-air", formula: "20 - p" },
+      { key: "active-nitrogen", formula: "12 - p" },
+      { key: "percent-kept", formula: "100 * (12 - p) / (20 - p)" },
+    ],
+  }}
+  labels={{
+    p: <>Pengambilan pasif (sianida)</>,
+    "active-air": <>Aktif dalam udara (unit)</>,
+    "active-nitrogen": <>Aktif dalam nitrogen (unit)</>,
+    "percent-kept": <>Aktif dikekalkan (<InlineMath math="\%" />)</>,
+  }}
+/>
+
+Penanda jingga pada <InlineMath math="p = 0" /> menunjukkan kesilapan <InlineMath math="60\%" /> jika data sianida diabaikan. Pada <InlineMath math="p = 2" />, penanda hijau jatuh ke <InlineMath math="55.6\%" /> (hampir <InlineMath math="56\%" />).
+
+## Pengasingan bahagian pasif dan peratus
+
+Tolak **<InlineMath math="2" /> unit bukan respirasi** daripada bacaan udara dan nitrogen, lalu cari peratusnya.
 
 <BlockMath math="\begin{aligned}
-\text{aktif dalam udara}&=20-2=18\\
-\text{aktif dalam nitrogen}&=12-2=10\\
-\frac{10}{18}\times100\%&\approx56\%
+\text{aktif dalam udara} &= 20 - 2 = 18\text{ unit} \\
+\text{aktif dalam nitrogen} &= 12 - 2 = 10\text{ unit} \\
+\text{peratus} &= \frac{10}{18} \times 100\% \approx 55.6\% \approx 56\%
 \end{aligned}" />
 
-Tanpa oksigen, respirasi anaerob masih membekalkan sedikit ATP. Jadi, kira-kira <InlineMath math="56\%" /> pengangkutan aktif dikekalkan.
+Tanpa oksigen, respirasi anaerob masih membekalkan sebahagian ATP untuk mengekalkan lebih separuh pengangkutan aktif.
 
-# Kenapa pilihan lain salah
+## Mengapa pilihan lain salah
 
-- <InlineMath math="60\%" /> membahagi <InlineMath math="12" /> dengan <InlineMath math="20" />, sedangkan **kedua-dua nilai itu masih mengandungi <InlineMath math="2" /> unit yang bukan pengangkutan aktif**.
-- <InlineMath math="50\%" /> membahagi penyerapan aktif dalam nitrogen dengan jumlah penyerapan dalam udara.
-- <InlineMath math="67\%" /> membahagi jumlah penyerapan dalam nitrogen dengan penyerapan aktif dalam udara.
+- Pilihan <InlineMath math="60\%" /> membahagi <InlineMath math="12" /> dengan <InlineMath math="20" />, padahal **kedua-dua nilai masih mengandungi <InlineMath math="2" /> unit pasif**.
+- Pilihan <InlineMath math="50\%" /> membahagi pengambilan aktif nitrogen (<InlineMath math="10" />) dengan jumlah pengambilan udara (<InlineMath math="20" />).
+- Pilihan <InlineMath math="67\%" /> membahagi jumlah pengambilan nitrogen (<InlineMath math="12" />) dengan pengambilan aktif udara (<InlineMath math="18" />).
+
+# Jawapan
+
+Kira-kira <InlineMath math="56\%" /> pengambilan aktif dalam udara masih dikekalkan oleh respirasi anaerob dalam gas nitrogen.

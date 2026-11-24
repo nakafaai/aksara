@@ -1,17 +1,80 @@
-# Den Eisprung vom Zyklusende aus zählen
+# Gegeben
 
-Die Lutealphase umfasst die <InlineMath math="14" /> Tage **nach dem Tag des Eisprungs bis zum letzten Zyklustag**, der Eisprung fällt also nicht immer auf Tag <InlineMath math="14" />. Der letzte Tag dieses Zyklus ist Tag <InlineMath math="32" />, der Eisprung fällt also auf Tag <InlineMath math="18" />, und die Lutealphase reicht von Tag <InlineMath math="19" /> bis Tag <InlineMath math="32" />.
+Der Menstruationszyklus einer Frau dauert regelmäßig **<InlineMath math="32" /> Tage**, wobei der erste Tag der Blutung als Tag <InlineMath math="1" /> zählt. Die Lutealphase nach dem Eisprung bis zum letzten Zyklustag dauert stets exakt <InlineMath math="14" /> Tage.
+
+Eine Befruchtung ist frühestens <InlineMath math="3" /> Tage vor dem Eisprung und spätestens <InlineMath math="1" /> Tag danach möglich.
+
+# Gesucht
+
+In welchem Tagesbereich kann Geschlechtsverkehr zu einer Befruchtung führen?
+
+# Lösung
+
+Stell dir einen Kalender mit <InlineMath math="32" /> Tagen vor, bei dem du vom Ende her rückwärts zählst. Weil die Lutealphase nach dem Eisprung **immer genau <InlineMath math="14" /> Tage dauert**, liegt der Eisprung nicht an Tag <InlineMath math="14" />, sondern <InlineMath math="14" /> Tage vor Tag <InlineMath math="32" />.
+
+> Bei jedem regelmäßigen Zyklus findet man den Eisprung, indem man vierzehn Tage vom letzten Zyklustag zurückrechnet.
+
+Schieb die Zykluslänge <InlineMath math="a" /> von <InlineMath math="28" /> auf <InlineMath math="32" /> Tage, um die Verschiebung von Eisprung und fruchtbarem Fenster zu verfolgen.
+
+<MathVisual
+  title={<>Eisprung und fruchtbares Fenster je Zykluslänge</>}
+  description={
+    <>
+      Die blaue Gerade zeigt den Eisprung (<InlineMath math="a - 14" />), die beiden
+      grünen Geraden begrenzen das fruchtbare Fenster (<InlineMath math="a - 17" /> bis{" "}
+      <InlineMath math="a - 13" />). Stell <InlineMath math="a" /> auf{" "}
+      <InlineMath math="32" /> Tage.
+    </>
+  }
+  footer={<>Bei <InlineMath math="32" /> Tagen liegt der Eisprung an Tag <InlineMath math="18" /> und das Fenster von Tag <InlineMath math="15" /> bis <InlineMath math="19" />.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 22, max: 38 }, y: { min: 5, max: 26 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [{ name: "a", min: 24, max: 36, value: 32, step: 2, label: "a" }],
+    objects: [
+      { id: "ovul", kind: "function", appearance: "primary", formula: "x - 14", domain: { min: 24, max: 36 } },
+      { id: "early", kind: "function", appearance: "answer", formula: "x - 17", domain: { min: 24, max: 36 } },
+      { id: "late", kind: "function", appearance: "answer", formula: "x - 13", domain: { min: 24, max: 36 } },
+      { id: "trap28", kind: "marker", appearance: "warning", x: "28", y: "14" },
+      { id: "m-early", kind: "marker", appearance: "answer", x: "a", y: "a - 17" },
+      { id: "m-ovul", kind: "marker", appearance: "primary", x: "a", y: "a - 14" },
+      { id: "m-late", kind: "marker", appearance: "answer", x: "a", y: "a - 13" },
+    ],
+    readouts: [
+      { key: "ovulation-day", formula: "a - 14" },
+      { key: "fertile-start", formula: "a - 17" },
+      { key: "fertile-end", formula: "a - 13" },
+    ],
+  }}
+  labels={{
+    a: <>Zykluslänge (Tage)</>,
+    "ovulation-day": <>Tag des Eisprungs</>,
+    "fertile-start": <>Frühester fruchtbarer Tag</>,
+    "fertile-end": <>Spätester fruchtbarer Tag</>,
+  }}
+/>
+
+Der orange Punkt markiert den Standardzyklus von <InlineMath math="28" /> Tagen mit Eisprung an Tag <InlineMath math="14" />. Ein <InlineMath math="32" />-Tage-Zyklus verschiebt das gesamte Fenster um <InlineMath math="4" /> Tage nach hinten.
+
+## Eisprung und Zeitfenster berechnen
+
+Ziehe <InlineMath math="14" /> von <InlineMath math="32" /> ab für **den Eisprungtag** und bestimme anschließend den frühesten und spätesten Tag.
 
 <BlockMath math="\begin{aligned}
-\text{Eisprung}&=32-14=\text{Tag }18\\
-\text{frühestens}&=18-3=\text{Tag }15\ \text{(3 Tage vor dem Eisprung)}\\
-\text{spätestens}&=18+1=\text{Tag }19\ \text{(1 Tag nach dem Eisprung)}
+\text{Eisprung} &= 32 - 14 = \text{Tag } 18 \\
+\text{frühestens} &= 18 - 3 = \text{Tag } 15 \\
+\text{spätestens} &= 18 + 1 = \text{Tag } 19
 \end{aligned}" />
 
-Geschlechtsverkehr von Tag <InlineMath math="15" /> bis Tag <InlineMath math="19" /> kann also zur Befruchtung führen.
+Gegenprobe: Tag <InlineMath math="19" /> bis einschließlich Tag <InlineMath math="32" /> umfasst genau <InlineMath math="14" /> Lutealtage.
 
-# Warum die anderen Antworten falsch sind
+## Warum andere Optionen falsch sind
 
-- Tag <InlineMath math="11" /> bis <InlineMath math="15" /> nimmt an, der Eisprung sei immer an Tag <InlineMath math="14" />, doch **dieser Zyklus dauert <InlineMath math="32" /> Tage**.
-- Tag <InlineMath math="18" /> bis <InlineMath math="21" /> zählt drei Tage vom Eisprung aus nach vorn, doch die Grenze von drei Tagen gilt **vor** dem Tag des Eisprungs.
-- Tag <InlineMath math="14" /> bis <InlineMath math="18" /> verschiebt das Fenster um einen Tag zu früh und lässt Tag <InlineMath math="19" /> aus, an dem die Eizelle noch befruchtbar ist.
+- Tag <InlineMath math="11" /> bis Tag <InlineMath math="15" /> geht stets von einem Eisprung an Tag <InlineMath math="14" /> aus, doch **dieser Zyklus dauert <InlineMath math="32" /> Tage**.
+- Tag <InlineMath math="18" /> bis Tag <InlineMath math="21" /> zählt die <InlineMath math="3" /> Tage nach dem Eisprung statt davor.
+- Tag <InlineMath math="14" /> bis Tag <InlineMath math="18" /> verschiebt das Fenster um einen Tag zu früh und lässt Tag <InlineMath math="19" /> aus.
+
+# Antwort
+
+Geschlechtsverkehr kann von Tag <InlineMath math="15" /> bis Tag <InlineMath math="19" /> zu einer Befruchtung führen.

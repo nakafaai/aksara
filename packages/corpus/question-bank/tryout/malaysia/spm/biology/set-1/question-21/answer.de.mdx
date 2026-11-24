@@ -1,16 +1,77 @@
-# Die Trockenmasse steigt, wenn die Fotosynthese überwiegt
+# Gegeben
 
-Die Trockenmasse sinkt, solange die Atmung den Nährstoffvorrat des Samens verbraucht, und **steigt, sobald die Fotosynthese die Atmung übertrifft**. Die kleinste Masse liegt an Tag <InlineMath math="6" />, der erste Anstieg zwischen Tag <InlineMath math="6" /> und Tag <InlineMath math="9" />.
+Bohnensamen keimen, und die **Trockenmasse von <InlineMath math="10" /> Keimlingen** wird alle <InlineMath math="3" /> Tage gewogen: <InlineMath math="2{,}0\text{ g}" /> (Tag <InlineMath math="0" />), <InlineMath math="1{,}7\text{ g}" /> (Tag <InlineMath math="3" />), <InlineMath math="1{,}5\text{ g}" /> (Tag <InlineMath math="6" />), <InlineMath math="1{,}6\text{ g}" /> (Tag <InlineMath math="9" />) und <InlineMath math="2{,}2\text{ g}" /> (Tag <InlineMath math="12" />). Die ersten Blätter erscheinen an Tag <InlineMath math="4" />.
+
+# Gesucht
+
+In welchem Zeitraum übersteigt die Fotosyntheserate erstmals die Atmungsrate, und wie groß ist der mittlere Trockenmassezuwachs pro Keimling und Tag von Tag <InlineMath math="9" /> bis Tag <InlineMath math="12" />?
+
+# Lösung
+
+Stell dir die Trockenmasse wie eine gefüllte Brotdose vor. Zu Beginn verbraucht der Keimling seinen Vorrat für die Atmung, weshalb die Masse bis zum Tiefpunkt an Tag <InlineMath math="6" /> sinkt. **Sobald die Kurve zwischen Tag <InlineMath math="6" /> und Tag <InlineMath math="9" /> wieder steigt, übertrifft die Fotosynthese die Atmung**.
+
+> Die Trockenmasse eines Keimlings fällt, solange die Atmung überwiegt, und steigt wieder an, sobald die Fotosynthese stärker wird als die Atmung.
+
+Schieb die Anzahl der Keimlinge <InlineMath math="n" /> im Graphen, um zu sehen, wie sich der Zuwachs von <InlineMath math="0{,}6\text{ g}" /> zwischen Tag <InlineMath math="9" /> und Tag <InlineMath math="12" /> auf jeden Keimling und jeden Tag verteilt.
+
+<MathVisual
+  title={<>Trockenmasse von <InlineMath math="10" /> Keimlingen über <InlineMath math="12" /> Tage</>}
+  description={
+    <>
+      Das Minimum liegt an Tag <InlineMath math="6" /> (<InlineMath math="1{,}5\text{ g}" />),
+      der erste Anstieg folgt von Tag <InlineMath math="6" /> bis Tag <InlineMath math="9" />,
+      und der steile Zuwachs von Tag <InlineMath math="9" /> bis Tag <InlineMath math="12" />.
+      Stell <InlineMath math="n = 10" /> ein.
+    </>
+  }
+  footer={<>Der Wendepunkt liegt an Tag <InlineMath math="6" />, also beginnt der Nettozuwachs von Tag <InlineMath math="6" /> bis Tag <InlineMath math="9" />.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 13 }, y: { min: 1.2, max: 2.4 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [{ name: "n", min: 1, max: 20, value: 10, step: 1, label: "n" }],
+    objects: [
+      { id: "s1", kind: "segment", appearance: "warning", from: { x: 0, y: 2.0 }, to: { x: 3, y: 1.7 } },
+      { id: "s2", kind: "segment", appearance: "warning", from: { x: 3, y: 1.7 }, to: { x: 6, y: 1.5 } },
+      { id: "s3", kind: "segment", appearance: "answer", from: { x: 6, y: 1.5 }, to: { x: 9, y: 1.6 } },
+      { id: "s4", kind: "segment", appearance: "primary", from: { x: 9, y: 1.6 }, to: { x: 12, y: 2.2 } },
+      { id: "p0", kind: "marker", appearance: "warning", x: "0", y: "2" },
+      { id: "p3", kind: "marker", appearance: "warning", x: "3", y: "1.7" },
+      { id: "p6", kind: "marker", appearance: "answer", x: "6", y: "1.5" },
+      { id: "p9", kind: "marker", appearance: "answer", x: "9", y: "1.6" },
+      { id: "p12", kind: "marker", appearance: "primary", x: "12", y: "2.2" },
+    ],
+    readouts: [
+      { key: "gain-total", formula: "0.6" },
+      { key: "gain-per-day", formula: "0.6 / (3 * n)" },
+    ],
+  }}
+  labels={{
+    n: <>Anzahl Keimlinge <InlineMath math="n" /></>,
+    "gain-total": <>Gesamtzuwachs Tag <InlineMath math="9" /> bis <InlineMath math="12" /> (<InlineMath math="\text{g}" />)</>,
+    "gain-per-day": <>Zuwachs pro Keimling und Tag (<InlineMath math="\text{g}" />)</>,
+  }}
+/>
+
+Obwohl die ersten Blätter an Tag <InlineMath math="4" /> erscheinen, überholt die Fotosynthese die Atmung erst nach Tag <InlineMath math="6" />. Das grüne Segment zeigt diesen ersten Anstieg.
+
+## Mittleren Tageszuwachs berechnen
+
+Teile den Zuwachs der <InlineMath math="10" /> Keimlinge über <InlineMath math="3" /> Tage durch **Keimlingszahl und Tageszahl**.
 
 <BlockMath math="\begin{aligned}
-\text{Zunahme von Tag }9\text{ bis }12&=2{,}2-1{,}6=0{,}6\text{ g für }10\text{ Keimlinge}\\
-\text{pro Keimling und Tag}&=\frac{0{,}6}{10\times3}=0{,}020\text{ g}
+\Delta m_{9 \to 12} &= 2{,}2 - 1{,}6 = 0{,}6\text{ g für } 10\text{ Keimlinge} \\
+\text{Zuwachs pro Keimling und Tag} &= \frac{0{,}6}{10 \cdot 3} = \frac{0{,}6}{30} = 0{,}020\text{ g}
 \end{aligned}" />
 
-Die Blätter erscheinen an Tag <InlineMath math="4" />, brauchen aber Zeit, bis ihre Fotosynthese die Atmung übertrifft. Die Antwort ist also Tag <InlineMath math="6" /> bis Tag <InlineMath math="9" /> und <InlineMath math="0{,}020\text{ g}" />.
+Gegenprobe: <InlineMath math="0{,}020\text{ g}" /> mal <InlineMath math="10" /> Keimlinge mal <InlineMath math="3" /> Tage ergibt exakt <InlineMath math="0{,}6\text{ g}" />.
 
-# Warum die anderen Antworten falsch sind
+## Warum andere Optionen falsch sind
 
-- Tag <InlineMath math="9" /> bis Tag <InlineMath math="12" /> ist der größte Anstieg, doch **der erste Anstieg beginnt schon an Tag <InlineMath math="6" />**.
-- <InlineMath math="0{,}20\text{ g}" /> ist noch nicht durch die Zahl der Keimlinge geteilt, die Daten gelten aber für <InlineMath math="10" /> Keimlinge.
-- <InlineMath math="0{,}060\text{ g}" /> ist die Zunahme pro Keimling über alle drei Tage, nicht pro Tag.
+- Tag <InlineMath math="9" /> bis Tag <InlineMath math="12" /> bringt zwar den größten Anstieg, doch **der erste Anstieg beginnt schon an Tag <InlineMath math="6" />**.
+- Der Wert <InlineMath math="0{,}20\text{ g}" /> teilt noch nicht durch <InlineMath math="10" /> Keimlinge.
+- Der Wert <InlineMath math="0{,}060\text{ g}" /> ist der Zuwachs pro Keimling über alle <InlineMath math="3" /> Tage statt pro Tag.
+
+# Antwort
+
+Die Fotosynthese übersteigt die Atmung erstmals zwischen Tag <InlineMath math="6" /> und Tag <InlineMath math="9" />, und der mittlere Zuwachs beträgt <InlineMath math="0{,}020\text{ g}" /> pro Keimling und Tag.

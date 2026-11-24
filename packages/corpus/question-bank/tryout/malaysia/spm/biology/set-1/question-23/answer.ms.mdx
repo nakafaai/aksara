@@ -1,11 +1,65 @@
-# Faktor yang menaikkan kadar apabila ditambah
+# Diberi
 
-Faktor pengehad ialah faktor yang **apabila ditambah, kadar fotosintesis turut naik**. Bandingkan baris dalam jadual yang hanya berbeza pada satu faktor.
+Jadual merekodkan kadar fotosintesis relatif pada keamatan cahaya <InlineMath math="1" /> hingga <InlineMath math="5" /> unit di bawah tiga keadaan: **<InlineMath math="0.04\%\ \text{CO}_2" /> pada <InlineMath math="25^\circ\text{C}" />** (<InlineMath math="10" />, <InlineMath math="20" />, <InlineMath math="28" />, <InlineMath math="30" />, <InlineMath math="30" />), **<InlineMath math="0.10\%\ \text{CO}_2" /> pada <InlineMath math="25^\circ\text{C}" />** (<InlineMath math="10" />, <InlineMath math="20" />, <InlineMath math="30" />, <InlineMath math="40" />, <InlineMath math="40" />), dan **<InlineMath math="0.10\%\ \text{CO}_2" /> pada <InlineMath math="35^\circ\text{C}" />** (<InlineMath math="10" />, <InlineMath math="20" />, <InlineMath math="30" />, <InlineMath math="40" />, <InlineMath math="52" />).
 
-Pada keamatan cahaya <InlineMath math="1" /> unit, ketiga-tiga baris memberi <InlineMath math="10" />, walaupun kepekatan karbon dioksida dan suhu berbeza. Jadi menambah karbon dioksida atau suhu tiada kesan, dan cahaya yang mengehadkan. Pada <InlineMath math="5" /> unit dengan <InlineMath math="0.10\%" /> karbon dioksida dan <InlineMath math="25^\circ\text{C}" />, kadar kekal <InlineMath math="40" /> walaupun cahaya naik daripada <InlineMath math="4" /> kepada <InlineMath math="5" />, jadi cahaya tidak lagi mengehadkan. Menaikkan suhu kepada <InlineMath math="35^\circ\text{C}" /> menaikkan kadar kepada <InlineMath math="52" />, jadi suhu yang mengehadkan. Maka, pada <InlineMath math="1" /> unit faktor pengehadnya keamatan cahaya, dan pada <InlineMath math="5" /> unit faktor pengehadnya suhu.
+# Ditanya
 
-# Kenapa pilihan lain salah
+Faktor apakah yang mengehadkan kadar fotosintesis pada keamatan cahaya <InlineMath math="1" /> unit, dan pada <InlineMath math="5" /> unit dengan <InlineMath math="0.10\%\ \text{CO}_2" /> pada <InlineMath math="25^\circ\text{C}" />?
 
-- Cahaya pada <InlineMath math="5" /> unit salah, kerana kadar sudah mendatar dari <InlineMath math="4" /> ke <InlineMath math="5" /> unit, jadi **menambah cahaya tidak menaikkan kadar**.
-- Karbon dioksida pada <InlineMath math="1" /> unit salah, kerana menaikkannya daripada <InlineMath math="0.04\%" /> kepada <InlineMath math="0.10\%" /> tidak mengubah kadar <InlineMath math="10" />.
-- Suhu pada <InlineMath math="1" /> unit salah, kerana menaikkan suhu kepada <InlineMath math="35^\circ\text{C}" /> juga tidak mengubah kadar di situ.
+# Penyelesaian
+
+Bayangkan kilang mainan dengan tiga pekerja: cahaya, karbon dioksida, dan suhu. Kelajuan kilang sentiasa ditentukan oleh pekerja paling perlahan, maka **faktor pengehad ialah faktor yang menaikkan kadar fotosintesis apabila ditambah**.
+
+> Untuk mengenal pasti faktor pengehad di sesuatu titik, bandingkan dua baris jadual yang berbeza pada satu faktor sahaja: faktor yang meningkatkan kadar itulah faktor pengehadnya.
+
+Perhatikan ketiga-tiga lengkung pada graf berikut, khususnya titik bertindih pada cahaya <InlineMath math="1" /> unit dan lonjakan daripada <InlineMath math="40" /> kepada <InlineMath math="52" /> pada cahaya <InlineMath math="5" /> unit.
+
+<MathVisual
+  title={<>Kadar fotosintesis di bawah tiga gabungan <InlineMath math="\text{CO}_2" /> dan suhu</>}
+  description={
+    <>
+      Lengkung kelabu (<InlineMath math="0.04\%\ \text{CO}_2, 25^\circ\text{C}" />),
+      lengkung biru (<InlineMath math="0.10\%\ \text{CO}_2, 25^\circ\text{C}" />), dan
+      lonjakan hijau (<InlineMath math="0.10\%\ \text{CO}_2, 35^\circ\text{C}" />)
+      bertindih pada cahaya rendah sebelum terpisah pada cahaya tinggi.
+    </>
+  }
+  footer={<>Pada cahaya <InlineMath math="1" />, semua lengkung sama (<InlineMath math="10" />). Pada cahaya <InlineMath math="5" />, suhu menaikkan kadar ke <InlineMath math="52" />.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0.5, max: 5.5 }, y: { min: 0, max: 58 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "c1-a", kind: "segment", appearance: "construction", from: { x: 1, y: 10 }, to: { x: 2, y: 20 } },
+      { id: "c1-b", kind: "segment", appearance: "construction", from: { x: 2, y: 20 }, to: { x: 3, y: 28 } },
+      { id: "c1-c", kind: "segment", appearance: "construction", from: { x: 3, y: 28 }, to: { x: 4, y: 30 } },
+      { id: "c1-d", kind: "segment", appearance: "construction", from: { x: 4, y: 30 }, to: { x: 5, y: 30 } },
+      { id: "c2-a", kind: "segment", appearance: "primary", from: { x: 1, y: 10 }, to: { x: 4, y: 40 } },
+      { id: "c2-b", kind: "segment", appearance: "primary", from: { x: 4, y: 40 }, to: { x: 5, y: 40 } },
+      { id: "c3-a", kind: "segment", appearance: "answer", from: { x: 4, y: 40 }, to: { x: 5, y: 52 } },
+      { id: "m-one", kind: "marker", appearance: "primary", x: "1", y: "10" },
+      { id: "m-five-low", kind: "marker", appearance: "warning", x: "5", y: "40" },
+      { id: "m-five-high", kind: "marker", appearance: "answer", x: "5", y: "52" },
+    ],
+  }}
+  labels={{}}
+/>
+
+Pada keamatan cahaya <InlineMath math="1" /> unit, semua lengkung berada pada <InlineMath math="10" />, jadi hanya menambah cahaya menaikkan kadar. Pada <InlineMath math="5" /> unit, garis biru sudah mendatar pada <InlineMath math="40" />, tetapi menaikkan suhu kepada <InlineMath math="35^\circ\text{C}" /> melonjakkan kadar ke <InlineMath math="52" />.
+
+## Semakan faktor pada setiap titik
+
+Bandingkan pasangan baris yang berbeza **satu pemboleh ubah sahaja** pada setiap keadaan sasaran.
+
+- Pada <InlineMath math="1" /> unit cahaya, menaikkan <InlineMath math="\text{CO}_2" /> kepada <InlineMath math="0.10\%" /> atau suhu kepada <InlineMath math="35^\circ\text{C}" /> tetap memberi <InlineMath math="10" />, tetapi menaikkan cahaya ke <InlineMath math="2" /> unit menggandakan kadar kepada <InlineMath math="20" />, membuktikan **keamatan cahaya** mengehadkan.
+- Pada <InlineMath math="5" /> unit (<InlineMath math="0.10\%\ \text{CO}_2" />, <InlineMath math="25^\circ\text{C}" />), kadar kekal mendatar pada <InlineMath math="40" /> dari <InlineMath math="4" /> ke <InlineMath math="5" /> unit, lalu naik kepada <InlineMath math="52" /> pada <InlineMath math="35^\circ\text{C}" />, membuktikan **suhu** mengehadkan.
+
+## Mengapa pilihan lain salah
+
+- Cahaya pada <InlineMath math="5" /> unit salah kerana garis biru sudah mendatar dari <InlineMath math="4" /> ke <InlineMath math="5" /> unit, jadi **menambah cahaya tidak menaikkan kadar**.
+- Karbon dioksida pada <InlineMath math="1" /> unit salah kerana menaikkan <InlineMath math="\text{CO}_2" /> daripada <InlineMath math="0.04\%" /> kepada <InlineMath math="0.10\%" /> mengekalkan kadar pada <InlineMath math="10" />.
+- Suhu pada <InlineMath math="1" /> unit salah kerana menaikkan suhu kepada <InlineMath math="35^\circ\text{C}" /> juga tidak mengubah kadar <InlineMath math="10" />.
+
+# Jawapan
+
+Faktor pengehad pada keamatan cahaya <InlineMath math="1" /> unit ialah keamatan cahaya, dan pada <InlineMath math="5" /> unit (<InlineMath math="0.10\%\ \text{CO}_2" />, <InlineMath math="25^\circ\text{C}" />) ialah suhu.

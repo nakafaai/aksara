@@ -1,18 +1,72 @@
-# Peraturan pasangan bes
+# Diberi
 
-Adenina sentiasa berpasangan dengan timina dan guanina dengan sitosina, jadi **bilangan A sama dengan T, dan G sama dengan C**. Baki selepas A dan T dibahagi sama rata antara G dan C.
+Molekul DNA bebenang ganda mengandungi <InlineMath math="1000" /> pasangan bes (<InlineMath math="2000" /> bes semuanya), dengan **<InlineMath math="30\%" /> ialah adenina (A)**. Pasangan A dengan timina (T) mempunyai <InlineMath math="2" /> ikatan hidrogen, manakala guanina (G) dengan sitosina (C) mempunyai <InlineMath math="3" /> ikatan hidrogen.
+
+# Ditanya
+
+Berapakah bilangan bes sitosina dan jumlah ikatan hidrogen antara kedua-dua bebenang DNA?
+
+# Penyelesaian
+
+Bayangkan tangga DNA dengan <InlineMath math="1000" /> anak tangga (<InlineMath math="2000" /> bes). Kerana setiap A berpasangan dengan T melalui <InlineMath math="2" /> ikatan, A dan T mengambil <InlineMath math="60\%" /> bes, meninggalkan **baki <InlineMath math="40\%" /> dibahagi sama rata antara G (<InlineMath math="20\%" />) dengan C (<InlineMath math="20\%" />)** yang masing-masing dihubungkan oleh <InlineMath math="3" /> ikatan.
+
+> Dalam DNA bebenang ganda, peratus adenina sentiasa sama dengan timina, dan baki peratus dibahagi sama rata antara guanina dengan sitosina.
+
+Gerakkan peratus adenina <InlineMath math="a" /> di bawah untuk melihat bilangan sitosina dan jumlah ikatan hidrogen menurun secara linear apabila pasangan A dan T bertambah.
+
+<MathVisual
+  title={<>Jumlah ikatan hidrogen dalam DNA <InlineMath math="1000" /> pasangan bes</>}
+  description={
+    <>
+      Menambah peratus adenina <InlineMath math="a" /> menggantikan pasangan G
+      dan C (<InlineMath math="3" /> ikatan) dengan A dan T (<InlineMath math="2" />{" "}
+      ikatan) mengikut <InlineMath math="3000 - 20a" />. Tetapkan{" "}
+      <InlineMath math="a = 30\%" />.
+    </>
+  }
+  footer={<>Pada <InlineMath math="a = 30\%" />, terdapat <InlineMath math="400" /> bes sitosina dan <InlineMath math="2400" /> ikatan hidrogen.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 50 }, y: { min: 1900, max: 3100 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [{ name: "a", min: 10, max: 40, value: 30, step: 5, label: "a" }],
+    objects: [
+      { id: "hbonds", kind: "function", appearance: "primary", formula: "3000 - 20 * x", domain: { min: 5, max: 45 } },
+      { id: "now", kind: "marker", appearance: "answer", x: "a", y: "3000 - 20 * a" },
+    ],
+    readouts: [
+      { key: "cytosine-count", formula: "1000 - 20 * a" },
+      { key: "hydrogen-bonds", formula: "3000 - 20 * a" },
+    ],
+  }}
+  labels={{
+    a: <>Peratus adenina (<InlineMath math="\%" />)</>,
+    "cytosine-count": <>Bilangan bes sitosina</>,
+    "hydrogen-bonds": <>Jumlah ikatan hidrogen</>,
+  }}
+/>
+
+Setiap tambahan <InlineMath math="5\%" /> adenina mengurangkan <InlineMath math="100" /> pasangan G dan C, lalu menurunkan jumlah ikatan sebanyak <InlineMath math="100" />. Pada <InlineMath math="a = 30\%" />, bacaan tepat <InlineMath math="400" /> dan <InlineMath math="2400" />.
+
+## Pengiraan pasangan bes dan ikatan hidrogen
+
+Cari **bilangan bes sitosina** melalui hukum pemasangan bes, kemudian darabkan pasangan A dan T dengan <InlineMath math="2" /> dan pasangan G dan C dengan <InlineMath math="3" />.
 
 <BlockMath math="\begin{aligned}
-A=T&=30\%\ \Rightarrow\ G+C=40\%\ \Rightarrow\ C=20\%\\
-C&=0.20\times2000=400\\
-\text{pasangan A dan T}&=0.30\times2000=600,\quad\text{pasangan G dan C}=400\\
-\text{ikatan hidrogen}&=600(2)+400(3)=2400
+A = T = 30\% &\implies G + C = 40\% \implies C = 20\% \\
+\text{bilangan } C &= 0.20 \times 2000 = 400\text{ bes} \\
+\text{pasangan } A\text{ dan }T &= 0.30 \times 2000 = 600, \quad \text{pasangan } G\text{ dan }C = 400 \\
+\text{ikatan hidrogen} &= 600(2) + 400(3) = 1200 + 1200 = 2400
 \end{aligned}" />
 
-Jadi, terdapat <InlineMath math="400" /> sitosina dan <InlineMath math="2400" /> ikatan hidrogen.
+Semakan pantas: jumlah <InlineMath math="600" /> dan <InlineMath math="400" /> memulangkan tepat <InlineMath math="1000" /> pasangan bes.
 
-# Kenapa pilihan lain salah
+## Mengapa pilihan lain salah
 
-- <InlineMath math="400" /> dan <InlineMath math="2600" /> menukar bilangan ikatan, sedangkan **pasangan G dan C mempunyai tiga ikatan**.
-- <InlineMath math="600" /> dan <InlineMath math="2600" /> menganggap sitosina sama banyak dengan adenina, sedangkan sitosina berpasangan dengan guanina.
-- <InlineMath math="800" /> dan <InlineMath math="2800" /> menganggap seluruh <InlineMath math="40\%" /> ialah sitosina, sedangkan <InlineMath math="40\%" /> itu dibahagi sama rata dengan guanina.
+- Pilihan <InlineMath math="400" /> dan <InlineMath math="2600" /> menukar bilangan ikatan, padahal **pasangan G dan C mempunyai tiga ikatan hidrogen**.
+- Pilihan <InlineMath math="600" /> dan <InlineMath math="2600" /> menganggap sitosina sama banyak dengan adenina, sedangkan sitosina berpasangan dengan guanina.
+- Pilihan <InlineMath math="800" /> dan <InlineMath math="2800" /> mengambil seluruh baki <InlineMath math="40\%" /> sebagai sitosina tanpa membahagikannya dengan guanina.
+
+# Jawapan
+
+Terdapat <InlineMath math="400" /> bes sitosina dan <InlineMath math="2400" /> ikatan hidrogen keseluruhannya.
