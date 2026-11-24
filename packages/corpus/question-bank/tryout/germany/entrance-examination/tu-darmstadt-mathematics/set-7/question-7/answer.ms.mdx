@@ -1,26 +1,43 @@
-# Purata datang daripada jarak dan masa
+# Diberi
 
-Laju purata ialah **jumlah jarak dibahagi dengan jumlah masa**, bukan purata dua laju itu. Biar jarak sehala <InlineMath math="s" /> dan laju balik <InlineMath math="v" />:
+Seorang penunggang basikal melalui **laluan pergi dan balik yang sama**:
 
-<BlockMath math="\frac{2s}{\frac{s}{20}+\frac{s}{v}}=24" />
+- Laju seragam semasa pergi (*Hinweg*): <InlineMath math="20\text{ km/h}" />.
+- Laju purata (*Durchschnittsgeschwindigkeit*) keseluruhan pergi balik: <InlineMath math="24\text{ km/h}" />.
 
-# Jarak itu terbatal
+# Ditanya
 
-Batalkan <InlineMath math="s" />, kemudian teruskan dengan salingan:
+Apakah laju seragamnya semasa perjalanan balik (*Rückweg*)?
+
+# Penyelesaian
+
+Sekilas pandang, <InlineMath math="28\text{ km/h}" /> kelihatan munasabah kerana purata <InlineMath math="20" /> dan <InlineMath math="28" /> ialah <InlineMath math="24" />. Namun fikirkan masanya: kerana dia menunggang lebih perlahan semasa pergi, **dia menghabiskan lebih banyak masa pada laju perlahan berbanding laju pantas**. Maka laju balik mesti melebihi <InlineMath math="28" /> untuk menampung masa itu.
+
+> Laju purata sentiasa dikira daripada jumlah jarak dibahagi jumlah masa, bukan purata aritmetik dua kelajuan.
+
+## Membina persamaan jumlah jarak dibahagi jumlah masa
+
+Andaikan jarak sehala ialah <InlineMath math="s" /> dan laju balik ialah <InlineMath math="v" />. Jumlah jarak pergi balik ialah <InlineMath math="2s" />, manakala jumlah masa ialah hasil tambah masa pergi dan masa balik. Perhatikan bahawa **jarak <InlineMath math="s" /> terus terhapus**:
+
+<BlockMath math="\frac{2s}{\frac{s}{20} + \frac{s}{v}} = 24 \quad \Longleftrightarrow \quad \frac{2}{\frac{1}{20} + \frac{1}{v}} = 24" />
+
+## Menyelesaikan persamaan salingan
+
+Susun semula untuk mengasingkan **salingan laju balik**:
 
 <BlockMath math="\begin{aligned}
-\frac{2}{\frac1{20}+\frac1v}&=24 \\
-\frac1{20}+\frac1v&=\frac1{12} \\
-\frac1v&=\frac1{12}-\frac1{20}=\frac{5-3}{60}=\frac1{30}
+\frac{1}{20} + \frac{1}{v} &= \frac{2}{24} = \frac{1}{12} \\
+\frac{1}{v} &= \frac{1}{12} - \frac{1}{20} = \frac{5 - 3}{60} = \frac{1}{30}
 \end{aligned}" />
 
-Jadi **lajunya <InlineMath math="v=30" />**.
+Maka laju baliknya ialah tepat <InlineMath math="v = 30\text{ km/h}" />. Lengkung purata harmonik di bawah menunjukkan bagaimana peningkatan purata semakin perlahan apabila laju balik bertambah.
 
 <MathVisual
-  title={<>Purata mengikut laju balik</>}
-  description={<>Graf menunjukkan laju purata <InlineMath math="\frac{40v}{v+20}" /> bagi laju balik <InlineMath math="v" /> apabila perjalanan pergi dibuat pada <InlineMath math="20" />. Graf itu naik semakin perlahan dan kekal di bawah <InlineMath math="40" />. Garis pada <InlineMath math="24" /> bertemu graf itu pada <InlineMath math="v=30" />, bukan pada <InlineMath math="28" />.</>}
+  title={<>Laju purata mengikut laju balik</>}
+  description={<>Graf menunjukkan laju purata <InlineMath math="\frac{40v}{v + 20}" /> terhadap laju balik <InlineMath math="v" /> apabila laju pergi <InlineMath math="20" />. Lengkung naik di bawah had <InlineMath math="40" /> dan menyilang garis sasaran <InlineMath math="24" /> tepat di <InlineMath math="v = 30" />, bukan <InlineMath math="28" />.</>}
+  footer={<>Lengkung purata harmonik memotong sasaran <InlineMath math="24" /> tepat di <InlineMath math="v = 30\text{ km/h}" />.</>}
   labels={{
-    key: <><InlineMath math="v=30" /></>,
+    key: <><InlineMath math="v = 30" /></>,
     a: <>purata</>,
     t: <><InlineMath math="24" /></>,
   }}
@@ -45,14 +62,20 @@ Jadi **lajunya <InlineMath math="v=30" />**.
   }}
 />
 
-# Semak dengan jarak contoh
+Semakan dengan jarak contoh <InlineMath math="s = 60\text{ km}" />: perjalanan pergi mengambil <InlineMath math="3" /> jam dan perjalanan balik <InlineMath math="2" /> jam. Jumlah <InlineMath math="120\text{ km}" /> dalam <InlineMath math="5" /> jam memberi tepat <InlineMath math="24\text{ km/h}" />.
 
-Bagi <InlineMath math="s=60\text{ km}" />, perjalanan pergi mengambil <InlineMath math="3" /> jam dan perjalanan balik <InlineMath math="2" /> jam. <InlineMath math="120\text{ km}" /> dalam <InlineMath math="5" /> jam memberi purata <InlineMath math="24\,\frac{\text{km}}{\text{h}}" />. Dia berbasikal balik **pada <InlineMath math="30\,\frac{\text{km}}{\text{h}}" />**.
+## Menyemak pilihan salah
 
-# Kenapa jawapan lain salah
+Perhatikan perangkap intuisi di sebalik **setiap pilihan pengganggu**:
 
-- <InlineMath math="28\,\frac{\text{km}}{\text{h}}" /> memakai **purata biasa**: <InlineMath math="\frac{20+v}{2}=24" />. Sedangkan dia menghabiskan lebih banyak masa pada perjalanan pergi yang perlahan.
-- <InlineMath math="28.8\,\frac{\text{km}}{\text{h}}" /> ialah <InlineMath math="\frac{24^2}{20}" />, purata geometri.
-- <InlineMath math="40\,\frac{\text{km}}{\text{h}}" /> menggandakan laju pergi.
-- <InlineMath math="12\,\frac{\text{km}}{\text{h}}" /> membaca salingan <InlineMath math="\frac1{12}" /> sebagai laju.
-- "Tidak mungkin pada sebarang laju" terhasil kalau faktor <InlineMath math="2" /> untuk jarak pergi balik tertinggal: <InlineMath math="\frac1{20}+\frac1v=\frac1{24}" /> hanya ada penyelesaian negatif.
+| Pilihan | Mengapa salah |
+| --- | --- |
+| <InlineMath math="28\text{ km/h}" /> | Menggunakan purata biasa <InlineMath math="\frac{20 + v}{2} = 24" />, mengabaikan masa pergi yang lebih panjang. |
+| <InlineMath math="28.8\text{ km/h}" /> | Menggunakan purata geometri <InlineMath math="\frac{24^2}{20}" /> bukannya purata harmonik. |
+| <InlineMath math="40\text{ km/h}" /> | Menggandakan laju pergi (itu had atas laju purata, bukan laju balik). |
+| <InlineMath math="12\text{ km/h}" /> | Tersilap membaca salingan perantaraan <InlineMath math="\frac{1}{12}" /> terus sebagai jawapan. |
+| Tidak mungkin dengan sebarang laju | Timbul jika terlupa faktor <InlineMath math="2" /> untuk jarak pergi balik lalu mendapat <InlineMath math="\frac{1}{20} + \frac{1}{v} = \frac{1}{24}" />. |
+
+# Jawapan
+
+Dia menunggang pada perjalanan balik dengan laju seragam **<InlineMath math="30\text{ km/h}" />**.

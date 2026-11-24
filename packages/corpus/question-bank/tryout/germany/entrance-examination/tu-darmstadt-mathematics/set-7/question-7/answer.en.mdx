@@ -1,26 +1,43 @@
-# The average comes from distance and time
+# Given
 
-The average speed is **the whole distance divided by the whole time**, not the mean of the two speeds. Call the one-way distance <InlineMath math="s" /> and the return speed <InlineMath math="v" />:
+A cyclist rides out and back along **the exact same route**:
 
-<BlockMath math="\frac{2s}{\frac{s}{20}+\frac{s}{v}}=24" />
+- Constant outbound speed (*Hinweg*): <InlineMath math="20\text{ km/h}" />.
+- Overall average speed (*Durchschnittsgeschwindigkeit*) for the round trip: <InlineMath math="24\text{ km/h}" />.
 
-# The distance cancels
+# Asked
 
-Cancel <InlineMath math="s" /> and keep working with reciprocals:
+At what constant speed does she ride on the return trip (*Rückweg*)?
+
+# Solution
+
+At first glance, <InlineMath math="28\text{ km/h}" /> looks tempting because the midpoint of <InlineMath math="20" /> and <InlineMath math="28" /> is <InlineMath math="24" />. Think about the clock, though: because she goes slower on the way out, **she spends more time at the slow speed than at the fast speed**. Her return leg must be faster than <InlineMath math="28" /> to make up the extra minutes.
+
+> Average speed is always total distance divided by total time, never the simple arithmetic mean of two speeds over equal distances.
+
+## Writing total distance over total time
+
+Let <InlineMath math="s" /> be the one-way distance and <InlineMath math="v" /> the return speed. The round trip covers <InlineMath math="2s" />, and the total time is the sum of outbound and return times. Notice that **the distance <InlineMath math="s" /> cancels right out**:
+
+<BlockMath math="\frac{2s}{\frac{s}{20} + \frac{s}{v}} = 24 \quad \Longleftrightarrow \quad \frac{2}{\frac{1}{20} + \frac{1}{v}} = 24" />
+
+## Solving the reciprocal equation
+
+Rearrange to isolate **the reciprocal of the return speed**:
 
 <BlockMath math="\begin{aligned}
-\frac{2}{\frac1{20}+\frac1v}&=24 \\
-\frac1{20}+\frac1v&=\frac1{12} \\
-\frac1v&=\frac1{12}-\frac1{20}=\frac{5-3}{60}=\frac1{30}
+\frac{1}{20} + \frac{1}{v} &= \frac{2}{24} = \frac{1}{12} \\
+\frac{1}{v} &= \frac{1}{12} - \frac{1}{20} = \frac{5 - 3}{60} = \frac{1}{30}
 \end{aligned}" />
 
-So **the speed is <InlineMath math="v=30" />**.
+So the return speed is exactly <InlineMath math="v = 30\text{ km/h}" />. The harmonic-mean curve below shows how returns diminish as return speed increases.
 
 <MathVisual
-  title={<>Average depending on the return speed</>}
-  description={<>The graph shows the average speed <InlineMath math="\frac{40v}{v+20}" /> for return speeds <InlineMath math="v" /> when the outward trip is at <InlineMath math="20" />. It rises more and more slowly and stays below <InlineMath math="40" />. The line at <InlineMath math="24" /> meets it at <InlineMath math="v=30" />, not at <InlineMath math="28" />.</>}
+  title={<>Average speed versus return speed</>}
+  description={<>The curve plots the round-trip average <InlineMath math="\frac{40v}{v + 20}" /> against return speed <InlineMath math="v" /> for an outbound speed of <InlineMath math="20" />. It rises below the ceiling of <InlineMath math="40" /> and hits the target line <InlineMath math="24" /> right at <InlineMath math="v = 30" />, not <InlineMath math="28" />.</>}
+  footer={<>The harmonic-mean curve crosses the target <InlineMath math="24" /> at exactly <InlineMath math="v = 30\text{ km/h}" />.</>}
   labels={{
-    key: <><InlineMath math="v=30" /></>,
+    key: <><InlineMath math="v = 30" /></>,
     a: <>average</>,
     t: <><InlineMath math="24" /></>,
   }}
@@ -45,14 +62,20 @@ So **the speed is <InlineMath math="v=30" />**.
   }}
 />
 
-# Check with a sample distance
+Concrete check with <InlineMath math="s = 60\text{ km}" />: outbound takes <InlineMath math="3" /> hours and return takes <InlineMath math="2" /> hours. Covering <InlineMath math="120\text{ km}" /> in <InlineMath math="5" /> hours yields exactly <InlineMath math="24\text{ km/h}" />.
 
-For <InlineMath math="s=60\text{ km}" /> the trip out takes <InlineMath math="3" /> hours and the trip back <InlineMath math="2" /> hours. <InlineMath math="120\text{ km}" /> in <InlineMath math="5" /> hours gives an average of <InlineMath math="24\,\frac{\text{km}}{\text{h}}" />. She rides back **at <InlineMath math="30\,\frac{\text{km}}{\text{h}}" />**.
+## Checking the distractors
 
-# Why the other answers are wrong
+See the intuitive trap behind **each wrong choice**:
 
-- <InlineMath math="28\,\frac{\text{km}}{\text{h}}" /> uses **the plain average**: <InlineMath math="\frac{20+v}{2}=24" />. But she spends more time on the slow trip out.
-- <InlineMath math="28.8\,\frac{\text{km}}{\text{h}}" /> is <InlineMath math="\frac{24^2}{20}" />, a geometric mean.
-- <InlineMath math="40\,\frac{\text{km}}{\text{h}}" /> doubles the outward speed.
-- <InlineMath math="12\,\frac{\text{km}}{\text{h}}" /> reads the reciprocal <InlineMath math="\frac1{12}" /> as a speed.
-- "Not possible at any speed" comes from leaving out the factor <InlineMath math="2" /> for the doubled distance: <InlineMath math="\frac1{20}+\frac1v=\frac1{24}" /> would only have negative solutions.
+| Option | Why it is wrong |
+| --- | --- |
+| <InlineMath math="28\text{ km/h}" /> | Uses the ordinary mean <InlineMath math="\frac{20 + v}{2} = 24" />, ignoring that the slow outbound leg takes longer. |
+| <InlineMath math="28.8\text{ km/h}" /> | Uses the geometric mean <InlineMath math="\frac{24^2}{20}" /> instead of the harmonic mean. |
+| <InlineMath math="40\text{ km/h}" /> | Doubles the outbound speed (that is the upper ceiling of the average, not the return speed). |
+| <InlineMath math="12\text{ km/h}" /> | Misreads the intermediate reciprocal <InlineMath math="\frac{1}{12}" /> directly as the answer. |
+| Not possible at any speed | Comes from forgetting the factor <InlineMath math="2" /> for the round trip, leading to <InlineMath math="\frac{1}{20} + \frac{1}{v} = \frac{1}{24}" />. |
+
+# Answer
+
+She rides back at a constant speed of **<InlineMath math="30\text{ km/h}" />**.

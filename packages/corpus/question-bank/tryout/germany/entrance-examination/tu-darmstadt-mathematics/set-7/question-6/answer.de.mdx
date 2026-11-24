@@ -1,27 +1,51 @@
-# Der Abstand der Nullstellen bestimmt die Tiefe
+# Gegeben
 
-Schreibe <InlineMath math="f" /> in Scheitelpunktform: <InlineMath math="f(x)=(x-h)^2+k" /> mit dem Scheitel <InlineMath math="S(h\mid k)" />. Die Nullstellen liegen symmetrisch zum Scheitel, also je <InlineMath math="3" /> links und rechts von <InlineMath math="h" />. Bei <InlineMath math="x=h+3" /> ist <InlineMath math="f=0" />:
+Gegeben ist eine verschobene Normalparabel (Leitkoeffizient <InlineMath math="1" />):
 
-<BlockMath math="3^2+k=0\quad\Longrightarrow\quad k=-9" />
+<BlockMath math="f(x) = x^2 + bx + c" />
 
-Der Scheitel liegt also **<InlineMath math="9" /> Einheiten unter der <InlineMath math="x" />-Achse**, unabhängig von <InlineMath math="h" />.
+- Ihr Graph schneidet die <InlineMath math="x" />-Achse in zwei Punkten im **Abstand <InlineMath math="6" />**.
+- Ihr Scheitelpunkt liegt auf der Geraden <InlineMath math="y = x - 10" />.
 
-# Die Gerade legt die Lage fest
+# Gesucht
 
-Der Scheitel liegt auf <InlineMath math="y=x-10" />, also **gilt <InlineMath math="k=h-10" />**:
+Wie lautet die Funktionsgleichung von <InlineMath math="f(x)" />?
 
-<BlockMath math="-9=h-10\quad\Longrightarrow\quad h=1" />
+# Lösung
 
-# Die Funktionsgleichung
+Stell dir eine feste Schale in Form der Normalparabel <InlineMath math="y = x^2" /> vor, die du nur nach links, rechts oder unten verschieben darfst. Je tiefer du den Boden unter die <InlineMath math="x" />-Achse tauchst, desto breiter wird der Abstand zwischen den beiden Schnittpunkten. Weil dieser Abstand genau <InlineMath math="6" /> beträgt, **liegt die Tiefe des Scheitelpunkts sofort fest**, noch bevor du seine waagerechte Lage kennst.
 
-<BlockMath math="f(x)=(x-1)^2-9=x^2-2x-8" />
+> Bei einer Normalparabel legt der Abstand der Nullstellen sofort die Scheitelhöhe fest, und die gegebene Gerade bestimmt anschließend die waagerechte Lage.
+
+## Die Scheiteltiefe aus dem Nullstellenabstand bestimmen
+
+Schreibe <InlineMath math="f" /> in Scheitelpunktform mit Scheitel <InlineMath math="S(h \mid k)" />:
+
+<BlockMath math="f(x) = (x - h)^2 + k" />
+
+Aus Symmetrie liegen die beiden Nullstellen jeweils <InlineMath math="3" /> Einheiten links und rechts von <InlineMath math="h" />. Bei <InlineMath math="x = h + 3" /> muss **der Funktionswert null sein**:
+
+<BlockMath math="(h + 3 - h)^2 + k = 0 \quad \Longleftrightarrow \quad 3^2 + k = 0 \quad \Longrightarrow \quad k = -9" />
+
+Unabhängig von <InlineMath math="h" /> liegt der Scheitel also genau <InlineMath math="9" /> Einheiten unter der <InlineMath math="x" />-Achse.
+
+## Die waagerechte Lage über die Gerade bestimmen
+
+Da der Scheitel <InlineMath math="S(h \mid -9)" /> auf der Geraden <InlineMath math="y = x - 10" /> liegt, **erfüllen seine Koordinaten die Geradengleichung**:
+
+<BlockMath math="-9 = h - 10 \quad \Longrightarrow \quad h = 1" />
+
+Multipliziere nun die Scheitelpunktform aus:
+
+<BlockMath math="f(x) = (x - 1)^2 - 9 = x^2 - 2x + 1 - 9 = x^2 - 2x - 8" />
 
 <MathVisual
-  title={<>Parabel, Nullstellen und Scheitel</>}
-  description={<>Die Parabel <InlineMath math="y=x^2-2x-8" /> schneidet die <InlineMath math="x" />-Achse bei <InlineMath math="-2" /> und <InlineMath math="4" />, also in Punkten mit dem Abstand <InlineMath math="6" />. Ihr Scheitel <InlineMath math="S(1\mid-9)" /> liegt in der Mitte darunter, genau auf der Geraden <InlineMath math="y=x-10" />.</>}
+  title={<>Parabel, Nullstellen und Scheitelpunkt</>}
+  description={<>Die Parabel <InlineMath math="y = x^2 - 2x - 8" /> schneidet die <InlineMath math="x" />-Achse bei <InlineMath math="-2" /> und <InlineMath math="4" /> im Abstand <InlineMath math="6" />. Ihr Scheitel <InlineMath math="S(1 \mid -9)" /> liegt mittig darunter und genau auf der Geraden <InlineMath math="y = x - 10" />.</>}
+  footer={<>Die Breite <InlineMath math="6" /> legt <InlineMath math="k = -9" /> fest und <InlineMath math="y = x - 10" /> fixiert den Scheitel bei <InlineMath math="S(1 \mid -9)" />.</>}
   labels={{
-    v: <><InlineMath math="S(1\mid-9)" /></>,
-    l: <><InlineMath math="y=x-10" /></>,
+    v: <><InlineMath math="S(1 \mid -9)" /></>,
+    l: <><InlineMath math="y = x - 10" /></>,
     r1: <><InlineMath math="-2" /></>,
     r2: <><InlineMath math="4" /></>,
   }}
@@ -51,12 +75,26 @@ Der Scheitel liegt auf <InlineMath math="y=x-10" />, also **gilt <InlineMath mat
   }}
 />
 
-Probe: <InlineMath math="x^2-2x-8=(x-4)(x+2)" /> hat die Nullstellen <InlineMath math="4" /> und <InlineMath math="-2" />, im Abstand <InlineMath math="6" />. **Die gesuchte Gleichung** ist <InlineMath math="f(x)=x^2-2x-8" />.
+Probe durch Faktorisieren:
 
-# Warum die anderen Antworten falsch sind
+<BlockMath math="x^2 - 2x - 8 = (x - 4)(x + 2)" />
 
-- <InlineMath math="f(x)=x^2+2x-8" /> hat den Scheitel <InlineMath math="(-1\mid-9)" />. Dieser Punkt liegt **nicht auf der Geraden**, denn <InlineMath math="-1-10=-11\ne-9" />.
-- <InlineMath math="f(x)=x^2-14x+46" /> nimmt die Tiefe <InlineMath math="3" /> statt <InlineMath math="3^2=9" />: <InlineMath math="k=-3" />, <InlineMath math="h=7" />.
-- <InlineMath math="f(x)=x^2-2x-9" /> übernimmt <InlineMath math="k=-9" /> als konstanten Term, ohne <InlineMath math="(x-1)^2" /> auszumultiplizieren.
-- <InlineMath math="f(x)=x^2-2x+8" /> hat ein falsches Vorzeichen beim konstanten Term. Diese Parabel hat gar keine Nullstelle.
-- <InlineMath math="f(x)=x^2-4x-5" /> hat zwar Nullstellen im Abstand <InlineMath math="6" />, aber den Scheitel <InlineMath math="(2\mid-9)" />, der nicht auf der Geraden liegt.
+Die Nullstellen <InlineMath math="-2" /> und <InlineMath math="4" /> haben den Abstand <InlineMath math="6" />, und der Scheitel <InlineMath math="(1 \mid -9)" /> erfüllt <InlineMath math="1 - 10 = -9" />.
+
+## Falsche Antworten prüfen
+
+Jede falsche Auswahl verletzt **entweder die Scheiteltiefe oder die Geradenbedingung**:
+
+| Auswahl | Warum falsch |
+| --- | --- |
+| <InlineMath math="f(x) = x^2 + 2x - 8" /> | Der Scheitel <InlineMath math="(-1 \mid -9)" /> liegt nicht auf der Geraden, weil <InlineMath math="-1 - 10 = -11" />. |
+| <InlineMath math="f(x) = x^2 - 14x + 46" /> | Verwendet die Tiefe <InlineMath math="k = -3" /> statt <InlineMath math="-3^2 = -9" />. |
+| <InlineMath math="f(x) = x^2 - 2x - 9" /> | Übernimmt <InlineMath math="k = -9" /> direkt als Konstante, ohne <InlineMath math="(x - 1)^2" /> auszumultiplizieren. |
+| <InlineMath math="f(x) = x^2 - 2x + 8" /> | Falsch gesetztes Vorzeichen der Konstante, sodass gar keine Nullstellen existieren. |
+| <InlineMath math="f(x) = x^2 - 4x - 5" /> | Der Nullstellenabstand stimmt, aber der Scheitel <InlineMath math="(2 \mid -9)" /> verfehlt die Gerade. |
+
+# Antwort
+
+Die Funktionsgleichung lautet:
+
+<BlockMath math="f(x) = x^2 - 2x - 8" />

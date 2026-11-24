@@ -1,20 +1,43 @@
-# Gantikan ungkapan yang berulang
+# Diberi
 
-Ungkapan <InlineMath math="x^2-2x" /> muncul dua kali. Biar <InlineMath math="u=x^2-2x" />. Persamaan itu menjadi **persamaan kuadratik dalam <InlineMath math="u" />**:
+Persamaan darjah empat ini mengandungi **ungkapan berulang** <InlineMath math="x^2 - 2x" /> sebanyak dua kali:
 
-<BlockMath math="u^2-2u-3=0\quad\Longleftrightarrow\quad (u-3)(u+1)=0\quad\Longleftrightarrow\quad u=3\ \text{atau}\ u=-1" />
+<BlockMath math="\left(x^2 - 2x\right)^2 - 2\left(x^2 - 2x\right) - 3 = 0" />
 
-# Nilai yang boleh dicapai <InlineMath math="u" />
+# Ditanya
 
-Tidak seperti <InlineMath math="u=x^2" />, di sini <InlineMath math="u" /> boleh negatif. Oleh sebab <InlineMath math="x^2-2x=(x-1)^2-1" />, **nilai terkecil <InlineMath math="u" /> ialah tepat <InlineMath math="-1" />**. Jadi kedua-dua nilai itu mungkin:
+Tentukan set penyelesaian (*Lösungsmenge*) <InlineMath math="\mathbb{L}" /> bagi semua nombor nyata <InlineMath math="x" /> yang memenuhi persamaan ini.
+
+# Penyelesaian
+
+Jika semua kurungan dikembangkan, kamu akan mendapat polinomial kuasa empat yang panjang. Sebaliknya, lihat <InlineMath math="x^2 - 2x" /> sebagai **satu bungkusan utuh** yang muncul dua kali. Gantikan bungkusan itu dengan satu huruf baharu <InlineMath math="u" />.
+
+> Apabila satu ungkapan berulang sebagai blok penuh, balut dengan pemboleh ubah gantian supaya persamaan kuasa empat pecah menjadi persamaan kuadratik biasa.
+
+## Menggantikan blok berulang
+
+Andaikan <InlineMath math="u = x^2 - 2x" />. Persamaan panjang tadi terus menjadi **persamaan kuadratik ringkas dalam <InlineMath math="u" />**:
+
+<BlockMath math="u^2 - 2u - 3 = 0 \quad \Longleftrightarrow \quad (u - 3)(u + 1) = 0" />
+
+Kita mendapat dua nilai sasaran bagi <InlineMath math="u" />, iaitu <InlineMath math="u = 3" /> dan <InlineMath math="u = -1" />.
+
+## Menyemak nilai yang boleh dicapai
+
+Jangan terus membuang nilai negatif seperti ketika memakai <InlineMath math="u = x^2" />. Dengan penyempurnaan kuasa dua, **nilai minimum <InlineMath math="u" /> ialah tepat <InlineMath math="-1" />**:
+
+<BlockMath math="x^2 - 2x = (x - 1)^2 - 1 \ge -1" />
+
+Kedua-dua <InlineMath math="u = 3" /> dan <InlineMath math="u = -1" /> boleh dicapai.
 
 <MathVisual
-  title={<>Nilai yang dicapai <InlineMath math="u=x^2-2x" /></>}
-  description={<>Parabola <InlineMath math="u=x^2-2x" /> mempunyai titik terendah pada <InlineMath math="x=1" /> dengan <InlineMath math="u=-1" />. Garis <InlineMath math="u=3" /> bertemu parabola itu pada <InlineMath math="x=-1" /> dan <InlineMath math="x=3" />. Garis <InlineMath math="u=-1" /> menyentuhnya tepat pada bucu, iaitu pada <InlineMath math="x=1" />.</>}
+  title={<>Nilai yang dicapai <InlineMath math="u = x^2 - 2x" /></>}
+  description={<>Parabola <InlineMath math="u = x^2 - 2x" /> mempunyai titik terendah pada <InlineMath math="x = 1" /> dengan <InlineMath math="u = -1" />. Garis <InlineMath math="u = 3" /> memotongnya di <InlineMath math="x = -1" /> dan <InlineMath math="x = 3" />, manakala garis <InlineMath math="u = -1" /> menyentuh puncak di <InlineMath math="x = 1" />.</>}
+  footer={<>Garis <InlineMath math="u = 3" /> memberi dua punca dan garis <InlineMath math="u = -1" /> menyentuh puncak di <InlineMath math="x = 1" />.</>}
   labels={{
-    u: <><InlineMath math="u=x^2-2x" /></>,
-    three: <><InlineMath math="u=3" /></>,
-    minus: <><InlineMath math="u=-1" /></>,
+    u: <><InlineMath math="u = x^2 - 2x" /></>,
+    three: <><InlineMath math="u = 3" /></>,
+    minus: <><InlineMath math="u = -1" /></>,
     x1: <><InlineMath math="-1" /></>,
     x2: <><InlineMath math="1" /></>,
     x3: <><InlineMath math="3" /></>,
@@ -46,21 +69,35 @@ Tidak seperti <InlineMath math="u=x^2" />, di sini <InlineMath math="u" /> boleh
   }}
 />
 
-# Selesaikan untuk <InlineMath math="x" /> bagi kedua-dua nilai
+Graf menunjukkan tiga titik pertemuan semuanya: dua persilangan pada <InlineMath math="u = 3" /> dan satu titik tangen tepat pada puncak di <InlineMath math="u = -1" />.
 
-Setiap nilai <InlineMath math="u" /> memberi **persamaan kuadratik tersendiri dalam <InlineMath math="x" />**:
+## Menyelesaikan semula untuk pemboleh ubah asal
+
+Selesaikan **kedua-dua persamaan kuadratik dalam <InlineMath math="x" />** satu demi satu:
 
 <BlockMath math="\begin{aligned}
-x^2-2x=3&\quad\Longleftrightarrow\quad (x-3)(x+1)=0\quad\Longleftrightarrow\quad x=3\ \text{atau}\ x=-1 \\
-x^2-2x=-1&\quad\Longleftrightarrow\quad (x-1)^2=0\quad\Longleftrightarrow\quad x=1
+x^2 - 2x = 3 &\quad \Longleftrightarrow \quad (x - 3)(x + 1) = 0 \quad \Longleftrightarrow \quad x = 3 \ \text{atau} \ x = -1 \\
+x^2 - 2x = -1 &\quad \Longleftrightarrow \quad (x - 1)^2 = 0 \quad \Longleftrightarrow \quad x = 1
 \end{aligned}" />
 
-Semak <InlineMath math="x=1" />: <InlineMath math="(1-2)^2-2\cdot(1-2)-3=1+2-3=0" />. Set penyelesaiannya ialah **<InlineMath math="\mathbb{L}=\{-1;\,1;\,3\}" />**.
+Semak <InlineMath math="x = 1" /> terus dalam persamaan asal:
 
-# Kenapa jawapan lain salah
+<BlockMath math="(1 - 2)^2 - 2(1 - 2) - 3 = 1 + 2 - 3 = 0" />
 
-- <InlineMath math="\{-1;\,3\}" /> membuang <InlineMath math="u=-1" />, seolah-olah <InlineMath math="u" /> tidak boleh negatif. Akibatnya **penyelesaian <InlineMath math="x=1" /> hilang**. Kebetulan kedua-dua nombor itu juga sama dengan nilai-nilai <InlineMath math="u" />.
-- <InlineMath math="\{1\}" /> hanya mengira kes <InlineMath math="u=-1" />.
-- <InlineMath math="\{-3;\,-1;\,1\}" /> memakai <InlineMath math="x^2+2x" />, bukan <InlineMath math="x^2-2x" />, kerana kesilapan tanda.
-- <InlineMath math="\{1-\sqrt2;\,1+\sqrt2\}" /> terhasil daripada nilai yang salah <InlineMath math="u=1" /> dan <InlineMath math="u=-3" /> daripada <InlineMath math="(u+3)(u-1)" />. Lalu hanya <InlineMath math="x^2-2x=1" /> yang ada penyelesaian.
-- <InlineMath math="\{1;\,3\}" /> membuang nombor negatif <InlineMath math="x=-1" />.
+Ketiga-tiga nilai memenuhi persamaan asal dengan tepat.
+
+## Menyemak pilihan salah
+
+Perhatikan bagaimana setiap pengganggu **menggugurkan satu cabang atau menukar tanda**:
+
+| Pilihan | Mengapa salah |
+| --- | --- |
+| <InlineMath math="\mathbb{L} = \{-1,\, 3\}" /> | Menolak <InlineMath math="u = -1" /> seolah-olah <InlineMath math="u" /> tidak boleh negatif, lalu kehilangan <InlineMath math="x = 1" />. |
+| <InlineMath math="\mathbb{L} = \{1\}" /> | Hanya menyelesaikan cabang puncak <InlineMath math="u = -1" /> dan melupakan <InlineMath math="u = 3" />. |
+| <InlineMath math="\mathbb{L} = \{-3,\, -1,\, 1\}" /> | Silap tanda sebutan tengah lalu menyelesaikan <InlineMath math="x^2 + 2x" /> bukannya <InlineMath math="x^2 - 2x" />. |
+| <InlineMath math="\mathbb{L} = \{1 - \sqrt{2},\, 1 + \sqrt{2}\}" /> | Silap memfaktorkan persamaan <InlineMath math="u" /> sebagai <InlineMath math="(u + 3)(u - 1) = 0" />. |
+| <InlineMath math="\mathbb{L} = \{1,\, 3\}" /> | Membuang penyelesaian negatif <InlineMath math="x = -1" /> tanpa sebab. |
+
+# Jawapan
+
+Set penyelesaian bagi persamaan ini ialah **<InlineMath math="\mathbb{L} = \{-1,\, 1,\, 3\}" />**.

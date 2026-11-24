@@ -1,32 +1,57 @@
-# Daerah asal dulu
+# Diketahui
 
-Logaritma hanya terdefinisi untuk numerus positif:
+Diberikan **pertidaksamaan logaritma** (*Ungleichung*) dengan basis pecahan kurang dari satu:
 
-<BlockMath math="x^2-3x=x(x-3)>0\quad\Longleftrightarrow\quad x<0\ \text{atau}\ x>3" />
+<BlockMath math="\log_{\frac{1}{2}}\left(x^2 - 3x\right) \ge -2" />
 
-Hanya bilangan di daerah ini yang **mungkin menjadi penyelesaian**.
+# Ditanyakan
 
-# Basis kurang dari <InlineMath math="1" /> membalik tanda pertidaksamaan
+Tentukan semua bilangan real <InlineMath math="x" /> yang memenuhi pertidaksamaan ini.
 
-Tulis <InlineMath math="-2=\log_{\frac12}4" />, karena <InlineMath math="\left(\frac12\right)^{-2}=4" />. Logaritma berbasis <InlineMath math="\frac12" /> **turun tegas**: logaritma yang lebih besar milik numerus yang lebih kecil. Karena itu tandanya berbalik:
+# Penyelesaian
+
+Pertidaksamaan logaritma dengan basis <InlineMath math="\frac{1}{2}" /> selalu punya **dua penjaga pintu** yang harus lolos bersamaan. Penjaga pertama memastikan isi logaritma bernilai positif agar nilainya benar-benar ada. Penjaga kedua mengingatkan bahwa basis antara <InlineMath math="0" /> dan <InlineMath math="1" /> berjalan terbalik: makin besar isinya, makin kecil logaritmanya, jadi tanda pertidaksamaan wajib berbalik arah.
+
+> Pada logaritma berbasis kurang dari satu, selalu periksa daerah asal positif lebih dulu dan balikkan tanda pertidaksamaan saat melepas logaritma.
+
+## Menentukan daerah asal positif
+
+Logaritma hanya terdefinisi jika **numerusnya bernilai positif ketat**:
+
+<BlockMath math="x^2 - 3x = x(x - 3) > 0 \quad \Longleftrightarrow \quad x < 0 \ \text{atau} \ x > 3" />
+
+Semua bilangan dari <InlineMath math="0" /> sampai <InlineMath math="3" />, termasuk ujung <InlineMath math="0" /> dan <InlineMath math="3" />, langsung gugur sebagai penyelesaian.
+
+## Membalik tanda pertidaksamaan karena basis pecahan
+
+Ubah ruas kanan menjadi logaritma berbasis sama, karena pangkat negatif membalik pecahan:
+
+<BlockMath math="\left(\frac{1}{2}\right)^{-2} = 4 \quad \Longrightarrow \quad -2 = \log_{\frac{1}{2}} 4" />
+
+Sebab fungsi logaritma berbasis <InlineMath math="\frac{1}{2}" /> **turun tegas**, melepas logaritma membalik arah tanda:
 
 <BlockMath math="\begin{aligned}
-\log_{\frac12}\left(x^2-3x\right)&\ge\log_{\frac12}4 \\
-x^2-3x&\le4 \\
-(x-4)(x+1)&\le0\quad\Longleftrightarrow\quad -1\le x\le4
+\log_{\frac{1}{2}}\left(x^2 - 3x\right) &\ge \log_{\frac{1}{2}} 4 \\
+x^2 - 3x &\le 4 \\
+(x - 4)(x + 1) &\le 0 \quad \Longleftrightarrow \quad -1 \le x \le 4
 \end{aligned}" />
 
-# Gabungkan kedua syarat
+## Mengiriskan kedua syarat
 
-Irisan <InlineMath math="-1\le x\le4" /> dengan daerah asal. Bilangan dari <InlineMath math="0" /> sampai <InlineMath math="3" /> **gugur**, termasuk ujung <InlineMath math="0" /> dan <InlineMath math="3" /> itu sendiri:
+Sekarang gabungkan selang batas dari <InlineMath math="-1" /> sampai <InlineMath math="4" /> dengan **syarat daerah asal di luar selang nol sampai tiga**:
+
+<BlockMath math="-1 \le x < 0 \qquad \text{atau} \qquad 3 < x \le 4" />
+
+Grafik dua cabang logaritma di bawah memperlihatkan dengan jelas bagian mana yang berada tepat di atas atau pada garis <InlineMath math="y = -2" />.
 
 <MathVisual
-  title={<>Logaritma di atas garis <InlineMath math="y=-2" /></>}
-  description={<>Grafik <InlineMath math="y=\log_{\frac12}(x^2-3x)" /> terdiri dari dua cabang, di kiri <InlineMath math="0" /> dan di kanan <InlineMath math="3" />. Di antaranya bentuk itu tidak terdefinisi. Kedua cabang berada pada atau di atas garis <InlineMath math="y=-2" /> untuk <InlineMath math="-1\le x<0" /> dan untuk <InlineMath math="3<x\le4" />. Kedua selang itu ditandai di bawah sumbu.</>}
+  title={<>Logaritma di atas garis <InlineMath math="y = -2" /></>}
+  description={<>Grafik <InlineMath math="y = \log_{\frac{1}{2}}(x^2 - 3x)" /> terpecah menjadi dua cabang di kiri <InlineMath math="0" /> dan di kanan <InlineMath math="3" />, dengan celah tak terdefinisi di antaranya. Kedua cabang berada pada atau di atas garis <InlineMath math="y = -2" /> pada dua ruas terpisah di ujung <InlineMath math="-1" /> dan <InlineMath math="4" />.</>}
+  footer={<>Dua ruas jawaban memotong celah tak terdefinisi antara <InlineMath math="0" /> dan <InlineMath math="3" />.</>}
   labels={{
-    a: <><InlineMath math="x=-1" /></>,
-    b: <><InlineMath math="x=4" /></>,
-    l: <><InlineMath math="y=-2" /></>,
+    a: <><InlineMath math="x = -1" /></>,
+    b: <><InlineMath math="x = 4" /></>,
+    l: <><InlineMath math="y = -2" /></>,
     z0: <><InlineMath math="0" /></>,
     z3: <><InlineMath math="3" /></>,
   }}
@@ -59,12 +84,22 @@ Irisan <InlineMath math="-1\le x\le4" /> dengan daerah asal. Bilangan dari <Inli
   }}
 />
 
-Pertidaksamaan itu berlaku untuk <InlineMath math="-1\le x<0" /> atau <InlineMath math="3<x\le4" />.
+Cek titik batas: di <InlineMath math="x = -1" /> dan <InlineMath math="x = 4" />, numerusnya tepat <InlineMath math="4" /> sehingga logaritmanya tepat <InlineMath math="-2" />, sah masuk karena tanda <InlineMath math="\ge" />. Di <InlineMath math="x = 0" /> dan <InlineMath math="x = 3" />, numerusnya nol sehingga tetap terbuka.
 
-# Mengapa pilihan lain salah
+## Mengecek pilihan salah
 
-- <InlineMath math="-1\le x\le4" /> **lupa daerah asal**. Untuk <InlineMath math="x=1" /> numerusnya <InlineMath math="-2" />.
-- <InlineMath math="x\le-1" /> atau <InlineMath math="x\ge4" /> tidak membalik tanda pertidaksamaan, seolah-olah basisnya lebih dari <InlineMath math="1" />.
-- <InlineMath math="x<0" /> atau <InlineMath math="x>3" /> hanyalah daerah asal.
-- <InlineMath math="-1<x<0" /> atau <InlineMath math="3<x<4" /> membuang ujung <InlineMath math="-1" /> dan <InlineMath math="4" />. Di sana logaritmanya tepat <InlineMath math="-2" />, dan <InlineMath math="\ge" /> membolehkannya.
-- <InlineMath math="-1\le x\le0" /> atau <InlineMath math="3\le x\le4" /> memasukkan <InlineMath math="0" /> dan <InlineMath math="3" />. Di sana numerusnya <InlineMath math="0" />, dan logaritmanya tidak terdefinisi.
+Perhatikan bagaimana setiap pengecoh **gagal di salah satu penjaga pintu**:
+
+| Pilihan | Mengapa salah |
+| --- | --- |
+| <InlineMath math="-1 \le x \le 4" /> | Melupakan syarat daerah asal, misalnya untuk <InlineMath math="x = 1" /> numerusnya <InlineMath math="-2" />. |
+| <InlineMath math="x \le -1" /> atau <InlineMath math="x \ge 4" /> | Tidak membalik tanda pertidaksamaan saat melepas logaritma berbasis <InlineMath math="\frac{1}{2}" />. |
+| <InlineMath math="x < 0" /> atau <InlineMath math="x > 3" /> | Baru menuliskan syarat daerah asal tanpa menyelesaikan batas <InlineMath math="-2" />. |
+| <InlineMath math="-1 < x < 0" /> atau <InlineMath math="3 < x < 4" /> | Membuang ujung <InlineMath math="-1" /> dan <InlineMath math="4" /> padahal tanda <InlineMath math="\ge" /> mengizinkan kesamaan. |
+| <InlineMath math="-1 \le x \le 0" /> atau <InlineMath math="3 \le x \le 4" /> | Memasukkan <InlineMath math="0" /> dan <InlineMath math="3" />, tempat numerus bernilai nol dan logaritma tak terdefinisi. |
+
+# Jawaban
+
+Semua bilangan real <InlineMath math="x" /> yang memenuhi pertidaksamaan ini adalah:
+
+<BlockMath math="-1 \le x < 0 \qquad \text{atau} \qquad 3 < x \le 4" />

@@ -1,26 +1,43 @@
-# Rata-rata dihitung dari jarak dan waktu
+# Diketahui
 
-Kecepatan rata-rata adalah **seluruh jarak dibagi seluruh waktu**, bukan rata-rata kedua kecepatan. Misalkan jarak sekali jalan <InlineMath math="s" /> dan kecepatan pulang <InlineMath math="v" />:
+Seorang pesepeda menempuh lintasan yang **sama persis pergi dan pulang**:
 
-<BlockMath math="\frac{2s}{\frac{s}{20}+\frac{s}{v}}=24" />
+- Kecepatan konstan saat berangkat (*Hinweg*): <InlineMath math="20\text{ km/h}" />.
+- Kecepatan rata-rata (*Durchschnittsgeschwindigkeit*) seluruh perjalanan pulang pergi: <InlineMath math="24\text{ km/h}" />.
 
-# Jaraknya saling menghapus
+# Ditanyakan
 
-Coret <InlineMath math="s" />, lalu lanjutkan dengan kebalikan-kebalikannya:
+Dengan kecepatan konstan berapakah ia mengayuh saat pulang (*Rückweg*)?
+
+# Penyelesaian
+
+Sekilas banyak orang menebak <InlineMath math="28\text{ km/h}" /> karena rata-rata <InlineMath math="20" /> dan <InlineMath math="28" /> sama dengan <InlineMath math="24" />. Tetapi coba pikirkan waktu tempuhnya: karena ia berangkat lebih pelan, **waktu yang dihabiskan saat berangkat lebih lama daripada saat pulang**. Artinya perjalanan pulang harus lebih kencang dari <InlineMath math="28" /> untuk mengejar ketinggalan waktu.
+
+> Kecepatan rata-rata selalu dihitung dari jarak total dibagi waktu total, bukan rata-rata aritmetika dua kecepatan.
+
+## Menyusun persamaan jarak total dibagi waktu total
+
+Misalkan jarak sekali jalan <InlineMath math="s" /> dan kecepatan pulang <InlineMath math="v" />. Jarak pergi pulang adalah <InlineMath math="2s" />, sedangkan waktu totalnya jumlah waktu berangkat dan waktu pulang. Perhatikan bahwa **jarak <InlineMath math="s" /> langsung saling menghapus**:
+
+<BlockMath math="\frac{2s}{\frac{s}{20} + \frac{s}{v}} = 24 \quad \Longleftrightarrow \quad \frac{2}{\frac{1}{20} + \frac{1}{v}} = 24" />
+
+## Menyelesaikan persamaan kebalikan
+
+Bagi kedua ruas untuk memisahkan **kebalikan kecepatan pulang**:
 
 <BlockMath math="\begin{aligned}
-\frac{2}{\frac1{20}+\frac1v}&=24 \\
-\frac1{20}+\frac1v&=\frac1{12} \\
-\frac1v&=\frac1{12}-\frac1{20}=\frac{5-3}{60}=\frac1{30}
+\frac{1}{20} + \frac{1}{v} &= \frac{2}{24} = \frac{1}{12} \\
+\frac{1}{v} &= \frac{1}{12} - \frac{1}{20} = \frac{5 - 3}{60} = \frac{1}{30}
 \end{aligned}" />
 
-Jadi **kecepatannya <InlineMath math="v=30" />**.
+Maka kecepatan pulang harus tepat <InlineMath math="v = 30\text{ km/h}" />. Lihat grafik lengkung rata-rata harmonik berikut: makin kencang pulang, kenaikan rata-ratanya makin landai.
 
 <MathVisual
   title={<>Rata-rata menurut kecepatan pulang</>}
-  description={<>Grafik menunjukkan kecepatan rata-rata <InlineMath math="\frac{40v}{v+20}" /> untuk kecepatan pulang <InlineMath math="v" /> kalau perjalanan pergi ditempuh dengan <InlineMath math="20" />. Grafiknya naik makin lambat dan tetap di bawah <InlineMath math="40" />. Garis di <InlineMath math="24" /> memotongnya di <InlineMath math="v=30" />, bukan di <InlineMath math="28" />.</>}
+  description={<>Grafik menunjukkan kecepatan rata-rata <InlineMath math="\frac{40v}{v + 20}" /> sebagai fungsi kecepatan pulang <InlineMath math="v" /> saat berangkat <InlineMath math="20" />. Kurva melengkung di bawah batas <InlineMath math="40" /> dan memotong garis target <InlineMath math="24" /> tepat di <InlineMath math="v = 30" />, bukan <InlineMath math="28" />.</>}
+  footer={<>Kurva rata-rata harmonik memotong target <InlineMath math="24" /> tepat di <InlineMath math="v = 30\text{ km/h}" />.</>}
   labels={{
-    key: <><InlineMath math="v=30" /></>,
+    key: <><InlineMath math="v = 30" /></>,
     a: <>rata-rata</>,
     t: <><InlineMath math="24" /></>,
   }}
@@ -45,14 +62,20 @@ Jadi **kecepatannya <InlineMath math="v=30" />**.
   }}
 />
 
-# Cek dengan jarak contoh
+Uji dengan jarak konkret <InlineMath math="s = 60\text{ km}" />: berangkat butuh <InlineMath math="3" /> jam dan pulang butuh <InlineMath math="2" /> jam. Total <InlineMath math="120\text{ km}" /> dalam <InlineMath math="5" /> jam memberi rata-rata tepat <InlineMath math="24\text{ km/h}" />.
 
-Untuk <InlineMath math="s=60\text{ km}" />, perjalanan pergi butuh <InlineMath math="3" /> jam dan pulang <InlineMath math="2" /> jam. <InlineMath math="120\text{ km}" /> dalam <InlineMath math="5" /> jam memberi rata-rata <InlineMath math="24\,\frac{\text{km}}{\text{h}}" />. Ia pulang **dengan kecepatan <InlineMath math="30\,\frac{\text{km}}{\text{h}}" />**.
+## Mengecek pilihan salah
 
-# Mengapa pilihan lain salah
+Perhatikan jebakan intuitif di balik **setiap pilihan pengecoh**:
 
-- <InlineMath math="28\,\frac{\text{km}}{\text{h}}" /> memakai **rata-rata biasa**: <InlineMath math="\frac{20+v}{2}=24" />. Padahal ia menghabiskan lebih banyak waktu pada perjalanan pergi yang lambat.
-- <InlineMath math="28{,}8\,\frac{\text{km}}{\text{h}}" /> adalah <InlineMath math="\frac{24^2}{20}" />, rata-rata geometris.
-- <InlineMath math="40\,\frac{\text{km}}{\text{h}}" /> menggandakan kecepatan pergi.
-- <InlineMath math="12\,\frac{\text{km}}{\text{h}}" /> membaca kebalikan <InlineMath math="\frac1{12}" /> sebagai kecepatan.
-- "Tidak mungkin dengan kecepatan berapa pun" muncul kalau faktor <InlineMath math="2" /> untuk jarak pulang-pergi hilang: <InlineMath math="\frac1{20}+\frac1v=\frac1{24}" /> hanya punya penyelesaian negatif.
+| Pilihan | Mengapa salah |
+| --- | --- |
+| <InlineMath math="28\text{ km/h}" /> | Mengambil rata-rata biasa <InlineMath math="\frac{20 + v}{2} = 24" />, mengabaikan lamanya waktu tempuh berangkat. |
+| <InlineMath math="28{,}8\text{ km/h}" /> | Menghitung rata-rata geometris <InlineMath math="\frac{24^2}{20}" />, bukan rata-rata harmonik. |
+| <InlineMath math="40\text{ km/h}" /> | Hanya menggandakan kecepatan berangkat (padahal itu batas atas rata-rata, bukan kecepatan pulang). |
+| <InlineMath math="12\text{ km/h}" /> | Salah membaca <InlineMath math="\frac{1}{12}" /> langsung sebagai kecepatan akhir. |
+| Tidak mungkin dengan kecepatan berapa pun | Muncul jika lupa faktor <InlineMath math="2" /> pada jarak pergi pulang sehingga mendapat <InlineMath math="\frac{1}{20} + \frac{1}{v} = \frac{1}{24}" />. |
+
+# Jawaban
+
+Ia mengayuh saat pulang dengan kecepatan konstan **<InlineMath math="30\text{ km/h}" />**.

@@ -1,24 +1,49 @@
-# Sama jauh berarti garis sumbu
+# Diketahui
 
-Semua titik yang sama jauh dari <InlineMath math="A" /> dan <InlineMath math="B" /> terletak **pada garis sumbu ruas <InlineMath math="\overline{AB}" />**. Garis itu melalui titik tengah <InlineMath math="M(3\mid3)" /> dan tegak lurus <InlineMath math="\overline{AB}" />. Ruas itu bergradien <InlineMath math="\frac{1-5}{5-1}=-1" />, jadi garis sumbunya bergradien <InlineMath math="1" />:
+Diberikan dua titik di bidang koordinat, yaitu <InlineMath math="A(1 \mid 5)" /> dan <InlineMath math="B(5 \mid 1)" />, serta sebuah garis lurus <InlineMath math="g" /> dengan persamaan:
 
-<BlockMath math="y-3=1\cdot(x-3)\quad\Longleftrightarrow\quad y=x" />
+<BlockMath math="y = 2x - 1" />
 
-# Tentukan titik potongnya dengan <InlineMath math="g" />
+Titik <InlineMath math="P" /> terletak pada garis <InlineMath math="g" /> dan **berjarak sama jauh** dari <InlineMath math="A" /> maupun <InlineMath math="B" />.
 
-<InlineMath math="P" /> terletak pada kedua garis, jadi **berlaku <InlineMath math="2x-1=x" />**:
+# Ditanyakan
 
-<BlockMath math="x=1,\quad y=1\quad\Longrightarrow\quad P(1\mid1)" />
+Berapakah jarak dari titik <InlineMath math="P" /> ke titik <InlineMath math="A" />?
+
+# Penyelesaian
+
+Bayangkan <InlineMath math="A" /> dan <InlineMath math="B" /> adalah dua rumah temanmu, lalu kamu ingin berdiri tepat di posisi yang adil sehingga jarak ke kedua rumah sama. Semua tempat yang adil selalu membentuk satu jalan lurus di tengah-tengah, yaitu **garis sumbu** (*Mittelsenkrechte*) ruas <InlineMath math="\overline{AB}" />. Di sinilah <InlineMath math="P" /> harus bertemu dengan jalan <InlineMath math="g" />.
+
+> Semua titik yang berjarak sama dari dua titik terletak pada garis sumbu ruas penghubungnya, sehingga titik yang dicari adalah perpotongan garis sumbu dengan garis yang diberikan.
+
+## Menentukan garis sumbu ruas penghubung
+
+Lihat koordinat <InlineMath math="A(1 \mid 5)" /> dan <InlineMath math="B(5 \mid 1)" />: keduanya saling tukar <InlineMath math="x" /> dan <InlineMath math="y" />, artinya cermin satu sama lain terhadap garis <InlineMath math="y = x" />. Kamu juga bisa memastikannya dengan rumus **titik tengah dan gradien tegak lurus**:
+
+<BlockMath math="M = \left(\frac{1 + 5}{2} \;\middle|\; \frac{5 + 1}{2}\right) = (3 \mid 3), \qquad m_{AB} = \frac{1 - 5}{5 - 1} = -1" />
+
+Garis yang tegak lurus dengan gradien <InlineMath math="-1" /> memiliki gradien <InlineMath math="1" /> dan melalui <InlineMath math="M(3 \mid 3)" />:
+
+<BlockMath math="y - 3 = 1 \cdot (x - 3) \quad \Longleftrightarrow \quad y = x" />
+
+## Memotongkan garis sumbu dengan garis tujuan
+
+Karena <InlineMath math="P" /> berada pada <InlineMath math="y = x" /> sekaligus <InlineMath math="y = 2x - 1" />, **samakan kedua persamaan garis**:
+
+<BlockMath math="2x - 1 = x \quad \Longrightarrow \quad x = 1, \quad y = 1" />
+
+Jadi posisi titik temu tepat di <InlineMath math="P(1 \mid 1)" />.
 
 <MathVisual
   title={<>Garis sumbu dan garis <InlineMath math="g" /></>}
-  description={<>Titik <InlineMath math="A(1\mid5)" /> dan <InlineMath math="B(5\mid1)" /> dengan garis sumbunya <InlineMath math="y=x" />. Garis <InlineMath math="g: y=2x-1" /> memotong garis sumbu di <InlineMath math="P(1\mid1)" />. Dari <InlineMath math="P" />, ruas ke <InlineMath math="A" /> dan ke <InlineMath math="B" /> sama-sama panjangnya <InlineMath math="4" />.</>}
+  description={<>Titik <InlineMath math="A(1 \mid 5)" /> dan <InlineMath math="B(5 \mid 1)" /> memiliki garis sumbu <InlineMath math="y = x" />. Garis <InlineMath math="g" /> dengan persamaan <InlineMath math="y = 2x - 1" /> memotong garis sumbu tepat di <InlineMath math="P(1 \mid 1)" />, yang berjarak <InlineMath math="4" /> satuan dari <InlineMath math="A" /> maupun <InlineMath math="B" />.</>}
+  footer={<>Garis <InlineMath math="g" /> dan garis sumbu <InlineMath math="y = x" /> bertemu di <InlineMath math="P(1 \mid 1)" />, tepat <InlineMath math="4" /> satuan dari <InlineMath math="A" />.</>}
   labels={{
-    a: <><InlineMath math="A(1\mid5)" /></>,
-    b: <><InlineMath math="B(5\mid1)" /></>,
-    p: <><InlineMath math="P(1\mid1)" /></>,
+    a: <><InlineMath math="A(1 \mid 5)" /></>,
+    b: <><InlineMath math="B(5 \mid 1)" /></>,
+    p: <><InlineMath math="P(1 \mid 1)" /></>,
     g: <><InlineMath math="g" /></>,
-    s: <><InlineMath math="y=x" /></>,
+    s: <><InlineMath math="y = x" /></>,
   }}
   scene={{
     space: "plane",
@@ -48,16 +73,28 @@ Semua titik yang sama jauh dari <InlineMath math="A" /> dan <InlineMath math="B"
   }}
 />
 
-# Hitung jaraknya
+Menariknya, ruas <InlineMath math="\overline{PA}" /> tegak lurus sejajar sumbu <InlineMath math="y" /> dan <InlineMath math="\overline{PB}" /> mendatar sejajar sumbu <InlineMath math="x" />, sehingga panjangnya langsung terbaca.
 
-<BlockMath math="\overline{PA}=\sqrt{(1-1)^2+(5-1)^2}=4,\qquad \overline{PB}=\sqrt{(5-1)^2+(1-1)^2}=4" />
+## Menghitung jarak dan mengecek ulang
 
-Kedua jarak itu sama. <InlineMath math="P" /> **berjarak <InlineMath math="4" /> satuan dari <InlineMath math="A" />**.
+Hitung kedua jarak dari <InlineMath math="P(1 \mid 1)" /> untuk **memastikan syarat sama jauh terpenuhi**:
 
-# Mengapa pilihan lain salah
+<BlockMath math="\overline{PA} = \sqrt{(1 - 1)^2 + (5 - 1)^2} = 4, \qquad \overline{PB} = \sqrt{(5 - 1)^2 + (1 - 1)^2} = 4" />
 
-- <InlineMath math="\frac{4\sqrt2}{3}" /> muncul dari gradien <InlineMath math="-1" />, bukan <InlineMath math="1" />, yaitu dari garis <InlineMath math="AB" /> sendiri: titik potongnya dengan <InlineMath math="g" /> adalah <InlineMath math="\left(\frac73\mid\frac{11}{3}\right)" />, **yang jauh lebih jauh dari <InlineMath math="B" /> daripada dari <InlineMath math="A" />**.
-- <InlineMath math="2\sqrt2" /> adalah jarak <InlineMath math="A" /> ke titik tengah <InlineMath math="M(3\mid3)" />. Titik itu tidak terletak pada <InlineMath math="g" />.
-- <InlineMath math="4\sqrt2" /> adalah panjang seluruh ruas <InlineMath math="\overline{AB}" />.
-- <InlineMath math="\sqrt2" /> adalah jarak <InlineMath math="P" /> ke titik asal.
-- <InlineMath math="2" /> muncul kalau koordinat <InlineMath math="x" /> titik tengah dimasukkan ke <InlineMath math="g" />: <InlineMath math="P(3\mid5)" /> berjarak <InlineMath math="2" /> dari <InlineMath math="A" />, tetapi <InlineMath math="2\sqrt5" /> dari <InlineMath math="B" />.
+Kedua jarak sama-sama <InlineMath math="4" /> satuan.
+
+## Mengecek pilihan salah
+
+Perhatikan jarak lain pada gambar yang sering **tertukar dengan <InlineMath math="\overline{PA}" />**:
+
+| Pilihan | Mengapa salah |
+| --- | --- |
+| <InlineMath math="\frac{4\sqrt{2}}{3}" /> | Memakai garis <InlineMath math="AB" /> sendiri (gradien <InlineMath math="-1" />) alih-alih garis sumbu, sehingga titik temunya tidak sama jauh. |
+| <InlineMath math="2\sqrt{2}" /> | Hanya jarak dari <InlineMath math="A" /> ke titik tengah <InlineMath math="M(3 \mid 3)" />, padahal <InlineMath math="M" /> tidak berada di garis <InlineMath math="g" />. |
+| <InlineMath math="4\sqrt{2}" /> | Panjang seluruh ruas <InlineMath math="\overline{AB}" />, bukan jarak dari <InlineMath math="P" /> ke <InlineMath math="A" />. |
+| <InlineMath math="\sqrt{2}" /> | Jarak titik <InlineMath math="P(1 \mid 1)" /> ke titik asal <InlineMath math="(0 \mid 0)" />. |
+| <InlineMath math="2" /> | Memasukkan <InlineMath math="x = 3" /> milik titik tengah ke garis <InlineMath math="g" /> sehingga mendapat <InlineMath math="(3 \mid 5)" /> yang jauh dari <InlineMath math="B" />. |
+
+# Jawaban
+
+Jarak titik <InlineMath math="P" /> dari titik <InlineMath math="A" /> adalah **<InlineMath math="4" />**.

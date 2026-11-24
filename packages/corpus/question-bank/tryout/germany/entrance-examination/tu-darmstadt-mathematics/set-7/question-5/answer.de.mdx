@@ -1,29 +1,51 @@
-# Zwei ähnliche Dreiecke für jede Stelle
+# Gegeben
 
-Die Lampe, die Schattenspitze und der Kopf der Person liegen auf einem Lichtstrahl. Die Person und die Laterne stehen beide senkrecht, also sind das kleine Dreieck an der Person und das große Dreieck an der Laterne **ähnlich**. Steht die Person im Abstand <InlineMath math="d" /> von der Laterne und ist ihr Schatten <InlineMath math="s" /> lang:
+Eine <InlineMath math="1{,}8\text{ m}" /> große Person steht auf ebenem Boden vor einer senkrechten Straßenlaterne mit einer Lampe an der Spitze.
 
-<BlockMath math="\frac{1{,}8}{s}=\frac{H}{d+s}\quad\Longleftrightarrow\quad H\,s=1{,}8\,(d+s)" />
+- An der ersten Stelle beträgt **die Schattenlänge <InlineMath math="2\text{ m}" />**.
+- Nachdem die Person <InlineMath math="3\text{ m}" /> weiter geradeaus von der Laterne weggegangen ist, **wächst der Schatten auf <InlineMath math="3{,}5\text{ m}" />**.
 
-# Beide Stellen aufschreiben
+# Gesucht
 
-Den Abstand <InlineMath math="d" /> kennst du nicht, aber er wächst um <InlineMath math="3" />. Das liefert **zwei Gleichungen mit den Unbekannten <InlineMath math="d" /> und <InlineMath math="H" />**:
+In welcher Höhe über dem Boden befindet sich die Lampe?
+
+# Lösung
+
+Hast du abends schon einmal beobachtet, wie dein Schatten mit jedem Schritt weg von der Laterne länger wird? Lampe, Kopfspitze und Schattenspitze liegen immer auf **einem geraden Lichtstrahl**. Weil Mensch und Mast beide senkrecht stehen, entstehen an jeder Stelle zwei ähnliche rechtwinklige Dreiecke.
+
+> An jeder Standposition bildet der Lichtstrahl zwei ähnliche rechtwinklige Dreiecke, sodass das Verhältnis von Höhe zu Grundlinie gleich bleibt.
+
+## Zwei Gleichungen mit dem Strahlensatz aufstellen
+
+Nenne die Lampenhöhe <InlineMath math="H" /> und den ursprünglichen Abstand zum Mast <InlineMath math="d" />. Nach dem Strahlensatz liefern Abstand <InlineMath math="d" /> und Schattenlänge <InlineMath math="s" /> **eine einfache Beziehung**:
+
+<BlockMath math="\frac{1{,}8}{s} = \frac{H}{d + s} \quad \Longleftrightarrow \quad H s = 1{,}8(d + s)" />
+
+Wende diese Gleichung auf die erste Position (<InlineMath math="s = 2" />) und die zweite Position (<InlineMath math="d + 3" /> und <InlineMath math="s = 3{,}5" />) an:
 
 <BlockMath math="\begin{aligned}
-2H&=1{,}8\,(d+2) \\
-3{,}5H&=1{,}8\,(d+3+3{,}5)
+2H &= 1{,}8(d + 2) \\
+3{,}5H &= 1{,}8(d + 3 + 3{,}5) = 1{,}8(d + 6{,}5)
 \end{aligned}" />
 
-# Den unbekannten Abstand loswerden
+## Den unbekannten Abstand direkt eliminieren
 
-Ziehe die erste Gleichung von der zweiten ab. Dabei fällt <InlineMath math="d" /> weg:
+Du musst <InlineMath math="d" /> gar nicht erst ausrechnen. Ziehe die erste Gleichung von der zweiten ab, sodass **die Unbekannte <InlineMath math="d" /> sofort verschwindet**:
 
-<BlockMath math="1{,}5H=1{,}8\cdot4{,}5=8{,}1\quad\Longrightarrow\quad H=5{,}4" />
+<BlockMath math="\begin{aligned}
+(3{,}5 - 2)H &= 1{,}8\bigl((d + 6{,}5) - (d + 2)\bigr) \\
+1{,}5H &= 1{,}8 \cdot 4{,}5 = 8{,}1 \\
+H &= \frac{8{,}1}{1{,}5} = 5{,}4
+\end{aligned}" />
+
+Die Skizze zeigt beide Positionen und beide Lichtstrahlen maßstabsgetreu.
 
 <MathVisual
-  title={<>Laterne, Person und Schatten</>}
-  description={<>Links die Laterne mit der Lampe in der Höhe <InlineMath math="H" />. Die Person, <InlineMath math="1{,}8" /> hoch, steht zuerst bei <InlineMath math="x=4" /> mit einem Schatten bis <InlineMath math="x=6" /> und dann <InlineMath math="3" /> weiter bei <InlineMath math="x=7" /> mit einem Schatten bis <InlineMath math="x=10{,}5" />. Die Lichtstrahlen von der Lampe streifen den Kopf der Person und enden an den Schattenspitzen.</>}
+  title={<>Laternenmast, Person und Schatten</>}
+  description={<>Links steht der Mast mit der Lampe auf Höhe <InlineMath math="H = 5{,}4" />. Die <InlineMath math="1{,}8" /> große Person steht erst bei <InlineMath math="x = 4" /> mit Schatten bis <InlineMath math="x = 6" />, dann <InlineMath math="3" /> weiter bei <InlineMath math="x = 7" /> mit Schatten bis <InlineMath math="x = 10{,}5" />.</>}
+  footer={<><InlineMath math="3\text{ m}" /> Weg verlängern den Schatten um <InlineMath math="1{,}5\text{ m}" /> und legen <InlineMath math="H = 5{,}4\text{ m}" /> fest.</>}
   labels={{
-    h: <><InlineMath math="H=5{,}4" /></>,
+    h: <><InlineMath math="H = 5{,}4" /></>,
     p1: <><InlineMath math="1{,}8" /></>,
     s1: <><InlineMath math="2" /></>,
     s2: <><InlineMath math="3{,}5" /></>,
@@ -58,12 +80,20 @@ Ziehe die erste Gleichung von der zweiten ab. Dabei fällt <InlineMath math="d" 
   }}
 />
 
-Probe: Aus der ersten Gleichung folgt <InlineMath math="10{,}8=1{,}8(d+2)" />, also <InlineMath math="d=4" />. Dann ist der zweite Schatten <InlineMath math="s" /> mit <InlineMath math="5{,}4\,s=1{,}8\,(7+s)" />, also <InlineMath math="s=3{,}5" />. Die Lampe hängt **in <InlineMath math="5{,}4\text{ m}" /> Höhe**.
+Rückprobe: Aus der ersten Gleichung folgt <InlineMath math="d = 4\text{ m}" />. Bei <InlineMath math="7\text{ m}" /> Abstand misst die Gesamtgrundlinie <InlineMath math="10{,}5\text{ m}" />, und <InlineMath math="5{,}4 / 10{,}5" /> stimmt exakt mit <InlineMath math="1{,}8 / 3{,}5" /> überein.
 
-# Warum die anderen Antworten falsch sind
+## Falsche Antworten prüfen
 
-- <InlineMath math="3{,}6\text{ m}" /> ist nur <InlineMath math="H-1{,}8" />, die Höhe der Lampe **über dem Kopf der Person**.
-- <InlineMath math="3{,}15\text{ m}" /> multipliziert die Körpergröße mit dem Verhältnis der Schatten: <InlineMath math="1{,}8\cdot\frac{3{,}5}{2}" />.
-- <InlineMath math="6{,}3\text{ m}" /> ist <InlineMath math="1{,}8\cdot3{,}5" />, als wäre der zweite Schatten selbst der Abstand zur Laterne.
-- <InlineMath math="2{,}7\text{ m}" /> ist <InlineMath math="1{,}8\cdot1{,}5" />, die Körpergröße mal den Zuwachs des Schattens.
-- <InlineMath math="7{,}2\text{ m}" /> zählt die Körpergröße doppelt: <InlineMath math="5{,}4+1{,}8" />.
+Jede falsche Auswahl entsteht durch **ein fehlerhaft angesetztes Verhältnis von Höhe und Schatten**:
+
+| Auswahl | Warum falsch |
+| --- | --- |
+| <InlineMath math="3{,}6\text{ m}" /> | Berechnet nur <InlineMath math="H - 1{,}8" />, also die Höhe über dem Kopf statt über dem Boden. |
+| <InlineMath math="3{,}15\text{ m}" /> | Multipliziert die Körpergröße mit dem Schattenverhältnis <InlineMath math="1{,}8 \cdot \frac{3{,}5}{2}" />. |
+| <InlineMath math="6{,}3\text{ m}" /> | Rechnet <InlineMath math="1{,}8 \cdot 3{,}5" />, als wäre der zweite Schatten ein Abstandsfaktor. |
+| <InlineMath math="2{,}7\text{ m}" /> | Rechnet <InlineMath math="1{,}8 \cdot 1{,}5" />, also Körpergröße mal bloßen Schattenzuwachs. |
+| <InlineMath math="7{,}2\text{ m}" /> | Addiert die Körpergröße am Ende doppelt, <InlineMath math="5{,}4 + 1{,}8" />. |
+
+# Antwort
+
+Die Lampe befindet sich in einer Höhe von **<InlineMath math="5{,}4\text{ m}" />** über dem Boden.

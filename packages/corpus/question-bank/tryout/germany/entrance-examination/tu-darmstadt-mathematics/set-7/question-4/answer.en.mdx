@@ -1,24 +1,49 @@
-# Equally far means perpendicular bisector
+# Given
 
-All points that are equally far from <InlineMath math="A" /> and <InlineMath math="B" /> lie **on the perpendicular bisector of <InlineMath math="\overline{AB}" />**. It passes through the midpoint <InlineMath math="M(3\mid3)" /> and is perpendicular to <InlineMath math="\overline{AB}" />. The segment has slope <InlineMath math="\frac{1-5}{5-1}=-1" />, so the bisector has slope <InlineMath math="1" />:
+Two points <InlineMath math="A(1 \mid 5)" /> and <InlineMath math="B(5 \mid 1)" /> are given along with a line <InlineMath math="g" /> described by:
 
-<BlockMath math="y-3=1\cdot(x-3)\quad\Longleftrightarrow\quad y=x" />
+<BlockMath math="y = 2x - 1" />
 
-# Find the intersection with <InlineMath math="g" />
+Point <InlineMath math="P" /> lies on line <InlineMath math="g" /> and is **equidistant** from <InlineMath math="A" /> and <InlineMath math="B" />.
 
-<InlineMath math="P" /> lies on both lines, so **<InlineMath math="2x-1=x" /> holds**:
+# Asked
 
-<BlockMath math="x=1,\quad y=1\quad\Longrightarrow\quad P(1\mid1)" />
+How far is point <InlineMath math="P" /> from point <InlineMath math="A" />?
+
+# Solution
+
+Imagine <InlineMath math="A" /> and <InlineMath math="B" /> are two friends' houses and you want a fair meeting spot equally far from both. Every fair spot sits on one straight dividing road right down the middle: the **perpendicular bisector** (*Mittelsenkrechte*) of segment <InlineMath math="\overline{AB}" />. Point <InlineMath math="P" /> is simply where that dividing road crosses line <InlineMath math="g" />.
+
+> Every point equidistant from two fixed points lies on their perpendicular bisector, so the target point is the intersection of that bisector with the given line.
+
+## Finding the perpendicular bisector
+
+Notice that <InlineMath math="A(1 \mid 5)" /> and <InlineMath math="B(5 \mid 1)" /> simply swap <InlineMath math="x" /> and <InlineMath math="y" />, meaning they mirror each other across <InlineMath math="y = x" />. You can confirm this directly using the **midpoint and perpendicular slope**:
+
+<BlockMath math="M = \left(\frac{1 + 5}{2} \;\middle|\; \frac{5 + 1}{2}\right) = (3 \mid 3), \qquad m_{AB} = \frac{1 - 5}{5 - 1} = -1" />
+
+A line perpendicular to slope <InlineMath math="-1" /> has slope <InlineMath math="1" /> and passes through <InlineMath math="M(3 \mid 3)" />:
+
+<BlockMath math="y - 3 = 1 \cdot (x - 3) \quad \Longleftrightarrow \quad y = x" />
+
+## Intersecting the bisector with the given line
+
+Since <InlineMath math="P" /> lies on both <InlineMath math="y = x" /> and <InlineMath math="y = 2x - 1" />, **set the two line equations equal**:
+
+<BlockMath math="2x - 1 = x \quad \Longrightarrow \quad x = 1, \quad y = 1" />
+
+So the meeting point is exactly <InlineMath math="P(1 \mid 1)" />.
 
 <MathVisual
   title={<>Perpendicular bisector and line <InlineMath math="g" /></>}
-  description={<>The points <InlineMath math="A(1\mid5)" /> and <InlineMath math="B(5\mid1)" /> with their perpendicular bisector <InlineMath math="y=x" />. The line <InlineMath math="g: y=2x-1" /> meets the bisector at <InlineMath math="P(1\mid1)" />. From <InlineMath math="P" /> the segments to <InlineMath math="A" /> and to <InlineMath math="B" /> are both <InlineMath math="4" /> long.</>}
+  description={<>Points <InlineMath math="A(1 \mid 5)" /> and <InlineMath math="B(5 \mid 1)" /> have perpendicular bisector <InlineMath math="y = x" />. Line <InlineMath math="g" /> with equation <InlineMath math="y = 2x - 1" /> meets that bisector at <InlineMath math="P(1 \mid 1)" />, which sits <InlineMath math="4" /> units from both <InlineMath math="A" /> and <InlineMath math="B" />.</>}
+  footer={<>Line <InlineMath math="g" /> meets bisector <InlineMath math="y = x" /> at <InlineMath math="P(1 \mid 1)" />, exactly <InlineMath math="4" /> units from <InlineMath math="A" />.</>}
   labels={{
-    a: <><InlineMath math="A(1\mid5)" /></>,
-    b: <><InlineMath math="B(5\mid1)" /></>,
-    p: <><InlineMath math="P(1\mid1)" /></>,
+    a: <><InlineMath math="A(1 \mid 5)" /></>,
+    b: <><InlineMath math="B(5 \mid 1)" /></>,
+    p: <><InlineMath math="P(1 \mid 1)" /></>,
     g: <><InlineMath math="g" /></>,
-    s: <><InlineMath math="y=x" /></>,
+    s: <><InlineMath math="y = x" /></>,
   }}
   scene={{
     space: "plane",
@@ -48,16 +73,28 @@ All points that are equally far from <InlineMath math="A" /> and <InlineMath mat
   }}
 />
 
-# Work out the distance
+Even better, segment <InlineMath math="\overline{PA}" /> runs straight up and segment <InlineMath math="\overline{PB}" /> runs straight across, so their lengths read off cleanly.
 
-<BlockMath math="\overline{PA}=\sqrt{(1-1)^2+(5-1)^2}=4,\qquad \overline{PB}=\sqrt{(5-1)^2+(1-1)^2}=4" />
+## Computing and verifying the distance
 
-Both distances agree. <InlineMath math="P" /> is **<InlineMath math="4" /> units from <InlineMath math="A" />**.
+Compute both distances from <InlineMath math="P(1 \mid 1)" /> to **verify the equal-distance condition**:
 
-# Why the other answers are wrong
+<BlockMath math="\overline{PA} = \sqrt{(1 - 1)^2 + (5 - 1)^2} = 4, \qquad \overline{PB} = \sqrt{(5 - 1)^2 + (1 - 1)^2} = 4" />
 
-- <InlineMath math="\frac{4\sqrt2}{3}" /> comes from slope <InlineMath math="-1" /> instead of <InlineMath math="1" />, that is from the line <InlineMath math="AB" /> itself: it meets <InlineMath math="g" /> at <InlineMath math="\left(\frac73\mid\frac{11}{3}\right)" />, **which is much farther from <InlineMath math="B" /> than from <InlineMath math="A" />**.
-- <InlineMath math="2\sqrt2" /> is the distance from <InlineMath math="A" /> to the midpoint <InlineMath math="M(3\mid3)" />. That point doesn't lie on <InlineMath math="g" />.
-- <InlineMath math="4\sqrt2" /> is the length of the whole segment <InlineMath math="\overline{AB}" />.
-- <InlineMath math="\sqrt2" /> is the distance from <InlineMath math="P" /> to the origin.
-- <InlineMath math="2" /> comes from putting the midpoint's <InlineMath math="x" />-coordinate into <InlineMath math="g" />: <InlineMath math="P(3\mid5)" /> is <InlineMath math="2" /> from <InlineMath math="A" /> but <InlineMath math="2\sqrt5" /> from <InlineMath math="B" />.
+Both distances match at <InlineMath math="4" /> units.
+
+## Checking the distractors
+
+Notice other lengths in the diagram that are easy to **confuse with <InlineMath math="\overline{PA}" />**:
+
+| Option | Why it is wrong |
+| --- | --- |
+| <InlineMath math="\frac{4\sqrt{2}}{3}" /> | Uses line <InlineMath math="AB" /> itself (slope <InlineMath math="-1" />) instead of the bisector, giving an unequal intersection. |
+| <InlineMath math="2\sqrt{2}" /> | Distance from <InlineMath math="A" /> to midpoint <InlineMath math="M(3 \mid 3)" />, which does not lie on line <InlineMath math="g" />. |
+| <InlineMath math="4\sqrt{2}" /> | Length of the entire segment <InlineMath math="\overline{AB}" />, not <InlineMath math="\overline{PA}" />. |
+| <InlineMath math="\sqrt{2}" /> | Distance from <InlineMath math="P(1 \mid 1)" /> to the origin <InlineMath math="(0 \mid 0)" />. |
+| <InlineMath math="2" /> | Plugs the midpoint's <InlineMath math="x = 3" /> into line <InlineMath math="g" />, giving <InlineMath math="(3 \mid 5)" /> which is far from <InlineMath math="B" />. |
+
+# Answer
+
+Point <InlineMath math="P" /> is **<InlineMath math="4" />** units away from point <InlineMath math="A" />.
