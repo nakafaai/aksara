@@ -1,46 +1,52 @@
-# Tulis kedua tahun sebagai faktor
+# Diketahui
 
-Misalkan suku bunga tahun pertama <InlineMath math="P" /> persen. Maka saldo tumbuh dengan faktor <InlineMath math="1+\frac{P}{100}" /> di tahun pertama dan <InlineMath math="1+\frac{P+2}{100}" /> di tahun kedua. **Bunga tahun pertama ikut berbunga di tahun kedua**, jadi kedua faktor itu dikalikan:
+Sebuah **tabungan** (*Guthaben*) sebesar <InlineMath math="10{.}000\text{ €}" /> disimpan selama dua tahun dengan bunga majemuk (*Zinseszins*). Suku bunga tahun kedua lebih tinggi <InlineMath math="2" /> poin persentase daripada suku bunga tahun pertama (<InlineMath math="P\,\%" /> dan <InlineMath math="(P + 2)\,\%" />), dan saldo akhir tepat <InlineMath math="11{.}235\text{ €}" />.
 
-<BlockMath math="10{.}000\cdot\left(1+\frac{P}{100}\right)\left(1+\frac{P+2}{100}\right)=11{.}235" />
+# Ditanyakan
 
-# Persamaan kuadrat dalam <InlineMath math="P" />
+Tentukan suku bunga tahun pertama (*Zinssatz im ersten Jahr*).
 
-Karena <InlineMath math="10{.}000=100\cdot100" />, setiap faktor bisa dikalikan <InlineMath math="100" />. Hasilnya **persamaan dengan bilangan bulat**:
+# Penyelesaian
+
+Pada bunga majemuk, bunga yang kamu peroleh pada tahun pertama ikut berbunga pada tahun kedua, jadi kita mengalikan kedua faktor pertumbuhan secara beruntun. Karena modal awal <InlineMath math="10{.}000" /> sama dengan <InlineMath math="100 \cdot 100" />, **mengalikan tiap faktor pertumbuhan dengan seratus langsung melenyapkan seluruh pecahan**!
+
+> Bunga majemuk selama dua tahun menggabungkan faktor pertumbuhan secara perkalian, dan modal awal sepuluh ribu langsung menyerap kedua penyebut seratus menjadi persamaan kuadrat bilangan bulat.
+
+Tulis persamaan saldo akhir untuk suku bunga tahun pertama <InlineMath math="P" /> persen.
+
+<BlockMath math="10{.}000 \cdot \left(1 + \frac{P}{100}\right)\left(1 + \frac{P + 2}{100}\right) = 11{.}235" />
+
+## Menyelesaikan persamaan kuadrat bilangan bulat
+
+Kalikan masing-masing tanda kurung dengan <InlineMath math="100" />, lalu faktorkan untuk memperoleh **suku bunga tahun pertama**.
 
 <BlockMath math="\begin{aligned}
-(100+P)(102+P)&=11{.}235 \\
-P^2+202P+10{.}200&=11{.}235 \\
-P^2+202P-1{.}035&=0 \\
-(P-5)(P+207)&=0
+(100 + P)(102 + P) &= 11{.}235 \\
+P^2 + 202P + 10{.}200 &= 11{.}235 \\
+P^2 + 202P - 1{.}035 &= 0 \\
+(P - 5)(P + 207) &= 0
 \end{aligned}" />
 
-Pemfaktoran itu cocok, karena <InlineMath math="5\cdot207=1{.}035" /> dan <InlineMath math="207-5=202" />.
-
-# Buang penyelesaian negatif
-
-Suku bunga <InlineMath math="-207\,\%" /> **bukan suku bunga yang masuk akal**, karena setelah tahun pertama saldonya sudah habis. Jadi <InlineMath math="P=5" />:
+Karena suku bunga negatif <InlineMath math="-207\,\%" /> tidak masuk akal, satu-satunya nilai sah adalah <InlineMath math="P = 5" /> (<InlineMath math="5\,\%" />). Perhatikan pada grafik berikut betapa tipisnya selisih terhadap kasus dua suku bunga sama di <InlineMath math="P = 6" />.
 
 <MathVisual
-  title={<>Saldo setelah dua tahun menurut suku bunga</>}
-  description={<>Grafik penuh menunjukkan saldo <InlineMath math="(100+P)(102+P)" /> dalam euro untuk suku bunga <InlineMath math="P" /> persen di tahun pertama dan <InlineMath math="P+2" /> persen di tahun kedua. Grafik itu memotong garis <InlineMath math="11{.}235" /> di <InlineMath math="P=5" />. Garis putus-putus adalah <InlineMath math="(100+P)^2" /> untuk dua suku bunga yang sama: nilainya hampir sama di <InlineMath math="P=6" />.</>}
-  labels={{
-    key: <><InlineMath math="P=5" /></>,
-    eq: <><InlineMath math="P=6" /></>,
-    t: <><InlineMath math="11{.}235" /></>,
-    a: <>dua suku bunga</>,
-    b: <>suku bunga sama</>,
-  }}
+  title={<>Saldo akhir setelah dua tahun menurut suku bunga <InlineMath math="P" /></>}
+  description={
+    <>
+      Kurva solid menunjukkan saldo <InlineMath math="(100 + P)(102 + P)" />{" "}
+      yang menembus target <InlineMath math="11{.}235" /> tepat di{" "}
+      <InlineMath math="P = 5" />. Kurva putus-putus untuk dua suku bunga sama{" "}
+      <InlineMath math="(100 + P)^2" /> mencapai <InlineMath math="11{.}236" />{" "}
+      di <InlineMath math="P = 6" />.
+    </>
+  }
+  footer={<>Saldo tepat <InlineMath math="11{.}235\text{ €}" /> tercapai pada <InlineMath math="P = 5\,\%" />, sedangkan suku bunga rata <InlineMath math="6\,\%" /> memberi <InlineMath math="11{.}236\text{ €}" />.</>}
   scene={{
     space: "plane",
-    frame: {
-      kind: "cartesian",
-      x: { min: -0.5, max: 9.8 },
-      y: { min: 10000, max: 12300 },
-    },
-    view: { kind: "fit", padding: 0.1 },
+    frame: { kind: "cartesian", x: { min: -0.5, max: 9.8 }, y: { min: 10000, max: 12300 } },
+    view: { kind: "fit", padding: 0.08 },
     objects: [
-      { id: "two-rates", kind: "function", appearance: "primary", formula: "(100 + x)*(102 + x)", domain: { min: 0, max: 9 } },
+      { id: "two-rates", kind: "function", appearance: "primary", formula: "(100 + x) * (102 + x)", domain: { min: 0, max: 9 } },
       { id: "same-rate", kind: "function", appearance: "construction", formula: "(100 + x)^2", domain: { min: 0, max: 9 } },
       { id: "target", kind: "segment", appearance: "reference", from: { x: 0, y: 11235 }, to: { x: 9, y: 11235 } },
       { id: "solution", kind: "point", appearance: "answer", at: { x: 5, y: 11235 } },
@@ -54,14 +60,32 @@ Suku bunga <InlineMath math="-207\,\%" /> **bukan suku bunga yang masuk akal**, 
       { key: "b", objectId: "same-rate", at: { x: 8.5, y: 11772 }, placement: "below-right" },
     ],
   }}
+  labels={{
+    key: <><InlineMath math="P = 5" /></>,
+    eq: <><InlineMath math="P = 6" /></>,
+    t: <><InlineMath math="11{.}235" /></>,
+    a: <>dua suku bunga</>,
+    b: <>suku bunga sama</>,
+  }}
 />
 
-Cek: <InlineMath math="10{.}000\cdot1{,}05=10{.}500" /> dan <InlineMath math="10{.}500\cdot1{,}07=11{.}235" />. Suku bunga tahun pertama <InlineMath math="5\,\%" />.
+Menariknya, dua suku bunga berbeda <InlineMath math="5\,\%" /> dan <InlineMath math="7\,\%" /> menghasilkan <InlineMath math="1\text{ €}" /> lebih rendah daripada suku bunga tetap <InlineMath math="6\,\%" /> karena <InlineMath math="(a - 1)(a + 1)" /> selalu kurang <InlineMath math="1" /> dari <InlineMath math="a^2" />.
 
-# Mengapa pilihan lain salah
+## Menguji saldo tahunan dan pilihan salah
 
-- <InlineMath math="6\,\%" /> menganggap **dua suku bunga yang sama**. Hasilnya <InlineMath math="10{.}000\cdot1{,}06^2=11{.}236\text{ €}" />, hampir sama, padahal kedua suku bunga harus berselisih <InlineMath math="2" /> poin persentase.
-- <InlineMath math="7\,\%" /> adalah suku bunga tahun kedua.
-- <InlineMath math="5{,}175\,\%" /> menghitung tanpa bunga majemuk: <InlineMath math="P+(P+2)=12{,}35" />.
-- <InlineMath math="6{,}175\,\%" /> membagi pertumbuhan total <InlineMath math="12{,}35\,\%" /> sama rata untuk dua tahun.
-- <InlineMath math="12{,}35\,\%" /> adalah pertumbuhan selama dua tahun sekaligus, bukan suku bunga satu tahun.
+Cek tahun demi tahun untuk **suku bunga <InlineMath math="5\,\%" /> lalu <InlineMath math="7\,\%" />**:
+
+<BlockMath math="\begin{aligned}
+\text{Tahun 1: } &10{.}000 \cdot 1{,}05 = 10{.}500\text{ €} \\
+\text{Tahun 2: } &10{.}500 \cdot 1{,}07 = 11{.}235\text{ €}
+\end{aligned}" />
+
+- <InlineMath math="6\,\%" /> menganggap kedua tahun memakai suku bunga sama sehingga menghasilkan <InlineMath math="11{.}236\text{ €}" />.
+- <InlineMath math="7\,\%" /> adalah suku bunga tahun kedua, bukan tahun pertama.
+- <InlineMath math="5{,}175\,\%" /> mengabaikan bunga majemuk dengan menjumlahkan persennya langsung menjadi <InlineMath math="12{,}35\,\%" />.
+- <InlineMath math="6{,}175\,\%" /> membagi rata pertumbuhan total <InlineMath math="12{,}35\,\%" /> ke dalam dua tahun.
+- <InlineMath math="12{,}35\,\%" /> adalah total pertumbuhan selama dua tahun sekaligus, bukan suku bunga satu tahun.
+
+# Jawaban
+
+Suku bunga pada tahun pertama adalah <InlineMath math="5\,\%" />.

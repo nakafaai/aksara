@@ -1,46 +1,51 @@
-# Write both years as factors
+# Given
 
-Call the first year's rate <InlineMath math="P" /> percent. Then the balance grows by the factor <InlineMath math="1+\frac{P}{100}" /> in the first year and by <InlineMath math="1+\frac{P+2}{100}" /> in the second. **The first year's interest earns interest in the second year**, so the two factors are multiplied:
+A **balance** (*Guthaben*) of <InlineMath math="10\,000\text{ €}" /> is invested for two years with compound interest (*Zinseszins*). The second-year interest rate is <InlineMath math="2" /> percentage points higher than the first-year rate (<InlineMath math="P\,\%" /> and <InlineMath math="(P + 2)\,\%" />), and the final balance is exactly <InlineMath math="11\,235\text{ €}" />.
 
-<BlockMath math="10{,}000\cdot\left(1+\frac{P}{100}\right)\left(1+\frac{P+2}{100}\right)=11{,}235" />
+# Asked
 
-# A quadratic equation in <InlineMath math="P" />
+Find the interest rate in the first year (*Zinssatz im ersten Jahr*).
 
-Since <InlineMath math="10{,}000=100\cdot100" />, you can multiply each factor by <InlineMath math="100" />. That gives **an equation in whole numbers**:
+# Solution
+
+With compound interest, your first year's interest earns interest of its own in the second year, so the two growth factors multiply together. Because the starting balance <InlineMath math="10\,000" /> equals <InlineMath math="100 \cdot 100" />, **distributing one factor of a hundred into each parenthesis clears every fraction instantly**!
+
+> Two-year compound interest multiplies consecutive growth factors, and a starting capital of ten thousand absorbs both denominators of one hundred to give an integer quadratic equation.
+
+Write the final balance equation for first-year rate <InlineMath math="P" /> percent.
+
+<BlockMath math="10\,000 \cdot \left(1 + \frac{P}{100}\right)\left(1 + \frac{P + 2}{100}\right) = 11\,235" />
+
+## Solving the integer quadratic
+
+Multiply each bracket by <InlineMath math="100" /> and factor to obtain **the first-year interest rate**.
 
 <BlockMath math="\begin{aligned}
-(100+P)(102+P)&=11{,}235 \\
-P^2+202P+10{,}200&=11{,}235 \\
-P^2+202P-1{,}035&=0 \\
-(P-5)(P+207)&=0
+(100 + P)(102 + P) &= 11\,235 \\
+P^2 + 202P + 10\,200 &= 11\,235 \\
+P^2 + 202P - 1\,035 &= 0 \\
+(P - 5)(P + 207) &= 0
 \end{aligned}" />
 
-The factorisation works because <InlineMath math="5\cdot207=1{,}035" /> and <InlineMath math="207-5=202" />.
-
-# Discard the negative solution
-
-A rate of <InlineMath math="-207\,\%" /> is **not a sensible interest rate**, because nothing would be left after the first year. So <InlineMath math="P=5" />:
+Since a rate of <InlineMath math="-207\,\%" /> makes no financial sense, only <InlineMath math="P = 5" /> (<InlineMath math="5\,\%" />) survives. See on the graph how close the equal-rate curve at <InlineMath math="P = 6" /> comes to the target.
 
 <MathVisual
-  title={<>Balance after two years by interest rate</>}
-  description={<>The solid graph shows the balance <InlineMath math="(100+P)(102+P)" /> in euros for a rate of <InlineMath math="P" /> percent in the first year and <InlineMath math="P+2" /> percent in the second. It meets the line <InlineMath math="11{,}235" /> at <InlineMath math="P=5" />. Dashed is <InlineMath math="(100+P)^2" /> for two equal rates: it reaches almost the same value at <InlineMath math="P=6" />.</>}
-  labels={{
-    key: <><InlineMath math="P=5" /></>,
-    eq: <><InlineMath math="P=6" /></>,
-    t: <><InlineMath math="11{,}235" /></>,
-    a: <>two rates</>,
-    b: <>equal rates</>,
-  }}
+  title={<>Balance after two years as a function of first-year rate <InlineMath math="P" /></>}
+  description={
+    <>
+      The solid curve shows <InlineMath math="(100 + P)(102 + P)" /> crossing
+      target <InlineMath math="11\,235" /> at <InlineMath math="P = 5" />. The
+      dashed equal-rate curve <InlineMath math="(100 + P)^2" /> hits{" "}
+      <InlineMath math="11\,236" /> at <InlineMath math="P = 6" />.
+    </>
+  }
+  footer={<>Exactly <InlineMath math="11\,235\text{ €}" /> occurs at <InlineMath math="P = 5\,\%" />, while a flat <InlineMath math="6\,\%" /> gives <InlineMath math="11\,236\text{ €}" />.</>}
   scene={{
     space: "plane",
-    frame: {
-      kind: "cartesian",
-      x: { min: -0.5, max: 9.8 },
-      y: { min: 10000, max: 12300 },
-    },
-    view: { kind: "fit", padding: 0.1 },
+    frame: { kind: "cartesian", x: { min: -0.5, max: 9.8 }, y: { min: 10000, max: 12300 } },
+    view: { kind: "fit", padding: 0.08 },
     objects: [
-      { id: "two-rates", kind: "function", appearance: "primary", formula: "(100 + x)*(102 + x)", domain: { min: 0, max: 9 } },
+      { id: "two-rates", kind: "function", appearance: "primary", formula: "(100 + x) * (102 + x)", domain: { min: 0, max: 9 } },
       { id: "same-rate", kind: "function", appearance: "construction", formula: "(100 + x)^2", domain: { min: 0, max: 9 } },
       { id: "target", kind: "segment", appearance: "reference", from: { x: 0, y: 11235 }, to: { x: 9, y: 11235 } },
       { id: "solution", kind: "point", appearance: "answer", at: { x: 5, y: 11235 } },
@@ -54,14 +59,32 @@ A rate of <InlineMath math="-207\,\%" /> is **not a sensible interest rate**, be
       { key: "b", objectId: "same-rate", at: { x: 8.5, y: 11772 }, placement: "below-right" },
     ],
   }}
+  labels={{
+    key: <><InlineMath math="P = 5" /></>,
+    eq: <><InlineMath math="P = 6" /></>,
+    t: <><InlineMath math="11\,235" /></>,
+    a: <>two rates</>,
+    b: <>same rate</>,
+  }}
 />
 
-Check: <InlineMath math="10{,}000\cdot1.05=10{,}500" /> and <InlineMath math="10{,}500\cdot1.07=11{,}235" />. The first year's rate was <InlineMath math="5\,\%" />.
+Notice the neat algebra behind that <InlineMath math="1\text{ €}" /> gap: <InlineMath math="5\,\%" /> followed by <InlineMath math="7\,\%" /> yields one euro less than two <InlineMath math="6\,\%" /> years because <InlineMath math="(a - 1)(a + 1)" /> sits one below <InlineMath math="a^2" />.
 
-# Why the other answers are wrong
+## Checking yearly balances and wrong choices
 
-- <InlineMath math="6\,\%" /> assumes **two equal rates**. That gives <InlineMath math="10{,}000\cdot1.06^2=11{,}236\text{ €}" />, almost the same amount, but the rates must differ by <InlineMath math="2" /> percentage points.
-- <InlineMath math="7\,\%" /> is the second year's rate.
-- <InlineMath math="5.175\,\%" /> works without compound interest: <InlineMath math="P+(P+2)=12.35" />.
-- <InlineMath math="6.175\,\%" /> splits the total growth of <InlineMath math="12.35\,\%" /> evenly over two years.
-- <InlineMath math="12.35\,\%" /> is the growth over both years together, not one year's rate.
+Verify year by year for **rates <InlineMath math="5\,\%" /> then <InlineMath math="7\,\%" />**:
+
+<BlockMath math="\begin{aligned}
+\text{Year 1: } &10\,000 \cdot 1.05 = 10\,500\text{ €} \\
+\text{Year 2: } &10\,500 \cdot 1.07 = 11\,235\text{ €}
+\end{aligned}" />
+
+- <InlineMath math="6\,\%" /> assumes the same rate in both years, giving <InlineMath math="11\,236\text{ €}" /> instead of <InlineMath math="11\,235\text{ €}" />.
+- <InlineMath math="7\,\%" /> is the second-year interest rate rather than the first-year rate.
+- <InlineMath math="5.175\,\%" /> ignores compounding by adding both rates linearly to <InlineMath math="12.35\,\%" />.
+- <InlineMath math="6.175\,\%" /> splits the total <InlineMath math="12.35\,\%" /> two-year gain evenly across two years.
+- <InlineMath math="12.35\,\%" /> is the combined two-year growth rather than a single year's rate.
+
+# Answer
+
+The interest rate in the first year was <InlineMath math="5\,\%" />.

@@ -1,42 +1,50 @@
-# Nyatakan bilangan kemeja sebagai pecahan
+# Diberi
 
-Kalau sehelai kemeja berharga <InlineMath math="p" /> euro, dengan <InlineMath math="600" /> euro peniaga itu mendapat tepat <InlineMath math="\frac{600}{p}" /> helai. Pada harga <InlineMath math="p-5" /> dia akan mendapat <InlineMath math="\frac{600}{p-5}" /> helai, iaitu **tepat <InlineMath math="4" /> helai lebih**:
+Seorang **peniaga** (*Händler*) membelanjakan sejumlah <InlineMath math="600\text{ €}" /> untuk membeli baju kemeja (*Hemden*) yang sama harganya. Andaikata setiap kemeja <InlineMath math="5\text{ €}" /> lebih murah, wang <InlineMath math="600\text{ €}" /> yang sama akan membeli tepat <InlineMath math="4" /> helai kemeja lebih banyak.
 
-<BlockMath math="\frac{600}{p-5}-\frac{600}{p}=4" />
+# Ditanya
 
-# Selesaikan persamaan itu
+Tentukan harga sebenar <InlineMath math="p" /> bagi sehelai kemeja.
 
-Darab dengan <InlineMath math="p(p-5)" />, **kemudian bahagi dengan <InlineMath math="4" />**:
+# Penyelesaian
+
+Dengan bajet tetap <InlineMath math="600\text{ €}" />, potongan <InlineMath math="5\text{ €}" /> sehelai membolehkan lebih banyak kemeja dibeli: **bilangan kemeja pada harga murah ditolak bilangan pada harga sebenar mesti sama dengan <InlineMath math="4" />**.
+
+> Apabila bajet tetap tetapi harga seunit turun, kuantiti bertambah maka sentiasa tolak kuantiti harga mahal daripada kuantiti harga murah supaya bezanya positif.
+
+Misalkan harga sebenar sehelai kemeja ialah <InlineMath math="p" /> euro (<InlineMath math="p > 5" />), lalu susun persamaan beza bilangan kemeja berikut.
+
+<BlockMath math="\frac{600}{p - 5} - \frac{600}{p} = 4" />
+
+## Menyelesaikan persamaan kuadratik dan memilih harga positif
+
+Darabkan kedua-dua belah dengan <InlineMath math="p(p - 5)" /> lalu **bahagikan dengan <InlineMath math="4" />** supaya pemfaktorannya ringkas.
 
 <BlockMath math="\begin{aligned}
-600p-600(p-5)&=4p(p-5) \\
-3000&=4p^2-20p \\
-p^2-5p-750&=0 \\
-(p-30)(p+25)&=0
+600p - 600(p - 5) &= 4p(p - 5) \\
+3000 &= 4p^2 - 20p \\
+p^2 - 5p - 750 &= 0 \\
+(p - 30)(p + 25) &= 0
 \end{aligned}" />
 
-# Simpan harga yang munasabah
-
-Harga mesti positif, jadi **<InlineMath math="p=-25" /> tersingkir**:
+Oleh sebab harga mesti positif, <InlineMath math="p = -25" /> ditolak dan tinggal <InlineMath math="p = 30" />. Perhatikan graf tambahan kemeja di bawah yang memotong <InlineMath math="y = 4" /> sekali sahaja.
 
 <MathVisual
-  title={<>Berapa banyak kemeja lagi</>}
-  description={<>Bagi setiap harga <InlineMath math="p" /> dalam euro, graf menunjukkan berapa banyak kemeja lagi yang diperoleh dengan <InlineMath math="600" /> euro kalau setiap kemeja <InlineMath math="5" /> euro lebih murah: <InlineMath math="\frac{600}{p-5}-\frac{600}{p}" />. Garis mengufuk berada pada <InlineMath math="4" /> kemeja. Garis itu bertemu graf yang menurun pada <InlineMath math="p=30" />.</>}
-  labels={{
-    key: <><InlineMath math="p=30" /></>,
-    d: <>kemeja tambahan</>,
-    four: <><InlineMath math="4" /></>,
-  }}
+  title={<>Tambahan bilangan kemeja mengikut harga asal <InlineMath math="p" /></>}
+  description={
+    <>
+      Lengkung tambahan kemeja menurun berterusan apabila harga{" "}
+      <InlineMath math="p" /> meningkat dan memotong garis sasaran{" "}
+      <InlineMath math="y = 4" /> tepat sekali pada <InlineMath math="p = 30" />.
+    </>
+  }
+  footer={<>Tambahan tepat <InlineMath math="4" /> helai kemeja hanya berlaku pada harga asal <InlineMath math="p = 30\text{ €}" />.</>}
   scene={{
     space: "plane",
-    frame: {
-      kind: "cartesian",
-      x: { min: 8, max: 62 },
-      y: { min: 0, max: 40 },
-    },
-    view: { kind: "fit", padding: 0.1 },
+    frame: { kind: "cartesian", x: { min: 8, max: 62 }, y: { min: 0, max: 40 } },
+    view: { kind: "fit", padding: 0.08 },
     objects: [
-      { id: "difference", kind: "function", appearance: "primary", formula: "600/(x-5) - 600/x", domain: { min: 12, max: 60 } },
+      { id: "difference", kind: "function", appearance: "primary", formula: "600 / (x - 5) - 600 / x", domain: { min: 12, max: 60 } },
       { id: "level", kind: "segment", appearance: "reference", from: { x: 10, y: 4 }, to: { x: 60, y: 4 } },
       { id: "meet", kind: "point", appearance: "answer", at: { x: 30, y: 4 } },
     ],
@@ -46,14 +54,25 @@ Harga mesti positif, jadi **<InlineMath math="p=-25" /> tersingkir**:
       { key: "four", objectId: "level", at: { x: 60, y: 4 }, placement: "above" },
     ],
   }}
+  labels={{
+    key: <><InlineMath math="p = 30" /></>,
+    d: <>tambahan kemeja</>,
+    four: <><InlineMath math="4" /></>,
+  }}
 />
 
-Semakan: pada harga <InlineMath math="30" /> euro dapat <InlineMath math="20" /> helai, pada harga <InlineMath math="25" /> euro dapat <InlineMath math="24" /> helai, iaitu <InlineMath math="4" /> helai lebih. Harga sehelai kemeja ialah <InlineMath math="30" /> euro.
+Semakin mahal harga sehelai, semakin kecil kesan diskaun <InlineMath math="5\text{ €}" />, menjadikan <InlineMath math="p = 30" /> jawapan tunggal.
 
-# Kenapa jawapan lain salah
+## Menyemak belian dan pilihan salah
 
-- <InlineMath math="25" /> euro ialah **harga murah yang dibayangkan**, bukan harga sebenar.
-- <InlineMath math="20" /> euro sebenarnya bilangan kemeja, <InlineMath math="\frac{600}{30}=20" />.
-- "Tiada harga yang sepadan" terhasil kalau persamaan disusun secara terbalik: <InlineMath math="\frac{600}{p}-\frac{600}{p-5}=4" />. Sebelah kirinya negatif bagi setiap harga melebihi <InlineMath math="5" /> euro.
-- <InlineMath math="24" /> euro ialah bilangan kemeja pada harga yang lebih murah.
-- <InlineMath math="150" /> euro membahagi <InlineMath math="600" /> dengan <InlineMath math="4" /> helai kemeja tambahan.
+Semakan terus: pada harga <InlineMath math="30\text{ €}" /> diperoleh <InlineMath math="20" /> helai, dan pada harga <InlineMath math="25\text{ €}" /> diperoleh <InlineMath math="24" /> helai, **tepat <InlineMath math="4" /> helai lebih banyak**.
+
+- <InlineMath math="25\text{ €}" /> ialah harga potongan bayangan, bukannya harga sebenar yang dibayar peniaga.
+- <InlineMath math="20\text{ €}" /> terkeliru dengan bilangan <InlineMath math="20" /> helai kemeja yang dibeli.
+- Tiada harga yang sepadan berlaku jika susunan tolakan diterbalikkan sehingga sebelah kiri sentiasa negatif.
+- <InlineMath math="24\text{ €}" /> terkeliru dengan bilangan <InlineMath math="24" /> helai kemeja pada harga murah.
+- <InlineMath math="150\text{ €}" /> membahagikan bajet <InlineMath math="600\text{ €}" /> terus dengan <InlineMath math="4" /> helai tambahan.
+
+# Jawapan
+
+Harga sehelai kemeja ialah <InlineMath math="30\text{ €}" />.

@@ -1,42 +1,50 @@
-# Die Anzahl als Bruch ausdrücken
+# Gegeben
 
-Kostet ein Hemd <InlineMath math="p" /> Euro, bekommt der Händler für <InlineMath math="600" /> Euro genau <InlineMath math="\frac{600}{p}" /> Hemden. Zum Preis <InlineMath math="p-5" /> wären es <InlineMath math="\frac{600}{p-5}" /> Hemden, und das sind **genau <InlineMath math="4" /> Hemden mehr**:
+Ein **Händler** kauft für insgesamt <InlineMath math="600\text{ €}" /> gleich teure Hemden. Wäre jedes Hemd <InlineMath math="5\text{ €}" /> billiger gewesen, hätte er für dieselben <InlineMath math="600\text{ €}" /> genau <InlineMath math="4" /> Hemden mehr bekommen.
 
-<BlockMath math="\frac{600}{p-5}-\frac{600}{p}=4" />
+# Gesucht
 
-# Die Gleichung lösen
+Der tatsächliche Stückpreis <InlineMath math="p" /> eines Hemdes.
 
-Multipliziere mit <InlineMath math="p(p-5)" /> und **teile dann durch <InlineMath math="4" />**:
+# Lösung
+
+Bei festem Budget von <InlineMath math="600\text{ €}" /> reicht das Geld bei einem Rabatt von <InlineMath math="5\text{ €}" /> für mehr Stück: **Die Stückzahl beim niedrigeren Preis minus die Stückzahl beim echten Preis muss genau <InlineMath math="4" /> ergeben**.
+
+> Bei festem Gesamtbetrag liefert der kleinere Stückpreis die größere Stückzahl, zieh also immer die kleinere Stückzahl von der größeren ab, damit die Differenz positiv bleibt.
+
+Kostet ein Hemd tatsächlich <InlineMath math="p" /> Euro (<InlineMath math="p > 5" />), entsteht die folgende Bruchgleichung.
+
+<BlockMath math="\frac{600}{p - 5} - \frac{600}{p} = 4" />
+
+## Quadratische Gleichung lösen und positiven Preis wählen
+
+Multiplizier beide Seiten mit <InlineMath math="p(p - 5)" /> und **teile anschließend durch <InlineMath math="4" />**, um einfach faktorisieren zu können.
 
 <BlockMath math="\begin{aligned}
-600p-600(p-5)&=4p(p-5) \\
-3000&=4p^2-20p \\
-p^2-5p-750&=0 \\
-(p-30)(p+25)&=0
+600p - 600(p - 5) &= 4p(p - 5) \\
+3000 &= 4p^2 - 20p \\
+p^2 - 5p - 750 &= 0 \\
+(p - 30)(p + 25) &= 0
 \end{aligned}" />
 
-# Den sinnvollen Preis behalten
-
-Ein Preis ist positiv, **<InlineMath math="p=-25" /> fällt also weg**:
+Da ein Preis positiv sein muss, entfällt <InlineMath math="p = -25" /> und nur <InlineMath math="p = 30" /> bleibt. Im Graphen siehst du den einzigen Schnittpunkt mit <InlineMath math="y = 4" />.
 
 <MathVisual
-  title={<>Wie viele Hemden mehr</>}
-  description={<>Für jeden möglichen Preis <InlineMath math="p" /> in Euro zeigt der Graph, wie viele Hemden man für <InlineMath math="600" /> Euro mehr bekommt, wenn jedes <InlineMath math="5" /> Euro billiger ist: <InlineMath math="\frac{600}{p-5}-\frac{600}{p}" />. Die waagerechte Linie liegt bei <InlineMath math="4" /> Hemden. Sie trifft den fallenden Graphen bei <InlineMath math="p=30" />.</>}
-  labels={{
-    key: <><InlineMath math="p=30" /></>,
-    d: <>Mehr-Hemden</>,
-    four: <><InlineMath math="4" /></>,
-  }}
+  title={<>Zusätzliche Hemden in Abhängigkeit vom Stückpreis <InlineMath math="p" /></>}
+  description={
+    <>
+      Die Kurve der zusätzlichen Hemden fällt mit steigendem Preis{" "}
+      <InlineMath math="p" /> stetig ab und trifft die Ziellinie{" "}
+      <InlineMath math="y = 4" /> genau einmal bei <InlineMath math="p = 30" />.
+    </>
+  }
+  footer={<>Genau <InlineMath math="4" /> zusätzliche Hemden ergeben sich nur beim Preis <InlineMath math="p = 30\text{ €}" />.</>}
   scene={{
     space: "plane",
-    frame: {
-      kind: "cartesian",
-      x: { min: 8, max: 62 },
-      y: { min: 0, max: 40 },
-    },
-    view: { kind: "fit", padding: 0.1 },
+    frame: { kind: "cartesian", x: { min: 8, max: 62 }, y: { min: 0, max: 40 } },
+    view: { kind: "fit", padding: 0.08 },
     objects: [
-      { id: "difference", kind: "function", appearance: "primary", formula: "600/(x-5) - 600/x", domain: { min: 12, max: 60 } },
+      { id: "difference", kind: "function", appearance: "primary", formula: "600 / (x - 5) - 600 / x", domain: { min: 12, max: 60 } },
       { id: "level", kind: "segment", appearance: "reference", from: { x: 10, y: 4 }, to: { x: 60, y: 4 } },
       { id: "meet", kind: "point", appearance: "answer", at: { x: 30, y: 4 } },
     ],
@@ -46,14 +54,25 @@ Ein Preis ist positiv, **<InlineMath math="p=-25" /> fällt also weg**:
       { key: "four", objectId: "level", at: { x: 60, y: 4 }, placement: "above" },
     ],
   }}
+  labels={{
+    key: <><InlineMath math="p = 30" /></>,
+    d: <>mehr Hemden</>,
+    four: <><InlineMath math="4" /></>,
+  }}
 />
 
-Probe: Für <InlineMath math="30" /> Euro bekommt man <InlineMath math="20" /> Hemden, für <InlineMath math="25" /> Euro bekommt man <InlineMath math="24" />, also <InlineMath math="4" /> mehr. Ein Hemd hat <InlineMath math="30" /> Euro gekostet.
+Je teurer ein Hemd ist, desto kleiner fällt der Bonus durch <InlineMath math="5\text{ €}" /> Rabatt aus, sodass <InlineMath math="p = 30" /> eindeutig bleibt.
 
-# Warum die anderen Antworten falsch sind
+## Probe und falsche Antworten prüfen
 
-- <InlineMath math="25" /> Euro ist **der gedachte billigere Preis**, nicht der tatsächliche.
-- <InlineMath math="20" /> Euro ist in Wahrheit die Anzahl der Hemden, <InlineMath math="\frac{600}{30}=20" />.
-- „Die Angaben passen zu keinem Preis“ entsteht, wenn du die Gleichung verkehrt herum aufstellst: <InlineMath math="\frac{600}{p}-\frac{600}{p-5}=4" />. Die linke Seite ist für jeden Preis über <InlineMath math="5" /> Euro negativ.
-- <InlineMath math="24" /> Euro ist die Anzahl der Hemden zum billigeren Preis.
-- <InlineMath math="150" /> Euro teilt <InlineMath math="600" /> durch die <InlineMath math="4" /> zusätzlichen Hemden.
+Direkte Probe: Für <InlineMath math="30\text{ €}" /> erhält der Händler <InlineMath math="20" /> Hemden, für <InlineMath math="25\text{ €}" /> wären es <InlineMath math="24" /> Hemden, also **genau <InlineMath math="4" /> Hemden mehr**.
+
+- <InlineMath math="25\text{ €}" /> ist der gedachte rabattierte Preis, nicht der tatsächlich bezahlte Preis.
+- <InlineMath math="20\text{ €}" /> verwechselt die gekaufte Stückzahl (<InlineMath math="20" />) mit dem Stückpreis.
+- Keine passende Lösung entsteht, wenn man die Differenz verkehrt herum ansetzt, sodass die linke Seite für jedes <InlineMath math="p > 5" /> negativ bleibt.
+- <InlineMath math="24\text{ €}" /> verwechselt die Stückzahl beim niedrigeren Preis (<InlineMath math="24" />) mit dem Preis.
+- <InlineMath math="150\text{ €}" /> teilt einfach <InlineMath math="600\text{ €}" /> durch die <InlineMath math="4" /> zusätzlichen Hemden.
+
+# Antwort
+
+Ein Hemd hat <InlineMath math="30\text{ €}" /> gekostet.

@@ -1,38 +1,46 @@
-# Wo der Mittelpunkt liegen muss
+# Gegeben
 
-Ein Kreis, der beide Achsen berührt, hat von beiden Achsen den Abstand <InlineMath math="r" />. Im ersten Quadranten liegt **sein Mittelpunkt also bei <InlineMath math="M(r\mid r)" />**. Damit hängt der ganze Kreis nur noch von <InlineMath math="r" /> ab.
+Ein **Kreis** liegt im ersten Quadranten eines Koordinatensystems, berührt sowohl die <InlineMath math="x" />-Achse als auch die <InlineMath math="y" />-Achse und geht außerdem durch den Punkt <InlineMath math="P(1 \mid 8)" />.
 
-# Die Bedingung mit dem Punkt <InlineMath math="P" />
+# Gesucht
 
-Der Punkt <InlineMath math="P(1\mid8)" /> liegt auf dem Kreis, wenn **sein Abstand zu <InlineMath math="M" /> genau <InlineMath math="r" />** ist:
+Alle möglichen Werte für den Radius <InlineMath math="r" /> dieses Kreises.
+
+# Lösung
+
+Stell dir einen Ballon vor, den du genau in der Ecke zwischen Boden und Wand aufbläst! Solange er beide Achsen berührt, wandert sein Mittelpunkt auf der Winkelhalbierenden bei <InlineMath math="M(r \mid r)" />. Während er größer wird, streift sein Rand den Punkt <InlineMath math="P(1 \mid 8)" /> erst als kleiner Kreis und **später noch einmal als großer Kreis**!
+
+> Ein Kreis im ersten Quadranten, der beide Achsen berührt, hat stets den Mittelpunkt bei gleichen Koordinaten in Höhe seines Radius, sodass ein vorgegebener Punkt auf dem Kreis zwei gültige Radien liefert.
+
+Da der Abstand von <InlineMath math="M(r \mid r)" /> zu <InlineMath math="P(1 \mid 8)" /> gleich <InlineMath math="r" /> ist, gilt die folgende quadratische Gleichung.
 
 <BlockMath math="\begin{aligned}
-(1-r)^2+(8-r)^2&=r^2 \\
-1-2r+r^2+64-16r+r^2&=r^2 \\
-r^2-18r+65&=0 \\
-(r-5)(r-13)&=0
+(1 - r)^2 + (8 - r)^2 &= r^2 \\
+1 - 2r + r^2 + 64 - 16r + r^2 &= r^2 \\
+r^2 - 18r + 65 &= 0 \\
+(r - 5)(r - 13) &= 0
 \end{aligned}" />
 
-# Beide Lösungen prüfen
+## Beide Kreise im Koordinatensystem prüfen
 
-Beide Radien sind positiv, und beide Mittelpunkte <InlineMath math="(5\mid5)" /> und <InlineMath math="(13\mid13)" /> liegen im ersten Quadranten. **Keine Lösung fällt weg**:
+Beide Lösungen <InlineMath math="r = 5" /> und <InlineMath math="r = 13" /> sind positiv und liegen mit ihren Mittelpunkten im ersten Quadranten, sodass **keine Lösung wegfällt**.
 
 <MathVisual
-  title={<>Zwei passende Kreise</>}
-  description={<>Im ersten Quadranten liegen zwei Kreise, die beide Achsen berühren: der kleine mit dem Mittelpunkt <InlineMath math="M_1(5\mid5)" /> und dem Radius <InlineMath math="5" />, der große mit dem Mittelpunkt <InlineMath math="M_2(13\mid13)" /> und dem Radius <InlineMath math="13" />. Beide gehen durch den Punkt <InlineMath math="P(1\mid8)" />.</>}
-  labels={{
-    p: <><InlineMath math="P(1\mid8)" /></>,
-    m1: <><InlineMath math="M_1(5\mid5)" /></>,
-    m2: <><InlineMath math="M_2(13\mid13)" /></>,
-  }}
+  title={<>Zwei Kreise an beiden Achsen durch <InlineMath math="P(1 \mid 8)" /></>}
+  description={
+    <>
+      Der kleine Kreis um <InlineMath math="M_1(5 \mid 5)" /> hat den Radius{" "}
+      <InlineMath math="5" />, der große Kreis um{" "}
+      <InlineMath math="M_2(13 \mid 13)" /> den Radius <InlineMath math="13" />.
+      Beide berühren beide Achsen und treffen sich im grünen Punkt{" "}
+      <InlineMath math="P(1 \mid 8)" />.
+    </>
+  }
+  footer={<>Sowohl der kleine Kreis (<InlineMath math="r = 5" />) als auch der große (<InlineMath math="r = 13" />) gehen durch <InlineMath math="P(1 \mid 8)" />.</>}
   scene={{
     space: "plane",
-    frame: {
-      kind: "cartesian",
-      x: { min: -3, max: 28 },
-      y: { min: -2, max: 28 },
-    },
-    view: { kind: "fit", padding: 0.1 },
+    frame: { kind: "cartesian", x: { min: -3, max: 28 }, y: { min: -2, max: 28 } },
+    view: { kind: "fit", padding: 0.08 },
     objects: [
       { id: "x-axis", kind: "segment", appearance: "reference", from: { x: 0, y: 0 }, to: { x: 27, y: 0 } },
       { id: "y-axis", kind: "segment", appearance: "reference", from: { x: 0, y: 0 }, to: { x: 0, y: 27 } },
@@ -48,13 +56,32 @@ Beide Radien sind positiv, und beide Mittelpunkte <InlineMath math="(5\mid5)" />
       { key: "m2", objectId: "c2", at: { x: 13, y: 13 }, placement: "above-right" },
     ],
   }}
+  labels={{
+    p: <><InlineMath math="P(1 \mid 8)" /></>,
+    m1: <><InlineMath math="M_1(5 \mid 5)" /></>,
+    m2: <><InlineMath math="M_2(13 \mid 13)" /></>,
+  }}
 />
 
-Probe: <InlineMath math="(1-5)^2+(8-5)^2=16+9=25=5^2" /> und <InlineMath math="(1-13)^2+(8-13)^2=144+25=169=13^2" />. Der Radius kann <InlineMath math="5" /> oder <InlineMath math="13" /> sein.
+Die Skizze zeigt auf einen Blick, dass beide Kreise sämtliche Bedingungen erfüllen.
 
-# Warum die anderen Antworten falsch sind
+## Abstandsprobe und falsche Antworten prüfen
 
-- „nur <InlineMath math="r=5" />“ und „nur <InlineMath math="r=13" />“ **verwerfen eine gültige Lösung** der quadratischen Gleichung.
-- „nur <InlineMath math="r=\sqrt{65}" />“ ist der Abstand von <InlineMath math="P" /> zum Ursprung, <InlineMath math="\sqrt{1+64}" />. Der Ursprung ist aber nicht der Mittelpunkt.
-- „nur <InlineMath math="r=4{,}5" />“ halbiert die Summe der Koordinaten von <InlineMath math="P" />, als läge der Mittelpunkt in der Mitte zwischen den Achsenabschnitten.
-- „nur <InlineMath math="r=9" />“ ist der Mittelwert der beiden richtigen Radien, also der <InlineMath math="r" />-Wert des Scheitels von <InlineMath math="r^2-18r+65" />.
+Mach die Probe über **den Abstand jedes Mittelpunkts zu <InlineMath math="P(1 \mid 8)" />**:
+
+<BlockMath math="\begin{aligned}
+(1 - 5)^2 + (8 - 5)^2 &= 16 + 9 = 25 = 5^2 \\
+(1 - 13)^2 + (8 - 13)^2 &= 144 + 25 = 169 = 13^2
+\end{aligned}" />
+
+| Antwort | Warum sie falsch ist |
+| :--- | :--- |
+| Nur <InlineMath math="r = 5" /> | Streicht den ebenfalls gültigen größeren Radius <InlineMath math="r = 13" />. |
+| Nur <InlineMath math="r = 13" /> | Streicht den ebenfalls gültigen kleineren Radius <InlineMath math="r = 5" />. |
+| Nur <InlineMath math="r = \sqrt{65}" /> | Misst den Abstand von <InlineMath math="P" /> zum Ursprung statt zum Kreismittelpunkt. |
+| Nur <InlineMath math="r = 4{,}5" /> | Mittelt die Koordinaten <InlineMath math="1" /> und <InlineMath math="8" /> ohne Kreisgleichung. |
+| Nur <InlineMath math="r = 9" /> | Nimmt den Mittelwert beider Lösungen, also den Scheitel von <InlineMath math="r^2 - 18r + 65" />. |
+
+# Antwort
+
+Der Kreis kann den Radius <InlineMath math="r = 5" /> oder <InlineMath math="r = 13" /> haben.

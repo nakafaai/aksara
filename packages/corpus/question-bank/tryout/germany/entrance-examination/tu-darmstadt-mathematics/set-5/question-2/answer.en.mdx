@@ -1,20 +1,81 @@
-The task asks for which <InlineMath math="x" /> the area is *mindestens* (at least) <InlineMath math="21\text{ m}^2" />. First **write the area in terms of <InlineMath math="x" />**, then solve a quadratic inequality. The perimeter gives the second side: two adjacent sides together are half the perimeter, so <InlineMath math="x+y=10" /> and <InlineMath math="y=10-x" />.
+# Given
+
+A **rectangular flowerbed** (*rechteckiges Beet*) has perimeter (*Umfang*) exactly <InlineMath math="20\text{ m}" /> with one side of length <InlineMath math="x\text{ m}" />. Its area (*Flächeninhalt*) must be at least (*mindestens*) <InlineMath math="21\text{ m}^2" />.
+
+# Asked
+
+Find all real values of <InlineMath math="x" /> for which the area is at least <InlineMath math="21\text{ m}^2" />.
+
+# Solution
+
+With <InlineMath math="20\text{ m}" /> of edging, any two neighboring sides share half the perimeter, or <InlineMath math="10\text{ m}" />. Stretch the bed long and skinny (<InlineMath math="1\text{ m}" /> by <InlineMath math="9\text{ m}" />) and the area shrinks to <InlineMath math="9\text{ m}^2" />, whereas **shapes closer to a square pack more area inside the same fence**.
+
+> For a fixed perimeter, rectangular area traces a downward-opening parabola peaking at a square, so a minimum-area requirement always produces a closed interval between two symmetric cutoffs.
+
+Write the adjacent side as <InlineMath math="10 - x" /> and solve the quadratic area inequality.
 
 <BlockMath math="\begin{aligned}
-x(10-x)&\ge21 \\
-10x-x^2-21&\ge0 \\
-x^2-10x+21&\le0 \\
-(x-3)(x-7)&\le0
+x(10 - x) &\ge 21 \\
+10x - x^2 - 21 &\ge 0 \\
+x^2 - 10x + 21 &\le 0 \\
+(x - 3)(x - 7) &\le 0
 \end{aligned}" />
 
-Multiplying by <InlineMath math="-1" /> reverses the sign. A product of two factors is at most zero when the factors have different signs or one of them is zero. That happens exactly between the zeros <InlineMath math="3" /> and <InlineMath math="7" />, endpoints included.
+## Reading the area interval on the parabola
 
-As a check, test the endpoints and a value in between. For <InlineMath math="x=3" /> the bed measures <InlineMath math="3\text{ m}" /> by <InlineMath math="7\text{ m}" />, exactly <InlineMath math="21\text{ m}^2" />. For <InlineMath math="x=5" /> you get <InlineMath math="25\text{ m}^2" />, for <InlineMath math="x=2" /> only <InlineMath math="16\text{ m}^2" />.
+Multiplying through by <InlineMath math="-1" /> flips the inequality sign. The product <InlineMath math="(x - 3)(x - 7)" /> is zero or negative **precisely between <InlineMath math="3" /> and <InlineMath math="7" />, inclusive**.
 
-So the area is at least <InlineMath math="21\text{ m}^2" /> for <InlineMath math="3\le x\le7" />.
+<MathVisual
+  title={<>Bed area <InlineMath math="A(x) = x(10 - x)" /> against the <InlineMath math="21\text{ m}^2" /> threshold</>}
+  description={
+    <>
+      The area parabola peaks at <InlineMath math="(5 \mid 25)" /> and rises at
+      or above the <InlineMath math="y = 21" /> line along the green span from{" "}
+      <InlineMath math="x = 3" /> to <InlineMath math="x = 7" />.
+    </>
+  }
+  footer={<>Area stays at least <InlineMath math="21\text{ m}^2" /> across the closed interval <InlineMath math="3 \le x \le 7" />.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 10.8 }, y: { min: -2, max: 28 } },
+    view: { kind: "fit", padding: 0.08 },
+    objects: [
+      { id: "area", kind: "function", appearance: "primary", formula: "x * (10 - x)", domain: { min: 0, max: 10 } },
+      { id: "target", kind: "segment", appearance: "reference", from: { x: 0, y: 21 }, to: { x: 10, y: 21 } },
+      { id: "span", kind: "segment", appearance: "answer", from: { x: 3, y: 21 }, to: { x: 7, y: 21 } },
+      { id: "p3", kind: "point", appearance: "answer", at: { x: 3, y: 21 } },
+      { id: "p7", kind: "point", appearance: "answer", at: { x: 7, y: 21 } },
+      { id: "peak", kind: "point", appearance: "highlight", at: { x: 5, y: 25 } },
+    ],
+    labels: [
+      { key: "l3", objectId: "p3", at: { x: 3, y: 21 }, placement: "above-left" },
+      { key: "l7", objectId: "p7", at: { x: 7, y: 21 }, placement: "above-right" },
+      { key: "top", objectId: "peak", at: { x: 5, y: 25 }, placement: "above" },
+      { key: "min", objectId: "target", at: { x: 9.8, y: 21 }, placement: "below-left" },
+    ],
+  }}
+  labels={{
+    l3: <><InlineMath math="x = 3" /></>,
+    l7: <><InlineMath math="x = 7" /></>,
+    top: <>max <InlineMath math="25" /></>,
+    min: <><InlineMath math="21\text{ m}^2" /></>,
+  }}
+/>
 
-- <InlineMath math="3<x<7" /> excludes the endpoints. At <InlineMath math="x=3" /> and <InlineMath math="x=7" /> the area is exactly <InlineMath math="21\text{ m}^2" />, and "at least" allows that.
-- <InlineMath math="0<x\le3" /> or <InlineMath math="7\le x<10" /> describes the values for which the area is at most <InlineMath math="21\text{ m}^2" />. That is the opposite side of the inequality.
-- <InlineMath math="3\le x<10" /> keeps only the lower bound. For <InlineMath math="x=9" /> the bed is only <InlineMath math="9\text{ m}^2" />.
-- <InlineMath math="-7\le x\le-3" /> comes from the factors <InlineMath math="(x+3)(x+7)" /> with the wrong signs. A side length cannot be negative anyway.
-- <InlineMath math="0<x\le7" /> keeps only the upper bound. For <InlineMath math="x=1" /> the bed is only <InlineMath math="9\text{ m}^2" />.
+The curve clearly hits the <InlineMath math="21\text{ m}^2" /> cutoff at both <InlineMath math="x = 3" /> and <InlineMath math="x = 7" />.
+
+## Testing endpoints and wrong choices
+
+Test three values: at <InlineMath math="x = 3" /> the area is <InlineMath math="3 \cdot 7 = 21\text{ m}^2" />, at <InlineMath math="x = 5" /> it hits **the maximum area <InlineMath math="25\text{ m}^2" />**, and at <InlineMath math="x = 2" /> it falls to <InlineMath math="16\text{ m}^2" />.
+
+| Option | Why it is wrong |
+| :--- | :--- |
+| <InlineMath math="3 < x < 7" /> | Excludes both endpoints, even though "at least" allows exactly <InlineMath math="21\text{ m}^2" />. |
+| <InlineMath math="0 < x \le 3" /> or <InlineMath math="7 \le x < 10" /> | Picks the outer wings where area is at most <InlineMath math="21\text{ m}^2" />, flipping the inequality. |
+| <InlineMath math="3 \le x < 10" /> | Drops the upper cutoff <InlineMath math="7" />, yet <InlineMath math="x = 9" /> gives only <InlineMath math="9\text{ m}^2" />. |
+| <InlineMath math="-7 \le x \le -3" /> | Comes from wrong signs <InlineMath math="(x + 3)(x + 7)" /> and side lengths cannot be negative. |
+| <InlineMath math="0 < x \le 7" /> | Drops the lower cutoff <InlineMath math="3" />, yet <InlineMath math="x = 1" /> gives only <InlineMath math="9\text{ m}^2" />. |
+
+# Answer
+
+The area is at least <InlineMath math="21\text{ m}^2" /> for <InlineMath math="3 \le x \le 7" />.

@@ -1,15 +1,72 @@
-Soalan ini bertanya panjang rantai (*Kette*) tangga lipat itu. Kedua-dua kaki tangga bermula pada engsel di atas seperti dua sinar. Rantai dan lantai kedua-duanya mengufuk, jadi kedua-duanya selari. Inilah rajah **teorem pintasan dengan engsel sebagai bucunya**.
+# Diberi
 
-Diukur dari engsel, rantai berada <InlineMath math="1\text{ m}" /> di sepanjang setiap kaki, dan lantai berada <InlineMath math="2.5\text{ m}" /> di sepanjang setiap kaki. Tembereng-tembereng yang selari berada dalam nisbah yang sama dengan jarak ini.
+Sebuah **tangga lipat** (*Stehleiter*) mempunyai dua kaki lurus (*Holme*) sepanjang <InlineMath math="2.5\text{ m}" /> setiap satu yang berengsel di atas, dengan hujung kedua-dua kaki berjarak <InlineMath math="1.5\text{ m}" /> di lantai rata. Seutas rantai (*Kette*) mendatar yang tegang diikat pada setiap kaki tepat <InlineMath math="1\text{ m}" /> dari engsel atas di sepanjang kaki.
 
-<BlockMath math="\frac{k}{1.5}=\frac{1}{2.5}\quad\Rightarrow\quad k=1.5\cdot0.4=0.6" />
+# Ditanya
 
-Sebagai semakan, bayangkan rantai digelongsorkan ke bawah. Di lantai, selepas <InlineMath math="2.5\text{ m}" />, rantai itu perlu merentang seluruh <InlineMath math="1.5\text{ m}" />. Jadi jaraknya bertambah <InlineMath math="0.6\text{ m}" /> bagi setiap meter kaki, dan selepas <InlineMath math="1\text{ m}" /> jaraknya tepat <InlineMath math="0.6\text{ m}" />.
+Tentukan panjang rantai <InlineMath math="k" />.
 
-Jadi panjang rantai itu ialah <InlineMath math="0.6\text{ m}" />.
+# Penyelesaian
 
-- <InlineMath math="0.4\text{ m}" /> hanyalah nisbah <InlineMath math="1:2.5" />. Nisbah itu masih perlu didarab dengan jarak antara kedua-dua kaki.
-- <InlineMath math="0.9\text{ m}" /> mengukur <InlineMath math="1.5\text{ m}" /> dari kaki tangga, bukan dari engsel, <InlineMath math="1.5\cdot\frac{1.5}{2.5}" />.
-- <InlineMath math="1.5\text{ m}" /> menganggap tembereng yang selari sama panjang. Sebenarnya kaki tangga makin terkangkang ke arah lantai.
-- <InlineMath math="3.75\text{ m}" /> menyusun nisbah secara terbalik, <InlineMath math="1.5\cdot\frac{2.5}{1}" />. Rantai mesti lebih pendek daripada jarak antara kedua-dua kaki.
-- <InlineMath math="1\text{ m}" /> ialah kedudukan rantai di sepanjang kaki, bukan panjang rantai.
+Lihat tangga lipat dari sisi sebagai huruf A besar yang bertemu di engsel puncak! Oleh sebab rantai mendatar selari dengan lantai, **bahagian atas tangga membentuk salinan kecil yang serupa dengan keseluruhan tangga**. Rantai berada sejauh <InlineMath math="1\text{ m}" /> daripada <InlineMath math="2.5\text{ m}" />, iaitu dua per lima jarak turun dari engsel!
+
+> Apabila dua garis selari memotong dua sinar daripada puncak yang sama, nisbah panjang tembereng selari sentiasa sama dengan nisbah jaraknya diukur dari puncak itu.
+
+Perhatikan rajah sisi tangga berikut untuk melihat **teorem pintasan** (*Strahlensatz*) secara terus.
+
+<MathVisual
+  title={<>Pandangan sisi tangga lipat dan rantai mendatar</>}
+  description={
+    <>
+      Segi tiga sama kaki dengan panjang setiap kaki <InlineMath math="2.5\text{ m}" />{" "}
+      dan jarak kaki di lantai <InlineMath math="1.5\text{ m}" />. Rantai hijau
+      terbentang mendatar sejauh <InlineMath math="1\text{ m}" /> dari engsel
+      atas sepanjang setiap kaki.
+    </>
+  }
+  footer={<>Pada dua per lima panjang kaki dari puncak, panjang rantai ialah dua per lima daripada <InlineMath math="1.5\text{ m}" />, iaitu <InlineMath math="0.6\text{ m}" />.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -1.1, max: 1.1 }, y: { min: -0.3, max: 2.7 } },
+    view: { kind: "fit", padding: 0.08 },
+    objects: [
+      { id: "ladder", kind: "polygon", appearance: "primary", vertices: [{ x: -0.75, y: 0 }, { x: 0.75, y: 0 }, { x: 0, y: 2.384848 }] },
+      { id: "chain", kind: "segment", appearance: "answer", from: { x: -0.3, y: 1.430909 }, to: { x: 0.3, y: 1.430909 } },
+      { id: "hinge", kind: "point", appearance: "highlight", at: { x: 0, y: 2.384848 } },
+      { id: "left-hook", kind: "point", appearance: "answer", at: { x: -0.3, y: 1.430909 } },
+      { id: "right-hook", kind: "point", appearance: "answer", at: { x: 0.3, y: 1.430909 } },
+    ],
+    labels: [
+      { key: "top", objectId: "hinge", at: { x: 0, y: 2.384848 }, placement: "above" },
+      { key: "chain", objectId: "chain", at: { x: 0, y: 1.430909 }, placement: "below" },
+      { key: "base", objectId: "ladder", at: { x: 0, y: 0 }, placement: "below" },
+      { key: "upper", objectId: "right-hook", at: { x: 0.2, y: 1.95 }, placement: "right" },
+    ],
+  }}
+  labels={{
+    top: <>engsel</>,
+    chain: <><InlineMath math="k = 0.6\text{ m}" /></>,
+    base: <><InlineMath math="1.5\text{ m}" /></>,
+    upper: <><InlineMath math="1\text{ m}" /></>,
+  }}
+/>
+
+Nisbah keserupaan terus terbaca daripada jarak dari engsel: <InlineMath math="1\text{ m}" /> berbanding <InlineMath math="2.5\text{ m}" />.
+
+## Mengira panjang rantai dan menyemak pilihan salah
+
+Susun nisbah **teorem pintasan daripada puncak engsel** untuk mengira <InlineMath math="k" />.
+
+<BlockMath math="\frac{k}{1.5} = \frac{1}{2.5} = 0.4 \implies k = 1.5 \cdot 0.4 = 0.6\text{ m}" />
+
+Semakan intuisi: sepanjang <InlineMath math="2.5\text{ m}" /> kaki tangga, bukaan membesar hingga <InlineMath math="1.5\text{ m}" />, iaitu melebar <InlineMath math="0.6\text{ m}" /> bagi setiap <InlineMath math="1\text{ m}" /> turun dari engsel!
+
+- <InlineMath math="0.4\text{ m}" /> hanyalah nisbah skala sebelum didarab dengan jarak kaki di lantai <InlineMath math="1.5\text{ m}" />.
+- <InlineMath math="0.9\text{ m}" /> tersilap mengukur <InlineMath math="1.5\text{ m}" /> dari bawah, bukannya <InlineMath math="1\text{ m}" /> dari engsel atas.
+- <InlineMath math="1.5\text{ m}" /> menganggap dua garis selari sentiasa sama panjang sedangkan kaki tangga semakin melebar ke bawah.
+- <InlineMath math="3.75\text{ m}" /> menterbalikkan nisbah sehingga rantai lebih panjang daripada tapak tangga.
+- <InlineMath math="1\text{ m}" /> ialah jarak titik ikat rantai dari engsel di sepanjang kaki, bukannya panjang rantai.
+
+# Jawapan
+
+Panjang rantai tangga lipat itu ialah <InlineMath math="0.6\text{ m}" />.

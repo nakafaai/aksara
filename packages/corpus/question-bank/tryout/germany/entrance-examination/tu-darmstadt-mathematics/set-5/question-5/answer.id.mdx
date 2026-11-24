@@ -1,38 +1,46 @@
-# Di mana pusatnya harus berada
+# Diketahui
 
-Lingkaran yang menyinggung kedua sumbu berjarak <InlineMath math="r" /> dari kedua sumbu. Di kuadran pertama **pusatnya ada di <InlineMath math="M(r\mid r)" />**. Jadi seluruh lingkaran hanya bergantung pada <InlineMath math="r" />.
+Sebuah **lingkaran** (*Kreis*) terletak di kuadran pertama bidang koordinat dan menyinggung sumbu <InlineMath math="x" /> sekaligus sumbu <InlineMath math="y" />. Selain itu, lingkaran melalui titik <InlineMath math="P(1 \mid 8)" />.
 
-# Syarat dari titik <InlineMath math="P" />
+# Ditanyakan
 
-Titik <InlineMath math="P(1\mid8)" /> terletak pada lingkaran kalau **jaraknya ke <InlineMath math="M" /> tepat <InlineMath math="r" />**:
+Tentukan semua nilai jari-jari (*Radius*) <InlineMath math="r" /> yang mungkin bagi lingkaran ini.
+
+# Penyelesaian
+
+Bayangkan kamu meniup balon yang diselipkan rapat di pojok antara lantai dan dinding! Selama balon menyentuh lantai dan dinding sekaligus, pusatnya selalu meluncur di garis diagonal <InlineMath math="M(r \mid r)" />. Saat balon mengembang, tepi kanannya melewati paku di <InlineMath math="P(1 \mid 8)" /> pertama kali saat balon masih kecil, lalu **tepi bawah kirinya menyapu titik yang sama untuk kedua kalinya saat balon sudah besar**!
+
+> Lingkaran di kuadran pertama yang menyinggung kedua sumbu koordinat selalu berpusat di titik berkoordinat sama sebesar jari-jarinya, sehingga syarat melalui satu titik langsung menghasilkan persamaan kuadrat dengan dua lingkaran sah.
+
+Karena jarak dari pusat <InlineMath math="M(r \mid r)" /> ke titik <InlineMath math="P(1 \mid 8)" /> sama dengan <InlineMath math="r" />, susun persamaan jarak kuadratnya.
 
 <BlockMath math="\begin{aligned}
-(1-r)^2+(8-r)^2&=r^2 \\
-1-2r+r^2+64-16r+r^2&=r^2 \\
-r^2-18r+65&=0 \\
-(r-5)(r-13)&=0
+(1 - r)^2 + (8 - r)^2 &= r^2 \\
+1 - 2r + r^2 + 64 - 16r + r^2 &= r^2 \\
+r^2 - 18r + 65 &= 0 \\
+(r - 5)(r - 13) &= 0
 \end{aligned}" />
 
-# Periksa kedua penyelesaian
+## Mengonfirmasi kedua lingkaran di bidang koordinat
 
-Kedua jari-jari positif, dan kedua pusat <InlineMath math="(5\mid5)" /> dan <InlineMath math="(13\mid13)" /> ada di kuadran pertama. **Tidak ada penyelesaian yang gugur**:
+Kedua hasil <InlineMath math="r = 5" /> dan <InlineMath math="r = 13" /> bernilai positif dan pusatnya berada di kuadran pertama, sehingga **tidak ada satu pun jari-jari yang gugur**.
 
 <MathVisual
-  title={<>Dua lingkaran yang cocok</>}
-  description={<>Di kuadran pertama ada dua lingkaran yang menyinggung kedua sumbu: yang kecil berpusat <InlineMath math="M_1(5\mid5)" /> dengan jari-jari <InlineMath math="5" />, yang besar berpusat <InlineMath math="M_2(13\mid13)" /> dengan jari-jari <InlineMath math="13" />. Keduanya melalui titik <InlineMath math="P(1\mid8)" />.</>}
-  labels={{
-    p: <><InlineMath math="P(1\mid8)" /></>,
-    m1: <><InlineMath math="M_1(5\mid5)" /></>,
-    m2: <><InlineMath math="M_2(13\mid13)" /></>,
-  }}
+  title={<>Dua lingkaran yang menyinggung kedua sumbu dan melalui <InlineMath math="P(1 \mid 8)" /></>}
+  description={
+    <>
+      Lingkaran kecil berpusat di <InlineMath math="M_1(5 \mid 5)" /> dengan
+      jari-jari <InlineMath math="5" /> dan lingkaran besar berpusat di{" "}
+      <InlineMath math="M_2(13 \mid 13)" /> dengan jari-jari{" "}
+      <InlineMath math="13" />. Keduanya menyinggung kedua sumbu dan berpotongan
+      di titik hijau <InlineMath math="P(1 \mid 8)" />.
+    </>
+  }
+  footer={<>Baik lingkaran kecil (<InlineMath math="r = 5" />) maupun besar (<InlineMath math="r = 13" />) melalui <InlineMath math="P(1 \mid 8)" />.</>}
   scene={{
     space: "plane",
-    frame: {
-      kind: "cartesian",
-      x: { min: -3, max: 28 },
-      y: { min: -2, max: 28 },
-    },
-    view: { kind: "fit", padding: 0.1 },
+    frame: { kind: "cartesian", x: { min: -3, max: 28 }, y: { min: -2, max: 28 } },
+    view: { kind: "fit", padding: 0.08 },
     objects: [
       { id: "x-axis", kind: "segment", appearance: "reference", from: { x: 0, y: 0 }, to: { x: 27, y: 0 } },
       { id: "y-axis", kind: "segment", appearance: "reference", from: { x: 0, y: 0 }, to: { x: 0, y: 27 } },
@@ -48,13 +56,32 @@ Kedua jari-jari positif, dan kedua pusat <InlineMath math="(5\mid5)" /> dan <Inl
       { key: "m2", objectId: "c2", at: { x: 13, y: 13 }, placement: "above-right" },
     ],
   }}
+  labels={{
+    p: <><InlineMath math="P(1 \mid 8)" /></>,
+    m1: <><InlineMath math="M_1(5 \mid 5)" /></>,
+    m2: <><InlineMath math="M_2(13 \mid 13)" /></>,
+  }}
 />
 
-Cek: <InlineMath math="(1-5)^2+(8-5)^2=16+9=25=5^2" /> dan <InlineMath math="(1-13)^2+(8-13)^2=144+25=169=13^2" />. Jari-jarinya bisa <InlineMath math="5" /> atau <InlineMath math="13" />.
+Gambar langsung membuktikan bahwa kedua lingkaran itu sama-sama memenuhi seluruh syarat soal.
 
-# Mengapa pilihan lain salah
+## Menguji jarak dan pilihan salah
 
-- "hanya <InlineMath math="r=5" />" dan "hanya <InlineMath math="r=13" />" **membuang penyelesaian yang sah** dari persamaan kuadrat itu.
-- "hanya <InlineMath math="r=\sqrt{65}" />" adalah jarak <InlineMath math="P" /> ke titik asal, <InlineMath math="\sqrt{1+64}" />. Padahal titik asal bukan pusat lingkaran.
-- "hanya <InlineMath math="r=4{,}5" />" membagi dua jumlah koordinat <InlineMath math="P" />, seolah-olah pusatnya di tengah-tengah titik potong sumbu.
-- "hanya <InlineMath math="r=9" />" adalah rata-rata kedua jari-jari yang benar, yaitu nilai <InlineMath math="r" /> di puncak <InlineMath math="r^2-18r+65" />.
+Cek langsung dengan **rumus jarak dari masing-masing pusat ke <InlineMath math="P(1 \mid 8)" />**:
+
+<BlockMath math="\begin{aligned}
+(1 - 5)^2 + (8 - 5)^2 &= 16 + 9 = 25 = 5^2 \\
+(1 - 13)^2 + (8 - 13)^2 &= 144 + 25 = 169 = 13^2
+\end{aligned}" />
+
+| Pilihan | Mengapa salah |
+| :--- | :--- |
+| Hanya <InlineMath math="r = 5" /> | Membuang jari-jari besar <InlineMath math="r = 13" /> yang juga sah. |
+| Hanya <InlineMath math="r = 13" /> | Membuang jari-jari kecil <InlineMath math="r = 5" /> yang juga sah. |
+| Hanya <InlineMath math="r = \sqrt{65}" /> | Menghitung jarak <InlineMath math="P" /> ke titik asal, padahal titik asal bukan pusat lingkaran. |
+| Hanya <InlineMath math="r = 4{,}5" /> | Mengambil rata-rata koordinat <InlineMath math="1" /> dan <InlineMath math="8" /> tanpa memakai persamaan lingkaran. |
+| Hanya <InlineMath math="r = 9" /> | Mengambil titik tengah kedua jari-jari, yaitu sumbu simetri parabola <InlineMath math="r^2 - 18r + 65" />. |
+
+# Jawaban
+
+Jari-jari lingkaran yang memenuhi adalah <InlineMath math="r = 5" /> atau <InlineMath math="r = 13" />.

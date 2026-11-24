@@ -1,38 +1,45 @@
-# Where the centre must be
+# Given
 
-A circle that touches both axes is at distance <InlineMath math="r" /> from both axes. In the first quadrant **its centre is therefore at <InlineMath math="M(r\mid r)" />**. So the whole circle depends only on <InlineMath math="r" />.
+A **circle** (*Kreis*) lies in the first quadrant of a coordinate plane and is tangent to both the <InlineMath math="x" />-axis and the <InlineMath math="y" />-axis. In addition, the circle passes through the point <InlineMath math="P(1 \mid 8)" />.
 
-# The condition from the point <InlineMath math="P" />
+# Asked
 
-The point <InlineMath math="P(1\mid8)" /> lies on the circle when **its distance to <InlineMath math="M" /> is exactly <InlineMath math="r" />**:
+Find all possible values for the radius (*Radius*) <InlineMath math="r" /> of the circle.
+
+# Solution
+
+Picture inflating a balloon tucked snugly into the corner between a floor and a wall! Its center glides along <InlineMath math="M(r \mid r)" /> as it grows: its upper arc sweeps past <InlineMath math="P(1 \mid 8)" /> once while small, and then **its lower arc sweeps past <InlineMath math="P" /> a second time once large**!
+
+> A first-quadrant circle tangent to both axes always centers at equal coordinates matching its radius, so passing through one point produces a quadratic with two valid circles.
+
+Because the distance from <InlineMath math="M(r \mid r)" /> to <InlineMath math="P(1 \mid 8)" /> equals <InlineMath math="r" />, set up the squared distance equation.
 
 <BlockMath math="\begin{aligned}
-(1-r)^2+(8-r)^2&=r^2 \\
-1-2r+r^2+64-16r+r^2&=r^2 \\
-r^2-18r+65&=0 \\
-(r-5)(r-13)&=0
+(1 - r)^2 + (8 - r)^2 &= r^2 \\
+1 - 2r + r^2 + 64 - 16r + r^2 &= r^2 \\
+r^2 - 18r + 65 &= 0 \\
+(r - 5)(r - 13) &= 0
 \end{aligned}" />
 
-# Check both solutions
+## Confirming both circles in the coordinate plane
 
-Both radii are positive, and both centres <InlineMath math="(5\mid5)" /> and <InlineMath math="(13\mid13)" /> lie in the first quadrant. **Neither solution drops out**:
+Both roots <InlineMath math="r = 5" /> and <InlineMath math="r = 13" /> are positive with centers in the first quadrant, so **neither radius needs to be rejected**.
 
 <MathVisual
-  title={<>Two circles that fit</>}
-  description={<>Two circles lie in the first quadrant and touch both axes: the small one with centre <InlineMath math="M_1(5\mid5)" /> and radius <InlineMath math="5" />, the large one with centre <InlineMath math="M_2(13\mid13)" /> and radius <InlineMath math="13" />. Both pass through the point <InlineMath math="P(1\mid8)" />.</>}
-  labels={{
-    p: <><InlineMath math="P(1\mid8)" /></>,
-    m1: <><InlineMath math="M_1(5\mid5)" /></>,
-    m2: <><InlineMath math="M_2(13\mid13)" /></>,
-  }}
+  title={<>Two circles tangent to both axes through <InlineMath math="P(1 \mid 8)" /></>}
+  description={
+    <>
+      The smaller circle centers at <InlineMath math="M_1(5 \mid 5)" /> with
+      radius <InlineMath math="5" /> and the larger circle centers at{" "}
+      <InlineMath math="M_2(13 \mid 13)" /> with radius <InlineMath math="13" />.
+      Both touch both axes and meet at the green point <InlineMath math="P(1 \mid 8)" />.
+    </>
+  }
+  footer={<>Both the small circle (<InlineMath math="r = 5" />) and the large circle (<InlineMath math="r = 13" />) pass through <InlineMath math="P(1 \mid 8)" />.</>}
   scene={{
     space: "plane",
-    frame: {
-      kind: "cartesian",
-      x: { min: -3, max: 28 },
-      y: { min: -2, max: 28 },
-    },
-    view: { kind: "fit", padding: 0.1 },
+    frame: { kind: "cartesian", x: { min: -3, max: 28 }, y: { min: -2, max: 28 } },
+    view: { kind: "fit", padding: 0.08 },
     objects: [
       { id: "x-axis", kind: "segment", appearance: "reference", from: { x: 0, y: 0 }, to: { x: 27, y: 0 } },
       { id: "y-axis", kind: "segment", appearance: "reference", from: { x: 0, y: 0 }, to: { x: 0, y: 27 } },
@@ -48,13 +55,32 @@ Both radii are positive, and both centres <InlineMath math="(5\mid5)" /> and <In
       { key: "m2", objectId: "c2", at: { x: 13, y: 13 }, placement: "above-right" },
     ],
   }}
+  labels={{
+    p: <><InlineMath math="P(1 \mid 8)" /></>,
+    m1: <><InlineMath math="M_1(5 \mid 5)" /></>,
+    m2: <><InlineMath math="M_2(13 \mid 13)" /></>,
+  }}
 />
 
-Check: <InlineMath math="(1-5)^2+(8-5)^2=16+9=25=5^2" /> and <InlineMath math="(1-13)^2+(8-13)^2=144+25=169=13^2" />. The radius can be <InlineMath math="5" /> or <InlineMath math="13" />.
+The figure shows at a glance why both circles satisfy every condition simultaneously.
 
-# Why the other answers are wrong
+## Checking distances and wrong choices
 
-- "only <InlineMath math="r=5" />" and "only <InlineMath math="r=13" />" **throw away a valid solution** of the quadratic equation.
-- "only <InlineMath math="r=\sqrt{65}" />" is the distance from <InlineMath math="P" /> to the origin, <InlineMath math="\sqrt{1+64}" />. But the origin isn't the centre.
-- "only <InlineMath math="r=4.5" />" halves the sum of the coordinates of <InlineMath math="P" />, as if the centre were halfway between the intercepts.
-- "only <InlineMath math="r=9" />" is the average of the two correct radii, the <InlineMath math="r" />-value of the vertex of <InlineMath math="r^2-18r+65" />.
+Verify directly with **the distance from each center to <InlineMath math="P(1 \mid 8)" />**:
+
+<BlockMath math="\begin{aligned}
+(1 - 5)^2 + (8 - 5)^2 &= 16 + 9 = 25 = 5^2 \\
+(1 - 13)^2 + (8 - 13)^2 &= 144 + 25 = 169 = 13^2
+\end{aligned}" />
+
+| Option | Why it is wrong |
+| :--- | :--- |
+| Only <InlineMath math="r = 5" /> | Drops the valid larger radius <InlineMath math="r = 13" />. |
+| Only <InlineMath math="r = 13" /> | Drops the valid smaller radius <InlineMath math="r = 5" />. |
+| Only <InlineMath math="r = \sqrt{65}" /> | Measures the distance from <InlineMath math="P" /> to the origin, which is not the circle's center. |
+| Only <InlineMath math="r = 4.5" /> | Averages the coordinates <InlineMath math="1" /> and <InlineMath math="8" /> instead of using the circle equation. |
+| Only <InlineMath math="r = 9" /> | Picks the midpoint of the two valid radii, which is the vertex of <InlineMath math="r^2 - 18r + 65" />. |
+
+# Answer
+
+The circle can have radius <InlineMath math="r = 5" /> or <InlineMath math="r = 13" />.
