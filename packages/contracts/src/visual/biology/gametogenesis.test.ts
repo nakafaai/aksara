@@ -1,4 +1,5 @@
 import { describe, expect, it } from "@effect/vitest";
+import { Array as Arr, Record } from "effect";
 import {
   decodeStrict,
   failsStrict,
@@ -10,7 +11,9 @@ const card = { description: [text("Pick one.")], title: [text("Lab")] };
 
 /** Plain words for every identifier, so a test names fixed parts in one line. */
 function words(...ids: readonly string[]) {
-  return Object.fromEntries(ids.map((id) => [id, id]));
+  return Record.fromEntries(
+    Arr.map(ids, (id): readonly [string, string] => [id, id])
+  );
 }
 
 describe("gametogenesis lab", () => {

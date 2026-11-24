@@ -1,4 +1,5 @@
 import { describe, expect, it } from "@effect/vitest";
+import { Array as Arr } from "effect";
 import {
   decodeStrict,
   failsStrict,
@@ -60,7 +61,7 @@ describe("bone health lab", () => {
 
   it("refuses words missing for a picked one, or words for one not shown", () => {
     expect(
-      failsStrict(props, { ...lab, conditions: lab.conditions.slice(0, 1) })
+      failsStrict(props, { ...lab, conditions: Arr.take(lab.conditions, 1) })
     ).toBe(true);
     expect(
       failsStrict(props, {
