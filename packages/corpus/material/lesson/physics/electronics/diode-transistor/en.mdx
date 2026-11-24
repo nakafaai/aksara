@@ -1,60 +1,26 @@
 export const metadata = {
-  title: "Electronics Notes for Form Five",
+  title: "Electronics Diodes Rectifiers and Transistors",
   description:
-    "Form 5 Physics Chapter 5: explain thermionic emission and cathode rays, use diodes for rectification, and calculate transistor currents in switches.",
+    "Explain thermionic emission, silicon diode curves, half and full wave rectification, and transistor circuits as automatic switches and amplifiers.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-11-17",
   subject: "Electronics",
 };
 
-## Electronics Controls the Flow of Electrons
+## Thermionic Cathode Rays
 
-**Electronics** is the study of controlling the flow of electrons in a vacuum and in semiconductors. Electrons can be released from a hot metal by **thermionic emission** and accelerated by a potential difference, with <InlineMath math="eV = \tfrac{1}{2}mv^2" />. In a semiconductor, a **diode** lets current flow one way only, and a **transistor** uses a small base current to control a large collector current, <InlineMath math="I_C = \beta I_B" />. In these notes you deflect an electron beam, read a diode curve, turn alternating current into direct current, and work out the current gain of a transistor.
+**Electronics** controls electron flow through vacuum tubes and semiconductors. Heating a metal cathode inside an evacuated tube frees electrons by **thermionic emission**, accelerating them toward the positive anode as a **cathode ray**. Because electrons carry negative charge, they always deflect toward a positive plate while turning electrical potential energy into kinetic energy:
 
-## Thermionic Emission and Cathode Rays
-
-**Thermionic emission** is the release of electrons from the surface of a heated metal. In a vacuum tube, a filament heats the cathode, and the released electrons are accelerated towards the positive anode. This beam of electrons is called a **cathode ray**. The vacuum is needed so the electrons don't collide with air molecules.
-
-Cathode rays travel in straight lines, carry negative charge and make a screen fluoresce. Because cathode rays are charged, electric and magnetic fields can deflect them. Change the anode voltage and the electric field in the tube below and watch the position of the spot on the screen.
-
-<CathodeRayLab
-  title={<>Deflecting Cathode Rays with an Electric Field</>}
-  description={
-    <>
-      Electrons from a hot cathode are accelerated to the anode and pass between
-      two charged plates. The beam bends towards the positive plate because
-      electrons are negative.
-    </>
-  }
-  labels={{
-    anode: <>Anode voltage</>,
-    field: <>Electric field between the plates</>,
-    plates: "Deflection plates",
-    spot: <>Position of the spot on the screen</>,
-    view: "Cathode-ray tube with an electron beam and deflection plates",
-  }}
-/>
-
-The electrical potential energy an electron loses as it accelerates becomes kinetic energy:
-
-<BlockMath math="eV = \tfrac{1}{2}mv^2 \quad \Rightarrow \quad v = \sqrt{\frac{2eV}{m}}" />
-
-Try an example. An electron is accelerated through a potential difference of <InlineMath math="2000\text{ V}" />. Calculate its final speed. The electron's charge is <InlineMath math="1.6 \times 10^{-19}\text{ C}" /> and its mass <InlineMath math="9.11 \times 10^{-31}\text{ kg}" />.
-
-<MathContainer>
-<BlockMath math="v = \sqrt{\frac{2 \times 1.6 \times 10^{-19} \times 2000}{9.11 \times 10^{-31}}}" />
-<BlockMath math="v = \sqrt{7.02 \times 10^{14}} = 2.65 \times 10^7\text{ m s}^{-1}" />
-</MathContainer>
-
-Check with the graph below: at <InlineMath math="2000\text{ V}" /> the speed reading is also about <InlineMath math="2.65 \times 10^7\text{ m s}^{-1}" />. The speed is proportional to the **square root** of the voltage, so four times the voltage only doubles the speed.
+<BlockMath math="eV = \frac{1}{2}mv^2 \quad \Longrightarrow \quad v = \sqrt{\frac{2eV}{m}}" />
 
 <MathVisual
   title={<>Electron Speed against Accelerating Voltage</>}
+  footer={<>Electron speed rises with the square root of voltage, so fourfold voltage doubles speed.</>}
   description={
     <>
-      <InlineMath math="v = \sqrt{\dfrac{2eV}{m}} \approx 0.0593\sqrt{V}" />, with{" "}
-      <InlineMath math="v" /> in units of <InlineMath math="10^7\text{ m s}^{-1}" />.
-      At <InlineMath math="2000\text{ V}" />, the speed is{" "}
+      <InlineMath math="v = \sqrt{\dfrac{2eV}{m}} \approx 0.0593\sqrt{V}" /> in
+      units of <InlineMath math="10^7\text{ m s}^{-1}" />. At{" "}
+      <InlineMath math="2000\text{ V}" />, speed reaches{" "}
       <InlineMath math="2.65 \times 10^7\text{ m s}^{-1}" />.
     </>
   }
@@ -79,22 +45,23 @@ Check with the graph below: at <InlineMath math="2000\text{ V}" /> the speed rea
   }}
 />
 
+A vacuum prevents electrons from colliding with air molecules. Because speed scales with the **square root of voltage**, doubling speed requires four times the accelerating voltage.
+
 ## Semiconductors and Diodes
 
-A **semiconductor** such as silicon has a conductivity between that of a conductor and an insulator. Its conductivity is raised by **doping**, which means adding a few impurity atoms. Pentavalent atoms such as phosphorus make an **n-type semiconductor**, with free electrons as the majority charge carriers. Trivalent atoms such as boron make a **p-type semiconductor**, with holes as the majority charge carriers.
+Pure silicon conducts weakly until **doping** adds trace impurity atoms: phosphorus forms **n-type** silicon with free electrons as majority carriers, while boron forms **p-type** silicon with holes as majority carriers, yet both crystals remain electrically neutral overall.
 
-A **diode** is a junction between p-type and n-type semiconductor. At the junction a **depletion layer** forms, with no charge carriers in it. In **forward bias**, the p terminal is connected to the positive terminal, the depletion layer narrows, and current flows once the voltage passes about <InlineMath math="0.7\text{ V}" /> for silicon. In **reverse bias**, the depletion layer widens and almost no current flows.
-
-Move the forward-bias voltage slider below. The current is nearly zero below <InlineMath math="0.5\text{ V}" />, then rises quickly.
+Joining p-type and n-type silicon builds a **diode** with a carrier-free **depletion layer**. In **forward bias**, the depletion layer thins and silicon conducts steeply near <InlineMath math="0.7\text{ V}" />, whereas in **reverse bias**, the depletion layer widens and blocks current.
 
 <MathVisual
   title={<>Current Curve of a Silicon Diode in Forward Bias</>}
+  footer={<>Silicon diode current stays near zero under 0.5 V before climbing sharply near 0.7 V.</>}
   description={
     <>
-      A diode model <InlineMath math="I = 0.0001\,e^{V/0.05}" /> in mA. At{" "}
-      <InlineMath math="0.4\text{ V}" /> the current is under{" "}
-      <InlineMath math="0.3\text{ mA}" />, and at{" "}
-      <InlineMath math="0.7\text{ V}" /> it is over <InlineMath math="100\text{ mA}" />.
+      Diode model <InlineMath math="I = 0.0001\,e^{V/0.05}" /> in mA. At{" "}
+      <InlineMath math="0.4\text{ V}" /> current stays below{" "}
+      <InlineMath math="0.3\text{ mA}" />, and by{" "}
+      <InlineMath math="0.7\text{ V}" /> it passes <InlineMath math="100\text{ mA}" />.
     </>
   }
   scene={{
@@ -118,64 +85,67 @@ Move the forward-bias voltage slider below. The current is nearly zero below <In
   }}
 />
 
+Picture a diode like a one-way valve inside a water pipe: a gentle push will not crack it open until roughly <InlineMath math="0.7\text{ V}" />, and pushing backward only seals it tighter.
+
 ## Rectification with Diodes
 
-**Rectification** is turning alternating current into direct current. In **half-wave rectification**, one diode lets only the positive half-cycle through, so the negative half-cycle disappears. In **full-wave rectification**, four diodes in a bridge flip the negative half-cycle, so both half-cycles come out positive. A **capacitor** connected in parallel with the load smooths the output by storing charge while the voltage is high and releasing it while the voltage is low.
+**Rectification** converts alternating current into direct current. **Half-wave rectification** uses one diode and discards negative half-cycles, while **full-wave rectification** uses four bridge diodes to flip negative half-cycles positive before a parallel **capacitor** smooths the ripples.
 
-Switch between half-wave and full-wave rectification below. The thin line is the alternating current input, and the thick line is the output.
+> A four-diode bridge flips negative half-cycles positive to double the output pulse rate, and a parallel capacitor charges at each peak and discharges into the valleys to smooth voltage ripple.
 
-<MathVisual
-  title={<>Output of Half-Wave and Full-Wave Rectification</>}
+<RectifierDiodeLab
+  title={<>Diode Rectifier Bench and Oscilloscope</>}
   description={
     <>
-      The input is <InlineMath math="\sin(2\pi f t)" /> with{" "}
-      <InlineMath math="f = 2\text{ Hz}" />. Half-wave gives{" "}
-      <InlineMath math="\max(\sin, 0)" />, and full-wave gives{" "}
-      <InlineMath math="|\sin|" />.
+      Compare half-wave, four-diode full-wave bridge, and capacitor-smoothed
+      rectification on a <InlineMath math="12\text{ V}" /> alternating supply
+      at <InlineMath math="50\text{ Hz}" />.
     </>
   }
-  scene={{
-    space: "plane",
-    frame: { kind: "cartesian", x: { min: 0, max: 1 }, y: { min: -1.2, max: 1.2 } },
-    view: { kind: "fit", padding: 0.06 },
-    parameters: [
-      { name: "w", min: 0, max: 1, value: 0, step: 1, label: "w" },
-    ],
-    objects: [
-      { id: "input", kind: "function", appearance: "secondary", formula: "sin(4*pi*x)", domain: { min: 0, max: 1 } },
-      { id: "output", kind: "function", appearance: "primary", formula: "(1 - w)*max(sin(4*pi*x), 0) + w*abs(sin(4*pi*x))", domain: { min: 0, max: 1 } },
-    ],
-    readouts: [
-      { key: "pulses", formula: "2 + 2w" },
-    ],
-  }}
+  footer={<>A four-diode bridge doubles the pulse rate and a parallel capacitor flattens the ripple.</>}
+  frequency={{ max: 100, min: 25, value: 50 }}
+  modes={["halfWave", "fullWave", "smoothed"]}
+  peakVoltage={12}
   labels={{
-    w: <>Half-wave <InlineMath math="0" />, full-wave <InlineMath math="1" /></>,
-    pulses: <>Output pulses per second</>,
+    conduction: <>Active diode path</>,
+    frequency: "AC frequency (Hz)",
+    inputWave: <>AC input waveform</>,
+    mode: "Rectifier mode",
+    modes: {
+      fullWave: "Full-wave bridge",
+      halfWave: "Half-wave",
+      smoothed: "Capacitor smoothed",
+    },
+    outputWave: <>DC output waveform</>,
+    parts: {
+      acSource: "AC supply",
+      capacitor: "Smoothing capacitor",
+      diodeBridge: "Diode bridge",
+      loadResistor: "Load resistor",
+      oscilloscope: "Oscilloscope",
+    },
+    ripple: <>Ripple factor</>,
+    view: "Three-dimensional diode rectifier circuit bench with a live oscilloscope",
   }}
 />
 
-Check with the frequency: a <InlineMath math="2\text{ Hz}" /> input gives <InlineMath math="2" /> pulses per second for half-wave and <InlineMath math="4" /> pulses per second for full-wave. The mains supply in Malaysia runs at <InlineMath math="50\text{ Hz}" />, so full-wave rectification gives <InlineMath math="100" /> pulses per second.
+On a <InlineMath math="50\text{ Hz}" /> mains supply, half-wave rectification outputs <InlineMath math="50" /> pulses per second while full-wave rectification outputs <InlineMath math="100" /> pulses per second and a smoothing capacitor bridges the gaps between peaks.
 
-## The Transistor as a Switch and an Amplifier
+## Transistor Current Gain
 
-A **transistor** has three terminals: the **emitter**, the **base** and the **collector**. A small base current controls a large collector current, and the emitter current is the sum of the two:
+Picture a tiny valve beside a huge dam gate: one fingertip twist steers a massive river of water. Inside a three-terminal **transistor** (emitter, base, collector), a **tiny base current controls a much larger collector current**:
 
-<MathContainer>
-<BlockMath math="I_E = I_B + I_C" />
-<BlockMath math="I_C = \beta I_B" />
-</MathContainer>
-
-Here <InlineMath math="\beta" /> is the **current gain**, usually between <InlineMath math="50" /> and <InlineMath math="300" />. Change the current gain and the base current below.
+<BlockMath math="I_C = \beta I_B, \qquad I_E = I_B + I_C" />
 
 <MathVisual
   title={<>Collector Current against Base Current</>}
+  footer={<>Collector current rises linearly as beta times base current in the active region.</>}
   description={
     <>
-      <InlineMath math="I_C = \beta I_B" />, with <InlineMath math="I_B" /> in
+      <InlineMath math="I_C = \beta I_B" /> with <InlineMath math="I_B" /> in
       microamperes and <InlineMath math="I_C" /> in milliamperes. At{" "}
       <InlineMath math="\beta = 100" /> and{" "}
-      <InlineMath math="I_B = 50\ \mu\text{A}" />,{" "}
+      <InlineMath math="50\ \mu\text{A}" />,{" "}
       <InlineMath math="I_C = 5.0\text{ mA}" />.
     </>
   }
@@ -204,52 +174,76 @@ Here <InlineMath math="\beta" /> is the **current gain**, usually between <Inlin
   }}
 />
 
-Check the starting reading: <InlineMath math="I_C = 100 \times 50\ \mu\text{A} = 5.0\text{ mA}" />, and <InlineMath math="I_E = 5.0 + 0.05 = 5.05\text{ mA}" />.
+Keep microamperes and milliamperes distinct: the emitter current is always slightly larger than collector current because it carries base current too.
 
-A transistor also works as an **automatic switch**. In a street light, a **light-dependent resistor** and a fixed resistor form a potential divider on the base. In daylight the resistance of the light-dependent resistor is low, the base voltage is small, and the transistor is off. At night its resistance is high. For example, with a <InlineMath math="6\text{ V}" /> supply, a <InlineMath math="10\text{ k}\Omega" /> fixed resistor and a light-dependent resistor at <InlineMath math="90\text{ k}\Omega" />, the voltage across the light-dependent resistor is:
+### Automatic Light Switch
 
-<BlockMath math="V_{\text{base}} = 6 \times \frac{90}{10 + 90} = 5.4\text{ V}" />
+In an automatic street lamp, a fixed resistor and a **light-dependent resistor** (<InlineMath math="\text{LDR}" />) form a potential divider feeding the transistor base:
 
-That's above <InlineMath math="0.7\text{ V}" />, so the transistor switches on and the lamp lights. Check: in daylight, if the light-dependent resistor drops to <InlineMath math="1\text{ k}\Omega" />, its voltage is only <InlineMath math="6 \times \tfrac{1}{11} = 0.55\text{ V}" />, below <InlineMath math="0.7\text{ V}" />, so the lamp stays off.
+<BlockMath math="V_B = \frac{R_{\text{LDR}}}{R + R_{\text{LDR}}}\,V" />
 
-## Common Mistakes about Electronics
+As darkness falls, LDR resistance climbs steeply until **base voltage crosses <InlineMath math="0.7\text{ V}" />** and turns the transistor and lamp on.
 
-| Mistake | Why it's wrong | How to check |
-| :--- | :--- | :--- |
-| Cathode rays bend towards the negative plate. | Electrons are negative, so they're pulled towards the positive plate. | Opposite charges attract. |
-| Doubling the accelerating voltage doubles the electron's speed. | <InlineMath math="v = \sqrt{\tfrac{2eV}{m}}" />, so the speed grows by only <InlineMath math="\sqrt{2}" />. | It takes four times the voltage to double the speed. |
-| A forward-biased diode conducts at any voltage. | A silicon diode needs about <InlineMath math="0.7\text{ V}" /> to overcome the depletion layer. | Read the diode curve below <InlineMath math="0.5\text{ V}" />. |
-| A p-type semiconductor is positively charged. | The material is neutral overall. Holes are only its majority charge carriers. | Count the protons and electrons in the doped atoms. |
-| The emitter current equals the collector current. | <InlineMath math="I_E = I_B + I_C" />, so the emitter current is slightly bigger. | Add the base current to the collector current. |
+> A potential divider with a light sensor in the lower branch raises base voltage in darkness so the transistor switches on automatically above its silicon threshold.
 
-The first mistake comes up most often. Cathode rays are **electrons**, so they're always pulled towards the **positive plate**.
+<TransistorSwitchLab
+  title={<>Automatic Lamp Controlled by a Transistor Switch</>}
+  description={
+    <>
+      A <InlineMath math="10\text{ k}\Omega" /> fixed resistor above an LDR sets
+      the base voltage of an <InlineMath math="npn" /> transistor on{" "}
+      <InlineMath math="6.0\text{ V}" />.
+    </>
+  }
+  footer={<>Dimming the light raises LDR resistance until base voltage crosses 0.7 V.</>}
+  labels={{
+    base: <>Base voltage</>,
+    ldr: <>LDR resistance</>,
+    light: <>Light level</>,
+    lightName: "Light level",
+    resistor: <>Fixed resistor <InlineMath math="R" /></>,
+    resistorName: "Fixed resistor",
+    switching: <>Switches on below</>,
+    viewLabel: "An automatic lamp switch circuit with a transistor",
+  }}
+  resistor={10}
+  supply={6}
+  threshold={0.7}
+/>
 
-## Practice on Electronics
+Slide the light level from bright to dark above: in daylight low LDR resistance holds <InlineMath math="V_B" /> below <InlineMath math="0.7\text{ V}" /> so the lamp stays off, and at night <InlineMath math="V_B" /> climbs to switch the lamp on.
 
-These questions move from cathode rays to diodes and transistors. **Write microamperes and milliamperes clearly** so the factor of a thousand doesn't slip.
+### Bias Circuit Analysis
 
-1. An electron is accelerated through a potential difference of <InlineMath math="500\text{ V}" />. Calculate its kinetic energy in joules.
+To solve all currents and voltages in a biased transistor cleanly, solve the **base loop first** to get <InlineMath math="I_B" />, multiply by <InlineMath math="\beta" /> to get <InlineMath math="I_C" />, and then find collector-emitter voltage <InlineMath math="V_{CE}" /> around the collector loop.
 
-2. A <InlineMath math="50\text{ Hz}" /> alternating supply is rectified. State the number of output pulses per second for half-wave and full-wave rectification, and the number of diodes each needs.
+> Subtract the silicon base threshold in the base loop to get base current first, multiply by current gain for collector current, then subtract the collector resistor drop from the collector supply.
 
-3. A transistor has a current gain of <InlineMath math="150" />. Calculate the collector current when the base current is <InlineMath math="20\ \mu\text{A}" />.
+<TransistorBiasLab
+  title={<>Currents and Voltages in a Biased Transistor Circuit</>}
+  description={
+    <>
+      A <InlineMath math="100\text{ k}\Omega" /> base resistor on{" "}
+      <InlineMath math="4.7\text{ V}" /> and a{" "}
+      <InlineMath math="1.0\text{ k}\Omega" /> collector resistor on{" "}
+      <InlineMath math="9.0\text{ V}" /> with <InlineMath math="\beta = 100" />.
+    </>
+  }
+  footer={<>The base loop gives 40 microamperes, collector current is 4.0 mA, leaving VCE at 5.0 V.</>}
+  labels={{
+    base: <>Base resistor</>,
+    baseCurrent: <>Base current</>,
+    baseName: "Base resistor",
+    collectorCurrent: <>Collector current</>,
+    collectorEmitter: <>Collector-emitter voltage</>,
+    viewLabel: "A biased npn transistor circuit with two supplies",
+  }}
+  base={100}
+  baseSupply={4.7}
+  collector={1}
+  collectorSupply={9}
+  gain={100}
+  threshold={0.7}
+/>
 
-4. Explain why a reverse-biased diode conducts almost no current.
-
-### Solutions
-
-**Solution 1**: The kinetic energy equals the work done by the electric field:
-
-<BlockMath math="E_k = eV = 1.6 \times 10^{-19} \times 500 = 8.0 \times 10^{-17}\text{ J}" />
-
-Check with electronvolts: an electron accelerated through <InlineMath math="500\text{ V}" /> gains <InlineMath math="500\text{ eV}" />, and <InlineMath math="500 \times 1.6 \times 10^{-19} = 8.0 \times 10^{-17}\text{ J}" />.
-
-**Solution 2**: Half-wave rectification needs **one diode** and gives **<InlineMath math="50" /> pulses per second**, one per cycle. Full-wave rectification needs **four diodes** in a bridge and gives **<InlineMath math="100" /> pulses per second**, because each cycle gives two positive half-cycles.
-
-**Solution 3**: Use <InlineMath math="I_C = \beta I_B" />:
-
-<BlockMath math="I_C = 150 \times 20\ \mu\text{A} = 3000\ \mu\text{A} = 3.0\text{ mA}" />
-
-Check: the collector current must be much bigger than the base current, and <InlineMath math="3.0\text{ mA}" /> is indeed <InlineMath math="150" /> times <InlineMath math="0.020\text{ mA}" />.
-
-**Solution 4**: In reverse bias, the p terminal is connected to the negative terminal of the supply. The holes in the p-type and the electrons in the n-type are pulled **away from the junction**, so the **depletion layer widens**. That layer has no charge carriers, so it acts as an insulator and almost no current flows.
+At the starting values, the base loop yields <InlineMath math="I_B = 40\ \mu\text{A}" />, collector current <InlineMath math="I_C = 4.0\text{ mA}" />, and collector-emitter voltage <InlineMath math="V_{CE} = 5.0\text{ V}" />. Quick self-checks: an electron accelerated through <InlineMath math="500\text{ V}" /> gains <InlineMath math="8.0 \times 10^{-17}\text{ J}" />, and a <InlineMath math="\beta = 150" /> transistor with <InlineMath math="I_B = 20\ \mu\text{A}" /> drives <InlineMath math="I_C = 3.0\text{ mA}" />.

@@ -1,60 +1,26 @@
 export const metadata = {
-  title: "Grundlagen der Elektronik mit Diode und Transistor",
+  title: "Elektronik Dioden Gleichrichter und Transistor",
   description:
-    "Erklär glühelektrischen Effekt und Kathodenstrahlen, nutze Dioden zum Gleichrichten und berechne Transistorströme beim Schalten und Verstärken, mit Übungen.",
+    "Erkläre glühelektrische Emission, Siliziumdioden, Gleichrichtung sowie Transistorschaltungen als automatischen Schalter und Stromverstärker.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-11-17",
   subject: "Elektronik",
 };
 
-## Elektronik steuert den Fluss von Elektronen
+## Glühelektrische Strahlen
 
-Die **Elektronik** beschäftigt sich damit, wie man Elektronen im Vakuum und in Halbleitern steuert. Aus einem heißen Metall treten Elektronen durch den **glühelektrischen Effekt** aus und werden von einer Spannung beschleunigt, mit <InlineMath math="e \cdot U = \tfrac{1}{2} m v^2" />. In Halbleitern lässt eine **Diode** Strom nur in eine Richtung durch, und ein **Transistor** steuert mit einem kleinen Basisstrom einen großen Kollektorstrom, <InlineMath math="I_C = \beta \cdot I_B" />. Hier lenkst du einen Elektronenstrahl ab, liest eine Diodenkennlinie, wandelst Wechselstrom in Gleichstrom um und berechnest die Stromverstärkung eines Transistors.
+Die **Elektronik** steuert den Elektronenfluss im Vakuum und in Halbleitern. Heizt ein Glühdraht eine Metallkathode im Vakuum, treten Elektronen durch den **glühelektrischen Effekt** aus und fliegen als **Kathodenstrahl** zur positiven Anode. Da Elektronen negativ geladen sind, biegen sie stets zur positiven Platte ab und wandeln elektrische Energie in Bewegungsenergie um:
 
-## Glühelektrischer Effekt und Kathodenstrahlen
-
-Beim **glühelektrischen Effekt** treten Elektronen aus der Oberfläche eines erhitzten Metalls aus. In einer Vakuumröhre heizt ein Glühdraht die Kathode, und die frei werdenden Elektronen werden zur positiven Anode beschleunigt. Dieser Elektronenstrahl heißt **Kathodenstrahl**. Das Vakuum ist nötig, damit die Elektronen nicht mit Luftmolekülen zusammenstoßen.
-
-Kathodenstrahlen breiten sich geradlinig aus, sind negativ geladen und bringen einen Schirm zum Leuchten. Weil sie geladen sind, lassen sie sich durch elektrische und magnetische Felder ablenken. Ändere unten Anodenspannung und elektrisches Feld in der Röhre und beobachte die Lage des Leuchtflecks.
-
-<CathodeRayLab
-  title={<>Ablenkung von Kathodenstrahlen im elektrischen Feld</>}
-  description={
-    <>
-      Elektronen aus einer heißen Kathode werden zur Anode beschleunigt und
-      fliegen zwischen zwei geladenen Platten hindurch. Der Strahl wird zur
-      positiven Platte abgelenkt, weil Elektronen negativ sind.
-    </>
-  }
-  labels={{
-    anode: <>Anodenspannung</>,
-    field: <>Elektrisches Feld zwischen den Platten</>,
-    plates: "Ablenkplatten",
-    spot: <>Lage des Leuchtflecks auf dem Schirm</>,
-    view: "Kathodenstrahlröhre mit Elektronenstrahl und Ablenkplatten",
-  }}
-/>
-
-Die elektrische Energie, die ein Elektron beim Beschleunigen abgibt, wird zu Bewegungsenergie:
-
-<BlockMath math="e \cdot U = \tfrac{1}{2} m v^2 \quad \Rightarrow \quad v = \sqrt{\frac{2 e U}{m}}" />
-
-Probier ein Beispiel. Ein Elektron wird mit einer Spannung von <InlineMath math="2000\ \text{V}" /> beschleunigt. Berechne seine Endgeschwindigkeit. Die Ladung des Elektrons ist <InlineMath math="1{,}6 \cdot 10^{-19}\ \text{C}" />, seine Masse <InlineMath math="9{,}11 \cdot 10^{-31}\ \text{kg}" />.
-
-<MathContainer>
-<BlockMath math="v = \sqrt{\frac{2 \cdot 1{,}6 \cdot 10^{-19} \cdot 2000}{9{,}11 \cdot 10^{-31}}}" />
-<BlockMath math="v = \sqrt{7{,}02 \cdot 10^{14}} = 2{,}65 \cdot 10^7\ \text{m/s}" />
-</MathContainer>
-
-Prüf es am Graphen unten: Bei <InlineMath math="2000\ \text{V}" /> zeigt er ebenfalls etwa <InlineMath math="2{,}65 \cdot 10^7\ \text{m/s}" />. Die Geschwindigkeit ist proportional zur **Wurzel** der Spannung, also verdoppelt erst die vierfache Spannung die Geschwindigkeit.
+<BlockMath math="e \cdot U = \frac{1}{2} m v^2 \quad \Longrightarrow \quad v = \sqrt{\frac{2 e U}{m}}" />
 
 <MathVisual
   title={<>Geschwindigkeit eines Elektrons gegen die Beschleunigungsspannung</>}
+  footer={<>Die Geschwindigkeit wächst mit der Wurzel der Spannung, vierfache Spannung verdoppelt sie.</>}
   description={
     <>
-      <InlineMath math="v = \sqrt{\dfrac{2eU}{m}} \approx 0{,}0593\sqrt{U}" />, mit{" "}
-      <InlineMath math="v" /> in Einheiten von <InlineMath math="10^7\ \text{m/s}" />.
-      Bei <InlineMath math="2000\ \text{V}" /> beträgt die Geschwindigkeit{" "}
+      <InlineMath math="v = \sqrt{\dfrac{2eU}{m}} \approx 0{,}0593\sqrt{U}" />{" "}
+      in Einheiten von <InlineMath math="10^7\ \text{m/s}" />. Bei{" "}
+      <InlineMath math="2000\ \text{V}" /> erreicht es{" "}
       <InlineMath math="2{,}65 \cdot 10^7\ \text{m/s}" />.
     </>
   }
@@ -79,22 +45,23 @@ Prüf es am Graphen unten: Bei <InlineMath math="2000\ \text{V}" /> zeigt er ebe
   }}
 />
 
+Das Vakuum verhindert Zusammenstöße mit Luftmolekülen. Weil die Geschwindigkeit der **Wurzel der Spannung** folgt, brauchst du die vierfache Spannung für doppeltes Tempo.
+
 ## Halbleiter und Dioden
 
-Ein **Halbleiter** wie Silizium leitet besser als ein Isolator, aber schlechter als ein Metall. Seine Leitfähigkeit steigt durch **Dotieren**, also durch das Einbauen weniger Fremdatome. Fünfwertige Atome wie Phosphor ergeben einen **n-Halbleiter** mit freien Elektronen als Majoritätsladungsträgern. Dreiwertige Atome wie Bor ergeben einen **p-Halbleiter** mit Löchern als Majoritätsladungsträgern.
+Reines Silizium leitet schwach, bis **Dotieren** wenige Fremdatome einbaut: Phosphor liefert **n-Halbleiter** mit freien Elektronen als Mehrheitsträgern, Bor liefert **p-Halbleiter** mit Löchern als Mehrheitsträgern, wobei beide Kristalle nach außen neutral bleiben.
 
-Eine **Diode** ist ein Übergang zwischen p- und n-Halbleiter. An diesem Übergang entsteht eine **Sperrschicht** ohne Ladungsträger. In **Durchlassrichtung** liegt das p-Gebiet am Pluspol, die Sperrschicht wird dünner, und ab etwa <InlineMath math="0{,}7\ \text{V}" /> fließt bei Silizium Strom. In **Sperrrichtung** wird die Sperrschicht breiter, und es fließt kaum Strom.
-
-Verschieb unten den Regler für die Spannung in Durchlassrichtung. Unterhalb von <InlineMath math="0{,}5\ \text{V}" /> fließt fast kein Strom, danach steigt er schnell an.
+An der Grenze zwischen p- und n-Gebiet bildet eine **Diode** eine ladungsträgerfreie **Sperrschicht**. In **Durchlassrichtung** schrumpft diese Schicht und Silizium leitet ab etwa <InlineMath math="0{,}7\ \text{V}" /> steil, während sich die Sperrschicht in **Sperrrichtung** verbreitert und den Strom blockiert.
 
 <MathVisual
   title={<>Kennlinie einer Siliziumdiode in Durchlassrichtung</>}
+  footer={<>Unter 0,5 V fließt kaum Strom, ab etwa 0,7 V steigt der Diodenstrom steil an.</>}
   description={
     <>
-      Ein Diodenmodell <InlineMath math="I = 0{,}0001 \cdot e^{U/0{,}05}" /> in mA.
-      Bei <InlineMath math="0{,}4\ \text{V}" /> liegt die Stromstärke unter{" "}
+      Diodenmodell <InlineMath math="I = 0{,}0001 \cdot e^{U/0{,}05}" /> in mA.
+      Bei <InlineMath math="0{,}4\ \text{V}" /> bleibt der Strom unter{" "}
       <InlineMath math="0{,}3\ \text{mA}" />, bei <InlineMath math="0{,}7\ \text{V}" />{" "}
-      über <InlineMath math="100\ \text{mA}" />.
+      übersteigt er <InlineMath math="100\ \text{mA}" />.
     </>
   }
   scene={{
@@ -118,64 +85,67 @@ Verschieb unten den Regler für die Spannung in Durchlassrichtung. Unterhalb von
   }}
 />
 
+Stell dir eine Diode wie ein Rückschlagventil im Wasserrohr vor: Erst ab etwa <InlineMath math="0{,}7\ \text{V}" /> öffnet sie zuverlässig, und Gegendruck verschließt sie noch dichter.
+
 ## Gleichrichten mit Dioden
 
-**Gleichrichten** heißt, Wechselstrom in Gleichstrom umzuwandeln. Bei der **Einweggleichrichtung** lässt eine Diode nur die positive Halbwelle durch, die negative fällt weg. Bei der **Brückengleichrichtung** klappen vier Dioden die negative Halbwelle um, sodass beide Halbwellen positiv herauskommen. Ein **Kondensator** parallel zum Verbraucher glättet die Ausgangsspannung, weil er bei hoher Spannung Ladung speichert und sie bei niedriger wieder abgibt.
+**Gleichrichten** wandelt Wechselstrom in Gleichstrom um. Die **Einweggleichrichtung** mit einer Diode schneidet negative Halbwellen ab, während die **Brückengleichrichtung** mit vier Dioden negative Halbwellen hochklappt und ein paralleler **Kondensator** die Restwelligkeit glättet.
 
-Wechsle unten zwischen Einweg- und Brückengleichrichtung. Die dünne Linie ist der Wechselstrom am Eingang, die dicke der Ausgang.
+> Eine Vier-Dioden-Brücke klappt negative Halbwellen nach oben und verdoppelt die Impulsrate, während ein paralleler Kondensator an den Spitzen lädt und in den Tälern entlädt, um die Welligkeit zu glätten.
 
-<MathVisual
-  title={<>Ausgang bei Einweg- und Brückengleichrichtung</>}
+<RectifierDiodeLab
+  title={<>Dioden-Gleichrichterbank mit Oszilloskop</>}
   description={
     <>
-      Der Eingang ist <InlineMath math="\sin(2\pi f t)" /> mit{" "}
-      <InlineMath math="f = 2\ \text{Hz}" />. Die Einweggleichrichtung liefert{" "}
-      <InlineMath math="\max(\sin, 0)" />, die Brückengleichrichtung{" "}
-      <InlineMath math="|\sin|" />.
+      Vergleiche Einweggleichrichtung, Brückengleichrichtung mit vier Dioden und
+      Kondensatorglättung an einer Wechselspannungsquelle mit{" "}
+      <InlineMath math="12\ \text{V}" /> und <InlineMath math="50\ \text{Hz}" />.
     </>
   }
-  scene={{
-    space: "plane",
-    frame: { kind: "cartesian", x: { min: 0, max: 1 }, y: { min: -1.2, max: 1.2 } },
-    view: { kind: "fit", padding: 0.06 },
-    parameters: [
-      { name: "w", min: 0, max: 1, value: 0, step: 1, label: "w" },
-    ],
-    objects: [
-      { id: "input", kind: "function", appearance: "secondary", formula: "sin(4*pi*x)", domain: { min: 0, max: 1 } },
-      { id: "output", kind: "function", appearance: "primary", formula: "(1 - w)*max(sin(4*pi*x), 0) + w*abs(sin(4*pi*x))", domain: { min: 0, max: 1 } },
-    ],
-    readouts: [
-      { key: "pulses", formula: "2 + 2w" },
-    ],
-  }}
+  footer={<>Die Brücke verdoppelt die Impulsrate, der Kondensator glättet die Restwelligkeit.</>}
+  frequency={{ max: 100, min: 25, value: 50 }}
+  modes={["halfWave", "fullWave", "smoothed"]}
+  peakVoltage={12}
   labels={{
-    w: <>Einweg <InlineMath math="0" />, Brücke <InlineMath math="1" /></>,
-    pulses: <>Ausgangsimpulse pro Sekunde</>,
+    conduction: <>Leitender Diodenpfad</>,
+    frequency: "Wechselspannungsfrequenz (Hz)",
+    inputWave: <>Wechselspannung am Eingang</>,
+    mode: "Gleichrichtermodus",
+    modes: {
+      fullWave: "Brückengleichrichtung",
+      halfWave: "Einweggleichrichtung",
+      smoothed: "Mit Glättungskondensator",
+    },
+    outputWave: <>Gleichspannung am Ausgang</>,
+    parts: {
+      acSource: "Wechselspannungsquelle",
+      capacitor: "Glättungskondensator",
+      diodeBridge: "Diodenbrücke",
+      loadResistor: "Lastwiderstand",
+      oscilloscope: "Oszilloskop",
+    },
+    ripple: <>Welligkeitsfaktor</>,
+    view: "Dreidimensionale Dioden-Gleichrichterbank mit Oszilloskop",
   }}
 />
 
-Prüf es mit der Frequenz: Ein Eingang mit <InlineMath math="2\ \text{Hz}" /> ergibt bei Einweggleichrichtung <InlineMath math="2" /> Impulse pro Sekunde und bei Brückengleichrichtung <InlineMath math="4" />. Das Stromnetz arbeitet mit <InlineMath math="50\ \text{Hz}" />, also liefert die Brückengleichrichtung <InlineMath math="100" /> Impulse pro Sekunde.
+Am <InlineMath math="50\ \text{Hz}" />-Stromnetz erzeugt die Einweggleichrichtung <InlineMath math="50" /> Impulse pro Sekunde, die Brückengleichrichtung dagegen <InlineMath math="100" /> Impulse pro Sekunde, und der Glättungskondensator überbrückt die Lücken zwischen den Spitzen.
 
-## Der Transistor als Schalter und Verstärker
+## Stromverstärkung Transistor
 
-Ein **Transistor** hat drei Anschlüsse: **Emitter**, **Basis** und **Kollektor**. Ein kleiner Basisstrom steuert einen großen Kollektorstrom, und der Emitterstrom ist die Summe der beiden:
+Stell dir ein kleines Steuerventil neben einer riesigen Schleuse vor: Eine winzige Drehung regelt einen mächtigen Wasserstrom. Beim **Transistor** mit Emitter, Basis und Kollektor steuert ein **kleiner Basisstrom einen viel größeren Kollektorstrom**:
 
-<MathContainer>
-<BlockMath math="I_E = I_B + I_C" />
-<BlockMath math="I_C = \beta \cdot I_B" />
-</MathContainer>
-
-Dabei ist <InlineMath math="\beta" /> die **Stromverstärkung**, meist zwischen <InlineMath math="50" /> und <InlineMath math="300" />. Ändere unten Stromverstärkung und Basisstrom.
+<BlockMath math="I_C = \beta \cdot I_B, \qquad I_E = I_B + I_C" />
 
 <MathVisual
   title={<>Kollektorstrom gegen Basisstrom</>}
+  footer={<>Im aktiven Bereich wächst der Kollektorstrom proportional um beta zum Basisstrom.</>}
   description={
     <>
-      <InlineMath math="I_C = \beta \cdot I_B" />, mit <InlineMath math="I_B" /> in
-      Mikroampere und <InlineMath math="I_C" /> in Milliampere. Bei{" "}
+      <InlineMath math="I_C = \beta \cdot I_B" /> mit <InlineMath math="I_B" />{" "}
+      in Mikroampere und <InlineMath math="I_C" /> in Milliampere. Bei{" "}
       <InlineMath math="\beta = 100" /> und{" "}
-      <InlineMath math="I_B = 50\ \mu\text{A}" /> ist{" "}
+      <InlineMath math="50\ \mu\text{A}" /> gilt{" "}
       <InlineMath math="I_C = 5{,}0\ \text{mA}" />.
     </>
   }
@@ -204,52 +174,76 @@ Dabei ist <InlineMath math="\beta" /> die **Stromverstärkung**, meist zwischen 
   }}
 />
 
-Prüf den Startwert: <InlineMath math="I_C = 100 \cdot 50\ \mu\text{A} = 5{,}0\ \text{mA}" /> und <InlineMath math="I_E = 5{,}0 + 0{,}05 = 5{,}05\ \text{mA}" />.
+Achte sauber auf Mikroampere und Milliampere: Der Emitterstrom ist stets etwas größer als der Kollektorstrom, da er auch den Basisstrom aufnimmt.
 
-Ein Transistor arbeitet auch als **automatischer Schalter**. In einer Straßenlaterne bilden ein **Fotowiderstand** und ein Festwiderstand einen Spannungsteiler an der Basis. Tagsüber ist der Widerstand des Fotowiderstands klein, die Basisspannung gering, und der Transistor sperrt. Nachts ist sein Widerstand groß. Mit einer Versorgung von <InlineMath math="6\ \text{V}" />, einem Festwiderstand von <InlineMath math="10\ \text{k}\Omega" /> und einem Fotowiderstand von <InlineMath math="90\ \text{k}\Omega" /> liegt am Fotowiderstand:
+### Lichtschalter
 
-<BlockMath math="U_{\text{Basis}} = 6 \cdot \frac{90}{10 + 90} = 5{,}4\ \text{V}" />
+Bei einer automatischen Straßenlaterne bilden ein Festwiderstand und ein **Fotowiderstand** (<InlineMath math="\text{LDR}" />) einen Spannungsteiler an der Basis:
 
-Das liegt über <InlineMath math="0{,}7\ \text{V}" />, also schaltet der Transistor durch, und die Lampe leuchtet. Prüf es: Fällt der Fotowiderstand tagsüber auf <InlineMath math="1\ \text{k}\Omega" />, liegen an ihm nur <InlineMath math="6 \cdot \tfrac{1}{11} = 0{,}55\ \text{V}" />, weniger als <InlineMath math="0{,}7\ \text{V}" />, also bleibt die Lampe aus.
+<BlockMath math="U_B = \frac{R_{\text{LDR}}}{R + R_{\text{LDR}}} \cdot U" />
 
-## Typische Fehler in der Elektronik
+Wird es dunkel, wächst der Widerstand des Fotowiderstands stark an, bis **die Basisspannung <InlineMath math="0{,}7\ \text{V}" /> übersteigt** und Transistor samt Lampe einschaltet.
 
-| Fehler | Warum er falsch ist | So prüfst du es |
-| :--- | :--- | :--- |
-| Kathodenstrahlen werden zur negativen Platte abgelenkt. | Elektronen sind negativ und werden von der positiven Platte angezogen. | Ungleiche Ladungen ziehen sich an. |
-| Doppelte Beschleunigungsspannung verdoppelt die Geschwindigkeit. | <InlineMath math="v = \sqrt{\tfrac{2eU}{m}}" />, also steigt sie nur um den Faktor <InlineMath math="\sqrt{2}" />. | Erst die vierfache Spannung verdoppelt die Geschwindigkeit. |
-| Eine Diode in Durchlassrichtung leitet bei jeder Spannung. | Eine Siliziumdiode braucht etwa <InlineMath math="0{,}7\ \text{V}" />, um die Sperrschicht zu überwinden. | Lies die Kennlinie unterhalb von <InlineMath math="0{,}5\ \text{V}" /> ab. |
-| Ein p-Halbleiter ist positiv geladen. | Das Material ist insgesamt neutral. Löcher sind nur seine Majoritätsladungsträger. | Zähl Protonen und Elektronen der dotierten Atome. |
-| Emitterstrom und Kollektorstrom sind gleich. | <InlineMath math="I_E = I_B + I_C" />, also ist der Emitterstrom etwas größer. | Addiere den Basisstrom zum Kollektorstrom. |
+> Ein Spannungsteiler mit Lichtsensor im unteren Zweig hebt bei Dunkelheit die Basisspannung über die Schwellenspannung und schaltet den Transistor automatisch durch.
 
-Der erste Fehler kommt am häufigsten vor. Kathodenstrahlen sind **Elektronen**, also werden sie immer zur **positiven Platte** gezogen.
+<TransistorSwitchLab
+  title={<>Automatischer Lichtschalter mit Transistor</>}
+  description={
+    <>
+      Ein <InlineMath math="10\ \text{k}\Omega" />-Festwiderstand über einem
+      Fotowiderstand steuert die Basis eines <InlineMath math="npn" />-Transistors
+      an <InlineMath math="6{,}0\ \text{V}" />.
+    </>
+  }
+  footer={<>Bei sinkendem Licht steigt der LDR-Widerstand bis über 0,7 V Basisspannung.</>}
+  labels={{
+    base: <>Basisspannung</>,
+    ldr: <>Widerstand des Fotowiderstands</>,
+    light: <>Helligkeit</>,
+    lightName: "Helligkeit",
+    resistor: <>Festwiderstand <InlineMath math="R" /></>,
+    resistorName: "Festwiderstand",
+    switching: <>Schaltet ein unter</>,
+    viewLabel: "Automatische Lampenschaltung mit Transistor und Lichtsensor",
+  }}
+  resistor={10}
+  supply={6}
+  threshold={0.7}
+/>
 
-## Übungen zur Elektronik
+Regle oben die Helligkeit von hell nach dunkel: Tagsüber hält der kleine Fotowiderstand <InlineMath math="U_B" /> unter <InlineMath math="0{,}7\ \text{V}" />, sodass die Lampe ausbleibt, und nachts schaltet der Transistor sie selbstständig ein.
 
-Die Aufgaben gehen von Kathodenstrahlen über Dioden zum Transistor. **Schreib Mikroampere und Milliampere deutlich**, damit der Faktor tausend nicht verloren geht.
+### Ströme am Transistor
 
-1. Ein Elektron wird mit einer Spannung von <InlineMath math="500\ \text{V}" /> beschleunigt. Berechne seine Bewegungsenergie in Joule.
+Um alle Ströme und Spannungen einer Transistorschaltung Schritt für Schritt zu berechnen, löse zuerst den **Basiskreis** für <InlineMath math="I_B" />, multipliziere mit <InlineMath math="\beta" /> für <InlineMath math="I_C" /> und bestimme anschließend die Kollektor-Emitter-Spannung <InlineMath math="U_{CE}" /> im Kollektorkreis.
 
-2. Eine Wechselspannung mit <InlineMath math="50\ \text{Hz}" /> wird gleichgerichtet. Gib die Zahl der Ausgangsimpulse pro Sekunde bei Einweg- und Brückengleichrichtung an und wie viele Dioden jeweils nötig sind.
+> Ziehe zuerst die Schwellenspannung im Basiskreis ab, multipliziere den Basisstrom mit der Verstärkung zum Kollektorstrom und ziehe den Spannungsabfall am Kollektorwiderstand von der Kollektorspannung ab.
 
-3. Ein Transistor hat eine Stromverstärkung von <InlineMath math="150" />. Berechne den Kollektorstrom bei einem Basisstrom von <InlineMath math="20\ \mu\text{A}" />.
+<TransistorBiasLab
+  title={<>Ströme und Spannungen in der Transistorschaltung</>}
+  description={
+    <>
+      Ein <InlineMath math="100\ \text{k}\Omega" />-Basiswiderstand an{" "}
+      <InlineMath math="4{,}7\ \text{V}" /> und ein{" "}
+      <InlineMath math="1{,}0\ \text{k}\Omega" />-Kollektorwiderstand an{" "}
+      <InlineMath math="9{,}0\ \text{V}" /> mit <InlineMath math="\beta = 100" />.
+    </>
+  }
+  footer={<>Der Basiskreis liefert 40 Mikroampere, der Kollektor 4,0 mA und UCE bleibt 5,0 V.</>}
+  labels={{
+    base: <>Basiswiderstand</>,
+    baseCurrent: <>Basisstrom</>,
+    baseName: "Basiswiderstand",
+    collectorCurrent: <>Kollektorstrom</>,
+    collectorEmitter: <>Kollektor-Emitter-Spannung</>,
+    viewLabel: "Transistorschaltung mit Basis- und Kollektorkreis",
+  }}
+  base={100}
+  baseSupply={4.7}
+  collector={1}
+  collectorSupply={9}
+  gain={100}
+  threshold={0.7}
+/>
 
-4. Erklär, warum eine Diode in Sperrrichtung fast keinen Strom leitet.
-
-### Lösungen
-
-**Lösung 1**: Die Bewegungsenergie entspricht der Arbeit des elektrischen Felds:
-
-<BlockMath math="E_{\text{kin}} = e \cdot U = 1{,}6 \cdot 10^{-19} \cdot 500 = 8{,}0 \cdot 10^{-17}\ \text{J}" />
-
-Prüf es mit Elektronenvolt: Ein Elektron, das mit <InlineMath math="500\ \text{V}" /> beschleunigt wird, gewinnt <InlineMath math="500\ \text{eV}" />, und <InlineMath math="500 \cdot 1{,}6 \cdot 10^{-19} = 8{,}0 \cdot 10^{-17}\ \text{J}" />.
-
-**Lösung 2**: Die Einweggleichrichtung braucht **eine Diode** und liefert **<InlineMath math="50" /> Impulse pro Sekunde**, einen pro Periode. Die Brückengleichrichtung braucht **vier Dioden** und liefert **<InlineMath math="100" /> Impulse pro Sekunde**, weil jede Periode zwei positive Halbwellen ergibt.
-
-**Lösung 3**: Verwende <InlineMath math="I_C = \beta \cdot I_B" />:
-
-<BlockMath math="I_C = 150 \cdot 20\ \mu\text{A} = 3000\ \mu\text{A} = 3{,}0\ \text{mA}" />
-
-Prüf es: Der Kollektorstrom muss viel größer sein als der Basisstrom, und <InlineMath math="3{,}0\ \text{mA}" /> sind tatsächlich das <InlineMath math="150" />-Fache von <InlineMath math="0{,}020\ \text{mA}" />.
-
-**Lösung 4**: In Sperrrichtung liegt das p-Gebiet am Minuspol der Quelle. Die Löcher im p-Gebiet und die Elektronen im n-Gebiet werden **vom Übergang weggezogen**, also **wird die Sperrschicht breiter**. Diese Schicht hat keine Ladungsträger, wirkt also wie ein Isolator, und es fließt fast kein Strom.
+Mit diesen Startwerten liefert der Basiskreis <InlineMath math="I_B = 40\ \mu\text{A}" />, der Kollektorstrom beträgt <InlineMath math="I_C = 4{,}0\ \text{mA}" />, und am Transistor bleiben <InlineMath math="U_{CE} = 5{,}0\ \text{V}" />. Kurze Selbstkontrolle: Ein durch <InlineMath math="500\ \text{V}" /> beschleunigtes Elektron gewinnt <InlineMath math="8{,}0 \cdot 10^{-17}\ \text{J}" />, und ein Transistor mit <InlineMath math="\beta = 150" /> sowie <InlineMath math="I_B = 20\ \mu\text{A}" /> liefert <InlineMath math="I_C = 3{,}0\ \text{mA}" />.

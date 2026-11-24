@@ -1,59 +1,26 @@
 export const metadata = {
-  title: "Nota Elektronik Tingkatan Lima",
+  title: "Elektronik Diod Rektifier dan Transistor",
   description:
-    "Nota Fizik Tingkatan 5 Bab 5: terangkan pancaran termion dan sinar katod, guna diod untuk rektifikasi, dan kira arus transistor sebagai suis dan penguat.",
+    "Terangkan pancaran termion, lengkung diod silikon, rektifikasi arus, serta litar transistor sebagai suis automatik dan penguat arus.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-11-17",
   subject: "Elektronik",
 };
 
-## Elektronik Mengawal Aliran Elektron
+## Pancaran Termion Katod
 
-**Elektronik** ialah kajian tentang pengawalan aliran elektron dalam vakum dan dalam semikonduktor. Elektron boleh dikeluarkan daripada logam panas melalui **pancaran termion** dan dipecutkan oleh beza keupayaan, dengan <InlineMath math="eV = \tfrac{1}{2}mv^2" />. Dalam semikonduktor, **diod** membenarkan arus mengalir satu arah sahaja, dan **transistor** menggunakan arus tapak yang kecil untuk mengawal arus pengumpul yang besar, <InlineMath math="I_C = \beta I_B" />. Dalam nota ini kamu pesongkan alur elektron, baca lengkung diod, tukar arus ulang-alik kepada arus terus, dan kira gandaan arus transistor.
+**Elektronik** mengawal aliran elektron dalam vakum dan semikonduktor. Apabila filamen memanaskan katod logam dalam tiub vakum, elektron dibebaskan melalui **pancaran termion** lalu dipecut ke anod positif membentuk **sinar katod**. Kerana bercas negatif, sinar katod sentiasa terpesong ke plat positif sambil menukar tenaga keupayaan elektrik kepada tenaga kinetik:
 
-## Pancaran Termion dan Sinar Katod
-
-**Pancaran termion** ialah pembebasan elektron daripada permukaan logam yang dipanaskan. Dalam tiub vakum, filamen memanaskan katod, dan elektron yang terbebas dipecutkan ke arah anod yang positif. Alur elektron ini dipanggil **sinar katod**. Vakum diperlukan supaya elektron tidak berlanggar dengan molekul udara.
-
-Sinar katod bergerak lurus, membawa cas negatif, dan menyebabkan skrin berpendarfluor. Oleh sebab sinar katod bercas, medan elektrik dan medan magnet boleh memesongkannya. Ubah voltan anod dan medan elektrik dalam tiub di bawah dan perhatikan kedudukan titik pada skrin.
-
-<CathodeRayLab
-  title={<>Pemesongan Sinar Katod oleh Medan Elektrik</>}
-  description={
-    <>
-      Elektron dari katod panas dipecutkan ke anod dan melalui dua plat bercas.
-      Alur dipesongkan ke arah plat positif kerana elektron bercas negatif.
-    </>
-  }
-  labels={{
-    anode: <>Voltan anod</>,
-    field: <>Medan elektrik antara plat</>,
-    plates: "Plat pemesongan",
-    spot: <>Kedudukan titik pada skrin</>,
-    view: "Tiub sinar katod dengan alur elektron dan plat pemesongan",
-  }}
-/>
-
-Tenaga keupayaan elektrik yang hilang apabila elektron dipecutkan menjadi tenaga kinetik:
-
-<BlockMath math="eV = \tfrac{1}{2}mv^2 \quad \Rightarrow \quad v = \sqrt{\frac{2eV}{m}}" />
-
-Cuba satu contoh. Elektron dipecutkan melalui beza keupayaan <InlineMath math="2000\text{ V}" />. Hitung laju akhirnya. Cas elektron <InlineMath math="1.6 \times 10^{-19}\text{ C}" /> dan jisimnya <InlineMath math="9.11 \times 10^{-31}\text{ kg}" />.
-
-<MathContainer>
-<BlockMath math="v = \sqrt{\frac{2 \times 1.6 \times 10^{-19} \times 2000}{9.11 \times 10^{-31}}}" />
-<BlockMath math="v = \sqrt{7.02 \times 10^{14}} = 2.65 \times 10^7\text{ m s}^{-1}" />
-</MathContainer>
-
-Semak dengan graf di bawah: pada <InlineMath math="2000\text{ V}" />, bacaan laju juga kira-kira <InlineMath math="2.65 \times 10^7\text{ m s}^{-1}" />. Laju berkadar dengan **punca kuasa dua** voltan, jadi empat kali voltan hanya menggandakan laju.
+<BlockMath math="eV = \frac{1}{2}mv^2 \quad \Longrightarrow \quad v = \sqrt{\frac{2eV}{m}}" />
 
 <MathVisual
   title={<>Laju Elektron melawan Voltan Pecutan</>}
+  footer={<>Laju elektron mengikut punca kuasa dua voltan, maka empat kali voltan menggandakannya.</>}
   description={
     <>
-      <InlineMath math="v = \sqrt{\dfrac{2eV}{m}} \approx 0.0593\sqrt{V}" />, dengan{" "}
-      <InlineMath math="v" /> dalam unit <InlineMath math="10^7\text{ m s}^{-1}" />.
-      Pada <InlineMath math="2000\text{ V}" />, laju ialah{" "}
+      <InlineMath math="v = \sqrt{\dfrac{2eV}{m}} \approx 0.0593\sqrt{V}" />{" "}
+      dalam unit <InlineMath math="10^7\text{ m s}^{-1}" />. Pada{" "}
+      <InlineMath math="2000\text{ V}" />, lajunya ialah{" "}
       <InlineMath math="2.65 \times 10^7\text{ m s}^{-1}" />.
     </>
   }
@@ -78,22 +45,23 @@ Semak dengan graf di bawah: pada <InlineMath math="2000\text{ V}" />, bacaan laj
   }}
 />
 
+Ruang vakum menghalang elektron daripada berlanggar dengan molekul udara. Oleh sebab laju berkadar dengan **punca kuasa dua voltan**, menggandakan laju memerlukan empat kali voltan pecutan.
+
 ## Semikonduktor dan Diod
 
-**Semikonduktor** seperti silikon mempunyai kekonduksian di antara konduktor dengan penebat. Kekonduksiannya ditambah melalui **pendopan**, iaitu menambah sedikit atom bendasing. Atom pentavalen, seperti fosforus, menghasilkan **semikonduktor jenis-n** dengan elektron bebas sebagai pembawa cas majoriti. Atom trivalen, seperti boron, menghasilkan **semikonduktor jenis-p** dengan lohong sebagai pembawa cas majoriti.
+Silikon tulen mengkonduksi lemah sehingga **pendopan** menambah sedikit atom bendasing: fosforus menghasilkan **jenis-n** dengan pembawa majoriti elektron bebas, manakala boron menghasilkan **jenis-p** dengan pembawa majoriti lohong, dan kedua-dua hablur kekal neutral secara keseluruhan.
 
-**Diod** ialah simpang antara semikonduktor jenis-p dengan jenis-n. Di simpang itu terbentuk **lapisan susutan** tanpa pembawa cas. Dalam **pincang depan**, terminal p disambung kepada terminal positif, lapisan susutan menipis, dan arus mengalir selepas voltan melebihi kira-kira <InlineMath math="0.7\text{ V}" /> bagi silikon. Dalam **pincang songsang**, lapisan susutan menebal dan hampir tiada arus mengalir.
-
-Gerakkan gelangsar voltan pincang depan di bawah. Arus hampir sifar di bawah <InlineMath math="0.5\text{ V}" />, kemudian naik dengan cepat.
+Cantuman jenis-p dan jenis-n membentuk **diod** dengan **lapisan susutan** di tengahnya. Dalam **pincang depan**, lapisan susutan menipis lalu silikon mula mengalirkan arus tajam berhampiran <InlineMath math="0.7\text{ V}" />, manakala dalam **pincang songsang**, lapisan susutan menebal dan menyekat arus.
 
 <MathVisual
   title={<>Lengkung Arus Diod Silikon dalam Pincang Depan</>}
+  footer={<>Arus diod silikon hampir sifar di bawah 0.5 V sebelum naik curam dekat 0.7 V.</>}
   description={
     <>
       Model diod <InlineMath math="I = 0.0001\,e^{V/0.05}" /> dalam mA. Pada{" "}
-      <InlineMath math="0.4\text{ V}" /> arus kurang daripada{" "}
+      <InlineMath math="0.4\text{ V}" /> arus di bawah{" "}
       <InlineMath math="0.3\text{ mA}" />, dan pada{" "}
-      <InlineMath math="0.7\text{ V}" /> arus melebihi{" "}
+      <InlineMath math="0.7\text{ V}" /> melepasi{" "}
       <InlineMath math="100\text{ mA}" />.
     </>
   }
@@ -118,64 +86,68 @@ Gerakkan gelangsar voltan pincang depan di bawah. Arus hampir sifar di bawah <In
   }}
 />
 
-## Rektifikasi oleh Diod
+Bayangkan diod seperti injap sehala dalam paip air: tolakan kecil belum membukanya sehingga melepasi ambang sekitar <InlineMath math="0.7\text{ V}" />, manakala tolakan berbalik menutupnya lebih rapat.
 
-**Rektifikasi** ialah penukaran arus ulang-alik kepada arus terus. Dalam **rektifikasi gelombang separuh**, satu diod membenarkan separuh kitar positif sahaja, jadi separuh kitar negatif hilang. Dalam **rektifikasi gelombang penuh**, empat diod dalam susunan tetimbang membalikkan separuh kitar negatif, jadi kedua-dua separuh kitar menjadi positif. Sebuah **kapasitor** yang disambung selari dengan beban melicinkan output dengan menyimpan cas semasa voltan tinggi dan membebaskannya semasa voltan rendah.
+## Rektifikasi Arus Diod
 
-Tukar antara rektifikasi gelombang separuh dan gelombang penuh di bawah. Garis nipis ialah input arus ulang-alik, dan garis tebal ialah output.
+**Rektifikasi** menukarkan arus ulang-alik kepada arus terus. **Rektifikasi gelombang separuh** menggunakan satu diod lalu menyingkirkan separuh kitar negatif, manakala **rektifikasi gelombang penuh** menggunakan empat diod tetimbang untuk membalikkan separuh kitar negatif sebelum **kapasitor** selari melicinkan output.
 
-<MathVisual
-  title={<>Output Rektifikasi Gelombang Separuh dan Gelombang Penuh</>}
+> Tetimbang empat diod membalikkan separuh kitar negatif menjadi positif untuk menggandakan kadar denyut, manakala kapasitor selari mengecas pada puncak dan menyahcas pada lembah untuk meratakan riak voltan.
+
+<RectifierDiodeLab
+  title={<>Meja Rektifier Diod dan Osiloskop</>}
   description={
     <>
-      Input ialah <InlineMath math="\sin(2\pi f t)" /> dengan{" "}
-      <InlineMath math="f = 2\text{ Hz}" />. Gelombang separuh memberi{" "}
-      <InlineMath math="\max(\sin, 0)" />, dan gelombang penuh memberi{" "}
-      <InlineMath math="|\sin|" />.
+      Bandingkan rektifikasi gelombang separuh, tetimbang empat diod, dan
+      perataan kapasitor pada bekalan arus ulang-alik{" "}
+      <InlineMath math="12\text{ V}" /> dengan frekuensi{" "}
+      <InlineMath math="50\text{ Hz}" />.
     </>
   }
-  scene={{
-    space: "plane",
-    frame: { kind: "cartesian", x: { min: 0, max: 1 }, y: { min: -1.2, max: 1.2 } },
-    view: { kind: "fit", padding: 0.06 },
-    parameters: [
-      { name: "w", min: 0, max: 1, value: 0, step: 1, label: "w" },
-    ],
-    objects: [
-      { id: "input", kind: "function", appearance: "secondary", formula: "sin(4*pi*x)", domain: { min: 0, max: 1 } },
-      { id: "output", kind: "function", appearance: "primary", formula: "(1 - w)*max(sin(4*pi*x), 0) + w*abs(sin(4*pi*x))", domain: { min: 0, max: 1 } },
-    ],
-    readouts: [
-      { key: "pulses", formula: "2 + 2w" },
-    ],
-  }}
+  footer={<>Tetimbang empat diod menggandakan denyut output dan kapasitor selari melicinkan riak.</>}
+  frequency={{ max: 100, min: 25, value: 50 }}
+  modes={["halfWave", "fullWave", "smoothed"]}
+  peakVoltage={12}
   labels={{
-    w: <>Gelombang separuh <InlineMath math="0" />, gelombang penuh <InlineMath math="1" /></>,
-    pulses: <>Denyut output sesaat</>,
+    conduction: <>Laluan diod mengalir</>,
+    frequency: "Frekuensi AU (Hz)",
+    inputWave: <>Gelombang input AU</>,
+    mode: "Mod rektifier",
+    modes: {
+      fullWave: "Gelombang penuh",
+      halfWave: "Gelombang separuh",
+      smoothed: "Diratakan kapasitor",
+    },
+    outputWave: <>Gelombang output AT</>,
+    parts: {
+      acSource: "Bekalan AU",
+      capacitor: "Kapasitor perata",
+      diodeBridge: "Tetimbang diod",
+      loadResistor: "Perintang beban",
+      oscilloscope: "Osiloskop",
+    },
+    ripple: <>Faktor riak</>,
+    view: "Meja litar rektifier diod tiga dimensi bersama osiloskop langsung",
   }}
 />
 
-Semak dengan frekuensi: input <InlineMath math="2\text{ Hz}" /> memberi <InlineMath math="2" /> denyut sesaat bagi gelombang separuh dan <InlineMath math="4" /> denyut sesaat bagi gelombang penuh. Bekalan elektrik di Malaysia berfrekuensi <InlineMath math="50\text{ Hz}" />, jadi rektifikasi gelombang penuh memberi <InlineMath math="100" /> denyut sesaat.
+Pada bekalan <InlineMath math="50\text{ Hz}" />, rektifikasi gelombang separuh memberi <InlineMath math="50" /> denyut sesaat manakala gelombang penuh memberi <InlineMath math="100" /> denyut sesaat dan kapasitor selari merapatkan jurang antara puncak.
 
-## Transistor sebagai Suis dan Penguat
+## Gandaan Arus Transistor
 
-**Transistor** mempunyai tiga terminal: **pengeluar**, **tapak** dan **pengumpul**. Arus tapak yang kecil mengawal arus pengumpul yang besar, dan arus pengeluar ialah hasil tambah kedua-duanya:
+Bayangkan injap kecil di sebelah pintu empangan besar: pusingan kecil jari sudah mengawal aliran air yang sangat besar. Dalam **transistor** tiga terminal (pengeluar, tapak, pengumpul), **arus tapak yang kecil mengawal arus pengumpul yang jauh lebih besar**:
 
-<MathContainer>
-<BlockMath math="I_E = I_B + I_C" />
-<BlockMath math="I_C = \beta I_B" />
-</MathContainer>
-
-Di sini <InlineMath math="\beta" /> ialah **gandaan arus**, biasanya antara <InlineMath math="50" /> hingga <InlineMath math="300" />. Ubah gandaan arus dan arus tapak di bawah.
+<BlockMath math="I_C = \beta I_B, \qquad I_E = I_B + I_C" />
 
 <MathVisual
   title={<>Arus Pengumpul melawan Arus Tapak</>}
+  footer={<>Arus pengumpul naik lurus sebesar beta kali arus tapak dalam kawasan aktif.</>}
   description={
     <>
-      <InlineMath math="I_C = \beta I_B" />, dengan <InlineMath math="I_B" /> dalam
-      mikroampere dan <InlineMath math="I_C" /> dalam miliampere. Pada{" "}
+      <InlineMath math="I_C = \beta I_B" /> dengan <InlineMath math="I_B" />{" "}
+      dalam mikroampere dan <InlineMath math="I_C" /> dalam miliampere. Pada{" "}
       <InlineMath math="\beta = 100" /> dan{" "}
-      <InlineMath math="I_B = 50\ \mu\text{A}" />,{" "}
+      <InlineMath math="50\ \mu\text{A}" />,{" "}
       <InlineMath math="I_C = 5.0\text{ mA}" />.
     </>
   }
@@ -204,52 +176,76 @@ Di sini <InlineMath math="\beta" /> ialah **gandaan arus**, biasanya antara <Inl
   }}
 />
 
-Semak bacaan permulaan: <InlineMath math="I_C = 100 \times 50\ \mu\text{A} = 5.0\text{ mA}" />, dan <InlineMath math="I_E = 5.0 + 0.05 = 5.05\text{ mA}" />.
+Sentiasa bezakan mikroampere dengan miliampere: arus pengeluar sentiasa sedikit lebih besar daripada arus pengumpul kerana membawa arus tapak juga.
 
-Transistor juga berfungsi sebagai **suis automatik**. Dalam lampu jalan, **perintang peka cahaya** dan perintang tetap membentuk pembahagi keupayaan pada tapak. Pada waktu siang, rintangan perintang peka cahaya rendah, voltan tapak kecil, dan transistor mati. Pada waktu malam, rintangannya tinggi. Contohnya, dengan bekalan <InlineMath math="6\text{ V}" />, perintang tetap <InlineMath math="10\text{ k}\Omega" /> dan perintang peka cahaya <InlineMath math="90\text{ k}\Omega" />, voltan merentasi perintang peka cahaya ialah:
+### Suis Lampu Automatik
 
-<BlockMath math="V_{\text{tapak}} = 6 \times \frac{90}{10 + 90} = 5.4\text{ V}" />
+Dalam lampu jalan automatik, perintang tetap dan **perintang peka cahaya** (<InlineMath math="\text{LDR}" />) membentuk pembahagi keupayaan ke tapak transistor:
 
-Voltan itu melebihi <InlineMath math="0.7\text{ V}" />, jadi transistor hidup dan lampu menyala. Semak: pada waktu siang, jika rintangan perintang peka cahaya jatuh kepada <InlineMath math="1\text{ k}\Omega" />, voltannya hanya <InlineMath math="6 \times \tfrac{1}{11} = 0.55\text{ V}" />, kurang daripada <InlineMath math="0.7\text{ V}" />, jadi lampu padam.
+<BlockMath math="V_B = \frac{R_{\text{LDR}}}{R + R_{\text{LDR}}}\,V" />
 
-## Kesilapan Lazim tentang Elektronik
+Apabila suasana gelap, rintangan LDR meningkat mendadak hingga **voltan tapak melepasi <InlineMath math="0.7\text{ V}" />** lalu menghidupkan transistor dan lampu.
 
-| Kesilapan | Sebab salah | Cara semak |
-| :--- | :--- | :--- |
-| Sinar katod dipesongkan ke arah plat negatif. | Elektron bercas negatif, jadi ditarik ke arah plat positif. | Cas berlainan saling menarik. |
-| Menggandakan voltan pecutan menggandakan laju elektron. | <InlineMath math="v = \sqrt{\tfrac{2eV}{m}}" />, jadi laju bertambah dengan <InlineMath math="\sqrt{2}" /> sahaja. | Empat kali voltan baru menggandakan laju. |
-| Diod dalam pincang depan mengalirkan arus pada voltan berapa pun. | Diod silikon memerlukan kira-kira <InlineMath math="0.7\text{ V}" /> untuk mengatasi lapisan susutan. | Baca lengkung diod di bawah <InlineMath math="0.5\text{ V}" />. |
-| Semikonduktor jenis-p bercas positif. | Bahan itu neutral secara keseluruhan. Lohong hanya pembawa cas majoritinya. | Kira jumlah proton dan elektron dalam atom yang didop. |
-| Arus pengeluar sama dengan arus pengumpul. | <InlineMath math="I_E = I_B + I_C" />, jadi arus pengeluar sedikit lebih besar. | Tambah arus tapak kepada arus pengumpul. |
+> Pembahagi keupayaan dengan perintang peka cahaya di cabang bawah menaikkan voltan tapak ketika gelap supaya transistor hidup secara automatik melepasi voltan ambang silikon.
 
-Kesilapan pertama paling kerap muncul. Sinar katod ialah **elektron**, jadi sentiasa ditarik ke arah **plat positif**.
+<TransistorSwitchLab
+  title={<>Suis Lampu Automatik Berasaskan Transistor</>}
+  description={
+    <>
+      Perintang tetap <InlineMath math="10\text{ k}\Omega" /> di atas LDR
+      menetapkan voltan tapak transistor <InlineMath math="npn" /> pada bekalan{" "}
+      <InlineMath math="6.0\text{ V}" />.
+    </>
+  }
+  footer={<>Apabila cahaya malap, rintangan LDR naik hingga voltan tapak melepasi 0.7 V.</>}
+  labels={{
+    base: <>Voltan tapak</>,
+    ldr: <>Rintangan LDR</>,
+    light: <>Tahap cahaya</>,
+    lightName: "Tahap cahaya",
+    resistor: <>Perintang tetap <InlineMath math="R" /></>,
+    resistorName: "Perintang tetap",
+    switching: <>Hidup di bawah</>,
+    viewLabel: "Litar suis lampu automatik dengan transistor",
+  }}
+  resistor={10}
+  supply={6}
+  threshold={0.7}
+/>
 
-## Latihan Elektronik
+Ubah tahap cahaya daripada terang kepada gelap di atas: waktu siang rintangan LDR rendah supaya <InlineMath math="V_B" /> di bawah <InlineMath math="0.7\text{ V}" /> dan lampu padam, lalu waktu malam <InlineMath math="V_B" /> meningkat dan lampu terus menyala.
 
-Soalan ini bergerak daripada sinar katod kepada diod dan transistor. **Tulis unit mikroampere dan miliampere dengan jelas** supaya faktor seribu tidak tertukar.
+### Litar Pincang
 
-1. Elektron dipecutkan melalui beza keupayaan <InlineMath math="500\text{ V}" />. Hitung tenaga kinetiknya dalam joule.
+Untuk mengira semua arus dan voltan transistor dengan teratur, selesaikan **gelung tapak dahulu** bagi mendapatkan <InlineMath math="I_B" />, darabkan dengan <InlineMath math="\beta" /> untuk <InlineMath math="I_C" />, kemudian hitung voltan pengumpul-pengeluar <InlineMath math="V_{CE}" /> dalam gelung pengumpul.
 
-2. Bekalan arus ulang-alik <InlineMath math="50\text{ Hz}" /> direktifikasi. Nyatakan bilangan denyut output sesaat bagi rektifikasi gelombang separuh dan gelombang penuh, dan nyatakan bilangan diod yang diperlukan bagi setiap satu.
+> Tolakkan voltan ambang tapak dalam gelung tapak untuk mencari arus tapak dahulu, darabkan dengan gandaan arus bagi arus pengumpul, lalu tolak susutan perintang pengumpul daripada bekalan pengumpul.
 
-3. Sebuah transistor mempunyai gandaan arus <InlineMath math="150" />. Hitung arus pengumpul apabila arus tapak <InlineMath math="20\ \mu\text{A}" />.
+<TransistorBiasLab
+  title={<>Arus dan Voltan dalam Litar Pincang Transistor</>}
+  description={
+    <>
+      Perintang tapak <InlineMath math="100\text{ k}\Omega" /> pada{" "}
+      <InlineMath math="4.7\text{ V}" /> dan perintang pengumpul{" "}
+      <InlineMath math="1.0\text{ k}\Omega" /> pada{" "}
+      <InlineMath math="9.0\text{ V}" /> dengan <InlineMath math="\beta = 100" />.
+    </>
+  }
+  footer={<>Gelung tapak memberi 40 mikroampere, arus pengumpul 4.0 mA, dan baki VCE 5.0 V.</>}
+  labels={{
+    base: <>Perintang tapak</>,
+    baseCurrent: <>Arus tapak</>,
+    baseName: "Perintang tapak",
+    collectorCurrent: <>Arus pengumpul</>,
+    collectorEmitter: <>Voltan pengumpul-pengeluar</>,
+    viewLabel: "Litar pincang transistor npn dengan dua bekalan",
+  }}
+  base={100}
+  baseSupply={4.7}
+  collector={1}
+  collectorSupply={9}
+  gain={100}
+  threshold={0.7}
+/>
 
-4. Terangkan sebab diod dalam pincang songsang hampir tidak mengalirkan arus.
-
-### Penyelesaian
-
-**Penyelesaian 1**: Tenaga kinetik sama dengan kerja yang dilakukan oleh medan elektrik:
-
-<BlockMath math="E_k = eV = 1.6 \times 10^{-19} \times 500 = 8.0 \times 10^{-17}\text{ J}" />
-
-Semak dengan unit elektronvolt: elektron yang dipecutkan melalui <InlineMath math="500\text{ V}" /> mendapat <InlineMath math="500\text{ eV}" />, dan <InlineMath math="500 \times 1.6 \times 10^{-19} = 8.0 \times 10^{-17}\text{ J}" />.
-
-**Penyelesaian 2**: Rektifikasi gelombang separuh memerlukan **satu diod** dan memberi **<InlineMath math="50" /> denyut sesaat**, satu bagi setiap kitar. Rektifikasi gelombang penuh memerlukan **empat diod** dalam susunan tetimbang dan memberi **<InlineMath math="100" /> denyut sesaat**, kerana setiap kitar memberi dua separuh kitar positif.
-
-**Penyelesaian 3**: Gunakan <InlineMath math="I_C = \beta I_B" />:
-
-<BlockMath math="I_C = 150 \times 20\ \mu\text{A} = 3000\ \mu\text{A} = 3.0\text{ mA}" />
-
-Semak: arus pengumpul mesti jauh lebih besar daripada arus tapak, dan <InlineMath math="3.0\text{ mA}" /> memang <InlineMath math="150" /> kali <InlineMath math="0.020\text{ mA}" />.
-
-**Penyelesaian 4**: Dalam pincang songsang, terminal p disambung kepada terminal negatif bekalan. Lohong dalam jenis-p dan elektron dalam jenis-n ditarik **menjauhi simpang**, jadi **lapisan susutan menebal**. Lapisan itu tidak mempunyai pembawa cas, jadi bertindak sebagai penebat dan hampir tiada arus mengalir.
+Pada nilai permulaan, gelung tapak memberi <InlineMath math="I_B = 40\ \mu\text{A}" />, arus pengumpul <InlineMath math="I_C = 4.0\text{ mA}" />, dan voltan pengumpul-pengeluar <InlineMath math="V_{CE} = 5.0\text{ V}" />. Semakan pantas kendiri: elektron yang dipecut melalui <InlineMath math="500\text{ V}" /> mendapat tenaga kinetik <InlineMath math="8.0 \times 10^{-17}\text{ J}" />, dan transistor <InlineMath math="\beta = 150" /> dengan <InlineMath math="I_B = 20\ \mu\text{A}" /> mengalirkan <InlineMath math="I_C = 3.0\text{ mA}" />.
