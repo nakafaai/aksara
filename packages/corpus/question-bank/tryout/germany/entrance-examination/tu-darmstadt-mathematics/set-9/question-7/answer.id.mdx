@@ -1,16 +1,38 @@
-# Perubahan sebagai faktor
+# Diketahui
 
-Kenaikan <InlineMath math="25\,\%" /> mengalikan harga dengan <InlineMath math="1{,}25" />. Di akhir harga harus <InlineMath math="10\,\%" /> di bawah harga lama, yaitu <InlineMath math="0{,}9" /> kalinya. Yang dicari adalah penurunan sebesar bagian <InlineMath math="s" />, **dihitung dari harga yang sudah naik**:
+Harga sebuah barang (*Preis einer Ware*) mengalami dua perubahan persentase secara berurutan:
 
-<BlockMath math="1{,}25\,(1-s)=0{,}9" />
+- Pertama, harga **dinaikkan sebesar <InlineMath math="25\,\%" />**.
+- Kemudian, harga baru itu **diturunkan sebesar <InlineMath math="s" />** sehingga harga akhir tepat <InlineMath math="10\,\%" /> lebih murah daripada harga sebelum kenaikan.
 
-# Hitung persentasenya
+# Ditanyakan
 
-<BlockMath math="1-s=\frac{0{,}9}{1{,}25}=0{,}72\quad\Longrightarrow\quad s=0{,}28=28\,\%" />
+Berapa persenkah penurunan harga dari **harga yang sudah naik**?
+
+# Penyelesaian
+
+Perubahan persentase beruntun tidak pernah boleh dijumlahkan begitu saja, karena **dasar pembandingnya sudah berubah**. Bayangkan harga mula-mula <InlineMath math="100\text{ €}" />: setelah naik <InlineMath math="25\,\%" />, harga menjadi <InlineMath math="125\text{ €}" />. Supaya turun menjadi <InlineMath math="90\text{ €}" />, kamu memang memotong <InlineMath math="35\text{ €}" />, tetapi potongan <InlineMath math="35\text{ €}" /> itu sekarang diambil dari <InlineMath math="125\text{ €}" />, bukan dari <InlineMath math="100\text{ €}" />.
+
+> Setiap perubahan persentase selalu dihitung terhadap nilai terakhir tepat sebelum perubahan itu terjadi, sehingga persentase beruntun digabung dengan perkalian faktor.
+
+## Menyusun persamaan faktor pengali
+
+Kenaikan <InlineMath math="25\,\%" /> mengalikan harga awal dengan <InlineMath math="1{,}25" />, sedangkan target akhir <InlineMath math="10\,\%" /> di bawah harga awal berarti <InlineMath math="0{,}9" /> kali harga awal. Untuk **penurunan sebesar bagian <InlineMath math="s" /> dari harga baru**:
+
+<BlockMath math="1{,}25(1 - s) = 0{,}9" />
+
+## Menghitung persentase penurunan
+
+Bagi kedua ruas dengan <InlineMath math="1{,}25" /> untuk menemukan **bagian harga yang tersisa lalu potongan persentasenya**:
+
+<BlockMath math="1 - s = \frac{0{,}9}{1{,}25} = \frac{90}{125} = 0{,}72 \quad \Longrightarrow \quad s = 1 - 0{,}72 = 0{,}28 = 28\,\%" />
+
+Lihat jalur naik turun indeks harga mulai dari <InlineMath math="100" /> berikut.
 
 <MathVisual
   title={<>Harga dalam dua langkah</>}
-  description={<>Harga sebagai indeks dengan <InlineMath math="100" /> di awal. Harga naik menjadi <InlineMath math="125" />, lalu turun menjadi <InlineMath math="90" />, yaitu <InlineMath math="10" /> di bawah nilai awal. Langkah kedua adalah penurunan <InlineMath math="35" /> dari <InlineMath math="125" />, yaitu <InlineMath math="28\,\%" />.</>}
+  description={<>Indeks harga dimulai di <InlineMath math="100" />, naik <InlineMath math="25\,\%" /> ke puncak <InlineMath math="125" />, lalu turun ke <InlineMath math="90" /> yang berada <InlineMath math="10\,\%" /> di bawah awal. Potongan <InlineMath math="35" /> dari dasar baru <InlineMath math="125" /> tepat sebesar <InlineMath math="28\,\%" />.</>}
+  footer={<>Potongan <InlineMath math="35" /> dari harga baru <InlineMath math="125" /> tepat sama dengan penurunan <InlineMath math="28\,\%" />.</>}
   labels={{
     s: <>awal <InlineMath math="100" /></>,
     t: <>naik <InlineMath math="125" /></>,
@@ -41,12 +63,20 @@ Kenaikan <InlineMath math="25\,\%" /> mengalikan harga dengan <InlineMath math="
   }}
 />
 
-Cek dengan <InlineMath math="100\text{ €}" />: naik menjadi <InlineMath math="125\text{ €}" />, <InlineMath math="28\,\%" /> darinya <InlineMath math="35\text{ €}" />, tersisa <InlineMath math="90\text{ €}" />. Harga yang sudah naik itu **diturunkan <InlineMath math="28\,\%" />**.
+Cek konkret: <InlineMath math="28\,\%" /> dari <InlineMath math="125\text{ €}" /> adalah <InlineMath math="35\text{ €}" />, dan <InlineMath math="125 - 35 = 90\text{ €}" />, pas <InlineMath math="10\,\%" /> di bawah <InlineMath math="100\text{ €}" />.
 
-# Mengapa pilihan lain salah
+## Mengecek pilihan salah
 
-- <InlineMath math="35\,\%" /> menjumlahkan poin persentase <InlineMath math="25+10" />. Padahal penurunannya dihitung **dari nilai awal yang lebih besar, <InlineMath math="125" />**.
-- <InlineMath math="30\,\%" /> mengambil <InlineMath math="20\,\%" /> untuk membatalkan kenaikan ditambah <InlineMath math="10\,\%" /> lagi.
-- <InlineMath math="72\,\%" /> adalah bagian yang tersisa, <InlineMath math="\frac{0{,}9}{1{,}25}" />, bukan penurunannya.
-- <InlineMath math="20\,\%" /> hanya mengembalikan harga ke nilai awal: <InlineMath math="1{,}25\cdot0{,}8=1" />.
-- <InlineMath math="25\,\%" /> hanya membalik kenaikan: <InlineMath math="1{,}25\cdot0{,}75=0{,}9375" />.
+Perhatikan bagaimana setiap pengecoh **menjumlahkan persen secara keliru atau tertukar dasar hitung**:
+
+| Pilihan | Mengapa salah |
+| --- | --- |
+| sebesar <InlineMath math="35\,\%" /> | Menjumlahkan <InlineMath math="25 + 10" /> seolah potongan dihitung dari dasar awal <InlineMath math="100" />, bukan <InlineMath math="125" />. |
+| sebesar <InlineMath math="30\,\%" /> | Menggabungkan <InlineMath math="20\,\%" /> pembalik kenaikan dengan <InlineMath math="10\,\%" /> secara penjumlahan, bukan perkalian. |
+| sebesar <InlineMath math="72\,\%" /> | Menyebut sisa harga <InlineMath math="0{,}72" /> alih-alih besar penurunannya <InlineMath math="1 - 0{,}72" />. |
+| sebesar <InlineMath math="20\,\%" /> | Hanya mengembalikan harga ke awal (<InlineMath math="1{,}25 \cdot 0{,}8 = 1" />), belum turun <InlineMath math="10\,\%" /> lagi. |
+| sebesar <InlineMath math="25\,\%" /> | Hanya membalik persentase kenaikan sehingga harga akhir masih <InlineMath math="93{,}75\text{ €}" />. |
+
+# Jawaban
+
+Harga yang sudah naik itu diturunkan sebesar **<InlineMath math="28\,\%" />**.

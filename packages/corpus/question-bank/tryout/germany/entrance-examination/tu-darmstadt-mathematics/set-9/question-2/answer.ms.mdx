@@ -1,31 +1,53 @@
-# Domain dan mengkuasaduakan
+# Diberi
 
-Punca memerlukan <InlineMath math="x\ge-3" />. Kedua-dua belah tidak pernah negatif, jadi kamu boleh **mengkuasaduakan tanpa memecahkan kes**, dan <InlineMath math="|x-3|^2=(x-3)^2" />:
+Diberikan persamaan yang **menyamakan nilai mutlak dengan punca kuasa dua**:
+
+<BlockMath math="\lvert x - 3 \rvert = \sqrt{x + 3}" />
+
+# Ditanya
+
+Tentukan set penyelesaian (*Lösungsmenge*) <InlineMath math="\mathbb{L}" /> bagi semua nombor nyata <InlineMath math="x" /> yang memenuhi persamaan ini.
+
+# Penyelesaian
+
+Biasanya menguasaduakan persamaan berpunca boleh melahirkan jawapan palsu apabila tanda negatif terhapus. Di sini keadaan jauh lebih kemas: **sebelah kiri ialah nilai mutlak dan sebelah kanan ialah punca kuasa dua**, jadi kedua-dua belah sentiasa sifar atau positif. Dalam domain punca, menguasaduakan terus tidak mencipta penyelesaian palsu.
+
+> Apabila kedua-dua belah persamaan dijamin bukan negatif, pengkuasaduakan menghapuskan nilai mutlak dan tanda punca serentak tanpa mencipta punca palsu.
+
+## Menyemak domain lalu menguasaduakan terus
+
+Agar punca tertakrif, mesti berlaku <InlineMath math="x + 3 \ge 0" />, iaitu <InlineMath math="x \ge -3" />. Oleh sebab kedua-dua belah bukan negatif dan kuasa dua nilai mutlak sama dengan kuasa dua biasa, **kuasaduakan kedua-dua belah terus**:
 
 <BlockMath math="\begin{aligned}
-(x-3)^2&=x+3 \\
-x^2-7x+6&=0 \\
-(x-1)(x-6)&=0
+\lvert x - 3 \rvert^2 &= x + 3 \\
+(x - 3)^2 &= x + 3 \\
+x^2 - 7x + 6 &= 0 \\
+(x - 1)(x - 6) &= 0
 \end{aligned}" />
 
-# Uji kedua-dua calon
+Kita mendapat dua calon, iaitu <InlineMath math="x = 1" /> dan <InlineMath math="x = 6" />.
 
-Oleh sebab kedua-dua belah tidak negatif, langkah mengkuasaduakan di sini boleh diterbalikkan. Walaupun begitu, **semakan dalam persamaan asal** tetap berguna:
+## Menguji dua calon pada persamaan asal dan graf
+
+Kedua-duanya memenuhi <InlineMath math="x \ge -3" />. Uji terus dalam persamaan asal untuk **memastikan tiada punca tertolak**:
 
 <BlockMath math="\begin{aligned}
-x=1:&\quad |1-3|=2,\quad \sqrt{4}=2 \\
-x=6:&\quad |6-3|=3,\quad \sqrt{9}=3
+x = 1: &\quad \lvert 1 - 3 \rvert = 2, \qquad \sqrt{1 + 3} = 2 \\
+x = 6: &\quad \lvert 6 - 3 \rvert = 3, \qquad \sqrt{6 + 3} = 3
 \end{aligned}" />
+
+Lihat graf berbentuk V milik nilai mutlak dan lengkung punca berikut yang bersilang dua kali.
 
 <MathVisual
-  title={<>Nilai mutlak dan punca dalam satu gambar</>}
-  description={<>Graf <InlineMath math="y=|x-3|" /> mempunyai bucu pada <InlineMath math="x=3" />. Graf <InlineMath math="y=\sqrt{x+3}" /> bermula pada <InlineMath math="x=-3" />. Kedua-duanya bersilang dua kali, di <InlineMath math="(1\mid2)" /> dan <InlineMath math="(6\mid3)" />. Garis putus-putus ialah <InlineMath math="y=x-3" />: tanpa nilai mutlak bahagian ini berada di bawah paksi dan tidak bertemu graf punca di kiri <InlineMath math="3" />.</>}
+  title={<>Nilai mutlak dan punca dalam satu rajah</>}
+  description={<>Graf <InlineMath math="y = \lvert x - 3 \rvert" /> membengkok di <InlineMath math="x = 3" />, manakala <InlineMath math="y = \sqrt{x + 3}" /> bermula di <InlineMath math="x = -3" />. Kedua-duanya bersilang di <InlineMath math="(1 \mid 2)" /> dan <InlineMath math="(6 \mid 3)" />. Tanpa nilai mutlak, garis putus <InlineMath math="y = x - 3" /> turun ke bawah paksi.</>}
+  footer={<>Nilai mutlak memantulkan cabang kiri ke atas supaya kedua-dua <InlineMath math="(1 \mid 2)" /> dan <InlineMath math="(6 \mid 3)" /> bersilang.</>}
   labels={{
-    p1: <><InlineMath math="(1\mid2)" /></>,
-    p6: <><InlineMath math="(6\mid3)" /></>,
-    a: <><InlineMath math="|x-3|" /></>,
-    r: <><InlineMath math="\sqrt{x+3}" /></>,
-    q: <><InlineMath math="x-3" /></>,
+    p1: <><InlineMath math="(1 \mid 2)" /></>,
+    p6: <><InlineMath math="(6 \mid 3)" /></>,
+    a: <><InlineMath math="\lvert x - 3 \rvert" /></>,
+    r: <><InlineMath math="\sqrt{x + 3}" /></>,
+    q: <><InlineMath math="x - 3" /></>,
   }}
   scene={{
     space: "plane",
@@ -52,14 +74,20 @@ x=6:&\quad |6-3|=3,\quad \sqrt{9}=3
   }}
 />
 
-# Kenapa nilai mutlak penting
+Tanpa nilai mutlak, <InlineMath math="x = 1" /> akan gagal kerana <InlineMath math="1 - 3 = -2" />. Berkat nilai mutlak, kedua-dua titik persilangan adalah sah.
 
-Tanpa nilai mutlak, persamaan itu menjadi <InlineMath math="x-3=\sqrt{x+3}" />. Bagi <InlineMath math="x=1" /> sebelah kirinya <InlineMath math="-2" />, dan **penyelesaian itu akan tersingkir**. Dengan nilai mutlak kedua-dua penyelesaian kekal: <InlineMath math="\mathbb{L}=\{1;\,6\}" />.
+## Menyemak pilihan salah
 
-# Kenapa jawapan lain salah
+Perhatikan bagaimana pengganggu lain **menolak <InlineMath math="x = 1" /> atau silap memfaktorkan**:
 
-- <InlineMath math="\{6\}" /> **menganggap <InlineMath math="|x-3|" /> sama seperti <InlineMath math="x-3" />**, lalu membuang <InlineMath math="x=1" />.
-- <InlineMath math="\{1\}" /> membuang penyelesaian yang lebih besar tanpa sebab.
-- <InlineMath math="\{-1;\,6\}" /> terhasil daripada kesilapan tanda semasa memfaktorkan: <InlineMath math="(x+1)(x-6)=x^2-5x-6" />.
-- <InlineMath math="\{-6;\,-1\}" /> memfaktorkan <InlineMath math="x^2+7x+6" />, bukan <InlineMath math="x^2-7x+6" />. Lagipun <InlineMath math="-6<-3" /> tiada dalam domain.
-- <InlineMath math="\{\}" /> terlepas pandang bahawa kedua-dua semakan menjadi.
+| Pilihan | Mengapa salah |
+| --- | --- |
+| <InlineMath math="\mathbb{L} = \{6\}" /> | Melayan <InlineMath math="\lvert x - 3 \rvert" /> seperti <InlineMath math="x - 3" /> lalu silap membuang <InlineMath math="x = 1" />. |
+| <InlineMath math="\mathbb{L} = \{1\}" /> | Membuang penyelesaian sah <InlineMath math="x = 6" /> tanpa sebab. |
+| <InlineMath math="\mathbb{L} = \{-1,\, 6\}" /> | Berpunca daripada silap tanda pemfaktoran <InlineMath math="(x + 1)(x - 6) = x^2 - 5x - 6" />. |
+| <InlineMath math="\mathbb{L} = \{-6,\, -1\}" /> | Memfaktorkan <InlineMath math="x^2 + 7x + 6" /> bukannya <InlineMath math="x^2 - 7x + 6" />, dan <InlineMath math="-6" /> di luar domain. |
+| <InlineMath math="\mathbb{L} = \{\}" /> | Mengabaikan bahawa kedua-dua calon lulus semakan. |
+
+# Jawapan
+
+Set penyelesaiannya ialah **<InlineMath math="\mathbb{L} = \{1,\, 6\}" />**.

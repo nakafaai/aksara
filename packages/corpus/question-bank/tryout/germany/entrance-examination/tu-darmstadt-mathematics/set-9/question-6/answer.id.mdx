@@ -1,15 +1,88 @@
-Soal menanyakan lintasan terpendek di permukaan kubus. Lintasan terpendek pada permukaan kamu temukan dengan **membuka permukaan itu menjadi bidang datar**. Di sana lintasan terpendek berupa garis lurus.
+# Diketahui
 
-Lintasannya melewati dua sisi yang bersebelahan. Jika dibuka, keduanya membentuk persegi panjang dengan lebar <InlineMath math="2\text{ cm}" /> dan panjang <InlineMath math="2+2=4\text{ cm}" />. Titik awal dan tujuan berada di sudut-sudut yang berhadapan pada persegi panjang itu.
+Seekor semut berada di salah satu titik sudut sebuah kubus (*Würfel*) dengan **panjang rusuk <InlineMath math="2\text{ cm}" />**.
 
-<BlockMath math="d=\sqrt{2^2+4^2}=\sqrt{4+16}=\sqrt{20}=2\sqrt5" />
+Semut itu hanya boleh merayap di atas **permukaan kubus** menuju titik sudut terjauh di seberang ruangnya.
 
-Sebagai pemeriksaan, bandingkan dengan lintasan lain. Melalui tiga rusuk panjangnya <InlineMath math="6\text{ cm}" />, melalui satu rusuk dan satu diagonal sisi <InlineMath math="2+2\sqrt2\approx4{,}83\text{ cm}" />. Garis lurus pada jaring-jaring, <InlineMath math="2\sqrt5\approx4{,}47\text{ cm}" />, lebih pendek daripada keduanya.
+# Ditanyakan
 
-Jadi, lintasan terpendeknya <InlineMath math="2\sqrt5\text{ cm}" />.
+Berapakah panjang lintasan terpendek (*kürzester Weg*) yang dapat ditempuh semut di permukaan kubus?
 
-- <InlineMath math="2\sqrt3\text{ cm}" /> adalah diagonal ruang yang menembus bagian dalam. Padahal semut merayap di permukaan.
-- <InlineMath math="6\text{ cm}" /> menyusuri tiga rusuk. Itu lintasan yang mungkin, tetapi jauh lebih panjang.
-- <InlineMath math="4\text{ cm}" /> hanya menghitung dua rusuk. Dengan itu semut hanya sampai di sudut seberang pada satu sisi, bukan sudut seberang kubus.
-- <InlineMath math="(2+2\sqrt2)\text{ cm}" /> menyusuri satu rusuk lalu satu diagonal sisi. Itu lebih panjang daripada garis lurus pada jaring-jaring.
-- <InlineMath math="2\sqrt2\text{ cm}" /> adalah diagonal sisi. Ujungnya ada di sudut pada sisi yang sama, bukan di sudut seberang kubus.
+# Penyelesaian
+
+Di permukaan benda tiga dimensi, mata kita sering tertipu mengira semut harus menyusuri rusuk atau melintasi satu diagonal sisi lalu satu rusuk. Trik terampuhnya adalah **membentangkan kotak karton kubus itu rata di atas meja** menjadi jaring-jaring datar. Begitu dua sisi yang dilalui semut terbuka rata, lintasan terpendek selalu **satu garis lurus** yang menyeberangi lipatan di tengah.
+
+> Lintasan terpendek di permukaan bangun ruang selalu menjadi garis lurus saat sisi-sisi yang dilalui dibentangkan rata menjadi jaring-jaring datar.
+
+## Membentangkan dua sisi kubus menjadi persegi panjang
+
+Untuk mencapai sudut paling seberang, semut cukup melintasi **dua sisi persegi yang bersebelahan**. Saat dibuka rata, kedua sisi bersisi <InlineMath math="2\text{ cm}" /> itu menyatu menjadi satu persegi panjang dengan:
+
+- Lebar <InlineMath math="2\text{ cm}" />.
+- Panjang gabungan <InlineMath math="2 + 2 = 4\text{ cm}" />.
+
+Titik awal <InlineMath math="A" /> dan tujuan <InlineMath math="B" /> duduk di dua sudut berlawanan persegi panjang ini.
+
+<MathVisual
+  title={<>Jaring-jaring dua sisi kubus</>}
+  description={<>Dua sisi kubus bersisi <InlineMath math="2\text{ cm}" /> dibentangkan rata menjadi persegi panjang berukuran <InlineMath math="4\text{ cm}" /> kali <InlineMath math="2\text{ cm}" /> dengan garis lipatan di tengah. Lintasan terpendek semut adalah garis lurus dari <InlineMath math="A(0 \mid 0)" /> ke <InlineMath math="B(4 \mid 2)" /> yang memotong lipatan tepat di titik tengah <InlineMath math="(2 \mid 1)" />.</>}
+  footer={<>Membentangkan dua sisi mengubah jalur semut menjadi diagonal persegi panjang <InlineMath math="4 \times 2" /> sepanjang <InlineMath math="2\sqrt{5}\text{ cm}" />.</>}
+  labels={{
+    a: <><InlineMath math="A" /></>,
+    b: <><InlineMath math="B" /></>,
+    len: <><InlineMath math="4\text{ cm}" /></>,
+    wid: <><InlineMath math="2\text{ cm}" /></>,
+    diag: <><InlineMath math="2\sqrt{5}" /></>,
+  }}
+  scene={{
+    space: "plane",
+    frame: {
+      kind: "cartesian",
+      x: { min: -0.8, max: 4.8 },
+      y: { min: -0.8, max: 3.2 },
+    },
+    view: { kind: "fit", padding: 0.08 },
+    objects: [
+      { id: "face-one", kind: "polygon", appearance: "construction", vertices: [{ x: 0, y: 0 }, { x: 2, y: 0 }, { x: 2, y: 2 }, { x: 0, y: 2 }] },
+      { id: "face-two", kind: "polygon", appearance: "construction", vertices: [{ x: 2, y: 0 }, { x: 4, y: 0 }, { x: 4, y: 2 }, { x: 2, y: 2 }] },
+      { id: "fold", kind: "segment", appearance: "reference", from: { x: 2, y: 0 }, to: { x: 2, y: 2 } },
+      { id: "path", kind: "segment", appearance: "answer", from: { x: 0, y: 0 }, to: { x: 4, y: 2 } },
+      { id: "start", kind: "point", appearance: "primary", at: { x: 0, y: 0 } },
+      { id: "mid", kind: "point", appearance: "highlight", at: { x: 2, y: 1 } },
+      { id: "end", kind: "point", appearance: "answer", at: { x: 4, y: 2 } },
+    ],
+    labels: [
+      { key: "a", objectId: "start", at: { x: 0, y: 0 }, placement: "below-left" },
+      { key: "b", objectId: "end", at: { x: 4, y: 2 }, placement: "above-right" },
+      { key: "len", objectId: "face-one", at: { x: 2, y: 0 }, placement: "below" },
+      { key: "wid", objectId: "face-one", at: { x: 0, y: 1 }, placement: "left" },
+      { key: "diag", objectId: "path", at: { x: 2, y: 1 }, placement: "above-left" },
+    ],
+  }}
+/>
+
+Garis lurus itu memotong rusuk lipatan tepat di tengahnya, bukan di sudut.
+
+## Menghitung panjang diagonal dan membandingkan rute
+
+Terapkan **teorema Pythagoras** pada persegi panjang <InlineMath math="4\text{ cm}" /> kali <InlineMath math="2\text{ cm}" />:
+
+<BlockMath math="d = \sqrt{4^2 + 2^2} = \sqrt{16 + 4} = \sqrt{20} = 2\sqrt{5}\text{ cm}" />
+
+Bandingkan: lewat tiga rusuk panjangnya <InlineMath math="6\text{ cm}" />, dan lewat satu rusuk ditambah satu diagonal sisi panjangnya sekitar <InlineMath math="4{,}83\text{ cm}" />. Jalur jaring-jaring kita hanya sekitar <InlineMath math="4{,}47\text{ cm}" />, jelas paling pendek.
+
+## Mengecek pilihan salah
+
+Perhatikan jalur mana yang dihitung **setiap pilihan pengecoh**:
+
+| Pilihan | Mengapa salah |
+| --- | --- |
+| <InlineMath math="2\sqrt{3}\text{ cm}" /> | Diagonal ruang yang menembus isi kubus, padahal semut hanya boleh merayap di permukaan. |
+| <InlineMath math="6\text{ cm}" /> | Menyusuri tiga rusuk penuh, jauh lebih panjang daripada memotong lurus di jaring-jaring. |
+| <InlineMath math="4\text{ cm}" /> | Hanya dua rusuk, baru mencapai sudut seberang pada satu sisi yang sama. |
+| <InlineMath math="(2 + 2\sqrt{2})\text{ cm}" /> | Menyusuri satu rusuk lalu satu diagonal sisi (sekitar <InlineMath math="4{,}83\text{ cm}" />), kalah pendek dari <InlineMath math="2\sqrt{5}\text{ cm}" />. |
+| <InlineMath math="2\sqrt{2}\text{ cm}" /> | Hanya diagonal satu sisi persegi, belum mencapai sudut seberang kubus. |
+
+# Jawaban
+
+Panjang lintasan terpendek semut di permukaan kubus adalah **<InlineMath math="2\sqrt{5}\text{ cm}" />**.

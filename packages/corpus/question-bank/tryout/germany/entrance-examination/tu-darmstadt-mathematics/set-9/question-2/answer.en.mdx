@@ -1,31 +1,53 @@
-# Domain and squaring
+# Given
 
-The root needs <InlineMath math="x\ge-3" />. Both sides are never negative, so you may **square without splitting cases**, and <InlineMath math="|x-3|^2=(x-3)^2" />:
+We are given an equation setting **an absolute value equal to a square root**:
+
+<BlockMath math="\lvert x - 3 \rvert = \sqrt{x + 3}" />
+
+# Asked
+
+Find the solution set (*Lösungsmenge*) <InlineMath math="\mathbb{L}" /> of all real numbers <InlineMath math="x" /> satisfying this equation.
+
+# Solution
+
+Usually, squaring a radical equation risks creating fake solutions when a minus sign gets erased. Here you get a free gift: **the left side is an absolute value and the right side is a principal square root**, so both sides are automatically nonnegative. Inside the root's domain, squaring both sides directly preserves every true solution without introducing fakes.
+
+> When both sides of an equation are guaranteed nonnegative, squaring removes the absolute value and square root in one step without creating extraneous solutions.
+
+## Checking the domain and squaring directly
+
+For the square root to exist, we need <InlineMath math="x + 3 \ge 0" />, meaning <InlineMath math="x \ge -3" />. Because both sides are nonnegative and squaring drops the absolute value bars cleanly, **square both sides directly**:
 
 <BlockMath math="\begin{aligned}
-(x-3)^2&=x+3 \\
-x^2-7x+6&=0 \\
-(x-1)(x-6)&=0
+\lvert x - 3 \rvert^2 &= x + 3 \\
+(x - 3)^2 &= x + 3 \\
+x^2 - 7x + 6 &= 0 \\
+(x - 1)(x - 6) &= 0
 \end{aligned}" />
 
-# Check both candidates
+This yields two candidates: <InlineMath math="x = 1" /> and <InlineMath math="x = 6" />.
 
-Because both sides were non-negative, squaring is reversible here. Still, **checking in the original equation** is worth it:
+## Verifying both candidates in the equation and graph
+
+Both lie well inside <InlineMath math="x \ge -3" />. Plug both into the original equation to **verify that neither gets rejected**:
 
 <BlockMath math="\begin{aligned}
-x=1:&\quad |1-3|=2,\quad \sqrt{4}=2 \\
-x=6:&\quad |6-3|=3,\quad \sqrt{9}=3
+x = 1: &\quad \lvert 1 - 3 \rvert = 2, \qquad \sqrt{1 + 3} = 2 \\
+x = 6: &\quad \lvert 6 - 3 \rvert = 3, \qquad \sqrt{6 + 3} = 3
 \end{aligned}" />
+
+Look at the V-shaped absolute value graph meeting the square-root curve twice below.
 
 <MathVisual
-  title={<>Absolute value and root in one picture</>}
-  description={<>The graph of <InlineMath math="y=|x-3|" /> has a corner at <InlineMath math="x=3" />. The graph of <InlineMath math="y=\sqrt{x+3}" /> starts at <InlineMath math="x=-3" />. They meet twice, at <InlineMath math="(1\mid2)" /> and <InlineMath math="(6\mid3)" />. Dashed is <InlineMath math="y=x-3" />: without the absolute value this part lies below the axis and misses the root left of <InlineMath math="3" />.</>}
+  title={<>Absolute value and square root together</>}
+  description={<>The graph of <InlineMath math="y = \lvert x - 3 \rvert" /> bends at <InlineMath math="x = 3" />, while <InlineMath math="y = \sqrt{x + 3}" /> starts at <InlineMath math="x = -3" />. They intersect twice at <InlineMath math="(1 \mid 2)" /> and <InlineMath math="(6 \mid 3)" />. Without absolute value, the dashed line <InlineMath math="y = x - 3" /> drops below the axis.</>}
+  footer={<>The absolute value folds the left arm upward so both <InlineMath math="(1 \mid 2)" /> and <InlineMath math="(6 \mid 3)" /> intersect.</>}
   labels={{
-    p1: <><InlineMath math="(1\mid2)" /></>,
-    p6: <><InlineMath math="(6\mid3)" /></>,
-    a: <><InlineMath math="|x-3|" /></>,
-    r: <><InlineMath math="\sqrt{x+3}" /></>,
-    q: <><InlineMath math="x-3" /></>,
+    p1: <><InlineMath math="(1 \mid 2)" /></>,
+    p6: <><InlineMath math="(6 \mid 3)" /></>,
+    a: <><InlineMath math="\lvert x - 3 \rvert" /></>,
+    r: <><InlineMath math="\sqrt{x + 3}" /></>,
+    q: <><InlineMath math="x - 3" /></>,
   }}
   scene={{
     space: "plane",
@@ -52,14 +74,20 @@ x=6:&\quad |6-3|=3,\quad \sqrt{9}=3
   }}
 />
 
-# Why the absolute value matters
+Without the absolute value bars, <InlineMath math="x = 1" /> would fail because <InlineMath math="1 - 3 = -2" />. Because of the absolute value, both crossings are completely valid.
 
-Without the absolute value the equation would be <InlineMath math="x-3=\sqrt{x+3}" />. For <InlineMath math="x=1" /> the left side would be <InlineMath math="-2" />, and **that solution would drop out**. With the absolute value both solutions stay: <InlineMath math="\mathbb{L}=\{1;\,6\}" />.
+## Checking the distractors
 
-# Why the other answers are wrong
+Notice how the wrong options **discard <InlineMath math="x = 1" /> or mis-factor the quadratic**:
 
-- <InlineMath math="\{6\}" /> **treats <InlineMath math="|x-3|" /> like <InlineMath math="x-3" />** and so throws away <InlineMath math="x=1" />.
-- <InlineMath math="\{1\}" /> throws away the larger solution for no reason.
-- <InlineMath math="\{-1;\,6\}" /> comes from a sign slip when factoring: <InlineMath math="(x+1)(x-6)=x^2-5x-6" />.
-- <InlineMath math="\{-6;\,-1\}" /> factors <InlineMath math="x^2+7x+6" /> instead of <InlineMath math="x^2-7x+6" />. Besides, <InlineMath math="-6<-3" /> isn't in the domain.
-- <InlineMath math="\{\}" /> overlooks that both checks work out.
+| Option | Why it is wrong |
+| --- | --- |
+| <InlineMath math="\mathbb{L} = \{6\}" /> | Treats <InlineMath math="\lvert x - 3 \rvert" /> like <InlineMath math="x - 3" /> and wrongly rejects <InlineMath math="x = 1" />. |
+| <InlineMath math="\mathbb{L} = \{1\}" /> | Drops the valid solution <InlineMath math="x = 6" /> without reason. |
+| <InlineMath math="\mathbb{L} = \{-1,\, 6\}" /> | Comes from a sign error factoring <InlineMath math="(x + 1)(x - 6) = x^2 - 5x - 6" />. |
+| <InlineMath math="\mathbb{L} = \{-6,\, -1\}" /> | Factors <InlineMath math="x^2 + 7x + 6" /> instead of <InlineMath math="x^2 - 7x + 6" />, and <InlineMath math="-6" /> leaves the domain. |
+| <InlineMath math="\mathbb{L} = \{\}" /> | Ignores that both candidates check out cleanly. |
+
+# Answer
+
+The solution set is **<InlineMath math="\mathbb{L} = \{1,\, 6\}" />**.

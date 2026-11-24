@@ -1,22 +1,40 @@
-# Baca nilai mutlak sebagai jarak
+# Diberi
 
-<InlineMath math="|x-a|" /> ialah jarak <InlineMath math="x" /> ke nombor <InlineMath math="a" /> pada garis nombor. Jadi <InlineMath math="T(x)" /> ialah **hasil tambah jarak <InlineMath math="x" /> ke <InlineMath math="1" />, <InlineMath math="4" /> dan <InlineMath math="6" />**. Yang dicari ialah tempat hasil tambah itu paling kecil.
+Bagi setiap nombor nyata <InlineMath math="x" />, ditakrifkan **hasil tambah tiga nilai mutlak** (*Term*):
 
-# Jarak ke dua titik luar
+<BlockMath math="T(x) = \lvert x - 1 \rvert + \lvert x - 4 \rvert + \lvert x - 6 \rvert" />
 
-Bagi setiap <InlineMath math="x" /> di antara <InlineMath math="1" /> dan <InlineMath math="6" />, <InlineMath math="|x-1|+|x-6|=6-1=5" />, kerana dua jarak itu bersama-sama sepanjang tembereng garis tersebut. Di luar tembereng itu hasil tambahnya lebih besar. Kemudian ditambah <InlineMath math="|x-4|" />, dan **bahagian ini sifar pada <InlineMath math="x=4" />**:
+# Ditanya
 
-<BlockMath math="T(4)=3+0+2=5" />
+Apakah nilai **terkecil** yang boleh dicapai oleh <InlineMath math="T(x)" />?
 
-# Pastikan tiada yang lebih kecil
+# Penyelesaian
 
-Bagi setiap <InlineMath math="x" />, <InlineMath math="|x-1|+|x-6|\ge5" /> dan <InlineMath math="|x-4|\ge0" />. Jadi **<InlineMath math="T(x)\ge5" /> bagi semua <InlineMath math="x" />**, dan nilai <InlineMath math="5" /> dicapai pada <InlineMath math="x=4" />:
+Bayangkan tiga buah rumah sepanjang jalan lurus pada tanda jarak <InlineMath math="1" />, <InlineMath math="4" />, dan <InlineMath math="6" />, lalu kamu mahu meletakkan satu peti surat di <InlineMath math="x" /> supaya **jumlah jarak berjalan ke ketiga-tiga rumah paling kecil**. Berdiri di mana-mana antara <InlineMath math="1" /> dengan <InlineMath math="6" /> mengekalkan jumlah jarak ke dua rumah luar tepat <InlineMath math="5" />. Supaya jarak ke rumah tengah turut sifar, **berdirilah tepat di rumah tengah, iaitu <InlineMath math="x = 4" />**.
+
+> Jumlah jarak dari satu titik ke tiga titik pada garis nombor sentiasa mencapai nilai minimum tepat pada median, iaitu titik tengahnya.
+
+## Memasangkan dua titik luar dengan titik tengah
+
+Pada garis nombor, <InlineMath math="\lvert x - a \rvert" /> ialah jarak antara <InlineMath math="x" /> dengan <InlineMath math="a" />. Kumpulkan <InlineMath math="T(x)" /> kepada **pasangan luar dan sebutan tengah**:
+
+<BlockMath math="T(x) = \bigl(\lvert x - 1 \rvert + \lvert x - 6 \rvert\bigr) + \lvert x - 4 \rvert" />
+
+- Bagi mana-mana <InlineMath math="x" /> antara <InlineMath math="1" /> dengan <InlineMath math="6" />, jumlah jarak ke kedua-dua hujung sentiasa tepat <InlineMath math="6 - 1 = 5" />. Di luar selang itu, jumlahnya lebih besar daripada <InlineMath math="5" />.
+- Sementara sebutan tengah <InlineMath math="\lvert x - 4 \rvert" /> tidak pernah negatif dan **menjadi sifar tepat di <InlineMath math="x = 4" />**.
+
+## Membuktikan had bawah pada graf
+
+Oleh sebab pasangan luar sentiasa sekurang-kurangnya <InlineMath math="5" /> dan sebutan tengah tidak pernah negatif, **terbukti had bawah <InlineMath math="T(x) \ge 5" />**, yang dicapai pada <InlineMath math="x = 4" />:
+
+<BlockMath math="T(4) = \lvert 4 - 1 \rvert + \lvert 4 - 4 \rvert + \lvert 4 - 6 \rvert = 3 + 0 + 2 = 5" />
 
 <MathVisual
-  title={<>Hasil tambah tiga jarak</>}
-  description={<>Graf <InlineMath math="T(x)=|x-1|+|x-4|+|x-6|" /> terdiri daripada bahagian lurus dengan bucu pada <InlineMath math="1" />, <InlineMath math="4" /> dan <InlineMath math="6" />. Di kiri <InlineMath math="4" /> graf itu menurun, di kanannya menaik. Titik terendahnya ialah <InlineMath math="(4\mid5)" />, tepat di atas titik tengah antara tiga titik itu.</>}
+  title={<>Hasil tambah ketiga-tiga jarak</>}
+  description={<>Graf <InlineMath math="T(x) = \lvert x - 1 \rvert + \lvert x - 4 \rvert + \lvert x - 6 \rvert" /> berbentuk garis patah dengan bucu di <InlineMath math="1" />, <InlineMath math="4" />, dan <InlineMath math="6" />. Lengkung menurun hingga <InlineMath math="x = 4" /> lalu menaik, dengan titik terendah tepat di <InlineMath math="(4 \mid 5)" />.</>}
+  footer={<>Graf garis patah mencapai titik terendahnya tepat pada median <InlineMath math="(4 \mid 5)" />.</>}
   labels={{
-    m: <><InlineMath math="(4\mid5)" /></>,
+    m: <><InlineMath math="(4 \mid 5)" /></>,
     t: <><InlineMath math="T(x)" /></>,
     p1: <><InlineMath math="1" /></>,
     p6: <><InlineMath math="6" /></>,
@@ -46,12 +64,20 @@ Bagi setiap <InlineMath math="x" />, <InlineMath math="|x-1|+|x-6|\ge5" /> dan <
   }}
 />
 
-Nilai terkecil <InlineMath math="T" /> ialah <InlineMath math="5" />.
+Graf mengesahkan bahawa sebarang anjakan ke kiri atau ke kanan dari <InlineMath math="x = 4" /> serta-merta menaikkan <InlineMath math="T(x)" />.
 
-# Kenapa jawapan lain salah
+## Menyemak pilihan salah
 
-- <InlineMath math="\frac{16}{3}" /> ialah nilai pada **min** <InlineMath math="x=\frac{11}{3}" /> bagi tiga nombor itu. Sedangkan hasil tambah jarak paling kecil pada nilai tengah, iaitu median.
-- <InlineMath math="7" /> ialah nilai pada <InlineMath math="x=6" />.
-- <InlineMath math="8" /> ialah nilai pada <InlineMath math="x=1" />.
-- <InlineMath math="0" /> memerlukan <InlineMath math="x" /> sama dengan <InlineMath math="1" />, <InlineMath math="4" /> dan <InlineMath math="6" /> serentak.
-- <InlineMath math="3" /> hanyalah jarak <InlineMath math="4" /> ke <InlineMath math="1" />, satu sebutan sahaja.
+Perhatikan bagaimana pengganggu lain berpunca daripada **menguji titik yang salah**:
+
+| Pilihan | Mengapa salah |
+| --- | --- |
+| <InlineMath math="\frac{16}{3}" /> | Nilai pada min aritmetik <InlineMath math="x = \frac{11}{3}" />, lebih besar daripada nilai di median <InlineMath math="x = 4" />. |
+| <InlineMath math="7" /> | Nilai pada hujung kanan <InlineMath math="x = 6" />: <InlineMath math="5 + 2 + 0 = 7" />. |
+| <InlineMath math="8" /> | Nilai pada hujung kiri <InlineMath math="x = 1" />: <InlineMath math="0 + 3 + 5 = 8" />. |
+| <InlineMath math="0" /> | Memerlukan <InlineMath math="x" /> sama dengan <InlineMath math="1" />, <InlineMath math="4" />, dan <InlineMath math="6" /> serentak, yang mustahil. |
+| <InlineMath math="3" /> | Hanya mengira satu jarak <InlineMath math="\lvert 4 - 1 \rvert" />, melupakan jarak ke <InlineMath math="6" />. |
+
+# Jawapan
+
+Nilai terkecil yang boleh dicapai oleh <InlineMath math="T(x)" /> ialah **<InlineMath math="5" />**.

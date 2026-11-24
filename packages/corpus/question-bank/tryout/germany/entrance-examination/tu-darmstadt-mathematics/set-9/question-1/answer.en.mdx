@@ -1,22 +1,40 @@
-# Read absolute values as distances
+# Given
 
-<InlineMath math="|x-a|" /> is the distance from <InlineMath math="x" /> to the number <InlineMath math="a" /> on the number line. So <InlineMath math="T(x)" /> is **the sum of the distances from <InlineMath math="x" /> to <InlineMath math="1" />, <InlineMath math="4" /> and <InlineMath math="6" />**. You want the place where this sum is smallest.
+For every real number <InlineMath math="x" />, we define a **sum of three absolute values** (*Term*):
 
-# The distances to the outer points
+<BlockMath math="T(x) = \lvert x - 1 \rvert + \lvert x - 4 \rvert + \lvert x - 6 \rvert" />
 
-For every <InlineMath math="x" /> between <InlineMath math="1" /> and <InlineMath math="6" />, <InlineMath math="|x-1|+|x-6|=6-1=5" />, because the two distances add up to the length of the segment. Outside that segment the sum is larger. On top of that comes <InlineMath math="|x-4|" />, and **that part is zero at <InlineMath math="x=4" />**:
+# Asked
 
-<BlockMath math="T(4)=3+0+2=5" />
+What is the **smallest** value that <InlineMath math="T(x)" /> can take?
 
-# Check that nothing is smaller
+# Solution
 
-For every <InlineMath math="x" />, <InlineMath math="|x-1|+|x-6|\ge5" /> and <InlineMath math="|x-4|\ge0" />. So **<InlineMath math="T(x)\ge5" /> for all <InlineMath math="x" />**, and the value <InlineMath math="5" /> is reached at <InlineMath math="x=4" />:
+Imagine three houses on a straight road at <InlineMath math="1" />, <InlineMath math="4" />, and <InlineMath math="6" />, and you place one mailbox at <InlineMath math="x" /> to **minimize total walking distance**. Anywhere between <InlineMath math="1" /> and <InlineMath math="6" />, the combined distance to both outer houses stays constant at <InlineMath math="5" />. To zero out the middle distance too, **stand at <InlineMath math="x = 4" />**.
+
+> The sum of distances from a point to three points on a number line always achieves its minimum at the median, the middle point.
+
+## Pairing the outer points and the middle point
+
+On the number line, <InlineMath math="\lvert x - a \rvert" /> is the distance between <InlineMath math="x" /> and <InlineMath math="a" />. Group <InlineMath math="T(x)" /> into **the outer pair and the middle term**:
+
+<BlockMath math="T(x) = \bigl(\lvert x - 1 \rvert + \lvert x - 6 \rvert\bigr) + \lvert x - 4 \rvert" />
+
+- For any <InlineMath math="x" /> between <InlineMath math="1" /> and <InlineMath math="6" />, the distances to both endpoints add up to exactly <InlineMath math="6 - 1 = 5" />. Outside that segment, their sum is strictly larger than <InlineMath math="5" />.
+- Meanwhile, <InlineMath math="\lvert x - 4 \rvert" /> is never negative and **reaches zero right at <InlineMath math="x = 4" />**.
+
+## Proving the lower bound on the graph
+
+Since the outer pair is always at least <InlineMath math="5" /> and the middle term is never negative, **we have the strict lower bound <InlineMath math="T(x) \ge 5" />**, attained at <InlineMath math="x = 4" />:
+
+<BlockMath math="T(4) = \lvert 4 - 1 \rvert + \lvert 4 - 4 \rvert + \lvert 4 - 6 \rvert = 3 + 0 + 2 = 5" />
 
 <MathVisual
-  title={<>The sum of the three distances</>}
-  description={<>The graph of <InlineMath math="T(x)=|x-1|+|x-4|+|x-6|" /> is made of straight pieces with corners at <InlineMath math="1" />, <InlineMath math="4" /> and <InlineMath math="6" />. Left of <InlineMath math="4" /> it falls, right of <InlineMath math="4" /> it rises. Its lowest point is <InlineMath math="(4\mid5)" />, above the middle one of the three points.</>}
+  title={<>Sum of the three distances</>}
+  description={<>The graph of <InlineMath math="T(x) = \lvert x - 1 \rvert + \lvert x - 4 \rvert + \lvert x - 6 \rvert" /> is piecewise linear with corners at <InlineMath math="1" />, <InlineMath math="4" />, and <InlineMath math="6" />. It falls until <InlineMath math="x = 4" /> and then rises, hitting its lowest point right at <InlineMath math="(4 \mid 5)" />.</>}
+  footer={<>The piecewise-linear graph bottoms out cleanly at the median point <InlineMath math="(4 \mid 5)" />.</>}
   labels={{
-    m: <><InlineMath math="(4\mid5)" /></>,
+    m: <><InlineMath math="(4 \mid 5)" /></>,
     t: <><InlineMath math="T(x)" /></>,
     p1: <><InlineMath math="1" /></>,
     p6: <><InlineMath math="6" /></>,
@@ -46,12 +64,20 @@ For every <InlineMath math="x" />, <InlineMath math="|x-1|+|x-6|\ge5" /> and <In
   }}
 />
 
-The smallest value of <InlineMath math="T" /> is <InlineMath math="5" />.
+The graph confirms that moving either left or right from <InlineMath math="x = 4" /> immediately increases <InlineMath math="T(x)" />.
 
-# Why the other answers are wrong
+## Checking the distractors
 
-- <InlineMath math="\frac{16}{3}" /> is the value at the **mean** <InlineMath math="x=\frac{11}{3}" /> of the three numbers. But the sum of distances is smallest at the middle value, the median.
-- <InlineMath math="7" /> is the value at <InlineMath math="x=6" />.
-- <InlineMath math="8" /> is the value at <InlineMath math="x=1" />.
-- <InlineMath math="0" /> would require <InlineMath math="x" /> to be <InlineMath math="1" />, <InlineMath math="4" /> and <InlineMath math="6" /> at once.
-- <InlineMath math="3" /> is only the distance from <InlineMath math="4" /> to <InlineMath math="1" />, a single term.
+See how the wrong choices come from **testing the wrong point**:
+
+| Option | Why it is wrong |
+| --- | --- |
+| <InlineMath math="\frac{16}{3}" /> | Evaluates at the arithmetic mean <InlineMath math="x = \frac{11}{3}" />, which is larger than at the median <InlineMath math="x = 4" />. |
+| <InlineMath math="7" /> | Value at the right endpoint <InlineMath math="x = 6" />: <InlineMath math="5 + 2 + 0 = 7" />. |
+| <InlineMath math="8" /> | Value at the left endpoint <InlineMath math="x = 1" />: <InlineMath math="0 + 3 + 5 = 8" />. |
+| <InlineMath math="0" /> | Would require <InlineMath math="x" /> to equal <InlineMath math="1" />, <InlineMath math="4" />, and <InlineMath math="6" /> simultaneously, which is impossible. |
+| <InlineMath math="3" /> | Counts only one distance <InlineMath math="\lvert 4 - 1 \rvert" />, omitting the distance to <InlineMath math="6" />. |
+
+# Answer
+
+The smallest value that <InlineMath math="T(x)" /> can take is **<InlineMath math="5" />**.

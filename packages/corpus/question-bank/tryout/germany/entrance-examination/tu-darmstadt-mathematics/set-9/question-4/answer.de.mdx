@@ -1,28 +1,44 @@
-# Den Flächeninhalt durch eine Länge ausdrücken
+# Gegeben
 
-Nenne die beiden Seiten senkrecht zur Mauer <InlineMath math="x" /> und die Seite parallel zur Mauer <InlineMath math="y" />. Der Zaun liefert <InlineMath math="2x+y=60" />, also <InlineMath math="y=60-2x" />. Der Flächeninhalt ist dann **eine quadratische Funktion von <InlineMath math="x" />**:
+An einer langen geraden Mauer entsteht ein rechteckiges Gehege:
 
-<BlockMath math="A(x)=x\,(60-2x)=-2x^2+60x=-2(x-15)^2+450" />
+- Die Mauer bildet eine Seite, die drei anderen Seiten werden mit **insgesamt <InlineMath math="60\text{ m}" /> Zaun** begrenzt.
+- Die Seite parallel zur Mauer (<InlineMath math="y" />) darf **höchstens <InlineMath math="24\text{ m}" /> lang** sein (<InlineMath math="y \le 24" />).
 
-# Die Bedingung an die Mauerseite
+# Gesucht
 
-Ohne Bedingung wäre der Scheitel bei <InlineMath math="x=15" /> mit <InlineMath math="A=450" />. Dann wäre aber <InlineMath math="y=60-30=30" />, und das ist **länger als die erlaubten <InlineMath math="24\text{ m}" />**. Die Bedingung <InlineMath math="y\le24" /> bedeutet:
+Wie groß kann der Flächeninhalt des Geheges höchstens werden?
 
-<BlockMath math="60-2x\le24\quad\Longleftrightarrow\quad x\ge18" />
+# Lösung
 
-# Das Maximum am Rand
+Ohne Obergrenze an der Mauer liefert das größte dreiseitige Gehege immer doppelt so viel Mauerlänge wie Tiefe, also <InlineMath math="30\text{ m}" /> mal <InlineMath math="15\text{ m}" />. Hier **verbietet die Aufgabe aber mehr als <InlineMath math="24\text{ m}" /> entlang der Mauer**. Weil der freie Scheitelpunkt im verbotenen Bereich liegt, sitzt die beste zulässige Lösung **genau am Rand <InlineMath math="y = 24\text{ m}" />**.
 
-Für <InlineMath math="x\ge18" /> liegt der Scheitel links außerhalb, und die Parabel fällt. Der größte erlaubte Wert liegt **am Rand <InlineMath math="x=18" />**:
+> Liegt der Scheitel einer nach unten geöffneten Parabel außerhalb des erlaubten Bereichs, entsteht das zulässige Maximum stets am nächstgelegenen Randpunkt.
+
+## Flächenfunktion und Zaunbedingung aufstellen
+
+Nenne die beiden Seiten senkrecht zur Mauer <InlineMath math="x" /> und die parallele Seite <InlineMath math="y" />. Der Zaun liefert <InlineMath math="2x + y = 60" />, also <InlineMath math="y = 60 - 2x" />. **Die Fläche bildet eine nach unten geöffnete Parabel**:
+
+<BlockMath math="A(x) = x(60 - 2x) = -2x^2 + 60x = -2(x - 15)^2 + 450" />
+
+Der freie Scheitel bei <InlineMath math="x = 15\text{ m}" /> verlangt <InlineMath math="y = 30\text{ m}" />, was <InlineMath math="y \le 24\text{ m}" /> verletzt. Übertrage die Mauerbegrenzung auf <InlineMath math="x" />:
+
+<BlockMath math="60 - 2x \le 24 \quad \Longleftrightarrow \quad 2x \ge 36 \quad \Longleftrightarrow \quad x \ge 18" />
+
+## Das Maximum am Rand ablesen
+
+Im erlaubten Bereich <InlineMath math="x \ge 18" /> liegt die gesamte Kurve rechts vom Scheitel <InlineMath math="x = 15" />, sodass **der Flächeninhalt streng fällt**. Das Maximum liegt also genau am Rand <InlineMath math="x = 18" />.
 
 <MathVisual
   title={<>Flächeninhalt in Abhängigkeit von <InlineMath math="x" /></>}
-  description={<>Die Parabel <InlineMath math="A(x)=x\,(60-2x)" /> für die Länge <InlineMath math="x" /> der Seiten senkrecht zur Mauer. Ihr Scheitel <InlineMath math="(15\mid450)" /> liegt im gestrichelten, verbotenen Teil links von <InlineMath math="x=18" />, weil dort die Seite an der Mauer länger als <InlineMath math="24" /> wäre. Im erlaubten Teil <InlineMath math="x\ge18" /> fällt die Parabel, ihr höchster Punkt ist <InlineMath math="(18\mid432)" />.</>}
+  description={<>Die Parabel <InlineMath math="A(x) = x(60 - 2x)" /> zeigt die Fläche in Abhängigkeit von der Tiefe <InlineMath math="x" />. Ihr Scheitel <InlineMath math="(15 \mid 450)" /> liegt im gestrichelten verbotenen Bereich links von <InlineMath math="x = 18" />, daher sitzt der höchste erlaubte Punkt genau am Rand <InlineMath math="(18 \mid 432)" />.</>}
+  footer={<>Der Scheitel <InlineMath math="(15 \mid 450)" /> ist verboten, daher liegt das Maximum am Rand <InlineMath math="(18 \mid 432)" />.</>}
   labels={{
-    v: <><InlineMath math="(15\mid450)" /></>,
-    m: <><InlineMath math="(18\mid432)" /></>,
+    v: <><InlineMath math="(15 \mid 450)" /></>,
+    m: <><InlineMath math="(18 \mid 432)" /></>,
     ok: <>erlaubt</>,
     no: <>verboten</>,
-    b: <><InlineMath math="x=18" /></>,
+    b: <><InlineMath math="x = 18" /></>,
   }}
   scene={{
     space: "plane",
@@ -49,14 +65,24 @@ Für <InlineMath math="x\ge18" /> liegt der Scheitel links außerhalb, und die P
   }}
 />
 
-<BlockMath math="A(18)=18\cdot(60-36)=18\cdot24=432" />
+Berechne die Fläche am Randpunkt <InlineMath math="x = 18\text{ m}" /> mit <InlineMath math="y = 24\text{ m}" />:
 
-Das Gehege kann höchstens <InlineMath math="432\text{ m}^2" /> groß werden, mit <InlineMath math="18\text{ m}" /> senkrecht und <InlineMath math="24\text{ m}" /> parallel zur Mauer.
+<BlockMath math="A(18) = 18 \cdot (60 - 36) = 18 \cdot 24 = 432\text{ m}^2" />
 
-# Warum die anderen Antworten falsch sind
+Zwei Seiten von <InlineMath math="18\text{ m}" /> plus die <InlineMath math="24\text{ m}" />-Seite schöpfen exakt die <InlineMath math="60\text{ m}" /> Zaun aus und halten die Mauergrenze ein.
 
-- <InlineMath math="450\text{ m}^2" /> ist der Scheitelwert, bei dem die Mauerseite <InlineMath math="30\text{ m}" /> lang wäre. **Er verletzt die Bedingung**.
-- <InlineMath math="576\text{ m}^2" /> ist ein Quadrat mit der Seite <InlineMath math="24" />. Dafür bräuchte man <InlineMath math="72\text{ m}" /> Zaun.
-- <InlineMath math="360\text{ m}^2" /> kombiniert <InlineMath math="x=15" /> vom Scheitel mit <InlineMath math="y=24" />. Dann wären nur <InlineMath math="54\text{ m}" /> Zaun verbaut.
-- <InlineMath math="288\text{ m}^2" /> nimmt <InlineMath math="24\cdot12" />, also eine falsche zweite Seite.
-- <InlineMath math="225\text{ m}^2" /> ist ein Quadrat mit der Seite <InlineMath math="15" />, ohne Bezug zum Zaun.
+## Falsche Antworten prüfen
+
+Jede falsche Auswahl **verletzt die Zaunlänge oder die Mauergrenze**:
+
+| Auswahl | Warum falsch |
+| --- | --- |
+| <InlineMath math="450\text{ m}^2" /> | Ist das freie Scheitelmaximum (<InlineMath math="15 \cdot 30" />), verletzt aber <InlineMath math="y \le 24\text{ m}" />. |
+| <InlineMath math="576\text{ m}^2" /> | Ein <InlineMath math="24 \times 24" />-Quadrat braucht <InlineMath math="72\text{ m}" /> Zaun statt <InlineMath math="60\text{ m}" />. |
+| <InlineMath math="360\text{ m}^2" /> | Kombiniert <InlineMath math="x = 15" /> vom Scheitel mit <InlineMath math="y = 24" /> und lässt <InlineMath math="6\text{ m}" /> Zaun ungenutzt. |
+| <InlineMath math="288\text{ m}^2" /> | Rechnet <InlineMath math="24 \cdot 12" /> mit einer falschen Tiefe. |
+| <InlineMath math="225\text{ m}^2" /> | Ein <InlineMath math="15 \times 15" />-Quadrat ohne Ausnutzung der <InlineMath math="60\text{ m}" /> Zaun. |
+
+# Antwort
+
+Der Flächeninhalt des Geheges kann höchstens **<InlineMath math="432\text{ m}^2" />** betragen.

@@ -1,22 +1,39 @@
-# Keluarkan variabel dari pangkat
+# Diketahui
 
-Basis <InlineMath math="2" /> dan <InlineMath math="3" /> tidak bisa disamakan. Karena itu pisahkan bilangan berpangkatnya sehingga **semua yang memuat <InlineMath math="x" /> ada di satu ruas**:
+Untuk sebuah bilangan real <InlineMath math="x" />, berlaku **persamaan eksponen dengan dua basis berbeda**:
 
-<BlockMath math="2^{x+1}=3^{x-1}\quad\Longleftrightarrow\quad 2\cdot2^x=\frac{3^x}{3}\quad\Longleftrightarrow\quad 6=\frac{3^x}{2^x}=\left(\frac32\right)^x" />
+<BlockMath math="2^{x + 1} = 3^{x - 1}" />
 
-# Logaritmakan
+# Ditanyakan
 
-Persamaan <InlineMath math="\left(\frac32\right)^x=6" /> punya **tepat satu penyelesaian**, yaitu logaritma <InlineMath math="6" /> dengan basis <InlineMath math="\frac32" />:
+Bilangan real <InlineMath math="x" /> manakah yang memenuhi persamaan ini?
 
-<BlockMath math="x=\log_{\frac32}6=\frac{\lg6}{\lg1{,}5}\approx4{,}42" />
+# Penyelesaian
+
+Basis <InlineMath math="2" /> dan basis <InlineMath math="3" /> tidak dapat disamakan menjadi satu pangkat bilangan bulat. Caranya adalah **mengumpulkan semua potongan berpangkat <InlineMath math="x" /> ke satu sisi** dan semua angka polos ke sisi satunya. Begitu hanya tersisa satu pangkat tunggal, logaritma langsung mengeluarkan <InlineMath math="x" /> dalam sekali langkah.
+
+> Pada persamaan eksponen dengan dua basis berbeda, pecah pergeseran pangkatnya, satukan semua suku berpangkat variabel ke satu ruas, lalu ambil logaritmanya.
+
+## Memisahkan pergeseran pangkat dan menyatukan basis
+
+Keluarkan faktor konstanta dari pergeseran pangkat masing-masing basis, lalu **kumpulkan seluruh pangkat <InlineMath math="x" /> di satu ruas**:
+
+<BlockMath math="2^{x + 1} = 3^{x - 1} \quad \Longleftrightarrow \quad 2 \cdot 2^x = \frac{3^x}{3} \quad \Longleftrightarrow \quad 6 = \frac{3^x}{2^x} = \left(\frac{3}{2}\right)^x" />
+
+## Mengambil logaritma dan melihat perpotongan pada grafik
+
+Karena <InlineMath math="\left(\frac{3}{2}\right)^x" /> naik tegas dari nol menuju tak hingga, persamaan ini memiliki **tepat satu penyelesaian tunggal**, yaitu logaritma <InlineMath math="6" /> berbasis <InlineMath math="\frac{3}{2}" />:
+
+<BlockMath math="x = \log_{\frac{3}{2}} 6 = \frac{\lg 6}{\lg 1{,}5} \approx 4{,}42" />
 
 <MathVisual
   title={<>Dua fungsi eksponen</>}
-  description={<>Grafik <InlineMath math="y=2^{x+1}" /> dan <InlineMath math="y=3^{x-1}" />. Untuk <InlineMath math="x" /> kecil, <InlineMath math="2^{x+1}" /> ada di atas karena mulai dari nilai yang lebih besar. <InlineMath math="3^{x-1}" /> tumbuh lebih cepat dan menyusulnya tepat sekali, di <InlineMath math="x\approx4{,}42" />.</>}
+  description={<>Grafik <InlineMath math="y = 2^{x + 1}" /> dan <InlineMath math="y = 3^{x - 1}" /> berpacu ke atas. Pada awalnya <InlineMath math="2^{x + 1}" /> berada di atas karena mulai dari nilai lebih besar, lalu <InlineMath math="3^{x - 1}" /> yang tumbuh lebih cepat menyusulnya tepat sekali di <InlineMath math="x \approx 4{,}42" />.</>}
+  footer={<>Kurva <InlineMath math="3^{x - 1}" /> menyusul <InlineMath math="2^{x + 1}" /> tepat sekali di <InlineMath math="x = \log_{\frac{3}{2}} 6 \approx 4{,}42" />.</>}
   labels={{
-    a: <><InlineMath math="2^{x+1}" /></>,
-    b: <><InlineMath math="3^{x-1}" /></>,
-    m: <><InlineMath math="x\approx4{,}42" /></>,
+    a: <><InlineMath math="2^{x + 1}" /></>,
+    b: <><InlineMath math="3^{x - 1}" /></>,
+    m: <><InlineMath math="x \approx 4{,}42" /></>,
   }}
   scene={{
     space: "plane",
@@ -39,12 +56,22 @@ Persamaan <InlineMath math="\left(\frac32\right)^x=6" /> punya **tepat satu peny
   }}
 />
 
-Cek: <InlineMath math="2^{5{,}42}\approx42{,}8" /> dan <InlineMath math="3^{3{,}42}\approx42{,}8" />. Penyelesaiannya **<InlineMath math="x=\log_{\frac32}6" />**.
+Cek kisaran: pada <InlineMath math="x = 4" />, kita dapat <InlineMath math="2^5 = 32" /> dan <InlineMath math="3^3 = 27" /> (kiri masih unggul). Pada <InlineMath math="x = 5" />, kita dapat <InlineMath math="2^6 = 64" /> dan <InlineMath math="3^4 = 81" /> (kanan sudah menyalip). Titik temunya pasti di antara <InlineMath math="4" /> dan <InlineMath math="5" />.
 
-# Mengapa pilihan lain salah
+## Mengecek pilihan salah
 
-- <InlineMath math="\log_{\frac23}6" /> muncul kalau pangkatnya tertukar, yaitu menyelesaikan <InlineMath math="2^{x-1}=3^{x+1}" />. Hasilnya **bilangan negatif**.
-- <InlineMath math="\log_6\frac32" /> menukar basis dan numerus logaritmanya.
-- <InlineMath math="\log_{\frac32}3" /> lupa faktor <InlineMath math="2" /> dari <InlineMath math="2^{x+1}" /> saat menyusun ulang: <InlineMath math="3^{x}=3\cdot2^x" />.
-- <InlineMath math="-1" /> membuat ruas kiri <InlineMath math="2^0=1" />, tetapi ruas kanan <InlineMath math="3^{-2}=\frac19" />. Kalau hanya satu ruas yang dicek, hal itu terlewat.
-- "Tidak ada bilangan real" melewatkan bahwa <InlineMath math="3^{x-1}" /> tumbuh lebih cepat dan menyusul <InlineMath math="2^{x+1}" /> tepat sekali.
+Perhatikan bagaimana pengecoh lain **membalik pecahan basis atau menukar basis dengan numerus**:
+
+| Pilihan | Mengapa salah |
+| --- | --- |
+| <InlineMath math="x = \log_{\frac{2}{3}} 6" /> | Membalik perbandingan basis menjadi <InlineMath math="\frac{2}{3}" />, menghasilkan nilai negatif sekitar <InlineMath math="-4{,}42" />. |
+| <InlineMath math="x = \log_6 \frac{3}{2}" /> | Menukar posisi basis <InlineMath math="\frac{3}{2}" /> dengan numerus <InlineMath math="6" />. |
+| <InlineMath math="x = \log_{\frac{3}{2}} 3" /> | Melupakan faktor <InlineMath math="2" /> dari <InlineMath math="2^{x + 1}" /> sehingga ruas angka hanya <InlineMath math="3" />, bukan <InlineMath math="6" />. |
+| <InlineMath math="x = -1" /> | Membuat <InlineMath math="2^0 = 1" />, sedangkan ruas kanan <InlineMath math="3^{-2} = \frac{1}{9}" />. |
+| Tidak ada bilangan real <InlineMath math="x" /> | Mengira dua basis berbeda tak pernah bertemu, padahal kurva yang tumbuh lebih cepat selalu menyusul. |
+
+# Jawaban
+
+Nilai bilangan real <InlineMath math="x" /> yang memenuhi adalah:
+
+<BlockMath math="x = \log_{\frac{3}{2}} 6" />

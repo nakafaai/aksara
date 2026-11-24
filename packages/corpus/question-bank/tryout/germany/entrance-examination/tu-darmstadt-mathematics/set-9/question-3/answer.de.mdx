@@ -1,18 +1,34 @@
-# Zwei ähnliche Dreiecke am Schnittpunkt
+# Gegeben
 
-Die Seiten <InlineMath math="\overline{AB}" /> und <InlineMath math="\overline{DM}" /> sind parallel. Deshalb sind die Dreiecke <InlineMath math="ABS" /> und <InlineMath math="MDS" /> **ähnlich**, mit <InlineMath math="S" /> als gemeinsamer Spitze. Das Verhältnis der parallelen Seiten ist
+Das Quadrat <InlineMath math="ABCD" /> hat die **Seitenlänge <InlineMath math="4\text{ cm}" />**.
 
-<BlockMath math="\frac{\overline{AB}}{\overline{DM}}=\frac{4}{2}=2" />
+- Der Punkt <InlineMath math="M" /> ist der Mittelpunkt der oberen Seite <InlineMath math="\overline{CD}" /> (also <InlineMath math="\overline{DM} = 2\text{ cm}" />).
+- Die Strecken <InlineMath math="\overline{AM}" /> und <InlineMath math="\overline{BD}" /> schneiden sich im Punkt <InlineMath math="S" />.
 
-# Die Höhe des Dreiecks <InlineMath math="ABS" />
+# Gesucht
 
-Die beiden Höhen der Dreiecke liegen auf einer Senkrechten und ergeben zusammen die Seitenlänge <InlineMath math="4" />. Sie stehen **im selben Verhältnis <InlineMath math="2:1" />**:
+Wie groß ist der Flächeninhalt des Dreiecks <InlineMath math="ABS" />?
 
-<BlockMath math="h_{ABS}=\frac23\cdot4=\frac83" />
+# Lösung
+
+Betrachte die beiden Dreiecke, die sich in <InlineMath math="S" /> wie eine Sanduhr an den Spitzen treffen: das große Dreieck <InlineMath math="ABS" /> unten und das kleine Dreieck <InlineMath math="MDS" /> oben. Da <InlineMath math="\overline{AB}" /> parallel zu <InlineMath math="\overline{DM}" /> liegt, **sind beide Dreiecke im Maßstab zwei zu eins ähnlich**. Genauso teilt sich die Gesamthöhe <InlineMath math="4\text{ cm}" /> des Quadrats im Verhältnis <InlineMath math="2 : 1" />.
+
+> Zwei Sanduhrdreiecke zwischen parallelen Strecken sind immer ähnlich, sodass ihre Höhen den Abstand der Parallelen genau im Verhältnis der Grundseiten teilen.
+
+## Die Dreieckshöhe über Ähnlichkeit bestimmen
+
+Wegen <InlineMath math="\overline{AB} \parallel \overline{DM}" /> ist das Dreieck <InlineMath math="ABS" /> ähnlich zum Dreieck <InlineMath math="MDS" />. **Das Verhältnis der parallelen Grundseiten beträgt genau zwei**:
+
+<BlockMath math="\frac{\overline{AB}}{\overline{DM}} = \frac{4}{2} = 2" />
+
+Die beiden senkrechten Höhen summieren sich zur Quadratseite <InlineMath math="4\text{ cm}" />. Bei einer Teilung im Verhältnis <InlineMath math="2 : 1" /> erhält das größere Dreieck **zwei Drittel der Gesamthöhe**:
+
+<BlockMath math="h_{ABS} = \frac{2}{3} \cdot 4 = \frac{8}{3}\text{ cm}" />
 
 <MathVisual
-  title={<>Das Dreieck <InlineMath math="ABS" /> im Quadrat</>}
-  description={<>Das Quadrat <InlineMath math="ABCD" /> mit der Seite <InlineMath math="4" />, <InlineMath math="M" /> in der Mitte von <InlineMath math="\overline{CD}" />. Die Strecken <InlineMath math="\overline{AM}" /> und <InlineMath math="\overline{BD}" /> schneiden sich in <InlineMath math="S" />. Das Dreieck <InlineMath math="ABS" /> hat die Grundseite <InlineMath math="4" /> und die Höhe <InlineMath math="\tfrac83" />.</>}
+  title={<>Dreieck <InlineMath math="ABS" /> im Quadrat</>}
+  description={<>Quadrat <InlineMath math="ABCD" /> der Seitenlänge <InlineMath math="4" /> mit <InlineMath math="M" /> als Mittelpunkt von <InlineMath math="\overline{CD}" />. Die Strecken <InlineMath math="\overline{AM}" /> und <InlineMath math="\overline{BD}" /> treffen sich in <InlineMath math="S" /> und bilden das Dreieck <InlineMath math="ABS" /> mit Basis <InlineMath math="4" /> und Höhe <InlineMath math="\frac{8}{3}" />.</>}
+  footer={<>Das Basisverhältnis <InlineMath math="2 : 1" /> liefert Höhe <InlineMath math="\frac{8}{3}\text{ cm}" /> und Fläche <InlineMath math="\frac{16}{3}\text{ cm}^2" />.</>}
   labels={{
     a: <><InlineMath math="A" /></>,
     b: <><InlineMath math="B" /></>,
@@ -20,7 +36,7 @@ Die beiden Höhen der Dreiecke liegen auf einer Senkrechten und ergeben zusammen
     d: <><InlineMath math="D" /></>,
     m: <><InlineMath math="M" /></>,
     s: <><InlineMath math="S" /></>,
-    h: <><InlineMath math="\tfrac83" /></>,
+    h: <><InlineMath math="\tfrac{8}{3}" /></>,
   }}
   scene={{
     space: "plane",
@@ -55,16 +71,32 @@ Die beiden Höhen der Dreiecke liegen auf einer Senkrechten und ergeben zusammen
   }}
 />
 
-# Der Flächeninhalt
+Die Zeichnung bestätigt, dass <InlineMath math="S" /> oberhalb der Quadratmitte genau auf zwei Drittel Höhe liegt.
 
-<BlockMath math="A=\frac12\cdot4\cdot\frac83=\frac{16}{3}\text{ cm}^2" />
+## Flächeninhalt berechnen und mit Koordinaten prüfen
 
-Probe mit Koordinaten: <InlineMath math="\overline{AM}" /> liegt auf <InlineMath math="y=2x" />, <InlineMath math="\overline{BD}" /> auf <InlineMath math="y=4-x" />. Daraus folgt <InlineMath math="x=\frac43" />, <InlineMath math="y=\frac83" />. Das Dreieck hat **den Flächeninhalt <InlineMath math="\frac{16}{3}\text{ cm}^2" />**.
+Setze Grundseite <InlineMath math="4\text{ cm}" /> und Höhe <InlineMath math="\frac{8}{3}\text{ cm}" /> in **die Dreiecksformel** ein:
 
-# Warum die anderen Antworten falsch sind
+<BlockMath math="A = \frac{1}{2} \cdot 4 \cdot \frac{8}{3} = \frac{16}{3}\text{ cm}^2" />
 
-- <InlineMath math="4\text{ cm}^2" /> legt <InlineMath math="S" /> in **die Mitte des Quadrats**, mit der Höhe <InlineMath math="2" />. Das wäre der Schnittpunkt der Diagonalen.
-- <InlineMath math="8\text{ cm}^2" /> nimmt die ganze Seite <InlineMath math="4" /> als Höhe.
-- <InlineMath math="\frac83\text{ cm}^2" /> ist das Dreieck mit der Höhe <InlineMath math="\frac43" />, also mit vertauschtem Verhältnis <InlineMath math="1:2" />.
-- <InlineMath math="6\text{ cm}^2" /> nimmt die Höhe <InlineMath math="3" />, als teile <InlineMath math="S" /> die Strecke im Verhältnis <InlineMath math="3:1" />.
-- <InlineMath math="\frac{32}{3}\text{ cm}^2" /> vergisst den Faktor <InlineMath math="\frac12" /> im Dreiecksinhalt.
+Als Koordinatenprobe liefert der Schnittpunkt beider Strecken:
+
+<BlockMath math="2x = 4 - x \quad \Longrightarrow \quad x = \frac{4}{3}, \quad y = \frac{8}{3}" />
+
+Damit sind Höhe und Flächeninhalt exakt bestätigt.
+
+## Falsche Antworten prüfen
+
+Die falschen Antworten entstehen durch **eine geratene Höhe von <InlineMath math="S" /> oder den vergessenen Faktor ein halb**:
+
+| Auswahl | Warum falsch |
+| --- | --- |
+| <InlineMath math="4\text{ cm}^2" /> | Setzt <InlineMath math="S" /> in die Quadratmitte (Höhe <InlineMath math="2" />), wo sich nur die Diagonalen kreuzen. |
+| <InlineMath math="8\text{ cm}^2" /> | Nutzt die volle Quadratseite <InlineMath math="4" /> als Dreieckshöhe. |
+| <InlineMath math="\frac{8}{3}\text{ cm}^2" /> | Kehrt das Verhältnis zu <InlineMath math="1 : 2" /> um und nimmt Höhe <InlineMath math="\frac{4}{3}" />. |
+| <InlineMath math="6\text{ cm}^2" /> | Nimmt ein Verhältnis <InlineMath math="3 : 1" /> (Höhe <InlineMath math="3" />) an. |
+| <InlineMath math="\frac{32}{3}\text{ cm}^2" /> | Vergisst den Faktor <InlineMath math="\frac{1}{2}" /> in der Dreiecksformel. |
+
+# Antwort
+
+Der Flächeninhalt des Dreiecks <InlineMath math="ABS" /> beträgt **<InlineMath math="\frac{16}{3}\text{ cm}^2" />**.

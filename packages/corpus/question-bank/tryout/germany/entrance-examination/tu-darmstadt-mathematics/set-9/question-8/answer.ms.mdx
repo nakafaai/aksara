@@ -1,22 +1,39 @@
-# Keluarkan anu daripada eksponen
+# Diberi
 
-Asas <InlineMath math="2" /> dan <InlineMath math="3" /> tidak boleh disamakan. Jadi pisahkan kuasa-kuasa itu supaya **semua kuasa yang mengandungi <InlineMath math="x" /> berada pada satu belah**:
+Bagi satu nombor nyata <InlineMath math="x" />, diberikan **persamaan indeks dengan dua asas berbeza**:
 
-<BlockMath math="2^{x+1}=3^{x-1}\quad\Longleftrightarrow\quad 2\cdot2^x=\frac{3^x}{3}\quad\Longleftrightarrow\quad 6=\frac{3^x}{2^x}=\left(\frac32\right)^x" />
+<BlockMath math="2^{x + 1} = 3^{x - 1}" />
 
-# Ambil logaritma
+# Ditanya
 
-Persamaan <InlineMath math="\left(\frac32\right)^x=6" /> mempunyai **tepat satu penyelesaian**, iaitu logaritma <InlineMath math="6" /> dengan asas <InlineMath math="\frac32" />:
+Nombor nyata <InlineMath math="x" /> manakah yang memenuhi persamaan ini?
 
-<BlockMath math="x=\log_{\frac32}6=\frac{\lg6}{\lg1.5}\approx4.42" />
+# Penyelesaian
+
+Asas <InlineMath math="2" /> dan asas <InlineMath math="3" /> tidak dapat ditukar kepada kuasa integer yang sama. Langkah paling kemas ialah **mengumpulkan semua kuasa berindeks <InlineMath math="x" /> ke satu belah** dan semua pemalar ke belah satu lagi. Sebaik hanya tinggal satu kuasa gabungan, logaritma terus mengeluarkan <InlineMath math="x" />.
+
+> Dalam persamaan indeks berlainan asas, pisahkan anjakan indeksnya, gabungkan semua kuasa pemboleh ubah ke satu belah, kemudian ambil logaritmanya.
+
+## Memisahkan anjakan indeks dan menyatukan asas
+
+Keluarkan faktor pemalar daripada anjakan indeks pada kedua-dua asas, lalu **satukan semua kuasa <InlineMath math="x" /> di satu belah**:
+
+<BlockMath math="2^{x + 1} = 3^{x - 1} \quad \Longleftrightarrow \quad 2 \cdot 2^x = \frac{3^x}{3} \quad \Longleftrightarrow \quad 6 = \frac{3^x}{2^x} = \left(\frac{3}{2}\right)^x" />
+
+## Mengambil logaritma dan menyemak graf
+
+Oleh sebab <InlineMath math="\left(\frac{3}{2}\right)^x" /> menaik tegas dari sifar ke infiniti, persamaan ini mempunyai **satu penyelesaian nyata yang unik**, iaitu logaritma <InlineMath math="6" /> berasas <InlineMath math="\frac{3}{2}" />:
+
+<BlockMath math="x = \log_{\frac{3}{2}} 6 = \frac{\lg 6}{\lg 1.5} \approx 4.42" />
 
 <MathVisual
   title={<>Dua fungsi eksponen</>}
-  description={<>Graf <InlineMath math="y=2^{x+1}" /> dan <InlineMath math="y=3^{x-1}" />. Bagi <InlineMath math="x" /> yang kecil, <InlineMath math="2^{x+1}" /> berada di atas kerana ia bermula dengan nilai yang lebih besar. <InlineMath math="3^{x-1}" /> tumbuh lebih cepat dan memotongnya tepat sekali, pada <InlineMath math="x\approx4.42" />.</>}
+  description={<>Graf <InlineMath math="y = 2^{x + 1}" /> dan <InlineMath math="y = 3^{x - 1}" /> berlumba ke atas. Pada mulanya <InlineMath math="2^{x + 1}" /> mendahului kerana bermula lebih tinggi, kemudian <InlineMath math="3^{x - 1}" /> yang berkembang lebih cepat memintasnya tepat sekali di <InlineMath math="x \approx 4.42" />.</>}
+  footer={<>Lengkung <InlineMath math="3^{x - 1}" /> memintas <InlineMath math="2^{x + 1}" /> tepat sekali di <InlineMath math="x = \log_{\frac{3}{2}} 6 \approx 4.42" />.</>}
   labels={{
-    a: <><InlineMath math="2^{x+1}" /></>,
-    b: <><InlineMath math="3^{x-1}" /></>,
-    m: <><InlineMath math="x\approx4.42" /></>,
+    a: <><InlineMath math="2^{x + 1}" /></>,
+    b: <><InlineMath math="3^{x - 1}" /></>,
+    m: <><InlineMath math="x \approx 4.42" /></>,
   }}
   scene={{
     space: "plane",
@@ -39,12 +56,22 @@ Persamaan <InlineMath math="\left(\frac32\right)^x=6" /> mempunyai **tepat satu 
   }}
 />
 
-Semakan: <InlineMath math="2^{5.42}\approx42.8" /> dan <InlineMath math="3^{3.42}\approx42.8" />. Penyelesaiannya ialah **<InlineMath math="x=\log_{\frac32}6" />**.
+Semakan julat: pada <InlineMath math="x = 4" />, <InlineMath math="2^5 = 32" /> masih mendahului <InlineMath math="3^3 = 27" />. Pada <InlineMath math="x = 5" />, <InlineMath math="2^6 = 64" /> sudah dipintas oleh <InlineMath math="3^4 = 81" />. Maka titik silang pasti antara <InlineMath math="4" /> dengan <InlineMath math="5" />.
 
-# Kenapa jawapan lain salah
+## Menyemak pilihan salah
 
-- <InlineMath math="\log_{\frac23}6" /> terhasil kalau eksponen tertukar, iaitu menyelesaikan <InlineMath math="2^{x-1}=3^{x+1}" />. Hasilnya **nombor negatif**.
-- <InlineMath math="\log_6\frac32" /> menukar asas dan hujah logaritma.
-- <InlineMath math="\log_{\frac32}3" /> terlupa faktor <InlineMath math="2" /> daripada <InlineMath math="2^{x+1}" /> semasa menyusun semula: <InlineMath math="3^{x}=3\cdot2^x" />.
-- <InlineMath math="-1" /> menjadikan sebelah kiri <InlineMath math="2^0=1" />, tetapi sebelah kanan <InlineMath math="3^{-2}=\frac19" />. Kalau hanya satu belah disemak, perkara itu terlepas.
-- "Tiada nombor nyata" terlepas pandang bahawa <InlineMath math="3^{x-1}" /> tumbuh lebih cepat dan memotong <InlineMath math="2^{x+1}" /> tepat sekali.
+Perhatikan bagaimana pengganggu lain **menyongsangkan pecahan asas atau menukar asas dengan argumen**:
+
+| Pilihan | Mengapa salah |
+| --- | --- |
+| <InlineMath math="x = \log_{\frac{2}{3}} 6" /> | Menyongsangkan nisbah asas kepada <InlineMath math="\frac{2}{3}" />, memberi nilai negatif sekitar <InlineMath math="-4.42" />. |
+| <InlineMath math="x = \log_6 \frac{3}{2}" /> | Menukar kedudukan asas <InlineMath math="\frac{3}{2}" /> dengan argumen <InlineMath math="6" />. |
+| <InlineMath math="x = \log_{\frac{3}{2}} 3" /> | Melupakan faktor <InlineMath math="2" /> daripada <InlineMath math="2^{x + 1}" /> sehingga tinggal <InlineMath math="3" /> bukannya <InlineMath math="6" />. |
+| <InlineMath math="x = -1" /> | Memberi <InlineMath math="2^0 = 1" />, sedangkan sebelah kanan ialah <InlineMath math="3^{-2} = \frac{1}{9}" />. |
+| Tiada nombor nyata <InlineMath math="x" /> | Menyangka dua asas berbeza tidak pernah bersilang, padahal lengkung lebih pantas pasti memintas. |
+
+# Jawapan
+
+Nombor nyata <InlineMath math="x" /> yang memenuhi persamaan ialah:
+
+<BlockMath math="x = \log_{\frac{3}{2}} 6" />
