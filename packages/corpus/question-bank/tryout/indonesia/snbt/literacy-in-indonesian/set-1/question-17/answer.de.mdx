@@ -1,22 +1,37 @@
-Anwesenheitsquoten kann man nicht einfach addieren, weil **jede Schule eine andere Schülerzahl hat**. Bestimme also die eingesparten Fehltage an jeder Schule und addiere sie.
+# Gegeben
 
-An einer Schule hat ein Halbjahr (Schülerzahl) <InlineMath math="\times 100" /> Schülertage. Steigt die Anwesenheit um <InlineMath math="p" /> Punkte, sinken die Fehltage um <InlineMath math="p\%" /> dieser Schülertage.
+An den vier Versuchsschulen mit je <InlineMath math="100" /> Schultagen pro Halbjahr stieg die Anwesenheit an der **SD Kalirejo** (<InlineMath math="400" /> Kinder) um <InlineMath math="8" /> Prozentpunkte, an der **SD Tegalsari** (<InlineMath math="100" /> Kinder) um <InlineMath math="2" /> Punkte, an der **SD Sumberan** (<InlineMath math="250" /> Kinder) um <InlineMath math="8" /> Punkte und an der **SD Watugede** (<InlineMath math="250" /> Kinder) um <InlineMath math="2" /> Punkte.
+
+# Gesucht
+
+Die Gesamtzahl der eingesparten Fehltage an allen vier Versuchsschulen vom ersten Halbjahr 2023 zum ersten Halbjahr 2024.
+
+# Lösung
+
+Da die **Schülerzahlen verschieden sind**, wird der Rückgang der Fehltage je Schule mit <InlineMath math="\text{Kinder} \times 100 \times \Delta\text{Quote}" /> berechnet und anschließend addiert.
 
 <BlockMath math="\begin{aligned}
-\text{Kalirejo}&=400\times100\times8\%=3{.}200\\
-\text{Tegalsari}&=100\times100\times2\%=200\\
-\text{Sumberan}&=250\times100\times8\%=2{.}000\\
-\text{Watugede}&=250\times100\times2\%=500\\
-\text{Summe}&=5{.}900\text{ Tage}
+\text{Kalirejo} &= 400 \times 100 \times 8\% = 3{.}200 \\
+\text{Tegalsari} &= 100 \times 100 \times 2\% = 200 \\
+\text{Sumberan} &= 250 \times 100 \times 8\% = 2{.}000 \\
+\text{Watugede} &= 250 \times 100 \times 2\% = 500 \\
+\text{Gesamt} &= 3{.}200 + 200 + 2{.}000 + 500 = 5{.}900\text{ Tage}
 \end{aligned}" />
 
-Probe mit der gemeinsamen Anwesenheitsquote. 2023 gab es <InlineMath math="13{.}450" /> Fehltage von <InlineMath math="100{.}000" /> Schülertagen, 2024 nur noch <InlineMath math="7{.}550" />. Der Unterschied beträgt ebenfalls <InlineMath math="5{.}900" /> Tage.
+> Die Prozentpunkte jeder Schule müssen mit der jeweiligen Schülerzahl gewichtet statt einfach gemittelt werden.
 
-Die anderen Antworten entstehen durch fehlende Gewichtung oder ausgelassene Schulen.
+## Herkunft der übrigen Zahlenwerte
 
-- <InlineMath math="700" /> Tage zählen nur Tegalsari und Watugede, <InlineMath math="200+500" />.
-- <InlineMath math="4{.}900" /> Tage ziehen einen Anstieg von <InlineMath math="1" /> Punkt wie an den übrigen Schulen ab, bezogen auf die <InlineMath math="100{.}000" /> Schülertage der vier Versuchsschulen, <InlineMath math="5{.}900-1{.}000" />. Das beantwortet eine Frage nach der Ursache, gefragt ist aber die gesamte Veränderung, egal aus welchem Grund.
-- <InlineMath math="5{.}000" /> Tage nutzen einen einfachen Mittelwert. Der Mittelwert der vier Quoten steigt von <InlineMath math="87\%" /> auf <InlineMath math="92\%" />, dann werden <InlineMath math="5\%" /> mit <InlineMath math="100{.}000" /> multipliziert. So zählt eine Schule mit <InlineMath math="100" /> Schülern so viel wie eine mit <InlineMath math="400" />.
-- <InlineMath math="5{.}200" /> Tage zählen nur Kalirejo und Sumberan, <InlineMath math="3{.}200+2{.}000" />.
+Die **Zuordnung jeder Zahl zu ihrer Rechnung** zeigt fehlende Schulen oder fehlende Gewichtung.
 
-Die Fehltage an den vier Versuchsschulen sanken also um <InlineMath math="5{.}900" /> Tage.
+| Option | Zugrunde liegende Rechnung | Urteil |
+| --- | --- | --- |
+| <InlineMath math="5{.}900" /> Tage | Gewichtete Summe aller vier Versuchsschulen | **Richtig** |
+| <InlineMath math="700" /> Tage | Addiert nur Tegalsari (<InlineMath math="200" />) und Watugede (<InlineMath math="500" />) | **Falsch** |
+| <InlineMath math="4{.}900" /> Tage | Zieht <InlineMath math="1{.}000" /> Tage für den allgemeinen Anstieg um <InlineMath math="1" /> Punkt ab | **Falsch** |
+| <InlineMath math="5{.}000" /> Tage | Nutzt das ungewichtete Mittel von <InlineMath math="5\%" /> | **Falsch** |
+| <InlineMath math="5{.}200" /> Tage | Addiert nur Kalirejo (<InlineMath math="3{.}200" />) und Sumberan (<InlineMath math="2{.}000" />) | **Falsch** |
+
+# Antwort
+
+Die Zahl der Fehltage an den vier Versuchsschulen ging um insgesamt **<InlineMath math="5{.}900" /> Tage** zurück.

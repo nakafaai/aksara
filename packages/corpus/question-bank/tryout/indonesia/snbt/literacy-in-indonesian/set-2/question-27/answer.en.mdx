@@ -1,26 +1,40 @@
-This asks for two measures with different divisors. **Total contributions** are divided by the pay of all <InlineMath math="1{,}000" /> employees, while **average contribution per participant** is divided by the participants only. Since everyone earns the same, you can work in "percent of one person's pay".
+# Given
 
-**Total contributions as a percent of all pay**.
+At **PT Sinar Mandiri** (<InlineMath math="1{,}000" /> equal-salary employees), before auto-enrollment <InlineMath math="400" /> participants each saved <InlineMath math="6\%" />. After auto-enrollment at a <InlineMath math="3\%" /> default, <InlineMath math="750" /> employees saved <InlineMath math="3\%" /> and <InlineMath math="150" /> saved <InlineMath math="6\%" /> (<InlineMath math="900" /> participants total).
 
+# Asked
+
+The change in total savings as a percentage of total payroll, and the change in average savings per participant.
+
+# Solution
+
+Apply **two distinct denominators**: divide total savings by all <InlineMath math="1{,}000" /> employees for payroll share, and divide by active participants (<InlineMath math="400" /> then <InlineMath math="900" />) for the per-participant mean.
+
+<MathContainer>
 <BlockMath math="\begin{aligned}
-\text{before}&=\frac{400\times6}{1{,}000}=2.4\%\\
-\text{after}&=\frac{750\times3+150\times6}{1{,}000}=\frac{2{,}250+900}{1{,}000}=3.15\%
+\text{total before} &= \frac{400 \times 6\%}{1{,}000} = 2.4\% \\
+\text{total after} &= \frac{750 \times 3\% + 150 \times 6\%}{1{,}000} = \frac{3{,}150\%}{1{,}000} = 3.15\%
 \end{aligned}" />
-
-**Average contribution per participant**.
-
 <BlockMath math="\begin{aligned}
-\text{before}&=6\%\\
-\text{after}&=\frac{3{,}150}{900}=3.5\%
+\text{participant mean before} &= 6\% \\
+\text{participant mean after} &= \frac{3{,}150\%}{900} = 3.5\%
 \end{aligned}" />
+</MathContainer>
 
-Total contributions rise because participants go from <InlineMath math="400" /> to <InlineMath math="900" />, but each participant saves less on average.
+> Higher participation lifts total payroll savings from <InlineMath math="2.4\%" /> to <InlineMath math="3.15\%" />, while average savings per participant drops from <InlineMath math="6\%" /> to <InlineMath math="3.5\%" />.
 
-The other options are wrong.
+## Checking the distractor options
 
-- The first option is right about the total, but the average per participant falls, it doesn't rise.
-- The second option mixes up the two measures. <InlineMath math="6\%" /> and <InlineMath math="3.5\%" /> are the average per **participant**, not total contributions as a share of all pay.
-- <InlineMath math="4.05\%" /> comes from assuming all <InlineMath math="900" /> participants save <InlineMath math="4.5\%" />, the midpoint of <InlineMath math="3\%" /> and <InlineMath math="6\%" />, then multiplying by <InlineMath math="900:1{,}000" />. But only <InlineMath math="150" /> people chose <InlineMath math="6\%" />, so the midpoint doesn't represent the participants.
-- Total contributions do change, from <InlineMath math="2.4\%" /> to <InlineMath math="3.15\%" />. The rise in participants outweighs the fall per participant.
+Reviewing **both metrics and denominators** exposes every trap.
 
-So total contributions rise from <InlineMath math="2.4\%" /> to <InlineMath math="3.15\%" /> of all pay, while the average per participant falls from <InlineMath math="6\%" /> to <InlineMath math="3.5\%" />.
+| Option | Source of figures | Verdict |
+| --- | --- | --- |
+| Total rises <InlineMath math="2.4\% \to 3.15\%" />, participant mean falls <InlineMath math="6\% \to 3.5\%" /> | Both metrics and denominators exact | **Correct** |
+| Both total and participant mean rose | Wrong direction for participant mean | **Incorrect** |
+| Total fell from <InlineMath math="6\%" /> to <InlineMath math="3.5\%" /> | Confuses participant mean with total payroll share | **Incorrect** |
+| Total after is <InlineMath math="4.05\%" /> | Uses unweighted midpoint <InlineMath math="4.5\%" /> instead of <InlineMath math="750" /> vs <InlineMath math="150" /> | **Incorrect** |
+| Total savings stayed unchanged | False, growth in participants outweighs lower per-person rate | **Incorrect** |
+
+# Answer
+
+Total savings **rose from <InlineMath math="2.4\%" /> to <InlineMath math="3.15\%" /> of total payroll**, while the average contribution per participant **fell from <InlineMath math="6\%" /> to <InlineMath math="3.5\%" />**.
