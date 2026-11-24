@@ -1,21 +1,37 @@
-Kerjakan dalam tiga langkah: cari porsi Saltmarsh, berikan porsi itu pada setiap ladang di jalur North, lalu jumlahkan energi yang terselamatkan. Ladang di jalur South tidak berubah.
+# Diketahui
 
-Saltmarsh kehilangan <InlineMath math="40" /> dari <InlineMath math="800" /> GWh:
+Data tabel empat ladang angin Northmoor tahun <InlineMath math="2025" />:
+- **Jalur Utara**: Fellside (potensi <InlineMath math="200" /> GWh, dibatasi <InlineMath math="50" /> GWh) dan Brackenmoor (potensi <InlineMath math="800" /> GWh, dibatasi <InlineMath math="160" /> GWh).
+- **Jalur Selatan**: Saltmarsh (potensi <InlineMath math="800" /> GWh, dibatasi <InlineMath math="40" /> GWh) dan Gullrock (potensi <InlineMath math="200" /> GWh, dibatasi <InlineMath math="50" /> GWh).
 
-<BlockMath math="\frac{40}{800} = 5\%" />
+# Ditanyakan
 
-Sekarang berikan setiap ladang North **porsi yang sama dari potensinya sendiri**, bukan jumlah yang sama:
+Berapa GWh tambahan energi yang akan tersalurkan oleh keempat ladang pada tahun <InlineMath math="2025" /> jika Jalur Utara yang digandakan memangkas **persentase kehilangan** setiap ladang Utara hingga sama dengan persentase kehilangan Saltmarsh.
+
+# Penyelesaian
+
+Hitung dulu **persentase energi yang terbuang di Saltmarsh**, terapkan persentase yang sama pada potensi masing-masing ladang Utara, lalu jumlahkan energi yang berhasil diselamatkan (ladang Selatan tetap).
+
+> Menyamakan persentase kehilangan Saltmarsh sebesar lima persen berarti setiap ladang Utara kehilangan lima persen dari potensinya sendiri, bukan empat puluh GWh yang sama rata.
+
+## Menghitung persentase Saltmarsh dan energi terselamatkan
+
+Tabel memberi <Highlight>Saltmarsh</Highlight> sebesar <InlineMath math="40" /> GWh dibatasi dari potensi <InlineMath math="800" /> GWh:
 
 <BlockMath math="\begin{aligned}
-\text{Fellside: } 5\% \times 200 &= 10 \text{ GWh hilang, jadi } 50 - 10 = 40 \text{ GWh terselamatkan} \\
-\text{Brackenmoor: } 5\% \times 800 &= 40 \text{ GWh hilang, jadi } 160 - 40 = 120 \text{ GWh terselamatkan}
+\text{Persentase kehilangan Saltmarsh: } \frac{40}{800} = 5\% \\
+\text{Fellside baru: } 5\% \times 200 = 10\text{ GWh}, \qquad \text{Terselamatkan: } 50 - 10 = 40\text{ GWh} \\
+  \text{Brackenmoor baru: } 5\% \times 800 = 40\text{ GWh}, \qquad \text{Terselamatkan: } 160 - 40 = 120\text{ GWh} \\
+\text{Total tambahan energi tersalurkan: } 40 + 120 = 160\text{ GWh}
 \end{aligned}" />
 
-Setiap GWh yang terselamatkan ikut tersalurkan, jadi keempat ladang menyalurkan <InlineMath math="40 + 120 = 160" /> GWh lebih banyak.
+## Mengapa pilihan lain salah
 
-- <InlineMath math="120" /> GWh memakai porsi seluruh jalur South, <InlineMath math="90 \div 1000 = 9\%" />, bukan porsi Saltmarsh.
-- <InlineMath math="130" /> GWh memberi setiap ladang North **jumlah** milik Saltmarsh, <InlineMath math="40" /> GWh, bukan porsinya.
-- <InlineMath math="210" /> GWh menganggap ladang North tidak kehilangan apa pun.
-- <InlineMath math="60" /> GWh memakai porsi seluruh wilayah, <InlineMath math="15\%" />, yang masih memuat kehilangan ladang North sendiri.
+- **<InlineMath math="120" /> GWh** memakai rasio seluruh Jalur Selatan (<InlineMath math="90 \div 1{.}000 = 9\%" />), bukan rasio Saltmarsh.
+- **<InlineMath math="130" /> GWh** mematok angka <InlineMath math="40" /> GWh sama rata bagi Fellside dan Brackenmoor alih-alih persentase <InlineMath math="5\%" />.
+- **<InlineMath math="210" /> GWh** menganggap kedua ladang Utara tidak kehilangan energi sama sekali.
+- **<InlineMath math="60" /> GWh** memakai rasio seluruh wilayah (<InlineMath math="15\%" />) yang masih memuat kehilangan Jalur Utara sendiri.
 
-Keempat ladang akan menyalurkan <InlineMath math="160" /> GWh lebih banyak.
+# Jawaban
+
+Keempat ladang angin akan menyalurkan tambahan energi sebesar **<InlineMath math="160" /> GWh**.

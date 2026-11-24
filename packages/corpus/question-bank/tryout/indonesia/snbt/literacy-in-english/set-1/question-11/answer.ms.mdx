@@ -1,21 +1,37 @@
-Buat dalam tiga langkah: cari bahagian Saltmarsh, berikan bahagian itu kepada setiap ladang di talian North, kemudian jumlahkan tenaga yang dijimatkan. Ladang di talian South tidak berubah.
+# Diberi
 
-Saltmarsh kehilangan <InlineMath math="40" /> daripada <InlineMath math="800" /> GWh:
+Data ladang angin Northmoor bagi tahun <InlineMath math="2025" />:
+- **Talian Utara**: Fellside (potensi <InlineMath math="200" /> GWh, disekat <InlineMath math="50" /> GWh) dan Brackenmoor (potensi <InlineMath math="800" /> GWh, disekat <InlineMath math="160" /> GWh).
+- **Talian Selatan**: Saltmarsh (potensi <InlineMath math="800" /> GWh, disekat <InlineMath math="40" /> GWh) dan Gullrock (potensi <InlineMath math="200" /> GWh, disekat <InlineMath math="50" /> GWh).
 
-<BlockMath math="\frac{40}{800} = 5\%" />
+# Ditanya
 
-Sekarang berikan setiap ladang North **bahagian yang sama daripada potensinya sendiri**, bukan jumlah yang sama:
+Berapakah tenaga tambahan yang berjaya dihantar oleh keempat-empat ladang pada tahun <InlineMath math="2025" /> sekiranya Talian Utara berganda menurunkan **peratusan kehilangan** setiap ladang Utara menyamai peratusan Saltmarsh.
+
+# Penyelesaian
+
+Cari **peratusan kehilangan Saltmarsh** dahulu, gunakan peratusan sama terhadap potensi setiap ladang Utara, lalu jumlahkan tenaga yang diselamatkan manakala ladang Selatan kekal tidak berubah.
+
+> Menyamai bahagian lima peratus Saltmarsh bermakna setiap ladang Utara kehilangan lima peratus daripada potensinya sendiri, bukannya jumlah tetap empat puluh GWh.
+
+## Mengira bahagian Saltmarsh dan tenaga diselamatkan
+
+Jadual menunjukkan <Highlight>Saltmarsh</Highlight> mengalami sekatan <InlineMath math="40" /> GWh daripada potensi <InlineMath math="800" /> GWh:
 
 <BlockMath math="\begin{aligned}
-\text{Fellside: } 5\% \times 200 &= 10 \text{ GWh hilang, jadi } 50 - 10 = 40 \text{ GWh dijimatkan} \\
-\text{Brackenmoor: } 5\% \times 800 &= 40 \text{ GWh hilang, jadi } 160 - 40 = 120 \text{ GWh dijimatkan}
+\text{Bahagian kehilangan Saltmarsh: } \frac{40}{800} = 5\% \\
+\text{Fellside baharu: } 5\% \times 200 = 10\text{ GWh}, \qquad \text{Diselamatkan: } 50 - 10 = 40\text{ GWh} \\
+  \text{Brackenmoor baharu: } 5\% \times 800 = 40\text{ GWh}, \qquad \text{Diselamatkan: } 160 - 40 = 120\text{ GWh} \\
+\text{Jumlah tenaga tambahan: } 40 + 120 = 160\text{ GWh}
 \end{aligned}" />
 
-Setiap GWh yang dijimatkan turut dihantar, jadi keempat-empat ladang menghantar <InlineMath math="40 + 120 = 160" /> GWh lebih banyak.
+## Mengapa pilihan lain salah
 
-- <InlineMath math="120" /> GWh menggunakan bahagian seluruh talian South, <InlineMath math="90 \div 1000 = 9\%" />, bukan bahagian Saltmarsh.
-- <InlineMath math="130" /> GWh memberi setiap ladang North **jumlah** milik Saltmarsh, <InlineMath math="40" /> GWh, bukan bahagiannya.
-- <InlineMath math="210" /> GWh menganggap ladang North tidak kehilangan apa-apa langsung.
-- <InlineMath math="60" /> GWh menggunakan bahagian seluruh wilayah, <InlineMath math="15\%" />, yang masih mengandungi kehilangan ladang North sendiri.
+- **<InlineMath math="120" /> GWh** menggunakan kadar seluruh Talian Selatan (<InlineMath math="90 \div 1{,}000 = 9\%" />) dan bukan kadar Saltmarsh.
+- **<InlineMath math="130" /> GWh** meletakkan jumlah tetap <InlineMath math="40" /> GWh bagi setiap ladang Utara dan bukannya peratusan <InlineMath math="5\%" />.
+- **<InlineMath math="210" /> GWh** mengandaikan tiada langsung sekatan tenaga di Talian Utara.
+- **<InlineMath math="60" /> GWh** menggunakan purata seluruh wilayah (<InlineMath math="15\%" />) yang masih merangkumi kehilangan Talian Utara sendiri.
 
-Keempat-empat ladang akan menghantar <InlineMath math="160" /> GWh lebih banyak.
+# Jawapan
+
+Keempat-empat ladang angin akan menghantar **<InlineMath math="160" /> GWh** tenaga lebih banyak.
