@@ -1,27 +1,44 @@
-# Der Durchschnitt kommt aus Weg und Zeit
+# Gegeben
 
-Die Durchschnittsgeschwindigkeit ist **der ganze Weg geteilt durch die ganze Zeit**, nicht der Mittelwert der beiden Geschwindigkeiten. Nenne die einfache Strecke <InlineMath math="s" /> und die Geschwindigkeit auf dem Rückweg <InlineMath math="v" />:
+Eine Radfahrerin fährt **dieselbe Strecke hin und zurück**:
 
-<BlockMath math="\frac{2s}{\frac{s}{20}+\frac{s}{v}}=24" />
+- Konstante Geschwindigkeit auf dem Hinweg: <InlineMath math="20\text{ km/h}" />.
+- Durchschnittsgeschwindigkeit für Hin- und Rückweg zusammen: <InlineMath math="24\text{ km/h}" />.
 
-# Die Strecke kürzt sich
+# Gesucht
 
-Kürze <InlineMath math="s" /> und rechne mit den Kehrwerten weiter:
+Mit welcher konstanten Geschwindigkeit fährt sie auf dem Rückweg?
+
+# Lösung
+
+Auf den ersten Blick wirkt <InlineMath math="28\text{ km/h}" /> verlockend, weil der Mittelwert aus <InlineMath math="20" /> und <InlineMath math="28" /> genau <InlineMath math="24" /> ist. Achte aber auf die Zeit: Weil sie auf dem Hinweg langsamer fährt, **verbringt sie mehr Zeit im langsamen Tempo als im schnellen**. Deshalb muss der Rückweg schneller als <InlineMath math="28" /> sein, um die verlorene Zeit aufzuholen.
+
+> Die Durchschnittsgeschwindigkeit ist immer Gesamtstrecke geteilt durch Gesamtzeit, niemals der gewöhnliche Mittelwert zweier Geschwindigkeiten über gleiche Strecken.
+
+## Gesamtstrecke durch Gesamtzeit ansetzen
+
+Nenne die einfache Streckenlänge <InlineMath math="s" /> und die Rückweggeschwindigkeit <InlineMath math="v" />. Die Gesamtstrecke beträgt <InlineMath math="2s" />, die Gesamtzeit ist die Summe aus Hin- und Rückzeit. Schön sichtbar: **Die Strecke <InlineMath math="s" /> kürzt sich sofort heraus**:
+
+<BlockMath math="\frac{2s}{\frac{s}{20} + \frac{s}{v}} = 24 \quad \Longleftrightarrow \quad \frac{2}{\frac{1}{20} + \frac{1}{v}} = 24" />
+
+## Die Kehrwertgleichung lösen
+
+Stelle nach **dem Kehrwert der Rückweggeschwindigkeit** um:
 
 <BlockMath math="\begin{aligned}
-\frac{2}{\frac1{20}+\frac1v}&=24 \\
-\frac1{20}+\frac1v&=\frac1{12} \\
-\frac1v&=\frac1{12}-\frac1{20}=\frac{5-3}{60}=\frac1{30}
+\frac{1}{20} + \frac{1}{v} &= \frac{2}{24} = \frac{1}{12} \\
+\frac{1}{v} &= \frac{1}{12} - \frac{1}{20} = \frac{5 - 3}{60} = \frac{1}{30}
 \end{aligned}" />
 
-Also ist **die Geschwindigkeit <InlineMath math="v=30" />**.
+Auf dem Rückweg fährt sie also genau <InlineMath math="v = 30\text{ km/h}" />. Die Kurve des harmonischen Mittels zeigt, wie der Durchschnitt mit wachsendem Rückwegtempo immer flacher steigt.
 
 <MathVisual
-  title={<>Durchschnitt in Abhängigkeit vom Rückweg</>}
-  description={<>Der Graph zeigt die Durchschnittsgeschwindigkeit <InlineMath math="\frac{40v}{v+20}" /> für Rückweg-Geschwindigkeiten <InlineMath math="v" />, wenn der Hinweg mit <InlineMath math="20" /> gefahren wird. Er steigt immer langsamer und bleibt unter <InlineMath math="40" />. Die Linie bei <InlineMath math="24" /> trifft ihn bei <InlineMath math="v=30" />, nicht bei <InlineMath math="28" />.</>}
+  title={<>Durchschnittsgeschwindigkeit nach Rückwegtempo</>}
+  description={<>Der Graph zeigt das Gesamtmittel <InlineMath math="\frac{40v}{v + 20}" /> für die Rückweggeschwindigkeit <InlineMath math="v" /> bei <InlineMath math="20" /> auf dem Hinweg. Die Kurve bleibt unter der Grenze <InlineMath math="40" /> und trifft die Zielgerade <InlineMath math="24" /> exakt bei <InlineMath math="v = 30" />, nicht bei <InlineMath math="28" />.</>}
+  footer={<>Die Kurve des harmonischen Mittels schneidet <InlineMath math="24" /> exakt bei <InlineMath math="v = 30\text{ km/h}" />.</>}
   labels={{
-    key: <><InlineMath math="v=30" /></>,
-    a: <>Durchschnitt</>,
+    key: <><InlineMath math="v = 30" /></>,
+    a: <>Mittelwert</>,
     t: <><InlineMath math="24" /></>,
   }}
   scene={{
@@ -45,14 +62,20 @@ Also ist **die Geschwindigkeit <InlineMath math="v=30" />**.
   }}
 />
 
-# Probe mit einer Beispielstrecke
+Probe mit einer Beispielstrecke von <InlineMath math="s = 60\text{ km}" />: Hinweg <InlineMath math="3" /> Stunden, Rückweg <InlineMath math="2" /> Stunden. Zusammen <InlineMath math="120\text{ km}" /> in <InlineMath math="5" /> Stunden ergeben exakt <InlineMath math="24\text{ km/h}" />.
 
-Für <InlineMath math="s=60\text{ km}" /> dauert der Hinweg <InlineMath math="3" /> Stunden und der Rückweg <InlineMath math="2" /> Stunden. Für <InlineMath math="120\text{ km}" /> in <InlineMath math="5" /> Stunden ergibt sich der Durchschnitt <InlineMath math="24\,\frac{\text{km}}{\text{h}}" />. Sie fährt auf dem Rückweg **mit <InlineMath math="30\,\frac{\text{km}}{\text{h}}" />**.
+## Falsche Antworten prüfen
 
-# Warum die anderen Antworten falsch sind
+Hinter jeder falschen Auswahl steckt **eine klassische Denkfalle**:
 
-- <InlineMath math="28\,\frac{\text{km}}{\text{h}}" /> setzt **den einfachen Mittelwert** an: <InlineMath math="\frac{20+v}{2}=24" />. Auf dem langsamen Hinweg verbringt sie aber mehr Zeit.
-- <InlineMath math="28{,}8\,\frac{\text{km}}{\text{h}}" /> ist <InlineMath math="\frac{24^2}{20}" />, ein geometrischer Mittelwert.
-- <InlineMath math="40\,\frac{\text{km}}{\text{h}}" /> verdoppelt die Geschwindigkeit des Hinwegs.
-- <InlineMath math="12\,\frac{\text{km}}{\text{h}}" /> liest den Kehrwert <InlineMath math="\frac1{12}" /> als Geschwindigkeit.
-- „Das ist mit keiner Geschwindigkeit möglich“ entsteht ohne den Faktor <InlineMath math="2" /> für den doppelten Weg: <InlineMath math="\frac1{20}+\frac1v=\frac1{24}" /> hätte nur negative Lösungen.
+| Auswahl | Warum falsch |
+| --- | --- |
+| <InlineMath math="28\text{ km/h}" /> | Nutzt das arithmetische Mittel <InlineMath math="\frac{20 + v}{2} = 24" /> und übersieht die längere Hinwegzeit. |
+| <InlineMath math="28{,}8\text{ km/h}" /> | Bildet das geometrische Mittel <InlineMath math="\frac{24^2}{20}" /> statt des harmonischen Mittels. |
+| <InlineMath math="40\text{ km/h}" /> | Verdoppelt nur die Hinweggeschwindigkeit (das ist die Obergrenze des Schnitts, nicht das Rückwegtempo). |
+| <InlineMath math="12\text{ km/h}" /> | Liest den Zwischenschritt <InlineMath math="\frac{1}{12}" /> direkt als Geschwindigkeit ab. |
+| Das ist mit keiner Geschwindigkeit möglich. | Entsteht, wenn der Faktor <InlineMath math="2" /> für Hin- und Rückweg fehlt und <InlineMath math="\frac{1}{20} + \frac{1}{v} = \frac{1}{24}" /> gelöst wird. |
+
+# Antwort
+
+Sie fährt auf dem Rückweg konstant mit **<InlineMath math="30\text{ km/h}" />**.

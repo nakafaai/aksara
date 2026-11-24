@@ -1,32 +1,57 @@
-# Domain dahulu
+# Diberi
 
-Logaritma hanya tertakrif untuk hujah yang positif:
+Diberikan **ketaksamaan logaritma** (*Ungleichung*) dengan asas pecahan kurang daripada satu:
 
-<BlockMath math="x^2-3x=x(x-3)>0\quad\Longleftrightarrow\quad x<0\ \text{atau}\ x>3" />
+<BlockMath math="\log_{\frac{1}{2}}\left(x^2 - 3x\right) \ge -2" />
 
-Hanya nombor dalam julat ini yang **boleh menjadi penyelesaian**.
+# Ditanya
 
-# Asas kurang daripada <InlineMath math="1" /> menterbalikkan ketaksamaan
+Tentukan semua nombor nyata <InlineMath math="x" /> yang memenuhi ketaksamaan ini.
 
-Tulis <InlineMath math="-2=\log_{\frac12}4" />, kerana <InlineMath math="\left(\frac12\right)^{-2}=4" />. Logaritma berasas <InlineMath math="\frac12" /> **menyusut secara tegas**: logaritma yang lebih besar milik hujah yang lebih kecil. Jadi tandanya terbalik:
+# Penyelesaian
+
+Ketaksamaan logaritma berasaskan <InlineMath math="\frac{1}{2}" /> mempunyai **dua pusat pemeriksaan** yang mesti lulus serentak. Pertama, argumen di dalam logaritma mesti positif supaya nilainya wujud. Kedua, asas antara <InlineMath math="0" /> dengan <InlineMath math="1" /> bergerak menurun: makin besar argumen, makin kecil nilai logaritma, maka tanda ketaksamaan mesti diterbalikkan.
+
+> Bagi logaritma berasas kurang daripada satu, sentiasa semak domain positif dahulu dan terbalikkan tanda ketaksamaan apabila membuang logaritma.
+
+## Menentukan domain positif
+
+Logaritma hanya tertakrif apabila **argumennya positif ketat**:
+
+<BlockMath math="x^2 - 3x = x(x - 3) > 0 \quad \Longleftrightarrow \quad x < 0 \ \text{atau} \ x > 3" />
+
+Semua nombor dari <InlineMath math="0" /> hingga <InlineMath math="3" />, termasuk titik hujung <InlineMath math="0" /> dan <InlineMath math="3" />, disingkirkan terus.
+
+## Menterbalikkan tanda ketaksamaan kerana asas pecahan
+
+Tulis sebelah kanan dengan asas yang sama menggunakan hukum indeks negatif:
+
+<BlockMath math="\left(\frac{1}{2}\right)^{-2} = 4 \quad \Longrightarrow \quad -2 = \log_{\frac{1}{2}} 4" />
+
+Kerana fungsi logaritma berasas <InlineMath math="\frac{1}{2}" /> **menyusut tegas**, membuang logaritma membalikkan tanda:
 
 <BlockMath math="\begin{aligned}
-\log_{\frac12}\left(x^2-3x\right)&\ge\log_{\frac12}4 \\
-x^2-3x&\le4 \\
-(x-4)(x+1)&\le0\quad\Longleftrightarrow\quad -1\le x\le4
+\log_{\frac{1}{2}}\left(x^2 - 3x\right) &\ge \log_{\frac{1}{2}} 4 \\
+x^2 - 3x &\le 4 \\
+(x - 4)(x + 1) &\le 0 \quad \Longleftrightarrow \quad -1 \le x \le 4
 \end{aligned}" />
 
-# Gabungkan kedua-dua syarat
+## Menyatukan persilangan dua syarat
 
-Ambil persilangan <InlineMath math="-1\le x\le4" /> dengan domain. Nombor dari <InlineMath math="0" /> hingga <InlineMath math="3" /> **tersingkir**, termasuk hujung <InlineMath math="0" /> dan <InlineMath math="3" /> sendiri:
+Gabungkan selang dari <InlineMath math="-1" /> hingga <InlineMath math="4" /> dengan **syarat domain di luar sifar hingga tiga**:
+
+<BlockMath math="-1 \le x < 0 \qquad \text{atau} \qquad 3 < x \le 4" />
+
+Graf dua cabang di bawah menunjukkan bahagian lengkung yang berada pada atau di atas garis <InlineMath math="y = -2" />.
 
 <MathVisual
-  title={<>Logaritma di atas garis <InlineMath math="y=-2" /></>}
-  description={<>Graf <InlineMath math="y=\log_{\frac12}(x^2-3x)" /> terdiri daripada dua cabang, di kiri <InlineMath math="0" /> dan di kanan <InlineMath math="3" />. Di antaranya ungkapan itu tidak tertakrif. Kedua-dua cabang berada pada atau di atas garis <InlineMath math="y=-2" /> bagi <InlineMath math="-1\le x<0" /> dan bagi <InlineMath math="3<x\le4" />. Kedua-dua selang itu ditanda di bawah paksi.</>}
+  title={<>Logaritma di atas garis <InlineMath math="y = -2" /></>}
+  description={<>Graf <InlineMath math="y = \log_{\frac{1}{2}}(x^2 - 3x)" /> terbahagi kepada dua cabang di kiri <InlineMath math="0" /> dan di kanan <InlineMath math="3" />, dengan jurang tidak tertakrif di tengahnya. Kedua-dua cabang berada pada atau di atas garis <InlineMath math="y = -2" /> pada dua selang berasingan berhujung <InlineMath math="-1" /> dan <InlineMath math="4" />.</>}
+  footer={<>Dua selang penyelesaian mengelak jurang tidak tertakrif antara <InlineMath math="0" /> dengan <InlineMath math="3" />.</>}
   labels={{
-    a: <><InlineMath math="x=-1" /></>,
-    b: <><InlineMath math="x=4" /></>,
-    l: <><InlineMath math="y=-2" /></>,
+    a: <><InlineMath math="x = -1" /></>,
+    b: <><InlineMath math="x = 4" /></>,
+    l: <><InlineMath math="y = -2" /></>,
     z0: <><InlineMath math="0" /></>,
     z3: <><InlineMath math="3" /></>,
   }}
@@ -59,12 +84,22 @@ Ambil persilangan <InlineMath math="-1\le x\le4" /> dengan domain. Nombor dari <
   }}
 />
 
-Ketaksamaan itu benar bagi <InlineMath math="-1\le x<0" /> atau <InlineMath math="3<x\le4" />.
+Semakan sempadan: pada <InlineMath math="x = -1" /> dan <InlineMath math="x = 4" />, argumennya tepat <InlineMath math="4" /> maka logaritmanya tepat <InlineMath math="-2" />, diterima oleh tanda <InlineMath math="\ge" />. Pada <InlineMath math="0" /> dan <InlineMath math="3" />, argumennya sifar lalu kekal terbuka.
 
-# Kenapa jawapan lain salah
+## Menyemak pilihan salah
 
-- <InlineMath math="-1\le x\le4" /> **terlupa domain**. Bagi <InlineMath math="x=1" /> hujahnya ialah <InlineMath math="-2" />.
-- <InlineMath math="x\le-1" /> atau <InlineMath math="x\ge4" /> tidak menterbalikkan tanda ketaksamaan, seolah-olah asasnya lebih besar daripada <InlineMath math="1" />.
-- <InlineMath math="x<0" /> atau <InlineMath math="x>3" /> hanyalah domain.
-- <InlineMath math="-1<x<0" /> atau <InlineMath math="3<x<4" /> mengecualikan hujung <InlineMath math="-1" /> dan <InlineMath math="4" />. Di situ logaritmanya tepat <InlineMath math="-2" />, dan <InlineMath math="\ge" /> membenarkannya.
-- <InlineMath math="-1\le x\le0" /> atau <InlineMath math="3\le x\le4" /> memasukkan <InlineMath math="0" /> dan <InlineMath math="3" />. Di situ hujahnya <InlineMath math="0" />, dan logaritma tidak tertakrif.
+Perhatikan bagaimana setiap pengganggu **gagal pada salah satu pusat pemeriksaan**:
+
+| Pilihan | Mengapa salah |
+| --- | --- |
+| <InlineMath math="-1 \le x \le 4" /> | Melupakan domain, kerana bagi <InlineMath math="x = 1" /> argumennya ialah <InlineMath math="-2" />. |
+| <InlineMath math="x \le -1" /> atau <InlineMath math="x \ge 4" /> | Tidak menterbalikkan tanda ketaksamaan ketika membuang logaritma berasas <InlineMath math="\frac{1}{2}" />. |
+| <InlineMath math="x < 0" /> atau <InlineMath math="x > 3" /> | Hanya menyatakan domain tanpa menyelesaikan had <InlineMath math="-2" />. |
+| <InlineMath math="-1 < x < 0" /> atau <InlineMath math="3 < x < 4" /> | Membuang hujung <InlineMath math="-1" /> dan <InlineMath math="4" /> walaupun <InlineMath math="\ge" /> membenarkan kesamaan. |
+| <InlineMath math="-1 \le x \le 0" /> atau <InlineMath math="3 \le x \le 4" /> | Memasukkan <InlineMath math="0" /> dan <InlineMath math="3" />, tempat argumen bernilai sifar dan logaritma tidak tertakrif. |
+
+# Jawapan
+
+Semua nombor nyata <InlineMath math="x" /> yang memenuhi ketaksamaan ini ialah:
+
+<BlockMath math="-1 \le x < 0 \qquad \text{atau} \qquad 3 < x \le 4" />

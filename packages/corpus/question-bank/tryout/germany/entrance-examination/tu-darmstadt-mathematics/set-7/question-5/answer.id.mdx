@@ -1,29 +1,51 @@
-# Dua segitiga sebangun di setiap posisi
+# Diketahui
 
-Lampu, ujung bayangan, dan kepala orang itu terletak pada satu sinar cahaya. Orang dan tiang sama-sama berdiri tegak, jadi segitiga kecil di orang dan segitiga besar di tiang **sebangun**. Kalau orang berdiri sejauh <InlineMath math="d" /> dari tiang dan bayangannya sepanjang <InlineMath math="s" />:
+Seorang pejalan kaki setinggi <InlineMath math="1{,}8\text{ m}" /> berdiri di tanah datar dekat tiang lampu jalan tegak lurus dengan lampu di puncaknya.
 
-<BlockMath math="\frac{1{,}8}{s}=\frac{H}{d+s}\quad\Longleftrightarrow\quad H\,s=1{,}8\,(d+s)" />
+- Pada posisi pertama, **panjang bayangannya <InlineMath math="2\text{ m}" />**.
+- Setelah berjalan <InlineMath math="3\text{ m}" /> lebih jauh lurus menjauhi kaki tiang, **panjang bayangannya bertambah menjadi <InlineMath math="3{,}5\text{ m}" />**.
 
-# Tulis kedua posisi
+# Ditanyakan
 
-Jarak <InlineMath math="d" /> tidak diketahui, tetapi bertambah <InlineMath math="3" />. Dari situ diperoleh **dua persamaan dengan variabel <InlineMath math="d" /> dan <InlineMath math="H" />**:
+Pada ketinggian berapakah lampu itu berada di atas tanah?
+
+# Penyelesaian
+
+Pernah melihat bayanganmu memanjang setiap kali kamu melangkah menjauh dari lampu jalan di malam hari? Lampu, puncak kepalamu, dan ujung bayanganmu selalu berada pada **satu garis lurus sinar cahaya**. Karena tubuhmu dan tiang lampu sama-sama berdiri tegak lurus terhadap tanah, terbentuk dua segitiga siku-siku yang persis sebangun di setiap posisi.
+
+> Di setiap posisi berdiri, sinar cahaya membentuk dua segitiga siku-siku sebangun, sehingga perbandingan tinggi terhadap alas selalu sama.
+
+## Menyusun dua persamaan dari kesebangunan
+
+Misalkan tinggi tiang lampu <InlineMath math="H" /> dan jarak mula-mula dari kaki tiang <InlineMath math="d" />. Kesebangunan (*Strahlensatz*, dalil sinar) pada posisi dengan jarak <InlineMath math="d" /> dan bayangan <InlineMath math="s" /> memberi **hubungan kunci**:
+
+<BlockMath math="\frac{1{,}8}{s} = \frac{H}{d + s} \quad \Longleftrightarrow \quad H s = 1{,}8(d + s)" />
+
+Terapkan hubungan itu pada posisi pertama (<InlineMath math="s = 2" />) dan posisi kedua (<InlineMath math="d + 3" /> dan <InlineMath math="s = 3{,}5" />):
 
 <BlockMath math="\begin{aligned}
-2H&=1{,}8\,(d+2) \\
-3{,}5H&=1{,}8\,(d+3+3{,}5)
+2H &= 1{,}8(d + 2) \\
+3{,}5H &= 1{,}8(d + 3 + 3{,}5) = 1{,}8(d + 6{,}5)
 \end{aligned}" />
 
-# Hilangkan jarak yang tidak diketahui
+## Menghilangkan jarak awal untuk menemukan tinggi lampu
 
-Kurangkan persamaan pertama dari persamaan kedua. Variabel <InlineMath math="d" /> hilang:
+Kamu tidak perlu mencari <InlineMath math="d" /> dulu. Kurangkan persamaan pertama dari persamaan kedua supaya **variabel <InlineMath math="d" /> langsung lenyap**:
 
-<BlockMath math="1{,}5H=1{,}8\cdot4{,}5=8{,}1\quad\Longrightarrow\quad H=5{,}4" />
+<BlockMath math="\begin{aligned}
+(3{,}5 - 2)H &= 1{,}8\bigl((d + 6{,}5) - (d + 2)\bigr) \\
+1{,}5H &= 1{,}8 \cdot 4{,}5 = 8{,}1 \\
+H &= \frac{8{,}1}{1{,}5} = 5{,}4
+\end{aligned}" />
+
+Lihat gambar kedua posisi berdiri dan dua sinar cahaya berikut untuk melihat kesebangunannya secara utuh.
 
 <MathVisual
   title={<>Tiang lampu, orang, dan bayangan</>}
-  description={<>Di kiri ada tiang dengan lampu pada ketinggian <InlineMath math="H" />. Orang setinggi <InlineMath math="1{,}8" /> mula-mula berdiri di <InlineMath math="x=4" /> dengan bayangan sampai <InlineMath math="x=6" />, lalu <InlineMath math="3" /> lebih jauh di <InlineMath math="x=7" /> dengan bayangan sampai <InlineMath math="x=10{,}5" />. Sinar dari lampu menyentuh kepala orang itu dan berakhir di ujung bayangan.</>}
+  description={<>Di kiri berdiri tiang dengan lampu setinggi <InlineMath math="H = 5{,}4" />. Orang setinggi <InlineMath math="1{,}8" /> mula-mula berdiri di <InlineMath math="x = 4" /> dengan bayangan sampai <InlineMath math="x = 6" />, lalu bergeser <InlineMath math="3" /> lebih jauh ke <InlineMath math="x = 7" /> dengan bayangan sampai <InlineMath math="x = 10{,}5" />.</>}
+  footer={<>Jarak <InlineMath math="3\text{ m}" /> menambah bayangan <InlineMath math="1{,}5\text{ m}" />, mengunci tinggi lampu di <InlineMath math="5{,}4\text{ m}" />.</>}
   labels={{
-    h: <><InlineMath math="H=5{,}4" /></>,
+    h: <><InlineMath math="H = 5{,}4" /></>,
     p1: <><InlineMath math="1{,}8" /></>,
     s1: <><InlineMath math="2" /></>,
     s2: <><InlineMath math="3{,}5" /></>,
@@ -58,12 +80,20 @@ Kurangkan persamaan pertama dari persamaan kedua. Variabel <InlineMath math="d" 
   }}
 />
 
-Cek: dari persamaan pertama <InlineMath math="10{,}8=1{,}8(d+2)" />, jadi <InlineMath math="d=4" />. Lalu bayangan kedua memenuhi <InlineMath math="5{,}4\,s=1{,}8\,(7+s)" />, jadi <InlineMath math="s=3{,}5" />. Lampu itu berada **pada ketinggian <InlineMath math="5{,}4\text{ m}" />**.
+Cek mundur: dari persamaan pertama diperoleh <InlineMath math="d = 4\text{ m}" />. Pada jarak <InlineMath math="7\text{ m}" />, perbandingan tinggi terhadap alas total <InlineMath math="5{,}4 / 10{,}5" /> persis sama dengan <InlineMath math="1{,}8 / 3{,}5" />.
 
-# Mengapa pilihan lain salah
+## Mengecek pilihan salah
 
-- <InlineMath math="3{,}6\text{ m}" /> hanya <InlineMath math="H-1{,}8" />, yaitu tinggi lampu **di atas kepala orang itu**.
-- <InlineMath math="3{,}15\text{ m}" /> mengalikan tinggi badan dengan perbandingan kedua bayangan: <InlineMath math="1{,}8\cdot\frac{3{,}5}{2}" />.
-- <InlineMath math="6{,}3\text{ m}" /> adalah <InlineMath math="1{,}8\cdot3{,}5" />, seolah-olah bayangan kedua adalah jarak ke tiang.
-- <InlineMath math="2{,}7\text{ m}" /> adalah <InlineMath math="1{,}8\cdot1{,}5" />, tinggi badan dikali pertambahan bayangan.
-- <InlineMath math="7{,}2\text{ m}" /> menghitung tinggi badan dua kali: <InlineMath math="5{,}4+1{,}8" />.
+Perhatikan bagaimana setiap pengecoh muncul dari **keliru menyusun perbandingan tinggi dan bayangan**:
+
+| Pilihan | Mengapa salah |
+| --- | --- |
+| <InlineMath math="3{,}6\text{ m}" /> | Hanya menghitung <InlineMath math="H - 1{,}8" />, yaitu tinggi lampu di atas kepala orang, bukan dari tanah. |
+| <InlineMath math="3{,}15\text{ m}" /> | Mengalikan tinggi badan dengan rasio dua bayangan, <InlineMath math="1{,}8 \cdot \frac{3{,}5}{2}" />. |
+| <InlineMath math="6{,}3\text{ m}" /> | Menghitung <InlineMath math="1{,}8 \cdot 3{,}5" />, seolah panjang bayangan kedua adalah jarak ke tiang. |
+| <InlineMath math="2{,}7\text{ m}" /> | Menghitung <InlineMath math="1{,}8 \cdot 1{,}5" />, sekadar tinggi badan dikali pertambahan bayangan. |
+| <InlineMath math="7{,}2\text{ m}" /> | Menambahkan tinggi badan sekali lagi ke hasil akhir, <InlineMath math="5{,}4 + 1{,}8" />. |
+
+# Jawaban
+
+Lampu itu berada pada ketinggian **<InlineMath math="5{,}4\text{ m}" />** di atas tanah.

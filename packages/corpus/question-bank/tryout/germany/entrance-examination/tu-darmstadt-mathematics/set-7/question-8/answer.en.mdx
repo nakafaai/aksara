@@ -1,32 +1,57 @@
-# The domain first
+# Given
 
-The logarithm is only defined for positive arguments:
+We are given a **logarithmic inequality** (*Ungleichung*) whose base is a fraction less than one:
 
-<BlockMath math="x^2-3x=x(x-3)>0\quad\Longleftrightarrow\quad x<0\ \text{or}\ x>3" />
+<BlockMath math="\log_{\frac{1}{2}}\left(x^2 - 3x\right) \ge -2" />
 
-Only numbers in this range **can be solutions at all**.
+# Asked
 
-# A base below <InlineMath math="1" /> turns the inequality round
+Determine all real numbers <InlineMath math="x" /> that satisfy this inequality.
 
-Write <InlineMath math="-2=\log_{\frac12}4" />, because <InlineMath math="\left(\frac12\right)^{-2}=4" />. The logarithm to base <InlineMath math="\frac12" /> is **strictly decreasing**: a larger logarithm belongs to a smaller argument. So the sign flips:
+# Solution
+
+A logarithm with base <InlineMath math="\frac{1}{2}" /> guards its solutions behind **two separate checkpoints**. Checkpoint one demands a strictly positive argument so the logarithm actually exists. Checkpoint two flips the inequality sign because a base between <InlineMath math="0" /> and <InlineMath math="1" /> runs downhill: bigger inputs produce smaller logarithms.
+
+> For a logarithm with base less than one, always lock in the positive domain first and reverse the inequality sign when removing the logarithm.
+
+## Finding the positive domain
+
+The logarithm is defined only when **its argument is strictly positive**:
+
+<BlockMath math="x^2 - 3x = x(x - 3) > 0 \quad \Longleftrightarrow \quad x < 0 \ \text{or} \ x > 3" />
+
+Every number from <InlineMath math="0" /> to <InlineMath math="3" />, including both endpoints <InlineMath math="0" /> and <InlineMath math="3" />, is immediately ruled out.
+
+## Flipping the inequality for a fractional base
+
+Rewrite the right side with the same base, using the negative exponent rule:
+
+<BlockMath math="\left(\frac{1}{2}\right)^{-2} = 4 \quad \Longrightarrow \quad -2 = \log_{\frac{1}{2}} 4" />
+
+Because the base-<InlineMath math="\frac{1}{2}" /> logarithm is **strictly decreasing**, dropping it reverses the inequality:
 
 <BlockMath math="\begin{aligned}
-\log_{\frac12}\left(x^2-3x\right)&\ge\log_{\frac12}4 \\
-x^2-3x&\le4 \\
-(x-4)(x+1)&\le0\quad\Longleftrightarrow\quad -1\le x\le4
+\log_{\frac{1}{2}}\left(x^2 - 3x\right) &\ge \log_{\frac{1}{2}} 4 \\
+x^2 - 3x &\le 4 \\
+(x - 4)(x + 1) &\le 0 \quad \Longleftrightarrow \quad -1 \le x \le 4
 \end{aligned}" />
 
-# Both conditions together
+## Intersecting both conditions
 
-Intersect <InlineMath math="-1\le x\le4" /> with the domain. The numbers from <InlineMath math="0" /> to <InlineMath math="3" /> **drop out**, and so do the endpoints <InlineMath math="0" /> and <InlineMath math="3" /> themselves:
+Combine the interval from <InlineMath math="-1" /> to <InlineMath math="4" /> with **the domain outside zero to three**:
+
+<BlockMath math="-1 \le x < 0 \qquad \text{or} \qquad 3 < x \le 4" />
+
+The two-branch graph below shows exactly where the curve sits on or above the line <InlineMath math="y = -2" />.
 
 <MathVisual
-  title={<>The logarithm above the line <InlineMath math="y=-2" /></>}
-  description={<>The graph of <InlineMath math="y=\log_{\frac12}(x^2-3x)" /> has two branches, left of <InlineMath math="0" /> and right of <InlineMath math="3" />. In between the expression isn't defined. Both branches lie on or above the line <InlineMath math="y=-2" /> for <InlineMath math="-1\le x<0" /> and for <InlineMath math="3<x\le4" />. These two ranges are marked below the axis.</>}
+  title={<>Logarithm above the line <InlineMath math="y = -2" /></>}
+  description={<>The graph of <InlineMath math="y = \log_{\frac{1}{2}}(x^2 - 3x)" /> splits into two branches left of <InlineMath math="0" /> and right of <InlineMath math="3" />, with an undefined gap between them. Both branches stay on or above <InlineMath math="y = -2" /> along two separate intervals ending at <InlineMath math="-1" /> and <InlineMath math="4" />.</>}
+  footer={<>The two solution intervals avoid the undefined gap between <InlineMath math="0" /> and <InlineMath math="3" />.</>}
   labels={{
-    a: <><InlineMath math="x=-1" /></>,
-    b: <><InlineMath math="x=4" /></>,
-    l: <><InlineMath math="y=-2" /></>,
+    a: <><InlineMath math="x = -1" /></>,
+    b: <><InlineMath math="x = 4" /></>,
+    l: <><InlineMath math="y = -2" /></>,
     z0: <><InlineMath math="0" /></>,
     z3: <><InlineMath math="3" /></>,
   }}
@@ -59,12 +84,22 @@ Intersect <InlineMath math="-1\le x\le4" /> with the domain. The numbers from <I
   }}
 />
 
-The inequality holds for <InlineMath math="-1\le x<0" /> or <InlineMath math="3<x\le4" />.
+Boundary check: at <InlineMath math="x = -1" /> and <InlineMath math="x = 4" />, the argument equals <InlineMath math="4" /> so the logarithm equals <InlineMath math="-2" />, included by <InlineMath math="\ge" />. At <InlineMath math="x = 0" /> and <InlineMath math="x = 3" />, the argument hits zero, so those endpoints stay open.
 
-# Why the other answers are wrong
+## Checking the distractors
 
-- <InlineMath math="-1\le x\le4" /> **forgets the domain**. For <InlineMath math="x=1" /> the argument would be <InlineMath math="-2" />.
-- <InlineMath math="x\le-1" /> or <InlineMath math="x\ge4" /> doesn't flip the inequality sign, as if the base were greater than <InlineMath math="1" />.
-- <InlineMath math="x<0" /> or <InlineMath math="x>3" /> is only the domain.
-- <InlineMath math="-1<x<0" /> or <InlineMath math="3<x<4" /> excludes the endpoints <InlineMath math="-1" /> and <InlineMath math="4" />. There the logarithm is exactly <InlineMath math="-2" />, and <InlineMath math="\ge" /> allows that.
-- <InlineMath math="-1\le x\le0" /> or <InlineMath math="3\le x\le4" /> includes <InlineMath math="0" /> and <InlineMath math="3" />. There the argument is <InlineMath math="0" /> and the logarithm isn't defined.
+Notice how each wrong answer **fails one of the two checkpoints**:
+
+| Option | Why it is wrong |
+| --- | --- |
+| <InlineMath math="-1 \le x \le 4" /> | Forgets the domain, since for <InlineMath math="x = 1" /> the argument is <InlineMath math="-2" />. |
+| <InlineMath math="x \le -1" /> or <InlineMath math="x \ge 4" /> | Fails to reverse the inequality sign when removing the base-<InlineMath math="\frac{1}{2}" /> logarithm. |
+| <InlineMath math="x < 0" /> or <InlineMath math="x > 3" /> | Gives only the domain without applying the <InlineMath math="-2" /> bound. |
+| <InlineMath math="-1 < x < 0" /> or <InlineMath math="3 < x < 4" /> | Drops endpoints <InlineMath math="-1" /> and <InlineMath math="4" /> even though <InlineMath math="\ge" /> permits equality. |
+| <InlineMath math="-1 \le x \le 0" /> or <InlineMath math="3 \le x \le 4" /> | Includes <InlineMath math="0" /> and <InlineMath math="3" />, where the argument is zero and the logarithm is undefined. |
+
+# Answer
+
+All real numbers <InlineMath math="x" /> satisfying the inequality are:
+
+<BlockMath math="-1 \le x < 0 \qquad \text{or} \qquad 3 < x \le 4" />

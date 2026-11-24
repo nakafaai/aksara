@@ -1,27 +1,52 @@
-# Permudahkan ungkapan dahulu
+# Diberi
 
-Tulis <InlineMath math="u=a^{-1}=\frac1a" /> dan <InlineMath math="v=b^{-1}=\frac1b" />. Penyebut <InlineMath math="u^2-v^2" /> ialah beza dua kuasa dua, dan **faktor <InlineMath math="u+v" /> boleh dibatalkan**:
+Dua nombor **pasangan konjugat** diberikan:
 
-<BlockMath math="\frac{u+v}{u^2-v^2}=\frac{u+v}{(u-v)(u+v)}=\frac{1}{u-v}=\frac{1}{\frac1a-\frac1b}=\frac{ab}{b-a}" />
+<BlockMath math="a = \sqrt{3} + 1 \qquad \text{dan} \qquad b = \sqrt{3} - 1" />
 
-# Hasil darab dan beza <InlineMath math="a" /> dan <InlineMath math="b" />
+Ungkapan algebra (*Term*) yang perlu dinilai mengandungi indeks negatif:
 
-Sekarang kamu hanya perlukan <InlineMath math="ab" /> dan <InlineMath math="b-a" />:
+<BlockMath math="\frac{a^{-1} + b^{-1}}{a^{-2} - b^{-2}}" />
+
+# Ditanya
+
+Apakah nilai tepat bagi ungkapan indeks negatif ini?
+
+# Penyelesaian
+
+Jika kamu terus menggantikan <InlineMath math="\sqrt{3} + 1" /> ke dalam pecahan berindeks negatif, pengiraan akan cepat menjadi serabut. Lebih bijak **meringkaskan bentuk algebranya dahulu** sebelum menyentuh punca kuasa dua.
+
+> Sentiasa ringkaskan struktur algebra dahulu sebelum menggantikan nombor berpunca, kerana faktor rumit sering saling memansuhkan.
+
+## Memfaktorkan beza dua kuasa dua
+
+Tetapkan <InlineMath math="u = a^{-1}" /> dan <InlineMath math="v = b^{-1}" /> supaya coraknya terus jelas. Penyebutnya berbentuk beza dua kuasa dua, jadi **faktor hasil tambah terus dimansuhkan**:
+
+<BlockMath math="\frac{u + v}{u^2 - v^2} = \frac{u + v}{(u - v)(u + v)} = \frac{1}{u - v}" />
+
+Kini gantikan semula <InlineMath math="u" /> dan <InlineMath math="v" /> kepada <InlineMath math="a" /> dan <InlineMath math="b" />, lalu samakan penyebutnya:
+
+<BlockMath math="\frac{1}{\frac{1}{a} - \frac{1}{b}} = \frac{1}{\frac{b - a}{ab}} = \frac{ab}{b - a}" />
+
+## Mengira hasil darab dan beza
+
+Sekarang kamu hanya perlukan **hasil darab dan beza** pasangan konjugat ini:
 
 <BlockMath math="\begin{aligned}
-ab&=(\sqrt3+1)(\sqrt3-1)=3-1=2 \\
-b-a&=(\sqrt3-1)-(\sqrt3+1)=-2
+ab &= (\sqrt{3} + 1)(\sqrt{3} - 1) = 3 - 1 = 2 \\
+b - a &= (\sqrt{3} - 1) - (\sqrt{3} + 1) = -2
 \end{aligned}" />
 
-Susunan dalam <InlineMath math="b-a" /> menentukan **tandanya**:
+Lihat kedudukan <InlineMath math="a" /> dan <InlineMath math="b" /> pada garis nombor berikut supaya tanda bezanya tidak tertukar.
 
 <MathVisual
   title={<>Kedudukan <InlineMath math="a" /> dan <InlineMath math="b" /></>}
-  description={<>Pada garis nombor, <InlineMath math="b=\sqrt3-1\approx0.73" /> terletak di kiri <InlineMath math="a=\sqrt3+1\approx2.73" />. Jaraknya <InlineMath math="a-b=2" />, jadi <InlineMath math="b-a=-2" /> negatif.</>}
+  description={<>Pada garis nombor, <InlineMath math="b = \sqrt{3} - 1 \approx 0.73" /> berada di kiri <InlineMath math="a = \sqrt{3} + 1 \approx 2.73" />. Jaraknya <InlineMath math="a - b = 2" />, maka <InlineMath math="b - a = -2" /> bernilai negatif.</>}
+  footer={<>Oleh sebab <InlineMath math="b" /> di kiri <InlineMath math="a" />, beza <InlineMath math="b - a" /> pasti negatif, iaitu <InlineMath math="-2" />.</>}
   labels={{
-    b: <><InlineMath math="b\approx0.73" /></>,
-    a: <><InlineMath math="a\approx2.73" /></>,
-    gap: <><InlineMath math="a-b=2" /></>,
+    b: <><InlineMath math="b \approx 0.73" /></>,
+    a: <><InlineMath math="a \approx 2.73" /></>,
+    gap: <><InlineMath math="a - b = 2" /></>,
   }}
   scene={{
     space: "plane",
@@ -45,16 +70,24 @@ Susunan dalam <InlineMath math="b-a" /> menentukan **tandanya**:
   }}
 />
 
-# Kira nilainya
+Oleh sebab <InlineMath math="b" /> lebih kecil daripada <InlineMath math="a" />, penyebut <InlineMath math="b - a" /> pasti negatif. Masukkan kedua-dua nilai ke dalam ungkapan ringkas:
 
-<BlockMath math="\frac{ab}{b-a}=\frac{2}{-2}=-1" />
+<BlockMath math="\frac{ab}{b - a} = \frac{2}{-2} = -1" />
 
-Semak dengan nilai anggaran: <InlineMath math="\frac1a\approx0.366" /> dan <InlineMath math="\frac1b\approx1.366" />. Pengangkanya kira-kira <InlineMath math="1.732" />, penyebutnya kira-kira <InlineMath math="0.134-1.866=-1.732" />. Ungkapan itu **bernilai <InlineMath math="-1" />**.
+Semakan pantas dengan nilai anggaran: <InlineMath math="a^{-1} \approx 0.366" /> dan <InlineMath math="b^{-1} \approx 1.366" />. Pengangka sekitar <InlineMath math="1.732" /> manakala penyebut sekitar <InlineMath math="0.134 - 1.866 = -1.732" />, memberi tepat <InlineMath math="-1" />.
 
-# Kenapa jawapan lain salah
+## Menyemak pilihan salah
 
-- <InlineMath math="1" /> menterbalikkan beza: <InlineMath math="\frac{ab}{a-b}" />, bukan <InlineMath math="\frac{ab}{b-a}" />. Akibatnya **tanda negatif hilang**.
-- <InlineMath math="-2" /> mengira <InlineMath math="ab=4" />, seolah-olah <InlineMath math="(\sqrt3+1)(\sqrt3-1)" /> sama dengan <InlineMath math="3+1" />.
-- <InlineMath math="-\frac12" /> membuang hasil darab <InlineMath math="ab" /> daripada pengangka: <InlineMath math="\frac{1}{b-a}" />.
-- <InlineMath math="2" /> hanyalah hasil darab <InlineMath math="ab" />, tanpa penyebut.
-- <InlineMath math="\frac12" /> hanyalah salingan <InlineMath math="ab" />, iaitu <InlineMath math="\frac{1}{ab}" />.
+Perhatikan bagaimana setiap pengganggu berpunca daripada **satu kesilapan tanda atau faktor**:
+
+| Pilihan | Mengapa salah |
+| --- | --- |
+| <InlineMath math="1" /> | Membalikkan urutan beza menjadi <InlineMath math="a - b" />, lalu kehilangan tanda negatif. |
+| <InlineMath math="-2" /> | Mengira <InlineMath math="ab = 4" /> seolah-olah <InlineMath math="(\sqrt{3} + 1)(\sqrt{3} - 1) = 3 + 1" />. |
+| <InlineMath math="-\frac{1}{2}" /> | Melupakan faktor <InlineMath math="ab" /> pada pengangka dan hanya mengira <InlineMath math="\frac{1}{b - a}" />. |
+| <InlineMath math="2" /> | Hanya mengira hasil darab <InlineMath math="ab" /> tanpa membahagi dengan <InlineMath math="b - a" />. |
+| <InlineMath math="\frac{1}{2}" /> | Hanya mengambil salingan hasil darab, iaitu <InlineMath math="\frac{1}{ab}" />. |
+
+# Jawapan
+
+Nilai tepat ungkapan ini ialah **<InlineMath math="-1" />**.

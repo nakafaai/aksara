@@ -1,29 +1,51 @@
-# Two similar triangles at each spot
+# Given
 
-The lamp, the tip of the shadow and the person's head lie on one light ray. The person and the lamp post both stand upright, so the small triangle at the person and the big triangle at the post are **similar**. If the person stands at distance <InlineMath math="d" /> from the post and the shadow is <InlineMath math="s" /> long:
+A person <InlineMath math="1.8\text{ m}" /> tall stands on flat ground near a vertical streetlamp with a light at its top.
 
-<BlockMath math="\frac{1.8}{s}=\frac{H}{d+s}\quad\Longleftrightarrow\quad H\,s=1.8\,(d+s)" />
+- At the first spot, **their shadow is <InlineMath math="2\text{ m}" /> long**.
+- After walking <InlineMath math="3\text{ m}" /> farther straight away from the base of the pole, **their shadow grows to <InlineMath math="3.5\text{ m}" />**.
 
-# Write down both spots
+# Asked
 
-You don't know <InlineMath math="d" />, but it grows by <InlineMath math="3" />. That gives **two equations in the unknowns <InlineMath math="d" /> and <InlineMath math="H" />**:
+How high above the ground is the lamp?
+
+# Solution
+
+Have you noticed your shadow stretching longer as you walk away from a streetlamp at night? The lamp, the top of your head, and the tip of your shadow always lie on **one straight ray of light**. Because both you and the pole stand upright, every spot creates two similar right triangles.
+
+> At every standing position, the light ray creates two similar right triangles, keeping the ratio of height to base identical.
+
+## Setting up two equations from similar triangles
+
+Let <InlineMath math="H" /> be the lamp height and <InlineMath math="d" /> the initial distance from the pole. By similar triangles (*Strahlensatz*, intercept theorem), any distance <InlineMath math="d" /> and shadow <InlineMath math="s" /> satisfy **one clean relation**:
+
+<BlockMath math="\frac{1.8}{s} = \frac{H}{d + s} \quad \Longleftrightarrow \quad H s = 1.8(d + s)" />
+
+Apply this relation at the first position (<InlineMath math="s = 2" />) and the second position (<InlineMath math="d + 3" /> and <InlineMath math="s = 3.5" />):
 
 <BlockMath math="\begin{aligned}
-2H&=1.8\,(d+2) \\
-3.5H&=1.8\,(d+3+3.5)
+2H &= 1.8(d + 2) \\
+3.5H &= 1.8(d + 3 + 3.5) = 1.8(d + 6.5)
 \end{aligned}" />
 
-# Get rid of the unknown distance
+## Eliminating the unknown distance to find the lamp height
 
-Subtract the first equation from the second. The <InlineMath math="d" /> drops out:
+You do not even need to find <InlineMath math="d" /> first. Subtract the first equation from the second so **the variable <InlineMath math="d" /> cancels cleanly**:
 
-<BlockMath math="1.5H=1.8\cdot4.5=8.1\quad\Longrightarrow\quad H=5.4" />
+<BlockMath math="\begin{aligned}
+(3.5 - 2)H &= 1.8\bigl((d + 6.5) - (d + 2)\bigr) \\
+1.5H &= 1.8 \cdot 4.5 = 8.1 \\
+H &= \frac{8.1}{1.5} = 5.4
+\end{aligned}" />
+
+Look at both standing positions and light rays below to see the exact triangle scaling.
 
 <MathVisual
-  title={<>Lamp post, person and shadow</>}
-  description={<>On the left the lamp post with the lamp at height <InlineMath math="H" />. The person, <InlineMath math="1.8" /> tall, first stands at <InlineMath math="x=4" /> with a shadow to <InlineMath math="x=6" />, then <InlineMath math="3" /> further at <InlineMath math="x=7" /> with a shadow to <InlineMath math="x=10.5" />. The light rays from the lamp graze the person's head and end at the tips of the shadows.</>}
+  title={<>Lamp pole, person, and shadows</>}
+  description={<>On the left stands the pole with the lamp at height <InlineMath math="H = 5.4" />. The <InlineMath math="1.8" /> person stands first at <InlineMath math="x = 4" /> with a shadow to <InlineMath math="x = 6" />, then <InlineMath math="3" /> farther at <InlineMath math="x = 7" /> with a shadow to <InlineMath math="x = 10.5" />.</>}
+  footer={<>Walking <InlineMath math="3\text{ m}" /> adds <InlineMath math="1.5\text{ m}" /> of shadow, locking the lamp height at <InlineMath math="5.4\text{ m}" />.</>}
   labels={{
-    h: <><InlineMath math="H=5.4" /></>,
+    h: <><InlineMath math="H = 5.4" /></>,
     p1: <><InlineMath math="1.8" /></>,
     s1: <><InlineMath math="2" /></>,
     s2: <><InlineMath math="3.5" /></>,
@@ -58,12 +80,20 @@ Subtract the first equation from the second. The <InlineMath math="d" /> drops o
   }}
 />
 
-Check: the first equation gives <InlineMath math="10.8=1.8(d+2)" />, so <InlineMath math="d=4" />. Then the second shadow satisfies <InlineMath math="5.4\,s=1.8\,(7+s)" />, so <InlineMath math="s=3.5" />. The lamp hangs **at a height of <InlineMath math="5.4\text{ m}" />**.
+Reverse check: the first equation gives <InlineMath math="d = 4\text{ m}" />. At <InlineMath math="7\text{ m}" /> from the pole, the total base is <InlineMath math="10.5\text{ m}" />, and <InlineMath math="5.4 / 10.5" /> matches <InlineMath math="1.8 / 3.5" /> exactly.
 
-# Why the other answers are wrong
+## Checking the distractors
 
-- <InlineMath math="3.6\text{ m}" /> is only <InlineMath math="H-1.8" />, the lamp's height **above the person's head**.
-- <InlineMath math="3.15\text{ m}" /> multiplies the height by the ratio of the shadows: <InlineMath math="1.8\cdot\frac{3.5}{2}" />.
-- <InlineMath math="6.3\text{ m}" /> is <InlineMath math="1.8\cdot3.5" />, as if the second shadow were the distance to the post.
-- <InlineMath math="2.7\text{ m}" /> is <InlineMath math="1.8\cdot1.5" />, the height times the growth of the shadow.
-- <InlineMath math="7.2\text{ m}" /> counts the person's height twice: <InlineMath math="5.4+1.8" />.
+See how each wrong option comes from **misbuilding the height-to-shadow ratio**:
+
+| Option | Why it is wrong |
+| --- | --- |
+| <InlineMath math="3.6\text{ m}" /> | Computes only <InlineMath math="H - 1.8" />, the lamp height above the person's head rather than the ground. |
+| <InlineMath math="3.15\text{ m}" /> | Multiplies person height by the shadow ratio, <InlineMath math="1.8 \cdot \frac{3.5}{2}" />. |
+| <InlineMath math="6.3\text{ m}" /> | Computes <InlineMath math="1.8 \cdot 3.5" />, treating the second shadow as a distance scale factor. |
+| <InlineMath math="2.7\text{ m}" /> | Computes <InlineMath math="1.8 \cdot 1.5" />, multiplying person height by only the shadow increase. |
+| <InlineMath math="7.2\text{ m}" /> | Adds the person's height a second time, <InlineMath math="5.4 + 1.8" />. |
+
+# Answer
+
+The lamp is **<InlineMath math="5.4\text{ m}" />** above the ground.

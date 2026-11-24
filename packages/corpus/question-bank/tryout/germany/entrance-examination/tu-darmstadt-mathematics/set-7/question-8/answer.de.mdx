@@ -1,32 +1,57 @@
-# Erst der Definitionsbereich
+# Gegeben
 
-Der Logarithmus ist nur für positive Argumente definiert:
+Gegeben ist eine **Logarithmusungleichung** mit einer Basis kleiner als eins:
 
-<BlockMath math="x^2-3x=x(x-3)>0\quad\Longleftrightarrow\quad x<0\ \text{oder}\ x>3" />
+<BlockMath math="\log_{\frac{1}{2}}\left(x^2 - 3x\right) \ge -2" />
 
-Nur Zahlen aus diesem Bereich **kommen überhaupt als Lösung in Frage**.
+# Gesucht
 
-# Eine Basis kleiner als <InlineMath math="1" /> dreht die Ungleichung um
+Bestimme alle reellen Zahlen <InlineMath math="x" />, die diese Ungleichung erfüllen.
 
-Schreibe <InlineMath math="-2=\log_{\frac12}4" />, denn <InlineMath math="\left(\frac12\right)^{-2}=4" />. Der Logarithmus zur Basis <InlineMath math="\frac12" /> ist **streng fallend**: Ein größerer Logarithmus gehört zu einem kleineren Argument. Deshalb kehrt sich das Zeichen um:
+# Lösung
+
+Eine Logarithmusungleichung mit Basis <InlineMath math="\frac{1}{2}" /> hat **zwei feste Kontrollstellen**, die beide bestehen müssen. Erstens muss das Argument im Logarithmus strikt positiv sein, damit der Ausdruck überhaupt existiert. Zweitens läuft ein Logarithmus mit Basis zwischen <InlineMath math="0" /> und <InlineMath math="1" /> bergab: größere Argumente liefern kleinere Werte, weshalb sich das Ungleichheitszeichen umdreht.
+
+> Bei einem Logarithmus mit Basis kleiner als eins sicherst du zuerst den positiven Definitionsbereich und drehst beim Weglassen des Logarithmus das Ungleichheitszeichen um.
+
+## Den Definitionsbereich festlegen
+
+Der Logarithmus ist nur definiert, wenn **sein Argument strikt positiv ist**:
+
+<BlockMath math="x^2 - 3x = x(x - 3) > 0 \quad \Longleftrightarrow \quad x < 0 \ \text{oder} \ x > 3" />
+
+Alle Zahlen von <InlineMath math="0" /> bis <InlineMath math="3" /> einschließlich der Randpunkte <InlineMath math="0" /> und <InlineMath math="3" /> fallen sofort heraus.
+
+## Ungleichheitszeichen wegen der kleinen Basis umdrehen
+
+Schreibe die rechte Seite zur gleichen Basis um:
+
+<BlockMath math="\left(\frac{1}{2}\right)^{-2} = 4 \quad \Longrightarrow \quad -2 = \log_{\frac{1}{2}} 4" />
+
+Da der Logarithmus zur Basis <InlineMath math="\frac{1}{2}" /> **streng monoton fällt**, dreht sich das Zeichen beim Auflösen um:
 
 <BlockMath math="\begin{aligned}
-\log_{\frac12}\left(x^2-3x\right)&\ge\log_{\frac12}4 \\
-x^2-3x&\le4 \\
-(x-4)(x+1)&\le0\quad\Longleftrightarrow\quad -1\le x\le4
+\log_{\frac{1}{2}}\left(x^2 - 3x\right) &\ge \log_{\frac{1}{2}} 4 \\
+x^2 - 3x &\le 4 \\
+(x - 4)(x + 1) &\le 0 \quad \Longleftrightarrow \quad -1 \le x \le 4
 \end{aligned}" />
 
-# Beide Bedingungen zusammen
+## Beide Bedingungen schneiden
 
-Schneide <InlineMath math="-1\le x\le4" /> mit dem Definitionsbereich. Die Zahlen von <InlineMath math="0" /> bis <InlineMath math="3" /> **fallen heraus**, die Grenzen <InlineMath math="0" /> und <InlineMath math="3" /> selbst auch:
+Schneide nun das Intervall von <InlineMath math="-1" /> bis <InlineMath math="4" /> mit **dem Definitionsbereich außerhalb von null bis drei**:
+
+<BlockMath math="-1 \le x < 0 \qquad \text{oder} \qquad 3 < x \le 4" />
+
+Der Graph mit seinen zwei Ästen zeigt unmittelbar, wo die Kurve auf oder oberhalb der Geraden <InlineMath math="y = -2" /> verläuft.
 
 <MathVisual
-  title={<>Der Logarithmus über der Linie <InlineMath math="y=-2" /></>}
-  description={<>Der Graph von <InlineMath math="y=\log_{\frac12}(x^2-3x)" /> besteht aus zwei Ästen, links von <InlineMath math="0" /> und rechts von <InlineMath math="3" />. Dazwischen ist der Term nicht definiert. Beide Äste liegen auf oder über der Linie <InlineMath math="y=-2" /> für <InlineMath math="-1\le x<0" /> und für <InlineMath math="3<x\le4" />. Diese beiden Bereiche sind unter der Achse markiert.</>}
+  title={<>Logarithmus oberhalb von <InlineMath math="y = -2" /></>}
+  description={<>Der Graph von <InlineMath math="y = \log_{\frac{1}{2}}(x^2 - 3x)" /> zerfällt in zwei Äste links von <InlineMath math="0" /> und rechts von <InlineMath math="3" /> mit einer Definitionslücke dazwischen. Beide Äste liegen auf zwei getrennten Intervallen bis <InlineMath math="-1" /> und <InlineMath math="4" /> auf oder über der Geraden <InlineMath math="y = -2" />.</>}
+  footer={<>Die beiden Lösungsintervalle sparen die Definitionslücke zwischen <InlineMath math="0" /> und <InlineMath math="3" /> aus.</>}
   labels={{
-    a: <><InlineMath math="x=-1" /></>,
-    b: <><InlineMath math="x=4" /></>,
-    l: <><InlineMath math="y=-2" /></>,
+    a: <><InlineMath math="x = -1" /></>,
+    b: <><InlineMath math="x = 4" /></>,
+    l: <><InlineMath math="y = -2" /></>,
     z0: <><InlineMath math="0" /></>,
     z3: <><InlineMath math="3" /></>,
   }}
@@ -59,12 +84,22 @@ Schneide <InlineMath math="-1\le x\le4" /> mit dem Definitionsbereich. Die Zahle
   }}
 />
 
-Die Ungleichung gilt für <InlineMath math="-1\le x<0" /> oder <InlineMath math="3<x\le4" />.
+Randprobe: Bei <InlineMath math="x = -1" /> und <InlineMath math="x = 4" /> ist das Argument genau <InlineMath math="4" />, der Logarithmus also exakt <InlineMath math="-2" />, was durch <InlineMath math="\ge" /> erlaubt ist. Bei <InlineMath math="0" /> und <InlineMath math="3" /> wird das Argument null, daher bleiben diese Ränder ausgeschlossen.
 
-# Warum die anderen Antworten falsch sind
+## Falsche Antworten prüfen
 
-- <InlineMath math="-1\le x\le4" /> **vergisst den Definitionsbereich**. Für <InlineMath math="x=1" /> wäre das Argument <InlineMath math="-2" />.
-- <InlineMath math="x\le-1" /> oder <InlineMath math="x\ge4" /> dreht das Ungleichheitszeichen nicht um, als wäre die Basis größer als <InlineMath math="1" />.
-- <InlineMath math="x<0" /> oder <InlineMath math="x>3" /> ist nur der Definitionsbereich.
-- <InlineMath math="-1<x<0" /> oder <InlineMath math="3<x<4" /> schließt die Grenzen <InlineMath math="-1" /> und <InlineMath math="4" /> aus. Dort ist der Logarithmus genau <InlineMath math="-2" />, und <InlineMath math="\ge" /> erlaubt das.
-- <InlineMath math="-1\le x\le0" /> oder <InlineMath math="3\le x\le4" /> nimmt <InlineMath math="0" /> und <InlineMath math="3" /> mit. Dort ist das Argument <InlineMath math="0" />, und der Logarithmus ist nicht definiert.
+Jede falsche Auswahl **scheitert an einer der beiden Kontrollstellen**:
+
+| Auswahl | Warum falsch |
+| --- | --- |
+| <InlineMath math="-1 \le x \le 4" /> | Vergisst den Definitionsbereich, denn für <InlineMath math="x = 1" /> ist das Argument <InlineMath math="-2" />. |
+| <InlineMath math="x \le -1" /> oder <InlineMath math="x \ge 4" /> | Dreht das Ungleichheitszeichen beim Weglassen von <InlineMath math="\log_{\frac{1}{2}}" /> nicht um. |
+| <InlineMath math="x < 0" /> oder <InlineMath math="x > 3" /> | Gibt nur den Definitionsbereich an, ohne die Schranke <InlineMath math="-2" /> auszuwerten. |
+| <InlineMath math="-1 < x < 0" /> oder <InlineMath math="3 < x < 4" /> | Schließt <InlineMath math="-1" /> und <InlineMath math="4" /> aus, obwohl <InlineMath math="\ge" /> Gleichheit zulässt. |
+| <InlineMath math="-1 \le x \le 0" /> oder <InlineMath math="3 \le x \le 4" /> | Nimmt <InlineMath math="0" /> und <InlineMath math="3" /> mit auf, wo das Argument null und der Logarithmus undefiniert ist. |
+
+# Antwort
+
+Alle reellen Zahlen <InlineMath math="x" />, die die Ungleichung erfüllen, sind:
+
+<BlockMath math="-1 \le x < 0 \qquad \text{oder} \qquad 3 < x \le 4" />

@@ -1,10 +1,29 @@
-# Tentukan sudut pusatnya
+# Diketahui
 
-Sebut kedua pusat <InlineMath math="M_1" /> dan <InlineMath math="M_2" />, serta kedua titik potong <InlineMath math="P" /> dan <InlineMath math="Q" />. Pada segitiga <InlineMath math="M_1M_2P" /> semua sisinya <InlineMath math="6\text{ cm}" />: dua jari-jari dan jarak kedua pusat. **Segitiga itu sama sisi**, jadi <InlineMath math="\angle M_2M_1P=60^\circ" />. Dengan cara yang sama <InlineMath math="\angle M_2M_1Q=60^\circ" />, sehingga <InlineMath math="\angle PM_1Q=120^\circ" />.
+Dua lingkaran kongruen sama-sama memiliki **jari-jari <InlineMath math="r = 6\text{ cm}" />**.
+
+Setiap lingkaran tepat melalui titik pusat lingkaran pasangannya, sehingga **jarak kedua pusat sama dengan jari-jari**, yaitu <InlineMath math="6\text{ cm}" />. Daerah irisan kedua lingkaran membentuk sebuah lensa simetris.
+
+# Ditanyakan
+
+Berapakah luas (*Flächeninhalt*) daerah irisan berbentuk lensa itu?
+
+# Penyelesaian
+
+Bayangkan dua keping koin identik yang digeser sampai pinggir tiap koin tepat menyentuh lubang tengah koin satunya. Kalau kamu menarik garis lurus menghubungkan dua titik potong pinggirnya, lensa itu langsung terbelah menjadi **dua potongan tembereng yang kembar identik**. Hitung luas satu potongan saja, lalu gandakan.
+
+> Karena tiap lingkaran melewati pusat pasangannya, segitiga yang menghubungkan kedua pusat dan satu titik potong pasti sama sisi dengan sudut tepat <InlineMath math="60^\circ" />.
+
+## Menemukan sudut pusat dari segitiga sama sisi
+
+Namai kedua pusat <InlineMath math="M_1" /> dan <InlineMath math="M_2" />, lalu kedua titik potong <InlineMath math="P" /> dan <InlineMath math="Q" />. Pada segitiga <InlineMath math="M_1 M_2 P" />, **ketiga sisinya sama panjang**, yaitu <InlineMath math="6\text{ cm}" />: dua jari-jari dan jarak antar-pusat.
+
+Artinya segitiga <InlineMath math="M_1 M_2 P" /> sama sisi, sehingga <InlineMath math="\angle M_2 M_1 P = 60^\circ" />. Hal sama berlaku di bawah untuk <InlineMath math="\angle M_2 M_1 Q = 60^\circ" />, jadi sudut pusat penuhnya <InlineMath math="\angle P M_1 Q = 120^\circ" />.
 
 <MathVisual
   title={<>Lensa dari dua lingkaran</>}
-  description={<>Dua lingkaran berjari-jari <InlineMath math="6" /> dengan pusat <InlineMath math="M_1" /> dan <InlineMath math="M_2" /> yang berjarak <InlineMath math="6" />. Keduanya berpotongan di <InlineMath math="P" /> dan <InlineMath math="Q" />. Segitiga <InlineMath math="M_1M_2P" /> dan <InlineMath math="M_1M_2Q" /> sama sisi, jadi sudut <InlineMath math="PM_1Q" /> besarnya <InlineMath math="120^\circ" />. Tali busur <InlineMath math="\overline{PQ}" /> membagi lensa menjadi dua tembereng lingkaran yang sama.</>}
+  description={<>Dua lingkaran berjari-jari <InlineMath math="6" /> dengan pusat <InlineMath math="M_1" /> dan <InlineMath math="M_2" /> yang berjarak <InlineMath math="6" /> berpotongan di <InlineMath math="P" /> dan <InlineMath math="Q" />. Segitiga <InlineMath math="M_1 M_2 P" /> dan <InlineMath math="M_1 M_2 Q" /> sama sisi, sehingga sudut <InlineMath math="P M_1 Q" /> besarnya <InlineMath math="120^\circ" /> dan tali busur <InlineMath math="\overline{PQ}" /> membelah lensa menjadi dua tembereng identik.</>}
+  footer={<>Tali busur <InlineMath math="PQ" /> membelah lensa menjadi dua tembereng kembar berdasar juring <InlineMath math="120^\circ" />.</>}
   labels={{
     m1: <><InlineMath math="M_1" /></>,
     m2: <><InlineMath math="M_2" /></>,
@@ -42,26 +61,36 @@ Sebut kedua pusat <InlineMath math="M_1" /> dan <InlineMath math="M_2" />, serta
   }}
 />
 
-# Satu tembereng lingkaran
+Dari gambar tampak jelas tali busur <InlineMath math="\overline{PQ}" /> memotong satu juring <InlineMath math="120^\circ" /> menjadi segitiga <InlineMath math="M_1 P Q" /> dan satu tembereng di sisi kanannya.
 
-Tali busur <InlineMath math="\overline{PQ}" /> membagi lensa menjadi dua tembereng yang sama. Satu tembereng adalah **juring <InlineMath math="120^\circ" /> dikurangi segitiga <InlineMath math="M_1PQ" />**:
+## Menghitung satu tembereng lalu menggandakannya
+
+Satu tembereng diperoleh dari **juring <InlineMath math="120^\circ" /> dikurangi segitiga <InlineMath math="M_1 P Q" />**:
 
 <BlockMath math="\begin{aligned}
-A_{\text{juring}}&=\frac{120}{360}\cdot\pi\cdot6^2=12\pi \\
-A_{\text{segitiga}}&=\frac12\cdot6\cdot6\cdot\sin120^\circ=18\cdot\frac{\sqrt3}{2}=9\sqrt3 \\
-A_{\text{tembereng}}&=12\pi-9\sqrt3
+A_{\text{juring}} &= \frac{120^\circ}{360^\circ} \cdot \pi \cdot 6^2 = 12\pi \\
+A_{\text{segitiga}} &= \frac{1}{2} \cdot 6 \cdot 6 \cdot \sin 120^\circ = 18 \cdot \frac{\sqrt{3}}{2} = 9\sqrt{3} \\
+A_{\text{tembereng}} &= 12\pi - 9\sqrt{3}
 \end{aligned}" />
 
-# Seluruh lensa
+Karena lensa terdiri atas dua tembereng yang persis sama, gandakan hasilnya:
 
-<BlockMath math="A=2\left(12\pi-9\sqrt3\right)=(24\pi-18\sqrt3)\text{ cm}^2" />
+<BlockMath math="A = 2\left(12\pi - 9\sqrt{3}\right) = \left(24\pi - 18\sqrt{3}\right)\text{ cm}^2" />
 
-Kira-kira <InlineMath math="44{,}2\text{ cm}^2" />. Daerah persekutuan itu **luasnya <InlineMath math="(24\pi-18\sqrt3)\text{ cm}^2" />**.
+Cek kewajaran: nilainya sekitar <InlineMath math="44{,}2\text{ cm}^2" />, kurang dari setengah luas satu lingkaran penuh (<InlineMath math="36\pi \approx 113{,}1\text{ cm}^2" />), sangat masuk akal.
 
-# Mengapa pilihan lain salah
+## Mengecek pilihan salah
 
-- <InlineMath math="(12\pi-9\sqrt3)\text{ cm}^2" /> **hanya satu tembereng**, yaitu setengah lensa.
-- <InlineMath math="(12\pi-18\sqrt3)\text{ cm}^2" /> memakai <InlineMath math="60^\circ" />, bukan <InlineMath math="120^\circ" />, sebagai sudut pusat: <InlineMath math="2\left(6\pi-9\sqrt3\right)" />.
-- <InlineMath math="24\pi\text{ cm}^2" /> menghitung kedua juring dan lupa mengurangkan segitiganya.
-- <InlineMath math="(24\pi-18)\text{ cm}^2" /> memakai <InlineMath math="\sin120^\circ=\frac12" />.
-- <InlineMath math="(36\pi-36\sqrt3)\text{ cm}^2" /> memakai juring <InlineMath math="180^\circ" /> dan segitiga dengan luas dua kali lipat.
+Setiap pengecoh muncul dari **lupa menggandakan atau salah membaca sudut pusat**:
+
+| Pilihan | Mengapa salah |
+| --- | --- |
+| <InlineMath math="(12\pi - 9\sqrt{3})\text{ cm}^2" /> | Hanya menghitung satu tembereng, baru setengah luas lensa. |
+| <InlineMath math="(12\pi - 18\sqrt{3})\text{ cm}^2" /> | Memakai sudut pusat <InlineMath math="60^\circ" /> alih-alih <InlineMath math="120^\circ" /> untuk tiap juring. |
+| <InlineMath math="24\pi\text{ cm}^2" /> | Menjumlahkan kedua juring tanpa mengurangkan dua segitiganya. |
+| <InlineMath math="(24\pi - 18)\text{ cm}^2" /> | Keliru memasukkan <InlineMath math="\sin 120^\circ = \frac{1}{2}" /> alih-alih <InlineMath math="\frac{\sqrt{3}}{2}" />. |
+| <InlineMath math="(36\pi - 36\sqrt{3})\text{ cm}^2" /> | Memakai sudut juring <InlineMath math="180^\circ" /> dan segitiga seluas dua kali lipat. |
+
+# Jawaban
+
+Luas daerah irisan berbentuk lensa itu adalah **<InlineMath math="(24\pi - 18\sqrt{3})\text{ cm}^2" />**.

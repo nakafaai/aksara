@@ -1,10 +1,29 @@
-# Den Mittelpunktswinkel finden
+# Gegeben
 
-Nenne die Mittelpunkte <InlineMath math="M_1" /> und <InlineMath math="M_2" /> und die Schnittpunkte <InlineMath math="P" /> und <InlineMath math="Q" />. Im Dreieck <InlineMath math="M_1M_2P" /> sind alle Seiten <InlineMath math="6\text{ cm}" /> lang: zwei Radien und der Abstand der Mittelpunkte. **Das Dreieck ist gleichseitig**, also ist <InlineMath math="\angle M_2M_1P=60^\circ" />. Ebenso ist <InlineMath math="\angle M_2M_1Q=60^\circ" />, zusammen <InlineMath math="\angle PM_1Q=120^\circ" />.
+Zwei kongruente Kreise besitzen jeweils den **Radius <InlineMath math="r = 6\text{ cm}" />**.
+
+Jeder Kreis verläuft durch den Mittelpunkt des anderen, sodass **der Abstand beider Mittelpunkte ebenfalls <InlineMath math="6\text{ cm}" /> beträgt**. Ihre Schnittfläche bildet eine symmetrische Linse.
+
+# Gesucht
+
+Wie groß ist der Flächeninhalt dieser linsenförmigen Überlappungsfläche?
+
+# Lösung
+
+Stell dir zwei gleiche Münzen vor, die so weit übereinander geschoben werden, dass jeder Rand genau durch die Mitte der anderen Münze läuft. Verbindest du die beiden Schnittpunkte der Ränder gerade miteinander, zerfällt die Linse in **zwei deckungsgleiche Kreisabschnitte**. Berechne einfach einen Abschnitt und verdopple ihn.
+
+> Weil jeder Kreis durch den anderen Mittelpunkt läuft, ist das Dreieck aus beiden Mittelpunkten und einem Schnittpunkt gleichseitig mit exakten <InlineMath math="60^\circ" />-Winkeln.
+
+## Den Mittelpunktswinkel über gleichseitige Dreiecke bestimmen
+
+Bezeichne die Mittelpunkte mit <InlineMath math="M_1" /> und <InlineMath math="M_2" /> sowie die Schnittpunkte mit <InlineMath math="P" /> und <InlineMath math="Q" />. Im Dreieck <InlineMath math="M_1 M_2 P" /> sind **alle drei Seiten <InlineMath math="6\text{ cm}" /> lang**: zwei Radien und die Verbindungsstrecke der Mittelpunkte.
+
+Damit ist das Dreieck <InlineMath math="M_1 M_2 P" /> gleichseitig, also gilt <InlineMath math="\angle M_2 M_1 P = 60^\circ" />. Aus Symmetriegründen gilt unten ebenso <InlineMath math="\angle M_2 M_1 Q = 60^\circ" />, zusammen also <InlineMath math="\angle P M_1 Q = 120^\circ" />.
 
 <MathVisual
-  title={<>Die Linse aus zwei Kreisen</>}
-  description={<>Zwei Kreise mit dem Radius <InlineMath math="6" /> und den Mittelpunkten <InlineMath math="M_1" /> und <InlineMath math="M_2" /> im Abstand <InlineMath math="6" />. Sie schneiden sich in <InlineMath math="P" /> und <InlineMath math="Q" />. Die Dreiecke <InlineMath math="M_1M_2P" /> und <InlineMath math="M_1M_2Q" /> sind gleichseitig, also ist der Winkel <InlineMath math="PM_1Q" /> gleich <InlineMath math="120^\circ" />. Die Sehne <InlineMath math="\overline{PQ}" /> teilt die Linse in zwei gleiche Kreisabschnitte.</>}
+  title={<>Linse aus zwei Kreisen</>}
+  description={<>Zwei Kreise mit Radius <InlineMath math="6" /> und den Mittelpunkten <InlineMath math="M_1" /> und <InlineMath math="M_2" /> im Abstand <InlineMath math="6" /> schneiden sich in <InlineMath math="P" /> und <InlineMath math="Q" />. Die Dreiecke <InlineMath math="M_1 M_2 P" /> und <InlineMath math="M_1 M_2 Q" /> sind gleichseitig, daher misst der Winkel <InlineMath math="P M_1 Q" /> genau <InlineMath math="120^\circ" /> und die Sehne <InlineMath math="\overline{PQ}" /> teilt die Linse in zwei gleiche Kreissegmente.</>}
+  footer={<>Die Sehne <InlineMath math="PQ" /> teilt die Linse in zwei deckungsgleiche Segmente aus <InlineMath math="120^\circ" />-Sektoren.</>}
   labels={{
     m1: <><InlineMath math="M_1" /></>,
     m2: <><InlineMath math="M_2" /></>,
@@ -42,26 +61,36 @@ Nenne die Mittelpunkte <InlineMath math="M_1" /> und <InlineMath math="M_2" /> u
   }}
 />
 
-# Ein Kreisabschnitt
+Die Skizze zeigt unmittelbar, wie die Sehne <InlineMath math="\overline{PQ}" /> den <InlineMath math="120^\circ" />-Sektor des linken Kreises in das Dreieck <InlineMath math="M_1 P Q" /> und die rechte Linsenhälfte trennt.
 
-Die Sehne <InlineMath math="\overline{PQ}" /> teilt die Linse in zwei gleiche Kreisabschnitte. Ein Abschnitt ist **der Sektor mit <InlineMath math="120^\circ" /> minus das Dreieck <InlineMath math="M_1PQ" />**:
+## Ein Kreissegment berechnen und verdoppeln
+
+Ein Kreissegment entsteht als **<InlineMath math="120^\circ" />-Kreissektor minus Dreieck <InlineMath math="M_1 P Q" />**:
 
 <BlockMath math="\begin{aligned}
-A_{\text{Sektor}}&=\frac{120}{360}\cdot\pi\cdot6^2=12\pi \\
-A_{\text{Dreieck}}&=\frac12\cdot6\cdot6\cdot\sin120^\circ=18\cdot\frac{\sqrt3}{2}=9\sqrt3 \\
-A_{\text{Abschnitt}}&=12\pi-9\sqrt3
+A_{\text{Sektor}} &= \frac{120^\circ}{360^\circ} \cdot \pi \cdot 6^2 = 12\pi \\
+A_{\text{Dreieck}} &= \frac{1}{2} \cdot 6 \cdot 6 \cdot \sin 120^\circ = 18 \cdot \frac{\sqrt{3}}{2} = 9\sqrt{3} \\
+A_{\text{Segment}} &= 12\pi - 9\sqrt{3}
 \end{aligned}" />
 
-# Die ganze Linse
+Da die gesamte Linse aus zwei deckungsgleichen Segmenten besteht, verdoppelst du diesen Wert:
 
-<BlockMath math="A=2\left(12\pi-9\sqrt3\right)=(24\pi-18\sqrt3)\text{ cm}^2" />
+<BlockMath math="A = 2\left(12\pi - 9\sqrt{3}\right) = \left(24\pi - 18\sqrt{3}\right)\text{ cm}^2" />
 
-Das sind etwa <InlineMath math="44{,}2\text{ cm}^2" />. Die gemeinsame Fläche hat **den Inhalt <InlineMath math="(24\pi-18\sqrt3)\text{ cm}^2" />**.
+Plausibilitätsprobe: Das ergibt rund <InlineMath math="44{,}2\text{ cm}^2" />, knapp unter der Hälfte eines vollen Kreises (<InlineMath math="36\pi \approx 113{,}1\text{ cm}^2" />), genau passend zur Figur.
 
-# Warum die anderen Antworten falsch sind
+## Falsche Antworten prüfen
 
-- <InlineMath math="(12\pi-9\sqrt3)\text{ cm}^2" /> ist **nur ein Kreisabschnitt**, also die halbe Linse.
-- <InlineMath math="(12\pi-18\sqrt3)\text{ cm}^2" /> nimmt <InlineMath math="60^\circ" /> statt <InlineMath math="120^\circ" /> als Mittelpunktswinkel: <InlineMath math="2\left(6\pi-9\sqrt3\right)" />.
-- <InlineMath math="24\pi\text{ cm}^2" /> zählt die beiden Sektoren und vergisst, die Dreiecke abzuziehen.
-- <InlineMath math="(24\pi-18)\text{ cm}^2" /> rechnet <InlineMath math="\sin120^\circ=\frac12" />.
-- <InlineMath math="(36\pi-36\sqrt3)\text{ cm}^2" /> verwendet <InlineMath math="180^\circ" />-Sektoren und gleichseitige Dreiecke mit doppelter Fläche.
+Jede falsche Auswahl entsteht durch **vergessenes Verdoppeln oder einen falschen Mittelpunktswinkel**:
+
+| Auswahl | Warum falsch |
+| --- | --- |
+| <InlineMath math="(12\pi - 9\sqrt{3})\text{ cm}^2" /> | Ist nur ein einziges Segment, also erst die halbe Linse. |
+| <InlineMath math="(12\pi - 18\sqrt{3})\text{ cm}^2" /> | Verwendet <InlineMath math="60^\circ" /> statt <InlineMath math="120^\circ" /> als Sektorwinkel. |
+| <InlineMath math="24\pi\text{ cm}^2" /> | Addiert beide Sektoren, ohne die zwei Dreiecke abzuziehen. |
+| <InlineMath math="(24\pi - 18)\text{ cm}^2" /> | Setzt fälschlich <InlineMath math="\sin 120^\circ = \frac{1}{2}" /> statt <InlineMath math="\frac{\sqrt{3}}{2}" /> ein. |
+| <InlineMath math="(36\pi - 36\sqrt{3})\text{ cm}^2" /> | Rechnet mit <InlineMath math="180^\circ" />-Sektoren und doppelt zu großen Dreiecken. |
+
+# Antwort
+
+Der Flächeninhalt der gemeinsamen Fläche beträgt **<InlineMath math="(24\pi - 18\sqrt{3})\text{ cm}^2" />**.

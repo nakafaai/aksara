@@ -1,27 +1,51 @@
-# The distance between the zeros fixes the depth
+# Given
 
-Write <InlineMath math="f" /> in vertex form: <InlineMath math="f(x)=(x-h)^2+k" /> with vertex <InlineMath math="S(h\mid k)" />. The zeros lie symmetric about the vertex, <InlineMath math="3" /> to the left and <InlineMath math="3" /> to the right of <InlineMath math="h" />. At <InlineMath math="x=h+3" />, <InlineMath math="f=0" />:
+A monic quadratic function (leading coefficient <InlineMath math="1" />) has the form:
 
-<BlockMath math="3^2+k=0\quad\Longrightarrow\quad k=-9" />
+<BlockMath math="f(x) = x^2 + bx + c" />
 
-So the vertex lies **<InlineMath math="9" /> units below the <InlineMath math="x" />-axis**, whatever <InlineMath math="h" /> is.
+- Its graph crosses the <InlineMath math="x" />-axis at two points **<InlineMath math="6" /> units apart**.
+- Its vertex (*Scheitelpunkt*) lies on the straight line <InlineMath math="y = x - 10" />.
 
-# The line fixes the position
+# Asked
 
-The vertex lies on <InlineMath math="y=x-10" />, so **it satisfies <InlineMath math="k=h-10" />**:
+What is the function equation (*Funktionsgleichung*) of <InlineMath math="f(x)" />?
 
-<BlockMath math="-9=h-10\quad\Longrightarrow\quad h=1" />
+# Solution
 
-# The equation of the function
+Picture a standard parabola bowl <InlineMath math="y = x^2" /> with a fixed shape that you can only slide around. The deeper you dip its bottom below the <InlineMath math="x" />-axis, the wider the cut becomes. Because that width is fixed at <InlineMath math="6" /> units, **the vertex depth is locked immediately**.
 
-<BlockMath math="f(x)=(x-1)^2-9=x^2-2x-8" />
+> For a monic parabola, the spacing between its two roots fixes the vertex depth right away, and the given line then locks the horizontal shift.
+
+## Locking the vertex depth from the root spacing
+
+Write the function in vertex form with vertex <InlineMath math="S(h \mid k)" />:
+
+<BlockMath math="f(x) = (x - h)^2 + k" />
+
+By symmetry, the two roots sit <InlineMath math="3" /> units to the left and right of <InlineMath math="h" />. At <InlineMath math="x = h + 3" />, **the output must equal zero**:
+
+<BlockMath math="(h + 3 - h)^2 + k = 0 \quad \Longleftrightarrow \quad 3^2 + k = 0 \quad \Longrightarrow \quad k = -9" />
+
+No matter what <InlineMath math="h" /> is, the vertex must sit <InlineMath math="9" /> units below the <InlineMath math="x" />-axis.
+
+## Finding the horizontal shift from the line
+
+Because the vertex <InlineMath math="S(h \mid -9)" /> lies on <InlineMath math="y = x - 10" />, **its coordinates satisfy the line equation**:
+
+<BlockMath math="-9 = h - 10 \quad \Longrightarrow \quad h = 1" />
+
+Expand the vertex form into standard form:
+
+<BlockMath math="f(x) = (x - 1)^2 - 9 = x^2 - 2x + 1 - 9 = x^2 - 2x - 8" />
 
 <MathVisual
-  title={<>Parabola, zeros and vertex</>}
-  description={<>The parabola <InlineMath math="y=x^2-2x-8" /> crosses the <InlineMath math="x" />-axis at <InlineMath math="-2" /> and <InlineMath math="4" />, points <InlineMath math="6" /> apart. Its vertex <InlineMath math="S(1\mid-9)" /> lies midway below them, exactly on the line <InlineMath math="y=x-10" />.</>}
+  title={<>Parabola, roots, and vertex</>}
+  description={<>The parabola <InlineMath math="y = x^2 - 2x - 8" /> crosses the <InlineMath math="x" />-axis at <InlineMath math="-2" /> and <InlineMath math="4" />, which are <InlineMath math="6" /> units apart. Its vertex <InlineMath math="S(1 \mid -9)" /> sits centered below them and directly on the line <InlineMath math="y = x - 10" />.</>}
+  footer={<>A width of <InlineMath math="6" /> fixes <InlineMath math="k = -9" /> and line <InlineMath math="y = x - 10" /> pins the vertex at <InlineMath math="S(1 \mid -9)" />.</>}
   labels={{
-    v: <><InlineMath math="S(1\mid-9)" /></>,
-    l: <><InlineMath math="y=x-10" /></>,
+    v: <><InlineMath math="S(1 \mid -9)" /></>,
+    l: <><InlineMath math="y = x - 10" /></>,
     r1: <><InlineMath math="-2" /></>,
     r2: <><InlineMath math="4" /></>,
   }}
@@ -51,12 +75,26 @@ The vertex lies on <InlineMath math="y=x-10" />, so **it satisfies <InlineMath m
   }}
 />
 
-Check: <InlineMath math="x^2-2x-8=(x-4)(x+2)" /> has zeros <InlineMath math="4" /> and <InlineMath math="-2" />, <InlineMath math="6" /> apart. **The equation you want** is <InlineMath math="f(x)=x^2-2x-8" />.
+Verification by factoring:
 
-# Why the other answers are wrong
+<BlockMath math="x^2 - 2x - 8 = (x - 4)(x + 2)" />
 
-- <InlineMath math="f(x)=x^2+2x-8" /> has vertex <InlineMath math="(-1\mid-9)" />. That point **isn't on the line**, because <InlineMath math="-1-10=-11\ne-9" />.
-- <InlineMath math="f(x)=x^2-14x+46" /> takes the depth as <InlineMath math="3" /> instead of <InlineMath math="3^2=9" />: <InlineMath math="k=-3" />, <InlineMath math="h=7" />.
-- <InlineMath math="f(x)=x^2-2x-9" /> uses <InlineMath math="k=-9" /> as the constant term without expanding <InlineMath math="(x-1)^2" />.
-- <InlineMath math="f(x)=x^2-2x+8" /> has the wrong sign on the constant term. This parabola has no zeros at all.
-- <InlineMath math="f(x)=x^2-4x-5" /> does have zeros <InlineMath math="6" /> apart, but its vertex <InlineMath math="(2\mid-9)" /> isn't on the line.
+Its roots are <InlineMath math="-2" /> and <InlineMath math="4" /> separated by <InlineMath math="6" />, and vertex <InlineMath math="(1 \mid -9)" /> satisfies <InlineMath math="1 - 10 = -9" />.
+
+## Checking the distractors
+
+Each wrong option breaks **either the vertex depth or the line constraint**:
+
+| Option | Why it is wrong |
+| --- | --- |
+| <InlineMath math="f(x) = x^2 + 2x - 8" /> | Vertex is <InlineMath math="(-1 \mid -9)" />, not on the line because <InlineMath math="-1 - 10 = -11" />. |
+| <InlineMath math="f(x) = x^2 - 14x + 46" /> | Uses depth <InlineMath math="k = -3" /> instead of <InlineMath math="-3^2 = -9" />. |
+| <InlineMath math="f(x) = x^2 - 2x - 9" /> | Copies <InlineMath math="k = -9" /> directly as the constant term without adding <InlineMath math="(-1)^2" />. |
+| <InlineMath math="f(x) = x^2 - 2x + 8" /> | Flips the constant sign, leaving a parabola with no real roots at all. |
+| <InlineMath math="f(x) = x^2 - 4x - 5" /> | Roots are <InlineMath math="6" /> apart, but vertex <InlineMath math="(2 \mid -9)" /> misses the line. |
+
+# Answer
+
+The equation of the function is:
+
+<BlockMath math="f(x) = x^2 - 2x - 8" />

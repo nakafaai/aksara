@@ -1,10 +1,29 @@
-# Find the central angle
+# Given
 
-Call the centres <InlineMath math="M_1" /> and <InlineMath math="M_2" /> and the intersection points <InlineMath math="P" /> and <InlineMath math="Q" />. In triangle <InlineMath math="M_1M_2P" /> every side is <InlineMath math="6\text{ cm}" />: two radii and the distance between the centres. **The triangle is equilateral**, so <InlineMath math="\angle M_2M_1P=60^\circ" />. In the same way <InlineMath math="\angle M_2M_1Q=60^\circ" />, together <InlineMath math="\angle PM_1Q=120^\circ" />.
+Two congruent circles each have **radius <InlineMath math="r = 6\text{ cm}" />**.
+
+Each circle passes through the center of the other, so **the distance between their centers equals the radius**, <InlineMath math="6\text{ cm}" />. Their overlap forms a symmetric lens.
+
+# Asked
+
+What is the area (*Flächeninhalt*) of this overlapping lens region?
+
+# Solution
+
+Picture two identical coins slid together until each rim touches the center dot of the other coin. Draw a straight line connecting the two points where the rims cross, and the lens splits into **two identical curved cap segments**. Find one cap and double it.
+
+> Because each circle passes through the other center, the triangle formed by the two centers and an intersection point is equilateral with exact <InlineMath math="60^\circ" /> angles.
+
+## Finding the central angle from equilateral triangles
+
+Label the centers <InlineMath math="M_1" /> and <InlineMath math="M_2" /> and the intersection points <InlineMath math="P" /> and <InlineMath math="Q" />. In triangle <InlineMath math="M_1 M_2 P" />, **all three sides have length <InlineMath math="6\text{ cm}" />**: two radii and the center-to-center segment.
+
+That makes triangle <InlineMath math="M_1 M_2 P" /> equilateral, so <InlineMath math="\angle M_2 M_1 P = 60^\circ" />. By symmetry below, <InlineMath math="\angle M_2 M_1 Q = 60^\circ" /> too, giving a full central angle of <InlineMath math="\angle P M_1 Q = 120^\circ" />.
 
 <MathVisual
-  title={<>The lens made by two circles</>}
-  description={<>Two circles of radius <InlineMath math="6" /> with centres <InlineMath math="M_1" /> and <InlineMath math="M_2" /> at distance <InlineMath math="6" />. They meet at <InlineMath math="P" /> and <InlineMath math="Q" />. The triangles <InlineMath math="M_1M_2P" /> and <InlineMath math="M_1M_2Q" /> are equilateral, so the angle <InlineMath math="PM_1Q" /> is <InlineMath math="120^\circ" />. The chord <InlineMath math="\overline{PQ}" /> splits the lens into two equal circular segments.</>}
+  title={<>Lens formed by two circles</>}
+  description={<>Two circles of radius <InlineMath math="6" /> with centers <InlineMath math="M_1" /> and <InlineMath math="M_2" /> separated by <InlineMath math="6" /> meet at <InlineMath math="P" /> and <InlineMath math="Q" />. Triangles <InlineMath math="M_1 M_2 P" /> and <InlineMath math="M_1 M_2 Q" /> are equilateral, so angle <InlineMath math="P M_1 Q" /> is <InlineMath math="120^\circ" /> and chord <InlineMath math="\overline{PQ}" /> divides the lens into two matching circular segments.</>}
+  footer={<>Chord <InlineMath math="PQ" /> splits the lens into two identical segments cut from <InlineMath math="120^\circ" /> sectors.</>}
   labels={{
     m1: <><InlineMath math="M_1" /></>,
     m2: <><InlineMath math="M_2" /></>,
@@ -42,26 +61,36 @@ Call the centres <InlineMath math="M_1" /> and <InlineMath math="M_2" /> and the
   }}
 />
 
-# One circular segment
+The figure shows how chord <InlineMath math="\overline{PQ}" /> separates the <InlineMath math="120^\circ" /> sector of the left circle into triangle <InlineMath math="M_1 P Q" /> and the right half of the lens.
 
-The chord <InlineMath math="\overline{PQ}" /> splits the lens into two equal circular segments. One segment is **the <InlineMath math="120^\circ" /> sector minus triangle <InlineMath math="M_1PQ" />**:
+## Computing one circular segment and doubling
+
+One circular segment equals **the <InlineMath math="120^\circ" /> sector minus triangle <InlineMath math="M_1 P Q" />**:
 
 <BlockMath math="\begin{aligned}
-A_{\text{sector}}&=\frac{120}{360}\cdot\pi\cdot6^2=12\pi \\
-A_{\text{triangle}}&=\frac12\cdot6\cdot6\cdot\sin120^\circ=18\cdot\frac{\sqrt3}{2}=9\sqrt3 \\
-A_{\text{segment}}&=12\pi-9\sqrt3
+A_{\text{sector}} &= \frac{120^\circ}{360^\circ} \cdot \pi \cdot 6^2 = 12\pi \\
+A_{\text{triangle}} &= \frac{1}{2} \cdot 6 \cdot 6 \cdot \sin 120^\circ = 18 \cdot \frac{\sqrt{3}}{2} = 9\sqrt{3} \\
+A_{\text{segment}} &= 12\pi - 9\sqrt{3}
 \end{aligned}" />
 
-# The whole lens
+Since the full lens is made of two identical segments, double that area:
 
-<BlockMath math="A=2\left(12\pi-9\sqrt3\right)=(24\pi-18\sqrt3)\text{ cm}^2" />
+<BlockMath math="A = 2\left(12\pi - 9\sqrt{3}\right) = \left(24\pi - 18\sqrt{3}\right)\text{ cm}^2" />
 
-That's about <InlineMath math="44.2\text{ cm}^2" />. The common region has **an area of <InlineMath math="(24\pi-18\sqrt3)\text{ cm}^2" />**.
+Sanity check: this is about <InlineMath math="44.2\text{ cm}^2" />, a little under half of one full circle (<InlineMath math="36\pi \approx 113.1\text{ cm}^2" />), which matches the drawing.
 
-# Why the other answers are wrong
+## Checking the distractors
 
-- <InlineMath math="(12\pi-9\sqrt3)\text{ cm}^2" /> is **only one circular segment**, half the lens.
-- <InlineMath math="(12\pi-18\sqrt3)\text{ cm}^2" /> uses <InlineMath math="60^\circ" /> instead of <InlineMath math="120^\circ" /> as the central angle: <InlineMath math="2\left(6\pi-9\sqrt3\right)" />.
-- <InlineMath math="24\pi\text{ cm}^2" /> counts the two sectors and forgets to subtract the triangles.
-- <InlineMath math="(24\pi-18)\text{ cm}^2" /> takes <InlineMath math="\sin120^\circ=\frac12" />.
-- <InlineMath math="(36\pi-36\sqrt3)\text{ cm}^2" /> uses <InlineMath math="180^\circ" /> sectors and triangles with twice the area.
+Each wrong option comes from **forgetting to double or misreading the central angle**:
+
+| Option | Why it is wrong |
+| --- | --- |
+| <InlineMath math="(12\pi - 9\sqrt{3})\text{ cm}^2" /> | Measures only one segment, half of the lens. |
+| <InlineMath math="(12\pi - 18\sqrt{3})\text{ cm}^2" /> | Uses <InlineMath math="60^\circ" /> instead of <InlineMath math="120^\circ" /> for each sector angle. |
+| <InlineMath math="24\pi\text{ cm}^2" /> | Adds the two sectors without subtracting the two triangles. |
+| <InlineMath math="(24\pi - 18)\text{ cm}^2" /> | Substitutes <InlineMath math="\sin 120^\circ = \frac{1}{2}" /> instead of <InlineMath math="\frac{\sqrt{3}}{2}" />. |
+| <InlineMath math="(36\pi - 36\sqrt{3})\text{ cm}^2" /> | Uses <InlineMath math="180^\circ" /> sectors and triangles of twice the actual area. |
+
+# Answer
+
+The area of the overlapping lens region is **<InlineMath math="(24\pi - 18\sqrt{3})\text{ cm}^2" />**.

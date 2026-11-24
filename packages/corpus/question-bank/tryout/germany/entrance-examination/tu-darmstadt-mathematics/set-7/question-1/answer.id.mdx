@@ -1,27 +1,52 @@
-# Sederhanakan bentuknya dulu
+# Diketahui
 
-Tulis <InlineMath math="u=a^{-1}=\frac1a" /> dan <InlineMath math="v=b^{-1}=\frac1b" />. Penyebut <InlineMath math="u^2-v^2" /> adalah selisih dua kuadrat, dan **faktor <InlineMath math="u+v" /> bisa dicoret**:
+Diberikan dua bilangan **pasangan sekawan** yang sangat rapi:
 
-<BlockMath math="\frac{u+v}{u^2-v^2}=\frac{u+v}{(u-v)(u+v)}=\frac{1}{u-v}=\frac{1}{\frac1a-\frac1b}=\frac{ab}{b-a}" />
+<BlockMath math="a = \sqrt{3} + 1 \qquad \text{dan} \qquad b = \sqrt{3} - 1" />
 
-# Hasil kali dan selisih <InlineMath math="a" /> dan <InlineMath math="b" />
+Bentuk aljabar (*Term*) yang harus dihitung memuat pangkat negatif:
 
-Sekarang kamu hanya butuh <InlineMath math="ab" /> dan <InlineMath math="b-a" />:
+<BlockMath math="\frac{a^{-1} + b^{-1}}{a^{-2} - b^{-2}}" />
+
+# Ditanyakan
+
+Berapakah nilai tepat dari bentuk pecahan berpangkat negatif itu?
+
+# Penyelesaian
+
+Bayangkan kamu diminta menghitung pecahan bertingkat yang penuh akar. Kalau langsung memasukkan <InlineMath math="\sqrt{3} + 1" /> ke penyebut, hitungannya cepat menjadi berantakan. Jauh lebih cerdas **membersihkan bungkus aljabarnya lebih dulu** sebelum menyentuh angkanya.
+
+> Selalu sederhanakan pola aljabar lebih dulu sebelum memasukkan angka akar, karena faktor yang rumit sering kali saling menghapus.
+
+## Memfaktorkan selisih dua kuadrat
+
+Tulis <InlineMath math="u = a^{-1}" /> dan <InlineMath math="v = b^{-1}" /> agar polanya langsung terlihat. Penyebutnya berbentuk selisih dua kuadrat, sehingga **faktor penjumlahan langsung tercoret**:
+
+<BlockMath math="\frac{u + v}{u^2 - v^2} = \frac{u + v}{(u - v)(u + v)} = \frac{1}{u - v}" />
+
+Kini kembalikan <InlineMath math="u" /> dan <InlineMath math="v" /> ke bentuk <InlineMath math="a" /> dan <InlineMath math="b" />, lalu samakan penyebutnya:
+
+<BlockMath math="\frac{1}{\frac{1}{a} - \frac{1}{b}} = \frac{1}{\frac{b - a}{ab}} = \frac{ab}{b - a}" />
+
+## Menghitung hasil kali dan selisih
+
+Sekarang kamu hanya butuh **hasil kali dan selisih** kedua bilangan sekawan:
 
 <BlockMath math="\begin{aligned}
-ab&=(\sqrt3+1)(\sqrt3-1)=3-1=2 \\
-b-a&=(\sqrt3-1)-(\sqrt3+1)=-2
+ab &= (\sqrt{3} + 1)(\sqrt{3} - 1) = 3 - 1 = 2 \\
+b - a &= (\sqrt{3} - 1) - (\sqrt{3} + 1) = -2
 \end{aligned}" />
 
-Urutan dalam <InlineMath math="b-a" /> menentukan **tandanya**:
+Perhatikan letak <InlineMath math="a" /> dan <InlineMath math="b" /> pada garis bilangan berikut agar tanda selisihnya tidak pernah tertukar.
 
 <MathVisual
   title={<>Letak <InlineMath math="a" /> dan <InlineMath math="b" /></>}
-  description={<>Pada garis bilangan, <InlineMath math="b=\sqrt3-1\approx0{,}73" /> ada di kiri <InlineMath math="a=\sqrt3+1\approx2{,}73" />. Jaraknya <InlineMath math="a-b=2" />, jadi <InlineMath math="b-a=-2" /> negatif.</>}
+  description={<>Pada garis bilangan, <InlineMath math="b = \sqrt{3} - 1 \approx 0{,}73" /> ada di kiri <InlineMath math="a = \sqrt{3} + 1 \approx 2{,}73" />. Jaraknya <InlineMath math="a - b = 2" />, sehingga <InlineMath math="b - a = -2" /> bernilai negatif.</>}
+  footer={<>Karena <InlineMath math="b" /> ada di kiri <InlineMath math="a" />, selisih <InlineMath math="b - a" /> pasti negatif, yaitu <InlineMath math="-2" />.</>}
   labels={{
-    b: <><InlineMath math="b\approx0{,}73" /></>,
-    a: <><InlineMath math="a\approx2{,}73" /></>,
-    gap: <><InlineMath math="a-b=2" /></>,
+    b: <><InlineMath math="b \approx 0{,}73" /></>,
+    a: <><InlineMath math="a \approx 2{,}73" /></>,
+    gap: <><InlineMath math="a - b = 2" /></>,
   }}
   scene={{
     space: "plane",
@@ -45,16 +70,24 @@ Urutan dalam <InlineMath math="b-a" /> menentukan **tandanya**:
   }}
 />
 
-# Hitung nilainya
+Karena <InlineMath math="b" /> lebih kecil daripada <InlineMath math="a" />, penyebut <InlineMath math="b - a" /> pasti bertanda minus. Masukkan kedua hasil tadi ke rumus ringkasnya:
 
-<BlockMath math="\frac{ab}{b-a}=\frac{2}{-2}=-1" />
+<BlockMath math="\frac{ab}{b - a} = \frac{2}{-2} = -1" />
 
-Cek dengan nilai hampiran: <InlineMath math="\frac1a\approx0{,}366" /> dan <InlineMath math="\frac1b\approx1{,}366" />. Pembilangnya sekitar <InlineMath math="1{,}732" />, penyebutnya sekitar <InlineMath math="0{,}134-1{,}866=-1{,}732" />. Bentuk itu **bernilai <InlineMath math="-1" />**.
+Cek cepat dengan hampiran: <InlineMath math="a^{-1} \approx 0{,}366" /> dan <InlineMath math="b^{-1} \approx 1{,}366" />. Pembilang sekitar <InlineMath math="1{,}732" />, sedangkan penyebut sekitar <InlineMath math="0{,}134 - 1{,}866 = -1{,}732" />, sehingga rasionya tepat <InlineMath math="-1" />.
 
-# Mengapa pilihan lain salah
+## Mengecek pilihan salah
 
-- <InlineMath math="1" /> membalik selisihnya: <InlineMath math="\frac{ab}{a-b}" />, bukan <InlineMath math="\frac{ab}{b-a}" />. Akibatnya **tanda minusnya hilang**.
-- <InlineMath math="-2" /> menghitung <InlineMath math="ab=4" />, seolah-olah <InlineMath math="(\sqrt3+1)(\sqrt3-1)" /> sama dengan <InlineMath math="3+1" />.
-- <InlineMath math="-\frac12" /> membuang hasil kali <InlineMath math="ab" /> dari pembilang: <InlineMath math="\frac{1}{b-a}" />.
-- <InlineMath math="2" /> hanya hasil kali <InlineMath math="ab" />, tanpa penyebut.
-- <InlineMath math="\frac12" /> hanyalah kebalikan <InlineMath math="ab" />, yaitu <InlineMath math="\frac{1}{ab}" />.
+Perhatikan bagaimana setiap pengecoh muncul dari **satu kesalahan tanda atau faktor**:
+
+| Pilihan | Mengapa salah |
+| --- | --- |
+| <InlineMath math="1" /> | Membalik urutan selisih menjadi <InlineMath math="a - b" />, sehingga tanda minus hilang. |
+| <InlineMath math="-2" /> | Menghitung <InlineMath math="ab = 4" /> seolah <InlineMath math="(\sqrt{3} + 1)(\sqrt{3} - 1) = 3 + 1" />. |
+| <InlineMath math="-\frac{1}{2}" /> | Melupakan faktor <InlineMath math="ab" /> di pembilang dan hanya menghitung <InlineMath math="\frac{1}{b - a}" />. |
+| <InlineMath math="2" /> | Hanya menghitung hasil kali <InlineMath math="ab" /> tanpa membagi dengan <InlineMath math="b - a" />. |
+| <InlineMath math="\frac{1}{2}" /> | Hanya mengambil kebalikan hasil kali, yaitu <InlineMath math="\frac{1}{ab}" />. |
+
+# Jawaban
+
+Nilai bentuk aljabar itu adalah **<InlineMath math="-1" />**.

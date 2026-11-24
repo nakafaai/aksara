@@ -1,27 +1,51 @@
-# Jarak pembuat nol menentukan kedalaman
+# Diketahui
 
-Tulis <InlineMath math="f" /> dalam bentuk puncak: <InlineMath math="f(x)=(x-h)^2+k" /> dengan puncak <InlineMath math="S(h\mid k)" />. Kedua pembuat nol simetris terhadap puncak, masing-masing <InlineMath math="3" /> di kiri dan kanan <InlineMath math="h" />. Di <InlineMath math="x=h+3" /> berlaku <InlineMath math="f=0" />:
+Fungsi kuadrat normal (koefisien <InlineMath math="x^2" /> bernilai <InlineMath math="1" />) berbentuk:
 
-<BlockMath math="3^2+k=0\quad\Longrightarrow\quad k=-9" />
+<BlockMath math="f(x) = x^2 + bx + c" />
 
-Jadi puncaknya **<InlineMath math="9" /> satuan di bawah sumbu <InlineMath math="x" />**, berapa pun <InlineMath math="h" />.
+- Grafiknya memotong sumbu <InlineMath math="x" /> di dua titik yang **berjarak <InlineMath math="6" /> satuan**.
+- Titik puncaknya (*Scheitelpunkt*) terletak pada garis lurus <InlineMath math="y = x - 10" />.
 
-# Garis menentukan letaknya
+# Ditanyakan
 
-Puncak terletak pada <InlineMath math="y=x-10" />, jadi **berlaku <InlineMath math="k=h-10" />**:
+Bagaimanakah persamaan fungsi (*Funktionsgleichung*) <InlineMath math="f(x)" />?
 
-<BlockMath math="-9=h-10\quad\Longrightarrow\quad h=1" />
+# Penyelesaian
 
-# Persamaan fungsinya
+Bayangkan sebuah mangkuk parabola standar <InlineMath math="y = x^2" /> yang bentuk lengkungnya sudah baku dan tinggal digeser ke kiri, kanan, atau bawah. Makin dalam kamu mencelupkan dasar mangkuk di bawah garis permukaan air (sumbu <InlineMath math="x" />), makin lebar jarak kedua titik potong permukaannya. Karena lebar potongannya tepat <InlineMath math="6" /> satuan, **kedalaman dasar mangkuk langsung terkunci tanpa perlu tahu posisi kirinya**.
 
-<BlockMath math="f(x)=(x-1)^2-9=x^2-2x-8" />
+> Pada parabola standar dengan koefisien utama <InlineMath math="1" />, jarak kedua pembuat nol menentukan kedalaman puncak secara langsung, lalu garis tempat puncak berada mengunci letak mendatarnya.
+
+## Mengunci kedalaman puncak dari lebar dua pembuat nol
+
+Tulis fungsi dalam bentuk puncak dengan puncak <InlineMath math="S(h \mid k)" />:
+
+<BlockMath math="f(x) = (x - h)^2 + k" />
+
+Karena parabola simetris, kedua pembuat nol berada tepat <InlineMath math="3" /> satuan di kiri dan kanan <InlineMath math="h" />. Di <InlineMath math="x = h + 3" />, **nilai fungsi harus nol**:
+
+<BlockMath math="(h + 3 - h)^2 + k = 0 \quad \Longleftrightarrow \quad 3^2 + k = 0 \quad \Longrightarrow \quad k = -9" />
+
+Jadi berapa pun <InlineMath math="h" />, puncak pasti berada <InlineMath math="9" /> satuan di bawah sumbu <InlineMath math="x" />.
+
+## Menentukan letak mendatar dari persamaan garis
+
+Titik puncak <InlineMath math="S(h \mid -9)" /> terletak pada garis <InlineMath math="y = x - 10" />, sehingga **koordinatnya wajib memenuhi garis itu**:
+
+<BlockMath math="-9 = h - 10 \quad \Longrightarrow \quad h = 1" />
+
+Sekarang buka bentuk puncaknya menjadi bentuk baku:
+
+<BlockMath math="f(x) = (x - 1)^2 - 9 = x^2 - 2x + 1 - 9 = x^2 - 2x - 8" />
 
 <MathVisual
   title={<>Parabola, pembuat nol, dan puncak</>}
-  description={<>Parabola <InlineMath math="y=x^2-2x-8" /> memotong sumbu <InlineMath math="x" /> di <InlineMath math="-2" /> dan <InlineMath math="4" />, dua titik yang berjarak <InlineMath math="6" />. Puncaknya <InlineMath math="S(1\mid-9)" /> ada tepat di tengah di bawahnya, pada garis <InlineMath math="y=x-10" />.</>}
+  description={<>Parabola <InlineMath math="y = x^2 - 2x - 8" /> memotong sumbu <InlineMath math="x" /> di <InlineMath math="-2" /> dan <InlineMath math="4" /> yang berjarak <InlineMath math="6" /> satuan. Puncaknya <InlineMath math="S(1 \mid -9)" /> duduk tepat di tengah di bawahnya, sekaligus pada garis <InlineMath math="y = x - 10" />.</>}
+  footer={<>Lebar <InlineMath math="6" /> mengunci <InlineMath math="k = -9" /> dan garis <InlineMath math="y = x - 10" /> mengunci puncak di <InlineMath math="S(1 \mid -9)" />.</>}
   labels={{
-    v: <><InlineMath math="S(1\mid-9)" /></>,
-    l: <><InlineMath math="y=x-10" /></>,
+    v: <><InlineMath math="S(1 \mid -9)" /></>,
+    l: <><InlineMath math="y = x - 10" /></>,
     r1: <><InlineMath math="-2" /></>,
     r2: <><InlineMath math="4" /></>,
   }}
@@ -51,12 +75,26 @@ Puncak terletak pada <InlineMath math="y=x-10" />, jadi **berlaku <InlineMath ma
   }}
 />
 
-Cek: <InlineMath math="x^2-2x-8=(x-4)(x+2)" /> punya pembuat nol <InlineMath math="4" /> dan <InlineMath math="-2" />, berjarak <InlineMath math="6" />. **Persamaan yang dicari** adalah <InlineMath math="f(x)=x^2-2x-8" />.
+Cek ulang lewat pemfaktoran berikut:
 
-# Mengapa pilihan lain salah
+<BlockMath math="x^2 - 2x - 8 = (x - 4)(x + 2)" />
 
-- <InlineMath math="f(x)=x^2+2x-8" /> berpuncak di <InlineMath math="(-1\mid-9)" />. Titik itu **tidak terletak pada garis**, karena <InlineMath math="-1-10=-11\ne-9" />.
-- <InlineMath math="f(x)=x^2-14x+46" /> memakai kedalaman <InlineMath math="3" />, bukan <InlineMath math="3^2=9" />: <InlineMath math="k=-3" />, <InlineMath math="h=7" />.
-- <InlineMath math="f(x)=x^2-2x-9" /> memakai <InlineMath math="k=-9" /> sebagai suku tetap tanpa menjabarkan <InlineMath math="(x-1)^2" />.
-- <InlineMath math="f(x)=x^2-2x+8" /> salah tanda pada suku tetapnya. Parabola ini sama sekali tidak punya pembuat nol.
-- <InlineMath math="f(x)=x^2-4x-5" /> memang punya pembuat nol berjarak <InlineMath math="6" />, tetapi puncaknya <InlineMath math="(2\mid-9)" /> tidak terletak pada garis.
+Pembuat nolnya <InlineMath math="-2" /> dan <InlineMath math="4" /> dengan jarak <InlineMath math="6" />, serta puncak <InlineMath math="(1 \mid -9)" /> tepat memenuhi <InlineMath math="1 - 10 = -9" />.
+
+## Mengecek pilihan salah
+
+Setiap pengecoh melanggar **syarat kedalaman puncak atau garis puncak**:
+
+| Pilihan | Mengapa salah |
+| --- | --- |
+| <InlineMath math="f(x) = x^2 + 2x - 8" /> | Puncaknya di <InlineMath math="(-1 \mid -9)" />, tidak berada pada garis karena <InlineMath math="-1 - 10 = -11" />. |
+| <InlineMath math="f(x) = x^2 - 14x + 46" /> | Memakai kedalaman <InlineMath math="k = -3" /> alih-alih <InlineMath math="-3^2 = -9" />. |
+| <InlineMath math="f(x) = x^2 - 2x - 9" /> | Memakai <InlineMath math="k = -9" /> langsung sebagai konstanta tanpa menjabarkan <InlineMath math="(x - 1)^2" />. |
+| <InlineMath math="f(x) = x^2 - 2x + 8" /> | Salah tanda pada konstanta, sehingga parabola melayang di atas sumbu <InlineMath math="x" /> tanpa pembuat nol. |
+| <InlineMath math="f(x) = x^2 - 4x - 5" /> | Jarak pembuat nolnya memang <InlineMath math="6" />, tetapi puncaknya <InlineMath math="(2 \mid -9)" /> tidak berada pada garis. |
+
+# Jawaban
+
+Persamaan fungsi yang dicari adalah:
+
+<BlockMath math="f(x) = x^2 - 2x - 8" />

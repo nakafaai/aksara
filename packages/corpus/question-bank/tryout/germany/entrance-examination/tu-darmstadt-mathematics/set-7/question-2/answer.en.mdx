@@ -1,20 +1,43 @@
-# Replace the repeated expression
+# Given
 
-The expression <InlineMath math="x^2-2x" /> appears twice. Set <InlineMath math="u=x^2-2x" />. Then the equation becomes **quadratic in <InlineMath math="u" />**:
+This fourth-degree equation contains the **repeated block** <InlineMath math="x^2 - 2x" /> twice:
 
-<BlockMath math="u^2-2u-3=0\quad\Longleftrightarrow\quad (u-3)(u+1)=0\quad\Longleftrightarrow\quad u=3\ \text{or}\ u=-1" />
+<BlockMath math="\left(x^2 - 2x\right)^2 - 2\left(x^2 - 2x\right) - 3 = 0" />
 
-# Which values <InlineMath math="u" /> can take
+# Asked
 
-Unlike <InlineMath math="u=x^2" />, here <InlineMath math="u" /> may be negative. Since <InlineMath math="x^2-2x=(x-1)^2-1" />, **the smallest value of <InlineMath math="u" /> is exactly <InlineMath math="-1" />**. So both values are possible:
+Find the solution set (*Lösungsmenge*) <InlineMath math="\mathbb{L}" /> of all real numbers <InlineMath math="x" /> satisfying this equation.
+
+# Solution
+
+Expanding everything would leave a clunky fourth-degree polynomial. Instead, notice that the entire expression <InlineMath math="x^2 - 2x" /> behaves like **one sealed package** used twice. Give that package a single letter <InlineMath math="u" />.
+
+> When one expression repeats as a whole block, wrap it in a substitution variable so a quartic splits into ordinary quadratics.
+
+## Replacing the repeated block
+
+Let <InlineMath math="u = x^2 - 2x" />. The long equation collapses into a **simple quadratic in <InlineMath math="u" />**:
+
+<BlockMath math="u^2 - 2u - 3 = 0 \quad \Longleftrightarrow \quad (u - 3)(u + 1) = 0" />
+
+This gives two target values for <InlineMath math="u" />: <InlineMath math="u = 3" /> and <InlineMath math="u = -1" />.
+
+## Checking which values are reachable
+
+Do not automatically discard negative <InlineMath math="u" /> as you would for <InlineMath math="u = x^2" />. Completing the square shows **the minimum value of <InlineMath math="u" /> is <InlineMath math="-1" />**:
+
+<BlockMath math="x^2 - 2x = (x - 1)^2 - 1 \ge -1" />
+
+Both <InlineMath math="u = 3" /> and <InlineMath math="u = -1" /> are reachable.
 
 <MathVisual
-  title={<>Which values <InlineMath math="u=x^2-2x" /> takes</>}
-  description={<>The parabola <InlineMath math="u=x^2-2x" /> has its lowest point at <InlineMath math="x=1" /> with <InlineMath math="u=-1" />. The line <InlineMath math="u=3" /> meets it at <InlineMath math="x=-1" /> and <InlineMath math="x=3" />. The line <InlineMath math="u=-1" /> touches it exactly at the vertex, at <InlineMath math="x=1" />.</>}
+  title={<>Values reached by <InlineMath math="u = x^2 - 2x" /></>}
+  description={<>The parabola <InlineMath math="u = x^2 - 2x" /> bottoms out at <InlineMath math="x = 1" /> with <InlineMath math="u = -1" />. The line <InlineMath math="u = 3" /> cuts it at <InlineMath math="x = -1" /> and <InlineMath math="x = 3" />, while <InlineMath math="u = -1" /> touches the vertex at <InlineMath math="x = 1" />.</>}
+  footer={<>Line <InlineMath math="u = 3" /> gives two roots and line <InlineMath math="u = -1" /> grazes the vertex at <InlineMath math="x = 1" />.</>}
   labels={{
-    u: <><InlineMath math="u=x^2-2x" /></>,
-    three: <><InlineMath math="u=3" /></>,
-    minus: <><InlineMath math="u=-1" /></>,
+    u: <><InlineMath math="u = x^2 - 2x" /></>,
+    three: <><InlineMath math="u = 3" /></>,
+    minus: <><InlineMath math="u = -1" /></>,
     x1: <><InlineMath math="-1" /></>,
     x2: <><InlineMath math="1" /></>,
     x3: <><InlineMath math="3" /></>,
@@ -46,21 +69,35 @@ Unlike <InlineMath math="u=x^2" />, here <InlineMath math="u" /> may be negative
   }}
 />
 
-# Solve for <InlineMath math="x" /> for both values
+The graph shows three contact points in total: two crossings along <InlineMath math="u = 3" /> and one tangent touch right at the vertex on <InlineMath math="u = -1" />.
 
-Each value of <InlineMath math="u" /> gives **its own quadratic equation in <InlineMath math="x" />**:
+## Solving back for the original variable
+
+Solve **both quadratic equations in <InlineMath math="x" />** separately:
 
 <BlockMath math="\begin{aligned}
-x^2-2x=3&\quad\Longleftrightarrow\quad (x-3)(x+1)=0\quad\Longleftrightarrow\quad x=3\ \text{or}\ x=-1 \\
-x^2-2x=-1&\quad\Longleftrightarrow\quad (x-1)^2=0\quad\Longleftrightarrow\quad x=1
+x^2 - 2x = 3 &\quad \Longleftrightarrow \quad (x - 3)(x + 1) = 0 \quad \Longleftrightarrow \quad x = 3 \ \text{or} \ x = -1 \\
+x^2 - 2x = -1 &\quad \Longleftrightarrow \quad (x - 1)^2 = 0 \quad \Longleftrightarrow \quad x = 1
 \end{aligned}" />
 
-Check <InlineMath math="x=1" />: <InlineMath math="(1-2)^2-2\cdot(1-2)-3=1+2-3=0" />. The solution set is **<InlineMath math="\mathbb{L}=\{-1;\,1;\,3\}" />**.
+Check <InlineMath math="x = 1" /> directly in the original equation:
 
-# Why the other answers are wrong
+<BlockMath math="(1 - 2)^2 - 2(1 - 2) - 3 = 1 + 2 - 3 = 0" />
 
-- <InlineMath math="\{-1;\,3\}" /> discards <InlineMath math="u=-1" />, as if <InlineMath math="u" /> couldn't be negative. That way **the solution <InlineMath math="x=1" /> is lost**. By coincidence these two numbers also match the <InlineMath math="u" />-values.
-- <InlineMath math="\{1\}" /> works out only the case <InlineMath math="u=-1" />.
-- <InlineMath math="\{-3;\,-1;\,1\}" /> solves with <InlineMath math="x^2+2x" /> instead of <InlineMath math="x^2-2x" />, a sign slip.
-- <InlineMath math="\{1-\sqrt2;\,1+\sqrt2\}" /> comes from the wrong values <InlineMath math="u=1" /> and <InlineMath math="u=-3" /> from <InlineMath math="(u+3)(u-1)" />. Then only <InlineMath math="x^2-2x=1" /> gives solutions.
-- <InlineMath math="\{1;\,3\}" /> leaves out the negative number <InlineMath math="x=-1" />.
+All three values satisfy the original equation exactly.
+
+## Checking the distractors
+
+See how each wrong answer **drops one branch or flips a sign**:
+
+| Option | Why it is wrong |
+| --- | --- |
+| <InlineMath math="\mathbb{L} = \{-1,\, 3\}" /> | Rejects <InlineMath math="u = -1" /> as if <InlineMath math="u" /> could not be negative, missing <InlineMath math="x = 1" />. |
+| <InlineMath math="\mathbb{L} = \{1\}" /> | Solves only the vertex branch <InlineMath math="u = -1" /> and omits <InlineMath math="u = 3" />. |
+| <InlineMath math="\mathbb{L} = \{-3,\, -1,\, 1\}" /> | Flips the middle sign and solves <InlineMath math="x^2 + 2x" /> instead of <InlineMath math="x^2 - 2x" />. |
+| <InlineMath math="\mathbb{L} = \{1 - \sqrt{2},\, 1 + \sqrt{2}\}" /> | Mis-factors the <InlineMath math="u" /> quadratic as <InlineMath math="(u + 3)(u - 1) = 0" />. |
+| <InlineMath math="\mathbb{L} = \{1,\, 3\}" /> | Drops the valid negative solution <InlineMath math="x = -1" />. |
+
+# Answer
+
+The solution set is **<InlineMath math="\mathbb{L} = \{-1,\, 1,\, 3\}" />**.

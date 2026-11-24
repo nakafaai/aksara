@@ -1,27 +1,52 @@
-# Simplify the expression first
+# Given
 
-Write <InlineMath math="u=a^{-1}=\frac1a" /> and <InlineMath math="v=b^{-1}=\frac1b" />. The denominator <InlineMath math="u^2-v^2" /> is a difference of squares, and **the factor <InlineMath math="u+v" /> cancels**:
+Two **conjugate numbers** are given:
 
-<BlockMath math="\frac{u+v}{u^2-v^2}=\frac{u+v}{(u-v)(u+v)}=\frac{1}{u-v}=\frac{1}{\frac1a-\frac1b}=\frac{ab}{b-a}" />
+<BlockMath math="a = \sqrt{3} + 1 \qquad \text{and} \qquad b = \sqrt{3} - 1" />
 
-# Product and difference of <InlineMath math="a" /> and <InlineMath math="b" />
+We need to evaluate the negative-exponent expression (*Term*):
 
-Now you only need <InlineMath math="ab" /> and <InlineMath math="b-a" />:
+<BlockMath math="\frac{a^{-1} + b^{-1}}{a^{-2} - b^{-2}}" />
+
+# Asked
+
+What is the exact value of this expression?
+
+# Solution
+
+Plugging <InlineMath math="\sqrt{3} + 1" /> straight into negative powers turns a tidy puzzle into messy fractions. Think of it like unpacking nested boxes: **simplify the algebraic wrapper first** before touching the square roots.
+
+> Always simplify the algebraic structure before substituting roots, because messy factors often cancel cleanly.
+
+## Factoring the difference of squares
+
+Set <InlineMath math="u = a^{-1}" /> and <InlineMath math="v = b^{-1}" /> so the pattern jumps out. The denominator is a difference of two squares, so **the sum factor cancels immediately**:
+
+<BlockMath math="\frac{u + v}{u^2 - v^2} = \frac{u + v}{(u - v)(u + v)} = \frac{1}{u - v}" />
+
+Now substitute <InlineMath math="u" /> and <InlineMath math="v" /> back in terms of <InlineMath math="a" /> and <InlineMath math="b" /> and combine the fractions:
+
+<BlockMath math="\frac{1}{\frac{1}{a} - \frac{1}{b}} = \frac{1}{\frac{b - a}{ab}} = \frac{ab}{b - a}" />
+
+## Computing the product and difference
+
+Now you only need the **product and ordered difference** of the conjugate pair:
 
 <BlockMath math="\begin{aligned}
-ab&=(\sqrt3+1)(\sqrt3-1)=3-1=2 \\
-b-a&=(\sqrt3-1)-(\sqrt3+1)=-2
+ab &= (\sqrt{3} + 1)(\sqrt{3} - 1) = 3 - 1 = 2 \\
+b - a &= (\sqrt{3} - 1) - (\sqrt{3} + 1) = -2
 \end{aligned}" />
 
-The order in <InlineMath math="b-a" /> decides **the sign**:
+Check the positions of <InlineMath math="a" /> and <InlineMath math="b" /> on the number line below so the sign of the difference never flips by accident.
 
 <MathVisual
-  title={<>Where <InlineMath math="a" /> and <InlineMath math="b" /> lie</>}
-  description={<>On the number line <InlineMath math="b=\sqrt3-1\approx0.73" /> lies to the left of <InlineMath math="a=\sqrt3+1\approx2.73" />. The gap is <InlineMath math="a-b=2" />, so <InlineMath math="b-a=-2" /> is negative.</>}
+  title={<>Positions of <InlineMath math="a" /> and <InlineMath math="b" /></>}
+  description={<>On the number line, <InlineMath math="b = \sqrt{3} - 1 \approx 0.73" /> sits to the left of <InlineMath math="a = \sqrt{3} + 1 \approx 2.73" />. Their gap is <InlineMath math="a - b = 2" />, so <InlineMath math="b - a = -2" /> is negative.</>}
+  footer={<>Because <InlineMath math="b" /> lies left of <InlineMath math="a" />, the difference <InlineMath math="b - a" /> is negative and equals <InlineMath math="-2" />.</>}
   labels={{
-    b: <><InlineMath math="b\approx0.73" /></>,
-    a: <><InlineMath math="a\approx2.73" /></>,
-    gap: <><InlineMath math="a-b=2" /></>,
+    b: <><InlineMath math="b \approx 0.73" /></>,
+    a: <><InlineMath math="a \approx 2.73" /></>,
+    gap: <><InlineMath math="a - b = 2" /></>,
   }}
   scene={{
     space: "plane",
@@ -45,16 +70,24 @@ The order in <InlineMath math="b-a" /> decides **the sign**:
   }}
 />
 
-# Work out the value
+Since <InlineMath math="b" /> sits to the left of <InlineMath math="a" />, the denominator <InlineMath math="b - a" /> carries a minus sign. Substitute both values into the compact formula:
 
-<BlockMath math="\frac{ab}{b-a}=\frac{2}{-2}=-1" />
+<BlockMath math="\frac{ab}{b - a} = \frac{2}{-2} = -1" />
 
-Check with approximations: <InlineMath math="\frac1a\approx0.366" /> and <InlineMath math="\frac1b\approx1.366" />. The numerator is about <InlineMath math="1.732" />, the denominator about <InlineMath math="0.134-1.866=-1.732" />. The expression has **the value <InlineMath math="-1" />**.
+Quick decimal check: <InlineMath math="a^{-1} \approx 0.366" /> and <InlineMath math="b^{-1} \approx 1.366" />. The numerator is about <InlineMath math="1.732" /> and the denominator is about <InlineMath math="0.134 - 1.866 = -1.732" />, giving exactly <InlineMath math="-1" />.
 
-# Why the other answers are wrong
+## Checking the distractors
 
-- <InlineMath math="1" /> flips the difference: <InlineMath math="\frac{ab}{a-b}" /> instead of <InlineMath math="\frac{ab}{b-a}" />. That way **the minus sign gets lost**.
-- <InlineMath math="-2" /> takes <InlineMath math="ab=4" />, treating <InlineMath math="(\sqrt3+1)(\sqrt3-1)" /> like <InlineMath math="3+1" />.
-- <InlineMath math="-\frac12" /> drops the product <InlineMath math="ab" /> from the numerator: <InlineMath math="\frac{1}{b-a}" />.
-- <InlineMath math="2" /> is just the product <InlineMath math="ab" />, without the denominator.
-- <InlineMath math="\frac12" /> is just the reciprocal of <InlineMath math="ab" />, that is <InlineMath math="\frac{1}{ab}" />.
+Notice how each wrong option comes from **one slipped sign or dropped factor**:
+
+| Option | Why it is wrong |
+| --- | --- |
+| <InlineMath math="1" /> | Reverses the difference into <InlineMath math="a - b" />, losing the minus sign. |
+| <InlineMath math="-2" /> | Computes <InlineMath math="ab = 4" /> as if <InlineMath math="(\sqrt{3} + 1)(\sqrt{3} - 1) = 3 + 1" />. |
+| <InlineMath math="-\frac{1}{2}" /> | Drops <InlineMath math="ab" /> from the numerator and evaluates only <InlineMath math="\frac{1}{b - a}" />. |
+| <InlineMath math="2" /> | Evaluates only the product <InlineMath math="ab" /> without dividing by <InlineMath math="b - a" />. |
+| <InlineMath math="\frac{1}{2}" /> | Takes only the reciprocal of the product, <InlineMath math="\frac{1}{ab}" />. |
+
+# Answer
+
+The exact value of the expression is **<InlineMath math="-1" />**.
