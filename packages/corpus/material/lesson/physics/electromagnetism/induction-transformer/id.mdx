@@ -1,33 +1,29 @@
 export const metadata = {
   title: "Elektromagnetisme dengan Induksi dan Transformator",
   description:
-    "Jelaskan gaya pada penghantar berarus, induksi elektromagnetik dan generator, lalu hitung tegangan dan efisiensi transformator lewat contoh dan latihan.",
+    "Jelaskan gaya pada kawat berarus, hukum Lenz lewat pipa tembaga, generator arus bolak-balik, transformator, dan transmisi tegangan tinggi.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-11-17",
   subject: "Elektromagnetisme",
 };
 
-## Listrik dan Kemagnetan Saling Terkait
+## Gaya pada Kawat Berarus
 
-**Elektromagnetisme** mempelajari hubungan antara arus listrik dan medan magnet. Penghantar berarus di dalam medan magnet mengalami **gaya**, <InlineMath math="F = BIL" />, dan itulah prinsip motor. Sebaliknya, penghantar yang memotong medan magnet menghasilkan **GGL induksi**, dan itulah prinsip generator. Transformator mengubah tegangan arus bolak-balik menurut <InlineMath math="\dfrac{V_s}{V_p} = \dfrac{N_s}{N_p}" />. Di sini kamu mengubah arus dan medan, memutar generator pada kelajuan berbeda, mengubah jumlah lilitan transformator, dan membandingkan energi yang hilang di kabel.
-
-Saat arus mengalir di kawat, medan magnet terbentuk di sekeliling kawat itu. Jika kawat berada di dalam medan magnet lain, kedua medan bergabung. Medan di satu sisi kawat menjadi lebih kuat dan di sisi lain lebih lemah, jadi kawat terdorong ke arah medan yang lebih lemah.
-
-## Gaya pada Penghantar Berarus
-
-Arah gaya ditentukan oleh **kaidah tangan kiri Fleming**: jari telunjuk menunjuk arah medan magnet, jari tengah menunjuk arah arus, dan ibu jari menunjuk arah gaya. Besar gaya bergantung pada kuat medan <InlineMath math="B" />, arus <InlineMath math="I" />, dan panjang kawat di dalam medan <InlineMath math="L" />:
+**Elektromagnetisme** mempertemukan arus listrik dan medan magnet. Saat kawat berarus berada di dalam medan magnet, medan kawat dan medan luar bergabung menjadi lebih kuat di satu sisi lalu mendorong kawat ke sisi yang lebih lemah dengan gaya:
 
 <BlockMath math="F = BIL" />
 
-Ubah kuat medan magnet dan arus di bawah untuk kawat sepanjang <InlineMath math="0{,}050\ \text{m}" />. Gaya sebanding dengan arus, jadi grafiknya lurus melalui titik asal.
+Arah gaya ditentukan oleh **kaidah tangan kiri Fleming**: telunjuk searah medan magnet, jari tengah searah arus, dan ibu jari menunjuk arah gaya. Ingat selalu bahwa **motor memakai tangan kiri**, sedangkan **generator memakai tangan kanan**.
 
 <MathVisual
   title={<>Gaya pada Kawat Berarus terhadap Arus</>}
+  footer={<>Gaya magnet tumbuh lurus sebanding dengan kuat medan B dan arus listrik I.</>}
   description={
     <>
-      <InlineMath math="F = BIL" /> dengan <InlineMath math="L = 0{,}050\ \text{m}" />.
-      Pada <InlineMath math="B = 0{,}20\ \text{T}" /> dan{" "}
-      <InlineMath math="I = 3{,}0\ \text{A}" />, kawat mengalami gaya{" "}
+      <InlineMath math="F = BIL" /> untuk panjang kawat{" "}
+      <InlineMath math="L = 0{,}050\ \text{m}" />. Pada{" "}
+      <InlineMath math="B = 0{,}20\ \text{T}" /> dan{" "}
+      <InlineMath math="I = 3{,}0\ \text{A}" />, gayanya{" "}
       <InlineMath math="0{,}030\ \text{N}" />.
     </>
   }
@@ -54,25 +50,84 @@ Ubah kuat medan magnet dan arus di bawah untuk kawat sepanjang <InlineMath math=
   }}
 />
 
-Cek angka awalnya: <InlineMath math="F = 0{,}20 \times 3{,}0 \times 0{,}050 = 0{,}030\ \text{N}" />.
+Ubah kuat medan <InlineMath math="B" /> dan arus <InlineMath math="I" /> pada grafik di atas: menggandakan salah satunya langsung menggandakan gaya pada kawat.
 
-Dalam **motor arus searah**, kumparan berarus di dalam medan magnet mengalami dua gaya berlawanan arah pada kedua sisinya, jadi kumparan berputar. **Komutator** membalik arah arus setiap setengah putaran supaya kumparan terus berputar ke arah yang sama. Motor berputar lebih cepat jika arusnya diperbesar, medan magnetnya diperkuat, atau jumlah lilitan kumparannya ditambah.
+Bayangkan kawat tembaga tipis melintang di celah magnet dan melayang di udara tanpa penyangga. Agar melayang, **gaya magnet ke atas harus tepat mengimbangi berat kawat ke bawah**:
 
-## Induksi Elektromagnetik dan Generator
+<BlockMath math="BIL = mg \quad \Longrightarrow \quad I = \frac{mg}{BL}" />
 
-Saat penghantar memotong garis medan magnet, atau medan magnet yang menembus kumparan berubah, muncul **GGL induksi**. **Hukum Faraday** menyatakan besar GGL induksi sebanding dengan laju perubahan fluks magnet. **Hukum Lenz** menyatakan arus induksi selalu melawan perubahan yang menimbulkannya. Arah arus pada kawat yang bergerak ditentukan oleh **kaidah tangan kanan Fleming**.
+> Ketika medan magnet mengarah ke utara, arus ke timur mengangkat kawat lurus ke atas sampai gaya magnet menandingi beratnya.
 
-Hukum Lenz adalah bentuk kekekalan energi. Jika kamu mendorong kutub utara magnet ke dalam kumparan, ujung kumparan yang terdekat menjadi kutub utara dan menolak magnet itu. Kamu harus melakukan usaha untuk mendorong magnet, dan usaha itulah yang menjadi energi listrik.
+Naikkan arus di lab keseimbangan arus berikut untuk kawat <InlineMath math="6{,}0\ \text{g}" /> sepanjang <InlineMath math="20\ \text{cm}" /> dalam medan <InlineMath math="0{,}15\ \text{T}" />.
 
-**Generator arus bolak-balik** memutar kumparan di dalam medan magnet, jadi GGL induksinya berubah mengikuti gelombang sinus. Putar kumparan lebih cepat di bawah: tegangan puncak dan frekuensinya sama-sama naik, karena fluks berubah lebih cepat.
+<CurrentBalanceLab
+  title={<>Melayangkan Kawat dalam Medan Magnet</>}
+  description={
+    <>
+      Kawat <InlineMath math="6{,}0\ \text{g}" /> membentang timur-barat dengan{" "}
+      <InlineMath math="20\ \text{cm}" /> di dalam medan{" "}
+      <InlineMath math="0{,}15\ \text{T}" /> ke utara.
+    </>
+  }
+  footer={<>Arus 2,0 A ke timur menghasilkan gaya 0,060 N ke atas yang mengimbangi berat kawat.</>}
+  labels={{
+    current: <>Arus menuju timur</>,
+    currentName: "Arus menuju timur",
+    force: <>Gaya magnet</>,
+    needed: <>Arus untuk melayangkan kawat</>,
+    viewLabel: "Kawat berarus melayang di celah magnet",
+    weight: <>Berat kawat</>,
+  }}
+  field={0.15}
+  length={20}
+  mass={6}
+/>
+
+Ubah massa ke kilogram dan panjang ke meter dulu, maka tepat pada <InlineMath math="I = 2{,}0\ \text{A}" /> gaya magnet <InlineMath math="0{,}060\ \text{N}" /> menyeimbangkan berat kawat.
+
+Dalam **motor arus searah**, dua sisi kumparan berarus mengalami gaya berlawanan sehingga kumparan berputar. **Komutator** membalik arah arus tiap setengah putaran agar putaran berlanjut searah, dan putaran makin cepat bila arus diperbesar, magnet diperkuat, atau lilitan ditambah.
+
+## Induksi dan Hukum Lenz
+
+Ketika penghantar memotong garis medan magnet atau fluks magnet melalui kumparan berubah, lahirlah **GGL induksi**. **Hukum Faraday** menyatakan besarnya sebanding dengan laju perubahan fluks, sedangkan **hukum Lenz** memastikan arah arus induksi **selalu melawan perubahan penyebabnya** demi kekekalan energi.
+
+### Pengereman Pipa Tembaga
+
+Jatuhkan magnet neodimium kuat ke dalam tiga pipa identik: plastik, tembaga utuh, dan tembaga berbelah memanjang. Meski tembaga tidak ditarik magnet diam, magnet jatuh lambat di pipa tembaga utuh karena **arus pusar melingkar di dinding tembaga mengerem jatuhnya magnet**.
+
+> Arus pusar yang terinduksi di pipa tembaga menciptakan medan magnet penolak yang mengerem magnet jatuh dan mengubah energi mekanik menjadi kalor.
+
+<MagnetPipeLab
+  title={<>Satu Magnet Dijatuhkan di Tiga Pipa</>}
+  description={
+    <>
+      Magnet kuat yang sama dijatuhkan serentak lewat pipa tembaga utuh, pipa
+      tembaga berbelah, dan pipa plastik.
+    </>
+  }
+  footer={<>Pipa tembaga utuh mengerem paling kuat, sedangkan celah memutus lintasan arus pusar.</>}
+  labels={{
+    copper: <>Tembaga utuh</>,
+    plastic: <>Plastik</>,
+    slit: <>Tembaga berbelah</>,
+    viewLabel: "Magnet jatuh bersamaan melalui tiga pipa",
+  }}
+/>
+
+Pipa plastik tidak menghantarkan arus sehingga magnet jatuh bebas, sementara celah memanjang pada pipa tembaga memutus lingkaran arus pusar sehingga gaya remnya turun drastis.
+
+### Generator Bolak Balik
+
+**Generator arus bolak-balik** memutar kumparan di dalam medan magnet sehingga GGL induksinya berbentuk gelombang sinus.
 
 <MathVisual
   title={<>Keluaran Generator AC pada Kelajuan Putar Berbeda</>}
+  footer={<>Menggandakan kelajuan putar menggandakan tegangan puncak sekaligus frekuensinya.</>}
   description={
     <>
-      GGL induksinya <InlineMath math="\varepsilon = 2s \sin(2\pi s t)" />, dengan{" "}
-      <InlineMath math="s" /> putaran per detik. Menggandakan kelajuan putar
-      menggandakan tegangan puncak dan frekuensinya.
+      GGL induksi <InlineMath math="\varepsilon = 2s \sin(2\pi s t)" /> dengan{" "}
+      <InlineMath math="s" /> putaran per detik. Putaran lebih cepat menaikkan
+      puncak dan frekuensi bersamaan.
     </>
   }
   scene={{
@@ -97,44 +152,23 @@ Hukum Lenz adalah bentuk kekekalan energi. Jika kamu mendorong kutub utara magne
   }}
 />
 
-Turbin angin adalah generator besar. Angin memutar bilah, bilah memutar kumparan generator di dalam medan magnet, dan induksi mengubah energi kinetik menjadi energi listrik. Pilih lokasi turbin di bawah dan bandingkan daya listrik yang dihasilkan.
+Mendorong kutub utara magnet ke kumparan selalu memunculkan kutub utara di ujung terdekat kumparan untuk menolak gerakan, sesuai hukum Lenz.
 
-<WindRotorLab
-  title={<>Turbin Angin di Tiga Lokasi</>}
-  description={
-    <>
-      Turbin yang sama dengan bilah sepanjang <InlineMath math="40\ \text{m}" />{" "}
-      di lembah, di puncak bukit, dan di pantai. Angin yang lebih kencang memutar
-      generator lebih cepat dan menghasilkan daya yang lebih besar.
-    </>
-  }
-  labels={{
-    chooseSite: "Lokasi turbin",
-    daily: <>Energi listrik per hari</>,
-    electric: <>Daya listrik</>,
-    sites: { coast: <>Pantai</>, hill: <>Puncak bukit</>, valley: <>Lembah</> },
-    speed: <>Kelajuan putar rotor</>,
-    viewLabel: "Turbin angin di lembah, puncak bukit, dan pantai",
-    wind: <>Daya angin</>,
-  }}
-/>
+## Transformator Bolak Balik
 
-## Transformator Mengubah Tegangan
+**Transformator** memindahkan energi antara kumparan primer dan sekunder lewat fluks berubah di inti besi lunak, sehingga **hanya bekerja pada arus bolak-balik**, bukan arus searah:
 
-**Transformator** terdiri atas dua kumparan, kumparan primer dan kumparan sekunder, yang dililitkan pada inti besi lunak. Arus bolak-balik di kumparan primer menghasilkan fluks magnet yang terus berubah di dalam inti, dan fluks itu menginduksi GGL di kumparan sekunder. Transformator **hanya bekerja dengan arus bolak-balik**, karena arus searah tidak menghasilkan fluks yang berubah.
-
-<BlockMath math="\frac{V_s}{V_p} = \frac{N_s}{N_p}" />
-
-Transformator **step-up** memiliki lilitan sekunder lebih banyak, jadi tegangan keluarannya lebih tinggi. Transformator **step-down** memiliki lilitan sekunder lebih sedikit. Ubah jumlah lilitan sekunder di bawah untuk kumparan primer <InlineMath math="1200" /> lilitan pada <InlineMath math="240\ \text{V}" />.
+<BlockMath math="\frac{V_s}{V_p} = \frac{N_s}{N_p}, \qquad \eta = \frac{V_s I_s}{V_p I_p} \times 100\%" />
 
 <MathVisual
   title={<>Tegangan Sekunder Transformator terhadap Jumlah Lilitan</>}
+  footer={<>Tegangan keluaran naik sebanding langsung dengan jumlah lilitan sekunder.</>}
   description={
     <>
-      <InlineMath math="V_s = 240 \times \dfrac{N_s}{1200}" />. Kumparan
-      sekunder <InlineMath math="60" /> lilitan memberi{" "}
-      <InlineMath math="12\ \text{V}" />, dan <InlineMath math="2400" /> lilitan
-      memberi <InlineMath math="480\ \text{V}" />.
+      Dengan primer <InlineMath math="1200" /> lilitan pada{" "}
+      <InlineMath math="240\ \text{V}" />, kumparan sekunder{" "}
+      <InlineMath math="60" /> lilitan menghasilkan{" "}
+      <InlineMath math="12\ \text{V}" />.
     </>
   }
   scene={{
@@ -158,32 +192,49 @@ Transformator **step-up** memiliki lilitan sekunder lebih banyak, jadi tegangan 
   }}
 />
 
-Coba satu contoh. Pengisi daya ponsel memakai transformator dengan <InlineMath math="1200" /> lilitan primer dan <InlineMath math="60" /> lilitan sekunder pada sumber <InlineMath math="240\ \text{V}" />. Hitung tegangan sekunder, dan arus sekunder jika arus primernya <InlineMath math="0{,}10\ \text{A}" /> dan transformatornya ideal.
+Transformator step-up **tidak pernah menambah daya**: jika tegangan naik, arus turun. Pada transformator nyata, sebagian daya hilang menjadi kalor di kumparan dan arus pusar inti sehingga **daya masukan selalu lebih besar daripada daya keluaran**.
 
-<MathContainer>
-<BlockMath math="V_s = 240 \times \frac{60}{1200} = 12\ \text{V}" />
-<BlockMath math="V_pI_p = V_sI_s \Rightarrow I_s = \frac{240 \times 0{,}10}{12} = 2{,}0\ \text{A}" />
-</MathContainer>
+> Perbandingan tegangan menetapkan perbandingan lilitan, sedangkan arus primer harus dihitung dari daya masukan yang menanggung keluaran sekaligus kalor terbuang.
 
-Cek dengan daya: masukan <InlineMath math="240 \times 0{,}10 = 24\ \text{W}" /> dan keluaran <InlineMath math="12 \times 2{,}0 = 24\ \text{W}" />. Transformator ideal tidak kehilangan energi, jadi tegangan turun dua puluh kali dan arus naik dua puluh kali.
+<TransformerLab
+  title={<>Transformator Penurun Tegangan dan Rugi Kalor</>}
+  description={
+    <>
+      Masukan <InlineMath math="240\ \text{V}" /> diturunkan menjadi{" "}
+      <InlineMath math="12\ \text{V}" /> untuk menyalakan lampu{" "}
+      <InlineMath math="24\ \text{W}" /> pada efisiensi <InlineMath math="80\%" />.
+    </>
+  }
+  footer={<>Untuk memasok 24 W pada efisiensi 80 persen, primer menyedot 30 W dan 6 W jadi kalor.</>}
+  labels={{
+    input: <>Daya masukan</>,
+    lost: <>Hilang sebagai kalor</>,
+    primaryCurrent: <>Arus primer</>,
+    ratio: <>Rasio lilitan <InlineMath math="N_p : N_s" /></>,
+    viewLabel: "Transformator step-down menyalakan sebuah lampu",
+  }}
+  efficiency={0.8}
+  outputPower={24}
+  primaryVoltage={240}
+  secondaryVoltage={12}
+/>
 
-Transformator sungguhan kehilangan sedikit energi lewat **hambatan kumparan**, **arus pusar** di dalam inti, **histeresis**, dan **kebocoran fluks**. Inti berlapis, kawat tembaga yang tebal, dan inti besi lunak mengurangi kerugian itu. **Efisiensi** adalah <InlineMath math="\dfrac{P_{\text{keluaran}}}{P_{\text{masukan}}} \times 100\%" />.
+Rasio lilitannya <InlineMath math="20 : 1" />, daya masukannya <InlineMath math="24 / 0{,}80 = 30\ \text{W}" />, dan arus primernya <InlineMath math="30 / 240 = 0{,}125\ \text{A}" /> dengan inti berlapis untuk menekan arus pusar.
 
-## Transmisi Energi pada Tegangan Tinggi
+## Transmisi Tegangan Tinggi
 
-Energi dari pembangkit listrik dikirim melalui kabel yang memiliki hambatan. Daya yang hilang sebagai kalor di kabel adalah <InlineMath math="P_{\text{hilang}} = I^2R" />. Untuk daya yang sama, tegangan yang lebih tinggi berarti arus yang lebih kecil, jadi kerugiannya jauh berkurang. Itulah sebabnya jaringan transmisi memakai transformator step-up di pembangkit dan transformator step-down di dekat pelanggan.
-
-Ubah tegangan transmisi di bawah untuk daya <InlineMath math="100\ \text{kW}" /> melalui kabel <InlineMath math="2\ \Omega" />. Kerugiannya berbanding terbalik dengan **kuadrat tegangan**.
+Pembangkit listrik menaikkan tegangan transmisi agar arus di kabel sangat kecil, karena rugi kalor kabel <InlineMath math="I^2 R" /> turun sebanding dengan **kuadrat kenaikan tegangan**.
 
 <MathVisual
   title={<>Daya yang Hilang di Kabel terhadap Tegangan Transmisi</>}
+  footer={<>Menaikkan tegangan sepuluh kali memangkas rugi kalor kabel menjadi seperseratus.</>}
   description={
     <>
-      Arusnya <InlineMath math="I = \dfrac{100}{V}\ \text{A}" /> dengan{" "}
-      <InlineMath math="V" /> dalam kilovolt, jadi kerugiannya{" "}
-      <InlineMath math="I^2R = \dfrac{20}{V^2}\ \text{kW}" />. Pada{" "}
-      <InlineMath math="1\ \text{kV}" /> hilang <InlineMath math="20\ \text{kW}" />,
-      pada <InlineMath math="10\ \text{kV}" /> hanya <InlineMath math="0{,}2\ \text{kW}" />.
+      Untuk daya <InlineMath math="100\ \text{kW}" /> lewat kabel{" "}
+      <InlineMath math="2\ \Omega" />, kerugian turun dari{" "}
+      <InlineMath math="20\ \text{kW}" /> di <InlineMath math="1\ \text{kV}" />{" "}
+      menjadi <InlineMath math="0{,}2\ \text{kW}" /> di{" "}
+      <InlineMath math="10\ \text{kV}" />.
     </>
   }
   scene={{
@@ -209,49 +260,4 @@ Ubah tegangan transmisi di bawah untuk daya <InlineMath math="100\ \text{kW}" />
   }}
 />
 
-Cek dua angka: pada <InlineMath math="1\ \text{kV}" />, <InlineMath math="I = 100\ \text{A}" /> dan kerugiannya <InlineMath math="100^2 \times 2 = 20.000\ \text{W}" />. Pada <InlineMath math="10\ \text{kV}" />, <InlineMath math="I = 10\ \text{A}" /> dan kerugiannya <InlineMath math="10^2 \times 2 = 200\ \text{W}" />, seratus kali lebih kecil.
-
-## Kesalahan Umum tentang Elektromagnetisme
-
-| Kesalahan | Alasan keliru | Cara cek |
-| :--- | :--- | :--- |
-| Kaidah tangan kanan Fleming dipakai untuk motor. | Motor memakai kaidah tangan kiri. Kaidah tangan kanan untuk generator dan induksi. | Tanyakan apakah arusnya diberikan atau diinduksi. |
-| Transformator bisa menaikkan tegangan arus searah. | Arus searah tidak menghasilkan fluks yang berubah, jadi tidak ada GGL induksi di kumparan sekunder. | Transformator hanya bekerja dengan arus bolak-balik. |
-| Transformator step-up menaikkan daya. | Untuk transformator ideal, <InlineMath math="V_pI_p = V_sI_s" />. Tegangan naik tetapi arus turun. | Daya keluaran tidak bisa melebihi daya masukan. |
-| Arus induksi membantu magnet masuk ke kumparan. | Hukum Lenz: arus induksi melawan perubahan, jadi magnet ditolak. | Jika arus membantu, energi muncul tanpa usaha. |
-| Tegangan tinggi di kabel menambah energi yang hilang. | Untuk daya yang sama, tegangan tinggi berarti arus kecil, dan kerugiannya <InlineMath math="I^2R" />. | Bandingkan <InlineMath math="I^2R" /> pada dua tegangan. |
-
-Kesalahan pertama paling sering muncul. Ingat cara mudahnya: **motor pakai tangan kiri, generator pakai tangan kanan**.
-
-## Latihan Elektromagnetisme
-
-Soal-soal ini bergerak dari motor ke induksi dan transformator. **Tulis persamaannya sebelum memasukkan angka** supaya perbandingan lilitan tidak terbalik.
-
-1. Sebutkan dua cara untuk mempercepat putaran motor arus searah.
-
-2. Kutub utara magnet didorong ke dalam kumparan yang dihubungkan ke galvanometer. Tentukan kutub pada ujung kumparan yang terdekat dengan magnet dan jelaskan alasannya.
-
-3. Transformator step-down mengubah <InlineMath math="240\ \text{V}" /> menjadi <InlineMath math="6\ \text{V}" />. Kumparan primernya memiliki <InlineMath math="2000" /> lilitan. Hitung jumlah lilitan sekundernya.
-
-4. Sebuah transformator memiliki <InlineMath math="V_p = 240\ \text{V}" />, <InlineMath math="I_p = 0{,}50\ \text{A}" />, <InlineMath math="V_s = 12\ \text{V}" />, dan <InlineMath math="I_s = 9{,}0\ \text{A}" />. Hitung efisiensinya.
-
-### Pembahasan
-
-**Pembahasan 1**: Gaya pada setiap sisi kumparan adalah <InlineMath math="F = BIL" />, jadi perbesar **arus** di kumparan atau pakai **magnet yang lebih kuat**. Menambah **jumlah lilitan** kumparan juga memperbesar gaya, karena lebih banyak kawat berada di dalam medan.
-
-**Pembahasan 2**: Ujung kumparan yang terdekat menjadi **kutub utara**. Menurut hukum Lenz, arus induksi melawan perubahan yang menimbulkannya, yaitu magnet yang mendekat. Kutub utara kumparan menolak kutub utara magnet, jadi usaha harus dilakukan untuk mendorong magnet ke dalam kumparan.
-
-**Pembahasan 3**: Susun ulang perbandingan transformator:
-
-<BlockMath math="N_s = N_p \times \frac{V_s}{V_p} = 2000 \times \frac{6}{240} = 50\ \text{lilitan}" />
-
-Cek: perbandingan <InlineMath math="\dfrac{50}{2000} = \dfrac{1}{40}" /> sama dengan <InlineMath math="\dfrac{6}{240}" />.
-
-**Pembahasan 4**: Hitung daya masukan dan keluaran:
-
-<MathContainer>
-<BlockMath math="P_{\text{masukan}} = 240 \times 0{,}50 = 120\ \text{W}, \quad P_{\text{keluaran}} = 12 \times 9{,}0 = 108\ \text{W}" />
-<BlockMath math="\text{Efisiensi} = \frac{108}{120} \times 100\% = 90\%" />
-</MathContainer>
-
-Cek: <InlineMath math="12\ \text{W}" /> yang hilang menjadi kalor di kumparan dan inti, jadi efisiensinya pasti di bawah <InlineMath math="100\%" />.
+Uji cepat mandiri: menurunkan <InlineMath math="240\ \text{V}" /> (<InlineMath math="2000" /> lilitan primer) ke <InlineMath math="6\ \text{V}" /> memerlukan <InlineMath math="50" /> lilitan sekunder, dan transformator dengan masukan <InlineMath math="120\ \text{W}" /> serta keluaran <InlineMath math="108\ \text{W}" /> memiliki efisiensi <InlineMath math="90\%" />.

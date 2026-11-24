@@ -1,33 +1,29 @@
 export const metadata = {
-  title: "Electromagnetism Notes for Form Five",
+  title: "Electromagnetism Induction and Transformers",
   description:
-    "Form 5 Physics Chapter 4: explain the force on a current-carrying conductor, electromagnetic induction and generators, and work out transformer voltages.",
+    "Explain magnetic force on current-carrying wires, Lenz's law in copper pipes, AC generators, transformers, and high-voltage power transmission.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-11-17",
   subject: "Electromagnetism",
 };
 
-## Electricity and Magnetism Are Linked
+## Force on a Current Wire
 
-**Electromagnetism** studies the link between electric current and magnetic fields. A current-carrying conductor in a magnetic field feels a **force**, <InlineMath math="F = BIL" />, and that's how a motor works. The other way round, a conductor cutting a magnetic field produces an **induced electromotive force**, and that's how a generator works. A transformer changes the voltage of alternating current according to <InlineMath math="\dfrac{V_s}{V_p} = \dfrac{N_s}{N_p}" />. In these notes you change a current and a field, spin a generator at different speeds, change the turns on a transformer, and compare the energy lost in a cable.
-
-When current flows in a wire, a magnetic field forms around the wire. If the wire sits in another magnetic field, the two fields combine into a **catapult field**. The field on one side of the wire gets stronger and on the other side weaker, so the wire is pushed towards the weaker field.
-
-## The Force on a Conductor Carrying Current
-
-The direction of the force comes from **Fleming's left-hand rule**: the first finger points along the magnetic field, the second finger along the current, and the thumb along the force. The size of the force depends on the field strength <InlineMath math="B" />, the current <InlineMath math="I" /> and the length of wire in the field <InlineMath math="L" />:
+**Electromagnetism** links electric current and magnetic fields. When a wire carrying current sits inside an external magnetic field, both fields combine into a **catapult field** that pushes the wire towards the weaker side with force:
 
 <BlockMath math="F = BIL" />
 
-Change the field strength and the current below for a wire <InlineMath math="0.050\text{ m}" /> long. The force is directly proportional to the current, so the graph is a straight line through the origin.
+Use **Fleming's left-hand rule** for force direction: first finger along magnetic field, second along current, thumb along force. Keep the rule straight: **motors use the left hand**, while **generators use the right hand**.
 
 <MathVisual
   title={<>Force on a Current-Carrying Wire against Current</>}
+  footer={<>Magnetic force grows linearly with both field strength B and current I.</>}
   description={
     <>
-      <InlineMath math="F = BIL" /> with <InlineMath math="L = 0.050\text{ m}" />.
-      At <InlineMath math="B = 0.20\text{ T}" /> and{" "}
-      <InlineMath math="I = 3.0\text{ A}" />, the wire feels a force of{" "}
+      <InlineMath math="F = BIL" /> for wire length{" "}
+      <InlineMath math="L = 0.050\text{ m}" />. At{" "}
+      <InlineMath math="B = 0.20\text{ T}" /> and{" "}
+      <InlineMath math="I = 3.0\text{ A}" />, the force is{" "}
       <InlineMath math="0.030\text{ N}" />.
     </>
   }
@@ -54,25 +50,84 @@ Change the field strength and the current below for a wire <InlineMath math="0.0
   }}
 />
 
-Check the starting reading: <InlineMath math="F = 0.20 \times 3.0 \times 0.050 = 0.030\text{ N}" />.
+Adjust field strength <InlineMath math="B" /> or current <InlineMath math="I" /> above: doubling either quantity immediately doubles the magnetic push on the wire.
 
-In a **direct current motor**, a current-carrying coil in a magnetic field feels two opposite forces on its two sides, so the coil turns. The **commutator** reverses the current every half turn so the coil keeps turning the same way. The motor turns faster if the current increases, the magnetic field is stronger, or the coil has more turns.
+Picture a thin copper wire running across a magnet gap and hovering in mid-air with no support. To float, **the upward magnetic force must balance the wire's downward weight**:
 
-## Electromagnetic Induction and Generators
+<BlockMath math="BIL = mg \quad \Longrightarrow \quad I = \frac{mg}{BL}" />
 
-When a conductor cuts magnetic field lines, or the magnetic field through a coil changes, an **induced electromotive force** appears. **Faraday's law** says the size of the induced e.m.f. is directly proportional to the rate of change of magnetic flux. **Lenz's law** says the induced current always opposes the change that produces it. The direction of the current in a moving wire comes from **Fleming's right-hand rule**.
+> With the magnetic field pointing north, current flowing east lifts the wire straight upward until magnetic force balances weight.
 
-Lenz's law is a form of energy conservation. If you push the north pole of a magnet into a coil, the near end of the coil becomes a north pole and pushes the magnet back. You have to do work to push the magnet in, and that work becomes electrical energy.
+Raise the current in the 3D lab below for a <InlineMath math="6.0\text{ g}" /> wire with <InlineMath math="20\text{ cm}" /> inside a <InlineMath math="0.15\text{ T}" /> field.
 
-An **alternating current generator** spins a coil in a magnetic field, so the induced e.m.f. follows a sine wave. Spin the coil faster below: the peak voltage and the frequency both go up, because the flux changes faster.
+<CurrentBalanceLab
+  title={<>Floating a Wire in a Magnetic Field</>}
+  description={
+    <>
+      A <InlineMath math="6.0\text{ g}" /> wire runs east-west with{" "}
+      <InlineMath math="20\text{ cm}" /> inside a{" "}
+      <InlineMath math="0.15\text{ T}" /> field pointing north.
+    </>
+  }
+  footer={<>A 2.0 A eastward current supplies 0.060 N upward to float the wire.</>}
+  labels={{
+    current: <>Current toward the east</>,
+    currentName: "Current toward the east",
+    force: <>Magnetic force</>,
+    needed: <>Current to float the wire</>,
+    viewLabel: "A wire floating in a magnetic field",
+    weight: <>Weight of the wire</>,
+  }}
+  field={0.15}
+  length={20}
+  mass={6}
+/>
+
+Convert mass to kilograms and length to metres first, and right at <InlineMath math="I = 2.0\text{ A}" /> the <InlineMath math="0.060\text{ N}" /> magnetic force lifts the wire cleanly.
+
+In a **direct current motor**, opposite sides of a current-carrying coil feel opposite forces and spin. A **commutator** flips the current every half turn to sustain steady rotation, which speeds up with larger current, stronger magnets, or more turns.
+
+## Induction and Lenz Law
+
+Whenever a conductor cuts magnetic field lines or the magnetic flux through a coil changes, an **induced voltage** (e.m.f.) appears. **Faraday's law** links its size to the rate of flux change, while **Lenz's law** ensures the induced current **always opposes the change producing it**, conserving energy.
+
+### Copper Pipe Braking
+
+Drop a strong magnet down three identical tubes: plastic, solid copper, and copper with a lengthwise slit. Even though copper is non-magnetic at rest, the magnet creeps slowly down the solid copper pipe because **circular eddy currents in the copper wall brake its fall**.
+
+> Eddy currents induced around a solid copper pipe create an opposing magnetic field that brakes the falling magnet and converts mechanical energy into heat.
+
+<MagnetPipeLab
+  title={<>One Magnet Dropped Through Three Pipes</>}
+  description={
+    <>
+      The same strong magnet falls simultaneously through solid copper, slit
+      copper, and plastic pipes.
+    </>
+  }
+  footer={<>Solid copper brakes hardest, while a slit breaks the circular eddy-current loops.</>}
+  labels={{
+    copper: <>Copper</>,
+    plastic: <>Plastic</>,
+    slit: <>Slit copper</>,
+    viewLabel: "Magnets falling through three pipes",
+  }}
+/>
+
+The plastic tube carries no current so the magnet falls freely, while cutting a slit down the copper tube interrupts the eddy-current loops and weakens braking sharply.
+
+### Alternating Generator
+
+An **alternating current generator** spins a coil inside a magnetic field so its induced e.m.f. traces a sine wave.
 
 <MathVisual
   title={<>Output of an AC Generator at Different Spin Speeds</>}
+  footer={<>Doubling the spin rate doubles both peak voltage and output frequency.</>}
   description={
     <>
-      The induced e.m.f. is <InlineMath math="e = 2s \sin(2\pi s t)" />, where{" "}
-      <InlineMath math="s" /> is the number of turns per second. Doubling the
-      spin speed doubles both the peak voltage and the frequency.
+      Induced e.m.f. <InlineMath math="e = 2s \sin(2\pi s t)" /> for{" "}
+      <InlineMath math="s" /> turns per second. Faster spinning raises both peak
+      and frequency together.
     </>
   }
   scene={{
@@ -97,43 +152,22 @@ An **alternating current generator** spins a coil in a magnetic field, so the in
   }}
 />
 
-A wind turbine is a big generator. The wind turns the blades, the blades turn the generator coil in a magnetic field, and induction turns kinetic energy into electrical energy. Pick a site for the turbine below and compare the electrical power it generates.
+Pushing a north pole into a coil always induces a matching north pole at the near end to oppose entry, obeying Lenz's law.
 
-<WindRotorLab
-  title={<>A Wind Turbine at Three Sites</>}
-  description={
-    <>
-      The same turbine with <InlineMath math="40\text{ m}" /> blades in a
-      valley, on a hilltop and on the coast. Faster wind spins the generator
-      faster and gives more power.
-    </>
-  }
-  labels={{
-    chooseSite: "Turbine site",
-    daily: <>Electrical energy per day</>,
-    electric: <>Electrical power</>,
-    sites: { coast: <>Coast</>, hill: <>Hilltop</>, valley: <>Valley</> },
-    speed: <>Rotor spin speed</>,
-    viewLabel: "A wind turbine in a valley, on a hilltop and on the coast",
-    wind: <>Wind power</>,
-  }}
-/>
+## Step Down Transformers
 
-## A Transformer Changes the Voltage
+A **transformer** links primary and secondary coils through changing magnetic flux in a soft iron core, so it **works only with alternating current**, never steady direct current:
 
-A **transformer** has two coils, the primary coil and the secondary coil, wound on a soft iron core. Alternating current in the primary coil makes a constantly changing magnetic flux in the core, and that flux induces an e.m.f. in the secondary coil. A transformer **works only with alternating current**, because direct current doesn't make a changing flux.
-
-<BlockMath math="\frac{V_s}{V_p} = \frac{N_s}{N_p}" />
-
-A **step-up** transformer has more secondary turns, so the output voltage is higher. A **step-down** transformer has fewer secondary turns. Change the number of secondary turns below for a <InlineMath math="1200" />-turn primary coil on <InlineMath math="240\text{ V}" />.
+<BlockMath math="\frac{V_s}{V_p} = \frac{N_s}{N_p}, \qquad \eta = \frac{V_s I_s}{V_p I_p} \times 100\%" />
 
 <MathVisual
   title={<>Secondary Voltage of a Transformer against Number of Turns</>}
+  footer={<>Output voltage scales directly with the number of secondary turns.</>}
   description={
     <>
-      <InlineMath math="V_s = 240 \times \dfrac{N_s}{1200}" />. A secondary coil
-      of <InlineMath math="60" /> turns gives <InlineMath math="12\text{ V}" />,
-      and <InlineMath math="2400" /> turns give <InlineMath math="480\text{ V}" />.
+      With <InlineMath math="1200" /> primary turns on{" "}
+      <InlineMath math="240\text{ V}" />, a <InlineMath math="60" />-turn
+      secondary outputs <InlineMath math="12\text{ V}" />.
     </>
   }
   scene={{
@@ -157,32 +191,48 @@ A **step-up** transformer has more secondary turns, so the output voltage is hig
   }}
 />
 
-Try an example. A phone charger uses a transformer with <InlineMath math="1200" /> primary turns and <InlineMath math="60" /> secondary turns on a <InlineMath math="240\text{ V}" /> supply. Calculate the secondary voltage, and the secondary current if the primary current is <InlineMath math="0.10\text{ A}" /> and the transformer is ideal.
+A step-up transformer **never increases power**: raising voltage lowers current. Real transformers lose some energy as heat in coils and core eddy currents, so **input power always exceeds output power**.
 
-<MathContainer>
-<BlockMath math="V_s = 240 \times \frac{60}{1200} = 12\text{ V}" />
-<BlockMath math="V_pI_p = V_sI_s \Rightarrow I_s = \frac{240 \times 0.10}{12} = 2.0\text{ A}" />
-</MathContainer>
+> Voltage ratio fixes the turns ratio, while primary current must come from the full input power covering both load power and heat losses.
 
-Check with power: input <InlineMath math="240 \times 0.10 = 24\text{ W}" /> and output <InlineMath math="12 \times 2.0 = 24\text{ W}" />. An ideal transformer loses no energy, so the voltage falls twenty times and the current rises twenty times.
+<TransformerLab
+  title={<>Step-Down Transformer with Real Heat Loss</>}
+  description={
+    <>
+      An input of <InlineMath math="240\text{ V}" /> steps down to{" "}
+      <InlineMath math="12\text{ V}" /> supplying <InlineMath math="24\text{ W}" />{" "}
+      to a bulb at <InlineMath math="80\%" /> efficiency.
+    </>
+  }
+  footer={<>Delivering 24 W at 80 percent efficiency draws 30 W input and wastes 6 W as heat.</>}
+  labels={{
+    input: <>Input power</>,
+    lost: <>Lost as heat</>,
+    primaryCurrent: <>Primary current</>,
+    ratio: <>Turns ratio <InlineMath math="N_p : N_s" /></>,
+    viewLabel: "A step-down transformer lighting a bulb",
+  }}
+  efficiency={0.8}
+  outputPower={24}
+  primaryVoltage={240}
+  secondaryVoltage={12}
+/>
 
-A real transformer loses some energy through **coil resistance**, **eddy currents** in the core, **hysteresis** and **flux leakage**. A laminated core, thick copper wire and a soft iron core reduce those losses. **Efficiency** is <InlineMath math="\dfrac{P_{\text{output}}}{P_{\text{input}}} \times 100\%" />.
+The turns ratio is <InlineMath math="20 : 1" />, input power is <InlineMath math="24 / 0.80 = 30\text{ W}" />, and primary current is <InlineMath math="30 / 240 = 0.125\text{ A}" />, with a laminated core curbing eddy currents.
 
-## Transmitting Energy at High Voltage
+## High Voltage Power Lines
 
-Energy from a power station travels through cables that have resistance. The power lost as heat in the cables is <InlineMath math="P_{\text{lost}} = I^2R" />. For the same power, a higher voltage means a smaller current, so far less is lost. That's why the **National Grid** uses step-up transformers at the power station and step-down transformers near the users.
-
-Change the transmission voltage below for <InlineMath math="100\text{ kW}" /> sent through a <InlineMath math="2\ \Omega" /> cable. The loss is inversely proportional to the **square of the voltage**.
+Power grids step transmission voltage up so cable current stays tiny, because cable heat loss <InlineMath math="I^2 R" /> falls with the **square of the voltage**.
 
 <MathVisual
   title={<>Power Lost in a Cable against Transmission Voltage</>}
+  footer={<>Raising voltage tenfold cuts cable heat loss to one hundredth.</>}
   description={
     <>
-      The current is <InlineMath math="I = \dfrac{100}{V}\text{ A}" /> with{" "}
-      <InlineMath math="V" /> in kilovolts, so the loss is{" "}
-      <InlineMath math="I^2R = \dfrac{20}{V^2}\text{ kW}" />. At{" "}
-      <InlineMath math="1\text{ kV}" />, <InlineMath math="20\text{ kW}" /> is lost.
-      At <InlineMath math="10\text{ kV}" />, only <InlineMath math="0.2\text{ kW}" />.
+      Sending <InlineMath math="100\text{ kW}" /> over a{" "}
+      <InlineMath math="2\ \Omega" /> cable drops losses from{" "}
+      <InlineMath math="20\text{ kW}" /> at <InlineMath math="1\text{ kV}" />{" "}
+      to <InlineMath math="0.2\text{ kW}" /> at <InlineMath math="10\text{ kV}" />.
     </>
   }
   scene={{
@@ -208,49 +258,4 @@ Change the transmission voltage below for <InlineMath math="100\text{ kW}" /> se
   }}
 />
 
-Check two readings: at <InlineMath math="1\text{ kV}" />, <InlineMath math="I = 100\text{ A}" /> and the loss is <InlineMath math="100^2 \times 2 = 20\,000\text{ W}" />. At <InlineMath math="10\text{ kV}" />, <InlineMath math="I = 10\text{ A}" /> and the loss is <InlineMath math="10^2 \times 2 = 200\text{ W}" />, a hundred times smaller.
-
-## Common Mistakes about Electromagnetism
-
-| Mistake | Why it's wrong | How to check |
-| :--- | :--- | :--- |
-| Fleming's right-hand rule is used for a motor. | A motor uses the left-hand rule. The right-hand rule is for generators and induction. | Ask whether the current is supplied or induced. |
-| A transformer can step up a direct current voltage. | Direct current makes no changing flux, so no e.m.f. is induced in the secondary coil. | A transformer works only with alternating current. |
-| A step-up transformer increases the power. | For an ideal transformer, <InlineMath math="V_pI_p = V_sI_s" />. The voltage goes up but the current comes down. | The output power can't exceed the input power. |
-| The induced current helps the magnet move into the coil. | Lenz's law: the induced current opposes the change, so the magnet is pushed back. | If the current helped, energy would appear without work. |
-| A high voltage in the cables increases the energy lost. | For the same power, a high voltage means a small current, and the loss is <InlineMath math="I^2R" />. | Compare <InlineMath math="I^2R" /> at two voltages. |
-
-The first mistake comes up most often. Here's an easy way to remember: **motors use the left hand, generators use the right hand**.
-
-## Practice on Electromagnetism
-
-These questions move from motors to induction and transformers. **Write the equation before you substitute numbers** so the turns ratio doesn't get flipped.
-
-1. State two ways to make a direct current motor turn faster.
-
-2. The north pole of a magnet is pushed into a coil connected to a galvanometer. State the pole at the end of the coil nearest the magnet and explain why.
-
-3. A step-down transformer changes <InlineMath math="240\text{ V}" /> to <InlineMath math="6\text{ V}" />. Its primary coil has <InlineMath math="2000" /> turns. Calculate the number of secondary turns.
-
-4. A transformer has <InlineMath math="V_p = 240\text{ V}" />, <InlineMath math="I_p = 0.50\text{ A}" />, <InlineMath math="V_s = 12\text{ V}" /> and <InlineMath math="I_s = 9.0\text{ A}" />. Calculate its efficiency.
-
-### Solutions
-
-**Solution 1**: The force on each side of the coil is <InlineMath math="F = BIL" />, so increase the **current** in the coil or use a **stronger magnet**. Adding **more turns** to the coil also increases the force, because more wire sits in the field.
-
-**Solution 2**: The near end of the coil becomes a **north pole**. By Lenz's law, the induced current opposes the change that produces it, which is the approaching magnet. The coil's north pole repels the magnet's north pole, so work has to be done to push the magnet in.
-
-**Solution 3**: Rearrange the transformer ratio:
-
-<BlockMath math="N_s = N_p \times \frac{V_s}{V_p} = 2000 \times \frac{6}{240} = 50\text{ turns}" />
-
-Check: the ratio <InlineMath math="\dfrac{50}{2000} = \dfrac{1}{40}" /> equals <InlineMath math="\dfrac{6}{240}" />.
-
-**Solution 4**: Work out the input and output power:
-
-<MathContainer>
-<BlockMath math="P_{\text{input}} = 240 \times 0.50 = 120\text{ W}, \quad P_{\text{output}} = 12 \times 9.0 = 108\text{ W}" />
-<BlockMath math="\text{Efficiency} = \frac{108}{120} \times 100\% = 90\%" />
-</MathContainer>
-
-Check: the missing <InlineMath math="12\text{ W}" /> becomes heat in the coils and core, so the efficiency must be below <InlineMath math="100\%" />.
+Quick self-checks: stepping <InlineMath math="240\text{ V}" /> (<InlineMath math="2000" /> primary turns) down to <InlineMath math="6\text{ V}" /> requires <InlineMath math="50" /> secondary turns, and a transformer taking <InlineMath math="120\text{ W}" /> to deliver <InlineMath math="108\text{ W}" /> runs at <InlineMath math="90\%" /> efficiency.
