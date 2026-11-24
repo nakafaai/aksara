@@ -1,26 +1,44 @@
 export const metadata = {
   title: "Peristiwa Tak Bersandar dan Peristiwa Bersandar",
-  description: "Kalau A tidak mengubah peluang B, P(A ∩ B) = P(A) × P(B). Kalau A mengubahnya, darabkan dengan kebarangkalian B selepas A. Belajar melalui gambar rajah pokok, contoh, dan latihan.",
+  description:
+    "Bezakan peristiwa tak bersandar dan bersandar, kira kebarangkalian gabungan dengan gambar rajah pokok, dan uji dengan dadu serta guli.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-11-17",
   subject: "Kebarangkalian",
 };
 
-## Kebarangkalian A dan B Berlaku Bersama
+## Bila Kebarangkalian Kekal
 
-Dua peristiwa adalah **tak bersandar** apabila berlakunya <InlineMath math="A" /> tidak mengubah kebarangkalian <InlineMath math="B" />. Untuk peristiwa tak bersandar, kebarangkalian kedua-duanya berlaku ialah hasil darab kebarangkaliannya:
+Bayangkan kamu melambung sekeping duit syiling, kemudian melambung sebiji dadu. Duit syiling tidak dapat berbisik kepada dadu, jadi hasil duit syiling tidak pernah mengubah kebarangkalian dadu. Sebaliknya, jika kamu mengambil sebiji gula-gula daripada balang lalu memakannya, isi balang berubah untuk cabutan seterusnya.
+
+Dua peristiwa ialah **peristiwa tak bersandar** apabila berlakunya <InlineMath math="A" /> tidak mengubah kebarangkalian <InlineMath math="B" />. Kebarangkalian kedua-duanya berlaku ialah hasil darab kebarangkalian masing-masing:
 
 <BlockMath math="P(A \cap B) = P(A) \times P(B)" />
 
-Dua peristiwa adalah **bersandar** apabila berlakunya <InlineMath math="A" /> mengubah kebarangkalian <InlineMath math="B" />. Kamu masih mendarab, tetapi faktor kedua ialah kebarangkalian <InlineMath math="B" /> **selepas** <InlineMath math="A" /> berlaku, ditulis <InlineMath math="P(B \mid A)" />:
+Dua peristiwa ialah **peristiwa bersandar** apabila berlakunya <InlineMath math="A" /> mengubah kebarangkalian <InlineMath math="B" />. Kamu tetap mendarab, tetapi faktor kedua memakai **kebarangkalian <InlineMath math="B" /> selepas <InlineMath math="A" /> berlaku**, ditulis <InlineMath math="P(B \mid A)" />:
 
 <BlockMath math="P(A \cap B) = P(A) \times P(B \mid A)" />
 
-Bagi peristiwa tak bersandar, <InlineMath math="P(B \mid A) = P(B)" />, jadi rumus kedua menjadi rumus pertama. Contohnya, satu duit syiling dan satu dadu dilambung. Mendapat kepala tidak mengubah peluang dadu menunjukkan <InlineMath math="6" />, jadi <InlineMath math="P(\text{kepala dan } 6) = \frac{1}{2} \times \frac{1}{6} = \frac{1}{12}" />. Semak dengan menyenaraikan: ada <InlineMath math="2 \times 6 = 12" /> kesudahan yang sama boleh jadi, dan hanya satu daripadanya ialah kepala dan <InlineMath math="6" />.
+> Dua peristiwa hanya tak bersandar apabila kesudahan percubaan pertama tidak mengubah isi ruang sampel bagi percubaan kedua.
+
+Bagi peristiwa tak bersandar, <InlineMath math="P(B \mid A)" /> sama dengan <InlineMath math="P(B)" />, jadi rumus kedua ringkas menjadi rumus pertama. Rajah luas di bawah menunjukkan sebab pendaraban berfungsi bagi peristiwa tak bersandar.
 
 <MathVisual
-  title={<>Hasil darab sebagai luas</>}
-  description={<>Segi empat sama bersisi <InlineMath math="1" /> mewakili ruang sampel. Jalur menegak ialah <InlineMath math="P(A) = 0.6" />, jalur mendatar ialah <InlineMath math="P(B) = 0.5" />, dan pertindihannya berluas <InlineMath math="0.6 \times 0.5 = 0.3" />.</>}
+  title={<>Hasil Darab Kebarangkalian sebagai Luas</>}
+  description={
+    <>
+      Segi empat sama bersisi <InlineMath math="1" /> mewakili seluruh ruang
+      sampel. Jalur menegak ialah <InlineMath math="P(A) = 0.6" />, jalur
+      mendatar ialah <InlineMath math="P(B) = 0.5" />, dan pertindihannya
+      berluas <InlineMath math="0.3" />.
+    </>
+  }
+  footer={
+    <>
+      Di dalam jalur <InlineMath math="A" />, bahagian <InlineMath math="B" />{" "}
+      kekal separuh, sama seperti dalam seluruh segi empat sama.
+    </>
+  }
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: -0.2, max: 1.2 }, y: { min: -0.2, max: 1.2 } },
@@ -44,39 +62,159 @@ Bagi peristiwa tak bersandar, <InlineMath math="P(B \mid A) = P(B)" />, jadi rum
   }}
 />
 
-Gambar luas itu menunjukkan maksud tak bersandar. Di dalam jalur <InlineMath math="A" />, bahagian <InlineMath math="B" /> tetap separuh, sama seperti dalam seluruh segi empat sama. Jadi mengetahui <InlineMath math="A" /> berlaku tidak mengubah peluang <InlineMath math="B" />.
+Perhatikan nisbah tinggi di dalam jalur <InlineMath math="A" />. Mengetahui bahawa <InlineMath math="A" /> sudah berlaku tidak mengubah bahagian <InlineMath math="B" />, jadi **kebarangkalian persilangan <InlineMath math="A \cap B" />** tepat sama dengan luas segi empat tepat <InlineMath math="0.6 \times 0.5" />.
 
-## Mengenal Pasti Peristiwa Bersandar
+## Menguji Dua Percubaan
 
-Semak sama ada **kesudahan pertama mengubah ruang sampel** bagi kejadian kedua. Kalau ya, peristiwa itu bersandar.
+Untuk menentukan sama ada dua peristiwa tak bersandar, semak sama ada **kesudahan pertama mengubah kebarangkalian kesudahan kedua**. Kita uji petua ini pada lambungan dadu dan bezakannya daripada perangkap saling eksklusif.
+
+### Dadu Tiada Ingatan
+
+Apabila kamu melambung dua biji dadu, dadu pertama tidak mempengaruhi dadu kedua. Kebarangkalian kedua-duanya mendapat mata <InlineMath math="6" /> dengan hasil tambah <InlineMath math="12" /> dikira terus melalui pendaraban:
+
+<BlockMath math="P(6 \text{ dan } 6) = \frac{1}{6} \times \frac{1}{6} = \frac{1}{36}" />
+
+Cuba lambung dua dadu tiga ratus kali dalam dulang berikut dan perhatikan sama ada **kekerapan hasil tambah <InlineMath math="12" />** menghampiri nilai teorinya.
+
+<DiceRollLab
+  title={<>Melambung Dua Dadu Ratusan Kali</>}
+  description={
+    <>
+      Dua biji dadu dilambung bersama sebanyak tiga ratus kali. Timbunan pada
+      hasil tambah <InlineMath math="12" /> menandakan kes kedua-dua dadu
+      menunjukkan <InlineMath math="6" />.
+    </>
+  }
+  footer={
+    <>
+      Hanya pasangan <InlineMath math="(6, 6)" /> memberi hasil tambah{" "}
+      <InlineMath math="12" />, jadi kebarangkaliannya{" "}
+      <InlineMath math="\frac{1}{36}" />.
+    </>
+  }
+  dice={2}
+  target={12}
+  labels={{
+    frequency: <>Kekerapan relatif</>,
+    hits: <>Hasil tambah <InlineMath math="12" /></>,
+    probability: <>Kebarangkalian teori</>,
+    trials: <>Bilangan lambungan</>,
+    viewLabel: "Dulang kain felt dengan dua biji dadu dan timbunan cip bagi setiap hasil tambah",
+  }}
+/>
+
+Kekerapan eksperimen sentiasa berlegar sekitar <InlineMath math="\frac{1}{36}" />, kerana daripada <InlineMath math="36" /> pasangan mata dadu yang sama mungkin, hanya <InlineMath math="(6, 6)" /> memberi jumlah <InlineMath math="12" />.
+
+Sekarang bandingkan dengan satu lambungan dadu sahaja. Katakan <InlineMath math="A" /> ialah peristiwa mendapat nombor genap dan <InlineMath math="B" /> ialah peristiwa mendapat nombor lebih besar daripada <InlineMath math="3" />. Persilangannya ialah <InlineMath math="\{4, 6\}" />, jadi bandingkan dua nilai ini:
+
+<MathContainer>
+  <BlockMath math="P(A \cap B) = \frac{2}{6} = \frac{1}{3}" />
+  <BlockMath math="P(A) \times P(B) = \frac{3}{6} \times \frac{3}{6} = \frac{1}{4}" />
+</MathContainer>
+
+Oleh sebab <InlineMath math="\frac{1}{3}" /> tidak sama dengan <InlineMath math="\frac{1}{4}" />, kedua-duanya ialah **peristiwa bersandar**. Semak maksudnya: apabila tahu hasilnya genap, ruang sampel mengecil menjadi <InlineMath math="\{2, 4, 6\}" />, jadi <InlineMath math="P(B \mid A)" /> meningkat kepada <InlineMath math="\frac{2}{3}" />.
+
+### Beza Saling Eksklusif
+
+Ramai menyangka peristiwa tak bersandar sama dengan [peristiwa saling eksklusif](/ms/subjek/matematik/kebarangkalian/peristiwa-saling-eksklusif), sedangkan maksudnya bertentangan. Jika dua peristiwa saling eksklusif dan kebarangkalian kedua-duanya melebihi <InlineMath math="0" />, berlakunya <InlineMath math="A" /> menjadikan **kebarangkalian <InlineMath math="B" /> terus jatuh kepada sifar**.
+
+<BlockMath math="P(A \cap B) = 0 \neq P(A) \times P(B)" />
+
+Oleh sebab hasil darabnya positif sedangkan persilangannya sifar, dua peristiwa saling eksklusif begini sentiasa bersandar. Bandingkan empat situasi berikut sebelum memilih rumus.
 
 | Situasi | Jenis | Sebab |
-| --- | --- | --- |
-| Lambung duit syiling dua kali | Tak bersandar | Duit syiling tidak mengingati lambungan pertama |
-| Cabut dua biji guli **dengan** pengembalian | Tak bersandar | Guli pertama dimasukkan semula, jadi isi beg sama |
-| Cabut dua biji guli **tanpa** pengembalian | Bersandar | Beg kehilangan satu guli, jadi pecahan berubah |
-| Pilih dua orang murid untuk dua jawatan berbeza | Bersandar | Murid yang dipilih dahulu tidak boleh dipilih lagi |
+| :--- | :--- | :--- |
+| Melambung duit syiling dua kali | Tak bersandar | Duit syiling tidak mengingati lambungan pertama |
+| Mencabut dua biji guli dengan pengembalian | Tak bersandar | Guli pertama dimasukkan semula, jadi isi beg kekal |
+| Mencabut dua biji guli tanpa pengembalian | Bersandar | Beg kehilangan sebiji guli, jadi pecahan berubah |
+| Memilih dua murid untuk dua jawatan berbeza | Bersandar | Murid yang dipilih dahulu tidak boleh dipilih lagi |
+
+Carta alir berikut meringkaskan keputusan yang kamu buat sebelum mengira kebarangkalian gabungan.
 
 <Mermaid
-  title={<>Memilih rumus bagi P(A dan B)</>}
-  description={<>Tentukan sama ada kesudahan pertama mengubah peluang kesudahan kedua.</>}
+  title={<>Memilih Rumus Kebarangkalian Gabungan</>}
+  description={
+    <>
+      Semak sama ada kesudahan pertama mengubah ruang sampel sebelum mendarab
+      kebarangkalian.
+    </>
+  }
+  footer={
+    <>
+      Tak bersandar memakai nilai asal, bersandar memakai nilai selepas peristiwa
+      pertama.
+    </>
+  }
   chart={`flowchart TD
-  A["Tulis peristiwa A dan B"] --> B{"Adakah A mengubah peluang B?"}
+  A["Tulis peristiwa A dan B"] --> B{"Adakah A mengubah kebarangkalian B?"}
   B -->|"tidak, tak bersandar"| C["P(A) x P(B)"]
   B -->|"ya, bersandar"| D["P(A) x P(B selepas A)"]
-  C --> E["Semak: jumlah semua cabang pokok ialah 1"]
+  C --> E["Semak: jumlah semua laluan pokok ialah 1"]
   D --> E`}
 />
 
-Peristiwa tak bersandar **bukan** perkara yang sama dengan [peristiwa saling eksklusif](/ms/subjek/matematik/kebarangkalian/peristiwa-saling-eksklusif). Kalau <InlineMath math="A" /> dan <InlineMath math="B" /> saling eksklusif dan kedua-duanya mempunyai kebarangkalian lebih besar daripada <InlineMath math="0" />, maka <InlineMath math="P(A \cap B) = 0" />, tetapi <InlineMath math="P(A) \times P(B) > 0" />. Jadi peristiwa saling eksklusif sebegitu sentiasa bersandar: apabila <InlineMath math="A" /> berlaku, peluang <InlineMath math="B" /> jatuh kepada <InlineMath math="0" />.
+Langkah semakan pada bahagian bawah carta alir itu menyelamatkan kamu daripada kesilapan kiraan. Jika **jumlah semua laluan pokok** bukan <InlineMath math="1" />, pasti ada satu cabang yang pecahannya tersilap.
 
-## Gambar Rajah Pokok dengan Pengembalian
+## Guli di Dalam Beg
 
-Sebuah beg mengandungi <InlineMath math="3" /> biji guli merah <InlineMath math="(M)" /> dan <InlineMath math="2" /> biji guli hijau <InlineMath math="(H)" />. Sebiji guli dicabut, warnanya dicatat, dan guli itu **dimasukkan semula** sebelum cabutan kedua. Setiap cabang pokok membawa kebarangkalian yang sama pada kedua-dua peringkat.
+Ambil sebuah balang berisi <InlineMath math="3" /> biji guli merah dan <InlineMath math="2" /> biji guli hijau, lalu cabut dua biji guli berturut-turut. Dalam makmal di bawah, tukar aturan antara **dikembalikan** dan **disimpan di luar** untuk melihat perubahan kebarangkalian dua guli merah.
+
+<MarbleDrawLab
+  title={<>Dua Cabutan Guli daripada Balang</>}
+  description={
+    <>
+      Bandingkan cabutan dengan pengembalian dan tanpa pengembalian daripada
+      balang <InlineMath math="3" /> merah dan <InlineMath math="2" /> hijau
+      selama seribu percubaan.
+    </>
+  }
+  footer={
+    <>
+      Apabila guli pertama tidak dikembalikan, kebarangkalian dua merah turun
+      dari <InlineMath math="0.36" /> ke <InlineMath math="0.3" />.
+    </>
+  }
+  marbles={[
+    { color: "red", count: 3 },
+    { color: "green", count: 2 },
+  ]}
+  rule="keep"
+  event={{ first: "red", second: "red" }}
+  labels={{
+    both: <>Kebarangkalian dua merah</>,
+    first: <>Cabutan pertama</>,
+    frequency: <>Kekerapan seribu percubaan</>,
+    rule: "Aturan cabutan",
+    rules: {
+      keep: "Tanpa pengembalian",
+      replace: "Dengan pengembalian",
+    },
+    second: <>Cabutan kedua</>,
+    trials: <>Bilangan percubaan</>,
+    viewLabel: "Balang berisi tiga guli merah dan dua hijau bersama papan catatan percubaan",
+  }}
+/>
+
+Perbezaan dua nilai itu datang terus daripada isi balang pada cabutan kedua. Kita jejak kedua-dua kes pada gambar rajah pokok supaya setiap laluan jelas dibaca.
+
+### Pokok Pengembalian
+
+Apabila guli pertama dicatat warnanya lalu **dimasukkan semula**, balang tetap mengandungi <InlineMath math="3" /> merah <InlineMath math="(M)" /> dan <InlineMath math="2" /> hijau <InlineMath math="(H)" />. Oleh itu, setiap cabang peringkat kedua membawa pecahan yang sama tepat seperti peringkat pertama.
 
 <MathVisual
-  title={<>Dua cabutan dengan pengembalian</>}
-  description={<>Cabang merah sentiasa <InlineMath math="\frac{3}{5}" /> dan cabang hijau sentiasa <InlineMath math="\frac{2}{5}" />. Kebarangkalian setiap kesudahan ialah hasil darab cabang di sepanjang laluannya.</>}
+  title={<>Gambar Rajah Pokok dengan Pengembalian</>}
+  description={
+    <>
+      Cabang merah sentiasa <InlineMath math="\frac{3}{5}" /> dan cabang hijau
+      sentiasa <InlineMath math="\frac{2}{5}" />. Darabkan pecahan di sepanjang
+      laluan untuk kebarangkalian setiap kesudahan.
+    </>
+  }
+  footer={
+    <>
+      Pecahan peringkat kedua kekal sama kerana isi balang tidak berkurang.
+    </>
+  }
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: 0, max: 10 }, y: { min: 0, max: 6 } },
@@ -123,15 +261,34 @@ Sebuah beg mengandungi <InlineMath math="3" /> biji guli merah <InlineMath math=
   }}
 />
 
-Kebarangkalian kedua-dua guli merah ialah <InlineMath math="\frac{3}{5} \times \frac{3}{5} = \frac{9}{25}" />. Semak: empat kesudahan menjumlah <InlineMath math="\frac{9 + 6 + 6 + 4}{25} = 1" />.
+Darabkan cabang atas untuk dua merah, kemudian semak jumlah keempat-empat laluan:
 
-## Gambar Rajah Pokok tanpa Pengembalian
+<MathContainer>
+  <BlockMath math="P(MM) = \frac{3}{5} \times \frac{3}{5} = \frac{9}{25} = 0.36" />
+  <BlockMath math="\frac{9 + 6 + 6 + 4}{25} = \frac{25}{25} = 1" />
+</MathContainer>
 
-Sekarang guli pertama **tidak** dimasukkan semula. Selepas cabutan pertama, beg tinggal <InlineMath math="4" /> biji guli, dan isinya bergantung pada warna yang dicabut. Itulah sebabnya cabang peringkat kedua berubah.
+Jumlah keempat-empat laluannya tepat <InlineMath math="1" />, jadi tiada kesudahan yang tercicir.
+
+### Pokok Tanpa Kembali
+
+Sekarang guli pertama **tidak dikembalikan**. Hanya <InlineMath math="4" /> biji guli tinggal di dalam balang, jadi semua penyebut peringkat kedua turun kepada <InlineMath math="4" /> dan pengangka mengikut warna yang sudah keluar.
 
 <MathVisual
-  title={<>Dua cabutan tanpa pengembalian</>}
-  description={<>Selepas guli merah dicabut, beg ada <InlineMath math="2" /> merah dan <InlineMath math="2" /> hijau. Selepas guli hijau dicabut, beg ada <InlineMath math="3" /> merah dan <InlineMath math="1" /> hijau.</>}
+  title={<>Gambar Rajah Pokok tanpa Pengembalian</>}
+  description={
+    <>
+      Selepas guli merah dicabut, baki balang ialah <InlineMath math="2" />{" "}
+      merah dan <InlineMath math="2" /> hijau. Selepas guli hijau dicabut,
+      bakinya <InlineMath math="3" /> merah dan <InlineMath math="1" /> hijau.
+    </>
+  }
+  footer={
+    <>
+      Penyebut peringkat kedua turun ke <InlineMath math="4" /> selepas sebiji
+      guli dikeluarkan.
+    </>
+  }
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: 0, max: 10 }, y: { min: 0, max: 6 } },
@@ -178,11 +335,30 @@ Sekarang guli pertama **tidak** dimasukkan semula. Selepas cabutan pertama, beg 
   }}
 />
 
-Kebarangkalian kedua-dua guli merah kini <InlineMath math="\frac{3}{5} \times \frac{2}{4} = \frac{6}{20} = \frac{3}{10}" />, lebih kecil daripada <InlineMath math="\frac{9}{25}" />, kerana cabutan merah pertama mengurangkan guli merah dalam beg. Semak: <InlineMath math="\frac{6 + 6 + 6 + 2}{20} = 1" />.
+Kebarangkalian dua merah kini menyusut kerana sebiji guli merah sudah keluar pada cabutan pertama, manakala jumlah semua laluannya tetap <InlineMath math="1" />:
+
+<MathContainer>
+  <BlockMath math="P(MM) = \frac{3}{5} \times \frac{2}{4} = \frac{6}{20} = \frac{3}{10} = 0.3" />
+  <BlockMath math="\frac{6 + 6 + 6 + 2}{20} = \frac{20}{20} = 1" />
+</MathContainer>
+
+Carta palang di bawah membandingkan keempat-empat kebarangkalian kesudahan tanpa pengembalian secara bersebelahan.
 
 <BarChart
-  title={<>Taburan kesudahan tanpa pengembalian</>}
-  description={<>Kebarangkalian empat kesudahan dua cabutan daripada beg <InlineMath math="3" /> merah dan <InlineMath math="2" /> hijau. Batang-batangnya menjumlah <InlineMath math="1" />.</>}
+  title={<>Taburan Kesudahan tanpa Pengembalian</>}
+  description={
+    <>
+      Kebarangkalian empat pasangan warna daripada dua cabutan tanpa
+      pengembalian bagi balang <InlineMath math="3" /> merah dan{" "}
+      <InlineMath math="2" /> hijau.
+    </>
+  }
+  footer={
+    <>
+      Tiga pasangan pertama sama tinggi pada <InlineMath math="0.3" />, manakala{" "}
+      <InlineMath math="HH" /> terendah pada <InlineMath math="0.1" />.
+    </>
+  }
   data={[
     { name: "MM", value: 0.3 },
     { name: "MH", value: 0.3 },
@@ -190,16 +366,39 @@ Kebarangkalian kedua-dua guli merah kini <InlineMath math="\frac{3}{5} \times \f
     { name: "HH", value: 0.1 },
   ]}
   yAxisLabel="Kebarangkalian"
-  chartConfig={{ value: { label: "Kebarangkalian", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
+  chartConfig={{
+    value: {
+      label: "Kebarangkalian",
+      colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] },
+    },
+  }}
 />
 
-## Bila Bersandar Hampir Menjadi Tak Bersandar
+Perhatikan bahawa kebarangkalian mendapat **dua warna berlainan** ialah hasil tambah laluan <InlineMath math="MH" /> dan <InlineMath math="HM" />, iaitu <InlineMath math="0.6" />. Laluan berlainan tidak boleh berlaku serentak, jadi nilainya ditambah, bukan didarab.
 
-Model di bawah membandingkan kebarangkalian dua guli merah apabila pecahan guli merah dalam beg ialah <InlineMath math="x" />. Dengan pengembalian, nilainya <InlineMath math="x^2" />. Tanpa pengembalian daripada beg <InlineMath math="n" /> biji guli, nilainya <InlineMath math="x \times \frac{nx - 1}{n - 1}" />. Gerakkan <InlineMath math="n" /> dan lihat lengkung tanpa pengembalian **merapati** lengkung dengan pengembalian apabila beg makin besar.
+## Beg Besar dan Papan Pin
+
+Andaikan pecahan guli merah dalam beg berisi <InlineMath math="n" /> biji guli ialah <InlineMath math="x" />. Dengan pengembalian kebarangkalian dua merah ialah <InlineMath math="x^2" />, manakala tanpa pengembalian nilainya mengikut rumus ini:
+
+<BlockMath math="P(\text{dua merah tanpa pengembalian}) = x \times \frac{nx - 1}{n - 1}" />
+
+Gerakkan nilai <InlineMath math="n" /> pada graf berikut dan lihat **lengkung tanpa pengembalian merapati <InlineMath math="x^2" />** apabila isi beg semakin besar.
 
 <MathVisual
-  title={<>Dua guli merah, dengan dan tanpa pengembalian</>}
-  description={<>Paksi mendatar ialah pecahan guli merah dalam beg dan paksi menegak ialah kebarangkalian dua guli merah. Penanda menunjukkan beg yang mengandungi <InlineMath math="r" /> biji guli merah.</>}
+  title={<>Dua Guli Merah dengan dan tanpa Pengembalian</>}
+  description={
+    <>
+      Paksi mengufuk ialah pecahan guli merah dalam beg dan paksi mencancang
+      ialah kebarangkalian dua merah. Penanda menunjukkan beg berisi{" "}
+      <InlineMath math="r" /> merah daripada <InlineMath math="n" /> guli.
+    </>
+  }
+  footer={
+    <>
+      Semakin besar <InlineMath math="n" />, semakin kecil jurang antara
+      kedua-dua lengkung.
+    </>
+  }
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: 0, max: 1 }, y: { min: 0, max: 1 } },
@@ -226,11 +425,44 @@ Model di bawah membandingkan kebarangkalian dua guli merah apabila pecahan guli 
   }}
 />
 
-Dengan <InlineMath math="n = 5" /> dan <InlineMath math="r = 3" />, bacaan ialah <InlineMath math="0.36" /> dan <InlineMath math="0.3" />, iaitu <InlineMath math="\frac{9}{25}" /> dan <InlineMath math="\frac{3}{10}" /> daripada pokok tadi. Dengan <InlineMath math="n = 40" /> dan <InlineMath math="r = 24" />, pecahannya masih <InlineMath math="\frac{3}{5}" />, tetapi bacaan tanpa pengembalian naik kepada <InlineMath math="\frac{24}{40} \times \frac{23}{39} \approx 0.354" />, hampir <InlineMath math="0.36" />. Satu cabutan hanya mengubah beg besar sedikit sahaja.
+Pada <InlineMath math="n = 5" /> dan <InlineMath math="r = 3" />, kedua-dua bacaan berjarak ketara pada <InlineMath math="0.36" /> dan <InlineMath math="0.3" />. Pada <InlineMath math="n = 40" /> dan <InlineMath math="r = 24" />, pecahannya tetap <InlineMath math="\frac{3}{5}" />, tetapi kebarangkalian tanpa pengembalian naik menghampiri <InlineMath math="0.36" />:
 
-## Contoh Dua Mesin yang Tak Bersandar
+<BlockMath math="\frac{24}{40} \times \frac{23}{39} \approx 0.354" />
 
-Sebuah kilang mempunyai dua mesin yang rosak secara tak bersandar. Kebarangkalian mesin <InlineMath math="A" /> berfungsi pada satu hari ialah <InlineMath math="0.9" />, dan mesin <InlineMath math="B" /> ialah <InlineMath math="0.8" />. Cari kebarangkalian **kedua-dua** mesin berfungsi, dan kebarangkalian **sekurang-kurangnya satu** mesin berfungsi.
+Mengeluarkan sebiji guli hampir tidak mengubah beg yang besar, jadi kedua-dua lengkung hampir bertindih.
+
+Apabila setiap langkah **tak bersandar secara berurutan**, kebarangkalian sebarang laluan panjang diperoleh dengan mendarab langkah demi langkah. Pada papan Galton berikut, setiap bola melantun ke kiri atau ke kanan pada tiap baris pin tanpa mengingati lantunan sebelumnya.
+
+<GaltonBoardLab
+  title={<>Bola Melantun melalui Enam Baris Pin</>}
+  description={
+    <>
+      Tiga ratus bola jatuh melalui enam baris pin dengan kebarangkalian belok
+      kanan yang sama pada setiap pin. Tanda pada kaca menunjukkan taburan
+      ramalan langkah tak bersandar.
+    </>
+  }
+  footer={
+    <>
+      Setiap lantunan pin tak bersandar, jadi paling banyak bola terkumpul di
+      petak tengah.
+    </>
+  }
+  rows={6}
+  probability={0.5}
+  showExpected
+  labels={{
+    balls: <>Bilangan bola</>,
+    expected: <>Jangkaan teori</>,
+    mean: <>Min petak</>,
+    rows: "Baris pin",
+    spread: <>Sisihan piawai</>,
+    tilt: "Kebarangkalian ke kanan",
+    viewLabel: "Papan Galton kayu dengan enam baris pin dan petak pengumpul bola di bawah",
+  }}
+/>
+
+Petua yang sama terpakai pada dua mesin kilang yang rosak secara tak bersandar. Andaikan mesin <InlineMath math="A" /> berfungsi dengan kebarangkalian <InlineMath math="0.9" /> dan mesin <InlineMath math="B" /> ialah <InlineMath math="0.8" />. Bagi **sekurang-kurangnya satu mesin berfungsi**, kaedah pelengkap paling pantas:
 
 <MathContainer>
   <BlockMath math="P(A \cap B) = 0.9 \times 0.8 = 0.72" />
@@ -238,78 +470,52 @@ Sebuah kilang mempunyai dua mesin yang rosak secara tak bersandar. Kebarangkalia
   <BlockMath math="P(\text{sekurang-kurangnya satu berfungsi}) = 1 - 0.02 = 0.98" />
 </MathContainer>
 
-Semak dengan tiga kes yang ada sekurang-kurangnya satu mesin berfungsi: <InlineMath math="0.9 \times 0.8 + 0.9 \times 0.2 + 0.1 \times 0.8 = 0.72 + 0.18 + 0.08 = 0.98" />.
+Semak nilai <InlineMath math="0.98" /> dengan menjumlahkan tiga kes berasingan apabila sekurang-kurangnya satu mesin beroperasi:
 
-## Contoh Menguji Sama Ada Dua Peristiwa Tak Bersandar
+<BlockMath math="0.9 \times 0.8 + 0.9 \times 0.2 + 0.1 \times 0.8 = 0.72 + 0.18 + 0.08 = 0.98" />
 
-Sebiji dadu dilambung sekali. <InlineMath math="A" /> ialah peristiwa mendapat nombor genap dan <InlineMath math="B" /> ialah peristiwa mendapat nombor lebih besar daripada <InlineMath math="3" />. Adakah <InlineMath math="A" /> dan <InlineMath math="B" /> tak bersandar?
+Kedua-dua cara memberi jawapan yang sama tepat, dan pelengkap mengelakkan kamu daripada tertinggal kes.
 
-Bandingkan <InlineMath math="P(A \cap B)" /> dengan <InlineMath math="P(A) \times P(B)" />. Persilangannya <InlineMath math="\{4, 6\}" />:
+## Uji Strategi Gabungan
 
-<MathContainer>
-  <BlockMath math="P(A \cap B) = \frac{2}{6} = \frac{1}{3}" />
-  <BlockMath math="P(A) \times P(B) = \frac{3}{6} \times \frac{3}{6} = \frac{1}{4}" />
-</MathContainer>
+Sebelum menjawab tiga soalan ini, semak dahulu **sama ada ruang sampel berubah** pada peringkat kedua. Jika tiada pengembalian, kurangkan penyebut sebanyak satu, kemudian sahkan jawapan dengan jumlah laluan atau pelengkap.
 
-Oleh sebab <InlineMath math="\frac{1}{3} \ne \frac{1}{4}" />, peristiwa itu **bersandar**. Semak dengan maksudnya: kalau keputusan sudah diketahui genap, pilihannya <InlineMath math="\{2, 4, 6\}" />, dan dua daripadanya lebih besar daripada <InlineMath math="3" />. Jadi <InlineMath math="P(B \mid A) = \frac{2}{3}" />, bukan <InlineMath math="P(B) = \frac{1}{2}" />.
+1. Sebuah kotak mengandungi <InlineMath math="4" /> keping kad biru dan <InlineMath math="6" /> keping kad kuning. Dua keping kad dicabut satu demi satu tanpa pengembalian. Cari kebarangkalian kedua-dua kad kuning dan kebarangkalian kedua-duanya berlainan warna.
 
-## Kesilapan Lazim
+2. Peristiwa <InlineMath math="A" /> dan <InlineMath math="B" /> adalah tak bersandar dengan <InlineMath math="P(A) = 0.3" /> dan <InlineMath math="P(B) = 0.6" />. Cari <InlineMath math="P(A \cap B)" /> dan <InlineMath math="P(A \cup B)" />.
 
-| Kesilapan | Sebab ia salah | Cara menyemak |
-| --- | --- | --- |
-| Menggunakan pecahan yang sama pada cabutan kedua tanpa pengembalian | Beg sudah kehilangan satu guli | Penyebut peringkat kedua mesti berkurang satu |
-| Menganggap saling eksklusif bermaksud tak bersandar | Saling eksklusif memberi <InlineMath math="P(A \cap B) = 0" />, bukan <InlineMath math="P(A)P(B)" /> | Bandingkan <InlineMath math="P(A \cap B)" /> dengan <InlineMath math="P(A) \times P(B)" /> |
-| Menambah kebarangkalian di sepanjang satu cabang | Satu laluan pokok bermaksud kedua-dua peristiwa berlaku, jadi kebarangkaliannya didarab | Hasil satu laluan tidak boleh melebihi cabang pertamanya |
-| Mendarab kebarangkalian dua laluan yang berlainan | Laluan berlainan tidak boleh berlaku serentak, jadi kebarangkaliannya ditambah | Jumlah semua laluan mestilah <InlineMath math="1" /> |
-| Mengira sekurang-kurangnya satu dengan menyenaraikan separuh kes sahaja | Kes yang tertinggal mudah terlepas | Gunakan pelengkap: <InlineMath math="1 - P(\text{tiada})" /> |
+3. Seorang pemanah mengena sasaran dengan kebarangkalian <InlineMath math="0.8" /> bagi setiap tembakan yang tak bersandar dan menembak tiga kali. Cari kebarangkalian ketiga-tiga tembakan mengena dan kebarangkalian sekurang-kurangnya satu tersasar.
 
-Semakan paling kuat ialah **menjumlahkan semua laluan pokok**. Kalau jumlahnya bukan <InlineMath math="1" />, ada cabang yang salah.
-
-## Soalan Latihan
-
-Tentukan dahulu sama ada peristiwa itu bersandar, kemudian **semak setiap jawapan dengan jumlah laluan atau pelengkap**.
-
-1. Dua biji dadu dilambung. Cari kebarangkalian kedua-dua dadu menunjukkan <InlineMath math="6" />.
-
-2. Sebuah kotak mengandungi <InlineMath math="4" /> keping kad biru dan <InlineMath math="6" /> keping kad kuning. Dua keping kad dicabut satu demi satu tanpa pengembalian. Cari kebarangkalian kedua-dua kad kuning, dan kebarangkalian kad itu berlainan warna.
-
-3. <InlineMath math="A" /> dan <InlineMath math="B" /> ialah peristiwa tak bersandar dengan <InlineMath math="P(A) = 0.3" /> dan <InlineMath math="P(B) = 0.6" />. Cari <InlineMath math="P(A \cap B)" /> dan <InlineMath math="P(A \cup B)" />.
-
-4. Seorang pemanah mengena sasaran dengan kebarangkalian <InlineMath math="0.8" /> bagi setiap tembakan, dan tembakannya tak bersandar. Dia menembak tiga kali. Cari kebarangkalian ketiga-tiga tembakan mengena, dan kebarangkalian sekurang-kurangnya satu tembakan tersasar.
-
-### Penyelesaian
-
-Hanya soalan 2 yang **bersandar**, kerana kadnya tidak dikembalikan. Tiga soalan lain melibatkan peristiwa tak bersandar.
-
-**Soalan 1**. Dua dadu itu tak bersandar:
-
-<BlockMath math="P(6 \text{ dan } 6) = \frac{1}{6} \times \frac{1}{6} = \frac{1}{36}" />
-
-Semak: daripada <InlineMath math="36" /> pasangan keputusan, hanya <InlineMath math="(6, 6)" /> yang memenuhi syarat.
-
-**Soalan 2**. Cabutan itu bersandar kerana kad pertama tidak dikembalikan:
+**Soalan 1**. Cabutan ini bersandar kerana kad pertama tidak dimasukkan semula, jadi jumlah kad turun dari <InlineMath math="10" /> menjadi <InlineMath math="9" />:
 
 <MathContainer>
   <BlockMath math="P(\text{kuning, kuning}) = \frac{6}{10} \times \frac{5}{9} = \frac{30}{90} = \frac{1}{3}" />
   <BlockMath math="P(\text{berlainan warna}) = \frac{4}{10} \times \frac{6}{9} + \frac{6}{10} \times \frac{4}{9} = \frac{48}{90} = \frac{8}{15}" />
 </MathContainer>
 
-Semak: <InlineMath math="P(\text{biru, biru}) = \frac{4}{10} \times \frac{3}{9} = \frac{12}{90}" />, dan <InlineMath math="\frac{30 + 48 + 12}{90} = 1" />.
+Semak menggunakan baki laluan, iaitu dua keping kad biru:
 
-**Soalan 3**. Darabkan untuk persilangan, kemudian guna [petua tambah](/ms/subjek/matematik/kebarangkalian/petua-tambah):
+<MathContainer>
+  <BlockMath math="P(\text{biru, biru}) = \frac{4}{10} \times \frac{3}{9} = \frac{12}{90}" />
+  <BlockMath math="\frac{30 + 48 + 12}{90} = \frac{90}{90} = 1" />
+</MathContainer>
+
+**Soalan 2**. Darabkan untuk persilangan, kemudian gunakan [petua tambah](/ms/subjek/matematik/kebarangkalian/petua-tambah) untuk kesatuan:
 
 <MathContainer>
   <BlockMath math="P(A \cap B) = 0.3 \times 0.6 = 0.18" />
   <BlockMath math="P(A \cup B) = 0.3 + 0.6 - 0.18 = 0.72" />
 </MathContainer>
 
-Semak dengan pelengkap: <InlineMath math="P(\text{bukan } A \text{ dan bukan } B) = 0.7 \times 0.4 = 0.28" />, dan <InlineMath math="1 - 0.28 = 0.72" />.
+Semak melalui pelengkap, iaitu apabila bukan <InlineMath math="A" /> dan bukan <InlineMath math="B" /> berlaku bersama:
 
-**Soalan 4**. Tiga tembakan tak bersandar:
+<BlockMath math="1 - (0.7 \times 0.4) = 1 - 0.28 = 0.72" />
+
+**Soalan 3**. Ketiga-tiga tembakan tak bersandar, jadi darab tiga kali untuk semua kena, kemudian gunakan pelengkap bagi sekurang-kurangnya satu tersasar:
 
 <MathContainer>
   <BlockMath math="P(\text{tiga kena}) = 0.8 \times 0.8 \times 0.8 = 0.512" />
   <BlockMath math="P(\text{sekurang-kurangnya satu tersasar}) = 1 - 0.512 = 0.488" />
 </MathContainer>
 
-Semak: dua peristiwa itu pelengkap antara satu sama lain, dan <InlineMath math="0.512 + 0.488 = 1" />.
+Semak semula: kedua-dua peristiwa saling melengkap dan jumlah <InlineMath math="0.512 + 0.488" /> tepat sama dengan <InlineMath math="1" />.
