@@ -1,0 +1,216 @@
+import { mathematicsStandards } from "#corpus/curriculum/kssm/documents";
+import { materialNode, unitNode } from "#corpus/curriculum/schema";
+
+/** KSSM Form 5 Mathematics chapters 5 to 8, in the order of their DSKP. */
+export const kssmForm5MathematicsGeometryNodes = [
+  unitNode({
+    children: [
+      materialNode({
+        key: "form-5-mathematics-congruency-enlargement-and-combined-transformations-geometric-transformation",
+        level: "lesson",
+        materialKeys: ["lesson.mathematics.geometric-transformation"],
+        order: 10,
+        outcomes: [
+          {
+            code: "Tingkatan 5, Standard Kandungan 5.2 dan 5.3",
+            ...mathematicsStandards,
+          },
+        ],
+      }),
+    ],
+    key: "form-5-mathematics-congruency-enlargement-and-combined-transformations",
+    materialCard: {
+      de: {
+        description: "Verschiebe, vergrößere und kombiniere Figuren.",
+        title: "Kongruenz, Streckung und verkettete Abbildungen",
+      },
+      en: {
+        description: "Move, enlarge and combine shapes on the plane.",
+        title: "Congruency, Enlargement and Combined Transformations",
+      },
+      id: {
+        description: "Geser, perbesar, dan gabungkan bangun pada bidang.",
+        title: "Kekongruenan, Dilatasi, dan Komposisi Transformasi",
+      },
+      ms: {
+        description: "Gerak, besarkan dan gabungkan bentuk pada satah.",
+        title: "Kekongruenan, Pembesaran dan Gabungan Transformasi",
+      },
+    },
+    order: 50,
+    translations: {
+      de: {
+        routeSlug: "kongruenz-streckung-und-verkettete-abbildungen",
+        title: "Kongruenz, Streckung und verkettete Abbildungen",
+      },
+      en: {
+        routeSlug: "congruency-enlargement-and-combined-transformations",
+        title: "Congruency, Enlargement and Combined Transformations",
+      },
+      id: {
+        routeSlug: "kekongruenan-dilatasi-dan-komposisi-transformasi",
+        title: "Kekongruenan, Dilatasi, dan Komposisi Transformasi",
+      },
+      ms: {
+        routeSlug: "kekongruenan-pembesaran-dan-gabungan-transformasi",
+        title: "Kekongruenan, Pembesaran dan Gabungan Transformasi",
+      },
+    },
+  }),
+  unitNode({
+    children: [
+      materialNode({
+        key: "form-5-mathematics-ratios-and-graphs-of-trigonometric-functions-trigonometric-function",
+        level: "lesson",
+        materialKeys: ["lesson.mathematics.trigonometric-function"],
+        order: 10,
+        outcomes: [
+          {
+            code: "Tingkatan 5, Standard Kandungan 6.1 hingga 6.2",
+            ...mathematicsStandards,
+          },
+        ],
+      }),
+    ],
+    key: "form-5-mathematics-ratios-and-graphs-of-trigonometric-functions",
+    materialCard: {
+      de: {
+        description: "Nutze Winkelfunktionen und zeichne ihre Graphen.",
+        title: "Verhältnisse und Graphen trigonometrischer Funktionen",
+      },
+      en: {
+        description: "Use trigonometric ratios and sketch their graphs.",
+        title: "Ratios and Graphs of Trigonometric Functions",
+      },
+      id: {
+        description: "Pakai perbandingan trigonometri dan gambar grafiknya.",
+        title: "Perbandingan dan Grafik Fungsi Trigonometri",
+      },
+      ms: {
+        description: "Guna nisbah trigonometri dan lakar grafnya.",
+        title: "Nisbah dan Graf Fungsi Trigonometri",
+      },
+    },
+    order: 60,
+    translations: {
+      de: {
+        routeSlug: "verhaeltnisse-und-graphen-trigonometrischer-funktionen",
+        title: "Verhältnisse und Graphen trigonometrischer Funktionen",
+      },
+      en: {
+        routeSlug: "ratios-and-graphs-of-trigonometric-functions",
+        title: "Ratios and Graphs of Trigonometric Functions",
+      },
+      id: {
+        routeSlug: "perbandingan-dan-grafik-fungsi-trigonometri",
+        title: "Perbandingan dan Grafik Fungsi Trigonometri",
+      },
+      ms: {
+        routeSlug: "nisbah-dan-graf-fungsi-trigonometri",
+        title: "Nisbah dan Graf Fungsi Trigonometri",
+      },
+    },
+  }),
+  unitNode({
+    children: [
+      materialNode({
+        key: "form-5-mathematics-measures-of-dispersion-for-grouped-data-statistics-foundations",
+        level: "lesson",
+        materialKeys: ["lesson.mathematics.statistics-foundations"],
+        order: 10,
+        outcomes: [
+          {
+            code: "Tingkatan 5, Standard Kandungan 7.1 hingga 7.2",
+            ...mathematicsStandards,
+          },
+        ],
+      }),
+    ],
+    key: "form-5-mathematics-measures-of-dispersion-for-grouped-data",
+    materialCard: {
+      de: {
+        description: "Miss, wie weit gruppierte Daten streuen.",
+        title: "Streuungsmaße für klassierte Daten",
+      },
+      en: {
+        description: "Measure how widely grouped data spread out.",
+        title: "Measures of Dispersion for Grouped Data",
+      },
+      id: {
+        description: "Ukur seberapa menyebar data berkelompok.",
+        title: "Ukuran Penyebaran Data Berkelompok",
+      },
+      ms: {
+        description: "Ukur sejauh mana data terkumpul tersebar.",
+        title: "Sukatan Serakan Data Terkumpul",
+      },
+    },
+    order: 70,
+    translations: {
+      de: {
+        routeSlug: "streuungsmasse-fuer-klassierte-daten",
+        title: "Streuungsmaße für klassierte Daten",
+      },
+      en: {
+        routeSlug: "measures-of-dispersion-for-grouped-data",
+        title: "Measures of Dispersion for Grouped Data",
+      },
+      id: {
+        routeSlug: "ukuran-penyebaran-data-berkelompok",
+        title: "Ukuran Penyebaran Data Berkelompok",
+      },
+      ms: {
+        routeSlug: "sukatan-serakan-data-terkumpul",
+        title: "Sukatan Serakan Data Terkumpul",
+      },
+    },
+  }),
+  unitNode({
+    children: [
+      materialNode({
+        key: "form-5-mathematics-mathematical-modelling-math-modelling",
+        level: "lesson",
+        materialKeys: ["lesson.mathematics.math-modelling"],
+        order: 10,
+        outcomes: [
+          {
+            code: "Tingkatan 5, Standard Kandungan 8.1",
+            ...mathematicsStandards,
+          },
+        ],
+      }),
+    ],
+    key: "form-5-mathematics-mathematical-modelling",
+    materialCard: {
+      de: {
+        description: "Stelle Modelle aus Daten auf und prüfe sie.",
+        title: "Mathematische Modellierung",
+      },
+      en: {
+        description: "Build models from data and verify them.",
+        title: "Mathematical Modelling",
+      },
+      id: {
+        description: "Susun model dari data lalu uji modelnya.",
+        title: "Pemodelan Matematika",
+      },
+      ms: {
+        description: "Bina model daripada data dan sahkannya.",
+        title: "Pemodelan Matematik",
+      },
+    },
+    order: 80,
+    translations: {
+      de: {
+        routeSlug: "mathematische-modellierung",
+        title: "Mathematische Modellierung",
+      },
+      en: {
+        routeSlug: "mathematical-modelling",
+        title: "Mathematical Modelling",
+      },
+      id: { routeSlug: "pemodelan-matematika", title: "Pemodelan Matematika" },
+      ms: { routeSlug: "pemodelan-matematik", title: "Pemodelan Matematik" },
+    },
+  }),
+];
