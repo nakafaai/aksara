@@ -37,6 +37,12 @@ const TRANSPORT_MODES = [
 ] as const;
 const CELL_KINDS = ["plant", "redBlood"] as const;
 const TONICITIES = ["hypotonic", "isotonic", "hypertonic"] as const;
+const MEMBRANE_PARTS = [
+  "phospholipid",
+  "cholesterol",
+  "integralProtein",
+  "glycoprotein",
+] as const;
 
 /**
  * Props of `ActiveTransportPumpLab`: a 3D phospholipid bilayer contrasting
@@ -130,12 +136,66 @@ function plasmolysisCellLab<E>(rich: RichSlot<E>) {
 }
 
 /**
- * Membrane transport labs covering ATP-driven carrier pumps and osmotic
- * plasmolysis across plant and animal cells.
+ * Props of `FluidMosaicMembraneLab`: a 3D Singer-Nicolson fluid-mosaic
+ * plasma membrane showing hydrophilic heads, hydrophobic fatty-acid tails,
+ * cholesterol buffers, integral proteins, and surface glycoproteins with a
+ * temperature slider affecting bilayer fluidity. Role and fluidity readouts
+ * are optional answer state.
+ */
+function fluidMosaicMembraneLab<E>(rich: RichSlot<E>) {
+  return figure(
+    Schema.Struct({
+      ...cardFields(rich),
+      components: Schema.NonEmptyArray(Schema.Literals(MEMBRANE_PARTS)).check(
+        Schema.isUnique()
+      ),
+      labels: Schema.Struct({
+        component: TextSchema,
+        components: byPickedIds(
+          MEMBRANE_PARTS,
+          Schema.Struct({
+            name: TextSchema,
+            role: rich,
+          })
+        ),
+        fluidity: Schema.optionalKey(rich),
+        parts: byIds(
+          [
+            "hydrophilicHead",
+            "hydrophobicTail",
+            "cholesterol",
+            "integralProtein",
+            "glycoprotein",
+            "glycolipid",
+          ],
+          TextSchema
+        ),
+        role: Schema.optionalKey(rich),
+        temperature: TextSchema,
+        view: TextSchema,
+      }),
+      temperature: GradientSliderSchema,
+    }).check(
+      Schema.makeFilter(
+        ({ components, labels }) => namesEach(components, labels.components),
+        {
+          message:
+            "Expected a name and role note for every membrane component shown, and no other.",
+        }
+      )
+    ),
+    answerAt(["labels", "fluidity"], ["labels", "role"])
+  );
+}
+
+/**
+ * Membrane transport labs covering fluid-mosaic structure, ATP-driven carrier
+ * pumps, and osmotic plasmolysis across plant and animal cells.
  */
 export function membraneVisuals<E>(rich: RichSlot<E>) {
   return {
     ActiveTransportPumpLab: activeTransportPumpLab(rich),
+    FluidMosaicMembraneLab: fluidMosaicMembraneLab(rich),
     PlasmolysisCellLab: plasmolysisCellLab(rich),
   };
 }

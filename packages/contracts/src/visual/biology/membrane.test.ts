@@ -135,3 +135,78 @@ describe("plasmolysis cell lab", () => {
     expect(failsStrict(props, { ...lab, solutions: ["hypotonic"] })).toBe(true);
   });
 });
+
+describe("fluid mosaic membrane lab", () => {
+  const { props } = assessmentVisuals.FluidMosaicMembraneLab;
+  const lab = {
+    ...card,
+    components: [
+      "phospholipid",
+      "cholesterol",
+      "integralProtein",
+      "glycoprotein",
+    ],
+    labels: {
+      component: "Membrane part",
+      components: {
+        cholesterol: {
+          name: "Cholesterol",
+          role: [text("Stabilises membrane fluidity across temperatures")],
+        },
+        glycoprotein: {
+          name: "Glycoprotein",
+          role: [text("Acts as a cell-recognition receptor")],
+        },
+        integralProtein: {
+          name: "Integral protein",
+          role: [text("Forms channels and carriers across the bilayer")],
+        },
+        phospholipid: {
+          name: "Phospholipid bilayer",
+          role: [text("Forms the semi-permeable barrier")],
+        },
+      },
+      fluidity: [text("Bilayer fluidity")],
+      parts: {
+        cholesterol: "Cholesterol",
+        glycolipid: "Glycolipid",
+        glycoprotein: "Glycoprotein",
+        hydrophilicHead: "Hydrophilic head",
+        hydrophobicTail: "Hydrophobic tail",
+        integralProtein: "Integral protein",
+      },
+      role: [text("Main function")],
+      temperature: "Temperature (C)",
+      view: "Fluid-mosaic phospholipid bilayer model",
+    },
+    temperature: { max: 50, min: 5, value: 37 },
+  };
+  const { fluidity: _f, role: _r, ...quiz } = lab.labels;
+
+  it("decodes fluid mosaic membrane lab and marks fluidity and role as answer state", () => {
+    expect(decodeStrict(props, lab)).toEqual(lab);
+    expect(decodeStrict(props, { ...lab, labels: quiz })).toEqual({
+      ...lab,
+      labels: quiz,
+    });
+    expect(answerState("FluidMosaicMembraneLab", lab)).toEqual([
+      "labels.fluidity",
+      "labels.role",
+    ]);
+    expect(
+      answerState("FluidMosaicMembraneLab", { ...lab, labels: quiz })
+    ).toEqual([]);
+  });
+
+  it("refuses mismatched membrane components or out-of-range temperature", () => {
+    expect(failsStrict(props, { ...lab, components: ["phospholipid"] })).toBe(
+      true
+    );
+    expect(
+      failsStrict(props, {
+        ...lab,
+        temperature: { max: 50, min: 5, value: 70 },
+      })
+    ).toBe(true);
+  });
+});
