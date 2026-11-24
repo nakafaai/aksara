@@ -1,33 +1,46 @@
-# Jede Wurzel als Quadrat schreiben
+# Gegeben
 
-Alle drei Radikanden haben die Form <InlineMath math="a\pm2\sqrt b" />. So ein Ausdruck ist oft **ein vollständiges Quadrat**, denn <InlineMath math="(p\pm q)^2=p^2+q^2\pm2pq" />. Du suchst also zwei Zahlen, deren Quadrate zusammen <InlineMath math="a" /> ergeben und deren doppeltes Produkt der Wurzelteil ist:
+Der folgende Term mit **verschachtelten Wurzeln** soll ohne Taschenrechner berechnet werden.
+
+<BlockMath math="\frac{\sqrt{9 + 4\sqrt{5}} - \sqrt{9 - 4\sqrt{5}}}{\sqrt{6 - 2\sqrt{5}}}" />
+
+# Gesucht
+
+Der exakte Wert dieses Wurzelbruchs.
+
+# Lösung
+
+Eine Wurzel in einer Wurzel funktioniert wie eine Steckpuppe: Versteckt sich innen **ein vollständiges Quadrat der Form <InlineMath math="(p \pm q)^2" />**, hebt sich die äußere Wurzel einfach weg. Wichtig bleibt dabei eine goldene Regel: Eine Quadratwurzel liefert niemals eine negative Zahl.
+
+> Beim Wurzelziehen aus einem Quadrat steht immer der Betrag, wähl also stets die positive Differenz, weil eine Quadratwurzel niemals negativ ist.
+
+Schreib alle drei Radikanden nach dem Muster <InlineMath math="p^2 + q^2 \pm 2pq" /> als vollständige Quadrate.
 
 <BlockMath math="\begin{aligned}
-9+4\sqrt5&=5+4+2\cdot2\sqrt5=\left(\sqrt5+2\right)^2 \\
-9-4\sqrt5&=5+4-2\cdot2\sqrt5=\left(\sqrt5-2\right)^2 \\
-6-2\sqrt5&=5+1-2\sqrt5=\left(\sqrt5-1\right)^2
+9 + 4\sqrt{5} &= 5 + 4 + 2 \cdot 2\sqrt{5} = \left(\sqrt{5} + 2\right)^2 \\
+9 - 4\sqrt{5} &= 5 + 4 - 2 \cdot 2\sqrt{5} = \left(\sqrt{5} - 2\right)^2 \\
+6 - 2\sqrt{5} &= 5 + 1 - 2\sqrt{5} = \left(\sqrt{5} - 1\right)^2
 \end{aligned}" />
 
-# Das Vorzeichen jeder Wurzel prüfen
+## Vorzeichen jeder Wurzel prüfen
 
-Eine Quadratwurzel ist nie negativ, es gilt <InlineMath math="\sqrt{u^2}=|u|" />. Bei <InlineMath math="9-4\sqrt5" /> passen sowohl <InlineMath math="\sqrt5-2" /> als auch <InlineMath math="2-\sqrt5" /> als Basis des Quadrats. Die Wurzel ist **die positive der beiden Zahlen**. Wegen <InlineMath math="4<5<9" /> liegt <InlineMath math="\sqrt5" /> zwischen <InlineMath math="2" /> und <InlineMath math="3" />:
+Wegen <InlineMath math="4 < 5 < 9" /> liegt <InlineMath math="\sqrt{5}" /> zwischen <InlineMath math="2" /> und <InlineMath math="3" />. Am Zahlenstrahl siehst du direkt, **warum die Differenz <InlineMath math="\sqrt{5} - 2" /> positiv ist**.
 
 <MathVisual
-  title={<>Wo <InlineMath math="\sqrt5" /> liegt</>}
-  description={<>Ein Zahlenstrahl mit den Punkten <InlineMath math="1" />, <InlineMath math="2" />, <InlineMath math="\sqrt5" /> und <InlineMath math="3" />. Der Punkt <InlineMath math="\sqrt5" /> liegt knapp rechts von <InlineMath math="2" />. Das kurze Stück von <InlineMath math="2" /> bis <InlineMath math="\sqrt5" /> ist markiert: Seine Länge <InlineMath math="\sqrt5-2" /> ist positiv.</>}
-  labels={{
-    one: <><InlineMath math="1" /></>,
-    two: <><InlineMath math="2" /></>,
-    root: <><InlineMath math="\sqrt5" /></>,
-    three: <><InlineMath math="3" /></>,
-  }}
+  title={<>Lage von <InlineMath math="\sqrt{5}" /> auf dem Zahlenstrahl</>}
+  description={
+    <>
+      Die Punkte <InlineMath math="1" />, <InlineMath math="2" />,{" "}
+      <InlineMath math="\sqrt{5}" /> und <InlineMath math="3" /> auf dem
+      Zahlenstrahl. Die grüne Strecke von <InlineMath math="2" /> bis{" "}
+      <InlineMath math="\sqrt{5}" /> zeigt den positiven Abstand{" "}
+      <InlineMath math="\sqrt{5} - 2" />.
+    </>
+  }
+  footer={<>Da <InlineMath math="\sqrt{5}" /> rechts von <InlineMath math="2" /> liegt, sind <InlineMath math="\sqrt{5} - 2" /> und <InlineMath math="\sqrt{5} - 1" /> positiv.</>}
   scene={{
     space: "plane",
-    frame: {
-      kind: "cartesian",
-      x: { min: -0.3, max: 3.8 },
-      y: { min: -1, max: 1 },
-    },
+    frame: { kind: "cartesian", x: { min: -0.3, max: 3.8 }, y: { min: -1, max: 1 } },
     view: { kind: "fit", padding: 0.1 },
     objects: [
       { id: "axis", kind: "segment", appearance: "reference", from: { x: 0, y: 0 }, to: { x: 3.5, y: 0 } },
@@ -44,26 +57,36 @@ Eine Quadratwurzel ist nie negativ, es gilt <InlineMath math="\sqrt{u^2}=|u|" />
       { key: "three", objectId: "p3", at: { x: 3, y: 0 }, placement: "below" },
     ],
   }}
+  labels={{
+    one: <><InlineMath math="1" /></>,
+    two: <><InlineMath math="2" /></>,
+    root: <><InlineMath math="\sqrt{5}" /></>,
+    three: <><InlineMath math="3" /></>,
+  }}
 />
 
-Also ist <InlineMath math="\sqrt5-2>0" /> und <InlineMath math="\sqrt5-1>0" />, aber <InlineMath math="2-\sqrt5<0" />. Damit gilt
+Da <InlineMath math="\sqrt{5}" /> größer als <InlineMath math="2" /> ist, wählst du für alle drei Wurzeln die positive Darstellung.
 
-<BlockMath math="\sqrt{9+4\sqrt5}=\sqrt5+2,\qquad\sqrt{9-4\sqrt5}=\sqrt5-2,\qquad\sqrt{6-2\sqrt5}=\sqrt5-1" />
+<BlockMath math="\sqrt{9 + 4\sqrt{5}} = \sqrt{5} + 2, \qquad \sqrt{9 - 4\sqrt{5}} = \sqrt{5} - 2, \qquad \sqrt{6 - 2\sqrt{5}} = \sqrt{5} - 1" />
 
-# Den Bruch ausrechnen
+## Bruch vereinfachen und falsche Antworten prüfen
 
-Im Zähler **fallen die beiden <InlineMath math="\sqrt5" /> weg**. Den Nenner machst du mit der dritten binomischen Formel rational:
+Im Zähler **heben sich beide <InlineMath math="\sqrt{5}" />-Terme direkt weg**, danach machst du den Nenner mit der dritten binomischen Formel rational.
 
-<BlockMath math="\frac{(\sqrt5+2)-(\sqrt5-2)}{\sqrt5-1}=\frac{4}{\sqrt5-1}=\frac{4\left(\sqrt5+1\right)}{\left(\sqrt5-1\right)\left(\sqrt5+1\right)}=\frac{4\left(\sqrt5+1\right)}{5-1}=\sqrt5+1" />
+<BlockMath math="\frac{(\sqrt{5} + 2) - (\sqrt{5} - 2)}{\sqrt{5} - 1} = \frac{4}{\sqrt{5} - 1} = \frac{4(\sqrt{5} + 1)}{(\sqrt{5} - 1)(\sqrt{5} + 1)} = \frac{4(\sqrt{5} + 1)}{5 - 1} = \sqrt{5} + 1" />
 
-Eine Probe mit <InlineMath math="\sqrt5\approx2{,}236" /> bestätigt das: Der Zähler ist etwa <InlineMath math="4{,}236-0{,}236=4" />, der Nenner etwa <InlineMath math="1{,}236" />, und <InlineMath math="4:1{,}236\approx3{,}236\approx\sqrt5+1" />.
+Überschlagsprobe mit dem Näherungswert <InlineMath math="2{,}236" /> für <InlineMath math="\sqrt{5}" />:
 
-Der Term hat den Wert <InlineMath math="\sqrt5+1" />.
+<BlockMath math="\frac{4{,}236 - 0{,}236}{1{,}236} = \frac{4}{1{,}236} \approx 3{,}236 \approx \sqrt{5} + 1" />
 
-# Warum die anderen Antworten falsch sind
+| Antwort | Warum sie falsch ist |
+| :--- | :--- |
+| <InlineMath math="-\sqrt{5} - 1" /> | Setzt den negativen Wert <InlineMath math="1 - \sqrt{5}" /> für die Nennerwurzel ein. |
+| <InlineMath math="\frac{5 + \sqrt{5}}{2}" /> | Schreibt <InlineMath math="\sqrt{9 - 4\sqrt{5}}" /> als <InlineMath math="2 - \sqrt{5}" />, sodass im Zähler <InlineMath math="2\sqrt{5}" /> entsteht. |
+| <InlineMath math="-\frac{5 + \sqrt{5}}{2}" /> | Macht beide Vorzeichenfehler gleichzeitig. |
+| <InlineMath math="\sqrt{5} - 1" /> | Verwechselt <InlineMath math="(\sqrt{5} - 1)^2" /> mit <InlineMath math="5 - 1 = 4" /> und kürzt direkt weg. |
+| <InlineMath math="\frac{2\sqrt{5} + 2}{3}" /> | Rechnet <InlineMath math="(\sqrt{5} - 1)(\sqrt{5} + 1)" /> fälschlich zu <InlineMath math="6" /> statt zu <InlineMath math="4" />. |
 
-- <InlineMath math="-\sqrt5-1" /> entsteht, wenn du <InlineMath math="\sqrt{6-2\sqrt5}" /> als <InlineMath math="1-\sqrt5" /> schreibst. Diese Zahl ist **negativ und kann keine Wurzel sein**.
-- <InlineMath math="\frac{5+\sqrt5}{2}" /> entsteht, wenn du <InlineMath math="\sqrt{9-4\sqrt5}" /> als <InlineMath math="2-\sqrt5" /> schreibst. Dann wird der Zähler <InlineMath math="2\sqrt5" /> statt <InlineMath math="4" />.
-- <InlineMath math="-\frac{5+\sqrt5}{2}" /> macht beide Vorzeichenfehler auf einmal.
-- <InlineMath math="\sqrt5-1" /> entsteht, wenn du <InlineMath math="(\sqrt5-1)^2" /> wie eine dritte binomische Formel als <InlineMath math="5-1=4" /> rechnest und dann <InlineMath math="\frac{4}{\sqrt5-1}=\frac{(\sqrt5-1)^2}{\sqrt5-1}" /> kürzt. Richtig ist <InlineMath math="(\sqrt5-1)^2=6-2\sqrt5" />.
-- <InlineMath math="\frac{2\sqrt5+2}{3}" /> entsteht, wenn du beim Erweitern <InlineMath math="(\sqrt5-1)(\sqrt5+1)" /> als <InlineMath math="5+1=6" /> statt als <InlineMath math="5-1=4" /> rechnest.
+# Antwort
+
+Der exakte Wert des Terms ist <InlineMath math="\sqrt{5} + 1" />.

@@ -1,24 +1,34 @@
-# The juice forms a similar cone
+# Given
 
-Because the tip points down, the juice itself forms a small cone with the same tip. It is **similar** to the whole glass: its height is <InlineMath math="\frac34" /> of the glass height, and by the intercept theorem its radius is also <InlineMath math="\frac34" /> of the top radius.
+A glass shaped like a **right circular cone** (*gerader Kreiskegel*) stands with its tip pointing down. Filled to <InlineMath math="\frac{3}{4}" /> of its height, it holds <InlineMath math="54\text{ ml}" /> of juice.
+
+# Asked
+
+How many more milliliters of juice fit into the glass until it is full to the brim (*randvoll*)?
+
+# Solution
+
+Think of a cone-shaped cocktail glass: the pointed bottom holds almost nothing, while the top quarter flares out like a wide bowl! Because all three spatial dimensions (width, depth, and height) shrink together, **volume scales with the cube of height rather than linearly**.
+
+> For similar three-dimensional solids, scaling every linear dimension by a factor k multiplies the volume by k cubed.
+
+The juice forms a smaller cone similar to the whole glass, with height <InlineMath math="\frac{3}{4}h" /> and surface radius <InlineMath math="\frac{3}{4}r" />.
 
 <MathVisual
-  title={<>Juice cone and glass cone in cross-section</>}
-  description={<>A cross-section through the glass: a triangle pointing down, with height <InlineMath math="h" /> and top radius <InlineMath math="r" />. The juice fills a smaller, similar triangle with height <InlineMath math="\tfrac34h" /> and radius <InlineMath math="\tfrac34r" />.</>}
-  labels={{
-    full: <><InlineMath math="h" /></>,
-    part: <><InlineMath math="\tfrac34h" /></>,
-    r: <><InlineMath math="r" /></>,
-    r2: <><InlineMath math="\tfrac34r" /></>,
-  }}
+  title={<>Cross-section of the juice cone and full glass</>}
+  description={
+    <>
+      Vertical cross-section of the glass as an inverted triangle of height{" "}
+      <InlineMath math="h" /> and top radius <InlineMath math="r" />. The juice
+      fills a similar triangle of height <InlineMath math="\tfrac{3}{4}h" /> and
+      radius <InlineMath math="\tfrac{3}{4}r" />.
+    </>
+  }
+  footer={<>The top quarter of height is the widest part and holds more than half the glass.</>}
   scene={{
     space: "plane",
-    frame: {
-      kind: "cartesian",
-      x: { min: -5, max: 5 },
-      y: { min: -1, max: 9.5 },
-    },
-    view: { kind: "fit", padding: 0.1 },
+    frame: { kind: "cartesian", x: { min: -5, max: 5 }, y: { min: -1, max: 9.5 } },
+    view: { kind: "fit", padding: 0.08 },
     objects: [
       { id: "glass", kind: "polygon", appearance: "primary", vertices: [{ x: 0, y: 0 }, { x: 4, y: 8 }, { x: -4, y: 8 }] },
       { id: "juice", kind: "polygon", appearance: "highlight", vertices: [{ x: 0, y: 0 }, { x: 3, y: 6 }, { x: -3, y: 6 }] },
@@ -33,29 +43,40 @@ Because the tip points down, the juice itself forms a small cone with the same t
       { key: "r2", objectId: "juice-radius", at: { x: 1.5, y: 6 }, placement: "below" },
     ],
   }}
+  labels={{
+    full: <><InlineMath math="h" /></>,
+    part: <><InlineMath math="\tfrac{3}{4}h" /></>,
+    r: <><InlineMath math="r" /></>,
+    r2: <><InlineMath math="\tfrac{3}{4}r" /></>,
+  }}
 />
 
-# Volumes grow with the third power
+The cross-section makes it immediately obvious why the empty upper band holds more liquid than its quarter-height suggests.
 
-The cone volume <InlineMath math="V=\frac13\pi r^2h" /> contains one length squared and another length once. If every length is multiplied by <InlineMath math="\frac34" />, **the volume is multiplied by <InlineMath math="\left(\frac34\right)^3" />**:
+## Finding total capacity and remaining space
+
+In the cone volume formula, radius appears twice and height once, so **the juice occupies only <InlineMath math="\frac{27}{64}" /> of the full glass**.
 
 <BlockMath math="\begin{aligned}
-V_{\text{juice}}&=\left(\tfrac34\right)^3V_{\text{glass}}=\tfrac{27}{64}\,V_{\text{glass}} \\
-V_{\text{glass}}&=54\cdot\tfrac{64}{27}=128\text{ ml}
+V &= \frac{1}{3}\pi r^2 h \\
+V_{\text{juice}} &= \left(\frac{3}{4}\right)^3 V_{\text{glass}} = \frac{27}{64}\, V_{\text{glass}} \\
+V_{\text{glass}} &= 54 \cdot \frac{64}{27} = 2 \cdot 64 = 128\text{ ml}
 \end{aligned}" />
 
-# What is still missing
+The question asks for the extra juice needed to reach the brim, so subtract the amount already inside.
 
-The question isn't the whole glass, but **the amount up to the rim**:
+<BlockMath math="V_{\text{remaining}} = 128\text{ ml} - 54\text{ ml} = 74\text{ ml}" />
 
-<BlockMath math="128\text{ ml}-54\text{ ml}=74\text{ ml}" />
+## Checking proportions and wrong choices
 
-Another <InlineMath math="74\text{ ml}" /> of juice fits into the glass.
+Quick check: the empty fraction is <InlineMath math="\frac{37}{64}" />, and <InlineMath math="\frac{37}{64}" /> of <InlineMath math="128\text{ ml}" /> gives **exactly <InlineMath math="74\text{ ml}" />**.
 
-# Why the other answers are wrong
+- <InlineMath math="18\text{ ml}" /> assumes volume scales linearly with height, ignoring that the top quarter is the widest part of the cone.
+- <InlineMath math="42\text{ ml}" /> uses the square factor for area instead of the cube, giving a total of <InlineMath math="96\text{ ml}" />.
+- <InlineMath math="128\text{ ml}" /> is the total capacity of the glass rather than the remaining room.
+- <InlineMath math="72\text{ ml}" /> computes the total linearly as four thirds of <InlineMath math="54\text{ ml}" />.
+- <InlineMath math="24\text{ ml}" /> multiplies the linear remainder <InlineMath math="18\text{ ml}" /> by <InlineMath math="\frac{4}{3}" /> a second time.
 
-- <InlineMath math="18\text{ ml}" /> works linearly: three quarters hold <InlineMath math="54\text{ ml}" />, so one quarter should hold <InlineMath math="18\text{ ml}" />. But the top quarter of the height is **the widest part of the glass**.
-- <InlineMath math="42\text{ ml}" /> uses the factor <InlineMath math="\left(\frac34\right)^2" /> as for an area. Then the glass would hold <InlineMath math="96\text{ ml}" />.
-- <InlineMath math="128\text{ ml}" /> is the whole glass, not the missing part.
-- <InlineMath math="72\text{ ml}" /> is the whole glass under the linear reasoning, <InlineMath math="54\cdot\frac43" />.
-- <InlineMath math="24\text{ ml}" /> multiplies the linear remainder <InlineMath math="18\text{ ml}" /> by <InlineMath math="\frac43" /> once more, mixing up the remainder and the total.
+# Answer
+
+Another <InlineMath math="74\text{ ml}" /> of juice still fits into the glass.

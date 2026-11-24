@@ -1,41 +1,43 @@
-# Letak segi tiga dalam satah koordinat
+# Diberi
 
-Letakkan sudut tegak di asalan <InlineMath math="C(0\mid0)" /> dan kedua-dua sisi tegak di atas paksi: <InlineMath math="A(8\mid0)" /> dan <InlineMath math="B(0\mid6)" />. Dengan cara ini **kedua-dua pusat boleh ditulis sebagai titik berkoordinat**. Hipotenusnya <InlineMath math="\overline{AB}=\sqrt{8^2+6^2}=10" />.
+Sebuah **segi tiga bersudut tegak** (*rechtwinkliges Dreieck*) mempunyai dua sisi bersebelahan (*Katheten*) dengan panjang <InlineMath math="6" /> dan <InlineMath math="8" />. Titik <InlineMath math="I" /> ialah pusat bulatan dalam (*Inkreismittelpunkt*), manakala <InlineMath math="U" /> ialah pusat bulatan luar (*Umkreismittelpunkt*).
 
-# Cari pusat bulatan dalam
+# Ditanya
 
-Bulatan dalam menyentuh kedua-dua sisi tegak, jadi **jarak <InlineMath math="I" /> ke kedua-dua paksi ialah <InlineMath math="r" />**: <InlineMath math="I(r\mid r)" />. Jejari diperoleh daripada luas. Bahagikan segi tiga pada <InlineMath math="I" /> kepada tiga segi tiga kecil yang tingginya semuanya <InlineMath math="r" />:
+Tentukan jarak <InlineMath math="\overline{IU}" /> antara pusat bulatan dalam dengan pusat bulatan luar.
 
-<BlockMath math="\begin{aligned}
-\frac12\cdot8\cdot6&=\frac12\,r\,(8+6+10) \\
-24&=12r \\
-r&=2
-\end{aligned}" />
+# Penyelesaian
 
-Jadi <InlineMath math="I(2\mid2)" />.
+Letakkan sudut tegak segi tiga terus di asalan <InlineMath math="C(0 \mid 0)" />, dengan kedua-dua kakinya rapat pada paksi koordinat di <InlineMath math="A(8 \mid 0)" /> dan <InlineMath math="B(0 \mid 6)" />. Dengan satu langkah ini, **kedua-dua pusat bulatan terus terbaca sebagai koordinat ringkas**.
 
-# Cari pusat bulatan luar
+> Meletakkan sudut tegak di asalan meletakkan pusat bulatan dalam pada koordinat sama sebesar jejarinya, manakala pusat bulatan luar jatuh tepat di titik tengah hipotenus.
 
-Dalam segi tiga bersudut tegak, **pusat bulatan luar terletak di titik tengah hipotenus** (teorem Thales). Titik tengah <InlineMath math="A(8\mid0)" /> dan <InlineMath math="B(0\mid6)" /> ialah <InlineMath math="U(4\mid3)" />, dengan jejari <InlineMath math="5" />.
+Mengikut teorem Pythagoras, panjang hipotenusnya ialah <InlineMath math="10" />, kerana <InlineMath math="6^2 + 8^2 = 100" />.
+
+## Menentukan koordinat kedua pusat
+
+Bulatan dalam menyentuh kedua-dua paksi, jadi pusatnya ialah <InlineMath math="I(r \mid r)" />. Sambungkan <InlineMath math="I" /> ke ketiga-tiga bucu untuk memecahkan segi tiga kepada tiga segi tiga kecil setinggi <InlineMath math="r" />, maka **luas sama dengan separuh perimeter darab jejari**.
+
+<BlockMath math="\frac{1}{2} \cdot 8 \cdot 6 = \frac{1}{2}\, r\, (8 + 6 + 10) \implies 24 = 12r \implies r = 2" />
+
+Maka <InlineMath math="I(2 \mid 2)" />. Mengikut teorem Thales, pusat bulatan luar bagi segi tiga bersudut tegak berada di titik tengah hipotenus <InlineMath math="AB" />, iaitu <InlineMath math="U(4 \mid 3)" /> dengan jejari <InlineMath math="5" />.
 
 <MathVisual
   title={<>Bulatan dalam dan bulatan luar dalam koordinat</>}
-  description={<>Segi tiga bersudut tegak dengan <InlineMath math="C(0\mid0)" />, <InlineMath math="A(8\mid0)" /> dan <InlineMath math="B(0\mid6)" />. Bulatan dalamnya berpusat di <InlineMath math="I(2\mid2)" /> dengan jejari <InlineMath math="2" />. Bulatan luarnya berpusat di <InlineMath math="U(4\mid3)" />, titik tengah hipotenus, dengan jejari <InlineMath math="5" />. Tembereng garis dari <InlineMath math="I" /> ke <InlineMath math="U" /> diserlahkan.</>}
-  labels={{
-    c: <><InlineMath math="C" /></>,
-    a: <><InlineMath math="A" /></>,
-    b: <><InlineMath math="B" /></>,
-    i: <><InlineMath math="I(2\mid2)" /></>,
-    u: <><InlineMath math="U(4\mid3)" /></>,
-  }}
+  description={
+    <>
+      Segi tiga bersudut tegak dengan <InlineMath math="C(0 \mid 0)" />,{" "}
+      <InlineMath math="A(8 \mid 0)" />, dan <InlineMath math="B(0 \mid 6)" />.
+      Bulatan dalam berpusat di <InlineMath math="I(2 \mid 2)" /> dan bulatan
+      luar berpusat di <InlineMath math="U(4 \mid 3)" />. Tembereng hijau
+      menyambungkan <InlineMath math="I" /> dengan <InlineMath math="U" />.
+    </>
+  }
+  footer={<>Dari <InlineMath math="I(2 \mid 2)" /> ke <InlineMath math="U(4 \mid 3)" /> bergerak <InlineMath math="2" /> ke kanan dan <InlineMath math="1" /> ke atas.</>}
   scene={{
     space: "plane",
-    frame: {
-      kind: "cartesian",
-      x: { min: -1.5, max: 9.5 },
-      y: { min: -2.5, max: 8.5 },
-    },
-    view: { kind: "fit", padding: 0.1 },
+    frame: { kind: "cartesian", x: { min: -1.5, max: 9.5 }, y: { min: -2.5, max: 8.5 } },
+    view: { kind: "fit", padding: 0.08 },
     objects: [
       { id: "triangle", kind: "polygon", appearance: "primary", vertices: [{ x: 0, y: 0 }, { x: 8, y: 0 }, { x: 0, y: 6 }] },
       { id: "incircle", kind: "circle", appearance: "secondary", center: { x: 2, y: 2 }, radius: 2 },
@@ -55,18 +57,31 @@ Dalam segi tiga bersudut tegak, **pusat bulatan luar terletak di titik tengah hi
       { key: "u", objectId: "pu", at: { x: 4, y: 3 }, placement: "above-right" },
     ],
   }}
+  labels={{
+    c: <><InlineMath math="C" /></>,
+    a: <><InlineMath math="A" /></>,
+    b: <><InlineMath math="B" /></>,
+    i: <><InlineMath math="I(2 \mid 2)" /></>,
+    u: <><InlineMath math="U(4 \mid 3)" /></>,
+  }}
 />
 
-# Kira jaraknya
+Jelas pada rajah bahawa <InlineMath math="I" /> dan <InlineMath math="U" /> terpisah sebanyak <InlineMath math="2" /> langkah mengufuk dan <InlineMath math="1" /> langkah menegak.
 
-<BlockMath math="\overline{IU}=\sqrt{(4-2)^2+(3-2)^2}=\sqrt{4+1}=\sqrt5" />
+## Mengira jarak dan menyemak pilihan salah
 
-**Jarak antara kedua-dua pusat ialah <InlineMath math="\sqrt5" />**.
+Kira jarak kedua-dua pusat dengan rumus Pythagoras, kemudian semak dengan **rumus Euler bagi jarak pusat bulatan**.
 
-# Kenapa jawapan lain salah
+<BlockMath math="\overline{IU} = \sqrt{(4 - 2)^2 + (3 - 2)^2} = \sqrt{4 + 1} = \sqrt{5}" />
 
-- <InlineMath math="\sqrt{13}" /> datang daripada <InlineMath math="r=1" />: luas dibahagi dengan **perimeter penuh <InlineMath math="24" />, bukan separuh perimeter <InlineMath math="12" />**, lalu <InlineMath math="I(1\mid1)" /> berjarak <InlineMath math="\sqrt{9+4}" /> dari <InlineMath math="U" />.
-- <InlineMath math="3" /> ialah beza jejari <InlineMath math="5-2" />. Tetapi kedua-dua pusat tidak segaris dengan titik sentuhan dua bulatan.
-- <InlineMath math="7" /> ialah hasil tambah jejari <InlineMath math="5+2" />.
-- <InlineMath math="\frac23" /> terhasil kalau <InlineMath math="U" /> tertukar dengan sentroid <InlineMath math="\left(\frac83\mid2\right)" />. Sentroid bukan pusat bulatan luar.
-- <InlineMath math="2\sqrt2" /> ialah jarak <InlineMath math="I" /> ke bucu <InlineMath math="C" />, bukan ke <InlineMath math="U" />.
+Semakan pantas melalui teorem Euler: <InlineMath math="R(R - 2r)" /> bernilai <InlineMath math="5(5 - 4) = 5" />, mengesahkan jaraknya tepat <InlineMath math="\sqrt{5}" />.
+
+- <InlineMath math="\sqrt{13}" /> berpunca daripada <InlineMath math="r = 1" /> kerana membahagikan luas dengan perimeter penuh <InlineMath math="24" />, bukannya separuh perimeter <InlineMath math="12" />.
+- <InlineMath math="3" /> mengambil beza jejari <InlineMath math="5 - 2" />, seolah-olah kedua-dua bulatan bersentuhan di dalam.
+- <InlineMath math="7" /> menjumlahkan jejari <InlineMath math="5 + 2" /> tanpa melihat kedudukan pusatnya.
+- <InlineMath math="\frac{2}{3}" /> menukar pusat bulatan luar <InlineMath math="U" /> dengan sentroid segi tiga.
+- <InlineMath math="2\sqrt{2}" /> ialah jarak <InlineMath math="I" /> ke bucu sudut tegak <InlineMath math="C" />, bukannya ke <InlineMath math="U" />.
+
+# Jawapan
+
+Jarak antara <InlineMath math="I" /> dengan <InlineMath math="U" /> ialah <InlineMath math="\sqrt{5}" />.

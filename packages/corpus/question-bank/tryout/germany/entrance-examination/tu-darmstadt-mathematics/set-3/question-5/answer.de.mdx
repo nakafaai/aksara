@@ -1,53 +1,64 @@
-# Genau ein gemeinsamer Punkt heißt Diskriminante null
+# Gegeben
 
-Gemeinsame Punkte von <InlineMath math="g" /> und <InlineMath math="p" /> erfüllen beide Gleichungen. Setze die rechten Seiten gleich und bringe alles auf eine Seite:
+Die Gerade <InlineMath math="g" /> und die **Parabel** <InlineMath math="p" /> haben genau einen gemeinsamen Punkt <InlineMath math="B" /> im ersten Quadranten, beide Koordinaten sind also positiv.
 
-<BlockMath math="x^2+bx+7=2x+3\quad\Longleftrightarrow\quad x^2+(b-2)\,x+4=0" />
+<BlockMath math="g: y = 2x + 3, \qquad p: y = x^2 + bx + 7" />
 
-Genau ein gemeinsamer Punkt bedeutet: Diese quadratische Gleichung hat genau eine Lösung, **ihre Diskriminante ist also null**:
+# Gesucht
+
+Der reelle Wert des Parameters <InlineMath math="b" />.
+
+# Lösung
+
+Stell dir vor, du verschiebst eine starre Parabel, während die Gerade <InlineMath math="y = 2x + 3" /> fest liegen bleibt. Es gibt genau zwei Stellungen, in denen die Parabel die Gerade nur in einem Berührpunkt streift, einmal oben und einmal unten. Die Quadrantenbedingung **wählt genau eine dieser beiden Berührparabeln aus**.
+
+> Genau ein gemeinsamer Punkt von Gerade und Parabel bedeutet, dass die Differenzgleichung Diskriminante null besitzt, und erst die Lage im Quadranten entscheidet zwischen beiden Berührpunkten.
+
+Setz beide Gleichungen gleich, um gemeinsame Punkte zu bestimmen.
+
+<BlockMath math="x^2 + bx + 7 = 2x + 3 \iff x^2 + (b - 2)x + 4 = 0" />
+
+## Diskriminante null setzen und Berührpunkte berechnen
+
+Für genau eine Lösung dieser quadratischen Gleichung muss **die Diskriminante gleich null sein**.
 
 <BlockMath math="\begin{aligned}
-(b-2)^2-4\cdot1\cdot4&=0 \\
-(b-2)^2&=16 \\
-b-2=4\quad&\text{oder}\quad b-2=-4 \\
-b=6\quad&\text{oder}\quad b=-2
+(b - 2)^2 - 4 \cdot 1 \cdot 4 &= 0 \\
+(b - 2)^2 &= 16 \\
+b - 2 = 4 \quad &\text{oder} \quad b - 2 = -4 \\
+b = 6 \quad &\text{oder} \quad b = -2
 \end{aligned}" />
 
-# Den Berührpunkt für beide Werte bestimmen
-
-Bei Diskriminante null ist **die einzige Lösung** <InlineMath math="x=-\frac{b-2}{2}=\frac{2-b}{2}" />. Die <InlineMath math="y" />-Koordinate liefert die Gerade:
+Bei Diskriminante null ergibt sich die einzige Lösung aus dem negativen halben Linearkoeffizienten, und der <InlineMath math="y" />-Wert folgt direkt aus <InlineMath math="y = 2x + 3" />.
 
 <BlockMath math="\begin{aligned}
-b=6:&\quad x=-2,\quad y=2\cdot(-2)+3=-1 \\
-b=-2:&\quad x=2,\quad y=2\cdot2+3=7
+x &= \frac{2 - b}{2} \\
+b = 6 &\implies x = -2, \quad y = -1 \\
+b = -2 &\implies x = 2, \quad y = 7
 \end{aligned}" />
 
-# Die Bedingung an den Quadranten anwenden
-
-Beide Werte von <InlineMath math="b" /> liefern genau einen gemeinsamen Punkt. Erst **die Lage des Punktes** trennt sie:
+Vergleich beide Berührparabeln im Graphen und prüf, wo jeder Berührpunkt landet.
 
 <MathVisual
-  title={<>Zwei Parabeln berühren die Gerade</>}
-  description={<>Die Gerade <InlineMath math="g: y=2x+3" /> und zwei Parabeln. Die Parabel <InlineMath math="y=x^2-2x+7" /> berührt <InlineMath math="g" /> im Punkt <InlineMath math="B(2\mid7)" /> im ersten Quadranten. Die gestrichelte Parabel <InlineMath math="y=x^2+6x+7" /> berührt <InlineMath math="g" /> im Punkt <InlineMath math="(-2\mid-1)" /> im dritten Quadranten.</>}
-  labels={{
-    b: <><InlineMath math="B(2\mid7)" /></>,
-    q: <><InlineMath math="(-2\mid-1)" /></>,
-    g: <><InlineMath math="g" /></>,
-    ok: <><InlineMath math="b=-2" /></>,
-    bad: <><InlineMath math="b=6" /></>,
-  }}
+  title={<>Zwei Parabeln berühren dieselbe Gerade</>}
+  description={
+    <>
+      Die Gerade <InlineMath math="g: y = 2x + 3" /> wird von der durchgezogenen
+      Parabel <InlineMath math="b = -2" /> im ersten Quadranten bei{" "}
+      <InlineMath math="B(2 \mid 7)" /> und von der gestrichelten Parabel{" "}
+      <InlineMath math="b = 6" /> im dritten Quadranten bei{" "}
+      <InlineMath math="(-2 \mid -1)" /> berührt.
+    </>
+  }
+  footer={<>Nur <InlineMath math="b = -2" /> legt den Berührpunkt in den ersten Quadranten.</>}
   scene={{
     space: "plane",
-    frame: {
-      kind: "cartesian",
-      x: { min: -5.5, max: 6 },
-      y: { min: -6.5, max: 17.5 },
-    },
-    view: { kind: "fit", padding: 0.1 },
+    frame: { kind: "cartesian", x: { min: -5.5, max: 6 }, y: { min: -6.5, max: 17.5 } },
+    view: { kind: "fit", padding: 0.08 },
     objects: [
-      { id: "line", kind: "function", appearance: "reference", formula: "2*x + 3", domain: { min: -4.5, max: 4.5 } },
-      { id: "parabola", kind: "function", appearance: "primary", formula: "x^2 - 2*x + 7", domain: { min: -1, max: 4.2 } },
-      { id: "other", kind: "function", appearance: "construction", formula: "x^2 + 6*x + 7", domain: { min: -5, max: -0.5 } },
+      { id: "line", kind: "function", appearance: "reference", formula: "2 * x + 3", domain: { min: -4.5, max: 4.5 } },
+      { id: "parabola", kind: "function", appearance: "primary", formula: "x^2 - 2 * x + 7", domain: { min: -1, max: 4.2 } },
+      { id: "other", kind: "function", appearance: "construction", formula: "x^2 + 6 * x + 7", domain: { min: -5, max: -0.5 } },
       { id: "touch", kind: "point", appearance: "answer", at: { x: 2, y: 7 } },
       { id: "wrong", kind: "point", appearance: "highlight", at: { x: -2, y: -1 } },
     ],
@@ -59,16 +70,27 @@ Beide Werte von <InlineMath math="b" /> liefern genau einen gemeinsamen Punkt. E
       { key: "bad", objectId: "other", at: { x: -4.5, y: 0.25 }, placement: "left" },
     ],
   }}
+  labels={{
+    b: <><InlineMath math="B(2 \mid 7)" /></>,
+    q: <><InlineMath math="(-2 \mid -1)" /></>,
+    g: <><InlineMath math="g" /></>,
+    ok: <><InlineMath math="b = -2" /></>,
+    bad: <><InlineMath math="b = 6" /></>,
+  }}
 />
 
-Für <InlineMath math="b=6" /> liegt der Punkt <InlineMath math="(-2\mid-1)" /> im dritten Quadranten, für <InlineMath math="b=-2" /> liegt <InlineMath math="B(2\mid7)" /> im ersten Quadranten.
+Für <InlineMath math="b = 6" /> liegt der Berührpunkt <InlineMath math="(-2 \mid -1)" /> im dritten Quadranten, während <InlineMath math="b = -2" /> den Punkt <InlineMath math="B(2 \mid 7)" /> im ersten Quadranten liefert.
 
-Also ist <InlineMath math="b=-2" />.
+## Probe und falsche Antworten prüfen
 
-# Warum die anderen Antworten falsch sind
+Kurzprobe für <InlineMath math="b = -2" />: Die Differenzgleichung wird zum **vollständigen Quadrat <InlineMath math="(x - 2)^2 = 0" />**, was den einzigen Berührpunkt bei <InlineMath math="x = 2" /> und <InlineMath math="y = 7" /> bestätigt.
 
-- <InlineMath math="b=6" /> gehört zum Berührpunkt <InlineMath math="(-2\mid-1)" /> mit zwei negativen Koordinaten.
-- <InlineMath math="b=-2" /> oder <InlineMath math="b=6" /> erfüllt nur die Bedingung „genau ein Punkt“ und **übersieht die Bedingung an den Quadranten**.
-- <InlineMath math="b=-6" /> entsteht mit einem Vorzeichenfehler beim Umstellen: Aus <InlineMath math="x^2+(b+2)x+4=0" /> folgt <InlineMath math="b=2" /> oder <InlineMath math="b=-6" />, und mit <InlineMath math="x=-\frac{b+2}{2}" /> scheint <InlineMath math="b=-6" /> in den ersten Quadranten zu führen.
-- <InlineMath math="b=0" /> entsteht, wenn in der Diskriminante der Faktor <InlineMath math="4" /> fehlt: <InlineMath math="(b-2)^2-4=0" /> liefert <InlineMath math="b=0" /> oder <InlineMath math="b=4" />. Für <InlineMath math="b=0" /> hat <InlineMath math="x^2-2x+4=0" /> aber gar keine Lösung.
-- <InlineMath math="b=4" /> ist der zweite Wert aus derselben falschen Diskriminante. Für <InlineMath math="b=4" /> hat <InlineMath math="x^2+2x+4=0" /> ebenfalls keine Lösung.
+- <InlineMath math="b = 6" /> ergibt den Berührpunkt <InlineMath math="(-2 \mid -1)" /> mit zwei negativen Koordinaten.
+- <InlineMath math="b = -2" /> oder <InlineMath math="b = 6" /> nutzt nur die Diskriminantenbedingung und übersieht den ersten Quadranten.
+- <InlineMath math="b = -6" /> entsteht durch einen Vorzeichenfehler beim Umstellen von <InlineMath math="2x" /> zu <InlineMath math="b + 2" />.
+- <InlineMath math="b = 0" /> vergisst den Faktor <InlineMath math="4" /> in der Diskriminante, doch das Polynom <InlineMath math="x^2 - 2x + 4" /> hat keine reelle Nullstelle.
+- <InlineMath math="b = 4" /> stammt aus derselben fehlerhaften Diskriminante, und das Polynom <InlineMath math="x^2 + 2x + 4" /> besitzt ebenfalls keine reelle Nullstelle.
+
+# Antwort
+
+Der gesuchte Wert ist <InlineMath math="b = -2" />.

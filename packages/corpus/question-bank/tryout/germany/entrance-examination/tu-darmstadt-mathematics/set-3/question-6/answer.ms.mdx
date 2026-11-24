@@ -1,35 +1,45 @@
-# Kira dengan nombor contoh
+# Diberi
 
-Semua data dalam bentuk peratus, dan perubahan yang ditanya pun peratus. Jadi kamu boleh mula dengan nombor yang senang, contohnya <InlineMath math="100" /> ahli. Yang penting: kedua-dua bahagian itu merujuk kepada **nilai asas yang berbeza**, <InlineMath math="20\,\%" /> kepada bilangan ahli lama dan <InlineMath math="25\,\%" /> kepada bilangan ahli baharu.
+Dalam sebuah **kelab sukan** (*Sportverein*), pada mulanya <InlineMath math="20\,\%" /> ahli ialah remaja dan bakinya (<InlineMath math="80\,\%" />) ialah dewasa. Setahun kemudian, jumlah ahli meningkat <InlineMath math="20\,\%" />, manakala bahagian remaja (*Anteil der Jugendlichen*) menjadi <InlineMath math="25\,\%" />.
 
-# Bilangan sebelum dan selepas
+# Ditanya
+
+Bagaimanakah bilangan ahli dewasa berubah sepanjang tahun itu?
+
+# Penyelesaian
+
+Potongan kek yang pecahan bahagiannya sedikit kecil daripada kek yang jauh lebih besar masih boleh menjadi lebih banyak! Walaupun bahagian dewasa turun daripada <InlineMath math="80\,\%" /> kepada <InlineMath math="75\,\%" />, **keseluruhan kelab membesar satu perlima**, maka kita tidak boleh terus menolak peratusannya.
+
+> Peratusan bahagian pada dua masa berbeza merujuk kepada jumlah keseluruhan yang berlainan, jadi tukarkan kepada bilangan sebenar menggunakan asas seratus sebelum mengira peratus perubahan.
+
+Oleh sebab semua maklumat berbentuk peratusan, mulakan dengan <InlineMath math="100" /> orang ahli supaya setiap bilangan mudah dilihat.
+
+## Membandingkan bilangan sebelum dan selepas
+
+Kira **bilangan ahli dewasa pada awal dan akhir tahun** daripada asas <InlineMath math="100" /> orang ahli.
 
 <BlockMath math="\begin{aligned}
-\text{sebelum:}&\quad 100\ \text{ahli},\quad 20\ \text{remaja},\quad 80\ \text{dewasa} \\
-\text{selepas:}&\quad 100\cdot1.2=120\ \text{ahli},\quad 0.25\cdot120=30\ \text{remaja},\quad 120-30=90\ \text{dewasa}
+\text{Sebelum: } &100 \text{ ahli} \implies 20 \text{ remaja dan } 80 \text{ dewasa} \\
+\text{Selepas: } &100 \cdot 1.2 = 120 \text{ ahli} \implies 0.25 \cdot 120 = 30 \text{ remaja dan } 90 \text{ dewasa}
 \end{aligned}" />
 
+Bandingkan kedua-dua palang berskala sama di bawah untuk melihat secara langsung bahawa bahagian dewasa semakin panjang.
+
 <MathVisual
-  title={<>Ahli sebelum dan selepas</>}
-  description={<>Dua bar dengan skala yang sama. Atas: kelab sebelumnya dengan <InlineMath math="100" /> ahli, iaitu <InlineMath math="20" /> remaja dan <InlineMath math="80" /> orang dewasa. Bawah: kelab selepasnya dengan <InlineMath math="120" /> ahli, iaitu <InlineMath math="30" /> remaja dan <InlineMath math="90" /> orang dewasa. Bahagian orang dewasa pada bar bawah lebih panjang daripada pada bar atas.</>}
-  labels={{
-    before: <>sebelum: <InlineMath math="100" /></>,
-    after: <>selepas: <InlineMath math="120" /></>,
-    y1: <><InlineMath math="20" /></>,
-    a1: <><InlineMath math="80" /></>,
-    y2: <><InlineMath math="30" /></>,
-    a2: <><InlineMath math="90" /></>,
-    young: <>remaja</>,
-    adult: <>dewasa</>,
-  }}
+  title={<>Perbandingan ahli kelab sebelum dan selepas</>}
+  description={
+    <>
+      Palang atas menunjukkan <InlineMath math="100" /> ahli asal (
+      <InlineMath math="20" /> remaja dan <InlineMath math="80" /> dewasa).
+      Palang bawah menunjukkan <InlineMath math="120" /> ahli setahun kemudian (
+      <InlineMath math="30" /> remaja dan <InlineMath math="90" /> dewasa).
+    </>
+  }
+  footer={<>Walaupun bahagian dewasa turun kepada <InlineMath math="75\,\%" />, bilangannya naik daripada <InlineMath math="80" /> kepada <InlineMath math="90" />.</>}
   scene={{
     space: "plane",
-    frame: {
-      kind: "cartesian",
-      x: { min: -1, max: 13 },
-      y: { min: -1.5, max: 5.5 },
-    },
-    view: { kind: "fit", padding: 0.1 },
+    frame: { kind: "cartesian", x: { min: -1, max: 13 }, y: { min: -1.5, max: 5.5 } },
+    view: { kind: "fit", padding: 0.08 },
     objects: [
       { id: "young-before", kind: "polygon", appearance: "highlight", vertices: [{ x: 0, y: 3 }, { x: 2, y: 3 }, { x: 2, y: 4 }, { x: 0, y: 4 }] },
       { id: "adult-before", kind: "polygon", appearance: "secondary", vertices: [{ x: 2, y: 3 }, { x: 10, y: 3 }, { x: 10, y: 4 }, { x: 2, y: 4 }] },
@@ -49,20 +59,34 @@ Semua data dalam bentuk peratus, dan perubahan yang ditanya pun peratus. Jadi ka
       { key: "adult", objectId: "adult-after", at: { x: 7.5, y: 0 }, placement: "below" },
     ],
   }}
+  labels={{
+    before: <>sebelum <InlineMath math="100" /></>,
+    after: <>selepas <InlineMath math="120" /></>,
+    y1: <><InlineMath math="20" /></>,
+    a1: <><InlineMath math="80" /></>,
+    y2: <><InlineMath math="30" /></>,
+    a2: <><InlineMath math="90" /></>,
+    young: <>remaja</>,
+    adult: <>dewasa</>,
+  }}
 />
 
-# Ukur perubahan berbanding nilai lama
+Palang dewasa jelas memanjang daripada <InlineMath math="80" /> kepada <InlineMath math="90" />, membuktikan bilangan ahli dewasa meningkat.
 
-Bilangan orang dewasa naik daripada <InlineMath math="80" /> kepada <InlineMath math="90" />. Perubahan peratus sentiasa diukur **berbanding nilai asal**:
+## Mengukur peratus perubahan dan pilihan salah
 
-<BlockMath math="\frac{90-80}{80}=\frac{10}{80}=0.125=12.5\,\%" />
+Peratus perubahan sentiasa diukur **berbanding nilai asal ahli dewasa**, iaitu <InlineMath math="80" />.
 
-Walaupun bahagian orang dewasa turun daripada <InlineMath math="80\,\%" /> kepada <InlineMath math="75\,\%" />, bilangan mereka sebenarnya naik <InlineMath math="12.5\,\%" />.
+<BlockMath math="\frac{90 - 80}{80} = \frac{10}{80} = 0.125 = 12.5\,\%" />
 
-# Kenapa jawapan lain salah
+Semakan algebra tanpa contoh bilangan: hasil bahagi <InlineMath math="0.75 \cdot 1.2" /> dengan <InlineMath math="0.8" /> ialah <InlineMath math="1.125" />, sah bagi sebarang saiz kelab.
 
-- "turun <InlineMath math="5\,\%" />" membaca perubahan bahagian daripada <InlineMath math="80\,\%" /> kepada <InlineMath math="75\,\%" /> sebagai perubahan bilangan. Itu **<InlineMath math="5" /> mata peratus daripada nilai asas yang lain**.
-- "turun <InlineMath math="6.25\,\%" />" membandingkan bahagian, <InlineMath math="\frac{75}{80}=0.9375" />, jadi sekali lagi bahagian, bukan bilangan.
-- "naik <InlineMath math="20\,\%" />" memakai pertumbuhan seluruh kelab untuk orang dewasa.
-- "turun <InlineMath math="12.5\,\%" />" nombornya betul, tetapi arahnya salah: <InlineMath math="90" /> lebih besar daripada <InlineMath math="80" />.
-- "naik <InlineMath math="50\,\%" />" ialah perubahan bilangan remaja, daripada <InlineMath math="20" /> kepada <InlineMath math="30" />.
+- Turun <InlineMath math="5\,\%" /> menolak <InlineMath math="75\,\%" /> daripada <InlineMath math="80\,\%" /> terus walaupun kedua-duanya berasaskan jumlah berbeza.
+- Turun <InlineMath math="6.25\,\%" /> membandingkan bahagian <InlineMath math="75" /> terhadap <InlineMath math="80" />, bukannya bilangan ahli.
+- Naik <InlineMath math="20\,\%" /> menyamakan kadar pertumbuhan dewasa dengan pertumbuhan seluruh kelab.
+- Turun <InlineMath math="12.5\,\%" /> mempunyai nilai betul tetapi arah terbalik kerana <InlineMath math="90" /> melebihi <InlineMath math="80" />.
+- Naik <InlineMath math="50\,\%" /> ialah peningkatan bilangan remaja daripada <InlineMath math="20" /> kepada <InlineMath math="30" />.
+
+# Jawapan
+
+Bilangan ahli dewasa meningkat sebanyak <InlineMath math="12.5\,\%" />.

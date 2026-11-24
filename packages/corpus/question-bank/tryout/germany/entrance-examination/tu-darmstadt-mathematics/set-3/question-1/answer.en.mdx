@@ -1,33 +1,46 @@
-# Write each root as a square
+# Given
 
-All three radicands have the form <InlineMath math="a\pm2\sqrt b" />. Such an expression is often **a perfect square**, because <InlineMath math="(p\pm q)^2=p^2+q^2\pm2pq" />. So look for two numbers whose squares add up to <InlineMath math="a" /> and whose doubled product is the root part:
+We are asked to simplify the following **nested-radical expression** (*verschachtelte Wurzeln*) without a calculator.
+
+<BlockMath math="\frac{\sqrt{9 + 4\sqrt{5}} - \sqrt{9 - 4\sqrt{5}}}{\sqrt{6 - 2\sqrt{5}}}" />
+
+# Asked
+
+Compute the exact value of this radical fraction.
+
+# Solution
+
+A square root nested inside another root works like a set of nesting dolls: whenever the inside hides **a perfect square of the form <InlineMath math="(p \pm q)^2" />**, the outer roof peels straight off. The one golden rule is that a square root never outputs a negative number.
+
+> When peeling a square root off a perfect square, always apply absolute value and choose the positive difference, because a principal square root can never be negative.
+
+Rewrite all three radicands as perfect squares using the pattern <InlineMath math="p^2 + q^2 \pm 2pq" />.
 
 <BlockMath math="\begin{aligned}
-9+4\sqrt5&=5+4+2\cdot2\sqrt5=\left(\sqrt5+2\right)^2 \\
-9-4\sqrt5&=5+4-2\cdot2\sqrt5=\left(\sqrt5-2\right)^2 \\
-6-2\sqrt5&=5+1-2\sqrt5=\left(\sqrt5-1\right)^2
+9 + 4\sqrt{5} &= 5 + 4 + 2 \cdot 2\sqrt{5} = \left(\sqrt{5} + 2\right)^2 \\
+9 - 4\sqrt{5} &= 5 + 4 - 2 \cdot 2\sqrt{5} = \left(\sqrt{5} - 2\right)^2 \\
+6 - 2\sqrt{5} &= 5 + 1 - 2\sqrt{5} = \left(\sqrt{5} - 1\right)^2
 \end{aligned}" />
 
-# Check the sign of each root
+## Checking the sign of each root
 
-A square root is never negative: <InlineMath math="\sqrt{u^2}=|u|" />. For <InlineMath math="9-4\sqrt5" />, both <InlineMath math="\sqrt5-2" /> and <InlineMath math="2-\sqrt5" /> square to the radicand. The root is **the positive one of the two**. Since <InlineMath math="4<5<9" />, <InlineMath math="\sqrt5" /> lies between <InlineMath math="2" /> and <InlineMath math="3" />:
+Because <InlineMath math="4 < 5 < 9" />, the value <InlineMath math="\sqrt{5}" /> lies between <InlineMath math="2" /> and <InlineMath math="3" />. Look at the number line below to see **why the gap <InlineMath math="\sqrt{5} - 2" /> is strictly positive**.
 
 <MathVisual
-  title={<>Where <InlineMath math="\sqrt5" /> lies</>}
-  description={<>A number line with the points <InlineMath math="1" />, <InlineMath math="2" />, <InlineMath math="\sqrt5" /> and <InlineMath math="3" />. The point <InlineMath math="\sqrt5" /> sits just to the right of <InlineMath math="2" />. The short piece from <InlineMath math="2" /> to <InlineMath math="\sqrt5" /> is marked: its length <InlineMath math="\sqrt5-2" /> is positive.</>}
-  labels={{
-    one: <><InlineMath math="1" /></>,
-    two: <><InlineMath math="2" /></>,
-    root: <><InlineMath math="\sqrt5" /></>,
-    three: <><InlineMath math="3" /></>,
-  }}
+  title={<>Position of <InlineMath math="\sqrt{5}" /> on the number line</>}
+  description={
+    <>
+      Points <InlineMath math="1" />, <InlineMath math="2" />,{" "}
+      <InlineMath math="\sqrt{5}" />, and <InlineMath math="3" /> on the number
+      line. The green segment from <InlineMath math="2" /> to{" "}
+      <InlineMath math="\sqrt{5}" /> highlights the positive distance{" "}
+      <InlineMath math="\sqrt{5} - 2" />.
+    </>
+  }
+  footer={<>Since <InlineMath math="\sqrt{5}" /> sits to the right of <InlineMath math="2" />, both <InlineMath math="\sqrt{5} - 2" /> and <InlineMath math="\sqrt{5} - 1" /> are positive.</>}
   scene={{
     space: "plane",
-    frame: {
-      kind: "cartesian",
-      x: { min: -0.3, max: 3.8 },
-      y: { min: -1, max: 1 },
-    },
+    frame: { kind: "cartesian", x: { min: -0.3, max: 3.8 }, y: { min: -1, max: 1 } },
     view: { kind: "fit", padding: 0.1 },
     objects: [
       { id: "axis", kind: "segment", appearance: "reference", from: { x: 0, y: 0 }, to: { x: 3.5, y: 0 } },
@@ -44,26 +57,36 @@ A square root is never negative: <InlineMath math="\sqrt{u^2}=|u|" />. For <Inli
       { key: "three", objectId: "p3", at: { x: 3, y: 0 }, placement: "below" },
     ],
   }}
+  labels={{
+    one: <><InlineMath math="1" /></>,
+    two: <><InlineMath math="2" /></>,
+    root: <><InlineMath math="\sqrt{5}" /></>,
+    three: <><InlineMath math="3" /></>,
+  }}
 />
 
-So <InlineMath math="\sqrt5-2>0" /> and <InlineMath math="\sqrt5-1>0" />, but <InlineMath math="2-\sqrt5<0" />. That gives
+Because <InlineMath math="\sqrt{5}" /> exceeds <InlineMath math="2" />, we pick the positive branch for all three roots.
 
-<BlockMath math="\sqrt{9+4\sqrt5}=\sqrt5+2,\qquad\sqrt{9-4\sqrt5}=\sqrt5-2,\qquad\sqrt{6-2\sqrt5}=\sqrt5-1" />
+<BlockMath math="\sqrt{9 + 4\sqrt{5}} = \sqrt{5} + 2, \qquad \sqrt{9 - 4\sqrt{5}} = \sqrt{5} - 2, \qquad \sqrt{6 - 2\sqrt{5}} = \sqrt{5} - 1" />
 
-# Work out the fraction
+## Simplifying the fraction and checking wrong choices
 
-In the numerator **the two <InlineMath math="\sqrt5" /> cancel**. Rationalise the denominator with the difference of squares:
+In the numerator, **the two <InlineMath math="\sqrt{5}" /> terms cancel cleanly**, and then we rationalize the denominator using a difference of squares.
 
-<BlockMath math="\frac{(\sqrt5+2)-(\sqrt5-2)}{\sqrt5-1}=\frac{4}{\sqrt5-1}=\frac{4\left(\sqrt5+1\right)}{\left(\sqrt5-1\right)\left(\sqrt5+1\right)}=\frac{4\left(\sqrt5+1\right)}{5-1}=\sqrt5+1" />
+<BlockMath math="\frac{(\sqrt{5} + 2) - (\sqrt{5} - 2)}{\sqrt{5} - 1} = \frac{4}{\sqrt{5} - 1} = \frac{4(\sqrt{5} + 1)}{(\sqrt{5} - 1)(\sqrt{5} + 1)} = \frac{4(\sqrt{5} + 1)}{5 - 1} = \sqrt{5} + 1" />
 
-A check with <InlineMath math="\sqrt5\approx2.236" /> agrees: the numerator is about <InlineMath math="4.236-0.236=4" />, the denominator about <InlineMath math="1.236" />, and <InlineMath math="4\div1.236\approx3.236\approx\sqrt5+1" />.
+Decimal sanity check using <InlineMath math="\sqrt{5}" /> near <InlineMath math="2.236" />:
 
-The expression has the value <InlineMath math="\sqrt5+1" />.
+<BlockMath math="\frac{4.236 - 0.236}{1.236} = \frac{4}{1.236} \approx 3.236 \approx \sqrt{5} + 1" />
 
-# Why the other answers are wrong
+| Option | Why it is wrong |
+| :--- | :--- |
+| <InlineMath math="-\sqrt{5} - 1" /> | Takes the negative value <InlineMath math="1 - \sqrt{5}" /> for the denominator root. |
+| <InlineMath math="\frac{5 + \sqrt{5}}{2}" /> | Writes <InlineMath math="\sqrt{9 - 4\sqrt{5}}" /> as <InlineMath math="2 - \sqrt{5}" />, turning the numerator into <InlineMath math="2\sqrt{5}" />. |
+| <InlineMath math="-\frac{5 + \sqrt{5}}{2}" /> | Makes both sign mistakes at the same time. |
+| <InlineMath math="\sqrt{5} - 1" /> | Mistakenly expands <InlineMath math="(\sqrt{5} - 1)^2" /> as <InlineMath math="5 - 1 = 4" /> and cancels directly. |
+| <InlineMath math="\frac{2\sqrt{5} + 2}{3}" /> | Evaluates the conjugate product <InlineMath math="(\sqrt{5} - 1)(\sqrt{5} + 1)" /> as <InlineMath math="6" /> instead of <InlineMath math="4" />. |
 
-- <InlineMath math="-\sqrt5-1" /> comes from writing <InlineMath math="\sqrt{6-2\sqrt5}" /> as <InlineMath math="1-\sqrt5" />. That number is **negative, so it can't be a square root**.
-- <InlineMath math="\frac{5+\sqrt5}{2}" /> comes from writing <InlineMath math="\sqrt{9-4\sqrt5}" /> as <InlineMath math="2-\sqrt5" />. The numerator then becomes <InlineMath math="2\sqrt5" /> instead of <InlineMath math="4" />.
-- <InlineMath math="-\frac{5+\sqrt5}{2}" /> makes both sign mistakes at once.
-- <InlineMath math="\sqrt5-1" /> comes from taking <InlineMath math="(\sqrt5-1)^2" /> as <InlineMath math="5-1=4" />, like a difference of squares, and then cancelling <InlineMath math="\frac{4}{\sqrt5-1}=\frac{(\sqrt5-1)^2}{\sqrt5-1}" />. In fact <InlineMath math="(\sqrt5-1)^2=6-2\sqrt5" />.
-- <InlineMath math="\frac{2\sqrt5+2}{3}" /> comes from taking <InlineMath math="(\sqrt5-1)(\sqrt5+1)" /> as <InlineMath math="5+1=6" /> instead of <InlineMath math="5-1=4" />.
+# Answer
+
+The exact value of the expression is <InlineMath math="\sqrt{5} + 1" />.

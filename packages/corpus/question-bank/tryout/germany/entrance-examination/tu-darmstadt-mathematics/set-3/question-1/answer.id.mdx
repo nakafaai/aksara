@@ -1,33 +1,46 @@
-# Tulis setiap akar sebagai kuadrat
+# Diketahui
 
-Ketiga bilangan di bawah akar berbentuk <InlineMath math="a\pm2\sqrt b" />. Bentuk seperti ini sering merupakan **kuadrat sempurna**, karena <InlineMath math="(p\pm q)^2=p^2+q^2\pm2pq" />. Jadi, cari dua bilangan yang jumlah kuadratnya <InlineMath math="a" /> dan dua kali hasil kalinya sama dengan bagian akarnya:
+**Bentuk akar bersarang** (*verschachtelte Wurzeln*) berikut diberikan untuk disederhanakan tanpa kalkulator.
+
+<BlockMath math="\frac{\sqrt{9 + 4\sqrt{5}} - \sqrt{9 - 4\sqrt{5}}}{\sqrt{6 - 2\sqrt{5}}}" />
+
+# Ditanyakan
+
+Hitung nilai eksak dari pecahan bentuk akar ini.
+
+# Penyelesaian
+
+Akar di dalam akar terlihat rumit, tetapi sebenarnya bekerja seperti boneka susun: jika bagian dalamnya diam-diam adalah **kuadrat sempurna berbentuk <InlineMath math="(p \pm q)^2" />**, atap akar terluar bisa langsung terkelupas. Satu aturan emas yang wajib dijaga adalah bahwa akar kuadrat hanya mengeluarkan bilangan tak negatif.
+
+> Saat melepas akar dari kuadrat sempurna, selalu gunakan nilai mutlak dan pilih selisih yang bernilai positif karena akar kuadrat tidak pernah menghasilkan bilangan negatif.
+
+Tulis ketiga bilangan di dalam akar sebagai kuadrat sempurna menggunakan pola <InlineMath math="p^2 + q^2 \pm 2pq" />.
 
 <BlockMath math="\begin{aligned}
-9+4\sqrt5&=5+4+2\cdot2\sqrt5=\left(\sqrt5+2\right)^2 \\
-9-4\sqrt5&=5+4-2\cdot2\sqrt5=\left(\sqrt5-2\right)^2 \\
-6-2\sqrt5&=5+1-2\sqrt5=\left(\sqrt5-1\right)^2
+9 + 4\sqrt{5} &= 5 + 4 + 2 \cdot 2\sqrt{5} = \left(\sqrt{5} + 2\right)^2 \\
+9 - 4\sqrt{5} &= 5 + 4 - 2 \cdot 2\sqrt{5} = \left(\sqrt{5} - 2\right)^2 \\
+6 - 2\sqrt{5} &= 5 + 1 - 2\sqrt{5} = \left(\sqrt{5} - 1\right)^2
 \end{aligned}" />
 
-# Periksa tanda setiap akar
+## Memeriksa tanda setiap akar
 
-Akar kuadrat tidak pernah negatif: <InlineMath math="\sqrt{u^2}=|u|" />. Untuk <InlineMath math="9-4\sqrt5" />, baik <InlineMath math="\sqrt5-2" /> maupun <InlineMath math="2-\sqrt5" /> kalau dikuadratkan menghasilkan bilangan itu. Akarnya adalah **bilangan yang positif**. Karena <InlineMath math="4<5<9" />, nilai <InlineMath math="\sqrt5" /> terletak antara <InlineMath math="2" /> dan <InlineMath math="3" />:
+Karena <InlineMath math="4 < 5 < 9" />, posisi <InlineMath math="\sqrt{5}" /> berada di antara <InlineMath math="2" /> dan <InlineMath math="3" />. Perhatikan garis bilangan berikut untuk melihat **mengapa selisih <InlineMath math="\sqrt{5} - 2" /> bernilai positif**.
 
 <MathVisual
-  title={<>Letak <InlineMath math="\sqrt5" /></>}
-  description={<>Garis bilangan dengan titik <InlineMath math="1" />, <InlineMath math="2" />, <InlineMath math="\sqrt5" />, dan <InlineMath math="3" />. Titik <InlineMath math="\sqrt5" /> sedikit di kanan <InlineMath math="2" />. Ruas pendek dari <InlineMath math="2" /> sampai <InlineMath math="\sqrt5" /> ditandai: panjangnya, yaitu <InlineMath math="\sqrt5-2" />, positif.</>}
-  labels={{
-    one: <><InlineMath math="1" /></>,
-    two: <><InlineMath math="2" /></>,
-    root: <><InlineMath math="\sqrt5" /></>,
-    three: <><InlineMath math="3" /></>,
-  }}
+  title={<>Letak <InlineMath math="\sqrt{5}" /> pada garis bilangan</>}
+  description={
+    <>
+      Titik <InlineMath math="1" />, <InlineMath math="2" />,{" "}
+      <InlineMath math="\sqrt{5}" />, dan <InlineMath math="3" /> pada garis
+      bilangan. Ruas hijau dari <InlineMath math="2" /> ke{" "}
+      <InlineMath math="\sqrt{5}" /> menunjukkan jarak positif sebesar{" "}
+      <InlineMath math="\sqrt{5} - 2" />.
+    </>
+  }
+  footer={<>Karena <InlineMath math="\sqrt{5}" /> sedikit di kanan <InlineMath math="2" />, baik <InlineMath math="\sqrt{5} - 2" /> maupun <InlineMath math="\sqrt{5} - 1" /> positif.</>}
   scene={{
     space: "plane",
-    frame: {
-      kind: "cartesian",
-      x: { min: -0.3, max: 3.8 },
-      y: { min: -1, max: 1 },
-    },
+    frame: { kind: "cartesian", x: { min: -0.3, max: 3.8 }, y: { min: -1, max: 1 } },
     view: { kind: "fit", padding: 0.1 },
     objects: [
       { id: "axis", kind: "segment", appearance: "reference", from: { x: 0, y: 0 }, to: { x: 3.5, y: 0 } },
@@ -44,26 +57,36 @@ Akar kuadrat tidak pernah negatif: <InlineMath math="\sqrt{u^2}=|u|" />. Untuk <
       { key: "three", objectId: "p3", at: { x: 3, y: 0 }, placement: "below" },
     ],
   }}
+  labels={{
+    one: <><InlineMath math="1" /></>,
+    two: <><InlineMath math="2" /></>,
+    root: <><InlineMath math="\sqrt{5}" /></>,
+    three: <><InlineMath math="3" /></>,
+  }}
 />
 
-Jadi <InlineMath math="\sqrt5-2>0" /> dan <InlineMath math="\sqrt5-1>0" />, tetapi <InlineMath math="2-\sqrt5<0" />. Akibatnya
+Karena <InlineMath math="\sqrt{5}" /> lebih besar dari <InlineMath math="2" />, kita memilih pasangan positif bagi ketiga akar sekaligus.
 
-<BlockMath math="\sqrt{9+4\sqrt5}=\sqrt5+2,\qquad\sqrt{9-4\sqrt5}=\sqrt5-2,\qquad\sqrt{6-2\sqrt5}=\sqrt5-1" />
+<BlockMath math="\sqrt{9 + 4\sqrt{5}} = \sqrt{5} + 2, \qquad \sqrt{9 - 4\sqrt{5}} = \sqrt{5} - 2, \qquad \sqrt{6 - 2\sqrt{5}} = \sqrt{5} - 1" />
 
-# Hitung pecahannya
+## Menyederhanakan pecahan dan mengecek pilihan salah
 
-Di pembilang, **kedua <InlineMath math="\sqrt5" /> saling menghapus**. Penyebutnya dirasionalkan dengan selisih dua kuadrat:
+Pada pembilang, **kedua suku <InlineMath math="\sqrt{5}" /> saling meniadakan**, lalu penyebutnya dirasionalkan dengan selisih dua kuadrat.
 
-<BlockMath math="\frac{(\sqrt5+2)-(\sqrt5-2)}{\sqrt5-1}=\frac{4}{\sqrt5-1}=\frac{4\left(\sqrt5+1\right)}{\left(\sqrt5-1\right)\left(\sqrt5+1\right)}=\frac{4\left(\sqrt5+1\right)}{5-1}=\sqrt5+1" />
+<BlockMath math="\frac{(\sqrt{5} + 2) - (\sqrt{5} - 2)}{\sqrt{5} - 1} = \frac{4}{\sqrt{5} - 1} = \frac{4(\sqrt{5} + 1)}{(\sqrt{5} - 1)(\sqrt{5} + 1)} = \frac{4(\sqrt{5} + 1)}{5 - 1} = \sqrt{5} + 1" />
 
-Cek dengan <InlineMath math="\sqrt5\approx2{,}236" />: pembilangnya sekitar <InlineMath math="4{,}236-0{,}236=4" />, penyebutnya sekitar <InlineMath math="1{,}236" />, dan <InlineMath math="4:1{,}236\approx3{,}236\approx\sqrt5+1" />.
+Cek taksiran desimal dengan <InlineMath math="\sqrt{5}" /> sekitar <InlineMath math="2{,}236" />:
 
-Nilai bentuk itu adalah <InlineMath math="\sqrt5+1" />.
+<BlockMath math="\frac{4{,}236 - 0{,}236}{1{,}236} = \frac{4}{1{,}236} \approx 3{,}236 \approx \sqrt{5} + 1" />
 
-# Mengapa pilihan lain salah
+| Pilihan | Mengapa salah |
+| :--- | :--- |
+| <InlineMath math="-\sqrt{5} - 1" /> | Memilih nilai negatif <InlineMath math="1 - \sqrt{5}" /> untuk akar penyebut. |
+| <InlineMath math="\frac{5 + \sqrt{5}}{2}" /> | Memilih <InlineMath math="2 - \sqrt{5}" /> untuk <InlineMath math="\sqrt{9 - 4\sqrt{5}}" /> sehingga pembilang menjadi <InlineMath math="2\sqrt{5}" />. |
+| <InlineMath math="-\frac{5 + \sqrt{5}}{2}" /> | Melakukan kedua kesalahan tanda di pembilang dan penyebut sekaligus. |
+| <InlineMath math="\sqrt{5} - 1" /> | Mengira <InlineMath math="(\sqrt{5} - 1)^2" /> sama dengan <InlineMath math="5 - 1 = 4" /> lalu langsung mencoretnya. |
+| <InlineMath math="\frac{2\sqrt{5} + 2}{3}" /> | Menghitung hasil kali sekawan <InlineMath math="(\sqrt{5} - 1)(\sqrt{5} + 1)" /> menjadi <InlineMath math="6" />, bukan <InlineMath math="4" />. |
 
-- <InlineMath math="-\sqrt5-1" /> muncul kalau <InlineMath math="\sqrt{6-2\sqrt5}" /> ditulis sebagai <InlineMath math="1-\sqrt5" />. Bilangan itu **negatif, jadi tidak mungkin hasil akar**.
-- <InlineMath math="\frac{5+\sqrt5}{2}" /> muncul kalau <InlineMath math="\sqrt{9-4\sqrt5}" /> ditulis sebagai <InlineMath math="2-\sqrt5" />. Pembilangnya lalu menjadi <InlineMath math="2\sqrt5" />, bukan <InlineMath math="4" />.
-- <InlineMath math="-\frac{5+\sqrt5}{2}" /> melakukan kedua kesalahan tanda itu sekaligus.
-- <InlineMath math="\sqrt5-1" /> muncul kalau <InlineMath math="(\sqrt5-1)^2" /> dihitung <InlineMath math="5-1=4" /> seperti selisih dua kuadrat, lalu <InlineMath math="\frac{4}{\sqrt5-1}=\frac{(\sqrt5-1)^2}{\sqrt5-1}" /> disederhanakan. Padahal <InlineMath math="(\sqrt5-1)^2=6-2\sqrt5" />.
-- <InlineMath math="\frac{2\sqrt5+2}{3}" /> muncul kalau <InlineMath math="(\sqrt5-1)(\sqrt5+1)" /> dihitung <InlineMath math="5+1=6" />, padahal hasilnya <InlineMath math="5-1=4" />.
+# Jawaban
+
+Nilai eksak bentuk akar ini adalah <InlineMath math="\sqrt{5} + 1" />.

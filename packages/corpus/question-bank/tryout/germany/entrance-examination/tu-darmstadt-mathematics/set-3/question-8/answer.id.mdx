@@ -1,38 +1,50 @@
-# Periksa dulu apakah kubus tenggelam
+# Diketahui
 
-Banyaknya air tetap, hanya penyebarannya yang berubah. Yang menentukan adalah apakah kubus akhirnya terendam seluruhnya. Misalkan dulu air tetap **di bawah sisi atas kubus**, jadi <InlineMath math="h\le20\text{ cm}" />. Maka air hanya berdiri di atas alas bebas di samping kubus:
+Sebuah **bak berbentuk balok** (*quaderförmiges Becken*) terbuka di bagian atas memiliki alas dalam <InlineMath math="40\text{ cm}" /> kali <InlineMath math="30\text{ cm}" /> dan berisi air setinggi <InlineMath math="10\text{ cm}" />. Sebuah kubus pejal (*massiver Würfel*) berrusuk <InlineMath math="20\text{ cm}" /> diletakkan di dasar bak tanpa ada air yang tumpah.
 
-<BlockMath math="40\cdot30-20\cdot20=1200-400=800\text{ cm}^2" />
+# Ditanyakan
 
-# Samakan volume air
+Tentukan tinggi permukaan air <InlineMath math="h" /> di dalam bak setelah kubus dimasukkan.
 
-Volume air adalah <InlineMath math="1200\cdot10=12{.}000\text{ cm}^3" />. Air itu sekarang mengisi alas bebas sampai tinggi <InlineMath math="h" />:
+# Penyelesaian
 
-<BlockMath math="800\,h=12{.}000\quad\Longrightarrow\quad h=15\text{ cm}" />
+Masukkan balok kayu tebal ke dalam bak air yang dangkal: selama air belum melampaui atap balok, balok itu bekerja seperti pilar kokoh yang **mencuri sebagian luas lantai bak**. Jumlah air tidak berubah, tetapi kini harus berdesakan di sisa lantai kosong di sekeliling kubus sehingga permukaannya terdorong naik.
 
-**Pemisalan tadi benar**, karena <InlineMath math="15\text{ cm}<20\text{ cm}" />. Jadi kubus masih menyembul <InlineMath math="5\text{ cm}" /> di atas air.
+> Untuk benda yang diletakkan di dasar bak, selalu uji dulu apakah air tetap di bawah sisi atas benda sehingga luas lantai efektif hanyalah alas bak dikurangi alas benda.
+
+Hitung volume air yang tetap sama dan luas lantai bebas di samping kubus.
+
+<BlockMath math="\begin{aligned}
+V_{\text{air}} &= 40 \cdot 30 \cdot 10 = 12{.}000\text{ cm}^3 \\
+A_{\text{bebas}} &= 40 \cdot 30 - 20 \cdot 20 = 1200 - 400 = 800\text{ cm}^2
+\end{aligned}" />
+
+## Menghitung tinggi baru dan menguji asumsi
+
+Misalkan air belum menutupi atap kubus (<InlineMath math="h \le 20\text{ cm}" />), lalu bagi volume air dengan **luas alas bebas di sekeliling kubus**.
+
+<BlockMath math="800\, h = 12{.}000 \implies h = 15\text{ cm}" />
+
+Karena <InlineMath math="15\text{ cm} < 20\text{ cm}" />, asumsi kita terbukti benar dan kubus masih menyembul <InlineMath math="5\text{ cm}" /> di atas permukaan air.
 
 <MathVisual
-  title={<>Bak dilihat dari depan</>}
-  description={<>Tampak depan bak dengan lebar <InlineMath math="40\text{ cm}" />. Di kiri berdiri kubus dengan rusuk <InlineMath math="20\text{ cm}" />. Di sebelahnya, air sekarang setinggi <InlineMath math="15\text{ cm}" />, lebih rendah daripada rusuk kubus. Tinggi air lama, <InlineMath math="10\text{ cm}" />, digambar sebagai garis.</>}
-  labels={{
-    cube: <>kubus</>,
-    h: <><InlineMath math="15\text{ cm}" /></>,
-    old: <>semula <InlineMath math="10\text{ cm}" /></>,
-    edge: <><InlineMath math="20\text{ cm}" /></>,
-    water: <>air</>,
-  }}
+  title={<>Tampak depan bak sebelum dan sesudah kubus diletakkan</>}
+  description={
+    <>
+      Bak selebar <InlineMath math="40\text{ cm}" /> memuat kubus berrusuk{" "}
+      <InlineMath math="20\text{ cm}" /> di sisi kiri. Air di sebelahnya naik
+      dari garis lama <InlineMath math="10\text{ cm}" /> menjadi{" "}
+      <InlineMath math="15\text{ cm}" />, masih di bawah atap kubus.
+    </>
+  }
+  footer={<>Air naik ke <InlineMath math="15\text{ cm}" /> dan menyisakan <InlineMath math="5\text{ cm}" /> kubus di atas permukaan.</>}
   scene={{
     space: "plane",
-    frame: {
-      kind: "cartesian",
-      x: { min: -8, max: 52 },
-      y: { min: -3, max: 28 },
-    },
-    view: { kind: "fit", padding: 0.1 },
+    frame: { kind: "cartesian", x: { min: -8, max: 52 }, y: { min: -3, max: 28 } },
+    view: { kind: "fit", padding: 0.08 },
     objects: [
       { id: "tank", kind: "polygon", appearance: "construction", vertices: [{ x: 0, y: 0 }, { x: 40, y: 0 }, { x: 40, y: 25 }, { x: 0, y: 25 }] },
-      { id: "water-left", kind: "polygon", appearance: "highlight", vertices: [{ x: 20, y: 0 }, { x: 40, y: 0 }, { x: 40, y: 15 }, { x: 20, y: 15 }] },
+      { id: "water-right", kind: "polygon", appearance: "highlight", vertices: [{ x: 20, y: 0 }, { x: 40, y: 0 }, { x: 40, y: 15 }, { x: 20, y: 15 }] },
       { id: "block", kind: "polygon", appearance: "primary", vertices: [{ x: 0, y: 0 }, { x: 20, y: 0 }, { x: 20, y: 20 }, { x: 0, y: 20 }] },
       { id: "old-level", kind: "segment", appearance: "reference", from: { x: 20, y: 10 }, to: { x: 40, y: 10 } },
       { id: "new-level", kind: "segment", appearance: "answer", from: { x: 20, y: 15 }, to: { x: 40, y: 15 } },
@@ -42,17 +54,30 @@ Volume air adalah <InlineMath math="1200\cdot10=12{.}000\text{ cm}^3" />. Air it
       { key: "edge", objectId: "block", at: { x: 0, y: 10 }, placement: "left" },
       { key: "h", objectId: "new-level", at: { x: 40, y: 15 }, placement: "right" },
       { key: "old", objectId: "old-level", at: { x: 40, y: 10 }, placement: "right" },
-      { key: "water", objectId: "water-left", at: { x: 30, y: 5 }, placement: "above" },
+      { key: "water", objectId: "water-right", at: { x: 30, y: 5 }, placement: "above" },
     ],
+  }}
+  labels={{
+    cube: <>kubus</>,
+    edge: <><InlineMath math="20\text{ cm}" /></>,
+    h: <><InlineMath math="15\text{ cm}" /></>,
+    old: <>awal <InlineMath math="10\text{ cm}" /></>,
+    water: <>air</>,
   }}
 />
 
-Tinggi air sesudahnya <InlineMath math="15\text{ cm}" />.
+Gambar penampang itu langsung memperlihatkan bahwa kubus memang tidak pernah tenggelam penuh.
 
-# Mengapa pilihan lain salah
+## Memeriksa volume tergeser dan pilihan salah
 
-- <InlineMath math="\frac{50}{3}\text{ cm}" /> menganggap seluruh kubus, <InlineMath math="8{.}000\text{ cm}^3" />, terendam: <InlineMath math="\frac{12{.}000+8{.}000}{1200}" />. Kalau begitu, tinggi air minimal <InlineMath math="20\text{ cm}" />, dan <InlineMath math="\frac{50}{3}<20" /> bertentangan dengan itu.
-- <InlineMath math="\frac{40}{3}\text{ cm}" /> hanya menghitung bagian kubus yang terendam di awal: <InlineMath math="\frac{12{.}000+400\cdot10}{1200}" />. Ketika air naik, **bagian kubus yang terendam juga bertambah**.
-- <InlineMath math="20\text{ cm}" /> menganggap air naik tepat sampai sisi atas kubus.
-- <InlineMath math="7{,}5\text{ cm}" /> menambahkan alas kubus ke alas bak, padahal seharusnya dikurangkan: <InlineMath math="\frac{12{.}000}{1600}" />.
-- <InlineMath math="\frac{31}{3}\text{ cm}" /> memakai <InlineMath math="20^2=400" /> sebagai volume kubus, padahal <InlineMath math="20^3" />.
+Cek balik lewat prinsip perpindahan: bagian kubus yang terendam setinggi <InlineMath math="15\text{ cm}" /> mendesak <InlineMath math="6{.}000\text{ cm}^3" />, dan bersama air awal menghasilkan **total ruang terisi <InlineMath math="18{.}000\text{ cm}^3" />**, tepat sama dengan <InlineMath math="1200 \cdot 15" />.
+
+- <InlineMath math="\frac{50}{3}\text{ cm}" /> menganggap seluruh kubus (<InlineMath math="8{.}000\text{ cm}^3" />) tenggelam, padahal hasilnya di bawah <InlineMath math="20\text{ cm}" /> sehingga bertentangan dengan asumsinya sendiri.
+- <InlineMath math="\frac{40}{3}\text{ cm}" /> hanya menghitung volume kubus yang terendam sampai tinggi awal <InlineMath math="10\text{ cm}" /> dan lupa bahwa kubus makin terendam saat air naik.
+- <InlineMath math="20\text{ cm}" /> menebak air naik persis sampai permukaan atas kubus.
+- <InlineMath math="7{,}5\text{ cm}" /> menjumlahkan alas kubus ke alas bak menjadi <InlineMath math="1600\text{ cm}^2" /> alih-alih mengurangkannya.
+- <InlineMath math="\frac{31}{3}\text{ cm}" /> memakai luas alas <InlineMath math="400" /> sebagai volume kubus, padahal volume kubus memakai pangkat tiga.
+
+# Jawaban
+
+Tinggi permukaan air setelah kubus diletakkan adalah <InlineMath math="15\text{ cm}" />.

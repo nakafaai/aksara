@@ -1,49 +1,54 @@
-# Tentukan dulu daerah asalnya
+# Diketahui
 
-Logaritma hanya terdefinisi untuk bilangan positif. Di persamaan ada <InlineMath math="\log_2 x" /> dan <InlineMath math="\log_2(x+3)" />, jadi harus berlaku:
+**Persamaan logaritma** (*Logarithmusgleichung*) berbasis dua dalam bilangan real diberikan sebagai berikut.
 
-<BlockMath math="x>0\quad\text{dan}\quad x+3>0\qquad\Rightarrow\qquad x>0" />
+<BlockMath math="2\log_2 x - \log_2(x + 3) = 2" />
 
-Syarat ini milik persamaan **asli**. Nanti hanya bilangan dengan <InlineMath math="x>0" /> yang boleh dipertahankan sebagai penyelesaian.
+# Ditanyakan
 
-# Gabungkan logaritmanya
+Tentukan himpunan penyelesaian (*Lösungsmenge*) <InlineMath math="\mathbb{L}" /> dalam himpunan bilangan real.
 
-Dengan <InlineMath math="2\log_2 x=\log_2 x^2" /> dan <InlineMath math="\log_2 u-\log_2 v=\log_2\frac uv" />, ruas kiri menjadi **satu logaritma**. Setelah itu pakai definisi <InlineMath math="\log_2 w=2\iff w=2^2=4" />:
+# Penyelesaian
+
+Menguadratkan sebuah bilangan menghapus tanda minusnya secara diam-diam. Begitu kita menaikkan angka <InlineMath math="2" /> menjadi pangkat pada <InlineMath math="\log_2(x^2)" />, pintu tiba-tiba terbuka bagi <InlineMath math="x" /> negatif, padahal **persamaan asli menuntut setiap argumen logaritma bernilai positif**.
+
+> Daerah asal persamaan logaritma selalu dikunci dari bentuk awalnya sebelum aturan logaritma diterapkan, sehingga setiap akar yang melanggar syarat positif wajib dibuang.
+
+Dari <InlineMath math="\log_2 x" /> dan <InlineMath math="\log_2(x + 3)" />, syarat serentak <InlineMath math="x > 0" /> dan <InlineMath math="x + 3 > 0" /> langsung menyusut menjadi <InlineMath math="x > 0" />.
+
+## Menggabungkan logaritma dan mencari calon akar
+
+Gunakan sifat pangkat dan selisih logaritma untuk menyatukan ruas kiri menjadi **satu logaritma tunggal**, lalu ubah ke bentuk pangkat dua.
 
 <BlockMath math="\begin{aligned}
-\log_2\frac{x^2}{x+3}&=2 \\
-\frac{x^2}{x+3}&=4 \\
-x^2-4x-12&=0 \\
-(x-6)(x+2)&=0
+\log_2\left(\frac{x^2}{x + 3}\right) &= 2 \\
+\frac{x^2}{x + 3} &= 2^2 = 4 \\
+x^2 - 4x - 12 &= 0 \\
+(x - 6)(x + 2) &= 0
 \end{aligned}" />
 
-Persamaan kuadrat itu punya penyelesaian <InlineMath math="x=6" /> dan <InlineMath math="x=-2" />.
-
-# Periksa kedua calon
-
-Bentuk ubahan <InlineMath math="\log_2\frac{x^2}{x+3}" /> juga terdefinisi di <InlineMath math="x=-2" />, tetapi ruas kiri yang asli tidak, karena <InlineMath math="\log_2(-2)" /> tidak ada. Jadi langkah <InlineMath math="2\log_2 x=\log_2 x^2" /> **memperluas daerah asalnya**:
+Muncul dua calon, yaitu <InlineMath math="x = 6" /> dan <InlineMath math="x = -2" />. Lihat grafik berikut untuk melihat mengapa bentuk ubahan punya perpotongan hantu di sisi negatif.
 
 <MathVisual
-  title={<>Ruas kiri dan nilai <InlineMath math="2" /></>}
-  description={<>Grafik ruas kiri <InlineMath math="2\log_2 x-\log_2(x+3)" /> hanya ada untuk <InlineMath math="x>0" /> dan memotong garis mendatar <InlineMath math="y=2" /> tepat di <InlineMath math="x=6" />. Garis putus-putus adalah grafik bentuk yang sudah diubah, <InlineMath math="\log_2\frac{x^2}{x+3}" />, untuk <InlineMath math="x" /> negatif. Grafik itu memotong garis di <InlineMath math="x=-2" />, padahal di sana persamaan aslinya tidak terdefinisi.</>}
-  labels={{
-    key: <><InlineMath math="x=6" /></>,
-    fake: <><InlineMath math="x=-2" /></>,
-    h: <>ruas kiri</>,
-    g: <>hanya bentuk ubahan</>,
-  }}
+  title={<>Ruas kiri asli versus bentuk ubahan pada tinggi <InlineMath math="y = 2" /></>}
+  description={
+    <>
+      Kurva solid <InlineMath math="2\log_2 x - \log_2(x + 3)" /> hanya ada
+      untuk <InlineMath math="x > 0" /> dan memotong <InlineMath math="y = 2" />{" "}
+      di <InlineMath math="x = 6" />. Kurva putus-putus bentuk ubahan muncul di
+      sisi negatif dan memotong <InlineMath math="y = 2" /> di akar palsu{" "}
+      <InlineMath math="x = -2" />.
+    </>
+  }
+  footer={<>Hanya <InlineMath math="x = 6" /> berada pada kurva asli, sedangkan <InlineMath math="x = -2" /> gugur.</>}
   scene={{
     space: "plane",
-    frame: {
-      kind: "cartesian",
-      x: { min: -3.5, max: 10 },
-      y: { min: -4, max: 4.5 },
-    },
-    view: { kind: "fit", padding: 0.1 },
+    frame: { kind: "cartesian", x: { min: -3.5, max: 10 }, y: { min: -4, max: 4.5 } },
+    view: { kind: "fit", padding: 0.08 },
     objects: [
       { id: "level", kind: "segment", appearance: "reference", from: { x: -3.5, y: 2 }, to: { x: 10, y: 2 } },
-      { id: "left-side", kind: "function", appearance: "primary", formula: "2*log_2(x) - log_2(x+3)", domain: { min: 0.5, max: 10 } },
-      { id: "rewritten", kind: "function", appearance: "construction", formula: "log_2(x^2/(x+3))", domain: { min: -2.6, max: -0.5 } },
+      { id: "left-side", kind: "function", appearance: "primary", formula: "2 * log_2(x) - log_2(x + 3)", domain: { min: 0.5, max: 10 } },
+      { id: "rewritten", kind: "function", appearance: "construction", formula: "log_2(x^2 / (x + 3))", domain: { min: -2.6, max: -0.5 } },
       { id: "solution", kind: "point", appearance: "answer", at: { x: 6, y: 2 } },
       { id: "extra", kind: "point", appearance: "highlight", at: { x: -2, y: 2 } },
     ],
@@ -54,16 +59,30 @@ Bentuk ubahan <InlineMath math="\log_2\frac{x^2}{x+3}" /> juga terdefinisi di <I
       { key: "g", objectId: "rewritten", at: { x: -1.2, y: -1.5 }, placement: "right" },
     ],
   }}
+  labels={{
+    key: <><InlineMath math="x = 6" /></>,
+    fake: <><InlineMath math="x = -2" /></>,
+    h: <>ruas kiri asli</>,
+    g: <>cabang ubahan</>,
+  }}
 />
 
-Cek <InlineMath math="x=6" />: <InlineMath math="2\log_2 6-\log_2 9=\log_2 36-\log_2 9=\log_2 4=2" />. Persamaannya benar.
+Titik <InlineMath math="x = -2" /> jelas bukan bagian dari grafik asli karena <InlineMath math="\log_2(-2)" /> tidak terdefinisi.
 
-Himpunan penyelesaiannya <InlineMath math="\mathbb{L}=\{6\}" />.
+## Menguji solusi dan pilihan salah
 
-# Mengapa pilihan lain salah
+Masukkan <InlineMath math="x = 6" /> ke **persamaan logaritma asli** untuk memastikan hasilnya tepat dua.
 
-- <InlineMath math="\mathbb{L}=\{-2;\,6\}" /> mempertahankan <InlineMath math="x=-2" />. Di sana **<InlineMath math="\log_2 x" /> tidak terdefinisi**, walaupun persamaan ubahannya benar.
-- <InlineMath math="\mathbb{L}=\{-2\}" /> membuang penyelesaian yang benar dan menyimpan yang salah.
-- <InlineMath math="\mathbb{L}=\{\}" /> muncul kalau <InlineMath math="2\log_2 x" /> dibaca sebagai <InlineMath math="\log_2(2x)" />. Lalu <InlineMath math="\frac{2x}{x+3}=4" /> memberi <InlineMath math="x=-6" />, dan bilangan itu gugur.
-- <InlineMath math="\mathbb{L}=\left\{\frac{1+\sqrt{29}}{2}\right\}" /> muncul kalau selisih logaritma diubah menjadi logaritma dari selisih: <InlineMath math="\log_2\left(x^2-(x+3)\right)=2" />.
-- <InlineMath math="\mathbb{L}=\{1+\sqrt7\}" /> muncul kalau dari <InlineMath math="\log_2 w=2" /> disimpulkan <InlineMath math="w=2" />, padahal <InlineMath math="w=4" />.
+<BlockMath math="2\log_2 6 - \log_2 9 = \log_2 36 - \log_2 9 = \log_2 4 = 2" />
+
+| Pilihan | Mengapa salah |
+| :--- | :--- |
+| <InlineMath math="\mathbb{L} = \{-2;\, 6\}" /> | Mempertahankan <InlineMath math="x = -2" />, padahal <InlineMath math="\log_2(-2)" /> tidak terdefinisi. |
+| <InlineMath math="\mathbb{L} = \{-2\}" /> | Membuang akar yang sah dan justru menyimpan akar palsu. |
+| <InlineMath math="\mathbb{L} = \{\}" /> | Membaca <InlineMath math="2\log_2 x" /> sebagai <InlineMath math="\log_2(2x)" /> lalu mendapat <InlineMath math="x = -6" /> yang gugur. |
+| <InlineMath math="\mathbb{L} = \left\{\frac{1 + \sqrt{29}}{2}\right\}" /> | Mengubah selisih logaritma menjadi logaritma dari selisih <InlineMath math="x^2 - (x + 3)" />. |
+| <InlineMath math="\mathbb{L} = \{1 + \sqrt{7}\}" /> | Menyamakan hasil logaritma dengan <InlineMath math="2" />, bukan <InlineMath math="2^2 = 4" />. |
+
+# Jawaban
+
+Himpunan penyelesaian persamaan ini adalah <InlineMath math="\mathbb{L} = \{6\}" />.
