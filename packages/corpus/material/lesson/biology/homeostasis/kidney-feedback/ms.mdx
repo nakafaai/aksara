@@ -1,165 +1,187 @@
 export const metadata = {
-  title: "Nota Homeostasis dan Sistem Urinari Manusia Tingkatan Empat",
+  title: "Homeostasis dan Sistem Urinari Manusia",
   description:
-    "Nota Biologi Tingkatan 4 Bab 13: terangkan suap balik negatif, kawal atur suhu dan glukosa darah, serta ultraturasan dan penyerapan semula dalam nefron.",
+    "Suap balik negatif, termoregulasi kulit, kawal atur glukosa darah pankreas, ultraturasan nefron ginjal, dan imbangan air oleh hormon ADH.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-11-17",
   subject: "Homeostasis dan Sistem Urinari Manusia",
 };
 
-## Homeostasis Mengekalkan Persekitaran Dalam yang Stabil
+## Mekanisme Suap Balik
 
-**Homeostasis** ialah pengekalan persekitaran dalam badan, iaitu bendalir tisu, pada keadaan yang hampir malar walaupun keadaan luar berubah. Suhu badan, aras glukosa darah dan tekanan osmosis darah dikawal dengan **mekanisme suap balik negatif**: apabila sesuatu faktor menyimpang daripada nilai normal, badan mencetuskan tindakan yang membetulkannya kembali. Ginjal mengawal kandungan air dan garam darah serta menyingkirkan urea. Dalam model di sini, kamu melihat suhu dan glukosa kembali ke nilai normal, dan mengikuti turasan melalui nefron.
+Melangkah keluar dari bilik berhawa dingin ke bawah panas terik matahari namun suhu teras badan kekal hampir <InlineMath math="37^\circ\text{C}" />. Kestabilan ini ialah **homeostasis**, iaitu pengekalan persekitaran dalaman bendalir tisu supaya hampir malar walaupun keadaan luaran berubah.
 
-## Suap Balik Negatif
+Homeostasis tidak mengunci mana-mana nilai secara kaku. Melalui **suap balik negatif**, sisihan kecil dikesan reseptor, diproses pusat kawalan, lalu dibalas efektor bagi memulihkan nilai ke julat normal.
 
-Setiap mekanisme suap balik negatif mempunyai urutan yang sama: **penyimpangan, reseptor, pusat kawalan, efektor, pembetulan**. Contohnya, apabila suhu badan naik, reseptor di hipotalamus mengesannya, dan pusat kawalan menghantar impuls kepada kelenjar peluh dan salur darah kulit.
-
-| Faktor | Jika terlalu tinggi | Jika terlalu rendah |
+| Pemboleh ubah | Tindakan jika terlalu tinggi | Tindakan jika terlalu rendah |
 | :--- | :--- | :--- |
-| Suhu badan | Berpeluh, vasodilatasi arteriol kulit | Menggigil, vasokonstriksi arteriol kulit |
-| Glukosa darah | Insulin dirembes, glukosa disimpan sebagai glikogen | Glukagon dirembes, glikogen diuraikan kepada glukosa |
-| Tekanan osmosis darah | Lebih banyak ADH, lebih banyak air diserap semula | Kurang ADH, urin lebih cair dan banyak |
+| Suhu badan | Berpeluh dan pemvasodilatan arteriol kulit | Menggigil dan pemvasocerutan arteriol kulit |
+| Glukosa darah | Insulin menukar glukosa kepada glikogen | Glukagon memecah glikogen kepada glukosa |
+| Tekanan osmosis darah | ADH tinggi meningkatkan penyerapan air | ADH rendah menghasilkan air kencing cair banyak |
 
-### Kawal Atur Suhu Badan
+> Homeostasis bertindak seperti termostat pintar yang sentiasa menarik nilai tersasar balik ke titik normal dan bukannya membekukannya diam.
 
-Model ini menunjukkan suhu badan selepas satu gangguan, contohnya keluar ke cuaca panas. **Suap balik negatif** membawa suhu kembali ke <InlineMath math="37^\circ\text{C}" />. Ubah saiz gangguan dan perhatikan suhu berayun semakin kecil di sekitar nilai normal.
+## Suhu dan Glukosa Darah
 
-<MathVisual
-  title={<>Suhu Badan Kembali ke Nilai Normal</>}
+Dua gelung fisiologi pantas melindungi sel daripada tekanan haba dan turun naik tenaga yang mendadak. **Hipotalamus** menyelaras efektor kulit bagi imbangan haba, manakala **kelompok Langerhans pankreas** merembeskan hormon berlawanan terus ke dalam darah untuk menstabilkan glukosa.
+
+### Termoregulasi Kulit
+
+Kulit mamalia melaras kehilangan haba melalui aliran darah permukaan dan penyejatan peluh. Dalam cuaca panas, **pemvasodilatan** membesarkan arteriol kulit sementara kelenjar peluh merembeskan air yang menyerap haba pendam semasa menyejat. Dalam udara sejuk, **pemvasocerutan** menyempitkan arteriol, peluh terhenti, dan otot erektor mengecut.
+
+Tukar keadaan sejuk, normal, dan panas serta laraskan suhu persekitaran di bawah untuk memerhatikan perubahan arteriol kulit, kelenjar peluh, dan folikel rambut.
+
+<ThermoregulationSkinLab
+  title={<>Efektor Kulit dalam Termoregulasi Manusia</>}
   description={
     <>
-      Simpangan suhu badan daripada <InlineMath math="37^\circ\text{C}" />,{" "}
-      <InlineMath math="a\,e^{-s/4}\cos(1.2s)" />, terhadap masa dalam unit
-      sebarang, dengan <InlineMath math="a" /> sebagai saiz gangguan. Paksi
-      mendatar ialah suhu normal.
+      Bandingkan keadaan kulit semasa sejuk, normal, dan panas serta ubah suhu
+      persekitaran bagi melihat diameter arteriol, peluh, dan kedudukan bulu
+      roma.
     </>
   }
-  scene={{
-    space: "plane",
-    frame: { kind: "cartesian", x: { min: 0, max: 12 }, y: { min: -2, max: 2 } },
-    view: { kind: "fit", padding: 0.06 },
-    parameters: [
-      { name: "a", min: -1.5, max: 1.5, value: 1, step: 0.1, label: "a" },
-    ],
-    objects: [
-      { id: "temperature", kind: "function", appearance: "primary", formula: "a exp(-x/4)cos(1.2x)", domain: { min: 0, max: 12 } },
-    ],
-    readouts: [
-      { key: "start", formula: "37 + a" },
-    ],
-  }}
+  footer={<>Pemvasodilatan dan peluh membebas haba ketika panas, pemvasocerutan mengekalkan haba ketika sejuk.</>}
+  conditions={["cold", "normal", "hot"]}
+  ambient={{ min: 5, max: 42, value: 25 }}
   labels={{
-    a: <>Saiz gangguan <InlineMath math="a" /> dalam darjah Celsius</>,
-    start: <>Suhu sejurus selepas gangguan</>,
+    condition: "Keadaan terma",
+    conditions: {
+      cold: "Udara sejuk",
+      normal: "Selesa",
+      hot: "Cuaca panas",
+    },
+    ambient: "Suhu persekitaran",
+    response: <>Gerak balas kulit</>,
+    responses: {
+      cold: <>Arteriol mencerut, peluh berhenti, dan otot erektor menegakkan bulu roma untuk memerangkap udara.</>,
+      normal: <>Aliran darah kulit seimbang mengekalkan suhu teras badan stabil dekat tiga puluh tujuh darjah.</>,
+      hot: <>Arteriol mengembang dekat epidermis sementara peluh menyejat membawa haba keluar dari badan.</>,
+    },
+    bloodFlow: <>Aliran darah permukaan</>,
+    heatLoss: <>Kadar kehilangan haba</>,
+    parts: {
+      epidermis: "Epidermis",
+      sweatGland: "Kelenjar peluh",
+      arteriole: "Arteriol kulit",
+      capillary: "Gelung kapilari",
+      erectorMuscle: "Otot erektor",
+      hairShaft: "Bulu roma",
+      fatLayer: "Lapisan lemak",
+    },
+    view: "Keratan rentas kulit mamalia 3D menunjukkan epidermis, kelenjar peluh, arteriol, kapilari, bulu roma, dan lemak",
   }}
 />
 
-### Kawal Atur Glukosa Darah
+Otot rangka mengukuhkan gerak balas kulit dalam kesejukan melampau melalui menggigil luar kawal yang menukarkan tenaga respirasi terus kepada haba dalaman.
 
-Selepas makan, aras glukosa darah naik. Pankreas merembeskan **insulin**, dan hati menukarkan glukosa berlebihan kepada glikogen, jadi aras glukosa turun semula. Pada pesakit **diabetes melitus**, insulin tidak mencukupi atau sel tidak bergerak balas terhadapnya, jadi glukosa kekal tinggi lebih lama. Bandingkan kedua-dua lengkung dalam model ini.
+### Kawal Atur Glukosa
 
-<MathVisual
-  title={<>Aras Glukosa Darah Selepas Makan</>}
+Selepas makan karbohidrat, aras glukosa darah meningkat dan sel beta pankreas merembeskan **insulin**, mengarahkan hati dan otot menyimpan glukosa berlebihan sebagai **glikogen**. Ketika berpuasa, penurunan glukosa merangsang sel alfa merembeskan **glukagon** untuk menukarkan glikogen semula kepada glukosa.
+
+Ingat peraturan arah mudahnya: **insulin menyimpan glukosa, glukagon membebaskannya**. Pilih keadaan selepas makan, normal, puasa, dan diabetes di bawah untuk membandingkan hormon serta tindakan hati.
+
+<BloodGlucoseFeedbackLab
+  title={<>Suap Balik Glukosa Darah Pankreas dan Hati</>}
   description={
     <>
-      Aras glukosa dalam <InlineMath math="\text{mmol dm}^{-3}" /> terhadap masa
-      dalam unit <InlineMath math="30" /> minit bagi orang sihat dan pesakit
-      diabetes.
+      Pilih keadaan selepas makan, normal, puasa, atau diabetes dan gerakkan
+      aras glukosa darah untuk melihat rembesan pankreas dan glikogen hati.
     </>
   }
-  scene={{
-    space: "plane",
-    frame: { kind: "cartesian", x: { min: 0, max: 10 }, y: { min: 0, max: 13 } },
-    view: { kind: "fit", padding: 0.06 },
-    parameters: [
-      { name: "s", min: 0, max: 10, value: 2, step: 0.1, label: "s" },
-    ],
-    objects: [
-      { id: "healthy", kind: "function", appearance: "primary", formula: "5 + 3(x/2)exp(1 - x/2)", domain: { min: 0, max: 10 } },
-      { id: "diabetic", kind: "function", appearance: "secondary", formula: "7 + 5(x/3)exp(1 - x/3)", domain: { min: 0, max: 10 } },
-      { id: "now", kind: "marker", x: "s", y: "5 + 3(s/2)exp(1 - s/2)", appearance: "warning" },
-    ],
-    readouts: [
-      { key: "healthy", formula: "5 + 3(s/2)exp(1 - s/2)" },
-      { key: "diabetic", formula: "7 + 5(s/3)exp(1 - s/3)" },
-    ],
-  }}
+  footer={<>Insulin menurunkan glukosa tinggi dengan membina glikogen, glukagon menaikkan glukosa rendah.</>}
+  states={["afterMeal", "normal", "fasting", "diabetes"]}
+  glucose={{ min: 3, max: 14, value: 5.5 }}
   labels={{
-    s: <>Masa selepas makan <InlineMath math="s" /> dalam unit tiga puluh minit</>,
-    healthy: <>Glukosa orang sihat</>,
-    diabetic: <>Glukosa pesakit diabetes</>,
+    state: "Keadaan metabolik",
+    states: {
+      afterMeal: "Selepas makan",
+      normal: "Normal",
+      fasting: "Puasa",
+      diabetes: "Diabetes",
+    },
+    glucose: "Glukosa darah",
+    hormones: {
+      insulin: "Insulin aktif",
+      glucagon: "Glukagon aktif",
+      balanced: "Seimbang",
+      deficient: "Kurang insulin",
+    },
+    actions: {
+      afterMeal: <>Sel beta merembeskan insulin supaya sel hati menyerap glukosa dan membina glikogen.</>,
+      normal: <>Rembesan asas rendah mengekalkan glukosa darah stabil dekat lima milimol per liter.</>,
+      fasting: <>Sel alfa merembeskan glukagon supaya hati memecahkan glikogen semula ke dalam darah.</>,
+      diabetes: <>Kekurangan insulin atau sel tidak responsif mengekalkan glukosa darah tinggi berjam-jam.</>,
+    },
+    hormone: <>Hormon dominan</>,
+    liverAction: <>Tindakan glikogen hati</>,
+    parts: {
+      pancreas: "Pankreas",
+      alphaCell: "Sel alfa",
+      betaCell: "Sel beta",
+      liver: "Hati",
+      glycogen: "Simpanan glikogen",
+      bloodVessel: "Salur darah",
+    },
+    view: "Litar suap balik negatif 3D menghubungkan sel alfa dan beta pankreas, simpanan glikogen hati, dan glukosa darah",
   }}
 />
 
-Orang sihat mencapai puncak <InlineMath math="8\text{ mmol dm}^{-3}" /> selepas sejam dan hampir kembali ke <InlineMath math="5" /> dalam tiga jam. Pesakit diabetes bermula lebih tinggi, memuncak pada <InlineMath math="12" /> dan masih tinggi selepas lima jam.
+Dalam **diabetes melitus** tidak terkawal, kekurangan insulin mengekalkan aras glukosa tinggi berjam-jam selepas makan sehingga melepasi had penyerapan ginjal.
 
-## Sistem Urinari dan Nefron
+## Ultraturasan Nefron
 
-Sistem urinari terdiri daripada **ginjal, ureter, pundi kencing dan uretra**. Setiap ginjal mengandungi kira-kira sejuta **nefron**. Pembentukan urin berlaku dalam tiga peringkat:
+Setiap ginjal manusia mengandungi kira-kira sejuta **nefron** mikroskopik yang menuras plasma darah untuk membentuk air kencing melalui tiga peringkat:
 
-- **Ultraturasan**: tekanan darah yang tinggi dalam glomerulus memaksa air, glukosa, asid amino, garam dan urea masuk ke kapsul Bowman. Sel darah dan protein plasma terlalu besar untuk ditapis.
-- **Penyerapan semula**: dalam tubul berlingkar proksimal, semua glukosa dan asid amino serta kebanyakan air dan garam diserap semula ke dalam darah.
-- **Rembesan**: bahan seperti ion hidrogen, ubat dan urea berlebihan dirembeskan ke dalam tubul berlingkar distal.
+- **Ultraturasan**: tekanan darah tinggi dalam glomerulus menolak air, glukosa, asid amino, garam, dan urea ke dalam kapsul Bowman, manakala sel darah dan protein plasma kekal dalam darah.
+- **Penyerapan semula**: tubul berlingkar proksimal menyerap semula semua glukosa dan asid amino serta sebahagian besar air dan garam penting ke dalam kapilari.
+- **Rembesan**: tubul distal merembeskan ion hidrogen berlebihan, ubat, dan urea tambahan ke dalam hasil turasan.
 
-Ginjal menapis kira-kira <InlineMath math="125\text{ cm}^3" /> plasma seminit. Model ini mengikut glukosa dan urea melalui nefron. Naikkan aras glukosa plasma dan lihat bila glukosa mula muncul dalam urin.
+Kehadiran protein dalam air kencing menandakan kerosakan glomerulus kerana dinding kapilari sihat sentiasa menghalang protein plasma bersaiz besar. Ikuti glukosa dan urea sepanjang satu nefron di bawah sambil menaikkan glukosa plasma.
 
 <NephronLab
-  title={<>Glukosa dan Urea melalui Satu Nefron</>}
+  title={<>Glukosa dan Urea Sepanjang Satu Nefron</>}
   description={
     <>
-      Plasma ditapis pada <InlineMath math="125\text{ cm}^3" /> seminit. Tubul
-      boleh menyerap semula sehingga <InlineMath math="375\text{ mg}" /> glukosa
-      seminit.
+      Glomerulus menuras plasma pada kadar <InlineMath math="125\text{ cm}^3" />{" "}
+      seminit manakala tubul mampu menyerap semula sehingga{" "}
+      <InlineMath math="375\text{ mg}" /> glukosa seminit.
     </>
   }
+  footer={<>Melebihi tiga miligram per sentimeter padu, glukosa terlepas melepasi pembawa tubul ke urin.</>}
   filtration={125}
   glucose={{ maximum: 375, plasma: 1 }}
   urea={{ plasma: 0.03, urine: 2 }}
   labels={{
     daily: <>Isi padu urin sehari</>,
-    factor: <>Faktor pemekatan urea</>,
-    filtrate: <>Turasan sehari</>,
+    factor: <>Faktor kepekatan urea</>,
+    filtrate: <>Hasil turasan sehari</>,
     flow: <>Kadar aliran urin</>,
-    load: <>Glukosa yang ditapis</>,
+    load: <>Glukosa dituras</>,
     plasma: "Glukosa plasma",
-    reabsorbed: <>Glukosa yang diserap semula</>,
-    solute: "Bahan terlarut",
+    reabsorbed: <>Glukosa diserap semula</>,
+    solute: "Zat terlarut",
     solutes: { glucose: "Glukosa", urea: "Urea" },
     threshold: <>Ambang ginjal</>,
     urine: <>Glukosa dalam urin</>,
-    view: "Satu nefron dengan turasan mengalir dari glomerulus ke duktus pengumpul",
+    view: "Satu nefron menunjukkan ultraturasan glomerulus, penyerapan semula tubul, dan aliran duktus pengumpul",
   }}
 />
 
-### Contoh Ambang Glukosa Ginjal
+Pada aras normal (<InlineMath math="1.0\text{ mg cm}^{-3}" />), tubul menyerap semula setiap miligram glukosa dituras. Melepasi <InlineMath math="3.0\text{ mg cm}^{-3}" />, protein pembawa menjadi tepu lalu glukosa muncul dalam air kencing.
 
-Tubul boleh menyerap semula paling banyak <InlineMath math="375\text{ mg}" /> glukosa seminit, dan kadar turasan ialah <InlineMath math="125\text{ cm}^3" /> seminit. Kira **aras glukosa plasma** yang menyebabkan glukosa mula keluar dalam urin.
+## Imbangan Air dan ADH
 
-<BlockMath math="\text{Ambang} = \frac{375}{125} = 3.0\text{ mg cm}^{-3}" />
-
-Pada aras normal <InlineMath math="1.0\text{ mg cm}^{-3}" />, beban yang ditapis ialah <InlineMath math="125 \times 1.0 = 125\text{ mg}" /> seminit, jauh di bawah <InlineMath math="375" />, jadi semua glukosa diserap semula. Semak dengan model: naikkan glukosa plasma melepasi <InlineMath math="3.0" /> dan glukosa mula muncul dalam urin, seperti yang berlaku pada diabetes yang tidak terkawal.
-
-### Contoh Pemekatan Urea
-
-Kepekatan urea ialah <InlineMath math="0.03\text{ g}" /> dalam setiap <InlineMath math="100\text{ cm}^3" /> plasma dan <InlineMath math="2.0\text{ g}" /> dalam setiap <InlineMath math="100\text{ cm}^3" /> urin. Kira **faktor pemekatan**.
-
-<BlockMath math="\frac{2.0}{0.03} = 67" />
-
-Urea menjadi <InlineMath math="67" /> kali lebih pekat kerana kebanyakan air diserap semula manakala urea ditinggalkan. Semak dengan model: pilih urea, dan faktornya dibaca sebagai <InlineMath math="66.7" />.
-
-## Penyerapan Semula Air dan ADH
-
-Setiap hari ginjal menghasilkan kira-kira <InlineMath math="180\text{ dm}^3" /> turasan, tetapi hanya kira-kira <InlineMath math="1.5\text{ dm}^3" /> urin. Lebih daripada <InlineMath math="99\%" /> air diserap semula. Carta ini menunjukkan peratus setiap bahan dalam turasan yang diserap semula.
+Walaupun ginjal menghasilkan sekitar <InlineMath math="180\text{ dm}^3" /> hasil turasan sehari, orang dewasa hanya menyingkirkan kira-kira <InlineMath math="1.5\text{ dm}^3" /> air kencing kerana tubul menuntut semula hampir semua bahan berguna.
 
 <BarChart
-  title={<>Peratus Bahan dalam Turasan yang Diserap Semula</>}
+  title={<>Peratusan Bahan Hasil Turasan Diserap Semula</>}
   description={
     <>
-      Bahagian setiap bahan yang ditapis di glomerulus dan dikembalikan ke darah
-      oleh tubul.
+      Bahagian glukosa, air, ion natrium, dan urea yang dikembalikan ke dalam
+      aliran darah sepanjang tubul ginjal.
     </>
   }
+  footer={<>Nefron sihat menyerap semula semua glukosa dan lebih sembilan puluh sembilan peratus air.</>}
   yAxisLabel="Diserap semula (%)"
   data={[
     { name: "Glukosa", value: 100 },
@@ -170,16 +192,21 @@ Setiap hari ginjal menghasilkan kira-kira <InlineMath math="180\text{ dm}^3" /> 
   chartConfig={{ value: { label: "Diserap semula", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
 />
 
-**Hormon antidiuresis**, ADH, dirembeskan oleh kelenjar pituitari apabila tekanan osmosis darah tinggi, contohnya selepas berpeluh banyak. ADH menjadikan tubul berlingkar distal dan duktus pengumpul lebih telap kepada air, jadi lebih banyak air diserap semula dan urin menjadi pekat dan sedikit. Graf ini menunjukkan isi padu urin selepas seorang murid minum <InlineMath math="1\text{ dm}^3" /> air suling atau <InlineMath math="1\text{ dm}^3" /> larutan garam.
+**Hormon antidiuresis** (ADH) melaras kepekatan akhir air kencing. Berpeluh banyak menaikkan tekanan osmosis darah lalu merangsang kelenjar pituitari merembeskan lebih banyak ADH supaya duktus pengumpul lebih telap kepada air.
+
+> Aras ADH tinggi bertindak antidiuresis: tubul menarik lebih banyak air kembali ke darah, menghasilkan isi padu air kencing sedikit dan pekat.
+
+Bandingkan isi padu air kencing selepas minum seliter air suling melawan seliter larutan garam di bawah.
 
 <ScatterDiagram
-  title={<>Isi Padu Urin Selepas Minum Air dan Larutan Garam</>}
+  title={<>Isi Padu Urin selepas Air Suling dan Larutan Garam</>}
   description={
     <>
-      Isi padu urin setiap setengah jam selepas minum. Air suling merendahkan
-      tekanan osmosis darah, jadi rembesan ADH berkurang.
+      Isi padu air kencing setiap setengah jam selepas minum air suling (ADH
+      rendah) berbanding larutan garam (ADH tinggi).
     </>
   }
+  footer={<>Air suling menyekat ADH dan mencetus lonjakan isi padu urin dalam tempoh sejam pertama.</>}
   xAxisLabel="Masa selepas minum (jam)"
   yAxisLabel="Isi padu urin (cm³)"
   datasets={[
@@ -210,45 +237,20 @@ Setiap hari ginjal menghasilkan kira-kira <InlineMath math="180\text{ dm}^3" /> 
   ]}
 />
 
-Selepas minum air suling, isi padu urin memuncak pada <InlineMath math="320\text{ cm}^3" /> dalam setengah jam yang kedua. Selepas minum larutan garam, ADH kekal tinggi dan isi padu urin hampir tidak berubah.
+Selepas minum air suling, ADH rendah menyingkirkan lebihan air dengan cepat hingga puncak <InlineMath math="320\text{ cm}^3" />. Larutan garam mengekalkan tekanan osmosis darah tinggi supaya ADH kekal tinggi dan isi padu urin rendah.
 
-## Kesilapan Lazim tentang Homeostasis
+## Semakan Kiraan Nefron
 
-| Kesilapan | Sebab salah | Cara semak |
-| :--- | :--- | :--- |
-| Insulin menukarkan glikogen kepada glukosa. | Insulin menukarkan glukosa kepada glikogen. Glukagon melakukan sebaliknya. | Insulin menurunkan glukosa darah. |
-| Protein plasma ditapis ke kapsul Bowman. | Protein plasma terlalu besar untuk melalui dinding glomerulus. | Protein dalam urin menandakan kerosakan ginjal. |
-| ADH yang tinggi menghasilkan urin yang banyak. | ADH yang tinggi meningkatkan penyerapan semula air, jadi urin sedikit dan pekat. | Antidiuresis bermaksud menentang pengeluaran urin. |
-| Homeostasis mengekalkan nilai yang tetap sepenuhnya. | Nilai berubah sedikit di sekitar nilai normal dan sentiasa dibetulkan. | Lihat ayunan suhu dalam model. |
+Semak dua kiraan kuantitatif nefron berikut.
 
-Kesilapan pertama paling kerap muncul dalam soalan glukosa darah. **Insulin menyimpan, glukagon membebaskan**.
+**Semakan ambang ginjal.** Kadar penurasan seorang pesakit turun ke <InlineMath math="100\text{ cm}^3\text{ min}^{-1}" /> manakala penyerapan semula maksimum kekal <InlineMath math="375\text{ mg min}^{-1}" />. Kira ambang glukosa baharunya.
 
-## Latihan Homeostasis dan Sistem Urinari
+<BlockMath math="\text{Ambang} = \frac{375}{100} = 3.75\text{ mg cm}^{-3}" />
 
-Soalan ini bergerak dari suap balik negatif ke pengiraan nefron. **Namakan efektor** dalam setiap jawapan tentang suap balik negatif.
+Kadar penurasan lebih perlahan membawa kurang glukosa seminit pada aras plasma sama, maka kepekatan lebih tinggi diperlukan untuk menepukan pembawa.
 
-1. Terangkan bagaimana badan membetulkan suhu yang terlalu rendah pada hari yang sejuk.
+**Semakan nisbah urea.** Kepekatan urea plasma ialah <InlineMath math="0.03\text{ g}" /> bagi setiap <InlineMath math="100\text{ cm}^3" /> manakala dalam urin mencapai <InlineMath math="1.8\text{ g}" /> bagi setiap <InlineMath math="100\text{ cm}^3" />. Kira faktor kepekatannya.
 
-2. Kadar turasan seorang pesakit jatuh kepada <InlineMath math="100\text{ cm}^3" /> seminit, dan tubulnya masih boleh menyerap semula <InlineMath math="375\text{ mg}" /> glukosa seminit. Hitung ambang glukosa ginjal yang baharu.
+<BlockMath math="\text{Faktor} = \frac{1.8}{0.03} = 60" />
 
-3. Kepekatan urea dalam plasma ialah <InlineMath math="0.03\text{ g}" /> per <InlineMath math="100\text{ cm}^3" /> dan dalam urin <InlineMath math="1.8\text{ g}" /> per <InlineMath math="100\text{ cm}^3" />. Hitung faktor pemekatan urea.
-
-4. Terangkan mengapa air kencing menjadi pekat dan sedikit selepas bermain bola sepak pada hari panas.
-
-### Penyelesaian
-
-**Penyelesaian 1**: Reseptor di kulit dan hipotalamus mengesan suhu rendah. **Otot rangka** menggigil untuk menghasilkan haba, **arteriol kulit** mengecut supaya kurang haba hilang, dan otot erektor rambut mengecut. Suhu badan naik kembali ke <InlineMath math="37^\circ\text{C}" />.
-
-**Penyelesaian 2**: Bahagikan penyerapan semula maksimum dengan kadar turasan:
-
-<BlockMath math="\frac{375}{100} = 3.75\text{ mg cm}^{-3}" />
-
-Semak: ambang naik daripada <InlineMath math="3.0" /> kepada <InlineMath math="3.75" />, kerana beban glukosa yang ditapis kini lebih kecil bagi aras plasma yang sama.
-
-**Penyelesaian 3**: Bahagikan kepekatan dalam urin dengan kepekatan dalam plasma:
-
-<BlockMath math="\frac{1.8}{0.03} = 60" />
-
-Semak: <InlineMath math="0.03 \times 60 = 1.8" />.
-
-**Penyelesaian 4**: Badan kehilangan banyak air melalui peluh, jadi **tekanan osmosis darah meningkat**. Hipotalamus mengesannya dan pituitari merembeskan lebih banyak **ADH**. Duktus pengumpul menjadi lebih telap, lebih banyak air diserap semula, dan urin yang terhasil sedikit dan pekat.
+Urea menjadi enam puluh kali lebih pekat kerana tubul menyerap semula hampir seluruh air turasan sambil meninggalkan urea dalam duktus pengumpul.

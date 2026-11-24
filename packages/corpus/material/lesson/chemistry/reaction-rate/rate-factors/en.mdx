@@ -1,68 +1,67 @@
 export const metadata = {
-  title: "Rate of Reaction Notes for Form Four",
+  title: "Reaction Rate Collision Theory and Catalysts",
   description:
-    "Form 4 Chemistry Chapter 7: calculate average and instantaneous rates, explain each factor with collision theory, and read energy profile diagrams.",
+    "Average and instantaneous reaction rates, gas syringe measurements, collision theory, activation energy, and catalytic energy pathways.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-11-16",
   subject: "Rate of Reaction",
 };
 
-## What Rate of Reaction Means
+## Measuring Reaction Rates
 
-The **rate of reaction** is the change in the quantity of a reactant or product per unit time:
+A fireworks flare flashes away in a fraction of a second while an iron gate rusts over years. The **rate of reaction** tracks how quickly a reactant disappears or a product forms per unit time, governed at the molecular scale by **collision theory**.
 
-<BlockMath math="\text{Rate of reaction} = \frac{\text{change in quantity of reactant or product}}{\text{time taken}}" />
+<BlockMath math="\text{Rate} = \frac{\Delta\text{quantity}}{\Delta t}" />
 
-That quantity can be the volume of gas given off, the mass of a reactant that's lost, or the time a precipitate takes to form. The rate goes up when **particles are smaller**, **concentration is higher**, **temperature is higher**, **a catalyst is used**, or **gas pressure is higher**. One idea explains all of these factors: **collision theory**. In the models here, you collect a gas, draw a tangent on a graph, and change the activation energy.
+Chemists track gas volume, mass loss, or precipitate timing to control industrial yields and slow food spoilage. Two complementary views describe any reaction curve: the curve height shows total product formed, whereas the steepness shows how fast it forms.
 
-Fast reactions such as combustion happen within a second. Slow reactions such as iron rusting take weeks. Chemists measure rates so they can control them, for example to speed up ammonia production in a factory or to slow down food going bad.
+### Gas Volume Curves
 
-## Measuring Rate from the Gas Given Off
-
-When calcium carbonate reacts with hydrochloric acid, carbon dioxide gas is given off:
+Reacting solid calcium carbonate with excess hydrochloric acid releases carbon dioxide gas into a graduated syringe:
 
 <BlockMath math="\mathrm{CaCO_3(s)} + 2\mathrm{HCl(aq)} \rightarrow \mathrm{CaCl_2(aq)} + \mathrm{H_2O(l)} + \mathrm{CO_2(g)}" />
 
-The gas is collected in a gas syringe and its volume is recorded at regular intervals. Run the two experiments below. The mass of calcium carbonate is the same, but experiment I uses chips and experiment II uses powder.
+Compare identical masses of marble chips and fine marble powder reacting with excess acid in the two flasks below.
 
 <GasRateLab
-  title={<>Carbon Dioxide from Chips and Powder</>}
+  title={<>Carbon Dioxide Collected from Chips and Powder</>}
   description={
     <>
-      Two conical flasks are connected to gas syringes. The same mass of
-      calcium carbonate reacts with excess hydrochloric acid, as chips and as
-      powder.
+      Equal moles of calcium carbonate react with excess hydrochloric acid in
+      two flasks, contrasting coarse marble chips with fine powder.
     </>
   }
+  footer={<>Smaller particles make the initial curve steeper without raising final gas yield.</>}
   runs={[
     { amount: 0.02, solid: "chips" },
     { amount: 0.02, solid: "powder" },
   ]}
   showCurves
   labels={{
-    final: <>final amount of carbon dioxide</>,
-    runs: [<>Experiment I</>, <>Experiment II</>],
+    final: <>final carbon dioxide amount</>,
+    runs: [<>Marble chips</>, <>Marble powder</>],
     solids: { chips: <>chips</>, granules: <>granules</>, powder: <>powder</> },
     time: "Time",
-    view: "Gas collected in two experiments",
+    view: "Two conical flasks connected to gas syringes comparing marble chips and powder",
   }}
 />
 
-The powder curve is steeper at the start, so its rate is higher. Both curves level off at the **same** amount of gas, though, because the mass of calcium carbonate is the same and the acid is in excess. Particle size changes **how fast** the gas forms, not **how much** forms.
+Powder climbs more steeply at the start because exposed surface area is far larger. Both curves flatten at the **exact same final volume** because the limiting reactant mass is identical.
 
-## Average Rate and Instantaneous Rate
+### Average and Tangents
 
-The **average rate** is the total change divided by the total time. The **instantaneous rate** is the gradient of the **tangent** to the curve at that moment. The curve below models the gas volume as <InlineMath math="V = 50(1 - e^{-t/25})" />, with <InlineMath math="V" /> in <InlineMath math="\text{cm}^3" /> and <InlineMath math="t" /> in seconds. Move the slider and watch the tangent flatten out.
+The **average rate** divides total change by elapsed time, while the **instantaneous rate** equals the gradient of the **tangent line** drawn at one exact moment. Move the time slider below to watch the tangent flatten as reactants get used up.
 
 <MathVisual
-  title={<>A Tangent to the Gas Volume Curve</>}
+  title={<>Tangent Slope Along a Gas Volume Curve</>}
   description={
     <>
-      The curve <InlineMath math="V = 50(1 - e^{-t/25})" />. The red tangent
-      touches the curve at time <InlineMath math="a" />, and its gradient is
-      the rate of reaction at that moment.
+      Gas volume in <InlineMath math="\text{cm}^3" /> against time in seconds,
+      where the tangent gradient gives the instantaneous reaction rate at time{" "}
+      <InlineMath math="a" />.
     </>
   }
+  footer={<>Tangent slope starts steepest at time zero and falls toward zero as reactants run out.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: 0, max: 100 }, y: { min: 0, max: 55 } },
@@ -84,17 +83,17 @@ The **average rate** is the total change divided by the total time. The **instan
     ],
   }}
   labels={{
-    a: <>Time <InlineMath math="a" /> in seconds</>,
-    touch: <>Point of contact</>,
-    "volume-now": <>Gas volume in <InlineMath math="\text{cm}^3" /></>,
-    rate: <>Rate in <InlineMath math="\text{cm}^3\text{ s}^{-1}" /></>,
+    a: <>Time <InlineMath math="a" /> (s)</>,
+    touch: <>Tangent point</>,
+    "volume-now": <>Gas volume (<InlineMath math="\text{cm}^3" />)</>,
+    rate: <>Rate (<InlineMath math="\text{cm}^3\text{ s}^{-1}" />)</>,
   }}
 />
 
-The gradient falls because the acid concentration and the mass of calcium carbonate both drop as the reaction goes on. This chart shows the same thing as the average rate in each <InlineMath math="20" /> second interval, calculated from the same model.
+Never compute instantaneous rate by dividing cumulative volume by time, which gives only the average rate from the start. Grouping the same model into twenty-second slices shows the drop clearly.
 
 <Chart
-  title={<>Average Rate in Each Time Interval</>}
+  title={<>Average Reaction Rate Across Twenty-Second Intervals</>}
   bars="apart"
   categories={["0 to 20 s", "20 to 40 s", "40 to 60 s", "60 to 80 s", "80 to 100 s"]}
   series={[
@@ -113,170 +112,126 @@ The gradient falls because the acid concentration and the mass of calcium carbon
   valueLabel="Average rate (cm³/s)"
   description={
     <>
-      The average rate falls from about{" "}
-      <InlineMath math="1.38\text{ cm}^3\text{ s}^{-1}" /> in the first{" "}
-      <InlineMath math="20" /> seconds to about{" "}
-      <InlineMath math="0.06\text{ cm}^3\text{ s}^{-1}" /> in the last
-      interval.
+      Average gas production rate falls steadily from{" "}
+      <InlineMath math="1.38\text{ cm}^3\text{ s}^{-1}" /> down to{" "}
+      <InlineMath math="0.06\text{ cm}^3\text{ s}^{-1}" /> as concentration
+      drops.
     </>
   }
+  footer={<>Falling reactant concentration lowers collision frequency in every later interval.</>}
 />
 
-### Example Average Rate
+Each bar shrinks because fewer acid ions remain per cubic centimetre as the reaction progresses toward completion.
 
-Magnesium ribbon reacts with hydrochloric acid. You collect <InlineMath math="48\text{ cm}^3" /> of hydrogen gas in the first <InlineMath math="60" /> seconds, and the reaction stops at <InlineMath math="150" /> seconds with <InlineMath math="60\text{ cm}^3" /> of gas in total. Find **the average rate in the first minute** and the overall average rate.
+## Collision Theory Factors
 
-<MathContainer>
-<BlockMath math="\text{Average rate in the first minute} = \frac{48}{60} = 0.80\text{ cm}^3\text{ s}^{-1}" />
-<BlockMath math="\text{Overall average rate} = \frac{60}{150} = 0.40\text{ cm}^3\text{ s}^{-1}" />
-</MathContainer>
+Reactant particles react only during an **effective collision**: they must collide with both the **correct orientation** and kinetic energy at or above the **activation energy** <InlineMath math="E_a" />.
 
-The overall average rate is lower because the reaction slows down towards the end. Check: <InlineMath math="0.80 \times 60 = 48" /> and <InlineMath math="0.40 \times 150 = 60" />, matching the original data.
+| Factor raised | Microscopic change | Why rate increases |
+| :--- | :--- | :--- |
+| Surface area | More exposed solid faces | Higher collision frequency at the surface |
+| Concentration | More particles per unit volume | Higher collision frequency throughout solution |
+| Gas pressure | Closer gas molecules | Higher collision frequency inside the vessel |
+| Temperature | Faster particles with wider energy tail | More collisions plus larger fraction above activation energy |
 
-### Example Instantaneous Rate
+> Raising temperature never lowers the activation energy barrier, instead it pushes far more particles past that existing threshold.
 
-Find the rate of reaction at <InlineMath math="t = 25" /> seconds for the model <InlineMath math="V = 50(1 - e^{-t/25})" />. Draw the tangent at <InlineMath math="(25,\ 31.6)" />, then pick **two points far apart** on it, <InlineMath math="(15,\ 24.2)" /> and <InlineMath math="(35,\ 39.0)" />:
+Adjust solid form, temperature, and concentration in the 3D reaction vessel and energy distribution below to observe both collision frequency and the shaded effective fraction beyond <InlineMath math="E_a" />.
 
-<BlockMath math="\text{Gradient} = \frac{39.0 - 24.2}{35 - 15} = \frac{14.8}{20} = 0.74\text{ cm}^3\text{ s}^{-1}" />
-
-Check it against the model: the exact gradient is <InlineMath math="2e^{-1} \approx 0.736" />. Move the slider in the tangent model to <InlineMath math="a = 25" /> and you'll read the same rate.
-
-## Collision Theory and Activation Energy
-
-According to **collision theory**, a reaction happens only when reactant particles collide. Not every collision works. An **effective collision** has to meet two conditions: the particles collide with the **right orientation**, and the collision energy is at least the **activation energy**, <InlineMath math="E_a" />. The activation energy is the minimum energy needed to start a reaction.
-
-So the rate of reaction depends on the **frequency of effective collisions**. Each factor raises that frequency in its own way. The energy distribution of the particles shows how temperature works. Move the temperature slider and compare the area under each curve to the right of the <InlineMath math="E_a" /> line.
-
-<MathVisual
-  title={<>Energy Distribution of Particles at Two Temperatures</>}
+<CollisionTheoryEnergyLab
+  title={<>Collision Frequency and Energy Distribution</>}
   description={
     <>
-      The grey curve is the original temperature. The blue curve follows the
-      temperature slider <InlineMath math="k" />. Only particles to the right
-      of the <InlineMath math="E_a" /> line have enough energy for an effective
-      collision.
+      Switch solid subdivision from lump to powder and slide temperature and
+      concentration to watch particle impacts and the effective-energy tail grow.
     </>
   }
-  scene={{
-    space: "plane",
-    frame: { kind: "cartesian", x: { min: 0, max: 10 }, y: { min: 0, max: 5 } },
-    view: { kind: "fit", padding: 0.06 },
-    parameters: [
-      { name: "k", min: 1, max: 3, value: 2, step: 0.1, label: "k" },
-    ],
-    objects: [
-      { id: "cool", kind: "function", appearance: "reference", formula: "10(2/sqrt(pi))sqrt(x)exp(-x)", domain: { min: 0, max: 10 } },
-      { id: "warm", kind: "function", appearance: "primary", formula: "10(2/sqrt(pi))k^(-1.5)sqrt(x)exp(-x/k)", domain: { min: 0, max: 10 } },
-      { id: "activation", kind: "segment", appearance: "warning", from: { x: 6, y: 0 }, to: { x: 6, y: 4 } },
-    ],
-    labels: [
-      { key: "activation", objectId: "activation", at: { x: 6, y: 4 }, placement: "above" },
-    ],
-  }}
+  footer={<>Higher temperature shifts the energy tail past activation energy while concentration packs impacts.</>}
+  surfaces={["lump", "granules", "powder"]}
+  temperature={{ min: 280, max: 380, value: 300 }}
+  concentration={{ min: 0.2, max: 2, value: 1 }}
   labels={{
-    k: <>Relative temperature <InlineMath math="k" /></>,
-    activation: <InlineMath math="E_a" />,
+    surface: "Solid form",
+    surfaces: {
+      lump: "Large lump",
+      granules: "Granules",
+      powder: "Fine powder",
+    },
+    temperature: "Temperature",
+    concentration: "Concentration",
+    activationEnergy: <>Activation barrier</>,
+    collisionFreq: <>Total collision frequency</>,
+    effectiveRate: <>Effective collision rate</>,
+    parts: {
+      reactants: "Reactant particles",
+      products: "Product particles",
+      activationLine: "Activation threshold",
+      shadedArea: "Particles above barrier",
+      vessel: "Reaction vessel",
+    },
+    view: "3D reaction vessel paired with a kinetic energy distribution curve showing collisions above activation energy",
   }}
 />
 
-At a higher temperature, the curve gets lower and wider, and more particles sit to the right of <InlineMath math="E_a" />. The particles also move faster, so they collide more often. Both effects raise the frequency of effective collisions.
+Adding extra acid at the exact same molar concentration leaves collision frequency per unit volume unchanged, so initial rate stays the same even if total gas yield grows when acid was limiting.
 
-## Factors That Affect the Rate of Reaction
+## Catalysts and Pathways
 
-This table links each factor to collision theory. Read the third column as the chain of reasoning you'd write in an exam answer.
+A **catalyst** speeds up a chemical reaction without being permanently consumed. Rather than heating particles up, a catalyst opens an **alternative reaction pathway** with a lower activation energy <InlineMath math="E_a'" />.
 
-| Factor | Change | Explanation with collision theory |
-| :--- | :--- | :--- |
-| Particle size | Smaller | The total exposed surface area grows, so the collision frequency rises. |
-| Concentration | Higher | There are more particles per unit volume, so the collision frequency rises. |
-| Temperature | Higher | Particles move faster and more of them reach the activation energy. |
-| Catalyst | Used | A new pathway with a lower activation energy gives more effective collisions. |
-| Gas pressure | Higher | Gas particles are closer together, so there are more particles per unit volume. |
+> A catalyst lowers the energy mountain peak without shifting reactant energy, product energy, enthalpy change, or final product yield.
 
-A **catalyst** is a substance that changes the rate of reaction without being chemically changed at the end of the reaction. The energy profile diagram below shows why. Move the slider to lower the energy hump and notice that the reactant and product levels don't move.
+Toggle the catalyst on and off for both exothermic and endothermic reactions below to compare the uncatalysed hump, catalysed hump, and constant enthalpy change <InlineMath math="\Delta H" />.
 
-<MathVisual
-  title={<>Energy Profile with and without a Catalyst</>}
+<CatalystPathwayLab
+  title={<>Uncatalysed versus Catalysed Energy Pathways</>}
   description={
     <>
-      The grey curve is the reaction without a catalyst. The blue curve is the
-      catalysed pathway, with a hump of height <InlineMath math="c" /> above the
-      reactant level. The product level stays three units below the reactant
-      level.
+      Compare exothermic and endothermic reaction profiles with and without a
+      surface catalyst to verify that enthalpy change stays fixed.
     </>
   }
-  scene={{
-    space: "plane",
-    frame: { kind: "cartesian", x: { min: 0, max: 10 }, y: { min: 0, max: 10 } },
-    view: { kind: "fit", padding: 0.06 },
-    parameters: [
-      { name: "c", min: 1, max: 5, value: 3, step: 0.1, label: "c" },
-    ],
-    objects: [
-      { id: "uncatalysed", kind: "function", appearance: "reference", formula: "4 - 3/(1 + exp(-4(x - 6.5))) + 5exp(-(x - 4)^2/0.6)", domain: { min: 0, max: 10 } },
-      { id: "catalysed", kind: "function", appearance: "primary", formula: "4 - 3/(1 + exp(-4(x - 6.5))) + c exp(-(x - 4)^2/0.6)", domain: { min: 0, max: 10 } },
-      { id: "enthalpy", kind: "vector", appearance: "warning", from: { x: 9, y: 4 }, to: { x: 9, y: 1 } },
-    ],
-    labels: [
-      { key: "enthalpy", objectId: "enthalpy", at: { x: 9, y: 2.5 }, placement: "left" },
-    ],
-    readouts: [
-      { key: "barrier", formula: "c" },
-    ],
-  }}
+  footer={<>Catalysts lower activation energy while leaving overall enthalpy change completely unchanged.</>}
+  reactions={["exothermic", "endothermic"]}
   labels={{
-    c: <>Activation energy with a catalyst <InlineMath math="c" /></>,
-    enthalpy: <InlineMath math="\Delta H" />,
-    barrier: <><InlineMath math="E_a'" /> with a catalyst</>,
+    reaction: "Reaction type",
+    reactions: {
+      exothermic: "Exothermic",
+      endothermic: "Endothermic",
+    },
+    catalyst: "Catalyst presence",
+    catalystStates: {
+      absent: "Without catalyst",
+      present: "With catalyst",
+    },
+    pathway: <>Active pathway</>,
+    activationEnergy: <>Activation energy</>,
+    enthalpyChange: <>Enthalpy change</>,
+    parts: {
+      reactantLevel: "Reactant level",
+      productLevel: "Product level",
+      uncatalysedPeak: "Uncatalysed peak",
+      catalysedPeak: "Catalysed peak",
+      catalystSurface: "Catalyst surface",
+    },
+    view: "3D reaction coordinate energy profile contrasting uncatalysed and catalysed activation peaks above a catalyst surface",
   }}
 />
 
-A catalyst only lowers the activation energy. The heat of reaction, <InlineMath math="\Delta H" />, stays the same, and the amount of product doesn't increase either.
+Because the lower barrier lets a much larger fraction of existing collisions succeed at the same temperature, industrial plants like the Haber process save huge energy costs using solid catalysts.
 
-## Common Mistakes about Rate of Reaction
+## Rate Calculation Checks
 
-| Mistake | Why it's wrong | How to check |
-| :--- | :--- | :--- |
-| Powder gives more gas than chips. | The amount of gas depends on the moles of the limiting reactant. Size only changes the rate. | Compare the final levels of the curves, not their gradients. |
-| A high temperature raises the rate because the activation energy drops. | Temperature doesn't change <InlineMath math="E_a" />. It raises the kinetic energy of the particles. | Only a catalyst lowers <InlineMath math="E_a" />. |
-| The instantaneous rate equals volume divided by time. | That's the average rate from the start. The instantaneous rate is the gradient of the tangent. | Draw a tangent and pick two points far apart. |
-| Adding more acid of the same concentration raises the rate. | The concentration hasn't changed, so the number of particles per unit volume is the same. | Ask whether the concentration changed. |
+Verify two core rate and energy-profile calculations below.
 
-The first mistake shows up most often in graph questions. Keep this split in mind: **the gradient shows the rate**, while **the final level shows the amount of product**.
-
-## Practice on Rate of Reaction
-
-These questions start with a short calculation and end with a theory explanation. **Write the unit of rate** in every answer.
-
-1. Zinc reacts with sulfuric acid and gives off <InlineMath math="36\text{ cm}^3" /> of hydrogen gas in <InlineMath math="90" /> seconds. Calculate the average rate of reaction.
-
-2. A <InlineMath math="2.0\text{ g}" /> sample of calcium carbonate chips reacts with excess hydrochloric acid. Calculate the maximum volume of carbon dioxide at room conditions. The molar mass of <InlineMath math="\mathrm{CaCO_3}" /> is <InlineMath math="100\text{ g mol}^{-1}" /> and the molar volume of a gas is <InlineMath math="24\text{ dm}^3\text{ mol}^{-1}" />.
-
-3. The experiment in question 2 is repeated with <InlineMath math="2.0\text{ g}" /> of powdered calcium carbonate. Use collision theory to explain the difference in rate and in the final volume of gas.
-
-4. A reaction has an activation energy of <InlineMath math="80\text{ kJ mol}^{-1}" /> without a catalyst and <InlineMath math="50\text{ kJ mol}^{-1}" /> with a catalyst. Its heat of reaction is <InlineMath math="\Delta H = -30\text{ kJ mol}^{-1}" />. How high is the peak of the catalysed profile, measured from the product level?
-
-### Solutions
-
-**Solution 1**: The average rate is the total gas divided by the total time:
+**Hydrogen rate check.** Zinc reacts with sulfuric acid to release <InlineMath math="36\text{ cm}^3" /> of hydrogen gas in <InlineMath math="90\text{ s}" />. Find the average rate of reaction.
 
 <BlockMath math="\text{Average rate} = \frac{36}{90} = 0.40\text{ cm}^3\text{ s}^{-1}" />
 
-Check: <InlineMath math="0.40 \times 90 = 36" />.
+Multiplying <InlineMath math="0.40\text{ cm}^3\text{ s}^{-1}" /> by <InlineMath math="90\text{ s}" /> recovers the full <InlineMath math="36\text{ cm}^3" /> collected.
 
-**Solution 2**: From the equation, one mole of calcium carbonate gives one mole of carbon dioxide.
+**Catalysed barrier check.** An exothermic reaction has uncatalysed activation energy <InlineMath math="80\text{ kJ mol}^{-1}" />, catalysed activation energy <InlineMath math="50\text{ kJ mol}^{-1}" />, and enthalpy change <InlineMath math="-30\text{ kJ mol}^{-1}" />. Find the height of the catalysed peak above the product level.
 
-<MathContainer>
-<BlockMath math="n(\mathrm{CaCO_3}) = \frac{2.0}{100} = 0.020\text{ mol}" />
-<BlockMath math="V(\mathrm{CO_2}) = 0.020 \times 24 = 0.48\text{ dm}^3 = 480\text{ cm}^3" />
-</MathContainer>
+<BlockMath math="E_{\text{reverse}}' = 50 + 30 = 80\text{ kJ mol}^{-1}" />
 
-The acid is in excess, so calcium carbonate is the limiting reactant and it decides the amount of gas.
-
-**Solution 3**: The powder has a **larger total exposed surface area**, so calcium carbonate particles collide with hydrogen ions more often. The frequency of effective collisions rises too, so the rate is higher and the curve is steeper. The final volume stays at <InlineMath math="480\text{ cm}^3" /> because the mass of calcium carbonate is the same, <InlineMath math="0.020" /> mol.
-
-**Solution 4**: The peak sits <InlineMath math="50\text{ kJ mol}^{-1}" /> above the reactant level. The product level is <InlineMath math="30\text{ kJ mol}^{-1}" /> below the reactant level, so the peak is this far above the product level:
-
-<BlockMath math="50 + 30 = 80\text{ kJ mol}^{-1}" />
-
-Check it with the shape of the profile: the catalyst lowers the peak by <InlineMath math="80 - 50 = 30\text{ kJ mol}^{-1}" />, but the reactant and product levels don't move, so <InlineMath math="\Delta H" /> stays at <InlineMath math="-30\text{ kJ mol}^{-1}" />.
+The catalyst trims <InlineMath math="30\text{ kJ mol}^{-1}" /> off the peak while leaving the <InlineMath math="30\text{ kJ mol}^{-1}" /> gap between reactants and products untouched.

@@ -1,39 +1,37 @@
 export const metadata = {
-  title: "Nota Kadar Tindak Balas Tingkatan Empat",
+  title: "Kadar Tindak Balas Teori Perlanggaran dan Mangkin",
   description:
-    "Nota Kimia Tingkatan 4 Bab 7: kira kadar purata dan kadar pada masa tertentu, terangkan faktor kadar dengan teori perlanggaran, dan baca profil tenaga.",
+    "Kadar tindak balas purata dan seketika, sukatan isi padu gas, teori perlanggaran, tenaga pengaktifan, dan laluan alternatif bermangkin.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-11-16",
   subject: "Kadar Tindak Balas",
 };
 
-## Maksud Kadar Tindak Balas
+## Mengukur Kadar Tindak Balas
 
-**Kadar tindak balas** ialah perubahan kuantiti bahan tindak balas atau hasil tindak balas per unit masa:
+Bunga api terbakar habis dalam sekelip mata manakala pagar besi berkarat bertahun-tahun. **Kadar tindak balas** mengukur perubahan kuantiti bahan atau hasil tindak balas per unit masa, dijelaskan pada skala zarah oleh **teori perlanggaran**.
 
-<BlockMath math="\text{Kadar tindak balas} = \frac{\text{perubahan kuantiti bahan atau hasil}}{\text{masa yang diambil}}" />
+<BlockMath math="\text{Kadar} = \frac{\Delta\text{kuantiti}}{\Delta t}" />
 
-Kuantiti itu boleh jadi isi padu gas yang terbebas, jisim bahan yang berkurang, atau masa untuk mendakan terbentuk. Kadar bertambah apabila **saiz bahan lebih kecil**, **kepekatan lebih tinggi**, **suhu lebih tinggi**, **mangkin digunakan**, atau **tekanan gas lebih tinggi**. Semua faktor ini diterangkan oleh satu idea, iaitu **teori perlanggaran**. Dalam model di sini, kamu mengumpul gas, melukis tangen pada graf, dan mengubah tenaga pengaktifan.
+Ahli kimia memantau isi padu gas, pengurangan jisim, atau masa mendakan bagi mengawal penghasilan industri dan melambatkan kerosakan makanan. Dua maklumat berbeza dibaca daripada graf: aras akhir menunjukkan jumlah hasil, manakala kecerunan menunjukkan kelajuan tindak balas.
 
-Tindak balas cepat seperti pembakaran berlaku dalam sesaat. Tindak balas perlahan seperti pengaratan besi mengambil masa berminggu-minggu. Ahli kimia mengukur kadar supaya boleh mengawalnya, misalnya mempercepat penghasilan ammonia di kilang atau memperlahan pereputan makanan.
+### Lengkung Isi Padu Gas
 
-## Mengukur Kadar dengan Gas yang Terbebas
-
-Apabila kalsium karbonat bertindak balas dengan asid hidroklorik, gas karbon dioksida terbebas:
+Tindak balas pepejal kalsium karbonat dengan asid hidroklorik berlebihan membebaskan gas karbon dioksida ke dalam picagari gas bersenggat:
 
 <BlockMath math="\mathrm{CaCO_3(s)} + 2\mathrm{HCl(aq)} \rightarrow \mathrm{CaCl_2(aq)} + \mathrm{H_2O(l)} + \mathrm{CO_2(g)}" />
 
-Gas itu dikumpul dalam picagari gas dan isi padunya dicatat setiap selang masa. Jalankan dua eksperimen di bawah. Jisim kalsium karbonat sama, tetapi eksperimen I menggunakan ketulan dan eksperimen II menggunakan serbuk.
+Bandingkan jisim sama antara ketulan marmar dengan serbuk marmar halus yang bertindak balas bersama asid berlebihan dalam dua kelalang berikut.
 
 <GasRateLab
-  title={<>Karbon Dioksida daripada Ketulan dan Serbuk</>}
+  title={<>Karbon Dioksida daripada Ketulan dan Serbuk Marmar</>}
   description={
     <>
-      Dua kelalang kon disambung kepada picagari gas. Kalsium karbonat yang sama
-      jisim bertindak balas dengan asid hidroklorik berlebihan, dalam bentuk
-      ketulan dan serbuk.
+      Bilangan mol kalsium karbonat sama bertindak balas dengan asid
+      hidroklorik berlebihan, membandingkan ketulan kasar dengan serbuk halus.
     </>
   }
+  footer={<>Zarah lebih kecil mencuramkan lengkung awal tanpa menambah jumlah isi padu gas akhir.</>}
   runs={[
     { amount: 0.02, solid: "chips" },
     { amount: 0.02, solid: "powder" },
@@ -41,28 +39,29 @@ Gas itu dikumpul dalam picagari gas dan isi padunya dicatat setiap selang masa. 
   showCurves
   labels={{
     final: <>jumlah akhir karbon dioksida</>,
-    runs: [<>Eksperimen I</>, <>Eksperimen II</>],
+    runs: [<>Ketulan marmar</>, <>Serbuk marmar</>],
     solids: { chips: <>ketulan</>, granules: <>butiran</>, powder: <>serbuk</> },
     time: "Masa",
-    view: "Pengumpulan gas dalam dua eksperimen",
+    view: "Dua kelalang kon bersambung picagari gas membandingkan ketulan dan serbuk marmar",
   }}
 />
 
-Lengkung serbuk lebih curam pada awalnya, jadi kadarnya lebih tinggi. Namun kedua-dua lengkung mendatar pada jumlah gas yang **sama**, kerana jisim kalsium karbonat sama dan asid berlebihan. Saiz bahan mengubah **berapa cepat** gas terhasil, bukan **berapa banyak**.
+Lengkung serbuk lebih curam pada permulaan kerana jumlah luas permukaan terdedah jauh lebih besar. Kedua-dua lengkung mendatar pada **isi padu akhir yang sama** kerana jisim bahan pengehad adalah sama.
 
-## Kadar Purata dan Kadar pada Masa Tertentu
+### Purata dan Tangen
 
-**Kadar purata** ialah jumlah perubahan dibahagi jumlah masa. **Kadar pada masa tertentu** ialah kecerunan **tangen** kepada lengkung pada masa itu. Lengkung di bawah ialah model isi padu gas <InlineMath math="V = 50(1 - e^{-t/25})" />, dengan <InlineMath math="V" /> dalam <InlineMath math="\text{cm}^3" /> dan <InlineMath math="t" /> dalam saat. Gerakkan gelangsar dan perhatikan tangen menjadi semakin landai.
+**Kadar purata** membahagikan jumlah perubahan dengan jumlah masa, manakala **kadar seketika** ialah kecerunan **garis tangen** pada satu saat tertentu. Gerakkan peluncur masa di bawah untuk melihat tangen semakin landai apabila bahan berkurangan.
 
 <MathVisual
-  title={<>Tangen kepada Lengkung Isi Padu Gas</>}
+  title={<>Kecerunan Tangen pada Lengkung Isi Padu Gas</>}
   description={
     <>
-      Lengkung <InlineMath math="V = 50(1 - e^{-t/25})" />. Tangen merah
-      menyentuh lengkung pada masa <InlineMath math="a" />, dan kecerunannya
-      ialah kadar tindak balas pada masa itu.
+      Isi padu gas dalam <InlineMath math="\text{cm}^3" /> melawan masa dalam
+      saat, dengan kecerunan tangen memberi kadar tindak balas pada masa{" "}
+      <InlineMath math="a" />.
     </>
   }
+  footer={<>Kecerunan tangen paling curam pada saat sifar lalu turun ke sifar apabila bahan habis.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: 0, max: 100 }, y: { min: 0, max: 55 } },
@@ -84,19 +83,19 @@ Lengkung serbuk lebih curam pada awalnya, jadi kadarnya lebih tinggi. Namun kedu
     ],
   }}
   labels={{
-    a: <>Masa <InlineMath math="a" /> dalam saat</>,
+    a: <>Masa <InlineMath math="a" /> (s)</>,
     touch: <>Titik sentuhan</>,
-    "volume-now": <>Isi padu gas dalam <InlineMath math="\text{cm}^3" /></>,
-    rate: <>Kadar dalam <InlineMath math="\text{cm}^3\text{ s}^{-1}" /></>,
+    "volume-now": <>Isi padu gas (<InlineMath math="\text{cm}^3" />)</>,
+    rate: <>Kadar (<InlineMath math="\text{cm}^3\text{ s}^{-1}" />)</>,
   }}
 />
 
-Kecerunan berkurang kerana kepekatan asid dan jisim kalsium karbonat semakin berkurang semasa tindak balas berlaku. Carta ini menunjukkan perkara yang sama dalam bentuk kadar purata bagi setiap selang <InlineMath math="20" /> saat, dikira daripada model yang sama.
+Jangan kira kadar seketika dengan membahagikan isi padu terkumpul oleh masa, kerana itu sekadar kadar purata dari awal. Pembahagian kepada sela dua puluh saat menunjukkan penurunan itu dengan jelas.
 
 <Chart
-  title={<>Kadar Purata dalam Setiap Selang Masa</>}
+  title={<>Kadar Tindak Balas Purata Setiap Sela Dua Puluh Saat</>}
   bars="apart"
-  categories={["0 hingga 20 s", "20 hingga 40 s", "40 hingga 60 s", "60 hingga 80 s", "80 hingga 100 s"]}
+  categories={["0 ke 20 s", "20 ke 40 s", "40 ke 60 s", "60 ke 80 s", "80 ke 100 s"]}
   series={[
     {
       label: "Kadar purata (cm³/s)",
@@ -113,170 +112,126 @@ Kecerunan berkurang kerana kepekatan asid dan jisim kalsium karbonat semakin ber
   valueLabel="Kadar purata (cm³/s)"
   description={
     <>
-      Kadar purata jatuh daripada kira-kira{" "}
-      <InlineMath math="1.38\text{ cm}^3\text{ s}^{-1}" /> dalam{" "}
-      <InlineMath math="20" /> saat pertama kepada kira-kira{" "}
-      <InlineMath math="0.06\text{ cm}^3\text{ s}^{-1}" /> dalam selang
-      terakhir.
+      Kadar purata gas menurun daripada{" "}
+      <InlineMath math="1.38\text{ cm}^3\text{ s}^{-1}" /> kepada{" "}
+      <InlineMath math="0.06\text{ cm}^3\text{ s}^{-1}" /> apabila kepekatan
+      bahan merosot.
     </>
   }
+  footer={<>Kepekatan bahan yang menurun merendahkan frekuensi perlanggaran pada setiap sela berikutnya.</>}
 />
 
-### Contoh Kadar Purata
+Setiap palang menyusut kerana bilangan ion asid per sentimeter padu terus merosot apabila tindak balas menghampiri penamat.
 
-Pita magnesium bertindak balas dengan asid hidroklorik. Sebanyak <InlineMath math="48\text{ cm}^3" /> gas hidrogen terkumpul dalam <InlineMath math="60" /> saat pertama, dan tindak balas berhenti pada <InlineMath math="150" /> saat dengan jumlah <InlineMath math="60\text{ cm}^3" /> gas. Hitung **kadar purata dalam minit pertama** dan kadar purata keseluruhan.
+## Faktor Teori Perlanggaran
 
-<MathContainer>
-<BlockMath math="\text{Kadar purata minit pertama} = \frac{48}{60} = 0.80\text{ cm}^3\text{ s}^{-1}" />
-<BlockMath math="\text{Kadar purata keseluruhan} = \frac{60}{150} = 0.40\text{ cm}^3\text{ s}^{-1}" />
-</MathContainer>
+Zarah bahan hanya membentuk hasil melalui **perlanggaran berkesan**: zarah mesti berlanggar pada **orientasi yang betul** dengan tenaga kinetik sekurang-kurangnya menyamai **tenaga pengaktifan** <InlineMath math="E_a" />.
 
-Kadar purata keseluruhan lebih rendah kerana tindak balas menjadi perlahan pada penghujungnya. Semak: <InlineMath math="0.80 \times 60 = 48" /> dan <InlineMath math="0.40 \times 150 = 60" />, sama dengan data asal.
+| Faktor ditingkatkan | Perubahan mikroskopik | Sebab kadar meningkat |
+| :--- | :--- | :--- |
+| Luas permukaan | Lebih banyak permukaan pepejal terdedah | Frekuensi perlanggaran di permukaan meningkat |
+| Kepekatan | Lebih banyak zarah per unit isi padu | Frekuensi perlanggaran dalam larutan meningkat |
+| Tekanan gas | Molekul gas lebih rapat | Frekuensi perlanggaran dalam bekas meningkat |
+| Suhu | Zarah lebih laju dan berekor tenaga lebar | Lebih banyak perlanggaran serta pecahan melepasi tenaga pengaktifan |
 
-### Contoh Kadar pada Masa Tertentu
+> Menaikkan suhu tidak pernah menurunkan tenaga pengaktifan, sebaliknya menolak lebih banyak zarah melepasi halangan tenaga yang sama.
 
-Cari kadar tindak balas pada <InlineMath math="t = 25" /> saat bagi model <InlineMath math="V = 50(1 - e^{-t/25})" />. Lukis tangen pada titik <InlineMath math="(25,\ 31.6)" />, kemudian pilih **dua titik yang jauh** pada tangen itu, iaitu <InlineMath math="(15,\ 24.2)" /> dan <InlineMath math="(35,\ 39.0)" />:
+Laraskan bentuk pepejal, suhu, dan kepekatan dalam bekas reaksi 3D serta taburan tenaga berikut bagi memerhatikan frekuensi perlanggaran dan kawasan berkesan melepasi <InlineMath math="E_a" />.
 
-<BlockMath math="\text{Kecerunan} = \frac{39.0 - 24.2}{35 - 15} = \frac{14.8}{20} = 0.74\text{ cm}^3\text{ s}^{-1}" />
-
-Semak dengan model: kecerunan tepat ialah <InlineMath math="2e^{-1} \approx 0.736" />. Gerakkan gelangsar model tangen ke <InlineMath math="a = 25" /> dan baca nilai kadar yang sama.
-
-## Teori Perlanggaran dan Tenaga Pengaktifan
-
-Menurut **teori perlanggaran**, tindak balas berlaku hanya apabila zarah bahan tindak balas berlanggar. Tidak semua perlanggaran berjaya. **Perlanggaran berkesan** mesti memenuhi dua syarat: zarah berlanggar dengan **orientasi yang betul**, dan tenaga perlanggaran sekurang-kurangnya sama dengan **tenaga pengaktifan**, <InlineMath math="E_a" />. Tenaga pengaktifan ialah tenaga minimum yang diperlukan untuk memulakan tindak balas.
-
-Jadi kadar tindak balas bergantung pada **frekuensi perlanggaran berkesan**. Setiap faktor kadar menaikkan frekuensi itu dengan cara tersendiri. Taburan tenaga zarah menunjukkan kesan suhu. Gerakkan gelangsar suhu dan bandingkan luas di bawah lengkung di sebelah kanan garis <InlineMath math="E_a" />.
-
-<MathVisual
-  title={<>Taburan Tenaga Zarah pada Dua Suhu</>}
+<CollisionTheoryEnergyLab
+  title={<>Frekuensi Perlanggaran dan Taburan Tenaga</>}
   description={
     <>
-      Lengkung kelabu ialah suhu asal. Lengkung biru berubah dengan gelangsar
-      suhu <InlineMath math="k" />. Hanya zarah di sebelah kanan garis{" "}
-      <InlineMath math="E_a" /> mempunyai tenaga yang cukup untuk perlanggaran
-      berkesan.
+      Tukar bentuk pepejal daripada ketulan ke serbuk serta laraskan suhu dan
+      kepekatan bagi melihat perlanggaran zarah dan ekor tenaga berkesan.
     </>
   }
-  scene={{
-    space: "plane",
-    frame: { kind: "cartesian", x: { min: 0, max: 10 }, y: { min: 0, max: 5 } },
-    view: { kind: "fit", padding: 0.06 },
-    parameters: [
-      { name: "k", min: 1, max: 3, value: 2, step: 0.1, label: "k" },
-    ],
-    objects: [
-      { id: "cool", kind: "function", appearance: "reference", formula: "10(2/sqrt(pi))sqrt(x)exp(-x)", domain: { min: 0, max: 10 } },
-      { id: "warm", kind: "function", appearance: "primary", formula: "10(2/sqrt(pi))k^(-1.5)sqrt(x)exp(-x/k)", domain: { min: 0, max: 10 } },
-      { id: "activation", kind: "segment", appearance: "warning", from: { x: 6, y: 0 }, to: { x: 6, y: 4 } },
-    ],
-    labels: [
-      { key: "activation", objectId: "activation", at: { x: 6, y: 4 }, placement: "above" },
-    ],
-  }}
+  footer={<>Suhu tinggi menganjak ekor tenaga melepasi tenaga pengaktifan, kepekatan memadatkan pelanggaran.</>}
+  surfaces={["lump", "granules", "powder"]}
+  temperature={{ min: 280, max: 380, value: 300 }}
+  concentration={{ min: 0.2, max: 2, value: 1 }}
   labels={{
-    k: <>Suhu relatif <InlineMath math="k" /></>,
-    activation: <InlineMath math="E_a" />,
+    surface: "Bentuk pepejal",
+    surfaces: {
+      lump: "Ketulan besar",
+      granules: "Butiran",
+      powder: "Serbuk halus",
+    },
+    temperature: "Suhu",
+    concentration: "Kepekatan",
+    activationEnergy: <>Halangan pengaktifan</>,
+    collisionFreq: <>Frekuensi perlanggaran jumlah</>,
+    effectiveRate: <>Kadar perlanggaran berkesan</>,
+    parts: {
+      reactants: "Zarah bahan",
+      products: "Zarah hasil",
+      activationLine: "Garis tenaga pengaktifan",
+      shadedArea: "Zarah melepasi halangan",
+      vessel: "Bekas tindak balas",
+    },
+    view: "Bekas tindak balas 3D bersama lengkung taburan tenaga kinetik menunjukkan perlanggaran melepasi tenaga pengaktifan",
   }}
 />
 
-Pada suhu lebih tinggi, lengkung menjadi lebih rendah dan lebih lebar, dan lebih banyak zarah berada di sebelah kanan <InlineMath math="E_a" />. Zarah juga bergerak lebih laju, jadi lebih kerap berlanggar. Kedua-dua kesan ini menaikkan frekuensi perlanggaran berkesan.
+Menambah isi padu asid berkepekatan molar sama tidak mengubah bilangan zarah per unit isi padu, maka kadar awal kekal sama walaupun jumlah gas akhir boleh bertambah jika asid tadinya terhad.
 
-## Faktor yang Mempengaruhi Kadar Tindak Balas
+## Mangkin dan Profil Tenaga
 
-Jadual ini menghubungkan setiap faktor dengan teori perlanggaran. Baca lajur ketiga sebagai rantai sebab yang perlu kamu tulis dalam jawapan peperiksaan.
+**Mangkin** mempercepat tindak balas kimia tanpa berubah secara kimia pada akhir tindak balas. Daripada memanaskan zarah, mangkin menyediakan **laluan alternatif** dengan tenaga pengaktifan lebih rendah <InlineMath math="E_a'" />.
 
-| Faktor | Perubahan | Penerangan dengan teori perlanggaran |
-| :--- | :--- | :--- |
-| Saiz bahan | Lebih kecil | Jumlah luas permukaan terdedah bertambah, jadi frekuensi perlanggaran bertambah. |
-| Kepekatan | Lebih tinggi | Bilangan zarah per unit isi padu bertambah, jadi frekuensi perlanggaran bertambah. |
-| Suhu | Lebih tinggi | Zarah bergerak lebih laju dan lebih banyak zarah mencapai tenaga pengaktifan. |
-| Mangkin | Digunakan | Laluan baharu dengan tenaga pengaktifan lebih rendah, jadi lebih banyak perlanggaran berkesan. |
-| Tekanan gas | Lebih tinggi | Zarah gas lebih rapat, jadi bilangan zarah per unit isi padu bertambah. |
+> Mangkin merendahkan puncak bukit tenaga tanpa mengubah aras bahan, aras hasil, perubahan entalpi, atau jumlah hasil akhir.
 
-**Mangkin** ialah bahan yang mengubah kadar tindak balas tanpa mengalami perubahan kimia pada akhir tindak balas. Gambar rajah profil tenaga di bawah menunjukkan sebabnya. Gerakkan gelangsar untuk merendahkan bonggol tenaga dan perhatikan bahawa aras bahan dan hasil tindak balas tidak berubah.
+Hidupkan dan matikan mangkin bagi tindak balas eksotermik dan endotermik di bawah untuk membandingkan puncak tanpa mangkin, puncak bermangkin, serta nilai malar <InlineMath math="\Delta H" />.
 
-<MathVisual
-  title={<>Profil Tenaga dengan dan tanpa Mangkin</>}
+<CatalystPathwayLab
+  title={<>Laluan Tenaga Tanpa Mangkin dan Bermangkin</>}
   description={
     <>
-      Lengkung kelabu ialah tindak balas tanpa mangkin. Lengkung biru ialah
-      laluan dengan mangkin, dengan tinggi bonggol <InlineMath math="c" /> di
-      atas aras bahan tindak balas. Aras hasil tetap tiga unit di bawah aras
-      bahan.
+      Bandingkan profil tenaga eksotermik dan endotermik tanpa serta dengan
+      mangkin permukaan bagi mengesahkan perubahan entalpi kekal malar.
     </>
   }
-  scene={{
-    space: "plane",
-    frame: { kind: "cartesian", x: { min: 0, max: 10 }, y: { min: 0, max: 10 } },
-    view: { kind: "fit", padding: 0.06 },
-    parameters: [
-      { name: "c", min: 1, max: 5, value: 3, step: 0.1, label: "c" },
-    ],
-    objects: [
-      { id: "uncatalysed", kind: "function", appearance: "reference", formula: "4 - 3/(1 + exp(-4(x - 6.5))) + 5exp(-(x - 4)^2/0.6)", domain: { min: 0, max: 10 } },
-      { id: "catalysed", kind: "function", appearance: "primary", formula: "4 - 3/(1 + exp(-4(x - 6.5))) + c exp(-(x - 4)^2/0.6)", domain: { min: 0, max: 10 } },
-      { id: "enthalpy", kind: "vector", appearance: "warning", from: { x: 9, y: 4 }, to: { x: 9, y: 1 } },
-    ],
-    labels: [
-      { key: "enthalpy", objectId: "enthalpy", at: { x: 9, y: 2.5 }, placement: "left" },
-    ],
-    readouts: [
-      { key: "barrier", formula: "c" },
-    ],
-  }}
+  footer={<>Mangkin merendahkan tenaga pengaktifan sambil mengekalkan perubahan entalpi tidak berubah.</>}
+  reactions={["exothermic", "endothermic"]}
   labels={{
-    c: <>Tenaga pengaktifan dengan mangkin <InlineMath math="c" /></>,
-    enthalpy: <InlineMath math="\Delta H" />,
-    barrier: <><InlineMath math="E_a'" /> dengan mangkin</>,
+    reaction: "Jenis tindak balas",
+    reactions: {
+      exothermic: "Eksotermik",
+      endothermic: "Endotermik",
+    },
+    catalyst: "Kehadiran mangkin",
+    catalystStates: {
+      absent: "Tanpa mangkin",
+      present: "Dengan mangkin",
+    },
+    pathway: <>Laluan aktif</>,
+    activationEnergy: <>Tenaga pengaktifan</>,
+    enthalpyChange: <>Perubahan entalpi</>,
+    parts: {
+      reactantLevel: "Aras bahan",
+      productLevel: "Aras hasil",
+      uncatalysedPeak: "Puncak tanpa mangkin",
+      catalysedPeak: "Puncak bermangkin",
+      catalystSurface: "Permukaan mangkin",
+    },
+    view: "Profil tenaga koordinat tindak balas 3D membandingkan puncak pengaktifan tanpa dan dengan mangkin di atas permukaan mangkin",
   }}
 />
 
-Mangkin hanya merendahkan tenaga pengaktifan. Perubahan haba tindak balas, <InlineMath math="\Delta H" />, tetap sama, dan jumlah hasil tindak balas juga tidak bertambah.
+Oleh sebab halangan lebih rendah membolehkan pecahan perlanggaran berkesan melonjak pada suhu sama, kilang industri seperti proses Haber menjimatkan banyak tenaga dengan mangkin pepejal.
 
-## Kesilapan Lazim tentang Kadar Tindak Balas
+## Semakan Kiraan Kadar
 
-| Kesilapan | Sebab salah | Cara semak |
-| :--- | :--- | :--- |
-| Serbuk menghasilkan lebih banyak gas daripada ketulan. | Jumlah gas bergantung pada bilangan mol bahan pengehad. Saiz hanya mengubah kadar. | Bandingkan aras akhir lengkung, bukan kecerunannya. |
-| Suhu tinggi menaikkan kadar kerana tenaga pengaktifan berkurang. | Suhu tidak mengubah <InlineMath math="E_a" />. Suhu menambah tenaga kinetik zarah. | Hanya mangkin merendahkan <InlineMath math="E_a" />. |
-| Kadar pada masa tertentu sama dengan isi padu dibahagi masa. | Itu kadar purata dari mula. Kadar pada masa tertentu ialah kecerunan tangen. | Lukis tangen dan pilih dua titik yang jauh. |
-| Menambah isi padu asid yang sama kepekatan menaikkan kadar. | Kepekatan tidak berubah, jadi bilangan zarah per unit isi padu sama. | Tanya: adakah kepekatan berubah? |
+Semak dua kiraan utama kadar tindak balas dan profil tenaga berikut.
 
-Kesilapan pertama paling kerap muncul dalam soalan graf. Ingat pemisahan ini: **kecerunan menunjukkan kadar**, manakala **aras akhir menunjukkan jumlah hasil**.
-
-## Latihan Kadar Tindak Balas
-
-Soalan ini bermula dengan pengiraan ringkas dan berakhir dengan penerangan teori. **Tulis unit kadar** dalam setiap jawapan.
-
-1. Zink bertindak balas dengan asid sulfurik dan membebaskan <InlineMath math="36\text{ cm}^3" /> gas hidrogen dalam <InlineMath math="90" /> saat. Hitung kadar purata tindak balas.
-
-2. Sebanyak <InlineMath math="2.0\text{ g}" /> ketulan kalsium karbonat bertindak balas dengan asid hidroklorik berlebihan. Hitung isi padu maksimum karbon dioksida pada keadaan bilik. Jisim molar <InlineMath math="\mathrm{CaCO_3}" /> ialah <InlineMath math="100\text{ g mol}^{-1}" /> dan isi padu molar gas ialah <InlineMath math="24\text{ dm}^3\text{ mol}^{-1}" />.
-
-3. Eksperimen dalam soalan 2 diulang dengan <InlineMath math="2.0\text{ g}" /> serbuk kalsium karbonat. Terangkan perbezaan kadar dan isi padu akhir gas dengan teori perlanggaran.
-
-4. Tenaga pengaktifan suatu tindak balas ialah <InlineMath math="80\text{ kJ mol}^{-1}" /> tanpa mangkin dan <InlineMath math="50\text{ kJ mol}^{-1}" /> dengan mangkin. Perubahan habanya <InlineMath math="\Delta H = -30\text{ kJ mol}^{-1}" />. Berapakah tenaga puncak profil dengan mangkin, diukur dari aras hasil tindak balas?
-
-### Penyelesaian
-
-**Penyelesaian 1**: Kadar purata ialah jumlah gas dibahagi jumlah masa:
+**Semakan kadar hidrogen.** Zink bertindak balas dengan asid sulfurik lalu membebaskan <InlineMath math="36\text{ cm}^3" /> gas hidrogen dalam <InlineMath math="90\text{ s}" />. Kira kadar tindak balas puratanya.
 
 <BlockMath math="\text{Kadar purata} = \frac{36}{90} = 0.40\text{ cm}^3\text{ s}^{-1}" />
 
-Semak: <InlineMath math="0.40 \times 90 = 36" />.
+Hasil darab <InlineMath math="0.40\text{ cm}^3\text{ s}^{-1}" /> dengan <InlineMath math="90\text{ s}" /> memulihkan tepat <InlineMath math="36\text{ cm}^3" /> gas yang dikumpul.
 
-**Penyelesaian 2**: Daripada persamaan, satu mol kalsium karbonat menghasilkan satu mol karbon dioksida.
+**Semakan puncak bermangkin.** Tindak balas eksotermik mempunyai tenaga pengaktifan tanpa mangkin <InlineMath math="80\text{ kJ mol}^{-1}" />, dengan mangkin <InlineMath math="50\text{ kJ mol}^{-1}" />, dan perubahan entalpi <InlineMath math="-30\text{ kJ mol}^{-1}" />. Kira ketinggian puncak bermangkin dari aras hasil.
 
-<MathContainer>
-<BlockMath math="n(\mathrm{CaCO_3}) = \frac{2.0}{100} = 0.020\text{ mol}" />
-<BlockMath math="V(\mathrm{CO_2}) = 0.020 \times 24 = 0.48\text{ dm}^3 = 480\text{ cm}^3" />
-</MathContainer>
+<BlockMath math="E_{\text{songsang}}' = 50 + 30 = 80\text{ kJ mol}^{-1}" />
 
-Asid berlebihan, jadi kalsium karbonat ialah bahan pengehad dan menentukan jumlah gas.
-
-**Penyelesaian 3**: Serbuk mempunyai **jumlah luas permukaan terdedah yang lebih besar**, jadi frekuensi perlanggaran antara zarah kalsium karbonat dengan ion hidrogen bertambah. Frekuensi perlanggaran berkesan juga bertambah, jadi kadar tindak balas lebih tinggi dan lengkung lebih curam. Isi padu akhir tetap <InlineMath math="480\text{ cm}^3" /> kerana jisim kalsium karbonat sama, iaitu <InlineMath math="0.020" /> mol.
-
-**Penyelesaian 4**: Puncak profil berada <InlineMath math="50\text{ kJ mol}^{-1}" /> di atas aras bahan tindak balas. Aras hasil pula <InlineMath math="30\text{ kJ mol}^{-1}" /> di bawah aras bahan, jadi jarak puncak dari aras hasil ialah:
-
-<BlockMath math="50 + 30 = 80\text{ kJ mol}^{-1}" />
-
-Semak dengan logik profil: mangkin menurunkan puncak sebanyak <InlineMath math="80 - 50 = 30\text{ kJ mol}^{-1}" />, tetapi aras bahan dan hasil tidak bergerak, jadi <InlineMath math="\Delta H" /> kekal <InlineMath math="-30\text{ kJ mol}^{-1}" />.
+Mangkin menurunkan puncak sebanyak <InlineMath math="30\text{ kJ mol}^{-1}" /> manakala jurang <InlineMath math="30\text{ kJ mol}^{-1}" /> antara bahan dengan hasil kekal sama.

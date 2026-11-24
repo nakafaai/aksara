@@ -1,118 +1,153 @@
 export const metadata = {
-  title: "Homeostasis and the Human Urinary System Notes",
+  title: "Homeostasis and the Human Urinary System",
   description:
-    "Form 4 Biology Chapter 13: explain negative feedback, control of body temperature and blood glucose, and ultrafiltration and reabsorption in the nephron.",
+    "Negative feedback, skin thermoregulation, pancreatic blood glucose control, nephron ultrafiltration, and antidiuretic hormone water balance.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-11-17",
   subject: "Homeostasis and the Human Urinary System",
 };
 
-## Homeostasis Keeps the Internal Environment Stable
+## Negative Feedback Control
 
-**Homeostasis** is keeping the body's internal environment, the tissue fluid, in a nearly constant state even when outside conditions change. Body temperature, blood glucose level and blood osmotic pressure are controlled by **negative feedback**: when a factor moves away from its normal value, the body triggers actions that bring it back. The kidneys control the water and salt content of the blood and remove urea. In the models here, you watch temperature and glucose return to normal, and follow filtrate through a nephron.
+Step from a cold air-conditioned room into midday tropical sun and your core temperature still hovers near <InlineMath math="37^\circ\text{C}" />. That stability is **homeostasis**, the maintenance of a nearly constant internal environment across tissue fluid despite outside swings.
 
-## Negative Feedback
+Homeostasis does not lock any variable motionless. Instead, **negative feedback** lets a value drift slightly, senses the shift through receptors, routes signals through a control centre, and activates effectors that push the value back toward normal.
 
-Every negative feedback mechanism follows the same sequence: **change, receptor, control centre, effector, correction**. For example, when body temperature rises, receptors in the hypothalamus detect it, and the control centre sends impulses to the sweat glands and the blood vessels of the skin.
-
-| Factor | If too high | If too low |
+| Variable | Above normal response | Below normal response |
 | :--- | :--- | :--- |
-| Body temperature | Sweating, vasodilation of skin arterioles | Shivering, vasoconstriction of skin arterioles |
-| Blood glucose | Insulin secreted, glucose stored as glycogen | Glucagon secreted, glycogen broken down to glucose |
-| Blood osmotic pressure | More ADH, more water reabsorbed | Less ADH, more dilute and larger volume of urine |
+| Body temperature | Sweating and arteriole vasodilation | Shivering and arteriole vasoconstriction |
+| Blood glucose | Insulin converts glucose to glycogen | Glucagon breaks glycogen into glucose |
+| Blood osmotic pressure | High ADH raises water reabsorption | Low ADH yields dilute, plentiful urine |
 
-### Controlling Body Temperature
+> Homeostasis works like a smart thermostat that continuously nudges drifting values back toward their set point rather than freezing them rigid.
 
-This model shows body temperature after a disturbance, such as going out into hot weather. **Negative feedback** brings the temperature back to <InlineMath math="37^\circ\text{C}" />. Change the size of the disturbance and watch the temperature swing less and less around the normal value.
+## Temperature and Glucose
 
-<MathVisual
-  title={<>Body Temperature Returns to Normal</>}
+Two fast physiological loops protect cells from immediate thermal or metabolic stress. The **hypothalamus** coordinates skin effectors for heat balance while **pancreatic islets** release opposing hormones directly into the bloodstream to buffer glucose.
+
+### Skin Thermoregulation
+
+Mammalian skin adjusts heat loss by changing both blood flow near the surface and evaporative cooling. In hot surroundings, **vasodilation** widens skin arterioles and sweat glands secrete water that absorbs latent heat as it evaporates. In cold air, **vasoconstriction** narrows those arterioles, sweat stops, and hair erector muscles contract.
+
+Switch between cold, normal, and hot conditions and slide ambient temperature below to trace changes across skin arterioles, sweat glands, and hair follicles.
+
+<ThermoregulationSkinLab
+  title={<>Skin Effectors in Human Thermoregulation</>}
   description={
     <>
-      How far body temperature sits from <InlineMath math="37^\circ\text{C}" />,{" "}
-      <InlineMath math="a\,e^{-s/4}\cos(1.2s)" />, against time in arbitrary
-      units, with <InlineMath math="a" /> as the size of the disturbance. The
-      horizontal axis is the normal temperature.
+      Compare cold, normal, and hot skin states and adjust ambient temperature
+      to watch arteriolar diameter, sweat secretion, and hair position respond.
     </>
   }
-  scene={{
-    space: "plane",
-    frame: { kind: "cartesian", x: { min: 0, max: 12 }, y: { min: -2, max: 2 } },
-    view: { kind: "fit", padding: 0.06 },
-    parameters: [
-      { name: "a", min: -1.5, max: 1.5, value: 1, step: 0.1, label: "a" },
-    ],
-    objects: [
-      { id: "temperature", kind: "function", appearance: "primary", formula: "a exp(-x/4)cos(1.2x)", domain: { min: 0, max: 12 } },
-    ],
-    readouts: [
-      { key: "start", formula: "37 + a" },
-    ],
-  }}
+  footer={<>Vasodilation and sweating shed heat in warmth while vasoconstriction conserves core warmth.</>}
+  conditions={["cold", "normal", "hot"]}
+  ambient={{ min: 5, max: 42, value: 25 }}
   labels={{
-    a: <>Size of the disturbance <InlineMath math="a" /> in degrees Celsius</>,
-    start: <>Temperature just after the disturbance</>,
+    condition: "Thermal condition",
+    conditions: {
+      cold: "Cold air",
+      normal: "Comfortable",
+      hot: "Hot weather",
+    },
+    ambient: "Ambient temperature",
+    response: <>Skin response</>,
+    responses: {
+      cold: <>Arterioles constrict, sweat pauses, and erector muscles raise hairs to trap insulating air.</>,
+      normal: <>Balanced skin blood flow holds core temperature steady near thirty-seven degrees.</>,
+      hot: <>Arterioles dilate near the epidermis while sweat evaporates to carry heat away.</>,
+    },
+    bloodFlow: <>Surface blood flow</>,
+    heatLoss: <>Rate of heat loss</>,
+    parts: {
+      epidermis: "Epidermis",
+      sweatGland: "Sweat gland",
+      arteriole: "Skin arteriole",
+      capillary: "Capillary loop",
+      erectorMuscle: "Erector muscle",
+      hairShaft: "Hair shaft",
+      fatLayer: "Subcutaneous fat",
+    },
+    view: "3D mammalian skin cross-section showing epidermis, sweat gland, arterioles, capillaries, hair shaft, and fat layer",
   }}
 />
 
-### Controlling Blood Glucose
+Skeletal muscles reinforce skin responses in severe cold through involuntary shivering, burning respiration energy directly into internal heat.
 
-After a meal, the blood glucose level rises. The pancreas secretes **insulin**, and the liver turns excess glucose into glycogen, so the glucose level falls again. In a patient with **diabetes mellitus**, there isn't enough insulin or cells don't respond to it, so glucose stays high for longer. Compare the two curves in this model.
+### Blood Glucose Circuit
 
-<MathVisual
-  title={<>Blood Glucose Level after a Meal</>}
+After a carbohydrate meal, blood glucose rises and beta cells in the pancreas secrete **insulin**, signalling the liver and muscles to store excess glucose as **glycogen**. Between meals, falling glucose triggers alpha cells to release **glucagon**, converting stored glycogen back into glucose.
+
+Remember the clean direction rule: **insulin stores glucose, glucagon releases it**. Switch between post-meal, normal, fasting, and diabetes states below to compare hormone output and liver action.
+
+<BloodGlucoseFeedbackLab
+  title={<>Pancreas and Liver Blood Glucose Feedback</>}
   description={
     <>
-      Glucose level in <InlineMath math="\text{mmol dm}^{-3}" /> against time in
-      units of <InlineMath math="30" /> minutes for a healthy person and a
-      patient with diabetes.
+      Select post-meal, normal, fasting, or diabetes states and slide blood
+      glucose level to inspect pancreatic islet secretion and liver glycogen
+      conversion.
     </>
   }
-  scene={{
-    space: "plane",
-    frame: { kind: "cartesian", x: { min: 0, max: 10 }, y: { min: 0, max: 13 } },
-    view: { kind: "fit", padding: 0.06 },
-    parameters: [
-      { name: "s", min: 0, max: 10, value: 2, step: 0.1, label: "s" },
-    ],
-    objects: [
-      { id: "healthy", kind: "function", appearance: "primary", formula: "5 + 3(x/2)exp(1 - x/2)", domain: { min: 0, max: 10 } },
-      { id: "diabetic", kind: "function", appearance: "secondary", formula: "7 + 5(x/3)exp(1 - x/3)", domain: { min: 0, max: 10 } },
-      { id: "now", kind: "marker", x: "s", y: "5 + 3(s/2)exp(1 - s/2)", appearance: "warning" },
-    ],
-    readouts: [
-      { key: "healthy", formula: "5 + 3(s/2)exp(1 - s/2)" },
-      { key: "diabetic", formula: "7 + 5(s/3)exp(1 - s/3)" },
-    ],
-  }}
+  footer={<>Insulin lowers high glucose by building glycogen while glucagon raises low glucose.</>}
+  states={["afterMeal", "normal", "fasting", "diabetes"]}
+  glucose={{ min: 3, max: 14, value: 5.5 }}
   labels={{
-    s: <>Time after the meal <InlineMath math="s" /> in units of thirty minutes</>,
-    healthy: <>Glucose of a healthy person</>,
-    diabetic: <>Glucose of a patient with diabetes</>,
+    state: "Metabolic state",
+    states: {
+      afterMeal: "After meal",
+      normal: "Normal",
+      fasting: "Fasting",
+      diabetes: "Diabetes",
+    },
+    glucose: "Blood glucose",
+    hormones: {
+      insulin: "Insulin active",
+      glucagon: "Glucagon active",
+      balanced: "Balanced baseline",
+      deficient: "Insulin deficient",
+    },
+    actions: {
+      afterMeal: <>Beta cells release insulin so liver cells take up glucose and assemble glycogen.</>,
+      normal: <>Low baseline secretion keeps blood glucose steady near five millimoles per litre.</>,
+      fasting: <>Alpha cells release glucagon so the liver breaks glycogen back into circulating glucose.</>,
+      diabetes: <>Insufficient insulin or poor receptor response leaves blood glucose elevated for hours.</>,
+    },
+    hormone: <>Dominant hormone</>,
+    liverAction: <>Liver glycogen response</>,
+    parts: {
+      pancreas: "Pancreas",
+      alphaCell: "Alpha cells",
+      betaCell: "Beta cells",
+      liver: "Liver",
+      glycogen: "Glycogen store",
+      bloodVessel: "Blood vessel",
+    },
+    view: "3D negative feedback circuit linking pancreatic alpha and beta cells, liver glycogen stores, and bloodstream glucose",
   }}
 />
 
-A healthy person peaks at <InlineMath math="8\text{ mmol dm}^{-3}" /> after an hour and is almost back to <InlineMath math="5" /> within three hours. The patient with diabetes starts higher, peaks at <InlineMath math="12" /> and is still high after five hours.
+In uncontrolled **diabetes mellitus**, missing insulin or unresponsive target cells keep glucose elevated for hours after eating, eventually overwhelming kidney reabsorption.
 
-## The Urinary System and the Nephron
+## Nephron Filtration
 
-The urinary system is made up of **the kidneys, ureters, bladder and urethra**. Each kidney holds about a million **nephrons**. Urine forms in three stages:
+Each human kidney packs roughly one million microscopic **nephrons** that filter blood plasma and shape urine across three steps:
 
-- **Ultrafiltration**: high blood pressure in the glomerulus forces water, glucose, amino acids, salts and urea into the Bowman's capsule. Blood cells and plasma proteins are too large to be filtered.
-- **Reabsorption**: in the proximal convoluted tubule, all the glucose and amino acids and most of the water and salts are reabsorbed into the blood.
-- **Secretion**: substances such as hydrogen ions, drugs and excess urea are secreted into the distal convoluted tubule.
+- **Ultrafiltration**: high pressure inside the glomerulus pushes water, glucose, amino acids, salts, and urea into Bowman's capsule, while red blood cells and plasma proteins stay behind in the blood.
+- **Reabsorption**: proximal convoluted tubules reclaim all filtered glucose and amino acids plus most water and essential salts back into surrounding capillaries.
+- **Secretion**: distal tubules actively add excess hydrogen ions, drugs, and surplus urea into the filtrate.
 
-The kidneys filter about <InlineMath math="125\text{ cm}^3" /> of plasma a minute. This model follows glucose and urea through a nephron. Raise the plasma glucose level and see when glucose starts to appear in the urine.
+Finding protein in urine signals glomerular damage because intact capillary walls block large plasma proteins. Trace glucose and urea along a single nephron below as you raise plasma glucose past the renal threshold.
 
 <NephronLab
-  title={<>Glucose and Urea through One Nephron</>}
+  title={<>Glucose and Urea Along One Nephron</>}
   description={
     <>
-      Plasma is filtered at <InlineMath math="125\text{ cm}^3" /> a minute. The
-      tubules can reabsorb up to <InlineMath math="375\text{ mg}" /> of glucose
-      a minute.
+      Glomeruli filter plasma at <InlineMath math="125\text{ cm}^3" /> per
+      minute while tubules reabsorb up to <InlineMath math="375\text{ mg}" />{" "}
+      of glucose per minute.
     </>
   }
+  footer={<>Above three milligrams per cubic centimetre, glucose spills past tubule carriers into urine.</>}
   filtration={125}
   glucose={{ maximum: 375, plasma: 1 }}
   urea={{ plasma: 0.03, urine: 2 }}
@@ -128,38 +163,25 @@ The kidneys filter about <InlineMath math="125\text{ cm}^3" /> of plasma a minut
     solutes: { glucose: "Glucose", urea: "Urea" },
     threshold: <>Renal threshold</>,
     urine: <>Glucose in urine</>,
-    view: "One nephron with filtrate flowing from the glomerulus to the collecting duct",
+    view: "One nephron showing glomerular filtration, tubular reabsorption, and collecting duct flow",
   }}
 />
 
-### Example The Renal Threshold for Glucose
+At normal plasma glucose (<InlineMath math="1.0\text{ mg cm}^{-3}" />), tubules effortlessly reclaim every milligram filtered. Pushing plasma glucose past <InlineMath math="3.0\text{ mg cm}^{-3}" /> saturates carrier proteins, causing glucose to appear in urine.
 
-The tubules can reabsorb at most <InlineMath math="375\text{ mg}" /> of glucose a minute, and the filtration rate is <InlineMath math="125\text{ cm}^3" /> a minute. Calculate **the plasma glucose level** at which glucose starts to appear in the urine.
+## Water Balance and ADH
 
-<BlockMath math="\text{Threshold} = \frac{375}{125} = 3.0\text{ mg cm}^{-3}" />
-
-At the normal level of <InlineMath math="1.0\text{ mg cm}^{-3}" />, the filtered load is <InlineMath math="125 \times 1.0 = 125\text{ mg}" /> a minute, well below <InlineMath math="375" />, so all the glucose is reabsorbed. Check with the model: raise plasma glucose past <InlineMath math="3.0" /> and glucose starts to appear in the urine, as happens in uncontrolled diabetes.
-
-### Example Concentrating Urea
-
-The urea concentration is <InlineMath math="0.03\text{ g}" /> in every <InlineMath math="100\text{ cm}^3" /> of plasma and <InlineMath math="2.0\text{ g}" /> in every <InlineMath math="100\text{ cm}^3" /> of urine. Calculate **the concentration factor**.
-
-<BlockMath math="\frac{2.0}{0.03} = 67" />
-
-Urea becomes <InlineMath math="67" /> times more concentrated because most of the water is reabsorbed while the urea is left behind. Check with the model: choose urea, and the factor reads <InlineMath math="66.7" />.
-
-## Water Reabsorption and ADH
-
-Every day the kidneys make about <InlineMath math="180\text{ dm}^3" /> of filtrate, but only about <InlineMath math="1.5\text{ dm}^3" /> of urine. More than <InlineMath math="99\%" /> of the water is reabsorbed. This chart shows the percentage of each substance in the filtrate that is reabsorbed.
+Although human kidneys generate about <InlineMath math="180\text{ dm}^3" /> of filtrate daily, healthy adults excrete roughly <InlineMath math="1.5\text{ dm}^3" /> of urine because tubules recover nearly every useful molecule.
 
 <BarChart
-  title={<>Percentage of Each Substance in the Filtrate Reabsorbed</>}
+  title={<>Percentage of Filtered Substances Reabsorbed</>}
   description={
     <>
-      The share of each substance filtered at the glomerulus that the tubules
-      return to the blood.
+      Share of filtered glucose, water, sodium ions, and urea returned to the
+      bloodstream along the renal tubules.
     </>
   }
+  footer={<>Healthy nephrons reclaim all glucose and over ninety-nine percent of filtered water.</>}
   yAxisLabel="Reabsorbed (%)"
   data={[
     { name: "Glucose", value: 100 },
@@ -170,16 +192,21 @@ Every day the kidneys make about <InlineMath math="180\text{ dm}^3" /> of filtra
   chartConfig={{ value: { label: "Reabsorbed", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
 />
 
-**Antidiuretic hormone**, ADH, is secreted by the pituitary gland when blood osmotic pressure is high, for example after a lot of sweating. ADH makes the distal convoluted tubule and collecting duct more permeable to water, so more water is reabsorbed and the urine becomes concentrated and small in volume. This graph shows urine volume after a student drinks <InlineMath math="1\text{ dm}^3" /> of distilled water or <InlineMath math="1\text{ dm}^3" /> of salt solution.
+**Antidiuretic hormone** (ADH) fine-tunes final urine concentration. Heavy sweating raises blood osmotic pressure, prompting the pituitary gland to secrete more ADH so collecting ducts grow permeable to water.
+
+> High ADH means antidiuretic action: tubules pull more water back into the blood, leaving a small volume of dark, concentrated urine.
+
+Compare urine output after drinking one litre of distilled water versus one litre of salt solution below.
 
 <ScatterDiagram
-  title={<>Urine Volume after Drinking Water and Salt Solution</>}
+  title={<>Urine Volume after Water versus Salt Solution</>}
   description={
     <>
-      Urine volume every half hour after drinking. Distilled water lowers blood
-      osmotic pressure, so less ADH is secreted.
+      Half-hourly urine volume after drinking distilled water (low ADH) versus
+      salty water (high ADH).
     </>
   }
+  footer={<>Distilled water suppresses ADH and triggers a sharp diuretic surge within one hour.</>}
   xAxisLabel="Time after drinking (h)"
   yAxisLabel="Urine volume (cm³)"
   datasets={[
@@ -210,45 +237,20 @@ Every day the kidneys make about <InlineMath math="180\text{ dm}^3" /> of filtra
   ]}
 />
 
-After drinking distilled water, urine volume peaks at <InlineMath math="320\text{ cm}^3" /> in the second half hour. After drinking salt solution, ADH stays high and urine volume barely changes.
+After plain water, suppressed ADH lets excess water exit quickly, peaking at <InlineMath math="320\text{ cm}^3" />. Salt solution keeps blood osmotic pressure high, so ADH remains elevated and urine volume stays low.
 
-## Common Mistakes about Homeostasis
+## Homeostasis Checks
 
-| Mistake | Why it's wrong | How to check |
-| :--- | :--- | :--- |
-| Insulin turns glycogen into glucose. | Insulin turns glucose into glycogen. Glucagon does the opposite. | Insulin lowers blood glucose. |
-| Plasma proteins are filtered into the Bowman's capsule. | Plasma proteins are too large to pass through the glomerulus wall. | Protein in urine is a sign of kidney damage. |
-| High ADH produces a lot of urine. | High ADH increases water reabsorption, so urine is small in volume and concentrated. | Antidiuretic means working against urine production. |
-| Homeostasis keeps a value perfectly fixed. | The value changes slightly around normal and is constantly corrected. | Look at the temperature swings in the model. |
+Check two quantitative nephron relationships below.
 
-The first mistake is the most common one in blood glucose questions. **Insulin stores, glucagon releases**.
+**Renal threshold check.** A patient's filtration rate drops to <InlineMath math="100\text{ cm}^3\text{ min}^{-1}" /> while maximum tubular reabsorption stays at <InlineMath math="375\text{ mg min}^{-1}" />. Find the new glucose threshold.
 
-## Practice on Homeostasis and the Urinary System
+<BlockMath math="\text{Threshold} = \frac{375}{100} = 3.75\text{ mg cm}^{-3}" />
 
-These questions move from negative feedback to nephron calculations. **Name the effector** in every answer about negative feedback.
+A slower filtration rate delivers less glucose per minute at any plasma level, raising the concentration needed to saturate carriers.
 
-1. Explain how the body corrects a temperature that is too low on a cold day.
+**Urea ratio check.** Plasma urea sits at <InlineMath math="0.03\text{ g}" /> per <InlineMath math="100\text{ cm}^3" /> while urine urea reaches <InlineMath math="1.8\text{ g}" /> per <InlineMath math="100\text{ cm}^3" />. Find the concentration factor.
 
-2. A patient's filtration rate falls to <InlineMath math="100\text{ cm}^3" /> a minute, and their tubules can still reabsorb <InlineMath math="375\text{ mg}" /> of glucose a minute. Calculate the new renal threshold for glucose.
+<BlockMath math="\text{Factor} = \frac{1.8}{0.03} = 60" />
 
-3. The urea concentration is <InlineMath math="0.03\text{ g}" /> per <InlineMath math="100\text{ cm}^3" /> in plasma and <InlineMath math="1.8\text{ g}" /> per <InlineMath math="100\text{ cm}^3" /> in urine. Calculate the urea concentration factor.
-
-4. Explain why urine becomes concentrated and small in volume after playing football on a hot day.
-
-### Solutions
-
-**Solution 1**: Receptors in the skin and hypothalamus detect the low temperature. **Skeletal muscles** shiver to produce heat, **skin arterioles** constrict so less heat is lost, and the hair erector muscles contract. Body temperature rises back to <InlineMath math="37^\circ\text{C}" />.
-
-**Solution 2**: Divide the maximum reabsorption by the filtration rate:
-
-<BlockMath math="\frac{375}{100} = 3.75\text{ mg cm}^{-3}" />
-
-Check: the threshold rises from <InlineMath math="3.0" /> to <InlineMath math="3.75" />, because the filtered glucose load is now smaller for the same plasma level.
-
-**Solution 3**: Divide the concentration in urine by the concentration in plasma:
-
-<BlockMath math="\frac{1.8}{0.03} = 60" />
-
-Check: <InlineMath math="0.03 \times 60 = 1.8" />.
-
-**Solution 4**: The body loses a lot of water as sweat, so **blood osmotic pressure rises**. The hypothalamus detects this and the pituitary secretes more **ADH**. The collecting ducts become more permeable, more water is reabsorbed, and the urine produced is small in volume and concentrated.
+Urea becomes sixty times more concentrated because tubules reclaim almost all filtered water while leaving urea in the duct.

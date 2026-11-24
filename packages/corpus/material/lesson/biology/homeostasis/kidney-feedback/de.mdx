@@ -1,168 +1,189 @@
 export const metadata = {
   title: "Homöostase und Harnsystem des Menschen",
   description:
-    "Erkläre negative Rückkopplung, die Regelung von Körpertemperatur und Blutzucker sowie Ultrafiltration und Rückresorption im Nephron mit Übungen.",
+    "Negative Rückkopplung, Thermoregulation der Haut, Blutzuckerregelung durch die Bauchspeicheldrüse, Filtration im Nephron und Wasserhaushalt mit ADH.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-11-17",
   subject: "Homöostase und Harnsystem des Menschen",
 };
 
-## Homöostase hält das innere Milieu stabil
-
-**Homöostase** ist das Konstanthalten des inneren Milieus, der Gewebeflüssigkeit, auch wenn sich die äußeren Bedingungen ändern. Körpertemperatur, Blutzuckerspiegel und osmotischer Druck des Blutes werden durch **negative Rückkopplung** geregelt: Weicht ein Wert von seinem Normalwert ab, löst der Körper Vorgänge aus, die ihn zurückführen. Die Nieren regeln den Wasser und Salzgehalt des Blutes und scheiden Harnstoff aus. In den Modellen hier siehst du Temperatur und Blutzucker zum Normalwert zurückkehren und verfolgst das Filtrat durch ein Nephron.
-
 ## Negative Rückkopplung
 
-Jeder Regelkreis mit negativer Rückkopplung folgt derselben Abfolge: **Abweichung, Rezeptor, Regelzentrum, Effektor, Korrektur**. Steigt zum Beispiel die Körpertemperatur, erkennen Rezeptoren im Hypothalamus das, und das Regelzentrum sendet Impulse an die Schweißdrüsen und die Blutgefäße der Haut.
+Trittst du aus einem kühlen Raum in grelle Mittagssonne, bleibt deine Körperkerntemperatur trotzdem nahe <InlineMath math="37^\circ\text{C}" />. Diese Stabilität heißt **Homöostase**, die Aufrechterhaltung eines nahezu konstanten inneren Milieus der Gewebeflüssigkeit trotz äußerer Schwankungen.
 
-| Größe | Wenn zu hoch | Wenn zu niedrig |
+Homöostase friert keinen Wert starr ein. Über **negative Rückkopplung** erfassen Rezeptoren jede Abweichung, melden sie an ein Steuerzentrum und lösen Effektoren aus, die den Wert gezielt zum Sollbereich zurückführen.
+
+| Regelgröße | Reaktion bei zu hohem Wert | Reaktion bei zu niedrigem Wert |
 | :--- | :--- | :--- |
-| Körpertemperatur | Schwitzen, Erweiterung der Hautarteriolen | Zittern, Verengung der Hautarteriolen |
-| Blutzucker | Insulin wird abgegeben, Glucose als Glykogen gespeichert | Glukagon wird abgegeben, Glykogen zu Glucose abgebaut |
-| Osmotischer Druck des Blutes | Mehr ADH, mehr Wasser wird rückresorbiert | Weniger ADH, mehr und verdünnterer Harn |
+| Körpertemperatur | Schwitzen und Weitstellung der Hautarteriolen | Zittern und Engstellung der Hautarteriolen |
+| Blutzucker | Insulin wandelt Glukose in Glykogen um | Glukagon baut Glykogen zu Glukose ab |
+| Osmotischer Druck | Mehr ADH steigert die Wasserrückresorption | Weniger ADH führt zu viel verdünntem Harn |
 
-### Die Regelung der Körpertemperatur
+> Homöostase arbeitet wie ein kluger Thermostat, der abdriftende Körperwerte fortlaufend zum Sollwert zurückholt statt sie starr einzufrieren.
 
-Dieses Modell zeigt die Körpertemperatur nach einer Störung, etwa beim Hinausgehen in heißes Wetter. **Negative Rückkopplung** bringt die Temperatur zurück auf <InlineMath math="37^\circ\text{C}" />. Ändere die Größe der Störung und beobachte, wie die Temperatur immer schwächer um den Normalwert schwankt.
+## Temperatur und Blutzucker
 
-<MathVisual
-  title={<>Die Körpertemperatur kehrt zum Normalwert zurück</>}
+Zwei schnelle physiologische Regelkreise schützen Körperzellen vor sofortigem Wärme- oder Energiestress. Der **Hypothalamus** steuert die Hauteffektoren für den Wärmehaushalt, während **Inselzellen der Bauchspeicheldrüse** gegensätzliche Hormone direkt ins Blut abgeben.
+
+### Thermoregulation Haut
+
+Die Haut reguliert den Wärmeverlust über die Hautdurchblutung und Verdunstungskälte. Bei Hitze weitet **Vasodilatation** die Hautarteriolen und Schweißdrüsen geben Wasser ab, das beim Verdunsten Verdampfungswärme entzieht. Bei Kälte verengt **Vasokonstriktion** die Arteriolen, das Schwitzen stoppt und Haarbalgmuskeln richten Haare auf.
+
+Wechsle unten zwischen Kälte, Normallage und Hitze und verändere die Umgebungstemperatur, um Arteriolenweite, Schweißabgabe und Haarstellung zu verfolgen.
+
+<ThermoregulationSkinLab
+  title={<>Hauteffektoren in der menschlichen Thermoregulation</>}
   description={
     <>
-      Abweichung der Körpertemperatur von <InlineMath math="37^\circ\text{C}" />,{" "}
-      <InlineMath math="a\,e^{-s/4}\cos(1{,}2s)" />, gegen die Zeit in beliebigen
-      Einheiten, mit <InlineMath math="a" /> als Größe der Störung. Die
-      waagerechte Achse ist die Normaltemperatur.
+      Vergleiche kalte, normale und heiße Hautzustände und verstelle die
+      Umgebungstemperatur für Arteriolenweite, Schweißbildung und Haarstellung.
     </>
   }
-  scene={{
-    space: "plane",
-    frame: { kind: "cartesian", x: { min: 0, max: 12 }, y: { min: -2, max: 2 } },
-    view: { kind: "fit", padding: 0.06 },
-    parameters: [
-      { name: "a", min: -1.5, max: 1.5, value: 1, step: 0.1, label: "a" },
-    ],
-    objects: [
-      { id: "temperature", kind: "function", appearance: "primary", formula: "a exp(-x/4)cos(1.2x)", domain: { min: 0, max: 12 } },
-    ],
-    readouts: [
-      { key: "start", formula: "37 + a" },
-    ],
-  }}
+  footer={<>Vasodilatation und Schwitzen geben Wärme ab, Vasokonstriktion hält Körperwärme im Kern.</>}
+  conditions={["cold", "normal", "hot"]}
+  ambient={{ min: 5, max: 42, value: 25 }}
   labels={{
-    a: <>Größe der Störung <InlineMath math="a" /> in Grad Celsius</>,
-    start: <>Temperatur direkt nach der Störung</>,
+    condition: "Wärmezustand",
+    conditions: {
+      cold: "Kalte Luft",
+      normal: "Angenehm",
+      hot: "Hitze",
+    },
+    ambient: "Umgebungstemperatur",
+    response: <>Hautreaktion</>,
+    responses: {
+      cold: <>Arteriolen verengen sich, Schweiß stoppt und Haarbalgmuskeln halten isolierende Luft fest.</>,
+      normal: <>Ausgeglichene Hautdurchblutung hält die Kerntemperatur stabil bei siebenunddreißig Grad.</>,
+      hot: <>Arteriolen weiten sich nahe der Oberfläche während verdunstender Schweiß Wärme abführt.</>,
+    },
+    bloodFlow: <>Hautdurchblutung</>,
+    heatLoss: <>Wärmeabgaberate</>,
+    parts: {
+      epidermis: "Epidermis",
+      sweatGland: "Schweißdrüse",
+      arteriole: "Hautarteriole",
+      capillary: "Kapillarschleife",
+      erectorMuscle: "Haarbalgmuskel",
+      hairShaft: "Haarschaft",
+      fatLayer: "Unterhautfett",
+    },
+    view: "3D-Hautquerschnitt mit Epidermis, Schweißdrüse, Arteriolen, Kapillaren, Haarschaft und Fettschicht",
   }}
 />
 
-### Die Regelung des Blutzuckers
+Bei starker Kälte verstärkt unwillkürliches Muskelzittern der Skelettmuskeln die Hautreaktion und wandelt Zellatmungsenergie unmittelbar in Körperwärme um.
 
-Nach einer Mahlzeit steigt der Blutzuckerspiegel. Die Bauchspeicheldrüse gibt **Insulin** ab, und die Leber wandelt überschüssige Glucose in Glykogen um, sodass der Spiegel wieder sinkt. Bei **Diabetes mellitus** fehlt Insulin, oder die Zellen sprechen nicht darauf an, also bleibt der Blutzucker länger hoch. Vergleiche die beiden Kurven in diesem Modell.
+### Blutzuckerregelkreis
 
-<MathVisual
-  title={<>Blutzuckerspiegel nach einer Mahlzeit</>}
+Nach einer kohlenhydratreichen Mahlzeit steigt der Blutzucker und Betazellen der Bauchspeicheldrüse schütten **Insulin** aus, das Leber und Muskeln zum Aufbau von **Glykogen** anregt. Beim Fasten schütten Alphazellen **Glukagon** aus, das Glykogen wieder zu Glukose spaltet.
+
+Merke die klare Richtung: **Insulin speichert Glukose, Glukagon setzt sie frei**. Wähle unten Mahlzeit, Normallage, Fasten oder Diabetes, um Hormonausschüttung und Leberantwort zu vergleichen.
+
+<BloodGlucoseFeedbackLab
+  title={<>Blutzuckerregelung zwischen Pankreas und Leber</>}
   description={
     <>
-      Blutzucker in <InlineMath math="\text{mmol dm}^{-3}" /> gegen die Zeit in
-      Einheiten von <InlineMath math="30" /> Minuten bei einem gesunden
-      Menschen und einem Menschen mit Diabetes.
+      Wähle Mahlzeit, Normalzustand, Fasten oder Diabetes und schiebe den
+      Blutzuckerspiegel, um Pankreassekretion und Glykogenumsatz zu prüfen.
     </>
   }
-  scene={{
-    space: "plane",
-    frame: { kind: "cartesian", x: { min: 0, max: 10 }, y: { min: 0, max: 13 } },
-    view: { kind: "fit", padding: 0.06 },
-    parameters: [
-      { name: "s", min: 0, max: 10, value: 2, step: 0.1, label: "s" },
-    ],
-    objects: [
-      { id: "healthy", kind: "function", appearance: "primary", formula: "5 + 3(x/2)exp(1 - x/2)", domain: { min: 0, max: 10 } },
-      { id: "diabetic", kind: "function", appearance: "secondary", formula: "7 + 5(x/3)exp(1 - x/3)", domain: { min: 0, max: 10 } },
-      { id: "now", kind: "marker", x: "s", y: "5 + 3(s/2)exp(1 - s/2)", appearance: "warning" },
-    ],
-    readouts: [
-      { key: "healthy", formula: "5 + 3(s/2)exp(1 - s/2)" },
-      { key: "diabetic", formula: "7 + 5(s/3)exp(1 - s/3)" },
-    ],
-  }}
+  footer={<>Insulin senkt hohen Blutzucker durch Glykogenaufbau, Glukagon hebt niedrigen Blutzucker an.</>}
+  states={["afterMeal", "normal", "fasting", "diabetes"]}
+  glucose={{ min: 3, max: 14, value: 5.5 }}
   labels={{
-    s: <>Zeit nach der Mahlzeit <InlineMath math="s" /> in Einheiten von dreißig Minuten</>,
-    healthy: <>Blutzucker eines gesunden Menschen</>,
-    diabetic: <>Blutzucker bei Diabetes</>,
+    state: "Stoffwechselzustand",
+    states: {
+      afterMeal: "Nach Mahlzeit",
+      normal: "Normal",
+      fasting: "Fasten",
+      diabetes: "Diabetes",
+    },
+    glucose: "Blutzucker",
+    hormones: {
+      insulin: "Insulin aktiv",
+      glucagon: "Glukagon aktiv",
+      balanced: "Ausgeglichen",
+      deficient: "Insulinmangel",
+    },
+    actions: {
+      afterMeal: <>Betazellen geben Insulin frei, sodass Leberzellen Glukose aufnehmen und Glykogen bilden.</>,
+      normal: <>Geringe Grundsekretion hält den Blutzucker ruhig nahe fünf Millimol pro Liter.</>,
+      fasting: <>Alphazellen geben Glukagon frei, sodass die Leber Glykogen zurück ins Blut spaltet.</>,
+      diabetes: <>Fehlendes Insulin oder schwache Zellreaktion halten den Blutzucker stundenlang erhöht.</>,
+    },
+    hormone: <>Leithormon</>,
+    liverAction: <>Leberreaktion</>,
+    parts: {
+      pancreas: "Bauchspeicheldrüse",
+      alphaCell: "Alphazellen",
+      betaCell: "Betazellen",
+      liver: "Leber",
+      glycogen: "Glykogenspeicher",
+      bloodVessel: "Blutgefäß",
+    },
+    view: "3D-Regelkreis aus Alpha- und Betazellen des Pankreas, Leberglykogen und Blutgefäß",
   }}
 />
 
-Ein gesunder Mensch erreicht nach einer Stunde einen Gipfel von <InlineMath math="8\text{ mmol dm}^{-3}" /> und ist nach drei Stunden fast wieder bei <InlineMath math="5" />. Bei Diabetes beginnt der Wert höher, erreicht <InlineMath math="12" /> und ist nach fünf Stunden noch hoch.
+Bei unbehandeltem **Diabetes mellitus** hält fehlendes Insulin oder geringe Zielzellreaktion den Blutzucker stundenlang erhöht, bis die Nierenschwelle überschritten wird.
 
-## Das Harnsystem und das Nephron
+## Filtration im Nephron
 
-Das Harnsystem besteht aus **Nieren, Harnleitern, Harnblase und Harnröhre**. Jede Niere enthält etwa eine Million **Nephrone**. Der Harn entsteht in drei Schritten:
+Jede menschliche Niere enthält rund eine Million mikroskopische **Nephrone**, die Blutplasma in drei Schritten zu Harn verarbeiten:
 
-- **Ultrafiltration**: Der hohe Blutdruck im Glomerulus presst Wasser, Glucose, Aminosäuren, Salze und Harnstoff in die Bowman-Kapsel. Blutzellen und Plasmaproteine sind zu groß, um gefiltert zu werden.
-- **Rückresorption**: Im proximalen Tubulus werden alle Glucose, alle Aminosäuren und der größte Teil von Wasser und Salzen ins Blut zurückgeholt.
-- **Sekretion**: Stoffe wie Wasserstoffionen, Medikamente und überschüssiger Harnstoff werden in den distalen Tubulus abgegeben.
+- **Ultrafiltration**: Hoher Druck im Glomerulus presst Wasser, Glukose, Aminosäuren, Salze und Harnstoff in die Bowmansche Kapsel, während Blutzellen und Plasmaproteine im Blut bleiben.
+- **Rückresorption**: Im proximalen Tubulus kehren alle Glukose- und Aminosäuremoleküle sowie fast alles Wasser und wichtige Salze zurück ins Kapillarblut.
+- **Sekretion**: Im distalen Tubulus werden überschüssige Wasserstoffionen, Arzneistoffe und zusätzlicher Harnstoff aktiv ins Filtrat abgegeben.
 
-Die Nieren filtern etwa <InlineMath math="125\text{ cm}^3" /> Plasma pro Minute. Dieses Modell verfolgt Glucose und Harnstoff durch ein Nephron. Erhöhe den Blutzucker und sieh, ab wann Glucose im Harn erscheint.
+Protein im Harn weist auf einen Glomerulusschaden hin, weil gesunde Kapillarwände große Plasmaproteine zurückhalten. Verfolge unten Glukose und Harnstoff entlang eines Nephrons bei steigendem Plasmazucker.
 
 <NephronLab
-  title={<>Glucose und Harnstoff in einem Nephron</>}
+  title={<>Glukose und Harnstoff entlang eines Nephrons</>}
   description={
     <>
-      Plasma wird mit <InlineMath math="125\text{ cm}^3" /> pro Minute gefiltert.
-      Die Tubuli können bis zu <InlineMath math="375\text{ mg}" /> Glucose pro
-      Minute zurückholen.
+      Der Glomerulus filtriert <InlineMath math="125\text{ cm}^3" /> Plasma pro
+      Minute, während der Tubulus höchstens <InlineMath math="375\text{ mg}" />{" "}
+      Glukose pro Minute rückresorbiert.
     </>
   }
+  footer={<>Über drei Milligramm pro Kubikzentimeter gelangt Glukose an gesättigten Carriern vorbei in den Harn.</>}
   filtration={125}
   glucose={{ maximum: 375, plasma: 1 }}
   urea={{ plasma: 0.03, urine: 2 }}
   labels={{
-    daily: <>Harnmenge pro Tag</>,
-    factor: <>Konzentrierungsfaktor für Harnstoff</>,
-    filtrate: <>Filtrat pro Tag</>,
-    flow: <>Harnfluss</>,
-    load: <>Gefilterte Glucose</>,
-    plasma: "Glucose im Plasma",
-    reabsorbed: <>Rückresorbierte Glucose</>,
+    daily: <>Harnvolumen pro Tag</>,
+    factor: <>Harnstoff-Konzentrationsfaktor</>,
+    filtrate: <>Primärharn pro Tag</>,
+    flow: <>Harnflussrate</>,
+    load: <>Filtrierte Glukose</>,
+    plasma: "Plasmaglukose",
+    reabsorbed: <>Rückresorbierte Glukose</>,
     solute: "Gelöster Stoff",
-    solutes: { glucose: "Glucose", urea: "Harnstoff" },
+    solutes: { glucose: "Glukose", urea: "Harnstoff" },
     threshold: <>Nierenschwelle</>,
-    urine: <>Glucose im Harn</>,
-    view: "Ein Nephron, durch das Filtrat vom Glomerulus zum Sammelrohr fließt",
+    urine: <>Glukose im Harn</>,
+    view: "Ein Nephron mit Ultrafiltration am Glomerulus, Rückresorption im Tubulus und Sammelrohrfluss",
   }}
 />
 
-### Beispiel Die Nierenschwelle für Glucose
+Bei normaler Plasmaglukose (<InlineMath math="1{,}0\text{ mg cm}^{-3}" />) gewinnen die Tubuli jedes Milligramm zurück. Oberhalb von <InlineMath math="3{,}0\text{ mg cm}^{-3}" /> sind alle Transportproteine ausgelastet, sodass Glukose im Harn erscheint.
 
-Die Tubuli können höchstens <InlineMath math="375\text{ mg}" /> Glucose pro Minute zurückholen, und die Filtrationsrate beträgt <InlineMath math="125\text{ cm}^3" /> pro Minute. Berechne **den Blutzuckerspiegel**, ab dem Glucose im Harn erscheint.
+## Wasserhaushalt und ADH
 
-<BlockMath math="\text{Schwelle} = \frac{375}{125} = 3{,}0\text{ mg cm}^{-3}" />
-
-Beim Normalwert von <InlineMath math="1{,}0\text{ mg cm}^{-3}" /> beträgt die gefilterte Menge <InlineMath math="125 \times 1{,}0 = 125\text{ mg}" /> pro Minute, weit unter <InlineMath math="375" />, also wird alle Glucose zurückgeholt. Prüfe mit dem Modell: Erhöhe den Blutzucker über <InlineMath math="3{,}0" />, und Glucose erscheint im Harn, wie bei unbehandeltem Diabetes.
-
-### Beispiel Die Konzentrierung von Harnstoff
-
-Die Harnstoffkonzentration beträgt <InlineMath math="0{,}03\text{ g}" /> in je <InlineMath math="100\text{ cm}^3" /> Plasma und <InlineMath math="2{,}0\text{ g}" /> in je <InlineMath math="100\text{ cm}^3" /> Harn. Berechne **den Konzentrierungsfaktor**.
-
-<BlockMath math="\frac{2{,}0}{0{,}03} = 67" />
-
-Harnstoff wird <InlineMath math="67" />mal konzentrierter, weil das meiste Wasser zurückgeholt wird, der Harnstoff aber zurückbleibt. Prüfe mit dem Modell: Wähle Harnstoff, und der Faktor zeigt <InlineMath math="66{,}7" />.
-
-## Die Rückresorption von Wasser und ADH
-
-Jeden Tag bilden die Nieren etwa <InlineMath math="180\text{ dm}^3" /> Filtrat, aber nur etwa <InlineMath math="1{,}5\text{ dm}^3" /> Harn. Mehr als <InlineMath math="99\%" /> des Wassers werden zurückgeholt. Dieses Diagramm zeigt, welcher Prozentsatz jedes Stoffes im Filtrat rückresorbiert wird.
+Obwohl die Nieren täglich rund <InlineMath math="180\text{ dm}^3" /> Primärharn bilden, scheiden Erwachsene nur etwa <InlineMath math="1{,}5\text{ dm}^3" /> Endharn aus, weil fast alle nutzbaren Stoffe zurückgeholt werden.
 
 <BarChart
-  title={<>Rückresorbierter Anteil der Stoffe im Filtrat</>}
+  title={<>Anteil rückresorbierter Stoffe aus dem Primärharn</>}
   description={
     <>
-      Der Anteil jedes im Glomerulus gefilterten Stoffes, den die Tubuli ins
-      Blut zurückgeben.
+      Prozentualer Anteil von Glukose, Wasser, Natriumionen und Harnstoff, der
+      entlang der Nierentubuli ins Blut zurückkehrt.
     </>
   }
+  footer={<>Gesunde Nephrone holen alle Glukose und über neunundneunzig Prozent des Wassers zurück.</>}
   yAxisLabel="Rückresorbiert (%)"
   data={[
-    { name: "Glucose", value: 100 },
+    { name: "Glukose", value: 100 },
     { name: "Wasser", value: 99 },
     { name: "Natriumionen", value: 99.5 },
     { name: "Harnstoff", value: 50 },
@@ -170,18 +191,23 @@ Jeden Tag bilden die Nieren etwa <InlineMath math="180\text{ dm}^3" /> Filtrat, 
   chartConfig={{ value: { label: "Rückresorbiert", colors: { light: ["var(--chart-1)"], dark: ["var(--chart-1)"] } } }}
 />
 
-Das **antidiuretische Hormon**, ADH, wird von der Hirnanhangdrüse abgegeben, wenn der osmotische Druck des Blutes hoch ist, etwa nach starkem Schwitzen. ADH macht den distalen Tubulus und das Sammelrohr durchlässiger für Wasser, also wird mehr Wasser zurückgeholt, und der Harn wird konzentriert und spärlich. Dieses Diagramm zeigt die Harnmenge, nachdem ein Schüler <InlineMath math="1\text{ dm}^3" /> destilliertes Wasser oder <InlineMath math="1\text{ dm}^3" /> Salzlösung getrunken hat.
+Das **antidiuretische Hormon** (ADH) steuert die Endkonzentration des Harns. Starkes Schwitzen erhöht den osmotischen Druck des Blutes, sodass die Hypophyse mehr ADH freisetzt und die Sammelrohre durchlässiger für Wasser werden.
+
+> Viel ADH wirkt stark antidiuretisch: Die Tubuli ziehen mehr Wasser ins Blut zurück, wodurch nur wenig dunkler, konzentrierter Harn entsteht.
+
+Vergleiche unten das Harnvolumen nach einem Liter destilliertem Wasser gegenüber einem Liter Salzlösung.
 
 <ScatterDiagram
-  title={<>Harnmenge nach dem Trinken von Wasser und Salzlösung</>}
+  title={<>Harnvolumen nach Wasser gegen Salzlösung</>}
   description={
     <>
-      Harnmenge jede halbe Stunde nach dem Trinken. Destilliertes Wasser senkt
-      den osmotischen Druck des Blutes, also wird weniger ADH abgegeben.
+      Halbstündliches Harnvolumen nach destilliertem Wasser (wenig ADH) im
+      Vergleich zu Salzlösung (viel ADH).
     </>
   }
+  footer={<>Destilliertes Wasser bremst ADH und löst innerhalb einer Stunde eine starke Harnausscheidung aus.</>}
   xAxisLabel="Zeit nach dem Trinken (h)"
-  yAxisLabel="Harnmenge (cm³)"
+  yAxisLabel="Harnvolumen (cm³)"
   datasets={[
     {
       name: "Destilliertes Wasser",
@@ -210,45 +236,20 @@ Das **antidiuretische Hormon**, ADH, wird von der Hirnanhangdrüse abgegeben, we
   ]}
 />
 
-Nach destilliertem Wasser erreicht die Harnmenge in der zweiten halben Stunde einen Gipfel von <InlineMath math="320\text{ cm}^3" />. Nach Salzlösung bleibt ADH hoch, und die Harnmenge ändert sich kaum.
+Nach reinem Wasser scheidet der Körper Überschuss rasch bis <InlineMath math="320\text{ cm}^3" /> aus. Salzlösung hält den osmotischen Druck hoch, weshalb ADH erhöht und das Harnvolumen klein bleibt.
 
-## Häufige Fehler zur Homöostase
+## Nephronberechnungen
 
-| Fehler | Warum er falsch ist | So prüfst du es |
-| :--- | :--- | :--- |
-| Insulin wandelt Glykogen in Glucose um. | Insulin wandelt Glucose in Glykogen um. Glukagon tut das Gegenteil. | Insulin senkt den Blutzucker. |
-| Plasmaproteine werden in die Bowman-Kapsel gefiltert. | Plasmaproteine sind zu groß für die Wand des Glomerulus. | Eiweiß im Harn ist ein Zeichen für einen Nierenschaden. |
-| Viel ADH erzeugt viel Harn. | Viel ADH steigert die Rückresorption von Wasser, also entsteht wenig, konzentrierter Harn. | Antidiuretisch heißt gegen die Harnbildung. |
-| Homöostase hält einen Wert völlig konstant. | Der Wert schwankt leicht um den Normalwert und wird ständig korrigiert. | Sieh dir die Temperaturschwankungen im Modell an. |
+Prüfe zwei quantitative Nephronrechnungen.
 
-Der erste Fehler kommt in Aufgaben zum Blutzucker am häufigsten vor. **Insulin speichert, Glukagon setzt frei**.
+**Nierenschwelle prüfen.** Die Filtrationsrate eines Patienten sinkt auf <InlineMath math="100\text{ cm}^3\text{ min}^{-1}" />, während die maximale Rückresorption bei <InlineMath math="375\text{ mg min}^{-1}" /> bleibt. Bestimme die neue Glukoseschwelle.
 
-## Übungen zu Homöostase und Harnsystem
+<BlockMath math="\text{Schwelle} = \frac{375}{100} = 3{,}75\text{ mg cm}^{-3}" />
 
-Diese Aufgaben führen von der negativen Rückkopplung bis zu Rechnungen am Nephron. **Nenne bei jeder Antwort zur negativen Rückkopplung den Effektor**.
+Geringere Filtration liefert bei gleichem Plasmaspiegel weniger Glukose pro Minute, sodass erst höhere Konzentrationen alle Carrier sättigen.
 
-1. Erkläre, wie der Körper an einem kalten Tag eine zu niedrige Temperatur korrigiert.
+**Harnstofffaktor prüfen.** Harnstoff beträgt <InlineMath math="0{,}03\text{ g}" /> je <InlineMath math="100\text{ cm}^3" /> Plasma und <InlineMath math="1{,}8\text{ g}" /> je <InlineMath math="100\text{ cm}^3" /> Harn. Bestimme den Konzentrationsfaktor.
 
-2. Die Filtrationsrate eines Patienten sinkt auf <InlineMath math="100\text{ cm}^3" /> pro Minute, die Tubuli können aber weiterhin <InlineMath math="375\text{ mg}" /> Glucose pro Minute zurückholen. Berechne die neue Nierenschwelle für Glucose.
+<BlockMath math="\text{Faktor} = \frac{1{,}8}{0{,}03} = 60" />
 
-3. Die Harnstoffkonzentration beträgt <InlineMath math="0{,}03\text{ g}" /> je <InlineMath math="100\text{ cm}^3" /> im Plasma und <InlineMath math="1{,}8\text{ g}" /> je <InlineMath math="100\text{ cm}^3" /> im Harn. Berechne den Konzentrierungsfaktor für Harnstoff.
-
-4. Erkläre, warum der Harn nach einem Fußballspiel an einem heißen Tag konzentriert und spärlich ist.
-
-### Lösungen
-
-**Lösung 1**: Rezeptoren in der Haut und im Hypothalamus erkennen die niedrige Temperatur. Die **Skelettmuskeln** zittern und erzeugen Wärme, die **Hautarteriolen** verengen sich, damit weniger Wärme verloren geht, und die Haaraufrichter ziehen sich zusammen. Die Körpertemperatur steigt wieder auf <InlineMath math="37^\circ\text{C}" />.
-
-**Lösung 2**: Teile die maximale Rückresorption durch die Filtrationsrate:
-
-<BlockMath math="\frac{375}{100} = 3{,}75\text{ mg cm}^{-3}" />
-
-Prüfe: Die Schwelle steigt von <InlineMath math="3{,}0" /> auf <InlineMath math="3{,}75" />, weil bei gleichem Blutzucker jetzt weniger Glucose gefiltert wird.
-
-**Lösung 3**: Teile die Konzentration im Harn durch die im Plasma:
-
-<BlockMath math="\frac{1{,}8}{0{,}03} = 60" />
-
-Prüfe: <InlineMath math="0{,}03 \times 60 = 1{,}8" />.
-
-**Lösung 4**: Der Körper verliert viel Wasser durch Schweiß, also **steigt der osmotische Druck des Blutes**. Der Hypothalamus erkennt das, und die Hirnanhangdrüse gibt mehr **ADH** ab. Die Sammelrohre werden durchlässiger, mehr Wasser wird zurückgeholt, und es entsteht wenig, konzentrierter Harn.
+Harnstoff ist sechzigmal stärker konzentriert, weil die Tubuli fast alles Wasser zurückgewinnen, den Harnstoff aber im Sammelrohr belassen.

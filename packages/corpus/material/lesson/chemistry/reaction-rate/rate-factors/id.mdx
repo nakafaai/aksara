@@ -1,39 +1,37 @@
 export const metadata = {
-  title: "Laju Reaksi dan Teori Tumbukan",
+  title: "Laju Reaksi Teori Tumbukan dan Katalis",
   description:
-    "Hitung laju rata-rata dan laju sesaat, jelaskan faktor laju reaksi dengan teori tumbukan, dan baca diagram tingkat energi lewat contoh serta latihan.",
+    "Laju reaksi rata-rata dan sesaat, pengukuran volume gas, teori tumbukan, energi aktivasi, dan jalur alternatif berkatalis.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-11-16",
   subject: "Laju Reaksi",
 };
 
-## Arti Laju Reaksi
+## Mengukur Laju Reaksi
 
-**Laju reaksi** adalah perubahan jumlah pereaksi atau hasil reaksi per satuan waktu:
+Kembang api menyala habis dalam sekejap sedangkan pagar besi berkarat selama bertahun-tahun. **Laju reaksi** mengukur seberapa cepat pereaksi berkurang atau produk terbentuk tiap satuan waktu, dijelaskan pada tingkat partikel oleh **teori tumbukan**.
 
-<BlockMath math="\text{Laju reaksi} = \frac{\text{perubahan jumlah pereaksi atau hasil}}{\text{waktu yang dibutuhkan}}" />
+<BlockMath math="\text{Laju} = \frac{\Delta\text{jumlah}}{\Delta t}" />
 
-Jumlah itu bisa berupa volume gas yang dihasilkan, massa pereaksi yang berkurang, atau waktu sampai endapan terbentuk. Laju bertambah kalau **ukuran zat lebih kecil**, **konsentrasi lebih tinggi**, **suhu lebih tinggi**, **katalis dipakai**, atau **tekanan gas lebih tinggi**. Semua faktor ini dijelaskan oleh satu gagasan, yaitu **teori tumbukan**. Di model-model berikut, kamu mengumpulkan gas, menggambar garis singgung pada grafik, dan mengubah energi aktivasi.
+Kimiawan memantau volume gas, penyusutan massa, atau waktu endapan untuk mengendalikan hasil pabrik sekaligus memperlambat pembusukan makanan. Dua hal berbeda terbaca dari kurva: tinggi akhir menunjukkan jumlah produk total, sedangkan kemiringan menunjukkan kecepatan reaksi.
 
-Reaksi cepat seperti pembakaran terjadi dalam sedetik. Reaksi lambat seperti perkaratan besi butuh waktu berminggu-minggu. Ahli kimia mengukur laju supaya bisa mengendalikannya, misalnya mempercepat produksi amonia di pabrik atau memperlambat pembusukan makanan.
+### Kurva Volume Gas
 
-## Mengukur Laju dari Gas yang Dihasilkan
-
-Saat kalsium karbonat bereaksi dengan asam klorida, gas karbon dioksida terbentuk:
+Reaksi padatan kalsium karbonat dengan asam klorida berlebih melepaskan gas karbon dioksida ke dalam spuit gas berskala:
 
 <BlockMath math="\mathrm{CaCO_3(s)} + 2\mathrm{HCl(aq)} \rightarrow \mathrm{CaCl_2(aq)} + \mathrm{H_2O(l)} + \mathrm{CO_2(g)}" />
 
-Gas itu ditampung dalam suntikan gas dan volumenya dicatat setiap selang waktu. Jalankan dua percobaan berikut. Massa kalsium karbonatnya sama, tetapi percobaan I memakai bongkahan dan percobaan II memakai serbuk.
+Bandingkan massa sama antara kepingan pualam dan serbuk pualam halus yang bereaksi dengan asam berlebih pada dua labu berikut.
 
 <GasRateLab
-  title={<>Karbon Dioksida dari Bongkahan dan Serbuk</>}
+  title={<>Karbon Dioksida dari Kepingan dan Serbuk Pualam</>}
   description={
     <>
-      Dua labu Erlenmeyer dihubungkan ke suntikan gas. Kalsium karbonat dengan
-      massa sama bereaksi dengan asam klorida berlebih, dalam bentuk bongkahan
-      dan serbuk.
+      Jumlah mol kalsium karbonat sama bereaksi dengan asam klorida berlebih di
+      dua labu, membandingkan kepingan kasar dan serbuk halus.
     </>
   }
+  footer={<>Ukuran partikel lebih kecil menajamkan kurva awal tanpa menambah volume gas akhir.</>}
   runs={[
     { amount: 0.02, solid: "chips" },
     { amount: 0.02, solid: "powder" },
@@ -41,28 +39,29 @@ Gas itu ditampung dalam suntikan gas dan volumenya dicatat setiap selang waktu. 
   showCurves
   labels={{
     final: <>jumlah akhir karbon dioksida</>,
-    runs: [<>Percobaan I</>, <>Percobaan II</>],
-    solids: { chips: <>bongkahan</>, granules: <>butiran</>, powder: <>serbuk</> },
+    runs: [<>Kepingan pualam</>, <>Serbuk pualam</>],
+    solids: { chips: <>kepingan</>, granules: <>butiran</>, powder: <>serbuk</> },
     time: "Waktu",
-    view: "Penampungan gas pada dua percobaan",
+    view: "Dua labu erlenmeyer tersambung spuit gas membandingkan kepingan dan serbuk pualam",
   }}
 />
 
-Kurva serbuk lebih curam di awal, jadi lajunya lebih tinggi. Namun kedua kurva mendatar pada jumlah gas yang **sama**, karena massa kalsium karbonatnya sama dan asamnya berlebih. Ukuran zat mengubah **seberapa cepat** gas terbentuk, bukan **seberapa banyak**.
+Kurva serbuk menanjak lebih curam di awal karena luas permukaan bidang sentuh jauh lebih besar. Kedua kurva mendatar pada **volume akhir yang persis sama** karena massa pereaksi pembatasnya identik.
 
-## Laju Rata-rata dan Laju Sesaat
+### Laju Rata dan Sesaat
 
-**Laju rata-rata** adalah perubahan total dibagi waktu total. **Laju sesaat** adalah gradien **garis singgung** kurva pada saat itu. Kurva berikut memodelkan volume gas sebagai <InlineMath math="V = 50(1 - e^{-t/25})" />, dengan <InlineMath math="V" /> dalam <InlineMath math="\text{mL}" /> dan <InlineMath math="t" /> dalam detik. Geser penggesernya dan perhatikan garis singgung yang makin landai.
+**Laju rata-rata** membagi perubahan total dengan waktu total, sedangkan **laju sesaat** adalah gradien **garis singgung** kurva pada satu detik tertentu. Geser pengatur waktu di bawah untuk mengamati garis singgung melandai saat pereaksi menipis.
 
 <MathVisual
-  title={<>Garis Singgung pada Kurva Volume Gas</>}
+  title={<>Kemiringan Garis Singgung Kurva Volume Gas</>}
   description={
     <>
-      Kurva <InlineMath math="V = 50(1 - e^{-t/25})" />. Garis singgung merah
-      menyentuh kurva pada waktu <InlineMath math="a" />, dan gradiennya adalah
-      laju reaksi pada saat itu.
+      Volume gas dalam <InlineMath math="\text{cm}^3" /> terhadap waktu dalam
+      detik, dengan gradien garis singgung menyatakan laju sesaat pada waktu{" "}
+      <InlineMath math="a" />.
     </>
   }
+  footer={<>Kemiringan garis singgung paling curam di awal lalu turun menuju nol saat pereaksi habis.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: 0, max: 100 }, y: { min: 0, max: 55 } },
@@ -84,22 +83,22 @@ Kurva serbuk lebih curam di awal, jadi lajunya lebih tinggi. Namun kedua kurva m
     ],
   }}
   labels={{
-    a: <>Waktu <InlineMath math="a" /> dalam detik</>,
+    a: <>Waktu <InlineMath math="a" /> (s)</>,
     touch: <>Titik singgung</>,
-    "volume-now": <>Volume gas dalam <InlineMath math="\text{mL}" /></>,
-    rate: <>Laju dalam <InlineMath math="\text{mL/s}" /></>,
+    "volume-now": <>Volume gas (<InlineMath math="\text{cm}^3" />)</>,
+    rate: <>Laju (<InlineMath math="\text{cm}^3\text{ s}^{-1}" />)</>,
   }}
 />
 
-Gradiennya mengecil karena konsentrasi asam dan massa kalsium karbonat sama-sama berkurang selama reaksi berlangsung. Grafik ini menunjukkan hal yang sama sebagai laju rata-rata di setiap selang <InlineMath math="20" /> detik, dihitung dari model yang sama.
+Jangan menghitung laju sesaat dengan membagi volume kumulatif oleh waktu, sebab itu hanya memberi laju rata-rata dari awal. Membagi model sama ke selang dua puluh detik memperjelas penurunan laju.
 
 <Chart
-  title={<>Laju Rata-rata di Setiap Selang Waktu</>}
+  title={<>Laju Reaksi Rata-Rata per Selang Dua Puluh Detik</>}
   bars="apart"
-  categories={["0 sampai 20 s", "20 sampai 40 s", "40 sampai 60 s", "60 sampai 80 s", "80 sampai 100 s"]}
+  categories={["0 ke 20 s", "20 ke 40 s", "40 ke 60 s", "60 ke 80 s", "80 ke 100 s"]}
   series={[
     {
-      label: "Laju rata-rata (mL/s)",
+      label: "Laju rata-rata (cm³/s)",
       mark: "bar",
       values: [
         (50 * (1 - Math.exp(-20 / 25)) - 50 * (1 - Math.exp(0))) / 20,
@@ -110,170 +109,129 @@ Gradiennya mengecil karena konsentrasi asam dan massa kalsium karbonat sama-sama
       ],
     },
   ]}
-  valueLabel="Laju rata-rata (mL/s)"
+  valueLabel="Laju rata-rata (cm³/s)"
   description={
     <>
-      Laju rata-rata turun dari sekitar <InlineMath math="1{,}38\text{ mL/s}" />{" "}
-      pada <InlineMath math="20" /> detik pertama menjadi sekitar{" "}
-      <InlineMath math="0{,}06\text{ mL/s}" /> pada selang terakhir.
+      Laju rata-rata turun konsisten dari{" "}
+      <InlineMath math="1{,}38\text{ cm}^3\text{ s}^{-1}" /> menuju{" "}
+      <InlineMath math="0{,}06\text{ cm}^3\text{ s}^{-1}" /> seiring menipisnya
+      konsentrasi.
     </>
   }
+  footer={<>Konsentrasi pereaksi yang turun memangkas frekuensi tumbukan di setiap selang berikutnya.</>}
 />
 
-### Contoh Laju Rata-rata
+Setiap batang menyusut karena jumlah ion asam per sentimeter kubik terus berkurang seiring jalannya reaksi menuju selesai.
 
-Pita magnesium bereaksi dengan asam klorida. Sebanyak <InlineMath math="48\text{ mL}" /> gas hidrogen tertampung dalam <InlineMath math="60" /> detik pertama, dan reaksi berhenti pada detik ke-<InlineMath math="150" /> dengan total <InlineMath math="60\text{ mL}" /> gas. Hitung **laju rata-rata pada menit pertama** dan laju rata-rata keseluruhan.
+## Faktor Teori Tumbukan
 
-<MathContainer>
-<BlockMath math="\text{Laju rata-rata menit pertama} = \frac{48}{60} = 0{,}80\text{ mL/s}" />
-<BlockMath math="\text{Laju rata-rata keseluruhan} = \frac{60}{150} = 0{,}40\text{ mL/s}" />
-</MathContainer>
+Partikel pereaksi baru menghasilkan produk saat mengalami **tumbukan efektif**, yaitu tumbukan dengan **orientasi tepat** dan energi kinetik minimal sebesar **energi aktivasi** <InlineMath math="E_a" />.
 
-Laju rata-rata keseluruhan lebih rendah karena reaksi melambat di akhir. Cek: <InlineMath math="0{,}80 \times 60 = 48" /> dan <InlineMath math="0{,}40 \times 150 = 60" />, sama dengan data awal.
-
-### Contoh Laju Sesaat
-
-Cari laju reaksi pada <InlineMath math="t = 25" /> detik untuk model <InlineMath math="V = 50(1 - e^{-t/25})" />. Gambar garis singgung di titik <InlineMath math="(25;\ 31{,}6)" />, lalu pilih **dua titik yang berjauhan** pada garis itu, yaitu <InlineMath math="(15;\ 24{,}2)" /> dan <InlineMath math="(35;\ 39{,}0)" />:
-
-<BlockMath math="\text{Gradien} = \frac{39{,}0 - 24{,}2}{35 - 15} = \frac{14{,}8}{20} = 0{,}74\text{ mL/s}" />
-
-Cek dengan modelnya: gradien tepatnya <InlineMath math="2e^{-1} \approx 0{,}736" />. Geser penggeser di model garis singgung ke <InlineMath math="a = 25" /> dan kamu akan membaca laju yang sama.
-
-## Teori Tumbukan dan Energi Aktivasi
-
-Menurut **teori tumbukan**, reaksi hanya terjadi kalau partikel-partikel pereaksi bertumbukan. Tidak semua tumbukan berhasil. **Tumbukan efektif** harus memenuhi dua syarat: partikel bertumbukan dengan **arah yang tepat**, dan energi tumbukannya paling tidak sama dengan **energi aktivasi**, <InlineMath math="E_a" />. Energi aktivasi adalah energi minimum yang dibutuhkan untuk memulai reaksi.
-
-Jadi laju reaksi bergantung pada **frekuensi tumbukan efektif**. Setiap faktor menaikkan frekuensi itu dengan caranya sendiri. Sebaran energi partikel menunjukkan pengaruh suhu. Geser penggeser suhu dan bandingkan luas di bawah kurva di sebelah kanan garis <InlineMath math="E_a" />.
-
-<MathVisual
-  title={<>Sebaran Energi Partikel pada Dua Suhu</>}
-  description={
-    <>
-      Kurva abu-abu adalah suhu awal. Kurva biru mengikuti penggeser suhu{" "}
-      <InlineMath math="k" />. Hanya partikel di sebelah kanan garis{" "}
-      <InlineMath math="E_a" /> yang punya energi cukup untuk tumbukan efektif.
-    </>
-  }
-  scene={{
-    space: "plane",
-    frame: { kind: "cartesian", x: { min: 0, max: 10 }, y: { min: 0, max: 5 } },
-    view: { kind: "fit", padding: 0.06 },
-    parameters: [
-      { name: "k", min: 1, max: 3, value: 2, step: 0.1, label: "k" },
-    ],
-    objects: [
-      { id: "cool", kind: "function", appearance: "reference", formula: "10(2/sqrt(pi))sqrt(x)exp(-x)", domain: { min: 0, max: 10 } },
-      { id: "warm", kind: "function", appearance: "primary", formula: "10(2/sqrt(pi))k^(-1.5)sqrt(x)exp(-x/k)", domain: { min: 0, max: 10 } },
-      { id: "activation", kind: "segment", appearance: "warning", from: { x: 6, y: 0 }, to: { x: 6, y: 4 } },
-    ],
-    labels: [
-      { key: "activation", objectId: "activation", at: { x: 6, y: 4 }, placement: "above" },
-    ],
-  }}
-  labels={{
-    k: <>Suhu relatif <InlineMath math="k" /></>,
-    activation: <InlineMath math="E_a" />,
-  }}
-/>
-
-Pada suhu yang lebih tinggi, kurvanya lebih rendah dan lebih lebar, dan lebih banyak partikel berada di sebelah kanan <InlineMath math="E_a" />. Partikel juga bergerak lebih cepat, jadi lebih sering bertumbukan. Kedua pengaruh ini menaikkan frekuensi tumbukan efektif.
-
-## Faktor yang Memengaruhi Laju Reaksi
-
-Tabel ini menghubungkan setiap faktor dengan teori tumbukan. Baca kolom ketiga sebagai rantai alasan yang perlu kamu tulis di jawaban ujian.
-
-| Faktor | Perubahan | Penjelasan dengan teori tumbukan |
+| Faktor dinaikkan | Perubahan mikroskopis | Alasan laju meningkat |
 | :--- | :--- | :--- |
-| Ukuran zat | Lebih kecil | Luas permukaan total bertambah, jadi frekuensi tumbukan naik. |
-| Konsentrasi | Lebih tinggi | Jumlah partikel per satuan volume bertambah, jadi frekuensi tumbukan naik. |
-| Suhu | Lebih tinggi | Partikel bergerak lebih cepat dan lebih banyak yang mencapai energi aktivasi. |
-| Katalis | Dipakai | Jalur baru dengan energi aktivasi lebih rendah memberi lebih banyak tumbukan efektif. |
-| Tekanan gas | Lebih tinggi | Partikel gas lebih rapat, jadi jumlah partikel per satuan volume bertambah. |
+| Luas permukaan | Lebih banyak bidang padat terbuka | Frekuensi tumbukan di permukaan meningkat |
+| Konsentrasi | Lebih banyak partikel per volume | Frekuensi tumbukan dalam larutan meningkat |
+| Tekanan gas | Molekul gas lebih rapat | Frekuensi tumbukan dalam wadah meningkat |
+| Suhu | Partikel lebih cepat dan berekor energi lebar | Lebih banyak tumbukan serta fraksi di atas energi aktivasi |
 
-**Katalis** adalah zat yang mengubah laju reaksi tanpa mengalami perubahan kimia di akhir reaksi. Diagram tingkat energi berikut menunjukkan alasannya. Geser penggesernya untuk menurunkan puncak energi dan perhatikan bahwa tingkat energi pereaksi dan hasil reaksi tidak berubah.
+> Menaikkan suhu tidak pernah menurunkan energi aktivasi, melainkan mendorong jauh lebih banyak partikel melampaui ambang energi yang sama.
 
-<MathVisual
-  title={<>Diagram Tingkat Energi dengan dan tanpa Katalis</>}
+Ubah bentuk padatan, suhu, dan konsentrasi pada wadah reaksi 3D serta kurva distribusi energi berikut untuk melihat frekuensi tumbukan dan fraksi efektif di kanan <InlineMath math="E_a" />.
+
+<CollisionTheoryEnergyLab
+  title={<>Frekuensi Tumbukan dan Distribusi Energi</>}
   description={
     <>
-      Kurva abu-abu adalah reaksi tanpa katalis. Kurva biru adalah jalur dengan
-      katalis, dengan tinggi puncak <InlineMath math="c" /> di atas tingkat
-      energi pereaksi. Tingkat energi hasil tetap tiga satuan di bawah tingkat
-      energi pereaksi.
+      Ganti bentuk padatan dari bongkah ke serbuk lalu geser suhu dan
+      konsentrasi untuk mengamati tumbukan partikel dan ekor energi efektif.
     </>
   }
-  scene={{
-    space: "plane",
-    frame: { kind: "cartesian", x: { min: 0, max: 10 }, y: { min: 0, max: 10 } },
-    view: { kind: "fit", padding: 0.06 },
-    parameters: [
-      { name: "c", min: 1, max: 5, value: 3, step: 0.1, label: "c" },
-    ],
-    objects: [
-      { id: "uncatalysed", kind: "function", appearance: "reference", formula: "4 - 3/(1 + exp(-4(x - 6.5))) + 5exp(-(x - 4)^2/0.6)", domain: { min: 0, max: 10 } },
-      { id: "catalysed", kind: "function", appearance: "primary", formula: "4 - 3/(1 + exp(-4(x - 6.5))) + c exp(-(x - 4)^2/0.6)", domain: { min: 0, max: 10 } },
-      { id: "enthalpy", kind: "vector", appearance: "warning", from: { x: 9, y: 4 }, to: { x: 9, y: 1 } },
-    ],
-    labels: [
-      { key: "enthalpy", objectId: "enthalpy", at: { x: 9, y: 2.5 }, placement: "left" },
-    ],
-    readouts: [
-      { key: "barrier", formula: "c" },
-    ],
-  }}
+  footer={<>Suhu tinggi menggeser ekor energi melewati ambang aktivasi, konsentrasi memadatkan tumbukan.</>}
+  surfaces={["lump", "granules", "powder"]}
+  temperature={{ min: 280, max: 380, value: 300 }}
+  concentration={{ min: 0.2, max: 2, value: 1 }}
   labels={{
-    c: <>Energi aktivasi dengan katalis <InlineMath math="c" /></>,
-    enthalpy: <InlineMath math="\Delta H" />,
-    barrier: <><InlineMath math="E_a'" /> dengan katalis</>,
+    surface: "Bentuk padatan",
+    surfaces: {
+      lump: "Bongkah besar",
+      granules: "Butiran",
+      powder: "Serbuk halus",
+    },
+    temperature: "Suhu",
+    concentration: "Konsentrasi",
+    activationEnergy: <>Ambang aktivasi</>,
+    collisionFreq: <>Frekuensi tumbukan total</>,
+    effectiveRate: <>Laju tumbukan efektif</>,
+    parts: {
+      reactants: "Partikel pereaksi",
+      products: "Partikel produk",
+      activationLine: "Garis energi aktivasi",
+      shadedArea: "Partikel melewati ambang",
+      vessel: "Wadah reaksi",
+    },
+    view: "Wadah reaksi 3D bersama kurva distribusi energi kinetik menampilkan tumbukan di atas energi aktivasi",
   }}
 />
 
-Katalis hanya menurunkan energi aktivasi. Perubahan entalpi reaksi, <InlineMath math="\Delta H" />, tetap sama, dan jumlah hasil reaksi juga tidak bertambah.
+Menambah volume asam berkonsentrasi molar sama tidak mengubah jumlah partikel per satuan volume, sehingga laju awal tetap sama walau volume gas total bisa naik bila asam sebelumnya terbatas.
 
-## Kesalahan Umum tentang Laju Reaksi
+## Katalis dan Jalur Energi
 
-| Kesalahan | Alasan keliru | Cara mengecek |
-| :--- | :--- | :--- |
-| Serbuk menghasilkan gas lebih banyak daripada bongkahan. | Jumlah gas bergantung pada mol pereaksi pembatas. Ukuran hanya mengubah laju. | Bandingkan tinggi akhir kurva, bukan gradiennya. |
-| Suhu tinggi menaikkan laju karena energi aktivasi turun. | Suhu tidak mengubah <InlineMath math="E_a" />. Suhu menambah energi kinetik partikel. | Hanya katalis yang menurunkan <InlineMath math="E_a" />. |
-| Laju sesaat sama dengan volume dibagi waktu. | Itu laju rata-rata sejak awal. Laju sesaat adalah gradien garis singgung. | Gambar garis singgung dan pilih dua titik yang berjauhan. |
-| Menambah volume asam dengan konsentrasi sama menaikkan laju. | Konsentrasinya tidak berubah, jadi jumlah partikel per satuan volume sama. | Tanyakan apakah konsentrasinya berubah. |
+**Katalis** mempercepat reaksi kimia tanpa ikut habis berubah secara permanen. Alih-alih memanaskan partikel, katalis menyediakan **jalur reaksi alternatif** dengan energi aktivasi lebih rendah <InlineMath math="E_a'" />.
 
-Kesalahan pertama paling sering muncul di soal grafik. Ingat pemisahan ini: **gradien menunjukkan laju**, sedangkan **tinggi akhir kurva menunjukkan jumlah hasil**.
+> Katalis merendahkan puncak bukit energi tanpa menggeser tingkat energi pereaksi, produk, perubahan entalpi, atau hasil akhir reaksi.
 
-## Latihan Laju Reaksi
+Aktifkan dan matikan katalis untuk reaksi eksoterm serta endoterm di bawah ini untuk membandingkan puncak tanpa katalis, puncak berkatalis, dan nilai tetap <InlineMath math="\Delta H" />.
 
-Soal-soal ini dimulai dari perhitungan singkat dan diakhiri dengan penjelasan teori. **Tulis satuan laju** di setiap jawaban.
+<CatalystPathwayLab
+  title={<>Jalur Energi Tanpa Katalis dan dengan Katalis</>}
+  description={
+    <>
+      Bandingkan profil energi reaksi eksoterm dan endoterm tanpa serta dengan
+      katalis permukaan untuk membuktikan perubahan entalpi tetap sama.
+    </>
+  }
+  footer={<>Katalis menurunkan energi aktivasi sambil mempertahankan perubahan entalpi tetap konstan.</>}
+  reactions={["exothermic", "endothermic"]}
+  labels={{
+    reaction: "Jenis reaksi",
+    reactions: {
+      exothermic: "Eksoterm",
+      endothermic: "Endoterm",
+    },
+    catalyst: "Kehadiran katalis",
+    catalystStates: {
+      absent: "Tanpa katalis",
+      present: "Dengan katalis",
+    },
+    pathway: <>Jalur aktif</>,
+    activationEnergy: <>Energi aktivasi</>,
+    enthalpyChange: <>Perubahan entalpi</>,
+    parts: {
+      reactantLevel: "Tingkat pereaksi",
+      productLevel: "Tingkat produk",
+      uncatalysedPeak: "Puncak tanpa katalis",
+      catalysedPeak: "Puncak berkatalis",
+      catalystSurface: "Permukaan katalis",
+    },
+    view: "Profil energi koordinat reaksi 3D membandingkan puncak aktivasi tanpa dan dengan katalis di atas permukaan katalis",
+  }}
+/>
 
-1. Seng bereaksi dengan asam sulfat dan menghasilkan <InlineMath math="36\text{ mL}" /> gas hidrogen dalam <InlineMath math="90" /> detik. Hitung laju rata-rata reaksinya.
+Karena penghalang yang lebih rendah meloloskan jauh lebih banyak tumbukan pada suhu sama, industri seperti proses Haber menghemat biaya energi besar dengan katalis padat.
 
-2. Sebanyak <InlineMath math="2{,}0\text{ g}" /> bongkahan kalsium karbonat bereaksi dengan asam klorida berlebih. Hitung volume maksimum karbon dioksida pada keadaan kamar. Massa molar <InlineMath math="\mathrm{CaCO_3}" /> adalah <InlineMath math="100\text{ g/mol}" /> dan volume molar gas <InlineMath math="24\text{ L/mol}" />.
+## Uji Hitung Laju Reaksi
 
-3. Percobaan pada soal 2 diulang dengan <InlineMath math="2{,}0\text{ g}" /> serbuk kalsium karbonat. Jelaskan perbedaan laju dan volume akhir gasnya dengan teori tumbukan.
+Periksa dua hitungan utama laju reaksi dan profil energi berikut ini.
 
-4. Energi aktivasi suatu reaksi <InlineMath math="80\text{ kJ/mol}" /> tanpa katalis dan <InlineMath math="50\text{ kJ/mol}" /> dengan katalis. Perubahan entalpinya <InlineMath math="\Delta H = -30\text{ kJ/mol}" />. Berapa tinggi puncak diagram dengan katalis, diukur dari tingkat energi hasil reaksi?
+**Uji laju hidrogen.** Seng bereaksi dengan asam sulfat menghasilkan <InlineMath math="36\text{ cm}^3" /> gas hidrogen dalam <InlineMath math="90\text{ s}" />. Hitung laju reaksi rata-ratanya.
 
-### Pembahasan
+<BlockMath math="\text{Laju rata-rata} = \frac{36}{90} = 0{,}40\text{ cm}^3\text{ s}^{-1}" />
 
-**Pembahasan 1**: Laju rata-rata adalah jumlah gas dibagi waktu total:
+Perkalian <InlineMath math="0{,}40\text{ cm}^3\text{ s}^{-1}" /> dengan <InlineMath math="90\text{ s}" /> tepat mengembalikan volume total <InlineMath math="36\text{ cm}^3" />.
 
-<BlockMath math="\text{Laju rata-rata} = \frac{36}{90} = 0{,}40\text{ mL/s}" />
+**Uji puncak berkatalis.** Reaksi eksoterm memiliki energi aktivasi tanpa katalis <InlineMath math="80\text{ kJ mol}^{-1}" />, dengan katalis <InlineMath math="50\text{ kJ mol}^{-1}" />, dan perubahan entalpi <InlineMath math="-30\text{ kJ mol}^{-1}" />. Hitung tinggi puncak berkatalis dari tingkat produk.
 
-Cek: <InlineMath math="0{,}40 \times 90 = 36" />.
+<BlockMath math="E_{\text{balik}}' = 50 + 30 = 80\text{ kJ mol}^{-1}" />
 
-**Pembahasan 2**: Dari persamaannya, satu mol kalsium karbonat menghasilkan satu mol karbon dioksida.
-
-<MathContainer>
-<BlockMath math="n(\mathrm{CaCO_3}) = \frac{2{,}0}{100} = 0{,}020\text{ mol}" />
-<BlockMath math="V(\mathrm{CO_2}) = 0{,}020 \times 24 = 0{,}48\text{ L} = 480\text{ mL}" />
-</MathContainer>
-
-Asamnya berlebih, jadi kalsium karbonat adalah pereaksi pembatas yang menentukan jumlah gas.
-
-**Pembahasan 3**: Serbuk punya **luas permukaan total yang lebih besar**, jadi partikel kalsium karbonat lebih sering bertumbukan dengan ion hidrogen. Frekuensi tumbukan efektif ikut naik, jadi lajunya lebih tinggi dan kurvanya lebih curam. Volume akhirnya tetap <InlineMath math="480\text{ mL}" /> karena massa kalsium karbonatnya sama, yaitu <InlineMath math="0{,}020" /> mol.
-
-**Pembahasan 4**: Puncaknya berada <InlineMath math="50\text{ kJ/mol}" /> di atas tingkat energi pereaksi. Tingkat energi hasil <InlineMath math="30\text{ kJ/mol}" /> di bawah tingkat energi pereaksi, jadi tinggi puncak dari tingkat energi hasil adalah:
-
-<BlockMath math="50 + 30 = 80\text{ kJ/mol}" />
-
-Cek dengan bentuk diagramnya: katalis menurunkan puncak sebesar <InlineMath math="80 - 50 = 30\text{ kJ/mol}" />, tetapi tingkat energi pereaksi dan hasil tidak bergeser, jadi <InlineMath math="\Delta H" /> tetap <InlineMath math="-30\text{ kJ/mol}" />.
+Katalis memangkas <InlineMath math="30\text{ kJ mol}^{-1}" /> dari puncak tanpa mengubah jarak <InlineMath math="30\text{ kJ mol}^{-1}" /> antara pereaksi dan produk.
