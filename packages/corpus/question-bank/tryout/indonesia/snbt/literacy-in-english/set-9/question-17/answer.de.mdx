@@ -1,9 +1,32 @@
-Mercators Karte hält **Winkel** richtig und macht Kompasskurse zu Geraden. Dafür wachsen die Größen mit dem Abstand vom Äquator. Prüf jede Aufgabe an diesen beiden Fakten.
+# Gegeben
 
-- **Nicht geeignet.** Flächen blähen sich mit dem Abstand vom Äquator auf, bei <InlineMath math="60^\circ" /> auf das Vierfache, also lassen sich Länder in verschiedenen Breiten nicht nach Größe vergleichen. Der letzte Absatz nennt sie "the wrong map for that job" (die falsche Karte für diese Aufgabe).
-- **Geeignet.** Dafür wurde die Karte gemacht: "rule a line between two ports, measure its angle, and hold that bearing" (eine Linie zwischen zwei Häfen ziehen, ihren Winkel messen und den Kurs halten).
-- **Nicht geeignet.** Eine mit dem Lineal gezogene Linie ist eine Loxodrome, und Absatz 3 sagt, die Geraden "are not the shortest routes" (sind nicht die kürzesten Wege).
-- **Nicht geeignet.** Nur "the shapes of small areas" (die Formen kleiner Gebiete) bleiben richtig. Ein ganzer Kontinent nahe einem Pol wird zum Pol hin immer stärker gedehnt, also verbiegt sich sein Umriss.
-- **Geeignet.** Online-Stadtpläne nutzen eine Version von Mercator, "because a map that can be zoomed into any city must keep street corners square at every scale" (weil eine Karte, in jede Stadt zoombar, Straßenecken in jedem Maßstab rechtwinklig halten muss).
+Mercators Projektion von <InlineMath math="1569" /> macht jede **Loxodrome** (konstanter Kompasskurs) zu einer Geraden und erhält **Winkel sowie Formen kleiner Gebiete**, verzerrt dafür jedoch Flächen fern vom Äquator und krümmt kürzeste Großkreisrouten.
 
-Mercators Projektion eignet sich für zwei Aufgaben: einen Kurs mit einem einzigen Kompasskurs planen und in eine Stadt zoomen, ohne die Straßenecken zu verbiegen.
+# Gesucht
+
+Für welche Aufgaben eignet sich die Mercator-Projektion laut Text gut?
+
+# Lösung
+
+> Most online street maps use a version of it, because a map that can be zoomed into any city must keep street corners square at every scale.
+
+Prüfe jede Aufgabe anhand der **Stärken Mercators** (Winkel und fester Kurs) gegenüber seinen **Verzerrungen** (Flächen, Großkreise und ganze Polkontinente).
+
+## Bewertung aller fünf Aufgaben
+
+| Aufgabe | Passung zur Mercator-Projektion | Geeignet |
+| --- | --- | --- |
+| Flächenvergleich von Ländern auf verschiedenen Breiten | Vierfache Fläche bei <InlineMath math="60^\circ" /> (<Highlight>wrong map for that job</Highlight>) | **Nein** |
+| Kursplanung für ein Schiff auf einem Kompasskurs | Gerade Linie entspricht festem Kurs (<Highlight>hold that bearing</Highlight>) | **Ja** |
+| Kürzeste Route mit dem Lineal finden | Kürzeste Großkreise erscheinen gekrümmt | **Nein** |
+| Echter Umriss eines ganzen Kontinents nahe am Pol | Nur <Highlight>shapes of small areas</Highlight> bleiben treu | **Nein** |
+| In Städte hineinzoomen mit rechtwinkligen Straßen | Online-Karten nutzen sie für <Highlight>keep street corners square</Highlight> | **Ja** |
+
+Achte auf den Unterschied zwischen **kleinen Gebieten** und **ganzen Kontinenten**: Lokale Winkel bleiben überall exakt, weshalb Straßenecken rechtwinklig bleiben, während ganze Kontinente nahe am Pol stark verzerrt werden.
+
+# Antwort
+
+Gut geeignet ist die Mercator-Projektion für:
+
+- Das Abstecken eines Kurses, dem ein Schiff mit einem einzigen Kompasskurs folgen kann.
+- Das Hineinzoomen in jede Stadt, ohne die Winkel ihrer Straßenecken zu verzerren.

@@ -1,18 +1,32 @@
-Drei Schritte: den Wirkungsgrad im März bestimmen, ihn auf das Sonnenlicht im Juli anwenden und abziehen, was der Juli wirklich erzeugt hat.
+# Gegeben
 
-Im März wurden <InlineMath math="380" /> von <InlineMath math="2000" /> kWh zu Strom:
+Die Tabelle zeigt für die Solarmodule im **März** <InlineMath math="2{,}000" /> kWh einfallende Sonnenenergie und <InlineMath math="380" /> kWh Strom sowie im **Juli** <InlineMath math="3{,}800" /> kWh Sonnenenergie und <InlineMath math="627" /> kWh Strom.
 
-<BlockMath math="\frac{380}{2000} = 0{,}19 = 19\%" />
+# Gesucht
 
-Mit diesem Wirkungsgrad hätten die <InlineMath math="3800" /> kWh Sonnenlicht im Juli ergeben:
+Wie viel mehr Strom (in kWh) hätten die Module im Juli erzeugt, wenn sie ihren **Wirkungsgrad vom März** behalten hätten?
 
-<BlockMath math="0{,}19 \times 3800 = 722 \text{ kWh}" />
+# Lösung
 
-Tatsächlich erzeugte der Juli <InlineMath math="627" /> kWh, die Lücke beträgt also <InlineMath math="722 - 627 = 95" /> kWh.
+> The share of the arriving energy that comes out as electricity is the panels' efficiency.
 
-- <InlineMath math="38" /> kWh nimmt den Wirkungsgrad vom **August**, <InlineMath math="17{,}5\%" />, als Maßstab statt den vom März.
-- <InlineMath math="247" /> kWh ist der Strom im Juli minus dem im März. Das vermischt mehr Sonnenlicht mit einem anderen Wirkungsgrad.
-- <InlineMath math="57" /> kWh nimmt den Wirkungsgrad vom Mai, <InlineMath math="18\%" />, als Maßstab statt den vom März.
-- <InlineMath math="722" /> kWh ist der ganze Julistrom mit dem Wirkungsgrad vom März. Hier fehlt der letzte Schritt.
+Bestimme den **Wirkungsgrad im März**, wende ihn auf die Julisonne an und ziehe die tatsächliche Julierzeugung ab.
 
-Mit dem Wirkungsgrad vom März hätten die Module im Juli <InlineMath math="95" /> kWh mehr erzeugt.
+## Berechnung des zusätzlichen Julistroms
+
+Teile den Märzstrom durch die Märzsonne, multipliziere diesen Anteil mit der Julisonne und bilde die Differenz zu <InlineMath math="627" /> kWh für den **zusätzlichen Strom**:
+
+<BlockMath math="\begin{aligned} \text{Wirkungsgrad März} &= \frac{380}{2{,}000} = 0{,}19 = 19\% \\ \text{Erwarteter Julistrom bei } 19\% &= 0{,}19 \times 3{,}800 = 722 \text{ kWh} \\ \text{Zusätzlicher Strom} &= 722 - 627 = 95 \text{ kWh} \end{aligned}" />
+
+| Größe | Wert | Bedeutung |
+| --- | ---: | --- |
+| Wirkungsgrad März | <InlineMath math="19\%" /> | Ausgangswert bei kühleren Modulen |
+| Julistrom bei Märzwirkungsgrad | <InlineMath math="722" /> kWh | Ertrag aus <InlineMath math="3{,}800" /> kWh Sonnenenergie |
+| Tatsächlicher Julistrom | <InlineMath math="627" /> kWh | Gemessener Ertrag bei <InlineMath math="16{,}5\%" /> |
+| Zusätzlicher Strom | <InlineMath math="95" /> kWh | Differenz zwischen ideal und real |
+
+Die falschen Antworten entstehen durch typische Fehler: <InlineMath math="722" /> kWh vergisst die Subtraktion von <InlineMath math="627" /> kWh, <InlineMath math="247" /> kWh zieht bloß März von Juli ab, und <InlineMath math="57" /> kWh beziehungsweise <InlineMath math="38" /> kWh rechnen mit Mai (<InlineMath math="18\%" />) oder August (<InlineMath math="17{,}5\%" />).
+
+# Antwort
+
+Mit dem Wirkungsgrad vom März hätten die Module im Juli **<InlineMath math="95" /> kWh** mehr Strom erzeugt.

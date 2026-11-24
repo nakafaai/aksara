@@ -1,9 +1,32 @@
-Mercator's map keeps **angles** true and turns compass bearings into straight lines. It pays for this with sizes that grow away from the equator. Test each task against those two facts.
+# Given
 
-- **Not suited.** Areas swell with distance from the equator, four times at <InlineMath math="60^\circ" />, so countries at different latitudes can't be compared by size. The last paragraph calls it "the wrong map for that job".
-- **Suited.** This is what the map was designed for: "rule a line between two ports, measure its angle, and hold that bearing".
-- **Not suited.** A ruled line is a rhumb line, and paragraph 3 says the straight lines "are not the shortest routes".
-- **Not suited.** Only "the shapes of small areas" stay true. A whole continent near a pole stretches more and more towards the pole, so its outline bends.
-- **Suited.** Online street maps use a version of Mercator "because a map that can be zoomed into any city must keep street corners square at every scale".
+Mercator's <InlineMath math="1569" /> projection turns every **rhumb line** (constant compass bearing) into a straight line and keeps **angles and small local shapes true**, at the cost of enlarging areas away from the equator and curving great-circle shortest paths.
 
-Mercator's projection suits two of the tasks: plotting a course on one compass heading, and zooming into a city without bending its street corners.
+# Asked
+
+For which tasks is Mercator's projection well suited according to the passage?
+
+# Solution
+
+> Most online street maps use a version of it, because a map that can be zoomed into any city must keep street corners square at every scale.
+
+Match each task directly against **what Mercator preserves** (angles and constant bearings) versus **what it distorts** (areas, shortest great-circle routes, and large polar outlines).
+
+## Evaluating all five tasks
+
+| Task | Alignment with Mercator properties | Well suited |
+| --- | --- | --- |
+| Comparing land areas across distant latitudes | Areas swell fourfold at <InlineMath math="60^\circ" /> (<Highlight>wrong map for that job</Highlight>) | **No** |
+| Plotting a course on one compass heading | Straight lines match constant bearings (<Highlight>hold that bearing</Highlight>) | **Yes** |
+| Finding the shortest route with a ruler | Shortest great circles appear curved on Mercator | **No** |
+| Showing true outline of a whole polar continent | Only <Highlight>shapes of small areas</Highlight> stay true, while poles stretch endlessly | **No** |
+| Zooming into any city with square street corners | Online street maps use it to <Highlight>keep street corners square</Highlight> | **Yes** |
+
+Watch the distinction between **small areas** and **whole continents**: local angles stay accurate everywhere, so city street corners remain square, yet a large landmass near a pole stretches unevenly across latitudes.
+
+# Answer
+
+Mercator's projection is well suited for:
+
+- Plotting a course that a ship can follow on one compass heading.
+- Zooming into any city without bending the angles of its street corners.
