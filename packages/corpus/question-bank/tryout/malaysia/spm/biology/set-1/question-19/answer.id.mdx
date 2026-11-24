@@ -1,17 +1,73 @@
-# Pisahkan bagian yang tidak butuh respirasi
+# Diketahui
 
-Dengan sianida masih ada <InlineMath math="2" /> unit serapan yang tidak bergantung pada respirasi. **Bagian itu harus dikurangkan dari kedua keadaan** sebelum membandingkan transpor aktifnya.
+Akar tumbuhan menyerap ion kalium melawan gradien konsentrasi dengan laju <InlineMath math="20" /> unit saat dialiri udara, <InlineMath math="12" /> unit saat dialiri gas nitrogen, dan **<InlineMath math="2" /> unit saat diberi sianida** yang menghentikan seluruh respirasi.
+
+# Ditanyakan
+
+Berapa persen transpor aktif dalam udara yang masih dipertahankan oleh respirasi anaerob saat larutan dialiri gas nitrogen?
+
+# Penyelesaian
+
+Bayangkan mengukur berapa banyak air yang dipompa dua mesin ketika ada <InlineMath math="2" /> ember air yang tetap masuk sendiri meski listrik padam (sianida). Sebelum membandingkan kerja pompa aktif di udara dan nitrogen, **kebocoran pasif <InlineMath math="2" /> unit itu wajib dikurangkan dari kedua hasil pengukuran**.
+
+> Laju transpor aktif murni diperoleh dengan mengurangi laju penyerapan total dengan bagian pasif yang tetap berlangsung saat respirasi dihentikan sianida.
+
+Geser nilai penyerapan pasif <InlineMath math="p" /> pada grafik berikut dari <InlineMath math="0" /> (tanpa koreksi) ke <InlineMath math="2" /> unit untuk melihat persentase transpor aktif turun dari jebakan <InlineMath math="60\%" /> ke nilai benar <InlineMath math="56\%" />.
+
+<MathVisual
+  title={<>Persentase transpor aktif terjaga menurut laju pasif</>}
+  description={
+    <>
+      Kurva hijau menghitung <InlineMath math="100(12 - p) / (20 - p)" /> sesudah
+      bagian pasif <InlineMath math="p" /> dikurangkan dari kedua kondisi. Geser{" "}
+      <InlineMath math="p" /> dari <InlineMath math="0" /> ke <InlineMath math="2" />.
+    </>
+  }
+  footer={<>Mengurangi <InlineMath math="p = 2" /> unit pasif menggeser rasio dari jebakan <InlineMath math="60\%" /> ke <InlineMath math="55{,}6\%" />.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.4, max: 6.4 }, y: { min: 40, max: 64 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [{ name: "p", min: 0, max: 6, value: 2, step: 1, label: "p" }],
+    objects: [
+      { id: "pct", kind: "function", appearance: "answer", formula: "100 * (12 - x) / (20 - x)", domain: { min: 0, max: 6 } },
+      { id: "raw", kind: "marker", appearance: "warning", x: "0", y: "60" },
+      { id: "corr", kind: "marker", appearance: "answer", x: "p", y: "100 * (12 - p) / (20 - p)" },
+    ],
+    readouts: [
+      { key: "active-air", formula: "20 - p" },
+      { key: "active-nitrogen", formula: "12 - p" },
+      { key: "percent-kept", formula: "100 * (12 - p) / (20 - p)" },
+    ],
+  }}
+  labels={{
+    p: <>Penyerapan pasif (sianida)</>,
+    "active-air": <>Transpor aktif di udara (unit)</>,
+    "active-nitrogen": <>Transpor aktif di nitrogen (unit)</>,
+    "percent-kept": <>Transpor aktif dipertahankan (<InlineMath math="\%" />)</>,
+  }}
+/>
+
+Titik jingga di <InlineMath math="p = 0" /> menunjukkan jebakan <InlineMath math="60\%" /> bila lupa membuang data sianida. Pada <InlineMath math="p = 2" />, titik hijau turun ke <InlineMath math="55{,}6\%" /> (dibulatkan <InlineMath math="56\%" />).
+
+## Pemisahan bagian pasif dan persentase
+
+Kurangkan **<InlineMath math="2" /> unit nonrespirasi** dari udara dan nitrogen, lalu bagi keduanya.
 
 <BlockMath math="\begin{aligned}
-\text{aktif dalam udara}&=20-2=18\\
-\text{aktif dalam nitrogen}&=12-2=10\\
-\frac{10}{18}\times100\%&\approx56\%
+\text{aktif di udara} &= 20 - 2 = 18\text{ unit} \\
+\text{aktif di nitrogen} &= 12 - 2 = 10\text{ unit} \\
+\text{persentase} &= \frac{10}{18} \times 100\% \approx 55{,}6\% \approx 56\%
 \end{aligned}" />
 
-Tanpa oksigen, respirasi anaerob masih menyediakan sebagian ATP. Jadi, sekitar <InlineMath math="56\%" /> transpor aktif dipertahankan.
+Tanpa oksigen, respirasi anaerob akar masih memasok sebagian ATP sehingga lebih dari separuh transpor aktif tetap berjalan.
 
-# Mengapa pilihan lain salah
+## Mengapa pilihan lain salah
 
-- <InlineMath math="60\%" /> membagi <InlineMath math="12" /> dengan <InlineMath math="20" />, padahal **kedua angka itu masih memuat <InlineMath math="2" /> unit yang bukan transpor aktif**.
-- <InlineMath math="50\%" /> membagi serapan aktif dalam nitrogen dengan total serapan dalam udara.
-- <InlineMath math="67\%" /> membagi total serapan dalam nitrogen dengan serapan aktif dalam udara.
+- Pilihan <InlineMath math="60\%" /> membagi <InlineMath math="12" /> dengan <InlineMath math="20" />, padahal **keduanya masih memuat <InlineMath math="2" /> unit pasif**.
+- Pilihan <InlineMath math="50\%" /> membagi laju aktif nitrogen (<InlineMath math="10" />) dengan laju total udara (<InlineMath math="20" />).
+- Pilihan <InlineMath math="67\%" /> membagi laju total nitrogen (<InlineMath math="12" />) dengan laju aktif udara (<InlineMath math="18" />).
+
+# Jawaban
+
+Sekitar <InlineMath math="56\%" /> transpor aktif dalam udara masih dipertahankan oleh respirasi anaerob.

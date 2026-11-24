@@ -1,11 +1,65 @@
-# The factor that raises the rate when increased
+# Given
 
-A limiting factor is the one that, **when increased, makes the rate of photosynthesis rise**. Compare rows of the table that differ in only one factor.
+The table records relative photosynthesis rates at light intensities <InlineMath math="1" /> through <InlineMath math="5" /> under three setups: **<InlineMath math="0.04\%\ \text{CO}_2" /> at <InlineMath math="25^\circ\text{C}" />** (<InlineMath math="10" />, <InlineMath math="20" />, <InlineMath math="28" />, <InlineMath math="30" />, <InlineMath math="30" />), **<InlineMath math="0.10\%\ \text{CO}_2" /> at <InlineMath math="25^\circ\text{C}" />** (<InlineMath math="10" />, <InlineMath math="20" />, <InlineMath math="30" />, <InlineMath math="40" />, <InlineMath math="40" />), and **<InlineMath math="0.10\%\ \text{CO}_2" /> at <InlineMath math="35^\circ\text{C}" />** (<InlineMath math="10" />, <InlineMath math="20" />, <InlineMath math="30" />, <InlineMath math="40" />, <InlineMath math="52" />).
 
-At <InlineMath math="1" /> unit of light, all three rows give <InlineMath math="10" />, even though the carbon dioxide and temperature differ. So raising carbon dioxide or temperature has no effect, and light is limiting. At <InlineMath math="5" /> units with <InlineMath math="0.10\%" /> carbon dioxide and <InlineMath math="25^\circ\text{C}" />, the rate stays at <InlineMath math="40" /> as light rises from <InlineMath math="4" /> to <InlineMath math="5" />, so light is no longer limiting. Raising the temperature to <InlineMath math="35^\circ\text{C}" /> lifts the rate to <InlineMath math="52" />, so temperature is limiting. So at <InlineMath math="1" /> unit the limiting factor is light intensity, and at <InlineMath math="5" /> units it is temperature.
+# Asked
 
-# Why the other options are wrong
+Which factor limits photosynthesis at light intensity <InlineMath math="1" /> unit, and at light intensity <InlineMath math="5" /> units with <InlineMath math="0.10\%\ \text{CO}_2" /> at <InlineMath math="25^\circ\text{C}" />?
 
-- Light at <InlineMath math="5" /> units is wrong, because the rate is already flat from <InlineMath math="4" /> to <InlineMath math="5" /> units, so **adding light does not raise the rate**.
-- Carbon dioxide at <InlineMath math="1" /> unit is wrong, because raising it from <InlineMath math="0.04\%" /> to <InlineMath math="0.10\%" /> leaves the rate at <InlineMath math="10" />.
-- Temperature at <InlineMath math="1" /> unit is wrong, because raising the temperature to <InlineMath math="35^\circ\text{C}" /> also leaves the rate unchanged there.
+# Solution
+
+Picture a toy factory run by three workers: light, carbon dioxide, and warmth. Factory speed is always locked by the slowest worker, so **the limiting factor is whichever factor makes the rate jump when you increase it**.
+
+> To identify the limiting factor at any point, compare two rows that differ in only one factor: the factor whose increase raises the rate is limiting.
+
+Inspect the three plotted curves below, focusing on where all three overlap at light <InlineMath math="1" /> unit and where warming jumps the rate from <InlineMath math="40" /> to <InlineMath math="52" /> at light <InlineMath math="5" /> units.
+
+<MathVisual
+  title={<>Photosynthesis rate under three <InlineMath math="\text{CO}_2" /> and temperature setups</>}
+  description={
+    <>
+      The grey curve (<InlineMath math="0.04\%\ \text{CO}_2, 25^\circ\text{C}" />),
+      blue curve (<InlineMath math="0.10\%\ \text{CO}_2, 25^\circ\text{C}" />), and
+      green rise (<InlineMath math="0.10\%\ \text{CO}_2, 35^\circ\text{C}" />)
+      overlap at low light before separating at high light.
+    </>
+  }
+  footer={<>At light <InlineMath math="1" />, all curves tie at <InlineMath math="10" />. At light <InlineMath math="5" />, warming lifts the rate from <InlineMath math="40" /> to <InlineMath math="52" />.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0.5, max: 5.5 }, y: { min: 0, max: 58 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "c1-a", kind: "segment", appearance: "construction", from: { x: 1, y: 10 }, to: { x: 2, y: 20 } },
+      { id: "c1-b", kind: "segment", appearance: "construction", from: { x: 2, y: 20 }, to: { x: 3, y: 28 } },
+      { id: "c1-c", kind: "segment", appearance: "construction", from: { x: 3, y: 28 }, to: { x: 4, y: 30 } },
+      { id: "c1-d", kind: "segment", appearance: "construction", from: { x: 4, y: 30 }, to: { x: 5, y: 30 } },
+      { id: "c2-a", kind: "segment", appearance: "primary", from: { x: 1, y: 10 }, to: { x: 4, y: 40 } },
+      { id: "c2-b", kind: "segment", appearance: "primary", from: { x: 4, y: 40 }, to: { x: 5, y: 40 } },
+      { id: "c3-a", kind: "segment", appearance: "answer", from: { x: 4, y: 40 }, to: { x: 5, y: 52 } },
+      { id: "m-one", kind: "marker", appearance: "primary", x: "1", y: "10" },
+      { id: "m-five-low", kind: "marker", appearance: "warning", x: "5", y: "40" },
+      { id: "m-five-high", kind: "marker", appearance: "answer", x: "5", y: "52" },
+    ],
+  }}
+  labels={{}}
+/>
+
+At light intensity <InlineMath math="1" /> unit, all three curves sit at <InlineMath math="10" />, so only more light lifts the rate. At <InlineMath math="5" /> units, the blue line has plateaued at <InlineMath math="40" />, whereas warming to <InlineMath math="35^\circ\text{C}" /> pushes the rate to <InlineMath math="52" />.
+
+## Testing one factor at a time
+
+Compare pairs of rows that change **only one variable** at each target condition.
+
+- At <InlineMath math="1" /> unit of light, raising <InlineMath math="\text{CO}_2" /> to <InlineMath math="0.10\%" /> or temperature to <InlineMath math="35^\circ\text{C}" /> leaves the rate stuck at <InlineMath math="10" />, whereas raising light to <InlineMath math="2" /> units doubles it to <InlineMath math="20" />, proving **light intensity** is limiting.
+- At <InlineMath math="5" /> units (<InlineMath math="0.10\%\ \text{CO}_2" />, <InlineMath math="25^\circ\text{C}" />), the rate stays flat at <InlineMath math="40" /> from <InlineMath math="4" /> to <InlineMath math="5" /> units, then climbs to <InlineMath math="52" /> at <InlineMath math="35^\circ\text{C}" />, proving **temperature** is limiting.
+
+## Why other options fail
+
+- Light at <InlineMath math="5" /> units fails because the blue curve is already flat from <InlineMath math="4" /> to <InlineMath math="5" /> units, so **more light does not raise the rate**.
+- Carbon dioxide at <InlineMath math="1" /> unit fails because raising <InlineMath math="\text{CO}_2" /> from <InlineMath math="0.04\%" /> to <InlineMath math="0.10\%" /> keeps the rate at <InlineMath math="10" />.
+- Temperature at <InlineMath math="1" /> unit fails because warming to <InlineMath math="35^\circ\text{C}" /> also leaves the rate unchanged at <InlineMath math="10" />.
+
+# Answer
+
+The limiting factor is light intensity at <InlineMath math="1" /> unit of light, and temperature at <InlineMath math="5" /> units (<InlineMath math="0.10\%\ \text{CO}_2" />, <InlineMath math="25^\circ\text{C}" />).

@@ -1,18 +1,72 @@
-# Die Regel der Basenpaarung
+# Gegeben
 
-Adenin paart immer mit Thymin und Guanin mit Cytosin, also **ist A gleich T und G gleich C**. Was nach A und T übrig bleibt, teilen sich G und C zu gleichen Teilen.
+Ein doppelsträngiges DNA-Molekül besteht aus <InlineMath math="1000" /> Basenpaaren (<InlineMath math="2000" /> Basen insgesamt), wovon **<InlineMath math="30\%" /> Adenin (A)** sind. Jedes Paar aus A und Thymin (T) hält über <InlineMath math="2" /> Wasserstoffbrücken, jedes Paar aus Guanin (G) und Cytosin (C) über <InlineMath math="3" /> Wasserstoffbrücken.
+
+# Gesucht
+
+Wie viele Cytosinbasen und wie viele Wasserstoffbrücken insgesamt gibt es zwischen beiden DNA-Strängen?
+
+# Lösung
+
+Stell dir eine DNA-Leiter mit <InlineMath math="1000" /> Sprossen (<InlineMath math="2000" /> Basen) vor. Weil jedes A über <InlineMath math="2" /> Klebepunkte an T bindet, belegen A und T zusammen <InlineMath math="60\%" /> aller Basen, sodass **die übrigen <InlineMath math="40\%" /> gleichmäßig auf G (<InlineMath math="20\%" />) und C (<InlineMath math="20\%" />) verteilt sind**, mit je <InlineMath math="3" /> Klebepunkten pro Sprosse.
+
+> In doppelsträngiger DNA ist der Anteil von Adenin stets gleich dem von Thymin, und der verbleibende Prozentanteil teilt sich gleichmäßig auf Guanin und Cytosin auf.
+
+Schieb den Adeninanteil <InlineMath math="a" /> im Graphen und beobachte, wie Cytosinzahl und Wasserstoffbrücken linear abnehmen, sobald mehr A-T-Paare auftreten.
+
+<MathVisual
+  title={<>Gesamtzahl der Wasserstoffbrücken bei <InlineMath math="1000" /> Basenpaaren</>}
+  description={
+    <>
+      Ein höherer Adeninanteil <InlineMath math="a" /> ersetzt G-C-Paare (
+      <InlineMath math="3" /> Brücken) durch A-T-Paare (<InlineMath math="2" />{" "}
+      Brücken) entlang <InlineMath math="3000 - 20a" />. Stell{" "}
+      <InlineMath math="a = 30\%" /> ein.
+    </>
+  }
+  footer={<>Bei <InlineMath math="a = 30\%" /> enthält das Molekül <InlineMath math="400" /> Cytosinbasen und <InlineMath math="2400" /> Wasserstoffbrücken.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 50 }, y: { min: 1900, max: 3100 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [{ name: "a", min: 10, max: 40, value: 30, step: 5, label: "a" }],
+    objects: [
+      { id: "hbonds", kind: "function", appearance: "primary", formula: "3000 - 20 * x", domain: { min: 5, max: 45 } },
+      { id: "now", kind: "marker", appearance: "answer", x: "a", y: "3000 - 20 * a" },
+    ],
+    readouts: [
+      { key: "cytosine-count", formula: "1000 - 20 * a" },
+      { key: "hydrogen-bonds", formula: "3000 - 20 * a" },
+    ],
+  }}
+  labels={{
+    a: <>Adeninanteil (<InlineMath math="\%" />)</>,
+    "cytosine-count": <>Anzahl Cytosinbasen</>,
+    "hydrogen-bonds": <>Wasserstoffbrücken gesamt</>,
+  }}
+/>
+
+Jede Steigerung von Adenin um <InlineMath math="5\%" /> ersetzt <InlineMath math="100" /> dreifach gebundene G-C-Paare durch zweifach gebundene Paare und senkt die Brückenzahl um <InlineMath math="100" />. Bei <InlineMath math="a = 30\%" /> ergeben sich exakt <InlineMath math="400" /> und <InlineMath math="2400" />.
+
+## Basenpaarung und Brückenberechnung
+
+Bestimme **die Cytosinzahl** über die Basenpaarungsregel und gewichte A-T-Paare mit <InlineMath math="2" /> sowie G-C-Paare mit <InlineMath math="3" />.
 
 <BlockMath math="\begin{aligned}
-A=T&=30\%\ \Rightarrow\ G+C=40\%\ \Rightarrow\ C=20\%\\
-C&=0{,}20\times2000=400\\
-\text{Paare A und T}&=0{,}30\times2000=600,\quad\text{Paare G und C}=400\\
-\text{Wasserstoffbrücken}&=600(2)+400(3)=2400
+A = T = 30\% &\implies G + C = 40\% \implies C = 20\% \\
+\text{Anzahl } C &= 0{,}20 \cdot 2000 = 400\text{ Basen} \\
+\text{A-T-Paare} &= 0{,}30 \cdot 2000 = 600, \quad \text{G-C-Paare} = 400 \\
+\text{Wasserstoffbrücken} &= 600(2) + 400(3) = 1200 + 1200 = 2400
 \end{aligned}" />
 
-Es gibt also <InlineMath math="400" /> Cytosinbasen und <InlineMath math="2400" /> Wasserstoffbrücken.
+Gegenprobe: <InlineMath math="600" /> plus <InlineMath math="400" /> ergibt wieder alle <InlineMath math="1000" /> Basenpaare.
 
-# Warum die anderen Antworten falsch sind
+## Warum andere Optionen falsch sind
 
-- <InlineMath math="400" /> und <InlineMath math="2600" /> vertauscht die Zahl der Bindungen, doch **die Paare G und C haben drei Bindungen**.
-- <InlineMath math="600" /> und <InlineMath math="2600" /> nimmt gleich viel Cytosin wie Adenin an, doch Cytosin paart mit Guanin.
-- <InlineMath math="800" /> und <InlineMath math="2800" /> hält die ganzen <InlineMath math="40\%" /> für Cytosin, doch diese <InlineMath math="40\%" /> teilen sich gleich mit Guanin.
+- Die Angabe <InlineMath math="400" /> und <InlineMath math="2600" /> vertauscht die Brückenzahlen, obwohl **G-C-Paare drei Wasserstoffbrücken besitzen**.
+- Die Angabe <InlineMath math="600" /> und <InlineMath math="2600" /> setzt Cytosin gleich Adenin, doch Cytosin paart nur mit Guanin.
+- Die Angabe <InlineMath math="800" /> und <InlineMath math="2800" /> rechnet die gesamten übrigen <InlineMath math="40\%" /> als Cytosin statt sie mit Guanin zu teilen.
+
+# Antwort
+
+Das Molekül enthält <InlineMath math="400" /> Cytosinbasen und insgesamt <InlineMath math="2400" /> Wasserstoffbrücken.

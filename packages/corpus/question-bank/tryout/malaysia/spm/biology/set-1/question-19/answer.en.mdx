@@ -1,17 +1,73 @@
-# Separate the part that does not need respiration
+# Given
 
-With cyanide there are still <InlineMath math="2" /> units of uptake that do not depend on respiration. **That part must be taken off both conditions** before comparing the active transport.
+Plant roots absorb potassium ions against a concentration gradient at <InlineMath math="20" /> units in aerated solution, <InlineMath math="12" /> units in nitrogen-bubbled solution, and **<InlineMath math="2" /> units with cyanide** blocking all respiration.
+
+# Asked
+
+What percentage of active uptake in air is still maintained by anaerobic respiration in nitrogen gas?
+
+# Solution
+
+Picture comparing two water pumps when <InlineMath math="2" /> buckets still trickle in passively even after pulling the power plug (cyanide). Before comparing how hard the two pumps work, **those <InlineMath math="2" /> passive units must be subtracted from both measurements**.
+
+> True active uptake is found by subtracting the respiration-independent passive baseline measured under cyanide from each total uptake rate.
+
+Slide the passive baseline <InlineMath math="p" /> below from <InlineMath math="0" /> (uncorrected) to <InlineMath math="2" /> units to watch the active percentage shift from the <InlineMath math="60\%" /> trap down to <InlineMath math="56\%" />.
+
+<MathVisual
+  title={<>Percentage of active uptake maintained versus passive baseline</>}
+  description={
+    <>
+      The green curve plots <InlineMath math="100(12 - p) / (20 - p)" /> after
+      removing passive uptake <InlineMath math="p" /> from both conditions.
+      Slide <InlineMath math="p" /> from <InlineMath math="0" /> to <InlineMath math="2" />.
+    </>
+  }
+  footer={<>Removing <InlineMath math="p = 2" /> passive units moves the ratio from the <InlineMath math="60\%" /> trap to <InlineMath math="55.6\%" />.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.4, max: 6.4 }, y: { min: 40, max: 64 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [{ name: "p", min: 0, max: 6, value: 2, step: 1, label: "p" }],
+    objects: [
+      { id: "pct", kind: "function", appearance: "answer", formula: "100 * (12 - x) / (20 - x)", domain: { min: 0, max: 6 } },
+      { id: "raw", kind: "marker", appearance: "warning", x: "0", y: "60" },
+      { id: "corr", kind: "marker", appearance: "answer", x: "p", y: "100 * (12 - p) / (20 - p)" },
+    ],
+    readouts: [
+      { key: "active-air", formula: "20 - p" },
+      { key: "active-nitrogen", formula: "12 - p" },
+      { key: "percent-kept", formula: "100 * (12 - p) / (20 - p)" },
+    ],
+  }}
+  labels={{
+    p: <>Passive uptake (cyanide)</>,
+    "active-air": <>Active uptake in air (units)</>,
+    "active-nitrogen": <>Active uptake in nitrogen (units)</>,
+    "percent-kept": <>Active uptake maintained (<InlineMath math="\%" />)</>,
+  }}
+/>
+
+The orange marker at <InlineMath math="p = 0" /> shows the <InlineMath math="60\%" /> mistake when cyanide is ignored. At <InlineMath math="p = 2" />, the green marker drops to <InlineMath math="55.6\%" /> (about <InlineMath math="56\%" />).
+
+## Subtracting passive uptake
+
+Remove **the <InlineMath math="2" /> respiration-free units** from both air and nitrogen readings, then take their percentage ratio.
 
 <BlockMath math="\begin{aligned}
-\text{active in air}&=20-2=18\\
-\text{active in nitrogen}&=12-2=10\\
-\frac{10}{18}\times100\%&\approx56\%
+\text{active in air} &= 20 - 2 = 18\text{ units} \\
+\text{active in nitrogen} &= 12 - 2 = 10\text{ units} \\
+\text{percentage} &= \frac{10}{18} \times 100\% \approx 55.6\% \approx 56\%
 \end{aligned}" />
 
-Without oxygen, anaerobic respiration still supplies some ATP. So about <InlineMath math="56\%" /> of the active transport is maintained.
+Without oxygen, anaerobic respiration still generates enough ATP to sustain over half of the active transport.
 
-# Why the other options are wrong
+## Why other options fail
 
-- <InlineMath math="60\%" /> divides <InlineMath math="12" /> by <InlineMath math="20" />, but **both figures still include <InlineMath math="2" /> units that are not active transport**.
-- <InlineMath math="50\%" /> divides the active uptake in nitrogen by the total uptake in air.
-- <InlineMath math="67\%" /> divides the total uptake in nitrogen by the active uptake in air.
+- Choosing <InlineMath math="60\%" /> divides <InlineMath math="12" /> by <InlineMath math="20" />, forgetting that **both totals still contain <InlineMath math="2" /> passive units**.
+- Choosing <InlineMath math="50\%" /> divides active nitrogen uptake (<InlineMath math="10" />) by total air uptake (<InlineMath math="20" />).
+- Choosing <InlineMath math="67\%" /> divides total nitrogen uptake (<InlineMath math="12" />) by active air uptake (<InlineMath math="18" />).
+
+# Answer
+
+About <InlineMath math="56\%" /> of active uptake in air is maintained by anaerobic respiration in nitrogen gas.

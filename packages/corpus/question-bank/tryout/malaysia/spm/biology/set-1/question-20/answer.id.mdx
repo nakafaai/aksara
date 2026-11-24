@@ -1,18 +1,72 @@
-# Aturan pasangan basa
+# Diketahui
 
-Adenin selalu berpasangan dengan timin dan guanin dengan sitosin, jadi **jumlah A sama dengan T, dan G sama dengan C**. Sisa setelah A dan T dibagi rata antara G dan C.
+Molekul DNA untai ganda memiliki <InlineMath math="1000" /> pasang basa (<InlineMath math="2000" /> basa total), dengan **<InlineMath math="30\%" /> adalah adenina (A)**. Pasangan A dengan timina (T) diikat <InlineMath math="2" /> ikatan hidrogen, sedangkan guanina (G) dengan sitosina (C) diikat <InlineMath math="3" /> ikatan hidrogen.
+
+# Ditanyakan
+
+Berapakah jumlah basa sitosina dan jumlah total ikatan hidrogen di antara kedua untai DNA?
+
+# Penyelesaian
+
+Bayangkan tangga DNA dengan <InlineMath math="1000" /> anak tangga (<InlineMath math="2000" /> separuh anak tangga). Karena setiap A selalu berpasangan dengan T memakai <InlineMath math="2" /> titik lem, pasangan A dan T mengambil <InlineMath math="60\%" /> basa sehingga **sisa <InlineMath math="40\%" /> dibagi rata antara G (<InlineMath math="20\%" />) dan C (<InlineMath math="20\%" />)** yang masing-masing pasangan G dan C memakai <InlineMath math="3" /> titik lem.
+
+> Dalam DNA untai ganda, persentase adenina selalu sama dengan timina, dan sisa persentase dibagi dua sama rata antara guanina dan sitosina.
+
+Geser persentase adenina <InlineMath math="a" /> pada grafik berikut untuk melihat bagaimana jumlah basa sitosina dan total ikatan hidrogen menurun secara lurus saat pasangan A dan T makin mendominasi.
+
+<MathVisual
+  title={<>Total ikatan hidrogen pada DNA <InlineMath math="1000" /> pasang basa</>}
+  description={
+    <>
+      Setiap kenaikan persentase adenina <InlineMath math="a" /> mengganti pasangan
+      G dan C (<InlineMath math="3" /> ikatan) dengan A dan T (<InlineMath math="2" />{" "}
+      ikatan), mengikuti garis <InlineMath math="3000 - 20a" />. Tetapkan{" "}
+      <InlineMath math="a = 30\%" />.
+    </>
+  }
+  footer={<>Pada <InlineMath math="a = 30\%" />, terdapat <InlineMath math="400" /> basa sitosina dan <InlineMath math="2400" /> ikatan hidrogen.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 50 }, y: { min: 1900, max: 3100 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [{ name: "a", min: 10, max: 40, value: 30, step: 5, label: "a" }],
+    objects: [
+      { id: "hbonds", kind: "function", appearance: "primary", formula: "3000 - 20 * x", domain: { min: 5, max: 45 } },
+      { id: "now", kind: "marker", appearance: "answer", x: "a", y: "3000 - 20 * a" },
+    ],
+    readouts: [
+      { key: "cytosine-count", formula: "1000 - 20 * a" },
+      { key: "hydrogen-bonds", formula: "3000 - 20 * a" },
+    ],
+  }}
+  labels={{
+    a: <>Persentase adenina (<InlineMath math="\%" />)</>,
+    "cytosine-count": <>Jumlah basa sitosina</>,
+    "hydrogen-bonds": <>Total ikatan hidrogen</>,
+  }}
+/>
+
+Setiap tambahan <InlineMath math="5\%" /> adenina mengurangi <InlineMath math="100" /> pasangan G dan C sehingga total ikatan hidrogen berkurang <InlineMath math="100" />. Pada <InlineMath math="a = 30\%" />, grafik membaca tepat <InlineMath math="400" /> sitosina dan <InlineMath math="2400" /> ikatan.
+
+## Perhitungan pasangan basa dan ikatan hidrogen
+
+Hitung **jumlah basa C** dari aturan Chargaff, lalu kalikan jumlah pasangan A dan T dengan <InlineMath math="2" /> dan pasangan G dan C dengan <InlineMath math="3" />.
 
 <BlockMath math="\begin{aligned}
-A=T&=30\%\ \Rightarrow\ G+C=40\%\ \Rightarrow\ C=20\%\\
-C&=0{,}20\times2000=400\\
-\text{pasangan A dan T}&=0{,}30\times2000=600,\quad\text{pasangan G dan C}=400\\
-\text{ikatan hidrogen}&=600(2)+400(3)=2400
+A = T = 30\% &\implies G + C = 40\% \implies C = 20\% \\
+\text{jumlah } C &= 0{,}20 \times 2000 = 400\text{ basa} \\
+\text{pasangan } A\text{ dan }T &= 0{,}30 \times 2000 = 600, \quad \text{pasangan } G\text{ dan }C = 400 \\
+\text{ikatan hidrogen} &= 600(2) + 400(3) = 1200 + 1200 = 2400
 \end{aligned}" />
 
-Jadi, ada <InlineMath math="400" /> sitosin dan <InlineMath math="2400" /> ikatan hidrogen.
+Cek total pasangan: <InlineMath math="600 + 400" /> tepat sama dengan <InlineMath math="1000" /> pasang basa.
 
-# Mengapa pilihan lain salah
+## Mengapa pilihan lain salah
 
-- <InlineMath math="400" /> dan <InlineMath math="2600" /> menukar jumlah ikatan, padahal **pasangan G dan C yang punya tiga ikatan**.
-- <InlineMath math="600" /> dan <InlineMath math="2600" /> menganggap sitosin sama banyak dengan adenin, padahal sitosin berpasangan dengan guanin.
-- <InlineMath math="800" /> dan <InlineMath math="2800" /> menganggap seluruh <InlineMath math="40\%" /> adalah sitosin, padahal <InlineMath math="40\%" /> itu dibagi rata dengan guanin.
+- Pilihan <InlineMath math="400" /> dan <InlineMath math="2600" /> menukar jumlah ikatan, padahal **pasangan G dan C yang memiliki tiga ikatan hidrogen**.
+- Pilihan <InlineMath math="600" /> dan <InlineMath math="2600" /> mengira sitosina sama banyak dengan adenina, padahal sitosina hanya berpasangan dengan guanina.
+- Pilihan <InlineMath math="800" /> dan <InlineMath math="2800" /> memakai seluruh sisa <InlineMath math="40\%" /> sebagai sitosina tanpa membaginya dengan guanina.
+
+# Jawaban
+
+Molekul DNA ini memiliki <InlineMath math="400" /> basa sitosina dan <InlineMath math="2400" /> ikatan hidrogen.

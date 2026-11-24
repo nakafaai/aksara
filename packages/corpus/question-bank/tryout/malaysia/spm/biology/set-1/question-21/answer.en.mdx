@@ -1,16 +1,77 @@
-# Dry mass rises when photosynthesis wins
+# Given
 
-Dry mass falls while respiration uses the seed's food store, and **starts to rise when photosynthesis exceeds respiration**. The lowest mass is on day <InlineMath math="6" /> and the first rise is between day <InlineMath math="6" /> and day <InlineMath math="9" />.
+Bean seeds germinate and the **dry mass of <InlineMath math="10" /> seedlings** is recorded every <InlineMath math="3" /> days: <InlineMath math="2.0\text{ g}" /> (day <InlineMath math="0" />), <InlineMath math="1.7\text{ g}" /> (day <InlineMath math="3" />), <InlineMath math="1.5\text{ g}" /> (day <InlineMath math="6" />), <InlineMath math="1.6\text{ g}" /> (day <InlineMath math="9" />), and <InlineMath math="2.2\text{ g}" /> (day <InlineMath math="12" />). First leaves emerge on day <InlineMath math="4" />.
+
+# Asked
+
+In which day interval does photosynthesis first exceed respiration, and what is the mean gain in dry mass per seedling per day from day <InlineMath math="9" /> to day <InlineMath math="12" />?
+
+# Solution
+
+Picture a seed's dry mass like a packed lunchbox. Early on, the seedling burns stored food faster than it makes new food, so dry mass drops until its lowest point on day <InlineMath math="6" />. **The moment the curve turns upwards between day <InlineMath math="6" /> and day <InlineMath math="9" />, photosynthesis has overtaken respiration**.
+
+> Seedling dry mass falls while respiration outpaces photosynthesis, and turns upwards as soon as the rate of photosynthesis surpasses respiration.
+
+Slide the seedling count <InlineMath math="n" /> below to see how the <InlineMath math="0.6\text{ g}" /> gain from day <InlineMath math="9" /> to day <InlineMath math="12" /> divides across both seedlings and days.
+
+<MathVisual
+  title={<>Dry mass of <InlineMath math="10" /> seedlings over <InlineMath math="12" /> days</>}
+  description={
+    <>
+      Dry mass bottoms out on day <InlineMath math="6" /> (<InlineMath math="1.5\text{ g}" />),
+      first climbs from day <InlineMath math="6" /> to day <InlineMath math="9" />,
+      and accelerates from day <InlineMath math="9" /> to day <InlineMath math="12" />.
+      Set <InlineMath math="n = 10" /> to read the daily gain per seedling.
+    </>
+  }
+  footer={<>The turning point is day <InlineMath math="6" />, so the first net gain occurs from day <InlineMath math="6" /> to day <InlineMath math="9" />.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.5, max: 13 }, y: { min: 1.2, max: 2.4 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [{ name: "n", min: 1, max: 20, value: 10, step: 1, label: "n" }],
+    objects: [
+      { id: "s1", kind: "segment", appearance: "warning", from: { x: 0, y: 2.0 }, to: { x: 3, y: 1.7 } },
+      { id: "s2", kind: "segment", appearance: "warning", from: { x: 3, y: 1.7 }, to: { x: 6, y: 1.5 } },
+      { id: "s3", kind: "segment", appearance: "answer", from: { x: 6, y: 1.5 }, to: { x: 9, y: 1.6 } },
+      { id: "s4", kind: "segment", appearance: "primary", from: { x: 9, y: 1.6 }, to: { x: 12, y: 2.2 } },
+      { id: "p0", kind: "marker", appearance: "warning", x: "0", y: "2" },
+      { id: "p3", kind: "marker", appearance: "warning", x: "3", y: "1.7" },
+      { id: "p6", kind: "marker", appearance: "answer", x: "6", y: "1.5" },
+      { id: "p9", kind: "marker", appearance: "answer", x: "9", y: "1.6" },
+      { id: "p12", kind: "marker", appearance: "primary", x: "12", y: "2.2" },
+    ],
+    readouts: [
+      { key: "gain-total", formula: "0.6" },
+      { key: "gain-per-day", formula: "0.6 / (3 * n)" },
+    ],
+  }}
+  labels={{
+    n: <>Number of seedlings <InlineMath math="n" /></>,
+    "gain-total": <>Total gain from day <InlineMath math="9" /> to <InlineMath math="12" /> (<InlineMath math="\text{g}" />)</>,
+    "gain-per-day": <>Mean gain per seedling per day (<InlineMath math="\text{g}" />)</>,
+  }}
+/>
+
+Even though leaves appear on day <InlineMath math="4" />, they remain too small for photosynthesis to exceed respiration until after day <InlineMath math="6" />. The green segment marks that first rise from day <InlineMath math="6" /> to day <InlineMath math="9" />.
+
+## Mean daily gain calculation
+
+Divide the <InlineMath math="3" />-day mass gain of <InlineMath math="10" /> seedlings by **both the number of seedlings and the number of days**.
 
 <BlockMath math="\begin{aligned}
-\text{gain from day }9\text{ to }12&=2.2-1.6=0.6\text{ g for }10\text{ seedlings}\\
-\text{per seedling per day}&=\frac{0.6}{10\times3}=0.020\text{ g}
+\Delta m_{9 \to 12} &= 2.2 - 1.6 = 0.6\text{ g for } 10\text{ seedlings} \\
+\text{mean gain per seedling per day} &= \frac{0.6}{10 \times 3} = \frac{0.6}{30} = 0.020\text{ g}
 \end{aligned}" />
 
-The leaves appear on day <InlineMath math="4" />, but they need time before their photosynthesis exceeds respiration. So the answer is day <InlineMath math="6" /> to day <InlineMath math="9" /> and <InlineMath math="0.020\text{ g}" />.
+Quick check: multiplying <InlineMath math="0.020\text{ g}" /> by <InlineMath math="10" /> seedlings and <InlineMath math="3" /> days restores <InlineMath math="0.6\text{ g}" />.
 
-# Why the other options are wrong
+## Why other options fail
 
-- Day <InlineMath math="9" /> to day <InlineMath math="12" /> is the largest gain, but **the first gain already happens from day <InlineMath math="6" />**.
-- <InlineMath math="0.20\text{ g}" /> is not yet divided by the number of seedlings, but the data are for <InlineMath math="10" /> seedlings.
-- <InlineMath math="0.060\text{ g}" /> is the gain per seedling over all three days, not per day.
+- Day <InlineMath math="9" /> to day <InlineMath math="12" /> gives the steepest climb, but **the first positive gain already happens from day <InlineMath math="6" />**.
+- Choosing <InlineMath math="0.20\text{ g}" /> forgets to divide by <InlineMath math="10" /> seedlings even though the table weighs <InlineMath math="10" /> seedlings together.
+- Choosing <InlineMath math="0.060\text{ g}" /> gives the gain per seedling over all <InlineMath math="3" /> days rather than per single day.
+
+# Answer
+
+Photosynthesis first exceeds respiration from day <InlineMath math="6" /> to day <InlineMath math="9" />, and the mean gain in dry mass per seedling per day is <InlineMath math="0.020\text{ g}" />.

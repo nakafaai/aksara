@@ -1,11 +1,65 @@
-# Faktor yang kalau dinaikkan menaikkan laju
+# Diketahui
 
-Faktor pembatas adalah faktor yang **kalau dinaikkan, laju fotosintesis ikut naik**. Bandingkan baris-baris tabel yang hanya berbeda satu faktor.
+Tabel mencatat laju fotosintesis relatif pada intensitas cahaya <InlineMath math="1" /> sampai <InlineMath math="5" /> unit di bawah tiga kondisi: **<InlineMath math="0{,}04\%\ \text{CO}_2" /> pada <InlineMath math="25^\circ\text{C}" />** (<InlineMath math="10" />, <InlineMath math="20" />, <InlineMath math="28" />, <InlineMath math="30" />, <InlineMath math="30" />), **<InlineMath math="0{,}10\%\ \text{CO}_2" /> pada <InlineMath math="25^\circ\text{C}" />** (<InlineMath math="10" />, <InlineMath math="20" />, <InlineMath math="30" />, <InlineMath math="40" />, <InlineMath math="40" />), dan **<InlineMath math="0{,}10\%\ \text{CO}_2" /> pada <InlineMath math="35^\circ\text{C}" />** (<InlineMath math="10" />, <InlineMath math="20" />, <InlineMath math="30" />, <InlineMath math="40" />, <InlineMath math="52" />).
 
-Pada intensitas <InlineMath math="1" /> unit, ketiga baris sama-sama <InlineMath math="10" />, walaupun karbon dioksida dan suhu berbeda. Jadi menaikkan karbon dioksida atau suhu tidak berpengaruh, dan cahaya yang membatasi. Pada intensitas <InlineMath math="5" /> unit dengan <InlineMath math="0{,}10\%" /> karbon dioksida dan <InlineMath math="25^\circ\text{C}" />, laju tetap <InlineMath math="40" /> walau cahaya naik dari <InlineMath math="4" /> ke <InlineMath math="5" />, jadi cahaya tidak lagi membatasi. Menaikkan suhu ke <InlineMath math="35^\circ\text{C}" /> menaikkan laju menjadi <InlineMath math="52" />, jadi suhu yang membatasi. Jadi, pada <InlineMath math="1" /> unit faktor pembatasnya intensitas cahaya, dan pada <InlineMath math="5" /> unit faktor pembatasnya suhu.
+# Ditanyakan
 
-# Mengapa pilihan lain salah
+Faktor apakah yang membatasi laju fotosintesis pada intensitas cahaya <InlineMath math="1" /> unit, dan pada intensitas cahaya <InlineMath math="5" /> unit dengan <InlineMath math="0{,}10\%\ \text{CO}_2" /> pada <InlineMath math="25^\circ\text{C}" />?
 
-- Cahaya pada <InlineMath math="5" /> unit salah, karena laju sudah datar dari <InlineMath math="4" /> ke <InlineMath math="5" /> unit, sehingga **menambah cahaya tidak menaikkan laju**.
-- Karbon dioksida pada <InlineMath math="1" /> unit salah, karena menaikkannya dari <InlineMath math="0{,}04\%" /> ke <InlineMath math="0{,}10\%" /> tidak mengubah laju <InlineMath math="10" />.
-- Suhu pada <InlineMath math="1" /> unit salah, karena menaikkan suhu ke <InlineMath math="35^\circ\text{C}" /> juga tidak mengubah laju di sana.
+# Penyelesaian
+
+Bayangkan pabrik mainan dengan tiga pekerja: cahaya, karbon dioksida, dan suhu. Kecepatan pabrik selalu dikunci oleh pekerja yang paling lambat, sehingga **faktor pembatas adalah faktor yang jika dinaikkan langsung membuat laju fotosintesis ikut melonjak**.
+
+> Faktor pembatas di suatu titik data selalu dibuktikan dengan membandingkan dua kurva yang berbeda hanya pada satu faktor: faktor yang menaikkannya itulah pembatasnya.
+
+Amati ketiga kurva percobaan pada grafik berikut, terutama tumpukan ketiga kurva pada cahaya <InlineMath math="1" /> unit dan lompatan dari <InlineMath math="40" /> ke <InlineMath math="52" /> pada cahaya <InlineMath math="5" /> unit.
+
+<MathVisual
+  title={<>Laju fotosintesis pada tiga kombinasi <InlineMath math="\text{CO}_2" /> dan suhu</>}
+  description={
+    <>
+      Kurva abu-abu (<InlineMath math="0{,}04\%\ \text{CO}_2, 25^\circ\text{C}" />),
+      kurva biru (<InlineMath math="0{,}10\%\ \text{CO}_2, 25^\circ\text{C}" />), dan
+      kurva hijau (<InlineMath math="0{,}10\%\ \text{CO}_2, 35^\circ\text{C}" />)
+      berimpit di cahaya <InlineMath math="1" /> unit lalu terpisah di cahaya tinggi.
+    </>
+  }
+  footer={<>Di cahaya <InlineMath math="1" />, ketiga kurva sama (<InlineMath math="10" />). Di cahaya <InlineMath math="5" />, suhu menaikkan laju ke <InlineMath math="52" />.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0.5, max: 5.5 }, y: { min: 0, max: 58 } },
+    view: { kind: "fit", padding: 0.06 },
+    objects: [
+      { id: "c1-a", kind: "segment", appearance: "construction", from: { x: 1, y: 10 }, to: { x: 2, y: 20 } },
+      { id: "c1-b", kind: "segment", appearance: "construction", from: { x: 2, y: 20 }, to: { x: 3, y: 28 } },
+      { id: "c1-c", kind: "segment", appearance: "construction", from: { x: 3, y: 28 }, to: { x: 4, y: 30 } },
+      { id: "c1-d", kind: "segment", appearance: "construction", from: { x: 4, y: 30 }, to: { x: 5, y: 30 } },
+      { id: "c2-a", kind: "segment", appearance: "primary", from: { x: 1, y: 10 }, to: { x: 4, y: 40 } },
+      { id: "c2-b", kind: "segment", appearance: "primary", from: { x: 4, y: 40 }, to: { x: 5, y: 40 } },
+      { id: "c3-a", kind: "segment", appearance: "answer", from: { x: 4, y: 40 }, to: { x: 5, y: 52 } },
+      { id: "m-one", kind: "marker", appearance: "primary", x: "1", y: "10" },
+      { id: "m-five-low", kind: "marker", appearance: "warning", x: "5", y: "40" },
+      { id: "m-five-high", kind: "marker", appearance: "answer", x: "5", y: "52" },
+    ],
+  }}
+  labels={{}}
+/>
+
+Di cahaya <InlineMath math="1" /> unit, semua kurva berimpit di laju <InlineMath math="10" />, jadi hanya menambah cahaya yang menaikkan laju. Di cahaya <InlineMath math="5" /> unit, garis biru sudah mendatar di <InlineMath math="40" />, tetapi menaikkan suhu ke <InlineMath math="35^\circ\text{C}" /> melesatkan titik ke <InlineMath math="52" />.
+
+## Uji faktor di kedua titik
+
+Bandingkan baris tabel yang hanya berbeda **satu variabel** untuk memastikan pembatas di masing-masing kondisi.
+
+- Pada cahaya <InlineMath math="1" /> unit, menaikkan <InlineMath math="\text{CO}_2" /> ke <InlineMath math="0{,}10\%" /> atau suhu ke <InlineMath math="35^\circ\text{C}" /> tetap memberi <InlineMath math="10" />, sedangkan menaikkan cahaya ke <InlineMath math="2" /> unit langsung menggandakan laju menjadi <InlineMath math="20" />, sehingga **intensitas cahaya** yang membatasi.
+- Pada cahaya <InlineMath math="5" /> unit (<InlineMath math="0{,}10\%\ \text{CO}_2" />, <InlineMath math="25^\circ\text{C}" />), laju sudah mendatar di <InlineMath math="40" /> sejak cahaya <InlineMath math="4" /> unit, lalu melonjak ke <InlineMath math="52" /> saat suhu naik ke <InlineMath math="35^\circ\text{C}" />, sehingga **suhu** yang membatasi.
+
+## Mengapa pilihan lain salah
+
+- Cahaya di <InlineMath math="5" /> unit salah karena kurva biru sudah datar dari <InlineMath math="4" /> ke <InlineMath math="5" /> unit sehingga **menambah cahaya tidak lagi menaikkan laju**.
+- Karbon dioksida di <InlineMath math="1" /> unit salah karena menaikkan <InlineMath math="\text{CO}_2" /> dari <InlineMath math="0{,}04\%" /> ke <InlineMath math="0{,}10\%" /> tetap menahan laju di <InlineMath math="10" />.
+- Suhu di <InlineMath math="1" /> unit salah karena menaikkan suhu ke <InlineMath math="35^\circ\text{C}" /> juga tidak mengubah laju <InlineMath math="10" />.
+
+# Jawaban
+
+Faktor pembatas pada intensitas cahaya <InlineMath math="1" /> unit adalah intensitas cahaya, dan pada <InlineMath math="5" /> unit (<InlineMath math="0{,}10\%\ \text{CO}_2" />, <InlineMath math="25^\circ\text{C}" />) adalah suhu.

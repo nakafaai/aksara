@@ -1,17 +1,80 @@
-# Kira hari ovulasi dari akhir kitar
+# Diberi
 
-Fasa luteal ialah <InlineMath math="14" /> hari **selepas hari ovulasi hingga hari terakhir kitar**, jadi ovulasi tidak semestinya berlaku pada hari ke-<InlineMath math="14" />. Hari terakhir kitar ini ialah hari ke-<InlineMath math="32" />, jadi ovulasi berlaku pada hari ke-<InlineMath math="18" /> dan fasa luteal berlangsung dari hari ke-<InlineMath math="19" /> hingga hari ke-<InlineMath math="32" />.
+Kitar haid seorang wanita tetap pada **<InlineMath math="32" /> hari**, dengan hari pertama haid dikira sebagai hari ke-<InlineMath math="1" />. Fasa luteal selepas hari ovulasi hingga hari terakhir kitar sentiasa kekal <InlineMath math="14" /> hari.
+
+Persenyawaan boleh berlaku jika persetubuhan berlaku paling awal <InlineMath math="3" /> hari sebelum ovulasi dan paling lewat <InlineMath math="1" /> hari selepas ovulasi.
+
+# Ditanya
+
+Dalam julat hari manakah persetubuhan boleh membawa kepada persenyawaan?
+
+# Penyelesaian
+
+Bayangkan kalendar <InlineMath math="32" /> hari yang dikira secara undur dari hari terakhir. Kerana fasa luteal selepas ovulasi **sentiasa tetap <InlineMath math="14" /> hari**, ovulasi tidak berlaku pada hari ke-<InlineMath math="14" /> tetapi <InlineMath math="14" /> hari sebelum hari ke-<InlineMath math="32" />.
+
+> Bagi mana-mana kitar haid tetap, hari ovulasi sentiasa dicari dengan mengira undur empat belas hari dari hari terakhir kitar.
+
+Gerakkan panjang kitar <InlineMath math="a" /> di bawah daripada <InlineMath math="28" /> kepada <InlineMath math="32" /> hari untuk melihat anjakan hari ovulasi dan tempoh subur.
+
+<MathVisual
+  title={<>Hari ovulasi dan tempoh subur mengikut panjang kitar</>}
+  description={
+    <>
+      Garis biru menunjukkan hari ovulasi (<InlineMath math="a - 14" />), manakala
+      dua garis hijau membatasi tempoh subur (<InlineMath math="a - 17" /> hingga{" "}
+      <InlineMath math="a - 13" />). Tetapkan <InlineMath math="a" /> pada{" "}
+      <InlineMath math="32" /> hari.
+    </>
+  }
+  footer={<>Dalam kitar <InlineMath math="32" /> hari, ovulasi ialah hari ke-<InlineMath math="18" /> dan tempoh subur hari ke-<InlineMath math="15" /> hingga ke-<InlineMath math="19" />.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 22, max: 38 }, y: { min: 5, max: 26 } },
+    view: { kind: "fit", padding: 0.06 },
+    parameters: [{ name: "a", min: 24, max: 36, value: 32, step: 2, label: "a" }],
+    objects: [
+      { id: "ovul", kind: "function", appearance: "primary", formula: "x - 14", domain: { min: 24, max: 36 } },
+      { id: "early", kind: "function", appearance: "answer", formula: "x - 17", domain: { min: 24, max: 36 } },
+      { id: "late", kind: "function", appearance: "answer", formula: "x - 13", domain: { min: 24, max: 36 } },
+      { id: "trap28", kind: "marker", appearance: "warning", x: "28", y: "14" },
+      { id: "m-early", kind: "marker", appearance: "answer", x: "a", y: "a - 17" },
+      { id: "m-ovul", kind: "marker", appearance: "primary", x: "a", y: "a - 14" },
+      { id: "m-late", kind: "marker", appearance: "answer", x: "a", y: "a - 13" },
+    ],
+    readouts: [
+      { key: "ovulation-day", formula: "a - 14" },
+      { key: "fertile-start", formula: "a - 17" },
+      { key: "fertile-end", formula: "a - 13" },
+    ],
+  }}
+  labels={{
+    a: <>Panjang kitar (hari)</>,
+    "ovulation-day": <>Hari ovulasi</>,
+    "fertile-start": <>Awal tempoh subur</>,
+    "fertile-end": <>Akhir tempoh subur</>,
+  }}
+/>
+
+Penanda jingga menunjukkan kitar lazim <InlineMath math="28" /> hari dengan ovulasi pada hari ke-<InlineMath math="14" />. Kitar <InlineMath math="32" /> hari menganjakkan seluruh julat subur <InlineMath math="4" /> hari ke hadapan.
+
+## Pengiraan hari ovulasi dan tempoh subur
+
+Tolak <InlineMath math="14" /> daripada <InlineMath math="32" /> untuk menentukan **hari ovulasi**, kemudian kira had awal dan akhir tempoh subur.
 
 <BlockMath math="\begin{aligned}
-\text{ovulasi}&=32-14=\text{hari ke-}18\\
-\text{paling awal}&=18-3=\text{hari ke-}15\ \text{(3 hari sebelum ovulasi)}\\
-\text{paling lewat}&=18+1=\text{hari ke-}19\ \text{(1 hari selepas ovulasi)}
+\text{hari ovulasi} &= 32 - 14 = \text{hari ke-}18 \\
+\text{paling awal} &= 18 - 3 = \text{hari ke-}15 \\
+\text{paling lewat} &= 18 + 1 = \text{hari ke-}19
 \end{aligned}" />
 
-Jadi, persetubuhan dari hari ke-<InlineMath math="15" /> hingga hari ke-<InlineMath math="19" /> boleh menyebabkan persenyawaan.
+Semakan fasa luteal: hari ke-<InlineMath math="19" /> hingga hari ke-<InlineMath math="32" /> merangkumi tepat <InlineMath math="14" /> hari.
 
-# Kenapa pilihan lain salah
+## Mengapa pilihan lain salah
 
-- Hari ke-<InlineMath math="11" /> hingga ke-<InlineMath math="15" /> menganggap ovulasi sentiasa pada hari ke-<InlineMath math="14" />, sedangkan **kitar ini <InlineMath math="32" /> hari**.
-- Hari ke-<InlineMath math="18" /> hingga ke-<InlineMath math="21" /> mengira tiga hari ke hadapan dari ovulasi, sedangkan had tiga hari itu berlaku **sebelum** hari ovulasi.
-- Hari ke-<InlineMath math="14" /> hingga ke-<InlineMath math="18" /> menganjakkan julat satu hari terlalu awal dan tertinggal hari ke-<InlineMath math="19" />, ketika ovum masih boleh disenyawakan.
+- Hari ke-<InlineMath math="11" /> hingga ke-<InlineMath math="15" /> mengandaikan ovulasi sentiasa pada hari ke-<InlineMath math="14" />, padahal **kitar ini berpanjang <InlineMath math="32" /> hari**.
+- Hari ke-<InlineMath math="18" /> hingga ke-<InlineMath math="21" /> mengira <InlineMath math="3" /> hari selepas ovulasi, bukan sebelum ovulasi.
+- Hari ke-<InlineMath math="14" /> hingga ke-<InlineMath math="18" /> menganjakkan julat sehari terlalu awal dan tertinggal hari ke-<InlineMath math="19" />.
+
+# Jawapan
+
+Persetubuhan boleh membawa kepada persenyawaan dari hari ke-<InlineMath math="15" /> hingga hari ke-<InlineMath math="19" />.
