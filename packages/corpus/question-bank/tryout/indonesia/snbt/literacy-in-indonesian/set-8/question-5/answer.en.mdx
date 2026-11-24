@@ -1,16 +1,34 @@
-The rule: each <InlineMath math="3" /> dB rise halves the allowed time. In reverse, each <InlineMath math="3" /> dB drop doubles the allowance.
+# Given
 
-**Step 1. The allowance at <InlineMath math="97" /> dBA**. The table gives <InlineMath math="94" /> dBA for <InlineMath math="1" /> hour. <InlineMath math="97" /> dBA is <InlineMath math="3" /> dB louder, so its allowance is half of <InlineMath math="1" /> hour, <InlineMath math="30" /> minutes.
+**Paragraph three's rule** states every **<InlineMath math="3\text{ dB}" />** rise cuts safe listening time in half, so every **<InlineMath math="3\text{ dB}" />** drop doubles safe listening time. The table lists <InlineMath math="94\text{ dBA}" /> for <InlineMath math="1" /> hour and <InlineMath math="91\text{ dBA}" /> for <InlineMath math="2" /> hours.
 
-**Step 2. The allowance at <InlineMath math="91" /> dBA**. The table says it directly: <InlineMath math="91" /> dBA for <InlineMath math="2" /> hours.
+# Asked
 
-**Step 3. The comparison**. <InlineMath math="2" /> hours <InlineMath math="=120" /> minutes, and <InlineMath math="120:30=4" />. A drop of <InlineMath math="6" /> dB means two doublings, <InlineMath math="2\times2=4" />.
+By what factor safe exposure time increases when a concertgoer moves from <InlineMath math="97\text{ dBA}" /> to <InlineMath math="91\text{ dBA}" />.
 
-The other options are wrong.
+# Solution
 
-- <InlineMath math="2" /> times counts the <InlineMath math="3" /> dB steps, but each step **doubles** the allowance, so two steps make <InlineMath math="4" /> times, not <InlineMath math="2" />.
-- <InlineMath math="6" /> times treats the decibel difference as a multiple, but the decibel scale is logarithmic.
-- <InlineMath math="1.07" /> times divides the decibel figures directly, as if the scale were ordinary.
-- <InlineMath math="8" /> times uses the <InlineMath math="15" />-minute allowance, which is for <InlineMath math="100" /> dBA, not <InlineMath math="97" /> dBA.
+Compute **safe exposure at <InlineMath math="97\text{ dBA}" /> and <InlineMath math="91\text{ dBA}" />**, or count the number of <InlineMath math="3\text{ dB}" /> doubling steps directly.
 
-So the safe-time allowance becomes <InlineMath math="4" /> times as long, from <InlineMath math="30" /> minutes to <InlineMath math="2" /> hours.
+<MathContainer>
+<BlockMath math="\text{drop} = 97 - 91 = 6\text{ dB} = 2 \text{ steps of } 3\text{ dB}" />
+<BlockMath math="\text{time multiplier} = 2^2 = 4\text{ times} \quad (30\text{ min} \to 120\text{ min})" />
+</MathContainer>
+
+> Dropping <InlineMath math="6\text{ dB}" /> applies two doublings, expanding safe exposure <InlineMath math="4" />-fold from <InlineMath math="30" /> minutes to <InlineMath math="2" /> hours.
+
+## Checking the distractor multipliers
+
+Tracing **each wrong factor** exposes linear decibel errors or wrong table rows.
+
+| Option | Source of calculation | Verdict |
+| --- | --- | --- |
+| <InlineMath math="4" /> times | Two doublings (<InlineMath math="2 \times 2" />), from <InlineMath math="30" /> min to <InlineMath math="120" /> min | **Correct** |
+| <InlineMath math="2" /> times | Counts the number of <InlineMath math="3\text{ dB}" /> steps rather than doubling twice | **Incorrect** |
+| <InlineMath math="6" /> times | Treats the <InlineMath math="6\text{ dB}" /> difference directly as a multiplier | **Incorrect** |
+| <InlineMath math="1.07" /> times | Divides <InlineMath math="97 : 91" /> as if decibels were linear | **Incorrect** |
+| <InlineMath math="8" /> times | Uses <InlineMath math="15" /> min for <InlineMath math="100\text{ dBA}" /> instead of <InlineMath math="97\text{ dBA}" /> | **Incorrect** |
+
+# Answer
+
+Safe exposure time becomes **<InlineMath math="4" /> times as long**, rising from <InlineMath math="30" /> minutes to <InlineMath math="2" /> hours.

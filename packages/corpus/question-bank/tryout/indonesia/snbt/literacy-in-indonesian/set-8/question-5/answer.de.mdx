@@ -1,16 +1,34 @@
-Die Regel: Jede Erhöhung um <InlineMath math="3" /> dB halbiert die erlaubte Zeit. Umgekehrt verdoppelt jede Senkung um <InlineMath math="3" /> dB die Zulage.
+# Gegeben
 
-**Schritt 1. Die Zulage bei <InlineMath math="97" /> dBA**. Die Tabelle nennt <InlineMath math="94" /> dBA für <InlineMath math="1" /> Stunde. <InlineMath math="97" /> dBA ist <InlineMath math="3" /> dB lauter, die Zulage ist also die Hälfte von <InlineMath math="1" /> Stunde, <InlineMath math="30" /> Minuten.
+Laut der **Regel aus Absatz drei** halbiert jeder Anstieg um **<InlineMath math="3\text{ dB}" />** die sichere Zeit, sodass jede Senkung um **<InlineMath math="3\text{ dB}" />** die sichere Zeit verdoppelt. Die Tabelle nennt <InlineMath math="94\text{ dBA}" /> für <InlineMath math="1" /> Stunde und <InlineMath math="91\text{ dBA}" /> für <InlineMath math="2" /> Stunden.
 
-**Schritt 2. Die Zulage bei <InlineMath math="91" /> dBA**. Die Tabelle nennt sie direkt: <InlineMath math="91" /> dBA für <InlineMath math="2" /> Stunden.
+# Gesucht
 
-**Schritt 3. Der Vergleich**. <InlineMath math="2" /> Stunden <InlineMath math="=120" /> Minuten, und <InlineMath math="120:30=4" />. Eine Senkung um <InlineMath math="6" /> dB bedeutet zwei Verdopplungen, <InlineMath math="2\times2=4" />.
+Um welchen Faktor die sichere Hörzeit steigt, wenn ein Konzertbesucher von <InlineMath math="97\text{ dBA}" /> auf <InlineMath math="91\text{ dBA}" /> wechselt.
 
-Die anderen Antworten sind falsch.
+# Lösung
 
-- <InlineMath math="2" />-mal zählt die <InlineMath math="3" />-dB-Schritte, aber jeder Schritt **verdoppelt** die Zulage, zwei Schritte ergeben also das <InlineMath math="4" />-Fache, nicht das <InlineMath math="2" />-Fache.
-- <InlineMath math="6" />-mal behandelt den Dezibelunterschied als Vielfaches, aber die Dezibelskala ist logarithmisch.
-- <InlineMath math="1{,}07" />-mal teilt die Dezibelwerte direkt, als wäre die Skala gewöhnlich.
-- <InlineMath math="8" />-mal nimmt die <InlineMath math="15" />-Minuten-Zulage, die für <InlineMath math="100" /> dBA gilt, nicht für <InlineMath math="97" /> dBA.
+Bestimme die **sichere Dauer bei <InlineMath math="97\text{ dBA}" /> und <InlineMath math="91\text{ dBA}" />** oder zähle die <InlineMath math="3\text{-dB}" />-Verdopplungsschritte direkt ab.
 
-Die sichere Zeit wird also <InlineMath math="4" />-mal so lang, von <InlineMath math="30" /> Minuten auf <InlineMath math="2" /> Stunden.
+<MathContainer>
+<BlockMath math="\text{Senkung} = 97 - 91 = 6\text{ dB} = 2 \text{ Schritte zu } 3\text{ dB}" />
+<BlockMath math="\text{Zeitfaktor} = 2^2 = 4\text{-fach} \quad (30\text{ Min.} \to 120\text{ Min.})" />
+</MathContainer>
+
+> Eine Senkung um <InlineMath math="6\text{ dB}" /> bedeutet zwei Verdopplungen, sodass sich die sichere Zeit vervierfacht (von <InlineMath math="30" /> Minuten auf <InlineMath math="2" /> Stunden).
+
+## Herkunft der falschen Faktoren
+
+Der **Abgleich jeder Zahl** zeigt lineare Dezibel-Fehler oder falsche Tabellenzeilen.
+
+| Option | Herkunft der Zahl | Urteil |
+| --- | --- | --- |
+| <InlineMath math="4" />-fach | Zwei Verdopplungen (<InlineMath math="2 \times 2" />), von <InlineMath math="30" /> auf <InlineMath math="120" /> Minuten | **Richtig** |
+| <InlineMath math="2" />-fach | Zählt nur die zwei <InlineMath math="3\text{-dB}" />-Schritte statt zweifacher Verdopplung | **Falsch** |
+| <InlineMath math="6" />-fach | Nimmt die Differenz <InlineMath math="97 - 91" /> direkt als Faktor | **Falsch** |
+| <InlineMath math="1{,}07" />-fach | Teilt <InlineMath math="97 : 91" /> wie auf einer linearen Skala | **Falsch** |
+| <InlineMath math="8" />-fach | Nutzt <InlineMath math="15" /> Minuten für <InlineMath math="100\text{ dBA}" /> statt <InlineMath math="97\text{ dBA}" /> | **Falsch** |
+
+# Antwort
+
+Die sichere Hörzeit wird **<InlineMath math="4" />-mal so lang** (von <InlineMath math="30" /> Minuten auf <InlineMath math="2" /> Stunden).
