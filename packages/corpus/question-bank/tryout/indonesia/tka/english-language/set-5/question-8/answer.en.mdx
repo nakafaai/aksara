@@ -1,9 +1,33 @@
-Place each event on the morning's clock. The group left at 5:30, reached the forest edge three hours later (8:30), reached the ridge at 11:50, and turned back "Ten minutes later", which is 12:00.
+# Given
 
-- **I happened before 12:00**. Pak Bayu put Laras at the front above the forest, after 8:30 and before 11:50.
-- **II happened before 12:00**. Raka spoke at the ridge, between 11:50 and 12:00.
-- III happened after. The cloud reached the ridge at 13:15.
-- **IV happened before 12:00**. The forest edge came at 8:30.
-- V didn't happen before 12:00. **Laras turned the group around at 12:00 exactly**, ten minutes after 11:50.
+The climb's timeline runs clearly: start at **5:30**, reach the pine-forest edge <InlineMath math="3" /> hours later (**8:30**), Pak Bayu puts Laras in front above the forest, reach the ridge at **11:50**, Raka speaks there, **ten minutes later (12:00 sharp)** Laras turns the group around, and the cloud hits the ridge at **13:15**.
 
-So the events before 12:00 are I, II and IV only.
+# Asked
+
+Which numbered events happened **before 12:00**.
+
+# Solution
+
+Place all five events on the morning clock from 5:30 to 13:15. Catch the precision trap in V: **12:00 sharp is not before 12:00**!
+
+> "Before 12:00" strictly excludes an event that takes place at 12:00 itself.
+
+## Placing each event on the clock
+
+| Event | Clock time | Before 12:00? |
+| --- | --- | --- |
+| I (Pak Bayu puts Laras at the front) | Above the pine forest, between 8:30 and 11:50 | **Yes** |
+| II (Raka says they can reach the summit in an hour) | At the ridge, between 11:50 and 12:00 | **Yes** |
+| III (The cloud reaches the ridge) | 13:15 (<Highlight>The cloud reached the ridge at 13:15</Highlight>) | No |
+| IV (Group reaches the edge of the pine forest) | 8:30 (5:30 plus three hours) | **Yes** |
+| V (Laras turns the group around) | **12:00 exactly** (<Highlight>Ten minutes later, Laras, still in front, turned us around</Highlight> after 11:50) | No (at 12:00, not before) |
+
+## Why the other options fail
+
+- **Options including V** mistakenly count an event at 12:00 sharp as happening before 12:00.
+- **Options including III** ignore the 13:15 timestamp for the cloud.
+- **I and IV only** leaves out Raka's comment (II), spoken between 11:50 and 12:00.
+
+# Answer
+
+The events that happened before 12:00 are **I, II, and IV only**.

@@ -1,16 +1,36 @@
-Staircase B is blocked, so its classes move to Staircase A: "If a staircase is blocked, its classes use the other one". That puts every first-floor and second-floor class on one staircase.
+# Given
 
-**Order and time on Staircase A**. Alphabetical order gives 11A, 11B, 11C, 11D, 12A, 12B, 12C, which is <InlineMath math="7" /> classes. Each takes <InlineMath math="2" /> minutes, and the next may not enter until the one ahead "has completely left it":
+In this year's evacuation drill, **Staircase B is blocked**, forcing all first-floor classes (**11A, 11B, 11C, 11D**) and second-floor classes (**12A, 12B, 12C**) onto **Staircase A**.
 
-<BlockMath math="7 \times 2 = 14 \text{ minutes}" />
+Key timing rules:
+- Classes sharing a staircase descend one at a time in alphabetical order, **<InlineMath math="2" /> minutes** each, entering only after the previous class has completely cleared it.
+- Walking from the foot of either staircase to the sports field takes **<InlineMath math="2" /> minutes**.
 
-**The walk**. The last class, 12C, leaves the staircase at minute <InlineMath math="14" /> and then walks <InlineMath math="2" /> minutes to the field:
+# Asked
 
-<BlockMath math="14 + 2 = 16 \text{ minutes}" />
+Counting from the end of the bell, how many minutes pass before the last staircase-using class reaches the field.
 
-- <InlineMath math="14" /> forgets the walk from the staircase to the field.
-- <InlineMath math="10" /> is the time with both staircases open: <InlineMath math="4" /> classes on Staircase A, <InlineMath math="4 \times 2 + 2" />.
-- <InlineMath math="8" /> is only the first-floor classes clearing Staircase A, with no walk.
-- <InlineMath math="18" /> adds the walk twice.
+# Solution
 
-So the last class reached the field <InlineMath math="16" /> minutes after the bell ended.
+Picture all seven upper-floor classes queued neatly at Staircase A: **11A, 11B, 11C, 11D, 12A, 12B, 12C**. Multiply **<InlineMath math="7" /> classes by <InlineMath math="2" /> minutes** to clear the staircase, then **add the <InlineMath math="2" />-minute walk** to the field for the final class.
+
+> The last class in a single-file staircase queue arrives at the field after total staircase clearance time plus one walk to the field.
+
+## Calculating staircase time and arrival at the field
+
+Rules <InlineMath math="3, 4" />, and <InlineMath math="5" /> state <Highlight>If a staircase is blocked, its classes use the other one</Highlight>, <Highlight>Each class takes <InlineMath math="2" /> minutes to clear a staircase</Highlight>, and <Highlight>the walk to the field takes <InlineMath math="2" /> minutes</Highlight>.
+
+All **<InlineMath math="7" /> classes** clear Staircase A in <InlineMath math="14" /> minutes, and 12C then walks <InlineMath math="2" /> minutes to the field:
+
+<BlockMath math="7 \times 2 + 2 = 14 + 2 = 16\text{ minutes}" />
+
+## Why the other options fail
+
+- **Option <InlineMath math="14" />** forgets the <InlineMath math="2" />-minute walk from the staircase to the field.
+- **Option <InlineMath math="10" />** calculates the time with both staircases open (<InlineMath math="4" /> classes on Staircase A plus walk).
+- **Option <InlineMath math="8" />** counts only the <InlineMath math="4" /> first-floor classes on the stairs with no walk.
+- **Option <InlineMath math="18" />** adds the <InlineMath math="2" />-minute walk twice.
+
+# Answer
+
+The last class using a staircase reached the field **<InlineMath math="16" />** minutes after the bell ended.

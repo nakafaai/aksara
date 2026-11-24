@@ -1,9 +1,32 @@
-Finde zuerst heraus, warum die Übung zu lange dauert. Mit beiden Treppen offen gehen über Treppe A die <InlineMath math="4" /> Klassen des ersten Stocks. Die letzte, 11D, verlässt sie nach <InlineMath math="4 \times 2 = 8" /> Minuten und ist nach <InlineMath math="10" /> auf dem Platz. Über Treppe B gehen <InlineMath math="3" /> Klassen, die letzte ist nach <InlineMath math="3 \times 2 + 2 = 8" /> da. Also liegt **die Reihe des ersten Stocks** <InlineMath math="2" /> Minuten drüber.
+# Gegeben
 
-- **Eine Klasse aus dem ersten Stock in einen Raum im Erdgeschoss zu verlegen, klappt**. Diese Klasse geht in unter <InlineMath math="4" /> Minuten durch eine Außentür, und auf Treppe A bleiben <InlineMath math="3" /> Klassen: <InlineMath math="3 \times 2 + 2 = 8" /> Minuten. Beide Treppen sind jetzt nach <InlineMath math="8" /> fertig.
-- Sie in den zweiten Stock zu verlegen, verschiebt nur die Reihe: Über Treppe B gehen dann <InlineMath math="4" /> Klassen, die letzte ist nach <InlineMath math="10" /> da.
-- Die umgekehrte Reihenfolge ändert, welche Klasse die letzte ist, nicht, wann die letzte ankommt. Es bleiben <InlineMath math="10" /> Minuten.
-- Ob die Lehrkraft den Raum zuerst oder zuletzt verlässt, ändert nur, wann sie geht. Jede Klasse braucht weiter <InlineMath math="2" /> Minuten auf der Treppe und <InlineMath math="2" /> Minuten Weg, die letzte Klasse ist also weiter nach <InlineMath math="10" /> Minuten da.
-- Den zweiten Stock über Treppe A zu schicken, bringt <InlineMath math="7" /> Klassen auf eine Treppe: <InlineMath math="7 \times 2 + 2 = 16" /> Minuten.
+Bei zwei offenen Treppen liegt **das Ziel bei <InlineMath math="8" /> Minuten**. Derzeit nutzen **<InlineMath math="4" /> Klassen** des ersten Stocks Treppe A (<InlineMath math="10" /> Minuten), **<InlineMath math="3" /> Klassen** des zweiten Stocks Treppe B (<InlineMath math="8" /> Minuten), und Erdgeschossklassen verlassen das Gebäude direkt (<InlineMath math="< 4" /> Minuten).
 
-Das Ziel erreicht also nur die Verlegung einer Klasse aus dem ersten Stock ins Erdgeschoss.
+# Gesucht
+
+Welche Änderung dafür sorgt, dass die Übung das Ziel von <InlineMath math="8" /> Minuten einhält.
+
+# Lösung
+
+Suche zuerst **den Engpass**: Treppe B schafft <InlineMath math="8" /> Minuten bereits, nur **Treppe A trägt eine Klasse zu viel** (<InlineMath math="10" /> Minuten). Jede Treppe darf höchstens **<InlineMath math="3" /> Klassen** bedienen.
+
+> Eine Klasse ins zweite Obergeschoss zu verlegen verschiebt den Engpass nur auf Treppe B, erst das Erdgeschoss entlastet beide Treppen dauerhaft.
+
+## Kapazität je Treppe für das Zeitziel
+
+Regel <InlineMath math="7" /> fordert <Highlight>finish within <InlineMath math="8" /> minutes of the bell</Highlight>. **Der Vergleich von <InlineMath math="4" /> gegen <InlineMath math="3" /> Klassen zeigt**:
+
+<BlockMath math="\text{4 Klassen: } 4 \times 2 + 2 = 10\text{ Minuten}, \qquad \text{3 Klassen: } 3 \times 2 + 2 = 8\text{ Minuten}" />
+
+Verlegt man eine Klasse aus dem ersten Stock **ins Erdgeschoss**, bleiben auf Treppe A und Treppe B je <InlineMath math="3" /> Klassen (<InlineMath math="8" /> Minuten), und die verlegte Klasse erreicht den Platz über die Außentür in unter <InlineMath math="4" /> Minuten.
+
+## Warum die anderen Optionen falsch sind
+
+- **Verlegung in den zweiten Stock** verschiebt die <InlineMath math="4" />-Klassen-Schlange (<InlineMath math="10" /> Minuten) bloß auf Treppe B.
+- **Umgekehrte alphabetische Reihenfolge** ändert nur, welche Klasse zuletzt ankommt (weiterhin <InlineMath math="10" /> Minuten).
+- **Lehrkraft verlässt Raum zuerst** ändert nichts an <InlineMath math="2" /> Minuten pro Klasse auf der Treppe und <InlineMath math="2" /> Minuten Weg.
+- **Zweiter Stock auf Treppe A** staut alle <InlineMath math="7" /> Klassen auf einer Treppe (<InlineMath math="16" /> Minuten).
+
+# Antwort
+
+Die passende Änderung ist **das Verlegen einer Klasse des ersten Stocks in einen Raum im Erdgeschoss** (*Moving one first-floor class into a ground-floor room*).

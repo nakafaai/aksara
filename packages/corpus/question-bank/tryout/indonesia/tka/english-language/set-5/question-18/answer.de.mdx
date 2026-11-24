@@ -1,11 +1,36 @@
-Bau die <InlineMath math="8" /> Minuten für Klasse 11C nach und behalte nur die Regeln, die die Rechnung braucht.
+# Gegeben
 
-- **I wird gebraucht**. Sie schickt Klasse 11C auf Treppe A, zusammen mit 11A, 11B und 11D.
-- **II wird gebraucht**. Sie setzt Klasse 11C an die dritte Stelle dieser Reihe, hinter 11A und 11B.
-- **III wird gebraucht**. Drei Klassen zu je <InlineMath math="2" /> Minuten: Klasse 11C verlässt die Treppe nach <InlineMath math="3 \times 2 = 6" /> Minuten.
-- **IV wird gebraucht**. Der Weg kommt mit <InlineMath math="2" /> Minuten dazu: <InlineMath math="6 + 2 = 8" />.
-- V wird nicht gebraucht. Sie betrifft die Klassen im Erdgeschoss, die Treppe A nie benutzen.
+Bei zwei offenen Treppen und vollzähligen Klassen erreicht **Class 11C** (erster Stock) den Sportplatz **<InlineMath math="8" /> Minuten** nach der Klingel. Fünf Regeln (I bis V) stehen zur Auswahl.
 
-Die Option ohne I weiß nicht, in welche Reihe Klasse 11C kommt. Die Option ohne II weiß nicht, an welcher Stelle sie steht. Die Option mit V nimmt eine Regel über andere Klassen dazu.
+# Gesucht
 
-Gebraucht werden also nur I, II, III und IV.
+Welche nummerierten Regeln **nötig sind, um diese <InlineMath math="8" /> Minuten zu berechnen**.
+
+# Lösung
+
+Baue die Berechnung für Class 11C Schritt für Schritt nach und **behalte nur die tatsächlich verwendeten Regeln**: zuständige Treppe (I), Platz in der Schlange (II), Treppenzeit pro Klasse (III) und Fußweg (IV). Das Erdgeschoss (V) spielt keine Rolle.
+
+> Prüfe die Notwendigkeit durch Weglassen: Lässt sich die Zeit ohne eine Regel nicht mehr eindeutig bestimmen, ist sie unverzichtbar.
+
+## Rolle jeder Regel in der Berechnung
+
+Für Class 11C greifen **genau vier Regeln ineinander** (<Highlight>First-floor classes use Staircase A</Highlight>, <Highlight>alphabetical order of class name</Highlight>, <Highlight><InlineMath math="2" /> minutes to clear a staircase</Highlight> und <Highlight>walk to the field takes <InlineMath math="2" /> minutes</Highlight>):
+
+<BlockMath math="3\text{ Klassen (11A, 11B, 11C)} \times 2\text{ Min.} + 2\text{ Min. Weg} = 8\text{ Minuten}" />
+
+| Regel | Nötig? | Rolle für Class 11C |
+| --- | --- | --- |
+| I | **Ja** | Weist Class 11C zusammen mit 11A, 11B und 11D Treppe A zu. |
+| II | **Ja** | Setzt Class 11C alphabetisch auf Platz <InlineMath math="3" /> hinter 11A und 11B. |
+| III | **Ja** | Ergibt <InlineMath math="6" /> Minuten bis zum Verlassen der Treppe. |
+| IV | **Ja** | Addiert <InlineMath math="2" /> Minuten Fußweg zu insgesamt <InlineMath math="8" /> Minuten. |
+| V | Nein | Betrifft nur Erdgeschossklassen (10A bis 10C), die Treppe A nie benutzen. |
+
+## Warum die anderen Optionen falsch sind
+
+- **Optionen ohne I, II oder IV** lassen eine notwendige Rechengrundlage aus.
+- **I, II, III, IV und V** ergänzt eine überflüssige Regel zum Erdgeschoss.
+
+# Antwort
+
+Für die Berechnung nötig sind **nur die Regeln I, II, III und IV**.

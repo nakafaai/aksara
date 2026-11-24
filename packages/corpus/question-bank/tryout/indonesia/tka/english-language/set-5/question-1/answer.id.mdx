@@ -1,16 +1,40 @@
-Dua hal menentukan jawabannya: energi baterai yang bisa dipakai, dan energi yang dipakai malam itu. Ingat *A kilowatt-hour (kWh) is the energy used by <InlineMath math="1{.}000" /> watts running for one hour* (satu kWh adalah energi yang dipakai <InlineMath math="1{.}000" /> watt selama satu jam).
+# Diketahui
 
-**Energi yang bisa dipakai**. Baterai menyimpan <InlineMath math="20" /> kWh, tetapi pengendalinya *never lets it fall below a fifth of that* (tidak pernah membiarkannya turun di bawah seperlimanya), jadi batas bawahnya <InlineMath math="4" /> kWh dan hanya <InlineMath math="20 - 4 = 16" /> kWh yang bisa dipakai sebelum balai pindah ke jaringan desa.
+Pada malam acara, **baterai Balai Surya penuh (<InlineMath math="20" /> kWh)** saat matahari terbenam, tetapi pengontrol **tidak pernah membiarkannya turun di bawah seperlima (<InlineMath math="4" /> kWh)** sebelum berpindah ke jaringan listrik desa.
 
-**Energi yang dipakai dalam lima jam**. Kulkas *runs as always* (menyala seperti biasa), jadi ikut dihitung selama lima jam:
+Peralatan yang menyala malam itu:
+- Lampu langit-langit (<InlineMath math="600" /> W = <InlineMath math="0{,}6" /> kW) selama <InlineMath math="5" /> jam.
+- Semua kipas (<InlineMath math="800" /> W = <InlineMath math="0{,}8" /> kW) selama <InlineMath math="5" /> jam.
+- Sistem suara (<InlineMath math="500" /> W = <InlineMath math="0{,}5" /> kW) selama <InlineMath math="4" /> jam.
+- Kulkas (<InlineMath math="150" /> W = <InlineMath math="0{,}15" /> kW) menyala seperti biasa selama <InlineMath math="5" /> jam acara itu.
 
-<BlockMath math="0{,}6 \times 5 + 0{,}8 \times 5 + 0{,}5 \times 4 + 0{,}15 \times 5 = 3 + 4 + 2 + 0{,}75 = 9{,}75 \text{ kWh}" />
+# Ditanyakan
 
-**Sisa di atas batas bawah**. <InlineMath math="16 - 9{,}75 = 6{,}25" /> kWh.
+Di akhir lima jam acara, berapa kWh energi lagi yang masih bisa diambil dari baterai sebelum beralih ke jaringan listrik desa.
 
-- <InlineMath math="10{,}25" /> kWh mengurangkan dari <InlineMath math="20" /> kWh penuh dan lupa **batas bawah seperlima**.
-- <InlineMath math="7" /> kWh tidak menghitung kulkas.
-- <InlineMath math="3{,}4" /> kWh menghitung kulkas sehari penuh (<InlineMath math="3{,}6" /> kWh), bukan lima jam.
-- <InlineMath math="7{,}4" /> kWh membuat kedua kesalahan itu: kulkas sehari penuh dan tanpa batas bawah.
+# Penyelesaian
 
-Jadi, balai masih bisa mengambil <InlineMath math="6{,}25" /> kWh sebelum pindah ke jaringan desa.
+Bayangkan baterai seperti tangki air <InlineMath math="20" /> liter yang dasar setinggi <InlineMath math="4" /> liternya tidak boleh disentuh. Jadi **energi yang benar-benar bisa dipakai hanya <InlineMath math="16" /> kWh**. Kurangkan pemakaian keempat alat selama acara (jangan lupa kulkas!) dari <InlineMath math="16" /> kWh.
+
+> Selalu potong batas cadangan baterai terlebih dahulu sebelum mengurangkan energi acara, dan ingat kulkas ikut menyala selama seluruh durasi acara.
+
+## Menghitung energi terpakai dan sisa di atas batas bawah
+
+Teks menjelaskan batas aman baterai: <Highlight>The battery holds <InlineMath math="20" /> kWh, but its controller never lets it fall below a fifth of that</Highlight>. Dengan batas bawah <InlineMath math="4" /> kWh, **energi terpakai dan sisa baterai** adalah:
+
+<BlockMath math="\text{Energi bisa dipakai: } 20 - 4 = 16\text{ kWh}" />
+
+<BlockMath math="\text{Terpakai: } 0{,}6 \times 5 + 0{,}8 \times 5 + 0{,}5 \times 4 + 0{,}15 \times 5 = 3 + 4 + 2 + 0{,}75 = 9{,}75\text{ kWh}" />
+
+<BlockMath math="\text{Sisa di atas batas bawah: } 16 - 9{,}75 = 6{,}25\text{ kWh}" />
+
+## Mengapa pilihan lain salah
+
+- **Pilihan <InlineMath math="10{,}25" /> kWh** mengurangi dari kapasitas penuh <InlineMath math="20" /> kWh dan lupa batas bawah seperlima (<InlineMath math="4" /> kWh).
+- **Pilihan <InlineMath math="7" /> kWh** melupakan pemakaian kulkas selama lima jam (<InlineMath math="0{,}75" /> kWh).
+- **Pilihan <InlineMath math="3{,}4" /> kWh** menghitung kulkas untuk sehari penuh (<InlineMath math="3{,}6" /> kWh) alih-alih lima jam acara.
+- **Pilihan <InlineMath math="7{,}4" /> kWh** menggabungkan kedua kesalahan di atas (kulkas sehari penuh tanpa batas bawah).
+
+# Jawaban
+
+Energi yang masih dapat diambil balai dari baterai sebelum beralih ke jaringan desa adalah **<InlineMath math="6{,}25" /> kWh**.

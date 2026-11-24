@@ -1,16 +1,40 @@
-Zwei Dinge entscheiden: die nutzbare Energie der Batterie und die Energie, die der Abend verbraucht. Denk daran: "A kilowatt-hour (kWh) is the energy used by <InlineMath math="1{.}000" /> watts running for one hour" (eine kWh ist die Energie von <InlineMath math="1{.}000" /> Watt in einer Stunde).
+# Gegeben
 
-**Nutzbare Energie**. Die Batterie fasst <InlineMath math="20" /> kWh, aber der Regler "never lets it fall below a fifth of that" (lässt sie nie unter ein Fünftel fallen). Die Untergrenze liegt also bei <InlineMath math="4" /> kWh, und nur <InlineMath math="20 - 4 = 16" /> kWh sind nutzbar, bevor die Halle aufs Netz umschaltet.
+Bei Sonnenuntergang ist **die <InlineMath math="20" />-kWh-Batterie voll**, doch der Regler **lässt sie nie unter ein Fünftel (<InlineMath math="4" /> kWh) fallen**, bevor auf das Dorfnetz umgeschaltet wird.
 
-**Verbrauch in fünf Stunden**. Der Kühlschrank "runs as always", zählt also die fünf Stunden mit:
+Während der <InlineMath math="5" /> Stunden laufen:
+- Deckenlicht (<InlineMath math="0{,}6" /> kW) für <InlineMath math="5" /> Stunden.
+- Alle acht Ventilatoren (<InlineMath math="0{,}8" /> kW) für <InlineMath math="5" /> Stunden.
+- Tonanlage (<InlineMath math="0{,}5" /> kW) für <InlineMath math="4" /> Stunden.
+- Kühlschrank (<InlineMath math="0{,}15" /> kW) wie immer für die vollen <InlineMath math="5" /> Stunden.
 
-<BlockMath math="0{,}6 \times 5 + 0{,}8 \times 5 + 0{,}5 \times 4 + 0{,}15 \times 5 = 3 + 4 + 2 + 0{,}75 = 9{,}75 \text{ kWh}" />
+# Gesucht
 
-**Was über der Untergrenze bleibt**. <InlineMath math="16 - 9{,}75 = 6{,}25" /> kWh.
+Wie viel Energie der Saal nach den fünf Stunden noch aus der Batterie ziehen kann, bevor das Netz einspringt.
 
-- <InlineMath math="10{,}25" /> kWh zieht von den vollen <InlineMath math="20" /> kWh ab und vergisst **die Untergrenze von einem Fünftel**.
-- <InlineMath math="7" /> kWh lässt den Kühlschrank weg.
-- <InlineMath math="3{,}4" /> kWh rechnet den Kühlschrank für einen ganzen Tag (<InlineMath math="3{,}6" /> kWh) statt für fünf Stunden.
-- <InlineMath math="7{,}4" /> kWh macht beide Fehler: ganzer Tag Kühlschrank und keine Untergrenze.
+# Lösung
 
-Die Halle kann also noch <InlineMath math="6{,}25" /> kWh entnehmen, bevor sie aufs Netz umschaltet.
+Stell dir die Batterie wie einen <InlineMath math="20" />-Liter-Tank vor, dessen unterste <InlineMath math="4" /> Liter gesperrt sind. Nutzbar sind also nur **<InlineMath math="16" /> kWh**. Ziehe davon den Verbrauch aller vier Geräte (samt Kühlschrank) ab.
+
+> Ziehe zuerst die geschützte Untergrenze von der Batteriekapazität ab und vergiss den dauerhaft laufenden Kühlschrank nicht.
+
+## Verbrauch und verbleibende Energie berechnen
+
+Im Text steht <Highlight>The battery holds <InlineMath math="20" /> kWh, but its controller never lets it fall below a fifth of that</Highlight>. Mit <InlineMath math="4" /> kWh Untergrenze **folgen Verbrauch und Restladung**:
+
+<BlockMath math="\text{Nutzbar: } 20 - 4 = 16\text{ kWh}" />
+
+<BlockMath math="\text{Verbrauch: } 0{,}6 \times 5 + 0{,}8 \times 5 + 0{,}5 \times 4 + 0{,}15 \times 5 = 3 + 4 + 2 + 0{,}75 = 9{,}75\text{ kWh}" />
+
+<BlockMath math="\text{Rest über Untergrenze: } 16 - 9{,}75 = 6{,}25\text{ kWh}" />
+
+## Warum die anderen Optionen falsch sind
+
+- **Option <InlineMath math="10{,}25" /> kWh** zieht von vollen <InlineMath math="20" /> kWh ab und vergisst die <InlineMath math="4" />-kWh-Untergrenze.
+- **Option <InlineMath math="7" /> kWh** lässt den Kühlschrank (<InlineMath math="0{,}75" /> kWh) aus.
+- **Option <InlineMath math="3{,}4" /> kWh** rechnet den Kühlschrank für <InlineMath math="24" /> Stunden (<InlineMath math="3{,}6" /> kWh) statt <InlineMath math="5" /> Stunden.
+- **Option <InlineMath math="7{,}4" /> kWh** begeht beide Fehler zugleich.
+
+# Antwort
+
+Der Saal kann noch **<InlineMath math="6{,}25" /> kWh** aus der Batterie ziehen, bevor er auf das Dorfnetz umschaltet.

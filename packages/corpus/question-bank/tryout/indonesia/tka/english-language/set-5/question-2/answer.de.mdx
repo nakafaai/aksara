@@ -1,13 +1,33 @@
-Prüf bei jedem Plan zuerst die Verkabelungsregel und vergleich dann den Verbrauch mit dem, was die Batterie über ihrer Untergrenze hergibt. Die Untergrenze ist ein Fünftel von <InlineMath math="20" /> kWh, nutzbar ist also die Ladung **minus <InlineMath math="4" /> kWh**. Energie in kWh ist Leistung in Kilowatt mal Stunden, und der Kühlschrank (<InlineMath math="0{,}15" /> kW) läuft die ganze Zeit.
+# Gegeben
 
-**Aussage 1**. Batterie reicht. <InlineMath math="0{,}6 \times 3 + 0{,}3 \times 3 + 0{,}5 \times 3 + 0{,}15 \times 3 = 4{,}65" /> kWh, weit unter <InlineMath math="16" /> kWh.
+**Fünf Abendpläne** starten bei Sonnenuntergang, während der **Kühlschrank (<InlineMath math="0{,}15" /> kW) durchgehend läuft**. Es gelten zwei Regeln:
+- **Leitungsregel**: Die Wasserpumpe darf nicht laufen, solange Projektor oder Tonanlage an sind.
+- **Batterieregel**: Nutzbare Energie ist der Ladestand bei Sonnenuntergang **minus <InlineMath math="4" /> kWh Untergrenze**.
 
-**Aussage 2**. Nicht erlaubt. Die Pumpe "may not run while the projector or the sound system is on", hier läuft sie aber, während die Anlage spielt.
+# Gesucht
 
-**Aussage 3**. Netz nötig. Die Batterie gibt <InlineMath math="12 - 4 = 8" /> kWh her, der Plan braucht aber <InlineMath math="0{,}6 \times 6 + 0{,}8 \times 6 + 0{,}15 \times 6 = 9{,}3" /> kWh. Ohne Untergrenze sähen <InlineMath math="12" /> kWh nach genug aus.
+Welche Kategorie (**The battery alone is enough**, **The hall will need the grid** oder **Not allowed as planned**) jeweils zutrifft.
 
-**Aussage 4**. Batterie reicht. <InlineMath math="0{,}6 \times 5 + 0{,}8 \times 5 + 1 \times 1 + 0{,}15 \times 6 = 8{,}9" /> kWh, unter <InlineMath math="16" /> kWh. Die Pumpe läuft erst, wenn alles andere aus ist, die Verkabelungsregel bleibt also gewahrt.
+# Lösung
 
-**Aussage 5**. Netz nötig. Die Batterie gibt <InlineMath math="10 - 4 = 6" /> kWh her, der Plan braucht aber <InlineMath math="0{,}6 \times 4 + 0{,}8 \times 4 + 0{,}5 \times 4 + 0{,}15 \times 4 = 8{,}2" /> kWh.
+Prüfe jeden Plan in zwei Schritten: **zuerst die Leitungsregel** (läuft die Pumpe gleichzeitig mit Projektor oder Tonanlage?), danach **den Gesamtverbrauch gegen die nutzbare Energie oberhalb von <InlineMath math="4" /> kWh**.
 
-Mit der Batterie allein laufen also die Aussagen 1 und 4, die Aussagen 3 und 5 brauchen das Netz, und Aussage 2 ist so nicht erlaubt.
+> Ziehe von der Abendladung stets zuerst die geschützten <InlineMath math="4" /> kWh ab, bevor du prüfst, ob die Batterie ausreicht.
+
+## Prüfung aller fünf Pläne
+
+Die Leitungsregel lautet <Highlight>it may not run while the projector or the sound system is on</Highlight>. Daraus ergibt sich:
+
+| Plan | Nutzbare Batterie | Energiebedarf und Leitungsprüfung | Entscheidung |
+| --- | --- | --- | --- |
+| <InlineMath math="1" /> (Filmabend, voll) | <InlineMath math="16" /> kWh | Licht, Projektor, Ton, Kühlschrank je <InlineMath math="3" /> Std.: <InlineMath math="4{,}65" /> kWh (<InlineMath math="\le 16" /> kWh), Leitung frei. | **The battery alone is enough** |
+| <InlineMath math="2" /> (Hochzeit, voll) | <InlineMath math="16" /> kWh | Wasserpumpe läuft **während die Tonanlage spielt**, verstößt gegen die Leitungsregel. | **Not allowed as planned** |
+| <InlineMath math="3" /> (Nachtmarkt, <InlineMath math="12" /> kWh) | <InlineMath math="8" /> kWh | Licht, Ventilatoren, Kühlschrank je <InlineMath math="6" /> Std. brauchen <InlineMath math="9{,}3" /> kWh (<InlineMath math="> 8" /> kWh). | **The hall will need the grid** |
+| <InlineMath math="4" /> (Treffen, voll) | <InlineMath math="16" /> kWh | Licht und Ventilatoren <InlineMath math="5" /> Std., Pumpe danach <InlineMath math="1" /> Std. allein, Kühlschrank <InlineMath math="6" /> Std.: <InlineMath math="8{,}9" /> kWh (<InlineMath math="\le 16" /> kWh). | **The battery alone is enough** |
+| <InlineMath math="5" /> (Quizabend, <InlineMath math="10" /> kWh) | <InlineMath math="6" /> kWh | Licht, Ventilatoren, Ton, Kühlschrank je <InlineMath math="4" /> Std. brauchen <InlineMath math="8{,}2" /> kWh (<InlineMath math="> 6" /> kWh). | **The hall will need the grid** |
+
+# Antwort
+
+- **The battery alone is enough**: Aussagen **<InlineMath math="1" />** und **<InlineMath math="4" />**.
+- **The hall will need the grid**: Aussagen **<InlineMath math="3" />** und **<InlineMath math="5" />**.
+- **Not allowed as planned**: Aussage **<InlineMath math="2" />**.

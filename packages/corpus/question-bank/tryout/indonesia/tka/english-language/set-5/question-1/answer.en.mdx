@@ -1,16 +1,40 @@
-Two facts decide this: the battery's usable energy, and the energy the evening uses. Remember that "A kilowatt-hour (kWh) is the energy used by <InlineMath math="1{,}000" /> watts running for one hour".
+# Given
 
-**Usable energy**. The battery holds <InlineMath math="20" /> kWh, but the controller "never lets it fall below a fifth of that", so the floor is <InlineMath math="4" /> kWh and only <InlineMath math="20 - 4 = 16" /> kWh can be used before the hall switches to the grid.
+At sunset on an event evening, **Balai Surya's <InlineMath math="20" /> kWh battery is full**, yet its controller **never lets it drop below one fifth (<InlineMath math="4" /> kWh)** before switching to the village grid.
 
-**Energy used in five hours**. The refrigerator "runs as always", so it counts for the five hours too:
+Equipment running during the <InlineMath math="5" />-hour window:
+- Ceiling lights (<InlineMath math="0.6" /> kW) for <InlineMath math="5" /> hours.
+- All eight fans (<InlineMath math="0.8" /> kW) for <InlineMath math="5" /> hours.
+- Sound system (<InlineMath math="0.5" /> kW) for <InlineMath math="4" /> hours.
+- Refrigerator (<InlineMath math="0.15" /> kW) running as always for all <InlineMath math="5" /> hours.
 
-<BlockMath math="0.6 \times 5 + 0.8 \times 5 + 0.5 \times 4 + 0.15 \times 5 = 3 + 4 + 2 + 0.75 = 9.75 \text{ kWh}" />
+# Asked
 
-**What's left above the floor**. <InlineMath math="16 - 9.75 = 6.25" /> kWh.
+At the end of those five hours, how much more energy the hall can draw from the battery before switching to the grid.
 
-- <InlineMath math="10.25" /> kWh subtracts from the full <InlineMath math="20" /> kWh and forgets **the floor of a fifth**.
-- <InlineMath math="7" /> kWh leaves out the refrigerator.
-- <InlineMath math="3.4" /> kWh counts the refrigerator for a whole day (<InlineMath math="3.6" /> kWh) instead of the five hours.
-- <InlineMath math="7.4" /> kWh makes both of those mistakes: a whole day of refrigerator and no floor.
+# Solution
 
-So the hall can still draw <InlineMath math="6.25" /> kWh before it switches to the grid.
+Picture a <InlineMath math="20" />-litre water tank whose bottom <InlineMath math="4" /> litres must stay untouched. Only **<InlineMath math="16" /> kWh is actually usable**. Subtract the five-hour total of all four appliances (including the refrigerator) from <InlineMath math="16" /> kWh.
+
+> Subtract the battery's protected floor first, and never forget continuous loads like the refrigerator during the event window.
+
+## Computing energy used and remaining usable charge
+
+The text specifies <Highlight>The battery holds <InlineMath math="20" /> kWh, but its controller never lets it fall below a fifth of that</Highlight>. With a <InlineMath math="4" /> kWh floor, **usable charge, evening consumption, and remaining energy** are:
+
+<BlockMath math="\text{Usable charge: } 20 - 4 = 16\text{ kWh}" />
+
+<BlockMath math="\text{Used: } 0.6 \times 5 + 0.8 \times 5 + 0.5 \times 4 + 0.15 \times 5 = 3 + 4 + 2 + 0.75 = 9.75\text{ kWh}" />
+
+<BlockMath math="\text{Remaining above floor: } 16 - 9.75 = 6.25\text{ kWh}" />
+
+## Why the other options fail
+
+- **Option <InlineMath math="10.25" /> kWh** subtracts from the full <InlineMath math="20" /> kWh, forgetting the <InlineMath math="4" /> kWh floor.
+- **Option <InlineMath math="7" /> kWh** omits the refrigerator (<InlineMath math="0.75" /> kWh over five hours).
+- **Option <InlineMath math="3.4" /> kWh** charges a full <InlineMath math="24" />-hour day of refrigerator use (<InlineMath math="3.6" /> kWh) instead of five hours.
+- **Option <InlineMath math="7.4" /> kWh** makes both errors together (full-day refrigerator and no floor).
+
+# Answer
+
+The hall can still draw **<InlineMath math="6.25" /> kWh** from the battery before switching to the grid.
