@@ -1,17 +1,59 @@
-# Den Weg jedes Tieres verfolgen
+# Gegeben
 
-Ein dichotomer Schlüssel nutzt nur **das Merkmal, das in jedem Schritt steht**. Verfolge alle drei Tiere und suche den ersten Schritt, an dem sich ihre Wege trennen.
+Alle drei Tiere besitzen eine Wirbelsäule und beginnen daher bei Schritt <InlineMath math="1a" />. Die **Fledermaus** hat Flughäute aus Haut, Fell und säugt ihre Jungen.
+
+Die **Schildkröte** hat trockene Schuppenhaut, und der **Frosch** hat feuchte Haut ohne Schuppen.
+
+# Gesucht
+
+Bestimme den ersten Schritt, der Schildkröte und Frosch trennt, sowie den ersten Schritt, der Schildkröte und Fledermaus trennt.
+
+# Lösung
+
+Ein dichotomer Bestimmungsschlüssel funktioniert wie ein Flur mit Doppeltüren, die jedes Mal genau zwei Merkmale prüfen. Man rät nie nach dem Fliegen, sondern folgt strikt dem gedruckten Merkmal jeder Tür.
+
+> Zwei Tiere bleiben auf demselben Ast bis zu dem ersten Schrittpaar, bei dem ihre beschriebenen Merkmale verschieden ausfallen.
+
+Verfolge alle drei Tiere Schritt für Schritt, um jede **erste Verzweigung** eindeutig abzulesen.
 
 <BlockMath math="\begin{aligned}
-\text{Fledermaus}&:\ 1a\to2b\to3a\ (Q)\\
-\text{Schildkröte}&:\ 1a\to2b\to3b\to4b\ (S)\\
-\text{Frosch}&:\ 1a\to2b\to3b\to4a\ (R)
+\text{Fledermaus} &: 1a \to 2b \to 3a\ (Q) \\
+\text{Schildkröte} &: 1a \to 2b \to 3b \to 4b\ (S) \\
+\text{Frosch} &: 1a \to 2b \to 3b \to 4a\ (R)
 \end{aligned}" />
 
-Schildkröte und Frosch haben beide kein Fell und säugen nicht, sie trennen sich also erst in Schritt <InlineMath math="4" />. Schildkröte und Fledermaus trennen sich in Schritt <InlineMath math="3" />, weil die Fledermaus Fell hat und ihre Jungen säugt. Die Antwort ist also Schritt <InlineMath math="4" /> und Schritt <InlineMath math="3" />.
+Folge dem Verzweigungsbaum unten, um zu sehen, wo zuerst die Fledermaus abzweigt und wo sich Schildkröte und Frosch trennen.
 
-# Warum die anderen Antworten falsch sind
+<Mermaid
+  title={<>Verzweigung für Fledermaus, Schildkröte und Frosch</>}
+  description={
+    <>
+      Alle drei Wirbeltiere teilen die Schritte <InlineMath math="1a" /> und{" "}
+      <InlineMath math="2b" />, bevor sie sich bei Schritt{" "}
+      <InlineMath math="3" /> und Schritt <InlineMath math="4" /> trennen.
+    </>
+  }
+  footer={
+    <>
+      Fledermaus trennt sich bei Schritt <InlineMath math="3" />, Schildkröte und Frosch bei Schritt <InlineMath math="4" />.
+    </>
+  }
+  chart={`flowchart TD
+    S1["1a Wirbelsaeule: Fledermaus, Schildkroete, Frosch"] --> S2["2b Keine Federn: Fledermaus, Schildkroete, Frosch"]
+    S2 --> S3a["3a Fell und Milch -> Q: Fledermaus"]
+    S2 --> S3b["3b Kein Fell, keine Milch: Schildkroete, Frosch"]
+    S3b --> S4a["4a Feuchte Haut -> R: Frosch"]
+    S3b --> S4b["4b Trockene Schuppen -> S: Schildkroete"]`}
+/>
 
-- Schritt <InlineMath math="2" /> für die Fledermaus hält Flügel für Federn, doch **die Flügel der Fledermaus sind Haut, ohne Federn**, sie geht also weiter zu Schritt <InlineMath math="3" />.
-- Schritt <InlineMath math="3" /> für den Frosch ist falsch, denn auch der Frosch hat kein Fell und säugt nicht, er geht also weiter zu Schritt <InlineMath math="4" />.
-- Die Wahl der Schritte <InlineMath math="3" /> und <InlineMath math="2" /> macht beide Fehler zugleich.
+Weil **weder Schildkröte noch Frosch Fell besitzen oder Milch geben**, gehen beide gemeinsam über <InlineMath math="3b" /> weiter und trennen sich erst bei Schritt <InlineMath math="4" />. Fledermaus und Schildkröte trennen sich dagegen schon bei Schritt <InlineMath math="3" />.
+
+## Warum die anderen Optionen falsch sind
+
+- Schritt <InlineMath math="2" /> für die Fledermaus verwechselt Flügel mit Federn, doch **Fledermausflügel bestehen aus Haut ohne Federn** und führen über <InlineMath math="2b" /> zu Schritt <InlineMath math="3" />.
+- Schritt <InlineMath math="3" /> für Schildkröte und Frosch übersieht, dass auch der Frosch weder Fell noch Milch besitzt und erst bei Schritt <InlineMath math="4" /> abzweigt.
+- Die Kombination Schritt <InlineMath math="3" /> und Schritt <InlineMath math="2" /> vereint beide Fehler gleichzeitig.
+
+# Antwort
+
+Der Schlüssel trennt Schildkröte und Frosch zuerst bei Schritt <InlineMath math="4" /> und Schildkröte und Fledermaus zuerst bei Schritt <InlineMath math="3" />.

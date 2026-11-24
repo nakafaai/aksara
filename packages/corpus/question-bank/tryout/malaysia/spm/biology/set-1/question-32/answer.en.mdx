@@ -1,17 +1,77 @@
-# Multiply the efficiency of each level, then scale the area
+# Given
 
-Energy passes through three levels, so **the three efficiencies are multiplied in turn**. Then turn the energy per square metre into energy per hectare.
+Plants store <InlineMath math="20{,}000\text{ kJ m}^{-2}" /> per year. **Energy transfer efficiencies** are <InlineMath math="10\%" /> to primary, <InlineMath math="15\%" /> to secondary, and <InlineMath math="20\%" /> to tertiary consumers.
+
+Each tertiary consumer needs <InlineMath math="1200\text{ kJ}" /> per year, and <InlineMath math="1" /> hectare equals <InlineMath math="10{,}000\text{ m}^2" />.
+
+# Asked
+
+Find the maximum number of tertiary consumers that <InlineMath math="1" /> hectare of this ecosystem can support.
+
+# Solution
+
+Think of energy climbing a food chain like water carried down a line of leaky buckets. Only a small fraction survives each handoff, so we multiply all three percentages before scaling up from one square metre to a full hectare.
+
+> Across consecutive trophic levels, transfer efficiencies multiply together before scaling from unit area to total habitat area.
+
+Calculate the **annual energy reaching tertiary consumers** per square metre, multiply by <InlineMath math="10{,}000\text{ m}^2" />, and divide by one animal's annual requirement.
 
 <BlockMath math="\begin{aligned}
-E_{\text{tertiary}}&=20{,}000\times0.10\times0.15\times0.20=60\text{ kJ m}^{-2}\\
-\text{per hectare}&=60\times10{,}000=600{,}000\text{ kJ}\\
-\text{number}&=\frac{600{,}000}{1200}=500
+E_{\text{tertiary}} &= 20{,}000 \times 0.10 \times 0.15 \times 0.20 = 60\text{ kJ m}^{-2} \\
+E_{\text{hectare}} &= 60 \times 10{,}000 = 600{,}000\text{ kJ} \\
+N &= \frac{600{,}000}{1200} = 500
 \end{aligned}" />
 
-So one hectare can support at most <InlineMath math="500" /> tertiary consumers.
+Slide the final transfer efficiency below to see how the supported tertiary consumer count grows directly with the last step's percentage.
 
-# Why the other options are wrong
+<MathVisual
+  title={<>Tertiary Consumers Supported per Hectare</>}
+  description={
+    <>
+      With <InlineMath math="300\text{ kJ m}^{-2}" /> at the secondary level,
+      supported tertiary consumers follow <InlineMath math="N(r) = 25r" />,
+      reaching <InlineMath math="500" /> at <InlineMath math="r = 20\%" />.
+    </>
+  }
+  footer={
+    <>
+      At <InlineMath math="20\%" /> final efficiency, one hectare supports at most <InlineMath math="500" /> tertiary consumers.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 30 }, y: { min: 0, max: 800 } },
+    view: { kind: "fit", padding: 0.08 },
+    parameters: [
+      { name: "r", min: 5, max: 30, value: 20, step: 5, label: "r" },
+    ],
+    objects: [
+      { id: "consumer-line", kind: "function", appearance: "primary", formula: "25 * x", domain: { min: 0, max: 30 } },
+      { id: "guide-20", kind: "segment", appearance: "construction", from: { x: 20, y: 0 }, to: { x: 20, y: 500 } },
+      { id: "ten-pct", kind: "marker", appearance: "construction", x: "10", y: "250" },
+      { id: "twenty-pct", kind: "marker", appearance: "answer", x: "20", y: "500" },
+      { id: "probe", kind: "marker", appearance: "warning", x: "r", y: "25 * r" },
+    ],
+    readouts: [
+      { key: "final-efficiency", formula: "r" },
+      { key: "supported-count", formula: "25 * r" },
+    ],
+  }}
+  labels={{
+    r: <>Final efficiency <InlineMath math="r" /> (<InlineMath math="\%" />)</>,
+    "final-efficiency": <>Last-step efficiency (<InlineMath math="\%" />)</>,
+    "supported-count": <>Tertiary consumers per hectare</>,
+  }}
+/>
 
-- <InlineMath math="5" /> uses <InlineMath math="100\text{ m}^2" /> for one hectare, but **one hectare is <InlineMath math="10{,}000\text{ m}^2" />**.
-- <InlineMath math="2500" /> stops at the secondary consumers, <InlineMath math="300\text{ kJ m}^{-2}" />, without the last <InlineMath math="20\%" /> efficiency.
-- <InlineMath math="250" /> uses <InlineMath math="10\%" /> for the last step, but its efficiency is <InlineMath math="20\%" />.
+Check step by step: plants give <InlineMath math="2000" /> to primary, <InlineMath math="300" /> to secondary, and <InlineMath math="60\text{ kJ m}^{-2}" /> to tertiary consumers, confirming <InlineMath math="500" /> consumers per hectare.
+
+## Why the other options are wrong
+
+- <InlineMath math="5" /> converts <InlineMath math="1" /> hectare as <InlineMath math="100\text{ m}^2" />, forgetting that **<InlineMath math="1" /> hectare is <InlineMath math="100 \times 100 = 10{,}000\text{ m}^2" />**.
+- <InlineMath math="2500" /> stops at secondary consumer energy (<InlineMath math="300\text{ kJ m}^{-2}" />) and omits the final <InlineMath math="20\%" /> transfer.
+- <InlineMath math="250" /> mistakenly applies <InlineMath math="10\%" /> instead of <InlineMath math="20\%" /> at the last step.
+
+# Answer
+
+One hectare of the ecosystem can support at most <InlineMath math="500" /> tertiary consumers.

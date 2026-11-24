@@ -1,17 +1,59 @@
-# Jejaki laluan setiap haiwan
+# Diberi
 
-Kunci dikotomi hanya menggunakan **ciri yang ditulis pada setiap langkah**. Jejaki ketiga-tiga haiwan, kemudian cari langkah pertama tempat laluannya bercabang.
+Ketiga-tiga haiwan bertulang belakang, maka semuanya bermula pada langkah <InlineMath math="1a" />. **Kelawar** mempunyai sayap berkulit, berbulu rambut, dan menyusukan anak.
+
+**Penyu** mempunyai kulit kering bersisik, manakala **katak** mempunyai kulit lembap tanpa sisik.
+
+# Ditanya
+
+Tentukan langkah pertama kekunci dikotomi memisahkan penyu daripada katak, dan langkah pertama memisahkan penyu daripada kelawar.
+
+# Penyelesaian
+
+Kekunci dikotomi berfungsi seperti lorong berpintu dua dengan petunjuk tepat pada setiap simpang. Kita hanya mengikut ciri bertulis pada setiap langkah, bukan meneka berdasarkan keupayaan terbang.
+
+> Dua organisma kekal pada cabang yang sama sehingga bertemu pasangan pernyataan pertama yang membezakan ciri bertulis kedua-duanya.
+
+Jejaki laluan ketiga-tiga haiwan langkah demi langkah untuk mengenal pasti **titik pemisahan pertama**.
 
 <BlockMath math="\begin{aligned}
-\text{kelawar}&:\ 1a\to2b\to3a\ (Q)\\
-\text{penyu}&:\ 1a\to2b\to3b\to4b\ (S)\\
-\text{katak}&:\ 1a\to2b\to3b\to4a\ (R)
+\text{kelawar} &: 1a \to 2b \to 3a\ (Q) \\
+\text{penyu} &: 1a \to 2b \to 3b \to 4b\ (S) \\
+\text{katak} &: 1a \to 2b \to 3b \to 4a\ (R)
 \end{aligned}" />
 
-Penyu dan katak sama-sama tiada bulu roma dan tidak menyusukan anak, jadi kedua-duanya hanya berpisah pada langkah <InlineMath math="4" />. Penyu dan kelawar berpisah pada langkah <InlineMath math="3" />, kerana kelawar berbulu roma dan menyusukan anak. Jadi, jawapannya langkah <InlineMath math="4" /> dan langkah <InlineMath math="3" />.
+Ikuti pokok cabang di bawah untuk melihat kelawar terpisah dahulu sebelum penyu dan katak berpisah pada langkah terakhir.
 
-# Kenapa pilihan lain salah
+<Mermaid
+  title={<>Cabang Kekunci Dikotomi Kelawar, Penyu, dan Katak</>}
+  description={
+    <>
+      Ketiga-tiga vertebrata berkongsi langkah <InlineMath math="1a" /> dan{" "}
+      <InlineMath math="2b" /> sebelum berpisah pada langkah{" "}
+      <InlineMath math="3" /> dan langkah <InlineMath math="4" />.
+    </>
+  }
+  footer={
+    <>
+      Kelawar berpisah pada langkah <InlineMath math="3" />, penyu dan katak pada langkah <InlineMath math="4" />.
+    </>
+  }
+  chart={`flowchart TD
+    S1["1a Bertulang belakang: Kelawar, Penyu, Katak"] --> S2["2b Tiada bulu pelepah: Kelawar, Penyu, Katak"]
+    S2 --> S3a["3a Berbulu dan menyusu -> Q: Kelawar"]
+    S2 --> S3b["3b Tiada bulu dan susu: Penyu, Katak"]
+    S3b --> S4a["4a Kulit lembap -> R: Katak"]
+    S3b --> S4b["4b Kulit kering bersisik -> S: Penyu"]`}
+/>
 
-- Langkah <InlineMath math="2" /> bagi kelawar menganggap sayap bermakna bulu pelepah, sedangkan **sayap kelawar ialah kulit tanpa bulu pelepah**, jadi kelawar turut ke langkah <InlineMath math="3" />.
-- Langkah <InlineMath math="3" /> bagi katak salah, kerana katak juga tiada bulu roma dan tidak menyusukan anak, jadi katak turut ke langkah <InlineMath math="4" />.
-- Pilihan langkah <InlineMath math="3" /> dan <InlineMath math="2" /> membuat kedua-dua kesilapan itu serentak.
+Oleh sebab **penyu dan katak sama-sama tidak berbulu rambut dan tidak menyusukan anak**, kedua-duanya bergerak bersama melalui <InlineMath math="3b" /> lalu berpisah pada langkah <InlineMath math="4" />. Kelawar memilih <InlineMath math="3a" /> manakala penyu memilih <InlineMath math="3b" />, maka kedua-duanya berpisah pada langkah <InlineMath math="3" />.
+
+## Mengapa pilihan lain salah
+
+- Langkah <InlineMath math="2" /> bagi kelawar menyangka sayap bermaksud bulu pelepah, sedangkan **sayap kelawar berkulit tanpa bulu pelepah**, lalu terus ke langkah <InlineMath math="3" />.
+- Langkah <InlineMath math="3" /> bagi penyu dan katak terlupa bahawa katak juga tidak berbulu rambut dan tidak menyusukan anak, jadi ia hanya berpisah pada langkah <InlineMath math="4" />.
+- Pasangan langkah <InlineMath math="3" /> dan langkah <InlineMath math="2" /> melakukan kedua-dua kesilapan serentak.
+
+# Jawapan
+
+Kekunci memisahkan penyu daripada katak buat pertama kali pada langkah <InlineMath math="4" />, dan memisahkan penyu daripada kelawar pada langkah <InlineMath math="3" />.

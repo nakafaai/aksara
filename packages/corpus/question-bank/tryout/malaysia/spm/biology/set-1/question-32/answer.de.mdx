@@ -1,17 +1,77 @@
-# Die Wirkungsgrade jeder Stufe multiplizieren, dann auf die Fläche hochrechnen
+# Gegeben
 
-Die Energie durchläuft drei Stufen, also **werden die drei Wirkungsgrade nacheinander multipliziert**. Dann rechnest du die Energie pro Quadratmeter in Energie pro Hektar um.
+Pflanzen speichern <InlineMath math="20{.}000\text{ kJ m}^{-2}" /> pro Jahr. Die **Übergangswirkungsgrade** betragen <InlineMath math="10\%" /> zu Primär-, <InlineMath math="15\%" /> zu Sekundär- und <InlineMath math="20\%" /> zu Tertiärkonsumenten.
+
+Ein Tertiärkonsument benötigt <InlineMath math="1200\text{ kJ}" /> pro Jahr, und <InlineMath math="1" /> Hektar entspricht <InlineMath math="10{.}000\text{ m}^2" />.
+
+# Gesucht
+
+Bestimme die maximale Anzahl an Tertiärkonsumenten, die <InlineMath math="1" /> Hektar dieses Ökosystems ernähren kann.
+
+# Lösung
+
+Stell dir Energie in einer Nahrungskette wie Wasser vor, das über mehrere löchrige Eimer weitergereicht wird. Bei jedem Schritt bleibt nur ein kleiner Anteil übrig, weshalb alle Wirkungsgrade nacheinander multipliziert werden.
+
+> Über aufeinanderfolgende Trophiestufen multiplizieren sich die Wirkungsgrade, bevor man von einem Quadratmeter auf die Gesamtfläche hochrechnet.
+
+Berechne die **jährliche Energie der Tertiärkonsumenten** pro Quadratmeter, multipliziere mit <InlineMath math="10{.}000\text{ m}^2" /> und teile durch den Jahresbedarf eines Tieres.
 
 <BlockMath math="\begin{aligned}
-E_{\text{tertiär}}&=20{.}000\times0{,}10\times0{,}15\times0{,}20=60\text{ kJ m}^{-2}\\
-\text{pro Hektar}&=60\times10{.}000=600{.}000\text{ kJ}\\
-\text{Anzahl}&=\frac{600{.}000}{1200}=500
+E_{\text{Tertiär}} &= 20{.}000 \times 0{,}10 \times 0{,}15 \times 0{,}20 = 60\text{ kJ m}^{-2} \\
+E_{\text{Hektar}} &= 60 \times 10{.}000 = 600{.}000\text{ kJ} \\
+N &= \frac{600{.}000}{1200} = 500
 \end{aligned}" />
 
-Ein Hektar kann also höchstens <InlineMath math="500" /> Tertiärkonsumenten ernähren.
+Verschiebe den letzten Wirkungsgrad unten, um zu sehen, wie die tragbare Anzahl an Tertiärkonsumenten proportional mitwächst.
 
-# Warum die anderen Antworten falsch sind
+<MathVisual
+  title={<>Tragbare Tertiärkonsumenten pro Hektar</>}
+  description={
+    <>
+      Bei <InlineMath math="300\text{ kJ m}^{-2}" /> auf der Sekundärstufe
+      folgt die Anzahl <InlineMath math="N(r) = 25r" /> und erreicht{" "}
+      <InlineMath math="500" /> bei <InlineMath math="r = 20\%" />.
+    </>
+  }
+  footer={
+    <>
+      Bei <InlineMath math="20\%" /> Endwirkungsgrad trägt ein Hektar höchstens <InlineMath math="500" /> Tertiärkonsumenten.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 30 }, y: { min: 0, max: 800 } },
+    view: { kind: "fit", padding: 0.08 },
+    parameters: [
+      { name: "r", min: 5, max: 30, value: 20, step: 5, label: "r" },
+    ],
+    objects: [
+      { id: "consumer-line", kind: "function", appearance: "primary", formula: "25 * x", domain: { min: 0, max: 30 } },
+      { id: "guide-20", kind: "segment", appearance: "construction", from: { x: 20, y: 0 }, to: { x: 20, y: 500 } },
+      { id: "ten-pct", kind: "marker", appearance: "construction", x: "10", y: "250" },
+      { id: "twenty-pct", kind: "marker", appearance: "answer", x: "20", y: "500" },
+      { id: "probe", kind: "marker", appearance: "warning", x: "r", y: "25 * r" },
+    ],
+    readouts: [
+      { key: "final-efficiency", formula: "r" },
+      { key: "supported-count", formula: "25 * r" },
+    ],
+  }}
+  labels={{
+    r: <>Endwirkungsgrad <InlineMath math="r" /> (<InlineMath math="\%" />)</>,
+    "final-efficiency": <>Letzter Wirkungsgrad (<InlineMath math="\%" />)</>,
+    "supported-count": <>Tertiärkonsumenten pro Hektar</>,
+  }}
+/>
 
-- <InlineMath math="5" /> setzt <InlineMath math="100\text{ m}^2" /> für einen Hektar an, doch **ein Hektar sind <InlineMath math="10{.}000\text{ m}^2" />**.
-- <InlineMath math="2500" /> hört bei den Sekundärkonsumenten auf, <InlineMath math="300\text{ kJ m}^{-2}" />, ohne den letzten Wirkungsgrad von <InlineMath math="20\%" />.
-- <InlineMath math="250" /> setzt für den letzten Schritt <InlineMath math="10\%" /> an, sein Wirkungsgrad beträgt aber <InlineMath math="20\%" />.
+Die Stufenprobe stimmt: <InlineMath math="2000" /> für Primär-, <InlineMath math="300" /> für Sekundär- und <InlineMath math="60\text{ kJ m}^{-2}" /> für Tertiärkonsumenten ergeben genau <InlineMath math="500" /> Tiere pro Hektar.
+
+## Warum die anderen Optionen falsch sind
+
+- <InlineMath math="5" /> rechnet mit <InlineMath math="100\text{ m}^2" /> pro Hektar, obwohl **ein Hektar genau <InlineMath math="100 \times 100 = 10{.}000\text{ m}^2" /> entspricht**.
+- <InlineMath math="2500" /> stoppt bei der Energie der Sekundärkonsumenten (<InlineMath math="300\text{ kJ m}^{-2}" />) und lässt den letzten <InlineMath math="20\%" />-Schritt weg.
+- <InlineMath math="250" /> setzt im letzten Schritt fälschlich <InlineMath math="10\%" /> statt <InlineMath math="20\%" /> an.
+
+# Antwort
+
+Ein Hektar des Ökosystems kann höchstens <InlineMath math="500" /> Tertiärkonsumenten ernähren.

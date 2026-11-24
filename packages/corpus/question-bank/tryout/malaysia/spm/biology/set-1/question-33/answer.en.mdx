@@ -1,16 +1,78 @@
-# Oxygen used, then the dilution factor
+# Given
 
-BOD is the oxygen used by microorganisms over <InlineMath math="5" /> days in the dark, where no photosynthesis adds oxygen. **The sample was diluted twofold**, so the fall in oxygen must be multiplied by two.
+The river water is **diluted twofold** (dilution factor <InlineMath math="2" />). Its initial dissolved oxygen is <InlineMath math="9.0\text{ mg dm}^{-3}" />, and after <InlineMath math="5" /> days in the dark at <InlineMath math="20^\circ\text{C}" /> it drops to <InlineMath math="2.5\text{ mg dm}^{-3}" />.
+
+Water is clean below <InlineMath math="3" />, moderately polluted from <InlineMath math="3" /> to <InlineMath math="10" />, and **heavily polluted above <InlineMath math="10\text{ mg dm}^{-3}" />**.
+
+# Asked
+
+Find the biochemical oxygen demand (BOD) of the river water and classify its water quality.
+
+# Solution
+
+Imagine tasting sweet syrup after mixing it half-and-half with plain water. Whatever sweetness you measure in the diluted glass, the original syrup was twice as strong, so you multiply the measured drop by two.
+
+> Biochemical oxygen demand measures the oxygen consumed in the dark multiplied by the dilution factor of the sample.
+
+First subtract the final oxygen reading from the initial reading to get the **oxygen consumed in the diluted bottle**, then multiply by <InlineMath math="2" />.
 
 <BlockMath math="\begin{aligned}
-\text{oxygen used}&=9.0-2.5=6.5\text{ mg dm}^{-3}\\
-\text{BOD}&=6.5\times2=13\text{ mg dm}^{-3}
+\Delta \mathrm{O}_2 &= 9.0 - 2.5 = 6.5\text{ mg dm}^{-3} \\
+\text{BOD} &= 6.5 \times 2 = 13.0\text{ mg dm}^{-3}
 \end{aligned}" />
 
-A value of <InlineMath math="13" /> is above <InlineMath math="10" />, so the river water is heavily polluted.
+Slide the dilution factor below to see why omitting dilution misclassifies the river as only moderately polluted instead of heavily polluted.
 
-# Why the other options are wrong
+<MathVisual
+  title={<>BOD Scaling With Dilution Factor</>}
+  description={
+    <>
+      With an oxygen drop of <InlineMath math="6.5\text{ mg dm}^{-3}" />,{" "}
+      <InlineMath math="\text{BOD}(d) = 6.5d" /> crosses the heavy-pollution
+      line (<InlineMath math="10" />) to reach{" "}
+      <InlineMath math="13\text{ mg dm}^{-3}" /> at <InlineMath math="d = 2" />.
+    </>
+  }
+  footer={
+    <>
+      Doubling <InlineMath math="6.5" /> gives <InlineMath math="13\text{ mg dm}^{-3}" />, above the <InlineMath math="10" /> heavy-pollution threshold.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 4 }, y: { min: 0, max: 28 } },
+    view: { kind: "fit", padding: 0.08 },
+    parameters: [
+      { name: "d", min: 1, max: 4, value: 2, step: 0.5, label: "d" },
+    ],
+    objects: [
+      { id: "clean-line", kind: "segment", appearance: "construction", from: { x: 0, y: 3 }, to: { x: 4, y: 3 } },
+      { id: "heavy-line", kind: "segment", appearance: "warning", from: { x: 0, y: 10 }, to: { x: 4, y: 10 } },
+      { id: "bod-line", kind: "function", appearance: "primary", formula: "6.5 * x", domain: { min: 0, max: 4 } },
+      { id: "undiluted", kind: "marker", appearance: "construction", x: "1", y: "6.5" },
+      { id: "answer-pt", kind: "marker", appearance: "answer", x: "2", y: "13" },
+      { id: "probe", kind: "marker", appearance: "warning", x: "d", y: "6.5 * d" },
+    ],
+    readouts: [
+      { key: "dilution-factor", formula: "d" },
+      { key: "bod-value", formula: "6.5 * d" },
+    ],
+  }}
+  labels={{
+    d: <>Dilution factor <InlineMath math="d" /></>,
+    "dilution-factor": <>Dilution factor</>,
+    "bod-value": <>BOD (<InlineMath math="\text{mg dm}^{-3}" />)</>,
+  }}
+/>
 
-- <InlineMath math="6.5\text{ mg dm}^{-3}" /> forgets the dilution factor, but **the original sample is twice as concentrated**.
-- <InlineMath math="5.0\text{ mg dm}^{-3}" /> doubles the oxygen left, but BOD is the oxygen used up.
-- <InlineMath math="23\text{ mg dm}^{-3}" /> adds the two readings, but what is needed is their difference.
+Because **<InlineMath math="13\text{ mg dm}^{-3}" /> exceeds <InlineMath math="10\text{ mg dm}^{-3}" />**, the river water falls firmly into the heavily polluted class.
+
+## Why the other options are wrong
+
+- <InlineMath math="6.5\text{ mg dm}^{-3}" /> omits the twofold dilution factor, **ignoring that the undiluted river sample is twice as concentrated**.
+- <InlineMath math="5.0\text{ mg dm}^{-3}" /> doubles the remaining oxygen (<InlineMath math="2.5" />) instead of the oxygen consumed.
+- <InlineMath math="23\text{ mg dm}^{-3}" /> adds the two readings (<InlineMath math="9.0 + 2.5 = 11.5" />) before doubling instead of taking their difference.
+
+# Answer
+
+The BOD of the river sample is <InlineMath math="13\text{ mg dm}^{-3}" />, and the river water is heavily polluted.

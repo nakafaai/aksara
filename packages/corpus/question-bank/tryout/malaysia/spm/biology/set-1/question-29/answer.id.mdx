@@ -1,17 +1,69 @@
-# Hitung stomata efektif di kedua permukaan
+# Diketahui
 
-Daun S kehilangan air lewat kedua permukaannya. Stomata R terbenam, jadi **setiap stomata R hanya bernilai setengah stomata biasa**.
+Per <InlineMath math="\text{mm}^2" />, tumbuhan Q memiliki <InlineMath math="220" /> stomata atas dan <InlineMath math="0" /> stomata bawah dengan **kutikula tipis berlilin**. Tumbuhan R memiliki <InlineMath math="0" /> stomata atas dan <InlineMath math="90" /> stomata bawah terbenam dengan **kutikula sangat tebal**.
+
+Tumbuhan S memiliki <InlineMath math="40" /> stomata atas dan <InlineMath math="180" /> stomata bawah biasa dengan kutikula tipis. Setiap stomata terbenam kehilangan air setengah dari stomata biasa.
+
+# Ditanyakan
+
+Tentukan berapa kali lebih banyak air per <InlineMath math="\text{mm}^2" /> yang hilang dari daun S dibanding daun R, serta tumbuhan mana yang tergolong xerofit.
+
+# Penyelesaian
+
+Bayangkan air keluar dari daun seperti udara bocor lewat lubang jarum di balon. Lubang yang tersembunyi jauh di dalam lekukan terlindung hanya membocorkan air setengah secepat lubang terbuka di permukaan.
+
+> Perbandingan penguapan memakai jumlah stomata efektif pada kedua permukaan daun, dengan setiap stomata terbenam bernilai setengah stomata biasa.
+
+Jumlahkan stomata atas dan bawah milik daun S, lalu kalikan stomata terbenam daun R dengan setengah untuk memperoleh **jumlah stomata efektif**.
 
 <BlockMath math="\begin{aligned}
-S&:\ 40+180=220\\
-R&:\ 90\times\tfrac12=45\\
-\frac{220}{45}&\approx4{,}9
+S &= 40 + 180 = 220\text{ stomata efektif mm}^{-2} \\
+R &= 90 \times \frac{1}{2} = 45\text{ stomata efektif mm}^{-2} \\
+\frac{S}{R} &= \frac{220}{45} = \frac{44}{9} \approx 4{,}9
 \end{aligned}" />
 
-R kehilangan air paling sedikit, dengan stomata terbenam yang sedikit dan kutikula sangat tebal, jadi R adalah xerofit. Jadi, S kehilangan sekitar <InlineMath math="4{,}9" /> kali lebih banyak air dan xerofitnya R.
+Bandingkan ketiga batang kehilangan air efektif pada <InlineMath math="x = 1" /> (Q), <InlineMath math="x = 2" /> (R), dan <InlineMath math="x = 3" /> (S) di bawah. Bagian abu-abu di atas R menunjukkan separuh kehilangan yang dihemat lekukan terbenam.
 
-# Mengapa pilihan lain salah
+<MathVisual
+  title={<>Jumlah Stomata Efektif per Milimeter Persegi</>}
+  description={
+    <>
+      Tumbuhan Q (<InlineMath math="x = 1" />) dan S (<InlineMath math="x = 3" />) mencapai{" "}
+      <InlineMath math="220" /> stomata efektif per <InlineMath math="\text{mm}^2" />,
+      sedangkan lekukan terbenam menekan R (<InlineMath math="x = 2" />) dari{" "}
+      <InlineMath math="90" /> ke <InlineMath math="45" />.
+    </>
+  }
+  footer={
+    <>
+      Daun S (<InlineMath math="220" />) kehilangan hampir lima kali air dibanding R (<InlineMath math="45" />).
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 4 }, y: { min: 0, max: 260 } },
+    view: { kind: "fit", padding: 0.08 },
+    objects: [
+      { id: "bar-q", kind: "segment", appearance: "construction", from: { x: 1, y: 0 }, to: { x: 1, y: 220 } },
+      { id: "bar-r-saved", kind: "segment", appearance: "construction", from: { x: 2, y: 45 }, to: { x: 2, y: 90 } },
+      { id: "bar-r", kind: "segment", appearance: "answer", from: { x: 2, y: 0 }, to: { x: 2, y: 45 } },
+      { id: "bar-s", kind: "segment", appearance: "primary", from: { x: 3, y: 0 }, to: { x: 3, y: 220 } },
+      { id: "pt-q", kind: "marker", appearance: "construction", x: "1", y: "220" },
+      { id: "pt-r", kind: "marker", appearance: "answer", x: "2", y: "45" },
+      { id: "pt-s", kind: "marker", appearance: "primary", x: "3", y: "220" },
+    ],
+  }}
+  labels={{}}
+/>
 
-- <InlineMath math="2{,}4" /> kali mengabaikan stomata terbenam, padahal **stomata R hanya kehilangan setengah air**.
-- S sebagai xerofit keliru, karena S justru paling boros air dengan kutikula tipis dan banyak stomata.
-- <InlineMath math="2{,}0" /> kali hanya membandingkan permukaan bawah dan mengabaikan <InlineMath math="40" /> stomata di permukaan atas S.
+Karena **tumbuhan R memadukan stomata bawah terbenam dengan kutikula sangat tebal**, tumbuhan R paling hemat air di habitat kering dan berperan sebagai xerofit.
+
+## Mengapa pilihan lain salah
+
+- <InlineMath math="2{,}4" /> kali membagi <InlineMath math="220" /> dengan <InlineMath math="90" />, **mengabaikan aturan setengah kehilangan** untuk stomata terbenam.
+- Memilih S sebagai xerofit terbalik dengan adaptasi kering, sebab S berkutikula tipis dan paling boros air.
+- <InlineMath math="2{,}0" /> kali hanya membandingkan <InlineMath math="180" /> dengan <InlineMath math="90" />, melewatkan <InlineMath math="40" /> stomata atas S dan faktor terbenam R.
+
+# Jawaban
+
+Daun S kehilangan air sekitar <InlineMath math="4{,}9" /> kali lebih banyak per <InlineMath math="\text{mm}^2" /> daripada daun R, dan tumbuhan R adalah xerofit.

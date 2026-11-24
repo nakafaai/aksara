@@ -1,16 +1,78 @@
-# Verbrauchter Sauerstoff, dann der Verdünnungsfaktor
+# Gegeben
 
-Der BSB ist der Sauerstoff, den Mikroorganismen in <InlineMath math="5" /> Tagen im Dunkeln verbrauchen, wo keine Fotosynthese Sauerstoff nachliefert. **Die Probe wurde auf das Doppelte verdünnt**, die Abnahme muss also mit zwei multipliziert werden.
+Die Flusswasserprobe wird **zweifach verdünnt** (Verdünnungsfaktor <InlineMath math="2" />). Der anfängliche Sauerstoffgehalt beträgt <InlineMath math="9{,}0\text{ mg dm}^{-3}" /> und sinkt nach <InlineMath math="5" /> Tagen im Dunkeln bei <InlineMath math="20^\circ\text{C}" /> auf <InlineMath math="2{,}5\text{ mg dm}^{-3}" />.
+
+Wasser gilt unter <InlineMath math="3" /> als sauber, zwischen <InlineMath math="3" /> und <InlineMath math="10" /> als mäßig belastet und **über <InlineMath math="10\text{ mg dm}^{-3}" /> als stark verschmutzt**.
+
+# Gesucht
+
+Bestimme den biochemischen Sauerstoffbedarf (BSB bzw. BOD) der Flussprobe sowie die zugehörige Wasserqualität.
+
+# Lösung
+
+Stell dir vor, du probierst süßen Sirup, nachdem du ihn eins zu eins mit klarem Wasser verdünnt hast. Wie stark der verdünnte Sirup auch schmeckt, der ursprüngliche Sirup war doppelt so konzentriert, weshalb der gemessene Abfall verdoppelt wird.
+
+> Der biochemische Sauerstoffbedarf entspricht dem Sauerstoffverbrauch im Dunkeln multipliziert mit dem Verdünnungsfaktor der Probe.
+
+Ziehe zuerst den Endwert vom Anfangswert ab, um den **Sauerstoffverbrauch in der verdünnten Flasche** zu berechnen, und multipliziere dann mit <InlineMath math="2" />.
 
 <BlockMath math="\begin{aligned}
-\text{verbrauchter Sauerstoff}&=9{,}0-2{,}5=6{,}5\text{ mg dm}^{-3}\\
-\text{BSB}&=6{,}5\times2=13\text{ mg dm}^{-3}
+\Delta \mathrm{O}_2 &= 9{,}0 - 2{,}5 = 6{,}5\text{ mg dm}^{-3} \\
+\text{BOD} &= 6{,}5 \times 2 = 13{,}0\text{ mg dm}^{-3}
 \end{aligned}" />
 
-Der Wert <InlineMath math="13" /> liegt über <InlineMath math="10" />, das Flusswasser ist also stark verschmutzt.
+Verschiebe den Verdünnungsfaktor unten, um zu erkennen, warum das Weglassen der Verdünnung den Fluss fälschlich als nur mäßig belastet einstuft.
 
-# Warum die anderen Antworten falsch sind
+<MathVisual
+  title={<>BOD in Abhängigkeit vom Verdünnungsfaktor</>}
+  description={
+    <>
+      Bei einem Sauerstoffabfall von <InlineMath math="6{,}5\text{ mg dm}^{-3}" />{" "}
+      überschreitet <InlineMath math="\text{BOD}(d) = 6{,}5d" /> die Grenze{" "}
+      <InlineMath math="10" /> und erreicht{" "}
+      <InlineMath math="13\text{ mg dm}^{-3}" /> bei <InlineMath math="d = 2" />.
+    </>
+  }
+  footer={
+    <>
+      <InlineMath math="6{,}5 \times 2 = 13\text{ mg dm}^{-3}" /> liegt deutlich über der Schwelle <InlineMath math="10" />.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 4 }, y: { min: 0, max: 28 } },
+    view: { kind: "fit", padding: 0.08 },
+    parameters: [
+      { name: "d", min: 1, max: 4, value: 2, step: 0.5, label: "d" },
+    ],
+    objects: [
+      { id: "clean-line", kind: "segment", appearance: "construction", from: { x: 0, y: 3 }, to: { x: 4, y: 3 } },
+      { id: "heavy-line", kind: "segment", appearance: "warning", from: { x: 0, y: 10 }, to: { x: 4, y: 10 } },
+      { id: "bod-line", kind: "function", appearance: "primary", formula: "6.5 * x", domain: { min: 0, max: 4 } },
+      { id: "undiluted", kind: "marker", appearance: "construction", x: "1", y: "6.5" },
+      { id: "answer-pt", kind: "marker", appearance: "answer", x: "2", y: "13" },
+      { id: "probe", kind: "marker", appearance: "warning", x: "d", y: "6.5 * d" },
+    ],
+    readouts: [
+      { key: "dilution-factor", formula: "d" },
+      { key: "bod-value", formula: "6.5 * d" },
+    ],
+  }}
+  labels={{
+    d: <>Verdünnungsfaktor <InlineMath math="d" /></>,
+    "dilution-factor": <>Verdünnungsfaktor</>,
+    "bod-value": <>BOD (<InlineMath math="\text{mg dm}^{-3}" />)</>,
+  }}
+/>
 
-- <InlineMath math="6{,}5\text{ mg dm}^{-3}" /> vergisst den Verdünnungsfaktor, doch **die ursprüngliche Probe ist doppelt so konzentriert**.
-- <InlineMath math="5{,}0\text{ mg dm}^{-3}" /> verdoppelt den verbliebenen Sauerstoff, der BSB ist aber der verbrauchte Sauerstoff.
-- <InlineMath math="23\text{ mg dm}^{-3}" /> addiert beide Messwerte, gebraucht wird aber ihre Differenz.
+Weil **<InlineMath math="13\text{ mg dm}^{-3}" /> oberhalb von <InlineMath math="10\text{ mg dm}^{-3}" /> liegt**, ist das Flusswasser stark verschmutzt.
+
+## Warum die anderen Optionen falsch sind
+
+- <InlineMath math="6{,}5\text{ mg dm}^{-3}" /> vergisst den Verdünnungsfaktor und **ignoriert, dass das unverdünnte Flusswasser doppelt so konzentriert ist**.
+- <InlineMath math="5{,}0\text{ mg dm}^{-3}" /> verdoppelt den Restsauerstoff (<InlineMath math="2{,}5" />) statt des verbrauchten Sauerstoffs.
+- <InlineMath math="23\text{ mg dm}^{-3}" /> addiert beide Messwerte (<InlineMath math="9{,}0 + 2{,}5 = 11{,}5" />) vor dem Verdoppeln statt ihre Differenz zu bilden.
+
+# Antwort
+
+Der BOD der Flussprobe beträgt <InlineMath math="13\text{ mg dm}^{-3}" />, und das Wasser ist stark verschmutzt.

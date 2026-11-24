@@ -1,17 +1,78 @@
-# Correct the number still marked
+# Given
 
-The capture-recapture formula assumes every marked snail can still be recognised. Because <InlineMath math="20\%" /> of the marks are lost, **only <InlineMath math="80\%" /> of the <InlineMath math="60" /> snails are still marked** in the population.
+The marsh covers <InlineMath math="2.5" /> hectares. Initially, <InlineMath math="60" /> snails are marked and released, then **<InlineMath math="20\%" /> of the marks are lost** before recapture.
+
+In the second sample, <InlineMath math="50" /> snails are caught and <InlineMath math="10" /> of them still carry marks.
+
+# Asked
+
+Find the estimated population density of the snails per hectare.
+
+# Solution
+
+Imagine painting bright stars on <InlineMath math="60" /> snails before letting them crawl back into the marsh. If rain washes off <InlineMath math="20\%" /> of the stars, only <InlineMath math="48" /> snails can still be recognized as marked when you look again.
+
+> Capture-recapture only works with marks that actually remain visible, so lost marks must be removed before estimating population size.
+
+First find the **recognizably marked snails**, then compute total population <InlineMath math="N" /> and divide by the marsh area to get density.
 
 <BlockMath math="\begin{aligned}
-\text{marked}&=0.80\times60=48\\
-N&=\frac{48\times50}{10}=240\\
-\text{density}&=\frac{240}{2.5}=96\text{ per hectare}
+M_{\text{eff}} &= 0.80 \times 60 = 48 \\
+N &= \frac{48 \times 50}{10} = 240\text{ snails} \\
+\text{density} &= \frac{240}{2.5} = 96\text{ snails ha}^{-1}
 \end{aligned}" />
 
-So the density is about <InlineMath math="96" /> snails per hectare.
+Slide the percentage of lost marks below to see how uncorrected mark loss inflates the estimated density.
 
-# Why the other options are wrong
+<MathVisual
+  title={<>Estimated Snail Density Against Mark Loss</>}
+  description={
+    <>
+      Corrected density follows <InlineMath math="D(p) = 120(1 - p/100)" /> per
+      hectare, falling from <InlineMath math="120" /> at{" "}
+      <InlineMath math="0\%" /> loss to <InlineMath math="96" /> at{" "}
+      <InlineMath math="20\%" /> loss.
+    </>
+  }
+  footer={
+    <>
+      At <InlineMath math="20\%" /> mark loss, true density drops from <InlineMath math="120" /> to <InlineMath math="96" /> per hectare.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 40 }, y: { min: 0, max: 140 } },
+    view: { kind: "fit", padding: 0.08 },
+    parameters: [
+      { name: "p", min: 0, max: 40, value: 20, step: 5, label: "p" },
+    ],
+    objects: [
+      { id: "density-line", kind: "function", appearance: "primary", formula: "120 * (1 - x / 100)", domain: { min: 0, max: 40 } },
+      { id: "guide-20", kind: "segment", appearance: "construction", from: { x: 20, y: 0 }, to: { x: 20, y: 96 } },
+      { id: "uncorrected", kind: "marker", appearance: "construction", x: "0", y: "120" },
+      { id: "corrected", kind: "marker", appearance: "answer", x: "20", y: "96" },
+      { id: "probe", kind: "marker", appearance: "warning", x: "p", y: "120 * (1 - p / 100)" },
+    ],
+    readouts: [
+      { key: "mark-loss", formula: "p" },
+      { key: "snail-density", formula: "120 * (1 - p / 100)" },
+    ],
+  }}
+  labels={{
+    p: <>Mark loss <InlineMath math="p" /> (<InlineMath math="\%" />)</>,
+    "mark-loss": <>Lost marks (<InlineMath math="\%" />)</>,
+    "snail-density": <>Estimated density (per ha)</>,
+  }}
+/>
 
-- <InlineMath math="120" /> uses <InlineMath math="60" /> marked snails, but **<InlineMath math="12" /> of them can no longer be recognised**.
-- <InlineMath math="600" /> multiplies the population by the area, but density is population divided by area.
-- <InlineMath math="24" /> divides the number of snails marked by the area, but that is not a population estimate.
+Notice the quick check: <InlineMath math="10" /> out of <InlineMath math="50" /> recaptured snails is <InlineMath math="\frac{1}{5}" />, so the whole marsh holds <InlineMath math="5 \times 48 = 240" /> snails, giving <InlineMath math="96" /> per hectare.
+
+## Why the other options are wrong
+
+- <InlineMath math="120" /> keeps all <InlineMath math="60" /> initial marks, **forgetting that <InlineMath math="12" /> snails lost their marks** and look unmarked in the second capture.
+- <InlineMath math="600" /> multiplies <InlineMath math="240" /> by <InlineMath math="2.5" /> instead of dividing population by area.
+- <InlineMath math="24" /> divides the <InlineMath math="60" /> initially marked snails by <InlineMath math="2.5" />, skipping the population estimate completely.
+
+# Answer
+
+The estimated population density of the snails is <InlineMath math="96" /> per hectare.

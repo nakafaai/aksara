@@ -1,17 +1,69 @@
-# Count the effective stomata on both surfaces
+# Given
 
-Leaf S loses water through both of its surfaces. The stomata of R are sunken, so **each stoma of R counts as half an ordinary stoma**.
+Per <InlineMath math="\text{mm}^2" />, plant Q has <InlineMath math="220" /> upper and <InlineMath math="0" /> lower stomata with a **thin waxy cuticle**. Plant R has <InlineMath math="0" /> upper and <InlineMath math="90" /> sunken lower stomata with a **very thick cuticle**.
+
+Plant S has <InlineMath math="40" /> upper and <InlineMath math="180" /> lower ordinary stomata with a thin cuticle. Every sunken stoma loses half as much water as an ordinary open stoma.
+
+# Asked
+
+Find how many times more water per <InlineMath math="\text{mm}^2" /> leaf S loses than leaf R, and identify which plant is the xerophyte.
+
+# Solution
+
+Think of water escaping a leaf like air leaking from tiny pinholes in a balloon. A pinhole tucked deep inside a sheltered pit leaks only half as fast as an exposed pinhole on the surface.
+
+> Total transpiration compares effective open stomata across both leaf surfaces, where each sunken stoma counts as half an ordinary stoma.
+
+Add the upper and lower stomata for leaf S, then halve leaf R's sunken stomata to find each leaf's **effective stomatal count**.
 
 <BlockMath math="\begin{aligned}
-S&:\ 40+180=220\\
-R&:\ 90\times\tfrac12=45\\
-\frac{220}{45}&\approx4.9
+S &= 40 + 180 = 220\text{ effective stomata mm}^{-2} \\
+R &= 90 \times \frac{1}{2} = 45\text{ effective stomata mm}^{-2} \\
+\frac{S}{R} &= \frac{220}{45} = \frac{44}{9} \approx 4.9
 \end{aligned}" />
 
-R loses the least water, with few sunken stomata and a very thick cuticle, so R is the xerophyte. So S loses about <InlineMath math="4.9" /> times as much water and the xerophyte is R.
+Compare the three effective water-loss bars at <InlineMath math="x = 1" /> (Q), <InlineMath math="x = 2" /> (R), and <InlineMath math="x = 3" /> (S) below. The grey top extension on R marks the half-loss saved by its sunken pits.
 
-# Why the other options are wrong
+<MathVisual
+  title={<>Effective Open Stomata per Square Millimetre</>}
+  description={
+    <>
+      Plants Q (<InlineMath math="x = 1" />) and S (<InlineMath math="x = 3" />) reach{" "}
+      <InlineMath math="220" /> effective stomata per <InlineMath math="\text{mm}^2" />,
+      while sunken pits cut plant R (<InlineMath math="x = 2" />) from{" "}
+      <InlineMath math="90" /> to <InlineMath math="45" />.
+    </>
+  }
+  footer={
+    <>
+      Leaf S (<InlineMath math="220" />) loses nearly five times as much water as R (<InlineMath math="45" />).
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 4 }, y: { min: 0, max: 260 } },
+    view: { kind: "fit", padding: 0.08 },
+    objects: [
+      { id: "bar-q", kind: "segment", appearance: "construction", from: { x: 1, y: 0 }, to: { x: 1, y: 220 } },
+      { id: "bar-r-saved", kind: "segment", appearance: "construction", from: { x: 2, y: 45 }, to: { x: 2, y: 90 } },
+      { id: "bar-r", kind: "segment", appearance: "answer", from: { x: 2, y: 0 }, to: { x: 2, y: 45 } },
+      { id: "bar-s", kind: "segment", appearance: "primary", from: { x: 3, y: 0 }, to: { x: 3, y: 220 } },
+      { id: "pt-q", kind: "marker", appearance: "construction", x: "1", y: "220" },
+      { id: "pt-r", kind: "marker", appearance: "answer", x: "2", y: "45" },
+      { id: "pt-s", kind: "marker", appearance: "primary", x: "3", y: "220" },
+    ],
+  }}
+  labels={{}}
+/>
 
-- <InlineMath math="2.4" /> times ignores the sunken stomata, but **each stoma of R loses only half as much water**.
-- S as the xerophyte is wrong, because S wastes the most water, with a thin cuticle and many stomata.
-- <InlineMath math="2.0" /> times compares only the lower surfaces and leaves out the <InlineMath math="40" /> stomata on the upper surface of S.
+Because **plant R combines sunken lower stomata with a very thick cuticle**, it conserves water best in dry habitats, making R the xerophyte.
+
+## Why the other options are wrong
+
+- <InlineMath math="2.4" /> times divides <InlineMath math="220" /> by <InlineMath math="90" />, **ignoring the half-loss rule** for sunken stomata.
+- Selecting S as the xerophyte reverses the adaptation, because S has a thin cuticle and the highest water loss.
+- <InlineMath math="2.0" /> times compares only <InlineMath math="180" /> against <InlineMath math="90" />, leaving out S's <InlineMath math="40" /> upper stomata and R's sunken factor.
+
+# Answer
+
+Leaf S loses about <InlineMath math="4.9" /> times more water per <InlineMath math="\text{mm}^2" /> than leaf R, and plant R is the xerophyte.

@@ -1,17 +1,69 @@
-# Die wirksamen Spaltöffnungen beider Seiten zählen
+# Gegeben
 
-Blatt S verliert Wasser über beide Seiten. Die Spaltöffnungen von R sind eingesenkt, also **zählt jede Spaltöffnung von R nur halb so viel wie eine gewöhnliche**.
+Pro <InlineMath math="\text{mm}^2" /> besitzt Pflanze Q <InlineMath math="220" /> obere und <InlineMath math="0" /> untere Spaltöffnungen mit **dünner wachsartiger Kutikula**. Pflanze R besitzt <InlineMath math="0" /> obere und <InlineMath math="90" /> eingesenkte untere Spaltöffnungen mit **sehr dicker Kutikula**.
+
+Pflanze S hat <InlineMath math="40" /> obere und <InlineMath math="180" /> untere gewöhnliche Spaltöffnungen mit dünner Kutikula. Jede eingesenkte Spaltöffnung verliert nur halb so viel Wasser wie eine gewöhnliche.
+
+# Gesucht
+
+Berechne, wie viel Mal mehr Wasser pro <InlineMath math="\text{mm}^2" /> Blatt S gegenüber Blatt R verliert, und bestimme den Xerophyten.
+
+# Lösung
+
+Stell dir Wasserverlust am Blatt wie Luft vor, die aus winzigen Nadellöchern eines Ballons entweicht. Ein Loch tief in einer windgeschützten Grube verliert nur halb so viel wie ein offenes Loch an der Oberfläche.
+
+> Der Wasserverlust hängt von den wirksamen Spaltöffnungen beider Blattseiten ab, wobei jede eingesenkte Spaltöffnung nur halb zählt.
+
+Addiere obere und untere Spaltöffnungen von Blatt S und halbiere die eingesenkten Spaltöffnungen von Blatt R, um die **wirksame Spaltöffnungszahl** zu bestimmen.
 
 <BlockMath math="\begin{aligned}
-S&:\ 40+180=220\\
-R&:\ 90\times\tfrac12=45\\
-\frac{220}{45}&\approx4{,}9
+S &= 40 + 180 = 220\text{ wirksame Spaltöffnungen mm}^{-2} \\
+R &= 90 \times \frac{1}{2} = 45\text{ wirksame Spaltöffnungen mm}^{-2} \\
+\frac{S}{R} &= \frac{220}{45} = \frac{44}{9} \approx 4{,}9
 \end{aligned}" />
 
-R verliert am wenigsten Wasser, mit wenigen eingesenkten Spaltöffnungen und einer sehr dicken Kutikula, R ist also der Xerophyt. S verliert also etwa <InlineMath math="4{,}9" />-mal so viel Wasser, und der Xerophyt ist R.
+Vergleiche die drei wirksamen Balken bei <InlineMath math="x = 1" /> (Q), <InlineMath math="x = 2" /> (R) und <InlineMath math="x = 3" /> (S) unten. Der graue Abschnitt über R zeigt die eingesparte Hälfte.
 
-# Warum die anderen Antworten falsch sind
+<MathVisual
+  title={<>Wirksame Spaltöffnungen pro Quadratmillimeter</>}
+  description={
+    <>
+      Pflanze Q (<InlineMath math="x = 1" />) und S (<InlineMath math="x = 3" />) erreichen{" "}
+      <InlineMath math="220" /> wirksame Einheiten pro <InlineMath math="\text{mm}^2" />,
+      während Pflanze R (<InlineMath math="x = 2" />) von{" "}
+      <InlineMath math="90" /> auf <InlineMath math="45" /> sinkt.
+    </>
+  }
+  footer={
+    <>
+      Blatt S (<InlineMath math="220" />) verliert fast fünfmal so viel Wasser wie R (<InlineMath math="45" />).
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 4 }, y: { min: 0, max: 260 } },
+    view: { kind: "fit", padding: 0.08 },
+    objects: [
+      { id: "bar-q", kind: "segment", appearance: "construction", from: { x: 1, y: 0 }, to: { x: 1, y: 220 } },
+      { id: "bar-r-saved", kind: "segment", appearance: "construction", from: { x: 2, y: 45 }, to: { x: 2, y: 90 } },
+      { id: "bar-r", kind: "segment", appearance: "answer", from: { x: 2, y: 0 }, to: { x: 2, y: 45 } },
+      { id: "bar-s", kind: "segment", appearance: "primary", from: { x: 3, y: 0 }, to: { x: 3, y: 220 } },
+      { id: "pt-q", kind: "marker", appearance: "construction", x: "1", y: "220" },
+      { id: "pt-r", kind: "marker", appearance: "answer", x: "2", y: "45" },
+      { id: "pt-s", kind: "marker", appearance: "primary", x: "3", y: "220" },
+    ],
+  }}
+  labels={{}}
+/>
 
-- <InlineMath math="2{,}4" />-mal übersieht die eingesenkten Spaltöffnungen, doch **jede Spaltöffnung von R verliert nur halb so viel Wasser**.
-- S als Xerophyt ist falsch, denn S verschwendet mit dünner Kutikula und vielen Spaltöffnungen am meisten Wasser.
-- <InlineMath math="2{,}0" />-mal vergleicht nur die Unterseiten und lässt die <InlineMath math="40" /> Spaltöffnungen auf der Oberseite von S weg.
+Weil **Pflanze R eingesenkte untere Spaltöffnungen mit einer sehr dicken Kutikula vereint**, schützt sie sich optimal vor Austrocknung und ist der Xerophyt.
+
+## Warum die anderen Optionen falsch sind
+
+- <InlineMath math="2{,}4" /> teilt <InlineMath math="220" /> durch <InlineMath math="90" /> und **ignoriert den Faktor ein Halb** für eingesenkte Spaltöffnungen.
+- Pflanze S als Xerophyt zu wählen widerspricht der dünnen Kutikula und dem höchsten Wasserverlust.
+- <InlineMath math="2{,}0" /> vergleicht nur <InlineMath math="180" /> mit <InlineMath math="90" /> und lässt die <InlineMath math="40" /> oberen Spaltöffnungen von S sowie das Einsenken bei R aus.
+
+# Antwort
+
+Blatt S verliert etwa <InlineMath math="4{,}9" /> Mal mehr Wasser pro <InlineMath math="\text{mm}^2" /> als Blatt R, und Pflanze R ist der Xerophyt.

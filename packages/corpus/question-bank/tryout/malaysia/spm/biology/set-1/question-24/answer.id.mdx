@@ -1,17 +1,77 @@
-# Laju bersih sudah dikurangi respirasi
+# Diketahui
 
-Oksigen yang keluar dalam cahaya adalah hasil bersih, yaitu fotosintesis dikurangi respirasi. **Laju kotor adalah laju bersih ditambah respirasi**. Respirasi berjalan sepanjang <InlineMath math="24" /> jam.
+Di tempat terang, tanaman pot melepaskan oksigen dengan **laju bersih** sebesar <InlineMath math="8\text{ cm}^3" /> per jam. Di tempat gelap, tanaman menyerap oksigen untuk **respirasi** sebesar <InlineMath math="4\text{ cm}^3" /> per jam.
+
+Respirasi berlangsung dengan laju sama sepanjang <InlineMath math="24" /> jam penuh setiap hari.
+
+# Ditanyakan
+
+Tentukan lama cahaya terang minimum per hari agar massa kering tanaman tidak turun, serta laju fotosintesis kotornya.
+
+# Penyelesaian
+
+Bayangkan celengan yang mengeluarkan <InlineMath math="4" /> koin setiap jam, baik siang maupun malam. Saat terang masih tersisa <InlineMath math="8" /> koin bersih sesudah membayar biaya rutin itu, artinya pemasukan kotornya <InlineMath math="12" /> koin setiap jam terang.
+
+> Laju fotosintesis kotor adalah laju oksigen bersih ditambah respirasi, sebab daun tetap berespirasi sambil berfotosintesis di bawah cahaya.
+
+Langkah pertama, tambahkan kembali laju respirasi ke laju bersih untuk memperoleh **laju fotosintesis kotor**. Setelah itu, bandingkan hasil oksigen selama <InlineMath math="t" /> jam terang dengan kebutuhan respirasi selama <InlineMath math="24" /> jam.
 
 <BlockMath math="\begin{aligned}
-\text{laju kotor}&=8+4=12\text{ cm}^3\text{ per jam}\\
-12t&\ge4\times24=96\\
-t&\ge8\text{ jam}
+\text{laju kotor} &= 8 + 4 = 12\text{ cm}^3\text{ jam}^{-1} \\
+\text{respirasi harian} &= 4 \times 24 = 96\text{ cm}^3 \\
+12t &\ge 96 \\
+t &\ge 8\text{ jam}
 \end{aligned}" />
 
-Cara lain memberi hasil sama: keuntungan bersih <InlineMath math="8t" /> dalam cahaya harus menutup kehilangan <InlineMath math="4(24-t)" /> dalam gelap, sehingga <InlineMath math="t=8" />. Jadi, dibutuhkan minimal <InlineMath math="8" /> jam cahaya dan laju kotornya <InlineMath math="12\text{ cm}^3" /> per jam.
+Geser lama pencahayaan pada garis neraca oksigen di bawah untuk melihat titik saat saldo harian tepat nol.
 
-# Mengapa pilihan lain salah
+<MathVisual
+  title={<>Neraca Oksigen Harian terhadap Lama Cahaya</>}
+  description={
+    <>
+      Saldo oksigen harian mengikuti <InlineMath math="B(h) = 12h - 96" /> dalam{" "}
+      <InlineMath math="\text{cm}^3" /> dan memotong garis impas nol pada{" "}
+      <InlineMath math="h = 8" /> jam.
+    </>
+  }
+  footer={
+    <>
+      Di bawah <InlineMath math="8" /> jam cahaya, respirasi harian melampaui fotosintesis.
+    </>
+  }
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: 0, max: 24 }, y: { min: -100, max: 200 } },
+    view: { kind: "fit", padding: 0.08 },
+    parameters: [
+      { name: "h", min: 0, max: 24, value: 8, step: 1, label: "h" },
+    ],
+    objects: [
+      { id: "zero-line", kind: "segment", appearance: "construction", from: { x: 0, y: 0 }, to: { x: 24, y: 0 } },
+      { id: "balance-curve", kind: "function", appearance: "primary", formula: "12 * x - 96", domain: { min: 0, max: 24 } },
+      { id: "break-even", kind: "marker", appearance: "answer", x: "8", y: "0" },
+      { id: "probe", kind: "marker", appearance: "warning", x: "h", y: "12 * h - 96" },
+    ],
+    readouts: [
+      { key: "light-hours", formula: "h" },
+      { key: "daily-balance", formula: "12 * h - 96" },
+    ],
+  }}
+  labels={{
+    h: <>Lama cahaya <InlineMath math="h" /> (jam)</>,
+    "light-hours": <>Jam cahaya terang per hari</>,
+    "daily-balance": <>Saldo oksigen harian (<InlineMath math="\text{cm}^3" />)</>,
+  }}
+/>
 
-- <InlineMath math="12" /> jam memakai laju bersih <InlineMath math="8" /> sebagai laju kotor, padahal **respirasi selama terang sudah dikurangkan dari angka itu**.
-- <InlineMath math="24" /> jam mengurangi respirasi dua kali, sehingga laju kotor menjadi hanya <InlineMath math="4" />.
-- <InlineMath math="16" /> jam adalah lama gelapnya, bukan lama terang yang dibutuhkan.
+Sebagai uji balik, <InlineMath math="8" /> jam terang memberi untung bersih <InlineMath math="8 \times 8 = 64\text{ cm}^3" />, persis menutup susut gelap selama <InlineMath math="16" /> jam sebesar <InlineMath math="4 \times 16 = 64\text{ cm}^3" />.
+
+## Mengapa pilihan lain salah
+
+- <InlineMath math="12" /> jam dan <InlineMath math="8\text{ cm}^3" /> per jam memakai **laju bersih sebagai laju kotor**, padahal respirasi sebesar <InlineMath math="4\text{ cm}^3" /> per jam sudah menguranginya.
+- <InlineMath math="24" /> jam dan <InlineMath math="4\text{ cm}^3" /> per jam mengurangi respirasi dua kali, bukan menambahkannya kembali.
+- <InlineMath math="16" /> jam dan <InlineMath math="12\text{ cm}^3" /> per jam menyatakan lama gelapnya, yaitu <InlineMath math="24 - 8 = 16" /> jam, bukan lama terang.
+
+# Jawaban
+
+Tanaman membutuhkan minimal <InlineMath math="8" /> jam cahaya terang per hari, dengan laju fotosintesis kotor <InlineMath math="12\text{ cm}^3" /> per jam.

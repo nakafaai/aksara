@@ -1,17 +1,59 @@
-# Trace each animal's path
+# Given
 
-A dichotomous key uses only **the feature written at each step**. Trace all three animals, then find the first step at which their paths split.
+All three animals have a backbone, so every path starts at step <InlineMath math="1a" />. The **bat** has skin-covered wings, fur, and feeds its young on milk.
+
+The **turtle** has dry scaly skin, and the **frog** has moist skin without scales.
+
+# Asked
+
+Find the first step where the dichotomous key separates the turtle from the frog, and the first step where it separates the turtle from the bat.
+
+# Solution
+
+A dichotomous key works like a hallway with labeled doors that split into two choices every time. You never jump ahead using outside guesses like flying, only the exact feature written at each door.
+
+> Two organisms stay on the same branch until they reach the first paired statement where their stated traits differ.
+
+Trace all three animals step by step through the key to pinpoint each **branching split**.
 
 <BlockMath math="\begin{aligned}
-\text{bat}&:\ 1a\to2b\to3a\ (Q)\\
-\text{turtle}&:\ 1a\to2b\to3b\to4b\ (S)\\
-\text{frog}&:\ 1a\to2b\to3b\to4a\ (R)
+\text{bat} &: 1a \to 2b \to 3a\ (Q) \\
+\text{turtle} &: 1a \to 2b \to 3b \to 4b\ (S) \\
+\text{frog} &: 1a \to 2b \to 3b \to 4a\ (R)
 \end{aligned}" />
 
-The turtle and the frog both lack hair and do not feed young on milk, so they split only at step <InlineMath math="4" />. The turtle and the bat split at step <InlineMath math="3" />, because the bat has fur and feeds its young on milk. So the answer is step <InlineMath math="4" /> and step <InlineMath math="3" />.
+Follow the branching tree below to see where the bat leaves first and where the frog and turtle finally diverge.
 
-# Why the other options are wrong
+<Mermaid
+  title={<>Dichotomous Key Branching for Bat, Turtle, and Frog</>}
+  description={
+    <>
+      All three vertebrates share steps <InlineMath math="1a" /> and{" "}
+      <InlineMath math="2b" /> before splitting at step <InlineMath math="3" />{" "}
+      and step <InlineMath math="4" />.
+    </>
+  }
+  footer={
+    <>
+      Bat separates at step <InlineMath math="3" />, while turtle and frog separate at step <InlineMath math="4" />.
+    </>
+  }
+  chart={`flowchart TD
+    S1["1a Backbone: Bat, Turtle, Frog"] --> S2["2b No feathers: Bat, Turtle, Frog"]
+    S2 --> S3a["3a Fur and milk -> Q: Bat"]
+    S2 --> S3b["3b No fur or milk: Turtle, Frog"]
+    S3b --> S4a["4a Moist skin -> R: Frog"]
+    S3b --> S4b["4b Dry scaly skin -> S: Turtle"]`}
+/>
 
-- Step <InlineMath math="2" /> for the bat takes wings to mean feathers, but **a bat's wings are skin, with no feathers**, so the bat also goes on to step <InlineMath math="3" />.
-- Step <InlineMath math="3" /> for the frog is wrong, because the frog also has no hair and does not feed its young on milk, so it goes on to step <InlineMath math="4" />.
-- The choice of steps <InlineMath math="3" /> and <InlineMath math="2" /> makes both of those mistakes at once.
+Because **neither the turtle nor the frog has fur or produces milk**, they stay together through step <InlineMath math="3b" /> and split only at step <InlineMath math="4" />. Meanwhile, the bat takes <InlineMath math="3a" /> while the turtle takes <InlineMath math="3b" />, so they split at step <InlineMath math="3" />.
+
+## Why the other options are wrong
+
+- Step <InlineMath math="2" /> for the bat assumes wings mean feathers, yet **a bat's wings are covered in skin, not feathers**, so it passes <InlineMath math="2b" /> to step <InlineMath math="3" />.
+- Step <InlineMath math="3" /> for the turtle and frog forgets that both lack fur and milk, so both continue together to step <InlineMath math="4" />.
+- Pairing step <InlineMath math="3" /> and step <InlineMath math="2" /> commits both mistakes at once.
+
+# Answer
+
+The key first separates the turtle from the frog at step <InlineMath math="4" />, and first separates the turtle from the bat at step <InlineMath math="3" />.

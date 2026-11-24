@@ -1,17 +1,59 @@
-# Telusuri jalur tiap hewan
+# Diketahui
 
-Kunci dikotom hanya memakai **ciri yang tertulis di tiap langkah**. Telusuri ketiga hewan, lalu cari langkah pertama tempat jalurnya bercabang.
+Ketiga hewan bertulang belakang, sehingga semuanya mulai dari langkah <InlineMath math="1a" />. **Kelelawar** bersayap kulit, berambut, dan menyusui anaknya.
+
+**Penyu** berkulit kering bersisik, sedangkan **katak** berkulit lembap tanpa sisik.
+
+# Ditanyakan
+
+Tentukan langkah pertama kunci dikotom memisahkan penyu dari katak, serta langkah pertama memisahkan penyu dari kelelawar.
+
+# Penyelesaian
+
+Kunci dikotom bekerja seperti lorong berpintu dua yang selalu memberi tepat dua petunjuk. Kita tidak menebak dari kemampuan terbang, melainkan hanya mengikuti ciri tertulis di setiap pintu.
+
+> Dua organisme tetap berada pada cabang sama sampai bertemu pasangan pernyataan pertama yang membedakan ciri tertulis keduanya.
+
+Telusuri jalur ketiga hewan langkah demi langkah untuk menemukan **titik cabang pertama** bagi masing-masing pasangan.
 
 <BlockMath math="\begin{aligned}
-\text{kelelawar}&:\ 1a\to2b\to3a\ (Q)\\
-\text{penyu}&:\ 1a\to2b\to3b\to4b\ (S)\\
-\text{katak}&:\ 1a\to2b\to3b\to4a\ (R)
+\text{kelelawar} &: 1a \to 2b \to 3a\ (Q) \\
+\text{penyu} &: 1a \to 2b \to 3b \to 4b\ (S) \\
+\text{katak} &: 1a \to 2b \to 3b \to 4a\ (R)
 \end{aligned}" />
 
-Penyu dan katak sama-sama tidak berambut dan tidak menyusui, jadi keduanya baru berpisah di langkah <InlineMath math="4" />. Penyu dan kelelawar berpisah di langkah <InlineMath math="3" />, karena kelelawar berambut dan menyusui. Jadi, jawabannya langkah <InlineMath math="4" /> dan langkah <InlineMath math="3" />.
+Ikuti pohon percabangan di bawah untuk melihat kelelawar berpisah lebih dulu, lalu penyu dan katak berpisah di langkah berikutnya.
 
-# Mengapa pilihan lain salah
+<Mermaid
+  title={<>Percabangan Kunci Dikotom Kelelawar, Penyu, dan Katak</>}
+  description={
+    <>
+      Ketiga vertebrata melewati langkah <InlineMath math="1a" /> dan{" "}
+      <InlineMath math="2b" /> sebelum berpisah pada langkah{" "}
+      <InlineMath math="3" /> dan langkah <InlineMath math="4" />.
+    </>
+  }
+  footer={
+    <>
+      Kelelawar berpisah di langkah <InlineMath math="3" />, penyu dan katak di langkah <InlineMath math="4" />.
+    </>
+  }
+  chart={`flowchart TD
+    S1["1a Bertulang belakang: Kelelawar, Penyu, Katak"] --> S2["2b Tanpa bulu burung: Kelelawar, Penyu, Katak"]
+    S2 --> S3a["3a Berambut dan menyusui -> Q: Kelelawar"]
+    S2 --> S3b["3b Tanpa rambut dan susu: Penyu, Katak"]
+    S3b --> S4a["4a Kulit lembap -> R: Katak"]
+    S3b --> S4b["4b Kulit kering bersisik -> S: Penyu"]`}
+/>
 
-- Langkah <InlineMath math="2" /> untuk kelelawar mengira sayap berarti bulu, padahal **sayap kelelawar berkulit dan tidak berbulu**, jadi kelelawar ikut ke langkah <InlineMath math="3" />.
-- Langkah <InlineMath math="3" /> untuk katak keliru, karena katak juga tidak berambut dan tidak menyusui, sehingga ikut ke langkah <InlineMath math="4" />.
-- Pilihan langkah <InlineMath math="3" /> dan <InlineMath math="2" /> melakukan kedua kesalahan itu sekaligus.
+Karena **penyu dan katak sama-sama tidak berambut dan tidak menyusui**, keduanya kompak melewati <InlineMath math="3b" /> lalu baru berpisah di langkah <InlineMath math="4" />. Kelelawar memilih <InlineMath math="3a" /> saat penyu memilih <InlineMath math="3b" />, jadi keduanya berpisah di langkah <InlineMath math="3" />.
+
+## Mengapa pilihan lain salah
+
+- Langkah <InlineMath math="2" /> untuk kelelawar keliru mengira sayap berarti bulu unggas, padahal **sayap kelelawar berlapis kulit tanpa bulu**, sehingga tetap menuju langkah <InlineMath math="3" />.
+- Langkah <InlineMath math="3" /> untuk penyu dan katak lupa bahwa katak juga tidak berambut dan tidak menyusui, sehingga belum berpisah sampai langkah <InlineMath math="4" />.
+- Pasangan langkah <InlineMath math="3" /> dan langkah <InlineMath math="2" /> menggabungkan kedua kekeliruan sekaligus.
+
+# Jawaban
+
+Kunci dikotom pertama kali memisahkan penyu dari katak pada langkah <InlineMath math="4" />, dan memisahkan penyu dari kelelawar pada langkah <InlineMath math="3" />.
