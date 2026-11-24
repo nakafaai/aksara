@@ -1,7 +1,15 @@
 import { Schema } from "effect";
 import type { RichSlot } from "#contracts/visual/card";
-import { cardFields, TextSchema } from "#contracts/visual/card";
+import {
+  byIds,
+  byPickedIds,
+  cardFields,
+  namesEach,
+  TextSchema,
+} from "#contracts/visual/card";
 import { answerAt, figure } from "#contracts/visual/entry";
+
+const REFLEX_TYPES = ["withdrawal", "kneeJerk"] as const;
 
 /** A length or a diameter the lab divides by: a finite number above zero. */
 const PositiveSchema = Schema.Finite.check(Schema.isGreaterThan(0));
@@ -46,12 +54,68 @@ function neuronImpulseLab<E>(rich: RichSlot<E>) {
   });
 }
 
-/** The neuron labs. The read-out travel time is answer state. */
+/**
+ * Props of `ReflexArcLab`: a 3D spinal-cord transverse cross-section and limb
+ * reflex arc comparing three-neuron withdrawal and two-neuron knee-jerk
+ * pathways from receptor to effector. Pathway sequence and synapse count
+ * readouts are optional answer state.
+ */
+function reflexArcLab<E>(rich: RichSlot<E>) {
+  return figure(
+    Schema.Struct({
+      ...cardFields(rich),
+      labels: Schema.Struct({
+        parts: byIds(
+          [
+            "receptor",
+            "sensoryNeuron",
+            "dorsalRoot",
+            "relayNeuron",
+            "greyMatter",
+            "whiteMatter",
+            "ventralRoot",
+            "motorNeuron",
+            "effector",
+          ],
+          TextSchema
+        ),
+        pathway: Schema.optionalKey(rich),
+        reflex: TextSchema,
+        reflexes: byPickedIds(
+          REFLEX_TYPES,
+          Schema.Struct({
+            name: TextSchema,
+            response: rich,
+            stimulus: rich,
+          })
+        ),
+        step: TextSchema,
+        synapses: Schema.optionalKey(rich),
+        view: TextSchema,
+      }),
+      reflexes: Schema.NonEmptyArray(Schema.Literals(REFLEX_TYPES)).check(
+        Schema.isUnique()
+      ),
+    }).check(
+      Schema.makeFilter(
+        ({ labels, reflexes }) => namesEach(reflexes, labels.reflexes),
+        {
+          message:
+            "Expected a name, stimulus, and response for every reflex arc shown, and no other.",
+        }
+      )
+    ),
+    answerAt(["labels", "pathway"], ["labels", "synapses"])
+  );
+}
+
+/** The neuron and spinal reflex labs. */
 export function neuronVisuals<E>(rich: RichSlot<E>) {
   return {
     NeuronImpulseLab: figure(
       neuronImpulseLab(rich),
       answerAt(["labels", "time"])
     ),
+    ReflexArcLab: reflexArcLab(rich),
   };
 }

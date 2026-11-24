@@ -60,3 +60,60 @@ describe("neuron labs", () => {
     ).toEqual([]);
   });
 });
+
+describe("reflex arc lab", () => {
+  const { props } = assessmentVisuals.ReflexArcLab;
+  const lab = {
+    ...card,
+    labels: {
+      parts: {
+        dorsalRoot: "Dorsal root",
+        effector: "Effector muscle",
+        greyMatter: "Grey matter",
+        motorNeuron: "Motor neuron",
+        receptor: "Pain receptor",
+        relayNeuron: "Relay neuron",
+        sensoryNeuron: "Sensory neuron",
+        ventralRoot: "Ventral root",
+        whiteMatter: "White matter",
+      },
+      pathway: [text("Impulse sequence")],
+      reflex: "Reflex type",
+      reflexes: {
+        kneeJerk: {
+          name: "Knee-jerk reflex",
+          response: [text("Lower leg kicks forward")],
+          stimulus: [text("Tap on patellar tendon")],
+        },
+        withdrawal: {
+          name: "Withdrawal reflex",
+          response: [text("Hand pulls back rapidly")],
+          stimulus: [text("Finger touches hot pan")],
+        },
+      },
+      step: "Impulse step",
+      synapses: [text("Synapse count")],
+      view: "Spinal cord cross-section and reflex arc",
+    },
+    reflexes: ["withdrawal", "kneeJerk"],
+  };
+  const { pathway: _path, synapses: _syn, ...quiz } = lab.labels;
+
+  it("decodes reflex arc lab and tracks pathway and synapses as answer state", () => {
+    expect(decodeStrict(props, lab)).toEqual(lab);
+    expect(decodeStrict(props, { ...lab, labels: quiz })).toEqual({
+      ...lab,
+      labels: quiz,
+    });
+    expect(answerState("ReflexArcLab", lab)).toEqual([
+      "labels.pathway",
+      "labels.synapses",
+    ]);
+    expect(answerState("ReflexArcLab", { ...lab, labels: quiz })).toEqual([]);
+  });
+
+  it("refuses empty or mismatched reflex names", () => {
+    expect(failsStrict(props, { ...lab, reflexes: [] })).toBe(true);
+    expect(failsStrict(props, { ...lab, reflexes: ["withdrawal"] })).toBe(true);
+  });
+});

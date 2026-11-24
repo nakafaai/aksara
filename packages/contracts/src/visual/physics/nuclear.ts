@@ -1,7 +1,23 @@
 import { Schema } from "effect";
 import type { RichSlot } from "#contracts/visual/card";
-import { cardFields, TextSchema } from "#contracts/visual/card";
-import { figure } from "#contracts/visual/entry";
+import {
+  byIds,
+  byPickedIds,
+  cardFields,
+  namesEach,
+  TextSchema,
+} from "#contracts/visual/card";
+import { answerAt, figure } from "#contracts/visual/entry";
+
+const NUCLIDES = [
+  "deuterium",
+  "helium4",
+  "carbon12",
+  "iron56",
+  "uranium235",
+] as const;
+
+const NUCLEAR_PROCESSES = ["fusion", "fission"] as const;
 
 /** Props of `HalfLifeCounterLab`: a Geiger-Muller counter in front of a radioactive sample records its rate over time. */
 function halfLifeCounterLab<E>(rich: RichSlot<E>) {
@@ -68,13 +84,65 @@ function photoelectricLab<E>(rich: RichSlot<E>) {
 }
 
 /**
- * The props of the nuclear and quantum physics labs. Each prop is a value from the item the lab
- * draws, never the conclusion it leads to, so none holds answer state.
+ * Props of `NuclearBindingCurveLab`: a 3D nucleon cluster and binding-energy
+ * per nucleon curve contrasting light fusion, the iron-56 stability peak, and
+ * heavy fission. Binding energy per nucleon and mass defect readouts are
+ * optional answer state.
+ */
+function nuclearBindingCurveLab<E>(rich: RichSlot<E>) {
+  return figure(
+    Schema.Struct({
+      ...cardFields(rich),
+      labels: Schema.Struct({
+        bindingPerNucleon: Schema.optionalKey(rich),
+        massDefect: Schema.optionalKey(rich),
+        nuclide: TextSchema,
+        nuclides: byPickedIds(NUCLIDES, TextSchema),
+        parts: byIds(
+          ["proton", "neutron", "ironPeak", "fusionZone", "fissionZone"],
+          TextSchema
+        ),
+        process: TextSchema,
+        processes: byPickedIds(
+          NUCLEAR_PROCESSES,
+          Schema.Struct({
+            detail: rich,
+            name: TextSchema,
+          })
+        ),
+        stability: rich,
+        view: TextSchema,
+      }),
+      nuclides: Schema.NonEmptyArray(Schema.Literals(NUCLIDES)).check(
+        Schema.isUnique()
+      ),
+      processes: Schema.NonEmptyArray(Schema.Literals(NUCLEAR_PROCESSES)).check(
+        Schema.isUnique()
+      ),
+    }).check(
+      Schema.makeFilter(
+        ({ labels, nuclides, processes }) =>
+          namesEach(nuclides, labels.nuclides) &&
+          namesEach(processes, labels.processes),
+        {
+          message:
+            "Expected a name for every nuclide and nuclear process shown, and no other.",
+        }
+      )
+    ),
+    answerAt(["labels", "bindingPerNucleon"], ["labels", "massDefect"])
+  );
+}
+
+/**
+ * The props of the nuclear and quantum physics labs covering half-life,
+ * fission, binding-energy stability, and photoelectric emission.
  */
 export function nuclearVisuals<E>(rich: RichSlot<E>) {
   return {
-    HalfLifeCounterLab: halfLifeCounterLab(rich),
     FissionLab: fissionLab(rich),
+    HalfLifeCounterLab: halfLifeCounterLab(rich),
+    NuclearBindingCurveLab: nuclearBindingCurveLab(rich),
     PhotoelectricLab: photoelectricLab(rich),
   };
 }
