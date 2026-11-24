@@ -1,72 +1,36 @@
 export const metadata = {
-  title: "Momentum and Newton Laws Notes for Form Four",
+  title: "Newton Laws Momentum Impulse and Force",
   description:
-    "Form 4 Physics Chapter 2: explain inertia, use the conservation of momentum, F = ma, impulse and impulsive force, and weight, with worked examples.",
+    "Explain inertia, apply conservation of momentum to bullet impacts and rifle recoil, calculate string tension and apparent weight in lifts, and analyse impulsive force.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-11-17",
   subject: "Force and Motion I",
 };
 
-## Force Changes Motion
+## Inertia and Newton Laws
 
-**Momentum** is the product of mass and velocity, <InlineMath math="p = mv" />, in <InlineMath math="\text{kg m s}^{-1}" />. **Force** is the rate of change of momentum, so for a constant mass, <InlineMath math="F = ma" />. **Impulse** is the change in momentum that a force produces over a period of time:
+Picture a loaded truck beside an empty bicycle parked on flat ground: pushing the truck takes far more effort because its mass is huge. **Inertia** is a body's resistance to changing its motion, organised by **Newton's three laws** linking **momentum**, **force**, and **impulse**:
 
-<MathContainer>
-<BlockMath math="p = mv" />
-<BlockMath math="F = ma" />
-<BlockMath math="Ft = mv - mu" />
-</MathContainer>
+<BlockMath math="p = mv, \qquad F = ma, \qquad Ft = mv - mu" />
 
-Here <InlineMath math="u" /> is the initial velocity and <InlineMath math="v" /> is the final velocity. In the models here, you balance forces in a tug of war, crash two trolleys, push different masses with the same force, and stretch out the time of an impact.
+By **Newton's first law**, steady velocity needs zero resultant force because a net force appears only when velocity changes. Seat belts supply the stopping force when a passenger tends to keep moving forward, while **Newton's third law** pairs every action force with an equal and opposite reaction.
 
-Newton's three laws of motion organise these ideas. The first law describes a body with no resultant force. The second links force to acceleration. The third says every action force has a reaction force of equal size in the opposite direction.
+## Momentum Conservation
 
-## Inertia and the First Law of Motion
-
-**Inertia** is a body's tendency to resist any change in its state of motion. **Newton's first law of motion** says that a body stays at rest or keeps moving at constant velocity unless a resultant force acts on it. A body with **more mass has more inertia**, so it's harder to start or stop.
-
-In a tug of war, each team pulls with a force. If the two forces are equal, the resultant force is zero and the rope stays put. Add or remove pullers on one side and watch the ribbon move towards the resultant force.
-
-<TugOfWarForceLab
-  title={<>Balanced and Unbalanced Forces in a Tug of War</>}
-  description={
-    <>
-      Each puller pulls with <InlineMath math="300\text{ N}" />. Change the
-      number of pullers on each team and compare the resultant force.
-    </>
-  }
-  left={4}
-  right={4}
-  pull={300}
-  labels={{
-    left: <>Left team's force</>,
-    leftCount: <>Pullers on the left</>,
-    leftName: "Left team",
-    net: <>Resultant force</>,
-    right: <>Right team's force</>,
-    rightCount: <>Pullers on the right</>,
-    rightName: "Right team",
-    viewLabel: "A tug of war at sunset",
-  }}
-/>
-
-Inertia explains why seat belts matter. When a car stops suddenly, a passenger's body tends to keep moving forwards. The seat belt supplies the force that stops the body along with the car.
-
-## Momentum and Its Conservation
-
-The **principle of conservation of momentum** says that the total momentum before a collision or explosion equals the total momentum after it, as long as no external force acts:
+The **principle of conservation of momentum** states that total momentum before a collision or explosion equals total momentum afterwards whenever no net external force acts:
 
 <BlockMath math="m_1u_1 + m_2u_2 = m_1v_1 + m_2v_2" />
 
-In an **inelastic collision**, the two bodies stick together and move as one afterwards. The graph below shows trolley A, mass <InlineMath math="1\text{ kg}" />, moving at <InlineMath math="2\text{ m s}^{-1}" /> and hitting trolley B at rest. Change trolley B's mass and watch the common velocity change while the total momentum stays the same.
+Momentum is a **vector quantity**, so always choose one positive direction first. In a **completely inelastic collision**, the colliding bodies stick together and share one velocity.
 
 <MathVisual
   title={<>Velocities of Two Trolleys in an Inelastic Collision</>}
+  footer={<>A heavier second trolley lowers the shared speed while total momentum stays conserved.</>}
   description={
     <>
-      Velocity against time in seconds. The collision happens at{" "}
-      <InlineMath math="t = 2\text{ s}" />. Trolley B has{" "}
-      <InlineMath math="m" /> times the mass of trolley A.
+      Trolley A (<InlineMath math="1\text{ kg}" />,{" "}
+      <InlineMath math="2\text{ m s}^{-1}" />) hits stationary trolley B of mass{" "}
+      <InlineMath math="m" /> at <InlineMath math="t = 2\text{ s}" />.
     </>
   }
   scene={{
@@ -100,39 +64,83 @@ In an **inelastic collision**, the two bodies stick together and move as one aft
   }}
 />
 
-### Example Two Cars Colliding
+When a <InlineMath math="1200\text{ kg}" /> car at <InlineMath math="15\text{ m s}^{-1}" /> locks onto a stationary <InlineMath math="800\text{ kg}" /> car, both move off together at <InlineMath math="9.0\text{ m s}^{-1}" />.
 
-A <InlineMath math="1{,}200\text{ kg}" /> car moving at <InlineMath math="15\text{ m s}^{-1}" /> hits a stationary <InlineMath math="800\text{ kg}" /> car, and the two move off together. Find **the common velocity**.
+### Bullet and Block Impact
 
-<MathContainer>
-<BlockMath math="(1{,}200)(15) + (800)(0) = (1{,}200 + 800)v" />
-<BlockMath math="v = \frac{18{,}000}{2{,}000} = 9.0\text{ m s}^{-1}" />
-</MathContainer>
+When a bullet embeds in a wooden block, **momentum is conserved during impact** even though most kinetic energy turns into heat and sound, and floor friction then slows the sliding block to rest.
 
-Check: the momentum after is <InlineMath math="2{,}000 \times 9.0 = 18{,}000\text{ kg m s}^{-1}" />, the same as before.
+> Use momentum conservation to find the shared velocity right after impact, then apply floor friction to find deceleration and sliding distance.
 
-### Example Recoil of a Rifle
+<BulletBlockLab
+  title={<>A Bullet Embedding in a Wooden Block</>}
+  description={
+    <>
+      A <InlineMath math="20\text{ g}" /> bullet at{" "}
+      <InlineMath math="300\text{ m s}^{-1}" /> embeds in a stationary{" "}
+      <InlineMath math="1.98\text{ kg}" /> block sliding against{" "}
+      <InlineMath math="4.0\text{ N}" /> of friction.
+    </>
+  }
+  footer={<>Initial 6.0 kg m/s momentum yields 3.0 m/s shared speed and a 2.25 m slide.</>}
+  blockMass={1.98}
+  bulletMass={20}
+  friction={4}
+  labels={{
+    deceleration: <>Deceleration</>,
+    distance: <>Sliding distance</>,
+    lost: <>Energy lost in the collision</>,
+    velocity: <>Speed after the collision</>,
+    viewLabel: "A bullet striking a wooden block on a floor",
+  }}
+  speed={300}
+/>
 
-In an **explosion**, the total momentum before is zero. A <InlineMath math="4.0\text{ kg}" /> rifle fires a <InlineMath math="0.010\text{ kg}" /> bullet at <InlineMath math="400\text{ m s}^{-1}" />. Find the rifle's recoil velocity.
+Convert bullet mass to kilograms (<InlineMath math="0.020\text{ kg}" />) first: combined mass is <InlineMath math="2.0\text{ kg}" />, deceleration is <InlineMath math="2.0\text{ m s}^{-2}" />, and stopping distance is <InlineMath math="2.25\text{ m}" />.
 
-<MathContainer>
-<BlockMath math="0 = (0.010)(400) + (4.0)v" />
-<BlockMath math="v = -\frac{4.0}{4.0} = -1.0\text{ m s}^{-1}" />
-</MathContainer>
+### Rifle Recoil Impulse
 
-The negative sign means the rifle moves backwards. Check: <InlineMath math="4.0 + (-4.0) = 0" />, so the total momentum stays zero.
+In an **explosion** starting from rest, initial momentum is zero so **forward bullet momentum and backward rifle momentum match in size and oppose in direction**.
 
-## Force and the Second Law of Motion
+> Total momentum before firing is zero, so backward rifle momentum matches forward bullet momentum before the shoulder stops the recoil.
 
-**Newton's second law of motion** says that the rate of change of momentum is directly proportional to the resultant force. For a constant mass, it becomes <InlineMath math="F = ma" />. One newton is the force that gives a <InlineMath math="1\text{ kg}" /> mass an acceleration of <InlineMath math="1\text{ m s}^{-2}" />. Move the mass slider and watch the acceleration line get flatter.
+<RecoilLab
+  title={<>Rifle Recoil and Shoulder Stopping Force</>}
+  description={
+    <>
+      A <InlineMath math="4.0\text{ kg}" /> rifle fires a{" "}
+      <InlineMath math="20\text{ g}" /> bullet at{" "}
+      <InlineMath math="400\text{ m s}^{-1}" />, and the shoulder halts it in{" "}
+      <InlineMath math="4.0\text{ cm}" />.
+    </>
+  }
+  footer={<>Equal 8.0 kg m/s momenta give 2.0 m/s recoil speed and 200 N shoulder force.</>}
+  bulletMass={20}
+  labels={{
+    energy: <>Kinetic energy of the rifle</>,
+    force: <>Force from the shoulder</>,
+    momentum: <>Momentum of each</>,
+    velocity: <>Recoil speed</>,
+    viewLabel: "A rifle firing a bullet and recoiling backward",
+  }}
+  rifleMass={4}
+  speed={400}
+  stop={4}
+/>
+
+Even though both carry equal <InlineMath math="8.0\text{ kg m s}^{-1}" /> momentum, the much heavier rifle recoils at only <InlineMath math="2.0\text{ m s}^{-1}" />, carrying far less kinetic energy than the bullet.
+
+## Force Mass and Acceleration
+
+By **Newton's second law**, acceleration grows proportionally with **resultant force** and inversely with mass (<InlineMath math="a = F/m" />). Mass never changes with location, whereas **weight** (<InlineMath math="W = mg" />) depends on local gravity.
 
 <MathVisual
   title={<>Acceleration against Resultant Force</>}
+  footer={<>Larger mass flattens the line because the same force causes smaller acceleration.</>}
   description={
     <>
-      The line <InlineMath math="a = F/m" />. The horizontal axis is force in N,
-      the vertical axis acceleration in <InlineMath math="\text{m s}^{-2}" />.
-      A larger mass gives a flatter line.
+      Line <InlineMath math="a = F/m" /> with force <InlineMath math="F" /> in N
+      and acceleration in <InlineMath math="\text{m s}^{-2}" />.
     </>
   }
   scene={{
@@ -156,62 +164,87 @@ The negative sign means the rifle moves backwards. Check: <InlineMath math="4.0 
   }}
 />
 
-Friction is a force that opposes motion. When a car brakes, friction between the tyres and the road gives a backward resultant force, so the car decelerates. Pick a road surface in this model and compare the deceleration and braking distance.
+Adjusting mass above confirms that accelerating a <InlineMath math="1500\text{ kg}" /> car to <InlineMath math="20\text{ m s}^{-1}" /> in <InlineMath math="8.0\text{ s}" /> needs <InlineMath math="2.5\text{ m s}^{-2}" /> and <InlineMath math="3750\text{ N}" /> net force.
 
-<BrakingSurfaceLab
-  title={<>Braking on Different Surfaces</>}
+### Two Connected Blocks
+
+When a taut light string joins two pulled blocks, **both blocks share identical acceleration**. Solve the whole system first for acceleration, then isolate one block to get **string tension**.
+
+> Divide net pull minus friction by combined mass to get acceleration, then apply Newton's second law to a single block to determine tension.
+
+<ConnectedBlocksLab
+  title={<>Two Blocks Pulled Together on One String</>}
   description={
     <>
-      A car at <InlineMath math="20\text{ m s}^{-1}" /> locks its wheels at the
-      white line. Less friction gives a smaller deceleration.
+      Front block <InlineMath math="2.0\text{ kg}" /> is pulled with{" "}
+      <InlineMath math="24\text{ N}" />, dragging rear block{" "}
+      <InlineMath math="6.0\text{ kg}" /> against{" "}
+      <InlineMath math="4.0\text{ N}" /> of friction.
     </>
   }
+  footer={<>Net 20 N on 8.0 kg total gives 2.5 m/s squared acceleration and 19 N tension.</>}
+  back={6}
+  friction={4}
+  front={2}
   labels={{
-    brakingDistance: <>Braking distance</>,
-    brakingTime: <>Braking time</>,
-    chooseSurface: "Pick a road surface",
-    deceleration: <>Deceleration</>,
-    friction: <>Coefficient of friction</>,
-    surfaces: { dry: "Dry", wet: "Wet", gravel: "Gravel", snow: "Snow", ice: "Ice" },
-    viewLabel: "A car braking on a road",
+    acceleration: <>System acceleration</>,
+    pull: <>Pull on front block</>,
+    pullName: "Pull on front block",
+    tension: <>Tension in the string</>,
+    viewLabel: "Two blocks joined by a light string across a floor",
   }}
+  pull={24}
 />
 
-### Example Force to Accelerate a Car
+Isolating the rear block shows forward tension opposing backward friction, yielding a string tension of <InlineMath math="19\text{ N}" />.
 
-A <InlineMath math="1{,}500\text{ kg}" /> car accelerates from rest to <InlineMath math="20\text{ m s}^{-1}" /> in <InlineMath math="8.0\text{ s}" />. Find **the resultant force** on the car.
+### Apparent Weight in Lifts
 
-<MathContainer>
-<BlockMath math="a = \frac{v - u}{t} = \frac{20 - 0}{8.0} = 2.5\text{ m s}^{-2}" />
-<BlockMath math="F = ma = (1{,}500)(2.5) = 3{,}750\text{ N}" />
-</MathContainer>
+Scales inside a lift measure the **upward normal reaction**, not true weight. Whenever the lift **accelerates upward** (speeding up while rising or slowing down while descending), the scale **exceeds true weight**.
 
-Check with impulse: <InlineMath math="Ft = 3{,}750 \times 8.0 = 30{,}000\text{ N s}" />, equal to the change in momentum <InlineMath math="1{,}500 \times 20" />.
+> Scale normal force exceeds true weight whenever lift acceleration points upward, and falls below true weight whenever acceleration points downward.
 
-### Example Weight on the Earth and the Moon
+<LiftScaleLab
+  title={<>Apparent Weight on Scales Inside a Lift</>}
+  description={
+    <>
+      A <InlineMath math="60\text{ kg}" /> student stands on lift scales showing{" "}
+      <InlineMath math="720\text{ N}" /> where{" "}
+      <InlineMath math="g = 10\text{ m s}^{-2}" />.
+    </>
+  }
+  footer={<>Excess 120 N over 600 N weight means an upward acceleration of 2.0 m/s squared.</>}
+  gravity={10}
+  labels={{
+    acceleration: <>Lift acceleration</>,
+    cases: {
+      downFaster: <>Down, speeding up</>,
+      downSlower: <>Down, slowing down</>,
+      upFaster: <>Up, speeding up</>,
+      upSlower: <>Up, slowing down</>,
+    },
+    motion: "Motion of the lift",
+    reading: <>Scale reading</>,
+    viewLabel: "A student standing on scales inside a lift",
+  }}
+  mass={60}
+  reading={720}
+/>
 
-**Weight** is the gravitational force on a body, <InlineMath math="W = mg" />. Mass doesn't change from place to place, but weight depends on <InlineMath math="g" />. For a student of mass <InlineMath math="60\text{ kg}" />:
+Whether speeding up upward or slowing down downward, the <InlineMath math="120\text{ N}" /> upward net force gives <InlineMath math="2.0\text{ m s}^{-2}" /> upward acceleration.
 
-<MathContainer>
-<BlockMath math="W_{\text{Earth}} = (60)(9.81) = 589\text{ N}" />
-<BlockMath math="W_{\text{Moon}} = (60)(1.62) = 97\text{ N}" />
-</MathContainer>
+## Impulse and Crash Safety
 
-The mass stays <InlineMath math="60\text{ kg}" /> in both places, so the inertia is the same too.
-
-## Impulse and Impulsive Force
-
-An **impulsive force** is a large force that acts for a short time, for example in a collision. From <InlineMath math="Ft = mv - mu" />, the same change in momentum can come from a small force over a long time or a large force over a short time. The area under a force-time graph is the impulse.
-
-This model shows several impacts with the same impulse, <InlineMath math="2\text{ N s}" />. Lengthen the impact time and watch the peak force drop while the area under the curve stays the same.
+An **impulsive force** acts strongly over a brief contact interval. Since impulse <InlineMath math="Ft" /> stays fixed for a given momentum change, **lengthening impact time cuts peak force**, which is how airbags and crumple zones protect passengers.
 
 <MathVisual
   title={<>The Same Impulse with Different Impact Times</>}
+  footer={<>Longer contact time drops peak force even though total impulse stays 2 N s.</>}
   description={
     <>
-      The force <InlineMath math="F = \dfrac{\pi}{c}\sin\!\left(\dfrac{\pi t}{c}\right)" />{" "}
-      for an impact time <InlineMath math="c" /> in seconds. The area under the
-      curve is always <InlineMath math="2\text{ N s}" />.
+      Force curve <InlineMath math="F = \dfrac{\pi}{c}\sin\!\left(\dfrac{\pi t}{c}\right)" />{" "}
+      over contact time <InlineMath math="c" /> seconds with fixed area{" "}
+      <InlineMath math="2\text{ N s}" />.
     </>
   }
   scene={{
@@ -236,65 +269,4 @@ This model shows several impacts with the same impulse, <InlineMath math="2\text
   }}
 />
 
-That's the principle behind a car's safety features. **Airbags** and **crumple zones** lengthen the impact time, so the impulsive force on the passengers drops. A cricketer pulls their hands back when catching a ball for the same reason.
-
-Now work out an impulsive force. A footballer kicks a <InlineMath math="0.45\text{ kg}" /> ball from rest to <InlineMath math="30\text{ m s}^{-1}" />, with a contact time of <InlineMath math="0.015\text{ s}" />:
-
-<MathContainer>
-<BlockMath math="Ft = (0.45)(30) - 0 = 13.5\text{ N s}" />
-<BlockMath math="F = \frac{13.5}{0.015} = 900\text{ N}" />
-</MathContainer>
-
-A force of <InlineMath math="900\text{ N}" /> acts for just one and a half hundredths of a second. Check the units: <InlineMath math="\text{N s} \div \text{s} = \text{N}" />.
-
-## Common Mistakes about Force and Motion
-
-| Mistake | Why it's wrong | How to check |
-| :--- | :--- | :--- |
-| A moving body must have a resultant force. | A body at constant velocity has no resultant force, by the first law. | Ask whether the velocity changes. |
-| Momentum has no direction. | Momentum is a vector, so the opposite direction gets a negative sign. | Choose one direction as positive before you calculate. |
-| Mass and weight are the same quantity. | Mass is in kg and fixed. Weight is a force in N and depends on <InlineMath math="g" />. | Check the unit of your answer. |
-| Airbags reduce the change in momentum. | The change in momentum is the same. Airbags lengthen the time, so the force drops. | Use <InlineMath math="F = \Delta p / t" />. |
-
-The fourth mistake is the most common one in safety-feature questions. **Same impulse, longer time, smaller force**.
-
-## Practice on Force and Motion
-
-These questions move from momentum to impulsive force. **Choose a positive direction** first in every question.
-
-1. Calculate the momentum of a <InlineMath math="0.060\text{ kg}" /> tennis ball moving at <InlineMath math="50\text{ m s}^{-1}" />.
-
-2. A <InlineMath math="2.0\text{ kg}" /> trolley moving at <InlineMath math="3.0\text{ m s}^{-1}" /> hits a stationary <InlineMath math="1.0\text{ kg}" /> trolley, and they stick together. Calculate the common velocity.
-
-3. A pushing force of <InlineMath math="12\text{ N}" /> acts on a <InlineMath math="4.0\text{ kg}" /> box. Friction is <InlineMath math="4.0\text{ N}" />. Calculate the box's acceleration.
-
-4. A <InlineMath math="0.060\text{ kg}" /> egg falls and hits the floor at <InlineMath math="5.0\text{ m s}^{-1}" />. It stops in <InlineMath math="0.002\text{ s}" /> on a hard floor or in <InlineMath math="0.10\text{ s}" /> on a cushion. Compare the impulsive force in the two cases.
-
-### Solutions
-
-**Solution 1**: Use <InlineMath math="p = mv" />:
-
-<BlockMath math="p = (0.060)(50) = 3.0\text{ kg m s}^{-1}" />
-
-**Solution 2**: The total momentum before equals the total after:
-
-<MathContainer>
-<BlockMath math="(2.0)(3.0) + 0 = (2.0 + 1.0)v" />
-<BlockMath math="v = \frac{6.0}{3.0} = 2.0\text{ m s}^{-1}" />
-</MathContainer>
-
-**Solution 3**: Find **the resultant force** first, then the acceleration:
-
-<MathContainer>
-<BlockMath math="F = 12 - 4.0 = 8.0\text{ N}" />
-<BlockMath math="a = \frac{F}{m} = \frac{8.0}{4.0} = 2.0\text{ m s}^{-2}" />
-</MathContainer>
-
-**Solution 4**: The change in momentum is the same in both cases, <InlineMath math="(0.060)(5.0) = 0.30\text{ kg m s}^{-1}" />.
-
-<MathContainer>
-<BlockMath math="F_{\text{floor}} = \frac{0.30}{0.002} = 150\text{ N}" />
-<BlockMath math="F_{\text{cushion}} = \frac{0.30}{0.10} = 3.0\text{ N}" />
-</MathContainer>
-
-The cushion makes the impact time <InlineMath math="50" /> times longer, so the impulsive force is <InlineMath math="50" /> times smaller. That's why the egg breaks on the floor but survives on the cushion.
+Kicking a <InlineMath math="0.45\text{ kg}" /> ball to <InlineMath math="30\text{ m s}^{-1}" /> in <InlineMath math="0.015\text{ s}" /> exerts <InlineMath math="900\text{ N}" />. Quick self-checks: a <InlineMath math="0.060\text{ kg}" /> egg hitting at <InlineMath math="5.0\text{ m s}^{-1}" /> feels <InlineMath math="150\text{ N}" /> on a hard floor (<InlineMath math="0.002\text{ s}" />) versus only <InlineMath math="3.0\text{ N}" /> on a cushion (<InlineMath math="0.10\text{ s}" />).
