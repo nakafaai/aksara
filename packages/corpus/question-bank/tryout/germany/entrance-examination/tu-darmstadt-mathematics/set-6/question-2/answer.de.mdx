@@ -1,40 +1,52 @@
-# Die Wurzeln als Beträge schreiben
+# Gegeben
 
-Unter den Wurzeln stehen Quadrate: <InlineMath math="x^2-6x+9=(x-3)^2" /> und <InlineMath math="x^2+4x+4=(x+2)^2" />. Eine Wurzel ist nie negativ, deshalb gilt **<InlineMath math="\sqrt{u^2}=|u|" /> und nicht <InlineMath math="u" />**:
+Gegeben ist die folgende **Wurzelgleichung** in der Menge der reellen Zahlen.
 
-<BlockMath math="|x-3|+|x+2|=7" />
+<BlockMath math="\sqrt{x^2 - 6x + 9} + \sqrt{x^2 + 4x + 4} = 7" />
 
-# Die drei Bereiche durchgehen
+# Gesucht
 
-Die Beträge wechseln ihr Vorzeichen bei <InlineMath math="x=-2" /> und <InlineMath math="x=3" />. Damit zerfällt die Zahlengerade in drei Bereiche, und **in jedem Bereich gilt eine eigene Gleichung**:
+Alle reellen Zahlen <InlineMath math="x" />, die diese Gleichung erfüllen.
+
+# Lösung
+
+Unter beiden Wurzeln stehen vollständige Quadrate, und weil Wurzeln nie negativ sind, entsteht **die Summe zweier Abstände auf dem Zahlenstrahl** von <InlineMath math="x" /> zu den Pfosten bei <InlineMath math="3" /> und <InlineMath math="-2" />! Überall zwischen beiden Pfosten bleibt der Gesamtweg konstant <InlineMath math="5" />. Um auf <InlineMath math="7" /> zu kommen, gehst du exakt <InlineMath math="1" /> Schritt links über <InlineMath math="-2" /> oder rechts über <InlineMath math="3" /> hinaus!
+
+> Die Quadratwurzel eines Quadrats ergibt immer den Betrag statt einfach die Wurzel wegzulassen, sodass die Nullstellen der Beträge den Zahlenstrahl in drei Bereiche teilen.
+
+Schreib beide Wurzelquadrate als Beträge um.
+
+<BlockMath math="\sqrt{(x - 3)^2} + \sqrt{(x + 2)^2} = |x - 3| + |x + 2| = 7" />
+
+## Alle drei Bereiche lösen
+
+Die Beträge wechseln bei <InlineMath math="x = -2" /> und <InlineMath math="x = 3" /> ihr Vorzeichen und teilen den Zahlenstrahl in **drei getrennte Bereiche**.
 
 <BlockMath math="\begin{aligned}
-x<-2:&\quad (3-x)+(-x-2)=1-2x=7\ \Rightarrow\ x=-3 \\
--2\le x\le3:&\quad (3-x)+(x+2)=5\ne7 \\
-x>3:&\quad (x-3)+(x+2)=2x-1=7\ \Rightarrow\ x=4
+x < -2 &: \quad (3 - x) + (-x - 2) = 1 - 2x = 7 \implies x = -3 \\
+-2 \le x \le 3 &: \quad (3 - x) + (x + 2) = 5 \neq 7 \\
+x > 3 &: \quad (x - 3) + (x + 2) = 2x - 1 = 7 \implies x = 4
 \end{aligned}" />
 
-Beide Werte liegen in ihrem Bereich: <InlineMath math="-3<-2" /> und <InlineMath math="4>3" />.
+Beide Lösungen liegen in ihrem jeweiligen Bereich, denn <InlineMath math="-3 < -2" /> und <InlineMath math="4 > 3" />. Schau dir dazu den Graphen mit flachem Boden an.
 
 <MathVisual
-  title={<>Summe zweier Abstände</>}
-  description={<>Der Graph von <InlineMath math="|x-3|+|x+2|" /> ist zwischen <InlineMath math="x=-2" /> und <InlineMath math="x=3" /> waagerecht auf der Höhe <InlineMath math="5" /> und steigt außerhalb nach beiden Seiten an. Die Gerade <InlineMath math="y=7" /> trifft ihn bei <InlineMath math="x=-3" /> und bei <InlineMath math="x=4" />.</>}
-  labels={{
-    a: <><InlineMath math="x=-3" /></>,
-    b: <><InlineMath math="x=4" /></>,
-    f: <><InlineMath math="|x-3|+|x+2|" /></>,
-    five: <><InlineMath math="5" /></>,
-  }}
+  title={<>Graph der Abstandssumme <InlineMath math="|x - 3| + |x + 2|" /></>}
+  description={
+    <>
+      Der Graph verläuft zwischen <InlineMath math="-2" /> und{" "}
+      <InlineMath math="3" /> waagerecht auf Höhe <InlineMath math="5" />,
+      steigt außen symmetrisch an und schneidet <InlineMath math="y = 7" /> bei{" "}
+      <InlineMath math="x = -3" /> und <InlineMath math="x = 4" />.
+    </>
+  }
+  footer={<>Knapp außerhalb des flachen Bodens auf Höhe <InlineMath math="5" /> trifft der Graph <InlineMath math="y = 7" /> bei <InlineMath math="-3" /> und <InlineMath math="4" />.</>}
   scene={{
     space: "plane",
-    frame: {
-      kind: "cartesian",
-      x: { min: -5.5, max: 6.5 },
-      y: { min: 0, max: 12 },
-    },
-    view: { kind: "fit", padding: 0.1 },
+    frame: { kind: "cartesian", x: { min: -5.5, max: 6.5 }, y: { min: 0, max: 12 } },
+    view: { kind: "fit", padding: 0.08 },
     objects: [
-      { id: "sum", kind: "function", appearance: "primary", formula: "abs(x-3) + abs(x+2)", domain: { min: -5, max: 6 } },
+      { id: "sum", kind: "function", appearance: "primary", formula: "abs(x - 3) + abs(x + 2)", domain: { min: -5, max: 6 } },
       { id: "level", kind: "segment", appearance: "reference", from: { x: -5, y: 7 }, to: { x: 6, y: 7 } },
       { id: "flat", kind: "segment", appearance: "highlight", from: { x: -2, y: 5 }, to: { x: 3, y: 5 } },
       { id: "p1", kind: "point", appearance: "answer", at: { x: -3, y: 7 } },
@@ -47,14 +59,33 @@ Beide Werte liegen in ihrem Bereich: <InlineMath math="-3<-2" /> und <InlineMath
       { key: "five", objectId: "flat", at: { x: 0.5, y: 5 }, placement: "below" },
     ],
   }}
+  labels={{
+    a: <><InlineMath math="x = -3" /></>,
+    b: <><InlineMath math="x = 4" /></>,
+    f: <><InlineMath math="|x - 3| + |x + 2|" /></>,
+    five: <><InlineMath math="5" /></>,
+  }}
 />
 
-Probe: <InlineMath math="\sqrt{36}+\sqrt{1}=7" /> für <InlineMath math="x=-3" /> und <InlineMath math="\sqrt1+\sqrt{36}=7" /> für <InlineMath math="x=4" />. Die Gleichung gilt **für <InlineMath math="x=-3" /> und für <InlineMath math="x=4" />**.
+Im Bild wird direkt klar, warum im Mittelbereich keine Lösung liegt und außen genau zwei symmetrische Lösungen entstehen.
 
-# Warum die anderen Antworten falsch sind
+## Probe und falsche Antworten prüfen
 
-- „nur <InlineMath math="x=4" />“ setzt <InlineMath math="\sqrt{(x-3)^2}=x-3" /> und <InlineMath math="\sqrt{(x+2)^2}=x+2" /> ohne Betrag. Dann **fehlt die Lösung links von <InlineMath math="-2" />**.
-- „nur <InlineMath math="x=-3" />“ prüft nur den linken Bereich.
-- <InlineMath math="x=-4" /> oder <InlineMath math="x=3" /> entsteht mit vertauschten Vorzeichen in beiden Beträgen, also mit <InlineMath math="|x+3|+|x-2|=7" />.
-- „alle <InlineMath math="x" /> mit <InlineMath math="-2\le x\le3" />“ ist der Bereich, in dem die Summe <InlineMath math="5" /> ist, nicht <InlineMath math="7" />.
-- „keine solche Zahl“ übersieht die beiden äußeren Bereiche.
+Setz beide Werte in die Ausgangsgleichung ein, um **beide Ergebnisse mit <InlineMath math="7" /> zu bestätigen**.
+
+<BlockMath math="\begin{aligned}
+x = -3 &\implies \sqrt{36} + \sqrt{1} = 6 + 1 = 7 \\
+x = 4 &\implies \sqrt{1} + \sqrt{36} = 1 + 6 = 7
+\end{aligned}" />
+
+| Antwort | Warum sie falsch ist |
+| :--- | :--- |
+| Nur <InlineMath math="x = 4" /> | Lässt beim Wurzelziehen die Betragsstriche weg und verliert dadurch <InlineMath math="x = -3" />. |
+| Nur <InlineMath math="x = -3" /> | Prüft nur den linken Bereich und vergisst den rechten. |
+| <InlineMath math="x = -4" /> oder <InlineMath math="x = 3" /> | Vertauscht die Vorzeichen in beiden Beträgen zu <InlineMath math="\lvert x + 3 \rvert + \lvert x - 2 \rvert = 7" />. |
+| Alle <InlineMath math="x" /> mit <InlineMath math="-2 \le x \le 3" /> | In diesem Bereich ist die Summe konstant <InlineMath math="5" />, nicht <InlineMath math="7" />. |
+| Es gibt keine solche Zahl <InlineMath math="x" /> | Sieht nur das Plateau bei <InlineMath math="5" /> und übersieht die beiden äußeren Äste. |
+
+# Antwort
+
+Die Gleichung wird genau von <InlineMath math="x = -3" /> und <InlineMath math="x = 4" /> erfüllt.

@@ -1,30 +1,36 @@
-# Where the bisector meets the side
+# Given
 
-The angle bisector splits the opposite side **in the ratio of the two adjacent sides**:
+In **triangle** (*Dreieck*) <InlineMath math="ABC" />, the side lengths are <InlineMath math="\overline{AB} = 6" />, <InlineMath math="\overline{AC} = 4" />, and <InlineMath math="\overline{BC} = 5" />. The **angle bisector** (*Winkelhalbierende*) at vertex <InlineMath math="A" /> meets side <InlineMath math="\overline{BC}" /> at point <InlineMath math="D" />.
 
-<BlockMath math="\frac{\overline{BD}}{\overline{DC}}=\frac{\overline{AB}}{\overline{AC}}=\frac64=\frac32,\qquad \overline{BD}+\overline{DC}=5\quad\Longrightarrow\quad \overline{BD}=3,\ \overline{DC}=2" />
+# Asked
+
+Find the length of the angle bisector segment <InlineMath math="\overline{AD}" />.
+
+# Solution
+
+An angle bisector splits the opposite side <InlineMath math="BC" /> fairly in **the exact ratio of the two sides flanking angle <InlineMath math="A" />** (<InlineMath math="6 : 4" />, or <InlineMath math="3 : 2" />)! Once <InlineMath math="D" /> is placed, apply the law of cosines twice to the same corner angle <InlineMath math="B" />: once in the full triangle <InlineMath math="ABC" />, and once in the smaller triangle <InlineMath math="ABD" />.
+
+> An angle bisector divides the opposite side in the ratio of the adjacent sides, so pairing the angle bisector theorem with the law of cosines gives the bisector length cleanly.
+
+Split side <InlineMath math="\overline{BC} = 5" /> at point <InlineMath math="D" />.
+
+<BlockMath math="\frac{\overline{BD}}{\overline{DC}} = \frac{\overline{AB}}{\overline{AC}} = \frac{6}{4} = \frac{3}{2}, \qquad \overline{BD} + \overline{DC} = 5 \implies \overline{BD} = 3, \quad \overline{DC} = 2" />
 
 <MathVisual
-  title={<>The bisector splits <InlineMath math="\overline{BC}" /></>}
-  description={<>The triangle with <InlineMath math="\overline{AB}=6" />, <InlineMath math="\overline{AC}=4" /> and <InlineMath math="\overline{BC}=5" />. The bisector of the angle at <InlineMath math="A" /> meets <InlineMath math="\overline{BC}" /> at <InlineMath math="D" /> and splits the side into <InlineMath math="\overline{BD}=3" /> and <InlineMath math="\overline{DC}=2" />. The segment <InlineMath math="\overline{AD}" /> is highlighted.</>}
-  labels={{
-    a: <><InlineMath math="A" /></>,
-    b: <><InlineMath math="B" /></>,
-    c: <><InlineMath math="C" /></>,
-    d: <><InlineMath math="D" /></>,
-    bd: <><InlineMath math="3" /></>,
-    dc: <><InlineMath math="2" /></>,
-    ab: <><InlineMath math="6" /></>,
-    ac: <><InlineMath math="4" /></>,
-  }}
+  title={<>Angle bisector from <InlineMath math="A" /> dividing side <InlineMath math="BC" /></>}
+  description={
+    <>
+      Triangle with sides <InlineMath math="6" />, <InlineMath math="4" />, and{" "}
+      <InlineMath math="5" />. The green bisector <InlineMath math="\overline{AD}" />{" "}
+      splits <InlineMath math="BC" /> at <InlineMath math="D" /> into{" "}
+      <InlineMath math="\overline{BD} = 3" /> and <InlineMath math="\overline{DC} = 2" />.
+    </>
+  }
+  footer={<>The <InlineMath math="6 : 4" /> ratio immediately splits side <InlineMath math="BC = 5" /> into <InlineMath math="3" /> and <InlineMath math="2" />.</>}
   scene={{
     space: "plane",
-    frame: {
-      kind: "cartesian",
-      x: { min: -1, max: 6 },
-      y: { min: -1, max: 5 },
-    },
-    view: { kind: "fit", padding: 0.1 },
+    frame: { kind: "cartesian", x: { min: -1, max: 6 }, y: { min: -1, max: 5 } },
+    view: { kind: "fit", padding: 0.08 },
     objects: [
       { id: "triangle", kind: "polygon", appearance: "primary", vertices: [{ x: 0, y: 0 }, { x: 5, y: 0 }, { x: 4.5, y: 3.9686 }] },
       { id: "bisector", kind: "segment", appearance: "answer", from: { x: 4.5, y: 3.9686 }, to: { x: 3, y: 0 } },
@@ -45,26 +51,45 @@ The angle bisector splits the opposite side **in the ratio of the two adjacent s
       { key: "ac", objectId: "triangle", at: { x: 4.75, y: 1.9843 }, placement: "right" },
     ],
   }}
+  labels={{
+    a: <><InlineMath math="A" /></>,
+    b: <><InlineMath math="B" /></>,
+    c: <><InlineMath math="C" /></>,
+    d: <><InlineMath math="D" /></>,
+    bd: <><InlineMath math="3" /></>,
+    dc: <><InlineMath math="2" /></>,
+    ab: <><InlineMath math="6" /></>,
+    ac: <><InlineMath math="4" /></>,
+  }}
 />
 
-# Find the angle at <InlineMath math="B" />
+With <InlineMath math="\overline{BD} = 3" /> fixed, triangle <InlineMath math="ABD" /> shares the exact same angle <InlineMath math="\beta" /> as triangle <InlineMath math="ABC" />.
 
-In the whole triangle <InlineMath math="ABC" /> you know all three sides. The cosine rule gives **the cosine of the angle at <InlineMath math="B" />**:
+## Applying the law of cosines twice
 
-<BlockMath math="\cos\beta=\frac{6^2+5^2-4^2}{2\cdot6\cdot5}=\frac{45}{60}=\frac34" />
+Find **the value of <InlineMath math="\cos\beta" /> in the full triangle <InlineMath math="ABC" />**, then plug it into the smaller triangle <InlineMath math="ABD" />.
 
-# The cosine rule in triangle <InlineMath math="ABD" />
+<BlockMath math="\begin{aligned}
+\cos\beta &= \frac{6^2 + 5^2 - 4^2}{2 \cdot 6 \cdot 5} = \frac{45}{60} = \frac{3}{4} \\
+\overline{AD}^2 &= 6^2 + 3^2 - 2 \cdot 6 \cdot 3 \cdot \frac{3}{4} = 45 - 27 = 18 \implies \overline{AD} = 3\sqrt{2}
+\end{aligned}" />
 
-In triangle <InlineMath math="ABD" /> you now know <InlineMath math="\overline{AB}=6" />, <InlineMath math="\overline{BD}=3" /> and the angle <InlineMath math="\beta" /> between them. Use the cosine rule again:
+Quick check with the angle bisector length identity confirms the squared length:
 
-<BlockMath math="\overline{AD}^2=6^2+3^2-2\cdot6\cdot3\cdot\frac34=45-27=18\quad\Longrightarrow\quad \overline{AD}=3\sqrt2" />
+<BlockMath math="\overline{AD}^2 = \overline{AB} \cdot \overline{AC} - \overline{BD} \cdot \overline{DC} = 6 \cdot 4 - 3 \cdot 2 = 18" />
 
-The segment is **<InlineMath math="3\sqrt2" /> long**, about <InlineMath math="4.24" />.
+## Checking wrong choices
 
-# Why the other answers are wrong
+Notice how each distractor breaks **the bisector ratio or the cosine of angle <InlineMath math="\beta" />**.
 
-- <InlineMath math="\sqrt{22}" /> splits in **the reversed ratio**, <InlineMath math="\overline{BD}=2" />: <InlineMath math="36+4-2\cdot6\cdot2\cdot\frac34=22" />.
-- <InlineMath math="\frac{\sqrt{79}}{2}" /> is the length of the median from <InlineMath math="A" />, with <InlineMath math="D" /> at the midpoint of <InlineMath math="\overline{BC}" />.
-- <InlineMath math="2\sqrt6" /> is <InlineMath math="\sqrt{\overline{AB}\cdot\overline{AC}}" />. That shortcut leaves out the correction term of the bisector formula.
-- <InlineMath math="3" /> is <InlineMath math="\overline{BD}" />, not <InlineMath math="\overline{AD}" />.
-- <InlineMath math="3\sqrt3" /> uses <InlineMath math="\cos\beta=\frac12" />, as if the angle at <InlineMath math="B" /> were <InlineMath math="60^\circ" />: <InlineMath math="45-36\cdot\frac12=27" />.
+| Option | Why it is wrong |
+| :--- | :--- |
+| <InlineMath math="\sqrt{22}" /> | Reverses the segment ratio, using <InlineMath math="\overline{BD} = 2" /> instead of <InlineMath math="3" />. |
+| <InlineMath math="\frac{\sqrt{79}}{2}" /> | Computes the median to the midpoint of <InlineMath math="BC" /> instead of the angle bisector. |
+| <InlineMath math="2\sqrt{6}" /> | Computes only <InlineMath math="\sqrt{AB \cdot AC}" /> and forgets to subtract <InlineMath math="BD \cdot DC" />. |
+| <InlineMath math="3" /> | Gives segment <InlineMath math="\overline{BD}" /> rather than bisector <InlineMath math="\overline{AD}" />. |
+| <InlineMath math="3\sqrt{3}" /> | Assumes <InlineMath math="\cos\beta = \frac{1}{2}" /> as if angle <InlineMath math="B" /> were <InlineMath math="60^\circ" />. |
+
+# Answer
+
+The length of segment <InlineMath math="\overline{AD}" /> is <InlineMath math="3\sqrt{2}" />.

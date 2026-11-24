@@ -1,49 +1,55 @@
-# Die Achsenabschnitte mit der Steigung ausdrücken
+# Gegeben
 
-Eine Gerade durch <InlineMath math="P(2\mid3)" /> mit der Steigung <InlineMath math="m<0" /> hat die Gleichung <InlineMath math="y=m(x-2)+3" />. Ihre **Schnittpunkte mit den Achsen** hängen von <InlineMath math="m" /> ab:
+Eine **Gerade** <InlineMath math="g" /> mit negativer Steigung verläuft durch <InlineMath math="P(2 \mid 3)" /> und schneidet die positive <InlineMath math="x" />-Achse sowie die positive <InlineMath math="y" />-Achse. Zusammen mit beiden Achsen schließt <InlineMath math="g" /> ein rechtwinkliges Dreieck mit Flächeninhalt <InlineMath math="12" /> ein.
+
+# Gesucht
+
+Die Gleichung der Geraden <InlineMath math="g" />.
+
+# Lösung
+
+Stell dir ein Lineal vor, das im Punkt <InlineMath math="P(2 \mid 3)" /> drehbar festgenagelt ist! Kippst du es zu flach oder zu steil, wandert ein Achsenabschnitt weit weg und vergrößert das Dreieck. Die kleinstmögliche Fläche entsteht genau dann, wenn **<InlineMath math="P(2 \mid 3)" /> exakt in der Mitte zwischen beiden Achsenabschnitten liegt**, bei <InlineMath math="(4 \mid 0)" /> und <InlineMath math="(0 \mid 6)" />, mit Fläche genau <InlineMath math="12" />!
+
+> Das Dreieck zwischen den Achsen und einer fallenden Geraden durch einen Punkt im ersten Quadranten hat genau dann seine minimale Fläche, wenn dieser Punkt die Strecke zwischen beiden Achsenabschnitten halbiert.
+
+Schreib die Gerade mit Steigung <InlineMath math="m < 0" /> durch <InlineMath math="P(2 \mid 3)" /> auf und bestimme beide Achsenabschnitte.
 
 <BlockMath math="\begin{aligned}
-x=0:&\quad y_0=3-2m \\
-y=0:&\quad x_0=2-\frac3m
+y &= m(x - 2) + 3 \\
+x = 0 &\implies y_0 = 3 - 2m, \qquad y = 0 \implies x_0 = 2 - \frac{3}{m}
 \end{aligned}" />
 
-Für <InlineMath math="m<0" /> sind beide positiv, das Dreieck liegt also im ersten Quadranten.
+## Flächenbedingung lösen und doppelte Lösung finden
 
-# Die Flächenbedingung aufstellen
-
-Das Dreieck ist rechtwinklig mit den Katheten <InlineMath math="x_0" /> und <InlineMath math="y_0" />. **Vergiss den Faktor <InlineMath math="\frac12" /> nicht**:
+Setz beide Katheten <InlineMath math="x_0" /> und <InlineMath math="y_0" /> in die Dreiecksformel ein und behalte **den Faktor einhalb**.
 
 <BlockMath math="\begin{aligned}
-\tfrac12\left(3-2m\right)\left(2-\tfrac3m\right)&=12 \\
-12-4m-\tfrac9m&=24 \\
-4m^2+12m+9&=0 \\
-(2m+3)^2&=0
+\frac{1}{2}(3 - 2m)\left(2 - \frac{3}{m}\right) &= 12 \\
+12 - 4m - \frac{9}{m} &= 24 \\
+4m^2 + 12m + 9 &= 0 \\
+(2m + 3)^2 &= 0 \implies m = -\frac{3}{2} = -1{,}5
 \end{aligned}" />
 
-# Eine doppelte Lösung
-
-Die quadratische Gleichung hat nur **die eine Lösung <InlineMath math="m=-\frac32" />**. Damit ist <InlineMath math="y_0=3+3=6" /> und <InlineMath math="x_0=2+2=4" />:
+Diese doppelte Lösung liefert genau eine Gerade mit den Achsenabschnitten <InlineMath math="(4 \mid 0)" /> und <InlineMath math="(0 \mid 6)" />.
 
 <MathVisual
-  title={<>Die Gerade mit dem Dreieck</>}
-  description={<>Die Gerade <InlineMath math="g: y=-1{,}5x+6" /> schneidet die Achsen in <InlineMath math="(4\mid0)" /> und <InlineMath math="(0\mid6)" />. Zusammen mit den Achsen begrenzt sie ein rechtwinkliges Dreieck mit dem Flächeninhalt <InlineMath math="12" />. Der Punkt <InlineMath math="P(2\mid3)" /> liegt genau in der Mitte der Strecke zwischen den beiden Achsenpunkten.</>}
-  labels={{
-    p: <><InlineMath math="P(2\mid3)" /></>,
-    x0: <><InlineMath math="(4\mid0)" /></>,
-    y0: <><InlineMath math="(0\mid6)" /></>,
-    g: <><InlineMath math="g" /></>,
-  }}
+  title={<>Eindeutige Gerade <InlineMath math="g" /> mit Dreiecksfläche <InlineMath math="12" /></>}
+  description={
+    <>
+      Die Gerade <InlineMath math="y = -1{,}5x + 6" /> schneidet die Achsen in{" "}
+      <InlineMath math="(4 \mid 0)" /> und <InlineMath math="(0 \mid 6)" /> und
+      bildet das schraffierte Dreieck der Fläche <InlineMath math="12" /> mit{" "}
+      <InlineMath math="P(2 \mid 3)" /> als Mittelpunkt der Hypotenuse.
+    </>
+  }
+  footer={<>Der Punkt <InlineMath math="P(2 \mid 3)" /> liegt exakt in der Mitte zwischen <InlineMath math="(4 \mid 0)" /> und <InlineMath math="(0 \mid 6)" />.</>}
   scene={{
     space: "plane",
-    frame: {
-      kind: "cartesian",
-      x: { min: -1, max: 6 },
-      y: { min: -1.5, max: 7.5 },
-    },
-    view: { kind: "fit", padding: 0.1 },
+    frame: { kind: "cartesian", x: { min: -1, max: 6 }, y: { min: -1.5, max: 7.5 } },
+    view: { kind: "fit", padding: 0.08 },
     objects: [
       { id: "triangle", kind: "polygon", appearance: "highlight", vertices: [{ x: 0, y: 0 }, { x: 4, y: 0 }, { x: 0, y: 6 }] },
-      { id: "line", kind: "function", appearance: "primary", formula: "-1.5*x + 6", domain: { min: -0.5, max: 4.8 } },
+      { id: "line", kind: "function", appearance: "primary", formula: "-1.5 * x + 6", domain: { min: -0.5, max: 4.8 } },
       { id: "pp", kind: "point", appearance: "answer", at: { x: 2, y: 3 } },
       { id: "px", kind: "point", appearance: "reference", at: { x: 4, y: 0 } },
       { id: "py", kind: "point", appearance: "reference", at: { x: 0, y: 6 } },
@@ -55,14 +61,28 @@ Die quadratische Gleichung hat nur **die eine Lösung <InlineMath math="m=-\frac
       { key: "g", objectId: "line", at: { x: 4.6, y: -0.9 }, placement: "right" },
     ],
   }}
+  labels={{
+    p: <><InlineMath math="P(2 \mid 3)" /></>,
+    x0: <><InlineMath math="(4 \mid 0)" /></>,
+    y0: <><InlineMath math="(0 \mid 6)" /></>,
+    g: <><InlineMath math="g" /></>,
+  }}
 />
 
-Probe: <InlineMath math="\frac12\cdot4\cdot6=12" />. Die Gerade hat die Gleichung <InlineMath math="y=-1{,}5x+6" />.
+Die symmetrische Lage von <InlineMath math="P(2 \mid 3)" /> in der Mitte der Hypotenuse erklärt geometrisch, warum es nur diese eine Gerade gibt.
 
-# Warum die anderen Antworten falsch sind
+## Flächenprobe und falsche Antworten prüfen
 
-- <InlineMath math="y=-\frac23x+\frac{13}{3}" /> nimmt den Kehrwert der Steigung. Ihr Dreieck hat die Katheten <InlineMath math="6{,}5" /> und <InlineMath math="\frac{13}{3}" /> und **nicht den Flächeninhalt <InlineMath math="12" />**.
-- <InlineMath math="y=-3x+9" /> oder <InlineMath math="y=-0{,}75x+4{,}5" /> erwartet zwei Geraden. Diese beiden gehen zwar durch <InlineMath math="P" />, begrenzen aber jeweils ein Dreieck mit dem Flächeninhalt <InlineMath math="13{,}5" />.
-- <InlineMath math="y=-\frac23x+4" /> vertauscht die Achsenabschnitte <InlineMath math="4" /> und <InlineMath math="6" />. Diese Gerade geht nicht durch <InlineMath math="P" />, denn <InlineMath math="-\frac23\cdot2+4=\frac83\ne3" />.
-- <InlineMath math="y=1{,}5x" /> hat eine positive Steigung und geht durch den Ursprung.
-- „Es gibt keine solche Gerade“ entsteht ohne den Faktor <InlineMath math="\frac12" />: Dann führt die Bedingung auf <InlineMath math="4m^2=-9" />.
+Direkte Probe: Die Gerade geht durch <InlineMath math="(2 \mid 3)" /> und begrenzt ein Dreieck mit Grundseite <InlineMath math="4" /> und Höhe <InlineMath math="6" />, also **Fläche exakt <InlineMath math="12" />**.
+
+| Antwort | Warum sie falsch ist |
+| :--- | :--- |
+| <InlineMath math="y = -\frac{2}{3}x + \frac{13}{3}" /> | Nutzt den Kehrwert der Steigung und ergibt nicht die Fläche <InlineMath math="12" />. |
+| <InlineMath math="y = -3x + 9" /> oder <InlineMath math="y = -0{,}75x + 4{,}5" /> | Beide gehen durch <InlineMath math="P" />, schließen aber jeweils die Fläche <InlineMath math="13{,}5" /> ein. |
+| <InlineMath math="y = -\frac{2}{3}x + 4" /> | Vertauscht die Achsenabschnitte <InlineMath math="4" /> und <InlineMath math="6" /> und verfehlt <InlineMath math="P(2 \mid 3)" />. |
+| <InlineMath math="y = 1{,}5x" /> | Hat positive Steigung und geht durch den Ursprung, schließt also kein Dreieck ein. |
+| Es gibt keine solche Gerade | Vergisst den Faktor <InlineMath math="\frac{1}{2}" /> in der Flächenformel und landet bei <InlineMath math="4m^2 = -9" />. |
+
+# Antwort
+
+Die gesuchte Gerade hat die Gleichung <InlineMath math="y = -1{,}5x + 6" />.

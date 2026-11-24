@@ -1,17 +1,80 @@
-Soalan ini bertanya isi padu kuboid itu. Namakan panjang sisinya <InlineMath math="a" />, <InlineMath math="b" /> dan <InlineMath math="c" />. Setiap muka ialah segi empat tepat yang dibentuk oleh dua sisi ini, dan **isi padu ialah hasil darab ketiga-tiga sisi**. Jadi kamu mencari <InlineMath math="abc" />.
+# Diberi
 
-<BlockMath math="ab=12\qquad bc=15\qquad ac=20" />
+Enam muka sebuah **kuboid** (*Quader*) mempunyai tiga luas permukaan (*Flächeninhalte*) berbeza, iaitu <InlineMath math="12\text{ cm}^2" />, <InlineMath math="15\text{ cm}^2" />, dan <InlineMath math="20\text{ cm}^2" />, dengan setiap pasang muka bertentangan sama luas.
 
-Kalau ketiga-tiga luas muka didarab, setiap sisi muncul tepat dua kali. Jadi hasil darab itu ialah kuasa dua isi padu.
+# Ditanya
 
-<BlockMath math="ab\cdot bc\cdot ac=(abc)^2=12\cdot15\cdot20=3600\quad\Rightarrow\quad abc=60" />
+Tentukan isi padu kuboid ini.
 
-Sebagai semakan, cari sisi-sisinya. Daripada <InlineMath math="abc=60" /> dan <InlineMath math="ab=12" /> kamu dapat <InlineMath math="c=5" />, daripada <InlineMath math="bc=15" /> kamu dapat <InlineMath math="a=4" />, dan daripada <InlineMath math="ac=20" /> kamu dapat <InlineMath math="b=3" />. Memang <InlineMath math="4\cdot3=12" />, <InlineMath math="3\cdot5=15" /> dan <InlineMath math="4\cdot5=20" />.
+# Penyelesaian
 
-Jadi isi padu kuboid itu ialah <InlineMath math="60\text{ cm}^3" />.
+Kamu tidak perlu meneka panjang, lebar, dan tinggi satu demi satu terlebih dahulu! Namakan ketiga-tiga sisinya <InlineMath math="a" />, <InlineMath math="b" />, dan <InlineMath math="c" />. Apabila ketiga-tiga luas muka didarabkan serentak, setiap sisi muncul dua kali, maka **hasil darab ketiga-tiga luas muka ialah kuasa dua isi padu kuboid**!
 
-- <InlineMath math="47\text{ cm}^3" /> ialah hasil tambah tiga luas muka. Hasil tambah luas tidak memberi isi padu.
-- <InlineMath math="94\text{ cm}^3" /> ialah nilai luas permukaan, <InlineMath math="2\cdot(12+15+20)" />, iaitu luas dalam <InlineMath math="\text{cm}^2" />.
-- <InlineMath math="180\text{ cm}^3" /> ialah <InlineMath math="12\cdot15=ab\cdot bc=ab^2c" />. Ia mengandungi sisi <InlineMath math="b" /> dua kali.
-- <InlineMath math="3{,}600\text{ cm}^3" /> ialah hasil darab tiga muka, iaitu <InlineMath math="(abc)^2" />. Punca kuasa duanya tertinggal.
-- <InlineMath math="12\text{ cm}^3" /> ialah hasil tambah sisi, <InlineMath math="4+3+5" />. Untuk isi padu, sisi-sisi itu didarab.
+> Bagi kuboid dengan tiga luas muka berbeza, hasil darab ketiga-tiga luas itu sentiasa sama dengan kuasa dua isi padunya, maka satu punca kuasa dua terus memberi isi padu.
+
+Tulis tiga persamaan luas muka lalu darabkan semuanya serentak.
+
+<BlockMath math="\begin{aligned}
+ab = 12, \qquad bc &= 15, \qquad ac = 20 \\
+(ab)(bc)(ac) = (abc)^2 &= 12 \cdot 15 \cdot 20 = 3600 \\
+V = abc &= \sqrt{3600} = 60\text{ cm}^3
+\end{aligned}" />
+
+## Menyemak ketiga panjang sisi secara visual
+
+Daripada <InlineMath math="abc = 60" />, ketiga-tiga sisi terus diperoleh: <InlineMath math="c = 5\text{ cm}" />, <InlineMath math="a = 4\text{ cm}" />, dan <InlineMath math="b = 3\text{ cm}" />. Perhatikan **ketiga-tiga segi empat muka kuboid beserta ukuran tepatnya** pada rajah berikut.
+
+<MathVisual
+  title={<>Tiga muka berbeza bagi kuboid <InlineMath math="4 \times 3 \times 5" /></>}
+  description={
+    <>
+      Tiga segi empat tepat memaparkan tiga saiz muka kuboid: tapak{" "}
+      <InlineMath math="4 \times 3 = 12\text{ cm}^2" />, sisi{" "}
+      <InlineMath math="3 \times 5 = 15\text{ cm}^2" />, dan hadapan{" "}
+      <InlineMath math="4 \times 5 = 20\text{ cm}^2" />.
+    </>
+  }
+  footer={<>Sisi <InlineMath math="4\text{ cm}" />, <InlineMath math="3\text{ cm}" />, dan <InlineMath math="5\text{ cm}" /> sepadan dengan ketiga-tiga luas dan memberi isi padu <InlineMath math="60\text{ cm}^3" />.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.8, max: 14 }, y: { min: -1.6, max: 6.6 } },
+    view: { kind: "fit", padding: 0.08 },
+    objects: [
+      { id: "face-ab", kind: "polygon", appearance: "primary", vertices: [{ x: 0, y: 0 }, { x: 4, y: 0 }, { x: 4, y: 3 }, { x: 0, y: 3 }] },
+      { id: "face-bc", kind: "polygon", appearance: "secondary", vertices: [{ x: 5, y: 0 }, { x: 8, y: 0 }, { x: 8, y: 5 }, { x: 5, y: 5 }] },
+      { id: "face-ac", kind: "polygon", appearance: "answer", vertices: [{ x: 9, y: 0 }, { x: 13, y: 0 }, { x: 13, y: 5 }, { x: 9, y: 5 }] },
+    ],
+    labels: [
+      { key: "ab", objectId: "face-ab", at: { x: 2, y: 3 }, placement: "above" },
+      { key: "bc", objectId: "face-bc", at: { x: 6.5, y: 5 }, placement: "above" },
+      { key: "ac", objectId: "face-ac", at: { x: 11, y: 5 }, placement: "above" },
+      { key: "dim1", objectId: "face-ab", at: { x: 2, y: 0 }, placement: "below" },
+      { key: "dim2", objectId: "face-bc", at: { x: 6.5, y: 0 }, placement: "below" },
+      { key: "dim3", objectId: "face-ac", at: { x: 11, y: 0 }, placement: "below" },
+    ],
+  }}
+  labels={{
+    ab: <><InlineMath math="12\text{ cm}^2" /></>,
+    bc: <><InlineMath math="15\text{ cm}^2" /></>,
+    ac: <><InlineMath math="20\text{ cm}^2" /></>,
+    dim1: <><InlineMath math="4 \times 3" /></>,
+    dim2: <><InlineMath math="3 \times 5" /></>,
+    dim3: <><InlineMath math="4 \times 5" /></>,
+  }}
+/>
+
+Setiap sisi (<InlineMath math="4" />, <InlineMath math="3" />, dan <InlineMath math="5" />) muncul dua kali merentasi tiga muka itu, mengesahkan isi padu <InlineMath math="60\text{ cm}^3" />.
+
+## Menyemak pilihan salah
+
+Perhatikan bagaimana setiap pilihan salah mencampuradukkan **panjang, luas permukaan, dan isi padu**.
+
+- <InlineMath math="47\text{ cm}^3" /> sekadar menjumlahkan ketiga-tiga luas muka (<InlineMath math="12 + 15 + 20" />) bukannya mengira isi padu.
+- <InlineMath math="94\text{ cm}^3" /> sebenarnya ialah jumlah luas permukaan (<InlineMath math="94\text{ cm}^2" />), bukan isi padu.
+- <InlineMath math="180\text{ cm}^3" /> mendarab dua luas muka sahaja (<InlineMath math="12 \cdot 15" />) sehingga satu sisi dikuasaduakan.
+- <InlineMath math="3\,600\text{ cm}^3" /> ialah kuasa dua isi padu sebelum diambil punca kuasa duanya.
+- <InlineMath math="12\text{ cm}^3" /> menjumlahkan ketiga-tiga panjang sisi (<InlineMath math="4 + 3 + 5" />) bukannya mendarabkannya.
+
+# Jawapan
+
+Isi padu kuboid ini ialah <InlineMath math="60\text{ cm}^3" />.

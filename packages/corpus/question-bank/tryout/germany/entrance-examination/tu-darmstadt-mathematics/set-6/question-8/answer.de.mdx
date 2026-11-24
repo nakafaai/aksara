@@ -1,17 +1,80 @@
-Nenne die Kantenlängen <InlineMath math="a" />, <InlineMath math="b" /> und <InlineMath math="c" />. Jede Seitenfläche ist ein Rechteck aus zwei dieser Kanten, und **das Volumen ist das Produkt aller drei Kanten**. Du suchst also <InlineMath math="abc" />.
+# Gegeben
 
-<BlockMath math="ab=12\qquad bc=15\qquad ac=20" />
+Die sechs Seitenflächen eines **Quaders** haben drei verschiedene Flächeninhalte: <InlineMath math="12\text{ cm}^2" />, <InlineMath math="15\text{ cm}^2" /> und <InlineMath math="20\text{ cm}^2" />, wobei gegenüberliegende Flächen jeweils gleich groß sind.
 
-Multiplizierst du die drei Flächeninhalte, kommt jede Kante genau zweimal vor. Das Produkt ist also das Quadrat des Volumens.
+# Gesucht
 
-<BlockMath math="ab\cdot bc\cdot ac=(abc)^2=12\cdot15\cdot20=3600\quad\Rightarrow\quad abc=60" />
+Das Volumen dieses Quaders.
 
-Zur Kontrolle bestimmst du die Kanten. Aus <InlineMath math="abc=60" /> und <InlineMath math="ab=12" /> folgt <InlineMath math="c=5" />, aus <InlineMath math="bc=15" /> folgt <InlineMath math="a=4" />, und aus <InlineMath math="ac=20" /> folgt <InlineMath math="b=3" />. Tatsächlich gilt <InlineMath math="4\cdot3=12" />, <InlineMath math="3\cdot5=15" /> und <InlineMath math="4\cdot5=20" />.
+# Lösung
 
-Das Volumen des Quaders beträgt also <InlineMath math="60\text{ cm}^3" />.
+Du musst die drei Kantenlängen gar nicht erst einzeln erraten! Nenn die Kanten <InlineMath math="a" />, <InlineMath math="b" /> und <InlineMath math="c" />. Wenn du alle drei verschiedenen Flächeninhalte miteinander multiplizierst, tritt jede Kante genau zweimal auf, sodass **das Produkt der drei Flächeninhalte gleich dem Quadrat des Volumens ist**!
 
-- <InlineMath math="47\text{ cm}^3" /> ist die Summe der drei Flächeninhalte. Eine Summe von Flächen ergibt kein Volumen.
-- <InlineMath math="94\text{ cm}^3" /> ist der Zahlenwert der Oberfläche, <InlineMath math="2\cdot(12+15+20)" />, also eine Fläche in <InlineMath math="\text{cm}^2" />.
-- <InlineMath math="180\text{ cm}^3" /> ist <InlineMath math="12\cdot15=ab\cdot bc=ab^2c" />. Darin steckt die Kante <InlineMath math="b" /> zweimal.
-- <InlineMath math="3{.}600\text{ cm}^3" /> ist das Produkt der drei Flächen, also <InlineMath math="(abc)^2" />. Die Wurzel fehlt.
-- <InlineMath math="12\text{ cm}^3" /> ist die Summe der Kanten <InlineMath math="4+3+5" />. Für das Volumen werden die Kanten multipliziert.
+> Bei einem Quader ergibt das Produkt der drei verschiedenen Seitenflächen immer das Quadrat seines Volumens, sodass eine einzige Quadratwurzel direkt das Volumen liefert.
+
+Schreib die drei Flächengleichungen auf und multiplizier sie direkt miteinander.
+
+<BlockMath math="\begin{aligned}
+ab = 12, \qquad bc &= 15, \qquad ac = 20 \\
+(ab)(bc)(ac) = (abc)^2 &= 12 \cdot 15 \cdot 20 = 3600 \\
+V = abc &= \sqrt{3600} = 60\text{ cm}^3
+\end{aligned}" />
+
+## Kantenlängen anschaulich überprüfen
+
+Aus <InlineMath math="abc = 60" /> ergeben sich die Kanten sofort: <InlineMath math="c = 5\text{ cm}" />, <InlineMath math="a = 4\text{ cm}" /> und <InlineMath math="b = 3\text{ cm}" />. Sieh dir **alle drei verschiedenen Rechtecksflächen mit ihren exakten Maßen** an.
+
+<MathVisual
+  title={<>Drei verschiedene Seitenflächen des <InlineMath math="4 \times 3 \times 5" />-Quaders</>}
+  description={
+    <>
+      Drei Rechtecke zeigen die drei unterschiedlichen Flächen des Quaders:
+      Boden <InlineMath math="4 \times 3 = 12\text{ cm}^2" />, Seite{" "}
+      <InlineMath math="3 \times 5 = 15\text{ cm}^2" /> und Front{" "}
+      <InlineMath math="4 \times 5 = 20\text{ cm}^2" />.
+    </>
+  }
+  footer={<>Die Kanten <InlineMath math="4\text{ cm}" />, <InlineMath math="3\text{ cm}" /> und <InlineMath math="5\text{ cm}" /> passen zu allen drei Flächen und geben <InlineMath math="60\text{ cm}^3" />.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.8, max: 14 }, y: { min: -1.6, max: 6.6 } },
+    view: { kind: "fit", padding: 0.08 },
+    objects: [
+      { id: "face-ab", kind: "polygon", appearance: "primary", vertices: [{ x: 0, y: 0 }, { x: 4, y: 0 }, { x: 4, y: 3 }, { x: 0, y: 3 }] },
+      { id: "face-bc", kind: "polygon", appearance: "secondary", vertices: [{ x: 5, y: 0 }, { x: 8, y: 0 }, { x: 8, y: 5 }, { x: 5, y: 5 }] },
+      { id: "face-ac", kind: "polygon", appearance: "answer", vertices: [{ x: 9, y: 0 }, { x: 13, y: 0 }, { x: 13, y: 5 }, { x: 9, y: 5 }] },
+    ],
+    labels: [
+      { key: "ab", objectId: "face-ab", at: { x: 2, y: 3 }, placement: "above" },
+      { key: "bc", objectId: "face-bc", at: { x: 6.5, y: 5 }, placement: "above" },
+      { key: "ac", objectId: "face-ac", at: { x: 11, y: 5 }, placement: "above" },
+      { key: "dim1", objectId: "face-ab", at: { x: 2, y: 0 }, placement: "below" },
+      { key: "dim2", objectId: "face-bc", at: { x: 6.5, y: 0 }, placement: "below" },
+      { key: "dim3", objectId: "face-ac", at: { x: 11, y: 0 }, placement: "below" },
+    ],
+  }}
+  labels={{
+    ab: <><InlineMath math="12\text{ cm}^2" /></>,
+    bc: <><InlineMath math="15\text{ cm}^2" /></>,
+    ac: <><InlineMath math="20\text{ cm}^2" /></>,
+    dim1: <><InlineMath math="4 \times 3" /></>,
+    dim2: <><InlineMath math="3 \times 5" /></>,
+    dim3: <><InlineMath math="4 \times 5" /></>,
+  }}
+/>
+
+Jede Kante (<InlineMath math="4" />, <InlineMath math="3" /> und <InlineMath math="5" />) taucht in diesen drei Flächen zweimal auf und bestätigt <InlineMath math="60\text{ cm}^3" />.
+
+## Falsche Antworten prüfen
+
+Jede falsche Auswahl vermischt **Kantenlänge, Oberfläche und Volumen**.
+
+- <InlineMath math="47\text{ cm}^3" /> addiert nur die drei Flächeninhalte (<InlineMath math="12 + 15 + 20" />) statt das Volumen zu berechnen.
+- <InlineMath math="94\text{ cm}^3" /> ist tatsächlich der Zahlenwert des Oberflächeninhalts (<InlineMath math="94\text{ cm}^2" />), kein Volumen.
+- <InlineMath math="180\text{ cm}^3" /> multipliziert nur zwei Flächen (<InlineMath math="12 \cdot 15" />), wodurch eine Kante quadriert vorkommt.
+- <InlineMath math="3{.}600\text{ cm}^3" /> ist das quadrierte Volumen vor dem Wurzelziehen.
+- <InlineMath math="12\text{ cm}^3" /> addiert die drei Kantenlängen (<InlineMath math="4 + 3 + 5" />) statt sie zu multiplizieren.
+
+# Antwort
+
+Das Volumen des Quaders beträgt <InlineMath math="60\text{ cm}^3" />.

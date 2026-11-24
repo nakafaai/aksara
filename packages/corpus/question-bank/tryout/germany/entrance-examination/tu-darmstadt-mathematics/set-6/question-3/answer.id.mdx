@@ -1,34 +1,44 @@
-# Dua garis tinggi sudah cukup
+# Diketahui
 
-Ketiga garis tinggi berpotongan di satu titik. Jadi untuk koordinatnya cukup **dua garis tinggi**, dan yang ketiga dipakai untuk mengecek.
+Sebuah **segitiga** (*Dreieck*) memiliki titik sudut <InlineMath math="A(0 \mid 0)" />, <InlineMath math="B(8 \mid 0)" />, dan <InlineMath math="C(2 \mid 6)" />. Ketiga garis tingginya (*Höhen*) berpotongan di satu titik tinggi (*Höhenschnittpunkt*) <InlineMath math="H" />.
 
-Sisi <InlineMath math="\overline{AB}" /> terletak pada sumbu <InlineMath math="x" />. Garis tinggi dari <InlineMath math="C" /> tegak lurus padanya, jadi berupa garis tegak <InlineMath math="x=2" />.
+# Ditanyakan
 
-# Garis tinggi dari <InlineMath math="A" />
+Tentukan koordinat titik tinggi <InlineMath math="H" />.
 
-Sisi <InlineMath math="\overline{BC}" /> bergradien <InlineMath math="m_{BC}=\frac{6-0}{2-8}=-1" />. Garis yang tegak lurus padanya bergradien <InlineMath math="1" />, karena **gradien dua garis yang tegak lurus hasil kalinya <InlineMath math="-1" />**. Jadi garis tinggi dari <InlineMath math="A(0\mid0)" /> adalah <InlineMath math="y=x" />.
+# Penyelesaian
 
-# Titik potongnya
+Karena ketiga garis tinggi segitiga selalu berpotongan di tepat satu titik, kamu cukup memilih **dua garis tinggi yang paling mudah dihitung**, lalu memakai garis tinggi ketiga sebagai cek gratis! Sisi <InlineMath math="AB" /> berbaring rata di sumbu <InlineMath math="x" />, sehingga garis tinggi dari <InlineMath math="C(2 \mid 6)" /> jatuh tegak lurus ke bawah di garis <InlineMath math="x = 2" />!
 
-<BlockMath math="x=2,\quad y=x\quad\Longrightarrow\quad H(2\mid2)" />
+> Untuk mencari titik tinggi segitiga dalam koordinat, potongkan dua garis tinggi termudah memakai syarat hasil kali gradien garis tegak lurus sama dengan minus satu, lalu konfirmasi dengan garis tinggi ketiga.
+
+Sekarang cari garis tinggi kedua dari <InlineMath math="A(0 \mid 0)" /> yang tegak lurus sisi <InlineMath math="BC" />.
+
+<BlockMath math="\begin{aligned}
+m_{BC} &= \frac{6 - 0}{2 - 8} = -1 \implies m_{h_A} = 1 \\
+h_A &: y = x, \qquad h_C : x = 2 \implies H(2 \mid 2)
+\end{aligned}" />
+
+## Memeriksa ketiga garis tinggi pada grafik
+
+Lihat pada bidang koordinat berikut bagaimana **ketiga garis tinggi bertemu tepat di <InlineMath math="H(2 \mid 2)" />**.
 
 <MathVisual
-  title={<>Ketiga garis tinggi</>}
-  description={<>Segitiga dengan <InlineMath math="A(0\mid0)" />, <InlineMath math="B(8\mid0)" />, dan <InlineMath math="C(2\mid6)" />. Garis tinggi dari <InlineMath math="C" /> adalah ruas tegak di <InlineMath math="x=2" />. Garis tinggi dari <InlineMath math="A" /> terletak pada <InlineMath math="y=x" /> dan memotong <InlineMath math="\overline{BC}" /> di <InlineMath math="(4\mid4)" />. Garis tinggi dari <InlineMath math="B" /> memotong <InlineMath math="\overline{AC}" /> di <InlineMath math="(0{,}8\mid2{,}4)" />. Ketiganya melalui <InlineMath math="H(2\mid2)" />.</>}
-  labels={{
-    a: <><InlineMath math="A" /></>,
-    b: <><InlineMath math="B" /></>,
-    c: <><InlineMath math="C" /></>,
-    h: <><InlineMath math="H(2\mid2)" /></>,
-  }}
+  title={<>Pertemuan ketiga garis tinggi di titik <InlineMath math="H(2 \mid 2)" /></>}
+  description={
+    <>
+      Segitiga <InlineMath math="A(0 \mid 0)" />, <InlineMath math="B(8 \mid 0)" />,
+      dan <InlineMath math="C(2 \mid 6)" /> beserta tiga garis tingginya: garis
+      tegak di <InlineMath math="x = 2" />, garis <InlineMath math="y = x" />{" "}
+      menuju <InlineMath math="(4 \mid 4)" />, dan garis tinggi ketiga dari{" "}
+      <InlineMath math="B" /> menuju <InlineMath math="(0{,}8 \mid 2{,}4)" />.
+    </>
+  }
+  footer={<>Ketiga garis tinggi dari <InlineMath math="A" />, <InlineMath math="B" />, dan <InlineMath math="C" /> berpotongan tepat di <InlineMath math="H(2 \mid 2)" />.</>}
   scene={{
     space: "plane",
-    frame: {
-      kind: "cartesian",
-      x: { min: -1, max: 9 },
-      y: { min: -1, max: 7 },
-    },
-    view: { kind: "fit", padding: 0.1 },
+    frame: { kind: "cartesian", x: { min: -1, max: 9 }, y: { min: -1, max: 7 } },
+    view: { kind: "fit", padding: 0.08 },
     objects: [
       { id: "triangle", kind: "polygon", appearance: "primary", vertices: [{ x: 0, y: 0 }, { x: 8, y: 0 }, { x: 2, y: 6 }] },
       { id: "alt-c", kind: "segment", appearance: "secondary", from: { x: 2, y: 6 }, to: { x: 2, y: 0 } },
@@ -46,14 +56,28 @@ Sisi <InlineMath math="\overline{BC}" /> bergradien <InlineMath math="m_{BC}=\fr
       { key: "h", objectId: "ph", at: { x: 2, y: 2 }, placement: "right" },
     ],
   }}
+  labels={{
+    a: <><InlineMath math="A" /></>,
+    b: <><InlineMath math="B" /></>,
+    c: <><InlineMath math="C" /></>,
+    h: <><InlineMath math="H(2 \mid 2)" /></>,
+  }}
 />
 
-Cek dengan garis tinggi ketiga: <InlineMath math="\overline{AC}" /> bergradien <InlineMath math="3" />, jadi garis tinggi dari <InlineMath math="B" /> bergradien <InlineMath math="-\frac13" />. Garis melalui <InlineMath math="B(8\mid0)" /> dengan gradien itu bernilai <InlineMath math="-\frac13\cdot(2-8)=2" /> di <InlineMath math="x=2" />. Garis itu **juga melalui <InlineMath math="H(2\mid2)" />**.
+Cek dengan garis tinggi ketiga dari <InlineMath math="B(8 \mid 0)" />: karena sisi <InlineMath math="AC" /> bergradien <InlineMath math="3" />, garis tinggi dari <InlineMath math="B" /> bergradien <InlineMath math="-\frac{1}{3}" /> dan tepat melewati <InlineMath math="H(2 \mid 2)" />.
 
-# Mengapa pilihan lain salah
+<BlockMath math="y = -\frac{1}{3}(2 - 8) = 2" />
 
-- <InlineMath math="H(4\mid2)" /> adalah titik potong **garis sumbu**, yaitu pusat lingkaran luar.
-- <InlineMath math="H\left(\frac{10}{3}\mid2\right)" /> adalah titik berat, tempat garis-garis berat berpotongan.
-- <InlineMath math="H(2\mid6)" /> adalah titik sudut <InlineMath math="C" />. Garis tinggi dari <InlineMath math="C" /> memang melalui <InlineMath math="C" />, tetapi garis tinggi lain tidak.
-- <InlineMath math="H(2\mid4)" /> muncul kalau garis tinggi dari <InlineMath math="A" /> diberi gradien <InlineMath math="2" />, jadi bukan negatif kebalikan dari <InlineMath math="-1" />.
-- <InlineMath math="H(6\mid2)" /> menukar koordinat titik <InlineMath math="C" /> menjadi <InlineMath math="(6\mid2)" /> lalu memakai garis tinggi <InlineMath math="x=6" />.
+## Mengecek pilihan salah
+
+Perhatikan bagaimana pengecoh utama justru adalah **titik istimewa segitiga lainnya**!
+
+- <InlineMath math="H(4 \mid 2)" /> adalah pusat lingkaran luar (*Umkreismittelpunkt*), titik potong garis sumbu sisi.
+- <InlineMath math="H\left(\frac{10}{3} \mid 2\right)" /> adalah titik berat (*Schwerpunkt*), titik potong ketiga garis berat.
+- <InlineMath math="H(2 \mid 6)" /> adalah titik sudut <InlineMath math="C" /> sendiri, yang hanya dilewati satu garis tinggi.
+- <InlineMath math="H(2 \mid 4)" /> muncul jika gradien garis tinggi dari <InlineMath math="A" /> keliru diambil <InlineMath math="2" />, bukan <InlineMath math="1" />.
+- <InlineMath math="H(6 \mid 2)" /> menukar koordinat <InlineMath math="C" /> menjadi <InlineMath math="(6 \mid 2)" /> lalu memakai garis tegak <InlineMath math="x = 6" />.
+
+# Jawaban
+
+Koordinat titik tinggi segitiga adalah <InlineMath math="H(2 \mid 2)" />.

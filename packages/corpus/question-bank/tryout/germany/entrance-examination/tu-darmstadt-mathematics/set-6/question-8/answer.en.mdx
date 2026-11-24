@@ -1,17 +1,80 @@
-The task asks for the volume of the cuboid. Call the edge lengths <InlineMath math="a" />, <InlineMath math="b" /> and <InlineMath math="c" />. Each face is a rectangle made of two of these edges, and **the volume is the product of all three edges**. So you are looking for <InlineMath math="abc" />.
+# Given
 
-<BlockMath math="ab=12\qquad bc=15\qquad ac=20" />
+The six faces of a **cuboid** (*Quader*) have three different areas (*Flächeninhalte*): <InlineMath math="12\text{ cm}^2" />, <InlineMath math="15\text{ cm}^2" />, and <InlineMath math="20\text{ cm}^2" />, with opposite faces having equal area.
 
-If you multiply the three face areas, every edge appears exactly twice. So the product is the square of the volume.
+# Asked
 
-<BlockMath math="ab\cdot bc\cdot ac=(abc)^2=12\cdot15\cdot20=3600\quad\Rightarrow\quad abc=60" />
+Find the volume of this cuboid.
 
-As a check, find the edges. From <InlineMath math="abc=60" /> and <InlineMath math="ab=12" /> you get <InlineMath math="c=5" />, from <InlineMath math="bc=15" /> you get <InlineMath math="a=4" />, and from <InlineMath math="ac=20" /> you get <InlineMath math="b=3" />. Indeed <InlineMath math="4\cdot3=12" />, <InlineMath math="3\cdot5=15" /> and <InlineMath math="4\cdot5=20" />.
+# Solution
 
-So the volume of the cuboid is <InlineMath math="60\text{ cm}^3" />.
+You do not even need to guess the length, width, and height one by one first! Call the three edges <InlineMath math="a" />, <InlineMath math="b" />, and <InlineMath math="c" />. When you multiply all three distinct face areas together, every edge appears twice, so **the product of the three face areas equals the volume squared**!
 
-- <InlineMath math="47\text{ cm}^3" /> is the sum of the three face areas. A sum of areas does not give a volume.
-- <InlineMath math="94\text{ cm}^3" /> is the number of the surface area, <InlineMath math="2\cdot(12+15+20)" />, which is an area in <InlineMath math="\text{cm}^2" />.
-- <InlineMath math="180\text{ cm}^3" /> is <InlineMath math="12\cdot15=ab\cdot bc=ab^2c" />. It contains the edge <InlineMath math="b" /> twice.
-- <InlineMath math="3{,}600\text{ cm}^3" /> is the product of the three faces, which is <InlineMath math="(abc)^2" />. The square root is missing.
-- <InlineMath math="12\text{ cm}^3" /> is the sum of the edges, <InlineMath math="4+3+5" />. For the volume the edges are multiplied.
+> For a cuboid with three distinct face areas, multiplying those three areas together always gives the square of the volume, so one square root finds the volume directly.
+
+Write the three face-area equations and multiply them together.
+
+<BlockMath math="\begin{aligned}
+ab = 12, \qquad bc &= 15, \qquad ac = 20 \\
+(ab)(bc)(ac) = (abc)^2 &= 12 \cdot 15 \cdot 20 = 3600 \\
+V = abc &= \sqrt{3600} = 60\text{ cm}^3
+\end{aligned}" />
+
+## Checking the three edge lengths visually
+
+From <InlineMath math="abc = 60" />, the individual edges drop right out: <InlineMath math="c = 5\text{ cm}" />, <InlineMath math="a = 4\text{ cm}" />, and <InlineMath math="b = 3\text{ cm}" />. See **all three distinct rectangular faces with their exact dimensions** below.
+
+<MathVisual
+  title={<>Three distinct faces of the <InlineMath math="4 \times 3 \times 5" /> cuboid</>}
+  description={
+    <>
+      Three rectangles show the cuboid's three distinct face sizes: base{" "}
+      <InlineMath math="4 \times 3 = 12\text{ cm}^2" />, side{" "}
+      <InlineMath math="3 \times 5 = 15\text{ cm}^2" />, and front{" "}
+      <InlineMath math="4 \times 5 = 20\text{ cm}^2" />.
+    </>
+  }
+  footer={<>Edges <InlineMath math="4\text{ cm}" />, <InlineMath math="3\text{ cm}" />, and <InlineMath math="5\text{ cm}" /> match all three areas and give volume <InlineMath math="60\text{ cm}^3" />.</>}
+  scene={{
+    space: "plane",
+    frame: { kind: "cartesian", x: { min: -0.8, max: 14 }, y: { min: -1.6, max: 6.6 } },
+    view: { kind: "fit", padding: 0.08 },
+    objects: [
+      { id: "face-ab", kind: "polygon", appearance: "primary", vertices: [{ x: 0, y: 0 }, { x: 4, y: 0 }, { x: 4, y: 3 }, { x: 0, y: 3 }] },
+      { id: "face-bc", kind: "polygon", appearance: "secondary", vertices: [{ x: 5, y: 0 }, { x: 8, y: 0 }, { x: 8, y: 5 }, { x: 5, y: 5 }] },
+      { id: "face-ac", kind: "polygon", appearance: "answer", vertices: [{ x: 9, y: 0 }, { x: 13, y: 0 }, { x: 13, y: 5 }, { x: 9, y: 5 }] },
+    ],
+    labels: [
+      { key: "ab", objectId: "face-ab", at: { x: 2, y: 3 }, placement: "above" },
+      { key: "bc", objectId: "face-bc", at: { x: 6.5, y: 5 }, placement: "above" },
+      { key: "ac", objectId: "face-ac", at: { x: 11, y: 5 }, placement: "above" },
+      { key: "dim1", objectId: "face-ab", at: { x: 2, y: 0 }, placement: "below" },
+      { key: "dim2", objectId: "face-bc", at: { x: 6.5, y: 0 }, placement: "below" },
+      { key: "dim3", objectId: "face-ac", at: { x: 11, y: 0 }, placement: "below" },
+    ],
+  }}
+  labels={{
+    ab: <><InlineMath math="12\text{ cm}^2" /></>,
+    bc: <><InlineMath math="15\text{ cm}^2" /></>,
+    ac: <><InlineMath math="20\text{ cm}^2" /></>,
+    dim1: <><InlineMath math="4 \times 3" /></>,
+    dim2: <><InlineMath math="3 \times 5" /></>,
+    dim3: <><InlineMath math="4 \times 5" /></>,
+  }}
+/>
+
+Each edge (<InlineMath math="4" />, <InlineMath math="3" />, and <InlineMath math="5" />) appears twice across the three faces, confirming the volume is <InlineMath math="60\text{ cm}^3" />.
+
+## Checking wrong choices
+
+Notice how each distractor confuses **length, surface area, and volume**.
+
+- <InlineMath math="47\text{ cm}^3" /> simply adds the three face areas (<InlineMath math="12 + 15 + 20" />) instead of finding volume.
+- <InlineMath math="94\text{ cm}^3" /> is actually the total surface area (<InlineMath math="94\text{ cm}^2" />), not the volume.
+- <InlineMath math="180\text{ cm}^3" /> multiplies only two face areas (<InlineMath math="12 \cdot 15" />), squaring one edge while omitting proper units.
+- <InlineMath math="3\,600\text{ cm}^3" /> is the volume squared before taking the square root.
+- <InlineMath math="12\text{ cm}^3" /> adds the three edge lengths (<InlineMath math="4 + 3 + 5" />) instead of multiplying them.
+
+# Answer
+
+The volume of the cuboid is <InlineMath math="60\text{ cm}^3" />.

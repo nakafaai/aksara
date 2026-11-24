@@ -1,49 +1,55 @@
-# Nyatakan titik potong sumbu dengan gradien
+# Diketahui
 
-Garis melalui <InlineMath math="P(2\mid3)" /> dengan gradien <InlineMath math="m<0" /> berpersamaan <InlineMath math="y=m(x-2)+3" />. **Titik potongnya dengan sumbu** bergantung pada <InlineMath math="m" />:
+Sebuah **garis lurus** (*Gerade*) <InlineMath math="g" /> bergradien negatif (*negative Steigung*) melalui titik <InlineMath math="P(2 \mid 3)" /> dan memotong sumbu <InlineMath math="x" /> positif serta sumbu <InlineMath math="y" /> positif. Bersama kedua sumbu koordinat, garis <InlineMath math="g" /> membatasi segitiga siku-siku seluas <InlineMath math="12" />.
+
+# Ditanyakan
+
+Tentukan persamaan garis <InlineMath math="g" />.
+
+# Penyelesaian
+
+Bayangkan kamu memutar penggaris lurus yang ditusuk paku tepat di <InlineMath math="P(2 \mid 3)" />! Kalau penggaris terlalu datar atau terlalu curam, salah satu ujungnya melesat jauh dan luas segitiganya membesar. Luas terkecil yang mungkin terjadi tepat ketika **titik <InlineMath math="P(2 \mid 3)" /> duduk persis di tengah antara kedua titik potong sumbu**, yaitu <InlineMath math="(4 \mid 0)" /> dan <InlineMath math="(0 \mid 6)" />, dengan luas tepat <InlineMath math="12" />!
+
+> Luas segitiga yang dibentuk garis bergradien negatif melalui titik kuadran pertama selalu minimum tepat ketika titik itu menjadi titik tengah ruas antar kedua titik potong sumbu, sehingga syarat luas minimum menghasilkan satu garis tunggal.
+
+Tulis persamaan garis bergradien <InlineMath math="m < 0" /> melalui <InlineMath math="P(2 \mid 3)" /> dan cari kedua titik potong sumbunya.
 
 <BlockMath math="\begin{aligned}
-x=0:&\quad y_0=3-2m \\
-y=0:&\quad x_0=2-\frac3m
+y &= m(x - 2) + 3 \\
+x = 0 &\implies y_0 = 3 - 2m, \qquad y = 0 \implies x_0 = 2 - \frac{3}{m}
 \end{aligned}" />
 
-Untuk <InlineMath math="m<0" /> keduanya positif, jadi segitiganya ada di kuadran pertama.
+## Menyelesaikan syarat luas dan menemukan akar kembar
 
-# Susun syarat luasnya
-
-Segitiga itu siku-siku dengan sisi siku-siku <InlineMath math="x_0" /> dan <InlineMath math="y_0" />. **Jangan lupa faktor <InlineMath math="\frac12" />**:
+Masukkan kedua sisi siku-siku <InlineMath math="x_0" /> dan <InlineMath math="y_0" /> ke rumus luas segitiga tanpa melupakan **faktor setengah**.
 
 <BlockMath math="\begin{aligned}
-\tfrac12\left(3-2m\right)\left(2-\tfrac3m\right)&=12 \\
-12-4m-\tfrac9m&=24 \\
-4m^2+12m+9&=0 \\
-(2m+3)^2&=0
+\frac{1}{2}(3 - 2m)\left(2 - \frac{3}{m}\right) &= 12 \\
+12 - 4m - \frac{9}{m} &= 24 \\
+4m^2 + 12m + 9 &= 0 \\
+(2m + 3)^2 &= 0 \implies m = -\frac{3}{2} = -1{,}5
 \end{aligned}" />
 
-# Penyelesaian kembar
-
-Persamaan kuadrat itu hanya punya **satu penyelesaian, <InlineMath math="m=-\frac32" />**. Maka <InlineMath math="y_0=3+3=6" /> dan <InlineMath math="x_0=2+2=4" />:
+Akar kembar ini memberi tepat satu garis dengan titik potong <InlineMath math="(4 \mid 0)" /> dan <InlineMath math="(0 \mid 6)" />.
 
 <MathVisual
-  title={<>Garis dan segitiganya</>}
-  description={<>Garis <InlineMath math="g: y=-1{,}5x+6" /> memotong sumbu di <InlineMath math="(4\mid0)" /> dan <InlineMath math="(0\mid6)" />. Bersama sumbu-sumbu, garis itu membatasi segitiga siku-siku dengan luas <InlineMath math="12" />. Titik <InlineMath math="P(2\mid3)" /> tepat berada di tengah ruas antara kedua titik potong sumbu.</>}
-  labels={{
-    p: <><InlineMath math="P(2\mid3)" /></>,
-    x0: <><InlineMath math="(4\mid0)" /></>,
-    y0: <><InlineMath math="(0\mid6)" /></>,
-    g: <><InlineMath math="g" /></>,
-  }}
+  title={<>Garis tunggal <InlineMath math="g" /> dan segitiga seluas <InlineMath math="12" /></>}
+  description={
+    <>
+      Garis <InlineMath math="y = -1{,}5x + 6" /> memotong sumbu di{" "}
+      <InlineMath math="(4 \mid 0)" /> dan <InlineMath math="(0 \mid 6)" />{" "}
+      serta membatasi segitiga siku-siku berarsir seluas <InlineMath math="12" />,
+      dengan <InlineMath math="P(2 \mid 3)" /> tepat di tengah sisi miringnya.
+    </>
+  }
+  footer={<>Titik <InlineMath math="P(2 \mid 3)" /> tepat membagi dua ruas antara <InlineMath math="(4 \mid 0)" /> dan <InlineMath math="(0 \mid 6)" />.</>}
   scene={{
     space: "plane",
-    frame: {
-      kind: "cartesian",
-      x: { min: -1, max: 6 },
-      y: { min: -1.5, max: 7.5 },
-    },
-    view: { kind: "fit", padding: 0.1 },
+    frame: { kind: "cartesian", x: { min: -1, max: 6 }, y: { min: -1.5, max: 7.5 } },
+    view: { kind: "fit", padding: 0.08 },
     objects: [
       { id: "triangle", kind: "polygon", appearance: "highlight", vertices: [{ x: 0, y: 0 }, { x: 4, y: 0 }, { x: 0, y: 6 }] },
-      { id: "line", kind: "function", appearance: "primary", formula: "-1.5*x + 6", domain: { min: -0.5, max: 4.8 } },
+      { id: "line", kind: "function", appearance: "primary", formula: "-1.5 * x + 6", domain: { min: -0.5, max: 4.8 } },
       { id: "pp", kind: "point", appearance: "answer", at: { x: 2, y: 3 } },
       { id: "px", kind: "point", appearance: "reference", at: { x: 4, y: 0 } },
       { id: "py", kind: "point", appearance: "reference", at: { x: 0, y: 6 } },
@@ -55,14 +61,28 @@ Persamaan kuadrat itu hanya punya **satu penyelesaian, <InlineMath math="m=-\fra
       { key: "g", objectId: "line", at: { x: 4.6, y: -0.9 }, placement: "right" },
     ],
   }}
+  labels={{
+    p: <><InlineMath math="P(2 \mid 3)" /></>,
+    x0: <><InlineMath math="(4 \mid 0)" /></>,
+    y0: <><InlineMath math="(0 \mid 6)" /></>,
+    g: <><InlineMath math="g" /></>,
+  }}
 />
 
-Cek: <InlineMath math="\frac12\cdot4\cdot6=12" />. Persamaan garisnya <InlineMath math="y=-1{,}5x+6" />.
+Posisi simetris <InlineMath math="P(2 \mid 3)" /> di titik tengah sisi miring mengonfirmasi secara geometris mengapa hanya ada satu garis.
 
-# Mengapa pilihan lain salah
+## Mengecek luas dan pilihan salah
 
-- <InlineMath math="y=-\frac23x+\frac{13}{3}" /> memakai kebalikan gradien. Segitiganya bersisi siku-siku <InlineMath math="6{,}5" /> dan <InlineMath math="\frac{13}{3}" /> dan **luasnya bukan <InlineMath math="12" />**.
-- <InlineMath math="y=-3x+9" /> atau <InlineMath math="y=-0{,}75x+4{,}5" /> mengharapkan dua garis. Keduanya memang melalui <InlineMath math="P" />, tetapi masing-masing membatasi segitiga dengan luas <InlineMath math="13{,}5" />.
-- <InlineMath math="y=-\frac23x+4" /> menukar titik potong <InlineMath math="4" /> dan <InlineMath math="6" />. Garis itu tidak melalui <InlineMath math="P" />, karena <InlineMath math="-\frac23\cdot2+4=\frac83\ne3" />.
-- <InlineMath math="y=1{,}5x" /> bergradien positif dan melalui titik asal.
-- "Tidak ada garis seperti itu" muncul kalau faktor <InlineMath math="\frac12" /> dibuang: syaratnya lalu menjadi <InlineMath math="4m^2=-9" />.
+Cek langsung: garis melalui <InlineMath math="(2 \mid 3)" /> dan membentuk segitiga beralas <InlineMath math="4" /> bertinggi <InlineMath math="6" />, sehingga **luasnya tepat <InlineMath math="12" />**.
+
+| Pilihan | Mengapa salah |
+| :--- | :--- |
+| <InlineMath math="y = -\frac{2}{3}x + \frac{13}{3}" /> | Membalik gradien sehingga luas segitiganya bukan <InlineMath math="12" />. |
+| <InlineMath math="y = -3x + 9" /> atau <InlineMath math="y = -0{,}75x + 4{,}5" /> | Keduanya melalui <InlineMath math="P" />, tetapi masing-masing membentuk luas <InlineMath math="13{,}5" />. |
+| <InlineMath math="y = -\frac{2}{3}x + 4" /> | Menukar titik potong <InlineMath math="4" /> dan <InlineMath math="6" /> sehingga tidak melalui <InlineMath math="P(2 \mid 3)" />. |
+| <InlineMath math="y = 1{,}5x" /> | Bergradien positif dan melalui titik asal sehingga tidak membentuk segitiga. |
+| Tidak ada garis seperti itu | Lupa faktor <InlineMath math="\frac{1}{2}" /> pada rumus luas sehingga mendapat <InlineMath math="4m^2 = -9" />. |
+
+# Jawaban
+
+Persamaan garis <InlineMath math="g" /> adalah <InlineMath math="y = -1{,}5x + 6" />.

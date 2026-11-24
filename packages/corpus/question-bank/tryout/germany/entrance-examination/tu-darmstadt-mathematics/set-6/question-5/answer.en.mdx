@@ -1,49 +1,55 @@
-# Write the intercepts in terms of the slope
+# Given
 
-A line through <InlineMath math="P(2\mid3)" /> with slope <InlineMath math="m<0" /> has the equation <InlineMath math="y=m(x-2)+3" />. Its **intercepts with the axes** depend on <InlineMath math="m" />:
+A **straight line** (*Gerade*) <InlineMath math="g" /> with negative slope (*negative Steigung*) passes through <InlineMath math="P(2 \mid 3)" /> and cuts both the positive <InlineMath math="x" />-axis and positive <InlineMath math="y" />-axis. Together with the two axes, <InlineMath math="g" /> encloses a right triangle of area <InlineMath math="12" />.
+
+# Asked
+
+Find the equation of line <InlineMath math="g" />.
+
+# Solution
+
+Picture pivoting a straight ruler pinned at <InlineMath math="P(2 \mid 3)" />! Tilt it too flat or too steep and one intercept shoots far out, inflating the triangle's area. The smallest possible triangle occurs right when **<InlineMath math="P(2 \mid 3)" /> sits at the exact midpoint between both intercepts**, <InlineMath math="(4 \mid 0)" /> and <InlineMath math="(0 \mid 6)" />, yielding area exactly <InlineMath math="12" />!
+
+> The triangle formed by a negatively sloped line through a first-quadrant point reaches its minimum area precisely when that point bisects the segment between the two intercepts, producing a single unique line.
+
+Write the line of slope <InlineMath math="m < 0" /> through <InlineMath math="P(2 \mid 3)" /> and express both axis intercepts.
 
 <BlockMath math="\begin{aligned}
-x=0:&\quad y_0=3-2m \\
-y=0:&\quad x_0=2-\frac3m
+y &= m(x - 2) + 3 \\
+x = 0 &\implies y_0 = 3 - 2m, \qquad y = 0 \implies x_0 = 2 - \frac{3}{m}
 \end{aligned}" />
 
-For <InlineMath math="m<0" /> both are positive, so the triangle lies in the first quadrant.
+## Solving the area equation to find the double root
 
-# Set up the area condition
-
-The triangle is right-angled with legs <InlineMath math="x_0" /> and <InlineMath math="y_0" />. **Don't forget the factor <InlineMath math="\frac12" />**:
+Substitute both legs <InlineMath math="x_0" /> and <InlineMath math="y_0" /> into the triangle area formula, keeping **the factor of one half**.
 
 <BlockMath math="\begin{aligned}
-\tfrac12\left(3-2m\right)\left(2-\tfrac3m\right)&=12 \\
-12-4m-\tfrac9m&=24 \\
-4m^2+12m+9&=0 \\
-(2m+3)^2&=0
+\frac{1}{2}(3 - 2m)\left(2 - \frac{3}{m}\right) &= 12 \\
+12 - 4m - \frac{9}{m} &= 24 \\
+4m^2 + 12m + 9 &= 0 \\
+(2m + 3)^2 &= 0 \implies m = -\frac{3}{2} = -1.5
 \end{aligned}" />
 
-# A double solution
-
-The quadratic equation has only **the one solution <InlineMath math="m=-\frac32" />**. Then <InlineMath math="y_0=3+3=6" /> and <InlineMath math="x_0=2+2=4" />:
+This double root yields one unique line with intercepts <InlineMath math="(4 \mid 0)" /> and <InlineMath math="(0 \mid 6)" />.
 
 <MathVisual
-  title={<>The line and its triangle</>}
-  description={<>The line <InlineMath math="g: y=-1.5x+6" /> meets the axes at <InlineMath math="(4\mid0)" /> and <InlineMath math="(0\mid6)" />. With the axes it bounds a right triangle of area <InlineMath math="12" />. The point <InlineMath math="P(2\mid3)" /> lies exactly at the midpoint of the segment between the two axis points.</>}
-  labels={{
-    p: <><InlineMath math="P(2\mid3)" /></>,
-    x0: <><InlineMath math="(4\mid0)" /></>,
-    y0: <><InlineMath math="(0\mid6)" /></>,
-    g: <><InlineMath math="g" /></>,
-  }}
+  title={<>Unique line <InlineMath math="g" /> enclosing area <InlineMath math="12" /></>}
+  description={
+    <>
+      Line <InlineMath math="y = -1.5x + 6" /> meets the axes at{" "}
+      <InlineMath math="(4 \mid 0)" /> and <InlineMath math="(0 \mid 6)" />,
+      forming a shaded right triangle of area <InlineMath math="12" /> with{" "}
+      <InlineMath math="P(2 \mid 3)" /> at the midpoint of the hypotenuse.
+    </>
+  }
+  footer={<>Point <InlineMath math="P(2 \mid 3)" /> sits at the exact midpoint between <InlineMath math="(4 \mid 0)" /> and <InlineMath math="(0 \mid 6)" />.</>}
   scene={{
     space: "plane",
-    frame: {
-      kind: "cartesian",
-      x: { min: -1, max: 6 },
-      y: { min: -1.5, max: 7.5 },
-    },
-    view: { kind: "fit", padding: 0.1 },
+    frame: { kind: "cartesian", x: { min: -1, max: 6 }, y: { min: -1.5, max: 7.5 } },
+    view: { kind: "fit", padding: 0.08 },
     objects: [
       { id: "triangle", kind: "polygon", appearance: "highlight", vertices: [{ x: 0, y: 0 }, { x: 4, y: 0 }, { x: 0, y: 6 }] },
-      { id: "line", kind: "function", appearance: "primary", formula: "-1.5*x + 6", domain: { min: -0.5, max: 4.8 } },
+      { id: "line", kind: "function", appearance: "primary", formula: "-1.5 * x + 6", domain: { min: -0.5, max: 4.8 } },
       { id: "pp", kind: "point", appearance: "answer", at: { x: 2, y: 3 } },
       { id: "px", kind: "point", appearance: "reference", at: { x: 4, y: 0 } },
       { id: "py", kind: "point", appearance: "reference", at: { x: 0, y: 6 } },
@@ -55,14 +61,28 @@ The quadratic equation has only **the one solution <InlineMath math="m=-\frac32"
       { key: "g", objectId: "line", at: { x: 4.6, y: -0.9 }, placement: "right" },
     ],
   }}
+  labels={{
+    p: <><InlineMath math="P(2 \mid 3)" /></>,
+    x0: <><InlineMath math="(4 \mid 0)" /></>,
+    y0: <><InlineMath math="(0 \mid 6)" /></>,
+    g: <><InlineMath math="g" /></>,
+  }}
 />
 
-Check: <InlineMath math="\frac12\cdot4\cdot6=12" />. The line has the equation <InlineMath math="y=-1.5x+6" />.
+Seeing <InlineMath math="P(2 \mid 3)" /> right at the hypotenuse midpoint confirms geometrically why the solution is unique.
 
-# Why the other answers are wrong
+## Checking the area and wrong choices
 
-- <InlineMath math="y=-\frac23x+\frac{13}{3}" /> uses the reciprocal of the slope. Its triangle has legs <InlineMath math="6.5" /> and <InlineMath math="\frac{13}{3}" /> and **not the area <InlineMath math="12" />**.
-- <InlineMath math="y=-3x+9" /> or <InlineMath math="y=-0.75x+4.5" /> expects two lines. Both pass through <InlineMath math="P" />, but each bounds a triangle of area <InlineMath math="13.5" />.
-- <InlineMath math="y=-\frac23x+4" /> swaps the intercepts <InlineMath math="4" /> and <InlineMath math="6" />. This line doesn't pass through <InlineMath math="P" />, because <InlineMath math="-\frac23\cdot2+4=\frac83\ne3" />.
-- <InlineMath math="y=1.5x" /> has a positive slope and passes through the origin.
-- "There is no such line" comes from leaving out the factor <InlineMath math="\frac12" />: then the condition leads to <InlineMath math="4m^2=-9" />.
+Quick verification: the line passes through <InlineMath math="(2 \mid 3)" /> and forms a triangle with base <InlineMath math="4" /> and height <InlineMath math="6" />, giving **area exactly <InlineMath math="12" />**.
+
+| Option | Why it is wrong |
+| :--- | :--- |
+| <InlineMath math="y = -\frac{2}{3}x + \frac{13}{3}" /> | Uses the reciprocal slope, producing an area different from <InlineMath math="12" />. |
+| <InlineMath math="y = -3x + 9" /> or <InlineMath math="y = -0.75x + 4.5" /> | Both pass through <InlineMath math="P" />, yet each encloses area <InlineMath math="13.5" /> instead of <InlineMath math="12" />. |
+| <InlineMath math="y = -\frac{2}{3}x + 4" /> | Swaps the intercepts <InlineMath math="4" /> and <InlineMath math="6" /> and misses <InlineMath math="P(2 \mid 3)" />. |
+| <InlineMath math="y = 1.5x" /> | Has positive slope and passes through the origin, enclosing no triangle. |
+| No such line exists | Drops the <InlineMath math="\frac{1}{2}" /> factor from the area formula and hits <InlineMath math="4m^2 = -9" />. |
+
+# Answer
+
+The equation of line <InlineMath math="g" /> is <InlineMath math="y = -1.5x + 6" />.

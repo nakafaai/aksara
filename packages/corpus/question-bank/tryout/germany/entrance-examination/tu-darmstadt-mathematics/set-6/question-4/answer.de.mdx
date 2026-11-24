@@ -1,30 +1,37 @@
-# Wo die Winkelhalbierende die Seite trifft
+# Gegeben
 
-Die Winkelhalbierende teilt die gegenüberliegende Seite **im Verhältnis der anliegenden Seiten**:
+Im **Dreieck** <InlineMath math="ABC" /> gelten <InlineMath math="\overline{AB} = 6" />, <InlineMath math="\overline{AC} = 4" /> und <InlineMath math="\overline{BC} = 5" />. Die **Winkelhalbierende** des Winkels bei <InlineMath math="A" /> schneidet die Seite <InlineMath math="\overline{BC}" /> im Punkt <InlineMath math="D" />.
 
-<BlockMath math="\frac{\overline{BD}}{\overline{DC}}=\frac{\overline{AB}}{\overline{AC}}=\frac64=\frac32,\qquad \overline{BD}+\overline{DC}=5\quad\Longrightarrow\quad \overline{BD}=3,\ \overline{DC}=2" />
+# Gesucht
+
+Die Länge der Winkelhalbierendenstrecke <InlineMath math="\overline{AD}" />.
+
+# Lösung
+
+Eine Winkelhalbierende teilt die gegenüberliegende Seite <InlineMath math="BC" /> fair im **genauen Verhältnis der beiden anliegenden Seiten am Winkel <InlineMath math="A" />** (<InlineMath math="6 : 4" />, also <InlineMath math="3 : 2" />)! Sobald <InlineMath math="D" /> festliegt, wendest du den Kosinussatz zweimal auf denselben Winkel <InlineMath math="\beta" /> bei <InlineMath math="B" /> an: erst im großen Dreieck <InlineMath math="ABC" />, dann im kleinen Dreieck <InlineMath math="ABD" />.
+
+> Eine Winkelhalbierende zerlegt die Gegenseite im Verhältnis der anliegenden Seiten, sodass Winkelhalbierendensatz und Kosinussatz zusammen die gesuchte Streckenlänge direkt liefern.
+
+Teile die Seite <InlineMath math="\overline{BC} = 5" /> im Punkt <InlineMath math="D" />.
+
+<BlockMath math="\frac{\overline{BD}}{\overline{DC}} = \frac{\overline{AB}}{\overline{AC}} = \frac{6}{4} = \frac{3}{2}, \qquad \overline{BD} + \overline{DC} = 5 \implies \overline{BD} = 3, \quad \overline{DC} = 2" />
 
 <MathVisual
-  title={<>Die Winkelhalbierende teilt <InlineMath math="\overline{BC}" /></>}
-  description={<>Das Dreieck mit <InlineMath math="\overline{AB}=6" />, <InlineMath math="\overline{AC}=4" /> und <InlineMath math="\overline{BC}=5" />. Die Winkelhalbierende von <InlineMath math="A" /> trifft <InlineMath math="\overline{BC}" /> in <InlineMath math="D" /> und teilt die Seite in <InlineMath math="\overline{BD}=3" /> und <InlineMath math="\overline{DC}=2" />. Die Strecke <InlineMath math="\overline{AD}" /> ist hervorgehoben.</>}
-  labels={{
-    a: <><InlineMath math="A" /></>,
-    b: <><InlineMath math="B" /></>,
-    c: <><InlineMath math="C" /></>,
-    d: <><InlineMath math="D" /></>,
-    bd: <><InlineMath math="3" /></>,
-    dc: <><InlineMath math="2" /></>,
-    ab: <><InlineMath math="6" /></>,
-    ac: <><InlineMath math="4" /></>,
-  }}
+  title={<>Winkelhalbierende aus <InlineMath math="A" /> teilt Seite <InlineMath math="BC" /></>}
+  description={
+    <>
+      Dreieck mit den Seiten <InlineMath math="6" />, <InlineMath math="4" />{" "}
+      und <InlineMath math="5" />. Die grüne Winkelhalbierende{" "}
+      <InlineMath math="\overline{AD}" /> teilt <InlineMath math="BC" /> bei{" "}
+      <InlineMath math="D" /> in <InlineMath math="\overline{BD} = 3" /> und{" "}
+      <InlineMath math="\overline{DC} = 2" />.
+    </>
+  }
+  footer={<>Das Verhältnis <InlineMath math="6 : 4" /> teilt die Seite <InlineMath math="BC = 5" /> sofort in <InlineMath math="3" /> und <InlineMath math="2" />.</>}
   scene={{
     space: "plane",
-    frame: {
-      kind: "cartesian",
-      x: { min: -1, max: 6 },
-      y: { min: -1, max: 5 },
-    },
-    view: { kind: "fit", padding: 0.1 },
+    frame: { kind: "cartesian", x: { min: -1, max: 6 }, y: { min: -1, max: 5 } },
+    view: { kind: "fit", padding: 0.08 },
     objects: [
       { id: "triangle", kind: "polygon", appearance: "primary", vertices: [{ x: 0, y: 0 }, { x: 5, y: 0 }, { x: 4.5, y: 3.9686 }] },
       { id: "bisector", kind: "segment", appearance: "answer", from: { x: 4.5, y: 3.9686 }, to: { x: 3, y: 0 } },
@@ -45,26 +52,45 @@ Die Winkelhalbierende teilt die gegenüberliegende Seite **im Verhältnis der an
       { key: "ac", objectId: "triangle", at: { x: 4.75, y: 1.9843 }, placement: "right" },
     ],
   }}
+  labels={{
+    a: <><InlineMath math="A" /></>,
+    b: <><InlineMath math="B" /></>,
+    c: <><InlineMath math="C" /></>,
+    d: <><InlineMath math="D" /></>,
+    bd: <><InlineMath math="3" /></>,
+    dc: <><InlineMath math="2" /></>,
+    ab: <><InlineMath math="6" /></>,
+    ac: <><InlineMath math="4" /></>,
+  }}
 />
 
-# Den Winkel bei <InlineMath math="B" /> bestimmen
+Mit <InlineMath math="\overline{BD} = 3" /> teilt sich das Dreieck <InlineMath math="ABD" /> exakt denselben Winkel <InlineMath math="\beta" /> mit <InlineMath math="ABC" />.
 
-Im ganzen Dreieck <InlineMath math="ABC" /> kennst du alle drei Seiten. Der Kosinussatz liefert **den Kosinus des Winkels bei <InlineMath math="B" />**:
+## Kosinussatz zweimal anwenden
 
-<BlockMath math="\cos\beta=\frac{6^2+5^2-4^2}{2\cdot6\cdot5}=\frac{45}{60}=\frac34" />
+Berechne **den Wert <InlineMath math="\cos\beta" /> im großen Dreieck <InlineMath math="ABC" />** und setz ihn im kleinen Dreieck <InlineMath math="ABD" /> ein.
 
-# Den Kosinussatz im Teildreieck <InlineMath math="ABD" />
+<BlockMath math="\begin{aligned}
+\cos\beta &= \frac{6^2 + 5^2 - 4^2}{2 \cdot 6 \cdot 5} = \frac{45}{60} = \frac{3}{4} \\
+\overline{AD}^2 &= 6^2 + 3^2 - 2 \cdot 6 \cdot 3 \cdot \frac{3}{4} = 45 - 27 = 18 \implies \overline{AD} = 3\sqrt{2}
+\end{aligned}" />
 
-Im Dreieck <InlineMath math="ABD" /> kennst du jetzt <InlineMath math="\overline{AB}=6" />, <InlineMath math="\overline{BD}=3" /> und den eingeschlossenen Winkel <InlineMath math="\beta" />. Wende den Kosinussatz noch einmal an:
+Kurzprobe mit der Winkelhalbierendenformel bestätigt das Quadrat der Länge direkt:
 
-<BlockMath math="\overline{AD}^2=6^2+3^2-2\cdot6\cdot3\cdot\frac34=45-27=18\quad\Longrightarrow\quad \overline{AD}=3\sqrt2" />
+<BlockMath math="\overline{AD}^2 = \overline{AB} \cdot \overline{AC} - \overline{BD} \cdot \overline{DC} = 6 \cdot 4 - 3 \cdot 2 = 18" />
 
-Die Strecke ist **<InlineMath math="3\sqrt2" /> lang**, etwa <InlineMath math="4{,}24" />.
+## Falsche Antworten prüfen
 
-# Warum die anderen Antworten falsch sind
+Jede falsche Auswahl verletzt **das Teilungsverhältnis oder den Kosinus von <InlineMath math="\beta" />**.
 
-- <InlineMath math="\sqrt{22}" /> teilt im **umgekehrten Verhältnis**, <InlineMath math="\overline{BD}=2" />: <InlineMath math="36+4-2\cdot6\cdot2\cdot\frac34=22" />.
-- <InlineMath math="\frac{\sqrt{79}}{2}" /> ist die Länge der Seitenhalbierenden von <InlineMath math="A" />, also mit <InlineMath math="D" /> in der Mitte von <InlineMath math="\overline{BC}" />.
-- <InlineMath math="2\sqrt6" /> ist <InlineMath math="\sqrt{\overline{AB}\cdot\overline{AC}}" />. Diese Abkürzung lässt den Korrekturterm der Formel für die Winkelhalbierende weg.
-- <InlineMath math="3" /> ist <InlineMath math="\overline{BD}" />, nicht <InlineMath math="\overline{AD}" />.
-- <InlineMath math="3\sqrt3" /> rechnet mit <InlineMath math="\cos\beta=\frac12" />, als wäre der Winkel bei <InlineMath math="B" /> gleich <InlineMath math="60^\circ" />: <InlineMath math="45-36\cdot\frac12=27" />.
+| Antwort | Warum sie falsch ist |
+| :--- | :--- |
+| <InlineMath math="\sqrt{22}" /> | Dreht das Verhältnis um und rechnet mit <InlineMath math="\overline{BD} = 2" /> statt <InlineMath math="3" />. |
+| <InlineMath math="\frac{\sqrt{79}}{2}" /> | Berechnet die Seitenhalbierende zum Mittelpunkt von <InlineMath math="BC" /> statt der Winkelhalbierenden. |
+| <InlineMath math="2\sqrt{6}" /> | Berechnet nur <InlineMath math="\sqrt{AB \cdot AC}" /> und vergisst den Abzug von <InlineMath math="BD \cdot DC" />. |
+| <InlineMath math="3" /> | Ist die Länge von <InlineMath math="\overline{BD}" />, nicht von <InlineMath math="\overline{AD}" />. |
+| <InlineMath math="3\sqrt{3}" /> | Setzt <InlineMath math="\cos\beta = \frac{1}{2}" /> an, als hätte der Winkel bei <InlineMath math="B" /> genau <InlineMath math="60^\circ" />. |
+
+# Antwort
+
+Die Strecke <InlineMath math="\overline{AD}" /> hat die Länge <InlineMath math="3\sqrt{2}" />.

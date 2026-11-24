@@ -1,40 +1,52 @@
-# Tulis akar sebagai nilai mutlak
+# Diketahui
 
-Di bawah akar ada bentuk kuadrat: <InlineMath math="x^2-6x+9=(x-3)^2" /> dan <InlineMath math="x^2+4x+4=(x+2)^2" />. Akar tidak pernah negatif, jadi **<InlineMath math="\sqrt{u^2}=|u|" />, bukan <InlineMath math="u" />**:
+**Persamaan bentuk akar** (*Wurzelgleichung*) dalam bilangan real diberikan sebagai berikut.
 
-<BlockMath math="|x-3|+|x+2|=7" />
+<BlockMath math="\sqrt{x^2 - 6x + 9} + \sqrt{x^2 + 4x + 4} = 7" />
 
-# Telusuri ketiga daerah
+# Ditanyakan
 
-Nilai mutlak berganti tanda di <InlineMath math="x=-2" /> dan <InlineMath math="x=3" />. Garis bilangan pun terbagi menjadi tiga daerah, dan **setiap daerah punya persamaannya sendiri**:
+Tentukan semua bilangan real <InlineMath math="x" /> yang memenuhi persamaan ini.
+
+# Penyelesaian
+
+Setiap bentuk di dalam akar adalah kuadrat sempurna sehingga berubah menjadi **jumlah dua jarak pada garis bilangan**, dari <InlineMath math="x" /> ke tiang <InlineMath math="3" /> dan <InlineMath math="-2" />! Di antara kedua tiang, total langkah selalu <InlineMath math="5" />. Agar naik menjadi <InlineMath math="7" />, melangkahlah <InlineMath math="1" /> satuan keluar ke kiri <InlineMath math="-2" /> atau kanan <InlineMath math="3" />!
+
+> Akar kuadrat dari suatu kuadrat sempurna selalu menghasilkan nilai mutlak, bukan hilangnya tanda akar begitu saja, sehingga persamaan terbagi menjadi tiga wilayah menurut pembuat nol masing-masing nilai mutlak.
+
+Ubah kedua akar kuadrat sempurna menjadi nilai mutlak.
+
+<BlockMath math="\sqrt{(x - 3)^2} + \sqrt{(x + 2)^2} = |x - 3| + |x + 2| = 7" />
+
+## Menelusuri tiga wilayah garis bilangan
+
+Tanda di dalam nilai mutlak berubah di <InlineMath math="x = -2" /> dan <InlineMath math="x = 3" />, sehingga kita memeriksa **ketiga wilayah yang terpisah**.
 
 <BlockMath math="\begin{aligned}
-x<-2:&\quad (3-x)+(-x-2)=1-2x=7\ \Rightarrow\ x=-3 \\
--2\le x\le3:&\quad (3-x)+(x+2)=5\ne7 \\
-x>3:&\quad (x-3)+(x+2)=2x-1=7\ \Rightarrow\ x=4
+x < -2 &: \quad (3 - x) + (-x - 2) = 1 - 2x = 7 \implies x = -3 \\
+-2 \le x \le 3 &: \quad (3 - x) + (x + 2) = 5 \neq 7 \\
+x > 3 &: \quad (x - 3) + (x + 2) = 2x - 1 = 7 \implies x = 4
 \end{aligned}" />
 
-Kedua nilai ada di daerahnya masing-masing: <InlineMath math="-3<-2" /> dan <InlineMath math="4>3" />.
+Kedua calon cocok dengan wilayahnya masing-masing karena <InlineMath math="-3 < -2" /> dan <InlineMath math="4 > 3" />. Lihat grafik berbentuk lembah datar di bawah ini.
 
 <MathVisual
-  title={<>Jumlah dua jarak</>}
-  description={<>Grafik <InlineMath math="|x-3|+|x+2|" /> mendatar pada ketinggian <InlineMath math="5" /> di antara <InlineMath math="x=-2" /> dan <InlineMath math="x=3" />, lalu naik ke kedua sisi di luar selang itu. Garis <InlineMath math="y=7" /> memotongnya di <InlineMath math="x=-3" /> dan di <InlineMath math="x=4" />.</>}
-  labels={{
-    a: <><InlineMath math="x=-3" /></>,
-    b: <><InlineMath math="x=4" /></>,
-    f: <><InlineMath math="|x-3|+|x+2|" /></>,
-    five: <><InlineMath math="5" /></>,
-  }}
+  title={<>Grafik jumlah dua jarak <InlineMath math="|x - 3| + |x + 2|" /></>}
+  description={
+    <>
+      Grafik mendatar di ketinggian <InlineMath math="5" /> pada seluruh selang
+      antara <InlineMath math="-2" /> dan <InlineMath math="3" />, lalu naik
+      simetris di kedua sisinya dan memotong garis target <InlineMath math="y = 7" />{" "}
+      di <InlineMath math="x = -3" /> dan <InlineMath math="x = 4" />.
+    </>
+  }
+  footer={<>Tepat di luar dasar datar setinggi <InlineMath math="5" />, kurva menyentuh <InlineMath math="y = 7" /> di <InlineMath math="-3" /> dan <InlineMath math="4" />.</>}
   scene={{
     space: "plane",
-    frame: {
-      kind: "cartesian",
-      x: { min: -5.5, max: 6.5 },
-      y: { min: 0, max: 12 },
-    },
-    view: { kind: "fit", padding: 0.1 },
+    frame: { kind: "cartesian", x: { min: -5.5, max: 6.5 }, y: { min: 0, max: 12 } },
+    view: { kind: "fit", padding: 0.08 },
     objects: [
-      { id: "sum", kind: "function", appearance: "primary", formula: "abs(x-3) + abs(x+2)", domain: { min: -5, max: 6 } },
+      { id: "sum", kind: "function", appearance: "primary", formula: "abs(x - 3) + abs(x + 2)", domain: { min: -5, max: 6 } },
       { id: "level", kind: "segment", appearance: "reference", from: { x: -5, y: 7 }, to: { x: 6, y: 7 } },
       { id: "flat", kind: "segment", appearance: "highlight", from: { x: -2, y: 5 }, to: { x: 3, y: 5 } },
       { id: "p1", kind: "point", appearance: "answer", at: { x: -3, y: 7 } },
@@ -47,14 +59,33 @@ Kedua nilai ada di daerahnya masing-masing: <InlineMath math="-3<-2" /> dan <Inl
       { key: "five", objectId: "flat", at: { x: 0.5, y: 5 }, placement: "below" },
     ],
   }}
+  labels={{
+    a: <><InlineMath math="x = -3" /></>,
+    b: <><InlineMath math="x = 4" /></>,
+    f: <><InlineMath math="|x - 3| + |x + 2|" /></>,
+    five: <><InlineMath math="5" /></>,
+  }}
 />
 
-Cek: <InlineMath math="\sqrt{36}+\sqrt{1}=7" /> untuk <InlineMath math="x=-3" /> dan <InlineMath math="\sqrt1+\sqrt{36}=7" /> untuk <InlineMath math="x=4" />. Persamaan itu berlaku **untuk <InlineMath math="x=-3" /> dan untuk <InlineMath math="x=4" />**.
+Grafik langsung menjelaskan mengapa tidak ada solusi di wilayah tengah dan muncul tepat dua solusi simetris di luar.
 
-# Mengapa pilihan lain salah
+## Menguji solusi dan pilihan salah
 
-- "hanya <InlineMath math="x=4" />" menulis <InlineMath math="\sqrt{(x-3)^2}=x-3" /> dan <InlineMath math="\sqrt{(x+2)^2}=x+2" /> tanpa nilai mutlak. Akibatnya **penyelesaian di kiri <InlineMath math="-2" /> hilang**.
-- "hanya <InlineMath math="x=-3" />" hanya memeriksa daerah kiri.
-- <InlineMath math="x=-4" /> atau <InlineMath math="x=3" /> muncul dari tanda yang tertukar di kedua nilai mutlak, yaitu dari <InlineMath math="|x+3|+|x-2|=7" />.
-- "semua <InlineMath math="x" /> dengan <InlineMath math="-2\le x\le3" />" adalah daerah tempat jumlahnya <InlineMath math="5" />, bukan <InlineMath math="7" />.
-- "tidak ada bilangan seperti itu" melewatkan kedua daerah luar.
+Substitusi keduanya ke persamaan asli untuk **mengonfirmasi bahwa keduanya menghasilkan <InlineMath math="7" />**.
+
+<BlockMath math="\begin{aligned}
+x = -3 &\implies \sqrt{36} + \sqrt{1} = 6 + 1 = 7 \\
+x = 4 &\implies \sqrt{1} + \sqrt{36} = 1 + 6 = 7
+\end{aligned}" />
+
+| Pilihan | Mengapa salah |
+| :--- | :--- |
+| Hanya <InlineMath math="x = 4" /> | Membuang tanda nilai mutlak saat melepas akar sehingga kehilangan <InlineMath math="x = -3" />. |
+| Hanya <InlineMath math="x = -3" /> | Hanya menyelesaikan wilayah kiri dan melupakan wilayah kanan. |
+| <InlineMath math="x = -4" /> atau <InlineMath math="x = 3" /> | Menukar tanda di dalam kedua nilai mutlak menjadi <InlineMath math="\lvert x + 3 \rvert + \lvert x - 2 \rvert = 7" />. |
+| Semua <InlineMath math="x" /> dengan <InlineMath math="-2 \le x \le 3" /> | Itu wilayah dasar datar tempat jumlahnya selalu <InlineMath math="5" />, bukan <InlineMath math="7" />. |
+| Tidak ada bilangan <InlineMath math="x" /> | Hanya melihat wilayah tengah yang tidak memotong <InlineMath math="7" /> dan melupakan kedua sayap luar. |
+
+# Jawaban
+
+Bilangan real yang memenuhi persamaan adalah <InlineMath math="x = -3" /> atau <InlineMath math="x = 4" />.
