@@ -1,9 +1,37 @@
-Prüfe jede Schlussfolgerung mit **der richtigen Zahl**: Gäste, Antworten oder Bewertungen.
+# Gegeben
 
-- **Station antwortete viermal so oft**. Station: <InlineMath math="6{.}000" /> von <InlineMath math="30{.}000" /> sind <InlineMath math="20\%" />. Harbour: <InlineMath math="1{.}000" /> von <InlineMath math="20{.}000" /> sind <InlineMath math="5\%" />. Richtig.
-- **Ein Anteil an den Antworten**. Die Werbung selbst sagt <InlineMath math="92\%" /> "of guests who answered" (der Gäste, die geantwortet haben). Richtig.
-- **Harbour stützt sich auf mehr Antworten**. Harbour hatte <InlineMath math="1{.}000" /> Antworten, Station <InlineMath math="6{.}000" />. Nicht richtig.
-- **Etwa <InlineMath math="13\%" />, wenn alle Nichtantwortenden unzufrieden waren**. Dann zählen nur die <InlineMath math="6{.}440" />, die gut oder ausgezeichnet bewerteten, und <InlineMath math="6{.}440" /> von <InlineMath math="50{.}000" /> sind etwa <InlineMath math="13\%" />. Richtig.
-- **Station hatte weniger Gäste**. Station hatte <InlineMath math="30{.}000" />, Harbour <InlineMath math="20{.}000" />. Nicht richtig.
+Die Tabelle nennt für Harbour <InlineMath math="20{,}000" /> Gäste (<InlineMath math="1{,}000" /> Antworten, <InlineMath math="950" /> positiv) und für Station <InlineMath math="30{,}000" /> Gäste (<InlineMath math="6{,}000" /> Antworten, <InlineMath math="5{,}490" /> positiv), wobei <InlineMath math="92\%" /> der **antwortenden Gäste** beworben werden.
 
-Ziehen lassen sich also: Stations Gäste antworteten viermal so oft, die <InlineMath math="92\%" /> sind ein Anteil an den Antworten, und es wären etwa <InlineMath math="13\%" />, wenn alle Nichtantwortenden unzufrieden waren.
+# Gesucht
+
+Welche Schlussfolgerungen lassen sich gültig aus Text und Tabelle ziehen?
+
+# Lösung
+
+> A hotel chain advertises that <InlineMath math="92\%" /> of guests who answered its online survey last year rated their stay "good" or "excellent".
+
+Prüfe jede Aussage anhand der **richtigen Spalte** (Gäste, Antworten oder positive Bewertungen).
+
+## Prüfung aller fünf Schlussfolgerungen
+
+Berechne die Teilnahmequoten beider Hotels und den Mindestanteil positiver Bewertungen über alle Gäste:
+
+<BlockMath math="\begin{aligned} \text{Teilnahmequoten:} &\quad \text{Station } \frac{6{,}000}{30{,}000} = 20\%, \quad \text{Harbour } \frac{1{,}000}{20{,}000} = 5\% \\ \text{Untergrenze alle Gäste:} &\quad \frac{6{,}440}{50{,}000} = 12{,}88\% \approx 13\% \end{aligned}" />
+
+| Mögliche Schlussfolgerung | Datenprüfung | Gültig |
+| --- | --- | --- |
+| Gäste von Station antworteten viermal so häufig | <InlineMath math="20\% \div 5\% = 4" /> | **Ja** |
+| <InlineMath math="92\%" /> sind ein Anteil der Antworten, nicht aller Gäste | Text nennt <Highlight>of guests who answered</Highlight> | **Ja** |
+| Harbour beruht auf mehr Antworten als Station | Harbour <InlineMath math="1{,}000" /> gegen Station <InlineMath math="6{,}000" /> | **Nein** |
+| Bei lauter unzufriedenen Nicht-Antwortenden wären etwa <InlineMath math="13\%" /> positiv | <InlineMath math="6{,}440 / 50{,}000 \approx 13\%" /> | **Ja** |
+| Station hatte weniger Gäste als Harbour | Station <InlineMath math="30{,}000" /> gegen Harbour <InlineMath math="20{,}000" /> | **Nein** |
+
+Die beiden falschen Aussagen **vertauschen lediglich die beiden Hotels**: Station hatte sowohl mehr Gäste (<InlineMath math="30{,}000" />) als auch deutlich mehr Antworten (<InlineMath math="6{,}000" />).
+
+# Antwort
+
+Gültig ableiten lassen sich diese Schlüsse:
+
+- Die Gäste von Station beantworteten die Umfrage viermal so häufig wie die Gäste von Harbour.
+- Die <InlineMath math="92\%" /> sind ein Anteil der Antworten, kein Anteil aller Gäste.
+- Wäre jeder Gast ohne Antwort unzufrieden gewesen, hätten etwa <InlineMath math="13\%" /> aller Gäste ihren Aufenthalt als gut oder ausgezeichnet bewertet.
