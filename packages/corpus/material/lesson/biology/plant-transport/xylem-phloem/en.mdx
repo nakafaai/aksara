@@ -1,7 +1,7 @@
 export const metadata = {
   title: "Transport in Plants Notes",
   description:
-    "Form 5 Biology Chapter 4: compare xylem and phloem, calculate the forces that lift water, measure uptake with a potometer, explain translocation and phytoremediation.",
+    "Compare xylem and phloem, calculate forces lifting water, explore pressure flow translocation, and see how phytoremediation cleans soil and water.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-11-17",
   subject: "Transport in Plants",
@@ -10,6 +10,8 @@ export const metadata = {
 ## Xylem Carries Water and Phloem Carries Food
 
 Plants move substances through **vascular tissue**. **Xylem** carries water and mineral salts upwards, from the roots to the leaves. **Phloem** carries organic substances such as sucrose from the leaves to other parts of the plant, a process called **translocation**. Water rises through three forces: root pressure, capillary action and transpiration pull. Of the three, **transpiration pull** is the strongest, because water evaporating from the leaves pulls the column of water in the xylem. Phytoremediation uses this uptake by roots to clean polluted soil and water.
+
+> Xylem moves water upwards passively under solar-driven transpiration pull, whereas living phloem pumps sucrose both up and down from source to sink.
 
 ## The Structure of Xylem and Phloem
 
@@ -53,6 +55,7 @@ Root cells pump mineral ions into the xylem by active transport. Water follows b
       <InlineMath math="p" />.
     </>
   }
+  footer={<>Root pressure reaches only about ten metres, far below tall tree canopies.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: 0, max: 120 }, y: { min: 0, max: 1.3 } },
@@ -83,7 +86,7 @@ The tallest trees in the world reach about <InlineMath math="116\text{ m}" />. T
 
 <BlockMath math="\Delta P = 0.00981 \times 116 = 1.14\text{ MPa}" />
 
-A root pressure of <InlineMath math="0.1\text{ MPa}" /> can only hold up <InlineMath math="0.1 \div 0.00981 = 10.2\text{ m}" />. Check with the model: with <InlineMath math="p = 0.1" />, the height reading is about <InlineMath math="10" />, and that's where the reference line crosses the line of pressure needed. **Root pressure alone isn't enough** for a tall tree.
+A root pressure of <InlineMath math="0.1\text{ MPa}" /> can only hold up <InlineMath math="0.1 \div 0.00981 = 10.2\text{ m}" />. At root pressure <InlineMath math="p = 0.1\text{ MPa}" />, the reach levels off near <InlineMath math="10\text{ m}" />, where the horizontal reference meets the column-weight line. **Root pressure alone isn't enough** for a tall tree.
 
 ### Capillary Action
 
@@ -100,6 +103,7 @@ Water molecules stick to the xylem walls through **adhesion** and to each other 
       <InlineMath math="20^\circ\text{C}" />.
     </>
   }
+  footer={<>Narrower xylem vessels lift water higher, yet capillary rise stays under a metre.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: 0, max: 200 }, y: { min: 0, max: 1.6 } },
@@ -125,7 +129,7 @@ Xylem vessels can have a radius as small as <InlineMath math="25\,\mu\text{m}" /
 
 <BlockMath math="h = \frac{14.84}{25} = 0.59\text{ m}" />
 
-Check with the model: at <InlineMath math="r = 25" />, the height reading is <InlineMath math="0.59" />. Wider vessels lift water even less. So **capillary action matters in small plants** but can't explain water reaching the top of a tree.
+At vessel radius <InlineMath math="r = 25\,\mu\text{m}" />, capillary rise reaches only <InlineMath math="0.59\text{ m}" />. Wider vessels lift water even less. So **capillary action matters in small plants** but can't explain water reaching the top of a tree.
 
 ### Transpiration Pull
 
@@ -133,30 +137,46 @@ Water evaporates from the walls of mesophyll cells and diffuses out through the 
 
 A bubble potometer shows this effect. A leafy shoot is fitted into a water-filled tube, and an air bubble in the capillary moves as the shoot takes up water. Petroleum jelly on a leaf surface seals the stomata there. Pick each shoot and compare how far the bubble moves.
 
-<PotometerLab
-  title={<>Water Uptake by a Leafy Shoot</>}
+<XylemCohesionLab
+  title={<>Three Forces Lifting the Xylem Water Column</>}
   description={
     <>
-      A potometer with a capillary of radius <InlineMath math="1\text{ mm}" />{" "}
-      over <InlineMath math="10" /> minutes, with petroleum jelly on different
-      leaf surfaces.
+      Switch between root pressure, capillary action, and transpiration pull and
+      raise tree height to see why solar-driven evaporation at the leaves is the
+      only force strong enough for tall trees.
     </>
   }
+  footer={<>Cohesion links xylem water into one unbroken column pulled up from the leaves.</>}
+  forces={["rootPressure", "capillary", "transpirationPull"]}
+  height={{ min: 1, max: 120, value: 40 }}
   labels={{
-    distance: <>Bubble distance</>,
-    rate: <>Uptake rate</>,
-    shoot: "Choose a shoot",
-    time: "Time",
-    view: "Bubble potometer with a leafy shoot",
-    volume: <>Water taken up</>,
+    force: "Lifting force",
+    forces: {
+      capillary: {
+        mechanism: <>Adhesion to lignified walls and cohesion lift water under one metre</>,
+        name: "Capillary action",
+      },
+      rootPressure: {
+        mechanism: <>Active ion pumping drives osmosis at the root up to about ten metres</>,
+        name: "Root pressure",
+      },
+      transpirationPull: {
+        mechanism: <>Evaporation through leaf stomata pulls the unbroken cohesive column to the crown</>,
+        name: "Transpiration pull",
+      },
+    },
+    height: "Tree height (m)",
+    mechanism: <>How it lifts water</>,
+    parts: {
+      cohesionBond: "Cohesion bond",
+      ligninWall: "Lignified wall",
+      rootCell: "Root cell",
+      stoma: "Leaf stoma",
+      waterColumn: "Water column",
+    },
+    pressureNeeded: <>Column pressure needed</>,
+    view: "Three-dimensional lignified xylem column lifting water to the canopy",
   }}
-  minutes={10}
-  radius={1}
-  shoots={[
-    { coat: "none", name: "No jelly", rate: 1.8 },
-    { coat: "lower", name: "Lower surface", rate: 0.6 },
-    { coat: "both", name: "Both surfaces", rate: 0.15 },
-  ]}
 />
 
 The shoot without jelly takes up <InlineMath math="1.8\text{ cm}^3" /> of water an hour. In <InlineMath math="10" /> minutes, the volume of water and the bubble distance are:
@@ -166,7 +186,7 @@ The shoot without jelly takes up <InlineMath math="1.8\text{ cm}^3" /> of water 
 <BlockMath math="l = \frac{V}{\pi r^2} = \frac{0.30}{\pi(0.1)^2} = 9.55\text{ cm}" />
 </MathContainer>
 
-Check with the model: at <InlineMath math="t = 10" /> minutes, the bubble distance reading is <InlineMath math="9.55\text{ cm}" />. With jelly on the lower surface, uptake falls to a third, because most stomata are on the lower surface. With jelly on both surfaces, **uptake almost stops**. Less transpiration means less pull.
+This gives a bubble movement of <InlineMath math="9.55\text{ cm}" /> over <InlineMath math="10" /> minutes. With jelly on the lower surface, uptake falls to a third, because most stomata are on the lower surface. With jelly on both surfaces, **uptake almost stops**. Less transpiration means less pull.
 
 ## Translocation of Food in the Phloem
 
@@ -184,6 +204,7 @@ You can estimate the osmotic pressure of the sap from its sucrose concentration.
       <InlineMath math="b" />.
     </>
   }
+  footer={<>Steeper sucrose contrast between source and sink builds stronger pressure flow.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: 0, max: 30 }, y: { min: 0, max: 2.4 } },
@@ -212,6 +233,8 @@ You can estimate the osmotic pressure of the sap from its sucrose concentration.
   }}
 />
 
+Notice how raising **source sucrose concentration** widens the pressure gap driving phloem mass flow towards growing sinks.
+
 ### Worked Example on the Pressure Difference in Phloem
 
 Sap in the sieve tubes near a leaf holds <InlineMath math="20\%" /> sucrose, and sap near the roots holds <InlineMath math="2\%" />. Estimate **the pressure difference pushing the sap**.
@@ -222,7 +245,7 @@ Sap in the sieve tubes near a leaf holds <InlineMath math="20\%" /> sucrose, and
 <BlockMath math="\Delta \pi = 1.45 - 0.14 = 1.30\text{ MPa}" />
 </MathContainer>
 
-A difference of <InlineMath math="1.30\text{ MPa}" /> is bigger than the pressure needed to hold up a water column <InlineMath math="100\text{ m}" /> tall, which is <InlineMath math="0.98\text{ MPa}" />. Check with the model: at <InlineMath math="a = 20" /> and <InlineMath math="b = 2" />, the difference reading is <InlineMath math="1.30" />. The estimate treats the solutions as ideal, so real values differ a little.
+A difference of <InlineMath math="1.30\text{ MPa}" /> is bigger than the pressure needed to hold up a water column <InlineMath math="100\text{ m}" /> tall, which is <InlineMath math="0.98\text{ MPa}" />. With <InlineMath math="20\%" /> sucrose at the leaf source and <InlineMath math="2\%" /> at the root sink, the net push reaches <InlineMath math="1.30\text{ MPa}" />. The estimate treats the solutions as ideal, so real values differ a little.
 
 ### Evidence That Translocation Happens in Phloem
 
@@ -230,9 +253,91 @@ Three experiments show that food moves through the phloem. In the **ringing expe
 
 In the second experiment, the **stylet of an aphid** feeding on a stem is cut off, and the liquid that drips from it turns out to be rich in sucrose. The stylet ends inside a sieve tube. In the third experiment, a leaf is given radioactively labelled carbon dioxide, <InlineMath math="^{14}\mathrm{CO_2}" />. The radioactive sugar it makes is later detected in the phloem, above and below that leaf.
 
+<PhloemTranslocationLab
+  title={<>Pressure Flow and the Bark Ringing Experiment</>}
+  description={
+    <>
+      Adjust leaf sucrose loading and switch between an intact stem and a ringed
+      bark stem to see sucrose pile up above the ring while the xylem still
+      keeps leaves turgid.
+    </>
+  }
+  footer={<>Removing a ring of bark blocks phloem flow so sucrose swells above the cut.</>}
+  modes={["intact", "ringed"]}
+  sourceSucrose={{ min: 2, max: 30, value: 20 }}
+  labels={{
+    barkState: <>Stem outcome</>,
+    mode: "Stem treatment",
+    modes: {
+      intact: {
+        name: "Intact bark",
+        outcome: <>Sucrose flows smoothly down the sieve tubes from leaf source to root sink</>,
+      },
+      ringed: {
+        name: "Ringed bark",
+        outcome: <>Bark above the ring swells with trapped sucrose while xylem stays intact</>,
+      },
+    },
+    parts: {
+      companionCell: "Companion cell",
+      sievePlate: "Sieve plate",
+      sieveTube: "Sieve tube",
+      sucrose: "Sucrose",
+      xylem: "Xylem",
+    },
+    pressureDiff: <>Source-to-sink pressure</>,
+    sourceSucrose: "Source sucrose (%)",
+    view: "Three-dimensional sieve tube and bark ringing translocation model",
+  }}
+/>
+
+When the bark ring interrupts the sieve tubes, **sucrose swells the bark above the ring** while the deeper xylem still keeps leaves supplied with water.
+
 ## Phytoremediation Cleans Polluted Soil and Water
 
 **Phytoremediation** is the use of plants to remove pollutants such as heavy metals from soil or water. Roots take up the metals along with water and mineral ions, and the xylem carries them to the shoots. The shoots are then harvested and disposed of safely. Indian mustard and vetiver grass are used for heavy metals in soil, while water hyacinth takes up heavy metals from polluted water.
+
+<PhytoremediationLab
+  title={<>Heavy-Metal Phytoremediation Across Harvest Cycles</>}
+  description={
+    <>
+      Pick Indian mustard, water hyacinth, or vetiver grass and step through
+      harvest cycles to see roots draw heavy-metal ions into shoots for safe
+      removal.
+    </>
+  }
+  footer={<>Each harvest removes part of the heavy metal while leaving the soil structure intact.</>}
+  harvests={{ min: 0, max: 20, value: 5 }}
+  plants={["mustard", "hyacinth", "vetiver"]}
+  labels={{
+    harvests: "Harvest cycles",
+    medium: <>Cleaned medium</>,
+    parts: {
+      metalIon: "Heavy metal ion",
+      rootZone: "Root zone",
+      shoot: "Harvested shoot",
+      soilBed: "Polluted soil",
+      waterChannel: "Polluted water",
+    },
+    plant: "Remediation plant",
+    plants: {
+      hyacinth: {
+        medium: <>Absorbs heavy metals from polluted lakes and rivers</>,
+        name: "Water hyacinth",
+      },
+      mustard: {
+        medium: <>Draws lead and heavy metals out of contaminated soil</>,
+        name: "Indian mustard",
+      },
+      vetiver: {
+        medium: <>Deep fibrous roots trap heavy metals in polluted soil beds</>,
+        name: "Vetiver grass",
+      },
+    },
+    remaining: <>Heavy metal remaining</>,
+    view: "Three-dimensional phytoremediation bed showing root metal uptake",
+  }}
+/>
 
 This simple model assumes each harvest removes a fraction <InlineMath math="f" /> of the metal still left. The concentration left after <InlineMath math="n" /> harvests is <InlineMath math="100(1 - f)^n" /> percent of the original.
 
@@ -245,6 +350,7 @@ This simple model assumes each harvest removes a fraction <InlineMath math="f" /
       <InlineMath math="f" /> removed at each harvest.
     </>
   }
+  footer={<>Repeated harvests cut remaining heavy metal exponentially each cycle.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: 0, max: 20 }, y: { min: 0, max: 110 } },
@@ -272,52 +378,4 @@ If each harvest removes <InlineMath math="20\%" /> of the metal left, then after
 
 <BlockMath math="100(1 - 0.2)^5 = 100 \times 0.8^5 = 32.8\%" />
 
-To drop below <InlineMath math="10\%" />, we need <InlineMath math="0.8^n < 0.1" />. Since <InlineMath math="0.8^{10} = 0.107" /> and <InlineMath math="0.8^{11} = 0.086" />, **eleven harvests** are needed. Check with the model: at <InlineMath math="f = 0.2" /> and <InlineMath math="n = 11" />, the reading is <InlineMath math="8.6" />. Phytoremediation is cheap and doesn't damage the soil, but it's slow and only works as deep as the roots reach.
-
-## Common Mistakes about Transport in Plants
-
-| Mistake | Why it's wrong | How to check |
-| :--- | :--- | :--- |
-| Xylem carries food. | Xylem carries water and mineral salts. Phloem carries food. | Ask which substance moves, not just which way. |
-| Phloem only carries substances downwards. | Phloem carries from source to sink, up or down. | Find the sink: fruits and young shoots sit above the leaves. |
-| Capillary action lifts water to the top of a tree. | Capillary rise in a xylem vessel is less than <InlineMath math="1\text{ m}" />. | Work out <InlineMath math="14.84 \div r" /> for the vessel radius. |
-| Plants use ATP to pull water up to the leaves. | Transpiration pull is driven by water evaporating with the sun's heat. | Xylem vessels are dead cells that can't pump. |
-
-The second mistake shows up most often in ringing experiment questions. **Sucrose piles up on the source side**, which is above the ring when the leaves are above it.
-
-## Practice on Transport in Plants
-
-The questions move from calculating forces to experiments. **Show the units** in every calculation.
-
-1. A xylem vessel has a radius of <InlineMath math="50\,\mu\text{m}" />. Calculate the height of capillary rise and explain whether this force is enough for a tree <InlineMath math="30\text{ m}" /> tall.
-
-2. In a potometer with a capillary of radius <InlineMath math="0.5\text{ mm}" />, the bubble moves <InlineMath math="4.0\text{ cm}" /> in <InlineMath math="5" /> minutes. Calculate the rate of water uptake in <InlineMath math="\text{cm}^3\text{ min}^{-1}" />.
-
-3. A ring of bark is removed from a tree trunk below a leafy branch. Predict what happens to the bark above and below the ring after a few weeks, and explain why.
-
-4. Each harvest of Indian mustard removes <InlineMath math="30\%" /> of the lead left in the soil. Calculate the fewest harvests needed to bring the lead below <InlineMath math="20\%" /> of its original concentration.
-
-### Solutions
-
-**Solution 1**: Use the capillary rise formula:
-
-<BlockMath math="h = \frac{14.84}{50} = 0.30\text{ m}" />
-
-A rise of <InlineMath math="0.30\text{ m}" /> is far below <InlineMath math="30\text{ m}" />, so **capillary action isn't enough**. Transpiration pull lifts the water to the top. Check: doubling the radius from <InlineMath math="25" /> to <InlineMath math="50\,\mu\text{m}" /> halves the height, from <InlineMath math="0.59" /> to <InlineMath math="0.30\text{ m}" />.
-
-**Solution 2**: Convert the radius to centimetres, <InlineMath math="0.5\text{ mm} = 0.05\text{ cm}" />, then work out the volume and divide by the time:
-
-<MathContainer>
-<BlockMath math="V = \pi r^2 l = \pi(0.05)^2(4.0) = 0.0314\text{ cm}^3" />
-<BlockMath math="\text{Rate} = \frac{0.0314}{5} = 0.00628\text{ cm}^3\text{ min}^{-1}" />
-</MathContainer>
-
-Check: <InlineMath math="0.00628 \times 60 = 0.38\text{ cm}^3" /> an hour, a sensible value for a small shoot.
-
-**Solution 3**: The bark **above the ring swells** because sucrose from the leaves moves down through the phloem and piles up at the edge of the ring. The part below the ring gets no food, so the roots eventually die if the ring doesn't heal. The leaves don't wilt because the xylem deeper in the trunk is still intact. Check: the ring removes only phloem, not xylem.
-
-**Solution 4**: Find the smallest <InlineMath math="n" /> with <InlineMath math="0.7^n < 0.2" />:
-
-<BlockMath math="0.7^4 = 0.240, \qquad 0.7^5 = 0.168" />
-
-After four harvests <InlineMath math="24.0\%" /> is still left, so **five harvests** are needed. Check with the model: at <InlineMath math="f = 0.3" /> and <InlineMath math="n = 5" />, the reading is <InlineMath math="16.8" />.
+To drop below <InlineMath math="10\%" />, we need <InlineMath math="0.8^n < 0.1" />. Since <InlineMath math="0.8^{10} = 0.107" /> and <InlineMath math="0.8^{11} = 0.086" />, **eleven harvests** are needed. At removal fraction <InlineMath math="f = 0.2" /> across <InlineMath math="11" /> harvests, remaining metal drops to <InlineMath math="8.6\%" />. Phytoremediation is cheap and doesn't damage the soil, but it's slow and only works as deep as the roots reach.

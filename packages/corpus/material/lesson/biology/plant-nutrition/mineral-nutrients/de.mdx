@@ -1,7 +1,7 @@
 export const metadata = {
   title: "Ernährung der Pflanzen",
   description:
-    "Unterscheide Makro- und Mikronährstoffe, erkenne Mangelsymptome und erkläre, wie Wurzelhaare Wasser und Ionen aufnehmen und wie sich Sonderformen ernähren.",
+    "Makroelemente und Mikroelemente der Pflanzen, typische Mangelzeichen, Wasseraufnahme und Ionenaufnahme an Wurzelhaaren sowie besondere Ernährungsweisen.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-11-17",
   subject: "Ernährung der Pflanzen",
@@ -10,6 +10,8 @@ export const metadata = {
 ## Pflanzen brauchen siebzehn Nährelemente
 
 Eine grüne Pflanze stellt ihre Nahrung selbst durch Fotosynthese her, braucht aber trotzdem **anorganische Nährelemente** aus Luft, Wasser und Boden. Die Elemente, die sie in großen Mengen braucht, heißen **Makronährstoffe**: Kohlenstoff, Wasserstoff, Sauerstoff, Stickstoff, Phosphor, Kalium, Calcium, Magnesium und Schwefel. Die Elemente, die sie nur in winzigen Mengen braucht, heißen **Mikronährstoffe**: Eisen, Mangan, Bor, Zink, Kupfer, Molybdän, Chlor und Nickel. Wurzelhaare nehmen Wasser durch Osmose und Mineralionen durch aktiven Transport auf. Fehlt nur ein einziges Element, wächst die Pflanze schon schlechter.
+
+> Zu viel Dünger macht das Bodenwasser hypertonisch und kehrt die Osmose um, sodass die Pflanze selbst in feuchtem Boden welkt.
 
 ## Woher die Trockenmasse einer Pflanze stammt
 
@@ -24,6 +26,7 @@ Etwa <InlineMath math="80\%" /> bis <InlineMath math="90\%" /> der Masse einer l
       zusammen nur etwa <InlineMath math="4\%" />.
     </>
   }
+  footer={<>Mineralstoffe machen nur vier Prozent der Trockenmasse aus, bleiben aber lebenswichtig.</>}
   yAxisLabel="Anteil an der Trockenmasse (Prozent)"
   data={[
     { name: "Kohlenstoff", value: 45 },
@@ -77,6 +80,7 @@ Viel Stickstoffdünger hilft nicht, wenn dem Boden Phosphor fehlt. Das Wachstum 
       <InlineMath math="k" />, alle in Prozent des Bedarfs.
     </>
   }
+  footer={<>Das Wachstum stoppt an der Obergrenze des knappsten Nährelements.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: 0, max: 150 }, y: { min: 0, max: 110 } },
@@ -126,6 +130,60 @@ Um zu prüfen, was ein Mangel an Stickstoff, Phosphor oder Kalium bewirkt, ziehs
 
 Umwickle jedes Gefäß mit schwarzem Papier, damit in der Lösung keine Algen wachsen. Leite Luft durch die Lösung, damit die Wurzeln Sauerstoff für die Zellatmung bekommen. Nach einigen Wochen sind die Keimlinge in der vollständigen Lösung am gesündesten. Ohne Stickstoff vergilben die älteren Blätter und die Pflanzen bleiben klein, ohne Phosphor werden die Blätter violett und die Wurzeln kurz, und ohne Kalium werden die Blattränder braun.
 
+<MineralDeficiencyLab
+  title={<>Nährlösungsversuch zum Mangel einzelner Elemente</>}
+  description={
+    <>
+      Vergleiche Keimlinge in vollständiger Knop-Lösung mit Gefäßen ohne ein
+      einzelnes Makroelement und prüfe Blattfarbe, Spross und Wurzeln.
+    </>
+  }
+  footer={<>Fehlt nur ein Makroelement, entsteht ein typisches Mangelbild.</>}
+  solutions={["complete", "noNitrogen", "noPhosphorus", "noPotassium", "noMagnesium"]}
+  labels={{
+    parts: {
+      airTube: "Luftschlauch",
+      leaf: "Blatt",
+      root: "Wurzelsystem",
+      solution: "Nährlösung",
+      stem: "Spross",
+    },
+    role: <>Hauptaufgabe</>,
+    solution: "Versuchsgefäß",
+    solutions: {
+      complete: {
+        name: "Vollständige Lösung",
+        role: <>Liefert alle Makro- und Mikroelemente im Gleichgewicht</>,
+        symptom: <>Kräftige grüne Blätter und gut verzweigte Wurzeln</>,
+      },
+      noNitrogen: {
+        name: "Ohne Stickstoff",
+        role: <>Baut Proteine, Nukleinsäuren und Chlorophyll auf</>,
+        symptom: <>Kümmerwuchs und vergilbte ältere Blätter</>,
+      },
+      noPhosphorus: {
+        name: "Ohne Phosphor",
+        role: <>Baut ATP, Phospholipide und Nukleinsäuren auf</>,
+        symptom: <>Violett verfärbte ältere Blätter und schwache Wurzeln</>,
+      },
+      noPotassium: {
+        name: "Ohne Kalium",
+        role: <>Aktiviert Enzyme und steuert das Öffnen der Spaltöffnungen</>,
+        symptom: <>Gelbe und dann braune Blattränder an älteren Blättern</>,
+      },
+      noMagnesium: {
+        name: "Ohne Magnesium",
+        role: <>Bildet das Zentralatom im Chlorophyllmolekül</>,
+        symptom: <>Vergilbung zwischen den Blattadern älterer Blätter</>,
+      },
+    },
+    symptom: <>Mangelzeichen</>,
+    view: "Dreidimensionale Versuchsgefäße zum Nährstoffmangel nach Knop",
+  }}
+/>
+
+Achte in den Gefäßen darauf, **welche Blätter zuerst vergilben**: bewegliche Elemente wie Stickstoff und Magnesium zeigen ihren Mangel zuerst an älteren Blättern.
+
 ## Wurzelhaare nehmen Wasser und Mineralsalze auf
 
 Wasser und Mineralionen gelangen über **Wurzelhaarzellen** in die Pflanze. Das sind Epidermiszellen der Wurzel, die zu feinen Ausstülpungen auswachsen. Drei Merkmale passen sie an ihre Aufgabe an: die Ausstülpung, die die Oberfläche vergrößert, eine dünne Zellwand und ein Zellsaft, der konzentrierter ist als die Bodenlösung. Jedes Merkmal bekommt sein eigenes Modell.
@@ -146,6 +204,7 @@ Stell dir ein <InlineMath math="1\text{ mm}" /> langes Wurzelstück mit dem Radi
       Bezugslinie für eine Wurzel ohne Wurzelhaare.
     </>
   }
+  footer={<>Wurzelhaare vervielfachen die aufnehmende Oberfläche der Wurzel.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: 0, max: 200 }, y: { min: 0, max: 9 } },
@@ -182,6 +241,39 @@ Probe: Eine Wurzel ohne Wurzelhaare hat die Fläche <InlineMath math="0{,}5\pi =
 
 Der Zellsaft eines Wurzelhaars enthält gelöste Zucker und Ionen und ist deshalb konzentrierter als die Bodenlösung. Die Bodenlösung ist gegenüber dem Zellsaft **hypotonisch**, also strömt Wasser durch Osmose hinein. Für verdünnte Lösungen bei <InlineMath math="25^\circ\text{C}" /> beträgt der osmotische Druckunterschied, der Wasser hineintreibt, etwa <InlineMath math="2{,}48\text{ MPa}" /> je <InlineMath math="1\text{ mol/L}" /> Konzentrationsunterschied.
 
+<RootHairUptakeLab
+  title={<>Wasser- und Ionenaufnahme durch Wurzelhaare</>}
+  description={
+    <>
+      Verschiebe die Bodenkonzentration von normalem Bodenwasser bis zu starker
+      Überdüngung und beobachte Osmose und aktiven Ionentransport bis ins Xylem.
+    </>
+  }
+  footer={<>Wasser folgt der Osmose, während Mineralionen aktiv mit ATP aufgenommen werden.</>}
+  soilConcentration={{ min: 0, max: 0.6, value: 0.02 }}
+  labels={{
+    directions: {
+      balanced: "Ausgeglichen (isotonisch)",
+      intoRoot: "In das Wurzelhaar",
+      outOfRoot: "Aus dem Wurzelhaar",
+    },
+    ionUptake: <>Mineralionentransport</>,
+    parts: {
+      cortex: "Rinde",
+      endodermis: "Endodermis",
+      epidermis: "Epidermis",
+      rootHair: "Wurzelhaar",
+      soilWater: "Bodenwasser",
+      xylem: "Xylem",
+    },
+    soilConcentration: "Bodenkonzentration (mol/L)",
+    view: "Dreidimensionaler Wurzelquerschnitt für Osmose und Ionenaufnahme",
+    waterDirection: <>Osmotischer Wasserfluss</>,
+  }}
+/>
+
+Sobald die Bodenlösung den Zellsaft übersteigt, kehren sich die Wasserpfeile um. Das folgende Diagramm berechnet diesen osmotischen Druck in Megapascal.
+
 <MathVisual
   title={<>Zu viel Dünger kehrt die Osmose um</>}
   description={
@@ -193,6 +285,7 @@ Der Zellsaft eines Wurzelhaars enthält gelöste Zucker und Ionen und ist deshal
       dass Wasser in die Wurzel strömt.
     </>
   }
+  footer={<>Zu viel Dünger übersteigt den Zellsaft und kehrt die Osmose um.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: 0, max: 0.6 }, y: { min: -1.1, max: 1.3 } },
@@ -216,6 +309,8 @@ Der Zellsaft eines Wurzelhaars enthält gelöste Zucker und Ionen und ist deshal
   }}
 />
 
+Fällt die Gerade unter null, ist die **Bodenlösung hypertonisch** und entzieht dem Wurzelhaar Wasser.
+
 ### Beispiel zu viel Dünger
 
 Nimm an, der Zellsaft eines Wurzelhaars entspricht einer Lösung von <InlineMath math="0{,}30\text{ mol/L}" />. Normales Bodenwasser hat eine Konzentration von <InlineMath math="0{,}02\text{ mol/L}" />. Nachdem zu viel Dünger rund um die Wurzeln gestreut wurde, steigt sie auf <InlineMath math="0{,}45\text{ mol/L}" />. Bestimme **die Richtung, in die das Wasser strömt**, in beiden Fällen.
@@ -225,7 +320,7 @@ Nimm an, der Zellsaft eines Wurzelhaars entspricht einer Lösung von <InlineMath
 <BlockMath math="2{,}48(0{,}30 - 0{,}45) = -0{,}37\text{ MPa}" />
 </MathContainer>
 
-Der positive Wert bei normalem Bodenwasser heißt, dass Wasser in die Wurzel strömt. Der negative Wert nach dem Überdüngen heißt, dass die Bodenlösung jetzt hypertonisch ist: Wasser verlässt die Wurzel und die Pflanze welkt. Prüf es im Modell: Bei <InlineMath math="c = 0{,}45" /> und <InlineMath math="s = 0{,}30" /> liegt die Markierung unter der waagerechten Achse.
+Der positive Wert bei normalem Bodenwasser heißt, dass Wasser in die Wurzel strömt. Der negative Wert nach dem Überdüngen heißt, dass die Bodenlösung jetzt hypertonisch ist: Wasser verlässt die Wurzel und die Pflanze welkt. Bei Bodenkonzentration <InlineMath math="c = 0{,}45" /> und Zellsaft <InlineMath math="s = 0{,}30" /> zeigt der negative Druck den Wasserverlust der Wurzel.
 
 ### Ionen gelangen durch aktiven Transport hinein
 
@@ -241,6 +336,7 @@ Die Konzentration von Ionen wie Kalium und Nitrat ist im Zellsaft meist höher a
       zeigt gut durchlüfteten Boden.
     </>
   }
+  footer={<>Weniger Bodensauerstoff senkt die ATP-Bildung und bremst die Ionenaufnahme.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: 0, max: 0.2 }, y: { min: 0, max: 110 } },
@@ -280,47 +376,46 @@ Die meisten Pflanzen nehmen alle Mineralstoffe über die Wurzeln auf. Manche leb
 
 Fleischfressende Pflanzen leben meist auf sauren, moorigen Böden, die **arm an Stickstoff** sind. Die verdauten Insekten liefern den Stickstoff, den dieser Boden nicht hergibt.
 
-## Typische Fehler bei der Pflanzenernährung
+<CarnivorousPlantLab
+  title={<>Fleischfressende, parasitische und epiphytische Pflanzen</>}
+  description={
+    <>
+      Vergleiche Kannenpflanze, parasitische Seide und epiphytische Orchidee, um
+      ihre Strategien für Stickstoff, Wasser und Zucker zu erkennen.
+    </>
+  }
+  footer={<>Spezialorgane erschließen stickstoffarme Moore oder lichtreiche Baumkronen.</>}
+  modes={["carnivorous", "parasitic", "epiphytic"]}
+  labels={{
+    adaptation: <>Schlüsselstruktur</>,
+    mode: "Ernährungsweise",
+    modes: {
+      carnivorous: {
+        adaptation: <>Kannenblatt fängt Insekten und verdaut sie mit Enzymen</>,
+        name: "Fleischfressend",
+        source: <>Fotosynthese für Zucker plus Insekten als Stickstoffquelle</>,
+      },
+      epiphytic: {
+        adaptation: <>Luftwurzeln nehmen Regenwasser und Humus auf</>,
+        name: "Epiphytisch",
+        source: <>Eigene Fotosynthese auf Ästen ohne den Trägerbaum zu schädigen</>,
+      },
+      parasitic: {
+        adaptation: <>Haustorien dringen direkt in Xylem und Phloem des Wirts ein</>,
+        name: "Parasitisch",
+        source: <>Wasser, Mineralsalze und Nährstoffe direkt vom Wirt</>,
+      },
+    },
+    parts: {
+      aerialRoot: "Luftwurzel",
+      haustorium: "Haustorium",
+      hostStem: "Wirtsspross",
+      insect: "Insekt",
+      trapLeaf: "Fallenblatt",
+    },
+    source: <>Nährstoffquelle</>,
+    view: "Dreidimensionale Modelle besonderer Ernährungsweisen bei Pflanzen",
+  }}
+/>
 
-| Fehler | Warum er falsch ist | So prüfst du es |
-| :--- | :--- | :--- |
-| Mikronährstoffe kann man vernachlässigen, weil so wenig nötig ist. | Fehlt irgendein notwendiges Element, wächst die Pflanze trotzdem schlechter. | Wende das Minimumgesetz an: Das knappste Element begrenzt das Wachstum. |
-| Pflanzen holen ihren Kohlenstoff aus dem Boden. | Kohlenstoff stammt durch Fotosynthese aus Kohlenstoffdioxid. | Die Trockenmasse besteht fast ganz aus Kohlenstoff, Sauerstoff und Wasserstoff aus Luft und Wasser. |
-| Mineralionen gelangen immer durch Diffusion hinein. | Im Zellsaft ist die Ionenkonzentration oft höher, also ist aktiver Transport nötig. | Vergleich die Konzentrationen innerhalb und außerhalb der Zelle. |
-| Mehr Dünger ist immer besser. | Eine zu konzentrierte Bodenlösung wird hypertonisch und zieht Wasser aus den Wurzeln. | Vergleich die Konzentration der Bodenlösung mit der des Zellsafts. |
-
-Der vierte Fehler taucht in Anwendungsaufgaben am häufigsten auf. Zu viel Dünger **kehrt die Richtung der Osmose um**, sodass die Pflanze welkt, obwohl der Boden nass ist.
-
-## Übungen zur Ernährung der Pflanzen
-
-Die Aufgaben führen vom Benennen der Elemente zum Rechnen. **Schreib deinen Rechenweg** bei jeder Rechnung auf.
-
-1. Ein Feld liefert <InlineMath math="80\%" /> des Stickstoffbedarfs, <InlineMath math="100\%" /> des Phosphorbedarfs und <InlineMath math="50\%" /> des Kaliumbedarfs einer Kultur. Berechne das relative Wachstum und nenne den Dünger, den du zuerst ergänzen solltest.
-
-2. Die Wurzel eines Keimlings trägt <InlineMath math="50" /> Wurzelhaare pro Millimeter, jedes <InlineMath math="0{,}5\text{ mm}" /> lang. Berechne mit dem Oberflächenmodell, wievielmal so groß die Oberfläche ist wie bei einer Wurzel ohne Wurzelhaare.
-
-3. Der Zellsaft eines Wurzelhaars entspricht einer Lösung von <InlineMath math="0{,}30\text{ mol/L}" />, die Bodenlösung hat <InlineMath math="0{,}10\text{ mol/L}" />. Berechne den osmotischen Druckunterschied und gib an, in welche Richtung das Wasser strömt.
-
-4. Eine grüne Pflanze auf stickstoffarmem Torf hat kannenförmige Blätter, die Flüssigkeit enthalten. Nenne ihre Ernährungsweise und erkläre, wie sie an Stickstoff kommt.
-
-### Lösungen
-
-**Lösung 1**: Such das niedrigste Angebot:
-
-<BlockMath math="\min(80, 100, 50, 100) = 50" />
-
-Das relative Wachstum beträgt <InlineMath math="50\%" />, und Kalium ist das begrenzende Element. Ergänze zuerst **Kaliumdünger**. Probe: Hebst du Kalium auf <InlineMath math="80\%" />, steigt das Wachstum auf <InlineMath math="80\%" />, und dann begrenzt Stickstoff.
-
-**Lösung 2**: Nutze das Flächenverhältnis aus dem Modell:
-
-<BlockMath math="1 + 0{,}02 \cdot 0{,}5 \cdot 50 = 1{,}5" />
-
-Die Oberfläche ist <InlineMath math="1{,}5" />-mal so groß. Prüf es im Modell: Stell <InlineMath math="n = 50" /> und <InlineMath math="l = 0{,}5" /> ein, dann zeigt das Verhältnis <InlineMath math="1{,}5" />.
-
-**Lösung 3**: Multipliziere den Konzentrationsunterschied mit <InlineMath math="2{,}48" />:
-
-<BlockMath math="2{,}48(0{,}30 - 0{,}10) = 0{,}50\text{ MPa}" />
-
-Der positive Wert heißt, dass die Bodenlösung hypotonisch ist, also **strömt Wasser** durch Osmose in das Wurzelhaar. Probe: Die Bodenkonzentration ist kleiner als die des Zellsafts, also muss die Richtung nach innen zeigen.
-
-**Lösung 4**: Das ist eine **fleischfressende Pflanze**, zum Beispiel eine Kannenpflanze. Sie betreibt weiterhin Fotosynthese und stellt so ihre Nahrung her. Insekten, die in die Kanne rutschen, werden von Enzymen in der Flüssigkeit verdaut, und das Blatt nimmt die frei werdenden Stickstoffionen auf. Probe: Die grünen Blätter zeigen, dass die Pflanze kein Parasit ist.
+Vergleiche die grünen Blätter von Kannenpflanze und Orchidee mit der chlorophyllfreien Seide, um **ergänzende Insektennahrung** klar vom Parasitismus zu trennen.

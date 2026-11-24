@@ -1,7 +1,7 @@
 export const metadata = {
   title: "Nota Nutrisi dalam Tumbuhan Tingkatan Lima",
   description:
-    "Nota Biologi Tingkatan 5 Bab 3: kenali makronutrien dan mikronutrien, tanda kekurangannya, cara akar rambut menyerap air dan ion, serta nutrisi istimewa.",
+    "Makronutrien dan mikronutrien tumbuhan, tanda kekurangannya, penyerapan air dan ion oleh akar rambut, serta nutrisi istimewa.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-11-17",
   subject: "Nutrisi dalam Tumbuhan",
@@ -10,6 +10,8 @@ export const metadata = {
 ## Tumbuhan Memerlukan Tujuh Belas Unsur Nutrien
 
 Tumbuhan hijau membina makanannya sendiri melalui fotosintesis, tetapi ia tetap memerlukan **unsur nutrien bukan organik** daripada udara, air dan tanah. Unsur yang diperlukan dalam kuantiti besar dipanggil **makronutrien**: karbon, hidrogen, oksigen, nitrogen, fosforus, kalium, kalsium, magnesium dan sulfur. Unsur yang diperlukan dalam kuantiti sangat kecil dipanggil **mikronutrien**: ferum, mangan, boron, zink, kuprum, molibdenum, klorin dan nikel. Akar rambut menyerap air secara osmosis dan ion mineral secara pengangkutan aktif. Kekurangan satu unsur sahaja sudah cukup untuk membantutkan pertumbuhan.
+
+> Baja berlebihan menjadikan larutan tanah hipertonik dan membalikkan arah osmosis sehingga pokok tetap layu walaupun tanah lembap.
 
 ## Dari Mana Datangnya Jisim Kering Tumbuhan
 
@@ -24,6 +26,7 @@ Kira-kira <InlineMath math="80\%" /> hingga <InlineMath math="90\%" /> jisim tum
       hanya kira-kira <InlineMath math="4\%" />.
     </>
   }
+  footer={<>Mineral hanya empat peratus jisim kering tetapi tetap penting untuk hidup.</>}
   yAxisLabel="Bahagian jisim kering (peratus)"
   data={[
     { name: "Karbon", value: 45 },
@@ -77,6 +80,7 @@ Baja nitrogen yang banyak tidak menolong jika tanah kekurangan fosforus. Pertumb
       dalam peratus keperluan.
     </>
   }
+  footer={<>Pertumbuhan terhenti sebaik sahaja mencapai had unsur yang paling kurang.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: 0, max: 150 }, y: { min: 0, max: 110 } },
@@ -112,7 +116,7 @@ Satu plot tanah membekalkan nitrogen <InlineMath math="120\%" />, fosforus <Inli
 <BlockMath math="\min(150, 60, 90, 100) = 60, \qquad \min(120, 90, 90, 100) = 90" />
 </MathContainer>
 
-Pertumbuhan hanya <InlineMath math="60\%" />, dan fosforus ialah unsur penghad. Menambah nitrogen hingga <InlineMath math="150\%" /> tidak mengubah apa-apa, tetapi menaikkan fosforus hingga <InlineMath math="90\%" /> menaikkan pertumbuhan kepada <InlineMath math="90\%" />. Semak dengan model: tetapkan <InlineMath math="n = 120" />, <InlineMath math="p = 60" /> dan <InlineMath math="k = 90" />, dan bacaan pertumbuhan ialah <InlineMath math="60" />.
+Pertumbuhan hanya <InlineMath math="60\%" />, dan fosforus ialah unsur penghad. Menambah nitrogen hingga <InlineMath math="150\%" /> tidak mengubah apa-apa, tetapi menaikkan fosforus hingga <InlineMath math="90\%" /> menaikkan pertumbuhan kepada <InlineMath math="90\%" />. Pada bekalan <InlineMath math="n = 120" />, <InlineMath math="p = 60" /> dan <InlineMath math="k = 90" />, pertumbuhan tanaman terhenti tepat pada <InlineMath math="60\%" />.
 
 ## Eksperimen Larutan Kultur untuk Kekurangan Nutrien
 
@@ -125,6 +129,60 @@ Untuk menguji kesan kekurangan nitrogen, fosforus atau kalium, anak benih yang s
 | Dimalarkan | Jenis dan saiz anak benih, isi padu larutan, cahaya, suhu dan tempoh |
 
 Balut bekas dengan kertas hitam supaya alga tidak tumbuh dalam larutan. Salurkan udara ke dalam larutan supaya akar mendapat oksigen untuk respirasi. Selepas beberapa minggu, anak benih dalam larutan lengkap paling sihat. Set tanpa nitrogen menunjukkan daun tua kuning dan pokok kerdil, set tanpa fosforus menunjukkan daun keunguan dan akar pendek, dan set tanpa kalium menunjukkan tepi daun perang.
+
+<MineralDeficiencyLab
+  title={<>Ujian Kekurangan Nutrien dalam Larutan Kultur Knop</>}
+  description={
+    <>
+      Bandingkan anak benih dalam larutan Knop lengkap dengan balang yang tiada
+      satu makronutrien untuk melihat warna daun, batang, dan akar.
+    </>
+  }
+  footer={<>Ketiadaan satu makronutrien menimbulkan tanda kekurangan yang khusus.</>}
+  solutions={["complete", "noNitrogen", "noPhosphorus", "noPotassium", "noMagnesium"]}
+  labels={{
+    parts: {
+      airTube: "Tiub udara",
+      leaf: "Daun",
+      root: "Sistem akar",
+      solution: "Larutan kultur",
+      stem: "Batang",
+    },
+    role: <>Fungsi utama</>,
+    solution: "Balang kultur",
+    solutions: {
+      complete: {
+        name: "Knop lengkap",
+        role: <>Membekalkan semua makronutrien dan mikronutrien seimbang</>,
+        symptom: <>Daun hijau subur dan pertumbuhan akar kukuh</>,
+      },
+      noNitrogen: {
+        name: "Tiada nitrogen",
+        role: <>Membina protein, asid nukleik, dan klorofil</>,
+        symptom: <>Pertumbuhan terbantut dan daun tua menguning</>,
+      },
+      noPhosphorus: {
+        name: "Tiada fosforus",
+        role: <>Membina ATP, fosfolipid, dan asid nukleik</>,
+        symptom: <>Daun tua keunguan dan pertumbuhan akar lemah</>,
+      },
+      noPotassium: {
+        name: "Tiada kalium",
+        role: <>Mengaktifkan enzim dan mengawal bukaan stoma</>,
+        symptom: <>Tepi daun tua menguning lalu menjadi perang</>,
+      },
+      noMagnesium: {
+        name: "Tiada magnesium",
+        role: <>Menjadi atom teras molekul klorofil</>,
+        symptom: <>Klorosis antara urat pada daun tua</>,
+      },
+    },
+    symptom: <>Tanda kekurangan</>,
+    view: "Balang anak benih tiga dimensi membandingkan kekurangan nutrien Knop",
+  }}
+/>
+
+Perhatikan **daun mana yang menguning dahulu** dalam balang kultur: unsur mudah alih seperti nitrogen dan magnesium menjejaskan daun tua terlebih dahulu.
 
 ## Akar Rambut Menyerap Air dan Garam Mineral
 
@@ -146,6 +204,7 @@ Bayangkan sepanjang <InlineMath math="1\text{ mm}" /> akar berjejari <InlineMath
       dengan garis rujukan untuk akar tanpa akar rambut.
     </>
   }
+  footer={<>Akar rambut menggandakan luas permukaan penyerapan air dan mineral.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: 0, max: 200 }, y: { min: 0, max: 9 } },
@@ -182,6 +241,40 @@ Semak: luas akar tanpa akar rambut ialah <InlineMath math="0.5\pi = 1.57\text{ m
 
 Sap sel akar rambut mengandungi gula dan ion terlarut, jadi ia lebih pekat daripada larutan tanah. Larutan tanah adalah **hipotonik** kepada sap sel, maka air meresap masuk secara osmosis. Bagi larutan cair pada <InlineMath math="25^\circ\text{C}" />, perbezaan tekanan osmosis yang menolak air masuk ialah kira-kira <InlineMath math="2.48\text{ MPa}" /> bagi setiap <InlineMath math="1\text{ mol dm}^{-3}" /> perbezaan kepekatan.
 
+<RootHairUptakeLab
+  title={<>Penyerapan Air dan Ion Mineral oleh Akar Rambut</>}
+  description={
+    <>
+      Gerakkan kepekatan larutan tanah daripada air tanah biasa hingga baja
+      berlebihan untuk melihat arah osmosis air berbalik sementara ion mineral
+      dipam ke xilem.
+    </>
+  }
+  footer={<>Air masuk secara osmosis manakala ion mineral dipam aktif menggunakan ATP.</>}
+  soilConcentration={{ min: 0, max: 0.6, value: 0.02 }}
+  labels={{
+    directions: {
+      balanced: "Seimbang (isotonik)",
+      intoRoot: "Masuk ke akar rambut",
+      outOfRoot: "Keluar dari akar rambut",
+    },
+    ionUptake: <>Pengangkutan ion mineral</>,
+    parts: {
+      cortex: "Korteks",
+      endodermis: "Endodermis",
+      epidermis: "Epidermis",
+      rootHair: "Akar rambut",
+      soilWater: "Air tanah",
+      xylem: "Xilem",
+    },
+    soilConcentration: "Kepekatan tanah (mol/dm3)",
+    view: "Keratan rentas akar tiga dimensi menunjukkan osmosis air dan serapan ion",
+    waterDirection: <>Arah osmosis air</>,
+  }}
+/>
+
+Lihat anak panah air berbalik arah sebaik kepekatan tanah mengatasi sap sel. Graf seterusnya mengira tolakan osmosis itu dalam megapascal.
+
 <MathVisual
   title={<>Baja Berlebihan Membalikkan Arah Osmosis</>}
   description={
@@ -192,6 +285,7 @@ Sap sel akar rambut mengandungi gula dan ion terlarut, jadi ia lebih pekat darip
       <InlineMath math="s" />. Nilai positif bermaksud air masuk ke akar.
     </>
   }
+  footer={<>Baja berlebihan memekatkan larutan tanah lalu membalikkan arah osmosis.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: 0, max: 0.6 }, y: { min: -1.1, max: 1.3 } },
@@ -215,6 +309,8 @@ Sap sel akar rambut mengandungi gula dan ion terlarut, jadi ia lebih pekat darip
   }}
 />
 
+Apabila garis turun di bawah sifar, **larutan tanah sudah hipertonik** lalu menarik air keluar daripada akar rambut.
+
 ### Contoh Baja Berlebihan
 
 Anggap sap sel akar rambut setara dengan larutan <InlineMath math="0.30\text{ mol dm}^{-3}" />. Air tanah biasa berkepekatan <InlineMath math="0.02\text{ mol dm}^{-3}" />. Selepas baja ditabur terlalu banyak di sekeliling akar, kepekatannya menjadi <InlineMath math="0.45\text{ mol dm}^{-3}" />. Tentukan **arah pergerakan air** dalam kedua-dua keadaan.
@@ -224,7 +320,7 @@ Anggap sap sel akar rambut setara dengan larutan <InlineMath math="0.30\text{ mo
 <BlockMath math="2.48(0.30 - 0.45) = -0.37\text{ MPa}" />
 </MathContainer>
 
-Nilai positif dalam air tanah biasa bermaksud air masuk ke akar. Nilai negatif selepas baja berlebihan bermaksud larutan tanah kini hipertonik, jadi air keluar dari akar dan tumbuhan layu. Semak dengan model: pada <InlineMath math="c = 0.45" /> dan <InlineMath math="s = 0.30" />, penanda berada di bawah paksi mendatar.
+Nilai positif dalam air tanah biasa bermaksud air masuk ke akar. Nilai negatif selepas baja berlebihan bermaksud larutan tanah kini hipertonik, jadi air keluar dari akar dan tumbuhan layu. Pada kepekatan tanah <InlineMath math="c = 0.45" /> dan sap sel <InlineMath math="s = 0.30" />, tekanan negatif mengesahkan air keluar daripada akar.
 
 ### Ion Masuk secara Pengangkutan Aktif
 
@@ -240,6 +336,7 @@ Kepekatan ion seperti kalium dan nitrat dalam sap sel selalunya lebih tinggi dar
       rujukan ialah tanah yang cukup udara.
     </>
   }
+  footer={<>Oksigen tanah yang rendah mengurangkan ATP dan memperlahankan pengangkutan ion.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: 0, max: 0.2 }, y: { min: 0, max: 110 } },
@@ -279,47 +376,47 @@ Kebanyakan tumbuhan mendapat semua mineral melalui akar. Sesetengah tumbuhan hid
 
 Tumbuhan karnivor biasanya hidup di tanah paya yang berasid dan **miskin nitrogen**. Serangga yang dicerna membekalkan nitrogen yang tidak dapat diambil daripada tanah itu.
 
-## Kesilapan Lazim tentang Nutrisi Tumbuhan
+<CarnivorousPlantLab
+  title={<>Nutrisi Tumbuhan Karnivor, Parasit, dan Epifit</>}
+  description={
+    <>
+      Bandingkan periuk kera, dedalu parasit, dan orkid epifit untuk melihat
+      cara setiap tumbuhan memperoleh nitrogen, air, dan makanan di habitat
+      istimewa.
+    </>
+  }
+  footer={<>Struktur khas membantu tumbuhan hidup di paya miskin nitrogen atau dahan tinggi.</>}
+  modes={["carnivorous", "parasitic", "epiphytic"]}
+  labels={{
+    adaptation: <>Struktur utama</>,
+    mode: "Nutrisi istimewa",
+    modes: {
+      carnivorous: {
+        adaptation: <>Daun periuk memerangkap dan mencerna serangga dengan enzim</>,
+        name: "Karnivor",
+        source: <>Fotosintesis untuk gula dan serangga untuk bekalan nitrogen</>,
+      },
+      epiphytic: {
+        adaptation: <>Akar udara menyerap air hujan dan humus di dahan pokok</>,
+        name: "Epifit",
+        source: <>Berfotosintesis sendiri tanpa mengambil nutrien daripada pokok perumah</>,
+      },
+      parasitic: {
+        adaptation: <>Haustorium menembusi terus ke dalam xilem dan floem perumah</>,
+        name: "Parasit",
+        source: <>Menyerap air, garam mineral, dan makanan daripada perumah</>,
+      },
+    },
+    parts: {
+      aerialRoot: "Akar udara",
+      haustorium: "Haustorium",
+      hostStem: "Batang perumah",
+      insect: "Serangga",
+      trapLeaf: "Daun perangkap",
+    },
+    source: <>Sumber nutrien</>,
+    view: "Model tiga dimensi tumbuhan karnivor, parasit, dan epifit",
+  }}
+/>
 
-| Kesilapan | Sebab salah | Cara semak |
-| :--- | :--- | :--- |
-| Mikronutrien boleh diabaikan kerana jumlahnya sedikit. | Kekurangan mana-mana unsur yang perlu tetap membantutkan pertumbuhan. | Guna hukum minimum: unsur paling kurang menghadkan pertumbuhan. |
-| Tumbuhan mendapat karbon daripada tanah. | Karbon datang daripada karbon dioksida melalui fotosintesis. | Jisim kering hampir semuanya karbon, oksigen dan hidrogen dari udara dan air. |
-| Ion mineral sentiasa masuk secara resapan. | Kepekatan ion dalam sap sel sering lebih tinggi, jadi perlu pengangkutan aktif. | Bandingkan kepekatan di dalam dan di luar sel. |
-| Lebih banyak baja sentiasa lebih baik. | Larutan tanah yang terlalu pekat menjadi hipertonik dan menarik air keluar dari akar. | Bandingkan kepekatan larutan tanah dengan sap sel. |
-
-Kesilapan keempat paling kerap muncul dalam soalan aplikasi. Baja yang terlalu banyak **membalikkan arah osmosis**, jadi tumbuhan layu walaupun tanah basah.
-
-## Latihan Nutrisi dalam Tumbuhan
-
-Soalan bergerak daripada mengenal pasti unsur kepada pengiraan. **Tunjukkan jalan kerja** dalam setiap pengiraan.
-
-1. Bekalan nitrogen, fosforus dan kalium sebuah ladang ialah <InlineMath math="80\%" />, <InlineMath math="100\%" /> dan <InlineMath math="50\%" /> daripada keperluan. Hitung pertumbuhan relatif dan namakan baja yang patut ditambah dahulu.
-
-2. Akar sebuah anak benih mempunyai <InlineMath math="50" /> akar rambut per milimeter, setiap satu sepanjang <InlineMath math="0.5\text{ mm}" />. Dengan model luas permukaan, hitung berapa kali ganda luas permukaan berbanding akar tanpa akar rambut.
-
-3. Sap sel akar rambut setara dengan larutan <InlineMath math="0.30\text{ mol dm}^{-3}" /> dan larutan tanah <InlineMath math="0.10\text{ mol dm}^{-3}" />. Hitung perbezaan tekanan osmosis dan nyatakan arah pergerakan air.
-
-4. Sejenis tumbuhan hijau di tanah gambut yang miskin nitrogen mempunyai daun berbentuk kendi berisi cecair. Namakan jenis nutrisinya dan terangkan cara ia mendapat nitrogen.
-
-### Penyelesaian
-
-**Penyelesaian 1**: Cari bekalan yang paling rendah:
-
-<BlockMath math="\min(80, 100, 50, 100) = 50" />
-
-Pertumbuhan relatif ialah <InlineMath math="50\%" />, dan kalium ialah unsur penghad. Tambah **baja kalium** dahulu. Semak: menaikkan kalium hingga <InlineMath math="80\%" /> menaikkan pertumbuhan hingga <InlineMath math="80\%" />, dan kini nitrogen pula yang menghad.
-
-**Penyelesaian 2**: Guna nisbah luas daripada model:
-
-<BlockMath math="1 + 0.02 \times 0.5 \times 50 = 1.5" />
-
-Luas permukaan menjadi <InlineMath math="1.5" /> kali ganda. Semak dengan model: tetapkan <InlineMath math="n = 50" /> dan <InlineMath math="l = 0.5" />, dan bacaan nisbah ialah <InlineMath math="1.5" />.
-
-**Penyelesaian 3**: Darabkan perbezaan kepekatan dengan <InlineMath math="2.48" />:
-
-<BlockMath math="2.48(0.30 - 0.10) = 0.50\text{ MPa}" />
-
-Nilai positif bermaksud larutan tanah hipotonik, jadi **air meresap masuk** ke akar rambut secara osmosis. Semak: kepekatan tanah lebih rendah daripada sap sel, jadi arahnya mesti ke dalam.
-
-**Penyelesaian 4**: Tumbuhan ini ialah **tumbuhan karnivor**, contohnya periuk kera. Ia masih berfotosintesis untuk mendapat makanan. Serangga yang tergelincir ke dalam kendi dicerna oleh enzim dalam cecair, dan daun menyerap ion nitrogen yang terhasil. Semak: daun yang hijau menunjukkan ia bukan parasit.
+Bandingkan daun hijau periuk kera dan orkid dengan dedalu tanpa klorofil untuk membezakan **fotosintesis bertambahan serangga** daripada parasit penuh.

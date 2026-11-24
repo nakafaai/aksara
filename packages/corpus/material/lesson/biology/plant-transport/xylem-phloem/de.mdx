@@ -1,7 +1,7 @@
 export const metadata = {
   title: "Transport in Pflanzen",
   description:
-    "Vergleiche Xylem und Phloem, berechne die Kräfte, die Wasser heben, miss die Aufnahme mit dem Potometer und erkläre Stofftransport im Phloem und Phytosanierung.",
+    "Vergleiche Xylem und Phloem, berechne Kräfte beim Wasseraufstieg, verstehe den Druckstrom im Phloem und erkunde Phytosanierung für Böden und Gewässer.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-11-17",
   subject: "Transport in Pflanzen",
@@ -10,6 +10,8 @@ export const metadata = {
 ## Xylem leitet Wasser und Phloem leitet Nahrung
 
 Pflanzen transportieren Stoffe durch **Leitgewebe**. Das **Xylem** leitet Wasser und Mineralsalze nach oben, von den Wurzeln zu den Blättern. Das **Phloem** leitet organische Stoffe wie Saccharose von den Blättern in andere Pflanzenteile. Diesen Vorgang nennt man **Translokation**. Wasser steigt durch drei Kräfte: Wurzeldruck, Kapillarwirkung und Transpirationssog. Am stärksten ist der **Transpirationssog**, weil das Wasser, das aus den Blättern verdunstet, die Wassersäule im Xylem nach oben zieht. Die Phytosanierung nutzt diese Aufnahme durch die Wurzeln, um verschmutzte Böden und Gewässer zu reinigen.
+
+> Xylem hebt Wasser passiv durch den sonnengetriebenen Transpirationssog, während lebendes Phloem Saccharose je nach Bedarf aufwärts und abwärts von der Quelle zur Senke transportiert.
 
 ## Der Bau von Xylem und Phloem
 
@@ -53,6 +55,7 @@ Wurzelzellen pumpen Mineralionen durch aktiven Transport ins Xylem. Wasser folgt
       Wurzeldrucks <InlineMath math="p" />.
     </>
   }
+  footer={<>Der Wurzeldruck reicht nur rund zehn Meter hoch und genügt hohen Bäumen nicht.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: 0, max: 120 }, y: { min: 0, max: 1.3 } },
@@ -100,6 +103,7 @@ Wassermoleküle haften durch **Adhäsion** an den Xylemwänden und halten durch 
       Mikrometern, für Wasser bei <InlineMath math="20^\circ\text{C}" />.
     </>
   }
+  footer={<>Engere Gefäße heben Wasser höher, doch bleibt die Kapillarwirkung unter einem Meter.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: 0, max: 200 }, y: { min: 0, max: 1.6 } },
@@ -133,30 +137,46 @@ Wasser verdunstet an den Wänden der Mesophyllzellen und diffundiert durch die S
 
 Ein Blasenpotometer macht diese Wirkung messbar. Ein beblätterter Spross steckt in einem wassergefüllten Rohr, und eine Luftblase in der Kapillare wandert, wenn der Spross Wasser aufnimmt. Vaseline auf einer Blattseite verschließt dort die Spaltöffnungen. Wähl jeden Spross und vergleich, wie weit die Blase wandert.
 
-<PotometerLab
-  title={<>Wasseraufnahme eines beblätterten Sprosses</>}
+<XylemCohesionLab
+  title={<>Drei Kräfte heben die Wassersäule im Xylem</>}
   description={
     <>
-      Ein Potometer mit einer Kapillare von <InlineMath math="1\text{ mm}" />{" "}
-      Radius über <InlineMath math="10" /> Minuten, mit Vaseline auf
-      verschiedenen Blattseiten.
+      Vergleiche Wurzeldruck, Kapillarwirkung und Transpirationssog bei
+      wachsender Baumhöhe und erkenne, warum nur der Sog der Blätter hohe Kronen
+      erreicht.
     </>
   }
+  footer={<>Kohäsion verbindet das Xylemwasser zu einer durchgehenden Säule bis ins Blatt.</>}
+  forces={["rootPressure", "capillary", "transpirationPull"]}
+  height={{ min: 1, max: 120, value: 40 }}
   labels={{
-    distance: <>Weg der Luftblase</>,
-    rate: <>Aufnahmerate</>,
-    shoot: "Spross wählen",
-    time: "Zeit",
-    view: "Blasenpotometer mit beblättertem Spross",
-    volume: <>Aufgenommenes Wasser</>,
+    force: "Hebekraft",
+    forces: {
+      capillary: {
+        mechanism: <>Adhäsion an verholzten Wänden und Kohäsion reichen unter einen Meter</>,
+        name: "Kapillarwirkung",
+      },
+      rootPressure: {
+        mechanism: <>Aktiver Ionentransport drückt Wasser durch Osmose rund zehn Meter hoch</>,
+        name: "Wurzeldruck",
+      },
+      transpirationPull: {
+        mechanism: <>Verdunstung an den Spaltöffnungen zieht die ganze Säule bis zur Krone</>,
+        name: "Transpirationssog",
+      },
+    },
+    height: "Baumhöhe (m)",
+    mechanism: <>Wirkungsweise</>,
+    parts: {
+      cohesionBond: "Kohäsionsbindung",
+      ligninWall: "Ligninwand",
+      rootCell: "Wurzelzelle",
+      stoma: "Spaltöffnung",
+      waterColumn: "Wassersäule",
+    },
+    pressureNeeded: <>Nötiger Druck</>,
+    view: "Dreidimensionale verholzte Xylemröhre mit aufsteigender Wassersäule",
   }}
-  minutes={10}
-  radius={1}
-  shoots={[
-    { coat: "none", name: "Ohne Vaseline", rate: 1.8 },
-    { coat: "lower", name: "Unterseite", rate: 0.6 },
-    { coat: "both", name: "Beide Seiten", rate: 0.15 },
-  ]}
 />
 
 Der Spross ohne Vaseline nimmt <InlineMath math="1{,}8\text{ cm}^3" /> Wasser pro Stunde auf. In <InlineMath math="10" /> Minuten betragen das Wasservolumen und der Weg der Blase:
@@ -184,6 +204,7 @@ Den osmotischen Druck des Safts kannst du aus seiner Saccharosekonzentration abs
       <InlineMath math="a" /> und die Senke <InlineMath math="b" />.
     </>
   }
+  footer={<>Ein größerer Saccharoseunterschied zwischen Quelle und Senke verstärkt den Fluss.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: 0, max: 30 }, y: { min: 0, max: 2.4 } },
@@ -212,6 +233,8 @@ Den osmotischen Druck des Safts kannst du aus seiner Saccharosekonzentration abs
   }}
 />
 
+Je höher die **Saccharosekonzentration an der Quelle**, desto stärker wächst der Druckunterschied für den Massenfluss im Phloem.
+
 ### Beispiel zum Druckunterschied im Phloem
 
 Der Saft in den Siebröhren nahe einem Blatt enthält <InlineMath math="20\%" /> Saccharose, der Saft nahe den Wurzeln <InlineMath math="2\%" />. Schätze **den Druckunterschied, der den Saft schiebt**.
@@ -222,7 +245,7 @@ Der Saft in den Siebröhren nahe einem Blatt enthält <InlineMath math="20\%" />
 <BlockMath math="\Delta \pi = 1{,}45 - 0{,}14 = 1{,}30\text{ MPa}" />
 </MathContainer>
 
-Ein Unterschied von <InlineMath math="1{,}30\text{ MPa}" /> ist größer als der Druck, der eine <InlineMath math="100\text{ m}" /> hohe Wassersäule trägt, nämlich <InlineMath math="0{,}98\text{ MPa}" />. Prüf es im Modell: Bei <InlineMath math="a = 20" /> und <InlineMath math="b = 2" /> zeigt der Unterschied <InlineMath math="1{,}30" />. Die Schätzung behandelt die Lösungen als ideal, die echten Werte weichen also etwas ab.
+Ein Unterschied von <InlineMath math="1{,}30\text{ MPa}" /> ist größer als der Druck, der eine <InlineMath math="100\text{ m}" /> hohe Wassersäule trägt, nämlich <InlineMath math="0{,}98\text{ MPa}" />. Bei <InlineMath math="20\%" /> Saccharose im Blatt und <InlineMath math="2\%" /> in der Wurzel entsteht ein treibender Druck von <InlineMath math="1{,}30\text{ MPa}" />. Die Schätzung behandelt die Lösungen als ideal, die echten Werte weichen also etwas ab.
 
 ### Belege für die Translokation im Phloem
 
@@ -230,9 +253,91 @@ Drei Versuche zeigen, dass Nahrung durch das Phloem wandert. Beim **Ringelungsve
 
 Im zweiten Versuch wird der **Stechrüssel einer Blattlaus**, die an einem Stängel saugt, abgetrennt. Die Flüssigkeit, die herausläuft, ist reich an Saccharose, denn der Rüssel endet in einer Siebröhre. Im dritten Versuch erhält ein Blatt radioaktiv markiertes Kohlenstoffdioxid, <InlineMath math="^{14}\mathrm{CO_2}" />. Den radioaktiven Zucker, den es daraus bildet, findet man später im Phloem, ober- und unterhalb dieses Blattes.
 
+<PhloemTranslocationLab
+  title={<>Druckstrom im Phloem und Ringelungsversuch</>}
+  description={
+    <>
+      Verstelle die Saccharose im Blatt und wechsle zwischen unverletztem und
+      geringeltem Stamm, um die Schwellung oberhalb des Schnitts bei intaktem
+      Xylem zu beobachten.
+    </>
+  }
+  footer={<>Ein entfernter Rindenring blockiert das Phloem und staut Saccharose oberhalb an.</>}
+  modes={["intact", "ringed"]}
+  sourceSucrose={{ min: 2, max: 30, value: 20 }}
+  labels={{
+    barkState: <>Zustand des Stamms</>,
+    mode: "Stammzustand",
+    modes: {
+      intact: {
+        name: "Unverletzte Rinde",
+        outcome: <>Saccharose strömt ungehindert durch die Siebröhren von der Quelle zur Senke</>,
+      },
+      ringed: {
+        name: "Geringelte Rinde",
+        outcome: <>Die Rinde schwillt oberhalb des Rings an, während das Xylem intakt bleibt</>,
+      },
+    },
+    parts: {
+      companionCell: "Geleitzelle",
+      sievePlate: "Siebplatte",
+      sieveTube: "Siebröhre",
+      sucrose: "Saccharose",
+      xylem: "Xylem",
+    },
+    pressureDiff: <>Osmotischer Druckunterschied</>,
+    sourceSucrose: "Saccharose an Quelle (%)",
+    view: "Dreidimensionales Siebröhrenmodell mit Ringelungsversuch",
+  }}
+/>
+
+Durchtrennt ein Rindenring die Siebröhren, **staut sich Saccharose oberhalb des Schnitts**, während das innere Xylem die Blätter weiter mit Wasser versorgt.
+
 ## Phytosanierung reinigt Böden und Gewässer
 
 Die **Phytosanierung** nutzt Pflanzen, um Schadstoffe wie Schwermetalle aus Boden oder Wasser zu entfernen. Die Wurzeln nehmen die Metalle zusammen mit Wasser und Mineralionen auf, und das Xylem leitet sie in den Spross. Der Spross wird dann geerntet und sicher entsorgt. Sareptasenf und Vetivergras werden für Schwermetalle im Boden eingesetzt, die Wasserhyazinthe nimmt Schwermetalle aus verschmutztem Wasser auf.
+
+<PhytoremediationLab
+  title={<>Phytosanierung von Schwermetallen über Erntezyklen</>}
+  description={
+    <>
+      Wähle Sareptasenf, Wasserhyazinthe oder Vetivergras und erhöhe die Zahl
+      der Ernten, um den Abbau von Schwermetallen aus Boden oder Wasser zu
+      verfolgen.
+    </>
+  }
+  footer={<>Jede Ernte entzieht Schwermetalle und schont dabei die Bodenstruktur.</>}
+  harvests={{ min: 0, max: 20, value: 5 }}
+  plants={["mustard", "hyacinth", "vetiver"]}
+  labels={{
+    harvests: "Erntezyklen",
+    medium: <>Gereinigtes Medium</>,
+    parts: {
+      metalIon: "Schwermetallion",
+      rootZone: "Wurzelzone",
+      shoot: "Geernteter Spross",
+      soilBed: "Belasteter Boden",
+      waterChannel: "Belastetes Wasser",
+    },
+    plant: "Sanierungspflanze",
+    plants: {
+      hyacinth: {
+        medium: <>Nimmt Schwermetalle aus belasteten Seen und Flüssen auf</>,
+        name: "Wasserhyazinthe",
+      },
+      mustard: {
+        medium: <>Zieht Blei und Schwermetalle aus belastetem Boden</>,
+        name: "Sareptasenf",
+      },
+      vetiver: {
+        medium: <>Tiefe Faserwurzeln binden Schwermetalle im Boden</>,
+        name: "Vetivergras",
+      },
+    },
+    remaining: <>Restliches Schwermetall</>,
+    view: "Dreidimensionales Phytosanierungsbeet mit Metallaufnahme über Wurzeln",
+  }}
+/>
 
 Dieses einfache Modell nimmt an, dass jede Ernte einen Anteil <InlineMath math="f" /> des noch vorhandenen Metalls entfernt. Nach <InlineMath math="n" /> Ernten bleiben <InlineMath math="100(1 - f)^n" /> Prozent der Anfangskonzentration übrig.
 
@@ -245,6 +350,7 @@ Dieses einfache Modell nimmt an, dass jede Ernte einen Anteil <InlineMath math="
       Ernte den Anteil <InlineMath math="f" /> entfernt.
     </>
   }
+  footer={<>Jede Ernte senkt das verbliebene Schwermetall exponentiell weiter ab.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: 0, max: 20 }, y: { min: 0, max: 110 } },
@@ -272,52 +378,4 @@ Entfernt jede Ernte <InlineMath math="20\%" /> des restlichen Metalls, bleibt na
 
 <BlockMath math="100(1 - 0{,}2)^5 = 100 \cdot 0{,}8^5 = 32{,}8\%" />
 
-Um unter <InlineMath math="10\%" /> zu kommen, brauchen wir <InlineMath math="0{,}8^n < 0{,}1" />. Wegen <InlineMath math="0{,}8^{10} = 0{,}107" /> und <InlineMath math="0{,}8^{11} = 0{,}086" /> sind **elf Ernten** nötig. Prüf es im Modell: Bei <InlineMath math="f = 0{,}2" /> und <InlineMath math="n = 11" /> zeigt die Anzeige <InlineMath math="8{,}6" />. Phytosanierung ist günstig und schont den Boden, sie dauert aber lange und wirkt nur so tief, wie die Wurzeln reichen.
-
-## Typische Fehler beim Transport in Pflanzen
-
-| Fehler | Warum er falsch ist | So prüfst du es |
-| :--- | :--- | :--- |
-| Das Xylem leitet Nahrung. | Das Xylem leitet Wasser und Mineralsalze. Nahrung leitet das Phloem. | Frag, welcher Stoff wandert, nicht nur, in welche Richtung. |
-| Das Phloem leitet nur nach unten. | Das Phloem leitet von der Quelle zur Senke, nach oben oder unten. | Such die Senke: Früchte und junge Triebe sitzen oberhalb der Blätter. |
-| Die Kapillarwirkung hebt Wasser bis zur Baumspitze. | Der Kapillaraufstieg in einer Trachee beträgt weniger als <InlineMath math="1\text{ m}" />. | Berechne <InlineMath math="14{,}84 : r" /> für den Gefäßradius. |
-| Pflanzen ziehen Wasser mit ATP in die Blätter. | Der Transpirationssog entsteht, weil Sonnenwärme Wasser verdunsten lässt. | Tracheen bestehen aus toten Zellen, die nicht pumpen können. |
-
-Der zweite Fehler taucht bei Aufgaben zum Ringelungsversuch am häufigsten auf. **Saccharose staut sich auf der Seite der Quelle**, also oberhalb des Rings, wenn die Blätter darüber sitzen.
-
-## Übungen zum Transport in Pflanzen
-
-Die Aufgaben führen von der Berechnung der Kräfte zu den Versuchen. **Schreib die Einheiten** bei jeder Rechnung mit.
-
-1. Eine Trachee hat einen Radius von <InlineMath math="50\,\mu\text{m}" />. Berechne die Steighöhe durch Kapillarwirkung und erkläre, ob diese Kraft für einen <InlineMath math="30\text{ m}" /> hohen Baum reicht.
-
-2. In einem Potometer mit einer Kapillare von <InlineMath math="0{,}5\text{ mm}" /> Radius wandert die Blase in <InlineMath math="5" /> Minuten <InlineMath math="4{,}0\text{ cm}" /> weit. Berechne die Wasseraufnahme in <InlineMath math="\text{cm}^3\text{/min}" />.
-
-3. Unterhalb eines beblätterten Asts wird ein Rindenring vom Stamm eines Baums entfernt. Sag voraus, was nach einigen Wochen mit der Rinde oberhalb und unterhalb des Rings passiert, und begründe es.
-
-4. Jede Ernte von Sareptasenf entfernt <InlineMath math="30\%" /> des Bleis, das noch im Boden ist. Berechne, wie viele Ernten mindestens nötig sind, damit das Blei unter <InlineMath math="20\%" /> der Anfangskonzentration fällt.
-
-### Lösungen
-
-**Lösung 1**: Nutze die Formel für den Kapillaraufstieg:
-
-<BlockMath math="h = \frac{14{,}84}{50} = 0{,}30\text{ m}" />
-
-Ein Aufstieg von <InlineMath math="0{,}30\text{ m}" /> liegt weit unter <InlineMath math="30\text{ m}" />, also **reicht die Kapillarwirkung nicht**. Der Transpirationssog hebt das Wasser bis zur Spitze. Probe: Verdoppelst du den Radius von <InlineMath math="25" /> auf <InlineMath math="50\,\mu\text{m}" />, halbiert sich die Höhe von <InlineMath math="0{,}59" /> auf <InlineMath math="0{,}30\text{ m}" />.
-
-**Lösung 2**: Rechne den Radius in Zentimeter um, <InlineMath math="0{,}5\text{ mm} = 0{,}05\text{ cm}" />, berechne dann das Volumen und teile durch die Zeit:
-
-<MathContainer>
-<BlockMath math="V = \pi r^2 l = \pi(0{,}05)^2(4{,}0) = 0{,}0314\text{ cm}^3" />
-<BlockMath math="\text{Rate} = \frac{0{,}0314}{5} = 0{,}00628\text{ cm}^3\text{/min}" />
-</MathContainer>
-
-Probe: <InlineMath math="0{,}00628 \cdot 60 = 0{,}38\text{ cm}^3" /> pro Stunde, ein plausibler Wert für einen kleinen Spross.
-
-**Lösung 3**: Die Rinde **oberhalb des Rings schwillt an**, weil Saccharose aus den Blättern durch das Phloem nach unten wandert und sich am Ringrand staut. Der Teil unterhalb des Rings bekommt keine Nahrung, deshalb sterben die Wurzeln schließlich ab, wenn der Ring nicht verheilt. Die Blätter welken nicht, weil das Xylem weiter innen im Stamm unversehrt ist. Probe: Der Ring entfernt nur Phloem, kein Xylem.
-
-**Lösung 4**: Such das kleinste <InlineMath math="n" /> mit <InlineMath math="0{,}7^n < 0{,}2" />:
-
-<BlockMath math="0{,}7^4 = 0{,}240, \qquad 0{,}7^5 = 0{,}168" />
-
-Nach vier Ernten sind noch <InlineMath math="24{,}0\%" /> übrig, also sind **fünf Ernten** nötig. Prüf es im Modell: Bei <InlineMath math="f = 0{,}3" /> und <InlineMath math="n = 5" /> zeigt die Anzeige <InlineMath math="16{,}8" />.
+Um unter <InlineMath math="10\%" /> zu kommen, brauchen wir <InlineMath math="0{,}8^n < 0{,}1" />. Wegen <InlineMath math="0{,}8^{10} = 0{,}107" /> und <InlineMath math="0{,}8^{11} = 0{,}086" /> sind **elf Ernten** nötig. Bei einem Entnahmeanteil von <InlineMath math="f = 0{,}2" /> sinkt der Schwermetallrest nach <InlineMath math="11" /> Ernten auf <InlineMath math="8{,}6\%" />. Phytosanierung ist günstig und schont den Boden, sie dauert aber lange und wirkt nur so tief, wie die Wurzeln reichen.

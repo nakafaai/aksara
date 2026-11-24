@@ -1,7 +1,7 @@
 export const metadata = {
   title: "Nutrisi pada Tumbuhan",
   description:
-    "Kenali unsur hara makro dan mikro, gejala kekurangannya, cara rambut akar menyerap air dan ion, serta tumbuhan dengan cara makan khusus lewat model interaktif.",
+    "Makronutrien dan mikronutrien tumbuhan, gejala kekurangannya, penyerapan air dan ion oleh rambut akar, serta cara makan khusus.",
   authors: [{ name: "Nabil Akbarazzima Fatih" }],
   datePublished: "2026-11-17",
   subject: "Nutrisi pada Tumbuhan",
@@ -10,6 +10,8 @@ export const metadata = {
 ## Tumbuhan Butuh Tujuh Belas Unsur Hara
 
 Tumbuhan hijau membuat makanannya sendiri lewat fotosintesis, tetapi tetap butuh **unsur hara anorganik** dari udara, air, dan tanah. Unsur yang dibutuhkan dalam jumlah besar disebut **makronutrien** atau unsur hara makro: karbon, hidrogen, oksigen, nitrogen, fosfor, kalium, kalsium, magnesium, dan belerang. Unsur yang dibutuhkan dalam jumlah sangat kecil disebut **mikronutrien** atau unsur hara mikro: besi, mangan, boron, seng, tembaga, molibdenum, klorin, dan nikel. Rambut akar menyerap air secara osmosis dan ion mineral secara transpor aktif. Kekurangan satu unsur saja sudah cukup untuk menghambat pertumbuhan.
+
+> Pupuk berlebihan mengubah larutan tanah menjadi hipertonis dan membalik arah osmosis sehingga tumbuhan tetap layu walau tanah basah.
 
 ## Dari Mana Asal Massa Kering Tumbuhan
 
@@ -24,6 +26,7 @@ Sekitar <InlineMath math="80\%" /> sampai <InlineMath math="90\%" /> massa tumbu
       hanya sekitar <InlineMath math="4\%" />.
     </>
   }
+  footer={<>Mineral hanya empat persen massa kering namun tetap mutlak bagi kehidupan.</>}
   yAxisLabel="Bagian massa kering (persen)"
   data={[
     { name: "Karbon", value: 45 },
@@ -77,6 +80,7 @@ Pupuk nitrogen yang banyak tidak menolong kalau tanahnya kekurangan fosfor. Pert
       dalam persen kebutuhan.
     </>
   }
+  footer={<>Pertumbuhan berhenti naik saat menyentuh batas unsur yang paling kurang.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: 0, max: 150 }, y: { min: 0, max: 110 } },
@@ -126,6 +130,60 @@ Untuk menguji akibat kekurangan nitrogen, fosfor, atau kalium, kamu menanam bibi
 
 Bungkus setiap wadah dengan kertas hitam supaya alga tidak tumbuh di dalam larutan. Alirkan udara ke dalam larutan supaya akar mendapat oksigen untuk respirasi. Setelah beberapa minggu, bibit dalam larutan lengkap paling sehat. Kelompok tanpa nitrogen menunjukkan daun tua kuning dan tanaman kerdil, kelompok tanpa fosfor menunjukkan daun keunguan dan akar pendek, dan kelompok tanpa kalium menunjukkan tepi daun cokelat.
 
+<MineralDeficiencyLab
+  title={<>Uji Kekurangan Unsur dalam Larutan Kultur Knop</>}
+  description={
+    <>
+      Bandingkan bibit dalam larutan Knop lengkap dengan wadah yang kekurangan
+      satu makronutrien untuk melihat warna daun, batang, dan akarnya.
+    </>
+  }
+  footer={<>Ketiadaan satu makronutrien memunculkan gejala kekurangan yang khas.</>}
+  solutions={["complete", "noNitrogen", "noPhosphorus", "noPotassium", "noMagnesium"]}
+  labels={{
+    parts: {
+      airTube: "Selang udara",
+      leaf: "Daun",
+      root: "Sistem akar",
+      solution: "Larutan kultur",
+      stem: "Batang",
+    },
+    role: <>Fungsi utama</>,
+    solution: "Wadah kultur",
+    solutions: {
+      complete: {
+        name: "Knop lengkap",
+        role: <>Menyediakan semua makronutrien dan mikronutrien seimbang</>,
+        symptom: <>Daun hijau sehat dan pertumbuhan akar kuat</>,
+      },
+      noNitrogen: {
+        name: "Tanpa nitrogen",
+        role: <>Menyusun protein, asam nukleat, dan klorofil</>,
+        symptom: <>Tumbuhan kerdil dan daun tua menguning</>,
+      },
+      noPhosphorus: {
+        name: "Tanpa fosfor",
+        role: <>Menyusun ATP, fosfolipid, dan asam nukleat</>,
+        symptom: <>Daun tua keunguan dan pertumbuhan akar buruk</>,
+      },
+      noPotassium: {
+        name: "Tanpa kalium",
+        role: <>Mengaktifkan enzim dan mengatur bukaan stomata</>,
+        symptom: <>Tepi daun tua menguning lalu mengering kecokelatan</>,
+      },
+      noMagnesium: {
+        name: "Tanpa magnesium",
+        role: <>Menjadi atom pusat pada molekul klorofil</>,
+        symptom: <>Daun tua menguning di antara tulang daun</>,
+      },
+    },
+    symptom: <>Gejala kekurangan</>,
+    view: "Wadah bibit tiga dimensi untuk membandingkan kekurangan unsur Knop",
+  }}
+/>
+
+Perhatikan **daun mana yang menguning lebih dulu** di wadah kultur: unsur mudah pindah seperti nitrogen dan magnesium segera tampak pada daun tua.
+
 ## Rambut Akar Menyerap Air dan Garam Mineral
 
 Air dan ion mineral masuk ke tumbuhan lewat **sel rambut akar**, yaitu sel epidermis akar yang tumbuh memanjang menjadi tonjolan halus. Tiga ciri membuat sel ini cocok untuk tugasnya: tonjolan yang menambah luas permukaan, dinding sel yang tipis, dan cairan sel yang lebih pekat daripada larutan tanah. Setiap ciri diselidiki dengan modelnya sendiri.
@@ -146,6 +204,7 @@ Bayangkan akar sepanjang <InlineMath math="1\text{ mm}" /> dengan jari-jari <Inl
       dengan garis acuan untuk akar tanpa rambut akar.
     </>
   }
+  footer={<>Rambut akar melipatgandakan luas bidang serap air dan mineral.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: 0, max: 200 }, y: { min: 0, max: 9 } },
@@ -182,6 +241,40 @@ Cek: akar tanpa rambut akar luasnya <InlineMath math="0{,}5\pi = 1{,}57\text{ mm
 
 Cairan sel rambut akar mengandung gula dan ion terlarut, jadi lebih pekat daripada larutan tanah. Larutan tanah bersifat **hipotonis** terhadap cairan sel, maka air masuk secara osmosis. Untuk larutan encer pada <InlineMath math="25^\circ\text{C}" />, selisih tekanan osmotik yang mendorong air masuk sekitar <InlineMath math="2{,}48\text{ MPa}" /> untuk setiap <InlineMath math="1\text{ mol/L}" /> selisih konsentrasi.
 
+<RootHairUptakeLab
+  title={<>Penyerapan Air dan Ion Mineral oleh Rambut Akar</>}
+  description={
+    <>
+      Geser konsentrasi larutan tanah dari air tanah biasa hingga pupuk berlebih
+      untuk melihat arah osmosis air berbalik sementara ion mineral dipompa
+      menuju xilem.
+    </>
+  }
+  footer={<>Air masuk lewat osmosis sedangkan ion mineral dipompa aktif memakai ATP.</>}
+  soilConcentration={{ min: 0, max: 0.6, value: 0.02 }}
+  labels={{
+    directions: {
+      balanced: "Seimbang (isotonis)",
+      intoRoot: "Masuk ke rambut akar",
+      outOfRoot: "Keluar dari rambut akar",
+    },
+    ionUptake: <>Transpor ion mineral</>,
+    parts: {
+      cortex: "Korteks",
+      endodermis: "Endodermis",
+      epidermis: "Epidermis",
+      rootHair: "Rambut akar",
+      soilWater: "Air tanah",
+      xylem: "Xilem",
+    },
+    soilConcentration: "Konsentrasi tanah (mol/L)",
+    view: "Penampang akar tiga dimensi menampilkan osmosis air dan serapan ion",
+    waterDirection: <>Arah osmosis air</>,
+  }}
+/>
+
+Amati panah air yang berbalik begitu kepekatan tanah melampaui cairan sel. Grafik berikut menghitung dorongan osmotik itu dalam megapascal.
+
 <MathVisual
   title={<>Pupuk Berlebihan Membalik Arah Osmosis</>}
   description={
@@ -192,6 +285,7 @@ Cairan sel rambut akar mengandung gula dan ion terlarut, jadi lebih pekat daripa
       <InlineMath math="s" />. Nilai positif berarti air masuk ke akar.
     </>
   }
+  footer={<>Pupuk berlebih membuat larutan tanah lebih pekat sehingga osmosis berbalik.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: 0, max: 0.6 }, y: { min: -1.1, max: 1.3 } },
@@ -215,6 +309,8 @@ Cairan sel rambut akar mengandung gula dan ion terlarut, jadi lebih pekat daripa
   }}
 />
 
+Begitu kurva turun di bawah nol, **larutan tanah sudah hipertonis** dan mulai menarik air keluar dari rambut akar.
+
 ### Contoh Pupuk Berlebihan
 
 Anggap cairan sel rambut akar setara dengan larutan <InlineMath math="0{,}30\text{ mol/L}" />. Air tanah biasa berkonsentrasi <InlineMath math="0{,}02\text{ mol/L}" />. Setelah pupuk ditabur terlalu banyak di sekitar akar, konsentrasinya menjadi <InlineMath math="0{,}45\text{ mol/L}" />. Tentukan **arah gerak air** pada kedua keadaan.
@@ -224,7 +320,7 @@ Anggap cairan sel rambut akar setara dengan larutan <InlineMath math="0{,}30\tex
 <BlockMath math="2{,}48(0{,}30 - 0{,}45) = -0{,}37\text{ MPa}" />
 </MathContainer>
 
-Nilai positif pada air tanah biasa berarti air masuk ke akar. Nilai negatif setelah pupuk berlebihan berarti larutan tanah kini hipertonis, jadi air keluar dari akar dan tumbuhan layu. Cek dengan model: pada <InlineMath math="c = 0{,}45" /> dan <InlineMath math="s = 0{,}30" />, penanda berada di bawah sumbu mendatar.
+Nilai positif pada air tanah biasa berarti air masuk ke akar. Nilai negatif setelah pupuk berlebihan berarti larutan tanah kini hipertonis, jadi air keluar dari akar dan tumbuhan layu. Pada kepekatan tanah <InlineMath math="c = 0{,}45" /> dan cairan sel <InlineMath math="s = 0{,}30" />, nilai negatif menandakan air keluar dari akar.
 
 ### Ion Masuk secara Transpor Aktif
 
@@ -240,6 +336,7 @@ Konsentrasi ion seperti kalium dan nitrat di dalam cairan sel biasanya lebih tin
       tanah yang cukup udara.
     </>
   }
+  footer={<>Oksigen tanah yang rendah memangkas ATP dan memperlambat transpor aktif ion.</>}
   scene={{
     space: "plane",
     frame: { kind: "cartesian", x: { min: 0, max: 0.2 }, y: { min: 0, max: 110 } },
@@ -279,47 +376,47 @@ Sebagian besar tumbuhan mendapat semua mineralnya lewat akar. Ada tumbuhan yang 
 
 Tumbuhan karnivora biasanya hidup di tanah rawa yang asam dan **miskin nitrogen**. Serangga yang dicerna memasok nitrogen yang tidak bisa diambil dari tanah itu.
 
-## Kesalahan Umum tentang Nutrisi Tumbuhan
+<CarnivorousPlantLab
+  title={<>Nutrisi Tumbuhan Karnivora, Parasit, dan Epifit</>}
+  description={
+    <>
+      Bandingkan kantong semar, tali putri parasit, dan anggrek epifit untuk
+      melihat cara masing-masing memperoleh nitrogen, air, dan makanan di
+      habitat khusus.
+    </>
+  }
+  footer={<>Struktur khusus membantu tumbuhan bertahan di rawa miskin nitrogen atau tajuk pohon.</>}
+  modes={["carnivorous", "parasitic", "epiphytic"]}
+  labels={{
+    adaptation: <>Struktur utama</>,
+    mode: "Cara makan khusus",
+    modes: {
+      carnivorous: {
+        adaptation: <>Daun berbentuk kantong menjebak dan mencerna serangga</>,
+        name: "Karnivora",
+        source: <>Fotosintesis untuk gula dan serangga untuk pasokan nitrogen</>,
+      },
+      epiphytic: {
+        adaptation: <>Akar udara menyerap air hujan dan humus di dahan</>,
+        name: "Epifit",
+        source: <>Berfotosintesis sendiri tanpa mengambil zat dari pohon inang</>,
+      },
+      parasitic: {
+        adaptation: <>Haustorium menembus langsung ke xilem dan floem inang</>,
+        name: "Parasit",
+        source: <>Mengambil air, mineral, dan makanan langsung dari inang</>,
+      },
+    },
+    parts: {
+      aerialRoot: "Akar udara",
+      haustorium: "Haustorium",
+      hostStem: "Batang inang",
+      insect: "Serangga",
+      trapLeaf: "Daun perangkap",
+    },
+    source: <>Sumber nutrien</>,
+    view: "Model tiga dimensi tumbuhan karnivora, parasit, dan epifit",
+  }}
+/>
 
-| Kesalahan | Mengapa salah | Cara mengecek |
-| :--- | :--- | :--- |
-| Mikronutrien boleh diabaikan karena jumlahnya sedikit. | Kekurangan unsur wajib mana pun tetap menghambat pertumbuhan. | Pakai hukum minimum: unsur paling kurang membatasi pertumbuhan. |
-| Tumbuhan mendapat karbon dari tanah. | Karbon berasal dari karbon dioksida lewat fotosintesis. | Massa kering hampir seluruhnya karbon, oksigen, dan hidrogen dari udara dan air. |
-| Ion mineral selalu masuk secara difusi. | Konsentrasi ion di cairan sel sering lebih tinggi, jadi perlu transpor aktif. | Bandingkan konsentrasi di dalam dan di luar sel. |
-| Makin banyak pupuk makin baik. | Larutan tanah yang terlalu pekat menjadi hipertonis dan menarik air keluar dari akar. | Bandingkan konsentrasi larutan tanah dengan cairan sel. |
-
-Kesalahan keempat paling sering muncul di soal penerapan. Pupuk yang berlebihan **membalik arah osmosis**, jadi tumbuhan layu walaupun tanahnya basah.
-
-## Latihan Nutrisi pada Tumbuhan
-
-Soal bergerak dari mengenali unsur ke perhitungan. **Tulis langkah kerjamu** di setiap perhitungan.
-
-1. Sebuah ladang memasok <InlineMath math="80\%" /> kebutuhan nitrogen, <InlineMath math="100\%" /> kebutuhan fosfor, dan <InlineMath math="50\%" /> kebutuhan kalium tanaman. Hitung pertumbuhan relatifnya dan sebutkan pupuk yang perlu ditambah lebih dulu.
-
-2. Akar sebuah bibit punya <InlineMath math="50" /> rambut akar per milimeter, masing-masing sepanjang <InlineMath math="0{,}5\text{ mm}" />. Dengan model luas permukaan, hitung berapa kali luas permukaannya dibandingkan akar tanpa rambut akar.
-
-3. Cairan sel rambut akar setara dengan larutan <InlineMath math="0{,}30\text{ mol/L}" /> dan larutan tanahnya <InlineMath math="0{,}10\text{ mol/L}" />. Hitung selisih tekanan osmotiknya dan sebutkan arah gerak air.
-
-4. Sejenis tumbuhan hijau di tanah gambut yang miskin nitrogen punya daun berbentuk kantong berisi cairan. Sebutkan jenis nutrisinya dan jelaskan cara tumbuhan itu mendapat nitrogen.
-
-### Pembahasan
-
-**Pembahasan 1**: Cari pasokan yang paling rendah:
-
-<BlockMath math="\min(80, 100, 50, 100) = 50" />
-
-Pertumbuhan relatifnya <InlineMath math="50\%" />, dan kalium adalah unsur pembatasnya. Tambahkan **pupuk kalium** lebih dulu. Cek: menaikkan kalium sampai <InlineMath math="80\%" /> menaikkan pertumbuhan sampai <InlineMath math="80\%" />, lalu nitrogen yang ganti membatasi.
-
-**Pembahasan 2**: Pakai rasio luas dari model:
-
-<BlockMath math="1 + 0{,}02 \times 0{,}5 \times 50 = 1{,}5" />
-
-Luas permukaannya menjadi <InlineMath math="1{,}5" /> kali lipat. Cek dengan model: atur <InlineMath math="n = 50" /> dan <InlineMath math="l = 0{,}5" />, maka bacaan rasionya <InlineMath math="1{,}5" />.
-
-**Pembahasan 3**: Kalikan selisih konsentrasi dengan <InlineMath math="2{,}48" />:
-
-<BlockMath math="2{,}48(0{,}30 - 0{,}10) = 0{,}50\text{ MPa}" />
-
-Nilai positif berarti larutan tanah hipotonis, jadi **air masuk** ke rambut akar secara osmosis. Cek: konsentrasi tanah lebih rendah daripada cairan sel, jadi arahnya pasti ke dalam.
-
-**Pembahasan 4**: Tumbuhan ini adalah **tumbuhan karnivora**, misalnya kantong semar. Tumbuhan itu tetap berfotosintesis untuk membuat makanan. Serangga yang tergelincir ke dalam kantong dicerna oleh enzim di dalam cairan, lalu daun menyerap ion nitrogen yang dihasilkan. Cek: daunnya hijau, jadi tumbuhan itu bukan parasit.
+Bandingkan daun hijau kantong semar dan anggrek dengan tali putri tanpa klorofil untuk membedakan **fotosintesis berimbuh serangga** dari parasit sejati.
