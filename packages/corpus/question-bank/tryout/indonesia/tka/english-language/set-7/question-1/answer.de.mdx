@@ -1,14 +1,34 @@
-Berechne zuerst den Preis jeder Person an einem normalen Tag und schlag dann den Feiertagsaufschlag drauf.
+# Gegeben
 
-**Bu Wati**. Sie fährt mit ihrem Motorrad auf die Fähre, und der Motorradtarif gilt "with its rider", sie zahlt also nichts extra: <InlineMath math="\text{Rp}75{.}000" />.
+An einem **Feiertag** fährt Bu Wati (ohne Einwohnerkarte) mit ihrem **Motorrad** sowie drei Kindern zu Fuß im Alter von **<InlineMath math="2" />**, **<InlineMath math="5" />** und **<InlineMath math="12" />** Jahren auf der Fähre *Kapal Bunga*. Reguläre Einzelfahrpreise sind **<InlineMath math="\text{Rp}75{.}000" />** für Motorrad samt Fahrer, **<InlineMath math="\text{Rp}40{.}000" />** für Erwachsene ab <InlineMath math="12" /> Jahren, **<InlineMath math="\text{Rp}20{.}000" />** für Kinder von <InlineMath math="3" /> bis <InlineMath math="11" /> Jahren (unter <InlineMath math="3" /> kostenlos) sowie **<InlineMath math="25\%" /> Feiertagszuschlag auf alle Tarife**.
 
-**Die Kinder**. Das Kind von <InlineMath math="12" /> zahlt den Erwachsenentarif, denn Erwachsene sind "aged <InlineMath math="12" /> or over": <InlineMath math="\text{Rp}40{.}000" />. Das Kind von <InlineMath math="5" /> zahlt <InlineMath math="\text{Rp}20{.}000" />. Das Kind von <InlineMath math="2" /> ist unter <InlineMath math="3" /> und fährt gratis.
+# Gesucht
 
-**Summe**. <InlineMath math="75{.}000 + 40{.}000 + 20{.}000 = 135{.}000" />, und an Feiertagen "every fare rises by <InlineMath math="25\%" />": <InlineMath math="135{.}000 \times 1{,}25 = 168{.}750" />.
+Der Gesamtbetrag, den Bu Watis Familie an diesem Feiertag bezahlt.
 
-- <InlineMath math="\text{Rp}135{.}000" /> vergisst den Feiertagsaufschlag.
-- <InlineMath math="\text{Rp}143{.}750" /> gibt dem Kind von <InlineMath math="12" /> den Kindertarif.
-- <InlineMath math="\text{Rp}193{.}750" /> gibt dem Kind von <InlineMath math="2" /> den Kindertarif.
-- <InlineMath math="\text{Rp}218{.}750" /> rechnet für Bu Wati noch ein Erwachsenenticket, obwohl der Motorradtarif die Fahrerin schon abdeckt.
+# Lösung
 
-Die Familie zahlt also <InlineMath math="\text{Rp}168{.}750" />.
+Berechne zuerst die **regulären Einzelpreise** und schlage danach einmalig die **<InlineMath math="25\%" /> Feiertagserhöhung** auf die Summe auf. Genaue Altersgrenzen und die Fahrerregel verhindern Doppelzählungen.
+
+> Formulierungen wie *with its rider* (samt Fahrer) und *aged <InlineMath math="12" /> or over* (ab <InlineMath math="12" /> Jahren) legen jeden Einzeltarif vor dem Zuschlag eindeutig fest.
+
+## Normaltarife addieren und Feiertagszuschlag berechnen
+
+Die Tabelle nennt <Highlight>Motorbike, with its rider</Highlight> für <InlineMath math="\text{Rp}75{.}000" />, sodass Bu Wati kein eigenes Ticket braucht. Das <InlineMath math="12" />-jährige Kind zahlt den **Erwachsenentarif** (<Highlight>Adult, aged <InlineMath math="12" /> or over</Highlight>: <InlineMath math="\text{Rp}40{.}000" />), das <InlineMath math="5" />-jährige **<InlineMath math="\text{Rp}20{.}000" />**, und das <InlineMath math="2" />-jährige fährt **gratis**.
+
+Mit <Highlight>every fare rises by <InlineMath math="25\%" /></Highlight> ergibt sich der **gesamte Feiertagspreis**:
+
+<BlockMath math="\text{Normalpreis} = 75{.}000 + 40{.}000 + 20{.}000 = \text{Rp}135{.}000" />
+
+<BlockMath math="\text{Feiertagspreis} = 135{.}000 \times 1{,}25 = \text{Rp}168{.}750" />
+
+## Warum die anderen vier Summen falsch sind
+
+- **<InlineMath math="\text{Rp}135{.}000" />** vergisst den Feiertagszuschlag von <InlineMath math="25\%" />.
+- **<InlineMath math="\text{Rp}143{.}750" />** berechnet für das <InlineMath math="12" />-jährige Kind fälschlich den Kindertarif.
+- **<InlineMath math="\text{Rp}193{.}750" />** berechnet dem <InlineMath math="2" />-jährigen Kind ein Ticket, obwohl Kinder unter <InlineMath math="3" /> frei fahren.
+- **<InlineMath math="\text{Rp}218{.}750" />** addiert ein Erwachsenenticket für Bu Wati trotz eingeschlossenem Fahrer.
+
+# Antwort
+
+Die Familie bezahlt insgesamt **<InlineMath math="\text{Rp}168{.}750" />** (*<InlineMath math="\text{Rp}168{,}750" />*).

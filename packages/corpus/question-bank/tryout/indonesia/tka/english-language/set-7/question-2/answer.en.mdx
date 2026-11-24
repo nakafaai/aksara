@@ -1,13 +1,35 @@
-The planned arrivals at Pulau Lima are 7:30 and 11:30. The day moves only if low tide falls "within <InlineMath math="1" /> hour before or after a planned arrival there", so check each time against 7:30 and 11:30, not against the departures at 8:00 and 12:00.
+# Given
 
-**Statement 1**: at 13:00. 6:45 is <InlineMath math="45" /> minutes before 7:30, so the day moves and the 12:00 sailing leaves at 13:00.
+*Kapal Bunga* leaves Tanjung Rawa at 6:00, takes **<InlineMath math="90" /> minutes**, and waits **<InlineMath math="30" /> minutes** at each pier. Planned **arrivals at Pulau Lima** are **7:30** and **11:30**, with normal departures at **8:00** and **12:00**.
 
-**Statement 2**: at 12:00. 8:45 is <InlineMath math="75" /> minutes after 7:30 and long before 11:30. It is close to the 8:00 departure, but departures don't count.
+If low tide falls **within <InlineMath math="1" /> hour before or after a planned arrival there**, the entire day shifts **<InlineMath math="1" /> hour later** (once per day).
 
-**Statement 3**: at 13:00. 12:20 is <InlineMath math="50" /> minutes after 11:30.
+# Asked
 
-**Statement 4**: at 12:00. 10:15 is <InlineMath math="75" /> minutes before 11:30.
+Whether the second ferry leaves Pulau Lima at **12:00** or **13:00** for each of the five low-tide times.
 
-**Statement 5**: at 12:00. 13:00 is <InlineMath math="90" /> minutes after 11:30. It is within an hour of the 12:00 departure, but again departures don't count.
+# Solution
 
-So the second ferry leaves at 13:00 on the days in statements 1 and 3, and at 12:00 on the days in statements 2, 4 and 5.
+Mark two alert windows around the **planned arrivals** (7:30 and 11:30): **6:30 to 8:30** and **10:30 to 12:30**. Low tide inside either window shifts the 12:00 sailing to **13:00**, while departure times do not count.
+
+> Check low tide strictly against planned *arrivals* at Pulau Lima (7:30 and 11:30), never against departure times.
+
+## Testing all five low tide times against both windows
+
+The rule specifies <Highlight>within <InlineMath math="1" /> hour before or after a planned arrival there</Highlight>. Only **6:45** (<InlineMath math="45" /> minutes before 7:30) and **12:20** (<InlineMath math="50" /> minutes after 11:30) fall inside those two windows, shifting departure to **13:00**.
+
+By contrast, **8:45** (<InlineMath math="75" /> minutes after 7:30), **10:15** (<InlineMath math="75" /> minutes before 11:30), and **13:00** (<InlineMath math="90" /> minutes after 11:30) all lie outside both arrival windows, keeping the **12:00** departure.
+
+## Summary of all five statements
+
+| Low tide time | Distance to nearest arrival | Second departure |
+| --- | --- | --- |
+| 6:45 | <InlineMath math="45" /> min before 7:30 (inside) | **At 13:00** |
+| 8:45 | <InlineMath math="75" /> min after 7:30 (outside) | **At 12:00** |
+| 12:20 | <InlineMath math="50" /> min after 11:30 (inside) | **At 13:00** |
+| 10:15 | <InlineMath math="75" /> min before 11:30 (outside) | **At 12:00** |
+| 13:00 | <InlineMath math="90" /> min after 11:30 (outside) | **At 12:00** |
+
+# Answer
+
+The second ferry leaves Pulau Lima **At 13:00** for **6:45** and **12:20**, and **At 12:00** for **8:45**, **10:15**, and **13:00**.

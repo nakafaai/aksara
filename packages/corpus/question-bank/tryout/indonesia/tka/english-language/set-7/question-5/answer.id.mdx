@@ -1,11 +1,29 @@
-Cek setiap pernyataan dengan aturan dan jamnya.
+# Diketahui
 
-- **Berangkat hari Senin, pulang hari Minggu berikutnya: didukung**. Hari keberangkatan dihitung sebagai *the first day* (hari pertama), jadi Senin hari ke-<InlineMath math="1" /> dan Minggu hari ke-<InlineMath math="7" />, masih dalam <InlineMath math="7" /> hari.
-- Berangkat hari Senin, pulang hari Senin berikutnya: tidak didukung. Senin itu hari ke-<InlineMath math="8" />.
-- **Kapal berada di laut selama <InlineMath math="6" /> jam pada hari biasa: didukung**. Dua kali pulang-pergi berarti empat kali menyeberang selama <InlineMath math="90" /> menit: <InlineMath math="4 \times 90 = 360" /> menit. Waktu tunggu <InlineMath math="30" /> menit dihabiskan di dermaga.
-- Kapal pertama dari Pulau Lima selalu berangkat pukul 8.00: tidak didukung. Pada hari surut, seluruh jadwal bergeser sejam lebih lambat.
-- Anak berumur <InlineMath math="12" /> tahun membayar tarif anak: tidak didukung. Dewasa adalah *aged <InlineMath math="12" /> or over* (berumur <InlineMath math="12" /> tahun ke atas).
+Dari bacaan *Kapal Bunga*: perjalanan pulang wajib dalam **<InlineMath math="7" /> hari dengan hari berangkat dihitung hari ke-<InlineMath math="1" />**, kapal melayani **dua kali pulang-pergi** dengan durasi menyeberang **<InlineMath math="90" /> menit** dan tunggu dermaga <InlineMath math="30" /> menit, hari surut menggeser jadwal **<InlineMath math="1" /> jam**, dan dewasa berumur **<InlineMath math="12" /> tahun ke atas**.
 
-Kalau hari keberangkatan dihitung sebagai hari ke-<InlineMath math="0" />, Senin berikutnya jadi hari ke-<InlineMath math="7" />, makanya pernyataan itu tampak diizinkan.
+# Ditanyakan
 
-Jadi, pernyataan yang didukung adalah pulang pada hari Minggu berikutnya dan berada di laut selama <InlineMath math="6" /> jam.
+Semua pernyataan yang didukung teks di antara lima pilihan yang diberikan.
+
+# Penyelesaian
+
+Perhatikan dua jebakan klasik: **cara hitung hari inklusif** (Senin hari ke-<InlineMath math="1" /> berarti Minggu hari ke-<InlineMath math="7" />, sedangkan Senin depan sudah hari ke-<InlineMath math="8" />) dan **waktu berlayar di laut** (empat kali menyeberang kali <InlineMath math="90" /> menit tepat <InlineMath math="6" /> jam, di luar waktu tunggu dermaga).
+
+> Menghitung hari keberangkatan sebagai hari ke-<InlineMath math="1" /> membuat batas <InlineMath math="7" /> hari berakhir pada hari Minggu, bukan Senin pekan berikutnya.
+
+## Menguji kelima pernyataan terhadap aturan teks
+
+Teks menetapkan <Highlight>counting the day of the outward trip as the first day</Highlight> serta empat kali pelayaran <InlineMath math="90" /> menit (<InlineMath math="4 \times 90 = 360" /> menit atau **<InlineMath math="6" /> jam di laut**). Status **kelima pernyataan**:
+
+- **Berangkat Senin, pulang Minggu berikutnya**: **Didukung**, karena Senin hari ke-<InlineMath math="1" /> dan Minggu tepat hari ke-<InlineMath math="7" />.
+- **Berangkat Senin, pulang Senin berikutnya**: **Tidak didukung**, karena Senin berikutnya sudah hari ke-<InlineMath math="8" />.
+- **Kapal <InlineMath math="6" /> jam di laut pada hari biasa**: **Didukung**, karena <InlineMath math="4 \times 90 = 360" /> menit (<InlineMath math="6" /> jam) di luar waktu tunggu dermaga.
+- **Kapal pertama selalu berangkat pukul 8.00 tiap hari**: **Tidak didukung**, karena saat surut jadwal mundur ke pukul 9.00.
+- **Anak umur <InlineMath math="12" /> tahun membayar tarif anak**: **Tidak didukung**, karena umur <InlineMath math="12" /> tahun masuk tarif dewasa.
+
+# Jawaban
+
+Pernyataan yang didukung bacaan adalah:
+- **A passenger whose outward trip is on a Monday can still make the trip back on the following Sunday with a return ticket.** (Berangkat Senin, pulang Minggu berikutnya)
+- **On a normal day, the ferry spends <InlineMath math="6" /> hours at sea.** (Pada hari biasa, kapal berada di laut selama <InlineMath math="6" /> jam)

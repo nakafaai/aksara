@@ -1,13 +1,35 @@
-Die geplanten Ankünfte auf Pulau Lima sind um 7:30 und 11:30. Der Tag verschiebt sich nur, wenn Niedrigwasser "within <InlineMath math="1" /> hour before or after a planned arrival there" liegt. Prüf also jede Uhrzeit gegen 7:30 und 11:30, nicht gegen die Abfahrten um 8:00 und 12:00.
+# Gegeben
 
-**Aussage 1**: um 13:00. 6:45 liegt <InlineMath math="45" /> Minuten vor 7:30, also verschiebt sich der Tag, und die Fähre von 12:00 fährt um 13:00.
+*Kapal Bunga* startet um 6:00 Uhr, fährt **<InlineMath math="90" /> Minuten** und wartet **<InlineMath math="30" /> Minuten** je Anleger. Geplante **Ankünfte auf Pulau Lima** sind **7:30** und **11:30 Uhr**, reguläre Abfahrten **8:00** und **12:00 Uhr**.
 
-**Aussage 2**: um 12:00. 8:45 liegt <InlineMath math="75" /> Minuten nach 7:30 und lange vor 11:30. Es liegt nah an der Abfahrt um 8:00, aber Abfahrten zählen nicht.
+Fällt Niedrigwasser **innerhalb von <InlineMath math="1" /> Stunde vor oder nach einer Ankunft dort**, verschiebt sich der ganze Fahrplan um **<InlineMath math="1" /> Stunde**.
 
-**Aussage 3**: um 13:00. 12:20 liegt <InlineMath math="50" /> Minuten nach 11:30.
+# Gesucht
 
-**Aussage 4**: um 12:00. 10:15 liegt <InlineMath math="75" /> Minuten vor 11:30.
+Ob die zweite Fähre von Pulau Lima bei jeder der fünf Niedrigwasserzeiten um **12:00** oder um **13:00 Uhr** ablegt.
 
-**Aussage 5**: um 12:00. 13:00 liegt <InlineMath math="90" /> Minuten nach 11:30. Es liegt innerhalb einer Stunde nach der Abfahrt um 12:00, aber auch hier zählen Abfahrten nicht.
+# Lösung
 
-Die zweite Fähre fährt also an den Tagen der Aussagen 1 und 3 um 13:00 und an den Tagen der Aussagen 2, 4 und 5 um 12:00.
+Markiere zwei Zeitfenster rund um die **Ankünfte auf Pulau Lima** (7:30 und 11:30 Uhr): **6:30 bis 8:30** sowie **10:30 bis 12:30 Uhr**. Nur Zeiten in einem dieser Fenster verschieben die 12:00-Abfahrt auf **13:00 Uhr**, während Abfahrtszeiten nicht zählen.
+
+> Prüfe Niedrigwasser ausschließlich gegen geplante *Ankünfte* auf Pulau Lima (7:30 und 11:30 Uhr), nicht gegen Abfahrtszeiten.
+
+## Alle fünf Zeiten gegen beide Zeitfenster prüfen
+
+Die Regel lautet <Highlight>within <InlineMath math="1" /> hour before or after a planned arrival there</Highlight> (binnen <InlineMath math="1" /> Stunde vor oder nach einer geplanten Ankunft). Nur **6:45** (<InlineMath math="45" /> Minuten vor 7:30) und **12:20** (<InlineMath math="50" /> Minuten nach 11:30) liegen darin und verschieben auf **13:00 Uhr**.
+
+Dagegen liegen **8:45** (<InlineMath math="75" /> Minuten nach 7:30), **10:15** (<InlineMath math="75" /> Minuten vor 11:30) und **13:00** (<InlineMath math="90" /> Minuten nach 11:30) außerhalb beider Fenster, sodass es bei **12:00 Uhr** bleibt.
+
+## Übersicht aller fünf Aussagen
+
+| Niedrigwasser | Abstand zur nächsten Ankunft | Zweite Abfahrt |
+| --- | --- | --- |
+| 6:45 | <InlineMath math="45" /> Min. vor 7:30 (innerhalb) | **At 13:00 (13:00 Uhr)** |
+| 8:45 | <InlineMath math="75" /> Min. nach 7:30 (außerhalb) | **At 12:00 (12:00 Uhr)** |
+| 12:20 | <InlineMath math="50" /> Min. nach 11:30 (innerhalb) | **At 13:00 (13:00 Uhr)** |
+| 10:15 | <InlineMath math="75" /> Min. vor 11:30 (außerhalb) | **At 12:00 (12:00 Uhr)** |
+| 13:00 | <InlineMath math="90" /> Min. nach 11:30 (außerhalb) | **At 12:00 (12:00 Uhr)** |
+
+# Antwort
+
+Die zweite Fähre legt bei **6:45** und **12:20** um **13:00 Uhr** (*At 13:00*) ab und bei **8:45**, **10:15** sowie **13:00** um **12:00 Uhr** (*At 12:00*).

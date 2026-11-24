@@ -1,17 +1,30 @@
-For each action, find the step that speaks to it, if any.
+# Given
 
-**Statement 1**: breaks the instructions. A fresh <InlineMath math="8" />-litre bath takes <InlineMath math="8 \div 2 \times 50 = 200" /> grams. The extra <InlineMath math="25" /> grams come only after <InlineMath math="3" /> cloths.
+The **indigo dyeing** guide states six steps: a fresh <InlineMath math="8" />-litre bath takes **<InlineMath math="200" /> grams** of paste, **<InlineMath math="25" /> grams** are added after every <InlineMath math="3" /> cloths before the next, **one dip (<InlineMath math="5" /> min) plus one airing (<InlineMath math="15" /> min) makes one round** (<InlineMath math="6" /> rounds for dark blue), and after the last round the cloth **dries in the shade for a day** before vinegar rinsing. Salt is never mentioned.
 
-**Statement 2**: follows the instructions. After the third cloth, step 5 says to stir in another <InlineMath math="25" /> grams "before the next cloth goes in".
+# Asked
 
-**Statement 3**: follows the instructions. Dark blue needs <InlineMath math="6" /> rounds, each a <InlineMath math="5" />-minute dip and a <InlineMath math="15" />-minute airing.
+Whether each of the six actions **Follows the instructions**, **Breaks the instructions**, or is **Not covered**.
 
-**Statement 4**: breaks the instructions. "One dip and one airing make one round", so every dip needs its own airing.
+# Solution
 
-**Statement 5**: not covered. The steps say nothing about salt.
+Match each action directly to its numbered step. Watch out for **bundling four dips before one long airing**: total minutes look identical (<InlineMath math="80" /> minutes), yet skipping airing between dips breaks the core rule of alternating rounds.
 
-**Statement 6**: breaks the instructions. Step 6 says to dry the cloth in the shade "for a day" before rinsing.
+> Check not only quantities and durations, but also sequence rules like alternating dips and drying for a full day before rinsing.
 
-Treating statement 1 as following the instructions adds the top-up before any cloth has been dyed. Treating statement 4 as following them keeps the total time but loses the rounds.
+## Checking all six actions against the steps
 
-So statements 2 and 3 follow the instructions, statements 1, 4 and 6 break them, and statement 5 isn't covered.
+Key rules include <Highlight>One dip and one airing make one round</Highlight> and <Highlight>leave the cloth to dry in the shade for a day. Then rinse it</Highlight>. Evaluating **all six actions**:
+
+| Action | Category | Reason |
+| --- | --- | --- |
+| Mixing <InlineMath math="250" /> g into a fresh bath | **Breaks the instructions** | Fresh <InlineMath math="8" />-L bath needs <InlineMath math="200" /> g, not <InlineMath math="250" /> g |
+| Adding <InlineMath math="25" /> g before the fourth cloth | **Follows the instructions** | Matches step <InlineMath math="5" /> after every <InlineMath math="3" /> cloths |
+| <InlineMath math="6" /> rounds (<InlineMath math="5" />-min dip + <InlineMath math="15" />-min airing) | **Follows the instructions** | Matches step <InlineMath math="3" /> and step <InlineMath math="4" /> for dark blue |
+| <InlineMath math="4" /> dips in a row then one <InlineMath math="60" />-min airing | **Breaks the instructions** | Each dip must have its own airing |
+| Adding a spoonful of salt to the bath | **Not covered** | Salt is never mentioned in any step |
+| Rinsing with vinegar on the same day | **Breaks the instructions** | Must dry in the shade for a day first |
+
+# Answer
+
+Actions **two and three** follow the instructions, actions **one, four, and six** break the instructions, and action **five** is **Not covered**.
