@@ -1,15 +1,33 @@
-Runden beginnen alle <InlineMath math="12" /> Minuten ab 7:30, und eine Runde muss bis 12:00 begonnen haben. Die letzte rechtzeitige Runde beginnt um 11:54, <InlineMath math="22" /> Runden nach 7:30, es gibt also <InlineMath math="23" /> Runden. An Werktagen nimmt jede Runde zwei Nummern, also kommen die Nummern bis <InlineMath math="46" /> dran. Samstags nimmt jede Runde eine Nummer, also kommen die Nummern bis <InlineMath math="23" /> dran.
+# Gegeben
 
-**Aussage 1**: am selben Tag dran. Nummer <InlineMath math="44" /> ist im <InlineMath math="22" />. Paar, um 11:42.
+In der **Puskesmas Kenanga** beginnen Termine ab **7:30 Uhr** alle **<InlineMath math="12" /> Minuten**. Wer bis **12:00 Uhr** nicht begonnen hat, bekommt eine Marke für den nächsten Morgen. Werktags gehen **zwei Nummern pro Runde** hinein, samstags **eine Nummer**.
 
-**Aussage 2**: bekommt ein Ticket. Samstags würde Nummer <InlineMath math="24" /> um 12:06 beginnen.
+# Gesucht
 
-**Aussage 3**: bekommt ein Ticket. Nummer <InlineMath math="47" /> ist im <InlineMath math="24" />. Paar, um 12:06.
+Ob jeder der fünf Patienten **Seen that day** oder **Given a ticket for the next morning** zugeordnet wird.
 
-**Aussage 4**: am selben Tag dran. Samstags beginnt Nummer <InlineMath math="23" /> um 11:54.
+# Lösung
 
-**Aussage 5**: am selben Tag dran. Nummer <InlineMath math="45" /> teilt sich die letzte Runde, um 11:54.
+Bestimme zuerst den **letzten gültigen Beginn vor 12:00 Uhr**: Von 7:30 bis 11:54 Uhr liegen <InlineMath math="22" /> Schritte à <InlineMath math="12" /> Minuten, also insgesamt **<InlineMath math="23" /> Runden**. Werktags reicht das bis **Nummer <InlineMath math="46" />**, samstags bis **Nummer <InlineMath math="23" />**.
 
-Wer die Werktagsgrenze von <InlineMath math="46" /> auf den Samstag überträgt, entscheidet Aussage 2 falsch. Wer vergisst, dass eine Runde um 11:54 noch zählt, entscheidet die Aussagen 4 und 5 falsch.
+> Zähle die Startrunde um 7:30 Uhr mit, denn <InlineMath math="22" /> Abstände bis 11:54 Uhr ergeben <InlineMath math="23" /> Runden.
 
-Die Patienten der Aussagen 1, 4 und 5 kommen also am selben Tag dran, die der Aussagen 2 und 3 bekommen ein Ticket für den nächsten Morgen.
+## Höchstnummern für Werktag und Samstag bestimmen
+
+Die Regel lautet <Highlight>A patient whose turn has not begun by 12:00 is given a ticket for the first turn the next morning</Highlight>. Die **Grenzwerte**:
+
+<BlockMath math="7{:}30 + 22 \times 12\text{ Min.} = 11{:}54 \implies 23\text{ Runden} \implies \text{Werktag max. } 46, \quad \text{Samstag max. } 23" />
+
+Runde <InlineMath math="24" /> begänne erst um **12:06 Uhr**. Alle **fünf Patienten im Überblick**:
+
+| Patient | Tagesgrenze | Beginn | Ergebnis |
+| --- | --- | --- | --- |
+| Nummer <InlineMath math="44" /> am Mittwoch | Bis <InlineMath math="46" /> | 11:42 | **Seen that day** |
+| Nummer <InlineMath math="24" /> am Samstag | Bis <InlineMath math="23" /> | 12:06 | **Given a ticket for the next morning** |
+| Nummer <InlineMath math="47" /> am Montag | Bis <InlineMath math="46" /> | 12:06 | **Given a ticket for the next morning** |
+| Nummer <InlineMath math="23" /> am Samstag | Bis <InlineMath math="23" /> | 11:54 | **Seen that day** |
+| Nummer <InlineMath math="45" /> am Freitag | Bis <InlineMath math="46" /> | 11:54 | **Seen that day** |
+
+# Antwort
+
+Die Nummern **<InlineMath math="44" /> (Mittwoch)**, **<InlineMath math="23" /> (Samstag)** und **<InlineMath math="45" /> (Freitag)** gehören zu **Seen that day**, während **<InlineMath math="24" /> (Samstag)** und **<InlineMath math="47" /> (Montag)** zu **Given a ticket for the next morning** gehören.

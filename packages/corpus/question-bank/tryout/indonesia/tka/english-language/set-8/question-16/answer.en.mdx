@@ -1,12 +1,32 @@
-First turn Rina's reading into rainfall, then turn that rainfall into Dimas's reading.
+# Given
 
-**Rainfall**. Rina's funnel is twice as wide, so her rise is divided by <InlineMath math="4" />: <InlineMath math="36 \div 4 = 9" /> millimetres of rain.
+In the **bottle rain gauge** guide, a funnel **twice as wide** as the bottle collects <InlineMath math="4" /> times the rain depth (divide rise by **<InlineMath math="4" />**), and a funnel **three times as wide** collects <InlineMath math="9" /> times the depth (divide rise by **<InlineMath math="9" />**).
 
-**Dimas's rise**. His funnel is three times as wide, so his rise is the rainfall times <InlineMath math="9" />: <InlineMath math="9 \times 9 = 81" /> millimetres.
+In the same field, Rina's twice-as-wide gauge shows a rise of **<InlineMath math="36" /> mm**.
 
-- <InlineMath math="54" /> scales by width, <InlineMath math="36 \times \frac{3}{2}" />, instead of by the numbers <InlineMath math="4" /> and <InlineMath math="9" />.
-- <InlineMath math="9" /> is the rainfall itself, not the rise Dimas would see.
-- <InlineMath math="324" /> multiplies Rina's rise by <InlineMath math="9" /> without first dividing by <InlineMath math="4" />.
-- <InlineMath math="48" /> multiplies by <InlineMath math="\frac{4}{3}" />, as if the width ratio were the rule.
+# Asked
 
-So Dimas's gauge should show a rise of <InlineMath math="81" /> millimetres.
+The rise in millimetres that Dimas's three-times-as-wide gauge should show that morning.
+
+# Solution
+
+Use **actual rainfall** as the bridge between the two bottles. Because circular catch area grows with the **square of width** (<InlineMath math="2^2 = 4" /> and <InlineMath math="3^2 = 9" />), divide Rina's rise by <InlineMath math="4" /> to get rainfall, then multiply by <InlineMath math="9" /> for Dimas.
+
+> Convert the first gauge reading into true rainfall first, then scale up by the second gauge's area factor.
+
+## Finding rainfall from Rina and scaling to Dimas
+
+Step seven gives the exact factors: <Highlight>divide the rise: by <InlineMath math="4" /> for a funnel twice as wide as the bottle, and by <InlineMath math="9" /> for one three times as wide</Highlight>. Computing **rainfall and Dimas's rise**:
+
+<BlockMath math="\text{Rainfall} = \frac{36}{4} = 9\text{ mm}, \qquad \text{Dimas's rise} = 9 \times 9 = 81\text{ mm}" />
+
+## Why the other four numbers fail
+
+- **<InlineMath math="54" />** scales linearly by width (<InlineMath math="36 \times \frac{3}{2}" />) instead of by area factors <InlineMath math="4" /> and <InlineMath math="9" />.
+- **<InlineMath math="9" />** stops at the true rainfall instead of computing Dimas's bottle rise.
+- **<InlineMath math="324" />** multiplies <InlineMath math="36 \times 9" /> without first dividing by <InlineMath math="4" />.
+- **<InlineMath math="48" />** multiplies <InlineMath math="36" /> by <InlineMath math="\frac{4}{3}" />.
+
+# Answer
+
+Dimas's gauge should show a rise of **<InlineMath math="81" />** millimetres.

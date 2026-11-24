@@ -1,10 +1,33 @@
-Prüf jeden Vergleich an den Rundenregeln und den Gebühren.
+# Gegeben
 
-- **I ist gestützt**. Beide Tage haben dieselben <InlineMath math="23" /> Runden ab 7:30, aber an Werktagen nimmt eine Runde zwei Nummern: <InlineMath math="46" /> gegen <InlineMath math="23" />.
-- **II ist gestützt**. An einem Werktag ist Nummer <InlineMath math="20" /> im <InlineMath math="10" />. Paar: <InlineMath math="9 \times 12 = 108" /> Minuten nach 7:30, also 9:18. Samstags kommen erst <InlineMath math="19" /> Patienten: <InlineMath math="19 \times 12 = 228" /> Minuten, also 11:18.
-- III ist nicht gestützt. Der Text nennt eine Anmeldegebühr und sagt nie, dass sie sich samstags ändert.
-- **IV ist gestützt**. "Patients with a national health card pay nothing", ohne einen Tag zu nennen.
+In der **Puskesmas Kenanga** arbeiten werktags **zwei Ärzte** (<InlineMath math="23" /> Paare = <InlineMath math="46" /> Nummern) und samstags **ein Arzt** (<InlineMath math="23" /> Einzeltermine). Die Anmeldung kostet **<InlineMath math="\text{Rp}10{.}000" />**, und **Inhaber einer staatlichen Gesundheitskarte zahlen nichts**, ohne Tagesbeschränkung.
 
-Die Optionen mit III fügen eine Gebührenregel hinzu, die der Text nicht hat. Die Option ohne I übersieht, dass die Paare die Zahl der Nummern verdoppeln.
+# Gesucht
 
-Gestützt sind also nur I, II und IV.
+Welche der Vergleiche I bis IV zwischen Werktag und Samstag der Text stützt.
+
+# Lösung
+
+Vergleiche das **Zwei-zu-eins-Verhältnis der Ärzte** und die **Gebührenregel**. Da beide Tage genau <InlineMath math="23" /> Zeitfenster haben, schafft ein Werktag doppelt so viele Nummern, während die Gebühr an allen Tagen gleich bleibt.
+
+> Nennt der Text keinen Wochenendrabatt, gilt die Gebührenregel unverändert für jeden Öffnungstag.
+
+## Alle vier Vergleiche nachprüfen
+
+Der Text schreibt <Highlight>Patients with a national health card pay nothing</Highlight>. **Beginn von Nummer <InlineMath math="20" /> an beiden Tagen**:
+
+<BlockMath math="\text{Werktag (Paar 10): } 7{:}30 + 9 \times 12\text{ Min.} = 9{:}18, \qquad \text{Samstag (Termin 20): } 7{:}30 + 19 \times 12\text{ Min.} = 11{:}18" />
+
+- **I (gestützt)**: Werktags werden <InlineMath math="46" /> statt <InlineMath math="23" /> Nummern behandelt, also doppelt so viele.
+- **II (gestützt)**: Nummer <InlineMath math="20" /> kommt samstags um 11:18 Uhr dran, zwei Stunden später als werktags um 9:18 Uhr.
+- **III (falsch)**: Ein niedrigerer Samstagspreis wird nirgends erwähnt.
+- **IV (gestützt)**: Mit staatlicher Gesundheitskarte zahlt man an jedem Tag nichts.
+
+## Warum die anderen vier Optionen scheitern
+
+- Optionen mit **III** erfinden eine günstigere Samstagsgebühr.
+- **I and II only** übersieht IV, und **II and IV only** lässt die doppelte Kapazität in I weg.
+
+# Antwort
+
+Durch den Text gestützt werden **I, II, and IV only** (nur I, II und IV).

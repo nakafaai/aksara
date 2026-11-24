@@ -1,12 +1,34 @@
-Work out each start time with the right rule for the day.
+# Given
 
-**Pak Ali, Tuesday**. On weekdays numbers go in two at a time, so numbers <InlineMath math="31" /> and <InlineMath math="32" /> share a turn. Before them come <InlineMath math="15" /> pairs: <InlineMath math="15 \times 12 = 180" /> minutes after 7:30, which is 10:30.
+At **Puskesmas Kenanga**, doctors start at **7:30** and see one patient every **<InlineMath math="12" /> minutes**. On **weekdays**, two doctors call patients **in pairs** (<InlineMath math="1" /> and <InlineMath math="2" /> at 7:30, <InlineMath math="3" /> and <InlineMath math="4" /> at 7:42), whereas on **Saturdays**, one doctor calls patients **one at a time**.
 
-**His wife, Saturday**. On Saturdays there is one doctor, so numbers go in one at a time. Before number <InlineMath math="16" /> come <InlineMath math="15" /> patients: <InlineMath math="15 \times 12 = 180" /> minutes after 7:30, also 10:30.
+Pak Ali holds number **<InlineMath math="31" />** on Tuesday, and his wife holds number **<InlineMath math="16" />** on Saturday.
 
-- <InlineMath math="96" /> minutes earlier treats Saturday like a weekday, with numbers in pairs.
-- <InlineMath math="12" /> minutes later counts her own turn among the ones before her.
-- <InlineMath math="180" /> minutes earlier treats Tuesday like a Saturday, with one doctor.
-- <InlineMath math="6" /> minutes earlier halves <InlineMath math="31" /> without pairing the numbers, which puts Pak Ali at 10:36.
+# Asked
 
-So her turn begins at the same time of the morning as his.
+How the start time of his wife's Saturday turn compares with the start time of Pak Ali's Tuesday turn.
+
+# Solution
+
+Think of Tuesday as a **two-lane highway** and Saturday as a **one-lane road**. Even though Pak Ali's number (<InlineMath math="31" />) looks almost double hers (<InlineMath math="16" />), two lanes move twice as fast, so **both wait behind exactly <InlineMath math="15" /> turns**.
+
+> Always count how many complete turns come *before* a patient's own slot, using pairs on weekdays and single slots on Saturdays.
+
+## Computing both start times
+
+The clinic notes <Highlight>On weekdays two doctors work side by side; on Saturdays there is one. Each doctor sees one patient every <InlineMath math="12" /> minutes</Highlight>.
+
+On Tuesday, numbers <InlineMath math="31" /> and <InlineMath math="32" /> form the **<InlineMath math="16" />th pair**, so **<InlineMath math="15" /> pairs** precede Pak Ali. On Saturday, **<InlineMath math="15" /> single patients** precede number <InlineMath math="16" />. **Both wait durations** are identical:
+
+<BlockMath math="\text{Wait} = 15 \times 12 = 180\text{ min} = 3\text{ h} \implies 7{:}30 + 3\text{ h} = 10{:}30" />
+
+## Why the other four comparisons fail
+
+- **<InlineMath math="96" /> minutes earlier** mistakenly treats Saturday as paired (<InlineMath math="84" /> min instead of <InlineMath math="180" /> min).
+- **<InlineMath math="12" /> minutes later** counts her own slot (<InlineMath math="16" />) instead of the <InlineMath math="15" /> slots ahead of her.
+- **<InlineMath math="180" /> minutes earlier** wrongly treats Tuesday as a single-doctor day.
+- **<InlineMath math="6" /> minutes earlier** divides <InlineMath math="31" /> by <InlineMath math="2" /> without pairing odd and even numbers.
+
+# Answer
+
+Her turn **begins at the same time of the morning** as his (both start at **10:30**).

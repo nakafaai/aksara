@@ -1,9 +1,31 @@
-Cek setiap pernyataan dengan aturan gilirannya.
+# Diketahui
 
-- **Giliran terakhir hari Sabtu dimulai pukul 11.54: didukung**. Nomor <InlineMath math="23" /> datang setelah <InlineMath math="22" /> pasien: <InlineMath math="22 \times 12 = 264" /> menit setelah pukul 7.30, yaitu pukul 11.54. Nomor <InlineMath math="24" /> baru dimulai pukul 12.06, sudah terlambat.
-- **Pada hari kerja, nomor <InlineMath math="45" /> dan <InlineMath math="46" /> masuk pukul 11.54: didukung**. Keduanya pasangan ke-<InlineMath math="23" />, <InlineMath math="22 \times 12 = 264" /> menit setelah pukul 7.30.
-- Pada hari kerja, nomor <InlineMath math="30" /> masuk pukul 13.18: tidak didukung. Nomor itu ada di pasangan ke-<InlineMath math="15" />, pada <InlineMath math="14 \times 12 = 168" /> menit setelah pukul 7.30, yaitu pukul 10.18. Pukul 13.18 menghitung nomor satu per satu.
-- Pada hari Sabtu, dokter melayani <InlineMath math="6" /> pasien per jam: tidak didukung. <InlineMath math="60 \div 12 = 5" />.
-- Setiap pasien di atas <InlineMath math="60" /> tahun bertemu dokter: tidak didukung. Perawat hanya memanggil dokter *if needed* (kalau perlu).
+Di **Puskesmas Kenanga**, giliran dimulai tiap **<InlineMath math="12" /> menit** sejak **7.30**, giliran terakhir mulai pukul **11.54** (giliran ke-<InlineMath math="23" />: nomor <InlineMath math="23" /> pada Sabtu, pasangan <InlineMath math="45" /> dan <InlineMath math="46" /> pada hari kerja), dan pasien prioritas di atas **<InlineMath math="60" />** tahun menemui dokter hanya **jika perlu**.
 
-Jadi, pernyataan yang didukung adalah giliran terakhir hari Sabtu pukul 11.54 dan pasangan nomor <InlineMath math="45" /> dan <InlineMath math="46" /> pada hari kerja pukul 11.54.
+# Ditanyakan
+
+Semua pernyataan di antara lima pilihan yang didukung oleh bacaan.
+
+# Penyelesaian
+
+Hitung patokan waktunya langsung: **<InlineMath math="22" /> selang <InlineMath math="12" /> menit** jatuh tepat pukul **11.54** (giliran ke-<InlineMath math="24" /> pukul 12.06 sudah lewat), dan **satu dokter memeriksa <InlineMath math="5" /> pasien per jam** (<InlineMath math="60 \div 12" />), bukan <InlineMath math="6" />.
+
+> Uji setiap jam mulai dan laju pasien per jam dengan hitungan persis sebelum memilih pernyataan benar.
+
+## Menguji kelima pernyataan dengan hitungan jadwal
+
+Teks menulis <Highlight>Each doctor sees one patient every <InlineMath math="12" /> minutes</Highlight> dan <Highlight>calls a doctor if needed</Highlight>. **Hitungan jam dan laju**:
+
+<BlockMath math="7.30 + 22 \times 12\text{ mnt} = 11.54, \qquad \text{Pasangan 15: } 7.30 + 14 \times 12\text{ mnt} = 10.18, \qquad \frac{60}{12} = 5\text{ / jam}" />
+
+- **Giliran bernomor terakhir Sabtu mulai pukul 11.54**: **Didukung**, yaitu nomor <InlineMath math="23" /> (nomor <InlineMath math="24" /> pukul 12.06).
+- **Hari kerja, nomor <InlineMath math="45" /> dan <InlineMath math="46" /> masuk pukul 11.54**: **Didukung**, sebagai pasangan ke-<InlineMath math="23" />.
+- **Hari kerja, nomor <InlineMath math="30" /> masuk pukul 13.18**: **Tidak didukung**, karena pasangan ke-<InlineMath math="15" /> (<InlineMath math="29" /> dan <InlineMath math="30" />) masuk pukul **10.18**.
+- **Sabtu, dokter memeriksa <InlineMath math="6" /> pasien per jam**: **Tidak didukung**, karena durasi <InlineMath math="12" /> menit per pasien hanya menghasilkan <InlineMath math="5" /> pasien per jam.
+- **Setiap pasien di atas <InlineMath math="60" /> tahun ditemui dokter**: **Tidak didukung**, karena dokter dipanggil hanya *jika perlu*.
+
+# Jawaban
+
+Semua pernyataan yang didukung teks adalah:
+- **On a Saturday, the last numbered patient's turn begins at 11:54.**
+- **On a weekday, numbers <InlineMath math="45" /> and <InlineMath math="46" /> go in at 11:54.**

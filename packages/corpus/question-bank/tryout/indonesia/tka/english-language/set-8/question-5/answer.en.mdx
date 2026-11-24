@@ -1,9 +1,31 @@
-Check each statement with the turn rules.
+# Given
 
-- **The last Saturday turn begins at 11:54: supported**. Number <InlineMath math="23" /> comes after <InlineMath math="22" /> patients: <InlineMath math="22 \times 12 = 264" /> minutes after 7:30, which is 11:54. Number <InlineMath math="24" /> would begin at 12:06, too late.
-- **On a weekday, numbers <InlineMath math="45" /> and <InlineMath math="46" /> go in at 11:54: supported**. They are the <InlineMath math="23" />rd pair, <InlineMath math="22 \times 12 = 264" /> minutes after 7:30.
-- On a weekday, number <InlineMath math="30" /> goes in at 13:18: not supported. It's in the <InlineMath math="15" />th pair, at <InlineMath math="14 \times 12 = 168" /> minutes after 7:30, which is 10:18. 13:18 counts the numbers one at a time.
-- On a Saturday, the doctor sees <InlineMath math="6" /> patients an hour: not supported. <InlineMath math="60 \div 12 = 5" />.
-- Every patient over <InlineMath math="60" /> sees a doctor: not supported. The nurse calls a doctor only "if needed".
+At **Puskesmas Kenanga**, turns begin every **<InlineMath math="12" /> minutes** from **7:30**, the last valid turn begins at **11:54** (<InlineMath math="23" />rd turn: number <InlineMath math="23" /> on Saturday, pair <InlineMath math="45" /> and <InlineMath math="46" /> on weekdays), and priority patients over **<InlineMath math="60" />** see a doctor only **if needed**.
 
-So the supported statements are the ones about the last Saturday turn at 11:54 and the weekday pair <InlineMath math="45" /> and <InlineMath math="46" /> at 11:54.
+# Asked
+
+All statements among the five choices that are supported by the text.
+
+# Solution
+
+Compute the key milestones directly: **<InlineMath math="22" /> intervals of <InlineMath math="12" /> minutes** land at **11:54** (leaving slot <InlineMath math="24" /> at 12:06, too late), and **one doctor sees <InlineMath math="5" /> patients per hour** (<InlineMath math="60 \div 12" />), not <InlineMath math="6" />.
+
+> Verify every clock milestone and hourly rate with exact arithmetic before selecting statements.
+
+## Checking all five statements with exact clinic math
+
+The text specifies <Highlight>Each doctor sees one patient every <InlineMath math="12" /> minutes</Highlight> and <Highlight>calls a doctor if needed</Highlight>. Key **clock and rate calculations**:
+
+<BlockMath math="7{:}30 + 22 \times 12\text{ min} = 11{:}54, \qquad \text{Weekday pair 15: } 7{:}30 + 14 \times 12\text{ min} = 10{:}18, \qquad \frac{60}{12} = 5\text{ / hour}" />
+
+- **Last Saturday numbered turn begins at 11:54**: **Supported**, as number <InlineMath math="23" /> begins at 11:54 and <InlineMath math="24" /> would be 12:06.
+- **On a weekday, numbers <InlineMath math="45" /> and <InlineMath math="46" /> enter at 11:54**: **Supported**, as they form the <InlineMath math="23" />rd pair.
+- **On a weekday, number <InlineMath math="30" /> enters at 13:18**: **Not supported**, since pair <InlineMath math="15" /> (<InlineMath math="29" /> and <InlineMath math="30" />) enters at **10:18**.
+- **On Saturday, the doctor sees <InlineMath math="6" /> patients an hour**: **Not supported**, since <InlineMath math="12" /> minutes per patient yields <InlineMath math="5" /> patients per hour.
+- **Every patient over <InlineMath math="60" /> sees a doctor**: **Not supported**, since the nurse calls a doctor only *if needed*.
+
+# Answer
+
+The supported statements are:
+- **On a Saturday, the last numbered patient's turn begins at 11:54.**
+- **On a weekday, numbers <InlineMath math="45" /> and <InlineMath math="46" /> go in at 11:54.**

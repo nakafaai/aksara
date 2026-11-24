@@ -1,15 +1,33 @@
-Giliran dimulai setiap <InlineMath math="12" /> menit sejak pukul 7.30, dan sebuah giliran harus dimulai paling lambat pukul 12.00. Giliran terakhir yang masih sempat dimulai pukul 11.54, yaitu <InlineMath math="22" /> giliran setelah pukul 7.30, jadi ada <InlineMath math="23" /> giliran. Pada hari kerja setiap giliran untuk dua nomor, jadi nomor sampai <InlineMath math="46" /> dilayani. Pada hari Sabtu setiap giliran untuk satu nomor, jadi nomor sampai <InlineMath math="23" /> dilayani.
+# Diketahui
 
-**Pernyataan 1**: dilayani hari itu. Nomor <InlineMath math="44" /> ada di pasangan ke-<InlineMath math="22" />, pukul 11.42.
+Di **Puskesmas Kenanga**, pemeriksaan dimulai pukul **7.30** setiap **<InlineMath math="12" /> menit**, dan pasien yang gilirannya **belum dimulai sebelum pukul 12.00** diberi tiket untuk esok pagi. Hari kerja melayani **dua nomor per giliran**, sedangkan Sabtu **satu nomor per giliran**.
 
-**Pernyataan 2**: diberi tiket. Pada hari Sabtu, nomor <InlineMath math="24" /> baru dimulai pukul 12.06.
+# Ditanyakan
 
-**Pernyataan 3**: diberi tiket. Nomor <InlineMath math="47" /> ada di pasangan ke-<InlineMath math="24" />, pukul 12.06.
+Status lima pasien: **diperiksa hari itu** (*Seen that day*) atau **diberi tiket esok pagi** (*Given a ticket for the next morning*).
 
-**Pernyataan 4**: dilayani hari itu. Pada hari Sabtu, nomor <InlineMath math="23" /> dimulai pukul 11.54.
+# Penyelesaian
 
-**Pernyataan 5**: dilayani hari itu. Nomor <InlineMath math="45" /> ikut giliran terakhir, pukul 11.54.
+Cari dulu **giliran terakhir sebelum pukul 12.00**: dari 7.30 hingga 11.54 ada <InlineMath math="264" /> menit (<InlineMath math="22" /> langkah sesudah 7.30), sehingga tersedia **<InlineMath math="23" /> giliran**. Artinya batas nomor adalah **<InlineMath math="46" />** pada hari kerja dan **<InlineMath math="23" />** pada Sabtu.
 
-Memakai batas hari kerja, yaitu nomor <InlineMath math="46" />, untuk hari Sabtu membuat pernyataan 2 salah arah. Lupa bahwa giliran pukul 11.54 masih dihitung membuat pernyataan 4 dan 5 salah arah.
+> Jangan lupa menghitung giliran pertama pukul 7.30, karena <InlineMath math="22" /> selang waktu menghasilkan <InlineMath math="23" /> giliran sampai 11.54.
 
-Jadi, pasien di pernyataan 1, 4, dan 5 dilayani hari itu, sedangkan pasien di pernyataan 2 dan 3 diberi tiket untuk besok pagi.
+## Menentukan batas nomor hari kerja dan Sabtu
+
+Aturan menyebut <Highlight>A patient whose turn has not begun by 12:00 is given a ticket for the first turn the next morning</Highlight>. Hitungan **batas giliran terakhir**:
+
+<BlockMath math="7.30 + 22 \times 12\text{ menit} = 11.54 \implies 23\text{ giliran} \implies \text{maks hari kerja } 46, \quad \text{maks Sabtu } 23" />
+
+Giliran ke-<InlineMath math="24" /> baru mulai **12.06**, lewat batas 12.00. Ringkasan **kelima pasien**:
+
+| Pasien | Batas hari | Jam mulai | Status |
+| --- | --- | --- | --- |
+| Nomor <InlineMath math="44" /> hari Rabu | Sampai <InlineMath math="46" /> | 11.42 | **Seen that day** |
+| Nomor <InlineMath math="24" /> hari Sabtu | Sampai <InlineMath math="23" /> | 12.06 | **Given a ticket for the next morning** |
+| Nomor <InlineMath math="47" /> hari Senin | Sampai <InlineMath math="46" /> | 12.06 | **Given a ticket for the next morning** |
+| Nomor <InlineMath math="23" /> hari Sabtu | Sampai <InlineMath math="23" /> | 11.54 | **Seen that day** |
+| Nomor <InlineMath math="45" /> hari Jumat | Sampai <InlineMath math="46" /> | 11.54 | **Seen that day** |
+
+# Jawaban
+
+Nomor **<InlineMath math="44" /> (Rabu)**, **<InlineMath math="23" /> (Sabtu)**, dan **<InlineMath math="45" /> (Jumat)** mendapat status **Seen that day**, sedangkan nomor **<InlineMath math="24" /> (Sabtu)** dan **<InlineMath math="47" /> (Senin)** mendapat status **Given a ticket for the next morning**.
